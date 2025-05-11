@@ -4,401 +4,1849 @@
 */
 
 #include "d/actor/d_a_obj_kanban2.h"
-#include "dol2asm.h"
+#include "d/d_com_inf_game.h"
+#include "d/actor/d_a_player.h"
+#include "d/actor/d_a_npc_tk.h"
+#include "d/d_s_play.h"
+#include "Z2AudioLib/Z2Instances.h"
+#include <cmath.h>
 
+#define PARTS_ALL 0x3FFFF
+#define PART_TOP_LEFT_UNDER     (1 << 0)
+#define PART_TOP_LEFT_UPPER     (1 << 1)
+#define PART_TOP_RIGHT_UPPER    (1 << 2)
+#define PART_TOP_RIGHT_UNDER    (1 << 3)
+#define PART_BOTTOM_RIGHT_UPPER (1 << 4)
+#define PART_BOTTOM_RIGHT_UNDER (1 << 5)
+#define PART_BOTTOM_LEFT_UNDER  (1 << 6)
+#define PART_BOTTOM_LEFT_UPPER  (1 << 7)
+#define PART_STUB_LEFT          (1 << 8)
+#define PART_STUB_RIGHT         (1 << 9)
+#define PART_SPINE_LEFT_UPPER   (1 << 10)
+#define PART_SPINE_RIGHT_UPPER  (1 << 11)
+#define PART_SPINE_LEFT_UNDER   (1 << 12)
+#define PART_SPINE_RIGHT_UNDER  (1 << 13)
+#define PART_BASE_LEFT_UPPER    (1 << 14)
+#define PART_BASE_RIGHT_UPPER   (1 << 15)
+#define PART_BASE_LEFT_UNDER    (1 << 16)
+#define PART_BASE_RIGHT_UNDER   (1 << 17)
 
+#define PARTS_LEFT_SIDE           \
+    (                            \
+        PART_BASE_LEFT_UNDER   | \
+        PART_BASE_LEFT_UPPER   | \
+        PART_SPINE_LEFT_UNDER  | \
+        PART_SPINE_LEFT_UPPER  | \
+        PART_STUB_LEFT         | \
+        PART_BOTTOM_LEFT_UPPER | \
+        PART_BOTTOM_LEFT_UNDER | \
+        PART_TOP_LEFT_UPPER    | \
+        PART_TOP_LEFT_UNDER      \
+    )
 
-//
-// Forward References:
-//
+#define PARTS_TOP_HALF \
+    ( \
+        PART_SPINE_RIGHT_UPPER | \
+        PART_SPINE_LEFT_UPPER  | \
+        PART_STUB_RIGHT        | \
+        PART_STUB_LEFT         | \
+        PART_TOP_RIGHT_UNDER   | \
+        PART_TOP_RIGHT_UPPER   | \
+        PART_TOP_LEFT_UPPER    | \
+        PART_TOP_LEFT_UNDER      \
+    )
 
-extern "C" void __ct__19daObj_Kanban2_HIO_cFv();
-extern "C" void draw__15daObj_Kanban2_cFv();
-extern "C" void __dt__4cXyzFv();
-extern "C" static void daObj_Kanban2_Draw__FP15daObj_Kanban2_c();
-extern "C" void setKanbanSE__15daObj_Kanban2_cFi();
-extern "C" void createBreakParts__15daObj_Kanban2_cFUl5csXyz();
-extern "C" void createWallHitBreak__15daObj_Kanban2_cFv();
-extern "C" void getKanbanCutType__15daObj_Kanban2_cFv();
-extern "C" void getKanbanWolfCutType__15daObj_Kanban2_cFv();
-extern "C" void damage_check__15daObj_Kanban2_cFv();
-extern "C" void float_damage_check__15daObj_Kanban2_cFv();
-extern "C" void deletePart__15daObj_Kanban2_cFv();
-extern "C" void getWallAngle__15daObj_Kanban2_cFv();
-extern "C" void __dt__8cM3dGPlaFv();
-extern "C" void setGroundAngle__15daObj_Kanban2_cFv();
-extern "C" void checkWaterSurface__15daObj_Kanban2_cFv();
-extern "C" void checkPataGround__15daObj_Kanban2_cFss();
-extern "C" void setCullMtx__15daObj_Kanban2_cFv();
-extern "C" void setSmokeEffect__15daObj_Kanban2_cF4cXyz();
-extern "C" void setWaterEffect__15daObj_Kanban2_cFv();
-extern "C" void setCenterPos__15daObj_Kanban2_cFv();
-extern "C" void checkCarryOn__15daObj_Kanban2_cFv();
-extern "C" void setActionMode__15daObj_Kanban2_cFii();
-extern "C" void calcNormalSwing__15daObj_Kanban2_cFv();
-extern "C" void executeNormal__15daObj_Kanban2_cFv();
-extern "C" void initPart__15daObj_Kanban2_cFv();
-extern "C" void executePart__15daObj_Kanban2_cFv();
-extern "C" void executeFloat__15daObj_Kanban2_cFv();
-extern "C" void executeCarry__15daObj_Kanban2_cFv();
-extern "C" void action__15daObj_Kanban2_cFv();
-extern "C" void mtx_set__15daObj_Kanban2_cFv();
-extern "C" void cc_set__15daObj_Kanban2_cFv();
-extern "C" void execute__15daObj_Kanban2_cFv();
-extern "C" static void daObj_Kanban2_Execute__FP15daObj_Kanban2_c();
-extern "C" static bool daObj_Kanban2_IsDelete__FP15daObj_Kanban2_c();
-extern "C" void _delete__15daObj_Kanban2_cFv();
-extern "C" static void daObj_Kanban2_Delete__FP15daObj_Kanban2_c();
-extern "C" void CreateHeap__15daObj_Kanban2_cFv();
-extern "C" static void useHeapInit__FP10fopAc_ac_c();
-extern "C" void create__15daObj_Kanban2_cFv();
-extern "C" void __dt__8cM3dGSphFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__12dBgS_ObjAcchFv();
-extern "C" static void daObj_Kanban2_Create__FP15daObj_Kanban2_c();
-extern "C" void __dt__19daObj_Kanban2_HIO_cFv();
-extern "C" void __sinit_d_a_obj_kanban2_cpp();
-extern "C" static void func_805855FC();
-extern "C" static void func_80585604();
-extern "C" extern char const* const d_a_obj_kanban2__stringBase0;
+#define PARTS_BOTTOM_HALF \
+    ( \
+        PART_SPINE_RIGHT_UNDER  | \
+        PART_SPINE_LEFT_UNDER   | \
+        PART_BOTTOM_LEFT_UPPER  | \
+        PART_BOTTOM_LEFT_UNDER  | \
+        PART_BOTTOM_RIGHT_UNDER | \
+        PART_BOTTOM_RIGHT_UPPER   \
+    )
 
-//
-// External References:
-//
+enum daObj_Kanban2_Action {
+    ACTION_NORMAL_e,
+    ACTION_PART_e,
+    ACTION_FLOAT_e,
+    ACTION_CARRY_e,
+};
 
-extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void transM__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void scaleM__14mDoMtx_stack_cFfff();
-extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_setupShareTexture__FP12J3DModelDataP12J3DModelData();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_SetMin__FP10fopAc_ac_cfff();
-extern "C" void fopAcM_SetMax__FP10fopAc_ac_cfff();
-extern "C" void fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz();
-extern "C" void fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci();
-extern "C" void fopAcM_effHamonSet__FPUlPC4cXyzff();
-extern "C" void fopAcM_carryOffRevise__FP10fopAc_ac_c();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGp_getReverb__Fi();
-extern "C" void
-dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj();
-extern "C" void getRes__14dRes_control_cFPCcPCcP11dRes_info_ci();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void
-set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void dPath_GetPolyRoomPathVec__FRC13cBgS_PolyInfoP4cXyzPi();
-extern "C" void LineCross__4cBgSFP11cBgS_LinChk();
-extern "C" void GroundCross__4cBgSFP11cBgS_GndChk();
-extern "C" void ChkPolySafe__4cBgSFRC13cBgS_PolyInfo();
-extern "C" void GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla();
-extern "C" void __ct__12dBgS_AcchCirFv();
-extern "C" void SetWall__12dBgS_AcchCirFff();
-extern "C" void __dt__9dBgS_AcchFv();
-extern "C" void __ct__9dBgS_AcchFv();
-extern "C" void Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz();
-extern "C" void CrrPos__9dBgS_AcchFR4dBgS();
-extern "C" void SetGroundUpY__9dBgS_AcchFf();
-extern "C" void __ct__11dBgS_GndChkFv();
-extern "C" void __dt__11dBgS_GndChkFv();
-extern "C" void __ct__18dBgS_ObjGndChk_SplFv();
-extern "C" void __dt__18dBgS_ObjGndChk_SplFv();
-extern "C" void __ct__11dBgS_LinChkFv();
-extern "C" void __dt__11dBgS_LinChkFv();
-extern "C" void Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c();
-extern "C" void SetObj__16dBgS_PolyPassChkFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Move__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void ChkTgHit__12dCcD_GObjInfFv();
-extern "C" void GetTgHitObj__12dCcD_GObjInfFv();
-extern "C" void ChkCoHit__12dCcD_GObjInfFv();
-extern "C" void GetCoHitObj__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_SphFRC11dCcD_SrcSph();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void __ct__10dMsgFlow_cFv();
-extern "C" void init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c();
-extern "C" void doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci();
-extern "C" void ClrCcMove__9cCcD_SttsFv();
-extern "C" void GetAc__8cCcD_ObjFv();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void __pl__4cXyzCFRC3Vec();
-extern "C" void __ct__5csXyzFsss();
-extern "C" void cM_atan2s__Fff();
-extern "C" void cM_rndF__Ff();
-extern "C" void cM_rndFX__Ff();
-extern "C" void SetPos__11cBgS_GndChkFPC3Vec();
-extern "C" void SetPos__11cBgS_GndChkFPC4cXyz();
-extern "C" void SetC__8cM3dGSphFRC4cXyz();
-extern "C" void SetR__8cM3dGSphFf();
-extern "C" void cLib_addCalcAngleS2__FPssss();
-extern "C" void cLib_chaseF__FPfff();
-extern "C" void cLib_chaseAngleS__FPsss();
-extern "C" void cLib_targetAngleY__FPC3VecPC3Vec();
-extern "C" void cLib_targetAngleX__FPC4cXyzPC4cXyz();
-extern "C" void cLib_offsetPos__FP4cXyzPC4cXyzsPC4cXyz();
-extern "C" void cLib_distanceAngleS__Fss();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void deleteObject__14Z2SoundObjBaseFv();
-extern "C" void __ct__16Z2SoundObjSimpleFv();
-extern "C" void __dl__FPv();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" f32 Zero__4cXyz[3];
-extern "C" u8 sincosTable___5JMath[65536];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" void __register_global_object();
+enum daObj_Kanban2_DamageType {
+    DAMAGE_VERTICAL_SPLIT,
+    DAMAGE_HORIZONTAL_SPLIT,
+    DAMAGE_HORIZONTAL_SPLIT2,
+    DAMAGE_BOTTOM_VERTICAL_SPLIT,
+    DAMAGE_TOP_VERTICAL_SPLIT,
+    DAMAGE_PIECES,
+    DAMAGE_TLBR_DIAGONAL,
+    DAMAGE_TRBL_DIAGONAL,
+    DAMAGE_SHAKE,
+    DAMAGE_NONE,
+};
 
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 80585620-80585624 000000 0004+00 19/19 0/0 0/0 .rodata          @3970 */
-SECTION_RODATA static f32 const lit_3970 = 1.0f;
-COMPILER_STRIP_GATE(0x80585620, &lit_3970);
-
-/* 80585710-80585710 0000F0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80585710 = "J_kanban00.bmd";
-SECTION_DEAD static char const* const stringBase_8058571F = "J_kanban00_01.bmd";
-SECTION_DEAD static char const* const stringBase_80585731 = "J_kanban00_02.bmd";
-SECTION_DEAD static char const* const stringBase_80585743 = "J_kanban00_03.bmd";
-SECTION_DEAD static char const* const stringBase_80585755 = "J_kanban00_04.bmd";
-SECTION_DEAD static char const* const stringBase_80585767 = "J_kanban00_05.bmd";
-SECTION_DEAD static char const* const stringBase_80585779 = "J_kanban00_06.bmd";
-SECTION_DEAD static char const* const stringBase_8058578B = "J_kanban00_07.bmd";
-SECTION_DEAD static char const* const stringBase_8058579D = "J_kanban00_08.bmd";
-SECTION_DEAD static char const* const stringBase_805857AF = "J_kanban00_09.bmd";
-SECTION_DEAD static char const* const stringBase_805857C1 = "J_kanban00_10.bmd";
-SECTION_DEAD static char const* const stringBase_805857D3 = "J_kanban00_11.bmd";
-SECTION_DEAD static char const* const stringBase_805857E5 = "J_kanban00_12.bmd";
-SECTION_DEAD static char const* const stringBase_805857F7 = "J_kanban00_13.bmd";
-SECTION_DEAD static char const* const stringBase_80585809 = "J_kanban00_14.bmd";
-SECTION_DEAD static char const* const stringBase_8058581B = "J_kanban00_15.bmd";
-SECTION_DEAD static char const* const stringBase_8058582D = "J_kanban00_16.bmd";
-SECTION_DEAD static char const* const stringBase_8058583F = "J_kanban00_17.bmd";
-SECTION_DEAD static char const* const stringBase_80585851 = "J_kanban00_18.bmd";
-#pragma pop
-
+namespace {
 /* 8058586C-805858B8 -00001 004C+00 1/1 0/0 0/0 .data
  * l_kn2_bmdidx__29@unnamed@d_a_obj_kanban2_cpp@                */
-SECTION_DATA static void* data_8058586C[19] = {
-    (void*)&d_a_obj_kanban2__stringBase0,
-    (void*)(((char*)&d_a_obj_kanban2__stringBase0) + 0xF),
-    (void*)(((char*)&d_a_obj_kanban2__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_obj_kanban2__stringBase0) + 0x33),
-    (void*)(((char*)&d_a_obj_kanban2__stringBase0) + 0x45),
-    (void*)(((char*)&d_a_obj_kanban2__stringBase0) + 0x57),
-    (void*)(((char*)&d_a_obj_kanban2__stringBase0) + 0x69),
-    (void*)(((char*)&d_a_obj_kanban2__stringBase0) + 0x7B),
-    (void*)(((char*)&d_a_obj_kanban2__stringBase0) + 0x8D),
-    (void*)(((char*)&d_a_obj_kanban2__stringBase0) + 0x9F),
-    (void*)(((char*)&d_a_obj_kanban2__stringBase0) + 0xB1),
-    (void*)(((char*)&d_a_obj_kanban2__stringBase0) + 0xC3),
-    (void*)(((char*)&d_a_obj_kanban2__stringBase0) + 0xD5),
-    (void*)(((char*)&d_a_obj_kanban2__stringBase0) + 0xE7),
-    (void*)(((char*)&d_a_obj_kanban2__stringBase0) + 0xF9),
-    (void*)(((char*)&d_a_obj_kanban2__stringBase0) + 0x10B),
-    (void*)(((char*)&d_a_obj_kanban2__stringBase0) + 0x11D),
-    (void*)(((char*)&d_a_obj_kanban2__stringBase0) + 0x12F),
-    (void*)(((char*)&d_a_obj_kanban2__stringBase0) + 0x141),
+static char* l_kn2_bmdidx[] = {
+    "J_kanban00.bmd",
+    "J_kanban00_01.bmd",
+    "J_kanban00_02.bmd",
+    "J_kanban00_03.bmd",
+    "J_kanban00_04.bmd",
+    "J_kanban00_05.bmd",
+    "J_kanban00_06.bmd",
+    "J_kanban00_07.bmd",
+    "J_kanban00_08.bmd",
+    "J_kanban00_09.bmd",
+    "J_kanban00_10.bmd",
+    "J_kanban00_11.bmd",
+    "J_kanban00_12.bmd",
+    "J_kanban00_13.bmd",
+    "J_kanban00_14.bmd",
+    "J_kanban00_15.bmd",
+    "J_kanban00_16.bmd",
+    "J_kanban00_17.bmd",
+    "J_kanban00_18.bmd",
 };
 
 /* 805858B8-805858C8 00004C 0010+00 1/1 0/0 0/0 .data
  * dKn2_CarryOffset__29@unnamed@d_a_obj_kanban2_cpp@            */
-SECTION_DATA static u8 data_805858B8[16] = {
-    0xD0, 0x7D, 0xBA, 0x21, 0xBA, 0x21, 0xE3, 0x7E, 0x1D, 0x9F, 0xB3, 0x6C, 0xC9, 0xC8, 0xC6, 0x6D,
+static s16 dKn2_CarryOffset[] = {
+    0xD07D,
+    0xBA21,
+    0xBA21,
+    0xE37E,
+    0x1D9F,
+    0xB36C,
+    0xC9C8,
+    0xC66D,
 };
 
 /* 805858C8-80585958 00005C 0090+00 1/1 0/0 0/0 .data
  * dKb2_BAN_SPEED__29@unnamed@d_a_obj_kanban2_cpp@              */
-SECTION_DATA static u8 data_805858C8[144] = {
-    0x42, 0x0C, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00,
-    0x42, 0x0C, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00,
-    0x41, 0xC8, 0x00, 0x00, 0x41, 0xC8, 0x00, 0x00, 0x41, 0xC8, 0x00, 0x00, 0x41, 0xC8, 0x00, 0x00,
-    0x41, 0xC8, 0x00, 0x00, 0x41, 0xC8, 0x00, 0x00, 0x41, 0xC8, 0x00, 0x00, 0x41, 0xC8, 0x00, 0x00,
-    0x42, 0x20, 0x00, 0x00, 0x41, 0x70, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00, 0x41, 0x70, 0x00, 0x00,
-    0x42, 0x18, 0x00, 0x00, 0x41, 0x90, 0x00, 0x00, 0x42, 0x18, 0x00, 0x00, 0x41, 0x90, 0x00, 0x00,
-    0x42, 0x0C, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00,
-    0x41, 0x20, 0x00, 0x00, 0x41, 0xC8, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0x41, 0xC8, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
+static struct {
+    f32 speed_y;
+    f32 speed_f;
+} dKb2_BAN_SPEED[] = {
+    { 35.0f, 20.0f },
+    { 35.0f, 20.0f },
+    { 35.0f, 20.0f },
+    { 35.0f, 20.0f },
+    { 25.0f, 25.0f },
+    { 25.0f, 25.0f },
+    { 25.0f, 25.0f },
+    { 25.0f, 25.0f },
+    { 40.0f, 15.0f },
+    { 40.0f, 15.0f },
+    { 38.0f, 18.0f },
+    { 38.0f, 18.0f },
+    { 35.0f, 20.0f },
+    { 35.0f, 20.0f },
+    { 10.0f, 25.0f },
+    { 10.0f, 25.0f },
+    { 0.0f, 30.0f },
+    { 0.0f, 30.0f },
 };
 
 /* 80585958-8058597C 0000EC 0024+00 1/1 0/0 0/0 .data
  * dKb2_BAN_ANGLE__29@unnamed@d_a_obj_kanban2_cpp@              */
-SECTION_DATA static u8 data_80585958[36] = {
-    0x68, 0x00, 0x78, 0x00, 0x88, 0x00, 0x98, 0x00, 0x68, 0x00, 0x78, 0x00,
-    0x88, 0x00, 0x98, 0x00, 0x70, 0x00, 0x90, 0x00, 0x70, 0x00, 0x90, 0x00,
-    0x70, 0x00, 0x90, 0x00, 0x70, 0x00, 0x90, 0x00, 0x70, 0x00, 0x90, 0x00,
+static u16 dKb2_BAN_ANGLE[] = {
+    0x6800,
+    0x7800,
+    0x8800,
+    0x9800,
+    0x6800,
+    0x7800,
+    0x8800,
+    0x9800,
+    0x7000,
+    0x9000,
+    0x7000,
+    0x9000,
+    0x7000,
+    0x9000,
+    0x7000,
+    0x9000,
+    0x7000,
+    0x9000,
 };
 
 /* 8058597C-805859C4 000110 0048+00 2/2 0/0 0/0 .data
  * dKb2_BAN_PARTS__29@unnamed@d_a_obj_kanban2_cpp@              */
-SECTION_DATA static u8 data_8058597C[72] = {
-    0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x04, 0x02, 0x00, 0x00, 0x08, 0x04, 0x00, 0x00, 0x00,
-    0x08, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x20, 0x20, 0x00, 0x00, 0x10, 0x40, 0x00, 0x00,
-    0x00, 0x80, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x40, 0x00,
-    0x00, 0x02, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static u32 dKb2_BAN_PARTS[] = {
+    PART_TOP_LEFT_UNDER,
+    PART_SPINE_LEFT_UPPER | PART_TOP_LEFT_UPPER,
+    PART_SPINE_RIGHT_UPPER | PART_TOP_RIGHT_UPPER,
+    PART_TOP_RIGHT_UNDER,
+    PART_BOTTOM_RIGHT_UPPER,
+    PART_SPINE_RIGHT_UNDER | PART_BOTTOM_RIGHT_UNDER,
+    PART_SPINE_LEFT_UNDER | PART_BOTTOM_LEFT_UNDER,
+    PART_BOTTOM_LEFT_UPPER,
+    PART_STUB_LEFT,
+    PART_STUB_RIGHT,
+    0,
+    0,
+    0,
+    0,
+    PART_BASE_LEFT_UNDER | PART_BASE_LEFT_UPPER,
+    PART_BASE_RIGHT_UNDER | PART_BASE_RIGHT_UPPER,
+    0,
+    0,
 };
 
 /* 805859C4-80585A04 000158 0040+00 1/1 0/0 0/0 .data cc_kn2_src__29@unnamed@d_a_obj_kanban2_cpp@
  */
-SECTION_DATA static u8 data_805859C4[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x13,
-    0xD8, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00,
+static dCcD_SrcSph cc_kn2_src = {
+    {
+        {0x0, {{AT_TYPE_1000, 0x2, 0x13}, {0xD8FBFDFF, 0x11}, 0x79}}, // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+        {dCcD_SE_STONE, 0x0, 0x0, 0x0, 0x0}, // mGObjTg
+        {0x0}, // mGObjCo
+    }, // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 40.0f} // mSph
+    } // mSphAttr
 };
 
 /* 80585A04-80585A94 000198 0090+00 1/1 0/0 0/0 .data
  * d_KANBAN_OFFSET__29@unnamed@d_a_obj_kanban2_cpp@             */
-SECTION_DATA static u8 data_80585A04[144] = {
-    0x41, 0xC8, 0x00, 0x00, 0xC2, 0xDC, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC2, 0xFA, 0x00, 0x00,
-    0xC1, 0x20, 0x00, 0x00, 0xC2, 0xFA, 0x00, 0x00, 0xC1, 0xC8, 0x00, 0x00, 0xC2, 0xDC, 0x00, 0x00,
-    0xC1, 0xC8, 0x00, 0x00, 0xC2, 0xB4, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00, 0xC2, 0x96, 0x00, 0x00,
-    0x41, 0x20, 0x00, 0x00, 0xC2, 0x96, 0x00, 0x00, 0x41, 0xC8, 0x00, 0x00, 0xC2, 0xB4, 0x00, 0x00,
-    0x40, 0x40, 0x00, 0x00, 0xC3, 0x11, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0xC3, 0x11, 0x00, 0x00,
-    0x40, 0x40, 0x00, 0x00, 0xC2, 0xE6, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0xC2, 0xE6, 0x00, 0x00,
-    0x40, 0x40, 0x00, 0x00, 0xC2, 0x8C, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0xC2, 0x8C, 0x00, 0x00,
-    0x40, 0x40, 0x00, 0x00, 0xC2, 0x0C, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0xC2, 0x0C, 0x00, 0x00,
-    0x40, 0x40, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
+static struct {
+    f32 x;
+    f32 y;
+} d_KANBAN_OFFSET[] = {
+    { 25.0f, -110.0f },
+    { 10.0f, -125.0f },
+    { -10.0f, -125.0f },
+    { -25.0f, -110.0f },
+    { -25.0f, -90.0f },
+    { -10.0f, -75.0f },
+    { 10.0f, -75.0f },
+    { 25.0f, -90.0f },
+    { 3.0f, -145.0f },
+    { -3.0f, -145.0f },
+    { 3.0f, -115.0f },
+    { -3.0f, -115.0f },
+    { 3.0f, -70.0f },
+    { -3.0f, -70.0f },
+    { 3.0f, -35.0f },
+    { -3.0f, -35.0f },
+    { 3.0f, -10.0f },
+    { -3.0f, -10.0f },
 };
+}
 
-/* 80585A94-80585B30 -00001 009C+00 1/1 0/0 0/0 .data            @4133 */
-SECTION_DATA static void* lit_4133[39] = {
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xD0),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0x78),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0x68),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0x78),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xC0),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0x60),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0x78),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0x9C),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xC8),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xD0),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0x60),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xD0),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xD0),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xD0),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xD0),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xD0),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xD0),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xD0),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xC8),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0x60),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0x70),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xD0),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xC8),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xC8),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xC8),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xD0),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0x9C),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xD0),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xD0),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xD0),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xC8),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0x9C),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0x70),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0x68),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xD0),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xD0),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xD0),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0xC0),
-    (void*)(((char*)getKanbanCutType__15daObj_Kanban2_cFv) + 0x78),
-};
+/* 8058176C-80581790 0000EC 0024+00 1/1 0/0 0/0 .text            __ct__19daObj_Kanban2_HIO_cFv */
+daObj_Kanban2_HIO_c::daObj_Kanban2_HIO_c() {
+    id = -1;
+    base_size = 1.0f;
+}
 
-/* 80585B30-80585B58 -00001 0028+00 1/1 0/0 0/0 .data            @4286 */
-SECTION_DATA static void* lit_4286[10] = {
-    (void*)(((char*)damage_check__15daObj_Kanban2_cFv) + 0x1D0),
-    (void*)(((char*)damage_check__15daObj_Kanban2_cFv) + 0x28C),
-    (void*)(((char*)damage_check__15daObj_Kanban2_cFv) + 0x294),
-    (void*)(((char*)damage_check__15daObj_Kanban2_cFv) + 0x2B0),
-    (void*)(((char*)damage_check__15daObj_Kanban2_cFv) + 0x2EC),
-    (void*)(((char*)damage_check__15daObj_Kanban2_cFv) + 0x328),
-    (void*)(((char*)damage_check__15daObj_Kanban2_cFv) + 0x3F8),
-    (void*)(((char*)damage_check__15daObj_Kanban2_cFv) + 0x400),
-    (void*)(((char*)damage_check__15daObj_Kanban2_cFv) + 0x408),
-    (void*)(((char*)damage_check__15daObj_Kanban2_cFv) + 0x454),
-};
+/* 80581790-805818DC 000110 014C+00 1/1 0/0 0/0 .text            draw__15daObj_Kanban2_cFv */
+int daObj_Kanban2_c::draw() {
+    cXyz sp8;
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
 
-/* 80585B58-80585B60 0002EC 0008+00 1/1 0/0 0/0 .data            w_eff_id$4564 */
-SECTION_DATA static u8 w_eff_id[8] = {
-    0x01, 0xB8, 0x01, 0xB9, 0x01, 0xBA, 0x01, 0xBB,
-};
+    if (mPartFlags == PARTS_ALL) {
+        g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
+        mDoExt_modelUpdateDL(mpModel);
+        cullMtx = mpModel->getBaseTRMtx();
 
-/* 80585B60-80585B84 -00001 0024+00 1/1 0/0 0/0 .data            @4933 */
-SECTION_DATA static void* lit_4933[9] = {
-    (void*)(((char*)initPart__15daObj_Kanban2_cFv) + 0xA0),
-    (void*)(((char*)initPart__15daObj_Kanban2_cFv) + 0x328),
-    (void*)(((char*)initPart__15daObj_Kanban2_cFv) + 0x328),
-    (void*)(((char*)initPart__15daObj_Kanban2_cFv) + 0x42C),
-    (void*)(((char*)initPart__15daObj_Kanban2_cFv) + 0x42C),
-    (void*)(((char*)initPart__15daObj_Kanban2_cFv) + 0x10C),
-    (void*)(((char*)initPart__15daObj_Kanban2_cFv) + 0x294),
-    (void*)(((char*)initPart__15daObj_Kanban2_cFv) + 0x310),
-    (void*)(((char*)initPart__15daObj_Kanban2_cFv) + 0x3A4),
-};
+        sp8.set(cullMtx[0][3], cullMtx[1][3] - 100.0f, cullMtx[2][3]);
+        mShadowId = dComIfGd_setShadow(mShadowId, 1, mpModel, &current.pos, 400.0f, 0.0f, current.pos.y, current.pos.y, mAcch.m_gnd, &tevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
+    } else {
+        for (int i = 0; i < 18; i++) {
+            if (mPartFlags & (1 << i)) {
+                g_env_light.setLightTevColorType_MAJI(mpPartModel[i], &tevStr);
+                mDoExt_modelUpdateDL(mpPartModel[i]);
+            }
+        }
+    }
 
-/* 80585B84-80585BC0 -00001 003C+00 1/1 0/0 0/0 .data            @5150 */
-SECTION_DATA static void* lit_5150[15] = {
-    (void*)(((char*)executePart__15daObj_Kanban2_cFv) + 0x90),
-    (void*)(((char*)executePart__15daObj_Kanban2_cFv) + 0x90),
-    (void*)(((char*)executePart__15daObj_Kanban2_cFv) + 0x90),
-    (void*)(((char*)executePart__15daObj_Kanban2_cFv) + 0x504),
-    (void*)(((char*)executePart__15daObj_Kanban2_cFv) + 0x5BC),
-    (void*)(((char*)executePart__15daObj_Kanban2_cFv) + 0x90),
-    (void*)(((char*)executePart__15daObj_Kanban2_cFv) + 0x90),
-    (void*)(((char*)executePart__15daObj_Kanban2_cFv) + 0x90),
-    (void*)(((char*)executePart__15daObj_Kanban2_cFv) + 0x90),
-    (void*)(((char*)executePart__15daObj_Kanban2_cFv) + 0x9C),
-    (void*)(((char*)executePart__15daObj_Kanban2_cFv) + 0x244),
-    (void*)(((char*)executePart__15daObj_Kanban2_cFv) + 0x380),
-    (void*)(((char*)executePart__15daObj_Kanban2_cFv) + 0x548),
-    (void*)(((char*)executePart__15daObj_Kanban2_cFv) + 0x578),
-    (void*)(((char*)executePart__15daObj_Kanban2_cFv) + 0x5F8),
-};
+    return 1;
+}
 
-/* 80585BC0-80585BCC 000354 000C+00 1/1 0/0 0/0 .data            kn2_speed_rate$5184 */
-SECTION_DATA static u8 kn2_speed_rate[12] = {
-    0x3F, 0x80, 0x00, 0x00, 0x3F, 0xC0, 0x00, 0x00, 0x40, 0x00, 0x00, 0x00,
-};
+/* 80581918-80581938 000298 0020+00 1/0 0/0 0/0 .text daObj_Kanban2_Draw__FP15daObj_Kanban2_c */
+static int daObj_Kanban2_Draw(daObj_Kanban2_c* i_this) {
+    return i_this->draw();
+}
+
+/* 80581938-805819BC 0002B8 0084+00 1/1 0/0 0/0 .text            setKanbanSE__15daObj_Kanban2_cFi */
+void daObj_Kanban2_c::setKanbanSE(int i_se) {
+    u32 var_r31;
+    if (field_0x620 <= 1) {
+        var_r31 = 30;
+    } else if (field_0x620 <= 3) {
+        var_r31 = 60;
+    } else {
+        var_r31 = 90;
+    }
+
+    Z2GetAudioMgr()->seStart(i_se, &current.pos, var_r31, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+}
+
+/* 805819BC-805819FC 00033C 0040+00 3/3 0/0 0/0 .text createBreakParts__15daObj_Kanban2_cFUl5csXyz
+ */
+void daObj_Kanban2_c::createBreakParts(u32 i_parameters, csXyz i_rot) {
+    fopAcM_create(PROC_OBJ_KANBAN2, i_parameters, &current.pos, fopAcM_GetRoomNo(this), &i_rot, NULL, -1);
+}
+
+/* 805819FC-80581B5C 00037C 0160+00 1/1 0/0 0/0 .text createWallHitBreak__15daObj_Kanban2_cFv */
+void daObj_Kanban2_c::createWallHitBreak() {
+    BOOL play_se = FALSE;
+    csXyz rotation(shape_angle);
+    shape_angle.y = current.angle.y + 0x8000;
+
+    u32 var_r28 = 0;
+    for (int i = 0; i < 18; i++) {
+        if (mPartFlags & (1 << i)) {
+            if (var_r28 != 0) {
+                play_se = TRUE;
+
+                u32 parameters;
+                if (field_0x620 >= 3) {
+                    parameters = dKb2_BAN_PARTS[i];
+                } else {
+                    parameters = 1 << i;
+                }
+
+                if (parameters != 0) {
+                    createBreakParts(parameters | 0x20000000, rotation);
+                }
+            } else {
+                if (field_0x620 >= 3) {
+                    var_r28 = dKb2_BAN_PARTS[i];
+                } else {
+                    var_r28 = 1 << i;
+                }
+
+                fopAcM_SetMtx(this, mpPartModel[i]->getBaseTRMtx());
+            }
+        }
+    }
+
+    if (play_se) {
+        Z2GetAudioMgr()->seStart(Z2SE_OBJ_BOARD_BREAK, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    }
+
+    mPartFlags = var_r28;
+    setCenterPos();
+}
+
+/* 80581B5C-80581C48 0004DC 00EC+00 2/1 0/0 0/0 .text getKanbanCutType__15daObj_Kanban2_cFv */
+int daObj_Kanban2_c::getKanbanCutType() {
+    s16 angle_to_player = cLib_distanceAngleS(shape_angle.y, fopAcM_searchPlayerAngleY(this));
+
+    switch (daPy_getPlayerActorClass()->getCutType()) {
+    case daPy_py_c::CUT_TYPE_HEAD_JUMP:
+    case daPy_py_c::CUT_TYPE_JUMP:
+    case daPy_py_c::CUT_TYPE_LARGE_JUMP:
+        return DAMAGE_VERTICAL_SPLIT;
+    case daPy_py_c::CUT_TYPE_NM_STAB:
+    case daPy_py_c::CUT_TYPE_COMBO_STAB:
+        return DAMAGE_TOP_VERTICAL_SPLIT;
+    case daPy_py_c::CUT_TYPE_LARGE_JUMP_FINISH:
+    case daPy_py_c::CUT_TYPE_FINISH_STAB:
+        return DAMAGE_PIECES;
+    case daPy_py_c::CUT_TYPE_NM_VERTICAL:
+    case daPy_py_c::CUT_TYPE_NM_RIGHT:
+    case daPy_py_c::CUT_TYPE_FINISH_LEFT:
+    case daPy_py_c::CUT_TYPE_DASH_UNK_26:
+        if (angle_to_player < 0x3800) {
+            return DAMAGE_TLBR_DIAGONAL;
+        }
+        if (angle_to_player > 0x4800) {
+            return DAMAGE_TRBL_DIAGONAL;
+        }
+        return DAMAGE_HORIZONTAL_SPLIT;
+    case daPy_py_c::CUT_TYPE_FINISH_VERTICAL:
+    case daPy_py_c::CUT_TYPE_MORTAL_DRAW_A:
+    case daPy_py_c::CUT_TYPE_MORTAL_DRAW_B:
+        if (angle_to_player < 0x3800) {
+            return DAMAGE_TRBL_DIAGONAL;
+        }
+        if (angle_to_player > 0x4800) {
+            return DAMAGE_TLBR_DIAGONAL;
+        }
+        return DAMAGE_HORIZONTAL_SPLIT;
+    case daPy_py_c::CUT_TYPE_NM_LEFT:
+    case daPy_py_c::CUT_TYPE_DASH_UNK_25:
+        return DAMAGE_HORIZONTAL_SPLIT;
+    case daPy_py_c::CUT_TYPE_TURN_RIGHT:
+    case daPy_py_c::CUT_TYPE_LARGE_JUMP_INIT:
+    case daPy_py_c::CUT_TYPE_TURN_LEFT:
+    case daPy_py_c::CUT_TYPE_LARGE_TURN_LEFT:
+    case daPy_py_c::CUT_TYPE_LARGE_TURN_RIGHT:
+    case daPy_py_c::CUT_TYPE_TWIRL:
+        return DAMAGE_HORIZONTAL_SPLIT2;
+    default:
+        return DAMAGE_NONE;
+    }
+}
+
+/* 80581C48-80581D04 0005C8 00BC+00 1/1 0/0 0/0 .text getKanbanWolfCutType__15daObj_Kanban2_cFv */
+int daObj_Kanban2_c::getKanbanWolfCutType() {
+    s16 angle_to_player = cLib_distanceAngleS(shape_angle.y, fopAcM_searchPlayerAngleY(this));
+
+    switch (daPy_getPlayerActorClass()->getCutType()) {
+    case daPy_py_c::CUT_TYPE_WOLF_TURN_LEFT:
+    case daPy_py_c::CUT_TYPE_WOLF_TURN_RIGHT:
+        return DAMAGE_HORIZONTAL_SPLIT2;
+    case daPy_py_c::CUT_TYPE_WOLF_B_LEFT:
+    case daPy_py_c::CUT_TYPE_WOLF_B_RIGHT:
+    case daPy_py_c::CUT_TYPE_WOLF_B_FRONT:
+        return DAMAGE_SHAKE;
+    case daPy_py_c::CUT_TYPE_WOLF_B_BACK:
+        if (angle_to_player < 0x3800) {
+            return DAMAGE_TRBL_DIAGONAL;
+        }
+
+        if (angle_to_player > 0x4800) {
+            return DAMAGE_TLBR_DIAGONAL;
+        }
+        return DAMAGE_HORIZONTAL_SPLIT;
+    default:
+        return DAMAGE_NONE;
+    }
+
+    return DAMAGE_HORIZONTAL_SPLIT;
+}
+
+/* 80581D04-8058221C 000684 0518+00 2/1 0/0 0/0 .text            damage_check__15daObj_Kanban2_cFv
+ */
+void daObj_Kanban2_c::damage_check() {
+    int sp24 = 0;
+    u8 mode = 0;
+
+    if (mInvulnerabilityTimer != 0) {
+        return;
+    }
+
+    mCcStts.Move();
+    int new_part_flags = 0;
+
+    if (mCcSph.ChkTgHit()) {
+        mInvulnerabilityTimer = 3;
+
+        int damage_type = DAMAGE_NONE;
+        cCcD_Obj* hit_obj = mCcSph.GetTgHitObj();
+        fopAc_ac_c* hit_actor = dCc_GetAc(hit_obj->GetAc());
+
+        if (hit_obj->ChkAtType(AT_TYPE_40)) {
+            damage_type = DAMAGE_HORIZONTAL_SPLIT2;
+        } else if (hit_obj->ChkAtType(AT_TYPE_ARROW) || hit_obj->ChkAtType(AT_TYPE_HOOKSHOT)) {
+            if (mPartFlags & PARTS_TOP_HALF) {
+                fopAc_ac_c* hit_actor = dCc_GetAc(hit_obj->GetAc());
+                if (hit_actor != NULL) {
+                    if (hit_actor->current.pos.y + (hit_actor->speed.y / 2) >= 40.0f + mCcSph.GetC().y) {
+                        damage_type = DAMAGE_TOP_VERTICAL_SPLIT;
+                    } else {
+                        damage_type = DAMAGE_BOTTOM_VERTICAL_SPLIT;
+                    }
+                } else {
+                    damage_type = DAMAGE_TOP_VERTICAL_SPLIT;
+                }
+            } else {
+                damage_type = DAMAGE_BOTTOM_VERTICAL_SPLIT;
+            }
+        } else if (hit_obj->ChkAtType(AT_TYPE_BOMB) || hit_obj->ChkAtType(AT_TYPE_IRON_BALL) || hit_obj->ChkAtType(AT_TYPE_CSTATUE_BOSS_SWING) || hit_obj->ChkAtType(AT_TYPE_SPINNER) || hit_obj->ChkAtType(AT_TYPE_HORSE)) {
+            damage_type = DAMAGE_PIECES;
+        } else if (hit_obj->ChkAtType(AT_TYPE_SHIELD_ATTACK) || hit_obj->ChkAtType(AT_TYPE_BOOMERANG) || hit_obj->ChkAtType(AT_TYPE_COPY_ROD) || hit_obj->ChkAtType(AT_TYPE_1000000) || hit_obj->ChkAtType(AT_TYPE_20000)) {
+            damage_type = DAMAGE_SHAKE;
+        } else if (hit_obj->ChkAtType(AT_TYPE_THROW_OBJ)) {
+            if (fopAcM_GetName(hit_actor) == PROC_NPC_TK) {
+                ((daNPC_TK_c*)hit_actor)->setBump();
+                damage_type = DAMAGE_PIECES;
+            } else {
+                damage_type = DAMAGE_SHAKE;
+            }
+        } else if (hit_obj->ChkAtType(AT_TYPE_NORMAL_SWORD)) {
+            damage_type = getKanbanCutType();
+        } else if (hit_obj->ChkAtType(AT_TYPE_WOLF_ATTACK | AT_TYPE_WOLF_CUT_TURN | AT_TYPE_10000000 | AT_TYPE_MIDNA_LOCK)) {
+            damage_type = getKanbanWolfCutType();
+        }
+
+        u32 part_params;
+        switch (damage_type) {
+        case DAMAGE_VERTICAL_SPLIT:
+            mInvulnerabilityTimer = 10;
+            setActionMode(ACTION_PART_e, 4);
+            mode = 4;
+
+            part_params = mPartFlags & PARTS_LEFT_SIDE;
+            mPartFlags &= ~PARTS_LEFT_SIDE;
+
+            if (part_params != 0) {
+                createBreakParts(part_params | (mode << 0x1C), shape_angle);
+                setCullMtx();
+                Z2GetAudioMgr()->seStart(Z2SE_OBJ_BOARD_BREAK, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            }
+
+            mCcSph.ClrTgHit();
+            return;
+        case DAMAGE_HORIZONTAL_SPLIT:
+            new_part_flags = PARTS_TOP_HALF;
+            break;
+        case DAMAGE_HORIZONTAL_SPLIT2:
+            if (mPartFlags & PARTS_TOP_HALF) {
+                new_part_flags = PARTS_TOP_HALF;
+            } else {
+                new_part_flags = PARTS_BOTTOM_HALF;
+            }
+            break;
+        case DAMAGE_BOTTOM_VERTICAL_SPLIT:
+            part_params = mPartFlags & 0x15C3;
+            mPartFlags &= ~0x15C3;
+
+            if (part_params != 0) {
+                createBreakParts(part_params, shape_angle);
+            }
+
+            new_part_flags = 0x2A3C;
+            break;
+        case DAMAGE_TOP_VERTICAL_SPLIT:
+            part_params = mPartFlags & 0x503;
+            mPartFlags &= ~0x503;
+
+            if (part_params != 0) {
+                createBreakParts(part_params, shape_angle);
+            }
+
+            new_part_flags = 0xA0C;
+            break;
+        case DAMAGE_PIECES:
+            for (int i = 0; i < 10; i++) {
+                if (mPartFlags & (1 << i)) {
+                    sp24 = 1;
+                    createBreakParts(dKb2_BAN_PARTS[i] | 0x10000000, shape_angle);
+                }
+            }
+
+            if (sp24 != 0) {
+                Z2GetAudioMgr()->seStart(Z2SE_OBJ_BOARD_BREAK, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            }
+
+            mPartFlags &= ~0x3FFF;
+            setCullMtx();
+            mCcSph.ClrTgHit();
+            return;
+        case DAMAGE_TLBR_DIAGONAL:
+            new_part_flags = 0xF1E;
+            break;
+        case DAMAGE_TRBL_DIAGONAL:
+            new_part_flags = 0xF87;
+            break;
+        case DAMAGE_SHAKE:
+            field_0x5e8.y = cLib_distanceAngleS(shape_angle.y, fopAcM_searchPlayerAngleY(this));
+            field_0x5e8.x = 0;
+            field_0x5fc = 1000.0f + nREG_F(0);
+            mCcSph.ClrTgHit();
+            return;
+        case DAMAGE_NONE:
+            mCcSph.ClrTgHit();
+            return;
+        }
+
+        part_params = mPartFlags & new_part_flags;
+        mPartFlags &= ~new_part_flags;
+        setCullMtx();
+
+        if (part_params != 0) {
+            Z2GetAudioMgr()->seStart(Z2SE_OBJ_BOARD_BREAK, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            createBreakParts(part_params, shape_angle);
+        }
+
+        mCcSph.ClrTgHit();
+    }
+}
+
+static f32 dummyFloat() {
+    f32 rt = 15.0f;
+    rt += 8000.0f;
+    rt += 5.0f;
+    return rt;
+}
+
+/* 8058221C-805822F0 000B9C 00D4+00 1/1 0/0 0/0 .text float_damage_check__15daObj_Kanban2_cFv */
+bool daObj_Kanban2_c::float_damage_check() {
+    if (mInvulnerabilityTimer != 0) {
+        return false;
+    }
+
+    mCcStts.Move();
+
+    if (mCcSph.ChkTgHit()) {
+        mInvulnerabilityTimer = 10;
+        field_0x5e8.y = 0x400;
+        speed.y = -3.0f;
+        speedF = 10.0f;
+        current.angle.y = (fopAcM_searchPlayerAngleY(this) + 0x10000 + (s16)cM_rndFX(4000.0f)) - 0x8000;
+        setWaterEffect();
+        return true;
+    }
+
+    return false;
+}
+
+/* 805822F0-805825A4 000C70 02B4+00 2/2 0/0 0/0 .text            deletePart__15daObj_Kanban2_cFv */
+bool daObj_Kanban2_c::deletePart() {
+    if (field_0x620 <= 1) {
+        if (fopAcM_CheckCondition(this, 4)) {
+            f32 player_dist = current.pos.abs(daPy_getPlayerActorClass()->current.pos);
+            if (player_dist > 2500.0f) {
+                fopAcM_delete(this);
+                return true;
+            } else if (player_dist > 500.0f && (mPartFlags & 0x1EE55)) {
+                fopAcM_delete(this);
+                return true;
+            }
+        }
+    } else if (current.pos.abs(daPy_getPlayerActorClass()->current.pos) > 2500.0f) {
+        fopAcM_delete(this);
+        return true;
+    }
+
+    return false;
+}
+
+/* 805825A4-805826D4 000F24 0130+00 1/1 0/0 0/0 .text            getWallAngle__15daObj_Kanban2_cFv
+ */
+s16 daObj_Kanban2_c::getWallAngle() {
+    cXyz line_start;
+    cXyz line_end;
+    cXyz offset(0.0f, 0.0f, 200.0f);
+    dBgS_LinChk line_chk;
+
+    cLib_offsetPos(&line_end, &current.pos, current.angle.y, &offset);
+    cLib_offsetPos(&line_start, &current.pos, -current.angle.y, &offset);
+    line_chk.Set(&line_start, &line_end, NULL);
+
+    s16 angle;
+    if (dComIfG_Bgsp().LineCross(&line_chk)) {
+        cM3dGPla plane;
+        dComIfG_Bgsp().GetTriPla(line_chk, &plane);
+
+        cXyz* normal = plane.GetNP();
+        s16 temp_r3_2 = cM_atan2s(normal->x, normal->z);
+        angle = (temp_r3_2 - (s16)(current.angle.y - temp_r3_2)) + 0x8000;
+    } else {
+        angle = current.angle.y + 0x8000;
+    }
+
+    return angle;
+}
+
+/* 8058271C-80582894 00109C 0178+00 2/2 0/0 0/0 .text            setGroundAngle__15daObj_Kanban2_cFv
+ */
+void daObj_Kanban2_c::setGroundAngle() {
+    Vec gnd_pos;
+    cXyz sp8;
+    dBgS_GndChk gnd_chk;
+
+    sp8 = current.pos;
+    sp8.y = mAcch.GetGroundH();
+
+    gnd_pos.x = sp8.x;
+    gnd_pos.y = 50.0f + sp8.y;
+    gnd_pos.z = 10.0f + sp8.z;
+    gnd_chk.SetPos(&gnd_pos);
+    gnd_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
+
+    if (-1000000000.0f != gnd_pos.y && std::abs(gnd_pos.y - sp8.y) < 50.0f) {
+        field_0x5ee.x = -cM_atan2s(gnd_pos.y - sp8.y, gnd_pos.z - sp8.z);
+    }
+
+    gnd_pos.x = 10.0f + sp8.x;
+    gnd_pos.y = 50.0f + sp8.y;
+    gnd_pos.z = sp8.z;
+    gnd_chk.SetPos(&gnd_pos);
+    gnd_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
+
+    if (-1000000000.0f != gnd_pos.y && std::abs(gnd_pos.y - sp8.y) < 50.0f) {
+        field_0x5ee.z = cM_atan2s(gnd_pos.y - sp8.y, gnd_pos.x - sp8.x);
+    }
+}
+
+/* 80582894-80582944 001214 00B0+00 2/2 0/0 0/0 .text checkWaterSurface__15daObj_Kanban2_cFv */
+bool daObj_Kanban2_c::checkWaterSurface() {
+    dBgS_ObjGndChk_Spl gnd_chk;
+    Vec sp8;
+    sp8 = current.pos;
+    sp8.y += 500.0f;
+
+    gnd_chk.SetPos(&sp8);
+    field_0x604 = dComIfG_Bgsp().GroundCross(&gnd_chk);
+    if (field_0x604 > current.pos.y) {
+        return true;
+    }
+
+    return false;
+}
+
+/* 80582944-80582A68 0012C4 0124+00 1/1 0/0 0/0 .text checkPataGround__15daObj_Kanban2_cFss */
+bool daObj_Kanban2_c::checkPataGround(s16 param_0, s16 param_1) {
+    cXyz sp18;
+    cXyz spC;
+    dBgS_GndChk sp24;
+    sp18 = current.pos;
+
+    f32 temp_f30 = 100.0f * cM_ssin(param_0);
+    f32 temp_f29 = 100.0f * cM_scos(param_0);
+
+    sp18.x += temp_f30 * cM_ssin(param_1);
+    sp18.y += temp_f29;
+    sp18.z += temp_f30 * cM_scos(param_1);
+    spC = sp18;
+    spC.y += 100.0f;
+    sp24.SetPos(&spC);
+
+    f32 ground_y = dComIfG_Bgsp().GroundCross(&sp24);
+    if (ground_y != -1000000000.0f && sp18.y < ground_y) {
+        return true;
+    }
+
+    return false;
+}
+
+/* 80582A68-80582AAC 0013E8 0044+00 3/3 0/0 0/0 .text            setCullMtx__15daObj_Kanban2_cFv */
+void daObj_Kanban2_c::setCullMtx() {
+    for (int i = 0; i < 18; i++) {
+        if (mPartFlags & (1 << i)) {
+            fopAcM_SetMtx(this, mpPartModel[i]->getBaseTRMtx());
+            return;
+        }
+    }
+}
+
+/* 80582AAC-80582AFC 00142C 0050+00 1/1 0/0 0/0 .text setSmokeEffect__15daObj_Kanban2_cF4cXyz */
+void daObj_Kanban2_c::setSmokeEffect(cXyz i_pos) {
+    fopAcM_effSmokeSet1(&field_0x9e0, &field_0x9e4, &i_pos, NULL, 0.02 * field_0x600, &tevStr, 1);
+}
+
+UNK_REL_BSS
+
+/* 80585CB4-80585CB8 -00001 0004+00 2/2 0/0 0/0 .bss             None */
+/* 80585CB5 0003+00 l_initHIO None */
+static u8 l_initHIO;
+
+/* 80585CC4-80585CD0 000054 000C+00 3/3 0/0 0/0 .bss             l_HIO */
+static daObj_Kanban2_HIO_c l_HIO;
+
+/* 80582AFC-80582C40 00147C 0144+00 2/2 0/0 0/0 .text            setWaterEffect__15daObj_Kanban2_cFv
+ */
+void daObj_Kanban2_c::setWaterEffect() {
+    cXyz eff_pos(current.pos.x, field_0x604, current.pos.z);
+    static cXyz sc(0.5f, 0.5f, 0.5f);
+
+    for (int i = 0; i < 4; i++) {
+        static u16 w_eff_id[] = {0x01B8, 0x01B9, 0x01BA, 0x01BB};
+        mWaterEffID[i] = dComIfGp_particle_set(mWaterEffID[i], w_eff_id[i], &eff_pos, &tevStr, NULL, &sc, 0xFF, NULL, -1, NULL, NULL, NULL);
+    }
+
+    mSound.startSound(Z2SE_CM_BODYFALL_WATER_S, 0, -1);
+}
+
+/* 80582C40-80582E68 0015C0 0228+00 3/3 0/0 0/0 .text            setCenterPos__15daObj_Kanban2_cFv
+ */
+void daObj_Kanban2_c::setCenterPos() {
+    cXyz sp14(0.0f, 0.0f, 0.0f);
+    cXyz sp8;
+    int var_r29 = 0;
+
+    field_0x620 = 1;
+    field_0x600 = 30.0f;
+
+    if (mAction != ACTION_NORMAL_e && mMode != 4) {
+        for (int i = 0; i < 8; i++) {
+            if (mPartFlags & (1 << i)) {
+                sp8.x = d_KANBAN_OFFSET[i].x;
+                sp8.y = d_KANBAN_OFFSET[i].y;
+                sp8.z = 0.0f;
+                sp14 += sp8;
+
+                var_r29++;
+            }
+        }
+
+        if (var_r29 == 0) {
+            for (int i = 8; i < 18; i++) {
+                if (mPartFlags & (1 << i)) {
+                    field_0x5dc.x = d_KANBAN_OFFSET[i].x;
+                    field_0x5dc.y = d_KANBAN_OFFSET[i].y;
+                    field_0x5dc.z = 10.0f;
+                    break;
+                }
+            }
+        } else {
+            field_0x5dc.x = sp14.x / var_r29;
+            field_0x5dc.y = sp14.y / var_r29;
+            field_0x5dc.z = 0.0f;
+            field_0x620 = var_r29 & 0xFF;
+
+            for (int i = 8; i < 18; i++) {
+                if (mPartFlags & (1 << i)) {
+                    field_0x60a = 0x800;
+                    if (mPartFlags & PARTS_LEFT_SIDE) {
+                        field_0x60a = -0x800;
+                    }
+                    break;
+                }
+            }
+        }
+
+        if (var_r29 <= 1) {
+            fopAcM_OnCarryType(this, fopAcM_CARRY_UNK_30);
+        }
+
+        if (var_r29 <= 1) {
+            field_0x600 = 10.0f;
+        } else if (var_r29 == 2) {
+            field_0x600 = 20.0f;
+        } else {
+            field_0x600 = 30.0f;
+        }
+    }
+}
+
+/* 80582E68-80582EF0 0017E8 0088+00 2/2 0/0 0/0 .text            checkCarryOn__15daObj_Kanban2_cFv
+ */
+BOOL daObj_Kanban2_c::checkCarryOn() {
+    cLib_onBit<u32>(attention_info.flags, 0x10);
+    if (fopAcM_checkCarryNow(this)) {
+        setActionMode(ACTION_CARRY_e, 0);
+
+        if (shape_angle.x > 0) {
+            field_0x608 = 0x4000;
+        } else {
+            field_0x608 = -0x4000;
+        }
+
+        field_0x62e = 0;
+        setGroundAngle();
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+/* 80582EF0-80582F40 001870 0050+00 6/6 0/0 0/0 .text            setActionMode__15daObj_Kanban2_cFii
+ */
+void daObj_Kanban2_c::setActionMode(int i_action, int i_mode) {
+    if (mAction != i_action) {
+        mPrevAction = mAction;
+        mAction = i_action;
+        mMode = i_mode;
+
+        field_0x5f4.set(0, 0, 0);
+        field_0x5e8.set(0, 0, 0);
+        field_0x5ee.set(0, 0, 0);
+
+        field_0x62c = 0;
+        field_0x62d = 0;
+        field_0x62b = 0;
+    }
+}
+
+/* 80582F40-80583364 0018C0 0424+00 1/1 0/0 0/0 .text calcNormalSwing__15daObj_Kanban2_cFv */
+void daObj_Kanban2_c::calcNormalSwing() {
+    u8 sp8 = 0;
+    s16 var_r29 = 0;
+
+    if ((mPartFlags & 0xFF) != 0 && mCcSph.ChkCoHit()) {
+        fopAc_ac_c* hit_actor = dCc_GetAc(mCcSph.GetCoHitObj()->GetAc());
+        if (fopAcM_GetName(hit_actor) == PROC_HORSE) {
+            cXyz sp28(current.pos);
+            if (mPartFlags & PARTS_TOP_HALF) {
+                sp28.y += 100.0f;
+            } else if (mPartFlags & PARTS_BOTTOM_HALF) {
+                sp28.y += 70.0f;
+            }
+            sp28 += *mCcStts.GetCCMoveP();
+
+            s16 spE = -cLib_targetAngleX(&current.pos, &sp28) + 0x4000;
+            s16 spC = cLib_targetAngleY(&current.pos, &sp28);
+            var_r29 = spE * cM_scos(spC);
+            s16 spA = std::abs(3584.0f * cM_scos(spC));
+
+            if (abs(var_r29) > spA && abs(spE) > 0x800) {
+                if (field_0x627 >= 20) {
+                    u32 temp_r26 = mPartFlags & 0x15C3;
+                    mPartFlags &= ~0x15C3;
+
+                    if (temp_r26 != 0) {
+                        createBreakParts(temp_r26 | 0x80000000, shape_angle);
+                    }
+
+                    temp_r26 = mPartFlags & 0x2A3C;
+                    mPartFlags &= ~0x2A3C;
+                    setCullMtx();
+
+                    if (temp_r26 != 0) {
+                        Z2GetAudioMgr()->seStart(Z2SE_OBJ_BOARD_BREAK, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                        createBreakParts(temp_r26 | 0x80000000, shape_angle);
+                    }
+                }
+
+                if (var_r29 < 0) {
+                    var_r29 = -spA;
+                } else {
+                    var_r29 = spA;
+                }
+            }
+
+            if (field_0x626 == 0) {
+                field_0x624 = var_r29;
+            } else if ((field_0x624 < 0 && var_r29 > 0) || (field_0x624 > 0 && var_r29 < 0)) {
+                if (abs((s16)(field_0x624 - var_r29)) < 0x1000) {
+                    field_0x624 = var_r29;
+                } else {
+                    var_r29 = field_0x624;
+                    field_0x627 += 10;
+                }
+            } else {
+                field_0x624 = var_r29;
+            }
+
+            sp8 = 1;
+        }
+    }
+
+    if (sp8 != 0) {
+        if (field_0x627 < 30) {
+            int var_r25 = daPy_getPlayerActorClass()->speedF / 10.0f;
+            if (var_r25 < 1) {
+                var_r25 = 1;
+            }
+
+            if (var_r25 > 10) {
+                var_r25 = 10;
+            }
+
+            field_0x627 += var_r25;
+        }
+
+        cLib_addCalcAngleS2(&shape_angle.x, var_r29, 8, 0x400);
+    } else {
+        field_0x627 = 0;
+
+        if (field_0x626 != 0) {
+            field_0x5e8.x = 0;
+            if (field_0x624 < 0x800) {
+                if (field_0x624 > 0) {
+                    field_0x5fc = 2048.0f;
+                } else {
+                    field_0x5fc = -2048.0f;
+                }
+            } else {
+                field_0x5fc = field_0x624;
+            }
+        }
+
+        if (field_0x5fc) {
+            cLib_chaseF(&field_0x5fc, 0.0f, 50.0f + nREG_F(2));
+            field_0x5e8.x += (nREG_S(0) + 0x2000);
+
+            f32 temp_f31 = field_0x5fc * cM_ssin(field_0x5e8.x);
+            shape_angle.x = temp_f31 * cM_scos(field_0x5e8.y);
+            shape_angle.z = temp_f31 * cM_ssin(field_0x5e8.y);
+        }
+    }
+
+    field_0x626 = sp8;
+}
+
+/* 80583364-80583598 001CE4 0234+00 1/1 0/0 0/0 .text            executeNormal__15daObj_Kanban2_cFv
+ */
+// NONMATCHING - gameinfo mEvent load, equivalent
+void daObj_Kanban2_c::executeNormal() {
+    calcNormalSwing();
+    mCcSph.OffAtSetBit();
+
+    eyePos = current.pos;
+    eyePos.y += 70.0f;
+    attention_info.position = current.pos;
+    attention_info.position.y += 150.0f;
+
+    damage_check();
+    field_0x600 = 40.0f;
+
+    if (mPartFlags != PARTS_ALL) {
+        field_0x600 = 30.0f;
+    }
+
+    if ((mPartFlags & 0xFF) == 0) {
+        field_0x600 = 10.0f;
+    }
+
+    if (mFlowID != -1 && mPartFlags != PARTS_ALL) {
+        mFlowID = -1;
+    }
+
+    switch (field_0x9fe) {
+    case 0:
+        if (mFlowID != -1 && cLib_distanceAngleS(shape_angle.y, fopAcM_searchPlayerAngleY(this)) < 0x3000) {
+            cLib_onBit<u32>(attention_info.flags, 0x4000000A);
+            attention_info.distances[fopAc_attn_TALK_e] = 21;
+            attention_info.distances[fopAc_attn_SPEAK_e] = 21;
+            eventInfo.onCondition(1);
+        } else {
+            cLib_offBit<u32>(attention_info.flags, 0x4000000A);
+        }
+
+        if (dComIfGp_event_runCheck() && eventInfo.checkCommandTalk()) {
+            mMsgFlow.init(this, mFlowID, 0, NULL);
+            field_0x9fe = 1;
+            mInvulnerabilityTimer = 3;
+        }
+        break;
+    case 1:
+        mInvulnerabilityTimer = 3;
+        if (dComIfGp_event_runCheck() && eventInfo.checkCommandTalk()) {
+            if (mMsgFlow.doFlow(this, NULL, 0)) {
+                dComIfGp_event_reset();
+                field_0x9fe = 0;
+            }
+        } else {
+            field_0x9fe = 0;
+        }
+        break;
+    }
+}
+
+/* 80583598-80583A2C 001F18 0494+00 2/1 0/0 0/0 .text            initPart__15daObj_Kanban2_cFv */
+void daObj_Kanban2_c::initPart() {
+    daPy_py_c* player = daPy_getPlayerActorClass();
+
+    field_0x62b = 0;
+    field_0x62c = 0;
+    field_0x62d = 1;
+    gravity = -4.0f;
+
+    mCcSph.OffAtSetBit();
+    mCcSph.OffTgSetBit();
+    mCcSph.OffCoSetBit();
+    mCcStts.ClrCcMove();
+
+    switch (mMode) {
+    case 0:
+        speed.y = 35.0f + cM_rndF(5.0f);
+        current.angle.y = (fopAcM_searchPlayerAngleY(this) + 0x10000 + (s16)cM_rndFX(4000.0f)) - 0x8000;
+        speedF = 20.0f + cM_rndF(5.0f);
+        shape_angle.z = 0;
+        shape_angle.x = 0;
+        break;
+    case 5:
+        shape_angle.z = 0;
+        shape_angle.x = 0;
+        shape_angle.y = current.angle.y;
+
+        if (shape_angle.x < 0) {
+            current.pos.y += 10.0f;
+        } else {
+            current.pos.y -= 20.0f;
+        }
+
+        if (fopAcM_GetSpeedF(this) >= 1.0f) {
+            field_0x62b = 1;
+            mCcSph.OnAtSetBit();
+
+            f32 var_f31;
+            if (field_0x620 <= 1) {
+                var_f31 = 1.0f;
+                shape_angle.y += 0x4000;
+                mMode = 9;
+                speed.y = 40.0f;
+            } else if (field_0x620 == 2) {
+                var_f31 = 0.7f;
+                field_0x5e8.x = 0x2000;
+                field_0x5e8.y = cM_rndFX(1024.0f);
+                mMode = 9;
+                speed.y = 35.0f;
+            } else if (field_0x620 == 3) {
+                var_f31 = 0.6f;
+                mMode = 10;
+                shape_angle.x = field_0x608;
+                speed.y = 30.0f;
+            } else {
+                var_f31 = 0.5f;
+                mMode = 10;
+                shape_angle.x = field_0x608;
+                speed.y = 25.0f;
+            }
+
+            field_0x608 -= 0x8000;
+            speedF = 50.0f * var_f31;
+            if (cLib_distanceAngleS(player->shape_angle.y, player->current.angle.y) < 0x2000) {
+                speedF += player->speedF;
+            }
+        } else {
+            field_0x62c = 1;
+            speedF = 0.0f;
+            speed.y = 0.0f;
+            mMode = 11;
+            shape_angle.x = field_0x608;
+        }
+        return;
+    case 6:
+        shape_angle.z = 0;
+        shape_angle.x = 0;
+        current.pos.y -= 80.0f;
+        speed.y = 40.0f + nREG_F(3);
+        current.angle.y = cM_rndFX(8000.0f);
+        speedF = nREG_F(4) + (10.0f + cM_rndFX(10.0f));
+        field_0x5e8.y = 2048.0f + cM_rndFX(512.0f);
+        mMode = 9;
+        return;
+    case 7:
+        speedF = 0.0f;
+        speed.y = 0.0f;
+        mMode = 11;
+        return;
+    case 1:
+    case 2:
+        shape_angle.z = 0;
+        shape_angle.x = 0;
+
+        for (int i = 0; i < 18; i++) {
+            if (mPartFlags & (1 << i)) {
+                speed.y = dKb2_BAN_SPEED[i].speed_y;
+                speedF = dKb2_BAN_SPEED[i].speed_f;
+                current.angle.y = dKb2_BAN_ANGLE[i] + fopAcM_searchPlayerAngleY(this);
+            }
+        }
+        break;
+    case 8:
+        shape_angle.z = 0;
+        shape_angle.x = 0;
+        speed.y = 15.0f + cM_rndFX(5.0f);
+        speedF = 10.0f + cM_rndFX(5.0f);
+        current.angle.y = fopAcM_searchPlayerAngleY(this) + 4.0f * cM_rndFX(4096.0f);
+        break;
+    }
+
+    field_0x5e8.x = 8192.0f + cM_rndFX(1024.0f);
+    field_0x5e8.y = 2048.0f + cM_rndFX(512.0f);
+    mMode = 9;
+}
+
+/* 80583A2C-8058437C 0023AC 0950+00 2/1 0/0 0/0 .text            executePart__15daObj_Kanban2_cFv */
+void daObj_Kanban2_c::executePart() {
+    cXyz sp4C;
+    attention_info.position = eyePos = current.pos;
+
+    fopAcM_SetFoodStatus(this, fopAcM_FOOD_0);
+    if (!mAcch.ChkGroundHit()) {
+        fopAcM_SetFoodStatus(this, fopAcM_FOOD_1);
+    }
+
+    switch (mMode) {
+    case 0:
+    case 1:
+    case 2:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+        initPart();
+        break;
+    case 9:
+        if (field_0x620 <= 1) {
+            shape_angle.z += 0x1000;
+        }
+
+        if (mAcch.ChkGroundHit()) {
+            if (speedF >= 25.0f) {
+                cM3dGPla sp6C;
+                dComIfG_Bgsp().GetTriPla(mAcch.m_gnd, &sp6C);
+                if (sp6C.GetNP()->y < 0.7f) {
+                    mAcch.SetWallHit();
+                    mAcch.ClrGroundHit();
+                }
+            }
+        }
+
+        if (mAcch.ChkWallHit()) {
+            field_0x62b = 0;
+            if (speedF >= 25.0f) {
+                createWallHitBreak();
+            }
+
+            setKanbanSE(Z2SE_OBJ_BOARD_BOUND);
+            speedF *= 0.5f;
+
+            s16 sp8 = getWallAngle();
+            current.angle.y = sp8 + cM_rndFX(4096.0f);
+        }
+
+        if (mAcch.ChkGroundHit() != 0) {
+            setKanbanSE(Z2SE_OBJ_BOARD_BOUND);
+            setSmokeEffect(current.pos);
+            speed.y = 15.0f + cM_rndF(5.0f);
+            speedF *= 0.75f;
+            mMode = 11;
+            field_0x5e8.set(0, 0, 0);
+        }
+        break;
+    case 10:
+        cLib_chaseAngleS(&shape_angle.x, field_0x608, 0x700);
+
+        if (mAcch.ChkGroundHit()) {
+            if (speedF >= 25.0f) {
+                cM3dGPla sp58;
+                dComIfG_Bgsp().GetTriPla(mAcch.m_gnd, &sp58);
+                if (sp58.GetNP()->y < 0.7f) {
+                    mAcch.SetWallHit();
+                    mAcch.ClrGroundHit();
+                }
+            }
+        }
+
+        if (mAcch.ChkWallHit()) {
+            if (speedF >= 25.0f) {
+                createWallHitBreak();
+            }
+            speedF *= 0.2f;
+            current.angle.y = getWallAngle();
+        }
+
+        if (mAcch.ChkGroundHit()) {
+            shape_angle.x = field_0x608;
+            setKanbanSE(Z2SE_OBJ_BOARD_BOUND);
+            setSmokeEffect(current.pos);
+            speedF = 0.0f;
+            speed.y = 0.0f;
+            mMode = 11;
+            field_0x5e8.set(0, 0, 0);
+        }
+        break;
+    case 11:
+        mCcSph.OnTgSetBit();
+        field_0x5f4.z = 0;
+
+        if (mAcch.ChkGroundHit()) {
+            setGroundAngle();
+
+            if (field_0x62d != 0) {
+                if (field_0x62c == 0) {
+                    setKanbanSE(Z2SE_OBJ_BOARD_BOUND);
+                } else {
+                    setKanbanSE(Z2SE_OBJ_BOARD_PUT);
+                }
+
+                setSmokeEffect(current.pos);
+                field_0x62c = 0;
+                field_0x62d = 0;
+                field_0x62b = 0;
+
+                mCcSph.OffAtSetBit();
+                mCcSph.OnTgSetBit();
+            }
+
+            speedF = 0.0f;
+            speed.y = 0.0f;
+
+            if (shape_angle.x > 0) {
+                shape_angle.x = 0x4000;
+                mAcch.SetGroundUpY(10.0f);
+            } else {
+                shape_angle.x = -0x4000;
+                if (field_0x60a != 0) {
+                    field_0x5f4.y = field_0x60a;
+                    mAcch.SetGroundUpY(10.0f);
+                } else {
+                    mAcch.SetGroundUpY(0.0f);
+                }
+            }
+
+            if (deletePart()) {
+                return;
+            }
+            break;
+        }
+
+        if (abs(shape_angle.x) < 0x4000) {
+            cLib_chaseAngleS(&shape_angle.x, 0x4000, 0x200);
+        } else {
+            cLib_chaseAngleS(&shape_angle.x, -0x4000, 0x200);
+        }
+
+        if (mAcch.ChkWallHit()) {
+            speedF *= 0.5f;
+            current.angle.y = getWallAngle();
+        }
+        break;
+    case 3:
+        mCcSph.OffAtSetBit();
+        gravity = 0.0f;
+        field_0x629 = 60;
+        speedF = 10.0f;
+        speed.y = -10.0f;
+        current.angle.y = shape_angle.y + 0x4000;
+        mMode = 12;
+        break;
+    case 12:
+        if (field_0x629 != 0) {
+            speedF = 0.0f;
+            speed.y = 0.0f;
+        } else {
+            mMode = 13;
+            field_0x629 = 10;
+        }
+        break;
+    case 13:
+        if (field_0x629 != 0) {
+            cLib_chaseF(&speed.y, -10.0f, 0.5f);
+            cLib_chaseF(&speedF, 10.0f, 0.5f);
+        } else {
+            mMode = 9;
+            gravity = -4.0f;
+        }
+        break;
+    case 4:
+        mCcSph.OffAtSetBit();
+        mCcSph.OffCoSetBit();
+        gravity = 0.0f;
+        field_0x5e8.z = 0;
+        mMode = 14;
+        field_0x629 = 10;
+        break;
+    case 14:
+        if (field_0x629 != 0) {
+            return;
+        }
+
+        cLib_chaseAngleS(&field_0x5e8.z, 0x1000, 0x80);
+
+        int var_r28 = 0;
+        if (!(mPartFlags & PARTS_LEFT_SIDE)) {
+            cLib_chaseAngleS(&field_0x5f4.y, 0x4000, 0x400);
+            shape_angle.z -= field_0x5e8.z;
+
+            if (checkPataGround(shape_angle.z, (shape_angle.y - 0x4000)) != 0) {
+                field_0x5e8.z = (-field_0x5e8.z / 3);
+                setKanbanSE(Z2SE_OBJ_BOARD_PUT);
+
+                if ((mPartFlags & 0xFF) != 0) {
+                    sp4C = current.pos;
+                    sp4C.x -= 100.0f * cM_ssin((shape_angle.y - 0x4000));
+                    sp4C.z -= 100.0f * cM_scos((shape_angle.y - 0x4000));
+                    setSmokeEffect(sp4C);
+                }
+
+                if (abs(field_0x5e8.z) < 0x100) {
+                    var_r28 = 1;
+                }
+            }
+        } else {
+            shape_angle.z += field_0x5e8.z;
+            cLib_chaseAngleS(&field_0x5f4.y, -0x4000, 0x400);
+
+            if (checkPataGround(-shape_angle.z, (shape_angle.y + 0x4000)) != 0) {
+                field_0x5e8.z = (-field_0x5e8.z / 3);
+                Z2GetAudioMgr()->seStart(Z2SE_OBJ_BOARD_PUT, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+
+                if ((mPartFlags & 0xFF) != 0) {
+                    sp4C = current.pos;
+                    sp4C.x -= 100.0f * cM_ssin((shape_angle.y + 0x4000));
+                    sp4C.z -= 100.0f * cM_scos((shape_angle.y + 0x4000));
+                    setSmokeEffect(sp4C);
+                }
+
+                if (abs(field_0x5e8.z) < 0x100) {
+                    var_r28 = 1;
+                }
+            }
+        }
+
+        if (var_r28 != 0) {
+            field_0x5e8.z = 0;
+            shape_angle.x = abs(shape_angle.z);
+            shape_angle.y += field_0x5f4.y;
+            field_0x5f4.y = 0;
+            shape_angle.z = 0;
+            setCenterPos();
+            gravity = -4.0f;
+
+            f32 temp_f31, temp_f30;
+            temp_f30 = field_0x5dc.y * cM_scos(shape_angle.x);
+            temp_f31 = field_0x5dc.y * cM_ssin(shape_angle.x);
+            current.pos.x -= temp_f31 * cM_ssin(shape_angle.y);
+            current.pos.y -= temp_f30 - 10.0f;
+            current.pos.z -= temp_f31 * cM_scos(shape_angle.y);
+
+            mMode = 11;
+        }
+        break;
+    }
+
+    if (checkWaterSurface()) {
+        setActionMode(ACTION_FLOAT_e, 0);
+    } else {
+        checkCarryOn();
+    }
+}
+
+/* 8058437C-80584884 002CFC 0508+00 1/1 0/0 0/0 .text            executeFloat__15daObj_Kanban2_cFv
+ */
+void daObj_Kanban2_c::executeFloat() {
+    checkWaterSurface();
+
+    if (-1000000000.0f == field_0x604) {
+        setActionMode(ACTION_PART_e, 7);
+        return;
+    }
+
+    cXyz sp38(current.pos.x, field_0x604, current.pos.z);
+    u32 var_r28 = field_0x620;
+    if (var_r28 < 1) {
+        var_r28 = 1;
+    }
+
+    attention_info.position = eyePos = current.pos;
+
+    if (mMode == 0) {
+        mCcSph.OnTgSetBit();
+        mCcSph.OffAtSetBit();
+        mMode = 1;
+
+        if (shape_angle.x > 0) {
+            shape_angle.x = 0x4000;
+        } else {
+            shape_angle.x = -0x4000;
+        }
+
+        if (speedF) {
+            field_0x5e8.y = 0x100;
+        }
+        if (speedF > 40.0f) {
+            speedF = 40.0f;
+        }
+
+        speedF *= 0.75f + nREG_F(8);
+        gravity = 0.0f;
+        speed.y = 0.0f;
+        setWaterEffect();
+    }
+
+    if (!float_damage_check()) {
+        field_0x5e8.x += 0x400;
+        field_0x5ee.x += (s16)(70.0f * cM_ssin(field_0x5e8.x));
+
+        if (current.pos.y >= field_0x604) {
+            current.pos.y = field_0x604;
+            speed.y = 0.0f;
+        } else {
+            cLib_chaseF(&speed.y, 2.0f, 0.1f);
+        }
+
+        if (mAcch.ChkWallHit() && field_0x629 == 0) {
+            field_0x629 = 10;
+
+            s16 temp_r3 = mAcchCir.GetWallAngleY();
+            if ((s16)cLib_distanceAngleS(temp_r3, current.angle.y) > 0x6000) {
+                field_0x5e8.y = -field_0x5e8.y / 2;
+                current.angle.y = ((temp_r3 - (s16)(current.angle.y - temp_r3)) + 0x10000 + (s16)cM_rndFX(2000.0f)) - 0x8000;
+                speedF *= 0.3f;
+            }
+        }
+
+        cXyz sp2C(cXyz::Zero);
+        cXyz sp20(cXyz::Zero);
+        int sp10 = 0;
+        f32 var_f31 = 0.0f;
+
+        if (dComIfG_Bgsp().ChkPolySafe(mAcch.m_gnd) && dPath_GetPolyRoomPathVec(mAcch.m_gnd, &sp2C, &sp10)) {
+            u32 var_r27 = var_r28;
+            if (var_r27 > 3) {
+                var_r27 = 3;
+            }
+
+            static f32 kn2_speed_rate[] = {1.0f, 1.5f, 2.0f};
+
+            var_f31 = sp10 * kn2_speed_rate[var_r27 - 1];
+            s16 spA = cM_atan2s(sp2C.x, sp2C.z);
+
+            sp2C.x = 0.5f * (var_f31 * cM_ssin(spA));
+            sp2C.z = 0.5f * (var_f31 * cM_scos(spA));
+
+            sp20.x = speedF * cM_ssin(current.angle.y);
+            sp20.z = speedF * cM_scos(current.angle.y);
+
+            sp20 = sp2C + sp20;
+            current.angle.y = cM_atan2s(sp20.x, sp20.z);
+
+            s16 sp8 = (0x40 / var_r27) + 0x40;
+
+            if (field_0x5e8.y < 0) {
+                cLib_chaseAngleS(&field_0x5e8.y, -sp8, 0x10);
+            } else {
+                cLib_chaseAngleS(&field_0x5e8.y, sp8, 0x10);
+            }
+        }
+
+        cLib_chaseF(&speedF, var_f31, 1.0f);
+
+        f32 var_f30;
+        if (speedF >= 5.0f) {
+            var_f30 = 0.2f * var_r28;
+        } else {
+            var_f30 = 0.05f * var_r28;
+        }
+
+        fopAcM_effHamonSet(&field_0x9f8, &sp38, 1.0f, var_f30);
+
+        if (field_0x62a == 0 && mCcSph.ChkCoHit()) {
+            cCcD_Obj* hit_obj = mCcSph.GetCoHitObj();
+            if (fopAcM_GetName(dCc_GetAc(hit_obj->GetAc())) == PROC_ALINK && daPy_getPlayerActorClass()->speedF > 1.0f) {
+                field_0x5e8.y = 0x100;
+                field_0x62a = 10;
+            }
+        }
+
+        shape_angle.y += field_0x5e8.y;
+        cLib_chaseAngleS(&field_0x5e8.y, 0, 10);
+        checkCarryOn();
+
+        if (!deletePart()) {
+            return;
+        }
+    }
+}
+
+/* 80584884-805849CC 003204 0148+00 1/1 0/0 0/0 .text            executeCarry__15daObj_Kanban2_cFv
+ */
+void daObj_Kanban2_c::executeCarry() {
+    attention_info.position = eyePos = current.pos;
+    fopAcM_SetFoodStatus(this, fopAcM_FOOD_2);
+
+    if (daPy_getPlayerActorClass()->getGrabUpStart()) {
+        field_0x62e = 1;
+        field_0x5ee.set(0, 0, 0);
+    }
+
+    if (mMode == 0) {
+        mCcSph.OffCoSetBit();
+        mCcSph.OffAtSetBit();
+        mCcSph.OffTgSetBit();
+
+        gravity = 0.0f;
+        speed.y = 0.0f;
+        speedF = 0.0f;
+        mMode = 1;
+    }
+
+    if (!fopAcM_CheckCarryType(this, fopAcM_CARRY_UNK_30)) {
+        shape_angle.x = field_0x608;
+    }
+
+    if (!fopAcM_checkCarryNow(this)) {
+        mCcSph.OnCoSetBit();
+        shape_angle.z = 0;
+        setActionMode(ACTION_PART_e, 5);
+
+        if (fopAcM_GetSpeedF(this) >= 1.0f) {
+            fopAcM_carryOffRevise(this);
+        }
+
+        field_0x62e = 0;
+    }
+}
+
+/* 805849CC-80584AD8 00334C 010C+00 1/1 0/0 0/0 .text            action__15daObj_Kanban2_cFv */
+void daObj_Kanban2_c::action() {
+    mAcch.SetGroundUpY(0.0f);
+
+    switch (mAction) {
+    case ACTION_NORMAL_e:
+        executeNormal();
+        break;
+    case ACTION_PART_e:
+        executePart();
+        shape_angle.x -= field_0x5e8.x;
+        shape_angle.y += field_0x5e8.y;
+        cLib_chaseAngleS(&field_0x5e8.x, 0, 0x100);
+        cLib_chaseAngleS(&field_0x5e8.y, 0, 0x100);
+        break;
+    case ACTION_FLOAT_e:
+        executeFloat();
+        break;
+    case ACTION_CARRY_e:
+        executeCarry();
+        break;
+    }
+
+    if (mAction == ACTION_NORMAL_e) {
+        fopAcM_posMoveF(this, NULL);
+    } else {
+        fopAcM_posMoveF(this, mCcStts.GetCCMoveP());
+        mAcch.CrrPos(dComIfG_Bgsp());
+    }
+}
+
+/* 80584AD8-80584CFC 003458 0224+00 1/1 0/0 0/0 .text            mtx_set__15daObj_Kanban2_cFv */
+void daObj_Kanban2_c::mtx_set() {
+    if (field_0x62e != 0) {
+        csXyz sp8(0, 0, 0);
+        cXyz sp10(0.0f, 0.0f, 0.0f);
+
+        if (field_0x620 == 1) {
+            for (int i = 0; i < 18; i++) {
+                if (mPartFlags & (1 << i)) {
+                    if (i < 8) {
+                        sp10.set(10.0f, 0.0f, -10.0f);
+                        sp8.z = dKn2_CarryOffset[i];
+                    } else {
+                        sp10.set(0.0f, 0.0f, -10.0f);
+                        sp8.z = -15000;
+                    }
+                    break;
+                }
+            }
+
+            mDoMtx_stack_c::transS(current.pos);
+            mDoMtx_stack_c::ZXYrotM(shape_angle);
+            mDoMtx_stack_c::ZXYrotM(sp8);
+            mDoMtx_stack_c::transM(field_0x5dc);
+            mDoMtx_stack_c::transM(sp10);
+        } else {
+            if (shape_angle.x < 0) {
+                sp10.set(0.0f, 0.0f, 10.0f);
+            } else {
+                sp10.set(0.0f, 0.0f, -20.0f);
+            }
+
+            mDoMtx_stack_c::transS(current.pos);
+            mDoMtx_stack_c::ZXYrotM(shape_angle);
+            mDoMtx_stack_c::transM(field_0x5dc);
+            mDoMtx_stack_c::transM(sp10);
+        }
+    } else {
+        mDoMtx_stack_c::transS(current.pos);
+        mDoMtx_stack_c::ZXYrotM(field_0x5ee);
+        mDoMtx_stack_c::ZXYrotM(shape_angle);
+        mDoMtx_stack_c::transM(field_0x5dc);
+        mDoMtx_stack_c::ZXYrotM(field_0x5f4);
+    }
+
+    mDoMtx_stack_c::scaleM(l_HIO.base_size, l_HIO.base_size, l_HIO.base_size);
+
+    if (mPartFlags == PARTS_ALL) {
+        mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
+        return;
+    }
+
+    for (int i = 0; i < 18; i++) {
+        if (mPartFlags & (1 << i)) {
+            mpPartModel[i]->setBaseTRMtx(mDoMtx_stack_c::get());
+        }
+    }
+}
+
+/* 80584CFC-80584DF0 00367C 00F4+00 1/1 0/0 0/0 .text            cc_set__15daObj_Kanban2_cFv */
+void daObj_Kanban2_c::cc_set() {
+    cXyz sph_center(current.pos);
+
+    if (mAction == ACTION_NORMAL_e) {
+        if (mPartFlags & PARTS_TOP_HALF) {
+            sph_center.y += 100.0f;
+        } else if (mPartFlags & PARTS_BOTTOM_HALF) {
+            sph_center.y += 70.0f;
+        } else {
+            sph_center.y += 40.0f;
+        }
+    }
+
+    mCcSph.SetC(sph_center);
+
+    if (dComIfGp_event_runCheck()) {
+        mCcSph.SetR(10.0f + field_0x600);
+    } else {
+        mCcSph.SetR(field_0x600);
+    }
+
+    dComIfG_Ccsp()->Set(&mCcSph);
+}
+
+/* 80584DF0-80584EB0 003770 00C0+00 1/1 0/0 0/0 .text            execute__15daObj_Kanban2_cFv */
+int daObj_Kanban2_c::execute() {
+    if (mPartFlags == 0) {
+        fopAcM_delete(this);
+        return 1;
+    }
+
+    if (field_0x629 != 0) {
+        field_0x629--;
+    }
+
+    if (field_0x62a != 0) {
+        field_0x62a--;
+    }
+
+    if (mInvulnerabilityTimer != 0) {
+        mInvulnerabilityTimer--;
+    }
+
+    action();
+    mtx_set();
+    cc_set();
+
+    mSound.framework(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    return 1;
+}
+
+/* 80584EB0-80584ED0 003830 0020+00 2/1 0/0 0/0 .text daObj_Kanban2_Execute__FP15daObj_Kanban2_c
+ */
+static int daObj_Kanban2_Execute(daObj_Kanban2_c* i_this) {
+    return i_this->execute();
+}
+
+/* 80584ED0-80584ED8 003850 0008+00 1/0 0/0 0/0 .text daObj_Kanban2_IsDelete__FP15daObj_Kanban2_c
+ */
+static int daObj_Kanban2_IsDelete(daObj_Kanban2_c* i_this) {
+    return 1;
+}
+
+/* 80584ED8-80584F44 003858 006C+00 1/1 0/0 0/0 .text            _delete__15daObj_Kanban2_cFv */
+int daObj_Kanban2_c::_delete() {
+    dComIfG_resDelete(&mPhase, "Obj_kn2");
+
+    if (mInitHIO) {
+        l_initHIO = false;
+        mDoHIO_DELETE_CHILD(l_HIO.id);
+    }
+
+    if (heap != NULL) {
+        mSound.deleteObject();
+    }
+
+    return 1;
+}
+
+/* 80584F44-80584F64 0038C4 0020+00 1/0 0/0 0/0 .text daObj_Kanban2_Delete__FP15daObj_Kanban2_c */
+static int daObj_Kanban2_Delete(daObj_Kanban2_c* i_this) {
+    fpc_ProcID id = fopAcM_GetID(i_this);
+    return i_this->_delete();
+}
+
+/* 80584F64-805850C8 0038E4 0164+00 1/1 0/0 0/0 .text            CreateHeap__15daObj_Kanban2_cFv */
+int daObj_Kanban2_c::CreateHeap() {
+    void* modelData;
+    u32 part_flags = fopAcM_GetParam(this) & 0x3FFFF;
+
+    if (part_flags == PARTS_ALL) {
+        modelData = dComIfG_getObjectRes("Obj_kn2", l_kn2_bmdidx[0]);
+        JUT_ASSERT(2214, modelData != 0);
+
+        mpModel = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
+        if (mpModel == NULL) {
+            return 0;
+        }
+    }
+
+    for (int i = 0; i < 18; i++) {
+        if (part_flags & (1 << i)) {
+            modelData = dComIfG_getObjectRes("Obj_kn2", l_kn2_bmdidx[i + 1]);
+            JUT_ASSERT(2228, modelData != 0);
+            void* shareModelData = dComIfG_getObjectRes("Obj_kn2", l_kn2_bmdidx[0]);
+            mDoExt_setupShareTexture((J3DModelData*)modelData, (J3DModelData*)shareModelData);
+            mpPartModel[i] = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
+            if (mpPartModel[i] == NULL) {
+                return 0;
+            }
+        }
+    }
+
+    return 1;
+}
+
+/* 805850C8-805850E8 003A48 0020+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
+static int useHeapInit(fopAc_ac_c* i_this) {
+    daObj_Kanban2_c* a_this = (daObj_Kanban2_c*)i_this;
+    return a_this->CreateHeap();
+}
+
+/* 805850E8-80585458 003A68 0370+00 1/1 0/0 0/0 .text            create__15daObj_Kanban2_cFv */
+int daObj_Kanban2_c::create() {
+    fopAcM_SetupActor(this, daObj_Kanban2_c);
+
+    int phase_state = dComIfG_resLoad(&mPhase, "Obj_kn2");
+    if (phase_state == cPhs_COMPLEATE_e) {
+        OS_REPORT("OBJ_KANBAN2 PARAM %x %d %d %d %d \n", fopAcM_GetParam(this), current.angle.x, shape_angle.x, current.angle.z, shape_angle.z);
+        if (!fopAcM_entrySolidHeap(this, useHeapInit, 0x9800)) {
+            return cPhs_ERROR_e;
+        }
+
+        if (!l_initHIO) {
+            l_initHIO = true;
+            mInitHIO = true;
+            l_HIO.id = mDoHIO_CREATE_CHILD("細切れ看板", &l_HIO);
+        }
+
+        mFlowID = current.angle.x;
+        shape_angle.x = 0;
+        current.angle.x = 0;
+
+        mPartFlags = fopAcM_GetParam(this) & 0x3FFFF;
+        u8 mode = (fopAcM_GetParam(this) & 0xF0000000) >> 0x1C;
+        if (mode == 0xF) {
+            mode = 0;
+        }
+
+        if (mPartFlags == PARTS_ALL) {
+            setActionMode(ACTION_NORMAL_e, 0);
+            fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+        } else {
+            setActionMode(ACTION_PART_e, mode);
+            setCullMtx();
+        }
+
+        setCenterPos();
+        fopAcM_SetMin(this, -200.0f, -200.0f, -200.0f);
+        fopAcM_SetMax(this, 200.0f, 200.0f, 200.0f);
+
+        mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this), NULL, NULL);
+        mAcchCir.SetWall(10.0f, 10.0f + field_0x600);
+
+        health = 10;
+        field_0x560 = 10;
+    
+        if (mPartFlags == PARTS_ALL) {
+            mCcStts.Init(nREG_S(0) + 250, 0, this);
+        } else {
+            mCcStts.Init(100, 0, this);
+        }
+    
+        mCcSph.Set(cc_kn2_src);
+        mCcSph.SetStts(&mCcStts);
+        mCcSph.OnTgNoHitMark();
+
+        mSound.init(&current.pos, 1);
+        mAtInfo.mPowerType = 1;
+
+        //! @bug probably intended to be "||"
+        if (mAction != ACTION_PART_e | mMode != 2) {
+            current.pos -= field_0x5dc;
+        }
+
+        daObj_Kanban2_Execute(this);
+    }
+
+    return phase_state;
+}
+
+/* 80585558-80585578 003ED8 0020+00 1/0 0/0 0/0 .text daObj_Kanban2_Create__FP15daObj_Kanban2_c */
+static int daObj_Kanban2_Create(daObj_Kanban2_c* i_this) {
+    return i_this->create();
+}
 
 /* 80585BCC-80585BEC -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Kanban2_Method */
 static actor_method_class l_daObj_Kanban2_Method = {
-    (process_method_func)daObj_Kanban2_Create__FP15daObj_Kanban2_c,
-    (process_method_func)daObj_Kanban2_Delete__FP15daObj_Kanban2_c,
-    (process_method_func)daObj_Kanban2_Execute__FP15daObj_Kanban2_c,
-    (process_method_func)daObj_Kanban2_IsDelete__FP15daObj_Kanban2_c,
-    (process_method_func)daObj_Kanban2_Draw__FP15daObj_Kanban2_c,
+    (process_method_func)daObj_Kanban2_Create,
+    (process_method_func)daObj_Kanban2_Delete,
+    (process_method_func)daObj_Kanban2_Execute,
+    (process_method_func)daObj_Kanban2_IsDelete,
+    (process_method_func)daObj_Kanban2_Draw,
 };
 
 /* 80585BEC-80585C1C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_KANBAN2 */
@@ -419,974 +1867,4 @@ extern actor_process_profile_definition g_profile_OBJ_KANBAN2 = {
   fopAc_CULLBOX_0_e,       // cullType
 };
 
-/* 80585C1C-80585C28 0003B0 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGSph */
-SECTION_DATA extern void* __vt__8cM3dGSph[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGSphFv,
-};
-
-/* 80585C28-80585C34 0003BC 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGAab */
-SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGAabFv,
-};
-
-/* 80585C34-80585C58 0003C8 0024+00 2/2 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
-SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_ObjAcchFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80585604,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_805855FC,
-};
-
-/* 80585C58-80585C64 0003EC 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGPla */
-SECTION_DATA extern void* __vt__8cM3dGPla[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGPlaFv,
-};
-
-/* 80585C64-80585C70 0003F8 000C+00 2/2 0/0 0/0 .data            __vt__19daObj_Kanban2_HIO_c */
-SECTION_DATA extern void* __vt__19daObj_Kanban2_HIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__19daObj_Kanban2_HIO_cFv,
-};
-
-/* 8058176C-80581790 0000EC 0024+00 1/1 0/0 0/0 .text            __ct__19daObj_Kanban2_HIO_cFv */
-daObj_Kanban2_HIO_c::daObj_Kanban2_HIO_c() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80585624-80585628 000004 0004+00 1/4 0/0 0/0 .rodata          @4013 */
-SECTION_RODATA static f32 const lit_4013 = 100.0f;
-COMPILER_STRIP_GATE(0x80585624, &lit_4013);
-
-/* 80585628-8058562C 000008 0004+00 0/1 0/0 0/0 .rodata          @4014 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4014 = 400.0f;
-COMPILER_STRIP_GATE(0x80585628, &lit_4014);
-#pragma pop
-
-/* 8058562C-80585630 00000C 0004+00 3/9 0/0 0/0 .rodata          @4015 */
-SECTION_RODATA static u8 const lit_4015[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x8058562C, &lit_4015);
-
-/* 80581790-805818DC 000110 014C+00 1/1 0/0 0/0 .text            draw__15daObj_Kanban2_cFv */
-void daObj_Kanban2_c::draw() {
-    // NONMATCHING
-}
-
-/* 805818DC-80581918 00025C 003C+00 1/1 0/0 0/0 .text            __dt__4cXyzFv */
-// cXyz::~cXyz() {
-extern "C" void __dt__4cXyzFv() {
-    // NONMATCHING
-}
-
-/* 80581918-80581938 000298 0020+00 1/0 0/0 0/0 .text daObj_Kanban2_Draw__FP15daObj_Kanban2_c */
-static void daObj_Kanban2_Draw(daObj_Kanban2_c* param_0) {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80585630-80585634 000010 0004+00 2/4 0/0 0/0 .rodata          @4036 */
-SECTION_RODATA static f32 const lit_4036 = -1.0f;
-COMPILER_STRIP_GATE(0x80585630, &lit_4036);
-
-/* 80581938-805819BC 0002B8 0084+00 1/1 0/0 0/0 .text            setKanbanSE__15daObj_Kanban2_cFi */
-void daObj_Kanban2_c::setKanbanSE(int param_0) {
-    // NONMATCHING
-}
-
-/* 805819BC-805819FC 00033C 0040+00 3/3 0/0 0/0 .text createBreakParts__15daObj_Kanban2_cFUl5csXyz
- */
-void daObj_Kanban2_c::createBreakParts(u32 param_0, csXyz param_1) {
-    // NONMATCHING
-}
-
-/* 805819FC-80581B5C 00037C 0160+00 1/1 0/0 0/0 .text createWallHitBreak__15daObj_Kanban2_cFv */
-void daObj_Kanban2_c::createWallHitBreak() {
-    // NONMATCHING
-}
-
-/* 80581B5C-80581C48 0004DC 00EC+00 2/1 0/0 0/0 .text getKanbanCutType__15daObj_Kanban2_cFv */
-void daObj_Kanban2_c::getKanbanCutType() {
-    // NONMATCHING
-}
-
-/* 80581C48-80581D04 0005C8 00BC+00 1/1 0/0 0/0 .text getKanbanWolfCutType__15daObj_Kanban2_cFv */
-void daObj_Kanban2_c::getKanbanWolfCutType() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80585634-80585638 000014 0004+00 1/3 0/0 0/0 .rodata          @4283 */
-SECTION_RODATA static f32 const lit_4283 = 0.5f;
-COMPILER_STRIP_GATE(0x80585634, &lit_4283);
-
-/* 80585638-8058563C 000018 0004+00 0/4 0/0 0/0 .rodata          @4284 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4284 = 40.0f;
-COMPILER_STRIP_GATE(0x80585638, &lit_4284);
-#pragma pop
-
-/* 80581D04-8058221C 000684 0518+00 2/1 0/0 0/0 .text            damage_check__15daObj_Kanban2_cFv
- */
-void daObj_Kanban2_c::damage_check() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 8058563C-80585640 00001C 0004+00 0/0 0/0 0/0 .rodata          @4285 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4285 = 1000.0f;
-COMPILER_STRIP_GATE(0x8058563C, &lit_4285);
-#pragma pop
-
-/* 80585640-80585644 000020 0004+00 0/0 0/0 0/0 .rodata          @4330 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4330 = 15.0f;
-COMPILER_STRIP_GATE(0x80585640, &lit_4330);
-#pragma pop
-
-/* 80585644-80585648 000024 0004+00 0/0 0/0 0/0 .rodata          @4331 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4331 = 8000.0f;
-COMPILER_STRIP_GATE(0x80585644, &lit_4331);
-#pragma pop
-
-/* 80585648-8058564C 000028 0004+00 0/2 0/0 0/0 .rodata          @4332 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4332 = 5.0f;
-COMPILER_STRIP_GATE(0x80585648, &lit_4332);
-#pragma pop
-
-/* 8058564C-80585650 00002C 0004+00 0/1 0/0 0/0 .rodata          @4344 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4344 = -3.0f;
-COMPILER_STRIP_GATE(0x8058564C, &lit_4344);
-#pragma pop
-
-/* 80585650-80585654 000030 0004+00 0/8 0/0 0/0 .rodata          @4345 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4345 = 10.0f;
-COMPILER_STRIP_GATE(0x80585650, &lit_4345);
-#pragma pop
-
-/* 80585654-80585658 000034 0004+00 0/2 0/0 0/0 .rodata          @4346 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4346 = 4000.0f;
-COMPILER_STRIP_GATE(0x80585654, &lit_4346);
-#pragma pop
-
-/* 8058221C-805822F0 000B9C 00D4+00 1/1 0/0 0/0 .text float_damage_check__15daObj_Kanban2_cFv */
-void daObj_Kanban2_c::float_damage_check() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80585658-80585660 000038 0008+00 0/1 0/0 0/0 .rodata          @4417 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4417[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80585658, &lit_4417);
-#pragma pop
-
-/* 80585660-80585668 000040 0008+00 0/1 0/0 0/0 .rodata          @4418 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4418[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80585660, &lit_4418);
-#pragma pop
-
-/* 80585668-80585670 000048 0008+00 0/1 0/0 0/0 .rodata          @4419 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4419[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80585668, &lit_4419);
-#pragma pop
-
-/* 80585670-80585674 000050 0004+00 0/1 0/0 0/0 .rodata          @4420 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4420 = 2500.0f;
-COMPILER_STRIP_GATE(0x80585670, &lit_4420);
-#pragma pop
-
-/* 80585674-80585678 000054 0004+00 1/2 0/0 0/0 .rodata          @4421 */
-SECTION_RODATA static f32 const lit_4421 = 500.0f;
-COMPILER_STRIP_GATE(0x80585674, &lit_4421);
-
-/* 805822F0-805825A4 000C70 02B4+00 2/2 0/0 0/0 .text            deletePart__15daObj_Kanban2_cFv */
-void daObj_Kanban2_c::deletePart() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80585678-8058567C 000058 0004+00 1/2 0/0 0/0 .rodata          @4450 */
-SECTION_RODATA static f32 const lit_4450 = 200.0f;
-COMPILER_STRIP_GATE(0x80585678, &lit_4450);
-
-/* 805825A4-805826D4 000F24 0130+00 1/1 0/0 0/0 .text            getWallAngle__15daObj_Kanban2_cFv
- */
-void daObj_Kanban2_c::getWallAngle() {
-    // NONMATCHING
-}
-
-/* 805826D4-8058271C 001054 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGPlaFv */
-// cM3dGPla::~cM3dGPla() {
-extern "C" void __dt__8cM3dGPlaFv() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 8058567C-80585680 00005C 0004+00 0/2 0/0 0/0 .rodata          @4489 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4489 = 50.0f;
-COMPILER_STRIP_GATE(0x8058567C, &lit_4489);
-#pragma pop
-
-/* 80585680-80585688 000060 0004+04 1/3 0/0 0/0 .rodata          @4490 */
-SECTION_RODATA static f32 const lit_4490[1 + 1 /* padding */] = {
-    -1000000000.0f,
-    /* padding */
-    0.0f,
-};
-COMPILER_STRIP_GATE(0x80585680, &lit_4490);
-
-/* 8058271C-80582894 00109C 0178+00 2/2 0/0 0/0 .text            setGroundAngle__15daObj_Kanban2_cFv
- */
-void daObj_Kanban2_c::setGroundAngle() {
-    // NONMATCHING
-}
-
-/* 80582894-80582944 001214 00B0+00 2/2 0/0 0/0 .text checkWaterSurface__15daObj_Kanban2_cFv */
-void daObj_Kanban2_c::checkWaterSurface() {
-    // NONMATCHING
-}
-
-/* 80582944-80582A68 0012C4 0124+00 1/1 0/0 0/0 .text checkPataGround__15daObj_Kanban2_cFss */
-void daObj_Kanban2_c::checkPataGround(s16 param_0, s16 param_1) {
-    // NONMATCHING
-}
-
-/* 80582A68-80582AAC 0013E8 0044+00 3/3 0/0 0/0 .text            setCullMtx__15daObj_Kanban2_cFv */
-void daObj_Kanban2_c::setCullMtx() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80585688-80585690 000068 0008+00 1/1 0/0 0/0 .rodata          @4555 */
-SECTION_RODATA static u8 const lit_4555[8] = {
-    0x3F, 0x94, 0x7A, 0xE1, 0x47, 0xAE, 0x14, 0x7B,
-};
-COMPILER_STRIP_GATE(0x80585688, &lit_4555);
-
-/* 80582AAC-80582AFC 00142C 0050+00 1/1 0/0 0/0 .text setSmokeEffect__15daObj_Kanban2_cF4cXyz */
-void daObj_Kanban2_c::setSmokeEffect(cXyz param_0) {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80585C78-80585C7C 000008 0001+03 1/1 0/0 0/0 .bss             @1109 */
-static u8 lit_1109[1 + 3 /* padding */];
-
-/* 80585C7C-80585C80 00000C 0001+03 0/0 0/0 0/0 .bss             @1107 */
-#pragma push
-#pragma force_active on
-static u8 lit_1107[1 + 3 /* padding */];
-#pragma pop
-
-/* 80585C80-80585C84 000010 0001+03 0/0 0/0 0/0 .bss             @1105 */
-#pragma push
-#pragma force_active on
-static u8 lit_1105[1 + 3 /* padding */];
-#pragma pop
-
-/* 80585C84-80585C88 000014 0001+03 0/0 0/0 0/0 .bss             @1104 */
-#pragma push
-#pragma force_active on
-static u8 lit_1104[1 + 3 /* padding */];
-#pragma pop
-
-/* 80585C88-80585C8C 000018 0001+03 0/0 0/0 0/0 .bss             @1099 */
-#pragma push
-#pragma force_active on
-static u8 lit_1099[1 + 3 /* padding */];
-#pragma pop
-
-/* 80585C8C-80585C90 00001C 0001+03 0/0 0/0 0/0 .bss             @1097 */
-#pragma push
-#pragma force_active on
-static u8 lit_1097[1 + 3 /* padding */];
-#pragma pop
-
-/* 80585C90-80585C94 000020 0001+03 0/0 0/0 0/0 .bss             @1095 */
-#pragma push
-#pragma force_active on
-static u8 lit_1095[1 + 3 /* padding */];
-#pragma pop
-
-/* 80585C94-80585C98 000024 0001+03 0/0 0/0 0/0 .bss             @1094 */
-#pragma push
-#pragma force_active on
-static u8 lit_1094[1 + 3 /* padding */];
-#pragma pop
-
-/* 80585C98-80585C9C 000028 0001+03 0/0 0/0 0/0 .bss             @1057 */
-#pragma push
-#pragma force_active on
-static u8 lit_1057[1 + 3 /* padding */];
-#pragma pop
-
-/* 80585C9C-80585CA0 00002C 0001+03 0/0 0/0 0/0 .bss             @1055 */
-#pragma push
-#pragma force_active on
-static u8 lit_1055[1 + 3 /* padding */];
-#pragma pop
-
-/* 80585CA0-80585CA4 000030 0001+03 0/0 0/0 0/0 .bss             @1053 */
-#pragma push
-#pragma force_active on
-static u8 lit_1053[1 + 3 /* padding */];
-#pragma pop
-
-/* 80585CA4-80585CA8 000034 0001+03 0/0 0/0 0/0 .bss             @1052 */
-#pragma push
-#pragma force_active on
-static u8 lit_1052[1 + 3 /* padding */];
-#pragma pop
-
-/* 80585CA8-80585CAC 000038 0001+03 0/0 0/0 0/0 .bss             @1014 */
-#pragma push
-#pragma force_active on
-static u8 lit_1014[1 + 3 /* padding */];
-#pragma pop
-
-/* 80585CAC-80585CB0 00003C 0001+03 0/0 0/0 0/0 .bss             @1012 */
-#pragma push
-#pragma force_active on
-static u8 lit_1012[1 + 3 /* padding */];
-#pragma pop
-
-/* 80585CB0-80585CB4 000040 0001+03 0/0 0/0 0/0 .bss             @1010 */
-#pragma push
-#pragma force_active on
-static u8 lit_1010[1 + 3 /* padding */];
-#pragma pop
-
-/* 80585CB4-80585CB8 -00001 0004+00 2/2 0/0 0/0 .bss             None */
-/* 80585CB4 0001+00 data_80585CB4 @1009 */
-/* 80585CB5 0003+00 data_80585CB5 None */
-static u8 struct_80585CB4[4];
-
-/* 80585CB8-80585CC4 000048 000C+00 1/1 0/0 0/0 .bss             @3965 */
-static u8 lit_3965[12];
-
-/* 80585CC4-80585CD0 000054 000C+00 3/3 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[12];
-
-/* 80585CD0-80585CE0 000060 000C+04 0/1 0/0 0/0 .bss             @4561 */
-#pragma push
-#pragma force_active on
-static u8 lit_4561[12 + 4 /* padding */];
-#pragma pop
-
-/* 80585CE0-80585CEC 000070 000C+00 0/1 0/0 0/0 .bss             sc$4560 */
-#pragma push
-#pragma force_active on
-static u8 sc[12];
-#pragma pop
-
-/* 80582AFC-80582C40 00147C 0144+00 2/2 0/0 0/0 .text            setWaterEffect__15daObj_Kanban2_cFv
- */
-void daObj_Kanban2_c::setWaterEffect() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80585690-80585694 000070 0004+00 0/2 0/0 0/0 .rodata          @4645 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4645 = 30.0f;
-COMPILER_STRIP_GATE(0x80585690, &lit_4645);
-#pragma pop
-
-/* 80585694-80585698 000074 0004+00 0/2 0/0 0/0 .rodata          @4646 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4646 = 20.0f;
-COMPILER_STRIP_GATE(0x80585694, &lit_4646);
-#pragma pop
-
-/* 80585698-805856A0 000078 0008+00 0/3 0/0 0/0 .rodata          @4648 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4648[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80585698, &lit_4648);
-#pragma pop
-
-/* 80582C40-80582E68 0015C0 0228+00 3/3 0/0 0/0 .text            setCenterPos__15daObj_Kanban2_cFv
- */
-void daObj_Kanban2_c::setCenterPos() {
-    // NONMATCHING
-}
-
-/* 80582E68-80582EF0 0017E8 0088+00 2/2 0/0 0/0 .text            checkCarryOn__15daObj_Kanban2_cFv
- */
-void daObj_Kanban2_c::checkCarryOn() {
-    // NONMATCHING
-}
-
-/* 80582EF0-80582F40 001870 0050+00 6/6 0/0 0/0 .text            setActionMode__15daObj_Kanban2_cFii
- */
-void daObj_Kanban2_c::setActionMode(int param_0, int param_1) {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 805856A0-805856A4 000080 0004+00 0/4 0/0 0/0 .rodata          @4781 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4781 = 70.0f;
-COMPILER_STRIP_GATE(0x805856A0, &lit_4781);
-#pragma pop
-
-/* 805856A4-805856A8 000084 0004+00 0/1 0/0 0/0 .rodata          @4782 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4782 = 3584.0f;
-COMPILER_STRIP_GATE(0x805856A4, &lit_4782);
-#pragma pop
-
-/* 805856A8-805856AC 000088 0004+00 0/2 0/0 0/0 .rodata          @4783 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4783 = 2048.0f;
-COMPILER_STRIP_GATE(0x805856A8, &lit_4783);
-#pragma pop
-
-/* 805856AC-805856B0 00008C 0004+00 0/1 0/0 0/0 .rodata          @4784 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4784 = -2048.0f;
-COMPILER_STRIP_GATE(0x805856AC, &lit_4784);
-#pragma pop
-
-/* 80582F40-80583364 0018C0 0424+00 1/1 0/0 0/0 .text calcNormalSwing__15daObj_Kanban2_cFv */
-void daObj_Kanban2_c::calcNormalSwing() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 805856B0-805856B4 000090 0004+00 0/1 0/0 0/0 .rodata          @4861 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4861 = 150.0f;
-COMPILER_STRIP_GATE(0x805856B0, &lit_4861);
-#pragma pop
-
-/* 80583364-80583598 001CE4 0234+00 1/1 0/0 0/0 .text            executeNormal__15daObj_Kanban2_cFv
- */
-void daObj_Kanban2_c::executeNormal() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 805856B4-805856B8 000094 0004+00 0/1 0/0 0/0 .rodata          @4922 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4922 = -4.0f;
-COMPILER_STRIP_GATE(0x805856B4, &lit_4922);
-#pragma pop
-
-/* 805856B8-805856BC 000098 0004+00 0/1 0/0 0/0 .rodata          @4923 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4923 = 35.0f;
-COMPILER_STRIP_GATE(0x805856B8, &lit_4923);
-#pragma pop
-
-/* 805856BC-805856C0 00009C 0004+00 0/0 0/0 0/0 .rodata          @4924 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4924 = 7.0f / 10.0f;
-COMPILER_STRIP_GATE(0x805856BC, &lit_4924);
-#pragma pop
-
-/* 805856C0-805856C4 0000A0 0004+00 0/1 0/0 0/0 .rodata          @4925 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4925 = 1024.0f;
-COMPILER_STRIP_GATE(0x805856C0, &lit_4925);
-#pragma pop
-
-/* 805856C4-805856C8 0000A4 0004+00 0/0 0/0 0/0 .rodata          @4926 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4926 = 3.0f / 5.0f;
-COMPILER_STRIP_GATE(0x805856C4, &lit_4926);
-#pragma pop
-
-/* 805856C8-805856CC 0000A8 0004+00 0/0 0/0 0/0 .rodata          @4927 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4927 = 25.0f;
-COMPILER_STRIP_GATE(0x805856C8, &lit_4927);
-#pragma pop
-
-/* 805856CC-805856D0 0000AC 0004+00 0/0 0/0 0/0 .rodata          @4928 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4928 = 80.0f;
-COMPILER_STRIP_GATE(0x805856CC, &lit_4928);
-#pragma pop
-
-/* 805856D0-805856D4 0000B0 0004+00 0/1 0/0 0/0 .rodata          @4929 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4929 = 512.0f;
-COMPILER_STRIP_GATE(0x805856D0, &lit_4929);
-#pragma pop
-
-/* 805856D4-805856D8 0000B4 0004+00 0/0 0/0 0/0 .rodata          @4930 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4930 = 4.0f;
-COMPILER_STRIP_GATE(0x805856D4, &lit_4930);
-#pragma pop
-
-/* 805856D8-805856DC 0000B8 0004+00 0/0 0/0 0/0 .rodata          @4931 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4931 = 4096.0f;
-COMPILER_STRIP_GATE(0x805856D8, &lit_4931);
-#pragma pop
-
-/* 805856DC-805856E0 0000BC 0004+00 0/1 0/0 0/0 .rodata          @4932 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4932 = 8192.0f;
-COMPILER_STRIP_GATE(0x805856DC, &lit_4932);
-#pragma pop
-
-/* 80583598-80583A2C 001F18 0494+00 2/1 0/0 0/0 .text            initPart__15daObj_Kanban2_cFv */
-void daObj_Kanban2_c::initPart() {
-    // NONMATCHING
-}
-
-/* 80583A2C-8058437C 0023AC 0950+00 2/1 0/0 0/0 .text            executePart__15daObj_Kanban2_cFv */
-void daObj_Kanban2_c::executePart() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 805856E0-805856E4 0000C0 0004+00 0/1 0/0 0/0 .rodata          @5147 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5147 = 0.75f;
-COMPILER_STRIP_GATE(0x805856E0, &lit_5147);
-#pragma pop
-
-/* 805856E4-805856E8 0000C4 0004+00 0/1 0/0 0/0 .rodata          @5148 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5148 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(0x805856E4, &lit_5148);
-#pragma pop
-
-/* 805856E8-805856EC 0000C8 0004+00 0/1 0/0 0/0 .rodata          @5149 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5149 = -10.0f;
-COMPILER_STRIP_GATE(0x805856E8, &lit_5149);
-#pragma pop
-
-/* 805856EC-805856F0 0000CC 0004+00 0/1 0/0 0/0 .rodata          @5269 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5269 = 2.0f;
-COMPILER_STRIP_GATE(0x805856EC, &lit_5269);
-#pragma pop
-
-/* 805856F0-805856F4 0000D0 0004+00 0/1 0/0 0/0 .rodata          @5270 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5270 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(0x805856F0, &lit_5270);
-#pragma pop
-
-/* 805856F4-805856F8 0000D4 0004+00 0/1 0/0 0/0 .rodata          @5271 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5271 = 2000.0f;
-COMPILER_STRIP_GATE(0x805856F4, &lit_5271);
-#pragma pop
-
-/* 805856F8-805856FC 0000D8 0004+00 0/1 0/0 0/0 .rodata          @5272 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5272 = 3.0f / 10.0f;
-COMPILER_STRIP_GATE(0x805856F8, &lit_5272);
-#pragma pop
-
-/* 805856FC-80585700 0000DC 0004+00 0/1 0/0 0/0 .rodata          @5273 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5273 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(0x805856FC, &lit_5273);
-#pragma pop
-
-/* 80585700-80585708 0000E0 0008+00 0/1 0/0 0/0 .rodata          @5275 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5275[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80585700, &lit_5275);
-#pragma pop
-
-/* 8058437C-80584884 002CFC 0508+00 1/1 0/0 0/0 .text            executeFloat__15daObj_Kanban2_cFv
- */
-void daObj_Kanban2_c::executeFloat() {
-    // NONMATCHING
-}
-
-/* 80584884-805849CC 003204 0148+00 1/1 0/0 0/0 .text            executeCarry__15daObj_Kanban2_cFv
- */
-void daObj_Kanban2_c::executeCarry() {
-    // NONMATCHING
-}
-
-/* 805849CC-80584AD8 00334C 010C+00 1/1 0/0 0/0 .text            action__15daObj_Kanban2_cFv */
-void daObj_Kanban2_c::action() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80585708-8058570C 0000E8 0004+00 0/1 0/0 0/0 .rodata          @5378 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5378 = -20.0f;
-COMPILER_STRIP_GATE(0x80585708, &lit_5378);
-#pragma pop
-
-/* 80584AD8-80584CFC 003458 0224+00 1/1 0/0 0/0 .text            mtx_set__15daObj_Kanban2_cFv */
-void daObj_Kanban2_c::mtx_set() {
-    // NONMATCHING
-}
-
-/* 80584CFC-80584DF0 00367C 00F4+00 1/1 0/0 0/0 .text            cc_set__15daObj_Kanban2_cFv */
-void daObj_Kanban2_c::cc_set() {
-    // NONMATCHING
-}
-
-/* 80584DF0-80584EB0 003770 00C0+00 1/1 0/0 0/0 .text            execute__15daObj_Kanban2_cFv */
-void daObj_Kanban2_c::execute() {
-    // NONMATCHING
-}
-
-/* 80584EB0-80584ED0 003830 0020+00 2/1 0/0 0/0 .text daObj_Kanban2_Execute__FP15daObj_Kanban2_c
- */
-static void daObj_Kanban2_Execute(daObj_Kanban2_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80584ED0-80584ED8 003850 0008+00 1/0 0/0 0/0 .text daObj_Kanban2_IsDelete__FP15daObj_Kanban2_c
- */
-static bool daObj_Kanban2_IsDelete(daObj_Kanban2_c* param_0) {
-    return true;
-}
-
-/* ############################################################################################## */
-/* 80585710-80585710 0000F0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80585863 = "Obj_kn2";
-#pragma pop
-
-/* 80584ED8-80584F44 003858 006C+00 1/1 0/0 0/0 .text            _delete__15daObj_Kanban2_cFv */
-void daObj_Kanban2_c::_delete() {
-    // NONMATCHING
-}
-
-/* 80584F44-80584F64 0038C4 0020+00 1/0 0/0 0/0 .text daObj_Kanban2_Delete__FP15daObj_Kanban2_c */
-static void daObj_Kanban2_Delete(daObj_Kanban2_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80584F64-805850C8 0038E4 0164+00 1/1 0/0 0/0 .text            CreateHeap__15daObj_Kanban2_cFv */
-void daObj_Kanban2_c::CreateHeap() {
-    // NONMATCHING
-}
-
-/* 805850C8-805850E8 003A48 0020+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
-static void useHeapInit(fopAc_ac_c* param_0) {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 8058570C-80585710 0000EC 0004+00 0/1 0/0 0/0 .rodata          @5568 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5568 = -200.0f;
-COMPILER_STRIP_GATE(0x8058570C, &lit_5568);
-#pragma pop
-
-/* 805850E8-80585458 003A68 0370+00 1/1 0/0 0/0 .text            create__15daObj_Kanban2_cFv */
-void daObj_Kanban2_c::create() {
-    // NONMATCHING
-}
-
-/* 80585458-805854A0 003DD8 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
-// cM3dGSph::~cM3dGSph() {
-extern "C" void __dt__8cM3dGSphFv() {
-    // NONMATCHING
-}
-
-/* 805854A0-805854E8 003E20 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
-// cM3dGAab::~cM3dGAab() {
-extern "C" void __dt__8cM3dGAabFv() {
-    // NONMATCHING
-}
-
-/* 805854E8-80585558 003E68 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
-// dBgS_ObjAcch::~dBgS_ObjAcch() {
-extern "C" void __dt__12dBgS_ObjAcchFv() {
-    // NONMATCHING
-}
-
-/* 80585558-80585578 003ED8 0020+00 1/0 0/0 0/0 .text daObj_Kanban2_Create__FP15daObj_Kanban2_c */
-static void daObj_Kanban2_Create(daObj_Kanban2_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80585578-805855C0 003EF8 0048+00 2/1 0/0 0/0 .text            __dt__19daObj_Kanban2_HIO_cFv */
-daObj_Kanban2_HIO_c::~daObj_Kanban2_HIO_c() {
-    // NONMATCHING
-}
-
-/* 805855C0-805855FC 003F40 003C+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_kanban2_cpp */
-void __sinit_d_a_obj_kanban2_cpp() {
-    // NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x805855C0, __sinit_d_a_obj_kanban2_cpp);
-#pragma pop
-
-/* 805855FC-80585604 003F7C 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
-static void func_805855FC() {
-    // NONMATCHING
-}
-
-/* 80585604-8058560C 003F84 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
-static void func_80585604() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80585CEC-80585CF0 00007C 0004+00 0/0 0/0 0/0 .bss
- * sInstance__40JASGlobalInstance<19JASDefaultBankTable>        */
-#pragma push
-#pragma force_active on
-static u8 data_80585CEC[4];
-#pragma pop
-
-/* 80585CF0-80585CF4 000080 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14JASAudioThread>             */
-#pragma push
-#pragma force_active on
-static u8 data_80585CF0[4];
-#pragma pop
-
-/* 80585CF4-80585CF8 000084 0004+00 0/0 0/0 0/0 .bss sInstance__27JASGlobalInstance<7Z2SeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_80585CF4[4];
-#pragma pop
-
-/* 80585CF8-80585CFC 000088 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8Z2SeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_80585CF8[4];
-#pragma pop
-
-/* 80585CFC-80585D00 00008C 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SceneMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80585CFC[4];
-#pragma pop
-
-/* 80585D00-80585D04 000090 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2StatusMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80585D00[4];
-#pragma pop
-
-/* 80585D04-80585D08 000094 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2DebugSys>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80585D04[4];
-#pragma pop
-
-/* 80585D08-80585D0C 000098 0004+00 0/0 0/0 0/0 .bss
- * sInstance__36JASGlobalInstance<15JAISoundStarter>            */
-#pragma push
-#pragma force_active on
-static u8 data_80585D08[4];
-#pragma pop
-
-/* 80585D0C-80585D10 00009C 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14Z2SoundStarter>             */
-#pragma push
-#pragma force_active on
-static u8 data_80585D0C[4];
-#pragma pop
-
-/* 80585D10-80585D14 0000A0 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12Z2SpeechMgr2>               */
-#pragma push
-#pragma force_active on
-static u8 data_80585D10[4];
-#pragma pop
-
-/* 80585D14-80585D18 0000A4 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8JAISeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_80585D14[4];
-#pragma pop
-
-/* 80585D18-80585D1C 0000A8 0004+00 0/0 0/0 0/0 .bss sInstance__29JASGlobalInstance<9JAISeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_80585D18[4];
-#pragma pop
-
-/* 80585D1C-80585D20 0000AC 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAIStreamMgr>               */
-#pragma push
-#pragma force_active on
-static u8 data_80585D1C[4];
-#pragma pop
-
-/* 80585D20-80585D24 0000B0 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SoundMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80585D20[4];
-#pragma pop
-
-/* 80585D24-80585D28 0000B4 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAISoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_80585D24[4];
-#pragma pop
-
-/* 80585D28-80585D2C 0000B8 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13JAUSoundTable>              */
-#pragma push
-#pragma force_active on
-static u8 data_80585D28[4];
-#pragma pop
-
-/* 80585D2C-80585D30 0000BC 0004+00 0/0 0/0 0/0 .bss
- * sInstance__38JASGlobalInstance<17JAUSoundNameTable>          */
-#pragma push
-#pragma force_active on
-static u8 data_80585D2C[4];
-#pragma pop
-
-/* 80585D30-80585D34 0000C0 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAUSoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_80585D30[4];
-#pragma pop
-
-/* 80585D34-80585D38 0000C4 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SoundInfo>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80585D34[4];
-#pragma pop
-
-/* 80585D38-80585D3C 0000C8 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2SoundObjMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_80585D38[4];
-#pragma pop
-
-/* 80585D3C-80585D40 0000CC 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2Audience>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80585D3C[4];
-#pragma pop
-
-/* 80585D40-80585D44 0000D0 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2FxLineMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80585D40[4];
-#pragma pop
-
-/* 80585D44-80585D48 0000D4 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2EnvSeMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80585D44[4];
-#pragma pop
-
-/* 80585D48-80585D4C 0000D8 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SpeechMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80585D48[4];
-#pragma pop
-
-/* 80585D4C-80585D50 0000DC 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2WolfHowlMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_80585D4C[4];
-#pragma pop
-
-/* 80585710-80585710 0000F0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+AUDIO_INSTANCES

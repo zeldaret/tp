@@ -5,12 +5,6 @@
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_hostIO.h"
 
-struct unknown {
-    u8 unk[8];
-};
-
-// dalv4CandleTag_c should inherit fopAc_ac_c, unknown, and dEvLib_callback_c
-// but this causes issues with weak function ordering
 /**
  * @ingroup actors-objects
  * @class dalv4CandleTag_c
@@ -19,7 +13,7 @@ struct unknown {
  * @details
  *
  */
-class dalv4CandleTag_c : public fopAc_ac_c {
+class dalv4CandleTag_c : public fopAc_ac_c, public request_of_phase_process_class, public dEvLib_callback_c {
 public:
     enum Mode {
         MODE_WATCH,
@@ -30,11 +24,6 @@ public:
 
     // dalv4CandleTag_c() : dEvLib_callback_c(this) {}
     ~dalv4CandleTag_c() {}
-
-    // These members are not real, remove once inheritance issue is resolved
-    unknown mBase2;
-    dEvLib_callback_c mBase3;
-    void* mVtable;
 
     /* 80C5D4B8 */ void setBaseMtx();
     /* 80C5D4F0 */ cPhs__Step create();
@@ -48,7 +37,7 @@ public:
     /* 80C5D8AC */ void modeNGWait();
     /* 80C5D8FC */ void init_modeEnd();
     /* 80C5D908 */ void modeEnd();
-    /* 80C5D90C */ int eventStart();
+    /* 80C5D90C */ bool eventStart();
     /* 80C5D930 */ int Draw();
     /* 80C5D938 */ int Delete();
 

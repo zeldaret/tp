@@ -14,11 +14,8 @@
  * @details
  *
  */
-struct fakeTuraraPadding {
-    u8 a[8];
-};
 
-class daTurara_c : public dBgS_MoveBgActor, public fakeTuraraPadding, public dEvLib_callback_c {
+class daTurara_c : public dBgS_MoveBgActor, public request_of_phase_process_class, public dEvLib_callback_c {
 public:
     daTurara_c() : dEvLib_callback_c(this) {}
     /* 80B9E710 */ ~daTurara_c() {}
