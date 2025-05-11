@@ -250,9 +250,6 @@ int daNpcCd_c::NpcCreate(int param_1) {
         {1.0f, 0.8630768f, 1.0f},  {1.0f, 1.0529536f, 1.0f},
     };
 
-    // #if VERSION == VERSION_SHIELD_DEBUG
-    // #endif
-
     cXyz scale = a_transScaleTbl[param_1];
     mpMorf->offTranslate();
     mpMorf->setTranslateScale(scale);
@@ -607,10 +604,10 @@ void daNpcCd_c::setHitodamaParticle() {
 /* 80157524-80157588 151E64 0064+00 1/1 0/0 0/0 .text            getNpcMdlDataP__9daNpcCd_cFi */
 J3DModelData* daNpcCd_c::getNpcMdlDataP(int param_1) {
     const anmTblPrm* l_bmd;
-    if (!mIsDarkWorld) {
-        l_bmd = &l_bmdTbl[param_1];
-    } else {
+    if (mIsDarkWorld) {
         l_bmd = &l_bmdTWTbl[param_1];
+    } else {
+        l_bmd = &l_bmdTbl[param_1];
     }
 
     return (J3DModelData*)dComIfG_getObjectRes(l_bmd->arc_name, l_bmd->resource_index);
