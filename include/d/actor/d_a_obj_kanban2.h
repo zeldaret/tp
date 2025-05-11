@@ -64,7 +64,7 @@ public:
     /* 0x608 */ s16 field_0x608;
     /* 0x60A */ s16 field_0x60a;
     /* 0x60C */ int mAction;
-    /* 0x610 */ int field_0x610;
+    /* 0x610 */ int mPrevAction;
     /* 0x614 */ int mMode;
     /* 0x618 */ u32 mShadowId;
     /* 0x61C */ u32 mPartFlags;
@@ -86,11 +86,11 @@ public:
     /* 0x9BC */ dCcU_AtInfo mAtInfo;
     /* 0x9E0 */ u32 field_0x9e0;
     /* 0x9E4 */ u32 field_0x9e4;
-    /* 0x9E8 */ u32 field_0x9e8[4];
+    /* 0x9E8 */ u32 mWaterEffID[4];
     /* 0x9F8 */ u32 field_0x9f8;
     /* 0x9FC */ u8 mInitHIO;
     /* 0x9FE */ s16 field_0x9fe;
-    /* 0xA00 */ s16 field_0xa00;
+    /* 0xA00 */ s16 mFlowID;
     /* 0xA04 */ dMsgFlow_c mMsgFlow;
 };
 

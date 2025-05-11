@@ -11,7 +11,7 @@
 #include "Z2AudioLib/Z2Instances.h"
 #include <cmath.h>
 
-#define PART_ALL 0x3FFFF
+#define PARTS_ALL 0x3FFFF
 #define PART_TOP_LEFT_UNDER     (1 << 0)
 #define PART_TOP_LEFT_UPPER     (1 << 1)
 #define PART_TOP_RIGHT_UPPER    (1 << 2)
@@ -65,6 +65,26 @@
         PART_BOTTOM_RIGHT_UNDER | \
         PART_BOTTOM_RIGHT_UPPER   \
     )
+
+enum daObj_Kanban2_Action {
+    ACTION_NORMAL_e,
+    ACTION_PART_e,
+    ACTION_FLOAT_e,
+    ACTION_CARRY_e,
+};
+
+enum daObj_Kanban2_DamageType {
+    DAMAGE_VERTICAL_SPLIT,
+    DAMAGE_HORIZONTAL_SPLIT,
+    DAMAGE_HORIZONTAL_SPLIT2,
+    DAMAGE_BOTTOM_VERTICAL_SPLIT,
+    DAMAGE_TOP_VERTICAL_SPLIT,
+    DAMAGE_PIECES,
+    DAMAGE_TLBR_DIAGONAL,
+    DAMAGE_TRBL_DIAGONAL,
+    DAMAGE_SHAKE,
+    DAMAGE_NONE,
+};
 
 namespace {
 /* 8058586C-805858B8 -00001 004C+00 1/1 0/0 0/0 .data
@@ -228,7 +248,7 @@ int daObj_Kanban2_c::draw() {
     cXyz sp8;
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
 
-    if (mPartFlags == PART_ALL) {
+    if (mPartFlags == PARTS_ALL) {
         g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
         mDoExt_modelUpdateDL(mpModel);
         cullMtx = mpModel->getBaseTRMtx();
@@ -322,46 +342,46 @@ int daObj_Kanban2_c::getKanbanCutType() {
     case daPy_py_c::CUT_TYPE_HEAD_JUMP:
     case daPy_py_c::CUT_TYPE_JUMP:
     case daPy_py_c::CUT_TYPE_LARGE_JUMP:
-        return 0;
+        return DAMAGE_VERTICAL_SPLIT;
     case daPy_py_c::CUT_TYPE_NM_STAB:
     case daPy_py_c::CUT_TYPE_COMBO_STAB:
-        return 4;
+        return DAMAGE_TOP_VERTICAL_SPLIT;
     case daPy_py_c::CUT_TYPE_LARGE_JUMP_FINISH:
     case daPy_py_c::CUT_TYPE_FINISH_STAB:
-        return 5;
+        return DAMAGE_PIECES;
     case daPy_py_c::CUT_TYPE_NM_VERTICAL:
     case daPy_py_c::CUT_TYPE_NM_RIGHT:
     case daPy_py_c::CUT_TYPE_FINISH_LEFT:
     case daPy_py_c::CUT_TYPE_DASH_UNK_26:
         if (angle_to_player < 0x3800) {
-            return 6;
+            return DAMAGE_TLBR_DIAGONAL;
         }
         if (angle_to_player > 0x4800) {
-            return 7;
+            return DAMAGE_TRBL_DIAGONAL;
         }
-        return 1;
+        return DAMAGE_HORIZONTAL_SPLIT;
     case daPy_py_c::CUT_TYPE_FINISH_VERTICAL:
     case daPy_py_c::CUT_TYPE_MORTAL_DRAW_A:
     case daPy_py_c::CUT_TYPE_MORTAL_DRAW_B:
         if (angle_to_player < 0x3800) {
-            return 7;
+            return DAMAGE_TRBL_DIAGONAL;
         }
         if (angle_to_player > 0x4800) {
-            return 6;
+            return DAMAGE_TLBR_DIAGONAL;
         }
-        return 1;
+        return DAMAGE_HORIZONTAL_SPLIT;
     case daPy_py_c::CUT_TYPE_NM_LEFT:
     case daPy_py_c::CUT_TYPE_DASH_UNK_25:
-        return 1;
+        return DAMAGE_HORIZONTAL_SPLIT;
     case daPy_py_c::CUT_TYPE_TURN_RIGHT:
     case daPy_py_c::CUT_TYPE_LARGE_JUMP_INIT:
     case daPy_py_c::CUT_TYPE_TURN_LEFT:
     case daPy_py_c::CUT_TYPE_LARGE_TURN_LEFT:
     case daPy_py_c::CUT_TYPE_LARGE_TURN_RIGHT:
     case daPy_py_c::CUT_TYPE_TWIRL:
-        return 2;
+        return DAMAGE_HORIZONTAL_SPLIT2;
     default:
-        return 9;
+        return DAMAGE_NONE;
     }
 }
 
@@ -372,74 +392,74 @@ int daObj_Kanban2_c::getKanbanWolfCutType() {
     switch (daPy_getPlayerActorClass()->getCutType()) {
     case daPy_py_c::CUT_TYPE_WOLF_TURN_LEFT:
     case daPy_py_c::CUT_TYPE_WOLF_TURN_RIGHT:
-        return 2;
+        return DAMAGE_HORIZONTAL_SPLIT2;
     case daPy_py_c::CUT_TYPE_WOLF_B_LEFT:
     case daPy_py_c::CUT_TYPE_WOLF_B_RIGHT:
     case daPy_py_c::CUT_TYPE_WOLF_B_FRONT:
-        return 8;
+        return DAMAGE_SHAKE;
     case daPy_py_c::CUT_TYPE_WOLF_B_BACK:
         if (angle_to_player < 0x3800) {
-            return 7;
+            return DAMAGE_TRBL_DIAGONAL;
         }
 
         if (angle_to_player > 0x4800) {
-            return 6;
+            return DAMAGE_TLBR_DIAGONAL;
         }
-        return 1;
+        return DAMAGE_HORIZONTAL_SPLIT;
     default:
-        return 9;
+        return DAMAGE_NONE;
     }
 
-    return 1;
+    return DAMAGE_HORIZONTAL_SPLIT;
 }
 
 /* 80581D04-8058221C 000684 0518+00 2/1 0/0 0/0 .text            damage_check__15daObj_Kanban2_cFv
  */
 void daObj_Kanban2_c::damage_check() {
     int sp24 = 0;
-    u8 sp8 = 0;
+    u8 mode = 0;
 
     if (mInvulnerabilityTimer != 0) {
         return;
     }
 
     mCcStts.Move();
-    int var_r29 = 0;
+    int new_part_flags = 0;
 
     if (mCcSph.ChkTgHit()) {
         mInvulnerabilityTimer = 3;
 
-        int damage_type = 9;
+        int damage_type = DAMAGE_NONE;
         cCcD_Obj* hit_obj = mCcSph.GetTgHitObj();
         fopAc_ac_c* hit_actor = dCc_GetAc(hit_obj->GetAc());
 
         if (hit_obj->ChkAtType(AT_TYPE_40)) {
-            damage_type = 2;
+            damage_type = DAMAGE_HORIZONTAL_SPLIT2;
         } else if (hit_obj->ChkAtType(AT_TYPE_ARROW) || hit_obj->ChkAtType(AT_TYPE_HOOKSHOT)) {
             if (mPartFlags & PARTS_TOP_HALF) {
                 fopAc_ac_c* hit_actor = dCc_GetAc(hit_obj->GetAc());
                 if (hit_actor != NULL) {
                     if (hit_actor->current.pos.y + (hit_actor->speed.y / 2) >= 40.0f + mCcSph.GetC().y) {
-                        damage_type = 4;
+                        damage_type = DAMAGE_TOP_VERTICAL_SPLIT;
                     } else {
-                        damage_type = 3;
+                        damage_type = DAMAGE_BOTTOM_VERTICAL_SPLIT;
                     }
                 } else {
-                    damage_type = 4;
+                    damage_type = DAMAGE_TOP_VERTICAL_SPLIT;
                 }
             } else {
-                damage_type = 3;
+                damage_type = DAMAGE_BOTTOM_VERTICAL_SPLIT;
             }
         } else if (hit_obj->ChkAtType(AT_TYPE_BOMB) || hit_obj->ChkAtType(AT_TYPE_IRON_BALL) || hit_obj->ChkAtType(AT_TYPE_CSTATUE_BOSS_SWING) || hit_obj->ChkAtType(AT_TYPE_SPINNER) || hit_obj->ChkAtType(AT_TYPE_HORSE)) {
-            damage_type = 5;
+            damage_type = DAMAGE_PIECES;
         } else if (hit_obj->ChkAtType(AT_TYPE_SHIELD_ATTACK) || hit_obj->ChkAtType(AT_TYPE_BOOMERANG) || hit_obj->ChkAtType(AT_TYPE_COPY_ROD) || hit_obj->ChkAtType(AT_TYPE_1000000) || hit_obj->ChkAtType(AT_TYPE_20000)) {
-            damage_type = 8;
+            damage_type = DAMAGE_SHAKE;
         } else if (hit_obj->ChkAtType(AT_TYPE_THROW_OBJ)) {
             if (fopAcM_GetName(hit_actor) == PROC_NPC_TK) {
                 ((daNPC_TK_c*)hit_actor)->setBump();
-                damage_type = 5;
+                damage_type = DAMAGE_PIECES;
             } else {
-                damage_type = 8;
+                damage_type = DAMAGE_SHAKE;
             }
         } else if (hit_obj->ChkAtType(AT_TYPE_NORMAL_SWORD)) {
             damage_type = getKanbanCutType();
@@ -447,55 +467,55 @@ void daObj_Kanban2_c::damage_check() {
             damage_type = getKanbanWolfCutType();
         }
 
-        u32 temp_r27;
+        u32 part_params;
         switch (damage_type) {
-        case 0:
+        case DAMAGE_VERTICAL_SPLIT:
             mInvulnerabilityTimer = 10;
-            setActionMode(1, 4);
-            sp8 = 4;
+            setActionMode(ACTION_PART_e, 4);
+            mode = 4;
 
-            temp_r27 = mPartFlags & PARTS_LEFT_SIDE;
+            part_params = mPartFlags & PARTS_LEFT_SIDE;
             mPartFlags &= ~PARTS_LEFT_SIDE;
 
-            if (temp_r27 != 0) {
-                createBreakParts(temp_r27 | (sp8 << 0x1C), shape_angle);
+            if (part_params != 0) {
+                createBreakParts(part_params | (mode << 0x1C), shape_angle);
                 setCullMtx();
                 Z2GetAudioMgr()->seStart(Z2SE_OBJ_BOARD_BREAK, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
             }
 
             mCcSph.ClrTgHit();
             return;
-        case 1:
-            var_r29 = PARTS_TOP_HALF;
+        case DAMAGE_HORIZONTAL_SPLIT:
+            new_part_flags = PARTS_TOP_HALF;
             break;
-        case 2:
+        case DAMAGE_HORIZONTAL_SPLIT2:
             if (mPartFlags & PARTS_TOP_HALF) {
-                var_r29 = PARTS_TOP_HALF;
+                new_part_flags = PARTS_TOP_HALF;
             } else {
-                var_r29 = PARTS_BOTTOM_HALF;
+                new_part_flags = PARTS_BOTTOM_HALF;
             }
             break;
-        case 3:
-            temp_r27 = mPartFlags & 0x15C3;
+        case DAMAGE_BOTTOM_VERTICAL_SPLIT:
+            part_params = mPartFlags & 0x15C3;
             mPartFlags &= ~0x15C3;
 
-            if (temp_r27 != 0) {
-                createBreakParts(temp_r27, shape_angle);
+            if (part_params != 0) {
+                createBreakParts(part_params, shape_angle);
             }
 
-            var_r29 = 0x2A3C;
+            new_part_flags = 0x2A3C;
             break;
-        case 4:
-            temp_r27 = mPartFlags & 0x503;
+        case DAMAGE_TOP_VERTICAL_SPLIT:
+            part_params = mPartFlags & 0x503;
             mPartFlags &= ~0x503;
 
-            if (temp_r27 != 0) {
-                createBreakParts(temp_r27, shape_angle);
+            if (part_params != 0) {
+                createBreakParts(part_params, shape_angle);
             }
 
-            var_r29 = 0xA0C;
+            new_part_flags = 0xA0C;
             break;
-        case 5:
+        case DAMAGE_PIECES:
             for (int i = 0; i < 10; i++) {
                 if (mPartFlags & (1 << i)) {
                     sp24 = 1;
@@ -511,30 +531,30 @@ void daObj_Kanban2_c::damage_check() {
             setCullMtx();
             mCcSph.ClrTgHit();
             return;
-        case 6:
-            var_r29 = 0xF1E;
+        case DAMAGE_TLBR_DIAGONAL:
+            new_part_flags = 0xF1E;
             break;
-        case 7:
-            var_r29 = 0xF87;
+        case DAMAGE_TRBL_DIAGONAL:
+            new_part_flags = 0xF87;
             break;
-        case 8:
+        case DAMAGE_SHAKE:
             field_0x5e8.y = cLib_distanceAngleS(shape_angle.y, fopAcM_searchPlayerAngleY(this));
             field_0x5e8.x = 0;
             field_0x5fc = 1000.0f + nREG_F(0);
             mCcSph.ClrTgHit();
             return;
-        case 9:
+        case DAMAGE_NONE:
             mCcSph.ClrTgHit();
             return;
         }
 
-        temp_r27 = mPartFlags & var_r29;
-        mPartFlags &= ~var_r29;
+        part_params = mPartFlags & new_part_flags;
+        mPartFlags &= ~new_part_flags;
         setCullMtx();
 
-        if (temp_r27 != 0) {
+        if (part_params != 0) {
             Z2GetAudioMgr()->seStart(Z2SE_OBJ_BOARD_BREAK, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-            createBreakParts(temp_r27, shape_angle);
+            createBreakParts(part_params, shape_angle);
         }
 
         mCcSph.ClrTgHit();
@@ -573,11 +593,11 @@ bool daObj_Kanban2_c::float_damage_check() {
 bool daObj_Kanban2_c::deletePart() {
     if (field_0x620 <= 1) {
         if (fopAcM_CheckCondition(this, 4)) {
-            f32 temp_f1 = current.pos.abs(daPy_getPlayerActorClass()->current.pos);
-            if (temp_f1 > 2500.0f) {
+            f32 player_dist = current.pos.abs(daPy_getPlayerActorClass()->current.pos);
+            if (player_dist > 2500.0f) {
                 fopAcM_delete(this);
                 return true;
-            } else if (temp_f1 > 500.0f && (mPartFlags & 0x1EE55)) {
+            } else if (player_dist > 500.0f && (mPartFlags & 0x1EE55)) {
                 fopAcM_delete(this);
                 return true;
             }
@@ -593,14 +613,14 @@ bool daObj_Kanban2_c::deletePart() {
 /* 805825A4-805826D4 000F24 0130+00 1/1 0/0 0/0 .text            getWallAngle__15daObj_Kanban2_cFv
  */
 s16 daObj_Kanban2_c::getWallAngle() {
-    cXyz sp20;
-    cXyz sp14;
-    cXyz sp8(0.0f, 0.0f, 200.0f);
+    cXyz line_start;
+    cXyz line_end;
+    cXyz offset(0.0f, 0.0f, 200.0f);
     dBgS_LinChk line_chk;
 
-    cLib_offsetPos(&sp14, &current.pos, current.angle.y, &sp8);
-    cLib_offsetPos(&sp20, &current.pos, -current.angle.y, &sp8);
-    line_chk.Set(&sp20, &sp14, NULL);
+    cLib_offsetPos(&line_end, &current.pos, current.angle.y, &offset);
+    cLib_offsetPos(&line_start, &current.pos, -current.angle.y, &offset);
+    line_chk.Set(&line_start, &line_end, NULL);
 
     s16 angle;
     if (dComIfG_Bgsp().LineCross(&line_chk)) {
@@ -620,43 +640,43 @@ s16 daObj_Kanban2_c::getWallAngle() {
 /* 8058271C-80582894 00109C 0178+00 2/2 0/0 0/0 .text            setGroundAngle__15daObj_Kanban2_cFv
  */
 void daObj_Kanban2_c::setGroundAngle() {
-    Vec sp14;
+    Vec gnd_pos;
     cXyz sp8;
-    dBgS_GndChk sp20;
+    dBgS_GndChk gnd_chk;
 
     sp8 = current.pos;
     sp8.y = mAcch.GetGroundH();
 
-    sp14.x = sp8.x;
-    sp14.y = 50.0f + sp8.y;
-    sp14.z = 10.0f + sp8.z;
-    sp20.SetPos(&sp14);
-    sp14.y = dComIfG_Bgsp().GroundCross(&sp20);
+    gnd_pos.x = sp8.x;
+    gnd_pos.y = 50.0f + sp8.y;
+    gnd_pos.z = 10.0f + sp8.z;
+    gnd_chk.SetPos(&gnd_pos);
+    gnd_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
-    if (-1000000000.0f != sp14.y && std::abs(sp14.y - sp8.y) < 50.0f) {
-        field_0x5ee.x = -cM_atan2s(sp14.y - sp8.y, sp14.z - sp8.z);
+    if (-1000000000.0f != gnd_pos.y && std::abs(gnd_pos.y - sp8.y) < 50.0f) {
+        field_0x5ee.x = -cM_atan2s(gnd_pos.y - sp8.y, gnd_pos.z - sp8.z);
     }
 
-    sp14.x = 10.0f + sp8.x;
-    sp14.y = 50.0f + sp8.y;
-    sp14.z = sp8.z;
-    sp20.SetPos(&sp14);
-    sp14.y = dComIfG_Bgsp().GroundCross(&sp20);
+    gnd_pos.x = 10.0f + sp8.x;
+    gnd_pos.y = 50.0f + sp8.y;
+    gnd_pos.z = sp8.z;
+    gnd_chk.SetPos(&gnd_pos);
+    gnd_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
-    if (-1000000000.0f != sp14.y && std::abs(sp14.y - sp8.y) < 50.0f) {
-        field_0x5ee.z = cM_atan2s(sp14.y - sp8.y, sp14.x - sp8.x);
+    if (-1000000000.0f != gnd_pos.y && std::abs(gnd_pos.y - sp8.y) < 50.0f) {
+        field_0x5ee.z = cM_atan2s(gnd_pos.y - sp8.y, gnd_pos.x - sp8.x);
     }
 }
 
 /* 80582894-80582944 001214 00B0+00 2/2 0/0 0/0 .text checkWaterSurface__15daObj_Kanban2_cFv */
 bool daObj_Kanban2_c::checkWaterSurface() {
-    dBgS_ObjGndChk_Spl sp14;
+    dBgS_ObjGndChk_Spl gnd_chk;
     Vec sp8;
     sp8 = current.pos;
     sp8.y += 500.0f;
 
-    sp14.SetPos(&sp8);
-    field_0x604 = dComIfG_Bgsp().GroundCross(&sp14);
+    gnd_chk.SetPos(&sp8);
+    field_0x604 = dComIfG_Bgsp().GroundCross(&gnd_chk);
     if (field_0x604 > current.pos.y) {
         return true;
     }
@@ -681,8 +701,8 @@ bool daObj_Kanban2_c::checkPataGround(s16 param_0, s16 param_1) {
     spC.y += 100.0f;
     sp24.SetPos(&spC);
 
-    f32 temp_f1 = dComIfG_Bgsp().GroundCross(&sp24);
-    if (temp_f1 != -1000000000.0f && sp18.y < temp_f1) {
+    f32 ground_y = dComIfG_Bgsp().GroundCross(&sp24);
+    if (ground_y != -1000000000.0f && sp18.y < ground_y) {
         return true;
     }
 
@@ -707,8 +727,8 @@ void daObj_Kanban2_c::setSmokeEffect(cXyz i_pos) {
 UNK_REL_BSS
 
 /* 80585CB4-80585CB8 -00001 0004+00 2/2 0/0 0/0 .bss             None */
-/* 80585CB5 0003+00 data_80585CB5 None */
-static u8 data_80585CB5;
+/* 80585CB5 0003+00 l_initHIO None */
+static u8 l_initHIO;
 
 /* 80585CC4-80585CD0 000054 000C+00 3/3 0/0 0/0 .bss             l_HIO */
 static daObj_Kanban2_HIO_c l_HIO;
@@ -716,12 +736,12 @@ static daObj_Kanban2_HIO_c l_HIO;
 /* 80582AFC-80582C40 00147C 0144+00 2/2 0/0 0/0 .text            setWaterEffect__15daObj_Kanban2_cFv
  */
 void daObj_Kanban2_c::setWaterEffect() {
-    cXyz sp1C(current.pos.x, field_0x604, current.pos.z);
+    cXyz eff_pos(current.pos.x, field_0x604, current.pos.z);
     static cXyz sc(0.5f, 0.5f, 0.5f);
 
     for (int i = 0; i < 4; i++) {
         static u16 w_eff_id[] = {0x01B8, 0x01B9, 0x01BA, 0x01BB};
-        field_0x9e8[i] = dComIfGp_particle_set(field_0x9e8[i], w_eff_id[i], &sp1C, &tevStr, NULL, &sc, 0xFF, NULL, -1, NULL, NULL, NULL);
+        mWaterEffID[i] = dComIfGp_particle_set(mWaterEffID[i], w_eff_id[i], &eff_pos, &tevStr, NULL, &sc, 0xFF, NULL, -1, NULL, NULL, NULL);
     }
 
     mSound.startSound(Z2SE_CM_BODYFALL_WATER_S, 0, -1);
@@ -737,7 +757,7 @@ void daObj_Kanban2_c::setCenterPos() {
     field_0x620 = 1;
     field_0x600 = 30.0f;
 
-    if (mAction != 0 && mMode != 4) {
+    if (mAction != ACTION_NORMAL_e && mMode != 4) {
         for (int i = 0; i < 8; i++) {
             if (mPartFlags & (1 << i)) {
                 sp8.x = d_KANBAN_OFFSET[i].x;
@@ -794,7 +814,7 @@ void daObj_Kanban2_c::setCenterPos() {
 BOOL daObj_Kanban2_c::checkCarryOn() {
     cLib_onBit<u32>(attention_info.flags, 0x10);
     if (fopAcM_checkCarryNow(this)) {
-        setActionMode(3, 0);
+        setActionMode(ACTION_CARRY_e, 0);
 
         if (shape_angle.x > 0) {
             field_0x608 = 0x4000;
@@ -814,7 +834,7 @@ BOOL daObj_Kanban2_c::checkCarryOn() {
  */
 void daObj_Kanban2_c::setActionMode(int i_action, int i_mode) {
     if (mAction != i_action) {
-        field_0x610 = mAction;
+        mPrevAction = mAction;
         mAction = i_action;
         mMode = i_mode;
 
@@ -834,8 +854,8 @@ void daObj_Kanban2_c::calcNormalSwing() {
     s16 var_r29 = 0;
 
     if ((mPartFlags & 0xFF) != 0 && mCcSph.ChkCoHit()) {
-        fopAc_ac_c* sp14 = dCc_GetAc(mCcSph.GetCoHitObj()->GetAc());
-        if (fopAcM_GetName(sp14) == PROC_HORSE) {
+        fopAc_ac_c* hit_actor = dCc_GetAc(mCcSph.GetCoHitObj()->GetAc());
+        if (fopAcM_GetName(hit_actor) == PROC_HORSE) {
             cXyz sp28(current.pos);
             if (mPartFlags & PARTS_TOP_HALF) {
                 sp28.y += 100.0f;
@@ -863,7 +883,7 @@ void daObj_Kanban2_c::calcNormalSwing() {
                     setCullMtx();
 
                     if (temp_r26 != 0) {
-                        Z2GetAudioMgr()->seStart(0x800E4, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                        Z2GetAudioMgr()->seStart(Z2SE_OBJ_BOARD_BREAK, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
                         createBreakParts(temp_r26 | 0x80000000, shape_angle);
                     }
                 }
@@ -951,7 +971,7 @@ void daObj_Kanban2_c::executeNormal() {
     damage_check();
     field_0x600 = 40.0f;
 
-    if (mPartFlags != PART_ALL) {
+    if (mPartFlags != PARTS_ALL) {
         field_0x600 = 30.0f;
     }
 
@@ -959,13 +979,13 @@ void daObj_Kanban2_c::executeNormal() {
         field_0x600 = 10.0f;
     }
 
-    if (field_0xa00 != -1 && mPartFlags != PART_ALL) {
-        field_0xa00 = -1;
+    if (mFlowID != -1 && mPartFlags != PARTS_ALL) {
+        mFlowID = -1;
     }
 
     switch (field_0x9fe) {
     case 0:
-        if (field_0xa00 != -1 && cLib_distanceAngleS(shape_angle.y, fopAcM_searchPlayerAngleY(this)) < 0x3000) {
+        if (mFlowID != -1 && cLib_distanceAngleS(shape_angle.y, fopAcM_searchPlayerAngleY(this)) < 0x3000) {
             cLib_onBit<u32>(attention_info.flags, 0x4000000A);
             attention_info.distances[fopAc_attn_TALK_e] = 21;
             attention_info.distances[fopAc_attn_SPEAK_e] = 21;
@@ -975,7 +995,7 @@ void daObj_Kanban2_c::executeNormal() {
         }
 
         if (dComIfGp_event_runCheck() && eventInfo.checkCommandTalk()) {
-            mMsgFlow.init(this, field_0xa00, 0, NULL);
+            mMsgFlow.init(this, mFlowID, 0, NULL);
             field_0x9fe = 1;
             mInvulnerabilityTimer = 3;
         }
@@ -996,7 +1016,7 @@ void daObj_Kanban2_c::executeNormal() {
 
 /* 80583598-80583A2C 001F18 0494+00 2/1 0/0 0/0 .text            initPart__15daObj_Kanban2_cFv */
 void daObj_Kanban2_c::initPart() {
-    daPy_py_c* temp_r27 = daPy_getPlayerActorClass();
+    daPy_py_c* player = daPy_getPlayerActorClass();
 
     field_0x62b = 0;
     field_0x62c = 0;
@@ -1057,14 +1077,14 @@ void daObj_Kanban2_c::initPart() {
 
             field_0x608 -= 0x8000;
             speedF = 50.0f * var_f31;
-            if (cLib_distanceAngleS(temp_r27->shape_angle.y, temp_r27->current.angle.y) < 0x2000) {
-                speedF += temp_r27->speedF;
+            if (cLib_distanceAngleS(player->shape_angle.y, player->current.angle.y) < 0x2000) {
+                speedF += player->speedF;
             }
         } else {
             field_0x62c = 1;
             speedF = 0.0f;
             speed.y = 0.0f;
-            mMode = 0xB;
+            mMode = 11;
             shape_angle.x = field_0x608;
         }
         return;
@@ -1152,7 +1172,7 @@ void daObj_Kanban2_c::executePart() {
                 createWallHitBreak();
             }
 
-            setKanbanSE(0x800E5);
+            setKanbanSE(Z2SE_OBJ_BOARD_BOUND);
             speedF *= 0.5f;
 
             s16 sp8 = getWallAngle();
@@ -1160,7 +1180,7 @@ void daObj_Kanban2_c::executePart() {
         }
 
         if (mAcch.ChkGroundHit() != 0) {
-            setKanbanSE(0x800E5);
+            setKanbanSE(Z2SE_OBJ_BOARD_BOUND);
             setSmokeEffect(current.pos);
             speed.y = 15.0f + cM_rndF(5.0f);
             speedF *= 0.75f;
@@ -1192,7 +1212,7 @@ void daObj_Kanban2_c::executePart() {
 
         if (mAcch.ChkGroundHit()) {
             shape_angle.x = field_0x608;
-            setKanbanSE(0x800E5);
+            setKanbanSE(Z2SE_OBJ_BOARD_BOUND);
             setSmokeEffect(current.pos);
             speedF = 0.0f;
             speed.y = 0.0f;
@@ -1209,9 +1229,9 @@ void daObj_Kanban2_c::executePart() {
 
             if (field_0x62d != 0) {
                 if (field_0x62c == 0) {
-                    setKanbanSE(0x800E5);
+                    setKanbanSE(Z2SE_OBJ_BOARD_BOUND);
                 } else {
-                    setKanbanSE(0x800E6);
+                    setKanbanSE(Z2SE_OBJ_BOARD_PUT);
                 }
 
                 setSmokeEffect(current.pos);
@@ -1305,7 +1325,7 @@ void daObj_Kanban2_c::executePart() {
 
             if (checkPataGround(shape_angle.z, (shape_angle.y - 0x4000)) != 0) {
                 field_0x5e8.z = (-field_0x5e8.z / 3);
-                setKanbanSE(0x800E6);
+                setKanbanSE(Z2SE_OBJ_BOARD_PUT);
 
                 if ((mPartFlags & 0xFF) != 0) {
                     sp4C = current.pos;
@@ -1324,7 +1344,7 @@ void daObj_Kanban2_c::executePart() {
 
             if (checkPataGround(-shape_angle.z, (shape_angle.y + 0x4000)) != 0) {
                 field_0x5e8.z = (-field_0x5e8.z / 3);
-                Z2GetAudioMgr()->seStart(0x800E6, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                Z2GetAudioMgr()->seStart(Z2SE_OBJ_BOARD_PUT, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
 
                 if ((mPartFlags & 0xFF) != 0) {
                     sp4C = current.pos;
@@ -1361,7 +1381,7 @@ void daObj_Kanban2_c::executePart() {
     }
 
     if (checkWaterSurface()) {
-        setActionMode(2, 0);
+        setActionMode(ACTION_FLOAT_e, 0);
     } else {
         checkCarryOn();
     }
@@ -1373,7 +1393,7 @@ void daObj_Kanban2_c::executeFloat() {
     checkWaterSurface();
 
     if (-1000000000.0f == field_0x604) {
-        setActionMode(1, 7);
+        setActionMode(ACTION_PART_e, 7);
         return;
     }
 
@@ -1477,8 +1497,8 @@ void daObj_Kanban2_c::executeFloat() {
         fopAcM_effHamonSet(&field_0x9f8, &sp38, 1.0f, var_f30);
 
         if (field_0x62a == 0 && mCcSph.ChkCoHit()) {
-            cCcD_Obj* spC = mCcSph.GetCoHitObj();
-            if (fopAcM_GetName(dCc_GetAc(spC->GetAc())) == PROC_ALINK && daPy_getPlayerActorClass()->speedF > 1.0f) {
+            cCcD_Obj* hit_obj = mCcSph.GetCoHitObj();
+            if (fopAcM_GetName(dCc_GetAc(hit_obj->GetAc())) == PROC_ALINK && daPy_getPlayerActorClass()->speedF > 1.0f) {
                 field_0x5e8.y = 0x100;
                 field_0x62a = 10;
             }
@@ -1523,7 +1543,7 @@ void daObj_Kanban2_c::executeCarry() {
     if (!fopAcM_checkCarryNow(this)) {
         mCcSph.OnCoSetBit();
         shape_angle.z = 0;
-        setActionMode(1, 5);
+        setActionMode(ACTION_PART_e, 5);
 
         if (fopAcM_GetSpeedF(this) >= 1.0f) {
             fopAcM_carryOffRevise(this);
@@ -1538,25 +1558,25 @@ void daObj_Kanban2_c::action() {
     mAcch.SetGroundUpY(0.0f);
 
     switch (mAction) {
-    case 0:
+    case ACTION_NORMAL_e:
         executeNormal();
         break;
-    case 1:
+    case ACTION_PART_e:
         executePart();
         shape_angle.x -= field_0x5e8.x;
         shape_angle.y += field_0x5e8.y;
         cLib_chaseAngleS(&field_0x5e8.x, 0, 0x100);
         cLib_chaseAngleS(&field_0x5e8.y, 0, 0x100);
         break;
-    case 2:
+    case ACTION_FLOAT_e:
         executeFloat();
         break;
-    case 3:
+    case ACTION_CARRY_e:
         executeCarry();
         break;
     }
 
-    if (mAction == 0) {
+    if (mAction == ACTION_NORMAL_e) {
         fopAcM_posMoveF(this, NULL);
     } else {
         fopAcM_posMoveF(this, mCcStts.GetCCMoveP());
@@ -1611,7 +1631,7 @@ void daObj_Kanban2_c::mtx_set() {
 
     mDoMtx_stack_c::scaleM(l_HIO.base_size, l_HIO.base_size, l_HIO.base_size);
 
-    if (mPartFlags == PART_ALL) {
+    if (mPartFlags == PARTS_ALL) {
         mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
         return;
     }
@@ -1625,19 +1645,19 @@ void daObj_Kanban2_c::mtx_set() {
 
 /* 80584CFC-80584DF0 00367C 00F4+00 1/1 0/0 0/0 .text            cc_set__15daObj_Kanban2_cFv */
 void daObj_Kanban2_c::cc_set() {
-    cXyz sp8(current.pos);
+    cXyz sph_center(current.pos);
 
-    if (mAction == 0) {
+    if (mAction == ACTION_NORMAL_e) {
         if (mPartFlags & PARTS_TOP_HALF) {
-            sp8.y += 100.0f;
+            sph_center.y += 100.0f;
         } else if (mPartFlags & PARTS_BOTTOM_HALF) {
-            sp8.y += 70.0f;
+            sph_center.y += 70.0f;
         } else {
-            sp8.y += 40.0f;
+            sph_center.y += 40.0f;
         }
     }
 
-    mCcSph.SetC(sp8);
+    mCcSph.SetC(sph_center);
 
     if (dComIfGp_event_runCheck()) {
         mCcSph.SetR(10.0f + field_0x600);
@@ -1692,7 +1712,7 @@ int daObj_Kanban2_c::_delete() {
     dComIfG_resDelete(&mPhase, "Obj_kn2");
 
     if (mInitHIO) {
-        data_80585CB5 = 0;
+        l_initHIO = false;
         mDoHIO_DELETE_CHILD(l_HIO.id);
     }
 
@@ -1712,9 +1732,9 @@ static int daObj_Kanban2_Delete(daObj_Kanban2_c* i_this) {
 /* 80584F64-805850C8 0038E4 0164+00 1/1 0/0 0/0 .text            CreateHeap__15daObj_Kanban2_cFv */
 int daObj_Kanban2_c::CreateHeap() {
     void* modelData;
-    u32 spC = fopAcM_GetParam(this) & 0x3FFFF;
+    u32 part_flags = fopAcM_GetParam(this) & 0x3FFFF;
 
-    if (spC == PART_ALL) {
+    if (part_flags == PARTS_ALL) {
         modelData = dComIfG_getObjectRes("Obj_kn2", l_kn2_bmdidx[0]);
         JUT_ASSERT(2214, modelData != 0);
 
@@ -1725,7 +1745,7 @@ int daObj_Kanban2_c::CreateHeap() {
     }
 
     for (int i = 0; i < 18; i++) {
-        if (spC & (1 << i)) {
+        if (part_flags & (1 << i)) {
             modelData = dComIfG_getObjectRes("Obj_kn2", l_kn2_bmdidx[i + 1]);
             JUT_ASSERT(2228, modelData != 0);
             void* shareModelData = dComIfG_getObjectRes("Obj_kn2", l_kn2_bmdidx[0]);
@@ -1757,13 +1777,13 @@ int daObj_Kanban2_c::create() {
             return cPhs_ERROR_e;
         }
 
-        if (data_80585CB5 == 0) {
-            data_80585CB5 = 1;
-            mInitHIO = 1;
+        if (!l_initHIO) {
+            l_initHIO = true;
+            mInitHIO = true;
             l_HIO.id = mDoHIO_CREATE_CHILD("細切れ看板", &l_HIO);
         }
 
-        field_0xa00 = current.angle.x;
+        mFlowID = current.angle.x;
         shape_angle.x = 0;
         current.angle.x = 0;
 
@@ -1773,11 +1793,11 @@ int daObj_Kanban2_c::create() {
             mode = 0;
         }
 
-        if (mPartFlags == PART_ALL) {
-            setActionMode(0, 0);
+        if (mPartFlags == PARTS_ALL) {
+            setActionMode(ACTION_NORMAL_e, 0);
             fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
         } else {
-            setActionMode(1, mode);
+            setActionMode(ACTION_PART_e, mode);
             setCullMtx();
         }
 
@@ -1791,7 +1811,7 @@ int daObj_Kanban2_c::create() {
         health = 10;
         field_0x560 = 10;
     
-        if (mPartFlags == PART_ALL) {
+        if (mPartFlags == PARTS_ALL) {
             mCcStts.Init(nREG_S(0) + 250, 0, this);
         } else {
             mCcStts.Init(100, 0, this);
@@ -1805,7 +1825,7 @@ int daObj_Kanban2_c::create() {
         mAtInfo.mPowerType = 1;
 
         //! @bug probably intended to be "||"
-        if (mAction != 1 | mMode != 2) {
+        if (mAction != ACTION_PART_e | mMode != 2) {
             current.pos -= field_0x5dc;
         }
 
