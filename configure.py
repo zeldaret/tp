@@ -595,7 +595,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "d/actor/d_a_itembase.cpp"),
             Object(MatchingFor("GZ2E01"), "d/actor/d_a_no_chg_room.cpp"),
             Object(NonMatching, "d/actor/d_a_npc.cpp"),
-            Object(NonMatching, "d/actor/d_a_npc_cd.cpp"),
+            Object(Equivalent, "d/actor/d_a_npc_cd.cpp"), # weak func order
             Object(NonMatching, "d/actor/d_a_npc_cd2.cpp"),
             Object(NonMatching, "d/actor/d_a_obj_item.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_insect.cpp"),
@@ -1816,7 +1816,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_raca"),
     ActorRel(NonMatching, "d_a_npc_rafrel"),
     ActorRel(NonMatching, "d_a_npc_saru"),
-    ActorRel(NonMatching, "d_a_npc_seib"),
+    ActorRel(Equivalent, "d_a_npc_seib"), # weak func order
     ActorRel(NonMatching, "d_a_npc_seic"),
     ActorRel(NonMatching, "d_a_npc_seid"),
     ActorRel(NonMatching, "d_a_npc_seira"),

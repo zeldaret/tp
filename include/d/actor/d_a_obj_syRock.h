@@ -12,11 +12,8 @@
  * @details Breakable stalactites seen in Lakebed Temple
  *
  */
-struct fakeSyRockPadding {
-    u8 a[8];
-};
 
-class daSyRock_c : public dBgS_MoveBgActor, public fakeSyRockPadding, public dEvLib_callback_c {
+class daSyRock_c : public dBgS_MoveBgActor, public request_of_phase_process_class, public dEvLib_callback_c {
 public:
     daSyRock_c() : dEvLib_callback_c(this) {}
     /* 80D03DAC */ ~daSyRock_c() {};

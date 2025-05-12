@@ -52,7 +52,7 @@ public:
         /* 0x84 */ f32 field_0x84;
         /* 0x88 */ f32 field_0x88;
         /* 0x8C */ f32 field_0x8c;
-        /* 0x90 */ f32 field_0x90;
+        /* 0x90 */ f32 mDist;
     };
 
     static const Data m;
@@ -104,13 +104,12 @@ public:
     static cutFunc mCutList[1];
 
 private:
-    /* 0xE40 */ daNpc_seiB_Param_c* field_0xe40;
+    /* 0xE40 */ daNpc_seiB_Param_c* mpParam;
     /* 0xE44 */ u8 mType;
-    /* 0xE45 */ u8 field_0xe45[0xe48 - 0xe45];
-    /* 0xE48 */ actionFunc field_0xe48;
-    /* 0xE54 */ actionFunc field_0xe54;
-    /* 0xE60 */ int field_0xe60;
-    /* 0xE64 */ int field_0xe64;
+    /* 0xE48 */ actionFunc mActionFunc1;
+    /* 0xE54 */ actionFunc mActionFunc2;
+    /* 0xE60 */ int mAnim;
+    /* 0xE64 */ void* field_0xe64;
 };
 
 STATIC_ASSERT(sizeof(daNpc_seiB_c) == 0xe68);
