@@ -116,18 +116,17 @@ int daObjGWall2_c::Draw() {
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
-    for (u16 i = 0; i < mpModel->getModelData()->getMaterialTable().getMaterialNum(); i++)
-    {
+    for (u16 i = 0; i < mpModel->getModelData()->getMaterialTable().getMaterialNum(); i++) {
         J3DMaterial* mat = mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(i);
         J3DFog* fog = mat->getPEBlock()->getFog();
         if (fog != NULL) {
             fog = mat->getPEBlock()->getFog();
-            J3DFogInfo* fogInfo = fog->getFogInfo();
-            fogInfo->mColor.r = 0;
-            fogInfo->mColor.g = 0;
-            fogInfo->mColor.b = 0;
-            fogInfo->mStartZ = 1000.0f;
-            fogInfo->mEndZ = 250000.0f;
+            J3DFogInfo* fog_info = fog->getFogInfo();
+            fog_info->mColor.r = 0;
+            fog_info->mColor.g = 0;
+            fog_info->mColor.b = 0;
+            fog_info->mStartZ = 1000.0f;
+            fog_info->mEndZ = 250000.0f;
         }
     }
 
