@@ -1818,7 +1818,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_saru"),
     ActorRel(Equivalent, "d_a_npc_seib"), # weak func order
     ActorRel(NonMatching, "d_a_npc_seic"),
-    ActorRel(NonMatching, "d_a_npc_seid"),
+    ActorRel(Equivalent, "d_a_npc_seid"), # Rodata oddity
     ActorRel(NonMatching, "d_a_npc_seira"),
     ActorRel(NonMatching, "d_a_npc_seira2"),
     ActorRel(NonMatching, "d_a_npc_seirei"),
