@@ -1919,7 +1919,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_fw"),
     ActorRel(NonMatching, "d_a_obj_gadget"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ganonwall"),
-    ActorRel(NonMatching, "d_a_obj_ganonwall2"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ganonwall2"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_gb"),
     ActorRel(NonMatching, "d_a_obj_geyser"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_glowSphere"),
