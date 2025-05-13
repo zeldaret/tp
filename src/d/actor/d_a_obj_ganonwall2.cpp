@@ -54,13 +54,13 @@ int daObjGWall2_c::Create() {
     fopAcM_setCullSizeBox2(this, mpModel->getModelData());
     // cullSizeFar = 1000000.f;
     mMatIdx = 0xffff;
-    JUTNameTab* name_table = mpModel->mModelData->getMaterialTable().getMaterialName();
-    for (u16 i = 0; i < mpModel->mModelData->getMaterialTable().getMaterialNum(); i++) {
+    JUTNameTab* name_table = mpModel->getModelData()->getMaterialTable().getMaterialName();
+    for (u16 i = 0; i < mpModel->getModelData()->getMaterialTable().getMaterialNum(); i++) {
         if (strcmp(name_table->getName(i), l_matName) == 0) {
             mMatIdx = i;
         }
     }
-    mSePos.set(0, 800, -10372.5);
+    mSePos.set(0.0f, 800.0f, -10372.5f);
     return 1;
 }
 
@@ -75,7 +75,7 @@ int daObjGWall2_c::CreateHeap() {
     J3DAnmTextureSRTKey* btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 8);
     mpBtkAnm = new mDoExt_btkAnm();
     if (mpBtkAnm == NULL ||
-        mpBtkAnm->init(&model_data->getMaterialTable(), btk, 1, 2, 1.0, 0, -1) == 0)
+        mpBtkAnm->init(model_data, btk, 1, 2, 1.0f, 0, -1) == 0)
     {
         return 0;
     }
@@ -88,16 +88,15 @@ int daObjGWall2_c::create1st() {
         dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[(u16)getEventBit1()]) != 0)
     {
         return cPhs_ERROR_e;
-    } else {
-        cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, l_arcName);
-        if (phase == cPhs_COMPLEATE_e) {
-            phase = (cPhs__Step)MoveBGCreate(l_arcName, 11, NULL, 0x6100, NULL);
-            if (phase == cPhs_ERROR_e) {
-                return phase;
-            }
-        }
-        return phase;
     }
+    cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, l_arcName);
+    if (phase == cPhs_COMPLEATE_e) {
+        phase = (cPhs__Step)MoveBGCreate(l_arcName, 11, NULL, 0x6100, NULL);
+        if (phase == cPhs_ERROR_e) {
+            return phase;
+        }
+    }
+    return phase;
 }
 
 /* ############################################################################################## */
@@ -115,29 +114,27 @@ int daObjGWall2_c::Execute(Mtx** i_bgMtx) {
 /* 80BF5C0C-80BF6004 0004AC 03F8+00 1/0 0/0 0/0 .text            Draw__13daObjGWall2_cFv */
 int daObjGWall2_c::Draw() {
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
-    J3DModelData* model_data;
-    for (u16 i = 0;
-         model_data = mpModel->getModelData(), i < model_data->getMaterialTable().getMaterialNum();
-         i++)
+    for (u16 i = 0; i < mpModel->getModelData()->getMaterialTable().getMaterialNum(); i++)
     {
-        J3DMaterial* mat = model_data->getMaterialTable().getMaterialNodePointer(i);
+        J3DMaterial* mat = mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(i);
         J3DFog* fog = mat->getPEBlock()->getFog();
         if (fog != NULL) {
             fog = mat->getPEBlock()->getFog();
-            fog->getFogInfo()->mColor.r = '\0';
-            fog->getFogInfo()->mColor.g = '\0';
-            fog->getFogInfo()->mColor.b = '\0';
-            fog->getFogInfo()->mStartZ = 1000.0f;
-            fog->getFogInfo()->mEndZ = 250000.0f;
+            J3DFogInfo* fogInfo = fog->getFogInfo();
+            fogInfo->mColor.r = 0;
+            fogInfo->mColor.g = 0;
+            fogInfo->mColor.b = 0;
+            fogInfo->mStartZ = 1000.0f;
+            fogInfo->mEndZ = 250000.0f;
         }
     }
 
     int hour = dKy_getdaytime_hour();
-    float minute = dKy_getdaytime_minute();
+    f32 minute = dKy_getdaytime_minute();
     J3DGXColor* mat_tev_k_color =
-        mpModel->mModelData->getMaterialTable().getMaterialNodePointer(mMatIdx)->getTevKColor(1);
+        mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(mMatIdx)->getTevKColor(1);
     int idx1 = l_idx[hour][0];
     int idx2 = l_idx[hour][1];
     mat_tev_k_color->r = (l_color[idx1].r +
@@ -193,8 +190,10 @@ static int daObjGWall2_MoveBGDraw(daObjGWall2_c* i_this) {
 
 /* 80BF6214-80BF6234 -00001 0020+00 1/0 0/0 0/0 .data            daObjGWall2_METHODS */
 static actor_method_class daObjGWall2_METHODS = {
-    (process_method_func)daObjGWall2_create1st,     (process_method_func)daObjGWall2_MoveBGDelete,
-    (process_method_func)daObjGWall2_MoveBGExecute, 0,
+    (process_method_func)daObjGWall2_create1st,
+    (process_method_func)daObjGWall2_MoveBGDelete,
+    (process_method_func)daObjGWall2_MoveBGExecute, 
+    0,
     (process_method_func)daObjGWall2_MoveBGDraw,
 };
 
