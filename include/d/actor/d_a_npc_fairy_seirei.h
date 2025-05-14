@@ -45,18 +45,14 @@ public:
                                        daNpcT_evtData_c const* param_7, char** param_8)
                                        : daNpcT_c(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8) {}
 
-    static char* mCutNameList;
-    static cutFunc mCutList[1];
-
     u8 getType() { return fopAcM_GetParam(this) & 0xFF; }
 
-    u32 getFlowNodeNo() {
-        u32 ret;
-        ret = home.angle.x;
-        if (ret != 0xFFFF) {
-            ret = -1;
+    int getFlowNodeNo() {
+        u16 nodeNo = home.angle.x;
+        if (nodeNo == 0xffff) {
+            return -1;
         }
-        return ret;
+        return nodeNo;
     }
 
     BOOL chkAction(actionFunc i_action) {
@@ -69,27 +65,26 @@ public:
 
     int getSeneNo() { return (fopAcM_GetParam(this) >> 8) & 0xFF; }
 
-private:
+    static char* mCutNameList[1];
+    static cutFunc mCutList[1];
+
+    private:
     /* 0xE40 */ u8 field_0xE40[4];
-    /* 0xE44 */ u8 mCreate;
+    /* 0xE44 */ u8 mType;
     /* 0xE48 */ dCcD_Cyl mCyl;
-    // /* 0xF84 */ f32 mReset;
-    // /* 0xF88 */ u32 mAction1;
-    // /* 0xF8C */ u32 mAction2;
     /* 0xF84 */ actionFunc mInitFunc;
     /* 0xF90 */ actionFunc mExecuteFunc;
-    // /* 0xF90 */ actionFunc mActionFunc;
-    /* 0xF90 */ u8 field_0xF90[4];
-    /* 0xF98 */ JPABaseEmitter* mEmitters[3];
-    /* 0xFA8 */ u8 mTalk;
-    // /* 0xFA9 */ u8 field_0xFA9[7];
+    /* 0xF98 */ u32 mpEmitters[3];
+    /* 0xFA8 */ bool mTalking;
+    /* 0xFA9 */ u8 field_0xFA4[3];
+    /* 0xFAC */ u8 field_0xFAC;
 };
 
 STATIC_ASSERT(sizeof(daNpc_FairySeirei_c) == 0xfb0);
 
 class daNpc_FairySeirei_Param_c {
 public:
-    /* 80541D20 */ ~daNpc_FairySeirei_Param_c();
+    /* 80541D20 */ virtual ~daNpc_FairySeirei_Param_c() {}
 
     static f32 const m[37];
 };
