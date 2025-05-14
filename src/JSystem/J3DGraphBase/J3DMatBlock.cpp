@@ -7,7 +7,6 @@
 #include "JSystem/J3DGraphBase/J3DGD.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"
 #include "JSystem/J3DGraphBase/J3DTransform.h"
-#include "dol2asm.h"
 #include "dolphin/os.h"
 #include "string.h"
 #include "global.h"
@@ -359,8 +358,8 @@ void J3DColorBlockLightOff::load() {
     mColorChanOffset = GDGetCurrOffset();
     J3DGDWriteXFCmdHdr(0x100e, 4);
     mColorChan[0].load();
-    mColorChan[1].load();
     mColorChan[2].load();
+    mColorChan[1].load();
     mColorChan[3].load();
 }
 
@@ -376,8 +375,8 @@ void J3DColorBlockAmbientOn::load() {
     mColorChanOffset = GDGetCurrOffset();
     J3DGDWriteXFCmdHdr(0x100e, 4);
     mColorChan[0].load();
-    mColorChan[1].load();
     mColorChan[2].load();
+    mColorChan[1].load();
     mColorChan[3].load();
 }
 
@@ -390,8 +389,8 @@ void J3DColorBlockLightOn::load() {
     mColorChanOffset = GDGetCurrOffset();
     J3DGDWriteXFCmdHdr(0x100e, 4);
     mColorChan[0].load();
-    mColorChan[1].load();
     mColorChan[2].load();
+    mColorChan[1].load();
     mColorChan[3].load();
     for (u32 i = 0; i < 8; i++) {
         if (mLight[i] != NULL) {
@@ -423,8 +422,8 @@ void J3DColorBlockLightOff::patchLight() {
     GDOverflowCheck(SizeOfLoadColorChans);
     J3DGDWriteXFCmdHdr(0x100e, 4);
     mColorChan[0].load();
-    mColorChan[1].load();
     mColorChan[2].load();
+    mColorChan[1].load();
     mColorChan[3].load();
     void* end = GDGetCurrPointer();
     DCStoreRange(start, (u32)end - (u32)start);
@@ -453,8 +452,8 @@ void J3DColorBlockLightOn::patchLight() {
     GDOverflowCheck(SizeOfLoadColorChans);
     J3DGDWriteXFCmdHdr(0x100e, 4);
     mColorChan[0].load();
-    mColorChan[1].load();
     mColorChan[2].load();
+    mColorChan[1].load();
     mColorChan[3].load();
     for (u32 i = 0; i < 8; i++) {
         if (mLight[i] != NULL) {
@@ -484,8 +483,8 @@ void J3DColorBlockLightOff::diffColorChan() {
     GDOverflowCheck(SizeOfLoadColorChans);
     J3DGDWriteXFCmdHdr(0x100e, 4);
     mColorChan[0].load();
-    mColorChan[1].load();
     mColorChan[2].load();
+    mColorChan[1].load();
     mColorChan[3].load();
 }
 
@@ -521,8 +520,8 @@ void J3DColorBlockLightOn::diffColorChan() {
     GDOverflowCheck(SizeOfLoadColorChans);
     J3DGDWriteXFCmdHdr(0x100e, 4);
     mColorChan[0].load();
-    mColorChan[1].load();
     mColorChan[2].load();
+    mColorChan[1].load();
     mColorChan[3].load();
 }
 

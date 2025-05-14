@@ -12,13 +12,13 @@
 static bool isLoadRoom(int i_roomNo) {
     roomRead_class* room = dComIfGp_getStageRoom();
 
-    if (room != NULL && room->field_0x0 > i_roomNo) {
+    if (room != NULL && room->num > i_roomNo) {
         int load_room_index;
         int num;
         u8* data;
 
-        num = room->field_0x4[i_roomNo]->field_0x0;
-        data = room->field_0x4[i_roomNo]->field_0x4;
+        num = room->m_entries[i_roomNo]->num;
+        data = room->m_entries[i_roomNo]->m_rooms;
 
         for (int i = 0; i < num; i++) {
             load_room_index = dStage_roomRead_dt_c_GetLoadRoomIndex(data[i]);

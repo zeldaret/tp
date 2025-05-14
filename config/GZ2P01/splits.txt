@@ -316,7 +316,7 @@ f_pc/f_pc_node_req.cpp:
 f_pc/f_pc_priority.cpp:
 	.text       start:0x800231D8 end:0x8002360C
 	.bss        start:0x803F6DF8 end:0x803F6E08
-	.sdata      start:0x804525A8 end:0x804525B8
+	.sdata      start:0x804525A8 end:0x804525B0
 
 f_pc/f_pc_profile.cpp:
 	.text       start:0x8002360C end:0x80023620
@@ -357,6 +357,7 @@ d/d_stage.cpp:
 	.rodata     start:0x803798E0 end:0x80379CD8
 	.data       start:0x803A57F8 end:0x803A8BE8
 	.bss        start:0x803F6E08 end:0x80408140
+	.sdata      start:0x804525B0 end:0x804525B8
 	.sbss       start:0x80452D18 end:0x80452D40
 	.sdata2     start:0x80453C50 end:0x80453C60
 

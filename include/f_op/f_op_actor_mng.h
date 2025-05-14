@@ -33,8 +33,7 @@
     const fpc_ProcID procID = fopAcM_GetID(i_this);                                                \
     "Create -> " actor_name_str "(id=%d)\n"
 
-#define fopAcM_RegisterDelete(i_this, actor_name_str)                                              \
-    "Delete -> " actor_name_str "\n"
+#define fopAcM_RegisterDelete(i_this, actor_name_str) "Delete -> " actor_name_str "\n"
 
 #define fopAcM_RegisterCreate(actor_class, i_this, actor_name_str)                                 \
     static_cast<actor_class*>(i_this);                                                             \
@@ -45,18 +44,21 @@ class JKRHeap;
 class cM3dGPla;
 
 struct fopAcM_prmBase_class {
-    /* 0x00 */ u32 field_0x00;
-    /* 0x04 */ cXyz field_0x04;
-    /* 0x10 */ csXyz field_0x10;
-    /* 0x16 */ u16 field_0x16;
-};  // Size = 0x18
-
-struct fopAcM_prm_class {
     /* 0x00 */ u32 parameters;
     /* 0x04 */ cXyz position;
     /* 0x10 */ csXyz angle;
-    /* 0x16 */ u16 setId;
-    /* 0x18 */ u8 scale[3];
+    /* 0x16 */ u16 setID;
+};  // Size: 0x18
+
+struct fopAcM_prmScale_class {
+    /* 0x0 */ u8 x;
+    /* 0x1 */ u8 y;
+    /* 0x2 */ u8 z;
+};  // Size: 0x3
+
+struct fopAcM_prm_class {
+    /* 0x00 */ fopAcM_prmBase_class base;
+    /* 0x18 */ fopAcM_prmScale_class scale;
     /* 0x1C */ fpc_ProcID parent_id;
     /* 0x20 */ s8 subtype;
     /* 0x21 */ s8 room_no;
@@ -112,27 +114,28 @@ struct DOUBLE_POS {
 };
 
 enum fopAcM_STATUS {
-    /* 0x000001 */ fopAcM_STATUS_UNK_000001 = 1 << 0,
-    /* 0x000002 */ fopAcM_STATUS_UNK_000002 = 1 << 1,
-    /* 0x000004 */ fopAcM_STATUS_UNK_000004 = 1 << 2,
-    /* 0x000008 */ fopAcM_STATUS_UNK_000008 = 1 << 3,
-    /* 0x000010 */ fopAcM_STATUS_UNK_000010 = 1 << 4,
-    /* 0x000020 */ fopAcM_STATUS_UNK_000020 = 1 << 5,
-    /* 0x000040 */ fopAcM_STATUS_UNK_000040 = 1 << 6,
-    /* 0x000080 */ fopAcM_STATUS_UNK_000080 = 1 << 7,
-    /* 0x000100 */ fopAcM_STATUS_UNK_000100 = 1 << 8,
-    /* 0x000200 */ fopAcM_STATUS_UNK_000200 = 1 << 9,
-    /* 0x000400 */ fopAcM_STATUS_UNK_000400 = 1 << 10,
-    /* 0x000800 */ fopAcM_STATUS_UNK_000800 = 1 << 11,
-    /* 0x001000 */ fopAcM_STATUS_UNK_001000 = 1 << 12,
-    /* 0x002000 */ fopAcM_STATUS_CARRY_NOW = 1 << 13,
-    /* 0x004000 */ fopAcM_STATUS_UNK_004000 = 1 << 14,
-    /* 0x008000 */ fopAcM_STATUS_UNK_008000 = 1 << 15,
-    /* 0x010000 */ fopAcM_STATUS_UNK_010000 = 1 << 16,
-    /* 0x020000 */ fopAcM_STATUS_UNK_200000 = 1 << 17,
-    /* 0x040000 */ fopAcM_STATUS_UNK_400000 = 1 << 18,
-    /* 0x080000 */ fopAcM_STATUS_UNK_800000 = 1 << 19,
-    /* 0x100000 */ fopAcM_STATUS_HOOK_CARRY_NOW = 1 << 20,
+    /* 0x0000001 */ fopAcM_STATUS_UNK_000001 = 1 << 0,
+    /* 0x0000002 */ fopAcM_STATUS_UNK_000002 = 1 << 1,
+    /* 0x0000004 */ fopAcM_STATUS_UNK_000004 = 1 << 2,
+    /* 0x0000008 */ fopAcM_STATUS_UNK_000008 = 1 << 3,
+    /* 0x0000010 */ fopAcM_STATUS_UNK_000010 = 1 << 4,
+    /* 0x0000020 */ fopAcM_STATUS_UNK_000020 = 1 << 5,
+    /* 0x0000040 */ fopAcM_STATUS_UNK_000040 = 1 << 6,
+    /* 0x0000080 */ fopAcM_STATUS_UNK_000080 = 1 << 7,
+    /* 0x0000100 */ fopAcM_STATUS_UNK_000100 = 1 << 8,
+    /* 0x0000200 */ fopAcM_STATUS_UNK_000200 = 1 << 9,
+    /* 0x0000400 */ fopAcM_STATUS_UNK_000400 = 1 << 10,
+    /* 0x0000800 */ fopAcM_STATUS_UNK_000800 = 1 << 11,
+    /* 0x0001000 */ fopAcM_STATUS_UNK_001000 = 1 << 12,
+    /* 0x0002000 */ fopAcM_STATUS_CARRY_NOW = 1 << 13,
+    /* 0x0004000 */ fopAcM_STATUS_UNK_004000 = 1 << 14,
+    /* 0x0008000 */ fopAcM_STATUS_UNK_008000 = 1 << 15,
+    /* 0x0010000 */ fopAcM_STATUS_UNK_010000 = 1 << 16,
+    /* 0x0020000 */ fopAcM_STATUS_UNK_200000 = 1 << 17,
+    /* 0x0040000 */ fopAcM_STATUS_UNK_400000 = 1 << 18,
+    /* 0x0080000 */ fopAcM_STATUS_UNK_800000 = 1 << 19,
+    /* 0x0100000 */ fopAcM_STATUS_HOOK_CARRY_NOW = 1 << 20,
+    /* 0x8000000 */ fopAcM_STATUS_UNK_8000000 = 1 << 27,
 };
 
 inline s8 fopAcM_GetRoomNo(const fopAc_ac_c* i_actor) {
@@ -376,7 +379,8 @@ inline int fopAcM_GetCullSize(const fopAc_ac_c* i_actor) {
 }
 
 inline BOOL fopAcM_CULLSIZE_IS_BOX(int i_culltype) {
-    return (i_culltype >= 0 && i_culltype < fopAc_CULLBOX_CUSTOM_e) || i_culltype == fopAc_CULLBOX_CUSTOM_e;
+    return (i_culltype >= 0 && i_culltype < fopAc_CULLBOX_CUSTOM_e) ||
+           i_culltype == fopAc_CULLBOX_CUSTOM_e;
 }
 
 inline const cXyz& fopAcM_getCullSizeSphereCenter(const fopAc_ac_c* i_actor) {
@@ -485,6 +489,14 @@ fpc_ProcID fopAcM_create(s16 i_procName, u16 i_setId, u32 i_parameters, const cX
 fpc_ProcID fopAcM_create(s16 i_procName, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
                          const csXyz* i_angle, const cXyz* i_scale, s8 i_subtype);
 
+inline fpc_ProcID fopAcM_create(s16 i_procName, createFunc i_createFunc, void* params) {
+    return fpcM_Create(i_procName, i_createFunc, params);
+}
+
+inline fpc_ProcID fopAcM_Create(s16 i_procName, createFunc i_createFunc, void* params) {
+    return fpcM_Create(i_procName, i_createFunc,params);
+}
+
 fopAc_ac_c* fopAcM_fastCreate(s16 i_procName, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
                               const csXyz* i_angle, const cXyz* i_scale, s8 i_subtype,
                               createFunc i_createFunc, void* i_createFuncData);
@@ -590,8 +602,7 @@ fpc_ProcID fopAcM_createItemFromTable(cXyz const* i_pos, int i_tableNo, int i_it
                                       bool i_createDirect);
 
 fpc_ProcID fopAcM_createDemoItem(const cXyz* i_pos, int i_itemNo, int i_itemBitNo,
-                                 const csXyz* i_angle, int i_roomNo, const cXyz* scale,
-                                 u8 param_7);
+                                 const csXyz* i_angle, int i_roomNo, const cXyz* scale, u8 param_7);
 
 fpc_ProcID fopAcM_createItemForBoss(const cXyz* i_pos, int i_itemNo, int i_roomNo,
                                     const csXyz* i_angle, const cXyz* i_scale, f32 i_speedF,
@@ -755,21 +766,23 @@ inline void fopAcM_effSmokeSet2(u32* param_0, u32* param_1, cXyz const* param_2,
     fopAcM_effSmokeSet1(param_0, param_1, param_2, param_3, param_4, param_5, 0);
 }
 
-inline void fopAcM_setWarningMessage_f(const fopAc_ac_c* i_actor, const char* i_filename, int i_line, const char* i_msg, ...) {
+inline void fopAcM_setWarningMessage_f(const fopAc_ac_c* i_actor, const char* i_filename,
+                                       int i_line, const char* i_msg, ...) {
 #ifdef DEBUG
     /* va_list args;
     va_start(args, i_msg);
 
     char buf[64];
-    snprintf(buf, sizeof(buf), "<%s> %s", dStage_getName(fopAcM_GetProfName(i_actor), i_actor->subtype), i_msg);
-    setWarningMessage_f_va(JUTAssertion::getSDevice(), i_filename, i_line, buf, args);
+    snprintf(buf, sizeof(buf), "<%s> %s", dStage_getName(fopAcM_GetProfName(i_actor),
+    i_actor->subtype), i_msg); setWarningMessage_f_va(JUTAssertion::getSDevice(), i_filename,
+    i_line, buf, args);
 
     va_end(args); */
 #endif
 }
 
 #ifdef DEBUG
-#define fopAcM_setWarningMessage(i_actor, i_filename, i_line, i_msg) \
+#define fopAcM_setWarningMessage(i_actor, i_filename, i_line, i_msg)                               \
     fopAcM_setWarningMessage_f(i_actor, i_filename, i_line, i_msg)
 #else
 #define fopAcM_setWarningMessage(...)
@@ -786,6 +799,7 @@ public:
     static cXyz* getCrossP() { return mLineCheck.GetCrossP(); }
     static bool lineCheck(const cXyz*, const cXyz*, const fopAc_ac_c*);
     static bool getTriPla(cM3dGPla* o_tri) { return dComIfG_Bgsp().GetTriPla(mLineCheck, o_tri); }
+    static s32 getWallCode() { return dComIfG_Bgsp().GetWallCode(mLineCheck); }
     static bool checkWallHit() {
         cM3dGPla poly;
         getTriPla(&poly);

@@ -8,7 +8,6 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTPalette.h"
 #include "JSystem/JUtility/JUTTexture.h"
-#include "dol2asm.h"
 
 /* 802EA1AC-802EA2CC 2E4AEC 0120+00 0/0 1/1 0/0 .text            __ct__11J2DMaterialFv */
 J2DMaterial::J2DMaterial() {
@@ -305,17 +304,17 @@ void J2DMaterial::animation() {
                 ResTIMG* img = mAnmPointer->mPatternAnm->getResTIMG(idx);
                 if (texture->getTexInfo() != img) {
                     JUTPalette* palette = NULL;
-                    u32 tlut = GX_TLUT0;
+                    GXTlut tlut = GX_TLUT0;
                     if (img->indexTexture != 0) {
                         palette = mAnmPointer->mPatternAnm->getPalette(idx);
 						if (palette->getNumColors() > 256) {
-							tlut = i % 4 + 16;
+							tlut = (GXTlut)(i % 4 + 16);
 						} else {
-							tlut = i;
+							tlut = (GXTlut)i;
 						}
                     }
 
-                    texture->storeTIMG(img, palette, (GXTlut)tlut);
+                    texture->storeTIMG(img, palette, tlut);
                 }
             }
 		}

@@ -11,6 +11,7 @@
 #include "d/d_meter_HIO.h"
 #include "d/d_meter2_info.h"
 #include "d/d_lib.h"
+#include "d/d_menu_dmap_map.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
@@ -1280,9 +1281,9 @@ void dMenu_Dmap_c::screenInit() {
     field_0x88[0] = new CPaneMgr(mpDrawBg[0]->mBaseScreen, 'map000', 3, NULL);
     field_0x88[1] = new CPaneMgr(mpDrawBg[0]->mBaseScreen, 'con000', 3, NULL);
     
-    if (i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x11) {
+    if (dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x11) {
         field_0x88[2] = new CPaneMgr(mpDrawBg[0]->mBaseScreen, 'i_key_n', 3, NULL);
-    } else if (i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x14) {
+    } else if (dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x14) {
         field_0x88[2] = new CPaneMgr(mpDrawBg[0]->mBaseScreen, 'lv5_k_n', 3, NULL);
     } else {
         field_0x88[2] = new CPaneMgr(mpDrawBg[0]->mBaseScreen, 'nor_k_n', 3, NULL);
@@ -1290,7 +1291,7 @@ void dMenu_Dmap_c::screenInit() {
     for (int i = 0; i < 3; i++) {
         field_0x88[i]->scale(0.9f, 0.9f);
     }
-    if (i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x11) {
+    if (dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x11) {
         mpDrawBg[0]->mBaseScreen->search('lv5_k_n')->hide();
         mpDrawBg[0]->mBaseScreen->search('nor_k_n')->hide();
         u8 local_13f = 0;
@@ -1325,7 +1326,7 @@ void dMenu_Dmap_c::screenInit() {
             ((J2DPicture*)mpDrawBg[0]->mBaseScreen->search('c_n_1_s'))->changeTexture(uVar20, 0);
             ((J2DPicture*)mpDrawBg[0]->mBaseScreen->search('c_n_1'))->changeTexture(uVar20, 0);
         }
-    } else if (i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x14) {
+    } else if (dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x14) {
         mpDrawBg[0]->mBaseScreen->search('i_key_n')->hide();
         mpDrawBg[0]->mBaseScreen->search('nor_k_n')->hide();
         mpDrawBg[0]->mBaseScreen->search('key_n_n')->hide();
@@ -1729,17 +1730,6 @@ void dMenu_Dmap_c::floorChangeMode() {
 
 /* 801BD7C0-801BDD40 1B8100 0580+00 1/1 0/0 0/0 .text            _create__12dMenu_Dmap_cFv */
 void dMenu_Dmap_c::_create() {
-    // NONMATCHING
-}
-
-/* 801BDD40-801BDD70 1B8680 0030+00 0/0 1/0 0/0 .text            append__10J2DPictureFPC7ResTIMGf */
-bool J2DPicture::append(ResTIMG const* param_0, f32 param_1) {
-    // NONMATCHING
-}
-
-/* 801BDD70-801BDDA4 1B86B0 0034+00 0/0 1/0 0/0 .text            insert__10J2DPictureFPC7ResTIMGUcf
- */
-void J2DPicture::insert(ResTIMG const* param_0, u8 param_1, f32 param_2) {
     // NONMATCHING
 }
 

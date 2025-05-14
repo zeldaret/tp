@@ -3,6 +3,7 @@
 
 #include <dolphin/gx.h>
 #include <dolphin/mtx.h>
+#include "JSystem/JUtility/JUTAssert.h"
 
 // Perhaps move to a new J3DEnum.h?
 enum J3DError {
@@ -134,11 +135,18 @@ struct J3DSys {
 
     // Type 0: Opa Buffer
     // Type 1: Xlu Buffer
-    void setDrawBuffer(J3DDrawBuffer* buffer, int type) { mDrawBuffer[type] = buffer; }
+    void setDrawBuffer(J3DDrawBuffer* buffer, int type) {
+        J3D_ASSERT(114, type >= 0 && type < 2, "Error : range over.");
+        J3D_ASSERT(115, buffer, "Error : null pointer.");
+        mDrawBuffer[type] = buffer;
+    }
 
     // Type 0: Opa Buffer
     // Type 1: Xlu Buffer
-    J3DDrawBuffer* getDrawBuffer(int type) { return mDrawBuffer[type]; }
+    J3DDrawBuffer* getDrawBuffer(int type) {
+        J3D_ASSERT(121, type >= 0 && type < 2, "Error : range over.");
+        return mDrawBuffer[type];
+    }
 
     Mtx& getModelDrawMtx(u16 no) const { return mModelDrawMtx[no]; }
     J3DShapePacket* getShapePacket() const { return mShapePacket; }

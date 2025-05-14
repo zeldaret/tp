@@ -56,6 +56,7 @@ s16 daAlink_c::getCanoeMaxRotSpeed() const {
 
 /* 800F3CCC-800F3CD8 0EE60C 000C+00 1/1 0/0 1/1 .text getCanoeLocalPaddleTop__9daAlink_cFv */
 cXyz* daAlink_c::getCanoeLocalPaddleTop() {
+    static Vec const localPaddleTop = {0.0f, 0.0f, -158.0f};
     return (cXyz*)&localPaddleTop;
 }
 
@@ -289,7 +290,7 @@ void daAlink_c::setSyncCanoePos() {
             var_f31 = 1.0f;
         } else {
             var_r29 = -0x5000;
-            var_f31 = 1.0f;
+            var_f31 = -1.0f;
         }
     } else {
         if (!checkNoUpperAnime()) {
@@ -1283,13 +1284,13 @@ int daAlink_c::procCanoeFishingGetInit() {
     daAlink_ANM var_r30;
     if (mBodyAngle.y >= 0) {
         var_r30 = ANM_CANOE_FISH_LEFT;
-        field_0x3478 = 14.0f;
-        field_0x347c = 30.0f;
+        field_0x3478 = 24.0f;
+        field_0x347c = 45.0f;
         mProcVar3.field_0x300e = 0;
     } else {
         var_r30 = ANM_CANOE_FISH_RIGHT;
-        field_0x3478 = 24.0f;
-        field_0x347c = 45.0f;
+        field_0x3478 = 14.0f;
+        field_0x347c = 30.0f;
         mProcVar3.field_0x300e = 1;
     }
 

@@ -352,7 +352,7 @@ void dMeter2Info_c::warpInProc() {
 /* 8021CA70-8021CC00 2173B0 0190+00 0/0 1/1 0/0 .text            warpOutProc__13dMeter2Info_cFv */
 void dMeter2Info_c::warpOutProc() {
     stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
-    s32 saveTbl = i_dStage_stagInfo_GetSaveTbl(stag_info);
+    s32 saveTbl = dStage_stagInfo_GetSaveTbl(stag_info);
     dComIfGs_setLastWarpAcceptStage(saveTbl);
 
     cXyz warpPos(dComIfGs_getRestartRoomPos());

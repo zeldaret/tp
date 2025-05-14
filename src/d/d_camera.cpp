@@ -424,10 +424,6 @@ void positionOf__9dCamera_cFP10fopAc_ac_c();
 void setFlag__9dCamera_cFUl();
 void eyePos__9dCamera_cFP10fopAc_ac_c();
 
-u32 daPy_py_c::getLastSceneMode() {
-    return dComIfGs_getLastSceneMode() & 0xF;
-}
-
 //
 // Declarations:
 //
@@ -563,10 +559,10 @@ int dCamMapToolData::Set(s32 param_0, s32 roomNo, fopAc_ac_c* param_2, u16 param
     stage_camera_class* room_cam = dComIfGp_getRoomCamera(roomNo);
     stage_arrow_class* room_arrow = dComIfGp_getRoomArrow(roomNo);
 
-    if (room_cam != NULL && param_0 >= 0 && param_0 < room_cam->field_0x0) {
+    if (room_cam != NULL && param_0 >= 0 && param_0 < room_cam->num) {
         Clr();
         field_0x30 = param_0;
-        field_0x0 = room_cam->mEntries[field_0x30];
+        field_0x0 = room_cam->m_entries[field_0x30];
         field_0x3a = (field_0x0.field_0x14 >> 0xE) & 3;
 
         if (param_3 & 0x8000) {
@@ -579,10 +575,10 @@ int dCamMapToolData::Set(s32 param_0, s32 roomNo, fopAc_ac_c* param_2, u16 param
             field_0x0.field_0x14 &= ~0xC000;
         }
 
-        field_0x2c = field_0x0.field_0x10;
+        field_0x2c = field_0x0.m_arrow_idx;
 
-        if (room_arrow != NULL && field_0x2c >= 0 && field_0x2c < room_arrow->mNum) {
-            field_0x18 = room_arrow->mEntries[field_0x2c];
+        if (room_arrow != NULL && field_0x2c >= 0 && field_0x2c < room_arrow->num) {
+            field_0x18 = room_arrow->m_entries[field_0x2c];
         }
 
         field_0x34 = param_2;
@@ -1904,9 +1900,9 @@ void dCamera_c::setStageMapToolData() {
             var_r28 = dStage_stagInfo_DefaultCameraType(staginfo);
         }
 
-        if (camera != NULL && var_r28 >= 0 && var_r28 < camera->field_0x0) {
+        if (camera != NULL && var_r28 >= 0 && var_r28 < camera->num) {
             field_0x7e8.field_0x30 = var_r28;
-            field_0x7e8.field_0x0 = camera->mEntries[var_r28];
+            field_0x7e8.field_0x0 = camera->m_entries[var_r28];
             field_0x7e8.field_0x3a = (field_0x7e8.field_0x0.field_0x14 >> 0xE) & 3;
 
             if (field_0x7e8.field_0x0.field_0x14 & 0x2000) {
@@ -1915,10 +1911,10 @@ void dCamera_c::setStageMapToolData() {
                 field_0x7e8.field_0x0.field_0x14 &= ~0xC000;
             }
 
-            int var_r27 = field_0x7e8.field_0x0.field_0x10;
-            if (arrow != NULL && var_r27 >= 0 && var_r27 < arrow->mNum) {
+            int var_r27 = field_0x7e8.field_0x0.m_arrow_idx;
+            if (arrow != NULL && var_r27 >= 0 && var_r27 < arrow->num) {
                 field_0x7e8.field_0x2c = var_r27;
-                field_0x7e8.field_0x18 = arrow->mEntries[var_r27];
+                field_0x7e8.field_0x18 = arrow->m_entries[var_r27];
             }
         }
     }
@@ -2446,10 +2442,10 @@ int dCamera_c::GetCameraTypeFromMapToolID(s32 param_0, s32 i_roomNo) {
         }
     }
 
-    if (param_0 < 0 || camera == NULL || (camera != NULL && param_0 >= camera->field_0x0)) {
+    if (param_0 < 0 || camera == NULL || (camera != NULL && param_0 >= camera->num)) {
         int sp28;
         if (camera != NULL) {
-            sp28 = camera->field_0x0;
+            sp28 = camera->num;
         } else {
             sp28 = -99;
         }
@@ -2461,7 +2457,7 @@ int dCamera_c::GetCameraTypeFromMapToolID(s32 param_0, s32 i_roomNo) {
 
     i = 0;
     while (i < mCamTypeNum) {
-        if (strcmp((char*)&camera->mEntries[param_0].field_0x0.field_0x0, mCamTypeData[i].name) ==
+        if (strcmp(camera->m_entries[param_0].m_cam_type, mCamTypeData[i].name) ==
             0)
         {
             break;
@@ -2471,11 +2467,11 @@ int dCamera_c::GetCameraTypeFromMapToolID(s32 param_0, s32 i_roomNo) {
     }
 
     if (i == mCamTypeNum) {
-        OS_REPORT("camera: type \'%s\' not found\n", camera->mEntries[param_0].field_0x0.field_0x0);
+        OS_REPORT("camera: type \'%s\' not found\n", camera->m_entries[param_0].m_cam_type);
         return 0xFF;
     }
 
-    field_0x7ac.field_0x0 = camera->mEntries[param_0];
+    field_0x7ac.field_0x0 = camera->m_entries[param_0];
     field_0x7ac.field_0x30 = param_0;
     field_0x7ac.field_0x3a = (field_0x7ac.field_0x0.field_0x14 >> 0xE) & 3;
 
@@ -2485,10 +2481,10 @@ int dCamera_c::GetCameraTypeFromMapToolID(s32 param_0, s32 i_roomNo) {
         field_0x7ac.field_0x0.field_0x14 &= ~0xC000;
     }
 
-    field_0x7ac.field_0x2c = field_0x7ac.field_0x0.field_0x10;
+    field_0x7ac.field_0x2c = field_0x7ac.field_0x0.m_arrow_idx;
 
-    if (field_0x7ac.field_0x2c != -1 && field_0x7ac.field_0x2c < arrow->mNum) {
-        field_0x7ac.field_0x18 = arrow->mEntries[field_0x7ac.field_0x2c];
+    if (field_0x7ac.field_0x2c != -1 && field_0x7ac.field_0x2c < arrow->num) {
+        field_0x7ac.field_0x18 = arrow->m_entries[field_0x7ac.field_0x2c];
     } else {
         field_0x7ac.field_0x2c = 0xFF;
     }
@@ -2527,7 +2523,7 @@ int dCamera_c::GetCameraTypeFromToolData(stage_camera2_data_class* i_data) {
         return i_data->field_0x16;
     }
 
-    int type = GetCameraTypeFromCameraName((char*)&i_data->field_0x0.field_0x0);
+    int type = GetCameraTypeFromCameraName(i_data->m_cam_type);
     if (type < 0xFFFF) {
         i_data->field_0x16 = type;
     }
@@ -7130,9 +7126,9 @@ bool dCamera_c::colosseumCamera(s32 param_0) {
         mWork.colosseum.field_0x14 = 0.0f;
         mWork.colosseum.field_0x18 = 40;
         if (field_0x7ac.field_0x30 != 0xff && mCamParam.Flag(param_0, 0x200)) {
-            mWork.colosseum.field_0x8.x = field_0x7ac.field_0x18.mPosition.x;
-            mWork.colosseum.field_0x8.y = field_0x7ac.field_0x18.mPosition.y;
-            mWork.colosseum.field_0x8.z = field_0x7ac.field_0x18.mPosition.z;
+            mWork.colosseum.field_0x8.x = field_0x7ac.field_0x18.position.x;
+            mWork.colosseum.field_0x8.y = field_0x7ac.field_0x18.position.y;
+            mWork.colosseum.field_0x8.z = field_0x7ac.field_0x18.position.z;
         } else if (mCamParam.Flag(param_0, 0x2000)) {
             fopAc_ac_c* target = getParamTargetActor(mCurType);
             mWork.colosseum.field_0x8.x = positionOf(target).x;
@@ -7262,10 +7258,10 @@ bool dCamera_c::towerCamera(s32 param_0) {
     dComIfGp_getAttention();
 
     if (mCurCamStyleTimer == 0) {
-        mWork.tower.field_0x54.x = field_0x7ac.field_0x18.mPosition.x;
-        mWork.tower.field_0x54.y = field_0x7ac.field_0x18.mPosition.y;
-        mWork.tower.field_0x54.z = field_0x7ac.field_0x18.mPosition.z;
-        mWork.tower.field_0x60 = field_0x7ac.field_0x18.mAngle.y;
+        mWork.tower.field_0x54.x = field_0x7ac.field_0x18.position.x;
+        mWork.tower.field_0x54.y = field_0x7ac.field_0x18.position.y;
+        mWork.tower.field_0x54.z = field_0x7ac.field_0x18.position.z;
+        mWork.tower.field_0x60 = field_0x7ac.field_0x18.angle.y;
         mWork.tower.field_0x64 = stack_454 <= cSAngle::_90 ? 1 : 0;
     }
 

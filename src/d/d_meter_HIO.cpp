@@ -647,6 +647,9 @@ dMeter_drawLightDropHIO_c::dMeter_drawLightDropHIO_c() {
 
 /* 801FF5B8-802001AC 1F9EF8 0BF4+00 1/1 0/0 0/0 .text            __ct__16dMeter_drawHIO_cFv */
 dMeter_drawHIO_c::dMeter_drawHIO_c() {
+    #ifdef DEBUG
+    field_0x8_debug = 0;
+    #endif
     mLifeTopPosX = 40.0f;
     mLifeTopPosY = -5.6f;
 

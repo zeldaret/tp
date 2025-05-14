@@ -11,17 +11,6 @@
 #include "dolphin/base/PPCArch.h"
 #include "dolphin/os.h"
 
-#ifdef DEBUG
-#define J3D_ASSERT(COND)                                                                           \
-    if ((COND) == 0) {                                                                             \
-        JUTAssertion::showAssert(JUTAssertion::getSDevice(), __FILE__, __LINE__,                   \
-                                 "Error : null pointer");                                          \
-        OSPanic(__FILE__, __LINE__, "Halt");                                                       \
-    }
-#else
-#define J3D_ASSERT(COND)
-#endif
-
 /* 8032E1F8-8032E230 328B38 0038+00 0/0 1/1 0/0 .text            __ct__13J3DDeformDataFv */
 J3DDeformData::J3DDeformData() {
     mClusterNum = 0;
@@ -48,7 +37,7 @@ void J3DDeformData::offAllFlag(u32 i_flag) {
 /* 8032E274-8032E298 328BB4 0024+00 0/0 1/1 0/0 .text            deform__13J3DDeformDataFP8J3DModel
  */
 void J3DDeformData::deform(J3DModel* model) {
-    J3D_ASSERT(model != NULL);
+    J3D_ASSERT(110, model,"Error : null pointer");
 
     deform(model->getVertexBuffer());
 }
@@ -56,7 +45,7 @@ void J3DDeformData::deform(J3DModel* model) {
 /* 8032E298-8032E364 328BD8 00CC+00 1/1 0/0 0/0 .text deform__13J3DDeformDataFP15J3DVertexBuffer
  */
 void J3DDeformData::deform(J3DVertexBuffer* buffer) {
-    J3D_ASSERT(buffer != NULL);
+    J3D_ASSERT(141, buffer,"Error : null pointer");
 
     buffer->swapVtxPosArrayPointer();
     buffer->swapVtxNrmArrayPointer();
@@ -94,7 +83,7 @@ J3DDeformer::J3DDeformer(J3DDeformData* data) {
 /* 8032E3BC-8032E4A4 328CFC 00E8+00 1/1 0/0 0/0 .text deform__11J3DDeformerFP15J3DVertexBufferUs
  */
 void J3DDeformer::deform(J3DVertexBuffer* buffer, u16 param_1) {
-    J3D_ASSERT(buffer != 0);
+    J3D_ASSERT(222, buffer,"Error : null pointer");
 
     u16 var_r31 = 0;
     if (mAnmCluster != NULL) {
@@ -115,6 +104,7 @@ void J3DDeformer::deform(J3DVertexBuffer* buffer, u16 param_1) {
  * deform_VtxPosF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyPf */
 void J3DDeformer::deform_VtxPosF32(J3DVertexBuffer* i_buffer, J3DCluster* i_cluster,
                                    J3DClusterKey* i_key, f32* i_weights) {
+    J3DClusterKey* key;
     int posNum = i_cluster->mPosNum;
     int keyNum = i_cluster->mKeyNum;
     f32* vtxPosArray = (f32*)i_buffer->getVtxPosArrayPointer(0);
@@ -129,18 +119,22 @@ void J3DDeformer::deform_VtxPosF32(J3DVertexBuffer* i_buffer, J3DCluster* i_clus
     }
 
     f32 local_58[2] = {1.0f, -1.0f};
-
+    
     for (u16 i = 0; i < posNum; i++) {
         int index = i_cluster->field_0x18[i] * 3;
         for (u16 j = 0; j < keyNum; j++) {
-            int uVar7 = ((u16*)i_key[j].field_0x4)[i];
-            f32* deform = &deformVtxPos[(uVar7 & ~0xE000) * 3];
-            f32 deform0 = deform[0];
-            f32 deform1 = deform[1];
-            f32 deform2 = deform[2];
-            deform0 *= local_58[((uVar7 & 0x8000) >> 0xF)];
-            deform1 *= local_58[((uVar7 & 0x4000) >> 0xE)];
-            deform2 *= local_58[((uVar7 & 0x2000) >> 0xD)];
+            int uVar8;
+            int uVar7;
+            key = &i_key[j];
+            uVar8 = uVar7 = ((u16*)key->field_0x4)[i];
+            uVar7 &= ~0xE000;
+            uVar7 *= 3;
+            f32 deform0 = deformVtxPos[uVar7];
+            f32 deform1 = deformVtxPos[uVar7 + 1];
+            f32 deform2 = deformVtxPos[uVar7 + 2];
+            deform0 *= local_58[((uVar8 & 0x8000) >> 0xF)];
+            deform1 *= local_58[((uVar8 & 0x4000) >> 0xE)];
+            deform2 *= local_58[((uVar8 & 0x2000) >> 0xD)];
             vtxPosArray[index] += deform0 * i_weights[j];
             vtxPosArray[index + 1] += deform1 * i_weights[j];
             vtxPosArray[index + 2] += deform2 * i_weights[j];
@@ -165,26 +159,30 @@ void J3DDeformer::deform_VtxNrmF32(J3DVertexBuffer* i_buffer, J3DCluster* i_clus
         iVar13[index + 1] = 0.0f;
         iVar13[index + 2] = 0.0f;
         for (u16 j = 0; j < keyNum; j++) {
-            int uVar3 = ((u16*)i_key[j].field_0x8)[i];
-            f32 deform0, deform1, deform2;
-            if (uVar3 & 0x8000) {
-                deform0 = -deformVtxNrm[(uVar3 & ~0xE000) * 3];
+            J3DClusterKey* key = &i_key[j];
+            int uVar3 = ((u16*)key->field_0x8)[i];
+            int uVar4 = uVar3;
+            uVar3 &= ~0xE000;
+            uVar3 *= 3;
+            Vec deform0;
+            if (uVar4 & 0x8000) {
+                deform0.x = -deformVtxNrm[uVar3];
             } else {
-                deform0 = deformVtxNrm[(uVar3 & ~0xE000) * 3];
+                deform0.x = deformVtxNrm[uVar3];
             }
-            if (uVar3 & 0x4000) {
-                deform1 = -deformVtxNrm[(uVar3 & ~0xE000) * 3 + 1];
+            if (uVar4 & 0x4000) {
+                deform0.y = -deformVtxNrm[uVar3 + 1];
             } else {
-                deform1 = deformVtxNrm[(uVar3 & ~0xE000) * 3 + 1];
+                deform0.y = deformVtxNrm[uVar3 + 1];
             }
-            if (uVar3 & 0x2000) {
-                deform2 = -deformVtxNrm[(uVar3 & ~0xE000) * 3 + 2];
+            if (uVar4 & 0x2000) {
+                deform0.z = -deformVtxNrm[uVar3 + 2];
             } else {
-                deform2 = deformVtxNrm[(uVar3 & ~0xE000) * 3 + 2];
+                deform0.z = deformVtxNrm[uVar3 + 2];
             }
-            iVar13[index] += deform0 * i_weights[j];
-            iVar13[index + 1] += deform1 * i_weights[j];
-            iVar13[index + 2] += deform2 * i_weights[j];
+            iVar13[index] += deform0.x * i_weights[j];
+            iVar13[index + 1] += deform0.y * i_weights[j];
+            iVar13[index + 2] += deform0.z * i_weights[j];
         }
         normalize(&iVar13[index]);
     }
@@ -210,7 +208,8 @@ void J3DDeformer::deform_VtxNrmF32(J3DVertexBuffer* i_buffer, J3DCluster* i_clus
                 continue;
             }
             int index = tmp * 3;
-            int index2 = clusterVtx->field_0x4[j] * 3;
+            u16 iVar4 = clusterVtx->field_0x4[j];
+            int index2 = iVar4 * 3;
             
             f32 dot = vec.x * iVar13[index2] + vec.y * iVar13[index2 + 1]
                                              + vec.z * iVar13[index2 + 2];
@@ -228,18 +227,17 @@ void J3DDeformer::deform_VtxNrmF32(J3DVertexBuffer* i_buffer, J3DCluster* i_clus
                 vtxNrmArray[index + 1] = vec.y;
                 vtxNrmArray[index + 2] = vec.z;
             } else if (angle > i_cluster->mMaxAngle) {
-                int index3 = clusterVtx->field_0x4[j];
-                Vec* iVar13a = (Vec*)iVar13;
-                vtxNrmArray[index] = iVar13a[index3].x;
-                vtxNrmArray[index + 1] = iVar13a[index3].y;
-                vtxNrmArray[index + 2] = iVar13a[index3].z;
+                vtxNrmArray[index] = iVar13[iVar4 * 3];
+                vtxNrmArray[index + 1] = iVar13[iVar4 * 3 + 1];
+                vtxNrmArray[index + 2] = iVar13[iVar4 * 3 + 2];
             } else {
-                f32 weight1 = (angle - i_cluster->mMinAngle)
+                f32 weights[2];
+                weights[0] = (angle - i_cluster->mMinAngle)
                     / (i_cluster->mMaxAngle - i_cluster->mMinAngle);
-                f32 weight2 = 1.0f - weight1;
-                vtxNrmArray[index] = weight1 * iVar13[index2] + weight2 * vec.x;
-                vtxNrmArray[index + 1] = weight1 * iVar13[index2 + 1] + weight2 * vec.y;
-                vtxNrmArray[index + 2] = weight1 * iVar13[index2 + 2] + weight2 * vec.z;
+                weights[1] = 1.0f - weights[0];
+                vtxNrmArray[index] = weights[0] * iVar13[index2] + weights[1] * vec.x;
+                vtxNrmArray[index + 1] = weights[0] * iVar13[index2 + 1] + weights[1] * vec.y;
+                vtxNrmArray[index + 2] = weights[0] * iVar13[index2 + 2] + weights[1] * vec.z;
             }
         }
     }

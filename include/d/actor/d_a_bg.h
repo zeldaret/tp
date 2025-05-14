@@ -31,12 +31,12 @@ public:
     /* 0x4 */ u8 field_0x4;
 };
 
-struct daBg_unkData {
-    /* 0x00 */ J3DModel* mpBgModel;
-    /* 0x04 */ daBg_btkAnm_c* mpBgBtk;
-    /* 0x08 */ daBg_brkAnm_c* mpBgBrk;
-    /* 0x0C */ dKy_tevstr_c* mpTevStr;
-    /* 0x10 */ f32 mBtkAnmSpeed;
+struct daBg_Part {
+    /* 0x00 */ J3DModel* model;
+    /* 0x04 */ daBg_btkAnm_c* btk;
+    /* 0x08 */ daBg_brkAnm_c* brk;
+    /* 0x0C */ dKy_tevstr_c* tevstr;
+    /* 0x10 */ f32 btk_speed;
 };  // Size: 0x14
 
 /**
@@ -50,16 +50,15 @@ struct daBg_unkData {
 class daBg_c : public fopAc_ac_c {
 public:
     /* 80457BF8 */ const char* setArcName();
-    /* 804582B8 */ int createHeap();
+    /* 804582B8 */ inline int createHeap();
     /* 80458788 */ ~daBg_c();
-    /* 804588C4 */ int draw();
-    /* 8045906C */ int create();
-
+    /* 804588C4 */ inline int draw();
+    /* 8045906C */ inline int create();
     inline int execute();
 
 private:
     /* 0x568 */ u8 field_0x568[0x570 - 0x568];
-    /* 0x570 */ daBg_unkData mBgData[6];
+    /* 0x570 */ daBg_Part mBgParts[6];
     /* 0x5E8 */ dBgW* mpBgW;
     /* 0x5EC */ dBgWKCol* mpKCol;
     /* 0x5F0 */ u8 field_0x5f0;

@@ -1020,7 +1020,9 @@ static void plight_set() {
 
         for (int i = 0; i < dComIfGp_getStagePlightNumInfo(); i++) {
             if (plight_no < 30) {
-                g_env_light.mLightInfluence[plight_no].mPosition = plight_info[i].position;
+                g_env_light.mLightInfluence[plight_no].mPosition.x = plight_info[i].position.x;
+                g_env_light.mLightInfluence[plight_no].mPosition.y = plight_info[i].position.y;
+                g_env_light.mLightInfluence[plight_no].mPosition.z = plight_info[i].position.z;
                 g_env_light.mLightInfluence[plight_no].mColor.r = plight_info[i].color.r;
                 g_env_light.mLightInfluence[plight_no].mColor.g = plight_info[i].color.g;
                 g_env_light.mLightInfluence[plight_no].mColor.b = plight_info[i].color.b;
@@ -6850,7 +6852,6 @@ static J3DAlphaCompInfo l_alphaCompInfo = {
 };
 
 /* 801ACD24-801ADBBC 1A7664 0E98+00 0/0 0/0 7/7 .text            dKy_bg_MAxx_proc__FPv */
-// NONMATCHING - `setAlphaCompInfo` is incorrect, and instruction in the wrong order at the start
 void dKy_bg_MAxx_proc(void* bg_model_p) {
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
     J3DModel* model_p = (J3DModel*)bg_model_p;

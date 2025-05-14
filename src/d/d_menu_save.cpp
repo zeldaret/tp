@@ -1350,7 +1350,7 @@ void dMenu_save_c::memCardDataLoadWait() {
 
 /* 801F2840-801F28E4 1ED180 00A4+00 2/2 0/0 0/0 .text            dataWrite__12dMenu_save_cFv */
 void dMenu_save_c::dataWrite() {
-    int stageNo = i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo());
+    int stageNo = dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo());
 
     dComIfGs_putSave(stageNo);
     dComIfGs_setMemoryToCard(mSaveBuffer, mSelectedFile);

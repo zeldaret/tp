@@ -313,7 +313,6 @@ u8* daBgObj_c::spec_data_c::initFarInfoBlock(u8* i_dataPtr) {
 #pragma push
 #pragma force_active on
 SECTION_DEAD static char const* const stringBase_8045CA7D = "spec.dat";
-SECTION_DEAD static char const* const stringBase_8045CA86 = "データブロックタイプが不正です<%d>\n";
 #pragma pop
 
 /* 80459904-80459B64 000324 0260+00 1/1 0/0 1/1 .text            Set__Q29daBgObj_c11spec_data_cFPv
@@ -464,19 +463,38 @@ static const dCcD_SrcCyl l_cyl_src = {
     },
 };
 
-/* 8045C9FC-8045CA00 000044 0004+00 2/2 0/0 0/0 .rodata          @3823 */
-SECTION_RODATA static f32 const lit_3823 = 0.5f;
-COMPILER_STRIP_GATE(0x8045C9FC, &lit_3823);
-
 /* 80459BEC-80459D0C 00060C 0120+00 1/1 0/0 0/1 .text            initAtt__9daBgObj_cFv */
+// NONMATCHING - missing nop instruction
 void daBgObj_c::initAtt() {
-    // NONMATCHING
+    u32 cd3_val = mSpecData.field_0x03 == 0 ? 3 : mSpecData.field_0x03 - 1;
+    u32 ce5_val = mSpecData.field_0x15 == 0 ? 3 : mSpecData.field_0x15 - 1;
+    u32 ce4_val = mSpecData.field_0x14 == 0 ? 7 : mSpecData.field_0x14 - 1;
+
+    u32 arg0 = (daBgObj_prm::getObjArg0(this) != 0) ? 1 : 0;
+
+    u32 actor_params =
+        (daBgObj_prm::getSwBit2(this) << 24) |
+        (daBgObj_prm::getSwBit(this) << 16) |
+        (arg0 << 7) |
+        (ce4_val << 4) |
+        (ce5_val << 2) |
+        (cd3_val);
+
+    fopAc_ac_c* actor = fopAcM_fastCreate(PROC_Tag_Attp, actor_params, &current.pos, fopAcM_GetRoomNo(this),
+        &current.angle, &scale, -1, NULL, NULL);
+
+    if (actor != NULL) {
+        setAttentionInfo(actor);
+    }
+    mAttnActorID = fopAcM_GetID(actor);
+    eyePos.y += 0.5f * fopAcM_getCullSizeBoxMax(this)->y;
 }
 
 /* 80459D0C-80459D3C 00072C 0030+00 2/2 0/0 0/0 .text setAttentionInfo__9daBgObj_cFP10fopAc_ac_c
  */
 void daBgObj_c::setAttentionInfo(fopAc_ac_c* param_0) {
-    // NONMATCHING
+    param_0->eyePos.y += 0.5f * fopAcM_getCullSizeBoxMax(this)->y;
+    param_0->attention_info.position.y += fopAcM_getCullSizeBoxMax(this)->y;
 }
 
 /* 80459D3C-80459D94 00075C 0058+00 2/2 0/0 0/0 .text            initBaseMtx__9daBgObj_cFv */
@@ -496,39 +514,83 @@ void daBgObj_c::setBaseMtx() {
     }
 }
 
-/* ############################################################################################## */
-/* 8045CA00-8045CA04 000048 0004+00 6/11 0/0 0/0 .rodata          @3873 */
-SECTION_RODATA static u8 const lit_3873[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x8045CA00, &lit_3873);
-
 /* 80459E04-80459F14 000824 0110+00 1/1 0/0 0/0 .text settingCullSizeBoxForCo__9daBgObj_cFi */
 void daBgObj_c::settingCullSizeBoxForCo(int param_0) {
-    // NONMATCHING
+    J3DModel* cur_model = field_0x5a8[param_0][0];
+    if (cur_model != NULL) {
+        Vec min_transformed;
+        Vec max_transformed;
+
+        J3DModelData* model_data = cur_model->mModelData;
+        mDoMtx_stack_c::identity();
+        J3DJointTree& joint_tree = model_data->getJointTree();
+        J3DJoint* joint;
+        for (u16 i = 0; i < joint_tree.getJointNum(); i++) {
+            joint = joint_tree.getJointNodePointer(i);
+            Mtx trans_rot_mat;
+            J3DGetTranslateRotateMtx(joint->getTransformInfo(), trans_rot_mat);
+            mDoMtx_stack_c::concat(trans_rot_mat);
+        }
+
+        PSMTXMultVec(mDoMtx_stack_c::get(), joint->getMin(), &min_transformed);
+        PSMTXMultVec(mDoMtx_stack_c::get(), joint->getMax(), &max_transformed);
+
+        fopAcM_setCullSizeBox(this, min_transformed.x, min_transformed.y, min_transformed.z,
+            max_transformed.x, max_transformed.y, max_transformed.z);
+    } else {
+        fopAcM_setCullSizeBox(this, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+    }
 }
-
-/* ############################################################################################## */
-/* 8045CA04-8045CA08 00004C 0004+00 0/1 0/0 0/0 .rodata          @3943 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3943 = 1000000000.0f;
-COMPILER_STRIP_GATE(0x8045CA04, &lit_3943);
-#pragma pop
-
-/* 8045CA08-8045CA0C 000050 0004+00 0/1 0/0 0/0 .rodata          @3944 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3944 = -1000000000.0f;
-COMPILER_STRIP_GATE(0x8045CA08, &lit_3944);
-#pragma pop
 
 /* 80459F14-8045A0EC 000934 01D8+00 3/3 0/0 0/0 .text settingCullSizeBoxForCull__9daBgObj_cFi */
 void daBgObj_c::settingCullSizeBoxForCull(int param_0) {
-    // NONMATCHING
+    cXyz max(1000000000.0f, 1000000000.0f, 1000000000.0f);
+    cXyz min(-1000000000.0f, -1000000000.0f, -1000000000.0f);
+
+    for (int i = 0; i < 2; i++) {
+        J3DModel* cur_model = field_0x5a8[param_0][i];
+        if (cur_model != NULL) {
+            J3DModelData* model_data = cur_model->mModelData;
+            mDoMtx_stack_c::identity();
+            J3DJoint* joint;
+            for (u16 j = 0; j < model_data->getJointNum(); j++) {
+                joint = model_data->getJointNodePointer(j);
+                Mtx trans_rot_mat;
+                J3DGetTranslateRotateMtx(joint->getTransformInfo(), trans_rot_mat);
+                MTXConcat(mDoMtx_stack_c::get(), trans_rot_mat, mDoMtx_stack_c::get());
+            }
+
+            Vec min_transformed, max_transformed;
+            PSMTXMultVec(mDoMtx_stack_c::get(), joint->getMin(), &min_transformed);
+            PSMTXMultVec(mDoMtx_stack_c::get(), joint->getMax(), &max_transformed);
+
+            if (max.x > min_transformed.x) {
+                max.x = min_transformed.x;
+            }
+            if (max.y > min_transformed.y) {
+                max.y = min_transformed.y;
+            }
+            if (max.z > min_transformed.z) {
+                max.z = min_transformed.z;
+            }
+
+            if (min.x < max_transformed.x) {
+                min.x = max_transformed.x;
+            }
+            if (min.y < max_transformed.y) {
+                min.y = max_transformed.y;
+            }
+            if (min.z < max_transformed.z) {
+                min.z = max_transformed.z;
+            }
+        }
+    }
+
+    if (1000000000.0f != max.x) {
+        fopAcM_setCullSizeBox(this, max.x, max.y, max.z, min.x, min.y, min.z);
+    } else {
+        fopAcM_setCullSizeBox(this, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
+    }
 }
 
 /* 8045A0EC-8045A160 000B0C 0074+00 1/0 0/0 0/0 .text            CreateInitType0__9daBgObj_cFv */
@@ -538,7 +600,7 @@ int daBgObj_c::CreateInitType0() {
     fopAcM_SetMtx(this, field_0x5a8[field_0xcc8][0]->getBaseTRMtx());
     settingCullSizeBoxForCull(field_0xcc8);
 
-    if (FLOAT_LABEL(lit_3873) != mSpecData.mpFarInfoBlock) {
+    if (0.0f != mSpecData.mpFarInfoBlock) {
         fopAcM_setCullSizeFar(this, mSpecData.mpFarInfoBlock);
     }
 
@@ -567,7 +629,7 @@ int daBgObj_c::CreateInitType1() {
 
     settingCullSizeBoxForCo(field_0xcc8);
 
-    if (FLOAT_LABEL(lit_3873) != mSpecData.mpFarInfoBlock) {
+    if (0.0f != mSpecData.mpFarInfoBlock) {
         fopAcM_setCullSizeFar(this, mSpecData.mpFarInfoBlock);
     }
 
@@ -623,7 +685,7 @@ static dCcD_SrcTri l_tri_src = {
 };
 
 /* 8045CB38-8045CB3C -00001 0004+00 1/1 0/0 0/0 .data            l_specName */
-SECTION_DATA static char* l_specName = "spec.dat";
+SECTION_DATA static const char* const l_specName = "spec.dat";
 
 /* 8045CB6C-8045CB9C 0000A8 0030+00 1/2 0/0 0/0 .data            mCreateHeapFunc__9daBgObj_c */
 SECTION_DATA createHeapFunc daBgObj_c::mCreateHeapFunc[] = {
@@ -645,11 +707,6 @@ SECTION_DATA createInitFunc daBgObj_c::mCreateInitFunc[] = {
 int daBgObj_c::Create() {
     return (this->*mCreateInitFunc[mSpecData.mSpecType])();
 }
-
-/* ############################################################################################## */
-/* 8045CA0C-8045CA10 000054 0004+00 4/8 0/0 0/0 .rodata          @4076 */
-SECTION_RODATA static f32 const lit_4076 = 1.0f;
-COMPILER_STRIP_GATE(0x8045CA0C, &lit_4076);
 
 /* 8045CC2C-8045CC5C 000168 0030+00 1/2 0/0 0/0 .data            mExecuteFunc__9daBgObj_c */
 SECTION_DATA executeFunc daBgObj_c::mExecuteFunc[] = {
@@ -684,12 +741,12 @@ int daBgObj_c::CreateHeapType0() {
             if (btk != NULL) {
                 field_0x5b8[0][i] = new mDoExt_btkAnm();
                 if (field_0x5b8[0][i] == NULL ||
-                    !field_0x5b8[0][i]->init(modelData, btk, TRUE, 2, FLOAT_LABEL(lit_4076), 0, -1))
+                    !field_0x5b8[0][i]->init(modelData, btk, TRUE, 2, 1.0f, 0, -1))
                 {
                     return 0;
                 }
 
-                field_0x5b8[0][i]->setPlaySpeed(FLOAT_LABEL(lit_4076));
+                field_0x5b8[0][i]->setPlaySpeed(1.0f);
             }
 
             J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(
@@ -697,12 +754,12 @@ int daBgObj_c::CreateHeapType0() {
             if (brk != NULL) {
                 field_0x5c8[0][i] = new mDoExt_brkAnm();
                 if (field_0x5c8[0][i] == NULL ||
-                    !field_0x5c8[0][i]->init(modelData, brk, TRUE, 2, FLOAT_LABEL(lit_4076), 0, -1))
+                    !field_0x5c8[0][i]->init(modelData, brk, TRUE, 2, 1.0f, 0, -1))
                 {
                     return 0;
                 }
 
-                field_0x5c8[0][i]->setPlaySpeed(FLOAT_LABEL(lit_4076));
+                field_0x5c8[0][i]->setPlaySpeed(1.0f);
             }
 
             field_0x5a8[1][i] = NULL;
@@ -736,13 +793,13 @@ int daBgObj_c::CreateHeapType1() {
                 if (btk != NULL) {
                     field_0x5b8[i][j] = new mDoExt_btkAnm();
                     if (field_0x5b8[i][j] == NULL ||
-                        !field_0x5b8[i][j]->init(modelData, btk, TRUE, 2, FLOAT_LABEL(lit_4076), 0,
+                        !field_0x5b8[i][j]->init(modelData, btk, TRUE, 2, 1.0f, 0,
                                                  -1))
                     {
                         return 0;
                     }
 
-                    field_0x5b8[i][j]->setPlaySpeed(FLOAT_LABEL(lit_4076));
+                    field_0x5b8[i][j]->setPlaySpeed(1.0f);
                 }
 
                 J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(
@@ -750,13 +807,13 @@ int daBgObj_c::CreateHeapType1() {
                 if (brk != NULL) {
                     field_0x5c8[i][j] = new mDoExt_brkAnm();
                     if (field_0x5c8[i][j] == NULL ||
-                        !field_0x5c8[i][j]->init(modelData, brk, TRUE, 2, FLOAT_LABEL(lit_4076), 0,
+                        !field_0x5c8[i][j]->init(modelData, brk, TRUE, 2, 1.0f, 0,
                                                  -1))
                     {
                         return 0;
                     }
 
-                    field_0x5c8[i][j]->setPlaySpeed(FLOAT_LABEL(lit_4076));
+                    field_0x5c8[i][j]->setPlaySpeed(1.0f);
                 }
             }
         }
@@ -806,7 +863,8 @@ void daBgObj_c::doShareTexture() {
 
 /* 8045A940-8045A9E8 001360 00A8+00 1/0 0/0 0/0 .text            CreateHeap__9daBgObj_cFv */
 int daBgObj_c::CreateHeap() {
-    void* spec_data_p = dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), l_specName);
+    const char* const specName = l_specName;
+    void* spec_data_p = dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), specName);
     if (field_0xd02 == 0) {
         if (!mSpecData.Set(spec_data_p)) {
             return 0;
@@ -867,67 +925,248 @@ void daBgObj_c::setColCommon() {
 
 /* 8045AB80-8045ACC0 0015A0 0140+00 1/0 0/0 0/0 .text            set_tri_0__9daBgObj_cFv */
 void daBgObj_c::set_tri_0() {
-    // NONMATCHING
+    field_0xcc4 = 2;
+    for (int i = 0; i < field_0xcc4; i++) {
+        mTris[i].Set(l_tri_src);
+        mTris[i].SetStts(&mStts);
+    }
+
+    cXyz cull_params[4];
+    cull_params[0].set(fopAcM_getCullSizeBoxMax(this)->x, fopAcM_getCullSizeBoxMin(this)->y, 0.0f);
+    cull_params[1].set(fopAcM_getCullSizeBoxMin(this)->x, fopAcM_getCullSizeBoxMin(this)->y, 0.0f);
+    cull_params[2].set(fopAcM_getCullSizeBoxMin(this)->x, fopAcM_getCullSizeBoxMax(this)->y, 0.0f);
+    cull_params[3].set(fopAcM_getCullSizeBoxMax(this)->x, fopAcM_getCullSizeBoxMax(this)->y, 0.0f);
+
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::YrotM(current.angle.y);
+    for (int i = 0; i < (s32)(sizeof(cull_params) / sizeof(Vec)); i++) {
+        mDoMtx_stack_c::multVec(&cull_params[i], &cull_params[i]);
+    }
+    mTris[0].setPos(&cull_params[0], &cull_params[1], &cull_params[2]);
+    mTris[1].setPos(&cull_params[0], &cull_params[2], &cull_params[3]);
 }
 
 /* 8045ACC0-8045AE00 0016E0 0140+00 1/0 0/0 0/0 .text            set_tri_1__9daBgObj_cFv */
 void daBgObj_c::set_tri_1() {
-    // NONMATCHING
+    field_0xcc4 = 2;
+    for (int i = 0; i < field_0xcc4; i++) {
+        mTris[i].Set(l_tri_src);
+        mTris[i].SetStts(&mStts);
+    }
+
+    cXyz cull_bounds[4];
+    cull_bounds[0].set(fopAcM_getCullSizeBoxMax(this)->x, 0.0f, fopAcM_getCullSizeBoxMin(this)->z);
+    cull_bounds[1].set(fopAcM_getCullSizeBoxMin(this)->x, 0.0f, fopAcM_getCullSizeBoxMin(this)->z);
+    cull_bounds[2].set(fopAcM_getCullSizeBoxMin(this)->x, 0.0f, fopAcM_getCullSizeBoxMax(this)->z);
+    cull_bounds[3].set(fopAcM_getCullSizeBoxMax(this)->x, 0.0f, fopAcM_getCullSizeBoxMax(this)->z);
+
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::YrotM(current.angle.y);
+    for (int i = 0; i < (s32)(sizeof(cull_bounds) / sizeof(Vec)); i++) {
+        PSMTXMultVec(mDoMtx_stack_c::get(), &cull_bounds[i], &cull_bounds[i]);
+    }
+    mTris[0].setPos(&cull_bounds[0], &cull_bounds[1], &cull_bounds[2]);
+    mTris[1].setPos(&cull_bounds[0], &cull_bounds[2], &cull_bounds[3]);
 }
 
 /* 8045AE00-8045AE98 001820 0098+00 1/0 0/0 0/0 .text            set_cyl_0__9daBgObj_cFv */
 void daBgObj_c::set_cyl_0() {
-    // NONMATCHING
+    field_0xcc4 = 0;
+    mCyl.Set(l_cyl_src);
+    mCyl.SetStts(&mStts);
+
+    f32 radius;
+    if (fopAcM_getCullSizeBoxMax(this)->x > fopAcM_getCullSizeBoxMax(this)->z) {
+        radius = fopAcM_getCullSizeBoxMax(this)->x;
+    } else {
+        radius = fopAcM_getCullSizeBoxMax(this)->z;
+    }
+
+    mCyl.SetC(current.pos);
+    mCyl.SetH(fopAcM_getCullSizeBoxMax(this)->y);
+    mCyl.SetR(radius);
 }
 
 /* 8045AE98-8045AFD4 0018B8 013C+00 1/0 0/0 0/0 .text            set_tri_2__9daBgObj_cFv */
 void daBgObj_c::set_tri_2() {
-    // NONMATCHING
+    field_0xcc4 = 2;
+    for (int i = 0; i < field_0xcc4; i++) {
+        mTris[i].Set(l_tri_src);
+        mTris[i].SetStts(&mStts);
+    }
+
+    cXyz cull_bounds[4];
+    cull_bounds[0].set(fopAcM_getCullSizeBoxMax(this)->x,
+        fopAcM_getCullSizeBoxMin(this)->y,
+        fopAcM_getCullSizeBoxMax(this)->z);
+    cull_bounds[1].set(fopAcM_getCullSizeBoxMin(this)->x,
+        fopAcM_getCullSizeBoxMin(this)->y,
+        fopAcM_getCullSizeBoxMax(this)->z);
+    cull_bounds[2].set(fopAcM_getCullSizeBoxMin(this)->x,
+        fopAcM_getCullSizeBoxMax(this)->y,
+        fopAcM_getCullSizeBoxMax(this)->z);
+    cull_bounds[3].set(fopAcM_getCullSizeBoxMax(this)->x,
+        fopAcM_getCullSizeBoxMax(this)->y,
+        fopAcM_getCullSizeBoxMax(this)->z);
+
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::YrotM(current.angle.y);
+    for (int i = 0; i < (s32)(sizeof(cull_bounds) / sizeof(Vec)); i++) {
+        PSMTXMultVec(mDoMtx_stack_c::get(), &cull_bounds[i], &cull_bounds[i]);
+    }
+    mTris[0].setPos(&cull_bounds[0], &cull_bounds[1], &cull_bounds[2]);
+    mTris[1].setPos(&cull_bounds[0], &cull_bounds[2], &cull_bounds[3]);
 }
 
 /* 8045AFD4-8045B17C 0019F4 01A8+00 1/0 0/0 0/0 .text            set_tri_3__9daBgObj_cFv */
 void daBgObj_c::set_tri_3() {
-    // NONMATCHING
+    field_0xcc4 = 4;
+    for (int i = 0; i < field_0xcc4; i++) {
+        mTris[i].Set(l_tri_src);
+        mTris[i].SetStts(&mStts);
+    }
+
+    cXyz cull_bounds[8];
+    cull_bounds[0].set(fopAcM_getCullSizeBoxMax(this)->x,
+        fopAcM_getCullSizeBoxMin(this)->y,
+        fopAcM_getCullSizeBoxMin(this)->z);
+    cull_bounds[1].set(fopAcM_getCullSizeBoxMin(this)->x,
+        fopAcM_getCullSizeBoxMin(this)->y,
+        fopAcM_getCullSizeBoxMin(this)->z);
+    cull_bounds[2].set(fopAcM_getCullSizeBoxMin(this)->x,
+        fopAcM_getCullSizeBoxMax(this)->y,
+        fopAcM_getCullSizeBoxMin(this)->z);
+    cull_bounds[3].set(fopAcM_getCullSizeBoxMax(this)->x,
+        fopAcM_getCullSizeBoxMax(this)->y,
+        fopAcM_getCullSizeBoxMin(this)->z);
+    cull_bounds[4].set(fopAcM_getCullSizeBoxMax(this)->x,
+        fopAcM_getCullSizeBoxMin(this)->y,
+        fopAcM_getCullSizeBoxMax(this)->z);
+    cull_bounds[5].set(fopAcM_getCullSizeBoxMin(this)->x,
+        fopAcM_getCullSizeBoxMin(this)->y,
+        fopAcM_getCullSizeBoxMax(this)->z);
+    cull_bounds[6].set(fopAcM_getCullSizeBoxMin(this)->x,
+        fopAcM_getCullSizeBoxMax(this)->y,
+        fopAcM_getCullSizeBoxMax(this)->z);
+    cull_bounds[7].set(fopAcM_getCullSizeBoxMax(this)->x,
+        fopAcM_getCullSizeBoxMax(this)->y,
+        fopAcM_getCullSizeBoxMax(this)->z);
+
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::YrotM(current.angle.y);
+    for (int i = 0; i < 8; i++) {
+        Vec* src = &cull_bounds[i];
+        mDoMtx_stack_c::multVec(src, src);
+    }
+    mTris[0].setPos(&cull_bounds[0], &cull_bounds[1], &cull_bounds[2]);
+    mTris[1].setPos(&cull_bounds[0], &cull_bounds[2], &cull_bounds[3]);
+    mTris[2].setPos(&cull_bounds[4], &cull_bounds[5], &cull_bounds[6]);
+    mTris[3].setPos(&cull_bounds[4], &cull_bounds[6], &cull_bounds[7]);
 }
 
-/* ############################################################################################## */
-/* 8045CA10-8045CA14 000058 0004+00 0/1 0/0 0/0 .rodata          @4502 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4502 = 0xFFFFFFFF;
-COMPILER_STRIP_GATE(0x8045CA10, &lit_4502);
-#pragma pop
-
-/* 8045CA14-8045CA18 00005C 0004+00 0/1 0/0 0/0 .rodata          @4503 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4503 = 0xFFFFFFFF;
-COMPILER_STRIP_GATE(0x8045CA14, &lit_4503);
-#pragma pop
-
-/* 8045CA18-8045CA1C 000060 0004+00 0/1 0/0 0/0 .rodata          @4560 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4560 = 9.0f / 10.0f;
-COMPILER_STRIP_GATE(0x8045CA18, &lit_4560);
-#pragma pop
-
-/* 8045CA20-8045CA20 000068 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8045CAAA = "Always";
-SECTION_DEAD static char const* const stringBase_8045CAB1 = "BreakWoodBox.bmd";
-#pragma pop
+struct blockItem {
+    u32 flags;
+    u32 res_id;
+    u8 primA;
+    u8 primR;
+    u8 primG;
+    u8 primB;
+    u8 envA;
+    u8 envR;
+    u8 envG;
+    u8 envB;
+};
 
 /* 8045B17C-8045B3A0 001B9C 0224+00 3/3 0/0 0/0 .text            setParticle__9daBgObj_cFv */
+// NONMATCHING - out-of-place addi insn
 void daBgObj_c::setParticle() {
-    // NONMATCHING
-}
+    u32 partNum = mSpecData.mParticleNum;
+    u8* partBlockItems = mSpecData.mpParticleBlock + 4;
+    for (; partNum != 0; partNum--) {
+        u32 flags = *(u32*)partBlockItems;
+        u16 res_id = *(u32*)(partBlockItems + 4);
 
-/* ############################################################################################## */
-/* 8045CA1C-8045CA20 000064 0004+00 1/4 0/0 0/0 .rodata          @4579 */
-SECTION_RODATA static f32 const lit_4579 = -1.0f;
-COMPILER_STRIP_GATE(0x8045CA1C, &lit_4579);
+        GXColor prmColor = { 0xFF, 0xFF, 0xFF, 0xFF };
+        GXColor envColor = { 0xFF, 0xFF, 0xFF, 0xFF };
+
+        u8 alpha = 0xff;
+        GXColor* prmColorPtr = NULL;
+        GXColor* envColorPtr = NULL;
+
+        u8 hasColor = 0;
+
+        if ((flags & 0x80000000) != 0) {
+            prmColor.r = partBlockItems[9];
+            prmColor.g = partBlockItems[10];
+            prmColor.b = partBlockItems[11];
+            hasColor = 1;
+        }
+        if ((flags & 0x40000000) != 0) {
+            alpha = partBlockItems[8];
+        }
+        if ((flags & 0x20000000) != 0) {
+            envColor.a = partBlockItems[12];
+            envColor.r = partBlockItems[13];
+            envColor.g = partBlockItems[14];
+            envColor.b = partBlockItems[15];
+            hasColor = 1;
+        }
+        f32 fVar2 = 0.0f;
+        if (hasColor) {
+            prmColorPtr = &prmColor;
+            envColorPtr = &envColor;
+            fVar2 = 1.0f;
+        }
+
+        dKy_tevstr_c* status;
+        s32 someFlag = (flags >> 0x14 & 0xf);
+        if (someFlag != 0) {
+            J3DModelData* res_ptr = NULL;
+            cXyz scale(1.0f, 1.0f, 1.0f);
+            switch (someFlag) {
+                case 1:
+                    res_ptr = (J3DModelData*)dComIfG_getObjectRes("Always", "BreakWoodBox.bmd");
+                    scale.x = 0.9f;
+                    scale.y = 0.9f;
+                    scale.z = 0.9f;
+                    break;
+            }
+            status = NULL;
+            JPABaseEmitter* emitter = dComIfGp_particle_setColor(
+                res_id,
+                &current.pos,
+                status,
+                NULL,
+                NULL,
+                1.0f,
+                0xff,
+                &mRotation,
+                NULL,
+                &dPa_modelEcallBack::getEcallback(),
+                fopAcM_GetRoomNo(this),
+                &scale
+            );
+            dPa_modelEcallBack::setModel(emitter, res_ptr, tevStr, 3, NULL, 0, 0);
+        } else {
+            status = dComIfGp_roomControl_getTevStr(fopAcM_GetRoomNo(this));
+            dComIfGp_particle_setColor(
+                res_id,
+                &current.pos,
+                status,
+                prmColorPtr,
+                envColorPtr,
+                fVar2,
+                alpha,
+                &mRotation,
+                NULL,
+                NULL,
+                fopAcM_GetRoomNo(this),
+                NULL
+            );
+        }
+        partBlockItems += 0x10;
+    }
+}
 
 /* 8045B3A0-8045B44C 001DC0 00AC+00 3/3 0/0 0/0 .text            setSe__9daBgObj_cFv */
 void daBgObj_c::setSe() {
@@ -964,7 +1203,6 @@ BOOL daBgObj_c::checkDestroy() {
 
 /* 8045B534-8045B5E0 001F54 00AC+00 2/2 0/0 0/0 .text            checkHitAt__9daBgObj_cFP8cCcD_Obj
  */
-// NONMATCHING
 BOOL daBgObj_c::checkHitAt(cCcD_Obj* i_hitObj) {
     u32 hit_flags = 0;
     u32 var_r8 = 0;
@@ -985,7 +1223,7 @@ BOOL daBgObj_c::checkHitAt(cCcD_Obj* i_hitObj) {
             break;
         }
 
-        field_0xd01 = i_hitObj->ChkAtType(AT_TYPE_BOMB);
+        field_0xd01 = i_hitObj->ChkAtType(AT_TYPE_BOMB) != 0;
         field_0xd01 |= var_r8 != 0;
     }
 
@@ -1019,7 +1257,7 @@ void daBgObj_c::orderWait_tri() {
                     mDoMtx_stack_c::multVec(&sp28, &sp28);
                     sp28 = sp28 - current.pos;
 
-                    field_0xcf4.y = cM_atan2s(sp28.x, sp28.z);
+                    mRotation.y = cM_atan2s(sp28.x, sp28.z);
                 }
 
                 setParticle();
@@ -1056,15 +1294,15 @@ void daBgObj_c::orderWait_cyl() {
 
                 cXyz sp28;
                 if (sp1C.z > 0.0f) {
-                    sp28 = cXyz(0.0, 0.0, 1.0);
+                    sp28 = cXyz(0.0f, 0.0f, 1.0f);
                 } else {
-                    sp28 = cXyz(0.0, 0.0, -1.0);
+                    sp28 = cXyz(0.0f, 0.0f, -1.0f);
                 }
 
                 mDoMtx_stack_c::multVec(&sp28, &sp28);
                 sp28 = sp28 - current.pos;
 
-                field_0xcf4.y = cM_atan2s(sp28.x, sp28.z);
+                mRotation.y = cM_atan2s(sp28.x, sp28.z);
             }
 
             setParticle();
@@ -1101,7 +1339,7 @@ void daBgObj_c::orderWait_spec() {
         mDoMtx_stack_c::multVec(&sp28, &sp28);
         sp28 = sp28 - current.pos;
 
-        field_0xcf4.y = cM_atan2s(sp28.x, sp28.z);
+        mRotation.y = cM_atan2s(sp28.x, sp28.z);
     }
 
     setParticle();

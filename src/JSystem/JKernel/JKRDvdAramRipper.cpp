@@ -17,59 +17,6 @@ static u8* firstSrcData();
 static u8* nextSrcData(u8*);
 static u32 dmaBufferFlush(u32);
 
-extern "C" void __dt__18JSUFileInputStreamFv();
-extern "C" static int JKRDecompressFromDVDToAram__FP10JKRDvdFileUlUlUlUlUlPUl();
-extern "C" static int decompSZS_subroutine__FPUcUl();
-extern "C" static u8* firstSrcData__Fv();
-extern "C" static u8* nextSrcData__FPUc();
-extern "C" static int dmaBufferFlush__FUl();
-extern "C" void __sinit_JKRDvdAramRipper_cpp();
-extern "C" void func_802DB62C(void* _this);
-extern "C" u8 sDvdAramAsyncList__16JKRDvdAramRipper[12];
-extern "C" u32 sSZSBufferSize__16JKRDvdAramRipper;
-
-//
-// External References:
-//
-
-extern "C" void alloc__7JKRHeapFUli();
-extern "C" void free__7JKRHeapFPvP7JKRHeap();
-extern "C" void* __nw__FUlP7JKRHeapi();
-extern "C" void __dl__FPv();
-extern "C" void alloc__11JKRAramHeapFUlQ211JKRAramHeap10EAllocMode();
-extern "C" void orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock();
-extern "C" void write_StreamToAram_Async__13JKRAramStreamFP18JSUFileInputStreamUlUlUlPUl();
-extern "C" void sync__13JKRAramStreamFP20JKRAramStreamCommandi();
-extern "C" void checkCompressed__9JKRDecompFPUc();
-extern "C" void __ct__10JSUPtrLinkFPv();
-extern "C" void __dt__10JSUPtrLinkFv();
-extern "C" void __dt__10JSUPtrListFv();
-extern "C" void initiate__10JSUPtrListFv();
-extern "C" void append__10JSUPtrListFP10JSUPtrLink();
-extern "C" void remove__10JSUPtrListFP10JSUPtrLink();
-extern "C" void __dt__14JSUInputStreamFv();
-extern "C" void __ct__18JSUFileInputStreamFP7JKRFile();
-extern "C" void __register_global_object();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__20JSURandomInputStream[9];
-extern "C" extern void* __vt__18JSUFileInputStream[9 + 1 /* padding */];
-extern "C" u8 sSystemHeap__7JKRHeap[4];
-extern "C" u8 sAramObject__7JKRAram[4];
-extern "C" bool errorRetry__16JKRDvdAramRipper;
-
-//
-// Declarations:
-//
-
 /* 802DA874-802DA918 2D51B4 00A4+00 0/0 3/3 0/0 .text
  * loadToAram__16JKRDvdAramRipperFlUl15JKRExpandSwitchUlUlPUl   */
 JKRAramBlock* JKRDvdAramRipper::loadToAram(s32 entryNumber, u32 address,
@@ -249,12 +196,6 @@ JKRADCommand* JKRDvdAramRipper::callCommand_Async(JKRADCommand* command) {
     return bVar1 == true ? command : NULL;
 }
 
-/* 802DADD8-802DAE48 2D5718 0070+00 0/0 1/0 0/0 .text            __dt__18JSUFileInputStreamFv */
-// JSUFileInputStream::~JSUFileInputStream() {
-extern "C" void __dt__18JSUFileInputStreamFv() {
-    // NONMATCHING
-}
-
 /* 802DAE48-802DAF1C 2D5788 00D4+00 1/1 0/0 0/0 .text
  * syncAram__16JKRDvdAramRipperFP12JKRADCommandi                */
 bool JKRDvdAramRipper::syncAram(JKRADCommand* command, int param_1) {
@@ -295,7 +236,6 @@ JKRADCommand::~JKRADCommand() {
     }
 }
 
-/* ############################################################################################## */
 /* 804343C0-804343D8 0610E0 0018+00 1/1 0/0 0/0 .bss             decompMutex */
 static OSMutex decompMutex;
 
@@ -518,11 +458,14 @@ static u8* firstSrcData() {
 }
 
 /* 802DB49C-802DB580 2D5DDC 00E4+00 1/1 0/0 0/0 .text            nextSrcData__FPUc */
-// NONMATCHING - regalloc
 static u8* nextSrcData(u8* src) {
-    u8* dest;
     u32 size = szpEnd - src;
-    dest = IS_NOT_ALIGNED(size, 0x20) ? szpBuf + 0x20 - (size & (0x20 - 1)) : szpBuf;
+    u8* dest;
+    if (IS_NOT_ALIGNED(size, 0x20)) {
+        dest = szpBuf + 0x20 - (size & (0x20 - 1));
+    } else {
+        dest = szpBuf;
+    }
     memcpy(dest, src, size);
     u32 transSize = szpEnd - (dest + size);
     if (transSize > transLeft) {
@@ -530,11 +473,11 @@ static u8* nextSrcData(u8* src) {
     }
 
     while (true) {
-        s32 result = DVDReadPrio(&srcFile->mFileInfo, dest + size, transSize, srcOffset, 2);
+        s32 result = DVDReadPrio(srcFile->getFileInfo(), dest + size, transSize, srcOffset, 2);
         if (result >= 0) {
             break;
         }
-        if (JKRDvdAramRipper::errorRetry == 0) {
+        if (!JKRDvdAramRipper::isErrorRetry()) {
             return NULL;
         }
         VIWaitForRetrace();

@@ -1772,12 +1772,12 @@ void daNpc_Maro_c::setParam() {
 }
 
 /* 8055CB14-8055CC9C 001674 0188+00 1/0 0/0 0/0 .text            checkChangeEvt__12daNpc_Maro_cFv */
-void daNpc_Maro_c::checkChangeEvt() {
+BOOL daNpc_Maro_c::checkChangeEvt() {
     // NONMATCHING
 }
 
 /* 8055CC9C-8055CCD8 0017FC 003C+00 1/0 0/0 0/0 .text            evtEndProc__12daNpc_Maro_cFv */
-void daNpc_Maro_c::evtEndProc() {
+BOOL daNpc_Maro_c::evtEndProc() {
     // NONMATCHING
 }
 
@@ -1797,12 +1797,12 @@ void daNpc_Maro_c::srchActors() {
 }
 
 /* 8055D0D8-8055D1F4 001C38 011C+00 1/0 0/0 0/0 .text            evtTalk__12daNpc_Maro_cFv */
-void daNpc_Maro_c::evtTalk() {
+BOOL daNpc_Maro_c::evtTalk() {
     // NONMATCHING
 }
 
 /* 8055D1F4-8055D368 001D54 0174+00 1/0 0/0 0/0 .text            evtCutProc__12daNpc_Maro_cFv */
-void daNpc_Maro_c::evtCutProc() {
+BOOL daNpc_Maro_c::evtCutProc() {
     // NONMATCHING
 }
 
@@ -1852,8 +1852,8 @@ void daNpc_Maro_c::setCollision() {
 }
 
 /* 8055DA70-8055DA78 0025D0 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__12daNpc_Maro_cFv */
-bool daNpc_Maro_c::drawDbgInfo() {
-    return false;
+BOOL daNpc_Maro_c::drawDbgInfo() {
+    return FALSE;
 }
 
 /* 8055DA78-8055DAD8 0025D8 0060+00 1/0 0/0 0/0 .text            drawOtherMdl__12daNpc_Maro_cFv */
@@ -1863,13 +1863,13 @@ void daNpc_Maro_c::drawOtherMdl() {
 
 /* 8055DAD8-8055DB64 002638 008C+00 1/0 0/0 0/0 .text
  * getFaceMotionAnm__12daNpc_Maro_cF26daNpcT_faceMotionAnmData_c */
-void daNpc_Maro_c::getFaceMotionAnm(daNpcT_faceMotionAnmData_c param_0) {
+ daNpcT_faceMotionAnmData_c daNpc_Maro_c::getFaceMotionAnm(daNpcT_faceMotionAnmData_c param_0) {
     // NONMATCHING
 }
 
 /* 8055DB64-8055DBF0 0026C4 008C+00 1/0 0/0 0/0 .text
  * getMotionAnm__12daNpc_Maro_cF22daNpcT_motionAnmData_c        */
-void daNpc_Maro_c::getMotionAnm(daNpcT_motionAnmData_c param_0) {
+ daNpcT_motionAnmData_c daNpc_Maro_c::getMotionAnm(daNpcT_motionAnmData_c param_0) {
     // NONMATCHING
 }
 
@@ -2473,21 +2473,9 @@ void __sinit_d_a_npc_maro_cpp() {
 REGISTER_CTORS(0x805646B8, __sinit_d_a_npc_maro_cpp);
 #pragma pop
 
-/* 805648A4-80564970 009404 00CC+00 1/1 0/0 0/0 .text
- * __ct__12daNpc_Maro_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc
- */
-daNpc_Maro_c::daNpc_Maro_c(daNpcT_faceMotionAnmData_c const* param_0,
-                               daNpcT_motionAnmData_c const* param_1,
-                               daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_2,
-                               int param_3,
-                               daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_4,
-                               int param_5, daNpcT_evtData_c const* param_6, char** param_7) {
-    // NONMATCHING
-}
-
 /* 80564970-80564978 0094D0 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__12daNpc_Maro_cFv */
 s32 daNpc_Maro_c::getEyeballMaterialNo() {
-    return true;
+    return 1;
 }
 
 /* 80564978-80564980 0094D8 0008+00 1/0 0/0 0/0 .text            getHeadJointNo__12daNpc_Maro_cFv */
@@ -2501,19 +2489,19 @@ s32 daNpc_Maro_c::getNeckJointNo() {
 }
 
 /* 80564988-80564990 0094E8 0008+00 1/0 0/0 0/0 .text getBackboneJointNo__12daNpc_Maro_cFv */
-bool daNpc_Maro_c::getBackboneJointNo() {
-    return true;
+s32 daNpc_Maro_c::getBackboneJointNo() {
+    return 1;
 }
 
 /* 80564990-805649A0 0094F0 0010+00 1/0 0/0 0/0 .text            checkChangeJoint__12daNpc_Maro_cFi
  */
-void daNpc_Maro_c::checkChangeJoint(int param_0) {
+BOOL daNpc_Maro_c::checkChangeJoint(int param_0) {
     // NONMATCHING
 }
 
 /* 805649A0-805649B0 009500 0010+00 1/0 0/0 0/0 .text            checkRemoveJoint__12daNpc_Maro_cFi
  */
-void daNpc_Maro_c::checkRemoveJoint(int param_0) {
+ BOOL daNpc_Maro_c::checkRemoveJoint(int param_0) {
     // NONMATCHING
 }
 

@@ -126,8 +126,8 @@ public:
     u32 getAddType() { return (mpData->mFlags >> 8) & 3; }
     u32 getSttFlag() { return mpData->mFlags >> 16; }
     bool checkStatus(u16 flag) { return flag & getSttFlag(); }
-    f32 getMagRndm() { return mpData->mMagRndm; }
-    f32 getVal1() { return mpData->mVal1; }
+    f32 getMagRndm() const { return mpData->mMagRndm; }
+    f32 getVal1() const { return mpData->mVal1; }
     f32 getFadeInTime() { return mpData->mFadeInTime; }
     f32 getFadeOutTime() { return mpData->mFadeOutTime; }
     f32 getEnTime() { return mpData->mEnTime; }
@@ -137,7 +137,7 @@ public:
     f32 getFadeOutRate() { return mFadeOutRate; }
     JGeometry::TVec3<f32>& getPos() { return mPos; }
     JGeometry::TVec3<f32>& getDir() { return mDir; }
-    f32 getMag() { return mMag; }
+    f32 getMag() const { return mMag; }
     void getPosOrig(JGeometry::TVec3<f32>* pos) { pos->set(mpData->mPos); }
     void getDirOrig(JGeometry::TVec3<f32>* dir) { dir->set(mpData->mDir); }
     f32 getMagOrig() { return mpData->mMag; }

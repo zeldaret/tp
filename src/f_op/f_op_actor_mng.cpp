@@ -76,11 +76,11 @@ fopAcM_prm_class* fopAcM_CreateAppend() {
     fopAcM_prm_class* append = (fopAcM_prm_class*)cMl::memalignB(-4, sizeof(fopAcM_prm_class));
     if (append != NULL) {
         cLib_memSet(append, 0, sizeof(fopAcM_prm_class));
-        append->setId = 0xFFFF;
+        append->base.setID = 0xFFFF;
         append->room_no = -1;
-        append->scale[0] = 10;
-        append->scale[1] = 10;
-        append->scale[2] = 10;
+        append->scale.x = 10;
+        append->scale.y = 10;
+        append->scale.z = 10;
         append->parent_id = fpcM_ERROR_PROCESS_ID_e;
         append->subtype = -1;
     }
@@ -97,33 +97,33 @@ fopAcM_prm_class* createAppend(u16 i_setId, u32 i_parameters, const cXyz* i_pos,
         return NULL;
     }
 
-    append->setId = i_setId;
+    append->base.setID = i_setId;
 
     if (i_pos != NULL) {
-        append->position = *i_pos;
+        append->base.position = *i_pos;
     } else {
-        append->position = cXyz::Zero;
+        append->base.position = cXyz::Zero;
     }
 
     append->room_no = i_roomNo;
 
     if (i_angle != NULL) {
-        append->angle = *i_angle;
+        append->base.angle = *i_angle;
     } else {
-        append->angle = csXyz::Zero;
+        append->base.angle = csXyz::Zero;
     }
 
     if (i_scale != NULL) {
-        append->scale[0] = 10.0f * i_scale->x;
-        append->scale[1] = 10.0f * i_scale->y;
-        append->scale[2] = 10.0f * i_scale->z;
+        append->scale.x = 10.0f * i_scale->x;
+        append->scale.y = 10.0f * i_scale->y;
+        append->scale.z = 10.0f * i_scale->z;
     } else {
-        append->scale[0] = 10;
-        append->scale[1] = 10;
-        append->scale[2] = 10;
+        append->scale.x = 10;
+        append->scale.y = 10;
+        append->scale.z = 10;
     }
 
-    append->parameters = i_parameters;
+    append->base.parameters = i_parameters;
     append->parent_id = i_parentId;
     append->subtype = i_subtype;
 
@@ -2023,16 +2023,16 @@ void fpoAcM_relativePos(fopAc_ac_c const* i_actor, cXyz const* i_pos, cXyz* o_po
 
 /* 8001D9A8-8001DAE4 0182E8 013C+00 0/0 1/1 9/9 .text
  * fopAcM_getWaterStream__FPC4cXyzRC13cBgS_PolyInfoP4cXyzPii    */
-s32 fopAcM_getWaterStream(cXyz const* param_0, cBgS_PolyInfo const& param_1, cXyz* speed,
-                          int* param_3, int param_4) {
+s32 fopAcM_getWaterStream(cXyz const* pos, cBgS_PolyInfo const& polyinfo, cXyz* speed,
+                          int* power, BOOL param_4) {
     daTagStream_c* stream = daTagStream_c::getTop();
     if (stream != NULL) {
         for (stream = daTagStream_c::getTop(); stream != NULL; stream = stream->getNext()) {
-            if (stream->checkStreamOn() && (param_4 == 0 || stream->checkCanoeOn()) &&
-                stream->checkArea(param_0))
+            if (stream->checkStreamOn() && (!param_4 || stream->checkCanoeOn()) &&
+                stream->checkArea(pos))
             {
                 *speed = stream->speed;
-                *param_3 = stream->getPower() & 0xff;
+                *power = stream->getPower() & 0xff;
                 return 1;
             }
         }
@@ -2042,14 +2042,14 @@ s32 fopAcM_getWaterStream(cXyz const* param_0, cBgS_PolyInfo const& param_1, cXy
         return 0;
     }
 
-    if (dComIfG_Bgsp().ChkPolySafe(param_1)) {
-        if (dPath_GetPolyRoomPathVec(param_1, speed, param_3)) {
+    if (dComIfG_Bgsp().ChkPolySafe(polyinfo)) {
+        if (dPath_GetPolyRoomPathVec(polyinfo, speed, power)) {
             speed->normalizeZP();
             return 1;
         }
     } else {
         *speed = cXyz::Zero;
-        *param_3 = 0;
+        *power = 0;
     }
 
     return 0;

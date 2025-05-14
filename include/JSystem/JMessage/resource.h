@@ -4,7 +4,6 @@
 #include "JSystem/JGadget/linklist.h"
 #include "JSystem/JMessage/data.h"
 #include "JSystem/JMessage/locale.h"
-#include "JSystem/JStudio/JStudio/fvb-data.h"
 
 namespace JMessage {
 
@@ -114,7 +113,7 @@ struct TResourceContainer {
     static JMessage::locale::parseCharacter_function sapfnParseCharacter_[5];
 
     /* 0x00 */ u8 mEncodingType;
-    /* 0x04 */ int (*pfnParseCharacter_)(const char** string);
+    /* 0x04 */ JMessage::locale::parseCharacter_function pfnParseCharacter_;
     /* 0x08 */ TCResource resContainer_;
     /* 0x18 */ TResource_color resColor_;
 };

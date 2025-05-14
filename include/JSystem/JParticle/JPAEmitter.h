@@ -19,13 +19,19 @@ class JPAParticleCallBack;
  * 
  */
 struct JPAEmitterWorkData {
+    struct JPAVolumeCalcData {
+        /* 0x00 */ JGeometry::TVec3<f32> mVolumePos;
+        /* 0x0C */ JGeometry::TVec3<f32> mVelOmni;
+        /* 0x18 */ JGeometry::TVec3<f32> mVelAxis;
+    };
+
+    JPAEmitterWorkData() : mRndm(0) {}
+
     /* 0x00 */ JPABaseEmitter* mpEmtr;
     /* 0x04 */ JPAResource* mpRes;
     /* 0x08 */ JPAResourceManager* mpResMgr;
     /* 0x0C */ JPARandom mRndm;
-    /* 0x10 */ JGeometry::TVec3<f32> mVolumePos;
-    /* 0x1C */ JGeometry::TVec3<f32> mVelOmni;
-    /* 0x28 */ JGeometry::TVec3<f32> mVelAxis;
+    /* 0x10 */ JPAVolumeCalcData mVolumeCalcData;
     /* 0x34 */ f32 mVolumeSize;
     /* 0x38 */ f32 mVolumeMinRad;
     /* 0x3C */ f32 mVolumeSweep;
@@ -94,7 +100,7 @@ enum {
 class JPABaseEmitter {
 public:
     /* 8027E5EC */ ~JPABaseEmitter() {}
-    /* 8027E64C */ JPABaseEmitter() : mLink(this) {}
+    /* 8027E64C */ JPABaseEmitter() : mLink(this), mRndm(0) {}
     /* 8027E6EC */ void init(JPAEmitterManager*, JPAResource*);
     /* 8027EDD4 */ bool processTillStartFrame();
     /* 8027EE14 */ bool processTermination();
@@ -109,8 +115,8 @@ public:
     void initStatus(u32 status) { mStatus = status; }
     void setStatus(u32 status) { mStatus |= status; }
     void clearStatus(u32 status) { mStatus &= ~status; }
-    u32 checkStatus(u32 status) { return (mStatus & status); }
-    bool checkFlag(u32 flag) { return !!(mpRes->getDyn()->getFlag() & flag); }
+    u32 checkStatus(u32 status) const { return (mStatus & status); }
+    bool checkFlag(u32 flag) const { return !!(mpRes->getDyn()->getFlag() & flag); }
     u8 getResourceManagerID() const { return mResMgrID; }
     u8 getGroupID() const { return mGroupID; }
     u8 getDrawTimes() const { return mDrawTimes; }
@@ -121,10 +127,7 @@ public:
     void setGlobalRTMatrix(const Mtx m) { JPASetRMtxTVecfromMtx(m, mGlobalRot, &mGlobalTrs); }
     void setGlobalSRTMatrix(const Mtx m) { 
         JPASetRMtxSTVecfromMtx(m, mGlobalRot, &mGlobalScl, &mGlobalTrs);
-
-        // set is actually used here in debug
-        mGlobalPScl.x = mGlobalScl.x;
-        mGlobalPScl.y = mGlobalScl.y;
+        mGlobalPScl.set(mGlobalScl.x, mGlobalScl.y);
     }
     void setGlobalTranslation(f32 x, f32 y, f32 z) { mGlobalTrs.set(x, y, z); }
     void setGlobalTranslation(const JGeometry::TVec3<f32>& trs) { mGlobalTrs.set(trs); }
@@ -163,10 +166,6 @@ public:
     void setGlobalScale(const JGeometry::TVec3<f32>& scale) {
         mGlobalScl.set(scale);
         mGlobalPScl.set(scale.x ,scale.y);
-    }
-    void setGlobalSRTMatrix(const MtxP matrix) {
-        JPASetRMtxSTVecfromMtx(matrix, mGlobalRot, &mGlobalScl, &mGlobalTrs);
-        mGlobalPScl.set(mGlobalScl.x, mGlobalScl.y);
     }
     void setDirection(const JGeometry::TVec3<f32>& direction) {
         mLocalDir.set(direction);

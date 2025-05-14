@@ -71,6 +71,8 @@ public:
     void setShoot() { fopAcM_SetParam(this, 1); }
     void setChargeShoot() { fopAcM_SetParam(this, 2); }
 
+    void deleteArrow() { field_0x93f = 1; }
+
     static fopAc_ac_c* makeArrow(fopAc_ac_c* i_actor, u16 param_1) {
         return (fopAc_ac_c*)fopAcM_fastCreate(PROC_ARROW,
                                               param_1 << 8,

@@ -20,138 +20,6 @@
 #include "d/d_msg_scrn_arrow.h"
 #include "d/d_lib.h"
 
-extern "C" void __ct__14dMenu_Letter_cFP10JKRExpHeapP9STControlP10CSTControl();
-extern "C" void __dt__14dMenu_Letter_cFv();
-extern "C" void _create__14dMenu_Letter_cFv();
-extern "C" void _move__14dMenu_Letter_cFv();
-extern "C" void _draw__14dMenu_Letter_cFv();
-extern "C" void isSync__14dMenu_Letter_cFv();
-extern "C" void letter_init_calc__14dMenu_Letter_cFv();
-extern "C" void init__14dMenu_Letter_cFv();
-extern "C" void _open__14dMenu_Letter_cFv();
-extern "C" void _close__14dMenu_Letter_cFv();
-extern "C" void wait_init__14dMenu_Letter_cFv();
-extern "C" void wait_move__14dMenu_Letter_cFv();
-extern "C" void slide_right_init__14dMenu_Letter_cFv();
-extern "C" void slide_right_move__14dMenu_Letter_cFv();
-extern "C" void slide_left_init__14dMenu_Letter_cFv();
-extern "C" void slide_left_move__14dMenu_Letter_cFv();
-extern "C" void read_open_init__14dMenu_Letter_cFv();
-extern "C" void read_open_move__14dMenu_Letter_cFv();
-extern "C" void read_move_init__14dMenu_Letter_cFv();
-extern "C" void read_move_move__14dMenu_Letter_cFv();
-extern "C" void read_next_fadeout_init__14dMenu_Letter_cFv();
-extern "C" void read_next_fadeout_move__14dMenu_Letter_cFv();
-extern "C" void read_next_fadein_init__14dMenu_Letter_cFv();
-extern "C" void read_next_fadein_move__14dMenu_Letter_cFv();
-extern "C" void read_close_init__14dMenu_Letter_cFv();
-extern "C" void read_close_move__14dMenu_Letter_cFv();
-extern "C" void screenSetMenu__14dMenu_Letter_cFv();
-extern "C" void getWhite__10J2DTextBoxCFv();
-extern "C" void getBlack__10J2DTextBoxCFv();
-extern "C" void getWhite__10J2DPictureCFv();
-extern "C" void getBlack__10J2DPictureCFv();
-extern "C" void screenSetBase__14dMenu_Letter_cFv();
-extern "C" void screenSetShadow__14dMenu_Letter_cFv();
-extern "C" void screenSetLetter__14dMenu_Letter_cFv();
-extern "C" void screenSetDoIcon__14dMenu_Letter_cFv();
-extern "C" void setCursorPos__14dMenu_Letter_cFv();
-extern "C" void changeActiveColor__14dMenu_Letter_cFv();
-extern "C" void changePageLight__14dMenu_Letter_cFv();
-extern "C" void setPageText__14dMenu_Letter_cFv();
-extern "C" void setDMYPageText__14dMenu_Letter_cFv();
-extern "C" void copyDMYMenu__14dMenu_Letter_cFv();
-extern "C" void setAButtonString__14dMenu_Letter_cFUs();
-extern "C" void setBButtonString__14dMenu_Letter_cFUs();
-extern "C" void getLetterNum__14dMenu_Letter_cFv();
-extern "C" void setHIO__14dMenu_Letter_cFb();
-extern "C" void
-getStringPage__12dMsgString_cFUlUcUcP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc();
-extern "C" void draw__14dMenu_Letter_cFv();
-extern "C" void __sinit_d_menu_letter_cpp();
-extern "C" extern char const* const d_menu_d_menu_letter__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void mDoExt_setCurrentHeap__FP7JKRHeap();
-extern "C" void mDoExt_getMesgFont__Fv();
-extern "C" void mDoExt_getSubFont__Fv();
-extern "C" void create__24mDoDvdThd_mountArchive_cFPCcUcP7JKRHeap();
-extern "C" void checkUpTrigger__9STControlFv();
-extern "C" void checkDownTrigger__9STControlFv();
-extern "C" void onLetterGetFlag__17dSv_letter_info_cFi();
-extern "C" void onLetterReadFlag__17dSv_letter_info_cFi();
-extern "C" void isLetterReadFlag__17dSv_letter_info_cCFi();
-extern "C" void __ct__Q28JUtility6TColorFv();
-extern "C" void __ct__16dSelect_cursor_cFUcfP10JKRArchive();
-extern "C" void setPos__16dSelect_cursor_cFffP7J2DPaneb();
-extern "C" void setParam__16dSelect_cursor_cFfffff();
-extern "C" void setScale__16dSelect_cursor_cFf();
-extern "C" void setAlphaRate__16dSelect_cursor_cFf();
-extern "C" void getStringKanji__13dMeter2Info_cFUlPcP14JMSMesgEntry_c();
-extern "C" void dMeter2Info_getRecieveLetterNum__Fv();
-extern "C" void dMeter2Info_set2DVibration__Fv();
-extern "C" void __ct__15dMsgScrnArrow_cFv();
-extern "C" void draw__15dMsgScrnArrow_cFv();
-extern "C" void setPos__15dMsgScrnArrow_cFff();
-extern "C" void arwAnimeInit__15dMsgScrnArrow_cFv();
-extern "C" void arwAnimeMove__15dMsgScrnArrow_cFv();
-extern "C" void dotAnimeInit__15dMsgScrnArrow_cFv();
-extern "C" void dotAnimeMove__15dMsgScrnArrow_cFv();
-extern "C" void
-getStringPageLocal__16dMsgStringBase_cFUlUcUcP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc();
-extern "C" void getPageMax__16dMsgStringBase_cFi();
-extern "C" void __ct__12dMsgString_cFv();
-extern "C" void __dt__12dMsgString_cFv();
-extern "C" void __ct__8CPaneMgrFv();
-extern "C" void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap();
-extern "C" void __dt__8CPaneMgrFv();
-extern "C" void paneTrans__8CPaneMgrFff();
-extern "C" void getGlobalVtx__8CPaneMgrFP7J2DPanePA3_A4_fUcbs();
-extern "C" void getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs();
-extern "C" void dPaneClass_showNullPane__FP9J2DScreen();
-extern "C" void setAlphaRate__13CPaneMgrAlphaFf();
-extern "C" void cLib_addCalc2__FPffff();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void func_802E90C0();
-extern "C" void getBounds__7J2DPaneFv();
-extern "C" void __ct__9J2DScreenFv();
-extern "C" void setPriority__9J2DScreenFPCcUlP10JKRArchive();
-extern "C" void draw__9J2DScreenFffPC14J2DGrafContext();
-extern "C" void __ct__10J2DPictureFPC7ResTIMG();
-extern "C" void getStringPtr__10J2DTextBoxCFv();
-extern "C" void setString__10J2DTextBoxFsPCce();
-extern "C" void __construct_array();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_14();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_14();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__12dDlst_base_c[3];
-extern "C" u8 letter_data__12dMenu_Letter[512];
-extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" u8 mFader__13mDoGph_gInf_c[4];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
 /* 803BDA00-803BDA0C 01AB20 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -181,18 +49,6 @@ static moveFunc map_move_process[] = {
     &dMenu_Letter_c::read_close_move,
 };
 
-// /* 803BDB8C-803BDBA8 01ACAC 0010+0C 2/2 0/0 0/0 .data            __vt__14dMenu_Letter_c */
-// SECTION_DATA extern void* __vt__14dMenu_Letter_c[4 + 3 /* padding */] = {
-//     (void*)NULL /* RTTI */,
-//     (void*)NULL,
-//     (void*)draw__14dMenu_Letter_cFv,
-//     (void*)__dt__14dMenu_Letter_cFv,
-//     /* padding */
-//     NULL,
-//     NULL,
-//     NULL,
-// };
-
 /* 801DCDC0-801DCF34 1D7700 0174+00 0/0 2/2 0/0 .text
  * __ct__14dMenu_Letter_cFP10JKRExpHeapP9STControlP10CSTControl */
 dMenu_Letter_c::dMenu_Letter_c(JKRExpHeap* i_heap, STControl* i_stick, CSTControl* i_cstick) {
@@ -216,8 +72,7 @@ dMenu_Letter_c::dMenu_Letter_c(JKRExpHeap* i_heap, STControl* i_stick, CSTContro
     letter_init_calc();
     field_0x358 = 0.0f;
     field_0x35c = 0.0f;
-    field_0x364 = 1.0f;
-    field_0x360 = 1.0f;
+    field_0x360 = field_0x364 = 1.0f;
     for (int i = 0; i < 9; i++) {
         for (int j = 0; j < 6; j++) {
             field_0x376[i][j] = 0;
@@ -300,13 +155,13 @@ dMenu_Letter_c::~dMenu_Letter_c() {
     }
 
     if (mpMount != NULL) {
-        mpMount->getArchive()->unmount();
-        delete mpMount;
+        JKRUnmountArchive(mpMount->getArchive());
+        mpMount->destroy();
         mpMount = NULL;
     }
 
     if (mpArchive != NULL) {
-        mpArchive->unmount();
+        JKRUnmountArchive(mpArchive);
         mpArchive = NULL;
     }
     dComIfGp_getMsgArchive(0)->removeResourceAll();
@@ -315,14 +170,21 @@ dMenu_Letter_c::~dMenu_Letter_c() {
 /* 801DD36C-801DD474 1D7CAC 0108+00 1/1 0/0 0/0 .text            _create__14dMenu_Letter_cFv */
 void dMenu_Letter_c::_create() {
     mpDrawCursor = new dSelect_cursor_c(2, 1.0f, NULL);
+    JUT_ASSERT(231, mpDrawCursor != 0);
+    #if VERSION == VERSION_SHIELD_DEBUG
+    mpDrawCursor->setParam(1.01f, 0.85f, 0.02f, 0.5f, 0.5f);
+    #else
     mpDrawCursor->setParam(1.06f, 0.9f, 0.02f, 0.4f, 0.4f);
+    #endif
     mpDrawCursor->setAlphaRate(0.0f);
     mpDrawCursor->setScale(0.0f);
     mpDrawCursor->offPlayAnime(0);
 
     mpString = new dMsgString_c();
-
+    JUT_ASSERT(245, mpString != 0);
+    
     mpArrow = new dMsgScrnArrow_c();
+    JUT_ASSERT(249, mpArrow != 0);
 
     screenSetMenu();
     screenSetBase();
@@ -347,7 +209,6 @@ void dMenu_Letter_c::_move() {
 }
 
 /* 801DD50C-801DD934 1D7E4C 0428+00 1/1 1/1 0/0 .text            _draw__14dMenu_Letter_cFv */
-// NONMATCHING - getGlobalVtx result copy issue
 void dMenu_Letter_c::_draw() {
     if (mpArchive == NULL) {
         return;
@@ -363,10 +224,12 @@ void dMenu_Letter_c::_draw() {
     GXGetScissor(&left, &top, &width, &height);
     CPaneMgr afStack_138;
     Mtx mtx;
-    Vec local_178 = afStack_138.getGlobalVtx(field_0x1ec, &mtx, 0, false, 0);
+    Vec local_178;
+    local_178 = afStack_138.getGlobalVtx(field_0x1ec, &mtx, 0, false, 0);
     f32 x1 = local_178.x;
     f32 y1 = local_178.y;
-    Vec local_184 = afStack_138.getGlobalVtx(field_0x1ec, &mtx, 3, false, 0);
+    Vec local_184;
+    local_184 = afStack_138.getGlobalVtx(field_0x1ec, &mtx, 3, false, 0);
     f32 dVar17 = mDoGph_gInf_c::getWidthF() / 608.0f;
     f32 dVar16 = mDoGph_gInf_c::getHeightF() / 448.0f;
     f32 fVar1 = (x1 - mDoGph_gInf_c::getMinXF()) / dVar17;
@@ -1488,9 +1351,4 @@ void dMenu_Letter_c::setHIO(bool i_useHIO) {
             mpButtonText[1]->scale(g_drawHIO.mCollectScreen.mButtonBTextScale, g_drawHIO.mCollectScreen.mButtonBTextScale);
         }
     }
-}
-
-/* 801E1D5C-801E1D7C 1DC69C 0020+00 1/0 0/0 0/0 .text            draw__14dMenu_Letter_cFv */
-void dMenu_Letter_c::draw() {
-    _draw(); 
 }

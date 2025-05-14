@@ -11,7 +11,6 @@
 #include "JSystem/JAudio2/JASDSPInterface.h"
 
 /* 80291228-8029131C 28BB68 00F4+00 1/1 3/3 0/0 .text            __ct__8JASTrackFv */
-// NONMATCHING
 JASTrack::JASTrack() : mDefaultChannelMgr(this), mChannelMgrCount(1), mStatus(0) {
     mChannelMgrs[0] = &mDefaultChannelMgr;
     for (int i = 1; i < 4; i++) {

@@ -117,9 +117,6 @@ m_Do/m_Do_machine_exception.cpp:
 	.rodata     start:0x80376908 end:0x80376AE8
 	.sbss       start:0x8044ADD0 end:0x8044ADD8
 
-dolphin/os/__start.c:
-	.init       start:0x80003100 end:0x80003458
-
 c/c_damagereaction.cpp:
 	.text       start:0x8001817C end:0x800183DC
 	.ctors      start:0x80375C80 end:0x80375C84
@@ -319,7 +316,7 @@ f_pc/f_pc_node_req.cpp:
 f_pc/f_pc_priority.cpp:
 	.text       start:0x80023130 end:0x80023564
 	.bss        start:0x803EEF98 end:0x803EEFA8
-	.sdata      start:0x8044A728 end:0x8044A738
+	.sdata      start:0x8044A728 end:0x8044A730
 
 f_pc/f_pc_profile.cpp:
 	.text       start:0x80023564 end:0x80023578
@@ -360,6 +357,7 @@ d/d_stage.cpp:
 	.rodata     start:0x8037AEF8 end:0x8037B2F0
 	.data       start:0x8039DC78 end:0x803A1068
 	.bss        start:0x803EEFA8 end:0x804002E0
+	.sdata      start:0x8044A730 end:0x8044A738
 	.sbss       start:0x8044AE98 end:0x8044AEC0
 	.sdata2     start:0x8044BDD0 end:0x8044BDE0
 
@@ -1372,9 +1370,6 @@ d/d_k_wpillar.cpp:
 	.text       start:0x80263F84 end:0x802645FC
 	.data       start:0x803BD5B0 end:0x803BD5F0
 	.sdata2     start:0x8044F110 end:0x8044F128
-
-PowerPC_EABI_Support/Runtime/Src/__mem.c:
-	.init       start:0x80003458 end:0x80003590
 
 DynamicLink.cpp:
 	.text       start:0x802645FC end:0x80265650
@@ -3505,6 +3500,12 @@ TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/notify.c:
 
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.c:
 	.text       start:0x803719E4 end:0x80371A1C
+
+dolphin/os/__start.c:
+	.init       start:0x80003100 end:0x80003458
+
+PowerPC_EABI_Support/Runtime/Src/__mem.c:
+	.init       start:0x80003458 end:0x80003590
 
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/mem_TRK.c:
 	.init       start:0x80003590 end:0x800035E4

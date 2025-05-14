@@ -1540,18 +1540,18 @@ void daTbox_c::settingDropDemoCamera() {
     JUT_ASSERT(0xB8E, roomdt != 0);
     
     stage_camera_class* stage_camera = roomdt->getCamera();
-    stage_camera2_data_class* stage_camera_data = stage_camera->mEntries;
+    stage_camera2_data_class* stage_camera_data = stage_camera->m_entries;
     stage_camera_data += maptooldata->field_0x16;
     
     stage_arrow_class* stage_arrow = roomdt->getArrow();
-    stage_arrow_data_class* stage_arrow_data = stage_arrow->mEntries;
-    stage_arrow_data += stage_camera_data->field_0x10;
+    stage_arrow_data_class* stage_arrow_data = stage_arrow->m_entries;
+    stage_arrow_data += stage_camera_data->m_arrow_idx;
 
     cXyz spA0;
     cXyz spAC;
 
-    spA0.x = stage_arrow_data->mPosition.x;
-    spA0.z = stage_arrow_data->mPosition.z;
+    spA0.x = stage_arrow_data->position.x;
+    spA0.z = stage_arrow_data->position.z;
     spAC.x = home.pos.x;
     spAC.z = home.pos.z;
     f32 var_f30 = spA0.abs(spAC);
@@ -1562,16 +1562,16 @@ void daTbox_c::settingDropDemoCamera() {
     s16 angle;
     getDropSAngle(&angle);
 
-    spB8.x = stage_arrow_data->mPosition.x;
+    spB8.x = stage_arrow_data->position.x;
     spB8.y = 0.0f;
-    spB8.z = stage_arrow_data->mPosition.z;
+    spB8.z = stage_arrow_data->position.z;
     spB8 -= home.pos;
 
     Mtx mtx;
     MTXRotAxisRad(mtx, &spC4, cM_s2rad(angle));
     mDoMtx_multVec(mtx, &spB8, &spB8);
     spB8 += home.pos;
-    spB8.y = stage_arrow_data->mPosition.y;
+    spB8.y = stage_arrow_data->position.y;
 
     cXyz cam_eye;
     cXyz cam_center;
@@ -1579,10 +1579,10 @@ void daTbox_c::settingDropDemoCamera() {
     cam_eye = spB8;
     cam_center = home.pos;
 
-    f32 var_f29 = cM_ssin(stage_arrow_data->mAngle.x);
-    f32 var_f28 = cM_scos(stage_arrow_data->mAngle.x);
+    f32 var_f29 = cM_ssin(stage_arrow_data->angle.x);
+    f32 var_f28 = cM_scos(stage_arrow_data->angle.x);
     f32 dist = var_f30 * (var_f29 / var_f28);
-    if (stage_arrow_data->mAngle.x > 0) {
+    if (stage_arrow_data->angle.x > 0) {
         dist = -dist;
     }
 

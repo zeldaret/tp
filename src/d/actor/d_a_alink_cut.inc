@@ -32,7 +32,7 @@ void daAlink_c::checkLightSwordMtrl() {
     if (checkLightMasterSwordEquip()) {
         stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
 
-        if (i_dStage_stagInfo_GetSaveTbl(stag_info) == 0x17 ||
+        if (dStage_stagInfo_GetSaveTbl(stag_info) == 0x17 ||
             fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchNightStalker, NULL))
         {
             onNoResetFlg3(FLG3_UNK_100000);
@@ -581,6 +581,17 @@ bool daAlink_c::checkCutTurnInputTrigger() {
 
 /* 800D23C0-800D2684 0CCD00 02C4+00 7/7 0/0 0/0 .text            checkCutAction__9daAlink_cFv */
 int daAlink_c::checkCutAction() {
+    static int const atnNormalType1[5] = {4, 1, 1, 2, 0};
+    static int const atnNormalType2[5] = {3, 0, 0, 1, 1};
+    static int const atnNormalType3[5] = {4, 1, 1, 0, 0};
+    static int const atnFinishType[5] = {2, 1, 0, 5, 1};
+    static int const hitType[5] = {4, 0, 5, 0, 1};
+    static int const hitFinishType[5] = {2, 1, 0, 5, 0};
+    static int const normalType1[5] = {0, 2, 1, 2, 1};
+    static int const normalType2[5] = {1, 1, 2, 1, 2};
+    static int const normalType3[5] = {4, 0, 1, 2, 1};
+    static int const finishType[5] = {2, 0, 0, 5, 1};
+
     if (commonCutAction()) {
         return 1;
     }
@@ -626,7 +637,7 @@ int daAlink_c::checkCutAction() {
             procCutNormalInit(atnNormalType2[cutDir]);
         }
     } else if (mComboCutCount == 1) {
-        procCutNormalInit(normalType1_6982[cutDir]);
+        procCutNormalInit(normalType1[cutDir]);
     } else {
         procCutNormalInit(normalType2[cutDir]);
     }
@@ -819,7 +830,54 @@ void daAlink_c::setCutJumpSpeed(int i_airAt) {
 
 /* 800D2F58-800D31B8 0CD898 0260+00 3/3 0/0 0/0 .text            procCutNormalInit__9daAlink_cFi */
 int daAlink_c::procCutNormalInit(int i_type) {
-    const daAlink_cutParamTbl* cutParams = &cutParamTable_7312[i_type];
+    static daAlink_cutParamTbl const cutParamTable[5] = {
+        {
+            daAlink_c::ANM_CUT_NM_VERTICAL,
+            0x6F,
+            daAlink_c::CUT_TYPE_NM_VERTICAL,
+            1,
+            0,
+            0,
+            6.0f,
+        },
+        {
+            daAlink_c::ANM_CUT_NM_LEFT,
+            0x6F,
+            daAlink_c::CUT_TYPE_NM_LEFT,
+            1,
+            0,
+            0,
+            5.0f,
+        },
+        {
+            daAlink_c::ANM_CUT_NM_RIGHT,
+            0x6F,
+            daAlink_c::CUT_TYPE_NM_RIGHT,
+            1,
+            0,
+            0,
+            5.0f,
+        },
+        {
+            daAlink_c::ANM_CUT_COMBO_STAB,
+            0x6F,
+            daAlink_c::CUT_TYPE_COMBO_STAB,
+            14,
+            0,
+            0,
+            6.0f,
+        },
+        {
+            daAlink_c::ANM_CUT_NM_STAB,
+            0x70,
+            daAlink_c::CUT_TYPE_NM_STAB,
+            14,
+            0,
+            0,
+            6.0f,
+        },
+    };
+    const daAlink_cutParamTbl* cutParams = &cutParamTable[i_type];
 
     commonProcInit(PROC_CUT_NORMAL);
     setCutType(cutParams->m_cutType);
@@ -981,8 +1039,65 @@ int daAlink_c::procCutNormal() {
 
 /* 800D34D8-800D382C 0CDE18 0354+00 4/4 0/0 0/0 .text            procCutFinishInit__9daAlink_cFi */
 int daAlink_c::procCutFinishInit(int i_type) {
+    static daAlink_cutParamTbl const cutParamTable[6] = {
+        {
+            daAlink_c::ANM_CUT_FINISH_LEFT,
+            0x6F,
+            daAlink_c::CUT_TYPE_FINISH_LEFT,
+            1,
+            100,
+            100,
+            5.0f,
+        },
+        {
+            daAlink_c::ANM_CUT_FINISH_VERTICAL,
+            0x6F,
+            daAlink_c::CUT_TYPE_FINISH_VERTICAL,
+            1,
+            100,
+            100,
+            8.0f,
+        },
+        {
+            daAlink_c::ANM_CUT_FINISH_STAB,
+            0x6F,
+            daAlink_c::CUT_TYPE_FINISH_STAB,
+            14,
+            100,
+            100,
+            10.0f,
+        },
+        {
+            daAlink_c::ANM_CUT_MORTAL_DRAW_A,
+            0x6F,
+            daAlink_c::CUT_TYPE_MORTAL_DRAW_A,
+            1,
+            5,
+            12,
+            10.0f,
+        },
+        {
+            daAlink_c::ANM_CUT_MORTAL_DRAW_B,
+            0x6F,
+            daAlink_c::CUT_TYPE_MORTAL_DRAW_B,
+            1,
+            7,
+            14,
+            10.0f,
+        },
+        {
+            daAlink_c::ANM_CUT_FINISH_RIGHT,
+            0x6F,
+            daAlink_c::CUT_TYPE_FINISH_RIGHT,
+            1,
+            100,
+            100,
+            10.0f,
+        },
+    };
+
     const daAlinkHIO_cutFinish_c1* cutData;
-    const daAlink_cutParamTbl* cutParams = &cutParamTable_7455[i_type];
+    const daAlink_cutParamTbl* cutParams = &cutParamTable[i_type];
     BOOL front_roll = mProcID == PROC_FRONT_ROLL;
 
     commonProcInit(PROC_CUT_FINISH);

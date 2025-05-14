@@ -16,8 +16,8 @@
  */
 class daCanoe_c : public fopAc_ac_c {
 public:
-    /* 804DA5F4 */ void createHeap();
-    /* 804DA740 */ void create();
+    /* 804DA5F4 */ int createHeap();
+    /* 804DA740 */ int create();
     /* 804DAEA8 */ ~daCanoe_c();
     /* 804DB008 */ void setRoomInfo();
     /* 804DB0B0 */ void setMatrix();
@@ -28,8 +28,8 @@ public:
     /* 804DB828 */ void frontBackBgCheck();
     /* 804DC330 */ void setPaddleEffect();
     /* 804DC554 */ void setCanoeSliderEffect();
-    /* 804DC7B4 */ void execute();
-    /* 804DD35C */ void draw();
+    /* 804DC7B4 */ int execute();
+    /* 804DD35C */ int draw();
 
     J3DModel* getModel() { return mpModel; }
     MtxP getModelMtx() { return mpModel->getBaseTRMtx(); }
@@ -38,7 +38,7 @@ public:
     void incShapeOffsetY(f32 offset) { mShapeOffsetY += offset; }
     void incShapeAngleZ(s16 incZ) { shape_angle.z += incZ; }
     void onRodID(fpc_ProcID i_rodID) { mRodID = i_rodID; }
-    void setWaterFallDownSe() { field_0x141c.startSound(Z2SE_AL_CANOE_FALL_DW, 0, -1); }
+    void setWaterFallDownSe() { mSound.startSound(Z2SE_AL_CANOE_FALL_DW, 0, -1); }
     bool checkPaddleChangeWater() { return mPaddleWaterType == 3; }
     void startInitPaddleWater() { mPaddleWaterType = 4; }
     fpc_ProcID getRodID() { return mRodID; }
@@ -46,23 +46,23 @@ public:
     void setAimSpeed(f32 i_speed) { mAimSpeed = i_speed; }
     void setAimAngle(s16 i_angle) {
         mAimAngle = i_angle;
-        field_0x1442 = 1;
+        mIsForceAimAngle = TRUE;
     }
 
     void setPosAndAngle(cXyz const* i_pos, s16 i_angle) {
-        field_0x14d0 = *i_pos;
-        field_0x144a = i_angle;
-        field_0x1446 = 1;
+        mForcePos = *i_pos;
+        mForceAngle = i_angle;
+        mIsForcePosAngle = TRUE;
     }
 
     void setPaddleOffsetRight() {
-        field_0x1454 = 0x40;
-        field_0x1456 = 0xF;
+        field_0x1454 = 64;
+        field_0x1456 = 15;
     }
 
     void setPaddleOffsetLeft() {
-        field_0x1454 = -0x40;
-        field_0x1456 = 0xF;
+        field_0x1454 = -64;
+        field_0x1456 = 15;
     }
 
 private:
@@ -70,22 +70,23 @@ private:
     /* 0x0570 */ J3DModel* mpModel;
     /* 0x0574 */ J3DModel* mpPaddleModel;
     /* 0x0578 */ J3DModel* mpMaskModel;
-    /* 0x057C */ dCcD_Stts field_0x57c;
-    /* 0x05B8 */ dBgS_AcchCir field_0x5b8[9];
-    /* 0x07F8 */ dBgS_LinkAcch field_0x7f8[3];
-    /* 0x0D80 */ dCcD_Cyl field_0xd80[5];
-    /* 0x13AC */ dBgS_LinkLinChk field_0x13ac;
-    /* 0x141C */ Z2SoundObjSimple field_0x141c;
-    /* 0x143C */ char* mResName;
+    /* 0x057C */ dCcD_Stts mCcStts;
+    /* 0x05B8 */ dBgS_AcchCir mAcchCir[3][3];
+    /* 0x07F8 */ dBgS_LinkAcch mAcch[3];
+    /* 0x0D80 */ dCcD_Cyl mCcCyl[5];
+    /* 0x13AC */ dBgS_LinkLinChk mLineChk;
+    /* 0x141C */ Z2SoundObjSimple mSound;
+    /* 0x143C */ const char* mArcName;
     /* 0x1440 */ u8 mPaddleWaterType;
     /* 0x1441 */ u8 field_0x1441;
-    /* 0x1442 */ u8 field_0x1442;
+    /* 0x1442 */ u8 mIsForceAimAngle;
     /* 0x1443 */ u8 mJumpRideFlg;
     /* 0x1444 */ u8 field_0x1444;
-    /* 0x1445 */ u8 mReverb;
-    /* 0x1446 */ u8 field_0x1446;
+    /* 0x1445 */ s8 mReverb;
+    /* 0x1446 */ u8 mIsForcePosAngle;
+    /* 0x1447 */ u8 mIsSliderHit;
     /* 0x1448 */ s16 field_0x1448;
-    /* 0x144A */ s16 field_0x144a;
+    /* 0x144A */ s16 mForceAngle;
     /* 0x144C */ s16 mAimAngle;
     /* 0x144E */ s16 field_0x144e;
     /* 0x1450 */ s16 field_0x1450;
@@ -94,24 +95,26 @@ private:
     /* 0x1456 */ s16 field_0x1456;
     /* 0x1458 */ s16 field_0x1458;
     /* 0x145A */ s16 field_0x145a;
-    /* 0x145C */ s16 field_0x145c;
-    /* 0x145E */ s16 field_0x145e;
+    /* 0x145C */ s16 mHitInvulnerabilityTimer;
+    /* 0x145E */ u16 mHitCount;
     /* 0x1460 */ s16 field_0x1460;
     /* 0x1464 */ fpc_ProcID mRodID;
     /* 0x1468 */ f32 mAimSpeed;
     /* 0x146C */ f32 mShapeOffsetY;
     /* 0x1470 */ f32 field_0x1470;
-    /* 0x1474 */ u32 field_0x1474;
-    /* 0x1478 */ u8 field_0x1478[0x1480 - 0x1478];
+    /* 0x1474 */ u32 mShadowId;
+    /* 0x1478 */ u32 field_0x1478;
+    /* 0x147C */ u8 field_0x147c[0x1480 - 0x147C];
     /* 0x1480 */ u32 field_0x1480;
-    /* 0x1484 */ u8 field_0x1484[0x1490 - 0x1484];
+    /* 0x1484 */ u8 field_0x1484[0x1488 - 0x1484];
+    /* 0x1488 */ u32 field_0x1488[2];
     /* 0x1490 */ u32 field_0x1490;
-    /* 0x1494 */ cXyz field_0x1494;
-    /* 0x14A0 */ cXyz field_0x14a0;
-    /* 0x14AC */ cXyz field_0x14ac;
-    /* 0x14B8 */ cXyz field_0x14b8;
-    /* 0x14C4 */ cXyz field_0x14c4;
-    /* 0x14D0 */ cXyz field_0x14d0;
+    /* 0x1494 */ cXyz mFrontPos;
+    /* 0x14A0 */ cXyz mBackPos;
+    /* 0x14AC */ cXyz mOldFrontPos;
+    /* 0x14B8 */ cXyz mOldBackPos;
+    /* 0x14C4 */ cXyz mWaterSpeed;
+    /* 0x14D0 */ cXyz mForcePos;
 };
 
 STATIC_ASSERT(sizeof(daCanoe_c) == 0x14dc);

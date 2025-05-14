@@ -44,10 +44,6 @@ J3DShape* J3DShapeFactory::create(int no, u32 flag, GXVtxDescList* vtxDesc) {
     return shape;
 }
 
-static inline u32 getMdlDataFlag_MtxLoadType(u32 flag) {
-    return flag & 0x10;
-}
-
 enum {
     J3DMdlDataFlag_ConcatView = 0x10,
 };

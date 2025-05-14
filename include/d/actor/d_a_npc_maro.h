@@ -1,6 +1,7 @@
 #ifndef D_A_NPC_MARO_H
 #define D_A_NPC_MARO_H
 
+#include "SSystem/SComponent/c_counter.h"
 #include "d/actor/d_a_npc.h"
 
 /**
@@ -11,8 +12,10 @@
  * @details
  *
  */
-class daNpc_Maro_c : public fopAc_ac_c {
+class daNpc_Maro_c : public daNpcT_c {
 public:
+    typedef void (daNpc_Maro_c::*actionFunc)(void*);
+
     /* 8055B58C */ ~daNpc_Maro_c();
     /* 8055B6E0 */ void create();
     /* 8055B9A8 */ void CreateHeap();
@@ -30,20 +33,20 @@ public:
     /* 8055C614 */ void reset();
     /* 8055C834 */ void afterJntAnm(int);
     /* 8055C8B0 */ void setParam();
-    /* 8055CB14 */ void checkChangeEvt();
-    /* 8055CC9C */ void evtEndProc();
+    /* 8055CB14 */ BOOL checkChangeEvt();
+    /* 8055CC9C */ BOOL evtEndProc();
     /* 8055CCD8 */ void setAfterTalkMotion();
     /* 8055CD74 */ void srchActors();
-    /* 8055D0D8 */ void evtTalk();
-    /* 8055D1F4 */ void evtCutProc();
+    /* 8055D0D8 */ BOOL evtTalk();
+    /* 8055D1F4 */ BOOL evtCutProc();
     /* 8055D368 */ void action();
     /* 8055D5C4 */ void beforeMove();
     /* 8055D688 */ void setAttnPos();
     /* 8055D918 */ void setCollision();
-    /* 8055DA70 */ bool drawDbgInfo();
+    /* 8055DA70 */ BOOL drawDbgInfo();
     /* 8055DA78 */ void drawOtherMdl();
-    /* 8055DAD8 */ void getFaceMotionAnm(daNpcT_faceMotionAnmData_c);
-    /* 8055DB64 */ void getMotionAnm(daNpcT_motionAnmData_c);
+    /* 8055DAD8 */ daNpcT_faceMotionAnmData_c getFaceMotionAnm(daNpcT_faceMotionAnmData_c);
+    /* 8055DB64 */ daNpcT_motionAnmData_c getMotionAnm(daNpcT_motionAnmData_c);
     /* 8055DBF0 */ void selectAction();
     /* 8055DD08 */ void chkAction(int (daNpc_Maro_c::*)(void*));
     /* 8055DD34 */ void setAction(int (daNpc_Maro_c::*)(void*));
@@ -71,22 +74,52 @@ public:
     /* 8056319C */ void arrowTutorial(void*);
     /* 8056342C */ void talk(void*);
     /* 80563660 */ void shop(void*);
-    /* 805648A4 */ daNpc_Maro_c(daNpcT_faceMotionAnmData_c const*, daNpcT_motionAnmData_c const*,
-                                daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
-                                daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
-                                daNpcT_evtData_c const*, char**);
+    /* 805648A4 */ daNpc_Maro_c(
+        daNpcT_faceMotionAnmData_c const* i_faceMotionAnmData,
+        daNpcT_motionAnmData_c const* i_motionAnmData,
+        daNpcT_MotionSeqMngr_c::sequenceStepData_c const* i_faceMotionSequenceData,
+        int i_faceMotionStepNum,
+        daNpcT_MotionSeqMngr_c::sequenceStepData_c const* i_motionSequenceData, int i_motionStepNum,
+        daNpcT_evtData_c const* i_evtData, char** i_arcNames)
+        : daNpcT_c(i_faceMotionAnmData, i_motionAnmData, i_faceMotionSequenceData,
+                   i_faceMotionStepNum, i_motionSequenceData, i_motionStepNum, i_evtData,
+                   i_arcNames) {
+        OS_REPORT("|%06d:%x|daNpc_Maro_c -> コンストラクト\n", g_Counter.mCounter0, this);
+    }
     /* 80564970 */ s32 getEyeballMaterialNo();
     /* 80564978 */ s32 getHeadJointNo();
     /* 80564980 */ s32 getNeckJointNo();
-    /* 80564988 */ bool getBackboneJointNo();
-    /* 80564990 */ void checkChangeJoint(int);
-    /* 805649A0 */ void checkRemoveJoint(int);
+    /* 80564988 */ s32 getBackboneJointNo();
+    /* 80564990 */ BOOL checkChangeJoint(int);
+    /* 805649A0 */ BOOL checkRemoveJoint(int);
+
+    void lostPlayer() { mPlayerActorMngr.remove(); }
+    BOOL checkNowMotionIsChoccai() {
+        if (mMotionSeqMngr.getNo() == 5 || mMotionSeqMngr.getNo() == 6) {
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    BOOL checkEndMotionIsChoccai() {
+        if (checkNowMotionIsChoccai() == TRUE && mMotionSeqMngr.getStepNo() > 0) {
+            return TRUE;
+        }
+        return FALSE;
+    }
+
+    void findPlayer() { mPlayerActorMngr.entry(daPy_getPlayerActorClass()); }
+
+    void startChoccai() { field_0x1134 = 1; }
+    void endChoccai() { field_0x1134 = 0; }
 
     static void* mCutNameList[17];
     static u8 mCutList[204];
 
 private:
-    /* 0x568 */ u8 field_0x568[0x1140 - 0x568];
+    /* 0x0E40 */ u8 field_0xe40[0x1134 - 0xe40];
+    /* 0x1134 */ u8 field_0x1134;
+    /* 0x1135 */ u8 field_0x1135[0x1140 - 0x1135];
 };
 
 STATIC_ASSERT(sizeof(daNpc_Maro_c) == 0x1140);

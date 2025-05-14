@@ -102,7 +102,7 @@ public:
 
     void* getTransformedVtxPos(int idx) { return mTransformedVtxPosArray[idx]; }
     void* getTransformedVtxNrm(int idx) { return mTransformedVtxNrmArray[idx]; }
-    J3DVertexData* getVertexData() { return mVtxData; }
+    J3DVertexData* getVertexData() const { return mVtxData; }
 
     void swapTransformedVtxPos() {
         void* tmp = mTransformedVtxPosArray[0];

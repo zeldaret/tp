@@ -132,6 +132,7 @@ public:
     u8 getGtItm() { return mGtItm; }
     void startCheckSkipEdge(void* param_0) { setSkipProc(param_0, dEv_noFinishSkipProc, 0); }
     bool checkSkipEdge() { return chkFlag2(8) != false; }
+    void setDebugStb(u8 stb) { mDebugStb = stb; }
 
 public:
     /* 0x000 */ u8 field_0x0[4];

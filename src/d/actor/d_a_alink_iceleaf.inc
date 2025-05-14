@@ -178,7 +178,7 @@ int daAlink_c::boardCommon(BOOL i_canMove) {
                     var_f31 = 1.0f - (0.5f * cM_scos(temp_r0));
                 }
 
-                var_f31 *= cM_fsin(1.570796f * var_f25);
+                var_f31 *= cM_fsin(1.5707964f * var_f25);
                 if (var_f31 > 0.1f) {
                     f32 temp_f27 = (var_f31 * cM_ssin(var_r27)) + (mNormalSpeed * cM_ssin(shape_angle.y));
                     f32 temp_f26 = (var_f31 * cM_scos(var_r27)) + (mNormalSpeed * cM_scos(shape_angle.y));
@@ -386,7 +386,7 @@ int daAlink_c::procBoardWaitInit(fopAc_ac_c* i_board) {
             mNormalSpeed = 0.0f;
         }
 
-        field_0x594 = daAlinkHIO_move_c0::m.mMinWalkRate;
+        field_0x594 = daAlinkHIO_board_c0::m.mMaxSpeed;
         mProcVar2.field_0x300c = 0;
         mProcVar3.field_0x300e = 0;
         setCommonBoardAnime(FALSE);

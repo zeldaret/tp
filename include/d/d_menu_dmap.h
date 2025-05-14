@@ -3,8 +3,8 @@
 
 #include "d/d_select_cursor.h"
 #include "d/d_msg_flow.h"
-#include "d/d_menu_dmap_map.h"
 #include "d/d_menu_map_common.h"
+#include "d/d_map_path_dmap.h"
 #include "dolphin/types.h"
 
 class CPaneMgr;
@@ -20,10 +20,37 @@ class dMsgString_c;
 class dMeterHaihai_c;
 class dMenu_ItemExplain_c;
 class J2DPictureEx;
+struct dMenu_DmapMapCtrl_c;
 
-struct renderingDmap_c {
+class renderingDmap_c : public renderingPlusDoor_c {
+public:
     /* 801C0380 */ virtual ~renderingDmap_c() {}
     /* 801C051C */ renderingDmap_c();
+
+    /* 801C0C48 */ virtual const GXColor* getColor(int);
+    /* 801C0C10 */ virtual int getLineWidth(int);
+    /* 801C25E4 */ virtual void beforeDrawPath();
+    /* 801C0CB8 */ virtual void afterDrawPath();
+    /* 801C084C */ virtual bool hasMap() const;
+    /* 801C2614 */ virtual bool isRendAllRoom() const;
+    /* 801C261C */ virtual bool isRendDoor() const;
+    /* 801C2624 */ virtual bool isCheckFloor() const;
+    /* 801C086C */ virtual bool isDrawIconSingle2(dTres_c::data_s const*, bool, bool, int) const;
+    /* 801C262C */ virtual bool isRendRestart() const;
+    /* 801C2634 */ virtual bool isRendCursor() const;
+    /* 801C263C */ virtual bool isRendIcon() const;
+    /* 801C0B40 */ virtual f32 getPlayerCursorSize();
+    /* 801C25E8 */ virtual f32 getRestartCursorSize();
+
+    /* 801C0B48 */ int getLineWidthZoomBig(int);
+    /* 801C0BAC */ int getLineWidthZoomSmall(int);
+
+    void entry(f32 param_0, f32 param_1, f32 param_2, s8 param_3, s8 param_4, f32 param_5) {
+        field_0x34 = param_5;
+        renderingDAmap_c::entry(param_0, param_1, param_2, param_3, param_4);
+    }
+
+    /* 0x34 */ f32 field_0x34;
 };
 
 struct dMenu_DmapBg_c : public dDlst_base_c, public dMenuMapCommon_c {

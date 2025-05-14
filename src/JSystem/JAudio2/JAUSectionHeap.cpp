@@ -18,7 +18,6 @@
 #include "JSystem/JAudio2/JAUStreamFileTable.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "stdlib.h"
-#include "dol2asm.h"
 #include "dolphin/dvd.h"
 
 namespace {
@@ -78,12 +77,6 @@ JAUSection::TSectionData::TSectionData() {
     field_0x9c = 0;
 }
 
-/* 8039B950-8039B950 027FB0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039B950 = "index out of range of bitset::reset";
-#pragma pop
-
 /* 802A4F68-802A4FE4 29F8A8 007C+00 1/1 0/0 0/0 .text
  * resetRegisteredBankTables__Q210JAUSection12TSectionDataFv    */
 void JAUSection::TSectionData::resetRegisteredBankTables() {
@@ -139,7 +132,6 @@ void JAUSection::dispose() {
 
 /* 802A51E4-802A52A0 29FB24 00BC+00 0/0 1/1 0/0 .text            newSoundTable__10JAUSectionFPCvUlb
  */
-// NONMATCHING regalloc
 JAUSoundTable* JAUSection::newSoundTable(void const* bst, u32 param_1, bool param_2) {
     JUT_ASSERT(285, isOpen());
     JUT_ASSERT(286, isBuilding());
@@ -148,7 +140,7 @@ JAUSoundTable* JAUSection::newSoundTable(void const* bst, u32 param_1, bool para
     JUT_ASSERT(289, sectionHeap_->sectionHeapData_.soundTable == 0);
     {
         TPushCurrentHeap push(getHeap_());
-        void* bstDst;
+        void const* bstDst = bst;
         if (param_1) {
             bstDst = newCopy(bst, param_1, 4);
             JUT_ASSERT(296, bstDst);
@@ -163,7 +155,6 @@ JAUSoundTable* JAUSection::newSoundTable(void const* bst, u32 param_1, bool para
 }
 
 /* 802A52A0-802A535C 29FBE0 00BC+00 0/0 1/1 0/0 .text newSoundNameTable__10JAUSectionFPCvUlb */
-// NONMATCHING regalloc
 JAUSoundNameTable* JAUSection::newSoundNameTable(void const* bstn, u32 param_1, bool param_2) {
     JUT_ASSERT(315, isOpen());
     JUT_ASSERT(316, isBuilding());
@@ -172,7 +163,7 @@ JAUSoundNameTable* JAUSection::newSoundNameTable(void const* bstn, u32 param_1, 
     JUT_ASSERT(319, sectionHeap_->sectionHeapData_.soundNameTable == 0);
     {
         TPushCurrentHeap push(getHeap_());
-        void* bstnDst;
+        void const* bstnDst = bstn;
         if (param_1) {
             bstnDst = newCopy(bstn, param_1, 4);
             JUT_ASSERT(326, bstnDst);
@@ -304,13 +295,10 @@ void* JAUSection::newCopy(void const* param_0, u32 param_1, s32 param_2) {
     return r31;
 }
 
-/* ############################################################################################## */
-/* 8039B950-8039B950 027FB0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039B974 = "index out of range of bitset::test";
-SECTION_DEAD static char const* const stringBase_8039B997 = "index out of range of bitset::set";
-#pragma pop
+static bool dummy_string(int i) {
+    std::bitset<1> x;
+    return x.test(i);
+}
 
 /* 802A5854-802A5948 2A0194 00F4+00 0/0 1/1 0/0 .text            newWaveBank__10JAUSectionFUlPCv */
 JASWaveBank* JAUSection::newWaveBank(u32 bank_no, void const* param_1) {

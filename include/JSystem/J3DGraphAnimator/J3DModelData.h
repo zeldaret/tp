@@ -52,7 +52,7 @@ public:
     void setHierarchy(J3DModelHierarchy* hierarchy) { mJointTree.setHierarchy(hierarchy); }
     void setBasicMtxCalc(J3DMtxCalc* calc) { mJointTree.setBasicMtxCalc(calc); }
     JUTNameTab* getJointName() const { return mJointTree.getJointName(); }
-    Mtx& getInvJointMtx(s32 idx) const { return mJointTree.getInvJointMtx(idx); }
+    Mtx& getInvJointMtx(int idx) { return mJointTree.getInvJointMtx(idx); }
     J3DTexture* getTexture() const { return mMaterialTable.getTexture(); }
     JUTNameTab* getTextureName() const { return mMaterialTable.getTextureName(); }
     u16 getWEvlpMtxNum() const { return mJointTree.getWEvlpMtxNum(); }

@@ -40,7 +40,7 @@ struct TParseData_aligned : public TParseData {
 
 // Base for header and/or block parsing
 struct TParse_header_block {
-    virtual ~TParse_header_block();
+    virtual ~TParse_header_block() = 0;
 
     virtual bool parseHeader_next(const void** ppData_inout, u32* puBlock_out, u32 arg2) = 0;
     virtual bool parseBlock_next(const void** ppData_inout, u32* puData_out, u32 arg2) = 0;
@@ -93,7 +93,7 @@ struct TValueIterator {
     const void* get() const { return mBegin; }
 
     typename Parser::ParseType operator*() const {
-        return *(typename Parser::ParseType*)get();
+        return Parser::parse(get());
     }
 
     TValueIterator& operator++() {
@@ -127,7 +127,6 @@ struct TParseValue_misaligned : TParseValue_raw_<T> {
 
 template<typename T>
 struct TValueIterator_misaligned : public TValueIterator<TParseValue_misaligned<T>, sizeof(T)> {
-    TValueIterator_misaligned(const TValueIterator_misaligned<T>& other) : TValueIterator<TParseValue_misaligned<T>, sizeof(T)>(other) {}
     TValueIterator_misaligned(const void* begin) : TValueIterator<TParseValue_misaligned<T>, sizeof(T)>(begin) {}
 };
 

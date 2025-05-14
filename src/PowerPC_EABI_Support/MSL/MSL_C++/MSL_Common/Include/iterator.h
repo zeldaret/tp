@@ -1,6 +1,8 @@
 #ifndef MSL_ITERATOR_H_
 #define MSL_ITERATOR_H_
 
+#include <stddef.h>
+
 namespace std {
 struct input_iterator_tag {};
 struct output_iterator_tag {};
@@ -24,6 +26,20 @@ struct iterator_traits<T*> {
     typedef T* pointer;
     typedef T& reference;
     typedef random_access_iterator_tag iterator_category;
+};
+
+template<
+    class Category,
+    class T,
+    class Distance,
+    class Pointer,
+    class Reference
+> struct iterator {
+    typedef Distance difference_type;
+    typedef T value_type;
+    typedef Pointer pointer;
+    typedef Reference reference;
+    typedef Category iterator_category;
 };
 
 template <class InputIterator, class Distance>

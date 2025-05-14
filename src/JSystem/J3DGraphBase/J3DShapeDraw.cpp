@@ -10,16 +10,6 @@
 #include <dolphin/os.h>
 #include "global.h"
 
-//
-// External References:
-//
-
-extern "C" void countVertex__12J3DShapeDrawFUl();
-extern "C" void* __nwa__FUli();
-extern "C" void __dl__FPv();
-extern "C" void _savegpr_18();
-extern "C" void _restgpr_18();
-
 /* 80314924-80314974 30F264 0050+00 1/1 0/0 0/0 .text            countVertex__12J3DShapeDrawFUl */
 u32 J3DShapeDraw::countVertex(u32 stride) {
     u32 count = 0;
@@ -54,18 +44,18 @@ void J3DShapeDraw::addTexMtxIndexInDL(u32 stride, u32 attrOffs, u32 valueBase) {
 
         // Copy count
         // regalloc (I suspect there's a way to shove this in a u16 temp without an mr)
-        u32 vtxNum = *((u16*)(oldDL + 1));
+        s32 vtxNum = *((u16*)(oldDL + 1));
         *((u16*)newDL) = vtxNum;
         newDL += 2;
 
-        for (s32 i = 0; i < (u16)vtxNum; i++) {
+        for (s32 i = 0; i < vtxNum; i++) {
             u8* oldDLVtx = &oldDL[stride * i + 3];
             u8 pnmtxidx = *oldDLVtx;
             memcpy(newDL, oldDLVtx, attrOffs);
-            u8* newDL1 = &newDL[attrOffs];
-            *newDL1++ = valueBase + pnmtxidx;
-            memcpy(newDL1, oldDLVtx + attrOffs, stride - attrOffs);
-            newDL = newDL1 + (stride - attrOffs);
+            newDL += attrOffs;
+            *newDL++ = valueBase + pnmtxidx;
+            memcpy(newDL, oldDLVtx + attrOffs, stride - attrOffs);
+            newDL += (stride - attrOffs);
         }
 
         oldDL += stride * vtxNum;

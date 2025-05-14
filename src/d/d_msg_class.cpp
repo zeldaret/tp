@@ -298,11 +298,11 @@ static bool checkCharInfoCharactor(int c) {
 static char* changeCodeToChar(u16 param_0) {
     static char mMoji[3];
 
-    mMoji[0] = mMoji[1] = mMoji[2] = '\0';
+    mMoji[0] = mMoji[1] = mMoji[2] = 0;
     mMoji[0] = param_0 >> 8;
 
     int val = param_0;
-    if (mMoji[0] == '\0') {
+    if (mMoji[0] == 0) {
         mMoji[0] = val;
     } else {
         mMoji[1] = val;
@@ -763,10 +763,6 @@ void jmessage_tReference::resetReference() {
     mSelectType = 0;
 }
 
-/* ############################################################################################## */
-/* 80454A70-80454A78 003070 0008+00 16/16 0/0 0/0 .sdata2          @4198 */
-SECTION_SDATA2 static f64 lit_4198 = 4503601774854144.0 /* cast s32 to float */;
-
 /* 80229034-80229168 223974 0134+00 0/0 1/1 0/0 .text            pageSend__19jmessage_tReferenceFv
  */
 void jmessage_tReference::pageSend() {
@@ -806,10 +802,6 @@ void jmessage_tReference::pageSend() {
 
     mTopTagScale = mNowTagScale;
 }
-
-/* ############################################################################################## */
-/* 80454A78-80454A7C 003078 0004+00 4/4 0/0 0/0 .sdata2          @4291 */
-SECTION_SDATA2 static f32 lit_4291 = -1.0f;
 
 /* 80229168-802294A8 223AA8 0340+00 0/0 2/2 0/0 .text selectMessage__19jmessage_tReferenceFv */
 void jmessage_tReference::selectMessage() {
@@ -1696,8 +1688,7 @@ bool jmessage_tMeasureProcessor::do_tag(u32 i_tag, void const* i_data, u32 i_siz
             dMsgUnit_setTag(0x10001, (u32)dComIfGp_getMessageCountNumber(), buffer_0);
             break;
         case 7:
-            u8 now_count = dMeter2Info_getNowCount();
-            dMsgUnit_setTag(8, now_count, buffer_0);
+            dMsgUnit_setTag(8, dMeter2Info_getNowCount(), buffer_0);
             break;
         default:
             return false;
@@ -1965,11 +1956,12 @@ void jmessage_tMeasureProcessor::do_rubyset(void const* param_0, u32 param_1) {
 
         jmessage_tReference* ref = (jmessage_tReference*)getReference();
         while (var_r29 < var_r28) {
-            s8 sp10 = var_r30[var_r29++];
-            s8 sp11 = var_r30[var_r29++];
-            s8 sp12 = 0;
+            u8 sp10[3];
+            sp10[0] = var_r30[var_r29++];
+            sp10[1] = var_r30[var_r29++];
+            sp10[2] = 0;
 
-            int var_r26 = (sp10 << 8) | sp11;
+            int var_r26 = (((s8)sp10[0] & 0xff) << 8) | ((s8)sp10[1] & 0xff);
             ref->setCharactor(changeKataToHira(var_r26));
         }
     }
@@ -1989,7 +1981,7 @@ void jmessage_tMeasureProcessor::push_word(char* param_0) {
 // NONMATCHING
 jmessage_tSequenceProcessor::jmessage_tSequenceProcessor(jmessage_tReference const* param_0,
                                                          jmessage_tControl* param_1)
-    : JMessage::TSequenceProcessor(param_0, param_1), jmessage_tMeasureProcessor(param_0) {
+    : JMessage::TSequenceProcessor(param_0, param_1), mMeasureProcessor(param_0) {
     field_0xa8 = 1;
     field_0xa4 = field_0xa8;
     field_0xa6 = 0;
@@ -2006,47 +1998,330 @@ jmessage_tSequenceProcessor::jmessage_tSequenceProcessor(jmessage_tReference con
     field_0xb4 = 0;
 }
 
-/* 8022B5F4-8022B654 225F34 0060+00 1/0 0/0 0/0 .text __dt__26jmessage_tMeasureProcessorFv */
-jmessage_tMeasureProcessor::~jmessage_tMeasureProcessor() {}
-
 /* 8022B654-8022B658 225F94 0004+00 1/0 0/0 0/0 .text do_reset__27jmessage_tSequenceProcessorFv */
 void jmessage_tSequenceProcessor::do_reset() {}
 
-/* ############################################################################################## */
-/* 80454A88-80454A8C 003088 0004+00 1/1 0/0 0/0 .sdata2          @5490 */
-SECTION_SDATA2 static f32 lit_5490 = 10.0f;
-
-/* 80454A8C-80454A90 00308C 0004+00 2/2 0/0 0/0 .sdata2          @5491 */
-SECTION_SDATA2 static f32 lit_5491 = 255.0f;
-
 /* 8022B658-8022BA3C 225F98 03E4+00 1/0 0/0 0/0 .text
  * do_begin__27jmessage_tSequenceProcessorFPCvPCc               */
-void jmessage_tSequenceProcessor::do_begin(void const* param_0, char const* param_1) {
-    // NONMATCHING
+void jmessage_tSequenceProcessor::do_begin(void const* param_1, char const* param_2) {
+    field_0x9c = param_1;
+    field_0xa0 = param_2;
+    if (((u8*)param_1)[9] == 8) {
+        field_0xa8 = g_MsgObject_HIO_c.mDisplaySpeedSpirit;
+    } else {
+        field_0xa8 = g_MsgObject_HIO_c.mDisplaySpeed;
+    }
+    field_0xa4 = field_0xa8;
+    field_0xa6 = 0;
+    field_0xad = 0;
+    mMouthCheck = 0;
+    field_0xb1 = 0;
+    field_0xb2 = 0;
+    field_0xaa = 0;
+    field_0xac = 0;
+    field_0xb4 = ((u8*)param_1)[8];
+    field_0xb3 = ((u8*)param_1)[14];
+    jmessage_tReference* pRef = (jmessage_tReference*)getReference();
+    pRef->resetCharCnt();
+    pRef->setNowColorType(0);
+    pRef->setTopColorType(0);
+    pRef->setNowWordCount(0);
+    pRef->setTopWordCount(0);
+    pRef->setBatchColorFlag(0);
+    pRef->setTopTagScale(0);
+    pRef->setNowTagScale(0);
+    pRef->calcDistance();
+    dComIfGp_setMesgAnimeAttrInfo(((u8*)param_1)[16]);
+    dComIfGp_setMesgFaceAnimeAttrInfo(((u8*)param_1)[17]);
+    if (dComIfGp_isHeapLockFlag() == 2) {
+        pRef->setFukiPosType(1);
+    } else {
+        if (dComIfGp_isHeapLockFlag() == 3) {
+            pRef->setFukiPosType(0);
+        } else {
+            pRef->setFukiPosType(((u8*)param_1)[11]);
+        }
+    }
+    pRef->setFukiKind(((u8*)param_1)[9]);
+    if (dMsgObject_getMsgOutputType() != 0xff) {
+        pRef->setForm(dMsgObject_getMsgOutputType());
+    } else {
+        pRef->setForm(((u8*)param_1)[10]);
+    }
+    pRef->setArrange(((u8*)param_1)[13]);
+    pRef->setForm(((u8*)param_1)[13]);
+    pRef->setMsgID(((u16*)param_1)[2]);
+    if (((u16*)param_1)[3] != 0) {
+        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[((u16*)param_1)[3]]);
+    }
+    pRef->getObjectPtr()->talkStartInit();
+    mMeasureProcessor.process_messageEntryText(this, param_1, param_2);
+    if (pRef->isBombNameUseFlag()) {
+        pRef->offBombNameUseFlag();
+        calcStringLength();
+    }
+    f32 tboxWidth = pRef->getSelLength(0);
+    if (tboxWidth < pRef->getSelLength(1)) {
+        tboxWidth = pRef->getSelLength(1);
+    }
+    if (tboxWidth < pRef->getSelLength(2)) {
+        tboxWidth = pRef->getSelLength(2);
+    }
+    tboxWidth += 10.0f;
+    if (tboxWidth > pRef->getSelTBoxWidth()) {
+        pRef->setSelTBoxWidth(tboxWidth);
+    }
+    if (dMsgObject_getMsgOutputType() != 0xff) {
+        field_0xae = dMsgObject_getMsgOutputType();
+    } else {
+        field_0xae = ((u8*)param_1)[10];
+    }
+    if (mForceForm != 0xff) {
+        field_0xae = mForceForm;
+    }
+    pRef->setAddCharAlpha(255.0f);
+    pRef->setAddCharAllAlphaRate(1.0f);
+    pRef->setCharAllAlphaRate(1.0f);
+    if (field_0xae == 3) {
+        pRef->setAddCharAllAlphaRate(1.0f / (1.0f + g_MsgObject_HIO_c.mBatchDisplayWeight_3));
+        pRef->setCharAllAlphaRate(0.0f);
+    } else if (field_0xae == 8) {
+        pRef->setAddCharAllAlphaRate(1.0f / (1.0f + g_MsgObject_HIO_c.mBatchDisplayWeight_8));
+        pRef->setCharAllAlphaRate(0.0f);
+    } else if (field_0xae == 9) {
+        pRef->setAddCharAllAlphaRate(1.0f / (1.0f + g_MsgObject_HIO_c.mBatchDisplayWeight_9));
+        pRef->setCharAllAlphaRate(0.0f);
+    } else if (field_0xae == 5) {
+        field_0xa4 = g_MsgObject_HIO_c.mCharDisplayWeight_5;
+        pRef->setAddCharAlpha(255.0f / (1.0f + field_0xa4));
+    }
+    pRef->resetReference();
+    field_0xb5 = 0;
 }
 
 /* 8022BA3C-8022BB7C 22637C 0140+00 1/0 0/0 0/0 .text do_end__27jmessage_tSequenceProcessorFv */
 void jmessage_tSequenceProcessor::do_end() {
-    // NONMATCHING
+    jmessage_tReference* pRef = (jmessage_tReference*)getReference();
+    if (dMsgObject_getSelectWordFlag() != 0) {
+        pRef->setSelectNum(dMsgObject_getSelectWordFlag());
+        pRef->setSelectType(0);
+        pRef->setSelectPos(0);
+    }
+    mMouthCheck = 0;
+    if (pRef->getSelectNum() == 2) {
+        if (pRef->getSelectType() == 0) {
+            pRef->setStopFlag(2);
+        } else {
+            pRef->setStopFlag(4);
+        }
+    } else {
+        if (pRef->getSelectNum() == 3) {
+            if (pRef->getSelectType() == 0) {
+                if (!pRef->isMidona()) {
+                    pRef->setStopFlag(3);
+                }
+            } else {
+                pRef->setStopFlag(5);
+            }
+        } else {
+            if (pRef->getSendFlag() == 5) {
+                pRef->setStopFlag(6);
+            } else {
+                pRef->setStopFlag(7);
+            }
+        }
+    }
+    if (dComIfGp_checkMesgBgm()) {
+        dComIfGp_setMesgBgmOff();
+    }
+    if (mForceForm != 0xff) {
+        mForceForm = 0xff;
+    }
+    if (pRef->isLightBatchFlag()) {
+        pRef->allsetCharCountBuffer();
+    }
+    pRef->setNowLightCount(0xff);
 }
 
 /* 8022BB7C-8022BFE0 2264BC 0464+00 2/0 0/0 0/0 .text do_isReady__27jmessage_tSequenceProcessorFv
  */
 bool jmessage_tSequenceProcessor::do_isReady() {
-    // NONMATCHING
+    jmessage_tReference* pRef = (jmessage_tReference*)getReference();
+    #ifdef DEBUG
+    if (pRef->getRevoMessageID() == 0) {
+    #endif
+
+    if (dComIfGp_checkMesgBgm()) {
+        bool isItemMusicPlaying = true;
+        if (mDoAud_checkPlayingSubBgmFlag() != Z2BGM_ITEM_GET &&
+            mDoAud_checkPlayingSubBgmFlag() != Z2BGM_ITEM_GET_MINI)
+        {
+            dComIfGp_setMesgBgmOff();
+            isItemMusicPlaying = false;
+        }
+
+        if (isItemMusicPlaying) {
+            return 0;
+        }
+    }
+
+    if (pRef->isButtonTagStopFlag()) {
+        if (mDoCPd_c::getTrigA(0) != 0) {
+            pRef->offButtonTagStopFlag();
+            pRef->onLightBatchFlag();
+        }
+        return 0;
+    }
+
+    if (pRef->isKanban() || pRef->isPlaceName() || pRef->isStaffRoll() ||
+        pRef->isBossName() || pRef->isSaveSeq() || pRef->isHowl())
+    {
+        if (pRef->getStatus() == 2 || pRef->getStatus() == 6 || pRef->getStatus() == 11 ||
+            pRef->getStatus() == 5)
+        {
+            if (pRef->getLineCount() < pRef->getNowPageLineMax() || pRef->getStatus() == 11) {
+                field_0xae = 1;
+                field_0xa4 = 0;
+                pRef->onBatchFlag();
+                pRef->setCharCnt(0x200);
+                field_0xa4 = field_0xa8;
+                return 1;
+            }
+            if (field_0xaa == pRef->getPageEndCount()) {
+                return 1;
+            }
+            pRef->setStopFlag(1);
+            field_0xaa++;
+        }
+    } else if (pRef->isBook()) {
+        if (pRef->getStatus() == 2 ||
+            pRef->getStatus() == 6)
+        {
+            if (pRef->getLineCount() < pRef->getNowPageLineMax()) {
+                field_0xae = 1;
+                field_0xa4 = 0;
+                pRef->onBatchFlag();
+                pRef->setCharCnt(0x200);
+                return 1;
+            }
+            
+            if (pRef->getPageEndCount() == pRef->getPageNum()) {
+                return 1;
+            }
+            pRef->setStopFlag(1);
+            field_0xaa = field_0xaa + 1;
+        }
+    } else if ((pRef->getStatus() == 6 || pRef->getStatus() == 11 ||
+                (pRef->getStatus() == 8 || pRef->getStatus() == 9) && pRef->isMidona()) ||
+               (pRef->getStatus() == 2 && pRef->isMidona()))
+    {
+        if (pRef->getLineCount() < pRef->getNowPageLineMax()) {
+            switch (field_0xae) {
+            case 0:
+            case 5:
+            case 6:
+                if (mDoCPd_c::getTrigA(0) != 0 || field_0xb2 != 0) {
+                    field_0xa4 = 0;
+                    pRef->onBatchFlag();
+                    pRef->setCharCnt(0x200);
+                }
+                break;
+            case 1:
+            case 3:
+            case 8:
+            case 9:
+                field_0xa4 = 0;
+                pRef->onBatchFlag();
+                pRef->setCharCnt(0x200);
+                break;
+            case 2:
+                if (field_0xb2 != 0) {
+                    field_0xa4 = 0;
+                }
+                break;
+            }
+
+            if (field_0xa4 > 0) {
+                field_0xa4--;
+                return 0;
+            }
+
+            field_0xa6++;
+            if (field_0xa6 >= 2) {
+                field_0xa4 = field_0xa8;
+                field_0xa6 = 0;
+            }
+
+            if (field_0xb1 != 0) {
+                field_0xb1 = 0;
+            } else if (mMouthCheck == 0) {
+                mMouthCheck = 1;
+            }
+
+            if (field_0xae == 5) {
+                field_0xa4 = g_MsgObject_HIO_c.mCharDisplayWeight_5;
+            }
+            return 1;
+        }
+
+        if (pRef->getPageEndCount() == pRef->getPageNum()) {
+            return 1;
+        }
+        pRef->setStopFlag(1);
+        mMouthCheck = 0;
+        field_0xaa++;
+    }
+
+    #ifdef DEBUG
+    }
+    #endif
+    return 0;
 }
 
 /* 8022BFE0-8022C1A0 226920 01C0+00 1/0 0/0 0/0 .text
  * do_character__27jmessage_tSequenceProcessorFi                */
-void jmessage_tSequenceProcessor::do_character(int param_0) {
-    // NONMATCHING
+void jmessage_tSequenceProcessor::do_character(int c) {
+    jmessage_tReference* pRef = (jmessage_tReference*)getReference();
+    if (field_0xac == 0) {
+        if (JUTFont::isLeadByte_ShiftJIS(c)) {
+            if (!isOutfontKanjiCode(c)) {
+                pRef->addCharactor(changeKataToHira(change1ByteTo2Bytes(c)));
+            }
+        } else if (c < 0x8800 && !isOutfontKanjiCode(c)) {
+            pRef->addCharactor(changeKataToHira(c));
+        }
+        pRef->addNowLightCount();
+    }
+
+    if (field_0xb3 != 0) {
+        cXyz actorPos = pRef->getActorPos();
+        messageSePlay(field_0xb4, field_0xb3, &actorPos);
+        field_0xb3 = 0;
+    }
+
+    switch(c) {
+    case '!':
+        mMouthCheck = 0;
+        field_0xb1 = 1;
+        break;
+    case 10:
+        pRef->addLineCount();
+        pRef->addEndLineCount();
+        break;
+    default:
+        if ((0x8140 <= c && c <= 0x81fc) || (0x839f <= c && c <= 0x879c)) {
+            mMouthCheck = 0;
+            field_0xb1 = 1;
+        }
+        break;
+    }
 }
 
 /* 8022C1A0-8022C8FC 226AE0 075C+00 2/0 0/0 0/0 .text
  * do_tag__27jmessage_tSequenceProcessorFUlPCvUl                */
 bool jmessage_tSequenceProcessor::do_tag(u32 i_tag, void const* i_data, u32 i_size) {
     jmessage_tReference* reference_p =
-        (jmessage_tReference*)JMessage::TSequenceProcessor::getReference();
+        (jmessage_tReference*)getReference();
 
     switch (i_tag & 0xFF0000) {
     case 0x10000: {
@@ -2382,63 +2657,82 @@ void jmessage_tSequenceProcessor::do_name1() {
     /* empty function */
 }
 
-/* 803C0330-803C03F4 -00001 00C4+00 1/1 0/0 0/0 .data            @6110 */
-SECTION_DATA static void* lit_6110[49] = {
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x54),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x5C),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x64),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x6C),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x74),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x7C),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x84),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x8C),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x94),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x9C),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0xA4),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0xAC),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0xB4),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0xBC),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0xC4),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0xCC),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0xD4),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0xDC),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0xE4),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0xEC),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0x100),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0xF4),
-    (void*)(((char*)do_space__27jmessage_tSequenceProcessorFUl) + 0xFC),
-};
-
 /* 8022C908-8022CA24 227248 011C+00 2/1 0/0 0/0 .text do_space__27jmessage_tSequenceProcessorFUl
  */
-void jmessage_tSequenceProcessor::do_space(u32 param_0) {
-    // NONMATCHING
+void jmessage_tSequenceProcessor::do_space(u32 param_1) {
+    jmessage_tReference* pRef = (jmessage_tReference*)getReference();
+    pRef->addNowLightCount();
+    if (field_0xac == 0) {
+        u16 uVar1 = 0xffff;
+        switch (param_1) {
+        case 10:
+            uVar1 = 0xffe0;
+            break;
+        case 0xb:
+            uVar1 = 0xffe1;
+            break;
+        case 0xc:
+            uVar1 = 0xffe2;
+            break;
+        case 0xd:
+            uVar1 = 0xffe3;
+            break;
+        case 0xe:
+            uVar1 = 0xffe4;
+            break;
+        case 0xf:
+            uVar1 = 0xffe5;
+            break;
+        case 0x10:
+            uVar1 = 0xffe6;
+            break;
+        case 0x11:
+            uVar1 = 0xffe7;
+            break;
+        case 0x12:
+            uVar1 = 0xffe8;
+            break;
+        case 0x13:
+            uVar1 = 0xffe9;
+            break;
+        case 0x14:
+            uVar1 = 0xffea;
+            break;
+        case 0x15:
+            uVar1 = 0xffeb;
+            break;
+        case 0x16:
+            uVar1 = 0xffec;
+            break;
+        case 0x17:
+            uVar1 = 0xffed;
+            break;
+        case 0x18:
+            uVar1 = 0xffee;
+            break;
+        case 0x19:
+            uVar1 = 0xfff0;
+            break;
+        case 0x1a:
+            uVar1 = 0xfff1;
+            break;
+        case 0x1b:
+            uVar1 = 0xfff2;
+            break;
+        case 0x1c:
+            uVar1 = 0xfff3;
+            break;
+        case 0x1d:
+            uVar1 = 0xfff4;
+            break;
+        case 0x39:
+            uVar1 = 0xfff5;
+            break;
+        case 0x3a:
+            uVar1 = 0xfff6;
+        }
+        pRef->addCharactor(uVar1);
+    }
 }
 
 /* 8022CA24-8022CAAC 227364 0088+00 1/1 0/0 0/0 .text
@@ -2447,14 +2741,17 @@ void jmessage_tSequenceProcessor::do_space(u32 param_0) {
 void jmessage_tSequenceProcessor::do_rubyset(void const* param_0, u32 param_1) {
     if (field_0xac == 0) {
         u8 size = param_1 - 1;
+        u8* r30 = (u8*)param_0;
         int i = 0;
+        r30++;
         jmessage_tReference* pRef = (jmessage_tReference*)JMessage::TSequenceProcessor::getReference();
         while (i < size) {
-            int x = (((s8*)param_0)[i + 1]) & 0xff;
-            int x2 = (((u8*)param_0)[i + 2]) & 0xff;
-            int x3 = (x << 8) | x2;
-            i += 2;
-            pRef->addCharactor(changeKataToHira(x3));
+            u8 x[3];
+            x[0] = r30[i++];
+            x[1] = r30[i++];
+            x[2] = 0;
+            int kata = (((s8)x[0] & 0xff) << 8) | ((s8)x[1] & 0xff);
+            pRef->addCharactor(changeKataToHira(kata));
         }
     }
 }
@@ -2470,8 +2767,28 @@ void jmessage_tSequenceProcessor::push_word() {
 
 /* 8022CB10-8022CBE4 227450 00D4+00 2/2 0/0 0/0 .text
  * messageSePlay__27jmessage_tSequenceProcessorFUcUcP4cXyz      */
-void jmessage_tSequenceProcessor::messageSePlay(u8 param_0, u8 param_1, cXyz* param_2) {
-    // NONMATCHING
+void jmessage_tSequenceProcessor::messageSePlay(u8 param_1, u8 param_2, cXyz* param_3) {
+    jmessage_tReference* pRef = (jmessage_tReference*)getReference();
+    dMsgObject_c* pObject = pRef->getObjectPtr();
+    if (param_3 != NULL && pObject->isNoDemoFlag()) {
+        if (dComIfGp_roomControl_getStayNo() != 0) {
+            s8 reverb = dComIfGp_getReverb(dComIfGp_roomControl_getStayNo());
+            OS_REPORT("message se play1===>%d\n", param_2);
+            Z2GetSpeechMgr2()->playOneShotVoice(param_1, param_2, param_3, reverb);
+        } else {
+            OS_REPORT("message se play2===>%d\n", param_2);
+            Z2GetSpeechMgr2()->playOneShotVoice(param_1, param_2, param_3, 0);
+        }
+    } else {
+        if (dComIfGp_roomControl_getStayNo() != 0) {
+            s8 reverb = dComIfGp_getReverb(dComIfGp_roomControl_getStayNo());
+            OS_REPORT("message se play3===>%d\n", param_2);
+            Z2GetSpeechMgr2()->playOneShotVoice(param_1, param_2, NULL, reverb);
+        } else {
+            OS_REPORT("message se play4===>%d\n", param_2);
+            Z2GetSpeechMgr2()->playOneShotVoice(param_1, param_2, NULL, 0);
+        }
+    }
 }
 
 /* 8022CBE4-8022CBE8 227524 0004+00 1/0 0/0 0/0 .text
@@ -2481,13 +2798,53 @@ void jmessage_tSequenceProcessor::do_jump(void const* param_0, char const* param
 /* 8022CBE8-8022CCB0 227528 00C8+00 2/2 0/0 0/0 .text
  * calcStringLength__27jmessage_tSequenceProcessorFv            */
 void jmessage_tSequenceProcessor::calcStringLength() {
-    // NONMATCHING
+    jmessage_tReference* pRef = (jmessage_tReference*)getReference();
+    pRef->onSelectSetCancelFlag();
+    mMeasureProcessor.process_messageEntryText(this, field_0x9c, field_0xa0);
+    pRef->offSelectSetCancelFlag();
 }
 
 /* 8022CCB0-8022CDC8 2275F0 0118+00 0/0 1/1 0/0 .text
  * __ct__28jmessage_tRenderingProcessorFPC19jmessage_tReference */
 jmessage_tRenderingProcessor::jmessage_tRenderingProcessor(jmessage_tReference const* param_0) : JMessage::TRenderingProcessor(param_0) {
-    // NONMATCHING
+    mpOutFont = 0;
+    mCharInfoPtr = 0;
+    mpCharInfoCnt = 0;
+    field_0x44 = 0.0f;
+    field_0x48 = field_0x4c = 0.0f;
+    mTextInitPosX = mTextInitPosY = 0.0f;
+    mTextInitScaleX = mTextInitScaleY = 1.0f;
+    for (int i = 0; i < 3; i++) {
+        mSelTextInitPosX[i] = mSelTextInitPosY[i] = 0.0f;
+    }
+    field_0x11c = 0;
+    field_0x128 = 0.0f;
+    field_0x12c = 0.0f;
+    field_0x130 = 0.0f;
+    field_0x134 = 0.0f;
+    field_0x14c = 0;
+    field_0x140 = 0;
+    field_0x142 = 0;
+    field_0x144 = 0;
+    field_0x146 = 0;
+    field_0x148 = 0;
+    field_0x14a = 0;
+    field_0x13c = 0;
+    field_0x13e = 0;
+    field_0x184[2] = 0;
+    field_0x184[1] = 0;
+    field_0x184[0] = 0;
+    field_0x14d = 0;
+    field_0x14e = 0;
+    mCCColor = 0xffffffff;
+    mGCColor = 0xffffffff;
+    field_0x14f = 0;
+    mColorNo = 0;
+    field_0x151 = 0;
+    field_0x138 = 0.0f;
+    for (int i = 0; i < 40; i++) {
+        field_0x7c[i] = 0.0f;
+    }
 }
 
 /* 8022CDC8-8022CDCC 227708 0004+00 1/0 0/0 0/0 .text do_reset__28jmessage_tRenderingProcessorFv
@@ -2504,121 +2861,541 @@ SECTION_DEAD static char const* const stringBase_80399617 = "";
 /* 8022CDCC-8022CFD8 22770C 020C+00 1/0 0/0 0/0 .text
  * do_begin__28jmessage_tRenderingProcessorFPCvPCc              */
 void jmessage_tRenderingProcessor::do_begin(void const* param_0, char const* param_1) {
-    // NONMATCHING
+    jmessage_tReference* pRef = (jmessage_tReference*)getReference();
+    field_0x128 = 0.0f;
+    field_0x12c = 0.0f;
+    field_0x130 = 0.0f;
+    field_0x134 = 0.0f;
+    field_0x14c = 0;
+    field_0x142 = 0;
+    field_0x144 = 0;
+    field_0x146 = 0;
+    field_0x148 = 0;
+    field_0x14a = 0;
+    field_0x13c = 0;
+    field_0x13e = 0;
+    field_0x138 = 0.0f;
+    field_0x184[2] = 0;
+    field_0x184[1] = 0;
+    field_0x184[0] = 0;
+    if (mCharInfoPtr != 0) {
+        mpCharInfoCnt = (s16*)((u8*)mCharInfoPtr + 0x1068);
+        *mpCharInfoCnt = 0;
+    }
+    field_0x14d = 0;
+    field_0x140 = 0;
+    field_0x44 = 1.0f;
+    field_0x14e = 0;
+    mCCColor = 0xffffffff;
+    mGCColor = 0xffffffff;
+    field_0x14f = pRef->getTopWordCount();
+    field_0x187 = 0;
+    field_0x48 = mTextInitPosX;
+    field_0x4c = mTextInitPosY;
+    field_0x151 = 0;
+    mpOutFont->initialize();
+    for (int i = 0; i < 0x28; i++) {
+        field_0x7c[i] = 0.0f;
+    }
+    field_0x11c = 0;
+    strcpy(pRef->getTextPtr(), "");
+    strcpy(pRef->getTextSPtr(), "");
+    strcpy(pRef->getRubyPtr(), "");
+    for (int i = 0; i < 3; i++) {
+        strcpy(pRef->getSelTextPtr(i), "");
+        strcpy(pRef->getSelRubyPtr(i), "");
+    }
+    if (1.0f != pRef->getDistanceScale()) {
+        do_scale(field_0x44);
+    }
+    do_color(pRef->getTopColorType());
+    pRef->resetDrawLightCount();
+    do_widthcenter();
+    do_heightcenter();
+    field_0x13c = pRef->getTopTagScale();
+    if (field_0x13c != 0) {
+        do_scale(field_0x13c / 100.0f);
+    }
 }
 
 /* 8022CFD8-8022D0A0 227918 00C8+00 1/0 0/0 0/0 .text do_end__28jmessage_tRenderingProcessorFv */
 void jmessage_tRenderingProcessor::do_end() {
-    // NONMATCHING
+    jmessage_tReference* pRef = (jmessage_tReference*)getReference();
+    if (dMsgObject_getSelectWordFlag() != 0) {
+        for (int i = 0; i < dMsgObject_getSelectWordFlag(); i++) {
+            char acStack_e0[200];
+            strcpy(acStack_e0, dMsgObject_getSelectWord(i));
+            if (pRef->getSelectNum() == 2) {
+                strcat(pRef->getSelTextPtr(i + 1), acStack_e0);
+            } else {
+                if (pRef->getSelectNum() == 3) {
+                    strcat(pRef->getSelTextPtr(i), acStack_e0);
+                }
+            }
+        }
+    }
+    u8 batchColorFlag = pRef->getBatchColorFlag();
+    if (batchColorFlag != 0) {
+        pRef->setBatchColorFlag(batchColorFlag - 1);
+    }
 }
-
-/* ############################################################################################## */
-/* 80454A90-80454A94 003090 0004+00 1/1 0/0 0/0 .sdata2          @6374 */
-SECTION_SDATA2 static f32 lit_6374 = 3.0f / 10.0f;
 
 /* 8022D0A0-8022D74C 2279E0 06AC+00 1/0 0/0 0/0 .text
  * do_character__28jmessage_tRenderingProcessorFi               */
-void jmessage_tRenderingProcessor::do_character(int param_0) {
-    // NONMATCHING
+void jmessage_tRenderingProcessor::do_character(int param_1) {
+    jmessage_tReference* pRef = (jmessage_tReference*)getReference();
+    JUTFont* pFont = pRef->getFont();
+    char local_d4[3];
+    local_d4[2] = 0;
+    if ((param_1 & 0xff00) != 0) {
+        local_d4[0] = ((param_1 & 0xff00) >> 8);
+        local_d4[1] = param_1 & 0xff;
+    } else {
+        local_d4[0] = param_1 & 0xff;
+        local_d4[1] = 0;
+    }
+    if (param_1 == 10) {
+        field_0x142++;
+        if (field_0x14e != 0) {
+            field_0x48 = mSelTextInitPosX[field_0x14e - 1];
+        } else {
+            field_0x48 = mTextInitPosX;
+        }
+        field_0x4c = field_0x4c + pRef->getLineSpace();
+        if (field_0x140 != 0 &&
+             pRef->getNowPageType() != 4 &&
+            pRef->getNowPageType() != 5)
+        {
+            if (field_0x44 > 1.0f) {
+                field_0x44 = 1.0f;
+            }
+            field_0x140 = 0;
+        }
+        do_strcat((char*)local_d4, true, true, false);
+        field_0x12c = 0.0f;
+        if (field_0x14e != 0) {
+            do_rubystrcat((char*)local_d4, pRef->getSelRubyPtr(field_0x14e - 1), pRef->getSelRubyCharSpace(), 0.0f);
+        } else {
+            do_rubystrcat((char*)local_d4, pRef->getRubyPtr(), pRef->getRubyCharSpace(), 0.0f);
+            pRef->addDrawLightCount();
+        }
+        do_widthcenter();
+        do_heightcenter();
+    } else {
+        f32 fVar1;
+        if (field_0x187 == 0) {
+            fVar1 = pRef->getFontSizeX() / pFont->getCellWidth();
+            if (1.0f != field_0x44) {
+                s16 iVar9 = 0.5f + field_0x44 * pRef->getFontSizeX();
+                fVar1 = (f32)iVar9 / (f32)pFont->getCellWidth();
+            }
+            field_0x7c[field_0x142] = fVar1 * pFont->getOffset(param_1);
+            field_0x48 += field_0x7c[field_0x142];
+            field_0x187 = 1;
+        }
+        
+        if (field_0x14e != 0) {
+            fVar1 = pRef->getSelFontSize() / pFont->getCellWidth();
+            field_0x48 += (fVar1 * (field_0x44 * pFont->getWidth(param_1)) + pRef->getSelCharSpace());
+        } else {
+            pRef->addDrawLightCount();
+            fVar1 = pRef->getFontSizeX() / pFont->getCellWidth();
+            if (checkCharInfoCharactor(param_1) && mCharInfoPtr != NULL) {
+                f32 cellWidth = pFont->getCellWidth();
+                f32 dVar14 = pFont->getWidth() / cellWidth;
+                f32 dVar13 = fVar1 * (field_0x44 * pFont->getWidth(param_1));
+                f32 dVar17 = dVar14 * (field_0x44 * pRef->getFontSizeY());
+                f32 fVar1 = 1.0f;
+                if (param_1 == 0x8145) {
+                    fVar1 = 0.3f;
+                }
+                f32 fVar5 = mTextInitPosY + mTextInitScaleY * (field_0x4c - mTextInitPosY);
+                f32 fVar6 = mTextInitPosX + mTextInitScaleX * (field_0x48 - mTextInitPosX);
+                getCharInfo(0.5f + (fVar6 + (0.5f * dVar13)),
+                field_0x138 + (fVar5 + 0.5f * dVar17),
+                            field_0x44 * fVar1, field_0x44 * fVar1, 1.0f);
+            }
+            f32 dVar12 = pRef->getCharSpace();
+            fVar1 = pRef->getFontSizeX() / pFont->getCellWidth();
+            if (1.0f != field_0x44) {
+                s16 iVar9 = 0.5f + field_0x44 * pRef->getFontSizeX();
+                fVar1 = (f32)iVar9 / (f32)pFont->getCellWidth();
+            }
+            field_0x48 += dVar12 + (fVar1 * pFont->getWidth(param_1));
+        }
+
+        if (field_0x14c != 0) {
+            --field_0x14c;
+            if (field_0x14c == 0) {
+                if (field_0x14e != 0) {
+                    f32 dVar13 =
+                        (field_0x48 - mSelTextInitPosX[field_0x14e - 1] - pRef->getSelCharSpace());
+                    do_rubystrcat(field_0x152, pRef->getSelRubyPtr(field_0x14e - 1),
+                                  pRef->getSelRubyCharSpace(), dVar13);
+                } else {
+                    f32 dVar13 = (field_0x48 - mTextInitPosX) - pRef->getCharSpace();
+                    do_rubystrcat(field_0x152, pRef->getRubyPtr(), pRef->getRubyCharSpace(),
+                                  dVar13);
+                }
+            }
+        }
+        do_strcat((char*)local_d4, true, true, false);
+    }
 }
-
-/* 803C03F4-803C0448 -00001 0054+00 1/1 0/0 0/0 .data            @6572 */
-SECTION_DATA static void* lit_6572[21] = {
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x9BC),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x7B4),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x7CC),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x7E4),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x7FC),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x814),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x82C),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x844),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x85C),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x874),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x88C),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x8A4),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x8BC),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x8D4),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x8EC),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x92C),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x944),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x95C),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x974),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x98C),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x9A4),
-};
-
-/* 803C0448-803C0548 -00001 0100+00 1/1 0/0 0/0 .data            @6571 */
-SECTION_DATA static void* lit_6571[64] = {
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x158),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x6D0),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x6D0),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x6D0),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x6D0),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x6D0),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x6D0),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x6D0),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x23C),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x250),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x2EC),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x304),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x31C),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x334),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x34C),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x364),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x37C),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x394),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x3AC),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x3C4),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x3DC),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x3F4),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x40C),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x424),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x43C),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x454),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x46C),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x484),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x49C),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x4B4),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x290),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x290),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x2B0),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x2DC),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x158),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x4CC),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x4E4),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x4FC),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x524),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x52C),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x6D0),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x188),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x544),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x1A4),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x55C),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x1C0),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x574),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x5AC),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x5E4),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x62C),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x678),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x2A0),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x2A0),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x168),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x6D0),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x6C0),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x6C0),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x5FC),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x614),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x1DC),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x1F8),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x214),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x22C),
-    (void*)(((char*)do_tag__28jmessage_tRenderingProcessorFUlPCvUl) + 0x22C),
-};
 
 /* 8022D74C-8022E12C 22808C 09E0+00 3/0 0/0 0/0 .text
  * do_tag__28jmessage_tRenderingProcessorFUlPCvUl               */
-bool jmessage_tRenderingProcessor::do_tag(u32 param_0, void const* param_1, u32 param_2) {
-    // NONMATCHING
+bool jmessage_tRenderingProcessor::do_tag(u32 param_1, void const* param_2, u32 param_3) {
+    jmessage_tReference* pRef = (jmessage_tReference*)getReference();
+    switch(param_1 & 0xff0000) {
+    case 0x10000:
+    case 0x20000:
+        return 1;
+    case 0xff0000:
+        switch (param_1) {
+        case 0xff0000:
+            do_color(*(u8*)param_2 & 0xff);
+            return 1;
+        case 0xff0001:
+            field_0x13c = *(u16*)param_2 & 0xffff;
+            do_scale(field_0x13c / 100.0f);
+            return 1;
+        case 0xff0002:
+        case 0xffff02:
+            do_rubyset(param_2, param_3);
+            return 1;
+        }
+    case 0:
+        switch (param_1) {
+        case 0:
+        case 0x22:
+            push_word();
+            return 1;
+        case 0x35:
+            stack_pushCurrent(dMsgObject_getWord());
+            field_0x151 = dMsgObject_getSelectWordFlag();
+            return 1;
+        case 0x29:
+            stack_pushCurrent(pRef->getObjectPtr()->getSmellName());
+            return 1;
+        case 0x2b:
+            stack_pushCurrent(pRef->getObjectPtr()->getPortalName());
+            return 1;
+        case 0x2d:
+            stack_pushCurrent(pRef->getObjectPtr()->getBombName());
+            return 1;
+        case 0x3b:
+            stack_pushCurrent(pRef->getObjectPtr()->getInsectName());
+            return 1;
+        case 0x3c:
+            stack_pushCurrent(pRef->getObjectPtr()->getLetterName());
+            return 1;
+        case 0x3d:
+            do_linedown(*(u16*)param_2);
+            return 1;
+        case 0x3e:
+        case 0x3f:
+                push_word();
+                return 1;
+        case 8:
+            if (field_0x14e == 0) {
+                field_0x14e = 1;
+            }
+        case 9:
+            field_0x14e++;
+            field_0x11c = 0;
+            field_0x48 = mSelTextInitPosX[field_0x14e - 1];
+            do_selwidthcenter(field_0x14e - 1);
+            return 1;
+        case 0x1e:
+        case 0x1f:
+            do_arrow2();
+            return 1;
+        case 0x33:
+        case 0x34:
+            do_arrow2();
+            return 1;
+        case 0x20:
+            do_character(10);
+            stack_pushCurrent(pRef->getSelMsgPtr());
+            return 1;
+        case 0x21:
+            do_name1();
+            return 1;
+        case 10:
+            do_outfont(0, 0);
+            return 1;
+        case 0xb:
+            do_outfont(1, 0);
+            return 1;
+        case 0xc:
+            do_outfont(2, 0);
+            return 1;
+        case 0xd:
+            do_outfont(3, 0);
+            return 1;
+        case 0xe:
+            do_outfont(4, 0);
+            return 1;
+        case 0xf:
+            do_outfont(5, 0);
+            return 1;
+        case 0x10:
+            do_outfont(6, 0);
+            return 1;
+        case 0x11:
+            do_outfont(7, 0);
+            return 1;
+        case 0x12:
+            do_outfont(8, 0);
+            return 1;
+        case 0x13:
+            do_outfont(9, 0);
+            return 1;
+        case 0x14:
+            do_outfont(10, 0);
+            return 1;
+        case 0x15:
+            do_outfont(11, 0);
+            return 1;
+        case 0x16:
+            do_outfont(12, 0);
+            return 1;
+        case 0x17:
+            do_outfont(13, 0);
+            return 1;
+        case 0x18:
+            do_outfont(14, 0);
+            return 1;
+        case 0x19:
+            do_outfont(15, 0);
+            return 1;
+        case 0x1a:
+            do_outfont(16, 0);
+            return 1;
+        case 0x1b:
+            do_outfont(17, 0);
+            return 1;
+        case 0x1c:
+            do_outfont(18, 0);
+            return 1;
+        case 0x1d:
+            do_outfont(19, 0);
+            return 1;
+        case 0x23:
+            do_outfont(20, 0);
+            return 1;
+        case 0x24:
+            do_outfont(21, 0);
+            return 1;
+        case 0x25: {
+            do_outfont(30, 0);
+            dMsgObject_c* pMsgObject = pRef->mpObjectPtr;
+            do_numset(pMsgObject->getInputValue());
+            return 1;
+        }
+        case 0x26:
+            return 1;
+        case 0x27:
+            do_outfont(23, 0);
+            return 1;
+        case 0x2a:
+            do_outfont(24, 0);
+            return 1;
+        case 0x2c:
+            do_outfont(25, 0);
+            return 1;
+        case 0x2e: {
+            dMsgObject_c* pMsgObject = pRef->getObjectPtr();
+            if (pMsgObject->getItemEquipButton() == 0) {
+                do_outfont(5, 0);
+            } else {
+                do_outfont(6, 0);
+            }
+            return 1;
+        }
+        case 0x2f:
+            if (pRef->getObjectPtr()->getItemEquipButton() == 0) {
+                do_outfont(6, 0);
+            } else {
+                do_outfont(5, 0);
+            }
+            return 1;
+        case 0x30:
+            do_outfont(41, 0);
+            return 1;
+        case 0x39:
+            do_outfont(27, 0);
+            return 1;
+        case 0x3a:
+            do_outfont(28, 0);
+            return 1;
+        case 0x31: {
+            char acStack_50[40];
+            u8 bombNum = pRef->getObjectPtr()->getSelectBombNum();
+            dMsgUnit_setTag(7, bombNum, acStack_50);
+            strcpy(pRef->getWord(field_0x14f), acStack_50);
+            push_word();
+            return 1;
+        }
+        case 0x32: {
+            char acStack_78[40];
+            s16 bombPrice = pRef->getObjectPtr()->getSelectBombPrice();
+            dMsgUnit_setTag(1, bombPrice, acStack_78);
+            strcpy(pRef->getWord(field_0x14f), acStack_78);
+            push_word();
+            return 1;
+        }
+        case 0x37:
+        case 0x38:
+                push_word();
+                return 1;
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 0x28:
+        case 0x36:
+            return 1;
+        }
+    case 0x40000:
+        switch (param_1 & 0xff00ffff) {
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+        case 10:
+        case 11:
+        case 12:
+        case 13:
+            push_word();
+            return 1;
+        }
+    case 0x50000:
+        switch (param_1 & 0xff00ffff) {
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+        case 10:
+        case 11:
+        case 12:
+        case 13:
+        case 14:
+            push_word();
+            return 1;
+        }
+    case 0x60000:
+        switch (param_1 & 0xff00ffff) {
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+            push_word();
+            return 1;
+        case 10:
+            do_outfont('*', 0);
+            return 1;
+        case 11:
+            do_outfont('+', 0);
+            return 1;
+        }
+    case 0x30000:
+        switch (param_1 & 0xff00ffff) {
+        case 1:
+            do_outfont(0, 0);
+            return 1;
+        case 2:
+            do_outfont('3', 0);
+            return 1;
+        case 3:
+            do_outfont('4', 0);
+            return 1;
+        case 4:
+            do_outfont('5', 0);
+            return 1;
+        case 5:
+            do_outfont('6', 0);
+            return 1;
+        case 6:
+            do_outfont('?', 0);
+            return 1;
+        case 7:
+            do_outfont('@', 0);
+            return 1;
+        case 8:
+            do_outfont('2', 0);
+            return 1;
+        case 9:
+            do_outfont('1', 0);
+            return 1;
+        case 10:
+            do_outfont('A', 0);
+            return 1;
+        case 0xb:
+            do_outfont('B', 0);
+            return 1;
+        case 0xc:
+            do_outfont('C', 0);
+            return 1;
+        case 0xd:
+            do_outfont('D', 0);
+            return 1;
+        case 0xe:
+            if (dComIfGs_getOptPointer() == 0) {
+                do_outfont(9, 0);
+            } else {
+                do_outfont(',', 0);
+            }
+            return 1;
+        case 0xf:
+            do_outfont('E', 0);
+            return 1;
+        case 0x10:
+            do_outfont('-', 0);
+            return 1;
+        case 0x11:
+            do_outfont(',', 0);
+            return 1;
+        case 0x12:
+            do_outfont('>', 0);
+            return 1;
+        case 0x13:
+            do_outfont(2, 0);
+            return 1;
+        case 0x14:
+            do_outfont(7, 0);
+            return 1;
+        case 0:
+            return 1;
+        default:
+            break;
+        }
+        break;
+    }
+
+    return 0;
 }
 
 /* 8022E12C-8022E17C 228A6C 0050+00 0/0 2/2 0/0 .text
@@ -2633,53 +3410,156 @@ void jmessage_tRenderingProcessor::resetRendering() {
     *mpCharInfoCnt = 0;
 }
 
-/* ############################################################################################## */
-/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80399618 = ""
-                                                            "\x1B"
-                                                            "CR[%d]";
-#pragma pop
-
 /* 8022E17C-8022E260 228ABC 00E4+00 2/2 0/0 0/0 .text
  * do_widthcenter__28jmessage_tRenderingProcessorFv             */
 void jmessage_tRenderingProcessor::do_widthcenter() {
-    // NONMATCHING
+    field_0x187 = 0;
+    jmessage_tReference* pRef = (jmessage_tReference*)getReference();
+    s16 sVar3 = field_0x142 + pRef->getStartLineCount();
+    if (pRef->getLineArrange(sVar3) == 1 || pRef->getLineArrange(sVar3) == 2) {
+        return;
+    }
+    
+    f32 fVar6 = 0.5f +
+    (pRef->getTBoxWidth() - getLineLength(field_0x142)) / 2;
+    if (fVar6 >= 1.0f) {
+        char acStack_48[16];
+        snprintf(acStack_48, 0xf, "\x1B" "CR[%d]", (int)fVar6);
+        do_strcat(acStack_48, false, true, true);
+        field_0x48 += + fVar6;
+    }
 }
 
 /* 8022E260-8022E318 228BA0 00B8+00 1/1 0/0 0/0 .text
  * do_selwidthcenter__28jmessage_tRenderingProcessorFi          */
-void jmessage_tRenderingProcessor::do_selwidthcenter(int param_0) {
-    // NONMATCHING
+void jmessage_tRenderingProcessor::do_selwidthcenter(int param_1) {
+    jmessage_tReference* pRef = (jmessage_tReference*)getReference();
+    f32 fVar5 = 0.5f + (pRef->getSelTBoxWidth() - pRef->getSelLength(param_1)) / 2;
+    if (fVar5 >= 1.0f) {
+        char acStack_44[16];
+        snprintf(acStack_44, 0xf, "\x1B" "CR[%d]", (int)fVar5);
+        do_strcat(acStack_44, false, true, false);
+        field_0x48 += + fVar5;
+    }
 }
-
-/* ############################################################################################## */
-/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80399620 = ""
-                                                            "\x1B"
-                                                            "CD[%d]";
-#pragma pop
-
-/* 803C0548-803C056C -00001 0024+00 1/1 0/0 0/0 .data            @6703 */
-SECTION_DATA static void* lit_6703[9] = {
-    (void*)(((char*)do_heightcenter__28jmessage_tRenderingProcessorFv) + 0xC8),
-    (void*)(((char*)do_heightcenter__28jmessage_tRenderingProcessorFv) + 0x134),
-    (void*)(((char*)do_heightcenter__28jmessage_tRenderingProcessorFv) + 0x19C),
-    (void*)(((char*)do_heightcenter__28jmessage_tRenderingProcessorFv) + 0x1D8),
-    (void*)(((char*)do_heightcenter__28jmessage_tRenderingProcessorFv) + 0x1F4),
-    (void*)(((char*)do_heightcenter__28jmessage_tRenderingProcessorFv) + 0x2D0),
-    (void*)(((char*)do_heightcenter__28jmessage_tRenderingProcessorFv) + 0x350),
-    (void*)(((char*)do_heightcenter__28jmessage_tRenderingProcessorFv) + 0x378),
-    (void*)(((char*)do_heightcenter__28jmessage_tRenderingProcessorFv) + 0x3A8),
-};
 
 /* 8022E318-8022E7CC 228C58 04B4+00 3/2 0/0 0/0 .text
  * do_heightcenter__28jmessage_tRenderingProcessorFv            */
 void jmessage_tRenderingProcessor::do_heightcenter() {
-    // NONMATCHING
+    jmessage_tReference* pRef = (jmessage_tReference*)getReference();
+    field_0x138 = 0.0f;
+    f32 dVar13;
+    if (field_0x142 == 0) {
+        f32 lineSpace = pRef->getLineSpace();
+        f32 fontSizeY = pRef->getFontSizeY();
+        f32 tboxHeight = pRef->getTBoxHeight();
+        f32 dVar15 = pRef->getLineMax() - 1;
+        dVar15 = lineSpace * dVar15;
+        dVar15 = fontSizeY + dVar15;
+        dVar13 = (tboxHeight - dVar15) / 2;
+    } else {
+        dVar13 = 0.0f;
+    }
+    switch (pRef->getNowPageType()) {
+    case 0:
+        if (field_0x142 == 0) {
+            int nowPageLine = pRef->getNowPageLine();
+            if (pRef->getLineMax() != (s16)nowPageLine) {
+                f32 lineSpace = pRef->getLineSpace();
+                f32 dVar14 = 0.5f * (pRef->getLineMax() - nowPageLine);
+                dVar13 += lineSpace * dVar14;
+            }
+        }
+        break;
+    case 1: {
+        if (field_0x142 == 0) {
+            int nowPageLine = pRef->getNowPageLine();
+            if (nowPageLine == 1) {
+                f32 lineSpace = pRef->getLineSpace();
+                f32 dVar14 = 0.5f * (pRef->getLineMax() - nowPageLine);
+                field_0x138 = (lineSpace * dVar14);
+                dVar13 += field_0x138;
+            }
+        }
+        break;
+    }
+    case 2:
+        if (field_0x142 == 0) {
+            field_0x138 = pRef->getLineSpace();
+            dVar13 += field_0x138;
+        } else {
+            field_0x138 = 0.5f * pRef->getLineSpace();
+            dVar13 += field_0x138;
+        }
+        break;
+    case 3:
+        pRef->getNowPageLine();
+        field_0x138 = 0.5f * pRef->getLineSpace();
+        dVar13 += field_0x138;
+        break;
+    case 4: {
+        if (field_0x142 == 0) {
+            int nowPageLine = pRef->getNowPageLine();
+            f32 lineSpace = pRef->getLineSpace();
+            f32 dVar14 = 0.5f * (pRef->getLineMax() - nowPageLine);
+            field_0x138 = lineSpace * dVar14;
+            dVar13 += field_0x138;
+        }
+
+        if (field_0x142 == 1) {
+            field_0x138 = 0.5f * pRef->getLineSpace();
+            dVar13 += field_0x138;
+        }
+
+        f32 dVar14 = (pRef->getLineScale(field_0x142) / 100.0f) * pRef->getFontSizeY();
+        f32 dVar15 = ((pRef->getLineSpace() - dVar14) / 2);
+        field_0x138 += dVar15;
+        dVar13 += dVar15;
+        break;
+    }
+    case 5: {
+        if (field_0x142 >= 1) {
+            field_0x138 = 0.5f * pRef->getLineSpace();
+            dVar13 += field_0x138;
+        }
+        f32 dVar14 = (pRef->getLineScale(field_0x142) / 100.0f) * pRef->getFontSizeY();
+        f32 dVar15 = (pRef->getLineSpace() - dVar14) / 2;
+        field_0x138 += dVar15;
+        dVar13 += dVar15;
+        break;
+    }
+    case 6:
+        if (field_0x142 <= 1) {
+            field_0x138 = 0.5f * pRef->getLineSpace();
+            dVar13 += field_0x138;
+        }
+        break;
+    case 7:
+        if (field_0x142 == 1 || field_0x142 == 2) {
+            field_0x138 = 0.5f * pRef->getLineSpace();
+            dVar13 += field_0x138;
+        }
+        break;
+    case 8:
+        if (field_0x142 == 2) {
+            field_0x138 = 0.5f * pRef->getLineSpace();
+            dVar13 += field_0x138;
+        }
+    }
+    if (field_0x142 == 0) {
+        field_0x138 = 0.0f;
+    }
+    if (0.0f != dVar13) {
+        field_0x4c += dVar13;
+        char acStack_80[16];
+        snprintf(acStack_80, 0xf, "\x1B" "CD[%d]", (int)dVar13);
+        do_strcat(acStack_80, false, true, true);
+        if (field_0x14e != 0) {
+            do_rubystrcat(acStack_80, pRef->getSelRubyPtr(field_0x14e - 1), pRef->getSelRubyCharSpace(), 0.0f);
+        } else {
+            do_rubystrcat(acStack_80, pRef->getRubyPtr(), pRef->getRubyCharSpace(), 0.0f);
+        }
+    }
 }
 
 /* 8022E7CC-8022E860 22910C 0094+00 2/2 0/0 0/0 .text do_color__28jmessage_tRenderingProcessorFUc
@@ -2701,21 +3581,32 @@ void jmessage_tRenderingProcessor::do_color(u8 i_colorNo) {
     do_strcat(buffer, false, false, false);
 }
 
-/* ############################################################################################## */
-/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039963B = ""
-                                                            "\x1B"
-                                                            "FX[%d]"
-                                                            "\x1B"
-                                                            "FY[%d]";
-#pragma pop
-
 /* 8022E860-8022E960 2291A0 0100+00 2/2 0/0 0/0 .text do_scale__28jmessage_tRenderingProcessorFf
  */
-void jmessage_tRenderingProcessor::do_scale(f32 param_0) {
-    // NONMATCHING
+void jmessage_tRenderingProcessor::do_scale(f32 param_1) {
+    jmessage_tReference* pRef = (jmessage_tReference*)getReference();
+    f32 dVar10 = (param_1 * pRef->getDistanceScale());
+    int iVar1 = 0.5f + (dVar10 * pRef->getFontSizeX());
+    int iVar2 = 0.5f + (dVar10 * pRef->getFontSizeY());
+    int uVar6 = pRef->getNowPageType() - 4 == 0;
+    int sVar7 = iVar2;
+    if (field_0x44 != dVar10) {
+        int iVar2 =
+            0.5f + (field_0x44 * pRef->getFontSizeY());
+        s16 sVar5 = ((s16)sVar7 - (s16)iVar2) / 2;
+        field_0x44 = dVar10;
+        field_0x140 += sVar5;
+        do_transY(sVar5, true);
+        field_0x13e = sVar5;
+    }
+    char acStack_70[32];
+    sprintf(acStack_70,
+            "\x1B"
+            "FX[%d]"
+            "\x1B"
+            "FY[%d]",
+            (s16)iVar1, (s16)sVar7);
+    do_strcat(acStack_70, false, true, false);
 }
 
 /* 8022E960-8022E9C0 2292A0 0060+00 1/1 0/0 0/0 .text
@@ -2727,35 +3618,82 @@ void jmessage_tRenderingProcessor::do_linedown(s16 param_0) {
     do_strcat(buffer, false, true, false);
 }
 
-/* ############################################################################################## */
-/* 80399610-80399610 025C70 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8039964A = ""
-                                                            "\x1B"
-                                                            "CU[%d]";
-#pragma pop
-
 /* 8022E9C0-8022EAE4 229300 0124+00 1/1 0/0 0/0 .text do_transY__28jmessage_tRenderingProcessorFsb
  */
-void jmessage_tRenderingProcessor::do_transY(s16 param_0, bool param_1) {
-    // NONMATCHING
+void jmessage_tRenderingProcessor::do_transY(s16 param_1, bool param_2) {
+    if (param_1 != 0) {
+        char acStack_38[16];
+        char acStack_48[16];
+        if (param_1 < 0) {
+            sprintf(acStack_38, "\x1B" "CU[%d]", -param_1);
+            sprintf(acStack_48, "\x1B" "CD[%d]", -param_1);
+        } else {
+            sprintf(acStack_38, "\x1B" "CD[%d]", param_1);
+            sprintf(acStack_48, "\x1B" "CU[%d]", param_1);
+        }
+        field_0x4c -= param_1;
+        do_strcat(acStack_38, false, true, true);
+        jmessage_tReference* pRef = (jmessage_tReference*)getReference();
+        do_rubystrcat(acStack_48, pRef->getRubyPtr(), pRef->getRubyCharSpace(), 0.0f);
+    }
 }
-
-/* ############################################################################################## */
-/* 80454A94-80454A98 003094 0004+00 1/1 0/0 0/0 .sdata2          @6781 */
-SECTION_SDATA2 static f32 lit_6781 = 24.0f;
 
 /* 8022EAE4-8022ED10 229424 022C+00 2/2 0/0 0/0 .text
  * do_outfont__28jmessage_tRenderingProcessorFUcUl              */
-void jmessage_tRenderingProcessor::do_outfont(u8 param_0, u32 param_1) {
-    // NONMATCHING
+void jmessage_tRenderingProcessor::do_outfont(u8 param_1, u32 param_2) {
+    jmessage_tReference* pRef = (jmessage_tReference*)getReference();
+    JUTFont* font = pRef->getFont();
+    s32 cellWidth = font->getCellWidth();
+    s32 width = font->getWidth();
+    int r28 = 1;
+    f32 dVar14 = (24.0f * field_0x44 * mTextInitScaleX);
+    f32 dVar13 = (24.0f * field_0x44 * mTextInitScaleY);
+    f32 dVar12 = (mTextInitPosX + mTextInitScaleX * (field_0x48 - mTextInitPosX));
+    f32 dVar11 = (mTextInitPosY + mTextInitScaleY * (field_0x4c - mTextInitPosY));
+    u32 color;
+    if (param_2 == 0) {
+        color = mCCColor;
+    } else {
+        color = param_2;
+    }
+    if (param_1 == 30) {
+        mpOutFont->setRupeeColor(pRef->getOutFontRupeeColor());
+    }
+    mpOutFont->drawFont(NULL, param_1, dVar12 - field_0x7c[field_0x142], dVar11, dVar14, dVar13,
+        color, 0xff);
+    pRef->addDrawLightCount();
+    if (mCharInfoPtr != NULL) {
+        getCharInfo(0.5f + (dVar12 + (0.5f * dVar14)), field_0x138 + (dVar11 + (0.5f * dVar13)),
+                    field_0x44, field_0x44, 1.0f);
+    }
+    f32 fVar7 = 0.5f + ((field_0x44 * (dVar14 * r28)) + pRef->getCharSpace());
+    field_0x48 += (int)fVar7;
+    char acStack_b8[16];
+    snprintf(acStack_b8, sizeof(acStack_b8) - 1, "\x1B" "CR[%d]", (int)fVar7);
+    do_strcat(acStack_b8, false, true, false);
 }
 
 /* 8022ED10-8022EECC 229650 01BC+00 1/1 0/0 0/0 .text do_arrow2__28jmessage_tRenderingProcessorFv
  */
 void jmessage_tRenderingProcessor::do_arrow2() {
-    // NONMATCHING
+    jmessage_tReference* pRef = (jmessage_tReference*)getReference();
+    JUTFont* font = pRef->getFont();
+    f32 cellWidth = font->getCellWidth();
+    f32 width = font->getWidth();
+    f32 dVar11 = width / cellWidth;
+    if (field_0x14d == pRef->getSelectPos()) {
+        mpOutFont->drawFont(NULL, 0x1d,
+                            (mTextInitPosX + mTextInitScaleX * (field_0x48 - mTextInitPosX)) -
+                                field_0x7c[field_0x142],
+                            field_0x4c, (dVar11 * (field_0x44 * pRef->getFontSizeX())),
+                            dVar11 * (field_0x44 * pRef->getFontSizeY()), mCCColor, 0xff);
+    }
+    f32 dVar13 = 0.5f + ((field_0x44 * pRef->getFontSizeX()) + pRef->getCharSpace());
+    field_0x48 += (int)dVar13;
+    char acStack_58[16];
+    snprintf(acStack_58, sizeof(acStack_58) - 1, "\x1B" "CR[%d]", (int)dVar13);
+    do_strcat(acStack_58, false, true, false);
+    field_0x14d++;
 }
 
 /* 8022EECC-8022EF00 22980C 0034+00 1/1 0/0 0/0 .text
@@ -2769,9 +3707,75 @@ f32 jmessage_tRenderingProcessor::getLineLength(int lineNo) {
 
 /* 8022EF00-8022F148 229840 0248+00 10/10 0/0 0/0 .text
  * do_strcat__28jmessage_tRenderingProcessorFPcbbb              */
-void jmessage_tRenderingProcessor::do_strcat(char* param_0, bool param_1, bool param_2,
-                                                 bool param_3) {
-    // NONMATCHING
+void jmessage_tRenderingProcessor::do_strcat(char* param_1, bool param_2, bool param_3,
+                                             bool param_4) {
+    jmessage_tReference* pRef = (jmessage_tReference*)getReference();
+    if (pRef->isCharSend() || !param_2) {
+        field_0x11c += strlen(param_1);
+        if (field_0x14e != 0) {
+            if (field_0x11c < 0x32) {
+                strcat(pRef->getSelTextPtr(field_0x14e - 1), param_1);
+            } else {
+                JUT_WARN(5316, "%s", "TextBox Alloc Byte Over!!");
+            }
+        } else if (field_0x11c < 0x200) {
+            if (param_2) {
+                field_0x146++;
+                if (pRef->getBatchColorFlag() != 0) {
+                    pRef->setCharCnt(field_0x146);
+                } else if (field_0x146 > pRef->getCharCnt() ||
+                (field_0x146 == pRef->getCharCnt() && pRef->getCharAlpha() < 255.0f))
+                {
+                    if (field_0x146 > pRef->getCharCnt()) {
+                        pRef->setCharAlpha(0.0f);
+                        pRef->setCharCnt(field_0x146);
+                    }
+                    if (pRef->getCharAlpha() < 255.0f) {
+                        pRef->addCharAlpha();
+                        if (field_0x148 != 0) {
+                            char* pcVar4 = pRef->getTextPtr();
+                            pcVar4[field_0x148] = 0;
+                            strcat(pcVar4, field_0x184);
+                        }
+
+                        if (field_0x14a != 0) {
+                            char* pcVar4 = pRef->getTextSPtr();
+                            pcVar4[field_0x14a] = 0;
+                            strcat(pcVar4, field_0x184);
+                        }
+
+                        int dVar8 = pRef->getCharAlpha();
+                        u32 uVar1 = mCCColor;
+                        int dVar9 = pRef->getCharAlpha();
+                        char acStack_58[36];
+                        sprintf(
+                            acStack_58, "\x1b" "CC[%08x]" "\x1b" "GC[%08x]",
+                            (uVar1 & 0xffffff00) | (dVar8 & 0xff),
+                            (mGCColor & 0xffffff00) | (dVar9 & 0xff));
+                        if (field_0x11c + (int)strlen(acStack_58) < 0x200) {
+                            field_0x148 = strlen(pRef->getTextPtr());
+                            field_0x14a = strlen(pRef->getTextSPtr());
+                            strcpy(field_0x184, param_1);
+                            strcat(pRef->getTextPtr(), acStack_58);
+                            strcat(pRef->getTextSPtr(), acStack_58);
+                        } else {
+                            JUT_WARN(5362, "%s", "TextBox Alloc Byte Over!!");
+                        }
+                    }
+                }
+            } else if (param_4) {
+                field_0x148 = 0;
+                field_0x14a = 0;
+            }
+            
+            strcat(pRef->getTextPtr(), param_1);
+            if (param_3) {
+                strcat(pRef->getTextSPtr(), param_1);
+            }
+        } else {
+            JUT_WARN(5380, "%s", "TextBox Alloc Byte Over!!");
+        }
+    }
 }
 
 /* 8022F148-8022F384 229A88 023C+00 1/1 0/0 0/0 .text
@@ -2780,20 +3784,21 @@ void jmessage_tRenderingProcessor::do_strcat(char* param_0, bool param_1, bool p
 void jmessage_tRenderingProcessor::do_rubyset(void const* param_0, u32 param_1) {
     jmessage_tReference* pRef = (jmessage_tReference*) getReference();
     JUTFont* pFont = pRef->getFont();
-    u8 uVar3 = param_1 - 1;
-    JUT_ASSERT(5405, uVar3 <= 0x31);
+    u8 mRubyCnt = param_1 - 1;
+    u8* r28 = (u8*)param_0;
     int iVar7 = 0;
-    field_0x14c = *(u8*)param_0;
+    JUT_ASSERT(5405, mRubyCnt < (50));
+    field_0x14c = *(u8*)param_0 & 0xff;
+    r28++;
     field_0x152[0] = 0;
     field_0x128 = 0.0f;
-    for (; iVar7 < uVar3; ) {
-        char buffer[3];
-        buffer[0] = (((char*)param_0)[iVar7 + 1]);
-        buffer[1] = (((char*)param_0)[iVar7 + 2]);
+    for (; iVar7 < mRubyCnt; ) {
+        u8 buffer[3];
+        buffer[0] = r28[iVar7++];
+        buffer[1] = r28[iVar7++];
         buffer[2] = 0;
-        iVar7 += 2;
-        strcat(field_0x152, buffer);
-        int uVar6 = ((int)buffer[0] & 0xffU) << 8 | (int)buffer[1] & 0xffU;
+        strcat(field_0x152, (const char*)buffer);
+        int uVar6 = ((char)buffer[0] & 0xffU) << 8 | (char)buffer[1] & 0xffU;
         if (field_0x14e != 0) {
             field_0x128 +=
                 (pRef->getSelRubyCharSpace() +
@@ -2923,12 +3928,6 @@ jmessage_string_tReference::jmessage_string_tReference() {
     resetCharactor();
 }
 
-/* 8022F94C-8022F9AC 22A28C 0060+00 1/0 0/0 0/0 .text __dt__26jmessage_string_tReferenceFv */
-// jmessage_string_tReference::~jmessage_string_tReference() {
-extern "C" void __dt__26jmessage_string_tReferenceFv() {
-    // NONMATCHING
-}
-
 /* 8022F9AC-8022FA2C 22A2EC 0080+00 0/0 3/3 0/0 .text
  * init__26jmessage_string_tReferenceFP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc */
 void jmessage_string_tReference::init(J2DTextBox* panePtr, J2DTextBox* runyPanePtr,
@@ -3054,14 +4053,6 @@ void jmessage_string_tMeasureProcessor::do_end() {
     mpReference->addLineCount();
 }
 
-/* ############################################################################################## */
-/* 80454A98-80454AA0 003098 0004+04 3/3 0/0 0/0 .sdata2          @7190 */
-SECTION_SDATA2 static f32 lit_7190[1 + 1 /* padding */] = {
-    20.0f,
-    /* padding */
-    0.0f,
-};
-
 /* 8022FC28-8022FDF0 22A568 01C8+00 1/0 0/0 0/0 .text
  * do_character__33jmessage_string_tMeasureProcessorFi          */
 void jmessage_string_tMeasureProcessor::do_character(int param_0) {
@@ -3092,152 +4083,382 @@ void jmessage_string_tMeasureProcessor::do_character(int param_0) {
     }
 }
 
-/* 803C056C-803C059C -00001 0030+00 1/1 0/0 0/0 .data            @7487 */
-SECTION_DATA static void* lit_7487[12] = {
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x940),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x950),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x960),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x978),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x990),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x9A8),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x9C0),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x9D8),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x9F0),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0xA08),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0xA20),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0xA20),
-};
-
-/* 803C059C-803C05D8 -00001 003C+00 1/1 0/0 0/0 .data            @7486 */
-SECTION_DATA static void* lit_7486[15] = {
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x61C),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x6A0),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x6C4),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x7A4),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x7E0),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x7FC),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x820),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x8CC),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x85C),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x6E8),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x724),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x744),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x764),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x880),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x8A4),
-};
-
-/* 803C05D8-803C0610 -00001 0038+00 1/1 0/0 0/0 .data            @7485 */
-SECTION_DATA static void* lit_7485[14] = {
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x468),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x480),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x498),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x4B0),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x4CC),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x4E8),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x504),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x520),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x53C),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x558),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x574),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x590),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x5AC),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x5C8),
-};
-
-/* 803C0610-803C0710 -00001 0100+00 1/1 0/0 0/0 .data            @7484 */
-SECTION_DATA static void* lit_7484[64] = {
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x104),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0xB70),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0xB70),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0xB70),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0xB70),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0xB70),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0xB70),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0xB70),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0xB70),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0xB70),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0xB70),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0xB70),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0xB70),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0xB70),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x11C),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x2AC),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0xB70),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0xB70),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x148),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x168),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x188),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x2F4),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x344),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0xB70),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0xB70),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x134),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0xB70),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x388),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x400),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x268),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x1A8),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x1C8),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0xB70),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x1E8),
-    (void*)(((char*)do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl) + 0x224),
-};
-
 /* 8022FDF0-8023098C 22A730 0B9C+00 5/0 0/0 0/0 .text
  * do_tag__33jmessage_string_tMeasureProcessorFUlPCvUl          */
-bool jmessage_string_tMeasureProcessor::do_tag(u32 param_0, void const* param_1, u32 param_2) {
-    // NONMATCHING
+bool jmessage_string_tMeasureProcessor::do_tag(u32 param_1, void const* param_2, u32 param_3) {
+    f32 dVar13;
+    J2DTextBox::TFontSize local_130;
+    if (mpReference->getPanePtr() != NULL) {
+        dVar13 = ((J2DTextBox*)mpReference->getPanePtr())->getCharSpace();
+        ((J2DTextBox*)mpReference->getPanePtr())->getFontSize(local_130);
+    } else {
+        dVar13 = 0.0f;
+        local_130.mSizeX = local_130.mSizeY = 20.0f;
+    }
+    jmessage_tReference* pRef = (jmessage_tReference*)getReference();
+    switch(param_1 & 0xff0000) {
+    case 0xff0000:
+        switch(param_1) {
+        case 0xff0002:
+        case 0xffff02:
+            do_rubyset(param_2, param_3);
+            break;
+        }
+        break;
+    case 0:
+        switch (param_1) {
+        case 0:
+            stack_pushCurrent(dComIfGs_getPlayerName());
+            break;
+        case 0x22:
+            stack_pushCurrent(dComIfGs_getHorseName());
+            break;
+        case 0x35:
+            stack_pushCurrent(dMsgObject_getWord());
+            break;
+        case 0x29:
+            stack_pushCurrent(dMsgObject_getMsgObjectClass()->getSmellName());
+            break;
+        case 0x2b:
+            stack_pushCurrent(dMsgObject_getMsgObjectClass()->getPortalName());
+            break;
+        case 0x2d:
+            stack_pushCurrent(dMsgObject_getMsgObjectClass()->getBombName());
+            break;
+            case 0x3b:
+            stack_pushCurrent(dMsgObject_getMsgObjectClass()->getInsectName());
+            break;
+        case 0x3c:
+            stack_pushCurrent(dMsgObject_getMsgObjectClass()->getLetterName());
+            break;
+        case 0x3e: {
+            char acStack_168[4];
+            sprintf(acStack_168, "%d", dComIfGp_getMessageCountNumber() / 100);
+            stack_pushCurrent(acStack_168);
+            break;
+        }
+        case 0x3f: {
+            char acStack_16c[4];
+            sprintf(acStack_16c, "%d", dComIfGp_getMessageCountNumber() % 100);
+            stack_pushCurrent(acStack_16c);
+            break;
+        }
+        case 10:
+        case 0xb:
+        case 0xc:
+        case 0xd:
+        case 0xe:
+        case 0xf:
+        case 0x10:
+        case 0x11:
+        case 0x12:
+        case 0x13:
+        case 0x14:
+        case 0x15:
+        case 0x16:
+        case 0x17:
+        case 0x18:
+        case 0x19:
+        case 0x1a:
+        case 0x1b:
+        case 0x1c:
+        case 0x1d:
+        case 0x23:
+        case 0x24:
+        case 0x27:
+        case 0x2a:
+        case 0x2c:
+        case 0x2e:
+        case 0x2f:
+        case 0x30:
+        case 0x39:
+        case 0x3a: {
+            mpReference->setCharactor(0xffff);
+            f32 dVar14 = local_130.mSizeX + dVar13;
+            mpReference->addLineLength(mpReference->getLineCountNowPage(), dVar14);
+            mpReference->setOutfontLength(mpReference->getLineCountNowPage(), dVar14);
+            break;
+        }
+        case 0x25:
+            int i = 0;
+            local_130.mSizeX += dVar13;
+            for (; i < 4; i++) {
+                mpReference->addLineLength(mpReference->getLineCountNowPage(), local_130.mSizeX);
+                mpReference->setOutfontLength(mpReference->getLineCountNowPage(), local_130.mSizeX);
+            }
+            break;
+        case 0x31: {
+            char bombNumStr[40];
+            u8 bombNum = dMsgObject_getMsgObjectClass()->getSelectBombNum();
+            dMsgUnit_setTag(7, bombNum, bombNumStr);
+            stack_pushCurrent(bombNumStr);
+            mpReference->clearOutfontLength(mpReference->getLineCountNowPage());
+            break;
+        }
+        case 0x32:
+            char bombPriceStr[40];
+            s16 bombPrice = dMsgObject_getMsgObjectClass()->getSelectBombPrice();
+            dMsgUnit_setTag(1, bombPrice, bombPriceStr);
+            stack_pushCurrent(bombPriceStr);
+            mpReference->clearOutfontLength(mpReference->getLineCountNowPage());
+            break;
+        case 0x37:
+            u8 bombType = fpcNm_ITEM_NORMAL_BOMB;
+            if ((*(u8*)param_2 ) == 1) {
+                bombType = fpcNm_ITEM_WATER_BOMB;
+            } else if ((*(s8*)param_2 & 0xffU) == 2) {
+                bombType = fpcNm_ITEM_POKE_BOMB;
+            }
+            char bombMax[40];
+            dMsgUnit_setTag(7, dComIfGs_getBombMax(bombType), bombMax);
+            stack_pushCurrent(bombMax);
+            mpReference->clearOutfontLength(mpReference->getLineCountNowPage());
+            break;
+        case 0x38:
+            char arrowMax[40];
+            dMsgUnit_setTag(0, dComIfGs_getArrowMax(), arrowMax);
+            stack_pushCurrent(arrowMax);
+            mpReference->clearOutfontLength(mpReference->getLineCountNowPage());
+            break;
+        }
+        break;
+    case 0x40000:
+        switch (param_1 & 0xff00ffff) {
+        case 0:
+            stack_pushCurrent(changeCodeToChar(0x24));
+            break;
+        case 1:
+            stack_pushCurrent(changeCodeToChar(0x5c));
+            break;
+        case 2:
+            stack_pushCurrent(changeCodeToChar(0x40));
+            break;
+        case 3:
+            stack_pushCurrent(changeCodeToChar(0x81f2));
+            break;
+        case 4:
+            stack_pushCurrent(changeCodeToChar(0x81f3));
+            break;
+        case 5:
+            stack_pushCurrent(changeCodeToChar(0x81e3));
+            break;
+        case 6:
+            stack_pushCurrent(changeCodeToChar(0x876c));
+            break;
+        case 7:
+            stack_pushCurrent(changeCodeToChar(0x8766));
+            break;
+        case 8:
+            stack_pushCurrent(changeCodeToChar(0x8765));
+            break;
+        case 9:
+            stack_pushCurrent(changeCodeToChar(0x8767));
+            break;
+        case 10:
+            stack_pushCurrent(changeCodeToChar(0x8768));
+            break;
+        case 0xb:
+            stack_pushCurrent(changeCodeToChar(0x8769));
+            break;
+        case 0xc:
+            stack_pushCurrent(changeCodeToChar(0x876a));
+            break;
+        case 0xd:
+            stack_pushCurrent(changeCodeToChar(0x876b));
+            break;
+        }
+        mpReference->clearOutfontLength(mpReference->getLineCountNowPage());
+        break;
+    case 0x50000: {
+        char acStack_100[40];
+        switch (param_1 & 0xff00ffff) {
+        case 0:
+            if (*(u8*)param_2 == 0) {
+                dMsgUnit_setTag(4, dMeter2Info_getMsgTimeMs(), acStack_100);
+            } else if ((*(s8*)param_2 & 0xffU) == 2) {
+                dMsgUnit_setTag(4, dComIfGs_getRaceGameTime(), acStack_100);
+            } else {
+                dMsgUnit_setTag(4, dMeter2Info_getTimeMs(), acStack_100);
+            }
+            break;
+        case 1:
+            dMsgUnit_setTag(0, g_dComIfG_gameInfo.play.mItemInfo.mMessageCountNum, acStack_100);
+            break;
+        case 2:
+            dMsgUnit_setTag(1, g_dComIfG_gameInfo.play.mItemInfo.mMessageCountNum, acStack_100);
+            break;
+        case 9: {
+            s16 uVar9 = *(int*)param_2;
+            dMsgObject_getMsgObjectClass()->setFundRaisingValue(uVar9);
+            dMsgUnit_setTag(10, uVar9 - dMsgObject_getFundRaising(), acStack_100);
+            break;
+        }
+        case 10:
+            dMsgUnit_setTag(0xb, dMeter2Info_getNewLetterNum(), acStack_100);
+            break;
+        case 0xb:
+            dMsgUnit_setTag(0xc, getPohNum(), acStack_100);
+            break;
+        case 0xc: {
+            int local_15c;
+            if (*(u8*)param_2 == 0) {
+                local_15c = dComIfGp_getMessageCountNumber();
+            } else {
+                local_15c = dComIfGs_getBalloonScore();
+            }
+            dMsgUnit_setTag(0xd, local_15c, acStack_100);
+            break;
+        }
+        case 3: {
+            int insectNum;
+            if (*(u8*)param_2 == 0) {
+                insectNum = dComIfGs_checkGetInsectNum();
+            } else {
+                insectNum = 0x18 - dComIfGs_checkGetInsectNum();
+            }
+            dMsgUnit_setTag(2, insectNum, acStack_100);
+            break;
+        }
+        case 4:
+            dMsgUnit_setTag(3, 0, acStack_100);
+            break;
+        case 5:
+            dMsgUnit_setTag(0x10000, dComIfGp_getNeedLightDropNum(), acStack_100);
+            break;
+        case 6:
+            dMsgUnit_setTag(6, 0x14 - dComIfGs_getEventReg(0xff1f), acStack_100);
+            break;
+        case 8:
+            dMsgUnit_setTag(9, g_dComIfG_gameInfo.play.mItemInfo.mMessageCountNum, acStack_100);
+            break;
+        case 0xd:
+            dMsgUnit_setTag(0xe, g_dComIfG_gameInfo.play.mItemInfo.mMessageCountNum, acStack_100);
+            break;
+        case 0xe:
+            dMsgUnit_setTag(0x10001, g_dComIfG_gameInfo.play.mItemInfo.mMessageCountNum, acStack_100);
+            break;
+        case 7:
+            dMsgUnit_setTag(8, g_meter2_info.mNowCount, acStack_100);
+            break;
+        default:
+            return false;
+        }
+        stack_pushCurrent(acStack_100);
+        mpReference->clearOutfontLength(mpReference->getLineCountNowPage());
+        break;
+    }
+    case 0x60000: {
+        char acStack_128[40];
+        switch (param_1 & 0xff00ffff) {
+        case 0:
+            // @bug acStack_128 is uninitialized
+            stack_pushCurrent(acStack_128);
+            break;
+        case 1:
+            stack_pushCurrent(acStack_128);
+            break;
+        case 2:
+            stack_pushCurrent(changeCodeToChar(0xb2));
+            break;
+        case 3:
+            stack_pushCurrent(changeCodeToChar(0xb3));
+            break;
+        case 4:
+            stack_pushCurrent(changeCodeToChar(0xb1));
+            break;
+        case 5:
+            stack_pushCurrent(changeCodeToChar(0x89));
+            break;
+        case 6:
+            stack_pushCurrent(changeCodeToChar(0xb9));
+            break;
+        case 7:
+            stack_pushCurrent(changeCodeToChar(0xbc));
+            break;
+        case 8:
+            stack_pushCurrent(changeCodeToChar(0xbd));
+            break;
+        case 9:
+            stack_pushCurrent(changeCodeToChar(0xbe));
+            break;
+        case 10:
+        case 0xb:
+            local_130.mSizeX += dVar13;
+            mpReference->addLineLength(mpReference->getLineCountNowPage(), local_130.mSizeX);
+            mpReference->setOutfontLength(mpReference->getLineCountNowPage(), local_130.mSizeX);
+        }
+        mpReference->clearOutfontLength(mpReference->getLineCountNowPage());
+        break;
+    case 0x30000:
+        switch(param_1 & 0xff00ffff) {
+        case 1:
+        case 2:
+        case 6:
+        case 7:
+        case 16:
+        case 17:
+        case 18:
+        case 19:
+        case 20:
+            mpReference->setCharactor(0xffff);
+            local_130.mSizeX += dVar13;
+            mpReference->addLineLength(mpReference->getLineCountNowPage(), local_130.mSizeX);
+            mpReference->setOutfontLength(mpReference->getLineCountNowPage(), local_130.mSizeX);
+            break;
+        case 3:
+        case 4:
+        case 5:
+            mpReference->setCharactor(0xffff);
+            local_130.mSizeX += dVar13;
+            mpReference->addLineLength(mpReference->getLineCountNowPage(), local_130.mSizeX);
+            mpReference->setOutfontLength(mpReference->getLineCountNowPage(), local_130.mSizeX);
+            break;
+        case 8:
+        case 9:
+        case 10:
+        case 11:
+        case 12:
+        case 13:
+        case 14:
+        case 15:
+            mpReference->setCharactor(0xffff);
+            local_130.mSizeX += dVar13;
+            mpReference->addLineLength(mpReference->getLineCountNowPage(), local_130.mSizeX);
+            mpReference->setOutfontLength(mpReference->getLineCountNowPage(), local_130.mSizeX);
+            break;
+        case 0:
+            break;
+        }
+        break;
+    }
+    }
+
+    return true;
 }
 
 /* 8023098C-80230A08 22B2CC 007C+00 1/1 0/0 0/0 .text
  * do_rubyset__33jmessage_string_tMeasureProcessorFPCvUl        */
-void jmessage_string_tMeasureProcessor::do_rubyset(void const* param_0, u32 param_1) {
-    // NONMATCHING
+void jmessage_string_tMeasureProcessor::do_rubyset(void const* param_1, u32 param_2) {
+    u8 len = param_2 - 1;
+    u8* pStr = (u8*)param_1;
+    int i = 0;
+    pStr++;
+    while (i < len) {
+        u8 arr[3];
+        arr[0] = pStr[i++];
+        arr[1] = pStr[i++];
+        arr[2] = 0;
+        int kata = (((char)arr[0] & 0xff) << 8) | ((char)arr[1] & 0xff);
+        mpReference->setCharactor(changeKataToHira(kata));
+    }
 }
 
 /* 80230A08-80230A5C 22B348 0054+00 0/0 1/1 0/0 .text
  * __ct__34jmessage_string_tSequenceProcessorFPC26jmessage_string_tReferenceP24jmessage_string_tControl
  */
-// NONMATCHING
 jmessage_string_tSequenceProcessor::jmessage_string_tSequenceProcessor(
     jmessage_string_tReference const* param_0, jmessage_string_tControl* param_1) :
-    JMessage::TSequenceProcessor(param_0, param_1), jmessage_string_tMeasureProcessor(param_0) {   
-}
-
-/* 80230A5C-80230ABC 22B39C 0060+00 1/0 0/0 0/0 .text __dt__33jmessage_string_tMeasureProcessorFv
- */
-jmessage_string_tMeasureProcessor::~jmessage_string_tMeasureProcessor() {
-    // NONMATCHING
+    JMessage::TSequenceProcessor(param_0, param_1), mMeasureProcessor(param_0) {   
 }
 
 /* 80230ABC-80230AC0 22B3FC 0004+00 1/0 0/0 0/0 .text
@@ -3248,7 +4469,7 @@ void jmessage_string_tSequenceProcessor::do_reset() {}
  * do_begin__34jmessage_string_tSequenceProcessorFPCvPCc        */
 void jmessage_string_tSequenceProcessor::do_begin(void const* param_0, char const* param_1) {
     mpSeqReference = (jmessage_string_tReference*)JMessage::TSequenceProcessor::getReference();
-    process_messageEntryText((JMessage::TSequenceProcessor*)this, param_0, param_1);
+    mMeasureProcessor.process_messageEntryText(this, param_0, param_1);
 }
 
 /* 80230B7C-80230B80 22B4BC 0004+00 1/0 0/0 0/0 .text
@@ -3355,180 +4576,551 @@ void jmessage_string_tRenderingProcessor::do_end() {
 
 /* 80230D48-80231110 22B688 03C8+00 1/0 0/0 0/0 .text
  * do_character__35jmessage_string_tRenderingProcessorFi        */
-void jmessage_string_tRenderingProcessor::do_character(int param_0) {
-    // NONMATCHING
+void jmessage_string_tRenderingProcessor::do_character(int param_1) {
+    JUTFont* pFont = mpReference->getFont();
+    if (JUTFont::isLeadByte_ShiftJIS(param_1)) {
+        if (!isOutfontKanjiCode(param_1)) {
+            u16 kata = change1ByteTo2Bytes(param_1);
+            mpReference->addCharactor(changeKataToHira(kata));
+        }
+    } else {
+        if (param_1 < 0x8800 && !isOutfontKanjiCode(param_1)) {
+            mpReference->addCharactor(changeKataToHira(param_1));
+        }
+    }
+    f32 dVar12;
+    J2DTextBox::TFontSize fontSize;
+    if (mpReference->getPanePtr() != NULL) {
+        dVar12 = ((J2DTextBox*)mpReference->getPanePtr())->getCharSpace();
+        ((J2DTextBox*)mpReference->getPanePtr())->getFontSize(fontSize);
+    } else {
+        dVar12 = 0.0f;
+        fontSize.mSizeX = fontSize.mSizeY = 20.0f;
+    }
+
+    char local_a6[3];
+    local_a6[0] = local_a6[1] = local_a6[2] = 0;
+    if ((param_1 & 0xff00U) != 0) {
+        local_a6[0] = ((int)(param_1 & 0xff00U) >> 8);
+        local_a6[1] = param_1 & 0xff;
+    } else {
+        local_a6[0] = param_1 & 0xff;
+        local_a6[1] = 0;
+    }
+
+    if (param_1 == 10) {
+        do_strcat(local_a6);
+        do_rubystrcat(local_a6);
+        field_0x552++;
+        field_0x48 = 0.0f;
+        field_0x4c = 0.0f;
+        if (mpReference->getPanePtr() != NULL) {
+            field_0x50 += ((J2DTextBox*)mpReference->getPanePtr())->getLineSpace();
+        }
+        do_widthcenter();
+    } else {
+        f32 fVar2;
+        f32 fVar1 = dVar12 + fontSize.mSizeX * (pFont->getWidth(param_1) /  (f32)pFont->getCellWidth());
+        field_0x4c += fVar1;
+        if (field_0x554 != 0) {
+            field_0x40 += fVar1;
+            field_0x554--;
+            if (field_0x554 == 0) {
+                field_0x40 -= dVar12;
+                fVar2 = (field_0x3c + 0.5f * (field_0x40 - field_0x44));
+                f32 fVar3 = fVar2 - field_0x48;
+                char acStack_98[16];
+                if (fVar3 >= 1.0f) {
+                    snprintf(acStack_98, sizeof(acStack_98) - 1, "\x1B" "CR[%d]", (int)fVar3);
+                    do_rubystrcat(acStack_98);
+                } else {
+                    if (fVar3 <= -1.0f) {
+                        snprintf(acStack_98, sizeof(acStack_98) - 1, "\x1B" "CL[%d]", (int)-fVar3);
+                        do_rubystrcat(acStack_98);
+                    } else {
+                        fVar3 = 0.0f;
+                    }
+                }
+
+                if (mpReference->getRubyPanePtr() != NULL) {
+                    field_0x48 += ((J2DTextBox*)mpReference->getRubyPanePtr())->getCharSpace() + ((int)fVar3 + field_0x44);
+                } else {
+                    field_0x48 += (int)fVar3 + field_0x44;
+                }
+                do_rubystrcat(field_0x454);
+            }
+        }
+        do_strcat(local_a6);
+    }
 }
-
-/* 803C0710-803C0764 -00001 0054+00 1/1 0/0 0/0 .data            @7997 */
-SECTION_DATA static void* lit_7997[21] = {
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC44),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xB38),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xB44),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xB50),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xB5C),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xB68),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xB74),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xB80),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xB8C),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xB98),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xBA4),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xBB0),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xBBC),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xBC8),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xBD4),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC00),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC0C),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC18),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC24),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC30),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC3C),
-};
-
-/* 803C0764-803C0794 -00001 0030+00 1/1 0/0 0/0 .data            @7996 */
-SECTION_DATA static void* lit_7996[12] = {
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xA24),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xA30),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xA3C),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xA54),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xA6C),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xA84),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xA9C),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xAB4),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xACC),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xAE4),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xAFC),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xB08),
-};
-
-/* 803C0794-803C07D0 -00001 003C+00 1/1 0/0 0/0 .data            @7995 */
-SECTION_DATA static void* lit_7995[15] = {
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x714),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x798),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x7BC),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x89C),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x8D8),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x8F4),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x918),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x9C4),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x954),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x7E0),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x81C),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x83C),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x85C),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x978),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x99C),
-};
-
-/* 803C07D0-803C0808 -00001 0038+00 1/1 0/0 0/0 .data            @7994 */
-SECTION_DATA static void* lit_7994[14] = {
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x574),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x58C),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x5A4),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x5BC),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x5D8),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x5F4),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x610),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x62C),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x648),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x664),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x680),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x69C),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x6B8),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x6D4),
-};
-
-/* 803C0808-803C0908 -00001 0100+00 1/1 0/0 0/0 .data            @7993 */
-SECTION_DATA static void* lit_7993[64] = {
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x118),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC44),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC44),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC44),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC44),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC44),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC44),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC44),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC44),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC44),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x284),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x290),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x29C),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x2A8),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x2B4),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x2C0),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x2CC),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x2D8),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x2E4),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x2F0),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x2FC),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x308),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x314),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x320),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x32C),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x338),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x344),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x350),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x35C),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x368),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC44),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC44),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC44),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC44),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x12C),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x374),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x380),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x38C),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC44),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x3B0),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC44),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x154),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x3BC),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x174),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x3C8),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x194),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x3D4),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x400),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x42C),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x450),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x48C),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC44),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC44),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x140),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0xC44),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x4BC),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x520),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x438),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x444),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x1B4),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x1D4),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x1F4),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x204),
-    (void*)(((char*)do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl) + 0x240),
-};
 
 /* 80231110-80231D70 22BA50 0C60+00 6/0 0/0 0/0 .text
  * do_tag__35jmessage_string_tRenderingProcessorFUlPCvUl        */
-bool jmessage_string_tRenderingProcessor::do_tag(u32 param_0, void const* param_1,
-                                                     u32 param_2) {
-    // NONMATCHING
+bool jmessage_string_tRenderingProcessor::do_tag(u32 param_1, void const* param_2, u32 param_3) {
+    jmessage_tReference* pRef = (jmessage_tReference*)getReference();
+    switch(param_1 & 0xff0000) {
+    case 0xff0000:
+        switch(param_1) {
+        case 0xff0000:
+            do_color(*(u8*)param_2 & 0xff);
+            break;
+        case 0xff0001:
+            do_scale(*(u16*)param_2 / 100.0f);
+            break;
+        case 0xff0002:
+        case 0xffff02:
+            do_rubyset(param_2, param_3);
+            break;
+        }
+        break;
+    case 0:
+    switch (param_1) {
+        case 0:
+            push_word(dComIfGs_getPlayerName());
+            break;
+        case 0x22:
+            push_word(dComIfGs_getHorseName());
+            break;
+        case 0x35:
+            push_word(dMsgObject_getWord());
+            break;
+        case 0x29:
+            push_word(dMsgObject_getMsgObjectClass()->getSmellName());
+            break;
+        case 0x2b:
+            push_word(dMsgObject_getMsgObjectClass()->getPortalName());
+            break;
+        case 0x2d:
+            push_word(dMsgObject_getMsgObjectClass()->getBombName());
+            break;
+        case 0x3b:
+            push_word(dMsgObject_getMsgObjectClass()->getInsectName());
+            break;
+        case 0x3c:
+            push_word(dMsgObject_getMsgObjectClass()->getLetterName());
+            break;
+        case 0x3d:
+            do_linedown(*(u16*)param_2);
+            break;
+        case 0x3e:
+            char acStack_148[4];
+            sprintf(acStack_148, "%d", dComIfGp_getMessageCountNumber() / 100);
+            push_word(acStack_148);
+            break;
+        case 0x3f:
+            char acStack_14c[4];
+            sprintf(acStack_14c, "%d", dComIfGp_getMessageCountNumber() % 100);
+            push_word(acStack_14c);
+            break;
+        case 10:
+            do_outfont(0);
+            break;
+        case 0xb:
+            do_outfont(1);
+            break;
+        case 0xc:
+            do_outfont(2);
+            break;
+        case 0xd:
+            do_outfont(3);
+            break;
+        case 0xe:
+            do_outfont(4);
+            break;
+        case 0xf:
+            do_outfont(5);
+            break;
+        case 0x10:
+            do_outfont(6);
+            break;
+        case 0x11:
+            do_outfont(7);
+            break;
+        case 0x12:
+            do_outfont(8);
+            break;
+        case 0x13:
+            do_outfont(9);
+            break;
+        case 0x14:
+            do_outfont(10);
+            break;
+        case 0x15:
+            do_outfont(11);
+            break;
+        case 0x16:
+            do_outfont(12);
+            break;
+        case 0x17:
+            do_outfont(13);
+            break;
+        case 0x18:
+            do_outfont(14);
+            break;
+        case 0x19:
+            do_outfont(15);
+            break;
+        case 0x1a:
+            do_outfont(16);
+            break;
+        case 0x1b:
+            do_outfont(17);
+            break;
+        case 0x1c:
+            do_outfont(18);
+            break;
+        case 0x1d:
+            do_outfont(19);
+            break;
+        case 0x23:
+            do_outfont(20);
+            break;
+        case 0x24:
+            do_outfont(21);
+            break;
+        case 0x25:
+            do_outfont(30);
+            do_numset(dMsgObject_getMsgObjectClass()->getInputValue());
+            break;
+        case 0x27:
+            do_outfont(23);
+            break;
+        case 0x2a:
+            do_outfont(24);
+            break;
+        case 0x2c:
+            do_outfont(25);
+            break;
+        case 0x2e:
+            if (dMsgObject_getItemEquipButton() == 0) {
+                do_outfont(5);
+            } else {
+                do_outfont(6);
+            }
+            break;
+        case 0x2f:
+            if (dMsgObject_getItemEquipButton() == 0) {
+                do_outfont(6);
+            } else {
+                do_outfont(5);
+            }
+            break;
+        case 0x30:
+            do_outfont(41);
+            break;
+        case 0x39:
+            do_outfont(27);
+            break;
+        case 0x3a:
+            do_outfont(28);
+            break;
+        case 0x31: {
+            char acStack_48[40];
+            u8 uVar7 = dMsgObject_getMsgObjectClass()->getSelectBombNum();
+            dMsgUnit_setTag(7, uVar7, acStack_48);
+            push_word(acStack_48);
+            break;
+        }
+        case 0x32: {
+            char acStack_70[40];
+            s16 local_140 = dMsgObject_getMsgObjectClass()->getSelectBombPrice();
+            dMsgUnit_setTag(1, local_140, acStack_70);
+            push_word(acStack_70);
+            break;
+        }
+        case 0x37:
+            u8 bombType = fpcNm_ITEM_NORMAL_BOMB;
+            if ((*(u8*)param_2 ) == 1) {
+                bombType = fpcNm_ITEM_WATER_BOMB;
+            } else if ((*(s8*)param_2 & 0xffU) == 2) {
+                bombType = fpcNm_ITEM_POKE_BOMB;
+            }
+            char bombMax[40];
+            dMsgUnit_setTag(7, dComIfGs_getBombMax(bombType), bombMax);
+            push_word(bombMax);
+            break;
+        case 0x38: {
+            char acStack_c0[40];
+            dMsgUnit_setTag(0, dComIfGs_getArrowMax(), acStack_c0);
+            push_word(acStack_c0);
+            break;
+        }
+        }
+        break;
+    case 0x40000:
+    switch (param_1 & 0xff00ffff) {
+        case 0:
+            push_word(changeCodeToChar(0x24));
+            break;
+        case 1:
+            push_word(changeCodeToChar(0x5c));
+            break;
+        case 2:
+            push_word(changeCodeToChar(0x40));
+            break;
+        case 3:
+            push_word(changeCodeToChar(0x81f2));
+            break;
+        case 4:
+            push_word(changeCodeToChar(0x81f3));
+            break;
+        case 5:
+            push_word(changeCodeToChar(0x81e3));
+            break;
+        case 6:
+            push_word(changeCodeToChar(0x876c));
+            break;
+        case 7:
+            push_word(changeCodeToChar(0x8766));
+            break;
+        case 8:
+            push_word(changeCodeToChar(0x8765));
+            break;
+        case 9:
+            push_word(changeCodeToChar(0x8767));
+            break;
+        case 10:
+            push_word(changeCodeToChar(0x8768));
+            break;
+        case 0xb:
+            push_word(changeCodeToChar(0x8769));
+            break;
+        case 0xc:
+            push_word(changeCodeToChar(0x876a));
+            break;
+        case 0xd:
+            push_word(changeCodeToChar(0x876b));
+            break;
+        }
+        break;
+    case 0x50000: {
+        char acStack_e8[40];
+        switch (param_1 & 0xff00ffff) { 
+        case 0:
+            if (*(u8*)param_2 == 0) {
+                dMsgUnit_setTag(4, dMeter2Info_getMsgTimeMs(), acStack_e8);
+            } else if ((*(s8*)param_2 & 0xffU) == 2) {
+                dMsgUnit_setTag(4, dComIfGs_getRaceGameTime(), acStack_e8);
+            } else {
+                dMsgUnit_setTag(4, dMeter2Info_getTimeMs(), acStack_e8);
+            }
+            break;
+        case 1:
+            dMsgUnit_setTag(0, g_dComIfG_gameInfo.play.mItemInfo.mMessageCountNum, acStack_e8);
+            break;
+        case 2:
+            dMsgUnit_setTag(1, g_dComIfG_gameInfo.play.mItemInfo.mMessageCountNum, acStack_e8);
+            break;
+        case 9: {
+            s16 uVar9 = *(int*)param_2;
+            dMsgObject_getMsgObjectClass()->setFundRaisingValue(uVar9);
+            dMsgUnit_setTag(10, uVar9 - dMsgObject_getFundRaising(), acStack_e8);
+            break;
+        }
+        case 10:
+            dMsgUnit_setTag(0xb, dMeter2Info_getNewLetterNum(), acStack_e8);
+            break;
+        case 0xb:
+            dMsgUnit_setTag(0xc, getPohNum(), acStack_e8);
+            break;
+        case 0xc:{
+            int local_15c;
+            if (*(u8*)param_2 == 0) {
+                local_15c = dComIfGp_getMessageCountNumber();
+            } else {
+                local_15c = dComIfGs_getBalloonScore();
+            }
+            dMsgUnit_setTag(0xd, local_15c, acStack_e8);
+            break;
+        }
+        case 3: {
+            int insectNum;
+            if (*(u8*)param_2 == 0) {
+                insectNum = dComIfGs_checkGetInsectNum();
+            } else {
+                insectNum = 0x18 - dComIfGs_checkGetInsectNum();
+            }
+            dMsgUnit_setTag(2, insectNum, acStack_e8);
+            break;
+        }
+        case 4:
+            dMsgUnit_setTag(3, 0, acStack_e8);
+            break;
+        case 5:
+            dMsgUnit_setTag(0x10000, dComIfGp_getNeedLightDropNum(), acStack_e8);
+            break;
+        case 6:
+            dMsgUnit_setTag(6, 0x14 - dComIfGs_getEventReg(0xff1f), acStack_e8);
+            break;
+        case 8:
+            dMsgUnit_setTag(9, g_dComIfG_gameInfo.play.mItemInfo.mMessageCountNum, acStack_e8);
+            break;
+        case 0xd:
+            dMsgUnit_setTag(0xe, g_dComIfG_gameInfo.play.mItemInfo.mMessageCountNum, acStack_e8);
+            break;
+        case 0xe:
+            dMsgUnit_setTag(0x10001, g_dComIfG_gameInfo.play.mItemInfo.mMessageCountNum, acStack_e8);
+            break;
+        case 7:
+            dMsgUnit_setTag(8, g_meter2_info.mNowCount, acStack_e8);
+            break;
+        default:
+            return 0;
+        }
+        push_word(acStack_e8);
+        break;
+    }
+    case 0x60000: {
+        char acStack_110[40];
+        switch (param_1 & 0xff00ffff) {
+        case 0:
+            // @bug acStack_110 is uninitialized
+            push_word(acStack_110);
+            break;
+        case 1:
+            push_word(acStack_110);
+            break;
+        case 2:
+            push_word(changeCodeToChar(0xb2));
+            break;
+        case 3:
+            push_word(changeCodeToChar(0xb3));
+            break;
+        case 4:
+            push_word(changeCodeToChar(0xb1));
+            break;
+        case 5:
+            push_word(changeCodeToChar(0x89));
+            break;
+        case 6:
+            push_word(changeCodeToChar(0xb9));
+            break;
+        case 7:
+            push_word(changeCodeToChar(0xbc));
+            break;
+        case 8:
+            push_word(changeCodeToChar(0xbd));
+            break;
+        case 9:
+            push_word(changeCodeToChar(0xbe));
+            break;
+        case 10:
+            do_outfont(42);
+            break;
+        case 0xb:
+            do_outfont(43);
+        }
+        break;
+    }
+    case 0x30000:
+    switch (param_1 & 0xff00ffff) {
+        case 1:
+            do_outfont(0);
+            break;
+        case 2:
+            do_outfont(51);
+            break;
+        case 3:
+            do_outfont(52);
+            break;
+        case 4:
+            do_outfont(53);
+            break;
+        case 5:
+            do_outfont(54);
+            break;
+        case 6:
+            do_outfont(63);
+            break;
+        case 7:
+            do_outfont(64);
+            break;
+        case 8:
+            do_outfont(50);
+            break;
+        case 9:
+            do_outfont(49);
+            break;
+        case 10:
+            do_outfont(65);
+            break;
+        case 0xb:
+            do_outfont(66);
+            break;
+        case 0xc:
+            do_outfont(67);
+            break;
+        case 0xd:
+            do_outfont(68);
+            break;
+        case 0xe:
+            if (dComIfGs_getOptPointer() == 0) {
+                do_outfont(9);
+            } else {
+                do_outfont(44);
+            }
+            break;
+        case 0xf:
+            do_outfont(69);
+            break;
+        case 0x10:
+            do_outfont(45);
+            break;
+        case 0x11:
+            do_outfont(44);
+            break;
+        case 0x12:
+            do_outfont(62);
+            break;
+        case 0x13:
+            do_outfont(2);
+            break;
+        case 0x14:
+            do_outfont(7);
+            break;
+        }
+        break;
+    }
+ 
+    return 1;
 }
 
 /* 80231D70-80231EF0 22C6B0 0180+00 2/2 0/0 0/0 .text
  * do_widthcenter__35jmessage_string_tRenderingProcessorFv      */
-// NONMATCHING - float load order
 void jmessage_string_tRenderingProcessor::do_widthcenter() {
-     if (getLineCountNowPage() >= 0 && mpReference->getPanePtr() != NULL) {
+    J2DPane* pane;
+    f32 scale;
+    f32 width;
+    f32 lineLength;
+    f32 dVar9;
+    char acStack_68[16];
+    int outFontLen;
+    if (getLineCountNowPage() >= 0 && mpReference->getPanePtr() != NULL) {
         if (mpReference->isFlag(1) == 0) {
-            if (mpReference->getPanePtr()->getHBinding() != HBIND_CENTER)
+            if (mpReference->getPanePtr()->getHBinding() != HBIND_CENTER) {
                 return;
+            }
         }
 
-        f32 scale = mDoGph_gInf_c::getScale();
-        f32 dVar9 =
-            (0.5f + (scale * mpReference->getPanePtr()->getWidth() - mpReference->getLineLength(getLineCountNowPage())) /2);
-        char acStack_68[16];
+        pane = mpReference->getPanePtr();
+        scale = 1.0f;
+        scale = mDoGph_gInf_c::getScale();
+
+        #if VERSION == VERSION_SHIELD_DEBUG 
+        for (; pane != NULL; pane = pane->getParentPane()) {
+            if (pane->getUserInfo() == 'n_43') {
+                scale = 1.0f;
+                break;
+            }
+        }
+        #endif
+
+        width = scale * mpReference->getPanePtr()->getWidth();
+        lineLength = mpReference->getLineLength(getLineCountNowPage());
+        dVar9 =
+            (0.5f + (width - lineLength) / 2);
         if (mpReference->getPanePtr()->getHBinding() == HBIND_CENTER) {
-            int outFontLen = mpReference->getOutfontLength(getLineCountNowPage());
-            snprintf(acStack_68, sizeof(acStack_68) - 1, "\x1B" "CL[%d]", outFontLen);
+            snprintf(acStack_68, sizeof(acStack_68) - 1, "\x1B" "CL[%d]", (int)mpReference->getOutfontLength(getLineCountNowPage()));
             do_strcat(acStack_68);
         }
         if (dVar9 >= 1.0f) {
@@ -3543,26 +5135,30 @@ void jmessage_string_tRenderingProcessor::do_widthcenter() {
 
 /* 80231EF0-80232044 22C830 0154+00 1/1 0/0 0/0 .text
  * do_heightcenter__35jmessage_string_tRenderingProcessorFv     */
-// NONMATCHING - Instruction order
 void jmessage_string_tRenderingProcessor::do_heightcenter() {
+    f32 height;
+    J2DTextBox::TFontSize fontSize;
+    f32 lineSpace;
+    f32 dVar11;
+    f32 dVar9;
+    char buffer[16];
     if (mpReference->getLineCountNowPage() >= 0 && mpReference->getPanePtr() != NULL) {
         if (mpReference->isFlag(2) == 0) {
             if (mpReference->getPanePtr()->getHBinding() != HBIND_CENTER)
                 return;
         }
-        f32 height = mpReference->getPanePtr()->getHeight();
-        J2DTextBox::TFontSize fontSize;
+
+        height = mpReference->getPanePtr()->getHeight();
         mpReference->getPanePtr()->getFontSize(fontSize);
-        f32 dVar10 = mpReference->getPanePtr()->getLineSpace();
-        f32 dVar9 = 0.5f + (height - ((dVar10 * mpReference->getLineCountNowPage()) -
-                                       (dVar10 - fontSize.mSizeY))) / 2;
+        lineSpace = mpReference->getPanePtr()->getLineSpace();
+        dVar11 = ((lineSpace * mpReference->getLineCountNowPage()) - (lineSpace - fontSize.mSizeY));
+        dVar9 = 0.5f + (height - dVar11) / 2;
         if (dVar9 >= 1.0f) {
             field_0x50 += dVar9;
             if (mpReference->getPanePtr()->getHBinding() != HBIND_CENTER) {
-                char acStack_60[16];
-                snprintf(acStack_60, sizeof(acStack_60) - 1, "\x1B" "CD[%d]", (int)dVar9);
-                do_strcat(acStack_60);
-                do_rubystrcat(acStack_60);
+                snprintf(buffer, sizeof(buffer) - 1, "\x1B" "CD[%d]", (int)dVar9);
+                do_strcat(buffer);
+                do_rubystrcat(buffer);
             }
         }
     }
@@ -3581,7 +5177,6 @@ void jmessage_string_tRenderingProcessor::do_strcat(char* param_0) {
 
 /* 802320B0-80232260 22C9F0 01B0+00 1/1 0/0 0/0 .text
  * do_rubyset__35jmessage_string_tRenderingProcessorFPCvUl      */
-// NONMATCHING - array char assignment
 void jmessage_string_tRenderingProcessor::do_rubyset(void const* param_0, u32 param_1) {
     if (getLineCountNowPage() >= 0) {
         if (mpReference->getRubyPanePtr() != NULL) {
@@ -3589,20 +5184,21 @@ void jmessage_string_tRenderingProcessor::do_rubyset(void const* param_0, u32 pa
             f32 charSpace = mpReference->getRubyPanePtr()->getCharSpace();
             J2DTextBox::TFontSize fontSize;
             mpReference->getRubyPanePtr()->getFontSize(fontSize);
-            u8 uVar4 = param_1 - 1;
+            u8 m_rubycount = param_1 - 1;
+            u8* pArr = (u8*)param_0;
             int i = 0;
-            JUT_ASSERT(7565, uVar4 < 0x32);
-            field_0x554 = *(u8*)param_0;
+            JUT_ASSERT(7565, m_rubycount < (50));
+            field_0x554 = *(u8*)param_0 & 0xff;
+            pArr++;
             field_0x454[0] = 0;
             field_0x44 = 0.0f;
-            while (i < (int)uVar4) {
-                char local_64[3];
-                local_64[0] = *(char*)((int)param_0 + i + 1);
-                local_64[1] = *(char*)((int)param_0 + i + 2);
+            while (i < (int)m_rubycount) {
+                u8 local_64[3];
+                local_64[0] = pArr[i++];
+                local_64[1] = pArr[i++];
                 local_64[2] = 0;
-                i += 2;
-                strcat(field_0x454, local_64);
-                int uVar10 = (u16)(local_64[0] << 8) | (local_64[1] & 0xff);
+                strcat(field_0x454, (const char*)local_64);
+                int uVar10 = (((char)local_64[0] & 0xff) << 8) | ((char)local_64[1] & 0xff);
                 field_0x44 += charSpace + fontSize.mSizeX * ((f32)pFont->getWidth(uVar10) / pFont->getCellWidth());
                 mpReference->addCharactor(changeKataToHira(uVar10));
             }
@@ -3626,8 +5222,60 @@ void jmessage_string_tRenderingProcessor::do_rubystrcat(char* param_0) {
 
 /* 802322CC-8023256C 22CC0C 02A0+00 2/2 0/0 0/0 .text
  * do_outfont__35jmessage_string_tRenderingProcessorFUc         */
-void jmessage_string_tRenderingProcessor::do_outfont(u8 param_0) {
-    // NONMATCHING
+void jmessage_string_tRenderingProcessor::do_outfont(u8 param_1) {
+    if (mpReference->getPanePtr() != NULL) {
+        f32 dVar11 = mpReference->getPanePtr()->getCharSpace();
+        f32 dVar13 = 0.0f;
+        int r28 = 1;
+        J2DTextBox::TFontSize local_60;
+        mpReference->getPanePtr()->getFontSize(local_60);
+        if (mpReference->getOutFontPtr() != NULL) {
+            J2DPane* pane = mpReference->getPanePtr();
+            f32 paneBounds0 = pane->getBounds().i.x;
+            f32 paneBounds1 = pane->getBounds().i.y;
+            f32 scales[2];
+            scales[0] = mpReference->getPanePtr()->getScaleX();
+            scales[1] = mpReference->getPanePtr()->getScaleX();
+            for (pane = pane->getParentPane(); pane != NULL; pane = pane->getParentPane()) {
+                paneBounds0 += pane->getBounds().i.x;
+                paneBounds1 += pane->getBounds().i.y;
+            }
+            f32 stack_2c = local_60.mSizeX;
+            f32 stack_28 = local_60.mSizeY;
+            f32 local_8c = 0.0f;
+            f32 local_90 = 0.0f;
+            if (mpReference->isFlag(4)) {
+                f32 dVar14 = mpReference->getPanePtr()->getWidth();
+                f32 dVar12 = mpReference->getLineLength(getLineCountNowPage());
+                local_8c = 0.5f + (dVar14 - dVar12) / 2;
+            }
+            if (mpReference->isFlag(
+                #if VERSION == VERSION_SHIELD_DEBUG
+                8
+                #else
+                8
+                #endif
+            )) {
+                f32 dVar14 = mpReference->getPanePtr()->getHeight();
+                J2DTextBox::TFontSize TStack_68;
+                mpReference->getPanePtr()->getFontSize(TStack_68);
+                f32 dVar12 = mpReference->getPanePtr()->getLineSpace();
+                f32 stack_c = (dVar12 * mpReference->getLineCountNowPage() - (dVar12 - TStack_68.mSizeY));
+                local_90 =
+                    0.5f +
+                    (dVar14 - stack_c) / 2;
+            }
+            mpReference->getOutFontPtr()->drawFont(
+                mpReference->getPanePtr(), param_1, field_0x4c + local_8c, field_0x50 + local_90,
+                local_60.mSizeX, local_60.mSizeY, 0xffffffff, 0xff);
+            dVar13 = (0.5f + (dVar11 + local_60.mSizeX * r28));
+        }
+        field_0x4c += (int) dVar13;
+        char buffer[16];
+        snprintf(buffer, sizeof(buffer) - 1, "\x1B" "CR[%d]", (int)dVar13);
+        do_strcat(buffer);
+        mpReference->addCharactor(0xffff);
+    }
 }
 
 /* 8023256C-80232600 22CEAC 0094+00 1/1 0/0 0/0 .text
@@ -3636,8 +5284,8 @@ void jmessage_string_tRenderingProcessor::do_color(u8 param_0) {
     u32 ccColor;
     u32 gcColor;
     if (param_0 == 0) {
-        ccColor = ((jmessage_string_tReference*)JMessage::TProcessor::getReference())->getCCColor();
-        gcColor = ((jmessage_string_tReference*)JMessage::TProcessor::getReference())->getGCColor();
+        ccColor = ((jmessage_string_tReference*)getReference())->getCCColor();
+        gcColor = ((jmessage_string_tReference*)getReference())->getGCColor();
     } else {
         ccColor = getFontCCColorTable(param_0, 0);
         gcColor = getFontGCColorTable(param_0, 0);
