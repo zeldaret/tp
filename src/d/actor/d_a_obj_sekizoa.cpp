@@ -423,7 +423,7 @@ int daObj_Sekizoa_c::isDelete() {
 /* 80CCF138-80CCF358 000ED8 0220+00 2/1 0/0 0/0 .text            reset__15daObj_Sekizoa_cFv */
 void daObj_Sekizoa_c::reset() {
     csXyz temp_angle;
-    int iVar1 = (u8*)&field_0x117C - (u8*)&mInitFunc;
+    // int iVar1 = (u8*)&field_0x117C - (u8*)&mInitFunc;
 
     if (mpMatAnm[0] != NULL) {
         mpMatAnm[0]->initialize();
@@ -432,7 +432,7 @@ void daObj_Sekizoa_c::reset() {
     for (int i = 0; i < 8; i++) {
         mActorMngrs[i].initialize();
     }
-    memset(&mInitFunc, 0, iVar1);
+    memset(&mInitFunc, 0, 0);
     temp_angle.setall(0.0f);
     temp_angle.y = home.angle.y;
     switch (mType) {
