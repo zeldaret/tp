@@ -22,15 +22,15 @@ u16 e_name[5] = {
 
 //model data per effect type
 u32 bef_bmd[2] = {
-	5, 6,
+	5,
+    6,
 };
 
 //J3DAnmTevRegKey per effect type
 u32 bef_brk[2] = {
-    9, 10,
+    9,
+    10,
 };
-
-
 
 /* 8046DCB8-8046DD38 000078 0080+00 1/0 0/0 0/0 .text daObj_Brakeeff_Draw__FP18obj_brakeeff_class
  */
@@ -50,7 +50,6 @@ void obj_brakeeff_1(obj_brakeeff_class* i_this) {
     cXyz pos (i_this->current.pos);
     cXyz misc_vector(1.0f, 1.0f, 1.0f);
 
-
     if(i_this->mEffectType == 0){
         pos.y += 75.0f;
     }
@@ -63,7 +62,7 @@ void obj_brakeeff_1(obj_brakeeff_class* i_this) {
             return;
         case 0:
             i_this->mMiscTimer3 = 1;
-            i_this->mMiscTimer4 = 60;
+            i_this->mMiscTimers[0] = 60;
             break;
         case 1:
             break;
@@ -73,7 +72,7 @@ void obj_brakeeff_1(obj_brakeeff_class* i_this) {
         i_this->mRuntimeParticleIds[i] = dComIfGp_particle_set(i_this->mRuntimeParticleIds[i], e_name[i],&pos, &i_this->current.angle, &misc_vector);
     }
 
-    if(i_this->mMiscTimer4 == 0){
+    if(i_this->mMiscTimers[0] == 0){
         i_this->mDCcD_Sph.SetC(pos);
         dComIfG_Ccsp()->Set(&i_this->mDCcD_Sph);
 
@@ -98,7 +97,6 @@ void obj_brakeeff_1(obj_brakeeff_class* i_this) {
 
 /* 8046DF80-8046DFB0 000340 0030+00 1/1 0/0 0/0 .text            action__FP18obj_brakeeff_class */
 void action(obj_brakeeff_class* i_this) {
-
     switch (i_this->mMiscTimer2){
     case 0:
         obj_brakeeff_1(i_this);
@@ -112,9 +110,8 @@ int daObj_Brakeeff_Execute(obj_brakeeff_class* i_this) {
     i_this->mMiscTimer1++;
 
     for(int i = 0; i < 2; i++) {
-        //iterating through counter variables using pointer arithmetic
-        if(*(&i_this->mMiscTimer4 + i) != 0){
-            (*(&i_this->mMiscTimer4 + i))--;
+        if(i_this->mMiscTimers[i] != 0){
+            i_this->mMiscTimers[i]--;
         }
     }
 
@@ -125,11 +122,9 @@ int daObj_Brakeeff_Execute(obj_brakeeff_class* i_this) {
     mDoMtx_stack_c::XrotM(i_this->shape_angle.x);
     mDoMtx_stack_c::ZrotM(i_this->shape_angle.z);
 
-    MtxP mtxP = mDoMtx_stack_c::get();
-    i_this->mpModel->setBaseTRMtx(mtxP);
-    mtxP = mDoMtx_stack_c::get();
 
-    PSMTXCopy(mtxP, i_this->mStoredMatrix);
+    MTXCopy(mDoMtx_stack_c::get(), i_this->mStoredMatrix);
+
     i_this->mpDBgW->Move();
     i_this->mpBrk->play();
     return 1;
@@ -137,8 +132,8 @@ int daObj_Brakeeff_Execute(obj_brakeeff_class* i_this) {
 
 /* 8046E098-8046E0A0 000458 0008+00 1/0 0/0 0/0 .text
  * daObj_Brakeeff_IsDelete__FP18obj_brakeeff_class              */
-bool daObj_Brakeeff_IsDelete(obj_brakeeff_class* i_this) {
-    return true;
+int daObj_Brakeeff_IsDelete(obj_brakeeff_class* i_this) {
+    return 1;
 }
 
 /* 8046E0A0-8046E0F0 000460 0050+00 1/0 0/0 0/0 .text
@@ -152,7 +147,6 @@ int daObj_Brakeeff_Delete(obj_brakeeff_class* i_this) {
 
 /* 8046E0F0-8046E2B0 0004B0 01C0+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 int useHeapInit(fopAc_ac_c* i_this) {
-
 	obj_brakeeff_class* a_this = static_cast<obj_brakeeff_class*>(i_this);
 
     J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("Obj_Bef", bef_bmd[a_this->mEffectType]));
@@ -171,10 +165,9 @@ int useHeapInit(fopAc_ac_c* i_this) {
 
     J3DAnmTevRegKey* tev_anm = static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes("Obj_Bef", bef_brk[a_this->mEffectType]));
 
-    if (!a_this->mpBrk->init(a_this->mpModel->getModelData(), tev_anm, 1,0,1.0,0,-1)) {
+    if (!a_this->mpBrk->init(a_this->mpModel->getModelData(), tev_anm, 1,0,1.0f,0,-1)) {
         return 0;
     }
-
 
 	a_this->mpDBgW = new dBgW();
 
@@ -184,13 +177,12 @@ int useHeapInit(fopAc_ac_c* i_this) {
 
 	cBgD_t* cbgd = (cBgD_t *)dComIfG_getObjectRes("Obj_Bef", 13);
 
-    uint res = a_this->mpDBgW->Set(cbgd, 1, &a_this->mStoredMatrix);
+    u32 res = a_this->mpDBgW->Set(cbgd, 1, &a_this->mStoredMatrix);
     if(res == 1){
         return 0;
     }
 
     a_this->mpDBgW->SetCrrFunc(dBgS_MoveBGProc_Typical);
-
 	return 1;
 }
 
@@ -209,30 +201,21 @@ int daObj_Brakeeff_Create(fopAc_ac_c* i_this) {
     	} // mSphAttr
 	};
 
-
     obj_brakeeff_class* a_this = static_cast<obj_brakeeff_class*>(i_this);
 
-    // NONMATCHING
-    if (!fopAcM_CheckCondition(i_this, fopAcCnd_INIT_e)) {
-        new (i_this) obj_brakeeff_class();
-        fopAcM_OnCondition(i_this, fopAcCnd_INIT_e);
-    }
+    fopAcM_SetupActor(a_this, obj_brakeeff_class);
 
     int res_load_result = dComIfG_resLoad(&a_this->mRequestOfPhase, "Obj_Bef");
 
     if(res_load_result == cPhs_COMPLEATE_e){
         a_this->mEffectType = fopAcM_GetParam(i_this);
+
     	bool is_heap_set = fopAcM_entrySolidHeap(i_this, useHeapInit,0x4b000);
 
+    	if(!is_heap_set) return cPhs_ERROR_e;
 
-    	if(!is_heap_set){
-        	return cPhs_ERROR_e;
-    	}
-
-    	if(dComIfG_Bgsp().Regist(a_this->mpDBgW, i_this)){
-   		    return cPhs_ERROR_e;
-    	}
-
+        bool is_registered = dComIfG_Bgsp().Regist(a_this->mpDBgW, i_this);
+    	if(is_registered) return cPhs_ERROR_e;
 
     	fopAcM_SetMtx(i_this, a_this->mpModel->getBaseTRMtx());
     	a_this->mDCcD_Stts.Init(255, 0, i_this);
