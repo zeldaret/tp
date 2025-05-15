@@ -1,10 +1,10 @@
 #ifndef D_A_E_DF_H
 #define D_A_E_DF_H
 
-#include "Z2AudioLib/Z2Creature.h"
+#include "JSystem/JHostIO/JORReflexible.h"
 #include "d/d_cc_d.h"
 #include "d/d_cc_uty.h"
-#include "f_op/f_op_actor_mng.h"
+#include "f_op/f_op_actor.h"
 
 /**
  * @ingroup actors-enemies
@@ -16,6 +16,26 @@
  */
 class daE_DF_c : public fopEn_enemy_c {
 public:
+    enum {
+        /* 0x0 */ EAT_TYPE_OBJ,
+        /* 0x1 */ EAT_TYPE_LINK,
+        /* 0x2 */ EAT_TYPE_BOMB,
+    };
+
+    enum {
+        /* 0x0 */ ACT_WAIT,
+        /* 0x1 */ ACT_EAT,
+        /* 0x2 */ ACT_DAMAGE,
+        /* 0x3 */ ACT_MISS,
+        /* 0x4 */ ANIM_BOUND,
+        /* 0x5 */ ANIM_BURST,
+        /* 0x6 */ ANIM_DIE,
+        /* 0x7 */ ANIM_EAT,
+        /* 0x8 */ ANIM_EAT_WAIT,
+        /* 0x9 */ ANIM_SPITOUT,
+        /* 0xA */ ANIM_WAIT,
+    };
+
     /* 806A7710 */ int CreateHeap();
     /* 806A7828 */ void initCcCylinder();
     /* 806A78A0 */ void setCcCylinder();
@@ -45,30 +65,28 @@ public:
     /* 806A95B8 */ void setBaseMtx();
     /* 806A9678 */ int Create();
 
-public:
-    /* 0x5AC */ u8 abraxas;
-    /* 0x5AD */ u8 aido;
-    /* 0x5AE */ u8 alduin;
-    /* 0x5B0 */ csXyz apsu;
-    /* 0x5B6 */ u8 balerion[0x5B8 - 0x5B6];
-    /* 0x5B8 */ s32 brinsop;
-    /* 0x5BC */ u8 drogon;
-    /* 0x5BE */ s16 eingana;
-    /* 0x5C0 */ s32 fafnir;
-    /* 0x5C4 */ s16 falkor;
-    /* 0x5C6 */ s16 galeru;
+    /* 0x5AC */ u8 mAction;
+    /* 0x5AD */ u8 mEatObjType;
+    /* 0x5AE */ u8 mEatStep;
+    /* 0x5B0 */ csXyz mChaseAngle;
+    /* 0x5B8 */ s32 mCarryType;
+    /* 0x5BC */ u8 mMoguCount;
+    /* 0x5BE */ s16 mTimer;
+    /* 0x5C0 */ s32 mAnim;
+    /* 0x5C4 */ s16 mTargetAngle;
+    /* 0x5C6 */ s16 mInvincibilityTimer;
     /* 0x5C8 */ mDoExt_McaMorfSO* mpMorfSO;
     /* 0x5CC */ request_of_phase_process_class mPhaseReq;
-    /* 0x5D4 */ u8 haku[0x5D8 - 0x5D4];
+    /* 0x5D4 */ u8 field_0x5d4[0x5D8 - 0x5D4];
     /* 0x5D8 */ Z2CreatureEnemy mCreatureSound;
     /* 0x67C */ dCcD_Stts mStts;
     /* 0x6B8 */ dCcD_Cyl mCyl;
     /* 0x7F4 */ dCcU_AtInfo mAtInfo;
     /* 0x818 */ u8 mHIOInit;
-    /* 0x819 */ u8 katla;
-    /* 0x81C */ cXyz ness;
-    /* 0x828 */ cXyz norbert;
-    /* 0x834 */ f32 saphira;
+    /* 0x819 */ u8 mArg0;
+    /* 0x81C */ cXyz mCenterPos;
+    /* 0x828 */ cXyz mEyePos;
+    /* 0x834 */ f32 mFovY;
 };
 
 STATIC_ASSERT(sizeof(daE_DF_c) == 0x838);
@@ -80,8 +98,8 @@ public:
 
     void genMessage(JORMContext*);
 
-    /* 0x4 */ s8 field_0x4;
-    /* 0x8 */ f32 mSpeed;
+    /* 0x4 */ s8 mNo;
+    /* 0x8 */ f32 field_0x8;
 };
 
 STATIC_ASSERT(sizeof(daE_DF_HIO_c) == 0xC);
