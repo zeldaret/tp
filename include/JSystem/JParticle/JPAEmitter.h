@@ -127,10 +127,7 @@ public:
     void setGlobalRTMatrix(const Mtx m) { JPASetRMtxTVecfromMtx(m, mGlobalRot, &mGlobalTrs); }
     void setGlobalSRTMatrix(const Mtx m) { 
         JPASetRMtxSTVecfromMtx(m, mGlobalRot, &mGlobalScl, &mGlobalTrs);
-
-        // set is actually used here in debug
-        mGlobalPScl.x = mGlobalScl.x;
-        mGlobalPScl.y = mGlobalScl.y;
+        mGlobalPScl.set(mGlobalScl.x, mGlobalScl.y);
     }
     void setGlobalTranslation(f32 x, f32 y, f32 z) { mGlobalTrs.set(x, y, z); }
     void setGlobalTranslation(const JGeometry::TVec3<f32>& trs) { mGlobalTrs.set(trs); }
@@ -169,10 +166,6 @@ public:
     void setGlobalScale(const JGeometry::TVec3<f32>& scale) {
         mGlobalScl.set(scale);
         mGlobalPScl.set(scale.x ,scale.y);
-    }
-    void setGlobalSRTMatrix(const MtxP matrix) {
-        JPASetRMtxSTVecfromMtx(matrix, mGlobalRot, &mGlobalScl, &mGlobalTrs);
-        mGlobalPScl.set(mGlobalScl.x, mGlobalScl.y);
     }
     void setDirection(const JGeometry::TVec3<f32>& direction) {
         mLocalDir.set(direction);

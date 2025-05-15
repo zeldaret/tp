@@ -82,6 +82,10 @@ public:
         setPosition(i_tboxNo, 12, i_pos, param_2);
     }
 
+    static void setIconPositionOfCstatue(int i_tboxNo, const Vec* i_pos) {
+        setPosition(i_tboxNo, 15, i_pos, -1);
+    }
+
     static void setCarryIron(int i_tboxNo, const Vec* i_pos) {
         setPosition(i_tboxNo, 11, i_pos, -1);
     }

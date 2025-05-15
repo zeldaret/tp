@@ -14,6 +14,8 @@
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "SSystem/SComponent/c_math.h"
 #include "c/c_damagereaction.h"
+UNK_REL_DATA;
+#include "f_op/f_op_actor_enemy.h"
 
 enum daB_DS_Joint {
     DS_JNT_BACKBONE1,
@@ -75,56 +77,6 @@ enum daB_DS_head_Joint {
     DS_HEAD_JNT_FUR_R2,
     DS_HEAD_JNT_JAW,
 };
-
-/* 805DD248-805DD254 000000 000C+00 4/4 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 805DD254-805DD268 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
-
-/* 805DD268-805DD270 000020 0008+00 0/0 0/0 0/0 .data            e_prim$3811 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 e_prim[8] = {
-    0xFF, 0x78, 0x00, 0x00, 0xFF, 0x64, 0x78, 0x00,
-};
-#pragma pop
-
-/* 805DD270-805DD278 000028 0008+00 0/0 0/0 0/0 .data            e_env$3812 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 e_env[8] = {
-    0x5A, 0x2D, 0x2D, 0x00, 0x3C, 0x1E, 0x1E, 0x00,
-};
-#pragma pop
-
-/* 805DD278-805DD280 000030 0006+02 0/0 0/0 0/0 .data            eff_id$3820 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 eff_id[6 + 2 /* padding */] = {
-    0x02,
-    0x9D,
-    0x02,
-    0x9E,
-    0x02,
-    0x9F,
-    /* padding */
-    0x00,
-    0x00,
-};
-#pragma pop
 
 namespace {
 /* 805DD280-805DD2C0 000038 0040+00 0/1 0/0 0/0 .data cc_ds_week_src__22@unnamed@d_a_b_ds_cpp@ */
@@ -222,31 +174,6 @@ static dCcD_SrcSph cc_ds_breath_at_src = {
     }}                       // mSph
 };
 };  // namespace
-
-f32 dummyLiteral0() {
-    f32 temp = 100.0f;
-
-    f32 temp_0 = 0.0f;
-    temp += temp_0;
-    temp += 1.0f;
-    return temp;
-}
-
-f64 dummyLiteral1() {
-    return 0.5;
-}
-
-f64 dummyLiteral2() {
-    return 3.0;
-}
-
-f64 dummyLiteral3() {
-    return 0.0;
-}
-
-f32 dummyLiteral4() {
-    return 0.01f;
-}
 
 /* 805CB22C-805CB314 0000EC 00E8+00 1/1 0/0 0/0 .text            __ct__12daB_DS_HIO_cFv */
 daB_DS_HIO_c::daB_DS_HIO_c() {
@@ -1360,7 +1287,6 @@ bool daB_DS_c::doYoMessage() {
 }
 
 /* 805CDAC0-805CFA08 002980 1F48+00 2/1 0/0 0/0 .text            executeOpeningDemo__8daB_DS_cFv */
-// r25 / r25 swap
 void daB_DS_c::executeOpeningDemo() {
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     daPy_py_c* pla = daPy_getPlayerActorClass();
@@ -2476,7 +2402,7 @@ void daB_DS_c::executeDamage() {
         mCameraCenter = down_center_dt[3];
         mCameraEye = down_eye_dt[3];
         camera->mCamera.Set(mCameraCenter, mCameraEye);
-        dComIfGp_getVibration().StartShock(5, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
+        dComIfGp_getVibration().StartQuake(5, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
 
         mModeTimer = 30;
         mMode++;
@@ -5367,7 +5293,6 @@ void daB_DS_c::mBattle2_cc_set() {
 }
 
 /* 805DADC4-805DB184 00FC84 03C0+00 1/1 0/0 0/0 .text            execute__8daB_DS_cFv */
-// extra extsh
 int daB_DS_c::execute() {
     if (arg0 == TYPE_BULLET_A || arg0 == TYPE_BULLET_B || arg0 == TYPE_BULLET_C) {
         mBulletAction();
@@ -5386,20 +5311,23 @@ int daB_DS_c::execute() {
         return 1;
     }
 
-    handR_ang = -4000;
-    handL_ang = -4000;
+    handR_ang = -(4000.0f + BREG_F(15));
+    handL_ang = -(4000.0f + BREG_F(15));
 
     mtx_set();
 
+    u8 unused_bool = 0;
+    cXyz jnt_pos;
     dBgS_GndChk gnd_chk;
-    cXyz jnt_pos, chk_pos;
+    cXyz unused_0, chk_pos, unused_1;
 
     J3DModel* model = mpMorf->getModel();
     s8 var_r25;
     int i = 0;
 
     if (!mIsOpeningDemo) {
-        s16 hand_x_ang_target = (s16)(mBackboneLevel * 1000) - 6000;
+        s16 hand_x_ang_target = -6000;
+        hand_x_ang_target += (s16)(mBackboneLevel * 1000);
         if (handX_ang > -4000) {
             handX_ang = -4000;
         }

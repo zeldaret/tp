@@ -417,7 +417,7 @@ void daE_BG_c::setBck(int param_0, u8 param_1, f32 param_2, f32 param_3) {
 }
 
 /* 80685C14-80685C2C 0004F4 0018+00 7/7 0/0 0/0 .text            setActionMode__8daE_BG_cFii */
-void daE_BG_c::setActionMode(int param_0, int param_1) {
+void daE_BG_c::setActionMode(int i_action, int i_mode) {
     // NONMATCHING
 }
 

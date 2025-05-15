@@ -160,6 +160,11 @@ public:
         calcMtx();
     }
 
+    void rotateY(f32 rotate) {
+        mRotateY = rotate;
+        calcMtx();
+    }
+
     int getKind() const { return mKind; }
 
     bool isVisible() const { return mVisible; }
