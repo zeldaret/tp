@@ -22,7 +22,7 @@ u16 e_name[5] = {
 
 //model data per effect type
 u32 bef_bmd[2] = {
-	5,
+    5,
     6,
 };
 
@@ -147,19 +147,19 @@ int daObj_Brakeeff_Delete(obj_brakeeff_class* i_this) {
 
 /* 8046E0F0-8046E2B0 0004B0 01C0+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 int useHeapInit(fopAc_ac_c* i_this) {
-	obj_brakeeff_class* a_this = static_cast<obj_brakeeff_class*>(i_this);
+    obj_brakeeff_class* a_this = static_cast<obj_brakeeff_class*>(i_this);
 
     J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("Obj_Bef", bef_bmd[a_this->mEffectType]));
 
-	a_this->mpModel = mDoExt_J3DModel__create(modelData, 0x80000,0x11000084);
+    a_this->mpModel = mDoExt_J3DModel__create(modelData, 0x80000,0x11000084);
 
     if (a_this->mpModel == NULL) {
         return 0;
     }
 
- 	a_this->mpBrk = new mDoExt_brkAnm();
+    a_this->mpBrk = new mDoExt_brkAnm();
 
-	if(!a_this->mpBrk){
+    if(!a_this->mpBrk){
         return 0;
     }
 
@@ -169,13 +169,13 @@ int useHeapInit(fopAc_ac_c* i_this) {
         return 0;
     }
 
-	a_this->mpDBgW = new dBgW();
+    a_this->mpDBgW = new dBgW();
 
     if(!a_this->mpDBgW){
         return 0;
     }
 
-	cBgD_t* cbgd = (cBgD_t *)dComIfG_getObjectRes("Obj_Bef", 13);
+    cBgD_t* cbgd = (cBgD_t *)dComIfG_getObjectRes("Obj_Bef", 13);
 
     u32 res = a_this->mpDBgW->Set(cbgd, 1, &a_this->mStoredMatrix);
     if(res == 1){
@@ -183,23 +183,22 @@ int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     a_this->mpDBgW->SetCrrFunc(dBgS_MoveBGProc_Typical);
-	return 1;
+    return 1;
 }
 
 /* 8046E2F8-8046E490 0006B8 0198+00 1/0 0/0 0/0 .text daObj_Brakeeff_Create__FP10fopAc_ac_c */
 int daObj_Brakeeff_Create(fopAc_ac_c* i_this) {
-	    /* 8046E55C-8046E59C 00001C 0040+00 1/1 0/0 0/0 .data            cc_sph_src$4003 */
-	static dCcD_SrcSph cc_sph_src = {
-    	{
-     	   {0x0, {{0x0, 0x0, 0x0}, {0x20, 0x11}, 0x0}}, // mObj
-    	    {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
-    	    {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
-    	    {0x0}, // mGObjCo
-    	}, // mObjInf
-    	{
-    	    {{0.0f, 0.0f, 0.0f}, 40.0f} // mSph
-    	} // mSphAttr
-	};
+    static dCcD_SrcSph cc_sph_src = {
+        {
+            {0x0, {{0x0, 0x0, 0x0}, {0x20, 0x11}, 0x0}}, // mObj
+            {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+            {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
+            {0x0}, // mGObjCo
+        }, // mObjInf
+        {
+            {{0.0f, 0.0f, 0.0f}, 40.0f} // mSph
+        } // mSphAttr
+    };
 
     obj_brakeeff_class* a_this = static_cast<obj_brakeeff_class*>(i_this);
 
@@ -210,19 +209,19 @@ int daObj_Brakeeff_Create(fopAc_ac_c* i_this) {
     if(res_load_result == cPhs_COMPLEATE_e){
         a_this->mEffectType = fopAcM_GetParam(i_this);
 
-    	bool is_heap_set = fopAcM_entrySolidHeap(i_this, useHeapInit,0x4b000);
+        bool is_heap_set = fopAcM_entrySolidHeap(i_this, useHeapInit,0x4b000);
 
-    	if(!is_heap_set) return cPhs_ERROR_e;
+        if(!is_heap_set) return cPhs_ERROR_e;
 
         bool is_registered = dComIfG_Bgsp().Regist(a_this->mpDBgW, i_this);
-    	if(is_registered) return cPhs_ERROR_e;
+        if(is_registered) return cPhs_ERROR_e;
 
-    	fopAcM_SetMtx(i_this, a_this->mpModel->getBaseTRMtx());
-    	a_this->mDCcD_Stts.Init(255, 0, i_this);
-    	a_this->mDCcD_Sph.Set(cc_sph_src);
-    	a_this->mDCcD_Sph.SetStts(&a_this->mDCcD_Stts);
+        fopAcM_SetMtx(i_this, a_this->mpModel->getBaseTRMtx());
+        a_this->mDCcD_Stts.Init(255, 0, i_this);
+        a_this->mDCcD_Sph.Set(cc_sph_src);
+        a_this->mDCcD_Sph.SetStts(&a_this->mDCcD_Stts);
 
-    	daObj_Brakeeff_Execute(a_this);
+        daObj_Brakeeff_Execute(a_this);
     }
     return res_load_result;
 }
