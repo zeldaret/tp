@@ -122,7 +122,7 @@ int daObj_Brakeeff_Execute(obj_brakeeff_class* i_this) {
     mDoMtx_stack_c::XrotM(i_this->shape_angle.x);
     mDoMtx_stack_c::ZrotM(i_this->shape_angle.z);
 
-
+    i_this->mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), i_this->mStoredMatrix);
 
     i_this->mpDBgW->Move();
