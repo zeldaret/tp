@@ -40,10 +40,11 @@ public:
     /* 80540E10 */ void _to_FairyCave();
     /* 80541BE4 */ daNpc_FairySeirei_c(daNpcT_faceMotionAnmData_c const* param_1,
                                        daNpcT_motionAnmData_c const* param_2,
-                                       daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_3, int param_4,
-                                       daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_5, int param_6,
-                                       daNpcT_evtData_c const* param_7, char** param_8)
-                                       : daNpcT_c(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8) {}
+                                       daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_3,
+                                       int param_4,
+                                       daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_5,
+                                       int param_6, daNpcT_evtData_c const* param_7, char** param_8)
+        : daNpcT_c(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8) {}
 
     u8 getType() { return fopAcM_GetParam(this) & 0xFF; }
 
@@ -55,20 +56,16 @@ public:
         return nodeNo;
     }
 
-    BOOL chkAction(actionFunc i_action) {
-        return (mExecuteFunc == i_action);
-    }
+    BOOL chkAction(actionFunc i_action) { return (mExecuteFunc == i_action); }
 
-    void ptcl_se() {
-        mSound.startCreatureSoundLevel(Z2SE_FAIRY_STAY, 0, -1);
-    }
+    void ptcl_se() { mSound.startCreatureSoundLevel(Z2SE_FAIRY_STAY, 0, -1); }
 
     int getSeneNo() { return (fopAcM_GetParam(this) >> 8) & 0xFF; }
 
     static char* mCutNameList[1];
     static cutFunc mCutList[1];
 
-    private:
+private:
     /* 0xE40 */ u8 field_0xE40[4];
     /* 0xE44 */ u8 mType;
     /* 0xE48 */ dCcD_Cyl mCyl;
@@ -88,6 +85,5 @@ public:
 
     static f32 const m[37];
 };
-
 
 #endif /* D_A_NPC_FAIRY_SEIREI_H */

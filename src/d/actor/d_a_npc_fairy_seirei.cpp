@@ -7,10 +7,6 @@
 
 UNK_REL_DATA
 
-//
-// Declarations:
-//
-
 /* ############################################################################################## */
 
 /* 80541E80-80541E88 -00001 0008+00 0/1 0/0 0/0 .data            l_evtList */
@@ -19,15 +15,23 @@ static daNpcT_evtData_c l_evtList[1] = {
 };
 
 /* 80541E88-80541E90 -00001 0008+00 0/1 0/0 0/0 .data            l_resNameList */
-static char* l_resNameList[2] = { "", };
+static char* l_resNameList[2] = {
+    "",
+    NULL,
+};
 
 /* 80541E90-80541E94 000030 0002+02 1/0 0/0 0/0 .data            l_loadResPtrn0 */
-static s8 l_loadResPtrn0[2] = {1, -1,};
+static s8 l_loadResPtrn0[2] = {
+    1,
+    -1,
+};
 
 /* 80541E94-80541EA4 -00001 0010+00 0/0 0/0 0/0 .data            l_loadResPtrnList */
 static s8* l_loadResPtrnList[4] = {
-    l_loadResPtrn0, l_loadResPtrn0,
-    l_loadResPtrn0, l_loadResPtrn0,
+    l_loadResPtrn0,
+    l_loadResPtrn0,
+    l_loadResPtrn0,
+    l_loadResPtrn0,
 };
 
 /* 80541EA4-80541EC0 000044 001C+00 0/1 0/0 0/0 .data            l_faceMotionAnmData */
@@ -58,10 +62,14 @@ static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_motionSequenceData[4] = {
 
 /* 80541EFC-80541F00 -00001 0004+00 1/1 0/0 0/0 .data            mCutNameList__19daNpc_FairySeirei_c
  */
-char* daNpc_FairySeirei_c::mCutNameList[1] = { "", };
+char* daNpc_FairySeirei_c::mCutNameList[1] = {
+    "",
+};
 
 /* 80541F00-80541F0C 0000A0 000C+00 2/2 0/0 0/0 .data            mCutList__19daNpc_FairySeirei_c */
-daNpc_FairySeirei_c::cutFunc daNpc_FairySeirei_c::mCutList[1] = { NULL, };
+daNpc_FairySeirei_c::cutFunc daNpc_FairySeirei_c::mCutList[1] = {
+    NULL,
+};
 
 /* 8053FF6C-8054006C 0000EC 0100+00 1/0 0/0 0/0 .text            __dt__19daNpc_FairySeirei_cFv */
 daNpc_FairySeirei_c::~daNpc_FairySeirei_c() {
@@ -73,23 +81,24 @@ daNpc_FairySeirei_c::~daNpc_FairySeirei_c() {
 /* ############################################################################################## */
 
 const f32 daNpc_FairySeirei_Param_c::m[37] = {
-    600.0, 0.0, 1.0, 4000.0, 255.0, 200.0, 0.0, 60.0, 0.0, 0.0, 0.0,   0.0, 0.0,
-    0.0,   0.0, 0.0, 0.0,    0.0,   0.0,   0.0, 0.0,  0.0, 0.0, 0.0,   0.0, 0.0,
-    0.0,   0.0, 0.0, 0.0,    0.0,   0.0,   0.0, 0.0,  0.0, 0.0, 600.0,
+    600.0f, 0.0f, 1.0f, 4000.0f, 255.0f, 200.0f, 0.0f, 60.0f, 0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
+    0.0f,   0.0f, 0.0f, 0.0f,    0.0f,   0.0f,   0.0f, 0.0f,  0.0f, 0.0f, 0.0f,   0.0f, 0.0f,
+    0.0f,   0.0f, 0.0f, 0.0f,    0.0f,   0.0f,   0.0f, 0.0f,  0.0f, 0.0f, 600.0f,
 };
 
 /* 8054006C-80540298 0001EC 022C+00 1/1 0/0 0/0 .text            create__19daNpc_FairySeirei_cFv */
 int daNpc_FairySeirei_c::create() {
     fopAcM_SetupActor2(this, daNpc_FairySeirei_c, &l_faceMotionAnmData, l_motionAnmData,
-        l_faceMotionSequenceData, 4, l_motionSequenceData, 4, l_evtList,
-        l_resNameList);
+                       l_faceMotionSequenceData, 4, l_motionSequenceData, 4, l_evtList,
+                       l_resNameList);
     mType = getType();
     mFlowNodeNo = getFlowNodeNo();
     mTwilight = false;
     if (isDelete()) {
         return cPhs_ERROR_e;
     }
-    mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
+    mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
+              fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
     mCcStts.Init(daNpc_FairySeirei_Param_c::m[4], 0, this);
     mCyl.Set(mCcDCyl);
     mCyl.SetStts(&mCcStts);
@@ -158,9 +167,9 @@ void daNpc_FairySeirei_c::setParam() {
     dComIfGp_getAttention().getDistTable(0x28).mDistMaxRelease = daNpc_FairySeirei_Param_c::m[36];
     dComIfGp_getAttention().getDistTable(0x27).mDistMax = daNpc_FairySeirei_Param_c::m[36];
     dComIfGp_getAttention().getDistTable(0x27).mDistMaxRelease = daNpc_FairySeirei_Param_c::m[36];
-    attention_info.distances[0] = 0x27;
-    attention_info.distances[1] = 0x27;
-    attention_info.distances[3] = 0x27;
+    attention_info.distances[fopAc_attn_LOCK_e] = 0x27;
+    attention_info.distances[fopAc_attn_TALK_e] = 0x27;
+    attention_info.distances[fopAc_attn_SPEAK_e] = 0x27;
     attention_info.flags = 8;
     mCcStts.SetWeight(daNpc_FairySeirei_Param_c::m[4]);
     mCylH = daNpc_FairySeirei_Param_c::m[5];
@@ -184,10 +193,9 @@ void daNpc_FairySeirei_c::srchActors() {
 BOOL daNpc_FairySeirei_c::evtTalk() {
     if (chkAction(&daNpc_FairySeirei_c::talk)) {
         (this->*(mExecuteFunc))(0);
-    }
-    else {
+    } else {
         mPreItemNo = 0;
-        if (dComIfGp_event_chkTalkXY()){
+        if (dComIfGp_event_chkTalkXY()) {
             if (!dComIfGp_evmng_ChkPresentEnd()) {
                 return true;
             }
@@ -204,7 +212,7 @@ BOOL daNpc_FairySeirei_c::evtTalk() {
 /* 805406BC-80540784 00083C 00C8+00 1/0 0/0 0/0 .text            evtCutProc__19daNpc_FairySeirei_cFv
  */
 BOOL daNpc_FairySeirei_c::evtCutProc() {
-    dEvent_manager_c *temp_r31;
+    dEvent_manager_c* temp_r31;
     s32 temp_r3;
 
     int staff_id = dComIfGp_getEventManager().getMyStaffId("Seirei", this, -1);
@@ -251,8 +259,8 @@ void daNpc_FairySeirei_c::setCollision() {
             var_r5 = 0;
             var_r4 = 0;
         }
-        float height = mCylH;
-        float radius = mWallR;
+        f32 height = mCylH;
+        f32 radius = mWallR;
         center = current.pos;
         mCyl.SetCoSPrm(0x79);
         mCyl.SetTgType(var_r5);
@@ -312,12 +320,14 @@ bool daNpc_FairySeirei_c::setAction(actionFunc i_action) {
  */
 void daNpc_FairySeirei_c::setPrtcls() {
     static u16 const id[3] = {
-        0x8AA3, 0x8AA4, 0x8AA5,
+        0x8AA3,
+        0x8AA4,
+        0x8AA5,
     };
 
     cXyz loc;
     cXyz scale(1.0f, 1.0f, 1.0f);
-    for (int i=0; i<3; i++) {
+    for (int i = 0; i < 3; i++) {
         loc = attention_info.position;
         loc.y -= 200.0f;
         mpEmitters[i] = dComIfGp_particle_set(mpEmitters[i], id[i], &loc, &mCurAngle, &scale);
@@ -361,16 +371,16 @@ int daNpc_FairySeirei_c::talk(int param_0) {
                 return 0;
             }
             int itemNo;
-            if ((int) mFlow.getEventId(&itemNo) == 1) {
+            if ((int)mFlow.getEventId(&itemNo) == 1) {
                 if (mItemId == -1) {
-                    mItemId = fopAcM_createItemForPresentDemo(&current.pos, itemNo, 0, -1, -1, NULL, NULL);
+                    mItemId = fopAcM_createItemForPresentDemo(&current.pos, itemNo, 0, -1, -1, NULL,
+                                                              NULL);
                 }
                 if (fopAcM_IsExecuting(mItemId)) {
                     mTalking = TRUE;
                     evtChange();
                 }
-            }
-            else {
+            } else {
                 if (mFlow.checkEndFlow()) {
                     dComIfGp_event_reset();
                     mTalking = FALSE;
@@ -380,7 +390,7 @@ int daNpc_FairySeirei_c::talk(int param_0) {
         }
         field_0xe26 = FALSE;
         break;
-    
+
     case 3:
     default:
         break;
@@ -393,9 +403,12 @@ int daNpc_FairySeirei_c::talk(int param_0) {
 /* 80540E10-80540E78 000F90 0068+00 1/1 0/0 0/0 .text _to_FairyCave__19daNpc_FairySeirei_cFv */
 void daNpc_FairySeirei_c::_to_FairyCave() {
     static const int sTempBit[4] = {
-        0x79, 0x7A, 0x7B, 0x7C,
+        0x79,
+        0x7A,
+        0x7B,
+        0x7C,
     };
-    
+
     daNpcT_onTmpBit(sTempBit[mType]);
     dStage_changeScene(getSeneNo(), 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
 }
@@ -432,11 +445,8 @@ static daNpc_FairySeirei_Param_c l_HIO;
 
 /* 80541F30-80541F50 -00001 0020+00 1/0 0/0 0/0 .data            daNpc_FairySeirei_MethodTable */
 static actor_method_class daNpc_FairySeirei_MethodTable = {
-    daNpc_FairySeirei_Create,
-    daNpc_FairySeirei_Delete,
-    daNpc_FairySeirei_Execute,
-    daNpc_FairySeirei_IsDelete,
-    daNpc_FairySeirei_Draw,
+    daNpc_FairySeirei_Create,   daNpc_FairySeirei_Delete, daNpc_FairySeirei_Execute,
+    daNpc_FairySeirei_IsDelete, daNpc_FairySeirei_Draw,
 };
 
 extern actor_process_profile_definition g_profile_NPC_FAIRY_SEIREI = {
