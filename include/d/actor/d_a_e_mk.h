@@ -1,6 +1,7 @@
 #ifndef D_A_E_MK_H
 #define D_A_E_MK_H
 #include "d/actor/d_a_b_bh.h"
+#include "d/actor/d_a_e_db.h"
 #include "d/actor/d_a_obj_pillar.h"
 #include "d/d_bg_s_acch.h"
 #include "d/d_cc_d.h"
@@ -18,7 +19,7 @@
  */
 class e_mk_class : public fopEn_enemy_c {
 public:
-    /* 8071C190 */ e_mk_class();
+    /* 8071C190 */ e_mk_class() {};
 
     enum e_mk_ACTION {
         ACT_WAIT,
@@ -27,9 +28,9 @@ public:
         ACT_YORO,
         ACT_DROP = 9,
         ACT_DAMAGE,
-        ACT_S_DEMO,
+        ACT_S_DEMO = 20,
         ACT_E_DEMO = 30,
-        ACT_R04_DEMO,
+        ACT_R04_DEMO = 35,
     };
 
     /* 0x5AC */ request_of_phase_process_class mPhase;
@@ -44,7 +45,7 @@ public:
     /* 0x5D4 */ s16 field_0x5d4;
     /* 0x5D6 */ u8 field_0x5d6[0x5d8 - 0x5d6];
     /* 0x5D8 */ f32 field_0x5d8;
-    /* 0x5DC */ mDoExt_McaMorf* field_0x5dc;
+    /* 0x5DC */ mDoExt_McaMorf* mpCrownModelMorf;
     /* 0x5E0 */ s8 field_0x5e0;
     /* 0x5E1 */ u8 field_0x5e1[0x5e4 - 0x5e1];
     /* 0x5E4 */ cXyz field_0x5e4;
@@ -52,38 +53,36 @@ public:
     /* 0x5F6 */ u8 field_0x5f6[0x5fc - 0x5f6];
     /* 0x5FC */ f32 field_0x5fc; 
     /* 0x600 */ f32 field_0x600;
-    /* 0x604 */ u8 field_0x604[0x608 - 0x604];
-    /* 0x608 */ J3DModel* field_0x608;
+    /* 0x604 */ f32 field_0x604;
+    /* 0x608 */ J3DModel* mpBoomerangModel;
     /* 0x60C */ s8 field_0x60c;
     /* 0x60D */ s8 field_0x60d;
-    /* 0x60E */ u8 field_0x60e;
+    /* 0x60E */ s8 field_0x60e;
     /* 0x60F */ u8 field_0x60f;
     /* 0x610 */ Z2CreatureEnemy mSound;
-    /* 0x6B4 */ u8 field_0x6b4;
-    /* 0x6B5 */ u8 field_0x6b5;
+    /* 0x6B4 */ s16 field_0x6b4;
     /* 0x6B6 */ s16 mAction;
     /* 0x6B8 */ f32 mDistToPlayer;
     /* 0x6BC */ s16 mAngleToPlayer;
-    /* 0x6BE */ u8 field_0x6be;
+    /* 0x6BE */ s8 field_0x6be;
     /* 0x6BF */ u8 field_0x6bf;
     /* 0x6C0 */ cXyz field_0x6c0;
     /* 0x6CC */ cXyz field_0x6cc;
-    /* 0x6D8 */ u8 field_0x6d8[0x6dc - 0x6d8];
+    /* 0x6D8 */ f32 field_0x6d8;
     /* 0x6DC */ cXyz field_0x6dc;
     /* 0x6E8 */ daPillar_c* mPillar;
     /* 0x6EC */ daPillar_c* mHasira;
-    /* 0x6F0 */ u32 field_0x6f0;
-    /* 0x6F4 */ u32 field_0x6f4;
+    /* 0x6F0 */ u32 mShadowKey1;
+    /* 0x6F4 */ u32 mShadowKey2;
     /* 0x6F8 */ s8 field_0x6f8;
     /* 0x6F9 */ u8 field_0x6f9;
     /* 0x6FA */ s16 field_0x6fa;
-    /* 0x6FC */ s16 field_0x6fc;
-    /* 0x6FE */ u8 field_0x6fe[0x704 - 0x6fe];
+    /* 0x6FC */ s16 field_0x6fc[4];
     /* 0x704 */ s16 field_0x704;
     /* 0x706 */ s8 field_0x706;
     /* 0x707 */ s8 field_0x707;
     /* 0x708 */ fpc_ProcID field_0x708;
-    /* 0x70C */ b_bh_class* field_0x70c;
+    /* 0x70C */ e_db_class* field_0x70c;
     /* 0x710 */ fpc_ProcID mBabaChildID;
     /* 0x714 */ fpc_ProcID mBabaChildID2;
     /* 0x718 */ s8 field_0x718;
@@ -104,18 +103,19 @@ public:
     /* 0xC0C */ u32 field_0xc0c;
     /* 0xC10 */ u32 field_0xc10;
     /* 0xC14 */ u32 field_0xc14;
-    /* 0xC18 */ u8 field_0xc18[0xc30 - 0xc18];
+    /* 0xC18 */ u32 field_0xc18[2];
+    /* 0xC20 */ u32 field_0xc20[4];
     /* 0xC30 */ s16 field_0xc30;
-    /* 0xC32 */ s16 field_0xc32;
-    /* 0xC34 */ s16 field_0xc34;
+    /* 0xC32 */ s16 mDemoMode;
+    /* 0xC34 */ s16 mDemoCamTimer;
     /* 0xC36 */ u8 field_0xc36[0xc38 - 0xc36];
-    /* 0xC38 */ cXyz field_0xc38;
-    /* 0xC44 */ cXyz field_0xc44;
+    /* 0xC38 */ cXyz mCamEye;
+    /* 0xC44 */ cXyz mCamCenter;
     /* 0xC50 */ cXyz field_0xc50;
     /* 0xC5C */ cXyz field_0xc5c;
     /* 0xC68 */ cXyz field_0xc68;
     /* 0xC74 */ cXyz field_0xc74;
-    /* 0xC80 */ f32 field_0xc80;
+    /* 0xC80 */ f32 mDemoCamFovy;
     /* 0xC84 */ f32 field_0xc84;
     /* 0xC88 */ f32 field_0xc88;
     /* 0xC8C */ f32 field_0xc8c;
@@ -123,9 +123,12 @@ public:
     /* 0xC94 */ u8 field_0xc94[0xc98 - 0xc94];
     /* 0xC98 */ f32 field_0xc98;
     /* 0xC9C */ f32 field_0xc9c;
+    /* 0xCA0 */ s16 field_0xca0;
     /* 0xCA2 */ u8 field_0xca2[0xca4 - 0xca2];
     /* 0xCA4 */ dMsgFlow_c mMsgFlow;
-    /* 0xCF0 */ u8 field_0xcf0[0xcf8 - 0xcf0];
+    /* 0xCF0 */ u8 field_0xcf0[0xcf5 - 0xcf0];
+    /* 0xCF5 */ u8 field_0xcf5;
+    /* 0xCF6 */ u8 field_0xcf6[0xcf8 - 0xcf6];
 };
 
 STATIC_ASSERT(sizeof(e_mk_class) == 0xcf8);
