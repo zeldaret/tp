@@ -21,7 +21,7 @@ public:
     /* 806A78A0 */ void setCcCylinder();
     /* 806A78D4 */ void SetAnm(int, int, f32, f32);
     /* 806A7980 */ void CameraSet(f32);
-    /* 806A7B40 */ int DemoStart();
+    /* 806A7B40 */ bool DemoStart();
     /* 806A7C3C */ void SetReleaseCam();
     /* 806A7CE0 */ int ctrlJoint(J3DJoint*, J3DModel*);
     /* 806A8030 */ void Link_Eat_Pos();
@@ -31,7 +31,7 @@ public:
     /* 806A8368 */ void BombEatAction();
     /* 806A8790 */ void Spid_Out();
     /* 806A8938 */ void LinkEatAction();
-    /* 806A8C80 */ int Mogu_Mogu();
+    /* 806A8C80 */ bool Mogu_Mogu();
     /* 806A8D98 */ void ObjEatAction();
     /* 806A8ED4 */ void EatAction();
     /* 806A8F2C */ void SearchAction();
