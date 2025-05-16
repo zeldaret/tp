@@ -14,6 +14,7 @@
  * @details
  *
  */
+
 class obj_ihasi_class : public fopAc_ac_c {
 public:
     /* 0x568 */ request_of_phase_process_class mPhaseReq;
@@ -27,7 +28,7 @@ public:
     /* 0x586 */ s8 mFlag2;
     /* 0x588 */ Mtx mMtx;
     /* 0x5B8 */ dBgW* mpBgW;
-    /* 0x5BC */ u32 field_0x5bc;
+    /* 0x5BC */ u32 mParticleKey;
     /* 0x5C0 */ u8 field_0x5c0[4];
 };
 
