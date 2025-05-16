@@ -17,7 +17,7 @@
 #include "d/d_camera.h"
 #include "Z2AudioLib/Z2Instances.h"
 
-UNK_REL_BSS
+UNK_REL_BSS;
 
 /* 8071412C-8071417C 0000EC 0050+00 1/1 0/0 0/0 .text            __ct__12daE_MK_HIO_cFv */
 daE_MK_HIO_c::daE_MK_HIO_c() {
@@ -99,13 +99,13 @@ static void* s_obj_delete(void* i_actor, void* i_data) {
 }
 
 /* 8071CAB4-8071CAC0 000054 000C+00 0/2 0/0 0/0 .bss             demo_jump_pos_1 */
-static cXyz demo_jump_pos_1;
+static cXyz demo_jump_pos_1(1050.0f, 500.0f, -450.0f);
 
 /* 8071CACC-8071CAD8 00006C 000C+00 0/2 0/0 0/0 .bss             demo_jump_pos_2 */
-static cXyz demo_jump_pos_2;
+static cXyz demo_jump_pos_2(1262.0f, 1030.0f, -1665.0f);
 
 /* 8071CAE4-8071CAF0 000084 000C+00 0/2 0/0 0/0 .bss             demo_jump_pos_3 */
-static cXyz demo_jump_pos_3;
+static cXyz demo_jump_pos_3(2400.0f, 1115.0f, -1850.0f);
 
 /* 8071CAFC-8071CB08 00009C 000C+00 1/6 0/0 0/0 .bss             STAGE_CENTER_POS */
 static cXyz STAGE_CENTER_POS;
@@ -241,7 +241,6 @@ static e_db_class* search_db(e_mk_class* i_this) {
 
 /* 80714B78-807154A8 000B38 0930+00 2/1 0/0 0/0 .text            e_mk_move__FP10e_mk_class */
 static void e_mk_move(e_mk_class* i_this) {
-    // NONMATCHING
     cXyz sp28;
     int frame = i_this->mpModelMorf->getFrame();
     switch(i_this->mMode) {
@@ -435,7 +434,6 @@ static void e_mk_wait(e_mk_class* i_this) {
 
 /* 80715618-80715B18 0015D8 0500+00 2/1 0/0 0/0 .text            e_mk_shoot__FP10e_mk_class */
 static void e_mk_shoot(e_mk_class* i_this) {
-    // NONMATCHING
     cXyz sp48;
     int frame = i_this->mpModelMorf->getFrame();
     fopAc_ac_c *actor = fopAcM_SearchByID(i_this->field_0x708);
@@ -1195,8 +1193,9 @@ static void cam_3d_morf(e_mk_class* i_this, f32 param_2) {
 
 /* 807174E4-8071823C 0034A4 0D58+00 1/1 0/0 0/0 .text            demo_camera_start__FP10e_mk_class */
 static void demo_camera_start(e_mk_class* i_this) {
-    // NONMATCHING
-    fopAc_ac_c *actor1, *actor2;
+    // EQUIVALENT - REGALLOC
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
+    fopAc_ac_c* actor1, * actor2;
     daPy_py_c *player = (daPy_py_c*)dComIfGp_getPlayer(0);
     actor1 = fopAcM_SearchByID(i_this->field_0x708);
     camera_class *camera1 = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
@@ -1208,9 +1207,9 @@ static void demo_camera_start(e_mk_class* i_this) {
             break;
 
         case 1:
-            if (!i_this->eventInfo.checkCommandDemoAccrpt()) {
-                fopAcM_orderPotentialEvent(i_this, 2, 0xffff, 0);
-                i_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+            if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
+                fopAcM_orderPotentialEvent(a_this, 2, 0xffff, 0);
+                a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
                 return;
             }
 
@@ -1224,8 +1223,8 @@ static void demo_camera_start(e_mk_class* i_this) {
             daPy_getPlayerActorClass()->changeOriginalDemo();
             Z2GetAudioMgr()->bgmStreamPrepare(0x200000D);
 
-            i_this->mCamEye = camera2->mCamera.mEye;
-            i_this->mCamCenter = camera2->mCamera.mCenter;
+            i_this->mCamEye = camera2->lookat.eye;
+            i_this->mCamCenter = camera2->lookat.center;
             i_this->field_0xc50.set(-271.0f, 4559.0f, -7241.0f);
             i_this->field_0xc5c.set(-70.0f, 4378.0f, -6233.0f);
 
@@ -1309,7 +1308,7 @@ static void demo_camera_start(e_mk_class* i_this) {
                 MtxPosition(&sp34, &sp40);
                 sp40 += sp4c;
                 sp40.y = player->current.pos.y;
-                player->setPlayerPosAndAngle(&sp40, i_this->current.angle.y + (u16)-0x8000, 0);
+                player->setPlayerPosAndAngle(&sp40, a_this->current.angle.y + (u16)-0x8000, 0);
             }
             break;
 
@@ -1369,7 +1368,7 @@ static void demo_camera_start(e_mk_class* i_this) {
                 sp34.z = -150.0f;
                 MtxPosition(&sp34, &sp40);
                 sp40 += player->current.pos;
-                player->setPlayerPosAndAngle(&sp40, i_this->current.angle.y + (u16)-0x8000, 0);
+                player->setPlayerPosAndAngle(&sp40, a_this->current.angle.y + (u16)-0x8000, 0);
             }
             break;
 
@@ -1401,7 +1400,7 @@ static void demo_camera_start(e_mk_class* i_this) {
             // fallthrough
         case 9:
             actor2 = fopAcM_SearchByID(i_this->mBabaChildID);
-            actor1 = fopAcM_SearchByID(i_this->mBabaChildID2);
+            fopAcM_SearchByID(i_this->mBabaChildID2);
             if (i_this->mDemoCamTimer == 0) {
                 actor2->current.pos.x = player->current.pos.x - 200.0f;
                 actor2->current.pos.y = player->current.pos.y + 500.0f;
@@ -1462,7 +1461,7 @@ static void demo_camera_start(e_mk_class* i_this) {
                 i_this->mCamCenter = player->current.pos;
                 i_this->mCamCenter.y += 100.0f;
                 i_this->field_0xc30 = 10;
-                fopAcM_OffStatus(i_this, 0x4000);
+                fopAcM_OffStatus(a_this, 0x4000);
                 Z2GetAudioMgr()->subBgmStart(Z2BGM_BOOMERAMG_MONKEY);
             }
 
@@ -1481,19 +1480,19 @@ static void demo_camera_start(e_mk_class* i_this) {
     if (dComIfGp_getEvent().checkSkipEdge()) {
         u8 uVar1 = fopAcM_GetParam(i_this) >> 16;
         if (uVar1 != 0xff) {
-            dComIfGs_onSwitch(uVar1, fopAcM_GetRoomNo(i_this));
+            dComIfGs_onSwitch(uVar1, fopAcM_GetRoomNo(a_this));
         }
 
-        dStage_changeScene(2, 0.0f, 0, fopAcM_GetRoomNo(i_this), 0, -1);
+        dStage_changeScene(2, 0.0f, 0, fopAcM_GetRoomNo(a_this), 0, -1);
     }
 }
 
 /* 8071823C-80719488 0041FC 124C+00 1/1 0/0 0/0 .text            demo_camera_end__FP10e_mk_class */
 static void demo_camera_end(e_mk_class* i_this) {
     // NONMATCHING
-    daPy_py_c *player = (daPy_py_c*)dComIfGp_getPlayer(0);
-    fopAc_ac_c *actor = fopAcM_SearchByID(i_this->field_0x708);
-    camera_class *camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
+    fopAc_ac_c* actor = fopAcM_SearchByID(i_this->field_0x708);
+    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     cXyz sp2c, i_pos, sp44, sp50;
 
     switch (i_this->mDemoMode) {
@@ -1611,7 +1610,7 @@ static void demo_camera_end(e_mk_class* i_this) {
             i_pos += STAGE_CENTER_POS;
             cLib_addCalc2(&i_this->field_0xc84, 1.0f, 1.0f , 0.1f);
 
-            if (9 < i_this->mDemoCamTimer) {
+            if (i_this->mDemoCamTimer >= 10) {
                 cLib_addCalc2(&i_this->mCamEye.x, i_pos.x, 0.1f, i_this->field_0xc68.x * i_this->field_0xc88);
                 cLib_addCalc2(&i_this->mCamEye.y, i_pos.y, 0.1f, i_this->field_0xc68.y * i_this->field_0xc88);
                 cLib_addCalc2(&i_this->mCamEye.z, i_pos.z, 0.1f, i_this->field_0xc68.z * i_this->field_0xc88);
@@ -1734,7 +1733,7 @@ static void demo_camera_end(e_mk_class* i_this) {
             cMtx_YrotS(*calc_mtx, STAGE_ANGLE_Y);
             sp2c.x = 0.0f;
             sp2c.y = 300.0f;
-            sp2c.z = 100.0f;
+            sp2c.z = -100.0f;
             MtxPosition(&sp2c, &i_this->mCamCenter);
             i_this->mCamCenter += STAGE_CENTER_POS;
             sp2c.x = 800.0f;
@@ -1862,24 +1861,24 @@ static void demo_camera_end(e_mk_class* i_this) {
             i_this->mDemoMode++;
             i_this->mDemoCamTimer = 0;
             i_this->mSound.startCreatureSound(Z2SE_EN_MK_CATCH_BOOM, 0, -1);
-            break;
+            // fallthrough
+        case 23:
+            cLib_addCalc2(&i_this->mCamCenter.x, player->current.pos.x, 0.4f, i_this->field_0xc84 * 200.0f);
+            cLib_addCalc2(&i_this->mCamCenter.z, player->current.pos.z, 0.4f, i_this->field_0xc84 * 200.0f);
 
-        default:
+            if (i_this->mDemoCamTimer == 20) {
+                fopAcM_createItemForMidBoss(&player->current.pos, 64, fopAcM_GetRoomNo(i_this), 0, 0, 0, -1);
+                i_this->field_0xc30 = 10;
+                i_this->current.pos.y += 20000.0f;
+                target_info_count = 0;
+                fpcM_Search(s_h_sub, i_this);
+                fopAcM_delete(static_cast<daPillar_c*>(target_info[0]));
+                fopAcM_delete(static_cast<daPillar_c*>(target_info[7]));
+            }
+
+        case 0:
         case 100:
             return;
-    }
-
-    cLib_addCalc2(&i_this->mCamCenter.x, player->current.pos.x, 0.4f, i_this->field_0xc84 * 200.0f);
-    cLib_addCalc2(&i_this->mCamCenter.z, player->current.pos.z, 0.4f, i_this->field_0xc84 * 200.0f);
-
-    if (i_this->mDemoCamTimer == 20) {
-        fopAcM_createItemForMidBoss(&player->current.pos, 64, fopAcM_GetRoomNo(i_this), 0, 0, 0, -1);
-        i_this->field_0xc30 = 10;
-        i_this->current.pos.y += 20000.0f;
-        target_info_count = 0;
-        fpcM_Search(s_h_sub, i_this);
-        fopAcM_delete(static_cast<daPillar_c*>(target_info[0]));
-        fopAcM_delete(static_cast<daPillar_c*>(target_info[7]));
     }
 }
 
@@ -1913,14 +1912,14 @@ static void* s_brg_sub2(void* i_actor, void* i_data) {
 
 /* 80719594-8071A06C 005554 0AD8+00 1/1 0/0 0/0 .text            demo_camera_r04__FP10e_mk_class */
 static void demo_camera_r04(e_mk_class* i_this) {
-    // EQUIVALENT - Register Mismatch
     u8 uVar1;
-    daPy_py_c *player = (daPy_py_c *)dComIfGp_getPlayer(0);
-    fopAc_ac_c *actor = fopAcM_SearchByID(i_this->field_0x708);
-    camera_class *camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
+    daPy_py_c* player = (daPy_py_c *)dComIfGp_getPlayer(0);
+    fopAc_ac_c* actor = fopAcM_SearchByID(i_this->field_0x708);
+    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     cXyz sp2c, sp38;
 
-    npc_ks_class *i_actor = (npc_ks_class*)fpcM_Search(s_ks_sub, i_this);
+    npc_ks_class* i_actor = (npc_ks_class*)fpcM_Search(s_ks_sub, i_this);
     if (i_actor == NULL) {
         return;
     }
@@ -1985,11 +1984,11 @@ static void demo_camera_r04(e_mk_class* i_this) {
                 }
             }
 
-            i_this->current.pos.y = i_this->home.pos.y + 10000.0f;
+            a_this->current.pos.y = a_this->home.pos.y + 10000.0f;
             return;
 
         case 3:
-            i_this->current.pos.y = i_this->home.pos.y + 10000.0f;
+            a_this->current.pos.y = a_this->home.pos.y + 10000.0f;
             cLib_addCalc2(&i_this->mCamCenter.z, i_actor->current.pos.z, 0.2f, 50.0f);
             cLib_addCalc2(&i_this->mCamCenter.y, i_actor->current.pos.y + 130.0f + cM_ssin(i_this->mDemoCamTimer * 0xA00) * 30.0f, 0.2f, 50.0f);
 
@@ -1997,14 +1996,14 @@ static void demo_camera_r04(e_mk_class* i_this) {
                 return;
             }
 
-            i_this->current.pos.y = i_this->home.pos.y;
-            cMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
+            a_this->current.pos.y = a_this->home.pos.y;
+            cMtx_YrotS(*calc_mtx, a_this->shape_angle.y);
             sp2c.x = 0.0f;
             sp2c.y = -200.0f;
             sp2c.z = 3350.0f;
             MtxPosition(&sp2c, &i_this->mCamEye);
-            i_this->mCamEye += i_this->current.pos;
-            i_this->mCamCenter = i_this->current.pos;
+            i_this->mCamEye += a_this->current.pos;
+            i_this->mCamCenter = a_this->current.pos;
             i_this->mCamCenter.y += 220.0f;
             i_this->mDemoMode = 4;
             i_this->mDemoCamTimer = 0;
@@ -2013,8 +2012,8 @@ static void demo_camera_r04(e_mk_class* i_this) {
             return;
         
         case 4:
-            cLib_addCalc2(&i_this->mCamCenter.z, i_this->current.pos.z, 0.2f, 50.0f);
-            cLib_addCalc2(&i_this->mCamCenter.y, i_this->current.pos.y + 220.0f, 0.2f, 50.0f);
+            cLib_addCalc2(&i_this->mCamCenter.z, a_this->current.pos.z, 0.2f, 50.0f);
+            cLib_addCalc2(&i_this->mCamCenter.y, a_this->current.pos.y + 220.0f, 0.2f, 50.0f);
 
             if (i_this->mDemoCamTimer != 74) {
                 return;
@@ -2049,13 +2048,13 @@ static void demo_camera_r04(e_mk_class* i_this) {
             i_this->mDemoCamTimer = 0;
             // fallthrough
         case 46:
-            cMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
+            cMtx_YrotS(*calc_mtx, a_this->shape_angle.y);
             sp2c.x = 0.0f;
             sp2c.y = 100.0f;
             sp2c.z = 600.0f;
             MtxPosition(&sp2c, &i_this->mCamEye);
-            i_this->mCamEye += i_this->current.pos;
-            i_this->mCamCenter = i_this->current.pos;
+            i_this->mCamEye += a_this->current.pos;
+            i_this->mCamCenter = a_this->current.pos;
             i_this->mCamCenter.y += 220.0f;
 
             if (i_this->mDemoCamTimer < 45) {
@@ -2098,13 +2097,13 @@ static void demo_camera_r04(e_mk_class* i_this) {
             i_this->mDemoMode = 7;
             i_this->mDemoCamTimer = 0;
 
-            cMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
+            cMtx_YrotS(*calc_mtx, a_this->shape_angle.y);
             sp2c.x = -300.0f;
             sp2c.y = 100.0f;
             sp2c.z = 550.0f;
             MtxPosition(&sp2c, &i_this->mCamEye);
-            i_this->mCamEye += i_this->current.pos;
-            i_this->mCamCenter = i_this->current.pos;
+            i_this->mCamEye += a_this->current.pos;
+            i_this->mCamCenter = a_this->current.pos;
             i_this->mCamCenter.y += 190.0f;
             // fallthrough
         case 7:
@@ -2162,13 +2161,13 @@ static void demo_camera_r04(e_mk_class* i_this) {
             camera->mCamera.SetTrimSize(0);
             dComIfGp_event_reset();
             daPy_getPlayerActorClass()->cancelOriginalDemo();
-            fopAcM_delete(i_this);
+            fopAcM_delete(a_this);
             uVar1 = fopAcM_GetParam(i_this) >> 16;
             if (uVar1 == 0xFF) {
                 return;
             }
 
-            dComIfGs_onSwitch(uVar1, fopAcM_GetRoomNo(i_this));
+            dComIfGs_onSwitch(uVar1, fopAcM_GetRoomNo(a_this));
             return;
 
         case 0:
@@ -2233,7 +2232,6 @@ static void demo_camera_bohit(e_mk_class* i_this) {
 
 /* 8071A22C-8071A538 0061EC 030C+00 2/1 0/0 0/0 .text            demo_camera__FP10e_mk_class */
 static void demo_camera(e_mk_class* i_this) {
-    // NONMATCHING
     camera_class *camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     cXyz sp34, sp40;
 
@@ -2278,10 +2276,18 @@ static void demo_camera(e_mk_class* i_this) {
             i_this->field_0xc30 = 0;
             i_this->mDemoMode = 0;
             daPy_getPlayerActorClass()->cancelOriginalDemo();
+
+        case 5:
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+        case 0:
+            break;
     }
 
     if (i_this->field_0xc30 != 0) {
-        int iVar1 = i_this->field_0xc98 * cM_scos(i_this->field_0x6b4 * 0x2C00) * 7.5f;
+        s16 sVar1 = i_this->field_0xc98 * cM_scos(i_this->field_0x6b4 * 0x2C00) * 7.5f;
         cXyz i_center = i_this->mCamCenter;
         cXyz i_eye = i_this->mCamEye;
 
@@ -2292,7 +2298,7 @@ static void demo_camera(e_mk_class* i_this) {
         i_center.z += i_this->field_0xc98 * cM_scos(i_this->field_0x6b4 * 0x2C00);
         i_eye.z += i_this->field_0xc98 * cM_scos(i_this->field_0x6b4 * 0x2C00);
 
-        camera->mCamera.Set(i_center, i_eye, iVar1, i_this->mDemoCamFovy);
+        camera->mCamera.Set(i_center, i_eye, sVar1, i_this->mDemoCamFovy);
 
         cLib_addCalc0(&i_this->field_0xc98, 1.0f, 3.0f);
         i_this->mDemoCamTimer++;
@@ -2305,10 +2311,10 @@ static void demo_camera(e_mk_class* i_this) {
 
 /* 8071A538-8071A808 0064F8 02D0+00 2/1 0/0 0/0 .text            action__FP10e_mk_class */
 static void action(e_mk_class* i_this) {
-    // NONMATCHING
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     cXyz sp28, sp34;
-    i_this->mDistToPlayer = fopAcM_searchPlayerDistanceXZ(i_this);
-    i_this->mAngleToPlayer = fopAcM_searchPlayerAngleY(i_this);
+    i_this->mDistToPlayer = fopAcM_searchPlayerDistanceXZ(a_this);
+    i_this->mAngleToPlayer = fopAcM_searchPlayerAngleY(a_this);
     damage_check(i_this);
     s8 sVar1 = 1;
     s8 sVar2 = 1;
@@ -2358,24 +2364,24 @@ static void action(e_mk_class* i_this) {
     }
 
     if (sVar2) {
-        fopAcM_OnStatus(i_this, 0);
-        i_this->attention_info.flags = 4;
+        fopAcM_OnStatus(a_this, 0);
+        a_this->attention_info.flags = 4;
     } else {
-        fopAcM_OffStatus(i_this, 0);
-        i_this->attention_info.flags = 0;
+        fopAcM_OffStatus(a_this, 0);
+        a_this->attention_info.flags = 0;
     }
 
-    cLib_addCalcAngleS2(&i_this->shape_angle.y, i_this->current.angle.y, 4, 0x2000);
+    cLib_addCalcAngleS2(&a_this->shape_angle.y, a_this->current.angle.y, 4, 0x2000);
 
     if (i_this->field_0x6f8 != 0) {
-        i_this->current.pos += i_this->speed;
-        i_this->speed.y += i_this->gravity;
+        a_this->current.pos += a_this->speed;
+        a_this->speed.y += a_this->gravity;
 
         if (i_this->field_0x6f8 == 1) {
             i_this->mAcch.CrrPos(dComIfG_Bgsp());
         }
     } else {
-        i_this->current.pos += i_this->speed;
+        a_this->current.pos += a_this->speed;
     }
 
     if (i_this->field_0x71b != 0) {
@@ -2384,13 +2390,13 @@ static void action(e_mk_class* i_this) {
             PSMTXCopy(model->getAnmMtx(29), *calc_mtx);
             sp28.set(0.0f, 0.0f, 0.0f);
             MtxPosition(&sp28, &sp34);
-            fopAcM_effSmokeSet1(&i_this->field_0xc08, &i_this->field_0xc0c, &sp34, &i_this->shape_angle, 2.5f, &i_this->tevStr, 0);
+            fopAcM_effSmokeSet1(&i_this->field_0xc08, &i_this->field_0xc0c, &sp34, &a_this->shape_angle, 2.5f, &a_this->tevStr, 0);
 
             PSMTXCopy(model->getAnmMtx(33), *calc_mtx);
             MtxPosition(&sp28, &sp34);
-            fopAcM_effSmokeSet1(&i_this->field_0xc10, &i_this->field_0xc14, &sp34, &i_this->shape_angle, 2.5f, &i_this->tevStr, 0);
+            fopAcM_effSmokeSet1(&i_this->field_0xc10, &i_this->field_0xc14, &sp34, &a_this->shape_angle, 2.5f, &a_this->tevStr, 0);
         } else {
-            fopAcM_effSmokeSet1(&i_this->field_0xc08, &i_this->field_0xc0c, &i_this->current.pos, &i_this->shape_angle, 2.5f, &i_this->tevStr, 1);
+            fopAcM_effSmokeSet1(&i_this->field_0xc08, &i_this->field_0xc0c, &a_this->current.pos, &a_this->shape_angle, 2.5f, &a_this->tevStr, 1);
         }
 
         i_this->field_0x71b = 0;
@@ -2403,7 +2409,11 @@ static void action(e_mk_class* i_this) {
 
 /* 8071A808-8071AF14 0067C8 070C+00 1/1 0/0 0/0 .text            anm_se_set__FP10e_mk_class */
 static void anm_se_set(e_mk_class* i_this) {
-    // NONMATCHING
+    static u16 bo_eno_1[2] = {
+        0x8214,
+        0x8215,
+    };    
+    
     static u16 bo_eno_0[4] = {
         0x8211, 
         0x8212, 
@@ -2411,10 +2421,7 @@ static void anm_se_set(e_mk_class* i_this) {
         0x820C,
     };
 
-    static u16 bo_eno_1[2] = {
-        0x8214,
-        0x8215,
-    };
+
 
     if (i_this->mAnm == 40) {
         if (i_this->mpModelMorf->checkFrame(2.0f) || i_this->mpModelMorf->checkFrame(13.0f)) {
@@ -2491,7 +2498,7 @@ static void anm_se_set(e_mk_class* i_this) {
 
     if (i_this->mAnm == 21) {
         for (int i = 0; i < 4; i++) {
-            i_this->field_0xc20[i] = dComIfGp_particle_set(i_this->field_0xc20[i], bo_eno_0[i], &i_this->current.pos, NULL, 0);
+            i_this->field_0xc20[i] = dComIfGp_particle_set(i_this->field_0xc20[i], bo_eno_0[i], &i_this->eyePos, NULL, 0);
 
             JPABaseEmitter *pEmitter2 = dComIfGp_particle_getEmitter(i_this->field_0xc20[i]);
             if (pEmitter2 != NULL) {
@@ -2760,7 +2767,7 @@ static int useHeapInit(fopAc_ac_c* actor) {
 
 /* 8071BD14-8071C190 007CD4 047C+00 1/0 0/0 0/0 .text            daE_MK_Create__FP10fopAc_ac_c */
 static int daE_MK_Create(fopAc_ac_c* actor) {
-    // NONMATCHING
+    // EQUIVALENT - REGALLOC
     static dCcD_SrcSph cc_sph_src = {
         {
             {0x0, {{0x0, 0x0, 0x0}, {0xd8fbfdff, 0x43}, 0x75}}, // mObj
@@ -2774,19 +2781,20 @@ static int daE_MK_Create(fopAc_ac_c* actor) {
     };
 
     fopAcM_SetupActor(actor, e_mk_class);
-    e_mk_class *i_this;
+    e_mk_class* i_this;
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
 
     int phase = dComIfG_resLoad(&i_this->mPhase, "E_mk");
     if (phase == cPhs_COMPLEATE_e) {
         OS_REPORT("E_MK PARAM %x\n", fopAcM_GetParam(i_this));
-        if (strcmp(dComIfGp_getStartStageName(), "D_MNO05B") == 0 && dComIfGs_isStageMiddleBoss()) {
+        if (strcmp(dComIfGp_getStartStageName(), "D_MN05B") == 0 && dComIfGs_isStageMiddleBoss()) {
             OS_REPORT("中ボスE_MK やられ後なので再セットしません\n"); // Since it's the middle boss E_MK after being defeated, I won't reset it.
             return cPhs_ERROR_e;
         }
 
         u32 uVar1 = fopAcM_GetParam(i_this) >> 24;
         if (uVar1 != 0xFF) {
-            if (dComIfGs_isSwitch(uVar1, fopAcM_GetRoomNo(i_this))) {
+            if (dComIfGs_isSwitch(uVar1, fopAcM_GetRoomNo(a_this))) {
                 OS_REPORT("E_MK やられ後なので再セットしません\n"); // Since it's after the E_MK was done, I won't reset it.
                 return cPhs_ERROR_e;
             }
@@ -2795,7 +2803,7 @@ static int daE_MK_Create(fopAc_ac_c* actor) {
         i_this->field_0x5b6 = fopAcM_GetParam(i_this);
         OS_REPORT("E_MK//////////////E_MK SET 1 !!\n");
 
-        if (!fopAcM_entrySolidHeap(i_this, useHeapInit, 0x56f0)) {
+        if (!fopAcM_entrySolidHeap(a_this, useHeapInit, 0x56f0)) {
             OS_REPORT("//////////////E_MK SET NON !!\n");
             return cPhs_ERROR_e;
         }
@@ -2807,24 +2815,24 @@ static int daE_MK_Create(fopAc_ac_c* actor) {
             l_HIO.field_0x4 = -1;
         }
 
-        i_this->attention_info.flags = 4;
+        a_this->attention_info.flags = 4;
 
-        fopAcM_SetMtx(i_this, i_this->mpModelMorf->getModel()->getBaseTRMtx());
-        fopAcM_SetMin(i_this, -500.0f, -500.0f, -500.0f);
-        fopAcM_SetMax(i_this, 500.0f, 500.0f, 500.0f);
+        fopAcM_SetMtx(a_this, i_this->mpModelMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMin(a_this, -500.0f, -500.0f, -500.0f);
+        fopAcM_SetMax(a_this, 500.0f, 500.0f, 500.0f);
 
-        i_this->mAcch.Set(fopAcM_GetPosition_p(i_this), fopAcM_GetOldPosition_p(i_this), i_this, 1, &i_this->mAcchCir, 
-                          fopAcM_GetSpeed_p(i_this), NULL, NULL);
+        i_this->mAcch.Set(fopAcM_GetPosition_p(a_this), fopAcM_GetOldPosition_p(a_this), i_this, 1, &i_this->mAcchCir, 
+                          fopAcM_GetSpeed_p(a_this), NULL, NULL);
         i_this->mAcchCir.SetWall(80.0f, 30.0f);
-        i_this->health = 200;
+        a_this->health = 200;
         i_this->field_0x560 = 200;
 
-        i_this->mSound.init(&i_this->current.pos, &i_this->eyePos, 3, 1);
+        i_this->mSound.init(&a_this->current.pos, &a_this->eyePos, 3, 1);
         i_this->mAtInfo.mpSound = &i_this->mSound;
 
-        i_this->attention_info.distances[2] = 4;
+        a_this->attention_info.distances[2] = 4;
 
-        i_this->field_0x95c.Init(0xFF, 0, i_this);
+        i_this->field_0x95c.Init(0xFF, 0, a_this);
         i_this->field_0xad0.Set(cc_sph_src);
         i_this->field_0xad0.SetStts(&i_this->field_0x95c);
         i_this->field_0x998.Set(cc_sph_src);
@@ -2833,42 +2841,40 @@ static int daE_MK_Create(fopAc_ac_c* actor) {
         i_this->field_0x60c = 1;
         i_this->field_0x60d = 1;
 
-        if (fopAcM_GetRoomNo(i_this) == 4) {
+        if (fopAcM_GetRoomNo(a_this) == 4) {
             i_this->mAction = e_mk_class::ACT_R04_DEMO;
-            i_this->current.pos.set(0.0f, 3900.0f, -3000.0f);
-            i_this->current.angle.y = 0;
-            i_this->home = i_this->current;
+            a_this->current.pos.set(0.0f, 3900.0f, -3000.0f);
+            a_this->current.angle.y = 0;
+            a_this->home = a_this->current;
         } else {
-            STAGE_CENTER_POS = i_this->home.pos;
+            STAGE_CENTER_POS = a_this->home.pos;
             STAGE_CENTER_POS.y -= 500.0f;
-            STAGE_ANGLE_Y = i_this->home.angle.y;
+            STAGE_ANGLE_Y = a_this->home.angle.y;
 
-            int uVar2 = fopAcM_GetParam(i_this) >> 16;
-            if (uVar2 != 0xFF) {
-                if (dComIfGs_isSwitch(uVar2, fopAcM_GetRoomNo(i_this))) {
-                    dComIfGs_offSwitch(uVar2, fopAcM_GetRoomNo(i_this));
-                    i_this->mAction = e_mk_class::ACT_WAIT;
-                    Z2GetAudioMgr()->subBgmStart(Z2BGM_BOOMERAMG_MONKEY);
-                }
+            u8 uVar2 = fopAcM_GetParamBit(i_this, 16, 8);
+            if (uVar2 != 0xFF && dComIfGs_isSwitch(uVar2, fopAcM_GetRoomNo(a_this))) {
+                dComIfGs_offSwitch(uVar2, fopAcM_GetRoomNo(a_this));
+                i_this->mAction = e_mk_class::ACT_WAIT;
+                Z2GetAudioMgr()->subBgmStart(Z2BGM_BOOMERAMG_MONKEY);
             } else {
                 i_this->mAction = e_mk_class::ACT_S_DEMO;
-                int uVar3 = (u8)fopAcM_GetParam(i_this) & (0xFF | 0xFFFF01);
+                u32 uVar3 = fopAcM_GetParam(i_this) & 0xFF000000 | 0xFFFF01;
                 cXyz sp30(-21.0f, 5114.0f, -4941.0f);
                 i_this->mBabaChildID = fopAcM_createChild(PROC_E_DB, fopAcM_GetID(i_this), uVar3, 
-                                                        &sp30, fopAcM_GetRoomNo(i_this), NULL, 
+                                                        &sp30, fopAcM_GetRoomNo(a_this), NULL, 
                                                         NULL, -1, NULL);
 
                 sp30.set(-10.0f, 5114.0f, -4401.0f);
                 i_this->mBabaChildID2 = fopAcM_createChild(PROC_E_DB, fopAcM_GetID(i_this), uVar3, 
-                                                        &sp30, fopAcM_GetRoomNo(i_this), NULL, 
+                                                        &sp30, fopAcM_GetRoomNo(a_this), NULL, 
                                                         NULL, -1, NULL);
                 
-                fopAcM_OnStatus(i_this, 0x4000);
+                fopAcM_OnStatus(a_this, 0x4000);
             }
         }
 
-        i_this->gravity = -5.0f;
-        i_this->scale.x = l_HIO.mSize * l_HIO.mBoomerangRatio;
+        a_this->gravity = -5.0f;
+        a_this->scale.x = l_HIO.mSize * l_HIO.mBoomerangRatio;
         daE_MK_Execute(i_this);
     }
 

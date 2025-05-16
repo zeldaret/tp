@@ -1,6 +1,5 @@
 #ifndef D_A_E_MK_H
 #define D_A_E_MK_H
-#include "d/actor/d_a_b_bh.h"
 #include "d/actor/d_a_e_db.h"
 #include "d/actor/d_a_obj_pillar.h"
 #include "d/d_bg_s_acch.h"
