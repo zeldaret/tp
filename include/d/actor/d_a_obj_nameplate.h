@@ -25,18 +25,16 @@ public:
     /* 80594754 */ int checkHitAngle();
     /* 805947F8 */ void messageProc();
 
-    ~daObjNameplate_c() { dComIfG_resDelete(&this->mPhase, "J_Hyosatu"); }
-
     struct M_attrs {
         /* 0x00 */ f32 radius1;
-        /* 0x04 */ f32 float_field_0x04;
-        /* 0x08 */ f32 float_field_0x08;
-        /* 0x0C */ f32 float_field_0x0C;
-        /* 0x10 */ f32 float_field_0x10;
-        /* 0x14 */ f32 float_field_0x14;
-        /* 0x18 */ s16 short_field_0x18;
-        /* 0x1A */ s16 short_field_0x1A;
-        /* 0x1C */ s16 short_field_0x1C;
+        /* 0x04 */ f32 field_0x04;
+        /* 0x08 */ f32 field_0x08;
+        /* 0x0C */ f32 field_0x0C;
+        /* 0x10 */ f32 field_0x10;
+        /* 0x14 */ f32 field_0x14;
+        /* 0x18 */ s16 field_0x18;
+        /* 0x1A */ s16 field_0x1A;
+        /* 0x1C */ s16 field_0x1C;
         // unknown types
         /* 0x1E */ u8 field_0x1E;
         /* 0x1F */ u8 field_0x1F;
@@ -44,6 +42,10 @@ public:
 
     static M_attrs const M_attr;
     static M_attrs const& attr() { return M_attr; }
+
+    static char* l_arcName;
+
+    ~daObjNameplate_c() { dComIfG_resDelete(&this->mPhase, l_arcName); }
 
     inline int create();
     inline int draw();
@@ -55,19 +57,19 @@ private:
     /* 0x574 */ Mtx mMtx;
     /* 0x5A4 */ dCcD_Stts mCcDStts;
     /* 0x5E0 */ dCcD_Sph mCcDSph;
-    /* 0x718 */ f32 float_field_0x718;
-    /* 0x71C */ f32 float_field_0x71C;
-    /* 0x720 */ s16 short_field_0x720;
-    /* 0x722 */ s16 short_field_0x722;
-    /* 0x724 */ s16 short_field_0x724;
+    /* 0x718 */ f32 field_0x718;
+    /* 0x71C */ f32 field_0x71C;
+    /* 0x720 */ s16 field_0x720;
+    /* 0x722 */ s16 field_0x722;
+    /* 0x724 */ s16 field_0x724;
     /* 0x726 */ u16 field_0x726;
     /* 0x728 */ dMsgFlow_c mMsgFlow;
     /* 0x774 */ s16 mShowMessage;
     /* 0x776 */ s16 mMessageFlowId;
-    /* 0x778 */ s16 short_field_0x778;
-    /* 0x77A */ s16 short_field_0x77A;
-    /* 0x77C */ s16 short_field_0x77C;
-    /* 0x77E */ s16 short_field_0x77E;
+    /* 0x778 */ s16 field_0x778;
+    /* 0x77A */ s16 field_0x77A;
+    /* 0x77C */ s16 field_0x77C;
+    /* 0x77E */ s16 field_0x77E;
 };
 
 STATIC_ASSERT(sizeof(daObjNameplate_c) == 0x780);

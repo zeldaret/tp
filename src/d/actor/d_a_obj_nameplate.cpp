@@ -23,7 +23,6 @@ daObjNameplate_c::M_attrs const daObjNameplate_c::M_attr = {
     170,
     2000,
     10,
-    0x0A,
     0x00,
 };
 // clang-format on
@@ -42,8 +41,6 @@ void daObjNameplate_c::create_init() {
 
     initBaseMtx();
     initCcSphere();
-
-    return;
 }
 
 /* 8059415C-8059417C 00013C 0020+00 1/1 0/0 0/0 .text            initBaseMtx__16daObjNameplate_cFv
@@ -54,17 +51,17 @@ void daObjNameplate_c::initBaseMtx() {
 
 /* 8059417C-80594248 00015C 00CC+00 2/2 0/0 0/0 .text            setBaseMtx__16daObjNameplate_cFv */
 void daObjNameplate_c::setBaseMtx() {
-    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::transS(home.pos);
     mDoMtx_stack_c::YrotM(shape_angle.y);
 
     switch (attr().field_0x1E) {
     case 0:
-        mDoMtx_stack_c::ZrotM(short_field_0x724);
-        mDoMtx_stack_c::YrotM(short_field_0x722);
+        mDoMtx_stack_c::ZrotM(field_0x724);
+        mDoMtx_stack_c::YrotM(field_0x722);
         break;
     case 1:
-        mDoMtx_stack_c::ZrotM(short_field_0x724);
-        mDoMtx_stack_c::YrotM(short_field_0x722);
+        mDoMtx_stack_c::ZrotM(field_0x724);
+        mDoMtx_stack_c::YrotM(field_0x722);
         break;
     default:
         break;
@@ -87,22 +84,22 @@ void daObjNameplate_c::initCcSphere() {
         },                                                    // mObjInf
         {
             {{0.0f, -115.0f, 0.0f}, 50.0f}  // mSph
-        }  // mSphAttr
+        }                                   // mSphAttr
     };
 
     mCcDStts.Init(0xff, 0xff, this);
     mCcDSph.Set(ccSphSrc);
     mCcDSph.SetStts(&mCcDStts);
-    mCcDSph.SetC(current.pos);
+    mCcDSph.SetC(home.pos);
     mCcDSph.SetR(attr().radius1);
 }
 
 /* 805942B8-8059434C 000298 0094+00 1/1 0/0 0/0 .text            setCcSphere__16daObjNameplate_cFv
  */
 void daObjNameplate_c::setCcSphere() {
+    cXyz local_lc1;
     cXyz local_lc(0.0f, -115.0f, 0.0f);  // fails unless this unused cXyz is present
 
-    cXyz local_lc1;
     local_lc1.x = 0.0f;
     local_lc1.y = -115.0f;
     local_lc1.z = 0.0f;
@@ -116,82 +113,82 @@ void daObjNameplate_c::setCcSphere() {
 /* 8059434C-805945CC 00032C 0280+00 1/1 0/0 0/0 .text            calcAngle__16daObjNameplate_cFv
  */
 void daObjNameplate_c::calcAngle() {
-    if (short_field_0x77E > 0) {
-        short_field_0x77E += -1;
+    if (field_0x77E > 0) {
+        field_0x77E += -1;
     }
 
-    if (short_field_0x77E <= 0 && (mCcDSph.ChkTgHit() != 0)) {
+    if (field_0x77E <= 0 && (mCcDSph.ChkTgHit() != 0)) {
         int hitAngle = checkHitAngle();
 
         // can't be switch
         if (hitAngle == 0 || hitAngle == 2) {
-            short_field_0x77A = (s16)attr().float_field_0x04;
+            field_0x77A = (s16)attr().field_0x04;
         } else if (hitAngle == 1 || hitAngle == 3) {
-            short_field_0x77A = (s16)-attr().float_field_0x04;
+            field_0x77A = (s16)-attr().field_0x04;
         }
 
-        float_field_0x71C = 0.0f;
-        float_field_0x718 = attr().float_field_0x08;
-        short_field_0x77E = attr().short_field_0x1C;
+        field_0x71C = 0.0f;
+        field_0x718 = attr().field_0x08;
+        field_0x77E = attr().field_0x1C;
 
         daObj::HitSeStart(&this->current.pos, fopAcM_GetRoomNo(this), &this->mCcDSph, 14);
     } else if (mCcDSph.ChkCoHit() != 0) {
         int hitAngle = checkHitAngle();
 
         if (hitAngle == 0 || hitAngle == 2) {
-            short_field_0x77A = (s16)attr().short_field_0x18;
+            field_0x77A = (s16)attr().field_0x18;
         } else if (hitAngle == 1 || hitAngle == 3) {
-            short_field_0x77A = -(s16)attr().short_field_0x18;
+            field_0x77A = -(s16)attr().field_0x18;
         }
 
-        float_field_0x71C = 0.0f;
-        short_field_0x77E = attr().short_field_0x1C;
-    } else if (daPy_getPlayerActorClass()->checkFrontRollCrash() != 0 &&
-               fopAcM_searchPlayerDistanceXZ(this) <= 200.0f)
+        field_0x71C = 0.0f;
+        field_0x77E = attr().field_0x1C;
+    } else if (daPy_getPlayerActorClass()->checkFrontRollCrash() &&
+               fopAcM_searchPlayerDistanceXZ(this) < 200.0f)
     {
         int hitAngle = checkHitAngle();
         if (hitAngle == 0 || hitAngle == 2) {
-            short_field_0x77A = (s16)attr().float_field_0x04;
+            field_0x77A = (s16)attr().field_0x04;
         } else if (hitAngle == 1 || hitAngle == 3) {
-            short_field_0x77A = (s16)-attr().float_field_0x04;
+            field_0x77A = (s16)-attr().field_0x04;
         }
 
-        short_field_0x77E = attr().short_field_0x1C;
+        field_0x77E = attr().field_0x1C;
     }
 
-    short_field_0x720 = 0;
+    field_0x720 = 0;
     calcSpring();
-    short_field_0x724 = (float_field_0x718 * cM_scos(short_field_0x77C));
+    field_0x724 = (field_0x718 * cM_scos(field_0x77C));
 
-    if (cLib_chaseF(&float_field_0x718, 0.0f, attr().float_field_0x0C) != 0) {
-        short_field_0x77C = 0;
+    if (cLib_chaseF(&field_0x718, 0.0f, attr().field_0x0C) != 0) {
+        field_0x77C = 0;
     }
 
-    short_field_0x77C += attr().short_field_0x1A;
+    field_0x77C += attr().field_0x1A;
 }
 
 void daObjNameplate_c::calcSpring() {
-    short_field_0x778 += short_field_0x77A;
-    float fVar1 = static_cast<float>(short_field_0x778) * attr().float_field_0x10;
+    field_0x778 += field_0x77A;
+    float fVar1 = static_cast<float>(field_0x778) * attr().field_0x10;
 
-    if ((short_field_0x77A > 0 && fVar1 < 0.0f) || (short_field_0x77A < 0 && fVar1 > 0.0f)) {
+    if ((field_0x77A > 0 && fVar1 < 0.0f) || (field_0x77A < 0 && fVar1 > 0.0f)) {
         fVar1 = 0.0f;
     }
 
-    float_field_0x71C = (float_field_0x71C + fVar1) * attr().float_field_0x14;
-    short_field_0x778 = (float)short_field_0x778 + float_field_0x71C;
-    f32 iVar2 = (float)abs((int)short_field_0x778);
+    field_0x71C = (field_0x71C + fVar1) * attr().field_0x14;
+    field_0x778 = (float)field_0x778 + field_0x71C;
+    f32 iVar2 = (float)abs((int)field_0x778);
 
-    if (iVar2 > attr().float_field_0x04) {
-        if (short_field_0x778 > 1) {
-            short_field_0x778 = (s16)attr().float_field_0x04;
-        } else if (short_field_0x778 < 0) {
-            short_field_0x778 = (s16)-attr().float_field_0x04;
+    if (iVar2 > attr().field_0x04) {
+        if (field_0x778 > 0) {
+            field_0x778 = (s16)attr().field_0x04;
+        } else if (field_0x778 < 0) {
+            field_0x778 = (s16)-attr().field_0x04;
         }
     }
 
-    short_field_0x77A = 0;
-    short_field_0x722 = short_field_0x778;
+    field_0x77A = 0;
+    field_0x722 = field_0x778;
 }
 
 /* 80594754-805947F8 000734 00A4+00 1/1 0/0 0/0 .text checkHitAngle__16daObjNameplate_cFv
@@ -223,7 +220,7 @@ void daObjNameplate_c::messageProc() {
             fopAcM_OnStatus(this, 0);
             cLib_onBit<u32>(attention_info.flags, 0x4000000A);
             attention_info.distances[fopAc_attn_TALK_e] = 0x15;
-            attention_info.distances[fopAc_attn_BATTLE_e] = 0x15;
+            attention_info.distances[fopAc_attn_SPEAK_e] = 0x15;
             eventInfo.onCondition(1);
         } else {
             fopAcM_OffStatus(this, 0);
@@ -246,15 +243,13 @@ void daObjNameplate_c::messageProc() {
         }
         break;
     }
-
-    return;
 }
 
 /* 80594F28-80594F2C -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
-static char* l_arcName = "J_Hyosatu";
+char* daObjNameplate_c::l_arcName = "J_Hyosatu";
 
 int daObjNameplate_c::createHeap() {
-    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "J_Hyosatu.bmd");
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "J_Hyousatu.bmd");
     model = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
 
     // return model == NULL;
@@ -323,15 +318,15 @@ int daObjNameplate_c::create() {
             return cPhs_ERROR_e;
         }
         create_init();
-        fopAcM_SetMtx(this, model->getBaseTRMtx());
+        fopAcM_SetMtx(this, mMtx);
     }
 
     return phase_state;
 }
 
 /* 80594BF8-80594D38 000BD8 0140+00 1/0 0/0 0/0 .text daObjNameplate_Create__FP10fopAc_ac_c */
-static int daObjNameplate_Create(daObjNameplate_c* i_this) {
-    return i_this->create();
+static int daObjNameplate_Create(fopAc_ac_c* i_this) {
+    return static_cast<daObjNameplate_c*>(i_this)->create();
 }
 
 /* ##############################################################################################
