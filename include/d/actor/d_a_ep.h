@@ -88,8 +88,8 @@ class ep_class : public fopAc_ac_c {
         /* 0x0A5C */ int field_0xa5c;
         /* 0x0A60 */ u32 field_0xa60;
         /* 0x0A64 */ u32 field_0xa64;
-        /* 0x0A68 */ u8 field_0xa68[0xa78 - 0xa68];
-        /* 0x0A78 */ u8 field_0xa78;
+        /* 0x0A68 */ u32 field_0xa68[4];
+        /* 0x0A78 */ s8 field_0xa78;
         /* 0x0A79 */ s8 field_0xa79;
         /* 0x0A7A */ u8 field_0xa7a;
         /* 0x0A7B */ u8 field_0xa7b;
