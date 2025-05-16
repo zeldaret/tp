@@ -11,9 +11,9 @@
  * @ingroup actors-enemies
  * @class e_mk_class
  * @brief Ook
- * 
- * @details 
- * 
+ *
+ * @details
+ *
  */
 class e_mk_class : public fopEn_enemy_c {
 public:
@@ -49,7 +49,7 @@ public:
     /* 0x5E4 */ cXyz field_0x5e4;
     /* 0x5F0 */ csXyz field_0x5f0;
     /* 0x5F6 */ u8 field_0x5f6[0x5fc - 0x5f6];
-    /* 0x5FC */ f32 field_0x5fc; 
+    /* 0x5FC */ f32 field_0x5fc;
     /* 0x600 */ f32 field_0x600;
     /* 0x604 */ f32 field_0x604;
     /* 0x608 */ J3DModel* mpBoomerangModel;
@@ -145,6 +145,5 @@ public:
     /* 0x14 */ u8 mHaltAction;
     /* 0x18 */ cXyz mCrownPosAdjust;
 };
-
 
 #endif /* D_A_E_MK_H */
