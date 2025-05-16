@@ -119,12 +119,12 @@ static int entry_no;
 
 /* 807CFBC4-807CFC8C 000464 00C8+00 1/1 0/0 0/0 .text            s_s1entry_sub__FPvPv */
 static void* s_s1entry_sub(void* i_actor, void* i_data) {
-    // NONMATCHING
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_S1) {
         e_s1_class* shadowBeast = (e_s1_class*)i_actor;
         e_warpappear_class* data = (e_warpappear_class*)i_data;
 
         cXyz sp28 = shadowBeast->current.pos - data->current.pos;
+        sp28.y = 0.0f;
 
         if (shadowBeast->mAction != 20) {
             shadowBeast->mAction = 20;
@@ -198,12 +198,12 @@ static void* s_s1start_sub(void* i_actor, void* i_data) {
 
 /* 807CFFD4-807D032C 000874 0358+00 1/1 0/0 0/0 .text            action__FP18e_warpappear_class */
 static void action(e_warpappear_class* i_this) {
-    // NONMATCHING
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     f32 fVar1 = -15200.0f - player->current.pos.x;
     f32 fVar2 = -35.0f - player->current.pos.z;
     fVar1 = JMAFastSqrt(fVar1 * fVar1 + fVar2 * fVar2);
-    bool bVar1 = false;
+    s8 bVar1 = false;
 
     switch (i_this->field_0x596) {
         case 0:
@@ -213,8 +213,8 @@ static void action(e_warpappear_class* i_this) {
                     fpcM_Search(s_s1entry_sub, i_this);
                 }
 
-                if (dComIfGs_isEventBit(0x701)) {
-                    if (dComIfGs_isSwitch(18, fopAcM_GetRoomNo(i_this))) {
+                if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x40])) {
+                    if (dComIfGs_isSwitch(18, fopAcM_GetRoomNo(a_this))) {
                         i_this->field_0x596 = 1;
                         i_this->field_0x59e = 20;
                     }
@@ -224,47 +224,52 @@ static void action(e_warpappear_class* i_this) {
                 if (fVar1 < 950.0f) {
                     i_this->field_0x59e = 1;
                     i_this->field_0x596 = 1;
+                    break;
+                }
+            } else {
+                entry_no = 0;
+                fpcM_Search(s_s1entry_sub, i_this);
+                if (i_this->field_0x64c != 0) {
+                    u32 i_no = fopAcM_GetParamBit(a_this, 8, 8);
+                    if ((s32) i_no != 0xff && !dComIfGs_isSwitch(i_no, fopAcM_GetRoomNo(a_this))) {
+                        return;
+                    }
+
+                    if (i_this->field_0x59a[0] == 0 && fopAcM_searchPlayerDistanceXZ(a_this) < 1000.0f) {
+                        i_this->field_0x59e = 10;
+                        i_this->field_0x596 = 1;
+                    }
                 }
             }
+            break;
 
-            entry_no = 0;
-            fpcM_Search(s_s1entry_sub, i_this);
-            if (i_this->field_0x64c != 0) {
-                int i_no = fopAcM_GetParam(i_this);
-                if (i_no != 0xff && !dComIfGs_isSwitch(i_no, fopAcM_GetRoomNo(i_this))) {
-                    return;
-                }
-
-                if (i_this->field_0x59a[0] == 0 && fopAcM_searchPlayerDistanceXZ(i_this) < 1000.0f) {
-                    i_this->field_0x59e = 10;
-                    i_this->field_0x596 = 1;
-                }
-            }
+        case 1:
+            break;
             
+        case 10:
+            i_this->mpBrks[0]->setPlaySpeed(1.0f);   
+            bVar1 = true;
             break;
 
         case 20:
             i_this->field_0x584 = 1;
-        case 1:
-            // break;
+        }
 
-        case 10:
-            i_this->mpBrks[0]->setPlaySpeed(1.0f);
-
+        if (bVar1 != 0) {
             cXyz sp68(i_this->scale.x, i_this->scale.x, i_this->scale.x);
             if (i_this->field_0x598 == 0) {
-                i_this->field_0x598 = 1;
-                dComIfGp_particle_set(0x84a4, &i_this->current.pos, NULL, &sp68);
+                i_this->field_0x598++;
+                dComIfGp_particle_set(0x84a4, &a_this->current.pos, NULL, &sp68);
             }
     
-            i_this->mParticle1 = dComIfGp_particle_set(i_this->mParticle1, 0x84a6, &i_this->current.pos, NULL, &sp68);
-            i_this->mParticle2 = dComIfGp_particle_set(i_this->mParticle2, 0x84a7, &i_this->current.pos, NULL, &sp68);
-    }
+            i_this->mParticle1 = dComIfGp_particle_set(i_this->mParticle1, 0x84a6, &a_this->current.pos, NULL, &sp68);
+            i_this->mParticle2 = dComIfGp_particle_set(i_this->mParticle2, 0x84a7, &a_this->current.pos, NULL, &sp68);
+        }
+        
 }
 
 /* 807D032C-807D1A54 000BCC 1728+00 2/1 0/0 0/0 .text            demo_camera__FP18e_warpappear_class */
 static void demo_camera(e_warpappear_class* i_this) {
-    // NONMATCHING
     static u16 w_id[20] = {
         0x850D, 0x850E, 0x850F, 0x8510, 0x8511, 0x8512, 0x8513,
         0x8514, 0x8515, 0x8516, 0x8517, 0x8518, 0x8519, 0x851A,
@@ -273,9 +278,10 @@ static void demo_camera(e_warpappear_class* i_this) {
 
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
-    daHorse_c* horseActor = dComIfGp_getHorseActor();
+    daHorse_c* horseActor = (daHorse_c*)dComIfGp_getHorseActor();
 
     cXyz sp48, sp54;
+    dComIfG_play_c* play;
     switch (i_this->field_0x59e) {
         case 1:
             if (!i_this->eventInfo.checkCommandDemoAccrpt()) {
@@ -454,7 +460,8 @@ static void demo_camera(e_warpappear_class* i_this) {
                 i_this->field_0x5f8 = 0.0f;
             }
 
-            dComIfGp_event_onHindFlag(15);
+            play = &g_dComIfG_gameInfo.play;
+            play->getEvent().onHindFlag(15);
 
             if (i_this->field_0x59e == 5) {
                 if (i_this->field_0x5a0 >= 310) {
@@ -482,7 +489,7 @@ static void demo_camera(e_warpappear_class* i_this) {
                 camera->mCamera.Reset(i_this->field_0x5b0, i_this->field_0x5a4, i_this->field_0x5f4, 0);
                 camera->mCamera.Start();
                 camera->mCamera.SetTrimSize(0);
-                dComIfGp_event_reset();
+                play->getEvent().reset();
                 daPy_getPlayerActorClass()->cancelOriginalDemo();
                 fopAcM_delete(i_this);
                 fpcM_Search(s_s1fight_sub, i_this);
@@ -549,7 +556,7 @@ static void demo_camera(e_warpappear_class* i_this) {
             break;
 
         case 12:
-            if (i_this->field_0x5a0 > 28) {
+            if (i_this->field_0x5a0 >= 29) {
                 cLib_addCalc2(&i_this->field_0x5b0.y, i_this->current.pos.y, 0.2f, i_this->field_0x5f8);
                 cLib_addCalc2(&i_this->field_0x5f8, 200.0f, 1.0f, 10.0f);
 
@@ -637,7 +644,8 @@ static void demo_camera(e_warpappear_class* i_this) {
 
                 if (i_this->field_0x5a0 == 180) {
                     sp54 = i_this->field_0x5b0;
-                    dComIfGp_particle_set(0x850c, &sp54, NULL, &cXyz(i_this->scale.x, i_this->scale.x, i_this->scale.x));
+                    cXyz scale(i_this->scale.x, i_this->scale.x, i_this->scale.x);
+                    dComIfGp_particle_set(0x850c, &sp54, NULL, &scale);
                     sp54.set(34800.0f, -300.0f, -26735.0f);
 
                     for (int i = 0; i < 20; i++) {
@@ -723,6 +731,18 @@ static void demo_camera(e_warpappear_class* i_this) {
                 }
                 fopAcM_delete(i_this);
             }
+
+        case 0x7:
+        case 0x8:
+        case 0x9:
+        case 0xe:
+        case 0xf:
+        case 0x10:
+        case 0x11:
+        case 0x12:
+        case 0x13:
+        case 0x0:
+            break;
     }
 
     if (i_this->field_0x59e != 0) {
@@ -731,7 +751,7 @@ static void demo_camera(e_warpappear_class* i_this) {
         cXyz sp9c = i_this->field_0x5a4;
         sp90.y += i_this->field_0x5fc * cM_ssin(i_this->field_0x594 * 0x3200);
         sp9c.y += i_this->field_0x5fc * cM_ssin(i_this->field_0x594 * 0x3200);
-        camera->mCamera.Set(sp9c, sp90, sVar1, i_this->field_0x5f4);
+        camera->mCamera.Set(sp90, sp9c, sVar1, i_this->field_0x5f4);
         cLib_addCalc0(&i_this->field_0x5fc, 1.0f, 2.0f);
         i_this->field_0x5a0++;
 

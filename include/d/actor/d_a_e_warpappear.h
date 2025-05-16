@@ -2,7 +2,8 @@
 #define D_A_E_WARPAPPEAR_H
 
 #include "d/d_msg_flow.h"
-#include "f_op/f_op_actor_mng.h"
+#include "f_op/f_op_actor.h"
+#include "SSystem/SComponent/c_phase.h"
 
 /**
  * @ingroup actors-enemies
