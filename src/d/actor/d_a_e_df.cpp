@@ -117,8 +117,8 @@ bool daE_DF_c::DemoStart() {
     dCamera_c* body = dCam_getBody();
 
     if (eventInfo.checkCommandDemoAccrpt() == 0) {
-        fopAcM_orderPotentialEvent(this, dEvtCnd_CANDEMO_e, 0xffef, 0);
-        eventInfo.onCondition(2);
+        fopAcM_orderPotentialEvent(this, 2, 0xffef, 0);
+        eventInfo.onCondition(dEvtCnd_CANDEMO_e);
         return false;
     }
 
