@@ -19,7 +19,7 @@
  */
 class e_mk_class : public fopEn_enemy_c {
 public:
-    /* 8071C190 */ e_mk_class() {};
+    /* 8071C190 */ e_mk_class() {}
 
     enum e_mk_ACTION {
         ACT_WAIT,
@@ -43,11 +43,9 @@ public:
     /* 0x5CC */ int mAnm;
     /* 0x5D0 */ mDoExt_btpAnm* mBtp;
     /* 0x5D4 */ s16 field_0x5d4;
-    /* 0x5D6 */ u8 field_0x5d6[0x5d8 - 0x5d6];
     /* 0x5D8 */ f32 field_0x5d8;
     /* 0x5DC */ mDoExt_McaMorf* mpCrownModelMorf;
     /* 0x5E0 */ s8 field_0x5e0;
-    /* 0x5E1 */ u8 field_0x5e1[0x5e4 - 0x5e1];
     /* 0x5E4 */ cXyz field_0x5e4;
     /* 0x5F0 */ csXyz field_0x5f0;
     /* 0x5F6 */ u8 field_0x5f6[0x5fc - 0x5f6];
@@ -108,7 +106,6 @@ public:
     /* 0xC30 */ s16 field_0xc30;
     /* 0xC32 */ s16 mDemoMode;
     /* 0xC34 */ s16 mDemoCamTimer;
-    /* 0xC36 */ u8 field_0xc36[0xc38 - 0xc36];
     /* 0xC38 */ cXyz mCamEye;
     /* 0xC44 */ cXyz mCamCenter;
     /* 0xC50 */ cXyz field_0xc50;
@@ -124,11 +121,9 @@ public:
     /* 0xC98 */ f32 field_0xc98;
     /* 0xC9C */ f32 field_0xc9c;
     /* 0xCA0 */ s16 field_0xca0;
-    /* 0xCA2 */ u8 field_0xca2[0xca4 - 0xca2];
     /* 0xCA4 */ dMsgFlow_c mMsgFlow;
     /* 0xCF0 */ u8 field_0xcf0[0xcf5 - 0xcf0];
     /* 0xCF5 */ u8 field_0xcf5;
-    /* 0xCF6 */ u8 field_0xcf6[0xcf8 - 0xcf6];
 };
 
 STATIC_ASSERT(sizeof(e_mk_class) == 0xcf8);

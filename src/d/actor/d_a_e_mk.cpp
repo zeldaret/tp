@@ -34,14 +34,14 @@ daE_MK_HIO_c::daE_MK_HIO_c() {
 /* 8071417C-80714228 00013C 00AC+00 9/9 0/0 0/0 .text            anm_init__FP10e_mk_classifUcf */
 static void anm_init(e_mk_class* i_this, int i_index, f32 i_morf, u8 i_attr, f32 i_rate) {
     i_this->mpModelMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_mk", i_index),
-                                i_attr & 0xff, i_morf, i_rate, 0.0f, -1.0f);
+                                i_attr, i_morf, i_rate, 0.0f, -1.0f);
     i_this->mAnm = i_index;
 }
 
 /* 80714228-807142D0 0001E8 00A8+00 2/2 0/0 0/0 .text            ok_anm_init__FP10e_mk_classifUcf */
 static void ok_anm_init(e_mk_class* i_this, int i_index, f32 i_morf, u8 i_mode, f32 i_speed) {
     i_this->mpCrownModelMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_mk", i_index),
-                                i_mode & 0xff, i_morf, i_speed, 0.0f, -1.0f, NULL);
+                                i_mode, i_morf, i_speed, 0.0f, -1.0f, NULL);
 }
 
 /* 807142D0-80714498 000290 01C8+00 1/0 0/0 0/0 .text            daE_MK_Draw__FP10e_mk_class */
@@ -1210,7 +1210,7 @@ static void demo_camera_start(e_mk_class* i_this) {
         case 1:
             if (!i_this->eventInfo.checkCommandDemoAccrpt()) {
                 fopAcM_orderPotentialEvent(i_this, 2, 0xffff, 0);
-                i_this->eventInfo.onCondition(2);
+                i_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
                 return;
             }
 
@@ -1500,7 +1500,7 @@ static void demo_camera_end(e_mk_class* i_this) {
         case 1:
             if (!i_this->eventInfo.checkCommandDemoAccrpt()) {
                 fopAcM_orderPotentialEvent(i_this, 2, 0xffff, 0);
-                i_this->eventInfo.onCondition(2);
+                i_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
                 return;
             }
 
@@ -1929,7 +1929,7 @@ static void demo_camera_r04(e_mk_class* i_this) {
         case 1:
             if (!i_actor->eventInfo.checkCommandDemoAccrpt()) {
                 fopAcM_orderPotentialEvent(i_actor, 2, 0xffff, 0);
-                i_actor->eventInfo.onCondition(2);
+                i_actor->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
                 return;
             }
 
@@ -2187,7 +2187,7 @@ static void demo_camera_bohit(e_mk_class* i_this) {
         case 1:
             if (!i_this->eventInfo.checkCommandDemoAccrpt()) {
                 fopAcM_orderPotentialEvent(i_this, 2, 0xffff, 0);
-                i_this->eventInfo.onCondition(2);
+                i_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
                 return;
             }
 
