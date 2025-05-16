@@ -117,7 +117,7 @@ bool daE_DF_c::DemoStart() {
     dCamera_c* body = dCam_getBody();
 
     if (eventInfo.checkCommandDemoAccrpt() == 0) {
-        fopAcM_orderPotentialEvent(this, 2, 0xffef, 0);
+        fopAcM_orderPotentialEvent(this, dEvtCnd_CANDEMO_e, 0xffef, 0);
         eventInfo.onCondition(2);
         return false;
     }
@@ -435,10 +435,9 @@ bool daE_DF_c::Mogu_Mogu() {
             mCreatureSound.startCreatureSound(Z2SE_EN_DF_EAT_WAIT, 0, -1);
         }
         return false;
-
-    } else {
-        return false;
     }
+
+    return false;
 }
 
 /* 806A8D98-806A8ED4 001798 013C+00 1/1 0/0 0/0 .text            ObjEatAction__8daE_DF_cFv */
@@ -648,13 +647,13 @@ void daE_DF_c::setBaseMtx() {
 }
 
 /* 806A9610-806A9630 002010 0020+00 1/0 0/0 0/0 .text            daE_DF_Draw__FP8daE_DF_c */
-static void daE_DF_Draw(daE_DF_c* i_this) {
-    i_this->Draw();
+static int daE_DF_Draw(daE_DF_c* i_this) {
+    return i_this->Draw();
 }
 
 /* 806A9630-806A9650 002030 0020+00 2/1 0/0 0/0 .text            daE_DF_Execute__FP8daE_DF_c */
-static void daE_DF_Execute(daE_DF_c* i_this) {
-    i_this->Execute();
+static int daE_DF_Execute(daE_DF_c* i_this) {
+    return i_this->Execute();
 }
 
 /* 806A9650-806A9658 002050 0008+00 1/0 0/0 0/0 .text            daE_DF_IsDelete__FP8daE_DF_c */
@@ -663,9 +662,9 @@ static int daE_DF_IsDelete(daE_DF_c* i_this) {
 }
 
 /* 806A9658-806A9678 002058 0020+00 1/0 0/0 0/0 .text            daE_DF_Delete__FP8daE_DF_c */
-static void daE_DF_Delete(daE_DF_c* i_this) {
+static int daE_DF_Delete(daE_DF_c* i_this) {
     fpc_ProcID proc_id = fopAcM_GetID(i_this);
-    i_this->Delete();
+    return i_this->Delete();
 }
 
 /* 806A9678-806A9930 002078 02B8+00 1/1 0/0 0/0 .text            Create__8daE_DF_cFv */
@@ -674,15 +673,11 @@ int daE_DF_c::Create() {
 
     cPhs__Step rv = (cPhs__Step)dComIfG_resLoad(&mPhaseReq, "E_DF");
     if (rv == cPhs_COMPLEATE_e) {
-#ifdef DEBUG
-        OSReport("E_DF PARAM %x\n", fopAcM_GetParam(this));
-#endif
+        OS_REPORT("E_DF PARAM %x\n", fopAcM_GetParam(this));
         mArg0 = (u8)fopAcM_GetParam(this);
 
         if (mArg0 != 0xff && dComIfGs_isSwitch(mArg0, fopAcM_GetRoomNo(this))) {
-#ifdef DEBUG
-            OSReport("E_WS やられ後なので再セットしません");
-#endif
+            OS_REPORT("E_WS やられ後なので再セットしません");
             return cPhs_ERROR_e;
         }
 
@@ -733,10 +728,10 @@ int daE_DF_c::Create() {
 
 /* 806A9A1C-806A9A3C 00241C 0020+00 1/0 0/0 0/0 .text            daE_DF_Create__FP10fopAc_ac_c
  */
-static void daE_DF_Create(fopAc_ac_c* i_this) {
+static int daE_DF_Create(fopAc_ac_c* i_this) {
     daE_DF_c* a_this = (daE_DF_c*)i_this;
     fpc_ProcID proc_id = fopAcM_GetID(i_this);
-    a_this->Create();
+    return a_this->Create();
 }
 
 /* 806AA03C-806AA05C -00001 0020+00 1/0 0/0 0/0 .data            l_daE_DF_Method */
