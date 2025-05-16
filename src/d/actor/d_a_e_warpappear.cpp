@@ -206,7 +206,6 @@ static void action(e_warpappear_class* i_this) {
     bool bVar1 = false;
 
     switch (i_this->field_0x596) {
-
         case 0:
             if (i_this->field_0x570 == 53) {
                 if (i_this->field_0x64c == 0) {
@@ -227,19 +226,20 @@ static void action(e_warpappear_class* i_this) {
                     i_this->field_0x596 = 1;
                 }
             }
-                entry_no = 0;
-                fpcM_Search(s_s1entry_sub, i_this);
-                if (i_this->field_0x64c != 0) {
-                    int i_no = fopAcM_GetParam(i_this);
-                    if (i_no != 0xff && !dComIfGs_isSwitch(i_no, fopAcM_GetRoomNo(i_this))) {
-                        return;
-                    }
 
-                    if (i_this->field_0x59a[0] == 0 && fopAcM_searchPlayerDistanceXZ(i_this) < 1000.0f) {
-                        i_this->field_0x59e = 10;
-                        i_this->field_0x596 = 1;
-                    }
+            entry_no = 0;
+            fpcM_Search(s_s1entry_sub, i_this);
+            if (i_this->field_0x64c != 0) {
+                int i_no = fopAcM_GetParam(i_this);
+                if (i_no != 0xff && !dComIfGs_isSwitch(i_no, fopAcM_GetRoomNo(i_this))) {
+                    return;
                 }
+
+                if (i_this->field_0x59a[0] == 0 && fopAcM_searchPlayerDistanceXZ(i_this) < 1000.0f) {
+                    i_this->field_0x59e = 10;
+                    i_this->field_0x596 = 1;
+                }
+            }
             
             break;
 
@@ -485,7 +485,7 @@ static void demo_camera(e_warpappear_class* i_this) {
                 dComIfGp_event_reset();
                 daPy_getPlayerActorClass()->cancelOriginalDemo();
                 fopAcM_delete(i_this);
-                fpcM_Search(s_s1fight_sub,i_this);
+                fpcM_Search(s_s1fight_sub, i_this);
                 dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[151]);
             }
             break;
@@ -616,7 +616,7 @@ static void demo_camera(e_warpappear_class* i_this) {
             i_this->field_0x5a4.set(37592.0f, 1256.0f, -24152.0f);
             // fallthrough
         case 21:
-            if ((daPy_getPlayerActorClass()->checkHorseRide() == 0 && horseActor != NULL) && horseActor->current.pos.z > -28000.0f) {
+            if ((!daPy_getPlayerActorClass()->checkHorseRide() && horseActor != NULL) && horseActor->current.pos.z > -28000.0f) {
                 horseActor->current.pos.set(34785.0f, -300.0f, -28500.0f);
                 horseActor->old.pos.set(34785.0f, -300.0f, -28500.0f);
             }

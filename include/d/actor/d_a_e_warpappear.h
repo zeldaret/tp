@@ -16,7 +16,6 @@ class e_warpappear_class : public fopAc_ac_c {
 public:
     /* 0x568 */ request_of_phase_process_class mPhase;
     /* 0x570 */ u8 field_0x570;
-    /* 0x571 */ u8 field_0x571[0x574 - 0x571];
     /* 0x574 */ J3DModel* mpModel;
     /* 0x578 */ mDoExt_btkAnm* mpBtk;
     /* 0x57c */ mDoExt_brkAnm* mpBrks[2];
@@ -30,7 +29,6 @@ public:
     /* 0x59A */ s16 field_0x59a[2];
     /* 0x59E */ s16 field_0x59e;
     /* 0x5A0 */ s16 field_0x5a0;
-    /* 0x5A2 */ u8 field_0x5a2[0x5a4 - 0x5a2];
     /* 0x5A4 */ cXyz field_0x5a4;
     /* 0x5B0 */ cXyz field_0x5b0;
     /* 0x5BC */ cXyz field_0x5bc;
