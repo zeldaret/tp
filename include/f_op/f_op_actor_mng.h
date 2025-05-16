@@ -737,7 +737,7 @@ inline void fopAcM_offActor(fopAc_ac_c* i_actor, u32 flag) {
 }
 
 inline void fopAcM_OnCarryType(fopAc_ac_c* i_actor, fopAcM_CARRY param_2) {
-    i_actor->carryType |= param_2;
+    i_actor->carryType |= (u8) param_2;
 }
 
 inline void fopAcM_OffCarryType(fopAc_ac_c* i_actor, fopAcM_CARRY param_2) {

@@ -3652,6 +3652,11 @@ inline BOOL dComIfGp_evmng_isMapToolCamera(u8 mapToolID) {
     return g_dComIfG_gameInfo.play.getEvtManager().isMapToolCamera(mapToolID, -1);
 }
 
+inline bool dComIfGp_evmng_existence(const char* event_str) {
+     return g_dComIfG_gameInfo.play.getEvtManager().getEventData(
+         dComIfGp_evmng_getEventIdx(event_str, -1)) != NULL;
+}
+
 inline void dComIfGp_particle_createCommon(const void* data) {
     g_dComIfG_gameInfo.play.getParticle()->createCommon(data);
 }
