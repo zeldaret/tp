@@ -36,6 +36,8 @@ struct ShopCam_action_c {
         setCameraSpeed(0.25f, 20.0f, 0.25f, 5.0f);
     }
 
+    void setCamDataIdx(int data_idx) { mCamDataIdx = data_idx; }
+
     /* 0x00 */ ShopCamFunc mCamAction;
     /* 0x0c */ u8 field_0xc[0x18 - 0xc];
     /* 0x18 */ fopAc_ac_c* field_0x18;
@@ -67,7 +69,7 @@ struct ShopCam_action_c {
     /* 0xD0 */ s16 field_0xd0;
     /* 0xD2 */ s16 field_0xd2;
     /* 0xD4 */ s16 field_0xd4;
-    /* 0xD6 */ s16 field_0xd6;
+    /* 0xD6 */ s16 mCamDataIdx;
     /* 0xD8 */ s16 field_0xd8;
     /* 0xDA */ bool field_0xda;
 };
