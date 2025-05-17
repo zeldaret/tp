@@ -16,7 +16,7 @@
  * @details 
  * 
  */
-class e_mk_class : public fopEn_enemy_c {
+class e_mk_class {
 public:
     /* 8071C190 */ e_mk_class() {}
 
@@ -32,6 +32,7 @@ public:
         ACT_R04_DEMO = 35,
     };
 
+    /* 0x000 */ fopEn_enemy_c enemy;
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ s16 mMode;
     /* 0x5B6 */ u8 field_0x5b6;

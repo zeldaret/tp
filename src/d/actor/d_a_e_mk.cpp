@@ -47,38 +47,38 @@ static void ok_anm_init(e_mk_class* i_this, int i_index, f32 i_morf, u8 i_mode, 
 /* 807142D0-80714498 000290 01C8+00 1/0 0/0 0/0 .text            daE_MK_Draw__FP10e_mk_class */
 static int daE_MK_Draw(e_mk_class* i_this) {
     J3DModel* model = i_this->mpModelMorf->getModel();
-    g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
-    g_env_light.setLightTevColorType_MAJI(model, &i_this->tevStr);
+    g_env_light.settingTevStruct(0, &i_this->enemy.current.pos, &i_this->enemy.tevStr);
+    g_env_light.setLightTevColorType_MAJI(model, &i_this->enemy.tevStr);
     J3DModelData* modelData = model->getModelData();
     i_this->mBtp->entry(modelData);
     i_this->mpModelMorf->entryDL();
 
     cXyz sp38;
     if (i_this->field_0x6f8 != 0) {
-        sp38.set(i_this->current.pos.x, i_this->current.pos.y + 50.0f, i_this->current.pos.z);
+        sp38.set(i_this->enemy.current.pos.x, i_this->enemy.current.pos.y + 50.0f, i_this->enemy.current.pos.z);
         i_this->mShadowKey1 = dComIfGd_setShadow(i_this->mShadowKey1, 1, model, &sp38, 
-                                                 1200.0f, 0.0f, i_this->current.pos.y, 
+                                                 1200.0f, 0.0f, i_this->enemy.current.pos.y, 
                                                  i_this->mAcch.GetGroundH(), i_this->mAcch.m_gnd, 
-                                                 &i_this->tevStr, 0, 1.0f, 
+                                                 &i_this->enemy.tevStr, 0, 1.0f, 
                                                  dDlst_shadowControl_c::getSimpleTex());
     }
 
     if (i_this->field_0x60c != 0) {
         model = i_this->mpCrownModelMorf->getModel();
-        g_env_light.setLightTevColorType_MAJI(model, &i_this->tevStr);
+        g_env_light.setLightTevColorType_MAJI(model, &i_this->enemy.tevStr);
         i_this->mpCrownModelMorf->entryDL();
         if (i_this->field_0x5e0 != 0) {
-            sp38.set(i_this->field_0x5e4.x, i_this->current.pos.y + 50.0f, i_this->field_0x5e4.z);
+            sp38.set(i_this->field_0x5e4.x, i_this->enemy.current.pos.y + 50.0f, i_this->field_0x5e4.z);
             i_this->mShadowKey2 = dComIfGd_setShadow(i_this->mShadowKey2, 1, i_this->mpCrownModelMorf->getModel(), 
-                                                     &sp38, 500.0f, 0.0f, i_this->current.pos.y, 
+                                                     &sp38, 500.0f, 0.0f, i_this->enemy.current.pos.y, 
                                                      i_this->mAcch.GetGroundH(), i_this->mAcch.m_gnd, 
-                                                     &i_this->tevStr, 0, 1.0f, 
+                                                     &i_this->enemy.tevStr, 0, 1.0f, 
                                                      dDlst_shadowControl_c::getSimpleTex());
         }
     }
 
     if (i_this->field_0x60d != 0) {
-        g_env_light.setLightTevColorType_MAJI(i_this->mpBoomerangModel, &i_this->tevStr);
+        g_env_light.setLightTevColorType_MAJI(i_this->mpBoomerangModel, &i_this->enemy.tevStr);
         mDoExt_modelUpdateDL(i_this->mpBoomerangModel);
     }
 
@@ -158,10 +158,10 @@ static daPillar_c* search_hasira(e_mk_class* i_this) {
         int i = 0;
         while (i < target_info_count) {
             pPillar = (daPillar_c*)target_info[i];
-            sp44 = pPillar->current.pos - i_this->current.pos;
+            sp44 = pPillar->current.pos - i_this->enemy.current.pos;
             f32 fVar2 = sp44.abs();
             if (fVar2 > 700.0f && fVar2 < fVar1) {
-                s16 sVar1 = i_this->current.angle.y - cM_atan2s(sp44.x, sp44.z);
+                s16 sVar1 = i_this->enemy.current.angle.y - cM_atan2s(sp44.x, sp44.z);
                 if (sVar1 < 0x7000 && sVar1 > -0x7000) {
                     if (iVar1 == 0 || cM_rndF(1.0f) < 0.3f) {
                         rv = pPillar;
@@ -216,7 +216,7 @@ static e_db_class* search_db(e_mk_class* i_this) {
         int i = 0;
         while (i < target_info_count) {
             pDekuBaba = (e_db_class*)target_info[i];
-            sp44 = pDekuBaba->current.pos - i_this->current.pos;
+            sp44 = pDekuBaba->current.pos - i_this->enemy.current.pos;
 
             f32 fVar2 = sp44.abs();
             if ((cM_rndF(1.0f) < 0.5f && fVar2 > 500.0f) && fVar2 < fVar1) {
@@ -250,7 +250,7 @@ static void e_mk_move(e_mk_class* i_this) {
             // fallthrough
         case 1:
             i_this->field_0x6dc.set(0.0f, 0.0f, 0.0f);
-            i_this->speed.set(0.0f, 0.0f, 0.0f);
+            i_this->enemy.speed.set(0.0f, 0.0f, 0.0f);
             if (i_this->field_0xc30 == 2) {
                 i_this->mPillar = NULL;
                 target_info_count = 0;
@@ -267,16 +267,16 @@ static void e_mk_move(e_mk_class* i_this) {
                 } else {
                     i_this->mAction = e_mk_class::ACT_E_DEMO;
                     i_this->mMode = 100;
-                    i_this->gravity = 0.0f;
-                    i_this->scale.x = 1.0f;
+                    i_this->enemy.gravity = 0.0f;
+                    i_this->enemy.scale.x = 1.0f;
                     return;
                 }
 
                 i_this->field_0x71e++;
                 i_this->field_0x5b8 = STAGE_CENTER_POS + sp28;
-                sp28 = i_this->field_0x5b8 - i_this->current.pos;
-                i_this->current.angle.y = cM_atan2s(sp28.x, sp28.z);
-                i_this->current.angle.x = -cM_atan2s(sp28.y, JMAFastSqrt(sp28.x * sp28.x + sp28.z * sp28.z));
+                sp28 = i_this->field_0x5b8 - i_this->enemy.current.pos;
+                i_this->enemy.current.angle.y = cM_atan2s(sp28.x, sp28.z);
+                i_this->enemy.current.angle.x = -cM_atan2s(sp28.y, JMAFastSqrt(sp28.x * sp28.x + sp28.z * sp28.z));
                 anm_init(i_this, 29, 5.0f, 0, 1.0f);
                 i_this->mMode = 3;
             } else {
@@ -297,9 +297,9 @@ static void e_mk_move(e_mk_class* i_this) {
                         i_this->field_0x5b8.y = fopAcM_gc_c::getGroundY();
                     }
 
-                    sp28 = i_this->field_0x5b8 - i_this->current.pos;
-                    i_this->current.angle.y = cM_atan2s(sp28.x, sp28.z);
-                    i_this->current.angle.x = -cM_atan2s(sp28.y, JMAFastSqrt(sp28.x * sp28.x + sp28.z * sp28.z));
+                    sp28 = i_this->field_0x5b8 - i_this->enemy.current.pos;
+                    i_this->enemy.current.angle.y = cM_atan2s(sp28.x, sp28.z);
+                    i_this->enemy.current.angle.x = -cM_atan2s(sp28.y, JMAFastSqrt(sp28.x * sp28.x + sp28.z * sp28.z));
                     anm_init(i_this, 29, 5.0f, 0, 1.0f);
                     i_this->mMode++;
                 }
@@ -308,14 +308,14 @@ static void e_mk_move(e_mk_class* i_this) {
 
     case 3:
         if (frame == 9) {
-            cMtx_YrotS(*calc_mtx, i_this->current.angle.y);
-            cMtx_XrotM(*calc_mtx, i_this->current.angle.x);
+            cMtx_YrotS(*calc_mtx, i_this->enemy.current.angle.y);
+            cMtx_XrotM(*calc_mtx, i_this->enemy.current.angle.x);
             sp28.x = 0.0f;
             sp28.y = 0.0f;
             sp28.z = 70.0f;
-            MtxPosition(&sp28, &i_this->speed);
+            MtxPosition(&sp28, &i_this->enemy.speed);
             i_this->field_0x6be = 1;
-            i_this->field_0x6c0 = i_this->current.pos;
+            i_this->field_0x6c0 = i_this->enemy.current.pos;
             i_this->field_0x6cc = i_this->field_0x5b8;
 
             i_this->mSound.startCreatureVoice(Z2SE_EN_MK_V_JUMP, -1);
@@ -327,7 +327,7 @@ static void e_mk_move(e_mk_class* i_this) {
             if (i_this->mPillar != NULL) {
                 sp28 = i_this->mPillar->current.pos;
                 sp28.y += 500.0f;
-                sp28 -= i_this->current.pos;
+                sp28 -= i_this->enemy.current.pos;
                 if (sp28.abs() < 200.0f) {
                     i_this->mPillar->setShake(2);
                 }
@@ -341,12 +341,12 @@ static void e_mk_move(e_mk_class* i_this) {
         break;
 
     case 4:
-        sp28 = i_this->field_0x5b8 - i_this->current.pos;
+        sp28 = i_this->field_0x5b8 - i_this->enemy.current.pos;
         if (sp28.abs() < 300.0f) {
             anm_init(i_this, 26, 2.0f, 0, 1.0f);
             i_this->mMode++;
-            i_this->field_0x6dc = i_this->speed;
-            i_this->speed.set(0.0f, 0.0f, 0.0f);
+            i_this->field_0x6dc = i_this->enemy.speed;
+            i_this->enemy.speed.set(0.0f, 0.0f, 0.0f);
         }
         break;
 
@@ -392,9 +392,9 @@ static void e_mk_move(e_mk_class* i_this) {
     }
 
 
-    cLib_addCalc2(&i_this->current.pos.x, i_this->field_0x5b8.x, 1.0f, fabsf(i_this->field_0x6dc.x));
-    cLib_addCalc2(&i_this->current.pos.z, i_this->field_0x5b8.z, 1.0f, fabsf(i_this->field_0x6dc.z));
-    cLib_addCalc2(&i_this->current.pos.y, i_this->field_0x5b8.y, 1.0f, fabsf(i_this->field_0x6dc.y));
+    cLib_addCalc2(&i_this->enemy.current.pos.x, i_this->field_0x5b8.x, 1.0f, fabsf(i_this->field_0x6dc.x));
+    cLib_addCalc2(&i_this->enemy.current.pos.z, i_this->field_0x5b8.z, 1.0f, fabsf(i_this->field_0x6dc.z));
+    cLib_addCalc2(&i_this->enemy.current.pos.y, i_this->field_0x5b8.y, 1.0f, fabsf(i_this->field_0x6dc.y));
 }
 
 /* 807154A8-80715618 001468 0170+00 1/1 0/0 0/0 .text            e_mk_wait__FP10e_mk_class */
@@ -425,7 +425,7 @@ static void e_mk_wait(e_mk_class* i_this) {
             }
     }
 
-    cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mAngleToPlayer, 2, 0x1000);
+    cLib_addCalcAngleS2(&i_this->enemy.current.angle.y, i_this->mAngleToPlayer, 2, 0x1000);
     if (i_this->mDistToPlayer < 800.0f) {
         i_this->mAction = e_mk_class::ACT_MOVE;
         i_this->mMode = 0;
@@ -457,7 +457,7 @@ static void e_mk_shoot(e_mk_class* i_this) {
             break;
 
     case 2:
-        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mAngleToPlayer, 2, 0x1000);
+        cLib_addCalcAngleS2(&i_this->enemy.current.angle.y, i_this->mAngleToPlayer, 2, 0x1000);
 
         if (i_this->mpModelMorf->checkFrame(15.0f)) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_MK_V_THROW_BOOM, -1);
@@ -491,8 +491,8 @@ static void e_mk_shoot(e_mk_class* i_this) {
         break;
 
     case 10:
-        sp48 = i_this->field_0x70c->current.pos - i_this->current.pos;
-        cLib_addCalcAngleS2(&i_this->current.angle.y, cM_atan2s(sp48.x, sp48.z), 2, 0x1000);
+        sp48 = i_this->field_0x70c->current.pos - i_this->enemy.current.pos;
+        cLib_addCalcAngleS2(&i_this->enemy.current.angle.y, cM_atan2s(sp48.x, sp48.z), 2, 0x1000);
         if (i_this->mpModelMorf->checkFrame(15.0f)) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_MK_V_THROW_BOOM, -1);
         }
@@ -525,8 +525,8 @@ static void e_mk_shoot(e_mk_class* i_this) {
 
     if (bVar5 != 0) {
         if ((bVar5 == 2) && (actor != NULL)) {
-            cXyz sp54 = actor->current.pos - i_this->current.pos;
-            cLib_addCalcAngleS2(&i_this->current.angle.y, cM_atan2s(sp54.x,sp54.z), 2, 0x800);
+            cXyz sp54 = actor->current.pos - i_this->enemy.current.pos;
+            cLib_addCalcAngleS2(&i_this->enemy.current.angle.y, cM_atan2s(sp54.x,sp54.z), 2, 0x800);
         }
         if (bVar5 <= 2) {
             if (i_this->field_0x707 == 5) {
@@ -629,11 +629,11 @@ static void e_mk_drop(e_mk_class* i_this) {
         case 0:
             anm_init(i_this, 23, 3.0f, 0, 1.0f);
             i_this->mMode = 1;
-            cMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
+            cMtx_YrotS(*calc_mtx, i_this->enemy.shape_angle.y);
             sp24.x = 0.0;
             sp24.y = 30.0;
             sp24.z = -10.0;
-            MtxPosition(&sp24, &i_this->speed);
+            MtxPosition(&sp24, &i_this->enemy.speed);
             i_this->field_0x704 = 50;
             break;
 
@@ -664,7 +664,7 @@ static void e_mk_drop(e_mk_class* i_this) {
             }
 
             if (frame >= 45) {
-                i_this->speed.set(0.0f, 0.0f, 0.0f);
+                i_this->enemy.speed.set(0.0f, 0.0f, 0.0f);
             }
 
             if (i_this->mpModelMorf->isStop()) {
@@ -694,7 +694,7 @@ static void e_mk_drop(e_mk_class* i_this) {
                 i_this->field_0x6dc.set(0.0f, 0.0f, 0.0f);
                 i_this->field_0x6fa = cM_rndF(3.0f) + 2.0f;
                 i_this->field_0x718 = 1;
-                if (i_this->health > 100) {
+                if (i_this->enemy.health > 100) {
                     Z2GetAudioMgr()->changeSubBgmStatus(2);
                 } else {
                     Z2GetAudioMgr()->changeSubBgmStatus(3);
@@ -708,7 +708,7 @@ static void e_mk_damage(e_mk_class* i_this) {
     switch (i_this->mMode) {
         case 0:
             i_this->field_0x719++;
-            i_this->speed.set(0.0f, 0.0f, 0.0f);
+            i_this->enemy.speed.set(0.0f, 0.0f, 0.0f);
             if (i_this->field_0x719 >= 4) {
                 anm_init(i_this, 35, 3.0f, 0, 1.0f);
                 i_this->mAction = e_mk_class::ACT_DROP;
@@ -739,14 +739,14 @@ static void damage_check(e_mk_class* i_this) {
         if (i_this->mAction >= 9) {
             if (i_this->field_0xad0.ChkTgHit()) {
                 i_this->mAtInfo.mpCollider = i_this->field_0xad0.GetTgHitObj();
-                cc_at_check(i_this, &i_this->mAtInfo);
+                cc_at_check(&i_this->enemy, &i_this->mAtInfo);
                 if (i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_UNK) != 0) {
                     i_this->field_0x704 = 20;
                 } else {
                     i_this->field_0x704 = 10;
                 }
 
-                if (i_this->health <= 0) {
+                if (i_this->enemy.health <= 0) {
                     fpcM_Search(s_obj_delete, i_this);
                     i_this->mAction = 30;
                     i_this->mMode = 0;
@@ -764,8 +764,8 @@ static void damage_check(e_mk_class* i_this) {
             }
         }
 
-        if (i_this->health <= 1) {
-            i_this->health = 0;
+        if (i_this->enemy.health <= 1) {
+            i_this->enemy.health = 0;
             i_this->field_0xad0.SetTgHitMark((CcG_Tg_HitMark )3);
         }
     }
@@ -890,48 +890,48 @@ static int e_mk_e_demo(e_mk_class* i_this) {
             i_this->mMode = 1;
             i_this->field_0xc30 = 2;
             i_this->mDemoMode = 1;
-            dComIfGs_onSwitch(108, fopAcM_GetRoomNo(i_this));
+            dComIfGs_onSwitch(108, fopAcM_GetRoomNo(&i_this->enemy));
             break;
 
         case 1:
             if (i_this->mpModelMorf->isStop()) {
                 anm_init(i_this, 17, 1.0f, 2, 1.0f);
                 i_this->mMode = 2;
-                i_this->current.angle.y = STAGE_ANGLE_Y + -0x4000;
-                cMtx_YrotS(*calc_mtx,i_this->current.angle.y);
+                i_this->enemy.current.angle.y = STAGE_ANGLE_Y + -0x4000;
+                cMtx_YrotS(*calc_mtx,i_this->enemy.current.angle.y);
                 sp38.x = 0.0;
                 sp38.y = 0.0;
                 sp38.z = -1000.0;
                 MtxPosition(&sp38, &sp44);
-                i_this->current.pos = STAGE_CENTER_POS + sp44;
-                i_this->old.pos = STAGE_CENTER_POS + sp44;
+                i_this->enemy.current.pos = STAGE_CENTER_POS + sp44;
+                i_this->enemy.old.pos = STAGE_CENTER_POS + sp44;
                 i_this->mDemoMode = 4;
                 i_this->mDemoCamTimer = 0;
-                i_this->gravity = -10.0f;
+                i_this->enemy.gravity = -10.0f;
             }
             break;
 
         case 2:
             if (i_this->mAcch.ChkGroundHit()) {
-                i_this->speedF = 0.0f;
+                i_this->enemy.speedF = 0.0f;
             }
     
             if (frame == 1 || frame == 18) {
-                i_this->speed.y = 50.0f;
-                i_this->speedF = 30.0f;
+                i_this->enemy.speed.y = 50.0f;
+                i_this->enemy.speedF = 30.0f;
                 i_this->mSound.startCreatureSound(Z2SE_EN_MK_JUMP_START, 0, -1);
             }
     
-            sp38 = STAGE_CENTER_POS - i_this->current.pos;
+            sp38 = STAGE_CENTER_POS - i_this->enemy.current.pos;
             fVar1 = JMAFastSqrt(sp38.x * sp38.x + sp38.z * sp38.z);
             if (fVar1 < 200.0f) {
                 rv = 2;
                 if (fVar1 < 100.0f) {
                     i_this->mMode = 3;
                     anm_init(i_this, 16, 2.0f, 0, 1.0f);
-                    i_this->speedF = 0.0f;
-                    i_this->gravity = 0.0f;
-                    i_this->speed.y = 0.0f;
+                    i_this->enemy.speedF = 0.0f;
+                    i_this->enemy.gravity = 0.0f;
+                    i_this->enemy.speed.y = 0.0f;
                     i_this->field_0x6fc[0] = 40;
                     cVar6 = 60;
                     target_info_count = 0;
@@ -952,11 +952,11 @@ static int e_mk_e_demo(e_mk_class* i_this) {
             }
             
             if (i_this->field_0x6fc[0] == 0) {
-              i_this->gravity = -0.03f;
-              if (i_this->speed.y < -1.0f) {
+              i_this->enemy.gravity = -0.03f;
+              if (i_this->enemy.speed.y < -1.0f) {
                   anm_init(i_this, 14, 10.0f, 0, 1.0f);
-                  i_this->speedF = 0.0f;
-                  i_this->gravity = -2.0f;
+                  i_this->enemy.speedF = 0.0f;
+                  i_this->enemy.gravity = -2.0f;
                   i_this->mMode = 4;
               }
             }
@@ -964,19 +964,19 @@ static int e_mk_e_demo(e_mk_class* i_this) {
 
         case 4:
             if (i_this->mAcch.ChkGroundHit()) {
-                i_this->speedF = 0.0f;
+                i_this->enemy.speedF = 0.0f;
                 i_this->field_0x71b = 2;
                 cVar6 = 30;
                 i_this->mMode = 100;
                 i_this->field_0x5e0 = 1;
                 ok_anm_init(i_this, 43, 1.0f, 2, 1.0f);
-                cMtx_YrotS(*calc_mtx, i_this->current.angle.y);
+                cMtx_YrotS(*calc_mtx, i_this->enemy.current.angle.y);
                 sp38.x = 0.0f;
                 sp38.y = 0.0f;
                 sp38.z = -50.0f;
                 MtxPosition(&sp38, &sp44);
                 i_this->field_0x5e4 += sp44;
-                i_this->field_0x5f0 = i_this->shape_angle;
+                i_this->field_0x5f0 = i_this->enemy.shape_angle;
                 i_this->field_0x5f0.x = 0x4000;
                 i_this->field_0x5fc = 30.0f;
                 i_this->field_0x600 = -20.0f;
@@ -1007,20 +1007,20 @@ static int e_mk_e_demo(e_mk_class* i_this) {
                 i_this->field_0x718 = 0;
                 i_this->field_0x6fa = 100;
                 i_this->field_0x6dc.set(0.0f, 0.0f, 0.0f);
-                i_this->speed.set(0.0f, 0.0f, 0.0f);
+                i_this->enemy.speed.set(0.0f, 0.0f, 0.0f);
                 i_this->field_0x5b8 = STAGE_CENTER_POS;
                 i_this->field_0x5b8.y += 500.0f;
-                sp38 = i_this->field_0x5b8 - i_this->current.pos;
-                i_this->current.angle.y = cM_atan2s(sp38.x, sp38.z);
-                i_this->current.angle.x = -cM_atan2s(sp38.y, JMAFastSqrt(sp38.x * sp38.x + sp38.z * sp38.z));
-                cMtx_YrotS(*calc_mtx, i_this->current.angle.y);
-                cMtx_XrotM(*calc_mtx, i_this->current.angle.x);
+                sp38 = i_this->field_0x5b8 - i_this->enemy.current.pos;
+                i_this->enemy.current.angle.y = cM_atan2s(sp38.x, sp38.z);
+                i_this->enemy.current.angle.x = -cM_atan2s(sp38.y, JMAFastSqrt(sp38.x * sp38.x + sp38.z * sp38.z));
+                cMtx_YrotS(*calc_mtx, i_this->enemy.current.angle.y);
+                cMtx_XrotM(*calc_mtx, i_this->enemy.current.angle.x);
                 sp38.x = 0.0;
                 sp38.y = 0.0;
                 sp38.z = 70.0;
-                MtxPosition(&sp38, &i_this->speed);
+                MtxPosition(&sp38, &i_this->enemy.speed);
                 i_this->field_0x6be = 1;
-                i_this->field_0x6c0 = i_this->current.pos;
+                i_this->field_0x6c0 = i_this->enemy.current.pos;
                 i_this->field_0x6cc = i_this->field_0x5b8;
                 i_this->mSound.startCreatureSound(Z2SE_EN_MK_JUMP_WIND, 0, -1);
                 i_this->mAction = e_mk_class::ACT_MOVE;
@@ -1034,13 +1034,13 @@ static int e_mk_e_demo(e_mk_class* i_this) {
             break;
     }
 
-    cMtx_YrotS(*calc_mtx, i_this->current.angle.y);
+    cMtx_YrotS(*calc_mtx, i_this->enemy.current.angle.y);
     sp38.x = 0.0f;
     sp38.y = 0.0f;
-    sp38.z = i_this->speedF;
+    sp38.z = i_this->enemy.speedF;
     MtxPosition(&sp38, &sp44);
-    i_this->speed.x = sp44.x;
-    i_this->speed.z = sp44.z;
+    i_this->enemy.speed.x = sp44.x;
+    i_this->enemy.speed.z = sp44.z;
     if (cVar6 != 0) {
       dComIfGp_getVibration().StartShock(5, 1, cXyz(0.0f, 1.0f, 0.0f));
       i_this->mSound.startCreatureSound(Z2SE_EN_FM_FOOTNOTE, 0, -1);
@@ -1071,7 +1071,7 @@ static void e_mk_r04_demo(e_mk_class* i_this) {
 
         case 3:
             fVar2 = 30.0f;
-            if (i_this->current.pos.z > -600.0f) {
+            if (i_this->enemy.current.pos.z > -600.0f) {
                 i_this->mMode = 4;
                 anm_init(i_this, 40, 5.0f, 2, 1.0f);
                 i_this->field_0x6fc[0] = 0;
@@ -1163,22 +1163,22 @@ static void e_mk_r04_demo(e_mk_class* i_this) {
                 fVar2 = 30.0f;
             }
 
-            cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->home.angle.y + (u16)-0x8000, 2, 0x1000);
+            cLib_addCalcAngleS2(&i_this->enemy.current.angle.y, i_this->enemy.home.angle.y + (u16)-0x8000, 2, 0x1000);
             break;
     }
 
-    cLib_addCalc2(&i_this->speedF, fVar2, 1.0f, 5.0f);
-    i_this->gravity = -10.0f;
-    cMtx_YrotS(*calc_mtx, i_this->current.angle.y);
+    cLib_addCalc2(&i_this->enemy.speedF, fVar2, 1.0f, 5.0f);
+    i_this->enemy.gravity = -10.0f;
+    cMtx_YrotS(*calc_mtx, i_this->enemy.current.angle.y);
     cXyz sp2c, sp38;
     sp2c.x = 0.0f;
     sp2c.y = 0.0f;
-    sp2c.z = i_this->speedF;
+    sp2c.z = i_this->enemy.speedF;
     MtxPosition(&sp2c, &sp38);
-    i_this->speed.x = sp38.x;
-    i_this->speed.z = sp38.z;
-    i_this->current.pos += i_this->speed;
-    i_this->speed.y += i_this->gravity;
+    i_this->enemy.speed.x = sp38.x;
+    i_this->enemy.speed.z = sp38.z;
+    i_this->enemy.current.pos += i_this->enemy.speed;
+    i_this->enemy.speed.y += i_this->enemy.gravity;
 }
 
 /* 80717400-807174E4 0033C0 00E4+00 1/1 0/0 0/0 .text            cam_3d_morf__FP10e_mk_classf */
@@ -1195,7 +1195,7 @@ static void cam_3d_morf(e_mk_class* i_this, f32 param_2) {
 static void demo_camera_start(e_mk_class* i_this) {
     // EQUIVALENT - REGALLOC
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
-    fopAc_ac_c* actor1, * actor2;
+    fopAc_ac_c* actor1, * actor2, * actor3;
     daPy_py_c *player = (daPy_py_c*)dComIfGp_getPlayer(0);
     actor1 = fopAcM_SearchByID(i_this->field_0x708);
     camera_class *camera1 = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
@@ -1213,18 +1213,18 @@ static void demo_camera_start(e_mk_class* i_this) {
                 return;
             }
 
-            camera1->mCamera.Stop();
+            camera2->mCamera.Stop();
             i_this->mDemoMode = 2;
             i_this->mDemoCamTimer = 0;
             i_this->mDemoCamFovy = 50.0f;
-            camera1->mCamera.SetTrimSize(3);
+            camera2->mCamera.SetTrimSize(3);
             i_this->field_0xc90 = 2500.0f;
 
             daPy_getPlayerActorClass()->changeOriginalDemo();
             Z2GetAudioMgr()->bgmStreamPrepare(0x200000D);
 
-            i_this->mCamEye = camera2->lookat.eye;
-            i_this->mCamCenter = camera2->lookat.center;
+            i_this->mCamEye = camera1->lookat.eye;
+            i_this->mCamCenter = camera1->lookat.center;
             i_this->field_0xc50.set(-271.0f, 4559.0f, -7241.0f);
             i_this->field_0xc5c.set(-70.0f, 4378.0f, -6233.0f);
 
@@ -1255,12 +1255,10 @@ static void demo_camera_start(e_mk_class* i_this) {
 
         case 3:
             cMtx_YrotS(*calc_mtx, STAGE_ANGLE_Y);
-            sp34.x = 0.0f;
-            sp34.y = 150.0f;
-            sp34.z = 250.0f;
+            sp34.set(0.0f, 150.0f, 250.0f);
             MtxPosition(&sp34, &sp40);
-            i_this->mCamEye = i_this->current.pos + sp40;
-            i_this->mCamCenter = i_this->current.pos;
+            i_this->mCamEye = i_this->enemy.current.pos + sp40;
+            i_this->mCamCenter = i_this->enemy.current.pos;
             i_this->mCamCenter.y += 150.0f;
             if (i_this->mDemoCamTimer >= 60) {
                 i_this->mDemoCamTimer = 0;
@@ -1271,12 +1269,10 @@ static void demo_camera_start(e_mk_class* i_this) {
 
         case 4:
             cMtx_YrotS(*calc_mtx, STAGE_ANGLE_Y);
-            sp34.x = 0.0f;
-            sp34.y = 150.0f;
-            sp34.z = 700.0f;
+            sp34.set(0.0f, 150.0f, 700.0f);
             MtxPosition(&sp34, &sp40);
-            i_this->mCamEye = i_this->current.pos + sp40;
-            i_this->mCamCenter = i_this->current.pos;
+            i_this->mCamEye = i_this->enemy.current.pos + sp40;
+            i_this->mCamCenter = i_this->enemy.current.pos;
             i_this->mCamCenter.y += 230.0f;
 
             if (i_this->mDemoCamTimer == 35) {
@@ -1295,16 +1291,12 @@ static void demo_camera_start(e_mk_class* i_this) {
                 sp34.y = 0.0f;
                 sp34.z = i_this->field_0xc90;
                 MtxPosition(&sp34, &sp4c);
-                sp4c += i_this->current.pos;
+                sp4c += i_this->enemy.current.pos;
                 cMtx_YrotS(*calc_mtx, STAGE_ANGLE_Y);
-                sp34.x = -300.0f;
-                sp34.y = 0.0f;
-                sp34.z = 0.0f;
+                sp34.set(-300.0f, 0.0f, 0.0f);
                 MtxPosition(&sp34, &sp40);
                 sp4c += sp40;
-                sp34.x = 100.0f;
-                sp34.y = 0.0f;
-                sp34.z = 200.0f;
+                sp34.set(100.0f, 0.0f, 200.0f);
                 MtxPosition(&sp34, &sp40);
                 sp40 += sp4c;
                 sp40.y = player->current.pos.y;
@@ -1317,22 +1309,18 @@ static void demo_camera_start(e_mk_class* i_this) {
             i_this->field_0xc9c = 500.0f;
             cMtx_YrotS(*calc_mtx, STAGE_ANGLE_Y);
             cMtx_XrotM(*calc_mtx, i_this->field_0xc9c);
-            sp34.x = 0.0f;
-            sp34.y = 0.0f;
-            sp34.z = 3500.0f;
+            sp34.set(0.0f, 0.0f, 3500.0f);
             MtxPosition(&sp34, &i_this->mCamCenter);
-            i_this->mCamCenter += i_this->current.pos;
+            i_this->mCamCenter += i_this->enemy.current.pos;
             cMtx_YrotS(*calc_mtx, STAGE_ANGLE_Y);
             cMtx_XrotM(*calc_mtx, 2000);
             sp34.x = 0.0f;
             sp34.y = 0.0f;
             sp34.z = i_this->field_0xc90;
             MtxPosition(&sp34, &i_this->mCamEye);
-            i_this->mCamEye += i_this->current.pos;
+            i_this->mCamEye += i_this->enemy.current.pos;
             cMtx_YrotS(*calc_mtx, STAGE_ANGLE_Y);
-            sp34.x = -300.0f;
-            sp34.y = 0.0f;
-            sp34.z = 0.0f;
+            sp34.set(-300.0f, 0.0f, 0.0f);
             MtxPosition(&sp34, &sp40);
             i_this->mCamEye += sp40;
 
@@ -1348,12 +1336,10 @@ static void demo_camera_start(e_mk_class* i_this) {
 
         case 6:
             cMtx_YrotS(*calc_mtx, STAGE_ANGLE_Y);
-            sp34.x = 0.0f;
-            sp34.y = 150.0f;
-            sp34.z = 700.0f;
+            sp34.set(0.0f, 150.0f, 700.0f);
             MtxPosition(&sp34, &sp40);
-            i_this->mCamEye = i_this->current.pos + sp40;
-            i_this->mCamCenter = i_this->current.pos;
+            i_this->mCamEye = i_this->enemy.current.pos + sp40;
+            i_this->mCamCenter = i_this->enemy.current.pos;
             i_this->mCamCenter.y += 230.0f;
 
             if (i_this->mDemoCamTimer == 2) {
@@ -1363,9 +1349,7 @@ static void demo_camera_start(e_mk_class* i_this) {
             if (i_this->mDemoCamTimer >= 10) {
                 i_this->mMode = 4;
                 i_this->mDemoMode = 100;
-                sp34.x = 200.0f;
-                sp34.y = 0.0f;
-                sp34.z = -150.0f;
+                sp34.set(200.0f, 0.0f,-150.0f);
                 MtxPosition(&sp34, &sp40);
                 sp40 += player->current.pos;
                 player->setPlayerPosAndAngle(&sp40, a_this->current.angle.y + (u16)-0x8000, 0);
@@ -1377,11 +1361,9 @@ static void demo_camera_start(e_mk_class* i_this) {
 
             i_this->mCamCenter = actor1->current.pos;
             cMtx_YrotS(*calc_mtx, STAGE_ANGLE_Y);
-            sp34.x = 300.0f;
-            sp34.y = -200.0f;
-            sp34.z = 1000.0f;
+            sp34.set(300.0f, -200.0f, 1000.0f);
             MtxPosition(&sp34, &sp40);
-            i_this->mCamEye = i_this->current.pos + sp40;
+            i_this->mCamEye = i_this->enemy.current.pos + sp40;
             i_this->mDemoMode = 8;
             i_this->mDemoCamTimer = 0;
             // fallthrough
@@ -1400,16 +1382,16 @@ static void demo_camera_start(e_mk_class* i_this) {
             // fallthrough
         case 9:
             actor2 = fopAcM_SearchByID(i_this->mBabaChildID);
-            fopAcM_SearchByID(i_this->mBabaChildID2);
+            actor3 = fopAcM_SearchByID(i_this->mBabaChildID2);
             if (i_this->mDemoCamTimer == 0) {
                 actor2->current.pos.x = player->current.pos.x - 200.0f;
                 actor2->current.pos.y = player->current.pos.y + 500.0f;
                 actor2->current.pos.z = player->current.pos.z - 1200.0f;
                 actor2->speed.y = 0.0f;
-                actor1->current.pos.x = player->current.pos.x + 200.0f;
-                actor1->current.pos.y = player->current.pos.y + 1000.0f;
-                actor1->current.pos.z = player->current.pos.z - 1000.0f;
-                actor1->speed.y = 0.0f;
+                actor3->current.pos.x = player->current.pos.x + 200.0f;
+                actor3->current.pos.y = player->current.pos.y + 1000.0f;
+                actor3->current.pos.z = player->current.pos.z - 1000.0f;
+                actor3->speed.y = 0.0f;
                 i_this->mCamCenter.x = actor2->current.pos.x;
                 i_this->mCamCenter.z = actor2->current.pos.z;
             }
@@ -1434,12 +1416,10 @@ static void demo_camera_start(e_mk_class* i_this) {
 
         case 10:
             cMtx_YrotS(*calc_mtx, STAGE_ANGLE_Y);
-            sp34.x = 0.0f;
-            sp34.y = 150.0f;
-            sp34.z = 700.0f;
+            sp34.set(0.0f, 150.0f, 700.0f);
             MtxPosition(&sp34, &sp40);
-            i_this->mCamEye = i_this->current.pos + sp40;
-            i_this->mCamCenter = i_this->current.pos;
+            i_this->mCamEye = i_this->enemy.current.pos + sp40;
+            i_this->mCamCenter = i_this->enemy.current.pos;
             i_this->mCamCenter.y += 230.0f;
 
             actor1 = fopAcM_SearchByID(i_this->mBabaChildID);
@@ -1453,9 +1433,7 @@ static void demo_camera_start(e_mk_class* i_this) {
         case 11:
             if (i_this->mDemoCamTimer >= 30) {
                 cMtx_YrotS(*calc_mtx, player->shape_angle.y);
-                sp34.x = 0.0f;
-                sp34.y = 200.0f;
-                sp34.z = -400.0f;
+                sp34.set(0.0f, 200.0f, -400.0f);
                 MtxPosition(&sp34, &i_this->mCamEye);
                 i_this->mCamEye += player->current.pos;
                 i_this->mCamCenter = player->current.pos;
@@ -1490,6 +1468,7 @@ static void demo_camera_start(e_mk_class* i_this) {
 /* 8071823C-80719488 0041FC 124C+00 1/1 0/0 0/0 .text            demo_camera_end__FP10e_mk_class */
 static void demo_camera_end(e_mk_class* i_this) {
     // NONMATCHING
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
     fopAc_ac_c* actor = fopAcM_SearchByID(i_this->field_0x708);
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
@@ -1497,9 +1476,9 @@ static void demo_camera_end(e_mk_class* i_this) {
 
     switch (i_this->mDemoMode) {
         case 1:
-            if (!i_this->eventInfo.checkCommandDemoAccrpt()) {
-                fopAcM_orderPotentialEvent(i_this, 2, 0xffff, 0);
-                i_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+            if (!i_this->enemy.eventInfo.checkCommandDemoAccrpt()) {
+                fopAcM_orderPotentialEvent(&i_this->enemy, 2, 0xffff, 0);
+                i_this->enemy.eventInfo.onCondition(dEvtCnd_CANDEMO_e);
                 return;
             }
 
@@ -1514,23 +1493,23 @@ static void demo_camera_end(e_mk_class* i_this) {
             dComIfGs_onStageMiddleBoss();
             // fallthrough
         case 2:
-            cMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
+            cMtx_YrotS(*calc_mtx, i_this->enemy.shape_angle.y);
             sp2c.x = 0.0f;
             sp2c.y = 130.0f;
             sp2c.z = 0.0f;
             MtxPosition(&sp2c, &i_this->mCamCenter);
-            i_this->mCamCenter += i_this->current.pos;
+            i_this->mCamCenter += i_this->enemy.current.pos;
             sp2c.x = 400.0f;
             sp2c.y = 100.0f;
             sp2c.z = 200.0f;
             MtxPosition(&sp2c, &i_this->mCamEye);
-            i_this->mCamEye += i_this->current.pos;
+            i_this->mCamEye += i_this->enemy.current.pos;
             sp2c.x = 0.0f;
             sp2c.y = 0.0f;
             sp2c.z = -300.0f;
             MtxPosition(&sp2c, &i_pos);
-            i_pos += i_this->current.pos;
-            player->setPlayerPosAndAngle(&i_pos, i_this->shape_angle.y, 0);
+            i_pos += i_this->enemy.current.pos;
+            player->setPlayerPosAndAngle(&i_pos, i_this->enemy.shape_angle.y, 0);
 
             if (i_this->mDemoCamTimer < 30) {
                 return;
@@ -1541,17 +1520,17 @@ static void demo_camera_end(e_mk_class* i_this) {
             return;
 
         case 3:
-            cMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
+            cMtx_YrotS(*calc_mtx, i_this->enemy.shape_angle.y);
             sp2c.x = -300.0f;
             sp2c.y = 0.0f;
             sp2c.z = -150.0f;
             MtxPosition(&sp2c, &i_this->mCamCenter);
-            i_this->mCamCenter += i_this->current.pos;
+            i_this->mCamCenter += i_this->enemy.current.pos;
             sp2c.x = 100.0f;
             sp2c.y = 1000.0f;
             sp2c.z = 0.0f;
             MtxPosition(&sp2c, &i_this->mCamEye);
-            i_this->mCamEye += i_this->current.pos;
+            i_this->mCamEye += i_this->enemy.current.pos;
             return;
 
         case 4:
@@ -1595,7 +1574,7 @@ static void demo_camera_end(e_mk_class* i_this) {
             sp2c.z = 500.0f;
             MtxPosition(&sp2c, &i_pos);
             i_pos += STAGE_CENTER_POS;
-            player->setPlayerPosAndAngle(&i_pos, i_this->shape_angle.y, 0);
+            player->setPlayerPosAndAngle(&i_pos, i_this->enemy.shape_angle.y, 0);
             // fallthrough
         case 6:
             cLib_addCalc2(&i_this->mCamCenter.x, i_this->field_0x5e4.x, 0.1f, i_this->field_0xc84 * 20.0f);
@@ -1631,7 +1610,7 @@ static void demo_camera_end(e_mk_class* i_this) {
                 sp2c.z = 0.0f;
                 MtxPosition(&sp2c, &i_pos);
                 i_pos += STAGE_CENTER_POS;
-                player->setPlayerPosAndAngle(&i_pos, i_this->shape_angle.y, 0);
+                player->setPlayerPosAndAngle(&i_pos, i_this->enemy.shape_angle.y, 0);
                 player->changeDemoMode(3, 1, 0, 0);
                 sp2c.x = 170.0f;
                 sp2c.y = 0.0f;
@@ -1647,13 +1626,13 @@ static void demo_camera_end(e_mk_class* i_this) {
 
             if (i_this->mDemoCamTimer == 180) {
                 i_this->field_0x60c = 0;
-                cMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
+                cMtx_YrotS(*calc_mtx, i_this->enemy.shape_angle.y);
                 sp2c.x = 0.0f;
                 sp2c.y = 0.0f;
                 sp2c.z = -20.0f;
                 MtxPosition(&sp2c, &i_pos);
                 i_pos += i_this->field_0x5e4;
-                fopAcM_createDisappear(i_this, &i_pos, 5, 0, 0xff);
+                fopAcM_createDisappear(&i_this->enemy, &i_pos, 5, 0, 0xff);
             }
 
             if (i_this->mDemoCamTimer != 248) {
@@ -1669,14 +1648,14 @@ static void demo_camera_end(e_mk_class* i_this) {
             sp2c.z = 300.0f;
             MtxPosition(&sp2c, &i_pos);
             i_pos += STAGE_CENTER_POS;
-            i_this->current.pos.x = i_pos.x;
-            i_this->current.pos.z = i_pos.z;
+            i_this->enemy.current.pos.x = i_pos.x;
+            i_this->enemy.current.pos.z = i_pos.z;
             sp2c.x = 130.0f;
             sp2c.y = 100.0f;
             sp2c.z = 100.0f;
             MtxPosition(&sp2c, &i_this->mCamEye);
             i_this->mCamEye += STAGE_CENTER_POS;
-            i_this->mCamCenter = i_this->current.pos;
+            i_this->mCamCenter = i_this->enemy.current.pos;
             i_this->mCamCenter.y += 190.0f;
             sp2c.x = 400.0f;
             sp2c.y = 0.0f;
@@ -1686,8 +1665,10 @@ static void demo_camera_end(e_mk_class* i_this) {
             sp2c.x = STAGE_CENTER_POS.x - i_pos.x;
             sp2c.z = STAGE_CENTER_POS.z - i_pos.z;
             player->setPlayerPosAndAngle(&i_pos, cM_atan2s(sp2c.x, sp2c.z), 0);
-            i_this->current.angle.y = player->shape_angle.y;
+            i_this->enemy.current.angle.y = player->shape_angle.y;
             Z2GetAudioMgr()->bgmStreamPlay();
+            // fallthrough
+        case 7:
             return;
 
         case 8:
@@ -1818,11 +1799,11 @@ static void demo_camera_end(e_mk_class* i_this) {
                 player->changeDemoPos0(&i_pos);
                 sp2c.z = 10000.0f;
                 MtxPosition(&sp2c, &i_pos);
-                i_this->current.pos = i_pos;
+                i_this->enemy.current.pos = i_pos;
             }
 
             i_pos = actor->current.pos - player->eyePos;
-            i_this->current.pos = player->eyePos + (i_pos * 20.0f);
+            i_this->enemy.current.pos = player->eyePos + (i_pos * 20.0f);
             if (i_this->mDemoCamTimer != 20) {
                 return;
             }
@@ -1840,16 +1821,16 @@ static void demo_camera_end(e_mk_class* i_this) {
             cLib_addCalc2(&i_this->mCamEye.y, player->current.pos.y + 110.0f, 0.1f, i_this->field_0xc84 * 10.0f);
             cLib_addCalc2(&i_this->field_0xc84, 1.0f, 1.0f, 0.02f);
             i_pos = actor->current.pos - player->eyePos;
-            i_this->current.pos = player->eyePos + (i_pos * 20.0f);
+            i_this->enemy.current.pos = player->eyePos + (i_pos * 20.0f);
             if (i_this->mDemoCamTimer < 70) {
                 return;
             }
 
             if (i_this->mDemoCamTimer == 70) {
-                i_this->mMsgFlow.init(i_this, 102, 0, NULL);
+                i_this->mMsgFlow.init(&i_this->enemy, 102, 0, NULL);
             }
 
-            if (i_this->mMsgFlow.doFlow(i_this, NULL, 0) == 0) {
+            if (i_this->mMsgFlow.doFlow(&i_this->enemy, NULL, 0) == 0) {
                 return;
             }
 
@@ -1867,9 +1848,9 @@ static void demo_camera_end(e_mk_class* i_this) {
             cLib_addCalc2(&i_this->mCamCenter.z, player->current.pos.z, 0.4f, i_this->field_0xc84 * 200.0f);
 
             if (i_this->mDemoCamTimer == 20) {
-                fopAcM_createItemForMidBoss(&player->current.pos, 64, fopAcM_GetRoomNo(i_this), 0, 0, 0, -1);
+                fopAcM_createItemForMidBoss(&player->current.pos, 64, fopAcM_GetRoomNo(&i_this->enemy), 0, 0, 0, -1);
                 i_this->field_0xc30 = 10;
-                i_this->current.pos.y += 20000.0f;
+                i_this->enemy.current.pos.y += 20000.0f;
                 target_info_count = 0;
                 fpcM_Search(s_h_sub, i_this);
                 fopAcM_delete(static_cast<daPillar_c*>(target_info[0]));
@@ -2184,9 +2165,9 @@ static void demo_camera_bohit(e_mk_class* i_this) {
 
     switch (i_this->mDemoMode) {
         case 1:
-            if (!i_this->eventInfo.checkCommandDemoAccrpt()) {
-                fopAcM_orderPotentialEvent(i_this, 2, 0xffff, 0);
-                i_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+            if (!i_this->enemy.eventInfo.checkCommandDemoAccrpt()) {
+                fopAcM_orderPotentialEvent(&i_this->enemy, 2, 0xffff, 0);
+                i_this->enemy.eventInfo.onCondition(dEvtCnd_CANDEMO_e);
                 return;
             }
 
@@ -2196,7 +2177,7 @@ static void demo_camera_bohit(e_mk_class* i_this) {
             i_this->mDemoCamFovy = 55.0f;
             camera->mCamera.SetTrimSize(3);
 
-            cMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
+            cMtx_YrotS(*calc_mtx, i_this->enemy.shape_angle.y);
             if (cM_rndF(1.0f) < 0.5f) {
                 sp20.x = 500.0f;
             } else {
@@ -2206,13 +2187,13 @@ static void demo_camera_bohit(e_mk_class* i_this) {
             sp20.y = -120.0f;
             sp20.z = 0.0f;
             MtxPosition(&sp20, &i_this->mCamEye);
-            i_this->mCamEye += i_this->current.pos;
-            i_this->mCamCenter = i_this->current.pos;
+            i_this->mCamEye += i_this->enemy.current.pos;
+            i_this->mCamCenter = i_this->enemy.current.pos;
             // fallthrough
         case 2:
-            cLib_addCalc2(&i_this->mCamCenter.x, i_this->current.pos.x, 0.5f, 50.0f);
-            cLib_addCalc2(&i_this->mCamCenter.y, i_this->current.pos.y + 100.0f, 0.5f, 50.0f);
-            cLib_addCalc2(&i_this->mCamCenter.z, i_this->current.pos.z, 0.5f, 50.0f);
+            cLib_addCalc2(&i_this->mCamCenter.x, i_this->enemy.current.pos.x, 0.5f, 50.0f);
+            cLib_addCalc2(&i_this->mCamCenter.y, i_this->enemy.current.pos.y + 100.0f, 0.5f, 50.0f);
+            cLib_addCalc2(&i_this->mCamCenter.z, i_this->enemy.current.pos.z, 0.5f, 50.0f);
 
             if (i_this->mDemoCamTimer == 25) {
                 i_this->field_0xc98 = 30.0f;
@@ -2251,7 +2232,7 @@ static void demo_camera(e_mk_class* i_this) {
                 if (i_actor != NULL) {
                     u8 i_no = fopAcM_GetParam(i_this) >> 16;
                     if (i_no != 0xFF) {
-                        dComIfGs_onSwitch(i_no, fopAcM_GetRoomNo(i_this));
+                        dComIfGs_onSwitch(i_no, fopAcM_GetRoomNo(&i_this->enemy));
                     }
 
                     i_no = fopAcM_GetParam(i_actor) >> 24;
@@ -2487,7 +2468,7 @@ static void anm_se_set(e_mk_class* i_this) {
 
     if (i_this->mAnm == 19 || i_this->mAnm == 21) {
         for (int i = 0; i < 2; i++) {
-            i_this->field_0xc18[i] = dComIfGp_particle_set(i_this->field_0xc18[i], bo_eno_1[i], &i_this->current.pos, NULL, 0);
+            i_this->field_0xc18[i] = dComIfGp_particle_set(i_this->field_0xc18[i], bo_eno_1[i], &i_this->enemy.current.pos, NULL, 0);
 
             JPABaseEmitter *pEmitter1 = dComIfGp_particle_getEmitter(i_this->field_0xc18[i]);
             if (pEmitter1 != NULL) {
@@ -2498,7 +2479,7 @@ static void anm_se_set(e_mk_class* i_this) {
 
     if (i_this->mAnm == 21) {
         for (int i = 0; i < 4; i++) {
-            i_this->field_0xc20[i] = dComIfGp_particle_set(i_this->field_0xc20[i], bo_eno_0[i], &i_this->eyePos, NULL, 0);
+            i_this->field_0xc20[i] = dComIfGp_particle_set(i_this->field_0xc20[i], bo_eno_0[i], &i_this->enemy.eyePos, NULL, 0);
 
             JPABaseEmitter *pEmitter2 = dComIfGp_particle_getEmitter(i_this->field_0xc20[i]);
             if (pEmitter2 != NULL) {
@@ -2540,7 +2521,7 @@ static int daE_MK_Execute(e_mk_class* i_this) {
         sp6c = i_this->field_0x6cc - i_this->field_0x6c0;
         f32 fVar1 = sp6c.abs();
 
-        sp6c = i_this->field_0x6cc - i_this->current.pos;
+        sp6c = i_this->field_0x6cc - i_this->enemy.current.pos;
         f32 fVar2 = sp6c.abs();
 
         f32 fVar3 = fVar1 * 0.1f;
@@ -2555,14 +2536,14 @@ static int daE_MK_Execute(e_mk_class* i_this) {
         i_this->field_0x6d8 = 0;
     }
 
-    mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y + i_this->field_0x6d8, i_this->current.pos.z);
-    mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
-    mDoMtx_stack_c::XrotM(i_this->shape_angle.x);
+    mDoMtx_stack_c::transS(i_this->enemy.current.pos.x, i_this->enemy.current.pos.y + i_this->field_0x6d8, i_this->enemy.current.pos.z);
+    mDoMtx_stack_c::YrotM(i_this->enemy.shape_angle.y);
+    mDoMtx_stack_c::XrotM(i_this->enemy.shape_angle.x);
     mDoMtx_stack_c::scaleM(l_HIO.mSize, l_HIO.mSize, l_HIO.mSize);
 
     J3DModel *model = i_this->mpModelMorf->getModel();
     model->setBaseTRMtx(mDoMtx_stack_c::get());
-    i_this->mpModelMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(i_this)));
+    i_this->mpModelMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(&i_this->enemy)));
 
     if (i_this->field_0x5d4 == 0) {
         i_this->field_0x5d4 = cM_rndF(60.0f) + 30.0f;
@@ -2585,9 +2566,9 @@ static int daE_MK_Execute(e_mk_class* i_this) {
     i_this->mpModelMorf->modelCalc();
     PSMTXCopy(model->getAnmMtx(7), *calc_mtx);
     sp6c.set(0.0f, 0.0f, 0.0f);
-    MtxPosition(&sp6c, &i_this->eyePos);
-    i_this->attention_info.position = i_this->eyePos;
-    i_this->attention_info.position.y += 70.0f;
+    MtxPosition(&sp6c, &i_this->enemy.eyePos);
+    i_this->enemy.attention_info.position = i_this->enemy.eyePos;
+    i_this->enemy.attention_info.position.y += 70.0f;
 
     if (i_this->field_0x60c != 0) {
         if (i_this->field_0x5e0 == 0) {
@@ -2652,7 +2633,7 @@ static int daE_MK_Execute(e_mk_class* i_this) {
         }
 
         i_this->field_0x708 = fopAcM_createChild(PROC_E_MK_BO, fopAcM_GetID(i_this), i_parameters,
-                                                 &i_this->current.pos, fopAcM_GetRoomNo(i_this), NULL, NULL,
+                                                 &i_this->enemy.current.pos, fopAcM_GetRoomNo(&i_this->enemy), NULL, NULL,
                                                  -1, NULL);
         i_this->field_0x707 = 0;
     }
@@ -2674,9 +2655,9 @@ static int daE_MK_Execute(e_mk_class* i_this) {
     MtxPosition(&sp6c, &sp78);
 
     if (i_this->mAction >= 9) {
-        i_this->eyePos = sp78;
-        i_this->attention_info.position = i_this->eyePos;
-        i_this->attention_info.position.y += 40.0f;
+        i_this->enemy.eyePos = sp78;
+        i_this->enemy.attention_info.position = i_this->enemy.eyePos;
+        i_this->enemy.attention_info.position.y += 40.0f;
     }
 
     if (i_this->field_0x704 != 0) {
@@ -2701,7 +2682,7 @@ static int daE_MK_Execute(e_mk_class* i_this) {
     if (i_this->field_0x706 != 0) {
         i_this->field_0x706--;
         if (i_this->field_0x706 == 0) {
-            dComIfGp_particle_set(0x15E, &i_this->eyePos, &i_this->shape_angle, NULL);
+            dComIfGp_particle_set(0x15E, &i_this->enemy.eyePos, &i_this->enemy.shape_angle, NULL);
         }
     }
 
@@ -2722,7 +2703,7 @@ static int daE_MK_Delete(e_mk_class* i_this) {
         lbl_210_bss_AA = 0;
     }
 
-    if (i_this->heap != NULL) {
+    if (i_this->enemy.heap != NULL) {
         i_this->mpModelMorf->stopZelAnime();
     }
 
@@ -2821,11 +2802,11 @@ static int daE_MK_Create(fopAc_ac_c* actor) {
         fopAcM_SetMin(a_this, -500.0f, -500.0f, -500.0f);
         fopAcM_SetMax(a_this, 500.0f, 500.0f, 500.0f);
 
-        i_this->mAcch.Set(fopAcM_GetPosition_p(a_this), fopAcM_GetOldPosition_p(a_this), i_this, 1, &i_this->mAcchCir, 
+        i_this->mAcch.Set(fopAcM_GetPosition_p(a_this), fopAcM_GetOldPosition_p(a_this), &i_this->enemy, 1, &i_this->mAcchCir, 
                           fopAcM_GetSpeed_p(a_this), NULL, NULL);
         i_this->mAcchCir.SetWall(80.0f, 30.0f);
         a_this->health = 200;
-        i_this->field_0x560 = 200;
+        a_this->field_0x560 = 200;
 
         i_this->mSound.init(&a_this->current.pos, &a_this->eyePos, 3, 1);
         i_this->mAtInfo.mpSound = &i_this->mSound;
