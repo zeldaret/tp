@@ -152,10 +152,10 @@ public:
     u8 getGameOverType() { return mGameOverType; }
     void setGameOverType(u8 i_gameoverType) { mGameOverType = i_gameoverType; }
     void setMsgKeyWaitTimer(s16 i_waitTimer) { mMsgKeyWaitTimer = i_waitTimer; }
-    u32 getMsgTimeMs() { return mMsgTimeMs; }
-    void setMsgTimeMs(u32 msgTime) { mMsgTimeMs = msgTime; }
+    s32 getMsgTimeMs() { return mMsgTimeMs; }
+    void setMsgTimeMs(s32 msgTime) { mMsgTimeMs = msgTime; }
     void setTimeMs(s32 i_time) { mTimeMs = i_time; }
-    u32 getTimeMs() { return mTimeMs; }
+    s32 getTimeMs() { return mTimeMs; }
     u8 getNowCount() { return mNowCount; }
     int getMaxCount() { return mMaxCount; }
     void setScopeZoomPointer(u8 param_0) { mScopeZoomPointer = param_0; }
@@ -220,7 +220,7 @@ public:
     /* 0x7C */ f32 m2DPosV;
     /* 0x80 */ f32 unk128;
     /* 0x84 */ s32 mTimeMs;
-    /* 0x88 */ u32 mMsgTimeMs;
+    /* 0x88 */ s32 mMsgTimeMs;
     /* 0x8C */ s32 mMeterString;
     /* 0x90 */ u32 mTempBits;
     /* 0x94 */ s16 mMsgKeyWaitTimer;
@@ -619,15 +619,15 @@ inline void dMeter2Info_setMsgKeyWaitTimer(s16 i_waitTimer) {
     g_meter2_info.setMsgKeyWaitTimer(i_waitTimer);
 }
 
-inline u32 dMeter2Info_getMsgTimeMs() {
+inline s32 dMeter2Info_getMsgTimeMs() {
     return g_meter2_info.getMsgTimeMs();
 }
 
-inline u32 dMeter2Info_getTimeMs() {
+inline s32 dMeter2Info_getTimeMs() {
     return g_meter2_info.getTimeMs();
 }
 
-inline void dMeter2Info_setMsgTimeMs(u32 msgTime) {
+inline void dMeter2Info_setMsgTimeMs(s32 msgTime) {
     g_meter2_info.setMsgTimeMs(msgTime);
 }
 
