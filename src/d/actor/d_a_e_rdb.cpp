@@ -1281,7 +1281,8 @@ static void damage_check(e_rdb_class* i_this) {
                 }
 
                 i_this->field_0x6ec |= i_this->mAtInfo.mHitBit;
-                if (i_this->field_0x6c7 != 0) {
+                bool bVar1 = i_this->field_0x6c7 == 0;
+                if (!bVar1) {
                     i_this->field_0x6c7 = 0;
                 }
 
@@ -1292,7 +1293,29 @@ static void damage_check(e_rdb_class* i_this) {
                     i_this->field_0x6c0 = 6;
                 }
 
+                if (i_this->field_0x67e == 6 && i_this->mMode > 9) {
+                    if (daPy_getPlayerActorClass()->getCutCount() < 4 && bVar1) {
+                        if (i_this->field_0x67e == 6) {
+                            if (i_this->mMode > 9) {
+                                i_this->field_0x6ce = 15;
+                                if ((i_this->shape_angle.y - i_this->field_0x6b0) < 1) {
+                                    i_this->field_0x6d4 = -1.0f;
+                                } else {
+                                    i_this->field_0x6d4 = 1.0f;
+                                }
 
+                            }
+                        }
+
+                        i_this->field_0x67e = 6;
+                        i_this->mMode = 0;
+                        
+                    }
+                    s8 sVar1 = 4;
+                    if (strcmp(dComIfGp_getStartStageName(), "D_MN09") == 0) {
+                        sVar1 = 6;
+                    }
+                }
             }
         }
     }
