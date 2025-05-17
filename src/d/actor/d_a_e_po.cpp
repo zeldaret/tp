@@ -672,24 +672,43 @@ static void mArg0Check(e_po_class* param_0, s16 param_1) {
 }
 
 /* ############################################################################################## */
-/* 8075773C-80757740 000040 0004+00 1/2 0/0 0/0 .rodata          @3974 */
-SECTION_RODATA static f32 const lit_3974 = -1.0f;
-COMPILER_STRIP_GATE(0x8075773C, &lit_3974);
-
-/* 80757A88-80757A88 00038C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80757A88 = "E_PO";
-#pragma pop
 
 /* 8074C660-8074C70C 000200 00AC+00 12/12 0/0 0/0 .text            anm_init__FP10e_po_classifUcf */
-static void anm_init(e_po_class* param_0, int param_1, f32 param_2, u8 param_3, f32 param_4) {
-    // NONMATCHING
+static void anm_init(e_po_class* i_this, int i_index, f32 i_morf, int i_attr, f32 i_rate) {
+    J3DAnmTransform* anm = (J3DAnmTransform*) dComIfG_getObjectRes("E_PO", i_index);
+    i_this->mpMorf->setAnm(anm, i_attr, i_morf, i_rate, 0.0f, -1.0f);
+    i_this->mResIndex = i_index;
 }
 
 /* 8074C70C-8074C858 0002AC 014C+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
-static void nodeCallBack(J3DJoint* param_0, int param_1) {
-    // NONMATCHING
+static int nodeCallBack(J3DJoint* i_joint, int param_1) {
+    if (param_1 == 0) {
+        int jnt_no = i_joint->getJntNo() & 0xFFFF;
+        J3DModel* model_p = j3dSys.getModel();
+        e_po_class* i_this = (e_po_class*)model_p->getUserArea();
+        
+        if (i_this != NULL) {
+            MTXCopy(model_p->getAnmMtx(jnt_no), *calc_mtx);
+            if (jnt_no >= 17 && jnt_no <= 22) {
+                if (jnt_no >= 21) {
+                    cMtx_YrotM(*calc_mtx, i_this->field_0x770[jnt_no*3 + 3]);
+                    cMtx_ZrotM(*calc_mtx, i_this->field_0x770[jnt_no*3 + 2]);
+                }
+                else {
+                    cMtx_YrotM(*calc_mtx, i_this->field_0x770[jnt_no*3 + 9]);
+                    cMtx_ZrotM(*calc_mtx, i_this->field_0x770[jnt_no*3 + 8]);
+                }
+                model_p->setAnmMtx(jnt_no, *calc_mtx);
+            }
+            else {
+                if (jnt_no == 2) {
+                    cMtx_XrotM(*calc_mtx, i_this->field_0x810);
+                }
+            }
+            MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
+        }
+    }
+    return 1;
 }
 
 /* ############################################################################################## */
