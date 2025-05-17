@@ -239,6 +239,16 @@ public:
     u8 getArrowNumLocal() { return mArrowNum; }
     u8 isNoDemoFlag() { return mNoDemoFlag; }
 
+    static void setWord(const char* i_word);
+    void setWordLocal(const char* i_word) {
+        strcpy(mWord, i_word);
+    }
+
+    static void setSelectWord(int i_no, const char* i_word);
+    void setSelectWordLocal(int i_no, const char* i_word) {
+        strcpy(mSelectWord[i_no], i_word);
+    }
+
     jmessage_tSequenceProcessor* getSequenceProcessor() { return mpSeqProc; }
 
     /* 0x0FC */ int field_0xfc;
@@ -401,7 +411,7 @@ inline void dMsgObject_setShopWaitTimer(u8 timer) {
 }
 
 inline void dMsgObject_changeFlowGroup(long flow) {
-    dMsgObject_c::changeFlowGroup(flow);
+    dMsgObject_getMsgObjectClass()->changeFlowGroup(flow);
 }
 
 inline void dMsgObject_setTalkActor(fopAc_ac_c* actor) {
@@ -503,6 +513,34 @@ inline void dMsgObject_setMsgOutputType(u8 outputType) {
 
 inline void dMsgObject_setPortalMessageID(u16 id) {
     dMsgObject_getMsgObjectClass()->setPortalMessageID(id);
+}
+
+inline void dMsgObject_setWord(const char* i_word) {
+    dMsgObject_getMsgObjectClass()->setWord(i_word);
+}
+
+inline void dMsgObject_setSelectWord(int i_no, const char* i_word) {
+    dMsgObject_getMsgObjectClass()->setSelectWord(i_no, i_word);
+}
+
+inline u8* dMsgObject_getMsgDtPtr() {
+    return (u8*)dMsgObject_getMsgObjectClass()->getMsgDtPtr();
+}
+
+inline void dMsgObject_setSelectCancelPos(u8 param_0) {
+    dMsgObject_getMsgObjectClass()->setSelectCancelPos(param_0);
+}
+
+inline void dMsgObject_setSelectCursorPos(u8 param_0) {
+    dMsgObject_getMsgObjectClass()->setSelectCursorPos(param_0);
+}
+
+inline u8 dMsgObject_getSelectBombBagID() {
+    dMsgObject_getMsgObjectClass()->getSelectBombBagID();
+}
+
+inline s16 dMsgObject_getSelectBombPrice() {
+    dMsgObject_getMsgObjectClass()->getSelectBombPrice();
 }
 
 class dMsgObject_HowlHIO_c {
@@ -681,7 +719,7 @@ public:
     /* 0x31A */ s16 mHaloDelayFrame;
     /* 0x31C */ s16 mHaloDelayFrameSpirit;
     /* 0x31E */ bool mSaveSeqMsgDebug;
-    /* 0x31F */ bool mMsgDebug;
+    /* 0x31F */ u8 mMsgDebug;
     /* 0x320 */ bool mTextColorDebug;
     /* 0x321 */ u8
         mTextColorUpperR[9];  // Default, Red, Green, Blue, Yellow, L.Blue, Purple, Grey, Orange,

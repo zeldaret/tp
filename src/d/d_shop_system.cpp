@@ -1219,11 +1219,11 @@ int dShopSystem_c::seq_choose(fopAc_ac_c* actor, dMsgFlow_c* i_flow) {
 
     i_flow->doFlow(actor, NULL, 0);
 
-    int select_num = i_flow->getSelectNum();
+    u16 select_num = i_flow->getSelectNum();
     if (dMsgObject_c::getStatus() != 6 && dMsgObject_c::getStatus() != 8 &&
         dMsgObject_c::getStatus() != 9 && dMsgObject_c::getStatus() != 20)
     {
-        if ((u16)select_num == 0) {
+        if (select_num == 0) {
             setSeq(SEQ_DECIDE_YES);
         } else {
             setSeq(SEQ_DECIDE_NO);

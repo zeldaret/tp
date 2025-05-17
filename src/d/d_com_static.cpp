@@ -260,8 +260,8 @@ void daNpcKakashi_setSwdTutorialResult(bool param_0) {
 }
 
 /* 800317A4-800317DC 02C0E4 0038+00 0/0 1/1 1/1 .text            daNpcKakashi_getSuccessCount__Fv */
-int daNpcKakashi_getSuccessCount() {
-    return dComIfGs_getTmpReg(0xFEFF);
+u8 daNpcKakashi_getSuccessCount() {
+    return dComIfGs_getTmpReg(0xFEFF) & 0xFF;
 }
 
 /* 800317DC-80031838 02C11C 005C+00 0/0 0/0 1/1 .text            daNpcKakashi_incSuccessCount__Fv */
