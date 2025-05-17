@@ -16,7 +16,7 @@ class daNpc_seiB_Param_c {
 public:
     /* 80AC6FB8 */ virtual ~daNpc_seiB_Param_c() {};
     struct Data {
-        /* 0x00 */ u32 field_0x00;
+        /* 0x00 */ f32 field_0x00;
         /* 0x04 */ f32 mGravity;
         /* 0x08 */ f32 mScale;
         /* 0x0C */ f32 field_0xc;
