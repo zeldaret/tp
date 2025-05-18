@@ -5219,7 +5219,7 @@ bool daNpcF_c::setExpressionAnm(int param_0, bool param_1) {
 }
 
 /* 80155BE8-80155BEC 150528 0004+00 2/0 0/0 0/0 .text            setMotionAnm__8daNpcF_cFif */
-bool daNpcF_c::setMotionAnm(int param_0, f32 param_1) {
+void daNpcF_c::setMotionAnm(int param_0, f32 param_1) {
     /* empty function */
 }
 

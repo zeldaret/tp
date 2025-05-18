@@ -649,9 +649,7 @@ bool daNpcAshB_c::setExpressionBtp(int i_idx) {
 }
 
 /* 8095EEE0-8095F0A4 001180 01C4+00 1/0 0/0 0/0 .text            setMotionAnm__11daNpcAshB_cFif */
-// NONMATCHING regalloc
-bool daNpcAshB_c::setMotionAnm(int i_idx, f32 i_morf) {
-
+void daNpcAshB_c::setMotionAnm(int i_idx, f32 i_morf) {
     if (i_idx < 7 || i_idx >= 21) {
         return;
     }
@@ -1371,13 +1369,13 @@ void daNpcAshB_c::lookat() {
         if (mLookMode != LOOK_PLAYER_TALK) {
             break;
         }
-        body_down_angle = -80.0f;
-        body_up_angle = 80.0f;
+        head_right_angle = -80.0f;
+        head_left_angle = 80.0f;
         break;
     case LOOK_ACTOR:
         actor = daPy_getPlayerActorClass();
-        head_up_angle = 0.0f;
-        head_right_angle = 0.0f;
+        body_right_angle = 0.0f;
+        body_left_angle = 0.0f;
         break;
     }
 

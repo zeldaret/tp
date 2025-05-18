@@ -83,7 +83,7 @@ public:
     /* 8095EBB4 */ static BOOL ctrlJointCallBack(J3DJoint*, int);
     /* 8095EC00 */ bool setExpressionAnm(int, bool);
     /* 8095EE00 */ bool setExpressionBtp(int);
-    /* 8095EEE0 */ bool setMotionAnm(int, f32);
+    /* 8095EEE0 */ void setMotionAnm(int, f32);
     /* 8095F0A4 */ void reset();
     /* 8095F21C */ inline bool setAction(ActionFn i_actionFn);
     /* 8095F2C4 */ bool wait(void*);
@@ -120,7 +120,7 @@ private:
     /* 0xC88 */ dCcD_Cyl mCyl;
     /* 0xDC4 */ ActionFn mpActionFn;
     /* 0xDD0 */ request_of_phase_process_class mPhase[1];
-    /* 0xDD8 */ s32 mItemPartnerId;
+    /* 0xDD8 */ u32 mItemPartnerId;
     /* 0xDDC */ u32 field_0xddc;
     /* 0xDE0 */ u32 field_0xde0;
     /* 0xDE4 */ s16 mFlowID;
