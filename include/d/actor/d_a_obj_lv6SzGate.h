@@ -67,6 +67,8 @@ public:
     /* 80C7586C */ daLv6SzGate_HIO_c();
     /* 80C76584 */ virtual ~daLv6SzGate_HIO_c() {};
 
+    void genMessage(JORMContext*);
+
     /* 0x04 */ f32 mSpeed;
     /* 0x08 */ f32 field_0x08;
     /* 0x0C */ f32 field_0x0c;
