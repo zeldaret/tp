@@ -140,6 +140,8 @@ class camera_class;
 class dCamera_c;
 typedef bool (dCamera_c::*engine_fn)(s32);
 
+#pragma warn_illunionmembers off
+
 class dCamera_c {
 public:
     class dCamInfo_c {
@@ -442,6 +444,11 @@ public:
 
     static engine_fn engine_tbl[];
 
+#if VERSION == VERSION_SHIELD_DEBUG
+    // In the debug rom, there's D8 bytes preceeding all other members.
+    //  The following is a stopgap:
+    u8 mFillerBytes[0xD8];
+#endif
     /* 0x000 */ camera_class* field_0x0;
     /* 0x004 */ int mRoomNo;
     /* 0x008 */ u8 field_0x8[0x20 - 0x8];
@@ -744,7 +751,7 @@ public:
             /* 0x14 */ cXyz field_0x14;
             /* 0x20 */ bool field_0x20;
         } hookshot;
-        struct {
+        struct event {
             /* 0x00 */ bool field_0x0;
             /* 0x01 */ bool field_0x1;
             /* 0x04 */ int field_0x4;
@@ -771,10 +778,19 @@ public:
             /* 0x60 */ u8 field_0x60[0x6c - 0x60];
             /* 0x6C */ int field_0x6c;
         } event;
-        struct {
-            /* 0x00 */ 
+        struct fixedFrame {
+            /* 0x00 */ bool field_0x0;
+            /* 0x04 */ cXyz field_0x4;
+            /* 0x10 */ cXyz field_0x10;
+            /* 0x1C */ f32 field_0x1c;
+            /* 0x20 */ f32 field_0x20;
+            /* 0x24 */ fopAc_ac_c* mpRelActor;
+            /* 0x28 */ char mRelUseMask[4];
+            /* 0x2C */ int mTimer;
+            /* 0x30 */ bool field_0x30;
+            /* 0x34 */ cXyz mBasePos;
         } fixedFrame;
-        struct {
+        struct stoker {
             /* 0x00 */ bool field_0x0;
             /* 0x01 */ bool field_0x1;
             /* 0x02 */ u8 field_0x2[2];
@@ -789,18 +805,19 @@ public:
             /* 0x34 */ fpc_ProcID field_0x34;
             /* 0x38 */ fpc_ProcID field_0x38;
             /* 0x3C */ u8 field_0x3c[0x40 - 0x3c];
-            /* 0x40 */ u32 field_0x40;
+            /* 0x40 */ int field_0x40;
         } stoker;
-        struct {
-            /* 0x00 */ u8 field_0x0[0x4 - 0x0];
+        struct rolling {
+            /* 0x00 */ bool field_0x0;
+            /* 0x00 */ bool field_0x1;
             /* 0x04 */ cXyz field_0x4;
             /* 0x10 */ cXyz field_0x10;
             /* 0x1C */ cXyz mEye;
             /* 0x28 */ cXyz mCenter;
             /* 0x34 */ f32 mFovy;
             /* 0x38 */ f32 mBank;
-            /* 0x3C */ fopAc_ac_c* mRelActor;
-            /* 0x40 */ fopAc_ac_c* field_0x40;
+            /* 0x3C */ fopAc_ac_c* mpRelActor;
+            /* 0x40 */ char mRelActor[4];
             /* 0x44 */ int mTimer;
             /* 0x48 */ int mTransType;
             /* 0x4C */ f32 mRoll;
@@ -808,10 +825,11 @@ public:
             /* 0x54 */ f32 mLatitude;
             /* 0x58 */ f32 mCtrCus;
         } rolling;
-        struct {
-            /* 0x00 */ u8 field_0x0[0x4 - 0x0];
+        struct fixedPos {
+            /* 0x00 */ bool field_0x0;
+            /* 0x00 */ bool field_0x1;
             /* 0x04 */ cXyz field_0x4;
-            /* 0x10 */ u8 field_0x10[0x1c - 0x10];
+            /* 0x10 */ cXyz field_0x10;
             /* 0x1C */ cXyz field_0x1c;
             /* 0x28 */ f32 field_0x28;
             /* 0x2C */ f32 field_0x2c;
@@ -879,6 +897,7 @@ public:
             /* 0x020 */ f32 field_0x20;
             /* 0x024 */ int field_0x24;
             /* 0x028 */ f32 field_0x28;
+            /* 0x02C */ u8 field_0x2c[0x034 - 0x02C];
             /* 0x034 */ fopAc_ac_c* field_0x34;
             /* 0x038 */ cSGlobe field_0x38;
             /* 0x040 */ int field_0x40;
@@ -886,7 +905,6 @@ public:
             /* 0x048 */ dCamInfo_c field_0x48;
             /* 0x068 */ int field_0x68;
             /* 0x06C */ u8 field_0x6c[0x100 - 0x6c];
-            /* 0x100 */ cSAngle field_0x100;
         } restorePos;
         struct gameOver {
             /* 0x00 */ int field_0x0;
@@ -896,7 +914,7 @@ public:
             /* 0x10 */ cXyz field_0x10;
             /* 0x1C */ cSGlobe field_0x1c;
             /* 0x24 */ u8 field_0x24[0x3c - 0x24];
-            /* 0x3C */ u8 field_0x3c; 
+            /* 0x3C */ bool field_0x3c;
         } gameOver;
         struct tact {
             /* 0x00 */ int field_0x0;
@@ -1162,6 +1180,8 @@ public:
     /* 0xB0C */ u8 field_0xb0c;
     /* 0xB0D */ u8 field_0xb0d[0xd58 - 0xb0d];
 };  // Size: 0xD58
+
+#pragma warn_illunionmembers on
 
 dCamera_c* dCam_getBody();
 camera_class* dCam_getCamera();

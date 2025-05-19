@@ -4,6 +4,7 @@
 */
 
 #include "d/actor/d_a_npc_seic.h"
+#include "SSystem/SComponent/c_counter.h"
 
 UNK_REL_DATA
 
@@ -74,7 +75,7 @@ daNpc_seiC_c::~daNpc_seiC_c() {
 
     #ifdef DEBUG
     if (field_0xe40 != NULL) {
-        field_0xe40.removeHIO();
+        field_0xe40->removeHIO();
     }
     #endif
 
@@ -150,11 +151,11 @@ int daNpc_seiC_c::create() {
         OS_REPORT("\n");
         fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
         mSound.init(&current.pos, &eyePos, 3, 1);
-        
-        #ifdef DEBUG
-        field_0xe40->field_0x8 = &l_HIO;
+
+#ifdef DEBUG
+        //field_0xe40->field_0x8 = &l_HIO;
         field_0xe40->entryHIO("光の精霊ｃ"); // Spirit of Light c
-        #endif
+#endif
 
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, 
                   fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
