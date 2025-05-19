@@ -93,7 +93,6 @@ public:
     inline BOOL chkFindPlayer();
     inline void setLookMode(int i_lookMode);
     inline void deleteObstacle();
-    inline csXyz** getLookatAngle();  // fake
 
     static EventFn mEvtSeqList[4];
 
@@ -115,7 +114,6 @@ private:
     /* 0xDE6 */ u16 mMode;
     /* 0xDE8 */ u8 field_0xde8;
     /* 0xDE9 */ u8 field_0xde9;
-    /* 0xDEA */ u8 field_0xdea[0xdec - 0xdea];
 };
 
 STATIC_ASSERT(sizeof(daNpcImpal_c) == 0xdec);

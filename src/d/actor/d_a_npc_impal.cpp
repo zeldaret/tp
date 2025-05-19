@@ -584,11 +584,25 @@ bool daNpcImpal_c::setAction(daNpcImpal_c::actionFunc i_actionFn) {
     return true;
 }
 
-// fake match
-csXyz** daNpcImpal_c::getLookatAngle() {
-    csXyz* lookat_angle[3] = {&mLookatAngle[0], &mLookatAngle[1], &mLookatAngle[2]};
-    return lookat_angle;
-}
+static u8 const lit_4589[12 + 4 /* padding */] = {
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+    /* padding */
+    0x00,
+    0x00,
+    0x00,
+    0x00,
+};
 
 /* 80A08F60-80A090E8 001660 0188+00 1/1 0/0 0/0 .text            s_sub1__FPvPv */
 static void* s_sub1(void* i_actor, void* i_data) {
@@ -1197,6 +1211,7 @@ void daNpcImpal_c::setAttnPos() {
 }
 
 /* 80A0B76C-80A0B94C 003E6C 01E0+00 1/1 0/0 0/0 .text            lookat__12daNpcImpal_cFv */
+// Nonmatching - lookat_angle causing issues with literals
 void daNpcImpal_c::lookat() {
     fopAc_ac_c* actor = NULL;
     J3DModel* model = mpMorf->getModel();
@@ -1214,7 +1229,6 @@ void daNpcImpal_c::lookat() {
     s16 angle_delta = mCurAngle.y - mOldAngle.y;
 
     cXyz lookat_pos[3] = {mLookatPos[0], mLookatPos[1], mLookatPos[2]};
-    // csXyz** lookat_angle = getLookatAngle();
     csXyz* lookat_angle[3] = {&mLookatAngle[0], &mLookatAngle[1], &mLookatAngle[2]};
 
     switch (mLookMode) {
