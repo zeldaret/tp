@@ -161,7 +161,7 @@ void dShopSystem_c::initShopSystem() {
     offSpMode();
     field_0xf6c = 0;
     field_0xf76 = 0;
-    field_0xf77 = 9;
+    mMasterType = 9;
     field_0xf78 = -1;
     mFlow.onNonStopJunpFlowFlag();
 }
@@ -806,7 +806,7 @@ int dShopSystem_c::itemZoom(cXyz* param_0) {
                 local_34.set(g_cursorHIO.mObjZoom.x, g_cursorHIO.mObjZoom.y + -25.0f,
                              g_cursorHIO.mObjZoom.z + 150.0f);
             } else {
-                if (field_0xf77 == 5) {
+                if (mMasterType == 5) {
                     if (dShopSystem_itemNo[mCursorPos - 1] == fpcNm_ITEM_ARROW_10 ||
                         dShopSystem_itemNo[mCursorPos - 1] == fpcNm_ITEM_ARROW_20 ||
                         dShopSystem_itemNo[mCursorPos - 1] == fpcNm_ITEM_ARROW_30)
@@ -838,7 +838,7 @@ int dShopSystem_c::itemZoom(cXyz* param_0) {
             local_1c.set(*param_0);
         }
 
-        u8 dvar1 = field_0xf77;
+        u8 dvar1 = mMasterType;
         if (dvar1 == 1) {
             if (dShopSystem_itemNo[mCursorPos - 1] == fpcNm_ITEM_OIL_BOTTLE) {
                 mItemCtrl.setZoomAnime(mCursorPos, &local_1c,
@@ -1469,7 +1469,7 @@ void dShopSystem_c::deleteObject() {
 
 /* 8019A5D0-8019AB00 194F10 0530+00 1/1 0/0 8/8 .text            searchItemActor__13dShopSystem_cFv
  */
-int dShopSystem_c::searchItemActor() {
+bool dShopSystem_c::searchItemActor() {
     u8 temp_data;
     if ((dShopSystem_item_count != -1 &&
          ((dShopSystem_item_count < (temp_data = dShopSystem_sellItemMax)) ||
@@ -1548,7 +1548,7 @@ int dShopSystem_c::searchItemActor() {
             }
         }
 
-        if (field_0xf77 == 8) {
+        if (mMasterType == 8) {
             dShopSystem_cameraActor[0]->current.pos.set(-175.0f, 165.0f, 10.0f);
             dShopSystem_cameraActor[1]->current.pos.set(215.0f, 225.0f, 370.0f);
         }
@@ -1559,7 +1559,7 @@ int dShopSystem_c::searchItemActor() {
                 dShopSystem_itemActor[3], dShopSystem_itemActor[4], dShopSystem_itemActor[5],
                 &dShopSystem_cameraActor[0]->current.pos, &dShopSystem_cameraActor[1]->current.pos);
 
-            if (field_0xf77 == 8) {
+            if (mMasterType == 8) {
                 cXyz camCtrPos;
                 camCtrPos.set(-180.0f, 245.0f, -380.0f);
                 mShopCamAction.setMasterCamCtrPos(&camCtrPos);
@@ -1633,14 +1633,18 @@ void dShopSystem_c::setSellItemMax(u8 i_max) {
 }
 
 /* 8019AB24-8019AB60 195464 003C+00 0/0 0/0 9/9 .text            checkShopOpen__13dShopSystem_cFv */
-bool dShopSystem_c::checkShopOpen() {
+BOOL dShopSystem_c::checkShopOpen() {
     for (int i = 0; i < 2; i++) {
         if (dShopSystem_cameraActor[i] != NULL) {
             return true;
         }
     }
 
-    return dShopSystem_camera_count != 0;
+    if (dShopSystem_camera_count) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 /* 8019AB60-8019AB84 1954A0 0024+00 3/3 0/0 0/0 .text
