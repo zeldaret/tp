@@ -279,8 +279,8 @@ public:
     void changeDemoMode(u32 mode) { mDemoMode = mode; }
     BOOL checkPortalObjCall() { return checkStateFlg0(FLG0_PORTAL_OBJ_CALL); }
     BOOL checkNoHairScale() const { return checkStateFlg0(FLG0_NO_HAIR_SCALE); }
-    BOOL checkNpcNear() { return checkStateFlg0(FLG0_NPC_NEAR); }
-    BOOL checkNpcFar() { return checkStateFlg0(FLG0_NPC_FAR); }
+    BOOL checkNpcNear() const { return checkStateFlg0(FLG0_NPC_NEAR); }
+    BOOL checkNpcFar() const { return checkStateFlg0(FLG0_NPC_FAR); }
     u32 checkNoDraw() const { return checkStateFlg0(FLG0_NO_DRAW); }
     BOOL checkNoInput() const { return checkStateFlg0(FLG0_NO_INPUT); }
     BOOL checkWolfNoPos() const { return checkStateFlg0(FLG0_WOLF_NO_POS); }

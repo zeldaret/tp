@@ -1468,7 +1468,7 @@ static void demo_camera_start(e_mk_class* i_this) {
 /* 8071823C-80719488 0041FC 124C+00 1/1 0/0 0/0 .text            demo_camera_end__FP10e_mk_class */
 static void demo_camera_end(e_mk_class* i_this) {
     // NONMATCHING
-    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
+    fopEn_enemy_c* a_this = &i_this->enemy;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
     fopAc_ac_c* actor = fopAcM_SearchByID(i_this->field_0x708);
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
@@ -1476,9 +1476,9 @@ static void demo_camera_end(e_mk_class* i_this) {
 
     switch (i_this->mDemoMode) {
         case 1:
-            if (!i_this->enemy.eventInfo.checkCommandDemoAccrpt()) {
-                fopAcM_orderPotentialEvent(&i_this->enemy, 2, 0xffff, 0);
-                i_this->enemy.eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+            if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
+                fopAcM_orderPotentialEvent(a_this, 2, 0xffff, 0);
+                a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
                 return;
             }
 
@@ -1493,23 +1493,23 @@ static void demo_camera_end(e_mk_class* i_this) {
             dComIfGs_onStageMiddleBoss();
             // fallthrough
         case 2:
-            cMtx_YrotS(*calc_mtx, i_this->enemy.shape_angle.y);
+            cMtx_YrotS(*calc_mtx, a_this->shape_angle.y);
             sp2c.x = 0.0f;
             sp2c.y = 130.0f;
             sp2c.z = 0.0f;
             MtxPosition(&sp2c, &i_this->mCamCenter);
-            i_this->mCamCenter += i_this->enemy.current.pos;
+            i_this->mCamCenter += a_this->current.pos;
             sp2c.x = 400.0f;
             sp2c.y = 100.0f;
             sp2c.z = 200.0f;
             MtxPosition(&sp2c, &i_this->mCamEye);
-            i_this->mCamEye += i_this->enemy.current.pos;
+            i_this->mCamEye += a_this->current.pos;
             sp2c.x = 0.0f;
             sp2c.y = 0.0f;
             sp2c.z = -300.0f;
             MtxPosition(&sp2c, &i_pos);
-            i_pos += i_this->enemy.current.pos;
-            player->setPlayerPosAndAngle(&i_pos, i_this->enemy.shape_angle.y, 0);
+            i_pos += a_this->current.pos;
+            player->setPlayerPosAndAngle(&i_pos, a_this->shape_angle.y, 0);
 
             if (i_this->mDemoCamTimer < 30) {
                 return;
@@ -1520,17 +1520,17 @@ static void demo_camera_end(e_mk_class* i_this) {
             return;
 
         case 3:
-            cMtx_YrotS(*calc_mtx, i_this->enemy.shape_angle.y);
+            cMtx_YrotS(*calc_mtx, a_this->shape_angle.y);
             sp2c.x = -300.0f;
             sp2c.y = 0.0f;
             sp2c.z = -150.0f;
             MtxPosition(&sp2c, &i_this->mCamCenter);
-            i_this->mCamCenter += i_this->enemy.current.pos;
+            i_this->mCamCenter += a_this->current.pos;
             sp2c.x = 100.0f;
             sp2c.y = 1000.0f;
             sp2c.z = 0.0f;
             MtxPosition(&sp2c, &i_this->mCamEye);
-            i_this->mCamEye += i_this->enemy.current.pos;
+            i_this->mCamEye += a_this->current.pos;
             return;
 
         case 4:
@@ -1574,7 +1574,7 @@ static void demo_camera_end(e_mk_class* i_this) {
             sp2c.z = 500.0f;
             MtxPosition(&sp2c, &i_pos);
             i_pos += STAGE_CENTER_POS;
-            player->setPlayerPosAndAngle(&i_pos, i_this->enemy.shape_angle.y, 0);
+            player->setPlayerPosAndAngle(&i_pos, a_this->shape_angle.y, 0);
             // fallthrough
         case 6:
             cLib_addCalc2(&i_this->mCamCenter.x, i_this->field_0x5e4.x, 0.1f, i_this->field_0xc84 * 20.0f);
@@ -1610,7 +1610,7 @@ static void demo_camera_end(e_mk_class* i_this) {
                 sp2c.z = 0.0f;
                 MtxPosition(&sp2c, &i_pos);
                 i_pos += STAGE_CENTER_POS;
-                player->setPlayerPosAndAngle(&i_pos, i_this->enemy.shape_angle.y, 0);
+                player->setPlayerPosAndAngle(&i_pos, a_this->shape_angle.y, 0);
                 player->changeDemoMode(3, 1, 0, 0);
                 sp2c.x = 170.0f;
                 sp2c.y = 0.0f;
@@ -1626,13 +1626,13 @@ static void demo_camera_end(e_mk_class* i_this) {
 
             if (i_this->mDemoCamTimer == 180) {
                 i_this->field_0x60c = 0;
-                cMtx_YrotS(*calc_mtx, i_this->enemy.shape_angle.y);
+                cMtx_YrotS(*calc_mtx, a_this->shape_angle.y);
                 sp2c.x = 0.0f;
                 sp2c.y = 0.0f;
                 sp2c.z = -20.0f;
                 MtxPosition(&sp2c, &i_pos);
                 i_pos += i_this->field_0x5e4;
-                fopAcM_createDisappear(&i_this->enemy, &i_pos, 5, 0, 0xff);
+                fopAcM_createDisappear(a_this, &i_pos, 5, 0, 0xff);
             }
 
             if (i_this->mDemoCamTimer != 248) {
@@ -1648,14 +1648,14 @@ static void demo_camera_end(e_mk_class* i_this) {
             sp2c.z = 300.0f;
             MtxPosition(&sp2c, &i_pos);
             i_pos += STAGE_CENTER_POS;
-            i_this->enemy.current.pos.x = i_pos.x;
-            i_this->enemy.current.pos.z = i_pos.z;
+            a_this->current.pos.x = i_pos.x;
+            a_this->current.pos.z = i_pos.z;
             sp2c.x = 130.0f;
             sp2c.y = 100.0f;
             sp2c.z = 100.0f;
             MtxPosition(&sp2c, &i_this->mCamEye);
             i_this->mCamEye += STAGE_CENTER_POS;
-            i_this->mCamCenter = i_this->enemy.current.pos;
+            i_this->mCamCenter = a_this->current.pos;
             i_this->mCamCenter.y += 190.0f;
             sp2c.x = 400.0f;
             sp2c.y = 0.0f;
@@ -1665,8 +1665,10 @@ static void demo_camera_end(e_mk_class* i_this) {
             sp2c.x = STAGE_CENTER_POS.x - i_pos.x;
             sp2c.z = STAGE_CENTER_POS.z - i_pos.z;
             player->setPlayerPosAndAngle(&i_pos, cM_atan2s(sp2c.x, sp2c.z), 0);
-            i_this->enemy.current.angle.y = player->shape_angle.y;
+            a_this->current.angle.y = player->shape_angle.y;
             Z2GetAudioMgr()->bgmStreamPlay();
+            // fallthrough
+        case 7:
             return;
 
         case 8:
@@ -1797,11 +1799,11 @@ static void demo_camera_end(e_mk_class* i_this) {
                 player->changeDemoPos0(&i_pos);
                 sp2c.z = 10000.0f;
                 MtxPosition(&sp2c, &i_pos);
-                i_this->enemy.current.pos = i_pos;
+                a_this->current.pos = i_pos;
             }
 
             i_pos = actor->current.pos - player->eyePos;
-            i_this->enemy.current.pos = player->eyePos + (i_pos * 20.0f);
+            a_this->current.pos = player->eyePos + (i_pos * 20.0f);
             if (i_this->mDemoCamTimer != 20) {
                 return;
             }
@@ -1819,16 +1821,16 @@ static void demo_camera_end(e_mk_class* i_this) {
             cLib_addCalc2(&i_this->mCamEye.y, player->current.pos.y + 110.0f, 0.1f, i_this->field_0xc84 * 10.0f);
             cLib_addCalc2(&i_this->field_0xc84, 1.0f, 1.0f, 0.02f);
             i_pos = actor->current.pos - player->eyePos;
-            i_this->enemy.current.pos = player->eyePos + (i_pos * 20.0f);
+            a_this->current.pos = player->eyePos + (i_pos * 20.0f);
             if (i_this->mDemoCamTimer < 70) {
                 return;
             }
 
             if (i_this->mDemoCamTimer == 70) {
-                i_this->mMsgFlow.init(&i_this->enemy, 102, 0, NULL);
+                i_this->mMsgFlow.init(a_this, 102, 0, NULL);
             }
 
-            if (i_this->mMsgFlow.doFlow(&i_this->enemy, NULL, 0) == 0) {
+            if (i_this->mMsgFlow.doFlow(a_this, NULL, 0) == 0) {
                 return;
             }
 
@@ -1846,19 +1848,18 @@ static void demo_camera_end(e_mk_class* i_this) {
             cLib_addCalc2(&i_this->mCamCenter.z, player->current.pos.z, 0.4f, i_this->field_0xc84 * 200.0f);
 
             if (i_this->mDemoCamTimer == 20) {
-                fopAcM_createItemForMidBoss(&player->current.pos, 64, fopAcM_GetRoomNo(&i_this->enemy), 0, 0, 0, -1);
+                fopAcM_createItemForMidBoss(&player->current.pos, 64, fopAcM_GetRoomNo(a_this), 0, 0, 0, -1);
                 i_this->field_0xc30 = 10;
-                i_this->enemy.current.pos.y += 20000.0f;
+                a_this->current.pos.y += 20000.0f;
                 target_info_count = 0;
                 fpcM_Search(s_h_sub, i_this);
                 fopAcM_delete(static_cast<daPillar_c*>(target_info[0]));
                 fopAcM_delete(static_cast<daPillar_c*>(target_info[7]));
             }
-            break;
 
         case 0:
         case 100:
-            break;
+            return;
     }
 }
 
@@ -2401,6 +2402,8 @@ static void anm_se_set(e_mk_class* i_this) {
         0x820C,
     };
 
+
+
     if (i_this->mAnm == 40) {
         if (i_this->mpModelMorf->checkFrame(2.0f) || i_this->mpModelMorf->checkFrame(13.0f)) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_MK_V_BREATH, -1);
@@ -2829,21 +2832,21 @@ static int daE_MK_Create(fopAc_ac_c* actor) {
             STAGE_CENTER_POS.y -= 500.0f;
             STAGE_ANGLE_Y = a_this->home.angle.y;
 
-            u8 i_no = fopAcM_GetParamBit(i_this, 16, 8);
-            if (i_no != 0xFF && dComIfGs_isSwitch(i_no, fopAcM_GetRoomNo(a_this))) {
-                dComIfGs_offSwitch(i_no, fopAcM_GetRoomNo(a_this));
+            u8 uVar2 = fopAcM_GetParamBit(i_this, 16, 8);
+            if (uVar2 != 0xFF && dComIfGs_isSwitch(uVar2, fopAcM_GetRoomNo(a_this))) {
+                dComIfGs_offSwitch(uVar2, fopAcM_GetRoomNo(a_this));
                 i_this->mAction = e_mk_class::ACT_WAIT;
                 Z2GetAudioMgr()->subBgmStart(Z2BGM_BOOMERAMG_MONKEY);
             } else {
                 i_this->mAction = e_mk_class::ACT_S_DEMO;
-                u32 i_parameters = fopAcM_GetParam(i_this) & 0xFF000000 | 0xFFFF01;
+                u32 uVar3 = fopAcM_GetParam(i_this) & 0xFF000000 | 0xFFFF01;
                 cXyz sp30(-21.0f, 5114.0f, -4941.0f);
-                i_this->mBabaChildID = fopAcM_createChild(PROC_E_DB, fopAcM_GetID(i_this), i_parameters, 
+                i_this->mBabaChildID = fopAcM_createChild(PROC_E_DB, fopAcM_GetID(i_this), uVar3, 
                                                         &sp30, fopAcM_GetRoomNo(a_this), NULL, 
                                                         NULL, -1, NULL);
 
                 sp30.set(-10.0f, 5114.0f, -4401.0f);
-                i_this->mBabaChildID2 = fopAcM_createChild(PROC_E_DB, fopAcM_GetID(i_this), i_parameters, 
+                i_this->mBabaChildID2 = fopAcM_createChild(PROC_E_DB, fopAcM_GetID(i_this), uVar3, 
                                                         &sp30, fopAcM_GetRoomNo(a_this), NULL, 
                                                         NULL, -1, NULL);
                 
