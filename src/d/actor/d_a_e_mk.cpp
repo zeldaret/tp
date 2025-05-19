@@ -152,8 +152,8 @@ static daPillar_c* search_hasira(e_mk_class* i_this) {
     f32 fVar1 = 1500.0f;
     if (target_info_count != 0) {
         cXyz sp44;
-        daPillar_c *pPillar;
-        daPillar_c *rv = NULL;
+        daPillar_c* pPillar;
+        daPillar_c* rv = NULL;
         int iVar1 = 0;
         int i = 0;
         while (i < target_info_count) {
@@ -212,7 +212,7 @@ static e_db_class* search_db(e_mk_class* i_this) {
     f32 fVar1 = 2000.0f;
     if (target_info_count != 0) {
         cXyz sp44;
-        e_db_class *pDekuBaba;
+        e_db_class* pDekuBaba;
         int i = 0;
         while (i < target_info_count) {
             pDekuBaba = (e_db_class*)target_info[i];
@@ -733,7 +733,7 @@ static void e_mk_damage(e_mk_class* i_this) {
 
 /* 807161F8-8071637C 0021B8 0184+00 1/1 0/0 0/0 .text            damage_check__FP10e_mk_class */
 static void damage_check(e_mk_class* i_this) {
-    daPy_py_c *player = (daPy_py_c*)dComIfGp_getPlayer(0);
+    daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
     if (i_this->field_0x704 == 0) {
         i_this->field_0x95c.Move();
         if (i_this->mAction >= 9) {
@@ -1456,9 +1456,9 @@ static void demo_camera_start(e_mk_class* i_this) {
     }
 
     if (dComIfGp_getEvent().checkSkipEdge()) {
-        u8 uVar1 = fopAcM_GetParam(i_this) >> 16;
-        if (uVar1 != 0xff) {
-            dComIfGs_onSwitch(uVar1, fopAcM_GetRoomNo(a_this));
+        u8 i_no = fopAcM_GetParam(i_this) >> 16;
+        if (i_no != 0xff) {
+            dComIfGs_onSwitch(i_no, fopAcM_GetRoomNo(a_this));
         }
 
         dStage_changeScene(2, 0.0f, 0, fopAcM_GetRoomNo(a_this), 0, -1);
@@ -1856,10 +1856,11 @@ static void demo_camera_end(e_mk_class* i_this) {
                 fopAcM_delete(static_cast<daPillar_c*>(target_info[0]));
                 fopAcM_delete(static_cast<daPillar_c*>(target_info[7]));
             }
+            break;
 
         case 0:
         case 100:
-            return;
+            break;
     }
 }
 
@@ -1893,7 +1894,7 @@ static void* s_brg_sub2(void* i_actor, void* i_data) {
 
 /* 80719594-8071A06C 005554 0AD8+00 1/1 0/0 0/0 .text            demo_camera_r04__FP10e_mk_class */
 static void demo_camera_r04(e_mk_class* i_this) {
-    u8 uVar1;
+    u8 i_no;
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     daPy_py_c* player = (daPy_py_c *)dComIfGp_getPlayer(0);
     fopAc_ac_c* actor = fopAcM_SearchByID(i_this->field_0x708);
@@ -2143,12 +2144,12 @@ static void demo_camera_r04(e_mk_class* i_this) {
             dComIfGp_event_reset();
             daPy_getPlayerActorClass()->cancelOriginalDemo();
             fopAcM_delete(a_this);
-            uVar1 = fopAcM_GetParam(i_this) >> 16;
-            if (uVar1 == 0xFF) {
+            i_no = fopAcM_GetParam(i_this) >> 16;
+            if (i_no == 0xFF) {
                 return;
             }
 
-            dComIfGs_onSwitch(uVar1, fopAcM_GetRoomNo(a_this));
+            dComIfGs_onSwitch(i_no, fopAcM_GetRoomNo(a_this));
             return;
 
         case 0:
@@ -2160,7 +2161,7 @@ static void demo_camera_r04(e_mk_class* i_this) {
 
 /* 8071A06C-8071A22C 00602C 01C0+00 1/1 0/0 0/0 .text            demo_camera_bohit__FP10e_mk_class */
 static void demo_camera_bohit(e_mk_class* i_this) {
-    camera_class *camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     cXyz sp20;
 
     switch (i_this->mDemoMode) {
@@ -2213,7 +2214,7 @@ static void demo_camera_bohit(e_mk_class* i_this) {
 
 /* 8071A22C-8071A538 0061EC 030C+00 2/1 0/0 0/0 .text            demo_camera__FP10e_mk_class */
 static void demo_camera(e_mk_class* i_this) {
-    camera_class *camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     cXyz sp34, sp40;
 
     switch (i_this->field_0xc30) {
@@ -2228,7 +2229,7 @@ static void demo_camera(e_mk_class* i_this) {
         case 3:
             demo_camera_r04(i_this);
             if (dComIfGp_getEvent().checkSkipEdge()) {
-                npc_ks_class *i_actor = (npc_ks_class*)fpcM_Search(s_ks_sub, i_this);
+                npc_ks_class* i_actor = (npc_ks_class*)fpcM_Search(s_ks_sub, i_this);
                 if (i_actor != NULL) {
                     u8 i_no = fopAcM_GetParam(i_this) >> 16;
                     if (i_no != 0xFF) {
@@ -2470,7 +2471,7 @@ static void anm_se_set(e_mk_class* i_this) {
         for (int i = 0; i < 2; i++) {
             i_this->field_0xc18[i] = dComIfGp_particle_set(i_this->field_0xc18[i], bo_eno_1[i], &i_this->enemy.current.pos, NULL, 0);
 
-            JPABaseEmitter *pEmitter1 = dComIfGp_particle_getEmitter(i_this->field_0xc18[i]);
+            JPABaseEmitter* pEmitter1 = dComIfGp_particle_getEmitter(i_this->field_0xc18[i]);
             if (pEmitter1 != NULL) {
                 pEmitter1->setGlobalSRTMatrix(i_this->mpBoomerangModel->getBaseTRMtx());
             }
@@ -2481,7 +2482,7 @@ static void anm_se_set(e_mk_class* i_this) {
         for (int i = 0; i < 4; i++) {
             i_this->field_0xc20[i] = dComIfGp_particle_set(i_this->field_0xc20[i], bo_eno_0[i], &i_this->enemy.eyePos, NULL, 0);
 
-            JPABaseEmitter *pEmitter2 = dComIfGp_particle_getEmitter(i_this->field_0xc20[i]);
+            JPABaseEmitter* pEmitter2 = dComIfGp_particle_getEmitter(i_this->field_0xc20[i]);
             if (pEmitter2 != NULL) {
                 if (i == 0) {
                     pEmitter2->setGlobalSRTMatrix(i_this->mpModelMorf->getModel()->getAnmMtx(22));
@@ -2541,7 +2542,7 @@ static int daE_MK_Execute(e_mk_class* i_this) {
     mDoMtx_stack_c::XrotM(i_this->enemy.shape_angle.x);
     mDoMtx_stack_c::scaleM(l_HIO.mSize, l_HIO.mSize, l_HIO.mSize);
 
-    J3DModel *model = i_this->mpModelMorf->getModel();
+    J3DModel* model = i_this->mpModelMorf->getModel();
     model->setBaseTRMtx(mDoMtx_stack_c::get());
     i_this->mpModelMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(&i_this->enemy)));
 
@@ -2773,9 +2774,9 @@ static int daE_MK_Create(fopAc_ac_c* actor) {
             return cPhs_ERROR_e;
         }
 
-        u32 uVar1 = fopAcM_GetParam(i_this) >> 24;
-        if (uVar1 != 0xFF) {
-            if (dComIfGs_isSwitch(uVar1, fopAcM_GetRoomNo(a_this))) {
+        u32 i_no = fopAcM_GetParam(i_this) >> 24;
+        if (i_no != 0xFF) {
+            if (dComIfGs_isSwitch(i_no, fopAcM_GetRoomNo(a_this))) {
                 OS_REPORT("E_MK やられ後なので再セットしません\n"); // Since it's after the E_MK was done, I won't reset it.
                 return cPhs_ERROR_e;
             }
@@ -2832,21 +2833,21 @@ static int daE_MK_Create(fopAc_ac_c* actor) {
             STAGE_CENTER_POS.y -= 500.0f;
             STAGE_ANGLE_Y = a_this->home.angle.y;
 
-            u8 uVar2 = fopAcM_GetParamBit(i_this, 16, 8);
-            if (uVar2 != 0xFF && dComIfGs_isSwitch(uVar2, fopAcM_GetRoomNo(a_this))) {
-                dComIfGs_offSwitch(uVar2, fopAcM_GetRoomNo(a_this));
+            u8 i_no = fopAcM_GetParamBit(i_this, 16, 8);
+            if (i_no != 0xFF && dComIfGs_isSwitch(i_no, fopAcM_GetRoomNo(a_this))) {
+                dComIfGs_offSwitch(i_no, fopAcM_GetRoomNo(a_this));
                 i_this->mAction = e_mk_class::ACT_WAIT;
                 Z2GetAudioMgr()->subBgmStart(Z2BGM_BOOMERAMG_MONKEY);
             } else {
                 i_this->mAction = e_mk_class::ACT_S_DEMO;
-                u32 uVar3 = fopAcM_GetParam(i_this) & 0xFF000000 | 0xFFFF01;
+                u32 i_parameters = fopAcM_GetParam(i_this) & 0xFF000000 | 0xFFFF01;
                 cXyz sp30(-21.0f, 5114.0f, -4941.0f);
-                i_this->mBabaChildID = fopAcM_createChild(PROC_E_DB, fopAcM_GetID(i_this), uVar3, 
+                i_this->mBabaChildID = fopAcM_createChild(PROC_E_DB, fopAcM_GetID(i_this), i_parameters, 
                                                         &sp30, fopAcM_GetRoomNo(a_this), NULL, 
                                                         NULL, -1, NULL);
 
                 sp30.set(-10.0f, 5114.0f, -4401.0f);
-                i_this->mBabaChildID2 = fopAcM_createChild(PROC_E_DB, fopAcM_GetID(i_this), uVar3, 
+                i_this->mBabaChildID2 = fopAcM_createChild(PROC_E_DB, fopAcM_GetID(i_this), i_parameters, 
                                                         &sp30, fopAcM_GetRoomNo(a_this), NULL, 
                                                         NULL, -1, NULL);
                 
