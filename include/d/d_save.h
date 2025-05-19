@@ -394,7 +394,7 @@ public:
     void offCollectMirror(u8 i_item);
     BOOL isCollectMirror(u8 i_item) const;
 
-    u8 getPohNum() { return mPohNum; }
+    u8 getPohNum() const { return mPohNum; }
 
 private:
     /* 0x0 */ u8 mItem[8];

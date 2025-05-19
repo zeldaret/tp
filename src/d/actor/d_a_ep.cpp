@@ -12,20 +12,21 @@ UNK_REL_DATA
 
 /* 804681F8-804682F8 000078 0100+00 1/1 0/0 0/0 .text            hahen_draw__FP8ep_class */
 static void hahen_draw(ep_class* i_this) {
-    // NONMATCHING
+    fopAc_ac_c* a_this = i_this;
     ep_hahen_s* epHahenS = i_this->mHahen;
-    g_env_light.settingTevStruct(16, &i_this->current.pos, &i_this->tevStr);
+    g_env_light.settingTevStruct(16, &a_this->current.pos, &a_this->tevStr);
 
-    for (int i = 0; i < 6; i++) {
-        if (epHahenS[i].field_0x97 != 0) {
-            g_env_light.setLightTevColorType_MAJI(epHahenS[i].mpModel, &i_this->tevStr);
-            mDoExt_modelUpdateDL(epHahenS[i].mpModel);
+    for (int i = 0; i < 6; i++, epHahenS++) {
+        if (epHahenS->field_0x97 != 0) {
+            g_env_light.setLightTevColorType_MAJI(epHahenS->mpModel, &a_this->tevStr);
+            mDoExt_modelUpdateDL(epHahenS->mpModel);
             
-            if (epHahenS[i].field_0x96 < 2) {
-                cXyz local_28(epHahenS[i].field_0x4.x, epHahenS[i].field_0x4.y + 50.0f, epHahenS[i].field_0x4.z);
-                epHahenS[i].mShadow = dComIfGd_setShadow(epHahenS[i].mShadow, 1, epHahenS[i].mpModel,
-                    &local_28, 200.0f, 0.0f, epHahenS[i].field_0x4.y, epHahenS[i].mGroundY, 
-                    epHahenS[i].mObjGndCheck, &i_this->tevStr, 0, 1.0f, 
+            if (epHahenS->field_0x96 < 2) {
+                cXyz local_28;
+                local_28.set(epHahenS->field_0x4.x, epHahenS->field_0x4.y + 50.0f + BREG_F(18), epHahenS->field_0x4.z);
+                epHahenS->mShadow = dComIfGd_setShadow(epHahenS->mShadow, 1, epHahenS->mpModel,
+                    &local_28, 200.0f + BREG_F(19), 0.0f, epHahenS->field_0x4.y, epHahenS->mGroundY, 
+                    epHahenS->mObjGndCheck, &a_this->tevStr, 0, 1.0f, 
                     dDlst_shadowControl_c::getSimpleTex());
             }
         }
@@ -34,13 +35,14 @@ static void hahen_draw(ep_class* i_this) {
 
 /* 804682F8-80468A70 000178 0778+00 2/2 0/0 0/0 .text            move_calc__FP8ep_classP10ep_hahen_s */
 static int move_calc(ep_class* i_this, ep_hahen_s* hahen_s) {
-    // NONMATCHING
+    fopAc_ac_c* a_this = i_this;
     static u16 w_eff_id[4] = {
         0x01B8, 0x01B9, 0x01BA, 0x01BB,
     };
 
     dBgS_LinChk dStack_bc;
     int rv = 0;
+    cXyz local_11c;
 
     hahen_s->field_0x10 = hahen_s->field_0x4;
     hahen_s->field_0x4 += hahen_s->field_0x1c;
@@ -50,9 +52,10 @@ static int move_calc(ep_class* i_this, ep_hahen_s* hahen_s) {
         hahen_s->field_0x1c.y = -90.0f;
     }
 
-    cXyz local_11c(hahen_s->field_0x4.x, hahen_s->field_0x4.y + 100.0f, hahen_s->field_0x4.z);
-    f32 fVar11 = fabsf(35.0f * cM_ssin(hahen_s->field_0x28.x)) + 6.0f;
-    s16 sVar9 = 1000;
+    local_11c.set(hahen_s->field_0x4.x, hahen_s->field_0x4.y + 100.0f, hahen_s->field_0x4.z);
+    f32 fVar11 = 0.0f;
+    fVar11 = fabsf((35.0f+AREG_F(4)) * cM_ssin(hahen_s->field_0x28.x)) + 6.0f;
+    s16 sVar9 = 1000 + TREG_S(6);
     if (fopAcM_gc_c::gndCheck(&local_11c)) {
         hahen_s->mGroundY = fopAcM_gc_c::getGroundY();
         hahen_s->mObjGndCheck = *fopAcM_gc_c::getGroundCheck();
@@ -61,7 +64,7 @@ static int move_calc(ep_class* i_this, ep_hahen_s* hahen_s) {
             hahen_s->field_0x4.y = hahen_s->mGroundY + fVar11;
             rv = 1;
 
-            if (hahen_s->field_0x1c.y < -20.0f && hahen_s->field_0x96 < 2) {
+            if (hahen_s->field_0x1c.y < -20.0f && hahen_s->field_0x96 < 3) {
                 hahen_s->field_0x1c.y *= -0.3f;
                 if (hahen_s->field_0x96 == 0) {
                     hahen_s->field_0x28.x = cM_rndFX(17000.0f);
@@ -70,15 +73,18 @@ static int move_calc(ep_class* i_this, ep_hahen_s* hahen_s) {
                 }
 
                 hahen_s->field_0x90 = 0;
-                hahen_s->field_0x92 /= 2;
-                hahen_s->field_0x96 += 1;
-                fopAcM_effSmokeSet1(&i_this->field_0xa60, &i_this->field_0xa64, &hahen_s->field_0x4, NULL, 0.5f, &i_this->tevStr, 0);
+                s16* mid_val = &hahen_s->field_0x92;
+                s16 unused_s16 = *mid_val /= 2;
+                (void) unused_s16;
+                ++hahen_s->field_0x96;
+                fopAcM_effSmokeSet2(&i_this->field_0xa60, &i_this->field_0xa64, &hahen_s->field_0x4,
+                                    NULL, 0.5f, &a_this->tevStr);
                 
                 Z2GetAudioMgr()->seStart(Z2SE_OBJ_WOODSTICK_BOUND, &hahen_s->field_0x4, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
             } else {
                 hahen_s->field_0x96 = 3;
                 hahen_s->field_0x1c.y = -10.0f;
-                sVar9 = 5000;
+                sVar9 = 5000 + TREG_S(7);
                 hahen_s->field_0x90 = 0;
                 hahen_s->field_0x92 = 0;
             }
@@ -94,7 +100,7 @@ static int move_calc(ep_class* i_this, ep_hahen_s* hahen_s) {
             } else {
                 cLib_addCalcAngleS2(&hahen_s->field_0x28.z, 0, 1, sVar9);
             }
-            cLib_addCalcAngleS2(&hahen_s->field_0x28.x, 0, 0, 0x800);
+            cLib_addCalcAngleS2(&hahen_s->field_0x28.x, 0, 1, 0x800);
         }
     }
 
@@ -103,7 +109,7 @@ static int move_calc(ep_class* i_this, ep_hahen_s* hahen_s) {
         local_158.y = 0.0f;
         if (local_158.abs() > 0.01f) {
             cXyz local_170 = hahen_s->field_0x4 + (local_158 * 1.1f);
-            dStack_bc.Set(&hahen_s->field_0x10, &local_170, i_this);
+            dStack_bc.Set(&hahen_s->field_0x10, &local_170, a_this);
             if (dComIfG_Bgsp().LineCross(&dStack_bc)) {
                 hahen_s->field_0x4 = hahen_s->field_0x10;
                 hahen_s->field_0x1c.x *= -0.5f;
@@ -132,9 +138,12 @@ static int move_calc(ep_class* i_this, ep_hahen_s* hahen_s) {
         hahen_s->field_0x94 = cM_rndF(65536.0f);
         rv = 3;
 
-        cXyz local_14c(0.7f, 0.7f, 0.7f);
+        f32 my_float = 0.7f;
+        cXyz local_14c(my_float, my_float, my_float);
         for (int i = 0; i < 4; i++) {
-            i_this->mHahen[i].field_0xa0 = dComIfGp_particle_set(0, w_eff_id[i], &hahen_s->field_0x4, &i_this->tevStr);
+            i_this->field_0xa68[i] = dComIfGp_particle_set(i_this->field_0xa68[i], w_eff_id[i], &hahen_s->field_0x4,
+                                                           &a_this->tevStr, NULL, &local_14c, 0xFF, NULL, -1, 0, 0,
+                                                           NULL);
         }
 
         mDoAud_seStart(Z2SE_CM_BODYFALL_WATER_S, &hahen_s->field_0x4, 0, 0);
@@ -150,24 +159,26 @@ static void hahen_normal(ep_class* i_this, ep_hahen_s* hahen_s) {
 
 /* 80468A90-80468E50 000910 03C0+00 1/1 0/0 0/0 .text hahen_water__FP8ep_classP10ep_hahen_s */
 static void hahen_water(ep_class* i_this, ep_hahen_s* hahen_s) {
-    // NONMATCHING
+    fopAc_ac_c* a_this = i_this;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    cXyz local_98, unused_xyz_1;
     dBgS_LinChk dStack_8c;
     hahen_s->field_0x94++;
     if (hahen_s->field_0x98) {
         hahen_s->field_0x98--;
     }
 
-    hahen_s->field_0x10 = hahen_s->field_0x4;
-
     f32 x = hahen_s->field_0x4.x - player->current.pos.x;
     f32 z = hahen_s->field_0x4.z - player->current.pos.z;
-    if (JMAFastSqrt(x * x + z * z) < 60.0f) {
+    hahen_s->field_0x10 = hahen_s->field_0x4;
+    if (JMAFastSqrt(x * x + z * z) < 60.0f+AREG_F(16)) {
         s16 sVar1 = cM_atan2s(x, z);
         cLib_addCalcAngleS2(&hahen_s->field_0x28.y, sVar1, 0x10, 200);
         cMtx_YrotS(*calc_mtx, sVar1);
 
-        cXyz local_98(0.0f, 0.0f, 3.0f);
+        local_98.x = 0.0f;
+        local_98.y = 0.0f;
+        local_98.z = 3.0f + AREG_F(17);
         MtxPosition(&local_98, &hahen_s->field_0x1c);
     }
 
@@ -188,7 +199,7 @@ static void hahen_water(ep_class* i_this, ep_hahen_s* hahen_s) {
 
         if (local_bc.abs() > 0.01f) {
             cXyz local_d4 = hahen_s->field_0x4 + local_bc * 2.0f;
-            dStack_8c.Set(&hahen_s->field_0x10, &local_d4, i_this);
+            dStack_8c.Set(&hahen_s->field_0x10, &local_d4, a_this);
 
             if (dComIfG_Bgsp().LineCross(&dStack_8c)) {
                 hahen_s->field_0x4 = hahen_s->field_0x10;
@@ -269,69 +280,73 @@ static void hahen_cast(ep_class* i_this, ep_hahen_s* hahen_s) {
 
 /* 804690F8-80469568 000F78 0470+00 1/1 0/0 0/0 .text            hahen_move__FP8ep_class */
 static void hahen_move(ep_class* i_this) {
-    // NONMATCHING
+    // NONMATCHING - equivalent in debug....
+    fopAc_ac_c* a_this = i_this;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     dBgS_LinChk dStack_cc;
+    ep_hahen_s* epHahenS;
 
-    if (!fopAcM_checkCarryNow(i_this)) {
+    if (!fopAcM_checkCarryNow(a_this)) {
         f32 fVar1 = 50.0f;
-        bool bVar2 = false;
-        for (int i = 0; i < 10; i++) {
-            ep_hahen_s* epHahenS = i_this->mHahen;
-            for (int j = 0; j < 6; j++) {
-                cXyz local_d8;
-                local_d8 = player->current.pos - epHahenS[j].field_0x4;
+        s8 bVar2 = false;
+        cXyz local_d8;
+        for (int iters = 0; iters < 10; iters++) {
+            epHahenS = i_this->mHahen;
+            for (int j = 0; j < 6; j++, epHahenS++) {
+                local_d8 = player->current.pos - epHahenS->field_0x4;
                 if (local_d8.abs() < fVar1) {
-                    cLib_onBit<u32>(i_this->attention_info.flags, 0x80);
-                    i_this->current.pos = epHahenS[j].field_0x4;
-                    i_this->eyePos = i_this->current.pos;
-                    i_this->attention_info.position = i_this->eyePos;
-                    i_this->shape_angle = epHahenS[j].field_0x28;
-                    i_this->current.angle = i_this->shape_angle;
+                    cLib_onBit<u32>(a_this->attention_info.flags, 0x80);
+                    a_this->current.pos = epHahenS->field_0x4;
+                    a_this->attention_info.position = a_this->eyePos = a_this->current.pos;
+                    a_this->current.angle = a_this->shape_angle = epHahenS->field_0x28;
                     i_this->field_0xa78 = j;
                     bVar2 = true;
                     break;
                 }
             }
 
+            if (bVar2) {
+                break;
+            }
+
             // if (bVar2) break;
             fVar1 += 20.0f;
         }
     } else {
-        cLib_offBit<u32>(i_this->attention_info.flags, 0x80);
-        i_this->mHahen[i_this->field_0xa78].field_0x97 = 3;
-        i_this->mHahen[i_this->field_0xa78].field_0x4 = i_this->current.pos;
-        i_this->mHahen[i_this->field_0xa78].field_0x28 = i_this->shape_angle;
+        cLib_offBit<u32>(a_this->attention_info.flags, 0x80);
+        i_this->mHahen[i_this->field_0xa78].field_0x97 =  3;
+        i_this->mHahen[i_this->field_0xa78].field_0x4 = a_this->current.pos;
+        i_this->mHahen[i_this->field_0xa78].field_0x28 = a_this->shape_angle;
     }
 
-    ep_hahen_s* epHahenS = i_this->mHahen;
-    for (int i = 0; i < 6; i++) {
-        if (epHahenS[i].field_0x97) {
-            if (epHahenS[i].field_0x98) {
-                epHahenS[i].field_0x98 += -1;
+    epHahenS = i_this->mHahen;
+    for (int i = 0; i < 6; i++, epHahenS++) {
+        if (epHahenS->field_0x97) {
+            if (epHahenS->field_0x98) {
+                --epHahenS->field_0x98;
             }
         
             if (i_this->field_0xa79 == 3) {
-                if (epHahenS[i].field_0x97 == 1) {
+                if (epHahenS->field_0x97 == 1) {
                     hahen_normal(i_this, epHahenS);
-                } else if (epHahenS[i].field_0x97 == 2) {
+                } else if (epHahenS->field_0x97 == 2) {
                     hahen_water(i_this, epHahenS);
-                } else if (epHahenS[i].field_0x97 == 3) {
+                } else if (epHahenS->field_0x97 == 3) {
                     hahen_carry(i_this, epHahenS);
-                } else if (epHahenS[i].field_0x97 == 4) {
+                } else if (epHahenS->field_0x97 == 4) {
                     hahen_cast(i_this, epHahenS);
                 }
             }
 
-            MtxTrans(epHahenS[i].field_0x4.x, epHahenS[i].field_0x4.y, epHahenS[i].field_0x4.z, 0);
-            cMtx_YrotM(*calc_mtx, epHahenS[i].field_0x28.y);
-            cMtx_XrotM(*calc_mtx, epHahenS[i].field_0x28.x);
-            cMtx_ZrotM(*calc_mtx, epHahenS[i].field_0x28.z);
+            MtxTrans(epHahenS->field_0x4.x, epHahenS->field_0x4.y, epHahenS->field_0x4.z, 0);
+            cMtx_YrotM(*calc_mtx, epHahenS->field_0x28.y);
+            cMtx_XrotM(*calc_mtx, epHahenS->field_0x28.x);
+            cMtx_ZrotM(*calc_mtx, epHahenS->field_0x28.z);
             cMtx_YrotM(*calc_mtx, 0x4000);
-            MtxTrans(3.0f, 0.0f, 0.0f, 1);
+            MtxTrans(3.0f + KREG_F(0), KREG_F(1), KREG_F(2), 1);
             cMtx_XrotM(*calc_mtx, 0x4000);
             MtxScale(1.0f, 0.5, 1.0f, 1);
-            epHahenS[i].mpModel->setBaseTRMtx(*calc_mtx);
+            epHahenS->mpModel->setBaseTRMtx(*calc_mtx);
         }
     }
 
@@ -386,22 +401,26 @@ static BOOL ep_switch_event_begin(ep_class* i_this) {
 
 /* 80469700-804697F4 001580 00F4+00 1/1 0/0 0/0 .text            ep_switch_event_move__FP8ep_class */
 static int ep_switch_event_move(ep_class* i_this) {
-    // NONMATCHING
     static char* actions[2] = {
         "WAIT",
         "FIRE",
     };
 
+    fopAc_ac_c* a_this = i_this;
+    (void) a_this;
     int rv = 0;
 
     if (dComIfGp_evmng_getIsAddvance(i_this->field_0xa5c)) {
         rv = dComIfGp_evmng_getMyActIdx(i_this->field_0xa5c, actions, 2, 0, 0);
         switch (rv) {
-            case 1:
+            case 1: {
                 if (i_this->field_0xa5b == 0) {
                     mDoAud_seStart(Z2SE_OBJ_FIRE_IGNITION, &i_this->field_0x634, 0, 0);
                 }
                 break;
+            }
+
+            case 0:
             default:
                 rv = 0;
                 dComIfGp_evmng_cutEnd(i_this->field_0xa5c);
@@ -411,14 +430,8 @@ static int ep_switch_event_move(ep_class* i_this) {
     return rv;
 }
 
-// static inline bool dComIfGp_evmng_existence(char eventIdx) {
-//     return g_dComIfG_gameInfo.play.getEvtManager().getEventData(
-//         dComIfGp_evmng_getEventIdx(&eventIdx, -1)) != NULL;
-// }
-
 /* 804697F4-80469EDC 001674 06E8+00 1/1 0/0 0/0 .text            ep_move__FP8ep_class */
 static void ep_move(ep_class* i_this) {
-    // NONMATCHING
     static u16 l_particle_fire_A[2] = {
         0x0100, 0x8110,
     };
@@ -429,28 +442,34 @@ static void ep_move(ep_class* i_this) {
         0x0103, 0x8112
     };
 
-    cXyz sp1C(i_this->field_0x634.x, i_this->field_0x634.y + -240.0f + 235.0f +15.0f, i_this->field_0x634.z);
+    fopAc_ac_c* a_this = i_this;
+    fopAc_ac_c* a_player = dComIfGp_getPlayer(0);
+    daPy_py_c* player = (daPy_py_c*) a_player;
+    cXyz sp1C(i_this->field_0x634.x,
+              i_this->field_0x634.y + -240.0f + 235.0f + 15.0f + YREG_F(0),
+              i_this->field_0x634.z
+    );
 
     switch (i_this->field_0x5a4) {
-        case 0:
+        case 0: {
             if (i_this->field_0x60d != 0) {
                 cLib_addCalc0(&i_this->field_0x5b0, 0.5f, 0.05f);
-                if (!i_this->mSph1.ChkTgHit() || 
-                    (i_this->mSph1.GetTgHitObj()->ChkAtType(0) || i_this->mSph1.GetTgHitGObj())) {
-                    if (i_this->mSph1.GetTgHitGObj()->GetAtMtrl() == 1) {
-                        if (i_this->field_0x609 != 0xff) {
-                            i_this->field_0x5ce = i_this->field_0x609 * 10 + 1;
+                if (i_this->mSph1.ChkTgHit()) {
+                    cCcD_Obj* tg_hit_obj = i_this->mSph1.GetTgHitObj();
+                    if (tg_hit_obj == NULL || !tg_hit_obj->ChkAtType(0)) {
+                        if (i_this->mSph1.GetTgHitGObj() && i_this->mSph1.GetTgHitGObj()->GetAtMtrl() == 1) {
+                            if (i_this->field_0x609 != 0xff) {
+                                i_this->field_0x5ce = i_this->field_0x609 * 10 + 1;
+                            }
+
+                            dComIfGs_onSwitch(i_this->field_0x60d - 1, fopAcM_GetRoomNo(a_this));
                         }
                     }
                 }
 
-                if (dComIfGs_isSwitch(i_this->field_0x60d - 1, fopAcM_GetRoomNo(i_this))) {
-                    if (i_this->field_0x60b == 0xff || 
-                        g_dComIfG_gameInfo.play.getEvtManager().getEventData(
-                            dComIfGp_evmng_getEventIdx("SHOKUDAI_SWITCH", -1))) {
-                        int iVar3 = ep_switch_event_begin(i_this);
-                        i_this->field_0xa5c = iVar3;
-                        if (iVar3) {
+                if (dComIfGs_isSwitch(i_this->field_0x60d - 1, fopAcM_GetRoomNo(a_this))) {
+                    if (i_this->field_0x60b != 0xff && dComIfGp_evmng_existence("SHOKUDAI_SWITCH")) {
+                        if ( (i_this->field_0xa5c = ep_switch_event_begin(i_this)) ) {
                             i_this->field_0x60d = 0;
                             if (i_this->field_0xa5c != -1) {
                                 ep_switch_event_move(i_this);
@@ -465,22 +484,26 @@ static void ep_move(ep_class* i_this) {
                     }
                 }
             } else {
-                if (i_this->field_0x60b == -1 || i_this->field_0xa5c == -1) {
+                if (i_this->field_0x60b != 0xFF && i_this->field_0xa5c != -1) {
                     if (ep_switch_event_move(i_this)) {
                         i_this->field_0x5a4 = 3;
-                        i_this->field_0x5b4 = i_this->scale.x;
+                        i_this->field_0x5b4 = a_this->scale.x;
                     }
                 } else {
                     i_this->field_0x5a4 = 3;
-                    i_this->field_0x5b4 = i_this->scale.x;
+                    i_this->field_0x5b4 = a_this->scale.x;
                 }
             }
+
+            break;
+        }
+
         case 3:
             i_this->field_0x5a4++;
         case 4:
             cLib_addCalc2(&i_this->field_0x5b0, i_this->field_0x5b4, 0.5f, 0.2f);
             if (i_this->field_0xa79 == 0) {
-                if (i_this->field_0xa50 < 7) {
+                if ( i_this->field_0xa50 < (s16)(7 + TREG_S(3)) ) {
                     dComIfGp_particle_setSimple(l_particle_fire_A[i_this->field_0x60c],
                         &sp1C, 0xff, g_whiteColor, g_whiteColor, 
                         0, 0.0f);
@@ -489,9 +512,11 @@ static void ep_move(ep_class* i_this) {
                         0, 0.0f);
 
                     if (i_this->field_0xa50 == 0 && i_this->mSph1.ChkTgHit()) {
-                        fopAc_ac_c* pfVar4 = dCc_GetAc(i_this->mSph1.GetTgHitObj()->GetAc());
-                        i_this->field_0xa58 = cM_atan2s(i_this->current.pos.x - pfVar4->current.pos.x,
-                            i_this->current.pos.z - pfVar4->current.pos.z);
+                        cCcD_Obj* tg_hit_obj = i_this->mSph1.GetTgHitObj();
+                        fopAc_ac_c* pfVar4 = dCc_GetAc(tg_hit_obj->GetAc());
+                        f32 x_diff = a_this->current.pos.x - pfVar4->current.pos.x;
+                        f32 z_diff = a_this->current.pos.z - pfVar4->current.pos.z;
+                        i_this->field_0xa58 = cM_atan2s(x_diff, z_diff);
                         i_this->field_0xa50 = 0x28;
                     }
                 }
@@ -502,24 +527,23 @@ static void ep_move(ep_class* i_this) {
             }
 
             if (i_this->field_0x5ce == 1 && i_this->field_0x60a != 0xff) {
-                dComIfGs_offSwitch(i_this->field_0x60a, fopAcM_GetRoomNo(i_this));
+                dComIfGs_offSwitch(i_this->field_0x60a, fopAcM_GetRoomNo(a_this));
             }
 
-            if (i_this->field_0x60a != 0xff) {
-                if (!dComIfGs_isSwitch(i_this->field_0x60a, fopAcM_GetRoomNo(i_this))) {
-                    i_this->field_0x5a4 = 0;
-                    if (i_this->field_0x60a != 0xff) {
-                        i_this->field_0x60d = i_this->field_0x60a + 1;
-                    }
+            if (i_this->field_0x60a != 0xff && !dComIfGs_isSwitch(i_this->field_0x60a, fopAcM_GetRoomNo(a_this))) {
+                i_this->field_0x5a4 = 0;
+                if (i_this->field_0x60a != 0xff) {
+                    i_this->field_0x60d = i_this->field_0x60a + 1;
+                }
 
-                    if (i_this->field_0xa5b == 0) {
-                        mDoAud_seStart(Z2SE_OBJ_FIRE_OFF, &i_this->field_0x634, 0, 0);
-                    }
+                if (i_this->field_0xa5b == 0) {
+                    mDoAud_seStart(Z2SE_OBJ_FIRE_OFF, &i_this->field_0x634, 0, 0);
                 }
             } else {
                 mDoAud_seStart(Z2SE_OBJ_FIRE_BURNING, &i_this->field_0x634, 0, 0);
             }
-
+            // fallthrough intentional.
+        default:
             if (i_this->field_0xa5c != -1) {
                 if (ep_switch_event_end(i_this)) {
                     i_this->field_0xa5c = -1;
@@ -534,11 +558,11 @@ static void ep_move(ep_class* i_this) {
                 if (i_this->mpModel) {
                     i_this->field_0x5a4 = 0;
                     if (i_this->field_0x60a != 0xff) {
-                        dComIfGs_offSwitch(i_this->field_0x60a, fopAcM_GetRoomNo(i_this));
+                        dComIfGs_offSwitch(i_this->field_0x60a, fopAcM_GetRoomNo(a_this));
                         i_this->field_0x60d = i_this->field_0x60a + 1;
                     }
                 } else {
-                    fopAcM_delete(i_this);
+                    fopAcM_delete(a_this);
                 }
             }
             break;
@@ -548,11 +572,11 @@ static void ep_move(ep_class* i_this) {
     i_this->mLightInf.mColor.r = 0xaf;
     i_this->mLightInf.mColor.g = 0x5d;
     i_this->mLightInf.mColor.b = 0;
-    i_this->mLightInf.mPow = i_this->field_0x5b0 * 500.0f;
+    i_this->mLightInf.mPow = (500.0f + SREG_F(11)) * i_this->field_0x5b0;
     i_this->mLightInf.mFluctuation = 1.0f;
-    i_this->scale.y = i_this->field_0x5b0;
+    a_this->scale.y = i_this->field_0x5b0;
 
-    if (i_this->scale.y > 0.5f) {
+    if (a_this->scale.y > 0.5f) {
         i_this->mSph1.OnAtSetBit();
     } else {
         i_this->mSph1.OffAtSetBit();
@@ -564,18 +588,18 @@ static void ep_move(ep_class* i_this) {
 
     if (i_this->field_0xa50 != 0) {
         if (i_this->mBaseEmitter != NULL) {
+            cXyz local_34, cStack_40;
             f32 fVar1;
-            if (i_this->field_0xa50 > 10) {
-                fVar1 = 4.0f;
+            if ( i_this->field_0xa50 > (s16) (10+TREG_S(3)) ) {
+                fVar1 = 4.0f + TREG_F(5);
             } else {
                 fVar1 = 0.0f;
             }
 
-            cLib_addCalc2(&i_this->field_0xa54, fVar1, 1.0f, 0.5f);
+            cLib_addCalc2(&i_this->field_0xa54, fVar1, 1.0f, 0.5f + TREG_F(8));
             cMtx_YrotS(*calc_mtx, i_this->field_0xa58);
 
-            cXyz local_34(0.0f, 1.0f, i_this->field_0xa54);
-            cXyz cStack_40;
+            local_34.set(0.0f, 1.0f, i_this->field_0xa54);
             MtxPosition(&local_34, &cStack_40);
 
             i_this->mBaseEmitter->setDirection(cStack_40);
@@ -588,6 +612,7 @@ static void ep_move(ep_class* i_this) {
 
         i_this->field_0xa50--;
     }
+
     return;
 }
 
@@ -633,11 +658,11 @@ static void daEp_set_mtx(ep_class* i_this) {
 
 /* 8046A0A8-8046A6D4 001F28 062C+00 1/0 0/0 0/0 .text            daEp_Execute__FP8ep_class */
 static int daEp_Execute(ep_class* i_this) {
-    // NONMATCHING
     static u16 eff_name[3] = {
         0x8340, 0x8341, 0x8342,
     };
 
+    fopAc_ac_c* a_this = i_this;
     i_this->field_0x601 = 0;
     i_this->field_0x602 = 0;
     if (i_this->field_0x640) {
@@ -645,22 +670,23 @@ static int daEp_Execute(ep_class* i_this) {
     }
 
     if (i_this->mpModel) {
-        cXyz local_78 = i_this->current.pos;
+        cXyz local_78 = a_this->current.pos;
         if (i_this->field_0x640 != 0) {
             local_78.y -= 8000.0f;
         }
 
-        i_this->mCyl.SetC(i_this->current.pos);
+        i_this->mCyl.SetC(a_this->current.pos);
         dComIfG_Ccsp()->Set(&i_this->mCyl);
 
         if (i_this->field_0x640 == 0 && i_this->mCyl.ChkTgHit()) {
             i_this->field_0x640 = 10;
-            daObj::HitSeStart(&i_this->current.pos, fopAcM_GetRoomNo(i_this), &i_this->mCyl, 11);
+            daObj::HitSeStart(&a_this->current.pos, fopAcM_GetRoomNo(a_this), &i_this->mCyl, 11);
         }
 
-        fopAcM_rollPlayerCrash(i_this, 35.0f, 0, 200.0f, -100.0f, 0, -0.8999999761581421);
+        fopAcM_rollPlayerCrash(a_this, 35.0f, 0, 200.0f, -100.0f, 0, -0.8999999761581421);
         mDoLib_clipper::changeFar(1000000.0f);
-        i_this->field_0x602 = fopAcM_checkCullingBox(i_this->mpModel->mBaseTransformMtx, -30.0f, 0.0f, -30.0f, 30.0f, 180.0f, 30.0f);
+        i_this->field_0x602 = fopAcM_checkCullingBox(i_this->mpModel->getBaseTRMtx(),
+                                                     -30.0f, 0.0f, -30.0f, 30.0f, 180.0f, 30.0f);
         mDoLib_clipper::resetFar();
     }
 
@@ -719,39 +745,41 @@ static int daEp_Execute(ep_class* i_this) {
         }
     }
 
-    fopAcM_OffStatus(i_this, 0);
-    i_this->attention_info.flags = 0;
-    cLib_offBit<u32>(i_this->attention_info.flags, 4);
+    fopAcM_OffStatus(a_this, 0);
+    a_this->attention_info.flags = 0;
+    cLib_offBit<u32>(a_this->attention_info.flags, 4);
 
     if (i_this->field_0xa79 == 1) {
         i_this->field_0xa79 = 2;
         i_this->mpModel = NULL;
         ep_hahen_s* epHahenS = i_this->mHahen;
-        
-        for (int i = 0; i < 6; i++) {
-            epHahenS[i].field_0x97 = 1;
-            epHahenS[i].field_0x4 = i_this->home.pos;
+
+        cXyz local_84, cStack_90;
+        for (int i = 0; i < 6; i++, epHahenS++) {
+            epHahenS->field_0x97 = 1;
+            epHahenS->field_0x4 = a_this->home.pos;
             if (i < 3) {
-                epHahenS[i].field_0x4.y += 40.0f;
-                epHahenS[i].field_0x28.z = 0x363c;
+                epHahenS->field_0x4.y += 40.0f;
+                epHahenS->field_0x28.z = 0x363c;
             } else {
-                epHahenS[i].field_0x4.y += 110.0f;
-                epHahenS[i].field_0x28.z = -0x363c;
+                epHahenS->field_0x4.y += 110.0f;
+                epHahenS->field_0x28.z = -0x363c;
             }
-            epHahenS[i].field_0x28.y = (i * 0x5555) + 1000;
+            epHahenS->field_0x28.y = (i * 0x5555) + 1000;
 
-            cMtx_YrotS(*calc_mtx, epHahenS[i].field_0x28.y);
-            cXyz local_84(0.0f, 0.0f, 10.0f);
-            cXyz cStack_90;
+            cMtx_YrotS(*calc_mtx, epHahenS->field_0x28.y);
+            local_84.x = 0.0f;
+            local_84.y = 0.0f;
+            local_84.z = 10.0f + AREG_F(10);
             MtxPosition(&local_84, &cStack_90);
-            epHahenS[i].field_0x4 += cStack_90;
+            epHahenS->field_0x4 += cStack_90;
 
-            epHahenS[i].field_0x90 = 3000.0f + cM_rndF(1000.0f);
-            epHahenS[i].field_0x92 = cM_rndFX(2000.0f);
-            epHahenS[i].field_0x1c.y = 20.0f + cM_rndF(15.0f);
-            epHahenS[i].field_0x1c.x = cM_rndFX(15.0f);
-            epHahenS[i].field_0x1c.z = cM_rndFX(15.0f);
-            epHahenS[i].field_0x96 = 0;
+            epHahenS->field_0x90 = 3000.0f + cM_rndF(1000.0f);
+            epHahenS->field_0x92 = cM_rndFX(2000.0f);
+            epHahenS->field_0x1c.y = 20.0f + cM_rndF(15.0f);
+            epHahenS->field_0x1c.x = cM_rndFX(15.0f);
+            epHahenS->field_0x1c.z = cM_rndFX(15.0f);
+            epHahenS->field_0x96 = 0;
         }
 
         cXyz local_9c = i_this->field_0x634;
@@ -788,7 +816,7 @@ static int model_d[8] = {
 
 /* 8046A724-8046A858 0025A4 0134+00 1/1 0/0 0/0 .text            daEp_CreateHeap__FP10fopAc_ac_c */
 static int daEp_CreateHeap(fopAc_ac_c* a_this) {
-    // NONMATCHING
+    // NONMATCHING - equiv in debug
     ep_class* i_this = (ep_class*)a_this;
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Ep", model_d[i_this->field_0xa5a]);
