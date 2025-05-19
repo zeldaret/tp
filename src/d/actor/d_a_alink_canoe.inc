@@ -1249,7 +1249,7 @@ int daAlink_c::procCanoeFishingReel() {
 
     setFishGetFace();
 
-    if (checkEndResetFlg0(ERFLG0_UNK_40000)) {
+    if (checkEndResetFlg0(ERFLG0_FISHING_ROD_GET_FISH)) {
         procCanoeFishingGetInit();
     } else if (checkEndResetFlg0(ERFLG0_UNK_20000)) {
         resetUpperAnime(UPPER_2, -1.0f);

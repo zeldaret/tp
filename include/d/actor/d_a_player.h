@@ -475,7 +475,7 @@ public:
         ERFLG0_UNK_200000 = 0x200000,
         ERFLG0_UNK_100000 = 0x100000,
         ERFLG0_UNK_80000 = 0x80000,
-        ERFLG0_UNK_40000 = 0x40000,
+        ERFLG0_FISHING_ROD_GET_FISH = 0x40000,
         ERFLG0_UNK_20000 = 0x20000,
         ERFLG0_UNK_10000 = 0x10000,
         ERFLG0_UNK_4000 = 0x4000,
@@ -928,6 +928,7 @@ public:
     void onNotAutoJump() { onEndResetFlg0(ERFLG0_NOT_AUTO_JUMP); }
     void onNotHang() { onEndResetFlg0(ERFLG0_NOT_HANG); }
     void onWolfFchainPull() { onEndResetFlg0(ERFLG0_WOLF_FCHAIN_PULL); }
+    void onFishingRodGetFish() { onEndResetFlg0(ERFLG0_FISHING_ROD_GET_FISH); }
     void onShieldBackBone() { onEndResetFlg1(ERFLG1_GANON_FINISH); }
     void onWolfEyeKeep() { onEndResetFlg1(ERFLG1_WOLF_EYE_KEEP); }
     void onPortalWarpMidnaAtnKeep() { onEndResetFlg2(ERFLG2_PORTAL_WARP_MIDNA_ATN_KEEP); }
@@ -1141,6 +1142,10 @@ public:
 
     void onForceHorseGetOff() {
         onEndResetFlg2(ERFLG2_UNK_2);
+    }
+
+    void onFishingRelease() {
+        this->mEndResetFlg0 |= 0x4000000;
     }
 
     static daMidna_c* m_midnaActor;
