@@ -35,7 +35,7 @@ public:
     /* 0x000 */ fopEn_enemy_c enemy;
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ s16 mMode;
-    /* 0x5B6 */ u8 field_0x5b6;
+    /* 0x5B6 */ u8 mParam;
     /* 0x5B7 */ u8 field_0x5b7;
     /* 0x5B8 */ cXyz field_0x5b8;
     /* 0x5C4 */ u8 field_0x5c4[0x5c8 - 0x5c4];
