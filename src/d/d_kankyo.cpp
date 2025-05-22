@@ -5001,7 +5001,7 @@ void dKy_fog_startendz_set(f32 param_0, f32 param_1, f32 ratio) {
         ratio = 0.0f;
     }
 
-    if (ratio < 0.0000000000001f) {
+    if (ratio < 0.0001f) {
         ratio = 0.0f;
     }
 

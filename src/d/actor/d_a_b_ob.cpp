@@ -1526,7 +1526,7 @@ static int fish_normal(b_ob_class* i_this) {
             i_this->field_0x47b4 = 0;
         } else {
             i_this->mTargetMovePos.x = a_this->home.pos.x + cM_rndFX(2000.0f);
-            i_this->mTargetMovePos.y = a_this->home.pos.y + 1000.0f + cM_rndFX(2000.0f);
+            i_this->mTargetMovePos.y = a_this->home.pos.y + 1000.0f + cM_rndF(2000.0f);
             i_this->mTargetMovePos.z = a_this->home.pos.z + cM_rndFX(2000.0f);
             i_this->mTimers[0] = cM_rndF(30.0f) + 30.0f;
         }
