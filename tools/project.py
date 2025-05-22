@@ -196,9 +196,8 @@ class ProjectConfig:
             None  # Callback to add/remove/reorder units within a module
         )
 
-        # Progress output, progress.json and report.json config
+        # Progress output and report.json config
         self.progress = True  # Enable report.json generation and CLI progress output
-        self.progress_all: bool = True  # Include combined "all" category
         self.progress_modules: bool = True  # Include combined "modules" category
         self.progress_each_module: bool = (
             False  # Include individual modules, disable for large numbers of modules
@@ -206,6 +205,9 @@ class ProjectConfig:
         self.progress_categories: List[ProgressCategory] = []  # Additional categories
         self.print_progress_categories: Union[bool, List[str]] = (
             True  # Print additional progress categories in the CLI progress output
+        )
+        self.progress_report_args: Optional[List[str]] = (
+            None  # Flags to `objdiff-cli report generate`
         )
 
         # Progress fancy printing
@@ -423,6 +425,7 @@ def generate_build_ninja(
     if config.linker_version is None:
         sys.exit("ProjectConfig.linker_version missing")
     n.variable("mw_version", Path(config.linker_version))
+    n.variable("objdiff_report_args", make_flags_str(config.progress_report_args))
     n.newline()
 
     ###
@@ -431,7 +434,6 @@ def generate_build_ninja(
     n.comment("Tooling")
 
     build_path = config.out_path()
-    progress_path = build_path / "progress.json"
     report_path = build_path / "report.json"
     build_tools_path = config.build_dir / "tools"
     download_tool = config.tools_dir / "download_tool.py"
@@ -1188,7 +1190,7 @@ def generate_build_ninja(
             description="PROGRESS",
         )
         n.build(
-            outputs=progress_path,
+            outputs="progress",
             rule="progress",
             implicit=[
                 ok_path,
@@ -1205,7 +1207,7 @@ def generate_build_ninja(
         n.comment("Generate progress report")
         n.rule(
             name="report",
-            command=f"{objdiff} report generate -o $out",
+            command=f"{objdiff} report generate $objdiff_report_args -o $out",
             description="REPORT",
         )
         n.build(
@@ -1385,7 +1387,7 @@ def generate_build_ninja(
         if config.non_matching:
             n.default(link_outputs)
         elif config.progress:
-            n.default(progress_path)
+            n.default("progress")
         else:
             n.default(ok_path)
     else:
@@ -1437,6 +1439,7 @@ def generate_objdiff_config(
     COMPILER_MAP = {
         "GC/1.0": "mwcc_233_144",
         "GC/1.1": "mwcc_233_159",
+        "GC/1.1p1": "mwcc_233_159p1",
         "GC/1.2.5": "mwcc_233_163",
         "GC/1.2.5e": "mwcc_233_163e",
         "GC/1.2.5n": "mwcc_233_163n",
@@ -1825,7 +1828,7 @@ def generate_compile_commands(
         json.dump(clangd_config, w, indent=2, default=default_format)
 
 
-# Calculate, print and write progress to progress.json
+# Print progress information from objdiff report
 def calculate_progress(config: ProjectConfig) -> None:
     config.validate()
     out_path = config.out_path()
@@ -1917,35 +1920,3 @@ def calculate_progress(config: ProjectConfig) -> None:
     if summary_file:
         summary_file.write("```\n")
         summary_file.close()
-
-    # Generate and write progress.json
-    progress_json: Dict[str, Any] = {}
-
-    def add_category(id: str, measures: Dict[str, Any]) -> None:
-        progress_json[id] = {
-            "code": measures.get("complete_code", 0),
-            "code/total": measures.get("total_code", 0),
-            "data": measures.get("complete_data", 0),
-            "data/total": measures.get("total_data", 0),
-            "matched_code": measures.get("matched_code", 0),
-            "matched_code/total": measures.get("total_code", 0),
-            "matched_data": measures.get("matched_data", 0),
-            "matched_data/total": measures.get("total_data", 0),
-            "matched_functions": measures.get("matched_functions", 0),
-            "matched_functions/total": measures.get("total_functions", 0),
-            "fuzzy_match": int(measures.get("fuzzy_match_percent", 0) * 100),
-            "fuzzy_match/total": 10000,
-            "units": measures.get("complete_units", 0),
-            "units/total": measures.get("total_units", 0),
-        }
-
-    if config.progress_all:
-        add_category("all", report_data["measures"])
-    else:
-        # Support for old behavior where "dol" was the main category
-        add_category("dol", report_data["measures"])
-    for category in report_data.get("categories", []):
-        add_category(category["id"], category["measures"])
-
-    with open(out_path / "progress.json", "w", encoding="utf-8") as w:
-        json.dump(progress_json, w, indent=2)
