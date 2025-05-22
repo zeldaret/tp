@@ -1101,7 +1101,7 @@ public:
     /* 80155BE8 */ virtual void setMotionAnm(int i_idx, f32 i_morf);
     /* 80155BEC */ virtual void setMotion(int i_motion, f32 i_morf, int i_restart);
     /* 80155BD0 */ virtual BOOL drawDbgInfo();
-    /* 80155BCC */ virtual void drawOtherMdls();
+    /* 80155BCC */ virtual void drawOtherMdls() {}
 
     BOOL chkActorInSpeakArea(fopAc_ac_c* i_actorCheck, fopAc_ac_c* i_actorArea) {
         return chkActorInAttnArea(i_actorCheck, i_actorArea, attention_info.distances[fopAc_attn_SPEAK_e]);

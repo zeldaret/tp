@@ -349,7 +349,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
         for (int i = 0; i < i_this->field_0xad98; i++) {
             f32* mSize = i_this->field_0xad7c.getSize(i);
             for (int j = 0; j < 3; j++) {
-                *mSize = 0.1f + 1.3f;
+                *mSize = 1.3f;
                 mSize++;
             }
         }
