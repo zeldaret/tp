@@ -44,10 +44,10 @@ public:
     /* 0xA4C */ s16 field_0xa4c;
     /* 0xA4E */ s16 field_0xa4e;
     /* 0xA50 */ s16 field_0xa50;
-    /* 0xA52 */ s16 field_0xa52;
-    /* 0xA54 */ s16 field_0xa54;
-    /* 0xA56 */ s16 field_0xa56;
-    /* 0xA58 */ s16 field_0xa58;
+    /* 0xA52 */ s16 rot_y;
+    /* 0xA54 */ s16 rot_x;
+    /* 0xA56 */ s16 rot_step;
+    /* 0xA58 */ s16 death_rot_y;
     /* 0xA5C */ u32 smokeEmtrID;
     /* 0xA60 */ u32 field_0xa60;
     /* 0xA64 */ s8 field_0xa64;
