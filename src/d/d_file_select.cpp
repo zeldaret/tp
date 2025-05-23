@@ -4278,3 +4278,6 @@ void dFile_select3D_c::toItem3Dpos(f32 param_0, f32 param_1, f32 param_2, cXyz* 
 void dFile_select3D_c::calcViewMtx(Mtx param_0) {
     cMtx_lookAt(param_0, &cXyz(0.0f, 0.0f, -1000.0f), &cXyz::Zero, &cXyz(0.0f, 1.0f, 0.0f), 0);
 }
+
+// Fakematch, should be defined in header but it gets put in the wrong TU
+void J2DAnmTransform::getTransform(u16, J3DTransformInfo*) const {}
