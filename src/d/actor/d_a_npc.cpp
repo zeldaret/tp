@@ -5198,11 +5198,6 @@ void daNpcF_c::setParam() {
     /* empty function */
 }
 
-/* 80155BCC-80155BD0 15050C 0004+00 2/0 0/0 0/0 .text            drawOtherMdls__8daNpcF_cFv */
-void daNpcF_c::drawOtherMdls() {
-    /* empty function */
-}
-
 /* 80155BD0-80155BD8 150510 0008+00 2/0 0/0 0/0 .text            drawDbgInfo__8daNpcF_cFv */
 BOOL daNpcF_c::drawDbgInfo() {
     return true;

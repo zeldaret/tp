@@ -655,7 +655,7 @@ d/d_bg_w.cpp:
 	.text       start:0x800791C4 end:0x8007E5A8
 	.data       start:0x803ABA80 end:0x803ABCC8
 	.bss        start:0x80424B80 end:0x80424F70
-	.sbss       start:0x80450F80 end:0x80450F90
+	.sbss       start:0x80450F80 end:0x80450F88
 	.sdata2     start:0x804526F8 end:0x80452718
 
 d/d_bg_w_base.cpp:
@@ -704,6 +704,7 @@ d/d_ev_camera.cpp:
 	.rodata     start:0x8037A7F0 end:0x8037AD68
 	.data       start:0x803AC528 end:0x803AC5A0
 	.bss        start:0x804253A8 end:0x80425438
+	.sbss       start:0x80450F88 end:0x80450F90
 	.sdata2     start:0x804528B8 end:0x80452BC8
 
 d/d_item_data.cpp:
@@ -806,7 +807,7 @@ d/actor/d_a_npc.cpp:
 	.rodata     start:0x80392680 end:0x80392A18
 	.data       start:0x803B36A8 end:0x803B3B80
 	.bss        start:0x80425708 end:0x80425978
-	.sbss       start:0x80450FD8 end:0x80451000
+	.sbss       start:0x80450FD8 end:0x80450FF8
 	.sdata2     start:0x804533D8 end:0x804534B8
 
 d/actor/d_a_npc_cd.cpp:
@@ -815,6 +816,7 @@ d/actor/d_a_npc_cd.cpp:
 	.rodata     start:0x80392A18 end:0x80393250
 	.data       start:0x803B3B80 end:0x803B61C0
 	.bss        start:0x80425978 end:0x80428610
+	.sbss       start:0x80450FF8 end:0x80451000
 	.sdata2     start:0x804534B8 end:0x804534E0
 
 d/actor/d_a_npc_cd2.cpp:
@@ -1877,7 +1879,7 @@ JSystem/JAudio2/JASProbe.cpp:
 JSystem/JAudio2/JASReport.cpp:
 	.text       start:0x80290F64 end:0x80291060
 	.bss        start:0x80431660 end:0x80431678
-	.sbss       start:0x80451220 end:0x80451238
+	.sbss       start:0x80451220 end:0x80451230
 
 JSystem/JAudio2/JASCmdStack.cpp:
 	.text       start:0x80291060 end:0x80291228
@@ -2078,13 +2080,14 @@ JSystem/JAudio2/JAISeMgr.cpp:
 	.rodata     start:0x8039B8F8 end:0x8039B910
 	.data       start:0x803C98B0 end:0x803C98D8
 	.bss        start:0x80434078 end:0x80434098
-	.sbss       start:0x80451310 end:0x80451320
+	.sbss       start:0x80451310 end:0x80451318
 	.sdata2     start:0x80455788 end:0x80455798
 
 JSystem/JAudio2/JAISeq.cpp:
 	.text       start:0x802A0A6C end:0x802A1774
 	.data       start:0x803C98D8 end:0x803C9928
 	.bss        start:0x80434098 end:0x804340C0
+	.sbss       start:0x80451318 end:0x80451320
 	.sdata2     start:0x80455798 end:0x804557A8
 
 JSystem/JAudio2/JAISeqDataMgr.cpp:

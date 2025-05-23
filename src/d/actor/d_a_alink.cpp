@@ -58,31 +58,31 @@ BOOL daAlink_c::getE3Zhint() {
 }
 
 /* 80452C50-80452C58 001250 0005+03 2/2 0/0 0/0 .sdata2          l_wArcName */
-static const char l_wArcName[8] = "Wmdl";
+static const char l_wArcName[] = "Wmdl";
 
 /* 80452C58-80452C60 001258 0005+03 2/2 0/0 0/0 .sdata2          l_bArcName */
-static const char l_bArcName[8] = "Bmdl";
+static const char l_bArcName[] = "Bmdl";
 
 /* 80452C60-80452C68 001260 0005+03 2/2 0/0 0/0 .sdata2          l_kArcName */
-static const char l_kArcName[8] = "Kmdl";
+static const char l_kArcName[] = "Kmdl";
 
 /* 80452C68-80452C70 001268 0005+03 2/2 0/0 0/0 .sdata2          l_zArcName */
-static const char l_zArcName[8] = "Zmdl";
+static const char l_zArcName[] = "Zmdl";
 
 /* 80452C70-80452C78 001270 0005+03 3/3 0/0 0/0 .sdata2          l_mArcName */
-static const char l_mArcName[8] = "Mmdl";
+static const char l_mArcName[] = "Mmdl";
 
 /* 80452C78-80452C80 001278 0006+02 1/1 0/0 0/0 .sdata2          l_hyShdArcName */
-static const char l_hyShdArcName[8] = "HyShd";
+static const char l_hyShdArcName[] = "HyShd";
 
 /* 80452C80-80452C88 001280 0006+02 1/1 0/0 0/0 .sdata2          l_cWShdArcName */
-static const char l_cWShdArcName[8] = "CWShd";
+static const char l_cWShdArcName[] = "CWShd";
 
 /* 80452C88-80452C90 001288 0006+02 1/1 0/0 0/0 .sdata2          l_sWShdArcName */
-static const char l_sWShdArcName[8] = "SWShd";
+static const char l_sWShdArcName[] = "SWShd";
 
 /* 80452C90-80452C98 001290 0006+02 7/7 0/0 0/0 .sdata2          l_arcName */
-static const char l_arcName[8] = "Alink";
+static const char l_arcName[] = "Alink";
 
 /* 8009D884-8009D88C 0981C4 0008+00 0/0 0/0 13/13 .text            getAlinkArcName__9daAlink_cFv */
 const char* daAlink_c::getAlinkArcName() {
