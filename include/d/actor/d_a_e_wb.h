@@ -47,7 +47,7 @@ public:
         return NULL;
     }
 
-private:
+public:
     /* 0x05AC */ request_of_phase_process_class mPhase;
     /* 0x05B4 */ s16 field_0x5b4;
     /* 0x05B8 */ char* mResName;
