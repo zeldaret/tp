@@ -1093,6 +1093,7 @@ public:
     static s8 getRoomReadId() { return mRoomReadId; }
     static void offNoChangeRoom() { mNoChangeRoom = false; }
     static void onNoChangeRoom() { mNoChangeRoom = true; }
+    static s8 getNextStayNo() { return mNextStayNo; }
     static void setProcID(u32 id) { mProcID = id; }
     static u32 getProcID() { return mProcID; }
     static void setStatusProcID(int i_roomNo, fpc_ProcID i_id) { mStatus[i_roomNo].mProcID = i_id; }

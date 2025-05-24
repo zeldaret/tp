@@ -11,6 +11,7 @@
 #include "d/d_bomb.h"
 #include "d/actor/d_a_obj_so.h"
 #include "d/actor/d_a_boomerang.h"
+#include "d/d_stage.h"
 #include "Z2AudioLib/Z2Instances.h"
 
 
@@ -2137,8 +2138,55 @@ COMPILER_STRIP_GATE(0x80A5DFB0, &lit_5156);
 #pragma pop
 
 /* 80A4B7BC-80A4BA14 00291C 0258+00 1/1 0/0 0/0 .text            npc_ks_home__FP12npc_ks_class */
-static void npc_ks_home(npc_ks_class* param_0) {
+static void npc_ks_home(npc_ks_class* i_this) {
     // NONMATCHING
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
+    cXyz sp2c, sp38;
+    switch (i_this->mMode) {
+        case 0:
+            if (cM_rndF(1.0f) < 0.5f) {
+                anm_init(i_this, 30, 3.0f, 0, 1.0f);
+            } else {
+                anm_init(i_this, 5, 3.0, 0, 1.0f);
+            }
+
+            i_this->mMode = 1;
+            i_this->mSound.startCreatureVoice(Z2SE_KOSARU_V_WAIT, -1);
+            break;
+
+        case 1:
+            if (i_this->mpModelMorf->isStop()) {
+                i_this->mMode = 0;
+            }
+    }
+
+    cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->field_0x5c8, 2, 0x800);
+    if (checkDoorDemo() != 0) {
+        s16 roomNo = fopAcM_GetRoomNo(a_this);
+        int nextStayNo = dStage_roomControl_c::getNextStayNo(roomNo);
+        if (roomNo == 0 && nextStayNo == 4) {
+            i_this->mActionID = 100;
+            i_this->mMode = 0;
+            i_this->field_0x904 = 0;
+            i_this->field_0xaec = 1;
+            if (fopAcM_CheckCondition(a_this, 4) != 0) {
+                camera_class* camera = dComIfGp_getCamera(0);
+                sp2c.x = camera->lookat.eye.x - camera->lookat.center.x;
+                sp2c.z = camera->lookat.eye.z - camera->lookat.center.z;
+                cMtx_YrotS(*calc_mtx, cM_atan2s(sp2c.x, sp2c.z));
+                if ((i_this->field_0x5b6 & 1) == 0) {
+                    sp2c.x = -100.0f;
+                } else {
+                    sp2c.x = 100.0f;
+                }
+                sp2c.y = -50.0f;
+                sp2c.z = 200.0f;
+                MtxPosition(&sp2c, &sp38);
+                a_this->current.pos = camera->lookat.eye - sp38;
+                a_this->old = a_this->current;
+            }
+        }
+    }
 }
 
 /* 80A4BA14-80A4BA90 002B74 007C+00 3/3 0/0 0/0 .text            s_sw_sub__FPvPv */
