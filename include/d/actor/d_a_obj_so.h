@@ -12,8 +12,24 @@
  *
  */
 class obj_so_class : public fopAc_ac_c {
-private:
-    /* 0x568 */ u8 field_0x568[0x1bd0 - 0x568];
+public:
+    /* 0x0568 */ u8 field_0x568[0xdac - 0x568];
+    /* 0x0DAC */ s16 field_0xdac;
+    /* 0x0DAE */ s16 field_0xdae;
+    /* 0x0DB0 */ u8 field_0xdb0[0xdc8 - 0xdb0];
+    /* 0x0DC8 */ f32 field_0xdc8;
+    /* 0x0DCC */ u8 field_0xdcc[0x1054 - 0xdcc];
+    /* 0x1054 */ s8 field_0x1054;
+    /* 0x1055 */ u8 field_0x1055[0x1a98 - 0x1055];
+    /* 0x1A98 */ s8 field_0x1a98[7];
+    /* 0x1A9F */ u8 field_0x1a9f[0x1bd0 - 0x1a9f];
+
+    bool partBreak() {
+        for (int i = 0; i < 7; i++) {
+            if (field_0x1a98[i] == 2) return 1;
+        }
+        return 0;
+    }
 };
 
 STATIC_ASSERT(sizeof(obj_so_class) == 0x1bd0);
