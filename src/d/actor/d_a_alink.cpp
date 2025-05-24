@@ -7060,7 +7060,7 @@ int daAlink_c::setUpperAnime(u16 i_anmResID, daAlink_c::daAlink_UPPER param_1, f
     }
 
     if (checkDkCaught2Anime()) {
-        offNoResetFlg0(FLG0_UNK_20000);
+        offNoResetFlg0(FLG0_DK_CAUGHT);
     }
 
     J3DAnmTransform* var_r30 = getAnimeResource(&mUpperAnmHeap[param_1], i_anmResID, 0x2C00);
@@ -7131,7 +7131,7 @@ int daAlink_c::resetUpperAnime(daAlink_c::daAlink_UPPER param_0, f32 param_1) {
     }
 
     if (checkDkCaught2Anime()) {
-        offNoResetFlg0(FLG0_UNK_20000);
+        offNoResetFlg0(FLG0_DK_CAUGHT);
     } else if (checkWolfEnemyThrowAnime()) {
         resetWolfEnemyBiteAll();
     }
@@ -11097,7 +11097,7 @@ BOOL daAlink_c::checkUpperItemAction() {
             field_0x30f6 -= daAlinkHIO_damCaught_c0::m.field_0x16;
         }
 
-        if (field_0x30f6 < 0 || !checkNoResetFlg0(FLG0_UNK_20000)) {
+        if (field_0x30f6 < 0 || !checkNoResetFlg0(FLG0_DK_CAUGHT)) {
             voiceStart(Z2SE_AL_V_ZENTEN_FAIL_2);
 
             if (mLinkAcch.ChkGroundHit()) {
