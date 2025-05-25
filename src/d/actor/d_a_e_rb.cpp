@@ -829,7 +829,7 @@ static int daE_RB_Create(fopAc_ac_c* i_this) {
         if (!l_HIOInit) {
             a_this->HIOInit = TRUE;
             l_HIOInit = TRUE;
-            l_HIO.id = mDoHIO_CREATE_CHILD("リーバ", &l_HIO);
+            //l_HIO.id = mDoHIO_CREATE_CHILD("リーバ", &l_HIO);
         }
     
         i_this->attention_info.flags = 4;
