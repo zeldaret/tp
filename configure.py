@@ -417,7 +417,7 @@ config.libs = [
         "host": True,
         "objects": [
             Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_main.cpp"),
-            Object(NonMatching, "m_Do/m_Do_printf.cpp"),
+            Object(MatchingFor("GZ2E01"), "m_Do/m_Do_printf.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_audio.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_controller_pad.cpp"),
             Object(Equivalent, "m_Do/m_Do_graphic.cpp"), # weak func order
