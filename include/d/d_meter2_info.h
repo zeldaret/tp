@@ -178,7 +178,7 @@ public:
         mCollectCursorPosX = x;
         mCollectCursorPosY = y;
     }
-    void setMapDrugFlag(u8 flag) { mMapDrugFlag = flag; }
+    void setMapDrugFlag(bool flag) { mMapDrugFlag = flag; }
     void offTempBit(int i_bit) { mTempBits &= ~(1 << i_bit); }
     void onTempBit(int i_bit) { mTempBits |= (1 << i_bit); }
     bool isTempBit(int bit) { return mTempBits & (1 << bit); }
@@ -276,7 +276,7 @@ public:
     /* 0xE8 */ u8 mItemExplainWindowStatus;
     /* 0xE9 */ char mSaveStageName[8];
     /* 0xF1 */ bool mFloatingMessageWakuVisible;
-    /* 0xF2 */ u8 mMapDrugFlag;
+    /* 0xF2 */ bool mMapDrugFlag;
     /* 0xF3 */ u8 unk243[5];
 };
 
@@ -731,7 +731,7 @@ inline bool dMeter2Info_isShopTalkFlag() {
     return g_meter2_info.isShopTalkFlag();
 }
 
-inline void dMeter2Info_setMapDrugFlag(u8 flag) {
+inline void dMeter2Info_setMapDrugFlag(bool flag) {
     g_meter2_info.setMapDrugFlag(flag);
 }
 

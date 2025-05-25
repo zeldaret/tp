@@ -172,8 +172,8 @@ void dTres_c::offStatus(u8 listIdx, int param_1, int flag) {
 }
 
 /* 8009C27C-8009C360 096BBC 00E4+00 0/0 1/1 0/0 .text            getBossIconFloorNo__7dTres_cFPi */
-int dTres_c::getBossIconFloorNo(int* o_floorNo) {
-    int ret;
+bool dTres_c::getBossIconFloorNo(int* o_floorNo) {
+    bool ret;
 
     if (o_floorNo == NULL) {
         return 0;
