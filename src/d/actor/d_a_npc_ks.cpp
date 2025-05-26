@@ -12,6 +12,9 @@
 #include "d/actor/d_a_obj_so.h"
 #include "d/actor/d_a_boomerang.h"
 #include "d/d_stage.h"
+#include "d/actor/d_a_obj_sw.h"
+#include "d/actor/d_a_obj_pillar.h"
+#include "m_Do/m_Do_controller_pad.h"
 #include "Z2AudioLib/Z2Instances.h"
 
 
@@ -379,24 +382,24 @@ SECTION_DATA static void* lit_5080[16] = {
 };
 
 /* 80A5E67C-80A5E780 000224 0104+00 1/1 0/0 0/0 .data            move_path_02 */
-SECTION_DATA static u8 move_path_02[260] = {
-    0x00, 0x00, 0x00, 0x00, 0x46, 0x2A, 0x78, 0x00, 0x45, 0x6A, 0x40, 0x00, 0x45, 0x90, 0xB0, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46, 0x2B, 0xE8, 0x00, 0x45, 0x6A, 0x40, 0x00,
-    0x45, 0x7F, 0x50, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46, 0x33, 0x48, 0x00,
-    0x45, 0x6A, 0x40, 0x00, 0x45, 0x67, 0xD0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x46, 0x3B, 0x9C, 0x00, 0x45, 0x67, 0x20, 0x00, 0x45, 0x5E, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x46, 0x3D, 0x1C, 0x00, 0x45, 0x44, 0xC0, 0x00, 0x45, 0x94, 0xC0, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00,
+static f32 move_path_02[65] = {
+    0x00000000, 0x462A7800, 0x456A4000, 0x4590B000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x462BE800, 0x456A4000,
+    0x457F5000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x46334800,
+    0x456A4000, 0x4567D000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x463B9C00, 0x45672000, 0x455E1000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x463D1C00, 0x4544C000, 0x4594C000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000, 0x00000000, 0x00000000, 0x00000000,
+    0x00000000,
 };
 
 /* 80A5E780-80A5E7D4 -00001 0054+00 1/1 0/0 0/0 .data            @5572 */
@@ -2108,38 +2111,8 @@ static int npc_ks_ori2(npc_ks_class* i_this) {
     return rv;
 }
 
-/* ############################################################################################## */
-/* 80A5DFA4-80A5DFA8 0000A8 0004+00 0/1 0/0 0/0 .rodata          @5078 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5078 = -200.0f;
-COMPILER_STRIP_GATE(0x80A5DFA4, &lit_5078);
-#pragma pop
-
-/* 80A5DFA8-80A5DFAC 0000AC 0004+00 0/9 0/0 0/0 .rodata          @5079 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5079 = 6.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80A5DFA8, &lit_5079);
-#pragma pop
-
-/* 80A5DFAC-80A5DFB0 0000B0 0004+00 0/2 0/0 0/0 .rodata          @5155 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5155 = -100.0f;
-COMPILER_STRIP_GATE(0x80A5DFAC, &lit_5155);
-#pragma pop
-
-/* 80A5DFB0-80A5DFB4 0000B4 0004+00 0/2 0/0 0/0 .rodata          @5156 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5156 = -50.0f;
-COMPILER_STRIP_GATE(0x80A5DFB0, &lit_5156);
-#pragma pop
-
 /* 80A4B7BC-80A4BA14 00291C 0258+00 1/1 0/0 0/0 .text            npc_ks_home__FP12npc_ks_class */
 static void npc_ks_home(npc_ks_class* i_this) {
-    // NONMATCHING
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     cXyz sp2c, sp38;
     switch (i_this->mMode) {
@@ -2163,7 +2136,7 @@ static void npc_ks_home(npc_ks_class* i_this) {
     cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->field_0x5c8, 2, 0x800);
     if (checkDoorDemo() != 0) {
         s16 roomNo = fopAcM_GetRoomNo(a_this);
-        int nextStayNo = dStage_roomControl_c::getNextStayNo(roomNo);
+        int nextStayNo = dStage_roomControl_c::getNextStayNo();
         if (roomNo == 0 && nextStayNo == 4) {
             i_this->mActionID = 100;
             i_this->mMode = 0;
@@ -2174,15 +2147,15 @@ static void npc_ks_home(npc_ks_class* i_this) {
                 sp2c.x = camera->lookat.eye.x - camera->lookat.center.x;
                 sp2c.z = camera->lookat.eye.z - camera->lookat.center.z;
                 cMtx_YrotS(*calc_mtx, cM_atan2s(sp2c.x, sp2c.z));
-                if ((i_this->field_0x5b6 & 1) == 0) {
-                    sp2c.x = -100.0f;
-                } else {
+                if ((i_this->field_0x5b6 & 1) != 0) {
                     sp2c.x = 100.0f;
+                } else {
+                    sp2c.x = -100.0f;
                 }
                 sp2c.y = -50.0f;
                 sp2c.z = 200.0f;
                 MtxPosition(&sp2c, &sp38);
-                a_this->current.pos = camera->lookat.eye - sp38;
+                a_this->current.pos = camera->lookat.eye + sp38;
                 a_this->old = a_this->current;
             }
         }
@@ -2190,82 +2163,487 @@ static void npc_ks_home(npc_ks_class* i_this) {
 }
 
 /* 80A4BA14-80A4BA90 002B74 007C+00 3/3 0/0 0/0 .text            s_sw_sub__FPvPv */
-static void s_sw_sub(void* param_0, void* param_1) {
+static void* s_sw_sub(void* i_actor, void* i_data) {
     // NONMATCHING
+    if ((fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_OBJ_SW) &&
+        (fopAcM_GetRoomNo((fopAc_ac_c*)i_data) == 0 && ((obj_sw_class*)i_data)->field_0x5b6 == ((npc_ks_class*)i_actor)->field_0x570)) {
+            return i_actor;
+    }
+    return NULL;
 }
 
 /* 80A4BA90-80A4BADC 002BF0 004C+00 1/1 0/0 0/0 .text            s_ha_sub__FPvPv */
-static void s_ha_sub(void* param_0, void* param_1) {
-    // NONMATCHING
+static void* s_ha_sub(void* i_actor, void* i_data) {
+    if (fopAc_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_Obj_Pillar) {
+        return i_actor;
+    }
+    return NULL;
 }
 
 /* 80A4BADC-80A4BB34 002C3C 0058+00 1/1 0/0 0/0 .text            s_01_sub__FPvPv */
-static void s_01_sub(void* param_0, void* param_1) {
-    // NONMATCHING
+static void* s_01_sub(void* i_actor, void* i_data) {
+    if (fopAc_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_NPC_KS && ((npc_ks_class*)i_actor)->mActionID == 4) {
+        return i_actor;
+    }
+    return NULL;
 }
 
-/* ############################################################################################## */
-/* 80A5DFB4-80A5DFB8 0000B8 0004+00 0/0 0/0 0/0 .rodata          @5565 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5565 = 90.0f;
-COMPILER_STRIP_GATE(0x80A5DFB4, &lit_5565);
-#pragma pop
-
-/* 80A5DFB8-80A5DFBC 0000BC 0004+00 0/1 0/0 0/0 .rodata          @5566 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5566 = 55.0f;
-COMPILER_STRIP_GATE(0x80A5DFB8, &lit_5566);
-#pragma pop
-
-/* 80A5DFBC-80A5DFC0 0000C0 0004+00 0/13 0/0 0/0 .rodata          @5567 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5567 = 30.0f;
-COMPILER_STRIP_GATE(0x80A5DFBC, &lit_5567);
-#pragma pop
-
-/* 80A5DFC0-80A5DFC4 0000C4 0004+00 0/0 0/0 0/0 .rodata          @5568 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5568 = 17.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80A5DFC0, &lit_5568);
-#pragma pop
-
-/* 80A5DFC4-80A5DFC8 0000C8 0004+00 0/0 0/0 0/0 .rodata          @5569 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5569 = -15.0f;
-COMPILER_STRIP_GATE(0x80A5DFC4, &lit_5569);
-#pragma pop
-
-/* 80A5DFC8-80A5DFCC 0000CC 0004+00 0/5 0/0 0/0 .rodata          @5570 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5570 = 4.0f;
-COMPILER_STRIP_GATE(0x80A5DFC8, &lit_5570);
-#pragma pop
-
 /* 80A4BB34-80A4CA70 002C94 0F3C+00 2/1 0/0 0/0 .text            npc_ks_demo_02__FP12npc_ks_class */
-static void npc_ks_demo_02(npc_ks_class* param_0) {
+static int npc_ks_demo_02(npc_ks_class* i_this) {
     // NONMATCHING
+    fopAc_ac_c* a_this = &i_this->actor;
+    cXyz sp3c, sp48;
+    f32 fVar1 = 0.0f;
+    int rv = 1;
+    int iVar1 = 0;
+
+    obj_so_class* cage = (obj_so_class*)fopAcM_SearchByName(PROC_OBJ_SO);
+    if (cage == NULL) {
+        return 0;
+    }
+    
+    if (cage->field_0xdae != 0 && i_this->mMode < 17) {
+        i_this->mActionID = 201;
+        i_this->mMode = 0;
+        return 0;
+    }
+    
+    daPillar_c* pillar = (daPillar_c*)fpcM_Search(s_ha_sub, i_this);
+    // f32 fVar2 = 0.0f;
+    if (pillar == NULL) {
+        return 0;
+    }
+
+    switch (i_this->mMode) {
+        case 0:
+            anm_init(i_this, 26, 3.0f, 2, 1.0f);
+            i_this->mMode = 1;
+            i_this->field_0x904 = 0;
+            // fallthrough
+        case 1:
+            i_this->field_0x8f0.x = move_path_02[i_this->field_0x904 * 13 + 1];
+            i_this->field_0x8f0.y = move_path_02[i_this->field_0x904 * 13 + 2];
+            i_this->field_0x8f0.z = move_path_02[i_this->field_0x904 * 13 + 3];
+            i_this->mMode = 2;
+            // fallthrough
+        case 2:
+            fVar1 = l_HIO.field_0x18;
+            sp3c = i_this->field_0x8f0 - a_this->current.pos;
+            i_this->field_0x8fc.y = cM_atan2s(sp3c.x, sp3c.z);
+            cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->field_0x8fc.y, 2, 0x1000);
+            sp3c.y = 0.0f;
+            if (sp3c.abs() <= a_this->speedF * 2.0f) {
+                i_this->field_0x904++;
+                if (i_this->field_0x904 < 5) {
+                    i_this->mMode = 1;
+                } else {
+                    i_this->mMode = 10;
+                    anm_init(i_this, 25, 5.0f, 2, 1.0f);
+                    i_this->mTimers[0] = 35;
+                }
+            }
+            break;
+
+        case 10:
+            cLib_addCalcAngleS2(&a_this->current.angle.y, cage->shape_angle.y + (u16)-0x8000, 2, 0x1000);
+            if (i_this->mTimers[0] == 0) {
+                i_this->mMode = 11;
+                anm_init(i_this, 26, 5.0f, 2, 1.0f);
+            }
+            break;
+
+        case 11:
+            rv = 0;
+            cMtx_YrotS(*calc_mtx, cage->shape_angle.y);
+            sp3c.x = 0.0f;
+            sp3c.y = 0.0f;
+            sp3c.z = cage->scale.x * 90.0f;
+            MtxPosition(&sp3c, &sp48);
+            sp48 += cage->current.pos;
+            cLib_addCalc2(&a_this->current.pos.x, sp48.x, 1.0f, a_this->speedF);
+            cLib_addCalc2(&a_this->current.pos.z, sp48.z, 1.0f, a_this->speedF);
+            sp3c.x = sp48.x - a_this->current.pos.x;
+            sp3c.z = sp48.z - a_this->current.pos.z;
+            sp3c.y = JMAFastSqrt(sp3c.x * sp3c.x + sp3c.z * sp3c.z);
+            if (sp3c.y < 55.0f && i_this->field_0x5d0 != 12) {
+                anm_init(i_this, 12, 3.0f, 2, 1.0f);
+            }
+
+            // fVar1 = l_HIO.field_0x18;
+            if (sp3c.y < 1.0f) {
+                i_this->mMode = 12;
+                a_this->current.angle.y = cage->shape_angle.y + (u16)-0x8000;
+            }
+            break;
+
+        case 12:
+            rv = 0;
+            iVar1 = 1;
+            cMtx_YrotS(*calc_mtx, cage->shape_angle.y);
+            sp3c.x = 0.0f;
+            sp3c.y = 0.0f;
+            sp3c.z = 90.0f;
+            MtxPosition(&sp3c, &sp48);
+            sp48 += cage->current.pos;
+            cLib_addCalc2(&a_this->current.pos.x, sp48.x, 1.0f, a_this->speedF);
+            cLib_addCalc2(&a_this->current.pos.y, sp48.y, 1.0f, a_this->speedF);
+            cLib_addCalc2(&a_this->current.pos.z, sp48.z, 1.0f, a_this->speedF);
+            sp3c = sp48 - a_this->current.pos;
+            f32 fVar3 = sp3c.abs();
+            fVar1 = l_HIO.field_0x18;
+            if (fVar3 < 1.0f) {
+                i_this->mMode = 13;
+                anm_init(i_this, 23, 2.0f, 2, 1.0f);
+                i_this->mTimers[0] = 60;
+            }
+            break;
+
+        case 13:
+            rv = 0;
+            iVar1 = 1;
+            cMtx_YrotS(*calc_mtx, cage->shape_angle.y);
+            sp3c.x = 0.0f;
+            sp3c.y = 0.0f;
+            sp3c.z = cage->scale.x * 90.0f;
+            MtxPosition(&sp3c, &sp48);
+            sp48 += cage->current.pos;
+            cLib_addCalc2(&a_this->current.pos.x, sp48.x, 1.0f, 10.0f);
+            cLib_addCalc2(&a_this->current.pos.z, sp48.z, 1.0f, 10.0f);
+            
+            if (i_this->mpModelMorf->checkFrame(10.0f) || i_this->mpModelMorf->checkFrame(20.0f)) {
+                cage->field_0xdc8 += 200.0f;
+                i_this->mSound.startCreatureSound(Z2SE_OBJ_MONKEYJAIL_CREAK, 0, -1);
+                i_this->mSound.startCreatureVoice(Z2SE_KOSARU_V_POINT, -1);
+            }
+
+            if (i_this->mTimers[0] == 0) {
+                i_this->mMode = 14;
+                anm_init(i_this, 15, 2.0f, 2, 1.0f);
+            }
+            break;
+
+        case 14:
+            rv = 0;
+            iVar1 = 1;
+            cMtx_YrotS(*calc_mtx, cage->shape_angle.y);
+            sp3c.x = 0.0f;
+            sp3c.y = 0.0f;
+            sp3c.z = 90.0f;
+            MtxPosition(&sp3c, &sp48);
+            sp48 += cage->current.pos;
+            cLib_addCalc2(&a_this->current.pos.x, sp48.x, 1.0f, 10.0f);
+            cLib_addCalc2(&a_this->current.pos.z, sp48.x, 1.0f, 10.0f);
+            cLib_addCalc2(&a_this->current.pos.y, i_this->mObjAcch.GetGroundH(), 1.0f, l_HIO.field_0x18);
+            
+            if (fabsf(a_this->current.pos.y - i_this->mObjAcch.GetGroundH()) < 1.0f) {
+                anm_init(i_this, 26, 5.0f, 2, 1.0f);
+                a_this->speedF = 0.0f;
+                i_this->mTimers[0] = 20;
+                i_this->mMode = 15;
+            }
+            break;
+
+        case 15:
+            fVar1 = l_HIO.field_0x18;
+            cLib_addCalcAngleS2(&a_this->current.angle.y, cage->shape_angle.y, 2, 0x2000);
+            if (i_this->mTimers[0] == 0) {
+                i_this->mMode = 16;
+                anm_init(i_this, 25, 5.0f, 2, 1.0f);
+            }
+            break;
+
+        case 16:
+            i_this->field_0xaec = 2;
+            i_this->field_0x5fc = 1;
+            if (i_this->mTimers[0] == 0) {
+                if (i_this->field_0x5d0 != 25) {
+                    anm_init(i_this, 25, 5.0f, 2, 1.0f);
+                    i_this->mTimers[0] = 25;
+                } else {
+                    anm_init(i_this, 50, 5.0f, 2, 1.0f);
+                    i_this->mTimers[0] = cM_rndF(30.0f) + 30.0f;
+                }
+            }
+
+            cLib_addCalcAngleS2(&a_this->current.angle.y, cage->shape_angle.y + (u16)-0x8000, 2, 0x1000);
+            if (dComIfGp_checkPlayerStatus0(0, 0x40) != 0 || dComIfGp_checkPlayerStatus0(0, 0x2000) != 0) {
+                i_this->mTimers[2] = 20;
+            }
+
+            if (i_this->mTimers[2] == 0 && cage->field_0xdc4 == 0) {
+                fopAcM_OnStatus(a_this, 0);
+                cLib_onBit<u32>(a_this->attention_info.flags, 0x2000000A);
+                a_this->eventInfo.onCondition(dEvtCnd_CANTALK_e);
+                a_this->attention_info.distances[1] = 2;
+                a_this->attention_info.distances[3] = 2;
+            }
+
+            if (i_this == (npc_ks_class*)dComIfGp_getAttention().LockonTarget(0) && i_this->mTimers[2] == 0 
+                && mDoCPd_c::getTrigA(PAD_1) != 0) {
+                    i_this->mMode = 17;
+                    anm_init(i_this, 25, 2.0f, 0, 1.0f);
+                    i_this->mSound.startCreatureVoice(Z2SE_KOSARU_V_JUMP, -1);
+                    a_this->speedF = 0.0f;
+                    leader->field_0xb42 = 60;
+            }
+            break;
+
+        case 17:
+            rv = 0;
+            if (i_this->field_0x5d0 == 25) {
+                if (i_this->mpModelMorf->isStop()) {
+                    anm_init(i_this, 49, 3.0f, 0, 1.0f);
+                }
+            } else {
+                fVar1 = 30.0f;
+            }
+
+            if (i_this->field_0x5d0 == 49 && i_this->mpModelMorf->isStop()) {
+                anm_init(i_this, 38, 1.0f, 2, 1.0f);
+                i_this->mSound.startCreatureSound(Z2SE_KOSARU_ROLL, 0, -1);
+            }
+
+            sp3c = pillar->current.pos - a_this->current.pos;
+            a_this->current.angle.y = cM_atan2s(sp3c.x, sp3c.z);
+            cMtx_YrotS(*calc_mtx, a_this->current.angle.y);
+            sp3c.x = 0.0f;
+            sp3c.y = 0.0f;
+            sp3c.z = a_this->speedF;
+            MtxPosition(&sp3c, &sp48);
+            a_this->current.pos += sp48;
+            sp3c.x = pillar->current.pos.x - a_this->current.pos.x;
+            sp3c.z = pillar->current.pos.z - a_this->current.pos.z;
+            if (JMAFastSqrt(sp3c.x * sp3c.x + sp3c.z * sp3c.z) < 90.0f) {
+                pillar->setShake(daPillar_c::SHAKE_STRONG);
+                anm_init(i_this, 6, 5.0f, 0, 1.0f);
+                i_this->mMode = 18;
+                a_this->speedF = -20.0f;
+                a_this->speed.y = 30.0f;
+                i_this->mSound.startCreatureSound(Z2SE_KOSARU_ATTACK_POLL, 0, -1);
+                if (cage != NULL) {
+                    cage->field_0xdc8 = 1500.0f;
+                    i_this->mSound.startCreatureSound(Z2SE_OBJ_MONKEYJAIL_SHAKE, 0, -1);
+                }
+            }
+            break;
+
+        case 18:
+            fVar1 = -20.0f;
+            cLib_addCalcAngleS2(&a_this->current.angle.x, -0x3830, 1, 0x600);
+            if (a_this->speed.y <= 0.0f && i_this->mObjAcch.ChkGroundHit()) {
+                i_this->mMode = 19;
+                a_this->speed.y = 20.0f;
+                a_this->current.angle.x = -0x3830;
+                i_this->mTimers[0] = 40;
+                i_this->mTimers[1] = 10;
+                fopAcM_effSmokeSet1(&i_this->field_0x858, &i_this->field_0x85c, &a_this->eyePos, NULL, 1.7f, &a_this->tevStr, 1);
+                i_this->mSound.startCreatureVoice(Z2SE_KOSARU_V_CRUSHED, -1);
+                i_this->mSound.startCreatureSound(Z2SE_KOSARU_FALL_GROUND, 0, -1);
+                anm_init(i_this, 13, 2.0f, 2, 1.0f);
+            }
+            break;
+
+        case 19:
+            if (i_this->mTimers[1] != 0) {
+                fVar1 = -15.0f;
+                a_this->speedF = fVar1;
+            } else {
+                fVar1 = 0.0f;
+                a_this->speedF = fVar1;
+            }
+
+            if (i_this->mTimers[0] == 0) {
+                anm_init(i_this, 35, 3.0f, 0, 1.0f);
+                i_this->mMode = 20;
+            }
+            break;
+
+        case 20:
+            cLib_addCalcAngleS2(&a_this->current.angle.x, 0, 1, 0x800);
+            if (i_this->mpModelMorf->isStop()) {
+                i_this->mMode = 16;
+                anm_init(i_this, 25, 5.0f, 2, 1.0f);
+                if (leader->field_0xb42 != 0) {
+                    leader->field_0xb42 = 100;
+                }
+                i_this->mTimers[2] = 30;
+            }
+    }
+
+    cLib_addCalc2(&a_this->speedF, fVar1, 1.0f, 4.0f);
+    if (checkDoorDemo() != 0) {
+        i_this->mActionID = 100;
+        i_this->mMode = 0;
+    } else if (iVar1 != 0 && cage->shape_angle.x > 0x200) {
+        anm_init(i_this, 6, 5.0f, 0, 1.0f);
+        i_this->mMode = 18;
+        a_this->speedF = -8.0f;
+        a_this->speed.y = 10.0f;
+        i_this->mSound.startCreatureVoice(Z2SE_KOSARU_V_PRISONED, -1);
+    }
+
+    return rv;
 }
 
 /* 80A4CA70-80A4CABC 003BD0 004C+00 1/1 0/0 0/0 .text            s_dn_sub__FPvPv */
-static void s_dn_sub(void* param_0, void* param_1) {
-    // NONMATCHING
+static void* s_dn_sub(void* i_actor, void* i_data) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_OC) {
+        return i_actor;
+    }
+    return NULL;
 }
 
-/* 80A4CABC-80A4CF40 003C1C 0484+00 2/1 0/0 0/0 .text            npc_ks_demo_022__FP12npc_ks_class
- */
-static void npc_ks_demo_022(npc_ks_class* param_0) {
+/* 80A4CABC-80A4CF40 003C1C 0484+00 2/1 0/0 0/0 .text            npc_ks_demo_022__FP12npc_ks_class */
+static int npc_ks_demo_022(npc_ks_class* i_this) {
     // NONMATCHING
+    fopAc_ac_c* a_this = &i_this->actor;
+    base_process_class* pbVar1 = fpcM_Search(s_dn_sub,i_this);
+    int frame = i_this->mpModelMorf->getFrame();
+
+    switch(i_this->mMode) {
+        case 0:
+            anm_init(i_this, 51, 5.0f, 2, 1.0f);
+            i_this->mMode = 1;
+            i_this->mTimers[0] = 100;
+            // fallthrough
+        case 1:
+            i_this->field_0x5fc = 1;
+            if (i_this->mTimers[0] == 0) {
+                i_this->mMode = 20;
+                anm_init(i_this, 30, 3.0f, 2, 1.0f);
+                i_this->mTimers[0] = 90;
+                fpcM_Search(s_resq_sub, i_this);
+            }
+            break;
+
+        case 10:
+            anm_init(i_this, 13, 2.0f, 2, 1.0f);
+            i_this->mTimers[0] = 30;
+            i_this->mMode = 11;
+            a_this->current.angle.x = -0x3830;
+            // fallthrough
+        case 11:
+            if (i_this->mTimers[0] == 0) {
+                anm_init(i_this, 35, 3.0f, 0, 1.0f);
+                i_this->mMode = 12;
+                mDoAud_seStart(12, 0, 0, 0);
+                Z2GetAudioMgr()->muteSceneBgm(120, 0.0f);
+                Z2GetAudioMgr()->setBattleBgmOff(true);
+            }
+            break;
+
+        case 12:
+            cLib_addCalcAngleS2(&a_this->current.angle.x, 0, 1, 0x800);
+            if (i_this->mpModelMorf->isStop()) {
+                i_this->mMode = 20;
+                anm_init(i_this, 30, 3.0f, 2, 1.0f);
+                i_this->mTimers[0] = 90;
+                fpcM_Search(s_resq_sub, i_this);
+            }
+            break;
+
+        case 20:
+            if (i_this->mTimers[0] == 0) {
+                i_this->mMode = 21;
+            }
+            break;
+
+        case 21:
+            anm_init(i_this, 39, 5.0f, 2, 1.0f);
+            i_this->mMode = 22;
+            i_this->mTimers[0] = cM_rndF(80.0f) + 100.0f;
+            i_this->field_0xaec = 1;
+            break;
+
+        case 22:
+            if ((((i_this->field_0x5d0 == 39) || ((i_this->field_0x5d0 == 43 && (frame < 7)))) ||
+                ((frame > 40 && (frame < 48)))) || (frame > 65)) {
+                i_this->field_0x5e0 = 4;
+            }
+
+            if ((i_this->mTimers[0] == 0) && (i_this->field_0x5d0 == 39)) {
+                anm_init(i_this, 43, 5.0f, 0, 1.0f);
+            }
+
+            if (i_this->field_0x5d0 == 43) {
+                if (i_this->mpModelMorf->isStop()) {
+                    i_this->mMode = 21;
+                }
+            }
+
+            if (pbVar1 == NULL) {
+                i_this->mTimers[0] = cM_rndF(10.0f) + 30.0f;
+                i_this->mMode = 23;
+                dComIfGs_onSwitch(fopAcM_GetParam(a_this) >> 24, fopAcM_GetRoomNo(a_this));
+            }
+            break;
+
+        case 23:
+            if (i_this->mTimers[0] == 0) {
+                if (i_this->field_0x5b6 == 0) {
+                    anm_init(i_this, 56, 3.0f, 2, 1.0f);
+                }
+                else {
+                    anm_init(i_this, 11, 3.0f, 2, 1.0f);
+                }
+                i_this->mTimers[0] = cM_rndF(25.0f) + 70.0f;
+                i_this->mMode = 24;
+            }
+            break;
+
+        case 24:
+            if (i_this->mTimers[0] == 0) {
+                i_this->mActionID = 114;
+                i_this->mMode = 0;
+                i_this->mTimers[2] = 60;
+            }
+    }
+    
+    cLib_addCalc2(&a_this->speedF, 0.0f, 1.0f, 4.0f);
+    return 1;
 }
 
 /* 80A4CF40-80A4D438 0040A0 04F8+00 2/1 0/0 0/0 .text            npc_ks_demo_04__FP12npc_ks_class */
-static void npc_ks_demo_04(npc_ks_class* param_0) {
+static void npc_ks_demo_04(npc_ks_class* i_this) {
     // NONMATCHING
+    fopAc_ac_c* a_this = &i_this->actor;
+    f32 fVar5 = l_HIO.field_0x18;
+    f32 fVar1 = 0.0f;
+    f32 fVar2 = 10.0f;
+    switch(i_this->mMode) {
+        case 0:
+            anm_init(i_this, 51, 5.0f, 2, 1.0f);
+            i_this->mMode = 1;
+            break;
+
+        case 2:
+            a_this->current.pos.set(0.0f, 3300.0f, 4393.0f);
+            a_this->current.angle.y = -0x8000;
+            anm_init(i_this, 26, 3.0f, 2, 1.0f);
+            i_this->mMode = 3;
+            break;
+
+        // case 3:
+        //     if (a_this-> != 0) {
+        //     (i_this->base).mMapIdx = 0;
+        //     anm_init(i_this,45,3.0,0,1.0);
+        //     }
+        //     fVar1 = fVar5;
+        //     if (i_this->field88_0x5d0 == 45) {
+        //     bVar4 = ::J3DFrameCtrl::checkPass(&(i_this->mpModelMorf->base).mFrameCtrl,20.0);
+        //     if (bVar4) {
+        //         local_34.raw = 0x5001a;
+        //         Z2SeMgr::seStart(&Z2AudioMgr::mAudioMgrPtr->se_manager,(JAISoundID *)&local_34.comp,
+        //                         (Vec *)0x0,0,'\0',1.0,1.0,-1.0,-1.0,'\0');
+        //     }
+        //     fVar1 = 0.0;
+        //     fVar2 = 4.0;
+        //     if ((i_this->mpModelMorf->base).mFrameCtrl.mFrame >= 37.0) {
+        //         anm_init(i_this,26,3.0,2,1.0);
+        //     }
+        //     }
+        //     break;
+        //     }
 }
 
 /* ############################################################################################## */

@@ -12,8 +12,10 @@
  *
  */
 class obj_sw_class : public fopAc_ac_c {
-private:
-    /* 0x568 */ u8 field_0x568[0xd90 - 0x568];
+public:
+    /* 0x568 */ u8 field_0x568[0x5b6 - 0x568];
+    /* 0x5B6 */ u8 field_0x5b6;
+    /* 0x5B7 */ u8 field_0x5b7[0xd90 - 0x5b7];
 };
 
 STATIC_ASSERT(sizeof(obj_sw_class) == 0xd90);
