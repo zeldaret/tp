@@ -1,10 +1,12 @@
 #ifndef D_A_E_RDB_H
 #define D_A_E_RDB_H
+
+#include "JSystem/JHostIO/JORReflexible.h"
 #include "d/d_bg_s_acch.h"
 #include "d/d_cc_d.h"
 #include "d/d_cc_uty.h"
 #include "d/d_msg_flow.h"
-#include "f_op/f_op_actor_mng.h"
+#include "f_op/f_op_actor.h"
 
 /**
  * @ingroup actors-enemies
@@ -112,7 +114,7 @@ public:
     /* 8076AF64 */ virtual ~daE_RDB_HIO_c() {};
 
     void genMessage(JORMContext*);
-    /* 0x04 */ s8 field_0x4;
+    /* 0x04 */ s8 mID;
     /* 0x08 */ f32 field_0x8;
 };
 
