@@ -2115,7 +2115,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_szbridge"),
     ActorRel(NonMatching, "d_a_obj_taFence"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_table"),
-    ActorRel(NonMatching, "d_a_obj_takaraDai"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_takaraDai"),
     ActorRel(NonMatching, "d_a_obj_tatigi"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ten"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_testcube"),
