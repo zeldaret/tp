@@ -1,18 +1,20 @@
 #ifndef D_A_E_RDB_H
 #define D_A_E_RDB_H
+
+#include "JSystem/JHostIO/JORReflexible.h"
 #include "d/d_bg_s_acch.h"
 #include "d/d_cc_d.h"
 #include "d/d_cc_uty.h"
 #include "d/d_msg_flow.h"
-#include "f_op/f_op_actor_mng.h"
+#include "f_op/f_op_actor.h"
 
 /**
  * @ingroup actors-enemies
  * @class e_rdb_class
  * @brief King Bulblin
- * 
- * @details 
- * 
+ *
+ * @details
+ *
  */
 class e_rdb_class {
 public:
@@ -106,15 +108,14 @@ public:
 
 STATIC_ASSERT(sizeof(e_rdb_class) == 0x1154);
 
-class daE_RDB_HIO_c: public JORReflexible {
+class daE_RDB_HIO_c : public JORReflexible {
 public:
     /* 807650CC */ daE_RDB_HIO_c();
     /* 8076AF64 */ virtual ~daE_RDB_HIO_c() {};
 
     void genMessage(JORMContext*);
-    /* 0x04 */ s8 field_0x4;
+    /* 0x04 */ s8 mID;
     /* 0x08 */ f32 field_0x8;
 };
-
 
 #endif /* D_A_E_RDB_H */

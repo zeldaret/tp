@@ -1687,7 +1687,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_e_po"),
     ActorRel(Equivalent, "d_a_e_pz", extra_cflags=['-pragma "nosyminline off"']), # weak func order, inline issue
     ActorRel(Equivalent, "d_a_e_rb"), # weak func order
-    ActorRel(NonMatching, "d_a_e_rdb"),
+    ActorRel(Equivalent, "d_a_e_rdb"), # weak func order
     ActorRel(NonMatching, "d_a_e_rdy"),
     ActorRel(NonMatching, "d_a_e_s1"),
     ActorRel(NonMatching, "d_a_e_sb"),
