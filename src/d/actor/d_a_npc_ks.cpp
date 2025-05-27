@@ -15,6 +15,10 @@
 #include "d/actor/d_a_obj_sw.h"
 #include "d/actor/d_a_obj_pillar.h"
 #include "m_Do/m_Do_controller_pad.h"
+#include "c/c_damagereaction.h"
+#include "d/actor/d_a_e_fs.h"
+#include "d/actor/d_a_obj_brg.h"
+#include "d/actor/d_a_midna.h"
 #include "Z2AudioLib/Z2Instances.h"
 
 
@@ -311,9 +315,8 @@ extern "C" void __register_global_object();
 UNK_REL_DATA;
 
 /* 80A5E478-80A5E498 000020 0020+00 13/13 0/0 0/0 .data            saru_p */
-SECTION_DATA static u8 saru_p[32] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static npc_ks_class* saru_p[8] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 80A5E498-80A5E4D0 -00001 0038+00 1/1 0/0 0/0 .data            @4808 */
@@ -1135,12 +1138,12 @@ static void setPlayerPosAndAngle(cXyz* i_pos, s16 i_angle) {
 }
 
 /* 80A49054-80A49088 0001B4 0034+00 14/14 0/0 0/0 .text            checkDoorDemo__Fv */
-static int checkDoorDemo() {
+static BOOL checkDoorDemo() {
     if (daPy_getPlayerActorClass()->eventInfo.checkCommandDoor() && dComIfGp_event_chkEventFlag(4) == 0) {
-        return 1;
+        return TRUE;
     }
 
-    return 0;
+    return FALSE;
 }
 
 /* 80A49088-80A49168 0001E8 00E0+00 1/1 0/0 0/0 .text otherBgCheck__FP10fopAc_ac_cP10fopAc_ac_c */
@@ -1412,7 +1415,7 @@ static u8 lit_4022[12];
 #pragma pop
 
 /* 80A5FE94-80A5FEA0 000054 000C+00 1/5 0/0 0/0 .bss             obj_pos */
-static u8 obj_pos[12];
+static cXyz obj_pos;
 
 /* 80A5FEA0-80A5FEA4 000060 0004+00 4/9 0/0 0/0 .bss             leader */
 static npc_ks_class* leader;
@@ -1665,40 +1668,40 @@ static void npc_ks_pole_ori(npc_ks_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     if (leader != NULL) {
         if (i_this->mMode == 0) {
-            fopAc_ac_c* actor = (fopAc_ac_c*)fpcM_Search(s_ori_sub, i_this);
-            if (actor == NULL) {
+            obj_so_class* cage_p = (obj_so_class*)fpcM_Search(s_ori_sub, i_this);
+            if (cage_p == NULL) {
                 return;
             }
 
-            a_this->parentActorID = fopAcM_GetID(actor);
+            a_this->parentActorID = fopAcM_GetID(cage_p);
             anm_init(i_this, 20, 5.0f, 2, 1.0f);
             i_this->mMode++;
             i_this->mMode = 1;
         }
 
-        obj_so_class* pCage = (obj_so_class*)fopAcM_SearchByID(a_this->parentActorID);
-        if (pCage != NULL) {
-            if (pCage->health == 0) {
+        obj_so_class* cage_p = (obj_so_class*)fopAcM_SearchByID(a_this->parentActorID);
+        if (cage_p != NULL) {
+            if (cage_p->health == 0) {
                 i_this->mActionID = 201;
                 i_this->mMode = 10;
                 dComIfGs_onTbox(i_this->field_0x5bc);
             } else {
-                if (i_this->mMode < 10 && pCage->field_0xdae != 0) {
+                if (i_this->mMode < 10 && cage_p->field_0xdae != 0) {
                     i_this->mMode = 10;
                     i_this->mpModelMorf->setPlaySpeed(0.0f);
                 }
 
                 if (((i_this->mMode != 10 && i_this->mMode < 10) && i_this->mMode == 1) && 
                     (i_this->mpModelMorf->checkFrame(5.0f) || i_this->mpModelMorf->checkFrame(20.0f))) {
-                        pCage->field_0xdc8 += 400.0f;
-                        pCage->field_0xdac = 0;
+                        cage_p->field_0xdc8 += 400.0f;
+                        cage_p->field_0xdac = 0;
                         i_this->mSound.startCreatureSound(Z2SE_OBJ_MONKEYJAIL_CREAK, 0, -1);
                         i_this->mSound.startCreatureVoice(Z2SE_KOSARU_V_PRISONED, -1);
                 }
 
-                a_this->current.angle.y = pCage->shape_angle.y;
-                a_this->current.angle.x = pCage->shape_angle.x;
-                a_this->current.pos = pCage->current.pos;
+                a_this->current.angle.y = cage_p->shape_angle.y;
+                a_this->current.angle.x = cage_p->shape_angle.x;
+                a_this->current.pos = cage_p->current.pos;
                 
                 if (leader->field_0xb42 == 0) {
                     if (!dComIfGs_isSwitch(20, fopAcM_GetRoomNo(a_this))) {
@@ -2120,7 +2123,7 @@ static void npc_ks_home(npc_ks_class* i_this) {
             if (cM_rndF(1.0f) < 0.5f) {
                 anm_init(i_this, 30, 3.0f, 0, 1.0f);
             } else {
-                anm_init(i_this, 5, 3.0, 0, 1.0f);
+                anm_init(i_this, 5, 3.0f, 0, 1.0f);
             }
 
             i_this->mMode = 1;
@@ -2743,7 +2746,6 @@ static void npc_ks_demo_04(npc_ks_class* i_this) {
 
 /* 80A4D438-80A4DBF8 004598 07C0+00 1/1 0/0 0/0 .text            npc_ks_to_hang__FP12npc_ks_class */
 static void npc_ks_to_hang(npc_ks_class* i_this) {
-    // NONMATCHING
     fopAc_ac_c* a_this = &i_this->actor;
     cXyz sp24, sp30;
     cXyz sp3c(i_this->field_0xbc8);
@@ -2777,13 +2779,21 @@ static void npc_ks_to_hang(npc_ks_class* i_this) {
             cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->field_0x8fc.y, 1, 0x2000);
             if (sp24.abs() <= a_this->speedF * 1.1f) {
                 i_this->mMode = 10;
+                obj_sw_class* sw_p = i_this->field_0x934;
+                if (sw_p != NULL) {
+                    if (sw_p->field_0x91c == 1) {
+                        i_this->field_0x630 = sw_p->field_0xd8c / 2;
+                    } else {
+                        i_this->field_0x630 = ((i_this->field_0x5b6 + 1) * (sw_p->field_0xd8c / (sw_p->field_0x91c + 1)) - 1);
+                    }
 
+                    a_this->parentActorID = fopAcM_GetID(sw_p);
 
-
-                a_this->current.pos = i_this->field_0x8f0;
-                i_this->field_0x910 = a_this->current.pos;
-                anm_init(i_this, 32, 2.0f, 0, 1.0f);
-                i_this->mSound.startCreatureSound(Z2SE_KOSARU_JUMP_END, 0, -1);
+                    a_this->current.pos = i_this->field_0x8f0;
+                    i_this->field_0x910 = a_this->current.pos;
+                    anm_init(i_this, 32, 2.0f, 0, 1.0f);
+                    i_this->mSound.startCreatureSound(Z2SE_KOSARU_JUMP_END, 0, -1);
+                }
             }
             break;
             
@@ -2843,189 +2853,773 @@ static void* s_next_do_sub(void* i_actor, void* i_data) {
     return NULL;
 }
 
-/* ############################################################################################## */
-/* 80A5DFF8-80A5DFFC 0000FC 0004+00 0/2 0/0 0/0 .rodata          @5986 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5986 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80A5DFF8, &lit_5986);
-#pragma pop
-
 /* 80A4DC80-80A4DD70 004DE0 00F0+00 1/1 0/0 0/0 .text            s_next_get_sub__FPvPv */
-static void s_next_get_sub(void* param_0, void* param_1) {
+static void* s_next_get_sub(void* i_actor, void* i_data) {
     // NONMATCHING
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_NPC_KS && ((npc_ks_class*)i_actor)->field_0x5b5 != 0 &&
+        ((npc_ks_class*)i_actor)->field_0x5b8 != ((npc_ks_class*)i_data)->field_0x5b8 && ((npc_ks_class*)i_actor)->field_0x620 != 0) {
+            ((npc_ks_class*)i_actor)->field_0x620 = 0;
+            anm_init(((npc_ks_class*)i_actor), 24, 1.0f, 2, 1.0f);
+            ((npc_ks_class*)i_data)->field_0x620 = 1;
+            ((npc_ks_class*)i_data)->field_0x624 = ((npc_ks_class*)i_data)->field_0x614 - ((npc_ks_class*)i_actor)->field_0x614;
+            ((npc_ks_class*)i_data)->field_0x624 *= 0.1f;
+            ((npc_ks_class*)i_data)->field_0x634 = 10.0f;
+            return i_actor;
+    }
+    return NULL;
 }
 
 /* 80A4DD70-80A4DDF8 004ED0 0088+00 1/1 0/0 0/0 .text            order_set__Fi */
-static void order_set(int param_0) {
+static void order_set(int param_1) {
     // NONMATCHING
+    if (saru_p[param_1]->field_0x5c4 < saru_p[1]->field_0x5c4) {
+        for (int i = 0; i < param_1; i++) {
+            saru_p[i]->field_0x5b8 = i;
+        }
+    } else {
+        for (int i = 0; i < param_1; i++) {
+            saru_p[i]->field_0x5b8 = (param_1 - 1) - i;
+        }
+    }
 }
 
 /* 80A4DDF8-80A4DE34 004F58 003C+00 2/2 0/0 0/0 .text            all_carry_finish__Fi */
-static void all_carry_finish(int param_0) {
-    // NONMATCHING
+static void all_carry_finish(int param_1) {
+    for (int i = 0; i < param_1; i++) {
+        saru_p[i]->mActionID = 10;
+        saru_p[i]->mMode = 0;
+    }
 }
-
-/* ############################################################################################## */
-/* 80A5DFFC-80A5E000 000100 0004+00 0/1 0/0 0/0 .rodata          @6069 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6069 = 2500.0f;
-COMPILER_STRIP_GATE(0x80A5DFFC, &lit_6069);
-#pragma pop
 
 /* 80A4DE34-80A4E000 004F94 01CC+00 2/2 0/0 0/0 .text            hang_end_check__FP12npc_ks_class */
-static void hang_end_check(npc_ks_class* param_0) {
+static void hang_end_check(npc_ks_class* i_this) {
     // NONMATCHING
+    fopAc_ac_c* a_this = &i_this->actor;
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    cXyz sp30, sp3c;
+    if (i_this->mRoomMonkeyID > 3 || !dComIfGs_isStageMiddleBoss()) {
+        if ((fopAcM_GetRoomNo(a_this) == 4 && player->current.pos.z < 2500.0f) || checkDoorDemo()) {
+            i_this->mActionID = 100;
+            i_this->mMode = 0;
+            i_this->field_0x904 = 0;
+            i_this->field_0xaec = 1;
+            a_this->current.angle.x = 0;
+            if (fopAcM_CheckCondition(a_this, 4) != 0) {
+                camera_class* camera = dComIfGp_getCamera(0);
+                if (checkDoorDemo()) {
+                    cMtx_YrotS(*calc_mtx, player->shape_angle.y + (u16)-0x8000);
+                } else {
+                    sp30.x = camera->lookat.eye.x - camera->lookat.center.x;
+                    sp30.z = camera->lookat.eye.z - camera->lookat.center.z;
+                    cMtx_YrotS(*calc_mtx, cM_atan2s(sp30.x, sp30.z));
+                }
+
+                if ((i_this->field_0x5b6 & 1) != 0) {
+                    sp30.x = 100.0f;
+                } else {
+                    sp30.x = -100.0f;
+                }
+                sp30.y = -50.0f;
+                sp30.z = 100.0f;
+                MtxPosition(&sp30, &sp3c);
+                a_this->current.pos = camera->lookat.eye + sp3c;
+                a_this->old = a_this->current;
+            }
+        }
+    }
 }
 
-/* ############################################################################################## */
-/* 80A5E000-80A5E004 000104 0004+00 0/1 0/0 0/0 .rodata          @6221 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6221 = 2800.0f;
-COMPILER_STRIP_GATE(0x80A5E000, &lit_6221);
-#pragma pop
-
-/* 80A5E004-80A5E008 000108 0004+00 0/4 0/0 0/0 .rodata          @6222 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6222 = 550.0f;
-COMPILER_STRIP_GATE(0x80A5E004, &lit_6222);
-#pragma pop
-
-/* 80A5E008-80A5E00C 00010C 0004+00 0/4 0/0 0/0 .rodata          @6223 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6223 = 3.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80A5E008, &lit_6223);
-#pragma pop
-
-/* 80A5E00C-80A5E010 000110 0004+00 0/11 0/0 0/0 .rodata          @6224 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6224 = 150.0f;
-COMPILER_STRIP_GATE(0x80A5E00C, &lit_6224);
-#pragma pop
-
-/* 80A5E010-80A5E014 000114 0004+00 0/3 0/0 0/0 .rodata          @6225 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6225 = -150.0f;
-COMPILER_STRIP_GATE(0x80A5E010, &lit_6225);
-#pragma pop
-
-/* 80A5E014-80A5E018 000118 0004+00 0/3 0/0 0/0 .rodata          @6226 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6226 = -400.0f;
-COMPILER_STRIP_GATE(0x80A5E014, &lit_6226);
-#pragma pop
-
-/* 80A5E018-80A5E01C 00011C 0004+00 0/2 0/0 0/0 .rodata          @6227 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6227 = 3.0f / 40.0f;
-COMPILER_STRIP_GATE(0x80A5E018, &lit_6227);
-#pragma pop
-
-/* 80A5E01C-80A5E020 000120 0004+00 0/3 0/0 0/0 .rodata          @6228 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6228 = 8000.0f;
-COMPILER_STRIP_GATE(0x80A5E01C, &lit_6228);
-#pragma pop
-
-/* 80A5FF44-80A5FF48 000104 0002+02 0/1 0/0 0/0 .bss             start_pya$6091 */
-#pragma push
-#pragma force_active on
-static u8 start_pya[2 + 2 /* padding */];
-#pragma pop
-
 /* 80A4E000-80A4E800 005160 0800+00 2/1 0/0 0/0 .text            npc_ks_hang__FP12npc_ks_class */
-static void npc_ks_hang(npc_ks_class* param_0) {
+static void npc_ks_hang(npc_ks_class* i_this) {
     // NONMATCHING
+    static s16 start_pya;
+
+    fopAc_ac_c* a_this = &i_this->actor;
+    if (leader == NULL) {
+        return;
+    }
+
+    daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
+
+    if (fopAcM_GetRoomNo(a_this) == 4) {
+        for (int i = 0; i < 4; i++) {
+            if (saru_p[i] == NULL) {
+                return;
+            }
+        }
+
+        if (player->current.pos.y < 2800.0f) {
+            cDmr_SkipInfo = 4;
+        }
+    }
+
+    obj_sw_class* sw_p = (obj_sw_class*)fopAcM_SearchByID(a_this->parentActorID);
+    if (sw_p == NULL) {
+        sw_p = (obj_sw_class*)fpcM_Search(s_sw_sub, i_this);
+        if (sw_p == NULL) {
+            return;
+        }
+
+        a_this->parentActorID = fopAcM_GetID(sw_p);
+        i_this->field_0x934 = sw_p;
+        i_this->field_0x630 = (i_this->field_0x5b6 + 1) * (i_this->field_0x934->field_0xd8c / (i_this->field_0x934->field_0x91c + 1)) - 1;
+    }
+    sw_p->field_0x900 += 5.0f;
+
+    cXyz sp2c, sp38;
+    int iVar1 = 0;
+
+    cLib_addCalcAngleS2(&a_this->current.angle.y, a_this->home.angle.y + 0x4000, 2, 0x800);
+    if (!daPy_getPlayerActorClass()->checkAutoJumpStart()) {
+        start_pya = i_this->field_0x5c8;
+    }
+
+    switch (i_this->mMode) {
+        case 0:
+            i_this->mTimers[0] = 0;
+            i_this->mMode++;
+            i_this->field_0x604 = 0;
+            // fallthrough
+        case 1:
+            if (i_this->field_0x5b6 == 0 && leader->field_0xb42 == 0) {
+                order_set(sw_p->field_0x91c);
+            }
+
+            if (i_this->field_0x5b8 == 0 && i_this->field_0x5d0 != 16 && i_this->field_0x5c4 < 550.0f) {
+                anm_init(i_this, 16, 5.0f, 2, 1.0f);
+                i_this->mTimers[0] = cM_rndF(50.0f) + 200.0f;
+            }
+
+            if (i_this->mTimers[0] == 0) {
+                i_this->mTimers[0] = cM_rndF(30.0f) + 50.0f;
+                if (cM_rndF(1.0f) < 0.3f) {
+                    anm_init(i_this, 17, 5.0f, 2, 1.0f);
+                } else if (cM_rndF(1.0f) < 0.3f) {
+                    anm_init(i_this, 18, 5.0f, 2, 1.0f);
+                } else {
+                    anm_init(i_this, 19, 5.0f, 2, 1.0f);
+                }
+            }
+
+            leader->field_0x92c = 0;
+            if (i_this->field_0x5b8 == 0 && !dComIfGp_event_runCheck() && i_this->field_0x94e == 0 && i_this->field_0x5c4 < 150.0f) {
+                leader->field_0xb42 = 1;
+                i_this->field_0x620 = 1;
+                i_this->field_0x610 = 0;
+                obj_pos = player->current.pos;
+                cMtx_YrotS(*calc_mtx, a_this->home.angle.y);
+                sp2c.x = 0.0f;
+                sp2c.y = -150.0f;
+                sp2c.z = -400.0f;
+                MtxPosition(&sp2c, &obj_pos);
+                obj_pos += a_this->current.pos;
+                i_this->field_0x624 = obj_pos - i_this->field_0x614;
+                i_this->field_0x624 *= 0.075f;
+                i_this->mMode = 4;
+                i_this->mTimers[0] = 17;
+                i_this->mTimers[1] = 25;
+                i_this->field_0x5fa = 0x4000;
+                i_this->field_0x60c = 8000.0f;
+                i_this->field_0x604 = 0;
+                anm_init(i_this, 24, 3.0f, 2, 1.0f);
+            }
+
+            s16 sVar1 = start_pya - sw_p->current.angle.y;
+            if (sVar1 < 0x4000 && sVar1 > -0x4000) {
+                a_this->home.angle.y = sVar1 + (u16)-0x8000;
+            } else {
+                a_this->home.angle.y = sVar1;
+            }
+            break;
+
+        case 2:
+            i_this->mMode++;
+            i_this->mTimers[0] = 10;
+            // fallthrough
+        case 3:
+            i_this->field_0x5fa = 0x4000;
+            i_this->field_0x60c = 8000.0f;
+            if (i_this->mTimers[0] == 8) {
+                fpcM_Search(s_next_get_sub, i_this);
+                i_this->mSound.startCreatureVoice(Z2SE_KOSARU_V_THROW, -1);
+            }
+
+            if (i_this->mTimers[0] == 2) {
+                i_this->mTimers[2] = 15;
+            }
+
+            if (i_this->mTimers[0] == 0) {
+                i_this->mMode++;
+                i_this->mTimers[0] = 10;
+                i_this->mTimers[1] = 18;
+            }
+            break;
+
+        case 4:
+            if (i_this->mTimers[0] > 8) {
+                i_this->field_0x5fa = 0x4000;
+                i_this->field_0x60c = 8000.0f;
+            }
+
+            if (i_this->mTimers[0] == 8) {
+                anm_init(i_this, 48, 2.0f, 2, 1.0f);
+                i_this->mSound.startCreatureVoice(Z2SE_KOSARU_V_CATCH, -1);
+                i_this->mSound.startCreatureSound(Z2SE_FN_ROPE_CREAK, 0, -1);
+                sw_p->field_0x8fc = 20.0f;
+                // sw_p->field_0xd10[i_this->field_0x630] = 10;
+            }
+
+            if (mDoCPd_c::getTrigA(0) != 0) {
+                if (i_this->mTimers[1] <= 9 && i_this->field_0x604 < 0 && i_this->field_0x602 < 0) {
+                    leader->field_0x92c = 1;
+                    fpcM_Search(s_next_do_sub, i_this);
+                    if (i_this->field_0x5b8 == sw_p->field_0x91c -1) {
+                        i_this->mMode = 5;
+                    } else {
+                        i_this->mMode = 10;
+                        anm_init(i_this, 24, 1.0f, 2, 1.0f);
+                    }
+                } else {
+                    leader->field_0xb42 = 100;
+                    i_this->field_0x620 = 0;
+                    iVar1 = 1;
+                    i_this->field_0x94e = 20;
+                }
+            }
+            break;
+
+        case 5:
+            if (i_this->field_0x602 >= 0 || i_this->field_0x604 >= 0) break;
+
+            i_this->field_0x620 = 0;
+            i_this->mTimers[0] = 15;
+            i_this->mMode = 6;
+            i_this->mSound.startCreatureVoice(Z2SE_KOSARU_V_THROW, -1);
+            player->changeDemoMode(24, 0, 0, 0);
+            anm_init(i_this, 24, 1.0f, 2, 1.0f);
+            // fallthrough
+        case 6:
+            if (i_this->mTimers[0] == 8) {
+                leader->field_0xb42 = 3;
+                leader->field_0xb44 = 0;
+            }
+
+            if (i_this->mTimers[0] == 1) {
+                iVar1 = 1;
+            }
+    }
+
+    a_this->current.pos = sw_p->field_0x920[i_this->field_0x630];
+    s16 sVar1 = i_this->field_0x602;
+    cLib_addCalcAngleS2(&i_this->field_0x602, i_this->field_0x60c * cM_ssin(i_this->field_0x5fa), 4, 0x1000);
+    i_this->field_0x604 = i_this->field_0x602 - sVar1;
+    i_this->field_0x5fa += 0x800;
+    a_this->current.angle.z = -(i_this->field_0x602 / 2);
+
+    if (i_this->mMode != 4) {
+        cLib_addCalc0(&i_this->field_0x60c, 0.5f, 100.0f);
+    }
+
+    hang_end_check(i_this);
+    if (iVar1 != 0) {
+        i_this->field_0x620 = 0;
+        i_this->mMode = 0;
+        all_carry_finish(sw_p->field_0x91c);
+    }
 }
 
 /* 80A4E800-80A4EE18 005960 0618+00 1/1 0/0 0/0 .text            npc_ks_hang_s__FP12npc_ks_class */
-static void npc_ks_hang_s(npc_ks_class* param_0) {
+static void npc_ks_hang_s(npc_ks_class* i_this) {
     // NONMATCHING
+    fopAc_ac_c* a_this = &i_this->actor;
+    obj_sw_class* sw_p = (obj_sw_class*)fopAcM_SearchByID(a_this->parentActorID);
+    if (sw_p == NULL) {
+        sw_p = (obj_sw_class*)fpcM_Search(s_sw_sub, i_this);
+        if (sw_p == NULL) {
+            return;
+        }
+
+        a_this->parentActorID = fopAcM_GetID(sw_p);
+        i_this->field_0x934 = sw_p;
+    }
+
+    daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
+    sw_p->field_0x900 += 5.0f;
+    cXyz sp34, sp40;
+    cLib_addCalcAngleS2(&a_this->current.angle.y, a_this->home.angle.y + 0x4000, 2, 0x800);
+
+    switch (i_this->mMode) {
+        case 0:
+            i_this->mMode++;
+            i_this->mSound.startCreatureSound(Z2SE_FN_ROPE_CREAK, 0, -1);
+            sw_p->field_0x8fc = 20.0f;
+            // sw_p->field_0xd10[i_this->field_0x630] = 10;
+            i_this->field_0x92c = 0;
+            break;
+
+        case 1:
+            if (i_this->field_0x5d0 != 16 && i_this->field_0x5c4 < 550.0f) {
+                anm_init(i_this, 16, 5.0f, 2, 1.0f);
+                i_this->mTimers[0] = cM_rndF(50.0f) + 200.0f;
+            }
+
+            if (i_this->mTimers[0] == 0) {
+                i_this->mTimers[0] = cM_rndF(30.0f) + 50.0f;
+                if (cM_rndF(1.0f) < 0.3f) {
+                    anm_init(i_this, 17, 5.0f, 2, 1.0f);
+                } else if (cM_rndF(1.0f) < 0.3f) {
+                    anm_init(i_this, 18, 5.0f, 2, 1.0f);
+                } else {
+                    anm_init(i_this, 19, 5.0f, 2, 1.0f);
+                }
+            }
+
+            if (i_this->field_0x94e == 0 && !dComIfGp_event_runCheck() && i_this->field_0x5c4 < 300.0f) {
+                leader->field_0xb42 = 1;
+                i_this->field_0x620 = 1;
+                i_this->field_0x610 = 0;
+                cMtx_YrotS(*calc_mtx, a_this->home.angle.y);
+                sp34.x = 0.0f;
+                sp34.y = -150.0f;
+                sp34.z = -400.0f;
+                MtxPosition(&sp34, &obj_pos);
+                obj_pos += a_this->current.pos;
+                i_this->field_0x624 = obj_pos - i_this->field_0x614;
+                i_this->field_0x624 *= 0.075f;
+
+                i_this->mMode = 2;
+                i_this->mTimers[0] = 17;
+                i_this->mTimers[1] = 25;
+                i_this->field_0x5fa = 0x4000;
+                i_this->field_0x60c = 8000.0f;
+                anm_init(i_this, 24, 3.0f, 2, 1.0f);
+            }
+
+            s16 sVar1 = i_this->field_0x5c8 - sw_p->current.angle.y;
+            if (sVar1 < 0x4000 && sVar1 > -0x4000) {
+                a_this->home.angle.y = sVar1 + (u16)-0x8000;
+            } else {
+                a_this->home.angle.y = sVar1;
+            }
+            break;
+
+        case 2:
+            if (i_this->mTimers[0] > 8) {
+                i_this->field_0x5fa = 0x4000;
+                i_this->field_0x60c = 8000.0f;
+            }
+
+            if (i_this->mTimers[0] == 8) {
+                anm_init(i_this, 48, 2.0f, 2, 1.0f);
+                i_this->mSound.startCreatureVoice(Z2SE_KOSARU_V_CATCH, -1);
+                i_this->mSound.startCreatureSound(Z2SE_FN_ROPE_CREAK, 0, -1);
+                sw_p->field_0x8fc = 20.0f;
+                // sw_p->field_0xd10[i_this->field_0x630] = 10;
+            }
+
+            if (mDoCPd_c::getTrigA(0) != 0) {
+                if (i_this->field_0x604 < 0 && i_this->field_0x602 < 0) {
+                    i_this->field_0x92c = 1;
+                    i_this->field_0x620 = 0;
+                    i_this->mTimers[0] = 15;
+                    i_this->mMode = 5;
+                    i_this->mSound.startCreatureVoice(Z2SE_KOSARU_V_THROW, -1);
+                    player->changeDemoMode(24, 0, 0, 0);
+                    anm_init(i_this, 24, 1.0f, 2, 1.0f);
+                    leader->field_0xb42 = 3;
+                } else {
+                    leader->field_0xb42 = 100;
+                    i_this->field_0x620 = 0;
+                    i_this->mTimers[0] = 15;
+                    i_this->mMode = 5;
+                    i_this->field_0x94e = 20;
+                }
+            }
+            break;
+
+        case 5:
+            if (i_this->mTimers[0] == 1) {
+                leader->field_0xb42 = 100;
+                i_this->field_0x620 = 0;
+                i_this->mMode = 0;
+            }
+    }
+
+    a_this->current.pos = sw_p->field_0x920[i_this->field_0x630];
+    s16 sVar2 = i_this->field_0x602;
+    cLib_addCalcAngleS2(&i_this->field_0x602, i_this->field_0x60c * cM_ssin(i_this->field_0x5fa), 4, 0x1000);
+    i_this->field_0x604 = i_this->field_0x602 - sVar2;
+    i_this->field_0x5fa += 0x800;
+    a_this->current.angle.z = -(i_this->field_0x602 / 2);
+
+    if (i_this->field_0x620 != 2) {
+        cLib_addCalc0(&i_this->field_0x60c, 0.5f, 100.0f);
+    }
+
+    hang_end_check(i_this);
 }
 
-/* ############################################################################################## */
-/* 80A5E020-80A5E024 000124 0004+00 0/1 0/0 0/0 .rodata          @6371 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6371 = 4000.0f;
-COMPILER_STRIP_GATE(0x80A5E020, &lit_6371);
-#pragma pop
-
-/* 80A5E024-80A5E028 000128 0004+00 0/1 0/0 0/0 .rodata          @6372 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6372 = 7.0f;
-COMPILER_STRIP_GATE(0x80A5E024, &lit_6372);
-#pragma pop
-
 /* 80A4EE18-80A4F170 005F78 0358+00 1/1 0/0 0/0 .text            npc_ks_e_hang__FP12npc_ks_class */
-static void npc_ks_e_hang(npc_ks_class* param_0) {
+static void npc_ks_e_hang(npc_ks_class* i_this) {
     // NONMATCHING
+    fopAc_ac_c* a_this = &i_this->actor;
+    obj_so_class* cage = (obj_so_class*)fopAcM_SearchByID(a_this->parentActorID);
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+
+    cage->field_0x900 += 5.0f;
+    cLib_addCalcAngleS2(&a_this->current.angle.y, a_this->home.angle.y + 0x4000, 2, 0x800);
+
+    switch (i_this->mMode) {
+        case 0:
+            i_this->mMode = 20;
+            i_this->mSound.startCreatureSound(Z2SE_FN_ROPE_CREAK, 0, -1);
+            cage->field_0x8fc = 20.0f;
+            // cage->field_0xd10[i_this->field_0x630] = 10;
+            a_this->home.angle.y = cage->current.angle.y;
+            i_this->field_0x5fa = -0x4000;
+            i_this->field_0x60c = 4000.0f;
+
+            if (i_this->field_0x5b6 == 0) {
+                anm_init(i_this, 24, 2.0f, 2, 1.0f);
+                i_this->mTimers[0] = 10000;
+                i_this->mTimers[1] = 15;
+            }
+            break;
+
+        case 2:
+            anm_init(i_this, 48, 2.0f, 2, 1.0f);
+            i_this->mSound.startCreatureSound(Z2SE_FN_ROPE_CREAK, 0, -1);
+            cage->field_0x8fc = 20.0f;
+            // cage->field_0xd10[i_this->field_0x630] = 10;
+            i_this->field_0x5fa = -0x8000;
+            i_this->field_0x60c = 8000.0f;
+            i_this->mMode++;
+            break;
+
+        case 3:
+            if (i_this->field_0x5fa == -0x3800) {
+                a_this->health = 10;
+                i_this->mMode = 20;
+                i_this->mTimers[0] = 0;
+            }
+            break;
+
+        case 20:
+            if (i_this->mTimers[0] == 0) {
+                if (cM_rndF(1.0f) < 0.3f) {
+                    anm_init(i_this, 17, 10.0f, 2, 1.0f);
+                } else if (cM_rndF(1.0f) < 0.3f) {
+                    anm_init(i_this, 18, 10.0f, 2, 1.0f);
+                } else {
+                    anm_init(i_this, 19, 10.0f, 2, 1.0f);
+                }
+
+                i_this->mTimers[0] = 10000;
+                i_this->mTimers[1] = 35;
+            }
+
+            if (i_this->mTimers[1] == 1) {
+                anm_init(i_this, 24, 7.0f, 2, 1.0f);
+            } else if (i_this->mTimers[1] == 0) {
+                i_this->field_0x5fa = 0x4000;
+                i_this->field_0x60c = 8000.0f;
+            }
+    }
+
+    a_this->current.pos = cage->field_0x920[i_this->field_0x630];
+    cLib_addCalcAngleS2(&i_this->field_0x602, i_this->field_0x60c * cM_ssin(i_this->field_0x5fa), 4, 0x1000);
+    i_this->field_0x5fa += 0x800;
+    a_this->current.angle.z = -(i_this->field_0x602 / 2);
+    cLib_addCalc0(&i_this->field_0x60c, 0.5f, 100.0f);
 }
 
 /* 80A4F170-80A4F1D8 0062D0 0068+00 1/1 0/0 0/0 .text            all_move_check__Fii */
-static void all_move_check(int param_0, int param_1) {
-    // NONMATCHING
+static int all_move_check(int param_1, int param_2) {
+    int iVar1 = 0;
+    while (param_2 > iVar1) {
+        if (saru_p[iVar1] == NULL) return 0;
+
+        if (param_1 != saru_p[iVar1]->field_0x5b6 && (saru_p[iVar1]->mActionID != 21 || saru_p[iVar1]->mMode != 20)) {
+            return 0;
+        }
+
+        iVar1++;
+    }
+
+    return 1;
 }
 
 /* 80A4F1D8-80A4F228 006338 0050+00 1/1 0/0 0/0 .text            go_jump_check__Fi */
-static void go_jump_check(int param_0) {
-    // NONMATCHING
+static int go_jump_check(int param_1) {
+    // FAKEMATCH???
+    param_1--;
+    while (param_1 >= 0) {
+        if (saru_p[param_1]->mActionID != 21 || saru_p[param_1]->mTimers[2] != 0) {
+            return 0;
+        }
+        
+        param_1--;
+    }
+
+    return 1;
 }
 
-/* ############################################################################################## */
-/* 80A5E028-80A5E02C 00012C 0004+00 0/1 0/0 0/0 .rodata          @6629 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6629 = 180.0f;
-COMPILER_STRIP_GATE(0x80A5E028, &lit_6629);
-#pragma pop
-
-/* 80A5E02C-80A5E030 000130 0004+00 0/1 0/0 0/0 .rodata          @6630 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6630 = -180.0f;
-COMPILER_STRIP_GATE(0x80A5E02C, &lit_6630);
-#pragma pop
-
 /* 80A4F228-80A4FD7C 006388 0B54+00 2/1 0/0 0/0 .text            npc_ks_e_jump__FP12npc_ks_class */
-static void npc_ks_e_jump(npc_ks_class* param_0) {
+static int npc_ks_e_jump(npc_ks_class* i_this) {
     // NONMATCHING
+    fopAc_ac_c* a_this = &i_this->actor;
+    cXyz sp28;
+    obj_sw_class* sw_p2 = i_this->field_0x934;
+    obj_sw_class* sw_p = (obj_sw_class*)i_this->field_0x930;
+    int rv = 2;
+    switch(i_this->mMode) {
+        case 0:
+        i_this->field_0xaec = 1;
+        if (i_this->field_0x5c4 > l_HIO.field_0xc) {
+            anm_init(i_this, 28, 5.0f, 2, 1.0f);
+            i_this->mMode = 1;
+            i_this->mTimers[0] = 20;
+        } else {
+            anm_init(i_this, 51, 5.0f, 2, 1.0f);
+            i_this->mMode = 5;
+            a_this->speedF = 0.0f;
+        }
+
+        if (fopAcM_GetRoomNo(a_this) == 4) {
+            a_this->current.pos.y = 3300.0f;
+            if (a_this->current.pos.x > 180.0f) {
+                a_this->current.pos.x = 180.0f;
+            } else if (a_this->current.pos.x < -180.0f) {
+                a_this->current.pos.x = -180.0f;
+            }
+        }
+        break;
+
+    case 1:
+        a_this->speedF = l_HIO.field_0x14;
+        cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->field_0x5c8, 1, 0x2000);
+        rv = 1;
+        if (i_this->mTimers[0] == 0 || i_this->field_0x5c4 < l_HIO.field_0xc - 20.0f) {
+            anm_init(i_this, 51, 5.0f, 2, 1.0f);
+            i_this->mMode = 5;
+            a_this->speedF = 0.0f;
+        }
+        break;
+
+    case 5:
+        i_this->field_0x5fd = 1;
+        sp28 = sw_p->field_0x614 - a_this->current.pos;
+        i_this->field_0x8fc.y = cM_atan2s(sp28.x, sp28.z);
+        cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->field_0x8fc.y, 1, 0x2000);
+
+        if (go_jump_check(i_this->field_0x5b6) != 0) {
+            anm_init(i_this, 26, 3.0f, 2, 1.0f);
+            i_this->mTimers[0] = 10;
+            i_this->mMode = 6;
+            i_this->field_0xaec = 0;
+        }
+        break;
+
+    case 6:
+        i_this->field_0x5fd = 1;
+        a_this->speedF = 20.0f;
+        rv = 1;
+        if (i_this->mTimers[0] == 0) {
+            anm_init(i_this, 32, 2.0f, 0, 1.0f);
+            i_this->mMode = 7;
+        }
+        break;
+
+    case 7:
+        // bVar1 = true;
+        i_this->field_0x5fd = 1;
+        if (i_this->field_0x5d0 == 32) {
+            a_this->speedF = 0.0f;
+            if (i_this->mpModelMorf->isStop()) {
+                anm_init(i_this, 33, 1.0f, 0, 1.0f);
+                a_this->speedF = 40.0f;
+                i_this->mSound.startCreatureVoice(Z2SE_KOSARU_V_JUMP, -1);
+                i_this->mSound.startCreatureSound(Z2SE_KOSARU_JUMP_START, 0, -1);
+
+                i_this->field_0x910 = a_this->current.pos;
+                i_this->field_0xbe0 = 1;
+            }
+        }
+
+        i_this->field_0x8f0 = sw_p->field_0x614;
+        i_this->field_0x91c = i_this->field_0x8f0;
+        sp28 = i_this->field_0x8f0 - a_this->current.pos;
+        i_this->field_0x8fc.y = cM_atan2s(sp28.x, sp28.z);
+        i_this->field_0x8fc.x = -cM_atan2s(sp28.y, JMAFastSqrt(sp28.x * sp28.x + sp28.z * sp28.z));
+        cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->field_0x8fc.y, 1, 0x2000);
+
+        if (a_this->speedF >= 40.0f) {
+            i_this->field_0x90c = 1;
+            cLib_addCalc2(&i_this->field_0x928, -183.0f, 1.0f, 15.0f);
+            cLib_addCalcAngleS2(&a_this->current.angle.x, 0x1800, 4, 0x1800);
+        }
+
+        if (sp28.abs() <= a_this->speedF * 1.2f) {
+            a_this->speedF = 0.0f;
+            i_this->mMode = 10;
+            anm_init(i_this, 48, 2.0f, 2, 1.0f);
+            sw_p->field_0x5ea = 2;
+        }
+        break;
+
+    case 10:
+        a_this->home.angle.y = sw_p2->current.angle.y;
+        a_this->current.angle.y = a_this->home.angle.y;
+        a_this->current.pos = sw_p->field_0x614;
+        a_this->current.angle.x = (s16)((int)sw_p->field_0x602 << 1);
+        if (sw_p->health != 10) break;
+        sw_p->health = 0;
+        i_this->field_0x910 = a_this->current.pos;
+        i_this->mSound.startCreatureVoice(Z2SE_KOSARU_V_THROW, -1);
+
+        if (fopAcM_GetRoomNo(a_this) == 2) {
+            a_this->speedF = 25.0f;
+        } else {
+            a_this->speedF = 40.0f;
+        }
+
+        if (sw_p->field_0x5b6 == i_this->field_0x5b6 - 1) {
+            i_this->mMode = 11;
+        } else {
+            i_this->mMode = 20;
+            (npc_ks_class*)i_this->field_0x930 = saru_p[sw_p->field_0x5b6 + 1];
+        }
+
+        anm_init(i_this, 33, 1.0f, 0, 1.0f);
+        i_this->field_0xbe0 = 1;
+        // fallthrough
+    case 11:
+        i_this->field_0x90c = 1;
+        i_this->field_0x630 = (i_this->field_0x5b6 + 1) * (sw_p2->field_0xd8c / (sw_p2->field_0x91c + 1)) - 1;
+        i_this->field_0x8f0 = sw_p2->field_0x920[i_this->field_0x630];
+
+        a_this->parentActorID = fopAcM_GetID(sw_p2);
+        i_this->field_0x91c = i_this->field_0x8f0;
+        sp28 = i_this->field_0x8f0 - a_this->current.pos;
+        i_this->field_0x8fc.y = cM_atan2s(sp28.x, sp28.z);
+        i_this->field_0x8fc.x = -cM_atan2s(sp28.y, JMAFastSqrt(sp28.x * sp28.x + sp28.z * sp28.z));
+
+        if (sp28.abs() <= a_this->speedF * 1.2f) {
+            a_this->speedF = 0.0f;
+            i_this->mMode = 12;
+            anm_init(i_this, 24, 2.0f, 2, 1.0f);
+            i_this->mSound.startCreatureSound(Z2SE_FN_ROPE_CREAK, 0, -1);
+            sw_p2->field_0x8fc = 20.0f;
+            // sw_p2->field_0xd10[i_this->field_0x630] = 10;
+        }
+        // fallthrough
+    case 12:
+        cLib_addCalc0(&i_this->field_0x928, 1.0f, 15.0f);
+        cLib_addCalcAngleS2(&a_this->current.angle.x, -0x8000, 1, 0x700);
+        if (i_this->mMode == 12 && i_this->field_0x928 == 0.0f) {
+            if (all_move_check(i_this->field_0x5b6, sw_p2->field_0x91c) != 0) {
+                all_carry_finish(sw_p2->field_0x91c);
+            } else {
+                i_this->mActionID = 21;
+                i_this->mMode = 0;
+                i_this->mTimers[2] = 15;
+            }
+        }
+        break;
+
+    case 20:
+        i_this->field_0x90c = 1;
+        cLib_addCalcAngleS2(&a_this->current.angle.x, 0x1800, 4, 0x1800);
+        i_this->field_0x8f0 = sw_p->field_0x614;
+        i_this->field_0x91c = i_this->field_0x8f0;
+        sp28 = i_this->field_0x8f0 - a_this->current.pos;
+        i_this->field_0x8fc.y = cM_atan2s(sp28.x, sp28.z);
+        i_this->field_0x8fc.x = -cM_atan2s(sp28.y, JMAFastSqrt(sp28.x * sp28.x + sp28.z * sp28.z));
+
+        if (sp28.abs() <= a_this->speedF * 1.2f) {
+            a_this->speedF = 0.0f;
+            i_this->mMode = 10;
+            anm_init(i_this, 48, 2.0f, 2, 1.0f);
+            sw_p->field_0x5ea = 2;
+        }
+    }
+
+    if (i_this->mMode != 11 && i_this->mMode != 12) {
+        i_this->field_0x608 = (s16)((int)a_this->current.angle.x << 1);
+    }
+
+    return rv;
 }
 
 /* 80A4FD7C-80A4FE4C 006EDC 00D0+00 1/1 0/0 0/0 .text            get_move_saru__FP12npc_ks_classi */
-static void get_move_saru(npc_ks_class* param_0, int param_1) {
-    // NONMATCHING
+static npc_ks_class* get_move_saru(npc_ks_class* i_this, int param_2) {
+    fopAc_ac_c* a_this = &i_this->actor;
+    if (fopAcM_GetRoomNo(a_this) == 0) {
+        for (int i = 0; i < 2; i++) {
+            if (saru_p[i] != NULL && (saru_p[i]->mActionID == 20 || saru_p[i]->mActionID == 22) && i_this->field_0xb40 == saru_p[i]->field_0x934->field_0x570) {
+                return saru_p[i];
+            }
+        }
+    } else {
+        for (int i = 0; i < param_2; i++) {
+            if (i_this->field_0xb40 == saru_p[i]->field_0x934->field_0x570 && ((saru_p[i]->mActionID == 20 || saru_p[i]->mActionID == 22) || saru_p[i]->mTimers[2] != 0)) {
+                return saru_p[i];
+            }
+        }
+    }
+
+    return NULL;
 }
 
-/* 80A4FE4C-80A4FEF0 006FAC 00A4+00 1/1 0/0 0/0 .text            all_hang_check__FP12npc_ks_classi
- */
-static void all_hang_check(npc_ks_class* param_0, int param_1) {
-    // NONMATCHING
+/* 80A4FE4C-80A4FEF0 006FAC 00A4+00 1/1 0/0 0/0 .text            all_hang_check__FP12npc_ks_classi */
+static int all_hang_check(npc_ks_class* i_this, int param_2) {
+    fopAc_ac_c* a_this = &i_this->actor;
+    if (fopAcM_GetRoomNo(a_this) == 0) {
+        for (int i = 0; i < 2; i++) {
+            if (saru_p[i] != NULL && saru_p[i]->field_0x5b5 != 0 && i_this->field_0xb40 == saru_p[i]->field_0x934->field_0x570) {
+                return 1;
+            }
+        }
+
+        return 0;
+    }
+
+    for (int i = 0; i < param_2; i++) {
+        if (saru_p[i]->field_0x5b5 == 0) {
+            return 0;
+        }
+    }
+
+    return 1;
 }
 
 /* 80A4FEF0-80A4FFD4 007050 00E4+00 1/1 0/0 0/0 .text            cam_3d_morf__FP12npc_ks_classf */
-static void cam_3d_morf(npc_ks_class* param_0, f32 param_1) {
-    // NONMATCHING
+static void cam_3d_morf(npc_ks_class* i_this, f32 param_2) {
+    cLib_addCalc2(&i_this->field_0xb60.x, i_this->field_0xb6c.x, param_2, i_this->field_0xb84.x * i_this->field_0xbc4);
+    cLib_addCalc2(&i_this->field_0xb60.y, i_this->field_0xb6c.y, param_2, i_this->field_0xb84.y * i_this->field_0xbc4);
+    cLib_addCalc2(&i_this->field_0xb60.z, i_this->field_0xb6c.z, param_2, i_this->field_0xb84.z * i_this->field_0xbc4);
+    cLib_addCalc2(&i_this->field_0xb48.x, i_this->field_0xb54.x, param_2, i_this->field_0xb78.x * i_this->field_0xbc4);
+    cLib_addCalc2(&i_this->field_0xb48.y, i_this->field_0xb54.y, param_2, i_this->field_0xb78.y * i_this->field_0xbc4);
+    cLib_addCalc2(&i_this->field_0xb48.z, i_this->field_0xb54.z, param_2, i_this->field_0xb78.z * i_this->field_0xbc4);
 }
 
 /* 80A4FFD4-80A50028 007134 0054+00 1/1 0/0 0/0 .text            s_fs_sub__FPvPv */
-static void s_fs_sub(void* param_0, void* param_1) {
-    // NONMATCHING
+static void* s_fs_sub(void* i_actor, void* i_data) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_FS) {
+        ((e_fs_class*)i_actor)->mAction = 10;
+        ((e_fs_class*)i_actor)->mMode = 0;
+    }
+    return NULL;
 }
 
 /* 80A50028-80A50094 007188 006C+00 1/1 0/0 0/0 .text            s_fsdown_sub__FPvPv */
-static void s_fsdown_sub(void* param_0, void* param_1) {
-    // NONMATCHING
+static void* s_fsdown_sub(void* i_actor, void* i_data) {
+    // FAKEMATCH???
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_FS) {
+        ((e_fs_class*)i_actor)->mTimer[0] = (fopAcM_GetID(i_actor) << 3) & 24;
+        ((e_fs_class*)i_actor)->mMode++;
+    }
+    return NULL;
 }
 
 /* ############################################################################################## */
@@ -4226,8 +4820,1052 @@ SECTION_DEAD static char const* const stringBase_80A5E440 = " PL IN %d";
 #pragma pop
 
 /* 80A50094-80A5280C 0071F4 2778+00 1/1 0/0 0/0 .text            demo_camera__FP12npc_ks_class */
-static void demo_camera(npc_ks_class* param_0) {
+static void demo_camera(npc_ks_class* i_this) {
     // NONMATCHING
+    fopAc_ac_c* a_this = &i_this->actor;
+    daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
+    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    dComIfGp_getCamera(0);
+    obj_sw_class* sw_p = i_this->field_0x934;
+    cXyz sp44, sp50;
+
+    switch (i_this->field_0xb42) {
+        case 81:
+            if (i_this->field_0xb44 == 0) {
+                saru_p[3]->actor.current.pos.x = -500.0f;
+                saru_p[3]->actor.current.pos.y = 3681.0f;
+                saru_p[3]->actor.current.pos.z = 7485.0f;
+            }
+
+            if (i_this->field_0xb44 == 30) {
+                saru_p[0]->actor.current.pos.x = player->current.pos.x;
+                saru_p[0]->actor.current.pos.y = player->current.pos.y + 500.0f;
+                saru_p[0]->actor.current.pos.z = player->current.pos.z - 100.0f;
+            }
+
+            if (i_this->field_0xb44 == 60) {
+                saru_p[1]->actor.current.pos.x = player->current.pos.x + 200.0f;
+                saru_p[1]->actor.current.pos.y = player->current.pos.y + 500.0f;
+                saru_p[1]->actor.current.pos.z = player->current.pos.z;
+            }
+
+            if (i_this->field_0xb44 == 90) {
+                saru_p[2]->actor.current.pos.x = i_this->field_0xb48.x - 250.0f;
+                saru_p[2]->actor.current.pos.y = i_this->field_0xb48.y + 200.0f;
+                saru_p[2]->actor.current.pos.z = i_this->field_0xb48.z - 100.0f;
+            }
+
+            if (i_this->field_0xb44 < 80) {
+                i_this->field_0xb60.set(-333.0f,3316.0f,7149.0f);
+                i_this->field_0xb48.set(-531.0f,3295.0f,7381.0f);
+            } else {
+                i_this->field_0xb60.set(162.0f,3354.0f,6881.0f);
+                i_this->field_0xb48.set(263.0f,3374.0f,7168.0f);
+            }
+            
+            if (i_this->field_0xb44 == 170) {
+                i_this->field_0xb42 = 100;
+                i_this->field_0xb60.set(-333.0f,3316.0f,7149.0f);
+                i_this->field_0xb48.set(-531.0f,3295.0f,7381.0f);
+            }
+            break;
+
+        case 110:
+            if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
+                fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
+                a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+                return;
+            }
+
+            i_this->field_0xb42 = 111;
+            camera->mCamera.Stop();
+            camera->mCamera.SetTrimSize(3);
+            i_this->field_0xb44 = 0;
+            i_this->field_0xbb8 = 59.0f;
+            player->changeOriginalDemo();
+            player->changeDemoMode(3, 0, 0, 0);
+            sp50.set(12899.0f, 3767.0f, 3364.0f);
+            player->changeDemoPos0(&sp50);
+            
+            i_this->field_0xb60.set(11821.0f, 3889.0f, 4033.0f);
+            i_this->field_0xb48.set(11710.0f, 3936.0f, 4253.0f);
+            i_this->field_0xb6c.set(12772.0f, 3940.0f, 3565.0f);
+            i_this->field_0xb54.set(13003.0f, 4022.0f, 3613.0f);
+
+            i_this->field_0xb78.x = fabsf(i_this->field_0xb54.x - i_this->field_0xb48.x);
+            i_this->field_0xb78.y = fabsf(i_this->field_0xb54.y - i_this->field_0xb48.y);
+            i_this->field_0xb78.z = fabsf(i_this->field_0xb54.z - i_this->field_0xb48.z);
+            i_this->field_0xb84.x = fabsf(i_this->field_0xb6c.x - i_this->field_0xb60.x);
+            i_this->field_0xb84.y = fabsf(i_this->field_0xb6c.y - i_this->field_0xb60.y);
+            i_this->field_0xb84.z = fabsf(i_this->field_0xb6c.z - i_this->field_0xb60.z);
+            i_this->field_0xbc4 = 0.0f;
+            break;
+
+        case 111:
+        case 112:
+            if (i_this->field_0xb44 < 10) {
+                sp50.set(11497.0f, 3764.0f, 3810.0f);
+                setPlayerPosAndAngle(&sp50, 0x4D5A);
+            }
+
+            if (i_this->field_0xb44 > 5) {
+                cam_3d_morf(i_this, 0.1f);
+                cLib_addCalc2(&i_this->field_0xbc4, 0.04f, 1.0f, 0.001f);
+            }
+
+            if (i_this->field_0xbdc == 0 && player->current.pos.x >= 12626.0f) {
+                i_this->field_0xbdc = 1;
+                // JUTReport(300, 220, " PL IN %d");
+                obj_brg_class* brg_p = (obj_brg_class *)fopAcM_SearchByName(44);
+                if (brg_p != NULL) {
+                    brg_p->field_0xaf1c = 4;
+                    brg_p->field_0xaed0 = 6;
+                    dComIfGp_particle_set(0x833F, &brg_p->mBr[6].field_0x0bc, &brg_p->mBr[6].field_0x0d4, NULL);
+                }
+            }
+
+            if (i_this->field_0xbdc == 1 &&  player->current.pos.x >= 12714.0f) {
+                i_this->field_0xbdc = 2;
+                i_this->field_0xb42 = 112;
+                daPy_getPlayerActorClass()->changeDemoMode(25, 0, 0, 0);
+                i_this->field_0xb44 = 20;
+            }
+
+            if (i_this->field_0xb42 == 112 && i_this->field_0xb44 > 52) {
+                i_this->field_0xb42 = 100;
+                cMtx_YrotS(*calc_mtx, player->shape_angle.y);
+                sp44.x = 0.0f;
+                sp44.y = 100.0f;
+                sp44.z = -250.0f;
+                MtxPosition(&sp44, &i_this->field_0xb48);
+                i_this->field_0xb48 += player->current.pos;
+                i_this->field_0xb60 = player->current.pos;
+                i_this->field_0xb60.y += 120.0f;
+            }
+            break;
+
+        case 200:
+            if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
+                fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
+                a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+                return;
+            }
+
+            i_this->field_0xb42 = 201;
+            camera->mCamera.Stop();
+            camera->mCamera.SetTrimSize(3);
+            i_this->field_0xb44 = 0;
+            i_this->field_0xbb8 = 55.0f;
+            player->changeOriginalDemo();
+            player->changeDemoMode(2, 0, 0, 0);
+            sp50.set(-23451.0f,262.0f,-15980.0f);
+            player->changeDemoPos0(&sp50);
+            i_this->field_0xb60.set(-22325.0f, 275.0f, -15119.0f);
+            i_this->field_0xb48.set(-22672.0f, 311.0f, -15080.0f);
+            i_this->field_0xb6c.set(-22343.0f, 273.0f, -15017.0f);
+            i_this->field_0xb78.set(0.0f, 0.0f, 0.0f);
+            i_this->field_0xb84.x = fabsf(i_this->field_0xb6c.x - i_this->field_0xb60.x);
+            i_this->field_0xb84.y = fabsf(i_this->field_0xb6c.y - i_this->field_0xb60.y);
+            i_this->field_0xb84.z = fabsf(i_this->field_0xb6c.z - i_this->field_0xb60.z);
+            i_this->field_0xbc4 = 0.0f;
+            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0xE0]);
+            break;
+
+        case 201:
+            if (i_this->field_0xb44 < 30) {
+                sp50.set(-22177.0f, 213.0f, -14705.0f);
+                setPlayerPosAndAngle(&sp50, -0x5FFD);
+                player->speedF = 0.0f;
+            }
+
+            cam_3d_morf(i_this, 0.05f);
+            cLib_addCalc2(&i_this->field_0xbc4, 0.02f, 1.0f, 0.0001f);
+
+            if (i_this->field_0xb44 == 110) {
+                i_this->mMode = 2;
+                i_this->field_0xbb4 = 500.0f;
+            }
+
+            if (i_this->field_0xb44 == 132) {
+                i_this->field_0xc17 = 2;
+
+                mDoAud_seStart(0x5001A, NULL, 0, 0);
+                i_this->mSound.startCreatureSound(Z2SE_KOSARU_JUMP_START, 0, -1);
+                i_this->mSound.startCreatureSound(Z2SE_KOSARU_JUMP_WIND, 0, -1);
+                dComIfGs_setItem(1, 0xFF);
+                // dMeter2Info_setOilGaugeBackUp(dComIfGs_getOil());
+                dComIfGp_getVibration().StartShock(2, 31, cXyz(0.0f, 1.0f, 0.0f));
+            }
+
+            if (i_this->field_0xb44 == 139) {
+                player->changeDemoMode(1, 1, 0, 0);
+            }
+
+            if (i_this->field_0xb44 == 144) {
+                cMtx_YrotS(*calc_mtx, player->shape_angle.y);
+                sp44.x = 0.0f;
+                sp44.y = 0.0f;
+                sp44.z = 100.0f;
+                MtxPosition(&sp44, &sp50);
+                a_this->current.pos = player->current.pos + sp50;
+                a_this->current.angle.y = player->shape_angle.y;
+                i_this->field_0x8fc.y = player->shape_angle.y;
+                anm_init(i_this, 26, 3.0f, 2, 1.0f);
+                i_this->mMode = 230;
+                i_this->mTimers[0] = 65;
+            }
+
+            if (i_this->field_0xb44 == 145) {
+                i_this->field_0xb42 = 202;
+                i_this->field_0xb44 = 0;
+                i_this->field_0xb60.set(-22613.0f, 350.0f, -15097.0f);
+                i_this->field_0xb48.set(-22275.0f, 350.0f, -15092.0f);
+            }
+            break;
+
+        case 202:
+            if (i_this->field_0xb44 == 30) {
+                i_this->field_0xb60.set(-23371.0f,380.0f,-15901.0f);
+                i_this->field_0xb48.set(-23163.0f,474.0f,-15653.0f);
+                player->changeDemoMode(1, 1, 0, 0);
+            }
+
+            if (i_this->field_0xb44 >= 120) {
+                cLib_addCalc2(&i_this->field_0xbb8, 80.0f, 0.05f, 0.2f);
+            }
+
+            if (i_this->field_0xb44 == 270) {
+                i_this->field_0xb42 = 203;
+                i_this->field_0xb44 = 0;
+            }
+            break;
+
+        case 203:
+            i_this->field_0xb60.set(-22650.0f,334.0f,-15147.0f);
+            i_this->field_0xb48.set(-22277.0f,355.0f,-15077.0f);
+            i_this->field_0xbb8 = 55.0f;
+            if (i_this->field_0xb44 == 10) {
+                daMidna_c* midna_p = daPy_py_c::getMidnaActor();
+                midna_p->changeOriginalDemo();
+                midna_p->changeDemoMode(2);
+            }
+
+            if (i_this->field_0xb44 >= 100) {
+                i_this->field_0xb44 = 100;
+            }
+
+            if (i_this->field_0xb44 >= 70) {
+                if (i_this->field_0xb44 == 70) {
+                    i_this->mMsgFlow.init(a_this, 2015, 0, NULL);
+                }
+                if (i_this->mMsgFlow.doFlow(a_this, NULL, 0) != 0) {
+                    i_this->field_0xb42 = 204;
+                    daPy_py_c::getMidnaActor()->changeDemoMode(5);
+                }
+            }
+            break;
+
+        case 204:
+            if (daPy_py_c::getMidnaActor()->checkShadowReturnEnd() != 0) {
+                i_this->field_0xb42 = 100;
+            }
+            break;
+
+        case 300:
+            if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
+                fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
+                a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+                return;
+            }
+            
+            i_this->field_0xb42 = 301;
+            camera->mCamera.Stop();
+            camera->mCamera.SetTrimSize(3);
+            i_this->field_0xb44 = 0;
+            i_this->field_0xbb8 = 60.0f;
+            player->changeOriginalDemo();
+            i_this->field_0xb60.set(-30827.0f, 411.0f, -17200.0f);
+            i_this->field_0xb48.set(-30601.0f, 388.0f, -17465.0f);
+            break;
+
+        case 302:
+            if (i_this->field_0xb44 == 30) {
+                dComIfGp_setItemOilCount(-(dComIfGs_getMaxOil() & 0xFFFF));
+            }
+            
+            if (i_this->field_0xb44 == 80) {
+                i_this->field_0xb42 = 303;
+                i_this->field_0xb44 = 0;
+                i_this->field_0xb60.set(-30887.0f,429.0f,-17181.0f);
+                i_this->field_0xb48.set(-30870.0f,471.0f,-17527.0f);
+            }
+            break;
+
+    }
+    // sVar1 = i_this->field_0xb42;
+    // if (80 < sVar1) {
+    //     if (sVar1 < 302) {
+    //         if (sVar1 < 202) {
+    //             if (sVar1 < 113) {
+    //                 if (sVar1 < 110) break;
+    //             }
+    //             else {
+    //             if (sVar1 == 200) {
+    //             }
+    //             else if (sVar1 < 200) break;
+    //             }
+    //         } else {
+    //             if (sVar1 == 300) {
+    //             } else if (sVar1 < 300) {
+    //                 if (sVar1 == 204) {
+    //                 } else if (sVar1 < 204) {
+
+    //                 }
+    //             break;
+    //             }
+    //             sp50.set(-30496.0f,300.0f,-17449.0f);
+    //             setPlayerPosAndAngle(&sp50,-0x18b4);
+    //             if (i_this->field_0xb44 == 60) {
+    //             i_this->field_0xb42 = 302;
+    //             i_this->field_0xb44 = 0;
+    //             i_this->field_0xb60.set(-30844.0f,298.0f,-17007.0f);
+    //             i_this->field_0xb48.set(-30653.0f,357.0f,-17289.0f);
+    //             anm_init(i_this,51,5.0f,2,1.0f);
+    //             i_this->field_0xc17 = 3;
+    //             mDoAud_seStart(0x600ac,(Vec *)&i_this->field318_0xc04,0,0);
+    //             }
+    //         }
+    //     } else {
+    //     if (sVar1 == 360) {
+    //         iVar3 = ::dEvt_info_c::a_this->eventInfo.checkCommandDemoAccrpt();
+    //         if (iVar3 == 0) {
+    //         fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
+    //         a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+    //         ::cXyz::~cXyz(&sp50,DTOR_DESTROY_ALL_BASES_AND_DELETE);
+    //         ::cXyz::~cXyz(&sp44,DTOR_DESTROY_ALL_BASES_AND_DELETE);
+    //         return;
+    //         }
+    //         i_this->field_0xb42 = 361;
+    //         camera->mCamera.Stop();
+    //         camera->mCamera.SetTrimSize(3);
+    //         i_this->field_0xb44 = 0;
+    //         i_this->field_0xbb8 = 55.0f;
+    //         player->changeOriginalDemo();
+    //         i_this->field_0xb60.set(-36581.0f,412.0f,-21418.0f);
+    //         i_this->field_0xb48.set(-36509.0f,412.0f,-21127.0f);
+    //         i_this->field_0xb6c.set(-38113.0f,1234.0f,-22897.0f);
+    //         pcVar8 = &i_this->field_0xb54;
+    //         ::cXyz::set(pcVar8,-37882.0f,1182.0f,-22713.0f);
+    //         fVar13 = ::std::fabsf(i_this->field_0xb54.x - i_this->field_0xb48.x)
+    //         ;
+    //         i_this->field_0xb78.x = fVar13;
+    //         fVar13 = ::std::fabsf(i_this->field_0xb54.y - i_this->field_0xb48.y)
+    //         ;
+    //         i_this->field_0xb78.y = fVar13;
+    //         fVar13 = ::std::fabsf(i_this->field_0xb54.z - i_this->field_0xb48.z)
+    //         ;
+    //         i_this->field_0xb78.z = fVar13;
+    //         fVar13 = ::std::fabsf(i_this->field_0xb6c.x - i_this->field_0xb60.x)
+    //         ;
+    //         i_this->field_0xb84.x = fVar13;
+    //         fVar13 = ::std::fabsf(i_this->field_0xb6c.y - i_this->field_0xb60.y)
+    //         ;
+    //         i_this->field_0xb84.y = fVar13;
+    //         fVar13 = ::std::fabsf(i_this->field_0xb6c.z - i_this->field_0xb60.z)
+    //         ;
+    //         i_this->field_0xb84.z = fVar13;
+    //         i_this->field_0xbc4 = 0.0f;
+    //         anm_init(i_this,39,5.0f,2,1.0f);
+    //         i_this->mMode = 41;
+    //         i_this->mTimers[0] = 30;
+    //     } else {
+    //         if (sVar1 < 360) {
+    //         if (sVar1 != 351) {
+    //             if (350 < sVar1) {
+    //             if (sVar1 < 353) {
+    //                 if (i_this->field_0xb44 == 40) {
+    //                 i_this->mMode = 40;
+    //                 }
+    //                 if (i_this->field_0xb44 == 110) {
+    //                 f_pc_executor::fpcEx_Search(s_fsdown_sub,i_this);
+    //                 }
+    //                 if (i_this->field_0xb44 < 161) {
+    //                 if (25 < i_this->field_0xb44) {
+    //                     cLib_addCalc2(&i_this->field_0xb60.y,600.0f,0.5,100.0f);
+    //                 }
+    //                 }
+    //                 else {
+    //                 cam_3d_morf(i_this,0.1);
+    //                 cLib_addCalc2(&i_this->field_0xbc4,0.2,1.0f,0.005);
+    //                 }
+    //                 if (i_this->field_0xb44 == 230) {
+    //                 i_this->field_0xb42 = 100;
+    //                 f_pc_executor::fpcEx_Search(s_fsdown_sub,i_this);
+    //                 dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x220]);
+    //                 }
+    //             }
+    //             break;
+    //             }
+    //             if (sVar1 < 350) {
+    //             if (sVar1 < 304) {
+    //                 if (i_this->field_0xb44 == 10) {
+    //                 anm_init(i_this,26,3.0f,2,1.0f);
+    //                 i_this->mMode = 301;
+    //                 a_this->speedF = l_HIO.field13_0x1c;
+    //                 }
+    //                 if (i_this->field_0xb44 == 0x50) {
+    //                 i_this->field_0xb42 = 100;
+    //                 i_this->mMode = 302;
+    //                 anm_init(i_this,51,5.0f,2,1.0f);
+    //                 dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0xe1]);
+    //                 dSv_info_c::offSwitch
+    //                             (&d_com_inf_game::g_dComIfG_gameInfo.info,0x3d,
+    //                             (int)(char)a_this->current.roomNo);
+    //                 }
+    //             }
+    //             break;
+    //             }
+    //             iVar3 = ::dEvt_info_c::a_this->eventInfo.checkCommandDemoAccrpt();
+    //             if (iVar3 == 0) {
+    //             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
+    //             a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+    //             ::cXyz::~cXyz(&sp50,DTOR_DESTROY_ALL_BASES_AND_DELETE);
+    //             ::cXyz::~cXyz(&sp44,DTOR_DESTROY_ALL_BASES_AND_DELETE);
+    //             return;
+    //             }
+    //             i_this->field_0xb42 = 351;
+    //             camera->mCamera.Stop();
+    //             camera->mCamera.SetTrimSize(3);
+    //             i_this->field_0xb44 = 0;
+    //             i_this->field_0xbb8 = 55.0f;
+    //             player->changeOriginalDemo();
+    //             ::cXyz::operator_=(&i_this->field_0xb60,&a_this->current.pos);
+    //             i_this->field_0xb48.set(-37509.0f,805.0f,-22416.0f);
+    //         }
+    //         ::cXyz::set(&sp44,-36523.0f,335.0f,-20500.0f);
+    //         iVar2 = daPy_getPlayerActorClass();
+    //         (*(code *)iVar2->vtable->setPlayerPosAndAngle1)(iVar2,&sp44,0xffff8000,0);
+    //         ::cXyz::operator_=(&sp44,&a_this->current.pos);
+    //         cLib_addCalc2(&i_this->field_0xb60.x,sp44.x,0.2,50.0f);
+    //         cLib_addCalc2(&i_this->field_0xb60.y,sp44.y + 100.0f,0.2,50.0f);
+    //         cLib_addCalc2(&i_this->field_0xb60.z,sp44.z,0.2,50.0f);
+    //         if (i_this->field_0xb44 == 105) {
+    //             i_this->field_0xb48.set(-37817.0f,800.0f,-21442.0f);
+    //         }
+    //         if (i_this->field_0xb44 == 178) {
+    //             f_pc_executor::fpcEx_Search(s_fsdown_sub,i_this);
+    //         }
+    //         if (i_this->field_0xb44 == 180) {
+    //             i_this->field_0xb60.set(-36666.0f,600.0f,-22213.0f);
+    //             i_this->field_0xb48.set(-36489.0f,399.0f,-20932.0f);
+    //             i_this->field_0xb6c.set(-36574.0f,421.0f,-21554.0f);
+    //             pcVar8 = &i_this->field_0xb54;
+    //             ::cXyz::set(pcVar8,-36397.0f,374.0f,-20263.0f);
+    //             fVar13 = ::std::fabsf(
+    //                                 i_this->field_0xb54.x - i_this->field_0xb48.x);
+    //             i_this->field_0xb78.x = fVar13;
+    //             fVar13 = ::std::fabsf(
+    //                                 i_this->field_0xb54.y - i_this->field_0xb48.y);
+    //             i_this->field_0xb78.y = fVar13;
+    //             fVar13 = ::std::fabsf(
+    //                                 i_this->field_0xb54.z - i_this->field_0xb48.z);
+    //             i_this->field_0xb78.z = fVar13;
+    //             fVar13 = ::std::fabsf(
+    //                                 i_this->field_0xb6c.x - i_this->field_0xb60.x);
+    //             i_this->field_0xb84.x = fVar13;
+    //             fVar13 = ::std::fabsf(
+    //                                 i_this->field_0xb6c.y - i_this->field_0xb60.y);
+    //             i_this->field_0xb84.y = fVar13;
+    //             fVar13 = ::std::fabsf(
+    //                                 i_this->field_0xb6c.z - i_this->field_0xb60.z);
+    //             i_this->field_0xb84.z = fVar13;
+    //             i_this->field_0xbc4 = 0.0f;
+    //             i_this->field_0xb42 = 352;
+    //             i_this->field_0xb44 = 0;
+    //             i_this->field_0xb60.y = 1500.0f;
+    //         }
+    //         break;
+    //         }
+    //         if (sVar1 == 363) {
+    //         cam_3d_morf(i_this,0.1);
+    //         cLib_addCalc2(&i_this->field_0xbc4,0.3,1.0f,0.01);
+    //         i_this->mMsgFlow.doFlow(&i_this->base,(fopAc_ac_c **)0x0,0);
+    //         if (iVar3 != 0) {
+    //             i_this->field_0xb42 = 100;
+    //         }
+    //         break;
+    //         }
+    //         if (362 < sVar1) break;
+    //         if (361 < sVar1) {
+    //         if (i_this->field_0xb44 == 15) {
+    //             i_this->mTimers[2] = 30;
+    //         }
+    //         if (29 < i_this->field_0xb44) {
+    //             cam_3d_morf(i_this,0.2);
+    //             cLib_addCalc2(&i_this->field_0xbc4,0.3,1.0f,0.01);
+    //         }
+    //         sVar9 = dMsgFlow_c::getNowMsgNo(&i_this->mMsgFlow);
+    //         if (sVar9 == 0x1423) {
+    //             i_this->field_0xb42 = 363;
+    //             i_this->field_0xb44 = 0;
+    //             i_this->field_0xb6c.set(-36467.0f,426.0f,-20914.0f);
+    //             pcVar8 = &i_this->field_0xb54;
+    //             ::cXyz::set(pcVar8,-36244.0f,409.0f,-20714.0f);
+    //             fVar13 = ::std::fabsf(
+    //                                 i_this->field_0xb54.x - i_this->field_0xb48.x);
+    //             i_this->field_0xb78.x = fVar13;
+    //             fVar13 = ::std::fabsf(
+    //                                 i_this->field_0xb54.y - i_this->field_0xb48.y);
+    //             i_this->field_0xb78.y = fVar13;
+    //             fVar13 = ::std::fabsf(
+    //                                 i_this->field_0xb54.z - i_this->field_0xb48.z);
+    //             i_this->field_0xb78.z = fVar13;
+    //             fVar13 = ::std::fabsf(
+    //                                 i_this->field_0xb6c.x - i_this->field_0xb60.x);
+    //             i_this->field_0xb84.x = fVar13;
+    //             fVar13 = ::std::fabsf(
+    //                                 i_this->field_0xb6c.y - i_this->field_0xb60.y);
+    //             i_this->field_0xb84.y = fVar13;
+    //             fVar13 = ::std::fabsf(
+    //                                 i_this->field_0xb6c.z - i_this->field_0xb60.z);
+    //             i_this->field_0xb84.z = fVar13;
+    //             i_this->field_0xbc4 = 0.0f;
+    //         }
+    //         dMsgFlow_c::doFlow(&i_this->mMsgFlow,&i_this->base,(fopAc_ac_c **)0x0,0);
+    //         break;
+    //         }
+    //     }
+    //     ::cXyz::set(&sp44,-36540.0f,335.0f,-20870.0f);
+    //     pdVar5 = daPy_getPlayerActorClass();
+    //     (*(code *)pdVar5->vtable->setPlayerPosAndAngle1)(pdVar5,&sp44,0xffff8000,0);
+    //     if (104 < i_this->field_0xb44) {
+    //         if (i_this->field_0xb44 == 105) {
+    //         i_this->mMsgFlow.init(&i_this->base,116,0,(fopAc_ac_c **)0x0);
+    //         }
+    //         sVar9 = dMsgFlow_c::getNowMsgNo(&i_this->mMsgFlow);
+    //         if (sVar9 == 0x1421) {
+    //         i_this->field_0xb42 = 362;
+    //         i_this->field_0xb44 = 0;
+    //         }
+    //         dMsgFlow_c::doFlow(&i_this->mMsgFlow,&i_this->base,(fopAc_ac_c **)0x0,0);
+    //     }
+    //     }
+    //     break;
+    // }
+    // if (sVar1 == 61) {
+    // LAB_80a50c18:
+    //     ::cXyz::operator_=(&sp50,&player->old.pos);
+    //     sp50.y = 3150.0f;
+    //     setPlayerPosAndAngle(&sp50,player->shape_angle.y);
+    //     i_this->field_0xbb8 = 65.0f;
+    //     cLib_addCalc2(&i_this->field_0xb60.x,a_this->eyePos.x,0.1,50.0f);
+    //     cLib_addCalc2(&i_this->field_0xb60.y,a_this->eyePos.y,0.1,50.0f);
+    //     cLib_addCalc2(&i_this->field_0xb60.z,a_this->eyePos.z,0.1,50.0f);
+    //     break;
+    // }
+    // if (sVar1 < 61) {
+    //     if (sVar1 == 10) {
+    //     iVar3 = ::dEvt_info_c::a_this->eventInfo.checkCommandDemoAccrpt();
+    //     if (iVar3 == 0) {
+    //         fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
+    //         a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+    //         ::cXyz::~cXyz(&sp50,DTOR_DESTROY_ALL_BASES_AND_DELETE);
+    //         ::cXyz::~cXyz(&sp44,DTOR_DESTROY_ALL_BASES_AND_DELETE);
+    //         return;
+    //     }
+    //     i_this->field_0xb42 = 11;
+    //     camera->mCamera.Stop();
+    //     camera->mCamera.SetTrimSize(3);
+    //     i_this->field_0xb44 = 0;
+    //     i_this->field_0xbb8 = 55.0f;
+    //     (i_this->field267_0xba8).z = 500.0f;
+    //     (i_this->field267_0xba8).x = 500.0f;
+    //     (i_this->field267_0xba8).y = 0.0f;
+    //     i_this->field274_0xbc0 = (npc_ks_class *)0x0;
+    // LAB_80a5068c:
+    //     ::cXyz::operator_=(&sp50,&i_this->field276_0xbc8);
+    //     sp50.y = player->current.pos.y;
+    //     setPlayerPosAndAngle(&sp50,player->shape_angle.y);
+    //     pnVar11 = i_this->field274_0xbc0;
+    //     pnVar4 = (npc_ks_class *)get_move_saru(i_this,sw_p->field930_0x91c);
+    //     i_this->field274_0xbc0 = pnVar4;
+    //     i_this->field_0xb6c.y = (sw_p->base).current.pos.y - 200.0f;
+    //     if (i_this->field274_0xbc0 == (npc_ks_class *)0x0) {
+    //         iVar3 = all_hang_check(i_this,sw_p->field930_0x91c);
+    //         if (iVar3 != 0) {
+    //         i_this->field_0xb42 = 0xc;
+    //         if (a_this->current.roomNo == 0) {
+    //             i_this->field_0xb44 = 45;
+    //         }
+    //         else if (sw_p->field930_0x91c < 3) {
+    //             i_this->field_0xb44 = 45;
+    //         }
+    //         else {
+    //             i_this->field_0xb6c.x =
+    //                 *(float *)(*(int *)(&DAT_80a5e470 + sw_p->field930_0x91c * 4) + 0x4d0);
+    //             i_this->field_0xb6c.y =
+    //                 *(float *)(*(int *)(&DAT_80a5e470 + sw_p->field930_0x91c * 4) + 0x4d4);
+    //             i_this->field_0xb6c.y = i_this->field_0xb6c.y - 150.0f;
+    //             this_00 = *(std **)(&DAT_80a5e470 + sw_p->field930_0x91c * 4);
+    //             i_this->field_0xb6c.z = *(float *)(this_00 + 0x4d8);
+    //             fVar13 = ::std::fabsf(this_00,i_this->field_0xb6c.x - i_this->field_0xb60.x);
+    //             i_this->field_0xb84.x = fVar13;
+    //             fVar13 = ::std::fabsf(this_00,i_this->field_0xb6c.y - i_this->field_0xb60.y);
+    //             i_this->field_0xb84.y = fVar13;
+    //             fVar13 = ::std::fabsf(this_00,i_this->field_0xb6c.z - i_this->field_0xb60.z);
+    //             i_this->field_0xb84.z = fVar13;
+    //             i_this->field_0xbc4 = 0.0f;
+    //             i_this->field_0xb44 = 5;
+    //         }
+    //         }
+    //     } else {
+    //         sw_p = i_this->field274_0xbc0->field_0x934;
+    //         cMtx_YrotS(*calc_mtx,i_this->field277_0xbd4);
+    //         sp44.x = (i_this->field267_0xba8).x;
+    //         sp44.y = (i_this->field267_0xba8).y;
+    //         sp44.z = (i_this->field267_0xba8).z;
+    //         MtxPosition(&sp44,&i_this->field_0xb54);
+    //         i_this->field_0xb54.x =
+    //             i_this->field_0xb54.x + (i_this->field274_0xbc0->base).current.pos.x;
+    //         i_this->field_0xb54.y =
+    //             i_this->field_0xb54.y + ((sw_p->base).current.pos.y - 250.0f);
+    //         i_this->field_0xb54.z =
+    //             i_this->field_0xb54.z + (i_this->field274_0xbc0->base).current.pos.z;
+    //         i_this->field_0xb6c.x = (i_this->field274_0xbc0->base).current.pos.x;
+    //         i_this->field_0xb6c.y = (sw_p->base).current.pos.y - 200.0f;
+    //         if ((i_this->field274_0xbc0->mActionID == 0x14) &&
+    //         (fVar13 = (i_this->field274_0xbc0->base).current.pos.y,
+    //         i_this->field_0xb6c.y < fVar13)) {
+    //         i_this->field_0xb6c.y = fVar13;
+    //         }
+    //         i_this->field_0xb6c.z = (i_this->field274_0xbc0->base).current.pos.z;
+    //         if (pnVar11 != i_this->field274_0xbc0) {
+    //         ::cXyz::operator_=(&i_this->field_0xb48,&i_this->field_0xb54);
+    //         ::cXyz::operator_=(&i_this->field_0xb60,&i_this->field_0xb6c);
+    //         }
+    //         ::cXyz::set(&i_this->field242_0xb84,200.0f,200.0f,200.0f);
+    //         i_this->field_0xbc4 = 1.0f;
+    //     }
+    //     } else {
+    //     if (sVar1 < 10) {
+    //         if (sVar1 != 2) {
+    //         if (1 < sVar1) {
+    //             if (sVar1 < 4) {
+    //             cLib_addCalc2
+    //                         (&i_this->field_0xb60.x,player->current.pos.x,0.4,100.0f);
+    //             cLib_addCalc2
+    //                         (&i_this->field_0xb60.y,player->current.pos.y + 70.0f,0.4,100.0f);
+    //             cLib_addCalc2
+    //                         (&i_this->field_0xb60.z,player->current.pos.z,0.4,100.0f);
+    //             cMtx_YrotS(*calc_mtx,player->shape_angle.y);
+    //             dVar12 = 50.0f;
+    //             if ((a_this->current.roomNo == 4) && (i_this->field_0xbdb == 0)) {
+    //                 sp44.x = 100.0f;
+    //                 sp44.y = 100.0f;
+    //                 sp44.z = 300.0f;
+    //                 if (i_this->field_0xb44 == 10) {
+    //                 player->changeDemoMode(40,0,0,0);
+    //                 }
+    //                 if (i_this->field_0xb44 == 0x1c) {
+    //                 player->changeDemoMode(41,0,0,0);
+    //                 }
+    //                 if (i_this->field_0xb44 == 40) {
+    //                 i_this->field_0xb42 = 100;
+    //                 i_this->field_0xbdb = 1;
+    //                 }
+    //                 dVar12 = 200.0f;
+    //             }
+    //             else {
+    //                 sp44.x = 0.0f;
+    //                 sp44.y = 0.0f;
+    //                 sp44.z = -400.0f;
+    //                 if (i_this->field_0xb44 == 8) {
+    //                 i_this->field_0xb42 = 100;
+    //                 }
+    //             }
+    //             MtxPosition(&sp44,&sp50);
+    //             sp50.x = sp50.x + player->current.pos.x;
+    //             sp50.y = sp50.y + player->current.pos.y;
+    //             sp50.z = sp50.z + player->current.pos.z;
+    //             cLib_addCalc2(&i_this->field_0xb48.x,sp50.x,0.2,(float)dVar12);
+    //             cLib_addCalc2(&i_this->field_0xb48.y,sp50.y,0.2,(float)dVar12);
+    //             cLib_addCalc2(&i_this->field_0xb48.z,sp50.z,0.2,(float)dVar12);
+    //             }
+    //             break;
+    //         }
+    //         if ((sVar1 == 0) || (sVar1 < 0)) break;
+    //         iVar3 = ::dEvt_info_c::a_this->eventInfo.checkCommandDemoAccrpt();
+    //         if (iVar3 == 0) {
+    //             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
+    //             a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+    //             ::cXyz::~cXyz(&sp50,DTOR_DESTROY_ALL_BASES_AND_DELETE);
+    //             ::cXyz::~cXyz(&sp44,DTOR_DESTROY_ALL_BASES_AND_DELETE);
+    //             return;
+    //         }
+    //         i_this->field_0xb42 = 2;
+    //         camera->mCamera.Stop();
+    //         camera->mCamera.SetTrimSize(3);
+    //         i_this->field_0xb44 = 0;
+    //         player->changeOriginalDemo();
+    //         player->changeDemoMode(19,0,0,0);
+    //         ::daPy_py_c::changeDemoParam0(player,0);
+    //         i_this->field_0xb60 = player->current.pos;
+    //         (i_this->field267_0xba8).z = 500.0f;
+    //         (i_this->field267_0xba8).x = 500.0f;
+    //         (i_this->field267_0xba8).y = 0.0f;
+    //         }
+    //         i_this->field_0xbb8 = 55.0f;
+    //         cLib_addCalc2(&i_this->field_0xb60.x,player->current.pos.x,0.2,50.0f)
+    //         ;
+    //         cLib_addCalc2
+    //                 (&i_this->field_0xb60.y,(sw_p->base).current.pos.y - 250.0f,0.2,50.0f);
+    //         cLib_addCalc2(&i_this->field_0xb60.z,player->current.pos.z,0.2,50.0f)
+    //         ;
+    //         if (a_this->current.roomNo == 2) {
+    //         cMtx_YrotS(*calc_mtx,(sw_p->base).current.angle.y);
+    //         }
+    //         else {
+    //         cMtx_YrotS(*calc_mtx,player->shape_angle.y);
+    //         }
+    //         sp44.x = (i_this->field267_0xba8).x;
+    //         sp44.y = (i_this->field267_0xba8).y;
+    //         sp44.z = (i_this->field267_0xba8).z;
+    //         MtxPosition(&sp44,&sp50);
+    //         sp50.x = sp50.x + player->current.pos.x;
+    //         sp50.y = sp50.y + ((sw_p->base).current.pos.y - 250.0f);
+    //         sp50.z = sp50.z + player->current.pos.z;
+    //         if (i_this->field_0xb44 == 0) {
+    //         ::cXyz::operator_=(&i_this->field_0xb48,&sp50);
+    //         }
+    //         else {
+    //         cLib_addCalc2(&i_this->field_0xb48.x,sp50.x,0.1,200.0f);
+    //         cLib_addCalc2(&i_this->field_0xb48.y,sp50.y,0.1,200.0f);
+    //         cLib_addCalc2(&i_this->field_0xb48.z,sp50.z,0.1,200.0f);
+    //         }
+    //         if (i_this->field156_0x92c != 0) {
+    //         (i_this->field267_0xba8).z = (i_this->field267_0xba8).z + -10.0f;
+    //         }
+    //         break;
+    //     }
+    //     if (sVar1 != 12) {
+    //         if (11 < sVar1) {
+    //         if (sVar1 < 60) break;
+    //         iVar3 = ::dEvt_info_c::a_this->eventInfo.checkCommandDemoAccrpt();
+    //         if (iVar3 == 0) {
+    //             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
+    //             a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+    //             ::cXyz::~cXyz(&sp50,DTOR_DESTROY_ALL_BASES_AND_DELETE);
+    //             ::cXyz::~cXyz(&sp44,DTOR_DESTROY_ALL_BASES_AND_DELETE);
+    //             return;
+    //         }
+    //         i_this->field_0xb42 = 61;
+    //         camera->mCamera.Stop();
+    //         camera->mCamera.SetTrimSize(3);
+    //         i_this->field_0xb44 = 0;
+    //         cMtx_YrotS(*calc_mtx,a_this->shape_angle.y);
+    //         sp44.x = 300.0f;
+    //         sp44.y = 100.0f;
+    //         sp44.z = 0.0f;
+    //         MtxPosition(&sp44,&i_this->field_0xb48);
+    //         ::cXyz::operator_+=(&i_this->field_0xb48,(Vec *)&a_this->current);
+    //         fVar13 = i_this->field_0xb48.x;
+    //         sp44.x = fVar13 - player->current.pos.x;
+    //         sp44.z = i_this->field_0xb48.z - player->current.pos.z;
+    //         if (sp44.x * sp44.x + sp44.z * sp44.z < 10000.0f) {
+    //             i_this->field_0xb48.x = fVar13 + 200.0f;
+    //         }
+    //         ::cXyz::operator_=(&i_this->field_0xb60,&a_this->eyePos);
+    //         player->changeOriginalDemo();
+    //         player->changeDemoMode(1,1,0,0);
+    //         goto LAB_80a50c18;
+    //         }
+    //         goto LAB_80a5068c;
+    //     }
+    //     }
+    //     cLib_addCalc2
+    //             (&i_this->field_0xb48.x,i_this->field_0xb54.x,0.2,
+    //             i_this->field_0xbc4 * 200.0f);
+    //     cLib_addCalc2
+    //             (&i_this->field_0xb48.y,i_this->field_0xb54.y,0.2,
+    //             i_this->field_0xbc4 * 200.0f);
+    //     cLib_addCalc2
+    //             (&i_this->field_0xb48.z,i_this->field_0xb54.z,0.2,
+    //             i_this->field_0xbc4 * 200.0f);
+    //     cLib_addCalc2
+    //             (&i_this->field_0xb60.x,i_this->field_0xb6c.x,0.2,
+    //             i_this->field_0xb84.x * i_this->field_0xbc4);
+    //     cLib_addCalc2
+    //             (&i_this->field_0xb60.y,i_this->field_0xb6c.y,0.2,
+    //             i_this->field_0xb84.y * i_this->field_0xbc4);
+    //     cLib_addCalc2
+    //             (&i_this->field_0xb60.z,i_this->field_0xb6c.z,0.2,
+    //             i_this->field_0xb84.z * i_this->field_0xbc4);
+    //     if (i_this->field_0xb42 == 12) {
+    //     cLib_addCalc2(&i_this->field_0xbb8,40.0f,0.2,i_this->field_0xbc4);
+    //     cLib_addCalc2(&i_this->field_0xbc4,0.1,1.0f,0.005);
+    //     if (85 < i_this->field_0xb44) {
+    //         i_this->field_0xb42 = 100;
+    //         sp44.x = (::saru_p[i_this->field231_0xb40]->base).current.pos.x - (i_this->field276_0xbc8).x
+    //         ;
+    //         sp44.z = (::saru_p[i_this->field231_0xb40]->base).current.pos.z - (i_this->field276_0xbc8).z
+    //         ;
+    //         angle = SComponent::cM_atan2s(sp44.x,sp44.z);
+    //         cMtx_YrotS(*calc_mtx,angle);
+    //         sp44.x = 0.0f;
+    //         sp44.y = 0.0f;
+    //         if (a_this->current.roomNo == 4) {
+    //         sp44.z = -250.0f;
+    //         }
+    //         else {
+    //         sp44.z = -150.0f;
+    //         }
+    //         MtxPosition(&sp44,&sp50);
+    //         sp50.x = sp50.x + (i_this->field276_0xbc8).x;
+    //         sp50.z = sp50.z + (i_this->field276_0xbc8).z;
+    //         if (a_this->current.roomNo == 2) {
+    //         sp50.y = 3764.0f;
+    //         }
+    //         else {
+    //         sp50.y = player->current.pos.y;
+    //         }
+    //         setPlayerPosAndAngle(&sp50,angle);
+    //         sp44.x = 0.0f;
+    //         sp44.y = 100.0f;
+    //         sp44.z = -250.0f;
+    //         MtxPosition(&sp44,&i_this->field_0xb48);
+    //         i_this->field_0xb48 += player->current.pos;
+    //         i_this->field_0xb60 = player->current.pos;
+    //         i_this->field_0xb60.y = i_this->field_0xb60.y + 120.0f;
+    //         i_this->field_0xbb8 = 55.0f;
+    //     }
+    //     }
+    //     break;
+    // }
+    // if (sVar1 == 75) {
+    //     iVar3 = ::dEvt_info_c::a_this->eventInfo.checkCommandDemoAccrpt();
+    //     if (iVar3 == 0) {
+    //     fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
+    //     a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+    //     ::cXyz::~cXyz(&sp50,DTOR_DESTROY_ALL_BASES_AND_DELETE);
+    //     ::cXyz::~cXyz(&sp44,DTOR_DESTROY_ALL_BASES_AND_DELETE);
+    //     return;
+    //     }
+    //     i_this->field_0xb42 = 76;
+    //     camera->mCamera.Stop();
+    //     camera->mCamera.SetTrimSize(3);
+    //     i_this->field_0xb44 = 0;
+    //     i_this->field_0xbb8 = 55.0f;
+    //     player->changeOriginalDemo();
+    //     player->changeDemoMode(1,1,0,0);
+    // LAB_80a51004:
+    //     setPlayerPosAndAngle(&player->current.pos,i_this->field81_0x5c8 + -0x8000);
+    //     if (i_this->field_0xb44 == 0) {
+    //     cMtx_YrotS(*calc_mtx,a_this->shape_angle.y);
+    //     sp44.x = 0.0f;
+    //     sp44.y = 100.0f;
+    //     sp44.z = 400.0f;
+    //     MtxPosition(&sp44,&i_this->field_0xb48);
+    //     ::cXyz::operator_+=(&i_this->field_0xb48,(Vec *)&a_this->current);
+    //     ::cXyz::operator_=(&i_this->field_0xb60,&a_this->current.pos);
+    //     i_this->field_0xb60.y = a_this->current.pos.y + 120.0f;
+    //     }
+    //     cLib_addCalc2(&i_this->field_0xb60.x,a_this->current.pos.x,0.2,60.0f);
+    //     cLib_addCalc2
+    //             (&i_this->field_0xb60.y,a_this->current.pos.y + 120.0f,0.1,30.0f);
+    //     cLib_addCalc2(&i_this->field_0xb60.z,a_this->current.pos.z,0.2,60.0f);
+    //     if (i_this->field_0xb44 == 180) {
+    //     i_this->field_0xb42 = 99;
+    //     }
+    //     break;
+    // }
+    // if (sVar1 < 75) {
+    //     if (sVar1 == 72) {
+    //     iVar3 = ::dEvt_info_c::a_this->eventInfo.checkCommandDemoAccrpt();
+    //     if (iVar3 == 0) {
+    //         fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
+    //         a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+    //         ::cXyz::~cXyz(&sp50,DTOR_DESTROY_ALL_BASES_AND_DELETE);
+    //         ::cXyz::~cXyz(&sp44,DTOR_DESTROY_ALL_BASES_AND_DELETE);
+    //         return;
+    //     }
+    //     i_this->field_0xb42 = 73;
+    //     camera->mCamera.Stop();
+    //     camera->mCamera.SetTrimSize(3);
+    //     i_this->field_0xb44 = 0;
+    //     i_this->field_0xbb8 = 55.0f;
+    //     player->changeOriginalDemo();
+    //     player->changeDemoMode(1,1,0,0);
+    //     } else {
+    //     if (sVar1 < 72) {
+    //         if (sVar1 == 70) {
+    //         iVar3 = ::dEvt_info_c::a_this->eventInfo.checkCommandDemoAccrpt();
+    //         if (iVar3 == 0) {
+    //             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
+    //             a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+    //             ::cXyz::~cXyz(&sp50,DTOR_DESTROY_ALL_BASES_AND_DELETE);
+    //             ::cXyz::~cXyz(&sp44,DTOR_DESTROY_ALL_BASES_AND_DELETE);
+    //             return;
+    //         }
+    //         i_this->field_0xb42 = 71;
+    //         camera->mCamera.Stop();
+    //         camera->mCamera.SetTrimSize(3);
+    //         i_this->field_0xb44 = 0;
+    //         i_this->field_0xbb8 = 55.0f;
+    //         player->changeOriginalDemo();
+    //         player->changeDemoMode(1,1,0,0);
+    //         }
+    //         else if (sVar1 < 70) break;
+    //         sVar1 = i_this->field_0xb44;
+    //         if (sVar1 == 0) {
+    //         ::cXyz::operator_=(&i_this->field_0xb60,&a_this->current.pos);
+    //         i_this->field_0xb60.y = a_this->current.pos.y + 120.0f;
+    //         i_this->field_0xb48.set(-4786.0f,3982.0f,-1843.0f);
+    //         }
+    //         else if (sVar1 == 210) {
+    //         i_this->field_0xb48.set(-3232.0f,4137.0f,-1425.0f);
+    //         }
+    //         else if (sVar1 == 240) {
+    //         i_this->field_0xb48.set(-2459.0f,4199.0f,-2752.0f);
+    //         }
+    //         else if (sVar1 == 290) {
+    //         i_this->field_0xb48.set(103.0f,4025.0f,-1930.0f);
+    //         }
+    //         cLib_addCalc2(&i_this->field_0xb60.x,a_this->current.pos.x,0.2,60.0f)
+    //         ;
+    //         cLib_addCalc2
+    //                 (&i_this->field_0xb60.y,a_this->current.pos.y + 120.0f,0.1,30.0f);
+    //         cLib_addCalc2(&i_this->field_0xb60.z,a_this->current.pos.z,0.2,60.0f)
+    //         ;
+    //         if (i_this->field_0xb44 == 358) {
+    //         i_this->field_0xb42 = 99;
+    //         }
+    //         break;
+    //     }
+    //     if (73 < sVar1) break;
+    //     }
+    //     if (i_this->field_0xb44 == 0) {
+    //     ::cXyz::operator_=(&i_this->field_0xb60,&a_this->current.pos);
+    //     i_this->field_0xb60.y = a_this->current.pos.y + 120.0f;
+    //     i_this->field_0xb48.set(-112.0f,2420.0f,13414.0f);
+    //     }
+    //     sp50.set(145.0f,2354.0f,13179.0f);
+    //     setPlayerPosAndAngle(&sp50,-0x691b);
+    //     cLib_addCalc2(&i_this->field_0xb60.x,a_this->current.pos.x,0.1,20.0f);
+    //     cLib_addCalc2
+    //             (&i_this->field_0xb60.y,a_this->current.pos.y + 120.0f,0.1,10.0f);
+    //     cLib_addCalc2(&i_this->field_0xb60.z,a_this->current.pos.z,0.12,20.0f);
+    //     if (i_this->field_0xb44 == 280) {
+    //     i_this->field_0xb42 = 100;
+    //     }
+    //     break;
+    // }
+    // if (sVar1 == 78) {
+    // LAB_80a511b0:
+    //     cLib_addCalc2(&i_this->field_0xbb8,55.0f,0.05,0.2);
+    //     if (i_this->field_0xb44 != 80) break;
+    //     i_this->field_0xb42 = 79;
+    //     i_this->field_0xb44 = 0;
+    // }
+    // else {
+    //     if (sVar1 < 78) {
+    //     if (sVar1 < 77) goto LAB_80a51004;
+    //     iVar3 = ::dEvt_info_c::a_this->eventInfo.checkCommandDemoAccrpt();
+    //     if (iVar3 == 0) {
+    //         fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
+    //         a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+    //         ::cXyz::~cXyz(&sp50,DTOR_DESTROY_ALL_BASES_AND_DELETE);
+    //         ::cXyz::~cXyz(&sp44,DTOR_DESTROY_ALL_BASES_AND_DELETE);
+    //         return;
+    //     }
+    //     i_this->field_0xb42 = 78;
+    //     camera->mCamera.Stop();
+    //     camera->mCamera.SetTrimSize(3);
+    //     i_this->field_0xb44 = 0;
+    //     i_this->field_0xbb8 = 55.0f;
+    //     player->changeOriginalDemo();
+    //     player->changeDemoMode(1,1,0,0);
+    //     i_this->field_0xbb8 = 65.0f;
+    //     i_this->field_0xb60.set(8486.0f,4143.0f,-10114.0f);
+    //     i_this->field_0xb48.set(8364.0f,4325.0f,-9756.0f);
+    //     goto LAB_80a511b0;
+    //     }
+    //     if (79 < sVar1) {
+    //     iVar3 = ::dEvt_info_c::a_this->eventInfo.checkCommandDemoAccrpt();
+    //     if (iVar3 == 0) {
+    //         fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
+    //         a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+    //         ::cXyz::~cXyz(&sp50,DTOR_DESTROY_ALL_BASES_AND_DELETE);
+    //         ::cXyz::~cXyz(&sp44,DTOR_DESTROY_ALL_BASES_AND_DELETE);
+    //         return;
+    //     }
+    //     i_this->field_0xb42 = 81;
+    //     camera->mCamera.Stop();
+    //     camera->mCamera.SetTrimSize(3);
+    //     i_this->field_0xb44 = 0;
+    //     i_this->field_0xbb8 = 55.0f;
+    //     player->changeOriginalDemo();
+    //     player->changeDemoMode(1,1,0,0);
+    //     goto LAB_80a5136c;
+    //     }
+    // }
+    // if (i_this->field_0xb44 == 0) {
+    //     ::cXyz::operator_=(&i_this->field_0xb60,&a_this->current.pos);
+    //     i_this->field_0xb60.y = a_this->current.pos.y + 120.0f;
+    //     i_this->field_0xb48.set(6899.0f,3867.0f,-8870.0f);
+    // }
+    // else if (i_this->field_0xb44 == 60) {
+    //     i_this->field_0xb48.set(8222.0f,3896.0f,-9579.0f);
+    // }
+    // cLib_addCalc2(&i_this->field_0xb60.x,a_this->current.pos.x,0.2,60.0f);
+    // cLib_addCalc2
+    //             (&i_this->field_0xb60.y,a_this->current.pos.y + 120.0f,0.1,30.0f);
+    // cLib_addCalc2(&i_this->field_0xb60.z,a_this->current.pos.z,0.2,60.0f);
+    // if (129 < i_this->field_0xb44) {
+    //     cLib_addCalc2(&i_this->field_0xbb8,40.0f,0.05,0.3);
+    // }
+    // if (i_this->field_0xb44 == 200) {
+    //     i_this->field_0xb42 = 100;
+    //     dSv_info_c::onSwitch
+    //             (&d_com_inf_game::g_dComIfG_gameInfo.info,0x53,
+    //             (int)(char)a_this->current.roomNo);
+    // }
+    // LAB_80a5266c:
+    // sVar1 = i_this->field_0xb42;
+    // if ((sVar1 == 99) || (sVar1 == 98)) {
+    //     if (sVar1 == 99) {
+    //     f_op_actor_mng::fopAcM_delete(&i_this->base);
+    //     }
+    //     cMtx_YrotS(*calc_mtx,player->shape_angle.y);
+    //     sp44.x = 0.0f;
+    //     sp44.y = 100.0f;
+    //     sp44.z = -250.0f;
+    //     MtxPosition(&sp44,&i_this->field_0xb48);
+    //     i_this->field_0xb48 += player->current.pos;
+    //     i_this->field_0xb60 = player->current.pos;
+    //     i_this->field_0xb60.y = i_this->field_0xb60.y + 120.0f;
+    //     i_this->field_0xb42 = 100;
+    // }
+    // if (i_this->field_0xb42 == 100) {
+    //     ::cXyz::cXyz(&cStack_68,&i_this->field_0xb60);
+    //     ::cXyz::cXyz(&cStack_74,&i_this->field_0xb48);
+    //     dCamera_c::Reset(&camera->mCamera,&cStack_68,&cStack_74,i_this->field_0xbb8,0);
+    //     ::cXyz::~cXyz(&cStack_74,DTOR_DESTROY_ALL_BASES_AND_DELETE);
+    //     ::cXyz::~cXyz(&cStack_68,DTOR_DESTROY_ALL_BASES_AND_DELETE);
+    //     dCamera_c::Start(&camera->mCamera);
+    //     dCamera_c::SetTrimSize(&camera->mCamera,0);
+    //     dComIfGp_event_reset();
+    //     player = daPy_getPlayerActorClass();
+    //     ::daPy_py_c::cancelOriginalDemo(player);
+    //     i_this->field_0xb42 = 0;
+    // }
+    // if (i_this->field_0xb42 != 0) {
+    //     ::cXyz::cXyz(&cStack_80,&i_this->field_0xb60);
+    //     ::cXyz::cXyz(&cStack_8c,&i_this->field_0xb48);
+    //     dCamera_c::Set(&camera->mCamera,&cStack_80,&cStack_8c,i_this->field_0xbb8,0);
+    //     ::cXyz::~cXyz(&cStack_8c,DTOR_DESTROY_ALL_BASES_AND_DELETE);
+    //     ::cXyz::~cXyz(&cStack_80,DTOR_DESTROY_ALL_BASES_AND_DELETE);
+    //     i_this->field_0xb44 = i_this->field_0xb44 + 1;
+    // }
 }
 
 /* 80A5280C-80A52898 00996C 008C+00 3/3 0/0 0/0 .text            saru_count_check__FP12npc_ks_class
