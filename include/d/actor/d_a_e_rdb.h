@@ -16,17 +16,6 @@
  */
 class e_rdb_class {
 public:
-    enum e_rdb_ACTION {
-        ACT_START,
-        ACT_WAIT,
-        ACT_FIGHT,
-        ACT_ATTACK,
-        ACT_SPIN_ATTACK,
-        ACT_DEFENCE,
-        ACT_DAMAGE,
-        ACT_END,
-    };
-
     /* 8076AA0C */ e_rdb_class() {};
 
     /* 0x0000 */ fopEn_enemy_c enemy;

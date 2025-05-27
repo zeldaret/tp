@@ -16,6 +16,17 @@
 
 UNK_REL_DATA;
 
+enum Action {
+    ACTION_START,
+    ACTION_WAIT,
+    ACTION_FIGHT,
+    ACTION_ATTACK,
+    ACTION_SPIN_ATTACK,
+    ACTION_DEFENCE,
+    ACTION_DAMAGE,
+    ACTION_END,
+};
+
 /* 807650CC-807650F0 0000EC 0024+00 1/1 0/0 0/0 .text            __ct__13daE_RDB_HIO_cFv */
 daE_RDB_HIO_c::daE_RDB_HIO_c() {
     field_0x4 = -1;
@@ -180,16 +191,14 @@ static void e_rdb_wait(e_rdb_class* i_this) {
     if (i_this->mDistToPlayer > fVar1) {
         i_this->mAction = 2;
         i_this->mMode = 0;
-    } else {
-        if (i_this->mDistToPlayer < fVar1 && i_this->field_0x6b8[0] == 0) {
-            if (i_this->field_0xfcc >= 2 && strcmp(dComIfGp_getStartStageName(), "D_MN09") == 0) {
-                i_this->mAction = 4;
-            } else {
-                i_this->mAction = 3;
-            }
-
-            i_this->mMode = 0;
+    } else if (i_this->mDistToPlayer < fVar1 && i_this->field_0x6b8[0] == 0) {
+        if (i_this->field_0xfcc >= 2 && strcmp(dComIfGp_getStartStageName(), "D_MN09") == 0) {
+            i_this->mAction = 4;
+        } else {
+            i_this->mAction = 3;
         }
+
+        i_this->mMode = 0;
     }
 }
 
@@ -207,14 +216,14 @@ static void e_rdb_fight(e_rdb_class* i_this) {
             if (i_this->mAnm == 70) {
                 fVar1 = 3.0f;
                 if (i_this->mDistToPlayer > 700.0f) {
-                anm_init(i_this, 64, 10.0f, 2, 1.0f);
+                    anm_init(i_this, 64, 10.0f, 2, 1.0f);
                 }
             } else {
                 fVar1 = 10.0f;
                 if (i_this->mDistToPlayer < 600.0f) {
-                i_this->field_0x5cc = 3.0f;
-                anm_init(i_this, 70, 10.0f, 2, i_this->field_0x5cc);
-                fVar1 = 3.0f;
+                    i_this->field_0x5cc = 3.0f;
+                    anm_init(i_this, 70, 10.0f, 2, i_this->field_0x5cc);
+                    fVar1 = 3.0f;
                 }
             }
     }
@@ -262,7 +271,7 @@ static int getPolyColor(cBgS_PolyInfo& i_polyInfo, int param_2, _GXColor* p_effP
 /* 80765B70-80765E70 000B90 0300+00 1/1 0/0 0/0 .text            e_rdb_attack__FP11e_rdb_class */
 static void e_rdb_attack(e_rdb_class* i_this) {
     // NONMATCHING
-    static u16 ap_name_4291[3] = {
+    static u16 ap_name[3] = {
         0x8A5C,
         0x8A5D,
         0x8A5E,
@@ -295,11 +304,11 @@ static void e_rdb_attack(e_rdb_class* i_this) {
 
                     for (int i = 0; i <= 2; i++) {
                         if (i == 0) {
-                            dComIfGp_particle_setColor(ap_name_4291[i], &i_this->enemy.current.pos, &i_this->enemy.tevStr, 
+                            dComIfGp_particle_setColor(ap_name[i], &i_this->enemy.current.pos, &i_this->enemy.tevStr, 
                                                     &i_effPrim, &i_effEnv, i_ratio, i_alpha, &i_this->enemy.shape_angle,
                                                     &i_scale, NULL, -1, NULL);
                         } else {
-                            dComIfGp_particle_set(ap_name_4291[i], &i_this->enemy.current.pos, &i_this->enemy.shape_angle, &i_scale);
+                            dComIfGp_particle_set(ap_name[i], &i_this->enemy.current.pos, &i_this->enemy.shape_angle, &i_scale);
                         }
                     }
                 }
@@ -332,7 +341,7 @@ static void e_rdb_attack(e_rdb_class* i_this) {
 /* 80765E70-80766188 000E90 0318+00 1/1 0/0 0/0 .text            e_rdb_spin_attack__FP11e_rdb_class */
 static void e_rdb_spin_attack(e_rdb_class* i_this) {
     // NONMATCHING
-    static u16 ap_name_4373[2] = {
+    static u16 ap_name[2] = {
         0x8A5F,
         0x8A60,
     };
@@ -384,11 +393,11 @@ static void e_rdb_spin_attack(e_rdb_class* i_this) {
         cXyz i_scale(1.55f, 1.55f, 1.55f);
         for (int i = 0; i <= 1; i++) {
             if (i == 0) {
-                i_this->field_0xfd0[i] = dComIfGp_particle_setColor(i_this->field_0xfd0[i], ap_name_4373[i], &i_this->enemy.current.pos, &i_this->enemy.tevStr, 
+                i_this->field_0xfd0[i] = dComIfGp_particle_setColor(i_this->field_0xfd0[i], ap_name[i], &i_this->enemy.current.pos, &i_this->enemy.tevStr, 
                                                                     &i_effPrim, &i_effEnv, i_ratio, i_alpha, &i_this->enemy.shape_angle,
                                                                     &i_scale, NULL, -1, NULL);
             } else {
-                i_this->field_0xfd0[i] = dComIfGp_particle_set(i_this->field_0xfd0[i], ap_name_4373[i], 
+                i_this->field_0xfd0[i] = dComIfGp_particle_set(i_this->field_0xfd0[i], ap_name[i], 
                                                                &i_this->enemy.current.pos, &i_this->enemy.shape_angle, &i_scale);
             }
         }
@@ -876,45 +885,45 @@ static void action(e_rdb_class* i_this) {
     char sVar3 = 1;
 
     switch (i_this->mAction) {
-        case e_rdb_class::ACT_START:
+        case ACTION_START:
             e_rdb_start(i_this);
             sVar2 = 0;
             sVar3 = 0;
             break;
 
-        case e_rdb_class::ACT_WAIT:
+        case ACTION_WAIT:
             e_rdb_wait(i_this);
             sVar1 = 1;
             break;
 
-        case e_rdb_class::ACT_FIGHT:
+        case ACTION_FIGHT:
             e_rdb_fight(i_this);
             sVar1 = 1;
             break;
 
-        case e_rdb_class::ACT_ATTACK:
+        case ACTION_ATTACK:
             e_rdb_attack(i_this);
             sVar1 = 1;
             sVar3 = 0;
             break;
 
-        case e_rdb_class::ACT_SPIN_ATTACK:
+        case ACTION_SPIN_ATTACK:
             e_rdb_spin_attack(i_this);
             sVar1 = 1;
             sVar3 = 0;
             break;
 
-        case e_rdb_class::ACT_DEFENCE:
+        case ACTION_DEFENCE:
             sVar3 = e_rdb_defence(i_this);
             sVar1 = 1;
             break;
 
-        case e_rdb_class::ACT_DAMAGE:
+        case ACTION_DAMAGE:
             e_rdb_damage(i_this);
             sVar3 = 0;
             break;
 
-        case e_rdb_class::ACT_END:
+        case ACTION_END:
             e_rdb_end(i_this);
             sVar3 = 0;
     }
@@ -958,7 +967,7 @@ static void action(e_rdb_class* i_this) {
 
         if ((iVar1 != 0 && player_way_check(i_this) != 0) || ((i_this->mDistToPlayer < 500.0f && player_way_check(i_this) != 0 && bVar1) && 
              (player->checkNowWolf() || (strcmp(dComIfGp_getStartStageName(), "D_MN09") == 0) || (i_this->field_0x6ec & cc_pl_cut_bit_get()) != 0))) {
-            i_this->mAction = e_rdb_class::ACT_DEFENCE;
+            i_this->mAction = ACTION_DEFENCE;
             i_this->mMode = 0;
             i_this->field_0x6c0 = 3;
         }
@@ -1129,7 +1138,7 @@ static void demo_camera(e_rdb_class* i_this) {
 
                 if (i_this->field_0x10aa == 130) {
                     sVar1 = 1;
-                    i_this->mAction = e_rdb_class::ACT_WAIT;
+                    i_this->mAction = ACTION_WAIT;
                     i_this->mMode = 10;
                     Z2GetAudioMgr()->subBgmStart(Z2BGM_FACE_OFF_BATTLE3);
                 }
@@ -1309,9 +1318,9 @@ static void demo_camera(e_rdb_class* i_this) {
                 fopAcM_delete(fopAcM_SearchByName(PROC_E_RD));
                 fopAcM_delete(fopAcM_SearchByName(PROC_E_WB));
                 dComIfGs_onStageMiddleBoss();
-                int i_no = fopAcM_GetParam(a_this) >> 24;
-                if (i_no != 0xFF) {
-                    dComIfGs_onSwitch(i_no, fopAcM_GetRoomNo(a_this));
+                int swBit = fopAcM_GetParam(a_this) >> 24;
+                if (swBit != 0xFF) {
+                    dComIfGs_onSwitch(swBit, fopAcM_GetRoomNo(a_this));
                 }
             }
     }
@@ -1319,7 +1328,7 @@ static void demo_camera(e_rdb_class* i_this) {
     if (i_this->mDemoMode > 0 && i_this->mDemoMode < 10) {
         if (dComIfGp_getEvent().checkSkipEdge()) {
             sVar1 = 1;
-            i_this->mAction = e_rdb_class::ACT_WAIT;
+            i_this->mAction = ACTION_WAIT;
             i_this->mMode = 10;
             Z2GetAudioMgr()->subBgmStart(Z2BGM_FACE_OFF_BATTLE3);
         }
@@ -1821,7 +1830,7 @@ static int daE_RDB_Create(fopAc_ac_c* actor) {
             return cPhs_ERROR_e;
         }
 
-        i_this->mAction = e_rdb_class::ACT_WAIT;
+        i_this->mAction = ACTION_WAIT;
         i_this->mMode = 0;
 
         if (lbl_224_bss_45 == 0) {
@@ -1869,7 +1878,7 @@ static int daE_RDB_Create(fopAc_ac_c* actor) {
         i_this->mAtInfo.mPowerType = 6;
 
         if (strcmp(dComIfGp_getStartStageName(), "D_MN09") == 0) {
-            i_this->mAction = e_rdb_class::ACT_START;
+            i_this->mAction = ACTION_START;
             i_this->mMode = 10;
             actor->current.pos.set(-7625.0f, 50.0f, -5825.0f);
             actor->current.angle.y = 0;
@@ -1877,11 +1886,11 @@ static int daE_RDB_Create(fopAc_ac_c* actor) {
             actor->home = actor->current;
         } else if (i_this->field_0x5b6 == 0xFF) {
             i_this->field_0xfcf = 1;
-            i_this->mAction = e_rdb_class::ACT_START;
+            i_this->mAction = ACTION_START;
             actor->current.angle.y = 26000;
             i_this->field_0x6e0 = -50.0f;
         } else {
-            i_this->mAction = e_rdb_class::ACT_WAIT;
+            i_this->mAction = ACTION_WAIT;
         }
 
         i_this->field_0x680 = 1;
