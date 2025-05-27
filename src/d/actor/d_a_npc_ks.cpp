@@ -4830,6 +4830,180 @@ static void demo_camera(npc_ks_class* i_this) {
     cXyz sp44, sp50;
 
     switch (i_this->field_0xb42) {
+        case 1:
+            if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
+                fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
+                a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+                return;
+            }
+
+            i_this->field_0xb42 = 2;
+            camera->mCamera.Stop();
+            camera->mCamera.SetTrimSize(3);
+            i_this->field_0xb44 = 0;
+            player->changeOriginalDemo();
+            player->changeDemoMode(19, 0, 0, 0);
+            player->changeDemoParam0(0);
+            i_this->field_0xb60 = player->current.pos;
+            i_this->field_0xba8.z = 500.0f;
+            i_this->field_0xba8.x = 500.0f;
+            i_this->field_0xba8.y = 0.0f;
+            // fallthrough
+        case 2:
+            i_this->field_0xbb8 = 55.0f;
+            cLib_addCalc2(&i_this->field_0xb60.x, player->current.pos.x, 0.2f, 50.0f);
+            cLib_addCalc2(&i_this->field_0xb60.y, sw_p->current.pos.y - 250.0f, 0.2f, 50.0f);
+            cLib_addCalc2(&i_this->field_0xb60.z, player->current.pos.z, 0.2f, 50.0f);
+            if (fopAcM_GetRoomNo(a_this) == 2) {
+                cMtx_YrotS(*calc_mtx, sw_p->current.angle.y);
+            } else {
+                cMtx_YrotS(*calc_mtx, player->shape_angle.y);
+            }
+
+            sp44.x = i_this->field_0xba8.x;
+            sp44.y = i_this->field_0xba8.y;
+            sp44.z = i_this->field_0xba8.z;
+            MtxPosition(&sp44,&sp50);
+
+            sp50.x = sp50.x + player->current.pos.x;
+            sp50.y = sp50.y + (sw_p->current.pos.y - 250.0f);
+            sp50.z = sp50.z + player->current.pos.z;
+            if (i_this->field_0xb44 == 0) {
+                i_this->field_0xb48 = sp50;
+            } else {
+                cLib_addCalc2(&i_this->field_0xb48.x, sp50.x, 0.1f, 200.0f);
+                cLib_addCalc2(&i_this->field_0xb48.y, sp50.y, 0.1f, 200.0f);
+                cLib_addCalc2(&i_this->field_0xb48.z, sp50.z, 0.1f, 200.0f);
+            }
+
+            if (i_this->field_0x92c != 0) {
+                i_this->field_0xba8.z += -10.0f;
+            }
+            break;
+
+        case 3:
+            cLib_addCalc2(&i_this->field_0xb60.x, player->current.pos.x, 0.4f, 100.0f);
+            cLib_addCalc2(&i_this->field_0xb60.y, player->current.pos.y + 70.0f, 0.4f, 100.0f);
+            cLib_addCalc2(&i_this->field_0xb60.z, player->current.pos.z, 0.4f, 100.0f);
+            cMtx_YrotS(*calc_mtx, player->shape_angle.y);
+            f32 fVar1 = 50.0f;
+            if (fopAcM_GetRoomNo(a_this) == 4 && i_this->field_0xbdb == 0) {
+                sp44.x = 100.0f;
+                sp44.y = 100.0f;
+                sp44.z = 300.0f;
+
+                if (i_this->field_0xb44 == 10) {
+                    player->changeDemoMode(40, 0, 0, 0);
+                }
+
+                if (i_this->field_0xb44 == 0x1c) {
+                    player->changeDemoMode(41, 0, 0, 0);
+                }
+
+                if (i_this->field_0xb44 == 40) {
+                    i_this->field_0xb42 = 100;
+                    i_this->field_0xbdb = 1;
+                }
+
+                fVar1 = 200.0f;
+            } else {
+                sp44.x = 0.0f;
+                sp44.y = 0.0f;
+                sp44.z = -400.0f;
+
+                if (i_this->field_0xb44 == 8) {
+                    i_this->field_0xb42 = 100;
+                }
+            }
+
+            MtxPosition(&sp44, &sp50);
+            sp50 = sp50 + player->current.pos;
+            cLib_addCalc2(&i_this->field_0xb48.x, sp50.x, 0.2f, fVar1);
+            cLib_addCalc2(&i_this->field_0xb48.y, sp50.y, 0.2f, fVar1);
+            cLib_addCalc2(&i_this->field_0xb48.z, sp50.z, 0.2f, fVar1);
+            break;
+
+        case 10:
+            if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
+                fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
+                a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+                return;
+            }
+
+            i_this->field_0xb42 = 11;
+            camera->mCamera.Stop();
+            camera->mCamera.SetTrimSize(3);
+            i_this->field_0xb44 = 0;
+            i_this->field_0xbb8 = 55.0f;
+            i_this->field_0xba8.z = 500.0f;
+            i_this->field_0xba8.x = 500.0f;
+            i_this->field_0xba8.y = 0.0f;
+            i_this->field_0xbc0 = NULL;
+            // fallthrough
+
+            sp50 = i_this->field_0xbc8;
+            sp50.y = player->current.pos.y;
+            setPlayerPosAndAngle(&sp50, player->shape_angle.y);
+            npc_ks_class* npc_ks_p = i_this->field_0xbc0;
+            i_this->field_0xbc0 = get_move_saru(i_this,sw_p->field_0x91c);;
+            i_this->field_0xb6c.y = sw_p->current.pos.y - 200.0f;
+            if (i_this->field_0xbc0 == NULL) {
+                if (all_hang_check(i_this, sw_p->field_0x91c) != 0) {
+                    i_this->field_0xb42 = 12;
+                    if (fopAcM_GetRoomNo(a_this) == 0) {
+                        i_this->field_0xb44 = 45;
+                    } else if (sw_p->field_0x91c < 3) {
+                        i_this->field_0xb44 = 45;
+                    } else {
+                        i_this->field_0xb6c.x = saru_p[sw_p->field_0x91c]->actor.current.pos.x;
+                        i_this->field_0xb6c.y = saru_p[sw_p->field_0x91c]->actor.current.pos.y;
+                        i_this->field_0xb6c.y = i_this->field_0xb6c.y - 150.0f;
+                        i_this->field_0xb6c.z = saru_p[sw_p->field_0x91c]->actor.current.pos.z;
+                        
+                        i_this->field_0xb84.x = fabsf(i_this->field_0xb6c.x - i_this->field_0xb60.x);
+                        i_this->field_0xb84.y = fabsf(i_this->field_0xb6c.y - i_this->field_0xb60.y);
+                        i_this->field_0xb84.z = fabsf(i_this->field_0xb6c.z - i_this->field_0xb60.z);
+                        i_this->field_0xbc4 = 0.0f;
+                        i_this->field_0xb44 = 5;
+                    }
+                }
+            } else {
+                sw_p = i_this->field_0xbc0->field_0x934;
+                cMtx_YrotS(*calc_mtx, i_this->field_0xbd4);
+                sp44.x = i_this->field_0xba8.x;
+                sp44.y = i_this->field_0xba8.y;
+                sp44.z = i_this->field_0xba8.z;
+                MtxPosition(&sp44, &i_this->field_0xb54);
+                i_this->field_0xb54.x += i_this->field_0xbc0->actor.current.pos.x;
+                i_this->field_0xb54.y += sw_p->current.pos.y - 250.0f;
+                i_this->field_0xb54.z += i_this->field_0xbc0->actor.current.pos.z;
+                i_this->field_0xb6c.x = i_this->field_0xbc0->actor.current.pos.x;
+                i_this->field_0xb6c.y = sw_p->current.pos.y - 200.0f;
+
+                if (i_this->field_0xbc0->mActionID == 20 && i_this->field_0xbc0->actor.current.pos.y > i_this->field_0xb6c.y) {
+                    i_this->field_0xb6c.y = i_this->field_0xbc0->actor.current.pos.y;
+                }
+
+                i_this->field_0xb6c.z = i_this->field_0xbc0->actor.current.pos.z;
+                if (npc_ks_p != i_this->field_0xbc0) {
+                    i_this->field_0xb48 = i_this->field_0xb54;
+                    i_this->field_0xb60 = i_this->field_0xb6c;
+                }
+                i_this->field_0xb84.set(200.0f, 200.0f, 200.0f);
+                i_this->field_0xbc4 = 1.0f;
+            }
+            break;
+            
+        case 61:
+            sp50 = player->old.pos;
+            sp50.y = 3150.0f;
+            setPlayerPosAndAngle(&sp50, player->shape_angle.y);
+            i_this->field_0xbb8 = 65.0f;
+            cLib_addCalc2(&i_this->field_0xb60.x, a_this->eyePos.x, 0.1f, 50.0f);
+            cLib_addCalc2(&i_this->field_0xb60.y, a_this->eyePos.y, 0.1f, 50.0f);
+            cLib_addCalc2(&i_this->field_0xb60.z, a_this->eyePos.z, 0.1f, 50.0f);
+            break;
+
         case 81:
             if (i_this->field_0xb44 == 0) {
                 saru_p[3]->actor.current.pos.x = -500.0f;
@@ -5088,6 +5262,20 @@ static void demo_camera(npc_ks_class* i_this) {
             i_this->field_0xb48.set(-30601.0f, 388.0f, -17465.0f);
             break;
 
+        case 301:
+            sp50.set(-30496.0f,300.0f,-17449.0f);
+            setPlayerPosAndAngle(&sp50, -0x18B4);
+            if (i_this->field_0xb44 == 60) {
+                i_this->field_0xb42 = 302;
+                i_this->field_0xb44 = 0;
+                i_this->field_0xb60.set(-30844.0f, 298.0f, -17007.0f);
+                i_this->field_0xb48.set(-30653.0f, 357.0f, -17289.0f);
+                anm_init(i_this, 51, 5.0f, 2, 1.0f);
+                i_this->field_0xc17 = 3;
+                mDoAud_seStart(0x600AC, &i_this->field_0xc04, 0, 0);
+            }
+            break;
+
         case 302:
             if (i_this->field_0xb44 == 30) {
                 dComIfGp_setItemOilCount(-(dComIfGs_getMaxOil() & 0xFFFF));
@@ -5099,6 +5287,181 @@ static void demo_camera(npc_ks_class* i_this) {
                 i_this->field_0xb60.set(-30887.0f,429.0f,-17181.0f);
                 i_this->field_0xb48.set(-30870.0f,471.0f,-17527.0f);
             }
+            break;
+
+        case 303:
+            if (i_this->field_0xb44 == 10) {
+                anm_init(i_this, 26, 3.0f, 2, 1.0f);
+                i_this->mMode = 301;
+                a_this->speedF = l_HIO.field_0x1c;
+            }
+
+            if (i_this->field_0xb44 == 0x50) {
+                i_this->field_0xb42 = 100;
+                i_this->mMode = 302;
+                anm_init(i_this, 51, 5.0f, 2, 1.0f);
+                dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0xe1]);
+                dComIfGs_offSwitch(61, fopAcM_GetRoomNo(a_this));
+            }
+            break;
+
+        case 350:
+            if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
+                fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
+                a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+                return;
+            }
+
+            i_this->field_0xb42 = 351;
+            camera->mCamera.Stop();
+            camera->mCamera.SetTrimSize(3);
+            i_this->field_0xb44 = 0;
+            i_this->field_0xbb8 = 55.0f;
+            player->changeOriginalDemo();
+            i_this->field_0xb60 = a_this->current.pos;
+            i_this->field_0xb48.set(-37509.0f, 805.0f, -22416.0f);
+            break;
+
+        case 351:
+            sp44.set(-36523.0f, 335.0f, -20500.0f);
+            daPy_getPlayerActorClass()->setPlayerPosAndAngle(&sp44, 0xffff8000, 0);
+            sp44 = a_this->current.pos;
+            cLib_addCalc2(&i_this->field_0xb60.x, sp44.x, 0.2f, 50.0f);
+            cLib_addCalc2(&i_this->field_0xb60.y, sp44.y + 100.0f, 0.2f, 50.0f);
+            cLib_addCalc2(&i_this->field_0xb60.z, sp44.z, 0.2f, 50.0f);
+
+            if (i_this->field_0xb44 == 105) {
+                i_this->field_0xb48.set(-37817.0f, 800.0f, -21442.0f);
+            }
+
+            if (i_this->field_0xb44 == 178) {
+                fpcM_Search(s_fsdown_sub, i_this);
+            }
+
+            if (i_this->field_0xb44 == 180) {
+                i_this->field_0xb60.set(-36666.0f, 600.0f, -22213.0f);
+                i_this->field_0xb48.set(-36489.0f, 399.0f, -20932.0f);
+                i_this->field_0xb6c.set(-36574.0f, 421.0f, -21554.0f);
+                i_this->field_0xb54.set(-36397.0f, 374.0f, -20263.0f);
+
+                i_this->field_0xb78.x = fabsf(i_this->field_0xb54.x - i_this->field_0xb48.x);
+                i_this->field_0xb78.y = fabsf(i_this->field_0xb54.y - i_this->field_0xb48.y);
+                i_this->field_0xb78.z = fabsf(i_this->field_0xb54.z - i_this->field_0xb48.z);
+                i_this->field_0xb84.x = fabsf(i_this->field_0xb6c.x - i_this->field_0xb60.x);
+                i_this->field_0xb84.y = fabsf(i_this->field_0xb6c.y - i_this->field_0xb60.y);
+                i_this->field_0xb84.z = fabsf(i_this->field_0xb6c.z - i_this->field_0xb60.z);
+                i_this->field_0xbc4 = 0.0f;
+                i_this->field_0xb42 = 352;
+                i_this->field_0xb44 = 0;
+                i_this->field_0xb60.y = 1500.0f;
+            }
+            break;
+
+        case 352:
+            if (i_this->field_0xb44 == 40) {
+                i_this->mMode = 40;
+            }
+
+            if (i_this->field_0xb44 == 110) {
+                fpcM_Search(s_fsdown_sub, i_this);
+            }
+
+            if (i_this->field_0xb44 < 161) {
+                if (25 < i_this->field_0xb44) {
+                    cLib_addCalc2(&i_this->field_0xb60.y, 600.0f, 0.5f, 100.0f);
+                }
+            } else {
+                cam_3d_morf(i_this, 0.1f);
+                cLib_addCalc2(&i_this->field_0xbc4, 0.2f, 1.0f, 0.005f);
+            }
+
+            if (i_this->field_0xb44 == 230) {
+                i_this->field_0xb42 = 100;
+                fpcM_Search(s_fsdown_sub, i_this);
+                dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x220]);
+            }
+            break;
+
+        case 360:
+            if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
+                fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
+                a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+                return;
+            }
+
+            i_this->field_0xb42 = 361;
+            camera->mCamera.Stop();
+            camera->mCamera.SetTrimSize(3);
+            i_this->field_0xb44 = 0;
+            i_this->field_0xbb8 = 55.0f;
+            player->changeOriginalDemo();
+
+            i_this->field_0xb60.set(-36581.0f, 412.0f, -21418.0f);
+            i_this->field_0xb48.set(-36509.0f, 412.0f, -21127.0f);
+            i_this->field_0xb6c.set(-38113.0f, 1234.0f, -22897.0f);
+            i_this->field_0xb54.set(-37882.0f, 1182.0f, -22713.0f);
+
+            i_this->field_0xb78.x = fabsf(i_this->field_0xb54.x - i_this->field_0xb48.x);
+            i_this->field_0xb78.y = fabsf(i_this->field_0xb54.y - i_this->field_0xb48.y);
+            i_this->field_0xb78.z = fabsf(i_this->field_0xb54.z - i_this->field_0xb48.z);
+            i_this->field_0xb84.x = fabsf(i_this->field_0xb6c.x - i_this->field_0xb60.x);
+            i_this->field_0xb84.y = fabsf(i_this->field_0xb6c.y - i_this->field_0xb60.y);
+            i_this->field_0xb84.z = fabsf(i_this->field_0xb6c.z - i_this->field_0xb60.z);
+            i_this->field_0xbc4 = 0.0f;
+            anm_init(i_this, 39, 5.0f, 2, 1.0f);
+            i_this->mMode = 41;
+            i_this->mTimers[0] = 30;
+            break;
+
+        case 361:
+        case 362:
+            sp44.set(-36540.0f, 335.0f, -20870.0f);
+            daPy_getPlayerActorClass()->setPlayerPosAndAngle(&sp44, 0xffff8000, 0);
+            if (i_this->field_0xb44 >= 105) {
+                if (i_this->field_0xb44 == 105) {
+                    i_this->mMsgFlow.init(a_this, 116, 0, NULL);
+                }
+
+                if (i_this->mMsgFlow.getNowMsgNo() == 0x1421) {
+                    i_this->field_0xb42 = 362;
+                    i_this->field_0xb44 = 0;
+                }
+                i_this->mMsgFlow.doFlow(a_this, NULL, 0);
+            }
+            break;
+
+        case 363:
+            cam_3d_morf(i_this,0.1);
+            cLib_addCalc2(&i_this->field_0xbc4, 0.3f, 1.0f, 0.01f);
+            if (i_this->mMsgFlow.doFlow(a_this, NULL, 0) != 0) {
+                i_this->field_0xb42 = 100;
+            }
+            break;
+
+        case 364:
+            if (i_this->field_0xb44 == 15) {
+                i_this->mTimers[2] = 30;
+            }
+            if (29 < i_this->field_0xb44) {
+                cam_3d_morf(i_this,0.2);
+                cLib_addCalc2(&i_this->field_0xbc4,0.3,1.0f,0.01);
+            }
+
+            if (i_this->mMsgFlow.getNowMsgNo() == 0x1423) {
+                i_this->field_0xb42 = 363;
+                i_this->field_0xb44 = 0;
+                i_this->field_0xb6c.set(-36467.0f, 426.0f, -20914.0f);
+                i_this->field_0xb54.set(-36244.0f, 409.0f, -20714.0f);
+
+                i_this->field_0xb78.x = fabsf(i_this->field_0xb54.x - i_this->field_0xb48.x);
+                i_this->field_0xb78.y = fabsf(i_this->field_0xb54.y - i_this->field_0xb48.y);
+                i_this->field_0xb78.z = fabsf(i_this->field_0xb54.z - i_this->field_0xb48.z);
+                i_this->field_0xb84.x = fabsf(i_this->field_0xb6c.x - i_this->field_0xb60.x);
+                i_this->field_0xb84.y = fabsf(i_this->field_0xb6c.y - i_this->field_0xb60.y);
+                i_this->field_0xb84.z = fabsf(i_this->field_0xb6c.z - i_this->field_0xb60.z);
+                i_this->field_0xbc4 = 0.0f;
+            }
+            i_this->mMsgFlow.doFlow(a_this, NULL, 0);
             break;
 
     }
@@ -5123,427 +5486,52 @@ static void demo_camera(npc_ks_class* i_this) {
     //                 }
     //             break;
     //             }
-    //             sp50.set(-30496.0f,300.0f,-17449.0f);
-    //             setPlayerPosAndAngle(&sp50,-0x18b4);
-    //             if (i_this->field_0xb44 == 60) {
-    //             i_this->field_0xb42 = 302;
-    //             i_this->field_0xb44 = 0;
-    //             i_this->field_0xb60.set(-30844.0f,298.0f,-17007.0f);
-    //             i_this->field_0xb48.set(-30653.0f,357.0f,-17289.0f);
-    //             anm_init(i_this,51,5.0f,2,1.0f);
-    //             i_this->field_0xc17 = 3;
-    //             mDoAud_seStart(0x600ac,(Vec *)&i_this->field318_0xc04,0,0);
-    //             }
     //         }
     //     } else {
     //     if (sVar1 == 360) {
-    //         iVar3 = ::dEvt_info_c::a_this->eventInfo.checkCommandDemoAccrpt();
-    //         if (iVar3 == 0) {
-    //         fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-    //         a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
-    //         ::cXyz::~cXyz(&sp50,DTOR_DESTROY_ALL_BASES_AND_DELETE);
-    //         ::cXyz::~cXyz(&sp44,DTOR_DESTROY_ALL_BASES_AND_DELETE);
-    //         return;
-    //         }
-    //         i_this->field_0xb42 = 361;
-    //         camera->mCamera.Stop();
-    //         camera->mCamera.SetTrimSize(3);
-    //         i_this->field_0xb44 = 0;
-    //         i_this->field_0xbb8 = 55.0f;
-    //         player->changeOriginalDemo();
-    //         i_this->field_0xb60.set(-36581.0f,412.0f,-21418.0f);
-    //         i_this->field_0xb48.set(-36509.0f,412.0f,-21127.0f);
-    //         i_this->field_0xb6c.set(-38113.0f,1234.0f,-22897.0f);
-    //         pcVar8 = &i_this->field_0xb54;
-    //         ::cXyz::set(pcVar8,-37882.0f,1182.0f,-22713.0f);
-    //         fVar13 = ::std::fabsf(i_this->field_0xb54.x - i_this->field_0xb48.x)
-    //         ;
-    //         i_this->field_0xb78.x = fVar13;
-    //         fVar13 = ::std::fabsf(i_this->field_0xb54.y - i_this->field_0xb48.y)
-    //         ;
-    //         i_this->field_0xb78.y = fVar13;
-    //         fVar13 = ::std::fabsf(i_this->field_0xb54.z - i_this->field_0xb48.z)
-    //         ;
-    //         i_this->field_0xb78.z = fVar13;
-    //         fVar13 = ::std::fabsf(i_this->field_0xb6c.x - i_this->field_0xb60.x)
-    //         ;
-    //         i_this->field_0xb84.x = fVar13;
-    //         fVar13 = ::std::fabsf(i_this->field_0xb6c.y - i_this->field_0xb60.y)
-    //         ;
-    //         i_this->field_0xb84.y = fVar13;
-    //         fVar13 = ::std::fabsf(i_this->field_0xb6c.z - i_this->field_0xb60.z)
-    //         ;
-    //         i_this->field_0xb84.z = fVar13;
-    //         i_this->field_0xbc4 = 0.0f;
-    //         anm_init(i_this,39,5.0f,2,1.0f);
-    //         i_this->mMode = 41;
-    //         i_this->mTimers[0] = 30;
     //     } else {
     //         if (sVar1 < 360) {
     //         if (sVar1 != 351) {
     //             if (350 < sVar1) {
-    //             if (sVar1 < 353) {
-    //                 if (i_this->field_0xb44 == 40) {
-    //                 i_this->mMode = 40;
+    //                 if (sVar1 < 353) {
     //                 }
-    //                 if (i_this->field_0xb44 == 110) {
-    //                 f_pc_executor::fpcEx_Search(s_fsdown_sub,i_this);
-    //                 }
-    //                 if (i_this->field_0xb44 < 161) {
-    //                 if (25 < i_this->field_0xb44) {
-    //                     cLib_addCalc2(&i_this->field_0xb60.y,600.0f,0.5,100.0f);
-    //                 }
-    //                 }
-    //                 else {
-    //                 cam_3d_morf(i_this,0.1);
-    //                 cLib_addCalc2(&i_this->field_0xbc4,0.2,1.0f,0.005);
-    //                 }
-    //                 if (i_this->field_0xb44 == 230) {
-    //                 i_this->field_0xb42 = 100;
-    //                 f_pc_executor::fpcEx_Search(s_fsdown_sub,i_this);
-    //                 dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x220]);
-    //                 }
-    //             }
-    //             break;
+    //                 break;
     //             }
     //             if (sVar1 < 350) {
-    //             if (sVar1 < 304) {
-    //                 if (i_this->field_0xb44 == 10) {
-    //                 anm_init(i_this,26,3.0f,2,1.0f);
-    //                 i_this->mMode = 301;
-    //                 a_this->speedF = l_HIO.field13_0x1c;
+    //                 if (sVar1 < 304) {
     //                 }
-    //                 if (i_this->field_0xb44 == 0x50) {
-    //                 i_this->field_0xb42 = 100;
-    //                 i_this->mMode = 302;
-    //                 anm_init(i_this,51,5.0f,2,1.0f);
-    //                 dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0xe1]);
-    //                 dSv_info_c::offSwitch
-    //                             (&d_com_inf_game::g_dComIfG_gameInfo.info,0x3d,
-    //                             (int)(char)a_this->current.roomNo);
-    //                 }
+    //                 break;
     //             }
-    //             break;
-    //             }
-    //             iVar3 = ::dEvt_info_c::a_this->eventInfo.checkCommandDemoAccrpt();
-    //             if (iVar3 == 0) {
-    //             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-    //             a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
-    //             ::cXyz::~cXyz(&sp50,DTOR_DESTROY_ALL_BASES_AND_DELETE);
-    //             ::cXyz::~cXyz(&sp44,DTOR_DESTROY_ALL_BASES_AND_DELETE);
-    //             return;
-    //             }
-    //             i_this->field_0xb42 = 351;
-    //             camera->mCamera.Stop();
-    //             camera->mCamera.SetTrimSize(3);
-    //             i_this->field_0xb44 = 0;
-    //             i_this->field_0xbb8 = 55.0f;
-    //             player->changeOriginalDemo();
-    //             ::cXyz::operator_=(&i_this->field_0xb60,&a_this->current.pos);
-    //             i_this->field_0xb48.set(-37509.0f,805.0f,-22416.0f);
-    //         }
-    //         ::cXyz::set(&sp44,-36523.0f,335.0f,-20500.0f);
-    //         iVar2 = daPy_getPlayerActorClass();
-    //         (*(code *)iVar2->vtable->setPlayerPosAndAngle1)(iVar2,&sp44,0xffff8000,0);
-    //         ::cXyz::operator_=(&sp44,&a_this->current.pos);
-    //         cLib_addCalc2(&i_this->field_0xb60.x,sp44.x,0.2,50.0f);
-    //         cLib_addCalc2(&i_this->field_0xb60.y,sp44.y + 100.0f,0.2,50.0f);
-    //         cLib_addCalc2(&i_this->field_0xb60.z,sp44.z,0.2,50.0f);
-    //         if (i_this->field_0xb44 == 105) {
-    //             i_this->field_0xb48.set(-37817.0f,800.0f,-21442.0f);
-    //         }
-    //         if (i_this->field_0xb44 == 178) {
-    //             f_pc_executor::fpcEx_Search(s_fsdown_sub,i_this);
-    //         }
-    //         if (i_this->field_0xb44 == 180) {
-    //             i_this->field_0xb60.set(-36666.0f,600.0f,-22213.0f);
-    //             i_this->field_0xb48.set(-36489.0f,399.0f,-20932.0f);
-    //             i_this->field_0xb6c.set(-36574.0f,421.0f,-21554.0f);
-    //             pcVar8 = &i_this->field_0xb54;
-    //             ::cXyz::set(pcVar8,-36397.0f,374.0f,-20263.0f);
-    //             fVar13 = ::std::fabsf(
-    //                                 i_this->field_0xb54.x - i_this->field_0xb48.x);
-    //             i_this->field_0xb78.x = fVar13;
-    //             fVar13 = ::std::fabsf(
-    //                                 i_this->field_0xb54.y - i_this->field_0xb48.y);
-    //             i_this->field_0xb78.y = fVar13;
-    //             fVar13 = ::std::fabsf(
-    //                                 i_this->field_0xb54.z - i_this->field_0xb48.z);
-    //             i_this->field_0xb78.z = fVar13;
-    //             fVar13 = ::std::fabsf(
-    //                                 i_this->field_0xb6c.x - i_this->field_0xb60.x);
-    //             i_this->field_0xb84.x = fVar13;
-    //             fVar13 = ::std::fabsf(
-    //                                 i_this->field_0xb6c.y - i_this->field_0xb60.y);
-    //             i_this->field_0xb84.y = fVar13;
-    //             fVar13 = ::std::fabsf(
-    //                                 i_this->field_0xb6c.z - i_this->field_0xb60.z);
-    //             i_this->field_0xb84.z = fVar13;
-    //             i_this->field_0xbc4 = 0.0f;
-    //             i_this->field_0xb42 = 352;
-    //             i_this->field_0xb44 = 0;
-    //             i_this->field_0xb60.y = 1500.0f;
     //         }
     //         break;
     //         }
     //         if (sVar1 == 363) {
-    //         cam_3d_morf(i_this,0.1);
-    //         cLib_addCalc2(&i_this->field_0xbc4,0.3,1.0f,0.01);
-    //         i_this->mMsgFlow.doFlow(&i_this->base,(fopAc_ac_c **)0x0,0);
-    //         if (iVar3 != 0) {
-    //             i_this->field_0xb42 = 100;
-    //         }
     //         break;
     //         }
     //         if (362 < sVar1) break;
     //         if (361 < sVar1) {
-    //         if (i_this->field_0xb44 == 15) {
-    //             i_this->mTimers[2] = 30;
     //         }
-    //         if (29 < i_this->field_0xb44) {
-    //             cam_3d_morf(i_this,0.2);
-    //             cLib_addCalc2(&i_this->field_0xbc4,0.3,1.0f,0.01);
-    //         }
-    //         sVar9 = dMsgFlow_c::getNowMsgNo(&i_this->mMsgFlow);
-    //         if (sVar9 == 0x1423) {
-    //             i_this->field_0xb42 = 363;
-    //             i_this->field_0xb44 = 0;
-    //             i_this->field_0xb6c.set(-36467.0f,426.0f,-20914.0f);
-    //             pcVar8 = &i_this->field_0xb54;
-    //             ::cXyz::set(pcVar8,-36244.0f,409.0f,-20714.0f);
-    //             fVar13 = ::std::fabsf(
-    //                                 i_this->field_0xb54.x - i_this->field_0xb48.x);
-    //             i_this->field_0xb78.x = fVar13;
-    //             fVar13 = ::std::fabsf(
-    //                                 i_this->field_0xb54.y - i_this->field_0xb48.y);
-    //             i_this->field_0xb78.y = fVar13;
-    //             fVar13 = ::std::fabsf(
-    //                                 i_this->field_0xb54.z - i_this->field_0xb48.z);
-    //             i_this->field_0xb78.z = fVar13;
-    //             fVar13 = ::std::fabsf(
-    //                                 i_this->field_0xb6c.x - i_this->field_0xb60.x);
-    //             i_this->field_0xb84.x = fVar13;
-    //             fVar13 = ::std::fabsf(
-    //                                 i_this->field_0xb6c.y - i_this->field_0xb60.y);
-    //             i_this->field_0xb84.y = fVar13;
-    //             fVar13 = ::std::fabsf(
-    //                                 i_this->field_0xb6c.z - i_this->field_0xb60.z);
-    //             i_this->field_0xb84.z = fVar13;
-    //             i_this->field_0xbc4 = 0.0f;
-    //         }
-    //         dMsgFlow_c::doFlow(&i_this->mMsgFlow,&i_this->base,(fopAc_ac_c **)0x0,0);
-    //         break;
-    //         }
-    //     }
-    //     ::cXyz::set(&sp44,-36540.0f,335.0f,-20870.0f);
-    //     pdVar5 = daPy_getPlayerActorClass();
-    //     (*(code *)pdVar5->vtable->setPlayerPosAndAngle1)(pdVar5,&sp44,0xffff8000,0);
-    //     if (104 < i_this->field_0xb44) {
-    //         if (i_this->field_0xb44 == 105) {
-    //         i_this->mMsgFlow.init(&i_this->base,116,0,(fopAc_ac_c **)0x0);
-    //         }
-    //         sVar9 = dMsgFlow_c::getNowMsgNo(&i_this->mMsgFlow);
-    //         if (sVar9 == 0x1421) {
-    //         i_this->field_0xb42 = 362;
-    //         i_this->field_0xb44 = 0;
-    //         }
-    //         dMsgFlow_c::doFlow(&i_this->mMsgFlow,&i_this->base,(fopAc_ac_c **)0x0,0);
     //     }
     //     }
     //     break;
     // }
     // if (sVar1 == 61) {
     // LAB_80a50c18:
-    //     ::cXyz::operator_=(&sp50,&player->old.pos);
-    //     sp50.y = 3150.0f;
-    //     setPlayerPosAndAngle(&sp50,player->shape_angle.y);
-    //     i_this->field_0xbb8 = 65.0f;
-    //     cLib_addCalc2(&i_this->field_0xb60.x,a_this->eyePos.x,0.1,50.0f);
-    //     cLib_addCalc2(&i_this->field_0xb60.y,a_this->eyePos.y,0.1,50.0f);
-    //     cLib_addCalc2(&i_this->field_0xb60.z,a_this->eyePos.z,0.1,50.0f);
-    //     break;
     // }
     // if (sVar1 < 61) {
     //     if (sVar1 == 10) {
-    //     iVar3 = ::dEvt_info_c::a_this->eventInfo.checkCommandDemoAccrpt();
-    //     if (iVar3 == 0) {
-    //         fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-    //         a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
-    //         ::cXyz::~cXyz(&sp50,DTOR_DESTROY_ALL_BASES_AND_DELETE);
-    //         ::cXyz::~cXyz(&sp44,DTOR_DESTROY_ALL_BASES_AND_DELETE);
-    //         return;
-    //     }
-    //     i_this->field_0xb42 = 11;
-    //     camera->mCamera.Stop();
-    //     camera->mCamera.SetTrimSize(3);
-    //     i_this->field_0xb44 = 0;
-    //     i_this->field_0xbb8 = 55.0f;
-    //     (i_this->field267_0xba8).z = 500.0f;
-    //     (i_this->field267_0xba8).x = 500.0f;
-    //     (i_this->field267_0xba8).y = 0.0f;
-    //     i_this->field274_0xbc0 = (npc_ks_class *)0x0;
-    // LAB_80a5068c:
-    //     ::cXyz::operator_=(&sp50,&i_this->field276_0xbc8);
-    //     sp50.y = player->current.pos.y;
-    //     setPlayerPosAndAngle(&sp50,player->shape_angle.y);
-    //     pnVar11 = i_this->field274_0xbc0;
-    //     pnVar4 = (npc_ks_class *)get_move_saru(i_this,sw_p->field930_0x91c);
-    //     i_this->field274_0xbc0 = pnVar4;
-    //     i_this->field_0xb6c.y = (sw_p->base).current.pos.y - 200.0f;
-    //     if (i_this->field274_0xbc0 == (npc_ks_class *)0x0) {
-    //         iVar3 = all_hang_check(i_this,sw_p->field930_0x91c);
-    //         if (iVar3 != 0) {
-    //         i_this->field_0xb42 = 0xc;
-    //         if (a_this->current.roomNo == 0) {
-    //             i_this->field_0xb44 = 45;
-    //         }
-    //         else if (sw_p->field930_0x91c < 3) {
-    //             i_this->field_0xb44 = 45;
-    //         }
-    //         else {
-    //             i_this->field_0xb6c.x =
-    //                 *(float *)(*(int *)(&DAT_80a5e470 + sw_p->field930_0x91c * 4) + 0x4d0);
-    //             i_this->field_0xb6c.y =
-    //                 *(float *)(*(int *)(&DAT_80a5e470 + sw_p->field930_0x91c * 4) + 0x4d4);
-    //             i_this->field_0xb6c.y = i_this->field_0xb6c.y - 150.0f;
-    //             this_00 = *(std **)(&DAT_80a5e470 + sw_p->field930_0x91c * 4);
-    //             i_this->field_0xb6c.z = *(float *)(this_00 + 0x4d8);
-    //             fVar13 = ::std::fabsf(this_00,i_this->field_0xb6c.x - i_this->field_0xb60.x);
-    //             i_this->field_0xb84.x = fVar13;
-    //             fVar13 = ::std::fabsf(this_00,i_this->field_0xb6c.y - i_this->field_0xb60.y);
-    //             i_this->field_0xb84.y = fVar13;
-    //             fVar13 = ::std::fabsf(this_00,i_this->field_0xb6c.z - i_this->field_0xb60.z);
-    //             i_this->field_0xb84.z = fVar13;
-    //             i_this->field_0xbc4 = 0.0f;
-    //             i_this->field_0xb44 = 5;
-    //         }
-    //         }
-    //     } else {
-    //         sw_p = i_this->field274_0xbc0->field_0x934;
-    //         cMtx_YrotS(*calc_mtx,i_this->field277_0xbd4);
-    //         sp44.x = (i_this->field267_0xba8).x;
-    //         sp44.y = (i_this->field267_0xba8).y;
-    //         sp44.z = (i_this->field267_0xba8).z;
-    //         MtxPosition(&sp44,&i_this->field_0xb54);
-    //         i_this->field_0xb54.x =
-    //             i_this->field_0xb54.x + (i_this->field274_0xbc0->base).current.pos.x;
-    //         i_this->field_0xb54.y =
-    //             i_this->field_0xb54.y + ((sw_p->base).current.pos.y - 250.0f);
-    //         i_this->field_0xb54.z =
-    //             i_this->field_0xb54.z + (i_this->field274_0xbc0->base).current.pos.z;
-    //         i_this->field_0xb6c.x = (i_this->field274_0xbc0->base).current.pos.x;
-    //         i_this->field_0xb6c.y = (sw_p->base).current.pos.y - 200.0f;
-    //         if ((i_this->field274_0xbc0->mActionID == 0x14) &&
-    //         (fVar13 = (i_this->field274_0xbc0->base).current.pos.y,
-    //         i_this->field_0xb6c.y < fVar13)) {
-    //         i_this->field_0xb6c.y = fVar13;
-    //         }
-    //         i_this->field_0xb6c.z = (i_this->field274_0xbc0->base).current.pos.z;
-    //         if (pnVar11 != i_this->field274_0xbc0) {
-    //         ::cXyz::operator_=(&i_this->field_0xb48,&i_this->field_0xb54);
-    //         ::cXyz::operator_=(&i_this->field_0xb60,&i_this->field_0xb6c);
-    //         }
-    //         ::cXyz::set(&i_this->field242_0xb84,200.0f,200.0f,200.0f);
-    //         i_this->field_0xbc4 = 1.0f;
-    //     }
+
+    //     LAB_80a5068c:
     //     } else {
     //     if (sVar1 < 10) {
     //         if (sVar1 != 2) {
     //         if (1 < sVar1) {
     //             if (sVar1 < 4) {
-    //             cLib_addCalc2
-    //                         (&i_this->field_0xb60.x,player->current.pos.x,0.4,100.0f);
-    //             cLib_addCalc2
-    //                         (&i_this->field_0xb60.y,player->current.pos.y + 70.0f,0.4,100.0f);
-    //             cLib_addCalc2
-    //                         (&i_this->field_0xb60.z,player->current.pos.z,0.4,100.0f);
-    //             cMtx_YrotS(*calc_mtx,player->shape_angle.y);
-    //             dVar12 = 50.0f;
-    //             if ((a_this->current.roomNo == 4) && (i_this->field_0xbdb == 0)) {
-    //                 sp44.x = 100.0f;
-    //                 sp44.y = 100.0f;
-    //                 sp44.z = 300.0f;
-    //                 if (i_this->field_0xb44 == 10) {
-    //                 player->changeDemoMode(40,0,0,0);
-    //                 }
-    //                 if (i_this->field_0xb44 == 0x1c) {
-    //                 player->changeDemoMode(41,0,0,0);
-    //                 }
-    //                 if (i_this->field_0xb44 == 40) {
-    //                 i_this->field_0xb42 = 100;
-    //                 i_this->field_0xbdb = 1;
-    //                 }
-    //                 dVar12 = 200.0f;
-    //             }
-    //             else {
-    //                 sp44.x = 0.0f;
-    //                 sp44.y = 0.0f;
-    //                 sp44.z = -400.0f;
-    //                 if (i_this->field_0xb44 == 8) {
-    //                 i_this->field_0xb42 = 100;
-    //                 }
-    //             }
-    //             MtxPosition(&sp44,&sp50);
-    //             sp50.x = sp50.x + player->current.pos.x;
-    //             sp50.y = sp50.y + player->current.pos.y;
-    //             sp50.z = sp50.z + player->current.pos.z;
-    //             cLib_addCalc2(&i_this->field_0xb48.x,sp50.x,0.2,(float)dVar12);
-    //             cLib_addCalc2(&i_this->field_0xb48.y,sp50.y,0.2,(float)dVar12);
-    //             cLib_addCalc2(&i_this->field_0xb48.z,sp50.z,0.2,(float)dVar12);
     //             }
     //             break;
     //         }
     //         if ((sVar1 == 0) || (sVar1 < 0)) break;
-    //         iVar3 = ::dEvt_info_c::a_this->eventInfo.checkCommandDemoAccrpt();
-    //         if (iVar3 == 0) {
-    //             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-    //             a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
-    //             ::cXyz::~cXyz(&sp50,DTOR_DESTROY_ALL_BASES_AND_DELETE);
-    //             ::cXyz::~cXyz(&sp44,DTOR_DESTROY_ALL_BASES_AND_DELETE);
-    //             return;
-    //         }
-    //         i_this->field_0xb42 = 2;
-    //         camera->mCamera.Stop();
-    //         camera->mCamera.SetTrimSize(3);
-    //         i_this->field_0xb44 = 0;
-    //         player->changeOriginalDemo();
-    //         player->changeDemoMode(19,0,0,0);
-    //         ::daPy_py_c::changeDemoParam0(player,0);
-    //         i_this->field_0xb60 = player->current.pos;
-    //         (i_this->field267_0xba8).z = 500.0f;
-    //         (i_this->field267_0xba8).x = 500.0f;
-    //         (i_this->field267_0xba8).y = 0.0f;
-    //         }
-    //         i_this->field_0xbb8 = 55.0f;
-    //         cLib_addCalc2(&i_this->field_0xb60.x,player->current.pos.x,0.2,50.0f)
-    //         ;
-    //         cLib_addCalc2
-    //                 (&i_this->field_0xb60.y,(sw_p->base).current.pos.y - 250.0f,0.2,50.0f);
-    //         cLib_addCalc2(&i_this->field_0xb60.z,player->current.pos.z,0.2,50.0f)
-    //         ;
-    //         if (a_this->current.roomNo == 2) {
-    //         cMtx_YrotS(*calc_mtx,(sw_p->base).current.angle.y);
-    //         }
-    //         else {
-    //         cMtx_YrotS(*calc_mtx,player->shape_angle.y);
-    //         }
-    //         sp44.x = (i_this->field267_0xba8).x;
-    //         sp44.y = (i_this->field267_0xba8).y;
-    //         sp44.z = (i_this->field267_0xba8).z;
-    //         MtxPosition(&sp44,&sp50);
-    //         sp50.x = sp50.x + player->current.pos.x;
-    //         sp50.y = sp50.y + ((sw_p->base).current.pos.y - 250.0f);
-    //         sp50.z = sp50.z + player->current.pos.z;
-    //         if (i_this->field_0xb44 == 0) {
-    //         ::cXyz::operator_=(&i_this->field_0xb48,&sp50);
-    //         }
-    //         else {
-    //         cLib_addCalc2(&i_this->field_0xb48.x,sp50.x,0.1,200.0f);
-    //         cLib_addCalc2(&i_this->field_0xb48.y,sp50.y,0.1,200.0f);
-    //         cLib_addCalc2(&i_this->field_0xb48.z,sp50.z,0.1,200.0f);
-    //         }
-    //         if (i_this->field156_0x92c != 0) {
-    //         (i_this->field267_0xba8).z = (i_this->field267_0xba8).z + -10.0f;
+
     //         }
     //         break;
     //     }
@@ -5605,9 +5593,9 @@ static void demo_camera(npc_ks_class* i_this) {
     //     cLib_addCalc2(&i_this->field_0xbc4,0.1,1.0f,0.005);
     //     if (85 < i_this->field_0xb44) {
     //         i_this->field_0xb42 = 100;
-    //         sp44.x = (::saru_p[i_this->field231_0xb40]->base).current.pos.x - (i_this->field276_0xbc8).x
+    //         sp44.x = (::saru_p[i_this->field231_0xb40]->base).current.pos.x - (i_this->i_this->field_0xbc8).x
     //         ;
-    //         sp44.z = (::saru_p[i_this->field231_0xb40]->base).current.pos.z - (i_this->field276_0xbc8).z
+    //         sp44.z = (::saru_p[i_this->field231_0xb40]->base).current.pos.z - (i_this->i_this->field_0xbc8).z
     //         ;
     //         angle = SComponent::cM_atan2s(sp44.x,sp44.z);
     //         cMtx_YrotS(*calc_mtx,angle);
@@ -5620,8 +5608,8 @@ static void demo_camera(npc_ks_class* i_this) {
     //         sp44.z = -150.0f;
     //         }
     //         MtxPosition(&sp44,&sp50);
-    //         sp50.x = sp50.x + (i_this->field276_0xbc8).x;
-    //         sp50.z = sp50.z + (i_this->field276_0xbc8).z;
+    //         sp50.x = sp50.x + (i_this->i_this->field_0xbc8).x;
+    //         sp50.z = sp50.z + (i_this->i_this->field_0xbc8).z;
     //         if (a_this->current.roomNo == 2) {
     //         sp50.y = 3764.0f;
     //         }
