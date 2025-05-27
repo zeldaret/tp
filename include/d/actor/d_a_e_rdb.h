@@ -12,9 +12,9 @@
  * @ingroup actors-enemies
  * @class e_rdb_class
  * @brief King Bulblin
- * 
- * @details 
- * 
+ *
+ * @details
+ *
  */
 class e_rdb_class {
 public:
@@ -108,7 +108,7 @@ public:
 
 STATIC_ASSERT(sizeof(e_rdb_class) == 0x1154);
 
-class daE_RDB_HIO_c: public JORReflexible {
+class daE_RDB_HIO_c : public JORReflexible {
 public:
     /* 807650CC */ daE_RDB_HIO_c();
     /* 8076AF64 */ virtual ~daE_RDB_HIO_c() {};
@@ -117,6 +117,5 @@ public:
     /* 0x04 */ s8 mID;
     /* 0x08 */ f32 field_0x8;
 };
-
 
 #endif /* D_A_E_RDB_H */
