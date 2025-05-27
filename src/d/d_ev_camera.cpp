@@ -973,6 +973,7 @@ f32 dummy_lit_3871(int val) {
 bool dCamera_c::transEvCamera(int param_1) {
     // NONMATCHING - regalloc
     struct mWork::trans* trans = &mWork.trans;
+    f32 mid_val;
 
     struct {
         cXyz mXyz_0;
@@ -984,12 +985,7 @@ bool dCamera_c::transEvCamera(int param_1) {
     f32 lit_5984[4] = { 0.0f, 0.0f, 1.0f, 1.0f };
     f32 lit_5985[7] = { 0.0f, 0.0f, 0.4f, 0.7f, 0.9f, 1.0f, 1.0f };
     f32 lit_5986[7] = { 0.0f, 0.0f, 0.1f, 0.3f, 0.6f, 1.0f, 1.0f };
-    f32* lit_5987[5] = { NULL, NULL, NULL, NULL, NULL };
-
-    lit_5987[1] = lit_5984;
-    lit_5987[2] = lit_5985;
-    f32* unused_void_p = lit_5987[3] = lit_5986;
-    (void) unused_void_p;
+    f32* lit_5987[5] = { NULL, lit_5984, lit_5985, lit_5986, NULL };
 
     int local_d0[5] = { 0, 4, 7, 7, 0 };
 
@@ -1430,7 +1426,7 @@ bool dCamera_c::transEvCamera(int param_1) {
         field_0x5c.mFovy += trans->mCushion * (o_float - field_0x5c.mFovy);
 
         if (trans->field_0x68) {
-            f32 mid_val = trans->field_0x1c + my_main_f32 * (trans->field_0x3c - trans->field_0x1c);
+            mid_val = trans->field_0x1c + my_main_f32 * (trans->field_0x3c - trans->field_0x1c);
             field_0x5c.mBank += (cSAngle(mid_val) - field_0x5c.mBank) * trans->mCushion;
             setFlag(0x400);
         }
@@ -2314,124 +2310,140 @@ bool dCamera_c::gameOverEvCamera() {
 
 /* 80091468-8009236C 08BDA8 0F04+00 1/0 1/0 0/0 .text            tactEvCamera__9dCamera_cFv */
 bool dCamera_c::tactEvCamera() {
-    // NONMATCHING
-    cXyz sp58(cXyz(0.0f, 5.0f, 190.0f));
-    cXyz sp4c(cXyz(0.0f, 0.0f, 215.0f));
-    cXyz sp40(cXyz(0.0f, -26.0f, 80.0f));
-    cXyz sp34(cXyz(0.0f, -26.0f, 45.0f));
-    cXyz sp28(cXyz(0.0f, -40.0f, -20.0f));
-    cXyz sp1c(cXyz(0.0f, -4.0f, 28.0f));
-    cXyz spa0(cXyz(140.0f, 35.0f, 220.0f));
-    cXyz sp94(cXyz(-200.0f, -15.0f, 240.0f));
-    cXyz sp88(cXyz(380.0f, -120.0f, 450.0f));
-    cXyz sp7c(cXyz(-235.0f, -142.0f, 470.0f));
-    cXyz sp70(cXyz(30.0f, 105.0f, -260.0f));
-    cXyz sp64(cXyz(-66.0f, 390.0f, 56.0f));
+    struct mWork::tact* tact_p = &mWork.tact;
+    cXyz sp58[6] = {
+        cXyz(0.0f, 5.0f, 190.0f),
+        cXyz(0.0f, 0.0f, 215.0f),
+        cXyz(0.0f, -26.0f, 80.0f),
+        cXyz(0.0f, -26.0f, 45.0f),
+        cXyz(0.0f, -40.0f, -20.0f),
+        cXyz(0.0f, -4.0f, 28.0f)
+    };
+    cXyz spa0[6] = {
+        cXyz(140.0f, 35.0f, 220.0f),
+        cXyz(-200.0f, -15.0f, 240.0f),
+        cXyz(380.0f, -120.0f, 450.0f),
+        cXyz(-235.0f, -142.0f, 470.0f),
+        cXyz(30.0f, 105.0f, -260.0f),
+        cXyz(-66.0f, 390.0f, 56.0f)
+    };
     f32 local_1d0[6] = { 0.75f, 0.35f, 0.8f, 0.8f, 0.8f, 0.8f };
-    cXyz spf4(cXyz(0.0f, -16.0f, 14.0f));
-    cXyz spe8(cXyz(0.0f, -26.0f, 14.0f));
-    cXyz spdc(cXyz(0.0f, -26.0f, 14.0f));
-    cXyz spd0(cXyz(0.0f, -10.0f, 15.0f));
-    cXyz spc4(cXyz(-5.0f, -16.0f, -10.0f));
-    cXyz spb8(cXyz(0.0f, -18.0f, 35.0f));
-    cXyz spac(cXyz(0.0f, -12.0f, 8.0f));
-    cXyz sp148(cXyz(-128.0f, -5.0f, 120.0f));
-    cXyz sp13c(cXyz(-80.0f, -28.0f, 160.0f));
-    cXyz sp130(cXyz(50.0f, -18.0f, 172.0f));
-    cXyz sp124(cXyz(110.0f, 5.0f, 58.0f));
-    cXyz sp118(cXyz(-50.0f, 40.0f, 85.0f));
-    cXyz sp10c(cXyz(-70.0f, 60.0f, -45.0f));
-    cXyz sp100(cXyz(5.0f, 70.0f, -25.0f));
-    cXyz sp178(cXyz(0.0f, -10.0f, -56.0f));
-    cXyz sp16c(cXyz(5.0f, -10.0f, -54.0f));
-    cXyz sp160(cXyz(0.0f, 0.0f, -15.0f));
-    cXyz sp154(cXyz(0.0f, 0.0f, -20.0f));
-    cXyz sp1a8(cXyz(115.0f, -25.0f, 108.0f));
-    cXyz sp19c(cXyz(-78.0f, -30.0f, 130.0f));
-    cXyz sp190(cXyz(85.0f, 0.0f, -40.0f));
-    cXyz sp184(cXyz(-25.0f, 70.0f, -75.0f));
+    int const_6_val = 6;
+    cXyz spf4[7] = {
+        cXyz(0.0f, -16.0f, 14.0f),
+        cXyz(0.0f, -26.0f, 14.0f),
+        cXyz(0.0f, -26.0f, 14.0f),
+        cXyz(0.0f, -10.0f, 15.0f),
+        cXyz(-5.0f, -16.0f, -10.0f),
+        cXyz(0.0f, -18.0f, 35.0f),
+        cXyz(0.0f, -12.0f, 8.0f)
+    };
+    cXyz sp148[7] = {
+        cXyz(-128.0f, -5.0f, 120.0f),
+        cXyz(-80.0f, -28.0f, 160.0f),
+        cXyz(50.0f, -18.0f, 172.0f),
+        cXyz(110.0f, 5.0f, 58.0f),
+        cXyz(-50.0f, 40.0f, 85.0f),
+        cXyz(-70.0f, 60.0f, -45.0f),
+        cXyz(5.0f, 70.0f, -25.0f)
+    };
+    int const_7_val = 7;
+    cXyz sp178[4] = {
+        cXyz(0.0f, -10.0f, -56.0f),
+        cXyz(5.0f, -10.0f, -54.0f),
+        cXyz(0.0f, 0.0f, -15.0f),
+        cXyz(0.0f, 0.0f, -20.0f)
+    };
+    cXyz sp1a8[4] = {
+        cXyz(115.0f, -25.0f, 108.0f),
+        cXyz(-78.0f, -30.0f, 130.0f),
+        cXyz(85.0f, 0.0f, -40.0f),
+        cXyz(-25.0f, 70.0f, -75.0f)
+    };
+    int const_4_val = 4;
+    int i;
 
     if (mCurCamStyleTimer == 0) {
-        mWork.tact.field_0x4 = 0;
-        mWork.tact.field_0x14 = 0;
-        mWork.tact.field_0x0 = 0;
-        mWork.tact.field_0xc = this->field_0xa8;
+        tact_p->field_0x4 = 0;
+        tact_p->field_0x14 = 0;
+        tact_p->field_0x0 = 0;
+        tact_p->field_0xc = this->field_0xa8;
         if ((this->field_0xa8 & 2) != 0) {
-            mWork.tact.field_0x8 = 0;
+            tact_p->field_0x8 = 0;
         } else {
-            mWork.tact.field_0x8 = 1;
+            tact_p->field_0x8 = 1;
         }
 
         field_0x158.field_0x0 = true;
         mEventData.field_0x20 = 0;
         mEventData.field_0x24 = 0;
-        mWork.tact.field_0x1c = &sp178;
-        mWork.tact.field_0x20 = &sp1a8;
-        mWork.tact.field_0x24 = 4;
-        mWork.tact.field_0x2c = 55.0f;
+        tact_p->field_0x1c = sp178;
+        tact_p->field_0x20 = sp1a8;
+        tact_p->field_0x24 = const_4_val;
+        tact_p->field_0x2c = 55.0f;
 
         dComIfGp_saveCameraPosition(0, &field_0x5c.mCenter, &field_0x5c.mEye, field_0x5c.mFovy, field_0x5c.mBank);
     }
 
+    cXyz sp1e8;
     switch (mEventData.field_0x24) {
         case 2: {
-            cXyz sp1e8;
             f32 fVar5;
-            if ((mWork.tact.field_0xc & 4) != 0 && (mWork.tact.field_0xc & 16) != 0 && (mWork.tact.field_0xc & 128) != 0) {
-                sp1e8 = sp40;
-                sp40 = sp34;
-                sp34 = sp1e8;
-                sp1e8 = sp88;
-                sp88 = sp7c;
-                sp7c = sp1e8;
+            if ((tact_p->field_0xc & 4) != 0 && (tact_p->field_0xc & 16) != 0 && (tact_p->field_0xc & 128) != 0) {
+                sp1e8 = sp58[2];
+                sp58[2] = sp58[3];
+                sp58[3] = sp1e8;
+                sp1e8 = spa0[2];
+                spa0[2] = spa0[3];
+                spa0[3] = sp1e8;
                 fVar5 = local_1d0[2];
                 local_1d0[2] = local_1d0[3];
                 local_1d0[3] = fVar5;
             }
 
-            if ((mWork.tact.field_0xc & 2) != 0 && (mWork.tact.field_0xc & 32) != 0 && (mWork.tact.field_0xc & 64) != 0) {
-                sp1e8 = sp40;
-                sp40 = sp58;
-                sp58 = sp1e8;
-                sp1e8 = sp88;
-                sp88 = spa0;
-                spa0 = sp1e8;
+            if ((tact_p->field_0xc & 2) != 0 && (tact_p->field_0xc & 32) != 0 && (tact_p->field_0xc & 64) != 0) {
+                sp1e8 = sp58[2];
+                sp58[2] = sp58[0];
+                sp58[0] = sp1e8;
+                sp1e8 = spa0[2];
+                spa0[2] = spa0[0];
+                spa0[0] = sp1e8;
                 fVar5 = local_1d0[2];
                 local_1d0[2] = local_1d0[0];
                 local_1d0[0] = fVar5;
             }
 
-            if ((mWork.tact.field_0xc & 1) != 0 && (mWork.tact.field_0xc & 8) != 0) {
-                sp1e8 = sp4c;
-                sp4c = sp58;
-                sp58 = sp1e8;
-                sp1e8 = sp94;
-                sp94 = spa0;
-                spa0 = sp1e8;
+            if ((tact_p->field_0xc & 1) != 0 && (tact_p->field_0xc & 8) != 0) {
+                sp1e8 = sp58[1];
+                sp58[1] = sp58[0];
+                sp58[0] = sp1e8;
+                sp1e8 = spa0[1];
+                spa0[1] = spa0[0];
+                spa0[0] = sp1e8;
                 fVar5 = local_1d0[1];
                 local_1d0[1] = local_1d0[0];
                 local_1d0[0] = fVar5;
             }
 
-            if (mWork.tact.field_0x0 < 20) {
-                mWork.tact.field_0x0 = 20;
+            if (tact_p->field_0x0 < 20) {
+                tact_p->field_0x0 = 20;
             }
 
-            mWork.tact.field_0x1c = &sp58;
-            mWork.tact.field_0x20 = &spa0;
-            mWork.tact.field_0x24 = 6;
-            mWork.tact.field_0x2c = 65.0f;
+            tact_p->field_0x1c = sp58;
+            tact_p->field_0x20 = spa0;
+            tact_p->field_0x24 = const_6_val;
+            tact_p->field_0x2c = 65.0f;
             break;
         }
 
         case 3:
-            if (mWork.tact.field_0x0 < 22) {
-                mWork.tact.field_0x0 = 22;
+            if (tact_p->field_0x0 < 22) {
+                tact_p->field_0x0 = 22;
             }
             break;
 
         case 1:
-            mWork.tact.field_0x0 = 0;
+            tact_p->field_0x0 = 0;
             break;
 
         case 99:
@@ -2439,71 +2451,72 @@ bool dCamera_c::tactEvCamera() {
 
         default:
             if (mIsWolf == 1) {
-                mWork.tact.field_0x1c = &sp178;
-                mWork.tact.field_0x20 = &sp1a8;
-                mWork.tact.field_0x24 = 4;
-                mWork.tact.field_0x2c = 65.0f;
+                tact_p->field_0x1c = sp178;
+                tact_p->field_0x20 = sp1a8;
+                tact_p->field_0x24 = const_4_val;
+                tact_p->field_0x2c = 65.0f;
             } else {
-                mWork.tact.field_0x1c = &spf4;
-                mWork.tact.field_0x20 = &sp148;
-                mWork.tact.field_0x24 = 7;
-                mWork.tact.field_0x2c = 55.0f;
+                tact_p->field_0x1c = spf4;
+                tact_p->field_0x20 = sp148;
+                tact_p->field_0x24 = const_7_val;
+                tact_p->field_0x2c = 55.0f;
             }
     }
 
     fopAc_ac_c* mHorseActor = (fopAc_ac_c*)dComIfGp_getHorseActor();
-    switch (mWork.tact.field_0x0) {
-        case 20:
+    switch (tact_p->field_0x0) {
+        case 20: {
             if (mHorseActor) {
-                int i;
-                for (i = 0; i < mWork.tact.field_0x24; i++) {
-                    field_0x5c.mCenter = relationalPos(mHorseActor, mWork.tact.field_0x1c);
-                    if (!lineBGCheck(&field_0x5c.mCenter, &field_0x5c.mEye, 0x4007)) {
-                        if (!lineCollisionCheck(field_0x5c.mCenter, field_0x5c.mEye, mHorseActor, NULL, NULL)) break;
+                for (i = 0; i < tact_p->field_0x24; i++) {
+                    field_0x5c.mCenter = relationalPos(mHorseActor, &tact_p->field_0x1c[i]);
+                    field_0x5c.mEye = relationalPos(mHorseActor, &tact_p->field_0x20[i]);
+                    if (!lineBGCheck(&field_0x5c.mCenter, &field_0x5c.mEye, 0x4007)
+                        && !lineCollisionCheck(field_0x5c.mCenter, field_0x5c.mEye, mHorseActor, NULL, NULL)) {
+                        break;
                     }
                 }
 
-                field_0x5c.mFovy = mWork.tact.field_0x2c;
-                mWork.tact.field_0x0 = 21;
-                mWork.tact.field_0x14 = i;
+                field_0x5c.mFovy = tact_p->field_0x2c;
+                tact_p->field_0x0 = 21;
+                tact_p->field_0x14 = i;
             }
             break;
+        }
 
-        case 21:
+        case 21: {
             if (mHorseActor) {
-                cXyz sp208 = relationalPos(mHorseActor, mWork.tact.field_0x1c);
-                cXyz sp214 = relationalPos(mHorseActor, mWork.tact.field_0x20);
-                if (!lineBGCheck(&sp208, &sp214, 0x4007)) {
-                    if (!lineCollisionCheck(sp208, sp214, mHorseActor, NULL, NULL)) {
-                        field_0x5c.mCenter += (sp208 - field_0x5c.mCenter) * local_1d0[mWork.tact.field_0x14];
-                        field_0x5c.mEye += (sp214 - field_0x5c.mEye) * local_1d0[mWork.tact.field_0x14];
-                    } else {
-                        mWork.tact.field_0x0 = 22;
-                    }
+                cXyz sp208 = relationalPos(mHorseActor, &tact_p->field_0x1c[tact_p->field_0x14]);
+                cXyz sp214 = relationalPos(mHorseActor, &tact_p->field_0x20[tact_p->field_0x14]);
+                if (!lineBGCheck(&sp208, &sp214, 0x4007) &&!lineCollisionCheck(sp208, sp214, mHorseActor, NULL, NULL)) {
+                    field_0x5c.mCenter += (sp208 - field_0x5c.mCenter) * local_1d0[tact_p->field_0x14];
+                    field_0x5c.mEye += (sp214 - field_0x5c.mEye) * local_1d0[tact_p->field_0x14];
+                } else {
+                    tact_p->field_0x0 = 22;
                 }
             }
             break;
+        }
 
-        case 22:
+        case 22: {
             if (mHorseActor) {
-                cXyz cStack_220 = relationalPos(mHorseActor, mWork.tact.field_0x1c);
+                cXyz cStack_220 = relationalPos(mHorseActor, &tact_p->field_0x1c[tact_p->field_0x14]);
+                cXyz cStack_22c;
                 cXyz cStack_238 = attentionPos(mpPlayerActor);
                 cXyz cStack_244;
                 cXyz local_250(50.0f, -10.0f, -160.0f);
                 cXyz local_25c = attentionPos(mHorseActor) - cStack_238;
                 cSAngle acStack_47c(cM_atan2s(local_25c.x, local_25c.z));
-                cSAngle acStack_484 = cSAngle(cM_atan2s(local_25c.x, local_25c.z)) - directionOf(mpPlayerActor);
-                if (acStack_484 > cSAngle::_0) {
+                if (acStack_47c - directionOf(mpPlayerActor) > cSAngle::_0) {
                     local_250.x = -local_250.x;
                 }
 
-                cSAngle acStack_488 = acStack_47c;
-                local_250 = dCamMath::xyzRotateY(local_250, acStack_488);
+                //cSAngle acStack_488 = acStack_47c;
+                local_250 = dCamMath::xyzRotateY(local_250, acStack_47c);
 
-                cXyz cStack_22c = attentionPos(mpPlayerActor) + local_250;
+                cStack_22c = attentionPos(mpPlayerActor) + local_250;
 
                 cM3dGLin cStack_1f0(cStack_220, cStack_22c);
-                f32 fVar1 = 0.0f;
+                f32 fVar1;
                 if (cM3d_Len3dSqPntAndSegLine(&cStack_1f0, &cStack_238, &cStack_244, &fVar1)) {
                     cStack_220 = cStack_244;
                 }
@@ -2512,60 +2525,65 @@ bool dCamera_c::tactEvCamera() {
                     field_0x5c.mCenter = cStack_220;
                     field_0x5c.mEye = cStack_22c;
                 } else {
-                    field_0x5c.mCenter = attentionPos(mpPlayerActor) + mWork.tact.field_0x30;
-                    field_0x5c.mEye = attentionPos(mpPlayerActor) + mWork.tact.field_0x3c;
+                    field_0x5c.mCenter = attentionPos(mpPlayerActor) + tact_p->field_0x30;
+                    field_0x5c.mEye = attentionPos(mpPlayerActor) + tact_p->field_0x3c;
                 }
 
-                mWork.tact.field_0x0 = 23;
+                tact_p->field_0x0 = 23;
             }
             break;
+        }
 
-        case 23:
-            break;
-
+        case 0:
         default: {
             cXyz sp254;
             cXyz sp260 = attentionPos(mpPlayerActor);
-            for (int i = 0; i < mWork.tact.field_0x24; i++) {
-                field_0x5c.mCenter = relationalPos(mpPlayerActor, mWork.tact.field_0x1c);
+            for (i = 0; i < tact_p->field_0x24; i++) {
+                field_0x5c.mCenter = relationalPos(mpPlayerActor, &tact_p->field_0x1c[i]);
                 sp260.y = field_0x5c.mCenter.y;
                 if (lineBGCheck(&sp260, &field_0x5c.mCenter, &sp254, 0x4007)) {
                     field_0x5c.mCenter = sp254 - (cXyz(sp254 - sp260).norm() * 5.0f);
                 }
 
-                field_0x5c.mEye = relationalPos(mpPlayerActor, mWork.tact.field_0x20);
+                field_0x5c.mEye = relationalPos(mpPlayerActor, &tact_p->field_0x20[i]);
                 sp254 = field_0x5c.mEye + (cXyz(field_0x5c.mEye - sp260).norm() * 5.0f);
 
-                if (!lineBGCheck(&sp260, &sp254, 0x4007)) {
-                    if (!lineCollisionCheck(field_0x5c.mEye, field_0x5c.mCenter, mpPlayerActor, NULL, NULL)) break;
+                if (!lineBGCheck(&sp260, &sp254, 0x4007)
+                    && !lineCollisionCheck(field_0x5c.mCenter, field_0x5c.mEye, mpPlayerActor, NULL, NULL)) {
+                    break;
                 }
             }
 
-            if (mWork.tact.field_0x0 == 0) {
-                mWork.tact.field_0x30 = field_0x5c.mCenter - sp260;
-                mWork.tact.field_0x3c = field_0x5c.mEye - sp260;
+            if (tact_p->field_0x0 == 0) {
+                tact_p->field_0x30 = field_0x5c.mCenter - sp260;
+                tact_p->field_0x3c = field_0x5c.mEye - sp260;
             }
 
-            mWork.tact.field_0x0 = 9;
-            field_0x5c.mFovy = mWork.tact.field_0x2c;
+            tact_p->field_0x0 = 9;
+            field_0x5c.mFovy = tact_p->field_0x2c;
             break;
         }
 
         case 9:
-        case 29:
-            field_0x5c.mCenter = attentionPos(mpPlayerActor) + mWork.tact.field_0x30;
-            field_0x5c.mEye = attentionPos(mpPlayerActor) + mWork.tact.field_0x3c;
+        case 29: {
+            field_0x5c.mCenter = attentionPos(mpPlayerActor) + tact_p->field_0x30;
+            field_0x5c.mEye = attentionPos(mpPlayerActor) + tact_p->field_0x3c;
             break;
+        }
+
+        case 23: {
+            break;
+        }
     }
 
 #ifdef DEBUG
     if (mCamSetup.CheckFlag(0x8000)) {
-        dDbVw_Report(20, 250, "        %d", mWork.tact.field_0x0);
+        dDbVw_Report(20, 250, "        %d", tact_p->field_0x0);
     }
 #endif
 
     field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
-    mWork.tact.field_0x4++;
+    tact_p->field_0x4++;
     return 1;
 }
 
@@ -2646,13 +2664,12 @@ bool dCamera_c::saveEvCamera() {
 
 /* 8009258C-800929AC 08CECC 0420+00 0/0 1/0 0/0 .text            loadEvCamera__9dCamera_cFv */
 bool dCamera_c::loadEvCamera() {
-    // NONMATCHING
     struct mWork::load* load = &mWork.load;
     f32 local_58[6] = { 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f };
     if (mCurCamStyleTimer == 0) {
         getEvIntData(&load->mSlot, "Slot", 0);
         getEvIntData(&load->mTimer, "Timer", 1);
-        getEvIntData(&load->mType, "Type", load->mTimer > 9);
+        getEvIntData(&load->mType, "Type", (load->mTimer < 10) ? 0 : 1);
 
         if (load->mType > 1) {
             OS_REPORT("camera: event: LOAD: warning!! type %d unknown\n", load->mType);
@@ -2670,7 +2687,7 @@ bool dCamera_c::loadEvCamera() {
             load->field_0x42 = cSAngle(local_b0);
         } else {
 #ifdef DEBUG
-            if (field_0xd0[load->mSlot].field_0x1e == 0 || load->mSlot > 1) {
+            if (field_0xd0[load->mSlot].field_0x1e == 0 || load->mSlot >= 2) {
                 OS_REPORT("camera: event: LOAD: warning!! slot %d not saved\n", load->mSlot);
             }
 #endif
@@ -2692,9 +2709,9 @@ bool dCamera_c::loadEvCamera() {
         f32 fVar5;
         if (load->mType != 0) {
             mEventData.field_0xf0.Step();
-            mEventData.field_0xf0.Calc(local_58);
+            fVar5 = mEventData.field_0xf0.Calc(local_58);
         } else {
-            fVar5 = (mCurCamStyleTimer + 1) / load->mTimer;
+            fVar5 = (mCurCamStyleTimer + 1) / f32(load->mTimer);
         }
 
         field_0x5c.mCenter = load->field_0x1c + ((load->field_0x28 - load->field_0x1c) * fVar5);
@@ -2713,70 +2730,140 @@ bool dCamera_c::loadEvCamera() {
 
 /* 800929AC-800937AC 08D2EC 0E00+00 0/0 1/0 0/0 .text            useItem0EvCamera__9dCamera_cFv */
 bool dCamera_c::useItem0EvCamera() {
-    // NONMATCHING
-    cXyz sp394[49] = {
-        cXyz(10.0f, -15.0f, 20.0f), cXyz(30.0f, 115.0f, 70.0f), cXyz(0.0f, 120.0f, 64.0f),
-        cXyz(65.0f, 120.0f, -10.0f), cXyz(40.0f, 118.0f, 0.0f), cXyz(0.0f, -32.0f, 15.0f),
-        cXyz(80.0f, -50.0f, 140.0f), cXyz(-52.0f, 34.0f, 80.0f), cXyz(80.0f, 116.0f, 88.0f),
-        cXyz(55.0f, -33.0f, 100.0f), cXyz(105.0f, -55.0f, 70.0f), cXyz(16.0f, 52.0f, -8.0f),
-        cXyz(0.0f, -80.0f, 25.0f), cXyz(-85.0f, -15.0f, 240.0f), cXyz(-95.0f, 92.0f, 165.0f),
-        cXyz(155.0f, 80.0f, 120.0f), cXyz(5.0f, 108.0f, 155.0f), cXyz(0.0f, -27.0f, 25.0f),
-        cXyz(-90.0f, -70.0f, 150.0f), cXyz(130.0f, -68.0f, 114.0f), cXyz(5.0f, 130.0f, 110.0f),
-        cXyz(-45.0f, -50.0f, -110.0f), cXyz(30.241f, 12.653f, 13.95f), cXyz(23.639f, 96.636f, 57.318f),
-        cXyz(-2.849f, 96.639f, 42.753f), cXyz(23.639f, 96.636f, 57.318), cXyz(0.0f, -60.0f, -15.0f),
-        cXyz(-90.0f, 115.0f, 120.0f), cXyz(75.0f, 105.0f, 65.0f), cXyz(80.0f, 110.0f, -130.0f),
-        cXyz(0.0f, -15.0f, -100.0f), cXyz(-100.0f, -60.0f, -420.0f), cXyz(110.0f, -55.0f, -400.0f),
-        cXyz(0.0f, 10.0f, -30.0f), cXyz(95.0f, -55.0f, -245.0f), cXyz(-58.0f, -65.0f, -250.0f),
-        cXyz(0.0f, -15.0f, 20.0f), cXyz(-105.0f, 1.5f, 47.0f), cXyz(113.0f, -28.0f, -12.0f),
-        cXyz(96.0f, 50.0f, 38.0f), cXyz(-68.0f, 70.0f, 82.0f), cXyz(0.0f, 15.0f, -40.0f),
-        cXyz(65.0f, 350.0f, -85.0f), cXyz(-110.0f, 340.0f, -115.0f), cXyz(100.0f, 30.0f, 270.0f),
-        cXyz(0.0f, -20.0f, 30.0f), cXyz(-85.0f, -10.0f, 300.0f), cXyz(50.0f, 165.0f, 160.0f),
-        cXyz(-260.0f, -50.0f, 30.0f),
+    struct mWork::item* item_p = &mWork.item;
+    cXyz vec_1dc(10.0f, -15.0f, 20.0f);
+    cXyz vecs_338[4] = {
+        cXyz(30.0f, 115.0f, 70.0f),
+        cXyz(0.0f, 120.0f, 64.0f),
+        cXyz(65.0f, 120.0f, -10.0f),
+        cXyz(40.0f, 118.0f, 0.0f)
     };
+    int const_1st_4_val = 4;
 
-    cXyz* local_1b0[49];
-    *local_1b0 = sp394;
+    cXyz vec_1d0(0.0f, -32.0f, 15.0f);
+    cXyz vecs_368[6] = {
+        cXyz(80.0f, -50.0f, 140.0f),
+        cXyz(-52.0f, 34.0f, 80.0f),
+        cXyz(80.0f, 116.0f, 88.0f),
+        cXyz(55.0f, -33.0f, 100.0f),
+        cXyz(105.0f, -55.0f, 70.0f),
+        cXyz(16.0f, 52.0f, -8.0f),
+    };
+    int const_6_val = 6;
 
-    u32 local_1a8[91] = {
-        0x00000000, 0x00000000, 0x00000000, 0x42820000,
-        0x0000001E, 0x00000000, 0xFFFFFFFF, 0x00000000,
-        0x00000000, 0x00000000, 0x42820000, 0x00000028,
-        0x00000000, 0xFFFFFFFF, 0x00000000, 0x00000000,
-        0x00000000, 0x42820000, 0x00000028, 0x00000000,
-        0x00000007, 0x00000000, 0x00000000, 0x00000000,
-        0x42820000, 0x00000028, 0x00000000, 0x00000007,
-        0x00000000, 0x00000000, 0x00000000, 0x42820000,
-        0x0000000A, 0x00000049, 0xFFFFFFFF, 0x00000000,
-        0x00000000, 0x00000000, 0x428C0000, 0x0000002D,
-        0x00000000, 0xFFFFFFFF, 0x00000000, 0x00000000,
-        0x00000000, 0x42700000, 0x00000028, 0x00000000,
-        0xFFFFFFFF, 0x00000000, 0x00000000, 0x00000000,
-        0x42700000, 0x00000028, 0x00000000, 0xFFFFFFFF,
-        0x00000000, 0x00000000, 0x00000000, 0x42340000,
-        0x00000050, 0x0000000A, 0xFFFFFFFF, 0x00000000,
-        0x00000000, 0x00000000, 0x42820000, 0x00000028,
-        0x00000000, 0xFFFFFFFF, 0x00000000, 0x00000000,
-        0x00000000, 0x42700000, 0x00000028, 0x00000000,
-        0xFFFFFFFF, 0x00000000, 0x00000000, 0x00000000,
-        0x42700000, 0x00000001, 0x0000003C, 0xFFFFFFFF,
-        0x00000000, 0x00000000, 0x00000000, 0x42820000,
-        0x00000014, 0x00000000, 0xFFFFFFFF,
+    cXyz vec_1c4(0.0f, -80.0f, 25.0f);
+    cXyz vecs_308[4] = {
+        cXyz(-85.0f, -15.0f, 240.0f),
+        cXyz(-95.0f, 92.0f, 165.0f),
+        cXyz(155.0f, 80.0f, 120.0f),
+        cXyz(5.0f, 108.0f, 155.0f)
+    };
+    int const_2nd_4_val = 4;
+
+    cXyz vec_1b8(0.0f, -27.0f, 25.0f);
+    cXyz vecs_2d8[4] = {
+        cXyz(-90.0f, -70.0f, 150.0f),
+        cXyz(130.0f, -68.0f, 114.0f),
+        cXyz(5.0f, 130.0f, 110.0f),
+        cXyz(-45.0f, -50.0f, -110.0f)
+    };
+    int const_3rd_4_val = 4;
+
+    cXyz vec_1ac(30.241f, 12.653f, 13.95f);
+    cXyz vecs_2b4[3] = {
+        cXyz(23.639f, 96.636f, 57.318f),
+        cXyz(-2.849f, 96.639f, 42.753f),
+        cXyz(23.639f, 96.636f, 57.318)
+    };
+    int const_1st_3_val = 3;
+
+    cXyz vec_1a0(0.0f, -60.0f, -15.0f);
+    cXyz vecs_290[3] = {
+        cXyz(-90.0f, 115.0f, 120.0f),
+        cXyz(75.0f, 105.0f, 65.0f),
+        cXyz(80.0f, 110.0f, -130.0f)
+    };
+    int const_2nd_3_val = 3;
+
+    cXyz vec_194(0.0f, -15.0f, -100.0f);
+    cXyz vecs_200[2] = {
+        cXyz(-100.0f, -60.0f, -420.0f),
+        cXyz(110.0f, -55.0f, -400.0f)
+    };
+    int const_1st_2_val = 2;
+
+    cXyz vec_188(0.0f, 10.0f, -30.0f);
+    cXyz vecs_1e8[2] = {
+        cXyz(95.0f, -55.0f, -245.0f),
+        cXyz(-58.0f, -65.0f, -250.0f)
+    };
+    int const_2nd_2_val = 2;
+
+    cXyz vec_17c(0.0f, -15.0f, 20.0f);
+    cXyz vecs_260[4] = {
+        cXyz(-105.0f, 1.5f, 47.0f),
+        cXyz(113.0f, -28.0f, -12.0f),
+        cXyz(96.0f, 50.0f, 38.0f),
+        cXyz(-68.0f, 70.0f, 82.0f)
+    };
+    int const_4th_4_val = 4;
+
+    cXyz vec_170(0.0f, 15.0f, -40.0f);
+    cXyz vecs_23c[3] = {
+        cXyz(65.0f, 350.0f, -85.0f),
+        cXyz(-110.0f, 340.0f, -115.0f),
+        cXyz(100.0f, 30.0f, 270.0f)
+    };
+    int const_3rd_3_val = 3;
+
+    cXyz vec_164(0.0f, -20.0f, 30.0f);
+    cXyz vecs_218[3] = {
+        cXyz(-85.0f, -10.0f, 300.0f),
+        cXyz(50.0f, 165.0f, 160.0f),
+        cXyz(-260.0f, -50.0f, 30.0f)
+    };
+    int const_4th_3_val = 3;
+
+    struct UseItem0Data {
+        cXyz* field_0x00;
+        cXyz* field_0x04;
+        int field_0x08;
+        f32 field_0x0c;
+        int field_0x10;
+        int field_0x14;
+        int field_0x18;
+    };
+    UseItem0Data data_list[13] = {
+        {&vec_1c4, vecs_308, const_2nd_4_val, 65.0f, 30,  0, -1},
+        {&vec_1d0, vecs_368, const_6_val,     65.0f, 40,  0, -1}, 
+        {&vec_1c4, vecs_308, const_2nd_4_val, 65.0f, 40,  0,  7},
+        {&vec_1b8, vecs_2d8, const_3rd_4_val, 65.0f, 40,  0,  7},
+        {&vec_1dc, vecs_338, const_1st_4_val, 65.0f, 10, 73, -1},
+        {&vec_1ac, vecs_2b4, const_1st_3_val, 70.0f, 45,  0, -1},
+        {&vec_1a0, vecs_290, const_2nd_3_val, 60.0f, 40,  0, -1},
+        {&vec_1a0, vecs_290, const_2nd_3_val, 60.0f, 40,  0, -1},
+        {&vec_194, vecs_200, const_1st_2_val, 45.0f, 80, 10, -1},
+        {&vec_188, vecs_1e8, const_2nd_2_val, 65.0f, 40,  0, -1},
+        {&vec_17c, vecs_260, const_4th_4_val, 60.0f, 40,  0, -1},
+        {&vec_164, vecs_218, const_4th_3_val, 60.0f,  1, 60, -1},
+        {&vec_1dc, vecs_338, const_1st_4_val, 65.0f, 20,  0, -1},
     };
 
     cSAngle acStack_53c, acStack_540;
     cXyz sp408;
+    int idx;
+    bool ret = false;
 
-    struct mWork::item* item = &mWork.item;
     if (mCurCamStyleTimer == 0) {
-        item->field_0x0 = 0;
-        item->field_0x44 = mCenter;
-        item->field_0x50 = mEye;
-        item->field_0x5c = mFovy;
+        item_p->field_0x0 = 0;
+        item_p->field_0x44 = mCenter;
+        item_p->field_0x50 = mEye;
+        item_p->field_0x5c = mFovy;
     }
 
-    cXyz sp414 = attentionPos(mpPlayerActor);
+    cXyz att_pos = attentionPos(mpPlayerActor);
     cXyz sp424;
-    switch (item->field_0x0) {
+    switch (item_p->field_0x0) {
         case 3:
         case 4:
         case 5:
@@ -2785,136 +2872,152 @@ bool dCamera_c::useItem0EvCamera() {
         case 8:
         case 9:
         case 0:
-            getEvIntData(&item->mType, "Type", 0);
-            item->field_0x1c = 0;
-            item->field_0x20 = 0;
-            break;
-
+        default: {
+            getEvIntData(&item_p->mType, "Type", 0);
+            item_p->field_0x1c = 0;
+            item_p->field_0x20 = 0;
+        }
+        // fallthrough intentional.
+        case 10:
         case 11: {
-            item->field_0x0 = 10;
-            int iVar1 = item->field_0x20 + 1;
-            item->field_0x20 = iVar1;
-            if (local_1a8[item->mType * 7 + 3] >= iVar1) {
-                item->field_0x20 = 0;
-                if ((field_0xa8 & local_1a8[item->mType]) == 0) {
-                    local_1b0[item->mType * 7 + -1 + 12] = local_1b0[item->mType * 7 + -1];
+            item_p->field_0x0 = 10;
+            if (++item_p->field_0x20 >= data_list[item_p->mType].field_0x14) {
+                item_p->field_0x20 = 0;
+                if ((field_0xa8 & data_list[item_p->mType].field_0x18) == 0) {
+                    cXyz temp_vec(data_list[item_p->mType].field_0x04[0]);
+                    data_list[item_p->mType].field_0x04[0] = data_list[item_p->mType].field_0x04[1];
+                    data_list[item_p->mType].field_0x04[1] = temp_vec;
                 }
 
-                item->field_0xc = relationalPos(mpPlayerActor, local_1b0[item->mType * 7]);
-                item->field_0x18 = local_1a8[item->mType * 7 + 1];
-                item->field_0x4 = local_1a8[item->mType * 7 + 2];
+                item_p->field_0xc = relationalPos(mpPlayerActor, data_list[item_p->mType].field_0x00);
+                item_p->field_0x18 = data_list[item_p->mType].field_0x0c;
+                item_p->field_0x4 = data_list[item_p->mType].field_0x10;
 
-                if (lineBGCheck(&sp414, &item->field_0xc, 0x40b7)) {
-                    item->field_0xc = sp424 + cSGlobe().Norm();
+                if (lineBGCheck(&att_pos, &item_p->field_0xc, &sp424, 0x40b7)) {
+                    item_p->field_0xc = sp424 + field_0x5c.mDirection.Norm();
                 }
 
-                int i;
-                for (i = 0; i < local_1a8[item->mType * 7]; i++) {
-                    sp408 = relationalPos(mpPlayerActor, local_1b0[item->mType + i * 12]);
-                    if ((((sp408.y < mBG.field_0x108.field_0x4 + positionOf(mpPlayerActor).y) << 3) << 28) < 0) {
+                for (idx = 0; idx < data_list[item_p->mType].field_0x08; idx++) {
+                    sp408 = relationalPos(mpPlayerActor, &data_list[item_p->mType].field_0x04[idx]);
+                    if (sp408.y < mBG.field_0x108.field_0x4 + positionOf(mpPlayerActor).y) {
                         sp408.y = mBG.field_0x108.field_0x4 + positionOf(mpPlayerActor).y;
                     }
 
                     fopAc_ac_c* mActor = NULL;
-                    if (item->mType == 10 || (item->mType < 10 && item->mType != 1)) {
-                        if (daPy_getPlayerActorClass()->checkHorseRide() != 0) {
-                            mActor = (fopAc_ac_c*)dComIfGp_getHorseActor();
-                        } else if (daPy_getPlayerActorClass()->checkCanoeRide() != 0) {
-                            mActor = fopAcM_SearchByName(0xed);
+                    switch (item_p->mType) {
+                        case 1:
+                        case 10: {
+                            if (daPy_getPlayerActorClass()->checkHorseRide() != 0) {
+                                mActor = (fopAc_ac_c*)dComIfGp_getHorseActor();
+                            } else if (daPy_getPlayerActorClass()->checkCanoeRide() != 0) {
+                                mActor = fopAcM_SearchByName(0xed);
+                            }
                         }
                     }
 
-                    if (!lineBGCheck(&item->field_0xc, &sp408, 0x4007) && !lineBGCheck(&sp414, &sp408, 0x4007)) {
-                        if (!lineCollisionCheck(item->field_0xc, sp408, mpPlayerActor, mActor, NULL)) {
-                            break;
-                        }
+                    if (!lineBGCheck(&item_p->field_0xc, &sp408, 0x4007) && !lineBGCheck(&att_pos, &sp408, 0x4007)
+                        && !lineCollisionCheck(item_p->field_0xc, sp408, mpPlayerActor, mActor, NULL)) {
+                        break;
                     }
                 }
 
-                if (local_1a8[item->mType * 7] >= i) {
-                    item->field_0xc = item->field_0x44;
-                    item->field_0x18 = item->field_0x5c;
-                    sp408 = item->field_0x50;
+                if (idx >= data_list[item_p->mType].field_0x08) {
+                    item_p->field_0xc = item_p->field_0x44;
+                    item_p->field_0x18 = item_p->field_0x5c;
+                    sp408 = item_p->field_0x50;
                 }
 
-                item->field_0x24.Val(sp408 - item->field_0xc);
-                item->field_0x0 = 1;
+                item_p->field_0x24.Val(sp408 - item_p->field_0xc);
+                item_p->field_0x0 = 1;
             }
             break;
         }
 
         case 1: {
-            f32 fVar1 = item->field_0x20 / item->field_0x4;
-            field_0x5c.mFovy += fVar1 * (item->field_0x18 - field_0x5c.mFovy);
-            field_0x5c.mCenter += (item->field_0xc - field_0x5c.mCenter) * fVar1;
+            f32 fVar1 = item_p->field_0x20 / f32(item_p->field_0x4);
+            field_0x5c.mFovy += fVar1 * (item_p->field_0x18 - field_0x5c.mFovy);
+            field_0x5c.mCenter += (item_p->field_0xc - field_0x5c.mCenter) * fVar1;
 
             f32 fVar2 = field_0x5c.mDirection.R();
             acStack_540 = field_0x5c.mDirection.V();
             acStack_53c = field_0x5c.mDirection.U();
-            fVar2 = fVar2 + (fVar1 * (item->field_0x24.R() - fVar2));
-            acStack_540 += (item->field_0x24.V() - acStack_540) * fVar1;
-            acStack_53c += (item->field_0x24.U() - acStack_53c) * fVar1;
+            fVar2 = fVar2 + (fVar1 * (item_p->field_0x24.R() - fVar2));
+            acStack_540 += (item_p->field_0x24.V() - acStack_540) * fVar1;
+            acStack_53c += (item_p->field_0x24.U() - acStack_53c) * fVar1;
 
             field_0x5c.mDirection.Val(fVar2, acStack_540, acStack_53c);
             field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
 
-            if (item->field_0x20 < item->field_0x4) break;
+            if (item_p->field_0x20 < item_p->field_0x4) {
+                break;
+            }
 
-            item->field_0x0 = 2;
+            item_p->field_0x0 = 2;
         }
         // fallthrough
-        case 2:
-            field_0x5c.mCenter = item->field_0xc;
+        case 2: {
+            field_0x5c.mCenter = item_p->field_0xc;
             field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
 
-            item->field_0x1c++;
-            if (item->field_0x1c == 1) {
-                if (item->mType == 0) {
-                    item->field_0x0 = 11;
-                    item->mType = 4;
+            item_p->field_0x1c++;
+            if (item_p->field_0x1c == 1) {
+                if (item_p->mType == 0) {
+                    item_p->field_0x0 = 11;
+                    item_p->mType = 4;
                     break;
                 }
 
-                if (item->mType == 7) {
-                    item->field_0x0 = 11;
-                    item->mType = 8;
+                if (item_p->mType == 7) {
+                    item_p->field_0x0 = 11;
+                    item_p->mType = 8;
                     break;
                 }
 
-                if (item->mType == 11) {
-                    item->field_0x0 = 999;
+                if (item_p->mType == 11) {
+                    item_p->field_0x0 = 999;
                     break;
                 }
             }
 
-            item->field_0x0 = 99;
-            // fallthrough
-        default:
+            item_p->field_0x0 = 99;
+        }
+        // fallthrough
+        case 99: {
             field_0x158.field_0x0 = true;
-            field_0x5c.mCenter = item->field_0xc;
+            field_0x5c.mCenter = item_p->field_0xc;
             field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
+        }
+
+        case 999: {
+            ret = true;
+        }
     }
 
-    item->field_0x20++;
-    return 1;
+    item_p->field_0x20++;
+    return ret;
 }
 
 /* 800937AC-80094240 08E0EC 0A94+00 0/0 1/0 0/0 .text            useItem1EvCamera__9dCamera_cFv */
 bool dCamera_c::useItem1EvCamera() {
-    // NONMATCHING
-    if (mCurCamStyleTimer == 0 && getEvIntData(&mWork.item.mType, "Type", 0), mWork.item.mType == 0) {
-        mWork.item.field_0x2c = field_0x5c.mCenter - attentionPos(mpPlayerActor);
-        mWork.item.field_0x38 = field_0x5c.mEye - attentionPos(mpPlayerActor);
+    struct mWork::item* item_p = &mWork.item;
+    if (mCurCamStyleTimer == 0) {
+        getEvIntData(&item_p->mType, "Type", 0);
+        if (item_p->mType == 0) {
+            item_p->field_0x2c = field_0x5c.mCenter - attentionPos(mpPlayerActor);
+            item_p->field_0x38 = field_0x5c.mEye - attentionPos(mpPlayerActor);
+        }
     }
 
-    if (mWork.item.mType == 0) {
-        mWork.item.field_0x2c.y += 0.05f * (20.0f - mWork.item.field_0x2c.y);
-        mWork.item.field_0x2c.x += -mWork.item.field_0x2c.x * 0.05f;
-        mWork.item.field_0x2c.z += -mWork.item.field_0x2c.z * 0.05f;
-        
-        field_0x5c.mCenter = attentionPos(mpPlayerActor) + mWork.item.field_0x2c;
+    if (item_p->mType == 0) {
+        f32 mult_val = 0.05f;
+        item_p->field_0x2c.y += (20.0f - item_p->field_0x2c.y) * mult_val;
+        item_p->field_0x2c.x += -item_p->field_0x2c.x * mult_val;
+        item_p->field_0x2c.z += -item_p->field_0x2c.z * mult_val;
+
+        f32 r_val = field_0x5c.mDirection.R();
+        field_0x5c.mCenter = attentionPos(mpPlayerActor) + item_p->field_0x2c;
         field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
-        field_0x5c.mDirection.R(field_0x5c.mDirection.R());
+        field_0x5c.mDirection.R(r_val);
 
         if (field_0x5c.mDirection.V() > cSAngle(70.0f)) {
             field_0x5c.mDirection.V(cSAngle(70.0f));
@@ -2925,17 +3028,18 @@ bool dCamera_c::useItem1EvCamera() {
         }
 
         field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
-        field_0x5c.mFovy += (20.0f - field_0x5c.mFovy) * 0.05f;
+        field_0x5c.mFovy += (20.0f - field_0x5c.mFovy) * mult_val;
         return 1;
     }
 
     cXyz spec(0.0f, 0.0f, 0.0f);
     cXyz spf8(0.0f, -70.0f, 70.0f);
     cXyz sp104(0.0f, -30.0f, 70.0f);
+    cXyz* sp264 = &spec;
+    cXyz vec_1b0;
 
     daPy_py_c* mPlayer = daPy_getPlayerActorClass();
     daMidna_c* mMidna = (daMidna_c*)daPy_py_c::getMidnaActor();
-    cXyz* sp264;
     if (mIsWolf == 1) {
         if (mPlayer->checkMidnaRide() && mMidna->checkNoDraw()) {
             sp264 = &sp104;
@@ -2944,123 +3048,152 @@ bool dCamera_c::useItem1EvCamera() {
         }
     }
 
-    cXyz sp11c(10.0f, -60.0f, 0.0f);
-    cXyz spa8(90.0f, 20.0f, 180.0f);
-    cXyz sp9c(-100.0f, 50.0f, -180.0f);
-    cXyz sp90(60.0f, 150.0f, 165.0f);
-    cXyz sp84(-150.0f, 30.0f, 170.0f);
-    cXyz sp78(0.0f, -20.0f, 165.0f);
-    cXyz sp6c(40.0f, 150.0f, -85.0f);
-    int local_d8[12] = { 6, 65, 1, 1, 7, 0, 0, -1, 30, 80, 0, -1 };
-    cXyz* local_e0[2] = { &sp11c, &spa8 };
+    cXyz vec_1a4(10.0f, -60.0f, 0.0f);
+    cXyz vecs_218[6] = {
+        cXyz(90.0f, 20.0f, 180.0f),
+        cXyz(-100.0f, 50.0f, -180.0f),
+        cXyz(60.0f, 150.0f, 165.0f),
+        cXyz(-150.0f, 30.0f, 170.0f),
+        cXyz(0.0f, -20.0f, 165.0f),
+        cXyz(40.0f, 150.0f, -85.0f)
+    };
+    int const_6_val = 6;
+
+    struct UseItem0Data {
+        cXyz* field_0x00;
+        cXyz* field_0x04;
+        int field_0x08;
+        f32 field_0x0c;
+        int field_0x10;
+        int field_0x14;
+        int field_0x18;
+    };
+    UseItem0Data data_list[1][2] = {
+        {
+            {&vec_1a4, vecs_218, const_6_val, 65.0f,  1, 1,  7},
+            {    NULL,     NULL,          -1, 30.0f, 80, 0, -1}
+        }
+    };
+
+    cSAngle acStack_288;
+    cSAngle acStack_28c;
+    cXyz vec_198;
     bool rv = false;
 
     if (mCurCamStyleTimer == 0) {
-        mWork.item.field_0x0 = 0;
-        mWork.item.field_0x44 = mCenter;
-        mWork.item.field_0x50 = mEye;
-        mWork.item.field_0x5c = mFovy;
+        item_p->field_0x0 = 0;
+        item_p->field_0x44 = mCenter;
+        item_p->field_0x50 = mEye;
+        item_p->field_0x5c = mFovy;
     }
 
     cXyz sp134 = attentionPos(mpPlayerActor);
     cXyz sp140;
-    switch (mWork.item.field_0x0) {
-        case 0:
-            mWork.item.field_0x1c = 0;
-            mWork.item.field_0x0 = 1;
-            // fallthrough
+    bool unused_yet_set_bool = false;
+    switch (item_p->field_0x0) {
+        case 0: {
+            item_p->field_0x1c = 0;
+            item_p->field_0x0 = 1;
+        }
+        // fallthrough
         case 1: {
-            mWork.item.field_0x18 = local_d8[mWork.item.field_0x1c + mWork.item.mType];
-            mWork.item.field_0xc = field_0x5c.mCenter;
-            if (local_e0[mWork.item.field_0x1c + mWork.item.mType] != NULL) {
-                mWork.item.field_0xc = relationalPos(mpPlayerActor, &(*local_e0[mWork.item.mType + mWork.item.field_0x1c] + *sp264));
+            item_p->field_0x18 = data_list[item_p->mType][item_p->field_0x1c].field_0x0c;
+            item_p->field_0xc = field_0x5c.mCenter;
+            if (data_list[item_p->mType][item_p->field_0x1c].field_0x00 != NULL) {
+                vec_1b0 = data_list[item_p->mType][item_p->field_0x1c].field_0x00[0] + *sp264;
+                item_p->field_0xc = relationalPos(mpPlayerActor, &vec_1b0);
 
-                if ((field_0xa8 & local_d8[mWork.item.mType * 56 + mWork.item.field_0x1c * 28]) == 0) {
-                    cXyz cStack_14c = *local_e0[mWork.item.field_0x1c + mWork.item.mType];
-                    local_e0[mWork.item.field_0x1c + mWork.item.mType] += 12;
-                    local_e0[mWork.item.field_0x1c + mWork.item.mType] = &cStack_14c;
+                if ((field_0xa8 & data_list[item_p->mType][item_p->field_0x1c].field_0x18) == 0) {
+                    cXyz cStack_14c = data_list[item_p->mType][item_p->field_0x1c].field_0x04[0];
+                    data_list[item_p->mType][item_p->field_0x1c].field_0x04[0]
+                        = data_list[item_p->mType][item_p->field_0x1c].field_0x04[1];
+                    data_list[item_p->mType][item_p->field_0x1c].field_0x04[1] = cStack_14c;
                 }
 
-                if (lineBGCheck(&sp134, &mWork.item.field_0xc, &sp140, 0x40b7)) {
-                    mWork.item.field_0xc = sp140 + cSGlobe().Norm();
+                if (lineBGCheck(&sp134, &item_p->field_0xc, &sp140, 0x40b7)) {
+                    item_p->field_0xc = sp140 + field_0x5c.mDirection.Norm();
                 }
             }
 
-            cXyz sp128 = field_0x5c.mEye;
-            if (local_d8[mWork.item.field_0x1c + mWork.item.mType] != 0) {
+            vec_198 = field_0x5c.mEye;
+            if (data_list[item_p->mType][item_p->field_0x1c].field_0x04 != NULL) {
                 int i;
-                for (i = 0; i < local_d8[mWork.item.field_0x1c + mWork.item.mType]; i++) {
-                    sp128 = relationalPos(mpPlayerActor, local_e0[mWork.item.field_0x1c]);
+                for (i = 0; i < data_list[item_p->mType][item_p->field_0x1c].field_0x08; i++) {
+                    vec_198 = relationalPos(mpPlayerActor, &data_list[item_p->mType][item_p->field_0x1c].field_0x04[i]);
                     fopAc_ac_c* mHorseActor = (fopAc_ac_c*)dComIfGp_getHorseActor();
-                    if (!lineBGCheck(&mWork.item.field_0xc, &sp128, 0x4007) && !lineBGCheck(&sp134, &sp128, 0x4007)) {
-                        if (!lineCollisionCheck(mWork.item.field_0xc, sp128, mpPlayerActor, mHorseActor, NULL)) {
-                            break;
-                        }
+                    if (!lineBGCheck(&item_p->field_0xc, &vec_198, 0x4007) && !lineBGCheck(&sp134, &vec_198, 0x4007)
+                        && !lineCollisionCheck(item_p->field_0xc, vec_198, mpPlayerActor, mHorseActor, NULL)) {
+                        break;
                     }
                 }
 
-                if (local_d8[mWork.item.field_0x1c] <= i) {
-                    sp128 = field_0x5c.mEye;
+                if (i >= data_list[item_p->mType][item_p->field_0x1c].field_0x08) {
+                    vec_198 = field_0x5c.mEye;
                 }
             }
 
-            mWork.item.field_0x24.Val(sp128 - mWork.item.field_0xc);
-            mWork.item.field_0x0 = 2;
-            mWork.item.field_0x4 = local_d8[mWork.item.field_0x1c];
-            mWork.item.field_0x20 = 1;
-            break;
+            item_p->field_0x24.Val(vec_198 - item_p->field_0xc);
+            item_p->field_0x0 = 2;
+            item_p->field_0x4 = data_list[item_p->mType][item_p->field_0x1c].field_0x10;
+            item_p->field_0x20 = 1;
+            unused_yet_set_bool = true;
+            (void) unused_yet_set_bool;
         }
-
-        case 2:
-            if (mWork.item.field_0x4 > 1) {
-                f32 fVar1 = mWork.item.field_0x20 / mWork.item.field_0x4;
-                field_0x5c.mFovy += fVar1 * (mWork.item.field_0x18 - field_0x5c.mFovy);
-                field_0x5c.mCenter += (mWork.item.field_0xc - field_0x5c.mCenter) * fVar1;
+        // fallthrough intentional.
+        case 2: {
+            if (item_p->field_0x4 > 1) {
+                f32 fVar1 = item_p->field_0x20 / f32(item_p->field_0x4);
+                field_0x5c.mFovy += fVar1 * (item_p->field_0x18 - field_0x5c.mFovy);
+                field_0x5c.mCenter += (item_p->field_0xc - field_0x5c.mCenter) * fVar1;
 
                 f32 fVar2 = field_0x5c.mDirection.R();
-                cSAngle acStack_28c = field_0x5c.mDirection.V();
-                cSAngle acStack_288 = field_0x5c.mDirection.U();
-                fVar2 = fVar2 + (fVar1 * (mWork.item.field_0x24.R() - fVar2));
-                acStack_28c += (mWork.item.field_0x24.V() - acStack_28c) * fVar1;
-                acStack_288 += (mWork.item.field_0x24.U() - acStack_288) * fVar1;
+                acStack_28c = field_0x5c.mDirection.V();
+                acStack_288 = field_0x5c.mDirection.U();
+                fVar2 = fVar2 + (fVar1 * (item_p->field_0x24.R() - fVar2));
+                acStack_28c += (item_p->field_0x24.V() - acStack_28c) * fVar1;
+                acStack_288 += (item_p->field_0x24.U() - acStack_288) * fVar1;
                 field_0x5c.mDirection.Val(fVar2, acStack_28c, acStack_288);
                 field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
 
-                if (mWork.item.field_0x20 < mWork.item.field_0x4) break;
+                if (item_p->field_0x20 < item_p->field_0x4) break;
             }
 
-            mWork.item.field_0x0 = 3;
-            mWork.item.field_0x4 = local_d8[mWork.item.field_0x1c * 28 + mWork.item.mType];
-            mWork.item.field_0x20 = 1;
-            // fallthrough
-        case 3:
-            field_0x5c.mCenter = mWork.item.field_0xc;
-            field_0x5c.mEye = field_0x5c.mCenter + mWork.item.field_0x24.Xyz();
-            field_0x5c.mDirection = mWork.item.field_0x24;
-            field_0x5c.mFovy = mWork.item.field_0x18;
+            item_p->field_0x0 = 3;
+            item_p->field_0x4 = data_list[item_p->mType][item_p->field_0x1c].field_0x14;
+            item_p->field_0x20 = 1;
+        }
+        // fallthrough
+        case 3: {
+            field_0x5c.mCenter = item_p->field_0xc;
+            field_0x5c.mEye = field_0x5c.mCenter + item_p->field_0x24.Xyz();
+            field_0x5c.mDirection = item_p->field_0x24;
+            field_0x5c.mFovy = item_p->field_0x18;
 
-            if (mWork.item.field_0x20 < mWork.item.field_0x4) break;
+            if (item_p->field_0x20 < item_p->field_0x4) break;
 
-            if (local_d8[mWork.item.mType * 14 + 7] != 0 && mWork.item.field_0x1c == 0) {
-                mWork.item.field_0x1c = 1;
-                mWork.item.field_0x0 = 1;
+            if (data_list[item_p->mType][1].field_0x08 != NULL && item_p->field_0x1c == 0) {
+                item_p->field_0x1c = 1;
+                item_p->field_0x0 = 1;
                 break;
             }
 
-            mWork.item.field_0x0 = 99;
-            // fallthrough
-        default:
+            item_p->field_0x0 = 99;
+        }
+        // fallthrough
+        case 99:
+        default: {
             field_0x158.field_0x0 = true;
             rv = true;
+        }
     }
 
-    mWork.item.field_0x20++;
+    item_p->field_0x20++;
     return rv;
 }
 
 /* 80094240-80094A70 08EB80 0830+00 0/0 1/0 0/0 .text            getItemEvCamera__9dCamera_cFv */
 bool dCamera_c::getItemEvCamera() {
-    // NONMATCHING
+    struct mWork::getItem* gitem_p = &mWork.getItem;
     cXyz cStack_90[8] = {
         cXyz(0.0f, -27.0f, 32.0f),
         cXyz(84.0f, -18.0f, 134.0f),
@@ -3072,98 +3205,101 @@ bool dCamera_c::getItemEvCamera() {
         cXyz(50.0f, 128.0f, -220.0f),
     };
 
-    int local_fc[25] = {
-        0x00000000, 0x00000000, 0x42480000, 0x0000000C, 0x00000001, 
-        0x00000000, 0x00000000, 0x42480000, 0x0000000C, 0x00000000, 
-        0x00000000, 0x00000000, 0x42480000, 0x00000011, 0xFFFFFFFF, 
-        0x00000000, 0x00000000, 0x42480000, 0x00000011, 0xFFFFFFFF,
-        0x00000000, 0x00000000, 0x42480000, 0x00000011, 0x00000000,
+    struct GetItemData {
+        cXyz* field_0x00;
+        cXyz* field_0x04;
+        f32 field_0x08;
+        int field_0x0c;
+        int field_0x10;
+    };
+    GetItemData data_list[5] = {
+        {&cStack_90[0], &cStack_90[1], 50.0f, 12, 1},
+        {&cStack_90[2], &cStack_90[3], 50.0f, 12, 0},
+        {&cStack_90[4], &cStack_90[5], 50.0f, 17, -1},
+        {&cStack_90[4], &cStack_90[5], 50.0f, 17, -1},
+        {&cStack_90[6], &cStack_90[7], 50.0f, 17, 0},
     };
 
-    cXyz* local_f8[8];
-    *local_f8 = cStack_90;
-
-    f32 fStack_ec[6] = { 0x00000000, 0x00000000, 0x3DCCCCCD, 0x3F333333, 0x3F800000, 0x3F800000 };
+    f32 my_floats[6] = { 0.0f, 0.0f, 0.1f, 0.7f, 1.0f, 1.0f };
+    int const_6_val = 6;
 
     if (mCurCamStyleTimer == 0) {
-        getEvIntData(&mWork.getItem.field_0x8, "Type", mIsWolf == 1);
+        cXyz vec_134;
+        getEvIntData(&gitem_p->field_0x8, "Type", mIsWolf != 1 ? 0 : 1);
 
-        if (mWork.getItem.field_0x8 == 2) {
+        if (gitem_p->field_0x8 == 2) {
             if (mIsWolf != 1) {
-                mWork.getItem.field_0x8 = 3;
+                gitem_p->field_0x8 = 3;
             } else {
-                mWork.getItem.field_0x8 = 4;
+                gitem_p->field_0x8 = 4;
             }
 
-            OS_REPORT("camera: event:                   => %d\n", mWork.getItem.field_0x8);
+            OS_REPORT("camera: event:                   => %d\n", gitem_p->field_0x8);
         }
 
-        getEvIntData(&mWork.getItem.mTimer, "Timer", local_fc[mWork.getItem.field_0x8 * 5]);
-        int iVar1 = getEvFloatListData(&mWork.getItem.mCurvePoints, "CurvePoints");
-        mWork.getItem.field_0x18 = iVar1;
-        if (iVar1 == 0) {
-            mWork.getItem.mCurvePoints = fStack_ec;
-            mWork.getItem.field_0x18 = 6;
+        getEvIntData(&gitem_p->mTimer, "Timer", data_list[gitem_p->field_0x8].field_0x0c);
+        if ((gitem_p->field_0x18 = getEvFloatListData(&gitem_p->mCurvePoints, "CurvePoints")) == 0) {
+            gitem_p->mCurvePoints = my_floats;
+            gitem_p->field_0x18 = const_6_val;
         }
 
-        getEvXyzData(&mWork.getItem.mStartCenter, "StartCenter", mCenter);
-        getEvXyzData(&mWork.getItem.mStartEye, "StartEye", mEye);
+        getEvXyzData(&gitem_p->mStartCenter, "StartCenter", mCenter);
+        getEvXyzData(&gitem_p->mStartEye, "StartEye", mEye);
 
-        mWork.getItem.mRelActor = getEvActor("RelActor", "@PLAYER");
-        mWork.getItem.mRelActorID = fopAcM_GetID(mWork.getItem.mRelActor);
+        gitem_p->mRelActor = getEvActor("RelActor", "@PLAYER");
+        gitem_p->mRelActorID = fopAcM_GetID(gitem_p->mRelActor);
 
-        cXyz mCenter;
-        getEvXyzData(&mCenter, "Center", *local_f8[mWork.getItem.field_0x8 * 5]);
-        mWork.getItem.field_0x44 = relationalPos(mWork.getItem.mRelActor, &mCenter);
+        getEvXyzData(&vec_134, "Center", *data_list[gitem_p->field_0x8].field_0x00);
+        gitem_p->field_0x44 = relationalPos(gitem_p->mRelActor, &vec_134);
 
-        if (local_fc[mWork.getItem.field_0x8 * 5] == 1) {
-            cSGlobe cStack_208(mEye - positionOf(mWork.getItem.mRelActor));
-            cSAngle acStack_224(cStack_208.U() - directionOf(mWork.getItem.mRelActor));
+        if (data_list[gitem_p->field_0x8].field_0x10 == 1) {
+            cSGlobe cStack_208(mEye - positionOf(gitem_p->mRelActor));
+            cSAngle acStack_224(cStack_208.U() - directionOf(gitem_p->mRelActor));
             if (acStack_224 < cSAngle::_0) {
-                local_f8[mWork.getItem.field_0x8 * 5 + 1]->x = -local_f8[mWork.getItem.field_0x8 * 5 + 1]->x;
+                data_list[gitem_p->field_0x8].field_0x04->x = -data_list[gitem_p->field_0x8].field_0x04->x;
             }
 
-            mCenter = relationalPos(mWork.getItem.mRelActor, local_f8[mWork.getItem.field_0x8 * 5 + 1]);
-            if (lineBGCheck(&mWork.getItem.field_0x44, &mCenter, 0x4007)) {
-                local_f8[mWork.getItem.field_0x8 * 5 + 1]->x = -local_f8[mWork.getItem.field_0x8 * 5 + 1]->x;
+            vec_134 = relationalPos(gitem_p->mRelActor, data_list[gitem_p->field_0x8].field_0x04);
+            if (lineBGCheck(&gitem_p->field_0x44, &vec_134, 0x4007)) {
+                data_list[gitem_p->field_0x8].field_0x04->x = -data_list[gitem_p->field_0x8].field_0x04->x;
             }
-        } else if (local_fc[mWork.getItem.field_0x8 * 5] == -1) {
-            cSGlobe cStack_210(mEye - positionOf(mWork.getItem.mRelActor));
-            cSAngle acStack_228(cStack_210.U() - directionOf(mWork.getItem.mRelActor));
+        } else if (data_list[gitem_p->field_0x8].field_0x10 == -1) {
+            cSGlobe cStack_210(mEye - positionOf(gitem_p->mRelActor));
+            cSAngle acStack_228(cStack_210.U() - directionOf(gitem_p->mRelActor));
             if (acStack_228 > cSAngle::_0) {
-                local_f8[mWork.getItem.field_0x8 * 5 + 1]->x = -local_f8[mWork.getItem.field_0x8 * 5 + 1]->x;
+                data_list[gitem_p->field_0x8].field_0x04->x = -data_list[gitem_p->field_0x8].field_0x04->x;
             }
 
-            mCenter = relationalPos(mWork.getItem.mRelActor, local_f8[mWork.getItem.field_0x8 * 5 + 1]);
-            if (lineBGCheck(&mWork.getItem.field_0x44, &mCenter, 0x4007)) {
-                local_f8[mWork.getItem.field_0x8 * 5 + 1]->x = -local_f8[mWork.getItem.field_0x8 * 5 + 1]->x;
+            vec_134 = relationalPos(gitem_p->mRelActor, data_list[gitem_p->field_0x8].field_0x04);
+            if (lineBGCheck(&gitem_p->field_0x44, &vec_134, 0x4007)) {
+                data_list[gitem_p->field_0x8].field_0x04->x = -data_list[gitem_p->field_0x8].field_0x04->x;
             }
         }
 
-        getEvXyzData(&mCenter, "Eye", *local_f8[mWork.getItem.field_0x8 * 5 + 1]);
-        mWork.getItem.field_0x50 = relationalPos(mWork.getItem.mRelActor, &mCenter);
-        mWork.getItem.field_0x3c.Val(mWork.getItem.mStartEye - mWork.getItem.mStartCenter);
-        mWork.getItem.field_0x100.Val(mWork.getItem.field_0x50 - mWork.getItem.field_0x44);
+        getEvXyzData(&vec_134, "Eye", *data_list[gitem_p->field_0x8].field_0x04);
+        gitem_p->field_0x50 = relationalPos(gitem_p->mRelActor, &vec_134);
+        gitem_p->field_0x3c.Val(gitem_p->mStartEye - gitem_p->mStartCenter);
+        gitem_p->field_0x64.Val(gitem_p->field_0x50 - gitem_p->field_0x44);
 
-        mEventData.field_0xf0.Init(mWork.getItem.field_0x18, mWork.getItem.mTimer + 1);
+        mEventData.field_0xf0.Init(gitem_p->field_0x18, gitem_p->mTimer + 1);
         mEventData.field_0xf0.Step();
     }
 
-    if (mWork.getItem.mRelActor && fopAcM_SearchByID(mWork.getItem.mRelActorID) == NULL) {
+    if (gitem_p->mRelActor && fopAcM_SearchByID(gitem_p->mRelActorID) == NULL) {
         OS_REPORT("camera: event: error: relational base actor dead\n");
         return 1;
     }
-        
-    if (mCurCamStyleTimer < mWork.getItem.mTimer) {
-        mEventData.field_0xf0.Step();
-        f32 fVar1 = mEventData.field_0xf0.Calc(mWork.getItem.mCurvePoints);
 
-        field_0x5c.mCenter = mWork.getItem.mStartCenter + ((mWork.getItem.field_0x44 - mWork.getItem.mStartCenter) * fVar1);
-        field_0x5c.mDirection.R(mWork.getItem.field_0x3c.R() + (fVar1 * (mWork.getItem.field_0x100.R() - mWork.getItem.field_0x3c.R())));
-        field_0x5c.mDirection.V(mWork.getItem.field_0x3c.V() + ((mWork.getItem.field_0x100.V() - mWork.getItem.field_0x3c.V()) * fVar1));
-        field_0x5c.mDirection.U(mWork.getItem.field_0x3c.U() + ((mWork.getItem.field_0x100.U() - mWork.getItem.field_0x3c.U()) * fVar1));
+    if (mCurCamStyleTimer < gitem_p->mTimer) {
+        mEventData.field_0xf0.Step();
+        f32 fVar1 = mEventData.field_0xf0.Calc(gitem_p->mCurvePoints);
+
+        field_0x5c.mCenter = gitem_p->mStartCenter + ((gitem_p->field_0x44 - gitem_p->mStartCenter) * fVar1);
+        field_0x5c.mDirection.R(gitem_p->field_0x3c.R() + (fVar1 * (gitem_p->field_0x64.R() - gitem_p->field_0x3c.R())));
+        field_0x5c.mDirection.V(gitem_p->field_0x3c.V() + ((gitem_p->field_0x64.V() - gitem_p->field_0x3c.V()) * fVar1));
+        field_0x5c.mDirection.U(gitem_p->field_0x3c.U() + ((gitem_p->field_0x64.U() - gitem_p->field_0x3c.U()) * fVar1));
         field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
-        field_0x5c.mFovy += fVar1 * (fStack_ec[mWork.getItem.field_0x8 * 5 + -1] - field_0x5c.mFovy);
+        field_0x5c.mFovy += fVar1 * (data_list[gitem_p->field_0x8].field_0x08 - field_0x5c.mFovy);
 
         return 0;
     }
@@ -3183,9 +3319,8 @@ namespace {
 
 /* 80094A70-80095010 08F3B0 05A0+00 0/0 1/0 0/0 .text            possessedEvCamera__9dCamera_cFv */
 bool dCamera_c::possessedEvCamera() {
-    // NONMATCHING
-    fopAc_ac_c* a_this = (fopAc_ac_c*)this;
     struct mWork::possessed* possessed = &mWork.possessed;
+    cXyz vec_d8;
 
     bool rv = 0;
     if (mCurCamStyleTimer == 0) {
@@ -3193,68 +3328,76 @@ bool dCamera_c::possessedEvCamera() {
     }
 
     switch (possessed->field_0x0) {
-        default:
+        case 0:
+        default: {
             if (!(possessed->mTargetActor = getEvActor("Target", "@PLAYER"))) {
-                rv = 1;
-            } else {
-                getEvIntData(&possessed->mType, "Type", 0);
-                getEvIntData(&possessed->mTimer, "Timer", 10);
-                getEvFloatData(&possessed->mRadius, "Radius", 60.0f);
-                getEvFloatData(&possessed->mCushion, "Cushion", 1.0f);
-
-                f32 fVar1;
-                getEvFloatData(&fVar1, "Latitude", -5.0f);
-                possessed->mLatitude.Val(fVar1);
-                getEvFloatData(&fVar1, "Longitude", 0.0f);
-                possessed->mLongitude.Val(fVar1);
-
-                getEvFloatData(&possessed->mFovy, "Fovy", 45.0f);
-                getEvIntData(&possessed->mBlure, "Blure", 0);
-
-                if (possessed->mType == 0) {
-                    possessed->field_0x28.Val(possessed->mRadius, possessed->mLatitude, possessed->mLongitude + directionOf(possessed->mTargetActor));
-                    pushInfo(&field_0xd0[1], 2);
-                    field_0xd0[1].field_0x1e = 2;
-                } else {
-                    field_0x5c.mCenter = eyePos(a_this);
-                    possessed->field_0x28.Val(field_0xd0[1].mEye - field_0xd0[1].mCenter);
-                    field_0x5c.mDirection.Val(possessed->mRadius, possessed->mLatitude, possessed->mLongitude + directionOf(possessed->mTargetActor));
-                    field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
-                    field_0x5c.mFovy = possessed->mFovy;
-                }
-
-                possessed->field_0x0 = 1;
-                possessed->field_0xc = possessed->mTimer;
-                switch (possessed->mBlure) {
-                    case 1:
-                        StartBlure(possessed->mTimer, possessed->mTargetActor, 0.5f, 0.99f);
-                        break;
-
-                    case 2:
-                        StartBlure(possessed->mTimer, possessed->mTargetActor, 0.63f, 0.99f);
-                }
+                return 1;
             }
+
+            getEvIntData(&possessed->mType, "Type", 0);
+            getEvIntData(&possessed->mTimer, "Timer", 10);
+            getEvFloatData(&possessed->mRadius, "Radius", 60.0f);
+            getEvFloatData(&possessed->mCushion, "Cushion", 1.0f);
+
+            f32 fVar1;
+            getEvFloatData(&fVar1, "Latitude", -5.0f);
+            possessed->mLatitude.Val(fVar1);
+            getEvFloatData(&fVar1, "Longitude", 0.0f);
+            possessed->mLongitude.Val(fVar1);
+
+            getEvFloatData(&possessed->mFovy, "Fovy", 45.0f);
+            getEvIntData(&possessed->mBlure, "Blure", 0);
+
+            if (possessed->mType == 0) {
+                possessed->field_0x28.Val(possessed->mRadius, possessed->mLatitude, possessed->mLongitude + directionOf(possessed->mTargetActor));
+                pushInfo(&field_0xd0[1], 2);
+                field_0xd0[1].field_0x1e = 2;
+            } else {
+                field_0x5c.mCenter = eyePos(possessed->mTargetActor);
+                possessed->field_0x28.Val(field_0xd0[1].mEye - field_0xd0[1].mCenter);
+                field_0x5c.mDirection.Val(possessed->mRadius, possessed->mLatitude, possessed->mLongitude + directionOf(possessed->mTargetActor));
+                field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
+                field_0x5c.mFovy = possessed->mFovy;
+            }
+
+            possessed->field_0x0 = 1;
+            possessed->field_0xc = possessed->mTimer;
+            switch (possessed->mBlure) {
+                case 1:
+                    StartBlure(possessed->mTimer, possessed->mTargetActor, 0.5f, 0.99f);
+                    break;
+
+                case 2:
+                    StartBlure(possessed->mTimer, possessed->mTargetActor, 0.63f, 0.99f);
+            }
+
             break;
+        }
 
         case 1: {
             f32 fVar1 = 1.0f / possessed->field_0xc;
-            field_0x5c.mCenter += ((eyePos(a_this) - field_0x5c.mCenter) * fVar1);
+            field_0x5c.mCenter += ((eyePos(possessed->mTargetActor) - field_0x5c.mCenter) * fVar1);
             field_0x5c.mDirection.R(field_0x5c.mDirection.R() + (fVar1 * (possessed->field_0x28.R() - field_0x5c.mDirection.R())));
             field_0x5c.mDirection.V(field_0x5c.mDirection.V() + ((possessed->field_0x28.V() - field_0x5c.mDirection.V()) * fVar1));
             field_0x5c.mDirection.U(field_0x5c.mDirection.U() + ((possessed->field_0x28.U() - field_0x5c.mDirection.U()) * fVar1));
-            field_0x5c.mEye += ((field_0x5c.mCenter + field_0x5c.mDirection.Xyz()) - field_0x5c.mEye) * possessed->mCushion;
+            vec_d8 = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
+            field_0x5c.mEye += (vec_d8 - field_0x5c.mEye) * possessed->mCushion;
             field_0x5c.mFovy += fVar1 * (possessed->mFovy - field_0x5c.mFovy);
 
-            if (possessed->mBlure != 1) {
-                camera_class* mCamera;
-                dDlst_window_c* window = get_window(mCamera);
-                scissor_class* scissor = window->getScissor();
-                cXyz sp60;
-                cXyz mEyePos = eyePos(a_this);
-                mDoLib_project(&mEyePos, &sp60);
-                SetBlurePosition(sp60.x / scissor->width, sp60.y / scissor->height, 0.0f);
-                SetBlureAlpha((fVar1 * 0.699999988079071f) + 0.5f);
-                SetBlureScale((fVar1 * 0.09000000357627869f) + 1.1f, 0.98f - (fVar1 * 0.18000000715255737f), 0.0f);
+            switch (possessed->mBlure) {
+                default: {
+                    break;
+                }
+
+                case 1: {
+                    scissor_class* scissor = get_window(field_0x0)->getScissor();
+                    cXyz mEyePos = eyePos(possessed->mTargetActor);
+                    cXyz sp60;
+                    mDoLib_project(&mEyePos, &sp60);
+                    SetBlurePosition(sp60.x / scissor->width, sp60.y / scissor->height, 0.0f);
+                    SetBlureAlpha((fVar1 * 0.699999988079071f) + 0.5f);
+                    SetBlureScale((fVar1 * 0.09000000357627869f) + 1.1f, 0.98f - (fVar1 * 0.18000000715255737f), 0.0f);
+                }
             }
 
             possessed->field_0xc--;
@@ -3264,9 +3407,10 @@ bool dCamera_c::possessedEvCamera() {
             break;
         }
 
-        case 99:
+        case 99: {
             rv = 1;
             field_0x158.field_0x0 = true;
+        }
     }
 
     return rv;
@@ -3274,93 +3418,93 @@ bool dCamera_c::possessedEvCamera() {
 
 /* 80095010-8009544C 08F950 043C+00 0/0 1/0 0/0 .text            fixedFramesEvCamera__9dCamera_cFv */
 bool dCamera_c::fixedFramesEvCamera() {
-    // NONMATCHING
+    int const_1_val = 1;
+    struct mWork::fixedFrames* fframes_p = &mWork.fixedFrames;
     if (mCurCamStyleTimer == 0) {
         cXyz sp30, sp3c;
-        mWork.fixedFrames.field_0x38 = 9999;
+        fframes_p->field_0x38 = 9999;
 
-        int substanceNum = dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, "Centers");
-        if (substanceNum != 0) {
-            mWork.fixedFrames.field_0x1c[1] = dComIfGp_evmng_getMyXyzP(mEventData.field_0x4, "Centers");
-            if (mWork.fixedFrames.field_0x38 > substanceNum) {
-                mWork.fixedFrames.field_0x38 = substanceNum;
+        int substanceNum;
+        char* key = "Centers";
+        if ((substanceNum = dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, key)) != 0) {
+            fframes_p->field_0x1c[1] = dComIfGp_evmng_getMyXyzP(mEventData.field_0x4, key);
+            if (fframes_p->field_0x38 > substanceNum) {
+                fframes_p->field_0x38 = substanceNum;
             }
         } else {
-            OS_REPORT("camera: event: error: %s (xyz*) not found\n", "Centers");
+            OS_REPORT("camera: event: error: %s (xyz*) not found\n", key);
+            return 1;
+        }
+
+        key = "Eyes";
+        if ((substanceNum = dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, key)) != 0) {
+            fframes_p->field_0x1c[0] = dComIfGp_evmng_getMyXyzP(mEventData.field_0x4, key);
+            if (fframes_p->field_0x38 > substanceNum) {
+                fframes_p->field_0x38 = substanceNum;
+            }
+        } else {
+            OS_REPORT("camera: event: error: %s (xyz*) not found\n", key);
+            return 1;
+        }
+
+        key = "Fovys";
+        if ((substanceNum = dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, key)) != 0) {
+            fframes_p->field_0x24 = dComIfGp_evmng_getMyFloatP(mEventData.field_0x4, key);
+            if (fframes_p->field_0x38 > substanceNum) {
+                fframes_p->field_0x38 = substanceNum;
+            }
+        } else {
+            OS_REPORT("camera: event: error: %s (float*) not found\n", key);
             return 1;
         }
 
 
-        substanceNum = dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, "Eyes");
-        if (substanceNum != 0) {
-            mWork.fixedFrames.field_0x1c[0] = dComIfGp_evmng_getMyXyzP(mEventData.field_0x4, "Eyes");
-            if (mWork.fixedFrames.field_0x38 > substanceNum) {
-                mWork.fixedFrames.field_0x38 = substanceNum;
-            }
-        } else {
-            OS_REPORT("camera: event: error: %s (xyz*) not found\n", "Eyes");
-            return 1;
-        }
-
-
-        substanceNum = dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, "Fovys");
-        if (substanceNum != 0) {
-            mWork.fixedFrames.field_0x24[0] = dComIfGp_evmng_getMyFloatP(mEventData.field_0x4, "Fovys");
-            if (mWork.fixedFrames.field_0x38 > substanceNum) {
-                mWork.fixedFrames.field_0x38 = substanceNum;
-            }
-        } else {
-            OS_REPORT("camera: event: error: %s (float*) not found\n", "Fovys");
-            return 1;
-        }
-
-
-        mWork.fixedFrames.field_0x0 = getEvIntData(&mWork.fixedFrames.mTimer, "Timer", 1);
-        getEvStringData(&mWork.fixedFrames.mRelUseMask, "RelUseMask", "oo");
+        fframes_p->field_0x0 = getEvIntData(&fframes_p->mTimer, "Timer", const_1_val);
+        getEvStringData(&fframes_p->mRelUseMask, "RelUseMask", "oo");
 #ifdef DEBUG
-        if (strlen(&mWork.fixedFrames.mRelUseMask) != 2) {
+        if (strlen(&fframes_p->mRelUseMask) != 2) {
             OSReport("camera: event:                   bad length -> xx\n");
-            strcpy(&mWork.fixedFrames.mRelUseMask, "xx");
+            strcpy(&fframes_p->mRelUseMask, "xx");
             JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_ev_camera.cpp", 0x129c, "Halt");
             OSPanic("d_ev_camera.cpp", 0x129c, "Halt");
         }
 #endif
 
-        mWork.fixedFrames.mRelActor = getEvActor("RelActor");
+        fframes_p->mRelActor = getEvActor("RelActor");
 
-        int iVar1 = 0;
-        getEvIntData(&mWork.fixedFrames.mChoice, "Choice", 0);
-        if (mWork.fixedFrames.mChoice == 1) {
-            iVar1 = fabsf(cM_rndFX(mWork.fixedFrames.field_0x38 - 0.01f));
+        int iVar1 = 0, i = 0;
+        getEvIntData(&fframes_p->mChoice, "Choice", 0);
+        if (fframes_p->mChoice == 1) {
+            iVar1 = fabsf(cM_rndFX(fframes_p->field_0x38 - 0.01f));
         }
 
-        for (int i = 0; i < mWork.fixedFrames.field_0x38; i++) {
-            sp30 = *mWork.fixedFrames.field_0x1c[iVar1 * 12];
-            sp3c = *mWork.fixedFrames.field_0x1c[iVar1 * 12];
+        for (i = 0; i < fframes_p->field_0x38; i++) {
+            sp30 = fframes_p->field_0x1c[1][iVar1];
+            sp3c = fframes_p->field_0x1c[0][iVar1];
 
-            if (mWork.fixedFrames.mRelActor && mWork.fixedFrames.mRelUseMask == 111) {
-                mWork.fixedFrames.field_0x4 = relationalPos(mWork.fixedFrames.mRelActor, &sp30);
+            if (fframes_p->mRelActor && fframes_p->mRelUseMask == 111) {
+                fframes_p->field_0x4 = relationalPos(fframes_p->mRelActor, &sp30);
             } else {
-                mWork.fixedFrames.field_0x4 = sp30;
+                fframes_p->field_0x4 = sp30;
             }
 
-            if (mWork.fixedFrames.mRelActor && mWork.fixedFrames.field_0x31 == 111) {
-                mWork.fixedFrames.field_0x10 = relationalPos(mWork.fixedFrames.mRelActor, &sp3c);
+            if (fframes_p->mRelActor && fframes_p->field_0x31 == 111) {
+                fframes_p->field_0x10 = relationalPos(fframes_p->mRelActor, &sp3c);
             } else {
-                mWork.fixedFrames.field_0x10 = sp3c;
+                fframes_p->field_0x10 = sp3c;
             }
 
-            mWork.fixedFrames.field_0x24[1] = mWork.fixedFrames.field_0x24[iVar1];
+            fframes_p->field_0x28 = fframes_p->field_0x24[iVar1];
 
-            if (!lineBGCheck(&mWork.fixedFrames.field_0x4, &mWork.fixedFrames.field_0x10, 0x4007)) {
-                if (!lineCollisionCheck(mWork.fixedFrames.field_0x4, mWork.fixedFrames.field_0x10, mpPlayerActor, mWork.fixedFrames.mRelActor, NULL)) {
-                    break;
-                }
+            if (!lineBGCheck(&fframes_p->field_0x4, &fframes_p->field_0x10, 0x4007)
+                && !lineCollisionCheck(fframes_p->field_0x4, fframes_p->field_0x10,
+                                       mpPlayerActor, fframes_p->mRelActor, NULL)) {
+                break;
             }
 
             iVar1++;
 
-            if (iVar1 >= mWork.fixedFrames.field_0x38) {
+            if (iVar1 >= fframes_p->field_0x38) {
                 iVar1 = 0;
             }
         }
@@ -3368,11 +3512,11 @@ bool dCamera_c::fixedFramesEvCamera() {
         field_0x158.field_0x0 = true;
     }
 
-    field_0x5c.mCenter = mWork.fixedFrames.field_0x4;
-    field_0x5c.mEye = mWork.fixedFrames.field_0x10;
-    field_0x5c.mFovy = *mWork.fixedFrames.field_0x24[1];
+    field_0x5c.mCenter = fframes_p->field_0x4;
+    field_0x5c.mEye = fframes_p->field_0x10;
+    field_0x5c.mFovy = fframes_p->field_0x28;
     field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
-    if (mWork.fixedFrames.field_0x0 && mWork.fixedFrames.mTimer < mCurCamStyleTimer) {
+    if (fframes_p->field_0x0 && mCurCamStyleTimer < fframes_p->mTimer) {
         return 0;
     }
 
@@ -3381,40 +3525,41 @@ bool dCamera_c::fixedFramesEvCamera() {
 
 /* 8009544C-800956E4 08FD8C 0298+00 0/0 1/0 0/0 .text            bSplineEvCamera__9dCamera_cFv */
 bool dCamera_c::bSplineEvCamera() {
-    // NONMATCHING
     struct mWork::bSpline* bSpline = &mWork.bSpline;
     if (mCurCamStyleTimer == 0) {
         bSpline->field_0x1c = 0;
         bSpline->field_0x10 = 9999;
-        int iVar1 = getEvXyzListData(&bSpline->mCenters, "Centers");
+        char* key = "Centers";
+        int iVar1 = getEvXyzListData(&bSpline->mCenters, key);
         if (iVar1 != 0) {
-            if (iVar1 > bSpline->field_0x10) {
+            if (bSpline->field_0x10 > iVar1) {
                 bSpline->field_0x10 = iVar1;
             }
         } else {
             return 1;
         }
 
-        iVar1 = getEvXyzListData(&bSpline->mEyes, "Eyes");
+        key = "Eyes";
+        iVar1 = getEvXyzListData(&bSpline->mEyes, key);
         if (iVar1 != 0) {
-            if (iVar1 > bSpline->field_0x10) {
+            if (bSpline->field_0x10 > iVar1) {
                 bSpline->field_0x10 = iVar1;
             }
         } else {
             return 1;
         }
 
-        iVar1 = getEvFloatListData(&bSpline->mFovys, "Fovys");
+        key = "Fovys";
+        iVar1 = getEvFloatListData(&bSpline->mFovys, key);
         if (iVar1 != 0) {
-            if (iVar1 > bSpline->field_0x10) {
+            if (bSpline->field_0x10 > iVar1) {
                 bSpline->field_0x10 = iVar1;
             }
         } else {
             return 1;
         }
 
-        iVar1 = getEvIntData(&bSpline->mTimer, "Timer");
-        if (iVar1 == 0) {
+        if (getEvIntData(&bSpline->mTimer, "Timer") == 0) {
             OS_REPORT("camera: event: error: NO Timer\n");
             return 1;
         }
@@ -3425,21 +3570,20 @@ bool dCamera_c::bSplineEvCamera() {
     }
 
     if (bSpline->field_0x1c == 0 && mEventData.field_0xf0.Step()) {
-        cXyz cStack_28, cStack_34;
-        mEventData.field_0xf0.Calc(&cStack_28);
-        mEventData.field_0xf0.Calc(&cStack_34);
+        cXyz tmpcenters = mEventData.field_0xf0.Calc(bSpline->mCenters);
+        cXyz tmpeyes = mEventData.field_0xf0.Calc(bSpline->mEyes);
 
-        if (bSpline->mRelActor == NULL) {
-            field_0x5c.mCenter = relationalPos(bSpline->mRelActor, &cStack_28);
-            field_0x5c.mEye = relationalPos(bSpline->mRelActor, &cStack_34);
+        if (bSpline->mRelActor != NULL) {
+            field_0x5c.mCenter = relationalPos(bSpline->mRelActor, &tmpcenters);
+            field_0x5c.mEye = relationalPos(bSpline->mRelActor, &tmpeyes);
         } else {
-            field_0x5c.mCenter = cStack_28;
-            field_0x5c.mEye = cStack_34;
+            field_0x5c.mCenter = tmpcenters;
+            field_0x5c.mEye = tmpeyes;
         }
 
         field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
         field_0x5c.mFovy = mEventData.field_0xf0.Calc(bSpline->mFovys);
-        if (mEventData.field_0xf0.field_0x08 == 3) {
+        if (mEventData.field_0xf0.Last()) {
             bSpline->field_0x1c = 1;
         }
     }
@@ -3449,133 +3593,125 @@ bool dCamera_c::bSplineEvCamera() {
 
 /* 800956E4-80095E7C 090024 0798+00 0/0 1/0 0/0 .text            twoActor0EvCamera__9dCamera_cFv */
 bool dCamera_c::twoActor0EvCamera() {
-    // NONMATCHING
     static cXyz DefaultGap(0.0f, 0.0f, 0.0f);
+    struct mWork::twoActor0* twoact0_p = &mWork.twoActor0;
 
     if (mCurCamStyleTimer == 0) {
-        mWork.twoActor0.mActor1 = getEvActor("Actor1", "@PLAYER");
-        mWork.twoActor0.mActor2 = getEvActor("Actor2", "@STARTER");
+        twoact0_p->mActor1 = getEvActor("Actor1", "@PLAYER");
+        twoact0_p->mActor2 = getEvActor("Actor2", "@STARTER");
 
-        if (mWork.twoActor0.mActor1 == NULL || mWork.twoActor0.mActor2 == NULL) {
+        if (twoact0_p->mActor1 == NULL || twoact0_p->mActor2 == NULL) {
             OS_REPORT("camera: event: error: actor 1 or 2 missing\n");
             return 1;
         }
 
-        mWork.twoActor0.mActor1ID = fopAcM_GetID(mWork.twoActor0.mActor1);
-        mWork.twoActor0.mActor2ID = fopAcM_GetID(mWork.twoActor0.mActor2);
+        twoact0_p->mActor1ID = fopAcM_GetID(twoact0_p->mActor1);
+        twoact0_p->mActor2ID = fopAcM_GetID(twoact0_p->mActor2);
 
-        getEvXyzData(&mWork.twoActor0.mCtrGap, "CtrGap", DefaultGap);
-        getEvFloatData(&mWork.twoActor0.mCtrRatio, "CtrRatio", -0.1f);
-        getEvFloatData(&mWork.twoActor0.mCtrCus, "CtrCus", 1.0f);
-        getEvFloatData(&mWork.twoActor0.mEyeCus, "EyeCus", 1.0f);
-        getEvFloatData(&mWork.twoActor0.mRadiusMin, "RadiusMin", 100.0f);
-        getEvFloatData(&mWork.twoActor0.mRadiusMax, "RadiusMax", 10000.0f);
-        getEvFloatData(&mWork.twoActor0.mLatitudeMin, "LatitudeMin", -60.0f);
-        getEvFloatData(&mWork.twoActor0.mLatitudeMax, "LatitudeMax", 60.0f);
-        getEvFloatData(&mWork.twoActor0.mLongitudeMin, "LongitudeMin", 20.0f);
-        getEvFloatData(&mWork.twoActor0.mLongitudeMax, "LongitudeMax", 160.0f);
+        getEvXyzData(&twoact0_p->mCtrGap, "CtrGap", DefaultGap);
+        getEvFloatData(&twoact0_p->mCtrRatio, "CtrRatio", -0.1f);
+        getEvFloatData(&twoact0_p->mCtrCus, "CtrCus", 1.0f);
+        getEvFloatData(&twoact0_p->mEyeCus, "EyeCus", 1.0f);
+        getEvFloatData(&twoact0_p->mRadiusMin, "RadiusMin", 100.0f);
+        getEvFloatData(&twoact0_p->mRadiusMax, "RadiusMax", 10000.0f);
+        getEvFloatData(&twoact0_p->mLatitudeMin, "LatitudeMin", -60.0f);
+        getEvFloatData(&twoact0_p->mLatitudeMax, "LatitudeMax", 60.0f);
+        getEvFloatData(&twoact0_p->mLongitudeMin, "LongitudeMin", 20.0f);
+        getEvFloatData(&twoact0_p->mLongitudeMax, "LongitudeMax", 160.0f);
 
-        getEvIntData(&mWork.twoActor0.mLongitudeType, "LongitudeType", -1);
-        getEvFloatData(&mWork.twoActor0.mFovy, "Fovy", 60.0f);
-        mWork.twoActor0.field_0x4c = field_0x5c.mDirection.R();
-        mWork.twoActor0.field_0x54 = cSAngle(field_0x5c.mDirection.V().Degree());
-        mWork.twoActor0.field_0x56 = cSAngle(field_0x5c.mDirection.U().Degree());
+        getEvIntData(&twoact0_p->mLongitudeType, "LongitudeType", -1);
+        getEvFloatData(&twoact0_p->mFovy, "Fovy", 60.0f);
+        twoact0_p->field_0x4c = field_0x5c.mDirection.R();
+        twoact0_p->field_0x54 = cSAngle(field_0x5c.mDirection.V().Degree());
+        twoact0_p->field_0x56 = cSAngle(field_0x5c.mDirection.U().Degree());
     }
 
-    cSGlobe cStack_d8(attentionPos(mWork.twoActor0.mActor1) - attentionPos(mWork.twoActor0.mActor2));
+    cSGlobe cStack_d8(attentionPos(twoact0_p->mActor1) - attentionPos(twoact0_p->mActor2));
 
     cXyz cStack_34;
-    if (fopAcM_SearchByID(mWork.twoActor0.mActor1ID) == NULL) {
+    if (fopAcM_SearchByID(twoact0_p->mActor1ID) == NULL) {
         OS_REPORT("camera: event: error: actor1 dead\n");
         return 1;
 
-    } else if (fopAcM_SearchByID(mWork.twoActor0.mActor2ID) == NULL) {
+    } else if (fopAcM_SearchByID(twoact0_p->mActor2ID) == NULL) {
         OS_REPORT("camera: event: error: actor2 dead\n");
         return 1;
 
-    } else if (mWork.twoActor0.mCtrRatio >= 0.0f || mWork.twoActor0.mCtrRatio <= 1.0f) {
-        cStack_34 = relationalPos(mWork.twoActor0.mActor1, mWork.twoActor0.mActor2, &mWork.twoActor0.mCtrGap, 0.25f);
+    } else if ( !(twoact0_p->mCtrRatio >= 0.0f) || !(twoact0_p->mCtrRatio <= 1.0f) ) {
+        cStack_34 = relationalPos(twoact0_p->mActor1, twoact0_p->mActor2, &twoact0_p->mCtrGap, 0.25f);
 
     } else {
-        cStack_34 = (attentionPos(mWork.twoActor0.mActor1) + 
-                    attentionPos(mWork.twoActor0.mActor2)) * mWork.twoActor0.mCtrRatio;
+        cStack_34 = (attentionPos(twoact0_p->mActor1) + 
+                    attentionPos(twoact0_p->mActor2)) * twoact0_p->mCtrRatio;
     }
 
-        field_0x5c.mCenter += (cStack_34 - field_0x5c.mCenter) * mWork.twoActor0.mCtrCus;
+    field_0x5c.mCenter += (cStack_34 - field_0x5c.mCenter) * twoact0_p->mCtrCus;
 
-        if (mCurCamStyleTimer == 0) {
-            cSAngle acStack_e0;
-            switch (mWork.twoActor0.mLongitudeType) {
-                case 1:
-                    acStack_e0 = cSAngle(directionOf(mpPlayerActor).Inv());
-                    break;
+    if (mCurCamStyleTimer == 0) {
+        cSAngle acStack_e0;
+        switch (twoact0_p->mLongitudeType) {
+            case 1:
+                acStack_e0 = cSAngle(directionOf(mpPlayerActor).Inv());
+                break;
 
-                case 2:
-                    acStack_e0 = directionOf(mpPlayerActor);
-                    break;
+            case 2:
+                acStack_e0 = directionOf(mpPlayerActor);
+                break;
 
-                default:
-                    acStack_e0 = field_0x5c.mDirection.U();
-            }
+            default:
+                acStack_e0 = field_0x5c.mDirection.U();
+        }
 
-            cSAngle acStack_e4 = cStack_d8.U() - acStack_e0;
-            s16 sVar1 = cSAngle(mWork.twoActor0.mLongitudeMin).Val();
-            s16 sVar2 = acStack_e4.Abs();
-            if (((sVar1 ^ sVar2) >> 1) - ((sVar1 ^ sVar2) & sVar1) != 0) {
-                if (acStack_e4 < cSAngle::_0) {
-                    mWork.twoActor0.field_0x5a = cStack_d8.U() + cSAngle(mWork.twoActor0.mLongitudeMin);
-                } else {
-                    mWork.twoActor0.field_0x5a = cStack_d8.U() - cSAngle(mWork.twoActor0.mLongitudeMin);
-                }
+        cSAngle acStack_e4 = cStack_d8.U() - acStack_e0;
+        if (acStack_e4.Abs() < cSAngle(twoact0_p->mLongitudeMin)) {
+            if (acStack_e4 < cSAngle::_0) {
+                twoact0_p->field_0x5a = cStack_d8.U() + cSAngle(twoact0_p->mLongitudeMin);
             } else {
-                sVar1 = cSAngle(mWork.twoActor0.mLongitudeMax).Val();
-                sVar2 = acStack_e4.Abs();
-                if (((sVar2 ^ sVar1) >> 1) - ((sVar2 ^ sVar1) & sVar2) != 0) {
-                    if (acStack_e4 < cSAngle::_0) {
-                        mWork.twoActor0.field_0x5a = cStack_d8.U() + cSAngle(mWork.twoActor0.mLongitudeMax);
-                    } else {
-                        mWork.twoActor0.field_0x5a = cStack_d8.U() - cSAngle(mWork.twoActor0.mLongitudeMax);
-                    }
-                } else {
-                    mWork.twoActor0.field_0x5a = acStack_e0;
-                }
+                twoact0_p->field_0x5a = cStack_d8.U() - cSAngle(twoact0_p->mLongitudeMin);
             }
-
-            cSAngle acStack_e8(field_0x5c.mDirection.V());
-            if (acStack_e8 < cSAngle(mWork.twoActor0.mLatitudeMin)) {
-                mWork.twoActor0.field_0x58 = cSAngle(mWork.twoActor0.mLatitudeMin);
+        } else if (acStack_e4.Abs() > cSAngle(twoact0_p->mLongitudeMax)) {
+            if (acStack_e4 < cSAngle::_0) {
+                twoact0_p->field_0x5a = cStack_d8.U() + cSAngle(twoact0_p->mLongitudeMax);
             } else {
-                if (acStack_e8 > cSAngle(mWork.twoActor0.mLatitudeMax)) {
-                    mWork.twoActor0.field_0x58 = cSAngle(mWork.twoActor0.mLatitudeMax);
-                } else {
-                    mWork.twoActor0.field_0x58 = field_0x5c.mDirection.V();
-                }
+                twoact0_p->field_0x5a = cStack_d8.U() - cSAngle(twoact0_p->mLongitudeMax);
             }
+        } else {
+            twoact0_p->field_0x5a = acStack_e0;
+        }
 
-            f32 fVar1 = field_0x5c.mDirection.R();
-            if (fVar1 < mWork.twoActor0.mRadiusMin) {
-                mWork.twoActor0.field_0x50 = mWork.twoActor0.mRadiusMin;
-            } else if (fVar1 > mWork.twoActor0.mRadiusMax) {
-                mWork.twoActor0.field_0x50 = mWork.twoActor0.mRadiusMax;
+        cSAngle acStack_e8(field_0x5c.mDirection.V());
+        if (acStack_e8 < cSAngle(twoact0_p->mLatitudeMin)) {
+            twoact0_p->field_0x58 = cSAngle(twoact0_p->mLatitudeMin);
+        } else {
+            if (acStack_e8 > cSAngle(twoact0_p->mLatitudeMax)) {
+                twoact0_p->field_0x58 = cSAngle(twoact0_p->mLatitudeMax);
             } else {
-                mWork.twoActor0.field_0x50 = field_0x5c.mDirection.R();
+                twoact0_p->field_0x58 = field_0x5c.mDirection.V();
             }
         }
 
-        mWork.twoActor0.field_0x56 += (mWork.twoActor0.field_0x5a - mWork.twoActor0.field_0x56) * mWork.twoActor0.mEyeCus;
-        mWork.twoActor0.field_0x54 += (mWork.twoActor0.field_0x58 - mWork.twoActor0.field_0x54) * mWork.twoActor0.mEyeCus;
-        mWork.twoActor0.field_0x4c += mWork.twoActor0.mEyeCus * (mWork.twoActor0.field_0x50 - mWork.twoActor0.field_0x4c);
-        field_0x5c.mDirection.Val(mWork.twoActor0.field_0x4c, mWork.twoActor0.field_0x54, mWork.twoActor0.field_0x56);
-        field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
-        field_0x5c.mFovy += mWork.twoActor0.mCtrCus * (mWork.twoActor0.mFovy - field_0x5c.mFovy);
-    
+        f32 fVar1 = field_0x5c.mDirection.R();
+        if (fVar1 < twoact0_p->mRadiusMin) {
+            twoact0_p->field_0x50 = twoact0_p->mRadiusMin;
+        } else if (fVar1 > twoact0_p->mRadiusMax) {
+            twoact0_p->field_0x50 = twoact0_p->mRadiusMax;
+        } else {
+            twoact0_p->field_0x50 = field_0x5c.mDirection.R();
+        }
+    }
+
+    twoact0_p->field_0x56 += (twoact0_p->field_0x5a - twoact0_p->field_0x56) * twoact0_p->mEyeCus;
+    twoact0_p->field_0x54 += (twoact0_p->field_0x58 - twoact0_p->field_0x54) * twoact0_p->mEyeCus;
+    twoact0_p->field_0x4c += twoact0_p->mEyeCus * (twoact0_p->field_0x50 - twoact0_p->field_0x4c);
+    field_0x5c.mDirection.Val(twoact0_p->field_0x4c, twoact0_p->field_0x54, twoact0_p->field_0x56);
+    field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
+    field_0x5c.mFovy += twoact0_p->mCtrCus * (twoact0_p->mFovy - field_0x5c.mFovy);
 
     return 1;
 }
 
 /* 80095E7C-80095FD0 0907BC 0154+00 0/0 1/0 0/0 .text            peepHoleEvCamera__9dCamera_cFv */
 bool dCamera_c::peepHoleEvCamera() {
-    // NONMATCHING
     if (mCurCamStyleTimer == 0) {
         fopAc_ac_c* mPlayer = dComIfGp_getLinkPlayer();
         cXyz sp20 = positionOf(mPlayer);
@@ -3601,7 +3737,6 @@ bool dCamera_c::peepHoleEvCamera() {
 
 /* 80095FD0-800965AC 090910 05DC+00 0/0 1/0 0/0 .text            digHoleEvCamera__9dCamera_cFv */
 bool dCamera_c::digHoleEvCamera() {
-    // NONMATCHING
     struct mWork::digHole* digHole = &mWork.digHole;
     if (mCurCamStyleTimer == 0) {
         digHole->field_0x0 = 0;
@@ -3615,24 +3750,16 @@ bool dCamera_c::digHoleEvCamera() {
         digHole->field_0x10 = 1;
         if ((digHole->mType & 1) != 0) {
             cSAngle acStack_158(field_0x5c.mDirection.U() - directionOf(mpPlayerActor));
-            s16 sVar1 = cSAngle::_90.Val();
-            s16 sVar2 = acStack_158.Abs();
-            if (sVar2 < sVar1) {
+            if (acStack_158.Abs() < s16(cSAngle::_90)) {
                 cXyz sp70, sp7c;
                 cSGlobe cStack_138;
-                sp70 = relationalPos(mpPlayerActor, &cXyz(0.0f, -70.0f, -10.0f));
+                cXyz vec_f8(0.0f, -70.0f, -10.0f);
+                sp70 = relationalPos(mpPlayerActor, &vec_f8);
                 cStack_138.R(350.0f);
                 cStack_138.V(cSAngle(30.0f));
 
-                cSAngle acStack_164 = directionOf(mpPlayerActor);
-                f32 fVar1;
-                if (acStack_164 < cSAngle::_0) {
-                    fVar1 = 10.0f;
-                } else {
-                    fVar1 = -10.0f;
-                }
-
-                cStack_138.U(acStack_164.Inv() + fVar1);
+                cStack_138.U(directionOf(mpPlayerActor).Inv()
+                             + cSAngle( (acStack_158 < cSAngle::_0) ? 10.0f : -10.0f ));
 
                 sp7c = sp70 + cStack_138.Xyz();
 
@@ -3648,20 +3775,24 @@ bool dCamera_c::digHoleEvCamera() {
         }
 
         if ((digHole->mType & 2) != 0) {
-            digHole->field_0x14 = relationalPos(mpPlayerActor, &cXyz(0.0f, 0.0f, 245.0f));
+            cXyz vec_98(0.0f, 0.0f, 245.0f);
+            digHole->field_0x14 = relationalPos(mpPlayerActor, &vec_98);
 
             cXyz sp64[3] = { cXyz(-85.0f, -10.0f, 300.0f), cXyz(50.0f, 165.0f, 160.0f), cXyz(-260.0f, -50.0f, 30.0f)};
+            int i;
+            int sp64_size = sizeof(sp64) / sizeof(cXyz);
+            fopAc_ac_c* unused_ptr = mpPlayerActor;
+            (void) unused_ptr;
             fopAc_ac_c* mMidnaActor = (fopAc_ac_c*)daPy_py_c::getMidnaActor();
             cXyz spa0;
-            for (int i = 0; i < 3; i++) {
+            for (i = 0; i < sp64_size; i++) {
                 spa0 = dCamMath::xyzRotateY(sp64[i], directionOf(mpPlayerActor));
 
                 digHole->field_0x20 = digHole->field_0x14 + spa0;
 
-                if (!lineBGCheck(&digHole->field_0x14, &digHole->field_0x20, 0x4007)) {
-                    if (!lineCollisionCheck(digHole->field_0x14, digHole->field_0x20, mpPlayerActor, mMidnaActor, NULL)) {
-                        break;
-                    }
+                if (!lineBGCheck(&digHole->field_0x14, &digHole->field_0x20, 0x4007)
+                    && !lineCollisionCheck(digHole->field_0x14, digHole->field_0x20, mpPlayerActor, mMidnaActor, NULL)) {
+                    break;
                 }
             }
         }
@@ -3674,27 +3805,36 @@ bool dCamera_c::digHoleEvCamera() {
 
     digHole->field_0x0++;
 
-    if (digHole->mType != 2) {
-        if (digHole->field_0x10 != 0) {
-            f32 fVar2 = field_0x5c.mDirection.R();
-            f32 fVar3 = field_0x5c.mDirection.V().Degree();
-            field_0x5c.mDirection.R(fVar2 + (350.0f - fVar2) * digHole->field_0xc);
-            field_0x5c.mDirection.V(fVar3 + (40.0f - fVar3) * digHole->field_0xc);
-            field_0x5c.mFovy += (60.0f - field_0x5c.mFovy) * digHole->field_0xc;
-            field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
-        } else if (!strcmp(dComIfGp_getStartStageName(), "R_SP01")) {
-            field_0x88 = 0;
+    switch (digHole->mType) {
+        default:
+        case 1: {
+            if (digHole->field_0x10) {
+                f32 fVar2 = field_0x5c.mDirection.R();
+                f32 fVar3 = field_0x5c.mDirection.V().Degree();
+                field_0x5c.mDirection.R(fVar2 + (350.0f - fVar2) * digHole->field_0xc);
+                field_0x5c.mDirection.V(fVar3 + (40.0f - fVar3) * digHole->field_0xc);
+                field_0x5c.mFovy += (60.0f - field_0x5c.mFovy) * digHole->field_0xc;
+                field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
+            } else if (!strcmp(dComIfGp_getStartStageName(), "R_SP01")) {
+                field_0x88 = 0;
+            }
+
+            if (digHole->field_0x0 >= digHole->field_0x8  && digHole->mType != 1) {
+                digHole->field_0x0 = 0;
+                digHole->mType = 2;
+            }
+
+            break;
         }
 
-        if (digHole->field_0x0 >= digHole->field_0x8  && digHole->mType != 1) {
-            digHole->field_0x0 = 0;
-            digHole->mType = 2;
+        case 2: {
+            if (digHole->field_0x0 == 1) {
+                field_0x5c.mCenter = digHole->field_0x14;
+                field_0x5c.mEye = digHole->field_0x20;
+                field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
+                field_0x5c.mFovy = 60.0f;
+            }
         }
-    } else if (digHole->field_0x0 == 1) {
-        field_0x5c.mCenter = digHole->field_0x14;
-        field_0x5c.mEye = digHole->field_0x20;
-        field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
-        field_0x5c.mFovy = 60.0f;
     }
 
     return 1;
@@ -3702,15 +3842,11 @@ bool dCamera_c::digHoleEvCamera() {
 
 /* 800965AC-80096EDC 090EEC 0930+00 0/0 1/0 0/0 .text            hintTalkEvCamera__9dCamera_cFv */
 bool dCamera_c::hintTalkEvCamera() {
-    // NONMATCHING
-    bool rv;
-    f32 fVar22;
-    fopAc_ac_c* mRideActor;
-    cXyz spc0, spcc, spd8, spe4, spf0, spfc;
-    
     struct mWork::hintTalk* hintTalk = &mWork.hintTalk;
-    daAlink_c* mLink = (daAlink_c*)mpPlayerActor;
-    
+    daAlink_c* link_p = (daAlink_c*)mpPlayerActor;
+    fopAc_ac_c* ride_actor_p;
+    int i, j;
+
     if (mCurCamStyleTimer == 0) {
         hintTalk->mTeacher = getEvActor("Teacher", "Midna");
         hintTalk->mStudent = getEvActor("Student", "@PLAYER");
@@ -3726,31 +3862,31 @@ bool dCamera_c::hintTalkEvCamera() {
     }
 
     if (mCurCamStyleTimer == 0) {
-        spc0 = attentionPos(hintTalk->mTeacher);
-        spcc = attentionPos(hintTalk->mStudent);
-        mRideActor = NULL;
-        
+        cXyz vec_190 = attentionPos(hintTalk->mTeacher);
+        cXyz vec_184 = attentionPos(hintTalk->mStudent);
+        ride_actor_p = NULL;
+
         if (fopAcM_GetName(hintTalk->mTeacher) == 0xff) {
-            spc0 = *mLink->getShadowTalkAtnPos();
+            vec_190 = *link_p->getShadowTalkAtnPos();
         }
 
         if (hintTalk->mStudent == mpPlayerActor && mIsWolf == 1) {
-            spd8 = positionOf(mpPlayerActor);
-            spd8.y = spcc.y;
-            spfc = spd8 - spcc;
-            spcc += spfc.norm() * 40.0f;
+            cXyz vec_178 = positionOf(mpPlayerActor);
+            vec_178.y = vec_184.y;
+            vec_184 += cXyz(vec_178 - vec_184).norm() * 40.0f;
         }
 
-        hintTalk->field_0x40 = spc0;
+        cXyz spe4;
+        hintTalk->field_0x40 = vec_190;
         hintTalk->mDirection = field_0x5c.mDirection;
-        spf0 = spcc - spc0;
+        cXyz spf0 = vec_184 - vec_190;
         hintTalk->field_0x28.Val(spf0);
 
         if ((dComIfGp_getCameraAttentionStatus(0) & 0x800) != 0) {
             hintTalk->field_0x28.V(cSAngle(15.0f));
         }
 
-        spe4 = spc0 + (spf0 * 0.8f);
+        spe4 = vec_190 + (spf0 * 0.8f);
         spe4.y += hintTalk->mCtrGapY;
         hintTalk->mDirection.R(hintTalk->mRadius);
 
@@ -3774,8 +3910,9 @@ bool dCamera_c::hintTalkEvCamera() {
 
         bool bVar9 = false;
         cSAngle acStack_1f8(hintTalk->field_0x28.U());
-        if (mLink->checkRide() != 0) {
-            mRideActor = mLink->getRideActor();
+        f32 fVar22;
+        if (link_p->checkRide() != 0) {
+            ride_actor_p = link_p->getRideActor();
             acStack_1f8 = directionOf(mpPlayerActor);
             if ((hintTalk->field_0x28.U() - acStack_1f8) < cSAngle::_0) {
                 fVar22 = -1.0f;
@@ -3789,39 +3926,31 @@ bool dCamera_c::hintTalkEvCamera() {
         }
 
         cSAngle acStack_1fc(20.0f);
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 12; j++) {
+        for (i = 0; i < 2; i++) {
+            for (j = 0; j < 12; j++) {
                 cSAngle acStack_200(local_b0[j] * fVar22);
                 hintTalk->mDirection.U(acStack_1f8 + acStack_200);
                 hintTalk->mDirection.V(((hintTalk->field_0x28.V() * acStack_200.Cos()) * 0.2f) + acStack_1fc);
                 hintTalk->field_0x8 = spe4 - ((spf0 * 0.2f) * acStack_200.Cos());
                 hintTalk->field_0x14 = hintTalk->field_0x8 + hintTalk->mDirection.Xyz();
 
-                if (!lineBGCheck(&spcc, &hintTalk->field_0x14, 0x4007) && !lineBGCheck(&spc0, &hintTalk->field_0x14, 0x4007)) {
-                    if (!lineBGCheck(&hintTalk->field_0x8, &hintTalk->field_0x14, 0x4007)) {
-                        if (!lineCollisionCheck(spcc, hintTalk->field_0x14, hintTalk->mStudent, hintTalk->mTeacher, mRideActor)) {
-                            if (!lineCollisionCheck(spc0, hintTalk->field_0x14, hintTalk->mStudent, hintTalk->mTeacher, mRideActor)) {
-                                bVar9 = true;
-                                break;
-                            }
-                        }
-                    }
+                if (!lineBGCheck(&vec_184, &hintTalk->field_0x14, 0x4007)
+                    && !lineBGCheck(&vec_190, &hintTalk->field_0x14, 0x4007)
+                    && !lineBGCheck(&hintTalk->field_0x8, &hintTalk->field_0x14, 0x4007)
+                    && !lineCollisionCheck(vec_184, hintTalk->field_0x14, hintTalk->mStudent, hintTalk->mTeacher, ride_actor_p)
+                    && !lineCollisionCheck(vec_190, hintTalk->field_0x14, hintTalk->mStudent, hintTalk->mTeacher, ride_actor_p)) {
+                    bVar9 = true;
+                    break;
                 }
 
-                int iVar1 = j >> 31;
-                if ((iVar1 * 4 | (j * 0x40000000 + iVar1) >> 30) - iVar1 == 3) {
-                    f32 fVar2;
-                    if (i != 0) {
-                        fVar2 = -2.5f;
-                    } else {
-                        fVar2 = 4.5f;
-                    }
-
-                    acStack_1fc += cSAngle(fVar2);
+                if (j % 4 == 3) {
+                    acStack_1fc += cSAngle((i != 0) ? -2.5f : 4.5f);
                 }
             }
 
-            if (bVar9) break;
+            if (bVar9) {
+                break;
+            }
 
             fVar22 = -fVar22;
             hintTalk->mDirection.R(hintTalk->mDirection.R() * 0.75f);
@@ -3829,8 +3958,8 @@ bool dCamera_c::hintTalkEvCamera() {
     }
 
     if (!field_0x158.field_0x0) {
-        f32 fVar3 = mCurCamStyleTimer + 1;
-        fVar22 = dCamMath::rationalBezierRatio(fVar3 / hintTalk->mTimer, 0.4f);
+        f32 div_val = f32(mCurCamStyleTimer + 1) / hintTalk->mTimer;
+        f32 fVar22 = dCamMath::rationalBezierRatio(div_val, 0.4f);
         field_0x5c.mCenter += (hintTalk->field_0x8 - field_0x5c.mCenter) * fVar22;
         field_0x5c.mDirection.R(field_0x5c.mDirection.R() + ((hintTalk->mDirection.R() - field_0x5c.mDirection.R()) * fVar22));
         field_0x5c.mDirection.V(field_0x5c.mDirection.V() + ((hintTalk->mDirection.V() - field_0x5c.mDirection.V()) * fVar22));
@@ -3842,20 +3971,16 @@ bool dCamera_c::hintTalkEvCamera() {
             field_0x158.field_0x0 = true;
         }
 
-        rv = 0;
-    } else {
-        rv = 1;
+        return 0;
     }
 
-    return rv;
+    return 1;
 }
 
 /* 80096EDC-80097694 09181C 07B8+00 0/0 1/0 0/0 .text            bspTransEvCamera__9dCamera_cFv */
 bool dCamera_c::bspTransEvCamera() {
-    // NONMATCHING
-    cXyz sp64, sp3c;
     struct mWork::bspTrans* bspTrans = &mWork.bspTrans;
-    f32 local_7c[4] = { 0x000000, 0x000000, 0x3F000000, 0x3F000000 };
+    f32 local_7c[4] = { 0.0f, 0.0f, 1.0f, 1.0f };
 
     if (mCurCamStyleTimer == 0) {
         field_0x158.field_0x0 = true;
@@ -3870,11 +3995,12 @@ bool dCamera_c::bspTransEvCamera() {
         } else {
             OS_REPORT("camera: event:                   use 0.0 0.0 1.0 1.0\n");
             mEventData.field_0xf0.Init(4, bspTrans->mTimer + 1);
+            bspTrans->mBase = local_7c;
         }
         mEventData.field_0xf0.Step();
 
         bspTrans->mSet1 = 0;
-        char* use1;
+        char use1[8];
         strcpy(use1, "xxxxxx");
 
         iVar1 = getEvFloatListData(&bspTrans->mSet1, "Set1");
@@ -3894,7 +4020,7 @@ bool dCamera_c::bspTransEvCamera() {
         }
 
         bspTrans->mSet2 = 0;
-        char* use2;
+        char use2[8];
         strcpy(use2, "xxxxxx");
 
         iVar1 = getEvFloatListData(&bspTrans->mSet2, "Set2");
@@ -3936,20 +4062,7 @@ bool dCamera_c::bspTransEvCamera() {
         getEvFloatData(&bspTrans->mCushion, "Cushion", 1.0f);
 
         for (int i = 0; i < 6; i++) {
-            int iVar2, iVar3;
-            if (isRelChar(*use1)) {
-                if (!isRelChar(*use2)) {
-                    iVar3 = 1;
-                } else {
-                    iVar3 = 2;
-                }
-
-                iVar2 = iVar3;
-            } else {
-                iVar2 = 0;
-            }
-
-            bspTrans->field_0xc0[i] = iVar2;
+            bspTrans->field_0xc0[i] = isRelChar(use1[i]) ? isRelChar(use2[i]) ? 2 : 1 : 0;
         }
 
         bspTrans->field_0x78 = mCenter;
@@ -3957,7 +4070,7 @@ bool dCamera_c::bspTransEvCamera() {
         bspTrans->field_0x90 = mFovy;
     }
 
-    if (bspTrans->mRelActor == NULL || fopAcM_SearchByID(bspTrans->mRelActorID) == NULL) {
+    if (bspTrans->mRelActor != NULL && fopAcM_SearchByID(bspTrans->mRelActorID) == NULL) {
         OS_REPORT("camera: event: error: relational base actor dead\n");
         return 1;
     }
@@ -3966,9 +4079,10 @@ bool dCamera_c::bspTransEvCamera() {
     if (mCurCamStyleTimer < bspTrans->mTimer) {
         struct {
             cXyz sp48;
+            cXyz sp3c;
         } pos;
 
-        if (bspTrans->mRelActor == NULL) {
+        if (bspTrans->mRelActor != NULL) {
             if (isRelChar(bspTrans->mRelUseMask)) {
                 pos.sp48 = relationalPos(bspTrans->mRelActor, &bspTrans->field_0x94);
             } else {
@@ -3976,49 +4090,51 @@ bool dCamera_c::bspTransEvCamera() {
             }
 
             if (isRelChar(bspTrans->field_0xb9)) {
-                sp3c = relationalPos(bspTrans->mRelActor, &bspTrans->field_0xa0);
+                pos.sp3c = relationalPos(bspTrans->mRelActor, &bspTrans->field_0xa0);
             } else {
-                sp3c = bspTrans->field_0xa0;
+                pos.sp3c = bspTrans->field_0xa0;
             }
         } else {
             pos.sp48 = bspTrans->field_0x94;
-            sp3c = bspTrans->field_0xa0;
+            pos.sp3c = bspTrans->field_0xa0;
         }
 
         mEventData.field_0xf0.Step();
-        local_7c[0] = mEventData.field_0xf0.Calc(bspTrans->mBase);
+        f32 vals_f4[3];
+        vals_f4[0] = mEventData.field_0xf0.Calc(bspTrans->mBase);
         if (bspTrans->mSet1 != 0) {
             bspTrans->mSplinePath1.Step();
-            local_7c[1] = bspTrans->mSplinePath1.Calc(bspTrans->mSet1);
+            vals_f4[1] = bspTrans->mSplinePath1.Calc(bspTrans->mSet1);
         }
 
         if (bspTrans->mSet2 != 0) {
             bspTrans->mSplinePath2.Step();
-            local_7c[2] = bspTrans->mSplinePath2.Calc(bspTrans->mSet2);
+            vals_f4[2] = bspTrans->mSplinePath2.Calc(bspTrans->mSet2);
         }
 
-        sp64.x = bspTrans->field_0x78.x + (pos.sp48.x - bspTrans->field_0x78.x) * local_7c[bspTrans->field_0xc0[1]];
-        sp64.y = bspTrans->field_0x78.y + (pos.sp48.y - bspTrans->field_0x78.y) * local_7c[bspTrans->field_0xc0[0]];
-        sp64.z = bspTrans->field_0x78.z + (pos.sp48.z - bspTrans->field_0x78.z) * local_7c[bspTrans->field_0xc0[1]];
+        sp60.x = bspTrans->field_0x78.x + (pos.sp48.x - bspTrans->field_0x78.x) * vals_f4[bspTrans->field_0xc0[1]];
+        sp60.y = bspTrans->field_0x78.y + (pos.sp48.y - bspTrans->field_0x78.y) * vals_f4[bspTrans->field_0xc0[0]];
+        sp60.z = bspTrans->field_0x78.z + (pos.sp48.z - bspTrans->field_0x78.z) * vals_f4[bspTrans->field_0xc0[1]];
 
-        field_0x5c.mCenter += (sp64 - field_0x5c.mCenter) * bspTrans->mCushion;
+        field_0x5c.mCenter += (sp60 - field_0x5c.mCenter) * bspTrans->mCushion;
 
         cSGlobe cStack_130(bspTrans->field_0x84 - bspTrans->field_0x78);
-        cSGlobe cStack_138(sp3c - pos.sp48);
+        cSGlobe cStack_138(pos.sp3c - pos.sp48);
         cSGlobe cStack_140;
 
-        cStack_140.R(cStack_130.R() + ((cStack_138.R() - cStack_130.R()) * local_7c[bspTrans->field_0xc0[2]]));
-        cStack_140.V(cStack_130.V() + ((cStack_138.V() - cStack_130.V()) * local_7c[bspTrans->field_0xc0[3]]));
-        cStack_140.U(cStack_130.U() + ((cStack_138.U() - cStack_130.U()) * local_7c[bspTrans->field_0xc0[4]]));
+        cStack_140.R(cStack_130.R() + ((cStack_138.R() - cStack_130.R()) * vals_f4[bspTrans->field_0xc0[2]]));
+        cStack_140.V(cStack_130.V() + ((cStack_138.V() - cStack_130.V()) * vals_f4[bspTrans->field_0xc0[3]]));
+        cStack_140.U(cStack_130.U() + ((cStack_138.U() - cStack_130.U()) * vals_f4[bspTrans->field_0xc0[4]]));
 
         sp70 = field_0x5c.mCenter + cStack_140.Xyz();
         field_0x5c.mEye += (sp70 - field_0x5c.mEye) * bspTrans->mCushion;
-        field_0x5c.mFovy += bspTrans->mCushion * ((bspTrans->field_0x90 + (bspTrans->field_0xac - bspTrans->field_0x90) * local_7c[bspTrans->field_0xc0[5]]) - field_0x5c.mFovy);
+        f32 add_val = (bspTrans->field_0x90 + (bspTrans->field_0xac - bspTrans->field_0x90) * vals_f4[bspTrans->field_0xc0[5]]);
+        field_0x5c.mFovy += bspTrans->mCushion * (add_val - field_0x5c.mFovy);
         field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
         return 0;
-    } else {
-        return 1;
     }
+
+    return 1;
 }
 
 /* 80097694-8009769C 091FD4 0008+00 0/0 1/0 0/0 .text            portalWarpEvCamera__9dCamera_cFv */
