@@ -1193,7 +1193,7 @@ static void cam_3d_morf(e_mk_class* i_this, f32 param_2) {
 
 /* 807174E4-8071823C 0034A4 0D58+00 1/1 0/0 0/0 .text            demo_camera_start__FP10e_mk_class */
 static void demo_camera_start(e_mk_class* i_this) {
-    // EQUIVALENT - REGALLOC
+    // NONMATCHING
     fopAc_ac_c* a_this = &i_this->enemy;
     fopAc_ac_c* actor1, * actor2, * actor3;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
@@ -1909,7 +1909,7 @@ static void demo_camera_r04(e_mk_class* i_this) {
     switch (i_this->mDemoMode) {
         case 1:
             if (!i_actor->actor.eventInfo.checkCommandDemoAccrpt()) {
-                fopAcM_orderPotentialEvent(a_this, 2, 0xffff, 0);
+                fopAcM_orderPotentialEvent(&i_actor->actor, 2, 0xffff, 0);
                 i_actor->actor.eventInfo.onCondition(dEvtCnd_CANDEMO_e);
                 return;
             }
