@@ -1066,7 +1066,7 @@ public:
         mDemo.setParam2(i_param2);
     }
 
-    void changeDemoParam0(s16 i_param1) {
+    void changeDemoParam0(int i_param1) {
         mDemo.setParam0(i_param1);
     }
 
