@@ -33,7 +33,7 @@ public:
     /* 0x1A9F */ u8 field_0x1a9f[0x1bd0 - 0x1a9f];
 
     bool partBreak() {
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 8; i++) {
             if (field_0x1a98[i] == 2) return 1;
         }
         return 0;
