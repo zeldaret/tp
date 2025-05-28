@@ -478,7 +478,6 @@ static bool checkViewArea(cXyz* i_pos) {
 }
 
 /* 806BCE5C-806BD0A8 00147C 024C+00 2/1 0/0 0/0 .text            e_fs_demowait__FP10e_fs_class */
-// NONMATCHING regalloc
 static void e_fs_demowait(e_fs_class* i_this) {
     cXyz delta;
     npc_ks_class* monkey = (npc_ks_class*)fopAcM_SearchByName(PROC_NPC_KS);
@@ -499,8 +498,8 @@ static void e_fs_demowait(e_fs_class* i_this) {
         break;
 
     case 2:
-        delta.x = monkey->current.pos.x - i_this->current.pos.x;
-        delta.z = monkey->current.pos.z - i_this->current.pos.z;
+        delta.x = monkey->actor.current.pos.x - i_this->current.pos.x;
+        delta.z = monkey->actor.current.pos.z - i_this->current.pos.z;
         i_this->mTargetAngleY = cM_atan2s(delta.x, delta.z);
         if (i_this->mAcch.ChkGroundHit()) {
             i_this->mpMorf->setPlaySpeed(1.0f);
