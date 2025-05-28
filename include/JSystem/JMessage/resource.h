@@ -13,7 +13,7 @@ namespace JMessage {
  */
 struct TResource {
     TResource()
-        : field_0x8(NULL), field_0xc(NULL), field_0x10(NULL), field_0x14(0), mMessageID(NULL) {}
+        : field_0x8(NULL), field_0xc(NULL), field_0x10(NULL), field_0x14(NULL), mMessageID(NULL) {}
 
     /* 802A8CDC */ u16 toMessageIndex_messageID(u32, u32, bool*) const;
 
@@ -50,11 +50,28 @@ struct TResource {
     void setData_header(const void* pData) {
         field_0x8.setRaw(pData);
     }
+
+    void setData_block_info(const void* pData) {
+        field_0xc.setRaw(pData);
+    }
+
+    void setData_block_messageText(const void* pData) {
+        field_0x10 = data::TParse_TBlock_messageText(pData).getContent();
+    }
+
+    void setData_block_stringAttribute(const void* pData) {
+        field_0x14 = data::TParse_TBlock_stringAttribute(pData).getContent();
+    }
+
+    void setData_block_messageID(const void* pData) {
+        mMessageID.setRaw(pData);
+    }
+
     JGadget::TLinkListNode ocObject_;
     /* 0x08 */ data::TParse_THeader field_0x8;
     /* 0x0C */ data::TParse_TBlock_info field_0xc;
     /* 0x10 */ char* field_0x10;
-    /* 0x14 */ int field_0x14;
+    /* 0x14 */ char* field_0x14;
     /* 0x18 */ data::TParse_TBlock_messageID mMessageID;
 };
 
