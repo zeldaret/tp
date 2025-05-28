@@ -7,7 +7,46 @@ class J2DPicture;
 class JKRArchive;
 class dSelect_cursor_c;
 
-struct dMenuMapCommon_c {
+enum dMenuMapIcon_e {
+    ICON_UNK_0_e,
+    ICON_UNK_1_e,
+    ICON_DUNGEON_WARP_e,
+    ICON_BOSS_GANON_e,
+    ICON_BOSS_e,
+    ICON_LIGHT_DROP_e,
+    ICON_LIGHT_BALL_e,
+    ICON_CANNON_BALL_e,
+    ICON_COPY_STATUE_e,
+    ICON_YETO_e,
+    ICON_YETA_e,
+    ICON_GOLD_WOLF_e,
+    ICON_MONKEY_e,
+    ICON_COACH_e,
+    ICON_KEY_e,
+    ICON_OOCCOO_e,
+    ICON_OOCCOO_JR_e,
+    ICON_LINK_e,
+    ICON_DESTINATION_e,
+    ICON_TREASURE_CHEST_e,
+    ICON_DUNGEON_ENTER_e,
+    ICON_LINK_ENTER_e,
+    ICON_LV8_WARP_e,
+
+    ICON_MAX_e,
+};
+
+class dMenuMapCommon_c {
+public:
+    struct IconInfo_s {
+        /* 0x00 */ f32 pos_x;
+        /* 0x04 */ f32 pos_y;
+        /* 0x08 */ f32 scale;
+        /* 0x0C */ f32 rotation;
+        /* 0x10 */ f32 alpha_rate;
+        /* 0x14 */ u8 icon_no;
+        /* 0x15 */ u8 _15;
+    };
+
     /* 801C2718 */ dMenuMapCommon_c();
     /* 801C27B4 */ virtual ~dMenuMapCommon_c();
     /* 801C28D8 */ void initiate(JKRArchive*);
@@ -18,24 +57,14 @@ struct dMenuMapCommon_c {
     /* 801C4494 */ void setBlendRatio(u8, f32, f32);
     /* 801C452C */ void blinkMove(s16);
     /* 801C4600 */ void moveLightDropAnime();
-    /* 801C4738 */ float getIconSizeX(u8 index);
-    /* 801C4778 */ float getIconSizeY(u8 index);
+    /* 801C4738 */ f32 getIconSizeX(u8 index);
+    /* 801C4778 */ f32 getIconSizeY(u8 index);
     /* 801C47C4 */ void debugIcon();
 
     void setCenterPosX(f32 center_pos, u8 param_2) {
         mCenterPosX = center_pos;
         _c90 = param_2;
     }
-
-    struct data {
-        /* 0x00 */ float _0;
-        /* 0x04 */ float _4;
-        /* 0x08 */ float _8;
-        /* 0x0C */ float _C;
-        /* 0x10 */ float _10;
-        /* 0x14 */ u8 _14;
-        /* 0x15 */ u8 _15;
-    };
 
     struct Stage_c {
         // Incomplete class
@@ -73,21 +102,21 @@ struct dMenuMapCommon_c {
     };
 
     /* 0x004 */ J2DPicture* mPictures[23];
-    /* 0x060 */ J2DPicture* _60;
+    /* 0x060 */ J2DPicture* mLightDropPic;
     /* 0x064 */ dSelect_cursor_c* mpDrawCursor;
     /* 0x068 */ dSelect_cursor_c* mpPortalIcon;
     /* 0x06C */ u32 _6c;
-    /* 0x070 */ data _70[128];
+    /* 0x070 */ IconInfo_s mIconInfo[128];
     /* 0xC70 */ u16 mIconNum;
-    /* 0xC72 */ s16 _c72;
-    /* 0xC74 */ s16 _c74;
+    /* 0xC72 */ s16 mBlinkTimer;
+    /* 0xC74 */ s16 mLightDropFlashTimer;
     /* 0xC76 */ u16 _c76;
-    /* 0xC78 */ float _c78;
-    /* 0xC7C */ float _c7c;
-    /* 0xC80 */ float _c80;
-    /* 0xC84 */ float _c84;
-    /* 0xC88 */ float _c88;
-    /* 0xC8C */ float mCenterPosX;
+    /* 0xC78 */ f32 mBlinkAlpha;
+    /* 0xC7C */ f32 _c7c;
+    /* 0xC80 */ f32 _c80;
+    /* 0xC84 */ f32 _c84;
+    /* 0xC88 */ f32 _c88;
+    /* 0xC8C */ f32 mCenterPosX;
     /* 0xC90 */ u8 _c90;
 };
 

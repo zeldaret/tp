@@ -21,10 +21,33 @@ u8 __OSReport_System_disable;
 u8 __OSReport_enable;
 
 /* 80006798-800067C8 0010D8 0030+00 1/1 0/0 0/0 .text            OSSwitchFiberEx__FUlUlUlUlUlUl */
-void OSSwitchFiberEx(u32 param_0, u32 param_1, u32 param_2, u32 param_3, u32 param_4,
-                         u32 param_5) {
-    // NONMATCHING
+#ifdef __GEKKO__
+asm void OSSwitchFiberEx(register u32 param_0, register u32 param_1, register u32 param_2, register u32 param_3, register u32 code, register u32 stack) {
+    nofralloc
+    
+    mflr r0
+    
+    // Back chain
+    mr r9, r1
+    stwu r9, -8(stack)
+    
+    // LR save
+    mr r1, stack
+    stw r0, 4(r9)
+
+    // Call function
+    mtlr code
+    blrl
+
+    // Switch back
+    lwz r5, 0(r1)
+    lwz r0, 4(r5)
+    mtlr r0
+    mr r1, r5
+
+    blr
 }
+#endif
 
 /* 800067C8-800067F4 001108 002C+00 3/3 0/0 0/0 .text            my_PutString__FPCc */
 void my_PutString(const char* string) {

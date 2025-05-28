@@ -25,9 +25,6 @@ extern "C" void checkPlayerGet__8daItem_cFv();
 // External References:
 //
 
-// cLib_calcTimer<u8>
-extern "C" u8 func_80141AE8(u8*);
-
 extern "C" extern void* __vt__16Z2SoundObjSimple[8];
 extern "C" void __dl__FPv();
 extern "C" void __dt__14Z2SoundObjBaseFv();
@@ -546,7 +543,7 @@ void daItem_c::procWaitGetDemoEvent() {
             return;
         }
 
-        if (func_80141AE8(&field_0x9c1) == 0 || checkItemGet(m_itemNo, 1)) {
+        if (cLib_calcTimer<u8>(&field_0x9c1) == 0 || checkItemGet(m_itemNo, 1)) {
             if (fopAcM_delete(m_item_id)) {
                 // "Item: Get Item deleted because Get Demo was canceled\n"
                 OS_REPORT("アイテム：ゲットデモ中止されたので、ゲットアイテム削除しました\n");
@@ -645,7 +642,7 @@ void daItem_c::procMainSwOnWait() {
             OS_REPORT("水面より下で発生wtr<%.2f>my<%.2f>\n", mAcch.m_wtr.GetHeight(), home.pos.y);
         }
 
-        if (func_80141AE8(&mSwOnWaitTimer) == 0) {
+        if (cLib_calcTimer<u8>(&mSwOnWaitTimer) == 0) {
             show();
             procInitNormal();
         }
@@ -1153,7 +1150,7 @@ int daItem_c::CountTimer() {
         }
     }
 
-    func_80141AE8(&mBoomWindTgTimer);
+    cLib_calcTimer<u8>(&mBoomWindTgTimer);
     return 1;
 }
 

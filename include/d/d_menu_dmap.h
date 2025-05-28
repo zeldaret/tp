@@ -25,7 +25,7 @@ struct dMenu_DmapMapCtrl_c;
 class renderingDmap_c : public renderingPlusDoor_c {
 public:
     /* 801C0380 */ virtual ~renderingDmap_c() {}
-    /* 801C051C */ renderingDmap_c();
+    /* 801C051C */ renderingDmap_c() {}
 
     /* 801C0C48 */ virtual const GXColor* getColor(int);
     /* 801C0C10 */ virtual int getLineWidth(int);
@@ -53,7 +53,8 @@ public:
     /* 0x34 */ f32 field_0x34;
 };
 
-struct dMenu_DmapBg_c : public dDlst_base_c, public dMenuMapCommon_c {
+class dMenu_DmapBg_c : public dDlst_base_c, public dMenuMapCommon_c {
+public:
     /* 801B7F20 */ dMenu_DmapBg_c(JKRExpHeap*, STControl*);
     /* 801B8110 */ void mapScreenInit();
     /* 801B884C */ void mapScreenAnime();
@@ -81,13 +82,21 @@ struct dMenu_DmapBg_c : public dDlst_base_c, public dMenuMapCommon_c {
     /* 801BB464 */ void calcCursor();
     /* 801BB468 */ void drawCursor();
 
-    f32 getMapWidth() { return field_0xda0; }
-    f32 getMapHeight() { return field_0xda4; }
-    J2DPicture* getMapPane() { return field_0xcc4; }
+    void setDPDFloorSelCurPos(s8 i_pos) { field_0xdd6 = i_pos; }
 
-    /* 0xC98 */ JKRExpHeap* field_0xc98;
+    f32 getMapWidth() { return mMapWidth; }
+    f32 getMapHeight() { return mMapHeight; }
+    J2DPicture* getMapPane() { return mMapPane; }
+    dMenu_ItemExplain_c* getItemExplainPtr() { return mpItemExplain; }
+
+    void setAllTrans(f32 param_0, f32 param_1) {
+        field_0xd94 = param_0;
+        field_0xd98 = param_1;
+    }
+
+    /* 0xC98 */ JKRExpHeap* mpHeap;
     /* 0xC9C */ JKRExpHeap* mpTalkHeap;
-    /* 0xCA0 */ STControl* field_0xca0;
+    /* 0xCA0 */ STControl* mpStick;
     /* 0xCA4 */ J2DScreen* mBaseScreen;
     /* 0xCA8 */ J2DScreen* mMapScreen[2];
     /* 0xCB0 */ int field_0xcb0;
@@ -95,7 +104,7 @@ struct dMenu_DmapBg_c : public dDlst_base_c, public dMenuMapCommon_c {
     /* 0xCB8 */ J2DScreen* mDecorateScreen;
     /* 0xCBC */ J2DScreen* mFloorScreen;
     /* 0xCC0 */ dSelect_cursor_c* mpDrawCursor;
-    /* 0xCC4 */ J2DPicture* field_0xcc4;
+    /* 0xCC4 */ J2DPicture* mMapPane;
     /* 0xCC8 */ dMsgString_c* mString;
     /* 0xCCC */ CPaneMgrAlphaMorf* mpBaseRoot;
     /* 0xCD0 */ CPaneMgrAlphaMorf* mpMapRoot[2];
@@ -113,14 +122,16 @@ struct dMenu_DmapBg_c : public dDlst_base_c, public dMenuMapCommon_c {
     /* 0xD08 */ CPaneMgr* mpButtonAB[2];
     /* 0xD10 */ CPaneMgr* mpButtonText[2];
     /* 0xD18 */ dMenu_ItemExplain_c* mpItemExplain;
-    /* 0xD1C */ mDoDvdThd_mountArchive_c* field_0xd1c;
-    /* 0xD20 */ JKRArchive* field_0xd20;
+    /* 0xD1C */ mDoDvdThd_mountArchive_c* mpArchiveMount;
+    /* 0xD20 */ JKRArchive* mpArchive;
     /* 0xD24 */ J2DPicture* mpBackTexture;
     /* 0xD28 */ J2DAnmTextureSRTKey* field_0xd28[1];
     /* 0xD2C */ u8 field_0xd2c[0xd30 - 0xd2c];
     /* 0xD30 */ dMeterHaihai_c* mpMeterHaihai;
-    /* 0xD34 */ dMsgFlow_c field_0xd34;
-    /* 0xD80 */ u8 field_0xd80[0xc];
+    /* 0xD34 */ dMsgFlow_c mMsgFlow;
+    /* 0xD80 */ f32 field_0xd80;
+    /* 0xD84 */ f32 field_0xd84;
+    /* 0xD88 */ f32 field_0xd88;
     /* 0xD8C */ u8 field_0xd8c;
     /* 0xD8D */ u8 field_0xd8d;
     /* 0xD8E */ u8 field_0xd8e;
@@ -132,8 +143,8 @@ struct dMenu_DmapBg_c : public dDlst_base_c, public dMenuMapCommon_c {
     /* 0xD94 */ f32 field_0xd94;
     /* 0xD98 */ f32 field_0xd98;
     /* 0xD9C */ f32 field_0xd9c;
-    /* 0xDA0 */ f32 field_0xda0;
-    /* 0xDA4 */ f32 field_0xda4;
+    /* 0xDA0 */ f32 mMapWidth;
+    /* 0xDA4 */ f32 mMapHeight;
     /* 0xDA8 */ f32 field_0xda8;
     /* 0xDAC */ f32 field_0xdac;
     /* 0xDB0 */ f32 field_0xdb0;
@@ -181,7 +192,7 @@ public:
     /* 801BEAFC */ void itemInfo_init_proc();
     /* 801BEB0C */ void itemInfo_proc();
     /* 801BEB44 */ void itemSelect();
-    /* 801BEF28 */ void getNextItem(int);
+    /* 801BEF28 */ int getNextItem(int);
     /* 801BEFCC */ void itemSelectAnmInit();
     /* 801BF030 */ void itemSelectAnm();
     /* 801BF180 */ void itemInfoOpenAnm();
@@ -189,7 +200,7 @@ public:
     /* 801BF278 */ void itemInfoCloseAnm();
     /* 801BF334 */ u8 getNextStatus();
     /* 801BF410 */ bool isSync();
-    /* 801BF464 */ void isKeyCheck();
+    /* 801BF464 */ bool isKeyCheck();
     /* 801BF4A4 */ void infoModeChange_init_proc();
     /* 801BF528 */ void infoModeChange_proc();
     /* 801BF688 */ void mapModeChange_init_proc();
@@ -200,7 +211,7 @@ public:
     /* 801BF9E0 */ void mapMode_proc();
     /* 801BFA84 */ void floorSelect_init_proc();
     /* 801BFA88 */ void floorSelect_proc();
-    /* 801BFC78 */ void itemCarryCheck();
+    /* 801BFC78 */ int itemCarryCheck();
     /* 801BFCAC */ void floorChange_init_proc();
     /* 801BFD5C */ void floorChange_proc();
     /* 801BFF84 */ void zoomWait_init_proc();
@@ -216,13 +227,16 @@ public:
     u8 getZoomState() { return mZoomState; }
     u16 getCMessasgeNum() { return mCMessageNum; }
     s8 getBottomFloor() { return mBottomFloor; }
-    s8 getFloorAll() { return mFloorAll; }
+    s8 getFloorAll() { return (mFloorAll - mBottomFloor) + 1; }
+    s8 getFloorPos(s8 param_0) { return param_0 - mBottomFloor; }
+    u16 getCMessageNum() { return mCMessageNum; }
 
     static dMenu_Dmap_c* myclass;
 
 private:
     /* 0x004 */ dMenu_DmapMapCtrl_c* mMapCtrl;
-    /* 0x008 */ dMenu_DmapBg_c* mpDrawBg[2];
+    /* 0x008 */ dMenu_DmapBg_c* mpDrawBg;
+    /* 0x00C */ u8 field_0xc[0x10 - 0xC];
     /* 0x010 */ CPaneMgr* field_0x10;
     /* 0x014 */ CPaneMgr* mSelFloor[8];
     /* 0x034 */ CPaneMgr* mIconLinkPos[8];
@@ -233,8 +247,8 @@ private:
     /* 0x094 */ CPaneMgr* field_0x94;
     /* 0x098 */ CPaneMgr* field_0x98;
     /* 0x09C */ u8 field_0x9c[0x44];
-    /* 0x0E0 */ mDoDvdThd_mountArchive_c* field_0xe0;
-    /* 0x0E4 */ JKRArchive* field_0xe4;
+    /* 0x0E0 */ mDoDvdThd_mountArchive_c* mpDresArchiveMount;
+    /* 0x0E4 */ JKRArchive* mpDresArchive;
     /* 0x0E8 */ JKRExpHeap* field_0xe8;
     /* 0x0EC */ JKRExpHeap* mDmapHeap;
     /* 0x0F0 */ STControl* mSelStick;
@@ -260,7 +274,7 @@ private:
     /* 0x16A */ u16 field_0x16a;
     /* 0x16C */ s8 field_0x16c;
     /* 0x16D */ s8 field_0x16d;
-    /* 0x16E */ u8 field_0x16e;
+    /* 0x16E */ s8 field_0x16e;
     /* 0x16F */ u8 field_0x16f;
     /* 0x170 */ s8 mFloorAll;
     /* 0x171 */ s8 mBottomFloor;
@@ -271,8 +285,8 @@ private:
     /* 0x178 */ u8 field_0x178;
     /* 0x179 */ u8 field_0x179;
     /* 0x17A */ u8 mInOutDir;
-    /* 0x17B */ u8 field_0x17b;
-    /* 0x17C */ u8 field_0x17c;
+    /* 0x17B */ u8 m_process;
+    /* 0x17C */ u8 m_itemSubProcess;
     /* 0x17D */ u8 field_0x17d;
     /* 0x17E */ u8 field_0x17e;
     /* 0x17F */ u8 mZoomState;
@@ -281,7 +295,7 @@ private:
     /* 0x182 */ u8 field_0x182;
     /* 0x183 */ u8 field_0x183;
     /* 0x184 */ bool field_0x184;
-    /* 0x185 */ u8 field_0x185;
+    /* 0x185 */ bool field_0x185;
 };
 
 #endif /* D_MENU_D_MENU_DMAP_H */

@@ -2,36 +2,39 @@
 #define D_MSG_D_MSG_CLASS_H
 
 #include "JSystem/JMessage/control.h"
+#include "JSystem/JMessage/JMessage.h"
 #include "SSystem/SComponent/c_xyz.h"
+
+class JMSMesgEntry_c {
+public:
+    /* 0x0 */ u32 string_offset;
+
+    // Attributes
+    /* 0x04 */ u16 message_id;
+    /* 0x06 */ u16 unk_0x6;
+    /* 0x08 */ u8 unk_0x8;
+    /* 0x09 */ u8 display_style;
+    /* 0x0A */ u8 print_style;
+    /* 0x0B */ u8 position;
+    /* 0x0C */ u8 unk_0xc;
+    /* 0x0D */ u8 unk_0xd;
+    /* 0x0E */ u8 unk_0xe;
+    /* 0x0F */ u8 camera_id;
+    /* 0x10 */ u32 unk_0x10;
+};
+
+class JMSMesgInfo_c {
+public:
+    /* 0x00 */ bmg_section_t header;  // section header
+    /* 0x08 */ u16 entry_num;         // number of entries in this section
+    /* 0x0A */ u16 entry_size;        // size of an entry
+    /* 0x0C */ u8 padding[4];         // padding
+    /* 0x10 */ JMSMesgEntry_c entries[0];
+};
 
 class COutFont_c;
 class J2DTextBox;
 class JUTFont;
-
-struct JMSMesgEntry_c {
-    /* 0x00 */ u32 mStringOffset;
-    /* 0x04 */ u16 mStringId;
-    /* 0x06 */ u16 field_0x06;
-    /* 0x08 */ u8 field_0x08;
-    /* 0x09 */ u8 field_0x09;
-    /* 0x0A */ u8 field_0x0a;
-    /* 0x0B */ u8 field_0x0b;
-    /* 0x0C */ u8 field_0x0c;
-    /* 0x0D */ u8 field_0x0d;
-    /* 0x0E */ u8 field_0x0e;
-    /* 0x0F */ u8 field_0x0f;
-    /* 0x10 */ u32 field_0x10;
-};  // Size: 0x14
-
-struct JMSMesgHeader_c {
-    /* 0x00 */ u32 magic;
-    /* 0x04 */ u32 sectionSize;
-    /* 0x08 */ u16 entryCount;
-    /* 0x0A */ u16 entrySize;
-    /* 0x0C */ u16 field_0xc;
-    /* 0x0E */ u16 field_0xe;
-    /* 0x10 */ JMSMesgEntry_c entries[0];
-};  // Size: 0x10
 
 class STControl;
 class dMsgObject_c;

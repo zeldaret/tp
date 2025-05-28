@@ -396,8 +396,8 @@ inline static s16 rightModeCnvRot(s16 param_0) {
 
 /* 801C0FF8-801C1128 1BB938 0130+00 0/0 1/1 0/0 .text
  * getTreasureList__20dMenu_StageMapCtrl_cFPfPfPScPUcPSc        */
-bool dMenu_StageMapCtrl_c::getTreasureList(f32* param_0, f32* param_1, s8* param_2, u8* param_3,
-                                           s8* param_4) {
+bool dMenu_StageMapCtrl_c::getTreasureList(f32* o_posX, f32* o_posY, s8* param_2, u8* o_swbit,
+                                           s8* o_roomNo) {
     bool var_r30 = false;
 
     while (field_0xe4 != 0 && !var_r30) {
@@ -405,18 +405,18 @@ bool dMenu_StageMapCtrl_c::getTreasureList(f32* param_0, f32* param_1, s8* param
         sp10 = *field_0x8c->getPos();
 
         if (getRendPointer(0)->isDrawIconSingle(field_0x8c->getDataPointer(), (s8)dComIfGp_roomControl_getStayNo(), field_0xf7, true, true, &sp10)) {
-            cnvPosTo2Dpos(sp10.x, sp10.z, param_0, param_1);
+            cnvPosTo2Dpos(sp10.x, sp10.z, o_posX, o_posY);
 
             if (param_2 != NULL) {
                 *param_2 = rightModeCnvRot((s8)field_0x8c->getAngleY()) >> 8;
             }
 
-            if (param_3 != NULL) {
-                *param_3 = field_0x8c->getSwBit();
+            if (o_swbit != NULL) {
+                *o_swbit = field_0x8c->getSwBit();
             }
 
-            if (param_4 != NULL) {
-                *param_4 = field_0x8c->getRoomNo();
+            if (o_roomNo != NULL) {
+                *o_roomNo = field_0x8c->getRoomNo();
             }
 
             var_r30 = true;

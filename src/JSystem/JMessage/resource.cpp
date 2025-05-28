@@ -5,6 +5,7 @@
 
 #include "JSystem/JMessage/resource.h"
 #include "JSystem/JGadget/search.h"
+#include "JSystem/JGadget/define.h"
 #include <algorithm.h>
 #include "string.h"
 
@@ -205,8 +206,73 @@ bool JMessage::TParse::parseHeader_next(void const** ppData_inout, u32* puBlock_
 
 /* 802A92F4-802A9490 2A3C34 019C+00 1/0 0/0 0/0 .text
  * parseBlock_next__Q28JMessage6TParseFPPCvPUlUl                */
-bool JMessage::TParse::parseBlock_next(void const** param_0, u32* param_1, u32 param_2) {
-    // NONMATCHING
+bool JMessage::TParse::parseBlock_next(void const** ppData_inout, u32* puData_out, u32 param_2) {
+    JUT_ASSERT(401, ppData_inout!=0);
+    JUT_ASSERT(402, puData_out!=0);
+
+    const void* pData = *ppData_inout;
+    JUT_ASSERT(404, pData!=0);
+
+    data::TParse_TBlock sp34(pData);
+
+    *ppData_inout = sp34.getNext();
+    *puData_out = sp34.get_size();
+
+    TResourceContainer::TCResource& rcResource = pContainer_->resContainer_;
+    JUT_ASSERT(412, pResource_==&*--(rcResource.end()));
+
+    u32 sp30 = sp34.get_type();
+    switch (sp30) {
+    case 'INF1':
+        pResource_->setData_block_info(pData);
+        break;
+    case 'FLI1':
+        break;
+    case 'FLW1':
+        break;
+    case 'DAT1':
+        pResource_->setData_block_messageText(pData);
+        u16 temp_r26 = pResource_->getGroupID();
+
+        if (param_2 & 0x80) {
+            JGadget::TLinkList<JMessage::TResource, 0>::iterator sp2C(rcResource.begin());
+            JMessage::TResource* sp28;
+            while ((sp28 = &*sp2C) != pResource_) {
+                if ((u16)temp_r26 != sp28->getGroupID()) {
+                    ++sp2C;
+                } else {
+                    sp2C = rcResource.Erase_destroy(sp28);
+                }
+            }
+        } else {
+            #ifdef DEBUG
+            JMessage::TResource* sp24 = rcResource.Get_groupID(temp_r26);
+            if (sp24 != pResource_) {
+                JGadget_outMessage sp148(JGadget_outMessage::warning, __FILE__, 444);
+                sp148 << "group-ID already exist : " << temp_r26;
+            }
+            #endif
+        }
+        break;
+    case 'STR1':
+        pResource_->setData_block_stringAttribute(pData);
+        break;
+    case 'MID1':
+        pResource_->setData_block_messageID(pData);
+        break;
+    default:
+        #ifdef DEBUG
+        JGadget_outMessage sp148(JGadget_outMessage::warning, __FILE__, 463);
+        sp148 << "unknown block : " << sp30;
+        #endif
+
+        if (!(param_2 & 0x40)) {
+            return 0;
+        }
+        break;
+    }
+
+    return 1;
 }
 
 /* 802A9490-802A94A8 2A3DD0 0018+00 1/0 0/0 0/0 .text

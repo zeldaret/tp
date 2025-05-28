@@ -181,11 +181,11 @@ if not config.non_matching:
 
 # Tool versions
 config.binutils_tag = "2.42-1"
-config.compilers_tag = "20240706"
-config.dtk_tag = "v1.4.1"
-config.objdiff_tag = "v2.7.1"
-config.sjiswrap_tag = "v1.2.0"
-config.wibo_tag = "0.6.11"
+config.compilers_tag = "20250520"
+config.dtk_tag = "v1.5.1"
+config.objdiff_tag = "v3.0.0-beta.8"
+config.sjiswrap_tag = "v1.2.1"
+config.wibo_tag = "0.6.16"
 
 # Project
 config.config_path = Path("config") / config.version / "config.yml"
@@ -343,7 +343,7 @@ cflags_rel = [
     "-sdata2 0",
 ]
 
-def MWVersion(cfg_version: str) -> str:
+def MWVersion(cfg_version: str | None) -> str:
     match cfg_version:
         case "GZ2E01":
             return "GC/2.7"
@@ -417,7 +417,7 @@ config.libs = [
         "host": True,
         "objects": [
             Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_main.cpp"),
-            Object(NonMatching, "m_Do/m_Do_printf.cpp"),
+            Object(MatchingFor("GZ2E01"), "m_Do/m_Do_printf.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_audio.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_controller_pad.cpp"),
             Object(Equivalent, "m_Do/m_Do_graphic.cpp"), # weak func order
@@ -866,7 +866,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JASWSParser.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASBNKParser.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JASWaveArcLoader.cpp", extra_cflags=['-pragma "nosyminline off"']),
-            Object(Equivalent, "JSystem/JAudio2/JASChannel.cpp", extra_cflags=['-pragma "nosyminline off"']), # bss locations
+            Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JASChannel.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JASLfo.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JASOscillator.cpp"),
             Object(NonMatching, "JSystem/JAudio2/JASAiCtrl.cpp"),
@@ -884,7 +884,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAIAudience.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAISe.cpp"),
             Object(Equivalent, "JSystem/JAudio2/JAISeMgr.cpp", extra_cflags=['-pragma "nosyminline off"']), # weak function order
-            Object(Equivalent, "JSystem/JAudio2/JAISeq.cpp", extra_cflags=['-pragma "nosyminline off"']), # bss locations
+            Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAISeq.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAISeqDataMgr.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAISeqMgr.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAISound.cpp"),
@@ -893,7 +893,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAISoundInfo.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAISoundParams.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAISoundStarter.cpp"),
-            Object(Equivalent, "JSystem/JAudio2/JAIStream.cpp", extra_cflags=['-pragma "nosyminline off"']), # bss locations
+            Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAIStream.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAIStreamDataMgr.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAIStreamMgr.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAUAudioArcInterpreter.cpp"),
@@ -901,7 +901,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAUAudioMgr.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAUBankTable.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAUClusterSound.cpp"),
-            Object(Equivalent, "JSystem/JAudio2/JAUInitializer.cpp", extra_cflags=['-pragma "nosyminline off"']), # bss locations
+            Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAUInitializer.cpp", extra_cflags=['-pragma "nosyminline off"']),
             Object(NonMatching, "JSystem/JAudio2/JAUSectionHeap.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAUSeqCollection.cpp"),
             Object(MatchingFor("GZ2E01"), "JSystem/JAudio2/JAUSeqDataBlockMgr.cpp"),
@@ -1571,7 +1571,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_magne_arm"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_metalbox"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_mgate"),
-    ActorRel(Matching, "d_a_obj_nameplate"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_nameplate"),
     ActorRel(NonMatching, "d_a_obj_ornament_cloth"),
     ActorRel(NonMatching, "d_a_obj_rope_bridge"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_sWallShutter"),
@@ -1686,8 +1686,8 @@ config.libs = [
     ActorRel(NonMatching, "d_a_e_pm"),
     ActorRel(NonMatching, "d_a_e_po"),
     ActorRel(Equivalent, "d_a_e_pz", extra_cflags=['-pragma "nosyminline off"']), # weak func order, inline issue
-    ActorRel(NonMatching, "d_a_e_rb"),
-    ActorRel(NonMatching, "d_a_e_rdb"),
+    ActorRel(Equivalent, "d_a_e_rb"), # weak func order
+    ActorRel(Equivalent, "d_a_e_rdb"), # weak func order
     ActorRel(NonMatching, "d_a_e_rdy"),
     ActorRel(NonMatching, "d_a_e_s1"),
     ActorRel(NonMatching, "d_a_e_sb"),
@@ -2115,7 +2115,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_szbridge"),
     ActorRel(NonMatching, "d_a_obj_taFence"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_table"),
-    ActorRel(NonMatching, "d_a_obj_takaraDai"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_takaraDai"),
     ActorRel(NonMatching, "d_a_obj_tatigi"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ten"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_testcube"),
@@ -2241,6 +2241,7 @@ out_dir = config.build_dir / version
 
 # This generates the build steps needed for preprocessing
 def emit_build_rule(asset: Dict[str, Any]) -> None:
+    assert config.custom_build_steps is not None
     steps = config.custom_build_steps.setdefault("pre-compile", [])
     custom_data = asset.get("custom_data") or {}
 
@@ -2300,12 +2301,18 @@ config.progress_categories = [
     ProgressCategory("third_party", "Third Party"),
 ]
 config.progress_each_module = args.verbose
+# Optional extra arguments to `objdiff-cli report generate`
+config.progress_report_args = [
+    # Marks relocations as mismatching if the target value is different
+    # Default is "functionRelocDiffs=none", which is most lenient
+    "--config functionRelocDiffs=data_value",
+]
 
 if args.mode == "configure":
     # Write build.ninja and objdiff.json
     generate_build(config)
 elif args.mode == "progress":
-    # Print progress and write progress.json
+    # Print progress information
     calculate_progress(config)
 else:
     sys.exit("Unknown mode: " + args.mode)

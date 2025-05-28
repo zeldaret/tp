@@ -231,12 +231,19 @@ struct TLinkList_factory : public TLinkList<T, I> {
     inline virtual ~TLinkList_factory() = 0;
     virtual T* Do_create() = 0;
     virtual void Do_destroy(T*) = 0;
+
     void Clear_destroy() {
         while (!this->empty()) {
             T* item = &this->front();
             this->pop_front();
             Do_destroy(item);
         }
+    }
+
+    TLinkList<T, I>::iterator Erase_destroy(T* param_0) {
+        TLinkList<T, I>::iterator spC(Erase(param_0));
+        Do_destroy(param_0);
+        return spC;
     }
 };
 

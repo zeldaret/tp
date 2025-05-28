@@ -247,8 +247,8 @@ inline void JKRUnmountArchive(JKRArchive* arc) {
     arc->unmount();
 }
 
-inline void JKRReadIdxResource(void* param_1, u32 param_2, u32 param_3, JKRArchive* param_4) {
-    param_4->readIdxResource(param_1, param_2, param_3);
+inline u32 JKRReadIdxResource(void* buffer, u32 bufsize, u32 resIdx, JKRArchive* archive) {
+    return archive->readIdxResource(buffer, bufsize, resIdx);
 }
 
 #endif
