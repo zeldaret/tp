@@ -1568,7 +1568,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_ktOnFire"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ladder"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv2Candle"),
-    ActorRel(NonMatching, "d_a_obj_magne_arm"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_magne_arm"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_metalbox"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_mgate"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_nameplate"),
