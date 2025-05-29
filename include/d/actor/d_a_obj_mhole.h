@@ -28,9 +28,9 @@ public:
     void setOn() { mIsOn = TRUE; }
 
 private:
-    /* 0x568 */ u8 field_0x568[0x198];
+    /* 0x568 */ u8 field_0x568[0x700 - 0x568];
     /* 0x700 */ bool mIsOn;
-    /* 0x701 */ u8 field_0x701[0x33];
+    /* 0x701 */ u8 field_0x701[0x734 - 0x701];
 };
 
 STATIC_ASSERT(sizeof(daObjMHole_c) == 0x734);

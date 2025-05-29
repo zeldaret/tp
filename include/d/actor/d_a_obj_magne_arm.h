@@ -19,7 +19,7 @@
  * D Parts are the vertical gears at the top where the crane bends.
  * E Parts is the wheel at the end of the crane.
  * F Parts is the magnetic crane head accessible to Link.
- * The ropes connecting the crane head is identified separately.
+ * The ropes connecting the crane head are identified separately.
  */
 
 class daObjMarm_c : public dBgS_MoveBgActor {
