@@ -1416,7 +1416,7 @@ static void npc_ks_home(npc_ks_class* i_this) {
 static void* s_sw_sub(void* i_actor, void* i_data) {
     // NONMATCHING
     if ((fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_OBJ_SW) &&
-        (fopAcM_GetRoomNo((fopAc_ac_c*)i_data) == 0 && ((obj_sw_class*)i_data)->field_0x5b6 == ((npc_ks_class*)i_actor)->field_0x570)) {
+        (fopAcM_GetRoomNo((fopAc_ac_c*)i_data) == 0 && ((npc_ks_class*)i_data)->field_0x5b6 == ((obj_sw_class*)i_actor)->field_0x570)) {
             return i_actor;
     }
     return NULL;
@@ -2269,7 +2269,7 @@ static void npc_ks_hang(npc_ks_class* i_this) {
                 anm_init(i_this, 24, 3.0f, 2, 1.0f);
             }
 
-            sVar1 = start_pya - sw_p->current.angle.y;
+            sVar1 = start_pya - sw_p->actor.current.angle.y;
             if (sVar1 < 0x4000 && sVar1 > -0x4000) {
                 a_this->home.angle.y = sVar1 + 0x8000;
             } else {
@@ -2441,7 +2441,7 @@ static void npc_ks_hang_s(npc_ks_class* i_this) {
                 anm_init(i_this, 24, 3.0f, 2, 1.0f);
             }
 
-            sVar1 = i_this->field_0x5c8 - sw_p->current.angle.y;
+            sVar1 = i_this->field_0x5c8 - sw_p->actor.current.angle.y;
             if (sVar1 < 0x4000 && sVar1 > -0x4000) {
                 a_this->home.angle.y = sVar1 + 0x8000;
             } else {
@@ -2616,7 +2616,7 @@ static int npc_ks_e_jump(npc_ks_class* i_this) {
     fopAc_ac_c* a_this = &i_this->actor;
     cXyz sp28;
     obj_sw_class* sw_p2 = i_this->field_0x934;
-    obj_sw_class* sw_p = (obj_sw_class*)i_this->field_0x930;
+    npc_ks_class* ks_p = (npc_ks_class*)i_this->field_0x930;
     int rv = 2;
     switch(i_this->mMode) {
         case 0:
@@ -2654,7 +2654,7 @@ static int npc_ks_e_jump(npc_ks_class* i_this) {
 
     case 5:
         i_this->field_0x5fd = 1;
-        sp28 = sw_p->field_0x614 - a_this->current.pos;
+        sp28 = ks_p->field_0x614 - a_this->current.pos;
         i_this->field_0x8fc.y = cM_atan2s(sp28.x, sp28.z);
         cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->field_0x8fc.y, 1, 0x2000);
 
@@ -2692,7 +2692,7 @@ static int npc_ks_e_jump(npc_ks_class* i_this) {
             }
         }
 
-        i_this->field_0x8f0 = sw_p->field_0x614;
+        i_this->field_0x8f0 = ks_p->field_0x614;
         i_this->field_0x91c = i_this->field_0x8f0;
         sp28 = i_this->field_0x8f0 - a_this->current.pos;
         i_this->field_0x8fc.y = cM_atan2s(sp28.x, sp28.z);
@@ -2709,17 +2709,17 @@ static int npc_ks_e_jump(npc_ks_class* i_this) {
             a_this->speedF = 0.0f;
             i_this->mMode = 10;
             anm_init(i_this, 48, 2.0f, 2, 1.0f);
-            sw_p->field_0x5ea = 2;
+            ks_p->mMode = 2;
         }
         break;
 
     case 10:
-        a_this->home.angle.y = sw_p2->current.angle.y;
+        a_this->home.angle.y = sw_p2->actor.current.angle.y;
         a_this->current.angle.y = a_this->home.angle.y;
-        a_this->current.pos = sw_p->field_0x614;
-        a_this->current.angle.x = (s16)((int)sw_p->field_0x602 << 1);
-        if (sw_p->health != 10) break;
-        sw_p->health = 0;
+        a_this->current.pos = ks_p->field_0x614;
+        a_this->current.angle.x = (s16)((int)ks_p->field_0x602 << 1);
+        if (ks_p->actor.health != 10) break;
+        ks_p->actor.health = 0;
         i_this->field_0x910 = a_this->current.pos;
         i_this->mSound.startCreatureVoice(Z2SE_KOSARU_V_THROW, -1);
 
@@ -2729,11 +2729,11 @@ static int npc_ks_e_jump(npc_ks_class* i_this) {
             a_this->speedF = 40.0f;
         }
 
-        if (sw_p->field_0x5b6 == i_this->field_0x5b6 - 1) {
+        if (ks_p->field_0x5b6 == i_this->field_0x5b6 - 1) {
             i_this->mMode = 11;
         } else {
             i_this->mMode = 20;
-            i_this->field_0x930 = saru_p[sw_p->field_0x5b6 + 1];
+            i_this->field_0x930 = saru_p[ks_p->field_0x5b6 + 1];
         }
 
         anm_init(i_this, 33, 1.0f, 0, 1.0f);
@@ -2776,7 +2776,7 @@ static int npc_ks_e_jump(npc_ks_class* i_this) {
     case 20:
         i_this->field_0x90c = 1;
         cLib_addCalcAngleS2(&a_this->current.angle.x, 0x1800, 4, 0x1800);
-        i_this->field_0x8f0 = sw_p->field_0x614;
+        i_this->field_0x8f0 = ks_p->field_0x614;
         i_this->field_0x91c = i_this->field_0x8f0;
         sp28 = i_this->field_0x8f0 - a_this->current.pos;
         i_this->field_0x8fc.y = cM_atan2s(sp28.x, sp28.z);
@@ -2786,7 +2786,7 @@ static int npc_ks_e_jump(npc_ks_class* i_this) {
             a_this->speedF = 0.0f;
             i_this->mMode = 10;
             anm_init(i_this, 48, 2.0f, 2, 1.0f);
-            sw_p->field_0x5ea = 2;
+            ks_p->mMode = 2;
         }
     }
 
@@ -2905,10 +2905,10 @@ static void demo_camera(npc_ks_class* i_this) {
         case 2:
             i_this->field_0xbb8 = 55.0f;
             cLib_addCalc2(&i_this->field_0xb60.x, player->current.pos.x, 0.2f, 50.0f);
-            cLib_addCalc2(&i_this->field_0xb60.y, sw_p->current.pos.y - 250.0f, 0.2f, 50.0f);
+            cLib_addCalc2(&i_this->field_0xb60.y, sw_p->actor.current.pos.y - 250.0f, 0.2f, 50.0f);
             cLib_addCalc2(&i_this->field_0xb60.z, player->current.pos.z, 0.2f, 50.0f);
             if (fopAcM_GetRoomNo(a_this) == 2) {
-                cMtx_YrotS(*calc_mtx, sw_p->current.angle.y);
+                cMtx_YrotS(*calc_mtx, sw_p->actor.current.angle.y);
             } else {
                 cMtx_YrotS(*calc_mtx, player->shape_angle.y);
             }
@@ -2919,7 +2919,7 @@ static void demo_camera(npc_ks_class* i_this) {
             MtxPosition(&sp44,&sp50);
 
             sp50.x = sp50.x + player->current.pos.x;
-            sp50.y = sp50.y + (sw_p->current.pos.y - 250.0f);
+            sp50.y = sp50.y + (sw_p->actor.current.pos.y - 250.0f);
             sp50.z = sp50.z + player->current.pos.z;
             if (i_this->field_0xb44 == 0) {
                 i_this->field_0xb48 = sp50;
@@ -3001,7 +3001,7 @@ static void demo_camera(npc_ks_class* i_this) {
             setPlayerPosAndAngle(&sp50, player->shape_angle.y);
             npc_ks_p = i_this->field_0xbc0;
             i_this->field_0xbc0 = get_move_saru(i_this,sw_p->field_0x91c);;
-            i_this->field_0xb6c.y = sw_p->current.pos.y - 200.0f;
+            i_this->field_0xb6c.y = sw_p->actor.current.pos.y - 200.0f;
             if (i_this->field_0xbc0 != NULL) {
                 sw_p = i_this->field_0xbc0->field_0x934;
                 cMtx_YrotS(*calc_mtx, i_this->field_0xbd4);
@@ -3010,10 +3010,10 @@ static void demo_camera(npc_ks_class* i_this) {
                 sp44.z = i_this->field_0xba8.z;
                 MtxPosition(&sp44, &i_this->field_0xb54);
                 i_this->field_0xb54.x += i_this->field_0xbc0->actor.current.pos.x;
-                i_this->field_0xb54.y += sw_p->current.pos.y - 250.0f;
+                i_this->field_0xb54.y += sw_p->actor.current.pos.y - 250.0f;
                 i_this->field_0xb54.z += i_this->field_0xbc0->actor.current.pos.z;
                 i_this->field_0xb6c.x = i_this->field_0xbc0->actor.current.pos.x;
-                i_this->field_0xb6c.y = sw_p->current.pos.y - 200.0f;
+                i_this->field_0xb6c.y = sw_p->actor.current.pos.y - 200.0f;
 
                 if (i_this->field_0xbc0->mActionID == 20 && i_this->field_0xb6c.y < i_this->field_0xbc0->actor.current.pos.y) {
                     i_this->field_0xb6c.y = i_this->field_0xbc0->actor.current.pos.y;
@@ -5190,12 +5190,6 @@ extern "C" void __dt__12dBgS_AcchCirFv() {
 extern "C" void __dt__10cCcD_GSttsFv() {
     // NONMATCHING
 }
-
-// /* 80A5DEB8-80A5DEE8 015018 0030+00 1/1 0/0 0/0 .text            dComIfGs_onEventBit__FUs */
-// // static void dComIfGs_onEventBit(u16 param_0) {
-// extern "C" static asm void dComIfGs_onEventBit__FUs() {
-//     // NONMATCHING
-// }
 
 AUDIO_INSTANCES;
 
