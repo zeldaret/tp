@@ -112,8 +112,6 @@ void daObjLndRope_c::setBaseMtx() {
 
 /* ############################################################################################## */
 /* 80C53364-80C533A4 000060 0040+00 0/0 0/0 0/0 .rodata          ccSphSrc$3837 */
-#pragma push
-#pragma force_active on
 const static dCcD_SrcSph ccSphSrc = {
     {
         {0x0, {{0x0, 0x0, 0x0}, {0x1607a, 0x11}, 0x149}}, // mObj
@@ -125,7 +123,6 @@ const static dCcD_SrcSph ccSphSrc = {
         {{0.0f, 0.0f, 0.0f}, 0.0f} // mSph
     } // mSphAttr
 };
-#pragma pop
 
 cXyz* daObjLndRope_c::getRopeStartPos() {
     return mRopeMat.getPos(0);
