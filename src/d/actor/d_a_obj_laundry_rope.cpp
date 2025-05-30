@@ -140,34 +140,28 @@ float daObjLndRope_c::getStartRate(cXyz* i_ropeSegmentPos) {
     }
 }
 
-f32 daObjLndRope_c::calc(f32 ropePosY, f32 posY, f32 startRate){
-    return ropePosY + posY * startRate;
-}
-
 /* 80C528E0-80C52CC8 000760 03E8+00 2/2 0/0 0/0 .text setNormalRopePos__14daObjLndRope_cFv */
 void daObjLndRope_c::setNormalRopePos() {
-    cXyz* startPos1;
-    cXyz* startPos2;
     cXyz* ropePos = mRopeMat.getPos(0)+1;
-    
-    startPos1 = mPositions1;
-    startPos2 = mPositions2;
+    cXyz* pos1 = mPositions1;
+    cXyz* pos2 = mPositions2;
+
     cXyz posModifier;
     cXyz windPow = dKyw_get_AllWind_vecpow(&current.pos);
     
     if (cM_rnd() < 0.1f){
-        windPow *= mSegmentLength * mAttr.field_0x4;
+        windPow *= mSegmentLength * attr()->field_0x4;
     }
     else{
         windPow.zero();
     }
     
-    int index;
-    for (index = 1; index < 14; index++){
-        ropePos->y = startPos2->y;
+    int i;
+    for (i = 1; i < 14;){
+        ropePos->y = pos2->y;
         posModifier = *ropePos - *(ropePos - 1);
         posModifier.y += gravity;
-        posModifier += *startPos1;
+        posModifier += *pos1;
         
         if (cM_rnd() < 0.6f){
             posModifier += windPow;
@@ -176,57 +170,60 @@ void daObjLndRope_c::setNormalRopePos() {
         posModifier.normalizeZP();
         *ropePos = *(ropePos - 1) + (posModifier * mSegmentLength);
         
+        i++;
         ropePos++;
-        startPos2++;
-        startPos1++;
-    }
+        pos2++; 
+        pos1++;
+    }    
 
-    cXyz* ropePos2 = mRopeMat.getPos(0) + 13;
-    startPos1 = &mPositions1[12];
-    for (int i = 13; i > 0; i--){
-        posModifier = *ropePos2 - *(ropePos2 + 1);
+    ropePos = mRopeMat.getPos(0) + 13;
+    pos1 = &mPositions1[12];
+    for (i= 13; i > 0;){
+        posModifier = *ropePos - *(ropePos + 1);
         posModifier.y += gravity;
-        posModifier += *startPos1;
+        posModifier += *pos1;
         posModifier.normalizeZP();
-        *ropePos2 = *(ropePos2 + 1) + (posModifier * mSegmentLength);
-        ropePos2--;
-        startPos1--;
-    }
-
-    cXyz* ropePos3 = mRopeMat.getPos(0) + 1;
-    cXyz* pos1 = mPositions1;
-    cXyz* pos2 = mPositions2;
-    cXyz* current = ropePos3;
-    f32 posY;
-    f32 ropePosY;
-    for (int i = 1; i < 14; i++){
-        ropePosY = ropePos3->y;
-        posY = mPos.y;
-        f32 startRate = getStartRate(ropePos3);
-        f32 adjustedRopeY = calc(ropePosY, posY, startRate);
+        *ropePos = *(ropePos + 1) + (posModifier * mSegmentLength);
         
-        *pos1 = (*ropePos3 - *pos2) * mAttr.field_0x8;
-        *pos2 = *ropePos3;
-        ropePos3->y += ((adjustedRopeY - ropePos3->y) * mAttr.field_0xc);
+        i--;
+        ropePos--;
+        pos1--;
+    }
+    
+    ropePos = mRopeMat.getPos(0) + 1;
+    pos1 = mPositions1;
+    pos2 = mPositions2;
+    cXyz* current = mRopeMat.getPos(0);
+    
+    for (i = 1; i < 14;){
+        f32 adjustedRopeY = current->y + mPos.y * getStartRate(ropePos);
+                
+        *pos1 = (*ropePos - *pos2) * attr()->field_0x8;
+        *pos2 = *ropePos;
+        ropePos->y += attr()->field_0xc * (adjustedRopeY - ropePos->y);
 
+        i++;
+        ropePos++;
         pos2++;
         pos1++;
-        ropePos3++;
     }
 
     ropePos = mRopeMat.getPos(0) + 1;
     fpc_ProcID* points = mProcIds;
-    fopAc_ac_c* actor;
-    for (int i = 1; i < 14; i++){
-        if (*points != -1 && (actor = (fopAc_ac_c*)fpcM_SearchByID(*points), actor != NULL)){
-            cXyz* actorPos = fopAcM_GetPosition_p(actor);
-            csXyz* actorAngle = fopAcM_GetShapeAngle_p(actor);
-            cXyz temp = *(ropePos + 1) - *ropePos;            
-            *actorPos = *ropePos;
-            actorAngle->y = cLib_targetAngleY(ropePos, ropePos + 1) + 0x4000;
-            actorAngle->z = -cLib_targetAngleX(ropePos, ropePos + 1);
+    for (i = 1; i < 14;){
+        if (*points != -1) {
+            fopAc_ac_c* actor = (fopAc_ac_c*) fpcM_SearchByID(*points);
+            if (actor != NULL){
+                cXyz* actorPos = fopAcM_GetPosition_p(actor);
+                csXyz* actorAngle = fopAcM_GetShapeAngle_p(actor);
+                cXyz temp = *(ropePos + 1) - *ropePos;            
+                *actorPos = *ropePos;
+                actorAngle->y = cLib_targetAngleY(ropePos, ropePos + 1) + 0x4000;
+                actorAngle->z = -cLib_targetAngleX(ropePos, ropePos + 1);
+            }
         }
 
+        i++;
         ropePos++;
         points++;
     }

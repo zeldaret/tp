@@ -12,6 +12,14 @@ struct daObjLndRope_Attr_c {
     f32 field_0x10;
 };
 
+struct daObjLndRope_Hio_c {
+    f32 mGravity;
+    f32 field_0x4;
+    f32 field_0x8;
+    f32 field_0xc;
+    f32 field_0x10;
+};
+
 /**
  * @ingroup actors-objects
  * @class daObjLndRope_c
@@ -35,9 +43,20 @@ public:
     inline u8 getPathId();
     inline cXyz* getRopeStartPos();
     inline float getStartRate(cXyz* param_1);
-    inline f32 calc(f32 ropePosY, f32 posY, f32 startRate);
+
+
+    #ifdef DEBUG
+    const daObjLndRope_Hio_c* attr() const {
+        return &M_Hio;
+    };
+    #else
+    const daObjLndRope_Attr_c* attr() const {
+        return &mAttr;
+    };
+    #endif
 
     static const daObjLndRope_Attr_c mAttr;
+    static const daObjLndRope_Hio_c M_Hio;
 
 private:
     /* 0x568 */ mDoExt_3DlineMat1_c mRopeMat;
