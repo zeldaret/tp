@@ -356,6 +356,10 @@ inline u16 dMeter2Info_getOilGaugeBackUp() {
     return g_meter2_info.getOilGaugeBackUp();
 }
 
+inline void dMeter2Info_setOilGaugeBackUp(u16 param_1) {
+    g_meter2_info.mOilGaugeBackUp = param_1;
+}
+
 inline void dMeter2Info_setSaveStageName(const char* i_stageName) {
     g_meter2_info.setSaveStageName(i_stageName);
 }

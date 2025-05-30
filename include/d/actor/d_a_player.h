@@ -1070,7 +1070,7 @@ public:
         mDemo.setParam2(i_param2);
     }
 
-    void changeDemoParam0(s16 i_param1) {
+    void changeDemoParam0(int i_param1) {
         mDemo.setParam0(i_param1);
     }
 
@@ -1156,6 +1156,8 @@ public:
 
     void setGiantPuzzle() { mSpecialMode = SMODE_WOLF_PUZZLE; }
     void setGiantPuzzleEnd() { mSpecialMode = 0; }
+
+    BOOL checkAutoJumpStart() { return checkResetFlg0(RFLG0_UNK_100); }
 };
 
 int daPy_addCalcShort(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 param_4);

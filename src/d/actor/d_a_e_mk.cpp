@@ -1193,7 +1193,7 @@ static void cam_3d_morf(e_mk_class* i_this, f32 param_2) {
 
 /* 807174E4-8071823C 0034A4 0D58+00 1/1 0/0 0/0 .text            demo_camera_start__FP10e_mk_class */
 static void demo_camera_start(e_mk_class* i_this) {
-    // EQUIVALENT - REGALLOC
+    // NONMATCHING
     fopAc_ac_c* a_this = &i_this->enemy;
     fopAc_ac_c* actor1, * actor2, * actor3;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
@@ -1908,9 +1908,9 @@ static void demo_camera_r04(e_mk_class* i_this) {
 
     switch (i_this->mDemoMode) {
         case 1:
-            if (!i_actor->eventInfo.checkCommandDemoAccrpt()) {
-                fopAcM_orderPotentialEvent(i_actor, 2, 0xffff, 0);
-                i_actor->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+            if (!i_actor->actor.eventInfo.checkCommandDemoAccrpt()) {
+                fopAcM_orderPotentialEvent(&i_actor->actor, 2, 0xffff, 0);
+                i_actor->actor.eventInfo.onCondition(dEvtCnd_CANDEMO_e);
                 return;
             }
 
@@ -1953,13 +1953,13 @@ static void demo_camera_r04(e_mk_class* i_this) {
                 }
 
                 if (i_this->mDemoCamTimer == 260) {
-                    cMtx_YrotS(*calc_mtx, i_actor->shape_angle.y);
+                    cMtx_YrotS(*calc_mtx, i_actor->actor.shape_angle.y);
                     sp2c.x = 200.0f;
                     sp2c.y = 300.0f;
                     sp2c.z = 300.0f;
                     MtxPosition(&sp2c, &i_this->mCamEye);
-                    i_this->mCamEye += i_actor->current.pos;
-                    i_this->mCamCenter = i_actor->current.pos;
+                    i_this->mCamEye += i_actor->actor.current.pos;
+                    i_this->mCamCenter = i_actor->actor.current.pos;
                     i_this->mCamCenter.y += 130.0f;
                     i_this->mDemoMode = 3;
                     i_this->mDemoCamTimer = 0;
@@ -1971,8 +1971,8 @@ static void demo_camera_r04(e_mk_class* i_this) {
 
         case 3:
             a_this->current.pos.y = a_this->home.pos.y + 10000.0f;
-            cLib_addCalc2(&i_this->mCamCenter.z, i_actor->current.pos.z, 0.2f, 50.0f);
-            cLib_addCalc2(&i_this->mCamCenter.y, i_actor->current.pos.y + 130.0f + cM_ssin(i_this->mDemoCamTimer * 0xA00) * 30.0f, 0.2f, 50.0f);
+            cLib_addCalc2(&i_this->mCamCenter.z, i_actor->actor.current.pos.z, 0.2f, 50.0f);
+            cLib_addCalc2(&i_this->mCamCenter.y, i_actor->actor.current.pos.y + 130.0f + cM_ssin(i_this->mDemoCamTimer * 0xA00) * 30.0f, 0.2f, 50.0f);
 
             if (i_this->mDemoCamTimer != 93) {
                 return;
@@ -2004,22 +2004,22 @@ static void demo_camera_r04(e_mk_class* i_this) {
             i_this->mDemoMode = 45;
             i_this->mDemoCamTimer = 0;
 
-            cMtx_YrotS(*calc_mtx, i_actor->shape_angle.y);
+            cMtx_YrotS(*calc_mtx, i_actor->actor.shape_angle.y);
             sp2c.x = -300.0f;
             sp2c.y = 200.0f;
             sp2c.z = -100.0f;
             MtxPosition(&sp2c, &i_this->mCamEye);
-            i_this->mCamEye += i_actor->current.pos;
-            i_this->mCamCenter = i_actor->current.pos;
+            i_this->mCamEye += i_actor->actor.current.pos;
+            i_this->mCamCenter = i_actor->actor.current.pos;
             i_this->mCamCenter.y += 90.0f;
             return;
 
         case 45:
-            cLib_addCalc2(&i_this->mCamCenter.z, i_actor->current.pos.z, 0.2f, 50.0f);
-            cLib_addCalc2(&i_this->mCamCenter.y, i_actor->current.pos.y + 90.0f + 30.0f * cM_ssin(i_this->mDemoCamTimer * 0xA00), 0.2f, 50.0f);
+            cLib_addCalc2(&i_this->mCamCenter.z, i_actor->actor.current.pos.z, 0.2f, 50.0f);
+            cLib_addCalc2(&i_this->mCamCenter.y, i_actor->actor.current.pos.y + 90.0f + 30.0f * cM_ssin(i_this->mDemoCamTimer * 0xA00), 0.2f, 50.0f);
 
             if (i_this->mDemoCamTimer == 10) {
-                i_actor->field_0x567 = 1;
+                i_actor->actor.field_0x567 = 1;
             }
 
             if (i_this->mDemoCamTimer != 55) {
@@ -2055,8 +2055,8 @@ static void demo_camera_r04(e_mk_class* i_this) {
             i_this->mCamEye.set(-477.0f, 3119.0f, 1643.0f);
 
             if (i_this->mDemoCamTimer == 30) {
-                i_actor->current.pos.z = 1600.0f;
-                i_actor->current.pos.y = 3200.0f;
+                i_actor->actor.current.pos.z = 1600.0f;
+                i_actor->actor.current.pos.y = 3200.0f;
             }
 
             if (i_this->mDemoCamTimer != 69) {
@@ -2089,8 +2089,8 @@ static void demo_camera_r04(e_mk_class* i_this) {
             i_this->mCamCenter.y += 190.0f;
             // fallthrough
         case 7:
-            i_actor->speed.y = 0.0f;
-            i_actor->current.pos.set(0.0f, 2500.0f, 3373.0f);
+            i_actor->actor.speed.y = 0.0f;
+            i_actor->actor.current.pos.set(0.0f, 2500.0f, 3373.0f);
 
             if (i_this->mDemoCamTimer != 250) {
                 return;
@@ -2100,14 +2100,14 @@ static void demo_camera_r04(e_mk_class* i_this) {
             i_this->mDemoCamTimer = 0;
             i_actor->mMode++;
             i_this->mCamEye.set(-282.0f, 2534.0f, 3147.0f);
-            i_this->mCamCenter = i_actor->current.pos;
+            i_this->mCamCenter = i_actor->actor.current.pos;
             // fallthrough
         case 8:
-            cLib_addCalc2(&i_this->mCamCenter.y, i_actor->current.pos.y, 0.2f, 50.0f);
+            cLib_addCalc2(&i_this->mCamCenter.y, i_actor->actor.current.pos.y, 0.2f, 50.0f);
             fpcM_Search(s_brg_sub, i_this);
 
             if (i_this->mDemoCamTimer == 65) {
-                i_actor->current.pos.set(0.0f, 3310.0f, 3427.0f);
+                i_actor->actor.current.pos.set(0.0f, 3310.0f, 3427.0f);
                 i_actor->mMode++;
                 i_this->mDemoMode = 9;
                 i_this->mDemoCamTimer = 0;
@@ -2238,7 +2238,7 @@ static void demo_camera(e_mk_class* i_this) {
 
                     i_no = fopAcM_GetParam(i_actor) >> 24;
                     if (i_no != 0xFF) {
-                        dComIfGs_onSwitch(i_no, fopAcM_GetRoomNo(i_actor));
+                        dComIfGs_onSwitch(i_no, fopAcM_GetRoomNo(&i_actor->actor));
                     }
 
                     dComIfGp_setNextStage("D_MN05", 0, 4, 0);
