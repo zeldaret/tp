@@ -14,17 +14,15 @@
 
 struct obj_sc_s {
 public:
-    /* 80CF2F3C */ ~obj_sc_s();
-    /* 80CF2FA8 */ obj_sc_s();
+    /* 80CF2F3C */ ~obj_sc_s() {};
+    /* 80CF2FA8 */ obj_sc_s() {};
 
     /* 0x00 */ s8 field_0x0;
     /* 0x01 */ u8 field_0x1[0x4 - 0x1];
     /* 0x04 */ cXyz field_0x4;
     /* 0x10 */ cXyz field_0x10;
     /* 0x1C */ cXyz field_0x1c;
-    /* 0x28 */ s16 field_0x28;
-    /* 0x2A */ s16 field_0x2a;
-    /* 0x2C */ s16 field_0x2c;
+    /* 0x28 */ csXyz field_0x28;
     /* 0x2E */ u8 field_0x2e[0x30 - 0x2e];
     /* 0x30 */ f32 field_0x30;
     /* 0x34 */ s8 field_0x34;
@@ -61,12 +59,12 @@ public:
     /* 0x5A4 */ f32 field_0x5a4;
     /* 0x5A8 */ obj_sc_s field_0x5a8[8];
     /* 0x8C8 */ J3DModel* field_0x8c8;
-    /* 0x8CC */ s16 field_0x8cc;
+    /* 0x8CC */ s16 mDemoMode;
     /* 0x8CE */ s16 field_0x8ce;
-    /* 0x8D0 */ cXyz field_0x8d0;
-    /* 0x8DC */ cXyz field_0x8dc;
+    /* 0x8D0 */ cXyz mDemoCamEye;
+    /* 0x8DC */ cXyz mDemoCamCenter;
     /* 0x8E8 */ cXyz field_0x8e8;
-    /* 0x8F4 */ f32 field_0x8f4;
+    /* 0x8F4 */ f32 mDemoCamFovy;
     /* 0x8F8 */ u8 field_0x8f8[0x8fc - 0x8f8];
     /* 0x8FC */ f32 field_0x8fc;
     /* 0x900 */ f32 field_0x900;

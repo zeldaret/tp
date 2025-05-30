@@ -132,7 +132,7 @@ static void sc_build(obj_sw_class* i_this) {
 
             case 1:
                 sp24 = sc_p->field_0x1c - sc_p->field_0x4;
-                cLib_addCalcAngleS2(&sc_p->field_0x2a, cM_atan2s(sp24.x, sp24.z), 1, 0x2000);
+                cLib_addCalcAngleS2(&sc_p->field_0x28.y, cM_atan2s(sp24.x, sp24.z), 1, 0x2000);
                 if (sc_p->field_0x34 == 0) {
                     sc_p->field_0x0 = 2;
                     anm_init(sc_p, 11, 2.0f, 0, 1.0f);
@@ -156,7 +156,7 @@ static void sc_build(obj_sw_class* i_this) {
 
                 sp24 = sc_p->field_0x1c - sc_p->field_0x4;
                 sVar1 = cM_atan2s(sp24.x, sp24.z);
-                cLib_addCalcAngleS2(&sc_p->field_0x2a, sVar1, 1, 0x2000);
+                cLib_addCalcAngleS2(&sc_p->field_0x28.y, sVar1, 1, 0x2000);
                 cMtx_YrotS(*calc_mtx, sVar1);
                 cMtx_XrotM(*calc_mtx, -cM_atan2s(sp24.y, JMAFastSqrt(sp24.x * sp24.x + sp24.z * sp24.z)));
                 sp24.x = 0.0f;
@@ -191,8 +191,8 @@ static void sc_build(obj_sw_class* i_this) {
                 break;
 
             case 3:
-                cLib_addCalcAngleS2(&sc_p->field_0x2a, a_this->current.angle.y + 0x8000, 2, 0x1000);
-                cMtx_YrotS(*calc_mtx, sc_p->field_0x2a);
+                cLib_addCalcAngleS2(&sc_p->field_0x28.y, a_this->current.angle.y + 0x8000, 2, 0x1000);
+                cMtx_YrotS(*calc_mtx, sc_p->field_0x28.y);
                 sp24.x = 0.0f;
                 sp24.y = 0.0f;
                 sp24.z = -35.0f;
@@ -231,7 +231,7 @@ static void sc_move(obj_sw_class* i_this) {
     fopAc_ac_c* a_this = &i_this->actor;
     cXyz sp24, sp30;
 
-    if (i_this->field_0x8cc == 0) {
+    if (i_this->mDemoMode == 0) {
         if (i_this->field_0x57a[0] == 0) {
             if (cM_rndF(1.0f) < 0.2f) {
                 anm_init(&i_this->field_0x5a8[7], 5, 5.0f, 2, 1.0f);
@@ -251,7 +251,7 @@ static void sc_move(obj_sw_class* i_this) {
             sp24 = a_this->eyePos - daPy_getPlayerActorClass()->getLeftHandPos();
             sp24.y *= 0.4f;
             if (sp24.abs() < 250.0f) {
-                i_this->field_0x8cc = 1;
+                i_this->mDemoMode = 1;
                 anm_init(&i_this->field_0x5a8[7], 13, 2.0f, 0, 1.0f);
                 i_this->field_0x580 = -0x1E9B;
                 i_this->field_0x588 = 1400.0f;
@@ -279,7 +279,7 @@ static void demo_camera(obj_sw_class* i_this) {
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     cXyz sp24, sp30;
 
-    switch  (i_this->field_0x8cc) {
+    switch  (i_this->mDemoMode) {
         case 1:
             if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
                 fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
@@ -287,7 +287,7 @@ static void demo_camera(obj_sw_class* i_this) {
                 return;
             }
 
-            i_this->field_0x8cc = 2;
+            i_this->mDemoMode = 2;
             camera->mCamera.Stop();
             i_this->field_0x8ce = 0;
             player->changeOriginalDemo();
@@ -314,13 +314,13 @@ static void demo_camera(obj_sw_class* i_this) {
             }
 
             player->setPlayerPosAndAngle(&i_this->field_0x598, a_this->current.angle.y + 0x8000, 0);
-            i_this->field_0x8f4 = 55.0f;
+            i_this->mDemoCamFovy = 55.0f;
             i_this->field_0x8e8.z = -800.0f;
             i_this->field_0x8e8.x = 300.0f;
             i_this->field_0x8e8.y = -200.0f;
-            cLib_addCalc2(&i_this->field_0x8dc.x, player->current.pos.x, 0.4f, 200.0f);
-            cLib_addCalc2(&i_this->field_0x8dc.y, player->current.pos.y + 100.0f, 0.4f, 200.0f);
-            cLib_addCalc2(&i_this->field_0x8dc.z, player->current.pos.z, 0.4f, 200.0f);
+            cLib_addCalc2(&i_this->mDemoCamCenter.x, player->current.pos.x, 0.4f, 200.0f);
+            cLib_addCalc2(&i_this->mDemoCamCenter.y, player->current.pos.y + 100.0f, 0.4f, 200.0f);
+            cLib_addCalc2(&i_this->mDemoCamCenter.z, player->current.pos.z, 0.4f, 200.0f);
 
             cMtx_YrotS(*calc_mtx, player->shape_angle.y);
             sp24.x = i_this->field_0x8e8.x;
@@ -332,13 +332,13 @@ static void demo_camera(obj_sw_class* i_this) {
             sp30.z += player->current.pos.z;
 
             if (i_this->field_0x8ce == 0) {
-                i_this->field_0x8d0 = sp30;
-                i_this->field_0x8dc = player->current.pos;
-                i_this->field_0x8dc.y += 100.0f;
+                i_this->mDemoCamEye = sp30;
+                i_this->mDemoCamCenter = player->current.pos;
+                i_this->mDemoCamCenter.y += 100.0f;
             } else {
-                cLib_addCalc2(&i_this->field_0x8d0.x, sp30.x, 0.1f, 200.0f);
-                cLib_addCalc2(&i_this->field_0x8d0.y, sp30.y, 0.1f, 200.0f);
-                cLib_addCalc2(&i_this->field_0x8d0.z, sp30.z, 0.1f, 200.0f);
+                cLib_addCalc2(&i_this->mDemoCamEye.x, sp30.x, 0.1f, 200.0f);
+                cLib_addCalc2(&i_this->mDemoCamEye.y, sp30.y, 0.1f, 200.0f);
+                cLib_addCalc2(&i_this->mDemoCamEye.z, sp30.z, 0.1f, 200.0f);
             }
 
             player->changeDemoParam1(i_this->field_0x596 * 10);
@@ -346,16 +346,16 @@ static void demo_camera(obj_sw_class* i_this) {
                 i_this->field_0x5a8[7].mSound.startSound(Z2SE_KOSARU_V_THROW, 0, -1);
                 player->changeDemoMode(24, 0, 0, 0);
                 anm_init(i_this->field_0x5a8, 9, 2.0f, 0, 1.0f);
-                i_this->field_0x8cc = 3;
+                i_this->mDemoMode = 3;
                 i_this->field_0x8ce = 0;
                 i_this->field_0x57a[2] = 50;
             }
             break;
 
         case 3:
-            cLib_addCalc2(&i_this->field_0x8dc.x, player->current.pos.x, 0.4f, 100.0f);
-            cLib_addCalc2(&i_this->field_0x8dc.y, player->current.pos.y, 0.4f, 100.0f);
-            cLib_addCalc2(&i_this->field_0x8dc.z, player->current.pos.z, 0.4f, 100.0f);
+            cLib_addCalc2(&i_this->mDemoCamCenter.x, player->current.pos.x, 0.4f, 100.0f);
+            cLib_addCalc2(&i_this->mDemoCamCenter.y, player->current.pos.y, 0.4f, 100.0f);
+            cLib_addCalc2(&i_this->mDemoCamCenter.z, player->current.pos.z, 0.4f, 100.0f);
 
             cMtx_YrotS(*calc_mtx, player->shape_angle.y);
             sp24.x = 0.0f;
@@ -366,27 +366,27 @@ static void demo_camera(obj_sw_class* i_this) {
             sp30.y += player->current.pos.y;
             sp30.z += player->current.pos.z;
 
-            cLib_addCalc2(&i_this->field_0x8d0.x, sp30.x, 0.1f, 50.0f);
-            cLib_addCalc2(&i_this->field_0x8d0.y, sp30.y, 0.1f, 50.0f);
-            cLib_addCalc2(&i_this->field_0x8d0.z, sp30.z, 0.1f, 50.0f);
+            cLib_addCalc2(&i_this->mDemoCamEye.x, sp30.x, 0.1f, 50.0f);
+            cLib_addCalc2(&i_this->mDemoCamEye.y, sp30.y, 0.1f, 50.0f);
+            cLib_addCalc2(&i_this->mDemoCamEye.z, sp30.z, 0.1f, 50.0f);
 
             if (i_this->field_0x8ce == 15) {
-                i_this->field_0x8cc = 100;
+                i_this->mDemoMode = 100;
                 a_this->current.angle.y += -0x8000;
             }
             break;
 
         case 100:
-            camera->mCamera.Reset(i_this->field_0x8dc, i_this->field_0x8d0, i_this->field_0x8f4, 0);
+            camera->mCamera.Reset(i_this->mDemoCamCenter, i_this->mDemoCamEye, i_this->mDemoCamFovy, 0);
             camera->mCamera.Start();
             camera->mCamera.SetTrimSize(0);
             dComIfGp_event_reset();
             daPy_getPlayerActorClass()->cancelOriginalDemo();
-            i_this->field_0x8cc = 0;
+            i_this->mDemoMode = 0;
     }
 
-    if (i_this->field_0x8cc != 0) {
-        camera->mCamera.Set(i_this->field_0x8dc, i_this->field_0x8d0, i_this->field_0x8f4, 0);
+    if (i_this->mDemoMode != 0) {
+        camera->mCamera.Set(i_this->mDemoCamCenter, i_this->mDemoCamEye, i_this->mDemoCamFovy, 0);
         i_this->field_0x8ce++;
         if (i_this->field_0x8ce > 10000) {
             i_this->field_0x8ce = 10000;
@@ -418,7 +418,7 @@ static void sc_action(obj_sw_class* i_this) {
                                     i_this->field_0x57a[1] = 120;
                                     for (int i = 0; i < 8; i++) {
                                         i_this->field_0x5a8[i].field_0x0 = 10;
-                                        i_this->field_0x5a8[i].field_0x28 = -0x8000;
+                                        i_this->field_0x5a8[i].field_0x28.x = -0x8000;
                                     }
                                     break;
                                 }
@@ -457,19 +457,19 @@ static void sc_action(obj_sw_class* i_this) {
     for (int i = 0; i < 8; i++) {
         s16 sVar1 = i_this->field_0x588 * (fVar1 * cM_ssin((i_this->field_0x580 * 800) - i * i_this->field_0x594));
         s16 sVar2 = i_this->field_0x58c * cM_ssin((i_this->field_0x582 * 1000) - i * -10000);
-        sc_p->field_0x2c = sVar2;
+        sc_p->field_0x28.z = sVar2;
         if (i == 7) {
             i_this->field_0x596 = sVar1;
         }
 
         mDoMtx_stack_c::XrotM(sVar1);
-        mDoMtx_stack_c::ZrotM(sc_p->field_0x2c);
+        mDoMtx_stack_c::ZrotM(sc_p->field_0x28.z);
 
         if (sc_p->field_0x0 == 10) {
-            cLib_addCalcAngleS2(&sc_p->field_0x2a, a_this->current.angle.y + 0x8000, 2, 0x1000);
-            cLib_addCalcAngleS2(&sc_p->field_0x28, -0x8000, 2, 0x1000);
+            cLib_addCalcAngleS2(&sc_p->field_0x28.y, a_this->current.angle.y + 0x8000, 2, 0x1000);
+            cLib_addCalcAngleS2(&sc_p->field_0x28.x, -0x8000, 2, 0x1000);
             mDoMtx_stack_c::push();
-            mDoMtx_stack_c::XrotM(sc_p->field_0x28);
+            mDoMtx_stack_c::XrotM(sc_p->field_0x28.x);
 
             sc_p->mpModelMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
             sc_p->mpModelMorf->play(NULL, 0, 0);
@@ -516,9 +516,9 @@ static void sc_action(obj_sw_class* i_this) {
             }
 
             mDoMtx_stack_c::transS(sc_p->field_0x4.x, sc_p->field_0x4.y + fVar2, sc_p->field_0x4.z);
-            mDoMtx_stack_c::YrotM(sc_p->field_0x2a);
-            mDoMtx_stack_c::XrotM(sc_p->field_0x28);
-            mDoMtx_stack_c::ZrotM(sc_p->field_0x2c);
+            mDoMtx_stack_c::YrotM(sc_p->field_0x28.y);
+            mDoMtx_stack_c::XrotM(sc_p->field_0x28.x);
+            mDoMtx_stack_c::ZrotM(sc_p->field_0x28.z);
             sc_p->mpModelMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
             sc_p->mpModelMorf->play(NULL, 0, 0);
             sc_p->mpModelMorf->modelCalc();
@@ -788,16 +788,6 @@ static int daObj_Sw_Create(fopAc_ac_c* a_this) {
     }
 
     return phase;
-}
-
-/* 80CF2F3C-80CF2FA8 00297C 006C+00 1/1 0/0 0/0 .text            __dt__8obj_sc_sFv */
-obj_sc_s::~obj_sc_s() {
-    // NONMATCHING
-}
-
-/* 80CF2FA8-80CF2FDC 0029E8 0034+00 1/1 0/0 0/0 .text            __ct__8obj_sc_sFv */
-obj_sc_s::obj_sc_s() {
-    // NONMATCHING
 }
 
 /* 80CF30EC-80CF30EC 0000EC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
