@@ -27,8 +27,15 @@ public:
     /* 80C52890 */ void setBaseMtx();
     /* 80C528E0 */ void setNormalRopePos();
 
+    inline ~daObjLndRope_c();
     inline int create();
+    inline int createHeap();
+    inline int draw();
+    inline int execute();
     inline u8 getPathId();
+    inline cXyz* getRopeStartPos();
+    inline float getStartRate(cXyz* param_1);
+    inline f32 calc(f32 ropePosY, f32 posY, f32 startRate);
 
     static const daObjLndRope_Attr_c mAttr;
 
@@ -44,7 +51,7 @@ private:
     /* 0x175c */ cXyz mPos;
     /* 0x1768 */ f32 mScale;
     /* 0x176c */ f32 mSegmentLength;
-    /* 0x1770 */ s8 mFlag;
+    /* 0x1770 */ u8 mFlag;
 };
 
 STATIC_ASSERT(sizeof(daObjLndRope_c) == 0x1774);
