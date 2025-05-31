@@ -4237,7 +4237,7 @@ void dKyr_drawStar(Mtx drawMtx, u8** tex) {
                 temp_f29 *= temp_f29 * temp_f29;
                 var_f28 += 1.0f + (3.0f * temp_f29);
                 if (var_f28 > 200.0f) {
-                    var_f28 = 20.0f * (i / 2800.0f);
+                    var_f28 = 20.0f * (i / 1200.0f);
                 }
 
                 static const GXColor star_col[] = {

@@ -58,7 +58,7 @@ public:
     /* 8009BE28 */ static void checkTreasureBox(dTres_c::data_s*);
     /* 8009C168 */ static void onStatus(u8, int, int);
     /* 8009C1F0 */ static void offStatus(u8, int, int);
-    /* 8009C27C */ static int getBossIconFloorNo(int*);
+    /* 8009C27C */ static bool getBossIconFloorNo(int*);
     /* 8009C360 */ static typeGroupData_c* getFirstData(u8);
     /* 8009C39C */ static typeGroupData_c* getNextData(dTres_c::typeGroupData_c*);
     /* 8009C3B4 */ static typeGroupData_c* getNextData(dTres_c::typeGroupData_c const*);

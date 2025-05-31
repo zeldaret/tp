@@ -1093,6 +1093,7 @@ public:
     static s8 getRoomReadId() { return mRoomReadId; }
     static void offNoChangeRoom() { mNoChangeRoom = false; }
     static void onNoChangeRoom() { mNoChangeRoom = true; }
+    static s8 getNextStayNo() { return mNextStayNo; }
     static void setProcID(u32 id) { mProcID = id; }
     static u32 getProcID() { return mProcID; }
     static void setStatusProcID(int i_roomNo, fpc_ProcID i_id) { mStatus[i_roomNo].mProcID = i_id; }
@@ -1414,6 +1415,10 @@ inline u8 dStage_FileList_dt_GetDefaultCamera(dStage_FileList_dt_c* p_fList) {
 
 inline u8 dStage_FileList_dt_GRASSLIGHT(dStage_FileList_dt_c* p_fList) {
     return (p_fList->mParameters >> 7) & 0xFF;
+}
+
+inline u16 dStage_FileList_dt_GetMsg(dStage_FileList_dt_c* p_fList) {
+    return p_fList->mMsg;
 }
 
 inline f32 dStage_FileList2_dt_GetLeftRmX(dStage_FileList2_dt_c* p_fList2) {

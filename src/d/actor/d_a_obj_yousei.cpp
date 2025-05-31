@@ -805,7 +805,7 @@ static int daObjYOUSEI_Execute(daObjYOUSEI_c* i_this) {
 int daObjYOUSEI_c::create() {
     fopAcM_SetupActor(this, daObjYOUSEI_c);
 
-    OS_REPORT("YOUSEI PARAM %x\n", fopAcM_GetParam());
+    OS_REPORT("YOUSEI PARAM %x\n", fopAcM_GetParam(this));
     if (!fopAcM_entrySolidHeap(this, useHeapInit, 0x1100)) {
         return cPhs_ERROR_e;
     }

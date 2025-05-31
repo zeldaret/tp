@@ -33,7 +33,7 @@ public:
     /* 80B8F56C */ bool setExpressionAnm(int, bool);
     /* 80B8F898 */ bool setExpressionBtp(int);
     /* 80B8F9CC */ void setExpression(int, f32);
-    /* 80B8F9F8 */ bool setMotionAnm(int, f32);
+    /* 80B8F9F8 */ void setMotionAnm(int, f32);
     /* 80B8FBE4 */ void setMotion(int, f32, int);
     /* 80B8FC28 */ BOOL drawDbgInfo();
     /* 80B8FC30 */ void drawOtherMdls();

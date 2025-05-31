@@ -982,7 +982,7 @@ protected:
     /* 0x9F0 */ bool mIsDamaged;
     /* 0x9F1 */ u8 field_0x9f1;
     /* 0x9F2 */ bool mHide;
-    /* 0x9f3 */ u8 field_0x9f3;
+    /* 0x9F3 */ u8 field_0x9f3;
     /* 0x9F4 */ bool mTwilight;
     /* 0x9F5 */ u8 field_0x9f5;
     /* 0x9F6 */ u8 field_0x9f6;
@@ -1098,10 +1098,10 @@ public:
     /* 80155BE0 */ virtual bool setExpressionAnm(int i_idx, bool i_modify);
     /* 80155EC8 */ virtual bool setExpressionBtp(int i_idx);
     /* 80155BF0 */ virtual void setExpression(int i_expression, f32 i_morf);
-    /* 80155BE8 */ virtual bool setMotionAnm(int i_idx, f32 i_morf);
+    /* 80155BE8 */ virtual void setMotionAnm(int i_idx, f32 i_morf);
     /* 80155BEC */ virtual void setMotion(int i_motion, f32 i_morf, int i_restart);
     /* 80155BD0 */ virtual BOOL drawDbgInfo();
-    /* 80155BCC */ virtual void drawOtherMdls();
+    /* 80155BCC */ virtual void drawOtherMdls() {}
 
     BOOL chkActorInSpeakArea(fopAc_ac_c* i_actorCheck, fopAc_ac_c* i_actorArea) {
         return chkActorInAttnArea(i_actorCheck, i_actorArea, attention_info.distances[fopAc_attn_SPEAK_e]);
@@ -1136,6 +1136,7 @@ void daNpcF_onEvtBit(u32 i_idx);
 BOOL daNpcF_chkTmpBit(u32 i_idx);
 void daNpcF_offTmpBit(u32 i_idx);
 u8 daNpcF_getDistTableIdx(int param_0, int param_1);
+void daNpcF_clearMessageTmpBit();
 BOOL daNpcF_chkPointInArea(cXyz, cXyz, cXyz, s16);
 int daNpcF_getPlayerInfoFromPlayerList(int param_0, int i_roomNo, cXyz& param_2, csXyz& param_3);
 s16 daNpcF_getGroundAngle(cBgS_PolyInfo*, s16);

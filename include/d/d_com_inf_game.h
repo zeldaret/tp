@@ -1057,6 +1057,7 @@ u8 dComIfGs_checkGetInsectNum();
 u8 dComIfGs_getSelectMixItemNoArrowIndex(int i_selmixItemIdx);
 BOOL dComIfGs_isStageTbox(int i_stageNo, int i_no);
 s8 dComIfGs_PolyDamageOff_Check();
+void dComIfGs_shake_kandelaar();
 void dComIfGs_Grass_hide_Set(s8 param_0);
 void dComIfGs_onGetMagicUseFlag();
 void dComIfG_playerStatusD();
@@ -3650,6 +3651,11 @@ inline s16 dComIfGp_evmng_getEventIdx(const char* eventName, u8 mapToolID) {
 
 inline BOOL dComIfGp_evmng_isMapToolCamera(u8 mapToolID) {
     return g_dComIfG_gameInfo.play.getEvtManager().isMapToolCamera(mapToolID, -1);
+}
+
+inline bool dComIfGp_evmng_existence(const char* event_str) {
+     return g_dComIfG_gameInfo.play.getEvtManager().getEventData(
+         dComIfGp_evmng_getEventIdx(event_str, -1)) != NULL;
 }
 
 inline void dComIfGp_particle_createCommon(const void* data) {

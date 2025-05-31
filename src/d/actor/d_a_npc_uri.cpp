@@ -68,7 +68,7 @@ static s8 l_loadResPtrn9[5] = {
 
 /* 80B2D108-80B2D124 -00001 001C+00 1/2 0/0 0/0 .data            l_loadResPtrnList */
 static s8* l_loadResPtrnList[7] = {l_loadResPtrn0, l_loadResPtrn1, l_loadResPtrn0, l_loadResPtrn2,
-                                  l_loadResPtrn3, l_loadResPtrn4, l_loadResPtrn9};
+                                   l_loadResPtrn3, l_loadResPtrn4, l_loadResPtrn9};
 
 /* 80B2D124-80B2D338 0000DC 0214+00 0/1 0/0 0/0 .data            l_faceMotionAnmData */
 static daNpcT_faceMotionAnmData_c l_faceMotionAnmData[19] = {
@@ -603,10 +603,10 @@ void daNpc_Uri_c::setAfterTalkMotion() {
     case 8:
         iVar2 = 10;
         break;
-    case 9:
+    case 11:
         iVar2 = 12;
         break;
-    case 11:
+    case 9:
         iVar2 = 16;
     }
     mFaceMotionSeqMngr.setNo(iVar2, -1.0f, 0, 0);

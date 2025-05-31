@@ -330,7 +330,7 @@ public:
         FLG0_UNK_100000 = 0x100000,
         FLG0_UNK_80000 = 0x80000,
         FLG0_UNK_40000 = 0x40000,
-        FLG0_UNK_20000 = 0x20000,
+        FLG0_DK_CAUGHT = 0x20000,
         FLG0_UNK_10000 = 0x10000,
         FLG0_UNK_8000 = 0x8000,
         FLG0_UNK_4000 = 0x4000,
@@ -347,13 +347,14 @@ public:
         FLG0_MIDNA_RIDE = 4,
         FLG0_UNK_2 = 2,
 
-        FLG0_HVY_STATE = FLG0_UNK_40000000 | FLG0_EQUIP_HVY_BOOTS | FLG0_UNK_20000,
+        FLG0_HVY_STATE = FLG0_UNK_40000000 | FLG0_EQUIP_HVY_BOOTS | FLG0_DK_CAUGHT,
         FLG0_UNK_14000 = 0x14000,
         FLG0_UNK_10400 = 0x10400,
         FLG0_UNK_18 = FLG0_UNK_10 | FLG0_UNK_8,
     };
 
     enum daPy_FLG1 {
+        FLG1_UNK_80000000 = 0x80000000,
         FLG1_ICE_FREEZE = 0x40000000,
         FLG1_UNK_20000000 = 0x20000000,
         FLG1_UNK_10000000 = 0x10000000,
@@ -382,7 +383,7 @@ public:
         FLG1_UNK_8 = 8,
         FLG1_UNK_4 = 4,
         FLG1_UNK_2 = 2,
-        FLG1_UNK_1 = 1,
+        FLG1_DK_CAUGHT = 1,
 
         FLG1_UNK_1800 = 0x1800,
         FLG1_UNK_10100000 = FLG1_UNK_10000000 | FLG1_UNK_100000,
@@ -475,7 +476,7 @@ public:
         ERFLG0_UNK_200000 = 0x200000,
         ERFLG0_UNK_100000 = 0x100000,
         ERFLG0_UNK_80000 = 0x80000,
-        ERFLG0_UNK_40000 = 0x40000,
+        ERFLG0_FISHING_ROD_GET_FISH = 0x40000,
         ERFLG0_UNK_20000 = 0x20000,
         ERFLG0_UNK_10000 = 0x10000,
         ERFLG0_UNK_4000 = 0x4000,
@@ -703,6 +704,8 @@ public:
     cXyz getRightHandPos() const { return mRightHandPos; }
     const cXyz getLeftHandPos() const { return mLeftHandPos; }
     const cXyz getItemPos() const { return mItemPos; }
+    bool getDkCaught() const { return checkNoResetFlg1(FLG1_DK_CAUGHT); }
+    bool getStCaught() const { return checkNoResetFlg1(FLG1_UNK_80000000); }
 
     virtual cXyz* getMidnaAtnPos() const { return NULL; }
     virtual void setMidnaMsgNum(fopAc_ac_c*, u16) {}
@@ -928,6 +931,7 @@ public:
     void onNotAutoJump() { onEndResetFlg0(ERFLG0_NOT_AUTO_JUMP); }
     void onNotHang() { onEndResetFlg0(ERFLG0_NOT_HANG); }
     void onWolfFchainPull() { onEndResetFlg0(ERFLG0_WOLF_FCHAIN_PULL); }
+    void onFishingRodGetFish() { onEndResetFlg0(ERFLG0_FISHING_ROD_GET_FISH); }
     void onShieldBackBone() { onEndResetFlg1(ERFLG1_GANON_FINISH); }
     void onWolfEyeKeep() { onEndResetFlg1(ERFLG1_WOLF_EYE_KEEP); }
     void onPortalWarpMidnaAtnKeep() { onEndResetFlg2(ERFLG2_PORTAL_WARP_MIDNA_ATN_KEEP); }
@@ -1046,7 +1050,8 @@ public:
     void offPressedDamage() { offNoResetFlg2(FLG2_PRESSED_DAMAGE); }
     void onForceSubjectCancel() { onEndResetFlg0(ERFLG0_FORCE_SUBJECT_CANCEL); }
     void onEnemyDead() { onEndResetFlg0(ERFLG0_ENEMY_DEAD); }
-    void offDkCaught2() { offNoResetFlg0(FLG0_UNK_20000); }
+    void offDkCaught() { offNoResetFlg1(FLG1_DK_CAUGHT); }
+    void offDkCaught2() { offNoResetFlg0(FLG0_DK_CAUGHT); }
     void onWaterFallFrontHit() { onEndResetFlg1(ERFLG1_UNK_800); }
     void onCanoeItemCancel() { onEndResetFlg1(ERFLG1_UNK_20000000); }
 
@@ -1063,6 +1068,10 @@ public:
         mDemo.setParam0(i_param0);
         mDemo.setParam1(i_param1);
         mDemo.setParam2(i_param2);
+    }
+
+    void changeDemoParam0(int i_param1) {
+        mDemo.setParam0(i_param1);
     }
 
     void changeDemoParam1(s16 i_param1) {
@@ -1139,10 +1148,16 @@ public:
         onEndResetFlg2(ERFLG2_UNK_2);
     }
 
+    void onFishingRelease() {
+        this->mEndResetFlg0 |= 0x4000000;
+    }
+
     static daMidna_c* m_midnaActor;
 
     void setGiantPuzzle() { mSpecialMode = SMODE_WOLF_PUZZLE; }
     void setGiantPuzzleEnd() { mSpecialMode = 0; }
+
+    BOOL checkAutoJumpStart() { return checkResetFlg0(RFLG0_UNK_100); }
 };
 
 int daPy_addCalcShort(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 param_4);

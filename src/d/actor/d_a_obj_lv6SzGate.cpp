@@ -24,6 +24,10 @@ daLv6SzGate_HIO_c::daLv6SzGate_HIO_c() {
     mShockStrength = 3;
 }
 
+void daLv6SzGate_HIO_c::genMessage(JORMContext* arg) {
+    // NONMATCHING
+}
+
 /* 80C75900-80C75A54 000180 0154+00 2/2 0/0 0/0 .text            setBaseMtx__13daLv6SzGate_cFv */
 void daLv6SzGate_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);

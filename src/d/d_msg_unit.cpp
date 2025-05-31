@@ -9,6 +9,22 @@
 #include "d/d_kankyo.h"
 #include "d/d_meter2_info.h"
 
+// temporary until a better solution is found
+typedef struct dMsgUnit_inf1_entry {
+    u32 dat1EntryOffset;
+    u16 startFrame;
+    u16 endFrame;
+} dMsgUnit_inf1_entry;
+
+typedef struct dMsgUnit_inf1_section_t {
+    /* 0x00 */ u32 msgType;   // sectionType
+    /* 0x04 */ u32 size;    // total size of the section
+    /* 0x08 */ u16 entryCount;
+    /* 0x0A */ u16 entryLength;
+    /* 0x0C */ u16 msgArchiveId;
+    /* 0x0E */ dMsgUnit_inf1_entry entries[0];
+} dMsgUnit_inf1_section_t;
+
 /* 80238C94-80238CA4 2335D4 0010+00 1/1 0/0 0/0 .text            __ct__10dMsgUnit_cFv */
 dMsgUnit_c::dMsgUnit_c() {}
 
@@ -57,20 +73,20 @@ void dMsgUnit_c::setTag(int param_1, int param_2, char* param_3, bool param_4) {
 
         if (!stack9) {
             bmg_header_t* iVar9 = (bmg_header_t*)dMeter2Info_getMsgUnitResource();
-            inf1_section_t* inf1 = NULL;
+            dMsgUnit_inf1_section_t* inf1 = NULL;
             const void* dat1 = NULL;
             str1_section_t* str1 = NULL;
             int local_114 = sizeof(bmg_header_t);
             u32 size = iVar9->size;
             bmg_section_t* piVar12 = (bmg_section_t*)(((u8*)iVar9) + local_114);
             for (; local_114 < size; local_114 += piVar12->size) {
-                switch(piVar12->msgType) {
+                switch(piVar12->magic) {
                     case 'FLW1':
                         break;
                     case 'FLI1':
                         break;
                     case 'INF1':
-                        inf1 = (inf1_section_t*)piVar12;
+                        inf1 = (dMsgUnit_inf1_section_t*)piVar12;
                         break;
                     case 'DAT1':
                         dat1 = piVar12;
@@ -86,7 +102,7 @@ void dMsgUnit_c::setTag(int param_1, int param_2, char* param_3, bool param_4) {
             // but the normal build doesn't really work with that. Same for inf1->entries.
 
             #ifdef DEBUG
-            inf1_entry_t* entry = &inf1->entries[param_1];
+            dMsgUnit_inf1_entry* entry = &inf1->entries[param_1];
             u32 dat1EntryOffset = entry->dat1EntryOffset;
             u16 startFrame = entry->startFrame;
             u16 endFrame = entry->endFrame;

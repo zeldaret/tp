@@ -11,6 +11,68 @@
  * @details
  *
  */
+
+ struct daNpc_Uri_HIOParam {
+    /* 0x00 */ f32 field_0x00;
+    /* 0x04 */ f32 field_0x04;
+    /* 0x08 */ f32 field_0x08;
+    /* 0x0C */ f32 field_0x0c;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ f32 field_0x1c;
+    /* 0x20 */ f32 field_0x20;
+    /* 0x24 */ f32 field_0x24;
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
+    /* 0x30 */ f32 field_0x30;
+    /* 0x34 */ f32 field_0x34;
+    /* 0x38 */ f32 field_0x38;
+    /* 0x3C */ f32 field_0x3c;
+    /* 0x40 */ f32 field_0x40;
+    /* 0x44 */ f32 field_0x44;
+    /* 0x48 */ s16 field_0x48;
+    /* 0x4A */ s16 field_0x4a;
+    /* 0x4C */ s16 field_0x4c;
+    /* 0x4E */ s16 field_0x4e;
+    /* 0x50 */ f32 field_0x50;
+    /* 0x54 */ f32 field_0x54;
+    /* 0x58 */ f32 field_0x58;
+    /* 0x5C */ f32 field_0x5c;
+    /* 0x60 */ s16 field_0x60;
+    /* 0x62 */ s16 field_0x62;
+    /* 0x64 */ u8 field_0x64[8];
+    /* 0x6C */ f32 field_0x6c;
+    /* 0x70 */ u8 field_0x70[28];
+    /* 0x8C */ s16 field_0x8c;
+    /* 0x8E */ s16 field_0x8e;
+    /* 0x90 */ s16 field_0x90;
+    /* 0x92 */ s16 field_0x92;
+    /* 0x94 */ s16 field_0x94;
+    /* 0x96 */ s16 field_0x96;
+    /* 0x98 */ f32 field_0x98;
+    /* 0x9C */ f32 field_0x9c;
+    /* 0xA0 */ f32 field_0xa0;
+    /* 0xA4 */ f32 field_0xa4;
+    /* 0xA8 */ f32 field_0xa8;
+};
+
+class daNpc_Uri_Param_c {
+public:
+    /* 80B2CD94 */ virtual ~daNpc_Uri_Param_c() {};
+
+    static daNpc_Uri_HIOParam const m;
+};
+
+class daNpc_Uri_HIO_c 
+#ifdef DEBUG
+: public mDoHIO_entry_c 
+#endif
+{
+public:
+    void genMessage(JORMContext*);
+};
+
 class daNpc_Uri_c : public daNpcT_c {
 public:
     typedef int (daNpc_Uri_c::*cutFunc)(int);
@@ -102,7 +164,7 @@ public:
     static cutFunc mCutList[7];
 
 private:
-    /* 0x0E40 */ int field_0xe40;
+    /* 0x0E40 */ daNpc_Uri_HIO_c* field_0xe40;
     /* 0x0E44 */ J3DModel* mpModel[1];
     /* 0x0E48 */ dCcD_Cyl mCyl;
     /* 0x0F84 */ u8 mType;
@@ -133,57 +195,5 @@ private:
 };
 
 STATIC_ASSERT(sizeof(daNpc_Uri_c) == 0x1018);
-
-struct daNpc_Uri_HIOParam {
-    /* 0x00 */ f32 field_0x00;
-    /* 0x04 */ f32 field_0x04;
-    /* 0x08 */ f32 field_0x08;
-    /* 0x0C */ f32 field_0x0c;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1c;
-    /* 0x20 */ f32 field_0x20;
-    /* 0x24 */ f32 field_0x24;
-    /* 0x28 */ f32 field_0x28;
-    /* 0x2C */ f32 field_0x2c;
-    /* 0x30 */ f32 field_0x30;
-    /* 0x34 */ f32 field_0x34;
-    /* 0x38 */ f32 field_0x38;
-    /* 0x3C */ f32 field_0x3c;
-    /* 0x40 */ f32 field_0x40;
-    /* 0x44 */ f32 field_0x44;
-    /* 0x48 */ s16 field_0x48;
-    /* 0x4A */ s16 field_0x4a;
-    /* 0x4C */ s16 field_0x4c;
-    /* 0x4E */ s16 field_0x4e;
-    /* 0x50 */ f32 field_0x50;
-    /* 0x54 */ f32 field_0x54;
-    /* 0x58 */ f32 field_0x58;
-    /* 0x5C */ f32 field_0x5c;
-    /* 0x60 */ s16 field_0x60;
-    /* 0x62 */ s16 field_0x62;
-    /* 0x64 */ u8 field_0x64[8];
-    /* 0x6C */ f32 field_0x6c;
-    /* 0x70 */ u8 field_0x70[28];
-    /* 0x8C */ s16 field_0x8c;
-    /* 0x8E */ s16 field_0x8e;
-    /* 0x90 */ s16 field_0x90;
-    /* 0x92 */ s16 field_0x92;
-    /* 0x94 */ s16 field_0x94;
-    /* 0x96 */ s16 field_0x96;
-    /* 0x98 */ f32 field_0x98;
-    /* 0x9C */ f32 field_0x9c;
-    /* 0xA0 */ f32 field_0xa0;
-    /* 0xA4 */ f32 field_0xa4;
-    /* 0xA8 */ f32 field_0xa8;
-};
-
-class daNpc_Uri_Param_c {
-public:
-    /* 80B2CD94 */ virtual ~daNpc_Uri_Param_c() {};
-
-    static daNpc_Uri_HIOParam const m;
-};
 
 #endif /* D_A_NPC_URI_H */

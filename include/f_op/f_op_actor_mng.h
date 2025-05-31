@@ -106,8 +106,8 @@ dBgS& dComIfG_Bgsp();
 
 class dKy_tevstr_c;
 class cBgS_PolyInfo;
-typedef int (*heapCallbackFunc)(fopAc_ac_c*);
 typedef int (*createFunc)(void*);
+typedef int (*heapCallbackFunc)(fopAc_ac_c*);
 
 struct DOUBLE_POS {
     double x, y, z;
@@ -219,7 +219,7 @@ inline fopAc_ac_c* fopAcM_Search(fopAcIt_JudgeFunc i_judgeFunc, void* i_process)
 }
 
 inline fopAc_ac_c* fopAcM_SearchByID(fpc_ProcID id) {
-    return (fopAc_ac_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)fpcSch_JudgeByID, &id);
+    return (fopAc_ac_c*)fopAcIt_Judge(fpcSch_JudgeByID, &id);
 }
 
 inline fpc_ProcID fopAcM_GetLinkId(const fopAc_ac_c* i_actor) {
@@ -737,7 +737,7 @@ inline void fopAcM_offActor(fopAc_ac_c* i_actor, u32 flag) {
 }
 
 inline void fopAcM_OnCarryType(fopAc_ac_c* i_actor, fopAcM_CARRY param_2) {
-    i_actor->carryType |= param_2;
+    i_actor->carryType |= (u8) param_2;
 }
 
 inline void fopAcM_OffCarryType(fopAc_ac_c* i_actor, fopAcM_CARRY param_2) {

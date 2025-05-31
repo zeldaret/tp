@@ -802,8 +802,8 @@ static cXyz ground_search(npc_ne_class* i_this) {
 static void* s_fish_sub(void* i_proc, void* i_this) {
     npc_ne_class* _this = static_cast<npc_ne_class*>(i_this);
     if (fopAc_IsActor(i_proc) && fopAcM_GetName(i_proc) == PROC_MG_FISH) {
-        mg_fish_class* fish = static_cast<mg_fish_class*>(i_proc);
-        if (fish->field_0x5b6 == 0x35 && fish->field_0x5b8 >= 10) {
+        mg_fish_class* fish = (mg_fish_class*)i_proc;
+        if (fish->mCurAction == 0x35 && fish->mActionPhase >= 10) {
             _this->mFishID = fopAcM_GetID(fish);
             return i_proc;
         }
@@ -2852,7 +2852,7 @@ static void demo_camera(npc_ne_class* i_this) {
         }
 
         if (i_this->mDemoCounter <= 38) {
-            mg_fish_class* fish = static_cast<mg_fish_class*>(fopAcM_SearchByID(i_this->mFishID));
+            mg_fish_class* fish = (mg_fish_class*)fopAcM_SearchByID(i_this->mFishID);
             if (i_this->mDemoCounter == 0) {
                 vec.x = 0.0f;
                 vec.y = 0.0f;
@@ -2860,10 +2860,10 @@ static void demo_camera(npc_ne_class* i_this) {
                 MtxPosition(&vec, &i_this->mDemoFishPos);
                 i_this->mDemoFishPos += i_this->current.pos;
             }
-            fish->current.pos.x = i_this->mDemoFishPos.x;
-            fish->current.pos.z = i_this->mDemoFishPos.z;
+            fish->actor.current.pos.x = i_this->mDemoFishPos.x;
+            fish->actor.current.pos.z = i_this->mDemoFishPos.z;
             if (i_this->mDemoCounter >= 25) {
-                cLib_addCalc2(&fish->current.pos.y, i_this->mAcch.GetGroundH() + 10.0f,
+                cLib_addCalc2(&fish->actor.current.pos.y, i_this->mAcch.GetGroundH() + 10.0f,
                               0.2f, 30.0f);
             }
             if (i_this->mDemoCounter == 38) {
@@ -3128,15 +3128,15 @@ static int daNpc_Ne_Execute(npc_ne_class* i_this) {
     }
 
     if (i_this->mFishID != -1 && i_this->field_0xcc0) {
-        mg_fish_class* fish = static_cast<mg_fish_class*>(fopAcM_SearchByID(i_this->mFishID));
+        mg_fish_class* fish = (mg_fish_class*)fopAcM_SearchByID(i_this->mFishID);
         PSMTXCopy(model->getAnmMtx(4), mDoMtx_stack_c::get());
         mDoMtx_stack_c::ZrotM(-19000);
         mDoMtx_stack_c::scaleM(0.5f, 0.5f, 0.5f);
         mDoMtx_stack_c::transM(5.0f, 35.0f, 15.0f);
         fish->mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
         int ivar3 = cM_ssin(g_Counter.mTimer * 15000) * 1500.0f;
-        for (int i = 0; i <= fish->field_0x72c; i++) {
-            fish->field_0x718[i] = ivar3;
+        for (int i = 0; i <= fish->mNumJoints; i++) {
+            fish->jointYaws1[i] = ivar3;
         }
         for (u16 i = 1; i < fish->mpMorf->getModel()->getModelData()->getJointNum(); i++) {
             fish->mpMorf->getModel()->getModelData()
@@ -3144,8 +3144,8 @@ static int daNpc_Ne_Execute(npc_ne_class* i_this) {
         }
         fish->mpMorf->play(NULL, 0, 0);
         fish->mpMorf->modelCalc();
-        fish->current.pos = i_this->eyePos;
-        fish->eyePos = i_this->eyePos;
+        fish->actor.current.pos = i_this->eyePos;
+        fish->actor.eyePos = i_this->eyePos;
     }
 
     if (i_this->current.pos.y - i_this->home.pos.y < -5000.0f && fopAcM_CheckCondition(i_this, 4)) {

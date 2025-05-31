@@ -791,8 +791,7 @@ void daNpc_zrC_c::setExpression(int i_expression, f32 i_morf) {
 }
 
 /* 80B8F9F8-80B8FBE4 001ED8 01EC+00 2/0 0/0 0/0 .text            setMotionAnm__11daNpc_zrC_cFif */
-// NONMATCHING regalloc
-bool daNpc_zrC_c::setMotionAnm(int i_idx, f32 i_morf) {
+void daNpc_zrC_c::setMotionAnm(int i_idx, f32 i_morf) {
     J3DAnmTransformKey* bck_anm = NULL;
     J3DAnmTextureSRTKey* btk_anm = NULL;
     int btk_idx = 0;
