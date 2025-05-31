@@ -64,6 +64,7 @@ class daTkraDai_HIO_c : public mDoHIO_entry_c {
 public:
     /* 80D06D8C */ daTkraDai_HIO_c();
     /* 80D0775C */ virtual ~daTkraDai_HIO_c() {}
+    void genMessage(JORMContext *);
 
     /* 0x04 */ f32 field_0x04;
     /* 0x08 */ f32 field_0x08;

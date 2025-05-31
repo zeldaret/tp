@@ -372,11 +372,11 @@ int daNpc_FairySeirei_c::talk(int param_0) {
             }
             int itemNo;
             if ((int)mFlow.getEventId(&itemNo) == 1) {
-                if (mItemId == -1) {
-                    mItemId = fopAcM_createItemForPresentDemo(&current.pos, itemNo, 0, -1, -1, NULL,
+                if (mItemPartnerId == fpcM_ERROR_PROCESS_ID_e) {
+                    mItemPartnerId = fopAcM_createItemForPresentDemo(&current.pos, itemNo, 0, -1, -1, NULL,
                                                               NULL);
                 }
-                if (fopAcM_IsExecuting(mItemId)) {
+                if (fopAcM_IsExecuting(mItemPartnerId)) {
                     mTalking = TRUE;
                     evtChange();
                 }
