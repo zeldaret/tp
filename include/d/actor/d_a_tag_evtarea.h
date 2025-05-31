@@ -20,9 +20,9 @@ public:
 
     /* 8048CD68 */ virtual ~daTag_EvtArea_c() {}
 
-    s32 getType() {
-        u8 type = (u8)shape_angle.z;
-        return type == 0xff ? 0 : type;
+    int getType() {
+        u16 type = shape_angle.z & 0xFF;
+        return type == 0xFF ? 0 : type;
     }
 
     s32 getNo() {

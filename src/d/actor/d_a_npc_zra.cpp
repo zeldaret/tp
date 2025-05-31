@@ -219,8 +219,8 @@ BOOL daNpc_zrA_Path_c::getDstPosDstXZ(cXyz i_pos, cXyz& o_pnt) {
 /* 80B78CA0-80B78CFC 000880 005C+00 1/1 0/0 0/0 .text chkPassedChase__16daNpc_zrA_Path_cFUs4cXyz
  */
 BOOL daNpc_zrA_Path_c::chkPassedChase(u16 i_idx, cXyz i_pos) {
-    return daNpcF_chkPassed(i_pos, (dPnt*)mpRoomPath->m_points, i_idx,
-                            mpRoomPath->m_num, mIsClosed, mIsReversed);
+    return daNpcF_chkPassed(i_pos, (dPnt*)mPathInfo->m_points, i_idx,
+                            mPathInfo->m_num, mIsClosed, mIsReversed);
 }
 
 /* 80B78CFC-80B78E08 0008DC 010C+00 1/1 0/0 0/0 .text
@@ -253,7 +253,7 @@ int daNpc_zrA_Path_c::getDstPosChase(u16 i_idx, cXyz i_pos, cXyz& o_pnt) {
 /* 80B78E08-80B7956C 0009E8 0764+00 1/1 0/0 0/0 .text chkPassDst__16daNpc_zrA_Path_cFUs4cXyz */
 f32 daNpc_zrA_Path_c::chkPassDst(u16 i_idx, cXyz i_pos) {
     u16 prev_idx, next_idx;
-    dPnt* points = mpRoomPath->m_points;
+    dPnt* points = mPathInfo->m_points;
     u16 idx = mIdx;
     u8 reversed = mIsReversed;
     mIdx = i_idx;
