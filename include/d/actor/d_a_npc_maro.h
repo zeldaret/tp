@@ -18,6 +18,26 @@ public:
     typedef int (daNpc_Maro_c::*actionFunc)(void*);
     typedef int (daNpc_Maro_c::*cutFunc)(int);
 
+    enum Type {
+        TYPE_0,
+        TYPE_1,
+        TYPE_2,
+        TYPE_3,
+        TYPE_4,
+        TYPE_5,
+        TYPE_6,
+        TYPE_7,
+        TYPE_8,
+        TYPE_9,
+        TYPE_10,
+        TYPE_11,
+        TYPE_12,
+        TYPE_13,
+        TYPE_14,
+        TYPE_15,
+        TYPE_16,
+    };
+
     /* 8055B58C */ ~daNpc_Maro_c();
     /* 8055B6E0 */ int create();
     /* 8055B9A8 */ int CreateHeap();
@@ -28,8 +48,8 @@ public:
     /* 8055BFC0 */ static int ctrlJointCallBack(J3DJoint*, int);
     /* 8055C018 */ static void* srchArrow(void*, void*);
     /* 8055C0B4 */ fopAc_ac_c* getArrowP();
-    /* 8055C1AC */ void srchItaMato(void*, void*);
-    /* 8055C248 */ void getItaMatoP(int);
+    /* 8055C1AC */ static void* srchItaMato(void*, void*);
+    /* 8055C248 */ fopAc_ac_c* getItaMatoP(int);
     /* 8055C330 */ u8 getType();
     /* 8055C3E0 */ int isDelete();
     /* 8055C614 */ void reset();
@@ -136,12 +156,18 @@ private:
     /* 0x10BC */ int field_0x10bc;
     /* 0x10C0 */ u8 mType;
     /* 0x10C4 */ daNpcT_ActorMngr_c mActorMngr[9];
-    /* 0x110C */ u8 field_0x110c[0x1130 - 0x110C];
+    /* 0x110C */ actionFunc field_0x110c;
+    /* 0x110C */ actionFunc field_0x1118;
+    /* 0x1124 */ u8 field_0x1124[0x112C - 0x1124];
+    /* 0x112C */ int field_0x112c;
     /* 0x1130 */ u8 field_0x1130;
     /* 0x1131 */ u8 field_0x1131;
     /* 0x1132 */ u8 field_0x1132[0x1134 - 0x1132];
     /* 0x1134 */ u8 field_0x1134;
-    /* 0x1135 */ u8 field_0x1135[0x1140 - 0x1135];
+    /* 0x1135 */ u8 field_0x1135[0x1138 - 0x1135];
+    /* 0x1138 */ u8 field_0x1138;
+    /* 0x1139 */ u8 field_0x1139[0x113C - 0x1139];
+    /* 0x113C */ u8 field_0x113C[0x1140 - 0x113C];
 };
 
 STATIC_ASSERT(sizeof(daNpc_Maro_c) == 0x1140);
@@ -152,13 +178,13 @@ public:
 
     struct Data {
         /* 0x00 */ f32 field_0x00;
-        /* 0x04 */ u32 field_0x04;
-        /* 0x08 */ u32 field_0x08;
+        /* 0x04 */ f32 field_0x04;
+        /* 0x08 */ f32 field_0x08;
         /* 0x0C */ f32 field_0x0c;
         /* 0x10 */ f32 field_0x10;
-        /* 0x14 */ u32 field_0x14;
-        /* 0x18 */ u32 field_0x18;
-        /* 0x1C */ u32 field_0x1c;
+        /* 0x14 */ f32 field_0x14;
+        /* 0x18 */ f32 field_0x18;
+        /* 0x1C */ f32 field_0x1c;
         /* 0x20 */ u32 field_0x20;
         /* 0x24 */ u32 field_0x24;
         /* 0x28 */ u32 field_0x28;
@@ -168,17 +194,19 @@ public:
         /* 0x38 */ u32 field_0x38;
         /* 0x3C */ u32 field_0x3c;
         /* 0x40 */ u32 field_0x40;
-        /* 0x44 */ u32 field_0x44;
-        /* 0x48 */ u32 field_0x48;
-        /* 0x4C */ u32 field_0x4c;
-        /* 0x50 */ u32 field_0x50;
+        /* 0x44 */ f32 field_0x44;
+        /* 0x48 */ s16 field_0x48;
+        /* 0x4A */ s16 field_0x4a;
+        /* 0x4C */ s16 field_0x4c;
+        /* 0x4E */ s16 field_0x4e;
+        /* 0x50 */ f32 field_0x50;
         /* 0x54 */ u32 field_0x54;
         /* 0x58 */ u32 field_0x58;
         /* 0x5C */ u32 field_0x5c;
         /* 0x60 */ u32 field_0x60;
         /* 0x64 */ u32 field_0x64;
         /* 0x68 */ u32 field_0x68;
-        /* 0x6C */ u32 field_0x6c;
+        /* 0x6C */ f32 field_0x6c;
         /* 0x70 */ u32 field_0x70;
         /* 0x74 */ u32 field_0x74;
         /* 0x78 */ u32 field_0x78;
