@@ -940,12 +940,12 @@ int dShopSystem_c::seq_start(fopAc_ac_c* actor, dMsgFlow_c* i_flow) {
             if (i_flow->doFlow(actor, NULL, 0)) {
                 int itemNo;
                 if (mFlow.getEventId(&itemNo) == 1) {
-                    if (mItemId == -1) {
-                        mItemId = fopAcM_createItemForPresentDemo(&current.pos, itemNo, 0, -1,
+                    if (mItemPartnerId == fpcM_ERROR_PROCESS_ID_e) {
+                        mItemPartnerId = fopAcM_createItemForPresentDemo(&current.pos, itemNo, 0, -1,
                                                                       -1, NULL, NULL);
                     }
 
-                    if (fpcEx_IsExist(mItemId)) {
+                    if (fpcEx_IsExist(mItemPartnerId)) {
                         mEvtNo = 1;
                         evtChange();
                         return 1;
@@ -1244,12 +1244,12 @@ int dShopSystem_c::seq_decide_yes(fopAc_ac_c* actor, dMsgFlow_c* i_flow) {
     int itemNo;
     if (mFlow.getEventId(&itemNo) == 1) {
         if (i_flow->doFlow(actor, NULL, 0)) {
-            if (mItemId == -1) {
-                mItemId =
+            if (mItemPartnerId == fpcM_ERROR_PROCESS_ID_e) {
+                mItemPartnerId =
                     fopAcM_createItemForPresentDemo(&current.pos, itemNo, 0, -1, -1, NULL, NULL);
             }
 
-            if (fpcEx_IsExist(mItemId)) {
+            if (fpcEx_IsExist(mItemPartnerId)) {
                 offFlag(8);
                 setSoldOutItemHide();
                 mEvtNo = 1;
