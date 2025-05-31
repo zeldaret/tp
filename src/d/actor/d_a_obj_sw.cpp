@@ -10,6 +10,7 @@
 #include "d/actor/d_a_obj_sw.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_path.h"
+#include "d/d_s_play.h"
 
 /* 80CF0638-80CF0774 000078 013C+00 1/0 0/0 0/0 .text            daObj_Sw_Draw__FP12obj_sw_class */
 static int daObj_Sw_Draw(obj_sw_class* i_this) {
@@ -91,12 +92,18 @@ static path sc_path[17] = {
 
 /* 80CF07F8-80CF08F8 000238 0100+00 1/1 0/0 0/0 .text            s_ksdel_sub__FPvPv */
 static void* s_ksdel_sub(void* i_actor, void* i_data) {
-    // NONMATCHING
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_NPC_KS) {
         fopAcM_delete((fopAc_ac_c*)i_actor);
 
+        ((obj_sw_class*)i_data)->field_0x5a8[saru_ct].field_0x4.x = sc_path[7 - saru_ct].field_0x4;
+        ((obj_sw_class*)i_data)->field_0x5a8[saru_ct].field_0x4.y = sc_path[7 - saru_ct].field_0x8;
+        ((obj_sw_class*)i_data)->field_0x5a8[saru_ct].field_0x4.z = sc_path[7 - saru_ct].field_0xc;
+        ((obj_sw_class*)i_data)->field_0x5a8[saru_ct].field_0x34 = (saru_ct * 0x14) + 0x3C;
+        ((obj_sw_class*)i_data)->field_0x5a8[saru_ct].field_0x38 = 8 - saru_ct;
+
         saru_ct++;
     }
+    
     return NULL;
 }
 
@@ -202,7 +209,7 @@ static void sc_build(obj_sw_class* i_this) {
                 cLib_addCalc2(&sc_p->field_0x4.z, a_this->eyePos.z + sp30.z, 1.0f, 30.0f);
 
                 if (sc_p->field_0x4.y <= a_this->eyePos.y + 1.0f) {
-                    sp24 = sc_p->field_0x4 - a_this->eyePos;
+                    sc_p->field_0x4 - a_this->eyePos; // ?
                     anm_init(sc_p, 13, 5.0f, 0, 1.0f);
                     sc_p->field_0x0 = 10;
                     sc_p->mSound.startSound(Z2SE_KOSARU_V_WAIT, 0, -1);
@@ -301,7 +308,7 @@ static void demo_camera(obj_sw_class* i_this) {
             MtxPosition(&sp24, &sp30);
             i_this->field_0x598 = a_this->eyePos + sp30;
             dComIfGp_event_offHindFlag(15);
-            break;
+            // [[fallthrough]]
 
         case 2:
             dComIfGp_setDoStatusForce(1, 0);
@@ -345,7 +352,7 @@ static void demo_camera(obj_sw_class* i_this) {
             if (mDoCPd_c::getTrigA(0) != 0) {
                 i_this->field_0x5a8[7].mSound.startSound(Z2SE_KOSARU_V_THROW, 0, -1);
                 player->changeDemoMode(24, 0, 0, 0);
-                anm_init(i_this->field_0x5a8, 9, 2.0f, 0, 1.0f);
+                anm_init(&i_this->field_0x5a8[7], 9, 2.0f, 0, 1.0f);
                 i_this->mDemoMode = 3;
                 i_this->field_0x8ce = 0;
                 i_this->field_0x57a[2] = 50;
@@ -405,33 +412,27 @@ static void sc_action(obj_sw_class* i_this) {
         case 0:
             saru_ct = 0;
             fpcM_Search(s_ks_sub, i_this);
-            if (saru_ct == 8 && swBit != 0xFF) {
-                if (!dComIfGs_isSwitch(swBit, fopAcM_GetRoomNo(a_this))) {
-                    if (!dComIfGp_event_runCheck()) {
-                        if (dComIfGs_isSwitch(83, fopAcM_GetRoomNo(a_this))) {
-                            saru_ct = 0;
-                            fpcM_Search(s_ksdel_sub, i_this);
-                            a_this->eyePos = a_this->home.pos;
-                            if (swBit != 0xFF) {
-                                if (dComIfGs_isSwitch(swBit, fopAcM_GetRoomNo(a_this))) {
-                                    i_this->field_0x576 = 2;
-                                    i_this->field_0x57a[1] = 120;
-                                    for (int i = 0; i < 8; i++) {
-                                        i_this->field_0x5a8[i].field_0x0 = 10;
-                                        i_this->field_0x5a8[i].field_0x28.x = -0x8000;
-                                    }
-                                    break;
-                                }
-                            }
-
-                            dComIfGs_onSwitch(121, fopAcM_GetRoomNo(a_this));
-                            i_this->field_0x576 = 1;
-                            sc_path[16].field_0x4 = a_this->home.pos.x;
-                            sc_path[16].field_0x8 = a_this->home.pos.y;
-                            sc_path[16].field_0xc = a_this->home.pos.z;
+            if (saru_ct == 8 && ((swBit != 0xFF && dComIfGs_isSwitch(swBit, fopAcM_GetRoomNo(a_this))) || !dComIfGp_event_runCheck()) && dComIfGs_isSwitch(83, fopAcM_GetRoomNo(a_this))) {
+                saru_ct = 0;
+                fpcM_Search(s_ksdel_sub, i_this);
+                a_this->eyePos = a_this->home.pos;
+                if (swBit != 0xFF) {
+                    if (dComIfGs_isSwitch(swBit, fopAcM_GetRoomNo(a_this))) {
+                        i_this->field_0x576 = 2;
+                        i_this->field_0x57a[1] = 120;
+                        for (int i = 0; i < 8; i++) {
+                            i_this->field_0x5a8[i].field_0x0 = 10;
+                            i_this->field_0x5a8[i].field_0x28.x = -0x8000;
                         }
+                        break;
                     }
                 }
+
+                dComIfGs_onSwitch(121, fopAcM_GetRoomNo(a_this));
+                i_this->field_0x576 = 1;
+                sc_path[16].field_0x4 = a_this->home.pos.x;
+                sc_path[16].field_0x8 = a_this->home.pos.y;
+                sc_path[16].field_0xc = a_this->home.pos.z;
             }
             break;
 
@@ -454,7 +455,7 @@ static void sc_action(obj_sw_class* i_this) {
     mDoMtx_stack_c::YrotM(a_this->current.angle.y + 0x8000);
 
     f32 fVar1 = 1.0f;
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < 8;) {
         s16 sVar1 = i_this->field_0x588 * (fVar1 * cM_ssin((i_this->field_0x580 * 800) - i * i_this->field_0x594));
         s16 sVar2 = i_this->field_0x58c * cM_ssin((i_this->field_0x582 * 1000) - i * -10000);
         sc_p->field_0x28.z = sVar2;
@@ -492,7 +493,8 @@ static void sc_action(obj_sw_class* i_this) {
             a_this->attention_info.position.y += 40.0f;
         }
 
-        sc_p = (obj_sc_s *)((s8*)sc_p + 100);
+        i++;
+        sc_p++;
     }
 
     i_this->field_0x580--;
@@ -507,7 +509,7 @@ static void sc_action(obj_sw_class* i_this) {
                 fVar3 = sp90.abs();
                 sp90 = sc_p->field_0x1c - sc_p->field_0x4;
                 fVar2 = sp90.abs();
-                f32 fVar4 = fVar2 * 0.3f;
+                f32 fVar4 = fVar3 * 0.3f;
                 if (fVar4 > 1000.0f) {
                     fVar4 = 1000.0f;
                 }
@@ -525,7 +527,7 @@ static void sc_action(obj_sw_class* i_this) {
             sc_p->mSound.framework(0, dComIfGp_getReverb(fopAcM_GetRoomNo(a_this)));
         }
 
-        sc_p = (obj_sc_s *)((s8*)sc_p + 100);
+        sc_p++;
     }
 
     demo_camera(i_this);
@@ -534,45 +536,66 @@ static void sc_action(obj_sw_class* i_this) {
 /* 80CF2160-80CF2604 001BA0 04A4+00 1/1 0/0 0/0 .text            sw_action__FP12obj_sw_class */
 static void sw_action(obj_sw_class* i_this) {
     // NONMATCHING
-    cXyz sp98, spa4;
+    f32 tmp;
+    f32 fVar1;
+    f32 fVar2;
+    f32 fVar3;
+    f32 fVar4;
+    cXyz sp98;
+    cXyz spa4;
     cXyz spb0 = i_this->field_0x904[1] - i_this->field_0x904[0];
     cXyz i_position = i_this->field_0x904[0] + (spb0 * 0.5f);
     cXyz spc8;
-    f32 fVar1 = -(i_this->field_0x91c * 4.0f + 50.0f);
+    
+    fVar1 = -(i_this->field_0x91c * 4.0f + 50.0f);
+    
     cXyz i_direction;
     f32 i_power;
     dKyw_get_AllWind_vec(&i_position, &i_direction, &i_power);
     i_power *= i_power;
+
     cLib_addCalc2(&i_this->field_0x5a4, i_power, 0.1f, 0.03f);
     cMtx_YrotS(*calc_mtx, cM_atan2s(i_direction.x, i_direction.z));
+
     for (int i = 0; i < i_this->field_0xd8c; i++) {
         spc8 = (spb0 / (i_this->field_0xd8c - 1)) * i;
-        f32 fVar2 = cM_ssin(((f32)i / (i_this->field_0xd8c - 1)) * 32768.0f);
-        spc8.y += (fVar2 * fVar1) + (fVar2 * (i_this->field_0x8fc * cM_ssin(i_this->field_0x574 * 0x9C4 + i * 2000)));
+
+        fVar2 = cM_ssin(((f32)i / (i_this->field_0xd8c - 1)) * 32768.0f);
+        tmp = i_this->field_0x8fc * cM_ssin(i_this->field_0x574 * (XREG_S(0) + 0x9C4) + i * (XREG_S(1) + 2000));
+
+        spc8.y += (fVar2 * fVar1) + (fVar2 * tmp);
+
         sp98.x = 0.0f;
         sp98.y = 0.0f;
-        sp98.z = (fVar2 * 70.0f) * i_this->field_0x5a4;
+        sp98.z = fVar2 * (70.0f + JREG_F(15)) * i_this->field_0x5a4;
         MtxPosition(&sp98, &spa4);
+
         spc8.x += spa4.x;
         spc8.z += spa4.z;
-        i_this->field_0x904[i] = i_this->field_0x904[0] + spc8;
+        i_this->field_0x920[i] = i_this->field_0x904[0] + spc8;
     }
 
     for (int i = 0; i <i_this->field_0xd8c; i++) {
-        f32 fVar3;
         if (i_this->field_0xd10[i] != 0) {
             i_this->field_0xd10[i]--;
             fVar3 = -(i_this->field_0x91c * 8.0f + 30.0f);
-            fVar1 = 10.0f;
+            fVar4 = 10.0f;
         } else {
             fVar3 = 0.0f;
-            fVar1 = 5.0f;
+            fVar4 = 5.0f;
         }
 
-        cLib_addCalc2(&i_this->field_0xc14[i], fVar3, 0.5f, fVar1);
-        if (i_this->field_0xc14[i] != 0.0f) {
+        cLib_addCalc2(&i_this->field_0xc14[i], fVar3, 0.5f, fVar4);
+        f32 divres;
+        if (i_this->field_0xc14[i]) {
             for (int j = i; j < i_this->field_0xd8c; j++) {
-                i_this->field_0x904[i].z += ((i_this->field_0xd8c--) - (f32)j) / ((i_this->field_0xd8c--) - i) * i_this->field_0xc14[i];
+                divres = (f32) (i_this->field_0xd8c - 1 - j) / (i_this->field_0xd8c - 1 - i);
+                i_this->field_0x920[j].y += i_this->field_0xc14[i] * divres;
+            }
+
+            for (int k = i - 1; k >= 0; k--) {
+                divres = (f32) k / i;
+                i_this->field_0x920[k].y += i_this->field_0xc14[i] * divres;
             }
         }
     }
@@ -581,7 +604,7 @@ static void sw_action(obj_sw_class* i_this) {
         i_this->field_0x900 = 5.0f;
     }
 
-    cLib_addCalc2(&i_this->field_0x8fc, i_this->field_0x900, 0.1f, 0.075f);
+    cLib_addCalc2(&i_this->field_0x8fc, i_this->field_0x900, 0.1f, 0.075f + XREG_F(2));
     i_this->field_0x900 = 0.0f;
 }
 
@@ -721,6 +744,7 @@ static int daObj_Sw_Create(fopAc_ac_c* a_this) {
             if (player != NULL && player->current.pos.z < -14000.0f) {
                 a_this->current.angle.y += -0x8000;
             }
+            return phase;
         }
 
         i_this->field_0x571 = fopAcM_GetParam(a_this) >> 8;
@@ -772,7 +796,7 @@ static int daObj_Sw_Create(fopAc_ac_c* a_this) {
             return cPhs_ERROR_e;
         }
 
-        i_this->field_0xd8c = (i_this->field_0x91c * 63) / 2;
+        i_this->field_0xd8c = (i_this->field_0x91c * 63) / 8;
         if (fopAcM_GetRoomNo(a_this) == 2 || fopAcM_GetRoomNo(a_this) == 4) {
             fopAcM_createChild(PROC_OBJ_BRG, fopAcM_GetID(a_this), swBit << 24 | 0xFFFFFF, &a_this->current.pos, 
                                 fopAcM_GetRoomNo(a_this), &a_this->current.angle, NULL, -1, NULL);

@@ -2100,7 +2100,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_stopper"),
     ActorRel(NonMatching, "d_a_obj_stopper2"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_suisya"),
-    ActorRel(NonMatching, "d_a_obj_sw"),
+    ActorRel(Equivalent, "d_a_obj_sw"), # weak func order
     ActorRel(NonMatching, "d_a_obj_swBallA"),
     ActorRel(NonMatching, "d_a_obj_swBallB"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_swBallC"),
