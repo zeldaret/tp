@@ -21,7 +21,7 @@ public:
     /* 80B78CFC */ int getDstPosChase(u16, cXyz, cXyz&);
     /* 80B78E08 */ f32 chkPassDst(u16, cXyz);
     /* 80B7EF88 */ ~daNpc_zrA_Path_c() {}
-    int getEndIdx() { return mpRoomPath->m_num - 1; }
+    int getEndIdx() { return mPathInfo->m_num - 1; }
 };
 
 STATIC_ASSERT(sizeof(daNpc_zrA_Path_c) == 0x630);

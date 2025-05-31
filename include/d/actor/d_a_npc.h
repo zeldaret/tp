@@ -355,28 +355,34 @@ struct daNpcT_motionAnmData_c {
 class daNpcT_Hermite_c {
 public:
     /* 0x00 */ f32 field_0x00;
-    /* 0x04 */ f32 field_0x04;
-    /* 0x08 */ f32 field_0x08;
-    /* 0x0C */ f32 field_0x0c;
-    /* 0x10 */ f32 field_0x10;
+    /* 0x04 */ f32 H00;
+    /* 0x08 */ f32 H01;
+    /* 0x0C */ f32 H10;
+    /* 0x10 */ f32 H11;
 
     /* 8014CBAC */ virtual ~daNpcT_Hermite_c() {}
+
+    f32 GetH00() { return H00; }
+    f32 GetH01() { return H01; }
+    f32 GetH10() { return H10; }
+    f32 GetH11() { return H11; }
 
     // constants might be wrong, regalloc
     void Set(f32 param_1) {
         field_0x00 = param_1;
         f32 sqr = param_1 * param_1;
         f32 cubed = param_1 * sqr;
-        field_0x04 = 1.0f + (2.0f * cubed - 3.0f * sqr);
-        field_0x08 = -2.0f * cubed + 3.0f * sqr;
-        field_0x0c = param_1 + (cubed - 2.0f * sqr);
-        field_0x10 = cubed - sqr;
+
+        H00 = 1.0f + (2.0f * cubed - 3.0f * sqr);
+        H01 = -2.0f * cubed + 3.0f * sqr;
+        H10 = param_1 + (cubed - 2.0f * sqr);
+        H11 = cubed - sqr;
     }
 };
 
 class daNpcT_Path_c {
 public:
-    /* 0x00 */ dPath* mpRoomPath;
+    /* 0x00 */ dPath* mPathInfo;
     /* 0x04 */ cXyz mPosition;
     /* 0x10 */ f32 field_0x10;
     /* 0x14 */ f32 field_0x14;
@@ -403,21 +409,31 @@ public:
 
     virtual ~daNpcT_Path_c() {}
 
-    Vec getPntPos(int i_idx) { return mpRoomPath->m_points[i_idx].m_position; }
+    Vec getPntPos(int i_idx) { return mPathInfo->m_points[i_idx].m_position; }
 
     int chkClose() {
-        int roomPath = dPath_ChkClose(mpRoomPath);
-        return roomPath;
+        BOOL rt = dPath_ChkClose(mPathInfo);
+        return rt;
     }
 
     bool chkReverse() { return mDirection == 1; }
 
     int getNumPnts() {
-        dPath* path = mpRoomPath;
+        dPath* path = mPathInfo;
         return path->m_num;
     }
 
     const u16 getIdx() { return mIdx; }
+
+    void onReverse() {
+        mDirection = 1;
+        field_0x1E = 1;
+    }
+
+    void offReverse() {
+        mDirection = 0;
+        field_0x1E = 1;
+    }
 };
 
 class mDoExt_McaMorfSO;
@@ -468,10 +484,10 @@ public:
     /* 0xD7E */ csXyz field_0xd7e;
     /* 0xD84 */ csXyz field_0xd84;
     /* 0xD8A */ csXyz field_0xd8a;
-    /* 0xD90 */ fpc_ProcID mItemId;
+    /* 0xD90 */ fpc_ProcID mItemPartnerId;
     /* 0xD94 */ u32 mShadowKey;
     /* 0xD98 */ u32 mAnmFlags;
-    /* 0xD9C */ u32 mMsgId;
+    /* 0xD9C */ fpc_ProcID mMsgId;
     /* 0xDA0 */ u32 mHitodamaPrtclKey[2];
     /* 0xDA8 */ u32 mPolSound;
     /* 0xDAC */ int mStaffId;
@@ -667,7 +683,7 @@ public:
         field_0xba0.initialize();
         mJntAnm.initialize();
         mStagger.initialize();
-        mItemId = fpcM_ERROR_PROCESS_ID_e;
+        mItemPartnerId = fpcM_ERROR_PROCESS_ID_e;
         field_0xe26 = true;
         field_0xe1a = cM_rndF(65536.0f);
         field_0xde0 = 0.2f;
@@ -762,10 +778,11 @@ public:
     static const int MAXNUMCONTROLPNT_e = 64;
 
 private:
-    /* 0x004 */ dPath* mpRoomPath;
+    /* 0x004 */ dPath* mPathInfo;
     /* 0x008 */ f32 field_0x8;
-    /* 0x010 */ u8 field_0xc[2562];
-    /* 0xA0E */ u16 field_0xa0e;
+    /* 0x00C */ dPnt mCurvePnts[160];
+    /* 0xA0C */ u8 field_0xa0c[0xA0E - 0xA0C];
+    /* 0xA0E */ u16 mCurvePntNum;
     /* 0xA10 */ u16 mIdx;
     /* 0xA12 */ s8 mDirection;
     /* 0xA13 */ u8 field_0xa13[17];
@@ -1192,7 +1209,7 @@ protected:
     /* 0x00 */ u16 mIdx;
     /* 0x02 */ u8 mIsReversed;
     /* 0x03 */ bool mIsClosed;
-    /* 0x04 */ dPath* mpRoomPath;
+    /* 0x04 */ dPath* mPathInfo;
     /* 0x08 */ f32 mRange;
     /* 0x0C */ f32 mPosDst;
     /* 0x10 */ f32 field_0x10;
@@ -1221,20 +1238,21 @@ public:
 
     int getIdx() { return mIdx; };
     void setIdx(int i_idx) { mIdx = i_idx; }
-    int getArg0() { return mpRoomPath->m_points[mIdx].mArg0; }
-    u8 getArg0(int i_idx) { return mpRoomPath->m_points[i_idx].mArg0; }
-    Vec getPntPos(int i_idx) { return mpRoomPath->m_points[i_idx].m_position; }
-    BOOL chkClose() { return dPath_ChkClose(mpRoomPath); }
+    int getArg0() { return mPathInfo->m_points[mIdx].mArg0; }
+    u8 getArg0(int i_idx) { return mPathInfo->m_points[i_idx].mArg0; }
+    Vec getPntPos(int i_idx) { return mPathInfo->m_points[i_idx].m_position; }
+    BOOL chkClose() { return dPath_ChkClose(mPathInfo); }
     BOOL chkReverse() { return mIsReversed == true; }
     void onReverse() { mIsReversed = true; }
-    dPath* getPathInfo() { return mpRoomPath; }
+    void offReverse() { mIsReversed = false; }
+    dPath* getPathInfo() { return mPathInfo; }
     void setRange(f32 i_range) { mRange = i_range; }
 };  // Size: 0x630
 
 class daNpcF_Lookat_c {
 private:
     /* 0x00 */ cXyz mJointPos[4];
-    /* 0x30 */ cXyz* mAttnPos;
+    /* 0x30 */ cXyz* mAttnPos_p;
     /* 0x34 */ csXyz mAngularMoveDis[4];
     /* 0x4C */ csXyz mMinAngle[4];
     /* 0x64 */ csXyz mMaxAngle[4];
@@ -1253,10 +1271,12 @@ public:
     /* 80151B68 */ void calcMoveDisAngle(int, cXyz*, csXyz*, cXyz, int, BOOL);
     /* 80151F54 */ void setRotAngle();
     /* 80151FE0 */ void clrRotAngle();
+
     daNpcF_Lookat_c() { initialize(); }
     virtual ~daNpcF_Lookat_c() {}
-    cXyz* getAttnPos() { return mAttnPos; }
-    void setAttnPos(cXyz* i_attnPos) { mAttnPos = i_attnPos; }
+
+    cXyz* getAttnPos() { return mAttnPos_p; }
+    void setAttnPos(cXyz* i_attnPos) { mAttnPos_p = i_attnPos; }
 };
 
 class daNpcF_MoveBgActor_c : public daNpcF_c {
@@ -1271,6 +1291,50 @@ public:
     /* 80155EB0 */ virtual bool IsDelete();
     /* 80155EB8 */ virtual bool ToFore();
     /* 80155EC0 */ virtual bool ToBack();
+};
+
+struct daNpcT_HIOParam {
+    /* 0x00 */ f32 unk0;
+    /* 0x04 */ f32 unk4;
+    /* 0x08 */ f32 unk8;
+    /* 0x0C */ f32 unkC;
+    /* 0x10 */ f32 unk10;
+    /* 0x14 */ f32 unk14;
+    /* 0x18 */ f32 unk18;
+    /* 0x1C */ f32 unk1C;
+    /* 0x20 */ f32 unk20;
+    /* 0x24 */ f32 unk24;
+    /* 0x28 */ f32 unk28;
+    /* 0x2C */ f32 unk2C;
+    /* 0x30 */ f32 unk30;
+    /* 0x34 */ f32 unk34;
+    /* 0x38 */ f32 unk38;
+    /* 0x3C */ f32 unk3C;
+    /* 0x40 */ f32 unk40;
+    /* 0x44 */ f32 unk44;
+    /* 0x48 */ s16 unk48;
+    /* 0x4A */ s16 unk4A;
+    /* 0x4C */ s16 unk4C;
+    /* 0x4E */ s16 unk4E;
+    /* 0x50 */ f32 unk50;
+    /* 0x54 */ f32 unk54;
+    /* 0x58 */ f32 unk58;
+    /* 0x5C */ f32 unk5C;
+    /* 0x60 */ s16 unk60;
+    /* 0x62 */ s16 unk62;
+    /* 0x64 */ s16 unk64;
+    /* 0x66 */ s16 unk66;
+    /* 0x68 */ s16 unk68;
+    /* 0x6A */ u8 unk6A;
+    /* 0x6B */ u8 unk6B;
+    /* 0x6C */ f32 unk6C;
+    /* 0x70 */ f32 unk70;
+    /* 0x74 */ f32 unk74;
+    /* 0x78 */ f32 unk78;
+    /* 0x7C */ f32 unk7C;
+    /* 0x80 */ f32 unk80;
+    /* 0x84 */ f32 unk84;
+    /* 0x88 */ f32 unk88;
 };
 
 #endif /* D_A_D_A_NPC_H */
