@@ -51,10 +51,10 @@ int ShopCam_action_c::shop_cam_action_init() {
     player->onPlayerNoDraw();
 
     setCamAction(&ShopCam_action_c::shop_cam_action);
-    if (field_0xd6 >= 0) {
-        field_0x7c = shop_cam_data_tbl[field_0xd6]->field_0x0;
-        field_0x88 = shop_cam_data_tbl[field_0xd6]->field_0xc;
-        field_0x94 = shop_cam_data_tbl[field_0xd6]->field_0x18;
+    if (mCamDataIdx >= 0) {
+        field_0x7c = shop_cam_data_tbl[mCamDataIdx]->field_0x0;
+        field_0x88 = shop_cam_data_tbl[mCamDataIdx]->field_0xc;
+        field_0x94 = shop_cam_data_tbl[mCamDataIdx]->field_0x18;
     } else if (field_0xd4 <= 0) {
         field_0x7c = field_0x38;
         field_0x88 = field_0x44;
@@ -79,19 +79,19 @@ int ShopCam_action_c::shop_cam_action() {
     cXyz acStack_58;
     f32 dVar11;
     if (field_0xd4 <= 0) {
-        if (field_0xd6 >= 0) {
-            acStack_4c = shop_cam_data_tbl[field_0xd6]->field_0x0;
-            acStack_58 = shop_cam_data_tbl[field_0xd6]->field_0xc;
-            dVar11 = shop_cam_data_tbl[field_0xd6]->field_0x18;
+        if (mCamDataIdx >= 0) {
+            acStack_4c = shop_cam_data_tbl[mCamDataIdx]->field_0x0;
+            acStack_58 = shop_cam_data_tbl[mCamDataIdx]->field_0xc;
+            dVar11 = shop_cam_data_tbl[mCamDataIdx]->field_0x18;
         } else {
             acStack_4c = field_0x38;
             acStack_58 = field_0x44;
             dVar11 = field_0x50;
         }
-    } else if (field_0xd6 >= 0) {
-        acStack_4c = shop_cam_data_tbl[field_0xd6]->field_0x1c;
-        acStack_58 = shop_cam_data_tbl[field_0xd6]->field_0x28;
-        dVar11 = shop_cam_data_tbl[field_0xd6]->field_0x34;
+    } else if (mCamDataIdx >= 0) {
+        acStack_4c = shop_cam_data_tbl[mCamDataIdx]->field_0x1c;
+        acStack_58 = shop_cam_data_tbl[mCamDataIdx]->field_0x28;
+        dVar11 = shop_cam_data_tbl[mCamDataIdx]->field_0x34;
     } else {
         acStack_4c = field_0x54;
         acStack_58 = field_0x60;
@@ -184,7 +184,7 @@ void ShopCam_action_c::move() {
  */
 void ShopCam_action_c::setCamDataIdx(fopAc_ac_c* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3,
                                      fopAc_ac_c* param_4, cXyz* param_5, cXyz* param_6) {
-    field_0xd6 = -1;
+    mCamDataIdx = -1;
     if (field_0x18 == NULL) {
         field_0xb0 = param_1->eyePos;
     }
@@ -219,7 +219,7 @@ void ShopCam_action_c::setCamDataIdx(fopAc_ac_c* param_1, fopAc_ac_c* param_2, f
 void ShopCam_action_c::setCamDataIdx2(fopAc_ac_c* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3,
                                       fopAc_ac_c* param_4, fopAc_ac_c* param_5, fopAc_ac_c* param_6,
                                       fopAc_ac_c* param_7, cXyz* param_8, cXyz* param_9) {
-    field_0xd6 = -1;
+    mCamDataIdx = -1;
     if (field_0x18 == NULL) {
         field_0xb0 = param_1->eyePos;
     }
