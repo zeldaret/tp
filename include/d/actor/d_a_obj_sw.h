@@ -36,7 +36,7 @@ public:
 
 STATIC_ASSERT(sizeof(obj_sc_s) == 0x64);
 
- class obj_sw_class {
+class obj_sw_class {
 public:
     /* 0x000 */ fopAc_ac_c actor;
     /* 0x568 */ request_of_phase_process_class mPhase;
