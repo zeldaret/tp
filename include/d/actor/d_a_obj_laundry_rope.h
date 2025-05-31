@@ -59,11 +59,11 @@ public:
     static const daObjLndRope_Hio_c M_Hio;
 
 private:
-    /* 0x568 */ mDoExt_3DlineMat1_c mRopeMat;
-    /* 0x5a4 */ request_of_phase_process_class mPhase;
-    /* 0x5ac */ Mtx mMtx;
-    /* 0x5dc */ dCcD_Stts mStts;
-    /* 0x618 */ dCcD_Sph mSphs[13];
+    /* 0x0568 */ mDoExt_3DlineMat1_c mRopeMat;
+    /* 0x05a4 */ request_of_phase_process_class mPhase;
+    /* 0x05ac */ Mtx mMtx;
+    /* 0x05dc */ dCcD_Stts mStts;
+    /* 0x0618 */ dCcD_Sph mSphs[13];
     /* 0x15f0 */ cXyz mPositions1[13];
     /* 0x168c */ cXyz mPositions2[13];
     /* 0x1728 */ fpc_ProcID mProcIds[13];

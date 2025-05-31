@@ -11,8 +11,6 @@
 #include "d/d_kankyo_wether.h"
 #include "d/d_path.h"
 #include "dol2asm.h"
-#include "gx/GXStruct.h"
-
 
 //
 // Declarations:
@@ -80,7 +78,7 @@ void daObjLndRope_c::create_init() {
 
     for (int i = 1; i < 14; i++) {
         if (*laundryEntry == -1) {
-            *procId = -1;
+            *procId = fpcM_ERROR_PROCESS_ID_e;
         } else {
             *procId = fopAcM_createChild(
                 PROC_Obj_Laundry, fopAcM_GetID(this), *laundryEntry, ropePosition,
@@ -104,7 +102,7 @@ void daObjLndRope_c::initBaseMtx() {
 
 /* 80C52890-80C528E0 000710 0050+00 1/1 0/0 0/0 .text            setBaseMtx__14daObjLndRope_cFv */
 void daObjLndRope_c::setBaseMtx() {
-    PSMTXTrans(mMtx, current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_trans(mMtx, current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_ZXYrotM(mMtx, shape_angle.x, shape_angle.y, 0);
 }
 
@@ -246,19 +244,10 @@ static int createSolidHeap(fopAc_ac_c* i_this) {
     return static_cast<daObjLndRope_c*>(i_this)->createHeap();
 }
 
-/* ############################################################################################## */
-/* 80C533D0-80C533D4 000004 0004+00 1/1 0/0 0/0 .data
- * l_color$localstatic3$draw__14daObjLndRope_cFv                */
-SECTION_DATA static _GXColor color = {
-    0x14,
-    0x0F,
-    0x00,
-    0xFF,
-};
-
 int daObjLndRope_c::draw() {
+    static _GXColor l_color = {20, 15, 0, 255};
     g_env_light.settingTevStruct(16, &current.pos, &tevStr);
-    mRopeMat.update(15, color, &tevStr);
+    mRopeMat.update(15, l_color, &tevStr);
     dComIfGd_set3DlineMat(&mRopeMat);
     return 1;
 }
