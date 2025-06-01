@@ -1306,7 +1306,7 @@ int daNpc_Hanjo_c::cutPursuitBee(int param_1) {
         break;
     case 3:
         mJntAnm.lookNone(0);
-        if (field_0x10e8.getDstPosH(current.pos, &cStack_6c, field_0x10e8.mPathInfo->m_num, 4)) {
+        if (field_0x10e8.getDstPosH(current.pos, &cStack_6c, field_0x10e8.getNumPnts(), 4)) {
             rv = 1;
             break;
         }
