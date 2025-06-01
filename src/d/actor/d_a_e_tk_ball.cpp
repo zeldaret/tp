@@ -138,7 +138,7 @@ static void e_tk_ball_move(e_tk_ball_class* i_this) {
     s8 actor_lockon = false;
     fopAc_ac_c* parent_actor = fopAcM_SearchByID(actor->parentActorID);
     if (parent_actor != NULL) {
-        dAttention_c* attention = &dComIfGp_getAttention();
+        dAttention_c* attention = dComIfGp_getAttention();
         if (attention->Lockon() && parent_actor == attention->LockonTarget(0)) {
             actor_lockon = true;
             parent_actor->attention_info.flags |= 0x200000;

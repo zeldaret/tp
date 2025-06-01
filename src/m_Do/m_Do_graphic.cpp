@@ -347,10 +347,10 @@ static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_
 
         if (dCam_getBody()->Mode() != 4 && dCam_getBody()->Mode() != 7) {
             camera_class* temp_r4 = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
-            dAttention_c& local_12c = dComIfGp_getAttention();
+            dAttention_c* attention = dComIfGp_getAttention();
 
             f32 temp_f31 = 60.0f / (temp_r4 ? fopCamM_GetFovy(temp_r4) : 48.0f);
-            if (local_12c.LockonTruth()) {
+            if (attention->LockonTruth()) {
                 fopAc_ac_c* atn_actor =
                     fopAcM_SearchByID(daPy_getLinkPlayerActorClass()->getAtnActorID());
 

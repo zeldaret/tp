@@ -10,7 +10,7 @@
 #include "d/d_stage.h"
 #include "f_op/f_op_actor.h"
 
-dAttention_c& dComIfGp_getAttention();
+dAttention_c* dComIfGp_getAttention();
 
 struct dCamMapToolData {
     dCamMapToolData() { Clr(); }
@@ -419,9 +419,9 @@ public:
     }
 
     void Att() {
-        dAttention_c& attn = dComIfGp_getAttention();
-        mpLockonTarget = attn.LockonTruth() ? attn.LockonTarget(0) : NULL;
-        attn.LockSoundOn();
+        dAttention_c* attn = dComIfGp_getAttention();
+        mpLockonTarget = attn->LockonTruth() ? attn->LockonTarget(0) : NULL;
+        attn->LockSoundOn();
     }
 
     void SetWindow(f32 param_0, f32 param_1) {

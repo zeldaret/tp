@@ -481,7 +481,7 @@ void daHoZelda_c::setAnm() {
         }
 
         BOOL gnd_lockon;
-        if (dComIfGp_getAttention().GetLockonList(0) != NULL && dComIfGp_getAttention().LockonTruth() && dComIfGp_getAttention().GetLockonList(0)->getActor() == gnd_actor) {
+        if (dComIfGp_getAttention()->GetLockonList(0) != NULL && dComIfGp_getAttention()->LockonTruth() && dComIfGp_getAttention()->GetLockonList(0)->getActor() == gnd_actor) {
             gnd_lockon = TRUE;
         } else {
             gnd_lockon = FALSE;

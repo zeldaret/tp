@@ -224,10 +224,10 @@ static void hahen_carry(ep_class* i_this, ep_hahen_s* hahen_s) {
             hahen_s->field_0x28.x = 0;
             hahen_s->field_0x28.z = 0x4000;
             hahen_s->field_0x28.y = player->shape_angle.y;
-            if (dComIfGp_getAttention().Lockon()) {
+            if (dComIfGp_getAttention()->Lockon()) {
                 hahen_s->field_0x30 = 80.0f;
 
-                fopAc_ac_c* lockOnTarget = dComIfGp_getAttention().LockonTarget(0);
+                fopAc_ac_c* lockOnTarget = dComIfGp_getAttention()->LockonTarget(0);
                 if (lockOnTarget) {
                     cXyz local_34, cStack_28;
                     local_34 = lockOnTarget->current.pos - hahen_s->field_0x4;
