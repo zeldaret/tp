@@ -929,7 +929,7 @@ static void npc_ks_pole_ori(npc_ks_class* i_this) {
 
         obj_so_class* cage_p = (obj_so_class*)fopAcM_SearchByID(a_this->parentActorID);
         if (cage_p != NULL) {
-            if (cage_p->health == 0) {
+            if (cage_p->actor.health == 0) {
                 i_this->mActionID = 201;
                 i_this->mMode = 10;
                 dComIfGs_onTbox(i_this->field_0x5bc);
@@ -947,9 +947,9 @@ static void npc_ks_pole_ori(npc_ks_class* i_this) {
                         i_this->mSound.startCreatureVoice(Z2SE_KOSARU_V_PRISONED, -1);
                 }
 
-                a_this->current.angle.y = cage_p->shape_angle.y;
-                a_this->current.angle.x = cage_p->shape_angle.x;
-                a_this->current.pos = cage_p->current.pos;
+                a_this->current.angle.y = cage_p->actor.shape_angle.y;
+                a_this->current.angle.x = cage_p->actor.shape_angle.x;
+                a_this->current.pos = cage_p->actor.current.pos;
                 
                 if (leader->field_0xb42 == 0) {
                     if (!dComIfGs_isSwitch(20, fopAcM_GetRoomNo(a_this))) {
@@ -1141,7 +1141,7 @@ static int npc_ks_ori2(npc_ks_class* i_this) {
         return rv;
     }
 
-    a_this->home.angle.y = cage_p->shape_angle.y;
+    a_this->home.angle.y = cage_p->actor.shape_angle.y;
     
     if (i_this->mMode <= 2 && cage_p->field_0x1054 != 0) {
         i_this->mMode = 3;
@@ -1353,8 +1353,8 @@ static int npc_ks_ori2(npc_ks_class* i_this) {
     cLib_addCalcAngleS2(&a_this->current.angle.y, sVar1, 2, 0x2000);
     
     if (i_this->mMode < 7) {
-        a_this->current.angle.x = cage_p->shape_angle.x;
-        a_this->current.pos = cage_p->current.pos;
+        a_this->current.angle.x = cage_p->actor.shape_angle.x;
+        a_this->current.pos = cage_p->actor.current.pos;
         a_this->current.pos.y += fVar1;
     }
 
@@ -1495,7 +1495,7 @@ static int npc_ks_demo_02(npc_ks_class* i_this) {
             break;
 
         case 10:
-            cLib_addCalcAngleS2(&a_this->current.angle.y, cage_p->shape_angle.y + 0x8000, 2, 0x1000);
+            cLib_addCalcAngleS2(&a_this->current.angle.y, cage_p->actor.shape_angle.y + 0x8000, 2, 0x1000);
             if (i_this->mTimers[0] == 0) {
                 i_this->mMode = 11;
                 anm_init(i_this, 26, 5.0f, 2, 1.0f);
@@ -1504,12 +1504,12 @@ static int npc_ks_demo_02(npc_ks_class* i_this) {
 
         case 11:
             rv = 0;
-            cMtx_YrotS(*calc_mtx, cage_p->shape_angle.y);
+            cMtx_YrotS(*calc_mtx, cage_p->actor.shape_angle.y);
             sp3c.x = 0.0f;
             sp3c.y = 0.0f;
-            sp3c.z = cage_p->scale.x * 90.0f;
+            sp3c.z = cage_p->actor.scale.x * 90.0f;
             MtxPosition(&sp3c, &sp48);
-            sp48 += cage_p->current.pos;
+            sp48 += cage_p->actor.current.pos;
             cLib_addCalc2(&a_this->current.pos.x, sp48.x, 1.0f, a_this->speedF);
             cLib_addCalc2(&a_this->current.pos.z, sp48.z, 1.0f, a_this->speedF);
             sp3c.x = sp48.x - a_this->current.pos.x;
@@ -1521,19 +1521,19 @@ static int npc_ks_demo_02(npc_ks_class* i_this) {
 
             if (sp3c.y < 1.0f) {
                 i_this->mMode = 12;
-                a_this->current.angle.y = cage_p->shape_angle.y + 0x8000;
+                a_this->current.angle.y = cage_p->actor.shape_angle.y + 0x8000;
             }
             break;
 
         case 12:
             rv = 0;
             iVar1 = 1;
-            cMtx_YrotS(*calc_mtx, cage_p->shape_angle.y);
+            cMtx_YrotS(*calc_mtx, cage_p->actor.shape_angle.y);
             sp3c.x = 0.0f;
             sp3c.y = 0.0f;
             sp3c.z = 90.0f;
             MtxPosition(&sp3c, &sp48);
-            sp48 += cage_p->current.pos;
+            sp48 += cage_p->actor.current.pos;
             cLib_addCalc2(&a_this->current.pos.x, sp48.x, 1.0f, a_this->speedF);
             cLib_addCalc2(&a_this->current.pos.y, sp48.y, 1.0f, a_this->speedF);
             cLib_addCalc2(&a_this->current.pos.z, sp48.z, 1.0f, a_this->speedF);
@@ -1548,12 +1548,12 @@ static int npc_ks_demo_02(npc_ks_class* i_this) {
         case 13:
             rv = 0;
             iVar1 = 1;
-            cMtx_YrotS(*calc_mtx, cage_p->shape_angle.y);
+            cMtx_YrotS(*calc_mtx, cage_p->actor.shape_angle.y);
             sp3c.x = 0.0f;
             sp3c.y = 0.0f;
-            sp3c.z = cage_p->scale.x * 90.0f;
+            sp3c.z = cage_p->actor.scale.x * 90.0f;
             MtxPosition(&sp3c, &sp48);
-            sp48 += cage_p->current.pos;
+            sp48 += cage_p->actor.current.pos;
             cLib_addCalc2(&a_this->current.pos.x, sp48.x, 1.0f, 10.0f);
             cLib_addCalc2(&a_this->current.pos.z, sp48.z, 1.0f, 10.0f);
             
@@ -1572,12 +1572,12 @@ static int npc_ks_demo_02(npc_ks_class* i_this) {
         case 14:
             rv = 0;
             iVar1 = 1;
-            cMtx_YrotS(*calc_mtx, cage_p->shape_angle.y);
+            cMtx_YrotS(*calc_mtx, cage_p->actor.shape_angle.y);
             sp3c.x = 0.0f;
             sp3c.y = 0.0f;
             sp3c.z = 90.0f;
             MtxPosition(&sp3c, &sp48);
-            sp48 += cage_p->current.pos;
+            sp48 += cage_p->actor.current.pos;
             cLib_addCalc2(&a_this->current.pos.x, sp48.x, 1.0f, 10.0f);
             cLib_addCalc2(&a_this->current.pos.z, sp48.x, 1.0f, 10.0f);
             cLib_addCalc2(&a_this->current.pos.y, i_this->mObjAcch.GetGroundH(), 1.0f, l_HIO.field_0x18);
@@ -1592,7 +1592,7 @@ static int npc_ks_demo_02(npc_ks_class* i_this) {
 
         case 15:
             fVar1 = l_HIO.field_0x18;
-            cLib_addCalcAngleS2(&a_this->current.angle.y, cage_p->shape_angle.y, 2, 0x2000);
+            cLib_addCalcAngleS2(&a_this->current.angle.y, cage_p->actor.shape_angle.y, 2, 0x2000);
             if (i_this->mTimers[0] == 0) {
                 i_this->mMode = 16;
                 anm_init(i_this, 25, 5.0f, 2, 1.0f);
@@ -1612,7 +1612,7 @@ static int npc_ks_demo_02(npc_ks_class* i_this) {
                 }
             }
 
-            cLib_addCalcAngleS2(&a_this->current.angle.y, cage_p->shape_angle.y + 0x8000, 2, 0x1000);
+            cLib_addCalcAngleS2(&a_this->current.angle.y, cage_p->actor.shape_angle.y + 0x8000, 2, 0x1000);
             if (dComIfGp_checkPlayerStatus0(0, 0x40) != 0 || dComIfGp_checkPlayerStatus0(0, 0x2000) != 0) {
                 i_this->mTimers[2] = 20;
             }
@@ -1721,7 +1721,7 @@ static int npc_ks_demo_02(npc_ks_class* i_this) {
     if (checkDoorDemo() != 0) {
         i_this->mActionID = 100;
         i_this->mMode = 0;
-    } else if (iVar1 != 0 && cage_p->shape_angle.x > 0x200) {
+    } else if (iVar1 != 0 && cage_p->actor.shape_angle.x > 0x200) {
         anm_init(i_this, 6, 5.0f, 0, 1.0f);
         i_this->mMode = 18;
         a_this->speedF = -8.0f;
@@ -2049,7 +2049,7 @@ static void npc_ks_to_hang(npc_ks_class* i_this) {
 
         case 10:
             obj_so_class* cage_p = (obj_so_class*)fopAcM_SearchByID(a_this->parentActorID);
-            i_this->field_0x8f0 = cage_p->field_0x920[i_this->field_0x630];
+            i_this->field_0x8f0 = cage_p->field_0x8f0[i_this->field_0x630];
             i_this->field_0x91c = i_this->field_0x8f0;
             sp24 = i_this->field_0x8f0 - a_this->current.pos;
             if (i_this->field_0x5d0 == 32) {
@@ -2509,24 +2509,24 @@ static void npc_ks_hang_s(npc_ks_class* i_this) {
 static void npc_ks_e_hang(npc_ks_class* i_this) {
     // NONMATCHING
     fopAc_ac_c* a_this = &i_this->actor;
-    obj_so_class* cage_p = (obj_so_class*)fopAcM_SearchByID(a_this->parentActorID);
+    obj_sw_class* sw_p = (obj_sw_class*)fopAcM_SearchByID(a_this->parentActorID);
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
 
-    cage_p->field_0x900 += 5.0f;
+    sw_p->field_0x900 += 5.0f;
     cLib_addCalcAngleS2(&a_this->current.angle.y, a_this->home.angle.y + 0x4000, 2, 0x800);
 
     switch (i_this->mMode) {
         case 0:
             i_this->mMode = 20;
             i_this->mSound.startCreatureSound(Z2SE_FN_ROPE_CREAK, 0, -1);
-            cage_p->field_0x8fc = 20.0f;
-            // cage_p->field_0xd10[i_this->field_0x630] = 10;
-            a_this->home.angle.y = cage_p->current.angle.y;
+            sw_p->field_0x8fc = 20.0f;
+            sw_p->field_0xd10[i_this->field_0x630] = 10;
+            a_this->home.angle.y = sw_p->actor.current.angle.y;
             i_this->field_0x5fa = -0x4000;
             i_this->field_0x60c = 4000.0f;
 
             if (i_this->field_0x5b6 == 0) {
-                anm_init(i_this, 24, 2.0f, 2, 1.0f);
+                anm_init(i_this, 24, 3.0f, 2, 1.0f);
                 i_this->mTimers[0] = 10000;
                 i_this->mTimers[1] = 15;
             }
@@ -2535,8 +2535,8 @@ static void npc_ks_e_hang(npc_ks_class* i_this) {
         case 2:
             anm_init(i_this, 48, 2.0f, 2, 1.0f);
             i_this->mSound.startCreatureSound(Z2SE_FN_ROPE_CREAK, 0, -1);
-            cage_p->field_0x8fc = 20.0f;
-            // cage_p->field_0xd10[i_this->field_0x630] = 10;
+            sw_p->field_0x8fc = 20.0f;
+            sw_p->field_0xd10[i_this->field_0x630] = 10;
             i_this->field_0x5fa = -0x8000;
             i_this->field_0x60c = 8000.0f;
             i_this->mMode++;
@@ -2572,7 +2572,7 @@ static void npc_ks_e_hang(npc_ks_class* i_this) {
             }
     }
 
-    a_this->current.pos = cage_p->field_0x920[i_this->field_0x630];
+    a_this->current.pos = sw_p->field_0x920[i_this->field_0x630];
     cLib_addCalcAngleS2(&i_this->field_0x602, i_this->field_0x60c * cM_ssin(i_this->field_0x5fa), 4, 0x1000);
     i_this->field_0x5fa += 0x800;
     a_this->current.angle.z = -(i_this->field_0x602 / 2);
