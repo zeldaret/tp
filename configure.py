@@ -2075,7 +2075,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_rw"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_saidan"),
     ActorRel(NonMatching, "d_a_obj_sakuita"),
-    ActorRel(NonMatching, "d_a_obj_sakuita_rope"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_sakuita_rope"),
     ActorRel(NonMatching, "d_a_obj_scannon"),
     ActorRel(NonMatching, "d_a_obj_scannon_crs"),
     ActorRel(NonMatching, "d_a_obj_scannon_ten"),
