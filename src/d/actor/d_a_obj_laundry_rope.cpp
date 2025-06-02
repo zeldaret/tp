@@ -80,12 +80,11 @@ void daObjLndRope_c::create_init() {
         if (*laundryEntry == -1) {
             *procId = fpcM_ERROR_PROCESS_ID_e;
         } else {
-            *procId = fopAcM_createChild(
-                PROC_Obj_Laundry, fopAcM_GetID(this), *laundryEntry, ropePosition,
-                fopAcM_GetRoomNo(this),
-                &csXyz(0, cLib_targetAngleY(ropePosition, ropePosition + 1) + 0x4000,
-                       -cLib_targetAngleX(ropePosition, ropePosition + 1)),
-                NULL, -1, 0);
+            csXyz childAngle(0, cLib_targetAngleY(ropePosition, ropePosition + 1) + 0x4000,
+                             -cLib_targetAngleX(ropePosition, ropePosition + 1));
+            *procId =
+                fopAcM_createChild(PROC_Obj_Laundry, fopAcM_GetID(this), *laundryEntry,
+                                   ropePosition, fopAcM_GetRoomNo(this), &childAngle, NULL, -1, 0);
         }
 
         ropePosition++;
