@@ -1880,7 +1880,7 @@ int daNpc_Maro_c::cutArrowTutorial(int arg0) {
                     field_0x10bc = -1;
                 }
 
-                dComIfGp_getAttention().offAttnDraw();
+                dComIfGp_getAttention()->offAttnDraw();
                 daNpcT_offTmpBit(0x3C);
                 daNpcT_offTmpBit(0x3F);
                 daNpcT_offTmpBit(0x40);
