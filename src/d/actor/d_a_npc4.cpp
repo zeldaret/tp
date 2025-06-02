@@ -1358,14 +1358,14 @@ BOOL daNpcF_c::chkActorInArea(fopAc_ac_c* i_actor, cXyz i_center, cXyz i_bounds,
 BOOL daNpcF_c::chkActorInAttnArea(fopAc_ac_c* i_actorCheck, fopAc_ac_c* i_actorAttn,
                                   int i_distIndex) {
     BOOL ret = false;
-    f32 neg_lower_y = dComIfGp_getAttention().getDistTable(i_distIndex).mLowerY * -1.0f;
-    f32 neg_upper_y = dComIfGp_getAttention().getDistTable(i_distIndex).mUpperY * -1.0f;
+    f32 neg_lower_y = dComIfGp_getAttention()->getDistTable(i_distIndex).mLowerY * -1.0f;
+    f32 neg_upper_y = dComIfGp_getAttention()->getDistTable(i_distIndex).mUpperY * -1.0f;
     cXyz center = i_actorAttn->current.pos;
     cXyz bounds;
 
-    bounds.x = dComIfGp_getAttention().getDistTable(i_distIndex).mDistMax;
+    bounds.x = dComIfGp_getAttention()->getDistTable(i_distIndex).mDistMax;
     bounds.y = (fabsf(neg_lower_y) + fabsf(neg_upper_y)) / 2.0f;
-    bounds.z = dComIfGp_getAttention().getDistTable(i_distIndex).mDistMax;
+    bounds.z = dComIfGp_getAttention()->getDistTable(i_distIndex).mDistMax;
     center.y = bounds.y + (center.y + neg_upper_y);
 
     if (chkActorInArea(i_actorCheck, center, bounds, i_actorAttn->shape_angle.y)) {
@@ -1681,11 +1681,11 @@ BOOL daNpcF_c::chkFindPlayer2(BOOL i_hasAttn, s16 i_angle) {
     cXyz attn_pos = getAttentionPos(daPy_getPlayerActorClass());
     int attn_no = i_hasAttn == false ? attention_info.distances[fopAc_attn_SPEAK_e]
                                      : attention_info.distances[fopAc_attn_TALK_e];
-    f32 dist_max = i_hasAttn == false ? dComIfGp_getAttention().getDistTable(attn_no).mDistMax
-                                     : dComIfGp_getAttention().getDistTable(attn_no).mDistMaxRelease;
-    f32 lower_y = dComIfGp_getAttention().getDistTable(attn_no).mLowerY * -1.0f;
-    f32 upper_y = dComIfGp_getAttention().getDistTable(attn_no).mUpperY * -1.0f;
-    u32 angle_select = dComIfGp_getAttention().getDistTable(attn_no).mAngleSelect;
+    f32 dist_max = i_hasAttn == false ? dComIfGp_getAttention()->getDistTable(attn_no).mDistMax
+                                     : dComIfGp_getAttention()->getDistTable(attn_no).mDistMaxRelease;
+    f32 lower_y = dComIfGp_getAttention()->getDistTable(attn_no).mLowerY * -1.0f;
+    f32 upper_y = dComIfGp_getAttention()->getDistTable(attn_no).mUpperY * -1.0f;
+    u32 angle_select = dComIfGp_getAttention()->getDistTable(attn_no).mAngleSelect;
 
     f32 fovy = 180.0f;
     if (angle_select & 8) {
@@ -1911,19 +1911,19 @@ bool daNpcF_chkDoBtnEqSpeak(fopAc_ac_c* i_actor_p) {
     bool ret = FALSE;
 
     if (daPy_getPlayerActorClass()->checkPriActorOwn(i_actor_p)) {
-        for (int i = 0; i < dComIfGp_getAttention().GetActionCount(); i++) {
-            if (dComIfGp_getAttention().ActionTarget(i) == i_actor_p &&
-                dComIfGp_getAttention().getActionBtnB() &&
-                dComIfGp_getAttention().getActionBtnB()->mType == 3)
+        for (int i = 0; i < dComIfGp_getAttention()->GetActionCount(); i++) {
+            if (dComIfGp_getAttention()->ActionTarget(i) == i_actor_p &&
+                dComIfGp_getAttention()->getActionBtnB() &&
+                dComIfGp_getAttention()->getActionBtnB()->mType == 3)
             {
                 ret = TRUE;
             }
         }
 
-        for (int i = 0; i < dComIfGp_getAttention().GetLockonCount(); i++) {
-            if (dComIfGp_getAttention().LockonTarget(i) == i_actor_p &&
-                dComIfGp_getAttention().getActionBtnB() &&
-                dComIfGp_getAttention().getActionBtnB()->mType == 1)
+        for (int i = 0; i < dComIfGp_getAttention()->GetLockonCount(); i++) {
+            if (dComIfGp_getAttention()->LockonTarget(i) == i_actor_p &&
+                dComIfGp_getAttention()->getActionBtnB() &&
+                dComIfGp_getAttention()->getActionBtnB()->mType == 1)
             {
                 ret = TRUE;
             }

@@ -348,9 +348,9 @@ u8 daE_YM_c::checkSurpriseLock() {
         return 0;
     }
     if (mAction != 8) {
-        bool truth = dComIfGp_getAttention().LockonTruth();
+        bool truth = dComIfGp_getAttention()->LockonTruth();
         if (truth) {
-            fopAc_ac_c* tgt = dComIfGp_getAttention().LockonTarget(0);
+            fopAc_ac_c* tgt = dComIfGp_getAttention()->LockonTarget(0);
             if (tgt == this && mType == 0) {
                 cXyz my_vec_0 = current.pos - mPrevPos;
                 cXyz my_vec_1 = player->current.pos - mPrevPos;
@@ -1499,7 +1499,7 @@ void daE_YM_c::executeAttack() {
             field_0x6a5 = 0;
             break;
         case 1:
-            if (field_0x6d4 && (dComIfGp_getAttention().LockonTruth() == 0 || dComIfGp_getAttention().LockonTarget(0) != this)) {
+            if (field_0x6d4 && (dComIfGp_getAttention()->LockonTruth() == 0 || dComIfGp_getAttention()->LockonTarget(0) != this)) {
                 if (checkSurpriseNear()) {
                     return;
                 }

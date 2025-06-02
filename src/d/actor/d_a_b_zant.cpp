@@ -5411,7 +5411,7 @@ void daB_ZANT_c::cc_ice_set() {
     cXyz sp40;
 
     if (mAction == ACT_ICE_STEP || mAction == ACT_ICE_JUMP) {
-        if (!dComIfGp_getAttention().LockonTruth() || dComIfGp_getAttention().LockonTarget(0) != this) {
+        if (!dComIfGp_getAttention()->LockonTruth() || dComIfGp_getAttention()->LockonTarget(0) != this) {
             mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(JNT_FOOT_L));
             mDoMtx_stack_c::transM(20.0f, 0.0f, 0.0f);
             mDoMtx_stack_c::multVecZero(&sp34);

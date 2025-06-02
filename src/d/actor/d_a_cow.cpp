@@ -1827,8 +1827,8 @@ void daCow_c::action_angry() {
             }
 
             int lockedOn = false;
-            if (mRunDuration && mForgetCowPTimer && dComIfGp_getAttention().LockonTruth() &&
-                (dComIfGp_getAttention().LockonTarget(0) == this) &&
+            if (mRunDuration && mForgetCowPTimer && dComIfGp_getAttention()->LockonTruth() &&
+                (dComIfGp_getAttention()->LockonTarget(0) == this) &&
                 (s16)cLib_distanceAngleS(playerAngle, mSavedAngle.y) < 0x800)
             {
                 mTargetAngle = playerAngle;

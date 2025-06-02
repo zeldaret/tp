@@ -4694,7 +4694,7 @@ int daAlink_c::create() {
             return cPhs_ERROR_e;
         }
 
-        mAttention = &dComIfGp_getAttention();
+        mAttention = dComIfGp_getAttention();
         field_0x317c = dComIfGp_getPlayerCameraID(0);
 
         playerInit();

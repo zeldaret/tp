@@ -925,16 +925,16 @@ u16 dMsgFlow_c::query007(mesg_flow_node_branch* i_flowNode_p, fopAc_ac_c* i_spea
     s16 attention_angle = sp10.U() - fopAcM_GetShapeAngle_p(daPy_getPlayerActorClass())->y;
 
     u8 speak_dist = i_speaker_p->attention_info.distances[fopAc_attn_SPEAK_e];
-    f32 max_dist = dComIfGp_getAttention().getDistTable(speak_dist).mDistMaxRelease;
+    f32 max_dist = dComIfGp_getAttention()->getDistTable(speak_dist).mDistMaxRelease;
     if (prm0 != 0) {
         max_dist = prm0;
     }
 
-    ret = dComIfGp_getAttention().checkDistance(
+    ret = dComIfGp_getAttention()->checkDistance(
         &player_attention_pos, attention_angle, &i_speaker_p->attention_info.position, max_dist,
-        dComIfGp_getAttention().getDistTable(speak_dist).mDistanceAdjust,
-        dComIfGp_getAttention().getDistTable(speak_dist).mUpperY,
-        dComIfGp_getAttention().getDistTable(speak_dist).mLowerY);
+        dComIfGp_getAttention()->getDistTable(speak_dist).mDistanceAdjust,
+        dComIfGp_getAttention()->getDistTable(speak_dist).mUpperY,
+        dComIfGp_getAttention()->getDistTable(speak_dist).mLowerY);
 
     if (param_2 != 0) {
         // "Conversation Distance Branch"

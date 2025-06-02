@@ -1942,7 +1942,7 @@ int daHorse_c::setSpeedAndAngle() {
     }
 
     if (checkStateFlg0(FLG0_UNK_1)) {
-        dAttention_c* attention = &dComIfGp_getAttention();
+        dAttention_c* attention = dComIfGp_getAttention();
         if (attention->GetLockonList(0) != NULL && attention->LockonTruth() && fopAcM_searchActorDistanceXZ2(this, attention->GetLockonList(0)->getActor()) > 1000000.0f) {
             cLib_addCalcAngleS(&current.angle.y, fopAcM_searchActorAngleY(this, attention->GetLockonList(0)->getActor()), 5, field_0x16c2, daHorse_hio_c0::m.min_turn);
             if (!checkStateFlg0(daHorse_FLG0(FLG0_UNK_100000 | FLG0_UNK_200000))) {
@@ -3099,7 +3099,7 @@ BOOL daHorse_c::checkServiceWaitAnime() {
 
 /* 80840844-808408F0 008A04 00AC+00 2/2 0/0 0/0 .text            checkTurnInput__9daHorse_cFv */
 BOOL daHorse_c::checkTurnInput() {
-    return m_padStickValue > 0.9f && (!dComIfGp_getAttention().Lockon() || daAlink_getAlinkActorClass()->getAtnActor() != NULL);
+    return m_padStickValue > 0.9f && (!dComIfGp_getAttention()->Lockon() || daAlink_getAlinkActorClass()->getAtnActor() != NULL);
 }
 
 /* 808408F0-808409C0 008AB0 00D0+00 2/2 0/0 0/0 .text            checkTgHitTurn__9daHorse_cFv */
