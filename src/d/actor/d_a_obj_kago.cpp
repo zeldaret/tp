@@ -676,7 +676,12 @@ void daObj_Kago_c::reset() {
 
 /* 80C3359C-80C33620 001B9C 0084+00 1/1 0/0 0/0 .text            setMtx__12daObj_Kago_cFv */
 void daObj_Kago_c::setMtx() {
-    // NONMATCHING
+    csXyz acStack_18(shape_angle);
+    acStack_18.y += field_0xb74;
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::ZXYrotM(acStack_18);
+    mDoMtx_stack_c::scaleM(scale);
+    field_0x574->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* ############################################################################################## */

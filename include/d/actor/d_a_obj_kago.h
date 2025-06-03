@@ -58,9 +58,25 @@ public:
 
         return 4;
     }
+
+    void setMtx(Mtx param_1) {
+        cXyz sp18;
+        field_0xba2 = 1;
+        mDoMtx_stack_c::copy(param_1);
+        mDoMtx_stack_c::multVecZero(&sp18);
+        current.pos = sp18;
+        old.pos = current.pos;
+        field_0x574->setBaseTRMtx(param_1);
+    }
     
 private:
-    /* 0x568 */ u8 field_0x568[0xba8 - 0x568];
+    /* 0x568 */ u8 field_0x568[0x574 - 0x568];
+    /* 0x574 */ J3DModel* field_0x574;
+    /* 0x578 */ u8 field_0x578[0xb74 - 0x578];
+    /* 0xB74 */ s16 field_0xb74;
+    /* 0xB76 */ u8 field_0xb76[0xba2 - 0xb76];
+    /* 0xBA2 */ s8 field_0xba2;
+    /* 0xBA3 */ u8 field_0xba3[0xba8 - 0xba3];
 };
 
 STATIC_ASSERT(sizeof(daObj_Kago_c) == 0xba8);

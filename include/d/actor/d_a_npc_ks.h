@@ -4,6 +4,7 @@
 #include "d/actor/d_a_npc.h"
 #include "d/actor/d_a_obj_so.h"
 #include "d/actor/d_a_obj_sw.h"
+#include "f_op/f_op_actor_mng.h"
 
 /**
  * @ingroup actors-npcs
@@ -18,7 +19,8 @@ public:
     /* 0x000 */ fopAc_ac_c actor;
     /* 0x568 */ u8 field_0x568[0x570 - 0x568];
     /* 0x570 */ u8 field_0x570;
-    /* 0x571 */ u8 field_0x571[0x5b4 - 0x571];
+    /* 0x571 */ u8 field_0x571[0x5ac - 0x571];
+    /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ u8 mRoomMonkeyID;
     /* 0x5B5 */ u8 field_0x5b5;
     /* 0x5B6 */ u8 field_0x5b6;
@@ -56,7 +58,7 @@ public:
     /* 0x610 */ s16 field_0x610;
     /* 0x614 */ cXyz field_0x614;
     /* 0x620 */ s8 field_0x620;
-    /* 0x621 */ u8 field_0x621;
+    /* 0x621 */ s8 field_0x621;
     /* 0x622 */ u8 field_0x622;
     /* 0x623 */ u8 field_0x623;
     /* 0x624 */ cXyz field_0x624;
@@ -133,7 +135,12 @@ public:
     /* 0xC16 */ s8 field_0xc16;
     /* 0xC17 */ s8 field_0xc17;
     /* 0xC18 */ dPath* field_0xc18;
-    /* 0xC1C */ u8 field_0xc1c[0xc20 - 0xc1c];
+    /* 0xC1C */ u8 field_0xc1c;
+    /* 0xC1D */ u8 field_0xc1d[0xc20 - 0xc1d];
+
+    u32 fopAcM_checkHawkCarryNow(fopAc_ac_c* param_1) {
+        return fopAcM_checkStatus(param_1, 0x80000000);
+    }
 };
 
 STATIC_ASSERT(sizeof(npc_ks_class) == 0xc20);
