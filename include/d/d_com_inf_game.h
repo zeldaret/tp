@@ -1868,7 +1868,7 @@ inline u8 dComIfGs_getTmpReg(const u16 i_reg) {
     return g_dComIfG_gameInfo.info.getTmp().getEventReg(i_reg);
 }
 
-inline u8 dComIfGs_getEventReg(const u16 reg) {
+inline u8 dComIfGs_getEventReg(u16 reg) {
     return g_dComIfG_gameInfo.info.getEvent().getEventReg(reg);
 }
 
@@ -3064,7 +3064,7 @@ inline bool dComIfGp_checkMesgBgm() {
     return g_dComIfG_gameInfo.play.checkMesgBgm();
 }
 
-inline void dComIfGp_setMessageCountNumber(u32 number) {
+inline void dComIfGp_setMessageCountNumber(s32 number) {
     g_dComIfG_gameInfo.play.setMessageCountNumber(number);
 }
 

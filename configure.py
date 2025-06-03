@@ -1545,7 +1545,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_besu"),
     ActorRel(Equivalent, "d_a_npc_fairy_seirei"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_fish"),
-    ActorRel(NonMatching, "d_a_npc_henna"),
+    ActorRel(Equivalent, "d_a_npc_henna"), # weak func order
     ActorRel(NonMatching, "d_a_npc_kakashi"),
     ActorRel(NonMatching, "d_a_npc_kkri"),
     ActorRel(NonMatching, "d_a_npc_kolin"),
