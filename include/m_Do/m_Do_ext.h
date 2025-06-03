@@ -146,6 +146,9 @@ public:
     /* 8000D990 */ void changeBckOnly(J3DAnmTransform* i_bck);
     /* 8000D9CC */ void entry(J3DModelData* i_modelData, f32 i_frame);
     /* 8000D9E8 */ void entryJoint(J3DModelData* i_modelData, u16 i_jntNo, f32 i_frame);
+    inline void entryJoint(J3DModelData* i_modelData, u16 i_jntNo) {
+        entryJoint(i_modelData, i_jntNo, getFrame());
+    }
 
     void entry(J3DModelData* i_modelData) { entry(i_modelData, getFrame()); }
 

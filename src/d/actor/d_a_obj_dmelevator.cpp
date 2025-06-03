@@ -85,9 +85,9 @@ static int nodeCallBackForSw(J3DJoint* param_0, int param_1) {
 }
 
 /* 80BDDCA0-80BDDD38 000420 0098+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
-static int nodeCallBack(J3DJoint* param_0, int param_1) {
+static int nodeCallBack(J3DJoint* i_joint, int param_1) {
     if (param_1 == 0) {
-        int jnt_no = param_0->getJntNo();
+        int jnt_no = i_joint->getJntNo();
         J3DModel* pmodel = j3dSys.getModel();
         daObjDmElevator_c* puser_area = (daObjDmElevator_c*)pmodel->getUserArea();
        

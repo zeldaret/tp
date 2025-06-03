@@ -1466,10 +1466,10 @@ static void rod_set(fshop_class* param_0) {
 }
 
 /* 8086CC6C-8086CD70 000CEC 0104+00 1/1 0/0 0/0 .text            s_fish_sub__FPvPv */
-static void* s_fish_sub(void* param_1, void* param_2) {
-    fopAc_ac_c* actor = (fopAc_ac_c*)param_1;
-    fs_weed_s* weed = (fs_weed_s*)param_2;
-    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == PROC_MG_FISH && actor->speedF > 0.1f) {
+static void* s_fish_sub(void* param_0, void* param_1) {
+    fopAc_ac_c* actor = (fopAc_ac_c*)param_0;
+    fs_weed_s* weed = (fs_weed_s*)param_1;
+    if (fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == PROC_MG_FISH && actor->speedF > 0.1f) {
         f32 dVar9 = actor->current.pos.x - weed->field_0x00[0].x;
         f32 dVar8 = actor->current.pos.y - weed->field_0x00[0].y;
         f32 dVar10 = actor->current.pos.z - weed->field_0x00[0].z;
@@ -1480,7 +1480,7 @@ static void* s_fish_sub(void* param_1, void* param_2) {
         if (fabsf(dVar8) < 60.0f * weed->field_0xb4 &&
             JMAFastSqrt(((dVar9 * dVar9) + (dVar10 * dVar10))) < dVar3 * 35.0f){
             cLib_addCalc2(&weed->field_0xb8, dVar3, 0.1f, 0.05f);
-            return (fopAc_ac_c*)param_1;
+            return (fopAc_ac_c*)param_0;
         }
     }
 
@@ -1853,11 +1853,11 @@ static int daFshop_Execute(fshop_class* param_1) {
                     }
                 }
                 if (!bVar5) {
-                    henna->health = 1;
+                    henna->actor.health = 1;
                 } else if (param_1->field_0x567 == 1) {
-                    henna->health = 0;
+                    henna->actor.health = 0;
                 } else {
-                    henna->health = 2;
+                    henna->actor.health = 2;
                 }
                 
                 henna->field_0x752 = 0x49;
@@ -1879,7 +1879,7 @@ static int daFshop_Execute(fshop_class* param_1) {
                             }
 
                             if (bVar5) {
-                                henna->health = 3;
+                                henna->actor.health = 3;
                                 henna->field_0x752 = 0x49;
                             } else {
                                 henna->field_0x752 = 0x4c;
