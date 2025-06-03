@@ -30,6 +30,35 @@ public:
     /* 80C338D0 */ void setSmokePrtcl();
     /* 80C33958 */ void setWaterPrtcl();
     /* 80C33A58 */ void setHamonPrtcl();
+
+    u8 getType() {
+        int iVar1 = fopAcM_GetParam(this) & 0xFF;
+
+        switch ((subtype & 127)) {
+            case 0:
+                if (iVar1 == 0) {
+                    break;
+                }
+
+                return 0;
+
+            case 1:
+                switch (iVar1) {
+                    case 0:
+                        return 1;
+
+                    case 1:
+                        return 2;
+
+                    case 2:
+                        return 3;
+                }
+                
+        }
+
+        return 4;
+    }
+    
 private:
     /* 0x568 */ u8 field_0x568[0xba8 - 0x568];
 };

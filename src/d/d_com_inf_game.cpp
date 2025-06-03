@@ -2443,10 +2443,10 @@ void dComIfGs_shake_kandelaar() {
     g_dComIfG_gameInfo.field_0x1ddfa = 1;
 }
 
-bool dComIfGs_shake_kandelaar_check() {
-    bool check = false;
+int dComIfGs_shake_kandelaar_check() {
+    int check = 0;
     if (g_dComIfG_gameInfo.field_0x1ddfa == 2) {
-        check = true;
+        check = 1;
     }
     return check;
 }
