@@ -22,8 +22,8 @@ public:
     void OffNormalGrp() { mGrp &= ~NORMAL_GRP; }
     void OffFullGrp() { mGrp &= ~FULL_GRP; }
     void OnAll() { mGrp |= FULL_GRP; }
-    u32 MaskNormalGrp() const {return mGrp & NORMAL_GRP; }
-    u32 MaskWaterGrp() const {return mGrp & WATER_GRP; }
+    u32 MaskNormalGrp() { return mGrp & NORMAL_GRP; }
+    u32 MaskWaterGrp() { return mGrp & WATER_GRP; }
 private:
     /* 0x4 */ u32 mGrp;
 };
