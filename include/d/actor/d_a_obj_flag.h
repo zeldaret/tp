@@ -57,85 +57,10 @@ public:
         dComIfG_resDelete(&this->mPhase2, daSetBgObj_c::getArcName(this));
     }
 
-    int create() {
-        fopAcM_SetupActor(this, daObjFlag_c);
-    
-        int phase_state = dComIfG_resLoad(&mPhase, "FlagObj");
-        if (phase_state != cPhs_COMPLEATE_e) {
-            return phase_state;
-        }
-
-        phase_state = dComIfG_resLoad(&mPhase2, daSetBgObj_c::getArcName(this));
-        if(phase_state == cPhs_COMPLEATE_e) {
-            if(!fopAcM_entrySolidHeap(this, createSolidHeap, 0x4000)) {
-                return cPhs_ERROR_e;
-            }
-    
-            create_init();
-        }
-
-        return phase_state;
-    }
-
-    int execute() {
-        if (mpModel1 == NULL) {
-            return 1;
-        }
-
-        calcJointAngle();
-        return 1;
-    }
-
-    int draw() {
-        g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
-        dComIfGd_setListBG();
-        g_env_light.setLightTevColorType_MAJI(mpModel2, &tevStr);
-        mDoExt_modelUpdateDL(mpModel2);
-        
-        if(mpModel1 != NULL) {
-            g_env_light.setLightTevColorType_MAJI(mpModel1, &tevStr);
-            mDoExt_modelUpdateDL(mpModel1);
-        }
-
-        dComIfGd_setList();
-
-        return 1;
-    }
-
-    int createHeap() {
-        bool tmp = 0;
-        s8 angle = (u8)shape_angle.x;
-        if(angle <= -1 || angle > 99) {
-            tmp = false;
-        }
-        else {
-            tmp = true;
-        
-            char resName[12];
-            sprintf(resName, "flag%02d.bmd");
-
-            shape_angle.setall(0);
-            current.angle.setall(0);
-
-            J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("FlagObj", resName);
-            mpModel1 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
-
-            for(u8 i = 0; i < 5; i += 1) {
-                J3DJoint* nodePtr = (J3DJoint*)((u64)mpModel1->getModelData()->getJointNodePointer(i));
-                if(nodePtr != NULL) {
-                    nodePtr->setCallBack(nodeCallBack);
-                    mpModel1->setUserArea((u64)this);
-                }
-            }
-        }
-
-        mpModel2 = mDoExt_J3DModel__create((J3DModelData *)dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), "model0.bmd"), 0x80000, 0x11000084);
-        if(mpModel2 == NULL && tmp && mpModel1 == NULL) {
-            return 0;
-        }
-        
-        return 1;
-    }
+    inline int create();
+    inline int execute();
+    inline int draw();
+    inline int createHeap();
 
     struct M_attrs {
         /* 0x00 */ f32 field_0x00;
@@ -162,7 +87,7 @@ public:
     };
 
     static M_attrs const M_attr;
-    static M_attrs const& attr() { return M_attr; }
+    M_attrs const& attr() const { return M_attr; }
 };
 
 STATIC_ASSERT(sizeof(daObjFlag_c) == 0x5ec);

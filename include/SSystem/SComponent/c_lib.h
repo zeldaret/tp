@@ -19,7 +19,7 @@ f32 cLib_addCalcPos(cXyz* o_value, cXyz const& target, f32 scale, f32 maxStep, f
 f32 cLib_addCalcPosXZ(cXyz* o_value, cXyz const& target, f32 scale, f32 maxStep, f32 minStep);
 void cLib_addCalcPos2(cXyz* o_value, cXyz const& target, f32 scale, f32 maxStep);
 void cLib_addCalcPosXZ2(cXyz* o_value, cXyz const& target, f32 scale, f32 maxStep);
-s16 cLib_addCalcAngleS(s16* o_value, s16 target, s16 scale, s16 maxStep, s16 minStep);
+s16 cLib_addCalcAngleS(s16* o_value, s16 target, const s16 scale, s16 maxStep, s16 minStep);
 void cLib_addCalcAngleS2(s16* o_value, s16 target, s16 scale, s16 maxStep);
 
 int cLib_chaseUC(u8* o_value, u8 target, u8 step);
