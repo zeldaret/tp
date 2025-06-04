@@ -52,9 +52,9 @@ public:
     u8 getRoomPathPnt() const { return BGPC_GET_BITS(m_code.code2, 24, 8); }
 
     u8 getRoomInf() const { return BGPC_GET_BITS(m_code.code4, 0, 8); }
-    u32 maskNrm() { return BGPC_CHECK_BIT(m_code.code4, 8); }
+    u32 maskNrm() const { return BGPC_CHECK_BIT(m_code.code4, 8); }
     // BUG: Seems like this uses the same mask as maskNrm
-    u32 getWtr() { return BGPC_CHECK_BIT(m_code.code4, 8); }
+    u32 getWtr() const { return BGPC_CHECK_BIT(m_code.code4, 8); }
     u8 getSnd() const { return BGPC_GET_BITS(m_code.code4, 11, 8); }
     u8 getRoom() const { return BGPC_GET_BITS(m_code.code4, 20, 8); }
 

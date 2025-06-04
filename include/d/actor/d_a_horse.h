@@ -243,7 +243,7 @@ public:
     void offEndResetStateFlg0(daHorse_ERFLG0 i_flag) { m_endResetStateFlg0 &= ~i_flag;}
     void onResetStateFlg0(daHorse_RFLG0 i_flag) { m_resetStateFlg0 |= i_flag;}
     void offNoDrawWait() { offStateFlg0(FLG0_NO_DRAW_WAIT); }
-    bool checkSpecialWallHit(const cXyz& param_0) { return (this->*m_checkSpecialWallHit)(param_0); }
+    bool checkSpecialWallHit(const cXyz& param_0) const { return (this->*m_checkSpecialWallHit)(param_0); }
     MtxP getSaddleMtx() { return m_model->getAnmMtx(21); }
     MtxP getRootMtx() { return m_model->getAnmMtx(0); }
     f32 getAnmFrameMax(int i_idx) const { return m_frameCtrl[i_idx].getEnd(); }

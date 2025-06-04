@@ -2234,11 +2234,11 @@ BOOL daNpcT_c::chkFindActor(fopAc_ac_c* i_actor, BOOL i_release, s16 i_angleY) {
     int dist_index = i_release == FALSE ? attention_info.distances[fopAc_attn_SPEAK_e]
                                         : attention_info.distances[fopAc_attn_TALK_e];
 
-    f32 dist_max = i_release == FALSE ? dComIfGp_getAttention().getDistTable(dist_index).mDistMax
-                                      : dComIfGp_getAttention().getDistTable(dist_index).mDistMaxRelease;
-    f32 lower_y = dComIfGp_getAttention().getDistTable(dist_index).mLowerY * -1.0f;
-    f32 upper_y = dComIfGp_getAttention().getDistTable(dist_index).mUpperY * -1.0f;
-    u32 angle_select = dComIfGp_getAttention().getDistTable(dist_index).mAngleSelect;
+    f32 dist_max = i_release == FALSE ? dComIfGp_getAttention()->getDistTable(dist_index).mDistMax
+                                      : dComIfGp_getAttention()->getDistTable(dist_index).mDistMaxRelease;
+    f32 lower_y = dComIfGp_getAttention()->getDistTable(dist_index).mLowerY * -1.0f;
+    f32 upper_y = dComIfGp_getAttention()->getDistTable(dist_index).mUpperY * -1.0f;
+    u32 angle_select = dComIfGp_getAttention()->getDistTable(dist_index).mAngleSelect;
 
     f32 fov = 180.0f;
     if (angle_select & 8) {
@@ -2286,17 +2286,17 @@ BOOL daNpcT_c::chkFindWolf(s16 i_angleY, int i_distIndex, int param_2, f32 i_bou
             return TRUE;
         }
 
-        f32 dist_max = dComIfGp_getAttention().getDistTable(i_distIndex).mDistMax;
-        f32 upper_y = dComIfGp_getAttention().getDistTable(i_distIndex).mUpperY;
-        f32 lower_y = dComIfGp_getAttention().getDistTable(i_distIndex).mLowerY;
+        f32 dist_max = dComIfGp_getAttention()->getDistTable(i_distIndex).mDistMax;
+        f32 upper_y = dComIfGp_getAttention()->getDistTable(i_distIndex).mUpperY;
+        f32 lower_y = dComIfGp_getAttention()->getDistTable(i_distIndex).mLowerY;
         if (chkPointInArea(attn_pos, attention_info.position, dist_max, upper_y, lower_y, 0)) {
             return TRUE;
         }
 
         int dist_index = attention_info.distances[fopAc_attn_TALK_e];
-        dist_max = dComIfGp_getAttention().getDistTable(dist_index).mDistMax;
-        upper_y = dComIfGp_getAttention().getDistTable(dist_index).mUpperY;
-        lower_y = dComIfGp_getAttention().getDistTable(dist_index).mLowerY;
+        dist_max = dComIfGp_getAttention()->getDistTable(dist_index).mDistMax;
+        upper_y = dComIfGp_getAttention()->getDistTable(dist_index).mUpperY;
+        lower_y = dComIfGp_getAttention()->getDistTable(dist_index).mLowerY;
         if (chkPointInArea(attn_pos, attention_info.position, dist_max, upper_y, lower_y, 0)
             && param_2 < 2 && param_7 && chkWolfAction())
         {
@@ -2437,8 +2437,8 @@ void daNpcT_c::calcSpeedAndAngle(cXyz i_target, BOOL i_stop, s16 i_angleScale, s
  */
 int daNpcT_c::getActorDistance(fopAc_ac_c* i_actor, int i_distIndex1, int i_distIndex2) {
     int ret = 0;
-    f32 dist1 = dComIfGp_getAttention().getDistTable(i_distIndex1).mDistMax;
-    f32 dist2 = dComIfGp_getAttention().getDistTable(i_distIndex2).mDistMax;
+    f32 dist1 = dComIfGp_getAttention()->getDistTable(i_distIndex1).mDistMax;
+    f32 dist2 = dComIfGp_getAttention()->getDistTable(i_distIndex2).mDistMax;
     f32 actor_dist = fopAcM_searchActorDistanceXZ(this, i_actor);
     
     if (actor_dist < dist1) {
@@ -2697,19 +2697,19 @@ BOOL daNpcT_chkDoBtnIsSpeak(fopAc_ac_c* i_actor_p) {
         if (daPy_getPlayerActorClass()->checkPriActorOwn(i_actor_p)) {
             JUT_ASSERT(4965, 0 != dComIfGp_getAttention());
 
-            for (int i = 0; i < dComIfGp_getAttention().GetActionCount(); i++) {
-                if (dComIfGp_getAttention().ActionTarget(i) == i_actor_p &&
-                    dComIfGp_getAttention().getActionBtnB() != NULL &&
-                    dComIfGp_getAttention().getActionBtnB()->mType == 3)
+            for (int i = 0; i < dComIfGp_getAttention()->GetActionCount(); i++) {
+                if (dComIfGp_getAttention()->ActionTarget(i) == i_actor_p &&
+                    dComIfGp_getAttention()->getActionBtnB() != NULL &&
+                    dComIfGp_getAttention()->getActionBtnB()->mType == 3)
                 {
                     ret = TRUE;
                 }
             }
 
-            for (int i = 0; i < dComIfGp_getAttention().GetLockonCount(); i++) {
-                if (dComIfGp_getAttention().LockonTarget(i) == i_actor_p &&
-                    dComIfGp_getAttention().getActionBtnB() != NULL &&
-                    dComIfGp_getAttention().getActionBtnB()->mType == 1)
+            for (int i = 0; i < dComIfGp_getAttention()->GetLockonCount(); i++) {
+                if (dComIfGp_getAttention()->LockonTarget(i) == i_actor_p &&
+                    dComIfGp_getAttention()->getActionBtnB() != NULL &&
+                    dComIfGp_getAttention()->getActionBtnB()->mType == 1)
                 {
                     ret = TRUE;
                 }

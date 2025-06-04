@@ -252,10 +252,10 @@ void daNpc_seiB_c::setParam() {
     selectAction();
     srchActors();
 
-    dComIfGp_getAttention().getDistTable(0x28).mDistMax = mpParam->m.mDist;
-    dComIfGp_getAttention().getDistTable(0x28).mDistMaxRelease = mpParam->m.mDist;
-    dComIfGp_getAttention().getDistTable(0x27).mDistMax = mpParam->m.mDist;
-    dComIfGp_getAttention().getDistTable(0x27).mDistMaxRelease = mpParam->m.mDist;
+    dComIfGp_getAttention()->getDistTable(0x28).mDistMax = mpParam->m.mDist;
+    dComIfGp_getAttention()->getDistTable(0x28).mDistMaxRelease = mpParam->m.mDist;
+    dComIfGp_getAttention()->getDistTable(0x27).mDistMax = mpParam->m.mDist;
+    dComIfGp_getAttention()->getDistTable(0x27).mDistMaxRelease = mpParam->m.mDist;
 
     attention_info.distances[0] = 39;
     attention_info.distances[1] = 39;

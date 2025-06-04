@@ -290,7 +290,7 @@ public:
     fopAc_ac_c* getPlayer(int idx) { return (fopAc_ac_c*)mPlayer[idx * 2]; }
     dPa_control_c* getParticle() { return mParticle; }
     dEvent_manager_c& getEvtManager() { return mEvtManager; }
-    dAttention_c& getAttention() { return mAttention; }
+    dAttention_c* getAttention() { return &mAttention; }
     dStage_startStage_c* getStartStage() { return &mStartStage; }
 
     void setCurrentGrafPort(J2DOrthoGraph* i_graf) { mCurrentGrafPort = i_graf; }
@@ -1792,8 +1792,8 @@ inline void dComIfGs_removeZone(int i_zoneNo) {
     g_dComIfG_gameInfo.info.removeZone(i_zoneNo);
 }
 
-inline void dComIfGp_addSimpleModel(J3DModelData* i_modelData, int roomNo, u8 i_drawBG) {
-    g_dComIfG_gameInfo.play.addSimpleModel(i_modelData, roomNo, i_drawBG);
+inline int dComIfGp_addSimpleModel(J3DModelData* i_modelData, int roomNo, u8 i_drawBG) {
+    return g_dComIfG_gameInfo.play.addSimpleModel(i_modelData, roomNo, i_drawBG);
 }
 
 inline void dComIfGp_removeSimpleModel(J3DModelData* i_modelData, int roomNo) {
@@ -1868,7 +1868,7 @@ inline u8 dComIfGs_getTmpReg(const u16 i_reg) {
     return g_dComIfG_gameInfo.info.getTmp().getEventReg(i_reg);
 }
 
-inline u8 dComIfGs_getEventReg(const u16 reg) {
+inline u8 dComIfGs_getEventReg(u16 reg) {
     return g_dComIfG_gameInfo.info.getEvent().getEventReg(reg);
 }
 
@@ -2157,40 +2157,40 @@ inline dEvent_manager_c* dComIfGp_getPEvtManager() {
     return &g_dComIfG_gameInfo.play.getEvtManager();
 }
 
-inline dAttention_c& dComIfGp_getAttention() {
+inline dAttention_c* dComIfGp_getAttention() {
     return g_dComIfG_gameInfo.play.getAttention();
 }
 
 inline u8 dComIfGp_att_getCatchChgItem() {
-    return dComIfGp_getAttention().getCatchChgItem();
+    return dComIfGp_getAttention()->getCatchChgItem();
 }
 
 inline fopAc_ac_c* dComIfGp_att_getCatghTarget() {
-    return dComIfGp_getAttention().getCatghTarget();
+    return dComIfGp_getAttention()->getCatghTarget();
 }
 
 inline fopAc_ac_c* dComIfGp_att_getZHint() {
-    return dComIfGp_getAttention().getZHintTarget();
+    return dComIfGp_getAttention()->getZHintTarget();
 }
 
 inline int dComIfGp_att_ZHintRequest(fopAc_ac_c* param_1, int param_2) {
-    return dComIfGp_getAttention().ZHintRequest(param_1, param_2);
+    return dComIfGp_getAttention()->ZHintRequest(param_1, param_2);
 }
 
 inline void dComIfGp_att_LookRequest(fopAc_ac_c* param_0, f32 i_horizontalDist, f32 i_upDist,
                                      f32 i_downDist, s16 i_angle, int param_5) {
-    dComIfGp_getAttention().LookRequest(param_0, i_horizontalDist, i_upDist, i_downDist, i_angle,
+    dComIfGp_getAttention()->LookRequest(param_0, i_horizontalDist, i_upDist, i_downDist, i_angle,
                                         param_5);
 }
 
 inline void dComIfGp_att_CatchRequest(fopAc_ac_c* param_0, u8 param_1, f32 i_horizontalDist,
                                       f32 i_upDist, f32 i_downDist, s16 i_angle, int param_5) {
-    dComIfGp_getAttention().CatchRequest(param_0, param_1, i_horizontalDist, i_upDist, i_downDist,
+    dComIfGp_getAttention()->CatchRequest(param_0, param_1, i_horizontalDist, i_upDist, i_downDist,
                                          i_angle, param_5);
 }
 
 inline fopAc_ac_c* dComIfGp_att_getLookTarget() {
-    return dComIfGp_getAttention().getLookTarget();
+    return dComIfGp_getAttention()->getLookTarget();
 }
 
 inline J2DGrafContext* dComIfGp_getCurrentGrafPort() {
@@ -3064,7 +3064,7 @@ inline bool dComIfGp_checkMesgBgm() {
     return g_dComIfG_gameInfo.play.checkMesgBgm();
 }
 
-inline void dComIfGp_setMessageCountNumber(u32 number) {
+inline void dComIfGp_setMessageCountNumber(s32 number) {
     g_dComIfG_gameInfo.play.setMessageCountNumber(number);
 }
 

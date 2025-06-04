@@ -36,9 +36,9 @@ void daObjGraRock_c::setAttnPos() {
     attention_info.position += current.pos;
     attention_info.distances[0] = daNpcF_getDistTableIdx(8, 5);
     attention_info.flags = 1;
-    dAttention_c& attention = dComIfGp_getAttention();
-    if (attention.LockonTruth()) {
-        if (attention.LockonTarget(0) == this && field_0x9bc == 0 && field_0x9b6 == 0) {
+    dAttention_c* attention = dComIfGp_getAttention();
+    if (attention->LockonTruth()) {
+        if (attention->LockonTarget(0) == this && field_0x9bc == 0 && field_0x9b6 == 0) {
             field_0x9b6 = 90;
             field_0x9bd = 3;
             s16 sVar4 = cLib_getRndValue(0, 0x10000);

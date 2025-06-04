@@ -1148,6 +1148,10 @@ public:
         onEndResetFlg2(ERFLG2_UNK_2);
     }
 
+    s16 getFishingRodAngleY() const {
+        return shape_angle.y + mBodyAngle.y;
+    }
+
     void onFishingRelease() {
         this->mEndResetFlg0 |= 0x4000000;
     }

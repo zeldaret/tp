@@ -1625,7 +1625,7 @@ static int npc_ks_demo_02(npc_ks_class* i_this) {
                 a_this->attention_info.distances[3] = 2;
             }
 
-            if (i_this == (npc_ks_class*)dComIfGp_getAttention().LockonTarget(0) && i_this->mTimers[2] == 0 
+            if (i_this == (npc_ks_class*)dComIfGp_getAttention()->LockonTarget(0) && i_this->mTimers[2] == 0 
                 && mDoCPd_c::getTrigA(PAD_1) != 0) {
                 i_this->mMode = 17;
                 anm_init(i_this, 25, 2.0f, 0, 1.0f);

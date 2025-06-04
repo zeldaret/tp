@@ -21,6 +21,15 @@ int PrmAbstract(const fopAc_ac_c* i_actor, T i_prmA, T i_prmB) {
     u32 param = fopAcM_GetParam(i_actor);
     return ((1 << i_prmA) - 1) & (param >> i_prmB);
 }
+
+#ifdef DEBUG
+class HioVarious_c {
+public:
+    static void init(JORReflexible*, const char*);
+    static void clean(JORReflexible*);
+};
+#endif
+
 };  // namespace daObj
 
 #endif /* D_A_D_A_OBJ_H */

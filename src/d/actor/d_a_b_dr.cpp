@@ -2327,7 +2327,7 @@ void daB_DR_c::executeBreathAttack() {
                 attention_info.flags &= ~0x4;
             } else {
                 mWeekCc.OnTgSetBit();
-                if (mTarget != 0 || (dComIfGp_getAttention().GetLockonList(0) != NULL && dComIfGp_getAttention().LockonTruth() && dComIfGp_getAttention().GetLockonList(0)->getActor() == this)) {
+                if (mTarget != 0 || (dComIfGp_getAttention()->GetLockonList(0) != NULL && dComIfGp_getAttention()->LockonTruth() && dComIfGp_getAttention()->GetLockonList(0)->getActor() == this)) {
                     mTarget = 0;
                 } else {
                     attention_info.flags &= ~0x4;
