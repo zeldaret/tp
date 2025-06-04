@@ -422,7 +422,7 @@ public:
 
     void setIdx(int i_idx) { mIdx = i_idx; }
 
-    const int getIdx() { return mIdx; }
+    const u16 getIdx() { return mIdx; }
 
     dPath* getPathInfo() { return mPathInfo; }
 

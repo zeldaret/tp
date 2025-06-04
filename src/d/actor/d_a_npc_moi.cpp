@@ -566,7 +566,8 @@ void daNpc_Moi_c::reset() {
             setPos(cStack_30);
             mPath.setIdx(iVar8);
             mPath.setNextIdx(mPath.getNumPnts());
-            cStack_30 = mPath.getPntPos(mPath.getIdx());
+            u16 path_idx = mPath.getIdx();
+            cStack_30 = mPath.getPntPos(path_idx);
             cStack_80.y = cLib_targetAngleY(&current.pos, &cStack_30);
         }
         field_0x1666 = 1;
@@ -1309,10 +1310,8 @@ int daNpc_Moi_c::injuryWalk() {
             mPath.setNextIdx(mPath.getNumPnts());
         }
 
-        if (mPath.getIdx() > 1) {
-            if (mPath.getIdx() < mPath.getNumPnts() - 2) {
-                cLib_calcTimer(&field_0x164c);
-            }
+        if ((int)mPath.getIdx() > 1 && (int)mPath.getIdx() < mPath.getNumPnts() - 2) {
+            cLib_calcTimer(&field_0x164c);
         }
     }
 
@@ -1359,9 +1358,9 @@ int daNpc_Moi_c::poise() {
                 {
                     cXyz cStack_74 = getAttnPos(daPy_getPlayerActorClass());
                     int speak_dist = attention_info.distances[fopAc_attn_SPEAK_e];
-                    f32 fVar2 = dComIfGp_getAttention().getDistTable(speak_dist).mDistMax;
-                    f32 fVar3 = dComIfGp_getAttention().getDistTable(speak_dist).mLowerY * -1.0f;
-                    f32 fVar4 = dComIfGp_getAttention().getDistTable(speak_dist).mUpperY * -1.0f;
+                    f32 fVar2 = dComIfGp_getAttention()->getDistTable(speak_dist).mDistMax;
+                    f32 fVar3 = dComIfGp_getAttention()->getDistTable(speak_dist).mLowerY * -1.0f;
+                    f32 fVar4 = dComIfGp_getAttention()->getDistTable(speak_dist).mUpperY * -1.0f;
                     if (chkPointInArea(cStack_74, attention_info.position, fVar2, fVar3, fVar4, 0))
                     {
                         if (field_0x1648 == 0) {
@@ -1633,7 +1632,8 @@ int daNpc_Moi_c::cutConversationWithUri(int param_1) {
             setPos(cStack_34);
             mPath.setIdx(0);
             mPath.setNextIdx(mPath.getNumPnts());
-            cStack_34 = mPath.getPntPos(mPath.getIdx());
+            u16 path_idx = mPath.getIdx();
+            cStack_34 = mPath.getPntPos(path_idx);
             setAngle(cLib_targetAngleY(&current.pos, &cStack_34));
             break;
         case 2:
@@ -1694,7 +1694,8 @@ int daNpc_Moi_c::cutFindWolf(int param_1) {
             mPath.offReverse();
             mPath.setIdx(0);
             mPath.setNextIdx(mPath.getNumPnts());
-            cStack_30 = mPath.getPntPos(mPath.getIdx());
+            u16 path_idx = mPath.getIdx();
+            cStack_30 = mPath.getPntPos(path_idx);
             field_0x1664 = fopAcM_searchPlayerAngleY(this);
             setAngle(field_0x1664);
             mPlayerActorMngr.entry(daPy_getPlayerActorClass());
