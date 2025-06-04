@@ -43,8 +43,12 @@ public:
     /* 80CB3C6C */ bool Draw();
     /* 80CB3C74 */ void Delete();
     /* 80CB3E58 */ ~daPoFire_c();
+
+    u8 getMoveEnd() { return mMoveEnd; }
 private:
-    /* 0x568 */ u8 field_0x568[0x618 - 0x568];
+    /* 0x568 */ u8 field_0x568[0x59C - 0x568];
+    /* 0x59C */ u8 mMoveEnd;
+    /* 0x59D */ u8 field_0x59D[0x618 - 0x59D];
 };
 
 STATIC_ASSERT(sizeof(daPoFire_c) == 0x618);
