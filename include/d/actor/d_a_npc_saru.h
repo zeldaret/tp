@@ -101,14 +101,14 @@ public:
     /* 80AC1A20 */ int drawDbgInfo();
     /* 80AC1A28 */ void drawOtherMdl();
     /* 80AC1B30 */ void selectAction();
-    /* 80AC1B78 */ void chkAction(int (daNpc_Saru_c::*)(void*));
+    /* 80AC1B78 */ BOOL chkAction(int (daNpc_Saru_c::*)(void*));
     /* 80AC1BA4 */ void setAction(int (daNpc_Saru_c::*)(void*));
     /* 80AC1C4C */ void setSe();
     /* 80AC216C */ void cutFindMonkey(int);
     /* 80AC2368 */ void cutHelpMe(int);
     /* 80AC2598 */ void cutYmLook(int);
     /* 80AC28A4 */ void wait(void*);
-    /* 80AC2FD8 */ void talk(void*);
+    /* 80AC2FD8 */ int talk(void*);
     /* 80AC4394 */ daNpc_Saru_c(daNpcT_faceMotionAnmData_c const* param_1, daNpcT_motionAnmData_c const* param_2,
                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_3, int param_4,
                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_5, int param_6,

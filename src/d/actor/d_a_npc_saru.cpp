@@ -902,13 +902,32 @@ void daNpc_Saru_c::reset() {
 }
 
 /* 80AC0EA4-80AC0F28 000B64 0084+00 1/0 0/0 0/0 .text            afterJntAnm__12daNpc_Saru_cFi */
-void daNpc_Saru_c::afterJntAnm(int param_0) {
-    // NONMATCHING
+void daNpc_Saru_c::afterJntAnm(int param_1) {
+    if (param_1 == 1) {
+        mDoMtx_stack_c::YrotM(mStagger.getAngleZ(1));
+        mDoMtx_stack_c::ZrotM(-mStagger.getAngleX(1));
+    } else if (param_1 == 4) {
+        mDoMtx_stack_c::YrotM(mStagger.getAngleZ(0));
+        mDoMtx_stack_c::ZrotM(mStagger.getAngleX(0));
+    }
 }
 
 /* 80AC0F28-80AC0FDC 000BE8 00B4+00 1/0 0/0 0/0 .text            checkChangeEvt__12daNpc_Saru_cFv */
 BOOL daNpc_Saru_c::checkChangeEvt() {
     // NONMATCHING
+    if (!chkAction(&daNpc_Saru_c::talk)) {
+        mPreItemNo = 0;
+        if (dComIfGp_event_chkTalkXY()) {
+            if (dComIfGp_evmng_ChkPresentEnd()) {
+                mEvtNo = 1;
+                evtChange();
+            }
+
+            return TRUE;
+        }
+    }
+
+    return FALSE;
 }
 
 /* ############################################################################################## */
@@ -1075,7 +1094,7 @@ void daNpc_Saru_c::selectAction() {
 
 /* 80AC1B78-80AC1BA4 001838 002C+00 2/2 0/0 0/0 .text
  * chkAction__12daNpc_Saru_cFM12daNpc_Saru_cFPCvPvPv_i          */
-void daNpc_Saru_c::chkAction(int (daNpc_Saru_c::*param_0)(void*)) {
+BOOL daNpc_Saru_c::chkAction(int (daNpc_Saru_c::*param_0)(void*)) {
     // NONMATCHING
 }
 
@@ -1239,7 +1258,7 @@ void daNpc_Saru_c::wait(void* param_0) {
 }
 
 /* 80AC2FD8-80AC31B4 002C98 01DC+00 3/0 0/0 0/0 .text            talk__12daNpc_Saru_cFPv */
-void daNpc_Saru_c::talk(void* param_0) {
+int daNpc_Saru_c::talk(void* param_0) {
     // NONMATCHING
 }
 
