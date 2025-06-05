@@ -20,37 +20,39 @@ class daNpc_Saru_HIO_c : public mDoHIO_entry_c {
 
 class daNpc_Saru_Param_c {
 public:
-    /* 80AC448C */ ~daNpc_Saru_Param_c();
+    /* 80AC448C */ virtual ~daNpc_Saru_Param_c() {};
 
     struct Data {
         /* 0x00 */ f32 field_0x00;
-        /* 0x04 */ f32 field_0x04;
-        /* 0x08 */ u32 field_0x08;
-        /* 0x0C */ u32 field_0x0c;
+        /* 0x04 */ f32 mGravity;
+        /* 0x08 */ f32 field_0x08;
+        /* 0x0C */ f32 field_0x0c;
         /* 0x10 */ f32 mWeight;
-        /* 0x14 */ u32 field_0x14;
-        /* 0x18 */ u32 field_0x18;
-        /* 0x1C */ u32 field_0x1c;
-        /* 0x20 */ u32 field_0x20;
-        /* 0x24 */ u32 field_0x24;
-        /* 0x28 */ u32 field_0x28;
-        /* 0x2C */ u32 field_0x2c;
-        /* 0x30 */ u32 field_0x30;
-        /* 0x34 */ u32 field_0x34;
-        /* 0x38 */ u32 field_0x38;
-        /* 0x3C */ u32 field_0x3c;
-        /* 0x40 */ u32 field_0x40;
-        /* 0x44 */ u32 field_0x44;
-        /* 0x48 */ u32 field_0x48;
-        /* 0x4C */ u32 field_0x4c;
-        /* 0x50 */ u32 field_0x50;
+        /* 0x14 */ f32 mCylH;
+        /* 0x18 */ f32 mWallH;
+        /* 0x1C */ f32 mWallR;
+        /* 0x20 */ f32 mBodyDownAngle;
+        /* 0x24 */ f32 mBodyUpAngle;
+        /* 0x28 */ f32 mBodyRightAngle;
+        /* 0x2C */ f32 mBodyLeftAngle;
+        /* 0x30 */ f32 mHeadDownAngle;
+        /* 0x34 */ f32 mHeadUpAngle;
+        /* 0x38 */ f32 mHeadRightAngle;
+        /* 0x3C */ f32 mHeadLeftAngle;
+        /* 0x40 */ f32 field_0x40;
+        /* 0x44 */ f32 mMorfFrames;
+        /* 0x48 */ s16 field_0x48;
+        /* 0x4A */ s16 field_0x4a;
+        /* 0x4C */ s16 field_0x4c;
+        /* 0x4E */ s16 field_0x4e;
+        /* 0x50 */ f32 mAttnFovy;
         /* 0x54 */ u32 field_0x54;
         /* 0x58 */ u32 field_0x58;
         /* 0x5C */ u32 field_0x5c;
         /* 0x60 */ u32 field_0x60;
         /* 0x64 */ u32 field_0x64;
         /* 0x68 */ u32 field_0x68;
-        /* 0x6C */ u32 field_0x6c;
+        /* 0x6C */ f32 field_0x6c;
         /* 0x70 */ u32 field_0x70;
         /* 0x74 */ u32 field_0x74;
         /* 0x78 */ u32 field_0x78;
@@ -66,6 +68,7 @@ public:
 
 class daNpc_Saru_c : public daNpcT_c {
 public:
+    typedef int (daNpc_Saru_c::*cutFunc)(int);
     typedef int (daNpc_Saru_c::*actionFunc)(void*);
 
     enum Type {
@@ -83,7 +86,7 @@ public:
     /* 80AC0AA8 */ int Draw();
     /* 80AC0AEC */ static int createHeapCallBack(fopAc_ac_c*);
     /* 80AC0B0C */ static int ctrlJointCallBack(J3DJoint*, int);
-    /* 80AC0B64 */ void* srchYm(void*, void*);
+    /* 80AC0B64 */ static void* srchYm(void*, void*);
     /* 80AC0C0C */ u8 getType();
     /* 80AC0C58 */ int isDelete();
     /* 80AC0CE8 */ void reset();
@@ -100,14 +103,14 @@ public:
     /* 80AC18A0 */ void setCollision();
     /* 80AC1A20 */ int drawDbgInfo();
     /* 80AC1A28 */ void drawOtherMdl();
-    /* 80AC1B30 */ void selectAction();
+    /* 80AC1B30 */ int selectAction();
     /* 80AC1B78 */ BOOL chkAction(int (daNpc_Saru_c::*)(void*));
-    /* 80AC1BA4 */ void setAction(int (daNpc_Saru_c::*)(void*));
+    /* 80AC1BA4 */ int setAction(int (daNpc_Saru_c::*)(void*));
     /* 80AC1C4C */ void setSe();
-    /* 80AC216C */ void cutFindMonkey(int);
-    /* 80AC2368 */ void cutHelpMe(int);
-    /* 80AC2598 */ void cutYmLook(int);
-    /* 80AC28A4 */ void wait(void*);
+    /* 80AC216C */ int cutFindMonkey(int);
+    /* 80AC2368 */ int cutHelpMe(int);
+    /* 80AC2598 */ int cutYmLook(int);
+    /* 80AC28A4 */ int wait(void*);
     /* 80AC2FD8 */ int talk(void*);
     /* 80AC4394 */ daNpc_Saru_c(daNpcT_faceMotionAnmData_c const* param_1, daNpcT_motionAnmData_c const* param_2,
                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_3, int param_4,
@@ -130,8 +133,8 @@ public:
     u8 getPathID() { return (fopAcM_GetParam(this) & 0xff0000) >> 16; }
     u8 getBitSW() { return (fopAcM_GetParam(this) & 0xff00) >> 8; }
 
-    static void* mCutNameList[4];
-    static u8 mCutList[48];
+    static char* mCutNameList[4];
+    static cutFunc mCutList[4];
 
 private:
     #ifdef DEBUG
@@ -142,10 +145,12 @@ private:
     /* 0xE4C */ dCcD_Cyl field_0xe4c;
     /* 0xF88 */ u8 mType;
     /* 0xF89 */ u8 field_0xf89[0xf8c - 0xf89];
-    /* 0xF8C */ daNpcT_ActorMngr_c field_0xf8c;
-    /* 0xF94 */ daNpcT_Path_c field_0xf94;
+    /* 0xF8C */ daNpcT_ActorMngr_c mActrMngr;
+    /* 0xF94 */ daNpcT_Path_c mPath;
     /* 0xFBC */ actionFunc field_0xfbc;
-    /* 0xFC8 */ u8 field_0xfc8[0xfd9 - 0xfc8];
+    /* 0xFC8 */ actionFunc field_0xfc8;
+    /* 0xFD4 */ int field_0xfd4;
+    /* 0xFD8 */ u8 field_0xfd8;
     /* 0xFD9 */ u8 field_0xfd9;
     /* 0xFDA */ u8 field_0xfda[0xfdc - 0xfda];
     /* 0xFDC */ int field_0xfdc;
