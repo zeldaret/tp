@@ -115,6 +115,8 @@ public:
     /* 80564990 */ BOOL checkChangeJoint(int);
     /* 805649A0 */ BOOL checkRemoveJoint(int);
 
+    u8 getBitSW() { return (fopAcM_GetParam(this) & 0xFF0000) >> 16; }
+
     void lostPlayer() { mPlayerActorMngr.remove(); }
     BOOL checkNowMotionIsChoccai() {
         if (mMotionSeqMngr.getNo() == 5 || mMotionSeqMngr.getNo() == 6) {
@@ -163,14 +165,15 @@ private:
     /* 0x112C */ int field_0x112c;
     /* 0x1130 */ u8 field_0x1130;
     /* 0x1131 */ u8 field_0x1131;
-    /* 0x1132 */ u8 field_0x1132[0x1133 - 0x1132];
+    /* 0x1132 */ u8 field_0x1132;
     /* 0x1134 */ u8 field_0x1133;
     /* 0x1134 */ u8 field_0x1134;
     /* 0x1135 */ u8 field_0x1135;
-    /* 0x1136 */ u8 field_0x1136[0x1137 - 0x1136];
+    /* 0x1136 */ u8 field_0x1136;
     /* 0x1137 */ u8 field_0x1137;
     /* 0x1138 */ u8 field_0x1138;
-    /* 0x1139 */ u8 field_0x1139[0x113C - 0x1139];
+    /* 0x1139 */ u8 field_0x1139;
+    /* 0x113A */ u8 field_0x113a[0x113C - 0x113A];
     /* 0x113C */ u8 field_0x113C[0x1140 - 0x113C];
 };
 
@@ -211,13 +214,13 @@ public:
         /* 0x64 */ u32 field_0x64;
         /* 0x68 */ u32 field_0x68;
         /* 0x6C */ f32 field_0x6c;
-        /* 0x70 */ u32 field_0x70;
-        /* 0x74 */ u32 field_0x74;
-        /* 0x78 */ u32 field_0x78;
-        /* 0x7C */ u32 field_0x7c;
-        /* 0x80 */ u32 field_0x80;
-        /* 0x84 */ u32 field_0x84;
-        /* 0x88 */ u32 field_0x88;
+        /* 0x70 */ f32 field_0x70;
+        /* 0x74 */ f32 field_0x74;
+        /* 0x78 */ f32 field_0x78;
+        /* 0x7C */ f32 field_0x7c;
+        /* 0x80 */ f32 field_0x80;
+        /* 0x84 */ f32 field_0x84;
+        /* 0x88 */ f32 field_0x88;
         /* 0x8C */ u32 field_0x8c;
     };
 

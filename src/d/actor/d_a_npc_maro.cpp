@@ -5,12 +5,14 @@
 
 #include "d/actor/d_a_npc_maro.h"
 #include "d/actor/d_a_horse.h"
+#include "d/actor/d_a_npc_len.h"
 #include "d/actor/d_a_obj_itamato.h"
+#include "d/actor/d_a_tag_evtarea.h"
 #include "d/actor/d_a_tag_push.h"
+#include "d/actor/d_a_tag_shop_item.h"
 #include "d/d_com_static.h"
 #include "d/d_item.h"
 #include "d/d_timer.h"
-#include "dol2asm.h"
 
 //
 // Declarations:
@@ -214,13 +216,13 @@ daNpc_Maro_Param_c::Data const daNpc_Maro_Param_c::m = {
     0x00000000,
     0x00000000,
     4.0f,
-    0xC1700000,
-    0x00000000,
-    0xC1700000,
-    0x41700000,
-    0x41F00000,
-    0x41700000,
-    0x41F00000,
+    -15.0f,
+    0.0f,
+    -15.0f,
+    15.0f,
+    30.0f,
+    15.0f,
+    30.0f,
     0x00780000,
 };
 
@@ -1788,7 +1790,6 @@ int dummy_lit_6272(int arg) {
 /* 8055FAF0-805611E0 004650 16F0+00 3/0 0/0 0/0 .text            cutArrowTutorial__12daNpc_Maro_cFi
  */
 int daNpc_Maro_c::cutArrowTutorial(int arg0) {
-    // NONMATCHING
     fopAc_ac_c* actor_p = NULL;
     cXyz my_vec_0, my_vec_1, my_vec_2;
     csXyz my_s_vec;
@@ -2541,165 +2542,866 @@ int daNpc_Maro_c::cutArrowTutorial(int arg0) {
 }
 
 /* 805611E0-80561328 005D40 0148+00 1/0 0/0 0/0 .text            cutBokinTalk__12daNpc_Maro_cFi */
-int daNpc_Maro_c::cutBokinTalk(int param_0) {
-    // NONMATCHING
-}
+int daNpc_Maro_c::cutBokinTalk(int arg0) {
+    daTag_Push_c* push_p = (daTag_Push_c*) field_0xba0.getActorP();
+    (void) push_p;
+    int retval = 0;
+    int* param_p = NULL;
+    int prm_val = -1;
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "prm");
+    if (param_p != NULL) {
+        prm_val = *param_p;
+    }
 
-/* ############################################################################################## */
-/* 80564D48-80564D4C 00019C 0004+00 1/1 0/0 0/0 .rodata          @7191 */
-SECTION_RODATA static f32 const lit_7191 = 40.0f;
-COMPILER_STRIP_GATE(0x80564D48, &lit_7191);
+    if (dComIfGp_getEventManager().getIsAddvance(arg0)) {
+        switch (prm_val) {
+            case 0: {
+                mFaceMotionSeqMngr.setNo(7, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+                mJntAnm.lookCamera(0);
+                break;
+            }
+        }
+    }
+
+    switch (prm_val) {
+        case 0: {
+            retval = 1;
+            break;
+        }
+    }
+
+    return retval;
+}
 
 /* 80561328-80561614 005E88 02EC+00 1/0 0/0 0/0 .text            cutMarosWhisper__12daNpc_Maro_cFi
  */
-int daNpc_Maro_c::cutMarosWhisper(int param_0) {
-    // NONMATCHING
+int daNpc_Maro_c::cutMarosWhisper(int arg0) {
+    fopAc_ac_c* actor_p = NULL;
+    cXyz my_vec_0;
+    int retval = 0;
+    int* param_p = NULL;
+    int prm_val = -1;
+    int timer_val = 0;
+    s16 angle_y;
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "prm");
+    if (param_p != NULL) {
+        prm_val = *param_p;
+    }
+
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "timer");
+    if (param_p != NULL) {
+        timer_val = *param_p;
+    }
+
+    if (dComIfGp_getEventManager().getIsAddvance(arg0)) {
+        switch (prm_val) {
+            case 0: {
+                endChoccai();
+                actor_p = mActorMngr[0].getActorP();
+                JUT_ASSERT(0xFF8, 0 != actor_p);
+                angle_y = fopAcM_searchActorAngleY(daPy_getPlayerActorClass(), actor_p);
+                daPy_getPlayerActorClass()->setPlayerPosAndAngle(&daPy_getPlayerActorClass()->current.pos, 
+                                                                angle_y, 0);
+                break;
+            }
+
+            case 1:
+            case 2: {
+                mEventTimer = timer_val;
+                break;
+            }
+
+            case 3: {
+                mFaceMotionSeqMngr.setNo(9, 0.0f, 0, 0);
+                mMotionSeqMngr.setNo(0, 0.0f, 0, 0);
+                setAngle(home.angle.y);
+                my_vec_0.set(0.0f, 40.0f, 40.0f);
+                mDoMtx_stack_c::transS(current.pos);
+                mDoMtx_stack_c::YrotM(mCurAngle.y - 0x2800);
+                mDoMtx_stack_c::multVec(&my_vec_0, &field_0xd6c);
+                mJntAnm.sorasu2(&field_0xd6c, 1);
+                initTalk(22, NULL);
+                dComIfGp_getEvent().setPtT(this);
+                dComIfGp_getEvent().setPt2(this);
+            }
+        }
+    }
+
+    switch (prm_val) {
+        case 0: {
+            retval = 1;
+            break;
+        }
+
+        case 1:
+        case 2: {
+            if (cLib_calcTimer(&mEventTimer) == 0) {
+                retval = 1;
+            }
+
+            break;
+        }
+
+        case 3: {
+            if (talkProc(NULL, 0, NULL, 0)) {
+                retval = 1;
+            }
+
+            break;
+        }
+
+        default: {
+            retval = 1;
+            break;
+        }
+    }
+
+    return retval;
 }
 
 /* 80561614-8056178C 006174 0178+00 1/0 0/0 0/0 .text            cutTagPush1__12daNpc_Maro_cFi */
-int daNpc_Maro_c::cutTagPush1(int param_0) {
-    // NONMATCHING
+int daNpc_Maro_c::cutTagPush1(int arg0) {
+    int* param_p = NULL;
+    int prm_val = -1;
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "prm");
+    if (param_p != NULL) {
+        prm_val = *param_p;
+    }
+
+    if (dComIfGp_getEventManager().getIsAddvance(arg0)) {
+        switch (prm_val) {
+            case 0: {
+                break;
+            }
+
+            case 1: {
+                mFaceMotionSeqMngr.setNo(9, 0.0f, 0, 0);
+                mMotionSeqMngr.setNo(0, 0.0f, 0, 0);
+                mJntAnm.lookCamera(0);
+                field_0x1132 = 1;
+            }
+        }
+    }
+
+    switch (prm_val) {
+        case 0: {
+            action();
+            mEvtNo = 0;
+            return 1;
+        }
+
+        case 1: {
+            return 1;
+        }
+    }
+
+    return 1;
 }
-
-extern "C" void cutNotGonnaLet__12daNpc_Maro_cFi();
-/* 80565AB8-80565B38 -00001 0080+00 1/1 0/0 0/0 .data            @7426 */
-SECTION_DATA static void* lit_7426[32] = {
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x5BC),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x5D8),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x5E0),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x698),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x698),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6C4),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6C4),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6C4),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6C4),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6C4),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6C4),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6C4),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6C4),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6C4),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6C4),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6C4),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6C4),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6C4),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6C4),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6C4),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x698),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x698),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6C4),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6C4),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6C4),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6C4),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6C4),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6C4),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6C4),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6C4),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6A0),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x6BC),
-};
-
-/* 80565B38-80565BB8 -00001 0080+00 1/1 0/0 0/0 .data            @7425 */
-SECTION_DATA static void* lit_7425[32] = {
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x90),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0xA4),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x1DC),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x218),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x2EC),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x424),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x59C),
-    (void*)(((char*)cutNotGonnaLet__12daNpc_Maro_cFi) + 0x4E0),
-};
 
 /* 8056178C-80561E70 0062EC 06E4+00 3/0 0/0 0/0 .text            cutNotGonnaLet__12daNpc_Maro_cFi */
-int daNpc_Maro_c::cutNotGonnaLet(int param_0) {
-    // NONMATCHING
+int daNpc_Maro_c::cutNotGonnaLet(int arg0) {
+    fopAc_ac_c* actor_p = NULL;
+    cXyz my_vec_0;
+    int retval = 0;
+    int* param_p = NULL;
+    int prm_val = -1;
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "prm");
+    if (param_p != NULL) {
+        prm_val = *param_p;
+    }
+
+    if (dComIfGp_getEventManager().getIsAddvance(arg0)) {
+        switch (prm_val) {
+            case 0: {
+                endChoccai();
+                field_0x1132 = 1;
+                break;
+            }
+
+            case 1: {
+                mFaceMotionSeqMngr.setNo(9, 0.0f, 0, 0);
+                mMotionSeqMngr.setNo(4, 0.0f, 0, 0);
+                actor_p = mActorMngr[3].getActorP();
+                JUT_ASSERT(0x108E, 0 != actor_p);
+                mJntAnm.lookActor(actor_p, -40.0f, 0);
+                my_vec_0.set(-718.0f, 1331.0f, -2139.0f);
+                setPos(my_vec_0);
+                setAngle(cM_deg2s(50.0f));
+                mStepMode = 0;
+                break;
+            }
+
+            case 2: {
+                mJntAnm.lookPlayer(0);
+                break;
+            }
+
+            case 4: {
+                mFaceMotionSeqMngr.setNo(9, 0.0f, 0, 0);
+                mMotionSeqMngr.setNo(0, 0.0f, 0, 0);
+                mJntAnm.lookPlayer(0);
+                field_0x1132 = 0;
+                my_vec_0.set(-511.0f, 1370.0f, -2153.0f);
+                setPos(my_vec_0);
+                setAngle(cM_deg2s(30.0f));
+                break;
+            }
+
+            case 20: {
+                mFaceMotionSeqMngr.setNo(9, 0.0f, 0, 0);
+                mMotionSeqMngr.setNo(0, 0.0f, 0, 0);
+                actor_p = mActorMngr[3].getActorP();
+                JUT_ASSERT(0x10B0, 0 != actor_p);
+                mJntAnm.lookActor(actor_p, -40.0f, 0);
+                my_vec_0.set(-718.0f, 1331.0f, -2139.0f);
+                setPos(my_vec_0);
+                setAngle(cM_deg2s(50.0f));
+                mStepMode = 0;
+                break;
+            }
+
+            case 21: {
+                my_vec_0.set(0.0f, 30.0f, 30.0f);
+                mDoMtx_stack_c::transS(current.pos);
+                mDoMtx_stack_c::YrotM(mCurAngle.y - 0x2800);
+                mDoMtx_stack_c::multVec(&my_vec_0, &field_0xd6c);
+                mJntAnm.sorasu1(&field_0xd6c, 0);
+                break;
+            }
+
+            case 31: {
+                mFaceMotionSeqMngr.setNo(9, 0.0f, 0, 0);
+                mMotionSeqMngr.setNo(0, 0.0f, 0, 0);
+                mJntAnm.lookPlayer(1);
+                findPlayer();
+                setAngle(home.angle.y);
+                break;
+            }
+        }
+    }
+
+    switch (prm_val) {
+        case 0: {
+            action();
+            retval = 1;
+            break;
+        }
+
+        case 1: {
+            retval = 1;
+            break;
+        }
+
+        case 2: {
+            if (mCurAngle.y != fopAcM_searchPlayerAngleY(this)) {
+                if (step(fopAcM_searchPlayerAngleY(this), 9, 7, 15, 0)) {
+                    mFaceMotionSeqMngr.setNo(9, -1.0f, 0, 0);
+                    mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+                }
+            } else {
+                retval = 1;
+            }
+
+            break;
+        }
+
+        case 3:
+        case 4:
+        case 20:
+        case 21: {
+            retval = 1;
+            break;
+        }
+
+        case 30: {
+            action();
+            retval = 1;
+            break;
+        }
+
+        case 31: {
+            retval = 1;
+            break;
+        }
+
+        default: {
+            retval = 1;
+            break;
+        }
+    }
+
+    return retval;
 }
-
-/* ############################################################################################## */
-/* 80564D4C-80564D50 0001A0 0004+00 0/1 0/0 0/0 .rodata          @7496 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7496 = 70.0f;
-COMPILER_STRIP_GATE(0x80564D4C, &lit_7496);
-#pragma pop
-
-/* 80564D50-80564D54 0001A4 0004+00 0/1 0/0 0/0 .rodata          @7497 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7497 = 500.0f;
-COMPILER_STRIP_GATE(0x80564D50, &lit_7497);
-#pragma pop
-
-/* 80564D54-80564D58 0001A8 0004+00 0/1 0/0 0/0 .rodata          @7498 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7498 = 150.0f;
-COMPILER_STRIP_GATE(0x80564D54, &lit_7498);
-#pragma pop
 
 /* 80561E70-80562174 0069D0 0304+00 1/0 0/0 0/0 .text            cutTalkToKakashi__12daNpc_Maro_cFi
  */
-int daNpc_Maro_c::cutTalkToKakashi(int param_0) {
-    // NONMATCHING
+int daNpc_Maro_c::cutTalkToKakashi(int arg0) {
+    fopAc_ac_c* actor_p = NULL;
+    cXyz my_vec_0;
+    cXyz temp;
+    int retval = 0;
+    int* param_p = NULL;
+    int prm_val = -1;
+    s16 angle_y;
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "prm");
+    if (param_p != NULL) {
+        prm_val = *param_p;
+    }
+
+    if (dComIfGp_getEventManager().getIsAddvance(arg0)) {
+        switch (prm_val) {
+            case 0: {
+                my_vec_0.set(0.0f, 0.0f, 70.0f);
+                mDoMtx_stack_c::transS(current.pos);
+                mDoMtx_stack_c::YrotM(mCurAngle.y);
+                mDoMtx_stack_c::multVec(&my_vec_0, &temp);
+                mDoMtx_stack_c::transS(temp);
+                mDoMtx_stack_c::YrotM(cLib_targetAngleY(&temp, &daPy_getPlayerActorClass()->current.pos));
+                my_vec_0.set(0.0f, 500.0f, 150.0f);
+                mDoMtx_stack_c::multVec(&my_vec_0, &temp);
+                mGndChk.SetPos(&temp);
+                temp.y = dComIfG_Bgsp().GroundCross(&mGndChk);
+                JUT_ASSERT(0xDA9, -(1000000000.0f) != temp.y);
+                angle_y = cLib_targetAngleY(&temp, &current.pos);
+                daPy_getPlayerActorClass()->setPlayerPosAndAngle(&temp, angle_y, 0);
+                break;
+            }
+
+            case 1: {
+                mFaceMotionSeqMngr.setNo(9, 0.0f, 0, 0);
+                mMotionSeqMngr.setNo(0, 0.0f, 0, 0);
+                actor_p = mActorMngr[0].getActorP();
+                JUT_ASSERT(0x1133, 0 != actor_p);
+                mJntAnm.lookActor(actor_p, -40.0f, 1);
+                initTalk(mFlowNodeNo, NULL);
+                break;
+            }
+        }
+    }
+
+    switch (prm_val) {
+        case 0: {
+            mDamageTimer = 1;
+            action();
+            retval = 1;
+            break;
+        }
+
+        case 1: {
+            if (talkProc(NULL, 0, NULL, 0)) {
+                retval = 1;
+            }
+
+            break;
+        }
+
+        default: {
+            retval = 1;
+            break;
+        }
+    }
+
+    return retval;
 }
 
 /* 80562174-805629A4 006CD4 0830+00 2/0 0/0 0/0 .text            wait__12daNpc_Maro_cFPv */
 int daNpc_Maro_c::wait(void* param_0) {
-    // NONMATCHING
+    fopAc_ac_c* actor_p = NULL;
+    switch (mMode) {
+        case 0:
+        case 1: {
+            if (mStagger.checkStagger() == 0) {
+                mFaceMotionSeqMngr.setNo(9, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+                mMode = 2;
+            }
+        }
+
+        case 2: {
+            switch (mType) {
+                case 0: {
+                    if (daNpcT_chkEvtBit(0x1F) && mHide) {
+                        fopAcM_delete(this);
+                        return 1;
+                    }
+
+                    break;
+                }
+
+                case 3: {
+                    actor_p = (daNpc_Len_c*)mActorMngr[8].getActorP();
+                    if (actor_p != NULL &&
+                        ((daNpc_Len_c*) actor_p)->checkStartDemo13StbEvt(
+                            this, daNpc_Maro_Param_c::m.field_0x70, daNpc_Maro_Param_c::m.field_0x74,
+                            daNpc_Maro_Param_c::m.field_0x78, daNpc_Maro_Param_c::m.field_0x7c,
+                            daNpc_Maro_Param_c::m.field_0x80, daNpc_Maro_Param_c::m.field_0x84,
+                            daNpc_Maro_Param_c::m.field_0x88))
+                    {
+                        mEvtNo = 7;
+                        field_0x1133 = 1;
+                    }
+
+                    if (field_0x1133 && daNpcT_chkEvtBit(0x3C) && dComIfGp_event_runCheck() == 0) {
+                        field_0x1133 = 0;
+                    }
+
+                    break;
+                }
+
+                case 11: {
+                    if (!daNpcT_chkEvtBit(0x266)) {
+                        mSpeakEvent = true;
+                        field_0xe33 = 1;
+                    }
+
+                    break;
+                }
+
+                case 12: {
+                    if (daNpcT_chkEvtBit(0x25C)) {
+                        fopAcM_delete(this);
+                        return 1;
+                    }
+
+                    break;
+                }
+            }
+
+            if (mStagger.checkStagger() == 0) {
+                // mtype switch.
+                if (mType == 3) {
+                    mJntAnm.lookNone(0);
+                    if (getBitSW() != 0xFF) {
+                        if (dComIfGs_isSwitch(getBitSW(), fopAcM_GetRoomNo(this))) {
+                            field_0xd6c.setall(0.0f);
+                            mJntAnm.lookPos(&field_0xd6c, 0);
+                        }
+                    }
+
+                    attention_info.flags = 0;
+                } else {
+                    switch (mType) {
+                        case 1:
+                        case 2: {
+                            mPlayerActorMngr.remove();
+                            break;
+                        }
+
+                        case 4:
+                        case 5: {
+                            mPlayerActorMngr.remove();
+                            if (dComIfGs_isTmpBit(0xD02)) {
+                                mPlayerActorMngr.entry(daPy_getPlayerActorClass());
+                            }
+
+                            mJntAnm.lookNone(0);
+                            break;
+                        }
+
+                        case 10: {
+                            mPlayerActorMngr.remove();
+                            break;
+                        }
+                    }
+
+                    if (mPlayerActorMngr.getActorP() != NULL) {
+                        if (mType != 4 && mType != 5) {
+                            mJntAnm.lookPlayer(0);
+                            if (chkActorInSight(mPlayerActorMngr.getActorP(), mAttnFovY, mCurAngle.y) == 0) {
+                                mJntAnm.lookNone(0);
+                            }
+
+                            if (srchPlayerActor() == 0 && home.angle.y == mCurAngle.y) {
+                                mMode = 1;
+                            }
+                        }
+                    } else {
+                        mJntAnm.lookNone(0);
+                        if (home.angle.y != mCurAngle.y) {
+                            if (field_0xe34) {
+                                if (step(home.angle.y, 9, 7, 15, 0)) {
+                                    mMode = 1;
+                                }
+                            } else {
+                                setAngle(home.angle.y);
+                                mMode = 1;
+                            }
+
+                            attention_info.flags = 0;
+                        } else if (mTwilight == 0 && mType != 4 && mType != 5) {
+                            srchPlayerActor();
+                        }
+                    }
+
+                    if (mType == 11) {
+                        if (mJntAnm.getMode() == 1) {
+                            dComIfGs_setTmpReg(0xFBFFU, 2);
+                        } else {
+                            dComIfGs_setTmpReg(0xFBFFU, 1);
+                        }
+
+                        if (mPlayerActorMngr.getActorP() == NULL) {
+                            dComIfGs_setTmpReg(0xFBFFU, 0);
+                        }
+                    }
+                }
+
+                switch (mJntAnm.getMode()) {
+                    case 0: {
+                        switch (mType) {
+                            case 1:
+                            case 2: {
+                                actor_p = mActorMngr[0].getActorP();
+                                if (actor_p != NULL) {
+                                    mJntAnm.lookActor(actor_p, -40.0f, 0);
+                                }
+
+                                break;
+                            }
+
+                            case 4:
+                            case 5: {
+                                if (dComIfGs_isTmpBit(0xE40)) {
+                                    mJntAnm.lookPlayer(0);
+                                }
+
+                                break;
+                            }
+
+                            case 10: {
+                                if (daNpcT_chkTmpBit(0x64)) {
+                                    field_0x1139 = 1;
+                                    home.angle.y = -0x8000;
+                                }
+
+                                if (field_0x1139) {
+                                    mJntAnm.lookCamera(0);
+                                } else {
+                                    actor_p = mActorMngr[2].getActorP();
+                                    if (actor_p != NULL) {
+                                        mJntAnm.lookActor(actor_p, -40.0f, 0);
+                                    }
+                                }
+
+                                break;
+                            }
+                        }
+
+                        break;
+                    }
+                }
+
+                switch (mType) {
+                    case 4:
+                    case 5:
+                    case 10: {
+                        attention_info.flags = 0;
+                        break;
+                    }
+                }
+            }
+        }
+
+        case 3: {
+            break;
+        }
+    }
+
+    return 1;
 }
 
 /* 805629A4-80562B14 007504 0170+00 2/0 0/0 0/0 .text            swdTutorial__12daNpc_Maro_cFPv */
-int daNpc_Maro_c::swdTutorial(void* param_0) {
-    // NONMATCHING
+int daNpc_Maro_c::swdTutorial(void* ) {
+    switch (mMode) {
+        case 0:
+        case 1: {
+            if (mStagger.checkStagger() == 0) {
+                mFaceMotionSeqMngr.setNo(9, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+                mMode = 2;
+            }
+        }
+        // fallthrough intentional
+        case 2: {
+            if (mStagger.checkStagger() == 0) {
+                mJntAnm.lookPlayer(0);
+                if (home.angle.y != mCurAngle.y) {
+                    if (field_0xe34) {
+                        if (step(home.angle.y, 9, 7, 15, 0)) {
+                            mMode = 1;
+                        }
+                    } else {
+                        setAngle(home.angle.y);
+                        mMode = 1;
+                    }
+                }
+            }
+
+            attention_info.flags = 0;
+            break;
+        }
+
+        case 3: {
+            break;
+        }
+    }
+
+    return 1;
 }
 
 /* 80562B14-80562CA4 007674 0190+00 1/0 0/0 0/0 .text            talk_withTaro__12daNpc_Maro_cFPv */
-int daNpc_Maro_c::talk_withTaro(void* param_0) {
-    // NONMATCHING
+int daNpc_Maro_c::talk_withTaro(void* ) {
+    switch (mMode) {
+        case 0:
+        case 1: {
+            mFaceMotionSeqMngr.setNo(9, -1.0f, 0, 0);
+            mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+            mMode = 2;
+        }
+        // fallthrough intentional
+        case 2: {
+            if (mStagger.checkStagger() == 0) {
+                mJntAnm.lookNone(0);
+                if (field_0x1132 || srchPlayerActor()) {
+                    mJntAnm.lookPlayer(0);
+                }
+
+                if (home.angle.y != mCurAngle.y) {
+                    if (step(home.angle.y, 9, 7, 15, 0)) {
+                        mMode = 1;
+                    }
+                }
+            }
+
+            break;
+        }
+
+        case 3: {
+            break;
+        }
+    }
+
+    return 1;
 }
 
 /* 80562CA4-80562EC8 007804 0224+00 1/0 0/0 2/0 .text            choccai__12daNpc_Maro_cFPv */
-int daNpc_Maro_c::choccai(void* param_0) {
-    // NONMATCHING
+int daNpc_Maro_c::choccai(void* ) {
+    fopAc_ac_c* actor_p = NULL;
+    switch (mMode) {
+        case 0:
+        case 1: {
+            mFaceMotionSeqMngr.setNo(9, -1.0f, 0, 0);
+            mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+            mMode = 2;
+        }
+        // fallthrough intentional
+        case 2: {
+            if (mStagger.checkStagger() == 0) {
+                mJntAnm.lookNone(0);
+                actor_p = mActorMngr[1].getActorP();
+                if (actor_p != NULL) {
+                    s16 angle_y = fopAcM_searchActorAngleY(this, actor_p) + 0xA9E;
+                    if (angle_y != mCurAngle.y) {
+                        step(angle_y, 9, 7, 15, 0);
+                    }
+
+                    if (checkNowMotionIsChoccai() == 0) {
+                        mFaceMotionSeqMngr.setNo(2, -1.0f, 0, 0);
+                        mMotionSeqMngr.setNo(5, -1.0f, 0, 0);
+                    } else if (checkEndMotionIsChoccai()) {
+                        endChoccai();
+                    }
+                }
+
+                attention_info.flags = 0;
+            }
+
+            break;
+        }
+
+        case 3: {
+            break;
+        }
+    }
+
+    return 1;
 }
 
 /* 80562EC8-8056319C 007A28 02D4+00 2/0 0/0 0/0 .text            tend__12daNpc_Maro_cFPv */
-int daNpc_Maro_c::tend(void* param_0) {
-    // NONMATCHING
+int daNpc_Maro_c::tend(void* ) {
+    daTag_ShopItem_c* actor_p = (daTag_ShopItem_c*) mActorMngr[5].getActorP();
+    int do_step = 0;
+    switch (mMode) {
+        case 0:
+        case 1: {
+            if (actor_p == NULL) {
+                break;
+            }
+
+            if (dComIfGs_isSaveSwitch(actor_p->getSwitchBit1()) == 0) {
+                mFaceMotionSeqMngr.setNo(7, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(2, -1.0f, 0, 0);
+            } else {
+                mFaceMotionSeqMngr.setNo(7, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+            }
+
+            mMode = 2;
+        }
+        // fallthrough intentional
+        case 2: {
+            mJntAnm.lookNone(0);
+            if (field_0x112c == 2) {
+                mSpeakEvent = true;
+                field_0xe33 = 1;
+            }
+
+            if (dComIfGs_isSaveSwitch(actor_p->getSwitchBit1()) == 0
+                && daNpcT_chkDoBtnIsSpeak(this)) {
+                dComIfGp_setDoStatusForce(0x39, 2);
+            }
+
+            if (srchPlayerActor()) {
+                mJntAnm.lookPlayer(0);
+                do_step = checkStep();
+            } else {
+                mJntAnm.lookNone(0);
+                do_step = home.angle.y != mCurAngle.y;
+            }
+
+            if (do_step && step(home.angle.y, 9, 7, 15, 0)) {
+                mMode = 1;
+            }
+
+            break;
+        }
+
+        case 3: {
+            break;
+        }
+    }
+
+    return 1;
 }
 
 /* 8056319C-8056342C 007CFC 0290+00 3/0 0/0 0/0 .text            arrowTutorial__12daNpc_Maro_cFPv */
 int daNpc_Maro_c::arrowTutorial(void* param_0) {
     // NONMATCHING
+    daTag_EvtArea_c* actor_p = NULL;
+    int unused = 0;
+    (void) unused;
+    switch (mMode) {
+        case 0:
+        case 1: {
+            if (mStagger.checkStagger() == 0) {
+                mFaceMotionSeqMngr.setNo(9, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+                mMode = 2;
+            }
+        }
+        // fallthrough intentional
+        case 2: {
+            mHide = daNpcT_chkTmpBit(0x3C) == 0;
+            if (!mHide) {
+                if (field_0x1135) {
+                    mEvtNo = 12;
+                    field_0xe33 = 1;
+                } else {
+                    actor_p = (daTag_EvtArea_c*) mActorMngr[6].getActorP();
+                    if (actor_p != NULL && !daPy_getPlayerActorClass()->eventInfo.chkCondition(1)) {
+                        if (actor_p->chkPointInArea(daPy_getPlayerActorClass()->current.pos) == 0) {
+                            mEvtNo = 9;
+                        }
+                    }
+
+                    if (field_0x1137 || field_0x1136) {
+                        mSpeakEvent = true;
+                    }
+                }
+
+                if (daNpcT_chkEvtBit(0x47) == 0 && dComIfG_getTimerPtr() != NULL
+                    && dComIfG_getTimerMode() == 0 && dComIfG_getTimerPtr()->getRestTimeMs() == 0) {
+                    field_0x1136 = 1;
+                }
+            }
+
+            if (mStagger.checkStagger() == 0) {
+                mJntAnm.lookPlayer(0);
+                if (home.angle.y != mCurAngle.y && field_0x1135 == 0) {
+                    if (field_0xe34) {
+                        if (step(home.angle.y, 9, 7, 15, 0)) {
+                            mMode = 1;
+                        }
+                    } else {
+                        setAngle(home.angle.y);
+                        mMode = 1;
+                    }
+
+                    attention_info.flags = 0;
+                }
+            }
+
+            break;
+        }
+
+        case 3: {
+            break;
+        }
+    }
+
+    return 1;
 }
 
 /* 8056342C-80563660 007F8C 0234+00 3/0 0/0 0/0 .text            talk__12daNpc_Maro_cFPv */
 int daNpc_Maro_c::talk(void* param_0) {
-    // NONMATCHING
+    switch (mMode) {
+        case 0:
+        case 1: {
+            if (mStagger.checkStagger() == 0) {
+                initTalk((field_0x1137) ? 26 : (field_0x1136) ? 28 : mFlowNodeNo, NULL);
+                mMode = 2;
+            }
+        }
+        // fallthrough intentional
+        case 2: {
+            if (mStagger.checkStagger() == 0) {
+                if (mTwilight != 0 || mPlayerAngle == mCurAngle.y) {
+                    if (talkProc(NULL, 0, NULL, 0)) {
+                        int evt_id;
+                        int get_ret = mFlow.getEventId(&evt_id);
+                        if (get_ret == 8 && evt_id == 1) {
+                            mEvtNo = 11;
+                            evtChange();
+                        } else if (mFlow.checkEndFlow()) {
+                            mPlayerActorMngr.entry(daPy_getPlayerActorClass());
+                            dComIfGp_event_reset();
+                            mMode = 3;
+                        }
+
+                        field_0x1136 = 0;
+                        field_0x1137 = 0;
+                    }
+
+                    mJntAnm.lookPlayer(0);
+                    if (mTwilight) {
+                        mJntAnm.lookNone(0);
+                    }
+                } else {
+                    mJntAnm.lookPlayer(0);
+                    step(mPlayerAngle, 9, 7, 15, 0);
+                }
+            }
+
+            break;
+        }
+
+        case 3: {
+            break;
+        }
+    }
+
+    return 0;
 }
 
 /* 80563660-80563780 0081C0 0120+00 2/0 0/0 0/0 .text            shop__12daNpc_Maro_cFPv */
