@@ -13,6 +13,14 @@ public:
 BOOL cDmrNowMidnaTalk();
 
 extern u8 cDmr_SkipInfo;
+extern u8 data_80450C99;
+extern u8 data_80450C9A;
+extern u8 data_80450C9B;
+extern u8 data_80450C9C;
+extern u8 data_80450C9D;
+extern u8 data_80450C9E;
+extern u8 cDmr_FishingWeather;
+extern u8 data_80450CA0;
 extern JPTraceParticleCallBack4 JPTracePCB4;
 
 #endif /* C_C_DAMAGEREACTION_H */
