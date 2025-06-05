@@ -443,7 +443,7 @@ void daNpc_Uri_c::reset() {
             cStack_44 = mPath.getPntPos(1);
             setPos(acStack_38);
             cStack_a0.y = cLib_targetAngleY(&acStack_38, &cStack_44);
-            mPath.setNextIdx(mPath.mPathInfo->m_num);
+            mPath.setNextIdx(mPath.getNumPnts());
         }
         if (daNpcT_chkEvtBit(0x20) != 0 || daNpcT_chkEvtBit(0x1e) != 0 ||
             daNpcT_chkEvtBit(0x92) != 0)
@@ -955,7 +955,7 @@ int daNpc_Uri_c::getTutorialCond(cXyz param_1) {
     cXyz local_50;
     cXyz cStack_5c;
 
-    local_44 = mPath.getPntPos(mPath.mPathInfo->m_num - 1);
+    local_44 = mPath.getPntPos(mPath.getNumPnts() - 1);
     if (local_44.absXZ(param_1) < daNpc_Uri_Param_c::m.field_0x98) {
         return 9;
     }
@@ -1385,7 +1385,7 @@ int daNpc_Uri_c::krun(void* param_0) {
             mJntAnm.lookNone(0);
             if (field_0xfec == 0) {
                 cXyz cStack_58;
-                int iVar2 = mPath.getDstPosH(current.pos, &cStack_58, mPath.mPathInfo->m_num, 4);
+                int iVar2 = mPath.getDstPosH(current.pos, &cStack_58, mPath.getNumPnts(), 4);
 
                 calcSpeedAndAngle(cStack_58, iVar2, 6, 0x800);
                 if (iVar2 != 0 && cM3d_IsZero(speedF)) {
@@ -1616,7 +1616,7 @@ int daNpc_Uri_c::walk(void* param_0) {
         }
         if (!mStagger.checkStagger()) {
             cXyz cStack_84;
-            int iVar2 = mPath.getDstPosH(current.pos, &cStack_84, mPath.mPathInfo->m_num, 4);
+            int iVar2 = mPath.getDstPosH(current.pos, &cStack_84, mPath.getNumPnts(), 4);
             if (iVar2) {
                 bVar = TRUE;
             }

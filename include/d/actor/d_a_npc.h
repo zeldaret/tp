@@ -418,12 +418,13 @@ public:
 
     bool chkReverse() { return mDirection == 1; }
 
-    int getNumPnts() {
-        dPath* path = mPathInfo;
-        return path->m_num;
-    }
+    int getNumPnts() { return mPathInfo->m_num; }
+
+    void setIdx(int i_idx) { mIdx = i_idx; }
 
     const u16 getIdx() { return mIdx; }
+
+    dPath* getPathInfo() { return mPathInfo; }
 
     void onReverse() {
         mDirection = 1;
@@ -1154,6 +1155,7 @@ STATIC_ASSERT(sizeof(daNpcF_c) == 0xB48);
 BOOL daNpcF_chkEvtBit(u32 i_idx);
 void daNpcF_onEvtBit(u32 i_idx);
 BOOL daNpcF_chkTmpBit(u32 i_idx);
+void daNpcF_onTmpBit(u32 i_idx);
 void daNpcF_offTmpBit(u32 i_idx);
 u8 daNpcF_getDistTableIdx(int param_0, int param_1);
 void daNpcF_clearMessageTmpBit();
