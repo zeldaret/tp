@@ -4,8 +4,11 @@
 */
 
 #include "d/actor/d_a_obj_kago.h"
+#include "Z2AudioLib/Z2Instances.h"
 #include "d/d_cc_d.h"
+#include "d/d_com_inf_game.h"
 #include "dol2asm.h"
+#include "f_op/f_op_actor_mng.h"
 
 
 
@@ -144,50 +147,21 @@ extern "C" extern void* __vt__12cCcD_CylAttr[25];
 extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" void __register_global_object();
 
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 80C33D94-80C33D94 000114 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80C33D94 = "";
-SECTION_DEAD static char const* const stringBase_80C33D95 = "uri_kago";
-#pragma pop
-
-/* 80C33DA0-80C33DAC 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80C33DAC-80C33DC0 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
+UNK_REL_DATA;
 
 /* 80C33DC0-80C33DD0 000020 0010+00 2/3 0/0 0/0 .data            l_bmdData */
-SECTION_DATA static u8 l_bmdData[16] = {
-    0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x01,
+static int l_bmdData[2][2] = {
+    { 3, 1 }, { 4, 1 },
 };
 
 /* 80C33DD0-80C33DD8 -00001 0008+00 2/4 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[2] = {
-    (void*)&d_a_obj_kago__stringBase0,
-    (void*)(((char*)&d_a_obj_kago__stringBase0) + 0x1),
+static char* l_resNameList[2] = {
+    "",
+    "uri_kago"
 };
 
 /* 80C33DD8-80C33E1C 000038 0044+00 1/2 0/0 0/0 .data            l_ccDCyl */
@@ -206,35 +180,8 @@ static dCcD_SrcCyl l_ccDCyl = {
 };
 
 /* 80C33E1C-80C33E24 00007C 0008+00 1/1 0/0 0/0 .data            emttrId$4731 */
-SECTION_DATA static u8 emttrId[8] = {
+static u8 emttrId[8] = {
     0x01, 0xB8, 0x01, 0xB9, 0x01, 0xBA, 0x01, 0xBB,
-};
-
-/* 80C33E24-80C33E44 -00001 0020+00 1/0 0/0 0/0 .data            daObj_Kago_MethodTable */
-static actor_method_class daObj_Kago_MethodTable = {
-    (process_method_func)daObj_Kago_Create__FPv,
-    (process_method_func)daObj_Kago_Delete__FPv,
-    (process_method_func)daObj_Kago_Execute__FPv,
-    (process_method_func)daObj_Kago_IsDelete__FPv,
-    (process_method_func)daObj_Kago_Draw__FPv,
-};
-
-/* 80C33E44-80C33E74 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_KAGO */
-extern actor_process_profile_definition g_profile_OBJ_KAGO = {
-  fpcLy_CURRENT_e,         // mLayerID
-  8,                       // mListID
-  fpcPi_CURRENT_e,         // mListPrio
-  PROC_OBJ_KAGO,           // mProcName
-  &g_fpcLf_Method.base,   // sub_method
-  sizeof(daObj_Kago_c),    // mSize
-  0,                       // mSizeOther
-  0,                       // mParameters
-  &g_fopAc_Method.base,    // sub_method
-  717,                     // mPriority
-  &daObj_Kago_MethodTable, // sub_method
-  0x00044100,              // mStatus
-  fopAc_ACTOR_e,           // mActorType
-  fopAc_CULLBOX_CUSTOM_e,  // cullType
 };
 
 /* 80C33E74-80C33E80 0000D4 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGAab */
@@ -312,12 +259,19 @@ extern "C" void __dt__8dCcD_CylFv() {
 
 /* ############################################################################################## */
 /* 80C33C80-80C33CAC 000000 002C+00 5/5 0/0 0/0 .rodata          m__18daObj_Kago_Param_c */
-SECTION_RODATA u8 const daObj_Kago_Param_c::m[44] = {
-    0x00, 0x00, 0x00, 0x00, 0xC0, 0xA0, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xC8, 0x00,
-    0x00, 0x42, 0x92, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0x41, 0xC0, 0x00, 0x00, 0x41, 0xF0,
-    0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0x42, 0x5C, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00,
+daObj_Kago_Param_c::Data const daObj_Kago_Param_c::m = {
+    0.0f,
+    0xC0A00000,
+    0x3F800000,
+    0x43C80000,
+    0x42920000,
+    0x41F00000,
+    0x41C00000,
+    0x41F00000,
+    0x41F00000,
+    0x425C0000,
+    0x41200000,
 };
-COMPILER_STRIP_GATE(0x80C33C80, &daObj_Kago_Param_c::m);
 
 /* 80C33CAC-80C33CDC 00002C 0030+00 0/0 0/0 0/0 .rodata          l_ccDObjData */
 #pragma push
@@ -330,47 +284,61 @@ SECTION_RODATA static u8 const l_ccDObjData[48] = {
 COMPILER_STRIP_GATE(0x80C33CAC, &l_ccDObjData);
 #pragma pop
 
-/* 80C33CDC-80C33CF0 00005C 0014+00 0/1 0/0 0/0 .rodata          heapSize$3870 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const heapSize[20] = {
-    0x00, 0x00, 0x08, 0x20, 0x00, 0x00, 0x08, 0x20, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x08, 0x20, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C33CDC, &heapSize);
-#pragma pop
-
-/* 80C33CF0-80C33CF4 000070 0004+00 0/1 0/0 0/0 .rodata          @3963 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3963 = -100.0f;
-COMPILER_STRIP_GATE(0x80C33CF0, &lit_3963);
-#pragma pop
-
-/* 80C33CF4-80C33CF8 000074 0004+00 0/2 0/0 0/0 .rodata          @3964 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3964 = -50.0f;
-COMPILER_STRIP_GATE(0x80C33CF4, &lit_3964);
-#pragma pop
-
-/* 80C33CF8-80C33CFC 000078 0004+00 0/2 0/0 0/0 .rodata          @3965 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3965 = 100.0f;
-COMPILER_STRIP_GATE(0x80C33CF8, &lit_3965);
-#pragma pop
-
-/* 80C33CFC-80C33D00 00007C 0004+00 0/3 0/0 0/0 .rodata          @3966 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3966 = -1000000000.0f;
-COMPILER_STRIP_GATE(0x80C33CFC, &lit_3966);
-#pragma pop
-
 /* 80C31D5C-80C320FC 00035C 03A0+00 1/1 0/0 0/0 .text            create__12daObj_Kago_cFv */
-void daObj_Kago_c::create() {
+cPhs__Step daObj_Kago_c::create() {
     // NONMATCHING
+    static int const heapSize[5] = {
+        0x0820, 0x0820, 0, 0x0820, 0,
+    };
+
+    fopAcM_SetupActor(this, daObj_Kago_c);
+
+    mType = getType();
+
+    cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&mPhase, l_resNameList[l_bmdData[0][1]]);
+    if (phase == cPhs_COMPLEATE_e) {
+        OS_REPORT("\t(%s:%d) <%08x> -> roomNo.%d", fopAcM_getProcNameString(this), getType(), fopAcM_GetParam(this), fopAcM_GetRoomNo(this));
+        if (mType == 0 && isDelete()) {
+            OS_REPORT("===>isDelete:TRUE\n");
+            return cPhs_ERROR_e;
+        }
+
+        OS_REPORT("\n");
+        if (!fopAcM_entrySolidHeap(this, createHeapCallBack, heapSize[mType])) {
+            return cPhs_ERROR_e;
+        }
+
+        fopAcM_SetMtx(this, field_0x574->getBaseTRMtx());
+        fopAcM_setCullSizeBox(this, -100.0f, -50.0f, -100.0f, 100.0f, 100.0f, 100.0f);
+        reset();
+
+        if (mType == 0) {
+            setGoalPosAndAngle();
+            health = 1;
+        }
+
+        mAcchCir.SetWall(daObj_Kago_Param_c::m.mWallH, daObj_Kago_Param_c::m.mWallR);
+        mObjAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this), 
+                  fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
+        mStts.Init(daObj_Kago_Param_c::m.mWeight, 0, this);
+        
+        field_0x808[0].Set(l_ccDCyl);
+        field_0x808[0].SetStts(&mStts);
+        field_0x808[1].Set(l_ccDCyl);
+        field_0x808[1].SetStts(&mStts);
+
+        mObjAcch.CrrPos(dComIfG_Bgsp());
+        field_0x7cc = mObjAcch.m_gnd;
+        mGroundH = mObjAcch.GetGroundH();
+        if (mGroundH != -1000000000.0f) {
+            setEnvTevColor();
+            setRoomNo();
+        }
+
+        Execute();
+    }
+
+    return phase;
 }
 
 /* 80C320FC-80C32144 0006FC 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGLinFv */
@@ -650,12 +618,12 @@ void daObj_Kago_c::Draw() {
 
 /* 80C333F0-80C33410 0019F0 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__12daObj_Kago_cFP10fopAc_ac_c             */
-void daObj_Kago_c::createHeapCallBack(fopAc_ac_c* param_0) {
+int daObj_Kago_c::createHeapCallBack(fopAc_ac_c* param_0) {
     // NONMATCHING
 }
 
 /* 80C33410-80C334B4 001A10 00A4+00 2/2 0/0 0/0 .text            isDelete__12daObj_Kago_cFv */
-void daObj_Kago_c::isDelete() {
+BOOL daObj_Kago_c::isDelete() {
     // NONMATCHING
 }
 
@@ -826,11 +794,8 @@ static u8 lit_1010[1 + 3 /* padding */];
 static u8 lit_1009[1 + 3 /* padding */];
 #pragma pop
 
-/* 80C33F40-80C33F4C 000048 000C+00 1/1 0/0 0/0 .bss             @3815 */
-static u8 lit_3815[12];
-
 /* 80C33F4C-80C33F50 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[4];
+static daObj_Kago_Param_c l_HIO;
 
 /* 80C33F50-80C33F60 000058 000C+04 0/1 0/0 0/0 .bss             @4686 */
 #pragma push
@@ -929,186 +894,33 @@ daObj_Kago_Param_c::~daObj_Kago_Param_c() {
     // NONMATCHING
 }
 
-/* 80C33C5C-80C33C64 00225C 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
-static void func_80C33C5C() {
-    // NONMATCHING
-}
-
-/* 80C33C64-80C33C6C 002264 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
-static void func_80C33C64() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80C33F70-80C33F74 000078 0004+00 0/0 0/0 0/0 .bss
- * sInstance__40JASGlobalInstance<19JASDefaultBankTable>        */
-#pragma push
-#pragma force_active on
-static u8 data_80C33F70[4];
-#pragma pop
-
-/* 80C33F74-80C33F78 00007C 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14JASAudioThread>             */
-#pragma push
-#pragma force_active on
-static u8 data_80C33F74[4];
-#pragma pop
-
-/* 80C33F78-80C33F7C 000080 0004+00 0/0 0/0 0/0 .bss sInstance__27JASGlobalInstance<7Z2SeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_80C33F78[4];
-#pragma pop
-
-/* 80C33F7C-80C33F80 000084 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8Z2SeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_80C33F7C[4];
-#pragma pop
-
-/* 80C33F80-80C33F84 000088 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SceneMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80C33F80[4];
-#pragma pop
-
-/* 80C33F84-80C33F88 00008C 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2StatusMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80C33F84[4];
-#pragma pop
-
-/* 80C33F88-80C33F8C 000090 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2DebugSys>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80C33F88[4];
-#pragma pop
-
-/* 80C33F8C-80C33F90 000094 0004+00 0/0 0/0 0/0 .bss
- * sInstance__36JASGlobalInstance<15JAISoundStarter>            */
-#pragma push
-#pragma force_active on
-static u8 data_80C33F8C[4];
-#pragma pop
-
-/* 80C33F90-80C33F94 000098 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14Z2SoundStarter>             */
-#pragma push
-#pragma force_active on
-static u8 data_80C33F90[4];
-#pragma pop
-
-/* 80C33F94-80C33F98 00009C 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12Z2SpeechMgr2>               */
-#pragma push
-#pragma force_active on
-static u8 data_80C33F94[4];
-#pragma pop
-
-/* 80C33F98-80C33F9C 0000A0 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8JAISeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_80C33F98[4];
-#pragma pop
-
-/* 80C33F9C-80C33FA0 0000A4 0004+00 0/0 0/0 0/0 .bss sInstance__29JASGlobalInstance<9JAISeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_80C33F9C[4];
-#pragma pop
-
-/* 80C33FA0-80C33FA4 0000A8 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAIStreamMgr>               */
-#pragma push
-#pragma force_active on
-static u8 data_80C33FA0[4];
-#pragma pop
-
-/* 80C33FA4-80C33FA8 0000AC 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SoundMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80C33FA4[4];
-#pragma pop
-
-/* 80C33FA8-80C33FAC 0000B0 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAISoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_80C33FA8[4];
-#pragma pop
-
-/* 80C33FAC-80C33FB0 0000B4 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13JAUSoundTable>              */
-#pragma push
-#pragma force_active on
-static u8 data_80C33FAC[4];
-#pragma pop
-
-/* 80C33FB0-80C33FB4 0000B8 0004+00 0/0 0/0 0/0 .bss
- * sInstance__38JASGlobalInstance<17JAUSoundNameTable>          */
-#pragma push
-#pragma force_active on
-static u8 data_80C33FB0[4];
-#pragma pop
-
-/* 80C33FB4-80C33FB8 0000BC 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAUSoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_80C33FB4[4];
-#pragma pop
-
-/* 80C33FB8-80C33FBC 0000C0 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SoundInfo>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80C33FB8[4];
-#pragma pop
-
-/* 80C33FBC-80C33FC0 0000C4 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2SoundObjMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_80C33FBC[4];
-#pragma pop
-
-/* 80C33FC0-80C33FC4 0000C8 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2Audience>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80C33FC0[4];
-#pragma pop
-
-/* 80C33FC4-80C33FC8 0000CC 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2FxLineMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80C33FC4[4];
-#pragma pop
-
-/* 80C33FC8-80C33FCC 0000D0 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2EnvSeMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80C33FC8[4];
-#pragma pop
-
-/* 80C33FCC-80C33FD0 0000D4 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SpeechMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80C33FCC[4];
-#pragma pop
-
-/* 80C33FD0-80C33FD4 0000D8 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2WolfHowlMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_80C33FD0[4];
-#pragma pop
+AUDIO_INSTANCES;
 
 /* 80C33D94-80C33D94 000114 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+
+/* 80C33E24-80C33E44 -00001 0020+00 1/0 0/0 0/0 .data            daObj_Kago_MethodTable */
+static actor_method_class daObj_Kago_MethodTable = {
+    (process_method_func)daObj_Kago_Create__FPv,
+    (process_method_func)daObj_Kago_Delete__FPv,
+    (process_method_func)daObj_Kago_Execute__FPv,
+    (process_method_func)daObj_Kago_IsDelete__FPv,
+    (process_method_func)daObj_Kago_Draw__FPv,
+};
+
+/* 80C33E44-80C33E74 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_KAGO */
+extern actor_process_profile_definition g_profile_OBJ_KAGO = {
+  fpcLy_CURRENT_e,         // mLayerID
+  8,                       // mListID
+  fpcPi_CURRENT_e,         // mListPrio
+  PROC_OBJ_KAGO,           // mProcName
+  &g_fpcLf_Method.base,   // sub_method
+  sizeof(daObj_Kago_c),    // mSize
+  0,                       // mSizeOther
+  0,                       // mParameters
+  &g_fopAc_Method.base,    // sub_method
+  717,                     // mPriority
+  &daObj_Kago_MethodTable, // sub_method
+  0x00044100,              // mStatus
+  fopAc_ACTOR_e,           // mActorType
+  fopAc_CULLBOX_CUSTOM_e,  // cullType
+};

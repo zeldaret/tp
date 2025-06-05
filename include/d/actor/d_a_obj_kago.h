@@ -1,6 +1,8 @@
 #ifndef D_A_OBJ_KAGO_H
 #define D_A_OBJ_KAGO_H
 
+#include "d/d_bg_s_acch.h"
+#include "d/d_cc_d.h"
 #include "f_op/f_op_actor_mng.h"
 
 /**
@@ -14,13 +16,13 @@
 class daObj_Kago_c : public fopAc_ac_c {
 public:
     /* 80C31AEC */ ~daObj_Kago_c();
-    /* 80C31D5C */ void create();
+    /* 80C31D5C */ cPhs__Step create();
     /* 80C323D0 */ void CreateHeap();
     /* 80C324B0 */ void Delete();
     /* 80C324E4 */ void Execute();
     /* 80C332D0 */ void Draw();
-    /* 80C333F0 */ void createHeapCallBack(fopAc_ac_c*);
-    /* 80C33410 */ void isDelete();
+    /* 80C333F0 */ static int createHeapCallBack(fopAc_ac_c*);
+    /* 80C33410 */ BOOL isDelete();
     /* 80C334B4 */ void setEnvTevColor();
     /* 80C33510 */ void setRoomNo();
     /* 80C33554 */ void reset();
@@ -70,9 +72,19 @@ public:
     }
     
 private:
-    /* 0x568 */ u8 field_0x568[0x574 - 0x568];
+    /* 0x568 */ u8 field_0x568[0x56c - 0x568];
+    /* 0x56C */ request_of_phase_process_class mPhase;
     /* 0x574 */ J3DModel* field_0x574;
-    /* 0x578 */ u8 field_0x578[0xb74 - 0x578];
+    /* 0x578 */ dBgS_ObjAcch mObjAcch;
+    /* 0x750 */ dCcD_Stts mStts;
+    /* 0x78C */ dBgS_AcchCir mAcchCir;
+    /* 0x7CC */ cBgS_GndChk field_0x7cc;
+    /* 0x808 */ dCcD_Cyl field_0x808[2];
+    /* 0xA80 */ u8 field_0xa80[0xb10 - 0xa80];
+    /* 0xB10 */ u8 mType;
+    /* 0xB11 */ u8 field_0xb11[0xb54 - 0xb11];
+    /* 0xB54 */ f32 mGroundH;
+    /* 0xB58 */ u8 field_0xb58[0xb74 - 0xb58];
     /* 0xB74 */ s16 field_0xb74;
     /* 0xB76 */ u8 field_0xb76[0xba2 - 0xb76];
     /* 0xBA2 */ s8 field_0xba2;
@@ -85,7 +97,20 @@ class daObj_Kago_Param_c {
 public:
     /* 80C33C14 */ ~daObj_Kago_Param_c();
 
-    static u8 const m[44];
+    struct Data {
+        /* 0x00 */ f32 field_0x00;
+        /* 0x04 */ f32 field_0x04;
+        /* 0x08 */ f32 field_0x08;
+        /* 0x0C */ f32 field_0x0c;
+        /* 0x10 */ f32 mWeight;
+        /* 0x14 */ f32 field_0x14;
+        /* 0x18 */ f32 mWallH;
+        /* 0x1C */ f32 mWallR;
+        /* 0x20 */ f32 field_0x20;
+        /* 0x24 */ f32 field_0x24;
+        /* 0x28 */ f32 field_0x28;
+    };
+    static const Data m;
 };
 
 
