@@ -4,11 +4,7 @@
 */
 
 #include "d/actor/d_a_obj_flag.h"
-#include "dol2asm.h"
 
-//
-// Declarations:
-//
 daObjFlag_c::M_attrs const daObjFlag_c::M_attr = {
     4000.0f, 1.0f, 0.3f, 
     15, 2000, 1500, 4000, 
@@ -16,13 +12,6 @@ daObjFlag_c::M_attrs const daObjFlag_c::M_attr = {
     0, 0, 300, 1, 1, 0, 
     12000.0f, 3000.0f, 12000.0f
 };
-
-// /* 80BEC524-80BEC52C 000038 0008+00 1/1 0/0 0/0 .rodata          @3639 */
-// SECTION_RODATA static u8 const lit_3639[8] = {
-//     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-// };
-// COMPILER_STRIP_GATE(0x80BEC524, &lit_3639);
-
 
 /* 80BEB778-80BEB8F0 000078 0178+00 1/1 0/0 0/0 .text            create_init__11daObjFlag_cFv */
 void daObjFlag_c::create_init() {
@@ -204,43 +193,42 @@ static int nodeCallBack(J3DJoint* joint, int param_1) {
 }
 
 inline int daObjFlag_c::createHeap() {
-        bool tmp;
-        s8 angle = (u8)shape_angle.x;
-        if (angle <= -1 || angle > 99) {
-            tmp = false;
-        } else {
-            tmp = true;
+    bool tmp;
+    s8 angle = (u8)shape_angle.x;
+    if (angle <= -1 || angle > 99) {
+        tmp = false;
+    } else {
+        tmp = true;
 
-            char resName[12];
-            sprintf(resName, "flag%02d.bmd", angle);
+        char resName[12];
+        sprintf(resName, "flag%02d.bmd", angle);
 
-            shape_angle.setall(0);
-            current.angle.setall(0);
+        shape_angle.setall(0);
+        current.angle.setall(0);
 
-            J3DModelData* modelData_flag = (J3DModelData*)dComIfG_getObjectRes("FlagObj", resName);
-            JUT_ASSERT(447, modelData_flag != 0)
-            mpModel1 = mDoExt_J3DModel__create(modelData_flag, 0x80000, 0x11000084);
+        J3DModelData* modelData_flag = (J3DModelData*)dComIfG_getObjectRes("FlagObj", resName);
+        JUT_ASSERT(447, modelData_flag != 0)
+        mpModel1 = mDoExt_J3DModel__create(modelData_flag, 0x80000, 0x11000084);
 
-            for (u16 i = 0; i < 5; i++) {
-                J3DJoint* nodePtr = (J3DJoint*)(mpModel1->getModelData()->getJointNodePointer(i));
-                if (nodePtr != NULL) {
-                    nodePtr->setCallBack(nodeCallBack);
-                    mpModel1->setUserArea((u32)this);
-                }
+        for (u16 i = 0; i < 5; i++) {
+            J3DJoint* nodePtr = (J3DJoint*)(mpModel1->getModelData()->getJointNodePointer(i));
+            if (nodePtr != NULL) {
+                nodePtr->setCallBack(nodeCallBack);
+                mpModel1->setUserArea((u32)this);
             }
         }
-
-        J3DModelData* modelData_pole =
-            (J3DModelData*)dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), "model0.bmd");
-        JUT_ASSERT(464, modelData_pole != 0);
-        mpModel2 = mDoExt_J3DModel__create(modelData_pole, 0x80000, 0x11000084);
-        if (mpModel2 == NULL && tmp && mpModel1 == NULL) {
-            return 0;
-        }
-
-        return 1;
     }
 
+    J3DModelData* modelData_pole =
+        (J3DModelData*)dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), "model0.bmd");
+    JUT_ASSERT(464, modelData_pole != 0);
+    mpModel2 = mDoExt_J3DModel__create(modelData_pole, 0x80000, 0x11000084);
+    if (mpModel2 == NULL && tmp && mpModel1 == NULL) {
+        return 0;
+    }
+
+    return 1;
+}
 
 /* 80BEC0B8-80BEC234 0009B8 017C+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
 static int createSolidHeap(fopAc_ac_c* i_actor) {
@@ -327,11 +315,8 @@ static int daObjFlag_Create(fopAc_ac_c* param_0) {
 }
 
 /* 80BEC4E0-80BEC4E4 000DE0 0004+00 1/1 0/0 0/0 .text            __ct__11FlagJoint_cFv */
-FlagJoint_c::FlagJoint_c() {
-    /* empty function */
-}
+FlagJoint_c::FlagJoint_c() {}
 
-/* ############################################################################################## */
 /* 80BEC580-80BEC5A0 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjFlag_Method */
 static actor_method_class l_daObjFlag_Method = {
     (process_method_func)daObjFlag_Create,
