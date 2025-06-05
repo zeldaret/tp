@@ -699,6 +699,7 @@ struct J3DBlend : public J3DBlendInfo {
     J3DBlend(J3DBlendInfo const& info) : J3DBlendInfo(info) {}
 
     void setType(u8 i_type) { mType = i_type; }
+    void setSrcFactor(u8 i_factor) { mSrcFactor = i_factor; }
     void setDstFactor(u8 i_factor) { mDstFactor = i_factor; }
 
     GXBlendMode getBlendMode() const { return (GXBlendMode)mType; }
