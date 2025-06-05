@@ -37,10 +37,12 @@ public:
 
 STATIC_ASSERT(sizeof(e_gs_class) == 0x6bc);
 
-class daE_GS_HIO_c {
+class daE_GS_HIO_c : public JORReflexible {
 public:
     /* 806DF46C */ daE_GS_HIO_c();
     /* 806DFD5C */ virtual ~daE_GS_HIO_c() {}
+
+    void genMessage(JORMContext*);
 
     /* 0x04 */ s8 id;
     /* 0x08 */ f32 base_size;
