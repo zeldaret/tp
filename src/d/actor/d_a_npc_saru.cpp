@@ -132,7 +132,6 @@ daNpc_Saru_c::cutFunc daNpc_Saru_c::mCutList[4] = {
 
 /* 80AC042C-80AC0578 0000EC 014C+00 1/0 0/0 0/0 .text            __dt__12daNpc_Saru_cFv */
 daNpc_Saru_c::~daNpc_Saru_c() {
-    // NONMATCHING
     if (mpMorf[0] != NULL) {
         mpMorf[0]->stopZelAnime();
     }
@@ -377,7 +376,7 @@ void daNpc_Saru_c::reset() {
     int iVar1 = (u8*)&field_0xfdc - (u8*)&field_0xfbc;
     initialize();
     for (int i = 0; i <1; i++) {
-        mActrMngr.initialize();
+        mActrMngr[0].initialize();
     }
 
     if (getPathID() != 0xFF) {
@@ -478,8 +477,8 @@ void daNpc_Saru_c::setAfterTalkMotion() {
 void daNpc_Saru_c::srchActors() {
     switch (mType) {
         case 2:
-            if (mActrMngr.getActorP() == NULL) {
-                mActrMngr.entry(getNearestActorP(28));
+            if (mActrMngr[0].getActorP() == NULL) {
+                mActrMngr[0].entry(getNearestActorP(28));
             }
 
         case 1:
@@ -962,7 +961,7 @@ int daNpc_Saru_c::wait(void* param_1) {
                         break;
 
                     case 2:
-                        cage_p = (obj_so_class*)mActrMngr.getActorP();
+                        cage_p = (obj_so_class*)mActrMngr[0].getActorP();
                         if (cage_p != NULL) {
                             mFaceMotionSeqMngr.setNo(0, -1.0f, 0, 0);
                             mMotionSeqMngr.setNo(8, -1.0f, 0, 0);
@@ -991,7 +990,7 @@ int daNpc_Saru_c::wait(void* param_1) {
             } else {
                 if (mStagger.checkStagger() == 0) {
                     if (mType == 2 && mMotionSeqMngr.getNo() == 8) {
-                        cage_p = (obj_so_class*)mActrMngr.getActorP();
+                        cage_p = (obj_so_class*)mActrMngr[0].getActorP();
                         if (cage_p != NULL && cage_p->partBreak() == 1) {
                             mFaceMotionSeqMngr.setNo(0, -1.0f, 0, 0);
                             mMotionSeqMngr.setNo(9, -1.0f, 0, 0);

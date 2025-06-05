@@ -145,7 +145,7 @@ private:
     /* 0xE4C */ dCcD_Cyl field_0xe4c;
     /* 0xF88 */ u8 mType;
     /* 0xF89 */ u8 field_0xf89[0xf8c - 0xf89];
-    /* 0xF8C */ daNpcT_ActorMngr_c mActrMngr;
+    /* 0xF8C */ daNpcT_ActorMngr_c mActrMngr[1];
     /* 0xF94 */ daNpcT_Path_c mPath;
     /* 0xFBC */ actionFunc field_0xfbc;
     /* 0xFC8 */ actionFunc field_0xfc8;
