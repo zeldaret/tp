@@ -1,6 +1,7 @@
 #ifndef D_A_OBJ_KAGO_H
 #define D_A_OBJ_KAGO_H
 
+#include "SSystem/SComponent/c_math.h"
 #include "d/d_bg_s_acch.h"
 #include "d/d_cc_d.h"
 #include "f_op/f_op_actor_mng.h"
@@ -15,19 +16,18 @@
  */
 class daObj_Kago_c : public fopAc_ac_c {
 public:
-    /* 80C31AEC */ ~daObj_Kago_c();
     /* 80C31D5C */ cPhs__Step create();
-    /* 80C323D0 */ void CreateHeap();
-    /* 80C324B0 */ void Delete();
-    /* 80C324E4 */ void Execute();
-    /* 80C332D0 */ void Draw();
+    /* 80C323D0 */ int CreateHeap();
+    /* 80C324B0 */ int Delete();
+    /* 80C324E4 */ int Execute();
+    /* 80C332D0 */ int Draw();
     /* 80C333F0 */ static int createHeapCallBack(fopAc_ac_c*);
     /* 80C33410 */ BOOL isDelete();
     /* 80C334B4 */ void setEnvTevColor();
     /* 80C33510 */ void setRoomNo();
     /* 80C33554 */ void reset();
     /* 80C3359C */ void setMtx();
-    /* 80C33620 */ void getWallAngle(s16, s16*);
+    /* 80C33620 */ int getWallAngle(s16, s16*);
     /* 80C337B0 */ void setGoalPosAndAngle();
     /* 80C338D0 */ void setSmokePrtcl();
     /* 80C33958 */ void setWaterPrtcl();
@@ -35,14 +35,15 @@ public:
 
     u8 getType() {
         int iVar1 = fopAcM_GetParam(this) & 0xFF;
+        u8 rv;
 
         switch ((subtype & 127)) {
             case 0:
-                if (iVar1 == 0) {
-                    break;
+                switch (iVar1) {
+                    case 0:
+                        return 0;
                 }
-
-                return 0;
+                break;
 
             case 1:
                 switch (iVar1) {
@@ -55,7 +56,6 @@ public:
                     case 2:
                         return 3;
                 }
-                
         }
 
         return 4;
@@ -70,6 +70,26 @@ public:
         old.pos = current.pos;
         field_0x574->setBaseTRMtx(param_1);
     }
+
+    u32 fopAcM_checkHawkCarryNow(fopAc_ac_c* actor) {
+        return fopAcM_checkStatus(actor, 0x80000000);
+    }
+
+    void popup(f32 param_1, f32 param_2, cXyz* param_3) {
+        if (param_3 != NULL) {
+            current.pos = *param_3;
+            old.pos = current.pos;
+        }
+
+        int iVar1 = cM_deg2s(param_2);
+        speed.setall(0.0f);
+        speed.y = param_1 * cM_ssin(iVar1);
+        speedF = param_1 * cM_scos(iVar1);
+        field_0xb44 = 6;
+        field_0xb70 = 0x4000;
+        field_0xb9e = 1;
+        field_0xb68 = 0.0f;
+    }
     
 private:
     /* 0x568 */ u8 field_0x568[0x56c - 0x568];
@@ -80,26 +100,57 @@ private:
     /* 0x78C */ dBgS_AcchCir mAcchCir;
     /* 0x7CC */ cBgS_GndChk field_0x7cc;
     /* 0x808 */ dCcD_Cyl field_0x808[2];
-    /* 0xA80 */ u8 field_0xa80[0xb10 - 0xa80];
+    /* 0xA80 */ cM3dGLin field_0xa80;
+    /* 0xA9C */ dBgS_LinChk field_0xa9c;
+    /* 0xB0C */ f32 field_0xb0c;
     /* 0xB10 */ u8 mType;
-    /* 0xB11 */ u8 field_0xb11[0xb54 - 0xb11];
+    /* 0xB11 */ u8 field_0xb11[0xb14 - 0xb11];
+    /* 0xB14 */ cXyz field_0xb14;
+    /* 0xB20 */ cXyz field_0xb20;
+    /* 0xB2C */ csXyz field_0xb2c;
+    /* 0xB32 */ u8 field_0xb32[0xb44 - 0xb32];
+    /* 0xB44 */ int field_0xb44;
+    /* 0xB48 */ int field_0xb48;
+    /* 0xB4C */ int field_0xb4c;
+    /* 0xB50 */ f32 field_0xb50;
     /* 0xB54 */ f32 mGroundH;
-    /* 0xB58 */ u8 field_0xb58[0xb74 - 0xb58];
+    /* 0xB58 */ f32 mWaterY;
+    /* 0xB5C */ u8 field_0xb5c[0xb64 - 0xb5c];
+    /* 0xB64 */ f32 field_0xb64;
+    /* 0xB68 */ f32 field_0xb68;
+    /* 0xB6C */ s16 field_0xb6c;
+    /* 0xB6E */ s16 field_0xb6e;
+    /* 0xB70 */ s16 field_0xb70;
+    /* 0xB72 */ u8 field_0xb72[0xb74 - 0xb72];
     /* 0xB74 */ s16 field_0xb74;
-    /* 0xB76 */ u8 field_0xb76[0xba2 - 0xb76];
-    /* 0xBA2 */ s8 field_0xba2;
-    /* 0xBA3 */ u8 field_0xba3[0xba8 - 0xba3];
+    /* 0xB76 */ s16 field_0xb76;
+    /* 0xB78 */ u32 field_0xb78;
+    /* 0xB7C */ u32 mWaterPrtcls[4];
+    /* 0xB8C */ u32 mHamonPrtcl;
+    /* 0xB90 */ u8 field_0xb90[0xb94 - 0xb90];
+    /* 0xB94 */ u32 field_0xb94;
+    /* 0xB98 */ u32 field_0xb98;
+    /* 0xB9C */ u8 field_0xb9c;
+    /* 0xB9D */ u8 field_0xb9d;
+    /* 0xB9E */ u8 field_0xb9e;
+    /* 0xB9F */ u8 field_0xb9f;
+    /* 0xBA0 */ u8 field_0xba0;
+    /* 0xBA1 */ u8 field_0xba1;
+    /* 0xBA2 */ u8 field_0xba2;
+    /* 0xBA3 */ u8 field_0xba3;
+    // vtable
+    /* 80C31AEC */ virtual ~daObj_Kago_c();
 };
 
 STATIC_ASSERT(sizeof(daObj_Kago_c) == 0xba8);
 
 class daObj_Kago_Param_c {
 public:
-    /* 80C33C14 */ ~daObj_Kago_Param_c();
+    /* 80C33C14 */ virtual ~daObj_Kago_Param_c() {};
 
     struct Data {
         /* 0x00 */ f32 field_0x00;
-        /* 0x04 */ f32 field_0x04;
+        /* 0x04 */ f32 mGravity;
         /* 0x08 */ f32 field_0x08;
         /* 0x0C */ f32 field_0x0c;
         /* 0x10 */ f32 mWeight;

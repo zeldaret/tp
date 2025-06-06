@@ -3731,9 +3731,6 @@ static BOOL water_check(npc_ks_class* i_this, cXyz param_2, f32 param_3) {
     return FALSE;
 }
 
-/* 80A5FF54 */
-static u8 gap_05_00000114_bss;
-
 /* 80A5352C-80A548E4 00A68C 13B8+00 2/1 0/0 0/0 .text            npc_ks_option__FP12npc_ks_class */
 static int npc_ks_option(npc_ks_class* i_this) {
     // NONMATCHING
@@ -4163,11 +4160,7 @@ static int npc_ks_option(npc_ks_class* i_this) {
                 cXyz sp158 = a_this->current.pos;
                 sp158.y = i_this->field_0x63c;
 
-                static cXyz sc;
-                if (gap_05_00000114_bss == 0) {
-                    sc = cXyz(1.0f, 1.0f, 1.0f);
-                    gap_05_00000114_bss = 1;
-                }
+                static cXyz sc(1.0f, 1.0f, 1.0f);
 
                 for (int i = 0; i < 4; i++) {
                     i_this->field_0xbe4[i] = dComIfGp_particle_set(i_this->field_0xbe4[i], w_eff_id[i], &sp158, &a_this->tevStr, NULL,
