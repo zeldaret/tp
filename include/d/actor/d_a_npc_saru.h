@@ -6,7 +6,7 @@
 /**
  * @ingroup actors-npcs
  * @class daNpc_Saru_c
- * @brief Monkey (Ook?)
+ * @brief Monkey NPC
  *
  * @details
  *
