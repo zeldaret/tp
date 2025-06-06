@@ -22,14 +22,14 @@ public:
     /* 80BFFF58 */ void rideCallBack(dBgW*, fopAc_ac_c*, fopAc_ac_c*);
     /* 80BFFF70 */ daObj_GrA_c();
     /* 80C0011C */ ~daObj_GrA_c();
-    /* 80C003CC */ void create();
+    /* 80C003CC */ cPhs__Step create();
     /* 80C00614 */ void CreateHeap();
     /* 80C00790 */ void Delete();
     /* 80C00804 */ void Execute(f32 (**)[3][4]);
     /* 80C00A44 */ void Draw();
     /* 80C00ACC */ void jointCtrl(J3DJoint*, J3DModel*);
     /* 80C00D5C */ void getResName();
-    /* 80C00D74 */ void getMode();
+    /* 80C00D74 */ u8 getMode();
     /* 80C00DF8 */ void getPathNo();
     /* 80C00E04 */ void getTagNo();
     /* 80C00E10 */ void getJumpType();
@@ -148,7 +148,7 @@ public:
     /* 80C0F7EC */ void getAttentionPos(fopAc_ac_c*);
     /* 80C0F860 */ void standWaitJump(void*);
 
-    bool checkNpcObjGra() { return field_0xa7e == 1; }
+    bool checkNpcObjGra() { return mMode == 1; }
     void setCrazyDash() { field_0xa48 |= 4; }
     void setCrazyCatch() { field_0xa48 |= 2; }
     void setCrazyThrowLeft() { field_0xa48 |= 8; }
@@ -158,10 +158,12 @@ public:
     static u8 mFaceMotionList[168];
 
 private:
-    /* 0x0568 */ u8 field_0x568[0xA48 - 0x568];
+    /* 0x0568 */ u8 field_0x568[0x74c - 0x568];
+    /* 0x074C */ request_of_phase_process_class mPhase;
+    /* 0x0754 */ u8 field_0x754[0xA48 - 0x754];
     /* 0x0A48 */ u16 field_0xa48;
     /* 0x0A4A */ u8 field_0xa4a[0xA7E - 0xA4A];
-    /* 0x0A7E */ u8 field_0xa7e;
+    /* 0x0A7E */ u8 mMode;
     /* 0x0A7F */ u8 field_0xa7f[0x20a4 - 0xA7F];
 };
 

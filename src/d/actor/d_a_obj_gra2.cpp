@@ -4,6 +4,7 @@
 */
 
 #include "d/actor/d_a_obj_gra2.h"
+#include "d/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "d/d_camera.h"
 
@@ -1614,8 +1615,12 @@ SECTION_DEAD static char const* const stringBase_80C0FE46 = "grA_stone_col.dzb";
 #pragma pop
 
 /* 80C003CC-80C00614 0005AC 0248+00 1/1 0/0 0/0 .text            create__11daObj_GrA_cFv */
-void daObj_GrA_c::create() {
+cPhs__Step daObj_GrA_c::create() {
     // NONMATCHING
+    fopAcM_SetupActor(this, daObj_GrA_c);
+
+    mMode = getMode();
+    // cPhs__Step phase = dComIfG_resLoad(&mPhase, )
 }
 
 /* ############################################################################################## */
@@ -1735,7 +1740,7 @@ SECTION_DEAD static char const* const stringBase_80C0FE58 = "Obj_grA";
 #pragma pop
 
 /* 80C00D74-80C00DF8 000F54 0084+00 1/1 0/0 0/0 .text            getMode__11daObj_GrA_cFv */
-void daObj_GrA_c::getMode() {
+u8 daObj_GrA_c::getMode() {
     // NONMATCHING
 }
 
