@@ -3862,28 +3862,28 @@ inline void dComIfGp_clearMesgCameraAttrInfo() {
     g_dComIfG_gameInfo.play.clearMesgCamInfoBasicID();
 }
 
-inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* param_2,
-                                 const dKy_tevstr_c* param_3, const csXyz* param_4,
-                                 const cXyz* param_5, u8 param_6, dPa_levelEcallBack* param_7,
+inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* i_pos,
+                                 const dKy_tevstr_c* param_3, const csXyz* i_rotation,
+                                 const cXyz* i_scale, u8 i_alpha, dPa_levelEcallBack* param_7,
                                  s8 param_8, const GXColor* param_9, const GXColor* param_10,
                                  const cXyz* param_11) {
     return g_dComIfG_gameInfo.play.getParticle()->setNormal(
-        param_0, param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8, param_9,
+        param_0, param_1, i_pos, param_3, i_rotation, i_scale, i_alpha, param_7, param_8, param_9,
         param_10, param_11, 1.0f);
 }
 
-inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* param_2,
-                                 const csXyz* param_3, const cXyz* param_4, u8 param_5,
+inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* i_pos,
+                                 const csXyz* i_rotation, const cXyz* i_scale, u8 param_5,
                                  dPa_levelEcallBack* param_6, s8 param_7, const GXColor* param_8,
                                  const GXColor* param_9, const cXyz* param_10) {
     return g_dComIfG_gameInfo.play.getParticle()->setNormal(
-        param_0, param_1, param_2, NULL, param_3, param_4, param_5, param_6, param_7, param_8,
+        param_0, param_1, i_pos, NULL, i_rotation, i_scale, param_5, param_6, param_7, param_8,
         param_9, param_10, 1.0f);
 }
 
-inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* param_2,
+inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* i_pos,
                                  const dKy_tevstr_c* param_3) {
-    return dComIfGp_particle_set(param_0, param_1, param_2, param_3, 0, 0, 0xFF, 0, 0xFFFFFFFF, 0,
+    return dComIfGp_particle_set(param_0, param_1, i_pos, param_3, 0, 0, 0xFF, 0, 0xFFFFFFFF, 0,
                                  0, 0);
 }
 
@@ -3921,45 +3921,45 @@ inline JPABaseEmitter* dComIfGp_particle_set(u16 i_resID, const cXyz* i_pos,
                                  NULL, NULL);
 }
 
-inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* param_2,
+inline u32 dComIfGp_particle_set(u32 param_0, u16 param_1, const cXyz* i_pos,
                                  const csXyz* param_3, const cXyz* param_4) {
-    return dComIfGp_particle_set(param_0, param_1, param_2, param_3, param_4, 0xFF, NULL, -1, NULL,
+    return dComIfGp_particle_set(param_0, param_1, i_pos, param_3, param_4, 0xFF, NULL, -1, NULL,
                                  NULL, NULL);
 }
 
-inline u32 dComIfGp_particle_setColor(u32 param_0, u16 param_1, const cXyz* param_2,
+inline u32 dComIfGp_particle_setColor(u32 param_0, u16 param_1, const cXyz* i_pos,
                                       const dKy_tevstr_c* param_3, const GXColor* param_4,
                                       const GXColor* param_5, f32 param_6, u8 param_7,
                                       const csXyz* param_8, const cXyz* param_9,
                                       dPa_levelEcallBack* param_10, s8 param_11,
                                       const cXyz* param_12) {
     return g_dComIfG_gameInfo.play.getParticle()->setNormal(
-        param_0, param_1, param_2, param_3, param_8, param_9, param_7, param_10, param_11, param_4,
+        param_0, param_1, i_pos, param_3, param_8, param_9, param_7, param_10, param_11, param_4,
         param_5, param_12, param_6);
 }
 
-inline JPABaseEmitter* dComIfGp_particle_setColor(u16 param_0, const cXyz* param_1,
+inline JPABaseEmitter* dComIfGp_particle_setColor(u16 param_0, const cXyz* i_pos,
                                                   const dKy_tevstr_c* param_2,
                                                   const GXColor* param_3, const GXColor* param_4,
                                                   f32 param_5, u8 param_6, const csXyz* param_7,
                                                   const cXyz* param_8, dPa_levelEcallBack* param_9,
                                                   s8 param_10, const cXyz* param_11) {
-    return g_dComIfG_gameInfo.play.getParticle()->setNormal(param_0, param_1, param_2, param_7,
+    return g_dComIfG_gameInfo.play.getParticle()->setNormal(param_0, i_pos, param_2, param_7,
                                                             param_8, param_6, param_9, param_10,
                                                             param_3, param_4, param_11, param_5);
 }
 
-inline JPABaseEmitter* dComIfGp_particle_setColor(u16 param_0, const cXyz* param_1,
+inline JPABaseEmitter* dComIfGp_particle_setColor(u16 param_0, const cXyz* i_pos,
                                                   const dKy_tevstr_c* param_2,
                                                   const GXColor* param_3, const GXColor* param_4,
                                                   f32 param_5, u8 param_6) {
-    return dComIfGp_particle_setColor(param_0, param_1, param_2, param_3, param_4, param_5, param_6,
+    return dComIfGp_particle_setColor(param_0, i_pos, param_2, param_3, param_4, param_5, param_6,
                                       NULL, NULL, NULL, -1, NULL);
 }
 
-inline void dComIfGp_particle_setSimple(u16 param_0, cXyz* param_1, u8 param_2, _GXColor& param_3,
+inline void dComIfGp_particle_setSimple(u16 param_0, cXyz* i_pos, u8 param_2, _GXColor& param_3,
                                         _GXColor& param_4, int param_5, float param_6) {
-    g_dComIfG_gameInfo.play.getParticle()->setSimple(param_0, param_1, 0, param_2, param_3, param_4,
+    g_dComIfG_gameInfo.play.getParticle()->setSimple(param_0, i_pos, 0, param_2, param_3, param_4,
                                                      param_5, param_6);
 }
 

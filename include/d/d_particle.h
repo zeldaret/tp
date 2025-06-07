@@ -367,19 +367,19 @@ public:
     void forceOnEventMove(u32 param_0) { field_0x210.forceOnEventMove(param_0); }
     JPABaseEmitter* getEmitter(u32 param_0) { return field_0x210.getEmitter(param_0); }
 
-    u32 setNormal(u32 param_0, u16 param_1, const cXyz* param_2, const dKy_tevstr_c* param_3,
-                  const csXyz* param_4, const cXyz* param_5, u8 param_6,
-                  dPa_levelEcallBack* param_7, s8 param_8, const GXColor* param_9,
-                  const GXColor* param_10, const cXyz* param_11, f32 param_12) {
-        return set(param_0, 0, param_1, param_2, param_3, param_4, param_5, param_6, param_7,
+    u32 setNormal(u32 param_0, u16 param_1, const cXyz* i_pos, const dKy_tevstr_c* param_3,
+                  const csXyz* i_rotation, const cXyz* i_scale, u8 i_alpha, dPa_levelEcallBack* param_7,
+                  s8 param_8, const GXColor* param_9, const GXColor* param_10, const cXyz* param_11,
+                  f32 param_12) {
+        return set(param_0, 0, param_1, i_pos, param_3, i_rotation, i_scale, i_alpha, param_7,
                    param_8, param_9, param_10, param_11, param_12);
     }
 
-    JPABaseEmitter* setNormal(u16 param_1, const cXyz* param_2, const dKy_tevstr_c* param_3,
-                              const csXyz* param_4, const cXyz* param_5, u8 param_6,
+    JPABaseEmitter* setNormal(u16 param_1, const cXyz* i_pos, const dKy_tevstr_c* param_3,
+                              const csXyz* i_rotation, const cXyz* i_scale, u8 i_alpha,
                               dPa_levelEcallBack* param_7, s8 param_8, const GXColor* param_9,
                               const GXColor* param_10, const cXyz* param_11, f32 param_12) {
-        return set(0, param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8,
+        return set(0, param_1, i_pos, param_3, i_rotation, i_scale, i_alpha, param_7, param_8,
                    param_9, param_10, param_11, param_12);
     }
 

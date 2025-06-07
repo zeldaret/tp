@@ -2283,7 +2283,7 @@ static void env_control(npc_henna_class* i_this) {
     }
 
     if ((counter & mask) == 0 && cM_rndF(1.0f) < unkFloat1) {
-        OS_REPORT(" FISHING WETHER: %d\n", g_fishingWeather);
+        OS_REPORT(" FISHING WETHER: %d\n", cDmr_FishingWeather);
         if (cDmr_FishingWeather == 0) {
             light->field_0x12cc = 1;
         } else if (cDmr_FishingWeather == 1) {

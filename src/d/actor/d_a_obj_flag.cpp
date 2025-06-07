@@ -4,11 +4,7 @@
 */
 
 #include "d/actor/d_a_obj_flag.h"
-#include "dol2asm.h"
 
-//
-// Declarations:
-//
 daObjFlag_c::M_attrs const daObjFlag_c::M_attr = {
     4000.0f, 1.0f, 0.3f, 
     15, 2000, 1500, 4000, 
@@ -16,13 +12,6 @@ daObjFlag_c::M_attrs const daObjFlag_c::M_attr = {
     0, 0, 300, 1, 1, 0, 
     12000.0f, 3000.0f, 12000.0f
 };
-
-// /* 80BEC524-80BEC52C 000038 0008+00 1/1 0/0 0/0 .rodata          @3639 */
-// SECTION_RODATA static u8 const lit_3639[8] = {
-//     0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-// };
-// COMPILER_STRIP_GATE(0x80BEC524, &lit_3639);
-
 
 /* 80BEB778-80BEB8F0 000078 0178+00 1/1 0/0 0/0 .text            create_init__11daObjFlag_cFv */
 void daObjFlag_c::create_init() {
@@ -62,42 +51,45 @@ void daObjFlag_c::getJointAngle(csXyz* i_angle, int i_index) {
 
 /* 80BEB9AC-80BEBC58 0002AC 02AC+00 1/1 0/0 0/0 .text            calcJointAngle__11daObjFlag_cFv */
 void daObjFlag_c::calcJointAngle() {
-    cXyz* direction;
-    float power;
+    f32 power;
+    cXyz direction;
 
-    dKyw_get_AllWind_vec(&mPos, direction, &power);
+    dKyw_get_AllWind_vec(&mPos, &direction, &power);
     if(power > 0.0f) {
-        Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_FLAG_TRAILING, &mPos, power * 127.0f, 0, 1.0, 1.0, -1.0, -1.0, 0);
+        u32 val = power * 127.0f;
+        Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_FLAG_TRAILING, &mPos, val, 0, 1.0, 1.0, -1.0, -1.0, 0);
     }
 
-    cLib_addCalcAngleS(&field_0x5e0, cM_atan2s(direction->x, direction->z), 4, 0x7fff, 0);
+    cLib_addCalcAngleS(&field_0x5e0, cM_atan2s(direction.x, direction.z), 4, 0x7fff, 0);
     FlagJoint_c* joint = &mFlagJoints[0];
-    for(int i = 0; i < 4; i++) {
-        if(power != 0.0f && i != 0) {
+    for(int i = 0; i < 4; i++, joint++) {
+        if(power && i != 0) {
             calcAngleSwingZ(joint, power);
         }
         if(i == 0) {
             joint->mJoint2 = joint->mJoint1;
-            joint->mJoint1.y = (field_0x5e0 + getSwingY(power) * cM_ssin(mFlagJoints[i].mRv));
-            joint->mRv += (short)(power * attr().field_0x28);
-            joint->mJoint3 = csXyz() - joint->mJoint2;
+            joint->mJoint1.y = (field_0x5e0 + getSwingY(power) * cM_ssin(joint->mRv));
+            s16 rv = power * attr().field_0x28;
+            joint->mRv = (s16)(joint->mRv + rv);
+            joint->mJoint3 = joint->mJoint2 - joint->mJoint1;
         }
         else {
+            FlagJoint_c* prevJoint = joint - 1;
             joint->mJoint2 = joint->mJoint1;
-            joint->mJoint3 = joint->mJoint3 * attr().field_0x04;
+            joint->mJoint3 = prevJoint->mJoint3 * attr().field_0x04;
             joint->mJoint1 += joint->mJoint3;
             cLib_addCalcAngleS(&joint->mJoint1.y, 0, attr().field_0x0c, 0x7fff, 0);
             joint->mJoint3 = joint->mJoint1 - joint->mJoint2;
         }
 
-        if((u8)attr().field_0x25 != NULL) {
+        if(attr().field_0x25 != NULL) {
+            if(i == 1) {
+                calcAngleSwingX(joint, power);
+            }
+        }
+        else {
             joint->mJoint1.x = 0;
         }
-        else if(i == 1) {
-            calcAngleSwingX(joint, power);
-        }
-
-        joint += 1;
     }
 }
 
@@ -200,14 +192,78 @@ static int nodeCallBack(J3DJoint* joint, int param_1) {
     return 1;
 }
 
+inline int daObjFlag_c::createHeap() {
+    bool tmp;
+    s8 angle = (u8)shape_angle.x;
+    if (angle <= -1 || angle > 99) {
+        tmp = false;
+    } else {
+        tmp = true;
+
+        char resName[12];
+        sprintf(resName, "flag%02d.bmd", angle);
+
+        shape_angle.setall(0);
+        current.angle.setall(0);
+
+        J3DModelData* modelData_flag = (J3DModelData*)dComIfG_getObjectRes("FlagObj", resName);
+        JUT_ASSERT(447, modelData_flag != 0)
+        mpModel1 = mDoExt_J3DModel__create(modelData_flag, 0x80000, 0x11000084);
+
+        for (u16 i = 0; i < 5; i++) {
+            J3DJoint* nodePtr = (J3DJoint*)(mpModel1->getModelData()->getJointNodePointer(i));
+            if (nodePtr != NULL) {
+                nodePtr->setCallBack(nodeCallBack);
+                mpModel1->setUserArea((u32)this);
+            }
+        }
+    }
+
+    J3DModelData* modelData_pole =
+        (J3DModelData*)dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), "model0.bmd");
+    JUT_ASSERT(464, modelData_pole != 0);
+    mpModel2 = mDoExt_J3DModel__create(modelData_pole, 0x80000, 0x11000084);
+    if (mpModel2 == NULL && tmp && mpModel1 == NULL) {
+        return 0;
+    }
+
+    return 1;
+}
+
 /* 80BEC0B8-80BEC234 0009B8 017C+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
-static int createSolidHeap(fopAc_ac_c* param_0) {
-    return static_cast<daObjFlag_c*>(param_0)->createHeap();
+static int createSolidHeap(fopAc_ac_c* i_actor) {
+    daObjFlag_c* i_this = static_cast<daObjFlag_c*>(i_actor);
+    return i_this->createHeap();
+}
+
+inline int daObjFlag_c::draw() {
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    dComIfGd_setListBG();
+    g_env_light.setLightTevColorType_MAJI(mpModel2, &tevStr);
+    mDoExt_modelUpdateDL(mpModel2);
+
+    if (mpModel1 != NULL) {
+        g_env_light.setLightTevColorType_MAJI(mpModel1, &tevStr);
+        mDoExt_modelUpdateDL(mpModel1);
+    }
+
+    dComIfGd_setList();
+
+    return 1;
 }
 
 /* 80BEC234-80BEC300 000B34 00CC+00 1/0 0/0 0/0 .text            daObjFlag_Draw__FP11daObjFlag_c */
 static int daObjFlag_Draw(daObjFlag_c* param_0) {
     return param_0->draw();
+}
+
+inline int daObjFlag_c::execute() {
+    if (mpModel1 == NULL) {
+        return 1;
+    }
+
+    calcJointAngle();
+    return 1;
 }
 
 /* 80BEC300-80BEC338 000C00 0038+00 1/0 0/0 0/0 .text            daObjFlag_Execute__FP11daObjFlag_c
@@ -233,17 +289,34 @@ static int daObjFlag_Delete(daObjFlag_c* param_0) {
 /* 80BEC3BC-80BEC3F8 000CBC 003C+00 2/2 0/0 0/0 .text            __dt__11FlagJoint_cFv */
 FlagJoint_c::~FlagJoint_c() {}
 
+inline int daObjFlag_c::create() {
+    fopAcM_SetupActor(this, daObjFlag_c);
+
+    int phase_state = dComIfG_resLoad(&mPhase, "FlagObj");
+    if (phase_state != cPhs_COMPLEATE_e) {
+        return phase_state;
+    }
+
+    phase_state = dComIfG_resLoad(&mPhase2, daSetBgObj_c::getArcName(this));
+    if (phase_state == cPhs_COMPLEATE_e) {
+        if (!fopAcM_entrySolidHeap(this, createSolidHeap, 0x4000)) {
+            return cPhs_ERROR_e;
+        }
+
+        create_init();
+    }
+
+    return phase_state;
+}
+
 /* 80BEC3F8-80BEC4E0 000CF8 00E8+00 1/0 0/0 0/0 .text            daObjFlag_Create__FP10fopAc_ac_c */
 static int daObjFlag_Create(fopAc_ac_c* param_0) {
     return static_cast<daObjFlag_c*>(param_0)->create();
 }
 
 /* 80BEC4E0-80BEC4E4 000DE0 0004+00 1/1 0/0 0/0 .text            __ct__11FlagJoint_cFv */
-FlagJoint_c::FlagJoint_c() {
-    /* empty function */
-}
+FlagJoint_c::FlagJoint_c() {}
 
-/* ############################################################################################## */
 /* 80BEC580-80BEC5A0 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjFlag_Method */
 static actor_method_class l_daObjFlag_Method = {
     (process_method_func)daObjFlag_Create,

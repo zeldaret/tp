@@ -836,7 +836,7 @@ JPABaseEmitter* dPa_simpleEcallBack::createEmitter(JPAEmitterManager* param_0) {
 
 /* 8004B168-8004B4E0 045AA8 0378+00 1/1 0/0 0/0 .text
  * set__19dPa_simpleEcallBackFPC4cXyzPC12dKy_tevstr_cUcRC8_GXColorRC8_GXColorif */
-u32 dPa_simpleEcallBack::set(cXyz const* param_1, dKy_tevstr_c const* param_2, u8 param_3,
+u32 dPa_simpleEcallBack::set(cXyz const* i_pos, dKy_tevstr_c const* param_2, u8 param_3,
                                   _GXColor const& param_4, _GXColor const& param_5, int param_6,
                                   f32 param_7) {
     f32 dVar7 = param_7;
@@ -855,7 +855,7 @@ u32 dPa_simpleEcallBack::set(cXyz const* param_1, dKy_tevstr_c const* param_2, u
         return 0;
     }
     pData = mData + field_0xc;
-    pData->field_0x00 = *param_1;
+    pData->field_0x00 = *i_pos;
     u32 uVar5 = dPa_control_c::getEmitterManager()->getResourceManager(dPa_control_c::getRM_ID(mID))->getResUserWork(mID);
     u32 uVar6 = (uVar5 & 0xef0000) >> 0x10;
     if (uVar6 < 100) {
@@ -875,7 +875,7 @@ u32 dPa_simpleEcallBack::set(cXyz const* param_1, dKy_tevstr_c const* param_2, u
         if (&param_4 != NULL) {
             local_68 = param_4;
         }
-        dKy_ParticleColor_get_actor((cXyz*)param_1, (dKy_tevstr_c*)param_2, &local_5c, &local_60,
+        dKy_ParticleColor_get_actor((cXyz*)i_pos, (dKy_tevstr_c*)param_2, &local_5c, &local_60,
                                                 &local_64, &local_68, dVar7);
         pData->field_0x0c.r = local_60.r;
         pData->field_0x0c.g = local_60.g;
@@ -895,7 +895,7 @@ u32 dPa_simpleEcallBack::set(cXyz const* param_1, dKy_tevstr_c const* param_2, u
             if (&param_4 != NULL) {
                 local_78 = param_4;
             }
-            dKy_ParticleColor_get_bg((cXyz*)param_1, (dKy_tevstr_c*)param_2, &local_6c, &local_70, &local_74, &local_78,
+            dKy_ParticleColor_get_bg((cXyz*)i_pos, (dKy_tevstr_c*)param_2, &local_6c, &local_70, &local_74, &local_78,
                                      dVar7);
             dVar7 = g_env_light.bg_light_influence +
                     (1.0f - g_env_light.bg_light_influence) * dVar7;
@@ -1478,11 +1478,11 @@ void dPa_control_c::setWaterRipple(u32* param_0, cBgS_PolyInfo& param_1, cXyz co
 /* 8004CA90-8004CF90 0473D0 0500+00 3/3 20/20 418/418 .text
  * set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
  */
-JPABaseEmitter* dPa_control_c::set(u8 param_0, u16 param_1, cXyz const* param_2,
-                           dKy_tevstr_c const* param_3, csXyz const* param_4, cXyz const* param_5,
-                           u8 param_6, dPa_levelEcallBack* param_7, s8 param_8,
-                           _GXColor const* param_9, _GXColor const* param_10, cXyz const* param_11,
-                           f32 param_12) {
+JPABaseEmitter* dPa_control_c::set(u8 param_0, u16 param_1, cXyz const* i_pos,
+                                   dKy_tevstr_c const* param_3, csXyz const* i_rotation,
+                                   cXyz const* i_scale, u8 i_alpha, dPa_levelEcallBack* param_7,
+                                   s8 param_8, _GXColor const* param_9, _GXColor const* param_10,
+                                   cXyz const* param_11, f32 param_12) {
     u8 local_e0 = getRM_ID(param_1);
     JPAResourceManager* local_a8 = mEmitterMng->getResourceManager(local_e0);
     if (local_a8 == NULL) {
@@ -1496,7 +1496,7 @@ JPABaseEmitter* dPa_control_c::set(u8 param_0, u16 param_1, cXyz const* param_2,
 
     dPa_group_id_change(&local_ac, &param_0);
     JGeometry::TVec3<f32> aTStack_78;
-    aTStack_78.set(param_2->x, param_2->y, param_2->z);
+    aTStack_78.set(i_pos->x, i_pos->y, i_pos->z);
     JPABaseEmitter* this_00 = mEmitterMng->createSimpleEmitterID(
         aTStack_78, param_1, param_0,
         local_e0, NULL, NULL);
@@ -1505,25 +1505,25 @@ JPABaseEmitter* dPa_control_c::set(u8 param_0, u16 param_1, cXyz const* param_2,
         return NULL;
     }
 
-    if (param_4 != NULL) {
+    if (i_rotation != NULL) {
         JGeometry::TVec3<s16> aTStack_a4;
-        aTStack_a4.x = param_4->x;
-        aTStack_a4.y = param_4->y;
-        aTStack_a4.z = param_4->z;
+        aTStack_a4.x = i_rotation->x;
+        aTStack_a4.y = i_rotation->y;
+        aTStack_a4.z = i_rotation->z;
         this_00->setGlobalRotation(aTStack_a4);
     }
-    if (param_5 != NULL) {
+    if (i_scale != NULL) {
         JGeometry::TVec3<f32> aTStack_84;
-        aTStack_84.x = param_5->x;
-        aTStack_84.y = param_5->y;
-        aTStack_84.z = param_5->z;
+        aTStack_84.x = i_scale->x;
+        aTStack_84.y = i_scale->y;
+        aTStack_84.z = i_scale->z;
         this_00->setGlobalScale(aTStack_84);
     }
 
-    this_00->setGlobalAlpha(param_6);
+    this_00->setGlobalAlpha(i_alpha);
     if (param_7 != NULL) {
         this_00->setEmitterCallBackPtr(param_7);
-        param_7->setup(this_00, param_2, param_4, param_8);
+        param_7->setup(this_00, i_pos, i_rotation, param_8);
     }
     if ((local_ac & 0x100) != 0) {
         this_00->setParticleCallBackPtr(getFsenthPcallBack());
@@ -1531,17 +1531,17 @@ JPABaseEmitter* dPa_control_c::set(u8 param_0, u16 param_1, cXyz const* param_2,
     if ((local_ac & 0x800) != 0) {
         this_00->setEmitterCallBackPtr(getGen_d_Light8EcallBack());
         if ((local_ac & 0x20) != 0) {
-            getGen_d_Light8EcallBack()->setup(this_00, param_2, param_4, 0);
+            getGen_d_Light8EcallBack()->setup(this_00, i_pos, i_rotation, 0);
         } else {
-            getGen_d_Light8EcallBack()->setup(this_00, param_2, param_4, 1);
+            getGen_d_Light8EcallBack()->setup(this_00, i_pos, i_rotation, 1);
         }
     } else {
         if ((local_ac & 0x400) != 0) {
             this_00->setEmitterCallBackPtr(getGen_b_Light8EcallBack());
             if ((local_ac & 0x20) != 0) {
-                getGen_b_Light8EcallBack()->setup(this_00, param_2, param_4, 0);
+                getGen_b_Light8EcallBack()->setup(this_00, i_pos, i_rotation, 0);
             } else {
-                getGen_b_Light8EcallBack()->setup(this_00, param_2, param_4, 1);
+                getGen_b_Light8EcallBack()->setup(this_00, i_pos, i_rotation, 1);
             }
         } else {
             if ((local_ac & 0xef0000) >> 0x10 < 100) {
@@ -1558,7 +1558,7 @@ JPABaseEmitter* dPa_control_c::set(u8 param_0, u16 param_1, cXyz const* param_2,
                 if (param_9 != NULL) {
                     local_bc = *param_9;
                 }
-                dKy_ParticleColor_get_actor((cXyz*)param_2, (dKy_tevstr_c*)param_3, &local_b0,
+                dKy_ParticleColor_get_actor((cXyz*)i_pos, (dKy_tevstr_c*)param_3, &local_b0,
                                             &local_b4, &local_b8, &local_bc, param_12);
                 this_00->setGlobalEnvColor(local_b0.r, local_b0.g, local_b0.b);
                 this_00->setGlobalPrmColor(local_b4.r, local_b4.g, local_b4.b);
@@ -1574,7 +1574,7 @@ JPABaseEmitter* dPa_control_c::set(u8 param_0, u16 param_1, cXyz const* param_2,
                     if (param_9 != NULL) {
                         local_cc = *param_9;
                     }
-                    dKy_ParticleColor_get_bg((cXyz*)param_2, (dKy_tevstr_c*)param_3, &local_c0,
+                    dKy_ParticleColor_get_bg((cXyz*)i_pos, (dKy_tevstr_c*)param_3, &local_c0,
                                             &local_c4, &local_c8, &local_cc, param_12);
                     param_12 = g_env_light.bg_light_influence + (1.0f - g_env_light.bg_light_influence) * param_12;
                     local_c0 = dKy_light_influence_col(&local_c0, param_12);
@@ -1659,7 +1659,7 @@ bool dPa_control_c::newSimple(u16 param_0, u8 param_1, u32* param_2) {
 
 /* 8004D1B8-8004D23C 047AF8 0084+00 0/0 0/0 9/9 .text
  * setSimple__13dPa_control_cFUsPC4cXyzPC12dKy_tevstr_cUcRC8_GXColorRC8_GXColorif */
-u32 dPa_control_c::setSimple(u16 param_0, cXyz const* param_1, dKy_tevstr_c const* param_2,
+u32 dPa_control_c::setSimple(u16 param_0, cXyz const* i_pos, dKy_tevstr_c const* param_2,
                                   u8 param_3, _GXColor const& param_4, _GXColor const& param_5,
                                   int param_6, f32 param_7) {
     dPa_simpleEcallBack* cb = getSimple(param_0);
@@ -1667,7 +1667,7 @@ u32 dPa_control_c::setSimple(u16 param_0, cXyz const* param_1, dKy_tevstr_c cons
         return 0;
     }
 
-    return cb->set(param_1, param_2, param_3, param_4, param_5, param_6, param_7);
+    return cb->set(i_pos, param_2, param_3, param_4, param_5, param_6, param_7);
 }
 
 /* 8004D23C-8004D278 047B7C 003C+00 1/1 0/0 0/0 .text            getSimple__13dPa_control_cFUs */
@@ -1732,11 +1732,10 @@ static void dPa_kankyocolor_set(f32 param_0, JPABaseEmitter* param_1,
 /* 8004D4CC-8004D6A4 047E0C 01D8+00 3/3 11/11 364/364 .text
  * set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf
  */
-u32 dPa_control_c::set(u32 param_0, u8 param_1, u16 param_2, cXyz const* param_3,
-                           dKy_tevstr_c const* param_4, csXyz const* param_5, cXyz const* param_6,
-                           u8 param_7, dPa_levelEcallBack* param_8, s8 param_9,
-                           _GXColor const* param_10, _GXColor const* param_11, cXyz const* param_12,
-                           f32 param_13) {
+u32 dPa_control_c::set(u32 param_0, u8 param_1, u16 param_2, cXyz const* pos,
+                       dKy_tevstr_c const* param_4, csXyz const* i_rotation, cXyz const* i_scale,
+                       u8 alpha, dPa_levelEcallBack* param_8, s8 param_9, _GXColor const* param_10,
+                       _GXColor const* param_11, cXyz const* param_12, f32 param_13) {
     level_c::emitter_c* this_00 = field_0x210.get(param_0);
     u8 uVar7 = getRM_ID(param_2);
     JPAResourceManager* this_01 = mEmitterMng->getResourceManager(uVar7);
@@ -1747,19 +1746,19 @@ u32 dPa_control_c::set(u32 param_0, u8 param_1, u16 param_2, cXyz const* param_3
             JPABaseEmitter* pJVar4 = this_00->getEmitter();
             pJVar4->playCalcEmitter();
             if (this_00->getCallback() == 0) {
-                pJVar4->setGlobalTranslation(param_3->x, param_3->y, param_3->z);
-                if (param_5 != NULL) {
+                pJVar4->setGlobalTranslation(pos->x, pos->y, pos->z);
+                if (i_rotation != NULL) {
                     JGeometry::TVec3<s16> aTStack_64;
-                    aTStack_64.x = param_5->x;
-                    aTStack_64.y = param_5->y;
-                    aTStack_64.z = param_5->z;
+                    aTStack_64.x = i_rotation->x;
+                    aTStack_64.y = i_rotation->y;
+                    aTStack_64.z = i_rotation->z;
                     pJVar4->setGlobalRotation(aTStack_64);
                 }
             }
             if (pJVar4->checkStatus(JPAEmtrStts_StopEmit)) {
                 pJVar4->playCreateParticle();
             }
-            dPa_kankyocolor_set(param_13, pJVar4, param_4, uVar3, param_3, param_10, param_11);
+            dPa_kankyocolor_set(param_13, pJVar4, param_4, uVar3, pos, param_10, param_11);
             return this_00->getId();
         }
         field_0x210.cutTable(this_00);
@@ -1767,7 +1766,7 @@ u32 dPa_control_c::set(u32 param_0, u8 param_1, u16 param_2, cXyz const* param_3
     if (param_8 != NULL) {
         param_8->cleanup();
     }
-    JPABaseEmitter* pJVar5 = set(param_1, param_2, param_3, param_4, param_5, param_6, param_7,
+    JPABaseEmitter* pJVar5 = set(param_1, param_2, pos, param_4, i_rotation, i_scale, alpha,
                              param_8, param_9, param_10, param_11, param_12, param_13);
     if (pJVar5 == NULL) {
         return 0;
