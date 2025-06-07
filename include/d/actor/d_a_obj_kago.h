@@ -104,7 +104,6 @@ private:
     /* 0xA9C */ dBgS_LinChk field_0xa9c;
     /* 0xB0C */ f32 field_0xb0c;
     /* 0xB10 */ u8 mType;
-    /* 0xB11 */ u8 field_0xb11[0xb14 - 0xb11];
     /* 0xB14 */ cXyz field_0xb14;
     /* 0xB20 */ cXyz field_0xb20;
     /* 0xB2C */ csXyz field_0xb2c;
@@ -146,7 +145,7 @@ STATIC_ASSERT(sizeof(daObj_Kago_c) == 0xba8);
 
 class daObj_Kago_Param_c {
 public:
-    /* 80C33C14 */ virtual ~daObj_Kago_Param_c() {};
+    /* 80C33C14 */ virtual ~daObj_Kago_Param_c() {}
 
     struct Data {
         /* 0x00 */ f32 field_0x00;

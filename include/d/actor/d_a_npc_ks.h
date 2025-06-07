@@ -16,10 +16,7 @@
  */
 class npc_ks_class {
 public:
-    /* 0x000 */ fopAc_ac_c actor;
-    /* 0x568 */ u8 field_0x568[0x570 - 0x568];
-    /* 0x570 */ u8 field_0x570;
-    /* 0x571 */ u8 field_0x571[0x5ac - 0x571];
+    /* 0x000 */ fopEn_enemy_c actor;
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ u8 mRoomMonkeyID;
     /* 0x5B5 */ u8 field_0x5b5;
@@ -94,7 +91,6 @@ public:
     /* 0xAED */ u8 field_0xaed;
     /* 0xAEE */ s16 field_0xaee;
     /* 0xAF0 */ s16 field_0xaf0;
-    /* 0xAF2 */ u8 field_0xaf2[0xaf4 - 0xaf2];
     /* 0xAF4 */ dMsgFlow_c mMsgFlow;
     /* 0xB40 */ u8 field_0xb40;
     /* 0xB41 */ u8 field_0xb41;
@@ -137,7 +133,6 @@ public:
     /* 0xC17 */ s8 field_0xc17;
     /* 0xC18 */ dPath* field_0xc18;
     /* 0xC1C */ u8 field_0xc1c;
-    /* 0xC1D */ u8 field_0xc1d[0xc20 - 0xc1d];
 
     u32 fopAcM_checkHawkCarryNow(fopAc_ac_c* param_1) {
         return fopAcM_checkStatus(param_1, 0x80000000);

@@ -574,7 +574,6 @@ void daObj_Kago_c::setMtx() {
 
 /* 80C33620-80C337B0 001C20 0190+00 1/1 0/0 0/0 .text            getWallAngle__12daObj_Kago_cFsPs */
 int daObj_Kago_c::getWallAngle(s16 param_1, s16* param_2) {
-    // NONMATCHING
     cXyz sp40[2];
     cXyz sp50, sp5c;
     mDoMtx_stack_c::YrotS(param_1);
@@ -583,27 +582,22 @@ int daObj_Kago_c::getWallAngle(s16 param_1, s16* param_2) {
     sp50 += current.pos;
     sp5c.set(5.0f, 0.0f, 200.0f);
 
-    int iVar1 = 0;
-    while (iVar1 < 1) {
-        mDoMtx_stack_c::multVec(&sp5c, &sp40[iVar1]);
+    int i = 0;
+    for (; i < 2; i++) {
+        mDoMtx_stack_c::multVec(&sp5c, &sp40[i]);
         sp5c.x = sp5c.x * -1.0f;
-        sp40[iVar1] += sp50;
-        field_0xa9c.Set(&sp50, &sp40[iVar1], this);
+        sp40[i] += sp50;
+        field_0xa9c.Set(&sp50, &sp40[i], this);
         if (dComIfG_Bgsp().LineCross(&field_0xa9c)) {
-            sp40[iVar1] = field_0xa9c.GetCross();
+            sp40[i] = field_0xa9c.GetCross();
         } else {
             return 0;
         }
-
-        iVar1++;
-        if (iVar1 >= 2) {
-            sp5c = sp40[1] - sp40[0];
-            *param_2 = cM_atan2s(sp5c.x, sp5c.z) + 0x4000;
-            return 1; 
-        }
     }
 
-    return 0;
+    sp5c = sp40[1] - sp40[0];
+    *param_2 = cM_atan2s(sp5c.x, sp5c.z) + 0x4000;
+    return 1;
 }
 
 UNK_REL_BSS;

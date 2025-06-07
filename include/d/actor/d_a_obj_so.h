@@ -39,7 +39,6 @@ public:
     /* 0x0BFC */ s16 field_0xbfc[2];
     /* 0x0C00 */ u8 field_0xc00[0xc30 - 0xc00];
     /* 0x0C30 */ s8 field_0xc30[26];
-    /* 0x0C4A */ u8 field_0xc4a[0xc4c - 0xc4a];
     /* 0x0C4C */ u32 field_0xc4c[26];
     /* 0x0CB4 */ u32 field_0xcb4[26];
     /* 0x0D1C */ Z2Creature mSound;
@@ -74,7 +73,6 @@ public:
     /* 0x1B40 */ s16 field_0x1b40[8];
     /* 0x1B50 */ s16 field_0x1b50[8];
     /* 0x1B60 */ s8 field_0x1b60;
-    /* 0x1B61 */ u8 field_0x1b61[0x1b64 - 0x1b61];
     /* 0x1B64 */ Mtx mMtx;
     /* 0x1B94 */ fpc_ProcID field_0x1b94;
     /* 0x1B98 */ u32 field_0x1b98;
@@ -101,7 +99,9 @@ STATIC_ASSERT(sizeof(obj_so_class) == 0x1bd0);
 class daObj_So_HIO_c : public JORReflexible {
 public:
     /* 80CE03CC */ daObj_So_HIO_c();
-    /* 80CE3928 */ virtual ~daObj_So_HIO_c() {};
+    /* 80CE3928 */ virtual ~daObj_So_HIO_c() {}
+
+    void genMessage(JORMContext*);
 
     /* 0x04 */ s8 field_0x4;
     /* 0x08 */ f32 mScale;

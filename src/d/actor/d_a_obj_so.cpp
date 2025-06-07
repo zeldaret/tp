@@ -922,9 +922,7 @@ static int daObj_So_Delete(obj_so_class* i_this) {
     dComIfG_resDelete(&i_this->mPhase, "Obj_so");
     if (i_this->field_0x1bcc != 0) {
         data_80CE3C90 = 0;
-        #ifdef DEBUG
-        mDoHIO_deleteChild(data_80CE3C90);
-        #endif
+        mDoHIO_DELETE_CHILD(data_80CE3C90);
     }
 
     for (int i = 0; i < 2; i++) {
@@ -1046,9 +1044,7 @@ static int daObj_So_Create(fopAc_ac_c* a_this) {
         if (data_80CE3C90 == 0) {
             i_this->field_0x1bcc = 1;
             data_80CE3C90 = 1;
-            #ifdef DEBUG
-            mDoHIO_createChild("猿オリＯＢＪ", &l_HIO); // Monkey jail OBJ
-            #endif
+            mDoHIO_CREATE_CHILD("猿オリＯＢＪ", &l_HIO); // Monkey jail OBJ
             l_HIO.field_0x4 = -1;
         }
 

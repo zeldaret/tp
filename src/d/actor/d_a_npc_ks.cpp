@@ -5985,8 +5985,6 @@ static void npc_ks_kago(npc_ks_class* i_this) {
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x241])) {
         fopAcM_delete(a_this);
     }
-
-
 }
 
 /* 80A59A90-80A5A7D8 010BF0 0D48+00 1/1 0/0 0/0 .text            anm_se_set__FP12npc_ks_class */
@@ -7355,9 +7353,7 @@ static int daNpc_Ks_Create(fopAc_ac_c* a_this) {
         if (data_80A5FEA8 == 0) {
             i_this->field_0xc1c = 1;
             data_80A5FEA8 = 1;
-            #ifdef DEBUG
-            mDoHIO_createChild("コザル", &l_HIO); // Kozaru
-            #endif
+            mDoHIO_CREATE_CHILD ("コザル", &l_HIO); // Kozaru
             l_HIO.field_0x4 = -1;
         }
 
