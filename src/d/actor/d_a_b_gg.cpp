@@ -1371,14 +1371,14 @@ void daB_GG_c::Gn_DemoAction() {
             current.angle.y = s_TargetAngle;
             field_0x5bc = 140.0f + TREG_F(3);
             speedF = field_0x5bc;
-            field_0x5c0 = (100.0f + (s_LinkPos->y - current.pos.y)) / ((0.89999998f * fopAcM_searchPlayerDistanceXZ(this)) / speedF);
+            field_0x5c0 = (100.0f + (s_LinkPos->y - current.pos.y)) / ((0.9f * fopAcM_searchPlayerDistanceXZ(this)) / speedF);
             speed.y = field_0x5c0;
             mMode++;
         }
         break;
     case 3:
         mSound.startCreatureSoundLevel(Z2SE_EN_GG_ATK_MOVE, 0, -1);
-        field_0x5c0 = (100.0f + (s_LinkPos->y - current.pos.y)) / ((0.89999998f * fopAcM_searchPlayerDistanceXZ(this)) / speedF);
+        field_0x5c0 = (100.0f + (s_LinkPos->y - current.pos.y)) / ((0.9f * fopAcM_searchPlayerDistanceXZ(this)) / speedF);
         field_0x5ba = s_TargetAngle;
 
         if (fopAcM_searchPlayerDistance(this) < (1400.0f + HREG_F(7))) {
@@ -1755,7 +1755,7 @@ void daB_GG_c::F_AttackAction() {
             field_0x5bc = 60.0f * (var_f31 / 1000.0f);
 
             speedF = field_0x5bc;
-            field_0x5c0 = (100.0f + (s_LinkPos->y - current.pos.y)) / ((0.89999998f * var_f31) / speedF);
+            field_0x5c0 = (100.0f + (s_LinkPos->y - current.pos.y)) / ((0.9f * var_f31) / speedF);
             speed.y = field_0x5c0;
             fopAcM_OffStatus(this, 0x80000);
         }
@@ -1768,7 +1768,7 @@ void daB_GG_c::F_AttackAction() {
             var_f31 = 40.0f;
         }
 
-        field_0x5c0 = (100.0f + (s_LinkPos->y - current.pos.y)) / ((0.89999998f * var_f31) / speedF);
+        field_0x5c0 = (100.0f + (s_LinkPos->y - current.pos.y)) / ((0.9f * var_f31) / speedF);
         field_0x5ba = cLib_targetAngleY(&current.pos, s_LinkPos);
 
         if (fopAcM_searchPlayerDistance(this) < 600.0f || mAcch.ChkGroundHit() || mAcch.ChkWallHit()) {
