@@ -1562,7 +1562,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_gpTaru"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_hhashi"),
     ActorRel(NonMatching, "d_a_obj_kanban2"),
-    ActorRel(NonMatching, "d_a_obj_kbacket"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_kbacket"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_kgate"),
     ActorRel(Equivalent, "d_a_obj_klift00"), # vtable order
     ActorRel(NonMatching, "d_a_obj_ktOnFire"),
