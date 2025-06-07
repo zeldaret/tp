@@ -286,6 +286,24 @@ public:
         }
         setDirect(i_direct);
     }
+
+    void sorasu1(cXyz *arg0, u8 arg1) {
+        BOOL diff_ptrs = mAttnPosP != arg0;
+        if (setMode(5, diff_ptrs) != 0) {
+            mAttnPosP = arg0;
+        }
+
+        setDirect(arg1);
+    }
+
+    void sorasu2(cXyz *arg0, u8 arg1) {
+        BOOL diff_ptrs = mAttnPosP != arg0;
+        if (setMode(6, diff_ptrs) != 0) {
+            mAttnPosP = arg0;
+        }
+
+        setDirect(arg1);
+    }
 };
 
 class daNpcT_DmgStagger_c {

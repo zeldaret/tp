@@ -264,6 +264,11 @@ public:
         mPadNo = i_padNo;
     }
 
+    void offAttnDraw() {
+        draw[0].field_0x173 = 3;
+        draw[1].field_0x173 = 3;
+    }
+
     static type_tbl_entry loc_type_tbl[3];
     static type_tbl_entry act_type_tbl[5];
     static dist_entry dist_table[234];
