@@ -711,6 +711,14 @@ inline s32 fopAcM_seenPlayerAngleY(const fopAc_ac_c* i_actor) {
     return fopAcM_seenActorAngleY(i_actor, dComIfGp_getPlayer(0));
 }
 
+inline s16 fopAcM_toActorShapeAngleY(const fopAc_ac_c* i_actorA, const fopAc_ac_c* i_actorB) {
+    return i_actorA->shape_angle.y - i_actorB->shape_angle.y;
+}
+
+inline s16 fopAcM_toPlayerShapeAngleY(const fopAc_ac_c* i_actor) {
+    return fopAcM_toActorShapeAngleY(i_actor, dComIfGp_getPlayer(0));
+}
+
 s8 dComIfGp_getReverb(int roomNo);
 
 inline void fopAcM_seStartCurrent(const fopAc_ac_c* actor, u32 sfxID, u32 param_2) {
