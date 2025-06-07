@@ -1058,6 +1058,7 @@ u8 dComIfGs_getSelectMixItemNoArrowIndex(int i_selmixItemIdx);
 BOOL dComIfGs_isStageTbox(int i_stageNo, int i_no);
 s8 dComIfGs_PolyDamageOff_Check();
 void dComIfGs_shake_kandelaar();
+int dComIfGs_shake_kandelaar_check();
 void dComIfGs_Grass_hide_Set(s8 param_0);
 void dComIfGs_onGetMagicUseFlag();
 void dComIfG_playerStatusD();
