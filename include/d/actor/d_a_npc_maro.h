@@ -112,9 +112,7 @@ public:
     /* 80564978 */ s32 getHeadJointNo();
     /* 80564980 */ s32 getNeckJointNo();
     /* 80564988 */ s32 getBackboneJointNo();
-    /* 80564990-805649A0 0094F0 0010+00 1/0 0/0 0/0 .text            checkChangeJoint__12daNpc_Maro_cFi */
     /* 80564990 */ BOOL checkChangeJoint(int arg0) { return arg0 == 4; };
-    /* 805649A0-805649B0 009500 0010+00 1/0 0/0 0/0 .text            checkRemoveJoint__12daNpc_Maro_cFi */
     /* 805649A0 */ BOOL checkRemoveJoint(int arg0) { return arg0 == 6; };
 
     u8 getBitSW() { return (fopAcM_GetParam(this) & 0xFF0000) >> 16; }

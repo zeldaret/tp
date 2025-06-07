@@ -229,8 +229,11 @@ daNpc_Maro_Param_c::Data const daNpc_Maro_Param_c::m = {
 /* 8055B6E0-8055B9A8 000240 02C8+00 1/1 0/0 0/0 .text            create__12daNpc_Maro_cFv */
 int daNpc_Maro_c::create() {
     static int const heapSize[17] = {
-        13072, 13072, 0, 12896, 13088, 13088, 13088, 13072, 13072, 13088, 13072, 13072,
-        13072, 13072, 13072, 13072, 0,
+        0x3310, 0x3310,      0, 0x3260,
+        0x3320, 0x3320, 0x3320, 0x3310,
+        0x3310, 0x3320, 0x3310, 0x3310,
+        0x3310, 0x3310, 0x3310, 0x3310,
+        0,
     };
     fopAcM_SetupActor2(this, daNpc_Maro_c, l_faceMotionAnmData, l_motionAnmData,
                        l_faceMotionSequenceData, 4, l_motionSequenceData, 4,
@@ -439,7 +442,8 @@ fopAc_ac_c* daNpc_Maro_c::getItaMatoP(int param_0) {
 
 /* 8055C330-8055C3E0 000E90 00B0+00 2/1 0/0 0/0 .text            getType__12daNpc_Maro_cFv */
 u8 daNpc_Maro_c::getType() {
-    switch ((u8)fopAcM_GetParam(this)) {
+    u8 param = fopAcM_GetParam(this) & 0xFF;
+    switch (param) {
         case 0:
             return TYPE_0;
         case 1:
@@ -919,7 +923,6 @@ BOOL daNpc_Maro_c::evtCutProc() {
              || 0 == strcmp(dComIfGp_getEventManager().getRunEventName(), "CONTINUE_ARROWTUTORIAL")
              || 0 == strcmp(dComIfGp_getEventManager().getRunEventName(), "END_ARROWTUTORIAL")
              || 0 == strcmp(dComIfGp_getEventManager().getRunEventName(), "CLEAR_ARROWTUTORIAL")) {
-                //
                 field_0x1138 = 1;
             }
         }
@@ -1791,7 +1794,7 @@ int dummy_lit_6272(int arg) {
  */
 int daNpc_Maro_c::cutArrowTutorial(int arg0) {
     fopAc_ac_c* actor_p = NULL;
-    cXyz my_vec_0, my_vec_1, my_vec_2;
+    cXyz my_vec_0, temp, my_vec_2;
     csXyz my_s_vec;
     int retval = 0;
     int* param_p = NULL;
@@ -2040,11 +2043,11 @@ int daNpc_Maro_c::cutArrowTutorial(int arg0) {
                     my_vec_0.set(0.0f, 300.0f, 200.0f);
                     mDoMtx_stack_c::transS(daPy_getPlayerActorClass()->current.pos);
                     mDoMtx_stack_c::YrotM(cLib_targetAngleY(&daPy_getPlayerActorClass()->current.pos, &my_vec_2));
-                    mDoMtx_stack_c::multVec(&my_vec_0, &my_vec_1);
-                    mGndChk.SetPos(&my_vec_1);
-                    my_vec_1.y = dComIfG_Bgsp().GroundCross(&mGndChk);
-                    JUT_ASSERT(0xDA9, -(1000000000.0f) != my_vec_1.y);
-                    dComIfGp_evmng_setGoal(&my_vec_1);
+                    mDoMtx_stack_c::multVec(&my_vec_0, &temp);
+                    mGndChk.SetPos(&temp);
+                    temp.y = dComIfG_Bgsp().GroundCross(&mGndChk);
+                    JUT_ASSERT(0xDA9, -(1000000000.0f) != temp.y);
+                    dComIfGp_evmng_setGoal(&temp);
                 }
 
                 break;
@@ -2969,7 +2972,6 @@ int daNpc_Maro_c::wait(void* param_0) {
             }
 
             if (mStagger.checkStagger() == 0) {
-                // mtype switch.
                 if (mType == 3) {
                     mJntAnm.lookNone(0);
                     if (getBitSW() != 0xFF) {
