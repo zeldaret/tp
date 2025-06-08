@@ -4341,7 +4341,7 @@ int daNpc_Kn_c::teach03_attackWait(void* param_0) {
 
                 BOOL truth = FALSE;
                 
-                if (dComIfGp_getAttention().LockonTruth()) {
+                if (dComIfGp_getAttention()->LockonTruth()) {
                     truth = TRUE;
                 }
 
@@ -4412,7 +4412,7 @@ int daNpc_Kn_c::teach04_attackWait(void* param_0) {
         if (cLib_calcTimer(&field_0xdec) == 0 || checkCollisionSword()) {
             BOOL truth = FALSE;
             
-            if (dComIfGp_getAttention().LockonTruth()) {
+            if (dComIfGp_getAttention()->LockonTruth()) {
                 truth = TRUE;
             }
 
@@ -4664,7 +4664,7 @@ int daNpc_Kn_c::teach05_surpriseAttackWait(void* param_0) {
             
                 BOOL check = FALSE;
                 
-                if (dComIfGp_getAttention().LockonTruth()) {
+                if (dComIfGp_getAttention()->LockonTruth()) {
                     check = TRUE;
                 }
 
@@ -4757,7 +4757,7 @@ int daNpc_Kn_c::teach06_superJumpWait(void* param_0) {
                     if (daPy_getPlayerActorClass()->checkDamageImpact()) {
                         BOOL check = FALSE;
                         
-                        if (dComIfGp_getAttention().LockonTruth()) {
+                        if (dComIfGp_getAttention()->LockonTruth()) {
                             check = TRUE;
                         }
 
@@ -4778,7 +4778,7 @@ int daNpc_Kn_c::teach06_superJumpWait(void* param_0) {
 
                     BOOL check = FALSE;
                         
-                    if (dComIfGp_getAttention().LockonTruth()) {
+                    if (dComIfGp_getAttention()->LockonTruth()) {
                         check = TRUE;
                     }
 
@@ -6438,7 +6438,7 @@ int daNpc_Kn_c::ctrlBtk() {
                 field_0xe31 = 0;
             }
 
-            mpMatAnm->onEyeMoveFlag();
+            mpMatAnm->onEyeMoveFlg();
             return 1;
         }
 
@@ -6447,7 +6447,7 @@ int daNpc_Kn_c::ctrlBtk() {
             field_0xe31 = 0;
         }
 
-        mpMatAnm->offEyeMoveFlag();
+        mpMatAnm->offEyeMoveFlg();
     }
 
     return 0;
@@ -6504,7 +6504,7 @@ void daNpc_Kn_c::ctrlMsgAnm(int* param_0, int* param_1, fopAc_ac_c* param_2, int
 
 /* 80A3989C-80A39BBC 00EF7C 0320+00 1/0 0/0 0/0 .text ctrlJoint__10daNpc_Kn_cFP8J3DJointP8J3DModel
  */
-void daNpc_Kn_c::ctrlJoint(J3DJoint* param_0, J3DModel* param_1) {
+int daNpc_Kn_c::ctrlJoint(J3DJoint* param_0, J3DModel* param_1) {
     // NONMATCHING
 }
 
@@ -6571,10 +6571,10 @@ void daNpc_Kn_c::evtOrder() {
         u32 flag_check = attention_info.flags;
 
         if (flag_check & 8 || flag_check & 2) {
-            eventInfo.i_onCondition(1);
+            eventInfo.onCondition(1);
 
             if (chkXYItems()) {
-                eventInfo.i_onCondition(32);
+                eventInfo.onCondition(32);
             }
 
             if (field_0xe38 != 0) {
@@ -6760,8 +6760,8 @@ BOOL daNpc_Kn_c::evtEndProc() {
 }
 
 /* 80A3B7A4-80A3B7AC 010E84 0008+00 1/0 0/0 0/0 .text            checkChangeEvt__10daNpc_Kn_cFv */
-bool daNpc_Kn_c::checkChangeEvt() {
-    return false;
+BOOL daNpc_Kn_c::checkChangeEvt() {
+    return FALSE;
 }
 
 /* 80A3B7AC-80A3B7B4 010E8C 0008+00 1/0 0/0 0/0 .text            getFootRJointNo__10daNpc_Kn_cFv */
@@ -6825,7 +6825,7 @@ int daNpc_Kn_c::getEyeballLMaterialNo() {
 }
 
 /* 80A3BD24-80A3BD2C 011404 0008+00 1/0 0/0 0/0 .text getEyeballRMaterialNo__10daNpc_Kn_cFv */
-bool daNpc_Kn_c::getEyeballRMaterialNo() {
+s32 daNpc_Kn_c::getEyeballRMaterialNo() {
     return false;
 }
 
@@ -7175,7 +7175,7 @@ int daNpc_Kn_c::teach01_swordAttackWait(void* param_0) {
                 mTargetPos = current.pos;
                 int check = 0;
                 
-                if (dComIfGp_getAttention().LockonTruth()) {
+                if (dComIfGp_getAttention()->LockonTruth()) {
                     check = 1;
                 }
 
@@ -7471,7 +7471,7 @@ int daNpc_Kn_c::teach02_shieldBashWait(void* param_0) {
         if (!cLib_calcTimer(&field_0xdec) || checkCollisionSword()) {
             BOOL truth = FALSE;
             
-            if (dComIfGp_getAttention().LockonTruth()) {
+            if (dComIfGp_getAttention()->LockonTruth()) {
                 truth = TRUE;
             }
 
