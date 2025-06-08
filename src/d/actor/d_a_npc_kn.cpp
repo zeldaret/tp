@@ -6711,8 +6711,8 @@ void daNpc_Kn_c::setHitodamaPrtcl() {
     cXyz pos(eyePos);
 
     for (int i = 0; i < 2; i++) {
-        tevStr.mLightObj.mLightObj.field_0x0[i] = dComIfGp_particle_set(tevStr.mLightObj.mLightObj.field_0x0[i], id[i],&pos, &mTargetAngle, 0);
-        JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(tevStr.mLightObj.mLightObj.field_0x0[i]);
+        tevStr.mLightObj.mLightObj.dummy[i] = dComIfGp_particle_set(tevStr.mLightObj.mLightObj.dummy[i], id[i],&pos, &mTargetAngle, 0);
+        JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(tevStr.mLightObj.mLightObj.dummy[i]);
         if (emitter) {
             u8 alpha;
 
