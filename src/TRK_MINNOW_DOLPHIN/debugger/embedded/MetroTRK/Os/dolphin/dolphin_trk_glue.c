@@ -48,7 +48,7 @@ int InitMetroTRKCommTable(int hwId) {
         OSReport("MetroTRK : Set to GDEV hardware\n");
         // Initialize gDBCommTable
         result = Hu_IsStub();
-        gDBCommTable.initialize_func = gdev_cc_initialize;
+        gDBCommTable.initialize_func = (DBCommInitFunc)gdev_cc_initialize;
         gDBCommTable.open_func = gdev_cc_open;
         gDBCommTable.close_func = gdev_cc_close;
         gDBCommTable.read_func = gdev_cc_read;
@@ -63,7 +63,7 @@ int InitMetroTRKCommTable(int hwId) {
         OSReport("MetroTRK : Set to AMC DDH hardware\n");
         result = AMC_IsStub();
         // Initialize gDBCommTable
-        gDBCommTable.initialize_func = ddh_cc_initialize;
+        gDBCommTable.initialize_func = (DBCommInitFunc)ddh_cc_initialize;
         gDBCommTable.open_func = ddh_cc_open;
         gDBCommTable.close_func = ddh_cc_close;
         gDBCommTable.read_func = ddh_cc_read;

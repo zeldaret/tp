@@ -21,10 +21,33 @@ u8 __OSReport_System_disable;
 u8 __OSReport_enable;
 
 /* 80006798-800067C8 0010D8 0030+00 1/1 0/0 0/0 .text            OSSwitchFiberEx__FUlUlUlUlUlUl */
-void OSSwitchFiberEx(u32 param_0, u32 param_1, u32 param_2, u32 param_3, u32 param_4,
-                         u32 param_5) {
-    // NONMATCHING
+#ifdef __GEKKO__
+asm void OSSwitchFiberEx(register u32 param_0, register u32 param_1, register u32 param_2, register u32 param_3, register u32 code, register u32 stack) {
+    nofralloc
+    
+    mflr r0
+    
+    // Back chain
+    mr r9, r1
+    stwu r9, -8(stack)
+    
+    // LR save
+    mr r1, stack
+    stw r0, 4(r9)
+
+    // Call function
+    mtlr code
+    blrl
+
+    // Switch back
+    lwz r5, 0(r1)
+    lwz r0, 4(r5)
+    mtlr r0
+    mr r1, r5
+
+    blr
 }
+#endif
 
 /* 800067C8-800067F4 001108 002C+00 3/3 0/0 0/0 .text            my_PutString__FPCc */
 void my_PutString(const char* string) {
@@ -123,8 +146,8 @@ void mDoPrintf_vprintf(char const* fmt, va_list args) {
     if (currentThread == NULL) {
         mDoPrintf_vprintf_Interrupt(fmt, args);
     } else {
-        u8* stackPtr = OSGetStackPointer();
-        if (stackPtr < (u8*)currentThread->stack_end + 0xA00 || stackPtr > currentThread->stack_base) {
+        u8* stackPtr = (u8*)OSGetStackPointer();
+        if (stackPtr < (u8*)currentThread->stackEnd + 0xA00 || stackPtr > currentThread->stackBase) {
             mDoPrintf_vprintf_Interrupt(fmt, args);
         } else {
             mDoPrintf_vprintf_Thread(fmt, args);
@@ -221,7 +244,7 @@ void OSReport_System(const char* fmt, ...) {
 }
 
 /* 80006E7C-80006FB4 0017BC 0138+00 0/0 9/9 0/0 .text            OSPanic */
-void OSPanic(const char* file, s32 line, const char* fmt, ...) {
+void OSPanic(const char* file, int line, const char* fmt, ...) {
     va_list args;
     u32 i;
     u32* p;

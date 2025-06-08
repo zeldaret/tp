@@ -106,7 +106,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
     J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes("S_YOGAN", 9);
     if (!a_this->mpBrk->init(a_this->mpModel->getModelData(), brk, TRUE,
-                             J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1))
+                             J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1))
     {
         return 0;
     }
@@ -118,7 +118,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
     J3DAnmTextureSRTKey* btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("S_YOGAN", 12);
     if (!a_this->mpBtk->init(a_this->mpModel->getModelData(), btk, TRUE,
-                             J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1))
+                             J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1))
     {
         return 0;
     }

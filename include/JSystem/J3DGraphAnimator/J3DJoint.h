@@ -66,6 +66,7 @@ public:
     J3DJoint* getChild() { return mChild; }
     u8 getMtxType() { return (mKind & 0xf0) >> 4; }
     void setMtxType(u8 type) { mKind = (mKind & ~0xf0) | (type << 4); }
+    f32 getRadius() const { return mBoundingSphereRadius; }
 
     static J3DMtxCalc* mCurrentMtxCalc;
 

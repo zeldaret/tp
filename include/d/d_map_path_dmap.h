@@ -17,6 +17,7 @@ public:
     /* 8003FB70 */ static void create();
     /* 8003FBD0 */ static void reset();
     /* 8003FC70 */ static void remove();
+
     static dDrawPath_c::room_class* getRoomPointer(int layerNo, int roomNo) {
         return mLayerList->mRooms[layerNo][roomNo];
     }
@@ -25,6 +26,12 @@ public:
     static f32 getMinZ() { return mMinZ; }
     static f32 getMaxX() { return mMaxX; }
     static f32 getMaxZ() { return mMaxZ; }
+
+    static f32 getSizeX() { return mAllSizeX; }
+    static f32 getSizeZ() { return mAllSizeZ; }
+
+    static f32 getCenterX() { return mAllCenterX; }
+    static f32 getCenterZ() { return mAllCenterZ; }
 
     static dDrawPath_c::layer_data* mLayerList;  // this doesn't seem right, but can't figure it out atm
     static f32 mMinX;
@@ -67,13 +74,17 @@ public:
     /* 8003F754 */ static void remove();
 
     static s8 getNowStayFloorNo() {
-        JUT_ASSERT(mNowStayFloorNoDecisionFlg);
+        JUT_ASSERT(0, mNowStayFloorNoDecisionFlg);
 
         s8 floor_no = 0;
         if (mNowStayFloorNoDecisionFlg) {
             floor_no = mNowStayFloorNo;
         }
         return floor_no;
+    }
+
+    static u8 getNowStayFloorNoDecisionFlg() {
+        return mNowStayFloorNoDecisionFlg;
     }
 
     static void setNextRoomNoForMapPat0(int i_roomNo) { mNextRoomNo = i_roomNo; }

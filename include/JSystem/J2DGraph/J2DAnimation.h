@@ -495,6 +495,7 @@ inline f32 J2DHermiteInterpolation<s16>(register f32 pp1, register s16* pp2, reg
     register s16* p6 = pp6;
     register s16* p7 = pp7;
     // clang-format off
+#ifdef __MWERKS__
     asm {
         psq_l ff2, 0(p2), 0x1, 5
         psq_l ff0, 0(p5), 0x1, 5
@@ -517,6 +518,7 @@ inline f32 J2DHermiteInterpolation<s16>(register f32 pp1, register s16* pp2, reg
         fmadds fout, ff4, ff2, fout
         fsubs fout, fout, ff0
     }
+#endif
     // clang-format on
     return fout;
 }

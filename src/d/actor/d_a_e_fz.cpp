@@ -253,7 +253,7 @@ void daE_FZ_c::damage_check() {
             dComIfGp_setHitMark(3,this,&pos3,&s_pos,0,AT_TYPE_0);
           }
 
-          mLastWallHitAngle = mAtInfo.mHitDirection;
+          mLastWallHitAngle = mAtInfo.mHitDirection.y;
           setReflectAngle();
           current.angle.y += -32768;
           field_0x712 = 10;
@@ -731,7 +731,7 @@ void daE_FZ_c::action() {
         }
 
         if (1 < health && mAcchCir.ChkWallHit()) {
-            if (fopAcM_GetName(dComIfG_Bgsp().GetActorPointer(mAcchCir.GetBgIndex())) != PROC_BG) {
+            if (fopAcM_GetName(dComIfG_Bgsp().GetActorPointer(mAcchCir)) != PROC_BG) {
                 dBgS_LinChk lin_chk;
                 dBgS_LinChk lin_chk2;
 

@@ -29,14 +29,14 @@ typedef struct create_request {
     /* 0x44 */ layer_class* layer;
 } create_request;  // Size: 0x48
 
-bool fpcCtRq_isCreatingByID(create_tag* i_createTag, fpc_ProcID* i_id);
+BOOL fpcCtRq_isCreatingByID(create_tag* i_createTag, fpc_ProcID* i_id);
 BOOL fpcCtRq_IsCreatingByID(fpc_ProcID i_id);
 void fpcCtRq_CreateQTo(create_request* i_request);
 void fpcCtRq_ToCreateQ(create_request* i_request);
 BOOL fpcCtRq_Delete(create_request* i_request);
 BOOL fpcCtRq_Cancel(create_request* i_request);
 BOOL fpcCtRq_IsDoing(create_request* i_request);
-void fpcCtRq_Handler();
+int fpcCtRq_Handler();
 create_request* fpcCtRq_Create(layer_class* i_layer, u32 i_size,
                                create_request_method_class* i_methods);
 

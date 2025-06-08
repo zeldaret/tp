@@ -15,14 +15,14 @@ static char* l_arcName = "Lv5_KEY";
 int daObjLv5Key_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 7);
     J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 4);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
 
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {
         return 0;
     }
 
-    if (!mBck.init(pbck, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1, false)) {
+    if (!mBck.init(pbck, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1, false)) {
         return 0;
     }
 
@@ -183,7 +183,7 @@ void daObjLv5Key_c::Fall(int param_0) {
 
         OS_REPORT("FALL SPD = %f\n", speed.y);
 
-        if (mAcch.i_ChkGroundHit()) {
+        if (mAcch.ChkGroundHit()) {
             fopAcM_GetSpeed(this);
             fopAcM_SetSpeedF(this, 4.0f);
             fopAcM_SetSpeed(this, 0.0f, 22.0f, 0.0f);
@@ -204,7 +204,7 @@ void daObjLv5Key_c::Fall(int param_0) {
         mAcch.CrrPos(dComIfG_Bgsp());
         current.pos.y = prev_y;
 
-        if (mAcch.i_ChkGroundHit()) {
+        if (mAcch.ChkGroundHit()) {
             setAction(&Land, 1);
         }
     }

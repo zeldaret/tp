@@ -50,12 +50,12 @@ int daTagMhint_c::create() {
     if (!checkNoAttention()) {
         stage_arrow_data_class* arrow_data_p =
             &dComIfGp_getRoomArrow(fopAcM_GetRoomNo(this))
-                 ->mEntries[dComIfGp_getRoomCamera(fopAcM_GetRoomNo(this))
-                                ->mEntries[field_0x56d]
-                                .field_0x10];
+                 ->m_entries[dComIfGp_getRoomCamera(fopAcM_GetRoomNo(this))
+                                ->m_entries[field_0x56d]
+                                .m_arrow_idx];
 
-        eyePos.set(arrow_data_p->mPosition.x, arrow_data_p->mPosition.y,
-                    arrow_data_p->mPosition.z);
+        eyePos.set(arrow_data_p->position.x, arrow_data_p->position.y,
+                    arrow_data_p->position.z);
         attention_info.position = eyePos;
     }
 
@@ -81,7 +81,7 @@ static int daTagMhint_Delete(daTagMhint_c* i_this) {
 /* 805A5974-805A5AE4 000334 0170+00 1/1 0/0 0/0 .text            eventOrder__12daTagMhint_cFv */
 void daTagMhint_c::eventOrder() {
     if (!dComIfGp_event_runCheck()) {
-        eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
+        eventInfo.onCondition(dEvtCnd_CANTALK_e);
 
         if (!daPy_getPlayerActorClass()->checkPlayerFly() ||
             dComIfGp_checkPlayerStatus0(0, 0x100000))
@@ -129,7 +129,7 @@ int daTagMhint_c::execute() {
         shape_angle.y = fopAcM_searchPlayerAngleY(this);
     }
 
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         if (dComIfGp_evmng_endCheck(mEventID)) {
             dComIfGp_event_reset();
             fopAcM_orderSpeakEvent(this, 3, 0);
@@ -178,7 +178,7 @@ int daTagMhint_c::execute() {
         }
     } else {
         if (field_0x570 != 0) {
-            eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
+            eventInfo.onCondition(dEvtCnd_CANTALK_e);
             fopAcM_orderSpeakEvent(this, 3, 0);
             return 1;
         }

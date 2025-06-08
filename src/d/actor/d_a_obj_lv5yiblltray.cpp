@@ -66,7 +66,7 @@ void daObjYIblltray_c::setMtx() {
 /* 80C6EDA8-80C6EED4 000228 012C+00 1/0 0/0 0/0 .text            CreateHeap__16daObjYIblltray_cFv */
 int daObjYIblltray_c::CreateHeap() {
     J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 9);
-    JUT_ASSERT(model_data != 0);
+    JUT_ASSERT(0, model_data != 0);
 
     mpTrayModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
     if (mpTrayModel == NULL) {
@@ -74,7 +74,7 @@ int daObjYIblltray_c::CreateHeap() {
     }
 
     model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 8);
-    JUT_ASSERT(model_data != 0);
+    JUT_ASSERT(0, model_data != 0);
 
     mpHandleModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
     if (mpHandleModel == NULL) {
@@ -82,7 +82,7 @@ int daObjYIblltray_c::CreateHeap() {
     }
 
     J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 5);
-    if (!mBck.init(bck, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1, false)) {
+    if (!mBck.init(bck, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, false)) {
         return 0;
     }
 
@@ -124,24 +124,24 @@ int daObjYIblltray_c::Create() {
             current.angle.x = 0x1A4F;
             mMode = MODE_FRONT_WAIT;
             mBck.setFrame(mBck.getEndFrame());
-            mBck.setPlayMode(J3DFrameCtrl::LOOP_ONCE_e);
+            mBck.setPlayMode(J3DFrameCtrl::EMode_NONE);
         } else {
             current.angle.x = -0x1A4F;
             mMode = MODE_BACK_RIDE;
             mBck.setFrame(mBck.getStartFrame());
-            mBck.setPlayMode(J3DFrameCtrl::LOOP_ONCE_RESET_e);
+            mBck.setPlayMode(J3DFrameCtrl::EMode_RESET);
         }
     } else {
         if (!fopAcM_isSwitch(this, getSwNo())) {
             current.angle.x = -0x1A4F;
             mMode = MODE_BACK_RIDE;
             mBck.setFrame(mBck.getStartFrame());
-            mBck.setPlayMode(J3DFrameCtrl::LOOP_ONCE_RESET_e);
+            mBck.setPlayMode(J3DFrameCtrl::EMode_RESET);
         } else {
             current.angle.x = 0x1A4F;
             mMode = MODE_FRONT_WAIT;
             mBck.setFrame(mBck.getEndFrame());
-            mBck.setPlayMode(J3DFrameCtrl::LOOP_ONCE_e);
+            mBck.setPlayMode(J3DFrameCtrl::EMode_NONE);
         }
     }
 
@@ -267,7 +267,7 @@ int daObjYIblltray_c::Execute(Mtx** param_0) {
     if (!getNoSameRoom() && mTrayID == fpcM_ERROR_PROCESS_ID_e) {
         daObjYIblltray_c* ptray =
             (daObjYIblltray_c*)fopAcM_Search((fopAcIt_JudgeFunc)searchObjYIblltray, this);
-        JUT_ASSERT(ptray != 0);
+        JUT_ASSERT(0, ptray != 0);
 
         mTrayID = fopAcM_GetID(ptray);
     }
@@ -331,7 +331,7 @@ int daObjYIblltray_c::Execute(Mtx** param_0) {
     if (getType() == 0) {
         if (!fopAcM_isSwitch(this, getSwNo())) {
             mBck.setPlaySpeed(1.0f);
-            mBck.setPlayMode(J3DFrameCtrl::LOOP_ONCE_e);
+            mBck.setPlayMode(J3DFrameCtrl::EMode_NONE);
 
             if (current.angle.x < 0x19EB) {
                 mRotAmount += 100;
@@ -352,7 +352,7 @@ int daObjYIblltray_c::Execute(Mtx** param_0) {
             }
         } else {
             mBck.setPlaySpeed(-1.0f);
-            mBck.setPlayMode(J3DFrameCtrl::LOOP_ONCE_RESET_e);
+            mBck.setPlayMode(J3DFrameCtrl::EMode_RESET);
 
             if (current.angle.x > -0x19EB) {
                 mRotAmount -= 100;
@@ -372,7 +372,7 @@ int daObjYIblltray_c::Execute(Mtx** param_0) {
     } else {
         if (fopAcM_isSwitch(this, getSwNo())) {
             mBck.setPlaySpeed(1.0f);
-            mBck.setPlayMode(J3DFrameCtrl::LOOP_ONCE_e);
+            mBck.setPlayMode(J3DFrameCtrl::EMode_NONE);
 
             if (current.angle.x < 0x19EB) {
                 mRotAmount += 100;
@@ -392,7 +392,7 @@ int daObjYIblltray_c::Execute(Mtx** param_0) {
             }
         } else {
             mBck.setPlaySpeed(-1.0f);
-            mBck.setPlayMode(J3DFrameCtrl::LOOP_ONCE_RESET_e);
+            mBck.setPlayMode(J3DFrameCtrl::EMode_RESET);
 
             if (current.angle.x > -0x19EB) {
                 mRotAmount -= 100;

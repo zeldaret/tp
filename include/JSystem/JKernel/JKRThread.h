@@ -2,8 +2,8 @@
 #define JKRTHREAD_H
 
 #include "JSystem/JKernel/JKRHeap.h"
-#include "dolphin/os/OSMessage.h"
-#include "dolphin/os/OSTime.h"
+#include <dolphin/os.h>
+#include <dolphin/os.h>
 
 /**
  * @ingroup jsystem-jkernel

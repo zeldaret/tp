@@ -1,11 +1,7 @@
 #ifndef OSDSP_H
 #define OSDSP_H
 
-#include "dolphin/dsp.h"
-
-struct STRUCT_DSP_TASK {
-    /* 0x00 */ DSPTaskInfo info;
-};
+#include <dolphin/dsp.h>
 
 extern "C" DSPTaskInfo* DSPAddTask(DSPTaskInfo*);
 void DSPAddPriorTask(STRUCT_DSP_TASK*);

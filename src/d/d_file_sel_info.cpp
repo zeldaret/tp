@@ -4,15 +4,29 @@
  */
 
 #define NO_INLINE_DLSTBASE_DRAW
-#define DFILE_INFO_C_DUMMY_VIRTUAL
 
 #include "d/d_file_sel_info.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_meter2_info.h"
-#include "d/d_pane_class.h"
+#include "d/d_pane_class_alpha.h"
 #include "stdio.h"
+
+// Need 0xC bytes of padding with no symbol between dFile_info_c::__vtable and the end of .data
+// This is likely caused by the vtable of an abstract base class getting put there and then stripped out.
+// Not sure which abstract base class could go there though, so we simulate it with some dummy classes for now.
+class dummy_abstract_class {
+public:
+    virtual void virt_func_0() = 0;
+};
+class dummy_child_class : dummy_abstract_class {
+    virtual void virt_func_0();
+};
+static dummy_child_class dummy() {
+    dummy_child_class temp;
+    return temp;
+}
 
 /* 803BB498-803BB4A8 0185B8 000C+04 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
 static u8 cNullVec__6Z2Calc[] = {
@@ -40,7 +54,7 @@ dFile_info_c::~dFile_info_c() {
 /* 80192570-80192954 18CEB0 03E4+00 1/1 0/0 0/0 .text            screenSet__12dFile_info_cFv */
 void dFile_info_c::screenSet() {
     mFileInfo.Scr = new J2DScreen();
-    JUT_ASSERT(mFileInfo.Scr != 0);
+    JUT_ASSERT(0, mFileInfo.Scr != 0);
 
     mFileInfo.Scr->setPriority("zelda_file_select_info_text.blo", 0x1100000, mArchive);
     mFileInfo.mFont = mDoExt_getMesgFont();
@@ -163,8 +177,8 @@ static procFunc fileWarningProc[] = {&dFile_info_c::modeWait, &dFile_info_c::mod
 void dFile_info_c::setSaveDate(dSv_save_c* i_savedata) {
     OSCalendarTime time;
     OSTicksToCalendarTime(i_savedata->getPlayer().getPlayerStatusB().getDateIpl(), &time);
-    sprintf(mSaveDate, "%02d/%02d/%d %02d:%02d", time.month + 1, time.day_of_month, time.year,
-            time.hours, time.minutes);
+    sprintf(mSaveDate, "%02d/%02d/%d %02d:%02d", time.mon + 1, time.mday, time.year,
+            time.hour, time.min);
 }
 
 /* 80192C70-80192D58 18D5B0 00E8+00 1/1 0/0 0/0 .text setPlayTime__12dFile_info_cFP10dSv_save_c */

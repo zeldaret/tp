@@ -55,7 +55,7 @@ public:
     /* 801E1678 */ u8 getLetterNum();
     /* 801E1748 */ void setHIO(bool);
 
-    /* 801E1D5C */ virtual void draw();
+    /* 801E1D5C */ virtual void draw() { _draw(); }
     /* 801DCF34 */ virtual ~dMenu_Letter_c();
 
     u8 getStatus() { return mStatus; }
@@ -68,7 +68,7 @@ private:
     /* 0x014 */ mDoDvdThd_mountArchive_c* mpMount;
     /* 0x018 */ J2DScreen* mpMenuScreen;
     /* 0x01C */ J2DScreen* mpMenuDMYScreen;
-    /* 0x020 */ J2DScreen* mpMenuBaseScreen;
+    /* 0x020 */ J2DScreen* mpBaseScreen;
     /* 0x024 */ J2DScreen* mpSdwScreen;
     /* 0x028 */ J2DScreen* mpLetterScreen[2];
     /* 0x030 */ J2DScreen* mpIconScreen;

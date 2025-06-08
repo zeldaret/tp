@@ -536,9 +536,9 @@ static void func_809BAE78() {
 }
 
 /* 809BAE80-809BB0D0 000A40 0250+00 2/1 0/0 0/0 .text            __dt__10daNpcCd2_cFv */
-daNpcCd2_c::~daNpcCd2_c() {
-    // NONMATCHING
-}
+// daNpcCd2_c::~daNpcCd2_c() {
+//     // NONMATCHING
+// }
 
 /* 809BB0D0-809BB10C 000C90 003C+00 2/2 0/0 0/0 .text            __dt__5csXyzFv */
 csXyz::~csXyz() {
@@ -546,9 +546,9 @@ csXyz::~csXyz() {
 }
 
 /* 809BB10C-809BB1F4 000CCC 00E8+00 1/0 0/0 0/0 .text            __dt__16dNpcLib_lookat_cFv */
-dNpcLib_lookat_c::~dNpcLib_lookat_c() {
-    // NONMATCHING
-}
+// dNpcLib_lookat_c::~dNpcLib_lookat_c() {
+//     // NONMATCHING
+// }
 
 /* 809BB1F4-809BB23C 000DB4 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
 cM3dGCyl::~cM3dGCyl() {

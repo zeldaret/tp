@@ -1,7 +1,8 @@
-#ifndef DB_H
-#define DB_H
+#ifndef _DOLPHIN_DB_H_
+#define _DOLPHIN_DB_H_
 
-#include "amcstubs/AmcExi2Stubs.h"
+#include <dolphin/types.h>
+#include <dolphin/db/DBInterface.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -9,30 +10,13 @@ extern "C" {
 
 #define OS_DBINTERFACE_ADDR 0x00000040
 
-typedef struct DBInterface {
-    /* 0x0 */ u32 bPresent;
-    /* 0x4 */ u32 exceptionMask;
-    /* 0x8 */ void (*ExceptionDestination)(void);
-    /* 0xC */ void* exceptionReturn;
-} DBInterface;
-
-extern DBInterface* __DBInterface;
-
-void DBInit(void);
-void __DBExceptionDestinationAux(void);
-void __DBExceptionDestination(void);
-BOOL __DBIsExceptionMarked(__OSException);
-void DBPrintf(char* format, ...);
-void DBInitComm(vu8**, AmcEXICallback); // possibly not this type, but some similar construction
-void DBInitInterrupts();
-u32 DBQueryData();
-BOOL DBRead(void*, u32);
-BOOL DBWrite(const void*, u32);
-void DBOpen();
-void DBClose();
+BOOL DBIsDebuggerPresent(void);
+void DBPrintf(char* str, ...);
+s32 DBQueryData(void);
+u32 DBRead(u8*, u32);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* DB_H */
+#endif // _DOLPHIN_DB_H_

@@ -5,24 +5,6 @@
 
 #include "JSystem/JMessage/control.h"
 
-//
-// External References:
-//
-
-extern "C" void reset__Q28JMessage10TProcessorFv();
-extern "C" void getResource_groupID__Q28JMessage10TProcessorCFUs();
-extern "C" void toMessageCode_messageID__Q28JMessage10TProcessorCFUlUlPb();
-extern "C" void process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor();
-extern "C" void process__Q28JMessage18TSequenceProcessorFPCc();
-extern "C" void process__Q28JMessage19TRenderingProcessorFPCc();
-extern "C" void __dl__FPv();
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_28();
-
-//
-// Declarations:
-//
-
 /* 802A7548-802A758C 2A1E88 0044+00 0/0 2/2 0/0 .text            __ct__Q28JMessage8TControlFv */
 JMessage::TControl::TControl()
     : pSequenceProcessor_(NULL), pRenderingProcessor_(NULL), messageCode_(0xFFFF),
@@ -66,7 +48,6 @@ int JMessage::TControl::update() {
 }
 
 /* 802A76BC-802A77E8 2A1FFC 012C+00 0/0 5/5 0/0 .text            render__Q28JMessage8TControlFv */
-// NONMATCHING
 void JMessage::TControl::render() {
     if (isReady_render_()) {
         pRenderingProcessor_->setBegin_messageEntryText(pResourceCache_, pEntry_, field_0x20);

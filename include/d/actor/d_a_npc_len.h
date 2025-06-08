@@ -39,7 +39,7 @@ public:
     /* 80A65F88 */ void selectAction();
     /* 80A66004 */ void chkAction(int (daNpc_Len_c::*)(void*));
     /* 80A66030 */ void setAction(int (daNpc_Len_c::*)(void*));
-    /* 80A660D8 */ void checkStartDemo13StbEvt(fopAc_ac_c*, f32, f32, f32, f32, f32, f32, f32);
+    /* 80A660D8 */ BOOL checkStartDemo13StbEvt(fopAc_ac_c*, f32, f32, f32, f32, f32, f32, f32);
     /* 80A661B4 */ void cutConversationInHotel(int);
     /* 80A66664 */ void cutHurry(int);
     /* 80A668B8 */ void cutTakeWoodStatue(int);

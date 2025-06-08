@@ -47,13 +47,13 @@ JKRDvdFinder::~JKRDvdFinder() {
 /* 802D4874-802D4910 2CF1B4 009C+00 1/0 0/0 0/0 .text            findNextFile__12JKRDvdFinderFv */
 bool JKRDvdFinder::findNextFile(void) {
     if (mIsAvailable) {
-        DVDDirectoryEntry directoryEntry;
+        DVDDirEntry directoryEntry;
         mIsAvailable = DVDReadDir(&mDvdDirectory, &directoryEntry);
 
         if (mIsAvailable) {
-            mIsFileOrDirectory = directoryEntry.is_directory != 0;
+            mIsFileOrDirectory = directoryEntry.isDir != 0;
             mEntryName = directoryEntry.name;
-            mEntryFileIndex = directoryEntry.entry_number;
+            mEntryFileIndex = directoryEntry.entryNum;
             mEntryId = 0;
 
             // only matches with enum

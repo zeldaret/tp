@@ -280,7 +280,8 @@ int daLv2Candle_c::Execute() {
                                     g_whiteColor, g_whiteColor, 0, 0.0f);
         dComIfGp_particle_setSimple(0x103, &mTorchPos, 0xff,
                                     g_whiteColor, g_whiteColor, 0, 0.0f);
-        mDoAud_seStartLevel(0x80018, &mTorchPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+        mDoAud_seStartLevel(Z2SE_OBJ_FIRE_BURNING, &mTorchPos, 0,
+                            dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     }
 
     if (field_0x734 != NULL) {
@@ -305,7 +306,8 @@ int daLv2Candle_c::Execute() {
             } else {
                 fopAcM_offSwitch(this, mSw);
             }
-            mDoAud_seStart(0x80017, &mTorchPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+            mDoAud_seStart(Z2SE_OBJ_FIRE_IGNITION, &mTorchPos, 0,
+                           dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
             setLight();
         }
         if (gobj->GetAtType() == AT_TYPE_BOOMERANG && gobj->GetAtMtrl() == dCcD_MTRL_WIND &&
@@ -313,7 +315,8 @@ int daLv2Candle_c::Execute() {
             mIsLit = false;
             mCyl.SetAtMtrl(dCcD_MTRL_NONE);
             cutLight();
-            mDoAud_seStart(0x80019, &mTorchPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+            mDoAud_seStart(Z2SE_OBJ_FIRE_OFF, &mTorchPos, 0,
+                           dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
             if (mSw == 0xff) {
                 mTimer = l_HIO.mTimer;
             }

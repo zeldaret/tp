@@ -7,12 +7,23 @@
 #define JUT_ASSERT(LINE, COND) \
     (COND) ? (void)0 : (JUTAssertion::showAssert(JUTAssertion::getSDevice(), __FILE__, LINE, #COND), OSPanic(__FILE__, LINE, "Halt"));
 
+#define JUT_ASSERT_MSG(LINE, COND, MSG) \
+    (COND) ? (void)0 : (JUTAssertion::showAssert(JUTAssertion::getSDevice(), __FILE__, LINE, MSG), OSPanic(__FILE__, LINE, "Halt"));
+
+#define JUT_ASSERT_MSG_F(LINE, COND, MSG, ...) \
+    (COND) ? (void)0 : (JUTAssertion::showAssert_f(JUTAssertion::getSDevice(), __FILE__, LINE, MSG, __VA_ARGS__), OSPanic(__FILE__, LINE, "Halt"));
+
+#define J3D_ASSERT(LINE, COND, MSG) JUT_ASSERT_MSG(LINE, (COND) != 0, MSG)
+
 #define JUT_PANIC(LINE, TEXT)                                                                      \
     JUTAssertion::showAssert(JUTAssertion::getSDevice(), __FILE__, LINE, TEXT);                    \
     OSPanic(__FILE__, LINE, "Halt");
 
+#define JUT_WARN_DEVICE(LINE, DEVICE, ...)                                                                        \
+    JUTAssertion::setWarningMessage_f(DEVICE, __FILE__, LINE, __VA_ARGS__);    \
+
 #define JUT_WARN(LINE, ...)                                                                        \
-    JUTAssertion::setWarningMessage_f(JUTAssertion::getSDevice(), __FILE__, LINE, __VA_ARGS__);    \
+    JUT_WARN_DEVICE(LINE, JUTAssertion::getSDevice(), __VA_ARGS__)
 
 #define JUT_LOG(LINE, ...)                                                                         \
     JUTAssertion::setLogMessage_f(JUTAssertion::getSDevice(), __FILE__, LINE, __VA_ARGS__)
@@ -21,9 +32,13 @@
     JUTAssertion::setConfirmMessage(JUTAssertion::getSDevice(), __FILE__, LINE, COND, #COND)
 
 #else
-#define JUT_ASSERT(...)
+#define JUT_ASSERT(...) (void)0;
+#define JUT_ASSERT_MSG(...) (void)0;
+#define JUT_ASSERT_MSG_F(...) (void)0;
+#define J3D_ASSERT(...) (void)0;
 #define JUT_PANIC(...)
 #define JUT_WARN(...)
+#define JUT_WARN_DEVICE(...)
 #define JUT_LOG(...)
 #define JUT_CONFIRM(...)
 #endif
@@ -38,8 +53,10 @@ namespace JUTAssertion {
 
     u32 getSDevice();
     void showAssert(u32 device, const char * file, int line, const char * assertion);
+    void showAssert_f(u32 device, const char* file, int line, const char* msg, ...);
     void setWarningMessage_f(u32 device, char * file, int line, const char * fmt, ...);
     void setLogMessage_f(u32 device, char* file, int line, const char* fmt, ...);
+    void setConfirmMessage(u32 param_1, char* file, int line, bool param_4, const char* msg);
 };
 
 extern bool sAssertVisible;

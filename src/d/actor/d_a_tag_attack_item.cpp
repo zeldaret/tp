@@ -27,8 +27,8 @@ public:
     /* 805A3038 */ int _delete();
 
     /* 805A3118 */ ~daTagAtkItem_c();
-    /* 805A2D10 */ BOOL eventStart();
-    /* 805A2D34 */ BOOL eventEnd();
+    /* 805A2D10 */ bool eventStart();
+    /* 805A2D34 */ bool eventEnd();
 
     u8 getEvId() { return fopAcM_GetParamBit(this, 0x18, 8); }
     u8 getNum() { return fopAcM_GetParamBit(this, 8, 8); }
@@ -268,15 +268,15 @@ void daTagAtkItem_c::action() {
 
 
 /* 805A2D10-805A2D34 000430 0024+00 2/1 0/0 0/0 .text            eventStart__14daTagAtkItem_cFv */
-BOOL daTagAtkItem_c::eventStart() {
+bool daTagAtkItem_c::eventStart() {
     createItem();
-    return TRUE;
+    return true;
 }
 
 /* 805A2D34-805A2D58 000454 0024+00 2/1 0/0 0/0 .text            eventEnd__14daTagAtkItem_cFv */
-BOOL daTagAtkItem_c::eventEnd() {
+bool daTagAtkItem_c::eventEnd() {
     fopAcM_delete(this);
-    return TRUE;
+    return true;
 }
 
 /* 805A2D58-805A2F54 000478 01FC+00 1/1 0/0 0/0 .text            checkHit__14daTagAtkItem_cFv */

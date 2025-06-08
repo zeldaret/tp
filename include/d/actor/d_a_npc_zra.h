@@ -21,7 +21,7 @@ public:
     /* 80B78CFC */ int getDstPosChase(u16, cXyz, cXyz&);
     /* 80B78E08 */ f32 chkPassDst(u16, cXyz);
     /* 80B7EF88 */ ~daNpc_zrA_Path_c() {}
-    int getEndIdx() { return mpRoomPath->m_num - 1; }
+    int getEndIdx() { return mPathInfo->m_num - 1; }
 };
 
 STATIC_ASSERT(sizeof(daNpc_zrA_Path_c) == 0x630);
@@ -233,7 +233,7 @@ public:
     /* 80B7B9D4 */ bool setExpressionAnm(int, bool);
     /* 80B7BD60 */ bool setExpressionBtp(int);
     /* 80B7BE74 */ void setExpression(int, f32);
-    /* 80B7BEA0 */ bool setMotionAnm(int, f32);
+    /* 80B7BEA0 */ void setMotionAnm(int, f32);
     /* 80B7C070 */ void setMotionWaterAnm(int);
     /* 80B7C308 */ void setMotion(int, f32, BOOL);
     /* 80B7C34C */ BOOL drawDbgInfo();

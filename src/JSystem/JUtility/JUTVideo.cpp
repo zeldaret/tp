@@ -7,6 +7,7 @@
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTXfb.h"
 #include "dolphin/gx.h"
+#include <dolphin/vi.h>
 
 /* 80451538-8045153C 000A38 0004+00 4/4 18/18 1/1 .sbss            sManager__8JUTVideo */
 JUTVideo* JUTVideo::sManager;
@@ -93,7 +94,7 @@ void JUTVideo::preRetraceProc(u32 retrace_count) {
         JUTVideo* videoManager = JUTGetVideoManager();
         const GXRenderModeObj* renderMode = videoManager->getRenderMode();
         JUTDirectPrint* directPrint = JUTDirectPrint::getManager();
-        directPrint->changeFrameBuffer(frameBuffer, renderMode->fb_width, renderMode->efb_height);
+        directPrint->changeFrameBuffer(frameBuffer, renderMode->fbWidth, renderMode->efbHeight);
     }
 
     if (sManager->mSetBlack == 1) {
@@ -198,7 +199,7 @@ void JUTVideo::postRetraceProc(u32 retrace_count) {
 /* 802E5198-802E5210 2DFAD8 0078+00 1/1 2/2 0/0 .text
  * setRenderMode__8JUTVideoFPC16_GXRenderModeObj                */
 void JUTVideo::setRenderMode(GXRenderModeObj const* pObj) {
-    if (mRenderObj != NULL && pObj->vi_tv_mode != mRenderObj->vi_tv_mode) {
+    if (mRenderObj != NULL && pObj->viTVmode != mRenderObj->viTVmode) {
         mSetBlack = true;
         mSetBlackFrameCount = 4;
     }

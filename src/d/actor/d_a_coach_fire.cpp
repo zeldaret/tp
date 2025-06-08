@@ -121,9 +121,9 @@ int daCoachFire_c::execute() {
         setNoHitTimer();
     }
     if (coach != NULL && coach->checkCoachBlazing()) {
-        dAttention_c& attn = dComIfGp_getAttention();
-        if (attn.LockonTruth()) {
-            if (attn.LockonTarget(0) != this) {
+        dAttention_c* attn = dComIfGp_getAttention();
+        if (attn->LockonTruth()) {
+            if (attn->LockonTarget(0) != this) {
                 if (coach->deleteFireArrowFromList(fopAcM_GetID(this)) != NULL) {
                     fopAcM_delete(this);
                 }

@@ -395,24 +395,14 @@ static int daKytag00_Draw(kytag00_class* i_this) {
 
 /* 8046C684-8046C76C 000FE4 00E8+00 1/0 0/0 0/0 .text daKytag00_Execute__FP13kytag00_class */
 static int daKytag00_Execute(kytag00_class* i_this) {
-    BOOL var_r30 = true;
+    BOOL var_r30 = TRUE;
 
-    if (i_this->field_0x571 != 0xFF) {
-        s32 room_no = dComIfGp_roomControl_getStayNo();
-        if (dComIfGs_isSwitch(i_this->field_0x571, room_no)) {
-            var_r30 = 0;
-            goto label;
-        }
+    if (i_this->field_0x571 != 0xFF && dComIfGs_isSwitch(i_this->field_0x571, dComIfGp_roomControl_getStayNo())) {
+        var_r30 = FALSE;
+    } else if (i_this->field_0x572 != 0xFF && !dComIfGs_isSwitch(i_this->field_0x572, dComIfGp_roomControl_getStayNo())) {
+        var_r30 = FALSE;
     }
 
-    if (i_this->field_0x572 != 0xFF) {
-        s32 room_no = dComIfGp_roomControl_getStayNo();
-        if (!dComIfGs_isSwitch(i_this->field_0x572, room_no)) {
-            var_r30 = 0;
-        }
-    }
-
-label:
     if (var_r30 == TRUE) {
         cLib_addCalc(&i_this->field_0x588, 1.0f, 0.1f, 0.01f, 0.0001f);
     } else {
@@ -450,24 +440,14 @@ static int daKytag00_Create(fopAc_ac_c* i_this) {
     a_this->field_0x571 = a_this->current.angle.x & 0xFF;
     a_this->field_0x572 = (a_this->current.angle.x >> 8) & 0xFF;
 
-    BOOL var_r30 = true;
+    BOOL var_r30 = TRUE;
 
-    if (a_this->field_0x571 != 0xFF) {
-        s32 room_no = dComIfGp_roomControl_getStayNo();
-        if (dComIfGs_isSwitch(a_this->field_0x571, room_no)) {
-            var_r30 = 0;
-            goto label;
-        }
+    if (a_this->field_0x571 != 0xFF && dComIfGs_isSwitch(a_this->field_0x571, dComIfGp_roomControl_getStayNo())) {
+        var_r30 = FALSE;
+    } else if (a_this->field_0x572 != 0xFF && !dComIfGs_isSwitch(a_this->field_0x572, dComIfGp_roomControl_getStayNo())) {
+        var_r30 = FALSE;
     }
 
-    if (a_this->field_0x572 != 0xFF) {
-        s32 room_no = dComIfGp_roomControl_getStayNo();
-        if (!dComIfGs_isSwitch(a_this->field_0x572, room_no)) {
-            var_r30 = 0;
-        }
-    }
-
-label:
     if (var_r30 == TRUE) {
         a_this->field_0x588 = 1.0f;
     } else {

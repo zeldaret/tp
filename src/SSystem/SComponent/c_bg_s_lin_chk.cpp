@@ -4,6 +4,7 @@
  */
 
 #include "SSystem/SComponent/c_bg_s_lin_chk.h"
+#include "f_pc/f_pc_manager.h"
 
 /* 80267D5C-80267DBC 26269C 0060+00 0/0 2/2 0/0 .text            __ct__11cBgS_LinChkFv */
 cBgS_LinChk::cBgS_LinChk() {
@@ -19,7 +20,7 @@ void cBgS_LinChk::ct() {
     mLin.SetStartEnd(start_end, start_end);
     field_0x40 = start_end;
 
-    SetActorPid(UINT32_MAX);
+    SetActorPid(fpcM_ERROR_PROCESS_ID_e);
     mStts = 0;
     mFrontFlag = 1;
     mBackFlag = 0;

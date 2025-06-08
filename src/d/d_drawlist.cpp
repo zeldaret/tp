@@ -19,6 +19,22 @@
 class dDlst_blo_c : public dDlst_base_c {
 public:
     /* 80053B64 */ virtual void draw();
+    bool create(JKRArchive* param_1, char* param_2) {
+        return mScreen.setPriority(param_2,0x20000,param_1) != 0;
+    }
+
+    J2DPane* getPane(u64 i_tag) {
+        return mScreen.search(i_tag);
+    }
+
+    J2DPicture* getPicture(u64 i_tag) {
+        J2DPane* pane = getPane(i_tag);
+        JUT_ASSERT(1553, pane != 0);
+        if (pane->getTypeID() != 0x12) {
+            return NULL;
+        }
+        return (J2DPicture*)pane;
+    }
 
     /* 0x004 */ int field_0x4;
     /* 0x008 */ J2DScreen mScreen;
@@ -83,18 +99,6 @@ public:
     /* 0x28 */ f32 field_0x28;
 };
 
-class dDlst_2DQuad_c {
-public:
-    dDlst_2DQuad_c() {}
-    /* 80051CF0 */ virtual void draw();
-
-    /* 0x04 */ s16 field_0x4;
-    /* 0x06 */ s16 field_0x6;
-    /* 0x08 */ s16 field_0x8;
-    /* 0x0A */ s16 field_0xa;
-    /* 0x0C */ GXColor field_0xc;
-};
-
 class dDlst_2DPoint_c {
 public:
     /* 80051E5C */ virtual void draw();
@@ -111,7 +115,7 @@ public:
     int getCI() { return mCI; }
     GXTexObj* getTexObj() { return &mTexObj; }
     GXTlutObj* getTlutObj() { return &mTlutObj; }
-    GXColor getColor() { return mColor; }
+    GXColor* getColor() { return &mColor; }
     f32 getS() { return mS; }
     f32 getT() { return mT; }
     f32 getSw() { return mSw; }
@@ -202,14 +206,16 @@ void dDlst_window_c::setScissor(f32 xOrig, f32 yOrig, f32 width, f32 height) {
 
 /* 80051AF0-80051CF0 04C430 0200+00 1/0 0/0 0/0 .text            draw__13dDlst_2DTri_cFv */
 void dDlst_2DTri_c::draw() {
+    f32 f4;
+    f32 f5;
     f32 f2 = cM_scos(field_0xc);
     f32 f3 = cM_ssin(field_0xc);
     s16 x[3];
     s16 y[3];
     int r8 = 0;
     for (int i = 0; i < 3; i++) {
-        f32 f4 = field_0x10 * cM_ssin(r8);
-        f32 f5 = field_0x14 * cM_scos(r8);
+        f4 = field_0x10 * cM_ssin(r8);
+        f5 = field_0x14 * cM_scos(r8);
         x[i] = field_0x4 + s16(f4 * f2 + f5 * f3);
         y[i] = field_0x6 + s16(f5 * f2 - f4 * f3);
         r8 -= 0x5555;
@@ -224,8 +230,8 @@ void dDlst_2DTri_c::draw() {
     GXSetNumTevStages(1);
     GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
     GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
-    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_SET);
-    GXLoadPosMtxImm(mDoMtx_getIdentity(), GX_PNMTX0);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
+    GXLoadPosMtxImm(cMtx_getIdentity(), GX_PNMTX0);
     GXSetCurrentMtx(GX_PNMTX0);
     GXBegin(GX_TRIANGLES, GX_VTXFMT0, 3);
     GXPosition3s16(x[0], y[0], 0);
@@ -242,19 +248,19 @@ void dDlst_2DQuad_c::draw() {
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
     GXSetNumChans(1);
     GXSetChanCtrl(GX_COLOR0A0, GX_DISABLE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
-    GXSetChanMatColor(GX_COLOR0A0, field_0xc);
+    GXSetChanMatColor(GX_COLOR0A0, mColor);
     GXSetNumTexGens(0);
     GXSetNumTevStages(1);
     GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
     GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
-    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_SET);
-    GXLoadPosMtxImm(mDoMtx_getIdentity(), GX_PNMTX0);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
+    GXLoadPosMtxImm(cMtx_getIdentity(), GX_PNMTX0);
     GXSetCurrentMtx(GX_PNMTX0);
     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-    GXPosition3s16((s32)field_0x4, (s32)field_0x6, 0);
-    GXPosition3s16((s32)field_0x8, (s32)field_0x6, 0);
-    GXPosition3s16((s32)field_0x8, (s32)field_0xa, 0);
-    GXPosition3s16((s32)field_0x4, (s32)field_0xa, 0);
+    GXPosition3s16((s32)mPosX, (s32)mPosY, 0);
+    GXPosition3s16((s32)mSizeX, (s32)mPosY, 0);
+    GXPosition3s16((s32)mSizeX, (s32)mSizeY, 0);
+    GXPosition3s16((s32)mPosX, (s32)mSizeY, 0);
     GXEnd();
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
@@ -271,9 +277,9 @@ void dDlst_2DPoint_c::draw() {
     GXSetNumTevStages(1);
     GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
     GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
-    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_SET);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
     GXSetPointSize(field_0xc, GX_TO_ZERO);
-    GXLoadPosMtxImm(mDoMtx_getIdentity(), GX_PNMTX0);
+    GXLoadPosMtxImm(cMtx_getIdentity(), GX_PNMTX0);
     GXSetCurrentMtx(GX_PNMTX0);
     GXBegin(GX_POINTS, GX_VTXFMT0, 1);
     GXPosition3s16(field_0x4, field_0x6, 0);
@@ -318,7 +324,7 @@ void dDlst_2DT_c::draw() {
     GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, g_clearColor);
     GXSetCullMode(GX_CULL_NONE);
     GXSetDither(GX_TRUE);
-    GXLoadPosMtxImm(mDoMtx_getIdentity(), GX_PNMTX0);
+    GXLoadPosMtxImm(cMtx_getIdentity(), GX_PNMTX0);
     GXSetChanMatColor(GX_COLOR0A0, l_color);
     GXSetClipMode(GX_CLIP_DISABLE);
     GXSetCurrentMtx(GX_PNMTX0);
@@ -365,12 +371,12 @@ void dDlst_2DT2_c::draw() {
     GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
     GXSetZCompLoc(GX_FALSE);
     GXSetZMode(GX_DISABLE, GX_ALWAYS, GX_DISABLE);
-    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_CLEAR);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
     GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_OR, GX_GREATER, 0);
     GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, g_clearColor);
     GXSetCullMode(GX_CULL_NONE);
     GXSetDither(GX_TRUE);
-    GXLoadPosMtxImm(mDoMtx_getIdentity(), GX_PNMTX0);
+    GXLoadPosMtxImm(cMtx_getIdentity(), GX_PNMTX0);
     GXSetClipMode(GX_CLIP_DISABLE);
     GXSetCurrentMtx(GX_PNMTX0);
     f32 f31 = field_0x24 + field_0x2c;
@@ -442,10 +448,13 @@ void dDlst_2DT2_c::draw() {
             f27 = 1.0f;
         }
         f32 f24;
+        f32 stack_38;
         if (mScaleY == 0.0f) {
             f24 = 1.0f;
+            stack_38 = 1.0f;
         } else {
             f24 = 0.5f - (1.0f / mScaleY) * 0.5f;
+            stack_38 = (1.0f / mScaleY) * 0.5f + 0.5f;
         }
         GXBegin(GX_QUADS, GX_VTXFMT0, 8);
         GXPosition2f32(field_0x24, field_0x28);
@@ -586,7 +595,7 @@ static u8 l_shadowVolMat[] ALIGN_DECL(32) = {
     0x61, 0x28, 0x38, 0x00, 0x00, 0x61, 0xC0, 0x08, 0xFF, 0xFC, 0x61, 0xC1, 0x08, 0xFF, 0x90,
     0x61, 0x43, 0x00, 0x00, 0x41, 0x61, 0x40, 0x00, 0x00, 0x0D, 0x61, 0x41, 0x00, 0x01, 0x35,
     0x61, 0xF3, 0x7F, 0x00, 0x00, 0x10, 0x00, 0x00, 0x10, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x10,
-    0x00, 0x00, 0x10, 0x09, 0x00, 0x00, 0x00, 0x01, 0x61, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    0x00, 0x00, 0x10, 0x09, 0x00, 0x00, 0x00, 0x01, 0x61, 0x00, 0x00, 0x80, 0x10, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
@@ -712,6 +721,7 @@ void dDlst_2DM_c::draw() {
     s16 r25 = r27 + s16(field_0x1e * f4);
     s16 r24 = r26 + s16(field_0x20 * f3);
     GXTexObj tex[2];
+    void** stack_1c = &field_0x18;
     GXInitTexObj(&tex[0], field_0x18, field_0x1e, field_0x20, GXTexFmt(field_0x1c), GX_CLAMP, GX_CLAMP, 0);
     GXInitTexObjLOD(&tex[0], GX_LINEAR, GX_LINEAR, 0.0, 0.0, 0.0, 0, 0, GX_ANISO_1);
     GXTexWrapMode wrap = field_0xc ? GX_REPEAT : GX_CLAMP;
@@ -743,7 +753,7 @@ void dDlst_2DM_c::draw() {
     GXSetTevColorOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
     GXSetTevAlphaIn(GX_TEVSTAGE1, GX_CA_ZERO, GX_CA_TEXA, GX_CA_APREV, GX_CA_ZERO);
     GXSetTevAlphaOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
-    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_SET);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
     GXPosition3s16((s32)field_0x4, (s32)field_0x6, 0);
     GXTexCoord2s16(r31, r30);
@@ -774,6 +784,7 @@ void dDlst_2Dm_c::draw() {
     int r26 = field_0x7e * f30;
     s16 r25 = r27 + s16(f31 * GXGetTexObjWidth(&field_0x1c));
     s16 r24 = r26 + s16(f30 * GXGetTexObjHeight(&field_0x1c));
+    GXTexObj* stack_18 = &field_0x1c;
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBA4, 8);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX1, GX_CLR_RGBA, GX_RGBA4, 8);
@@ -807,8 +818,8 @@ void dDlst_2Dm_c::draw() {
     GXSetTevAlphaIn(GX_TEVSTAGE1, GX_CA_ZERO, GX_CA_TEXA, GX_CA_APREV, GX_CA_ZERO);
     GXSetTevAlphaOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
     GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_OR, GX_GREATER, 0);
-    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_SET);
-    GXLoadPosMtxImm(g_mDoMtx_identity, GX_PNMTX0);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
+    GXLoadPosMtxImm(cMtx_getIdentity(), GX_PNMTX0);
     GXSetCurrentMtx(0);
     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
     GXPosition3s16((s32)field_0x4, (s32)field_0x6, 0);
@@ -843,7 +854,7 @@ void dDlst_2DMt_c::draw() {
             GXLoadTexObj(r27->getTexObj(), GXTexMapID(r28));
             GXSetVtxAttrFmt(GX_VTXFMT0, GXAttr(GX_VA_TEX0 + r28), GX_CLR_RGBA, GX_RGBA6, 0);
             GXSetVtxDesc(GXAttr(GX_VA_TEX0 + r28), GX_DIRECT);
-            GXSetTevColor(GXTevRegID(GX_TEVREG0 + r28), r27->mColor);
+            GXSetTevColor(GXTevRegID(GX_TEVREG0 + r28), *r27->getColor());
             GXSetTexCoordGen(GXTexCoordID(r28), GX_TG_MTX2x4, GXTexGenSrc(GX_TG_TEX0 + r28), GX_IDENTITY);
             GXSetTevOrder(GXTevStageID(r28), GXTexCoordID(r28), GXTexMapID(r28), GX_COLOR_NULL);
             GXSetTevColorIn(GXTevStageID(r28), GX_CC_ZERO, GXTevColorArg(GX_CC_C0 + r28*2), GX_CC_TEXC, r28 ? GX_CC_CPREV : GX_CC_ZERO);
@@ -861,52 +872,43 @@ void dDlst_2DMt_c::draw() {
         GXSetNumChans(0);
         GXSetNumTexGens(r28);
         GXSetNumTevStages(r28);
-        GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_SET);
+        GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
         GXBegin(GX_QUADS, GX_VTXFMT0, 4);
         GXPosition3s16(field_0xc, field_0xe, 0);
-        dDlst_2DMt_tex_c* tmp = field_0x8;
+        r27 = field_0x8;
         for (int i = 0; i < field_0x4; i++) {
-            if (tmp->check()) {
-                GXTexCoord2f32(tmp->getS(), tmp->getT());
+            if (r27->check()) {
+                GXTexCoord2f32(r27->getS(), r27->getT());
             }
-            tmp++;
+            r27++;
         }
         GXPosition3s16(field_0x10, field_0xe, 0);
-        tmp = field_0x8;
+        r27 = field_0x8;
         for (int i = 0; i < field_0x4; i++) {
-            if (tmp->check()) {
-                GXTexCoord2f32(tmp->getS() + tmp->getSw(), tmp->getT());
+            if (r27->check()) {
+                GXTexCoord2f32(r27->getS() + r27->getSw(), r27->getT());
             }
-            tmp++;
+            r27++;
         }
         GXPosition3s16(field_0x10, field_0x12, 0);
-        tmp = field_0x8;
+        r27 = field_0x8;
         for (int i = 0; i < field_0x4; i++) {
-            if (tmp->check()) {
-                GXTexCoord2f32(tmp->getS() + tmp->getSw(), tmp->getT() + tmp->getTw());
+            if (r27->check()) {
+                GXTexCoord2f32(r27->getS() + r27->getSw(), r27->getT() + r27->getTw());
             }
-            tmp++;
+            r27++;
         }
         GXPosition3s16(field_0xc, field_0x12, 0);
-        tmp = field_0x8;
+        r27 = field_0x8;
         for (int i = 0; i < field_0x4; i++) {
-            if (tmp->check()) {
-                GXTexCoord2f32(tmp->getS(), tmp->getT() + tmp->getTw());
+            if (r27->check()) {
+                GXTexCoord2f32(r27->getS(), r27->getT() + r27->getTw());
             }
-            tmp++;
+            r27++;
         }
         GXEnd();
         dComIfGp_getCurrentGrafPort()->setup2D();
     }
-}
-
-/* 800539DC-80053A00 04E31C 0024+00 0/0 1/0 0/0 .text            getTexture__10J2DPictureCFUc */
-// Should be inline
-JUTTexture* J2DPicture::getTexture(u8 param_0) const {
-    if (param_0 < 2) {
-        return mTexture[param_0];
-    }
-    return NULL;
 }
 
 /* 80053A00-80053A9C 04E340 009C+00 0/0 1/1 0/0 .text            __ct__10dDlst_2D_cFP7ResTIMGssssUc
@@ -944,9 +946,9 @@ f32 cM_rnd_c::get() {
     seed0 = seed0 * 171 % 30269;
     seed1 = seed1 * 172 % 30307;
     seed2 = seed2 * 170 % 30323;
-    f32 rm = fmodf((seed0 / 30269.0f) + (seed1 / 30307.0f) + (seed2 / 30323.0f), 1.0);
+    f32 newSeed = (seed0 / 30269.0f) + (seed1 / 30307.0f) + (seed2 / 30323.0f);
 
-    return fabsf(rm);
+    return fabsf(fmodf(newSeed, 1.0));
 }
 
 /* 80053DE0-80053E18 04E720 0038+00 1/1 0/0 0/0 .text            getF__8cM_rnd_cFf */
@@ -980,10 +982,10 @@ void dDlst_effectLine_c::draw() {
     GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_A0);
     GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, 1, GX_TEVPREV);
     GXSetZMode(GX_DISABLE, GX_LEQUAL, GX_DISABLE);
-    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_CLEAR);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
     GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
     GXSetCullMode(GX_CULL_NONE);
-    GXLoadPosMtxImm(j3dSys.mViewMtx, GX_PNMTX0);
+    GXLoadPosMtxImm(j3dSys.getViewMtx(), GX_PNMTX0);
     GXSetClipMode(GX_CLIP_ENABLE);
     GXSetCurrentMtx(0);
     int r31 = getRndValue(field_0x20, field_0x22);
@@ -1001,7 +1003,8 @@ void dDlst_effectLine_c::draw() {
         local_74.z = field_0x10.z;
         cMtx_multVec(dComIfGd_getInvViewMtx(), &local_68, &local_68);
         cMtx_multVec(dComIfGd_getInvViewMtx(), &local_74, &local_74);
-        GXSetLineWidth(getRndValue(field_0x24, field_0x26), GX_TO_ZERO);
+        tmp = getRndValue(field_0x24, field_0x26);
+        GXSetLineWidth(tmp, GX_TO_ZERO);
         GXBegin(GX_LINES, GX_VTXFMT0, 2);
         GXPosition3f32(local_68.x, local_68.y, local_68.z);
         GXPosition3f32(local_74.x, local_74.y, local_74.z);
@@ -1038,6 +1041,7 @@ int dDlst_shadowPoly_c::set(cBgD_Vtx_t* i_vtx, u16 param_1, u16 param_2, u16 par
 
     dDlst_shadowTri_c* dst = getTri() + mCount;
 
+    cBgD_Vtx_t* vtx = i_vtx;
     cXyz b(*i_plane->GetNP());
     f32 temp_f3 = (1.0f - fabsf(b.y));
     temp_f3 *= temp_f3;
@@ -1046,9 +1050,9 @@ int dDlst_shadowPoly_c::set(cBgD_Vtx_t* i_vtx, u16 param_1, u16 param_2, u16 par
     b.z *= temp_f3;
     b *= 2.0f;
 
-    VECAdd(&i_vtx[param_1], &b, &dst->mPos[0]);
-    VECAdd(&i_vtx[param_2], &b, &dst->mPos[1]);
-    VECAdd(&i_vtx[param_3], &b, &dst->mPos[2]);
+    PSVECAdd(&vtx[param_1], &b, &dst->mPos[0]);
+    PSVECAdd(&vtx[param_2], &b, &dst->mPos[1]);
+    PSVECAdd(&vtx[param_3], &b, &dst->mPos[2]);
     mCount++;
     return 1;
 }
@@ -1074,7 +1078,8 @@ static J3DDrawBuffer* J3DDrawBuffer__create(u32 size) {
     J3DDrawBuffer* buffer = new J3DDrawBuffer();
 
     if (buffer) {
-        if (buffer->allocBuffer(size) == kJ3DError_Success) {
+        J3DError error = buffer->allocBuffer(size);
+        if (error == kJ3DError_Success) {
             return buffer;
         }
         delete buffer;
@@ -1091,15 +1096,18 @@ void dDlst_shadowReal_c::reset() {
 /* 80054500-800545D4 04EE40 00D4+00 1/1 0/0 0/0 .text imageDraw__18dDlst_shadowReal_cFPA4_f */
 void dDlst_shadowReal_c::imageDraw(Mtx param_0) {
     GXSetProjection(mRenderProjMtx, GX_ORTHOGRAPHIC);
+    JUT_ASSERT(1916, mModelNum);
+    J3DModelData* model_data;
     J3DModel** models = mpModels;
+    J3DShapePacket* shape_pkt;
 
     for (u8 i = 0; i < mModelNum; i++) {
-        J3DModelData* model_data = (*models)->getModelData();
+        model_data = (*models)->getModelData();
         model_data->getShapeNodePointer(0)->loadPreDrawSetting();
 
         for (u16 j = 0; j < model_data->getShapeNum(); j++) {
             if (!model_data->getShapeNodePointer(j)->checkFlag(1)) {
-                J3DShapePacket* shape_pkt = (*models)->getShapePacket(j);
+                shape_pkt = (*models)->getShapePacket(j);
                 shape_pkt->setBaseMtxPtr(&mViewMtx);
                 shape_pkt->drawFast();
                 shape_pkt->setBaseMtxPtr((Mtx*)param_0);
@@ -1548,7 +1556,7 @@ void dDlst_shadowControl_c::imageDraw(Mtx param_0) {
 /* 80055A14-80055C74 050354 0260+00 0/0 1/1 0/0 .text            draw__21dDlst_shadowControl_cFPA4_f
  */
 void dDlst_shadowControl_c::draw(Mtx param_0) {
-    static GXTevColor l_tevColorChan[4] = {
+    static GXTevColorChan l_tevColorChan[4] = {
         GX_CH_RED,
         GX_CH_GREEN,
         GX_CH_BLUE,

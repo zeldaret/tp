@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from argparse import ArgumentParser
 import struct
 import os
@@ -322,7 +324,7 @@ def read_u16(binary_file):
     return struct.unpack(">H", chunk)[0]
 
 
-def convert_binary_to_matDL_c_source(src_path, dest_path, symbol_name):
+def convert_binary_to_matDL_c_source(src_path, dest_path, symbol_name, scope):
     # Load data
     macro_name = os.path.splitext(os.path.basename(src_path))[0]
     with open(src_path, "rb") as binary_file, open(dest_path, "w") as c_file:
@@ -340,11 +342,15 @@ def convert_binary_to_matDL_c_source(src_path, dest_path, symbol_name):
             line_with_escape = line + (" "*(99-len(line))) + "\\\n"
             c_file.write(line_with_escape)
         
+        if scope == "local":
+            var_def_prefix = "static "
+        else:
+            var_def_prefix = ""
+        
         write_macro_line(f"#define {macro_name}(TEX_NAME)")
-        write_macro_line(f"u8 {symbol_name}[] ALIGN_DECL(32) = {{")
+        write_macro_line(f"{var_def_prefix}u8 {symbol_name}[] ALIGN_DECL(32) = {{")
         
         while True:
-            print(binary_file.tell())
             command_type = read_u8(binary_file)
             if command_type is None:
                 break
@@ -397,7 +403,6 @@ def convert_binary_to_matDL_c_source(src_path, dest_path, symbol_name):
             else:
                 raise Exception(f"Unknown command type: {command_type:02X}")
 
-            print(line_elements)
             write_macro_line("    " + ", ".join(line_elements) + ",")
         
         c_file.write("};\n")
@@ -409,10 +414,20 @@ def main():
     )
     parser.add_argument("src_path", type=str, help="Binary source file path")
     parser.add_argument("dest_path", type=str, help="Destination C include file path")
-    parser.add_argument("--symbol", type=str, help="Symbol name")
+    parser.add_argument(
+        "--symbol",
+        type=str,
+        help="Symbol name",
+    )
+    parser.add_argument(
+        "--scope",
+        choices=["global", "local"],
+        default="local",
+        help="The scope of the symbol",
+    )
 
     args = parser.parse_args()
-    convert_binary_to_matDL_c_source(args.src_path, args.dest_path, args.symbol)
+    convert_binary_to_matDL_c_source(args.src_path, args.dest_path, args.symbol, args.scope)
 
 
 if __name__ == "__main__":

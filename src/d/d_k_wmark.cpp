@@ -48,7 +48,7 @@ int dkWmark_c::create() {
         return cPhs_ERROR_e;
     }
 
-    if ((int)this->parameters != 3 && daPy_py_c::i_checkNowWolf()) {
+    if ((int)this->parameters != 3 && daPy_py_c::checkNowWolf()) {
         mpModel->setBaseScale(wolfFootScale);
     }
 

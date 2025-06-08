@@ -120,10 +120,10 @@ int daItemShield_c::create() {
         return cPhs_ERROR_e;
     }
     if (getSwBit2() == 0xff) {
-        OS_REPORT(1Bh,"[43;30m木の盾：スイッチビット２指定がありません！\n\x1b[m");
+        OS_REPORT("[43;30m木の盾：スイッチビット２指定がありません！\n\x1b[m");
     }
     if (getSwBit() == 0xff) {
-        OS_REPORT(1Bh,"[43;30m木の盾：スイッチビット指定がありません！\n\x1b[m");
+        OS_REPORT("[43;30m木の盾：スイッチビット指定がありません！\n\x1b[m");
     }
     int rv = dComIfG_resLoad(&mPhase, dItem_data::getFieldArc(m_itemNo));
     if (rv == cPhs_COMPLEATE_e) {
@@ -253,7 +253,7 @@ int daItemShield_c::initActionOrderGetDemo() {
     mCcCyl.OffCoSPrmBit(1);
     daItemBase_c::hide();
     fopAcM_orderItemEvent(this, 0, 0);
-    eventInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
+    eventInfo.onCondition(dEvtCnd_CANGETITEM_e);
     mItemId =
         fopAcM_createItemForTrBoxDemo(&current.pos, m_itemNo, -1, fopAcM_GetRoomNo(this), 0, 0);
     JUT_ASSERT(682, mItemId != fpcM_ERROR_PROCESS_ID_e)
@@ -270,7 +270,7 @@ int daItemShield_c::actionOrderGetDemo() {
         }
     } else {
         fopAcM_orderItemEvent(this, 0, 0);
-        eventInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
+        eventInfo.onCondition(dEvtCnd_CANGETITEM_e);
     }
     return 1;
 }
@@ -305,7 +305,7 @@ void daItemShield_c::actionWaitCamDemo() {
         setAction(ACTION_ORDER_CAM_DEMO);
         fopAcM_orderOtherEventId(this, mEventIdx, mEvId,
                                                  0xffff, 0, 1);
-        eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+        eventInfo.onCondition(dEvtCnd_CANDEMO_e);
     }
 }
 
@@ -316,7 +316,7 @@ void daItemShield_c::actionOrderCamDemo() {
     } else {
         fopAcM_orderOtherEventId(this, mEventIdx, mEvId,
                                                  0xffff, 0, 1);
-        eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+        eventInfo.onCondition(dEvtCnd_CANDEMO_e);
     }
 }
 

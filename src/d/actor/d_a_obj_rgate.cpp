@@ -395,7 +395,7 @@ int daObjRgate_c::checkAreaL(cXyz const* unused1, cXyz const* unused2) {
     bound_b.set(350.0f, 0.0f, 100.0f);
     pos = player_p->current.pos;
 
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         offset.set(0.0f, 0.0f, 90.0f);
     } else {
         offset.set(0.0f, 0.0f, 0.0f);
@@ -473,7 +473,7 @@ int daObjRgate_c::checkAreaR(cXyz const* unused1, cXyz const* unused2) {
     pos = player_p->current.pos;
 
     cXyz player_offset;
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         player_offset.set(0.0f, 0.0f, 90.0f);
     } else {
         player_offset.set(0.0f, 0.0f, 0.0f);
@@ -728,7 +728,7 @@ void daObjRgate_c::action_typeA() {
         if (chk_l != 0 || chk_r != 0) {
             daPy_py_c* player_p = daPy_getPlayerActorClass();
 
-            if (daPy_py_c::i_checkNowWolf()) {
+            if (daPy_py_c::checkNowWolf()) {
                 if (player_p->checkWolfAttackReverse() || player_p->checkFrontRollCrash()) {
                     field_0xb94 = 1200.0f;
                     field_0xb90 = 1200.0f;
@@ -764,7 +764,7 @@ void daObjRgate_c::action_typeA() {
 /* 80CBBA10-80CBBAF4 001DF0 00E4+00 1/0 0/0 0/0 .text            actionWaitEvent__12daObjRgate_cFv
  */
 void daObjRgate_c::actionWaitEvent() {
-    if (eventInfo.i_checkCommandDoor()) {
+    if (eventInfo.checkCommandDoor()) {
         setAction(ACT_EVENT);
         dComIfGp_setItemKeyNumCount(-1);
         fopAcM_onSwitch(this, getSwNo());
@@ -772,7 +772,7 @@ void daObjRgate_c::actionWaitEvent() {
     } else if (checkOpen()) {
         eventInfo.setEventId(mEventID);
         eventInfo.setMapToolId(mMapToolID);
-        eventInfo.i_onCondition(dEvtCnd_CANDOOR_e);
+        eventInfo.onCondition(dEvtCnd_CANDOOR_e);
     }
 }
 

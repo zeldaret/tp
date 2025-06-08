@@ -153,7 +153,7 @@ public:
     /* 802385B4 */ static u8 getSelectBombBagID();
     /* 802385E0 */ static s16 getSelectBombPrice();
     /* 8023860C */ static void setEquipBombInfo();
-    /* 80238638 */ u8 getItemEquipButton();
+    /* 80238638 */ static u8 getItemEquipButton();
     /* 8023864C */ static void setSelectCancelPos(u8);
 
     void setShopWaitTimerLocal(u8 timer) { mShopWaitTimer = timer; }
@@ -237,6 +237,17 @@ public:
     u16 getBombMessageIDLocal(int idx) { return mBombMessageID[idx]; }
     u8 getBombBagIDLocal(int idx) { return mBombBagID[idx]; }
     u8 getArrowNumLocal() { return mArrowNum; }
+    u8 isNoDemoFlag() { return mNoDemoFlag; }
+
+    static void setWord(const char* i_word);
+    void setWordLocal(const char* i_word) {
+        strcpy(mWord, i_word);
+    }
+
+    static void setSelectWord(int i_no, const char* i_word);
+    void setSelectWordLocal(int i_no, const char* i_word) {
+        strcpy(mSelectWord[i_no], i_word);
+    }
 
     jmessage_tSequenceProcessor* getSequenceProcessor() { return mpSeqProc; }
 
@@ -400,7 +411,7 @@ inline void dMsgObject_setShopWaitTimer(u8 timer) {
 }
 
 inline void dMsgObject_changeFlowGroup(long flow) {
-    dMsgObject_c::changeFlowGroup(flow);
+    dMsgObject_getMsgObjectClass()->changeFlowGroup(flow);
 }
 
 inline void dMsgObject_setTalkActor(fopAc_ac_c* actor) {
@@ -452,6 +463,18 @@ inline void dMsgObject_setSelectWordFlag(u8 flag) {
     dMsgObject_getMsgObjectClass()->setSelectWordFlag(flag);
 }
 
+inline u8 dMsgObject_getSelectWordFlag() {
+    return dMsgObject_getMsgObjectClass()->getSelectWordFlag();
+}
+
+inline const char* dMsgObject_getSelectWord(int idx) {
+    return dMsgObject_getMsgObjectClass()->getSelectWord(idx);
+}
+
+inline u8 dMsgObject_getItemEquipButton() {
+    return dMsgObject_getMsgObjectClass()->getItemEquipButton();
+}
+
 inline void dMsgObject_setNowTalkFlowNo(s16 nowTalkFlowNo) {
     dMsgObject_c::setNowTalkFlowNo(nowTalkFlowNo);
 }
@@ -480,12 +503,44 @@ inline void dMsgObject_setTalkHeap(void* heap) {
     dMsgObject_c::setTalkHeap(heap);
 }
 
+inline u8 dMsgObject_getMsgOutputType() {
+    return dMsgObject_getMsgObjectClass()->getMsgOutputType();
+}
+
 inline void dMsgObject_setMsgOutputType(u8 outputType) {
     dMsgObject_getMsgObjectClass()->setMsgOutputType(outputType);
 }
 
 inline void dMsgObject_setPortalMessageID(u16 id) {
     dMsgObject_getMsgObjectClass()->setPortalMessageID(id);
+}
+
+inline void dMsgObject_setWord(const char* i_word) {
+    dMsgObject_getMsgObjectClass()->setWord(i_word);
+}
+
+inline void dMsgObject_setSelectWord(int i_no, const char* i_word) {
+    dMsgObject_getMsgObjectClass()->setSelectWord(i_no, i_word);
+}
+
+inline u8* dMsgObject_getMsgDtPtr() {
+    return (u8*)dMsgObject_getMsgObjectClass()->getMsgDtPtr();
+}
+
+inline void dMsgObject_setSelectCancelPos(u8 param_0) {
+    dMsgObject_getMsgObjectClass()->setSelectCancelPos(param_0);
+}
+
+inline void dMsgObject_setSelectCursorPos(u8 param_0) {
+    dMsgObject_getMsgObjectClass()->setSelectCursorPos(param_0);
+}
+
+inline u8 dMsgObject_getSelectBombBagID() {
+    dMsgObject_getMsgObjectClass()->getSelectBombBagID();
+}
+
+inline s16 dMsgObject_getSelectBombPrice() {
+    dMsgObject_getMsgObjectClass()->getSelectBombPrice();
 }
 
 class dMsgObject_HowlHIO_c {
@@ -657,14 +712,14 @@ public:
     /* 0x30C */ s16 mBossNameFadeOut;
     /* 0x30E */ u16 mStageTitleDisplayTime;
     /* 0x310 */ u16 mBossNameDisplayTime;
-    /* 0x312 */ u16 mBatchDisplayWeight_3;
-    /* 0x314 */ u16 mCharDisplayWeight_5;
+    /* 0x312 */ s16 mBatchDisplayWeight_3;
+    /* 0x314 */ s16 mCharDisplayWeight_5;
     /* 0x316 */ s16 mBatchDisplayWeight_8;
     /* 0x318 */ s16 mBatchDisplayWeight_9;
     /* 0x31A */ s16 mHaloDelayFrame;
     /* 0x31C */ s16 mHaloDelayFrameSpirit;
     /* 0x31E */ bool mSaveSeqMsgDebug;
-    /* 0x31F */ bool mMsgDebug;
+    /* 0x31F */ u8 mMsgDebug;
     /* 0x320 */ bool mTextColorDebug;
     /* 0x321 */ u8
         mTextColorUpperR[9];  // Default, Red, Green, Blue, Yellow, L.Blue, Purple, Grey, Orange,

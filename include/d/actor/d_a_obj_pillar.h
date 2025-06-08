@@ -93,6 +93,8 @@ public:
     /* 80CAF32C */ daPillar_HIO_c();
     /* 80CB0928 */ virtual ~daPillar_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x04 */ daPillar_c::sdata_t mShakeData;
     /* 0x10 */ u8 field_0x10[0x1C - 0x10];
     /* 0x1C */ f32 field_0x1c;

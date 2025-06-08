@@ -1,7 +1,7 @@
 #ifndef D_D_TRESURE_H
 #define D_D_TRESURE_H
 
-#include "dolphin/mtx/vec.h"
+#include "dolphin/mtx.h"
 
 class dTres_c {
 public:
@@ -58,7 +58,7 @@ public:
     /* 8009BE28 */ static void checkTreasureBox(dTres_c::data_s*);
     /* 8009C168 */ static void onStatus(u8, int, int);
     /* 8009C1F0 */ static void offStatus(u8, int, int);
-    /* 8009C27C */ static int getBossIconFloorNo(int*);
+    /* 8009C27C */ static bool getBossIconFloorNo(int*);
     /* 8009C360 */ static typeGroupData_c* getFirstData(u8);
     /* 8009C39C */ static typeGroupData_c* getNextData(dTres_c::typeGroupData_c*);
     /* 8009C3B4 */ static typeGroupData_c* getNextData(dTres_c::typeGroupData_c const*);
@@ -76,6 +76,18 @@ public:
 
     static void setLightDropPostion(int i_tboxNo, const Vec* i_pos) {
         setPosition(i_tboxNo, 4, i_pos, -1);
+    }
+
+    static void setIconPositionOfCarryLight(int i_tboxNo, const Vec* i_pos, int param_2) {
+        setPosition(i_tboxNo, 12, i_pos, param_2);
+    }
+
+    static void setIconPositionOfCstatue(int i_tboxNo, const Vec* i_pos) {
+        setPosition(i_tboxNo, 15, i_pos, -1);
+    }
+
+    static void setCarryIron(int i_tboxNo, const Vec* i_pos) {
+        setPosition(i_tboxNo, 11, i_pos, -1);
     }
 
     static u8 const typeToTypeGroup[17][2];

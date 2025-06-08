@@ -102,7 +102,7 @@ void daTagRiverBack_c::actionWait() {
         mCount = 0;
         setAction(ACTION_ORDER_EVENT_e);
         fopAcM_orderOtherEventId(this, mEventID, mMapToolID, 0xFFFF, 0, 1);
-        eventInfo.i_onCondition(2);
+        eventInfo.onCondition(2);
     }
 }
 
@@ -116,7 +116,7 @@ void daTagRiverBack_c::actionOrderEvent() {
         demoProc();
     } else {
         fopAcM_orderOtherEventId(this, mEventID, mMapToolID, 0xFFFF, 0, 1);
-        eventInfo.i_onCondition(2);
+        eventInfo.onCondition(2);
     }
 }
 

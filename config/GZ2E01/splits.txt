@@ -118,9 +118,6 @@ m_Do/m_Do_machine_exception.cpp:
 	.rodata     start:0x80374460 end:0x80374640
 	.sbss       start:0x80450C90 end:0x80450C98
 
-dolphin/os/__start.c:
-	.init       start:0x80003100 end:0x80003458
-
 c/c_damagereaction.cpp:
 	.text       start:0x8001817C end:0x800183DC
 	.ctors      start:0x803737E0 end:0x803737E4
@@ -323,7 +320,7 @@ f_pc/f_pc_node_req.cpp:
 f_pc/f_pc_priority.cpp:
 	.text       start:0x80023130 end:0x80023564
 	.bss        start:0x803F4E58 end:0x803F4E68
-	.sdata      start:0x804505E8 end:0x804505F8
+	.sdata      start:0x804505E8 end:0x804505F0
 
 f_pc/f_pc_profile.cpp:
 	.text       start:0x80023564 end:0x80023578
@@ -364,6 +361,7 @@ d/d_stage.cpp:
 	.rodata     start:0x80378A50 end:0x80378E48
 	.data       start:0x803A3B18 end:0x803A6F08
 	.bss        start:0x803F4E68 end:0x804061A0
+	.sdata      start:0x804505F0 end:0x804505F8
 	.sbss       start:0x80450D58 end:0x80450D80
 	.sdata2     start:0x80451C90 end:0x80451CA0
 
@@ -582,7 +580,7 @@ d/d_attention.cpp:
 	.rodata     start:0x8037A770 end:0x8037A780
 	.data       start:0x803A9BF8 end:0x803A9C70
 	.bss        start:0x80424B00 end:0x80424B20
-	.sdata      start:0x80450660 end:0x80450690
+	.sdata      start:0x80450660 end:0x80450680
 	.sbss       start:0x80450F58 end:0x80450F60
 	.sdata2     start:0x80452628 end:0x804526B8
 
@@ -657,7 +655,7 @@ d/d_bg_w.cpp:
 	.text       start:0x800791C4 end:0x8007E5A8
 	.data       start:0x803ABA80 end:0x803ABCC8
 	.bss        start:0x80424B80 end:0x80424F70
-	.sbss       start:0x80450F80 end:0x80450F90
+	.sbss       start:0x80450F80 end:0x80450F88
 	.sdata2     start:0x804526F8 end:0x80452718
 
 d/d_bg_w_base.cpp:
@@ -706,6 +704,7 @@ d/d_ev_camera.cpp:
 	.rodata     start:0x8037A7F0 end:0x8037AD68
 	.data       start:0x803AC528 end:0x803AC5A0
 	.bss        start:0x804253A8 end:0x80425438
+	.sbss       start:0x80450F88 end:0x80450F90
 	.sdata2     start:0x804528B8 end:0x80452BC8
 
 d/d_item_data.cpp:
@@ -727,6 +726,7 @@ d/d_tresure.cpp:
 	.text       start:0x8009BBD8 end:0x8009C4FC
 	.rodata     start:0x8037B0D8 end:0x8037B100
 	.bss        start:0x80425438 end:0x80425508
+	.sdata      start:0x80450680 end:0x80450688
 	.sbss       start:0x80450F98 end:0x80450FA0
 	.sdata2     start:0x80452BE8 end:0x80452C10
 
@@ -745,6 +745,7 @@ d/d_eye_hl.cpp:
 d/d_error_msg.cpp:
 	.text       start:0x8009CB88 end:0x8009D87C
 	.rodata     start:0x8037B140 end:0x8038D658
+	.sdata      start:0x80450688 end:0x80450690
 	.sbss       start:0x80450FB0 end:0x80450FB8
 	.sdata2     start:0x80452C18 end:0x80452C50
 	.sbss2      start:0x80456B78 end:0x80456B80
@@ -806,7 +807,7 @@ d/actor/d_a_npc.cpp:
 	.rodata     start:0x80392680 end:0x80392A18
 	.data       start:0x803B36A8 end:0x803B3B80
 	.bss        start:0x80425708 end:0x80425978
-	.sbss       start:0x80450FD8 end:0x80451000
+	.sbss       start:0x80450FD8 end:0x80450FF8
 	.sdata2     start:0x804533D8 end:0x804534B8
 
 d/actor/d_a_npc_cd.cpp:
@@ -815,6 +816,7 @@ d/actor/d_a_npc_cd.cpp:
 	.rodata     start:0x80392A18 end:0x80393250
 	.data       start:0x803B3B80 end:0x803B61C0
 	.bss        start:0x80425978 end:0x80428610
+	.sbss       start:0x80450FF8 end:0x80451000
 	.sdata2     start:0x804534B8 end:0x804534E0
 
 d/actor/d_a_npc_cd2.cpp:
@@ -1432,9 +1434,6 @@ d/d_k_wpillar.cpp:
 	.data       start:0x803C3470 end:0x803C34B0
 	.sdata2     start:0x80454FF0 end:0x80455008
 
-PowerPC_EABI_Support/Runtime/Src/__mem.c:
-	.init       start:0x80003458 end:0x800035E4
-
 DynamicLink.cpp:
 	.text       start:0x802621CC end:0x802631D4
 	.text       start:0x802631D4 end:0x80263220
@@ -1729,7 +1728,7 @@ JSystem/JStudio/JStudio/ctb.cpp:
 	.data       start:0x803C4878 end:0x803C48E0
 
 JSystem/JStudio/JStudio/functionvalue.cpp:
-	.text       start:0x80281648 end:0x80283E24
+	.text       start:0x80281648 end:0x80283F80
 	.rodata     start:0x8039A9F0 end:0x8039AA00
 	.data       start:0x803C48E0 end:0x803C49C0
 	.sbss       start:0x804511E8 end:0x804511F0
@@ -1738,16 +1737,10 @@ JSystem/JStudio/JStudio/functionvalue.cpp:
 JSystem/JStudio/JStudio/fvb-data.cpp:
 	.sdata2     start:0x80455450 end:0x80455458
 
-JSystem/JStudio/JStudio/functionvalue-inline.cpp:
-	.text       start:0x80283E24 end:0x80283F80
-
 JSystem/JStudio/JStudio/fvb.cpp:
-	.text       start:0x80283F80 end:0x80285018
+	.text       start:0x80283F80 end:0x802850AC
 	.rodata     start:0x8039AA00 end:0x8039AA40
 	.data       start:0x803C49C0 end:0x803C4AC0
-
-JSystem/JStudio/JStudio/fvb-inline.cpp:
-	.text       start:0x80285018 end:0x802850AC
 
 JSystem/JStudio/JStudio/fvb-data-parse.cpp:
 	.text       start:0x802850AC end:0x80285114
@@ -1886,7 +1879,7 @@ JSystem/JAudio2/JASProbe.cpp:
 JSystem/JAudio2/JASReport.cpp:
 	.text       start:0x80290F64 end:0x80291060
 	.bss        start:0x80431660 end:0x80431678
-	.sbss       start:0x80451220 end:0x80451238
+	.sbss       start:0x80451220 end:0x80451230
 
 JSystem/JAudio2/JASCmdStack.cpp:
 	.text       start:0x80291060 end:0x80291228
@@ -2067,7 +2060,7 @@ JSystem/JAudio2/osdsp.cpp:
 JSystem/JAudio2/osdsp_task.cpp:
 	.text       start:0x8029EB20 end:0x8029EFAC
 	.bss        start:0x80434060 end:0x80434078
-	.sbss       start:0x80451308 end:0x80451330
+	.sbss       start:0x80451308 end:0x80451310
 
 JSystem/JAudio2/JAIAudible.cpp:
 	.text       start:0x8029EFAC end:0x8029EFF4
@@ -2087,12 +2080,14 @@ JSystem/JAudio2/JAISeMgr.cpp:
 	.rodata     start:0x8039B8F8 end:0x8039B910
 	.data       start:0x803C98B0 end:0x803C98D8
 	.bss        start:0x80434078 end:0x80434098
+	.sbss       start:0x80451310 end:0x80451318
 	.sdata2     start:0x80455788 end:0x80455798
 
 JSystem/JAudio2/JAISeq.cpp:
 	.text       start:0x802A0A6C end:0x802A1774
 	.data       start:0x803C98D8 end:0x803C9928
 	.bss        start:0x80434098 end:0x804340C0
+	.sbss       start:0x80451318 end:0x80451320
 	.sdata2     start:0x80455798 end:0x804557A8
 
 JSystem/JAudio2/JAISeqDataMgr.cpp:
@@ -2103,6 +2098,7 @@ JSystem/JAudio2/JAISeqMgr.cpp:
 	.text       start:0x802A1804 end:0x802A2184
 	.data       start:0x803C9958 end:0x803C9970
 	.bss        start:0x804340C0 end:0x804340E0
+	.sbss       start:0x80451320 end:0x80451328
 	.sdata2     start:0x804557A8 end:0x804557B8
 
 JSystem/JAudio2/JAISound.cpp:
@@ -2143,6 +2139,7 @@ JSystem/JAudio2/JAIStreamDataMgr.cpp:
 JSystem/JAudio2/JAIStreamMgr.cpp:
 	.text       start:0x802A3B68 end:0x802A4244
 	.bss        start:0x804340F0 end:0x80434110
+	.sbss       start:0x80451328 end:0x80451330
 	.sdata2     start:0x80455800 end:0x80455810
 
 JSystem/JAudio2/JAUAudioArcInterpreter.cpp:
@@ -2216,7 +2213,7 @@ Z2AudioLib/Z2Calc.cpp:
 
 Z2AudioLib/Z2Param.cpp:
 	.sdata      start:0x804507D8 end:0x80450870
-	.sbss       start:0x80451338 end:0x80451350
+	.sbss       start:0x80451338 end:0x80451348
 
 Z2AudioLib/Z2AudioArcLoader.cpp:
 	.text       start:0x802A9A34 end:0x802A9B58
@@ -2238,6 +2235,7 @@ Z2AudioLib/Z2SoundStarter.cpp:
 Z2AudioLib/Z2SoundHandles.cpp:
 	.text       start:0x802AB07C end:0x802AB64C
 	.bss        start:0x804341B8 end:0x804341D8
+	.sbss       start:0x80451348 end:0x80451350
 
 Z2AudioLib/Z2SeMgr.cpp:
 	.text       start:0x802AB64C end:0x802AEEA0
@@ -2338,7 +2336,7 @@ Z2AudioLib/Z2AudioMgr.cpp:
 
 dolphin/gf/GFGeometry.cpp:
 	.text       start:0x802CDDC8 end:0x802CDE54
-	.sdata      start:0x804508A8 end:0x804508B8
+	.sdata      start:0x804508A8 end:0x804508B0
 
 dolphin/gf/GFLight.cpp:
 	.text       start:0x802CDE54 end:0x802CDE9C
@@ -2354,6 +2352,7 @@ JSystem/JKernel/JKRHeap.cpp:
 	.text       start:0x802CE138 end:0x802CEDB4
 	.rodata     start:0x8039CAD8 end:0x8039CAF0
 	.data       start:0x803CBF70 end:0x803CBFD0
+	.sdata      start:0x804508B0 end:0x804508B8
 	.sbss       start:0x80451370 end:0x80451398
 
 JSystem/JKernel/JKRExpHeap.cpp:
@@ -3599,8 +3598,14 @@ TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/notify.c:
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/flush_cache.c:
 	.text       start:0x8036F548 end:0x8036F580
 
+dolphin/os/__start.c:
+	.init       start:0x80003100 end:0x80003458
+
+PowerPC_EABI_Support/Runtime/Src/__mem.c:
+	.init       start:0x80003458 end:0x80003590
+
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Portable/mem_TRK.c:
-	.init       start:0x800035E4 end:0x80005544
+	.init       start:0x80003590 end:0x800035E4
 	.text       start:0x8036F580 end:0x8036F638
 
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c:
@@ -3609,13 +3614,17 @@ TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/targimpl.c:
 	.data       start:0x803D3238 end:0x803D3268
 	.bss        start:0x8044F290 end:0x8044F810
 
-TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Export/targsupp.c:
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Export/targsupp.s:
 	.text       start:0x803711D0 end:0x803711F0
 
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/mpc_7xx_603e.c:
 	.text       start:0x803711F0 end:0x80371560
 
+TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Processor/ppc/Generic/exception.s:
+	.init       start:0x800035E4 end:0x80005518
+
 TRK_MINNOW_DOLPHIN/debugger/embedded/MetroTRK/Os/dolphin/dolphin_trk.c:
+	.init       start:0x80005518 end:0x80005544
 	.text       start:0x80371560 end:0x80371B9C
 	.data       start:0x803D3268 end:0x803D32A8
 	.bss        start:0x8044F810 end:0x8044F818

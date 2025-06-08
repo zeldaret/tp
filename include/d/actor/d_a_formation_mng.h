@@ -13,7 +13,7 @@ struct daFmtMng_Path_c {
 
     bool isPathClose() { return dPath_ChkClose(mPath); }
     s8 getArg0() { return mPath->m_points[field_0x4].mArg0; }
-    s8 getArg1() { return mPath->m_points[field_0x4].field_0x0; }
+    s8 getArg1() { return mPath->m_points[field_0x4].mArg1; }
 
     void chgDir() {
         int dir;
@@ -185,7 +185,7 @@ struct daFmtMng_c : public fopAc_ac_c {
     }
 
     bool checkEmergency() {
-        if (dKy_darkworld_check() || !daPy_py_c::i_checkNowWolf()) {
+        if (dKy_darkworld_check() || !daPy_py_c::checkNowWolf()) {
             return false;
         }
         FmtMember_c* member = mMember;

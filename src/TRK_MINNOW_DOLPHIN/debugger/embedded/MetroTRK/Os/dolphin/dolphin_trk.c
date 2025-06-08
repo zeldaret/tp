@@ -2,7 +2,11 @@
 #include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/main_TRK.h"
 #include "TRK_MINNOW_DOLPHIN/Os/dolphin/dolphin_trk_glue.h"
 #include "TRK_MINNOW_DOLPHIN/ppc/Generic/targimpl.h"
-#include "dolphin/ar.h"
+#include <dolphin/ar.h>
+#include "global.h"
+#include "__ar.h"
+
+extern u32 _db_stack_addr;
 
 #define EXCEPTIONMASK_ADDR 0x80000044
 
@@ -26,6 +30,9 @@ static u32 TRK_ISR_OFFSETS[15] = {PPC_SystemReset,
                                   PPC_SystemManagementInterrupt,
                                   PPC_ThermalManagementInterrupt};
 
+void __TRK_copy_vectors(void);
+__declspec(section ".init") void __TRK_reset(void) { OSResetSystem(FALSE, 0, FALSE); }
+
 /* 80371B7C-80371B9C 36C4BC 0020+00 0/0 1/1 0/0 .text EnableMetroTRKInterrupts */
 void EnableMetroTRKInterrupts(void) {
     EnableEXI2Interrupts();
@@ -44,11 +51,11 @@ u32 TRKTargetTranslate(u32 param_0) {
     return param_0 & 0x3FFFFFFF | 0x80000000;
 }
 
-extern u8 __TRK_unknown_data[];
+extern u8 gTRKInterruptVectorTable[];
 
 void TRK_copy_vector(u32 offset) {
     void* destPtr = (void*)TRKTargetTranslate(offset);
-    TRK_memcpy(destPtr, (void*)(__TRK_unknown_data + offset), 0x100);
+    TRK_memcpy(destPtr, (void*)(gTRKInterruptVectorTable + offset), 0x100);
     TRK_flush_cache(destPtr, 0x100);
 }
 
@@ -244,8 +251,8 @@ asm void InitMetroTRK() {
 	mtspr  0x3f2, r0
 	mtspr  0x3f5, r0
 	//Restore stack pointer
-	lis r1, 0x80459BC8@h
-	ori r1, r1, 0x80459BC8@l
+	lis r1, _db_stack_addr@h
+	ori r1, r1, _db_stack_addr@l
 	mr r3, r5
 	bl InitMetroTRKCommTable //Initialize comm table
 	/*
@@ -305,8 +312,8 @@ asm void InitMetroTRK_BBA() {
 	mtspr  0x3f2, r0
 	mtspr 0x3f5, r0
 	//Restore the stack pointer
-	lis r1, 0x80459BC8@h
-	ori r1, r1, 0x80459BC8@l
+	lis r1, _db_stack_addr@h
+	ori r1, r1, _db_stack_addr@l
 	li r3, 2
 	bl InitMetroTRKCommTable //Initialize comm table as BBA hardware
 	/*

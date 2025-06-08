@@ -123,7 +123,7 @@ dMenu_Ring_c::dMenu_Ring_c(JKRExpHeap* i_heap, STControl* i_stick, CSTControl* i
     mRingScaleH = 1.0f;
     mRingScaleV = 1.0f;
     mRingAlpha = 1.0f;
-    mPlayerIsWolf = daPy_py_c::i_checkNowWolf();
+    mPlayerIsWolf = daPy_py_c::checkNowWolf();
     mNameStringID = 0;
     field_0x63a = 0;
     field_0x63c = 0;

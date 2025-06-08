@@ -456,7 +456,7 @@ int daHorse_c::modelCallBack(int i_jntNo) {
 
         MtxP m = m_model->getAnmMtx(i_jntNo);
         cMtx_concat(m, mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
-        MTXQuat(m, (PSQuaternion*)&sp20);
+        MTXQuat(m, &sp20);
         m[0][3] = var_r27->mTranslate.x;
         m[1][3] = var_r27->mTranslate.y;
         m[2][3] = var_r27->mTranslate.z;
@@ -534,7 +534,7 @@ int daHorse_c::createHeap() {
         return 0;
     }
 
-    if (!m_btp.init(m_modelData, (J3DAnmTexPattern*)dComIfG_getObjectRes(l_arcName, 0x29), FALSE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1)) {
+    if (!m_btp.init(m_modelData, (J3DAnmTexPattern*)dComIfG_getObjectRes(l_arcName, 0x29), FALSE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
         return 0;
     }
 
@@ -1329,7 +1329,7 @@ void daHorse_c::setDemoData() {
             if (mode == 5) {
                 speedF = 0.0f;
                 m_cc_stts.ClrCcMove();
-                i_setHorsePosAndAngle(pos_p, angle);
+                setHorsePosAndAngle(pos_p, angle);
                 m_demoMoveAngle = angle;
             } else if (mode == 2 || mode == 10 || mode == 3 || mode == 11 || mode == 4) {
                 setDemoMoveData(&mode, pos_p);
@@ -1390,7 +1390,7 @@ void daHorse_c::setDemoData() {
 
 /* 8083B578-8083B600 003738 0088+00 4/4 0/0 0/0 .text            acceptPlayerRide__9daHorse_cFv */
 void daHorse_c::acceptPlayerRide() {
-    if (!checkStateFlg0(FLG0_UNK_1) && !daPy_py_c::i_checkNowWolf()) {
+    if (!checkStateFlg0(FLG0_UNK_1) && !daPy_py_c::checkNowWolf()) {
         int angle = fopAcM_seenPlayerAngleY(this);
         if (angle > 0x2800 && (!daAlink_getAlinkActorClass()->checkHorseZelda() || angle < 0x5800)) {
             attention_info.flags |= 0x80;
@@ -1704,7 +1704,7 @@ int daHorse_c::checkHorseNoMove(int param_0) {
     if (line_cross) {
         cM3dGPla plane;
         dComIfG_Bgsp().GetTriPla(m_linechk, &plane);
-        sp50 = m_linechk.i_GetCross();
+        sp50 = m_linechk.GetCross();
 
         if (cBgW_CheckBWall(plane.mNormal.y) && ((param_0 != 0 && cLib_distanceAngleS(plane.mNormal.atan2sX_Z(), shape_angle.y) > 0x6000) || (param_0 == 0 && cLib_distanceAngleS(plane.mNormal.atan2sX_Z(), shape_angle.y) < 0x2000))) {
             m_linechk.Set(&start, &end, this);
@@ -1942,7 +1942,7 @@ int daHorse_c::setSpeedAndAngle() {
     }
 
     if (checkStateFlg0(FLG0_UNK_1)) {
-        dAttention_c* attention = &dComIfGp_getAttention();
+        dAttention_c* attention = dComIfGp_getAttention();
         if (attention->GetLockonList(0) != NULL && attention->LockonTruth() && fopAcM_searchActorDistanceXZ2(this, attention->GetLockonList(0)->getActor()) > 1000000.0f) {
             cLib_addCalcAngleS(&current.angle.y, fopAcM_searchActorAngleY(this, attention->GetLockonList(0)->getActor()), 5, field_0x16c2, daHorse_hio_c0::m.min_turn);
             if (!checkStateFlg0(daHorse_FLG0(FLG0_UNK_100000 | FLG0_UNK_200000))) {
@@ -2105,13 +2105,13 @@ void daHorse_c::setRoomInfo(int param_0) {
 
         if (m_acch.ChkWaterHit() && m_acch.m_wtr.GetHeight() > current.pos.y) {
             m_poly_sound = dKy_pol_sound_get(&m_acch.m_wtr);
-        } else if (m_acch.i_ChkGroundHit()) {
+        } else if (m_acch.ChkGroundHit()) {
             m_poly_sound = dKy_pol_sound_get(&m_acch.m_gnd);
         } else {
             m_poly_sound = 0;
         }
 
-        if (m_acch.i_ChkGroundHit() && m_procID != PROC_LARGE_DAMAGE_e && m_procID != PROC_JUMP_e) {
+        if (m_acch.ChkGroundHit() && m_procID != PROC_LARGE_DAMAGE_e && m_procID != PROC_JUMP_e) {
             savePos();
         }
 
@@ -2208,7 +2208,7 @@ void daHorse_c::setMatrix() {
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
     m_model->setBaseTRMtx(mDoMtx_stack_c::get());
 
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         attention_info.position.set(current.pos.x + (140.0f * cM_ssin(shape_angle.y)), 200.0f + current.pos.y, current.pos.z + (140.0f * cM_scos(shape_angle.y)));
     } else {
         attention_info.position.set(current.pos.x, 200.0f + current.pos.y, current.pos.z);
@@ -2278,7 +2278,7 @@ void daHorse_c::setEffect() {
         sp40 |= 0x20000;
     }
 
-    if (m_acch.i_ChkGroundHit()) {
+    if (m_acch.ChkGroundHit()) {
         field_0x17dc.setEffectFour(&tevStr,
                                    &current.pos,
                                    sp44,
@@ -2417,7 +2417,7 @@ void daHorse_c::setCollision() {
 void daHorse_c::autoGroundHit() {
     if (checkStateFlg0(FLG0_UNK_10) && m_procID != PROC_LARGE_DAMAGE_e && m_procID != PROC_JUMP_e) {
         f32 dist_to_ground = m_acch.GetGroundH() - current.pos.y;
-        if (!m_acch.i_ChkGroundHit() && dist_to_ground < 0.0f && dist_to_ground >= -l_autoUpHeight) {
+        if (!m_acch.ChkGroundHit() && dist_to_ground < 0.0f && dist_to_ground >= -l_autoUpHeight) {
             current.pos.y = m_acch.GetGroundH();
             m_acch.SetGroundHit();
             speed.y = 0.0f;
@@ -2741,7 +2741,7 @@ void daHorse_c::footBgCheck() {
         }
     }
 
-    if (!m_acch.i_ChkGroundHit() || m_procID == PROC_TOOL_DEMO_e) {
+    if (!m_acch.ChkGroundHit() || m_procID == PROC_TOOL_DEMO_e) {
         sp24 = 4;
     } else {
         f32 var_f30 = 1000.0f + current.pos.y;
@@ -2976,8 +2976,8 @@ void daHorse_c::setReinPosNormalSubstance() {
     static cXyz saddleLeft(29.0f, -2.0f, 30.0f);
     static cXyz saddleRight(29.0f, 2.0f, 30.0f);
 
-    if (!checkStateFlg0(FLG0_UNK_1) && i_getZeldaActor() != NULL) {
-        if (((daHoZelda_c*)i_getZeldaActor())->checkSingleRide()) {
+    if (!checkStateFlg0(FLG0_UNK_1) && getZeldaActor() != NULL) {
+        if (((daHoZelda_c*)getZeldaActor())->checkSingleRide()) {
             offStateFlg0(FLG0_UNK_4000000);
             return;
         }
@@ -3099,7 +3099,7 @@ BOOL daHorse_c::checkServiceWaitAnime() {
 
 /* 80840844-808408F0 008A04 00AC+00 2/2 0/0 0/0 .text            checkTurnInput__9daHorse_cFv */
 BOOL daHorse_c::checkTurnInput() {
-    return m_padStickValue > 0.9f && (!dComIfGp_getAttention().Lockon() || daAlink_getAlinkActorClass()->getAtnActor() != NULL);
+    return m_padStickValue > 0.9f && (!dComIfGp_getAttention()->Lockon() || daAlink_getAlinkActorClass()->getAtnActor() != NULL);
 }
 
 /* 808408F0-808409C0 008AB0 00D0+00 2/2 0/0 0/0 .text            checkTgHitTurn__9daHorse_cFv */
@@ -3360,7 +3360,7 @@ int daHorse_c::callHorseSubstance(cXyz const* i_pos) {
         }
 
         cXyz pos(farthest_pos->x, farthest_pos->y, farthest_pos->z);
-        i_setHorsePosAndAngle(&pos, shape_angle.y);
+        setHorsePosAndAngle(&pos, shape_angle.y);
         rt = 1;
     } else if (dist_xz2 <= SQUARE(800.0f)) {
         return 3;
@@ -3581,9 +3581,9 @@ int daHorse_c::procWait() {
     }
 
     if (!checkStateFlg0(FLG0_UNK_1)) {
-        if (daPy_py_c::i_checkNowWolf()) {
+        if (daPy_py_c::checkNowWolf()) {
             attention_info.flags |= 0x8;
-            eventInfo.i_onCondition(1);
+            eventInfo.onCondition(1);
         } else if (m_procID == PROC_WAIT_e) {
             acceptPlayerRide();
         }
@@ -3632,7 +3632,7 @@ int daHorse_c::procMove() {
         speedF = daHorse_hio_c0::m.fastwalk_to_run_rate * m_normalMaxSpeedF;
     }
 
-    if (checkStateFlg0(daHorse_FLG0(FLG0_UNK_200000 | FLG0_UNK_100000)) && !m_acch.i_ChkGroundHit()) {
+    if (checkStateFlg0(daHorse_FLG0(FLG0_UNK_200000 | FLG0_UNK_100000)) && !m_acch.ChkGroundHit()) {
         field_0x1768 = 350.0f;
         field_0x176c = 0.0f;
         field_0x1770 = field_0x1768;
@@ -4068,7 +4068,7 @@ int daHorse_c::procJump() {
         field_0x1722--;
     }
 
-    if ((field_0x171c != 0) && ((speed.y < 0.0f && field_0x17d0.abs2XZ(current.pos) > field_0x1778) || field_0x1722 == 0) && m_acch.i_ChkGroundHit()) {
+    if ((field_0x171c != 0) && ((speed.y < 0.0f && field_0x17d0.abs2XZ(current.pos) > field_0x1778) || field_0x1722 == 0) && m_acch.ChkGroundHit()) {
         return procLandInit(field_0x1774, field_0x1720);
     }
 
@@ -4289,7 +4289,7 @@ int daHorse_c::execute() {
         onStateFlg0(FLG0_UNK_200000);
     }
 
-    if (m_acch.i_ChkGroundHit()) {
+    if (m_acch.ChkGroundHit()) {
         onStateFlg0(FLG0_UNK_10);
     } else {
         offStateFlg0(FLG0_UNK_10);
@@ -4390,7 +4390,7 @@ int daHorse_c::execute() {
         speed.y = old_speed_y;
     }
 
-    if (checkStateFlg0(FLG0_UNK_1) && m_acch.i_ChkGroundHit() && checkStateFlg0(FLG0_UNK_2)) {
+    if (checkStateFlg0(FLG0_UNK_1) && m_acch.ChkGroundHit() && checkStateFlg0(FLG0_UNK_2)) {
         if (!checkStateFlg0(FLG0_UNK_1000)) {
             dComIfGp_getVibration().StartQuake(VIBMODE_S_DOKUTT, 1, cXyz(0.0f, 1.0f, 0.0f));
             onStateFlg0(FLG0_UNK_1000);

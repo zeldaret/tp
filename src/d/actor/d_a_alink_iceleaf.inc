@@ -58,7 +58,7 @@ int daAlink_c::boardCommon(BOOL i_canMove) {
         }
     }
 
-    if (!checkSnowCode() && mLinkAcch.i_ChkGroundHit() && !checkModeFlg(2)) {
+    if (!checkSnowCode() && mLinkAcch.ChkGroundHit() && !checkModeFlg(2)) {
         setJumpMode();
         procBackJumpInit(0);
 
@@ -71,7 +71,7 @@ int daAlink_c::boardCommon(BOOL i_canMove) {
     }
 
     s16 var_r27;
-    if (mLinkAcch.i_ChkGroundHit() && dComIfG_Bgsp().ChkPolySafe(mLinkAcch.m_gnd)) {
+    if (mLinkAcch.ChkGroundHit() && dComIfG_Bgsp().ChkPolySafe(mLinkAcch.m_gnd)) {
         cM3dGPla poly;
         dComIfG_Bgsp().GetTriPla(mLinkAcch.m_gnd, &poly);
 
@@ -115,11 +115,11 @@ int daAlink_c::boardCommon(BOOL i_canMove) {
             }
 
             if (checkZeroSpeedF() && temp_r26 > 0x7000 && mProcID == PROC_BOARD_WAIT && !checkModeFlg(2)) {
-                if (mProcVar3.field_0x300e <= 910.0f && checkUnderMove0BckNoArc(ANM_RIDE_WAIT) && mLinkAcch.i_ChkGroundHit()) {      
+                if (mProcVar3.field_0x300e <= 910.0f && checkUnderMove0BckNoArc(ANM_RIDE_WAIT) && mLinkAcch.ChkGroundHit()) {      
                     return procBoardTurnInit();
                 }
             }
-        } else if (temp_r26 < 0x2000 && field_0x2f8c == 0xB && mProcID == PROC_BOARD_WAIT && !checkModeFlg(2) && mLinkAcch.i_ChkGroundHit() && (mProcVar3.field_0x300e < field_0x3122) && (checkUnderMove0BckNoArc(ANM_RIDE_WAIT) || checkUnderMove0BckNoArc(ANM_RIDE_FRONT))) {
+        } else if (temp_r26 < 0x2000 && field_0x2f8c == 0xB && mProcID == PROC_BOARD_WAIT && !checkModeFlg(2) && mLinkAcch.ChkGroundHit() && (mProcVar3.field_0x300e < field_0x3122) && (checkUnderMove0BckNoArc(ANM_RIDE_WAIT) || checkUnderMove0BckNoArc(ANM_RIDE_FRONT))) {
             if (mNormalSpeed <= daAlinkHIO_board_c0::m.mMaxPushSpeed) {
                 return procBoardRowInit();
             }
@@ -159,7 +159,7 @@ int daAlink_c::boardCommon(BOOL i_canMove) {
     shape_angle.z = field_0x2fee >> 1;
     mBodyAngle.z = shape_angle.z;
 
-    if (mLinkAcch.i_ChkGroundHit() && dComIfG_Bgsp().ChkPolySafe(mLinkAcch.m_gnd)) {
+    if (mLinkAcch.ChkGroundHit() && dComIfG_Bgsp().ChkPolySafe(mLinkAcch.m_gnd)) {
         if (checkModeFlg(2)) {
             offModeFlg(2);
             speed.y = 0.0f;
@@ -178,7 +178,7 @@ int daAlink_c::boardCommon(BOOL i_canMove) {
                     var_f31 = 1.0f - (0.5f * cM_scos(temp_r0));
                 }
 
-                var_f31 *= cM_fsin(1.570796f * var_f25);
+                var_f31 *= cM_fsin(1.5707964f * var_f25);
                 if (var_f31 > 0.1f) {
                     f32 temp_f27 = (var_f31 * cM_ssin(var_r27)) + (mNormalSpeed * cM_ssin(shape_angle.y));
                     f32 temp_f26 = (var_f31 * cM_scos(var_r27)) + (mNormalSpeed * cM_scos(shape_angle.y));
@@ -386,7 +386,7 @@ int daAlink_c::procBoardWaitInit(fopAc_ac_c* i_board) {
             mNormalSpeed = 0.0f;
         }
 
-        field_0x594 = daAlinkHIO_move_c0::m.mMinWalkRate;
+        field_0x594 = daAlinkHIO_board_c0::m.mMaxSpeed;
         mProcVar2.field_0x300c = 0;
         mProcVar3.field_0x300e = 0;
         setCommonBoardAnime(FALSE);
@@ -499,7 +499,7 @@ int daAlink_c::procBoardRow() {
         daPy_frameCtrl_c* frame_ctrl = &mUnderFrameCtrl[0];
 
         if (frame_ctrl->checkPass(0.0f)) {
-            if (checkInputOnR() && abs(mStickAngle) < 0x2000 && !checkModeFlg(2) && mLinkAcch.i_ChkGroundHit() && mProcVar3.field_0x300e < field_0x3122 && mNormalSpeed <= daAlinkHIO_board_c0::m.mMaxPushSpeed) {
+            if (checkInputOnR() && abs(mStickAngle) < 0x2000 && !checkModeFlg(2) && mLinkAcch.ChkGroundHit() && mProcVar3.field_0x300e < field_0x3122 && mNormalSpeed <= daAlinkHIO_board_c0::m.mMaxPushSpeed) {
                 mProcVar5.field_0x3012 = 0;
             } else {
                 setCommonBoardAnime(FALSE);

@@ -147,7 +147,8 @@ int daLv3Candle_c::Execute() {
     dComIfGp_particle_setSimple(0x101, &mTorchPos, 0xff, g_whiteColor, g_whiteColor, 0, 0.0f);
     dComIfGp_particle_setSimple(0x103, &mTorchPos, 0xff, g_whiteColor, g_whiteColor, 0, 0.0f);
 
-    mDoAud_seStartLevel(0x80018, &mTorchPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+    mDoAud_seStartLevel(Z2SE_OBJ_FIRE_BURNING, &mTorchPos, 0,
+                        dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
 
     if (mSph.ChkTgHit()) {
         cCcD_Obj* obj = mSph.GetTgHitObj();

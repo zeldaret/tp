@@ -37,8 +37,9 @@ public:
     /* 80C44D0C */ daKiPot_HIO_c();
     /* 80C450E8 */ virtual ~daKiPot_HIO_c() {};
 
-    /* 0x00 */ /* vtable */
+    void genMessage(JORMContext*);
 
+    /* 0x00 */ /* vtable */
     /* 0x06 */ u8 field_0x06;
 };
 

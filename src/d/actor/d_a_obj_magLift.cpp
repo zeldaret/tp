@@ -231,14 +231,14 @@ void daMagLift_c::setNextPoint() {
             field_0x5af = 0x1;
             sVar1 = 1;
         } else {
-            dStage_dPnt_c* pnt = &path->m_points[mPoint];
+            dPnt* pnt = &path->m_points[mPoint];
             if (pnt->mArg0 == 0) {
                 sVar1 = mPoint;
             }
         }
     }
     field_0x5c0 = field_0x5b4;
-    dStage_dPnt_c* pnt = &path->m_points[sVar1];
+    dPnt* pnt = &path->m_points[sVar1];
     field_0x5b4 = pnt->m_position;
     mPoint = sVar1;
 }

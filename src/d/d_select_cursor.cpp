@@ -208,13 +208,6 @@ dSelect_cursor_c::dSelect_cursor_c(u8 param_0, f32 param_1, JKRArchive* param_2)
     mPositionX = 0.0f;
 }
 
-static void dummy() {
-    // Need 0x30 bytes of padding with no symbol between btk2_name$3688 and dSelect_cursor_c::__vtable
-    // This is likely caused by the vtables of abstract base classes getting put there and then stripped out.
-    // Not sure which abstract base classes could go there though.
-    static u8 padding_fakematch[0x30] = {};
-}
-
 
 /* 801949EC-80194C30 18F32C 0244+00 1/0 0/0 0/0 .text            __dt__16dSelect_cursor_cFv */
 dSelect_cursor_c::~dSelect_cursor_c() {
@@ -577,4 +570,37 @@ void dSelect_cursor_c::setBckAnimation(J2DAnmTransformKey* param_0) {
  */
 void dSelect_cursor_c::moveCenter(J2DPane* i_pane, f32 i_x, f32 i_y) {
     i_pane->translate(i_x,i_y);
+}
+
+// Need 0x30 bytes of padding with no symbol between btk2_name$3688 and dSelect_cursor_c::__vtable
+// This is likely caused by the vtables of abstract base classes getting put there and then stripped out.
+// Not sure which abstract base classes could go there though, so we simulate it with some dummy classes for now.
+class dummy_abstract_class {
+public:
+    virtual void virt_func_0() = 0;
+    virtual void virt_func_1() = 0;
+    virtual void virt_func_2() = 0;
+    virtual void virt_func_3() = 0;
+    virtual void virt_func_4() = 0;
+    virtual void virt_func_5() = 0;
+    virtual void virt_func_6() = 0;
+    virtual void virt_func_7() = 0;
+    virtual void virt_func_8() = 0;
+    virtual void virt_func_9() = 0;
+};
+class dummy_child_class : dummy_abstract_class {
+    virtual void virt_func_0();
+    virtual void virt_func_1();
+    virtual void virt_func_2();
+    virtual void virt_func_3();
+    virtual void virt_func_4();
+    virtual void virt_func_5();
+    virtual void virt_func_6();
+    virtual void virt_func_7();
+    virtual void virt_func_8();
+    virtual void virt_func_9();
+};
+static dummy_child_class dummy() {
+    dummy_child_class temp;
+    return temp;
 }

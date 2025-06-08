@@ -16,6 +16,6 @@ daDmidna_Draw__FP10daDmidna_c = .text:0x00000500; // type:function size:0x28 sco
 _ctors = .ctors:0x00000000; // type:label scope:global
 _dtors = .dtors:0x00000000; // type:label scope:global
 l_arcName = .rodata:0x00000000; // type:object size:0x7 scope:global data:string
-@118220 = .rodata:0x00000008; // type:object size:0x4 scope:local data:float
+@118220 = .rodata:0x00000008; // type:object size:0x4 scope:local align:4 data:float
 l_daDmidna_Method = .data:0x00000000; // type:object size:0x20 scope:global
 g_profile_DMIDNA = .data:0x00000020; // type:object size:0x30 scope:global

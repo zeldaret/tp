@@ -263,9 +263,9 @@ void J3DModelLoader::readInformation(J3DModelInfoBlock const* i_block, u32 i_fla
 
 /* 803351A4-803351D0 32FAE4 002C+00 1/1 0/0 0/0 .text getFmtType__FP17_GXVtxAttrFmtList7_GXAttr */
 static _GXCompType getFmtType(_GXVtxAttrFmtList* i_fmtList, _GXAttr i_attr) {
-    for (; i_fmtList->mAttrib != GX_VA_NULL; i_fmtList++) {
-        if (i_fmtList->mAttrib == i_attr) {
-            return i_fmtList->mCompType;
+    for (; i_fmtList->attr != GX_VA_NULL; i_fmtList++) {
+        if (i_fmtList->attr == i_attr) {
+            return i_fmtList->type;
         }
     }
     return GX_F32;

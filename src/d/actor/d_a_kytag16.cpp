@@ -41,9 +41,7 @@ static int daKytag16_Execute(kytag16_class* i_this) {
         var_r29 = false;
 
         if (i_this->mSwitch != 0xFF) {
-            s32 room_no = dComIfGp_roomControl_getStayNo();
-
-            if (dComIfGs_isSwitch(i_this->mSwitch, room_no)) {
+            if (dComIfGs_isSwitch(i_this->mSwitch, dComIfGp_roomControl_getStayNo())) {
                 var_r29 = true;
             }
         } else {

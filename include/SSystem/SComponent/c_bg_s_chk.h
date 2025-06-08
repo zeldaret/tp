@@ -1,7 +1,7 @@
 #ifndef C_BG_S_CHK_H
 #define C_BG_S_CHK_H
 
-#include "dolphin/mtx/vec.h"
+#include "dolphin/mtx.h"
 #include "f_pc/f_pc_base.h"
 
 struct cBgD_Vtx_t : public Vec {};
@@ -24,7 +24,7 @@ public:
 public:
     cBgS_Chk();
     void SetExtChk(cBgS_Chk&);
-    bool ChkSameActorPid(unsigned int) const;
+    bool ChkSameActorPid(fpc_ProcID) const;
 
     void SetActorPid(fpc_ProcID pid) { mActorPid = pid; }
     fpc_ProcID GetActorPid() const { return mActorPid; }
@@ -34,7 +34,7 @@ public:
     cBgS_GrpPassChk* GetGrpPassChk() const { return mGrpPassChk; }
     void OffSameActorChk() { mSameActorChk = false; }
 
-    virtual ~cBgS_Chk(void);
+    virtual ~cBgS_Chk();
 };  // Size: 0x14
 
 #endif /* C_BG_S_CHK_H */

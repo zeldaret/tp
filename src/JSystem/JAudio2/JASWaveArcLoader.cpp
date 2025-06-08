@@ -8,7 +8,7 @@
 #include "JSystem/JAudio2/JASTaskThread.h"
 #include "JSystem/JAudio2/JASMutex.h"
 #include "JSystem/JKernel/JKRDvdAramRipper.h"
-#include "string.h"
+#include "cstring.h"
 #include "dolphin/os.h"
 
 /* 80451290-80451298 000790 0004+04 1/1 0/0 0/0 .sbss            sAramHeap__16JASWaveArcLoader */

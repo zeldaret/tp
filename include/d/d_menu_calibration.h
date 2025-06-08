@@ -43,11 +43,6 @@ public:
     /* 801AFBF4 */ virtual void draw();
     /* 801AED64 */ virtual ~dMenu_Calibration_c();
 
-    // this is just a hack to get .data section to match
-    // not sure how to fix it without this atm
-    virtual void unk0() = 0;
-    virtual void unk1() = 0;
-
     /* 0x004 */ JKRExpHeap* mpHeap;
     /* 0x008 */ JKRArchive* mpArchive;
     /* 0x00C */ J2DScreen* mpCalibrationMainScrn;

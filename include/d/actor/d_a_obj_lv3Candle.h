@@ -56,6 +56,8 @@ public:
     /* 80C57ACC */ daLv3Candle_HIO_c();
     /* 80C58484 */ virtual ~daLv3Candle_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x00 vtable */
     /* 0x04 */ u8 field_0x04;
 };

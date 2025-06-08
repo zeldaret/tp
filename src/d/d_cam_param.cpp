@@ -282,7 +282,7 @@ bool dCamSetup_c::CheckLatitudeRange(s16* param_0) {
 
 /* 80088988-800889B0 0832C8 0028+00 0/0 1/1 0/0 .text            PlayerHideDist__11dCamSetup_cFv */
 f32 dCamSetup_c::PlayerHideDist() {
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         return 120.0f;
     }
 

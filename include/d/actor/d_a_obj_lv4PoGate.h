@@ -70,6 +70,8 @@ public:
     /* 80C5FBEC */ daLv4PoGate_HIO_c();
     /* 80C60758 */ virtual ~daLv4PoGate_HIO_c() {};
 
+    void genMessage(JORMContext*);
+
     /* 0x04 */ f32 mOpenSpeed;
     /* 0x08 */ f32 mCloseStep1Speed;
     /* 0x0C */ f32 mCloseStep2Speed;

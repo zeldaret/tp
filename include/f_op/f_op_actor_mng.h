@@ -24,23 +24,41 @@
         fopAcM_OnCondition(ptr, fopAcCnd_INIT_e);                                                  \
     }
 
+#define fopAcM_RegisterDeleteID(i_this, actor_name_str)                                            \
+    const fpc_ProcID procID = fopAcM_GetID(i_this);                                                \
+    "Delete -> " actor_name_str "(id=%d)\n"
+
+#define fopAcM_RegisterCreateID(actor_class, i_this, actor_name_str)                               \
+    actor_class* a_this = static_cast<actor_class*>(i_this);                                       \
+    const fpc_ProcID procID = fopAcM_GetID(i_this);                                                \
+    "Create -> " actor_name_str "(id=%d)\n"
+
+#define fopAcM_RegisterDelete(i_this, actor_name_str) "Delete -> " actor_name_str "\n"
+
+#define fopAcM_RegisterCreate(actor_class, i_this, actor_name_str)                                 \
+    static_cast<actor_class*>(i_this);                                                             \
+    "Create -> " actor_name_str "\n"
+
 class J3DModelData;  // placeholder
 class JKRHeap;
 class cM3dGPla;
 
 struct fopAcM_prmBase_class {
-    /* 0x00 */ u32 field_0x00;
-    /* 0x04 */ cXyz field_0x04;
-    /* 0x10 */ csXyz field_0x10;
-    /* 0x16 */ u16 field_0x16;
-};  // Size = 0x18
-
-struct fopAcM_prm_class {
     /* 0x00 */ u32 parameters;
     /* 0x04 */ cXyz position;
     /* 0x10 */ csXyz angle;
-    /* 0x16 */ u16 setId;
-    /* 0x18 */ u8 scale[3];
+    /* 0x16 */ u16 setID;
+};  // Size: 0x18
+
+struct fopAcM_prmScale_class {
+    /* 0x0 */ u8 x;
+    /* 0x1 */ u8 y;
+    /* 0x2 */ u8 z;
+};  // Size: 0x3
+
+struct fopAcM_prm_class {
+    /* 0x00 */ fopAcM_prmBase_class base;
+    /* 0x18 */ fopAcM_prmScale_class scale;
     /* 0x1C */ fpc_ProcID parent_id;
     /* 0x20 */ s8 subtype;
     /* 0x21 */ s8 room_no;
@@ -88,8 +106,8 @@ dBgS& dComIfG_Bgsp();
 
 class dKy_tevstr_c;
 class cBgS_PolyInfo;
-typedef int (*heapCallbackFunc)(fopAc_ac_c*);
 typedef int (*createFunc)(void*);
+typedef int (*heapCallbackFunc)(fopAc_ac_c*);
 
 struct DOUBLE_POS {
     double x, y, z;
@@ -207,7 +225,7 @@ inline fopAc_ac_c* fopAcM_Search(fopAcIt_JudgeFunc i_judgeFunc, void* i_process)
 }
 
 inline fopAc_ac_c* fopAcM_SearchByID(fpc_ProcID id) {
-    return (fopAc_ac_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)fpcSch_JudgeByID, &id);
+    return (fopAc_ac_c*)fopAcIt_Judge(fpcSch_JudgeByID, &id);
 }
 
 inline fpc_ProcID fopAcM_GetLinkId(const fopAc_ac_c* i_actor) {
@@ -302,6 +320,10 @@ inline void fopAcM_SetModel(fopAc_ac_c* actor, J3DModel* model) {
     actor->model = model;
 }
 
+inline J3DModel* fopAcM_GetModel(fopAc_ac_c* actor) {
+    return actor->model;
+}
+
 inline fopAcM_prm_class* fopAcM_GetAppend(void* actor) {
     return (fopAcM_prm_class*)fpcM_GetAppend(actor);
 }
@@ -363,15 +385,28 @@ inline int fopAcM_GetCullSize(const fopAc_ac_c* i_actor) {
 }
 
 inline BOOL fopAcM_CULLSIZE_IS_BOX(int i_culltype) {
-    return (i_culltype >= 0 && i_culltype < 14) || i_culltype == 14;
+    return (i_culltype >= 0 && i_culltype < fopAc_CULLBOX_CUSTOM_e) ||
+           i_culltype == fopAc_CULLBOX_CUSTOM_e;
 }
 
-inline const Vec& fopAcM_getCullSizeSphereCenter(const fopAc_ac_c* i_actor) {
+inline const cXyz& fopAcM_getCullSizeSphereCenter(const fopAc_ac_c* i_actor) {
     return i_actor->cull.sphere.center;
 }
 
 inline f32 fopAcM_getCullSizeSphereR(const fopAc_ac_c* i_actor) {
     return i_actor->cull.sphere.radius;
+}
+
+inline void fopAcM_SetPosition(fopAc_ac_c* i_actor, f32 x, f32 y, f32 z) {
+    i_actor->current.pos.set(x, y, z);
+}
+
+inline void fopAcM_SetOldPosition(fopAc_ac_c* i_actor, f32 x, f32 y, f32 z) {
+    i_actor->old.pos.set(x, y, z);
+}
+
+inline void fopAcM_SetHomePosition(fopAc_ac_c* i_actor, f32 x, f32 y, f32 z) {
+    i_actor->home.pos.set(x, y, z);
 }
 
 inline void dComIfGs_onSwitch(int i_no, int i_roomNo);
@@ -459,6 +494,14 @@ fpc_ProcID fopAcM_create(s16 i_procName, u16 i_setId, u32 i_parameters, const cX
 
 fpc_ProcID fopAcM_create(s16 i_procName, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
                          const csXyz* i_angle, const cXyz* i_scale, s8 i_subtype);
+
+inline fpc_ProcID fopAcM_create(s16 i_procName, createFunc i_createFunc, void* params) {
+    return fpcM_Create(i_procName, i_createFunc, params);
+}
+
+inline fpc_ProcID fopAcM_Create(s16 i_procName, createFunc i_createFunc, void* params) {
+    return fpcM_Create(i_procName, i_createFunc,params);
+}
 
 fopAc_ac_c* fopAcM_fastCreate(s16 i_procName, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
                               const csXyz* i_angle, const cXyz* i_scale, s8 i_subtype,
@@ -565,8 +608,7 @@ fpc_ProcID fopAcM_createItemFromTable(cXyz const* i_pos, int i_tableNo, int i_it
                                       bool i_createDirect);
 
 fpc_ProcID fopAcM_createDemoItem(const cXyz* i_pos, int i_itemNo, int i_itemBitNo,
-                                 const csXyz* i_angle, int i_roomNo, const cXyz* scale,
-                                 u8 param_7);
+                                 const csXyz* i_angle, int i_roomNo, const cXyz* scale, u8 param_7);
 
 fpc_ProcID fopAcM_createItemForBoss(const cXyz* i_pos, int i_itemNo, int i_roomNo,
                                     const csXyz* i_angle, const cXyz* i_scale, f32 i_speedF,
@@ -675,6 +717,14 @@ inline s32 fopAcM_seenPlayerAngleY(const fopAc_ac_c* i_actor) {
     return fopAcM_seenActorAngleY(i_actor, dComIfGp_getPlayer(0));
 }
 
+inline s16 fopAcM_toActorShapeAngleY(const fopAc_ac_c* i_actorA, const fopAc_ac_c* i_actorB) {
+    return i_actorA->shape_angle.y - i_actorB->shape_angle.y;
+}
+
+inline s16 fopAcM_toPlayerShapeAngleY(const fopAc_ac_c* i_actor) {
+    return fopAcM_toActorShapeAngleY(i_actor, dComIfGp_getPlayer(0));
+}
+
 s8 dComIfGp_getReverb(int roomNo);
 
 inline void fopAcM_seStartCurrent(const fopAc_ac_c* actor, u32 sfxID, u32 param_2) {
@@ -701,7 +751,11 @@ inline void fopAcM_offActor(fopAc_ac_c* i_actor, u32 flag) {
 }
 
 inline void fopAcM_OnCarryType(fopAc_ac_c* i_actor, fopAcM_CARRY param_2) {
-    i_actor->carryType |= param_2;
+    i_actor->carryType |= (u8) param_2;
+}
+
+inline void fopAcM_OffCarryType(fopAc_ac_c* i_actor, fopAcM_CARRY param_2) {
+    i_actor->carryType &= ~param_2;
 }
 
 enum fopAcM_FOOD {
@@ -726,25 +780,29 @@ inline void fopAcM_effSmokeSet2(u32* param_0, u32* param_1, cXyz const* param_2,
     fopAcM_effSmokeSet1(param_0, param_1, param_2, param_3, param_4, param_5, 0);
 }
 
-inline void fopAcM_setWarningMessage_f(const fopAc_ac_c* i_actor, const char* i_filename, int i_line, const char* i_msg, ...) {
+inline void fopAcM_setWarningMessage_f(const fopAc_ac_c* i_actor, const char* i_filename,
+                                       int i_line, const char* i_msg, ...) {
 #ifdef DEBUG
     /* va_list args;
     va_start(args, i_msg);
 
     char buf[64];
-    snprintf(buf, sizeof(buf), "<%s> %s", dStage_getName(fopAcM_GetProfName(i_actor), i_actor->subtype), i_msg);
-    setWarningMessage_f_va(JUTAssertion::getSDevice(), i_filename, i_line, buf, args);
+    snprintf(buf, sizeof(buf), "<%s> %s", dStage_getName(fopAcM_GetProfName(i_actor),
+    i_actor->subtype), i_msg); setWarningMessage_f_va(JUTAssertion::getSDevice(), i_filename,
+    i_line, buf, args);
 
     va_end(args); */
 #endif
 }
 
 #ifdef DEBUG
-#define fopAcM_setWarningMessage(i_actor, i_filename, i_line, i_msg, ...) \
-    fopAcM_setWarningMessage_f(i_actor, i_filename, i_line, i_msg, __VA_ARGS__)
+#define fopAcM_setWarningMessage(i_actor, i_filename, i_line, i_msg)                               \
+    fopAcM_setWarningMessage_f(i_actor, i_filename, i_line, i_msg)
 #else
 #define fopAcM_setWarningMessage(...)
 #endif
+
+void fopAcM_getNameString(fopAc_ac_c*, char*);
 
 class fopAcM_lc_c {
 public:
@@ -755,6 +813,7 @@ public:
     static cXyz* getCrossP() { return mLineCheck.GetCrossP(); }
     static bool lineCheck(const cXyz*, const cXyz*, const fopAc_ac_c*);
     static bool getTriPla(cM3dGPla* o_tri) { return dComIfG_Bgsp().GetTriPla(mLineCheck, o_tri); }
+    static s32 getWallCode() { return dComIfG_Bgsp().GetWallCode(mLineCheck); }
     static bool checkWallHit() {
         cM3dGPla poly;
         getTriPla(&poly);

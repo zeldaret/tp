@@ -29,7 +29,7 @@ public:
     typedef struct actionFuncEntry {
         actionFunc initFn;
         actionFunc execFn;
-    };
+    } actionFuncEntry;
 
     typedef struct attributes {
         /* 0x00 */ f32 field_0x00;
@@ -50,7 +50,7 @@ public:
         /* 0x3A */ s16 field_0x3a;
         /* 0x3C */ s16 mNewLeafTickSpeed;
         /* 0x3E */ s16 mPickLeafTickSpeed;
-    };
+    } attributes;
 
     /* 8059C9F8 */ void setAction(daObjYobikusa_c::Mode_e);
     /* 8059CA2C */ void callInit();

@@ -45,7 +45,9 @@ public:
     /* 80007F90 */ static void beginRender();
     /* 800080D0 */ static void fadeOut(f32);
     /* 80007FD8 */ static void fadeOut(f32, _GXColor&);
-    /* 807DFAB4 */ static void fadeIn(f32, _GXColor&);
+    /* 807DFAB4 */ static void fadeIn(f32 fadeSpeed, _GXColor& fadeColor) {
+        fadeOut(-fadeSpeed, fadeColor);
+    }
     /* 80008028 */ static void fadeOut_f(f32, _GXColor&);
     /* 800080A0 */ static void onBlure(const Mtx);
     /* 80008078 */ static void onBlure();
@@ -103,6 +105,9 @@ public:
     static f32 getScale() { return 1.0f; }
     static void setWideZoomLightProjection(Mtx m) {}
     static void setFrameRate(u16 i_rate) { JFWDisplay::getManager()->setFrameRate(i_rate); }
+
+    // NONMATCHING - Need to define all mDoGph_gInf_c shieldD members
+    static u8 isWide() { return false; }
 
     static GXTexObj mFrameBufferTexObj;
     static GXTexObj mZbufferTexObj;

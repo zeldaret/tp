@@ -8,6 +8,7 @@
 #include "Z2AudioLib/Z2SeqMgr.h"
 #include "Z2AudioLib/Z2Calc.h"
 #include "Z2AudioLib/Z2SceneMgr.h"
+#include "Z2AudioLib/Z2LinkMgr.h"
 
 /* 802BF920-802BF980 2BA260 0060+00 0/0 1/1 0/0 .text            __ct__13Z2SoundObjMgrFv */
 Z2SoundObjMgr::Z2SoundObjMgr() : JASGlobalInstance<Z2SoundObjMgr>(this) {

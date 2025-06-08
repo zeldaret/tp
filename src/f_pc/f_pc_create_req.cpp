@@ -10,17 +10,26 @@
 #include "f_pc/f_pc_deletor.h"
 #include "f_pc/f_pc_executor.h"
 #include "f_pc/f_pc_layer.h"
+#include "f_pc/f_pc_debug_sv.h"
 
 /* 80020ACC-80020AE8 001C+00 s=1 e=0 z=0  None .text      fpcCtRq_isCreatingByID__FP10create_tagPUi
  */
-bool fpcCtRq_isCreatingByID(create_tag* i_createTag, fpc_ProcID* i_id) {
+BOOL fpcCtRq_isCreatingByID(create_tag* i_createTag, fpc_ProcID* i_id) {
     create_request* req = (create_request*)i_createTag->base.mpTagData;
-    return req->id == *i_id;
+    if (req->id == *i_id) {
+        return TRUE;
+    } else {
+        return FALSE;
+    }
 }
 
 /* 80020AE8-80020B20 0038+00 s=0 e=2 z=0  None .text      fpcCtRq_IsCreatingByID__FUi */
 BOOL fpcCtRq_IsCreatingByID(fpc_ProcID i_id) {
-    return fpcCtIt_Judge((fpcLyIt_JudgeFunc)fpcCtRq_isCreatingByID, &i_id) != NULL ? TRUE : FALSE;
+    if (fpcCtIt_Judge((fpcLyIt_JudgeFunc)fpcCtRq_isCreatingByID, &i_id) != NULL) {
+        return TRUE;
+    } else {
+        return FALSE;
+    }
 }
 
 /* 80020B20-80020B5C 003C+00 s=1 e=0 z=0  None .text      fpcCtRq_CreateQTo__FP14create_request */
@@ -54,12 +63,10 @@ BOOL fpcCtRq_Delete(create_request* i_request) {
 
 /* 80020C14-80020CAC 0098+00 s=2 e=2 z=0  None .text      fpcCtRq_Cancel__FP14create_request */
 BOOL fpcCtRq_Cancel(create_request* i_request) {
-    base_process_class* pproc;
     if (i_request != NULL && !i_request->is_cancel) {
         i_request->is_cancel = TRUE;
-        pproc = i_request->process;
 
-        if (pproc != NULL && !fpcDt_Delete(pproc))
+        if (i_request->process != NULL && !fpcDt_Delete(i_request->process))
             return FALSE;
 
         if (i_request->methods != NULL && !fpcMtd_Method(i_request->methods->cancel_method, i_request))
@@ -84,8 +91,9 @@ BOOL fpcCtRq_Do(create_request* i_request) {
     int phase = cPhs_COMPLEATE_e;
 
     if (i_request->methods != NULL) {
-        cPhs__Handler pHandler = i_request->methods->phase_handler;
-        if (pHandler != NULL) {
+        if (i_request->methods->phase_handler != NULL) {
+            cPhs__Handler pHandler = i_request->methods->phase_handler;
+
             i_request->is_doing = TRUE;
             phase = pHandler(i_request);
             i_request->is_doing = FALSE;
@@ -94,14 +102,18 @@ BOOL fpcCtRq_Do(create_request* i_request) {
 
     switch (phase) {
     case cPhs_COMPLEATE_e: {
-        int success = fpcEx_ToExecuteQ(i_request->process);
-        if (success == 0)
+        if (fpcEx_ToExecuteQ(i_request->process) == 0)
             return fpcCtRq_Cancel(i_request);
         else
             return fpcCtRq_Delete(i_request);
     }
     case cPhs_UNK3_e:
     case cPhs_ERROR_e:
+#ifdef DEBUG
+        if (g_fpcDbSv_service[2] != NULL) {
+            g_fpcDbSv_service[2](i_request->process);
+        }
+#endif
         return fpcCtRq_Cancel(i_request);
     }
 
@@ -109,8 +121,13 @@ BOOL fpcCtRq_Do(create_request* i_request) {
 }
 
 /* 80020D84-80020DB0 002C+00 s=0 e=1 z=0  None .text      fpcCtRq_Handler__Fv */
-void fpcCtRq_Handler() {
-    fpcCtIt_Method((fpcCtIt_MethodFunc)fpcCtRq_Do, NULL);
+int fpcCtRq_Handler() {
+#ifdef DEBUG
+    if (g_fpcDbSv_service[3] != NULL) {
+        g_fpcDbSv_service[3](&g_fpcCtTg_Queue.mSize);
+    }
+#endif
+    return fpcCtIt_Method((fpcCtIt_MethodFunc)fpcCtRq_Do, NULL);
 }
 
 /* 80020DB0-80020E38 0088+00 s=0 e=2 z=0  None .text
@@ -119,7 +136,8 @@ create_request* fpcCtRq_Create(layer_class* i_layer, u32 i_size, create_request_
     create_request* req = (create_request*)cMl::memalignB(-4, i_size);
 
     if (req != NULL) {
-        fpcCtTg_Init(&req->base, req);
+        create_tag* tag = &req->base;
+        fpcCtTg_Init(tag, req);
         fpcMtdTg_Init(&req->method_tag, (process_method_tag_func)fpcCtRq_Cancel, req);
         req->layer = i_layer;
         req->methods = i_methods;

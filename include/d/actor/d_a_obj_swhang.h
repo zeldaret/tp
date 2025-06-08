@@ -50,7 +50,7 @@ public:
     /* 80CFC6AC */ void modeOffWait();
     /* 80CFCA34 */ void init_modeOnWait();
     /* 80CFCA40 */ void modeOnWait();
-    /* 80CFCCE0 */ BOOL eventStart();
+    /* 80CFCCE0 */ bool eventStart();
     /* 80CFD034 */ virtual ~daObjSwHang_c() {}
 
     daObjSwHang_c() : dEvLib_callback_c(this) {}

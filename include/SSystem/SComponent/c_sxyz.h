@@ -1,7 +1,11 @@
 #ifndef C_SXYZ_H
 #define C_SXYZ_H
 
-#include "dolphin/mtx/vec.h"
+#include "dolphin/mtx.h"
+
+struct SVec {
+    s16 x, y, z;
+};
 
 class csXyz : public SVec {
 public:

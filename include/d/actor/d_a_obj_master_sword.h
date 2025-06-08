@@ -7,6 +7,10 @@
 class daObjMasterSword_c;
 typedef void (daObjMasterSword_c::*actionFunc)();
 
+struct daObjMasterSword_Attr_c {
+    f32 field_0x0;
+};
+
 /**
  * @ingroup actors-objects
  * @class daObjMasterSword_c
@@ -38,14 +42,13 @@ public:
     inline void callExecute();
     inline int execute();
 
-    f32 attr() const { return mAttr; }
+    f32 attr() const { return mAttr.field_0x0; }
 
     u8 getEventID() { return (fopAcM_GetParam(this) >> 0x10) & 0xFF; }
     u16 getFlagNo() { return fopAcM_GetParam(this) & 0xFFFF; }
 
-    static f32 const mAttr;
-    // static actionFunc ActionTable[];
-    static u8 ActionTable[24];
+    static daObjMasterSword_Attr_c const mAttr;
+    static actionFunc ActionTable[];
 
 private:
     /* 0x568 */ J3DModel* mpModel;

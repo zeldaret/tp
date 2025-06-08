@@ -42,7 +42,7 @@ s32 fpcLy_ToQueue(layer_class* i_layer, int treeListIdx, create_tag_class* i_cre
 s32 fpcLy_QueueTo(layer_class* i_layer, create_tag_class* i_createTag);
 
 int fpcLy_Cancel(layer_class* i_layer);
-bool fpcLy_CancelMethod(process_method_tag_class* i_layer);
+BOOL fpcLy_CancelMethod(process_method_tag_class* i_layer);
 
 void fpcLy_CancelQTo(process_method_tag_class* i_methods);
 s32 fpcLy_ToCancelQ(layer_class* i_layer, process_method_tag_class* i_methods);

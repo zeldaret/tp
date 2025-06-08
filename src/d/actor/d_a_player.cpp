@@ -294,16 +294,16 @@ void daPy_anmHeap_c::createHeap(daPy_anmHeap_c::daAlinkHEAP_TYPE i_heapType) {
 
 /* 8015EF84-8015F068 1598C4 00E4+00 3/3 0/0 0/0 .text            loadData__14daPy_anmHeap_cFUs */
 void* daPy_anmHeap_c::loadData(u16 i_resId) {
-    static const char twglArcName[12] = "TWGate_Lk";
-    static const char twgwArcName[12] = "TWGate_Wf";
-    static const char sumouArcName[8] = "alSumou";
-    static const char ocArcName[8] = "B_oh";
-    static const char drArcName[8] = "B_DR";
-    static const char msDemoArcName[8] = "Lv6Gate";
-    static const char lastGanonArcName[8] = "B_gnd";
-    static const char pigGanonArcName[8] = "B_mgn";
+    static const char twglArcName[] = "TWGate_Lk";
+    static const char twgwArcName[] = "TWGate_Wf";
+    static const char sumouArcName[] = "alSumou";
+    static const char ocArcName[] = "B_oh";
+    static const char drArcName[] = "B_DR";
+    static const char msDemoArcName[] = "Lv6Gate";
+    static const char lastGanonArcName[] = "B_gnd";
+    static const char pigGanonArcName[] = "B_mgn";
 
-    static const char* arcName[8] = {
+    static const char* arcName[] = {
         sumouArcName, ocArcName,     twglArcName,      twgwArcName,
         drArcName,    msDemoArcName, lastGanonArcName, pigGanonArcName,
     };
@@ -460,10 +460,6 @@ BOOL daPy_py_c::checkWoodShieldEquip() {
     return equipShield == fpcNm_ITEM_WOOD_SHIELD || equipShield == fpcNm_ITEM_SHIELD;
 }
 
-BOOL daPy_py_c::checkNowWolf() {
-    return dComIfGp_getLinkPlayer()->checkWolf();
-}
-
 /* 8015F3FC-8015F424 159D3C 0028+00 0/0 4/4 3/3 .text            getAttentionOffsetY__9daPy_py_cFv
  */
 f32 daPy_py_c::getAttentionOffsetY() {
@@ -526,10 +522,6 @@ bool daPy_py_c::wolfGrabSubjectNoDraw(fopAc_ac_c* i_actor) {
     return checkNowWolf() && linkGrabSubjectNoDraw(i_actor);
 }
 
-u32 daPy_py_c::getLastSceneMode() {
-    return dComIfGs_getLastSceneMode() & 0xF;
-}
-
 /* 8015F660-8015F698 159FA0 0038+00 2/2 1/1 1/1 .text            checkRoomRestartStart__9daPy_py_cFv
  */
 bool daPy_py_c::checkRoomRestartStart() {
@@ -545,7 +537,7 @@ bool daPy_py_c::checkRoomRestartStart() {
 u32 daPy_py_c::checkCarryStartLightBallA() {
     if (checkRoomRestartStart() || !dComIfGp_getStage() ||
         !dComIfGp_getStage()->getStagInfo() ||
-        i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x17)
+        dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x17)
     {
         return FALSE;
     }
@@ -557,7 +549,7 @@ u32 daPy_py_c::checkCarryStartLightBallA() {
 u32 daPy_py_c::checkCarryStartLightBallB() {
     if (checkRoomRestartStart() || !dComIfGp_getStage() ||
         !dComIfGp_getStage()->getStagInfo() ||
-        i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x17)
+        dStage_stagInfo_GetSaveTbl(dComIfGp_getStage()->getStagInfo()) != 0x17)
     {
         return FALSE;
     }

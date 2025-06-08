@@ -119,11 +119,13 @@ public:
     /* 8094A608 */ void setDefaultWaitAnime(u8);
     /* 8094AA20 */ virtual ~daMyna_c() {}
 
-    daMyna_c(){};
+    daMyna_c() {}
 
     void onEventFlag(u8 flag) { field_0x92F |= (1 << flag); }
     void offEventFlag(u8 flag) { field_0x92F &= ~(1 << flag); }
     bool isEventFlag(u8 flag) { return field_0x92F & (1 << flag); }
+
+    fopAc_ac_c* getSpeakActorPtr() { return field_0x828; }
 
     typedef void (daMyna_c::*ProcFunc)();
     typedef int (daMyna_c::*BaseMotionFunc)(int);
@@ -188,6 +190,8 @@ public:
 
     // Must be inlined but defined in .cpp for sinit to match
     inline daMyna_HIO_c();
+
+    void genMessage(JORMContext*);
 
     /* 0x04 */ f32 field_0x04;  // DAT_8094ba40
     /* 0x08 */ f32 field_0x08;  // DAT_8094ba44

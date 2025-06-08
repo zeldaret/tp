@@ -1,37 +1,44 @@
-#include "dolphin/os/OSAlarm.h"
-#include "dolphin/os.h"
+#include <dolphin.h>
+#include <dolphin/os.h>
 
-static BOOL OnReset(BOOL param_0);
-BOOL __DVDTestAlarm(OSAlarm* alarm);
+#include "__os.h"
+#include "__dvd.h"
 
-/* 803CF480-803CF490 -00001 0010+00 1/1 0/0 0/0 .data            ResetFunctionInfo */
-static OSResetFunctionInfo ResetFunctionInfo = {
-    OnReset,
-    0xFFFFFFFF,
-};
+typedef struct {
+    OSAlarm* head;
+    OSAlarm* tail;
+} OSAlarmQueue;
 
-/* 80451638-80451640 000B38 0008+00 5/5 0/0 0/0 .sbss            AlarmQueue */
+// prototypes
+static void SetTimer(OSAlarm * alarm);
+static void InsertAlarm(OSAlarm* alarm, OSTime fire, OSAlarmHandler handler);
+static void DecrementerExceptionCallback(register __OSException exception, register OSContext* context);
+static void DecrementerExceptionHandler(__OSException exception, OSContext* context);
+static BOOL OnReset(BOOL final);
+
+static OSResetFunctionInfo ResetFunctionInfo = {OnReset, 0xFFFFFFFF, NULL, NULL};
 static OSAlarmQueue AlarmQueue;
 
-/* 8033A8A0-8033A8F8 3351E0 0058+00 0/0 3/3 0/0 .text            OSInitAlarm */
-void OSInitAlarm(void) {
-    if (__OSGetExceptionHandler(8) != DecrementerExceptionHandler) {
-        AlarmQueue.head = AlarmQueue.tail = NULL;
-        __OSSetExceptionHandler(8, DecrementerExceptionHandler);
-        OSRegisterResetFunction(&ResetFunctionInfo);
+#define ASSERTREPORT(line, cond) \
+    if (!(cond)) { OSReport("OSCheckAlarmQueue: Failed " #cond " in %d", line); return 0; }
+
+BOOL OSCheckAlarmQueue(void) {
+    OSAlarm* alarm;
+
+    ASSERTREPORT(146, AlarmQueue.head == NULL && AlarmQueue.tail == NULL || AlarmQueue.head != NULL && AlarmQueue.tail != NULL);
+    ASSERTREPORT(147, AlarmQueue.head == NULL || AlarmQueue.head->prev == NULL);
+    ASSERTREPORT(148, AlarmQueue.tail == NULL || AlarmQueue.tail->next == NULL);
+
+    for(alarm = AlarmQueue.head; alarm; alarm = alarm->next) {
+        ASSERTREPORT(151, alarm->next == NULL || alarm->next->prev == alarm);
+        ASSERTREPORT(152, alarm->next != NULL || AlarmQueue.tail == alarm);
     }
+    return TRUE;
 }
 
-/* 8033A8F8-8033A908 335238 0010+00 0/0 17/17 0/0 .text            OSCreateAlarm */
-void OSCreateAlarm(OSAlarm* alarm) {
-    alarm->handler = NULL;
-    alarm->tag = 0;
-}
+static void SetTimer(OSAlarm* alarm) {
+    OSTime delta = alarm->fire - __OSGetSystemTime();
 
-static inline SetTimer(OSAlarm* alarm) {
-    OSTime delta;
-
-    delta = alarm->fire_time - __OSGetSystemTime();
     if (delta < 0) {
         PPCMtdec(0);
     } else if (delta < 0x80000000) {
@@ -41,74 +48,106 @@ static inline SetTimer(OSAlarm* alarm) {
     }
 }
 
-/* 8033A908-8033AB58 335248 0250+00 3/3 0/0 0/0 .text            InsertAlarm */
+void OSInitAlarm(void) {
+    if (__OSGetExceptionHandler(8) != DecrementerExceptionHandler) {
+        AlarmQueue.head = AlarmQueue.tail = NULL;
+        __OSSetExceptionHandler(8, DecrementerExceptionHandler);
+        OSRegisterResetFunction(&ResetFunctionInfo);
+    }
+}
+
+void OSCreateAlarm(OSAlarm* alarm) {
+    alarm->handler = 0;
+    alarm->tag = 0;
+}
+
 static void InsertAlarm(OSAlarm* alarm, OSTime fire, OSAlarmHandler handler) {
     OSAlarm* next;
     OSAlarm* prev;
-
-    if (0 < alarm->period_time) {
+    
+    if (0 < alarm->period) {
         OSTime time = __OSGetSystemTime();
-
-        fire = alarm->start_time;
-        if (alarm->start_time < time) {
-            fire += alarm->period_time * ((time - alarm->start_time) / alarm->period_time + 1);
+        
+        fire = alarm->start;
+        if (alarm->start < time) {
+            fire += alarm->period * ((time - alarm->start) / alarm->period + 1);
         }
     }
-
+    
+    ASSERTLINE(251, alarm->handler == 0);
+    
     alarm->handler = handler;
-    alarm->fire_time = fire;
-
-    for (next = AlarmQueue.head; next; next = next->link.next) {
-        if (next->fire_time <= fire) {
+    alarm->fire = fire;
+    
+    for (next = AlarmQueue.head; next; next = next->next) {
+        if (next->fire <= fire) {
             continue;
         }
+        
+        alarm->prev = next->prev;
+        next->prev = alarm;
+        alarm->next = next;
+        prev = alarm->prev;
 
-        alarm->link.prev = next->link.prev;
-        next->link.prev = alarm;
-        alarm->link.next = next;
-        prev = alarm->link.prev;
         if (prev) {
-            prev->link.next = alarm;
+            prev->next = alarm;
         } else {
             AlarmQueue.head = alarm;
             SetTimer(alarm);
         }
+
         return;
     }
 
-    alarm->link.next = 0;
+    ASSERTLINE(280, next == 0);
+
+    alarm->next = 0;
     prev = AlarmQueue.tail;
     AlarmQueue.tail = alarm;
-    alarm->link.prev = prev;
+    alarm->prev = prev;
 
     if (prev) {
-        prev->link.next = alarm;
+        prev->next = alarm;
     } else {
         AlarmQueue.head = AlarmQueue.tail = alarm;
         SetTimer(alarm);
     }
 }
 
-/* 8033AB58-8033ABC0 335498 0068+00 0/0 18/18 0/0 .text            OSSetAlarm */
 void OSSetAlarm(OSAlarm* alarm, OSTime tick, OSAlarmHandler handler) {
     BOOL enabled;
+    ASSERTMSGLINE(313, tick > 0, "OSSetAlarm(): tick was less than zero.");
+    ASSERTMSGLINE(314, handler, "OSSetAlarm(): null handler was specified.");
     enabled = OSDisableInterrupts();
-    alarm->period_time = 0;
+    alarm->period = 0;
     InsertAlarm(alarm, __OSGetSystemTime() + tick, handler);
+    ASSERTLINE(321, OSCheckAlarmQueue());
     OSRestoreInterrupts(enabled);
 }
 
-/* 8033ABC0-8033AC3C 335500 007C+00 0/0 1/1 0/0 .text            OSSetPeriodicAlarm */
+void OSSetAbsAlarm(OSAlarm* alarm, OSTime time, OSAlarmHandler handler) {
+    BOOL enabled;
+
+    ASSERTMSGLINE(343, handler, "OSSetAbsAlarm(): null handler was specified.");
+    enabled = OSDisableInterrupts();
+    alarm->period = 0;
+    InsertAlarm(alarm, __OSTimeToSystemTime(time), handler);
+    ASSERTLINE(350, OSCheckAlarmQueue());
+    OSRestoreInterrupts(enabled);
+}
+
 void OSSetPeriodicAlarm(OSAlarm* alarm, OSTime start, OSTime period, OSAlarmHandler handler) {
     BOOL enabled;
+    ASSERTMSGLINE(374, period > 0, "OSSetPeriodicAlarm(): period was less than zero.");
+    ASSERTMSGLINE(375, handler, "OSSetPeriodicAlarm(): null handler was specified.");
     enabled = OSDisableInterrupts();
-    alarm->period_time = period;
-    alarm->start_time = __OSTimeToSystemTime(start);
+    alarm->period = period;
+    alarm->start = __OSTimeToSystemTime(start);
     InsertAlarm(alarm, 0, handler);
+    ASSERTLINE(383, OSCheckAlarmQueue());
     OSRestoreInterrupts(enabled);
 }
 
-/* 8033AC3C-8033AD58 33557C 011C+00 1/1 11/11 0/0 .text            OSCancelAlarm */
 void OSCancelAlarm(OSAlarm* alarm) {
     OSAlarm* next;
     BOOL enabled;
@@ -120,14 +159,14 @@ void OSCancelAlarm(OSAlarm* alarm) {
         return;
     }
 
-    next = alarm->link.next;
+    next = alarm->next;
     if (next == 0) {
-        AlarmQueue.tail = alarm->link.prev;
+        AlarmQueue.tail = alarm->prev;
     } else {
-        next->link.prev = alarm->link.prev;
+        next->prev = alarm->prev;
     }
-    if (alarm->link.prev) {
-        alarm->link.prev->link.next = next;
+    if (alarm->prev) {
+        alarm->prev->next = next;
     } else {
         AlarmQueue.head = next;
         if (next) {
@@ -135,11 +174,10 @@ void OSCancelAlarm(OSAlarm* alarm) {
         }
     }
     alarm->handler = 0;
-
+    ASSERTLINE(434, OSCheckAlarmQueue());
     OSRestoreInterrupts(enabled);
 }
 
-/* 8033AD58-8033AF88 335698 0230+00 1/1 0/0 0/0 .text            DecrementerExceptionCallback */
 static void DecrementerExceptionCallback(register __OSException exception,
                                          register OSContext* context) {
     OSAlarm* alarm;
@@ -147,29 +185,33 @@ static void DecrementerExceptionCallback(register __OSException exception,
     OSAlarmHandler handler;
     OSTime time;
     OSContext exceptionContext;
+
     time = __OSGetSystemTime();
     alarm = AlarmQueue.head;
     if (alarm == 0) {
         OSLoadContext(context);
     }
 
-    if (time < alarm->fire_time) {
+    if (time < alarm->fire) {
         SetTimer(alarm);
         OSLoadContext(context);
     }
 
-    next = alarm->link.next;
+    next = alarm->next;
     AlarmQueue.head = next;
     if (next == 0) {
         AlarmQueue.tail = 0;
     } else {
-        next->link.prev = 0;
+        next->prev = 0;
     }
+
+    ASSERTLINE(492, OSCheckAlarmQueue());
 
     handler = alarm->handler;
     alarm->handler = 0;
-    if (0 < alarm->period_time) {
+    if (0 < alarm->period) {
         InsertAlarm(alarm, 0, handler);
+        ASSERTLINE(502, OSCheckAlarmQueue());
     }
 
     if (AlarmQueue.head) {
@@ -187,52 +229,68 @@ static void DecrementerExceptionCallback(register __OSException exception,
     OSLoadContext(context);
 }
 
-/* 8033AF88-8033AFD8 3358C8 0050+00 1/1 0/0 0/0 .text            DecrementerExceptionHandler */
+#ifdef __GEKKO__
 static asm void DecrementerExceptionHandler(register __OSException exception,
                                             register OSContext* context) {
-    // clang-format off
-    nofralloc
-
-    stw r0, 0(context)
-    stw r1, 4(context)
-    stw r2, 8(context)
-    stmw r6, 0x18(context)
-    mfspr r0, 0x391
-    stw r0, 0x1a8(context)
-    mfspr r0, 0x392
-    stw r0, 0x1ac(context)
-    mfspr r0, 0x393
-    stw r0, 0x1b0(context)
-    mfspr r0, 0x394
-    stw r0, 0x1b4(context)
-    mfspr r0, 0x395
-    stw r0, 0x1b8(context)
-    mfspr r0, 0x396
-    stw r0, 0x1bc(context)
-    mfspr r0, 0x397
-    stw r0, 0x1c0(context)
+    nofralloc 
+    OS_EXCEPTION_SAVE_GPRS(context)
     stwu r1, -8(r1)
     b DecrementerExceptionCallback
-    // clang-format on
+}
+#endif
+
+void OSSetAlarmTag(OSAlarm* alarm, u32 tag) {
+    alarm->tag = tag;
 }
 
-/* 8033AFD8-8033B078 335918 00A0+00 1/0 0/0 0/0 .text            OnReset */
+void OSCancelAlarms(u32 tag) {
+    BOOL enabled;
+    OSAlarm* alarm;
+    OSAlarm* next;
+
+    ASSERTMSGLINE(569, tag != 0, "OSCancelAlarms(): invalid tag. (tag zero is used by the operating system.)");
+
+    if (tag != 0) {
+        enabled = OSDisableInterrupts();
+        ASSERTLINE(575, OSCheckAlarmQueue());
+
+        alarm = AlarmQueue.head;
+        next = (alarm) ? alarm->next : NULL;
+
+        while (alarm != 0) {
+            if (alarm->tag == tag) {
+                OSCancelAlarm(alarm);
+            }
+
+            alarm = next;
+            next = (alarm) ? alarm->next : NULL;
+        }
+
+        ASSERTLINE(585, OSCheckAlarmQueue());
+        OSRestoreInterrupts(enabled);
+    }
+}
+
 static BOOL OnReset(BOOL final) {
     OSAlarm* alarm;
     OSAlarm* next;
 
     if (final != FALSE) {
-        alarm = AlarmQueue.head;
-        next = (alarm) ? alarm->link.next : NULL;
+        ASSERTLINE(606, OSCheckAlarmQueue());
 
-        while (alarm != NULL) {
+        alarm = AlarmQueue.head;
+        next = (alarm) ? alarm->next : NULL;
+
+        while (alarm != 0) {
             if (__DVDTestAlarm(alarm) == FALSE) {
                 OSCancelAlarm(alarm);
             }
 
             alarm = next;
-            next = (alarm) ? alarm->link.next : NULL;
+            next = (alarm) ? alarm->next : NULL;
         }
+
+        ASSERTLINE(616, OSCheckAlarmQueue());
     }
 
     return TRUE;

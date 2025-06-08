@@ -159,7 +159,7 @@ void daB_ZANTM_c::executeSmall() {
         Z2GetAudioMgr()->seStartLevel(Z2SE_EN_ZAN_FIRE, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, false);
         cLib_chaseF(&field_0x5e8, 1.0f, 0.1f);
 
-        if (mAliveTimer == 0 || mAcch.ChkWallHit() || mAcch.i_ChkGroundHit()) {
+        if (mAliveTimer == 0 || mAcch.ChkWallHit() || mAcch.ChkGroundHit()) {
             speed.z = 0.0f;
             speed.y = 0.0f;
             speed.x = 0.0f;

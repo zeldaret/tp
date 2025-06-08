@@ -79,7 +79,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_end() {
 void JStudio_JParticle::TAdaptor_particle::adaptor_do_update(u32 param_1) {
     const JStudio::TObject* pObject = adaptor_getObject();
     JUT_ASSERT(179, pObject != 0);
-    JStudio::TControl* pControl = pObject->getControl();
+    const JStudio::TControl* pControl = pObject->getControl();
     JUT_ASSERT(181, pControl != 0);
     if (u32FadeTime_end != 0 && field_0x1c4 < u32FadeTime_end) {
         JUT_ASSERT(187, state_isFade_());
@@ -278,7 +278,7 @@ JStudio_JParticle::TAdaptor_particle::TJPACallback_emitter_::execute(JPABaseEmit
     }
     const JStudio::TObject* pObject = pThis_->adaptor_getObject();
     JUT_ASSERT(534, pObject!=0);
-    JStudio::TControl* pControl = pObject->getControl();
+    const JStudio::TControl* pControl = pObject->getControl();
     JUT_ASSERT(536, pControl!=0);
     TJPAEmitter_stopDrawParticle_ aTStack_21c(pJPAEmitter);
     JStudio::TControl::TTransform_translation_rotation_scaling VStack_19c;

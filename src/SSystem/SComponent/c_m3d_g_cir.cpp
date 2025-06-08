@@ -12,9 +12,7 @@ cM3dGCir::cM3dGCir() {}
 cM3dGCir::~cM3dGCir() {}
 
 /* 8026EF74-8026EF88 0014+00 s=0 e=1 z=0  None .text      Set__8cM3dGCirFffff */
-void cM3dGCir::Set(f32 pos_x, f32 pos_y, f32 posz, f32 radius) {
-    mPosX = pos_x;
-    mPosY = pos_y;
-    mRadius = radius;
-    mPosZ = posz;
+void cM3dGCir::Set(f32 pos_x, f32 pos_y, f32 pos_z, f32 radius) {
+    cM2dGCir::Set(pos_x, pos_y, radius);
+    mPosZ = pos_z;
 }

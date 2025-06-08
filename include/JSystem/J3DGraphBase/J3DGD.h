@@ -1,6 +1,7 @@
 #ifndef J3DGD_H
 #define J3DGD_H
 
+#include <dolphin/gx.h>
 #include "dolphin/gd/GDBase.h"
 
 inline void J3DGDWrite_u8(u8 param) {
@@ -116,7 +117,7 @@ inline void J3DGDSetNumTexGens(u8 numTexGens) {
     J3DGDWriteXFCmd(0x103f, numTexGens);
 }
 
-inline void J3DGDSetTevKonstantSel_SwapModeTable(GXTevStageID stage, GXTevKColorSel colorSel1, GXTevKAlphaSel alphaSel1, GXTevKColorSel colorSel2, GXTevKAlphaSel alphaSel2, GXTevColor chan1, GXTevColor chan2) {
+inline void J3DGDSetTevKonstantSel_SwapModeTable(GXTevStageID stage, GXTevKColorSel colorSel1, GXTevKAlphaSel alphaSel1, GXTevKColorSel colorSel2, GXTevKAlphaSel alphaSel2, GXTevColorChan chan1, GXTevColorChan chan2) {
     J3DGDWriteBPCmd((stage / 2 + 0xf6) << 24 | (chan1 | chan2 << 2 | colorSel1 << 4 | alphaSel1 << 9 | colorSel2 << 14 | alphaSel2 << 19) & 0x00FFFFFF);
 }
 

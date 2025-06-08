@@ -7,7 +7,7 @@
 #include "d/d_com_inf_game.h"
 
 /* 800517B0-800517EC 04C0F0 003C+00 0/0 7/7 63/63 .text            dPath_GetPnt__FPC5dPathi */
-dStage_dPnt_c* dPath_GetPnt(dPath const* path, int pnt_index) {
+dPnt* dPath_GetPnt(dPath const* path, int pnt_index) {
     if (path == NULL || path->m_points == NULL || pnt_index < 0 || pnt_index >= path->m_num) {
         return NULL;
     }
@@ -22,12 +22,12 @@ dPath* dPath_GetRoomPath(int path_index, int room_no) {
     if (room_no == -1) {
         path = dComIfGp_getStage()->getPath2Inf();
     } else {
-        dStage_roomStatus_c* roomSt = dComIfGp_roomControl_getStatusRoomDt(room_no);
-        if (roomSt == NULL) {
+        dStage_roomDt_c* roomDt = dComIfGp_roomControl_getStatusRoomDt(room_no);
+        if (roomDt == NULL) {
             return NULL;
         }
 
-        path = roomSt->mRoomDt.getPath2Inf();
+        path = roomDt->getPath2Inf();
     }
 
     if (path == NULL || path_index < 0 || path_index >= path->m_num) {
@@ -45,12 +45,12 @@ dPath* dPath_GetNextRoomPath(dPath const* p_path, int room_no) {
     if (room_no == -1) {
         path = dComIfGp_getStage()->getPath2Inf();
     } else {
-        dStage_roomStatus_c* roomSt = dComIfGp_roomControl_getStatusRoomDt(room_no);
-        if (roomSt == NULL) {
+        dStage_roomDt_c* roomDt = dComIfGp_roomControl_getStatusRoomDt(room_no);
+        if (roomDt == NULL) {
             return NULL;
         }
 
-        path = roomSt->mRoomDt.getPath2Inf();
+        path = roomDt->getPath2Inf();
     }
 
     int next_id = p_path->m_nextID;
@@ -94,10 +94,10 @@ u8 dPath_GetPolyRoomPathVec(cBgS_PolyInfo const& poly, cXyz* p_pathVec, int* par
         return 0;
     }
 
-    dStage_dPnt_c* pnt_start = path->m_points;
-    dStage_dPnt_c* pnt_end = &pnt_start[pnt_no];
+    dPnt* pnt_start = path->m_points;
+    dPnt* pnt_end = &pnt_start[pnt_no];
 
-    dStage_dPnt_c* pnt_begin;
+    dPnt* pnt_begin;
     if (pnt_no == path->m_num - 1) {
         pnt_begin = pnt_start;
     } else {

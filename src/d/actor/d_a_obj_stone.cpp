@@ -322,7 +322,7 @@ void daObjStone_c::mode_proc_call() {
         &daObjStone_c::modeYogan,
     };
     if (fopAcM_checkCarryNow(this) && field_0x0907 != 2) {
-        if (daPy_py_c::i_checkNowWolf()) {
+        if (daPy_py_c::checkNowWolf()) {
             init_modePushWolfNonBreak();
         } else {
             init_modeCarry();

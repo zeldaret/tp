@@ -1,4 +1,5 @@
 #include "NMWException.h"
+#include "MWCPlusLib.h"
 
 /* 80451988-80451990 000E88 0004+04 2/2 0/0 0/0 .sbss            __global_destructor_chain */
 DestructorChain* __global_destructor_chain;
@@ -17,11 +18,12 @@ void __destroy_global_chain(void) {
     DestructorChain* iter;
     while ((iter = __global_destructor_chain) != 0) {
         __global_destructor_chain = iter->next;
-        DTORCALL(iter->destructor, iter->object);
+        DTORCALL_COMPLETE(iter->destructor, iter->object);
     }
 }
 
 /* clang-format off */
-__declspec(section ".dtors")
+#pragma section ".dtors$10"
+__declspec(section ".dtors$10")
 static void* const __destroy_global_chain_reference = __destroy_global_chain;
 /* clang-format on */

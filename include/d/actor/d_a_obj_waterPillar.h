@@ -14,12 +14,7 @@
  * @details Water columns that can carry broken stalactites (see d_a_obj_syrock)
  *
  */
-
-struct fakeWtPillarPadding {
-    u8 a[8];
-};
-
-class daWtPillar_c : public fopAc_ac_c, public fakeWtPillarPadding, public dEvLib_callback_c {
+class daWtPillar_c : public fopAc_ac_c, public request_of_phase_process_class, public dEvLib_callback_c {
 public:
     daWtPillar_c();
     ~daWtPillar_c() {}
@@ -34,7 +29,7 @@ public:
     /* 80D2D278 */ void effectSet2();
     /* 80D2D3FC */ void actionSwWaitInit();
     /* 80D2D408 */ void actionSwWait();
-    /* 80D2D488 */ virtual BOOL eventStart();
+    /* 80D2D488 */ virtual bool eventStart();
     /* 80D2D4AC */ void actionWaitInit();
     /* 80D2D588 */ void actionWait();
     /* 80D2D5C0 */ void actionUpFirstInit();
@@ -150,6 +145,8 @@ STATIC_ASSERT(sizeof(daWtPillar_c) == 0xb7c);
 struct daWtPillar_HIO_c : public mDoHIO_entry_c {
     /* 80D2C6CC */ daWtPillar_HIO_c();
     /* 80D2DF34 */ ~daWtPillar_HIO_c() {};
+
+    void genMessage(JORMContext*);
 
     /* 0x04 */ cXyz field_0x04;
     /* 0x10 */ csXyz field_0x10;

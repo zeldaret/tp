@@ -1,155 +1,204 @@
-/**
- * mtxvec.c
- * Description:
- */
+#include <dolphin.h>
+#include <dolphin/mtx.h>
+#include <math.h>
 
-#include "dolphin/mtx.h"
+void C_MTXMultVec(const Mtx m, const Vec* src, Vec* dst) {
+    Vec vTmp;
 
-/* 80346D6C-80346DC0 3416AC 0054+00 0/0 158/158 826/826 .text            PSMTXMultVec */
-asm void PSMTXMultVec(const register Mtx m, const register Vec* in, register Vec* out) {
-#ifdef __MWERKS__  // clang-format off
-	nofralloc;
-	psq_l fp0, 0(in), 0, 0;
-	psq_l fp2, 0(m), 0, 0;
-	psq_l fp1, 8(in), 1, 0;
-	ps_mul fp4, fp2, fp0;
-	psq_l fp3, 8(m), 0, 0;
-	ps_madd fp5, fp3, fp1, fp4;
-	psq_l fp8, 16(m), 0, 0;
-	ps_sum0 fp6, fp5, fp6, fp5;
-	psq_l fp9, 24(m), 0, 0;
-	ps_mul fp10, fp8, fp0;
-	psq_st fp6, 0(out), 1, 0;
-	ps_madd fp11, fp9, fp1, fp10;
-	psq_l fp2, 32(m), 0, 0;
-	ps_sum0 fp12, fp11, fp12, fp11;
-	psq_l fp3, 40(m), 0, 0;
-	ps_mul fp4, fp2, fp0;
-	psq_st fp12, 4(out), 1, 0;
-	ps_madd fp5, fp3, fp1, fp4;
-	ps_sum0 fp6, fp5, fp6, fp5;
-	psq_st fp6, 8(out), 1, 0;
-	blr
-#endif  // clang-format on
+    ASSERTMSGLINE(66, m, "MTXMultVec():  NULL MtxPtr 'm' ");
+    ASSERTMSGLINE(67, src, "MTXMultVec():  NULL VecPtr 'src' ");
+    ASSERTMSGLINE(68, dst, "MTXMultVec():  NULL VecPtr 'dst' ");
+
+    vTmp.x = m[0][3] + ((m[0][2] * src->z) + ((m[0][0] * src->x) + (m[0][1] * src->y)));
+    vTmp.y = m[1][3] + ((m[1][2] * src->z) + ((m[1][0] * src->x) + (m[1][1] * src->y)));
+    vTmp.z = m[2][3] + ((m[2][2] * src->z) + ((m[2][0] * src->x) + (m[2][1] * src->y)));
+    dst->x = vTmp.x;
+    dst->y = vTmp.y;
+    dst->z = vTmp.z;
 }
 
-/* 80346DC0-80346E4C 341700 008C+00 0/0 2/2 3/3 .text            PSMTXMultVecArray */
-asm void PSMTXMultVecArray(register const Mtx m, register const Vec* srcBase, register Vec* dstBase,
-                           register u32 count) {
-#ifdef __MWERKS__  // clang-format off
+asm void PSMTXMultVec(const register Mtx m, const register Vec* src, register Vec* dst) {
     nofralloc
+    psq_l f0, Vec.x(src), 0, 0
+    psq_l f2, 0(m), 0, 0
+    psq_l f1, Vec.z(src), 1, 0
+    ps_mul f4, f2, f0
+    psq_l f3, 8(m), 0, 0
+    ps_madd f5, f3, f1, f4
+    psq_l f8, 16(m), 0, 0
+    ps_sum0 f6, f5, f6, f5
+    psq_l f9, 24(m), 0, 0
+    ps_mul f10, f8, f0
+    psq_st f6, Vec.x(dst), 1, 0
+    ps_madd f11, f9, f1, f10
+    psq_l f2, 32(m), 0, 0
+    ps_sum0 f12, f11, f12, f11
+    psq_l f3, 40(m), 0, 0
+    ps_mul f4, f2, f0
+    psq_st f12, Vec.y(dst), 1, 0
+    ps_madd f5, f3, f1, f4
+    ps_sum0 f6, f5, f6, f5
+    psq_st f6, Vec.z(dst), 1, 0
+    blr
+}
 
-    psq_l f13, 0(m), 0, 0
-    psq_l f12, 16(m), 0, 0
-    addi count, count, -1
-    psq_l f11, 8(m), 0, 0
+void C_MTXMultVecArray(const Mtx m, const Vec* srcBase, Vec* dstBase, u32 count) {
+    u32 i;
+    Vec vTmp;
+
+    ASSERTMSGLINE(168, m, "MTXMultVecArray():  NULL MtxPtr 'm' ");
+    ASSERTMSGLINE(169, srcBase, "MTXMultVecArray():  NULL VecPtr 'srcBase' ");
+    ASSERTMSGLINE(170, dstBase, "MTXMultVecArray():  NULL VecPtr 'dstBase' ");
+    ASSERTMSGLINE(171, count > 1, "MTXMultVecArray():  count must be greater than 1.");
+
+    for(i = 0; i < count; i++) {
+        vTmp.x = m[0][3] + ((m[0][2] * srcBase->z) + ((m[0][0] * srcBase->x) + (m[0][1] * srcBase->y)));
+        vTmp.y = m[1][3] + ((m[1][2] * srcBase->z) + ((m[1][0] * srcBase->x) + (m[1][1] * srcBase->y)));
+        vTmp.z = m[2][3] + ((m[2][2] * srcBase->z) + ((m[2][0] * srcBase->x) + (m[2][1] * srcBase->y)));
+        dstBase->x = vTmp.x;
+        dstBase->y = vTmp.y;
+        dstBase->z = vTmp.z;
+        srcBase++;
+        dstBase++;
+    }
+}
+
+asm void PSMTXMultVecArray(const register Mtx m, const register Vec* srcBase, register Vec* dstBase, register u32 count) {
+    nofralloc
+    psq_l f13, 0x0(m), 0, 0
+    psq_l f12, 0x10(m), 0, 0
+    subi count, count, 0x1
+    psq_l f11, 0x8(m), 0, 0
     ps_merge00 f0, f13, f12
-    addi dstBase, dstBase, -4
-    psq_l f10, 24(m), 0, 0
+    subi dstBase, dstBase, 0x4
+    psq_l f10, 0x18(m), 0, 0
     ps_merge11 f1, f13, f12
     mtctr count
-    psq_l f4, 32(m), 0, 0
+    psq_l f4, 0x20(m), 0, 0
     ps_merge00 f2, f11, f10
-    psq_l f5, 40(m), 0, 0
+    psq_l f5, 0x28(m), 0, 0
     ps_merge11 f3, f11, f10
-    psq_l f6, 0(srcBase), 0, 0
-    psq_lu f7, 8(srcBase), 1, 0
+    psq_l f6, 0x0(srcBase), 0, 0
+    psq_lu f7, 0x8(srcBase), 1, 0
     ps_madds0 f8, f0, f6, f3
     ps_mul f9, f4, f6
     ps_madds1 f8, f1, f6, f8
     ps_madd f10, f5, f7, f9
-
-lbl_80346E0C:
-    psq_lu f6, 4(srcBase), 0, 0
+L_000003C4:
+    psq_lu f6, 0x4(srcBase), 0, 0
     ps_madds0 f12, f2, f7, f8
-    psq_lu f7, 8(srcBase), 1, 0
+    psq_lu f7, 0x8(srcBase), 1, 0
     ps_sum0 f13, f10, f9, f10
     ps_madds0 f8, f0, f6, f3
     ps_mul f9, f4, f6
-    psq_stu f12, 4(dstBase), 0, 0
+    psq_stu f12, 0x4(dstBase), 0, 0
     ps_madds1 f8, f1, f6, f8
-    psq_stu f13, 8(dstBase), 1, 0
+    psq_stu f13, 0x8(dstBase), 1, 0
     ps_madd f10, f5, f7, f9
-    bdnz lbl_80346E0C
-
+    bdnz L_000003C4
     ps_madds0 f12, f2, f7, f8
     ps_sum0 f13, f10, f9, f10
-    psq_stu f12, 4(dstBase), 0, 0
-    psq_stu f13, 8(dstBase), 1, 0
+    psq_stu f12, 0x4(dstBase), 0, 0
+    psq_stu f13, 0x8(dstBase), 1, 0
     blr
-#endif  // clang-format on
 }
 
-/* 80346E4C-80346EA0 34178C 0054+00 0/0 47/47 9/9 .text            PSMTXMultVecSR */
-asm void PSMTXMultVecSR(const register Mtx mtx, const register Vec* in, register Vec* out) {
-#ifdef __MWERKS__  // clang-format off
-	nofralloc;
-	psq_l fp0, 0(mtx), 0, 0;
-	psq_l fp6, 0(in), 0, 0;
-	psq_l fp2, 0x10(mtx), 0, 0;
-	ps_mul fp8, fp0, fp6;
-	psq_l fp4, 0x20(mtx), 0, 0;
-	ps_mul fp10, fp2, fp6;
-	psq_l fp7, 8(in), 1, 0;
-	ps_mul fp12, fp4, fp6;
-	psq_l fp3, 0x18(mtx), 0, 0;
-	ps_sum0 fp8, fp8, fp8, fp8;
-	psq_l fp5, 0x28(mtx), 0, 0;
-	ps_sum0 fp10, fp10, fp10, fp10;
-	psq_l fp1, 8(mtx), 0, 0;
-	ps_sum0 fp12, fp12, fp12, fp12;
-	ps_madd fp9, fp1, fp7, fp8;
-	psq_st fp9, 0(out), 1, 0;
-	ps_madd fp11, fp3, fp7, fp10;
-	psq_st fp11, 4(out), 1, 0;
-	ps_madd fp13, fp5, fp7, fp12;
-	psq_st fp13, 8(out), 1, 0;
-	blr
-#endif  // clang-format on
+void C_MTXMultVecSR(const Mtx m, const Vec* src, Vec* dst) {
+    Vec vTmp;
+
+    ASSERTMSGLINE(313, m, "MTXMultVecSR():  NULL MtxPtr 'm' ");
+    ASSERTMSGLINE(314, src, "MTXMultVecSR():  NULL VecPtr 'src' ");
+    ASSERTMSGLINE(315, dst, "MTXMultVecSR():  NULL VecPtr 'dst' ");
+
+    vTmp.x = (m[0][2] * src->z) + ((m[0][0] * src->x) + (m[0][1] * src->y));
+    vTmp.y = (m[1][2] * src->z) + ((m[1][0] * src->x) + (m[1][1] * src->y));
+    vTmp.z = (m[2][2] * src->z) + ((m[2][0] * src->x) + (m[2][1] * src->y));
+    dst->x = vTmp.x;
+    dst->y = vTmp.y;
+    dst->z = vTmp.z;
 }
 
-/* 80346EA0-80346F28 3417E0 0088+00 0/0 2/2 0/0 .text            PSMTXMultVecArraySR */
-asm void PSMTXMultVecArraySR(register const Mtx m, register const Vec* srcBase,
-                             register Vec* dstBase, register u32 count) {
-#ifdef __MWERKS__  // clang-format off
+asm void PSMTXMultVecSR(const register Mtx m, const register Vec* src, register Vec* dst) {
     nofralloc
+    psq_l f0, 0x0(m), 0, 0
+    psq_l f6, 0x0(src), 0, 0
+    psq_l f2, 0x10(m), 0, 0
+    ps_mul f8, f0, f6
+    psq_l f4, 0x20(m), 0, 0
+    ps_mul f10, f2, f6
+    psq_l f7, 0x8(src), 1, 0
+    ps_mul f12, f4, f6
+    psq_l f3, 0x18(m), 0, 0
+    ps_sum0 f8, f8, f8, f8
+    psq_l f5, 0x28(m), 0, 0
+    ps_sum0 f10, f10, f10, f10
+    psq_l f1, 0x8(m), 0, 0
+    ps_sum0 f12, f12, f12, f12
+    ps_madd f9, f1, f7, f8
+    psq_st f9, 0x0(dst), 1, 0
+    ps_madd f11, f3, f7, f10
+    psq_st f11, 0x4(dst), 1, 0
+    ps_madd f13, f5, f7, f12
+    psq_st f13, 0x8(dst), 1, 0
+    blr
+}
 
-    psq_l f13, 0(m), 0, 0
-    psq_l f12, 16(m), 0, 0
-    addi count, count, -1
-    psq_l f11, 8(m), 1, 0
+void C_MTXMultVecArraySR(const Mtx m, const Vec* srcBase, Vec* dstBase, u32 count) {
+    u32 i;
+    Vec vTmp;
+
+    ASSERTMSGLINE(410, m, "MTXMultVecArraySR():  NULL MtxPtr 'm' ");
+    ASSERTMSGLINE(411, srcBase, "MTXMultVecArraySR():  NULL VecPtr 'srcBase' ");
+    ASSERTMSGLINE(412, dstBase, "MTXMultVecArraySR():  NULL VecPtr 'dstBase' ");
+    ASSERTMSGLINE(413, count > 1, "MTXMultVecArraySR():  count must be greater than 1.");
+
+    for(i = 0; i < count; i++) {
+        vTmp.x = (m[0][2] * srcBase->z) + ((m[0][0] * srcBase->x) + (m[0][1] * srcBase->y));
+        vTmp.y = (m[1][2] * srcBase->z) + ((m[1][0] * srcBase->x) + (m[1][1] * srcBase->y));
+        vTmp.z = (m[2][2] * srcBase->z) + ((m[2][0] * srcBase->x) + (m[2][1] * srcBase->y));
+        dstBase->x = vTmp.x;
+        dstBase->y = vTmp.y;
+        dstBase->z = vTmp.z;
+        srcBase++;
+        dstBase++;
+    }
+}
+
+asm void PSMTXMultVecArraySR(const register Mtx m, const register Vec* srcBase, register Vec* dstBase, register u32 count) {
+    nofralloc
+    psq_l f13, 0x0(m), 0, 0
+    psq_l f12, 0x10(m), 0, 0
+    subi count, count, 0x1
+    psq_l f11, 0x8(m), 1, 0
     ps_merge00 f0, f13, f12
-    addi dstBase, dstBase, -4
-    psq_l f10, 24(m), 1, 0
+    subi dstBase, dstBase, 0x4
+    psq_l f10, 0x18(m), 1, 0
     ps_merge11 f1, f13, f12
     mtctr count
-    psq_l f3, 32(m), 0, 0
+    psq_l f3, 0x20(m), 0, 0
     ps_merge00 f2, f11, f10
-    psq_l f4, 40(m), 1, 0
-    psq_l f6, 0(srcBase), 0, 0
-    psq_lu f7, 8(srcBase), 1, 0
+    psq_l f4, 0x28(m), 1, 0
+    psq_l f6, 0x0(srcBase), 0, 0
+    psq_lu f7, 0x8(srcBase), 1, 0
     ps_muls0 f8, f0, f6
     ps_mul f9, f3, f6
     ps_madds1 f8, f1, f6, f8
     ps_madd f10, f4, f7, f9
-
-lbl_80346EE8:
-    psq_lu f6, 4(srcBase), 0, 0
+L_000007D0:
+    psq_lu f6, 0x4(srcBase), 0, 0
     ps_madds0 f12, f2, f7, f8
-    psq_lu f7, 8(srcBase), 1, 0
+    psq_lu f7, 0x8(srcBase), 1, 0
     ps_sum0 f13, f10, f9, f9
     ps_muls0 f8, f0, f6
     ps_mul f9, f3, f6
-    psq_stu f12, 4(dstBase), 0, 0
+    psq_stu f12, 0x4(dstBase), 0, 0
     ps_madds1 f8, f1, f6, f8
-    psq_stu f13, 8(dstBase), 1, 0
+    psq_stu f13, 0x8(dstBase), 1, 0
     ps_madd f10, f4, f7, f9
-    bdnz lbl_80346EE8
-
+    bdnz L_000007D0
     ps_madds0 f12, f2, f7, f8
     ps_sum0 f13, f10, f9, f9
-    psq_stu f12, 4(dstBase), 0, 0
-    psq_stu f13, 8(dstBase), 1, 0
+    psq_stu f12, 0x4(dstBase), 0, 0
+    psq_stu f13, 0x8(dstBase), 1, 0
     blr
-#endif  // clang-format on
 }

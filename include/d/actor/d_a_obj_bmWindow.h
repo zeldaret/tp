@@ -77,6 +77,8 @@ public:
     /* 80BB820C */ daBmWindow_HIO_c();
     /* 80BB964C */ virtual ~daBmWindow_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x04 */ u8 field_0x04;
     /* 0x05 */ u8 field_0x05;
     /* 0x08 */ f32 field_0x08;

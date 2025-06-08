@@ -34,6 +34,8 @@ class daLv4HsTarget_HIO_c : public mDoHIO_entry_c {
 public:
     /* 80C5F62C */ daLv4HsTarget_HIO_c();
     /* 80C5F990 */ virtual ~daLv4HsTarget_HIO_c() {}
+
+    void genMessage(JORMContext*);
 };
 
 #endif /* D_A_OBJ_LV4HSTARGET_H */

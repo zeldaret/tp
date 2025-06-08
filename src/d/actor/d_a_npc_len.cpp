@@ -1146,7 +1146,7 @@ SECTION_DEAD static char const* const stringBase_80A6906E = "R_SP109";
 
 /* 80A660D8-80A661B4 001E98 00DC+00 1/1 0/0 6/6 .text
  * checkStartDemo13StbEvt__11daNpc_Len_cFP10fopAc_ac_cfffffff   */
-void daNpc_Len_c::checkStartDemo13StbEvt(fopAc_ac_c* param_0, f32 param_1, f32 param_2,
+BOOL daNpc_Len_c::checkStartDemo13StbEvt(fopAc_ac_c* param_0, f32 param_1, f32 param_2,
                                              f32 param_3, f32 param_4, f32 param_5, f32 param_6,
                                              f32 param_7) {
     // NONMATCHING
@@ -1425,11 +1425,6 @@ extern "C" bool getEyeballRMaterialNo__8daNpcT_cFv() {
 // bool daNpcT_c::evtEndProc() {
 extern "C" bool evtEndProc__8daNpcT_cFv() {
     return true;
-}
-
-/* 80A68B10-80A68B14 0048D0 0004+00 1/0 0/0 0/0 .text            afterMoved__8daNpcT_cFv */
-void daNpcT_c::afterMoved() {
-    /* empty function */
 }
 
 /* 80A68B14-80A68B2C 0048D4 0018+00 1/0 0/0 0/0 .text            decTmr__8daNpcT_cFv */

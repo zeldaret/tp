@@ -219,8 +219,8 @@ BOOL daNpc_zrA_Path_c::getDstPosDstXZ(cXyz i_pos, cXyz& o_pnt) {
 /* 80B78CA0-80B78CFC 000880 005C+00 1/1 0/0 0/0 .text chkPassedChase__16daNpc_zrA_Path_cFUs4cXyz
  */
 BOOL daNpc_zrA_Path_c::chkPassedChase(u16 i_idx, cXyz i_pos) {
-    return daNpcF_chkPassed(i_pos, (dPnt*)mpRoomPath->m_points, i_idx,
-                            mpRoomPath->m_num, mIsClosed, mIsReversed);
+    return daNpcF_chkPassed(i_pos, (dPnt*)mPathInfo->m_points, i_idx,
+                            mPathInfo->m_num, mIsClosed, mIsReversed);
 }
 
 /* 80B78CFC-80B78E08 0008DC 010C+00 1/1 0/0 0/0 .text
@@ -253,7 +253,7 @@ int daNpc_zrA_Path_c::getDstPosChase(u16 i_idx, cXyz i_pos, cXyz& o_pnt) {
 /* 80B78E08-80B7956C 0009E8 0764+00 1/1 0/0 0/0 .text chkPassDst__16daNpc_zrA_Path_cFUs4cXyz */
 f32 daNpc_zrA_Path_c::chkPassDst(u16 i_idx, cXyz i_pos) {
     u16 prev_idx, next_idx;
-    dStage_dPnt_c* points = mpRoomPath->m_points;
+    dPnt* points = mPathInfo->m_points;
     u16 idx = mIdx;
     u8 reversed = mIsReversed;
     mIdx = i_idx;
@@ -990,7 +990,7 @@ void daNpc_zrA_c::setParam() {
 
     selectAction();
 
-    if (!mTwilight && daPy_py_c::i_checkNowWolf()) {
+    if (!mTwilight && daPy_py_c::checkNowWolf()) {
         attn_flags = 0;
     }
 
@@ -1067,7 +1067,7 @@ BOOL daNpc_zrA_c::main() {
         orderEvent(mOrderSpeakEvt, l_evtNames[l_evtGetParamList[mOrderEvtNo].fileIdx],
                    0xffff, 4, 0xff, 2);
         if (!mTwilight && mType == TYPE_WAIT && !field_0x1550) {
-            eventInfo.i_onCondition(dEvtCnd_CANTALKITEM_e);
+            eventInfo.onCondition(dEvtCnd_CANTALKITEM_e);
         }
     }
 
@@ -1298,7 +1298,7 @@ void daNpc_zrA_c::setMtx() {
  */
 bool daNpc_zrA_c::setExpressionAnm(int i_idx, bool i_modify) {
     J3DAnmTransform* bck_anm = NULL;
-    int attr = J3DFrameCtrl::LOOP_ONCE_e;
+    int attr = J3DFrameCtrl::EMode_NONE;
     mAnmFlags &= ~ANM_EXPRESSION_FLAGS;
 
     if (l_bckGetParamList[i_idx].fileIdx >= 0) {
@@ -1325,41 +1325,41 @@ bool daNpc_zrA_c::setExpressionAnm(int i_idx, bool i_modify) {
         break;
     case ANM_FH_TALK_NOMAL:
         res = setExpressionBtp(0);
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_FH_SADSIT_A:
         res = setExpressionBtp(1);
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_FH_SADSIT_B:
         res = setExpressionBtp(2);
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_FH_SADSIT_C:
         res = setExpressionBtp(3);
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_FH_SADSIT_D:
         res = setExpressionBtp(4);
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_FH_SADSIT_E:
         res = setExpressionBtp(5);
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_F_LOOKING_SP:
         res = setExpressionBtp(0);
         break;
     case ANM_FH_LOOKING_SP:
         res = setExpressionBtp(0);
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_F_LOOKUP:
         res = setExpressionBtp(0);
         break;
     case ANM_FH_LOOKUP:
         res = setExpressionBtp(0);
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_F_TALK_SWIM_SP:
         res = setExpressionBtp(0);
@@ -1372,14 +1372,14 @@ bool daNpc_zrA_c::setExpressionAnm(int i_idx, bool i_modify) {
         break;
     case ANM_FH_SPA_WAIT_A:
         res = setExpressionBtp(0);
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_F_SPA_TALK_B:
         res = setExpressionBtp(6);
         break;
     case ANM_FH_SPA_WAIT_B:
         res = setExpressionBtp(7);
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     default:
         bck_anm = NULL;
@@ -1407,7 +1407,7 @@ bool daNpc_zrA_c::setExpressionAnm(int i_idx, bool i_modify) {
  */
 bool daNpc_zrA_c::setExpressionBtp(int i_idx) {
     J3DAnmTexPattern* btp_anm = NULL;
-    int attr = J3DFrameCtrl::LOOP_ONCE_e;
+    int attr = J3DFrameCtrl::EMode_NONE;
     mAnmFlags &= ~(ANM_PLAY_BTP | ANM_PAUSE_BTP | ANM_FLAG_800);
 
     if (l_btpGetParamList[i_idx].fileIdx >= 0) {
@@ -1423,7 +1423,7 @@ bool daNpc_zrA_c::setExpressionBtp(int i_idx) {
     case 4:
     case 5:
     case 7:
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case 6:
         break;
@@ -1458,11 +1458,11 @@ void daNpc_zrA_c::setExpression(int i_expression, f32 i_morf) {
 }
 
 /* 80B7BEA0-80B7C070 003A80 01D0+00 2/0 0/0 0/0 .text            setMotionAnm__11daNpc_zrA_cFif */
-bool daNpc_zrA_c::setMotionAnm(int i_idx, f32 i_morf) {
+void daNpc_zrA_c::setMotionAnm(int i_idx, f32 i_morf) {
     J3DAnmTransformKey* bck_anm = NULL;
     J3DAnmTextureSRTKey* btk_anm = NULL;
     int btk_idx = 0;
-    int attr = J3DFrameCtrl::LOOP_REPEAT_e;
+    int attr = J3DFrameCtrl::EMode_LOOP;
     mBaseMotionAnm = i_idx;
     
     if (mAcch.ChkWaterIn()) {
@@ -1500,7 +1500,7 @@ bool daNpc_zrA_c::setMotionAnm(int i_idx, f32 i_morf) {
     case ANM_FLOAT_SP:
     case ANM_FLOAT_B_SP:
     case ANM_STEP_SP:
-        attr = J3DFrameCtrl::LOOP_ONCE_e;
+        attr = J3DFrameCtrl::EMode_NONE;
         break;
     case ANM_FALLSWIM:
     case ANM_SADSIT_A:
@@ -2163,7 +2163,7 @@ BOOL daNpc_zrA_c::doEvent() {
 
     if (dComIfGp_event_runCheck() != false) {
         dEvent_manager_c& event_manager = dComIfGp_getEventManager();
-        if (eventInfo.checkCommandTalk() || eventInfo.i_checkCommandDemoAccrpt()) {
+        if (eventInfo.checkCommandTalk() || eventInfo.checkCommandDemoAccrpt()) {
             mOrderNewEvt = false;
         }
 
@@ -2237,7 +2237,7 @@ BOOL daNpc_zrA_c::doEvent() {
                 ret = true;
             }
 
-            if (eventInfo.i_checkCommandDemoAccrpt()) {
+            if (eventInfo.checkCommandDemoAccrpt()) {
                 if (mEventIdx != -1 && event_manager.endCheck(mEventIdx)) {
                     switch (mOrderEvtNo) {
                     case EVT_TALK_SWIM:

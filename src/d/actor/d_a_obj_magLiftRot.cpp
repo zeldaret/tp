@@ -383,13 +383,13 @@ int daMagLiftRot_c::CreateHeap() {
     if (l_btkIdx[mType] != -1) {
         J3DAnmTextureSRTKey* res =
             (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName[mType], l_btkIdx[mType]);
-        mBtk.init(modelData, res, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1);
+        mBtk.init(modelData, res, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1);
     }
 
     if (l_brkIdx[mType] != -1) {
         J3DAnmTevRegKey* res =
             (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName[mType], l_brkIdx[mType]);
-        mBrk.init(modelData, res, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1);
+        mBrk.init(modelData, res, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1);
     }
 
     return 1;
@@ -631,7 +631,7 @@ void daMagLiftRot_c::init_modeMove() {
 void daMagLiftRot_c::modeMove() {
     cLib_chaseF(&speedF, l_HIO.mMaxSpeed, l_HIO.mAcceleration);
 
-    if (cLib_addCalcAngleS(&current.angle.z, field_0x5e2, 1, fopAcM_GetSpeedF(this) * 182.0444f,
+    if (cLib_addCalcAngleS(&current.angle.z, field_0x5e2, 1, fopAcM_GetSpeedF(this) * 182.04445f,
                            1) == 0)
     {
         field_0x5e2 += 0x8000;

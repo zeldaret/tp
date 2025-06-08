@@ -29,6 +29,7 @@ public:
         PPLABEL_NONE = 0,
         PPLABEL_PUSH = 1,
         PPLABEL_PULL = 2,
+        PPLABEL_3 = 3,
         PPLABEL_4 = 4,
         PPLABEL_HEAVY = 8,
     };

@@ -56,6 +56,7 @@ __RTTI__18daObjLv4Gear_HIO_c = .data:0x00000148; // type:object size:0x8 scope:g
 @114428 = .data:0x00000180; // type:object size:0xE scope:local data:string
 @114429 = .data:0x00000190; // type:object size:0xC scope:local
 @114430 = .data:0x000001A8; // type:object size:0x11 scope:local data:string
+lbl_519_data_1B9 = .data:0x000001B9; // type:object size:0x13
 __global_destructor_chain = .bss:0x00000000; // type:object size:0x4 scope:global
 @114203 = .bss:0x00000008; // type:object size:0xC scope:local
 l_HIO = .bss:0x00000014; // type:object size:0xC scope:global

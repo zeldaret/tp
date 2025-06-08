@@ -316,6 +316,7 @@ void daAlink_c::setGrabItemPos() {
                 mDoMtx_stack_c::multVec(&sp140, &temp_r3->current.pos);
     
                 if (checkGrabAnimeSide()) {
+                    static Vec const localSidePos = {2.3f, -15.5f, 15.6f};
                     mDoMtx_multVec(mpLinkModel->getAnmMtx(0xA), &localSidePos, &sp140);
                     temp_r3->current.pos = (temp_r3->current.pos * (1.0f - field_0x33e8)) + (sp140 * field_0x33e8);
                 }
@@ -335,9 +336,9 @@ void daAlink_c::setGrabItemPos() {
                 }
 
                 if (mProcID == 0x70) {
-                    sp140.y = temp_f31_3 * (-13.78908f - var_f30);
+                    sp140.y = temp_f31_3 * (-13.789083f - var_f30);
                 } else {
-                    sp140.y = temp_f31_3 * (-13.82537f - var_f30);
+                    sp140.y = temp_f31_3 * (-13.825373f - var_f30);
                 }
 
                 mDoMtx_stack_c::multVecSR(&sp140, &sp140);
@@ -362,7 +363,7 @@ void daAlink_c::setGrabItemPos() {
                     if (grabLineCheck(&sp110, &sp104)) {
                         if (temp_r3->current.pos.abs(sp110) > mObjLinChk.GetCrossP()->abs(sp110)) {
                             temp_r3->speedF = 0.0f;
-                            temp_r3->current.pos = mObjLinChk.i_GetCross();
+                            temp_r3->current.pos = mObjLinChk.GetCross();
                             freeGrabItem();
                             return;
                         }
@@ -431,7 +432,7 @@ void daAlink_c::freeGrabItem() {
             cXyz sp14(current.pos.x, field_0x34e0.y, current.pos.z);
 
             if (grabLineCheck(&sp14, &temp_r3->current.pos)) {
-                temp_r3->current.pos = mObjLinChk.i_GetCross();
+                temp_r3->current.pos = mObjLinChk.GetCross();
 
                 cM3dGPla sp20;
                 dComIfG_Bgsp().GetTriPla(mObjLinChk, &sp20);
@@ -659,7 +660,7 @@ void daAlink_c::putObjLineCheck(dBgS_LinChk& param_0, cXyz* param_1, fopAc_ac_c*
         param_0.Set(&field_0x37c8, param_1, param_2);
 
         if (dComIfG_Bgsp().LineCross(&param_0) && dBgS_CheckBWallPoly(param_0)) {
-            cXyz sp8 = *param_1 - param_0.i_GetCross();
+            cXyz sp8 = *param_1 - param_0.GetCross();
             f32 temp_f31 = sp8.abs();
             f32 temp_f1 = sp8.absXZ();
 
@@ -810,7 +811,7 @@ int daAlink_c::procGrabUpInit() {
     }
 
     cXyz sp8 = temp_r30->current.pos - field_0x3510;
-    field_0x33e4 = (sp8.absXZ() - 46.0512f) - -8.0f;
+    field_0x33e4 = (sp8.absXZ() - 46.051205f) - -8.0f;
 
     if (fopAcM_CheckCarryType(temp_r30, fopAcM_CARRY(fopAcM_CARRY_UNK_40 | fopAcM_CARRY_HEAVY))) {
         voiceStart(Z2SE_AL_V_LIFTUP_L);
@@ -1703,7 +1704,7 @@ int daAlink_c::endPushPull() {
  */
 f32 daAlink_c::getPushPullAnimeSpeed() {
     f32 var_f31;
-    if ((getMoveBGActorName(mPolyInfo1, 0) == PROC_Obj_Movebox && ((daObjMovebox::Act_c*)dComIfG_Bgsp().GetActorPointer(mPolyInfo1.GetBgIndex()))->getType() != 0) ||
+    if ((getMoveBGActorName(mPolyInfo1, 0) == PROC_Obj_Movebox && ((daObjMovebox::Act_c*)dComIfG_Bgsp().GetActorPointer(mPolyInfo1))->getType() != 0) ||
         getMoveBGActorName(mPolyInfo1, 0) == PROC_Obj_Bemos)
     {
         if (checkWolf()) {
@@ -2351,7 +2352,7 @@ int daAlink_c::procGoatCatch() {
         return procWaitInit();
     }
 
-    if (!mLinkAcch.i_ChkGroundHit() && mProcVar5.field_0x3012 == 0 && (!checkMagneBootsOn() || !checkNoResetFlg0(FLG0_UNK_2000))) {
+    if (!mLinkAcch.ChkGroundHit() && mProcVar5.field_0x3012 == 0 && (!checkMagneBootsOn() || !checkNoResetFlg0(FLG0_UNK_2000))) {
         setGoatStopGameFail(temp_r3);
         return 1;
     }
@@ -2415,7 +2416,7 @@ int daAlink_c::procGoatCatch() {
         return 1;
     }
 
-    if (!doButton() || (!mLinkAcch.i_ChkGroundHit() && (!checkMagneBootsOn() || !checkNoResetFlg0(FLG0_UNK_2000))) || field_0x3198 > 0 && mNormalSpeed >= 30.0f) {
+    if (!doButton() || (!mLinkAcch.ChkGroundHit() && (!checkMagneBootsOn() || !checkNoResetFlg0(FLG0_UNK_2000))) || field_0x3198 > 0 && mNormalSpeed >= 30.0f) {
 
         if (checkMagneBootsOn()) {
             cancelMagneBootsOn();

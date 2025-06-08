@@ -15,6 +15,7 @@ struct TCreateObject : public JStudio::TCreateObject {
         pJAISoundStarter_ = p_soundStarter;
         pJSGSystem_ = p_system;
         mPermit_onExit_notEnd = false;
+        JUT_ASSERT(45, pJAISoundStarter_!=0);
     }
 
     /* 8028D550 */ virtual ~TCreateObject();
@@ -35,15 +36,6 @@ struct TCreateObject : public JStudio::TCreateObject {
 struct TAdaptor_sound : public JStudio::TAdaptor_sound {
     typedef void (*TVVOSoundSetFunc)(JAISound*, f32);
     typedef JStudio::TObject_sound ObjectType;
-
-    enum TEVariableValue {
-        UNK_7 = 7,
-        UNK_8 = 8,
-        UNK_9 = 9,
-        UNK_10 = 10,
-        UNK_11 = 11,
-        UNK_NONE = -1,
-    };
 
     struct TVVOSetValue_ : public JStudio::TVariableValue::TOutput {
         TVVOSetValue_(TEVariableValue param_1, TVVOSoundSetFunc param_2)

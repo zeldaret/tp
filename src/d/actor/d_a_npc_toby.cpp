@@ -1976,11 +1976,6 @@ extern "C" bool evtEndProc__8daNpcT_cFv() {
     return true;
 }
 
-/* 80B24698-80B2469C 006138 0004+00 1/0 0/0 0/0 .text            afterMoved__8daNpcT_cFv */
-void daNpcT_c::afterMoved() {
-    /* empty function */
-}
-
 /* 80B2469C-80B246B4 00613C 0018+00 1/0 0/0 0/0 .text            decTmr__8daNpcT_cFv */
 // void daNpcT_c::decTmr() {
 extern "C" void decTmr__8daNpcT_cFv() {

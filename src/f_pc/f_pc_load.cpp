@@ -26,9 +26,7 @@ void fpcLd_Free(s16 i_procName) {
 
 /* 80022050-800220A0 0050+00 s=1 e=1 z=0  None .text      fpcLd_Load__Fs */
 s32 fpcLd_Load(s16 i_procName) {
-    s32 phase = cDyl_LinkASync((s16)i_procName);
-
-    switch (phase) {
+    switch (cDyl_LinkASync((s16)i_procName)) {
     case cPhs_COMPLEATE_e:
         return cPhs_COMPLEATE_e;
     case cPhs_INIT_e:

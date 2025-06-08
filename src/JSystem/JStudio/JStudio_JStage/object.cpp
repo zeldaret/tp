@@ -92,7 +92,7 @@ void JStudio_JStage::TAdaptor_object_::adaptor_object_data_(void const* param_1,
                                                             void const* param_3, u32 param_4) {
     int uVar3;
     if (param_2 == 0) {
-        uVar3 = -1;
+        uVar3 = JStage::TActor::ID_NORMAL;
     } else {
         uVar3 = *(int*)param_1;
     }

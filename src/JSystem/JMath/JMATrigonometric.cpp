@@ -9,13 +9,17 @@
 #include "dol2asm.h"
 #include "global.h"
 
+static f32 dummy() {
+    return 0.0f;
+}
+
 namespace std {
 template <typename A1, typename B1>
 struct pair {
     A1 a1;
     B1 b1;
     pair() {
-        f32 tmp = FLOAT_LABEL(zero);
+        f32 tmp = 0.0f;
         a1 = tmp;
         b1 = tmp;
         // a1 = A1();
@@ -23,9 +27,6 @@ struct pair {
     }
 };
 }  // namespace std
-
-// fake, but couldn't find another way to make 0.0f go first in sdata2 in this TU
-SECTION_SDATA2 static f32 zero[1 + 1] = {0.0f, 0.0f};
 
 inline f64 getConst() {
     return 6.2831854820251465;
@@ -54,7 +55,7 @@ struct TAtanTable {
         for (int i = 0; i < (u32)1024; i++) {
             table[i] = atan(getConst2() * i);
         }
-        table[0] = FLOAT_LABEL(zero);
+        table[0] = 0.0f;
         table[1024] = 0.7853982;  // 0.25 * PI
     }
 };
@@ -66,7 +67,7 @@ struct TAsinAcosTable {
         for (int i = 0; i < 1024; i++) {
             table[i] = asin(getConst2() * i);
         }
-        table[0] = FLOAT_LABEL(zero);
+        table[0] = 0.0f;
         table[1024] = 0.7853982;  // 0.25 * PI
     }
 };

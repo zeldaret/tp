@@ -288,7 +288,7 @@ static void damage_check(e_yk_class* i_this) {
                         }
 
                         i_this->mKnockbackSpeed = cM_rndF(10.0f) + 70.0f;
-                        i_this->mKnockbackAngle = i_this->mAtColliderInfo.mHitDirection;
+                        i_this->mKnockbackAngle = i_this->mAtColliderInfo.mHitDirection.y;
 
                         // If keese is dead, play death sound, set morph speed and set the death flag
                         if (i_this->health <= 0) {
@@ -334,7 +334,7 @@ static int path_check(e_yk_class* i_this) {
         cXyz path_point_pos;
         current_keese_pos = i_this->current.pos;
         current_keese_pos.y += 100.0f;
-        dStage_dPnt_c* points = i_this->mpPath->m_points;
+        dPnt* points = i_this->mpPath->m_points;
 
         for (int i = 0; i < i_this->mpPath->m_num; i++, points++) {
             path_point_pos.x = points->m_position.x;
@@ -875,7 +875,7 @@ static void e_yk_path_fly(e_yk_class* i_this) {
     case 2:
         i_this->mActionPhase = 3;
 
-        dStage_dPnt_c* point = i_this->mpPath->m_points;
+        dPnt* point = i_this->mpPath->m_points;
         point = &point[i_this->mPathPntIdx];
 
         i_this->mMoveInterpolation = 0.0f;

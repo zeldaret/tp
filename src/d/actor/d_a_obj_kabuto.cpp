@@ -190,7 +190,7 @@ BOOL daObjKABUTO_c::WallCheck() {
         cM3dGPla plane;
         dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
         const cXyz* normal = plane.GetNP();
-        current.pos = lin_chk.i_GetCross();
+        current.pos = lin_chk.GetCross();
         cXyz zero(0.0f, 0.0f, 0.0f);
         cXyz normal_yz(0.0f, normal->y, normal->z);
         mWallAngle.z = -cM_atan2s(normal->x, zero.abs(normal_yz));
@@ -242,7 +242,7 @@ void daObjKABUTO_c::WallWalk() {
         cXyz zero(0.0f, 0.0f, 0.0f);
         cXyz normal_yz(0.0f, normal->y, normal->z);
         f32 normal_len_yz = zero.abs(normal_yz);
-        cross = lin_chk1.i_GetCross();
+        cross = lin_chk1.GetCross();
         if (normal_ang_y - mDownAngleY < 0x1000 && normal_ang_y - mDownAngleY > -0x1000
             && cross.abs(current.pos) < speedF * 3.0f)
         {
@@ -582,11 +582,11 @@ int daObjKABUTO_c::Execute() {
                 if (dComIfG_Bgsp().LineCross(&lin_chk)) {
                     cM3dGPla plane;
                     dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
-                    current.pos = old.pos = lin_chk.i_GetCross();
+                    current.pos = old.pos = lin_chk.GetCross();
                     mAction = ACT_WAIT;
                     mMode = 0;
                     const cXyz* normal = plane.GetNP();
-                    current.pos = lin_chk.i_GetCross();
+                    current.pos = lin_chk.GetCross();
                     cXyz zero(0.0f, 0.0f, 0.0f);
                     cXyz vec(0.0f, normal->y, normal->z);
                     mWallAngle.z = -cM_atan2s(normal->x, zero.abs(vec));
@@ -803,7 +803,7 @@ cPhs__Step daObjKABUTO_c::create() {
                     cM3dGPla plane;
                     dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
                     const cXyz* normal = plane.GetNP();
-                    current.pos = lin_chk.i_GetCross();
+                    current.pos = lin_chk.GetCross();
                     cXyz zero(0.0f, 0.0f, 0.0f);
                     cXyz normalYZ(0.0f, normal->y, normal->z);
                     mWallAngle.z = -cM_atan2s(normal->x, zero.abs(normalYZ));
@@ -823,7 +823,7 @@ cPhs__Step daObjKABUTO_c::create() {
                     cM3dGPla plane;
                     dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
                     const cXyz* normal = plane.GetNP();
-                    current.pos = lin_chk.i_GetCross();
+                    current.pos = lin_chk.GetCross();
                     cXyz zero(0.0f, 0.0f, 0.0f);
                     cXyz normalYZ(0.0f, normal->y, normal->z);
                     mWallAngle.z = -cM_atan2s(normal->x, zero.abs(normalYZ));

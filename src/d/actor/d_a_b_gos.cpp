@@ -61,7 +61,7 @@ static void wait(b_gos_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, 6, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, 6, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode = 1;
         i_this->mTimers[0] = cM_rndF(30) + 30.0f;
         break;
@@ -89,7 +89,7 @@ static void walk(b_gos_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, 4, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, 4, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode = 1;
         i_this->mTimers[0] = cM_rndF(60) + 60.0f;
         i_this->mWalkDirection = cM_rndF(0x10000);
@@ -116,7 +116,7 @@ static void ball(b_gos_class* i_this) {
         // fallthrough
     case 1:
         if (i_this->mTimers[0] == 0) {
-            anm_init(i_this, 5, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, 5, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mMode = 2;
             i_this->mTimers[0] = cM_rndF(30) + 60.0f;
         }
@@ -331,7 +331,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
     a_this->mpMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("B_gos", 9), NULL,
                                           NULL, (J3DAnmTransform*)dComIfG_getObjectRes("B_gos", 6),
-                                          J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1, &a_this->mSound,
+                                          J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, &a_this->mSound,
                                           0x80000, 0x11000084);
 
     if (a_this->mpMorf == NULL || a_this->mpMorf->getModel() == NULL) {

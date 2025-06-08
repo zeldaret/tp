@@ -3,6 +3,10 @@
 #include "m_Do/m_Do_graphic.h"
 #include "d/actor/d_a_movie_player.h"
 #include "JSystem/JGadget/pointer.h"
+#include "JSystem/JGadget/define.h"
+
+/* 80450620-80450628 0000A0 0002+06 3/3 1/1 0/0 .sdata           m_branchId__7dDemo_c */
+s16 dDemo_c::m_branchId = -1;
 
 namespace {
 /* 80037DE4-80037E44 032724 0060+00 1/0 0/0 0/0 .text
@@ -18,19 +22,17 @@ void jstudio_tAdaptor_message::adaptor_do_MESSAGE(JStudio::data::TEOperationData
     case JStudio::data::UNK_0x19:
         JUT_ASSERT(107, pContent!=0);
         JUT_ASSERT(108, uSize==4);
-        dMsgObject_setDemoMessage(*(u32*)pContent);
+        u32 content = *(u32*)pContent;
+        dMsgObject_setDemoMessage(content);
         break;
     default:
 #ifdef DEBUG
         JGadget_outMessage msg(JGadget_outMessage::warning, __FILE__, 124);
-        const char* id_string = adaptor_getID_string();
-
-        msg << "unknown data-type : ";
-        msg << iType;
-        msg << "\n  demo-object : ";
-        msg << id_string;
-#endif
+        msg << "unknown data-type : " << iType << "\n  demo-object : " << adaptor_getID_string();
+        int x = 0;
+#else
         break;
+#endif
     }
 }
 
@@ -46,24 +48,25 @@ jstudio_tCreateObject_message::create(JStudio::TObject** ppObject,
                                       const JStudio::stb::data::TParse_TBlock_object& iBlock) {
     JUT_ASSERT(168, ppObject!=0);
 
-    switch (iBlock.get_type()) {
-    case 'JMSG': {
-        jstudio_tAdaptor_message* adaptor = new jstudio_tAdaptor_message();
-        if (adaptor == NULL) {
-            return false;
+    u32 type = iBlock.get_type();
+    switch (type) {
+    case 'JMSG': 
+        {
+            jstudio_tAdaptor_message* adaptor = new jstudio_tAdaptor_message();
+            if (adaptor == NULL) {
+                return false;
+            }
+
+            JGadget::TPointer_delete<JStudio::TAdaptor_message> sp8(adaptor);
+            JStudio::TObject_message* object = JStudio::TCreateObject::createFromAdaptor<jstudio_tAdaptor_message>(iBlock, adaptor);
+            if (object == NULL) {
+                return false;
+            }
+
+            sp8.set(NULL);
+            *ppObject = object;
         }
-
-        JGadget::TPointer_delete<JStudio::TAdaptor_message> sp8(adaptor);
-        JStudio::TObject_message* object = JStudio::TCreateObject::createFromAdaptor<jstudio_tAdaptor_message>(iBlock, adaptor);
-        if (object == NULL) {
-            return false;
-        }
-
-        sp8.set(NULL);
-        *ppObject = object;
-
         return true;
-    }
     default:
         return false;
     }
@@ -94,6 +97,12 @@ dDemo_actor_c::~dDemo_actor_c() {
     mBtpId = -1;
     mBtkId = -1;
     mBrkId = -1;
+
+    #ifdef DEBUG
+    if(dComIfGp_event_getMode() == 0) {
+        g_dComIfG_gameInfo.play.getEvent().setDebugStb(0);
+    }
+    #endif
 }
 
 /* 80038128-8003815C 032A68 0034+00 1/1 0/0 0/0 .text            getActor__13dDemo_actor_cFv */
@@ -128,27 +137,27 @@ f32 dDemo_actor_c::getPrm_Morf() {
     dDemo_prm_data* prm = mPrm.mData;
 
     switch (mPrm.field_0x0) {
-    case 1:
+    case ID_UNK_1:
         if (field_0x54 < 4) {
             return 0.0f;
         }
         return prm->field_0x4;
-    case 2:
+    case ID_UNK_2:
         if (field_0x54 < 7) {
             return 0.0f;
         }
         return prm->field_0x7;
-    case 4:
+    case ID_UNK_4:
         if (field_0x54 < 6) {
             return 0.0f;
         }
         return prm->field_0x6;
-    case 5:
+    case ID_UNK_5:
         if (field_0x54 < 0xB) {
             return 0.0f;
         }
         return prm->field_0xb;
-    case 6:
+    case ID_UNK_6:
         if (field_0x54 < 0xF) {
             return 0.0f;
         }
@@ -212,6 +221,7 @@ u16 dDemo_c::m_branchType;
 /* 80450E44-80450E48 000344 0004+00 5/5 0/0 0/0 .sbss            m_branchData__7dDemo_c */
 const u8* dDemo_c::m_branchData;
 
+
 /* 80038338-80038490 032C78 0158+00 0/0 1/1 5/5 .text getDemoIDData__13dDemo_actor_cFPiPiPiPUsPUc
  */
 // NONMATCHING - some stack issues
@@ -220,7 +230,7 @@ int dDemo_actor_c::getDemoIDData(int* param_0, int* param_1, int* param_2, u16* 
     JStudio::stb::TParseData_fixed<51, TValueIterator_misaligned<u32> > data(getPrm()->getData());
 
     static JStudio::stb::TParseData_fixed<51, TValueIterator_misaligned<u32> > dummy;
-    static JGadget::binary::TValueIterator_misaligned<u32> it(dummy.begin());
+    static JGadget::binary::TValueIterator_misaligned<u32> it = dummy.begin();
 
     if (it == data.end()) {
         it = dummy.begin();
@@ -245,16 +255,17 @@ int dDemo_actor_c::getDemoIDData(int* param_0, int* param_1, int* param_2, u16* 
     return 1;
 }
 
+s16 dDemo_c::m_branchNum = 0;
+
 /* 80038490-80038518 032DD0 0088+00 1/1 0/0 0/0 .text            dDemo_getJaiPointer__FPCcUliPUs */
-// NONMATCHING - slight problem with loop
 static void* dDemo_getJaiPointer(char const* arcName, u32 anmID, int param_2, u16* param_3) {
     if (param_2 <= 0 || param_3 == NULL) {
         return NULL;
     }
 
-    int var_r31 = 0;
-
-    for (int i = 0; i < param_2; i++, var_r31 += 2) {
+    int i;
+    int var_r31;
+    for (i = var_r31 = 0; i < param_2; i++, var_r31 += 2) {
         if ((u16)anmID == param_3[var_r31]) {
             return dComIfG_getObjectIDRes(arcName, param_3[var_r31 + 1]);
         }
@@ -346,13 +357,10 @@ static void branchFile(char const* resName) {
     dDemo_c::setBranchData(branchData);
 }
 
-/* 80450620-80450628 0000A0 0002+06 3/3 1/1 0/0 .sdata           m_branchId__7dDemo_c */
-s16 dDemo_c::m_branchId = -1;
-
 /* 800387EC-80038920 03312C 0134+00 1/0 0/0 0/0 .text            JSGSetData__13dDemo_actor_cFUlPCvUl
  */
 void dDemo_actor_c::JSGSetData(u32 id, void const* pdata, u32 param_2) {
-    if (id == 1) {
+    if (id == ID_UNK_1) {
         JStudio::stb::TParseData_fixed<50, TValueIterator_misaligned<u16> > data(pdata);
         if (!data.isEnd() && data.isValid()) {
             JGadget::binary::TValueIterator_misaligned<u16> value(data.begin());
@@ -360,7 +368,7 @@ void dDemo_actor_c::JSGSetData(u32 id, void const* pdata, u32 param_2) {
             dDemo_c::setBranchType(*value);
             OS_REPORT("JSGSetData: 分岐条件<%d>\n", *value);
         }
-    } else if (id == 2) {
+    } else if (id == ID_UNK_2) {
         JUT_ASSERT(728, dDemo_c::getBranchId() >= 0);
 
         JStudio::stb::TParseData_string string_data(pdata);
@@ -383,7 +391,7 @@ void dDemo_actor_c::JSGSetData(u32 id, void const* pdata, u32 param_2) {
         if (strcmp(str, "-") != 0) {
             branchFile(str);
         }
-    } else if (id == 3) {
+    } else if (id == ID_UNK_3) {
         JStudio::stb::TParseData_string data(pdata);
 
         u32 num = data.size();
@@ -414,7 +422,8 @@ void dDemo_actor_c::JSGSetTranslation(Vec const& i_trans) {
         onEnable(ENABLE_TRANS_e);
     } else {
         // "\n\n!!JSGSetTranslation outside of range. x[%f]y[%f]z[%f]\n"
-        JUT_ASSERT(789, "\n\n!!JSGSetTranslationで範囲外の指定がされました。x[%f]y[%f]z[%f]\n", i_trans.x, i_trans.y, i_trans.z);
+        OS_REPORT("\n\n!!JSGSetTranslationで範囲外の指定がされました。x[%f]y[%f]z[%f]\n", i_trans.x, i_trans.y, i_trans.z);
+        JUT_ASSERT(789, 0);
     }
 }
 
@@ -740,7 +749,7 @@ JStage::TObject* dDemo_object_c::appendActor(fopAc_ac_c* p_actor) {
     demoActor = new dDemo_actor_c();
     if (demoActor == NULL) {
         // "Failed to get Demo Actor!!\n"
-        OS_REPORT("デモアクター確保失敗！！\n")
+        OS_REPORT("デモアクター確保失敗！！\n");
         return NULL;
     }
 
@@ -924,32 +933,32 @@ int dDemo_system_c::JSGFindObject(JStage::TObject** p_TObj, char const* actorNam
 /* 80039678-80039910 033FB8 0298+00 0/0 1/1 0/0 .text            create__7dDemo_cFv */
 void dDemo_c::create() {
     m_system = new dDemo_system_c();
-    JUT_ASSERT(m_system != 0);
+    JUT_ASSERT(0, m_system != 0);
 
     m_control = new JStudio::TControl();
-    JUT_ASSERT(m_control != 0);
+    JUT_ASSERT(0, m_control != 0);
 
     m_mesgControl = new jmessage_tControl();
-    JUT_ASSERT(m_mesgControl != 0);
+    JUT_ASSERT(0, m_mesgControl != 0);
 
     m_stage = new JStudio_JStage::TCreateObject(m_system);
-    JUT_ASSERT(m_stage != 0);
+    JUT_ASSERT(0, m_stage != 0);
 
     m_audio = new JStudio_JAudio2::TCreateObject(Z2GetSoundStarter(), m_system);
-    JUT_ASSERT(m_audio != 0);
+    JUT_ASSERT(0, m_audio != 0);
     m_audio->mPermit_onExit_notEnd = true;
 
     m_particle = new dDemo_particle_c(dPa_control_c::getEmitterManager(), m_system);
-    JUT_ASSERT(m_particle != 0);
+    JUT_ASSERT(0, m_particle != 0);
 
     m_message = new jstudio_tCreateObject_message();
-    JUT_ASSERT(m_message != 0);
+    JUT_ASSERT(0, m_message != 0);
 
     m_factory = new JStudio::TFactory();
-    JUT_ASSERT(m_factory != 0);
+    JUT_ASSERT(0, m_factory != 0);
 
     m_object = new dDemo_object_c();
-    JUT_ASSERT(m_object != 0);
+    JUT_ASSERT(0, m_object != 0);
 
     m_control->setSecondPerFrame(1.0f / 30.0f);
     m_control->setFactory(m_factory);
@@ -1022,7 +1031,7 @@ jmessage_tControl::~jmessage_tControl() {}
 
 /* 80039B6C-80039CF8 0344AC 018C+00 1/1 1/1 0/0 .text            start__7dDemo_cFPCUcP4cXyzf */
 int dDemo_c::start(u8 const* p_data, cXyz* p_translation, f32 rotationY) {
-    JUT_ASSERT(m_system != 0);
+    JUT_ASSERT(0, m_system != 0);
 
     m_control->reset();
     JStudio::TParse parser(m_control);
@@ -1060,7 +1069,7 @@ int dDemo_c::start(u8 const* p_data, cXyz* p_translation, f32 rotationY) {
 
 /* 80039CF8-80039D4C 034638 0054+00 1/1 2/2 0/0 .text            end__7dDemo_cFv */
 void dDemo_c::end() {
-    JUT_ASSERT(m_system != 0);
+    JUT_ASSERT(0, m_system != 0);
 
     m_control->destroyObject_all();
     m_object->remove();
@@ -1070,19 +1079,19 @@ void dDemo_c::end() {
 
 /* 80039D4C-80039DA4 03468C 0058+00 1/1 0/0 0/0 .text            branch__7dDemo_cFv */
 void dDemo_c::branch() {
-    JUT_ASSERT(m_system != 0);
+    JUT_ASSERT(0, m_system != 0);
 
     m_control->destroyObject_all();
     const u8* branchData = m_branchData;
     m_branchData = NULL;
 
     int rt = start(branchData, m_translation, m_rotationY);
-    JUT_ASSERT(rt);
+    JUT_ASSERT(0, rt);
 }
 
 /* 80039DA4-80039EDC 0346E4 0138+00 0/0 1/1 0/0 .text            update__7dDemo_cFv */
 int dDemo_c::update() {
-    JUT_ASSERT(m_system != 0);
+    JUT_ASSERT(0, m_system != 0);
 
     if (m_data == NULL) {
         if (m_branchData == NULL) {
@@ -1157,8 +1166,8 @@ void dDemo_c::reset() {
 /* 80039F1C-80039F9C 03485C 0080+00 1/0 0/0 0/0 .text emitter_create__16dDemo_particle_cFUl */
 JPABaseEmitter* dDemo_particle_c::emitter_create(u32 i_id) {
     cXyz pos(0.0f, 0.0f, 0.0f);
-    int stayNo = dComIfGp_roomControl_getStayNo();
-    return dComIfGp_particle_set(i_id, &pos, NULL, NULL, 0xFF, NULL, stayNo, NULL, NULL, NULL);
+    return dComIfGp_particle_set(i_id, &pos, NULL, NULL, 0xFF, NULL,
+                                 dComIfGp_roomControl_getStayNo(), NULL, NULL, NULL);
 }
 
 /* 80039F9C-80039FFC 0348DC 0060+00 1/0 0/0 0/0 .text            __dt__16dDemo_particle_cFv */

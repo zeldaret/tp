@@ -61,9 +61,9 @@ public:
     /* 8055A498 */ virtual s32 getEyeballMaterialNo();
     /* 80554EBC */ virtual void afterJntAnm(int);
     /* 80554F48 */ virtual void setParam();
-    /* 80555118 */ virtual bool checkChangeEvt();
-    /* 80555448 */ virtual bool evtTalk();
-    /* 805554E8 */ virtual bool evtCutProc();
+    /* 80555118 */ virtual BOOL checkChangeEvt();
+    /* 80555448 */ virtual BOOL evtTalk();
+    /* 805554E8 */ virtual BOOL evtCutProc();
     /* 8055523C */ virtual void setAfterTalkMotion();
     /* 805555B0 */ virtual void action();
     /* 8055574C */ virtual void beforeMove();
@@ -86,15 +86,15 @@ public:
                 var_r29 = 2;
             }
 
-            if (strlen(field_0x570[var_r29].eventName) != 0) {
-                u32 len = strlen(field_0x574[field_0x570[var_r29].num]);
+            if (strlen(mpEvtData[var_r29].eventName) != 0) {
+                u32 len = strlen(mpArcNames[mpEvtData[var_r29].num]);
                 if (len != 0) {
-                    eventInfo.setArchiveName(field_0x574[field_0x570[var_r29].num]);
+                    eventInfo.setArchiveName(mpArcNames[mpEvtData[var_r29].num]);
                     dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
                 }
 
-                field_0xe1c = dComIfGp_getEventManager().getEventIdx(this, field_0x570[var_r29].eventName, 0xFF);
-                fopAcM_orderOtherEventId(this, field_0xe1c, 0xFF, 0xFFFF, 4, 1);
+                mEvtId = dComIfGp_getEventManager().getEventIdx(this, mpEvtData[var_r29].eventName, 0xFF);
+                fopAcM_orderOtherEventId(this, mEvtId, 0xFF, 0xFFFF, 4, 1);
                 return 1;
             }
         }

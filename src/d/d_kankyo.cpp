@@ -1,5 +1,6 @@
 #include "d/d_kankyo.h"
 #include <dolphin.h>
+#include <dolphin/gf/GFPixel.h>
 #include "SSystem/SComponent/c_counter.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_kytag08.h"
@@ -1019,7 +1020,9 @@ static void plight_set() {
 
         for (int i = 0; i < dComIfGp_getStagePlightNumInfo(); i++) {
             if (plight_no < 30) {
-                g_env_light.mLightInfluence[plight_no].mPosition = plight_info[i].position;
+                g_env_light.mLightInfluence[plight_no].mPosition.x = plight_info[i].position.x;
+                g_env_light.mLightInfluence[plight_no].mPosition.y = plight_info[i].position.y;
+                g_env_light.mLightInfluence[plight_no].mPosition.z = plight_info[i].position.z;
                 g_env_light.mLightInfluence[plight_no].mColor.r = plight_info[i].color.r;
                 g_env_light.mLightInfluence[plight_no].mColor.g = plight_info[i].color.g;
                 g_env_light.mLightInfluence[plight_no].mColor.b = plight_info[i].color.b;
@@ -1115,7 +1118,7 @@ static void undwater_init() {
             if (g_env_light.undwater_btk != NULL) {
                 J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Always", 0x3C);
                 if (!g_env_light.undwater_btk->init(modelData2, pbtk, TRUE,
-                                                    J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1))
+                                                    J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1))
                 {
                     JUT_ASSERT(1898, 0);
                 }
@@ -1528,7 +1531,7 @@ int dKy_getDarktime_minute() {
 }
 
 /* 8019FBBC-8019FBCC 19A4FC 0010+00 0/0 0/0 8/8 .text            dKy_getDarktime_week__Fv */
-int dKy_getDarktime_week() {
+u8 dKy_getDarktime_week() {
     return g_env_light.darktime_week;
 }
 
@@ -1880,7 +1883,7 @@ void dScnKy_env_light_c::setLight() {
             dBgS_CamGndChk_Wtr camchk;
             cXyz chkpos;
 
-            if (checkZoraWearFlg() && !daPy_py_c::i_checkNowWolf()) {
+            if (checkZoraWearFlg() && !daPy_py_c::checkNowWolf()) {
                 dKy_WaterIn_Light_set();
             }
 
@@ -3054,9 +3057,9 @@ void dScnKy_env_light_c::settingTevStruct_plightcol_plus(cXyz* pos_p, dKy_tevstr
             {
                 cLib_addCalc(&tevstr_p->field_0x344, 0.0f, 0.75f, 0.21f, 0.0001f);
             } else if (tevstr_p->Type == 9 && player->getSinkShapeOffset() < -35.0f) {
-                cLib_addCalc(&tevstr_p->field_0x344, 0.0f, 0.1f, 0.001f, 0.00001f);
+                cLib_addCalc(&tevstr_p->field_0x344, 0.0f, 0.1f, 0.01f, 0.00001f);
             } else if (tevstr_p->Type == 10 && player->getSinkShapeOffset() < -100.0f) {
-                cLib_addCalc(&tevstr_p->field_0x344, 0.0f, 0.1f, 0.001f, 0.00001f);
+                cLib_addCalc(&tevstr_p->field_0x344, 0.0f, 0.1f, 0.01f, 0.00001f);
             } else if (init_timer != 0) {
                 tevstr_p->field_0x344 = kankyo->field_0x1238 +
                                         (var_f31 * (kankyo->field_0x123c - kankyo->field_0x1238));
@@ -4293,8 +4296,8 @@ void dKy_setLight_nowroom_common(char room_no, f32 light_ratio) {
     dKy_tevstr_c* room_tevstr = dComIfGp_roomControl_getTevStr(room_no);
 
     if (dComIfGp_roomControl_getStatusRoomDt(room_no) != NULL) {
-        stage_pure_lightvec_info_class* room_light_info = dComIfGp_roomControl_getStatusRoomDt(room_no)->mRoomDt.getLightVecInfo();
-        int room_light_info_num = dComIfGp_roomControl_getStatusRoomDt(room_no)->mRoomDt.getLightVecInfoNum();
+        stage_pure_lightvec_info_class* room_light_info = dComIfGp_roomControl_getStatusRoomDt(room_no)->getLightVecInfo();
+        int room_light_info_num = dComIfGp_roomControl_getStatusRoomDt(room_no)->getLightVecInfoNum();
         if (room_light_info_num > 6) {
             room_light_info_num = 6;
         }
@@ -4308,7 +4311,7 @@ void dKy_setLight_nowroom_common(char room_no, f32 light_ratio) {
             room_light_info++;
         }
 
-        room_light_info = dComIfGp_roomControl_getStatusRoomDt(room_no)->mRoomDt.getLightVecInfo();
+        room_light_info = dComIfGp_roomControl_getStatusRoomDt(room_no)->getLightVecInfo();
         if (dKy_SunMoon_Light_Check() == TRUE && room_light_info == NULL) {
             lightMask |= lightMaskData[2];
             lightMask |= lightMaskData[3];
@@ -4512,7 +4515,7 @@ void dKy_setLight_nowroom_grass(char room_no, f32 light_ratio) {
     MtxP view_mtx = j3dSys.getViewMtx();
 
     if (dComIfGp_roomControl_getStatusRoomDt(room_no) != NULL) {
-        dStage_FileList_dt_c* filelist = dComIfGp_roomControl_getStatusRoomDt(room_no)->mRoomDt.getFileListInfo();
+        dStage_FileList_dt_c* filelist = dComIfGp_roomControl_getStatusRoomDt(room_no)->getFileListInfo();
         if (filelist == NULL) {
             return;
         }
@@ -4586,8 +4589,8 @@ void dKy_setLight_nowroom_actor(dKy_tevstr_c* tevstr_p) {
 
     if (dComIfGp_roomControl_getStatusRoomDt(room_no) != NULL) {
         J3DLightInfo* light;
-        stage_pure_lightvec_info_class* room_lights = dComIfGp_roomControl_getStatusRoomDt(room_no)->mRoomDt.getLightVecInfo();
-        int room_light_num = dComIfGp_roomControl_getStatusRoomDt(room_no)->mRoomDt.getLightVecInfoNum();
+        stage_pure_lightvec_info_class* room_lights = dComIfGp_roomControl_getStatusRoomDt(room_no)->getLightVecInfo();
+        int room_light_num = dComIfGp_roomControl_getStatusRoomDt(room_no)->getLightVecInfoNum();
         if (room_light_num > 6) {
             room_light_num = 6;
         }
@@ -4601,7 +4604,7 @@ void dKy_setLight_nowroom_actor(dKy_tevstr_c* tevstr_p) {
             room_lights++;
         }
 
-        room_lights = dComIfGp_roomControl_getStatusRoomDt(room_no)->mRoomDt.getLightVecInfo();
+        room_lights = dComIfGp_roomControl_getStatusRoomDt(room_no)->getLightVecInfo();
 
         for (int i = 0; i < 6; i++) {
             light = &tevstr_p->mLights[i].getLightInfo();
@@ -4998,7 +5001,7 @@ void dKy_fog_startendz_set(f32 param_0, f32 param_1, f32 ratio) {
         ratio = 0.0f;
     }
 
-    if (ratio < 0.0000000000001f) {
+    if (ratio < 0.0001f) {
         ratio = 0.0f;
     }
 
@@ -5401,7 +5404,7 @@ void dKy_ParticleColor_get_base(cXyz* param_0, dKy_tevstr_c* param_1, GXColor* p
     J3DLightInfo* sp44;
     GXColor sp40;
     int sp3C;
-    s32 sp38;
+    int sp38;
     stage_pure_lightvec_info_class* stage_light_info_p;
     int sp30;
 
@@ -5415,8 +5418,8 @@ void dKy_ParticleColor_get_base(cXyz* param_0, dKy_tevstr_c* param_1, GXColor* p
                 sp40 = g_env_light.dungeonlight[i].mColor;
             } else if (dComIfGp_roomControl_getStatusRoomDt(sp38) != NULL) {
                 stage_light_info_p =
-                    dComIfGp_roomControl_getStatusRoomDt(sp38)->mRoomDt.getLightVecInfo();
-                sp30 = dComIfGp_roomControl_getStatusRoomDt(sp38)->mRoomDt.getLightVecInfoNum();
+                    dComIfGp_roomControl_getStatusRoomDt(sp38)->getLightVecInfo();
+                sp30 = dComIfGp_roomControl_getStatusRoomDt(sp38)->getLightVecInfoNum();
                 if (i < sp30) {
                     sp40 = g_env_light.dungeonlight[i].mColor;
                 } else {
@@ -5458,14 +5461,12 @@ void dKy_ParticleColor_get_base(cXyz* param_0, dKy_tevstr_c* param_1, GXColor* p
             stage_pure_lightvec_info_class* stage_light_info_p;
             if (param_1 != NULL && param_1->room_no >= 0) {
                 stage_light_info_p = dComIfGp_roomControl_getStatusRoomDt(param_1->room_no)
-                                         ->mRoomDt.getLightVecInfo();
+                                         ->getLightVecInfo();
                 sp3C = dComIfGp_roomControl_getStatusRoomDt(param_1->room_no)
-                           ->mRoomDt.getLightVecInfoNum();
+                           ->getLightVecInfoNum();
             } else {
-                s32 room_no = dComIfGp_roomControl_getStayNo();  // fakematch, fixes instruction order
-                stage_light_info_p = dComIfGp_roomControl_getStatusRoomDt(room_no)->mRoomDt.getLightVecInfo();
-                room_no = dComIfGp_roomControl_getStayNo();  // fakematch, fixes instruction order
-                sp3C = dComIfGp_roomControl_getStatusRoomDt(room_no)->mRoomDt.getLightVecInfoNum();
+                stage_light_info_p = dComIfGp_roomControl_getStatusRoomDt(dComIfGp_roomControl_getStayNo())->getLightVecInfo();
+                sp3C = dComIfGp_roomControl_getStatusRoomDt(dComIfGp_roomControl_getStayNo())->getLightVecInfoNum();
             }
 
             f32 var_f27;
@@ -5658,7 +5659,7 @@ int dKy_BossLight_set(cXyz* pos_p, GXColor* color_p, f32 ref_dist, u8 param_3) {
             return 0;
         }
 
-        stage_light_info_num = dComIfGp_roomControl_getStatusRoomDt(room_no)->mRoomDt.getLightVecInfoNum();
+        stage_light_info_num = dComIfGp_roomControl_getStatusRoomDt(room_no)->getLightVecInfoNum();
         if (stage_light_info_num < 0 || stage_light_info_num > 6) {
             stage_light_info_num = 6;
         }
@@ -6851,7 +6852,6 @@ static J3DAlphaCompInfo l_alphaCompInfo = {
 };
 
 /* 801ACD24-801ADBBC 1A7664 0E98+00 0/0 0/0 7/7 .text            dKy_bg_MAxx_proc__FPv */
-// NONMATCHING - `setAlphaCompInfo` is incorrect, and instruction in the wrong order at the start
 void dKy_bg_MAxx_proc(void* bg_model_p) {
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
     J3DModel* model_p = (J3DModel*)bg_model_p;

@@ -8,40 +8,6 @@ int dEv_noFinishSkipProc(void*, int);
 struct dStage_MapEvent_dt_c;
 class fopAc_ac_c;
 
-#ifdef DEBUG
-class dEvDb_bit_c {
-public:
-    /* 0x00 */ char* mFlagName;
-    /* 0x04 */ char* mFlagDescription;
-    /* 0x08 */ char* mFlagAuthor;
-    /* 0x0C */ u16 mFlagValue;
-    /* 0x10 */ char* mArea; // Area in the game where flag is used
-    /* 0x14 */ u8 field_0x14;
-    /* 0x15 */ u8 field_0x15;
-};
-
-class dEvDb_reg_c {
-public:
-    /* 0x00 */ char* mFlagName;
-    /* 0x04 */ char* mFlagDescription;
-    /* 0x08 */ char* mFlagAuthor;
-    /* 0x0C */ u16 mFlagValue;
-    /* 0x10 */ char* mArea; // Area in the game where flag is used
-    /* 0x14 */ u8 field_0x14;
-    /* 0x15 */ u8 field_0x15;
-};
-
-class dEvDb_flag_base_c {
-public:
-    /* 0x00 */ dEvDb_bit_c* mBitTable;
-    /* 0x04 */ dEvDb_reg_c* mRegTable;
-    /* 0x08 */ int mBitNum;
-    /* 0x0C */ int mRegNum;
-    /* 0x10 */ int field_0x10;
-    /* 0x14 */ int field_0x14;
-};
-#endif
-
 class dEvt_order_c {
 public:
     ~dEvt_order_c() {}
@@ -166,6 +132,7 @@ public:
     u8 getGtItm() { return mGtItm; }
     void startCheckSkipEdge(void* param_0) { setSkipProc(param_0, dEv_noFinishSkipProc, 0); }
     bool checkSkipEdge() { return chkFlag2(8) != false; }
+    void setDebugStb(u8 stb) { mDebugStb = stb; }
 
 public:
     /* 0x000 */ u8 field_0x0[4];
@@ -207,6 +174,9 @@ public:
     /* 0x128 */ u8 mCompulsory;
     /* 0x129 */ bool mRoomInfoSet;
     /* 0x12C */ int mRoomNo;
+#ifdef DEBUG
+    /* 0x130 */ u8 field_0x130;
+#endif
 };  // Size = 0x130
 
 int dEv_defaultSkipProc(void* param_0, int param_1);

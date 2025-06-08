@@ -70,6 +70,8 @@ public:
     /* 80C8DA2C */ daMagLift_HIO_c();
     /* 80C8E5B0 */ virtual ~daMagLift_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x4 */ u8 field_0x4;
     /* 0x5 */ u8 field_0x5;
 };

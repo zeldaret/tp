@@ -7,6 +7,7 @@
 #include "JSystem/JAudio2/JASSeqCtrl.h"
 #include "JSystem/JAudio2/JASTrackPort.h"
 #include "JSystem/JGadget/linklist.h"
+#include "global.h"
 
 struct JASSoundParams;
 
@@ -15,6 +16,8 @@ namespace JASDsp {
 
     extern const u32 FILTER_MODE_IIR;
 };
+
+#define MAX_CHILDREN 16
 
 /**
  * @ingroup jsystem-jaudio
@@ -52,7 +55,10 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded<JASTrack> {
     };
 
     struct MoveParam_ {
+        // TODO: fix this on debug
+#if VERSION != VERSION_SHIELD_DEBUG
         /* 802932C8 */ MoveParam_() : mValue(0.0f), mTarget(0.0f), mCount(0) {}
+#endif
 
         /* 0x00 */ f32 mValue;
         /* 0x04 */ f32 mTarget;
@@ -121,14 +127,17 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded<JASTrack> {
     static TList sTrackList;
 
     JASSeqCtrl* getSeqCtrl() { return &mSeqCtrl; }
-    u16 getPort(u32 param_0) { return mTrackPort.get(param_0); }
+    u16 getPort(u32 param_0) const { return mTrackPort.get(param_0); }
     void setPort(u32 param_0, u16 param_1) { mTrackPort.set(param_0, param_1); }
-    u32 checkPortIn(u32 param_0) { return mTrackPort.checkImport(param_0); }
-    u32 checkPort(u32 param_0) { return mTrackPort.checkExport(param_0); }
+    u32 checkPortIn(u32 param_0) const { return mTrackPort.checkImport(param_0); }
+    u32 checkPort(u32 param_0) const { return mTrackPort.checkExport(param_0); }
     u32 readReg(JASRegisterParam::RegID param_0) { return mRegisterParam.read(param_0); }
     void writeReg(JASRegisterParam::RegID param_0, u32 param_1) { mRegisterParam.write(param_0, param_1); }
     JASTrack* getParent() { return mParent; }
-    JASTrack* getChild(u32 index) { return mChildren[index]; }
+    JASTrack* getChild(u32 index) { 
+        JUT_ASSERT(115, index < MAX_CHILDREN)
+        return mChildren[index];
+    }
     int getChannelMgrCount() { return mChannelMgrCount; }
     f32 getVibDepth() const { return mVibDepth; }
     void setVibDepth(f32 param_0) { mVibDepth = param_0; }
@@ -138,9 +147,9 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded<JASTrack> {
     void setTremDepth(f32 param_0) { mTremDepth = param_0; }
     f32 getTremPitch() const { return mTremPitch; }
     void setTremPitch(f32 param_0) { mTremPitch = param_0; }
-    u16 getVibDelay() const { return mVibDelay; }
+    u32 getVibDelay() const { return mVibDelay; }
     void setVibDelay(u32 param_0) { mVibDelay = param_0; }
-    u16 getTremDelay() const { return mTremDelay; }
+    u32 getTremDelay() const { return mTremDelay; }
     void setTremDelay(u32 param_0) { mTremDelay = param_0; }
     u8 getStatus() const { return mStatus; }
     void setAutoDelete(u8 param_0) { mFlags.autoDelete = param_0; }
@@ -151,8 +160,8 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded<JASTrack> {
     u16 getDirectRelease() const { return mDirectRelease; }
     void setDirectRelease(u16 param_0) {mDirectRelease = param_0; }
     u16 getTimebase() const { return mTimebase; }
-    s8 getTranspose() const { return mTranspose; }
-    void setTranspose(u32 param_0) { mTranspose = param_0; }
+    int getTranspose() const { return mTranspose; }
+    void setTranspose(s32 param_0) { mTranspose = param_0; }
     u16 getBankNumber() const { return mBankNumber; }
     void setBankNumber(u16 param_0) { mBankNumber = param_0; }
     u16 getProgNumber() const { return mProgNumber; }
@@ -169,11 +178,21 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded<JASTrack> {
     /* 0x000 */ JASSeqCtrl mSeqCtrl;
     /* 0x05C */ JASTrackPort mTrackPort;
     /* 0x080 */ JASRegisterParam mRegisterParam;
-    /* 0x09C */ MoveParam_ mMoveParam[6];  // volume, pitch, fxmix, pan, dolby, distFilter
+    /* 0x09C */ union {
+        struct {
+            MoveParam_ volume;
+            MoveParam_ pitch;
+            MoveParam_ fxmix;
+            MoveParam_ pan;
+            MoveParam_ dolby;
+            MoveParam_ distFilter;
+        } params;
+        MoveParam_ array[6];
+    } mMoveParam;
     /* 0x0e4 */ JASOscillator::Data mOscParam[2];
     /* 0x114 */ JASOscillator::Point mOscPoint[4];
     /* 0x12C */ JASTrack* mParent;
-    /* 0x130 */ JASTrack* mChildren[16];
+    /* 0x130 */ JASTrack* mChildren[MAX_CHILDREN];
     /* 0x170 */ TChannelMgr* mChannelMgrs[4];
     /* 0x180 */ TChannelMgr mDefaultChannelMgr;
     /* 0x1D0 */ int mChannelMgrCount;

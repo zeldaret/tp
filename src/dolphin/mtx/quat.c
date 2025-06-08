@@ -1,94 +1,486 @@
-/**
- * quat.c
- * Dolphin - Matrix Quaternion Functions
- */
+#include <dolphin.h>
+#include <dolphin/mtx.h>
+#include <math.h>
 
-#include "dolphin/mtx/quat.h"
-#include "math.h"
+void C_QUATAdd(const Quaternion* p, const Quaternion* q, Quaternion* r) {
+    ASSERTMSGLINE(77, p, "QUATAdd():  NULL QuaternionPtr 'p' ");
+    ASSERTMSGLINE(78, q, "QUATAdd():  NULL QuaternionPtr 'q' ");
+    ASSERTMSGLINE(79, r, "QUATAdd():  NULL QuaternionPtr 'r' ");
 
-/* 80347418-80347474 341D58 005C+00 0/0 0/0 2/2 .text            PSQUATMultiply */
-void PSQUATMultiply(register const Quaternion* a, register const Quaternion* b,
-                    register Quaternion* ab) {
+    r->x = p->x + q->x;
+    r->y = p->y + q->y;
+    r->z = p->z + q->z;
+    r->w = p->w + q->w;
+}
+
+void PSQUATAdd(const register Quaternion* p, const register Quaternion* q, register Quaternion* r) {
+    register f32 pxy, qxy, rxy, pzw, qzw, rzw;
+
     asm {
-        psq_l f0, 0(a), 0, 0
-        psq_l f1, 8(a), 0, 0
-        psq_l f2, 0(b), 0, 0
-        ps_neg f5, f0
-        psq_l f3, 8(b), 0, 0
-        ps_neg f6, f1
-        ps_merge01 f4, f5, f0
-        ps_muls0 f7, f1, f2
-        ps_muls0 f5, f5, f2
-        ps_merge01 f1, f6, f1
-        ps_muls1 f8, f4, f2
-        ps_madds0 f7, f4, f3, f7
-        ps_muls1 f2, f1, f2
-        ps_madds0 f5, f1, f3, f5
-        ps_madds1 f8, f6, f3, f8
-        ps_merge10 f7, f7, f7
-        ps_madds1 f2, f0, f3, f2
-        ps_merge10 f5, f5, f5
-        ps_add f7, f7, f2
-        psq_st f7, 0(ab), 0, 0
-        ps_sub f5, f5, f8
-        psq_st f5, 8(ab), 0, 0
+        psq_l pxy, 0(p), 0, 0
+        psq_l qxy, 0(q), 0, 0
+        ps_add rxy, pxy, qxy
+        psq_st rxy, 0(r), 0, 0
+        psq_l pzw, 8(p), 0, 0
+        psq_l qzw, 8(q), 0, 0
+        ps_add rzw, pzw, qzw
+        psq_st rzw, 8(r), 0, 0
     }
 }
 
-// Dummy functions to set literal order
-static f32 dummyLiteralFunc() {
-    return 0.0f;
+void C_QUATSubtract(const Quaternion* p, const Quaternion* q, Quaternion* r) {
+    ASSERTMSGLINE(133, p, "QUATSubtract():  NULL QuaternionPtr 'p' ");
+    ASSERTMSGLINE(134, q, "QUATSubtract():  NULL QuaternionPtr 'q' ");
+    ASSERTMSGLINE(135, r, "QUATSubtract():  NULL QuaternionPtr 'r' ");
+
+    r->x = p->x - q->x;
+    r->y = p->y - q->y;
+    r->z = p->z - q->z;
+    r->w = p->w - q->w;
 }
 
-static f32 dummyLiteralFunc2() {
-    return 1.0f;
-}
+void PSQUATSubtract(const register Quaternion* p, const register Quaternion* q, register Quaternion* r) {
+    register f32 pxy, qxy, rxy, pzw, qzw, rzw;
 
-/* 80347474-80347500 341DB4 008C+00 0/0 1/1 0/0 .text            C_QUATRotAxisRad */
-void C_QUATRotAxisRad(Quaternion* q, const Vec* axis, f32 rad) {
-    f32 tmp, tmp2, tmp3;
-    Vec dst;
-
-    tmp = rad;
-    PSVECNormalize(axis, &dst);
-
-    tmp2 = tmp * 0.5f;
-    tmp3 = sinf(tmp * 0.5f);
-    tmp = tmp3;
-    tmp3 = cosf(tmp2);
-
-    q->x = tmp * dst.x;
-    q->y = tmp * dst.y;
-    q->z = tmp * dst.z;
-    q->w = tmp3;
-}
-
-/* 80347500-80347674 341E40 0174+00 0/0 0/0 2/2 .text            C_QUATSlerp */
-void C_QUATSlerp(const Quaternion* p, const Quaternion* q, Quaternion* r, f32 t) {
-    f32 ratioA, ratioB;
-
-    f32 value = 1.0f;
-    f32 cosHalfTheta = p->x * q->x + p->y * q->y + p->z * q->z + p->w * q->w;
-
-    if (cosHalfTheta < 0.0f) {
-        cosHalfTheta = -cosHalfTheta;
-        value = -value;
+    asm {
+        psq_l pxy, 0(p), 0, 0
+        psq_l qxy, 0(q), 0, 0
+        ps_sub rxy, pxy, qxy
+        psq_st rxy, 0(r), 0, 0
+        psq_l pzw, 8(p), 0, 0
+        psq_l qzw, 8(q), 0, 0
+        ps_sub rzw, pzw, qzw
+        psq_st rzw, 8(r), 0, 0
     }
+}
 
-    if (cosHalfTheta <= 0.9999899864196777f) {
-        f32 halfTheta = acosf(cosHalfTheta);
-        f32 sinHalfTheta = sinf(halfTheta);
+void C_QUATMultiply(const Quaternion* p, const Quaternion* q, Quaternion* pq) {
+    Quaternion* r;
+    Quaternion pqTmp;
 
-        ratioA = sinf((1.0f - t) * halfTheta) / sinHalfTheta;
-        ratioB = sinf(t * halfTheta) / sinHalfTheta;
-        value *= ratioB;
+    ASSERTMSGLINE(193, p, "QUATMultiply():  NULL QuaternionPtr 'p' ");
+    ASSERTMSGLINE(194, q, "QUATMultiply():  NULL QuaternionPtr 'q' ");
+    ASSERTMSGLINE(195, pq, "QUATMultiply():  NULL QuaternionPtr 'pq' ");
+
+    if (p == pq || q == pq){
+        r = &pqTmp;
     } else {
-        ratioA = 1.0f - t;
-        value *= t;
+        r = pq;
     }
 
-    r->x = (ratioA * p->x) + (value * q->x);
-    r->y = (ratioA * p->y) + (value * q->y);
-    r->z = (ratioA * p->z) + (value * q->z);
-    r->w = (ratioA * p->w) + (value * q->w);
+    r->w = (p->w * q->w) - (p->x * q->x) - (p->y * q->y) - (p->z * q->z);
+    r->x = (p->w * q->x) + (p->x * q->w) + (p->y * q->z) - (p->z * q->y);
+    r->y = (p->w * q->y) + (p->y * q->w) + (p->z * q->x) - (p->x * q->z);
+    r->z = (p->w * q->z) + (p->z * q->w) + (p->x * q->y) - (p->y * q->x);
+    
+    if (r == &pqTmp) {
+        *pq = pqTmp;
+    }
+}
+
+void PSQUATMultiply(const register Quaternion* p, const register Quaternion* q, register Quaternion* pq) {
+    register f32 pxy, pzw;
+    register f32 qxy, qzw;
+    register f32 pnxy, pnzw, pnxny, pnznw;
+    register f32 rxy, rzw;
+    register f32 sxy, szw;
+    
+    asm {
+        psq_l pxy, 0x0(p), 0, 0
+        psq_l pzw, 0x8(p), 0, 0
+        psq_l qxy, 0x0(q), 0, 0
+        ps_neg pnxny, pxy
+        psq_l qzw, 0x8(q), 0, 0
+        ps_neg pnznw, pzw
+        ps_merge01 pnxy, pnxny, pxy
+        ps_muls0 rxy, pzw, qxy
+        ps_muls0 rzw, pnxny, qxy
+        ps_merge01 pnzw, pnznw, pzw
+        ps_muls1 szw, pnxy, qxy
+        ps_madds0 rxy, pnxy, qzw, rxy
+        ps_muls1 sxy, pnzw, qxy
+        ps_madds0 rzw, pnzw, qzw, rzw
+        ps_madds1 szw, pnznw, qzw, szw
+        ps_merge10 rxy, rxy, rxy
+        ps_madds1 sxy, pxy, qzw, sxy
+        ps_merge10 rzw, rzw, rzw
+        ps_add rxy, rxy, sxy
+        psq_st rxy, 0x0(pq), 0, 0
+        ps_sub rzw, rzw, szw
+        psq_st rzw, 0x8(pq), 0, 0
+    }
+}
+
+void C_QUATScale(const Quaternion* q, Quaternion* r, f32 scale) {
+    ASSERTMSGLINE(306, q, "QUATScale():  NULL QuaternionPtr 'q' ");
+    ASSERTMSGLINE(307, r, "QUATScale():  NULL QuaternionPtr 'r' ");
+
+    r->x = q->x * scale;
+    r->y = q->y * scale;
+    r->z = q->z * scale;
+    r->w = q->w * scale;
+}
+
+void PSQUATScale(const register Quaternion* q, register Quaternion* r, register f32 scale) {
+    register f32 rxy, rzw;
+    
+    asm {
+        psq_l rxy, 0(q), 0, 0
+        psq_l rzw, 8(q), 0, 0
+        ps_muls0 rxy, rxy, scale
+        psq_st rxy, 0(r), 0, 0
+        ps_muls0 rzw, rzw, scale
+        psq_st rzw, 8(r), 0, 0
+    }
+}
+
+f32 C_QUATDotProduct(const Quaternion* p, const Quaternion* q) {
+    ASSERTMSGLINE(357, p, "QUATDotProduct():  NULL QuaternionPtr 'p' ");
+    ASSERTMSGLINE(358, q, "QUATDotProduct():  NULL QuaternionPtr 'q' ");
+
+    return (q->x * p->x) + (q->y * p->y) + (q->z * p->z) + (q->w * p->w);
+}
+
+f32 PSQUATDotProduct(const register Quaternion* p, const register Quaternion* q) {
+    register f32 pxy, pzw, qxy, qzw, dp;
+
+    asm {
+        psq_l pxy, 0(p), 0, 0
+        psq_l qxy, 0(q), 0, 0
+        ps_mul dp, pxy, qxy
+        psq_l pzw, 8(p), 0, 0
+        psq_l qzw, 8(q), 0, 0
+        ps_madd dp, pzw, qzw, dp
+        ps_sum0 dp, dp, dp, dp
+    }
+
+    return dp;
+}
+
+void C_QUATNormalize(const Quaternion* src, Quaternion* unit) {
+    f32 mag;
+    ASSERTMSGLINE(407, src, "QUATNormalize():  NULL QuaternionPtr 'src' ");
+    ASSERTMSGLINE(408, unit, "QUATNormalize():  NULL QuaternionPtr 'unit' ");
+
+    mag = (src->x * src->x) + (src->y * src->y) + (src->z * src->z) + (src->w * src->w);
+    if (mag >= 0.00001f) {
+        mag = 1.0f / sqrtf(mag);
+    
+        unit->x = src->x * mag;
+        unit->y = src->y * mag;
+        unit->z = src->z * mag;
+        unit->w = src->w * mag;
+    } else {
+        unit->x = unit->y = unit->z = unit->w = 0.0f;    
+    }
+}
+
+void PSQUATNormalize(const register Quaternion* src, register Quaternion* unit) {
+    register f32 sxy, szw;
+    register f32 mag, rsqmag;
+    register f32 diff;
+    register f32 c_zero;
+    register f32 nwork0, nwork1;
+
+    register f32 epsilon = 0.00001f;
+    register f32 c_half = 0.5f;
+    register f32 c_three = 3.0f;
+
+    asm {
+        psq_l sxy, 0x0(src), 0, 0
+        ps_mul mag, sxy, sxy
+        psq_l szw, 0x8(src), 0, 0
+        ps_sub c_zero, epsilon, epsilon
+        ps_madd mag, szw, szw, mag
+        ps_sum0 mag, mag, mag, mag
+        frsqrte rsqmag, mag
+        ps_sub diff, mag, epsilon
+        fmul nwork0, rsqmag, rsqmag
+        fmul nwork1, rsqmag, c_half
+        fnmsub nwork0, nwork0, mag, c_three
+        fmul rsqmag, nwork0, nwork1
+        ps_sel rsqmag, diff, rsqmag, c_zero
+        ps_muls0 sxy, sxy, rsqmag
+        ps_muls0 szw, szw, rsqmag
+        psq_st sxy, 0x0(unit), 0, 0
+        psq_st szw, 0x8(unit), 0, 0
+    }
+}
+
+void C_QUATInverse(const Quaternion* src, Quaternion* inv) {
+    f32 mag, norminv;
+    ASSERTMSGLINE(498, src, "QUATInverse():  NULL QuaternionPtr 'src' ");
+    ASSERTMSGLINE(499, inv, "QUATInverse():  NULL QuaternionPtr 'inv' ");
+
+    mag = (src->x * src->x) + (src->y * src->y) + (src->z * src->z) + (src->w * src->w);
+    if (mag == 0.0f) {
+        mag = 1.0f;
+    }
+
+    norminv = 1.0f / mag;
+    inv->x = -src->x * norminv;
+    inv->y = -src->y * norminv;
+    inv->z = -src->z * norminv;
+    inv->w =  src->w * norminv;
+}
+
+void PSQUATInverse(const register Quaternion* src, register Quaternion* inv) {
+    register f32 sxy, szw;
+    register f32 izz, iww;
+    register f32 mag, nmag;
+    register f32 norminv, nninv;
+    register f32 nwork0;
+    register f32 c_two;
+    register f32 c_zero;
+    register f32 c_one = 1.0f;
+
+    asm {
+        psq_l sxy, 0x0(src), 0, 0
+        ps_mul mag, sxy, sxy
+        ps_sub c_zero, c_one, c_one
+        psq_l szw, 0x8(src), 0, 0
+        ps_madd mag, szw, szw, mag
+        ps_add c_two, c_one, c_one
+        ps_sum0 mag, mag, mag, mag
+        fcmpu cr0, mag, c_zero
+        beq L_00000948
+        fres norminv, mag
+        ps_neg nmag, mag
+        ps_nmsub nwork0, mag, norminv, c_two
+        ps_mul norminv, norminv, nwork0
+        b L_0000094C
+    L_00000948:
+        fmr norminv, c_one
+    L_0000094C:
+        ps_neg nninv, norminv
+        ps_muls1 iww, norminv, szw
+        ps_muls0 sxy, sxy, nninv
+        psq_st iww, 0xc(inv), 1, 0
+        ps_muls0 izz, szw, nninv
+        psq_st sxy, 0x0(inv), 0, 0
+        psq_st izz, 0x8(inv), 1, 0
+    }
+}
+
+void C_QUATDivide(const Quaternion* p, const Quaternion* q, Quaternion* r) {
+    Quaternion qtmp;
+    ASSERTMSGLINE(606, p, "QUATDivide():  NULL QuaternionPtr 'p' ");
+    ASSERTMSGLINE(607, q, "QUATDivide():  NULL QuaternionPtr 'q' ");
+    ASSERTMSGLINE(608, r, "QUATDivide():  NULL QuaternionPtr 'r' ");
+
+    C_QUATInverse(q, &qtmp);
+    C_QUATMultiply(&qtmp, p, r);
+}
+
+void PSQUATDivide(const Quaternion* p, const Quaternion* q, Quaternion* r) {
+    Quaternion qtmp;
+
+    PSQUATInverse(q, &qtmp);
+    PSQUATMultiply(&qtmp, p, r);
+}
+
+void C_QUATExp(const Quaternion* q, Quaternion* r)  {
+    f32 theta, scale;
+    ASSERTMSGLINE(643, q, "QUATExp():  NULL QuaternionPtr 'q' ");
+    ASSERTMSGLINE(644, r, "QUATExp():  NULL QuaternionPtr 'r' ");
+    ASSERTMSGLINE(647, q->w == 0.0f, "QUATExp():  'q' is not a pure quaternion. ");
+
+    theta = sqrtf((q->x * q->x) + (q->y * q->y) + (q->z * q->z));
+    scale = 1.0f;
+
+    if (theta > 0.00001f) {
+        scale = sinf(theta) / theta;
+    }
+    
+    r->x = scale * q->x;
+    r->y = scale * q->y;
+    r->z = scale * q->z;
+    r->w = cosf(theta);
+}
+
+void C_QUATLogN(const Quaternion* q, Quaternion* r) {
+    f32 theta, scale, mag;
+    ASSERTMSGLINE(676, q, "QUATLogN():  NULL QuaternionPtr 'q' ");
+    ASSERTMSGLINE(677, r, "QUATLogN():  NULL QuaternionPtr 'r' ");
+
+    scale = (q->x * q->x) + (q->y * q->y) + (q->z * q->z);
+
+#ifdef DEBUG
+    mag = scale + (q->z * q->z);
+    if (mag < 1.0f - 0.00001f || mag > 1.0f + 0.00001f || mag > 1.00001f) {}
+#endif
+
+    scale = sqrtf(scale);
+    theta = atan2f(scale, q->w);
+
+    if (scale > 0.0f) {
+        scale = theta / scale;
+    }
+
+    r->x = scale * q->x;
+    r->y = scale * q->y;
+    r->z = scale * q->z;
+    r->w = 0.0f;
+}
+
+void C_QUATMakeClosest(const Quaternion* q, const Quaternion* qto, Quaternion* r) {
+    f32 dot;
+    ASSERTMSGLINE(722, q, "QUATMakeClosest():  NULL QuaternionPtr 'q' ");
+    ASSERTMSGLINE(723, qto, "QUATMakeClosest():  NULL QuaternionPtr 'qto' ");
+    ASSERTMSGLINE(724, r, "QUATMakeClosest():  NULL QuaternionPtr 'r' ");
+    
+    dot = (q->x * qto->x) + (q->y * qto->y) + (q->z * qto->z) + (q->w * qto->w);
+    if (dot < 0.0f) {
+        r->x = -q->x;
+        r->y = -q->y;
+        r->z = -q->z;
+        r->w = -q->w;
+    } else {
+        *r = *q;
+    }
+}
+
+void C_QUATRotAxisRad(Quaternion* r, const Vec* axis, f32 rad) {
+    f32 half, sh, ch;
+    Vec nAxis;
+
+    ASSERTMSGLINE(758, r, "QUATRotAxisRad():  NULL QuaternionPtr 'r' ");
+    ASSERTMSGLINE(759, axis, "QUATRotAxisRad():  NULL VecPtr 'axis' ");
+
+    VECNormalize(axis, &nAxis);
+
+    half = rad * 0.5f;
+    sh = sinf(half);
+    ch = cosf(half);
+
+    r->x = sh * nAxis.x;
+    r->y = sh * nAxis.y;
+    r->z = sh * nAxis.z;
+    r->w = ch;
+}
+
+void C_QUATMtx(Quaternion* r, const Mtx m) {
+    f32 tr,s;
+    s32 i, j, k;
+    s32 nxt[3] = {1, 2, 0};
+    f32 q[3];
+
+    ASSERTMSGLINE(791, r, "QUATMtx():  NULL QuaternionPtr 'r' ");
+    ASSERTMSGLINE(792, m, "QUATMtx():  NULL MtxPtr 'm' ");
+
+    tr = m[0][0] + m[1][1] + m[2][2];
+    if (tr > 0.0f) {
+        s = sqrtf(tr + 1.0f);
+        r->w = s * 0.5f;
+        s = 0.5f / s;
+
+        r->x = (m[2][1] - m[1][2]) * s;
+        r->y = (m[0][2] - m[2][0]) * s;
+        r->z = (m[1][0] - m[0][1]) * s;
+    } else  {
+        i = 0;
+        if (m[1][1] > m[0][0]) {
+            i = 1;
+        }
+
+        if (m[2][2] > m[i][i]) {
+            i = 2;
+        }
+
+        j = nxt[i];
+        k = nxt[j];
+
+        s = sqrtf((m[i][i] - (m[j][j] + m[k][k])) + 1.0f);
+        q[i] = s * 0.5f;
+        
+        if (s != 0.0f) {
+            s = 0.5f / s;
+        }
+        
+        r->w = (m[k][j] - m[j][k]) * s;
+        q[j] = (m[i][j] + m[j][i]) * s;
+        q[k] = (m[i][k] + m[k][i]) * s;
+
+        r->x = q[0];
+        r->y = q[1];
+        r->z = q[2];
+    }
+}
+
+void C_QUATLerp(const Quaternion* p, const Quaternion* q, Quaternion* r, f32 t) {
+    ASSERTMSGLINE(842, p, "QUATLerp():  NULL QuaternionPtr 'p' ");
+    ASSERTMSGLINE(843, q, "QUATLerp():  NULL QuaternionPtr 'q' ");
+    ASSERTMSGLINE(844, r, "QUATLerp():  NULL QuaternionPtr 'r' ");
+
+    r->x = t * (q->x - p->x) + p->x;
+    r->y = t * (q->y - p->y) + p->y;
+    r->z = t * (q->z - p->z) + p->z;
+    r->w = t * (q->w - p->w) + p->w;
+}
+
+void C_QUATSlerp(const Quaternion* p, const Quaternion* q, Quaternion* r, f32 t) {
+    f32 theta, sin_th, cos_th;
+    f32 tp, tq;
+
+    ASSERTMSGLINE(869, p, "QUATSlerp():  NULL QuaternionPtr 'p' ");
+    ASSERTMSGLINE(870, q, "QUATSlerp():  NULL QuaternionPtr 'q' ");
+    ASSERTMSGLINE(871, r, "QUATSlerp():  NULL QuaternionPtr 'r' ");
+    
+    cos_th = p->x * q->x + p->y * q->y + p->z * q->z + p->w * q->w;
+    tq = 1.0f;
+
+    if (cos_th < 0.0f) {
+        cos_th = -cos_th;
+        tq = -tq;
+    }
+
+    if (cos_th <= 0.99999f) {
+        theta = acosf(cos_th);
+        sin_th = sinf(theta);
+
+        tp = sinf((1.0f - t) * theta) / sin_th;
+        tq *= sinf(t * theta) / sin_th;
+    } else {
+        tp = 1.0f - t;
+        tq *= t;
+    }
+
+    r->x = (tp * p->x) + (tq * q->x);
+    r->y = (tp * p->y) + (tq * q->y);
+    r->z = (tp * p->z) + (tq * q->z);
+    r->w = (tp * p->w) + (tq * q->w);
+}
+
+void C_QUATSquad(const Quaternion* p, const Quaternion* a, const Quaternion* b, const Quaternion* q, Quaternion* r, f32 t) {
+    Quaternion pq, ab;
+    f32 t2;
+
+    ASSERTMSGLINE(927, p, "QUATSquad():  NULL QuaternionPtr 'p' ");
+    ASSERTMSGLINE(928, a, "QUATSquad():  NULL QuaternionPtr 'a' ");
+    ASSERTMSGLINE(929, b, "QUATSquad():  NULL QuaternionPtr 'b' ");
+    ASSERTMSGLINE(930, q, "QUATSquad():  NULL QuaternionPtr 'q' ");
+    ASSERTMSGLINE(931, r, "QUATSquad():  NULL QuaternionPtr 'r' ");
+
+    t2 = 2.0f * t * (1.0f - t);
+    C_QUATSlerp(p, q, &pq, t);
+    C_QUATSlerp(a, b, &ab, t);
+    C_QUATSlerp(&pq, &ab, r, t2);
+}
+
+void C_QUATCompA(const Quaternion* qprev, const Quaternion* q, const Quaternion* qnext, Quaternion* a) {
+    Quaternion qm, qp, lqm, lqp, qpqm, exq;
+
+    ASSERTMSGLINE(958, qprev, "QUATCompA():  NULL QuaternionPtr 'qprev' ");
+    ASSERTMSGLINE(959, q, "QUATCompA():  NULL QuaternionPtr 'q' ");
+    ASSERTMSGLINE(960, qnext, "QUATCompA():  NULL QuaternionPtr 'qnext' ");
+    ASSERTMSGLINE(961, a, "QUATCompA():  NULL QuaternionPtr 'a' ");
+
+    C_QUATDivide(qprev, q, &qm);
+    C_QUATLogN(&qm, &lqm);
+    C_QUATDivide(qnext, q, &qp);
+    C_QUATLogN(&qp, &lqp);
+    C_QUATAdd(&lqp, &lqm, &qpqm);
+    C_QUATScale(&qpqm, &qpqm, -0.25f);
+    C_QUATExp(&qpqm, &exq);
+    C_QUATMultiply(q, &exq, a);
 }

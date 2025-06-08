@@ -260,7 +260,7 @@ static int water_check(npc_ne_class* i_this, f32 param_1) {
     vec.z = i_this->current.pos.z;
     lin_chk.Set(&i_this->current.pos, &vec, i_this);
     if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-        vec.y = lin_chk.i_GetCross().y - 10.0f;
+        vec.y = lin_chk.GetCross().y - 10.0f;
     }
     gnd_chk_spl.SetPos(&vec);
     i_this->mWaterY = dComIfG_Bgsp().GroundCross(&gnd_chk_spl);
@@ -294,13 +294,13 @@ static s16 climb_angle_get(npc_ne_class* i_this) {
     vec2 += i_this->current.pos;
     lin_chk.Set(&vec1, &vec2, i_this);
     if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-        i_this->mClimbPos = lin_chk.i_GetCross();
+        i_this->mClimbPos = lin_chk.GetCross();
         vec3.z = 20.0f;
         MtxPosition(&vec3, &vec2);
         vec2 += i_this->current.pos;
         lin_chk.Set(&vec1, &vec2, i_this);
         if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-            vec2 = lin_chk.i_GetCross();
+            vec2 = lin_chk.GetCross();
             vec3 = vec2 - i_this->mClimbPos;
             return -cM_atan2s(vec3.y, JMAFastSqrt(vec3.x * vec3.x + vec3.z * vec3.z));
         }
@@ -802,8 +802,8 @@ static cXyz ground_search(npc_ne_class* i_this) {
 static void* s_fish_sub(void* i_proc, void* i_this) {
     npc_ne_class* _this = static_cast<npc_ne_class*>(i_this);
     if (fopAc_IsActor(i_proc) && fopAcM_GetName(i_proc) == PROC_MG_FISH) {
-        mg_fish_class* fish = static_cast<mg_fish_class*>(i_proc);
-        if (fish->field_0x5b6 == 0x35 && fish->field_0x5b8 >= 10) {
+        mg_fish_class* fish = (mg_fish_class*)i_proc;
+        if (fish->mCurAction == 0x35 && fish->mActionPhase >= 10) {
             _this->mFishID = fopAcM_GetID(fish);
             return i_proc;
         }
@@ -1330,7 +1330,7 @@ static void npc_ne_pathwalk(npc_ne_class* i_this) {
             i_this->mPathDir = 1;
             i_this->mPathPointNo = 1;
         }
-        dStage_dPnt_c* point = i_this->mpPath->m_points;
+        dPnt* point = i_this->mpPath->m_points;
         point += i_this->mPathPointNo;
         i_this->mTargetPos.x = point->m_position.x + cM_rndFX(50.0f);
         i_this->mTargetPos.y = point->m_position.y;
@@ -1631,7 +1631,7 @@ static BOOL npc_ne_home(npc_ne_class* i_this) {
     case 4:
         i_this->current.angle.x = 0x3000;
         target_speed = l_HIO.mRunSpeed;
-        if (i_this->mTimers[1] == 0 && i_this->mAcch.i_ChkGroundHit()) {
+        if (i_this->mTimers[1] == 0 && i_this->mAcch.ChkGroundHit()) {
             i_this->mMode = 1;
             anm_init(i_this, npc_ne_class::ANM_RUN, 2.0f, 2, 1.5f);
         }
@@ -1794,8 +1794,8 @@ static s16 wall_angle_get(npc_ne_class* i_this) {
         vec3[i] += vec2;
         lin_chk.Set(&vec2, &vec3[i], _this);
         if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-            i_this->mClimbPos = lin_chk.i_GetCross();
-            vec3[i] = lin_chk.i_GetCross();
+            i_this->mClimbPos = lin_chk.GetCross();
+            vec3[i] = lin_chk.GetCross();
         } else {
             return 1;
         }
@@ -1830,7 +1830,7 @@ static void search_ground_1(npc_ne_class* i_this) {
         vec2 += vec1;
         lin_chk.Set(&vec1, &vec2, _this);
         if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-            vec2 = lin_chk.i_GetCross();
+            vec2 = lin_chk.GetCross();
             vec3.set(0.0f, var_y, var_z);
             MtxPosition(&vec3, &vec1);
             vec1 += vec2;
@@ -1838,8 +1838,8 @@ static void search_ground_1(npc_ne_class* i_this) {
             vec2.y -= var_y + 20.0f;
             lin_chk.Set(&vec1, &vec2, _this);
             if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-                pos[i] = lin_chk.i_GetCross();
-                vec1 = lin_chk.i_GetCross();
+                pos[i] = lin_chk.GetCross();
+                vec1 = lin_chk.GetCross();
                 vec1.y += 5.0f;
                 vec3.set(0.0f, 0.0f, 200.0f);
                 MtxPosition(&vec3, &vec2);
@@ -1890,7 +1890,7 @@ static BOOL search_ground_2(npc_ne_class* i_this, s16 i_wallAngle) {
     vec2.y -= 200.0f;
     lin_chk.Set(&vec1, &vec2, _this);
     if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-        i_this->mTargetPos = lin_chk.i_GetCross();
+        i_this->mTargetPos = lin_chk.GetCross();
         return true;
     } else {
         return false;
@@ -2114,7 +2114,7 @@ static void npc_ne_drop(npc_ne_class* i_this) {
 
     case 1:
         i_this->current.angle.x = 0x3000;
-        if (i_this->mAcch.i_ChkGroundHit()) {
+        if (i_this->mAcch.ChkGroundHit()) {
             i_this->shape_angle.x = 0;
             i_this->current.angle.x = 0;
             i_this->mpMorf->setPlaySpeed(2.0f);
@@ -2167,7 +2167,7 @@ static void npc_ne_s_drop(npc_ne_class* i_this) {
         } else {
             max_speed_step = target_speed = 2.0f;
         }
-        if (i_this->mTimers[0] == 0 && i_this->mAcch.i_ChkGroundHit()) {
+        if (i_this->mTimers[0] == 0 && i_this->mAcch.ChkGroundHit()) {
             anm_init(i_this, npc_ne_class::ANM_JUMP_END, 3.0f, 0, 1.0f);
             i_this->mpMorf->setFrame(4.0f);
             i_this->mMode++;
@@ -2251,7 +2251,7 @@ static BOOL npc_ne_carry(npc_ne_class* i_this) {
     pos.y += 2.0f;
     lin_chk.Set(&player->eyePos, &pos, _this);
     if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-        _this->current.pos = lin_chk.i_GetCross();
+        _this->current.pos = lin_chk.GetCross();
     }
 
     return ret;
@@ -2433,7 +2433,7 @@ static void action(npc_ne_class* i_this) {
         }
 
         if (i_this->mResName != "Npc_net") {
-            if (i_this->mMessageState == 1 && daPy_py_c::i_checkNowWolf()
+            if (i_this->mMessageState == 1 && daPy_py_c::checkNowWolf()
                                          && i_this->mDistToTarget < 300.0f) {
                 i_this->mAction = npc_ne_class::ACT_MESSAGE;
                 i_this->mMode = 0;
@@ -2644,7 +2644,7 @@ static void action(npc_ne_class* i_this) {
                 vec1 = i_this->mLookTarget - i_this->current.pos;
             } else {
                 vec1 = player->eyePos - i_this->current.pos;
-                if (!daPy_py_c::i_checkNowWolf()) {
+                if (!daPy_py_c::checkNowWolf()) {
                     vec1.y += i_this->mBaseScale.z * -40.0f;
                 }
             }
@@ -2756,9 +2756,9 @@ static void demo_camera(npc_ne_class* i_this) {
         break;
 
     case 1:
-        if (!_this->eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(_this, 2, 0xffff, 0);
-            _this->eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+            _this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
 
@@ -2820,9 +2820,9 @@ static void demo_camera(npc_ne_class* i_this) {
         break;
 
     case 10:
-        if (!_this->eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(_this, 2, 0xffff, 0);
-            _this->eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+            _this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
 
@@ -2852,7 +2852,7 @@ static void demo_camera(npc_ne_class* i_this) {
         }
 
         if (i_this->mDemoCounter <= 38) {
-            mg_fish_class* fish = static_cast<mg_fish_class*>(fopAcM_SearchByID(i_this->mFishID));
+            mg_fish_class* fish = (mg_fish_class*)fopAcM_SearchByID(i_this->mFishID);
             if (i_this->mDemoCounter == 0) {
                 vec.x = 0.0f;
                 vec.y = 0.0f;
@@ -2860,10 +2860,10 @@ static void demo_camera(npc_ne_class* i_this) {
                 MtxPosition(&vec, &i_this->mDemoFishPos);
                 i_this->mDemoFishPos += i_this->current.pos;
             }
-            fish->current.pos.x = i_this->mDemoFishPos.x;
-            fish->current.pos.z = i_this->mDemoFishPos.z;
+            fish->actor.current.pos.x = i_this->mDemoFishPos.x;
+            fish->actor.current.pos.z = i_this->mDemoFishPos.z;
             if (i_this->mDemoCounter >= 25) {
-                cLib_addCalc2(&fish->current.pos.y, i_this->mAcch.GetGroundH() + 10.0f,
+                cLib_addCalc2(&fish->actor.current.pos.y, i_this->mAcch.GetGroundH() + 10.0f,
                               0.2f, 30.0f);
             }
             if (i_this->mDemoCounter == 38) {
@@ -2911,9 +2911,9 @@ static void demo_camera(npc_ne_class* i_this) {
                     vec.z = 120.0f;
                     MtxPosition(&vec, &i_this->mCameraEye2);
                     i_this->mCameraEye2 += player->current.pos;
-                    player->i_changeDemoParam2(2);
+                    player->changeDemoParam2(2);
                 } else if (i_this->mDemoCounter == 120) {
-                    player->i_changeDemoParam2(0);
+                    player->changeDemoParam2(0);
                 }
             }
         }
@@ -3004,14 +3004,14 @@ static int message(npc_ne_class* i_this) {
             i_this->mIsTalking = 1;
         }
 
-        if (i_this->mMessageState == 2 && i_this->mFlowID != -1 && daPy_py_c::i_checkNowWolf() &&
+        if (i_this->mMessageState == 2 && i_this->mFlowID != -1 && daPy_py_c::checkNowWolf() &&
                                 !fopAcM_otherBgCheck(daPy_getLinkPlayerActorClass(), i_this)) {
             fopAcM_OnStatus(i_this, 0);
             cLib_onBit<u32>(i_this->attention_info.flags, 0xa);
             if (i_this->mResName == "Npc_net") {
                 cLib_onBit<u32>(i_this->attention_info.flags, 0xc00000);
             }
-            i_this->eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
+            i_this->eventInfo.onCondition(dEvtCnd_CANTALK_e);
         } else {
             fopAcM_OffStatus(i_this, 0);
             cLib_offBit<u32>(i_this->attention_info.flags, 0xc0000a);
@@ -3128,15 +3128,15 @@ static int daNpc_Ne_Execute(npc_ne_class* i_this) {
     }
 
     if (i_this->mFishID != -1 && i_this->field_0xcc0) {
-        mg_fish_class* fish = static_cast<mg_fish_class*>(fopAcM_SearchByID(i_this->mFishID));
+        mg_fish_class* fish = (mg_fish_class*)fopAcM_SearchByID(i_this->mFishID);
         PSMTXCopy(model->getAnmMtx(4), mDoMtx_stack_c::get());
         mDoMtx_stack_c::ZrotM(-19000);
         mDoMtx_stack_c::scaleM(0.5f, 0.5f, 0.5f);
         mDoMtx_stack_c::transM(5.0f, 35.0f, 15.0f);
         fish->mpMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
         int ivar3 = cM_ssin(g_Counter.mTimer * 15000) * 1500.0f;
-        for (int i = 0; i <= fish->field_0x72c; i++) {
-            fish->field_0x718[i] = ivar3;
+        for (int i = 0; i <= fish->mNumJoints; i++) {
+            fish->jointYaws1[i] = ivar3;
         }
         for (u16 i = 1; i < fish->mpMorf->getModel()->getModelData()->getJointNum(); i++) {
             fish->mpMorf->getModel()->getModelData()
@@ -3144,8 +3144,8 @@ static int daNpc_Ne_Execute(npc_ne_class* i_this) {
         }
         fish->mpMorf->play(NULL, 0, 0);
         fish->mpMorf->modelCalc();
-        fish->current.pos = i_this->eyePos;
-        fish->eyePos = i_this->eyePos;
+        fish->actor.current.pos = i_this->eyePos;
+        fish->actor.eyePos = i_this->eyePos;
     }
 
     if (i_this->current.pos.y - i_this->home.pos.y < -5000.0f && fopAcM_CheckCondition(i_this, 4)) {

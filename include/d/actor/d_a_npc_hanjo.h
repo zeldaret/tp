@@ -121,11 +121,11 @@ public:
     /* 809F9D9C */ void reset();
     /* 809F9FCC */ void afterJntAnm(int);
     /* 809FA050 */ void setParam();
-    /* 809FA1C4 */ bool checkChangeEvt();
+    /* 809FA1C4 */ BOOL checkChangeEvt();
     /* 809FA3B8 */ void setAfterTalkMotion();
     /* 809FA45C */ void srchActors();
-    /* 809FA55C */ bool evtTalk();
-    /* 809FA5FC */ bool evtCutProc();
+    /* 809FA55C */ BOOL evtTalk();
+    /* 809FA5FC */ BOOL evtCutProc();
     /* 809FA6C4 */ void action();
     /* 809FA88C */ void beforeMove();
     /* 809FAABC */ void afterMoved();
@@ -179,7 +179,7 @@ public:
     static dCcD_SrcGObjInf const mStoneCcDObjInfo;
     static char* mCutNameList[6];
     static cutFunc mCutList[6];
-    static u8 mStoneCcDSph[64];
+    static dCcD_SrcSph mStoneCcDSph;
 private:
     /* 0x0E40 */ int field_0x0E40;
     /* 0x0E44 */ J3DModel* mModel1;

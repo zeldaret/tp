@@ -1,7 +1,7 @@
 #ifndef JGEOMETRY_H
 #define JGEOMETRY_H
 
-#include "dolphin/mtx/vec.h"
+#include "dolphin/mtx.h"
 #include "math.h"
 #include "JSystem/JMath/JMath.h"
 
@@ -38,7 +38,8 @@ struct TUtil<f32> {
             return x;
         }
         f32 root = __frsqrte(x);
-        return 0.5f * root * (3.0f - x * (root * root));
+        root = 0.5f * root * (3.0f - x * (root * root));
+        return root;
     }
 };
 
@@ -46,8 +47,8 @@ template<>
 struct TUtil<double> {
     static inline double epsilon() { return 32.0f * FLT_EPSILON; }
     static inline double one() { return 1.0; }
-    static inline double atan2(double x, double y) { return atan2(x, y); }
-    static inline double asin(double x) { return asin(x); }
+    static inline double atan2(double x, double y) { return ::atan2(x, y); }
+    static inline double asin(double x) { return ::asin(x); }
     static inline double halfPI() { return 1.5707963267948966; }
 };
 
@@ -117,12 +118,14 @@ inline void setTVec3f(const f32* vec_a, f32* vec_b) {
     register f32 a_x;
     register f32 b_x;
 
+#ifdef __MWERKS__
     asm {
         psq_l a_x, 0(v_a), 0, 0
         lfs b_x, 8(v_a)
         psq_st a_x, 0(v_b), 0, 0
         stfs b_x, 8(v_b)
     };
+#endif
 }
 
 // Until we figure out TVec3 ctors
@@ -135,6 +138,24 @@ inline float fsqrt_step(float mag) {
     return 0.5f * root * (3.0f - mag * (root * root));
 }
 
+inline void mulInternal(register const f32* a, register const f32* b, register float* dst) {
+    register f32 a_x_y;
+    register f32 b_x_y;
+    register f32 x_y;
+    register f32 za;
+    register f32 zb;
+    register f32 z;
+#ifdef __MWERKS__
+    asm {
+        psq_l  a_x_y, 0(a), 0, 0
+        psq_l  b_x_y, 0(b), 0, 0
+        ps_mul x_y, a_x_y, b_x_y
+        psq_st x_y, 0(dst), 0, 0
+    };
+    dst[2] = a[2] * b[2];
+#endif
+}
+
 template <>
 struct TVec3<f32> : public Vec {
     inline TVec3(const Vec& i_vec) {
@@ -145,7 +166,8 @@ struct TVec3<f32> : public Vec {
         setTVec3f(&i_vec.x, &x);
     }
 
-    TVec3(f32 x, f32 y, f32 z) {
+    template<class U>
+    TVec3(U x, U y, U z) {
         set(x, y, z);
     }
 
@@ -154,7 +176,8 @@ struct TVec3<f32> : public Vec {
     operator Vec*() { return (Vec*)&x; }
     operator const Vec*() const { return (Vec*)&x; }
 
-    void set(const TVec3<f32>& other) {
+    template<class U>
+    void set(const TVec3<U>& other) {
         x = other.x;
         y = other.y;
         z = other.z;
@@ -166,38 +189,21 @@ struct TVec3<f32> : public Vec {
         z = other.z;
     }
 
-    void set(f32 x_, f32 y_, f32 z_) {
+    template<class U>
+    void set(U x_, U y_, U z_) {
         x = x_;
         y = y_;
         z = z_;
     }
 
     inline void add(const TVec3<f32>& b) {
-        C_VECAdd((Vec*)&x, (Vec*)&b.x, (Vec*)&x);
+        JMathInlineVEC::C_VECAdd((Vec*)&x, (Vec*)&b.x, (Vec*)&x);
     }
 
     void zero() { x = y = z = 0.0f; }
 
     void mul(const TVec3<f32>& a, const TVec3<f32>& b) {
-        register f32* dst = &x;
-        const register f32* srca = &a.x;
-        const register f32* srcb = &b.x;
-        register f32 a_x_y;
-        register f32 b_x_y;
-        register f32 x_y;
-        register f32 za;
-        register f32 zb;
-        register f32 z;
-        asm {
-            psq_l  a_x_y, 0(srca), 0, 0
-            psq_l  b_x_y, 0(srcb), 0, 0
-            ps_mul x_y, a_x_y, b_x_y
-            psq_st x_y, 0(dst), 0, 0
-            lfs    za,   8(srca)
-            lfs    zb,   8(srcb)
-            fmuls  z, za, zb
-            stfs   z,   8(dst)
-        };
+        mulInternal(&a.x, &b.x, &this->x);
     }
 
     inline void mul(const TVec3<f32>& a) {
@@ -232,26 +238,22 @@ struct TVec3<f32> : public Vec {
     // }
 
     f32 squared() const {
-        return C_VECSquareMag((Vec*)&x);
+        return JMathInlineVEC::C_VECSquareMag((Vec*)&x);
     }
 
-    void normalize() {
+    f32 normalize() {
         f32 sq = squared();
-        if (sq <= FLT_EPSILON * 32.0f) {
-            return;
+        if (sq <= TUtil<f32>::epsilon()) {
+            return 0.0f;
         }
-        f32 norm;
-        if (sq <= 0.0f) {
-            norm = sq;
-        } else {
-            norm = fsqrt_step(sq);
-        }
-        scale(norm);
+        f32 inv_norm = TUtil<f32>::inv_sqrt(sq);
+        scale(inv_norm);
+        return inv_norm * sq; 
     }
 
     void normalize(const TVec3<f32>& other) {
         f32 sq = other.squared();
-        if (sq <= FLT_EPSILON * 32.0f) {
+        if (sq <= TUtil<f32>::epsilon()) {
             zero();
             return;
         }
@@ -273,6 +275,7 @@ struct TVec3<f32> : public Vec {
         register f32 x_y;
         register f32* dst = &x;
         register f32 zres;
+#ifdef __MWERKS__
         asm {
             psq_l    x_y, 0(dst),  0, 0
             psq_l    z,   8(dst),  1, 0
@@ -281,6 +284,7 @@ struct TVec3<f32> : public Vec {
             ps_muls0 zres,       z, sc
             psq_st   zres,  8(dst),  1, 0
         };
+#endif
     }
 
     void scale(register f32 sc, const TVec3<f32>& other) {
@@ -289,6 +293,7 @@ struct TVec3<f32> : public Vec {
         register f32 x_y;
         register f32* dst = &x;
         register f32 zres;
+#ifdef __MWERKS__
         asm {
             psq_l    x_y, 0(src),  0, 0
             psq_l    z,   8(src),  1, 0
@@ -297,6 +302,7 @@ struct TVec3<f32> : public Vec {
             ps_muls0 zres,       z, sc
             psq_st   zres,  8(dst),  1, 0
         };
+#endif
     }
 
     void scaleAdd(register f32 sc, const TVec3<f32>& a, const TVec3<f32>& b) {
@@ -308,6 +314,7 @@ struct TVec3<f32> : public Vec {
         const register f32* src = &x;
         register f32 x_y;
         register f32 z;
+#ifdef __MWERKS__
         asm {
             psq_l  x_y, 0(src), 0, 0
             ps_neg x_y, x_y
@@ -316,6 +323,7 @@ struct TVec3<f32> : public Vec {
             fneg   z,   z
             stfs   z,   8(rdst)
         };
+#endif
     }
 
     void negate() {
@@ -323,33 +331,29 @@ struct TVec3<f32> : public Vec {
     }
 
     void sub(const TVec3<f32>& b) {
-        C_VECSubtract((Vec*)&x, (Vec*)&b.x, (Vec*)&x);
+        JMathInlineVEC::C_VECSubtract((Vec*)&x, (Vec*)&b.x, (Vec*)&x);
     }
 
     void sub(const TVec3<f32>& a, const TVec3<f32>& b) {
-        C_VECSubtract((Vec*)&a.x, (Vec*)&b.x, (Vec*)&x);
+        JMathInlineVEC::C_VECSubtract((Vec*)&a.x, (Vec*)&b.x, (Vec*)&x);
     }
 
     bool isZero() const {
-        return squared() <= 32.0f * FLT_EPSILON;
+        return squared() <= TUtil<f32>::epsilon();
     }
 
     void cross(const TVec3<f32>& a, const TVec3<f32>& b) {
         VECCrossProduct(a, b, *this);
     }
     
-    void setLength(f32 len) {
+    f32 setLength(f32 len) {
         f32 sq = squared();
-        if (sq <= FLT_EPSILON * 32.0f) {
-            return;
+        if (sq <= TUtil<f32>::epsilon()) {
+            return 0.0f;
         }
-        f32 norm;
-        if (sq <= 0.0f) {
-            norm = sq;
-        } else {
-            norm = fsqrt_step(sq);
-        }
-        scale(norm * len);
+        f32 inv_norm = TUtil<f32>::inv_sqrt(sq);
+        scale(inv_norm * len);
+        return inv_norm * sq;
     }
 
     f32 setLength(const TVec3<f32>& other, f32 len) {
@@ -364,23 +368,7 @@ struct TVec3<f32> : public Vec {
     }
 
     f32 dot(const TVec3<f32>& other) const {
-        register const f32* pThis = &x;
-        register const f32* pOther = &other.x;
-        register f32 res;
-        register f32 thisyz;
-        register f32 otheryz;
-        register f32 otherxy;
-        register f32 thisxy;
-        asm {
-            psq_l thisyz, 4(pThis), 0, 0
-            psq_l otheryz, 4(pOther), 0, 0
-            ps_mul thisyz, thisyz, otheryz
-            psq_l thisxy, 0(pThis), 0, 0
-            psq_l otherxy, 0(pOther), 0, 0
-            ps_madd otheryz, thisxy, otherxy, thisyz
-            ps_sum0 res, otheryz, thisyz, thisyz
-        };
-        return res;
+        return JMathInlineVEC::C_VECDotProduct(this, &other);
     }
 
     void cubic(const TVec3<f32>& param_1, const TVec3<f32>& param_2, const TVec3<f32>& param_3,
@@ -438,15 +426,15 @@ struct TVec2 {
         return (x >= other.x) && (y >= other.y) ? true : false;
     }
 
-    f32 dot(const TVec2<T>& other) {
+    f32 dot(const TVec2<T>& other) const {
         return x * other.x + y * other.y;
     }
 
-    f32 squared() {
+    f32 squared() const {
         return dot(*this);
     }
 
-    f32 length() {
+    f32 length() const {
         f32 sqr = squared();
         if (sqr <= 0.0f) {
             return sqr;
@@ -462,7 +450,7 @@ struct TVec2 {
 template <class T>
 struct TBox {
     TBox() : i(), f() {}
-    TBox(const TBox& other) : i(other.f), f(other.y) {}
+    TBox(const TBox& other) : i(other.i), f(other.f) {}
 
     T i, f;
 };
@@ -510,7 +498,7 @@ struct TBox2 : TBox<TVec2<T> > {
 
     void set(const TBox2& other) { set(other.i, other.f); }
     void set(const TVec2<f32>& i, const TVec2<f32>& f) { this->i.set(i), this->f.set(f); }
-    void set(f32 x0, f32 y0, f32 x1, f32 y1) { i.set(x0, y0); f.set(x1, y1); }
+    void set(f32 x0, f32 y0, f32 x1, f32 y1) { this->i.set(x0, y0); this->f.set(x1, y1); }
 };
 
 // clang-format on

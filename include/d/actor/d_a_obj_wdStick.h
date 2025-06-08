@@ -92,6 +92,8 @@ public:
     /* 80D31B4C */ daWdStick_HIO_c();
     /* 80D34030 */ virtual ~daWdStick_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x04 */ u8 field_0x04;
     /* 0x05 */ u8 field_0x05;
     /* 0x06 */ s16 field_0x06;

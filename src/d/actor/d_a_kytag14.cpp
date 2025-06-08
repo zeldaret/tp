@@ -42,8 +42,7 @@ static int daKytag14_Execute(kytag14_class* i_this) {
     }
 
     if (i_this->mSwitchNo1 != 0xFF) {
-        s32 stayNo = dComIfGp_roomControl_getStayNo();
-        if (dComIfGs_isSwitch(i_this->mSwitchNo1, stayNo)) {
+        if (dComIfGs_isSwitch(i_this->mSwitchNo1, dComIfGp_roomControl_getStayNo())) {
             switch1_set = true;
         } else {
             switch1_set = false;
@@ -51,8 +50,7 @@ static int daKytag14_Execute(kytag14_class* i_this) {
     }
 
     if (i_this->mSwitchNo2 != 0xFF) {
-        s32 stayNo = dComIfGp_roomControl_getStayNo();
-        if (!dComIfGs_isSwitch(i_this->mSwitchNo2, stayNo)) {
+        if (!dComIfGs_isSwitch(i_this->mSwitchNo2, dComIfGp_roomControl_getStayNo())) {
             switch2_unset = true;
         } else {
             switch2_unset = false;

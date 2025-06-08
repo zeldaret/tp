@@ -1,13 +1,13 @@
 #ifndef OS_DOLPHIN_GDEV_STUBS_H
 #define OS_DOLPHIN_GDEV_STUBS_H
 
-#include "amcstubs/AmcExi2Stubs.h"
+#include <dolphin/amc/AmcExi2Comm.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-int gdev_cc_initialize(void* inputPendingPtrRef, AmcEXICallback monitorCallback);
+int gdev_cc_initialize(void* inputPendingPtrRef, EXICallback monitorCallback);
 int gdev_cc_shutdown();
 int gdev_cc_open();
 int gdev_cc_close();

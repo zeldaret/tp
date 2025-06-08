@@ -177,7 +177,7 @@ static BOOL path_check(e_s1_class* i_this) {
     start_pos = a_this->current.pos;
     start_pos.y += WREG_F(0) + 10.0f;
 
-    dStage_dPnt_c* point = i_this->mpPath->m_points;
+    dPnt* point = i_this->mpPath->m_points;
     for (int i = 0; i < i_this->mpPath->m_num; i++, point++) {
         if (i < 255) {
             end_pos.x = point->m_position.x;
@@ -346,7 +346,7 @@ static void damage_check(e_s1_class* i_this) {
                         i_this->field_0x6ac = TREG_F(1) + 65.0f;
                     }
                 } else {
-                    if (i_this->mAtInfo.mAttackPower >= 60 && daPy_py_c::i_checkNowWolf()) {
+                    if (i_this->mAtInfo.mAttackPower >= 60 && daPy_py_c::checkNowWolf()) {
                         i_this->mAtInfo.field_0x18 = 36;
                     } else {
                         i_this->mAtInfo.field_0x18 = 0;
@@ -365,7 +365,7 @@ static void damage_check(e_s1_class* i_this) {
 
                     if (i_this->mAtInfo.mAttackPower < 20) {
                         i_this->field_0x6ac = TREG_F(0) + 20.0f;
-                    } else if (i_this->mAtInfo.mAttackPower >= 60 && daPy_py_c::i_checkNowWolf()) {
+                    } else if (i_this->mAtInfo.mAttackPower >= 60 && daPy_py_c::checkNowWolf()) {
                         i_this->field_0x6ac = 0.0f;
                         a_this->health = 0;
 
@@ -389,7 +389,7 @@ static void damage_check(e_s1_class* i_this) {
                     }
 
                     if (!l_no_fail) {
-                        if (i_this->mAtInfo.mAttackPower >= 60 && daPy_py_c::i_checkNowWolf()) {
+                        if (i_this->mAtInfo.mAttackPower >= 60 && daPy_py_c::checkNowWolf()) {
                             i_this->mAction = ACT_FAIL_WAIT;
                             i_this->mHitInvincibilityTimer = 10;
                             i_this->mSound.startCreatureVoice(Z2SE_EN_NS_V_DEATH, -1);
@@ -480,7 +480,7 @@ static void e_s1_wait(e_s1_class* i_this) {
                 i_this->mTargetAngle = a_this->current.angle.y + var_r27;
                 i_this->mTimers[0] = cM_rndF(100.0f) + 100.0f;
                 i_this->mMode = 1;
-                anm_init(i_this, ANM_WALK, 15.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+                anm_init(i_this, ANM_WALK, 15.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             }
         }
         break;
@@ -489,12 +489,12 @@ static void e_s1_wait(e_s1_class* i_this) {
         if (i_this->mTimers[0] == 0 || var_f30 > i_this->field_0x3068) {
             i_this->mMode = 0;
             i_this->mTimers[0] = cM_rndF(100.0f) + 100.0f;
-            anm_init(i_this, ANM_WAIT_02, 15.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_WAIT_02, 15.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
         break;
     case 2:
         i_this->mMode = 3;
-        anm_init(i_this, ANM_WALK, 15.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, ANM_WALK, 15.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         /* fallthrough */
     case 3:
         angle_step = 0x100;
@@ -530,14 +530,13 @@ static void e_s1_roof(e_s1_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_STICK, 1.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, ANM_STICK, 1.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode = 1;
         /* fallthrough */
     case 1:
         roof_wait = true;
         if (i_this->mSwBit != 0xFF) {
-            s32 room_no = dComIfGp_roomControl_getStayNo();
-            if (dComIfGs_isSwitch(i_this->mSwBit, room_no)) {
+            if (dComIfGs_isSwitch(i_this->mSwBit, dComIfGp_roomControl_getStayNo())) {
                 i_this->mMode = 2;
             }
         } else if (fopAcM_searchPlayerDistanceXZ(a_this) < i_this->mPrm1 * 100.0f) {
@@ -553,8 +552,8 @@ static void e_s1_roof(e_s1_class* i_this) {
         if (i_this->mTimers[0] == 0) {
             i_this->mDrawShadow = true;
 
-            if (i_this->mAcch.i_ChkGroundHit()) {
-                anm_init(i_this, ANM_DOWN, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            if (i_this->mAcch.ChkGroundHit()) {
+                anm_init(i_this, ANM_DOWN, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
                 i_this->mMode = 4;
                 i_this->mSound.startCreatureSound(Z2SE_EN_NS_DOSA, 0, -1);
             }
@@ -584,7 +583,7 @@ static void e_s1_fight_run(e_s1_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_DASH_01, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, ANM_DASH_01, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mpMorf->setFrame(cM_rndF(10.0f));
         i_this->mMode = 1;
         /* fallthrough */
@@ -614,18 +613,18 @@ static void e_s1_fight(e_s1_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_WAIT_01, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, ANM_WAIT_01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mTimers[0] = 30.0f + cM_rndF(30.0f);
         i_this->mMode = 1;
         break;
     case 1:
         if (i_this->mTimers[0] == 0) {
             if (cM_rndF(1.0f) < 0.3333f) {
-                anm_init(i_this, ANM_ATTACK, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                anm_init(i_this, ANM_ATTACK, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
                 i_this->mSound.startCreatureVoice(Z2SE_EN_NS_V_ATTACK, -1);
                 i_this->mIsSlowAttack = 0;
             } else {
-                anm_init(i_this, ANM_ATTACK_02, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                anm_init(i_this, ANM_ATTACK_02, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
                 i_this->mSound.startCreatureVoice(Z2SE_EN_NS_V_ATTACK2, -1);
                 i_this->mIsSlowAttack = 1;
             }
@@ -672,7 +671,7 @@ static void e_s1_bibiri(e_s1_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_SHRINK, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f + cM_rndFX(0.1f));
+        anm_init(i_this, ANM_SHRINK, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f + cM_rndFX(0.1f));
         i_this->mpMorf->setFrame(cM_rndF(15.0f));
         i_this->mTimers[0] = l_HIO.mReactionTime + cM_rndF(10.0f);
         i_this->mMode = 1;
@@ -685,7 +684,7 @@ static void e_s1_bibiri(e_s1_class* i_this) {
         }
 
         if (i_this->mTimers[0] == 0) {
-            anm_init(i_this, ANM_SHRINK_DOWN, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_SHRINK_DOWN, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mMode = 2;
         }
         break;
@@ -709,7 +708,7 @@ static void e_s1_damage(e_s1_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_DAMAGED, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_DAMAGED, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode = 1;
         break;
     case 1:
@@ -736,7 +735,7 @@ static void e_s1_path(e_s1_class* i_this) {
     switch (i_this->mMode) {
     case 0:
         i_this->mMode = 1;
-        anm_init(i_this, ANM_WALK, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, ANM_WALK, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         /* fallthrough */
     case 1:
         i_this->mCurrentPathPointNo += i_this->mPathDirection;
@@ -754,7 +753,7 @@ static void e_s1_path(e_s1_class* i_this) {
         }
 
         {
-            dStage_dPnt_c* point = &i_this->mpPath->m_points[i_this->mCurrentPathPointNo];
+            dPnt* point = &i_this->mpPath->m_points[i_this->mCurrentPathPointNo];
             i_this->mPathTargetPos.x = point->m_position.x;
             i_this->mPathTargetPos.y = point->m_position.y;
             i_this->mPathTargetPos.z = point->m_position.z;
@@ -773,7 +772,7 @@ static void e_s1_path(e_s1_class* i_this) {
         if (JMAFastSqrt((sp14.x * sp14.x) + (sp14.z * sp14.z)) < 4.0f * l_HIO.mMoveSpeed) {
             i_this->mMode = 3;
             i_this->mTimers[0] = 50.0f + cM_rndF(100.0f);
-            anm_init(i_this, ANM_WAIT_02, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_WAIT_02, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
 
         path_check2(i_this);
@@ -940,11 +939,11 @@ static void e_s1_failwait(e_s1_class* i_this) {
     switch (i_this->mMode) {
     case 0:
         if (cM_rndF(1.0f) < 0.3333f) {
-            anm_init(i_this, ANM_DEAD_02, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_DEAD_02, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         } else if (cM_rndF(1.0f) < 0.5f) {
-            anm_init(i_this, ANM_DEAD_03, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_DEAD_03, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         } else {
-            anm_init(i_this, ANM_DEAD_04, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_DEAD_04, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         }
 
         i_this->mMode = 1;
@@ -954,11 +953,11 @@ static void e_s1_failwait(e_s1_class* i_this) {
             i_this->mMode = 2;
 
             if (i_this->mAnm == ANM_DEAD_02) {
-                anm_init(i_this, ANM_DEADWAIT_02, 2.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+                anm_init(i_this, ANM_DEADWAIT_02, 2.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             } else if (i_this->mAnm == ANM_DEAD_03) {
-                anm_init(i_this, ANM_DEADWAIT_03, 2.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+                anm_init(i_this, ANM_DEADWAIT_03, 2.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             } else {
-                anm_init(i_this, ANM_DEADWAIT_04, 2.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+                anm_init(i_this, ANM_DEADWAIT_04, 2.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             }
         }
         break;
@@ -988,11 +987,11 @@ static void e_s1_failwait(e_s1_class* i_this) {
                     anm_init(i_this, ANM_DEAD_02, 2.0f, 0, 1.0f);
                 }
             } else if (i_this->mAnm == ANM_DEADWAIT_02) {
-                anm_init(i_this, ANM_DEAD_02, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                anm_init(i_this, ANM_DEAD_02, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             } else if (i_this->mAnm == ANM_DEADWAIT_03) {
-                anm_init(i_this, ANM_DEAD_03, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                anm_init(i_this, ANM_DEAD_03, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             } else {
-                anm_init(i_this, ANM_DEAD_04, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                anm_init(i_this, ANM_DEAD_04, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             }
 
             i_this->mpMorf->setFrame(10.0f);
@@ -1011,11 +1010,11 @@ static void e_s1_fail(e_s1_class* i_this) {
     switch (i_this->mMode) {
     case 0:
         if (cM_rndF(1.0f) < 0.3333f) {
-            anm_init(i_this, ANM_DEAD_02, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_DEAD_02, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         } else if (cM_rndF(1.0f) < 0.5f) {
-            anm_init(i_this, ANM_DEAD_03, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_DEAD_03, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         } else {
-            anm_init(i_this, ANM_DEAD_04, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, ANM_DEAD_04, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         }
 
         if (dStage_stagInfo_GetSTType(staginfo) == ST_FIELD) {
@@ -1023,7 +1022,7 @@ static void e_s1_fail(e_s1_class* i_this) {
 
             if (all_fail_check(i_this) && !dComIfGp_event_runCheck()) {
                 i_this->mDemoMode = 1;
-                anm_init(i_this, ANM_DEAD_02, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                anm_init(i_this, ANM_DEAD_02, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             }
         } else {
             i_this->mMode = 30;
@@ -1073,11 +1072,11 @@ static void e_s1_fail(e_s1_class* i_this) {
     case 12:
         if (i_this->mTimers[0] == 0) {
             if (i_this->mAnm == ANM_DEAD_02) {
-                anm_init(i_this, ANM_DEADWAKE_02, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                anm_init(i_this, ANM_DEADWAKE_02, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             } else if (i_this->mAnm == ANM_DEAD_03) {
-                anm_init(i_this, ANM_DEADWAKE_03, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                anm_init(i_this, ANM_DEADWAKE_03, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             } else {
-                anm_init(i_this, ANM_DEADWAKE_04, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                anm_init(i_this, ANM_DEADWAKE_04, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             }
 
             a_this->health = 50;
@@ -1136,7 +1135,7 @@ static void e_s1_shout(e_s1_class* i_this) {
     switch (i_this->mMode) {
     case 0:
         a_this->health = 50;
-        anm_init(i_this, ANM_SHOUT, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_SHOUT, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
 
         i_this->mMode = 1;
         i_this->mTimers[0] = KREG_S(6) + 10;
@@ -1195,7 +1194,7 @@ static void e_s1_warpappear(e_s1_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_DOWN, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 0.0f);
+        anm_init(i_this, ANM_DOWN, 1.0f, J3DFrameCtrl::EMode_NONE, 0.0f);
         i_this->mMode = 1;
         /* fallthrough */
     case 1:
@@ -1211,7 +1210,7 @@ static void e_s1_warpappear(e_s1_class* i_this) {
             break;
         }
 
-        if (!i_this->mAcch.i_ChkGroundHit()) {
+        if (!i_this->mAcch.ChkGroundHit()) {
             break;
         }
 
@@ -1224,11 +1223,11 @@ static void e_s1_warpappear(e_s1_class* i_this) {
         /* fallthrough */
     case 11:
         i_this->mMode = 12;
-        anm_init(i_this, ANM_DOWN, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, ANM_DOWN, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         break;
     case 12:
         if (i_this->mpMorf->isStop()) {
-            anm_init(i_this, ANM_WAIT_02, 15.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, ANM_WAIT_02, 15.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 13;
         }
         break;
@@ -1644,9 +1643,9 @@ static void demo_camera(e_s1_class* i_this) {
 
     switch (i_this->mDemoMode) {
     case 1:
-        if (!a_this->eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-            a_this->eventInfo.i_onCondition(2);
+            a_this->eventInfo.onCondition(2);
             return;
         }
 
@@ -1690,9 +1689,9 @@ static void demo_camera(e_s1_class* i_this) {
         }
         break;
     case 10:
-        if (!a_this->eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-            a_this->eventInfo.i_onCondition(2);
+            a_this->eventInfo.onCondition(2);
             return;
         }
 
@@ -1766,7 +1765,7 @@ static void demo_camera(e_s1_class* i_this) {
             linchk.Set(&i_this->mDemoCamCenter, &i_this->mDemoCamEye, a_this);
 
             if (dComIfG_Bgsp().LineCross(&linchk)) {
-                eye = linchk.i_GetCross() + ((center - eye) * 0.1f);
+                eye = linchk.GetCross() + ((center - eye) * 0.1f);
 
                 f32 dist_x = eye.x - center.x;
                 f32 dist_z = eye.z - center.z;

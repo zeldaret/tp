@@ -4,7 +4,7 @@
 //
 
 #include "JSystem/JUtility/JUTDirectFile.h"
-#include "dolphin/os/OSInterrupt.h"
+#include <dolphin/os.h>
 #include "global.h"
 
 //
@@ -34,7 +34,7 @@ int JUTDirectFile::fetch32byte() {
 		return -1;
 	} else {
 		interrupts = OSEnableInterrupts();
-		while (DVDGetCommandBlockStatus(&mFileInfo.block)) {
+		while (DVDGetCommandBlockStatus(&mFileInfo.cb)) {
 			;
 		}
 		OSRestoreInterrupts(interrupts);

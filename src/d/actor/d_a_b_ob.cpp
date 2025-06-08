@@ -979,7 +979,7 @@ static void bombfishset(b_ob_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, OB_ANM_WAIT, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 3.0f);
+        anm_init(i_this, OB_ANM_WAIT, 5.0f, J3DFrameCtrl::EMode_LOOP, 3.0f);
         i_this->mMode = 1;
 
         if (a_this->field_0x567 == 0 && i_this->mDemoAction == 0) {
@@ -1014,7 +1014,7 @@ static void bombfishset(b_ob_class* i_this) {
 
             i_this->mAction = OB_ACTION_CORE_HAND_MOVE;
             i_this->mMode = 0;
-            anm_init(i_this, OB_ANM_WAIT, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, OB_ANM_WAIT, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
         break;
     }
@@ -1066,7 +1066,7 @@ static int core_chance(b_ob_class* i_this) {
         }
         break;
     case 1:
-        if (i_this->mAcch.i_ChkGroundHit()) {
+        if (i_this->mAcch.ChkGroundHit()) {
             if (i_this->mTimers[0] == 0) {
                 i_this->mMode = 2;
             } else {
@@ -1152,7 +1152,7 @@ static void core_end(b_ob_class* i_this) {
         a_this->gravity = 0.0f;
         i_this->mDemoAction = 20;
         i_this->field_0x479c = -1000.0f;
-        anm_init(i_this, OB_ANM_TENTACLE_END, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, OB_ANM_TENTACLE_END, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
 
         particle_pos.set(0.0f, 0.0f, 0.0f);
         dComIfGp_particle_set(0x880A, &particle_pos, NULL, NULL);
@@ -1211,7 +1211,7 @@ static void core_end(b_ob_class* i_this) {
             i_this->mMoveAngle.x = -0x4000;
             i_this->field_0x4750 = 0;
             i_this->mTimers[0] = 110;
-            anm_init(i_this, OB_ANM_APPEAR_2, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, OB_ANM_APPEAR_2, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
 
             fopAcM_OffStatus(a_this, 0x80000);
             fopAcM_OnStatus(a_this, 0x200000);
@@ -1526,7 +1526,7 @@ static int fish_normal(b_ob_class* i_this) {
             i_this->field_0x47b4 = 0;
         } else {
             i_this->mTargetMovePos.x = a_this->home.pos.x + cM_rndFX(2000.0f);
-            i_this->mTargetMovePos.y = a_this->home.pos.y + 1000.0f + cM_rndFX(2000.0f);
+            i_this->mTargetMovePos.y = a_this->home.pos.y + 1000.0f + cM_rndF(2000.0f);
             i_this->mTargetMovePos.z = a_this->home.pos.z + cM_rndFX(2000.0f);
             i_this->mTimers[0] = cM_rndF(30.0f) + 30.0f;
         }
@@ -1550,7 +1550,7 @@ static int fish_normal(b_ob_class* i_this) {
         }
 
         if (i_this->mAnmID != OB_ANM_SWIM_WAIT) {
-            anm_init(i_this, OB_ANM_SWIM_WAIT, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, OB_ANM_SWIM_WAIT, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
 
         if (dist_to_ground < l_HIO.mBodySize * (ZREG_F(8) + 1200.0f)) {
@@ -1701,7 +1701,7 @@ static int fish_normal(b_ob_class* i_this) {
     }
 
     if (i_this->mAnmID == OB_ANM_APPEAR_2 && i_this->mBodyParts[0].mpMorf->isStop()) {
-        anm_init(i_this, OB_ANM_SWIM_WAIT, 10.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, OB_ANM_SWIM_WAIT, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
     }
 
     if (throw_player) {
@@ -1724,13 +1724,13 @@ static int fish_vacume(b_ob_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, OB_ANM_OPEN_MOUTH, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, OB_ANM_OPEN_MOUTH, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode = 1;
         i_this->field_0x476a = 0;
         break;
     case 1:
         if (i_this->mBodyParts[0].mpMorf->isStop()) {
-            anm_init(i_this, OB_ANM_OPEN_MOUTH_WAIT, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, OB_ANM_OPEN_MOUTH_WAIT, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 2;
             i_this->mTimers[0] = 200;
         }
@@ -1766,9 +1766,9 @@ static int fish_vacume(b_ob_class* i_this) {
 
         if (i_this->mBodyParts[0].mpMorf->isStop()) {
             if (i_this->mAnmID == OB_ANM_SWALLOW) {
-                anm_init(i_this, OB_ANM_EAT_2, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                anm_init(i_this, OB_ANM_EAT_2, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             } else if (i_this->mAnmID == OB_ANM_EAT_2) {
-                anm_init(i_this, OB_ANM_THROWUP, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                anm_init(i_this, OB_ANM_THROWUP, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
                 i_this->mOISound.startCreatureVoice(Z2SE_EN_OI_V_THROWUP, -1);
             } else if (i_this->mAnmID == OB_ANM_THROWUP) {
                 i_this->mAction = OB_ACTION_FISH_NORMAL;
@@ -1809,11 +1809,11 @@ static int fish_end(b_ob_class* i_this) {
         i_this->field_0x5d04 = KREG_F(8) + 1.5f;
         i_this->mBlureRateTarget = 150;
         i_this->field_0x5dd8 = 3;
-        anm_init(i_this, OB_ANM_LAST_DAMAGE, 0.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, OB_ANM_LAST_DAMAGE, 0.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         break;
     case 1:
         if (i_this->mBodyParts[0].mpMorf->isStop()) {
-            anm_init(i_this, OB_ANM_SWIM_WAIT, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, OB_ANM_SWIM_WAIT, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
 
         if (i_this->mTimers[0] == 0) {
@@ -1821,7 +1821,7 @@ static int fish_end(b_ob_class* i_this) {
             i_this->mTargetMovePos.set(0.0f, -19000.0f, -6500.0f);
             i_this->mTimers[0] = 150;
             i_this->mDemoCamEye.set(-6000.0f, -22000.0f, 2000.0f);
-            anm_init(i_this, OB_ANM_LAST_DAMAGE, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, OB_ANM_LAST_DAMAGE, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         }
         break;
     case 2:
@@ -1836,12 +1836,12 @@ static int fish_end(b_ob_class* i_this) {
             i_this->mDemoAction = 42;
             i_this->mDemoActionTimer = 0;
             i_this->mBlureRateTarget = 0;
-            anm_init(i_this, OB_ANM_LAST_DAMAGE, 5.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, OB_ANM_LAST_DAMAGE, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         }
         break;
     case 3:
         if (i_this->mAcch.ChkWallHit() && i_this->mTimers[0] == 0) {
-            anm_init(i_this, OB_ANM_DEAD, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+            anm_init(i_this, OB_ANM_DEAD, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             dComIfGp_getVibration().StartShock(8, 31, cXyz(0.0f, 1.0f, 0.0f));
             mDoAud_seStart(Z2SE_OBJ_BOMB_EXPLODE, NULL, 0, 0);
 
@@ -2385,7 +2385,7 @@ static void demo_camera(b_ob_class* i_this) {
     case 1:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFEF, 0);
-            a_this->eventInfo.i_onCondition(2);
+            a_this->eventInfo.onCondition(2);
             return;
         }
 
@@ -2503,14 +2503,14 @@ static void demo_camera(b_ob_class* i_this) {
         if (i_this->mBodyParts[0].mpMorf->isStop()) {
             i_this->mDemoAction = 100;
             i_this->mCoreAnm = OB_ANM_WAIT;
-            i_this->mCoreAnmMode = J3DFrameCtrl::LOOP_REPEAT_e;
+            i_this->mCoreAnmMode = J3DFrameCtrl::EMode_LOOP;
             i_this->field_0x4794 = 100;
         }
         break;
     case 10:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFEF, 0);
-            a_this->eventInfo.i_onCondition(2);
+            a_this->eventInfo.onCondition(2);
             return;
         }
 
@@ -2527,7 +2527,7 @@ static void demo_camera(b_ob_class* i_this) {
         i_this->field_0x5cfc = 0;
         i_this->field_0x5d00 = ZREG_F(3) + 1000.0;
 
-        anm_init(i_this, OB_ANM_OPEN_MOUTH_WAIT, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, OB_ANM_OPEN_MOUTH_WAIT, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
 
         if (cM_rndF(1.0f) < 0.5f) {
             i_this->field_0x5cd4 = 500.0f;
@@ -2582,7 +2582,7 @@ static void demo_camera(b_ob_class* i_this) {
 
             if (i_this->mDemoActionTimer >= 15) {
                 if (i_this->mDemoActionTimer == 30) {
-                    anm_init(i_this, OB_ANM_SWALLOW, 2.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+                    anm_init(i_this, OB_ANM_SWALLOW, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
                     i_this->mOISound.startCreatureVoice(Z2SE_EN_OI_V_SWALLOW, -1);
                 }
 
@@ -2611,7 +2611,7 @@ static void demo_camera(b_ob_class* i_this) {
     case 20:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-            a_this->eventInfo.i_onCondition(2);
+            a_this->eventInfo.onCondition(2);
             return;
         }
 
@@ -2714,7 +2714,7 @@ static void demo_camera(b_ob_class* i_this) {
     case 30:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-            a_this->eventInfo.i_onCondition(2);
+            a_this->eventInfo.onCondition(2);
             return;
         }
 
@@ -2860,7 +2860,7 @@ static void demo_camera(b_ob_class* i_this) {
         }
 
         if (i_this->mBodyParts[0].mpMorf->isStop()) {
-            anm_init(i_this, OB_ANM_WAIT, 0.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, OB_ANM_WAIT, 0.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
 
         if (i_this->mDemoActionTimer == 120) {
@@ -2882,7 +2882,7 @@ static void demo_camera(b_ob_class* i_this) {
     case 40:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-            a_this->eventInfo.i_onCondition(2);
+            a_this->eventInfo.onCondition(2);
             return;
         }
 
@@ -3174,7 +3174,7 @@ static void demo_camera(b_ob_class* i_this) {
     case 50:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-            a_this->eventInfo.i_onCondition(2);
+            a_this->eventInfo.onCondition(2);
             return;
         }
 
@@ -3191,7 +3191,7 @@ static void demo_camera(b_ob_class* i_this) {
         i_this->field_0x5cfc = 0;
         i_this->field_0x5d00 = ZREG_F(3) + 300.0f;
 
-        anm_init(i_this, OB_ANM_EAT, 3.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, OB_ANM_EAT, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
 
         i_this->mOISound.startCreatureVoice(Z2SE_EN_OI_V_EAT, -1);
 
@@ -3255,14 +3255,14 @@ static void demo_camera(b_ob_class* i_this) {
         if (i_this->mDemoAction == 52 && i_this->mBodyParts[0].mpMorf->isStop()) {
             i_this->mDemoAction = 100;
             i_this->mCoreAnm = OB_ANM_WAIT;
-            i_this->mCoreAnmMode = J3DFrameCtrl::LOOP_REPEAT_e;
+            i_this->mCoreAnmMode = J3DFrameCtrl::EMode_LOOP;
             i_this->field_0x4794 = 100;
         }
         break;
     case 60:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-            a_this->eventInfo.i_onCondition(2);
+            a_this->eventInfo.onCondition(2);
             return;
         }
 
@@ -3815,7 +3815,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("B_oh", 0x21);
-    JUT_ASSERT(modelData != 0);
+    JUT_ASSERT(0, modelData != 0);
 
     a_this->mpSuiModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (a_this->mpSuiModel == NULL) {
@@ -3833,7 +3833,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         return 0;
     }
 
-    if (!a_this->mpSuiBrk->init(modelData, (J3DAnmTevRegKey*)dComIfG_getObjectRes("B_oh", 0x2E), TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1)) {
+    if (!a_this->mpSuiBrk->init(modelData, (J3DAnmTevRegKey*)dComIfG_getObjectRes("B_oh", 0x2E), TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
         return 0;
     }
 
@@ -3842,7 +3842,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         return 0;
     }
 
-    if (!a_this->mpSuiBtk->init(modelData, (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("B_oh", 0x35), TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1)) {
+    if (!a_this->mpSuiBtk->init(modelData, (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("B_oh", 0x35), TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
         return 0;
     }
 

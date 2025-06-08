@@ -76,6 +76,8 @@ public:
     /* 80C134AC */ daGrdWater_HIO_c();
     /* 80C148A8 */ virtual ~daGrdWater_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x04 */ u8 field_0x04;
     /* 0x05 */ u8 field_0x05;
     /* 0x06 */ u8 field_0x06;

@@ -2,8 +2,10 @@
 #define D_METER_D_METER_HIO_H
 
 #include "JSystem/JUtility/TColor.h"
+#include "JSystem/JHostIO/JORReflexible.h"
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
+#include "global.h"
 
 class JKRAramArchive;
 
@@ -550,13 +552,21 @@ public:
     /* 0xA8 */ u8 mAnimDebug;
 };  // Size: 0xAC
 
-class dMeter_drawHIO_c {
+class dMeter_drawHIO_c : public JORReflexible {
 public:
     /* 801FF5B8 */ dMeter_drawHIO_c();
     /* 80201128 */ virtual ~dMeter_drawHIO_c() {}
 
+    #ifdef DEBUG
+    virtual void listenPropertyEvent(const JORPropertyEvent*);
+    virtual void genMessage(JORMContext*);
+    #endif
+
     /* 0x000 */  // vtable
     /* 0x004 */ s8 field_0x4;
+    #ifdef DEBUG
+    int field_0x8_debug;
+    #endif
     /* 0x008 */ f32 mLifeTopPosX;
     /* 0x00C */ f32 mLifeTopPosY;
     /* 0x010 */ f32 mNoMagicPosY;
@@ -1084,7 +1094,7 @@ public:
     /* 0x179 */ bool mIconDisplay[22];
 };  // Size: 0x190
 
-class dMeter_fmapHIO_c {
+class dMeter_fmapHIO_c : public JORReflexible {
 public:
     enum {
         /* 0x0 */ REGION_ORDONA,
@@ -1129,6 +1139,12 @@ public:
     };  // Size: 0x28
 
     /* 802006C8 */ dMeter_fmapHIO_c();
+#ifdef DEBUG
+    void update();
+
+    virtual void listenPropertyEvent(const JORPropertyEvent*);
+    virtual void genMessage(JORMContext*);
+#endif
     /* 80200BCC */ virtual ~dMeter_fmapHIO_c();
 
     /* 0x004 */ s8 field_0x4;

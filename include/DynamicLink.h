@@ -18,7 +18,10 @@ struct DynamicModuleControlBase {
     /* 800188DC */ virtual const char* getModuleName() const { return NULL; };
     /* 80263210 */ virtual int getModuleSize() const { return 0; };
     /* 80263200 */ virtual const char* getModuleTypeString() const {return "Base";};
-                   virtual void dump();
+#if __MWERKS__ && __MWERKS__ < 0x4200
+    // This is illegal function overloading, but MWCC for GC allows it. MWCC for Wii does not.
+    virtual void dump();
+#endif
     /* 80262470 */ static void dump();
     /* 802631FC */ virtual void dump2() {};
     /* 802631DC */ virtual bool do_load() {return true;};

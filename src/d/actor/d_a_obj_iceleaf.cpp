@@ -181,7 +181,7 @@ int daObjIceLeaf_c::CreateHeap() {
     JUT_ASSERT(0x196, pbck != 0);
 
     mpBck = new mDoExt_bckAnm();
-    if (mpBck == NULL || !mpBck->init(pbck, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1, false)) {
+    if (mpBck == NULL || !mpBck->init(pbck, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1, false)) {
         return 0;
     }
 
@@ -366,7 +366,7 @@ void daObjIceLeaf_c::actionWait() {}
 
 /* 80C259C8-80C25A68 001328 00A0+00 1/0 0/0 0/0 .text actionOrderEvent__14daObjIceLeaf_cFv */
 void daObjIceLeaf_c::actionOrderEvent() {
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         setAction(ACT_EVENT_e);
         mpBck->setPlaySpeed(1.0f);
         setMode(MODE_DROP_e);
@@ -375,7 +375,7 @@ void daObjIceLeaf_c::actionOrderEvent() {
         fopAcM_onSwitch(this, getSwbit());
     } else {
         fopAcM_orderOtherEventId(this, mEventID, mEvId, 0xFFFF, 0, 1);
-        eventInfo.i_onCondition(2);
+        eventInfo.onCondition(2);
     }
 }
 

@@ -47,7 +47,7 @@ u8 daTag_Howl_c::isAreaCheck() {
     }
 
     cXyz vec_to_player = daPy_getPlayerActorClass()->current.pos - current.pos;
-    if (daPy_py_c::i_checkNowWolf()) {
+    if (daPy_py_c::checkNowWolf()) {
         if (vec_to_player.absXZ() < scale.x && -scale.y < vec_to_player.y &&
             vec_to_player.y < scale.y)
         {

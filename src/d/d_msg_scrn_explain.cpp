@@ -363,7 +363,7 @@ void dMsgScrnExplain_c::move_proc() {
     {
         mStatus = 5;
         dMeter2Info_set2DVibrationM();
-        mDoAud_seStart(0x52, 0, 0, 0);
+        mDoAud_seStart(Z2SE_SY_EXP_WIN_CLOSE, 0, 0, 0);
     }
 }
 

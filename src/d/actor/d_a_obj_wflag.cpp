@@ -206,7 +206,7 @@ static int daObj_Wflag_Create(fopAc_ac_c* i_this) {
             OS_REPORT("//////////////OBJ_WFLAG SET NON !!\n");
             return cPhs_ERROR_e;
         } else {
-            OS_REPORT("//////////////OBJ_WFLAG SET 2 !!\n")
+            OS_REPORT("//////////////OBJ_WFLAG SET 2 !!\n");
             ((obj_wflag_class*)i_this)->field_0x836 = cM_rndF(65536.0f);
             daObj_Wflag_Execute(((obj_wflag_class*)i_this));
         }

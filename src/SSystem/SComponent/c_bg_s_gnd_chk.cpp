@@ -4,11 +4,12 @@
  */
 
 #include "SSystem/SComponent/c_bg_s_gnd_chk.h"
+#include "f_pc/f_pc_manager.h"
 
 /* 80267C1C-80267C94 26255C 0078+00 0/0 2/2 123/123 .text            __ct__11cBgS_GndChkFv */
 cBgS_GndChk::cBgS_GndChk() {
     m_pos = cXyz::Zero;
-    SetActorPid(UINT32_MAX);
+    SetActorPid(fpcM_ERROR_PROCESS_ID_e);
     mFlags = 2;
 }
 

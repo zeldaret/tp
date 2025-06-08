@@ -168,10 +168,10 @@ static void bee_ground_ang_set(bee_s* i_bee) {
     s8 bvar1 = false;
     lin_chk.Set(&vec1, &vec2, NULL);
     if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-        vec2 = lin_chk.i_GetCross();
+        vec2 = lin_chk.GetCross();
         lin_chk.Set(&vec1, &vec3, NULL);
         if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-            vec3 = lin_chk.i_GetCross();
+            vec3 = lin_chk.GetCross();
             bvar1 = true;
         }
     }
@@ -186,10 +186,10 @@ static void bee_ground_ang_set(bee_s* i_bee) {
     bvar1 = false;
     lin_chk.Set(&vec1, &vec2, NULL);
     if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-        vec2 = lin_chk.i_GetCross();
+        vec2 = lin_chk.GetCross();
         lin_chk.Set(&vec1, &vec3, NULL);
         if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-            vec3 = lin_chk.i_GetCross();
+            vec3 = lin_chk.GetCross();
             bvar1 = true;
         }
     }

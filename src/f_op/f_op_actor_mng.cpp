@@ -30,7 +30,7 @@ fopAc_ac_c* fopAcM_FastCreate(s16 i_procName, FastCreateReqFunc i_createFunc, vo
 /* 800198C4-80019934 014204 0070+00 1/1 5/5 18/18 .text            fopAcM_setStageLayer__FPv */
 void fopAcM_setStageLayer(void* i_proc) {
     scene_class* stageProc = fopScnM_SearchByID(dStage_roomControl_c::getProcID());
-    JUT_ASSERT(stageProc != 0);
+    JUT_ASSERT(0, stageProc != 0);
 
     fpcM_ChangeLayerID(i_proc, fopScnM_LayerID(stageProc));
 }
@@ -39,7 +39,7 @@ void fopAcM_setStageLayer(void* i_proc) {
 void fopAcM_setRoomLayer(void* i_proc, int i_roomNo) {
     if (i_roomNo >= 0) {
         scene_class* roomProc = fopScnM_SearchByID(dStage_roomControl_c::getStatusProcID(i_roomNo));
-        JUT_ASSERT(roomProc != 0);
+        JUT_ASSERT(0, roomProc != 0);
 
         fpcM_ChangeLayerID(i_proc, fopScnM_LayerID(roomProc));
     }
@@ -76,11 +76,11 @@ fopAcM_prm_class* fopAcM_CreateAppend() {
     fopAcM_prm_class* append = (fopAcM_prm_class*)cMl::memalignB(-4, sizeof(fopAcM_prm_class));
     if (append != NULL) {
         cLib_memSet(append, 0, sizeof(fopAcM_prm_class));
-        append->setId = 0xFFFF;
+        append->base.setID = 0xFFFF;
         append->room_no = -1;
-        append->scale[0] = 10;
-        append->scale[1] = 10;
-        append->scale[2] = 10;
+        append->scale.x = 10;
+        append->scale.y = 10;
+        append->scale.z = 10;
         append->parent_id = fpcM_ERROR_PROCESS_ID_e;
         append->subtype = -1;
     }
@@ -97,33 +97,33 @@ fopAcM_prm_class* createAppend(u16 i_setId, u32 i_parameters, const cXyz* i_pos,
         return NULL;
     }
 
-    append->setId = i_setId;
+    append->base.setID = i_setId;
 
     if (i_pos != NULL) {
-        append->position = *i_pos;
+        append->base.position = *i_pos;
     } else {
-        append->position = cXyz::Zero;
+        append->base.position = cXyz::Zero;
     }
 
     append->room_no = i_roomNo;
 
     if (i_angle != NULL) {
-        append->angle = *i_angle;
+        append->base.angle = *i_angle;
     } else {
-        append->angle = csXyz::Zero;
+        append->base.angle = csXyz::Zero;
     }
 
     if (i_scale != NULL) {
-        append->scale[0] = 10.0f * i_scale->x;
-        append->scale[1] = 10.0f * i_scale->y;
-        append->scale[2] = 10.0f * i_scale->z;
+        append->scale.x = 10.0f * i_scale->x;
+        append->scale.y = 10.0f * i_scale->y;
+        append->scale.z = 10.0f * i_scale->z;
     } else {
-        append->scale[0] = 10;
-        append->scale[1] = 10;
-        append->scale[2] = 10;
+        append->scale.x = 10;
+        append->scale.y = 10;
+        append->scale.z = 10;
     }
 
-    append->parameters = i_parameters;
+    append->base.parameters = i_parameters;
     append->parent_id = i_parentId;
     append->subtype = i_subtype;
 
@@ -258,8 +258,8 @@ fpc_ProcID fopAcM_createChildFromOffset(s16 i_procName, fpc_ProcID i_parentID, u
 }
 
 BOOL fopAcM_createHeap(fopAc_ac_c* i_this, u32 size, u32 align) {
-    JUT_ASSERT(i_this);
-    JUT_ASSERT(i_this->heap == 0);
+    JUT_ASSERT(0, i_this);
+    JUT_ASSERT(0, i_this->heap == 0);
 
     // "Creating Actor Heap"
     fopAcM_Log(i_this, "アクターのヒープの生成");
@@ -270,7 +270,7 @@ BOOL fopAcM_createHeap(fopAc_ac_c* i_this, u32 size, u32 align) {
     if (i_this->heap == 0) {
         // "fopAcM_createHeap allocation failure\n"
         OSReport_Error("fopAcM_createHeap 確保失敗\n");
-        JUT_CONFIRM(i_this->heap != 0);
+        JUT_CONFIRM(0, i_this->heap != 0);
         return FALSE;
     }
 
@@ -412,7 +412,7 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* i_actor, heapCallbackFunc i_heapCallback
             }
 
             OSReport_Error("ばぐばぐです\n");  // "There's a big bug\n"
-            JUT_ASSERT(0);
+            JUT_ASSERT(0, 0);
             OSReport_Error("緊急回避措置\n");  // "Emergency action\n"
             fopAcM::HeapAdjustEntry = false;
         }
@@ -593,10 +593,6 @@ f32 fopAcM_searchActorDistanceXZ2(const fopAc_ac_c* i_actorA, const fopAc_ac_c* 
     return (*posB - *posA).abs2XZ();
 }
 
-BOOL daPy_py_c::checkNowWolf() {
-    return dComIfGp_getLinkPlayer()->checkWolf();
-}
-
 /* 8001AAE0-8001AC40 015420 0160+00 0/0 0/0 2/2 .text
  * fopAcM_rollPlayerCrash__FPC10fopAc_ac_cfUlffif               */
 BOOL fopAcM_rollPlayerCrash(fopAc_ac_c const* i_crashActor, f32 i_range, u32 i_flag, f32 i_max_y,
@@ -692,6 +688,12 @@ static cull_box l_cullSizeBox[] = {
         {-60.0f, -20.0f, -60.0f},
         {60.0f, 160.0f, 60.0f},
     },
+#ifdef DEBUG
+    {
+        {-200.0f, 0.0f, -200.0f},
+        {200.0f, 400.0f, 200.0f},
+    },
+#endif
 };
 
 /* 803A3740-803A37C0 000860 0080+00 1/1 0/0 0/0 .data            l_cullSizeSphere */
@@ -728,6 +730,12 @@ static cull_sphere l_cullSizeSphere[] = {
         {0.0f, 0.0f, 0.0f},
         400.0f,
     },
+#ifdef DEBUG
+    {
+        {0.0f, 0.0f, 0.0f},
+        400.0f,
+    },
+#endif
 };
 
 /* 8001ACEC-8001B058 01562C 036C+00 0/0 1/1 1/1 .text fopAcM_cullingCheck__FPC10fopAc_ac_c */
@@ -776,25 +784,13 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
         if (fopAcM_GetCullSize(i_actor) == 23) {
             if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
                 mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
-
-                f32 radius = fopAcM_getCullSizeSphereR(i_actor);
-                const Vec& center_p = fopAcM_getCullSizeSphereCenter(i_actor);
-                Vec center;
-                center.x = center_p.x;
-                center.y = center_p.y;
-                center.z = center_p.z;
-
-                u32 ret = mDoLib_clipper::clip(mtx_p, center, radius);
+                u32 ret = mDoLib_clipper::clip(mtx_p, fopAcM_getCullSizeSphereCenter(i_actor),
+                                               fopAcM_getCullSizeSphereR(i_actor));
                 mDoLib_clipper::resetFar();
                 return ret;
             } else {
-                f32 radius = fopAcM_getCullSizeSphereR(i_actor);
-                const Vec& center_p = fopAcM_getCullSizeSphereCenter(i_actor);
-                Vec center;
-                center.x = center_p.x;
-                center.y = center_p.y;
-                center.z = center_p.z;
-                return mDoLib_clipper::clip(mtx_p, center, radius);
+                return mDoLib_clipper::clip(mtx_p, fopAcM_getCullSizeSphereCenter(i_actor),
+                                            fopAcM_getCullSizeSphereR(i_actor));
             }
         } else {
             cull_sphere* sphere = &l_cullSizeSphere[cullsize - 15];
@@ -1110,22 +1106,22 @@ s32 fopAcM_orderTreasureEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, u16 i_
 /* 8001BB14-8001BB44 016454 0030+00 0/0 11/11 10/10 .text
  * fopAcM_getTalkEventPartner__FPC10fopAc_ac_c                  */
 fopAc_ac_c* fopAcM_getTalkEventPartner(fopAc_ac_c const*) {
-    return dComIfGp_event_getTalkPartner();
+    return (fopAc_ac_c*)dComIfGp_event_getTalkPartner();
 }
 
 /* 8001BB44-8001BB74 016484 0030+00 0/0 5/5 0/0 .text fopAcM_getItemEventPartner__FPC10fopAc_ac_c
  */
 fopAc_ac_c* fopAcM_getItemEventPartner(fopAc_ac_c const*) {
-    return dComIfGp_event_getItemPartner();
+    return (fopAc_ac_c*)dComIfGp_event_getItemPartner();
 }
 
 /* 8001BB74-8001BBE8 0164B4 0074+00 0/0 1/1 0/0 .text fopAcM_getEventPartner__FPC10fopAc_ac_c */
 fopAc_ac_c* fopAcM_getEventPartner(fopAc_ac_c const* i_actor) {
     if (dComIfGp_event_getPt1() != i_actor) {
-        return dComIfGp_event_getPt1();
+        return (fopAc_ac_c*)dComIfGp_event_getPt1();
     }
 
-    return dComIfGp_event_getPt2();
+    return (fopAc_ac_c*)dComIfGp_event_getPt2();
 }
 
 /* 8001BBE8-8001BC74 016528 008C+00 0/0 5/5 43/43 .text
@@ -1252,30 +1248,30 @@ fpc_ProcID fopAcM_createItemFromEnemyID(u8 i_enemyID, cXyz const* i_pos, int i_i
 
 /* 8001BF64-8001C078 0168A4 0114+00 1/1 0/0 11/11 .text
  * fopAcM_createItemFromTable__FPC4cXyziiiPC5csXyziPC4cXyzPfPfb */
-fpc_ProcID fopAcM_createItemFromTable(cXyz const* i_pos, int i_tableNo, int i_itemBitNo,
+fpc_ProcID fopAcM_createItemFromTable(cXyz const* i_pos, int i_itemNo, int i_itemBitNo,
                                       int i_roomNo, csXyz const* i_angle, int param_5,
                                       cXyz const* i_scale, f32* i_speedF, f32* i_speedY,
                                       bool i_createDirect) {
     // clang-format off
-    JUT_ASSERT(0 <= i_itemNo && i_itemNo <= 255 && (-1 <= i_itemBitNo && i_itemBitNo < (dSv_info_c::DAN_ITEM + dSv_info_c::MEMORY_ITEM + dSv_info_c::ZONE_ITEM )) || i_itemBitNo == 255);
+    JUT_ASSERT(0, 0 <= i_itemNo && i_itemNo <= 255 && (-1 <= i_itemBitNo && i_itemBitNo < (dSv_info_c::DAN_ITEM + dSv_info_c::MEMORY_ITEM + dSv_info_c::ZONE_ITEM )) || i_itemBitNo == 255);
     // clang-format on
 
     ItemTableList* tableList = (ItemTableList*)dComIfGp_getItemTable();
 
-    if (i_tableNo == 0xFF) {
+    if (i_itemNo == 0xFF) {
         return fpcM_ERROR_PROCESS_ID_e;
     }
 
 #ifdef DEBUG
-    if (tableList->mTableNum - 1 < i_tableNo) {
+    if (tableList->mTableNum - 1 < i_itemNo) {
         // "Table Num<%d>, Specified Table<%d>, over table num!\n"
         OSReport_Error("テーブル数<%d>、指定テーブル番号<%d>で、テーブル数オーバーしています！\n",
-                       tableList->mTableNum, i_tableNo);
-        i_tableNo = 0;
+                       tableList->mTableNum, i_itemNo);
+        i_itemNo = 0;
     }
 #endif
 
-    int itemNo = fopAcM_getItemNoFromTableNo(i_tableNo);
+    int itemNo = fopAcM_getItemNoFromTableNo(i_itemNo);
     if (itemNo == fpcNm_ITEM_NONE) {
         return fpcM_ERROR_PROCESS_ID_e;
     }
@@ -1301,7 +1297,7 @@ fpc_ProcID fopAcM_createDemoItem(const cXyz* i_pos, int i_itemNo, int i_itemBitN
                                  const csXyz* i_angle, int i_roomNo, const cXyz* scale,
                                  u8 param_7) {
     // clang-format off
-    JUT_ASSERT(0 <= i_itemNo && i_itemNo < 256 && (-1 <= i_itemBitNo && i_itemBitNo < (dSv_info_c::DAN_ITEM + dSv_info_c::MEMORY_ITEM + dSv_info_c::ZONE_ITEM )) || i_itemBitNo == 255);
+    JUT_ASSERT(0, 0 <= i_itemNo && i_itemNo < 256 && (-1 <= i_itemBitNo && i_itemBitNo < (dSv_info_c::DAN_ITEM + dSv_info_c::MEMORY_ITEM + dSv_info_c::ZONE_ITEM )) || i_itemBitNo == 255);
     // clang-format on
 
     if (i_itemNo == fpcNm_ITEM_NONE) {
@@ -1361,7 +1357,7 @@ fopAc_ac_c* fopAcM_createItemForSimpleDemo(const cXyz* i_pos, int i_itemNo, int 
 fpc_ProcID fopAcM_createItem(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, int i_roomNo,
                              const csXyz* i_angle, const cXyz* i_scale, int param_7) {
     // clang-format off
-    JUT_ASSERT(0 <= i_itemNo && i_itemNo < 256 && (-1 <= i_itemBitNo && i_itemBitNo < (dSv_info_c::DAN_ITEM + dSv_info_c::MEMORY_ITEM + dSv_info_c::ZONE_ITEM )) || i_itemBitNo == 255);
+    JUT_ASSERT(0, 0 <= i_itemNo && i_itemNo < 256 && (-1 <= i_itemBitNo && i_itemBitNo < (dSv_info_c::DAN_ITEM + dSv_info_c::MEMORY_ITEM + dSv_info_c::ZONE_ITEM )) || i_itemBitNo == 255);
     // clang-format on
 
     if (i_itemNo == fpcNm_ITEM_NONE) {
@@ -1386,17 +1382,17 @@ fpc_ProcID fopAcM_createItem(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, i
     case fpcNm_ITEM_SMALL_KEY:
         // "Small Key: Can't support map display, so program generation is prohibited!\n"
         OS_REPORT_ERROR("小さい鍵：マップ表示対応出来ないので、プログラム生成禁止！\n");
-        JUT_ASSERT(0);
+        JUT_ASSERT(0, 0);
         break;
     case fpcNm_ITEM_KANTERA:
         // "Lantern: Program generation is prohibited!\n"
         OS_REPORT_ERROR("カンテラ：プログラム生成禁止！\n");
-        JUT_ASSERT(0);
+        JUT_ASSERT(0, 0);
         break;
     case fpcNm_ITEM_LIGHT_DROP:
         // "Light Drop: Program generation is prohibited!\n"
         OS_REPORT_ERROR("光の雫：プログラム生成禁止！\n");
-        JUT_ASSERT(0);
+        JUT_ASSERT(0, 0);
         break;
 #endif
     case fpcNm_ITEM_KAKERA_HEART:
@@ -1417,7 +1413,7 @@ fpc_ProcID fopAcM_createItem(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, i
 fopAc_ac_c* fopAcM_fastCreateItem2(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, int i_roomNo,
                                    int param_5, const csXyz* i_angle, const cXyz* i_scale) {
     // clang-format off
-    JUT_ASSERT(0 <= i_itemNo && i_itemNo < 256 && (-1 <= i_itemBitNo && i_itemBitNo < (dSv_info_c::DAN_ITEM + dSv_info_c::MEMORY_ITEM + dSv_info_c::ZONE_ITEM )) || i_itemBitNo == 255);
+    JUT_ASSERT(0, 0 <= i_itemNo && i_itemNo < 256 && (-1 <= i_itemBitNo && i_itemBitNo < (dSv_info_c::DAN_ITEM + dSv_info_c::MEMORY_ITEM + dSv_info_c::ZONE_ITEM )) || i_itemBitNo == 255);
     // clang-format on
 
     csXyz item_angle(csXyz::Zero);
@@ -1444,17 +1440,17 @@ fopAc_ac_c* fopAcM_fastCreateItem2(const cXyz* i_pos, int i_itemNo, int i_itemBi
     case fpcNm_ITEM_SMALL_KEY:
         // "Small Key: Can't support map display, so program generation is prohibited!\n"
         OS_REPORT_ERROR("小さい鍵：マップ表示対応出来ないので、プログラム生成禁止！\n");
-        JUT_ASSERT(0);
+        JUT_ASSERT(0, 0);
         break;
     case fpcNm_ITEM_KANTERA:
         // "Lantern: Program generation is prohibited!\n"
         OS_REPORT_ERROR("カンテラ：プログラム生成禁止！\n");
-        JUT_ASSERT(0);
+        JUT_ASSERT(0, 0);
         break;
     case fpcNm_ITEM_LIGHT_DROP:
         // "Light Drop: Program generation is prohibited!\n"
         OS_REPORT_ERROR("光の雫：プログラム生成禁止！\n");
-        JUT_ASSERT(0);
+        JUT_ASSERT(0, 0);
         break;
 #endif
     case fpcNm_ITEM_KAKERA_HEART:
@@ -1479,7 +1475,7 @@ fopAc_ac_c* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo,
                                   const csXyz* i_angle, const cXyz* i_scale, f32* i_speedF,
                                   f32* i_speedY, int i_itemBitNo, int param_9,
                                   createFunc i_createFunc) {
-    JUT_ASSERT(0 <= i_itemNo && i_itemNo < 256);
+    JUT_ASSERT(0, 0 <= i_itemNo && i_itemNo < 256);
 
     csXyz angle;
     if (i_itemNo == fpcNm_ITEM_NONE) {
@@ -1504,17 +1500,17 @@ fopAc_ac_c* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo,
     case fpcNm_ITEM_SMALL_KEY:
         // "Small Key: Can't support map display, so program generation is prohibited!\n"
         OS_REPORT_ERROR("小さい鍵：マップ表示対応出来ないので、プログラム生成禁止！\n");
-        JUT_ASSERT(0);
+        JUT_ASSERT(0, 0);
         break;
     case fpcNm_ITEM_KANTERA:
         // "Lantern: Program generation is prohibited!\n"
         OS_REPORT_ERROR("カンテラ：プログラム生成禁止！\n");
-        JUT_ASSERT(0);
+        JUT_ASSERT(0, 0);
         break;
     case fpcNm_ITEM_LIGHT_DROP:
         // "Light Drop: Program generation is prohibited!\n"
         OS_REPORT_ERROR("光の雫：プログラム生成禁止！\n");
-        JUT_ASSERT(0);
+        JUT_ASSERT(0, 0);
         break;
 #endif
     case fpcNm_ITEM_KAKERA_HEART:
@@ -1609,11 +1605,11 @@ void* enemySearchJugge(void* i_actor, void* i_data) {
 
 /* 8001CA1C-8001CAD8 01735C 00BC+00 0/0 0/0 6/6 .text            fopAcM_myRoomSearchEnemy__FSc */
 fopAc_ac_c* fopAcM_myRoomSearchEnemy(s8 roomNo) {
-    JUT_ASSERT(roomNo >= 0);
+    JUT_ASSERT(0, roomNo >= 0);
 
     int procID = dStage_roomControl_c::getStatusProcID(roomNo);
     scene_class* roomProc = fopScnM_SearchByID(procID);
-    JUT_ASSERT(roomProc != 0);
+    JUT_ASSERT(0, roomProc != 0);
 
     u32 actorID = ((daPy_py_c*)dComIfGp_getPlayer(0))->getGrabActorID();
     fopAc_ac_c* actor = fopAcM_SearchByID(actorID);
@@ -2027,16 +2023,16 @@ void fpoAcM_relativePos(fopAc_ac_c const* i_actor, cXyz const* i_pos, cXyz* o_po
 
 /* 8001D9A8-8001DAE4 0182E8 013C+00 0/0 1/1 9/9 .text
  * fopAcM_getWaterStream__FPC4cXyzRC13cBgS_PolyInfoP4cXyzPii    */
-s32 fopAcM_getWaterStream(cXyz const* param_0, cBgS_PolyInfo const& param_1, cXyz* speed,
-                          int* param_3, int param_4) {
+s32 fopAcM_getWaterStream(cXyz const* pos, cBgS_PolyInfo const& polyinfo, cXyz* speed,
+                          int* power, BOOL param_4) {
     daTagStream_c* stream = daTagStream_c::getTop();
     if (stream != NULL) {
         for (stream = daTagStream_c::getTop(); stream != NULL; stream = stream->getNext()) {
-            if (stream->checkStreamOn() && (param_4 == 0 || stream->checkCanoeOn()) &&
-                stream->checkArea(param_0))
+            if (stream->checkStreamOn() && (!param_4 || stream->checkCanoeOn()) &&
+                stream->checkArea(pos))
             {
                 *speed = stream->speed;
-                *param_3 = stream->getPower() & 0xff;
+                *power = stream->getPower() & 0xff;
                 return 1;
             }
         }
@@ -2046,14 +2042,14 @@ s32 fopAcM_getWaterStream(cXyz const* param_0, cBgS_PolyInfo const& param_1, cXy
         return 0;
     }
 
-    if (dComIfG_Bgsp().ChkPolySafe(param_1)) {
-        if (dPath_GetPolyRoomPathVec(param_1, speed, param_3)) {
+    if (dComIfG_Bgsp().ChkPolySafe(polyinfo)) {
+        if (dPath_GetPolyRoomPathVec(polyinfo, speed, power)) {
             speed->normalizeZP();
             return 1;
         }
     } else {
         *speed = cXyz::Zero;
-        *param_3 = 0;
+        *power = 0;
     }
 
     return 0;
@@ -2103,7 +2099,7 @@ bool fopAcM_gc_c::gndCheck(cXyz const* i_pos) {
 
 /* 8001DD1C-8001DD84 01865C 0068+00 0/0 0/0 3/3 .text            roofCheck__11fopAcM_rc_cFPC4cXyz */
 bool fopAcM_rc_c::roofCheck(cXyz const* i_pos) {
-    mRoofCheck.i_SetPos(*i_pos);
+    mRoofCheck.SetPos(*i_pos);
     mRoofY = dComIfG_Bgsp().RoofChk(&mRoofCheck);
     return 1000000000.0f != mRoofY;
 }

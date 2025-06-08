@@ -4,7 +4,7 @@
  */
 
 #include "SSystem/SComponent/c_node.h"
-#include "dolphin/types.h"
+#include <dolphin/types.h>
 
 /* 802660D0-802660DC 000C+00 s=1 e=0 z=0  None .text      cNd_Join__FP10node_classP10node_class */
 void cNd_Join(node_class* node_a, node_class* node_b) {
@@ -51,9 +51,8 @@ node_class* cNd_Order(node_class* node, int idx) {
         i++;
         node = NODE_GET_NEXT(node);
     }
-    if (i < idx)
-        return ret;
-    return NULL;
+
+    return i < idx ? ret : NULL;
 }
 
 /* 802661BC-802661F0 0034+00 s=0 e=1 z=0  None .text      cNd_SingleCut__FP10node_class */
@@ -85,10 +84,10 @@ void cNd_Addition(node_class* node_a, node_class* node_b) {
 
 /* 80266244-802662B0 006C+00 s=0 e=1 z=0  None .text      cNd_Insert__FP10node_classP10node_class */
 void cNd_Insert(node_class* node_a, node_class* node_b) {
-    node_class* prev = node_a->mpPrevNode;
-    if (prev == NULL) {
+    if (node_a->mpPrevNode == NULL) {
         cNd_Addition(node_b, node_a);
     } else {
+        node_class* prev = node_a->mpPrevNode;
         cNd_Cut(node_a);
         cNd_Addition(prev, node_b);
         cNd_Addition(node_b, node_a);

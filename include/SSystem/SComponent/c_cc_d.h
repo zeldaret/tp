@@ -58,6 +58,7 @@ enum cCcD_ObjAtType {
     /* 0x04000000 */ AT_TYPE_MASTER_SWORD = (1 << 26),
     /* 0x08000000 */ AT_TYPE_MIDNA_LOCK = (1 << 27),
     /* 0x10000000 */ AT_TYPE_10000000 = (1 << 28),
+    /* 0x10000000 */ AT_TYPE_20000000 = (1 << 29),
     /* 0x40000000 */ AT_TYPE_WOLF_CUT_TURN = (1 << 30),
     /* 0x80000000 */ AT_TYPE_WOLF_ATTACK = (1 << 31),
     /* 0xD8000000 */ AT_TYPE_UNK = 0xD8000000
@@ -69,12 +70,10 @@ public:
     /* 0x1C vtable */
 
     struct Shape {
-        /* 80167BBC */ ~Shape();
+        /* 80167BBC */ ~Shape() {}
 
         /* 0x00 */ int _0;
-        /* 0x04 */ f32 _4;
-        /* 0x08 */ f32 _8;
-        /* 0x0C */ f32 _C;
+        /* 0x04 */ cXyz _4;
         /* 0x10 */ f32 _10;
         /* 0x14 */ f32 _14;
     };
@@ -211,6 +210,8 @@ public:
     /* 8026476C */ virtual bool GetNVec(cXyz const&, cXyz*) const;
     /* 80264808 */ virtual void getShapeAccess(cCcD_ShapeAttr::Shape*) const;
 
+    const cM3dGSph* GetShapeP() const { return this; }
+
 };  // Size = 0x34
 
 STATIC_ASSERT(0x34 == sizeof(cCcD_SphAttr));
@@ -242,6 +243,8 @@ public:
     /* 80264368 */ virtual void CalcAabBox();
     /* 802643D0 */ virtual bool GetNVec(cXyz const&, cXyz*) const;
     /* 802644B8 */ virtual void getShapeAccess(cCcD_ShapeAttr::Shape*) const;
+
+    const cM3dGCyl* GetShapeP() const { return this; }
 
 };  // Size = 0x38
 
@@ -454,6 +457,9 @@ public:
     u32 ChkNoCrr() const { return MskSPrm(0x100); }
     void OnNoCrrBit() { OnSPrmBit(0x100); }
     u32 ChkSph3DCrr() const { return MskSPrm(0x80); }
+    u32 ChkCoSameActorHit() const { return MskSPrm(cCcD_ObjCommonBase::CO_SPRM_SAME_ACTOR_HIT); }
+    void OnCoSameActorHit() { OnSPrmBit(cCcD_ObjCommonBase::CO_SPRM_SAME_ACTOR_HIT); }
+    void OffCoSameActorHit() { OffSPrmBit(cCcD_ObjCommonBase::CO_SPRM_SAME_ACTOR_HIT); }
     void ClrSet() { OffSPrmBit(1); }
     u32 ChkHit() { return MskRPrm(1); }
 
@@ -482,7 +488,9 @@ public:
     bool ChkTgSet() const { return mObjTg.ChkSet(); }
     bool ChkAtSet() const { return mObjAt.ChkSet(); }
     bool ChkCoSet() const { return mObjCo.ChkSet(); }
-    u32 ChkCoSameActorHit() const { return mObjCo.MskSPrm(0x400); }
+    u32 ChkCoSameActorHit() const { return mObjCo.ChkCoSameActorHit(); }
+    void OnCoSameActorHit() { mObjCo.OnCoSameActorHit(); }
+    void OffCoSameActorHit() { mObjCo.OffCoSameActorHit(); }
     u32 GetCoVsGrp() const { return mObjCo.GetVsGrp(); }
     u32 GetCoIGrp() const { return mObjCo.GetIGrp(); }
     u8 GetAtAtp() const { return mObjAt.GetAtp(); }
@@ -515,6 +523,8 @@ public:
     void OnTgSetBit() { mObjTg.OnSPrmBit(1); }
     void OffTgSetBit() { mObjTg.ClrSet(); }
     void OnCoSetBit() { mObjCo.OnSPrmBit(1); }
+    void OffAtVsEnemyBit() { mObjAt.OffSPrmBit(0x2); }
+    void OnAtVsEnemyBit() { mObjAt.OnSPrmBit(0x2); }
     void OffAtVsPlayerBit() { mObjAt.OffSPrmBit(0xC); }
     void OnAtVsPlayerBit() { mObjAt.OnSPrmBit(0xC); }
     void OnCoSPrmBit(u32 flag) { mObjCo.OnSPrmBit(flag); }
@@ -534,6 +544,8 @@ public:
     cCcD_Obj* GetTgHitObj() { return mObjTg.GetHitObj(); }
     cCcD_Obj* GetCoHitObj() { return mObjCo.GetHitObj(); }
     u32 ChkAtSPrm(u32 prm) { return mObjAt.ChkSPrm(prm); }
+    u32 ChkCoSPrm(u32 prm) const { return mObjCo.ChkSPrm(prm); }
+    void OnTgNoSlingHitInfSet() { mObjTg.OnSPrmBit(0x40); }
 
 };  // Size = 0x40
 

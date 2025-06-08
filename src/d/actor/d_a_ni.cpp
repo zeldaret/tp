@@ -361,7 +361,7 @@ static void damage_check(ni_class* i_this) {
             i_this->field_0x60c = 6;
             i_this->mAtInfo.mpCollider = i_this->mCcSph.GetTgHitObj();
 
-            anm_init(i_this, BCK_MOGAKU, 1.5f, J3DFrameCtrl::LOOP_REPEAT_e, 1.5f);
+            anm_init(i_this, BCK_MOGAKU, 1.5f, J3DFrameCtrl::EMode_LOOP, 1.5f);
 
             if (i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_BOOMERANG)) {
                 i_this->mAction = ACTION_WINDSPIN_e;
@@ -614,7 +614,7 @@ static void ni_normal(ni_class* i_this) {
     switch (i_this->mMode) {
     case 0:
         i_this->mTimers[0] = cM_rndF(70) + 50.0f;
-        anm_init(i_this, BCK_WAIT1, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, move_speed);
+        anm_init(i_this, BCK_WAIT1, 3.0f, J3DFrameCtrl::EMode_LOOP, move_speed);
         i_this->mMode++;
         break;
     case 1:
@@ -634,7 +634,7 @@ static void ni_normal(ni_class* i_this) {
             }
 
             i_this->mTimers[0] = cM_rndF(60) + 30.0f;
-            anm_init(i_this, BCK_WALK_A, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, l_HIO.mMotionSpeed);
+            anm_init(i_this, BCK_WALK_A, 5.0f, J3DFrameCtrl::EMode_LOOP, l_HIO.mMotionSpeed);
         }
         break;
     case 10:
@@ -733,7 +733,7 @@ static void ni_away(ni_class* i_this) {
 
     switch (a_this->mMode) {
     case 0:
-        anm_init(a_this, BCK_WALK_B, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.5f);
+        anm_init(a_this, BCK_WALK_B, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.5f);
         a_this->mMode++;
 
         if (target == NULL) {
@@ -752,10 +752,10 @@ static void ni_away(ni_class* i_this) {
             if (a_this->mDistToPlayer > l_HIO.mRecognizeRange + 50.0f) {
                 a_this->mAction = ACTION_NORMAL_e;
                 a_this->mMode = 0;
-            } else if (a_this->mAcch.i_ChkGroundHit() &&
+            } else if (a_this->mAcch.ChkGroundHit() &&
                        (target != NULL || a_this->mDistToPlayer < l_HIO.mRecognizeRange - 100.0f))
             {
-                anm_init(a_this, BCK_FLY, 1.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+                anm_init(a_this, BCK_FLY, 1.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
                 a_this->speed.y = l_HIO.mFleeJumpPower;
                 a_this->mMode++;
                 hane_set(a_this, 5.0f, 25.0f);
@@ -780,7 +780,7 @@ static void ni_away(ni_class* i_this) {
         if (i_this->speed.y <= 0.0f) {
             i_this->gravity = l_HIO.mFleeJumpGravity;
 
-            if (a_this->mAcch.i_ChkGroundHit() || a_this->field_0x848 != 0) {
+            if (a_this->mAcch.ChkGroundHit() || a_this->field_0x848 != 0) {
                 a_this->mMode = 0;
             }
         }
@@ -801,7 +801,7 @@ static void ni_swim(ni_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, BCK_WAIT1, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, move_speed);
+        anm_init(i_this, BCK_WAIT1, 3.0f, J3DFrameCtrl::EMode_LOOP, move_speed);
         i_this->mMode++;
         i_this->field_0x9e8 = move_speed;
     case 1:
@@ -849,7 +849,7 @@ static void ni_swim(ni_class* i_this) {
 
         if (i_this->mTimers[2] == 0) {
             i_this->mMode = 1;
-            anm_init(i_this, BCK_WAIT1, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 0.0f);
+            anm_init(i_this, BCK_WAIT1, 3.0f, J3DFrameCtrl::EMode_LOOP, 0.0f);
         }
 
         cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mMoveAngle, 4, 0x400);
@@ -862,7 +862,7 @@ static void ni_swim(ni_class* i_this) {
         i_this->mAction = ACTION_AWAY_e;
         i_this->mMode = 2;
 
-        anm_init(i_this, BCK_FLY, 1.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, BCK_FLY, 1.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->speed.y = 20.0f;
         hane_set(i_this, 5.0f, 25.0f);
         i_this->field_0x9e4 = 30;
@@ -883,7 +883,7 @@ static int ni_carry(ni_class* i_this) {
     BOOL update_position = false;
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, BCK_MOGAKU, 1.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, BCK_MOGAKU, 1.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode++;
         // fallthrough
     case 1:
@@ -933,7 +933,7 @@ static void ni_fly(ni_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, BCK_FALL, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, BCK_FALL, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode++;
         i_this->mTimers[0] = 40;
         i_this->field_0x5c0 = player->current.pos;
@@ -951,7 +951,7 @@ static void ni_fly(ni_class* i_this) {
     if (i_this->checkGold() && i_this->mTimers[0] == 0) {
         i_this->mAction = ACTION_RETURN_e;
         i_this->mMode = 0;
-    } else if (i_this->mAcch.i_ChkGroundHit() || i_this->mAcch.ChkWallHit() ||
+    } else if (i_this->mAcch.ChkGroundHit() || i_this->mAcch.ChkWallHit() ||
                i_this->field_0x848 != 0)
     {
         i_this->mAction = ACTION_DAMAGE_e;
@@ -974,7 +974,7 @@ static void ni_drop(ni_class* i_this) {
     }
 
     i_this->gravity = l_HIO.mFleeJumpGravity;
-    if (i_this->mAcch.i_ChkGroundHit() || i_this->field_0x848 != 0) {
+    if (i_this->mAcch.ChkGroundHit() || i_this->field_0x848 != 0) {
         i_this->mAction = ACTION_NORMAL_e;
         i_this->mMode = 0;
     }
@@ -1004,7 +1004,7 @@ static void ni_return(ni_class* i_this) {
     case 0:
         i_this->mMode++;
         i_this->mTimers[0] = 200;
-        anm_init(i_this, BCK_FLY, 2.0f, J3DFrameCtrl::LOOP_REPEAT_e, 2.0f);
+        anm_init(i_this, BCK_FLY, 2.0f, J3DFrameCtrl::EMode_LOOP, 2.0f);
         break;
     }
 
@@ -1036,7 +1036,7 @@ static void ni_damage(ni_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, BCK_WALK_B, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, BCK_WALK_B, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode++;
 
         i_this->mTimers[0] = cM_rndF(20.0f) + 40.0f;
@@ -1086,7 +1086,7 @@ static void ni_windspin(ni_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, BCK_FALL, 1.0f, J3DFrameCtrl::LOOP_ONCE_e, 1.0f);
+        anm_init(i_this, BCK_FALL, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode++;
 
         hane_set(i_this, 0.1f, 20.0f);
@@ -1183,7 +1183,7 @@ static int ni_demo0(ni_class* i_this) {
             cLib_addCalc2(&i_this->current.pos.z, i_this->field_0x5c0.z, 0.1f, 5.0f);
 
             if (i_this->mTimers[1] == 1) {
-                anm_init(i_this, BCK_WAIT1, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 0.0f);
+                anm_init(i_this, BCK_WAIT1, 3.0f, J3DFrameCtrl::EMode_LOOP, 0.0f);
             }
         } else {
             i_this->current.pos = i_this->field_0x5c0;
@@ -1208,7 +1208,7 @@ static void ni_message(ni_class* i_this) {
     case 1:
         break;
     case 0:
-        anm_init(i_this, BCK_WAIT1, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 0.0f);
+        anm_init(i_this, BCK_WAIT1, 3.0f, J3DFrameCtrl::EMode_LOOP, 0.0f);
         i_this->mMode++;
         break;
     }
@@ -1295,7 +1295,7 @@ static int ni_play(ni_class* i_this) {
     switch (i_this->mMode) {
     case 0:
         i_this->mPlayAnmSpeed = 0.0f;
-        anm_init(i_this, BCK_WALK_A, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, i_this->mPlayAnmSpeed);
+        anm_init(i_this, BCK_WALK_A, 5.0f, J3DFrameCtrl::EMode_LOOP, i_this->mPlayAnmSpeed);
         i_this->mMode++;
         // fallthrough
     case 1:
@@ -1305,7 +1305,7 @@ static int ni_play(ni_class* i_this) {
 
         if (i_this->speedF > 10.0f) {
             i_this->mPlayAnmSpeed = 1.0f;
-            anm_init(i_this, BCK_WALK_B, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, i_this->mPlayAnmSpeed);
+            anm_init(i_this, BCK_WALK_B, 3.0f, J3DFrameCtrl::EMode_LOOP, i_this->mPlayAnmSpeed);
             i_this->mMode++;
         }
         break;
@@ -1316,7 +1316,7 @@ static int ni_play(ni_class* i_this) {
 
         if (i_this->speedF < 10.0f) {
             i_this->mPlayAnmSpeed = 1.5f;
-            anm_init(i_this, BCK_WALK_A, 5.0f, J3DFrameCtrl::LOOP_REPEAT_e, i_this->mPlayAnmSpeed);
+            anm_init(i_this, BCK_WALK_A, 5.0f, J3DFrameCtrl::EMode_LOOP, i_this->mPlayAnmSpeed);
             i_this->mMode = 1;
         }
         break;
@@ -1337,7 +1337,7 @@ static int ni_play(ni_class* i_this) {
             i_this->gravity = -2.0f;
         }
 
-        if (i_this->mAcch.i_ChkGroundHit() || i_this->field_0x848) {
+        if (i_this->mAcch.ChkGroundHit() || i_this->field_0x848) {
             i_this->mMode = 0;
             i_this->field_0xaf0 = 0.0f;
         }
@@ -1358,7 +1358,7 @@ static int ni_play(ni_class* i_this) {
 
         if (i_this->field_0x60c == 0) {
             i_this->mMode = 1;
-            anm_init(i_this, BCK_WAIT1, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 0.0f);
+            anm_init(i_this, BCK_WAIT1, 3.0f, J3DFrameCtrl::EMode_LOOP, 0.0f);
         }
         break;
     }
@@ -1421,21 +1421,21 @@ static int ni_play(ni_class* i_this) {
         if (i_this->speed.y <= -15.0f) {
             i_this->speed.y = 0.0f;
             i_this->mMode = 10;
-            anm_init(i_this, BCK_MOGAKU, 2.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, BCK_MOGAKU, 2.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             hane_set(i_this, 5.0f, 25.0f);
         }
     }
 
     if (i_this->mMode < 20 && i_this->field_0x848 != 0) {
         i_this->mMode = 20;
-        anm_init(i_this, BCK_WAIT1, 3.0f, J3DFrameCtrl::LOOP_REPEAT_e, 0.0f);
+        anm_init(i_this, BCK_WAIT1, 3.0f, J3DFrameCtrl::EMode_LOOP, 0.0f);
         i_this->speedF *= 0.5f;
     }
 
     if ((var_r29 != 0 || var_r30 != 0) && mDoCPd_c::getTrigA(PAD_1)) {
         i_this->speed.y = 20.0f;
         i_this->mMode = 10;
-        anm_init(i_this, BCK_MOGAKU, 2.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+        anm_init(i_this, BCK_MOGAKU, 2.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         hane_set(i_this, 5.0f, 25.0f);
     }
 
@@ -1445,7 +1445,7 @@ static int ni_play(ni_class* i_this) {
         if (i_this->field_0x60c == 0) {
             i_this->field_0x60c = cM_rndF(10.0f) + 5.0f;
             i_this->mMode = 30;
-            anm_init(i_this, BCK_MOGAKU, 1.0f, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f);
+            anm_init(i_this, BCK_MOGAKU, 1.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mSound.startSound(Z2SE_CHICKEN_CRY, 0, -1);
             hane_set(i_this, 5.0f, 25.0f);
         }
@@ -1510,9 +1510,9 @@ static void play_camera(ni_class* i_this) {
         i_this->field_0xa00 = a_this->current.pos.y;
         // fallthrough
     case 1:
-        if (!a_this->eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
-            a_this->eventInfo.i_onCondition(2);
+            a_this->eventInfo.onCondition(2);
             return;
         }
 
@@ -1673,7 +1673,7 @@ static void play_camera(ni_class* i_this) {
                 sp1D8.y = 0.0f;
                 sp1D8.z = hREG_F(10) + 50.0f;
                 MtxPosition(&sp1D8, &sp1E4);
-                sp214 = cam_line_chk.i_GetCross() - sp1E4;
+                sp214 = cam_line_chk.GetCross() - sp1E4;
             }
 
             if (var_r27 == 0) {
@@ -1808,7 +1808,7 @@ static void action(ni_class* i_this) {
             var_r25 = true;
         }
 
-        if (i_this->field_0xa50 == 1 && daPy_py_c::i_checkNowWolf() &&
+        if (i_this->field_0xa50 == 1 && daPy_py_c::checkNowWolf() &&
             i_this->mDistToPlayer < 300.0f)
         {
             i_this->mAction = ACTION_MESSAGE_e;
@@ -1916,7 +1916,7 @@ static void action(ni_class* i_this) {
         }
 
         i_this->mAcch.CrrPos(dComIfG_Bgsp());
-        if (i_this->mAcch.i_ChkGroundHit()) {
+        if (i_this->mAcch.ChkGroundHit()) {
             a_this->home.pos.y = a_this->current.pos.y;
         }
     }
@@ -1993,7 +1993,7 @@ static void action(ni_class* i_this) {
     line_chk.Set(&a_this->current.pos, &sp148, a_this);
 
     if (dComIfG_Bgsp().LineCross(&line_chk)) {
-        sp148.y = line_chk.i_GetCross().y - 10.0f;
+        sp148.y = line_chk.GetCross().y - 10.0f;
     }
 
     gnd_chk_spl.SetPos(&sp148);
@@ -2047,10 +2047,10 @@ static int message(ni_class* i_this) {
         OS_REPORT("////////NI MSG FNO %d\n", i_this->mFlowNo);
     }
 
-    if (i_this->field_0xa50 == 2 && i_this->mFlowNo != -1 && daPy_py_c::i_checkNowWolf()) {
+    if (i_this->field_0xa50 == 2 && i_this->mFlowNo != -1 && daPy_py_c::checkNowWolf()) {
         fopAcM_OnStatus(i_this, 0);
         cLib_onBit<u32>(i_this->attention_info.flags, 10);
-        i_this->eventInfo.i_onCondition(1);
+        i_this->eventInfo.onCondition(1);
     } else {
         fopAcM_OffStatus(i_this, 0);
         cLib_offBit<u32>(i_this->attention_info.flags, 10);
@@ -2203,7 +2203,7 @@ static BOOL useHeapInit(fopAc_ac_c* i_this) {
 
     if (!a_this->mpBtk->init(a_this->mpMorf->getModel()->getModelData(),
                              (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Ni", 0x13), TRUE,
-                             J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1))
+                             J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1))
     {
         return false;
     }

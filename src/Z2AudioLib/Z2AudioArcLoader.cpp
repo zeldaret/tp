@@ -30,7 +30,7 @@ bool Z2AudioArcLoader::readCommandMore(u32 param_0) {
 // NONMATCHING regalloc
 void Z2AudioArcLoader::readBFCA(void const* param_0) {
     JKRHeap* heap = JAUSectionHeap::getInstance()->getHeap();
-    JKRArchive* archive = JKRArchive::mount((void*)param_0, JKRGetCurrentHeap(), JKRArchive::MOUNT_DIRECTION_TAIL);
+    JKRArchive* archive = JKRMountArchive((void*)param_0, JKRGetCurrentHeap(), JKRArchive::MOUNT_DIRECTION_TAIL);
     Z2GetFxLineMgr()->initDataArc(archive, heap);
     JKRUnmountArchive(archive);
 }

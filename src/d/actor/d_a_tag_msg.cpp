@@ -123,13 +123,13 @@ int daTag_Msg_c::execute() {
     if (set_event && rangeCheck() && otherCheck()) {
         if (field_0x5dd) {
             mOrderEvtNum = 1;
-            JUT_ASSERT(0 != l_evtNameTBL[mOrderEvtNum]);
+            JUT_ASSERT(0, 0 != l_evtNameTBL[mOrderEvtNum]);
 
             mEventIdx =
                 dComIfGp_getEventManager().getEventIdx(this, l_evtNameTBL[mOrderEvtNum], 0xFF);
             fopAcM_orderOtherEventId(this, mEventIdx, 0xFF, 0xFFFF, 0, 1);
         } else {
-            eventInfo.i_onCondition(1);
+            eventInfo.onCondition(1);
             field_0x5e4 = 1;
         }
     }

@@ -2,6 +2,7 @@
 #define JUTCACHEFONT_H
 
 #include "JSystem/JUtility/JUTResFont.h"
+#include "global.h"
 
 class JKRAramBlock;
 

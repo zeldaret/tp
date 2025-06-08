@@ -307,13 +307,13 @@ void daKnob20_c::setEventPrm() {
             field_0x5b9 = 5;
         }
     }
-    if (!daPy_py_c::i_checkNowWolf()) {
+    if (!daPy_py_c::checkNowWolf()) {
         if (!checkArea(80.0f, 110.0f, 250.0f)) {
             offFlag(4);
         } else {
             eventInfo.setEventId(field_0x5a4[field_0x5b9]);
             eventInfo.setMapToolId(field_0x5b2[field_0x5b9]);
-            eventInfo.i_onCondition(4);
+            eventInfo.onCondition(4);
         }
     }
 }
@@ -594,7 +594,7 @@ void daKnob20_c::startDemoProc() {
 
 /* 8045FF08-8045FFB0 001728 00A8+00 1/0 0/0 0/0 .text            actionWait__10daKnob20_cFv */
 int daKnob20_c::actionWait() {
-    if (eventInfo.i_checkCommandDoor()) {
+    if (eventInfo.checkCommandDoor()) {
         initOpenDemo();
         setAction(ACTION_DEMO);
         demoProc();
@@ -649,7 +649,7 @@ int daKnob20_c::actionTalk() {
 
 /* 8046012C-804601D4 00194C 00A8+00 1/0 0/0 0/0 .text            actionTalkWait__10daKnob20_cFv */
 int daKnob20_c::actionTalkWait() {
-    if (eventInfo.i_checkCommandDoor()) {
+    if (eventInfo.checkCommandDoor()) {
         initOpenDemo();
         setAction(ACTION_TALK);
         demoProc();
@@ -667,7 +667,7 @@ int daKnob20_c::actionTalkWait() {
 
 /* 804601D4-8046027C 0019F4 00A8+00 1/0 0/0 0/0 .text            actionTalkOpen__10daKnob20_cFv */
 int daKnob20_c::actionTalkOpen() {
-    if (eventInfo.i_checkCommandDoor()) {
+    if (eventInfo.checkCommandDoor()) {
         initOpenDemo();
         setAction(ACTION_DEMO);
         demoProc();

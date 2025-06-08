@@ -34,8 +34,7 @@ static int daKytag04_Draw(kytag04_class* i_this) {
     if (i_this->field_0x5b4 == 4 || i_this->field_0x5b4 == 5) {
         if (i_this->field_0x5b4 == 4) {
             if (i_this->field_0x5b5 != 0xFF && i_this->field_0x5d1 == 1) {
-                s32 room_no = dComIfGp_roomControl_getStayNo();
-                if (dComIfGs_isSwitch(i_this->field_0x5b5, room_no)) {
+                if (dComIfGs_isSwitch(i_this->field_0x5b5, dComIfGp_roomControl_getStayNo())) {
                     var_r30 = 1;
                 }
             }
@@ -168,7 +167,7 @@ static int daKytag04_Execute(kytag04_class* i_this) {
             {
                 switch (i_this->field_0x5c4) {
                 case 0:
-                    if (!a_this->eventInfo.i_checkCommandDemoAccrpt()) {
+                    if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
                         dComIfGp_getEvent().reset(a_this);
                         fopAcM_orderPotentialEvent(a_this, 0x400, 0xFFFF, 0);
                     } else {
@@ -241,13 +240,13 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     a_this->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11020202);
     if (a_this->mpModel != NULL) {
         J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Kytag04", 14);
-        if (!a_this->mBtk.init(modelData, pbtk, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1)) {
+        if (!a_this->mBtk.init(modelData, pbtk, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
             OS_REPORT("\nkytag04 btk FALSE!!\n");
             return 0;
         }
 
         J3DAnmTevRegKey* pbrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes("Kytag04", 8);
-        if (!a_this->mBrk.init(modelData, pbrk, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1)) {
+        if (!a_this->mBrk.init(modelData, pbrk, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1)) {
             OS_REPORT("\nkytag04 brk FALSE!!\n");
             return 0;
         }
@@ -301,8 +300,7 @@ static int daKytag04_Create(fopAc_ac_c* i_this) {
             dComIfGp_setNeedLightDropNum(a_this->mNeedDropNum);
 
             if (a_this->field_0x5b5 != 0xFF) {
-                s32 room_no = dComIfGp_roomControl_getStayNo();
-                if (dComIfGs_isSwitch(a_this->field_0x5b5, room_no)) {
+                if (dComIfGs_isSwitch(a_this->field_0x5b5, dComIfGp_roomControl_getStayNo())) {
                     a_this->field_0x5b7 = 1;
                 }
             }
@@ -317,14 +315,12 @@ static int daKytag04_Create(fopAc_ac_c* i_this) {
                     OS_WARNING("\n緊急事態！！　雫がそろってるのにまだ闇世界なので強引に進めます]");
                     a_this->field_0x5b7 = -1;
 
-                    s32 room_no = dComIfGp_roomControl_getStayNo();
-                    dComIfGs_onSwitch(a_this->field_0x5b5, room_no);
+                    dComIfGs_onSwitch(a_this->field_0x5b5, dComIfGp_roomControl_getStayNo());
                 }
             }
         } else if (a_this->field_0x5b4 == 4) {
             if (a_this->field_0x5b5 != 0xFF) {
-                s32 room_no = dComIfGp_roomControl_getStayNo();
-                if (dComIfGs_isSwitch(a_this->field_0x5b5, room_no)) {
+                if (dComIfGs_isSwitch(a_this->field_0x5b5, dComIfGp_roomControl_getStayNo())) {
                     a_this->field_0x5d1 = 1;
                     a_this->field_0x5c8 = 999.0f;
                     a_this->field_0x5cc = 20;
@@ -345,8 +341,7 @@ static int daKytag04_Create(fopAc_ac_c* i_this) {
         }
 
         if (a_this->field_0x5b4 == 4 && a_this->field_0x5b5 != 0xFF) {
-            s32 room_no = dComIfGp_roomControl_getStayNo();
-            if (dComIfGs_isSwitch(a_this->field_0x5b5, room_no)) {
+            if (dComIfGs_isSwitch(a_this->field_0x5b5, dComIfGp_roomControl_getStayNo())) {
                 a_this->mBtk.setFrame(a_this->mBtk.getEndFrame());
                 a_this->mBrk.setFrame(a_this->mBrk.getEndFrame());
             }

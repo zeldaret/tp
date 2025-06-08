@@ -57,6 +57,8 @@ public:
     /* 80C6C94C */ daLv5SwIce_HIO_c();
     /* 80C6D418 */ virtual ~daLv5SwIce_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x4 */ u8 hitcount;
 };
 

@@ -283,18 +283,18 @@ void daObjCdoor_c::actionWait() {
     if (mMapToolID != 0xff) {
         setAction(ACT_ORDER_EVENT);
         fopAcM_orderOtherEventId(this, mEventID, mMapToolID, 0xffff, 0, 1);
-        eventInfo.i_onCondition(2);
+        eventInfo.onCondition(2);
     }
 }
 
 /* 80BC7B34-80BC7B9C 000DF4 0068+00 1/0 0/0 0/0 .text            actionOrderEvent__12daObjCdoor_cFv
  */
 void daObjCdoor_c::actionOrderEvent() {
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         setAction(ACT_EVENT);
     } else {
         fopAcM_orderOtherEventId(this, mEventID, mMapToolID, 0xffff, 0, 1);
-        eventInfo.i_onCondition(2);
+        eventInfo.onCondition(2);
     }
 }
 

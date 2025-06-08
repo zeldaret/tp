@@ -47,12 +47,25 @@ public:
     void SetMass(cCcD_Obj* i_obj, u8 i_priority) { mMass_Mng.Set(i_obj, i_priority); }
     void SetMassCam(cM3dGCps& i_cps) { mMass_Mng.SetCam(i_cps); }
     u32 GetMassResultCam() { return mMass_Mng.GetResultCam(); }
+    void GetMassCamTopPos(Vec* o_pos) { mMass_Mng.GetCamTopPos(o_pos); }
     void PrepareMass() { mMass_Mng.Prepare(); }
+
+    u32 ChkMass(cXyz* param_0, fopAc_ac_c** param_1, dCcMassS_HitInf* param_2) {
+        u32 rt = mMass_Mng.Chk(param_0, param_1, param_2);
+        return rt;
+    }
+
+    void SetMassAttr(f32 radius, f32 height, u8 param_2, u8 param_3) {
+        mMass_Mng.SetAttr(radius, height, param_2, param_3);
+    }
 
     static bool m_mtrl_hit_tbl[64];
 
     // /* 0x0000 */ cCcS mCCcS;
     /* 0x284C */ dCcMassS_Mng mMass_Mng;
+#ifdef DEBUG
+    /* 0x2AD0 */ u8 field_0x2ad0;
+#endif
 };  // Size = 0x2AC4
 
 STATIC_ASSERT(sizeof(dCcS) == 0x2AC4);

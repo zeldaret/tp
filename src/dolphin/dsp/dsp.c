@@ -1,80 +1,185 @@
-#include "dolphin/dsp.h"
-#include "dolphin/dsp/dsp_debug.h"
-#include "dolphin/dsp/dsp_task.h"
+#include <stddef.h>
+#include <dolphin.h>
+#include <dolphin/hw_regs.h>
 
-/* 80450A58-80450A60 -00001 0004+04 1/1 0/0 0/0 .sdata           __DSPVersion */
-static char* __DSPVersion = "<< Dolphin SDK - DSP\trelease build: Apr  5 2004 04:15:32 (0x2301) >>";
+#include "__dsp.h"
 
-/* 80451900-80451908 000E00 0004+04 1/1 0/0 0/0 .sbss            __DSP_init_flag */
-static s32 __DSP_init_flag;
+#define BUILD_DATE "Apr  5 2004"
+#if DEBUG
+#define BUILD_TIME "03:56:49"
+#else
+#define BUILD_TIME "04:15:32"
+#endif
 
-/* 80352430-80352440 34CD70 0010+00 0/0 5/5 0/0 .text            DSPCheckMailToDSP */
+#ifdef DEBUG
+const char* __DSPVersion = "<< Dolphin SDK - DSP\tdebug build: Apr  5 2004 03:56:49 (0x2301) >>";
+#else
+const char* __DSPVersion = "<< Dolphin SDK - DSP\trelease build: Apr  5 2004 04:15:32 (0x2301) >>";
+#endif
+
+extern DSPTaskInfo* __DSP_rude_task;
+extern int __DSP_rude_task_pending;
+
+static BOOL __DSP_init_flag;
+
+
 u32 DSPCheckMailToDSP(void) {
-    return (__DSPRegs[0] >> 0xF) & 1;
+    return (__DSPRegs[0] & (1 << 15)) >> 15;
 }
 
-/* 80352440-80352450 34CD80 0010+00 0/0 4/4 0/0 .text            DSPCheckMailFromDSP */
 u32 DSPCheckMailFromDSP(void) {
-    return (__DSPRegs[2] >> 0xF) & 1;
+    return (__DSPRegs[2] & (1 << 15)) >> 15;
 }
 
-/* 80352450-80352468 34CD90 0018+00 0/0 4/4 0/0 .text            DSPReadMailFromDSP */
+u32 DSPReadCPUToDSPMbox(void) {
+    return (__DSPRegs[0] << 16) | __DSPRegs[1];
+}
+
 u32 DSPReadMailFromDSP(void) {
-    u16 reg1;
-    u16 reg2;
-    reg1 = __DSPRegs[2];
-    reg2 = __DSPRegs[3];
-    return reg1 << 16 | reg2;
+    return (__DSPRegs[2] << 16) | __DSPRegs[3];
 }
 
-/* 80352468-8035247C 34CDA8 0014+00 0/0 5/5 0/0 .text            DSPSendMailToDSP */
 void DSPSendMailToDSP(u32 mail) {
     __DSPRegs[0] = mail >> 16;
-    __DSPRegs[1] = mail;
+    __DSPRegs[1] = mail & 0xFFFF;
 }
 
-/* 8035247C-803524BC 34CDBC 0040+00 0/0 1/1 0/0 .text            DSPAssertInt */
 void DSPAssertInt(void) {
-    u32 oldInt;
-    u16 reg;
+    BOOL old;
+    u16 tmp;
 
-    oldInt = OSDisableInterrupts();
-
-    reg = __DSPRegs[5];
-    reg = (reg & ~0xA8) | 0x2;
-    __DSPRegs[5] = reg;
-
-    OSRestoreInterrupts(oldInt);
+    old = OSDisableInterrupts();
+    tmp = __DSPRegs[5];
+    tmp = (tmp & ~0xA8) | 2;
+    __DSPRegs[5] = tmp;
+    OSRestoreInterrupts(old);
 }
 
-/* 803524BC-80352580 34CDFC 00C4+00 0/0 2/2 0/0 .text            DSPInit */
 void DSPInit(void) {
-    u32 oldInt;
-    u16 reg;
-    __DSP_debug_printf("DSPInit(): Build Date: %s %s\n", "Apr  5 2004", "04:15:32");
+    BOOL old;
+    u16 tmp;
 
-    if (__DSP_init_flag == 1) {
+    __DSP_debug_printf("DSPInit(): Build Date: %s %s\n", BUILD_DATE, BUILD_TIME);
+
+    if (__DSP_init_flag == 1)
         return;
-    }
 
     OSRegisterVersion(__DSPVersion);
-    oldInt = OSDisableInterrupts();
 
+    old = OSDisableInterrupts();
     __OSSetInterruptHandler(7, __DSPHandler);
-    __OSUnmaskInterrupts(0x1000000);
+    __OSUnmaskInterrupts(OS_INTERRUPTMASK_DSP_DSP);
 
-    reg = __DSPRegs[5];
-    reg = (reg & ~0xA8) | 0x800;
-    __DSPRegs[5] = reg;
-    reg = __DSPRegs[5];
-    reg = reg & ~0xAC;
-    __DSPRegs[5] = reg;
+    tmp = __DSPRegs[5];
+    tmp = (tmp & ~0xA8) | 0x800;
+    __DSPRegs[5] = tmp;
 
-    __DSP_tmp_task = NULL;
-    __DSP_curr_task = NULL;
-    __DSP_last_task = NULL;
-    __DSP_first_task = NULL;
+    tmp = __DSPRegs[5];
+    __DSPRegs[5] = tmp = tmp & ~0xAC;
+
+    __DSP_first_task = __DSP_last_task = __DSP_curr_task = __DSP_tmp_task = NULL;
     __DSP_init_flag = 1;
 
-    OSRestoreInterrupts(oldInt);
+    OSRestoreInterrupts(old);
+}
+
+BOOL DSPCheckInit(void) {
+    return __DSP_init_flag;
+}
+
+void DSPReset(void) {
+    BOOL old;
+    u16 tmp;
+
+    old = OSDisableInterrupts();
+    tmp = __DSPRegs[5];
+    tmp = (tmp & ~0xA8) | 0x800 | 1;
+    __DSPRegs[5] = tmp;
+    __DSP_init_flag = 0;
+    OSRestoreInterrupts(old);
+}
+
+void DSPHalt(void) {
+    BOOL old;
+    u16 tmp;
+
+    old = OSDisableInterrupts();
+    tmp = __DSPRegs[5];
+    tmp = (tmp & ~0xA8) | 4;
+    __DSPRegs[5] = tmp;
+    OSRestoreInterrupts(old);
+}
+
+void DSPUnhalt(void) {
+    BOOL old;
+    u16 tmp;
+
+    old = OSDisableInterrupts();
+    tmp = __DSPRegs[5];
+    tmp = (tmp & ~0xAC);
+    __DSPRegs[5] = tmp;
+    OSRestoreInterrupts(old);
+}
+
+u32 DSPGetDMAStatus(void) {
+    return (__DSPRegs[5] & (1 << 9));
+}
+
+DSPTaskInfo* DSPAddTask(DSPTaskInfo* task) {
+    BOOL old;
+
+    ASSERTMSGLINE(556, __DSP_init_flag == 1, "DSPAddTask(): DSP driver not initialized!\n");
+
+    old = OSDisableInterrupts();
+
+    __DSP_insert_task(task);
+    task->state = 0;
+    task->flags = 1;
+
+    OSRestoreInterrupts(old);
+    if (task == __DSP_first_task)
+        __DSP_boot_task(task);
+    return task;
+}
+
+DSPTaskInfo* DSPCancelTask(DSPTaskInfo* task) {
+    BOOL old;
+
+    ASSERTMSGLINE(592, __DSP_init_flag == 1, "DSPCancelTask(): DSP driver not initialized!\n");
+
+    old = OSDisableInterrupts();
+
+    task->flags |= 2;
+
+    OSRestoreInterrupts(old);
+    return task;
+}
+
+DSPTaskInfo* DSPAssertTask(DSPTaskInfo* task) {
+    s32 old;
+
+    ASSERTMSGLINE(623, __DSP_init_flag == 1, "DSPAssertTask(): DSP driver not initialized!\n");
+    ASSERTMSGLINE(624, task->flags & 1, "DSPAssertTask(): Specified task not in active task list!\n");
+
+    old = OSDisableInterrupts();
+
+    if (__DSP_curr_task == task) {
+        __DSP_rude_task = task;
+        __DSP_rude_task_pending = 1;
+        OSRestoreInterrupts(old);
+        return task;
+    }
+
+    if (task->priority < __DSP_curr_task->priority) {
+        __DSP_rude_task = task;
+        __DSP_rude_task_pending = 1;
+        if (__DSP_curr_task->state == 1) {
+            DSPAssertInt();
+        }
+        OSRestoreInterrupts(old);
+        return task;
+    }
+
+    OSRestoreInterrupts(old);
+    return NULL;
 }

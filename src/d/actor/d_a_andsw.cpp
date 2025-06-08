@@ -6,13 +6,31 @@
 #include "d/actor/d_a_andsw.h"
 #include "d/d_procname.h"
 
+#ifdef DEBUG
+daAndsw_HIO_c l_HIO;
+
+daAndsw_HIO_c::daAndsw_HIO_c() {
+    field_0x6 = 0;
+}
+
+void daAndsw_HIO_c::genMessage(JORMContext* ctx) {
+    ctx->genLabel("ＳＷ監視", 0, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
+    ctx->genCheckBox("ＳＷ状態出力", &field_0x6, 0x01, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
+}
+#endif
+
 /* 80457978-804579B8 000078 0040+00 1/1 0/0 0/0 .text            Create__9daAndsw_cFv */
 int daAndsw_c::Create() {
     mSwNo = getSwNo();
     mSwNo2 = getSwNo2();
-    u16 timer = getTimer();
 
-    timer != 0xFF ? mTimer = getTimer() * 15 : mTimer = 0;
+    if (getTimer() != 0xFF) {
+        mTimer = getTimer() * 15;
+    } else {
+        mTimer = 0;
+    }
+
+    OS_REPORT("ANDSW PARAM 0x%x\n", fopAcM_GetParam(this));
 
     return 1;
 }
@@ -23,6 +41,11 @@ int daAndsw_c::create() {
     if (!Create()) {
         return cPhs_ERROR_e;
     }
+
+#ifdef DEBUG
+    l_HIO.entryHIO("ＳＷ監視");
+#endif
+
     return cPhs_COMPLEATE_e;
 }
 
@@ -35,18 +58,35 @@ int daAndsw_c::execute() {
 
         if (mTimer == 0) {
             fopAcM_offSwitch(this,mSwNo);
+
+#ifdef DEBUG
+            if (l_HIO.field_0x6 != 0) {
+                OS_REPORT("-- ＳＷ監視状態出力 --\n");
+                OS_REPORT("sw<%d>ＯＦＦしました\n", mSwNo);
+            }
+#endif
         
             if (getType() == 1) {
                 fopAcM_delete(this);
+                OS_REPORT("ＳＷ監視：ＳＷＯＦＦしたので処理終わりますSW<%d>\n", mSwNo);
             }
         }
     }
+#ifdef DEBUG
+    else if (l_HIO.field_0x6 != 0) {
+        OS_REPORT("sw2<%d>を待っています\n", mSwNo2);
+        l_HIO.field_0x6 = 0;
+    }
+#endif
 
     return 1;
 }
 
 /* 80457ABC-80457AC4 0001BC 0008+00 1/1 0/0 0/0 .text            _delete__9daAndsw_cFv */
 int daAndsw_c::_delete() {
+#ifdef DEBUG
+    l_HIO.removeHIO();
+#endif
     return 1;
 }
 
@@ -57,12 +97,14 @@ static int daAndsw_Execute(daAndsw_c* i_this) {
 
 /* 80457AE4-80457B04 0001E4 0020+00 1/0 0/0 0/0 .text            daAndsw_Delete__FP9daAndsw_c */
 static int daAndsw_Delete(daAndsw_c* i_this) {
+    fopAcM_RegisterDeleteID(i_this, "Andsw");
     return i_this->_delete();
 }
 
 /* 80457B04-80457B24 000204 0020+00 1/0 0/0 0/0 .text            daAndsw_Create__FP10fopAc_ac_c */
 static int daAndsw_Create(fopAc_ac_c* i_this) {
-    return static_cast<daAndsw_c*>(i_this)->create();
+    fopAcM_RegisterCreateID(daAndsw_c, i_this, "Andsw");
+    return a_this->create();
 }
 
 /* ############################################################################################## */
@@ -70,7 +112,9 @@ static int daAndsw_Create(fopAc_ac_c* i_this) {
 static actor_method_class l_daAndsw_Method = {
     (process_method_func)daAndsw_Create,
     (process_method_func)daAndsw_Delete,
-    (process_method_func)daAndsw_Execute
+    (process_method_func)daAndsw_Execute,
+    (process_method_func)NULL,
+    (process_method_func)NULL,
 };
 
 /* 80457B4C-80457B7C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_ANDSW */

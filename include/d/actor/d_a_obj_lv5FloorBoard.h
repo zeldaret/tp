@@ -56,6 +56,8 @@ public:
     /* 80C6A60C */ daFlorBoad_HIO_c();
     /* 80C6B058 */ virtual ~daFlorBoad_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x04 */ cXyz field_0x4;
     /* 0x10 */ u8 field_0x10;
     /* 0x11 */ u8 field_0x11;
