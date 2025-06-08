@@ -409,6 +409,7 @@ public:
     cXyz* GetTgRVecP() { return mGObjTg.GetRVecP(); }
     bool ChkTgHookshotThrough() { return mGObjTg.ChkSPrm(0x80); }
     bool ChkTgShieldHit() { return mGObjTg.ChkRPrm(2); }
+    void OffTgNoAtHitInfSet() { mObjTg.OffSPrmBit(0x20); }
     bool ChkTgSpinnerReflect() { return mGObjTg.ChkSPrm(0x200); }
     
     static const Z2SoundID m_hitSeID[24];

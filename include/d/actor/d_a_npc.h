@@ -48,6 +48,7 @@ private:
 
 public:
     daNpcT_MatAnm_c() { initialize(); }
+
     /* 80145764 */ void initialize();
     /* 8014D24C */ virtual ~daNpcT_MatAnm_c() {}
     /* 80145788 */ virtual void calc(J3DMaterial*) const;
@@ -754,6 +755,7 @@ void daNpcT_offTmpBit(u32 i_idx);
 void daNpcT_onTmpBit(u32 i_idx);
 BOOL daNpcT_chkTmpBit(u32 i_idx);
 void daNpcT_onEvtBit(u32 i_idx);
+BOOL daNpcT_chkTmpBit(u32 i_idx);
 BOOL daNpcT_getPlayerInfoFromPlayerList(int param_0, int i_roomNo, cXyz* o_spawnPos,
                                         csXyz* o_angle);
 
@@ -1193,7 +1195,7 @@ private:
     /* 0x0FC */ f32 mNowOffsetX;
     /* 0x100 */ f32 mNowOffsetY;
     /* 0x104 */ u8 mEyeMoveFlag;
-    /* 0x105 */ u8 field_0x105;
+    /* 0x105 */ u8 mMorfFrm;
 
 public:
     daNpcF_MatAnm_c() { initialize(); }

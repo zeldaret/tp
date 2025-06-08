@@ -97,7 +97,7 @@ void daNpcF_MatAnm_c::initialize() {
     mNowOffsetX = 0.0f;
     mNowOffsetY = 0.0f;
     mEyeMoveFlag = 0;
-    field_0x105 = 0;
+    mMorfFrm = 0;
 }
 
 /* 8015075C-80150870 14B09C 0114+00 1/0 0/0 0/0 .text calc__15daNpcF_MatAnm_cCFP11J3DMaterial */
@@ -109,8 +109,8 @@ void daNpcF_MatAnm_c::calc(J3DMaterial* i_material) const {
             J3DTexMtxInfo* curr_mtx_info =
                 &i_material->getTexGenBlock()->getTexMtx(i)->getTexMtxInfo();
 
-            if (field_0x105 != 0) {
-                f32 tmp8 = 1.0f / (field_0x105 + 1);
+            if (mMorfFrm != 0) {
+                f32 tmp8 = 1.0f / (mMorfFrm + 1);
                 f32 tmp9 = (1.0f - tmp8);
                 f32 tmp10 = field_0xF4 * (1.0f - tmp8);
 

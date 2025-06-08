@@ -200,7 +200,7 @@ int daAlink_c::setDamagePoint(int i_dmgAmount, int i_checkZoraMag, int i_setDmgT
         dComIfGp_setItemLifeCount(-magnified_dmg, 0);
     }
 
-    onResetFlg1(RFLG1_UNK_400);
+    onResetFlg1(RFLG1_DAMAGE_IMPACT);
     mSwordUpTimer = 0;
 
     if (i_setDmgTimer) {
@@ -1429,7 +1429,7 @@ int daAlink_c::procLargeDamageUp() {
             } else if (dMsgObject_isTalkNowCheck()) {
                 offNoResetFlg0(FLG0_UNK_200000);
             }
-        } else if (checkEndResetFlg1(ERFLG1_UNK_8000000) && temp_r30->getFrame() > field_0x3484) {
+        } else if (checkEndResetFlg1(ERFLG1_LARGE_DAMAGE_UP_STOP) && temp_r30->getFrame() > field_0x3484) {
             temp_r30->setFrame(field_0x3484);
             getNowAnmPackUnder(UNDER_0)->setFrame(field_0x3484);
         }

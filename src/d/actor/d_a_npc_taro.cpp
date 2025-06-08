@@ -1056,9 +1056,9 @@ void daNpc_Taro_c::action() {
 
 /* 80567EB4-80567F78 002114 00C4+00 1/0 0/0 0/0 .text            beforeMove__12daNpc_Taro_cFv */
 void daNpc_Taro_c::beforeMove() {
-    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_8000000);
+    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_80000000);
     if (checkHide()) {
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_8000000);
+        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_80000000);
     }
     if (checkHide() || mNoDraw) {
         attention_info.flags = 0;

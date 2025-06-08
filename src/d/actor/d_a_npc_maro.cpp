@@ -995,9 +995,9 @@ void daNpc_Maro_c::action() {
 
 /* 8055D5C4-8055D688 002124 00C4+00 1/0 0/0 0/0 .text            beforeMove__12daNpc_Maro_cFv */
 void daNpc_Maro_c::beforeMove() {
-    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_8000000);
+    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_80000000);
     if (checkHide()) {
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_8000000);
+        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_80000000);
     }
     if (checkHide() || mNoDraw) {
         attention_info.flags = 0;

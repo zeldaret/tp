@@ -22,20 +22,21 @@
  * 
  */
 enum daE_YK_Action {
-    ACT_ROOF,           /**< Keese is on roof. */ 
-    ACT_FIGHT_FLY,      /**< Keese is transitioning from flying to aggro. */
-    ACT_FIGHT,          /**< Keese is aggroed. */
-    ACT_ATTACK,         /**< Keese is attacking. */
-    ACT_RETURN,         /**< Keese is returning to roof. */
-    ACT_FLY,            /**< Keese is flying around. */
-    ACT_PATH_FLY,       /**< Unconfirmed: Keese is flying along its path. */
-    ACT_CHANCE = 10,    /**< Keese is stunned/fell down. */
-    ACT_WOLFBITE = 13,  /**< Keese is being bitten by wolf. */
-    ACT_WIND            /**< Keese is in the gale boomerang. */
+    ACT_ROOF,           /**< Keese hangs from roof, enters combat if player gets close. */ 
+    ACT_FIGHT_FLY,      /**< Keese flies directly towards player to initiate combat. */
+    ACT_FIGHT,          /**< Keese circles around player at a distance, preparing to attack. */
+    ACT_ATTACK,         /**< Keese charges directly at player to deal damage. */
+    ACT_RETURN,         /**< Keese returns to its home position on the roof. */
+    ACT_FLY,            /**< Keese flies randomly around its home position. */
+    ACT_PATH_FLY,       /**< Keese follows predefined path points in the room. */
+    ACT_CHANCE = 10,    /**< Keese is stunned from shield attack, falls and bounces on ground. */
+    ACT_WOLFBITE = 13,  /**< Keese is caught in wolf Link's mouth, can be thrown. */
+    ACT_WIND            /**< Keese is caught in Gale Boomerang's wind, spins around it. */
 };
 
 /**
- * @brief Shadow Keese Host Input Output class
+ * @class daE_YK_HIO_c
+ * @brief Shadow Keese Host Input Output class.
  * 
  */
 class daE_YK_HIO_c {
@@ -43,13 +44,12 @@ public:
     /* 8080482C */ daE_YK_HIO_c();
     /* 808077E0 */ virtual ~daE_YK_HIO_c() {}
 
-    /* 0x00 */ // vtable
-    /* 0x04 */ s8 field_0x04; // padding after this
-    /* 0x08 */ f32 field_0x08;
-    /* 0x0C */ f32 field_0x0c;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
+    /* 0x04 */ s8 field_0x04;       ///< @brief Initialized to -1, appears unused.
+    /* 0x08 */ f32 mModelScale;     ///< @brief Base model scale factor (default: 1.0).
+    /* 0x0C */ f32 mFlySpeed;       ///< @brief Base flying speed (default: 15.0).
+    /* 0x10 */ f32 mAttackRange;    ///< @brief Distance threshold for entering attack state (default: 250.0).
+    /* 0x14 */ f32 mCruiseSpeed;    ///< @brief Speed when flying normally (default: 15.0).
+    /* 0x18 */ f32 mChargeSpeed;    ///< @brief Speed when charging at player (default: 40.0).
 };
 
 /**
@@ -62,49 +62,48 @@ public:
  */
 class e_yk_class : public fopEn_enemy_c {
 public:
-    /* 0x5AC */ request_of_phase_process_class mPhase;  ///< @brief Actor phase process class.
-    /* 0x5B4 */ u8 mParam1;                             ///< @brief Actor parameter. Used to determine default action?
-    /* 0x5B5 */ u8 mPlayerTriggerBase;                  ///< @brief Actor parameter. Used to determine mPlayerTrigger value. @see mPlayerTrigeer
-    /* 0x5B6 */ u8 field_0x5b6;                         ///< @brief ???
-    /* 0x5B7 */ u8 mPathIdx;                            ///< @brief Path index. Used to lookup/set mpPath based on the room.
-    /* 0x5B8 */ u8 field_0x5b8;                         ///< @brief ???
-    /* 0x5B9 */ s8 mPathPntIdx;                         ///< @brief Path point index. Tracks the index of the points along the actor's path.
-    /* 0x5BA */ s8 field_0x5ba;                         ///< @brief ???
-    /* 0x5BB */ u8 field_0x5bb;                         ///< @brief ???
-    /* 0x5BC */ dPath* mpPath;                          ///< @brief Flight path. Flight path for the actor to follow?
-    /* 0x5C0 */ mDoExt_McaMorfSO* mpMorfSO;             ///< @brief MorfSO pointer. Tracks the last resource loaded.
-    /* 0x5C4 */ Z2CreatureEnemy mCreature;              ///< @brief Z2 Audio class. Used for playing actor noises.
-    /* 0x668 */ int mResIdx;                            ///< @brief Resource index. Tracks the index of the last resource loaded.
-    /* 0x66C */ s16 field_0x66c;                        ///< @brief ???
-    /* 0x66E */ s16 mAction;                            ///< @brief Current action. Tracks the current action of the actor. @see daE_YK_Action
-    /* 0x670 */ s16 mActionPhase;                       ///< @brief Current action phase. Tracks the phase of the current action of the actor. @see daE_YK_Action
-    /* 0x674 */ cXyz mPathPntPos;                       ///< @brief Path point position. Tracks the position of the point the actor is along a path.
-    /* 0x680 */ s16 mAngleFromPlayer;                   ///< @brief Angle from player. Tracks the current actor angle from player.
-    /* 0x684 */ f32 mDistanceXZFromPlayer;              ///< @brief Distance from player. Tracks the current distance the actor is from the player.
-    /* 0x688 */ f32 mPlayerTrigger;                     ///< @brief Trigger distance from player. Tracks how close to the actor the player has to be before it will begin to attack the player.
-    /* 0x68C */ f32 field_0x68c;                        ///< @brief ???
-    /* 0x690 */ f32 field_0x690;                        ///< @brief ???
-    /* 0x694 */ f32 field_0x694;                        ///< @brief ???
-    /* 0x698 */ s16 field_0x698;                        ///< @brief ???
-    /* 0x69A */ csXyz field_0x69a;                      ///< @brief ???
-    /* 0x6A0 */ s8 field_0x6a0;                         ///< @brief ???
-    /* 0x6A1 */ u8 field_0x6a1;                         ///< @brief ???
-    /* 0x6A2 */ s16 field_0x6a2[4];                     ///< @brief ???
-    /* 0x6AA */ s16 field_0x6aa;                        ///< @brief ???
-    /* 0x6AC */ s16 field_0x6ac[6];                     ///< @brief ???
-    /* 0x6B8 */ cXyz mBoomrangPosOffset;                ///< @brief Boomerang position offset. Tracks the offset position when the actor is caught in the gale boomerang.
-    /* 0x6C4 */ s16 mBoomrangXRotOffset;                ///< @brief Boomerang rotation offset. Tracks the offset x rotation when the actor is caught in the gale boomerang.
-    /* 0x6C8 */ dBgS_AcchCir field_0x6c8;               ///< @brief  ???
-    /* 0x708 */ dBgS_ObjAcch field_0x708;               ///< @brief ???
-    /* 0x8E0 */ dCcD_Stts mCollisionStatus;             ///< @brief Collision status.
-    /* 0x91C */ dCcD_Sph mCollisionSphere;              ///< @brief Collision sphere.
-    /* 0xA54 */ dCcU_AtInfo mAtColliderInfo;            ///< @brief Attack collider info. Used when actor gets hit.
-    /* 0xA78 */ u32 field_0xa78;                        ///< @brief ???
-    /* 0xA7C */ u32 field_0xa7c;                        ///< @brief ???
-    /* 0xA80 */ u32 field_0xa80;                        ///< @brief ???
-    /* 0xA84 */ u32 mParticleEmitterIds[2];             ///< @brief ???
-    /* 0xA8C */ u8 field_0xa8c;                         ///< @brief ???
+    /* 0x5AC */ request_of_phase_process_class mPhase;  ///< @brief Resource loading phase handler.
+    /* 0x5B4 */ u8 mBehaviorMode;                       ///< @brief Controls default behavior (0: return to roof, 1: free flying).
+    /* 0x5B5 */ u8 mPlayerTriggerBase;                  ///< @brief Base value used to calculate player detection range (multiplied by 100).
+    /* 0x5B6 */ u8 field_0x5b6;                         ///< @brief Appears unused.
+    /* 0x5B7 */ u8 mPathIdx;                            ///< @brief Path index for room path lookup.
+    /* 0x5B8 */ u8 mPathActive;                         ///< @brief Flag indicating if path following is active (pathIdx + 1).
+    /* 0x5B9 */ s8 mPathPntIdx;                         ///< @brief Current index in path point array.
+    /* 0x5BA */ s8 mPathDirection;                      ///< @brief Direction to traverse path (1: forward, -1: backward).
+    /* 0x5BC */ dPath* mpPath;                          ///< @brief Pointer to current flight path data.
+    /* 0x5C0 */ mDoExt_McaMorfSO* mpMorfSO;             ///< @brief Model and animation handler.
+    /* 0x5C4 */ Z2CreatureEnemy mCreature;              ///< @brief Sound effect and voice handler.
+    /* 0x668 */ s32 mResIdx;                            ///< @brief Current animation resource index.
+    /* 0x66C */ s16 mFrameCounter;                      ///< @brief Increments each frame, used for periodic events.
+    /* 0x66E */ s16 mAction;                            ///< @brief Current action state. @see daE_YK_Action
+    /* 0x670 */ s16 mActionPhase;                       ///< @brief Sub-phase within current action.
+    /* 0x674 */ cXyz mPathPntPos;                       ///< @brief Target position (path point or player).
+    /* 0x680 */ s16 mAngleFromPlayer;                   ///< @brief Angle between keese and player in XZ plane.
+    /* 0x684 */ f32 mDistanceXZFromPlayer;              ///< @brief XZ distance between keese and player.
+    /* 0x688 */ f32 mPlayerTrigger;                     ///< @brief Distance threshold for player detection.
+    /* 0x68C */ f32 mMoveInterpolation;                 ///< @brief Movement interpolation factor (0.0-1.0).
+    /* 0x690 */ f32 mTurnSpeed;                         ///< @brief Angular velocity for turning.
+    /* 0x694 */ f32 mKnockbackSpeed;                    ///< @brief Speed when knocked back from damage.
+    /* 0x698 */ s16 mKnockbackAngle;                    ///< @brief Direction angle when knocked back.
+    /* 0x69A */ csXyz mStunRotation;                    ///< @brief Rotation angles during stun animation.
+    /* 0x6A0 */ s8 mDeathFlag;                          ///< @brief Set to 1 when keese is dying.
+    /* 0x6A2 */ s16 mActionTimers[4];                   ///< @brief Timers for various action states (movement, attack, etc).
+    /* 0x6AA */ s16 mInvulnerabilityTimer;              ///< @brief Frames of damage invulnerability remaining.
+    /* 0x6AC */ s16 field_0x6ac[6];                     ///< @brief Reserved/unused timer array.
+    /* 0x6B8 */ cXyz mBoomrangPosOffset;                ///< @brief Position offset when caught in Gale Boomerang.
+    /* 0x6C4 */ s16 mBoomrangXRotOffset;                ///< @brief Rotation offset when caught in Gale Boomerang.
+    /* 0x6C8 */ dBgS_AcchCir mWallCollisionCircle;      ///< @brief Circular collision volume for wall detection and response.
+    /* 0x708 */ dBgS_ObjAcch mActorCollisionHandler;    ///< @brief Handles all collision types (ground/wall/roof/water) for this actor.
+    /* 0x8E0 */ dCcD_Stts mCollisionStatus;             ///< @brief Collision state tracking.
+    /* 0x91C */ dCcD_Sph mCollisionSphere;              ///< @brief Spherical collision shape.
+    /* 0xA54 */ dCcU_AtInfo mAtColliderInfo;            ///< @brief Attack collision processor.
+    /* 0xA78 */ u32 mSmokeEffectId;                     ///< @brief ID for smoke particle effect.
+    /* 0xA7C */ u32 mSmokeEffectParams;                 ///< @brief Parameters for smoke effect.
+    /* 0xA80 */ u32 mShadowParticleId;                  ///< @brief ID for shadow trail particle effect.
+    /* 0xA84 */ u32 mWingParticleIds[2];                ///< @brief IDs for wing particle effects.
+    /* 0xA8C */ u8 mIsFirstSpawn;                       ///< @brief Set to 1 if this is the first keese spawned in room.
 };
-// size: 0xA90
+
+STATIC_ASSERT(sizeof(e_yk_class) == 0xA90);
 
 #endif /* D_A_E_YK_H */
