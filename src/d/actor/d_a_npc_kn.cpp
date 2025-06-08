@@ -4828,27 +4828,27 @@ int daNpc_Kn_c::teach06_superJumpWait(void* param_0) {
             s16 angle = cLib_targetAngleY(&hit_ac->current.pos, &current.pos);
             cXyz pos(0.0f,0.0f,daNpc_Kn_Param_c::m.field_0x64);
             mDoMtx_stack_c::YrotS(angle);
-            mDoMtx_stack_c::multVec(&pos, );
+            mDoMtx_stack_c::multVec(&pos, &pos);
             }
-                iVar2 = ::dCcD_GObjInf::GetTgHitAc((dCcD_GObjInf *)(this + 0x122c));
-    if (iVar2 == 0) {
-      uVar4 = JUTAssertion::getSDevice();
-      JUTAssertion::showAssert(uVar4,d_a_npc_kn::@126361,0x10be,d_a_npc_kn::@127478);
-      m_Do_printf::OSPanic(d_a_npc_kn::@126361,0x10be,&d_a_npc_kn::@124961);
-    }
-    sVar8 = SComponentD::(iVar2 + 0x4d4,this + 0x4d4);
-    ::cXyz::cXyz(&cStack_2c,0.0,0.0,*(float *)(*(int *)(this + 0x1228) + 0x9c));
-    mDoMtx_stack_c::YrotS(sVar8);
-    mDoMtx_stack_c::multVec(&cStack_2c,(cXyz *)(this + 0x1600));
-    ::cXyz::operator_+=((cXyz *)(this + 0x1600),(Vec *)(this + 0x4d4));
-    this[0x160c] = (daNpc_Kn_c)0x1;
-    (**(code **)(*(int *)(this + 0x1268) + 0x24))();
-    ::daNpcT_MotionSeqMngr_c::setNo((daNpcT_MotionSeqMngr_c *)(this + 0xbd4),1,-1.0,0,0);
-    ::daNpcT_MotionSeqMngr_c::setNo((daNpcT_MotionSeqMngr_c *)(this + 0xbf8),0x1e,-1.0,1,0);
-    (**(code **)(*(int *)(this + 0x5cc) + 0x2c))(this + 0x5cc,0x40000,0x1e);
-        } else {
+    //             iVar2 = ::dCcD_GObjInf::GetTgHitAc((dCcD_GObjInf *)(this + 0x122c));
+    // if (iVar2 == 0) {
+    //   uVar4 = JUTAssertion::getSDevice();
+    //   JUTAssertion::showAssert(uVar4,d_a_npc_kn::@126361,0x10be,d_a_npc_kn::@127478);
+    //   m_Do_printf::OSPanic(d_a_npc_kn::@126361,0x10be,&d_a_npc_kn::@124961);
+    // }
+    // sVar8 = SComponentD::(iVar2 + 0x4d4,this + 0x4d4);
+    // ::cXyz::cXyz(&cStack_2c,0.0,0.0,*(float *)(*(int *)(this + 0x1228) + 0x9c));
+    // mDoMtx_stack_c::YrotS(sVar8);
+    // mDoMtx_stack_c::multVec(&cStack_2c,(cXyz *)(this + 0x1600));
+    // ::cXyz::operator_+=((cXyz *)(this + 0x1600),(Vec *)(this + 0x4d4));
+    // this[0x160c] = (daNpc_Kn_c)0x1;
+    // (**(code **)(*(int *)(this + 0x1268) + 0x24))();
+    // ::daNpcT_MotionSeqMngr_c::setNo((daNpcT_MotionSeqMngr_c *)(this + 0xbd4),1,-1.0,0,0);
+    // ::daNpcT_MotionSeqMngr_c::setNo((daNpcT_MotionSeqMngr_c *)(this + 0xbf8),0x1e,-1.0,1,0);
+    // (**(code **)(*(int *)(this + 0x5cc) + 0x2c))(this + 0x5cc,0x40000,0x1e);
+    //     } else {
 
-        }
+    //     }
         
     case 3:
     default:
