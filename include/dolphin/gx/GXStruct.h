@@ -37,21 +37,7 @@ typedef struct _GXTexObj {
 } GXTexObj;
 
 typedef struct _GXLightObj {
-    /* 0x00 */ u32 field_0x0[2];
-    /* 0x08 */ u8 field_0x8[4];
-    /* 0x0C */ GXColor color;
-    /* 0x10 */ f32 a0;
-    /* 0x14 */ f32 a1;
-    /* 0x18 */ f32 a2;
-    /* 0x1C */ f32 k0;
-    /* 0x20 */ f32 k1;
-    /* 0x24 */ f32 k2;
-    /* 0x28 */ f32 posX;
-    /* 0x2C */ f32 posY;
-    /* 0x30 */ f32 posZ;
-    /* 0x34 */ f32 dirX;
-    /* 0x38 */ f32 dirY;
-    /* 0x3C */ f32 dirZ;
+    u32 dummy[16];
 } GXLightObj;
 
 typedef struct _GXTexRegion {
