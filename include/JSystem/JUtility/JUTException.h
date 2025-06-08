@@ -4,8 +4,8 @@
 #include "JSystem/JKernel/JKRThread.h"
 #include "JSystem/JUtility/JUTGamePad.h"
 #include "__va_arg.h"
-#include "dolphin/gx/GXEnum.h"
-#include "dolphin/os/OSError.h"
+#include <dolphin/gx.h>
+#include <dolphin/os.h>
 #include "global.h"
 
 typedef struct _GXRenderModeObj GXRenderModeObj;
@@ -42,6 +42,9 @@ STATIC_ASSERT(sizeof(JUTExternalFB) == 0x14);
 * @ingroup jsystem-jutility
 * 
 */
+
+typedef void (*JUTExceptionUserCallback)(u16, OSContext*, u32, u32);
+
 class JUTException : public JKRThread {
 public:
     enum EInfoPage {
@@ -87,8 +90,8 @@ public:
     /* 802E21FC */ static void panic_f(char const*, int, char const*, ...);
     /* 802E227C */ static void setFPException(u32);
     /* 802E2578 */ static bool searchPartialModule(u32, u32*, u32*, u32*, u32*);
-    /* 802E3AEC */ static OSErrorHandler setPreUserCallback(OSErrorHandler);
-    /* 802E3AFC */ static OSErrorHandler setPostUserCallback(OSErrorHandler);
+    /* 802E3AEC */ static JUTExceptionUserCallback setPreUserCallback(JUTExceptionUserCallback);
+    /* 802E3AFC */ static JUTExceptionUserCallback setPostUserCallback(JUTExceptionUserCallback);
     /* 802E3B0C */ static void appendMapFile(char const*);
     /* 802E3BA0 */ static bool queryMapAddress(char*, u32, s32, u32*, u32*, char*, u32, bool, bool);
     /* 802E3C90 */ static bool queryMapAddress_single(char*, u32, s32, u32*, u32*, char*, u32, bool,
@@ -120,8 +123,8 @@ private:
     static JSUList<JUTException::JUTExMapFile> sMapFileList;
     static OSMessage sMessageBuffer[1];
     static JUTException* sErrorManager;
-    static OSErrorHandler sPreUserCallback;
-    static OSErrorHandler sPostUserCallback;
+    static JUTExceptionUserCallback sPreUserCallback;
+    static JUTExceptionUserCallback sPostUserCallback;
     static void* sConsoleBuffer;
     static u32 sConsoleBufferSize;
     static JUTConsole* sConsole;

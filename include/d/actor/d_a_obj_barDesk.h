@@ -47,6 +47,8 @@ public:
     /* 80BA918C */ daBarDesk_HIO_c();
     /* 80BA9A90 */ ~daBarDesk_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x4 */ u8 field_0x4;
     /* 0x5 */ u8 field_0x5;
 };

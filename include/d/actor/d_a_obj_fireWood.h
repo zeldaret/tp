@@ -48,6 +48,8 @@ public:
     /* 80BE762C */ daFireWood_HIO_c();
     /* 80BE7F24 */ virtual ~daFireWood_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x4 */ f32 mFlameOffsetY;
     /* 0x8 */ f32 mCollisionRadius;
     /* 0xC */ u8 mWaitTime;

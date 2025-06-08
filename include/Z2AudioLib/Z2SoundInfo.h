@@ -23,6 +23,8 @@ public:
     /* 802BBA10 */ const char* getStreamFilePath(JAISoundID);
     /* 802BBAC8 */ int getSwBit(JAISoundID) const;
     /* 802BBB48 */ void getSoundInfo_(JAISoundID, JAISound*) const;
+
+    BOOL isValid() const;
 };
 
 

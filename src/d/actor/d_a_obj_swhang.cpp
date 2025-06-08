@@ -475,9 +475,9 @@ void daObjSwHang_c::modeOnWait() {
 }
 
 /* 80CFCCE0-80CFCD04 001420 0024+00 2/1 0/0 0/0 .text            eventStart__13daObjSwHang_cFv */
-BOOL daObjSwHang_c::eventStart() {
+bool daObjSwHang_c::eventStart() {
     changeOnStatus();
-    return TRUE;
+    return true;
 }
 
 /* 80CFCD04-80CFCD98 001444 0094+00 1/0 0/0 0/0 .text            Draw__13daObjSwHang_cFv */

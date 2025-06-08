@@ -3,7 +3,7 @@
 
 #include "SSystem/SComponent/c_sxyz.h"
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/mtx.h"
+#include <dolphin/mtx.h>
 
 void mDoMtx_XYZrotS(Mtx, s16, s16, s16);
 void mDoMtx_XYZrotM(Mtx, s16, s16, s16);
@@ -36,7 +36,7 @@ inline void cMtx_scale(Mtx m, f32 x, f32 y, f32 z) {
     MTXScale(m, x, y, z);
 }
 
-inline void mDoMtx_multVec(Mtx m, const Vec* src, Vec* dst) {
+inline void mDoMtx_multVec(CMtxP m, const Vec* src, Vec* dst) {
     MTXMultVec(m, src, dst);
 }
 
@@ -80,7 +80,7 @@ inline void cMtx_lookAt(Mtx param_0, const Vec* param_1, const Vec* param_2, s16
     mDoMtx_lookAt(param_0, param_1, param_2, param_3);
 }
 
-inline void cMtx_multVec(Mtx mtx, const Vec* src, Vec* dst) {
+inline void cMtx_multVec(const Mtx mtx, const Vec* src, Vec* dst) {
     mDoMtx_multVec(mtx, src, dst);
 }
 
@@ -119,11 +119,11 @@ inline void mDoMtx_quatRotAxisRad(Quaternion* q, const Vec* axis, f32 rad) {
 }
 
 inline void mDoMtx_identity(Mtx m) {
-    MTXIdentity(m);
+    PSMTXIdentity(m);
 }
 
 inline void mDoMtx_concat(const Mtx a, const Mtx b, Mtx c) {
-    MTXConcat(a, b, c);
+    PSMTXConcat(a, b, c);
 }
 
 inline void mDoMtx_inverse(const Mtx a, Mtx b) {
@@ -135,7 +135,7 @@ inline void mDoMtx_scale(Mtx m, f32 x, f32 y, f32 z) {
 }
 
 inline void mDoMtx_quat(Mtx m, const Quaternion* q) {
-    MTXQuat(m, (PSQuaternion*)q);
+    MTXQuat(m, q);
 }
 
 inline void cMtx_inverse(const Mtx a, Mtx b) {
@@ -213,7 +213,7 @@ public:
     /* 8000CF44 */ static void ZXYrotM(csXyz const& xyz);
 
     static void quatS(const Quaternion* quat) {
-        MTXQuat(now, (PSQuaternion*)quat);
+        MTXQuat(now, quat);
     }
 
     /* 8000CF7C */ static void quatM(Quaternion const*);
@@ -343,6 +343,10 @@ public:
 
     static void rotAxisRadS(const Vec* axis, f32 rad) {
         MTXRotAxisRad(now, axis, rad);
+    }
+
+    static void identity() {
+        MTXIdentity(now);
     }
 
     static Mtx now;

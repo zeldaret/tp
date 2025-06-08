@@ -26,7 +26,7 @@ int daObjMirrorSand_c::createHeap() {
         speed = 0.0f;
     }
 
-    if (mpBck == NULL || !mpBck->init(bck, FALSE, J3DFrameCtrl::LOOP_ONCE_e, speed, 0, -1, false)) {
+    if (mpBck == NULL || !mpBck->init(bck, FALSE, J3DFrameCtrl::EMode_NONE, speed, 0, -1, false)) {
         return 0;
     }
 

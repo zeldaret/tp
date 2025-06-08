@@ -5,7 +5,21 @@
 
 #include "JSystem/J3DGraphAnimator/J3DMtxBuffer.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/JKernel/JKRHeap.h"
+#include "JSystem/JUtility/JUTAssert.h"
+
+/* 804371C0-804371F0 063EE0 0030+00 1/0 0/0 0/0 .bss             sNoUseDrawMtx__12J3DMtxBuffer */
+Mtx J3DMtxBuffer::sNoUseDrawMtx;
+
+/* 804371F0-80437218 063F10 0024+04 1/0 0/0 0/0 .bss             sNoUseNrmMtx__12J3DMtxBuffer */
+Mtx33 J3DMtxBuffer::sNoUseNrmMtx;
+
+/* 80450970-80450974 -00001 0004+00 1/1 0/0 0/0 .sdata           sNoUseDrawMtxPtr__12J3DMtxBuffer */
+Mtx* J3DMtxBuffer::sNoUseDrawMtxPtr = &J3DMtxBuffer::sNoUseDrawMtx;
+
+/* 80450974-80450978 -00001 0004+00 1/1 0/0 0/0 .sdata           sNoUseNrmMtxPtr__12J3DMtxBuffer */
+Mtx33* J3DMtxBuffer::sNoUseNrmMtxPtr = &J3DMtxBuffer::sNoUseNrmMtx;
 
 /* 80326214-80326258 320B54 0044+00 0/0 1/1 0/0 .text            initialize__12J3DMtxBufferFv */
 void J3DMtxBuffer::initialize() {
@@ -31,13 +45,11 @@ enum {
     J3DMdlDataFlag_NoAnimation = 0x100,
 };
 
-static inline u32 getMdlDataFlag_MtxLoadType(u32 flag) {
-    return flag & 0x10;
-}
-
 s32 J3DMtxBuffer::create(J3DModelData* p_modelData, u32 flag) {
-    s32 ret;
+    J3D_ASSERT(76, p_modelData, "Error : null pointer.");
+    J3D_ASSERT(77, flag, "Error : non-zero argument is specified 0.");
     
+    s32 ret = 0;
     mFlags = flag;
     mJointTree = &p_modelData->getJointTree();
 
@@ -52,7 +64,8 @@ s32 J3DMtxBuffer::create(J3DModelData* p_modelData, u32 flag) {
     if (p_modelData->checkFlag(J3DMdlDataFlag_NoAnimation)) {
         setNoUseDrawMtx();
     } else {
-        switch (getMdlDataFlag_MtxLoadType(p_modelData->getFlag())) {
+        u32 loadType = getMdlDataFlag_MtxLoadType(p_modelData->getFlag());
+        switch (loadType) {
         case J3DMdlDataFlag_ConcatView:
             ret = setNoUseDrawMtx();
             break;
@@ -80,7 +93,7 @@ s32 J3DMtxBuffer::create(J3DModelData* p_modelData, u32 flag) {
 
 /* 80326364-803263F0 320CA4 008C+00 1/1 0/0 0/0 .text createAnmMtx__12J3DMtxBufferFP12J3DModelData
  */
-s32 J3DMtxBuffer::createAnmMtx(J3DModelData* p_modelData) {
+ J3DError J3DMtxBuffer::createAnmMtx(J3DModelData* p_modelData) {
     if (p_modelData->getJointNum() != 0) {
         mpScaleFlagArr = new u8[p_modelData->getJointNum()];
         mpAnmMtx = new Mtx[p_modelData->getJointNum()];
@@ -90,7 +103,10 @@ s32 J3DMtxBuffer::createAnmMtx(J3DModelData* p_modelData) {
     if (mpScaleFlagArr == NULL)
         return kJ3DError_Alloc;
 
-    return mpAnmMtx == NULL ? kJ3DError_Alloc : kJ3DError_Success;
+    if (mpAnmMtx == NULL) {
+        return kJ3DError_Alloc;
+    }
+    return kJ3DError_Success;
 }
 
 /* 803263F0-8032648C 320D30 009C+00 1/1 0/0 0/0 .text
@@ -109,27 +125,12 @@ s32 J3DMtxBuffer::createWeightEnvelopeMtx(J3DModelData* p_modelData) {
     return kJ3DError_Success;
 }
 
-/* 804371C0-804371F0 063EE0 0030+00 1/0 0/0 0/0 .bss             sNoUseDrawMtx__12J3DMtxBuffer */
-Mtx J3DMtxBuffer::sNoUseDrawMtx;
-
-/* 804371F0-80437218 063F10 0024+04 1/0 0/0 0/0 .bss             sNoUseNrmMtx__12J3DMtxBuffer */
-Mtx33 J3DMtxBuffer::sNoUseNrmMtx;
-
-/* 80450970-80450974 -00001 0004+00 1/1 0/0 0/0 .sdata           sNoUseDrawMtxPtr__12J3DMtxBuffer */
-Mtx* J3DMtxBuffer::sNoUseDrawMtxPtr = &J3DMtxBuffer::sNoUseDrawMtx;
-
-/* 80450974-80450978 -00001 0004+00 1/1 0/0 0/0 .sdata           sNoUseNrmMtxPtr__12J3DMtxBuffer */
-Mtx33* J3DMtxBuffer::sNoUseNrmMtxPtr = &J3DMtxBuffer::sNoUseNrmMtx;
-
 /* 8032648C-803264B8 320DCC 002C+00 1/1 0/0 0/0 .text            setNoUseDrawMtx__12J3DMtxBufferFv
  */
 s32 J3DMtxBuffer::setNoUseDrawMtx() {
-    mpDrawMtxArr[1] = &sNoUseDrawMtxPtr;
-    mpDrawMtxArr[0] = &sNoUseDrawMtxPtr;
-    mpNrmMtxArr[1] = &sNoUseNrmMtxPtr;
-    mpNrmMtxArr[0] = &sNoUseNrmMtxPtr;
-    mpBumpMtxArr[1] = NULL;
-    mpBumpMtxArr[0] = NULL;
+    mpDrawMtxArr[0] = mpDrawMtxArr[1] = &sNoUseDrawMtxPtr;
+    mpNrmMtxArr[0] = mpNrmMtxArr[1] = &sNoUseNrmMtxPtr;
+    mpBumpMtxArr[0] = mpBumpMtxArr[1] = NULL;
     return kJ3DError_Success;
 }
 
@@ -145,7 +146,7 @@ s32 J3DMtxBuffer::createDoubleDrawMtx(J3DModelData* p_modelData, u32 num) {
     }
 
     if (num != 0) {
-        for (u32 i = 0; i < 2; i++) {
+        for (s32 i = 0; i < 2; i++) {
             if (mpDrawMtxArr[i] == NULL)
                 return kJ3DError_Alloc;
             if (mpNrmMtxArr[i] == NULL)
@@ -179,8 +180,9 @@ s32 J3DMtxBuffer::createDoubleDrawMtx(J3DModelData* p_modelData, u32 num) {
 /* 80326664-803268D4 320FA4 0270+00 1/1 0/0 0/0 .text
  * createBumpMtxArray__12J3DMtxBufferFP12J3DModelDataUl         */
 s32 J3DMtxBuffer::createBumpMtxArray(J3DModelData* i_modelData, u32 param_1) {
+    J3D_ASSERT(295, i_modelData, "Error : null pointer.");
     if (i_modelData->getModelDataType() == 0) {
-        u32 bumpMtxNum = 0;
+        u16 bumpMtxNum = 0;
         u16 materialCount = 0;
         u16 materialNum = i_modelData->getMaterialNum();
         for (u16 j = 0; j < materialNum; j++) {
@@ -191,7 +193,7 @@ s32 J3DMtxBuffer::createBumpMtxArray(J3DModelData* i_modelData, u32 param_1) {
             }
         }
 
-        if ((u16)bumpMtxNum != 0 && param_1 != 0) {
+        if (bumpMtxNum != 0 && param_1 != 0) {
             for (int i = 0; i < 2; i++) {
                 mpBumpMtxArr[i] = new Mtx33**[(u16)materialCount];
                 if (mpBumpMtxArr[i] == NULL) {
@@ -220,7 +222,7 @@ s32 J3DMtxBuffer::createBumpMtxArray(J3DModelData* i_modelData, u32 param_1) {
             u32 offset = 0;
             u16 materialNum = i_modelData->getMaterialNum();
             for (u16 j = 0; j < materialNum; j++) {
-                J3DMaterial* material = i_modelData->getMaterialNodePointer(j);
+                J3DMaterial* material = i_modelData->getMaterialNodePointer((u16)j);
                 if (material->getNBTScale()->mbHasScale == true) {
                     for (int k = 0; k < param_1; k++) {
                         mpBumpMtxArr[i][offset][k] = new (0x20) Mtx33[i_modelData->getDrawMtxNum()];
@@ -248,23 +250,53 @@ static u8 J3DUnit01[8] = {
 
 /* 803268D4-80326ACC 321214 01F8+00 0/0 1/1 0/0 .text calcWeightEnvelopeMtx__12J3DMtxBufferFv */
 void J3DMtxBuffer::calcWeightEnvelopeMtx() {
-    int max      = mJointTree->getWEvlpMtxNum();
-	u16* indices = mJointTree->getWEvlpMixIndex();
-	f32* weights = mJointTree->getWEvlpMixWeight();
-	for (int i = -1; i < max; i++) {
-		u8* scaleFlags    = mpEvlpScaleFlagArr;
-		scaleFlags[i]     = 1;
-		Mtx* weightAnmMtx = &mpWeightEvlpMtx[i];
-		int mixNum        = mJointTree->getWEvlpMixMtxNum(i);
-		for (int j = 0; j < mixNum; j++) {
-			u16 idx       = indices[j];
-			f32 weight    = weights[j];
-			Mtx& invMtx   = mJointTree->getInvJointMtx(idx);
-			Mtx& worldMtx = mpUserAnmMtx[idx];
-			// I think it's this but as ASM? maybe?
-			MTXConcat(invMtx, worldMtx, *weightAnmMtx);
-			scaleFlags[i] &= mpScaleFlagArr[j];
-		}
+    MtxP weightAnmMtx;
+    Mtx* worldMtx;
+    Mtx* invMtx;
+    f32 weight;
+    int idx;
+    int j;
+    int mixNum;
+    int i;
+    u8 stack_8;
+    int max;
+    u16* indices;
+    f32* weights;
+    u8* pScale;
+    Mtx mtx;
+    i = -1;
+    max = mJointTree->getWEvlpMtxNum();
+	indices = mJointTree->getWEvlpMixMtxIndex() - 1;
+	weights = mJointTree->getWEvlpMixWeight() - 1;
+	while (++i < max) {
+		pScale = &mpEvlpScaleFlagArr[i];
+        *pScale = 1;
+		weightAnmMtx = mpWeightEvlpMtx[i];
+        weightAnmMtx[0][0] = weightAnmMtx[0][1] = weightAnmMtx[0][2] = weightAnmMtx[0][3] = 
+        weightAnmMtx[1][0] = weightAnmMtx[1][1] = weightAnmMtx[1][2] = weightAnmMtx[1][3] = 
+        weightAnmMtx[2][0] = weightAnmMtx[2][1] = weightAnmMtx[2][2] = weightAnmMtx[2][3] = 0.0f;
+        j = 0;
+		mixNum = mJointTree->getWEvlpMixMtxNum(i);
+		do {
+			idx = *++indices;
+			worldMtx = &mpAnmMtx[idx];
+			invMtx = &mJointTree->getInvJointMtx((u16)idx);
+			MTXConcat(*worldMtx, *invMtx, mtx);
+            weight = *++weights;
+            weightAnmMtx[0][0] += mtx[0][0] * weight;
+            weightAnmMtx[0][1] += mtx[0][1] * weight;
+            weightAnmMtx[0][2] += mtx[0][2] * weight;
+            weightAnmMtx[0][3] += mtx[0][3] * weight;
+            weightAnmMtx[1][0] += mtx[1][0] * weight;
+            weightAnmMtx[1][1] += mtx[1][1] * weight;
+            weightAnmMtx[1][2] += mtx[1][2] * weight;
+            weightAnmMtx[1][3] += mtx[1][3] * weight;
+            weightAnmMtx[2][0] += mtx[2][0] * weight;
+            weightAnmMtx[2][1] += mtx[2][1] * weight;
+            weightAnmMtx[2][2] += mtx[2][2] * weight;
+            weightAnmMtx[2][3] += mtx[2][3] * weight;
+			*pScale &= mpScaleFlagArr[idx];
+		} while (++j < mixNum);
 	}
 }
 

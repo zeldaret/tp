@@ -1,17 +1,14 @@
-#include "dolphin/card/CARDStat.h"
-#include "dolphin/card.h"
-#include "dolphin/card/CARDPriv.h"
+#include <dolphin/card.h>
 
-static void UpdateIconOffsets(CARDDir* ent, CARDStat* stat);
+#include "__card.h"
 
-/* 80358C90-80358E88 3535D0 01F8+00 2/2 0/0 0/0 .text            UpdateIconOffsets */
 static void UpdateIconOffsets(CARDDir* ent, CARDStat* stat) {
     u32 offset;
     BOOL iconTlut;
     int i;
 
     offset = ent->iconAddr;
-    if (offset == 0xFFFFFFFF) {
+    if (offset == 0xffffffff) {
         stat->bannerFormat = 0;
         stat->iconFormat = 0;
         stat->iconSpeed = 0;
@@ -29,11 +26,11 @@ static void UpdateIconOffsets(CARDDir* ent, CARDStat* stat) {
     case CARD_STAT_BANNER_RGB5A3:
         stat->offsetBanner = offset;
         offset += 2 * CARD_BANNER_WIDTH * CARD_BANNER_HEIGHT;
-        stat->offsetBannerTlut = 0xFFFFFFFF;
+        stat->offsetBannerTlut = 0xffffffff;
         break;
     default:
-        stat->offsetBanner = 0xFFFFFFFF;
-        stat->offsetBannerTlut = 0xFFFFFFFF;
+        stat->offsetBanner = 0xffffffff;
+        stat->offsetBannerTlut = 0xffffffff;
         break;
     }
 
@@ -49,7 +46,7 @@ static void UpdateIconOffsets(CARDDir* ent, CARDStat* stat) {
             offset += 2 * CARD_ICON_WIDTH * CARD_ICON_HEIGHT;
             break;
         default:
-            stat->offsetIcon[i] = 0xFFFFFFFF;
+            stat->offsetIcon[i] = 0xffffffff;
             break;
         }
     }
@@ -58,25 +55,26 @@ static void UpdateIconOffsets(CARDDir* ent, CARDStat* stat) {
         stat->offsetIconTlut = offset;
         offset += 2 * 256;
     } else {
-        stat->offsetIconTlut = 0xFFFFFFFF;
+        stat->offsetIconTlut = 0xffffffff;
     }
     stat->offsetData = offset;
 }
 
-/* 80358E88-80358F9C 3537C8 0114+00 0/0 2/2 0/0 .text            CARDGetStatus */
 s32 CARDGetStatus(s32 chan, s32 fileNo, CARDStat* stat) {
     CARDControl* card;
     CARDDir* dir;
     CARDDir* ent;
     s32 result;
 
-    if (fileNo < 0 || CARD_MAX_FILE <= fileNo) {
+    ASSERTLINE(172, 0 <= chan && chan < 2);
+    ASSERTLINE(173, 0 <= fileNo && fileNo < CARD_MAX_FILE);
+
+    if (fileNo < 0 || CARD_MAX_FILE <= fileNo)
         return CARD_RESULT_FATAL_ERROR;
-    }
+
     result = __CARDGetControlBlock(chan, &card);
-    if (result < 0) {
+    if (result < 0)
         return result;
-    }
 
     dir = __CARDGetDirBlock(card);
     ent = &dir[fileNo];
@@ -97,15 +95,20 @@ s32 CARDGetStatus(s32 chan, s32 fileNo, CARDStat* stat) {
 
         UpdateIconOffsets(ent, stat);
     }
+
     return __CARDPutControlBlock(card, result);
 }
 
-/* 80358F9C-80359110 3538DC 0174+00 1/1 0/0 0/0 .text            CARDSetStatusAsync */
 s32 CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat* stat, CARDCallback callback) {
     CARDControl* card;
     CARDDir* dir;
     CARDDir* ent;
     s32 result;
+
+    ASSERTLINE(231, 0 <= fileNo && fileNo < CARD_MAX_FILE);
+    ASSERTLINE(232, 0 <= chan && chan < 2);
+    ASSERTMSGLINE(240, stat->iconAddr == 0xffffffff || stat->iconAddr < CARD_READ_SIZE, "CARDSetStatus[Async](): stat->iconAddr must be 0xffffffff or less than CARD_READ_SIZE.");
+    ASSERTMSGLINE(243, stat->commentAddr == 0xffffffff || (stat->commentAddr & 0x1FFF) <= 8128, "CARDSetStatus[Async](): comment strings (set by stat->commentAddr) must not cross 8KB byte boundary.");
 
     if (fileNo < 0 || CARD_MAX_FILE <= fileNo ||
         (stat->iconAddr != 0xffffffff && CARD_READ_SIZE <= stat->iconAddr) ||
@@ -114,17 +117,16 @@ s32 CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat* stat, CARDCallback callba
     {
         return CARD_RESULT_FATAL_ERROR;
     }
+
     result = __CARDGetControlBlock(chan, &card);
-    if (result < 0) {
+    if (result < 0)
         return result;
-    }
 
     dir = __CARDGetDirBlock(card);
     ent = &dir[fileNo];
     result = __CARDIsWritable(card, ent);
-    if (result < 0) {
+    if (result < 0)
         return __CARDPutControlBlock(card, result);
-    }
 
     ent->bannerFormat = stat->bannerFormat;
     ent->iconAddr = stat->iconAddr;
@@ -139,13 +141,11 @@ s32 CARDSetStatusAsync(s32 chan, s32 fileNo, CARDStat* stat, CARDCallback callba
 
     ent->time = (u32)OSTicksToSeconds(OSGetTime());
     result = __CARDUpdateDir(chan, callback);
-    if (result < 0) {
+    if (result < 0)
         __CARDPutControlBlock(card, result);
-    }
     return result;
 }
 
-/* 80359110-80359158 353A50 0048+00 0/0 1/1 0/0 .text            CARDSetStatus */
 s32 CARDSetStatus(s32 chan, s32 fileNo, CARDStat* stat) {
     s32 result = CARDSetStatusAsync(chan, fileNo, stat, __CARDSyncCallback);
     if (result < 0) {

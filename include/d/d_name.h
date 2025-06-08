@@ -14,7 +14,7 @@ class STControl;
 class dNm_HIO_c {
 public:
     /* 8024E3E0 */ dNm_HIO_c();
-    /* 802511A4 */ virtual ~dNm_HIO_c();
+    /* 802511A4 */ virtual ~dNm_HIO_c() {}
 
     /* 0x04 */ s8 field_0x4;
     /* 0x08 */ f32 mMenuScale;
@@ -27,7 +27,7 @@ public:
     dDlst_NameIN_c() {}
 
     /* 80251094 */ virtual void draw();
-    /* 8025115C */ virtual ~dDlst_NameIN_c();
+    /* 8025115C */ virtual ~dDlst_NameIN_c() {}
 
     /* 0x04 */ J2DScreen* NameInScr;
     /* 0x08 */ JUTFont* font;

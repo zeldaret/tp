@@ -12,7 +12,7 @@
 #include "JSystem/JAudio2/osdsp_task.h"
 #include "JSystem/JAudio2/JASCriticalSection.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
-#include "dolphin/os/OSCache.h"
+#include <dolphin/os.h>
 
 /* 804512E8-804512EC 0007E8 0004+00 5/5 0/0 0/0 .sbss            CH_BUF__6JASDsp */
 JASDsp::TChannel* JASDsp::CH_BUF;
@@ -428,7 +428,7 @@ void JASDsp::initBuffer() {
 }
 
 /* 803C78F0-803C7920 024A10 0018+18 1/1 0/0 0/0 .data            SEND_TABLE__6JASDsp */
-u16 JASDsp::SEND_TABLE[12 + 12 /* padding */] = {
+u16 JASDsp::SEND_TABLE[] = {
     0x0D00,
     0x0D60,
     0x0DC8,
@@ -440,19 +440,6 @@ u16 JASDsp::SEND_TABLE[12 + 12 /* padding */] = {
     0x0FA0,
     0x0B00,
     0x09A0,
-    0x0000,
-    /* padding */
-    0x0000,
-    0x0000,
-    0x0000,
-    0x0000,
-    0x0000,
-    0x0000,
-    0x0000,
-    0x0000,
-    0x0000,
-    0x0000,
-    0x0000,
     0x0000,
 };
 
@@ -724,3 +711,7 @@ u16 DSP_CreateMap2(u32 param_0) {
 
 /* 804507B8-804507C0 000238 0004+04 0/0 5/5 0/0 .sdata           one__11JASWaveInfo */
 u32 JASWaveInfo::one = 1;
+
+#ifdef DEBUG
+s32 dspMutex = 1;
+#endif

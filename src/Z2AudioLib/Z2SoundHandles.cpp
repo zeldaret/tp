@@ -19,7 +19,6 @@ void Z2SoundHandles::initHandlesPool(u8 pNumHandles) {
 }
 
 /* 802AB120-802AB200 2A5A60 00E0+00 1/1 1/1 0/0 .text deleteHandlesPool__14Z2SoundHandlesFv */
-// NONMATCHING JASPoolAllocObject<_> locations
 void Z2SoundHandles::deleteHandlesPool() {
     JSULink<Z2SoundHandlePool>* link;
     while (link = getFirst(), link != NULL) {
@@ -60,7 +59,6 @@ Z2SoundHandlePool* Z2SoundHandles::getHandleUserData(u32 pUserData) {
 
 /* 802AB2D8-802AB3D0 2A5C18 00F8+00 0/0 3/3 0/0 .text            getFreeHandle__14Z2SoundHandlesFv
  */
-// NONMATCHING JASPoolAllocObject<_> locations
 Z2SoundHandlePool* Z2SoundHandles::getFreeHandle() {
     JSULink<Z2SoundHandlePool>* link;
     for (link = getFirst(); link != NULL; link = link->getNext()) {
@@ -133,7 +131,6 @@ bool Z2SoundHandles::isActive() const {
 
 /* 802AB538-802AB64C 2A5E78 0114+00 0/0 1/1 0/0 .text
  * setPos__14Z2SoundHandlesFRCQ29JGeometry8TVec3<f>             */
-// NONMATCHING JASPoolAllocObject<_> locations
 void Z2SoundHandles::setPos(JGeometry::TVec3<f32> const& param_0) {
     JSULink<Z2SoundHandlePool>* link;
     for (link = getFirst(); link != NULL; link = link->getNext()) {

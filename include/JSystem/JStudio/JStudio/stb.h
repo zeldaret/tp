@@ -44,7 +44,7 @@ public:
 
     /* 80288B78 */ void setFlag_operation(u8, int);
     /* 80288BD0 */ void reset(void const*);
-    /* 80288BE8 */ u8 forward(u32);
+    /* 80288BE8 */ bool forward(u32);
     /* 80288E18 */ virtual void do_begin();
     /* 80288E1C */ virtual void do_end();
     /* 80288E20 */ virtual void do_paragraph(u32, void const*, u32);
@@ -94,7 +94,7 @@ public:
 
     /* 0x10 */ JGadget::TLinkListNode ocObject_;
 
-private:
+public: // private: // public for the fakematch in JStudio_JStage::TAdaptor_actor::adaptor_do_begin
     /* 0x14 */ TControl* pControl;
     /* 0x18 */ u32 signature;
     /* 0x1C */ u16 mFlag;
@@ -133,7 +133,7 @@ public:
     /* 80289300 */ void destroyObject_all();
     /* 80289364 */ TObject* getObject(void const*, u32);
     /* 80289404 */ void reset();
-    /* 802894B4 */ u8 forward(u32);
+    /* 802894B4 */ bool forward(u32);
 
     void setStatus_(u32 status) { mStatus = status; }
     void resetStatus_() { setStatus_(0); }
@@ -201,11 +201,11 @@ struct TParseData_fixed : public TParseData<T> {
         return TParseData::isValid() && getNext() != NULL;
     }
 
-    Iterator begin() {
+    Iterator begin() const {
         return Iterator(fileCount);
     }
 
-    Iterator end() {
+    Iterator end() const {
         Iterator i(fileCount);
         i += size();
         return i;

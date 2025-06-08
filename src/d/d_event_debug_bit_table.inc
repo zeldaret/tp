@@ -117,7 +117,7 @@
 },
 {
 	"F_0808",
-	"808 初日のと話した", // Talked to Beth on the first day
+	"808 初日のベスと話した", // Talked to Beth on the first day
 	"京極", // Kyogoku
 	0x6240,
 	"F_SP103:トアル村", // Ordon Village
@@ -765,7 +765,7 @@
 },
 {
 	"F_0729",
-	"729 ポストマン「おォ〜い！」直後", // Right after postman's "Hey!"
+	"729 ポストマン「おォ～い！」直後", // Right after postman's "Hey!"
 	"一角", // Ikkaku
 	0x5940,
 	"環状フィールド", // Ring field
@@ -1908,7 +1908,7 @@
 },
 {
 	"F_0596",
-	"596 F0003:２日目−コリン剣チュー後〜馬拒絶までに会話", // 2nd Day - Conversation with Colin after sword tutorial, before horse rejection
+	"596 F0003:２日目－コリン剣チュー後～馬拒絶までに会話", // 2nd Day - Conversation with Colin after sword tutorial, before horse rejection
 	"京極", // Kyogoku
 	0x4920,
 	"F_SP103:トアル村", // Ordon Village
@@ -2610,7 +2610,7 @@
 },
 {
 	"F_0518",
-	"518 コリン誘拐〜寝込み中のウーリからコリンに手紙出した話聞いた", // Colin kidnapped ~ Heard about giving letter to Colin from sleeping Uli
+	"518 コリン誘拐～寝込み中のウーリからコリンに手紙出した話聞いた", // Colin kidnapped ~ Heard about giving letter to Colin from sleeping Uli
 	"京極", // Kyogoku
 	0x3f08,
 	"F_SP103:トアル村", // Ordon Village

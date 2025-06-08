@@ -4,7 +4,6 @@
 //
 
 #include "JSystem/JStudio/JStudio_JStage/control.h"
-#include "JSystem/JGadget/pointer.h"
 #include "JSystem/JStage/JSGActor.h"
 #include "JSystem/JStage/JSGLight.h"
 #include "JSystem/JStage/JSGFog.h"
@@ -13,23 +12,6 @@
 
 /* 80289B00-80289B60 284440 0060+00 1/0 0/0 0/0 .text __dt__Q214JStudio_JStage13TCreateObjectFv */
 JStudio_JStage::TCreateObject::~TCreateObject() {}
-
-template <class AdaptorT, class ObjectT>
-JStudio::TObject* createObject_JSG_(const JStudio::stb::data::TParse_TBlock_object& param_1,
-                                    JStage::TObject* param_2, const JStage::TSystem* param_3) {
-    ObjectT* objt = (ObjectT*)param_2;                                        
-    AdaptorT* pAdaptor = new AdaptorT(param_3, objt);
-    if (pAdaptor == NULL) {
-        return NULL;
-    }
-    JGadget::TPointer_delete<AdaptorT> adaptorGuard(pAdaptor);
-    JStudio::TObject* pObj = JStudio::TCreateObject::createFromAdaptor<AdaptorT>(param_1, pAdaptor);
-    if (pObj == NULL) {
-        return NULL;
-    }
-    adaptorGuard.set(NULL);
-    return pObj;
-}
 
 /* 80289B60-80289CE4 2844A0 0184+00 1/0 0/0 0/0 .text
  * create__Q214JStudio_JStage13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object

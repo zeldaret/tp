@@ -18,5 +18,6 @@ _dtors = .dtors:0x00000000; // type:label scope:global
 @117529 = .rodata:0x00000008; // type:object size:0x4 scope:local
 cNullVec__6Z2Calc = .rodata:0x0000000C; // type:object size:0xC scope:global
 @46916 = .rodata:0x00000018; // type:object size:0x4 scope:local
+lbl_719_rodata_1C = .rodata:0x0000001C; // type:object size:0x18
 l_daTagMmsg_Method = .data:0x00000000; // type:object size:0x20 scope:global
 g_profile_Tag_Mmsg = .data:0x00000020; // type:object size:0x30 scope:global

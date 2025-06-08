@@ -158,9 +158,9 @@ daB_OH_HIO_c::daB_OH_HIO_c() {
 }
 
 /* 8061B75C-8061B8B0 00011C 0154+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
-static int nodeCallBack(J3DJoint* param_0, int param_1) {
+static int nodeCallBack(J3DJoint* i_joint, int param_1) {
     if (param_1 == 0) {
-        int jnt_no = param_0->getJntNo();
+        int jnt_no = i_joint->getJntNo();
         J3DModel* model_p = j3dSys.getModel();
         b_oh_class* this_ = (b_oh_class*)model_p->getUserArea();
 

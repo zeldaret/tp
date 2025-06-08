@@ -88,7 +88,7 @@ int daObjL4DigSand_c::create1st() {
 
 /* 80C66D40-80C66DD0 0002A0 0090+00 1/0 0/0 0/0 .text Execute__16daObjL4DigSand_cFPPA3_A4_f */
 int daObjL4DigSand_c::Execute(f32 (**param_0)[3][4]) {
-    if (daPy_py_c::i_checkNowWolf() && checkItemGet(fpcNm_ITEM_SMELL_POH, 1)) {
+    if (daPy_py_c::checkNowWolf() && checkItemGet(fpcNm_ITEM_SMELL_POH, 1)) {
         attention_info.flags = 0x80;
     } else {
         attention_info.flags = 0;

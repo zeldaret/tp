@@ -75,7 +75,7 @@ u8 door_param2_c::getEventNo2(fopAc_ac_c* i_actor) {
 
 /* 8003A218-8003A224 034B58 000C+00 0/0 0/0 2/2 .text getMsgNo__13door_param2_cFP10fopAc_ac_c */
 u16 door_param2_c::getMsgNo(fopAc_ac_c* i_actor) {
-    return i_actor->home.angle.x;
+    return i_actor->home.angle.x & 0xFFFF;
 }
 
 /* 8003A224-8003A230 034B64 000C+00 0/0 0/0 6/6 .text getExitNo__13door_param2_cFP10fopAc_ac_c */
@@ -86,23 +86,23 @@ u8 door_param2_c::getExitNo(fopAc_ac_c* i_actor) {
 /* 8003A230-8003A23C 034B70 000C+00 0/0 0/0 1/1 .text getFLightInf__13door_param2_cFP10fopAc_ac_c
  */
 u32 door_param2_c::getFLightInf(fopAc_ac_c* i_actor) {
-    return fopAcM_GetParamBit(i_actor, 25, 3);
+    return fopAcM_GetParamBit(i_actor, 25, 3) & 0xFF;
 }
 
 /* 8003A23C-8003A248 034B7C 000C+00 0/0 0/0 1/1 .text getBLightInf__13door_param2_cFP10fopAc_ac_c
  */
 u32 door_param2_c::getBLightInf(fopAc_ac_c* i_actor) {
-    return fopAcM_GetParamBit(i_actor, 28, 3);
+    return fopAcM_GetParamBit(i_actor, 28, 3) & 0xFF;
 }
 
 /* 8003A248-8003A254 034B88 000C+00 0/0 0/0 1/1 .text getMFLightInf__13door_param2_cFP10fopAc_ac_c
  */
 u32 door_param2_c::getMFLightInf(fopAc_ac_c* i_actor) {
-    return fopAcM_GetParamBit(i_actor, 19, 3);
+    return fopAcM_GetParamBit(i_actor, 19, 3) & 0xFF;
 }
 
 /* 8003A254-8003A260 034B94 000C+00 0/0 0/0 1/1 .text getMBLightInf__13door_param2_cFP10fopAc_ac_c
  */
 u32 door_param2_c::getMBLightInf(fopAc_ac_c* i_actor) {
-    return fopAcM_GetParamBit(i_actor, 22, 3);
+    return fopAcM_GetParamBit(i_actor, 22, 3) & 0xFF;
 }

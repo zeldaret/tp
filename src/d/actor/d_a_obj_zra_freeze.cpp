@@ -148,7 +148,7 @@ int daZraFreeze_c::Execute() {
                 }
             } else {
                 if (dComIfGp_event_runCheck()) {
-                    if (eventInfo.i_checkCommandDemoAccrpt()) {
+                    if (eventInfo.checkCommandDemoAccrpt()) {
                         daPy_getPlayerActorClass()->onWolfEyeKeep();
                     } else if (field_0x5cf == 1) {
                         dComIfGs_sense_type_change_Set(-1);

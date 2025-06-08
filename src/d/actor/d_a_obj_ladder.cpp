@@ -283,7 +283,7 @@ void daObjLadder::Act_c::mode_demoreq() {
             mInDemo = true;
         } else {
             fopAcM_orderOtherEventId(this, mEventIdx, prm_get_evId(), 0xffff, 0, 1);
-            eventInfo.i_onCondition(2);
+            eventInfo.onCondition(2);
         }
     } else {
         isDemo = true;

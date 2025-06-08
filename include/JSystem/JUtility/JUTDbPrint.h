@@ -38,6 +38,8 @@ public:
     void setVisible(bool visible) { mVisible = visible; }
     JUTFont* getFont() const { return mFont; }
 
+    void setCharColor(JUtility::TColor color) { mColor = color; };
+
     static JUTDbPrint* sDebugPrint;
 
 private:

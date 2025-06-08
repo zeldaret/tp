@@ -38,6 +38,11 @@ public:
     }
 
     void stabMasterSword() { field_0x5c2 = 1; }
+
+    void pullMasterSword() {
+        field_0x5c2 = 0;
+        field_0x5c3 = 1;
+    }
     
     int getType() {
         int param = fopAcM_GetParam(this) >> 0x18;

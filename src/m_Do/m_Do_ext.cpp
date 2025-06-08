@@ -16,7 +16,7 @@
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/d_com_inf_game.h"
 #include "dol2asm.h"
-#include "dolphin/gx/GXDraw.h"
+#include <dolphin/gx.h>
 #include <dolphin/gf/GFPixel.h>
 #include "global.h"
 #include "m_Do/m_Do_mtx.h"
@@ -66,6 +66,15 @@ static void mDoExt_setJ3DData(Mtx mtx, const J3DTransformInfo* transformInfo, u1
     J3DSys::mParentS.x = transformInfo->mScale.x;
     J3DSys::mParentS.y = transformInfo->mScale.y;
     J3DSys::mParentS.z = transformInfo->mScale.z;
+}
+
+static BOOL isCurrentSolidHeap() {
+    JKRHeap* heap = JKRGetCurrentHeap();
+    if (heap->getHeapType() != 'SLID') {
+        OS_REPORT_ERROR("ソリッドヒープちゃうがな！\n");
+        return FALSE;
+    }
+    return TRUE;
 }
 
 /* 8000D320-8000D428 007C60 0108+00 6/6 0/0 0/0 .text            initPlay__14mDoExt_baseAnmFsifss */
@@ -612,6 +621,14 @@ JKRExpHeap* mDoExt_getZeldaHeap() {
     return zeldaHeap;
 }
 
+#if VERSION == VERSION_SHIELD_DEBUG
+s32 safeZeldaHeapSize = -1;
+
+s32 mDoExt_getSafeZeldaHeapSize() {
+    return safeZeldaHeapSize;
+}
+#endif
+
 /* 80450C30-80450C34 000130 0004+00 2/1 1/1 0/0 .sbss            commandHeap */
 JKRExpHeap* commandHeap;
 
@@ -858,7 +875,7 @@ void mDoExt_MtxCalcAnmBlendTbl::calc() {
         }
     }
     Mtx mtx;
-    MTXQuat(mtx, (PSQuaternion*)&quat3);
+    MTXQuat(mtx, &quat3);
     mDoExt_setJ3DData(mtx, &info2, jntNo);
 }
 
@@ -1043,7 +1060,7 @@ int mDoExt_McaMorf::create(J3DModelData* modelData, mDoExt_McaMorfCallBack1_c* c
         return 0;
     }
     if (modelData->getMaterialNodePointer(0)->getSharedDisplayListObj() && param_10 == 0) {
-        if (param_10 = modelData->isLocked()) {
+        if (modelData->isLocked()) {
             param_10 = 0x20000;
         } else {
             param_10 = 0x80000;
@@ -1083,7 +1100,8 @@ int mDoExt_McaMorf::create(J3DModelData* modelData, mDoExt_McaMorfCallBack1_c* c
     J3DModelData* r23 = mpModel->getModelData();
     u16 jointNum = r23->getJointNum();
     for (int i = 0; i < jointNum; i++) {
-        *info = r23->getJointNodePointer(i)->getTransformInfo();
+        J3DJoint* joint = r23->getJointNodePointer(i);
+        *info = joint->getTransformInfo();
         JMAEulerToQuat(info->mRotation.x, info->mRotation.y, info->mRotation.z, quat);
         info++;
         quat++;
@@ -1711,6 +1729,13 @@ void mDoExt_McaMorf2::calc() {
         Quaternion sp30;
         Quaternion sp20;
         Quaternion* var_r27;
+        f32 var_f31;
+        f32 var_f30;
+        f32 var_f29;
+        f32 sp1C;
+        f32 sp18;
+        f32 sp14;
+        f32 sp10;
         if (mpQuat == NULL) {
             var_r27 = &sp30;
         } else {
@@ -1741,8 +1766,6 @@ void mDoExt_McaMorf2::calc() {
             } else {
                 field_0x40->getTransform(jnt_no, &spF0[1]);
 
-                f32 sp1C;
-                f32 sp18;
                 sp18 = 1.0f - field_0x44;
                 sp1C = field_0x44;
 
@@ -1763,15 +1786,15 @@ void mDoExt_McaMorf2::calc() {
                     JMAEulerToQuat(spF0[i].mRotation.x, spF0[i].mRotation.y, spF0[i].mRotation.z, &sp60[i]);
                 }
 
-                f32 var_f29 = sp1C / (sp18 + sp1C);
+                var_f29 = sp1C / (sp18 + sp1C);
 
                 JMAQuatLerp(&sp60[0], &sp60[1], var_f29, var_r27);
                 mDoMtx_quat(spC0, var_r27);
                 mDoExt_setJ3DData(spC0, var_r30, jnt_no);
             }
         } else if (field_0x40 == NULL) {
-            f32 var_f31 = (mCurMorf - mPrevMorf) / (1.0f - mPrevMorf);
-            f32 var_f30 = 1.0f - var_f31;
+            var_f31 = (mCurMorf - mPrevMorf) / (1.0f - mPrevMorf);
+            var_f30 = 1.0f - var_f31;
 
             mpAnm->getTransform(jnt_no, &sp80);
             if (mpCallback1 != NULL) {
@@ -1800,7 +1823,6 @@ void mDoExt_McaMorf2::calc() {
             mpAnm->getTransform(jnt_no, &spF0[0]);
             field_0x40->getTransform(jnt_no, &spF0[1]);
 
-            f32 sp14, sp10;
             sp10 = 1.0f - field_0x44;
             sp14 = field_0x44;
 
@@ -1821,11 +1843,11 @@ void mDoExt_McaMorf2::calc() {
                 JMAEulerToQuat(spF0[i].mRotation.x, spF0[i].mRotation.y, spF0[i].mRotation.z, &sp40[i]);
             }
 
-            f32 var_f31 = sp14 / (sp10 + sp14);
+            var_f31 = sp14 / (sp10 + sp14);
             JMAQuatLerp(&sp40[0], &sp40[1], var_f31, &sp20);
 
             var_f31 = (mCurMorf - mPrevMorf) / (1.0f - mPrevMorf);
-            f32 var_f30 = 1.0f - var_f31;
+            var_f30 = 1.0f - var_f31;
             JMAQuatLerp(var_r27, &sp20, var_f31, var_r27);
 
             var_r30->mTranslate.x = var_r30->mTranslate.x * var_f30
@@ -2141,7 +2163,7 @@ static u8 l_matDL[132] ALIGN_DECL(32) = {
 
 /* 803A3160-803A31F0 000280 008D+03 1/1 0/0 0/0 .data            l_mat1DL */
 static u8 l_mat1DL[141] ALIGN_DECL(32) = {
-    0x10, 0x00, 0x00, 0x10, 0x40, 0xFF, 0xFF, 0x42, 0x00, 0x00, 0x00, 0x00, 0xF3, 0xCF, 0x00, 0x10,
+    0x10, 0x00, 0x00, 0x10, 0x40, 0xFF, 0xFF, 0x42, 0x80, 0x08, 0x30, 0x3C, 0xF3, 0xCF, 0x00, 0x10,
     0x00, 0x00, 0x10, 0x18, 0x3C, 0xF3, 0xCF, 0x00, 0x10, 0x00, 0x00, 0x10, 0x0E, 0x00, 0x00, 0x7F,
     0x32, 0x10, 0x00, 0x00, 0x10, 0x10, 0x00, 0x00, 0x05, 0x00, 0x10, 0x00, 0x00, 0x10, 0x0C, 0xFF,
     0xFF, 0xFF, 0xFF, 0x61, 0x28, 0x38, 0x00, 0x40, 0x61, 0xC0, 0x28, 0xFA, 0x8F, 0x61, 0xC1, 0x08,
@@ -2426,7 +2448,7 @@ void drawCube(MtxP mtx, cXyz* pos, const GXColor& color) {
     GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_A0);
     GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_ENABLE, GX_TEVPREV);
     GXSetZMode(GX_ENABLE, GX_LEQUAL, GX_ENABLE);
-    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_CLEAR);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
     GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
     GXSetCullMode(GX_CULL_BACK);
     GXSetClipMode(GX_CLIP_ENABLE);
@@ -2477,13 +2499,13 @@ void mDoExt_cylinderPacket::draw() {
     GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_A0);
     GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
 
-    if (field_0x28) {
+    if (mClipZ) {
         GXSetZMode(GX_ENABLE, GX_LEQUAL, GX_ENABLE);
     } else {
         GXSetZMode(GX_DISABLE, GX_LEQUAL, GX_DISABLE);
     }
 
-    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_CLEAR);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
     GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
     GXSetCullMode(GX_CULL_BACK);
     GXSetClipMode(GX_CLIP_ENABLE);

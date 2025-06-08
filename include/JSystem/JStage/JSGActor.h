@@ -10,6 +10,16 @@ namespace JStage {
     * 
     */
     struct TActor : public TObject {
+        enum {
+            ID_NORMAL = -1,
+            ID_UNK_1  = 1,
+            ID_UNK_2  = 2,
+            ID_UNK_3  = 3,
+            ID_UNK_4  = 4,
+            ID_UNK_5  = 5,
+            ID_UNK_6  = 6,
+        };
+
         /* 80280A48 */ virtual ~TActor() = 0;
         /* 80280AA8 */ virtual s32 JSGFGetType() const;
         /* 80280AB0 */ virtual void JSGGetTranslation(Vec*) const;

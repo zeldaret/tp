@@ -28,23 +28,25 @@ f32 daAlink_c::getCrawlMoveSpeed() {
 
 /* 800F7CE8-800F7E48 0F2628 0160+00 4/4 0/0 0/0 .text setCrawlMoveDirectionArrow__9daAlink_cFv */
 void daAlink_c::setCrawlMoveDirectionArrow() {
+    static const u8 data_80452F38[2] = {1, 4};
+
     u8 direction = 0;
     camera_class* camera = dComIfGp_getCamera(field_0x317c);
     BOOL bvar = cLib_distanceAngleS(fopCamM_GetAngleY(camera), shape_angle.y) > 0x4000;
 
     if (field_0x3198 & 4) {
         if (!bvar) {
-            direction = data_80452F38;
+            direction = data_80452F38[0];
         } else {
-            direction = data_80452F39;
+            direction = data_80452F38[1];
         }
     }
 
     if (field_0x3198 & 8) {
         if (!bvar) {
-            direction |= data_80452F39;
+            direction |= data_80452F38[1];
         } else {
-            direction |= data_80452F38;
+            direction |= data_80452F38[0];
         }
     }
 
@@ -167,7 +169,7 @@ int daAlink_c::getCrawlMoveVec(cXyz* param_0, cXyz* param_1, cXyz* param_2, int 
 
         int temp_r27 = dComIfG_Bgsp().GetSpecialCode(mLinkLinChk);
         if (cBgW_CheckBWall(sp3C.mNormal.y) || (param_3 == 2 && cBgW_CheckBGround(sp3C.mNormal.y))) {
-            cXyz sp1C = *param_1 - mLinkLinChk.i_GetCross();
+            cXyz sp1C = *param_1 - mLinkLinChk.GetCross();
             s16 temp_r26 = sp3C.mNormal.atan2sX_Z();
             s16 temp_r3 = sp1C.atan2sX_Z();
 
@@ -205,7 +207,7 @@ int daAlink_c::getCrawlMoveVec(cXyz* param_0, cXyz* param_1, cXyz* param_2, int 
         }
 
         if (param_3 == 1 && (temp_r27 == 1 || (sp3C.mNormal.y < field_0x3470 && temp_r27 == 2))) {
-            *param_2 = *param_1 - mLinkLinChk.i_GetCross();
+            *param_2 = *param_1 - mLinkLinChk.GetCross();
             return 1;
         }
     }
@@ -247,7 +249,7 @@ BOOL daAlink_c::checkCrawlSideWall(cXyz* param_0, cXyz* param_1, cXyz* param_2, 
 
     if (commonLineCheck(param_0, param_1)) {
         cM3dGPla sp64;
-        *param_2 = mLinkLinChk.i_GetCross();
+        *param_2 = mLinkLinChk.GetCross();
         dComIfG_Bgsp().GetTriPla(mLinkLinChk, &sp64);
 
         *param_4 = sp64.mNormal.atan2sX_Z();
@@ -255,7 +257,7 @@ BOOL daAlink_c::checkCrawlSideWall(cXyz* param_0, cXyz* param_1, cXyz* param_2, 
         sp4C = *param_2 + (sp64.mNormal * 95.0f);
         sp58 = (sp4C + *param_2) * 0.5f;    
         if (commonLineCheck(&sp58, &sp4C)) {
-            *param_3 = mLinkLinChk.i_GetCross();
+            *param_3 = mLinkLinChk.GetCross();
             dComIfG_Bgsp().GetTriPla(mLinkLinChk, &sp64);
 
             *param_5 = sp64.mNormal.atan2sX_Z();
@@ -293,7 +295,7 @@ void daAlink_c::decideCrawlDoStatus() {
 
 /* 800F89E0-800F8A50 0F3320 0070+00 3/3 0/0 0/0 .text checkNotCrawlStand__9daAlink_cFP4cXyz */
 BOOL daAlink_c::checkNotCrawlStand(cXyz* param_0) {
-    mLinkRoofChk.i_SetPos(*param_0);
+    mLinkRoofChk.SetPos(*param_0);
     return dComIfG_Bgsp().RoofChk(&mLinkRoofChk) - current.pos.y <= field_0x598;
 }
 

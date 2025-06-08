@@ -5,6 +5,7 @@
 
 #include "d/actor/d_a_obj_bk_leaf.h"
 #include "d/actor/d_a_obj_carry.h"
+#include "d/d_com_inf_game.h"
 
 /* 80BB60D8-80BB60F8 000078 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */
 static int CheckCreateHeap(fopAc_ac_c* i_this) {

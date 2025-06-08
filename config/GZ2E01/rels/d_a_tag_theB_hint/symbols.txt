@@ -7,6 +7,6 @@ daTagTheBHint_Execute__FP15daTagTheBHint_c = .text:0x0000011C; // type:function 
 _ctors = .ctors:0x00000000; // type:label scope:global
 _dtors = .dtors:0x00000000; // type:label scope:global
 @3831 = .rodata:0x00000000; // type:object size:0x4 scope:local
-@3832 = .rodata:0x00000008; // type:object size:0x8 scope:local data:double
+@3832 = .rodata:0x00000008; // type:object size:0x8 scope:local align:8 data:double
 l_daTagTheBHint_Method = .data:0x00000000; // type:object size:0x20 scope:local
 g_profile_Tag_TheBHint = .data:0x00000020; // type:object size:0x30 scope:global

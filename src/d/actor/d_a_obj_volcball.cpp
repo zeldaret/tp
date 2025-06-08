@@ -390,13 +390,13 @@ void daObjVolcBall_c::actionEnd() {
 }
 
 /* 80D22DDC-80D22E24 00133C 0048+00 2/1 0/0 0/0 .text            eventStart__15daObjVolcBall_cFv */
-BOOL daObjVolcBall_c::eventStart() {
+bool daObjVolcBall_c::eventStart() {
     daObjVolcBom_c* bom_p = (daObjVolcBom_c*)fopAcM_SearchByID(mBigVolcActorID);
     if (bom_p != NULL) {
         bom_p->startFall();
     }
 
-    return TRUE;
+    return true;
 }
 
 /* 80D22E24-80D22ED4 001384 00B0+00 1/1 0/0 0/0 .text            setEruptEffect__15daObjVolcBall_cFi

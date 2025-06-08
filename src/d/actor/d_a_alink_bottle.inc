@@ -8,6 +8,8 @@
 #include "d/d_insect.h"
 #include "SSystem/SComponent/c_math.h"
 
+static int daAlink_bottleModelCallBack(J3DJoint* i_joint, int param_1);
+
 /* 8010E48C-8010E52C 108DCC 00A0+00 1/1 0/0 0/0 .text            bottleModelCallBack__9daAlink_cFv
  */
 int daAlink_c::bottleModelCallBack() {
@@ -67,14 +69,14 @@ void daAlink_c::setBottleModel(u16 i_itemNo) {
     if (i_itemNo == fpcNm_ITEM_FAIRY) {
         J3DAnmTransform* bck = (J3DAnmTransform*)loadAram(0x1E8, 0xC00);
         mpHookTipModel = initModel(loadAramBmd(0x31D, 0x1400), 0);
-        if (!mHookTipBck.init(bck, FALSE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1, false)) {
+        if (!mHookTipBck.init(bck, FALSE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, false)) {
             JUT_ASSERT(142, 0);
         }
         mHookTipBck.entry(mpHookTipModel->getModelData(), 0.0f);
     } else if (i_itemNo == fpcNm_ITEM_WORM) {
         J3DAnmTransform* bck = (J3DAnmTransform*)loadAram(0x1E9, 0xC00);
         mpHookTipModel = initModel(loadAramBmd(0x31E, 0x2400), 0);
-        if (!mHookTipBck.init(bck, FALSE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1, false)) {
+        if (!mHookTipBck.init(bck, FALSE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, false)) {
             JUT_ASSERT(151, 0);
         }
         mHookTipBck.entry(mpHookTipModel->getModelData(), 0.0f);
@@ -463,6 +465,7 @@ int daAlink_c::procBottleOpenInit(u16 param_0) {
 
 /* 8010F8E4-8010FC38 10A224 0354+00 1/0 0/0 0/0 .text            procBottleOpen__9daAlink_cFv */
 int daAlink_c::procBottleOpen() {
+    static Vec const bottleTop = {0.0f, 25.0f, 0.0f};
     daPy_frameCtrl_c* frameCtrl_p = mUnderFrameCtrl;
 
     if (mProcVar2.field_0x300c == 0) {
@@ -641,7 +644,7 @@ int daAlink_c::procBottleSwing() {
     daPy_frameCtrl_c* frameCtrl_p = mUnderFrameCtrl;
 
     if (mProcVar2.field_0x300c == 0) {
-        if (eventInfo.i_checkCommandCatch()) {
+        if (eventInfo.checkCommandCatch()) {
             if (mProcVar3.field_0x300e == 0) {
                 dComIfGp_getVibration().StartShock(1, 1, cXyz(0.0f, 1.0f, 0.0f));
                 mProcVar3.field_0x300e = 1;

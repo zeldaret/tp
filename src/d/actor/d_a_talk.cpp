@@ -46,12 +46,12 @@ int daTalk_c::execute() {
         }
     } else {
         if (fopAcM_searchPlayerDistanceXZ(this) >
-            dAttention_c::i_getDistTable(attention_info.distances[fopAc_attn_TALK_e]).mDistMaxRelease)
+            dAttention_c::getDistTable(attention_info.distances[fopAc_attn_TALK_e]).mDistMaxRelease)
         {
             mMessageID = -1;
             fopAcM_delete(this);
         } else {
-            eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
+            eventInfo.onCondition(dEvtCnd_CANTALK_e);
         }
     }
 

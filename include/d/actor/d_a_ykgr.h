@@ -8,9 +8,11 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_particle.h"
 
-struct daYkgr_HIO_c : mDoHIO_entry_c {
+struct daYkgr_HIO_c : public mDoHIO_entry_c {
     daYkgr_HIO_c();
     /* 805A8D98 */ virtual ~daYkgr_HIO_c();
+
+    void genMessage(JORMContext*);
 
     /* 0x04 */ u8 field_0x4;
     /* 0x08 */ s32 field_0x8;
@@ -29,12 +31,7 @@ struct dPa_YkgrPcallBack : public JPAParticleCallBack {
     /* 805A848C */ void draw(JPABaseEmitter*, JPABaseParticle*);
     /* 805A84D4 */ void setParam(f32);
 
-    /* 0x04 */ f32 field_0x4;
-    /* 0x08 */ f32 field_0x8;
-    /* 0x0C */ f32 field_0xc;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
+    /* 0x04 */ f32 field_0x4[2][3];
     /* 0x1C */ s8 field_0x1c;
 };
 

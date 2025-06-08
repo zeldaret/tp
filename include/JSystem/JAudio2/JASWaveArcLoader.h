@@ -3,7 +3,7 @@
 
 #include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "dol2asm.h"
-#include "dolphin/os/OSMutex.h"
+#include <dolphin/os.h>
 
 class JKRHeap;
 class JKRSolidHeap;

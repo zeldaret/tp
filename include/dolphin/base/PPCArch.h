@@ -1,5 +1,5 @@
-#ifndef PPCARCH_H
-#define PPCARCH_H
+#ifndef _DOLPHIN_PPCARCH
+#define _DOLPHIN_PPCARCH
 
 #include "dolphin/types.h"
 
@@ -139,32 +139,32 @@ extern "C" {
 /*---------------------------------------------------------------------------*
     HID0 bits
  *---------------------------------------------------------------------------*/
-#define HID0_EMCP       0x80000000  // Enable MCP
-#define HID0_DBP        0x40000000  // Enable 60x bus address and data parity chk
-#define HID0_EBA        0x20000000  // Enable 60x address parity checking
-#define HID0_EBD        0x10000000  // Enable 60x data parity checking
-#define HID0_BCLK       0x08000000  // CLK_OUT output enable and clk selection
-#define HID0_ECLK       0x02000000  // CLK_OUT output enable and clk selection
-#define HID0_PAR        0x01000000  // Disable !ARTRY precharge
-#define HID0_DOZE       0x00800000  // Doze mode enable
-#define HID0_NAP        0x00400000  // Nap mode enable
-#define HID0_SLEEP      0x00200000  // Sleep mode enable
-#define HID0_DPM        0x00100000  // Dynamic power management enable
-#define HID0_NHR        0x00010000  // Not hard reset (0 hard reset if s/w set it)
-#define HID0_ICE        0x00008000  // Instruction cache enable
-#define HID0_DCE        0x00004000  // Data cache enable
-#define HID0_ILOCK      0x00002000  // ICache lock
-#define HID0_DLOCK      0x00001000  // DCache lock
-#define HID0_ICFI       0x00000800  // ICache flash invalidate
-#define HID0_DCFI       0x00000400  // DCache flash invalidate
-#define HID0_SPD        0x00000200  // Speculative cache access enable (0 enable)
-#define HID0_IFEM       0x00000100  // Enable M bit on bus for Ifetch
-#define HID0_SGE        0x00000080  // Store gathering enable
-#define HID0_DCFA       0x00000040  // DCache flush assist - set before a flush
-#define HID0_BTIC       0x00000020  // Branch target icache enable
-#define HID0_ABE        0x00000008  // Address bcast enable
-#define HID0_BHT        0x00000004  // Branch history table enable
-#define HID0_NOOPTI     0x00000001  // No-op Dcache touch instructions
+#define HID0_EMCP       0x80000000u  // Enable MCP
+#define HID0_DBP        0x40000000u  // Enable 60x bus address and data parity chk
+#define HID0_EBA        0x20000000u  // Enable 60x address parity checking
+#define HID0_EBD        0x10000000u  // Enable 60x data parity checking
+#define HID0_BCLK       0x08000000u  // CLK_OUT output enable and clk selection
+#define HID0_ECLK       0x02000000u  // CLK_OUT output enable and clk selection
+#define HID0_PAR        0x01000000u  // Disable !ARTRY precharge
+#define HID0_DOZE       0x00800000u  // Doze mode enable
+#define HID0_NAP        0x00400000u  // Nap mode enable
+#define HID0_SLEEP      0x00200000u  // Sleep mode enable
+#define HID0_DPM        0x00100000u  // Dynamic power management enable
+#define HID0_NHR        0x00010000u  // Not hard reset (0 hard reset if s/w set it)
+#define HID0_ICE        0x00008000u  // Instruction cache enable
+#define HID0_DCE        0x00004000u  // Data cache enable
+#define HID0_ILOCK      0x00002000u  // ICache lock
+#define HID0_DLOCK      0x00001000u  // DCache lock
+#define HID0_ICFI       0x00000800u  // ICache flash invalidate
+#define HID0_DCFI       0x00000400u  // DCache flash invalidate
+#define HID0_SPD        0x00000200u  // Speculative cache access enable (0 enable)
+#define HID0_IFEM       0x00000100u  // Enable M bit on bus for Ifetch
+#define HID0_SGE        0x00000080u  // Store gathering enable
+#define HID0_DCFA       0x00000040u  // DCache flush assist - set before a flush
+#define HID0_BTIC       0x00000020u  // Branch target icache enable
+#define HID0_ABE        0x00000008u  // Address bcast enable
+#define HID0_BHT        0x00000004u  // Branch history table enable
+#define HID0_NOOPTI     0x00000001u  // No-op Dcache touch instructions
 
 #define HID0_ICE_BIT    16          // Instruction cache enable
 #define HID0_DCE_BIT    17          // Data cache enable
@@ -207,7 +207,8 @@ extern "C" {
 #define GQR_STORE_SCALE_MASK        0x00003F00  // store scale field
 #define GQR_STORE_TYPE_MASK         0x00000007  // store type field
 
-typedef struct {
+typedef struct
+{
     u32 _pad0       :2;
     u32 loadScale   :6;
     u32 _pad1       :5;
@@ -218,7 +219,8 @@ typedef struct {
     u32 storeType   :3;
 } PPC_GQR_t;
 
-typedef union {
+typedef union
+{
     u32         val;
     PPC_GQR_t   f;
 } PPC_GQR_u;
@@ -234,18 +236,21 @@ typedef union {
 #define DMA_L_TRIGGER               0x00000002  // 0 - cmd inactive, 1 - cmd rdy
 #define DMA_L_FLUSH                 0x00000001  // 1 - Flush DMA queue
 
-typedef struct {
+typedef struct
+{
     u32 memAddr     :27;
     u32 dmaLenU     :5;
 } PPC_DMA_U_t;
 
-typedef union {
+typedef union
+{
     u32             val;
     PPC_DMA_U_t     f;
 } PPC_DMA_U_u;
 
 
-typedef struct {
+typedef struct
+{
     u32 lcAddr      :27;
     u32 dmaLd       :1;
     u32 dmaLenL     :2;
@@ -254,7 +259,8 @@ typedef struct {
 } PPC_DMA_L_t;
 
 
-typedef union {
+typedef union
+{
     u32             val;
     PPC_DMA_L_t     f;
 } PPC_DMA_L_u;
@@ -466,39 +472,71 @@ typedef union {
 #define FPSCR_NI_BIT        29          // Non-IEEE mode
 #endif
 
-u32 PPCMfmsr(void);
-void PPCMtmsr(register u32 newMSR);
-u32 PPCMfhid0(void);
-void PPCMthid0(register u32 newHID0);
-u32 PPCMfl2cr(void);
-void PPCMtl2cr(register u32 newL2cr);
-void PPCMtdec(register u32 newDec);
-void PPCSync(void);
-void PPCHalt(void);
-void PPCMtmmcr0(register u32 newMmcr0);
-void PPCMtmmcr1(register u32 newMmcr1);
-void PPCMtpmc1(register u32 newPmc1);
-void PPCMtpmc2(register u32 newPmc2);
-void PPCMtpmc3(register u32 newPmc3);
-void PPCMtpmc4(register u32 newPmc4);
-u32 PPCMffpscr(void);
-void PPCMtfpscr(register u32 newFPSCR);
-u32 PPCMfhid2(void);
-void PPCMthid2(register u32 newhid2);
-void PPCMtwpar(register u32 newwpar);
-void PPCDisableSpeculation(void);
-void PPCSetFpNonIEEEMode(void);
-
 union FpscrUnion {
     f64 f;
     struct {
         u32 fpscr_pad;
         u32 fpscr;
-    }   u;
+    } u;
 };
+
+// PPCArch
+u32 PPCMfmsr();
+void PPCMtmsr(u32 newMSR);
+u32 PPCOrMsr(u32 value);
+u32 PPCMfhid0();
+void PPCMthid0(u32 newHID0);
+u32 PPCMfl2cr();
+void PPCMtl2cr(u32 newL2cr);
+void PPCMtdec(u32 newDec);
+void PPCSync();
+void PPCHalt();
+u32 PPCMffpscr();
+void PPCMtfpscr(u32 newFPSCR);
+u32 PPCMfhid2();
+void PPCMthid2(u32 newhid2);
+u32 PPCMfwpar();
+void PPCMtwpar(u32 newwpar);
+void PPCEnableSpeculation();
+void PPCDisableSpeculation();
+void PPCSetFpIEEEMode();
+void PPCSetFpNonIEEEMode();
+u32 PPCMfpmc4();
+u32 PPCMfpmc3();
+u32 PPCMfpmc1();
+void PPCMtpmc1(u32 newPmc1);
+void PPCMtpmc2(u32 newPmc1);
+void PPCMtpmc3(u32 newPmc1);
+void PPCMtpmc4(u32 newPmc1);
+void PPCMtmmcr0(u32 newMmcr0);
+void PPCMtmmcr1(u32 newMmcr0);
+void PPCMtdmaU(u32 newdmau);
+void PPCMtdmaL(u32 newdmal);
+u32 PPCMfdec(void);
+u32 PPCMfpmc2(void);
+u32 PPCAndMsr(u32 value);
+u32 PPCAndCMsr(u32 value);
+u32 PPCMfhid1();
+void PPCEieio();
+u32 PPCMfmmcr0();
+u32 PPCMfmmcr1();
+u32 PPCMfpmc2();
+u32 PPCMfsia();
+void PPCMtsia(u32 newSia);
+u32 PPCMfdmaL();
+u32 PPCMfpvr();
+u32 PPCMfdmaU();
+
+// PPCPm
+void PMBegin(void);
+void PMEnd(void);
+void PMCycles(void);
+void PML1FetchMisses(void);
+void PML1MissCycles(void);
+void PMInstructions(void);
 
 #ifdef __cplusplus
-};
+}
 #endif
 
-#endif /* PPCARCH_H */
+#endif // _DOLPHIN_PPCARCH

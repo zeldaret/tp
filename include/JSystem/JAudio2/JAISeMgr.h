@@ -49,7 +49,12 @@ public:
     /* 8029FE78 */ void stopSoundID(JAISoundID);
     /* 8029FEEC */ void pause(bool);
     /* 8029FF18 */ void JAISeMgr_mixOut_(JAISoundParamsMove const&, JAISoundActivity);
-    /* 802A0994 */ JAISeCategoryMgr();
+    /* 802A0994 */ JAISeCategoryMgr() {
+        mParams.init();
+        mMaxActiveSe = 0;
+        mMaxInactiveSe = 0;
+        field_0x4.field_0x0 = 0;
+    }
 
     /* 800078DC */ virtual ~JAISeCategoryMgr() {}
     /* 8029F8B0 */ virtual bool isUsingSeqData(JAISeqDataRegion const&);

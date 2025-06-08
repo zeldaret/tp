@@ -98,7 +98,7 @@ void dMirror_packet_c::mirrorZdraw(f32* param_0, f32* param_1, f32 param_2, f32 
     GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_ZERO, GX_CA_ZERO, GX_CA_A0);
     GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
     GXSetZCompLoc(GX_TRUE);
-    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_OR);
+    GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_OR);
     GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_OR, GX_GREATER, 0);
     GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, g_clearColor);
     GXSetFogRangeAdj(0, 0, NULL);
@@ -204,7 +204,7 @@ void dMirror_packet_c::modelDraw(J3DModel* i_model, Mtx param_1) {
     }
 
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
-    JUT_ASSERT(kankyo != 0);
+    JUT_ASSERT(0, kankyo != 0);
 
     GXColor color = {0};
     color.r = kankyo->bg_amb_col[0].r;
@@ -310,7 +310,7 @@ void dMirror_packet_c::mainDraw() {
                     temp_f1 = (temp_f22 - sp19C[temp_r29].z) / temp_f1;
                     sp11C *= temp_f1;
 
-                    JUT_ASSERT(0 <= prjPosNum && prjPosNum < (4 + 1));
+                    JUT_ASSERT(0, 0 <= prjPosNum && prjPosNum < (4 + 1));
 
                     sp19C[4] = sp19C[temp_r29] + sp11C;
 
@@ -595,7 +595,7 @@ int daMirror_c::execute() {
     }
 
     daPy_py_c* player = daPy_getLinkPlayerActorClass();
-    JUT_ASSERT(player != 0);
+    JUT_ASSERT(0, player != 0);
 
     if (mPacket.getViewScale().y > 0.0f && player->getKandelaarFlamePos() &&
         fopAcM_searchActorDistance2(this, player) < 40000.0f)

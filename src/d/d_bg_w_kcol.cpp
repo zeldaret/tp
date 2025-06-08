@@ -14,12 +14,10 @@ dBgWKCol::~dBgWKCol() {}
 
 /* 8007E7D0-8007E804 079110 0034+00 0/0 1/1 0/0 .text            initKCollision__8dBgWKColFPv */
 void* dBgWKCol::initKCollision(void* i_kclData) {
-    KC_Header* header_p = (KC_Header*)i_kclData;
-
-    header_p->m_pos_data = (Vec*)((u32)header_p + (u32)header_p->m_pos_data);
-    header_p->m_nrm_data = (Vec*)((u32)header_p + (u32)header_p->m_nrm_data);
-    header_p->m_prism_data = (KC_PrismData*)((u32)header_p + (u32)header_p->m_prism_data);
-    header_p->m_block_data = (KC_PrismData*)((u32)header_p + (u32)header_p->m_block_data);
+    ((KC_Header*)i_kclData)->m_pos_data = (Vec*)((u32)((KC_Header*)i_kclData) + (u32)((KC_Header*)i_kclData)->m_pos_data);
+    ((KC_Header*)i_kclData)->m_nrm_data = (Vec*)((u32)((KC_Header*)i_kclData) + (u32)((KC_Header*)i_kclData)->m_nrm_data);
+    ((KC_Header*)i_kclData)->m_prism_data = (KC_PrismData*)((u32)((KC_Header*)i_kclData) + (u32)((KC_Header*)i_kclData)->m_prism_data);
+    ((KC_Header*)i_kclData)->m_block_data = (KC_PrismData*)((u32)((KC_Header*)i_kclData) + (u32)((KC_Header*)i_kclData)->m_block_data);
 
     return i_kclData;
 }
@@ -42,7 +40,8 @@ void dBgWKCol::create(void* pprism, void* plc) {
 /* 8007E850-8007E86C 079190 001C+00 1/1 0/0 0/0 .text getTriNrm__8dBgWKColCFP12KC_PrismDataPP3Vec
  */
 void dBgWKCol::getTriNrm(KC_PrismData* pkc, Vec** nrm) const {
-    *nrm = &m_pkc_head->m_nrm_data[pkc->fnrm_i];
+    Vec* var_r31 = &m_pkc_head->m_nrm_data[pkc->fnrm_i];
+    *nrm = var_r31;
 }
 
 /* 8007E86C-8007E87C 0791AC 0010+00 1/0 0/0 0/0 .text            ChkNotReady__8dBgWKColCFv */
@@ -80,7 +79,7 @@ cM3dGPla dBgWKCol::GetTriPla(int poly_index) const {
 
     Vec* tri_pos;
     getTri1Pos(pd, &tri_pos);
-    VECDotProduct(tri_nrm, tri_pos);
+    f32 ndot = -PSVECDotProduct(tri_nrm, tri_pos);
 
     cM3dGPla plane;
     plane.SetupNP(*tri_nrm, *tri_pos);
@@ -114,27 +113,27 @@ bool dBgWKCol::GetTriPnt(KC_PrismData const* pd, Vec* ppos, Vec* param_3,
     Vec* edge_nrm3 = &m_pkc_head->m_nrm_data[pd->enrm3_i];
 
     Vec sp64;
-    VECCrossProduct(face_nrm, edge_nrm1, &sp64);
+    PSVECCrossProduct(face_nrm, edge_nrm1, &sp64);
 
     Vec sp70;
-    VECCrossProduct(edge_nrm2, face_nrm, &sp70);
+    PSVECCrossProduct(edge_nrm2, face_nrm, &sp70);
 
-    f32 var_f30 = VECDotProduct(&sp64, edge_nrm3);
+    f32 var_f30 = PSVECDotProduct(&sp64, edge_nrm3);
     if (cM3d_IsZero(var_f30)) {
         return false;
     }
 
-    var_f30 = pd->height / var_f30;
-    VECScale(&sp64, &sp64, var_f30);
-    VECAdd(&sp64, ppos, param_4);
-    var_f30 = VECDotProduct(&sp70, edge_nrm3);
-    if (cM3d_IsZero(var_f30)) {
+    f32 var_f31 = pd->height / var_f30;
+    PSVECScale(&sp64, &sp64, var_f31);
+    PSVECAdd(&sp64, ppos, param_4);
+    f32 var_f29 = PSVECDotProduct(&sp70, edge_nrm3);
+    if (cM3d_IsZero(var_f29)) {
         return false;
     }
 
-    var_f30 = pd->height / var_f30;
-    VECScale(&sp70, &sp70, var_f30);
-    VECAdd(&sp70, ppos, param_3);
+    var_f31 = pd->height / var_f29;
+    PSVECScale(&sp70, &sp70, var_f31);
+    PSVECAdd(&sp70, ppos, param_3);
     return true;
 }
 
@@ -171,13 +170,12 @@ bool dBgWKCol::chkPolyThrough(dBgPc* ppoly, cBgS_PolyPassChk* ppolypasschk,
     JUT_ASSERT(279, ppoly != 0);
 
     if (pgrppasschk != NULL) {
+        dBgS_GrpPassChk* var_r28 = (dBgS_GrpPassChk*)pgrppasschk;
         if (ppoly->maskNrm() == 0) {
-            if (((dBgS_GrpPassChk*)pgrppasschk)->MaskNormalGrp() == 0) {
+            if (var_r28->MaskNormalGrp() == 0) {
                 return true;
             }
-        } else if (ppoly->getWtr() != 0 &&
-            (((dBgS_GrpPassChk*)pgrppasschk)->MaskWaterGrp() == 0))
-        {
+        } else if (ppoly->getWtr() != 0 && var_r28->MaskWaterGrp() == 0) {
             return true;
         }
     }
@@ -218,8 +216,7 @@ bool dBgWKCol::chkPolyThrough(dBgPc* ppoly, cBgS_PolyPassChk* ppolypasschk,
             return true;
         }
 
-        if (ppoly->getWallCode() == 8 && polypass->ChkNoHorse())
-        {
+        if (ppoly->getWallCode() == 8 && polypass->ChkNoHorse()) {
             return true;
         }
 
@@ -229,7 +226,8 @@ bool dBgWKCol::chkPolyThrough(dBgPc* ppoly, cBgS_PolyPassChk* ppolypasschk,
             }
 
             if (polypass->ChkHorse() && dComIfGp_getHorseActor() != NULL) {
-                if (!dComIfGp_getHorseActor()->checkSpecialWallHit(param_4)) {
+                daHorse_c* horse_p = dComIfGp_getHorseActor();
+                if (!horse_p->checkSpecialWallHit(param_4)) {
                     return true;
                 }
             }
@@ -262,8 +260,8 @@ bool dBgWKCol::LineCheck(cBgS_LinChk* plinchk) {
     f32 var_f29 = 0.0f;
 
     cXyz sp144;
-    VECSubtract(pcross, pstart, &sp144);
-    VECScale(&sp144, &sp144, var_f25);
+    PSVECSubtract(pcross, pstart, &sp144);
+    PSVECScale(&sp144, &sp144, var_f25);
 
     cXyz sp138;
     cXyz sp12C;
@@ -274,7 +272,7 @@ bool dBgWKCol::LineCheck(cBgS_LinChk* plinchk) {
     do {
         sp138 = sp12C;
         if (var_f29 + 500.0f <= var_f31) {
-            VECAdd(&sp12C, &sp144, &sp12C);
+            PSVECAdd(&sp12C, &sp144, &sp12C);
         } else {
             sp12C = *pcross;
         }
@@ -283,11 +281,11 @@ bool dBgWKCol::LineCheck(cBgS_LinChk* plinchk) {
         cXyz sp114;
         cXyz sp108;
 
-        VECSubtract(&sp138, &m_pkc_head->m_area_min_pos, &sp114);
+        PSVECSubtract(&sp138, &m_pkc_head->m_area_min_pos, &sp114);
         sp108 = sp114;
 
         cXyz spFC;
-        VECSubtract(&sp12C, &m_pkc_head->m_area_min_pos, &spFC);
+        PSVECSubtract(&sp12C, &m_pkc_head->m_area_min_pos, &spFC);
 
         if (sp114.x > spFC.x) {
             sp114.x = spFC.x;

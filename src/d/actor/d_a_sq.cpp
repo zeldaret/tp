@@ -272,7 +272,7 @@ static void sq_fly(sq_class* i_this) {
     }
 
     cLib_addCalc2(&i_this->speedF, l_HIO.mFallSpeedXZ, 1.0f, 10.0f);
-    if (i_this->mAcch.i_ChkGroundHit()) {
+    if (i_this->mAcch.ChkGroundHit()) {
         i_this->mAction = sq_class::ACT_NORMAL;
         i_this->mMode = -1;
     }
@@ -344,7 +344,7 @@ static void action(sq_class* i_this) {
             break;
         }
 
-        if (i_this->mMessageState == 1 && daPy_py_c::i_checkNowWolf()
+        if (i_this->mMessageState == 1 && daPy_py_c::checkNowWolf()
                                        && i_this->mPlayerDist < 300.0f) {
             i_this->mAction = sq_class::ACT_MESSAGE;
             i_this->mMode = 0;
@@ -413,10 +413,10 @@ static int message(sq_class* i_this) {
         i_this->mIsTalking = 1;
     }
 
-    if (i_this->mMessageState == 2 && i_this->mFlowID != -1 && daPy_py_c::i_checkNowWolf()) {
+    if (i_this->mMessageState == 2 && i_this->mFlowID != -1 && daPy_py_c::checkNowWolf()) {
         fopAcM_OnStatus(i_this, 0);
         cLib_onBit<u32>(i_this->attention_info.flags, 0xa);
-        i_this->eventInfo.i_onCondition(1);
+        i_this->eventInfo.onCondition(1);
     } else {
         fopAcM_OffStatus(i_this, 0);
         cLib_offBit<u32>(i_this->attention_info.flags, 0xa);

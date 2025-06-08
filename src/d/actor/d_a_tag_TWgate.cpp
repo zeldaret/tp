@@ -212,7 +212,7 @@ void daTagTWGate_c::executeDemoFilone1() {
             event_manager.cutEnd(staffId);
         }
 
-        if (eventInfo.i_checkCommandDemoAccrpt() && mEventID != -1 &&
+        if (eventInfo.checkCommandDemoAccrpt() && mEventID != -1 &&
             event_manager.endCheck(mEventID))
         {
             mActionID = ACT_DEMO_FILONE_2;
@@ -276,7 +276,7 @@ void daTagTWGate_c::executeDemoFilone2() {
             break;
         }
 
-        if (eventInfo.i_checkCommandDemoAccrpt() && mEventID != -1 &&
+        if (eventInfo.checkCommandDemoAccrpt() && mEventID != -1 &&
             dComIfGp_evmng_endCheck(mEventID)) {
             dComIfGp_getEvent().reset();
             field_0x5e0 = 0;
@@ -379,7 +379,7 @@ void daTagTWGate_c::executeDemoFilone3() {
             break;
         }
 
-        if (eventInfo.i_checkCommandDemoAccrpt() && mEventID != -1 &&
+        if (eventInfo.checkCommandDemoAccrpt() && mEventID != -1 &&
             dComIfGp_evmng_endCheck(mEventID)) {
             dComIfGp_getEvent().reset();
             field_0x5e0 = 0;
@@ -544,7 +544,7 @@ void daTagTWGate_c::executeDemoOrdin3() {
                 l_zevParamTbl[mType].mRoomNo,
                 l_zevParamTbl[mType].mLayer);
         }
-        int dVar2 = daPy_py_c::i_checkNowWolf() ? 0x2e : 0x4a;
+        int dVar2 = daPy_py_c::checkNowWolf() ? 0x2e : 0x4a;
         if (field_0x5e1++ == dVar2) {
             daPy_py_c* player = daPy_getPlayerActorClass();
             cXyz cStack_30;
@@ -736,7 +736,7 @@ void daTagTWGate_c::executeDemoRanail3() {
                 l_zevParamTbl[mType].mRoomNo,
                 l_zevParamTbl[mType].mLayer);
         }
-        int dVar2 = daPy_py_c::i_checkNowWolf() ? 0x2e : 0x4a;
+        int dVar2 = daPy_py_c::checkNowWolf() ? 0x2e : 0x4a;
         if (field_0x5e1++ == dVar2) {
             daPy_py_c* player = daPy_getPlayerActorClass();
             cXyz cStack_30;

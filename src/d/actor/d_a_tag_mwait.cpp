@@ -95,13 +95,13 @@ int daTagMwait_c::execute() {
         }
     } else if (mEnteredTrigger) {
         fopAcM_orderSpeakEvent(this, 0, 0);
-        eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
+        eventInfo.onCondition(dEvtCnd_CANTALK_e);
         attention_info.position = midna_p->attention_info.position;
         eyePos = attention_info.position;
     } else {
         mInitMsgFlow = false;
 
-        if (daPy_py_c::i_checkNowWolf() && midna_p != NULL && fopAcM_isSwitch(this, mOnSw))
+        if (daPy_py_c::checkNowWolf() && midna_p != NULL && fopAcM_isSwitch(this, mOnSw))
         {
             if (mWarpToPos == 1) {
                 midna_p->onTagWaitPosWarp(&mWaitPosition);
@@ -130,14 +130,14 @@ int daTagMwait_c::execute() {
                         attention_info.position = midna_p->attention_info.position;
                         eyePos = attention_info.position;
                         fopAcM_orderSpeakEvent(this, 0, 0);
-                        eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
+                        eventInfo.onCondition(dEvtCnd_CANTALK_e);
                     }
                 } else if (field_0x570 > 0.0f && player_dist < field_0x570 &&
                            player_p->current.pos.y >= current.pos.y &&
                            player_p->current.pos.y <= current.pos.y + scale.y)
                 {
                     attention_info.flags = 2;
-                    eventInfo.i_onCondition(dEvtCnd_CANTALK_e);
+                    eventInfo.onCondition(dEvtCnd_CANTALK_e);
                 }
             }
         }

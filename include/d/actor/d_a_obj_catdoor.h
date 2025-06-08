@@ -37,6 +37,28 @@ public:
     inline int create();
     inline void create_init();
 
+    void _toDoorOpened() {
+        mDoor1.angle = 0x8800;
+        mDoor2.angle = 0x7800;
+        setBaseMtx();
+        fopAcM_onSwitch(this, getSwitchNo());
+    }
+
+    void setDoorOpen() {
+        mRotSpeed = attr()[1];
+        dBgW* bgw1 = &mDoor1.bgw;
+        if (bgw1->ChkUsed()) {
+            dComIfG_Bgsp().Release(bgw1);
+        }
+
+        dBgW* bgw2 = &mDoor2.bgw;
+        if (bgw2->ChkUsed()) {
+            dComIfG_Bgsp().Release(bgw2);
+        }
+
+        Z2GetAudioMgr()->seStart(Z2SE_OBJ_GZ_NE_DOOR_OP, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+    }
+
 private:
     /* 0x568 */ request_of_phase_process_class mPhaseReq;
     /* 0x570 */ daObjCatDoor_Door_c mDoor1;

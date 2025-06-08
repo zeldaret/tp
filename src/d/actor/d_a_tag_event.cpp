@@ -145,7 +145,7 @@ int daTag_Event_c::create() {
 
 /* 8048B0E4-8048B1B0 000424 00CC+00 1/1 0/0 0/0 .text            actionNext__13daTag_Event_cFv */
 int daTag_Event_c::actionNext() {
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         mEventIdx = mMapEventIdx;
         mMapEventIdx = -1;
 
@@ -191,7 +191,7 @@ int daTag_Event_c::actionEvent() {
 int daTag_Event_c::actionReady() {
     int swbit = getSwbit();
 
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         demoInitProc();
         setActio(ACTION_EVENT);
         actionEvent();

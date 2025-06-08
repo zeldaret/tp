@@ -37,6 +37,12 @@ public:
     f32 FwdWeightL(s32 param_0) { return mChkInfo[param_0].mWeightL; }
     f32 FwdBackMargin() { return mFwdBackMargin; }
     f32 FwdCushion() { return mFwdCushion; }
+    f32 GazeBackMargin() { return mGazeBackMargin; }
+    f32 WallCushion() { return mWallCushion; }
+    f32 WallBackCushion() { return mWallBackCushion; }
+    f32 CornerCushion() { return mCornerCushion; }
+    f32 CornerAngleMax() { return mCornerAngleMax; }
+    f32 FloorMargin() { return mFloorMargin; }
 
     // name is a guess for now
     struct ChkInfo {
@@ -79,14 +85,14 @@ public:
     /* 80088620 */ int SearchStyle(u32);
 
     /* 80182C60 */ void Arg2(s16 val) { mMapToolArg2 = val; }
-    /* 80182C3C */ int Arg2() { return mMapToolArg2; }
+    /* 80182C3C */ s16 Arg2() { return mMapToolArg2; }
     /* 80182C48 */ u8 Arg1() { return mMapToolArg1; }
     /* 80182C6C */ void Arg1(u8 val) { mMapToolArg1 = val; }
     /* 80182C50 */ u8 Arg0() { return mMapToolArg0; }
     /* 80182C74 */ void Arg0(u8 val) { mMapToolArg0 = val; }
     /* 80182C7C */ void Fovy(u8 val) { mMapToolFovy = val; }
     /* 80182C58 */ u8 Fovy() { return mMapToolFovy; }
-    /* 80182CB4 */ bool CheckFlag(u16 flag) { return mCurrentStyle->field_0x6 & flag; }
+    /* 80182CB4 */ bool CheckFlag(u16 flag) { return (flag & mCurrentStyle->field_0x6) != 0; }
     /* 80182CD0 */ f32 Val(s32 param_0, int param_1) {
         return mCamStyleData[param_0].field_0x8[param_1];
     }
@@ -104,7 +110,8 @@ public:
     u32 Id(s32 i_style) { return mCamStyleData[i_style].field_0x0; }
     int Algorythmn(s32 i_style) { return mCamStyleData[i_style].field_0x4; }
     int Algorythmn() { return mCurrentStyle->field_0x4; }
-    bool Flag(s32 param_0, u16 param_1) { return mCamStyleData[param_0].field_0x6 & param_1; }
+    u16 Flag(s32 param_0, u16 param_1) { return mCamStyleData[param_0].field_0x6 & param_1; }
+    void SetFlag(u16 i_flag) { mCurrentStyle->field_0x6 |= i_flag; }
 
     /* 8008858C */ virtual ~dCamParam_c();
 };
@@ -115,7 +122,7 @@ public:
     /* 80088918 */ bool CheckLatitudeRange(s16*);
     /* 80088988 */ f32 PlayerHideDist();
 
-    /* 80182BB8 */ bool CheckFlag2(u16 i_flag) { return mFlags2 & i_flag; }
+    /* 80182BB8 */ bool CheckFlag2(u16 i_flag) { return (i_flag & mFlags2) != 0; }
     /* 80182BE8 */ f32 WaitRollSpeed() { return mWaitRollSpeed; }
     /* 80182BF0 */ int WaitRollTimer() { return mWaitRollTimer; }
     /* 80182C1C */ int ThrowTimer() { return mThrowTimer; }
@@ -126,7 +133,7 @@ public:
     /* 80182CF4 */ int ChargeTimer() { return mChargeTimer; }
     /* 80182CFC */ f32 ChargeLatitude() { return mChargeLatitude; }
 
-    bool CheckFlag(u16 i_flag) { return mDebugFlags & i_flag; }
+    bool CheckFlag(u16 i_flag) { return (i_flag & mDebugFlags) != 0; }
     f32 ManualEndVal() { return mManualEndVal; }
     f32 CinemaScopeTrimHeight() { return mTrimCineScopeHeight; }
     f32 VistaTrimHeight() { return mTrimVistaHeight; }
@@ -134,6 +141,15 @@ public:
     f32 ForceLockOffDist() { return mForceLockOffDist; }
     f32 USOValue() { return mFalseValue; }
     f32 USOAngle() { return mFalseAngle; }
+    f32 WindShakeGap4Ctr() { return mWindShakeCtr; }
+    f32 WindShakeGap4Fvy() { return mWindShakeFvy; }
+    f32 LockonChangeCushion() { return mLockonChangeCushion; }
+    int LockonChangeTimer() { return mLockonChangeTimer; }
+    f32 Cushion4Base() { return mBaseCushion; }
+    f32 Cushion4Jump() { return mJumpCushion; }
+    f32 CusCus() { return mCusCus; }
+    f32 ParallelDist() { return mParallelDist; }
+    f32 CurveWeight() { return mCurveWeight; }
 
     /* 0x000 */ f32 mDrawNear;
     /* 0x004 */ f32 mDrawFar;

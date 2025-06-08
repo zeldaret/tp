@@ -11,9 +11,12 @@
  * @details
  *
  */
-class npc_du_class : public fopAc_ac_c {
-private:
-    /* 0x568 */ u8 field_0x568[0xa00 - 0x568];
+class npc_du_class {
+public:
+    fopAc_ac_c actor;
+    /* 0x568 */ u8 field_0x568[0x5b8 - 0x568];
+    /* 0x5B8 */ f32 field_0x5b8;
+    /* 0x5BC */ u8 field_0x5bc[0xa00 - 0x5bc];
 };
 
 STATIC_ASSERT(sizeof(npc_du_class) == 0xa00);

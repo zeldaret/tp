@@ -43,20 +43,20 @@ const char* JUTException::sCpuExpName[17] = {
 JUTException* JUTException::sErrorManager;
 
 /* 8045150C-80451510 000A0C 0004+00 4/4 0/0 0/0 .sbss            sPreUserCallback__12JUTException */
-OSErrorHandler JUTException::sPreUserCallback;
+JUTExceptionUserCallback JUTException::sPreUserCallback;
 
 /* 80451510-80451514 000A10 0004+00 3/3 0/0 0/0 .sbss            sPostUserCallback__12JUTException
  */
-OSErrorHandler JUTException::sPostUserCallback;
+ JUTExceptionUserCallback JUTException::sPostUserCallback;
 
 /* 802E1D5C-802E1E40 2DC69C 00E4+00 1/1 0/0 0/0 .text __ct__12JUTExceptionFP14JUTDirectPrint */
 JUTException::JUTException(JUTDirectPrint* directPrint)
     : JKRThread(0x1C00, 0x10, 0), mDirectPrint(directPrint) {
-    OSSetErrorHandler(EXCEPTION_DSI, errorHandler);
-    OSSetErrorHandler(EXCEPTION_ISI, errorHandler);
-    OSSetErrorHandler(EXCEPTION_PROGRAM, errorHandler);
-    OSSetErrorHandler(EXCEPTION_ALIGNMENT, errorHandler);
-    OSSetErrorHandler(EXCEPTION_MEMORY_PROTECTION, errorHandler);
+    OSSetErrorHandler(__OS_EXCEPTION_DSI, (OSErrorHandler)errorHandler);
+    OSSetErrorHandler(__OS_EXCEPTION_ISI, (OSErrorHandler)errorHandler);
+    OSSetErrorHandler(__OS_EXCEPTION_PROGRAM, (OSErrorHandler)errorHandler);
+    OSSetErrorHandler(__OS_EXCEPTION_ALIGNMENT, (OSErrorHandler)errorHandler);
+    OSSetErrorHandler(__OS_EXCEPTION_MEMORY_PROTECTION, (OSErrorHandler)errorHandler);
     setFPException(0);
 
     sPreUserCallback = NULL;
@@ -87,7 +87,7 @@ JUTException* JUTException::create(JUTDirectPrint* directPrint) {
 OSMessage JUTException::sMessageBuffer[1] = {0};
 
 struct CallbackObject {
-    /* 0x00 */ OSErrorHandler callback;
+    /* 0x00 */ JUTExceptionUserCallback callback;
     /* 0x04 */ u16 error;
     /* 0x06 */ u16 pad_0x06;
     /* 0x08 */ OSContext* context;
@@ -106,7 +106,7 @@ void* JUTException::run() {
         VISetPreRetraceCallback(NULL);
         VISetPostRetraceCallback(NULL);
         CallbackObject* cb = (CallbackObject*)message;
-        OSErrorHandler callback = cb->callback;
+        JUTExceptionUserCallback callback = cb->callback;
         u16 error = cb->error;
         OSContext* context = cb->context;
         int r24 = cb->param_3;
@@ -156,7 +156,7 @@ void JUTException::errorHandler(OSError error, OSContext* context, u32 param_3, 
     fpscr = context->fpscr;
     OSFillFPUContext(context);
     OSSetErrorHandler(error, NULL);
-    if (error == OS_ERROR_MEMORY_PROTECTION) {
+    if (error == __OS_EXCEPTION_MEMORY_PROTECTION) {
         OSProtectRange(0, NULL, 0, 3);
         OSProtectRange(1, NULL, 0, 3);
         OSProtectRange(2, NULL, 0, 3);
@@ -226,9 +226,9 @@ void JUTException::panic_f(char const* file, int line, char const* format, ...) 
 void JUTException::setFPException(u32 fpscr_enable_bits) {
     __OSFpscrEnableBits = fpscr_enable_bits;
     if (fpscr_enable_bits) {
-        OSSetErrorHandler(EXCEPTION_FLOATING_POINT_EXCEPTION, errorHandler);
+        OSSetErrorHandler(__OS_EXCEPTION_FLOATING_POINT_EXCEPTION, (OSErrorHandler)errorHandler);
     } else {
-        OSSetErrorHandler(EXCEPTION_FLOATING_POINT_EXCEPTION, NULL);
+        OSSetErrorHandler(__OS_EXCEPTION_FLOATING_POINT_EXCEPTION, NULL);
     }
 }
 
@@ -362,13 +362,13 @@ void JUTException::showMainInfo(u16 error, OSContext* context, u32 dsisr, u32 da
         return;
     }
 
-    if (error < (OS_ERROR_MACHINE_CHECK | OS_ERROR_FLOATING_POINT_EXCEPTION)) {
+    if (error < (OS_ERROR_MACHINE_CHECK | __OS_EXCEPTION_FLOATING_POINT_EXCEPTION)) {
         sConsole->print_f("CONTEXT:%08XH  (%s EXCEPTION)\n", context, sCpuExpName[error]);
     } else {
         sConsole->print_f("CONTEXT:%08XH\n", context);
     }
 
-    if (error == OS_ERROR_FLOATING_POINT_EXCEPTION) {
+    if (error == __OS_EXCEPTION_FLOATING_POINT_EXCEPTION) {
         u32 flags = fpscr & (((fpscr & 0xf8) << 0x16) | 0x1f80700);
         if ((flags & 0x20000000) != 0) {
             sConsole->print_f(" FPE: Invalid operation\n");
@@ -659,7 +659,7 @@ void JUTException::printContext(OSError error, OSContext* context, u32 dsisr, u3
         return;
     }
 
-    if (error < (OS_ERROR_MACHINE_CHECK | OS_ERROR_FLOATING_POINT_EXCEPTION)) {
+    if (error < (OS_ERROR_MACHINE_CHECK | __OS_EXCEPTION_FLOATING_POINT_EXCEPTION)) {
         sConsole->print_f("******** EXCEPTION OCCURRED! ********\nFrameMemory:%XH\n",
                           getFrameMemory());
     } else {
@@ -821,8 +821,8 @@ void JUTException::waitTime(s32 timeout_ms) {
 void JUTException::createFB() {
     _GXRenderModeObj* renderMode = &GXNtsc480Int;
     void* end = (void*)OSGetArenaHi();
-    u16 width = ALIGN_NEXT(renderMode->fb_width, 16);
-    u16 height = renderMode->xfb_height;
+    u16 width = ALIGN_NEXT(renderMode->fbWidth, 16);
+    u16 height = renderMode->xfbHeight;
     u32 pixel_count = width * height;
     u32 size = pixel_count * 2;
 
@@ -830,7 +830,7 @@ void JUTException::createFB() {
     void* object = (void*)ALIGN_PREV((s32)begin - sizeof(JUTExternalFB), 32);
     new (object) JUTExternalFB(renderMode, GX_GM_1_7, begin, size);
 
-    mDirectPrint->changeFrameBuffer(begin, renderMode->fb_width, renderMode->efb_height);
+    mDirectPrint->changeFrameBuffer(begin, renderMode->fbWidth, renderMode->efbHeight);
     VIConfigure(renderMode);
     VISetNextFrameBuffer(begin);
     VISetBlack(FALSE);
@@ -848,16 +848,16 @@ void JUTException::createFB() {
 
 /* 802E3AEC-802E3AFC 2DE42C 0010+00 0/0 1/1 0/0 .text
  * setPreUserCallback__12JUTExceptionFPFUsP9OSContextUlUl_v     */
-OSErrorHandler JUTException::setPreUserCallback(OSErrorHandler callback) {
-    OSErrorHandler previous = sPreUserCallback;
+ JUTExceptionUserCallback JUTException::setPreUserCallback(JUTExceptionUserCallback callback) {
+    JUTExceptionUserCallback previous = sPreUserCallback;
     sPreUserCallback = callback;
     return previous;
 }
 
 /* 802E3AFC-802E3B0C 2DE43C 0010+00 0/0 1/1 0/0 .text
  * setPostUserCallback__12JUTExceptionFPFUsP9OSContextUlUl_v    */
-OSErrorHandler JUTException::setPostUserCallback(OSErrorHandler callback) {
-    OSErrorHandler previous = sPostUserCallback;
+ JUTExceptionUserCallback JUTException::setPostUserCallback(JUTExceptionUserCallback callback) {
+    JUTExceptionUserCallback previous = sPostUserCallback;
     sPostUserCallback = callback;
     return previous;
 }

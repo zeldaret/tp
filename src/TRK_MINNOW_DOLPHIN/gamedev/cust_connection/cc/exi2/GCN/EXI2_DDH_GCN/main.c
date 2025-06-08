@@ -1,6 +1,6 @@
 #include "TRK_MINNOW_DOLPHIN/utils/common/CircleBuffer.h"
 #include "TRK_MINNOW_DOLPHIN/utils/common/MWTrace.h"
-#include "amcstubs/AmcExi2Stubs.h"
+#include <dolphin/amc/AmcExi2Comm.h>
 
 #define DDH_ERR_NOT_INITIALIZED -0x2711
 #define DDH_ERR_ALREADY_INITIALIZED -0x2715
@@ -18,7 +18,7 @@ static u8 gRecvBuf[DDH_BUF_SIZE];
 static BOOL gIsInitialized;
 
 /* 80372618-803726A0 36CF58 0088+00 0/0 1/1 0/0 .text            ddh_cc_initialize */
-int ddh_cc_initialize(void* inputPendingPtrRef, AmcEXICallback monitorCallback) {
+int ddh_cc_initialize(void* inputPendingPtrRef, EXICallback monitorCallback) {
     MWTRACE(1, "CALLING EXI2_Init\n");
     EXI2_Init(inputPendingPtrRef, monitorCallback);
     MWTRACE(1, "DONE CALLING EXI2_Init\n");

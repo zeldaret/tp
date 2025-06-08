@@ -48,7 +48,7 @@ static int dShopSystem_searchItemActor(void* i_actor, void* param_1) {
             dShopSystem_item_count < dShopSystem_sellItemMax)
         {
             u8 i_posID = (fopAcM_GetParam(i_actor) >> 0x18) & 0xF;
-            JUT_ASSERT(i_posID <= dShopSystem_c::ITEM_MAX_e);
+            JUT_ASSERT(0, i_posID <= dShopSystem_c::ITEM_MAX_e);
 
             if (dShopSystem_itemActor[0] != i_actor && dShopSystem_itemActor[1] != i_actor &&
                 dShopSystem_itemActor[2] != i_actor && dShopSystem_itemActor[3] != i_actor &&
@@ -161,7 +161,7 @@ void dShopSystem_c::initShopSystem() {
     offSpMode();
     field_0xf6c = 0;
     field_0xf76 = 0;
-    field_0xf77 = 9;
+    mMasterType = 9;
     field_0xf78 = -1;
     mFlow.onNonStopJunpFlowFlag();
 }
@@ -179,7 +179,7 @@ static shop_item_data item_seira_shop = {
     },
 };
 
-static processFunc process[22] = {
+static processFunc process[] = {
     &dShopSystem_c::seq_wait,        &dShopSystem_c::seq_start,
     &dShopSystem_c::seq_select_wait, &dShopSystem_c::seq_select_start,
     &dShopSystem_c::seq_select,      &dShopSystem_c::seq_moving,
@@ -806,7 +806,7 @@ int dShopSystem_c::itemZoom(cXyz* param_0) {
                 local_34.set(g_cursorHIO.mObjZoom.x, g_cursorHIO.mObjZoom.y + -25.0f,
                              g_cursorHIO.mObjZoom.z + 150.0f);
             } else {
-                if (field_0xf77 == 5) {
+                if (mMasterType == 5) {
                     if (dShopSystem_itemNo[mCursorPos - 1] == fpcNm_ITEM_ARROW_10 ||
                         dShopSystem_itemNo[mCursorPos - 1] == fpcNm_ITEM_ARROW_20 ||
                         dShopSystem_itemNo[mCursorPos - 1] == fpcNm_ITEM_ARROW_30)
@@ -838,7 +838,7 @@ int dShopSystem_c::itemZoom(cXyz* param_0) {
             local_1c.set(*param_0);
         }
 
-        u8 dvar1 = field_0xf77;
+        u8 dvar1 = mMasterType;
         if (dvar1 == 1) {
             if (dShopSystem_itemNo[mCursorPos - 1] == fpcNm_ITEM_OIL_BOTTLE) {
                 mItemCtrl.setZoomAnime(mCursorPos, &local_1c,
@@ -940,13 +940,13 @@ int dShopSystem_c::seq_start(fopAc_ac_c* actor, dMsgFlow_c* i_flow) {
             if (i_flow->doFlow(actor, NULL, 0)) {
                 int itemNo;
                 if (mFlow.getEventId(&itemNo) == 1) {
-                    if (field_0xd90 == -1) {
-                        field_0xd90 = fopAcM_createItemForPresentDemo(&current.pos, itemNo, 0, -1,
+                    if (mItemPartnerId == fpcM_ERROR_PROCESS_ID_e) {
+                        mItemPartnerId = fopAcM_createItemForPresentDemo(&current.pos, itemNo, 0, -1,
                                                                       -1, NULL, NULL);
                     }
 
-                    if (fpcEx_IsExist(field_0xd90)) {
-                        field_0xe30 = 1;
+                    if (fpcEx_IsExist(mItemPartnerId)) {
+                        mEvtNo = 1;
                         evtChange();
                         return 1;
                     } else {
@@ -1219,11 +1219,11 @@ int dShopSystem_c::seq_choose(fopAc_ac_c* actor, dMsgFlow_c* i_flow) {
 
     i_flow->doFlow(actor, NULL, 0);
 
-    int select_num = i_flow->getSelectNum();
+    u16 select_num = i_flow->getSelectNum();
     if (dMsgObject_c::getStatus() != 6 && dMsgObject_c::getStatus() != 8 &&
         dMsgObject_c::getStatus() != 9 && dMsgObject_c::getStatus() != 20)
     {
-        if ((u16)select_num == 0) {
+        if (select_num == 0) {
             setSeq(SEQ_DECIDE_YES);
         } else {
             setSeq(SEQ_DECIDE_NO);
@@ -1244,15 +1244,15 @@ int dShopSystem_c::seq_decide_yes(fopAc_ac_c* actor, dMsgFlow_c* i_flow) {
     int itemNo;
     if (mFlow.getEventId(&itemNo) == 1) {
         if (i_flow->doFlow(actor, NULL, 0)) {
-            if (field_0xd90 == -1) {
-                field_0xd90 =
+            if (mItemPartnerId == fpcM_ERROR_PROCESS_ID_e) {
+                mItemPartnerId =
                     fopAcM_createItemForPresentDemo(&current.pos, itemNo, 0, -1, -1, NULL, NULL);
             }
 
-            if (fpcEx_IsExist(field_0xd90)) {
+            if (fpcEx_IsExist(mItemPartnerId)) {
                 offFlag(8);
                 setSoldOutItemHide();
-                field_0xe30 = 1;
+                mEvtNo = 1;
                 evtChange();
                 return 2;
             }
@@ -1303,7 +1303,7 @@ int dShopSystem_c::seq_finish(fopAc_ac_c* actor, dMsgFlow_c* i_flow) {
 /* 8019A0C0-8019A0D0 194A00 0010+00 1/0 0/0 0/0 .text
  * seq_event__13dShopSystem_cFP10fopAc_ac_cP10dMsgFlow_c        */
 bool dShopSystem_c::seq_event(fopAc_ac_c*, dMsgFlow_c*) {
-    return field_0xe30 == 0;
+    return mEvtNo == 0;
 }
 
 /* 8019A0D0-8019A158 194A10 0088+00 0/0 0/0 9/9 .text            shop_init__13dShopSystem_cFb */
@@ -1469,7 +1469,7 @@ void dShopSystem_c::deleteObject() {
 
 /* 8019A5D0-8019AB00 194F10 0530+00 1/1 0/0 8/8 .text            searchItemActor__13dShopSystem_cFv
  */
-int dShopSystem_c::searchItemActor() {
+bool dShopSystem_c::searchItemActor() {
     u8 temp_data;
     if ((dShopSystem_item_count != -1 &&
          ((dShopSystem_item_count < (temp_data = dShopSystem_sellItemMax)) ||
@@ -1548,7 +1548,7 @@ int dShopSystem_c::searchItemActor() {
             }
         }
 
-        if (field_0xf77 == 8) {
+        if (mMasterType == 8) {
             dShopSystem_cameraActor[0]->current.pos.set(-175.0f, 165.0f, 10.0f);
             dShopSystem_cameraActor[1]->current.pos.set(215.0f, 225.0f, 370.0f);
         }
@@ -1559,7 +1559,7 @@ int dShopSystem_c::searchItemActor() {
                 dShopSystem_itemActor[3], dShopSystem_itemActor[4], dShopSystem_itemActor[5],
                 &dShopSystem_cameraActor[0]->current.pos, &dShopSystem_cameraActor[1]->current.pos);
 
-            if (field_0xf77 == 8) {
+            if (mMasterType == 8) {
                 cXyz camCtrPos;
                 camCtrPos.set(-180.0f, 245.0f, -380.0f);
                 mShopCamAction.setMasterCamCtrPos(&camCtrPos);
@@ -1633,14 +1633,18 @@ void dShopSystem_c::setSellItemMax(u8 i_max) {
 }
 
 /* 8019AB24-8019AB60 195464 003C+00 0/0 0/0 9/9 .text            checkShopOpen__13dShopSystem_cFv */
-bool dShopSystem_c::checkShopOpen() {
+BOOL dShopSystem_c::checkShopOpen() {
     for (int i = 0; i < 2; i++) {
         if (dShopSystem_cameraActor[i] != NULL) {
             return true;
         }
     }
 
-    return dShopSystem_camera_count != 0;
+    if (dShopSystem_camera_count) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 /* 8019AB60-8019AB84 1954A0 0024+00 3/3 0/0 0/0 .text
@@ -1659,5 +1663,3 @@ bool dShopSystem_c::checkRightTrigger(STControl* i_stick) {
 bool dShopSystem_c::dpdMove() {
     return false;
 }
-
-#pragma nosyminline on

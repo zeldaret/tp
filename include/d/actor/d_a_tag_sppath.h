@@ -12,6 +12,11 @@ public:
     /* 80D62024 */ int getNearPathPos(cXyz*, dPath*);
     /* 80D629C0 */ int execute();
 
+    dPath* getKeepPath() { return mpBestPath; }
+    u16 getKeepPointNum() const { return mBestNo; }
+    bool checkDirectionFront() const { return field_0x6e8 == 1; }
+    bool checkDirectionNone() const { return field_0x6e8 == 0; }
+
     /* 0x568 */ dPath* mpInitPath;
     /* 0x56C */ dPath* mpBestPath;
     /* 0x570 */ dCcD_Cyl mCyl;

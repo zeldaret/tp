@@ -64,6 +64,9 @@ enum fopAc_Cull_e {
     fopAc_CULLBOX_11_e,
     fopAc_CULLBOX_12_e,
     fopAc_CULLBOX_13_e,
+#ifdef DEBUG
+    fopAc_CULLBOX_14_e,
+#endif
     fopAc_CULLBOX_CUSTOM_e,
     fopAc_CULLSPHERE_0_e,
     fopAc_CULLSPHERE_1_e,
@@ -79,6 +82,9 @@ enum fopAc_Cull_e {
     fopAc_CULLSPHERE_11_e,
     fopAc_CULLSPHERE_12_e,
     fopAc_CULLSPHERE_13_e,
+#ifdef DEBUG
+    fopAc_CULLSPHERE_14_e,
+#endif
     fopAc_CULLSPHERE_CUSTOM_e,
 };
 
@@ -113,6 +119,7 @@ enum dEvt_Condition_e {
     dEvtCnd_CANDOOR_e = 0x0004,
     dEvtCnd_CANGETITEM_e = 0x0008,
     dEvtCnd_CANTALKITEM_e = 0x0020,
+    dEvtCnd_40_e = 0x0040,
     dEvtCnd_DUMMY = 0x8000,
 };
 
@@ -123,11 +130,13 @@ public:
     void setEventName(char*);
     char* getEventName();
     void beforeProc();
-    void onCondition(u16);
-    void offCondition(u16);
-    BOOL checkCommandCatch();
-    BOOL checkCommandDoor();
+    void onCondition(u16 cond) { mCondition |= cond; }
+    void offCondition(u16 cond) { mCondition &= ~cond; }
+    BOOL checkCommandCatch() { return mCommand == dEvtCmd_INCATCH_e; }
+    BOOL checkCommandDoor() { return mCommand == dEvtCmd_INDOOR_e; }
     BOOL checkCommandDemoAccrpt() { return mCommand == dEvtCmd_INDEMO_e; }
+    bool checkCommandTalk() { return mCommand == dEvtCmd_INTALK_e; }
+    bool checkCommandItem() { return mCommand == dEvtCmd_INGETITEM_e; }
 
     void setCommand(u16 command) { mCommand = command; }
     void setMapToolId(u8 id) { mMapToolId = id; }
@@ -141,14 +150,6 @@ public:
     void setIdx(u8 i_idx) { mIndex = i_idx; }
     char* getArchiveName() { return mArchiveName; }
     BOOL chkCondition(u16 condition) { return (mCondition & condition) == condition; }
-    void i_onCondition(u16 cond) { mCondition |= cond; }
-    void i_offCondition(u16 cond) { mCondition &= ~cond; }
-
-    bool checkCommandTalk() { return mCommand == dEvtCmd_INTALK_e; }
-    bool checkCommandItem() { return mCommand == dEvtCmd_INGETITEM_e; }
-    BOOL i_checkCommandDoor() { return mCommand == dEvtCmd_INDOOR_e; }
-    bool i_checkCommandDemoAccrpt() { return mCommand == dEvtCmd_INDEMO_e; }
-    bool i_checkCommandCatch() { return mCommand == dEvtCmd_INCATCH_e; }
 
     void suspendProc(void* actor) {
         if (field_0x10 != NULL) {
@@ -261,9 +262,11 @@ public:
     bool checkWolfNoLock() const { return mFlags & 0x200; }
     bool checkHeadLockFlg() const { return mFlags & 0x80; }
     bool checkWolfBiteDamage() const { return mFlags & 0x40; }
+    bool checkWolfDownPullFlg() const { return mFlags & 0x10; }
     bool checkDownFlg() const { return mFlags & 0x1; }
     bool checkCutDownHitFlg() const { return mFlags & 0x2; }
     bool checkDeadFlg() const { return mFlags & 0x8; }
+    bool checkThrowMode(u8 param_1) const { return mThrowMode & param_1; }
 
     u32* getMidnaBindID(int i_idx) { return mMidnaBindID + i_idx; }
     u8 getMidnaBindMode() { return mMidnaBindMode; }
@@ -284,6 +287,7 @@ public:
     void offDownFlg() { mFlags &= ~0x17; }
     void offWolfNoLock() { mFlags &= ~0x200; }
     void offHeadLockFlg() { mFlags &= ~0x80; }
+    void offThrowMode(u8 throwMode) { mThrowMode &= ~throwMode; }
 
     void setMidnaBindMode(u8 i_bindMode) { mMidnaBindMode = i_bindMode; }
     void setMidnaBindID(u8 i_idx, u32 i_bindID) { mMidnaBindID[i_idx] = i_bindID; }

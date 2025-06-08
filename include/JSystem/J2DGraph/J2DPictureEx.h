@@ -12,7 +12,16 @@ class J2DMaterial;
  */
 class J2DPictureEx : public J2DPicture {
 public:
-    enum stage_enum {};
+    enum stage_enum {
+        STAGE_0,
+        STAGE_1,
+        STAGE_2,
+        STAGE_3,
+        STAGE_4,
+        STAGE_5,
+        STAGE_6,
+        STAGE_7,
+    };
 
     /* 803036EC */ J2DPictureEx(J2DPane*, JSURandomInputStream*, u32, J2DMaterial*);
     /* 803040E4 */ void insertCommon(u8, f32);
@@ -33,8 +42,8 @@ public:
     /* 803069D8 */ virtual void setCullBack(_GXCullMode);
     /* 803069B8 */ virtual void setAlpha(u8);
     /* 80303AB4 */ virtual void drawSelf(f32, f32, f32 (*)[3][4]);
-    /* 80306A24 */ virtual void isUsed(ResTIMG const*);
-    /* 803071A4 */ virtual void isUsed(ResFONT const*);
+    /* 80306A24 */ virtual bool isUsed(ResTIMG const*);
+    /* 803071A4 */ virtual bool isUsed(ResFONT const*);
     /* 80306A0C */ virtual void rewriteAlpha();
     /* 803071C4 */ virtual void setAnimation(J2DAnmBase*);
     /* 80256064 */ virtual void setAnimation(J2DAnmTransform* transform) { J2DPane::setAnimation(transform); }
@@ -44,7 +53,7 @@ public:
     /* 80306B48 */ virtual void setAnimation(J2DAnmTevRegKey*);
     /* 80306B74 */ virtual void setAnimation(J2DAnmVisibilityFull*);
     /* 80306B7C */ virtual void setAnimation(J2DAnmVtxColor*);
-    /* 80306C70 */ virtual void animationPane(J2DAnmTransform const*);
+    /* 80306C70 */ virtual const J2DAnmTransform* animationPane(J2DAnmTransform const*);
     /* 80303640 */ virtual void initiate(ResTIMG const*, ResTLUT const*);
     /* 803039CC */ virtual bool prepareTexture(u8);
     /* 80306ED4 */ virtual bool append(ResTIMG const*, f32);
@@ -57,7 +66,7 @@ public:
     /* 80306F94 */ virtual void prepend(char const*, f32);
     /* 80306F64 */ virtual void prepend(char const*, JUTPalette*, f32);
     /* 80306F34 */ virtual void prepend(JUTTexture*, f32);
-    /* 80307058 */ virtual void insert(ResTIMG const*, u8, f32);
+    /* 80307058 */ virtual bool insert(ResTIMG const*, u8, f32);
     /* 80303F34 */ virtual bool insert(ResTIMG const*, JUTPalette*, u8, f32);
     /* 80307024 */ virtual bool insert(char const*, u8, f32);
     /* 80303FD8 */ virtual bool insert(char const*, JUTPalette*, u8, f32);
@@ -84,8 +93,8 @@ public:
     /* 80306370 */ virtual bool setBlack(JUtility::TColor);
     /* 803063F8 */ virtual bool setWhite(JUtility::TColor);
     /* 80306480 */ virtual bool setBlackWhite(JUtility::TColor, JUtility::TColor);
-    /* 803068F8 */ virtual void getBlack() const;
-    /* 80306958 */ virtual void getWhite() const;
+    /* 803068F8 */ virtual JUtility::TColor getBlack() const;
+    /* 80306958 */ virtual JUtility::TColor getWhite() const;
     /* 80256034 */ virtual J2DMaterial* getMaterial() const { return mMaterial; }
     /* 80303B80 */ virtual void drawFullSet(f32, f32, f32, f32, f32 (*)[3][4]);
     /* 80303BDC */ virtual void drawTexCoord(f32, f32, f32, f32, s16, s16, s16, s16, s16, s16, s16,
@@ -100,8 +109,9 @@ private:
     /* 0x160 */ f32 field_0x160[6];  // related to blend color ratio
     /* 0x178 */ f32 field_0x178[6];  // related to blend alpha ratio
     /* 0x190 */ u8 field_0x190;
-    /* 0x194 */ int field_0x194;
-    /* 0x198 */ int field_0x198;
+    /* 0x194 */ J2DAnmVisibilityFull* field_0x194;
+    /* 0x198 */ J2DAnmVtxColor* field_0x198;
+    /* 0x19C */ u8 field_0x19c;
 };
 
 #endif /* J2DPICTUREEX_H */

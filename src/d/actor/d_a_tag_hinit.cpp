@@ -52,7 +52,7 @@ int daTagHinit_c::execute() {
         }
 
         daHorse_c* horse = dComIfGp_getHorseActor();
-        horse->i_setHorsePosAndAngle(&current.pos, shape_angle.y);
+        horse->setHorsePosAndAngle(&current.pos, shape_angle.y);
         horse->offNoDrawWait();
         fopAcM_delete(this);
     }

@@ -6,39 +6,16 @@
 #include "JSystem/JMessage/locale.h"
 #include <dolphin.h>
 
-//
-// Forward References:
-//
-
-extern "C" void parseCharacter_ShiftJIS__Q28JMessage6localeFPPCc();
-extern "C" void parseCharacter_UTF8__Q28JMessage6localeFPPCc();
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
-
 /* 802A9528-802A958C 2A3E68 0064+00 0/0 1/0 0/0 .text
  * parseCharacter_ShiftJIS__Q28JMessage6localeFPPCc             */
-// NONMATCHING
 int JMessage::locale::parseCharacter_ShiftJIS(char const** str) {
-    int c;
-    int ret;
-    u8* temp_r4_2;
-    u8* temp_r5;
-
-    temp_r5 = (u8*)*str;
-    c = *temp_r5;
-    ret = c;
-
+    u8 c = **str;
+    int ret = c;
     *str = *str + 1;
 
     if (isLeadByte_ShiftJIS(c)) {
-        temp_r4_2 = (u8*)*str;
-        ret = (c << 8) | *temp_r4_2;
+        ret <<= 8;
+        ret |= *(u8*)*str;
         *str = *str + 1;
     }
 
@@ -47,6 +24,37 @@ int JMessage::locale::parseCharacter_ShiftJIS(char const** str) {
 
 /* 802A958C-802A968C 2A3ECC 0100+00 0/0 1/0 0/0 .text parseCharacter_UTF8__Q28JMessage6localeFPPCc
  */
-int JMessage::locale::parseCharacter_UTF8(char const** param_0) {
-    // NONMATCHING
+int JMessage::locale::parseCharacter_UTF8(char const** str) {
+    int c = *(u8*)*str;
+    int ret = c;
+    *str = *str + 1;
+
+    if (c & 0x80) {
+        if ((c & 0xe0) == 0xc0) {
+            ret = (ret & 0x1f) << 6;
+            ret |= **str & 0x3f;
+            *str = *str + 1;
+        } else if ((c & 0xf0) == 0xe0) {
+            ret = (ret & 0xf) << 6;
+            ret |= **str & 0x3f;
+            *str = *str + 1;
+            ret <<= 6;
+            ret |= **str & 0x3f;
+            *str = *str + 1;
+        } else if ((c & 0xf8) == 0xf0) {
+            ret = (ret & 0x7) << 6;
+            ret |= **str & 0x3f;
+            *str = *str + 1;
+            ret <<= 6;
+            ret |= **str & 0x3f;
+            *str = *str + 1;
+            ret <<= 6;
+            ret |= **str & 0x3f;
+            *str = *str + 1;
+        } else {
+            ret = -1;
+        }
+    }
+
+    return ret;
 }

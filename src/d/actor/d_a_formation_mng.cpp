@@ -116,7 +116,7 @@ void daFmtMng_c::executeWait() {
                 ((daNpcFgd_c*)npcFgd)->offDrawFlag();
             }
         }
-        if (!dKy_darkworld_check() && daPy_py_c::i_checkNowWolf()) {
+        if (!dKy_darkworld_check() && daPy_py_c::checkNowWolf()) {
             fopAcM_delete(this);
         }
     }

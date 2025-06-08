@@ -2,6 +2,7 @@
 #define D_D_VIBRATION_H
 
 #include "SSystem/SComponent/c_xyz.h"
+#include "JSystem/JHostIO/JORReflexible.h"
 
 struct vib_pattern {
     /* 0x0 */ u16 rounds;
@@ -42,6 +43,25 @@ enum VIBMODE_QUAKE {
     VIBMODE_Q_MAX
 };
 
+class dVibTest_c : public JORReflexible {
+public:
+    dVibTest_c();
+
+    virtual void listenPropertyEvent(const JORPropertyEvent*);
+    virtual void genMessage(JORMContext*);
+    virtual ~dVibTest_c() {}
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x06 */ u16 m_pattern;
+    /* 0x08 */ u16 m_pattern2;
+    /* 0x0A */ u16 field_0xa;
+    /* 0x0C */ s16 m_randombit;
+    /* 0x0E */ s16 m_length;
+    /* 0x10 */ int field_0x10;
+    /* 0x14 */ int m_vibswitch;
+    /* 0x18 */ u16 m_displayDbg;
+};
+
 class dVibration_c {
 public:
     enum {
@@ -68,6 +88,10 @@ public:
     static const vib_pattern CQ_patt[VIBMODE_Q_MAX];
 
 private:
+#ifdef DEBUG
+    /* 0x00 */ dVibTest_c mVibTest;
+#endif
+
     class {
     public:
         class {

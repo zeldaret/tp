@@ -16,6 +16,10 @@
 #include "d/actor/d_a_e_ym.h"
 #include "d/actor/d_a_e_ymb.h"
 
+#ifdef DEBUG
+daObjDrop_HIO_c l_HIO;
+#endif
+
 /* 80BDFCD8-80BDFD8C 000078 00B4+00 2/2 0/0 0/0 .text            searchParentSub__FPvPv */
 static void* searchParentSub(void* pproc, void* pdata) {
     daObjDrop_c* pdrop = (daObjDrop_c*)pdata;
@@ -499,7 +503,7 @@ int daObjDrop_c::actionCompleteWait() {
 int daObjDrop_c::actionOrderCompleteDemo() {
     camera_class* pcamera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
 
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         pcamera->mCamera.SetTrimTypeForce(1);
         setDemoMode(DEMOMODE_COMPLETE_DEMO_e);
         mFadeoutTimer = KREG_S(8) + 135;
@@ -507,7 +511,7 @@ int daObjDrop_c::actionOrderCompleteDemo() {
         dropGet();
     } else {
         fopAcM_orderPotentialEvent(this, 2, 0, 0);
-        eventInfo.i_onCondition(dEvtCnd_CANDEMO_e);
+        eventInfo.onCondition(dEvtCnd_CANDEMO_e);
     }
 
     return 1;
@@ -518,7 +522,7 @@ int daObjDrop_c::actionCompleateDemo() {
     camera_class* pcamera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     pcamera->mCamera.SetTrimTypeForce(1);
 
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         int timer = cLib_calcTimer<u8>(&mFadeoutTimer);
         if (timer == 0) {
             u8 need_num = dComIfGp_getNeedLightDropNum();
@@ -552,7 +556,7 @@ int daObjDrop_c::actionWaitCompleteGetDemo() {
         dComIfGs_onSaveSwitch(13);
     } else {
         fopAcM_orderItemEvent(this, 0, 0);
-        eventInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
+        eventInfo.onCondition(dEvtCnd_CANGETITEM_e);
     }
 
     return 1;

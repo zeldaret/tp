@@ -5,12 +5,11 @@
 
 #include "SSystem/SComponent/c_math.h"
 #include "SSystem/SComponent/c_m3d.h"
+#include <cmath.h>
 
 /* 802675E4-80267640 261F24 005C+00 0/0 23/23 11/11 .text            cM_rad2s__Ff */
-s16 cM_rad2s(float rad) {
-    f32 rad_mod = fmod(rad, 2 * M_PI);
-
-    s32 s = (rad_mod * (0x8000 / M_PI));
+s16 cM_rad2s(f32 rad) {
+    s32 s = (std::fmod(rad, 2 * M_PI) * (0x8000 / M_PI));
     if (s < -0x8000) {
         s += 0x10000;
     } else if (s > 0x7FFF) {
@@ -19,7 +18,6 @@ s16 cM_rad2s(float rad) {
     return s;
 }
 
-/* ############################################################################################## */
 /* 803C3778-803C3F80 020898 0802+06 1/1 0/0 0/0 .data            atntable */
 static u16 atntable[1025] = {
     0x0000, 0x000A, 0x0014, 0x001F, 0x0029, 0x0033, 0x003D, 0x0047, 0x0051, 0x005C, 0x0066, 0x0070,
@@ -111,20 +109,21 @@ static u16 atntable[1025] = {
 };
 
 /* 80267640-80267674 261F80 0034+00 1/1 0/0 0/0 .text            U_GetAtanTable__Fff */
-u16 U_GetAtanTable(float f0, float f1) {
-    return atntable[(int)(f0 / f1 * 0x400)];
+u16 U_GetAtanTable(f32 f0, f32 f1) {
+    int idx = f0 / f1 * 0x400;
+    return atntable[idx];
 }
 
 /* 80267674-80267814 261FB4 01A0+00 1/1 82/82 822/822 .text            cM_atan2s__Fff */
-s16 cM_atan2s(float y, float x) {
+s16 cM_atan2s(f32 y, f32 x) {
     u32 ret;
-    if (fabsf(y) < G_CM3D_F_ABS_MIN) {
+    if (cM3d_IsZero(y)) {
         if (x >= 0.0f) {
             ret = 0;
         } else {
             ret = 0x8000;
         }
-    } else if (fabsf(x) < G_CM3D_F_ABS_MIN) {
+    } else if (cM3d_IsZero(x)) {
         if (y >= 0.0f) {
             ret = 0x4000;
         } else {
@@ -145,7 +144,7 @@ s16 cM_atan2s(float y, float x) {
             }
         }
     } else if (x < 0.0f) {
-        if (x <= y) {
+        if (-x >= -y) {
             ret = U_GetAtanTable(-y, -x) + 0x8000;
         } else {
             ret = 0xC000 - U_GetAtanTable(-x, -y);
@@ -161,11 +160,12 @@ s16 cM_atan2s(float y, float x) {
 }
 
 /* 80267814-8026785C 262154 0048+00 0/0 4/4 5/5 .text            cM_atan2f__Fff */
-float cM_atan2f(float y, float x) {
-    return ((2 * M_PI) / 0x10000) * cM_atan2s(y, x);
+f32 cM_atan2f(f32 y, f32 x) {
+    f32 atanS = cM_atan2s(y, x);
+    f32 ret = ((2 * M_PI) / 0x10000) * atanS;
+    return ret;
 }
 
-/* ############################################################################################## */
 /* 80451168-8045116C 000668 0004+00 2/2 0/0 0/0 .sbss            r0 */
 static s32 r0;
 
@@ -187,11 +187,13 @@ void cM_initRnd(int s0, int s1, int s2) {
  * Gets a random value
  * @return a random value
  */
-float cM_rnd() {
+f32 cM_rnd() {
     r0 = (r0 * 171) % 30269;
     r1 = (r1 * 172) % 30307;
     r2 = (r2 * 170) % 30323;
-    return fabsf(fmod(r0 / 30269.0f + r1 / 30307.0f + r2 / 30323.0f, 1.0));
+
+    f32 var_f31 = r0 / 30269.0f + r1 / 30307.0f + r2 / 30323.0f;
+    return fabsf(fmodf(var_f31, 1.0));
 }
 
 /* 80267954-8026798C 262294 0038+00 0/0 34/34 951/951 .text            cM_rndF__Ff */
@@ -200,7 +202,7 @@ float cM_rnd() {
  * @param max The upper bound the random value can be
  * @return a random value between 0 and `max`
  */
-float cM_rndF(float max) {
+f32 cM_rndF(f32 max) {
     return cM_rnd() * max;
 }
 
@@ -210,7 +212,7 @@ float cM_rndF(float max) {
  * @param max The upper and lower bound the random value can be
  * @return a random value between -`max` and +`max`
  */
-float cM_rndFX(float max) {
+f32 cM_rndFX(f32 max) {
     return max * (cM_rnd() - 0.5f) * 2.0f;
 }
 
@@ -232,19 +234,21 @@ void cM_initRnd2(int s0, int s1, int s2) {
 }
 
 /* 802679E4-80267ACC 262324 00E8+00 2/2 0/0 0/0 .text            cM_rnd2__Fv */
-float cM_rnd2() {
+f32 cM_rnd2() {
     r02 = (r02 * 171) % 30269;
     r12 = (r12 * 172) % 30307;
     r22 = (r22 * 170) % 30323;
-    return fabsf(fmod(r02 / 30269.0f + r12 / 30307.0f + r22 / 30323.0f, 1.0));
+
+    f32 var_f31 = r02 / 30269.0f + r12 / 30307.0f + r22 / 30323.0f;
+    return fabsf(fmodf(var_f31, 1.0));
 }
 
 /* 80267ACC-80267B04 26240C 0038+00 0/0 0/0 14/14 .text            cM_rndF2__Ff */
-float cM_rndF2(float max) {
+f32 cM_rndF2(f32 max) {
     return cM_rnd2() * max;
 }
 
 /* 80267B04-80267B4C 262444 0048+00 0/0 0/0 7/7 .text            cM_rndFX2__Ff */
-float cM_rndFX2(float max) {
+f32 cM_rndFX2(f32 max) {
     return max * (cM_rnd2() - 0.5f) * 2.0f;
 }

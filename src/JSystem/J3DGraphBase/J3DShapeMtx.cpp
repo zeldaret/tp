@@ -31,9 +31,9 @@ void J3DShapeMtx::resetMtxLoadCache() {
 /* 803130E4-80313128 30DA24 0044+00 1/0 0/0 0/0 .text loadMtxIndx_PNGP__11J3DShapeMtxCFiUs */
 void J3DShapeMtx::loadMtxIndx_PNGP(int slot, u16 indx) const {
     // inlined J3DFifoLoadPosMtxIndx
-    J3DFifoLoadIndx(GX_CMD_LOAD_INDX_A, indx, 0xB000 | ((u16)(slot * 0x0C)));
+    J3DFifoLoadIndx(GX_LOAD_INDX_A, indx, 0xB000 | ((u16)(slot * 0x0C)));
     // inlined J3DFifoLoadNrmMtxIndx3x3
-    J3DFifoLoadIndx(GX_CMD_LOAD_INDX_B, indx, 0x8000 | ((u16)((slot * 0x09) + 0x400)));
+    J3DFifoLoadIndx(GX_LOAD_INDX_B, indx, 0x8000 | ((u16)((slot * 0x09) + 0x400)));
 }
 
 /* 80313128-80313188 30DA68 0060+00 1/0 0/0 0/0 .text loadMtxIndx_PCPU__11J3DShapeMtxCFiUs */

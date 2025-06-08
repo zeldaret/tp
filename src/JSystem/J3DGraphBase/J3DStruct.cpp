@@ -61,7 +61,7 @@ J3DFogInfo& J3DFogInfo::operator=(J3DFogInfo const& param_0) {
     mFarZ = param_0.mFarZ;
     mColor = param_0.mColor;
     for (int i = 0; i < 10; i++) {
-        mFogAdjTable.fogVals[i] = param_0.mFogAdjTable.fogVals[i];
+        mFogAdjTable.r[i] = param_0.mFogAdjTable.r[i];
     }
     return *this;
 }

@@ -169,6 +169,11 @@ s8 mDoMain::developmentMode = -1;
 /* 80450584-80450588 000004 0004+00 0/0 1/1 0/0 .sdata           memMargin__7mDoMain */
 u32 mDoMain::memMargin = 0xFFFFFFFF;
 
+#ifdef DEBUG
+u32 mDoMain::archiveHeapSize;
+u32 mDoMain::gameHeapSize;
+#endif
+
 /* 80450588-80450590 000008 0008+00 2/2 0/0 0/0 .sdata           None */
 u8 mDoMain::mHeapBriefType = 4;
 
@@ -535,9 +540,9 @@ void main() {
     if (mDoMain::developmentMode < 0) {
         DVDDiskID* disk_id = DVDGetCurrentDiskID();
 
-        if (disk_id->game_version > 0x90) {
+        if (disk_id->gameVersion > 0x90) {
             mDoMain::developmentMode = 1;
-        } else if (disk_id->game_version > 0x80) {
+        } else if (disk_id->gameVersion > 0x80) {
             u32 consoleType = OSGetConsoleType();
             mDoMain::developmentMode = (consoleType >> 0x1C) & 1;
         } else {
@@ -546,7 +551,7 @@ void main() {
     }
 
     s32 priority = OSGetThreadPriority(current_thread);
-    OSCreateThread(&mainThread, main01, 0, stack + sizeof(mainThreadStack), sizeof(mainThreadStack), priority, 0);
+    OSCreateThread(&mainThread, (void*(*)(void*))main01, 0, stack + sizeof(mainThreadStack), sizeof(mainThreadStack), priority, 0);
     OSResumeThread(&mainThread);
     OSSetThreadPriority(current_thread, 0x1F);
     OSSuspendThread(current_thread);

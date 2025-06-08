@@ -113,13 +113,13 @@ u32 JUTGamePad::read() {
     for (int i = 0; i < 4; i++) {
         bittest = PAD_CHAN0_BIT >> i;
 
-        if (mPadStatus[i].error == 0) {
+        if (mPadStatus[i].err == 0) {
             u32 stick_status;
-            stick_status = mPadMStick[i].update(mPadStatus[i].stick_x, mPadStatus[i].stick_y, sStickMode, EMainStick, mPadButton[i].mButton) << 0x18;
-            stick_status |= (mPadSStick[i].update(mPadStatus[i].substick_x, mPadStatus[i].substick_y, sStickMode, ESubStick, mPadButton[i].mButton) << 0x10);
+            stick_status = mPadMStick[i].update(mPadStatus[i].stickX, mPadStatus[i].stickY, sStickMode, EMainStick, mPadButton[i].mButton) << 0x18;
+            stick_status |= (mPadSStick[i].update(mPadStatus[i].substickX, mPadStatus[i].substickY, sStickMode, ESubStick, mPadButton[i].mButton) << 0x10);
             
             mPadButton[i].update(&mPadStatus[i], stick_status);
-        } else if (mPadStatus[i].error == -1) {
+        } else if (mPadStatus[i].err == -1) {
             mPadMStick[i].update(0, 0, sStickMode, EMainStick, 0);
             mPadSStick[i].update(0, 0, sStickMode, ESubStick, 0);
             mPadButton[i].update(NULL, 0);
@@ -140,9 +140,9 @@ u32 JUTGamePad::read() {
             pad->getPadReplay()->getStatus(&status);
 
             u32 stick_status;
-            stick_status = pad->mMainStick.update(status.stick_x, status.stick_y, sStickMode,
+            stick_status = pad->mMainStick.update(status.stickX, status.stickY, sStickMode,
                                                  EMainStick, pad->mButton.mButton) << 0x18;
-            stick_status |= pad->mSubStick.update(status.substick_x, status.substick_y, sStickMode,
+            stick_status |= pad->mSubStick.update(status.substickX, status.substickY, sStickMode,
                                                 ESubStick, pad->mButton.mButton) << 0x10;
 
             pad->mButton.update(&status, stick_status);
@@ -155,7 +155,7 @@ u32 JUTGamePad::read() {
 
         if (pad->getPadRecord() != NULL && pad->getPadRecord()->isActive()) {
             int port = pad->mPortNum;
-            if (port >= 0 && mPadStatus[port].error == 0) {
+            if (port >= 0 && mPadStatus[port].err == 0) {
                 pad->getPadRecord()->write(&mPadStatus[port]);
             }
         }
@@ -172,7 +172,7 @@ u32 JUTGamePad::read() {
 /* 802E0BBC-802E0C6C 2DB4FC 00B0+00 1/1 0/0 0/0 .text            assign__10JUTGamePadFv */
 void JUTGamePad::assign() {
     for (int i = 0; i < 4; i++) {
-        if (mPadStatus[i].error == 0 && mPadAssign[i] == 0) {
+        if (mPadStatus[i].err == 0 && mPadAssign[i] == 0) {
             mPortNum = i;
             mPadAssign[i] = 1;
             mPadButton[i].setRepeat(mButton.mRepeatMask, mButton.mRepeatDelay, mButton.mRepeatRate);
@@ -243,7 +243,7 @@ void JUTGamePad::update() {
             mButton = mPadButton[mPortNum];
             mMainStick = mPadMStick[mPortNum];
             mSubStick = mPadSStick[mPortNum];
-            mErrorStatus = mPadStatus[mPortNum].error;
+            mErrorStatus = mPadStatus[mPortNum].err;
         }
 
         if (field_0xa8 == 0 || C3ButtonReset::sResetPattern != (mButton.mButton & C3ButtonReset::sResetMaskPattern)) {
@@ -369,10 +369,10 @@ void JUTGamePad::CButton::update(const PADStatus* padStatus, u32 stickStatus) {
     mRepeat |= (mRepeatMask ^ 0xFFFFFFFF) & mTrigger;
 
     if (padStatus != NULL) {
-        mAnalogA = padStatus->analog_a;
-        mAnalogB = padStatus->analog_b;
-        mAnalogL = padStatus->trigger_left;
-        mAnalogR = padStatus->trigger_right;
+        mAnalogA = padStatus->analogA;
+        mAnalogB = padStatus->analogB;
+        mAnalogL = padStatus->triggerLeft;
+        mAnalogR = padStatus->triggerRight;
     } else {
         mAnalogA = 0;
         mAnalogB = 0;

@@ -1,6 +1,7 @@
 #include "JSystem/JKernel/JKRAramHeap.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "global.h"
+#include <limits.h>
 
 /* 8043430C-80434318 06102C 000C+00 8/8 0/0 0/0 .bss             sAramList__11JKRAramHeap */
 JSUList<JKRAramBlock> JKRAramHeap::sAramList;
@@ -47,7 +48,7 @@ JKRAramBlock* JKRAramHeap::alloc(u32 size, JKRAramHeap::EAllocMode allocationMod
 /* 802D3034-802D30BC 2CD974 0088+00 1/1 0/0 0/0 .text            allocFromHead__11JKRAramHeapFUl */
 JKRAramBlock* JKRAramHeap::allocFromHead(u32 size) {
     u32 alignedSize = ALIGN_NEXT(size, 0x20);
-    u32 bestFreeSize = UINT32_MAX;
+    u32 bestFreeSize = UINT_MAX;
     JKRAramBlock* bestBlock = NULL;
 
     JSUList<JKRAramBlock>* list = &sAramList;

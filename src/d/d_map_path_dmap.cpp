@@ -74,8 +74,7 @@ Vec dMapInfo_n::getMapPlayerPos() {
         pos.z = 0.0f;
     }
 
-    s32 stayNo = dComIfGp_roomControl_getStayNo();
-    dStage_FileList2_dt_c* fileList2_p = dStage_roomControl_c::getFileList2(stayNo);
+    dStage_FileList2_dt_c* fileList2_p = dStage_roomControl_c::getFileList2(dComIfGp_roomControl_getStayNo());
     if (fileList2_p != NULL) {
         rotAngle(fileList2_p, &pos);
         offsetPlus(fileList2_p, &pos);
@@ -513,17 +512,12 @@ int dMpath_c::setPointer(dDrawPath_c::room_class* i_room, s8* param_1, s8* param
     return var_r6;
 }
 
-struct map_path_class {
-    int field_0x0;
-    dDrawPath_c::room_class* field_0x4;
-};
-
 /* 8003FA40-8003FB70 03A380 0130+00 0/0 2/2 0/0 .text            setPointer__8dMpath_cFScPvi */
 #pragma push
 #pragma optimization_level 2
 void dMpath_c::setPointer(s8 i_roomNo, void* i_data, int i_mapLayerNo) {
     s32 roomNo;
-    dDrawPath_c::room_class* room = ((map_path_class*)i_data)->field_0x4;
+    dDrawPath_c::room_class* room = ((map_path_class*)i_data)->m_entries;
 
     if (room != NULL) {
         roomNo = i_roomNo;
@@ -925,10 +919,10 @@ void renderingPlusDoor_c::drawDoorCommon(stage_tgsc_data_class const* i_doorData
     setTevSettingIntensityTextureToCI();
 
     for (int i = 0; i < i_dataNum; i++, i_doorData++) {
-        prm0 = (i_doorData->mParameter >> 0xD) & 0x3F;
-        prm1 = (i_doorData->mParameter >> 0x13) & 0x3F;
+        prm0 = (i_doorData->base.parameters >> 0xD) & 0x3F;
+        prm1 = (i_doorData->base.parameters >> 0x13) & 0x3F;
 
-        if (checkDispDoorS(prm0, prm1, i_doorData->mSpawnPos.y)) {
+        if (checkDispDoorS(prm0, prm1, i_doorData->base.position.y)) {
             GXLoadTexObj(dMpath_n::m_texObjAgg.getTexObjPointer(0), GX_TEXMAP0);
             drawNormalDoorS(i_doorData, prm0, prm1, param_2);
         }
@@ -979,16 +973,16 @@ void renderingPlusDoor_c::drawNormalDoorS(stage_tgsc_data_class const* i_doorDat
     }
 
     Vec spC;
-    spC.x = i_doorData->mSpawnPos.x;
-    spC.y = i_doorData->mSpawnPos.y;
-    spC.z = i_doorData->mSpawnPos.z;
+    spC.x = i_doorData->base.position.x;
+    spC.y = i_doorData->base.position.y;
+    spC.z = i_doorData->base.position.z;
 
     if (param_3) {
         dMapInfo_n::correctionOriginPos(i_roomNo, &spC);
     }
 
     mDoMtx_stack_c::transS(spC.x, spC.z, 0.0f);
-    mDoMtx_stack_c::ZrotM(i_doorData->mAngle.y);
+    mDoMtx_stack_c::ZrotM(i_doorData->base.angle.y);
     mDoMtx_stack_c::scaleM(6.0f, 6.0f, 1.0f);
 
     Vec sp18[4];

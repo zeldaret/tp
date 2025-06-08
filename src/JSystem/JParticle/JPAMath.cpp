@@ -43,14 +43,10 @@ static f32 floatDummyFunc() {
 /* 80280588-802806C0 27AEC8 0138+00 0/0 1/1 0/0 .text JPAGetDirMtx__FRCQ29JGeometry8TVec3<f>PA4_f
  */
 void JPAGetDirMtx(JGeometry::TVec3<f32> const& param_0, f32 (*param_1)[4]) {
-    JGeometry::TVec3<float> local_78;
-    f32 minusx = -param_0.x;
-    local_78.x = param_0.y;
-    local_78.y = minusx;
-    local_78.z = 0.0f;
+    JGeometry::TVec3<float> local_78(param_0.y, -param_0.x, 0.0f);
     f32 len = local_78.length();
 
-    if (len <= 32.0f * FLT_EPSILON) {
+    if (len <= JGeometry::TUtil<f32>::epsilon()) {
         local_78.zero();
     } else {
         local_78.scale(1.0f / len);

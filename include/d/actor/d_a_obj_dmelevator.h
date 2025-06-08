@@ -1,8 +1,8 @@
 #ifndef D_A_OBJ_DMELEVATOR_H
 #define D_A_OBJ_DMELEVATOR_H
 
+#include "SSystem/SComponent/c_phase.h"
 #include "d/d_bg_s_movebg_actor.h"
-#include "d/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 
 /**
@@ -17,7 +17,7 @@ class daObjDmElevator_c : public dBgS_MoveBgActor {
 public:
     /* 80BDDD38 */ void initBaseMtx();
     /* 80BDDD90 */ void setBaseMtx();
-    /* 80BDDEFC */ int Create();
+    /* 80BDDEFC */ virtual int Create();
     /* 80BDE0A4 */ int init();
     /* 80BDE2F8 */ int CreateHeap();
     /* 80BDE448 */ int create1st();
@@ -54,8 +54,8 @@ public:
     /* 80BDF6DC */ int Delete();
 
     u32 getPathID() { return fopAcM_GetParamBit(this, 8, 8); }
+    void setAction(char action){mAction = action;}
 
-private:
     /* 0x5A0 */ request_of_phase_process_class mPhaseReq;
     /* 0x5A8 */ request_of_phase_process_class mPhaseReq2;
     /* 0x5B0 */ J3DModel* mpElevatorModel;
@@ -64,11 +64,11 @@ private:
     /* 0x5D8 */ u8 field_0x5D8[0x5DC - 0x5D8];
     /* 0x5DC */ s32 field_0x5dc;
     /* 0x5E0 */ u8 field_0x5e0;
-    /* 0x5E1 */ u8 field_0x5e1;
-    /* 0x5E2 */ u8 field_0x5e2;
+    /* 0x5E1 */ s8 field_0x5e1;
+    /* 0x5E2 */ u8 mAction;
     /* 0x5E3 */ u8 field_0x5e3;
     /* 0x5E4 */ s16 field_0x5e4;
-    /* 0x5E6 */ s16 field_0x5e6;
+    /* 0x5E6 */ s16 mEventIndex;
     /* 0x5E8 */ dBgW* mpBgW;
     /* 0x5EC */ Mtx mMtx;
     /* 0x61C */ cXyz mXyz;

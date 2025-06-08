@@ -9,12 +9,11 @@ class dBgS_RoofChk : public cBgS_PolyInfo, public cBgS_Chk, public dBgS_Chk {
 public:
     /* 80078FF4 */ dBgS_RoofChk();
     /* 80079124 */ void Init();
-    /* 800B146C */ void SetPos(cXyz const&);
 
     /* 80079090 */ virtual ~dBgS_RoofChk();
 
     void SetNowY(f32 y) { mNowY = y; }
-    void i_SetPos(cXyz const& pos) { m_pos = pos; }
+    void SetPos(cXyz const& pos) { m_pos = pos; }
     f32 GetNowY() { return mNowY; }
     cXyz* GetPosP() { return &m_pos; }
 

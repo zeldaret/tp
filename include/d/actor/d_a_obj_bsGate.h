@@ -53,6 +53,8 @@ public:
     /* 80BC288C */ daBsGate_HIO_c();
     /* 80BC30F4 */ ~daBsGate_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x4 */ f32 mOpenSpeed;
     /* 0x8 */ f32 mCloseSpeed;
     /* 0xC */ u8 mShockStrength;

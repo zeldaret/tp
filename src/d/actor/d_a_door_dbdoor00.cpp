@@ -341,7 +341,7 @@ int daDbDoor00_c::actionLockWait() {
 
 /* 8045E000-8045E094 000D00 0094+00 1/0 0/0 0/0 .text            actionLockOff__12daDbDoor00_cFv */
 int daDbDoor00_c::actionLockOff() {
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         field_0x598 = dComIfGp_evmng_getMyStaffId("DOUBLE_DOOR", NULL, 0);
         demoProc();
         setAction(3);
@@ -365,7 +365,7 @@ int daDbDoor00_c::actionLockDemo() {
 /* 8045E108-8045E1C8 000E08 00C0+00 1/0 0/0 0/0 .text            actionCloseWait__12daDbDoor00_cFv
  */
 int daDbDoor00_c::actionCloseWait() {
-    if (eventInfo.i_checkCommandDoor()) {
+    if (eventInfo.checkCommandDoor()) {
         field_0x598 = dComIfGp_evmng_getMyStaffId("DOUBLE_DOOR", NULL, 0);
         demoProc();
         setAction(5);
@@ -374,7 +374,7 @@ int daDbDoor00_c::actionCloseWait() {
     } else {
         if (checkArea() != 0) {
             eventInfo.setEventName("DEFAULT_DOUBLE_DOOR_OPEN");
-            eventInfo.i_onCondition(4);
+            eventInfo.onCondition(4);
         }
     }
     return 1;

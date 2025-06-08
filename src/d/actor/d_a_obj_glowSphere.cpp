@@ -100,11 +100,11 @@ int daGlwSph_c::CreateHeap() {
     }
 
     J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes("glwSphere", 8);
-    int res = mBrk.init(modelData, brk, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1);
+    int res = mBrk.init(modelData, brk, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1);
     JUT_ASSERT(0x106, res == 1);
 
     J3DAnmTextureSRTKey* btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("glwSphere", 11);
-    res = mBtk.init(modelData, btk, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1);
+    res = mBtk.init(modelData, btk, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1);
     JUT_ASSERT(0x10F, res == 1);
 
     return 1;

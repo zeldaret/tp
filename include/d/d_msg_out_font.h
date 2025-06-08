@@ -51,6 +51,8 @@ public:
     /* 80226D4C */ virtual void drawFont(J2DTextBox*, u8, f32, f32, f32, f32, u32, u8);
     /* 80226DA8 */ virtual void setAlphaRatio(f32);
 
+    void setRupeeColor(u8 color) { mRupeeColor = color; }
+
 private:
     /* 0x004 */ COutFontSet_c* mpOfs[35];
     /* 0x090 */ J2DPicture* mpPane[70];

@@ -2,9 +2,9 @@
 #define JKRARAMPIECE_H
 
 #include "JSystem/JSupport/JSUList.h"
-#include "dolphin/arq.h"
-#include "dolphin/os/OSMessage.h"
-#include "dolphin/os/OSMutex.h"
+#include <dolphin/ar.h>
+#include <dolphin/os.h>
+#include <dolphin/os.h>
 
 class JKRAramBlock;
 class JKRDecompCommand;

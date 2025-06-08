@@ -66,6 +66,8 @@ public:
     /* 80C8E94C */ daMagLiftRot_HIO_c();
     /* 80C8FA3C */ virtual ~daMagLiftRot_HIO_c();
 
+    void genMessage(JORMContext*);
+
     /* 0x04 */ u8 mWaitTime;
     /* 0x08 */ f32 mInitSpeed;
     /* 0x0C */ f32 mAcceleration;

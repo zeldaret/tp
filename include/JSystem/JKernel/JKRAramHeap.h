@@ -3,7 +3,7 @@
 
 #include "JSystem/JKernel/JKRAramBlock.h"
 #include "JSystem/JKernel/JKRDisposer.h"
-#include "dolphin/os/OSMutex.h"
+#include <dolphin/os.h>
 
 /**
  * @ingroup jsystem-jkernel

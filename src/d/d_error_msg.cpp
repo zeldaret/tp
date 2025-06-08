@@ -35,7 +35,7 @@ static void messageSet(u32 status, bool i_drawBg) {
     BMG_INF1* inf1 = (BMG_INF1*)&msg_data[0x20];
     const char* msg_p = (const char*)((u8*)inf1->getNext() + sizeof(JUTDataBlockHeader) + inf1->entries[status]);
 
-    JUT_ASSERT(std::strlen(msg_p)-1 < 512);
+    JUT_ASSERT(102, std::strlen(msg_p)-1 < 512);
 
     J2DTextBox tpane('TEXT1', JGeometry::TBox2<f32>(0.0f, 0.0f, 608.0f, 200.0f), (ResFONT*)font_data, msg_p, 512, HBIND_CENTER, VBIND_CENTER);
     J2DTextBox spane('TEXT2', JGeometry::TBox2<f32>(0.0f, 0.0f, 608.0f, 200.0f), (ResFONT*)font_data, msg_p, 512, HBIND_CENTER, VBIND_CENTER);
@@ -85,7 +85,7 @@ static void messageSet(u32 status, bool i_drawBg) {
         if (*msg_p == '\n') {
             height += 23.0f;
             cnt++;
-            JUT_ASSERT(cnt < lineMax);
+            JUT_ASSERT(191, cnt < lineMax);
             continue;
         }
 
@@ -177,7 +177,6 @@ u8 dDvdErrorMsg_c::execute() {
 static u8 l_captureAlpha = 0xFF;
 
 /* 8009D410-8009D790 097D50 0380+00 1/1 0/0 0/0 .text            drawCapture__FUc */
-// NONMATCHING - stack too small
 static void drawCapture(u8 alpha) {
     static bool l_texCopied = false;
 
@@ -188,7 +187,7 @@ static void drawCapture(u8 alpha) {
         l_texCopied = true;
     }
 
-    JFWDisplay::getManager()->setClearColor(g_clearColor);
+    mDoGph_gInf_c::setClearColor(g_clearColor);
     mDoGph_gInf_c::beginRender();
     GXSetAlphaUpdate(GX_FALSE);
     j3dSys.drawInit();
@@ -211,14 +210,14 @@ static void drawCapture(u8 alpha) {
     GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
     GXSetZCompLoc(GX_TRUE);
     GXSetZMode(GX_DISABLE, GX_ALWAYS, GX_DISABLE);
-    GXSetBlendMode(GX_BM_NONE, GX_BL_SRC_ALPHA, GX_BL_ONE, GX_LO_CLEAR);
+    GXSetBlendMode(GX_BM_NONE, GX_BL_SRCALPHA, GX_BL_ONE, GX_LO_CLEAR);
     GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
     GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, g_clearColor);
     GXSetFogRangeAdj(GX_DISABLE, 0, NULL);
     GXSetCullMode(GX_CULL_NONE);
     GXSetDither(GX_ENABLE);
 
-    Mtx m;
+    Mtx44 m;
     C_MTXOrtho(m, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, 10.0f);
     GXLoadPosMtxImm(g_mDoMtx_identity, GX_PNMTX0);
     GXSetProjection(m, GX_ORTHOGRAPHIC);

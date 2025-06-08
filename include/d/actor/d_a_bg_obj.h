@@ -110,7 +110,7 @@ public:
     /* 0xCCA */ u16 field_0xcca;
     /* 0xCCC */ u16 field_0xccc;
     /* 0xCD0 */ spec_data_c mSpecData;
-    /* 0xCF4 */ csXyz field_0xcf4;
+    /* 0xCF4 */ csXyz mRotation;
     /* 0xCFC */ u32 mAttnActorID;
     /* 0xD00 */ u8 field_0xd00;
     /* 0xD01 */ u8 field_0xd01;

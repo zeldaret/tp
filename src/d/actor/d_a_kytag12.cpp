@@ -308,7 +308,7 @@ static int daKytag12_Execute_standard(kytag12_class* i_this) {
             }
         }
 
-        if (!daPy_py_c::i_checkNowWolf()) {
+        if (!daPy_py_c::checkNowWolf()) {
             if (effect_p->field_0x38 >= 9000.0f) {
                 var_f29 = 0.0f;
             }
@@ -389,7 +389,7 @@ static int daKytag12_Execute_standard(kytag12_class* i_this) {
     }
 
     if (i_this->field_0x578 != 0 && i_this->field_0x578 <= 60) {
-        if (!daPy_py_c::i_checkNowWolf()) {
+        if (!daPy_py_c::checkNowWolf()) {
             temp_r25->mEffect[0].field_0x42 = 45;
         }
 
@@ -412,7 +412,7 @@ static int daKytag12_Execute_standard(kytag12_class* i_this) {
 
     g_env_light.mEvilInitialized &= 0x7F;
 
-    if (daPy_py_c::i_checkNowWolf() && var_r22 > 0) {
+    if (daPy_py_c::checkNowWolf() && var_r22 > 0) {
         g_env_light.mEvilInitialized |= 0x80;
     }
 
@@ -616,7 +616,7 @@ static int daKytag12_Execute_arrival(kytag12_class* i_this) {
             }
         }
 
-        if (!daPy_py_c::i_checkNowWolf()) {
+        if (!daPy_py_c::checkNowWolf()) {
             if (effect_p->field_0x38 >= 9000.0f) {
                 var_f27 = 0.0f;
             }
@@ -692,7 +692,7 @@ static int daKytag12_Execute_arrival(kytag12_class* i_this) {
 
     g_env_light.mEvilInitialized &= 0x7F;
 
-    if (daPy_py_c::i_checkNowWolf() && var_r20 > 0) {
+    if (daPy_py_c::checkNowWolf() && var_r20 > 0) {
         g_env_light.mEvilInitialized |= 0x80;
     }
 
@@ -909,7 +909,7 @@ static int daKytag12_Execute_R00(kytag12_class* i_this) {
             }
         }
 
-        if (!daPy_py_c::i_checkNowWolf()) {
+        if (!daPy_py_c::checkNowWolf()) {
             if (effect_p->field_0x38 >= 9000.0f) {
                 var_f25 = 0.0f;
             }

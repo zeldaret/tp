@@ -2,7 +2,7 @@
 #define JUTPROCBAR_H
 
 #include "JSystem/JUtility/TColor.h"
-#include "dolphin/os/OSTime.h"
+#include <dolphin/os.h>
 
 class JKRHeap;
 

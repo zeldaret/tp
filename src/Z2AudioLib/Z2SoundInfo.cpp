@@ -236,7 +236,6 @@ u32 const JAUStdSoundTableType::STRM_CH_SHIFT = 2;
 
 /* 802BB8E0-802BBA10 2B6220 0130+00 1/0 0/0 0/0 .text
  * getStreamInfo__11Z2SoundInfoCF10JAISoundIDP9JAIStream        */
-// NONMATCHING regalloc
 void Z2SoundInfo::getStreamInfo(JAISoundID param_1, JAIStream* param_2) const {
     int numChild;
     JAUSoundTableItem* data;

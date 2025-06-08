@@ -1331,11 +1331,6 @@ extern "C" bool evtEndProc__8daNpcT_cFv() {
     return true;
 }
 
-/* 809AA080-809AA084 0034E0 0004+00 1/0 0/0 0/0 .text            afterMoved__8daNpcT_cFv */
-void daNpcT_c::afterMoved() {
-    /* empty function */
-}
-
 /* 809AA084-809AA09C 0034E4 0018+00 1/0 0/0 0/0 .text            decTmr__8daNpcT_cFv */
 // void daNpcT_c::decTmr() {
 extern "C" void decTmr__8daNpcT_cFv() {

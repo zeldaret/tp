@@ -139,9 +139,9 @@ static void demo_camera(npc_sq_class* i_this) {
 
     switch (i_this->mDemoMode) {
     case 1:
-        if (!_this->eventInfo.i_checkCommandDemoAccrpt()) {
+        if (!_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(_this, 2, 0xffff, 0);
-            _this->eventInfo.i_onCondition(2);
+            _this->eventInfo.onCondition(2);
             return;
         }
         player_camera->mCamera.Stop();

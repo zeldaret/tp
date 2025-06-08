@@ -60,6 +60,8 @@ public:
     /* 80CB8E6C */ daRfHole_HIO_c();
     /* 80CB99D8 */ virtual ~daRfHole_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* 0x04 */ f32 field_0x04;
     /* 0x08 */ f32 field_0x08;
     /* 0x0C */ f32 field_0x0c;

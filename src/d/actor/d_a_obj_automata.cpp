@@ -72,7 +72,7 @@ static dCcD_SrcSph l_ccDSph = {
 
 /* 80BA56EC-80BA5990 0000EC 02A4+00 1/0 0/0 0/0 .text            __dt__16daObj_AutoMata_cFv */
 daObj_AutoMata_c::~daObj_AutoMata_c() {
-    OS_REPORT("|%06d:%x|daObj_AutoMata_c -> デストラクト\n", g_Counter, this);
+    OS_REPORT("|%06d:%x|daObj_AutoMata_c -> デストラクト\n", g_Counter.mCounter0, this);
     if (mpMorf != NULL) {
         mpMorf->stopZelAnime();
     }
@@ -131,7 +131,7 @@ int daObj_AutoMata_c::CreateHeap() {
 
 /* 80BA60A0-80BA60D4 000AA0 0034+00 1/1 0/0 0/0 .text            Delete__16daObj_AutoMata_cFv */
 int daObj_AutoMata_c::Delete() {
-    OS_REPORT("|%06d:%x|daObj_AutoMata_c -> Delete\n", g_Counter, this);
+    OS_REPORT("|%06d:%x|daObj_AutoMata_c -> Delete\n", g_Counter.mCounter0, this);
     this->~daObj_AutoMata_c();
     return 1;
 }

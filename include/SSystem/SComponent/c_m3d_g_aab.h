@@ -26,7 +26,9 @@ public:
     void CalcCenter(cXyz*) const;
     void PlusR(f32);
     const cXyz* GetMaxP(void) const { return &mMax; }
+    const cXyz* GetMaxP(void) { return &mMax; }
     const cXyz* GetMinP(void) const { return &mMin; }
+    const cXyz* GetMinP(void) { return &mMin; }
     const f32 GetMaxX(void) const { return mMax.x; }
     const f32 GetMaxY(void) const { return mMax.y; }
     const f32 GetMaxZ(void) const { return mMax.z; }

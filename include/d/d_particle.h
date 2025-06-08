@@ -6,6 +6,8 @@
 #include "d/d_particle_name.h"
 #include "d/d_kankyo.h"
 
+void dPa_cleanupGX();
+
 class J3DAnmTexPattern;
 class J3DModel;
 class J3DModelData;
@@ -114,8 +116,8 @@ public:
     dPa_setColorEcallBack(const GXColor& color) { mColor = color; }
 
     /* 800502E4 */ virtual ~dPa_setColorEcallBack() {}
-    /* 800502B0 */ virtual void draw(JPABaseEmitter*);
-    /* 800502E0 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
+    /* 800502B0 */ virtual void draw(JPABaseEmitter*) { GXSetTevColor(GX_TEVREG1, mColor); }
+    /* 800502E0 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8) {}
 
     /* 0x4 */ GXColor mColor;
 };
@@ -126,7 +128,7 @@ public:
 
     /* 8004FF8C */ virtual ~dPa_selectTexEcallBack() {}
     /* 8004ADC4 */ virtual void draw(JPABaseEmitter*);
-    /* 80050010 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
+    /* 80050010 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8) {}
 
     /* 0x4 */ u8 field_0x4;
 };
@@ -184,13 +186,13 @@ public:
 
     /* 80050378 */ virtual ~dPa_modelEcallBack() {}
     /* 8004AA34 */ virtual void draw(JPABaseEmitter*);
-    /* 80050014 */ virtual void drawAfter(JPABaseEmitter*);
+    /* 80050014 */ virtual void drawAfter(JPABaseEmitter* param_0) { cleanupModel(param_0); }
     /* 8004AAA8 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 
     static void setModel(JPABaseEmitter* param_0, J3DModelData* param_1,
                          const dKy_tevstr_c& param_2, u8 param_3, J3DAnmTexPattern* param_4,
                          u8 param_5) {
-        setModel(param_0, param_1, param_2, param_3, param_4, param_5);
+        setModel(param_0, param_1, param_2, param_3, param_4, 0, param_5);
     }
 
     static dPa_modelEcallBack& getEcallback() { return mEcallback; }
@@ -211,7 +213,7 @@ class dPa_light8EcallBack : public dPa_levelEcallBack {
 public:
     /* 8005015C */ virtual ~dPa_light8EcallBack() {}
     /* 8004A340 */ virtual void draw(JPABaseEmitter*);
-    /* 800501E0 */ virtual void drawAfter(JPABaseEmitter*);
+    /* 800501E0 */ virtual void drawAfter(JPABaseEmitter*) { dPa_cleanupGX(); }
     /* 8004979C */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 };
 
@@ -226,7 +228,7 @@ class dPa_gen_d_light8EcallBack : public dPa_levelEcallBack {
 public:
     /* 800503FC */ virtual ~dPa_gen_d_light8EcallBack() {}
     /* 8004A388 */ virtual void draw(JPABaseEmitter*);
-    /* 80050098 */ virtual void drawAfter(JPABaseEmitter*);
+    /* 80050098 */ virtual void drawAfter(JPABaseEmitter*) { dPa_cleanupGX(); }
     /* 800497CC */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 };
 
@@ -241,7 +243,7 @@ class dPa_gen_b_light8EcallBack : public dPa_levelEcallBack {
 public:
     /* 800500B8 */ virtual ~dPa_gen_b_light8EcallBack() {}
     /* 8004A364 */ virtual void draw(JPABaseEmitter*);
-    /* 8005013C */ virtual void drawAfter(JPABaseEmitter*);
+    /* 8005013C */ virtual void drawAfter(JPABaseEmitter*) { dPa_cleanupGX(); }
     /* 800497B0 */ virtual void setup(JPABaseEmitter*, cXyz const*, csXyz const*, s8);
 };
 
@@ -365,19 +367,19 @@ public:
     void forceOnEventMove(u32 param_0) { field_0x210.forceOnEventMove(param_0); }
     JPABaseEmitter* getEmitter(u32 param_0) { return field_0x210.getEmitter(param_0); }
 
-    u32 setNormal(u32 param_0, u16 param_1, const cXyz* param_2, const dKy_tevstr_c* param_3,
-                  const csXyz* param_4, const cXyz* param_5, u8 param_6,
-                  dPa_levelEcallBack* param_7, s8 param_8, const GXColor* param_9,
-                  const GXColor* param_10, const cXyz* param_11, f32 param_12) {
-        return set(param_0, 0, param_1, param_2, param_3, param_4, param_5, param_6, param_7,
+    u32 setNormal(u32 param_0, u16 param_1, const cXyz* i_pos, const dKy_tevstr_c* param_3,
+                  const csXyz* i_rotation, const cXyz* i_scale, u8 i_alpha, dPa_levelEcallBack* param_7,
+                  s8 param_8, const GXColor* param_9, const GXColor* param_10, const cXyz* param_11,
+                  f32 param_12) {
+        return set(param_0, 0, param_1, i_pos, param_3, i_rotation, i_scale, i_alpha, param_7,
                    param_8, param_9, param_10, param_11, param_12);
     }
 
-    JPABaseEmitter* setNormal(u16 param_1, const cXyz* param_2, const dKy_tevstr_c* param_3,
-                              const csXyz* param_4, const cXyz* param_5, u8 param_6,
+    JPABaseEmitter* setNormal(u16 param_1, const cXyz* i_pos, const dKy_tevstr_c* param_3,
+                              const csXyz* i_rotation, const cXyz* i_scale, u8 i_alpha,
                               dPa_levelEcallBack* param_7, s8 param_8, const GXColor* param_9,
                               const GXColor* param_10, const cXyz* param_11, f32 param_12) {
-        return set(0, param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8,
+        return set(0, param_1, i_pos, param_3, i_rotation, i_scale, i_alpha, param_7, param_8,
                    param_9, param_10, param_11, param_12);
     }
 
@@ -452,7 +454,7 @@ public:
     }
 
     static dPa_selectTexEcallBack mTsubo[8];
-    static u8 mLifeBall[24];
+    static dPa_setColorEcallBack mLifeBall[3];
     static Mtx mWindViewMatrix;
     static JPAEmitterManager* mEmitterMng;
     static dPa_wbPcallBack_c mWaterBubblePcallBack;

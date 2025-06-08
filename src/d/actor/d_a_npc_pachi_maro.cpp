@@ -1573,16 +1573,6 @@ extern "C" void ctrlSubFaceMotion__8daNpcT_cFi() {
     /* empty function */
 }
 
-/* 80A9B548-80A9B550 0039A8 0008+00 1/0 0/0 0/0 .text            getFootLJointNo__8daNpcT_cFv */
-s32 daNpcT_c::getFootLJointNo() {
-    return -1;
-}
-
-/* 80A9B550-80A9B558 0039B0 0008+00 1/0 0/0 0/0 .text            getFootRJointNo__8daNpcT_cFv */
-s32 daNpcT_c::getFootRJointNo() {
-    return -1;
-}
-
 /* 80A9B558-80A9B560 0039B8 0008+00 1/0 0/0 0/0 .text            getEyeballLMaterialNo__8daNpcT_cFv
  */
 // bool daNpcT_c::getEyeballLMaterialNo() {

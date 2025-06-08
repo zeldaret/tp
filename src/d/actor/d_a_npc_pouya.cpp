@@ -1462,16 +1462,6 @@ extern "C" void setEyeAngleX__15daNpcT_JntAnm_cF4cXyzfs() {
     // NONMATCHING
 }
 
-/* 80AB1D14-80AB1D1C 004054 0008+00 1/0 0/0 0/0 .text            getFootLJointNo__8daNpcT_cFv */
-s32 daNpcT_c::getFootLJointNo() {
-    return -1;
-}
-
-/* 80AB1D1C-80AB1D24 00405C 0008+00 1/0 0/0 0/0 .text            getFootRJointNo__8daNpcT_cFv */
-s32 daNpcT_c::getFootRJointNo() {
-    return -1;
-}
-
 /* 80AB1D24-80AB1D2C 004064 0008+00 1/0 0/0 0/0 .text            getEyeballLMaterialNo__8daNpcT_cFv
  */
 // bool daNpcT_c::getEyeballLMaterialNo() {
@@ -1490,11 +1480,6 @@ extern "C" bool getEyeballRMaterialNo__8daNpcT_cFv() {
 // bool daNpcT_c::evtEndProc() {
 extern "C" bool evtEndProc__8daNpcT_cFv() {
     return true;
-}
-
-/* 80AB1D3C-80AB1D40 00407C 0004+00 1/0 0/0 0/0 .text            afterMoved__8daNpcT_cFv */
-void daNpcT_c::afterMoved() {
-    /* empty function */
 }
 
 /* 80AB1D40-80AB1D48 004080 0008+00 1/0 0/0 0/0 .text            chkXYItems__8daNpcT_cFv */

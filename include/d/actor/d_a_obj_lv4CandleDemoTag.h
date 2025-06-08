@@ -40,7 +40,7 @@ public:
     int getEventID() { return fopAcM_GetParamBit(this, 0x18, 8); }
 
     /* 80C5D184 */ virtual ~dalv4CandleDemoTag_c();
-    /* 80C5CF78 */ virtual BOOL eventStart();
+    /* 80C5CF78 */ virtual bool eventStart();
 
 private:
     /* 0x584 */ u8 mMode;
@@ -57,6 +57,8 @@ class dalv4CandleDemoTag_HIO_c : public mDoHIO_entry_c {
 public:
     /* 80C5C9EC */ dalv4CandleDemoTag_HIO_c();
     /* 80C5D07C */ virtual ~dalv4CandleDemoTag_HIO_c();
+
+    void genMessage(JORMContext*);
 
     /* 0x4 */ s16 mEnemyWaitTime;
 };

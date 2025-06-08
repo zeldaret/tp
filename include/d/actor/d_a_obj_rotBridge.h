@@ -23,8 +23,14 @@ public:
     /* 80CBF404 */ void Draw();
     /* 80CBF4BC */ void Delete();
 
+    u8 getPlayerRide() const { return mPlayerRide; }
+    u8 getBridgeAngle() const { return mBridgeAngle; }
 private:
-    /* 0x568 */ u8 field_0x568[0x610 - 0x568];
+    /* 0x568 */ u8 field_0x568[0x5af - 0x568];
+    /* 0x5af */ u8 mPlayerRide;
+    /* 0x5b0 */ u8 field_0x5b0[0x5b8 - 0x5b0];
+    /* 0x5b8 */ u8 mBridgeAngle;
+    /* 0x5b9 */ u8 field_0x5b9[0x610 - 0x5b9];
 };
 
 STATIC_ASSERT(sizeof(daRotBridge_c) == 0x610);

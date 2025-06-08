@@ -2,8 +2,8 @@
 #define D_D_LIB_H
 
 #include "SSystem/SComponent/c_xyz.h"
-#include "dolphin/mtx/quat.h"
-#include "dolphin/os/OSTime.h"
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
 
 class fopAc_ac_c;
 
@@ -47,6 +47,7 @@ public:
 
     void setFirstWaitTime(s16 time) { mFirstWaitTime = time; }
     s16 getYwaitTimer() { return mYwaitTimer; }
+    s16 getXwaitTimer() { return mXwaitTimer; }
 
     /* 0x04 */ f32 mThreshold;
     /* 0x08 */ f32 field_0x08;

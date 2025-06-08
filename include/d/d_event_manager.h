@@ -25,9 +25,16 @@ public:
 #define EVT_SE_RIDDLE_A 1
 #define EVT_SE_RIDDLE_B 2
 
+#ifdef DEBUG
+#define EVENT_LIST_NUM 12
+#else
+#define EVENT_LIST_NUM 11
+#endif
+
 class dEvent_manager_c {
 public:
     void* getSubstance(dEvDtData_c* p_data, int type);
+    void setDbgData(const char*);
     dEvent_manager_c();
     ~dEvent_manager_c() {}
     int create();
@@ -81,13 +88,16 @@ public:
     int flagCheck(int flag) { return mFlags.flagCheck(flag); }
     int cameraPlay() { return mCameraPlay; }
 
+    event_binary_data_header* getHeader(u8 idx) {return mEventList[idx].getHeaderP(); }
+    dEvDtEvent_c* getEventList(u8 idx) { return mEventList[idx].getEventP(); }
+
     inline static s16 getIndexCompositId(s16 param_0) { return param_0 != -1 ? (s16)(param_0 & 0xff) : (s16)-1; }
     static int getTypeCompositId(s16 param_0) { return param_0 == -1 ? 0 : param_0 >> 8; }
 
     static s16 makeCompositId(s16 a, int b) { return a | (b << 8); }
 
 private:
-    /* 0x0000 */ dEvDtBase_c mEventList[11];
+    /* 0x0000 */ dEvDtBase_c mEventList[EVENT_LIST_NUM];
     /* 0x018C */ s32 mCameraPlay;
     /* 0x0190 */ dEvent_exception_c mEventException;
     /* 0x019C */ cXyz mGoal;

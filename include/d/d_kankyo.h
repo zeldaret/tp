@@ -109,6 +109,11 @@ struct GB_MAPLE_COL_CHANGE {
     /* 0x00 */ J3DLightObj light_obj;
 };  // Size: 0x74
 
+struct NAVYCHAN {
+    /* 0x0 */ u8 field_0x0[0x4 - 0x0];
+    /* 0x4 */ cXyz field_0x4;
+};
+
 struct LightStatus {
     /* 0x00 */ Vec position;
     /* 0x0C */ Vec field_0xc;
@@ -273,6 +278,10 @@ public:
     /* 0x09B8 */ DUNGEON_LIGHT dungeonlight[8];
     /* 0x0C18 */ BOSS_LIGHT field_0x0c18[8];
     /* 0x0D58 */ BOSS_LIGHT field_0x0d58[6];
+#ifdef DEBUG
+    /* 0x0E48 */ NAVYCHAN navy;
+    /* 0x0E58 */ u8 field_0xe58[0xE68 - 0xE58];  // part of NAVYCHAN?
+#endif
     /* 0x0E48 */ GB_WIND_INFLUENCE global_wind_influence;
     /* 0x0E5C */ f32 custom_windpower;
     /* 0x0E60 */ f32 unk_0xe60;
@@ -492,6 +501,15 @@ inline dScnKy_env_light_c* dKy_getEnvlight() {
     return &g_env_light;
 }
 
+class dKankyo_HIO_c {
+public:
+    u8 pad[0xB4];
+    /* 0xB4 */ u8 field_0xB4;
+    /* 0xB8 */ f32 field_0xB8;
+};
+
+extern dKankyo_HIO_c g_kankyoHIO;
+
 enum dKy_dice_wether_mode {
     DICE_MODE_SUNNY_e,
     DICE_MODE_CLOUDY_e,
@@ -563,6 +581,7 @@ int dKy_getdaytime_minute();
 int dKy_get_dayofweek();
 int dKy_getDarktime_minute();
 int dKy_getDarktime_hour();
+u8 dKy_getDarktime_week();
 void dKy_Sound_init();
 void dKy_setLight_nowroom(char room_no);
 void dKy_setLight_nowroom_actor(dKy_tevstr_c* tevstr_p);
@@ -615,5 +634,6 @@ BOOL dKy_SunMoon_Light_Check();
 void dKy_bgparts_activelight_set(LIGHT_INFLUENCE* light_inf_p, int bgpart_id);
 void dKy_bgparts_activelight_cut(int bgpart_id);
 int dKy_Indoor_check();
+void dKy_GfFog_tevstr_set(dKy_tevstr_c* tevstr_p);
 
 #endif /* D_KANKYO_D_KANKYO_H */

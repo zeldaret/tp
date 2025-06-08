@@ -296,7 +296,7 @@ void dalv4CandleTag_c::modeEnd() {
 }
 
 /* 80C5D90C-80C5D930 0005AC 0024+00 2/1 0/0 0/0 .text            eventStart__16dalv4CandleTag_cFv */
-int dalv4CandleTag_c::eventStart() {
+bool dalv4CandleTag_c::eventStart() {
     // NONMATCHING
 }
 

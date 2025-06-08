@@ -130,8 +130,6 @@ public:
         PROC_NONE_e = 8,
     };
 
-    fopAc_ac_c* getZeldaActor();
-
     void cancelOriginalDemo() { 
         field_0x16b8 = 2;
         m_demoMode = 1;
@@ -139,7 +137,6 @@ public:
 
     /* 807E27F8 */ void onDemoJumpDistance(f32, f32);
     /* 807E28B8 */ void changeDemoPos0(cXyz const*);
-    /* 807E28E0 */ void setHorsePosAndAngle(cXyz const*, s16);
     /* 80838498 */ void coHitCallbackBoarJump(fopAc_ac_c*);
     /* 80838798 */ void coHitCallbackBoarHit(fopAc_ac_c*, dCcD_GObjInf*);
     /* 80838904 */ void coHitCallbackCowHit(fopAc_ac_c*);
@@ -224,7 +221,7 @@ public:
     /* 80844590 */ int draw();
     /* 8084478C */ ~daHorse_c();
     
-    /* 80182D04 */ void getLashDashStart() const;
+    /* 80182D04 */ bool getLashDashStart() const { return checkResetStateFlg0(RFLG0_LASH_DASH_START); }
     
 
     bool checkNoBombProc() const { return m_procID == PROC_WAIT_e || m_procID == PROC_MOVE_e; }
@@ -237,7 +234,7 @@ public:
     void setDemoStickR(f32 stick) { m_demoStickR = stick; }
     void changeDemoMode(u32 param_0, int param_1) { m_demoMode = param_0; field_0x1728 = param_1; }
     void changeOriginalDemo() { field_0x16b8 = 3; field_0x1728 = 0; }
-    void i_setHorsePosAndAngle(cXyz const* i_pos, s16 i_angle) { (this->*m_setHorsePosAngle)(i_pos, i_angle); }
+    void setHorsePosAndAngle(cXyz const* i_pos, s16 i_angle) { (this->*m_setHorsePosAngle)(i_pos, i_angle); }
     void onRideFlg() { (this->*m_onRideFlg)(); }
     void offRideFlg() { (this->*m_offRideFlg)(); }
     void onStateFlg0(daHorse_FLG0 flag) { m_stateFlg0 |= flag; }
@@ -246,7 +243,7 @@ public:
     void offEndResetStateFlg0(daHorse_ERFLG0 i_flag) { m_endResetStateFlg0 &= ~i_flag;}
     void onResetStateFlg0(daHorse_RFLG0 i_flag) { m_resetStateFlg0 |= i_flag;}
     void offNoDrawWait() { offStateFlg0(FLG0_NO_DRAW_WAIT); }
-    bool checkSpecialWallHit(const cXyz& param_0) { return (this->*m_checkSpecialWallHit)(param_0); }
+    bool checkSpecialWallHit(const cXyz& param_0) const { return (this->*m_checkSpecialWallHit)(param_0); }
     MtxP getSaddleMtx() { return m_model->getAnmMtx(21); }
     MtxP getRootMtx() { return m_model->getAnmMtx(0); }
     f32 getAnmFrameMax(int i_idx) const { return m_frameCtrl[i_idx].getEnd(); }
@@ -257,7 +254,8 @@ public:
     u16 getAnmIdx(int i_idx) const { return m_anmIdx[i_idx]; }
     int callHorse(const cXyz* param_0) { return (this->*m_callHorse)(param_0); }
 
-    daHoZelda_c* i_getZeldaActor() { return (daHoZelda_c*)m_zeldaActorKeep.getActor(); }
+    daHoZelda_c* getZeldaActor() { return (daHoZelda_c*)m_zeldaActorKeep.getActor(); }
+    void setZeldaActor(fopAc_ac_c* i_actor) { m_zeldaActorKeep.setData(i_actor); }
 
     bool checkTurnStandCamera() const { return checkResetStateFlg0(RFLG0_TURN_STAND_CAMERA); }
     bool checkTurnStand() const { return checkResetStateFlg0(RFLG0_TURN_STAND); }
@@ -265,6 +263,7 @@ public:
     bool checkCutTurnCancel() const { return checkEndResetStateFlg0(ERFLG0_CUT_TURN_CANCEL); }
     bool checkTurnCancelKeep() const { return checkStateFlg0(FLG0_TURN_CANCEL_KEEP); }
     BOOL checkRodeoLeft() const { return checkStateFlg0(FLG0_RODEO_LEFT); }
+    BOOL checkHorseCallWait() const { return checkStateFlg0(FLG0_NO_DRAW_WAIT); }
     BOOL checkTurn() const { return m_procID == PROC_TURN_e && field_0x1720 == 0; }
     BOOL checkStop() const { return m_procID == PROC_STOP_e; }
     bool checkJump() const { return m_procID == PROC_JUMP_e; }
@@ -326,6 +325,14 @@ public:
     u32 getShadowID() const { return m_shadowID; }
 
     bool checkInputOnR() const { return m_padStickValue > 0.05f; }
+
+    void onBagMaterial() {
+        m_modelData->getMaterialNodePointer(5)->getShape()->show();
+    }
+
+    void offBagMaterial() {
+        m_modelData->getMaterialNodePointer(5)->getShape()->hide();
+    }
 
     static u16 const m_footJointTable[];
     static f32 const m_callLimitDistance2;

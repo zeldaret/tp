@@ -1,7 +1,8 @@
 #ifndef LINKLIST_H
 #define LINKLIST_H
 
-#include "dolphin/types.h"
+#include "JSystem/JUtility/JUTAssert.h"
+#include <iterator.h>
 
 namespace JGadget {
 struct TLinkListNode {
@@ -9,6 +10,8 @@ struct TLinkListNode {
         mNext = NULL;
         mPrev = NULL;
     }
+
+    ~TLinkListNode() {}
 
     TLinkListNode* getNext() const { return mNext; }
     TLinkListNode* getPrev() const { return mPrev; }
@@ -20,7 +23,9 @@ public:
 
 struct TNodeLinkList {
     struct iterator {
+        iterator() { node = NULL; }
         explicit iterator(TLinkListNode* pNode) { node = pNode; }
+        iterator& operator=(const iterator& other) { node = other.node; return *this; }
 
         iterator& operator++() { node = node->getNext(); return *this; }
         iterator& operator--() { node = node->getPrev(); return *this; }
@@ -115,6 +120,7 @@ struct TLinkList : public TNodeLinkList {
     TLinkList() : TNodeLinkList() {}
 
     struct iterator {
+        iterator() {}
         explicit iterator(TNodeLinkList::iterator iter) : base(iter) {}
 
         iterator& operator++() {
@@ -140,6 +146,12 @@ struct TLinkList : public TNodeLinkList {
 
         T* operator->() const { return Element_toValue(base.operator->()); }
         T& operator*() const { return *operator->(); }
+
+        typedef s32 difference_type;
+        typedef T value_type;
+        typedef T* pointer;
+        typedef T& reference;
+        typedef std::bidirectional_iterator_tag iterator_category;
 
     public:
         /* 0x00 */ TNodeLinkList::iterator base;
@@ -177,21 +189,21 @@ struct TLinkList : public TNodeLinkList {
         /* 0x00 */ TNodeLinkList::const_iterator base;
     };
 
-    static const TLinkListNode* Element_toNode(const T* element) {
-        (void)element;  // Debug-only assert
-        return reinterpret_cast<const TLinkListNode*>(reinterpret_cast<const char*>(element) - I);
+    static TLinkListNode* Element_toNode(T* p) {
+        JUT_ASSERT(0x2F1, p!=0);
+        return reinterpret_cast<TLinkListNode*>(reinterpret_cast<char*>(p) - I);
     }
-    static TLinkListNode* Element_toNode(T* element) {
-        (void)element;  // Debug-only assert
-        return reinterpret_cast<TLinkListNode*>(reinterpret_cast<char*>(element) - I);
+    static const TLinkListNode* Element_toNode(const T* p) {
+        JUT_ASSERT(0x2F6, p!=0);
+        return reinterpret_cast<const TLinkListNode*>(reinterpret_cast<const char*>(p) - I);
     }
-    static const T* Element_toValue(const TLinkListNode* node) {
-        (void)node;  // Debug-only assert
-        return reinterpret_cast<const T*>(reinterpret_cast<const char*>(node) + I);
+    static T* Element_toValue(TLinkListNode* p) {
+        JUT_ASSERT(0x2FB, p!=0);
+        return reinterpret_cast<T*>(reinterpret_cast<char*>(p) + I);
     }
-    static T* Element_toValue(TLinkListNode* node) {
-        (void)node;  // Debug-only assert
-        return reinterpret_cast<T*>(reinterpret_cast<char*>(node) + I);
+    static const T* Element_toValue(const TLinkListNode* p) {
+        JUT_ASSERT(0x300, p!=0);
+        return reinterpret_cast<const T*>(reinterpret_cast<const char*>(p) + I);
     }
 
     iterator Insert(iterator iter, T* element) {
@@ -216,9 +228,10 @@ struct TLinkList : public TNodeLinkList {
 
 template <typename T, int I>
 struct TLinkList_factory : public TLinkList<T, I> {
-    virtual ~TLinkList_factory() {}
+    inline virtual ~TLinkList_factory() = 0;
     virtual T* Do_create() = 0;
     virtual void Do_destroy(T*) = 0;
+
     void Clear_destroy() {
         while (!this->empty()) {
             T* item = &this->front();
@@ -226,7 +239,16 @@ struct TLinkList_factory : public TLinkList<T, I> {
             Do_destroy(item);
         }
     }
+
+    TLinkList<T, I>::iterator Erase_destroy(T* param_0) {
+        TLinkList<T, I>::iterator spC(Erase(param_0));
+        Do_destroy(param_0);
+        return spC;
+    }
 };
+
+template <typename T, int I>
+TLinkList_factory<T, I>::~TLinkList_factory() {}
 
 template <typename T>
 struct TEnumerator {

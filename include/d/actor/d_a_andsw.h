@@ -21,7 +21,7 @@ public:
         return fopAcM_GetParamBit(this,8,8);
     }
 
-    u16 getTimer() {
+    u8 getTimer() {
         return fopAcM_GetParamBit(this,16,8);
     }
 
@@ -37,6 +37,15 @@ public:
     /* 0x568 */ u8 mSwNo;
     /* 0x568 */ u8 mSwNo2;
     /* 0x56A */ s16 mTimer;
+};
+
+class daAndsw_HIO_c : public mDoHIO_entry_c {
+public:
+    daAndsw_HIO_c();
+
+    void genMessage(JORMContext*);
+
+    /* 0x06 */ u8 field_0x6;
 };
 
 

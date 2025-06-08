@@ -148,7 +148,7 @@ int daObjFchain_c::execute() {
     }
     cXyz* pcVar12 = field_0x694;
     cXyz* local_150 = field_0x79c;
-    u32 isWolf = daPy_py_c::i_checkNowWolf();
+    u32 isWolf = daPy_py_c::checkNowWolf();
     daPy_py_c* player = daPy_getLinkPlayerActorClass();
     for (int i = 0; i < 22; i++) {
         local_54 = (*pcVar12 - *local_148) + *local_150;

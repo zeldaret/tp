@@ -303,7 +303,7 @@ void dalv4CandleDemoTag_c::init_modeEnemyCreate() {
     dPath* path_p = dPath_GetRoomPath(mPathID, fopAcM_GetRoomNo(this));
 
     for (int i = 0; i < path_p->m_num; i++) {
-        dStage_dPnt_c* pnt = &path_p->m_points[i];
+        dPnt* pnt = &path_p->m_points[i];
 
         cXyz pos;
         pos.x = pnt->m_position.x;
@@ -349,9 +349,9 @@ void dalv4CandleDemoTag_c::modeEnd() {
 }
 
 /* 80C5CF78-80C5CF9C 000678 0024+00 2/1 0/0 0/0 .text eventStart__20dalv4CandleDemoTag_cFv */
-BOOL dalv4CandleDemoTag_c::eventStart() {
+bool dalv4CandleDemoTag_c::eventStart() {
     init_modeEnemyCreate();
-    return 1;
+    return true;
 }
 
 /* 80C5CF9C-80C5CFEC 00069C 0050+00 1/1 0/0 0/0 .text

@@ -531,7 +531,7 @@ int daNpcThe_c::ctrlJointCallBack(J3DJoint* i_joint, int param_1) {
  */
 bool daNpcThe_c::setExpressionAnm(int i_idx, bool i_modify) {
     J3DAnmTransform* anm = NULL;
-    int attr = J3DFrameCtrl::LOOP_ONCE_e;
+    int attr = J3DFrameCtrl::EMode_NONE;
     mAnmFlags &= ~ANM_EXPRESSION_FLAGS;
 
     if (l_bckGetParamList[i_idx].fileIdx >= 0) {
@@ -555,7 +555,7 @@ bool daNpcThe_c::setExpressionAnm(int i_idx, bool i_modify) {
         break;
     case ANM_F_TALK_B:
         res = setExpressionBtp(4);
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_F_TALK_C:
         res = setExpressionBtp(5);
@@ -568,27 +568,27 @@ bool daNpcThe_c::setExpressionAnm(int i_idx, bool i_modify) {
         break;
     case ANM_FH_SMILE:
         res = setExpressionBtp(8);
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_FH_CHUCKLE:
         res = setExpressionBtp(9);
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_FH_TALK_B:
         res = setExpressionBtp(10);
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_FH_TALK_C:
         res = setExpressionBtp(11);
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_FH_LAUGH:
         res = setExpressionBtp(12);
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_FH_TALK_R:
         res = setExpressionBtp(13);
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     default:
         anm = NULL;
@@ -621,10 +621,10 @@ bool daNpcThe_c::setExpressionBtp(int i_idx) {
                              l_btpGetParamList[i_idx].fileIdx);
     }
 
-    int attr = J3DFrameCtrl::LOOP_ONCE_e;
+    int attr = J3DFrameCtrl::EMode_NONE;
     switch (i_idx) {
     case 0:
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case 1:
         break;
@@ -633,7 +633,7 @@ bool daNpcThe_c::setExpressionBtp(int i_idx) {
     case 3:
         break;
     case 4:
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case 5:
         break;
@@ -642,22 +642,22 @@ bool daNpcThe_c::setExpressionBtp(int i_idx) {
     case 7:
         break;
     case 8:
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case 9:
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case 10:
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case 11:
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case 12:
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case 13:
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     default:
         anm = NULL;
@@ -679,10 +679,10 @@ bool daNpcThe_c::setExpressionBtp(int i_idx) {
 }
 
 /* 80AF8564-80AF8744 000F84 01E0+00 2/0 0/0 0/0 .text            setMotionAnm__10daNpcThe_cFif */
-bool daNpcThe_c::setMotionAnm(int i_idx, f32 i_morf) {
+void daNpcThe_c::setMotionAnm(int i_idx, f32 i_morf) {
     J3DAnmTransformKey* anm_trans = NULL;
     J3DAnmTextureSRTKey* anm_tex = NULL;
-    int attr = J3DFrameCtrl::LOOP_REPEAT_e;
+    int attr = J3DFrameCtrl::EMode_LOOP;
     mAnmFlags &= ~ANM_MOTION_FLAGS;
 
     if (l_bckGetParamList[i_idx].fileIdx >= 0) {
@@ -692,43 +692,43 @@ bool daNpcThe_c::setMotionAnm(int i_idx, f32 i_morf) {
 
     switch (i_idx) {
     case ANM_WAIT_A:
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_WAIT_LOOKING:
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_TO_WAIT_B:
-        attr = J3DFrameCtrl::LOOP_ONCE_e;
+        attr = J3DFrameCtrl::EMode_NONE;
         break;
     case ANM_WAIT_B:
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_WAIT_LOOKUP:
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_TALK_R:
-        attr = J3DFrameCtrl::LOOP_ONCE_e;
+        attr = J3DFrameCtrl::EMode_NONE;
         break;
     case ANM_TALKING_R:
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_LOOK_A:
-        attr = J3DFrameCtrl::LOOP_ONCE_e;
+        attr = J3DFrameCtrl::EMode_NONE;
         break;
     case ANM_LOOK:
-        attr = J3DFrameCtrl::LOOP_ONCE_e;
+        attr = J3DFrameCtrl::EMode_NONE;
         break;
     case ANM_KUNE_WAIT_A:
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_KUNE_TALK:
-        attr = J3DFrameCtrl::LOOP_ONCE_e;
+        attr = J3DFrameCtrl::EMode_NONE;
         break;
     case ANM_KUNE_WAIT_B:
-        attr = J3DFrameCtrl::LOOP_REPEAT_e;
+        attr = J3DFrameCtrl::EMode_LOOP;
         break;
     case ANM_KUNE_SHISHI:
-        attr = J3DFrameCtrl::LOOP_ONCE_e;
+        attr = J3DFrameCtrl::EMode_NONE;
         break;
     default:
         anm_trans = NULL;
@@ -1388,7 +1388,7 @@ BOOL daNpcThe_c::main() {
             eventInfo.setArchiveName(l_resNames[l_evtGetParamList[mOrderEvtNo]]);
         }
         if (!strcmp(dComIfGp_getStartStageName(), "R_SP116")) {
-            eventInfo.i_onCondition(0x20);
+            eventInfo.onCondition(0x20);
         }
         orderEvent(field_0xe1c, l_evtNames[mOrderEvtNo], 0xffff, 0x28, 0xff, 1);
     }
@@ -1425,7 +1425,6 @@ void daNpcThe_c::setExpressionTalkAfter() {
 }
 
 /* 80AFA6CC-80AFADEC 0030EC 0720+00 1/1 0/0 0/0 .text            doEvent__10daNpcThe_cFv */
-// NONMATCHING regalloc and mr ordering
 BOOL daNpcThe_c::doEvent() {
     BOOL ret = false;
     if (dComIfGp_event_runCheck() != false) {
@@ -1478,7 +1477,7 @@ BOOL daNpcThe_c::doEvent() {
             }
             ret = true;
         } else {
-            int staff_id = event_manager.getMyStaffId(l_myName, this, -1);
+            s32 staff_id = event_manager.getMyStaffId(l_myName, this, -1);
             if (staff_id != -1) {
                 mStaffID = staff_id;
                 int act_idx = event_manager.getMyActIdx(staff_id, mEvtCutNameList,
@@ -1494,7 +1493,7 @@ BOOL daNpcThe_c::doEvent() {
                 }
                 ret = true;
             }
-            if (eventInfo.i_checkCommandDemoAccrpt() && mEventIdx != -1
+            if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1
                                                      && event_manager.endCheck(mEventIdx)) {
                 dComIfGp_event_reset();
                 mOrderEvtNo = 0;

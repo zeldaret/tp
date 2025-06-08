@@ -6,6 +6,7 @@
 #include "d/actor/d_a_obj_swBallB.h"
 #include "d/actor/d_a_obj_carry.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "d/d_com_inf_game.h"
 #include "d/d_meter2_info.h"
 #include "d/d_item.h"
 #include "d/actor/d_a_player.h"
@@ -179,7 +180,7 @@ void daObjSwBallC_c::actionWait() {
     if (fopAcM_isSwitch(this, 0x3d) && fopAcM_isSwitch(this, 0x3e)) {
         setAction(1);
         fopAcM_orderOtherEventId(this, field_0x57c, field_0x57e, 0xffff, 0, 1);
-        eventInfo.i_onCondition(2);
+        eventInfo.onCondition(2);
     }
 }
 
@@ -193,7 +194,7 @@ void daObjSwBallC_c::actionOrderEvent() {
         dComIfGs_onTbox(11);
     } else {
         fopAcM_orderOtherEventId(this, field_0x57c, field_0x57e, 0xffff, 0, 1);
-        eventInfo.i_onCondition(2);
+        eventInfo.onCondition(2);
     }
 }
 

@@ -160,7 +160,7 @@ cPhs__Step daWtPillar_c::create() {
             mMaxHeight += mRelativeWaterHeight;
 
             // "== Underwater (%f) (%f) type: %d ==\n"
-            OS_REPORT("== 水中にある (%f) (%f) type:%d ==\n", mMaxHeight, mRelativeWaterHeight, mRisesAndFalls);
+            OS_REPORT("== 水中にある (%f) (%f) type:%d ==\n", mMaxHeight, mRelativeWaterHeight, mType);
         }
 
         mEffectOscillationAngleStep = mPillarIsPreparingToRise = mStartedRisingOrDoesNotRiseAndFall = field_0xB44 = 0;
@@ -341,7 +341,7 @@ void daWtPillar_c::actionSwWait() {
 }
 
 /* 80D2D488-80D2D4AC 000EA8 0024+00 2/1 0/0 0/0 .text            eventStart__12daWtPillar_cFv */
-BOOL daWtPillar_c::eventStart() {
+bool daWtPillar_c::eventStart() {
     actionUpFirstInit();
     return TRUE;
 }

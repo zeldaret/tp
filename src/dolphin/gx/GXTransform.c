@@ -1,332 +1,608 @@
-#include "dolphin/gx/GXTransform.h"
-#include "dolphin/gx.h"
-#include "dolphin/os.h"
+#include <dolphin/gx.h>
+#include <dolphin/mtx.h>
+#include <dolphin/os.h>
 
-void __GXSetMatrixIndex();
+#include "__gx.h"
 
-static void Copy6Floats(register f32 src[6], register f32 dst[6]) {
-    register f32 ps_0, ps_1, ps_2;
+void GXProject(f32 x, f32 y, f32 z, const Mtx mtx, const f32* pm, const f32* vp, f32* sx, f32* sy, f32* sz) {
+    Vec peye;
+    f32 xc;
+    f32 yc;
+    f32 zc;
+    f32 wc;
 
-    // clang-format off
-    asm {
-        psq_l  ps_0,  0(src), 0, 0
-        psq_l  ps_1,  8(src), 0, 0
-        psq_l  ps_2, 16(src), 0, 0
-        psq_st ps_0,  0(dst), 0, 0
-        psq_st ps_1,  8(dst), 0, 0
-        psq_st ps_2, 16(dst), 0, 0
-    }
-    // clang-format on
-}
+    ASSERTMSGLINE(168, pm && vp && sx && sy && sz, "GXGet*: invalid null pointer");
 
-static void WriteProjPS(const register f32 src[6], register volatile void* dst) {
-    register f32 ps_0, ps_1, ps_2;
-
-    // clang-format off
-    asm {
-        psq_l  ps_0,  0(src), 0, 0
-        psq_l  ps_1,  8(src), 0, 0
-        psq_l  ps_2, 16(src), 0, 0
-        psq_st ps_0,  0(dst), 0, 0
-        psq_st ps_1,  0(dst), 0, 0
-        psq_st ps_2,  0(dst), 0, 0
-    }
-    // clang-format on
-}
-
-/* 8035FF60-803600D4 35A8A0 0174+00 0/0 1/1 0/0 .text            GXProject */
-void GXProject(f32 model_x, f32 model_y, f32 model_z, Mtx model_mtx, f32* proj_mtx, f32* viewpoint,
-               f32* screen_x, f32* screen_y, f32* screen_z) {
-    f32 sp10[3];
-    f32 var_f30;
-    f32 var_f29;
-    f32 var_f28;
-    f32 var_f31;
-
-    ASSERTMSG(proj_mtx != NULL && viewpoint != NULL && screen_x != NULL && screen_y != NULL && screen_z != NULL, "GXGet*: invalid null pointer");
-
-    sp10[0] = (model_mtx[0][0] * model_x) + (model_mtx[0][1] * model_y) +
-              (model_mtx[0][2] * model_z) + model_mtx[0][3];
-    sp10[1] = (model_mtx[1][0] * model_x) + (model_mtx[1][1] * model_y) +
-              (model_mtx[1][2] * model_z) + model_mtx[1][3];
-    sp10[2] = (model_mtx[2][0] * model_x) + (model_mtx[2][1] * model_y) +
-              (model_mtx[2][2] * model_z) + model_mtx[2][3];
-
-    if (proj_mtx[0] == 0.0f) {
-        var_f30 = (sp10[0] * proj_mtx[1]) + (sp10[2] * proj_mtx[2]);
-        var_f29 = (sp10[1] * proj_mtx[3]) + (sp10[2] * proj_mtx[4]);
-        var_f28 = proj_mtx[6] + (sp10[2] * proj_mtx[5]);
-        var_f31 = 1.0f / -sp10[2];
+    peye.x = mtx[0][3] + ((mtx[0][2] * z) + ((mtx[0][0] * x) + (mtx[0][1] * y)));
+    peye.y = mtx[1][3] + ((mtx[1][2] * z) + ((mtx[1][0] * x) + (mtx[1][1] * y)));
+    peye.z = mtx[2][3] + ((mtx[2][2] * z) + ((mtx[2][0] * x) + (mtx[2][1] * y)));
+    if (pm[0] == 0.0f) {
+        xc = (peye.x * pm[1]) + (peye.z * pm[2]);
+        yc = (peye.y * pm[3]) + (peye.z * pm[4]);
+        zc = pm[6] + (peye.z * pm[5]);
+        wc = 1.0f / -peye.z;
     } else {
-        var_f30 = proj_mtx[2] + (sp10[0] * proj_mtx[1]);
-        var_f29 = proj_mtx[4] + (sp10[1] * proj_mtx[3]);
-        var_f28 = proj_mtx[6] + (sp10[2] * proj_mtx[5]);
-        var_f31 = 1.0f;
+        xc = pm[2] + (peye.x * pm[1]);
+        yc = pm[4] + (peye.y * pm[3]);
+        zc = pm[6] + (peye.z * pm[5]);
+        wc = 1.0f;
     }
+    *sx = (vp[2] / 2.0f) + (vp[0] + (wc * (xc * vp[2] / 2.0f)));
+    *sy = (vp[3] / 2.0f) + (vp[1] + (wc * (-yc * vp[3] / 2.0f)));
+    *sz = vp[5] + (wc * (zc * (vp[5] - vp[4])));
+}
 
-    *screen_x = (viewpoint[2] / 2) + (viewpoint[0] + (var_f31 * (var_f30 * viewpoint[2] / 2)));
-    *screen_y = (viewpoint[3] / 2) + (viewpoint[1] + (var_f31 * (-var_f29 * viewpoint[3] / 2)));
-    *screen_z = viewpoint[5] + (var_f31 * (var_f28 * (viewpoint[5] - viewpoint[4])));
+static void WriteProjPS(const register f32 proj[6], register volatile void* dest) {
+    register f32 p01, p23, p45;
+
+    asm {
+        psq_l  p01,  0(proj), 0, 0
+        psq_l  p23,  8(proj), 0, 0
+        psq_l  p45, 16(proj), 0, 0
+        psq_st p01,  0(dest), 0, 0
+        psq_st p23,  0(dest), 0, 0
+        psq_st p45,  0(dest), 0, 0
+    }
+}
+
+static void Copy6Floats(const register f32 src[6], register volatile f32* dest) {
+    register f32 ps01, ps23, ps45;
+
+    asm {
+        psq_l  ps01,  0(src), 0, 0
+        psq_l  ps23,  8(src), 0, 0
+        psq_l  ps45, 16(src), 0, 0
+        psq_st ps01,  0(dest), 0, 0
+        psq_st ps23,  8(dest), 0, 0
+        psq_st ps45, 16(dest), 0, 0
+    }
 }
 
 void __GXSetProjection(void) {
-    GX_XF_LOAD_REGS(6, GX_XF_REG_PROJECTIONA);
+    u32 reg = 0x00061020;
+    GX_WRITE_U8(0x10);
+    GX_WRITE_U32(reg);
+#if DEBUG
+    GX_WRITE_XF_REG_F(32, __GXData->projMtx[0]);
+    GX_WRITE_XF_REG_F(33, __GXData->projMtx[1]);
+    GX_WRITE_XF_REG_F(34, __GXData->projMtx[2]);
+    GX_WRITE_XF_REG_F(35, __GXData->projMtx[3]);
+    GX_WRITE_XF_REG_F(36, __GXData->projMtx[4]);
+    GX_WRITE_XF_REG_F(37, __GXData->projMtx[5]);
+    GX_WRITE_XF_REG_2(38, __GXData->projType);
+#else
     WriteProjPS(__GXData->projMtx, (volatile void*)GXFIFO_ADDR);
     GX_WRITE_U32(__GXData->projType);
+#endif
 }
 
-/* 803600D4-80360178 35AA14 00A4+00 0/0 15/15 2/2 .text            GXSetProjection */
-void GXSetProjection(const Mtx44 proj, GXProjectionType type) {
-    volatile void* fifo;
+void GXSetProjection(const Mtx44 mtx, GXProjectionType type) {
+    CHECK_GXBEGIN(295, "GXSetProjection");
+
     __GXData->projType = type;
-
-    __GXData->projMtx[0] = proj[0][0];
-    __GXData->projMtx[2] = proj[1][1];
-    __GXData->projMtx[4] = proj[2][2];
-    __GXData->projMtx[5] = proj[2][3];
-
+    __GXData->projMtx[0] = mtx[0][0];
+    __GXData->projMtx[2] = mtx[1][1];
+    __GXData->projMtx[4] = mtx[2][2];
+    __GXData->projMtx[5] = mtx[2][3];
     if (type == GX_ORTHOGRAPHIC) {
-        __GXData->projMtx[1] = proj[0][3];
-        __GXData->projMtx[3] = proj[1][3];
+        __GXData->projMtx[1] = mtx[0][3];
+        __GXData->projMtx[3] = mtx[1][3];
     } else {
-        __GXData->projMtx[1] = proj[0][2];
-        __GXData->projMtx[3] = proj[1][2];
+        __GXData->projMtx[1] = mtx[0][2];
+        __GXData->projMtx[3] = mtx[1][2];
     }
 
     __GXSetProjection();
-
-    __GXData->bpSentNot = GX_TRUE;
+    __GXData->bpSentNot = 1;
 }
 
-/* 80360178-80360204 35AAB8 008C+00 0/0 1/1 1/1 .text            GXSetProjectionv */
-void GXSetProjectionv(f32* proj) {
-    __GXData->projType = proj[0] == 0.0f ? GX_PERSPECTIVE : GX_ORTHOGRAPHIC;
-    Copy6Floats(&proj[1], __GXData->projMtx);
+void GXSetProjectionv(const f32* ptr) {
+    CHECK_GXBEGIN(339, "GXSetProjectionv");
+
+    __GXData->projType = ptr[0] == 0.0f ? GX_PERSPECTIVE : GX_ORTHOGRAPHIC;
+
+#if DEBUG
+    __GXData->projMtx[0] = ptr[1];
+    __GXData->projMtx[1] = ptr[2];
+    __GXData->projMtx[2] = ptr[3];
+    __GXData->projMtx[3] = ptr[4];
+    __GXData->projMtx[4] = ptr[5];
+    __GXData->projMtx[5] = ptr[6];
+#else
+    Copy6Floats(&ptr[1], __GXData->projMtx);
+#endif
 
     __GXSetProjection();
-    __GXData->bpSentNot = GX_TRUE;
+    __GXData->bpSentNot = 1;
 }
 
-/* 80360204-8036024C 35AB44 0048+00 0/0 1/1 1/1 .text            GXGetProjectionv */
-void GXGetProjectionv(f32* proj) {
-    *proj = (u32)__GXData->projType != GX_PERSPECTIVE ? 1.0f : 0.0f;
-    Copy6Floats(__GXData->projMtx, &proj[1]);
+#define qr0 0
+
+void GXGetProjectionv(f32* ptr) {
+    ASSERTMSGLINE(370, ptr, "GXGet*: invalid null pointer");
+
+    ptr[0] = (u32)__GXData->projType != GX_PERSPECTIVE ? 1.0f : 0.0f;
+
+#if DEBUG
+    ptr[1] = __GXData->projMtx[0];
+    ptr[2] = __GXData->projMtx[1];
+    ptr[3] = __GXData->projMtx[2];
+    ptr[4] = __GXData->projMtx[3];
+    ptr[5] = __GXData->projMtx[4];
+    ptr[6] = __GXData->projMtx[5];
+#else
+    Copy6Floats(__GXData->projMtx, &ptr[1]);
+#endif
 }
 
-static void WriteMTXPS4x3(register volatile void* dst, register const Mtx src) {
-    register f32 ps_0, ps_1, ps_2, ps_3, ps_4, ps_5;
+static void WriteMTXPS4x3(const register f32 mtx[3][4], register volatile f32* dest) {
+    register f32 a00_a01;
+    register f32 a02_a03;
+    register f32 a10_a11;
+    register f32 a12_a13;
+    register f32 a20_a21;
+    register f32 a22_a23;
 
-    // clang-format off
     asm {
-        psq_l  ps_0,  0(src), 0, 0
-        psq_l  ps_1,  8(src), 0, 0
-        psq_l  ps_2, 16(src), 0, 0
-        psq_l  ps_3, 24(src), 0, 0
-        psq_l  ps_4, 32(src), 0, 0
-        psq_l  ps_5, 40(src), 0, 0
-
-        psq_st ps_0, 0(dst),  0, 0
-        psq_st ps_1, 0(dst),  0, 0
-        psq_st ps_2, 0(dst),  0, 0
-        psq_st ps_3, 0(dst),  0, 0
-        psq_st ps_4, 0(dst),  0, 0
-        psq_st ps_5, 0(dst),  0, 0
+        psq_l a00_a01, 0x00(mtx), 0, qr0
+        psq_l a02_a03, 0x08(mtx), 0, qr0
+        psq_l a10_a11, 0x10(mtx), 0, qr0
+        psq_l a12_a13, 0x18(mtx), 0, qr0
+        psq_l a20_a21, 0x20(mtx), 0, qr0
+        psq_l a22_a23, 0x28(mtx), 0, qr0
+        psq_st a00_a01, 0(dest), 0, qr0
+        psq_st a02_a03, 0(dest), 0, qr0
+        psq_st a10_a11, 0(dest), 0, qr0
+        psq_st a12_a13, 0(dest), 0, qr0
+        psq_st a20_a21, 0(dest), 0, qr0
+        psq_st a22_a23, 0(dest), 0, qr0
     }
-    // clang-format on
 }
 
-/* 8036024C-8036029C 35AB8C 0050+00 0/0 83/83 9/9 .text            GXLoadPosMtxImm */
-void GXLoadPosMtxImm(Mtx mtx, u32 id) {
-    GX_XF_LOAD_REGS(4 * 3 - 1, id * 4 + GX_XF_MEM_POSMTX);
-    WriteMTXPS4x3(&GXWGFifo, mtx);
-}
+static void WriteMTXPS3x3from3x4(register f32 mtx[3][4], register volatile f32* dest) {
+    register f32 a00_a01;
+    register f32 a02_a03;
+    register f32 a10_a11;
+    register f32 a12_a13;
+    register f32 a20_a21;
+    register f32 a22_a23;
 
-static void WriteMTXPS3x3(register volatile void* dst, register const Mtx src) {
-    register f32 ps_0, ps_1, ps_2, ps_3, ps_4, ps_5;
-
-    // clang-format off
     asm {
-        psq_l  ps_0,  0(src), 0, 0
-        lfs    ps_1,  8(src)
-        psq_l  ps_2, 16(src), 0, 0
-        lfs    ps_3, 24(src)
-        psq_l  ps_4, 32(src), 0, 0
-        lfs    ps_5, 40(src)
-
-        psq_st ps_0, 0(dst),  0, 0
-        stfs   ps_1, 0(dst)
-        psq_st ps_2, 0(dst),  0, 0
-        stfs   ps_3, 0(dst)
-        psq_st ps_4, 0(dst),  0, 0
-        stfs   ps_5, 0(dst)
+        psq_l  a00_a01, 0x00(mtx), 0, qr0
+        lfs    a02_a03, 0x08(mtx)
+        psq_l  a10_a11, 0x10(mtx), 0, qr0
+        lfs    a12_a13, 0x18(mtx)
+        psq_l  a20_a21, 0x20(mtx), 0, qr0
+        lfs    a22_a23, 0x28(mtx)
+        psq_st a00_a01, 0(dest), 0, qr0
+        stfs   a02_a03, 0(dest)
+        psq_st a10_a11, 0(dest), 0, qr0
+        stfs   a12_a13, 0(dest)
+        psq_st a20_a21, 0(dest), 0, qr0
+        stfs   a22_a23, 0(dest)
     }
-    // clang-format on
 }
 
-/* 8036029C-803602EC 35ABDC 0050+00 0/0 11/11 7/7 .text            GXLoadNrmMtxImm */
-void GXLoadNrmMtxImm(Mtx mtx, u32 id) {
-    GX_XF_LOAD_REGS(3 * 3 - 1, id * 3 + GX_XF_MEM_NRMMTX);
-    WriteMTXPS3x3(&GXWGFifo, mtx);
+static void WriteMTXPS3x3(register f32 mtx[3][3], register volatile f32* dest) {
+    register f32 a00_a01;
+    register f32 a02_a10;
+    register f32 a11_a12;
+    register f32 a20_a21;
+    register f32 a22_nnn;
+
+    asm {
+        psq_l a00_a01, 0x00(mtx), 0, qr0
+        psq_l a02_a10, 0x08(mtx), 0, qr0
+        psq_l a11_a12, 0x10(mtx), 0, qr0
+        psq_l a20_a21, 0x18(mtx), 0, qr0
+        lfs   a22_nnn, 0x20(mtx)
+        psq_st a00_a01, 0(dest), 0, qr0
+        psq_st a02_a10, 0(dest), 0, qr0
+        psq_st a11_a12, 0(dest), 0, qr0
+        psq_st a20_a21, 0(dest), 0, qr0
+        stfs   a22_nnn, 0(dest)
+    }
 }
 
-/* 803602EC-80360320 35AC2C 0034+00 0/0 51/51 2/2 .text            GXSetCurrentMtx */
+static void WriteMTXPS4x2(const register f32 mtx[2][4], register volatile f32* dest) {
+    register f32 a00_a01;
+    register f32 a02_a03;
+    register f32 a10_a11;
+    register f32 a12_a13;
+
+    asm {
+        psq_l a00_a01, 0x00(mtx), 0, qr0
+        psq_l a02_a03, 0x08(mtx), 0, qr0
+        psq_l a10_a11, 0x10(mtx), 0, qr0
+        psq_l a12_a13, 0x18(mtx), 0, qr0
+        psq_st a00_a01, 0(dest), 0, qr0
+        psq_st a02_a03, 0(dest), 0, qr0
+        psq_st a10_a11, 0(dest), 0, qr0
+        psq_st a12_a13, 0(dest), 0, qr0
+    }
+}
+
+#define GX_WRITE_MTX_ELEM(addr, value) \
+do { \
+    f32 xfData = (value); \
+    GX_WRITE_F32(value); \
+    VERIF_MTXLIGHT((addr), *(u32 *)&xfData); \
+} while (0)
+
+void GXLoadPosMtxImm(const Mtx mtx, u32 id) {
+    u32 reg;
+    u32 addr;
+
+    CHECK_GXBEGIN(507, "GXLoadPosMtxImm");
+
+    addr = id * 4;
+    reg = addr | 0xB0000;
+
+    GX_WRITE_U8(0x10);
+    GX_WRITE_U32(reg);
+#if DEBUG
+    GX_WRITE_MTX_ELEM(addr + 0, mtx[0][0]);
+    GX_WRITE_MTX_ELEM(addr + 1, mtx[0][1]);
+    GX_WRITE_MTX_ELEM(addr + 2, mtx[0][2]);
+    GX_WRITE_MTX_ELEM(addr + 3, mtx[0][3]);
+    GX_WRITE_MTX_ELEM(addr + 4, mtx[1][0]);
+    GX_WRITE_MTX_ELEM(addr + 5, mtx[1][1]);
+    GX_WRITE_MTX_ELEM(addr + 6, mtx[1][2]);
+    GX_WRITE_MTX_ELEM(addr + 7, mtx[1][3]);
+    GX_WRITE_MTX_ELEM(addr + 8, mtx[2][0]);
+    GX_WRITE_MTX_ELEM(addr + 9, mtx[2][1]);
+    GX_WRITE_MTX_ELEM(addr + 10, mtx[2][2]);
+    GX_WRITE_MTX_ELEM(addr + 11, mtx[2][3]);
+#else
+    WriteMTXPS4x3(mtx, &GXWGFifo.f32);
+#endif
+}
+
+void GXLoadPosMtxIndx(u16 mtx_indx, u32 id) {
+    u32 offset;
+    u32 reg;
+
+    CHECK_GXBEGIN(555, "GXLoadPosMtxIndx");
+    offset = id * 4;
+    reg = 0;
+    SET_REG_FIELD(561, reg, 12, 0, offset);
+    SET_REG_FIELD(563, reg, 4, 12, 11);
+    SET_REG_FIELD(563, reg, 16, 16, mtx_indx);
+    GX_WRITE_U8(0x20);
+    GX_WRITE_U32(reg);
+#if DEBUG
+    __GXShadowIndexState(4, reg);
+#endif
+}
+
+void GXLoadNrmMtxImm(const Mtx mtx, u32 id) {
+    u32 reg;
+    u32 addr;
+
+    CHECK_GXBEGIN(588, "GXLoadNrmMtxImm");
+
+    addr = id * 3 + 0x400;
+    reg = addr | 0x80000;
+
+    GX_WRITE_U8(0x10);
+    GX_WRITE_U32(reg);
+#if DEBUG
+    GX_WRITE_MTX_ELEM(addr + 0, mtx[0][0]);
+    GX_WRITE_MTX_ELEM(addr + 1, mtx[0][1]);
+    GX_WRITE_MTX_ELEM(addr + 2, mtx[0][2]);
+    GX_WRITE_MTX_ELEM(addr + 3, mtx[1][0]);
+    GX_WRITE_MTX_ELEM(addr + 4, mtx[1][1]);
+    GX_WRITE_MTX_ELEM(addr + 5, mtx[1][2]);
+    GX_WRITE_MTX_ELEM(addr + 6, mtx[2][0]);
+    GX_WRITE_MTX_ELEM(addr + 7, mtx[2][1]);
+    GX_WRITE_MTX_ELEM(addr + 8, mtx[2][2]);
+#else
+    WriteMTXPS3x3from3x4((void*)mtx, &GXWGFifo.f32);
+#endif
+}
+
+void GXLoadNrmMtxImm3x3(const f32 mtx[3][3], u32 id) {
+    u32 reg;
+    u32 addr;
+
+    CHECK_GXBEGIN(633, "GXLoadNrmMtxImm3x3");
+
+    addr = id * 3 + 0x400;
+    reg = addr | 0x80000;
+
+    GX_WRITE_U8(0x10);
+    GX_WRITE_U32(reg);
+#if DEBUG
+    GX_WRITE_MTX_ELEM(addr + 0, mtx[0][0]);
+    GX_WRITE_MTX_ELEM(addr + 1, mtx[0][1]);
+    GX_WRITE_MTX_ELEM(addr + 2, mtx[0][2]);
+    GX_WRITE_MTX_ELEM(addr + 3, mtx[1][0]);
+    GX_WRITE_MTX_ELEM(addr + 4, mtx[1][1]);
+    GX_WRITE_MTX_ELEM(addr + 5, mtx[1][2]);
+    GX_WRITE_MTX_ELEM(addr + 6, mtx[2][0]);
+    GX_WRITE_MTX_ELEM(addr + 7, mtx[2][1]);
+    GX_WRITE_MTX_ELEM(addr + 8, mtx[2][2]);
+#else
+    WriteMTXPS3x3((void*)mtx, &GXWGFifo.f32);
+#endif
+}
+
+void GXLoadNrmMtxIndx3x3(u16 mtx_indx, u32 id) {
+    u32 offset;
+    u32 reg;
+
+    CHECK_GXBEGIN(679, "GXLoadNrmMtxIndx3x3");
+    offset = id * 3 + 0x400;
+    reg = 0;
+    SET_REG_FIELD(685, reg, 12, 0, offset);
+    SET_REG_FIELD(687, reg, 4, 12, 8);
+    SET_REG_FIELD(687, reg, 16, 16, mtx_indx);
+    GX_WRITE_U8(0x28);
+    GX_WRITE_U32(reg);
+#if DEBUG
+    __GXShadowIndexState(5, reg);
+#endif
+}
+
 void GXSetCurrentMtx(u32 id) {
-    GX_SET_REG(__GXData->matIdxA, id, GX_XF_MTXIDX0_GEOM_ST, GX_XF_MTXIDX0_GEOM_END);
+    CHECK_GXBEGIN(708, "GXSetCurrentMtx");
+    SET_REG_FIELD(712, __GXData->matIdxA, 6, 0, id);
     __GXSetMatrixIndex(GX_VA_PNMTXIDX);
 }
 
-static void WriteMTXPS4x2(register volatile void* dst, register const Mtx src) {
-    register f32 ps_0, ps_1, ps_2, ps_3;
+void GXLoadTexMtxImm(const f32 mtx[][4], u32 id, GXTexMtxType type) {
+    u32 reg;
+    u32 addr;
+    u32 count;
 
-    // clang-format off
-    asm {
-        psq_l  ps_0,  0(src), 0, 0
-        psq_l  ps_1,  8(src), 0, 0
-        psq_l  ps_2, 16(src), 0, 0
-        psq_l  ps_3, 24(src), 0, 0
+    CHECK_GXBEGIN(741, "GXLoadTexMtxImm");
 
-        psq_st ps_0, 0(dst),  0, 0
-        psq_st ps_1, 0(dst),  0, 0
-        psq_st ps_2, 0(dst),  0, 0
-        psq_st ps_3, 0(dst),  0, 0
+    if (id >= GX_PTTEXMTX0) {
+        addr = (id - GX_PTTEXMTX0) * 4 + 0x500;
+        ASSERTMSGLINE(751, type == GX_MTX3x4, "GXLoadTexMtx: Invalid matrix type");
+    } else {
+        addr = id * 4;
     }
-    // clang-format on
+    count = (type == GX_MTX2x4) ? 8 : 12;
+    reg = addr | ((count - 1) << 16);
+
+    GX_WRITE_U8(0x10);
+    GX_WRITE_U32(reg);
+#if DEBUG
+    GX_WRITE_MTX_ELEM(addr + 0, mtx[0][0]);
+    GX_WRITE_MTX_ELEM(addr + 1, mtx[0][1]);
+    GX_WRITE_MTX_ELEM(addr + 2, mtx[0][2]);
+    GX_WRITE_MTX_ELEM(addr + 3, mtx[0][3]);
+    GX_WRITE_MTX_ELEM(addr + 4, mtx[1][0]);
+    GX_WRITE_MTX_ELEM(addr + 5, mtx[1][1]);
+    GX_WRITE_MTX_ELEM(addr + 6, mtx[1][2]);
+    GX_WRITE_MTX_ELEM(addr + 7, mtx[1][3]);
+    if (type == GX_MTX3x4) {
+        GX_WRITE_MTX_ELEM(addr + 8, mtx[2][0]);
+        GX_WRITE_MTX_ELEM(addr + 9, mtx[2][1]);
+        GX_WRITE_MTX_ELEM(addr + 10, mtx[2][2]);
+        GX_WRITE_MTX_ELEM(addr + 11, mtx[2][3]);
+    }
+#else
+    if (type == GX_MTX3x4) {
+        WriteMTXPS4x3(mtx, &GXWGFifo.f32);
+    } else {
+        WriteMTXPS4x2(mtx, &GXWGFifo.f32);
+    }
+#endif
 }
 
-/* 80360320-803603D4 35AC60 00B4+00 0/0 15/15 0/0 .text            GXLoadTexMtxImm */
-void GXLoadTexMtxImm(const Mtx mtx, u32 id, GXTexMtxType type) {
-    u32 addr;
-    u32 num;
+void GXLoadTexMtxIndx(u16 mtx_indx, u32 id, GXTexMtxType type) {
+    u32 offset;
+    u32 reg;
+    u32 count;
+
+    CHECK_GXBEGIN(813, "GXLoadTexMtxIndx");
+
+    if (id >= GX_PTTEXMTX0) {
+        offset = (id - GX_PTTEXMTX0) * 4 + 0x500;
+        ASSERTMSGLINE(0x337, type == GX_MTX3x4, "GXLoadTexMtx: Invalid matrix type");
+    } else {
+        offset = id * 4;
+    }
+    count = (type == GX_MTX2x4) ? 8 : 12;
+
+    reg = 0;
+    SET_REG_FIELD(830, reg, 12, 0, offset);
+    SET_REG_FIELD(831, reg, 4, 12, (count - 1));
+    SET_REG_FIELD(832, reg, 16, 16, mtx_indx);
+    GX_WRITE_U8(0x30);
+    GX_WRITE_U32(reg);
+#if DEBUG
+    __GXShadowIndexState(6, reg);
+#endif
+}
+
+void __GXSetViewport(void) {
+    f32 sx;
+    f32 sy;
+    f32 sz;
+    f32 ox;
+    f32 oy;
+    f32 oz;
+    f32 zmin;
+    f32 zmax;
     u32 reg;
 
-    // Matrix address in XF memory
-    addr = id >= GX_PTTEXMTX0 ? (id - GX_PTTEXMTX0) * 4 + GX_XF_MEM_DUALTEXMTX :
-                                id * 4 + (u64)GX_XF_MEM_POSMTX;
+    sx = __GXData->vpWd / 2.0f;
+    sy = -__GXData->vpHt / 2.0f;
+    ox = 342.0f + (__GXData->vpLeft + (__GXData->vpWd / 2.0f));
+    oy = 342.0f + (__GXData->vpTop + (__GXData->vpHt / 2.0f));
 
-    // Number of elements in matrix
-    num = type == GX_MTX2x4 ? (u64)(2 * 4) : 3 * 4;
+    zmin = __GXData->vpNearz * __GXData->zScale;
+    zmax = __GXData->vpFarz * __GXData->zScale;
 
-    reg = addr | (num - 1) << 16;
+    sz = zmax - zmin;
+    oz = zmax + __GXData->zOffset;
 
-    GX_XF_LOAD_REG_HDR(reg);
+    reg = 0x5101A;
+    GX_WRITE_U8(0x10);
+    GX_WRITE_U32(reg);
+    GX_WRITE_XF_REG_F(26, sx);
+    GX_WRITE_XF_REG_F(27, sy);
+    GX_WRITE_XF_REG_F(28, sz);
+    GX_WRITE_XF_REG_F(29, ox);
+    GX_WRITE_XF_REG_F(30, oy);
+    GX_WRITE_XF_REG_F(31, oz);
+}
 
-    if (type == GX_MTX3x4) {
-        WriteMTXPS4x3(&GXWGFifo, mtx);
-    } else {
-        WriteMTXPS4x2(&GXWGFifo, mtx);
+void GXSetViewportJitter(f32 left, f32 top, f32 wd, f32 ht, f32 nearz, f32 farz, u32 field) {
+    CHECK_GXBEGIN(903, "GXSetViewport");  // not the correct function name
+
+    if (field == 0) {
+        top -= 0.5f;
     }
-}
 
-/* 803603D4-80360464 35AD14 0090+00 1/1 0/0 0/0 .text            __GXSetViewport */
-void __GXSetViewport(void) {
-    f32 a, b, c, d, e, f;
-    f32 near, far;
-
-    a = __GXData->vpWd / 2;
-    b = -__GXData->vpHt / 2;
-    d = __GXData->vpLeft + (__GXData->vpWd / 2) + 342.0f;
-    e = __GXData->vpTop + (__GXData->vpHt / 2) + 342.0f;
-
-    near = __GXData->vpNearz * __GXData->zScale;
-    far = __GXData->vpFarz * __GXData->zScale;
-
-    c = far - near;
-    f = far + __GXData->zOffset;
-
-    GX_XF_LOAD_REGS(5, GX_XF_REG_SCALEX);
-    GX_WRITE_F32(a);
-    GX_WRITE_F32(b);
-    GX_WRITE_F32(c);
-    GX_WRITE_F32(d);
-    GX_WRITE_F32(e);
-    GX_WRITE_F32(f);
-}
-
-/* 80360464-803604AC 35ADA4 0048+00 0/0 10/10 1/1 .text            GXSetViewport */
-void GXSetViewport(f32 left, f32 top, f32 width, f32 height, f32 nearZ, f32 farZ) {
     __GXData->vpLeft = left;
     __GXData->vpTop = top;
-    __GXData->vpWd = width;
-    __GXData->vpHt = height;
-    __GXData->vpNearz = nearZ;
-    __GXData->vpFarz = farZ;
+    __GXData->vpWd = wd;
+    __GXData->vpHt = ht;
+    __GXData->vpNearz = nearz;
+    __GXData->vpFarz = farz;
+    
     __GXSetViewport();
-    __GXData->bpSentNot = GX_TRUE;
+    __GXData->bpSentNot = 1;
 }
 
-/* 803604AC-803604D0 35ADEC 0024+00 0/0 1/1 1/1 .text            GXGetViewportv */
-void GXGetViewportv(f32* p) {
-    Copy6Floats(&__GXData->vpLeft, p);
+void GXSetViewport(f32 left, f32 top, f32 wd, f32 ht, f32 nearz, f32 farz) {
+    GXSetViewportJitter(left, top, wd, ht, nearz, farz, 1);
 }
 
-/* 803604D0-80360548 35AE10 0078+00 0/0 11/11 4/4 .text            GXSetScissor */
-void GXSetScissor(u32 left, u32 top, u32 width, u32 height) {
-    u32 y1, x1, y2, x2;
-    u32 reg;
+void GXGetViewportv(f32* vp) {
+    ASSERTMSGLINE(968, vp, "GXGet*: invalid null pointer");
 
-    y1 = top + 342;
-    x1 = left + 342;
-
-    GX_SET_REG(__GXData->suScis0, y1, GX_BP_SCISSORTL_TOP_ST, GX_BP_SCISSORTL_TOP_END);
-    GX_SET_REG(__GXData->suScis0, x1, GX_BP_SCISSORTL_LEFT_ST, GX_BP_SCISSORTL_LEFT_END);
-
-    y2 = y1 + height - 1;
-    x2 = (x1 + width) - 1;
-
-    GX_SET_REG(__GXData->suScis1, y2, GX_BP_SCISSORBR_BOT_ST, GX_BP_SCISSORBR_BOT_END);
-    GX_SET_REG(__GXData->suScis1, x2, GX_BP_SCISSORBR_RIGHT_ST, GX_BP_SCISSORBR_RIGHT_END);
-
-    GX_BP_LOAD_REG(__GXData->suScis0);
-    GX_BP_LOAD_REG(__GXData->suScis1);
-    __GXData->bpSentNot = FALSE;
+#if DEBUG
+    vp[0] = __GXData->vpLeft;
+    vp[1] = __GXData->vpTop;
+    vp[2] = __GXData->vpWd;
+    vp[3] = __GXData->vpHt;
+    vp[4] = __GXData->vpNearz;
+    vp[5] = __GXData->vpFarz;
+#else
+    Copy6Floats(&__GXData->vpLeft, vp);
+#endif
 }
 
-/* 80360548-80360590 35AE88 0048+00 0/0 6/6 2/2 .text            GXGetScissor */
-void GXGetScissor(u32* left, u32* top, u32* width, u32* height) {
-    u32 y1 = (__GXData->suScis0 & 0x0007FF) >> 0;
-    u32 x1 = (__GXData->suScis0 & 0x7FF000) >> 12;
-    u32 y2 = (__GXData->suScis1 & 0x0007FF) >> 0;
-    u32 x2 = (__GXData->suScis1 & 0x7FF000) >> 12;
+#define GX_WRITE_XF_REG_F_(addr, value) \
+do { \
+    GX_WRITE_U8(0x10); \
+    GX_WRITE_U32(0x1000 + (addr)); \
+    { \
+        f32 xfData = (value); \
+        GX_WRITE_F32(value); \
+        VERIF_XF_REG_alt(addr, *(u32 *)&xfData); \
+    } \
+} while (0)
 
-    *left = x1 - 0x156;
-    *top = y1 - 0x156;
-    *width = (x2 - x1) + 1;
-    *height = (y2 - y1) + 1;
+void GXSetZScaleOffset(f32 scale, f32 offset) {
+    f32 sz;
+    f32 oz;
+    f32 zmin;
+    f32 zmax;
+
+    CHECK_GXBEGIN(996, "GXSetZScaleOffset");
+
+    oz = offset * 1.6777215e7f;
+    __GXData->zOffset = oz;
+
+    sz = (scale * 1.6777215e7f) + 1.0f;
+    __GXData->zScale = sz;
+
+    zmin = __GXData->vpNearz * sz;
+    zmax = __GXData->vpFarz * sz;
+    sz = zmax - zmin;
+    oz = oz + zmax;
+
+    GX_WRITE_XF_REG_F_(0x1C, sz);
+    GX_WRITE_XF_REG_F_(0x1F, oz);
+
+    __GXData->bpSentNot = 1;
 }
 
-/* 80360590-803605D0 35AED0 0040+00 0/0 1/1 0/0 .text            GXSetScissorBoxOffset */
-void GXSetScissorBoxOffset(s32 x, s32 y) {
-    u32 cmd = 0;
-    u32 x1;
-    u32 y1;
+void GXSetScissor(u32 left, u32 top, u32 wd, u32 ht) {
+    u32 tp;
+    u32 lf;
+    u32 bm;
+    u32 rt;
 
-    x1 = (u32)(x + 342) / 2;
-    y1 = (u32)(y + 342) / 2;
-    GX_SET_REG(cmd, x1, GX_BP_SCISSOROFS_OX_ST, GX_BP_SCISSOROFS_OX_END);
-    GX_SET_REG(cmd, y1, GX_BP_SCISSOROFS_OY_ST, GX_BP_SCISSOROFS_OY_END);
+    CHECK_GXBEGIN(1048, "GXSetScissor");
+    ASSERTMSGLINE(1049, left < 1706, "GXSetScissor: Left origin > 1708");
+    ASSERTMSGLINE(1050, top < 1706, "GXSetScissor: top origin > 1708");
+    ASSERTMSGLINE(1051, left + wd < 1706, "GXSetScissor: right edge > 1708");
+    ASSERTMSGLINE(1052, top + ht < 1706, "GXSetScissor: bottom edge > 1708");
 
-    GX_SET_REG(cmd, GX_BP_REG_SCISSOROFFSET, 0, 7);
+    tp = top + 342;
+    lf = left + 342;
+    bm = tp + ht - 1;
+    rt = lf + wd - 1;
 
-    GX_BP_LOAD_REG(cmd);
-    __GXData->bpSentNot = GX_FALSE;
+    SET_REG_FIELD(1059, __GXData->suScis0, 11, 0, tp);
+    SET_REG_FIELD(1060, __GXData->suScis0, 11, 12, lf);
+    SET_REG_FIELD(1062, __GXData->suScis1, 11, 0, bm);
+    SET_REG_FIELD(1063, __GXData->suScis1, 11, 12, rt);
+
+    GX_WRITE_RAS_REG(__GXData->suScis0);
+    GX_WRITE_RAS_REG(__GXData->suScis1);
+    __GXData->bpSentNot = 0;
 }
 
-/* 803605D0-803605F8 35AF10 0028+00 0/0 27/27 2/2 .text            GXSetClipMode */
+void GXGetScissor(u32* left, u32* top, u32* wd, u32* ht) {
+    u32 tp;
+    u32 lf;
+    u32 bm;
+    u32 rt;
+
+    ASSERTMSGLINE(1089, left && top && wd && ht, "GXGet*: invalid null pointer");
+
+    tp = __GXData->suScis0 & 0x7FF;
+    lf = (__GXData->suScis0 & 0x7FF000) >> 12;
+    bm = __GXData->suScis1 & 0x7FF;
+    rt = (__GXData->suScis1 & 0x7FF000) >> 12;
+
+    *left = lf - 342;
+    *top = tp - 342;
+    *wd = rt - lf + 1;
+    *ht = bm - tp + 1;
+}
+
+void GXSetScissorBoxOffset(s32 x_off, s32 y_off) {
+    u32 reg = 0;
+    u32 hx;
+    u32 hy;
+
+    CHECK_GXBEGIN(1119, "GXSetScissorBoxOffset");
+
+    ASSERTMSGLINE(1122, (u32)(x_off + 342) < 2048, "GXSetScissorBoxOffset: Invalid X offset");
+    ASSERTMSGLINE(1124, (u32)(y_off + 342) < 2048, "GXSetScissorBoxOffset: Invalid Y offset");
+
+    hx = (u32)(x_off + 342) >> 1;
+    hy = (u32)(y_off + 342) >> 1;
+
+    SET_REG_FIELD(1129, reg, 10, 0, hx);
+    SET_REG_FIELD(1130, reg, 10, 10, hy);
+    SET_REG_FIELD(1131, reg, 8, 24, 0x59);
+    GX_WRITE_RAS_REG(reg);
+    __GXData->bpSentNot = 0;
+}
+
 void GXSetClipMode(GXClipMode mode) {
-    GX_XF_LOAD_REG(GX_XF_REG_CLIPDISABLE, mode);
-    __GXData->bpSentNot = GX_TRUE;
+    CHECK_GXBEGIN(1151, "GXSetClipMode");
+    GX_WRITE_XF_REG(5, mode);
+    __GXData->bpSentNot = 1;
 }
 
-/* 803605F8-8036067C 35AF38 0084+00 1/1 1/1 0/0 .text            __GXSetMatrixIndex */
-void __GXSetMatrixIndex(GXAttr index) {
-    // Tex4 and after is stored in XF MatrixIndex1
-    if (index < GX_VA_TEX4MTXIDX) {
-        GX_CP_LOAD_REG(GX_CP_REG_MTXIDXA, __GXData->matIdxA);
-        GX_XF_LOAD_REG(GX_XF_REG_MATRIXINDEX0, __GXData->matIdxA);
+void __GXSetMatrixIndex(GXAttr matIdxAttr) {
+    if (matIdxAttr < GX_VA_TEX4MTXIDX) {
+        GX_WRITE_SOME_REG4(8, 0x30, __GXData->matIdxA, -12);
+        GX_WRITE_XF_REG(24, __GXData->matIdxA);
     } else {
-        GX_CP_LOAD_REG(GX_CP_REG_MTXIDXB, __GXData->matIdxB);
-        GX_XF_LOAD_REG(GX_XF_REG_MATRIXINDEX1, __GXData->matIdxB);
+        GX_WRITE_SOME_REG4(8, 0x40, __GXData->matIdxB, -12);
+        GX_WRITE_XF_REG(25, __GXData->matIdxB);
     }
-
-    __GXData->bpSentNot = GX_TRUE;
+    __GXData->bpSentNot = 1;
 }

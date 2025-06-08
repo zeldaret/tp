@@ -64,6 +64,11 @@ public:
                                               NULL, NULL);
     }
 
+    static fopAc_ac_c* createEnemyBombBoomerang(cXyz* i_pos, csXyz* i_angle, int i_roomNo) {
+        return (fopAc_ac_c*)fopAcM_fastCreate(PROC_NBOMB, 12, i_pos, i_roomNo, i_angle, NULL, -1,
+                                              NULL, NULL);
+    }
+
     static fopAc_ac_c* createWaterBombExplode(cXyz* i_pos) {
         return (fopAc_ac_c*)fopAcM_fastCreate(PROC_NBOMB, 18, i_pos, -1, NULL, NULL, -1, NULL,
                                               NULL);

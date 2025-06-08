@@ -1,4 +1,5 @@
 #include <dolphin.h>
+#include "global.h"
 
 /* 8039DA20-803A1B80 02A080 4160+00 0/0 1/0 0/0 .rodata          JUTResFONT_Ascfont_fix12 */
 extern u8 const JUTResFONT_Ascfont_fix12[16736] ALIGN_DECL(32) = {

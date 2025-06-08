@@ -2,6 +2,7 @@
 #include "d/d_com_inf_game.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "SSystem/SComponent/c_math.h"
+#include <limits.h>
 
 #define RESET_FRAME -99
 
@@ -204,7 +205,7 @@ int dVibration_c::Run() {
             length = mMotor.mQuake.mLength;
             pattern = rollshift(mMotor.mQuake.mPattern, length, mFrame);
             pattern |= randombit(mMotor.mQuake.mRounds, length);
-            mMotor.mQuake.mStopFrame = INT32_MAX;
+            mMotor.mQuake.mStopFrame = INT_MAX;
             mDoCPd_c::startMotorWave(PAD_1, makedata(data, pattern, length), JUTGamePad::CRumble::VAL_1, 60);
             break;
         case RUMBLE_SHOCK | RUMBLE_QUAKE:

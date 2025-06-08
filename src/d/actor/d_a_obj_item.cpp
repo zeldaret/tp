@@ -25,9 +25,6 @@ extern "C" void checkPlayerGet__8daItem_cFv();
 // External References:
 //
 
-// cLib_calcTimer<u8>
-extern "C" u8 func_80141AE8(u8*);
-
 extern "C" extern void* __vt__16Z2SoundObjSimple[8];
 extern "C" void __dl__FPv();
 extern "C" void __dt__14Z2SoundObjBaseFv();
@@ -244,7 +241,7 @@ void daItem_c::CreateInit() {
     speed = old_speed;
 
     mAcch.ClrGroundLanding();
-    mAcch.i_ClrGroundHit();
+    mAcch.ClrGroundHit();
     mAcch.ClrWaterHit();
     mAcch.ClrWaterIn();
     mAcch.ClrWallHit();
@@ -294,7 +291,7 @@ int daItem_c::_daItem_create() {
     {
         // "fpcNm_ITEM_(ITEM) is an unhandled item<%d>\n"
         OS_REPORT_ERROR("fpcNm_(ITEM)では扱わないアイテムです<%d>\n", m_itemNo);
-        JUT_ASSERT(0);
+        JUT_ASSERT(0, 0);
         return cPhs_ERROR_e;
     } else if (m_itemNo == fpcNm_ITEM_BOMB_5 || m_itemNo == fpcNm_ITEM_BOMB_10 || m_itemNo == fpcNm_ITEM_BOMB_20 ||
                m_itemNo == fpcNm_ITEM_BOMB_30)
@@ -522,11 +519,11 @@ void daItem_c::procInitGetDemoEvent() {
 
     field_0x9c1 = 10;
     fopAcM_orderItemEvent(this, 0, 0);
-    eventInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
+    eventInfo.onCondition(dEvtCnd_CANGETITEM_e);
 
     m_item_id = fopAcM_createItemForTrBoxDemo(&current.pos, m_itemNo, -1, fopAcM_GetRoomNo(this),
                                               NULL, NULL);
-    JUT_ASSERT(m_item_id != fpcM_ERROR_PROCESS_ID_e);
+    JUT_ASSERT(0, m_item_id != fpcM_ERROR_PROCESS_ID_e);
 
     setStatus(STATUS_WAIT_GET_DEMO_EVENT_e);
 }
@@ -542,11 +539,11 @@ void daItem_c::procWaitGetDemoEvent() {
     } else {
         if (m_itemNo == fpcNm_ITEM_BOOMERANG) {
             fopAcM_orderItemEvent(this, 0, 0);
-            eventInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
+            eventInfo.onCondition(dEvtCnd_CANGETITEM_e);
             return;
         }
 
-        if (func_80141AE8(&field_0x9c1) == 0 || checkItemGet(m_itemNo, 1)) {
+        if (cLib_calcTimer<u8>(&field_0x9c1) == 0 || checkItemGet(m_itemNo, 1)) {
             if (fopAcM_delete(m_item_id)) {
                 // "Item: Get Item deleted because Get Demo was canceled\n"
                 OS_REPORT("アイテム：ゲットデモ中止されたので、ゲットアイテム削除しました\n");
@@ -561,7 +558,7 @@ void daItem_c::procWaitGetDemoEvent() {
             }
         } else {
             fopAcM_orderItemEvent(this, 0, 0);
-            eventInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
+            eventInfo.onCondition(dEvtCnd_CANGETITEM_e);
         }
     }
 }
@@ -645,7 +642,7 @@ void daItem_c::procMainSwOnWait() {
             OS_REPORT("水面より下で発生wtr<%.2f>my<%.2f>\n", mAcch.m_wtr.GetHeight(), home.pos.y);
         }
 
-        if (func_80141AE8(&mSwOnWaitTimer) == 0) {
+        if (cLib_calcTimer<u8>(&mSwOnWaitTimer) == 0) {
             show();
             procInitNormal();
         }
@@ -726,7 +723,7 @@ void daItem_c::move_proc_call() {
     }
 
     bool update_pos = true;
-    if (mAcch.i_ChkGroundHit() && !mAcch.ChkGroundLanding() && !mAcch.ChkWallHit() &&
+    if (mAcch.ChkGroundHit() && !mAcch.ChkGroundLanding() && !mAcch.ChkWallHit() &&
         !dComIfG_Bgsp().ChkMoveBG_NoDABg(mAcch.m_gnd) && !mCcCyl.ChkCoHit() &&
         mLastPos == current.pos)
     {
@@ -1040,7 +1037,7 @@ int daItem_c::itemActionForHeart() {
 
     mAcch.CrrPos(dComIfG_Bgsp());
 
-    if (mAcch.ChkGroundLanding() || mAcch.i_ChkGroundHit()) {
+    if (mAcch.ChkGroundLanding() || mAcch.ChkGroundHit()) {
         clrFlag(FLAG_UNK_2_e);
         shape_angle.z = 0;
         fopAcM_SetSpeed(this, 0.0f, -1.0f, 0.0f);
@@ -1059,7 +1056,7 @@ int daItem_c::itemActionForArrow() {
     mAcch.CrrPos(dComIfG_Bgsp());
     bg_check();
 
-    if (mAcch.i_ChkGroundHit() && !mAcch.ChkGroundLanding()) {
+    if (mAcch.ChkGroundHit() && !mAcch.ChkGroundLanding()) {
         fopAcM_SetSpeedF(this, 0.0f);
         RotateYBase();
     }
@@ -1153,7 +1150,7 @@ int daItem_c::CountTimer() {
         }
     }
 
-    func_80141AE8(&mBoomWindTgTimer);
+    cLib_calcTimer<u8>(&mBoomWindTgTimer);
     return 1;
 }
 
@@ -1181,7 +1178,7 @@ void daItem_c::initFlag() {
     default:
         // "Item: Set Type<%d>\n"
         OS_REPORT("アイテム：セットタイプ<%d>\n", type);
-        JUT_ASSERT(0);
+        JUT_ASSERT(0, 0);
     case TYPE_LAUNCH_e:
     case TYPE_LAUNCH_SMALL_e:
     case TYPE_LAUNCH_FROM_PLAYER_e:
@@ -1232,7 +1229,7 @@ void daItem_c::initScale() {
         scale.setall(0.0f);
         break;
     default:
-        JUT_ASSERT(0);
+        JUT_ASSERT(0, 0);
     case TYPE_FIXED_PLACE_e:
     case TYPE_WAIT_e:
     case TYPE_SIMPLE_GET_e:

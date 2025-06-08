@@ -24,6 +24,11 @@ struct data {
 
     struct TParse_TBlock : public JGadget::binary::TParseData_aligned<4> {
         TParse_TBlock(const void* data) : TParseData_aligned(data) {}
+
+        const char* get() const { return (char*)getRaw(); }
+        u32 get_size() const { return *(u32*)(get() + 0x4); }
+        const void* getNext() const { return (char*)getRaw() + get_size(); }
+        u32 get_type() const { return *(u32*)(get() + 0x0); }
     };
 
     struct TParse_TBlock_info : public TParse_TBlock {
@@ -45,14 +50,26 @@ struct data {
 
         char* get() const { return (char*)getRaw(); }
         u8 get_formSupplement() const { return *(u8*)(get() + 0xB); }
-        u16 get_number() const { return *(u16*)(get() + 0x8); }
-        char* getContent() const { return (char*)get() + 0x10; }
+        int get_number() const { return *(u16*)(get() + 0x8); }
+        u32* getContent() const { return (u32*)((u32)getRaw() + 0x10); }
         u8 get_form() const { return *(u8*)(get() + 0xA) & 0xF; }
         bool get_isOrdered() const { return *(u8*)(get() + 0xA) & 0xF0; }
     };
 
     struct TParse_TBlock_color : public TParse_TBlock {
         TParse_TBlock_color(const void* data) : TParse_TBlock(data) {}
+    };
+
+    struct TParse_TBlock_messageText : public TParse_TBlock {
+        TParse_TBlock_messageText(const void* data) : TParse_TBlock(data) {}
+
+        char* getContent() const { return (char*)getRaw() + 0x8; }
+    };
+
+    struct TParse_TBlock_stringAttribute : public TParse_TBlock {
+        TParse_TBlock_stringAttribute(const void* data) : TParse_TBlock(data) {}
+
+        char* getContent() const { return (char*)getRaw() + 0x8; }
     };
 
     static u32 getTagCode(u32 tag) { return tag & 0xFFFF; }

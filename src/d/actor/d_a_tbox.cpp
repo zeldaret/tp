@@ -113,7 +113,7 @@ cPhs__Step daTbox_c::commonShapeSet() {
     }
 
     J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes(model_info->mArcName, model_info->mBckResNo);
-    if (!mpAnm->init(bck, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, -1, false)) {
+    if (!mpAnm->init(bck, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1, false)) {
         return cPhs_ERROR_e;
     }
 
@@ -152,7 +152,7 @@ cPhs__Step daTbox_c::commonShapeSet() {
 
         J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(model_info->mArcName, model_info->mBrkResNo);
         JUT_ASSERT(0x1E1, brk != 0);
-        if (!mpEffectAnm->init(modelData, brk, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 0.0f, 0, -1)) {
+        if (!mpEffectAnm->init(modelData, brk, TRUE, J3DFrameCtrl::EMode_NONE, 0.0f, 0, -1)) {
             return cPhs_ERROR_e;
         }
     }
@@ -439,7 +439,7 @@ void daTbox_c::initPos() {
         }
 
         if (dComIfGs_isSwitch(getSwNo(), fopAcM_GetRoomNo(this))) {
-            dStage_dPnt_c* pnt = &path_p->m_points[path_p->m_num - 1];
+            dPnt* pnt = &path_p->m_points[path_p->m_num - 1];
             current.pos = pnt->m_position;
             home.pos = pnt->m_position;
         }
@@ -1002,7 +1002,7 @@ void daTbox_c::OpenInit_com() {
         if (getShapeType() == SHAPE_LARGE) {
             J3DAnmTransform* bck =
                 (J3DAnmTransform*)dComIfG_getObjectRes(getModelInfo()->mArcName, 9);
-            mpAnm->init(bck, TRUE, J3DFrameCtrl::LOOP_ONCE_e, 1.0f, 0, bck->getFrameMax(), true);
+            mpAnm->init(bck, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, bck->getFrameMax(), true);
             mOpenSeId = Z2SE_OBJ_TBOX_OPEN_B_SLOW;
         }
     }
@@ -1462,10 +1462,10 @@ int daTbox_c::actionOpenWait() {
     daMidna_c* midna = daPy_py_c::getMidnaActor();
     daPy_py_c* player = daPy_getPlayerActorClass();
 
-    if (eventInfo.i_checkCommandDoor()) {
+    if (eventInfo.checkCommandDoor()) {
         dComIfGp_event_onEventFlag(4);
 
-        if (getShapeType() != SHAPE_SMALL && player->i_checkNowWolf() &&
+        if (getShapeType() != SHAPE_SMALL && player->checkNowWolf() &&
                                              !midna->checkMetamorphoseEnable()) {
             setAction(&daTbox_c::actionNotOpenDemo);
             mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
@@ -1480,10 +1480,10 @@ int daTbox_c::actionOpenWait() {
             field_0x9f4 = 0;
         }
     } else if (boxCheck()) {
-        eventInfo.i_onCondition(4);
+        eventInfo.onCondition(4);
         if (getShapeType() == SHAPE_SMALL) {
             eventInfo.setEventName("DEFAULT_TREASURE_SIMPLE");
-        } else if (player->i_checkNowWolf() && !midna->checkMetamorphoseEnable()) {
+        } else if (player->checkNowWolf() && !midna->checkMetamorphoseEnable()) {
             eventInfo.setEventName("DEFAULT_TREASURE_NOTOPEN");
         } else if (getShapeType() == SHAPE_BOSSKEY) {
             eventInfo.setEventId(field_0x984);
@@ -1536,22 +1536,22 @@ void daTbox_c::settingDropDemoCamera() {
 
     player_camera->mCamera.SetTrimSize(maptooldata->field_0x1);
 
-    dStage_roomStatus_c* roomdt = dComIfGp_roomControl_getStatusRoomDt(fopAcM_GetRoomNo(this));
+    dStage_roomDt_c* roomdt = dComIfGp_roomControl_getStatusRoomDt(fopAcM_GetRoomNo(this));
     JUT_ASSERT(0xB8E, roomdt != 0);
     
-    stage_camera_class* stage_camera = roomdt->mRoomDt.getCamera();
-    stage_camera2_data_class* stage_camera_data = stage_camera->mEntries;
+    stage_camera_class* stage_camera = roomdt->getCamera();
+    stage_camera2_data_class* stage_camera_data = stage_camera->m_entries;
     stage_camera_data += maptooldata->field_0x16;
     
-    stage_arrow_class* stage_arrow = roomdt->mRoomDt.getArrow();
-    stage_arrow_data_class* stage_arrow_data = stage_arrow->mEntries;
-    stage_arrow_data += stage_camera_data->field_0x10;
+    stage_arrow_class* stage_arrow = roomdt->getArrow();
+    stage_arrow_data_class* stage_arrow_data = stage_arrow->m_entries;
+    stage_arrow_data += stage_camera_data->m_arrow_idx;
 
     cXyz spA0;
     cXyz spAC;
 
-    spA0.x = stage_arrow_data->mPosition.x;
-    spA0.z = stage_arrow_data->mPosition.z;
+    spA0.x = stage_arrow_data->position.x;
+    spA0.z = stage_arrow_data->position.z;
     spAC.x = home.pos.x;
     spAC.z = home.pos.z;
     f32 var_f30 = spA0.abs(spAC);
@@ -1562,16 +1562,16 @@ void daTbox_c::settingDropDemoCamera() {
     s16 angle;
     getDropSAngle(&angle);
 
-    spB8.x = stage_arrow_data->mPosition.x;
+    spB8.x = stage_arrow_data->position.x;
     spB8.y = 0.0f;
-    spB8.z = stage_arrow_data->mPosition.z;
+    spB8.z = stage_arrow_data->position.z;
     spB8 -= home.pos;
 
     Mtx mtx;
     MTXRotAxisRad(mtx, &spC4, cM_s2rad(angle));
     mDoMtx_multVec(mtx, &spB8, &spB8);
     spB8 += home.pos;
-    spB8.y = stage_arrow_data->mPosition.y;
+    spB8.y = stage_arrow_data->position.y;
 
     cXyz cam_eye;
     cXyz cam_center;
@@ -1579,10 +1579,10 @@ void daTbox_c::settingDropDemoCamera() {
     cam_eye = spB8;
     cam_center = home.pos;
 
-    f32 var_f29 = cM_ssin(stage_arrow_data->mAngle.x);
-    f32 var_f28 = cM_scos(stage_arrow_data->mAngle.x);
+    f32 var_f29 = cM_ssin(stage_arrow_data->angle.x);
+    f32 var_f28 = cM_scos(stage_arrow_data->angle.x);
     f32 dist = var_f30 * (var_f29 / var_f28);
-    if (stage_arrow_data->mAngle.x > 0) {
+    if (stage_arrow_data->angle.x > 0) {
         dist = -dist;
     }
 
@@ -1593,7 +1593,7 @@ void daTbox_c::settingDropDemoCamera() {
 
 /* 80494D88-80494E98 004148 0110+00 1/0 0/0 0/0 .text            actionSwOnWait__8daTbox_cFv */
 int daTbox_c::actionSwOnWait() {
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         setAction(&daTbox_c::actionDemo2);
         mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
         demoProc();
@@ -1603,7 +1603,7 @@ int daTbox_c::actionSwOnWait() {
         } else {
             fopAcM_orderOtherEventId(this, mEventId, getEvent(), 0xffff, 0, 1);
         }
-        eventInfo.i_onCondition(2);
+        eventInfo.onCondition(2);
     }
 
     return true;
@@ -1626,7 +1626,7 @@ int daTbox_c::actionSwOnWait2() {
 
 /* 80494F44-80495058 004304 0114+00 1/0 0/0 0/0 .text            actionDropWait__8daTbox_cFv */
 int daTbox_c::actionDropWait() {
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         setAction(&daTbox_c::actionDropDemo);
         clrDzb();
         field_0x97d = false;
@@ -1637,7 +1637,7 @@ int daTbox_c::actionDropWait() {
     } else if (checkDrop()) {
         if (mEventId != -1) {
             fopAcM_orderOtherEventId(this, mEventId, getEvent(), 0xffff, 0, 1);
-            eventInfo.i_onCondition(2);
+            eventInfo.onCondition(2);
         } else {
             dropProcInitCall();
             setAction(&daTbox_c::actionDropDemo);
@@ -1650,7 +1650,7 @@ int daTbox_c::actionDropWait() {
 
 /* 80495058-8049518C 004418 0134+00 1/0 0/0 0/0 .text            actionGenocide__8daTbox_cFv */
 int daTbox_c::actionGenocide() {
-    if (eventInfo.i_checkCommandDemoAccrpt()) {
+    if (eventInfo.checkCommandDemoAccrpt()) {
         setAction(&daTbox_c::actionDemo2);
         mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
         demoProc();
@@ -1663,7 +1663,7 @@ int daTbox_c::actionGenocide() {
             } else {
                 fopAcM_orderOtherEventId(this, mEventId, getEvent(), 0xffff, 0, 1);
             }
-            eventInfo.i_onCondition(2);
+            eventInfo.onCondition(2);
             dComIfGs_onSwitch(getSwNo(), fopAcM_GetRoomNo(this));
         }
     }
@@ -1831,7 +1831,7 @@ void daTbox_c::mode_exec() {
         if (field_0x97c) {
             mAcch.CrrPos(dComIfG_Bgsp());
         } else {
-            mAcch.i_ClrGroundHit();
+            mAcch.ClrGroundHit();
         }
 
         attention_info.position = current.pos;

@@ -9,9 +9,6 @@
 #include "m_Do/m_Do_audio.h"
 #include "m_Do/m_Do_graphic.h"
 
-extern "C" u8 func_80141AE8(u8*);
-extern "C" s8 func_80252E70(s8*);
-
 /* 80252ED4-80252F28 24D814 0054+00 1/0 0/0 0/0 .text            draw__16dDlst_snapShot_cFv */
 void dDlst_snapShot_c::draw() {
     GXSetTexCopySrc(0, 0, 608, 448);
@@ -39,7 +36,7 @@ void dOvlpFd3_dlst_c::draw() {
     GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
     GXSetZCompLoc(GX_TRUE);
     GXSetZMode(GX_FALSE, GX_ALWAYS, GX_FALSE);
-    GXSetBlendMode(GX_BM_NONE, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_CLEAR);
+    GXSetBlendMode(GX_BM_NONE, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
     GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
     GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, g_clearColor);
     GXSetCullMode(GX_CULL_NONE);
@@ -79,7 +76,7 @@ void dOvlpFd3_dlst_c::draw() {
     GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
     GXSetZCompLoc(GX_TRUE);
     GXSetZMode(GX_FALSE, GX_ALWAYS, GX_FALSE);
-    GXSetBlendMode(GX_BM_NONE, GX_BL_SRC_ALPHA, GX_BL_INV_SRC_ALPHA, GX_LO_CLEAR);
+    GXSetBlendMode(GX_BM_NONE, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
     GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_OR, GX_ALWAYS, 0);
     GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, g_clearColor);
     GXSetCullMode(GX_CULL_NONE);
@@ -130,8 +127,8 @@ dOvlpFd3_c::dOvlpFd3_c() {
 
 /* 80253518-802535AC 24DE58 0094+00 1/0 0/0 0/0 .text            execFirstSnap__10dOvlpFd3_cFv */
 void dOvlpFd3_c::execFirstSnap() {
-    if (func_80141AE8(&field_0x11f) == 0 && field_0x11c != 0) {
-        if (func_80252E70(&mTimer) == 0) {
+    if (cLib_calcTimer(&field_0x11f) == 0 && field_0x11c != 0) {
+        if (cLib_calcTimer(&mTimer) == 0) {
             setExecute(&execFadeOut);
             fopOvlpM_Done(this);
             mTimer = 0xFF;
@@ -161,13 +158,13 @@ void dOvlpFd3_c::execFadeOut() {
             mDoAud_setFadeOutStart(0);
         }
     } else {
-        func_80252E70(&mTimer);
+        cLib_calcTimer(&mTimer);
     }
 }
 
 /* 8025368C-80253730 24DFCC 00A4+00 1/0 0/0 0/0 .text            execNextSnap__10dOvlpFd3_cFv */
 void dOvlpFd3_c::execNextSnap() {
-    if (func_80252E70(&mTimer) == 0) {
+    if (cLib_calcTimer(&mTimer) == 0) {
         if (!JFWDisplay::getManager()->getFader()->startFadeIn(XREG_S(4) + 26)) {
             mDoAud_setFadeInStart(0);
             field_0x110 += field_0x112;

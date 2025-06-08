@@ -1,24 +1,6 @@
 #include "dol2asm.h"
 #include <dolphin.h>
 
-/* 800035C0-800035E4 0004C0 0024+00 0/0 12/12 0/0 .init            TRK_memcpy */
-SECTION_INIT void* TRK_memcpy(void* dst, const void* src, size_t n) {
-    const unsigned char* s = (const unsigned char*)src - 1;
-    unsigned char* d = (unsigned char*)dst - 1;
-
-    n++;
-    while (--n != 0)
-        *++d = *++s;
-    return dst;
-}
-
-/* 80003590-800035C0 000490 0030+00 0/0 1/1 0/0 .init            TRK_memset */
-SECTION_INIT void* TRK_memset(void* dst, int val, size_t n) {
-    TRK_fill_mem(dst, val, n);
-
-    return dst;
-}
-
 /* 80003540-80003590 000440 0050+00 1/1 63/63 6/6 .init            memcpy */
 SECTION_INIT void* memcpy(void* dst, const void* src, size_t n) {
     const unsigned char* s;

@@ -1,26 +1,14 @@
-#ifndef GD_H
-#define GD_H
+#ifndef _DOLPHIN_GD_H_
+#define _DOLPHIN_GD_H_
 
-#include "dolphin/gd/GDBase.h"
-#include "dolphin/gd/GDGeometry.h"
+#include <dolphin/gd/GDBase.h>
+#include <dolphin/gd/GDFile.h>
+#include <dolphin/gd/GDGeometry.h>
+#include <dolphin/gd/GDIndirect.h>
+#include <dolphin/gd/GDLight.h>
+#include <dolphin/gd/GDPixel.h>
+#include <dolphin/gd/GDTev.h>
+#include <dolphin/gd/GDTexture.h>
+#include <dolphin/gd/GDTransform.h>
 
-#ifdef __cplusplus
-extern "C" {
 #endif
-
-static inline u16 __GDLightID2Index(GXLightID id) {
-    u16 lightIdx = (31 - __cntlzw(id));
-    if (lightIdx > 7)
-        lightIdx = 0;
-    return lightIdx;
-}
-
-static inline u16 __GDLightID2Offset(GXLightID id) {
-    return __GDLightID2Index(id) * 0x10;
-}
-
-#ifdef __cplusplus
-};
-#endif
-
-#endif /* GD_H */

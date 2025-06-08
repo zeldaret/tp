@@ -224,7 +224,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
     a_this->mpMorf = new mDoExt_McaMorfSO(
         (J3DModelData*)dComIfG_getObjectRes("B_go", RES_IS_MODEL), NULL, NULL,
-        (J3DAnmTransform*)dComIfG_getObjectRes("B_go", ANM_WAIT_03), J3DFrameCtrl::LOOP_REPEAT_e,
+        (J3DAnmTransform*)dComIfG_getObjectRes("B_go", ANM_WAIT_03), J3DFrameCtrl::EMode_LOOP,
         1.0f, 0, -1, &a_this->mSound, 0x80000, 0x11000084);
 
     if (a_this->mpMorf == NULL || a_this->mpMorf->getModel() == NULL) {

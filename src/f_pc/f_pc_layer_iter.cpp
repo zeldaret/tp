@@ -30,6 +30,23 @@ s32 fpcLyIt_OnlyHereLY(layer_class* i_layer, fpcLyIt_OnlyHereFunc i_func, void* 
     return result;
 }
 
+s32 fpcLyIt_All(fpcLyIt_OnlyHereFunc i_func, void* i_data) {
+    int ret = 1;
+
+    layer_iter iter;
+    layer_class* layer;
+    iter.func = i_func;
+    iter.data = i_data;
+
+    for (layer = fpcLy_RootLayer(); layer != NULL; layer = (layer_class*)layer->node.mpNextNode) {
+        if (cTrIt_Method(&layer->node_tree, (cNdIt_MethodFunc)cTgIt_MethodCall, &iter) == 0) {
+            ret = 0;
+        }
+    }
+
+    return ret;
+}
+
 /* 80021C28-80021C60 0038+00 s=0 e=3 z=0  None .text      fpcLyIt_Judge__FP11layer_classPFPvPv_PvPv
  */
 void* fpcLyIt_Judge(layer_class* i_layer, fpcLyIt_JudgeFunc i_func, void* i_data) {
@@ -41,19 +58,19 @@ void* fpcLyIt_Judge(layer_class* i_layer, fpcLyIt_JudgeFunc i_func, void* i_data
 
 /* 80021C60-80021CD4 0074+00 s=0 e=1 z=4  None .text      fpcLyIt_AllJudge__FPFPvPv_PvPv */
 void* fpcLyIt_AllJudge(fpcLyIt_JudgeFunc i_func, void* i_data) {
+    void* ret;
+
     layer_iter iter;
-    layer_class* current;
+    layer_class* layer;
     iter.func = i_func;
     iter.data = i_data;
 
-    current = fpcLy_RootLayer();
-    while (current != NULL) {
-        void* result =
-            cTrIt_Judge(&current->node_tree, (cNdIt_JudgeFunc)cTgIt_JudgeFilter, &iter);
-        if (result != NULL) {
-            return result;
+    for (layer = fpcLy_RootLayer(); layer != NULL; layer = (layer_class*)layer->node.mpNextNode) {
+        ret = cTrIt_Judge(&layer->node_tree, (cNdIt_JudgeFunc)cTgIt_JudgeFilter, &iter);
+        if (ret != NULL) {
+            return ret;
         }
-        current = (layer_class*)current->node.mpNextNode;
     }
+
     return NULL;
 }

@@ -212,7 +212,7 @@ void daObjLife_c::bg_check() {
         fopAcM_seStart(this, Z2SE_OBJ_KEY_BOUND, fabsf(mPrevSpeed.y) * 2.0f);
     }
 
-    if (mGndLandCount >= 2 || (!mAcch.ChkGroundLanding() && mAcch.i_ChkGroundHit())) {
+    if (mGndLandCount >= 2 || (!mAcch.ChkGroundLanding() && mAcch.ChkGroundHit())) {
         endEffect02();
     }
 }
@@ -252,7 +252,7 @@ int daObjLife_c::actionWait() {
         fopAcM_posMoveF(this, mCcStts.GetCCMoveP());
         mAcch.CrrPos(dComIfG_Bgsp());
 
-        if (mAcch.ChkGroundLanding() || mAcch.i_ChkGroundHit()) {
+        if (mAcch.ChkGroundLanding() || mAcch.ChkGroundHit()) {
             fopAcM_SetSpeed(this, 0.0f, -1.0f, 0.0f);
             fopAcM_SetSpeedF(this, 0.0f);
         } else if (speed.y < 0.0f) {
@@ -270,7 +270,7 @@ int daObjLife_c::actionWait() {
         mAcch.CrrPos(dComIfG_Bgsp());
         bg_check();
 
-        if (mAcch.i_ChkGroundHit()) {
+        if (mAcch.ChkGroundHit()) {
             speedF *= 0.9f;
             if (speedF < 1.0f) {
                 speedF = 0.0f;
@@ -310,7 +310,7 @@ int daObjLife_c::initActionOrderGetDemo() {
     hide();
 
     fopAcM_orderItemEvent(this, 0, 0);
-    eventInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
+    eventInfo.onCondition(dEvtCnd_CANGETITEM_e);
 
     mItemId = fopAcM_createItemForTrBoxDemo(&current.pos, m_itemNo, -1, fopAcM_GetRoomNo(this), NULL, NULL);
     JUT_ASSERT(699, mItemId != fpcM_ERROR_PROCESS_ID_e);
@@ -330,7 +330,7 @@ int daObjLife_c::actionOrderGetDemo() {
         }
     } else {
         fopAcM_orderItemEvent(this, 0, 0);
-        eventInfo.i_onCondition(dEvtCnd_CANGETITEM_e);
+        eventInfo.onCondition(dEvtCnd_CANGETITEM_e);
     }
 
     return 1;

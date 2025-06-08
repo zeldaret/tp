@@ -146,11 +146,11 @@ static int dEvDt_Next_Stage(int index, int wipe_type) {
         if (room_no == -1) {
             info = dComIfGp_getStageSclsInfo();
         } else {
-            info = dComIfGp_roomControl_getStatusRoomDt(room_no)->mRoomDt.getSclsInfo();
+            info = dComIfGp_roomControl_getStatusRoomDt(room_no)->getSclsInfo();
         }
 
-        if (info != NULL && id >= 0 && id < info->numEntries) {
-            stage_scls_info_class* stgInfo = &info->mEntries[id];
+        if (info != NULL && id >= 0 && id < info->num) {
+            stage_scls_info_class* stgInfo = &info->m_entries[id];
             stage = stgInfo->mStage;
             point = stgInfo->mStart;
             roomNo = (s8)stgInfo->mRoom;
@@ -434,7 +434,7 @@ void dEvDtStaff_c::specialProcMessage() {
             break;
         case 'CREA':
         case 'SHOW':
-            work->_0 = UINT32_MAX;
+            work->_0 = UINT_MAX;
             work->mLMsg = NULL;
             work->mMsgSubstanceNum = dComIfGp_evmng_getMySubstanceNum(staffId, "msgNo");
             work->mMsgSubstanceP = dComIfGp_evmng_getMyIntegerP(staffId, "msgNo");
@@ -498,7 +498,7 @@ void dEvDtStaff_c::specialProcMessage() {
         switch (data->unk) {
         case 0:
             work->_0 = fopMsgM_messageSet(work->mMsgNo, 1000);
-            if (work->_0 != UINT32_MAX) {
+            if (work->_0 != UINT_MAX) {
                 data->unk++;
             }
             break;
@@ -525,7 +525,7 @@ void dEvDtStaff_c::specialProcMessage() {
         switch (data->unk) {
         case 0:
             work->_0 = fopMsgM_messageSet(work->mMsgNo, 1000);
-            if (work->_0 != UINT32_MAX) {
+            if (work->_0 != UINT_MAX) {
                 data->unk = 1;
             } else {
                 break;
@@ -544,7 +544,7 @@ void dEvDtStaff_c::specialProcMessage() {
                 break;
             case 0x12:
                 work->mLMsg->mode = 0x13;
-                work->_0 = UINT32_MAX;
+                work->_0 = UINT_MAX;
                 work->mLMsg = NULL;
                 work->mMsgSubstanceNum--;
                 if (work->mMsgSubstanceNum != 0) {
@@ -571,7 +571,7 @@ void dEvDtStaff_c::specialProcMessage() {
             dComIfGp_evmng_cutEnd(staffId);
         } else if (work->mLMsg->mode == 0x12) {
             work->mLMsg->mode = 0x13;
-            work->_0 = UINT32_MAX;
+            work->_0 = UINT_MAX;
             work->mLMsg = NULL;
             dComIfGp_evmng_cutEnd(staffId);
         }
@@ -677,7 +677,7 @@ void dEvDtStaff_c::specialProcCreate() {
 
             int* argP = dComIfGp_evmng_getMyIntegerP(staffId, "ARG");
             if (argP == NULL) {
-                arg = UINT32_MAX;
+                arg = UINT_MAX;
             } else {
                 arg = *argP;
             }
@@ -739,7 +739,7 @@ void dEvDtStaff_c::specialProcDirector() {
         if (switchTableP != NULL) {
             switchTable = *switchTableP;
         } else {
-            switchTable = i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo());
+            switchTable = dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo());
         }
 
         int* switchBitP = dComIfGp_evmng_getMyIntegerP(staffId, "SwitchBit");

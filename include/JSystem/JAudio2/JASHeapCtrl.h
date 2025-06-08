@@ -3,8 +3,9 @@
 
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSUList.h"
-#include "dolphin/os/OSInterrupt.h"
-#include "dolphin/os/OSMutex.h"
+#include "JSystem/JUtility/JUTAssert.h"
+#include <dolphin/os.h>
+#include <dolphin/os.h>
 
 class JASDisposer;
 class JKRHeap;
@@ -68,13 +69,11 @@ namespace JASThreadingModel {
         };
     };
 
-    
+    template <typename A0>
     struct ObjectLevelLockable {
-        // Should be templated on the chunk memory but couldn't initialize it inside the class itself
-        //template <typename A0>
         struct Lock {
-            Lock(OSMutex* mutex) {
-                mMutex = mutex;
+            Lock(A0 const& mutex) {
+                mMutex = (A0*)&mutex;
                 OSLockMutex(mMutex);
             }
 
@@ -82,7 +81,7 @@ namespace JASThreadingModel {
                 OSUnlockMutex(mMutex);
             }
 
-            OSMutex* mMutex;
+            A0* mMutex;
         };
     };
 };
@@ -99,12 +98,14 @@ public:
     void free(void* ptr, u32 n) { JASGenericMemPool::free(ptr, n); }
 };
 
+namespace JASKernel { JKRHeap* getSystemHeap(); };
+
 /**
  * @ingroup jsystem-jaudio
  * 
  */
-template<u32 ChunkSize, typename T>
-class JASMemChunkPool {
+template<u32 ChunkSize, template<typename> class T>
+class JASMemChunkPool : public OSMutex {
     struct MemoryChunk {
         MemoryChunk(MemoryChunk* nextChunk) {
             mNextChunk = nextChunk;
@@ -112,7 +113,7 @@ class JASMemChunkPool {
             mChunks = 0;
         }
 
-        bool checkArea(void* ptr) {
+        bool checkArea(const void* ptr) const {
             return (u8*)this + 0xc <= (u8*)ptr && (u8*)ptr < (u8*)this + (ChunkSize + 0xc);
         }
 
@@ -127,11 +128,11 @@ class JASMemChunkPool {
             return rv;
         }
 
-        void free() {
+        void free(void* mem) {
             mChunks--;
         }
 
-        bool isEmpty() {
+        bool isEmpty() const {
             return mChunks == 0;
         }
 
@@ -154,7 +155,7 @@ class JASMemChunkPool {
     };
 public:
     JASMemChunkPool() {
-        OSInitMutex(&mMutex);
+        OSInitMutex(this);
         field_0x18 = NULL;
         createNewChunk();
     }
@@ -183,7 +184,7 @@ public:
     }
 
     void* alloc(u32 size) {
-        T::Lock lock(&mMutex);
+        typename T<JASMemChunkPool<ChunkSize, T> >::Lock lock(*this);
         if (field_0x18->getFreeSize() < size) {
             if (ChunkSize < size) {
                 return NULL;
@@ -196,12 +197,13 @@ public:
     }
 
     void free(void* ptr) {
-        T::Lock lock(&mMutex);
+        typename T<JASMemChunkPool<ChunkSize, T> >::Lock lock(*this);
         MemoryChunk* chunk = field_0x18;
         MemoryChunk* prevChunk = NULL;
         while (chunk != NULL) {
             if (chunk->checkArea(ptr)) {
-                chunk->free();
+                chunk->free(ptr);
+
                 if (chunk != field_0x18 && chunk->isEmpty()) {
                     MemoryChunk* nextChunk = chunk->getNextChunk();
                     delete chunk;
@@ -212,9 +214,10 @@ public:
             prevChunk = chunk;
             chunk = chunk->getNextChunk();
         }
+
+        JUT_PANIC(362,"Cannnot free for JASMemChunkPool")
     }
 
-    /* 0x00 */ OSMutex mMutex;
     /* 0x18 */ MemoryChunk* field_0x18;
 };
 
@@ -239,23 +242,23 @@ template <typename T>
 class JASPoolAllocObject {
 public:
     static void* operator new(size_t n) {
-        JASMemPool<T>* memPool = getMemPool();
+        JASMemPool<T>* memPool = getMemPool_();
         return memPool->alloc(sizeof(T));
     }
     static void* operator new(size_t n, void* ptr) {
         return ptr;
     }
     static void operator delete(void* ptr, size_t n) {
-        JASMemPool<T>* memPool_ = getMemPool();
+        JASMemPool<T>* memPool_ = getMemPool_();
         memPool_->free(ptr, sizeof(T));
     }
     static void newMemPool(int param_0) {
-        JASMemPool<T>* memPool_ = getMemPool();
+        JASMemPool<T>* memPool_ = getMemPool_();
         memPool_->newMemPool(param_0);
     }
 
 private:
-    static JASMemPool<T>* getMemPool() {
+    static JASMemPool<T>* getMemPool_() {
         static JASMemPool<T> memPool_;
         return &memPool_;
     }
@@ -269,17 +272,17 @@ template <typename T>
 class JASMemPool_MultiThreaded : public JASGenericMemPool {
 public:
     void newMemPool(int param_0) {
-        JASThreadingModel::InterruptsDisable<JASMemPool_MultiThreaded<T> >::Lock lock(*this);
+        typename JASThreadingModel::InterruptsDisable<JASMemPool_MultiThreaded<T> >::Lock lock(*this);
         JASGenericMemPool::newMemPool(sizeof(T), param_0);
     }
 
     void* alloc(size_t count) {
-        JASThreadingModel::InterruptsDisable<JASMemPool_MultiThreaded<T> >::Lock lock(*this);
+        typename JASThreadingModel::InterruptsDisable<JASMemPool_MultiThreaded<T> >::Lock lock(*this);
         return JASGenericMemPool::alloc(count);
     }
 
     void free(void* ptr, u32 param_1) {
-        JASThreadingModel::InterruptsDisable<JASMemPool_MultiThreaded<T> >::Lock lock(*this);
+        typename JASThreadingModel::InterruptsDisable<JASMemPool_MultiThreaded<T> >::Lock lock(*this);
         JASGenericMemPool::free(ptr, param_1);
     }
 };

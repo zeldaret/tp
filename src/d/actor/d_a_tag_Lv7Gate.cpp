@@ -28,7 +28,7 @@ int daTagLv7Gate_c::createHeap() {
 
     mpBck = new mDoExt_bckAnm();
 
-    if (mpBck == NULL || !mpBck->init(bck, TRUE, J3DFrameCtrl::LOOP_REPEAT_e, 1.0f, 0, -1, false)) {
+    if (mpBck == NULL || !mpBck->init(bck, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, false)) {
         return 0;
     }
 
@@ -72,7 +72,7 @@ int daTagLv7Gate_c::create() {
 void daTagLv7Gate_c::setPath(u8 i_path_ID) {
     mRoomPath = dPath_GetRoomPath(i_path_ID, fopAcM_GetRoomNo(this));
     if (mRoomPath != NULL) {
-        dStage_dPnt_c* pnt = dPath_GetPnt(mRoomPath, 0);
+        dPnt* pnt = dPath_GetPnt(mRoomPath, 0);
         cXyz pos1 = pnt->m_position;
 
         pnt = dPath_GetPnt(mRoomPath, 1);
@@ -184,7 +184,7 @@ void daTagLv7Gate_c::flyAnime() {
     J3DAnmTransform* bck_anm_3 = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 7);
     J3DAnmTransform* bck_anm_4 = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 8);
 
-    s32 attribute = J3DFrameCtrl::LOOP_REPEAT_e;
+    s32 attribute = J3DFrameCtrl::EMode_LOOP;
 
     mLastFrame = mpBck->getFrame();
 
@@ -195,13 +195,13 @@ void daTagLv7Gate_c::flyAnime() {
             field_0x5ac += 1;
             if (field_0x5ac >= 150) {
                 bck = bck_anm_4;
-                attribute = J3DFrameCtrl::LOOP_ONCE_e;
+                attribute = J3DFrameCtrl::EMode_NONE;
             }
         }
     } else if (bck_anm == bck_anm_1) {
         if (mLastFrame > mpBck->getFrame()) {
             bck = bck_anm_2;
-            attribute = J3DFrameCtrl::LOOP_ONCE_e;
+            attribute = J3DFrameCtrl::EMode_NONE;
         }
     } else {
         // } else if (mpBck->isStop()) {
@@ -210,10 +210,10 @@ void daTagLv7Gate_c::flyAnime() {
         if (tmp->isStop()) {
             if (bck_anm == bck_anm_2) {
                 bck = bck_anm_3;
-                attribute = J3DFrameCtrl::LOOP_REPEAT_e;
+                attribute = J3DFrameCtrl::EMode_LOOP;
             } else if (bck_anm == bck_anm_4) {
                 bck = bck_anm_1;
-                attribute = J3DFrameCtrl::LOOP_REPEAT_e;
+                attribute = J3DFrameCtrl::EMode_LOOP;
             }
         }
     }
@@ -290,7 +290,7 @@ int daTagLv7Gate_c::execute() {
 }
 
 bool daTagLv7Gate_c::checkPoint(f32 i_speed) {
-    dStage_dPnt_c* pnt = dPath_GetPnt(mRoomPath, field_0x5a0);
+    dPnt* pnt = dPath_GetPnt(mRoomPath, field_0x5a0);
     mDistance -= i_speed;
     if (sqrtf(PSVECSquareDistance((Vec*)&mPos1, (Vec*)&pnt->m_position)) < i_speed ||
         mDistance < 0.0f) {
@@ -308,7 +308,7 @@ bool daTagLv7Gate_c::setNextPoint() {
         mDistance = 0;
         bVar1 = true;
     } else {
-        dStage_dPnt_c* pnt = dPath_GetPnt(mRoomPath, field_0x5a0);
+        dPnt* pnt = dPath_GetPnt(mRoomPath, field_0x5a0);
 
         cXyz pos1(mPos1.x, 0.0f, mPos1.z);
 

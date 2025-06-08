@@ -12,43 +12,7 @@
 #include "d/actor/d_a_midna.h"
 #include "d/actor/d_a_tag_mhint.h"
 #include "d/actor/d_a_tag_mstop.h"
-
-// This probably will need to be moved once actual debug rom decomp begins
-#ifdef DEBUG
-static dEvDb_bit_c dEvDb_bit_table[799] = {
-    #include "src/d/d_event_debug_bit_table.inc"
-};
-
-static dEvDb_reg_c dEvDb_reg_table[21] = {
-    #include "src/d/d_event_debug_reg_table.inc"
-};
-
-static dEvDb_bit_c dEvDb_bit_table_tmp[169] = {
-    #include "src/d/d_event_debug_bit_table_tmp.inc"
-};
-
-static dEvDb_reg_c dEvDb_reg_table_tmp[14] = {
-    #include "src/d/d_event_debug_reg_table_tmp.inc"
-};
-
-static dEvDb_flag_base_c dEvDb_flag_base_table = {
-    dEvDb_bit_table, // mBitTable
-    dEvDb_reg_table, // mRegTable
-    799,             // mBitNum
-    21,              // mRegNum
-    22,              // field_0x10
-    4                // field_0x1
-};
-
-static dEvDb_flag_base_c dEvDb_flag_base_table_tmp = {
-    dEvDb_bit_table_tmp, // mBitTable
-    dEvDb_reg_table_tmp, // mRegTable
-    169,                 // mBitNum
-    14,                  // mRegNum
-    43,                  // field_0x10
-    6                    // field_0x14
-};
-#endif
+#include "d/d_event_debug.h"
 
 /* 80041480-80041488 03BDC0 0008+00 1/1 0/0 0/0 .text event_debug_evnt__21@unnamed@d_event_cpp@Fv
  */
@@ -243,7 +207,7 @@ int dEvt_control_c::talkCheck(dEvt_order_c* p_order) {
         (fopAcM_GetName(actor) == PROC_Tag_Mstop && ((daTagMstop_c*)actor)->checkNoAttention()) ||
         fopAcM_GetName(actor) == PROC_MIDNA) {
         daMidna_c* midna = (daMidna_c*)daPy_py_c::getMidnaActor();
-        if (!daPy_py_c::i_checkNowWolf() || midna->checkNoDraw()) {
+        if (!daPy_py_c::checkNowWolf() || midna->checkNoDraw()) {
             event = "MHINT_TALK";
         }
     }
@@ -310,7 +274,7 @@ int dEvt_control_c::catchCheck(dEvt_order_c* p_order) {
     fopAc_ac_c* actor2 = p_order->mActor2;
     fopAc_ac_c* actor1 = p_order->mActor1;
 
-    if (actor1 == NULL || (actor2 != NULL && !actor2->eventInfo.chkCondition(0x40))) {
+    if (actor1 == NULL || (actor2 != NULL && !actor2->eventInfo.chkCondition(dEvtCnd_40_e))) {
         return 0;
     }
 
@@ -1160,24 +1124,24 @@ dStage_MapEvent_dt_c* dEvt_control_c::searchMapEventData(u8 mapToolID, s32 roomN
         return NULL;
     }
 
-    dStage_roomStatus_c* room = dComIfGp_roomControl_getStatusRoomDt(roomNo);
-    if (room != NULL) {
-        dStage_MapEventInfo_c* roomDt = room->mRoomDt.getMapEventInfo();
+    dStage_roomDt_c* room_dt = dComIfGp_roomControl_getStatusRoomDt(roomNo);
+    if (room_dt != NULL) {
+        dStage_MapEventInfo_c* roomInfo = room_dt->getMapEventInfo();
 
-        if (roomDt != NULL) {
-            for (int i = 0; i < roomDt->mCount; i++) {
-                if (mapToolID == roomDt->mData[i].field_0x4) {
-                    return &roomDt->mData[i];
+        if (roomInfo != NULL) {
+            for (int i = 0; i < roomInfo->num; i++) {
+                if (mapToolID == roomInfo->m_entries[i].field_0x4) {
+                    return &roomInfo->m_entries[i];
                 }
             }
         }
     }
 
-    dStage_MapEventInfo_c* stageDt = dComIfGp_getStage()->getMapEventInfo();
-    if (stageDt != NULL) {
-        for (int i = 0; i < stageDt->mCount; i++) {
-            if (mapToolID == stageDt->mData[i].field_0x4) {
-                return &stageDt->mData[i];
+    dStage_MapEventInfo_c* stageInfo = dComIfGp_getStage()->getMapEventInfo();
+    if (stageInfo != NULL) {
+        for (int i = 0; i < stageInfo->num; i++) {
+            if (mapToolID == stageInfo->m_entries[i].field_0x4) {
+                return &stageInfo->m_entries[i];
             }
         }
     }

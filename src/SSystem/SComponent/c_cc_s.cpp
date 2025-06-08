@@ -165,7 +165,7 @@ void cCcS::ChkAtTg() {
             continue;
 
         cCcD_ShapeAttr* pat_sa = (*pat_obj)->GetShapeAttr();
-        JUT_ASSERT(pat_sa != 0);
+        JUT_ASSERT(0, pat_sa != 0);
 
         for (cCcD_Obj** ptg_obj = mpObjTg; ptg_obj < objTgEnd; ++ptg_obj) {
             if (*ptg_obj == NULL || !(*ptg_obj)->ChkTgSet())
@@ -176,7 +176,7 @@ void cCcS::ChkAtTg() {
                 continue;
 
             cCcD_ShapeAttr* ptg_sa = (*ptg_obj)->GetShapeAttr();
-            JUT_ASSERT(ptg_sa != 0);
+            JUT_ASSERT(0, ptg_sa != 0);
 
             static cXyz cross;
             bool didCross = pat_sa->CrossAtTg(*ptg_sa, &cross);
@@ -225,7 +225,7 @@ void cCcS::ChkCo() {
             continue;
 
         cCcD_ShapeAttr* pco1_sa = (*pco1_obj)->GetShapeAttr();
-        JUT_ASSERT(pco1_sa != 0);
+        JUT_ASSERT(0, pco1_sa != 0);
 
         for (cCcD_Obj** pco2_obj = pco1_obj + 1; pco2_obj < objCoEnd; ++pco2_obj) {
             if (*pco2_obj == NULL || !(*pco2_obj)->ChkCoSet())
@@ -236,7 +236,7 @@ void cCcS::ChkCo() {
                 continue;
 
             cCcD_ShapeAttr* pco2_sa = (*pco2_obj)->GetShapeAttr();
-            JUT_ASSERT(pco2_sa != 0);
+            JUT_ASSERT(0, pco2_sa != 0);
 
             f32 cross_len;
             if (pco1_sa->CrossCo(*pco2_sa, &cross_len)) {
@@ -456,7 +456,7 @@ void cCcS::CalcArea() {
     for (cCcD_Obj** pset_obj = mpObj; pset_obj < mpObj + mObjCount; ++pset_obj) {
         if (*pset_obj != NULL) {
             cCcD_ShapeAttr* pset_sa = (*pset_obj)->GetShapeAttr();
-            JUT_ASSERT(pset_sa != 0);
+            JUT_ASSERT(0, pset_sa != 0);
 
             pset_sa->CalcAabBox();
             aab.SetMinMax(pset_sa->GetWorkAab());
@@ -467,7 +467,7 @@ void cCcS::CalcArea() {
     for (cCcD_Obj** pset_obj = mpObj; pset_obj < mpObj + mObjCount; ++pset_obj) {
         if (*pset_obj != NULL) {
             const cCcD_ShapeAttr* pset_sa = (*pset_obj)->GetShapeAttr();
-            JUT_ASSERT(pset_sa != 0);
+            JUT_ASSERT(0, pset_sa != 0);
 
             cCcD_DivideInfo* divideInfo = &(*pset_obj)->GetDivideInfo();
             mDivideArea.CalcDivideInfo(divideInfo, pset_sa->GetWorkAab(),

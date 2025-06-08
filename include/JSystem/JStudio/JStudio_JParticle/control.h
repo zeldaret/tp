@@ -14,6 +14,7 @@ struct TCreateObject : public JStudio::TCreateObject {
         pJPAEmitterManager_ = p_emitMgr;
         pJSGSystem_ = p_system;
         mPermit_onExit_notEnd = false;
+        JUT_ASSERT(48, pJPAEmitterManager_!=0);
     }
 
     /* 8028E3A0 */ virtual ~TCreateObject();

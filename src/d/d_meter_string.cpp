@@ -48,10 +48,10 @@ int dMeterString_c::_create() {
     }
 
     mpScreen = new J2DScreen();
-    JUT_ASSERT(mpScreen != 0);
+    JUT_ASSERT(0, mpScreen != 0);
 
     bool fg = mpScreen->setPriority("zelda_game_image_cow_get_in.blo", 0x20000, mpMapArchive);
-    JUT_ASSERT(fg != false);
+    JUT_ASSERT(0, fg != false);
     dPaneClass_showNullPane(mpScreen);
 
     OSInitFastCast();
@@ -59,13 +59,13 @@ int dMeterString_c::_create() {
         JKRGetNameResource("zelda_game_image_cow_get_in.bck", mpMapArchive));
 
     mpParentPane = new CPaneMgr(mpScreen, 'get_in_n', 2, NULL);
-    JUT_ASSERT(mpParentPane != 0);
+    JUT_ASSERT(0, mpParentPane != 0);
 
     mpRootPane = new CPaneMgr(mpScreen, 'n_all', 0, NULL);
-    JUT_ASSERT(mpRootPane != 0);
+    JUT_ASSERT(0, mpRootPane != 0);
 
     mpTextPane = new CPaneMgr(mpScreen, 'get_in', 0, NULL);
-    JUT_ASSERT(mpTextPane != 0);
+    JUT_ASSERT(0, mpTextPane != 0);
 
     static_cast<J2DTextBox*>(mpScreen->search('get_in_s'))->setFont(mDoExt_getMesgFont());
     static_cast<J2DTextBox*>(mpScreen->search('get_in'))->setFont(mDoExt_getMesgFont());

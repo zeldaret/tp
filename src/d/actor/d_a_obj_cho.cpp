@@ -134,7 +134,7 @@ void daObjCHO_c::WallCheck() {
     lin_chk.SetObj();
     lin_chk.Set(&old.pos, &current.pos, NULL);
     if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-        current.pos = lin_chk.i_GetCross();
+        current.pos = lin_chk.GetCross();
         mTargetAngleY += 0x100;
     }
 }
@@ -358,7 +358,7 @@ void daObjCHO_c::BoomChk() {
             if (dComIfG_Bgsp().LineCross(&lin_chk)) {
                 cM3dGPla plane;
                 dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
-                old.pos = lin_chk.i_GetCross();
+                old.pos = lin_chk.GetCross();
                 current.pos = old.pos;
                 mAction = ACT_MOVE;
                 mMode = 0;

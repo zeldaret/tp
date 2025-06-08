@@ -3,7 +3,7 @@
 
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
-#include "dolphin/gx/GXStruct.h"
+#include <dolphin/gx.h>
 
 class J3DMaterial;
 
@@ -143,11 +143,6 @@ public:
     u16 getMaterialID(int idx) const { return mpMaterialID[idx]; }
     u8 getMaterialMode(int idx) const { return mpMaterialInitData[mpMaterialID[idx]].mMaterialMode; }
     
-    static int getMdlDataFlag_TevStageNum(u32 flags) { return (flags >> 0x10) & 0x1f; }
-    static int getMdlDataFlag_TexGenFlag(u32 flags) { return flags & 0x0c000000; }
-    static u32 getMdlDataFlag_ColorFlag(u32 flags) { return flags & 0xc0000000; }
-    static u32 getMdlDataFlag_PEFlag(u32 flags) { return flags & 0x30000000; }
-
     /* 0x00 */ u16 mMaterialNum;
     /* 0x04 */ J3DMaterialInitData* mpMaterialInitData;
     /* 0x08 */ u16* mpMaterialID;

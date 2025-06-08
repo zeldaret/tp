@@ -291,10 +291,10 @@ static dPath* set_path_info(fopAc_ac_c* i_this) {
 }
 
 /* 80857F8C-8085811C 00080C 0190+00 1/1 0/0 0/0 .text near_rail_get__FP13kytag06_classP4cXyz */
-static dStage_dPnt_c* near_rail_get(kytag06_class* i_this, cXyz* i_pos) {
+static dPnt* near_rail_get(kytag06_class* i_this, cXyz* i_pos) {
     f32 nearest_dist = 100000000.0f;
     dPath* path = i_this->mpPath;
-    dStage_dPnt_c* pnt;
+    dPnt* pnt;
 
     for (int i = 0; i < path->m_num; i++) {
         f32 pnt_dist = i_pos->abs(path->m_points[i].m_position);
@@ -952,8 +952,7 @@ static void daKytag06_type_03_Execute(kytag06_class* i_this) {
                 i_this->field_0x578 = 450;
                 dKy_change_colpat(i_this->field_0x591);
 
-                s32 stayNo = dComIfGp_roomControl_getStayNo();
-                dComIfGs_onSwitch(i_this->mSwNo, stayNo);
+                dComIfGs_onSwitch(i_this->mSwNo, dComIfGp_roomControl_getStayNo());
             }
             break;
         case 1:
@@ -1012,7 +1011,7 @@ static int daKytag06_Execute(kytag06_class* i_this) {
         if (i_this->mpPath != NULL) {
             int target1 = 0;
             int target2 = 0;
-            dStage_dPnt_c* pnt = near_rail_get(i_this, &camera->lookat.eye);
+            dPnt* pnt = near_rail_get(i_this, &camera->lookat.eye);
 
             if (pnt != NULL && pnt->mArg0 != 0xFF) {
                 dKy_change_colpat(pnt->mArg0);
@@ -1046,8 +1045,7 @@ static int daKytag06_Execute(kytag06_class* i_this) {
         break;
     case 2:
         if (i_this->mSwNo != 0xFF) {
-            s32 stayNo = dComIfGp_roomControl_getStayNo();
-            if (dComIfGs_isSwitch(i_this->mSwNo, stayNo) && i_this->mMode == 0) {
+            if (dComIfGs_isSwitch(i_this->mSwNo, dComIfGp_roomControl_getStayNo()) && i_this->mMode == 0) {
                 i_this->mMode = 1;
                 dKy_change_colpat(i_this->field_0x591);
             }
@@ -1247,9 +1245,7 @@ static void daKytag06_type03_init(fopAc_ac_c* i_this) {
         // 0C01: Midna's Desperate Hour started    1E08: Midna's Desperate Hour Completed
         if (dComIfGs_isEventBit(0x0C01) && !dComIfGs_isEventBit(0x1E08) && a_this->mSwNo != 0xFF)
         {
-            s32 stayNo = dComIfGp_roomControl_getStayNo();
-
-            if (dComIfGs_isSwitch(a_this->mSwNo, stayNo)) {
+            if (dComIfGs_isSwitch(a_this->mSwNo, dComIfGp_roomControl_getStayNo())) {
                 a_this->mMode = 9;
                 g_env_light.raincnt = 250;
                 g_env_light.mColpatWeather = a_this->field_0x591;

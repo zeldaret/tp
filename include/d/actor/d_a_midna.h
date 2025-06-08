@@ -213,10 +213,9 @@ public:
     };
 
     void onForcePanic() { onEndResetStateFlg0(ERFLG0_FORCE_PANIC); }
-    u32 checkForceNormalColor() const;
-    u32 checkForceTiredColor() const;
-    static bool checkMidnaTired();
-    void onNoServiceWait();
+    u32 checkForceNormalColor() const { return checkStateFlg1(FLG1_FORCE_NORMAL_COL); }
+    u32 checkForceTiredColor() const { return checkStateFlg1(FLG1_FORCE_TIRED_COL); }
+    void onNoServiceWait() { onEndResetStateFlg0(ERFLG0_NO_SERVICE_WAIT); }
 
     /* 804BC3E0 */ int modelCallBack(int);
     /* 804BC5C4 */ int changeUpperBck();
@@ -280,9 +279,9 @@ public:
     void changeDemoMode(u32 mode) { mDemoMode = mode; }
     BOOL checkPortalObjCall() { return checkStateFlg0(FLG0_PORTAL_OBJ_CALL); }
     BOOL checkNoHairScale() const { return checkStateFlg0(FLG0_NO_HAIR_SCALE); }
-    BOOL checkNpcNear() { return checkStateFlg0(FLG0_NPC_NEAR); }
-    BOOL checkNpcFar() { return checkStateFlg0(FLG0_NPC_FAR); }
-    BOOL checkNoDraw() const { return checkStateFlg0(FLG0_NO_DRAW); }
+    BOOL checkNpcNear() const { return checkStateFlg0(FLG0_NPC_NEAR); }
+    BOOL checkNpcFar() const { return checkStateFlg0(FLG0_NPC_FAR); }
+    u32 checkNoDraw() const { return checkStateFlg0(FLG0_NO_DRAW); }
     BOOL checkNoInput() const { return checkStateFlg0(FLG0_NO_INPUT); }
     BOOL checkWolfNoPos() const { return checkStateFlg0(FLG0_WOLF_NO_POS); }
     int checkMetamorphoseEnable() { return (this->*mpFunc)(); }
@@ -357,7 +356,7 @@ public:
         return dKy_darkworld_check() == true || dComIfGs_isTransformLV(3);
     }
 
-    static bool i_checkMidnaTired() {
+    static bool checkMidnaTired() {
         return dComIfGs_isTransformLV(3) && !dComIfGs_isEventBit(0x1E08);
     }
 

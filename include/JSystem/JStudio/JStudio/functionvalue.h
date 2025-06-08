@@ -1,11 +1,14 @@
 #ifndef FUNCTIONVALUE_H
 #define FUNCTIONVALUE_H
 
+#include <math.h>
+#include "JSystem/JGadget/std-vector.h"
+#include "JSystem/JGadget/define.h"
 #include "JSystem/JGadget/search.h"
-#include "JSystem/JGadget/vector.h"
-#include "global.h"
 
 namespace JStudio {
+
+typedef f64 TValue;
 
 typedef f64 (*ExtrapolateParameter)(f64, f64);
 
@@ -64,20 +67,19 @@ public:
         : TFunctionValueAttributeSet_const(refer, range, interp) {}
 
     TFunctionValueAttribute_refer* refer_get() const {
-        return static_cast<const TFunctionValueAttributeSet_const*>(this)->refer_get();
+        return TFunctionValueAttributeSet_const::refer_get();
     }
     TFunctionValueAttribute_range* range_get() const {
-        return static_cast<const TFunctionValueAttributeSet_const*>(this)->range_get();
+        return TFunctionValueAttributeSet_const::range_get();
     }
     TFunctionValueAttribute_interpolate* interpolate_get() const {
-        return static_cast<const TFunctionValueAttributeSet_const*>(this)->interpolate_get();
+        return TFunctionValueAttributeSet_const::interpolate_get();
     }
 };
 
 class TFunctionValueAttribute_refer : public JGadget::TVector_pointer<TFunctionValue*> {
 public:
-    TFunctionValueAttribute_refer() :
-    JGadget::TVector_pointer<TFunctionValue*>(JGadget::TAllocator<void*>()) {}
+    inline TFunctionValueAttribute_refer();
     ~TFunctionValueAttribute_refer() {}
 
     /* 802816E8 */ void refer_initialize();
@@ -189,7 +191,7 @@ public:
     };
     typedef f64 (*UnkFunc)(f64, const TFunctionValueAttribute_refer*,
                            const TFunctionValue_composite::TData*);
-    typedef f64 (*CompositeFunc)(const JGadget::TVector_pointer<TFunctionValue>&,
+    typedef f64 (*CompositeFunc)(const JGadget::TVector_pointer<TFunctionValue*>&,
                                  const TFunctionValue_composite::TData&, f64);
 
     /* 80281D5C */ TFunctionValue_composite();
@@ -225,9 +227,9 @@ public:
     TData data;
 };
 
-class TFunctionValue_transition : TFunctionValue,
-                                  TFunctionValueAttribute_range,
-                                  TFunctionValueAttribute_interpolate {
+class TFunctionValue_transition : public TFunctionValue,
+                                  public TFunctionValueAttribute_range,
+                                  public TFunctionValueAttribute_interpolate {
 public:
     /* 802823EC */ TFunctionValue_transition();
     /* 80283CE4 */ virtual ~TFunctionValue_transition() {}
@@ -250,9 +252,9 @@ private:
     /* 0x50 */ f64 _50;
 };
 
-class TFunctionValue_list : TFunctionValue,
-                            TFunctionValueAttribute_range,
-                            TFunctionValueAttribute_interpolate {
+class TFunctionValue_list : public TFunctionValue,
+                            public TFunctionValueAttribute_range,
+                            public TFunctionValueAttribute_interpolate {
 public:
     struct TIndexData_ {
         f64 _0;
@@ -301,25 +303,79 @@ private:
     /* 0x58 */ update_INTERPOLATE pfnUpdate_;
 };
 
-class TFunctionValue_list_parameter : TFunctionValue,
-                                      TFunctionValueAttribute_range,
-                                      TFunctionValueAttribute_interpolate {
+class TFunctionValue_list_parameter : public TFunctionValue,
+                                      public TFunctionValueAttribute_range,
+                                      public TFunctionValueAttribute_interpolate {
 public:
-    struct TIterator_data_ {
-        TIterator_data_(const f32* value) : value_(value) {}
-        TIterator_data_(const TIterator_data_& other) : value_(other.value_) {}
+    struct TIterator_data_
+        : public JGadget::TIterator<
+            std::random_access_iterator_tag,
+            const f32,
+            ptrdiff_t,
+            const f32*,
+            const f32&
+        >
+    {
+        TIterator_data_(const TFunctionValue_list_parameter& rParent, const f32* value) {
+#ifdef DEBUG
+            pOwn_ = &rParent;
+#endif
+            pf_ = value;
+        }
 
-        void operator=(const TIterator_data_& rhs) { value_ = rhs.value_; }
-        TIterator_data_& operator--() {
-            value_ -= 2;
+        const f32* get() const { return pf_; }
+        void set(const f32* value) { pf_ = value; }
+
+        friend bool operator==(const TIterator_data_& r1, const TIterator_data_& r2) {
+#ifdef DEBUG
+            if (!(r1.pOwn_==r2.pOwn_)) {
+                JGadget_outMessage msg(JGadget_outMessage::warning, __FILE__, 124);
+                msg << "r1.pOwn_==r2.pOwn_";
+            }
+#endif
+            return r1.pf_ == r2.pf_;
+        }
+
+        f32 operator*() {
+#ifdef DEBUG
+            JUT_ASSERT(947, pf_!=0);
+#endif
+            return *pf_;
+        }
+
+        TIterator_data_& operator+=(s32 n) {
+            pf_ += suData_size * n;
             return *this;
         }
-        friend bool operator==(const TIterator_data_& lhs, const TIterator_data_& rhs) { return lhs.value_ == rhs.value_; }
+        TIterator_data_& operator-=(s32 n) {
+            pf_ -= suData_size * n;
+            return *this;
+        }
+        TIterator_data_& operator++() {
+            pf_ += suData_size;
+            return *this;
+        }
+        TIterator_data_& operator--() {
+            pf_ -= suData_size;
+            return *this;
+        }
 
-        const f32* get() const { return value_; }
-        void set(const f32* value) { value_ = value; }
+        friend s32 operator-(const TIterator_data_& r1, const TIterator_data_& r2) {
+#ifdef DEBUG
+            if (!(r1.pOwn_==r2.pOwn_)) {
+                JGadget_outMessage msg(JGadget_outMessage::warning, __FILE__, 124);
+                msg << "r1.pOwn_==r2.pOwn_";
+            }
+#endif
+            return (r1.pf_ - r2.pf_) / suData_size;
+        }
 
-        const f32* value_;
+#ifdef DEBUG
+        /* 0x00 */ const TFunctionValue_list_parameter* pOwn_;
+        /* 0x04 */ const f32* pf_;
+#else
+        /* 0x00 */ const f32* pf_;
+#endif
     };
     typedef f64 (*update_INTERPOLATE)(const TFunctionValue_list_parameter&, f64);
 
@@ -342,10 +398,12 @@ public:
     /* 80283060 */ static f64
     update_INTERPOLATE_BSPLINE_dataMore3_(JStudio::TFunctionValue_list_parameter const&, f64);
 
-    f64 data_getValue_back() { 
-        return pfData_[(uData_ - 1) * 2];
+    static const u32 suData_size = 2;
+
+    f64 data_getValue_back() const { 
+        return pfData_[(uData_ - 1) * suData_size];
     }
-    f64 data_getValue_front() { return pfData_[0]; }
+    f64 data_getValue_front() const { return pfData_[0]; }
 
 private:
     /* 0x44 */ const f32* pfData_;
@@ -356,30 +414,88 @@ private:
     /* 0x58 */ update_INTERPOLATE pfnUpdate_;
 };
 
-class TFunctionValue_hermite : TFunctionValue, TFunctionValueAttribute_range {
+class TFunctionValue_hermite : public TFunctionValue, public TFunctionValueAttribute_range {
 public:
-    struct TIterator_data_ {
+    struct TIterator_data_
+        : public JGadget::TIterator<
+            std::random_access_iterator_tag,
+            const f32,
+            ptrdiff_t,
+            const f32*,
+            const f32&
+        >
+    {
         TIterator_data_(const TFunctionValue_hermite& rParent, const f32* value) {
-            value_ = value;
-            size_ = rParent.data_getSize();
+#ifdef DEBUG
+            pOwn_ = &rParent;
+#endif
+            pf_ = value;
+            uSize_ = rParent.data_getSize();
         }
 
-        const f32* get() { return value_; }
-
+        const f32* get() const { return pf_; }
         void set(const f32* value, u32 size) {
-            value_ = value;
-            size_ = size;
+            pf_ = value;
+            uSize_ = size;
         }
-   
-        friend bool operator==(const TIterator_data_& lhs, const TIterator_data_& rhs) { return lhs.value_ == rhs.value_; }
 
+        friend bool operator==(const TIterator_data_& r1, const TIterator_data_& r2) {
+#ifdef DEBUG
+            if (!(r1.pOwn_==r2.pOwn_)) {
+                JGadget_outMessage msg(JGadget_outMessage::warning, __FILE__, 124);
+                msg << "r1.pOwn_==r2.pOwn_";
+            }
+#endif
+            return r1.pf_ == r2.pf_;
+        }
+
+        f32 operator*() {
+#ifdef DEBUG
+            JUT_ASSERT(1098, pf_!=0);
+#endif
+            return *pf_;
+        }
+
+        TIterator_data_& operator+=(s32 n) {
+            pf_ += uSize_ * n;
+            return *this;
+        }
+        TIterator_data_& operator-=(s32 n) {
+            pf_ -= uSize_ * n;
+            return *this;
+        }
+        TIterator_data_& operator++() {
+            pf_ += uSize_;
+            return *this;
+        }
         TIterator_data_& operator--() {
-            value_ -= size_;
+            pf_ -= uSize_;
             return *this;
         }
 
-        /* 0x00 */ const f32* value_;
-        /* 0x04 */ u32 size_;
+        friend s32 operator-(const TIterator_data_& r1, const TIterator_data_& r2) {
+#ifdef DEBUG
+            if (!(r1.pOwn_==r2.pOwn_)) {
+                JGadget_outMessage msg(JGadget_outMessage::warning, __FILE__, 124);
+                msg << "r1.pOwn_==r2.pOwn_";
+            }
+            if (!(r1.uSize_==r2.uSize_)) {
+                JGadget_outMessage msg(JGadget_outMessage::warning, __FILE__, 124);
+                msg << "r1.uSize_==r2.uSize_";
+            }
+            JUT_ASSERT(0, r1.uSize_>0);
+#endif
+            return (r1.pf_ - r2.pf_) / r1.uSize_;
+        }
+
+#ifdef DEBUG
+        /* 0x00 */ const TFunctionValue_hermite* pOwn_;
+        /* 0x04 */ const f32* pf_;
+        /* 0x08 */ u32 uSize_;
+#else
+        /* 0x00 */ const f32* pf_;
+        /* 0x04 */ u32 uSize_;
+#endif
     };
 
     /* 802832C4 */ TFunctionValue_hermite();
@@ -393,19 +509,48 @@ public:
     /* 8028344C */ virtual f64 getValue(f64);
 
     u32 data_getSize() const { return uSize_; }
-    f64 data_getValue_back() { 
-        return pf_[(u_ - 1) * uSize_];
+    f64 data_getValue_back() const { 
+        return pfData_[(u_ - 1) * uSize_];
     }
-    f64 data_getValue_front() { return pf_[0]; }
+    f64 data_getValue_front() const { return pfData_[0]; }
 
 private:
-    /* 0x40 */ const f32* pf_;
+    /* 0x40 */ const f32* pfData_;
     /* 0x44 */ u32 u_;
     /* 0x48 */ u32 uSize_;
     /* 0x4c */ TIterator_data_ dat1;
     /* 0x50 */ TIterator_data_ dat2;
     /* 0x54 */ TIterator_data_ dat3;
 };
+
+namespace functionvalue {
+
+inline f64 extrapolateParameter_raw(f64 a1, f64 a2) {
+    return a1;
+}
+
+inline f64 extrapolateParameter_repeat(f64 a1, f64 a2) {
+    f64 t = fmod(a1, a2);
+
+    if (t < 0.0)
+        t += a2;
+
+    return t;
+}
+
+f64 extrapolateParameter_turn(f64, f64);
+
+inline f64 extrapolateParameter_clamp(f64 value, f64 max) {
+    if (value <= 0.0)
+        return 0.0;
+
+    if (max <= value)
+        value = max;
+
+    return value;
+}
+
+};  // namespace functionvalue
 
 }  // namespace JStudio
 

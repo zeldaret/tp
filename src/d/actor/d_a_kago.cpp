@@ -938,7 +938,7 @@ void daKago_c::endBalloonScore() {
 }
 
 /* 8084B088-8084B108 001BC8 0080+00 3/3 0/0 1/1 .text            checkNextPath__8daKago_cF4cXyz */
-void daKago_c::checkNextPath(cXyz param_0) {
+f32 daKago_c::checkNextPath(cXyz param_0) {
     // NONMATCHING
 }
 

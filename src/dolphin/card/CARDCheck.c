@@ -1,35 +1,33 @@
-#include "dolphin/card/CARDCheck.h"
-#include "dolphin/card.h"
-#include "dolphin/card/CARDPriv.h"
-#include "dolphin/os/OSRtc.h"
+#include <dolphin/card.h>
 
+#include "os/__os.h"
+#include "__card.h"
+
+// prototypes
 static s32 VerifyID(CARDControl* card);
-static s32 VerifyDir(CARDControl* card, int* outCurrent);
-static s32 VerifyFAT(CARDControl* card, int* outCurrent);
+static s32 VerifyDir(CARDControl* card, int* pcurrent);
+static s32 VerifyFAT(CARDControl* card, int* pcurrent);
 
-/* 803559E0-80355B90 350320 01B0+00 0/0 3/3 0/0 .text            __CARDCheckSum */
 void __CARDCheckSum(void* ptr, int length, u16* checksum, u16* checksumInv) {
     u16* p;
     int i;
 
+    ASSERTLINE(82, length % sizeof(u16) == 0);
+
     length /= sizeof(u16);
     *checksum = *checksumInv = 0;
-
     for (i = 0, p = ptr; i < length; i++, p++) {
         *checksum += *p;
         *checksumInv += ~*p;
     }
 
-    if (*checksum == 0xFFFF) {
+    if (*checksum == 0xFFFF)
         *checksum = 0;
-    }
 
-    if (*checksumInv == 0xFFFF) {
+    if (*checksumInv == 0xFFFF)
         *checksumInv = 0;
-    }
 }
 
-/* 80355B90-80355E14 3504D0 0284+00 2/2 0/0 0/0 .text            VerifyID */
 static s32 VerifyID(CARDControl* card) {
     CARDID* id;
     u16 checksum;
@@ -40,18 +38,15 @@ static s32 VerifyID(CARDControl* card) {
 
     id = card->workArea;
 
-    if (id->deviceID != 0 || id->size != card->size) {
+    if (id->deviceID != 0 || id->size != card->size)
         return CARD_RESULT_BROKEN;
-    }
 
     __CARDCheckSum(id, sizeof(CARDID) - sizeof(u32), &checksum, &checksumInv);
-    if (id->checkSum != checksum || id->checkSumInv != checksumInv) {
+    if (id->checkSum != checksum || id->checkSumInv != checksumInv)
         return CARD_RESULT_BROKEN;
-    }
 
     rand = *(OSTime*)&id->serial[12];
     sramEx = __OSLockSramEx();
-
     for (i = 0; i < 12; i++) {
         rand = (rand * 1103515245 + 12345) >> 16;
         if (id->serial[i] != (u8)(sramEx->flashID[card - __CARDBlock][i] + rand)) {
@@ -62,15 +57,14 @@ static s32 VerifyID(CARDControl* card) {
     }
 
     __OSUnlockSramEx(FALSE);
-    if (id->encode != __CARDGetFontEncode()) {
+
+    if (id->encode != __CARDGetFontEncode())
         return CARD_RESULT_ENCODING;
-    }
 
     return CARD_RESULT_READY;
 }
 
-/* 80355E14-80356054 350754 0240+00 2/2 0/0 0/0 .text            VerifyDir */
-static s32 VerifyDir(CARDControl* card, int* outCurrent) {
+static s32 VerifyDir(CARDControl* card, int* pcurrent) {
     CARDDir* dir[2];
     CARDDirCheck* check[2];
     u16 checkSum;
@@ -82,7 +76,7 @@ static s32 VerifyDir(CARDControl* card, int* outCurrent) {
     current = errors = 0;
     for (i = 0; i < 2; i++) {
         dir[i] = (CARDDir*)((u8*)card->workArea + (1 + i) * CARD_SYSTEM_BLOCK_SIZE);
-        check[i] = __CARDGetDirCheck(dir[i]);
+        check[i] = CARDGetDirCheck(dir[i]);
         __CARDCheckSum(dir[i], CARD_SYSTEM_BLOCK_SIZE - sizeof(u32), &checkSum, &checkSumInv);
         if (check[i]->checkSum != checkSum || check[i]->checkSumInv != checkSumInv) {
             ++errors;
@@ -93,25 +87,24 @@ static s32 VerifyDir(CARDControl* card, int* outCurrent) {
 
     if (0 == errors) {
         if (card->currentDir == 0) {
-            if ((check[0]->checkCode - check[1]->checkCode) < 0) {
+            if ((check[0]->checkCode - check[1]->checkCode) < 0)
                 current = 0;
-            } else {
+            else
                 current = 1;
-            }
             card->currentDir = dir[current];
             memcpy(dir[current], dir[current ^ 1], CARD_SYSTEM_BLOCK_SIZE);
         } else {
             current = (card->currentDir == dir[0]) ? 0 : 1;
         }
     }
-    if (outCurrent) {
-        *outCurrent = current;
-    }
+
+    if (pcurrent)
+        *pcurrent = current;
+
     return errors;
 }
 
-/* 80356054-803562D8 350994 0284+00 2/2 0/0 0/0 .text            VerifyFAT */
-static s32 VerifyFAT(CARDControl* card, int* outCurrent) {
+static s32 VerifyFAT(CARDControl* card, int* pcurrent) {
     u16* fat[2];
     u16* fatp;
     u16 nBlock;
@@ -126,8 +119,7 @@ static s32 VerifyFAT(CARDControl* card, int* outCurrent) {
     for (i = 0; i < 2; i++) {
         fatp = fat[i] = (u16*)((u8*)card->workArea + (3 + i) * CARD_SYSTEM_BLOCK_SIZE);
 
-        __CARDCheckSum(&fatp[CARD_FAT_CHECKCODE], CARD_SYSTEM_BLOCK_SIZE - sizeof(u32), &checkSum,
-                       &checkSumInv);
+        __CARDCheckSum(&fatp[CARD_FAT_CHECKCODE], CARD_SYSTEM_BLOCK_SIZE - sizeof(u32), &checkSum, &checkSumInv);
         if (fatp[CARD_FAT_CHECKSUM] != checkSum || fatp[CARD_FAT_CHECKSUMINV] != checkSumInv) {
             ++errors;
             current = i;
@@ -137,10 +129,10 @@ static s32 VerifyFAT(CARDControl* card, int* outCurrent) {
 
         cFree = 0;
         for (nBlock = CARD_NUM_SYSTEM_BLOCK; nBlock < card->cBlock; nBlock++) {
-            if (fatp[nBlock] == CARD_FAT_AVAIL) {
+            if (fatp[nBlock] == CARD_FAT_AVAIL)
                 cFree++;
-            }
         }
+
         if (cFree != fatp[CARD_FAT_FREEBLOCKS]) {
             ++errors;
             current = i;
@@ -151,37 +143,36 @@ static s32 VerifyFAT(CARDControl* card, int* outCurrent) {
 
     if (0 == errors) {
         if (card->currentFat == 0) {
-            if (((s16)fat[0][CARD_FAT_CHECKCODE] - (s16)fat[1][CARD_FAT_CHECKCODE]) < 0) {
+            if (((s16)fat[0][CARD_FAT_CHECKCODE] - (s16)fat[1][CARD_FAT_CHECKCODE]) < 0)
                 current = 0;
-            } else {
+            else
                 current = 1;
-            }
             card->currentFat = fat[current];
             memcpy(fat[current], fat[current ^ 1], CARD_SYSTEM_BLOCK_SIZE);
-        } else {
+        } else
             current = (card->currentFat == fat[0]) ? 0 : 1;
-        }
     }
-    if (outCurrent) {
-        *outCurrent = current;
-    }
+
+    if (pcurrent)
+        *pcurrent = current;
+
     return errors;
 }
 
-/* 803562D8-80356364 350C18 008C+00 0/0 1/1 0/0 .text            __CARDVerify */
 s32 __CARDVerify(CARDControl* card) {
     s32 result;
     int errors;
 
     result = VerifyID(card);
-    if (result < 0) {
+    if (result < 0)
         return result;
-    }
 
     errors = VerifyDir(card, NULL);
     errors += VerifyFAT(card, NULL);
     switch (errors) {
-    case 0:
+    case 0: 
+        ASSERTLINE(301, card->currentDir);
+        ASSERTLINE(302, card->currentFat);
         return CARD_RESULT_READY;
     case 1:
         return CARD_RESULT_BROKEN;
@@ -190,7 +181,6 @@ s32 __CARDVerify(CARDControl* card) {
     }
 }
 
-/* 80356364-803568F4 350CA4 0590+00 1/1 0/0 0/0 .text            CARDCheckExAsync */
 s32 CARDCheckExAsync(s32 chan, s32* xferBytes, CARDCallback callback) {
     CARDControl* card;
     CARDDir* dir[2];
@@ -207,6 +197,8 @@ s32 CARDCheckExAsync(s32 chan, s32* xferBytes, CARDCallback callback) {
     BOOL updateFat = FALSE;
     BOOL updateDir = FALSE;
     BOOL updateOrphan = FALSE;
+
+    ASSERTLINE(346, 0 <= chan && chan < 2);
 
     if (xferBytes) {
         *xferBytes = 0;
@@ -233,15 +225,21 @@ s32 CARDCheckExAsync(s32 chan, s32* xferBytes, CARDCallback callback) {
     fat[0] = (u16*)((u8*)card->workArea + (3 + 0) * CARD_SYSTEM_BLOCK_SIZE);
     fat[1] = (u16*)((u8*)card->workArea + (3 + 1) * CARD_SYSTEM_BLOCK_SIZE);
 
+    ASSERTLINE(377, errors == 0 || errors == 1);
+
     switch (errors) {
     case 0:
+        ASSERTLINE(381, card->currentDir);
+        ASSERTLINE(382, card->currentFat);
         break;
     case 1:
         if (!card->currentDir) {
+            ASSERTLINE(387, card->currentFat);
             card->currentDir = dir[currentDir];
             memcpy(dir[currentDir], dir[currentDir ^ 1], CARD_SYSTEM_BLOCK_SIZE);
             updateDir = TRUE;
         } else {
+            ASSERTLINE(394, !card->currentFat);
             card->currentFat = fat[currentFat];
             memcpy(fat[currentFat], fat[currentFat ^ 1], CARD_SYSTEM_BLOCK_SIZE);
             updateFat = TRUE;
@@ -267,6 +265,7 @@ s32 CARDCheckExAsync(s32 chan, s32* xferBytes, CARDCallback callback) {
                 return __CARDPutControlBlock(card, CARD_RESULT_BROKEN);
             }
         }
+
         if (cBlock != ent->length || iBlock != 0xFFFF) {
             return __CARDPutControlBlock(card, CARD_RESULT_BROKEN);
         }
@@ -287,10 +286,12 @@ s32 CARDCheckExAsync(s32 chan, s32* xferBytes, CARDCallback callback) {
             return __CARDPutControlBlock(card, CARD_RESULT_BROKEN);
         }
     }
+
     if (cFree != card->currentFat[CARD_FAT_FREEBLOCKS]) {
         card->currentFat[CARD_FAT_FREEBLOCKS] = cFree;
         updateOrphan = TRUE;
     }
+
     if (updateOrphan) {
         __CARDCheckSum(&card->currentFat[CARD_FAT_CHECKCODE], CARD_SYSTEM_BLOCK_SIZE - sizeof(u32),
                        &card->currentFat[CARD_FAT_CHECKSUM],
@@ -322,18 +323,21 @@ s32 CARDCheckExAsync(s32 chan, s32* xferBytes, CARDCallback callback) {
     return CARD_RESULT_READY;
 }
 
-/* 803568F4-80356948 351234 0054+00 0/0 2/2 0/0 .text            CARDCheck */
-s32 CARDCheck(s32 chan) {
+s32 CARDCheckAsync(s32 chan, CARDCallback callback) {
     s32 xferBytes;
+    return CARDCheckExAsync(chan, &xferBytes, callback);
+}
 
-    s32 result = CARDCheckExAsync(chan, &xferBytes, __CARDSyncCallback);
-    if (result >= 0) {
-        if (&xferBytes == NULL) {
-            return result;
-        }
-
-        return __CARDSync(chan);
+s32 CARDCheckEx(s32 chan, s32* xferBytes) {
+    s32 result = CARDCheckExAsync(chan, xferBytes, __CARDSyncCallback);
+    if (result < 0 || xferBytes == 0) {
+        return result;
     }
 
-    return result;
+    return __CARDSync(chan);
+}
+
+s32 CARDCheck(s32 chan) {
+    s32 xferBytes;
+    return CARDCheckEx(chan, &xferBytes);
 }

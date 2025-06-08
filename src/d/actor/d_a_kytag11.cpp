@@ -25,8 +25,7 @@ static int daKytag11_Execute(kytag11_class* i_this) {
             i_this->mChangeTime = false;
         }
     } else if (i_this->mOnSwitchNo != 0xFF) {
-        s32 room_no = dComIfGp_roomControl_getStayNo();
-        if (!dComIfGs_isSwitch(i_this->mOnSwitchNo, room_no)) {
+        if (!dComIfGs_isSwitch(i_this->mOnSwitchNo, dComIfGp_roomControl_getStayNo())) {
             i_this->mChangeTime = false;
         }
     }
@@ -36,8 +35,7 @@ static int daKytag11_Execute(kytag11_class* i_this) {
             i_this->mChangeTime = false;
         }
     } else if (i_this->mOffSwitchNo != 0xFF) {
-        s32 room_no = dComIfGp_roomControl_getStayNo();
-        if (dComIfGs_isSwitch(i_this->mOffSwitchNo, room_no)) {
+        if (dComIfGs_isSwitch(i_this->mOffSwitchNo, dComIfGp_roomControl_getStayNo())) {
             i_this->mChangeTime = false;
         }
     }

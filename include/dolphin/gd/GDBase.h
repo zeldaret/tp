@@ -1,96 +1,151 @@
-#ifndef GDBASE_H
-#define GDBASE_H
+#ifndef _DOLPHIN_GD_BASE_H
+#define _DOLPHIN_GD_BASE_H
 
-#include "dolphin/gx.h"
+#include <dolphin/types.h>
+#include <dolphin/gx/GXEnum.h>
+#include <dolphin/gx/GXCommandList.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-typedef struct GDLObj {
-    /* 0x0 */ u8* start;
-    /* 0x4 */ u32 length;
-    /* 0x8 */ u8* ptr;
-    /* 0xC */ u8* end;
-} GDLObj;  // Size: 0x10
+typedef void (*GDOverflowCb)(void);
+
+typedef struct _GDLObj {
+	u8* start;
+	u32 length;
+	u8* ptr;
+	u8* top;
+} GDLObj;
 
 extern GDLObj* __GDCurrentDL;
 
-typedef void (*GDOverflowCallback)(void);
-
-void GDInitGDLObj(GDLObj*, u8*, u32);
-void GDFlushCurrToMem();
-void GDPadCurr32();
+void GDInitGDLObj(GDLObj* dl, void* start, u32 length);
+void GDFlushCurrToMem(void);
+void GDPadCurr32(void);
 void GDOverflowed(void);
+void GDSetOverflowCallback(GDOverflowCb callback);
+GDOverflowCb GDGetOverflowCallback(void);
 
-static inline void __GDWrite(u8 data) {
-    *__GDCurrentDL->ptr++ = data;
-}
-
-static inline void GDSetCurrent(GDLObj* obj) {
-    __GDCurrentDL = obj;
-}
-
-static inline u32 GDGetGDLObjOffset(GDLObj* obj) {
-    return (u32)(obj->ptr - obj->start);
-}
-
-static inline u8* GDGetCurrPointer() {
-    return __GDCurrentDL->ptr;
-}
-
-static inline s32 GDGetCurrOffset() {
-    return __GDCurrentDL->ptr - __GDCurrentDL->start;
-}
-
-static inline void GDSetCurrOffset(s32 offs) {
-    __GDCurrentDL->ptr = __GDCurrentDL->start + offs;
-}
-
-static inline void GDAdvCurrOffset(s32 offs) {
-    __GDCurrentDL->ptr += offs;
-}
-
-static inline void GDOverflowCheck(u32 len) {
-    if (__GDCurrentDL->ptr + len > __GDCurrentDL->end) {
+inline static void GDOverflowCheck(u32 size) {
+    if (__GDCurrentDL->ptr + size > __GDCurrentDL->top) {
         GDOverflowed();
     }
 }
 
-static inline void GDWrite_u32(u32 v) {
-    GDOverflowCheck(4);
-    __GDWrite((v >> 24) & 0xff);
-    __GDWrite((v >> 16) & 0xff);
-    __GDWrite((v >> 8) & 0xff);
-    __GDWrite((v >> 0) & 0xff);
+inline static void __GDWrite(u8 data) {
+    *__GDCurrentDL->ptr++ = data;
 }
 
-static inline void GDWrite_u16(u16 v) {
-    GDOverflowCheck(2);
-    __GDWrite(v >> 8);
-    __GDWrite(v & 0xff);
+inline static void GDWrite_u8(u8 data) {
+    GDOverflowCheck(sizeof(u8));
+    __GDWrite(data);
 }
 
-static inline void GDWrite_u8(u8 v) {
-    GDOverflowCheck(1);
-    __GDWrite(v);
+inline static void GDWrite_u16(u16 data) {
+    GDOverflowCheck(sizeof(u16));
+    __GDWrite((u8)((data >> 8)));
+    __GDWrite((u8)((data >> 0) & 0xFF));
 }
 
-static inline void GDWriteCPCmd(u8 addr, u32 v) {
-    GDWrite_u8(8);
-    GDWrite_u8(addr);
-    GDWrite_u32(v);
+inline static void GDWrite_u24(u32 data) {
+    GDOverflowCheck(3);
+    __GDWrite((u8)((data >> 16) & 0xFF));
+    __GDWrite((u8)((data >> 8) & 0xFF));
+    __GDWrite((u8)((data >> 0) & 0xFF));
 }
 
-static inline void GDWriteXFCmd(u16 addr, u32 v) {
-    GDWrite_u8(0x10);
+inline static void GDWrite_u32(u32 data) {
+    GDOverflowCheck(sizeof(u32));
+    __GDWrite((u8)((data >> 24) & 0xFF));
+    __GDWrite((u8)((data >> 16) & 0xFF));
+    __GDWrite((u8)((data >> 8) & 0xFF));
+    __GDWrite((u8)((data >> 0) & 0xFF));
+}
+
+inline static void GDWrite_f32(f32 data) {
+    union {
+        f32 f;
+        u32 u;
+    } fid;
+    fid.f = data;
+    GDWrite_u32(fid.u);
+}
+
+inline static void GDWriteXFCmdHdr(u16 addr, u8 len) {
+    GDWrite_u8(GX_LOAD_XF_REG);
+    GDWrite_u16(len - 1);
+    GDWrite_u16(addr);
+}
+
+inline static void GDWriteXFCmd(u16 addr, u32 val) {
+    GDWrite_u8(GX_LOAD_XF_REG);
     GDWrite_u16(0);
     GDWrite_u16(addr);
-    GDWrite_u32(v);
+    GDWrite_u32(val);
+}
+
+inline static void GDWriteXFIndxDCmd(u16 addr, u8 len, u16 index) {
+    GDWrite_u8(GX_LOAD_INDX_D);
+    GDWrite_u16(index);
+    GDWrite_u16((len - 1) << 12 | addr);
+}
+
+inline static void GDWriteXFIndxACmd(u16 addr, u8 len, u16 index) {
+    GDWrite_u8(GX_LOAD_INDX_A);
+    GDWrite_u16(index);
+    GDWrite_u16(((len - 1) << 12) | addr);
+}
+
+inline static void GDWriteXFIndxBCmd(u16 addr, u8 len, u16 index) {
+    GDWrite_u8(GX_LOAD_INDX_B);
+    GDWrite_u16(index);
+    GDWrite_u16(((len - 1) << 12) | addr);
+}
+
+inline static void GDWriteXFIndxCCmd(u16 addr, u8 len, u16 index) {
+    GDWrite_u8(GX_LOAD_INDX_C);
+    GDWrite_u16(index);
+    GDWrite_u16(((len - 1) << 12) | addr);
+}
+
+inline static void GDWriteCPCmd(u8 addr, u32 val) {
+    GDWrite_u8(GX_LOAD_CP_REG);
+    GDWrite_u8(addr);
+    GDWrite_u32(val);
+}
+
+inline static void GDWriteBPCmd(u32 regval) {
+    GDWrite_u8(GX_LOAD_BP_REG);
+    GDWrite_u32(regval);
+}
+
+inline static void GDSetCurrent(GDLObj* dl) {
+    __GDCurrentDL = dl;
+}
+
+static inline u32 GDGetCurrOffset(void) {
+    return (u32)(__GDCurrentDL->ptr - __GDCurrentDL->start);
+}
+
+static inline void GDSetCurrOffset(u32 offset) {
+    __GDCurrentDL->ptr = __GDCurrentDL->start + offset;
+}
+
+static inline void* GDGetCurrPointer(void) {
+    return (void*)__GDCurrentDL->ptr;
+}
+
+static inline u8* GDGetCurrPointer2(void) {
+    return __GDCurrentDL->ptr;
+}
+
+static inline u32 GDGetGDLObjOffset(const GDLObj* dl) {
+    return (u32)(dl->ptr - dl->start);
 }
 
 #ifdef __cplusplus
-};
+}
 #endif
 
-#endif /* GDBASE_H */
+#endif

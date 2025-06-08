@@ -8,6 +8,7 @@
 #include "JSystem/JUtility/JUTDbPrint.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "stdio.h"
+#include <dolphin/vi.h>
 
 /* 804508F8-80450900 000378 0008+00 0/0 3/3 0/0 .sdata           None */
 bool sAssertVisible = true;

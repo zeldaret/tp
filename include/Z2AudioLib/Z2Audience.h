@@ -7,7 +7,7 @@
 #include "JSystem/JAudio2/JASSoundParams.h"
 #include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "JSystem/JAudio2/JAUAudibleParam.h"
-#include "JSystem/TPosition3.hh"
+#include "JSystem/TPosition3.h"
 
 struct Z2Audible;
 

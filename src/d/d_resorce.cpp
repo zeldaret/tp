@@ -123,6 +123,7 @@ static const J3DTexMtxInfo l_texMtxInfo = {
 /* 8003A840-8003AACC 035180 028C+00 1/1 0/0 0/0 .text            addWarpMaterial__FP12J3DModelData
  */
 // NONMATCHING l_alphaCompInfo needs to be placed in .sdata2, but the function breaks if it is declared const
+// Also see J3DAlphaComp::setAlphaCompInfo in J3DMatBlock.h
 static void addWarpMaterial(J3DModelData* i_modelData) {
     static J3DTevStageInfo const l_tevStageInfo = {
         0x05, 0x0F, 0x08, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x01, 0x00,
@@ -160,8 +161,8 @@ static void addWarpMaterial(J3DModelData* i_modelData) {
         l_tevOrderInfo.mTexCoord = texGenNum;
         JUT_ASSERT(301, tevBlock->getTexNo(3) == 0xffff);
         tevBlock->setTexNo(3, textureNum);
-        tevBlock->setTevOrder(tevStageNum, l_tevOrderInfo);
-        tevBlock->setTevStage(tevStageNum, l_tevStageInfo);
+        tevBlock->setTevOrder(tevStageNum, J3DTevOrder(l_tevOrderInfo));
+        tevBlock->setTevStage(tevStageNum, J3DTevStage(l_tevStageInfo));
         tevBlock->setTevStageNum(tevStageNum + 1);
 
         J3DShape* shape = material->getShape();
@@ -171,7 +172,7 @@ static void addWarpMaterial(J3DModelData* i_modelData) {
 
         J3DPEBlock* peBlock = material->getPEBlock();
         J3DAlphaComp* alphaComp = peBlock->getAlphaComp();
-        static J3DAlphaCompInfo const l_alphaCompInfo = {0x04, 0x80, 0x00, 0x03, 0xFF, 0, 0, 0};
+        static J3DAlphaCompInfo l_alphaCompInfo = {0x04, 0x80, 0x00, 0x03, 0xFF, 0, 0, 0};
         alphaComp->setAlphaCompInfo(l_alphaCompInfo);
         peBlock->setZCompLoc((u8)0);
     }
@@ -356,7 +357,7 @@ int dRes_info_c::loadResource() {
                     strncpy(arcName, name_p, resNameLen);
                     arcName[resNameLen] = '\0';
 
-                    JKRHeap* parentHeap = JKRHeap::findFromRoot(JKRHeap::getCurrentHeap());
+                    JKRExpHeap* parentHeap = (JKRExpHeap*)JKRHeap::findFromRoot(JKRHeap::getCurrentHeap());
                     JUT_ASSERT(0x308, parentHeap != 0 && (parentHeap == mDoExt_getGameHeap() || parentHeap == mDoExt_getArchiveHeap()));
 #ifdef DEBUG
                     char* heapName;
@@ -369,7 +370,7 @@ int dRes_info_c::loadResource() {
                     // ">>>>>>>>>>>>>>>>>> Pack Archive<%s> <%s>\n"
                     OSReport(">>>>>>>>>>>>>>>>>> パックアーカイブ<%s> <%s>\n", arcName, heapName);
 #endif
-                    if (parentHeap == (JKRHeap*)mDoExt_getGameHeap()) {
+                    if (parentHeap == (JKRExpHeap*)mDoExt_getGameHeap()) {
                         parentHeap = NULL;
                     }
 
@@ -507,12 +508,12 @@ void dRes_info_c::deleteArchiveRes() {
                     JKRArchive::SDIFileEntry* fileEntry = mArchive->findIdxResource(fileIndex);
                     u32 nameOffset = fileEntry->getNameOffset();
                     char* fileName = mArchive->mStringTable + nameOffset;
-                    size_t nameLen = strlen(fileName) - 4;
+                    size_t resNameLen = strlen(fileName) - 4;
                     JUT_ASSERT(0x46C, resNameLen <= NAME_MAX);
 
                     char nameBuffer[12];
-                    strncpy(nameBuffer, fileName, nameLen);
-                    nameBuffer[nameLen] = '\0';
+                    strncpy(nameBuffer, fileName, resNameLen);
+                    nameBuffer[resNameLen] = '\0';
                     
                     int rt = dComIfG_deleteObjectResMain(nameBuffer);
                     JUT_ASSERT(0x470, rt);

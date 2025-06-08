@@ -4,18 +4,7 @@
 //
 
 #include "Z2AudioLib/Z2LinkMgr.h"
-#include "Z2AudioLib/Z2Creature.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
-#include "global.h"
-
-struct Z2SoundObjCoach {
-    /* 802C54B8 */ Z2SoundObjCoach();
-    /* 802C54FC */ void init(Vec*, u8);
-    /* 802C551C */ void startWheelSound(f32);
-    /* 802C56C0 */ void startFireSound(u16);
-    /* 802C57C0 */ int startSound(JAISoundID, u32, s8);
-};
 
 /* 802C321C-802C3220 2BDB5C 0004+00 0/0 1/1 0/0 .text setLinkGroupInfo__14Z2CreatureLinkFUc */
 void Z2CreatureLink::setLinkGroupInfo(u8) {}
@@ -355,14 +344,113 @@ JAISoundHandle* Z2CreatureLink::startLinkSoundLevel(JAISoundID i_soundID, u32 pa
 
 /* 802C4320-802C45B0 2BEC60 0290+00 1/1 1/1 0/0 .text
  * startLinkVoice__14Z2CreatureLinkF10JAISoundIDSc              */
-void Z2CreatureLink::startLinkVoice(JAISoundID param_0, s8 param_1) {
-    // NONMATCHING
+Z2SoundHandlePool* Z2CreatureLink::startLinkVoice(JAISoundID i_soundID, s8 param_1) {
+    if (mLinkState == 1) {
+        switch (i_soundID) {
+        case Z2SE_WL_V_BREATH_WAIT:
+        case Z2SE_WL_V_BREATH_TIRED:
+        case Z2SE_WL_V_BREATH_SIT:
+            if (Z2GetStatusMgr()->getDemoStatus() == 2 || !Z2GetSceneMgr()->isInGame()) {
+                return NULL;
+            }
+            // fallthrough
+        case Z2SE_WL_V_BREATH_WALK:
+        case Z2SE_WL_V_BREATH_RUN:
+            if (field_0xc1 < 5) {
+                return NULL;
+            }
+            field_0xc1 = 0;
+            break;
+        case Z2SE_WL_V_BITE_ATTACK:
+            if (mSoundObjSimple1.getHandleSoundID(Z2SE_WL_V_BITE_THROAT) != NULL) {
+                return NULL;
+            }
+            break;
+        }
+    } else {
+        if (i_soundID == Z2SE_AL_V_ATTACK_RUN) {
+            if (field_0xc1 < 10) {
+                return NULL;
+            }
+            field_0xc1 = 0;
+        }
+
+        if (mMarkState != 3 && Z2GetSoundObjMgr()->getEnemyNumNear() == 0
+                            && !Z2GetSoundObjMgr()->isForceBattle())
+        {
+            switch (i_soundID) {
+            case Z2SE_AL_V_ATTACK_S:
+                i_soundID = Z2SE_AL_V_ATTACK_S_FREE;
+                break;
+            case Z2SE_AL_V_ATTACK_M:
+            case Z2SE_AL_V_TATE_OSHI:
+                i_soundID = Z2SE_AL_V_ATTACK_M_FREE;
+                break;
+            case Z2SE_AL_V_ATTACK_L:
+                i_soundID = Z2SE_AL_V_ATTACK_L_FREE;
+                break;
+            case Z2SE_AL_V_KAITEN:
+                i_soundID = Z2SE_AL_V_KAITEN_FREE;
+                break;
+            case Z2SE_AL_V_BACKTEN:
+            case Z2SE_AL_V_SOTOMO_ROLL:
+                i_soundID = Z2SE_AL_V_BACKTEN_FREE;
+                break;
+            case Z2SE_AL_V_ATTACK_RUN:
+                i_soundID = Z2SE_AL_V_ATTACK_RUN_FREE;
+                break;
+            }
+        } else {
+            if (i_soundID == Z2SE_AL_V_JUMP_S) {
+                i_soundID = Z2SE_AL_V_BACKTEN;
+            }
+        }
+
+        if (isInWater()) {
+            i_soundID = Z2SE_AL_V_UNDER_WATER;
+        }
+    }
+
+    return startCreatureVoice(i_soundID, param_1);
 }
 
 /* 802C45B0-802C46F0 2BEEF0 0140+00 0/0 1/1 0/0 .text
  * startLinkVoiceLevel__14Z2CreatureLinkF10JAISoundIDSc         */
-void Z2CreatureLink::startLinkVoiceLevel(JAISoundID param_0, s8 param_1) {
-    // NONMATCHING
+Z2SoundHandlePool* Z2CreatureLink::startLinkVoiceLevel(JAISoundID i_soundID, s8 param_1) {
+    if (mLinkState == 1) {
+        switch (i_soundID) {
+        case Z2SE_WL_V_ROAR:
+            f32 volume = 0.0f;
+            u8 port_data = 0;
+            switch (mMarkState) {
+            case 0:
+                volume = 1.0f;
+                port_data = 2;
+                break;
+            case 1:
+                volume = 0.3f;
+                port_data = 1;
+                break;
+            case 2:
+                volume = 0.5f;
+                port_data = 1;
+                break;
+            case 3:
+                volume = 0.8f;
+                port_data = 2;
+                break;
+            }
+
+            Z2SoundHandlePool* handle = startCreatureVoiceLevel(Z2SE_WL_V_ROAR, param_1);
+            if (handle != NULL && *handle) {
+                (*handle)->getAuxiliary().moveVolume(volume, 0);
+                Z2GetSoundStarter()->setPortData(handle, 8, port_data, -1);
+            }
+            return handle;
+        }
+    }
+    
+    return startCreatureVoiceLevel(i_soundID, param_1);
 }
 
 /* 802C46F0-802C4784 2BF030 0094+00 0/0 2/2 0/0 .text
@@ -401,15 +489,26 @@ Z2SoundHandlePool* Z2CreatureLink::startCollisionSE(u32 hitID, u32 mapinfo) {
     return mSoundObjAnime.startCollisionSE(hitID, mapinfo, NULL);
 }
 
-/* ############################################################################################## */
-/* 80455D18-80455D1C 004318 0004+00 1/1 0/0 0/0 .sdata2          @4178 */
-SECTION_SDATA2 static f32 lit_4178 = 100.0f;
-
 /* 802C4814-802C48D8 2BF154 00C4+00 0/0 4/4 2/2 .text
  * startHitItemSE__14Z2CreatureLinkFUlUlP14Z2SoundObjBasef      */
-int Z2CreatureLink::startHitItemSE(u32 param_0, u32 param_1, Z2SoundObjBase* param_2,
-                                       f32 speed) {
-    // NONMATCHING
+Z2SoundHandlePool* Z2CreatureLink::startHitItemSE(u32 i_soundID, u32 param_1,
+                                                  Z2SoundObjBase* param_2, f32 speed) {
+    if (param_2 == NULL) {
+        param_2 = &mSoundObjSimple2;
+    }
+
+    if (i_soundID == Z2SE_HIT_SHIELD_ATTACK) {
+        return mSoundObjAnime.startCollisionSE(i_soundID, param_1, NULL);
+    }
+
+    Z2SoundHandlePool* handle = param_2->startCollisionSE(i_soundID, param_1, NULL);
+    if (speed >= 0.0f && handle != NULL && *handle) {
+        if (speed >= 100.0f) {
+            speed = 100.0f;
+        }
+        (*handle)->getAuxiliary().moveVolume(speed / 100.0f, 0);
+    }
+    return handle;
 }
 
 /* 802C48D8-802C48E8 2BF218 0010+00 0/0 1/1 0/0 .text            setResumeAttack__14Z2CreatureLinkFb
@@ -421,17 +520,158 @@ void Z2CreatureLink::setResumeAttack(bool i_resumeAttack) {
 /* 802C48E8-802C4928 2BF228 0040+00 1/1 0/0 0/0 .text            __ct__18Z2LinkSoundStarterFv */
 Z2LinkSoundStarter::Z2LinkSoundStarter() : Z2SoundStarter(false) {}
 
-/* ############################################################################################## */
-/* 80455D1C-80455D20 00431C 0004+00 2/2 0/0 0/0 .sdata2          @4399 */
-SECTION_SDATA2 static f32 lit_4399 = 9.0f / 10.0f;
-
 /* 802C4928-802C4FFC 2BF268 06D4+00 2/0 0/0 0/0 .text
  * startSound__18Z2LinkSoundStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f>UlfffffUl */
-bool Z2LinkSoundStarter::startSound(JAISoundID param_0, JAISoundHandle* param_1,
-                                        JGeometry::TVec3<f32> const* param_2, u32 param_3,
-                                        f32 param_4, f32 param_5, f32 param_6, f32 param_7,
-                                        f32 param_8, u32 param_9) {
-    // NONMATCHING
+// NONMATCHING stack alloc
+bool Z2LinkSoundStarter::startSound(JAISoundID i_soundID, JAISoundHandle* param_1,
+                                    JGeometry::TVec3<f32> const* param_2, u32 param_3,
+                                    f32 param_4, f32 param_5, f32 param_6, f32 param_7,
+                                    f32 param_8, u32 param_9) {
+    bool bVar2 = false;
+    bool bVar3 = false;
+
+    if (Z2GetLink()->isInWater() && Z2GetStatusMgr()->getCameraInWaterDepthRatio() > 0.0f) {
+        switch (i_soundID) {
+        case Z2SE_AL_SWIM:
+        case Z2SE_AL_DIVE_SWIM:
+            i_soundID = Z2SE_AL_SWIM_UNDERWATER;
+            break;
+        case Z2SE_AL_SWORD_SWING_S:
+        case Z2SE_AL_FINISH_SWING1:
+        case Z2SE_AL_FINISH_SWING2:
+        case Z2SE_AL_WAIT_SWORD_SWING:
+            i_soundID = Z2SE_AL_WATER_STROKE_S;
+            break;
+        case Z2SE_AL_SWORD_SWING_L:
+            i_soundID = Z2SE_AL_WATER_STROKE_L;
+            break;
+        case Z2SE_AL_SWORD_THRUST:
+            i_soundID = Z2SE_AL_WATER_STROKE_FAST;
+            break;
+        case Z2SE_AL_KAITENGIRI:
+            i_soundID = Z2SE_AL_WATER_STROKE_CIRCLE;
+            break;
+        }
+    }
+
+    if (i_soundID.mId.mBytes.b1 == 3 && param_3 > 26) {
+        if (param_3 == 44) {
+            param_3 = 23;
+        } else {
+            param_3 = 0;
+        }
+    }
+
+    switch (i_soundID) {
+    case Z2SE_AL_INTO_WATER:
+    case Z2SE_AL_DIVE_INTO_WATER:
+    case Z2SE_WL_INTO_WATER:
+        if (Z2GetLink()->mSoundObjSimple1.isActive()) {
+            Z2GetLink()->mSoundObjSimple1.stopAllSounds(1);
+        }
+        break;
+    case Z2SE_FN_WALK_DUMMY:
+    case Z2SE_FN_LADDER_CLIMB:
+    case Z2SE_FN_LADDER_DOWN:
+        bVar2 = true;
+        // fallthrough
+    case Z2SE_GORON_FOOTNOTE:
+    case Z2SE_FN_GOB_JUMP:
+        if (Z2GetLink()->mLinkBootsType == 1) {
+            i_soundID = Z2SE_FN_WALK_HEAVY;
+            if (Z2GetLink()->mMagnetized) {
+                param_3 = 127;
+            }
+        }
+        bVar3 = true;
+        break;
+    case Z2SE_FN_JUMP_DUMMY:
+        bVar2 = true;
+        bVar3 = true;
+        if (Z2GetLink()->mLinkBootsType == 1) {
+            i_soundID = Z2SE_FN_JUMP_HEAVY;
+            if (Z2GetLink()->mMagnetized) {
+                param_3 = 127;
+            }
+        }
+        if (Z2GetLink()->mSoundObjSimple1.getHandleSoundID(Z2SE_AL_V_FALL) != NULL) {
+            Z2GetLink()->startLinkVoice(Z2SE_AL_V_FOOT_MISS, -1);
+        }
+        break;
+    case Z2SE_FN_BOUND_DUMMY:
+    case Z2SE_FN_HAND_DUMMY:
+        bVar2 = true;
+        break;
+    case Z2SE_BODY_FALL_DOWN:
+        if (Z2GetLink()->mSoundObjSimple1.getHandleSoundID(Z2SE_AL_V_FALL) != NULL) {
+            Z2GetLink()->startLinkVoice(Z2SE_AL_V_LANDING_FAIL, -1);
+        }
+        break;
+    case Z2SE_OBJ_ARROW_SHOT_NORMAL:
+    case Z2SE_OBJ_ARROW_SHOT_GAIN:
+    case Z2SE_OBJ_ARROWBOMB_SHOT:
+    case Z2SE_OBJ_ARROWBOMB_SHOTGAIN:
+        Z2SoundHandlePool* handle = Z2GetLink()->mSoundObjAnime.getHandleSoundID(Z2SE_AL_DRAW_BOW);
+        if (handle != NULL) {
+            (*handle)->stop(0);
+        }
+        break;
+    }
+
+    if (Z2GetLink()->mSinkDepth > 0) {
+        switch (i_soundID) {
+        case Z2SE_FN_WALK_DUMMY:
+        case Z2SE_FN_JUMP_DUMMY:
+        case Z2SE_FN_BOUND_DUMMY:
+        case Z2SE_FN_HAND_DUMMY:
+        case Z2SE_FN_WALK_HEAVY:
+        case Z2SE_FN_JUMP_HEAVY:
+        case Z2SE_WL_WALK_L_DUMMY:
+        case Z2SE_WL_WALK_R_DUMMY:
+        case Z2SE_WL_RUN_L_DUMMY:
+        case Z2SE_WL_RUN_R_DUMMY:
+            if (param_3 == 3) {
+                param_5 *= Z2Calc::linearTransform(Z2GetLink()->mSinkDepth,
+                                                   0.0f, 127.0f, 1.0f, 0.5f, true);
+            } else if (param_3 == 25) {
+                param_5 *= Z2Calc::linearTransform(Z2GetLink()->mSinkDepth,
+                                                   0.0f, 23.0f, 1.0f, 0.7f, true);
+            }
+            break;
+        }
+    }
+
+    bool ret = Z2SoundStarter::startSound(i_soundID, param_1, param_2, param_3, param_4, param_5,
+                                          param_6, param_7, param_8, param_9);
+    
+    if (bVar2 && Z2GetSceneMgr()->getDemoSeWaveNum() != 114) {
+        if (Z2GetLink()->mFlag5) {
+            Z2GetLink()->startLinkSound(Z2SE_AL_SWORD_SHIELD_ADD, 0, param_4 * 127.0f);
+        }
+
+        if (Z2GetLink()->mUsingIronBall) {
+            Z2GetLink()->startLinkSound(Z2SE_AL_IB_CHAIN_ADD, 0, param_4 * 127.0f);
+        }
+
+        if (Z2GetLink()->mKanteraState != 0) {
+            Z2SoundHandlePool* handle =
+                Z2GetLink()->mKantera.startSound(Z2SE_AL_KANTERA_SWING_ADD, 0, param_4 * 127.0f);
+            if (Z2GetLink()->mKanteraState == 2 && handle != NULL && *handle) {
+                (*handle)->getAuxiliary().moveVolume(0.6f, 0);
+                (*handle)->getAuxiliary().movePitch(0.9f, 0);
+            }
+        }
+    }
+
+    if (bVar3) {
+        if (Z2GetLink()->mLinkState == 4) {
+            Z2GetLink()->startLinkSound(Z2SE_FN_ARMER_LIGHT_ADD, 0, param_4 * 127.0f);
+        } else if (Z2GetLink()->mLinkState == 5) {
+            Z2GetLink()->startLinkSound(Z2SE_FN_ARMER_HEAVY_ADD, 0, param_4 * 127.0f);
+        }
+    }
+
+    return ret;
 }
 
 /* 802C4FFC-802C5078 2BF93C 007C+00 0/0 0/0 3/3 .text            __ct__14Z2CreatureRideFv */
@@ -441,14 +681,9 @@ Z2CreatureRide::Z2CreatureRide() : Z2RideSoundStarter(this) {
     setSoundStarter(this);
 }
 
-/* 802C5078-802C5114 2BF9B8 009C+00 1/0 0/0 0/0 .text            __dt__18Z2RideSoundStarterFv */
-inline Z2RideSoundStarter::~Z2RideSoundStarter() {
-    // NONMATCHING
-}
-
 /* 802C5114-802C51EC 2BFA54 00D8+00 2/1 0/0 2/2 .text            __dt__14Z2CreatureRideFv */
 Z2CreatureRide::~Z2CreatureRide() {
-    // NONMATCHING
+    deleteObject();
 }
 
 /* 802C51EC-802C520C 2BFB2C 0020+00 1/0 0/0 0/0 .text            deleteObject__14Z2CreatureRideFv */
@@ -475,61 +710,133 @@ Z2RideSoundStarter::Z2RideSoundStarter(Z2CreatureRide* ride) : Z2SoundStarter(fa
 
 /* 802C5284-802C54B8 2BFBC4 0234+00 2/0 0/0 0/0 .text
  * startSound__18Z2RideSoundStarterF10JAISoundIDP14JAISoundHandlePCQ29JGeometry8TVec3<f>UlfffffUl */
-bool Z2RideSoundStarter::startSound(JAISoundID param_0, JAISoundHandle* param_1,
-                                        JGeometry::TVec3<f32> const* param_2, u32 param_3,
-                                        f32 param_4, f32 param_5, f32 param_6, f32 param_7,
-                                        f32 param_8, u32 param_9) {
-    // NONMATCHING
+// NONMATCHING regalloc / extra load
+bool Z2RideSoundStarter::startSound(JAISoundID i_soundID, JAISoundHandle* param_1,
+                                    JGeometry::TVec3<f32> const* param_2, u32 param_3,
+                                    f32 param_4, f32 param_5, f32 param_6, f32 param_7,
+                                    f32 param_8, u32 param_9) {
+    if (!Z2GetSceneMgr()->isInGame()) {
+        return false;
+    }
+
+    u8 uVar3 = 0;
+    switch (i_soundID) {
+    case Z2SE_HS_WALK_L_DUMMY:
+    case Z2SE_HS_WALK_R_DUMMY:
+    case Z2SE_HS_TROT_L_DUMMY:
+    case Z2SE_HS_TROT_R_DUMMY:
+    case Z2SE_HS_GALLOP_L_DUMMY:
+        uVar3 = 1;
+        break;
+    case Z2SE_WB_FRONT_L_DUMMY:
+    case Z2SE_WB_FRONT_R_DUMMY:
+    case Z2SE_WB_REAR_L_DUMMY:
+        uVar3 = 2;
+        break;
+    }
+
+    bool ret = Z2SoundStarter::startSound(i_soundID, param_1, param_2, param_3, param_4, param_5,
+                                          param_6, param_7, param_8, param_9);
+
+    if (mRide->isLinkRiding() && uVar3 != 0) {
+        if (Z2GetLink()->mFlag5) {
+            Z2GetLink()->startLinkSound(Z2SE_AL_SWORD_SHIELD_ADD, 0, param_4 * 127.0f);
+        }
+
+        if (Z2GetLink()->mKanteraState != 0) {
+            Z2SoundHandlePool* handle =
+                Z2GetLink()->mKantera.startSound(Z2SE_AL_KANTERA_SWING_ADD, 0, param_4 * 127.0f);
+            if (Z2GetLink()->mKanteraState == 2 && handle != NULL && *handle) {
+                (*handle)->getAuxiliary().moveVolume(0.6f, 0);
+                (*handle)->getAuxiliary().movePitch(0.9f, 0);
+            }
+        }
+
+        switch (uVar3) {
+        case 1:
+            Z2GetLink()->startLinkSound(Z2SE_AL_HARNESS_ADD_HS, 0, param_4 * 127.0f);
+            break;
+
+        case 2:
+            Z2GetLink()->startLinkSound(Z2SE_AL_HARNESS_ADD_WB, 0, param_4 * 127.0f);
+            break;
+        }
+    }
+
+    return ret;
 }
 
 /* 802C54B8-802C54FC 2BFDF8 0044+00 0/0 0/0 1/1 .text            __ct__15Z2SoundObjCoachFv */
 Z2SoundObjCoach::Z2SoundObjCoach() {
-    // NONMATCHING
+    field_0x20 = 0.0f;
 }
 
 /* 802C54FC-802C551C 2BFE3C 0020+00 1/0 0/0 0/0 .text            init__15Z2SoundObjCoachFP3VecUc */
-void Z2SoundObjCoach::init(Vec* param_0, u8 param_1) {
-    // NONMATCHING
+void Z2SoundObjCoach::init(Vec* i_soundPos, u8 i_numHandles) {
+    Z2SoundObjBase::init(i_soundPos, i_numHandles);
 }
-
-/* ############################################################################################## */
-/* 80455D20-80455D24 004320 0004+00 1/1 0/0 0/0 .sdata2          @4621 */
-SECTION_SDATA2 static f32 lit_4621 = 2.0f;
-
-/* 80455D24-80455D28 004324 0004+00 1/1 0/0 0/0 .sdata2          @4622 */
-SECTION_SDATA2 static f32 lit_4622 = 35.0f;
-
-/* 80455D28-80455D2C 004328 0004+00 1/1 0/0 0/0 .sdata2          @4623 */
-SECTION_SDATA2 static f32 lit_4623 = 22.0f / 25.0f;
-
-/* 80455D2C-80455D30 00432C 0004+00 3/3 0/0 0/0 .sdata2          @4624 */
-SECTION_SDATA2 static f32 lit_4624 = 1.25f;
-
-/* 80455D30-80455D34 004330 0004+00 2/2 0/0 0/0 .sdata2          @4625 */
-SECTION_SDATA2 static f32 lit_4625 = 50.0f;
 
 /* 802C551C-802C56C0 2BFE5C 01A4+00 0/0 0/0 1/1 .text startWheelSound__15Z2SoundObjCoachFf */
-void Z2SoundObjCoach::startWheelSound(f32 param_0) {
-    // NONMATCHING
+Z2SoundHandlePool* Z2SoundObjCoach::startWheelSound(f32 param_0) {
+    Z2SoundHandlePool* handle = NULL;
+
+    if (!(param_0 < 2.0f)) {
+        if (param_0 < 35.0f) {
+            handle = startLevelSound(Z2SE_COACH_WHEEL_ROLL_A, 0, -1);
+            if (handle != NULL && *handle) {
+                f32 pitch = Z2Calc::getParamByExp(param_0, 0.0f, 35.0f, 0.25f, 0.88f, 1.25f,
+                                                  Z2Calc::CURVE_SIGN_1);
+                (*handle)->getAuxiliary().movePitch(pitch, 0);
+                f32 volume = Z2Calc::getParamByExp(param_0, 0.0f, 35.0f, 0.3f, 0.7f, 1.0f,
+                                                   Z2Calc::CURVE_SIGN_1);
+                (*handle)->getAuxiliary().moveVolume(volume, 0);
+            }
+        } else {
+            handle = startLevelSound(Z2SE_COACH_WHEEL_ROLL_B, 0, -1);
+            if (handle != NULL && *handle) {
+                f32 pitch = Z2Calc::getParamByExp(param_0, 35.0f, 50.0f, 0.25f, 0.88f, 1.25f,
+                                                  Z2Calc::CURVE_SIGN_1);
+                (*handle)->getAuxiliary().movePitch(pitch, 0);
+                f32 volume = Z2Calc::getParamByExp(param_0, 35.0f, 50.0f, 0.3f, 0.8f, 1.0f,
+                                                   Z2Calc::CURVE_SIGN_1);
+                (*handle)->getAuxiliary().moveVolume(volume, 0);
+            }
+        }
+    }
+
+    field_0x20 = param_0;
+    return handle;
 }
 
-/* ############################################################################################## */
-/* 80455D34-80455D38 004334 0004+00 1/1 0/0 0/0 .sdata2          @4645 */
-SECTION_SDATA2 static f32 lit_4645 = 1500.0f;
-
-/* 80455D38-80455D3C 004338 0004+00 2/2 0/0 0/0 .sdata2          @4646 */
-SECTION_SDATA2 static f32 lit_4646 = 1.0f / 5.0f;
-
-/* 80455D3C-80455D40 00433C 0004+00 2/2 0/0 0/0 .sdata2          @4647 */
-SECTION_SDATA2 static f32 lit_4647 = 17.0f / 20.0f;
-
 /* 802C56C0-802C57C0 2C0000 0100+00 0/0 0/0 1/1 .text startFireSound__15Z2SoundObjCoachFUs */
-void Z2SoundObjCoach::startFireSound(u16 param_0) {
-    // NONMATCHING
+Z2SoundHandlePool* Z2SoundObjCoach::startFireSound(u16 param_0) {
+    Z2SoundHandlePool* handle = startLevelSound(Z2SE_COACH_FIRE, 0, -1);
+    
+    if (handle != NULL && *handle) {
+        f32 pitch = Z2Calc::getParamByExp(param_0, 0.0f, 1500.0f, 0.2f, 0.85f, 1.25f,
+                                          Z2Calc::CURVE_SIGN_1);
+        (*handle)->getAuxiliary().movePitch(pitch, 0);
+        f32 volume = Z2Calc::getParamByExp(param_0, 0.0f, 1500.0f, 0.2f, 0.6f, 1.0f,
+                                           Z2Calc::CURVE_SIGN_1);
+        (*handle)->getAuxiliary().moveVolume(volume, 0);
+    }
+
+    return handle;
 }
 
 /* 802C57C0-802C588C 2C0100 00CC+00 1/0 0/0 0/0 .text
  * startSound__15Z2SoundObjCoachF10JAISoundIDUlSc               */
-int Z2SoundObjCoach::startSound(JAISoundID param_0, u32 param_1, s8 param_2) {
-    // NONMATCHING
+Z2SoundHandlePool* Z2SoundObjCoach::startSound(JAISoundID i_soundID, u32 param_1, s8 param_2) {
+    Z2SoundHandlePool* handle = Z2SoundObjBase::startSound(i_soundID, param_1, param_2);
+
+    if (handle != NULL && *handle && i_soundID == Z2SE_COACH_SHAKE) {
+        f32 pitch = Z2Calc::getParamByExp(field_0x20, 0.0f, 50.0f, 0.2f, 0.85f, 1.25f,
+                                          Z2Calc::CURVE_SIGN_1);
+        (*handle)->getAuxiliary().movePitch(pitch, 0);
+        f32 volume = Z2Calc::getParamByExp(field_0x20, 0.0f, 50.0f, 0.2f, 0.8f, 1.0f,
+                                           Z2Calc::CURVE_SIGN_1);
+        (*handle)->getAuxiliary().moveVolume(volume, 0);
+    }
+
+    return handle;
 }
