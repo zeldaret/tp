@@ -3612,7 +3612,7 @@ void daNpc_Kn_c::setCollisionTeach03() {
 void daNpc_Kn_c::setCollisionTeach04() {
     switch (mActionMode) {
     case 9:
-        if (dComIfGp_event_runCheck() && eventInfo.i_checkCommandDemoAccrpt()) {
+        if (dComIfGp_event_runCheck() && eventInfo.checkCommandDemoAccrpt()) {
             mCylCc.OffTgSetBit();
             mCylCc.OffCoSetBit();
         } else {
