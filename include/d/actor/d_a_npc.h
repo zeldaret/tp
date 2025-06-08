@@ -48,11 +48,6 @@ private:
 
 public:
     daNpcT_MatAnm_c() { initialize(); }
-    void setNowOffsetX(f32 i_offset) { mNowOffsetX = i_offset; }
-    void setNowOffsetY(f32 i_offset) { mNowOffsetY = i_offset; }
-    void setMorfFrm(u8 i_form) { mMorfFrm = i_form; }
-    void onEyeMoveFlag() { mEyeMoveFlag = 1; }
-    void offEyeMoveFlag() { mEyeMoveFlag = 0; }
 
     /* 80145764 */ void initialize();
     /* 8014D24C */ virtual ~daNpcT_MatAnm_c() {}
@@ -229,9 +224,6 @@ public:
 
     void clrDirectFlag() { mDirectFlag = 0; }
     int getMode() { return mMode; }
-
-    s16 getEyeAngleY() { return mEyeAngle.y; }
-    s16 getEyeAngleX() { return mEyeAngle.x; }
 
     int setMode(int mode, BOOL param_2) {
         if (mode >= 0 && (param_2 || mode != mMode)) {

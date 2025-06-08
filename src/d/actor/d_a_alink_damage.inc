@@ -200,7 +200,7 @@ int daAlink_c::setDamagePoint(int i_dmgAmount, int i_checkZoraMag, int i_setDmgT
         dComIfGp_setItemLifeCount(-magnified_dmg, 0);
     }
 
-    onResetFlg1(RFLG1_UNK_400);
+    onResetFlg1(RFLG1_DAMAGE_IMPACT);
     mSwordUpTimer = 0;
 
     if (i_setDmgTimer) {
