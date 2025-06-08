@@ -778,7 +778,7 @@ public:
 
     static const int MAXNUMCONTROLPNT_e = 64;
 
-private:
+public:
     /* 0x004 */ dPath* mPathInfo;
     /* 0x008 */ f32 field_0x8;
     /* 0x00C */ dPnt mCurvePnts[160];
@@ -786,7 +786,9 @@ private:
     /* 0xA0E */ u16 mCurvePntNum;
     /* 0xA10 */ u16 mIdx;
     /* 0xA12 */ s8 mDirection;
-    /* 0xA13 */ u8 field_0xa13[17];
+    /* 0xA13 */ u8 field_0xa13[5];
+    /* 0xA18 */ int field_0xa18;
+    /* 0xA1C */ u8 field_0xa1c[8];
 };
 
 class daBaseNpc_lookat_c {
@@ -814,9 +816,9 @@ public:
     /* 8014E6C8 */ daBaseNpc_c();
     /* 8014EE44 */ J3DAnmTransform* getTrnsfrmKeyAnmP(char*, int);
     /* 8014EE80 */ int setMcaMorfAnm(J3DAnmTransformKey*, f32, f32, int, int, int);
-    /* 8014EEE4 */ void setBckAnm(J3DAnmTransform*, f32, int, int, int, bool);
+    /* 8014EEE4 */ int setBckAnm(J3DAnmTransform*, f32, int, int, int, bool);
     /* 8014EF28 */ J3DAnmTransform* getTexPtrnAnmP(char*, int);
-    /* 8014EF64 */ void setBtpAnm(J3DAnmTexPattern*, J3DModelData*, f32, int);
+    /* 8014EF64 */ int setBtpAnm(J3DAnmTexPattern*, J3DModelData*, f32, int);
     /* 8014EFF4 */ void orderEvent(int, char*);
     /* 8014F0A0 */ void setEnvTevColor();
     /* 8014F0FC */ void setRoomNo();

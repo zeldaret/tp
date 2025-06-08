@@ -475,9 +475,9 @@ int daBaseNpc_c::setMcaMorfAnm(J3DAnmTransformKey* i_anm, f32 i_speed, f32 i_mor
 
 /* 8014EEE4-8014EF28 149824 0044+00 0/0 0/0 1/1 .text
  * setBckAnm__11daBaseNpc_cFP15J3DAnmTransformfiiib             */
-void daBaseNpc_c::setBckAnm(J3DAnmTransform* i_anm, f32 i_speed, int i_mode, int i_start,
+int daBaseNpc_c::setBckAnm(J3DAnmTransform* i_anm, f32 i_speed, int i_mode, int i_start,
                             int i_end, bool i_modify) {
-    mBck.init(i_anm, TRUE, i_mode, i_speed, i_start, i_end, i_modify);
+    return mBck.init(i_anm, TRUE, i_mode, i_speed, i_start, i_end, i_modify);
 }
 
 /* 8014EF28-8014EF64 149868 003C+00 0/0 0/0 1/1 .text            getTexPtrnAnmP__11daBaseNpc_cFPci
@@ -488,9 +488,9 @@ J3DAnmTransform* daBaseNpc_c::getTexPtrnAnmP(char* i_arcName, int i_resIdx) {
 
 /* 8014EF64-8014EFA4 1498A4 0040+00 0/0 0/0 1/1 .text
  * setBtpAnm__11daBaseNpc_cFP16J3DAnmTexPatternP12J3DModelDatafi */
-void daBaseNpc_c::setBtpAnm(J3DAnmTexPattern* i_anm, J3DModelData* i_modelData, f32 i_speed,
+int daBaseNpc_c::setBtpAnm(J3DAnmTexPattern* i_anm, J3DModelData* i_modelData, f32 i_speed,
                             int i_mode) {
-    mBtp.init(i_modelData, i_anm, TRUE, i_mode, i_speed, 0, -1);
+    return mBtp.init(i_modelData, i_anm, TRUE, i_mode, i_speed, 0, -1);
 }
 
 /* 8014EFA4-8014EFF0 1498E4 004C+00 2/0 0/0 2/0 .text            attnSttsOn__11daBaseNpc_cFii */
