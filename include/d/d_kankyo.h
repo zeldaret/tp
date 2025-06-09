@@ -635,5 +635,6 @@ void dKy_bgparts_activelight_set(LIGHT_INFLUENCE* light_inf_p, int bgpart_id);
 void dKy_bgparts_activelight_cut(int bgpart_id);
 int dKy_Indoor_check();
 void dKy_GfFog_tevstr_set(dKy_tevstr_c* tevstr_p);
+void dKy_setLight_mine(dKy_tevstr_c* tevstr_p);
 
 #endif /* D_KANKYO_D_KANKYO_H */

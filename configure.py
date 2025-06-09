@@ -1913,7 +1913,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_firepillar"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_firepillar2"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_flag"),
-    ActorRel(NonMatching, "d_a_obj_flag2"),
+    ActorRel(Equivalent, "d_a_obj_flag2"), # weak function order
     ActorRel(NonMatching, "d_a_obj_flag3"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_food"),
     ActorRel(NonMatching, "d_a_obj_fw"),
