@@ -69,13 +69,13 @@ static Vec l_pennant_flag_pos[21] = {
 
 /* 80BEC658-80BEC790 000078 0138+00 1/1 0/0 0/0 .text
  * initFlagPos__11FlagCloth_cFP4cXyzP10fopAc_ac_c               */
-void FlagCloth_c::initFlagPos(cXyz* param_1, fopAc_ac_c* param_2) {
-    field_0x938 = param_1;
-    cXyz cStack_24;
+void FlagCloth_c::initFlagPos(cXyz* pFlagPos, fopAc_ac_c* i_actor) {
+    mpFlagPosition = pFlagPos;
+    cXyz direction;
     f32 power;
-    dKyw_get_AllWind_vec(field_0x938, &cStack_24, &power);
-    mDoMtx_stack_c::transS(*field_0x938);
-    cMtx_copy(mDoMtx_stack_c::get(), field_0x93c);
+    dKyw_get_AllWind_vec(mpFlagPosition, &direction, &power);
+    mDoMtx_stack_c::transS(*mpFlagPosition);
+    cMtx_copy(mDoMtx_stack_c::get(), mModelMtx);
     cXyz* pPos = getPos();
     for (int i = 0; i < 21; i++, pPos++) {
         pPos->set(l_pennant_flag_pos[i]);
@@ -91,7 +91,7 @@ void FlagCloth_c::initFlagPos(cXyz* param_1, fopAc_ac_c* param_2) {
         calcFlagNormal(pNormal, i);
     }
     calcFlagNormalBack();
-    initCcSphere(param_2);
+    initCcSphere(i_actor);
 }
 
 /* 80BEE31C-80BEE3C4 0000FC 00A8+00 1/1 0/0 0/0 .data            l_texCoord_64x64 */
@@ -134,27 +134,27 @@ cXyz FlagCloth_c::calcFlagFactor(cXyz* param_1, cXyz* param_2, cXyz* param_3, in
         16, -1, -1, 19, 13, 12, 17, -1, -1, 20, 14, 13, 18, -1, -1, 14, 19, -1, -1, -1, -1,
     };
 
-    cXyz cStack_58(0.0f, 0.0f, 0.0f);
+    cXyz flagFactor(0.0f, 0.0f, 0.0f);
     if (param_4 == 15 || param_4 == 20) {
         return cXyz::Zero;
     }
 
-    int* piVar8 = rel_pos_idx_tbl + param_4 * 6;
-    cStack_58 = param_2[param_4] * param_3->inprod(param_2[param_4]);
-    cStack_58.y += mGravity;
-    for (int i = 0; i < 6; i++, piVar8++) {
-        if (*piVar8 == -1) {
+    int* pRelPosIdx = rel_pos_idx_tbl + param_4 * 6;
+    flagFactor = param_2[param_4] * param_3->inprod(param_2[param_4]);
+    flagFactor.y += mGravity;
+    for (int i = 0; i < 6; i++, pRelPosIdx++) {
+        if (*pRelPosIdx == -1) {
             break;
         }
         f32 fVar1;
-        if (*piVar8 == 0 || param_4 == 0 || abs(*piVar8 - param_4) > 1) {
+        if (*pRelPosIdx == 0 || param_4 == 0 || abs(*pRelPosIdx - param_4) > 1) {
             fVar1 = 104.40307f;
         } else {
             fVar1 = 60.0f;
         }
-        calcFlagFactorSub(param_1 + param_4, param_1 + *piVar8, &cStack_58, fVar1);
+        calcFlagFactorSub(param_1 + param_4, param_1 + *pRelPosIdx, &flagFactor, fVar1);
     }
-    return cStack_58;
+    return flagFactor;
 }
 
 /* 80BEC928-80BECAE0 000348 01B8+00 1/1 0/0 0/0 .text
@@ -169,7 +169,7 @@ void FlagCloth_c::calcFlagFactorSub(cXyz* param_1, cXyz* param_2, cXyz* param_3,
 }
 
 /* 80BECAE0-80BECC34 000500 0154+00 2/2 0/0 0/0 .text calcFlagNormal__11FlagCloth_cFP4cXyzi */
-void FlagCloth_c::calcFlagNormal(cXyz* param_1, int param_2) {
+void FlagCloth_c::calcFlagNormal(cXyz* o_normal, int param_2) {
     static int rel_pos_idx_tbl[147] = {
         1,  2,  -1, -1, -1, -1, -1, 3,  4,  2,  0,  -1, -1, -1, 0,  1,  4,  5,  -1, -1, -1,
         6,  7,  4,  1,  -1, -1, -1, 1,  3,  7,  8,  5,  2,  1,  2,  4,  8,  9,  -1, -1, -1,
@@ -196,7 +196,7 @@ void FlagCloth_c::calcFlagNormal(cXyz* param_1, int param_2) {
         cStack_60 += cStack_54;
     }
     cStack_60.normalizeZP();
-    param_1->set(cStack_60);
+    o_normal->set(cStack_60);
 }
 
 /* 80BECC34-80BECC78 000654 0044+00 1/1 0/0 0/0 .text            calcFlagNormalBack__11FlagCloth_cFv
@@ -210,7 +210,7 @@ inline void FlagCloth_c::calcFlagNormalBack() {
 }
 
 /* 80BECC78-80BECCE4 000698 006C+00 1/1 0/0 0/0 .text initCcSphere__11FlagCloth_cFP10fopAc_ac_c */
-void FlagCloth_c::initCcSphere(fopAc_ac_c* param_1) {
+void FlagCloth_c::initCcSphere(fopAc_ac_c* i_actor) {
     const static dCcD_SrcSph ccSphSrc = {
         {
             {0x0, {{0x0, 0x0, 0x0}, {0x10000, 0x11}, 0x0}},  // mObj
@@ -223,7 +223,7 @@ void FlagCloth_c::initCcSphere(fopAc_ac_c* param_1) {
         }  // mSphAttr
     };
 
-    mStts.Init(0xff, 0xff, param_1);
+    mStts.Init(0xff, 0xff, i_actor);
     mSph.Set(ccSphSrc);
     mSph.SetStts(&mStts);
     mSph.SetC(getTargetPos());
@@ -247,18 +247,18 @@ void FlagCloth_c::setCcSphere() {
 
 /* 80BECD98-80BECF30 0007B8 0198+00 1/1 0/0 0/0 .text            execute__11FlagCloth_cFv */
 void FlagCloth_c::execute() {
-    cXyz cStack_34;
+    cXyz direction;
     f32 power;
-    dKyw_get_AllWind_vec(field_0x938, &cStack_34, &power);
-    cStack_34.normalizeZP();
-    cStack_34 *= power * mWindRate;
+    dKyw_get_AllWind_vec(mpFlagPosition, &direction, &power);
+    direction.normalizeZP();
+    direction *= power * mWindRate;
     cXyz* pPos = getPos();
     cXyz* pNormal = getNormal();
     cXyz* pNormal2 = pNormal;
     cXyz* pVec = getVec();
     cXyz cStack_40;
     for (int i = 0; i < 21; pVec++, i++) {
-        cXyz cStack_40 = calcFlagFactor(pPos, pNormal, &cStack_34, i);
+        cXyz cStack_40 = calcFlagFactor(pPos, pNormal, &direction, i);
         *pVec += cStack_40;
         *pVec *= mDecayRate;
     }
@@ -279,14 +279,13 @@ void FlagCloth_c::execute() {
 }
 
 /* 80BECF30-80BED22C 000950 02FC+00 1/0 0/0 0/0 .text            draw__11FlagCloth_cFv */
-// NONMATCHING - GXColor stack issue
 void FlagCloth_c::draw() {
     j3dSys.reinitGX();
     GXSetNumIndStages(0);
     dKy_setLight_again();
     dKy_GxFog_tevstr_set(&mTevStr);
     dKy_setLight_mine(&mTevStr);
-    g_env_light.settingTevStruct(0x10, field_0x938, &mTevStr);
+    g_env_light.settingTevStruct(0x10, mpFlagPosition, &mTevStr);
     GXClearVtxDesc();
     GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
     GXSetVtxDesc(GX_VA_NRM, GX_INDEX8);
@@ -317,10 +316,10 @@ void FlagCloth_c::draw() {
     GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
     GXSetTevKAlphaSel(GX_TEVSTAGE0, GX_TEV_KASEL_K3_A);
     GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_OR, GX_GREATER, 0);
-    Mtx auStack_40;
-    cMtx_concat(j3dSys.getViewMtx(), field_0x93c, auStack_40);
-    GXLoadPosMtxImm(auStack_40, 0);
-    GXLoadNrmMtxImm(auStack_40, 0);
+    Mtx viewModelMtx;
+    cMtx_concat(j3dSys.getViewMtx(), mModelMtx, viewModelMtx);
+    GXLoadPosMtxImm(viewModelMtx, 0);
+    GXLoadNrmMtxImm(viewModelMtx, 0);
     GXSetClipMode(GX_CLIP_ENABLE);
     GXSetCullMode(GX_CULL_BACK);
     GXCallDisplayList(l_pennant_flagDL, 0x80);
@@ -332,14 +331,12 @@ void FlagCloth_c::draw() {
 
 /* 80BED22C-80BED368 000C4C 013C+00 1/1 0/0 0/0 .text            create_init__12daObjFlag2_cFv */
 void daObjFlag2_c::create_init() {
-    int* puVar4 = (int*)dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), "spec.dat");
-    f32 dVar9 = (u16)*puVar4;
-    field_0x10a0.set(current.pos.x, current.pos.y + dVar9, current.pos.z);
-    fopAcM_setCullSizeBox(this, -600.0f, -dVar9, -600.0f,
-                                          600.0f, 400.0f,
-                                          600.0f);
+    int* pOffset = (int*)dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), "spec.dat");
+    f32 offset = (u16)*pOffset;
+    mFlagPosition.set(current.pos.x, current.pos.y + offset, current.pos.z);
+    fopAcM_setCullSizeBox(this, -600.0f, -offset, -600.0f, 600.0f, 400.0f, 600.0f);
     eyePos.set(mFlagCloth.getTargetPos());
-    mFlagCloth.initFlagPos(&field_0x10a0, this);
+    mFlagCloth.initFlagPos(&mFlagPosition, this);
     mFlagCloth.setSpringRate(attr().mSpringCoeeficient);
     mFlagCloth.setWindRate(attr().mWindCoefficient);
     mFlagCloth.setDecayRate(attr().mDecayRate);
@@ -381,7 +378,7 @@ void daObjFlag2_c::initCollision() {
     mCyl.SetStts(&mStts);
     mCyl.SetC(current.pos);
     mCyl.SetR(15.0f);
-    mCyl.SetH(field_0x10a0.y + 200.0f);
+    mCyl.SetH(mFlagPosition.y + 200.0f);
     setCollision();
 }
 
@@ -393,7 +390,7 @@ void daObjFlag2_c::setCollision() {
 /* 80BED480-80BED680 000EA0 0200+00 1/1 0/0 0/0 .text            createHeap__12daObjFlag2_cFv */
 int daObjFlag2_c::createHeap() {
     s8 flagNum = (u8)shape_angle.x;
-    if (field_0x10ac != 0) {
+    if (mFlagValid) {
         char acStack_40[16];
         sprintf(acStack_40, "flag%02d.bti", flagNum);
         shape_angle.setall(0);
@@ -440,9 +437,9 @@ int daObjFlag2_c::create() {
     fopAcM_SetupActor(this, daObjFlag2_c);
     s8 flagNum = (u8)shape_angle.x;
     if (flagNum <= -1 || flagNum > 99) {
-        field_0x10ac = 0;
+        mFlagValid = false;
     } else {
-        field_0x10ac = 1;
+        mFlagValid = true;
         sprintf(mFlagName, "FlagObj%02d", flagNum);
         int rv = dComIfG_resLoad(&mFlagPhase, mFlagName);
         if (rv != cPhs_COMPLEATE_e) {
@@ -470,7 +467,7 @@ int daObjFlag2_c::draw() {
     dComIfGd_setListBG();
     g_env_light.setLightTevColorType_MAJI(mModel, &tevStr);
     mDoExt_modelUpdateDL(mModel);
-    if (field_0x10ac != 0) {
+    if (mFlagValid) {
         j3dSys.getDrawBuffer(0)->entryImm(&mFlagCloth, 0);
     }
     dComIfGd_setList();
@@ -484,7 +481,7 @@ static int daObjFlag2_Draw(daObjFlag2_c* i_this) {
 }
 
 int daObjFlag2_c::execute() {
-    if (field_0x10ac == 0) {
+    if (!mFlagValid) {
         return 1;
     }
 
@@ -496,12 +493,12 @@ int daObjFlag2_c::execute() {
     mFlagCloth.setTornado(attr().mTornado);
     #endif
 
-    cXyz cStack_24;
+    cXyz direction;
     f32 power;
-    dKyw_get_AllWind_vec(&field_0x10a0, &cStack_24, &power);
+    dKyw_get_AllWind_vec(&mFlagPosition, &direction, &power);
     if (power > 0.0f) {
-        Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_FLAG_TRAILING, &field_0x10a0, power * 127.0f, 0,
-                                        1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_FLAG_TRAILING, &mFlagPosition, power * 127.0f, 0,
+                                      1.0f, 1.0f, -1.0f, -1.0f, 0);
     }
     mFlagCloth.execute();
     eyePos = mFlagCloth.getTargetPos();
@@ -533,7 +530,7 @@ daObjFlag2_c::~daObjFlag2_c() {
     M_hio.dt();
     #endif
 
-    if (field_0x10ac != 0) {
+    if (mFlagValid) {
         dComIfG_resDelete(&mFlagPhase, mFlagName);
     }
     dComIfG_resDelete(&mArcPhase, daSetBgObj_c::getArcName(this));

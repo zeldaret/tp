@@ -50,8 +50,8 @@ public:
     /* 0x73C */ f32 field_0x73c;
     /* 0x740 */ cXyz mNormalBacks[21];
     /* 0x740 */ cXyz mVecs[21];
-    /* 0x938 */ cXyz* field_0x938;
-    /* 0x93C */ Mtx field_0x93c;
+    /* 0x938 */ cXyz* mpFlagPosition;
+    /* 0x93C */ Mtx mModelMtx;
     /* 0x96C */ void* mpTexCoord;
     /* 0x970 */ f32 mSpringRate;
     /* 0x974 */ f32 mWindRate;
@@ -94,9 +94,9 @@ private:
     /* 0x06F4 */ u8 field_0x6f4[0x700 - 0x6f4];
     /* 0x0700 */ FlagCloth_c mFlagCloth;
     /* 0x1084 */ u8 field_0x1084[0x10a0 - 0x1084];
-    /* 0x10A0 */ cXyz field_0x10a0;
-    /* 0x10AC */ u8 field_0x10ac;
-    /* 0x10AD */ char mFlagName[0x10c0 - 0x10ad];
+    /* 0x10A0 */ cXyz mFlagPosition;
+    /* 0x10AC */ bool mFlagValid;
+    /* 0x10AD */ char mFlagName[16];
 };
 
 STATIC_ASSERT(sizeof(daObjFlag2_c) == 0x10c0);
