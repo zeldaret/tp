@@ -15,7 +15,7 @@
 
 class daObj_GrA_Param_c {
 public:
-    /* 80C04B1C */ ~daObj_GrA_Param_c();
+    /* 80C04B1C */ virtual ~daObj_GrA_Param_c() {}
 
     struct Data {
         /* 0x00 */ f32 field_0x00;
@@ -88,10 +88,15 @@ public:
 
     class daObj_GrA_prtclMngr_c {
     public:
-        /* 80C04E14 */ ~daObj_GrA_prtclMngr_c();
-        /* 80C04E50 */ daObj_GrA_prtclMngr_c();
+        /* 80C04E14 */ ~daObj_GrA_prtclMngr_c() {}
+        /* 80C04E50 */ daObj_GrA_prtclMngr_c() {}
 
-        /* 0x00 */ u8 field_0x0[0x24 - 0x0];
+        /* 0x00 */ s8 field_0x0;
+        /* 0x01 */ u8 field_0x1[0x4 - 0x1];
+        /* 0x04 */ cXyz field_0x4;
+        /* 0x10 */ csXyz field_0x10;
+        /* 0x16 */ u8 field_0x16[2];
+        /* 0x18 */ cXyz field_0x18;
         /* 0x24 */ dPaPo_c* field_0x24[6];
         /* 0x3C */ u8 field_0x3c[0x5c - 0x3c];
     };
@@ -136,10 +141,10 @@ public:
     /* 80C0308C */ int hitChk();
     /* 80C031E4 */ int wait(void*);
     /* 80C0335C */ int talk(void*);
-    /* 80C035B8 */ void ctrlMsgAnm(int&, int&, fopAc_ac_c*);
-    /* 80C03720 */ void checkTagGraSub(fopAc_ac_c*);
-    /* 80C03764 */ void fallAbyssCheck();
-    /* 80C03830 */ void setPrtcl();
+    /* 80C035B8 */ int ctrlMsgAnm(int&, int&, fopAc_ac_c*);
+    /* 80C03720 */ bool checkTagGraSub(fopAc_ac_c*);
+    /* 80C03764 */ BOOL fallAbyssCheck();
+    /* 80C03830 */ int setPrtcl();
     /* 80C03B14 */ int base000(int);
     /* 80C03B48 */ int base001(int);
     /* 80C03B7C */ int base003(int);
@@ -176,11 +181,11 @@ public:
     /* 80C04848 */ int face016(int);
     /* 80C04880 */ int face017(int);
     /* 80C048B8 */ int face999(int);
-    /* 80C048F8 */ void evtcutTalk(int, int);
+    /* 80C048F8 */ int evtcutTalk(int, int);
     /* 80C04A0C */ void setFaceTalkAfter();
     /* 80C0536C */ f32 getSrchCircleR();
     /* 80C053C4 */ int standWait(void*);
-    /* 80C05920 */ void walk(void*);
+    /* 80C05920 */ int walk(void*);
     /* 80C05F64 */ int defence(void*);
     /* 80C061F4 */ int toStone(void*);
     /* 80C067D8 */ int step(void*);
@@ -212,7 +217,7 @@ public:
     /* 80C0C84C */ void initCrazyAttack();
     /* 80C0CA64 */ void executeCrazyJumping();
     /* 80C0CDBC */ void modeChangeCheck();
-    /* 80C0CF98 */ void checkGraSub(fopAc_ac_c*);
+    /* 80C0CF98 */ bool checkGraSub(fopAc_ac_c*);
     /* 80C0D000 */ int waitDemo(void*);
     /* 80C0D2FC */ void skipDemoGra();
     /* 80C0D3E0 */ void startDemo(void*);
@@ -242,7 +247,7 @@ private:
     /* 0x0A4C */ daObj_GrA_Param_c* field_0xa4c;
     /* 0x0A50 */ Process field_0xa50;
     /* 0x0A5C */ request_of_phase_process_class* field_0xa5c[8];
-    /* 0x0A7C */ s16 field_0xa7c;
+    /* 0x0A7C */ u16 field_0xa7c;
     /* 0x0A7E */ u8 mMode;
     /* 0x0A7F */ u8 field_0xa7f;
     /* 0x0A80 */ u8 field_0xa80[0xa88 - 0xa80];
@@ -258,13 +263,14 @@ private:
     /* 0x0A9C */ int field_0xa9c;
     /* 0x0AA0 */ int field_0xaa0;
     /* 0x0AA4 */ int field_0xaa4;
-    /* 0x0AA8 */ u8 field_0xaa8[0xaac - 0xaa8];
+    /* 0x0AA8 */ int field_0xaa8;
     /* 0x0AAC */ int field_0xaac;
     /* 0x0AB0 */ daBaseNpc_acMngr_c field_0xab0;
     /* 0x0AB8 */ daObj_GrA_prtclMngr_c field_0xab8[6];
     /* 0x0CE0 */ dCcD_Sph field_0xce0[2];
     /* 0x0F50 */ dCcD_Cyl field_0xf50;
-    /* 0x108C */ u8 field_0x108c[0x109c - 0x108c];
+    /* 0x108C */ cXyz field_0x108c;
+    /* 0x1098 */ f32 field_0x1098;
     /* 0x109C */ int field_0x109c;
     /* 0x10A0 */ int field_0x10a0;
     /* 0x10A4 */ int field_0x10a4;
@@ -288,13 +294,15 @@ private:
     /* 0x1504 */ int mLookMode;
     /* 0x1508 */ int field_0x1508;
     /* 0x150C */ int field_0x150c;
-    /* 0x1510 */ u8 field_0x1510[0x1520 - 0x1510];
+    /* 0x1510 */ u8 field_0x1510[0x1518 - 0x1510];
+    /* 0x1518 */ int field_0x1518;
+    /* 0x151C */ u8 field_0x151c[0x1520 - 0x151c];
     /* 0x1520 */ int field_0x1520;
     /* 0x1524 */ u8 field_0x1524[0x1528 - 0x1524];
     /* 0x1528 */ daBaseNpc_path_c field_0x1528;
     /* 0x1F4C */ dBgS_LinkLinChk field_0x1f4c;
     /* 0x1FBC */ int field_0x1fbc;
-    /* 0x1FC0 */ u8 field_0x1fc0[0x1fc4 - 0x1fc0];
+    /* 0x1FC0 */ int field_0x1fc0;
     /* 0x1FC4 */ u8 field_0x1fc4;
     /* 0x1FC5 */ u8 field_0x1fc5[0x1fcc - 0x1fc5];
     /* 0x1FCC */ int field_0x1fcc;
@@ -317,14 +325,15 @@ private:
     /* 0x2006 */ u8 field_0x2006[0x2008 - 0x2006];
     /* 0x2008 */ f32 field_0x2008;
     /* 0x200C */ u16 field_0x200c;
-    /* 0x200E */ u8 field_0x200e[0x2014 - 0x200e];
+    /* 0x200E */ u8 field_0x200e[0x2010 - 0x200e];
+    /* 0x2010 */ int field_0x2010;
     /* 0x2014 */ u8 field_0x2014;
     /* 0x2015 */ u8 field_0x2015[0x201c - 0x2015];
-    /* 0x201C */ u8 field_0x201c;
+    /* 0x201C */ s8 field_0x201c;
     /* 0x201D */ u8 field_0x201d;
     /* 0x201E */ u8 field_0x201e[0x2020 - 0x201e];
-    /* 0x2020 */ int field_0x2020[3];
-    /* 0x202C */ u8 field_0x202c[0x2030 - 0x202c];
+    /* 0x2020 */ u32 field_0x2020[3];
+    /* 0x202C */ u32 field_0x202c;
     /* 0x2030 */ u8 field_0x2030;
     /* 0x2031 */ u8 field_0x2031;
     /* 0x2032 */ u8 field_0x2032;

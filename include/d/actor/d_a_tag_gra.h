@@ -13,6 +13,10 @@ public:
         return (fopAcM_GetParam(this) >> 16) & 0xFF;
     }
 
+    s16 getGraNo() {
+        return fopAcM_GetParam(this) & 0xFF;
+    }
+
     int create() {
         fopAcM_SetupActor(this, daTagGra_c);
 
