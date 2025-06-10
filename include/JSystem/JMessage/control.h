@@ -24,15 +24,22 @@ struct TControl {
     bool isReady_render_() const { return field_0x20 != 0 && pRenderingProcessor_ != NULL; }
 
     TProcessor* getProcessor() const {
-        return pSequenceProcessor_ != NULL ? (TProcessor*)pSequenceProcessor_ :
-                                             (TProcessor*)pRenderingProcessor_;
+        if (pSequenceProcessor_ != NULL) {
+            return (TProcessor*)pSequenceProcessor_;
+        } else {
+            return (TProcessor*)pRenderingProcessor_;
+        }                                   
     }
 
     int setMessageCode(u32 code) {
         return setMessageCode(code >> 16, code);
     }
 
-    int setMessageCode_inReset_(TProcessor* pProcessor, u16 param_1, u16 param_2) {
+    int setMessageCode_inReset_(const TProcessor* pProcessor, u16 param_1, u16 param_2) {
+        JUT_ASSERT(138, pEntry_==0);
+        JUT_ASSERT(139, pszText_update_current_==0);
+        JUT_ASSERT(140, oStack_renderingProcessor_.empty());
+        
         if (!setMessageCode_inSequence_(pProcessor, param_1, param_2)) {
             return 0;
         }
@@ -47,6 +54,7 @@ struct TControl {
 
     const char* getMessageText_begin() const { return pMessageText_begin_; }
     void* getMessageEntry() const { return pEntry_; }
+    u32 getMessageCode() const { return (messageCode_ << 0x10) | field_0xe; }
     void setSequenceProcessor(TSequenceProcessor* processor) { pSequenceProcessor_ = processor; }
     void setRenderingProcessor(TRenderingProcessor* processor) { pRenderingProcessor_ = processor; }
     void resetResourceCache() { 

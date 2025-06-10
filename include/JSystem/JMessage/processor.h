@@ -2,7 +2,8 @@
 #define JMESSAGE_PROCESSOR_H
 
 #include "JSystem/JMessage/resource.h"
-#include "algorithm.h"
+#include <algorithm.h>
+#include "global.h"
 
 namespace JMessage {
 struct TResource;
@@ -18,15 +19,15 @@ struct TReference {
     /* 802A7AF8 */ virtual ~TReference();
     /* 802A7B40 */ virtual const char* do_word(u32) const;
 
-    int on_parseCharacter(const char** string) const { return pcResource_->parseCharacter(string); }
+    int on_parseCharacter(const char** string) const {
+        JUT_ASSERT(97, pcResource_!=0);
+        return pcResource_->parseCharacter(string);
+    }
+
     const char* on_word(u32 param_0) const { return do_word(param_0); }
 
     TResource* getResource_groupID(u16 groupID) const {
-        if (pcResource_ == NULL) {
-            return NULL;
-        }
-
-        return pcResource_->getResource_groupID(groupID);
+        return pcResource_ == NULL ? NULL : pcResource_->getResource_groupID(groupID);
     }
 
     TResourceContainer* getResourceContainer() const { return pcResource_; }
@@ -41,7 +42,9 @@ struct TReference {
  */
 struct TProcessor {
     TProcessor(const TReference* reference)
-        : pReference_(reference), pResourceCache_(NULL), pszCurrent_(NULL) {}
+        : pReference_(reference), pResourceCache_(NULL), pszCurrent_(NULL) {
+            JUT_ASSERT(584, pReference_!=0);
+        }
 
     typedef bool (*pfnProcess_func)(TProcessor*);
 
@@ -55,14 +58,25 @@ struct TProcessor {
         u32 max_size() const { return 4; }
         u32 size() const { return upsz_; }
 
-        const char* top() const { return stack[upsz_ - 1]; }
+        const char* top() const {
+            JUT_ASSERT(181, upsz_>0);
+            return stack[upsz_ - 1];
+        }
 
         void push(const char* string) {
+            JUT_ASSERT(186, IsPushable());
             stack[upsz_] = string;
             upsz_++;
         }
 
-        void pop() { upsz_--; }
+        void pop() {
+            JUT_ASSERT(192, upsz_>0);
+            upsz_--;
+
+            #if PLATFORM_SHIELD
+            stack[upsz_] = NULL;
+            #endif
+        }
 
         TStack_& operator=(const TStack_& other) {
             upsz_ = other.upsz_;
@@ -79,11 +93,11 @@ struct TProcessor {
     struct TProcess_ {
         TProcess_() { reset_normal(); }
 
-        void reset_normal() { pfnProcess_CharacterEnd = process_onCharacterEnd_normal_; }
-        void reset_select() { pfnProcess_CharacterEnd = process_onCharacterEnd_select_; }
+        void reset_normal() { pfnProcess_onCharacterEnd = process_onCharacterEnd_normal_; }
+        void reset_select() { pfnProcess_onCharacterEnd = process_onCharacterEnd_select_; }
 
-        /* 0x0 */ pfnProcess_func pfnProcess_CharacterEnd;
-        struct {
+        /* 0x0 */ pfnProcess_func pfnProcess_onCharacterEnd;
+        struct rdata {
             /* 0x0 */ const char* (*pfn)(TProcessor*);
             /* 0x4 */ const char* pcBase;
             /* 0x8 */ const void* pOffset;
@@ -159,6 +173,7 @@ struct TProcessor {
     void on_character(int character) { do_character(character); }
 
     const char* on_message_limited(u16 messageIndex) const {
+        JUT_ASSERT(482, pResourceCache_!=0);
         return pResourceCache_->getMessageText_messageIndex(messageIndex);
     }
 
@@ -221,18 +236,14 @@ struct TProcessor {
     }
 
     TResourceContainer* getResourceContainer() const {
-        if (pReference_ == NULL) {
-            return NULL;
-        }
-
-        return pReference_->getResourceContainer();
+        return pReference_ == NULL ? NULL : pReference_->getResourceContainer();
     }
 
     void setResourceCache(TResource* cache) { pResourceCache_ = cache; }
     void resetResourceCache() { setResourceCache(NULL); }
 
     /* 0x04 */ const TReference* pReference_;
-    /* 0x08 */ const TResource* pResourceCache_;
+    /* 0x08 */ const mutable TResource* pResourceCache_;
     /* 0x0C */ const char* pszCurrent_;
     /* 0x10 */ TStack_ oStack_;
     /* 0x24 */ TProcess_ oProcess_;
@@ -253,13 +264,13 @@ struct TSequenceProcessor : public TProcessor {
 
         void reset() {}
 
-        union {
-            struct {
+        union processData {
+            struct branchData {
                 /* 0x0 */ branchPfn branchFn;
                 /* 0x4 */ const void* pTarget;
                 /* 0x8 */ u32 uTarget;
             } branch_process;
-            struct {
+            struct jumpData {
                 /* 0x0 */ jumpPfn jumpFn;
                 /* 0x4 */ u32 u32Target;
             } jump_process;

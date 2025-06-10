@@ -58,12 +58,15 @@ void JMessage::TControl::render() {
 
 /* 802A77E8-802A78F4 2A2128 010C+00 0/0 1/1 0/0 .text setMessageCode__Q28JMessage8TControlFUsUs */
 int JMessage::TControl::setMessageCode(u16 param_0, u16 param_1) {
-    return setMessageCode_inReset_(getProcessor(), param_0, param_1);
+    TProcessor* pProcessor = getProcessor();
+    JUT_ASSERT(120, pProcessor!=0);
+    return setMessageCode_inReset_(pProcessor, param_0, param_1);
 }
 
 /* 802A78F4-802A7A20 2A2234 012C+00 0/0 6/6 0/0 .text setMessageID__Q28JMessage8TControlFUlUlPb */
 int JMessage::TControl::setMessageID(u32 param_0, u32 param_1, bool* param_2) {
     TProcessor* pProcessor = getProcessor();
+    JUT_ASSERT(132, pProcessor!=0);
 
     u32 code = pProcessor->toMessageCode_messageID(param_0, param_1, param_2);
     if (code == -1) {
@@ -78,14 +81,16 @@ int JMessage::TControl::setMessageID(u32 param_0, u32 param_1, bool* param_2) {
 bool JMessage::TControl::setMessageCode_inSequence_(JMessage::TProcessor const* pProcessor,
                                                     u16 messageCode, u16 messageIndex) {
     pEntry_ = pProcessor->getMessageEntry_messageCode(messageCode, messageIndex);
-
     if (pEntry_ == NULL) {
         return false;
     }
 
     messageCode_ = messageCode;
     field_0xe = messageIndex;
+    
     pResourceCache_ = pProcessor->getResourceCache();
+    JUT_ASSERT(155, pResourceCache_!=0);
+
     pMessageText_begin_ = pResourceCache_->getMessageText_messageEntry(pEntry_);
     field_0x20 = pMessageText_begin_;
     oStack_renderingProcessor_.clear();

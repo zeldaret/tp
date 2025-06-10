@@ -38,9 +38,9 @@ struct data {
 
         char* getContent() const { return (char*)getRaw() + 0x10; }
 
-        u16 get_messageEntrySize() const { return *(u16*)(get() + 0xA); }
+        u32 get_messageEntrySize() const { return *(u16*)(get() + 0xA); }
 
-        u16 get_messageEntryNumber() const { return *(u16*)(get() + 0x8); }
+        u32 get_messageEntryNumber() const { return *(u16*)(get() + 0x8); }
 
         u16 get_groupID() const { return *(u16*)(get() + 0xC); }
     };
@@ -52,7 +52,7 @@ struct data {
         u8 get_formSupplement() const { return *(u8*)(get() + 0xB); }
         int get_number() const { return *(u16*)(get() + 0x8); }
         u32* getContent() const { return (u32*)((u32)getRaw() + 0x10); }
-        u8 get_form() const { return *(u8*)(get() + 0xA) & 0xF; }
+        u32 get_form() const { return *(u8*)(get() + 0xA) & 0xF; }
         bool get_isOrdered() const { return *(u8*)(get() + 0xA) & 0xF0; }
     };
 
@@ -72,12 +72,24 @@ struct data {
         char* getContent() const { return (char*)getRaw() + 0x8; }
     };
 
-    static u32 getTagCode(u32 tag) { return tag & 0xFFFF; }
-    static u32 getTagGroup(u32 tag) { return (tag >> 0x10) & 0xFF; }
+    static unsigned int getTagCode(u32 tag) { return tag & 0xFFFF; }
+    static u8 getTagGroup(u32 tag) { return tag >> 0x10; }
 
-    static u32 ga4cSignature;
+    static const u32 ga4cSignature;
+    static const u32 ga4cSignature_color;
 
     static const int gcTagBegin = '\x1A';
+
+    enum {
+        MESSAGEINDEX_USER_ENUM_MIN = 0x0000,
+        MESSAGEINDEX_USER_ENUM_MAX = 0xFEFF,
+
+        MESSAGEINDEX_RESERVED_ENUM_MIN = 0xFF00,
+        MESSAGEINDEX_RESERVED_ENUM_MAX = 0xFFFF,
+
+        MESSAGEGROUPID_USER_ENUM_MIN = 0x0000,
+        MESSAGEGROUPID_USER_ENUM_MAX = 0xFFFF,
+    };
 };
 };  // namespace JMessage
 

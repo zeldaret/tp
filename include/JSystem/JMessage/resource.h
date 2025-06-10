@@ -13,7 +13,7 @@ namespace JMessage {
  */
 struct TResource {
     TResource()
-        : field_0x8(NULL), field_0xc(NULL), field_0x10(NULL), field_0x14(NULL), mMessageID(NULL) {}
+        : field_0x8(NULL), oParse_TBlock_info_(NULL), field_0x10(NULL), field_0x14(NULL), oParse_TBlock_messageID_(NULL) {}
 
     /* 802A8CDC */ u16 toMessageIndex_messageID(u32, u32, bool*) const;
 
@@ -21,20 +21,22 @@ struct TResource {
         return messageIndex < getMessageEntryNumber();
     }
 
-    u16 getMessageEntrySize() const { return field_0xc.get_messageEntrySize(); }
-    u16 getMessageEntryNumber() const { return field_0xc.get_messageEntryNumber(); }
+    u32 getMessageEntrySize() const { return oParse_TBlock_info_.get_messageEntrySize(); }
+    u32 getMessageEntryNumber() const { return oParse_TBlock_info_.get_messageEntryNumber(); }
 
-    u16 getGroupID() const { return field_0xc.get_groupID(); }
+    u16 getGroupID() const { return oParse_TBlock_info_.get_groupID(); }
 
     void* getMessageEntry_messageIndex(u16 messageIndex) const {
         if (!isContained_messageIndex(messageIndex)) {
             return NULL;
         }
 
-        return field_0xc.getContent() + (messageIndex * getMessageEntrySize());
+        void* var_r31 = oParse_TBlock_info_.getContent() + (messageIndex * getMessageEntrySize());
+        return var_r31;
     }
 
     char* getMessageText_messageEntry(const void* pEntry) const {
+        JUT_ASSERT(141, pEntry!=0);
         return field_0x10 + *(int*)pEntry;
     }
 
@@ -52,7 +54,11 @@ struct TResource {
     }
 
     void setData_block_info(const void* pData) {
-        field_0xc.setRaw(pData);
+        oParse_TBlock_info_.setRaw(pData);
+
+        JGADGET_ASSERTWARN(75, oParse_TBlock_info_.get_groupID()<= data::MESSAGEGROUPID_USER_ENUM_MAX);
+
+        JGADGET_ASSERTWARN(77, oParse_TBlock_info_.get_messageEntryNumber()<= data::MESSAGEINDEX_USER_ENUM_MAX);
     }
 
     void setData_block_messageText(const void* pData) {
@@ -64,15 +70,15 @@ struct TResource {
     }
 
     void setData_block_messageID(const void* pData) {
-        mMessageID.setRaw(pData);
+        oParse_TBlock_messageID_.setRaw(pData);
     }
 
     JGadget::TLinkListNode ocObject_;
     /* 0x08 */ data::TParse_THeader field_0x8;
-    /* 0x0C */ data::TParse_TBlock_info field_0xc;
+    /* 0x0C */ data::TParse_TBlock_info oParse_TBlock_info_;
     /* 0x10 */ char* field_0x10;
     /* 0x14 */ char* field_0x14;
-    /* 0x18 */ data::TParse_TBlock_messageID mMessageID;
+    /* 0x18 */ data::TParse_TBlock_messageID oParse_TBlock_messageID_;
 };
 
 /**
@@ -110,7 +116,11 @@ struct TResourceContainer {
     /* 802A90B8 */ void setEncoding(u8);
     /* 802A90F0 */ void setEncoding_(u8);
 
-    int parseCharacter(const char** string) const { return pfnParseCharacter_(string); }
+    int parseCharacter(const char** string) const {
+        JUT_ASSERT(330, pfnParseCharacter_!=0);
+        return pfnParseCharacter_(string);
+    }
+
     TResource* getResource_groupID(u16 groupID) { return resContainer_.Get_groupID(groupID); }
     TResource* getResource_groupID(u16 groupID) const { return getResource_groupID(groupID); }
 
