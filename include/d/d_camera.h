@@ -446,12 +446,15 @@ public:
 
     /* 0x000 */ camera_class* field_0x0;
 #if VERSION == VERSION_SHIELD_DEBUG
-    // In the debug rom, there's D8 bytes preceeding the following members.
-    //  The following is a stopgap:
-    u8 mFillerBytes[0xD8];
+    cXyz dbg_field_0x04[16];
+    u8 dbg_field_c4[0xDC - 0xC4];
 #endif
-    /* 0x004 */ int mRoomNo;
-    /* 0x008 */ u8 field_0x8[0x20 - 0x8];
+    struct {
+        /* 0x00 */ int mRoomNo;
+        /* 0x04 */ cXyz field_0x04;
+        /* 0x10 */ cXyz field_0x10;
+    }
+    /* 0x004 */ field_0x004;
     /* 0x020 */ u8 field_0x20;
     /* 0x021 */ u8 field_0x21;
     /* 0x022 */ u8 field_0x22[2];

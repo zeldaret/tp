@@ -1164,7 +1164,7 @@ public:
     void setGiantPuzzle() { mSpecialMode = SMODE_WOLF_PUZZLE; }
     void setGiantPuzzleEnd() { mSpecialMode = 0; }
 
-    BOOL checkAutoJumpStart() { return checkResetFlg0(RFLG0_UNK_100); }
+    BOOL checkAutoJumpStart() const { return checkResetFlg0(RFLG0_UNK_100); }
 };
 
 int daPy_addCalcShort(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 param_4);

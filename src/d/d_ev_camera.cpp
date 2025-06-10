@@ -971,7 +971,6 @@ f32 dummy_lit_3871(int val) {
 
 /* 8008BE98-8008E750 0867D8 28B8+00 3/3 0/0 0/0 .text            transEvCamera__9dCamera_cFi */
 bool dCamera_c::transEvCamera(int param_1) {
-    // NONMATCHING - regalloc
     struct mWork::trans* trans = &mWork.trans;
     f32 mid_val;
 
@@ -1052,7 +1051,7 @@ bool dCamera_c::transEvCamera(int param_1) {
             trans->mRelActorID = fopAcM_GetID(trans->mRelActor);
             if (mIsWolf == 1 && trans->mRelActor == mpPlayerActor) {
                 daPy_py_c* mPlayer = (daPy_py_c*)mpPlayerActor;
-                daMidna_c* mMidna =  daPy_py_c::getMidnaActor();
+                daMidna_c* mMidna =  (daMidna_c*) daPy_py_c::getMidnaActor();
                 cXyz mAdditionVec = WolfAdditionVec;
                 if (mPlayer->checkMidnaRide() != 0 && !mMidna->checkNoDraw()) {
                     mAdditionVec = MidnaAdditionVec;
