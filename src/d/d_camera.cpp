@@ -882,7 +882,7 @@ void dCamera_c::initialize(camera_class* i_camera, fopAc_ac_c* i_player, u32 i_c
     initPad();
     mFocusLine.Init();
 
-    mRoomNo = dComIfGp_roomControl_getStayNo();
+    field_0x004.mRoomNo = dComIfGp_roomControl_getStayNo();
     const char* stage_name = dComIfGp_getStartStageName();
     if (strcmp(stage_name, "D_MN01A") == 0) {
         Stage = 0x68;
@@ -1197,7 +1197,7 @@ bool dCamera_c::ChangeModeOK(s32 param_0) {
 }
 
 /* 80161550-801617B0 15BE90 0260+00 1/1 0/0 0/0 .text            initPad__9dCamera_cFv */
-// NONMATCHING weird stuff with getTrig/Hold. wrong types???
+// NONMATCHING - Why does getHoldZ behave differently in retail?
 void dCamera_c::initPad() {
     if (chkFlag(0x1000000)) {
         mPadInfo.mMainStick.mLastPosX = 0.0f;
@@ -1229,9 +1229,7 @@ void dCamera_c::initPad() {
     mPadInfo.mCStick.mValueDelta = 0.0f;
     mPadInfo.mCStick.mAngle = cSAngle::_0;
 
-    field_0x1fc = 0;
-    field_0x1f8 = 0;
-    field_0x1f4 = 0;
+    field_0x1f4 = field_0x1f8 = field_0x1fc = 0;
 
     mTriggerLeftLast = mDoCPd_c::getAnalogL(mPadID);
     mTriggerLeftDelta = 0.0f;
@@ -1247,21 +1245,21 @@ void dCamera_c::initPad() {
     field_0x216 = 0;
     field_0x217 = 0;
 
-    mHoldX = mDoCPd_c::getHoldX(mPadID);
-    mTrigX = mDoCPd_c::getTrigX(mPadID);
+    mHoldX = mDoCPd_c::getHoldX(mPadID) ? true : false;
+    mTrigX = mDoCPd_c::getTrigX(mPadID) ? true : false;
 
-    mHoldY = mDoCPd_c::getHoldY(mPadID);
-    mTrigY = mDoCPd_c::getTrigY(mPadID);
+    mHoldY = mDoCPd_c::getHoldY(mPadID) ? true : false;
+    mTrigY = mDoCPd_c::getTrigY(mPadID) ? true : false;
 
-    mHoldY = mDoCPd_c::getHoldY(mPadID);
-    mTrigY = mDoCPd_c::getTrigY(mPadID);
+    mHoldY = mDoCPd_c::getHoldY(mPadID) ? true : false;
+    mTrigY = mDoCPd_c::getTrigY(mPadID) ? true : false;
 
-    mHoldZ = mDoCPd_c::getHoldZ(mPadID);
-    mTrigZ = mDoCPd_c::getTrigZ(mPadID);
+    mHoldZ = mDoCPd_c::getHoldZ(mPadID) ? true : false;
+    mTrigZ = mDoCPd_c::getTrigZ(mPadID) ? true : false;
     field_0x21f = 0;
 
-    mHoldB = mDoCPd_c::getHoldB(mPadID);
-    mTrigB = mDoCPd_c::getTrigB(mPadID);
+    mHoldB = mDoCPd_c::getHoldB(mPadID) ? true : false;
+    mTrigB = mDoCPd_c::getTrigB(mPadID) ? true : false;
     field_0x223 = 0;
     field_0x224 = 0;
 }
@@ -1537,7 +1535,7 @@ bool dCamera_c::Run() {
     field_0x18c = NULL;
     field_0x188 = NULL;
     s32 stay_no = dComIfGp_roomControl_getStayNo();
-    if (stay_no != mRoomNo) {
+    if (stay_no != field_0x004.mRoomNo) {
         onRoomChange(stay_no);
     }
     checkGroundInfo();
@@ -1887,6 +1885,7 @@ int dCamera_c::Draw() {
 // NONMATCHING regswap, equivalent
 void dCamera_c::setStageMapToolData() {
     int var_r28 = 0xFF;
+    int var_r27 = 0xFF;
 
     field_0x7e8.Clr();
 
@@ -1906,12 +1905,12 @@ void dCamera_c::setStageMapToolData() {
             field_0x7e8.field_0x3a = (field_0x7e8.field_0x0.field_0x14 >> 0xE) & 3;
 
             if (field_0x7e8.field_0x0.field_0x14 & 0x2000) {
-                field_0x7e8.field_0x0.field_0x14 |= 0xC000;
+                field_0x7e8.field_0x0.field_0x14 |= (u16) 0xC000;
             } else {
-                field_0x7e8.field_0x0.field_0x14 &= ~0xC000;
+                field_0x7e8.field_0x0.field_0x14 &= (u16) ~0xC000;
             }
 
-            int var_r27 = field_0x7e8.field_0x0.m_arrow_idx;
+            var_r27 = field_0x7e8.field_0x0.m_arrow_idx;
             if (arrow != NULL && var_r27 >= 0 && var_r27 < arrow->num) {
                 field_0x7e8.field_0x2c = var_r27;
                 field_0x7e8.field_0x18 = arrow->m_entries[var_r27];
@@ -2380,7 +2379,7 @@ bool dCamera_c::onStyleChange(s32 param_0, s32 param_1) {
 
 /* 801647B0-80164878 15F0F0 00C8+00 1/1 0/0 0/0 .text            onRoomChange__9dCamera_cFl */
 int dCamera_c::onRoomChange(s32 i_roomNo) {
-    mRoomNo = i_roomNo;
+    field_0x004.mRoomNo = i_roomNo;
     setFlag(0x1000);
 
     int var_r29 = 0xFF;
