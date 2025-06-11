@@ -770,8 +770,8 @@ public:
     /* 8014D9BC */ int setPathInfo(u8, s8, s8);
     /* 8014DA48 */ void reverseDir();
     /* 8014DA64 */ s32 chkPnt(cXyz);
-    /* 8014DAC4 */ void setNextPnt();
-    /* 8014DB04 */ u16 getIdx();
+    /* 8014DAC4 */ BOOL setNextPnt();
+    /* 8014DB04 */ s16 getIdx();
     /* 8014DB0C */ void setIdx(u16);
     /* 8014DB14 */ Vec getPntPos(u16);
     /* 801503FC */ virtual ~daBaseNpc_path_c() {}
@@ -784,9 +784,11 @@ public:
     /* 0x00C */ dPnt mCurvePnts[160];
     /* 0xA0C */ u8 field_0xa0c[0xA0E - 0xA0C];
     /* 0xA0E */ u16 mCurvePntNum;
-    /* 0xA10 */ u16 mIdx;
+    /* 0xA10 */ s16 mIdx;
     /* 0xA12 */ s8 mDirection;
-    /* 0xA13 */ u8 field_0xa13[5];
+    /* 0xA13 */ u8 field_0xa13;
+    /* 0xA14 */ s16 field_0xa14;
+    /* 0xA16 */ u8 field_0xa16[2];
     /* 0xA18 */ int field_0xa18;
     /* 0xA1C */ u8 field_0xa1c[8];
 };

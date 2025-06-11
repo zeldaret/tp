@@ -973,6 +973,10 @@ public:
         }
     }
 
+    void offGoronUpStopCancel() {
+        offNoResetFlg0(FLG0_UNK_200000);
+    }
+
     s16 getBodyAngleX() const { return mBodyAngle.x; }
     s16 getBodyAngleY() const { return mBodyAngle.y; }
 
