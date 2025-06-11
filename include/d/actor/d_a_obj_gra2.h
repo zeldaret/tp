@@ -113,7 +113,7 @@ public:
     /* 80C00D5C */ const char* getResName();
     /* 80C00D74 */ u8 getMode();
     /* 80C00DF8 */ u8 getPathNo();
-    /* 80C00E04 */ u32 getTagNo();
+    /* 80C00E04 */ u16 getTagNo();
     /* 80C00E10 */ u32 getJumpType();
     /* 80C00E1C */ BOOL isDelete();
     /* 80C00EFC */ void restart();
@@ -216,11 +216,11 @@ public:
     /* 80C0C690 */ void executeCrazyThrow();
     /* 80C0C84C */ void initCrazyAttack();
     /* 80C0CA64 */ void executeCrazyJumping();
-    /* 80C0CDBC */ int modeChangeCheck();
-    /* 80C0CF98 */ bool checkGraSub(fopAc_ac_c*);
+    /* 80C0CDBC */ BOOL modeChangeCheck();
+    /* 80C0CF98 */ BOOL checkGraSub(fopAc_ac_c*);
     /* 80C0D000 */ int waitDemo(void*);
-    /* 80C0D2FC */ void skipDemoGra();
-    /* 80C0D3E0 */ void startDemo(void*);
+    /* 80C0D2FC */ int skipDemoGra();
+    /* 80C0D3E0 */ int startDemo(void*);
     /* 80C0EFC4 */ void turn(s16, f32, int);
     /* 80C0F17C */ BOOL turn_step(s16, int, int, int);
     /* 80C0F330 */ void chkFindPlayer2(int, s16);
@@ -240,6 +240,8 @@ public:
     static MotionFunc mFaceMotionList[14];
 
     bool isFirstGra() { return field_0x1fe8 == 0; }
+
+    void setDemoMode(s16 mDemoMode) { mDemoCamMode = mDemoMode; }
 
 private:
     /* 0x0A48 */ u16 field_0xa48;
@@ -313,7 +315,7 @@ private:
     /* 0x1FE0 */ u8 field_0x1fe0;
     /* 0x1FE1 */ u8 field_0x1fe1[0x1fe4 - 0x1fe1];
     /* 0x1FE4 */ int field_0x1fe4;
-    /* 0x1FE8 */ u8 field_0x1fe8;
+    /* 0x1FE8 */ s8 field_0x1fe8;
     /* 0x1FE9 */ u8 field_0x1fe9;
     /* 0x1FEA */ u8 field_0x1fea[0x1fec - 0x1fea];
     /* 0x1FEC */ int field_0x1fec;
@@ -321,7 +323,8 @@ private:
     /* 0x1FF4 */ u8 field_0x1ff4;
     /* 0x1FF5 */ u8 field_0x1ff5[0x1ff8 - 0x1ff5];
     /* 0x1FF8 */ int field_0x1ff8;
-    /* 0x1FFC */ u8 field_0x1ffc[0x2000 - 0x1ffc];
+    /* 0x1FFC */ u8 field_0x1ffc;
+    /* 0x1FFD */ u8 field_0x1ffd[0x2000 - 0x1ffd];
     /* 0x2000 */ int field_0x2000;
     /* 0x2004 */ u8 field_0x2004;
     /* 0x2005 */ s8 field_0x2005;
@@ -350,15 +353,16 @@ private:
     /* 0x204C */ daBaseNpc_acMngr_c field_0x204c;
     /* 0x2054 */ s16 mDemoCamMode;
     /* 0x2056 */ s16 field_0x2056;
-    /* 0x2058 */ cXyz field_0x2058;
-    /* 0x2064 */ cXyz field_0x2064;
-    /* 0x2070 */ f32 field_0x2070;
+    /* 0x2058 */ cXyz mDemoCamEye;
+    /* 0x2064 */ cXyz mDemoCamCenter;
+    /* 0x2070 */ f32 mDemoCamFovy;
     /* 0x2074 */ cXyz field_0x2074;
     /* 0x2080 */ cXyz field_0x2080;
     /* 0x208C */ f32 field_0x208c;
-    /* 0x2090 */ u8 field_0x2090[12];
+    /* 0x2090 */ cXyz field_0x2090;
     /* 0x209C */ int field_0x209c;
-    /* 0x20A0 */ u8 field_0x20a0[0x20a4 - 0x20a0];
+    /* 0x20A0 */ u8 field_0x20a0;
+    /* 0x20A1 */ u8 field_0x20a1[0x20a4 - 0x20a1];
 };
 
 STATIC_ASSERT(sizeof(daObj_GrA_c) == 0x20a4);
