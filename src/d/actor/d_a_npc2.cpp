@@ -5,7 +5,7 @@ static u16 daBaseNpc_putNurbs(dPnt* i_CPnts, int i_CPntNum, int i_maxPntNum, dPn
 static s16 daBaseNpc_getGroundAngle(cBgS_PolyInfo* param_0, s16 param_1);
 
 /* 8014D538-8014D584 147E78 004C+00 2/2 0/0 0/0 .text            daBaseNpc_addIdx__FiiPUsi */
-static int daBaseNpc_addIdx(int i_step, int i_num, s16* i_idx, BOOL i_closed) {
+static int daBaseNpc_addIdx(int i_step, int i_num, u16* i_idx, BOOL i_closed) {
     BOOL new_idx = *i_idx;
     BOOL ret;
 
@@ -26,7 +26,7 @@ static int daBaseNpc_addIdx(int i_step, int i_num, s16* i_idx, BOOL i_closed) {
 }
 
 /* 8014D584-8014D5C4 147EC4 0040+00 2/2 0/0 0/0 .text            daBaseNpc_subIdx__FiiPUsi */
-static BOOL daBaseNpc_subIdx(int i_step, int i_num, s16* i_idx, BOOL i_closed) {
+static BOOL daBaseNpc_subIdx(int i_step, int i_num, u16* i_idx, BOOL i_closed) {
     int new_idx = *i_idx;
     BOOL ret;
 
@@ -47,7 +47,7 @@ static BOOL daBaseNpc_subIdx(int i_step, int i_num, s16* i_idx, BOOL i_closed) {
 }
 
 /* 8014D5C4-8014D620 147F04 005C+00 2/2 0/0 0/0 .text            daBaseNpc_incIdx__FiPUsii */
-static BOOL daBaseNpc_incIdx(int i_pathNo, s16* i_pathIdx, BOOL i_pathClosed, int i_pathDirection) {
+static BOOL daBaseNpc_incIdx(int i_pathNo, u16* i_pathIdx, BOOL i_pathClosed, int i_pathDirection) {
     if (i_pathDirection < 0) {
         return daBaseNpc_subIdx(1, i_pathNo, i_pathIdx, i_pathClosed);
     } else {
@@ -56,7 +56,7 @@ static BOOL daBaseNpc_incIdx(int i_pathNo, s16* i_pathIdx, BOOL i_pathClosed, in
 }
 
 /* 8014D620-8014D67C 147F60 005C+00 1/1 0/0 0/0 .text            daBaseNpc_decIdx__FiPUsii */
-static void daBaseNpc_decIdx(int i_pathNo, s16* i_pathIdx, BOOL i_pathClosed, int i_pathDirection) {
+static void daBaseNpc_decIdx(int i_pathNo, u16* i_pathIdx, BOOL i_pathClosed, int i_pathDirection) {
     if (i_pathDirection < 0) {
         daBaseNpc_addIdx(1, i_pathNo, i_pathIdx, i_pathClosed);
     } else {
@@ -185,7 +185,7 @@ BOOL daBaseNpc_path_c::setNextPnt() {
 }
 
 /* 8014DB04-8014DB0C 148444 0008+00 0/0 0/0 3/3 .text            getIdx__16daBaseNpc_path_cFv */
-s16 daBaseNpc_path_c::getIdx() {
+u16 daBaseNpc_path_c::getIdx() {
     return mIdx;
 }
 

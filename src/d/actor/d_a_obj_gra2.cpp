@@ -3012,7 +3012,7 @@ int daObj_GrA_c::rollAttack(void* param_1) {
     cXyz sp3c;
     s16 sVar1;
     f32 fVar1, fVar2;
-    bool bVar1;
+    BOOL bVar1;
     cXyz sp48;
 
     switch (field_0xa7c) {
@@ -3119,13 +3119,13 @@ int daObj_GrA_c::rollAttack(void* param_1) {
                     }
                 }
 
-                bVar1 = false;
+                    BOOL bVar2 = FALSE;
                 if (field_0x1528.isPath()) {
-                    while (!bVar1) {
+                    while (!bVar2) {
                         if (field_0x1528.chkPnt(current.pos) == 0) break;
 
                         if (field_0x1528.setNextPnt()) {
-                            bVar1 = true;
+                            bVar2 = TRUE;
                             field_0x1fe9 = 1;
                             field_0x2014 = 1;
                         }
