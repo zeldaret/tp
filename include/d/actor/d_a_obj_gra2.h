@@ -114,7 +114,7 @@ public:
     /* 80C00D74 */ u8 getMode();
     /* 80C00DF8 */ u8 getPathNo();
     /* 80C00E04 */ u16 getTagNo();
-    /* 80C00E10 */ u32 getJumpType();
+    /* 80C00E10 */ u16 getJumpType();
     /* 80C00E1C */ BOOL isDelete();
     /* 80C00EFC */ void restart();
     /* 80C010D4 */ int init();
@@ -221,13 +221,13 @@ public:
     /* 80C0D000 */ int waitDemo(void*);
     /* 80C0D2FC */ int skipDemoGra();
     /* 80C0D3E0 */ int startDemo(void*);
-    /* 80C0EFC4 */ void turn(s16, f32, int);
+    /* 80C0EFC4 */ BOOL turn(s16, f32, int);
     /* 80C0F17C */ BOOL turn_step(s16, int, int, int);
-    /* 80C0F330 */ void chkFindPlayer2(int, s16);
-    /* 80C0F668 */ void chkPointInArea(cXyz, cXyz, cXyz, s16);
-    /* 80C0F5A4 */ void chkPointInArea(cXyz, cXyz, f32, f32, f32, s16);
-    /* 80C0F6E0 */ void chkActorInSight2(fopAc_ac_c*, f32, s16);
-    /* 80C0F7EC */ void getAttentionPos(fopAc_ac_c*);
+    /* 80C0F330 */ BOOL chkFindPlayer2(int, s16);
+    /* 80C0F668 */ BOOL chkPointInArea(cXyz, cXyz, cXyz, s16);
+    /* 80C0F5A4 */ BOOL chkPointInArea(cXyz, cXyz, f32, f32, f32, s16);
+    /* 80C0F6E0 */ BOOL chkActorInSight2(fopAc_ac_c*, f32, s16);
+    /* 80C0F7EC */ cXyz getAttentionPos(fopAc_ac_c*);
     /* 80C0F860 */ int standWaitJump(void*);
 
     bool checkNpcObjGra() { return mMode == 1; }
@@ -306,9 +306,12 @@ private:
     /* 0x1FBC */ int field_0x1fbc;
     /* 0x1FC0 */ int field_0x1fc0;
     /* 0x1FC4 */ u8 field_0x1fc4;
-    /* 0x1FC5 */ u8 field_0x1fc5[0x1fcc - 0x1fc5];
+    /* 0x1FC5 */ u8 field_0x1fc5[0x1fc8 - 0x1fc5];
+    /* 0x1FC8 */ int field_0x1fc8;
     /* 0x1FCC */ int field_0x1fcc;
-    /* 0x1FD0 */ u8 field_0x1fd0[0x1fd8 - 0x1fd0];
+    /* 0x1FD0 */ f32 field_0x1fd0;
+    /* 0x1FD4 */ s16 field_0x1fd4;
+    /* 0x1FD6 */ s16 field_0x1fd6;
     /* 0x1FD8 */ s16 field_0x1fd8;
     /* 0x1FDA */ u8 field_0x1fda[0x1fdc - 0x1fda];
     /* 0x1FDC */ int field_0x1fdc;
