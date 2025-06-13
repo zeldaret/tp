@@ -32,8 +32,22 @@ public:
     /* 80CB7E98 */ void setHamonPrtcl();
     /* 80CB7EF4 */ void crash();
 
+    void setMtx(MtxP mtx) {
+        cXyz newPos;
+        field_0xbb3 = 1;
+        mDoMtx_stack_c::copy(mtx);
+        mDoMtx_stack_c::multVecZero(&newPos);
+        current.pos = newPos;
+        old.pos = current.pos;
+        mpModel->setBaseTRMtx(mtx);
+    }
+
 private:
-    /* 0x568 */ u8 field_0x568[0xbbc - 0x568];
+    /* 0x568 */ u8 field_0x568[0x574 - 0x568];
+    /* 0x574 */ J3DModel* mpModel;
+    /* 0x578 */ u8 field_0x578[0xbb3 - 0x578];
+    /* 0xB7C */ u8 field_0xbb3;
+    /* 0xB7E */ u8 field_0xbb4[0xbbc - 0xbb4];
 };
 
 STATIC_ASSERT(sizeof(daObj_Pumpkin_c) == 0xbbc);

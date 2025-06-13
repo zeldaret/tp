@@ -1156,7 +1156,7 @@ public:
     }
 
     void onFishingRelease() {
-        this->mEndResetFlg0 |= 0x4000000;
+        onEndResetFlg0(ERFLG0_UNK_4000000);
     }
 
     static daMidna_c* m_midnaActor;
@@ -1165,6 +1165,10 @@ public:
     void setGiantPuzzleEnd() { mSpecialMode = 0; }
 
     BOOL checkAutoJumpStart() const { return checkResetFlg0(RFLG0_UNK_100); }
+
+    void onForceGrabRebound() {
+        onEndResetFlg2(ERFLG2_UNK_8);
+    }
 };
 
 int daPy_addCalcShort(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 param_4);

@@ -142,6 +142,7 @@ enum fopAcM_STATUS {
     /* 0x2000000 */ fopAcM_STATUS_UNK_20000000 = 1 << 25,
     /* 0x4000000 */ fopAcM_STATUS_UNK_40000000 = 1 << 26,
     /* 0x8000000 */ fopAcM_STATUS_UNK_80000000 = 1 << 27,
+    /* 0x8000000 */ fopAcM_STATUS_HAWK_CARRY_NOW = 1 << 31,
 };
 
 inline s8 fopAcM_GetRoomNo(const fopAc_ac_c* i_actor) {
@@ -180,7 +181,7 @@ enum fopAcM_CARRY {
     /* 0x80 */ fopAcM_CARRY_CHICKEN = 0x80,
 };
 
-inline u32 fopAcM_CheckCarryType(fopAc_ac_c* actor, fopAcM_CARRY type) {
+inline u32 fopAcM_CheckCarryType(const fopAc_ac_c* actor, fopAcM_CARRY type) {
     return actor->carryType & type;
 }
 
@@ -282,6 +283,14 @@ inline void fopAcM_setHookCarryNow(fopAc_ac_c* actor) {
 
 inline void fopAcM_cancelHookCarryNow(fopAc_ac_c* actor) {
     fopAcM_OffStatus(actor, fopAcM_STATUS_HOOK_CARRY_NOW);
+}
+
+inline void fopAcM_setHawkCarryNow(fopAc_ac_c* actor) {
+    fopAcM_OnStatus(actor, fopAcM_STATUS_HAWK_CARRY_NOW);
+}
+
+inline void fopAcM_cancelHawkCarryNow(fopAc_ac_c* actor) {
+    fopAcM_OffStatus(actor, fopAcM_STATUS_HAWK_CARRY_NOW);
 }
 
 inline s8 fopAcM_GetHomeRoomNo(const fopAc_ac_c* i_actor) {
@@ -461,6 +470,11 @@ inline void fopAcM_onDraw(fopAc_ac_c* i_actor) {
 
 inline void fopAcM_offDraw(fopAc_ac_c* i_actor) {
     fopDwTg_DrawQTo(&i_actor->draw_tag);
+}
+
+inline int fopAcM_monsSeStart(const fopAc_ac_c* i_actor, u32 i_soundId, u32 param_2) {
+    return mDoAud_monsSeStart(i_soundId, &i_actor->eyePos, fopAcM_GetID(i_actor), param_2,
+                       dComIfGp_getReverb(fopAcM_GetRoomNo(i_actor)));
 }
 
 void fopAcM_initManager();
