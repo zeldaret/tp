@@ -89,15 +89,4 @@ struct TControl {
 };
 };  // namespace JMessage
 
-/**
- * @ingroup jsystem-jmessage
- * 
- */
-// TODO: does this belong here or in tp specific headers?
-struct jmessage_tControl : public JMessage::TControl {
-    /* 802299EC */ jmessage_tControl();
-
-    /* 80039B0C */ virtual ~jmessage_tControl();
-};
-
 #endif /* JMESSAGE_CONTROL_H */

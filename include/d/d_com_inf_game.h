@@ -3061,7 +3061,7 @@ inline void dComIfGp_setMesgBgmOff() {
     g_dComIfG_gameInfo.play.setMesgBgm(0);
 }
 
-inline bool dComIfGp_checkMesgBgm() {
+inline u8 dComIfGp_checkMesgBgm() {
     return g_dComIfG_gameInfo.play.checkMesgBgm();
 }
 

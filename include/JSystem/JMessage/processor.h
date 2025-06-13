@@ -179,16 +179,18 @@ struct TProcessor {
         return pResourceCache_->getMessageText_messageIndex(u16Index);
     }
 
-    int setBegin_messageEntryText(const TResource* pResource, const void* pEntry,
-                                  const char* pszText) {
+    bool on_setBegin_isReady_() const { return do_setBegin_isReady_(); }
+
+    int setBegin_messageEntryText(const TResource* pResource, const void* pEntry, const char* pszText) {
+        JUT_ASSERT(297, on_setBegin_isReady_());
         pResourceCache_ = pResource;
         on_resetStatus_(pszText);
         on_begin(pEntry, pszText);
         return 1;
     }
 
-    int setBegin_messageEntryText(const TProcessor* pProcessor, const void* pEntry,
-                                  const char* pszText) {
+    int setBegin_messageEntryText(const TProcessor* pProcessor, const void* pEntry, const char* pszText) {
+        JUT_ASSERT(306, pProcessor!=0);
         setBegin_messageEntryText(pProcessor->getResourceCache(), pEntry, pszText);
         return 1;
     }
@@ -347,13 +349,13 @@ struct TRenderingProcessor : public TProcessor {
     /* 802A8BA8 */ virtual void do_end_();
     /* 802A8BAC */ virtual void do_tag_(u32 uTag, void const* pData, u32 uSize);
 
-    bool process_messageEntryText(TProcessor* pProcessor, void const* pEntry, const char* pszText) {
-        int result = TProcessor::setBegin_messageEntryText(pProcessor, pEntry, pszText);
-        if (result != 0) {
-            process(NULL);
+    bool process_messageEntryText(const TProcessor* pProcessor, void const* pEntry, const char* pszText) {
+        if (!TProcessor::setBegin_messageEntryText(pProcessor, pEntry, pszText)) {
+            return false;
         }
 
-        return result != 0;
+        process(NULL);
+        return true;
     }
 };
 };  // namespace JMessage
