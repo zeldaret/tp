@@ -1784,8 +1784,11 @@ bool dMsgObject_c::isKanbanMessage() {
 }
 
 /* 802370E8-802370FC 231A28 0014+00 6/6 3/3 0/0 .text            isHowlMessage__12dMsgObject_cFv */
-u8 dMsgObject_c::isHowlMessage() {
-    return mFukiKind == 17;
+bool dMsgObject_c::isHowlMessage() {
+    if (mFukiKind == 17) {
+        return true;
+    }
+    return false;
 }
 
 /* 802370FC-80237138 231A3C 003C+00 3/3 2/2 0/0 .text            isMidonaMessage__12dMsgObject_cFv

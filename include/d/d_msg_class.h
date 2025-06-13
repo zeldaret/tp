@@ -11,16 +11,18 @@ public:
 
     // Attributes
     /* 0x04 */ u16 message_id;
-    /* 0x06 */ u16 unk_0x6;
-    /* 0x08 */ u8 unk_0x8;
-    /* 0x09 */ u8 display_style;
-    /* 0x0A */ u8 print_style;
-    /* 0x0B */ u8 position;
+    /* 0x06 */ u16 event_label_id;
+    /* 0x08 */ u8 se_speaker;
+    /* 0x09 */ u8 fuki_kind;
+    /* 0x0A */ u8 output_type;
+    /* 0x0B */ u8 fuki_pos_type;
     /* 0x0C */ u8 unk_0xc;
     /* 0x0D */ u8 unk_0xd;
-    /* 0x0E */ u8 unk_0xe;
+    /* 0x0E */ u8 se_mood;
     /* 0x0F */ u8 camera_id;
-    /* 0x10 */ u32 unk_0x10;
+    /* 0x10 */ u8 base_anm_id;
+    /* 0x11 */ u8 face_anm_id;
+    /* 0x12 */ u16 unk_0x12;
 };
 
 class JMSMesgInfo_c {
@@ -48,7 +50,7 @@ struct jmessage_tReference : public JMessage::TReference {
     /* 80228F08 */ bool isSaveSeq();
     /* 80228F3C */ bool isBook();
     /* 80228F70 */ bool isStaffRoll();
-    /* 80228FA4 */ u8 isHowl();
+    /* 80228FA4 */ bool isHowl();
     /* 80228FD8 */ bool isMidona();
     /* 8022900C */ void resetReference();
     /* 80229034 */ void pageSend();
@@ -70,7 +72,10 @@ struct jmessage_tReference : public JMessage::TReference {
 
     /* 80238C78 */ void setActorPos(cXyz pos) { mActorPos = pos; }
 
-    bool isSelectSetCancelFlag() { return mSelectSetCancelFlag != 0; }
+    bool isSelectSetCancelFlag() {
+        return mSelectSetCancelFlag ? true : false;
+    }
+
     BOOL isSelectRubyFlag(int i_flag) {
         BOOL var_r31;
         if (mSelectRubyFlag & (u8)(1 << i_flag)) {
@@ -80,8 +85,9 @@ struct jmessage_tReference : public JMessage::TReference {
         }
         return var_r31;
     }
-    bool isBatchFlag() { return mBatchFlag; }
-    bool isLightBatchFlag() { return mLightBatchFlag; }
+
+    bool isBatchFlag() { return mBatchFlag ? true : false; }
+    bool isLightBatchFlag() { return mLightBatchFlag ? true : false; }
 
     void setAddCharAllAlphaRate(f32 i_alphaRate) { mAddCharAllAlphaRate = i_alphaRate; }
     void setCharAllAlphaRate(f32 i_alphaRate) { mCharAllAlphaRate = i_alphaRate; }
@@ -220,7 +226,7 @@ struct jmessage_tReference : public JMessage::TReference {
     f32 getSelTBoxWidth() { return mSelTBoxWidth; }
     u8 getSelectPos() { return mSelectPos; }
     u16 getMsgID() { return mMsgID; }
-    bool isButtonTagStopFlag() { return mButtonTagStopFlag; }
+    bool isButtonTagStopFlag() { return mButtonTagStopFlag ? true : false; }
     u8 getStopFlag() { return mStopFlag; }
     u8 getSendFlag() { return mSendFlag; }
     u8 getFukiPosType() { return mFukiPosType; }
@@ -230,7 +236,7 @@ struct jmessage_tReference : public JMessage::TReference {
     f32 getSelFontSize() { return mSelFontSize; }
     f32 getSelCharSpace() { return mSelCharSpace; }
     u16 getLineScale(int i_no) { return mLineScale[i_no]; }
-    bool isBombNameUseFlag() { return mBombNameUseFlag; }
+    bool isBombNameUseFlag() { return mBombNameUseFlag ? true : false; }
     f32 getSelLength(int idx) { return mSelLength[idx]; }
     void setAddCharAlpha(f32 alpha) { mAddCharAlpha = alpha; }
     s8 getNowPageLineMax() { return mPageLineMax[field_0x5d2]; }
@@ -344,7 +350,7 @@ struct jmessage_tReference : public JMessage::TReference {
 };  // Size: 0x1278
 
 struct jmessage_tMeasureProcessor : public JMessage::TRenderingProcessor {
-    /* 80229A28 */ jmessage_tMeasureProcessor(jmessage_tReference const*);
+    /* 80229A28 */ jmessage_tMeasureProcessor(jmessage_tReference const* pReference);
     /* 8022B0B0 */ void do_scale(f32);
     /* 8022B18C */ void do_space(u32);
     /* 8022B3EC */ void do_pageType(int);
@@ -353,16 +359,16 @@ struct jmessage_tMeasureProcessor : public JMessage::TRenderingProcessor {
     /* 8022B4E0 */ void push_word(char*);
 
     /* 8022B5F4 */ virtual ~jmessage_tMeasureProcessor() {}
-    /* 80229AC4 */ virtual void do_begin(void const*, char const*);
+    /* 80229AC4 */ virtual void do_begin(void const* pEntry, char const* pszText);
     /* 80229CB4 */ virtual void do_end();
-    /* 80229E3C */ virtual void do_character(int);
-    /* 8022A268 */ virtual bool do_tag(u32, void const*, u32);
+    /* 80229E3C */ virtual void do_character(int iCharacter);
+    /* 8022A268 */ virtual bool do_tag(u32 uTag, void const* pData, u32 uSize);
 
     /* 0x38 */ f32 field_0x38;
     /* 0x3C */ s16 mTotalLineCnt;
     /* 0x3E */ s16 field_0x3e;
     /* 0x40 */ s16 field_0x40;
-    /* 0x42 */ u16 field_0x42;
+    /* 0x42 */ u16 mSeMood;
     /* 0x44 */ u8 field_0x44;
     /* 0x45 */ u8 mSelectType;
     /* 0x46 */ u8 field_0x46;
@@ -371,13 +377,18 @@ struct jmessage_tMeasureProcessor : public JMessage::TRenderingProcessor {
     /* 0x49 */ s8 field_0x49;
     /* 0x4A */ s8 mPageLineMax;
     /* 0x4B */ s8 field_0x4b;
-    /* 0x4C */ u8 field_0x4c;
+    /* 0x4C */ u8 mSeSpeaker;
     /* 0x4D */ u8 field_0x4d;
 };  // Size: 0x50
 
-struct jmessage_tControl;
+struct jmessage_tControl : public JMessage::TControl {
+    /* 802299EC */ jmessage_tControl();
+
+    /* 80039B0C */ virtual ~jmessage_tControl();
+};
+
 struct jmessage_tSequenceProcessor : public JMessage::TSequenceProcessor {
-    /* 8022B558 */ jmessage_tSequenceProcessor(jmessage_tReference const*, jmessage_tControl*);
+    /* 8022B558 */ jmessage_tSequenceProcessor(jmessage_tReference const* pReference, jmessage_tControl* pControl);
     /* 8022C904 */ void do_name1();
     /* 8022C908 */ void do_space(u32);
     /* 8022CA24 */ void do_rubyset(void const*, u32);
@@ -387,20 +398,20 @@ struct jmessage_tSequenceProcessor : public JMessage::TSequenceProcessor {
 
     /* 8023299C */ virtual ~jmessage_tSequenceProcessor() {}
     /* 8022B654 */ virtual void do_reset();
-    /* 8022B658 */ virtual void do_begin(void const*, char const*);
+    /* 8022B658 */ virtual void do_begin(void const* pEntry, char const* pszText);
     /* 8022BA3C */ virtual void do_end();
-    /* 8022BFE0 */ virtual void do_character(int);
-    /* 8022C1A0 */ virtual bool do_tag(u32, void const*, u32);
+    /* 8022BFE0 */ virtual void do_character(int iCharacter);
+    /* 8022C1A0 */ virtual bool do_tag(u32 uTag, void const* pData, u32 uSize);
     /* 8022BB7C */ virtual bool do_isReady();
     /* 8022C8FC */ virtual bool do_jump_isReady();
-    /* 8022CBE4 */ virtual void do_jump(void const*, char const*);
+    /* 8022CBE4 */ virtual void do_jump(void const* pEntry, char const* pszText);
 
     u8 getMouthCheck() { return mMouthCheck; }
     void setForceForm(u8 forceForm) { mForceForm = forceForm; }
 
     /* 0x4C */ jmessage_tMeasureProcessor mMeasureProcessor;
-    /* 0x9C */ const void* field_0x9c;
-    /* 0xA0 */ const char* field_0xa0;
+    /* 0x9C */ const void* mpEntry;
+    /* 0xA0 */ const char* mpText;
     /* 0xA4 */ s16 field_0xa4;
     /* 0xA6 */ s16 field_0xa6;
     /* 0xA8 */ s16 field_0xa8;
@@ -429,7 +440,7 @@ struct CharInfo_c {
 };
 
 struct jmessage_tRenderingProcessor : public JMessage::TRenderingProcessor {
-    /* 8022CCB0 */ jmessage_tRenderingProcessor(jmessage_tReference const*);
+    /* 8022CCB0 */ jmessage_tRenderingProcessor(jmessage_tReference const* pReference);
     /* 8022E12C */ void resetRendering();
     /* 8022E17C */ void do_widthcenter();
     /* 8022E260 */ void do_selwidthcenter(int);
@@ -451,10 +462,10 @@ struct jmessage_tRenderingProcessor : public JMessage::TRenderingProcessor {
 
     /* 8023293C */ virtual ~jmessage_tRenderingProcessor() {}
     /* 8022CDC8 */ virtual void do_reset();
-    /* 8022CDCC */ virtual void do_begin(void const*, char const*);
+    /* 8022CDCC */ virtual void do_begin(void const* pEntry, char const* pszText);
     /* 8022CFD8 */ virtual void do_end();
-    /* 8022D0A0 */ virtual void do_character(int);
-    /* 8022D74C */ virtual bool do_tag(u32, void const*, u32);
+    /* 8022D0A0 */ virtual void do_character(int iCharacter);
+    /* 8022D74C */ virtual bool do_tag(u32 uTag, void const* pData, u32 uSize);
 
     void setTextInitPos(float x, float y) {
         mTextInitPosX = x;
@@ -578,38 +589,38 @@ struct jmessage_string_tReference : public JMessage::TReference {
 };
 
 struct jmessage_string_tMeasureProcessor : public JMessage::TRenderingProcessor {
-    /* 8022FB98 */ jmessage_string_tMeasureProcessor(jmessage_string_tReference const*);
+    /* 8022FB98 */ jmessage_string_tMeasureProcessor(jmessage_string_tReference const* pReference);
     /* 8023098C */ void do_rubyset(void const*, u32);
 
     /* 80230A5C */ virtual ~jmessage_string_tMeasureProcessor() {}
-    /* 8022FBE4 */ virtual void do_begin(void const*, char const*);
+    /* 8022FBE4 */ virtual void do_begin(void const* pEntry, char const* pszText);
     /* 8022FC14 */ virtual void do_end();
-    /* 8022FC28 */ virtual void do_character(int);
-    /* 8022FDF0 */ virtual bool do_tag(u32, void const*, u32);
+    /* 8022FC28 */ virtual void do_character(int iCharacter);
+    /* 8022FDF0 */ virtual bool do_tag(u32 uTag, void const* pData, u32 uSize);
 
     /* 0x38 */ jmessage_string_tReference* mpReference;
 };
 
 struct jmessage_string_tSequenceProcessor : public JMessage::TSequenceProcessor {
-    /* 80230A08 */ jmessage_string_tSequenceProcessor(jmessage_string_tReference const*,
-                                                      jmessage_string_tControl*);
+    /* 80230A08 */ jmessage_string_tSequenceProcessor(jmessage_string_tReference const* pReference,
+                                                      jmessage_string_tControl* pControl);
 
     /* 80232858 */ virtual ~jmessage_string_tSequenceProcessor() {}
     /* 80230ABC */ virtual void do_reset();
-    /* 80230AC0 */ virtual void do_begin(void const*, char const*);
+    /* 80230AC0 */ virtual void do_begin(void const* pEntry, char const* pszText);
     /* 80230B7C */ virtual void do_end();
-    /* 80230B88 */ virtual void do_character(int);
-    /* 80230B8C */ virtual bool do_tag(u32, void const*, u32);
+    /* 80230B88 */ virtual void do_character(int iCharacter);
+    /* 80230B8C */ virtual bool do_tag(u32 uTag, void const* pData, u32 uSize);
     /* 80230B80 */ virtual bool do_isReady();
     /* 80230BBC */ virtual bool do_jump_isReady();
-    /* 80230BC4 */ virtual void do_jump(void const*, char const*);
+    /* 80230BC4 */ virtual void do_jump(void const* pEntry, char const* pszText);
     
     /* 0x4C */ jmessage_string_tMeasureProcessor mMeasureProcessor;
     /* 0x88 */ jmessage_string_tReference* mpSeqReference;
 };
 
 struct jmessage_string_tRenderingProcessor : public JMessage::TRenderingProcessor {
-    /* 80230BC8 */ jmessage_string_tRenderingProcessor(jmessage_string_tReference const*);
+    /* 80230BC8 */ jmessage_string_tRenderingProcessor(jmessage_string_tReference const* pReference);
     /* 80230C20 */ s16 getLineCountNowPage();
     /* 80231D70 */ void do_widthcenter();
     /* 80231EF0 */ void do_heightcenter();
@@ -625,10 +636,10 @@ struct jmessage_string_tRenderingProcessor : public JMessage::TRenderingProcesso
 
     /* 802327F8 */ virtual ~jmessage_string_tRenderingProcessor() {}
     /* 80230C5C */ virtual void do_reset();
-    /* 80230CA0 */ virtual void do_begin(void const*, char const*);
+    /* 80230CA0 */ virtual void do_begin(void const* pEntry, char const* pszText);
     /* 80230CE8 */ virtual void do_end();
-    /* 80230D48 */ virtual void do_character(int);
-    /* 80231110 */ virtual bool do_tag(u32, void const*, u32);
+    /* 80230D48 */ virtual void do_character(int iCharacter);
+    /* 80231110 */ virtual bool do_tag(u32 uTag, void const* pData, u32 uSize);
 
     char* getString() { return field_0x54; }
 
@@ -649,5 +660,143 @@ struct jmessage_string_tRenderingProcessor : public JMessage::TRenderingProcesso
     /* 0x552 */ s16 field_0x552;
     /* 0x554 */ u8 field_0x554;
 };
+
+#define MSGTAG_GROUP(g) (g << 16)
+
+// Group 0
+#define MSGTAG_PLAYER_NAME         0
+#define MSGTAG_INSTANT             1
+#define MSGTAG_TYPE                2
+#define MSGTAG_UNK_3               3  // appears the same as autobox
+#define MSGTAG_AUTOBOX             4
+#define MSGTAG_BOXATMOST           5
+#define MSGTAG_UNK_6               6
+#define MSGTAG_PAUSE               7
+#define MSGTAG_SELECT_2WAY         8
+#define MSGTAG_SELECT_3WAY         9
+#define MSGTAG_ABTN                10
+#define MSGTAG_BBTN                11
+#define MSGTAG_CSTICK              12
+#define MSGTAG_LBTN                13
+#define MSGTAG_RBTN                14
+#define MSGTAG_XBTN                15
+#define MSGTAG_YBTN                16
+#define MSGTAG_ZBTN                17
+#define MSGTAG_DPAD                18
+#define MSGTAG_STICK_CROSS         19
+#define MSGTAG_LEFT_ARROW          20
+#define MSGTAG_RIGHT_ARROW         21
+#define MSGTAG_UP_ARROW            22
+#define MSGTAG_DOWN_ARROW          23
+#define MSGTAG_STICK_UP            24
+#define MSGTAG_STICK_DOWN          25
+#define MSGTAG_STICK_LEFT          26
+#define MSGTAG_STICK_RIGHT         27
+#define MSGTAG_STICK_VERTICAL      28
+#define MSGTAG_STICK_HORIZONTAL    29
+#define MSGTAG_INLINE_2_NEXT       30
+#define MSGTAG_INLINE_2_FIRST      31
+#define MSGTAG_AWAIT_CHOICE        32
+#define MSGTAG_UNK_33              33  // calls "do_name1" but the function does nothing
+#define MSGTAG_HORSE_NAME          34
+#define MSGTAG_RED_TARGET          35
+#define MSGTAG_YELLOW_TARGET       36
+#define MSGTAG_INPUT_VALUE         37
+#define MSGTAG_ACKNOWLEDGE         38
+#define MSGTAG_ABTN_STAR           39
+#define MSGTAG_DEMOBOX             40
+#define MSGTAG_SCENT_NAME          41
+#define MSGTAG_WHITE_TARGET        42
+#define MSGTAG_PORTAL_NAME         43
+#define MSGTAG_WARP_ICON           44
+#define MSGTAG_BOMB_NAME           45
+#define MSGTAG_XYBTN               46
+#define MSGTAG_YXBTN               47
+#define MSGTAG_BOMB_BAG_ICON       48
+#define MSGTAG_BOMB_NUM            49
+#define MSGTAG_BOMB_PRICE          50
+#define MSGTAG_INLINE_3_NEXT       51
+#define MSGTAG_INLINE_3_FIRST      52
+#define MSGTAG_UNK_53              53
+#define MSGTAG_BOXATLEAST          54
+#define MSGTAG_BOMB_MAX            55
+#define MSGTAG_ARROW_MAX           56
+#define MSGTAG_HEART               57
+#define MSGTAG_QUAVER              58
+#define MSGTAG_INSECT_NAME         59
+#define MSGTAG_LETTER_NAME         60
+#define MSGTAG_LINE_DOWN           61
+#define MSGTAG_CURRENT_LETTER_PAGE 62
+#define MSGTAG_MAX_LETTER_PAGE     63
+
+// Group 3
+#define MSGTAG_WII_MSGID_OVERRIDE  0
+#define MSGTAG_WII_ABTN            1
+#define MSGTAG_WII_BBTN            2
+#define MSGTAG_WII_HOMEBTN         3
+#define MSGTAG_WII_MINUSBTN        4
+#define MSGTAG_WII_PLUSBTN         5
+#define MSGTAG_WII_1BTN            6
+#define MSGTAG_WII_2BTN            7
+#define MSGTAG_WII_DPAD_ITEM       8
+#define MSGTAG_WII_DPAD_UP         9
+#define MSGTAG_WII_DPAD_DOWN       10
+#define MSGTAG_WII_DPAD_HORIZONTAL 11
+#define MSGTAG_WII_DPAD_RIGHT      12
+#define MSGTAG_WII_DPAD_LEFT       13
+#define MSGTAG_WII_WIIMOTE         14
+#define MSGTAG_WII_RETICULE        15
+#define MSGTAG_WII_NUNCHUK         16
+#define MSGTAG_WII_WIIMOTE2        17
+#define MSGTAG_WII_FAIRY           18
+#define MSGTAG_WII_CBTN            19
+#define MSGTAG_WII_ZBTN            20
+
+// Group 4
+#define MSGTAG_GLYPH_DOLLARSIGN 0
+#define MSGTAG_GLYPH_BACKSLASH  1
+#define MSGTAG_GLYPH_ATMARK     2
+#define MSGTAG_GLYPH_SHARP      3
+#define MSGTAG_GLYPH_FLAT       4
+#define MSGTAG_GLYPH_SQRT       5
+#define MSGTAG_GLYPH_PERCENT    6
+#define MSGTAG_GLYPH_HECTARE    7
+#define MSGTAG_GLYPH_ARE        8
+#define MSGTAG_GLYPH_LITRE      9
+#define MSGTAG_GLYPH_WATT       10
+#define MSGTAG_GLYPH_CALORIE    11
+#define MSGTAG_GLYPH_DOLLAR     12
+#define MSGTAG_GLYPH_CENT       13
+
+// Group 5
+#define MSGTAG_TIME_INFO        0
+#define MSGTAG_INSECT_INFO      3
+#define MSGTAG_RIVER_POINTS     7
+#define MSGTAG_FISH_LENGTH      8
+#define MSGTAG_FUNDRAISE_REMAIN 9
+#define MSGTAG_NEW_LETTER_NUM   10
+#define MSGTAG_POE_NUM          11
+#define MSGTAG_BALLOON_SCORE    12
+#define MSGTAG_FISH_COUNT       13
+#define MSGTAG_ROLLGOAL_LV      14
+
+// Group 6
+#define MSGTAG_PLAYER_GENITIV   0
+#define MSGTAG_HORSE_GENITIV    1
+#define MSGTAG_MALE_ICON        2
+#define MSGTAG_FEMALE_ICON      3
+#define MSGTAG_STAR_ICON        4
+#define MSGTAG_REFMARK          5
+#define MSGTAG_THIN_LEFT_ARROW  6
+#define MSGTAG_THIN_RIGHT_ARROW 7
+#define MSGTAG_THIN_UP_ARROW    8
+#define MSGTAG_THIN_DOWN_ARROW  9
+#define MSGTAG_BULLET           10
+#define MSGTAG_BULLET_SPACE     11
+
+// Group 255
+#define MSGTAG_COLOR (MSGTAG_GROUP(255) | 0)
+#define MSGTAG_SCALE (MSGTAG_GROUP(255) | 1)
+#define MSGTAG_RUBY  (MSGTAG_GROUP(255) | 2)
 
 #endif /* D_MSG_D_MSG_CLASS_H */

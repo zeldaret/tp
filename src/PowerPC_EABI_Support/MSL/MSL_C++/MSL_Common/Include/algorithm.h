@@ -84,8 +84,9 @@ InputIt find_if(InputIt first, InputIt last, UnaryPredicate p) {
 // fakematch: val should be a const reference, but that breaks JMessage::TResource::toMessageIndex_messageID
 template<class ForwardIterator, class T>
 inline ForwardIterator find(ForwardIterator first, ForwardIterator last, T& val) {
-    for (; first != last && *first != val; ++first) {
-    }
+    while (first != last && !(*first == val)) {
+		++first;
+	}
     return first;
 }
 

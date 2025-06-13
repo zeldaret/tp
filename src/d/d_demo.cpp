@@ -1,4 +1,5 @@
 #include "d/d_demo.h"
+#include "d/d_msg_class.h"
 #include "d/d_msg_object.h"
 #include "m_Do/m_Do_graphic.h"
 #include "d/actor/d_a_movie_player.h"

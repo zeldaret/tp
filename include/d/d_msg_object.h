@@ -13,6 +13,7 @@ class dMsgString_c;
 struct jmessage_tReference;
 struct jmessage_tRenderingProcessor;
 struct jmessage_tSequenceProcessor;
+struct jmessage_tControl;
 
 class dMsgObject_c : public msg_class {
 public:
@@ -55,7 +56,7 @@ public:
                                        char*, char*, s16*);
     /* 802370A8 */ u8 isGetItemMessage();
     /* 802370BC */ bool isKanbanMessage();
-    /* 802370E8 */ u8 isHowlMessage();
+    /* 802370E8 */ bool isHowlMessage();
     /* 802370FC */ bool isMidonaMessage();
     /* 80237138 */ bool isMidonaNormalTalkWait();
     /* 802371B0 */ bool isMidonaTalkWait();
