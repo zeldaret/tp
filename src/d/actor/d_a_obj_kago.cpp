@@ -4,6 +4,7 @@
 */
 
 #include "d/actor/d_a_obj_kago.h"
+#include "SSystem/SComponent/c_counter.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_npc.h"
 #include "d/d_cc_d.h"

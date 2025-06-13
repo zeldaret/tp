@@ -302,7 +302,7 @@ SECTION_RODATA static f32 const lit_3845 = 600.0f;
 COMPILER_STRIP_GATE(0x80BD01C8, &lit_3845);
 
 /* 80BCF390-80BCF404 000770 0074+00 1/1 0/0 0/0 .text            s_obj_sub__FPvPv */
-static void s_obj_sub(void* param_0, void* param_1) {
+static s32 s_obj_sub(void* param_0, void* param_1) {
     // NONMATCHING
 }
 

@@ -14,6 +14,7 @@
 
 #ifdef DEBUG
 class daObjFlag2_Hio_c : public JORReflexible {
+public:
     daObjFlag2_Hio_c() {
         mCount = 0;
         default_set();
@@ -26,7 +27,7 @@ class daObjFlag2_Hio_c : public JORReflexible {
         ctx->genSlider("重力", &mAttr.mGravity, -10.0f, 0.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
         ctx->genSlider("バネ係数", &mAttr.mSpringCoeeficient, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff,
                        0x200, 0x18);
-        ctx->genSlider("減衰率", &mAttr.mAttenuationRate, 0.0f, 1.0f, 0, NULL, 0xffff, 0xffff,
+        ctx->genSlider("減衰率", &mAttr.mDecayRate, 0.0f, 1.0f, 0, NULL, 0xffff, 0xffff,
                        0x200, 0x18);
         ctx->genSlider("風係数", &mAttr.mWindCoefficient, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff,
                        0x200, 0x18);
