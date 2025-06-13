@@ -1,7 +1,7 @@
 #include "d/actor/d_a_npc.h"
 #include "d/d_bg_w.h"
 
-static void daBaseNpc_incIdx(int i_pathNo, u16* i_pathIdx, int i_pathClosed, int i_pathDirection);
+static BOOL daBaseNpc_incIdx(int i_pathNo, u16* i_pathIdx, BOOL i_pathClosed, int i_pathDirection);
 static void daBaseNpc_decIdx(int i_pathNo, u16* i_pathIdx, int i_pathClosed, int i_pathDirection);
 static f32 daNpcBase_BBasis(int i_deg, int i_pntNo, int i_knotNo, int* i_knotVector_p);
 

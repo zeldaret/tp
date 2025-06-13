@@ -790,7 +790,7 @@ public:
     /* 8014D9BC */ int setPathInfo(u8, s8, s8);
     /* 8014DA48 */ void reverseDir();
     /* 8014DA64 */ s32 chkPnt(cXyz);
-    /* 8014DAC4 */ void setNextPnt();
+    /* 8014DAC4 */ BOOL setNextPnt();
     /* 8014DB04 */ u16 getIdx();
     /* 8014DB0C */ void setIdx(u16);
     /* 8014DB14 */ Vec getPntPos(u16);
@@ -798,7 +798,7 @@ public:
 
     static const int MAXNUMCONTROLPNT_e = 64;
 
-private:
+public:
     /* 0x004 */ dPath* mPathInfo;
     /* 0x008 */ f32 field_0x8;
     /* 0x00C */ dPnt mCurvePnts[160];
@@ -806,7 +806,11 @@ private:
     /* 0xA0E */ u16 mCurvePntNum;
     /* 0xA10 */ u16 mIdx;
     /* 0xA12 */ s8 mDirection;
-    /* 0xA13 */ u8 field_0xa13[17];
+    /* 0xA13 */ u8 field_0xa13;
+    /* 0xA14 */ s16 field_0xa14;
+    /* 0xA16 */ u8 field_0xa16[2];
+    /* 0xA18 */ int field_0xa18;
+    /* 0xA1C */ u8 field_0xa1c[8];
 };
 
 class daBaseNpc_lookat_c {
@@ -834,9 +838,9 @@ public:
     /* 8014E6C8 */ daBaseNpc_c();
     /* 8014EE44 */ J3DAnmTransform* getTrnsfrmKeyAnmP(char*, int);
     /* 8014EE80 */ int setMcaMorfAnm(J3DAnmTransformKey*, f32, f32, int, int, int);
-    /* 8014EEE4 */ void setBckAnm(J3DAnmTransform*, f32, int, int, int, bool);
+    /* 8014EEE4 */ int setBckAnm(J3DAnmTransform*, f32, int, int, int, bool);
     /* 8014EF28 */ J3DAnmTransform* getTexPtrnAnmP(char*, int);
-    /* 8014EF64 */ void setBtpAnm(J3DAnmTexPattern*, J3DModelData*, f32, int);
+    /* 8014EF64 */ int setBtpAnm(J3DAnmTexPattern*, J3DModelData*, f32, int);
     /* 8014EFF4 */ void orderEvent(int, char*);
     /* 8014F0A0 */ void setEnvTevColor();
     /* 8014F0FC */ void setRoomNo();
@@ -863,9 +867,11 @@ public:
     static dCcD_SrcCyl mCcDCyl;
     static dCcD_SrcSph mCcDSph;
 
-private:
+public:
     /* 0x56C */ dBgS_ObjAcch mAcch;
-    /* 0x744 */ u8 field_0x744[0x754 - 0x744];
+    /* 0x744 */ char field_0x744;
+    /* 0x745 */ u8 field_0x745[0x74c - 0x745];
+    /* 0x74C */ request_of_phase_process_class mPhase;
     /* 0x754 */ mDoExt_McaMorfSO* mpModelMorf;
     /* 0x758 */ Z2Creature mSound;
     /* 0x7E8 */ u32 mShadowId;
@@ -876,7 +882,8 @@ private:
     /* 0x83C */ u16* field_0x83c;
     /* 0x840 */ u16 field_0x840;
     /* 0x842 */ u16 field_0x842;
-    /* 0x844 */ u8 field_0x844[0x848 - 0x844];
+    /* 0x844 */ bool field_0x844;
+    /* 0x845 */ u8 field_0x845[0x848 - 0x845];
     /* 0x848 */ s32 field_0x848;
     /* 0x84C */ dMsgFlow_c mMsgFlow;
     /* 0x898 */ u8 field_0x898[0x89A - 0x898];
@@ -918,7 +925,7 @@ public:
     static int m_dzb_id;
     static MoveBGActor_SetFunc m_set_func;
 
-private:
+public:
     /* 0xA14 */ dBgW* mpBgw;
     /* 0xA18 */ Mtx mBgMtx;
 };
