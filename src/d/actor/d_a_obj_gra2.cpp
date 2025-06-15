@@ -698,7 +698,7 @@ int daObj_GrA_c::init() {
     setRoomNo();
 
     if (mMode == 2) {
-        fopAcM_OffStatus(this, 0x4000);
+        fopAcM_OffStatus(this, fopAcM_STATUS_UNK_004000);
     }
 
     field_0x1528.setPathInfo(getPathNo(), fopAcM_GetRoomNo(this), 1);
@@ -975,10 +975,10 @@ void daObj_GrA_c::setParam() {
             attention_info.flags = 0;
         }
     } else if (mMode == 2) {
-        attention_info.flags &= 0xffffffef;
+        attention_info.flags &= ~0x10;
         attention_info.flags = 0x200000;
     } else {
-        attention_info.flags &= 0xffffffef;
+        attention_info.flags &= ~0x10;
         if (field_0x1508 == 0) {
             attnSttsOn(0, 0);
         }
@@ -2121,36 +2121,6 @@ static int daObj_GrA_Draw(void* param_1) {
 /* 80C04B14-80C04B1C 004CF4 0008+00 1/0 0/0 0/0 .text            daObj_GrA_IsDelete__FPv */
 static int daObj_GrA_IsDelete(void* param_1) {
     return 1;
-}
-
-/* 80C04E9C-80C04EFC 00507C 0060+00 1/0 0/0 0/0 .text            __dt__23daBaseNpc_moveBgActor_cFv */
-// daBaseNpc_moveBgActor_c::~daBaseNpc_moveBgActor_c() {
-extern "C" void __dt__23daBaseNpc_moveBgActor_cFv() {
-    // NONMATCHING
-}
-
-/* 80C04EFC-80C04F04 0050DC 0008+00 1/0 0/0 0/0 .text            Draw__23daBaseNpc_moveBgActor_cFv */
-// bool daBaseNpc_moveBgActor_c::Draw() {
-extern "C" bool Draw__23daBaseNpc_moveBgActor_cFv() {
-    return true;
-}
-
-/* 80C04F24-80C04F2C 005104 0008+00 1/0 0/0 0/0 .text CreateHeap__23daBaseNpc_moveBgActor_cFv */
-// bool daBaseNpc_moveBgActor_c::CreateHeap() {
-extern "C" bool CreateHeap__23daBaseNpc_moveBgActor_cFv() {
-    return true;
-}
-
-/* 80C04F2C-80C04F34 00510C 0008+00 1/0 0/0 0/0 .text Execute__23daBaseNpc_moveBgActor_cFPPA3_A4_f */
-// bool daBaseNpc_moveBgActor_c::Execute(f32 (**param_0)[3][4]) {
-extern "C" bool Execute__23daBaseNpc_moveBgActor_cFPPA3_A4_f() {
-    return true;
-}
-
-/* 80C04F34-80C04F3C 005114 0008+00 1/0 0/0 0/0 .text            Delete__23daBaseNpc_moveBgActor_cFv */
-// bool daBaseNpc_moveBgActor_c::Delete() {
-extern "C" bool Delete__23daBaseNpc_moveBgActor_cFv() {
-    return true;
 }
 
 /* 80C0536C-80C053C4 00554C 0058+00 4/4 0/0 0/0 .text            getSrchCircleR__11daObj_GrA_cFv */
@@ -3545,7 +3515,7 @@ int daObj_GrA_c::thrown(void* param_1) {
 
     switch (field_0xa7c) {
         case 0:
-            fopAcM_OnStatus(this, 0x4000);
+            fopAcM_OnStatus(this, fopAcM_STATUS_UNK_004000);
             field_0x1ff0 = 1;
             mDemoCamMode = 0;
             field_0x209c = 1;
@@ -3660,19 +3630,17 @@ void daObj_GrA_c::demo_camera() {
                 field_0x2074 = mDemoCamEye;
                 field_0x2080 = mDemoCamCenter;
             } else {
-                // if (field_0x2056 < 40) {
-                    mDoMtx_stack_c::YrotS(shape_angle.y);
-                    sp70.x = 0.0f;
-                    sp70.y = 250.0f;
-                    sp70.z = 500.0f;
-                    mDoMtx_stack_c::multVec(&sp70, &sp70);
-                    sp70 += current.pos;
-                    cLib_addCalcPos2(&mDemoCamEye, sp70, 0.1f, (field_0x2074 - sp70).abs() / 25.0f);
+                mDoMtx_stack_c::YrotS(shape_angle.y);
+                sp70.x = 0.0f;
+                sp70.y = 250.0f;
+                sp70.z = 500.0f;
+                mDoMtx_stack_c::multVec(&sp70, &sp70);
+                sp70 += current.pos;
+                cLib_addCalcPos2(&mDemoCamEye, sp70, 0.1f, (field_0x2074 - sp70).abs() / 25.0f);
 
-                    sp7c = current.pos;
-                    sp7c.y += 150.0f;
-                    cLib_addCalcPos2(&mDemoCamCenter, sp7c, 0.1f, (field_0x2080 - sp7c).abs() / 25.0f);
-                // }
+                sp7c = current.pos;
+                sp7c.y += 150.0f;
+                cLib_addCalcPos2(&mDemoCamCenter, sp7c, 0.1f, (field_0x2080 - sp7c).abs() / 25.0f);
             }
 
             if (daObj_GrA_Param_c::m.field_0xb4 >= field_0x2056) {
@@ -4036,10 +4004,10 @@ void daObj_GrA_c::executeCrazyBeforeCatch() {
     calcCatchPos(-120.0f, 1);
     if ((field_0xa48 & 2) != 0) {
         initCrazyCatch(0);
-        field_0xa48 &= 0xFFFFFFFD;
+        field_0xa48 &= ~2;
     } else if ((field_0xa48 & 4) != 0) {
         initCrazyAttack();
-        field_0xa48 &= 0xFFFFFFFB;
+        field_0xa48 &= ~4;
     }
 }
 
