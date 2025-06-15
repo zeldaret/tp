@@ -55,14 +55,12 @@ void JASBasicWaveBank::setWaveTableSize(u32 param_0, JKRHeap* param_1) {
 
 /* 80298790-8029883C 2930D0 00AC+00 1/1 0/0 0/0 .text
  * incWaveTable__16JASBasicWaveBankFPCQ216JASBasicWaveBank10TWaveGroup */
-// NONMATCHING instruction order
-// This works if argument type is changed to non const
 void JASBasicWaveBank::incWaveTable(JASBasicWaveBank::TWaveGroup const* param_0) {
     JASMutexLock lock(&field_0x4);
     for (u32 i = 0; i < param_0->getWaveCount(); i++) {
         TWaveHandle* handle = mWaveTable + param_0->getWaveID(i);
         if (!handle->mHeap) {
-            handle->mHeap = const_cast<JASHeap*>(&param_0->mHeap);
+            handle->mHeap = &param_0->mHeap;
             handle->field_0x4.field_0x20 = &param_0->_48;
             handle->field_0x4.field_0x08 = param_0->mCtrlWaveArray[i].field_0x4;
         }
