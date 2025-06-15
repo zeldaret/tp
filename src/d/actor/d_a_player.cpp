@@ -587,7 +587,7 @@ bool daPy_py_c::checkBoomerangCharge() {
 }
 
 /* 8015F8C8-8015F8D0 15A208 0008+00 0/0 0/0 1/1 .text checkBoomerangChargeTime__9daPy_py_cFv */
-int daPy_py_c::checkBoomerangChargeTime() {
+u8 daPy_py_c::checkBoomerangChargeTime() {
     return 0;
 }
 
