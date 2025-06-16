@@ -210,6 +210,10 @@ public:
     JPAEmitterCallBack* getEmitterCallBackPtr() const { return mpEmtrCallBack; }
     u32 getAge() const { return mTick; }
 
+    void setVolumeMiniRadius(f32 param_1) {
+        mVolumeMinRad = param_1;
+    }
+
 public:
     /* 0x00 */ JGeometry::TVec3<f32> mLocalScl;
     /* 0x0C */ JGeometry::TVec3<f32> mLocalTrs;

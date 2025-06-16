@@ -544,6 +544,10 @@ inline s16 dMsgObject_getSelectBombPrice() {
     dMsgObject_getMsgObjectClass()->getSelectBombPrice();
 }
 
+inline bool dMsgObject_isMouthCheck() {
+    return dMsgObject_getMsgObjectClass()->isMouthCheck();
+}
+
 class dMsgObject_HowlHIO_c {
 public:
     /* 80232AEC */ dMsgObject_HowlHIO_c();
