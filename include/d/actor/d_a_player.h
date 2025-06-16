@@ -685,7 +685,7 @@ public:
     f32 getSpinnerRideSpeed() const;
     bool checkSpinnerReflectEffect();
     static bool checkBoomerangCharge();
-    int checkBoomerangChargeTime();
+    static u8 checkBoomerangChargeTime();
     static daBoomerang_c* getThrowBoomerangActor();
     static void cancelBoomerangLockActor(fopAc_ac_c*);
     static void setPlayerDamage(int, int);
