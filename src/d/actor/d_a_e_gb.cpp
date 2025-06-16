@@ -352,7 +352,7 @@ static void e_gb_damage(e_gb_class* i_this) {
             if ((s16)(i_this->field_0x6b8 - sVar1) < 0) {
                 a_this->current.angle.y = sVar1 + 0x2000;
             } else {
-                a_this->current.angle.y = sVar1 + -0x2000;
+                a_this->current.angle.y = sVar1 - 0x2000;
             }
 
             cMtx_YrotS(*calc_mtx, a_this->current.angle.y);

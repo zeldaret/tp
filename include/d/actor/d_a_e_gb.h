@@ -28,10 +28,8 @@ public:
     /* 0x5C0 */ mDoExt_brkAnm* mBrkAnm;
     /* 0x5C4 */ Z2CreatureEnemy mSound;
     /* 0x668 */ s8 field_0x668;
-    /* 0x669 */ u8 field_0x669[3];
     /* 0x66C */ J3DModel* field_0x66c;
     /* 0x670 */ s8 field_0x670;
-    /* 0x671 */ u8 field_0x671[0x674 - 0x671];
     /* 0x674 */ cXyz field_0x674;
     /* 0x680 */ f32 field_0x680;
     /* 0x684 */ s16 field_0x684;
@@ -55,10 +53,8 @@ public:
     /* 0x6C4 */ s16 field_0x6c4[5];
     /* 0x6CE */ s16 field_0x6ce;
     /* 0x6D0 */ s16 field_0x6d0;
-    /* 0x6D2 */ u8 field_0x6d2[0x6d4 - 0x6d2];
     /* 0x6D4 */ cXyz field_0x6d4;
     /* 0x6E0 */ s8 field_0x6e0;
-    /* 0x6E1 */ u8 field_0x6e1[0x6e4 - 0x6e1];
     /* 0x6E4 */ cXyz field_0x6e4[18];
     /* 0x7BC */ csXyz field_0x7bc[18];
     /* 0x828 */ J3DModel* field_0x828[18];
@@ -66,14 +62,12 @@ public:
     /* 0x8B8 */ f32 field_0x8b8[18];
     /* 0x900 */ s16 field_0x900[18];
     /* 0x924 */ s16 field_0x924;
-    /* 0x926 */ u8 field_0x926[2];
     /* 0x928 */ f32 field_0x928;
     /* 0x92C */ s16 field_0x92c[3];
     /* 0x932 */ s8 field_0x932[3];
     /* 0x935 */ s8 field_0x935[3];
     /* 0x938 */ s8 field_0x938;
     /* 0x939 */ s8 field_0x939;
-    /* 0x93A */ u8 field_0x93a[0x93c - 0x93a];
     /* 0x93C */ f32 field_0x93c;
     /* 0x940 */ f32 field_0x940;
     /* 0x944 */ f32 field_0x944;
@@ -92,11 +86,10 @@ public:
     /* 0x9AC */ dCcD_Sph mHeadSph;
     /* 0xAE4 */ dCcD_Cyl mBodyCyl;
     /* 0xC20 */ s8 field_0xc20;
-    /* 0xC21 */ u8 field_0xc21[3];
     /* 0xC24 */ dCcU_AtInfo mAtInfo;
     /* 0xC48 */ dBgS_AcchCir mAcchCir;
     /* 0xC88 */ dBgS_ObjAcch mObjAcch;
-    /* 0xE60 */ u8 field_0xe60[0xe62 - 0xe60];
+    /* 0xE60 */ u8 field_0xe60[2];
     /* 0xE62 */ u32 field_0xe62[2];
     /* 0xE6C */ u32 field_0xe6c;
     /* 0xE70 */ u32 field_0xe70;
@@ -116,7 +109,6 @@ public:
     /* 0xEE8 */ f32 mDemoCamFovy;
     /* 0xEEC */ u8 field_0xeec[0xef5 - 0xeec];
     /* 0xEF5 */ u8 field_0xef5;
-    /* 0xEF6 */ u8 field_0xef6[0xef8 - 0xef6];
 };
 
 STATIC_ASSERT(sizeof(e_gb_class) == 0xef8);
@@ -124,7 +116,7 @@ STATIC_ASSERT(sizeof(e_gb_class) == 0xef8);
 class daE_GB_HIO_c : public JORReflexible{
 public:
     /* 806C1CEC */ daE_GB_HIO_c();
-    /* 806C6F98 */ virtual ~daE_GB_HIO_c() {};
+    /* 806C6F98 */ virtual ~daE_GB_HIO_c() {}
 
     void genMessage(JORMContext*);
 
