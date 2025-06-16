@@ -64,10 +64,19 @@ void dFile_info_c::screenSet() {
     mNoDatBase = new CPaneMgrAlpha(mFileInfo.Scr, 'w_nda_i1', 2, NULL);
 
     J2DTextBox* info_text[4];
+    
+
+    #if (VERSION == VERSION_GCN_JPN) || (VERSION == VERSION_WII_JPN)
+    info_text[0] = (J2DTextBox*)mFileInfo.Scr->search('w_s_t_01');
+    info_text[1] = (J2DTextBox*)mFileInfo.Scr->search('w_p_t_01');
+    mFileInfo.Scr->search('f_s_t_02')->hide();
+    mFileInfo.Scr->search('f_p_t_02')->hide();
+    #else
     info_text[0] = (J2DTextBox*)mFileInfo.Scr->search('f_s_t_02');
     info_text[1] = (J2DTextBox*)mFileInfo.Scr->search('f_p_t_02');
     mFileInfo.Scr->search('w_s_t_01')->hide();
     mFileInfo.Scr->search('w_p_t_01')->hide();
+    #endif
 
     for (int i = 0; i < 2; i++) {
         info_text[i]->setFont(mFileInfo.mFont);
@@ -76,10 +85,17 @@ void dFile_info_c::screenSet() {
     dMeter2Info_getString(0x3D0, info_text[0]->getStringPtr(), NULL);  // Save time
     dMeter2Info_getString(0x3D1, info_text[1]->getStringPtr(), NULL);  // Total play time
 
+    #if (VERSION == VERSION_GCN_JPN) || (VERSION == VERSION_WII_JPN)
+    info_text[0] = (J2DTextBox*)mFileInfo.Scr->search('w_name01');
+    info_text[1] = (J2DTextBox*)mFileInfo.Scr->search('w_new_1');
+    mFileInfo.Scr->search('f_name01')->hide();
+    mFileInfo.Scr->search('f_new_1')->hide();
+    #else
     info_text[0] = (J2DTextBox*)mFileInfo.Scr->search('f_name01');
     info_text[1] = (J2DTextBox*)mFileInfo.Scr->search('f_new_1');
     mFileInfo.Scr->search('w_name01')->hide();
     mFileInfo.Scr->search('w_new_1')->hide();
+    #endif
 
     info_text[2] = (J2DTextBox*)mFileInfo.Scr->search('w_time01');
     info_text[3] = (J2DTextBox*)mFileInfo.Scr->search('w_ptim01');
@@ -177,8 +193,14 @@ static procFunc fileWarningProc[] = {&dFile_info_c::modeWait, &dFile_info_c::mod
 void dFile_info_c::setSaveDate(dSv_save_c* i_savedata) {
     OSCalendarTime time;
     OSTicksToCalendarTime(i_savedata->getPlayer().getPlayerStatusB().getDateIpl(), &time);
+
+    #if (VERSION == VERSION_GCN_JPN) || (VERSION == VERSION_WII_JPN)
+    sprintf(mSaveDate, "%d.%02d.%02d %02d:%02d", time.year, time.mon + 1, time.mday,
+            time.hour, time.min);
+    #else
     sprintf(mSaveDate, "%02d/%02d/%d %02d:%02d", time.mon + 1, time.mday, time.year,
             time.hour, time.min);
+    #endif
 }
 
 /* 80192C70-80192D58 18D5B0 00E8+00 1/1 0/0 0/0 .text setPlayTime__12dFile_info_cFP10dSv_save_c */
