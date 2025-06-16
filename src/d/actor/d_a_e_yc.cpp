@@ -79,7 +79,8 @@ static void damage_check(e_yc_class* i_this) {
 
 /* 807F01AC-807F06AC 0003CC 0500+00 2/1 0/0 0/0 .text            e_yc_fly__FP10e_yc_class */
 static void e_yc_fly(e_yc_class* i_this) {
-    e_rdy_class* rider = static_cast<e_rdy_class*>(fopAcM_SearchByID(i_this->mRiderID));
+    fopAc_ac_c* base_rdy = fopAcM_SearchByID(i_this->mRiderID);
+    e_rdy_class* rider = (e_rdy_class*) base_rdy;
     int frame = i_this->mpMorf->getFrame();
     f32 target_speed = 0.0f;
     f32 accel = 1.0f;
@@ -144,7 +145,7 @@ static void e_yc_fly(e_yc_class* i_this) {
             target_speed = 35.0f;
             accel = 0.25f;
         }
-        i_this->mTargetPos = rider->current.pos;
+        i_this->mTargetPos = base_rdy->current.pos;
         i_this->mTargetPos.y += 150.0f;
         break;
 
@@ -166,7 +167,7 @@ static void e_yc_fly(e_yc_class* i_this) {
 
     case 6:
         cLib_addCalc0(&i_this->field_0x694, 1.0f, 1.0f);
-        cLib_addCalc2(&i_this->current.pos.y, rider->home.pos.y + 400.0f, 0.05f, 3.0f);
+        cLib_addCalc2(&i_this->current.pos.y, base_rdy->home.pos.y + 400.0f, 0.05f, 3.0f);
         break;
     }
 
@@ -318,7 +319,8 @@ static void e_yc_hovering(e_yc_class* i_this) {
 static void e_yc_attack(e_yc_class* i_this) {
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     cXyz delta;
-    e_rdy_class* rider = static_cast<e_rdy_class*>(fopAcM_SearchByID(i_this->mRiderID));
+    fopAc_ac_c* base_rdy = fopAcM_SearchByID(i_this->mRiderID);
+    e_rdy_class* rider = (e_rdy_class*) base_rdy;
     f32 target_speed = 0.0f;
     int frame = i_this->mpMorf->getFrame();
 
@@ -437,7 +439,7 @@ static void e_yc_attack(e_yc_class* i_this) {
 static void e_yc_wolfbite(e_yc_class* i_this) {
     fopAc_ac_c* _this = static_cast<fopAc_ac_c*>(i_this);
     daPy_py_c* player = static_cast<daPy_py_c*>(dComIfGp_getPlayer(0));
-    e_rdy_class* rider = static_cast<e_rdy_class*>(fopAcM_SearchByID(i_this->mRiderID));
+    e_rdy_class* rider = (e_rdy_class*) fopAcM_SearchByID(i_this->mRiderID);
 
     int frame = i_this->mpMorf->getFrame();
     i_this->mCcDisableTimer = 10;

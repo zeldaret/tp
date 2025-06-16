@@ -246,7 +246,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
         int jnt_no = dank_joint->getJntNo();
         J3DModel* model = j3dSys.getModel();
         e_rdy_class* _this = (e_rdy_class*)model->getUserArea();
-        fopAc_ac_c* a_this = _this;
+        fopAc_ac_c* a_this = &_this->actor;
         (void) a_this;
         if (_this != NULL) {
             MTXCopy(model->getAnmMtx(jnt_no), *calc_mtx);
@@ -347,6 +347,7 @@ static int nodeCallBack_bow(J3DJoint* i_joint, int param_1) {
 
 /* 8076C54C-8076C9D0 00086C 0484+00 1/0 0/0 0/0 .text            daE_RDY_Draw__FP11e_rdy_class */
 static int daE_RDY_Draw(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = &i_this->actor;
     if (i_this->field_0x5b8 == 12 && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[239])) {
         return 1;
     }
@@ -356,9 +357,9 @@ static int daE_RDY_Draw(e_rdy_class* i_this) {
     }
 
     J3DModel* model = i_this->mpMorf->getModel();
-    g_env_light.settingTevStruct(2, &i_this->current.pos, &i_this->tevStr);
+    g_env_light.settingTevStruct(2, &a_this->current.pos, &a_this->tevStr);
     dComIfGd_setListDark();
-    g_env_light.setLightTevColorType_MAJI(model, &i_this->tevStr);
+    g_env_light.setLightTevColorType_MAJI(model, &a_this->tevStr);
 
     if (i_this->mIsDying) {
         J3DModelData* model_data = model->getModelData();
@@ -383,20 +384,20 @@ static int daE_RDY_Draw(e_rdy_class* i_this) {
     }
 
     if (i_this->mWeaponType == WEAPON_CLUB) {
-        g_env_light.setLightTevColorType_MAJI(i_this->mpWeaponModel, &i_this->tevStr);
+        g_env_light.setLightTevColorType_MAJI(i_this->mpWeaponModel, &a_this->tevStr);
         mDoExt_modelUpdateDL(i_this->mpWeaponModel);
     } else if (i_this->mWeaponType >= WEAPON_BOW) {
-        g_env_light.setLightTevColorType_MAJI(i_this->mpBowMorf->getModel(), &i_this->tevStr);
+        g_env_light.setLightTevColorType_MAJI(i_this->mpBowMorf->getModel(), &a_this->tevStr);
         i_this->mpBowMorf->entryDL();
         if (i_this->mHasArrow) {
-            g_env_light.setLightTevColorType_MAJI(i_this->mpWeaponModel, &i_this->tevStr);
+            g_env_light.setLightTevColorType_MAJI(i_this->mpWeaponModel, &a_this->tevStr);
             mDoExt_modelUpdateDL(i_this->mpWeaponModel);
         }
     }
 
     if (i_this->mDrawEyeModel) {
         for (int i = 0; i < 2; i++) {
-            g_env_light.setLightTevColorType_MAJI(i_this->mpEyeModel[i], &i_this->tevStr);
+            g_env_light.setLightTevColorType_MAJI(i_this->mpEyeModel[i], &a_this->tevStr);
             J3DModelData* model_data = i_this->mpEyeModel[i]->getModelData();
             for (u16 j = 0; j < model_data->getMaterialNum(); j++) {
                 J3DMaterial* material = model_data->getMaterialNodePointer(j);
@@ -412,10 +413,10 @@ static int daE_RDY_Draw(e_rdy_class* i_this) {
 
     if (i_this->mRideState != 2) {
         cXyz pos;
-        pos.set(i_this->current.pos.x, i_this->current.pos.y + 100.0f, i_this->current.pos.z);
+        pos.set(a_this->current.pos.x, a_this->current.pos.y + 100.0f, a_this->current.pos.z);
         i_this->mShadowKey = dComIfGd_setShadow(i_this->mShadowKey, 1, model, &pos, 1200.0f, 0.0f,
-                                                i_this->current.pos.y, i_this->mAcch.GetGroundH(),
-                                                i_this->mAcch.m_gnd, &i_this->tevStr, 0, 1.0f,
+                                                a_this->current.pos.y, i_this->mAcch.GetGroundH(),
+                                                i_this->mAcch.m_gnd, &a_this->tevStr, 0, 1.0f,
                                                 dDlst_shadowControl_c::getSimpleTex());
         if (i_this->mWeaponType == WEAPON_CLUB) {
             dComIfGd_addRealShadow(i_this->mShadowKey, i_this->mpWeaponModel);
@@ -423,7 +424,7 @@ static int daE_RDY_Draw(e_rdy_class* i_this) {
     }
 
     if (i_this->mIsHoldingGrass) {
-        g_env_light.settingTevStruct(0x10, &i_this->current.pos, &i_this->mHawkGrassTevStr);
+        g_env_light.settingTevStruct(0x10, &a_this->current.pos, &i_this->mHawkGrassTevStr);
         g_env_light.setLightTevColorType_MAJI(i_this->mpHawkGrassModel, &i_this->mHawkGrassTevStr);
         mDoExt_modelUpdateDL(i_this->mpHawkGrassModel);
     }
@@ -471,7 +472,7 @@ static dBomb_c* search_bomb(e_rdy_class* i_this, BOOL param_1) {
         return NULL;
     }
 
-    const fopAc_ac_c* a_this = i_this;
+    fopAc_ac_c* a_this = &i_this->actor;
     target_info_count = 0;
     for (int i = 0; i < 10; i++) {
         target_info[i] = NULL;
@@ -558,11 +559,12 @@ static BOOL way_bg_check(e_rdy_class* i_this, f32 i_dist) {
 
 /* 8076CF1C-8076D004 00123C 00E8+00 1/1 0/0 0/0 .text            ride_off__FP11e_rdy_class */
 static void ride_off(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = &i_this->actor;
     e_yc_class* kargarok = (e_yc_class*)fopAcM_SearchByID(i_this->mKargarokID);
     if (kargarok != NULL) {
         kargarok->field_0x6b0 = 0;
         i_this->field_0xa8e = 0;
-        i_this->current.angle.x = 0;
+        a_this->current.angle.x = 0;
         i_this->mKargarokID = fpcM_ERROR_PROCESS_ID_e;
     }
 
@@ -572,11 +574,12 @@ static void ride_off(e_rdy_class* i_this) {
         i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::EMode_NONE, 1.0f, 1.0f, 0.0f, -1.0f);
         i_this->mpBowMorf->setFrame(10.0f);
     }
-    i_this->home.pos = i_this->current.pos;
+    a_this->home.pos = a_this->current.pos;
 }
 
 /* 8076D004-8076D114 001324 0110+00 6/6 0/0 0/0 .text            pl_check__FP11e_rdy_classfs */
 static BOOL pl_check(e_rdy_class* i_this, f32 i_dist, s16 i_angle) {
+    fopAc_ac_c* a_this = &i_this->actor;
     if (dComIfGp_event_runCheck()) {
         return FALSE;
     }
@@ -588,7 +591,7 @@ static BOOL pl_check(e_rdy_class* i_this, f32 i_dist, s16 i_angle) {
     }
 
     if (i_this->mPlayerDist < i_dist) {
-        s16 angle = i_this->shape_angle.y - i_this->mPlayerAngle;
+        s16 angle = a_this->shape_angle.y - i_this->mPlayerAngle;
         if (angle < i_angle && angle > (s16)-i_angle && !other_bg_check(i_this, player)) {
             return TRUE;
         }
@@ -619,16 +622,17 @@ static dBomb_c* bomb_check(e_rdy_class* i_this) {
 /* 8076D15C-8076D24C 00147C 00F0+00 6/6 0/0 0/0 .text            move_gake_check__FP11e_rdy_classf
  */
 static BOOL move_gake_check(e_rdy_class* i_this, f32 i_dist) {
+    fopAc_ac_c* a_this = &i_this->actor;
     dBgS_GndChk gnd_chk;
     cXyz vec, pos;
-    mDoMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
+    mDoMtx_YrotS(*calc_mtx, a_this->shape_angle.y);
     vec.x = 0.0f;
     vec.y = 100.0f;
     vec.z = i_dist;
     MtxPosition(&vec, &pos);
-    pos += i_this->current.pos;
+    pos += a_this->current.pos;
     gnd_chk.SetPos(&pos);
-    if (i_this->current.pos.y - dComIfG_Bgsp().GroundCross(&gnd_chk) > 300.0f) {
+    if (a_this->current.pos.y - dComIfG_Bgsp().GroundCross(&gnd_chk) > 300.0f) {
         return TRUE;
     } else {
         return FALSE;
@@ -667,10 +671,11 @@ static BOOL way_check(e_rdy_class* i_this) {
 
 /* 8076D3C4-8076D5F0 0016E4 022C+00 1/1 0/0 0/0 .text            path_check__FP11e_rdy_class */
 static BOOL path_check(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = &i_this->actor;
     static bool check_index[0xff];
     dBgS_LinChk lin_chk;
     cXyz start, end;
-    start = i_this->current.pos;
+    start = a_this->current.pos;
     start.y += 10.0f;
     dPnt* point = i_this->mpPath->m_points;
     for (int i = 0; i < i_this->mpPath->m_num; i++, point++) {
@@ -678,7 +683,7 @@ static BOOL path_check(e_rdy_class* i_this) {
             end.x = point->m_position.x;
             end.y = point->m_position.y + 10.0f;
             end.z = point->m_position.z;
-            lin_chk.Set(&start, &end, i_this);
+            lin_chk.Set(&start, &end, a_this);
             if (!dComIfG_Bgsp().LineCross(&lin_chk)) {
                 check_index[i] = true;
             } else {
@@ -694,9 +699,9 @@ static BOOL path_check(e_rdy_class* i_this) {
         point = i_this->mpPath->m_points;
         for (int i = 0; i < i_this->mpPath->m_num; i++, point++) {
             if (i < 0xff && check_index[i]) {
-                delta_x = i_this->current.pos.x - point->m_position.x;
-                delta_y = i_this->current.pos.y - point->m_position.y;
-                delta_z = i_this->current.pos.z - point->m_position.z;
+                delta_x = a_this->current.pos.x - point->m_position.x;
+                delta_y = a_this->current.pos.y - point->m_position.y;
+                delta_z = a_this->current.pos.z - point->m_position.z;
                 dist = JMAFastSqrt(delta_x * delta_x + delta_y * delta_y + delta_z * delta_z);
                 if (dist < threshold) {
                     i_this->mPathIndex = i;
@@ -722,6 +727,7 @@ static BOOL path_check(e_rdy_class* i_this) {
 
 /* 8076D5F0-8076DA3C 001910 044C+00 1/1 0/0 0/0 .text            e_rdy_normal__FP11e_rdy_class */
 static void e_rdy_normal(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = &i_this->actor;
     f32 target_speed = 0.0f;
     s16 check_angle = 0x4000;
 
@@ -762,12 +768,12 @@ static void e_rdy_normal(e_rdy_class* i_this) {
 
     case 3:
         target_speed = l_HIO.mWalkSpeed;
-        if (i_this->speedF >= 3.0f && move_gake_check(i_this, 100.0f)) {
+        if (a_this->speedF >= 3.0f && move_gake_check(i_this, 100.0f)) {
             i_this->mMode = 4;
             i_this->mTimer[0] = cM_rndF(100.0f) + 50.0f;
             anm_init(i_this, ANM_KYORO2, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         } else if (i_this->mTimer[0] == 0
-            || (i_this->speedF >= 3.0f && way_bg_check(i_this, 200.0f)))
+            || (a_this->speedF >= 3.0f && way_bg_check(i_this, 200.0f)))
         {
             i_this->mMode = 2;
             i_this->mTimer[0] = cM_rndF(100.0f) + 50.0f;
@@ -778,7 +784,7 @@ static void e_rdy_normal(e_rdy_class* i_this) {
     case 4:
         i_this->field_0xa98 = -1;
         if (i_this->mTimer[0] == 0) {
-            i_this->mTargetAngleY = i_this->current.angle.y + 0x8000 + (int)cM_rndFX(4000.0f);
+            i_this->mTargetAngleY = a_this->current.angle.y + 0x8000 + (int)cM_rndFX(4000.0f);
             anm_init(i_this, ANM_WALK, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 3;
             i_this->mTimer[0] = cM_rndF(100.0f) + 100.0f;
@@ -787,13 +793,13 @@ static void e_rdy_normal(e_rdy_class* i_this) {
     }
 
     if (target_speed) {
-        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mTargetAngleY, 8, 0x400);
-        s16 angle_diff = i_this->current.angle.y - i_this->mTargetAngleY;
+        cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mTargetAngleY, 8, 0x400);
+        s16 angle_diff = a_this->current.angle.y - i_this->mTargetAngleY;
         if (angle_diff > 0x400 || angle_diff < -0x400) {
             target_speed = 0.0f;
         }
     }
-    cLib_addCalc2(&i_this->speedF, target_speed, 1.0f, 3.0f);
+    cLib_addCalc2(&a_this->speedF, target_speed, 1.0f, 3.0f);
 
     f32 check_dist = i_this->mPlayerCheckDist;
     BOOL bVar1 = FALSE;
@@ -827,7 +833,7 @@ static void e_rdy_normal(e_rdy_class* i_this) {
 
 /* 8076DA3C-8076E00C 001D5C 05D0+00 2/1 0/0 0/0 .text            e_rdy_fight_run__FP11e_rdy_class */
 static void e_rdy_fight_run(e_rdy_class* i_this) {
-    fopAc_ac_c* a_this = i_this;
+    fopAc_ac_c* a_this = &i_this->actor;
     cXyz unused_xyz_0;
     cXyz unused_xyz_1;
     f32 target_speed = 0.0f;
@@ -914,7 +920,7 @@ static void e_rdy_fight_run(e_rdy_class* i_this) {
             i_this->field_0xa98 = -1;
         }
         target_speed = 0.0f;
-        i_this->speedF = 0.0f;
+        a_this->speedF = 0.0f;
         if (!move_gake_check(i_this, 100.0f)) {
             i_this->mMode = 2;
         }
@@ -938,7 +944,7 @@ static void e_rdy_fight_run(e_rdy_class* i_this) {
     if (!bVar1) {
         i_this->mAction = ACT_NORMAL;
         if (i_this->mMode == 5) {
-            i_this->mTargetAngleY = i_this->current.angle.y + 0x8000 + (int)cM_rndFX(4000.0f);
+            i_this->mTargetAngleY = a_this->current.angle.y + 0x8000 + (int)cM_rndFX(4000.0f);
             anm_init(i_this, ANM_WALK, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 3;
             i_this->mTimer[0] = cM_rndF(100.0f) + 100.0f;
@@ -992,6 +998,7 @@ static fopAc_ac_c* at_hit_check(e_rdy_class* i_this) {
 
 /* 8076E06C-8076E418 00238C 03AC+00 1/1 0/0 0/0 .text            e_rdy_fight__FP11e_rdy_class */
 static void e_rdy_fight(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = &i_this->actor;
     int frame = (int)i_this->mpMorf->getFrame();
     int last_frame;
 
@@ -1012,7 +1019,7 @@ static void e_rdy_fight(e_rdy_class* i_this) {
 
     case 1:
         if (i_this->mTimer[1] != 0) {
-            cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mPlayerAngle, 4, 0x800);
+            cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mPlayerAngle, 4, 0x800);
         }
         if (frame == 30) {
             i_this->mpMorf->setFrame(0.0f);
@@ -1062,7 +1069,7 @@ static void e_rdy_fight(e_rdy_class* i_this) {
         break;
     }
 
-    cLib_addCalc0(&i_this->speedF, 1.0f, 3.0f);
+    cLib_addCalc0(&a_this->speedF, 1.0f, 3.0f);
 
     if (i_this->field_0xa7b != 0) {
         fopAc_ac_c* hit_actor = at_hit_check(i_this);
@@ -1071,7 +1078,7 @@ static void e_rdy_fight(e_rdy_class* i_this) {
         {
             i_this->mpMorf->setPlaySpeed(-1.0f);
             dComIfGp_getVibration().StartShock(4, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
-            dKy_Sound_set(i_this->current.pos, 100, fopAcM_GetID(i_this), 5);
+            dKy_Sound_set(a_this->current.pos, 100, fopAcM_GetID(i_this), 5);
             i_this->mMode = 10;
             i_this->mTimer[0] = 10;
         }
@@ -1080,9 +1087,10 @@ static void e_rdy_fight(e_rdy_class* i_this) {
 
 /* 8076E418-8076E81C 002738 0404+00 2/1 0/0 0/0 .text            e_rdy_bow_run__FP11e_rdy_class */
 static void e_rdy_bow_run(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = &i_this->actor;
     f32 target_speed = 0.0f;
     f32 run_speed = l_HIO.mRunSpeed;
-    s16 target_angle = fopAcM_searchPlayerAngleY(i_this);
+    s16 target_angle = fopAcM_searchPlayerAngleY(a_this);
     s8 bVar2 = false;
 
     switch (i_this->mMode) {
@@ -1145,13 +1153,13 @@ static void e_rdy_bow_run(e_rdy_class* i_this) {
     }
 
     if (i_this->mMode >= 0) {
-        cLib_addCalcAngleS2(&i_this->current.angle.y, target_angle, 2, 0x1000);
-        s16 angle_diff = i_this->current.angle.y - target_angle;
+        cLib_addCalcAngleS2(&a_this->current.angle.y, target_angle, 2, 0x1000);
+        s16 angle_diff = a_this->current.angle.y - target_angle;
         if (angle_diff > 0x800 || angle_diff < -0x800) {
             target_speed = 0.0f;
         }
     }
-    cLib_addCalc2(&i_this->speedF, target_speed, 1.0f, 5.0f);
+    cLib_addCalc2(&a_this->speedF, target_speed, 1.0f, 5.0f);
 
     if (move_gake_check(i_this, 200.0f)) {
         bVar2 = true;
@@ -1182,6 +1190,7 @@ static void e_rdy_bow_run(e_rdy_class* i_this) {
 
 /* 8076E81C-8076EB4C 002B3C 0330+00 1/1 0/0 0/0 .text            e_rdy_bow__FP11e_rdy_class */
 static void e_rdy_bow(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = &i_this->actor;
     J3DAnmTransform* bck;
     int frame = (int)i_this->mpMorf->getFrame();
 
@@ -1191,7 +1200,7 @@ static void e_rdy_bow(e_rdy_class* i_this) {
         bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 8);
         i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::EMode_NONE, 5.0f, 0.9f, 0.0f, -1.0f);
         i_this->mMode = 1;
-        i_this->speedF = 0.0f;
+        a_this->speedF = 0.0f;
         break;
 
     case 1:
@@ -1248,7 +1257,7 @@ static void e_rdy_bow(e_rdy_class* i_this) {
         break;
     }
 
-    cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mPlayerAngle, 4, 0x1000);
+    cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mPlayerAngle, 4, 0x1000);
 }
 
 /* 8076EB4C-8076EBB8 002E6C 006C+00 1/1 0/0 0/0 .text            s_command3_sub__FPvPv */
@@ -1263,10 +1272,9 @@ static void* s_command3_sub(void* i_proc, void* i_this) {
 }
 
 /* 8076EBB8-8076F0E0 002ED8 0528+00 1/1 0/0 0/0 .text            e_rdy_bow2__FP11e_rdy_class */
-// NONMATCHING regalloc
 static s8 e_rdy_bow2(e_rdy_class* i_this) {
-    fopAc_ac_c* a_this = i_this;
-    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    fopAc_ac_c* a_this = &i_this->actor;
+    fopAc_ac_c* player = (fopAc_ac_c*) dComIfGp_getPlayer(0);
     cXyz vec1, vec2;
     int frame = (int)i_this->mpMorf->getFrame();
 
@@ -1386,6 +1394,7 @@ static s8 e_rdy_bow2(e_rdy_class* i_this) {
 
 /* 8076F0E0-8076F438 003400 0358+00 2/1 0/0 0/0 .text            e_rdy_bow_ikki2__FP11e_rdy_class */
 static void e_rdy_bow_ikki2(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = &i_this->actor;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     J3DAnmTransform* bck;
     int frame = (int)i_this->mpMorf->getFrame();
@@ -1394,8 +1403,8 @@ static void e_rdy_bow_ikki2(e_rdy_class* i_this) {
     case 0:
         anm_init(i_this, ANM_WAIT01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode = 1;
-        i_this->current.pos.x = -92938.0f;
-        i_this->current.pos.z = 49992.0f;
+        a_this->current.pos.x = -92938.0f;
+        a_this->current.pos.z = 49992.0f;
         break;
 
     case 1:
@@ -1411,8 +1420,8 @@ static void e_rdy_bow_ikki2(e_rdy_class* i_this) {
         break;
 
     case 3:
-        cLib_addCalc2(&i_this->current.pos.x, -93658.0f, 1.0f, 50.0f);
-        cLib_addCalc2(&i_this->current.pos.z, 49894.0f, 1.0f, 50.0f);
+        cLib_addCalc2(&a_this->current.pos.x, -93658.0f, 1.0f, 50.0f);
+        cLib_addCalc2(&a_this->current.pos.z, 49894.0f, 1.0f, 50.0f);
         break;
 
     case 4:
@@ -1476,14 +1485,15 @@ static void e_rdy_bow_ikki2(e_rdy_class* i_this) {
 
 /* 8076F438-8076F59C 003758 0164+00 1/1 0/0 0/0 .text            e_rdy_avoid__FP11e_rdy_class */
 static void e_rdy_avoid(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = &i_this->actor;
     int frame = (int)i_this->mpMorf->getFrame();
 
     switch (i_this->mMode) {
     case 0:
         anm_init(i_this, ANM_AVOID, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode = 1;
-        i_this->speedF = -30.0f;
-        i_this->speed.y = 20.0f;
+        a_this->speedF = -30.0f;
+        a_this->speed.y = 20.0f;
         i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_DODGE, -1);
         break;
 
@@ -1502,7 +1512,7 @@ static void e_rdy_avoid(e_rdy_class* i_this) {
         break;
 
     case 3:
-        cLib_addCalc0(&i_this->speedF, 1.0f, 10.0f);
+        cLib_addCalc0(&a_this->speedF, 1.0f, 10.0f);
         if (i_this->mpMorf->isStop()) {
             i_this->mAction = ACT_FIGHT_RUN;
             i_this->mMode = 0;
@@ -1528,7 +1538,7 @@ static void* s_kusa_sub(void* i_proc, void* i_this) {
 /* 8076F71C-807701F4 003A3C 0AD8+00 2/1 0/0 0/0 .text            e_rdy_tkusa__FP11e_rdy_class */
 // NONMATCHING regswap
 static void e_rdy_tkusa(e_rdy_class* i_this) {
-    fopAc_ac_c* a_this = i_this;
+    fopAc_ac_c* a_this = &i_this->actor;
     cXyz vec;
     cXyz unused_vec;
     i_this->mIFrameTimer = 20;
@@ -1864,6 +1874,7 @@ static void e_rdy_yc_ride(e_rdy_class* i_this) {
 /* 8077089C-80770CF8 004BBC 045C+00 2/1 0/0 0/0 .text            e_rdy_bomb_action__FP11e_rdy_class
  */
 static void e_rdy_bomb_action(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = &i_this->actor;
     cXyz vec1, vec2;
     dBomb_c* bomb = bomb_check(i_this);
     if (bomb == NULL) {
@@ -1872,8 +1883,8 @@ static void e_rdy_bomb_action(e_rdy_class* i_this) {
         return;
     }
 
-    vec1.x = bomb->current.pos.x - i_this->current.pos.x;
-    vec1.z = bomb->current.pos.z - i_this->current.pos.z;
+    vec1.x = bomb->current.pos.x - a_this->current.pos.x;
+    vec1.z = bomb->current.pos.z - a_this->current.pos.z;
     s16 target_angle = cM_atan2s(vec1.x, vec1.z);
     f32 target_speed = 0.0f;
 
@@ -1895,7 +1906,7 @@ static void e_rdy_bomb_action(e_rdy_class* i_this) {
         if (bomb->speedF < 0.1f && !bomb->checkStateCarry()
             && JMAFastSqrt(vec1.x * vec1.x + vec1.z * vec1.z) < 250.0f)
         {
-            s16 angle = i_this->mPlayerAngle - i_this->shape_angle.y;
+            s16 angle = i_this->mPlayerAngle - a_this->shape_angle.y;
             if (angle < 0x4000 && angle > -0x4000) {
                 i_this->mMode = 5;
                 break;
@@ -1937,13 +1948,13 @@ static void e_rdy_bomb_action(e_rdy_class* i_this) {
             vec1.y = 0.0f;
             vec1.z = 60.0f;
             MtxPosition(&vec1, &vec2);
-            vec2 += i_this->current.pos;
+            vec2 += a_this->current.pos;
             cLib_addCalc2(&bomb->current.pos.x, vec2.x, 1.0f, 15.0f);
             cLib_addCalc2(&bomb->current.pos.z, vec2.z, 1.0f, 15.0f);
             if ((int)i_this->mpMorf->getFrame() == 10) {
                 bomb->speedF = 30.0f;
                 bomb->speed.y = 30.0f;
-                bomb->current.angle.y = i_this->shape_angle.y;
+                bomb->current.angle.y = a_this->shape_angle.y;
             }
         }
         if (i_this->mpMorf->isStop()) {
@@ -1953,14 +1964,15 @@ static void e_rdy_bomb_action(e_rdy_class* i_this) {
         break;
     }
 
-    cLib_addCalc2(&i_this->speedF, target_speed, 1.0f, 5.0f);
-    cLib_addCalcAngleS2(&i_this->current.angle.y, target_angle, 4, 0x1000);
+    cLib_addCalc2(&a_this->speedF, target_speed, 1.0f, 5.0f);
+    cLib_addCalcAngleS2(&a_this->current.angle.y, target_angle, 4, 0x1000);
     i_this->field_0xa98 = 11;
     i_this->mArrowTarget = bomb->current.pos;
 }
 
 /* 80770CF8-80770E48 005018 0150+00 1/1 0/0 0/0 .text            e_rdy_s_damage__FP11e_rdy_class */
 static void e_rdy_s_damage(e_rdy_class* i_this) {
+    fopEn_enemy_c* a_this = &i_this->actor;
     switch (i_this->mMode) {
     case 0:
         i_this->mMode = 1;
@@ -1977,7 +1989,7 @@ static void e_rdy_s_damage(e_rdy_class* i_this) {
 
     case 1:
         if (i_this->mTimer[1] != 0) {
-            i_this->onHeadLockFlg();
+            a_this->onHeadLockFlg();
         }
         if (i_this->mpMorf->isStop()) {
             if (i_this->mPrevAction == ACT_BOW2) {
@@ -1992,7 +2004,7 @@ static void e_rdy_s_damage(e_rdy_class* i_this) {
         }
     }
     
-    cLib_addCalc0(&i_this->speedF, 1.0f, 3.0f);
+    cLib_addCalc0(&a_this->speedF, 1.0f, 3.0f);
 }
 
 /* 80770E48-80770FFC 005168 01B4+00 1/1 0/0 0/0 .text            kado_check__FP11e_rdy_class */
@@ -2035,27 +2047,29 @@ static int kado_check(e_rdy_class* i_this) {
 
 /* 80770FFC-807710DC 00531C 00E0+00 3/3 0/0 0/0 .text            rd_disappear__FP11e_rdy_class */
 static void rd_disappear(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = &i_this->actor;
     cXyz vec1, vec2;
     MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_MUNE2), *calc_mtx);
     vec1.set(0.0f, 0.0f, 0.0f);
     MtxPosition(&vec1, &vec2);
-    fopAcM_createDisappear(i_this, &vec2, 10, 1, 12);
+    fopAcM_createDisappear(a_this, &vec2, 10, 1, 12);
 
     if (i_this->field_0x5b8 == 12) {
         i_this->mKargarokDeleteTimer = 50;
         Z2GetAudioMgr()->setBattleBgmOff(true);
     } else {
-        fopAcM_delete(i_this);
+        fopAcM_delete(a_this);
     }
 
     int sw_bit = fopAcM_GetParam(i_this) >> 0x18;
     if (sw_bit != 0xff) {
-        dComIfGs_onSwitch(sw_bit, fopAcM_GetRoomNo(i_this));
+        dComIfGs_onSwitch(sw_bit, fopAcM_GetRoomNo(a_this));
     }
 }
 
 /* 807710DC-80771230 0053FC 0154+00 1/1 0/0 0/0 .text            body_gake__FP11e_rdy_class */
 static BOOL body_gake(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = &i_this->actor;
     cXyz vec1, vec2;
     MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_MUNE2), *calc_mtx);
     vec1.set(40.0f, 0.0f, 0.0f);
@@ -2064,7 +2078,7 @@ static BOOL body_gake(e_rdy_class* i_this) {
     vec2.y += 100.0f;
     gnd_chk.SetPos(&vec2);
     vec2.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-    if (i_this->current.pos.y - vec2.y > 300.0f) {
+    if (a_this->current.pos.y - vec2.y > 300.0f) {
         return TRUE;
     } else {
         return FALSE;
@@ -2073,36 +2087,37 @@ static BOOL body_gake(e_rdy_class* i_this) {
 
 /* 807712A8-80771DA4 0055C8 0AFC+00 2/1 0/0 0/0 .text            e_rdy_damage__FP11e_rdy_class */
 static void e_rdy_damage(e_rdy_class* i_this) {
+    fopEn_enemy_c* a_this = &i_this->actor;
     cXyz vec1, vec2;
 
-    if (i_this->health <= 0) {
-        fopAcM_OffStatus(i_this, 0);
-        i_this->attention_info.flags = 0;
+    if (a_this->health <= 0) {
+        fopAcM_OffStatus(a_this, 0);
+        a_this->attention_info.flags = 0;
     }
 
     i_this->mTargetEyeScale = 0.0f;
 
-    if (!daPy_py_c::checkNowWolf() && i_this->checkCutDownHitFlg()) {
-        i_this->offCutDownHitFlg();
+    if (!daPy_py_c::checkNowWolf() && a_this->checkCutDownHitFlg()) {
+        a_this->offCutDownHitFlg();
         i_this->mMode = 3;
         i_this->mTimer[0] = 100;
         i_this->mTimer[1] = 45;
-        i_this->health = 0;
+        a_this->health = 0;
         i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_DEATH, -1);
         i_this->mIsDying = true;
         daPy_getPlayerActorClass()->onEnemyDead();
         i_this->field_0xbac = 15;
-        i_this->offDownFlg();
+        a_this->offDownFlg();
     }
 
     switch (i_this->mMode) {
     case 0:
         anm_init(i_this, ANM_DIEB, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode = 1;
-        i_this->speedF = 0.0f;
+        a_this->speedF = 0.0f;
         ride_off(i_this);
         i_this->field_0xb88 = 8000.0f;
-        if (i_this->health <= 0) {
+        if (a_this->health <= 0) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_DEATH, -1);
             i_this->mIsDying = true;
             daPy_getPlayerActorClass()->onEnemyDead();
@@ -2129,7 +2144,7 @@ static void e_rdy_damage(e_rdy_class* i_this) {
                 i_this->mTimer[0] = 60;
             } else {
                 i_this->mMode = 10;
-                i_this->speed.y = 0.0f;
+                a_this->speed.y = 0.0f;
                 i_this->field_0xabc *= 0.2f;
                 i_this->field_0xadc.y += 0x8000;
                 i_this->field_0xbc0 = 5;
@@ -2139,8 +2154,8 @@ static void e_rdy_damage(e_rdy_class* i_this) {
             }
         } else {
             cLib_addCalcAngleS2(&i_this->field_0xadc.x, -0x4000, 1, 0x300);
-            i_this->current.angle.y += i_this->field_0xac6;
-            i_this->shape_angle.y = i_this->current.angle.y;
+            a_this->current.angle.y += i_this->field_0xac6;
+            a_this->shape_angle.y = a_this->current.angle.y;
             if (i_this->field_0xadc.x <= -0x3000 && i_this->mAcch.ChkGroundHit()) {
                 i_this->field_0xaee = 10;
                 if (i_this->mInWater) {
@@ -2156,7 +2171,7 @@ static void e_rdy_damage(e_rdy_class* i_this) {
                 } else {
                     angle_y = i_this->field_0xadc.y + 0x8000;
                 }
-                i_this->current.angle.y = angle_y;
+                a_this->current.angle.y = angle_y;
                 if (i_this->field_0xac8) {
                     i_this->field_0xabc = 0.0f;
                     i_this->field_0xb88 = 2000.0f;
@@ -2171,7 +2186,7 @@ static void e_rdy_damage(e_rdy_class* i_this) {
                     i_this->field_0xaf8 = -0x5000;
                     i_this->field_0xb00 = -0x4000;
                     i_this->field_0xabc *= 0.5f;
-                    i_this->speed.y = 20.0f;
+                    a_this->speed.y = 20.0f;
                     i_this->field_0xac6 /= 2;
                     i_this->field_0xb88 = 8000.0f;
                     i_this->mGroundHit = true;
@@ -2181,14 +2196,14 @@ static void e_rdy_damage(e_rdy_class* i_this) {
         break;
 
     case 2:
-        i_this->current.angle.y += i_this->field_0xac6;
-        i_this->shape_angle.y = i_this->current.angle.y;
+        a_this->current.angle.y += i_this->field_0xac6;
+        a_this->shape_angle.y = a_this->current.angle.y;
         cLib_addCalcAngleS2(&i_this->field_0xadc.x, -0x4000, 1, 0x300);
         if (i_this->mAcch.ChkGroundHit()) {
-            if (i_this->health > 0 && !daPy_py_c::checkNowWolf()) {
-                i_this->onDownFlg();
+            if (a_this->health > 0 && !daPy_py_c::checkNowWolf()) {
+                a_this->onDownFlg();
             }
-            dKy_Sound_set(i_this->current.pos, 100, fopAcM_GetID(i_this), 5);
+            dKy_Sound_set(a_this->current.pos, 100, fopAcM_GetID(i_this), 5);
             i_this->field_0xaee = 10;
             if (!i_this->mIsUpsideDown) {
                 anm_init(i_this, ANM_DIEA, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
@@ -2206,7 +2221,7 @@ static void e_rdy_damage(e_rdy_class* i_this) {
             } else {
                 angle_y = i_this->field_0xadc.y + 0x8000;
             }
-            i_this->current.angle.y = angle_y;
+            a_this->current.angle.y = angle_y;
             if (daPy_py_c::checkNowWolf()) {
                 i_this->mTimer[0] = 80;
                 i_this->mTimer[1] = 55;
@@ -2225,7 +2240,7 @@ static void e_rdy_damage(e_rdy_class* i_this) {
             i_this->field_0xabc = -20.0f;
             i_this->field_0xadc.x += -0x300;
         }
-        if (i_this->health <= 0 && i_this->mTimer[1] == 0) {
+        if (a_this->health <= 0 && i_this->mTimer[1] == 0) {
             rd_disappear(i_this);
             return;
         }
@@ -2234,7 +2249,7 @@ static void e_rdy_damage(e_rdy_class* i_this) {
         {
             i_this->field_0xabc = 0.0f;
             i_this->field_0xadc.x = -0x4000;
-            i_this->offDownFlg();
+            a_this->offDownFlg();
             i_this->mMode = 20;
             if (!i_this->mIsUpsideDown) {
                 anm_init(i_this, ANM_DIEA_UP, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
@@ -2265,14 +2280,14 @@ static void e_rdy_damage(e_rdy_class* i_this) {
                 i_this->field_0xaf8 = -0x5000;
                 i_this->field_0xb00 = -0x4000;
                 i_this->field_0xabc *= 0.5f;
-                i_this->speed.y = 20.0f;
+                a_this->speed.y = 20.0f;
                 s16 angle_y;
                 if (i_this->mIsUpsideDown == 0) {
                     angle_y = i_this->field_0xadc.y;
                 } else {
                     angle_y = i_this->field_0xadc.y + 0x8000;
                 }
-                i_this->current.angle.y = angle_y;
+                a_this->current.angle.y = angle_y;
                 i_this->field_0xb88 = 8000.0f;
             }
         }
@@ -2289,7 +2304,7 @@ static void e_rdy_damage(e_rdy_class* i_this) {
             anm_init(i_this, ANM_WAIT01, 0.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mTimer[0] = 5;
             i_this->mMode = 21;
-            i_this->offDownFlg();
+            a_this->offDownFlg();
         }
         break;
 
@@ -2312,7 +2327,7 @@ static void e_rdy_damage(e_rdy_class* i_this) {
         break;
 
     case 30:
-        if (!i_this->checkWolfDownPullFlg()) {
+        if (!a_this->checkWolfDownPullFlg()) {
             i_this->mTimer[1] = 0;
         }
         if (i_this->mTimer[0] == 0) {
@@ -2324,9 +2339,9 @@ static void e_rdy_damage(e_rdy_class* i_this) {
             }
             i_this->mTimer[0] = 10;
         } else if (i_this->mTimer[1] == 1) {
-            i_this->onWolfDownPullEndFlg();
-            i_this->offCutDownHitFlg();
-            i_this->health = 0;
+            a_this->onWolfDownPullEndFlg();
+            a_this->offCutDownHitFlg();
+            a_this->health = 0;
             i_this->mTimer[0] = 1000;
             i_this->mTimer[1] = 35;
             i_this->mMode = 3;
@@ -2335,18 +2350,18 @@ static void e_rdy_damage(e_rdy_class* i_this) {
 
     case 31:
         if (i_this->mTimer[0] == 0) {
-            i_this->offDownFlg();
+            a_this->offDownFlg();
             i_this->mMode = 20;
             i_this->field_0xbca = 0;
         }
         break;
     }
 
-    if (i_this->checkDownFlg()) {
+    if (a_this->checkDownFlg()) {
         MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(JNT_MUNE2), *calc_mtx);
         vec1.set(0.0f, 0.0f, 0.0f);
         MtxPosition(&vec1, &vec2);
-        i_this->setDownPos(&vec2);
+        a_this->setDownPos(&vec2);
         i_this->mCollisionEnabled = false;
     }
 
@@ -2387,7 +2402,7 @@ static s16 gake_check(e_rdy_class* i_this, f32 i_dist) {
 static void* s_bikkuri_sub(void* i_proc, void* i_this) {
     if (fopAcM_IsActor(i_proc) && fopAcM_GetName(i_proc) == PROC_E_RDY) {
         if (i_proc != i_this && ((e_rdy_class*)i_proc)->mAction == ACT_BOW3 && ((e_rdy_class*)i_proc)->mMode <= 2) {
-            cXyz delta = ((e_rdy_class*)i_proc)->current.pos - ((e_rdy_class*)i_this)->current.pos;
+            cXyz delta = ((fopAc_ac_c*)i_proc)->current.pos - ((fopAc_ac_c*)i_this)->current.pos;
             if (delta.abs() < 350.0f + KREG_F(11)) {
                 anm_init((e_rdy_class*)i_proc, ANM_KYORO2, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.3f);
                 ((e_rdy_class*)i_proc)->mMode = 3;
@@ -2400,6 +2415,7 @@ static void* s_bikkuri_sub(void* i_proc, void* i_this) {
 
 /* 80772128-807724A0 006448 0378+00 1/1 0/0 0/0 .text            e_rdy_drop__FP11e_rdy_class */
 static void e_rdy_drop(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = &i_this->actor;
     f32 target_speed = 0.0f;
 
     switch (i_this->mMode) {
@@ -2423,7 +2439,7 @@ static void e_rdy_drop(e_rdy_class* i_this) {
     case 2:
         i_this->mSound.startCreatureVoiceLevel(Z2SE_EN_RD_V_SNIPED_DAMAGE, -1);
         target_speed = 4.0f;
-        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mTargetAngleY, 8, 0x400);
+        cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mTargetAngleY, 8, 0x400);
         if (i_this->mTimer[0] == 0) {
             i_this->mAction = ACT_A_DAMAGE;
             i_this->mMode = 0;
@@ -2431,7 +2447,7 @@ static void e_rdy_drop(e_rdy_class* i_this) {
         }
         if (move_gake_check(i_this, 10.0f)) {
             i_this->mMode = 3;
-            i_this->field_0xadc.y = i_this->shape_angle.y + 0x8000;
+            i_this->field_0xadc.y = a_this->shape_angle.y + 0x8000;
             i_this->field_0xadc.x = 0;
             i_this->mpMorf->setPlaySpeed(0.3f);
             i_this->field_0xbc8 = 0;
@@ -2442,10 +2458,10 @@ static void e_rdy_drop(e_rdy_class* i_this) {
     case 3:
         target_speed = 3.0f;
         if (i_this->field_0xadc.x > -0x4000) {
-            i_this->speed.y = 0.0f;
+            a_this->speed.y = 0.0f;
             i_this->mSound.startCreatureVoiceLevel(Z2SE_EN_RD_V_SNIPED_DAMAGE, -1);
         } else if (i_this->field_0xadc.x > -0x6800) {
-            i_this->speed.y = -fabsf(cM_scos(i_this->field_0xadc.x) * 70.0f);
+            a_this->speed.y = -fabsf(cM_scos(i_this->field_0xadc.x) * 70.0f);
             i_this->mSound.startCreatureVoiceLevel(Z2SE_EN_RD_V_SNIPED_FALLING, -1);
         } else {
             i_this->mSound.startCreatureVoiceLevel(Z2SE_EN_RD_V_SNIPED_FALLING, -1);
@@ -2453,23 +2469,24 @@ static void e_rdy_drop(e_rdy_class* i_this) {
         cLib_addCalcAngleS2(&i_this->field_0xadc.x, -0x7000, 2, i_this->field_0xbc8);
         cLib_addCalcAngleS2(&i_this->field_0xbc8, 0x800, 1, 0x50);
         i_this->field_0xa7b = 2;
-        if (i_this->mTimer[0] == 0 && i_this->current.pos.y <= i_this->mAcch.GetGroundH() + 100.0f)
+        if (i_this->mTimer[0] == 0 && a_this->current.pos.y <= i_this->mAcch.GetGroundH() + 100.0f)
         {
-            i_this->current.pos.y = i_this->mAcch.GetGroundH() + 100.0f;
+            a_this->current.pos.y = i_this->mAcch.GetGroundH() + 100.0f;
             i_this->field_0xadc.x = -0x4000;
             i_this->mAction = ACT_DAMAGE;
             i_this->mMode = 0;
             i_this->field_0xabc = 0.0f;
-            i_this->health = 0;
+            a_this->health = 0;
         }
         break;
     }
 
-    cLib_addCalc2(&i_this->speedF, target_speed, 1.0f, 3.0f);
+    cLib_addCalc2(&a_this->speedF, target_speed, 1.0f, 3.0f);
 }
 
 /* 807724A0-80772580 0067C0 00E0+00 1/1 0/0 0/0 .text            e_rdy_a_damage__FP11e_rdy_class */
 static void e_rdy_a_damage(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = &i_this->actor;
     i_this->mIFrameTimer = 3;
 
     switch (i_this->mMode) {
@@ -2477,7 +2494,7 @@ static void e_rdy_a_damage(e_rdy_class* i_this) {
         i_this->mMode = 1;
         anm_init(i_this, ANM_DEAD_ARROW, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mTimer[0] = 80;
-        dKy_Sound_set(i_this->current.pos, 100, fopAcM_GetID(i_this), 5);
+        dKy_Sound_set(a_this->current.pos, 100, fopAcM_GetID(i_this), 5);
         break;
 
     case 1:
@@ -2487,7 +2504,7 @@ static void e_rdy_a_damage(e_rdy_class* i_this) {
         break;
     }
 
-    cLib_addCalc0(&i_this->speedF, 1.0f, 3.0f);
+    cLib_addCalc0(&a_this->speedF, 1.0f, 3.0f);
 }
 
 /* 80772580-807726F0 0068A0 0170+00 1/1 0/0 0/0 .text            e_rdy_stand__FP11e_rdy_class */
@@ -2531,6 +2548,7 @@ static void e_rdy_stand(e_rdy_class* i_this) {
 
 /* 807726F0-80772B0C 006A10 041C+00 2/1 0/0 0/0 .text            e_rdy_bow3__FP11e_rdy_class */
 static s8 e_rdy_bow3(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = &i_this->actor;
     if (i_this->mIFrameTimer == 0 && i_this->mMode != 5
         && fpcM_Search(s_command3_sub, i_this) == NULL)
     {
@@ -2578,7 +2596,7 @@ static s8 e_rdy_bow3(e_rdy_class* i_this) {
             J3DAnmTransform* bck = (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mpArcName, 8);
             i_this->mpBowMorf->setAnm(bck, J3DFrameCtrl::EMode_NONE, 5.0f, 0.9f, 0.0f, -1.0f);
             i_this->mMode = 11;
-            i_this->speedF = 0.0f;
+            a_this->speedF = 0.0f;
         }
         break;
 
@@ -2623,7 +2641,7 @@ static s8 e_rdy_bow3(e_rdy_class* i_this) {
     }
 
     if (turn_to_player) {
-        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mPlayerAngle, 4, 0x1000);
+        cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mPlayerAngle, 4, 0x1000);
     }
 
     if (i_this->mPlayerDist < 500.0f) {
@@ -2660,6 +2678,7 @@ static void* s_command4_sub(void* i_proc, void* i_this) {
 
 /* 80772C04-80773070 006F24 046C+00 2/1 0/0 0/0 .text            e_rdy_commander__FP11e_rdy_class */
 static void e_rdy_commander(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = &i_this->actor;
     s8 bVar1 = false;
     s8 turn_to_player = false;
     boss = i_this;
@@ -2757,17 +2776,18 @@ static void e_rdy_commander(e_rdy_class* i_this) {
     if (bVar1 && pl_check(i_this, i_this->mPlayerCheckDist, 0x4000)) {
         i_this->mMode = 5;
         if (i_this->mSwBit2 != 0) {
-            dComIfGs_onSwitch(i_this->mSwBit2, fopAcM_GetRoomNo(i_this));
+            dComIfGs_onSwitch(i_this->mSwBit2, fopAcM_GetRoomNo(a_this));
         }
     }
 
     if (turn_to_player) {
-        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mPlayerAngle, 2, 0x800);
+        cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mPlayerAngle, 2, 0x800);
     }
 }
 
 /* 80773070-80773474 007390 0404+00 1/1 0/0 0/0 .text            e_rdy_excite__FP11e_rdy_class */
 static void e_rdy_excite(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = &i_this->actor;
     cXyz vec;
     f32 target_speed = 0.0f;
 
@@ -2776,7 +2796,7 @@ static void e_rdy_excite(e_rdy_class* i_this) {
         anm_init(i_this, ANM_WAIT01, 4.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode = 1;
         i_this->mTimer[0] = cM_rndF(20.0f) + 20.0f;
-        i_this->mTargetAngleY = i_this->current.angle.y;
+        i_this->mTargetAngleY = a_this->current.angle.y;
         i_this->field_0x5bc = S_find_pos;
         break;
 
@@ -2794,7 +2814,7 @@ static void e_rdy_excite(e_rdy_class* i_this) {
                          cM_rndFX(0.05f) + 1.0f);
                 i_this->mTimer[0] = cM_rndF(15.0f) + 30.0f;
             }
-            vec = i_this->field_0x5bc - i_this->current.pos;
+            vec = i_this->field_0x5bc - a_this->current.pos;
             i_this->mTargetAngleY = cM_atan2s(vec.x, vec.z);
         }
         break;
@@ -2803,7 +2823,7 @@ static void e_rdy_excite(e_rdy_class* i_this) {
         i_this->field_0xa98 = 11;
         i_this->mArrowTarget = i_this->field_0x5bc;
         target_speed = l_HIO.mRunSpeed;
-        vec = i_this->field_0x5bc - i_this->current.pos;
+        vec = i_this->field_0x5bc - a_this->current.pos;
         if (i_this->mTimer[0] == 0 || move_gake_check(i_this, 100.0f) || vec.abs() < 100.0f) {
             i_this->mMode = 3;
             anm_init(i_this, ANM_KYORO2, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.3f);
@@ -2822,21 +2842,22 @@ static void e_rdy_excite(e_rdy_class* i_this) {
         break;
     }
 
-    cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mTargetAngleY, 2, 0x800);
-    s16 angle_diff = i_this->current.angle.y - i_this->mTargetAngleY;
+    cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mTargetAngleY, 2, 0x800);
+    s16 angle_diff = a_this->current.angle.y - i_this->mTargetAngleY;
     if (angle_diff > 0x400 || angle_diff < -0x400) {
         target_speed = 0.0f;
     }
-    cLib_addCalc2(&i_this->speedF, target_speed, 1.0f, 5.0f);
+    cLib_addCalc2(&a_this->speedF, target_speed, 1.0f, 5.0f);
 }
 
 /* 80773474-807735A8 007794 0134+00 1/1 0/0 0/0 .text            e_rdy_water__FP11e_rdy_class */
 static void e_rdy_water(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = &i_this->actor;
     i_this->mIFrameTimer = 10;
 
     switch (i_this->mMode) {
     case 0: {
-        i_this->speed.y = 0.0f;
+        a_this->speed.y = 0.0f;
         if (!i_this->mIsUpsideDown) {
             anm_init(i_this, ANM_DROWNEDA, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         } else {
@@ -2844,18 +2865,18 @@ static void e_rdy_water(e_rdy_class* i_this) {
         }
         i_this->mTimer[0] = 60;
         i_this->mMode = 1;
-        i_this->speedF = 0.0f;
+        a_this->speedF = 0.0f;
         i_this->field_0xabc = 0.0f;
         i_this->mKnockback = 0.0f;
-        cXyz pos = i_this->current.pos;
+        cXyz pos = a_this->current.pos;
         pos.y = i_this->mWaterHeight;
         fopKyM_createWpillar(&pos, 1.5f, 0);
         break;
     }
 
     case 1:
-        i_this->speed.y = 0.0f;
-        cLib_addCalc2(&i_this->current.pos.y, i_this->mWaterHeight, 0.5f, 5.0f);
+        a_this->speed.y = 0.0f;
+        cLib_addCalc2(&a_this->current.pos.y, i_this->mWaterHeight, 0.5f, 5.0f);
         cLib_addCalcAngleS2(&i_this->field_0xadc.x, -0x4000, 4, 0x400);
         if (i_this->mTimer[0] == 0) {
             rd_disappear(i_this);
@@ -2865,6 +2886,7 @@ static void e_rdy_water(e_rdy_class* i_this) {
 
 /* 807735A8-80773A8C 0078C8 04E4+00 1/1 0/0 0/0 .text            e_rdy_jyunkai__FP11e_rdy_class */
 static void e_rdy_jyunkai(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = &i_this->actor;
     cXyz vec;
     f32 target_speed = 0.0f;
     s16 check_angle = 0x4000;
@@ -2880,7 +2902,7 @@ static void e_rdy_jyunkai(e_rdy_class* i_this) {
 
     case 1:
         target_speed = l_HIO.mWalkSpeed;
-        vec = i_this->field_0x5bc - i_this->current.pos;
+        vec = i_this->field_0x5bc - a_this->current.pos;
         i_this->mTargetAngleY = cM_atan2s(vec.x, vec.z);
         if (vec.abs() < 50.0f) {
             i_this->mPathIndex += i_this->mPathDirection;
@@ -2911,12 +2933,12 @@ static void e_rdy_jyunkai(e_rdy_class* i_this) {
     case 10:
         anm_init(i_this, ANM_SHOUT, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode = 11;
-        dKy_Sound_set(i_this->current.pos, 100, fopAcM_GetID(i_this), 3);
+        dKy_Sound_set(a_this->current.pos, 100, fopAcM_GetID(i_this), 3);
         S_find = 20;
         break;
 
     case 11:
-        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mPlayerAngle, 2, 0x800);
+        cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mPlayerAngle, 2, 0x800);
         if (i_this->mpMorf->isStop()) {
             i_this->mAction = ACT_FIGHT_RUN;
             i_this->mMode = -10;
@@ -2927,13 +2949,13 @@ static void e_rdy_jyunkai(e_rdy_class* i_this) {
     }
 
     if (target_speed) {
-        cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mTargetAngleY, 8, 0x400);
-        s16 angle_diff = i_this->current.angle.y - i_this->mTargetAngleY;
+        cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mTargetAngleY, 8, 0x400);
+        s16 angle_diff = a_this->current.angle.y - i_this->mTargetAngleY;
         if (angle_diff > 0x400 || angle_diff < -0x400) {
             target_speed = 0.0f;
         }
     }
-    cLib_addCalc2(&i_this->speedF, target_speed, 1.0f, 3.0f);
+    cLib_addCalc2(&a_this->speedF, target_speed, 1.0f, 3.0f);
 
     f32 check_dist = i_this->mPlayerCheckDist;
     BOOL bVar1 = FALSE;
@@ -2964,11 +2986,12 @@ static void e_rdy_jyunkai(e_rdy_class* i_this) {
 
 /* 80773A8C-80773B24 007DAC 0098+00 1/1 0/0 0/0 .text            wolfkick_damage__FP11e_rdy_class */
 static void wolfkick_damage(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = &i_this->actor;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     i_this->mAction = ACT_DAMAGE;
     i_this->mMode = 0;
     i_this->field_0xadc.y = player->shape_angle.y + 0x8000;
-    i_this->speed.y = l_HIO.field_0x30;
+    a_this->speed.y = l_HIO.field_0x30;
     i_this->field_0xabc = -l_HIO.field_0x34;
     i_this->mSound.startCollisionSE(Z2SE_HIT_WOOD_WEAPON, 0x1f);
     i_this->field_0xac8 = true;
@@ -2976,9 +2999,10 @@ static void wolfkick_damage(e_rdy_class* i_this) {
 
 /* 80773B24-80773D2C 007E44 0208+00 1/1 0/0 0/0 .text            big_damage__FP11e_rdy_class */
 static void big_damage(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = &i_this->actor;
     i_this->mAction = ACT_DAMAGE;
     i_this->mMode = 0;
-    i_this->speed.y = l_HIO.field_0x4c + 2.0f;
+    a_this->speed.y = l_HIO.field_0x4c + 2.0f;
 
     if (i_this->mRideState == 2) {
         fopAc_ac_c* kargarok = fopAcM_SearchByID(i_this->mKargarokID);
@@ -2990,7 +3014,7 @@ static void big_damage(e_rdy_class* i_this) {
         } else {
             i_this->field_0xabc = -l_HIO.field_0x48;
         }
-        i_this->field_0xadc.y = i_this->shape_angle.y + (s16)cM_rndFX(3000.0f);
+        i_this->field_0xadc.y = a_this->shape_angle.y + (s16)cM_rndFX(3000.0f);
     } else {
         i_this->field_0xadc.y = i_this->mAtInfo.mHitDirection.y;
         i_this->field_0xabc = -l_HIO.field_0x44;
@@ -3004,7 +3028,7 @@ static void big_damage(e_rdy_class* i_this) {
         i_this->field_0xac6 = cM_rndFX(3000.0f);
     } else if (fopAcM_GetName(i_this->mAtInfo.mpActor) == PROC_E_WB) {
         i_this->field_0xac6 = cM_rndFX(8000.0f);
-        i_this->speed.y = cM_rndF(15.0f) + 35.0f;
+        a_this->speed.y = cM_rndF(15.0f) + 35.0f;
         i_this->field_0xabc = -(i_this->mAtInfo.mpActor->speedF * 0.5f);
     } else {
         i_this->field_0xac6 = cM_rndFX(1000.0f);
@@ -3015,6 +3039,7 @@ static void big_damage(e_rdy_class* i_this) {
 
 /* 80773D2C-80773E5C 00804C 0130+00 1/1 0/0 0/0 .text            small_damage__FP11e_rdy_classi */
 static void small_damage(e_rdy_class* i_this, int i_collider) {
+    fopAc_ac_c* a_this = &i_this->actor;
     if (i_this->mAction != ACT_S_DAMAGE) {
         i_this->mPrevAction = i_this->mAction;
     }
@@ -3023,7 +3048,7 @@ static void small_damage(e_rdy_class* i_this, int i_collider) {
     i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_DAMAGE, -1);
 
     if (i_collider == 0) {
-        s16 angle_diff = i_this->shape_angle.y - i_this->mPlayerAngle;
+        s16 angle_diff = a_this->shape_angle.y - i_this->mPlayerAngle;
         if (angle_diff < -0x4000 || angle_diff > 0x4000) {
             anm_init(i_this, ANM_DAMAGE_W, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         } else if (angle_diff < 0) {
@@ -3172,7 +3197,7 @@ static void damage_check(e_rdy_class* i_this) {
 
 /* 8077424C-8077582C 00856C 15E0+00 2/1 0/0 0/0 .text            action__FP11e_rdy_class */
 static void action(e_rdy_class* i_this) {
-    fopAc_ac_c* a_this = i_this;
+    fopEn_enemy_c* a_this = &i_this->actor;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
     cXyz vec1, vec2;
 
@@ -3196,7 +3221,7 @@ static void action(e_rdy_class* i_this) {
     s8 link_search = false;
     s8 water_check = true;
     s8 search_sound = false;
-    i_this->offHeadLockFlg();
+    a_this->offHeadLockFlg();
 
     switch (i_this->mAction) {
     case ACT_NORMAL:
@@ -3684,6 +3709,7 @@ static void action(e_rdy_class* i_this) {
 
 /* 8077582C-80775A20 009B4C 01F4+00 1/1 0/0 0/0 .text            fire_eff_set__FP11e_rdy_class */
 static void fire_eff_set(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = &i_this->actor;
     int eff_num;
     u16 eff[2];
     cXyz vec1, vec2;
@@ -3709,7 +3735,7 @@ static void fire_eff_set(e_rdy_class* i_this) {
 
     for (int i = 0; i < eff_num; i++) {
         i_this->mFireParticleKey[i] = dComIfGp_particle_set(i_this->mFireParticleKey[i], eff[i],
-                                                            &vec2, &i_this->shape_angle, NULL);
+                                                            &vec2, &a_this->shape_angle, NULL);
         if (i == 0) {
             JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->mFireParticleKey[i]);
             if (emitter != NULL) {
@@ -3747,7 +3773,7 @@ static void* s_adel_sub(void* i_proc, void* i_this) {
 /* 80775B50-80777330 009E70 17E0+00 2/1 0/0 0/0 .text            demo_camera__FP11e_rdy_class */
 // NONMATCHING regalloc
 static void demo_camera(e_rdy_class* i_this) {
-    fopAc_ac_c* a_this = i_this;
+    fopAc_ac_c* a_this = &i_this->actor;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
     camera_class* player_camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     camera_class* camera = dComIfGp_getCamera(0);
@@ -4075,7 +4101,7 @@ static void demo_camera(e_rdy_class* i_this) {
     case 23:
         if (i_this->mDemoTimer == 10) {
             i_this->mMode = 3;
-            i_this->speed.y = 35.0f + KREG_F(17);
+            a_this->speed.y = 35.0f + KREG_F(17);
         }
         if (i_this->mDemoTimer == 40) {
             i_this->mCamCenterTarget.set(-93660.0f, -5873.0f, 49831.0f);
@@ -4122,8 +4148,7 @@ static void demo_camera(e_rdy_class* i_this) {
         if (i_this->mDemoTimer >= 115) {
             i_this->mDemoMode = 27;
             i_this->mDemoTimer = 0;
-            i_this->mCamEyeSpeed.y = 0.0f;
-            i_this->mCamEyeSpeed.x = 0.0f;
+            i_this->mCamEyeSpeed.x = i_this->mCamEyeSpeed.y = 0.0f;
             i_this->mCamSpeed = 0.0f;
         } else {
             cVar12 = 2;
@@ -4294,7 +4319,7 @@ static BOOL c_start;
 // NONMATCHING regalloc
 static int daE_RDY_Execute(e_rdy_class* i_this) {
     f32 scale;
-    fopAc_ac_c* a_this = i_this;
+    fopEn_enemy_c* a_this = &i_this->actor;
     if (!c_start && dComIfGp_event_runCheck()) {
         if (fopAcM_getTalkEventPartner(daPy_getLinkPlayerActorClass())
                                                         == daPy_py_c::getMidnaActor()
@@ -4702,12 +4727,12 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
         vec1.z = 40.0f + BREG_F(12) - 30.0f;
         MtxPosition(&vec1, &vec3);
         vec3 += vec2;
-        i_this->setDownPos(&vec3);
+        a_this->setDownPos(&vec3);
     }
 
     cXyz lock_pos = a_this->eyePos;
     lock_pos.y += 130.0f + NREG_F(7);
-    i_this->setHeadLockPos(&lock_pos);
+    a_this->setHeadLockPos(&lock_pos);
 
     demo_camera(i_this);
     return 1;
@@ -4721,13 +4746,14 @@ static int daE_RDY_IsDelete(e_rdy_class* i_this) {
 
 /* 80778934-80778998 00CC54 0064+00 1/0 0/0 0/0 .text            daE_RDY_Delete__FP11e_rdy_class */
 static int daE_RDY_Delete(e_rdy_class* i_this) {
+    fopAc_ac_c* a_this = &i_this->actor;
     dComIfG_resDelete(&i_this->mPhase, i_this->mpArcName);
 
     if (i_this->mHIOInit) {
         hioInit = false;
     }
 
-    if (i_this->heap != NULL) {
+    if (a_this->heap != NULL) {
         i_this->mpMorf->stopZelAnime();
     }
 
@@ -4770,7 +4796,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
         model->getModelData()->getJointNodePointer(i)->setCallBack(nodeCallBack);
     }
-    if (!_this->mJntCol.init(_this, jc_data, model, 11)) {
+    if (!_this->mJntCol.init(i_this, jc_data, model, 11)) {
         return 0;
     }
 
@@ -4846,7 +4872,7 @@ static cPhs__Step daE_RDY_Create(fopAc_ac_c* i_this) {
     if (step == cPhs_COMPLEATE_e) {
         if (_this->field_0x5b8 != 3) {
             int swbit = fopAcM_GetParam(_this) >> 0x18;
-            if (swbit != 0xff && dComIfGs_isSwitch(swbit, fopAcM_GetRoomNo(_this))) {
+            if (swbit != 0xff && dComIfGs_isSwitch(swbit, fopAcM_GetRoomNo(i_this))) {
                 return cPhs_ERROR_e;
             }
         }
@@ -4879,7 +4905,7 @@ static cPhs__Step daE_RDY_Create(fopAc_ac_c* i_this) {
             } else {
                 _this->mAction = ACT_BOW2;
             }
-            fopAcM_OffStatus(_this, fopAcStts_CULL_e);
+            fopAcM_OffStatus(i_this, fopAcStts_CULL_e);
             _this->field_0x5b8 = 3;
         } else if (_this->field_0x5b8 == 11) {
             _this->mAction = ACT_BOW_IKKI2;
@@ -4887,32 +4913,32 @@ static cPhs__Step daE_RDY_Create(fopAc_ac_c* i_this) {
             if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[84])) {
                 return cPhs_ERROR_e;
             }
-            cXyz pos = _this->current.pos;
+            cXyz pos = i_this->current.pos;
             _this->mAction = ACT_TKUSA;
             pos.y += 5000.0f;
             _this->mKargarokID = fpcM_ERROR_PROCESS_ID_e;
-            fopAcM_create(PROC_E_YC, 0xffffff00, &pos, fopAcM_GetRoomNo(_this),
-                          &_this->shape_angle, NULL, 0xff);
+            fopAcM_create(PROC_E_YC, 0xffffff00, &pos, fopAcM_GetRoomNo(i_this),
+                          &i_this->shape_angle, NULL, 0xff);
         }
 
-        int tmp1 = _this->home.angle.z & 0xff;
+        int tmp1 = i_this->home.angle.z & 0xff;
         if (tmp1 == 0 || tmp1 == 0xff) {
             _this->mPlayerCheckDist = 100000.0f;
         } else {
             _this->mPlayerCheckDist = tmp1 * 100.0f;
         }
 
-        _this->mSwBit2 = (_this->home.angle.z >> 8) & 0xff;
+        _this->mSwBit2 = (i_this->home.angle.z >> 8) & 0xff;
         if (_this->mSwBit2 == 0xff) {
             _this->mSwBit2 = 0;
         }
 
-        fopAcM_OnStatus(_this, fopAcStts_CULL_e);
-        _this->attention_info.flags = 4;
+        fopAcM_OnStatus(i_this, fopAcStts_CULL_e);
+        i_this->attention_info.flags = 4;
 
-        u8 path_id = _this->home.angle.x & 0xff;
+        u8 path_id = i_this->home.angle.x & 0xff;
         if (path_id != 0xff) {
-            _this->mpPath = dPath_GetRoomPath(path_id, fopAcM_GetRoomNo(_this));
+            _this->mpPath = dPath_GetRoomPath(path_id, fopAcM_GetRoomNo(i_this));
             if (_this->mpPath == NULL) {
                 return cPhs_ERROR_e;
             }
@@ -4929,14 +4955,14 @@ static cPhs__Step daE_RDY_Create(fopAc_ac_c* i_this) {
             _this->field_0x5b6 = 0;
         }
 
-        _this->shape_angle.x = 0;
-        _this->current.angle.x = 0;
-        _this->home.angle.x = 0;
-        _this->shape_angle.z = 0;
-        _this->current.angle.z = 0;
-        _this->home.angle.z = 0;
+        i_this->shape_angle.x = 0;
+        i_this->current.angle.x = 0;
+        i_this->home.angle.x = 0;
+        i_this->shape_angle.z = 0;
+        i_this->current.angle.z = 0;
+        i_this->home.angle.z = 0;
 
-        if (!fopAcM_entrySolidHeap(_this, useHeapInit, 0x57D0)) {
+        if (!fopAcM_entrySolidHeap(i_this, useHeapInit, 0x57D0)) {
             return cPhs_ERROR_e;
         }
 
@@ -4946,15 +4972,15 @@ static cPhs__Step daE_RDY_Create(fopAc_ac_c* i_this) {
             l_HIO.field_0x4 = -1;
         }
 
-        fopAcM_SetMtx(_this, _this->mpMorf->getModel()->getBaseTRMtx());
-        fopAcM_SetMin(_this, -200.0f, -200.0f, -200.0f);
-        fopAcM_SetMax(_this, 200.0f, 200.0f, 200.0f);
-        _this->mAcch.Set(fopAcM_GetPosition_p(_this), fopAcM_GetOldPosition_p(_this), _this, 1,
-                         &_this->mAcchCir, fopAcM_GetSpeed_p(_this), NULL, NULL);
+        fopAcM_SetMtx(i_this, _this->mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMin(i_this, -200.0f, -200.0f, -200.0f);
+        fopAcM_SetMax(i_this, 200.0f, 200.0f, 200.0f);
+        _this->mAcch.Set(fopAcM_GetPosition_p(i_this), fopAcM_GetOldPosition_p(i_this), i_this, 1,
+                         &_this->mAcchCir, fopAcM_GetSpeed_p(i_this), NULL, NULL);
         _this->mAcchCir.SetWall(50.0f, 50.0f);
-        
-        _this->health = 60;
-        _this->field_0x560 = 60;
+
+        i_this->health = 60;
+        i_this->field_0x560 = 60;
 
         static dCcD_SrcSph cc_sph_src = {
             {
@@ -4980,7 +5006,7 @@ static cPhs__Step daE_RDY_Create(fopAc_ac_c* i_this) {
             } // mSphAttr
         };
 
-        _this->mCcStts.Init(200, 0, _this);
+        _this->mCcStts.Init(200, 0, i_this);
         for (int i = 0; i <= 2; i++) {
             _this->mCcSph[i].Set(cc_sph_src);
             _this->mCcSph[i].SetStts(&_this->mCcStts);
@@ -4994,14 +5020,14 @@ static cPhs__Step daE_RDY_Create(fopAc_ac_c* i_this) {
         _this->mCounter = data_8077aa20 | ((u16)cM_rndF(0xFFFF) & 0xFF00);
         data_8077aa20++;
 
-        _this->mSound.init(&_this->current.pos, &_this->eyePos, 3, 1);
+        _this->mSound.init(&i_this->current.pos, &i_this->eyePos, 3, 1);
         _this->mSound.setEnemyName("E_rdy");
         _this->mAtInfo.mpSound = &_this->mSound;
 
         _this->field_0xa70 = 5;
 
         if (!strcmp(dComIfGp_getStartStageName(), "F_SP115")) {  // Lake Hylia
-            fopAcM_OffStatus(_this, 0x4000);
+            fopAcM_OffStatus(i_this, 0x4000);
         }
 
         c_start = TRUE;
