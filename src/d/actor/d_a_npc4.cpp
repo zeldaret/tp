@@ -1977,96 +1977,18 @@ void daNpcF_clearMessageTmpBit() {
     daNpcF_offTmpBit(0x37);
 }
 
-/* 80155B54-80155BB4 150494 0060+00 1/0 0/0 0/0 .text            __dt__20daNpcF_MoveBgActor_cFv */
-daNpcF_MoveBgActor_c::~daNpcF_MoveBgActor_c() {}
-
-/* 80155BB8-80155BBC 1504F8 0004+00 2/0 0/0 0/0 .text            setAttnPos__8daNpcF_cFv */
-void daNpcF_c::setAttnPos() {}
-
-/* 80155BC0-80155BC8 150500 0008+00 2/0 0/0 0/0 .text            main__8daNpcF_cFv */
-BOOL daNpcF_c::main() {
-    return true;
+// TODO: dummy to generate weak functions, proper fix later
+static void dummyVirtual(daNpcF_MoveBgActor_c* dummy) {
+    dummy->~daNpcF_MoveBgActor_c();
+    dummy->CreateHeap();
+    dummy->Create();
+    dummy->Execute(NULL);
+    dummy->Draw();
+    dummy->Delete();
+    dummy->IsDelete();
+    dummy->ToFore();
+    dummy->ToBack();
 }
-
-/* 80155BC8-80155BCC 150508 0004+00 2/0 0/0 0/0 .text            setParam__8daNpcF_cFv */
-void daNpcF_c::setParam() {}
-
-/* 80155BD0-80155BD8 150510 0008+00 2/0 0/0 0/0 .text            drawDbgInfo__8daNpcF_cFv */
-BOOL daNpcF_c::drawDbgInfo() {
-    return true;
-}
-
-/* 80155BD8-80155BE0 150518 0008+00 2/0 0/0 0/0 .text            ctrlBtk__8daNpcF_cFv */
-BOOL daNpcF_c::ctrlBtk() {
-    return false;
-}
-
-/* 80155BE0-80155BE8 150520 0008+00 2/0 0/0 0/0 .text            setExpressionAnm__8daNpcF_cFib */
-bool daNpcF_c::setExpressionAnm(int param_0, bool param_1) {
-    return true;
-}
-
-/* 80155BE8-80155BEC 150528 0004+00 2/0 0/0 0/0 .text            setMotionAnm__8daNpcF_cFif */
-void daNpcF_c::setMotionAnm(int param_0, f32 param_1) {}
-
-/* 80155BEC-80155BF0 15052C 0004+00 2/0 0/0 0/0 .text            setMotion__8daNpcF_cFifi */
-void daNpcF_c::setMotion(int param_0, f32 param_1, int param_2) {}
-
-/* 80155BF0-80155BF4 150530 0004+00 2/0 0/0 0/0 .text            setExpression__8daNpcF_cFif */
-void daNpcF_c::setExpression(int param_0, f32 param_1) {}
-
-/* 80155E88-80155E90 1507C8 0008+00 1/0 0/0 0/0 .text CreateHeap__20daNpcF_MoveBgActor_cFv */
-bool daNpcF_MoveBgActor_c::CreateHeap() {
-    return true;
-}
-
-/* 80155E90-80155E98 1507D0 0008+00 1/0 0/0 0/0 .text            Create__20daNpcF_MoveBgActor_cFv */
-bool daNpcF_MoveBgActor_c::Create() {
-    return true;
-}
-
-/* 80155E98-80155EA0 1507D8 0008+00 1/0 0/0 0/0 .text            Delete__20daNpcF_MoveBgActor_cFv */
-bool daNpcF_MoveBgActor_c::Delete() {
-    return true;
-}
-
-/* 80155EA0-80155EA8 1507E0 0008+00 1/0 0/0 0/0 .text Execute__20daNpcF_MoveBgActor_cFPPA3_A4_f */
-bool daNpcF_MoveBgActor_c::Execute(f32 (**param_0)[3][4]) {
-    return true;
-}
-
-/* 80155EA8-80155EB0 1507E8 0008+00 1/0 0/0 0/0 .text            Draw__20daNpcF_MoveBgActor_cFv */
-bool daNpcF_MoveBgActor_c::Draw() {
-    return true;
-}
-
-/* 80155EB0-80155EB8 1507F0 0008+00 1/0 0/0 0/0 .text            IsDelete__20daNpcF_MoveBgActor_cFv
- */
-bool daNpcF_MoveBgActor_c::IsDelete() {
-    return true;
-}
-
-/* 80155EB8-80155EC0 1507F8 0008+00 1/0 0/0 0/0 .text            ToFore__20daNpcF_MoveBgActor_cFv */
-bool daNpcF_MoveBgActor_c::ToFore() {
-    return true;
-}
-
-/* 80155EC0-80155EC8 150800 0008+00 1/0 0/0 0/0 .text            ToBack__20daNpcF_MoveBgActor_cFv */
-bool daNpcF_MoveBgActor_c::ToBack() {
-    return true;
-}
-
-/* 80155EC8-80155ED0 150808 0008+00 2/0 0/0 0/0 .text            setExpressionBtp__8daNpcF_cFi */
-bool daNpcF_c::setExpressionBtp(int param_0) {
-    return true;
-}
-
-/* 80155ED0-80155FB0 150810 00E0+00 1/0 0/0 0/0 .text            __dt__15daNpcF_MatAnm_cFv */
-daNpcF_MatAnm_c::~daNpcF_MatAnm_c() {}
-
-/* 80155FB0-80156010 1508F0 0060+00 1/0 0/0 0/0 .text            __dt__23daBaseNpc_moveBgActor_cFv
- */
-daBaseNpc_moveBgActor_c::~daBaseNpc_moveBgActor_c() {}
 
 /* 803926B0-803926E0 01ED10 0030+00 0/0 0/0 0/0 .rodata          mCcDObj__11daBaseNpc_c */
 dCcD_SrcGObjInf const daBaseNpc_c::mCcDObj = {
