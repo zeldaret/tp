@@ -297,8 +297,15 @@ void dMenu_Fishing_c::screenSetBase() {
     }
     mpFishInfoParent[0] = new CPaneMgr(mpScreen, 'info_blu', 0, NULL);
     mpFishInfoParent[1] = new CPaneMgr(mpScreen, 'info_red', 0, NULL);
+
+    #if (VERSION == VERSION_GCN_JPN) || (VERSION == VERSION_WII_JPN)
+    J2DTextBox* textBox = (J2DTextBox*)mpScreen->search('t_t00');
+    mpScreen->search('f_t00')->hide();
+    #else
     J2DTextBox* textBox = (J2DTextBox*)mpScreen->search('f_t00');
     mpScreen->search('t_t00')->hide();
+    #endif
+
     textBox->setFont(mDoExt_getSubFont());
     textBox->setString(0x200, "");
     mpString->getString(0x5a1, textBox, NULL, NULL, NULL, 0);

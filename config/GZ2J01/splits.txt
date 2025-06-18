@@ -143,7 +143,7 @@ f_op/f_op_actor.cpp:
 	.text       start:0x80018B64 end:0x800197BC
 	.rodata     start:0x8037AD20 end:0x8037AD28
 	.data       start:0x8039D710 end:0x8039D740
-	.sbss       start:0x8044ADF8 end:0x8044AE0C
+	.sbss       start:0x8044ADF8 end:0x8044AE08
 	.sdata2     start:0x8044BD08 end:0x8044BD40
 
 f_op/f_op_actor_iter.cpp:
@@ -159,7 +159,7 @@ f_op/f_op_actor_mng.cpp:
 	.rodata     start:0x8037AD28 end:0x8037AEF8
 	.data       start:0x8039D750 end:0x8039D9C0
 	.bss        start:0x803EBD40 end:0x803EBF18
-	.sbss       start:0x8044AE0C end:0x8044AE20
+	.sbss       start:0x8044AE08 end:0x8044AE20
 	.sdata2     start:0x8044BD40 end:0x8044BDA8
 
 f_op/f_op_camera.cpp:
@@ -395,7 +395,7 @@ d/d_bomb.cpp:
 d/d_lib.cpp:
 	.text       start:0x80032044 end:0x80032918
 	.data       start:0x803A13A0 end:0x803A13D0
-	.sbss       start:0x8044AF18 end:0x8044AF38
+	.sbss       start:0x8044AF18 end:0x8044AF30
 
 d/d_save.cpp:
 	.text       start:0x80032918 end:0x80035C88
@@ -415,6 +415,7 @@ d/d_a_obj.cpp:
 	.text       start:0x80037038 end:0x80037A5C
 	.rodata     start:0x8037B740 end:0x8037B758
 	.bss        start:0x8041E728 end:0x8041E788
+	.sbss       start:0x8044AF30 end:0x8044AF38
 	.sdata2     start:0x8044BED8 end:0x8044BEF0
 
 d/d_a_itembase_static.cpp:
@@ -533,7 +534,7 @@ d/d_drawlist.cpp:
 	.data       start:0x803A2900 end:0x803A2FF8
 	.bss        start:0x8041EA10 end:0x8041EA78
 	.sdata      start:0x8044A788 end:0x8044A7A0
-	.sbss       start:0x8044B014 end:0x8044B028
+	.sbss       start:0x8044B014 end:0x8044B020
 	.sdata2     start:0x8044C148 end:0x8044C220
 	.sbss2      start:0x80450C88 end:0x80450C90
 
@@ -547,6 +548,7 @@ d/d_kankyo_wether.cpp:
 	.rodata     start:0x8037C810 end:0x8037C968
 	.data       start:0x803A3C20 end:0x803A3D00
 	.bss        start:0x8041EA78 end:0x8041EA90
+	.sbss       start:0x8044B020 end:0x8044B028
 	.sdata2     start:0x8044C220 end:0x8044C2F0
 
 d/d_kankyo_rain.cpp:
@@ -571,7 +573,7 @@ d/d_attention.cpp:
 	.rodata     start:0x8037CC18 end:0x8037CC28
 	.data       start:0x803A3D58 end:0x803A3DD0
 	.bss        start:0x8041EC40 end:0x8041EC60
-	.sdata      start:0x8044A7A0 end:0x8044A7D0
+	.sdata      start:0x8044A7A0 end:0x8044A7C0
 	.sdata2     start:0x8044C768 end:0x8044C7F8
 
 d/d_att_dist.cpp:
@@ -641,7 +643,7 @@ d/d_bg_w.cpp:
 	.text       start:0x80079204 end:0x8007E5E8
 	.data       start:0x803A5BE0 end:0x803A5E28
 	.bss        start:0x8041ECC0 end:0x8041F0B0
-	.sbss       start:0x8044B0C0 end:0x8044B0D0
+	.sbss       start:0x8044B0C0 end:0x8044B0C8
 	.sdata2     start:0x8044C838 end:0x8044C858
 
 d/d_bg_w_base.cpp:
@@ -690,6 +692,7 @@ d/d_ev_camera.cpp:
 	.rodata     start:0x8037CC98 end:0x8037D210
 	.data       start:0x803A6688 end:0x803A6700
 	.bss        start:0x8041F4E8 end:0x8041F578
+	.sbss       start:0x8044B0C8 end:0x8044B0D0
 	.sdata2     start:0x8044C9F8 end:0x8044CD08
 
 d/d_item_data.cpp:
@@ -711,6 +714,7 @@ d/d_tresure.cpp:
 	.text       start:0x8009BC18 end:0x8009C53C
 	.rodata     start:0x8037D580 end:0x8037D5A8
 	.bss        start:0x8041F578 end:0x8041F648
+	.sdata      start:0x8044A7C0 end:0x8044A7C8
 	.sbss       start:0x8044B0D8 end:0x8044B0E0
 	.sdata2     start:0x8044CD28 end:0x8044CD50
 
@@ -723,12 +727,14 @@ d/d_model.cpp:
 d/d_eye_hl.cpp:
 	.text       start:0x8009C9A4 end:0x8009CBC8
 	.rodata     start:0x8037D5A8 end:0x8037D5E0
-	.sbss       start:0x8044B0E8 end:0x8044B100
+	.sbss       start:0x8044B0E8 end:0x8044B0F0
 	.sdata2     start:0x8044CD50 end:0x8044CD58
 
 d/d_error_msg.cpp:
 	.text       start:0x8009CBC8 end:0x8009D8B4
 	.rodata     start:0x8037D5E0 end:0x803876D8
+	.sdata      start:0x8044A7C8 end:0x8044A7D0
+	.sbss       start:0x8044B0F0 end:0x8044B0F8
 	.sdata2     start:0x8044CD58 end:0x8044CD98
 	.sbss2      start:0x80450C98 end:0x80450CA0
 
@@ -739,7 +745,7 @@ d/actor/d_a_alink.cpp:
 	.data       start:0x803A9AF0 end:0x803AD770
 	.bss        start:0x8041F648 end:0x8041F848
 	.sdata      start:0x8044A7D0 end:0x8044A7E8
-	.sbss       start:0x8044B100 end:0x8044B118
+	.sbss       start:0x8044B0F8 end:0x8044B118
 	.sdata2     start:0x8044CD98 end:0x8044D4F0
 
 d/actor/d_a_itembase.cpp:
@@ -904,7 +910,7 @@ d/d_kankyo.cpp:
 	.data       start:0x803B5F18 end:0x803B62B8
 	.bss        start:0x80426B88 end:0x80428930
 	.sdata      start:0x8044A840 end:0x8044A860
-	.sbss       start:0x8044B1A8 end:0x8044B1B8
+	.sbss       start:0x8044B1A8 end:0x8044B1B0
 	.sdata2     start:0x8044DCF8 end:0x8044DF90
 
 d/d_kyeff.cpp:
@@ -922,6 +928,7 @@ d/d_ky_thunder.cpp:
 	.rodata     start:0x8038EFC0 end:0x8038EFD0
 	.data       start:0x803B6338 end:0x803B6378
 	.bss        start:0x80428930 end:0x80428960
+	.sbss       start:0x8044B1B0 end:0x8044B1B8
 	.sdata2     start:0x8044DFA8 end:0x8044E030
 
 d/d_kantera_icon_meter.cpp:
@@ -1570,7 +1577,7 @@ JSystem/JParticle/JPAResource.cpp:
 JSystem/JParticle/JPABaseShape.cpp:
 	.text       start:0x80278EC0 end:0x8027CD48
 	.data       start:0x803BE420 end:0x803BE5C8
-	.sdata      start:0x8044A8E0 end:0x8044A8EC
+	.sdata      start:0x8044A8E0 end:0x8044A8E8
 	.sdata2     start:0x8044F3C8 end:0x8044F400
 
 JSystem/JParticle/JPAExtraShape.cpp:
@@ -1633,10 +1640,12 @@ JSystem/JStage/JSGAmbientLight.cpp:
 
 JSystem/JStage/JSGCamera.cpp:
 	.text       start:0x80282FD0 end:0x802830B0
-	.text       start:0x802830B0 end:0x80283158
 	.data       start:0x803BE7C0 end:0x803BE858
-	.data       start:0x803BE858 end:0x803BE8B8
 	.sdata2     start:0x8044F4F8 end:0x8044F500
+
+JSystem/JStage/JSGFog.cpp:
+	.text       start:0x802830B0 end:0x80283158
+	.data       start:0x803BE858 end:0x803BE8B8
 	.sdata2     start:0x8044F500 end:0x8044F508
 
 JSystem/JStage/JSGLight.cpp:
@@ -1697,7 +1706,7 @@ JSystem/JStudio/JStudio/jstudio-object.cpp:
 	.rodata     start:0x80394BD0 end:0x80394CF0
 	.data       start:0x803BEC40 end:0x803BF7E0
 	.bss        start:0x8042B150 end:0x8042B2C8
-	.sbss       start:0x8044B330 end:0x8044B348
+	.sbss       start:0x8044B330 end:0x8044B338
 	.sdata2     start:0x8044F5C0 end:0x8044F5F0
 
 JSystem/JStudio/JStudio/object-id.cpp:
@@ -1761,6 +1770,7 @@ JSystem/JStudio/JStudio_JAudio2/object-sound.cpp:
 	.ctors      start:0x80375D98 end:0x80375D9C
 	.data       start:0x803BFBB8 end:0x803BFC18
 	.bss        start:0x8042B5D0 end:0x8042B680
+	.sbss       start:0x8044B338 end:0x8044B340
 	.sdata2     start:0x8044F630 end:0x8044F640
 
 JSystem/JStudio/JStudio_JParticle/control.cpp:
@@ -1772,6 +1782,7 @@ JSystem/JStudio/JStudio_JParticle/object-particle.cpp:
 	.text       start:0x80290A3C end:0x80291718
 	.data       start:0x803BFC30 end:0x803BFC98
 	.bss        start:0x8042B680 end:0x8042B710
+	.sbss       start:0x8044B340 end:0x8044B348
 	.sdata2     start:0x8044F640 end:0x8044F678
 
 JSystem/JAudio2/JASCalc.cpp:
@@ -1931,7 +1942,7 @@ JSystem/JAudio2/JASAiCtrl.cpp:
 	.rodata     start:0x80395448 end:0x803954A0
 	.data       start:0x803C19F8 end:0x803C1A20
 	.bss        start:0x8042BD98 end:0x8042BDA8
-	.sdata      start:0x8044A8EC end:0x8044A8F8
+	.sdata      start:0x8044A8E8 end:0x8044A8F8
 	.sbss       start:0x8044B3E0 end:0x8044B418
 	.sdata2     start:0x8044F840 end:0x8044F860
 
@@ -2255,7 +2266,7 @@ Z2AudioLib/Z2AudioMgr.cpp:
 
 dolphin/gf/GFGeometry.cpp:
 	.text       start:0x802D0264 end:0x802D02F0
-	.sdata      start:0x8044A9E8 end:0x8044A9F8
+	.sdata      start:0x8044A9E8 end:0x8044A9F0
 
 dolphin/gf/GFLight.cpp:
 	.text       start:0x802D02F0 end:0x802D0338
@@ -2271,6 +2282,7 @@ JSystem/JKernel/JKRHeap.cpp:
 	.text       start:0x802D05D4 end:0x802D1250
 	.rodata     start:0x80396C38 end:0x80396C50
 	.data       start:0x803C60B0 end:0x803C6110
+	.sdata      start:0x8044A9F0 end:0x8044A9F1
 	.sbss       start:0x8044B4B0 end:0x8044B4D8
 
 JSystem/JKernel/JKRExpHeap.cpp:
@@ -2340,7 +2352,7 @@ JSystem/JKernel/JKRFileLoader.cpp:
 	.rodata     start:0x803972B0 end:0x803972B8
 	.data       start:0x803C6308 end:0x803C6348
 	.bss        start:0x8042E488 end:0x8042E4A0
-	.sdata      start:0x8044AA00 end:0x8044AA0C
+	.sdata      start:0x8044AA00 end:0x8044AA08
 	.sbss       start:0x8044B558 end:0x8044B560
 
 JSystem/JKernel/JKRFileFinder.cpp:
@@ -2395,20 +2407,20 @@ JSystem/JKernel/JKRDvdRipper.cpp:
 	.ctors      start:0x80375DE4 end:0x80375DE8
 	.rodata     start:0x803973F0 end:0x80397450
 	.bss        start:0x8042E4B8 end:0x8042E4E8
-	.sdata      start:0x8044AA0C end:0x8044AA14
+	.sdata      start:0x8044AA08 end:0x8044AA10
 	.sbss       start:0x8044B568 end:0x8044B5A8
 
 JSystem/JKernel/JKRDvdAramRipper.cpp:
 	.text       start:0x802DCD10 end:0x802DDB1C
 	.ctors      start:0x80375DE8 end:0x80375DEC
 	.bss        start:0x8042E4E8 end:0x8042E518
-	.sdata      start:0x8044AA14 end:0x8044AA18
+	.sdata      start:0x8044AA10 end:0x8044AA18
 	.sbss       start:0x8044B5A8 end:0x8044B5F0
 
 JSystem/JKernel/JKRDecomp.cpp:
 	.text       start:0x802DDB1C end:0x802DE298
 	.data       start:0x803C65A0 end:0x803C65F0
-	.sbss       start:0x8044B5F0 end:0x8044B5FC
+	.sbss       start:0x8044B5F0 end:0x8044B5F8
 
 JSystem/JSupport/JSUList.cpp:
 	.text       start:0x802DE298 end:0x802DE6D8
@@ -2457,7 +2469,7 @@ JSystem/JUtility/JUTNameTab.cpp:
 JSystem/JUtility/JUTGraphFifo.cpp:
 	.text       start:0x802E0FF4 end:0x802E1194
 	.data       start:0x803C66D0 end:0x803C66E0
-	.sbss       start:0x8044B5FC end:0x8044B608
+	.sbss       start:0x8044B5F8 end:0x8044B608
 
 JSystem/JUtility/JUTFont.cpp:
 	.text       start:0x802E1194 end:0x802E13E4
@@ -3238,15 +3250,16 @@ PowerPC_EABI_Support/Runtime/Src/GCN_Mem_Alloc.c:
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/abort_exit.c:
 	.text       start:0x80364E68 end:0x80364FF4
 	.bss        start:0x80447580 end:0x80447680
-	.sbss       start:0x8044BAD0 end:0x8044BAE8
-
-PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/errno.c:
-	.sbss       start:0x8044BAE8 end:0x8044BAF0
+	.sbss       start:0x8044BAD0 end:0x8044BAE0
 
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/alloc.c:
 	.text       start:0x80364FF4 end:0x803654A8
 	.rodata     start:0x8039C380 end:0x8039C398
 	.bss        start:0x80447680 end:0x804476B8
+	.sbss       start:0x8044BAE0 end:0x8044BAE8
+
+PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/errno.c:
+	.sbss       start:0x8044BAE8 end:0x8044BAF0
 
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/ansi_files.c:
 	.text       start:0x803654A8 end:0x803655C0
@@ -3305,7 +3318,7 @@ PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/printf.c:
 	.sdata2     start:0x80450790 end:0x80450798
 
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/float.c:
-	.sdata      start:0x8044AC20 end:0x8044AC34
+	.sdata      start:0x8044AC20 end:0x8044AC30
 
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/scanf.c:
 	.text       start:0x8036AC28 end:0x8036ACB8
@@ -3581,6 +3594,7 @@ amcstubs/AmcExi2Stubs.c:
 
 odemuexi2/DebuggerDriver.c:
 	.text       start:0x803751BC end:0x80375C3C
+	.sdata      start:0x8044AC30 end:0x8044AC34
 	.sbss       start:0x8044BB10 end:0x8044BB28
 
 odenotstub/odenotstub.c:

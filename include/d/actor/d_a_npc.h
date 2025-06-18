@@ -911,7 +911,7 @@ public:
     /* 8014F6FC */ int MoveBGDelete();
     /* 8014F770 */ int MoveBGExecute();
 
-    /* 80155FB0 */ virtual ~daBaseNpc_moveBgActor_c();
+    /* 80155FB0 */ virtual ~daBaseNpc_moveBgActor_c() {}
     /* 801503BC */ virtual int CreateHeap() { return 1; }
     /* 801503C4 */ virtual int Create() { return 1; }
     /* 801503D4 */ virtual int Execute(Mtx**) { return 1; }
@@ -942,6 +942,8 @@ public:
     /* 801506BC */ void entry(fopAc_ac_c*);
     /* 801506E0 */ void remove();
     /* 801506EC */ fopAc_ac_c* getActorP();
+
+    fpc_ProcID getPId() { return mActorID; }
 
     /* 80155E40 */ virtual ~daNpcF_ActorMngr_c() {}
 };
@@ -1135,20 +1137,20 @@ public:
     /* 80154BD8 */ void setHitodamaPrtcl();
 
     /* 80155BF4 */ virtual ~daNpcF_c() {}
-    /* 80155BC8 */ virtual void setParam();
-    /* 80155BC0 */ virtual BOOL main();
-    /* 80155BD8 */ virtual BOOL ctrlBtk();
+    /* 80155BC8 */ virtual void setParam() {}
+    /* 80155BC0 */ virtual BOOL main() { return TRUE; }
+    /* 80155BD8 */ virtual BOOL ctrlBtk() { return FALSE; }
     /* 80155BBC */ virtual void adjustShapeAngle() {}
     /* 8015276C */ virtual void setMtx();
     /* 801527FC */ virtual void setMtx2();
-    /* 80155BB8 */ virtual void setAttnPos();
+    /* 80155BB8 */ virtual void setAttnPos() {}
     /* 80155BB4 */ virtual void setCollisions() {}
-    /* 80155BE0 */ virtual bool setExpressionAnm(int i_idx, bool i_modify);
-    /* 80155EC8 */ virtual bool setExpressionBtp(int i_idx);
-    /* 80155BF0 */ virtual void setExpression(int i_expression, f32 i_morf);
-    /* 80155BE8 */ virtual void setMotionAnm(int i_idx, f32 i_morf);
-    /* 80155BEC */ virtual void setMotion(int i_motion, f32 i_morf, int i_restart);
-    /* 80155BD0 */ virtual BOOL drawDbgInfo();
+    /* 80155BE0 */ virtual bool setExpressionAnm(int i_idx, bool i_modify) { return true; }
+    /* 80155EC8 */ virtual bool setExpressionBtp(int i_idx) { return true; }
+    /* 80155BF0 */ virtual void setExpression(int i_expression, f32 i_morf) {}
+    /* 80155BE8 */ virtual void setMotionAnm(int i_idx, f32 i_morf) {}
+    /* 80155BEC */ virtual void setMotion(int i_motion, f32 i_morf, int i_restart) {}
+    /* 80155BD0 */ virtual BOOL drawDbgInfo() { return TRUE; }
     /* 80155BCC */ virtual void drawOtherMdls() {}
 
     BOOL chkActorInSpeakArea(fopAc_ac_c* i_actorCheck, fopAc_ac_c* i_actorArea) {
@@ -1208,7 +1210,7 @@ public:
     daNpcF_MatAnm_c() { initialize(); }
     /* 80150738 */ void initialize();
     /* 8015075C */ void calc(J3DMaterial*) const;
-    /* 80155ED0 */ ~daNpcF_MatAnm_c();
+    /* 80155ED0 */ ~daNpcF_MatAnm_c() {}
     void setNowOffsetX(float i_nowOffsetX) { mNowOffsetX = i_nowOffsetX; }
     void setNowOffsetY(float i_nowOffsetY) { mNowOffsetY = i_nowOffsetY; }
     void onEyeMoveFlag() { mEyeMoveFlag = 1; }
@@ -1311,59 +1313,95 @@ public:
 class daNpcF_MoveBgActor_c : public daNpcF_c {
 private:
 public:
-    /* 80155B54 */ ~daNpcF_MoveBgActor_c();
-    /* 80155E88 */ virtual bool CreateHeap();
-    /* 80155E90 */ virtual bool Create();
-    /* 80155EA0 */ virtual bool Execute(f32 (**)[3][4]);
-    /* 80155EA8 */ virtual bool Draw();
-    /* 80155E98 */ virtual bool Delete();
-    /* 80155EB0 */ virtual bool IsDelete();
-    /* 80155EB8 */ virtual bool ToFore();
-    /* 80155EC0 */ virtual bool ToBack();
+    /* 80155B54 */ ~daNpcF_MoveBgActor_c() {}
+    /* 80155E88 */ virtual bool CreateHeap() { return true; }
+    /* 80155E90 */ virtual bool Create() { return true; }
+    /* 80155EA0 */ virtual bool Execute(f32 (**)[3][4]) { return true; }
+    /* 80155EA8 */ virtual bool Draw() { return true; }
+    /* 80155E98 */ virtual bool Delete() { return true; }
+    /* 80155EB0 */ virtual bool IsDelete() { return true; }
+    /* 80155EB8 */ virtual bool ToFore() { return true; }
+    /* 80155EC0 */ virtual bool ToBack() { return true; }
 };
 
 struct daNpcT_HIOParam {
-    /* 0x00 */ f32 unk0;
-    /* 0x04 */ f32 unk4;
-    /* 0x08 */ f32 unk8;
-    /* 0x0C */ f32 unkC;
-    /* 0x10 */ f32 unk10;
-    /* 0x14 */ f32 unk14;
-    /* 0x18 */ f32 unk18;
-    /* 0x1C */ f32 unk1C;
-    /* 0x20 */ f32 unk20;
-    /* 0x24 */ f32 unk24;
-    /* 0x28 */ f32 unk28;
-    /* 0x2C */ f32 unk2C;
-    /* 0x30 */ f32 unk30;
-    /* 0x34 */ f32 unk34;
-    /* 0x38 */ f32 unk38;
-    /* 0x3C */ f32 unk3C;
-    /* 0x40 */ f32 unk40;
-    /* 0x44 */ f32 unk44;
-    /* 0x48 */ s16 unk48;
-    /* 0x4A */ s16 unk4A;
-    /* 0x4C */ s16 unk4C;
-    /* 0x4E */ s16 unk4E;
-    /* 0x50 */ f32 unk50;
-    /* 0x54 */ f32 unk54;
-    /* 0x58 */ f32 unk58;
-    /* 0x5C */ f32 unk5C;
-    /* 0x60 */ s16 unk60;
-    /* 0x62 */ s16 unk62;
-    /* 0x64 */ s16 unk64;
-    /* 0x66 */ s16 unk66;
-    /* 0x68 */ s16 unk68;
-    /* 0x6A */ u8 unk6A;
-    /* 0x6B */ u8 unk6B;
-    /* 0x6C */ f32 unk6C;
-    /* 0x70 */ f32 unk70;
-    /* 0x74 */ f32 unk74;
-    /* 0x78 */ f32 unk78;
-    /* 0x7C */ f32 unk7C;
-    /* 0x80 */ f32 unk80;
-    /* 0x84 */ f32 unk84;
-    /* 0x88 */ f32 unk88;
+    /* 0x00 */ f32 attention_offset;
+    /* 0x04 */ f32 gravity;
+    /* 0x08 */ f32 scale;
+    /* 0x0C */ f32 real_shadow_size;
+    /* 0x10 */ f32 weight;
+    /* 0x14 */ f32 height;
+    /* 0x18 */ f32 knee_length;
+    /* 0x1C */ f32 width;
+    /* 0x20 */ f32 body_angleX_max;
+    /* 0x24 */ f32 body_angleX_min;
+    /* 0x28 */ f32 body_angleY_max;
+    /* 0x2C */ f32 body_angleY_min;
+    /* 0x30 */ f32 head_angleX_max;
+    /* 0x34 */ f32 head_angleX_min;
+    /* 0x38 */ f32 head_angleY_max;
+    /* 0x3C */ f32 head_angleY_min;
+    /* 0x40 */ f32 neck_rotation_ratio;
+    /* 0x44 */ f32 morf_frame;
+    /* 0x48 */ s16 talk_distance;
+    /* 0x4A */ s16 talk_angle;
+    /* 0x4C */ s16 attention_distance;
+    /* 0x4E */ s16 attention_angle;
+    /* 0x50 */ f32 fov;
+    /* 0x54 */ f32 search_distance;
+    /* 0x58 */ f32 search_height;
+    /* 0x5C */ f32 search_depth;
+    /* 0x60 */ s16 attention_time;
+    /* 0x62 */ s16 damage_time;
+    /* 0x64 */ s16 face_expression;
+    /* 0x66 */ s16 motion;
+    /* 0x68 */ s16 look_mode;
+    /* 0x6A */ u8 debug_mode_ON;
+    /* 0x6B */ u8 debug_info_ON;
+    /* 0x6C */ f32 expression_morf_frame;
+    /* 0x70 */ f32 box_min_x;
+    /* 0x74 */ f32 box_min_y;
+    /* 0x78 */ f32 box_min_z;
+    /* 0x7C */ f32 box_max_x;
+    /* 0x80 */ f32 box_max_y;
+    /* 0x84 */ f32 box_max_z;
+    /* 0x88 */ f32 box_offset;
+};
+
+struct daNpcF_HIOParam {
+    /* 0x00 */ f32 attention_offset;
+    /* 0x04 */ f32 gravity;
+    /* 0x08 */ f32 scale;
+    /* 0x0C */ f32 real_shadow_size;
+    /* 0x10 */ f32 weight;
+    /* 0x14 */ f32 height;
+    /* 0x18 */ f32 knee_length;
+    /* 0x1C */ f32 width;
+    /* 0x20 */ f32 body_angleX_max;
+    /* 0x24 */ f32 body_angleX_min;
+    /* 0x28 */ f32 body_angleY_max;
+    /* 0x2C */ f32 body_angleY_min;
+    /* 0x30 */ f32 head_angleX_max;
+    /* 0x34 */ f32 head_angleX_min;
+    /* 0x38 */ f32 head_angleY_max;
+    /* 0x3C */ f32 head_angleY_min;
+    /* 0x40 */ f32 neck_rotation_ratio;
+    /* 0x44 */ f32 morf_frame;
+    /* 0x48 */ s16 talk_distance;
+    /* 0x4A */ s16 talk_angle;
+    /* 0x4C */ s16 attention_distance;
+    /* 0x4E */ s16 attention_angle;
+    /* 0x50 */ f32 fov;
+    /* 0x54 */ f32 search_distance;
+    /* 0x58 */ f32 search_height;
+    /* 0x5C */ f32 search_depth;
+    /* 0x60 */ s16 attention_time;
+    /* 0x62 */ s16 damage_time;
+    /* 0x64 */ s16 face_expression;
+    /* 0x66 */ s16 motion;
+    /* 0x68 */ s16 look_mode;
+    /* 0x6A */ u8 debug_mode_ON;
+    /* 0x6B */ u8 debug_info_ON;
 };
 
 #endif /* D_A_D_A_NPC_H */
