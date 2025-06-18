@@ -8,6 +8,7 @@
 #include "JSystem/JAudio2/JASCalc.h"
 #include "JSystem/JAudio2/JASDrumSet.h"
 #include "JSystem/JAudio2/JASHeapCtrl.h"
+#include "JSystem/JAudio2/JASChannel.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "JSystem/JSupport/JSupport.h"
 
@@ -27,10 +28,11 @@ JASBasicBank* JASBNKParser::createBasicBank(void const* stream, JKRHeap* heap) {
     }
 
     u32 free_size = heap->getFreeSize();
+    
+    TFileHeader* filep = (TFileHeader*)stream;
+    JUT_ASSERT(59, filep->id == 'IBNK');
     JASBasicBank* bank = NULL;
-
-    TFileHeader* header = (TFileHeader*)stream;
-    switch (header->mVersion) {
+    switch (filep->mVersion) {
     case 0:
         bank = Ver0::createBasicBank(stream, heap);
         break;
@@ -165,14 +167,12 @@ JASBasicBank* JASBNKParser::Ver1::createBasicBank(void const* stream, JKRHeap* h
 
 /* 80299A3C-80299E68 29437C 042C+00 1/1 0/0 0/0 .text
  * createBasicBank__Q212JASBNKParser4Ver0FPCvP7JKRHeap          */
-// NONMATCHING
 JASBasicBank* JASBNKParser::Ver0::createBasicBank(void const* stream, JKRHeap* heap) {
-    THeader const* header = (THeader*)stream;
-
     if (heap == NULL) {
         heap = JASDram;
     }
-
+    
+    THeader const* header = (THeader*)stream;
     JASBasicBank* bank = new (heap, 0) JASBasicBank();
     if (bank == NULL) {
         return NULL;
@@ -181,94 +181,101 @@ JASBasicBank* JASBNKParser::Ver0::createBasicBank(void const* stream, JKRHeap* h
     bank->newInstTable(0x80, heap);
 
     for (int i = 0; i < 0x80; i++) {
-        TInst* tinst = header->mOffsets.mInstOffset[i].ptr(stream);
+        TInst* tinst = header->mOffsets.mInstOffset[i].ptr(header);
         if (tinst != NULL) {
-            JASBasicInst* inst = new (heap, 0) JASBasicInst();
-            inst->setVolume(tinst->mVolume);
-            inst->setPitch(tinst->mPitch);
+            JASBasicInst* instp = new (heap, 0) JASBasicInst();
+            JUT_ASSERT(368, instp != 0);
+            instp->setVolume(tinst->mVolume);
+            instp->setPitch(tinst->mPitch);
 
             int osc_idx = 0;
             for (int j = 0; j < 2; j++) {
-                TOsc* tosc = tinst->mOscOffset[j].ptr(stream);
+                TOsc* tosc = tinst->mOscOffset[j].ptr(header);
                 if (tosc != NULL) {
-                    JASOscillator::Data* osc_data = findOscPtr(bank, header, tosc);
-                    if (osc_data != NULL) {
-                        inst->setOsc(osc_idx, osc_data);
+                    JASOscillator::Data* osc = findOscPtr(bank, header, tosc);
+                    if (osc != NULL) {
+                        instp->setOsc(osc_idx, osc);
                     } else {
-                        osc_data = new (heap, 0) JASOscillator::Data();
-                        osc_data->mTarget = tosc->mTarget;
-                        osc_data->_04 = tosc->field_0x4;
-                        u32 size;
+                        osc = new (heap, 0) JASOscillator::Data();
+                        JUT_ASSERT(386, osc != 0);
+                        osc->mTarget = tosc->mTarget;
+                        osc->_04 = tosc->field_0x4;
 
-                        JASOscillator::Point* points = tosc->mPointOffset.ptr(stream);
+                        JASOscillator::Point* points = tosc->mPointOffset.ptr(header);
                         if (points != NULL) {
-                            size = getOscTableEndPtr(points) - points;
+                            const JASOscillator::Point* endPtr = getOscTableEndPtr(points);
+                            int size = endPtr - points;
                             JASOscillator::Point* table = new (heap, 0) JASOscillator::Point[size];
+                            JUT_ASSERT(396, table != 0);
                             JASCalc::bcopy(points, table, size * sizeof(JASOscillator::Point));
-                            osc_data->mTable = table;
+                            osc->mTable = table;
                         } else {
-                            osc_data->mTable = NULL;
+                            osc->mTable = NULL;
                         }
 
-                        points = tosc->field_0xc.ptr(stream);
+                        points = tosc->field_0xc.ptr(header);
                         if (points != NULL) {
-                            size = getOscTableEndPtr(points) - points;
+                            const JASOscillator::Point* endPtr = getOscTableEndPtr(points);
+                            int size = endPtr - points;
                             JASOscillator::Point* table = new (heap, 0) JASOscillator::Point[size];
+                            JUT_ASSERT(409, table != 0);
                             JASCalc::bcopy(points, table, size * sizeof(JASOscillator::Point));
-                            osc_data->_0C = table;
+                            osc->_0C = table;
                         } else {
-                            osc_data->_0C = NULL;
+                            osc->_0C = NULL;
                         }
 
-                        osc_data->mScale = tosc->mScale;
-                        osc_data->_14 = tosc->field_0x14;
-                        inst->setOsc(osc_idx, osc_data);
+                        osc->mScale = tosc->mScale;
+                        osc->_14 = tosc->field_0x14;
+                        instp->setOsc(osc_idx, osc);
                     }
 
                     osc_idx++;
                 }
             }
 
-            inst->setKeyRegionCount(tinst->mKeyRegionCount, heap);
+            instp->setKeyRegionCount(tinst->mKeyRegionCount, heap);
             for (int j = 0; j < tinst->mKeyRegionCount; j++) {
-                JASBasicInst::TKeymap* keymap = inst->getKeyRegion(j);
-                TKeymap* tkeymap = tinst->mKeymapOffset[j].ptr(stream);
+                JASBasicInst::TKeymap* keymap = instp->getKeyRegion(j);
+                TKeymap* tkeymap = tinst->mKeymapOffset[j].ptr(header);
                 keymap->setHighKey(tkeymap->mHighKey);
-                TVmap* tvmap = tkeymap->mVmapOffset.ptr(stream);
+                TVmap* tvmap = tkeymap->mVmapOffset.ptr(header);
                 keymap->field_0x4 = JSULoHalf(tvmap->field_0x4);
                 keymap->field_0x8 = tvmap->field_0x8;
                 keymap->field_0xc = tvmap->field_0xc;
             }
 
-            bank->setInst(i, inst);
+            bank->setInst(i, instp);
         }
     }
 
     for (int i = 0; i < 12; i++) {
-        TPerc* tperc = header->mOffsets.mPercOffset[i].ptr(stream);
+        TPerc* tperc = header->mOffsets.mPercOffset[i].ptr(header);
         if (tperc != NULL) {
-            JASDrumSet* drumset = new (heap, 0) JASDrumSet();
-            drumset->newPercArray(0x80, heap);
+            JASDrumSet* setp = new (heap, 0) JASDrumSet();
+            JUT_ASSERT(509, setp != 0);
+            setp->newPercArray(0x80, heap);
 
             for (int j = 0; j < 0x80; j++) {
-                TPmap* tpmap = tperc->mPmapOffset[j].ptr(stream);
+                TPmap* tpmap = tperc->mPmapOffset[j].ptr(header);
                 if (tpmap != NULL) {
-                    JASDrumSet::TPerc* perc = new (heap, 0) JASDrumSet::TPerc();
-                    perc->setVolume(tpmap->mVolume);
-                    perc->setPitch(tpmap->mPitch);
+                    JASDrumSet::TPerc* percp = new (heap, 0) JASDrumSet::TPerc();
+                    JUT_ASSERT(519, percp);
+                    percp->setVolume(tpmap->mVolume);
+                    percp->setPitch(tpmap->mPitch);
                     if (tperc->mMagic == 'PER2') {
-                        perc->setPan(tperc->mPan[j] / 127.0f);
-                        perc->setRelease(tperc->mRelease[j]);
+                        percp->setPan(tperc->mPan[j] / 127.0f);
+                        percp->setRelease(tperc->mRelease[j]);
                     }
-                    TVmap* vmap = tpmap->mVmapOffset.ptr(stream);
-                    perc->field_0xe = JSULoHalf(vmap->field_0x4);
-                    perc->field_0x10 = vmap->field_0x8;
-                    perc->field_0x14 = vmap->field_0xc;
-                    drumset->setPerc(j, perc);
+                    TVmap* vmap = tpmap->mVmapOffset.ptr(header);
+                    percp->field_0xe = JSULoHalf(vmap->field_0x4);
+                    percp->field_0x10 = vmap->field_0x8;
+                    percp->field_0x14 = vmap->field_0xc;
+                    setp->setPerc(j, percp);
                 }
             }
 
-            bank->setInst(i + 0xe4, drumset);
+            bank->setInst(i + 0xe4, setp);
         }
     }
 

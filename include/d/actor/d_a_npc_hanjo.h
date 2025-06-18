@@ -165,6 +165,7 @@ public:
     /* 80A00514 */ int checkRemoveJoint(int param_1) { return param_1 == 8; }
     /* 80A00524 */ s32 getFootLJointNo() { return 22; }
     /* 80A0052C */ s32 getFootRJointNo() { return 26; }
+    MtxP getArmLMtx() { return mpMorf[0]->getModel()->getAnmMtx(11); }
 
     int getFlowNodeNo() {
         u16 nodeNo = home.angle.x;

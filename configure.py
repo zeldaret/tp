@@ -1793,7 +1793,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_kn"),
     ActorRel(NonMatching, "d_a_npc_knj"),
     ActorRel(NonMatching, "d_a_npc_kolinb"),
-    ActorRel(NonMatching, "d_a_npc_ks"),
+    ActorRel(Equivalent, "d_a_npc_ks"),  # weak func order
     ActorRel(NonMatching, "d_a_npc_kyury"),
     ActorRel(NonMatching, "d_a_npc_len"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_lf"),
@@ -1833,7 +1833,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_sq"),
     ActorRel(NonMatching, "d_a_npc_the"),
     ActorRel(NonMatching, "d_a_npc_theB"),
-    ActorRel(NonMatching, "d_a_npc_tk"),
+    ActorRel(Equivalent, "d_a_npc_tk"), # weak function order
     ActorRel(NonMatching, "d_a_npc_tkc"),
     ActorRel(NonMatching, "d_a_npc_tkj2"),
     ActorRel(NonMatching, "d_a_npc_tks"),
@@ -1913,7 +1913,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_firepillar"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_firepillar2"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_flag"),
-    ActorRel(NonMatching, "d_a_obj_flag2"),
+    ActorRel(Equivalent, "d_a_obj_flag2"), # weak function order
     ActorRel(NonMatching, "d_a_obj_flag3"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_food"),
     ActorRel(NonMatching, "d_a_obj_fw"),

@@ -51,10 +51,13 @@ public:
     /* 80A82878 */ void drawOtherMdls();
     /* 80A82900 */ bool drawDbgInfo();
 
+    MtxP getHandRMtx() { return mpMorf->getModel()->getAnmMtx(17); }
+
     static u8 mEvtSeqList[48];
 
 private:
-    /* 0x568 */ u8 field_0x568[0xe0c - 0x568];
+    /* 0x568 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x56C */ u8 field_0x56c[0xe0c - 0x56c];
 };
 
 STATIC_ASSERT(sizeof(daNpcMoiR_c) == 0xe0c);

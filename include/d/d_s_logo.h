@@ -95,7 +95,7 @@ public:
     /* 0x212 */ u16 field_0x212;
     /* 0x214 */ u16 field_0x214;
     /* 0x218 */ u32 field_0x218;
-    /* 0x21C */ void* buffer;
+    /* 0x21C */ void* dummyGameAlloc;
     /* 0x220 */ mDoDvdThd_mountXArchive_c* mpField0Command;
     /* 0x224 */ mDoDvdThd_mountXArchive_c* mpAlAnmCommand;
     /* 0x228 */ u8 field_0x228[4];

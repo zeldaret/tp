@@ -13,6 +13,22 @@ public:
         return (fopAcM_GetParam(this) >> 16) & 0xFF;
     }
 
+    s16 getGraNo() {
+        return fopAcM_GetParam(this) & 0xFF;
+    }
+
+    cXyz getGraPos() {
+        return home.pos;
+    }
+
+    f32 getGraExtent() {
+        return scale.x * 100.0f;
+    }
+
+    f32 getGraHeight() {
+        return scale.y * 100.0f;
+    }
+
     int create() {
         fopAcM_SetupActor(this, daTagGra_c);
 

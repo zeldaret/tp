@@ -432,7 +432,7 @@ dScnLogo_c::~dScnLogo_c() {
 
     field_0x1d4->destroy();
     field_0x1d0->destroy();
-    JKRFree(buffer);
+    JKRFree(dummyGameAlloc);
 
     dComIfGp_particle_createCommon(mParticleCommand->getMemAddress());
     dComIfGp_setFieldMapArchive2(mpField0Command->getArchive());
@@ -508,8 +508,9 @@ static int phase_0(dScnLogo_c* i_this) {
     mDoGph_gInf_c::setFadeColor(*(JUtility::TColor*)&g_blackColor);
     dComIfGp_particle_create();
 
-    i_this->buffer = mDoExt_getGameHeap()->alloc(0x340000, -0x10);
-    i_this->field_0x1d0 = JKRExpHeap::create(i_this->buffer, 0x340000, NULL, false);
+    i_this->dummyGameAlloc = mDoExt_getGameHeap()->alloc(0x340000, -0x10);
+    JUT_ASSERT(1523, i_this->dummyGameAlloc != 0);
+    i_this->field_0x1d0 = JKRExpHeap::create(i_this->dummyGameAlloc, 0x340000, NULL, false);
     i_this->field_0x1d4 = JKRExpHeap::create(0x130000, i_this->field_0x1d0, false);
 
     return cPhs_NEXT_e;

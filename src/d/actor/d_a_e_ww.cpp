@@ -738,7 +738,7 @@ COMPILER_STRIP_GATE(0x807EF7E0, &lit_4507);
 #pragma pop
 
 /* 807E8B2C-807E8C54 00152C 0128+00 1/1 0/0 0/0 .text            s_obj_sub__FPvPv */
-static void s_obj_sub(void* param_0, void* param_1) {
+static s32 s_obj_sub(void* param_0, void* param_1) {
     // NONMATCHING
 }
 

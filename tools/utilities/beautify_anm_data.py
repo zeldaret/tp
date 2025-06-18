@@ -8,6 +8,7 @@
 import os
 import re
 import sys
+import struct
 
 
 FACE_MOTION_TYPE = "daNpcT_faceMotionAnmData_c l_faceMotionAnmData"
@@ -38,6 +39,31 @@ def twos_complement(hexstr, bits):
     return value
 
 
+def prm_is_float(hex_str):
+    value = int(hex_str, 16)
+    exponent_raw = (value >> 23) & 0xFF  # Get bits 30-23
+    exponent_actual = exponent_raw - 127  # Remove bias
+    # print(exponent_actual)
+    EXP_TOLERANCE = 10
+    if exponent_actual < EXP_TOLERANCE * -1:
+        return False
+
+    if exponent_actual > EXP_TOLERANCE:
+        return False
+
+    return True
+
+
+# Expects NO leading "0x":
+def hex_to_float(hex_str):
+    return struct.unpack('!f', bytes.fromhex(hex_str))[0]
+
+
+def float_to_hex(f):
+    [d] = struct.unpack(">I", struct.pack(">f", f))
+    return f"0x{d:X}"
+
+
 def build_anm_struct(byte_collection, anm_type, param_name):
     my_len = len(byte_collection)
     piece_size = 1
@@ -66,7 +92,7 @@ def build_anm_struct(byte_collection, anm_type, param_name):
             is_array = True
         elif anm_type is HEAP_SIZE_TYPE:
             piece_size = 4
-            instr_arr = ["s4"]
+            instr_arr = ["h4"]
 
         if my_len % piece_size != 0:
             print(f"Error: len() = '{my_len}' isn't divisble by '{piece_size}'")
@@ -77,6 +103,7 @@ def build_anm_struct(byte_collection, anm_type, param_name):
     hexstr = ""
     full_res_arr = []
     pos_arr = []
+    prms_is_float: list[bool] = []
     while ptr < my_len:
         curbyte = byte_collection[ptr]
         ptr += 1
@@ -92,6 +119,11 @@ def build_anm_struct(byte_collection, anm_type, param_name):
                 val = twos_complement(hexstr, exp_bytes*8)
                 pos_arr.append(val)
             elif my_type == 'h':
+                if anm_type is HEAP_SIZE_TYPE:
+                    trimmed = hexstr.lstrip('0')
+                    hexstr = trimmed if trimmed else '0'
+                elif anm_type is PARAM_TYPE:
+                    prms_is_float.append(prm_is_float(hexstr))
                 pos_arr.append("0x" + hexstr)
             else:
                 print(f"Error: unknown type '{my_type}'")
@@ -111,7 +143,8 @@ def build_anm_struct(byte_collection, anm_type, param_name):
         while idx < my_len:
             upper = f'{idx:02X}'
             lower = f'{idx:02x}'
-            res_str += "    /* 0x{} */ u32 field_0x{};\n".format(upper, lower)
+            mych = 'f' if (prms_is_float[int(idx / 4)] is True) else 'u'
+            res_str += "    /* 0x{} */ {}32 field_0x{};\n".format(upper, mych, lower)
             idx += 4
         res_str += "};\n"
         res_str += "static const Data m;\n\n"
@@ -124,13 +157,16 @@ def build_anm_struct(byte_collection, anm_type, param_name):
     if anm_type is SEQ_FACE_MOTION_TYPE or anm_type is SEQ_MOTION_TYPE:
         cutoff_num = 8
     elif anm_type is HEAP_SIZE_TYPE:
-        cutoff_num = 12
+        cutoff_num = 4
 
     if anm_type is not PARAM_TYPE:
         res_str += "[{}]".format(int(res_len))
 
+    prmfloat_dbg = False
+
     res_str += " = {\n"
     cur_in_line = 0
+    cur_idx = 0
     for my_arr in full_res_arr:
         if cur_in_line == 0:
             res_str += "    "
@@ -150,7 +186,17 @@ def build_anm_struct(byte_collection, anm_type, param_name):
             elif isinstance(value, float):
                 res_str += str(value) + "f"
             else:
-                res_str += value
+                if anm_type is PARAM_TYPE and prms_is_float[cur_idx] is True:
+                    fvalue = hex_to_float(value[2:])
+                    fvalue = round(fvalue, 6)
+                    res_str += f"{fvalue}f"
+                    chk_val = float_to_hex(fvalue)
+                    # Sanity check in case rounding is too aggressive:
+                    assert chk_val == value, f"chk_val {chk_val} != value {value}"
+                    if prmfloat_dbg is True:
+                        res_str += f" // {value}"
+                else:
+                    res_str += value
 
         if is_array is True:
             res_str += "}"
@@ -162,6 +208,8 @@ def build_anm_struct(byte_collection, anm_type, param_name):
             res_str += "\n"
         else:
             res_str += " "
+
+        cur_idx += 1
 
     if cur_in_line != 0:
         res_str += "\n"

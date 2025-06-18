@@ -433,7 +433,7 @@ static void other_bg_check(daE_SB_c* param_0, fopAc_ac_c* param_1) {
 }
 
 /* 80781C2C-80781D34 0006CC 0108+00 2/2 0/0 0/0 .text            s_obj_sub__FPvPv */
-static void s_obj_sub(void* param_0, void* param_1) {
+static s32 s_obj_sub(void* param_0, void* param_1) {
     // NONMATCHING
 }
 

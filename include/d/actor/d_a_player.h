@@ -685,7 +685,7 @@ public:
     f32 getSpinnerRideSpeed() const;
     bool checkSpinnerReflectEffect();
     static bool checkBoomerangCharge();
-    int checkBoomerangChargeTime();
+    static u8 checkBoomerangChargeTime();
     static daBoomerang_c* getThrowBoomerangActor();
     static void cancelBoomerangLockActor(fopAc_ac_c*);
     static void setPlayerDamage(int, int);
@@ -974,6 +974,10 @@ public:
         }
     }
 
+    void offGoronUpStopCancel() {
+        offNoResetFlg0(FLG0_UNK_200000);
+    }
+
     s16 getBodyAngleX() const { return mBodyAngle.x; }
     s16 getBodyAngleY() const { return mBodyAngle.y; }
 
@@ -1156,7 +1160,7 @@ public:
     }
 
     void onFishingRelease() {
-        this->mEndResetFlg0 |= 0x4000000;
+        onEndResetFlg0(ERFLG0_UNK_4000000);
     }
 
     static daMidna_c* m_midnaActor;
@@ -1164,7 +1168,11 @@ public:
     void setGiantPuzzle() { mSpecialMode = SMODE_WOLF_PUZZLE; }
     void setGiantPuzzleEnd() { mSpecialMode = 0; }
 
-    BOOL checkAutoJumpStart() { return checkResetFlg0(RFLG0_UNK_100); }
+    BOOL checkAutoJumpStart() const { return checkResetFlg0(RFLG0_UNK_100); }
+
+    void onForceGrabRebound() {
+        onEndResetFlg2(ERFLG2_UNK_8);
+    }
 };
 
 int daPy_addCalcShort(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 param_4);

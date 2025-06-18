@@ -216,11 +216,11 @@ void JMessage::TProcessor::do_tag_(u32 uTag, void const* pData, u32 uSize) {
         switch (uCode & 0xFFFF) {
         case 4:
             JUT_ASSERT(331, uSize==4);
-            stack_pushCurrent(on_word(JGadget::binary::TParseValue<u32, JGadget::binary::TParseValue_endian_big_>::parse(pData)));
+            stack_pushCurrent(on_word(JGadget::binary::TParseValue<JGadget::binary::TParseValue_endian_big_<u32> >::parse(pData)));
             break;
         case 5:
             JUT_ASSERT(341, uSize==4);
-            stack_pushCurrent(on_message(JGadget::binary::TParseValue<u32, JGadget::binary::TParseValue_endian_big_>::parse(pData)));
+            stack_pushCurrent(on_message(JGadget::binary::TParseValue<JGadget::binary::TParseValue_endian_big_<u32> >::parse(pData)));
             break;
         default:
             JGADGET_WARNMSG1(351, "unknown system-tag-code : ", uCode & 0xFFFF);
@@ -315,7 +315,7 @@ const char* JMessage::TProcessor::process_onSelect_limited_(JMessage::TProcessor
     JUT_ASSERT(457, rData.uRest>0);
 
     u16* puOffset = (u16*)rData.pOffset;
-    u16 uData = JGadget::binary::TParseValue<u16, JGadget::binary::TParseValue_endian_big_>::parse(puOffset);
+    u16 uData = JGadget::binary::TParseValue<JGadget::binary::TParseValue_endian_big_<u16> >::parse(puOffset);
 
     rData.pOffset = (void*)(puOffset + 1);
     return &rData.pcBase[uData];
@@ -331,7 +331,7 @@ const char* JMessage::TProcessor::process_onSelect_(JMessage::TProcessor* pThis)
     JUT_ASSERT(474, rData.uRest>0);
 
     u32* puOffset = (u32*)rData.pOffset;
-    u32 uData = JGadget::binary::TParseValue<u32, JGadget::binary::TParseValue_endian_big_>::parse(puOffset);
+    u32 uData = JGadget::binary::TParseValue<JGadget::binary::TParseValue_endian_big_<u32> >::parse(puOffset);
 
     rData.pOffset = (void*)(puOffset + 1);
     return &rData.pcBase[uData];
@@ -574,7 +574,7 @@ void JMessage::TSequenceProcessor::do_tag_(u32 uTag, void const* pData, u32 uSiz
             break;
         case 6: {
             JUT_ASSERT(807, uSize==4);
-            u32 u32Target = JGadget::binary::TParseValue<u32, JGadget::binary::TParseValue_endian_big_>::parse(pData);
+            u32 u32Target = JGadget::binary::TParseValue<JGadget::binary::TParseValue_endian_big_<u32> >::parse(pData);
             on_jump_register(process_onJump_, u32Target);
             break;
         }
@@ -610,7 +610,7 @@ void JMessage::TSequenceProcessor::do_tag_(u32 uTag, void const* pData, u32 uSiz
     }
     case 0xF8: {
         u16* pu16Data = (u16*)pData;
-        u32 uNumber = JGadget::binary::TParseValue<u16, JGadget::binary::TParseValue_endian_big_>::parse(pu16Data);
+        u32 uNumber = JGadget::binary::TParseValue<JGadget::binary::TParseValue_endian_big_<u16> >::parse(pu16Data);
         JUT_ASSERT(859, uSize==2+2*uNumber);
         on_branch_register(process_onBranch_limited_, pu16Data + 1, uNumber);
         on_branch_query(uCode & 0xFFFF);
@@ -618,7 +618,7 @@ void JMessage::TSequenceProcessor::do_tag_(u32 uTag, void const* pData, u32 uSiz
     }
     case 0xF7: {
         u16* pu16Data = (u16*)pData;
-        u32 uNumber = JGadget::binary::TParseValue<u16, JGadget::binary::TParseValue_endian_big_>::parse(pu16Data);
+        u32 uNumber = JGadget::binary::TParseValue<JGadget::binary::TParseValue_endian_big_<u16> >::parse(pu16Data);
         JUT_ASSERT(871, uSize==2+4*uNumber);
         on_branch_register(process_onBranch_, pu16Data + 1, uNumber);
         on_branch_query(uCode & 0xFFFF);
@@ -689,7 +689,7 @@ JMessage::TSequenceProcessor::process_onBranch_limited_(JMessage::TSequenceProce
     JUT_ASSERT(942, rData.pTarget!=0);
     JUT_ASSERT(943, uTargetIndex<rData.uTarget);
 
-    u16 u16Index = JGadget::binary::TParseValue<u16, JGadget::binary::TParseValue_endian_big_>::parse(rData.pTarget, uTargetIndex);
+    u16 u16Index = JGadget::binary::TParseValue<JGadget::binary::TParseValue_endian_big_<u16> >::parse(rData.pTarget, uTargetIndex);
     return process_setMessageIndex_(pProcessor, u16Index);
 }
 
@@ -702,7 +702,7 @@ JMessage::TSequenceProcessor::process_onBranch_(JMessage::TSequenceProcessor con
     JUT_ASSERT(957, rData.pTarget!=0);
     JUT_ASSERT(958, uTargetIndex<rData.uTarget);
 
-    u32 uCode = JGadget::binary::TParseValue<u32, JGadget::binary::TParseValue_endian_big_>::parse(rData.pTarget, uTargetIndex);
+    u32 uCode = JGadget::binary::TParseValue<JGadget::binary::TParseValue_endian_big_<u32> >::parse(rData.pTarget, uTargetIndex);
     return process_setMessageCode_(pProcessor, uCode);
 }
 

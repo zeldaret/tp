@@ -12,6 +12,7 @@
  *
  */
 class daKey_c : public fopAc_ac_c {
+public:
     /* 80CD9F2C */ void initBaseMtx();
     /* 80CD9F68 */ void setBaseMtx();
     /* 80CD9FDC */ void Create();
@@ -40,8 +41,22 @@ class daKey_c : public fopAc_ac_c {
     /* 80CDB404 */ void execute();
     /* 80CDB5D4 */ void draw();
     /* 80CDB628 */ void _delete();
-private:
-    /* 0x568 */ u8 field_0x568[0x988 - 0x568];
+
+    void setPos(cXyz pos) {
+        current.pos = pos;
+    }
+
+    void startMove(f32 param_1, f32 param_2) {
+        speedF = param_1;
+        speed.y = param_2;
+        gravity = -6.0f;
+        actionWaitInit();
+    }
+
+    /* 0x568 */ u8 field_0x568[0x978 - 0x568];
+    /* 0x978 */ cXyz field_0x978;
+    /* 0x984 */ u8 field_0x984;
+    /* 0x985 */ u8 field_0x985[0x988 - 0x985];
 };
 
 STATIC_ASSERT(sizeof(daKey_c) == 0x988);
