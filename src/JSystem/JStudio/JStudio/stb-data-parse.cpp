@@ -4,6 +4,7 @@
 //
 
 #include "JSystem/JStudio/JStudio/stb-data-parse.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "dolphin/os.h"
 
 namespace JStudio {
@@ -47,35 +48,35 @@ void TParse_TParagraph::getData(TData* pData) const {
     }
 }
 
-void TParse_TParagraph_data::getData(data::TParse_TParagraph_data::TData* pData) const {
-    u8* set2;
+void TParse_TParagraph_data::getData(TParse_TParagraph_data::TData* pData) const {
+    JUT_ASSERT(104, pData!=0);
+    pData->entrySize = 0;
+    pData->entryCount = 0;
+    pData->content = NULL;
+    pData->next = NULL;
+    u8* temp = (u8*)getRaw();
+    u8* filedata = temp;
+    if (filedata == NULL)
+        return;
+    u8 r29 = *filedata;
+    pData->status = r29 & ~0x8;
+    if (!r29)
+        return;
+    filedata++;
+    u32 r28 = 1;
+    if (r29 & 8) {
+        r28 = *filedata;
+        filedata++;
+    }
+    pData->entryCount = r28;
+    pData->content = filedata;
 
-	int dSize = pData->dataSize = 0;
-	pData->_8                  = 0;
-	pData->fileCount            = NULL;
-	pData->_10                  = NULL;
-	u8* filedata = (u8*)getRaw();
-	if (filedata == NULL)
-		return;
-	u8 set       = *filedata;
-	pData->status = set & ~0x8;
-	if (!set)
-		return;
-    int is8;
-	int set3 = 1;
-	is8 = set & 8;
-    // Probably fake match
-	if (set2 = (filedata + 1), is8) {
-		set3 = *set2++;
-	}
-	pData->_8       = set3;
-	pData->fileCount = set2;
-
-	if (!(set & 7))
-		return;
-	dSize          = (gauDataSize_TEParagraph_data)[set &= 7];
-	pData->dataSize = dSize;
-	pData->_10      = (u8*)set2 + (dSize * set3);
+    u8 r27 = r29 & 7;
+    if (r27 == 0)
+        return;
+    u32 dataSize = (gauDataSize_TEParagraph_data)[r27];
+    pData->entrySize = dataSize;
+    pData->next = filedata + (dataSize * r28);
 }
 
 }  // namespace data
