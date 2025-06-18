@@ -225,7 +225,6 @@ const u8* dDemo_c::m_branchData;
 
 /* 80038338-80038490 032C78 0158+00 0/0 1/1 5/5 .text getDemoIDData__13dDemo_actor_cFPiPiPiPUsPUc
  */
-// NONMATCHING - some stack issues
 int dDemo_actor_c::getDemoIDData(int* param_0, int* param_1, int* param_2, u16* param_3,
                                       u8* param_4) {
     JStudio::stb::TParseData_fixed<51, TValueIterator_misaligned<u32> > data(getPrm()->getData());

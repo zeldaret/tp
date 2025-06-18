@@ -241,8 +241,11 @@ void daTitle_c::nextScene_init() {
 void daTitle_c::nextScene_proc() {
     if (!fopOvlpM_IsPeek() && !mDoRst::isReset()) {
         scene_class* playScene = fopScnM_SearchByID(dStage_roomControl_c::getProcID());
+        JUT_ASSERT(706, playScene != 0);
         fopScnM_ChangeReq(playScene, 13, 0, 5);
+#if VERSION != VERSION_SHIELD_DEBUG
         mDoGph_gInf_c::setFadeColor(*(JUtility::TColor*)&g_blackColor);
+#endif
     }
 }
 

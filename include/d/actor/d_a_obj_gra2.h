@@ -86,6 +86,10 @@ public:
     typedef int (daObj_GrA_c::*MotionFunc)(int);
     typedef int (daObj_GrA_c::*Process)(void*);
 
+    enum {
+        NUMLOOKMODES_e = 4,
+    };
+
     class daObj_GrA_prtclMngr_c {
     public:
         /* 80C04E14 */ ~daObj_GrA_prtclMngr_c() {}

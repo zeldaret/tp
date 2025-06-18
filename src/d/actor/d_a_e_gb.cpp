@@ -1591,7 +1591,7 @@ static cPhs__Step daE_GB_Create(fopAc_ac_c* a_this) {
         u8 swBit = fopAcM_GetParam(a_this) >> 16;
         if (swBit != 0xFF) {
             if (dComIfGs_isSwitch(swBit, fopAcM_GetRoomNo(a_this))) {
-                OS_REPORT("E_gb やられ後なので再セットしません\n")
+                OS_REPORT("E_gb やられ後なので再セットしません\n");
                 return cPhs_ERROR_e;
             }
         }
