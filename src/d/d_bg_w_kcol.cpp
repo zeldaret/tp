@@ -4,6 +4,11 @@
 #include "d/actor/d_a_horse.h"
 #include "d/d_bg_s_cap_poly.h"
 
+#include <algorithm.h>
+#include <cmath.h>
+
+#include "SSystem/SComponent/c_m2d.h"
+
 /* 8007E6F4-8007E74C 079034 0058+00 0/0 0/0 1/1 .text            __ct__8dBgWKColFv */
 dBgWKCol::dBgWKCol() {
     m_pkc_head = NULL;
@@ -317,13 +322,15 @@ bool dBgWKCol::LineCheck(cBgS_LinChk* plinchk) {
             sp90 = 0;
         }
 
+        int sp8C;
+        int sp88;
         int sp84 = (u32)sp108.x;
-        if (sp84 > (int)~m_pkc_head->m_area_x_width_mask) {
-            sp84 = (int)~m_pkc_head->m_area_x_width_mask;
+        if (sp84 > (s32)~m_pkc_head->m_area_x_width_mask) {
+            sp84 = (s32)~m_pkc_head->m_area_x_width_mask;
         }
 
         if (sp90 < sp84) {
-            int sp8C = (u32)sp114.y;
+            sp8C = (u32)sp114.y;
             if (sp8C < 0) {
                 sp8C = 0;
             }
@@ -334,7 +341,7 @@ bool dBgWKCol::LineCheck(cBgS_LinChk* plinchk) {
             }
 
             if (sp8C < sp80) {
-                int sp88 = (u32)sp114.z;
+                sp88 = (u32)sp114.z;
                 if (sp88 < 0) {
                     sp88 = 0;
                 }
@@ -346,49 +353,54 @@ bool dBgWKCol::LineCheck(cBgS_LinChk* plinchk) {
 
                 if (sp88 < sp7C) {
                     cXyz spF0;
-                    u16* sp58 = 0;
-                    u16* sp54 = 0;
-                    u16* sp50 = 0;
-                    u16* sp4C = 0;
-                    u16* sp48 = 0;
-                    u16* sp44 = 0;
-                    int sp40 = sp88;
+                    int sp78;
+                    int sp74;
+                    int sp70;
+                    int sp6C;
+                    int sp68;
+                    int sp64;
+                    int sp60;
+                    int sp5C;
+                    u16* sp58 = NULL;
+                    u16* sp54 = NULL;
+                    u16* sp50 = NULL;
+                    u16* sp4C = NULL;
+                    u16* sp48 = NULL;
+                    u16* sp44 = NULL;
+                    int z_sp40 = sp88;
 
                     do {
-                        int sp68 = 1000000;
-                        int sp3C = sp8C;
-
+                        sp68 = 1000000;
+                        int y_sp3C = sp8C;
                         do {
-                            int sp6C = 1000000;
-                            int sp64 = 0;
-                            int sp60 = 0;
-                            int sp5C = 0;
-                            int sp38 = sp90;
+                            sp6C = 1000000;
+                            sp64 = 0;
+                            sp60 = 0;
+                            sp5C = 0;
+                            int x_sp38 = sp90;
 
                             do {
                                 u32 block = (u32)m_pkc_head->m_block_data;
                                 u32 shift = m_pkc_head->m_block_width_shift;
-                                int sp2C = 4 * (((u32)sp3C >> shift) << m_pkc_head->m_area_xy_blocks_shift |
-                                            ((u32)sp40 >> shift) << m_pkc_head->m_area_x_blocks_shift |
-                                            (u32)sp38 >> shift);
+                                s32 offset = (((u32)z_sp40 >> shift) << m_pkc_head->m_area_xy_blocks_shift |
+                                            ((u32)y_sp3C >> shift) << m_pkc_head->m_area_x_blocks_shift |
+                                            (u32)x_sp38 >> shift) << 2;
 
-                                
-                                while ((sp2C = (*(s32*)(block + sp2C))), sp2C >= 0) {
-                                    block += sp2C;
+                                while (offset = *(u32*)(block + offset), offset >= 0) {
+                                    block += offset;
                                     shift--;
-
-                                    sp2C = 4 * ((4 * ((u32)sp3C >> shift)) & 4 |
-                                            (2 * ((u32)sp40 >> shift)) & 2 |
-                                            (1 * ((u32)sp38 >> shift)) & 1);
+                                    offset = (((u32)z_sp40 >> shift & 1) << 2 |
+                                              ((u32)y_sp3C >> shift & 1) << 1 |
+                                              ((u32)x_sp38 >> shift & 1) << 0) << 2;
                                 }
 
-                                u16* sp28 = (u16*)(block + (sp2C & 0x7FFFFFFF));
+                                u16* sp28 = (u16*)(block + (offset & 0x7FFFFFFF));
 
                                 shift = 1 << shift;
-                                int sp24 = shift - 1;
-                                int sp78 = (sp38 & sp24) - shift;
-                                int sp74 = (sp3C & sp24) - shift;
-                                int sp70 = (sp40 & sp24) - shift;
+                                int cellSize = shift - 1;
+                                sp78 = shift - (x_sp38 & cellSize);
+                                sp74 = shift - (y_sp3C & cellSize);
+                                sp70 = shift - (z_sp40 & cellSize);
 
                                 if (sp70 < sp68) {
                                     sp68 = sp70;
@@ -421,80 +433,114 @@ bool dBgWKCol::LineCheck(cBgS_LinChk* plinchk) {
 
                                 if (sp28 != sp4C && sp28 != sp48) {
                                     if (sp28 == sp44) {
+                                        continue;
+                                    }
 
-                                    } else {
-                                        while (sp28[1] != 0) {
-                                            KC_PrismData* sp20 = getPrismData(sp28[0]);
-                                            Vec* sp1C = &m_pkc_head->m_nrm_data[sp20->fnrm_i];
-                                            Vec* sp18 = &m_pkc_head->m_pos_data[sp20->pos_i];
+                                    while (*(++sp28) != 0) {
+                                        KC_PrismData* sp20 = getPrismData(sp28[0]);
+                                        Vec* sp1C = &m_pkc_head->m_nrm_data[sp20->fnrm_i];
+                                        Vec* sp18 = &m_pkc_head->m_pos_data[sp20->pos_i];
 
-                                            cXyz spE4;
-                                            VECSubtract(&sp138, sp18, &spE4);
-                                            f32 temp_f30 = VECDotProduct(sp1C, &spE4);
+                                        cXyz spE4;
+                                        VECSubtract(&sp138, sp18, &spE4);
+                                        f32 temp_f30 = VECDotProduct(sp1C, &spE4);
 
-                                            cXyz spD8;
-                                            VECSubtract(&sp120, sp18, &spD8);
-                                            f32 temp_f28 = VECDotProduct(sp1C, &spD8);
+                                        cXyz spD8;
+                                        VECSubtract(&sp120, sp18, &spD8);
+                                        f32 temp_f28 = VECDotProduct(sp1C, &spD8);
 
-                                            if ((temp_f30 >= 0.0f && temp_f30 <= 0.0f && plinchk->ChkFrontFlag()) ||
-                                                (temp_f30 <= 0.0f && temp_f30 >= 0.0f && plinchk->ChkBackFlag()))
-                                            {
-                                                f32 temp_f27 = temp_f30 - temp_f28;
-                                                if (!cM3d_IsZero(fabsf(temp_f27))) {
-                                                    Vec spCC, spC0;
-                                                    VECSubtract(&spD8, &spE4, &spCC);
-                                                    VECScale(&spCC, &spC0, temp_f30 / temp_f27);
+                                        if (temp_f30 >= 0.0f && temp_f28 <= 0.0f) {
+                                            if (!plinchk->ChkFrontFlag()) {
+                                                continue;
+                                            }
+                                        } else if (!(temp_f30 <= 0.0f && temp_f28 >= 0.0f && plinchk->ChkBackFlag())) {
+                                            continue;
+                                        }
 
-                                                    cXyz spB4;
-                                                    VECAdd(&spE4, &spC0, &spB4);
+                                        f32 temp_f27 = temp_f30 - temp_f28;
+                                        if (!cM3d_IsZero(fabsf(temp_f27))) {
+                                            f32 temp_f24 = temp_f30 / temp_f27;
+                                            Vec spCC, spC0;
+                                            VECSubtract(&spD8, &spE4, &spCC);
+                                            VECScale(&spCC, &spC0, temp_f24);
 
-                                                    Vec* sp14 = &m_pkc_head->m_nrm_data[sp20->enrm1_i];
+                                            cXyz spB4;
+                                            VECAdd(&spE4, &spC0, &spB4);
 
-                                                    if (VECDotProduct(&spB4, sp14) <= 0.0075f) {
-                                                        Vec* sp10 = &m_pkc_head->m_nrm_data[sp20->enrm2_i];
-                                                        if (VECDotProduct(&spB4, sp10) <= 0.0075f) {
-                                                            Vec* spC = &m_pkc_head->m_nrm_data[sp20->enrm3_i];
-                                                            f32 var_f26 = VECDotProduct(&spB4, spC);
-                                                            if (var_f26 >= -0.0075f && var_f26 <= sp20->height + 0.0075f) {
-                                                                if ((cBgW_CheckBGround(sp1C->x) && plinchk->GetPreGroundChk()) ||
-                                                                    (cBgW_CheckBRoof(sp1C->x) && plinchk->GetPreRoofChk()) ||
-                                                                    plinchk->GetPreWallChk())
-                                                                {
-                                                                    dBgPc sp150;
-                                                                    getPolyCode(sp28[0], &sp150);
+                                            Vec* sp14 = &m_pkc_head->m_nrm_data[sp20->enrm1_i];
 
-                                                                    cXyz spA8(*sp1C);
-                                                                    if (!chkPolyThrough(&sp150, plinchk->GetPolyPassChk(), plinchk->GetGrpPassChk(), spA8)) {
-                                                                        cXyz sp9C;
-                                                                        VECAdd(&spB4, sp18, &sp9C);
-                                                                        spB = 1;
-                                                                        *pcross = sp9C;
-                                                                        sp120 = sp9C;
-                                                                        plinchk->SetPolyIndex(sp28[0]);
-                                                                    }
-                                                                }
-
+                                            if (VECDotProduct(&spB4, sp14) <= 0.0075f) {
+                                                Vec* sp10 = &m_pkc_head->m_nrm_data[sp20->enrm2_i];
+                                                if (VECDotProduct(&spB4, sp10) <= 0.0075f) {
+                                                    Vec* spC =
+                                                        &m_pkc_head->m_nrm_data[sp20->enrm3_i];
+                                                    f32 var_f26 = VECDotProduct(&spB4, spC);
+                                                    if (var_f26 >= -0.0075f &&
+                                                        var_f26 <= sp20->height + 0.0075f)
+                                                    {
+                                                        if (cBgW_CheckBGround(sp1C->y)) {
+                                                            if (!plinchk->GetPreGroundChk()) {
+                                                                continue;
                                                             }
+                                                        } else if (cBgW_CheckBRoof(sp1C->y)) {
+                                                            if (!plinchk->GetPreRoofChk()) {
+                                                                continue;
+                                                            }
+                                                        } else if (!plinchk->GetPreWallChk()) {
+                                                            continue;
+                                                        }
+
+                                                        dBgPc sp150;
+                                                        getPolyCode(sp28[0], &sp150);
+
+                                                        cXyz spA8(*sp1C);
+                                                        if (!chkPolyThrough(
+                                                                &sp150,
+                                                                plinchk->GetPolyPassChk(),
+                                                                plinchk->GetGrpPassChk(), spA8))
+                                                        {
+                                                            cXyz sp9C;
+                                                            VECAdd(&spB4, sp18, &sp9C);
+                                                            spB = 1;
+                                                            *pcross = sp9C;
+                                                            sp120 = sp9C;
+
+                                                            JUT_ASSERT(0x2e2,
+                                                                       fpclassify(pcross->x) !=
+                                                                           FP_QNAN);
+                                                            JUT_ASSERT(0x2e3,
+                                                                       fpclassify(pcross->y) !=
+                                                                           FP_QNAN);
+                                                            JUT_ASSERT(0x2e4,
+                                                                       fpclassify(pcross->z) !=
+                                                                           FP_QNAN);
+                                                            JUT_ASSERT(
+                                                                0x2e9,
+                                                                -FP_INFINITE < pcross->x &&
+                                                                    pcross->x < FP_INFINITE);
+                                                            JUT_ASSERT(
+                                                                0x2eb,
+                                                                -FP_INFINITE < pcross->y &&
+                                                                    pcross->y < FP_INFINITE);
+                                                            // JUT_ASSERT(0x2ed, -FP_INFINITE <
+                                                            // pcross->z && pcross->z <
+                                                            // FP_INFINITE);
+
+                                                            plinchk->SetPolyIndex(sp28[0]);
                                                         }
                                                     }
-                                                
                                                 }
                                             }
                                         }
                                     }
                                 }
-
-                                sp38 += sp78;
-                            } while ((u32)sp38 <= sp84);
+                            } while ((u32)(x_sp38 += sp78) <= sp84);
 
                             sp4C = sp58;
                             sp48 = sp54;
                             sp44 = sp50;
-                            sp3C += sp6C;
-                        } while ((u32)sp3C <= sp80);
-
-                        sp40 += sp68;
-                    } while ((u32)sp40 <= sp7C);
+                        } while ((u32)(y_sp3C += sp6C) <= sp80);
+                    } while ((u32)(z_sp40 += sp68) <= sp7C);
 
                     if (spB)
                         break;
@@ -514,7 +560,7 @@ bool dBgWKCol::GroundCross(cBgS_GndChk* i_chk) {
     KC_PrismData* sp18;
     cXyz* point_p = (cXyz*)&i_chk->GetPointP();
     cXyz sp58;
-    
+
 
     VECSubtract(point_p, &m_pkc_head->m_area_min_pos, &sp58);
 
@@ -531,7 +577,7 @@ bool dBgWKCol::GroundCross(cBgS_GndChk* i_chk) {
     } else if (sp34 > (int)~m_pkc_head->m_area_z_width_mask) {
         return 0;
     }
-    
+
     int sp30 = (u32)sp58.y;
     if (sp30 < 0) {
         return 0;
@@ -663,44 +709,49 @@ void dBgWKCol::CaptPoly(dBgS_CaptPoly& i_captpoly) {
                 sp48 = (int)~m_pkc_head->m_area_z_width_mask;
             }
 
+            s32 sp44;
+            s32 sp40;
+            s32 sp3C;
+            s32 sp38;
+            s32 sp34;
+            s32 sp30;
             if (sp4C < sp48) {
                 u16* sp2C = 0;
                 u16* sp28 = 0;
-                int sp24 = sp4C;
+                s32 sp24 = sp4C;
 
                 do {
-                    int sp34 = 1000000;
-                    int sp20 = sp4C;
+                    sp34 = 1000000;
+                    s32 sp20 = sp4C;
 
                     do {
-                        int sp38 = 1000000;
-                        int sp30 = 0;
-                        int sp1C = sp5C;
+                        sp38 = 1000000;
+                        sp30 = 0;
+                        s32 sp1C = sp5C;
 
                         do {
-                            u32 block = (u32)m_pkc_head->m_block_data;
-                            u32 shift = m_pkc_head->m_block_width_shift;
-                            int sp14 = 4 * (((u32)sp24 >> shift) << m_pkc_head->m_area_xy_blocks_shift |
-                                        ((u32)sp20 >> shift) << m_pkc_head->m_area_x_blocks_shift |
-                                        (u32)sp1C >> shift);
+                            u16* block_18 = (u16*)m_pkc_head->m_block_data;
+                            sp20 = m_pkc_head->m_block_width_shift;
+                            s32 sp14 =
+                                4 * (((u32)sp24 >> sp20) << m_pkc_head->m_area_xy_blocks_shift |
+                                     ((u32)sp20 >> sp20) << m_pkc_head->m_area_x_blocks_shift |
+                                     (u32)sp1C >> sp20);
+                            while ((sp14 = (*(s32*)((s32)block_18 + sp14))), sp14 >= 0) {
+                                block_18 = (u16*)((s32)block_18 + sp14);
+                                sp20--;
 
-                            
-                            while ((sp14 = (*(s32*)(block + sp14))), sp14 >= 0) {
-                                block += sp14;
-                                shift--;
-
-                                sp14 = 4 * ((4 * ((u32)sp24 >> shift)) & 4 |
-                                        (2 * ((u32)sp20 >> shift)) & 2 |
-                                        (1 * ((u32)sp1C >> shift)) & 1);
+                                sp14 = 4 * ((4 * ((u32)sp24 >> sp20)) & 4 |
+                                            (2 * ((u32)sp20 >> sp20)) & 2 |
+                                            (1 * ((u32)sp1C >> sp20)) & 1);
                             }
 
-                            u16* var_r28 = (u16*)(block + (sp14 & 0x7FFFFFFF));
+                            block_18 = (u16*)((s32)block_18 + (sp14 & 0x7FFFFFFF));
 
-                            shift = 1 << shift;
-                            int sp10 = shift - 1;
-                            int sp44 = (sp1C & sp10) - shift;
-                            int sp40 = (sp20 & sp10) - shift;
-                            int sp3C = (sp24 & sp10) - shift;
+                            sp20 = 1 << sp20;
+                            int sp10 = sp20 - 1;
+                            sp44 = (sp1C & sp10) - sp20;
+                            sp40 = (sp20 & sp10) - sp20;
+                            sp3C = (sp24 & sp10) - sp20;
 
                             if (sp3C < sp34) {
                                 sp34 = sp3C;
@@ -710,38 +761,38 @@ void dBgWKCol::CaptPoly(dBgS_CaptPoly& i_captpoly) {
                                 sp38 = sp40;
                             }
 
-                            if (sp40 > sp30 && var_r28[1] != 0) {
+                            if (sp40 > sp30 && block_18[1] != 0) {
                                 sp30 = sp40;
-                                sp2C = var_r28;
+                                sp2C = block_18;
                             }
 
-                            if (var_r28 != sp28) {
-                                while (var_r28[1] != 0) {
-                                    KC_PrismData* spC = getPrismData(var_r28[0]);
+                            if (block_18 != sp28) {
+                                while ((block_18++)[1] != 0) {
+                                    KC_PrismData* spC = getPrismData(block_18[0]);
                                     Vec* sp8 = &m_pkc_head->m_nrm_data[spC->fnrm_i];
 
                                     dBgPc spD8;
-                                    getPolyCode(var_r28[0], &spD8);
+                                    getPolyCode(block_18[0], &spD8);
 
                                     cXyz sp8C(*sp8);
                                     if (!chkPolyThrough(&spD8, i_captpoly.GetPolyPassChk(), i_captpoly.GetGrpPassChk(), sp8C)) {
                                         cXyz sp80;
                                         cXyz sp74;
                                         cXyz sp68;
-                                        if (GetTriPnt(var_r28[0], &sp80, &sp74, &sp68)) {
+                                        if (GetTriPnt(block_18[0], &sp80, &sp74, &sp68)) {
                                             static Vec vtx_tbl[3];
                                             vtx_tbl[0] = sp80;
                                             vtx_tbl[1] = sp74;
                                             vtx_tbl[2] = sp68;
 
                                             cM3dGPla plane;
-                                            plane = GetTriPla(var_r28[0]);
-                                            
+                                            plane = GetTriPla(block_18[0]);
+
                                             i_captpoly.m_callback(i_captpoly, (cBgD_Vtx_t*)&vtx_tbl, 0, 1, 2, &plane);
                                         }
                                     }
                                 }
-                            }                            
+                            }
 
                             sp1C += sp44;
                         } while ((u32)sp1C <= sp58);
@@ -761,16 +812,16 @@ void dBgWKCol::CaptPoly(dBgS_CaptPoly& i_captpoly) {
 struct wcs_data {
     /* 0x0 */ f32 _0;
     /* 0x4 */ u16 _4;
-    /* 0x8 */ int _8;
+    /* 0x8 */ wcs_data* next;
 };
 
 static wcs_data l_wcsbuf[84];
 
 /* 80452730-80452738 000D30 0008+00 2/2 0/0 0/0 .sdata2          @5298 */
-SECTION_SDATA2 static f64 lit_5298 = 0.5;
+SECTION_SDATA2 static f64 lit_5298 = 0.5f;
 
 /* 80452738-80452740 000D38 0008+00 2/2 0/0 0/0 .sdata2          @5299 */
-SECTION_SDATA2 static f64 lit_5299 = 3.0;
+SECTION_SDATA2 static f64 lit_5299 = 3.0f;
 
 /* 80452740-80452748 000D40 0008+00 2/2 0/0 0/0 .sdata2          @5300 */
 SECTION_SDATA2 static u8 lit_5300[8] = {
@@ -785,8 +836,476 @@ SECTION_SDATA2 static f32 lit_5301[1 + 1 /* padding */] = {
 };
 
 /* 80080330-800811A0 07AC70 0E70+00 1/0 0/0 0/0 .text WallCorrectSort__8dBgWKColFP9dBgS_Acch */
-bool dBgWKCol::WallCorrectSort(dBgS_Acch* param_0) {
-    // NONMATCHING
+bool dBgWKCol::WallCorrectSort(dBgS_Acch* pwi) {
+    bool sp_10 = false;
+
+    cM3dGCyl* sp_140 = pwi->GetWallBmdCylP();
+    cXyz sp_1a4;
+    cXyz sp_198;
+    sp_140->calcMinMax(&sp_1a4, &sp_198);
+    sp_1a4.x -= 1.0f;
+    sp_1a4.y -= 1.0f;
+    sp_1a4.z -= 1.0f;
+    sp_198.x += 1.0f;
+    sp_198.y += 1.0f;
+    sp_198.z += 1.0f;
+    Vec sp_18c;
+    Vec* sp_13c = &m_pkc_head->m_area_min_pos;
+    VECSubtract(&sp_1a4, sp_13c, &sp_1a4);
+    VECSubtract(&sp_198, sp_13c, &sp_198);
+    u32 sp_138 = sp_1a4.x;
+    if ((s32)sp_138 < 0) {
+        sp_138 = 0;
+    }
+    u32 sp_134 = sp_198.x;
+    if ((s32)sp_134 > (s32)~m_pkc_head->m_area_x_width_mask) {
+        sp_134 = ~m_pkc_head->m_area_x_width_mask;
+    }
+    if ((s32)sp_138 >= (s32)sp_134) {
+        return false;
+    }
+
+    u32 sp_130 = sp_1a4.y;
+    if ((s32)sp_130 < 0) {
+        sp_130 = 0;
+    }
+    u32 sp_12c = sp_198.y;
+    if ((s32)sp_12c > (s32)~m_pkc_head->m_area_y_width_mask) {
+        sp_12c = ~m_pkc_head->m_area_y_width_mask;
+    }
+    if ((s32)sp_130 >= (s32)sp_12c) {
+        return false;
+    }
+
+    u32 sp_128 = sp_1a4.z;
+    if ((s32)sp_128 < 0) {
+        sp_128 = 0;
+    }
+    u32 sp_124 = sp_198.z;
+    if (sp_124 > ~m_pkc_head->m_area_z_width_mask) {
+        sp_124 = ~m_pkc_head->m_area_z_width_mask;
+    }
+
+    if ((s32)sp_128 >= (s32)sp_124) {
+        return false;
+    }
+
+    u16* sp_120 = NULL;
+    u16* sp_11c = NULL;
+    u16* sp_118 = NULL;
+    u16* sp_114 = NULL;
+    u16* sp_110 = NULL;
+    u16* sp_10c = NULL;
+    s32 sp_108;
+    s32 sp_104;
+    s32 sp_100;
+    sp_18c.y = 0.0f;
+    s32 sp_fc;
+    s32 sp_f8;
+    s32 sp_f4;
+    s32 sp_f0;
+    s32 sp_ec;
+    wcs_data* sp_e8 = NULL;
+    s32 wcsIndex_e4 = 0;
+    u32 sp_e0 = sp_128;
+    do {
+        sp_f8 = 1000000;
+        u32 sp_dc = sp_130;
+        do {
+            sp_fc = 1000000;
+            sp_f4 = 0;
+            sp_f0 = 0;
+            sp_ec = 0;
+            u32 sp_d8 = sp_138;
+            do {
+                KC_PrismData* block_d4 = m_pkc_head->m_block_data;
+                u32 shift_d0 = m_pkc_head->m_block_width_shift;
+                s32 sp_cc = 4 * (
+                    (sp_e0 >> shift_d0) << m_pkc_head->m_area_xy_blocks_shift |
+                    (sp_dc >> shift_d0) << m_pkc_head->m_area_x_blocks_shift |
+                    (sp_d8 >> shift_d0));
+                for (; sp_cc >= 0; sp_cc = *(s32*)((int)block_d4 + sp_cc)) {
+                    block_d4 = (KC_PrismData*)((int)block_d4 + sp_cc);
+                    shift_d0--;
+                    sp_cc = (
+                        (((sp_e0 >> shift_d0) & 1) << 2) |
+                        (((sp_dc >> shift_d0) & 1) << 1) |
+                        (((sp_d8 >> shift_d0) & 1) << 0)
+                    ) << 2;
+                }
+                u16* sp_c8 = (u16*)((int)block_d4 + (sp_cc & 0x7fffffff));
+                shift_d0 = 1 << shift_d0;
+                u32 sp_c4 = shift_d0 - 1;
+                sp_108 = shift_d0 - (sp_d8 & sp_c4);
+                sp_104 = shift_d0 - (sp_dc & sp_c4);
+                sp_100 = shift_d0 - (sp_e0 & sp_c4);
+                if (sp_100 < sp_f8) {
+                    sp_f8 = sp_100;
+                }
+                if (sp_104 < sp_fc) {
+                    sp_fc = sp_104;
+                }
+                if (sp_c8[1] != 0 && (sp_104 > sp_ec)) {
+                    if (sp_104 > sp_f0) {
+                        if (sp_104 > sp_f4) {
+                            sp_ec = sp_f0;
+                            sp_f0 = sp_f4;
+                            sp_f4 = sp_104;
+                            sp_10c = sp_110;
+                            sp_110 = sp_114;
+                            sp_114 = sp_c8;
+                        } else {
+                            sp_ec = sp_f0;
+                            sp_f0 = sp_104;
+                            sp_10c = sp_110;
+                            sp_110 = sp_c8;
+                        }
+                    } else {
+                        sp_ec = sp_104;
+                        sp_10c = sp_c8;
+                    }
+                }
+
+                if (sp_c8 == sp_120 || sp_c8 == sp_11c || sp_c8 == sp_118) {
+                } else {
+                    while (*++sp_c8 != 0) {
+                        KC_PrismData* sp_c0 = getPrismData(*sp_c8);
+                        Vec* sp_bc = m_pkc_head->m_nrm_data + sp_c0->fnrm_i;
+                        if (!cBgW_CheckBGround(sp_bc->y)) {
+                            f32 sp_b8 = JMAFastSqrt(sp_bc->x * sp_bc->x + sp_bc->z * sp_bc->z);
+                            if (!cM3d_IsZero(sp_b8)) {
+                                dBgPc sp_1b0;
+                                getPolyCode(*sp_c8, &sp_1b0);
+                                cXyz sp_180 = *sp_bc;
+                                if (!chkPolyThrough(&sp_1b0, pwi->GetPolyPassChk(),
+                                                    pwi->GetGrpPassChk(), sp_180))
+                                {
+                                    fopAc_ac_c* sp_b4 = pwi->getMyAc();
+                                    cXyz sp_174;
+                                    sp_174.x = cM_ssin(sp_b4->current.angle.y);
+                                    sp_174.z = cM_scos(sp_b4->current.angle.y);
+                                    f32 sp_b0 = 1.0f / sp_b8;
+                                    f32 sp_ac = sp_b0 * (sp_174.x * sp_bc->x + sp_174.z * sp_bc->z);
+                                    if (sp_e8 == NULL) {
+                                        if (wcsIndex_e4 < 84) {
+                                            l_wcsbuf[wcsIndex_e4]._0 = sp_ac;
+                                            l_wcsbuf[wcsIndex_e4]._4 = *sp_c8;
+                                            l_wcsbuf[wcsIndex_e4].next = NULL;
+                                            sp_e8 = &l_wcsbuf[wcsIndex_e4];
+                                            wcsIndex_e4++;
+                                        } else {
+#ifdef DEBUG
+                                            lit_5300[0] = 1;
+#endif
+                                        }
+                                    } else if (*sp_c8 != sp_e8->_4) {
+                                        if (sp_ac > sp_e8->_0) {
+                                            if (wcsIndex_e4 < 84) {
+                                                l_wcsbuf[wcsIndex_e4]._0 = sp_ac;
+                                                l_wcsbuf[wcsIndex_e4]._4 = *sp_c8;
+                                                l_wcsbuf[wcsIndex_e4].next = sp_e8;
+                                                sp_e8 = &l_wcsbuf[wcsIndex_e4];
+                                                // local_118->_0 = l_wcsbuf[local_11c]._0;
+                                                wcsIndex_e4++;
+                                            } else {
+#ifdef DEBUG
+                                                lit_5300[0] = 1;
+#endif
+                                            }
+                                        } else {
+                                            wcs_data* sp_a8 = sp_e8;
+                                            while (true) {
+                                                if (sp_a8->next == NULL) {
+                                                    if (wcsIndex_e4 < 84) {
+                                                        l_wcsbuf[wcsIndex_e4]._0 = sp_ac;
+                                                        l_wcsbuf[wcsIndex_e4]._4 = *sp_c8;
+                                                        l_wcsbuf[wcsIndex_e4].next = NULL;
+                                                        sp_a8->next = &l_wcsbuf[wcsIndex_e4];
+                                                        wcsIndex_e4++;
+                                                    } else {
+#ifdef DEBUG
+                                                        lit_5300[0] = 0;
+#endif
+                                                    }
+
+                                                    break;
+                                                }
+
+                                                if (*sp_c8 == sp_a8->next->_4) {
+                                                    break;
+                                                }
+
+                                                if (sp_ac > sp_a8->next->_0) {
+                                                    if (wcsIndex_e4 < 84) {
+                                                        l_wcsbuf[wcsIndex_e4]._0 = sp_ac;
+                                                        l_wcsbuf[wcsIndex_e4]._4 = *sp_c8;
+                                                        l_wcsbuf[wcsIndex_e4].next = sp_a8->next;
+                                                        sp_a8->next = &l_wcsbuf[wcsIndex_e4];
+                                                        wcsIndex_e4++;
+                                                    } else {
+#ifdef DEBUG
+                                                        lit_5300[0] = 1;
+#endif
+                                                    }
+
+                                                    break;
+                                                }
+                                                sp_a8 = sp_a8->next;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                sp_d8 += sp_108;
+            } while (sp_d8 <= sp_134);
+            sp_120 = sp_114;
+            sp_11c = sp_110;
+            sp_118 = sp_10c;
+
+            sp_dc += sp_fc;
+        } while (sp_dc <= sp_12c);
+
+        sp_e0 += sp_f8;
+    } while (sp_e0 <= sp_124);
+    wcs_data* sp_a4 = sp_e8;
+    while (true) {
+        if (sp_a4 == NULL) {
+            break;
+        }
+        u32 sp_a0 = (u16)sp_a4->_4;
+        KC_PrismData* sp_9c = getPrismData(sp_a0);
+        Vec* sp_98 = m_pkc_head->m_nrm_data + sp_9c->fnrm_i;
+        f32 sp_94 = JMAFastSqrt(sp_98->x * sp_98->x + sp_98->z * sp_98->z);
+        cXyz sp_168;
+        cXyz sp_15c;
+        cXyz sp_150;
+        if (GetTriPnt(sp_9c, &sp_168, &sp_15c, &sp_150)) {
+            f32 sp_90 = 1.0f / sp_94;
+            for (s32 cir_index_8c = 0; cir_index_8c < pwi->GetTblSize(); cir_index_8c++) {
+                f32 sp_88 = sp_90 * pwi->GetWallR(cir_index_8c);
+                sp_18c.x = sp_98->x * sp_88;
+                sp_18c.z = sp_98->z * sp_88;
+                f32 sp_84;
+                if (!pwi->ChkWallHDirect(cir_index_8c)) {
+                    sp_84 = pwi->GetPos()->y + pwi->GetWallH(cir_index_8c) + pwi->GetWallAddY(sp_18c) - pwi->GetSpeedY();
+                } else {
+                    sp_84 = pwi->GetWallHDirect(cir_index_8c);
+                }
+                f32 sp_144[3];
+                sp_144[0] = sp_168.y - sp_84;
+                sp_144[1] = sp_15c.y - sp_84;
+                sp_144[2] = sp_150.y - sp_84;
+                if (sp_144[0] > 0.0f && sp_144[1] > 0.0f && sp_144[2] > 0.0f ||
+                    sp_144[0] < 0.0f && sp_144[1] < 0.0f && sp_144[2] < 0.0f)
+                {
+                    continue;
+                }
+
+                s32 sp_80;
+                s32 sp_7c;
+                s32 sp_78;
+                s32 sp_74 = 0;
+
+                if (cM3d_IsZero(sp_144[0])) {
+                    sp_74++;
+                }
+                if (cM3d_IsZero(sp_144[1])) {
+                    sp_74++;
+                }
+                if (cM3d_IsZero(sp_144[2])) {
+                    sp_74++;
+                }
+                if (sp_74 != 1) {
+                    if (((sp_144[0] > 0.0f) && (sp_144[1] <= 0.0f) && (sp_144[2] <= 0.0f)) ||
+                        (sp_144[0] < 0.0f && (sp_144[1] >= 0.0f) && (sp_144[2] >= 0.0f)))
+                    {
+                        sp_80 = 0;
+                        sp_7c = 1;
+                        sp_78 = 2;
+                    } else if (((sp_144[1] > 0.0f) && (sp_144[0] <= 0.0f) &&
+                                (sp_144[2] <= 0.0f)) ||
+                               (sp_144[1] < 0.0f && (sp_144[0] >= 0.0f) &&
+                                (sp_144[2] >= 0.0f)))
+                    {
+                        sp_80 = 1;
+                        sp_7c = 0;
+                        sp_78 = 2;
+                    } else {
+                        sp_80 = 2;
+                        sp_7c = 0;
+                        sp_78 = 1;
+                    }
+                    f32 sp_70 = sp_144[sp_80] - sp_144[sp_7c];
+                    if (!cM3d_IsZero(sp_70)) {
+                        f32 sp_6c = sp_144[sp_80] - sp_144[sp_78];
+                        if (!cM3d_IsZero(sp_6c)) {
+                            f32 sp_68 = -sp_144[sp_7c] / sp_70;
+                            f32 sp_64 = -sp_144[sp_78] / sp_6c;
+                            f32 cx0_60;
+                            f32 cy0_5c;
+                            f32 cx1_58;
+                            f32 cy1_54;
+                            if (sp_80 == 0) {
+                                cx0_60 = sp_15c.x + sp_68 * (sp_168.x - sp_15c.x);
+                                cy0_5c = sp_15c.z + sp_68 * (sp_168.z - sp_15c.z);
+                                cx1_58 = sp_150.x + sp_64 * (sp_168.x - sp_150.x);
+                                cy1_54 = sp_150.z + sp_64 * (sp_168.z - sp_150.z);
+                            } else if (sp_80 == 1) {
+                                cx0_60 = sp_168.x + sp_68 * (sp_15c.x - sp_168.x);
+                                cy0_5c = sp_168.z + sp_68 * (sp_15c.z - sp_168.z);
+                                cx1_58 = sp_150.x + sp_64 * (sp_15c.x - sp_150.x);
+                                cy1_54 = sp_150.z + sp_64 * (sp_15c.z - sp_150.z);
+                            } else {
+                                cx0_60 = sp_168.x + sp_68 * (sp_150.x - sp_168.x);
+                                cy0_5c = sp_168.z + sp_68 * (sp_150.z - sp_168.z);
+                                cx1_58 = sp_15c.x + sp_64 * (sp_150.x - sp_15c.x);
+                                cy1_54 = sp_15c.z + sp_64 * (sp_150.z - sp_15c.z);
+                            }
+                            cx0_60 += sp_18c.x;
+                            cy0_5c += sp_18c.z;
+                            cx1_58 += sp_18c.x;
+                            cy1_54 += sp_18c.z;
+                            f32 sp_50;
+                            f32 sp_4c;
+                            f32 sp_48;
+                            bool sp_0f =
+                                cM3d_Len2dSqPntAndSegLine(pwi->GetCx(), pwi->GetCz(), cx0_60, cy0_5c, cx1_58,
+                                                          cy1_54, &sp_4c, &sp_48, &sp_50);
+                            f32 sp_44 = sp_4c - pwi->GetCx();
+                            f32 sp_40 = sp_48 - pwi->GetCz();
+                            f32 sp_3c = pwi->GetWallRR(cir_index_8c);
+                            if (sp_50 > sp_3c || sp_44 * sp_18c.x + sp_40 * sp_18c.z < 0.0f)
+                            {
+                                continue;
+                            }
+
+                            if (sp_0f == true) {
+                                pwi->SetWallHit();
+                                f32 sp_38 = sp_90 * std::sqrt(sp_50);
+                                sp_38 -= 1.0f;
+                                if (sp_38 < 0.0f) {
+                                    sp_38 = 0.0f;
+                                }
+
+                                pwi->GetPos()->x += sp_38 * sp_98->x;
+                                pwi->GetPos()->z += sp_38 * sp_98->z;
+
+                                JUT_ASSERT(0x77e, !(fpclassify(pwi->GetPos()->x) == FP_QNAN));
+                                JUT_ASSERT(0x77f, !(fpclassify(pwi->GetPos()->z) == FP_QNAN));
+                                JUT_ASSERT(0x782, -INFINITY < pwi->GetPos()->x &&
+                                                      pwi->GetPos()->x < INFINITY);
+                                JUT_ASSERT(0x784, -INFINITY < pwi->GetPos()->z &&
+                                                      pwi->GetPos()->z < INFINITY);
+
+                                pwi->CalcMovePosWork();
+                                pwi->SetWallCirHit(cir_index_8c);
+                                pwi->SetWallPolyIndex(cir_index_8c, sp_a0);
+                                s16 sp_16 = cM_atan2s(sp_98->x, sp_98->z);
+                                pwi->SetWallAngleY(cir_index_8c, sp_16);
+                                sp_10 = true;
+                            } else {
+                                cx0_60 -= sp_18c.x;
+                                cy0_5c -= sp_18c.z;
+                                cx1_58 -= sp_18c.x;
+                                cy1_54 -= sp_18c.z;
+
+                                JUT_ASSERT(0x797,
+                                           pwi->GetPos()->x == pwi->GetWallCirP(cir_index_8c)->GetCx())
+                                JUT_ASSERT(0x799, pwi->GetPos()->z ==
+                                                      pwi->GetWallCirP(cir_index_8c)->GetCy());
+
+                                f32 sp_34 =
+                                    cM3d_Len2dSq(cx0_60, cy0_5c, pwi->GetPos()->x, pwi->GetPos()->z);
+                                f32 sp_30 =
+                                    cM3d_Len2dSq(cx1_58, cy1_54, pwi->GetPos()->x, pwi->GetPos()->z);
+                                f32 onx_2c = -sp_98->x;
+                                f32 ony_28 = -sp_98->z;
+
+                                JUT_ASSERT(0x7a8, !(cM3d_IsZero(onx_2c) && cM3d_IsZero(ony_28)));
+
+                                if (sp_34 < sp_30) {
+                                    if (sp_34 > sp_3c) {
+                                        continue;
+                                    }
+
+                                    if (fabsf(sp_34 - sp_3c) < 0.008f) {
+                                        continue;
+                                    }
+
+                                    f32 sp_1c;
+                                    f32 sp_18;
+                                    JUT_ASSERT(0x7b3, !(fpclassify(cx0_60) == FP_QNAN));
+                                    JUT_ASSERT(0x7b4, !(fpclassify(cy0_5c) == FP_QNAN));
+
+                                    cM2d_CrossCirLin(*pwi->GetWallCirP(cir_index_8c), cx1_58,
+                                                     cy1_54, onx_2c, ony_28, &sp_1c, &sp_18);
+
+                                    pwi->GetPos()->x += (cx0_60 - sp_1c);
+                                    pwi->GetPos()->z += (cy0_5c - sp_18);
+
+                                    JUT_ASSERT(0x7bf, !(fpclassify(pwi->GetPos()->x) == FP_QNAN));
+                                    JUT_ASSERT(0x7c0, !(fpclassify(pwi->GetPos()->z) == FP_QNAN));
+                                    JUT_ASSERT(0x7c3, -INFINITY < pwi->GetPos()->x &&
+                                                          pwi->GetPos()->x < INFINITY)
+                                    JUT_ASSERT(0x7c5, -INFINITY < pwi->GetPos()->z &&
+                                                          pwi->GetPos()->z < INFINITY)
+
+                                    pwi->CalcMovePosWork();
+                                    pwi->SetWallCirHit(cir_index_8c);
+                                    pwi->SetWallPolyIndex(cir_index_8c, sp_a0);
+                                    s16 sp_14 = cM_atan2s(sp_98->x, sp_98->z);
+                                    pwi->SetWallAngleY(cir_index_8c, sp_14);
+                                    sp_10 = true;
+                                    pwi->SetWallHit();
+                                } else {
+                                    if (sp_30 > sp_3c) {
+                                        break;
+                                    }
+
+                                    if (fabsf(sp_30 - sp_3c) < 0.008f) {
+                                        break;
+                                    }
+
+                                    f32 sp_1c;
+                                    f32 sp_18;
+                                    JUT_ASSERT(0x7e2, !(fpclassify(cx1_58) == FP_QNAN));
+                                    JUT_ASSERT(0x7e3, !(fpclassify(cy1_54) == FP_QNAN));
+
+                                    cM2d_CrossCirLin(*pwi->GetWallCirP(cir_index_8c), cx1_58, cy1_54, onx_2c, ony_28, &sp_1c, &sp_18);
+
+                                    pwi->GetPos()->x += (cx1_58 - sp_1c);
+                                    pwi->GetPos()->z += (cy1_54 - sp_18);
+
+                                    JUT_ASSERT(0x7ed, !(fpclassify(pwi->GetPos()->x) == FP_QNAN));
+                                    JUT_ASSERT(0x7ed, !(fpclassify(pwi->GetPos()->z) == FP_QNAN));
+
+                                    JUT_ASSERT(0x7f1, -INFINITY < pwi->GetPos()->x &&
+                                                          pwi->GetPos()->x < INFINITY)
+                                    JUT_ASSERT(0x7f1, -INFINITY < pwi->GetPos()->z &&
+                                                          pwi->GetPos()->z < INFINITY)
+
+                                    pwi->CalcMovePosWork();
+                                    pwi->SetWallCirHit(cir_index_8c);
+                                    pwi->SetWallPolyIndex(cir_index_8c, sp_a0);
+                                    s16 sp_12 = cM_atan2s(sp_98->x, sp_98->z);
+                                    pwi->SetWallAngleY(cir_index_8c, sp_12);
+                                    sp_10 = true;
+                                    pwi->SetWallHit();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        sp_a4 = sp_a4->next;
+    }
+
+    return sp_10;
 }
 
 /* 800811A0-80081E18 07BAE0 0C78+00 1/0 0/0 0/0 .text            WallCorrect__8dBgWKColFP9dBgS_Acch
@@ -822,7 +1341,7 @@ void dBgWKCol::GetTopUnder(f32* param_0, f32* param_1) const {
 /* 800829F0-80082A20 07D330 0030+00 1/0 0/0 0/0 .text
  * GetGrpRoomIndex__8dBgWKColCFRC13cBgS_PolyInfo                */
 s32 dBgWKCol::GetGrpRoomIndex(const cBgS_PolyInfo& poly) const {
-    u16 poly_index = poly.GetPolyIndex();
+    s32 poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -831,7 +1350,7 @@ s32 dBgWKCol::GetGrpRoomIndex(const cBgS_PolyInfo& poly) const {
 
 /* 80082A20-80082A50 07D360 0030+00 1/0 0/0 0/0 .text GetExitId__8dBgWKColFRC13cBgS_PolyInfo */
 s32 dBgWKCol::GetExitId(const cBgS_PolyInfo& poly) {
-    u16 poly_index = poly.GetPolyIndex();
+    s32 poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -840,7 +1359,7 @@ s32 dBgWKCol::GetExitId(const cBgS_PolyInfo& poly) {
 
 /* 80082A50-80082A80 07D390 0030+00 1/0 0/0 0/0 .text GetPolyColor__8dBgWKColFRC13cBgS_PolyInfo */
 s32 dBgWKCol::GetPolyColor(const cBgS_PolyInfo& poly) {
-    u16 poly_index = poly.GetPolyIndex();
+    s32 poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -850,18 +1369,17 @@ s32 dBgWKCol::GetPolyColor(const cBgS_PolyInfo& poly) {
 /* 80082A80-80082AB0 07D3C0 0030+00 1/0 0/0 0/0 .text GetHorseNoEntry__8dBgWKColFRC13cBgS_PolyInfo
  */
 BOOL dBgWKCol::GetHorseNoEntry(const cBgS_PolyInfo& poly) {
-    u16 poly_index = poly.GetPolyIndex();
-
     dBgPc bgpc;
+
+    u32 poly_index = poly.GetPolyIndex();
     getPolyCode(poly_index, &bgpc);
-    return bgpc.getHorseNoEntry();
+    return bgpc.getHorseNoEntry() != 0;
 }
 
 /* 80082AB0-80082AE0 07D3F0 0030+00 1/0 0/0 0/0 .text GetSpecialCode__8dBgWKColFRC13cBgS_PolyInfo
  */
 int dBgWKCol::GetSpecialCode(const cBgS_PolyInfo& poly) {
-    u16 poly_index = poly.GetPolyIndex();
-    return GetSpecialCode(poly_index);
+    return GetSpecialCode(poly.GetPolyIndex());
 }
 
 /* 80082AE0-80082B0C 07D420 002C+00 1/0 0/0 0/0 .text            GetSpecialCode__8dBgWKColFi */
@@ -875,7 +1393,7 @@ int dBgWKCol::GetSpecialCode(int poly_index) {
 /* 80082B0C-80082B3C 07D44C 0030+00 1/0 0/0 0/0 .text GetMagnetCode__8dBgWKColFRC13cBgS_PolyInfo
  */
 int dBgWKCol::GetMagnetCode(const cBgS_PolyInfo& poly) {
-    u16 poly_index = poly.GetPolyIndex();
+    s32 poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -885,7 +1403,7 @@ int dBgWKCol::GetMagnetCode(const cBgS_PolyInfo& poly) {
 /* 80082B3C-80082B6C 07D47C 0030+00 1/0 0/0 0/0 .text
  * GetMonkeyBarsCode__8dBgWKColFRC13cBgS_PolyInfo               */
 int dBgWKCol::GetMonkeyBarsCode(const cBgS_PolyInfo& poly) {
-    u16 poly_index = poly.GetPolyIndex();
+    s32 poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -975,7 +1493,7 @@ bool dBgWKCol::GetShdwThrough(int poly_index) {
 
 /* 80082D24-80082D54 07D664 0030+00 1/0 0/0 0/0 .text GetLinkNo__8dBgWKColFRC13cBgS_PolyInfo */
 int dBgWKCol::GetLinkNo(const cBgS_PolyInfo& poly) {
-    u16 poly_index = poly.GetPolyIndex();
+    s32 poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -984,7 +1502,7 @@ int dBgWKCol::GetLinkNo(const cBgS_PolyInfo& poly) {
 
 /* 80082D54-80082D84 07D694 0030+00 1/0 0/0 0/0 .text GetWallCode__8dBgWKColFRC13cBgS_PolyInfo */
 s32 dBgWKCol::GetWallCode(const cBgS_PolyInfo& poly) {
-    u16 poly_index = poly.GetPolyIndex();
+    s32 poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -993,7 +1511,7 @@ s32 dBgWKCol::GetWallCode(const cBgS_PolyInfo& poly) {
 
 /* 80082D84-80082DB4 07D6C4 0030+00 1/0 0/0 0/0 .text GetPolyAtt0__8dBgWKColFRC13cBgS_PolyInfo */
 int dBgWKCol::GetPolyAtt0(const cBgS_PolyInfo& poly) {
-    u16 poly_index = poly.GetPolyIndex();
+    s32 poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -1002,7 +1520,7 @@ int dBgWKCol::GetPolyAtt0(const cBgS_PolyInfo& poly) {
 
 /* 80082DB4-80082DE4 07D6F4 0030+00 1/0 0/0 0/0 .text GetPolyAtt1__8dBgWKColFRC13cBgS_PolyInfo */
 int dBgWKCol::GetPolyAtt1(const cBgS_PolyInfo& poly) {
-    u16 poly_index = poly.GetPolyIndex();
+    s32 poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -1012,7 +1530,7 @@ int dBgWKCol::GetPolyAtt1(const cBgS_PolyInfo& poly) {
 /* 80082DE4-80082E14 07D724 0030+00 1/0 0/0 0/0 .text GetGroundCode__8dBgWKColFRC13cBgS_PolyInfo
  */
 int dBgWKCol::GetGroundCode(const cBgS_PolyInfo& poly) {
-    u16 poly_index = poly.GetPolyIndex();
+    s32 poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -1037,7 +1555,7 @@ u32 dBgWKCol::GetAttackThrough(int poly_index) {
 
 /* 80082E6C-80082E9C 07D7AC 0030+00 1/0 0/0 0/0 .text GetCamMoveBG__8dBgWKColFRC13cBgS_PolyInfo */
 s32 dBgWKCol::GetCamMoveBG(const cBgS_PolyInfo& poly) {
-    u16 poly_index = poly.GetPolyIndex();
+    s32 poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -1046,7 +1564,7 @@ s32 dBgWKCol::GetCamMoveBG(const cBgS_PolyInfo& poly) {
 
 /* 80082E9C-80082ECC 07D7DC 0030+00 1/0 0/0 0/0 .text GetRoomCamId__8dBgWKColFRC13cBgS_PolyInfo */
 s32 dBgWKCol::GetRoomCamId(const cBgS_PolyInfo& poly) {
-    u16 poly_index = poly.GetPolyIndex();
+    s32 poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -1056,7 +1574,7 @@ s32 dBgWKCol::GetRoomCamId(const cBgS_PolyInfo& poly) {
 /* 80082ECC-80082EFC 07D80C 0030+00 1/0 0/0 0/0 .text GetRoomPathId__8dBgWKColFRC13cBgS_PolyInfo
  */
 s32 dBgWKCol::GetRoomPathId(const cBgS_PolyInfo& poly) {
-    u16 poly_index = poly.GetPolyIndex();
+    s32 poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -1066,7 +1584,7 @@ s32 dBgWKCol::GetRoomPathId(const cBgS_PolyInfo& poly) {
 /* 80082EFC-80082F2C 07D83C 0030+00 1/0 0/0 0/0 .text
  * GetRoomPathPntNo__8dBgWKColFRC13cBgS_PolyInfo                */
 s32 dBgWKCol::GetRoomPathPntNo(const cBgS_PolyInfo& poly) {
-    u16 poly_index = poly.GetPolyIndex();
+    s32 poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -1076,7 +1594,7 @@ s32 dBgWKCol::GetRoomPathPntNo(const cBgS_PolyInfo& poly) {
 /* 80082F2C-80082F5C 07D86C 0030+00 1/0 0/0 0/0 .text
  * GetPolyGrpRoomInfId__8dBgWKColFRC13cBgS_PolyInfo             */
 u8 dBgWKCol::GetPolyGrpRoomInfId(const cBgS_PolyInfo& poly) {
-    u16 poly_index = poly.GetPolyIndex();
+    s32 poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);
@@ -1086,7 +1604,7 @@ u8 dBgWKCol::GetPolyGrpRoomInfId(const cBgS_PolyInfo& poly) {
 /* 80082F5C-80082F8C 07D89C 0030+00 1/0 0/0 0/0 .text GetGrpSoundId__8dBgWKColFRC13cBgS_PolyInfo
  */
 int dBgWKCol::GetGrpSoundId(const cBgS_PolyInfo& poly) {
-    u16 poly_index = poly.GetPolyIndex();
+    s32 poly_index = poly.GetPolyIndex();
 
     dBgPc bgpc;
     getPolyCode(poly_index, &bgpc);

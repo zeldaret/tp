@@ -21,8 +21,8 @@ class dBgPc {
 public:
     void setCode(sBgPc&);
     
-    u8 getExit() const { return BGPC_GET_BITS(m_code.code0, 0, 6); }
-    u8 getPolyCol() const { return BGPC_GET_BITS(m_code.code0, 6, 8); }
+    s32 getExit() const { return BGPC_GET_BITS(m_code.code0, 0, 6); }
+    s32 getPolyCol() const { return BGPC_GET_BITS(m_code.code0, 6, 8); }
     u32 getObjThrough() const { return BGPC_CHECK_BIT(m_code.code0, 14); }
     u32 getCamThrough() const { return BGPC_CHECK_BIT(m_code.code0, 15); }
     u32 getLinkThrough() const { return BGPC_CHECK_BIT(m_code.code0, 16); }
@@ -38,7 +38,7 @@ public:
     u32 getUnderwaterRoof() const { return BGPC_CHECK_BIT(m_code.code0, 30); }
     u32 getMonkeyBars() const { return BGPC_CHECK_BIT(m_code.code0, 31) != 0; }
 
-    u8 getLinkNo() const { return BGPC_GET_BITS(m_code.code1, 0, 8); }
+    s32 getLinkNo() const { return BGPC_GET_BITS(m_code.code1, 0, 8); }
     s32 getWallCode() const { return BGPC_GET_BITS(m_code.code1, 8, 4); }
     u32 getAtt0Code() const { return BGPC_GET_BITS(m_code.code1, 12, 4); }
     u32 getAtt1Code() const { return BGPC_GET_BITS(m_code.code1, 16, 3); }
@@ -46,17 +46,17 @@ public:
     u32 getIronBallThrough() const { return BGPC_CHECK_BIT(m_code.code1, 24); }
     u32 getAttackThrough() const { return BGPC_CHECK_BIT(m_code.code1, 25); }
 
-    u8 getCamMoveBG() const { return BGPC_GET_BITS(m_code.code2, 0, 8); }
-    u8 getRoomCam() const { return BGPC_GET_BITS(m_code.code2, 8, 8); }
-    u8 getRoomPath() const { return BGPC_GET_BITS(m_code.code2, 16, 8); }
-    u8 getRoomPathPnt() const { return BGPC_GET_BITS(m_code.code2, 24, 8); }
+    s32 getCamMoveBG() const { return BGPC_GET_BITS(m_code.code2, 0, 8); }
+    s32 getRoomCam() const { return BGPC_GET_BITS(m_code.code2, 8, 8); }
+    s32 getRoomPath() const { return BGPC_GET_BITS(m_code.code2, 16, 8); }
+    s32 getRoomPathPnt() const { return BGPC_GET_BITS(m_code.code2, 24, 8); }
 
     u8 getRoomInf() const { return BGPC_GET_BITS(m_code.code4, 0, 8); }
     u32 maskNrm() const { return BGPC_CHECK_BIT(m_code.code4, 8); }
     // BUG: Seems like this uses the same mask as maskNrm
     u32 getWtr() const { return BGPC_CHECK_BIT(m_code.code4, 8); }
-    u8 getSnd() const { return BGPC_GET_BITS(m_code.code4, 11, 8); }
-    u8 getRoom() const { return BGPC_GET_BITS(m_code.code4, 20, 8); }
+    s32 getSnd() const { return BGPC_GET_BITS(m_code.code4, 11, 8); }
+    s32 getRoom() const { return BGPC_GET_BITS(m_code.code4, 20, 8); }
 
     /* 0x0 */ sBgPc m_code;
 };
