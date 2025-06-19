@@ -47,7 +47,7 @@ daE_MF_HIO_c::daE_MF_HIO_c() {
 
 /* 8070A77C-8070A82C 00015C 00B0+00 2/2 0/0 0/0 .text            mf_disappear__FP10e_mf_class */
 static void mf_disappear(e_mf_class* i_this) {
-    fopEn_enemy_c* a_this = &i_this->actor;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
     cXyz sp1c, sp28;
 
     MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(2), *calc_mtx);
@@ -148,7 +148,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_2) {
 
 /* 8070AD94-8070B03C 000774 02A8+00 1/0 0/0 0/0 .text            daE_MF_Draw__FP10e_mf_class */
 static int daE_MF_Draw(e_mf_class* i_this) {
-    fopEn_enemy_c* a_this = &i_this->actor;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
 
     if (i_this->field_0x728 != 0) {
         return 1;
@@ -2767,7 +2767,7 @@ int c_start;
 
 /* 80711CB8-80712998 007698 0CE0+00 2/1 0/0 0/0 .text            daE_MF_Execute__FP10e_mf_class */
 static int daE_MF_Execute(e_mf_class* i_this) {
-    fopEn_enemy_c* a_this = &i_this->actor;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
     f32 fVar1 = 0.0f;
     
     if (i_this->field_0x728 != 0) {
@@ -3064,7 +3064,7 @@ static int daE_MF_IsDelete(e_mf_class* i_this) {
 
 /* 807129A0-80712A08 008380 0068+00 1/0 0/0 0/0 .text            daE_MF_Delete__FP10e_mf_class */
 static int daE_MF_Delete(e_mf_class* i_this) {
-    fopEn_enemy_c* a_this = &i_this->actor;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
     dComIfG_resDelete(&i_this->mPhase, "E_mf");
 
     if (i_this->field_0x10b9 != 0) {
@@ -3111,7 +3111,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
         }
     }
 
-    if (i_this->field_0x694.init(a_this, &jc_data[0], model, 12) == 0) {
+    if (i_this->mJntCol.init(a_this, &jc_data[0], model, 12) == 0) {
         return 0;
     }
 
