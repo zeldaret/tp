@@ -61,6 +61,18 @@ class ni_class : public fopEn_enemy_c {
 public:
     bool checkGold() { return mColor == COLOR_GOLD; }
 
+    void setMtx(MtxP mtx) {
+        cXyz newPos;
+        field_0xb08 = 1;
+        mDoMtx_stack_c::copy(mtx);
+        mDoMtx_stack_c::multVecZero(&newPos);
+        current.pos = newPos;
+        old.pos = current.pos;
+        speed.y = 0.0f;
+        speedF = 0.0f;
+        mpMorf->getModel()->setBaseTRMtx(mtx);
+    }
+
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ u8 field_0x5b4;
     /* 0x5B5 */ u8 mType;

@@ -600,7 +600,7 @@ static u8 m_near_weapon[4];
 #pragma pop
 
 /* 806EA9B8-806EAADC 000498 0124+00 2/2 0/0 0/0 .text            s_obj_sub__FPvPv */
-static void s_obj_sub(void* param_0, void* param_1) {
+static s32 s_obj_sub(void* param_0, void* param_1) {
     // NONMATCHING
 }
 

@@ -2356,10 +2356,22 @@ void dFile_select_c::screenSet() {
     static u64 l_nouseTag[15] = {
         'w_mcheck', 'w_tabi1', 'w_tabi2',  'w_tabi3',  'w_doko_c', 'w_uwa_c', 'w_cp_chu', 'w_cpsita',
         'w_cp_x',   'w_de',    'w_de_chu', 'w_desita', 'w_de_x',   'w_name',  'w_h_name'};
+    
+    #if (VERSION == VERSION_GCN_JPN) || (VERSION == VERSION_WII_JPN)
+    static u64 l_tagName21[2] = {'w_tabi_s', 'w_tabi_x'};
+    #else
     static u64 l_tagName21[2] = {'t_for', 't_for1'};
+    #endif
+    
     static u64 l_tagName18[3] = {'w_de_ef0', 'w_de_ef1', 'w_de_ef2'};
     static u64 l_tagName19[3] = {'w_cp_ef0', 'w_cp_ef1', 'w_cp_ef2'};
+
+    #if (VERSION == VERSION_GCN_JPN) || (VERSION == VERSION_WII_JPN)
+    static u64 l_tagName20[2] = {'w_er_msg', 'w_er_msR'};
+    #else
     static u64 l_tagName20[2] = {'er_for0', 'er_for1'};
+    #endif
+
     static u64 l_tagName131[3] = {'N_sel_00', 'N_sel_01', 'N_sel_02'};
 
     fileSel.Scr = new J2DScreen();
@@ -2385,10 +2397,19 @@ void dFile_select_c::screenSet() {
     fileSel.Scr->search('Wi_btn_n')->hide();
     field_0x0238 = new CPaneMgrAlpha(fileSel.Scr, 'w_n_bbtn', 2, NULL);
     field_0x023c = new CPaneMgrAlpha(fileSel.Scr, 'w_n_abtn', 2, NULL);
+
+    #if (VERSION == VERSION_GCN_JPN) || (VERSION == VERSION_WII_JPN)
+    field_0x0240 = new CPaneMgrAlpha(fileSel.Scr, 'w_modo', 2, NULL);
+    field_0x0244 = new CPaneMgrAlpha(fileSel.Scr, 'w_kete', 2, NULL);
+    fileSel.Scr->search('f_modo')->hide();
+    fileSel.Scr->search('f_kete')->hide();
+    #else
     field_0x0240 = new CPaneMgrAlpha(fileSel.Scr, 'f_modo', 2, NULL);
     field_0x0244 = new CPaneMgrAlpha(fileSel.Scr, 'f_kete', 2, NULL);
     fileSel.Scr->search('w_modo')->hide();
     fileSel.Scr->search('w_kete')->hide();
+    #endif
+
     ((J2DTextBox*)field_0x0240->getPanePtr())->setFont(fileSel.mpMessageFont[0]);
     ((J2DTextBox*)field_0x0244->getPanePtr())->setFont(fileSel.mpMessageFont[0]);
     ((J2DTextBox*)field_0x0240->getPanePtr())->setString(32, "");
@@ -2442,10 +2463,17 @@ void dFile_select_c::screenSet() {
     for (int i = 0; i < 15; i++) {
         fileSel.Scr->search(l_nouseTag[i])->hide();
     }
+
+    #if (VERSION == VERSION_GCN_JPN) || (VERSION == VERSION_WII_JPN)
+    fileSel.Scr->search('t_for')->hide();
+    fileSel.Scr->search('t_for1')->hide();
+    #else
     fileSel.Scr->search('w_tabi_s')->hide();
     fileSel.Scr->search('w_tabi_x')->hide();
     fileSel.Scr->search('w_mgn1')->hide();
     fileSel.Scr->search('w_mgn2')->hide();
+    #endif
+
     for (int i = 0; i < 2; i++) {
         field_0x020c[i] = new CPaneMgrAlpha(fileSel.Scr, l_tagName21[i], 0, NULL);
         ((J2DTextBox*)field_0x020c[i]->getPanePtr())->setFont(fileSel.mpMessageFont[0]);
@@ -2480,17 +2508,35 @@ void dFile_select_c::screenSet() {
     field_0x0208 = 0;
     field_0x0209 = 0;
     field_0x012c = fileSel.Scr->search('w_er_n');
+
+    #if (VERSION == VERSION_GCN_JPN) || (VERSION == VERSION_WII_JPN)
+    fileSel.Scr->search('er_for0')->hide();
+    fileSel.Scr->search('er_for1')->hide();
+    #else
     fileSel.Scr->search('w_er_msg')->hide();
     fileSel.Scr->search('w_er_msR')->hide();
+    #endif
+
     fileSel.Scr->search('w_er_msE')->hide();
     for (int i = 0; i < 2; i++) {
         field_0x0138[i] = new CPaneMgrAlpha(fileSel.Scr, l_tagName20[i], 0, NULL);
         ((J2DTextBox*)field_0x0138[i]->getPanePtr())->setFont(fileSel.mpMessageFont[0]);
         ((J2DTextBox*)field_0x0138[i]->getPanePtr())->setString(512, "");
+
+        #if (VERSION != VERSION_GCN_JPN) && (VERSION != VERSION_WII_JPN)
         field_0x0138[i]->getPanePtr()->resize(440.0f, 198.0f);
+        #endif
+
         ((J2DTextBox*)field_0x0138[i]->getPanePtr())->setFontSize(21.0f, 21.0f);
+
+        #if (VERSION == VERSION_GCN_JPN) || (VERSION == VERSION_WII_JPN)
+        ((J2DTextBox*)field_0x0138[i]->getPanePtr())->setLineSpace(22.0f);
+        ((J2DTextBox*)field_0x0138[i]->getPanePtr())->setCharSpace(2.0f);
+        #else
         ((J2DTextBox*)field_0x0138[i]->getPanePtr())->setLineSpace(21.0f);
         ((J2DTextBox*)field_0x0138[i]->getPanePtr())->setCharSpace(1.0f);
+        #endif
+
         field_0x0140[i] = ((J2DTextBox*)field_0x0138[i]->getPanePtr())->getStringPtr();
         field_0x0138[i]->show();
     }
@@ -3302,7 +3348,11 @@ void dFile_select_c::MemCardStatCheck() {
         field_0x0280 = false;
         field_0x0284 = NULL;
         field_0x0273 = 2;
+        #if (VERSION == VERSION_GCN_JPN) || (VERSION == VERSION_WII_JPN)
+        field_0x0290 = &dFile_select_c::noFileSpaceDispInit;
+        #else
         field_0x0290 = &dFile_select_c::noSaveSelDispInit;
+        #endif
         field_0x0274 = 18;
         break;
     case 2:

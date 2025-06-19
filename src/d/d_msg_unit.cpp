@@ -33,89 +33,94 @@ dMsgUnit_c::~dMsgUnit_c() {}
 
 /* 80238CEC-8023907C 23362C 0390+00 0/0 5/5 0/0 .text            setTag__10dMsgUnit_cFiiPcb */
 // NONMATCHING - regalloc
-void dMsgUnit_c::setTag(int param_1, int param_2, char* param_3, bool param_4) {
-    *param_3 = 0;
+void dMsgUnit_c::setTag(int i_type, int i_value, char* o_buffer, bool param_4) {
+    *o_buffer = 0;
     bool stack9 = false;
     bool stack8 = false;
-    int param_2b = param_2;
-    if (param_1 == 0x10000) {
-        sprintf(param_3, "%d", param_2);
-    } else if (param_1 == 0x10001) {
-        int tens_digit = param_2 / 10;
-        int ones_digit = param_2 % 10;
-        sprintf(param_3, "%d-%d", tens_digit, ones_digit);
-    } else if (param_1 == 4 && param_4 == true) {
-        int r6 = param_2 / 1000;
-        int r5 = r6 / 60;
-        r6 -= r5 * 60;
-        if (r5 > 99) {
-            r5 = 99;
-            r6 = 59;
+    int param_2b = i_value;
+
+    if (i_type == 0x10000) {
+        sprintf(o_buffer, "%d", i_value);
+    } else if (i_type == 0x10001) {
+        int tens_digit = i_value / 10;
+        int ones_digit = i_value % 10;
+        sprintf(o_buffer, "%d-%d", tens_digit, ones_digit);
+    } else if (i_type == 4 && param_4 == true) {
+        int seconds = i_value / 1000;
+        int minutes = seconds / 60;
+        seconds -= minutes * 60;
+        if (minutes > 99) {
+            minutes = 99;
+            seconds = 59;
         }
-        if (r5 != 0 || r6 != 0) {
-            sprintf(param_3, "%d:%02d", r5, r6);
+        if (minutes != 0 || seconds != 0) {
+            sprintf(o_buffer, "%d:%02d", minutes, seconds);
         }
-    } else if (param_1 == 3 && param_4 == true) {
+    } else if (i_type == 3 && param_4 == true) {
         f32 iVar8b;
         f32 dayTime = g_env_light.getDaytime();
-        f32 fVar1 = dayTime / 15.0f;
+        f32 hour = dayTime / 15.0f;
+
         iVar8b = ((s32)(1000000.0f * dayTime) % 15000000) / 1000000.0f;
-        f32 iVar8c = 60.0f * (iVar8b / 15.0f);
+        f32 minute = 60.0f * (iVar8b / 15.0f);
+
         iVar8b = ((s32)(1000000.0f * dayTime) % 250000) / 1000000.0f;
         f32 iVar9 = 60.0f * (iVar8b / 0.25f);
-        sprintf(param_3, "%d:%02d", (s32)(fVar1), (s32)iVar8c);
+        sprintf(o_buffer, "%d:%02d", (s32)hour, (s32)minute);
     } else {
-        if (param_1 == 9 && param_4 == true) {
-            int param_2c = param_2;
-            sprintf(param_3, "%d", param_2c);
+        if (i_type == 9 && param_4 == true) {
+            int value = i_value;
+            sprintf(o_buffer, "%d", value);
             stack8 = true;
         }
 
         if (!stack9) {
-            bmg_header_t* iVar9 = (bmg_header_t*)dMeter2Info_getMsgUnitResource();
-            dMsgUnit_inf1_section_t* inf1 = NULL;
-            const void* dat1 = NULL;
-            str1_section_t* str1 = NULL;
-            int local_114 = sizeof(bmg_header_t);
-            u32 size = iVar9->size;
-            bmg_section_t* piVar12 = (bmg_section_t*)(((u8*)iVar9) + local_114);
-            for (; local_114 < size; local_114 += piVar12->size) {
-                switch(piVar12->magic) {
+            bmg_header_t* pHeader = (bmg_header_t*)dMeter2Info_getMsgUnitResource();
+            dMsgUnit_inf1_section_t* pInfoBlock = NULL;
+            const void* pMsgDataBlock = NULL;
+            str1_section_t* pStrAttributeBlock = NULL;
+            int filepos = sizeof(bmg_header_t);
+            u32 filesize = pHeader->size;
+            bmg_section_t* pSection = (bmg_section_t*)(((u8*)pHeader) + filepos);
+
+            for (; filepos < filesize; filepos += pSection->size) {
+                switch(pSection->magic) {
                     case 'FLW1':
                         break;
                     case 'FLI1':
                         break;
                     case 'INF1':
-                        inf1 = (dMsgUnit_inf1_section_t*)piVar12;
+                        pInfoBlock = (dMsgUnit_inf1_section_t*)pSection;
                         break;
                     case 'DAT1':
-                        dat1 = piVar12;
+                        pMsgDataBlock = pSection;
                         break;
                     case 'STR1':
-                        str1 = (str1_section_t*)piVar12;
+                        pStrAttributeBlock = (str1_section_t*)pSection;
                         break;
                 }
-                piVar12 = (bmg_section_t*)((u8*)piVar12 + piVar12->size);
+                pSection = (bmg_section_t*)((u8*)pSection + pSection->size);
             }
             
             // This section is weird. The debug seems like entriesStr is outside the condition
-            // but the normal build doesn't really work with that. Same for inf1->entries.
+            // but the normal build doesn't really work with that. Same for pInfoBlock->entries.
 
             #ifdef DEBUG
-            dMsgUnit_inf1_entry* entry = &inf1->entries[param_1];
+            dMsgUnit_inf1_entry* entry = &pInfoBlock->entries[i_type];
             u32 dat1EntryOffset = entry->dat1EntryOffset;
             u16 startFrame = entry->startFrame;
             u16 endFrame = entry->endFrame;
-            const char* entriesStr = str1->entries->str;
+            const char* entriesStr = pStrAttributeBlock->entries->str;
             #else
-            u16 startFrame = inf1->entries[param_1].startFrame;
-            u16 endFrame = inf1->entries[param_1].endFrame;
+            u16 startFrame = pInfoBlock->entries[i_type].startFrame;
+            u16 endFrame = pInfoBlock->entries[i_type].endFrame;
             const char* entriesStr;
             #endif
+
             const char* uVar5;
-            if (param_2 == 1 
+            if (i_value == 1 
                 #ifdef DEBUG
-                || (dComIfGs_getPalLanguage() == 3 && param_2 == 0)
+                || (dComIfGs_getPalLanguage() == 3 && i_value == 0)
                 #endif
             ) {
                 #ifdef DEBUG
@@ -123,26 +128,29 @@ void dMsgUnit_c::setTag(int param_1, int param_2, char* param_3, bool param_4) {
             } else {
                 uVar5 = entriesStr + startFrame;
                 #else
-                uVar5 = str1->entries->str + endFrame;
+                uVar5 = pStrAttributeBlock->entries->str + endFrame;
             } else {
-                uVar5 = str1->entries->str + startFrame;
+                uVar5 = pStrAttributeBlock->entries->str + startFrame;
                 #endif
             }
+
             if (strcmp(uVar5, "") == 0) {
-                sprintf(param_3, "%d%s", param_2, uVar5);
+                sprintf(o_buffer, "%d%s", i_value, uVar5);
             } else {
-                sprintf(param_3, "%d %s", param_2, uVar5);
+                sprintf(o_buffer, "%d %s", i_value, uVar5);
             }
         }
-        if (param_1 == 3 && param_4 == true) {
-            char acStack_d8[20];
-            setTag(4, 0, acStack_d8, false);
-            strcat(param_3, acStack_d8);
+
+        if (i_type == 3 && param_4 == true) {
+            char buffer[20];
+            setTag(4, 0, buffer, false);
+            strcat(o_buffer, buffer);
         }
-        if (param_1 == 4 && param_4 == true) {
-            char acStack_ec[20];
-            setTag(5, param_2b, acStack_ec, false);
-            strcat(param_3, acStack_ec);
+
+        if (i_type == 4 && param_4 == true) {
+            char buffer[20];
+            setTag(5, param_2b, buffer, false);
+            strcat(o_buffer, buffer);
         }
     }
 }

@@ -41,7 +41,7 @@ public:
             mShopCamAction.field_0xd0 = 0;
             mShopCamAction.field_0xd2 = 0;
             mShopCamAction.field_0xd4 = -1;
-            mShopCamAction.field_0xd6 = 0;
+            mShopCamAction.mCamDataIdx = 0;
             mShopCamAction.field_0x7c.x = 0.0f;
             mShopCamAction.field_0x7c.y = 0.0f;
             mShopCamAction.field_0x7c.z = 0.0f;
@@ -103,10 +103,10 @@ public:
     /* 8019A364 */ void setSoldOut();
     /* 8019A4F4 */ void setSoldOutItemHide();
     /* 8019A564 */ void deleteObject();
-    /* 8019A5D0 */ int searchItemActor();
+    /* 8019A5D0 */ bool searchItemActor();
     /* 8019AB00 */ int getFlowNodeNum();
     /* 8019AB1C */ void setSellItemMax(u8);
-    /* 8019AB24 */ bool checkShopOpen();
+    /* 8019AB24 */ BOOL checkShopOpen();
     /* 8019AB60 */ bool checkLeftTrigger(STControl*);
     /* 8019AB84 */ bool checkRightTrigger(STControl*);
     /* 8019ABA8 */ bool dpdMove();
@@ -122,8 +122,9 @@ public:
     void offSpMode() { mSpMode = 0; }
     u8 getEventParamU8(int param_0) { return (mEventParam >> (3 - param_0) * 8) & 0xFF; }
     void setEventParam(u32 param) { mEventParam = param; }
+    void setMasterType(u8 master_type) { mMasterType = master_type; }
 
-private:
+public:
     /* 0xE40 */ STControl* mpStick;
     /* 0xE44 */ dSelect_cursor_c* mpDrawCursor;
     /* 0xE48 */ dShopItemCtrl_c mItemCtrl;
@@ -145,7 +146,7 @@ private:
     /* 0xF74 */ u8 mSoldOutItemFlags;
     /* 0xF75 */ u8 mSpMode;
     /* 0xF76 */ u8 field_0xf76;
-    /* 0xF77 */ u8 field_0xf77;
+    /* 0xF77 */ u8 mMasterType;
     /* 0xF78 */ u8 field_0xf78;
     /* 0xF79 */ u8 field_0xf79;
     /* 0xF7A */ u8 field_0xf7a;

@@ -4,302 +4,535 @@
 */
 
 #include "d/actor/d_a_obj_flag3.h"
+#include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
+#include "d/actor/d_a_set_bgobj.h"
+#include "d/d_com_inf_game.h"
 #include "dol2asm.h"
+#include "d/d_a_obj.h"
 
+#ifdef DEBUG
+class daObjFlag3_Hio_c : public JORReflexible {
+public:
+    daObjFlag3_Hio_c() {
+        mCount = 0;
+        default_set();
+    }
 
+    void default_set() { mAttr = daObjFlag3_c::M_attr; }
 
-//
-// Forward References:
-//
+    void genMessage(JORMContext* ctx) {
+        ctx->genLabel("§ 旗オブジェパラメータ設定  §\n", 0, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+        ctx->genSlider("重力", &mAttr.mGravity, -10.0f, 0.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+        ctx->genSlider("バネ係数", &mAttr.mSpringCoeeficient, 0.0f, 10.0f, 0, NULL, 0xffff, 0xffff,
+                       0x200, 0x18);
+        ctx->genSlider("減衰率", &mAttr.mDecayRate, 0.0f, 1.0f, 0, NULL, 0xffff, 0xffff,
+                       0x200, 0x18);
+        ctx->genSlider("風係数", &mAttr.mWindCoefficient, 0.0f, 100.0f, 0, NULL, 0xffff, 0xffff,
+                       0x200, 0x18);
+        ctx->genSlider("竜巻", &mAttr.mTornado, 0.0f, 500.0f, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
+    }
 
-extern "C" void createHeap__12daObjFlag3_cFv();
-extern "C" static void createSolidHeap__FP10fopAc_ac_c();
-extern "C" static void daObjFlag3_Draw__FP12daObjFlag3_c();
-extern "C" static void daObjFlag3_Execute__FP12daObjFlag3_c();
-extern "C" void execute__12daObjFlag3_cFv();
-extern "C" void __dt__4cXyzFv();
-extern "C" void execute__12FlagCloth2_cFv();
-extern "C" void calcFlagNormal__12FlagCloth2_cFP4cXyzi();
-extern "C" void calcFlagFactor__12FlagCloth2_cFP4cXyzP4cXyzP4cXyzi();
-extern "C" static bool daObjFlag3_IsDelete__FP12daObjFlag3_c();
-extern "C" static void daObjFlag3_Delete__FP12daObjFlag3_c();
-extern "C" void __dt__12daObjFlag3_cFv();
-extern "C" void __dt__12FlagCloth2_cFv();
-extern "C" static void daObjFlag3_Create__FP10fopAc_ac_c();
-extern "C" void create__12daObjFlag3_cFv();
-extern "C" void create_init__12daObjFlag3_cFv();
-extern "C" void initFlagPos__12FlagCloth2_cFP4cXyzP10fopAc_ac_c();
-extern "C" void __ct__4cXyzFv();
-extern "C" void __dt__8cM3dGSphFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" void __ct__11J3DLightObjFv();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void draw__12FlagCloth2_cFv();
-extern "C" void getTargetPos__12FlagCloth2_cFv();
-extern "C" u8 const M_attr__12daObjFlag3_c[20];
-extern "C" extern char const* const d_a_obj_flag3__stringBase0;
+    void ct() {
+        if (mCount++ == 0) {
+            daObj::HioVarious_c::init(this, "四角旗"); // Four cornered Flag
+        }
+    }
 
-//
-// External References:
-//
+    void dt() {
+        if (--mCount == 0) {
+            daObj::HioVarious_c::clean(this);
+        }
+    }
 
-extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void getArcName__12daSetBgObj_cFP10fopAc_ac_c();
-extern "C" void getRes__14dRes_control_cFPCcPCcP11dRes_info_ci();
-extern "C" void dKyw_get_AllWind_vec__FP4cXyzP4cXyzPf();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void __dt__12dCcD_GObjInfFv();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void dKy_setLight_again__Fv();
-extern "C" void dKy_Global_amb_set__FP12dKy_tevstr_c();
-extern "C" void dKy_GxFog_tevstr_set__FP12dKy_tevstr_c();
-extern "C" void dKy_setLight_mine__FP12dKy_tevstr_c();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void __ml__4cXyzCFf();
-extern "C" void outprod__4cXyzCFRC3Vec();
-extern "C" void normZC__4cXyzCFv();
-extern "C" void normalizeZP__4cXyzFv();
-extern "C" void cM_rndFX__Ff();
-extern "C" void __dl__FPv();
-extern "C" void reinitGX__6J3DSysFv();
-extern "C" bool entry__9J3DPacketFP13J3DDrawBuffer();
-extern "C" void entryImm__13J3DDrawBufferFP9J3DPacketUs();
-extern "C" void __as__12J3DLightInfoFRC12J3DLightInfo();
-extern "C" void __destroy_arr();
-extern "C" void __construct_array();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" f32 Zero__4cXyz[3];
-extern "C" u8 sOldVcdVatCmd__8J3DShape[4];
+    /* 0x4 */ int mCount;
+    /* 0x8 */ daObjFlag3_Attr_c mAttr;
+};
 
-//
-// Declarations:
-//
+daObjFlag3_Hio_c M_hio;
+#endif
 
-/* ############################################################################################## */
 /* 80BF0458-80BF046C 000000 0014+00 3/3 0/0 0/0 .rodata          M_attr__12daObjFlag3_c */
-SECTION_RODATA u8 const daObjFlag3_c::M_attr[20] = {
-    0xC0, 0x00, 0x00, 0x00, 0x3F, 0x19, 0x99, 0x9A, 0x3F, 0x2E,
-    0x14, 0x7B, 0x42, 0x20, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00,
+daObjFlag3_Attr_c const daObjFlag3_c::M_attr = {
+    -2.0f, 0.6f, 0.68f, 40.0f, 100.0f,
 };
-COMPILER_STRIP_GATE(0x80BF0458, &daObjFlag3_c::M_attr);
 
-/* 80BF046C-80BF048C 000014 0020+00 0/0 0/0 0/0 .rodata          @3637 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3637[32] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-};
-COMPILER_STRIP_GATE(0x80BF046C, &lit_3637);
-#pragma pop
+/* 80BEF278-80BEF6D0 000878 0458+00 1/1 0/0 0/0 .text
+ * calcFlagFactor__12FlagCloth2_cFP4cXyzP4cXyzP4cXyzi           */
+inline cXyz FlagCloth2_c::calcFlagFactor(cXyz* param_1, cXyz* param_2, cXyz* param_3, int param_4) {
+    cXyz flagFactor(0.0f, 0.0f, 0.0f);
+    if (param_4 == 0 || param_4 == 30) {
+        return cXyz::Zero;
+    }
 
-/* 80BF048C-80BF04B0 000034 0024+00 1/1 0/0 0/0 .rodata          @3672 */
-SECTION_RODATA static u8 const lit_3672[36] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-};
-COMPILER_STRIP_GATE(0x80BF048C, &lit_3672);
+    int local_38[8] = {-1, -1, -1, -1, -1, -1, -1, -1};
+    if (param_4 == 5) {
+        local_38[0] = param_4 + 6;
+        local_38[1] = param_4 + 5;
+        local_38[2] = param_4 - 1;
+    } else if (param_4 == 35) {
+        local_38[0] = param_4 - 1;
+        local_38[1] = param_4 - 7;
+        local_38[2] = param_4 - 6;
+    } else if (param_4 > 0 && param_4 < 5) {
+        local_38[0] = param_4 + 1;
+        local_38[1] = param_4 + 7;
+        local_38[2] = param_4 + 6;
+        local_38[3] = param_4 + 5;
+        local_38[4] = param_4 - 1;
+    } else {
+        if (param_4 > 30 && param_4 < 35) {
+            local_38[0] = param_4 - 1;
+            local_38[1] = param_4 - 7;
+            local_38[2] = param_4 - 6;
+            local_38[3] = param_4 - 5;
+            local_38[4] = param_4 + 1;
+        } else {
+            if (param_4 % 6 == 0) {
+                local_38[0] = param_4 - 6;
+                local_38[1] = param_4 - 5;
+                local_38[2] = param_4 + 1;
+                local_38[3] = param_4 + 7;
+                local_38[4] = param_4 + 6;
+            } else if (param_4 % 6 == 5) {
+                local_38[0] = param_4 + 6;
+                local_38[1] = param_4 + 5;
+                local_38[2] = param_4 - 1;
+                local_38[3] = param_4 - 7;
+                local_38[4] = param_4 - 6;
+            } else {
+                local_38[0] = param_4 - 7;
+                local_38[1] = param_4 - 6;
+                local_38[2] = param_4 - 5;
+                local_38[3] = param_4 + 1;
+                local_38[4] = param_4 + 7;
+                local_38[5] = param_4 + 6;
+                local_38[6] = param_4 + 5;
+                local_38[7] = param_4 - 1;
+            }
+        }
+    }
 
-/* 80BF04B0-80BF04F0 000058 0040+00 0/0 0/0 0/0 .rodata
- * ccSphSrc$localstatic3$initCcSphere__12FlagCloth2_cFP10fopAc_ac_c */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const data_80BF04B0[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0xC8, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80BF04B0, &data_80BF04B0);
-#pragma pop
+    int* pRelPosIdx = local_38;
+    flagFactor = param_2[param_4] * param_3->inprod(param_2[param_4]);
+    flagFactor.y += mGravity;
+    for (int i = 0; i < 8; i++, pRelPosIdx++) {
+        if (*pRelPosIdx == -1) {
+            break;
+        }
+        f32 fVar1;
+        if (abs(*pRelPosIdx - param_4) == 1 || abs(*pRelPosIdx - param_4) == 6) {
+            fVar1 = 84.85281;
+        } else {
+            fVar1 = 60.0f;
+        }
+        calcFlagFactorSub(param_1 + param_4, param_1 + *pRelPosIdx, &flagFactor, fVar1);
+    }
+    return flagFactor;
+}
 
-/* 80BF04F0-80BF04F4 000098 0004+00 1/1 0/0 0/0 .rodata          @3757 */
-SECTION_RODATA static u32 const lit_3757 = 0x000000FF;
-COMPILER_STRIP_GATE(0x80BF04F0, &lit_3757);
+/* 80BEEF74-80BEF278 000574 0304+00 2/2 0/0 0/0 .text calcFlagNormal__12FlagCloth2_cFP4cXyzi */
+inline void FlagCloth2_c::calcFlagNormal(cXyz* param_1, int param_2) {
+    cXyz* pPos = getPos();
+    cXyz cStack_44(pPos[param_2]);
+    int local_38[9] = {-1, -1, -1, -1, -1, -1, -1, -1, -1};
+    if (param_2 != 0 && param_2 != 30) {
+        if (param_2 == 5) {
+            local_38[0] = param_2 + 6;
+            local_38[1] = param_2 + 5;
+            local_38[2] = param_2 - 1;
+        } else if (param_2 == 35) {
+            local_38[0] = param_2 - 1;
+            local_38[1] = param_2 - 7;
+            local_38[2] = param_2 - 6;
+        } else if (param_2 > 0 && param_2 < 5) {
+            local_38[0] = param_2 + 1;
+            local_38[1] = param_2 + 7;
+            local_38[2] = param_2 + 6;
+            local_38[3] = param_2 + 5;
+            local_38[4] = param_2 - 1;
+        } else {
+            if (param_2 > 30 && param_2 < 35) {
+                local_38[0] = param_2 - 1;
+                local_38[1] = param_2 - 7;
+                local_38[2] = param_2 - 6;
+                local_38[3] = param_2 - 5;
+                local_38[4] = param_2 + 1;
+            } else {
+                if (param_2 % 6 == 0) {
+                    local_38[0] = param_2 - 6;
+                    local_38[1] = param_2 - 5;
+                    local_38[2] = param_2 + 1;
+                    local_38[3] = param_2 + 7;
+                    local_38[4] = param_2 + 6;
+                } else if (param_2 % 6 == 5) {
+                    local_38[0] = param_2 + 6;
+                    local_38[1] = param_2 + 5;
+                    local_38[2] = param_2 - 1;
+                    local_38[3] = param_2 - 7;
+                    local_38[4] = param_2 - 6;
+                } else {
+                    local_38[0] = param_2 - 7;
+                    local_38[1] = param_2 - 6;
+                    local_38[2] = param_2 - 5;
+                    local_38[3] = param_2 + 1;
+                    local_38[4] = param_2 + 7;
+                    local_38[5] = param_2 + 6;
+                    local_38[6] = param_2 + 5;
+                    local_38[7] = param_2 - 1;
+                    local_38[8] = local_38[0];
+                }
+            }
+        }
+    }
+    cXyz cStack_50;
+    cXyz cStack_5c;
+    cXyz cStack_68;
+    int* piVar2 = local_38;
+    cXyz cStack_74(0.0f, 0.0f, 0.0f);
+    for (int i = 0; i < 8; piVar2++, i++) {
+        if (piVar2[1] == -1) {
+            break;
+        }
+        cStack_50 = pPos[piVar2[0]] - cStack_44;
+        cStack_5c = pPos[piVar2[1]] - cStack_44;
+        cStack_68 = cStack_5c.outprod(cStack_50);
+        cStack_74 += cStack_68;
+    }
+    cStack_74.normalizeZP();
+    param_1->set(cStack_74);
+}
 
-/* 80BF04F4-80BF04F8 00009C 0004+00 1/1 0/0 0/0 .rodata          @3760 */
-SECTION_RODATA static u32 const lit_3760 = 0x000000FF;
-COMPILER_STRIP_GATE(0x80BF04F4, &lit_3760);
-
-/* 80BF04F8-80BF04FC 0000A0 0004+00 1/1 0/0 0/0 .rodata          @3813 */
-SECTION_RODATA static f32 const lit_3813 = 0.125f;
-COMPILER_STRIP_GATE(0x80BF04F8, &lit_3813);
-
-/* 80BF04FC-80BF0500 0000A4 0004+00 1/1 0/0 0/0 .rodata          @3814 */
-SECTION_RODATA static f32 const lit_3814 = 1.0f / 100.0f;
-COMPILER_STRIP_GATE(0x80BF04FC, &lit_3814);
-
-/* 80BF0500-80BF0508 0000A8 0008+00 1/2 0/0 0/0 .rodata          @3816 */
-SECTION_RODATA static u8 const lit_3816[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80BF0500, &lit_3816);
-
-/* 80BF0554-80BF0554 0000FC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80BF0554 = "flag%02d.bti";
-SECTION_DEAD static char const* const stringBase_80BF0561 = "flag.bti";
-SECTION_DEAD static char const* const stringBase_80BF056A = "model0.bmd";
-#pragma pop
+static void initCcSphereDummy() {
+    const static dCcD_SrcSph ccSphSrc = {
+        {
+            {0x0, {{0x0, 0x0, 0x0}, {0x10000, 0x11}, 0x0}},  // mObj
+            {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},              // mGObjAt
+            {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x1},              // mGObjTg
+            {0x0},                                           // mGObjCo
+        },                                                   // mObjInf
+        {
+            {{0.0f, 0.0f, 0.0f}, 100.0f}  // mSph
+        }  // mSphAttr
+    };
+}
 
 /* 80BEEA78-80BEEC3C 000078 01C4+00 1/1 0/0 0/0 .text            createHeap__12daObjFlag3_cFv */
-void daObjFlag3_c::createHeap() {
-    // NONMATCHING
+int daObjFlag3_c::createHeap() {
+    s8 flagNum = (u8)shape_angle.x;
+    if (mFlagValid) {
+        char acStack_40[16];
+        sprintf(acStack_40, "flag%02d.bti", flagNum);
+        shape_angle.setall(0);
+        current.angle.setall(0);
+        ResTIMG* image = (ResTIMG*)dComIfG_getObjectRes(mFlagName, "flag.bti");
+        JUT_ASSERT(838, image != 0);
+        GXInitTexObj(mFlagCloth.getImageTexObj(), (u8*)image + image->imageOffset, image->width,
+                     image->height, (GXTexFmt)image->format, (GXTexWrapMode)image->wrapS,
+                     (GXTexWrapMode)image->wrapT, image->mipmapCount > 1 ? GX_TRUE : GX_FALSE);
+        if (image->mipmapCount > 1) {
+            GXInitTexObjLOD(mFlagCloth.getImageTexObj(), (GXTexFilter)image->minFilter,
+                            (GXTexFilter)image->magFilter, image->minLOD * 0.125f,
+                            image->maxLOD * 0.125f, image->LODBias * 0.01f, image->biasClamp,
+                            image->doEdgeLOD, (GXAnisotropy)image->maxAnisotropy);
+        }
+    }
+    J3DModelData* modelData_pole = (J3DModelData*)dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), "model0.bmd");
+    JUT_ASSERT(865, modelData_pole != 0);
+    mModel = mDoExt_J3DModel__create(modelData_pole, 0x80000, 0x11000084);
+    return mModel != NULL ? TRUE : FALSE;
 }
 
 /* 80BEEC3C-80BEEC5C 00023C 0020+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
-static void createSolidHeap(fopAc_ac_c* param_0) {
-    // NONMATCHING
+static int createSolidHeap(fopAc_ac_c* i_this) {
+    return static_cast<daObjFlag3_c*>(i_this)->createHeap();
+}
+
+inline int daObjFlag3_c::draw() {
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    dComIfGd_setListBG();
+    g_env_light.setLightTevColorType_MAJI(mModel, &tevStr);
+    mDoExt_modelUpdateDL(mModel);
+    if (mFlagValid) {
+        j3dSys.getDrawBuffer(0)->entryImm(&mFlagCloth, 0);
+    }
+    dComIfGd_setList();
+    return 1;
 }
 
 /* 80BEEC5C-80BEED1C 00025C 00C0+00 1/0 0/0 0/0 .text            daObjFlag3_Draw__FP12daObjFlag3_c
  */
-static void daObjFlag3_Draw(daObjFlag3_c* param_0) {
-    // NONMATCHING
+static int daObjFlag3_Draw(daObjFlag3_c* i_this) {
+    return i_this->draw();
 }
 
 /* 80BEED1C-80BEED3C 00031C 0020+00 1/0 0/0 0/0 .text daObjFlag3_Execute__FP12daObjFlag3_c */
-static void daObjFlag3_Execute(daObjFlag3_c* param_0) {
-    // NONMATCHING
+static int daObjFlag3_Execute(daObjFlag3_c* i_this) {
+    return i_this->execute();
 }
 
 /* 80BEED3C-80BEEDA8 00033C 006C+00 1/1 0/0 0/0 .text            execute__12daObjFlag3_cFv */
-void daObjFlag3_c::execute() {
-    // NONMATCHING
+int daObjFlag3_c::execute() {
+    if (!mFlagValid) {
+        return 1;
+    }
+
+    #ifdef DEBUG
+    mFlagCloth.setSpringRate(attr().mSpringCoeeficient);
+    mFlagCloth.setWindRate(attr().mWindCoefficient);
+    mFlagCloth.setDecayRate(attr().mDecayRate);
+    mFlagCloth.setGravity(attr().mGravity);
+    mFlagCloth.setTornado(attr().mTornado);
+    #endif
+
+    mFlagCloth.execute();
+    eyePos = mFlagCloth.getTargetPos();
+    return 1;
 }
 
-/* 80BEEDA8-80BEEDE4 0003A8 003C+00 2/2 0/0 0/0 .text            __dt__4cXyzFv */
-// cXyz::~cXyz() {
-extern "C" void __dt__4cXyzFv() {
-    // NONMATCHING
+inline void FlagCloth2_c::calcFlagNormalBack() {
+    cXyz* pNormal = getNormal();
+    cXyz* pNormalBack = getNormalBack();
+    for (int i = 0; i < 36; pNormal++, pNormalBack++, i++) {
+        pNormalBack->set(-pNormal->x, -pNormal->y, -pNormal->z);
+    }
 }
 
 /* 80BEEDE4-80BEEF74 0003E4 0190+00 1/1 0/0 0/0 .text            execute__12FlagCloth2_cFv */
 void FlagCloth2_c::execute() {
-    // NONMATCHING
-}
+    cXyz direction;
+    f32 power;
+    dKyw_get_AllWind_vec(mpFlagPosition, &direction, &power);
+    direction.normalizeZP();
+    direction *= power * mWindRate;
+    cXyz* pPos = getPos();
+    cXyz* pNormal = getNormal();
+    cXyz* pNormal2 = pNormal;
+    cXyz* pVec = getVec();
+    cXyz cStack_40;
+    for (int i = 0; i < 36; pVec++, i++) {
+        cXyz cStack_40 = calcFlagFactor(pPos, pNormal, &direction, i);
+        *pVec += cStack_40;
+        *pVec *= mDecayRate;
+    }
 
-/* ############################################################################################## */
-/* 80BF0508-80BF050C 0000B0 0004+00 1/3 0/0 0/0 .rodata          @4012 */
-SECTION_RODATA static u8 const lit_4012[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80BF0508, &lit_4012);
+    pNormal = getVec();
+    for (int i = 0; i < 36; pPos++, pNormal++, i++) {
+        *pPos += *pNormal;
+    }
 
-/* 80BEEF74-80BEF278 000574 0304+00 2/2 0/0 0/0 .text calcFlagNormal__12FlagCloth2_cFP4cXyzi */
-void FlagCloth2_c::calcFlagNormal(cXyz* param_0, int param_1) {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80BF050C-80BF0510 0000B4 0004+00 0/2 0/0 0/0 .rodata          @4104 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4104 = 60.0f;
-COMPILER_STRIP_GATE(0x80BF050C, &lit_4104);
-#pragma pop
-
-/* 80BF0510-80BF0518 0000B8 0004+04 0/1 0/0 0/0 .rodata          @4105 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4105[1 + 1 /* padding */] = {
-    0x42A9B4A4,
-    /* padding */
-    0x00000000,
-};
-COMPILER_STRIP_GATE(0x80BF0510, &lit_4105);
-#pragma pop
-
-/* 80BF0518-80BF0520 0000C0 0008+00 0/1 0/0 0/0 .rodata          @4106 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4106[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80BF0518, &lit_4106);
-#pragma pop
-
-/* 80BF0520-80BF0528 0000C8 0008+00 0/1 0/0 0/0 .rodata          @4107 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4107[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80BF0520, &lit_4107);
-#pragma pop
-
-/* 80BF0528-80BF0530 0000D0 0008+00 0/1 0/0 0/0 .rodata          @4108 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4108[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80BF0528, &lit_4108);
-#pragma pop
-
-/* 80BEF278-80BEF6D0 000878 0458+00 1/1 0/0 0/0 .text
- * calcFlagFactor__12FlagCloth2_cFP4cXyzP4cXyzP4cXyzi           */
-void FlagCloth2_c::calcFlagFactor(cXyz* param_0, cXyz* param_1, cXyz* param_2, int param_3) {
-    // NONMATCHING
+    for (int i = 0; i < 36; pNormal2++, i++) {
+        calcFlagNormal(pNormal2, i);
+    }
+    calcFlagNormalBack();
+    DCStoreRangeNoSync(getPos(), sizeof(cXyz) * 36);
+    DCStoreRangeNoSync(getNormal(), sizeof(cXyz) * 36);
+    DCStoreRangeNoSync(getNormalBack(), sizeof(cXyz) * 36);
 }
 
 /* 80BEF6D0-80BEF6D8 000CD0 0008+00 1/0 0/0 0/0 .text daObjFlag3_IsDelete__FP12daObjFlag3_c */
-static bool daObjFlag3_IsDelete(daObjFlag3_c* param_0) {
-    return true;
+static int daObjFlag3_IsDelete(daObjFlag3_c* i_this) {
+    return 1;
 }
 
 /* 80BEF6D8-80BEF700 000CD8 0028+00 1/0 0/0 0/0 .text            daObjFlag3_Delete__FP12daObjFlag3_c
  */
-static void daObjFlag3_Delete(daObjFlag3_c* param_0) {
-    // NONMATCHING
+static int daObjFlag3_Delete(daObjFlag3_c* i_this) {
+    fopAcM_GetID(i_this);
+    i_this->~daObjFlag3_c();
+    return 1;
 }
 
 /* 80BEF700-80BEF790 000D00 0090+00 1/1 0/0 0/0 .text            __dt__12daObjFlag3_cFv */
 daObjFlag3_c::~daObjFlag3_c() {
-    // NONMATCHING
+    #ifdef DEBUG
+    M_hio.dt();
+    #endif
+
+    if (mFlagValid) {
+        dComIfG_resDelete(&mFlagPhase, mFlagName);
+    }
+    dComIfG_resDelete(&mArcPhase, daSetBgObj_c::getArcName(this));
 }
 
-/* ############################################################################################## */
+/* 80BEF790-80BEF93C 000D90 01AC+00 2/1 0/0 0/0 .text            __dt__12FlagCloth2_cFv */
+FlagCloth2_c::~FlagCloth2_c() {}
+
+/* 80BEF93C-80BEF95C 000F3C 0020+00 1/0 0/0 0/0 .text            daObjFlag3_Create__FP10fopAc_ac_c
+ */
+static int daObjFlag3_Create(fopAc_ac_c* i_this) {
+    fopAcM_GetID(i_this);
+    return static_cast<daObjFlag3_c*>(i_this)->create();
+}
+
+/* 80BEF95C-80BEFBC4 000F5C 0268+00 1/1 0/0 0/0 .text            create__12daObjFlag3_cFv */
+int daObjFlag3_c::create() {
+    fopAcM_SetupActor(this, daObjFlag3_c);
+    s8 flagNum = (u8)shape_angle.x;
+    if (flagNum <= -1 || flagNum > 99) {
+        mFlagValid = false;
+    } else {
+        mFlagValid = true;
+        sprintf(mFlagName, "FlagObj%02d", flagNum);
+        int rv = dComIfG_resLoad(&mFlagPhase, mFlagName);
+        if (rv != cPhs_COMPLEATE_e) {
+            return rv;
+        }
+    }
+    int rv = dComIfG_resLoad(&mArcPhase, daSetBgObj_c::getArcName(this));
+    if (rv == cPhs_COMPLEATE_e) {
+        if (fopAcM_entrySolidHeap(this, createSolidHeap, 0x4000) == 0) {
+            return cPhs_ERROR_e;
+        } else {
+            create_init();
+        }
+    }
+    return rv;
+}
+
+void daObjFlag3_c::initBaseMtx() {
+    mDoMtx_stack_c::transS(current.pos);
+    mModel->setBaseTRMtx(mDoMtx_stack_c::get());
+    fopAcM_SetMtx(this, mModel->getBaseTRMtx());
+}
+
+/* 80BEFBC4-80BEFD08 0011C4 0144+00 1/1 0/0 0/0 .text            create_init__12daObjFlag3_cFv */
+void daObjFlag3_c::create_init() {
+    int* pOffset = (int*)dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), "spec.dat");
+    f32 offset = (u16)*pOffset;
+    field_0x1320.set(current.pos.x, current.pos.y + offset, current.pos.z);
+    fopAcM_setCullSizeBox(this, -600.0f, -offset, -600.0f, 600.0f, 400.0f, 600.0f);
+    eyePos.set(mFlagCloth.getTargetPos());
+    mFlagCloth.initFlagPos(&field_0x1320, this);
+    mFlagCloth.setSpringRate(attr().mSpringCoeeficient);
+    mFlagCloth.setWindRate(attr().mWindCoefficient);
+    mFlagCloth.setDecayRate(attr().mDecayRate);
+    mFlagCloth.setGravity(attr().mGravity);
+    mFlagCloth.setTornado(attr().mTornado);
+    initBaseMtx();
+    
+    #ifdef DEBUG
+    M_hio.ct();
+    #endif
+}
+
+/* 80BEFD08-80BEFF30 001308 0228+00 1/1 0/0 0/0 .text
+ * initFlagPos__12FlagCloth2_cFP4cXyzP10fopAc_ac_c              */
+void FlagCloth2_c::initFlagPos(cXyz* param_0, fopAc_ac_c* param_1) {
+    mpFlagPosition = param_0;
+    cXyz direction;
+    f32 power;
+    dKyw_get_AllWind_vec(mpFlagPosition, &direction, &power);
+    mDoMtx_stack_c::transS(*mpFlagPosition);
+    cMtx_copy(mDoMtx_stack_c::get(), mModelMtx);
+    f32 dVar7 = -150.0f;
+    f32 dVar8 = 0.0f;
+    cXyz* pPos = getPos();
+    for (int i = 0; i < 6; i++) {
+        for (int j = 0; j < 6; j++, pPos++) {
+            pPos->set(0.0f, dVar7, dVar8);
+            if (i != 0 && i != 30) {
+                pPos->x += cM_rndFX(10.0f);
+                pPos->y += cM_rndFX(10.0f);
+                pPos->z += cM_rndFX(10.0f);
+            }
+            dVar8 += 60.0f;
+        }
+        dVar7 += 60.0f;
+        dVar8 = 0.0f;
+    }
+    
+    cXyz* pNormal = getNormal();
+    for (int i = 0; i < 36; i++, pNormal++) {
+        calcFlagNormal(pNormal, i);
+    }
+    calcFlagNormalBack();
+    initTexCoord();
+}
+
+/* 80BF00A0-80BF0434 0016A0 0394+00 1/0 0/0 0/0 .text            draw__12FlagCloth2_cFv */
+void FlagCloth2_c::draw() {
+    j3dSys.reinitGX();
+    GXSetNumIndStages(0);
+    dKy_setLight_again();
+    dKy_GxFog_tevstr_set(&mTevStr);
+    dKy_setLight_mine(&mTevStr);
+    g_env_light.settingTevStruct(0x10, mpFlagPosition, &mTevStr);
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
+    GXSetVtxDesc(GX_VA_NRM, GX_INDEX8);
+    GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_NRM, GX_CLR_RGB, GX_F32, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_F32, 0);
+    GXSetArray(GX_VA_POS, getPos(), sizeof(cXyz));
+    GXSetArray(GX_VA_NRM, getNormal(), sizeof(cXyz));
+    GXSetArray(GX_VA_TEX0, mTexCoord, 8);
+    GXSetZCompLoc(GX_FALSE);
+    GXSetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
+    GXLoadTexObj(&mTexObj, GX_TEXMAP0);
+    GXSetNumChans(1);
+    GXSetChanCtrl(GX_COLOR0, GX_TRUE, GX_SRC_REG, GX_SRC_REG, 0xff, GX_DF_CLAMP, GX_AF_SPOT);
+    GXSetNumTexGens(1);
+    GXSetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 0x3c);
+    GXSetNumTevStages(1);
+    GXSetTevSwapMode(GX_TEVSTAGE0, GX_TEV_SWAP0, GX_TEV_SWAP0);
+    dKy_Global_amb_set(&mTevStr);
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
+    GXSetTevColor(GX_TEVREG0, (GXColor){0, 0, 0, 0xff});
+    GXSetTevKColor(GX_KCOLOR0, (GXColor){0, 0, 0, 0xff});
+    GXSetTevKColorSel(GX_TEVSTAGE0, GX_TEV_KCSEL_K0);
+    GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_KONST, GX_CC_TEXC, GX_CC_RASC, GX_CC_C0);
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_4, GX_TRUE, GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_KONST, GX_CA_TEXA, GX_CA_ZERO);
+    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+    GXSetTevKAlphaSel(GX_TEVSTAGE0, GX_TEV_KASEL_K3_A);
+    GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_OR, GX_GREATER, 0);
+    Mtx viewModelMtx;
+    cMtx_concat(j3dSys.getViewMtx(), mModelMtx, viewModelMtx);
+    GXLoadPosMtxImm(viewModelMtx, 0);
+    GXLoadNrmMtxImm(viewModelMtx, 0);
+    GXSetClipMode(GX_CLIP_ENABLE);
+    GXSetCullMode(GX_CULL_BACK);
+
+    for (int i = 0; i < 5; i++) {
+        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 12);
+        for (int j = 0; j < 6; j++) {
+            GXPosition1x8(i + j * 6);
+            GXPosition1x8(i + j * 6);
+            GXTexCoord1x8(i + j * 6);
+            GXPosition1x8(i + j * 6 + 1);
+            GXPosition1x8(i + j * 6 + 1);
+            GXTexCoord1x8(i + j * 6 + 1);
+        }
+        GXEnd();
+    }
+
+    GXSetArray(GX_VA_NRM, getNormalBack(), sizeof(cXyz));
+    GXSetCullMode(GX_CULL_FRONT);
+
+    for (int i = 0; i < 5; i++) {
+        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 12);
+        for (int j = 0; j < 6; j++) {
+            GXPosition1x8(i + j * 6);
+            GXPosition1x8(i + j * 6);
+            GXTexCoord1x8(i + j * 6);
+            GXPosition1x8(i + j * 6 + 1);
+            GXPosition1x8(i + j * 6 + 1);
+            GXTexCoord1x8(i + j * 6 + 1);
+        }
+        GXEnd();
+    }
+
+    J3DShape::resetVcdVatCache();
+}
+
 /* 80BF058C-80BF05AC -00001 0020+00 1/0 0/0 0/0 .data            l_daObjFlag3_Method */
 static actor_method_class l_daObjFlag3_Method = {
-    (process_method_func)daObjFlag3_Create__FP10fopAc_ac_c,
-    (process_method_func)daObjFlag3_Delete__FP12daObjFlag3_c,
-    (process_method_func)daObjFlag3_Execute__FP12daObjFlag3_c,
-    (process_method_func)daObjFlag3_IsDelete__FP12daObjFlag3_c,
-    (process_method_func)daObjFlag3_Draw__FP12daObjFlag3_c,
+    (process_method_func)daObjFlag3_Create,
+    (process_method_func)daObjFlag3_Delete,
+    (process_method_func)daObjFlag3_Execute,
+    (process_method_func)daObjFlag3_IsDelete,
+    (process_method_func)daObjFlag3_Draw,
 };
 
 /* 80BF05AC-80BF05DC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Flag3 */
@@ -319,185 +552,5 @@ extern actor_process_profile_definition g_profile_Obj_Flag3 = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80BF05DC-80BF05E8 000050 000C+00 3/3 0/0 0/0 .data            __vt__10cCcD_GStts */
-SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10cCcD_GSttsFv,
-};
-
-/* 80BF05E8-80BF05F4 00005C 000C+00 2/2 0/0 0/0 .data            __vt__10dCcD_GStts */
-SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10dCcD_GSttsFv,
-};
-
-/* 80BF05F4-80BF0600 000068 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGAab */
-SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGAabFv,
-};
-
-/* 80BF0600-80BF060C 000074 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGSph */
-SECTION_DATA extern void* __vt__8cM3dGSph[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGSphFv,
-};
-
-/* 80BF060C-80BF0620 000080 0014+00 2/2 0/0 0/0 .data            __vt__12FlagCloth2_c */
-SECTION_DATA extern void* __vt__12FlagCloth2_c[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)entry__9J3DPacketFP13J3DDrawBuffer,
-    (void*)draw__12FlagCloth2_cFv,
-    (void*)__dt__12FlagCloth2_cFv,
-};
-
-/* 80BEF790-80BEF93C 000D90 01AC+00 2/1 0/0 0/0 .text            __dt__12FlagCloth2_cFv */
-FlagCloth2_c::~FlagCloth2_c() {
-    // NONMATCHING
-}
-
-/* 80BEF93C-80BEF95C 000F3C 0020+00 1/0 0/0 0/0 .text            daObjFlag3_Create__FP10fopAc_ac_c
- */
-static void daObjFlag3_Create(fopAc_ac_c* param_0) {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80BF0554-80BF0554 0000FC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80BF0575 = "FlagObj%02d";
-#pragma pop
-
-/* 80BEF95C-80BEFBC4 000F5C 0268+00 1/1 0/0 0/0 .text            create__12daObjFlag3_cFv */
-void daObjFlag3_c::create() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80BF0530-80BF0534 0000D8 0004+00 0/1 0/0 0/0 .rodata          @4242 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4242 = -600.0f;
-COMPILER_STRIP_GATE(0x80BF0530, &lit_4242);
-#pragma pop
-
-/* 80BF0534-80BF0538 0000DC 0004+00 0/1 0/0 0/0 .rodata          @4243 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4243 = 600.0f;
-COMPILER_STRIP_GATE(0x80BF0534, &lit_4243);
-#pragma pop
-
-/* 80BF0538-80BF0540 0000E0 0004+04 0/1 0/0 0/0 .rodata          @4244 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4244[1 + 1 /* padding */] = {
-    400.0f,
-    /* padding */
-    0.0f,
-};
-COMPILER_STRIP_GATE(0x80BF0538, &lit_4244);
-#pragma pop
-
-/* 80BF0540-80BF0548 0000E8 0008+00 0/1 0/0 0/0 .rodata          @4246 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4246[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80BF0540, &lit_4246);
-#pragma pop
-
-/* 80BF0554-80BF0554 0000FC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80BF0581 = "spec.dat";
-#pragma pop
-
-/* 80BEFBC4-80BEFD08 0011C4 0144+00 1/1 0/0 0/0 .text            create_init__12daObjFlag3_cFv */
-void daObjFlag3_c::create_init() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80BF0548-80BF054C 0000F0 0004+00 0/1 0/0 0/0 .rodata          @4287 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4287 = -150.0f;
-COMPILER_STRIP_GATE(0x80BF0548, &lit_4287);
-#pragma pop
-
-/* 80BF054C-80BF0550 0000F4 0004+00 0/1 0/0 0/0 .rodata          @4288 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4288 = 10.0f;
-COMPILER_STRIP_GATE(0x80BF054C, &lit_4288);
-#pragma pop
-
-/* 80BF0550-80BF0554 0000F8 0004+00 0/1 0/0 0/0 .rodata          @4289 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4289 = 5.0f;
-COMPILER_STRIP_GATE(0x80BF0550, &lit_4289);
-#pragma pop
-
-/* 80BEFD08-80BEFF30 001308 0228+00 1/1 0/0 0/0 .text
- * initFlagPos__12FlagCloth2_cFP4cXyzP10fopAc_ac_c              */
-void FlagCloth2_c::initFlagPos(cXyz* param_0, fopAc_ac_c* param_1) {
-    // NONMATCHING
-}
-
-/* 80BEFF30-80BEFF34 001530 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-// cXyz::cXyz() {
-extern "C" void __ct__4cXyzFv() {
-    /* empty function */
-}
-
-/* 80BEFF34-80BEFF7C 001534 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
-// cM3dGSph::~cM3dGSph() {
-extern "C" void __dt__8cM3dGSphFv() {
-    // NONMATCHING
-}
-
-/* 80BEFF7C-80BEFFC4 00157C 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
-// cM3dGAab::~cM3dGAab() {
-extern "C" void __dt__8cM3dGAabFv() {
-    // NONMATCHING
-}
-
-/* 80BEFFC4-80BF0020 0015C4 005C+00 1/0 0/0 0/0 .text            __dt__10dCcD_GSttsFv */
-// dCcD_GStts::~dCcD_GStts() {
-extern "C" void __dt__10dCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* 80BF0020-80BF0058 001620 0038+00 1/1 0/0 0/0 .text            __ct__11J3DLightObjFv */
-// J3DLightObj::J3DLightObj() {
-extern "C" void __ct__11J3DLightObjFv() {
-    // NONMATCHING
-}
-
-/* 80BF0058-80BF00A0 001658 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
-// cCcD_GStts::~cCcD_GStts() {
-extern "C" void __dt__10cCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* 80BF00A0-80BF0434 0016A0 0394+00 1/0 0/0 0/0 .text            draw__12FlagCloth2_cFv */
-void FlagCloth2_c::draw() {
-    // NONMATCHING
-}
-
-/* 80BF0434-80BF0450 001A34 001C+00 2/2 0/0 0/0 .text            getTargetPos__12FlagCloth2_cFv */
-void FlagCloth2_c::getTargetPos() {
-    // NONMATCHING
-}
 
 /* 80BF0554-80BF0554 0000FC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

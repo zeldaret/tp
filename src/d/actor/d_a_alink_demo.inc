@@ -1441,7 +1441,6 @@ f32 daAlink_c::setStickAnmData(J3DAnmBase* i_anm, int param_1, int param_2, u16 
 
 /* 80119464-801195C0 113DA4 015C+00 1/1 0/0 0/0 .text
  * daAlink_c_getDemoIDData__FP13dDemo_actor_cPiPiPiPUsPiPi      */
-// NONMATCHING - some stack issues
 static int daAlink_c_getDemoIDData(dDemo_actor_c* param_0, int* param_1, int* param_2,
                                        int* param_3, u16* param_4, int* param_5, int* param_6) {
     JStudio::stb::TParseData_fixed<51, TValueIterator_misaligned<u32> > sp30(param_0->getPrm()->getData());

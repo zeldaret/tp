@@ -7,7 +7,7 @@
 #include "dolphin/os.h"
 
 namespace JStudio {
-struct TObject;
+class TObject;
 namespace stb {
 
 class TControl;
@@ -156,11 +156,10 @@ private:
     /* 0x54 */ s32 _54;
 };
 
-template <int T>
+template <int S>
 struct TParseData : public data::TParse_TParagraph_data::TData {
     TParseData(const void* pContent) {
-        data::TParse_TParagraph_data data(pContent);
-        set(data);
+        set(data::TParse_TParagraph_data(pContent));
     }
 
     TParseData() {
@@ -171,44 +170,56 @@ struct TParseData : public data::TParse_TParagraph_data::TData {
         data.getData(this);
     }
 
+    void set(const void* pContent) {
+        set(data::TParse_TParagraph_data(pContent));
+    }
+
     bool isEnd() const {
         return status == 0;
     }
 
     bool empty() const {
-        return fileCount == NULL;
+        return content == NULL;
     }
 
     bool isValid() const {
-        return !empty() && status == 50;
+        return !empty() && status == S;
     }
 
-    const void* getContent() const { return fileCount; }
+    const void* getContent() const { return content; }
 
-    u32 size() const { return dataSize; }
+    u32 size() const { return entryCount; }
 };
 
-template <int T, class Iterator=JGadget::binary::TValueIterator_raw<u8> >
-struct TParseData_fixed : public TParseData<T> {
-    TParseData_fixed(const void* pContent) : TParseData<T>(pContent) {}
-    TParseData_fixed() : TParseData<T>() {}
+template <int S, class Iterator=JGadget::binary::TValueIterator_raw<u8> >
+struct TParseData_fixed : public TParseData<S> {
+    TParseData_fixed(const void* pContent) : TParseData<S>(pContent) {}
+    TParseData_fixed() : TParseData<S>() {}
 
     const void* getNext() const {
-        return _10;
+        return this->next;
     }
 
     bool isValid() const {
-        return TParseData::isValid() && getNext() != NULL;
+        return TParseData<S>::isValid() && getNext() != NULL;
     }
 
     Iterator begin() const {
-        return Iterator(fileCount);
+        return Iterator(this->content);
     }
 
     Iterator end() const {
-        Iterator i(fileCount);
-        i += size();
+        Iterator i(this->content);
+        i += this->size();
         return i;
+    }
+
+    typename Iterator::ValueType front() const {
+        return *begin();
+    }
+
+    typename Iterator::ValueType back() const {
+        return *--end();
     }
 };
 

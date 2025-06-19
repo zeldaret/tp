@@ -2,6 +2,7 @@
 #define LINKLIST_H
 
 #include "JSystem/JUtility/JUTAssert.h"
+#include "JSystem/JGadget/define.h"
 #include <iterator.h>
 
 namespace JGadget {
@@ -75,8 +76,8 @@ struct TNodeLinkList {
     const_iterator begin() const { return const_iterator(ocObject_.getNext()); }
     iterator end() { return iterator(&ocObject_); }
     const_iterator end() const { return const_iterator((TLinkListNode*)(&ocObject_)); }
-    u32 size() { return count; }
-    bool empty() { return size() == 0; }
+    u32 size() const { return count; }
+    bool empty() const { return size() == 0; }
     iterator pop_front() { return erase(begin()); }
 
     iterator erase(JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList::iterator);
@@ -248,7 +249,9 @@ struct TLinkList_factory : public TLinkList<T, I> {
 };
 
 template <typename T, int I>
-TLinkList_factory<T, I>::~TLinkList_factory() {}
+TLinkList_factory<T, I>::~TLinkList_factory() {
+    JGADGET_ASSERTWARN(934, empty());
+}
 
 template <typename T>
 struct TEnumerator {
