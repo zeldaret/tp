@@ -1,6 +1,7 @@
 #ifndef J3DSHAPEMTX_H
 #define J3DSHAPEMTX_H
 
+#include "JSystem/JUtility/JUTAssert.h"
 #include "dolphin/mtx.h"
 
 class J3DTexMtx;
@@ -72,9 +73,13 @@ public:
     static u8 sLODFlag;
     static u32 sTexMtxLoadType;
 
-    static void setCurrentPipeline(u32 pipeline) { sCurrentPipeline = pipeline; }
+    static void setCurrentPipeline(u32 pipeline) {
+        // TODO: needs to go in J3DShape.h for assert
+        J3D_ASSERT(91, pipeline < 4, "Error : range over.");
+        sCurrentPipeline = pipeline;
+    }
     static void setLODFlag(u8 flag) { sLODFlag = flag; }
-    static u8 getLODFlag() { return sLODFlag; }
+    static u32 getLODFlag() { return sLODFlag; }
     static void resetMtxLoadCache();
 
 protected:

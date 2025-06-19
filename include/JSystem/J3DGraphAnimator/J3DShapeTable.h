@@ -2,6 +2,7 @@
 #define J3DSHAPETABLE_H
 
 #include "JSystem/J3DGraphBase/J3DShape.h"
+#include "JSystem/JUtility/JUTAssert.h"
 
 class JUTNameTab;
 
@@ -25,7 +26,10 @@ public:
     virtual ~J3DShapeTable() {}
 
     u16 getShapeNum() const { return mShapeNum; }
-    J3DShape* getShapeNodePointer(u16 idx) const { return mShapeNodePointer[idx]; }
+    J3DShape* getShapeNodePointer(u16 idx) const {
+        J3D_ASSERT(85, idx < mShapeNum, "Error : range over.");
+        return mShapeNodePointer[idx];
+    }
 
 private:
     friend class J3DModelLoader;

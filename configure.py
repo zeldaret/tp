@@ -558,6 +558,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_vibration.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_vib_pattern.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_attention.cpp", extra_cflags=['-pragma "nosyminline on"']),
+            Object(NonMatching, "d/d_bg_parts.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_bg_pc.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_att_dist.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_bg_plc.cpp"),
@@ -1090,7 +1091,7 @@ config.libs = [
             Object(NonMatching, "JSystem/J3DGraphAnimator/J3DSkinDeform.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphAnimator/J3DCluster.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphAnimator/J3DJoint.cpp"),
-            Object(NonMatching, "JSystem/J3DGraphAnimator/J3DMaterialAttach.cpp"),
+            Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphAnimator/J3DMaterialAttach.cpp"),
         ],
     ),
     JSystemLib(

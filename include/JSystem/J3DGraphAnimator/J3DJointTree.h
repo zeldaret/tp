@@ -63,7 +63,10 @@ public:
     J3DDrawMtxData* getDrawMtxData() { return &mDrawMtxData; }
     JUTNameTab* getJointName() const { return mJointName; }
     J3DJoint* getRootNode() { return mRootNode; }
-    J3DJoint* getJointNodePointer(u16 idx) const { return mJointNodePointer[idx]; }
+    J3DJoint* getJointNodePointer(u16 idx) const {
+        J3D_ASSERT(139, idx < mJointNum, "Error : range over.");
+        return mJointNodePointer[idx];
+    }
     J3DMtxCalc* getBasicMtxCalc() const { return mBasicMtxCalc; }
     Mtx& getInvJointMtx(int idx) { return mInvJointMtx[idx]; }
     u32 getModelDataType() const { return mModelDataType; }

@@ -93,16 +93,19 @@ struct J3DSys {
 
     void setDrawModeXlu() { mDrawMode = XLU; }
 
-    void* getVtxPos() const { return mVtxPos; }
+    void* getVtxPos() { return mVtxPos; }
     void setVtxPos(void* pVtxPos) { mVtxPos = pVtxPos; }
 
-    void* getVtxNrm() const { return mVtxNrm; }
+    void* getVtxNrm() { return mVtxNrm; }
     void setVtxNrm(void* pVtxNrm) { mVtxNrm = pVtxNrm; }
 
     void* getVtxCol() const { return mVtxCol; }
     void setVtxCol(_GXColor* pVtxCol) { mVtxCol = pVtxCol; }
 
-    void setModel(J3DModel* pModel) { mModel = pModel; }
+    void setModel(J3DModel* pModel) {
+        J3D_ASSERT(200, pModel, "Error : null pointer.");
+        mModel = pModel;
+    }
     void setShapePacket(J3DShapePacket* pPacket) { mShapePacket = pPacket; }
     void setMatPacket(J3DMatPacket* pPacket) { mMatPacket = pPacket; }
     J3DMatPacket* getMatPacket() { return mMatPacket; }
@@ -129,6 +132,7 @@ struct J3DSys {
     }
 
     void setModelNrmMtx(Mtx33* pMtxArr) {
+        JUT_ASSERT_MSG(241, pMtxArr, "Error : null pointer.");
         mModelNrmMtx = pMtxArr;
         GXSetArray(GX_NRM_MTX_ARRAY, mModelNrmMtx, sizeof(*mModelNrmMtx));
     }
@@ -148,8 +152,8 @@ struct J3DSys {
         return mDrawBuffer[type];
     }
 
-    Mtx& getModelDrawMtx(u16 no) const { return mModelDrawMtx[no]; }
-    J3DShapePacket* getShapePacket() const { return mShapePacket; }
+    Mtx& getModelDrawMtx(u16 no) { return mModelDrawMtx[no]; }
+    J3DShapePacket* getShapePacket() { return mShapePacket; }
 
     void setViewMtx(Mtx m) { MTXCopy(m, mViewMtx); }
 

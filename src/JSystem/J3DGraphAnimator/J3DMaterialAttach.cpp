@@ -215,26 +215,23 @@ int J3DMaterialTable::entryTexNoAnimator(J3DAnmTexPattern* param_1) {
 
 /* 8032FCC4-8032FE70 32A604 01AC+00 0/0 14/14 6/6 .text
  * entryTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey */
-// NONMATCHING regalloc
-int J3DMaterialTable::entryTexMtxAnimator(J3DAnmTextureSRTKey* param_1) {
-    JUT_ASSERT_MSG(532, param_1 != NULL, "Error : null pointer.")
+int J3DMaterialTable::entryTexMtxAnimator(J3DAnmTextureSRTKey* btk) {
+    JUT_ASSERT_MSG(532, btk != NULL, "Error : null pointer.")
     int rv = 0;
-    u16 materialNum = param_1->getUpdateMaterialNum();
-    rv = createTexMtxForAnimator(param_1);
+    u16 materialNum = btk->getUpdateMaterialNum();
+    rv = createTexMtxForAnimator(btk);
     if (rv != 0) {
         return rv;
     }
     if (isLocked()) {
         return 2;
     }
-    for (u16 i = 0; i < materialNum; i++) {
-        if (param_1->isValidUpdateMaterialID(i)) {
-            u16 updateMaterialId = param_1->getUpdateMaterialID(i);
-            // Maybe helps? Makes material r26 instead of r30
-            //J3DMaterial* material = (J3DMaterial*)getMaterialNodePointer((u16)updateMaterialId);
+    for (u16 no = 0; no < materialNum; no++) {
+        if (btk->isValidUpdateMaterialID(no)) {
+            u16 updateMaterialId = btk->getUpdateMaterialID(no);
             J3DMaterial* material = getMaterialNodePointer((u16)updateMaterialId);
             J3DMaterialAnm* materialAnm = material->getMaterialAnm();
-            u8 texMtxID = param_1->getUpdateTexMtxID(i);
+            u8 texMtxID = btk->getUpdateTexMtxID(no);
             if (materialAnm == 0) {
                 rv = 1;
             } else {
@@ -242,15 +239,12 @@ int J3DMaterialTable::entryTexMtxAnimator(J3DAnmTextureSRTKey* param_1) {
                     if (material->getTexCoord(texMtxID) != NULL) {
                         material->getTexCoord(texMtxID)->setTexGenMtx((u8)texMtxID * 3 + 30);
                     }
-                    J3DTexMtxInfo& iVar3 = material->getTexMtx(texMtxID)->getTexMtxInfo();
-                    iVar3.mInfo = (iVar3.mInfo & 0x3f) | (param_1->getTexMtxCalcType() << 7);
-                    Vec* vec = param_1->getSRTCenter(i);
-                    iVar3.mCenter.x = vec->x;
-                    vec = param_1->getSRTCenter(i);
-                    iVar3.mCenter.y = vec->y;
-                    vec = param_1->getSRTCenter(i);
-                    iVar3.mCenter.z = vec->z;
-                    J3DTexMtxAnm texMtxAnm(i, param_1);
+                    J3DTexMtxInfo& tmtxinfo = material->getTexMtx(texMtxID)->getTexMtxInfo();
+                    tmtxinfo.mInfo = (tmtxinfo.mInfo & 0x3f) | (btk->getTexMtxCalcType() << 7);
+                    tmtxinfo.mCenter.x = btk->getSRTCenter(no)->x;
+                    tmtxinfo.mCenter.y = btk->getSRTCenter(no)->y;
+                    tmtxinfo.mCenter.z = btk->getSRTCenter(no)->z;
+                    J3DTexMtxAnm texMtxAnm(no, btk);
                     materialAnm->setTexMtxAnm(texMtxID, &texMtxAnm);
                 }
             }

@@ -48,11 +48,11 @@ public:
     u32 getMtxIdxRegB() const { return mMtxIdxRegB; }
 
     inline void load() const {
-        J3DFifoWriteCPCmd(0x30, getMtxIdxRegA());  // CP_MATINDEX_A
-        J3DFifoWriteCPCmd(0x40, getMtxIdxRegB());  // CP_MATINDEX_B
+        J3DFifoWriteCPCmd(0x30, mMtxIdxRegA);  // CP_MATINDEX_A
+        J3DFifoWriteCPCmd(0x40, mMtxIdxRegB);  // CP_MATINDEX_B
         J3DFifoWriteXFCmd(0x1018, 2);
-        GXWGFifo.u32 = getMtxIdxRegA();
-        GXWGFifo.u32 = getMtxIdxRegB();
+        GXCmd1u32(mMtxIdxRegA);
+        GXCmd1u32(mMtxIdxRegB);
     }
 
     void setCurrentTexMtx(u8 param_1, u8 param_2, u8 param_3, u8 param_4,
@@ -111,7 +111,7 @@ public:
     bool checkFlag(u32 flag) const { return !!(mFlags & flag); }
     void setDrawMtxDataPointer(J3DDrawMtxData* pMtxData) { mDrawMtxData = pMtxData; }
     void setVertexDataPointer(J3DVertexData* pVtxData) { mVertexData = pVtxData; }
-    void* getVcdVatCmd() const { return mVcdVatCmd; }
+    void* getVcdVatCmd() { return mVcdVatCmd; }
     void setVcdVatCmd(void* pVatCmd) { mVcdVatCmd = (u8*)pVatCmd; }
     void show() { offFlag(J3DShpFlag_Visible); }
     void hide() { onFlag(J3DShpFlag_Visible); }
@@ -124,15 +124,14 @@ public:
     bool getNBTFlag() const { return mHasNBT; }
     u32 getBumpMtxOffset() const { return mBumpMtxOffset; }
     void setBumpMtxOffset(u32 offset) { mBumpMtxOffset = offset; }
-    GXVtxDescList* getVtxDesc() const { return mVtxDesc; }
+    GXVtxDescList* getVtxDesc() { return mVtxDesc; }
 
     J3DMaterial* getMaterial() const { return mMaterial; }
     u16 getIndex() const { return mIndex; }
-    u32 getPipeline() const { return (mFlags >> 2) & 0x07; }
     u32 getTexMtxLoadType() const { return mFlags & 0xF000; }
     u32 getMtxGroupNum() const { return mMtxGroupNum; }
-    J3DShapeDraw* getShapeDraw(u32 idx) const { return mShapeDraw[idx]; }
-    J3DShapeMtx* getShapeMtx(u32 idx) const { return mShapeMtx[idx]; }
+    J3DShapeDraw* getShapeDraw(u16 idx) { return mShapeDraw[idx]; }
+    J3DShapeMtx* getShapeMtx(u16 idx) { return mShapeMtx[idx]; }
     Vec* getMin() { return &mMin; }
     Vec* getMax() { return &mMax; }
 
