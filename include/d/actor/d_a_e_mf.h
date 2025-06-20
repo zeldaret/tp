@@ -30,10 +30,10 @@ public:
     /* 0x05D6 */ s16 field_0x5d6;
     /* 0x05D8 */ s8 field_0x5d8;
     /* 0x05DC */ mDoExt_McaMorfSO* mpModelMorf;
-    /* 0x05E0 */ int field_0x5e0;
-    /* 0x05E4 */ J3DModel* field_0x5e4;
+    /* 0x05E0 */ int mAnmID;
+    /* 0x05E4 */ J3DModel* mpAxeModel;
     /* 0x05E8 */ Z2CreatureEnemy mSound;
-    /* 0x068C */ J3DModel* field_0x68c;
+    /* 0x068C */ J3DModel* mpShieldModel;
     /* 0x0690 */ u8 field_0x690[4];
     /* 0x0694 */ dJntCol_c mJntCol;
     /* 0x06A4 */ s8 field_0x6a4;
@@ -144,7 +144,7 @@ public:
     void genMessage(JORMContext*);
 
     /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 base_size;           // 基本サイズ
+    /* 0x08 */ f32 model_size;           // 基本サイズ
     /* 0x0C */ f32 movement_speed;      // 移動速度
     /* 0x10 */ f32 dash_speed;          // 突進速度
     /* 0x14 */ f32 battle_init_range;   // 戦闘開始範囲
