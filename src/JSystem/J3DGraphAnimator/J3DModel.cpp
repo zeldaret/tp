@@ -6,6 +6,7 @@
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "JSystem/J3DGraphBase/J3DShapeMtx.h"
 #include "dolphin/os.h"
 
 /* 80327100-80327184 321A40 0084+00 0/0 3/3 0/0 .text            initialize__8J3DModelFv */

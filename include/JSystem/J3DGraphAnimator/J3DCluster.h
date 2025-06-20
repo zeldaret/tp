@@ -81,12 +81,15 @@ public:
     /* 8032E364 */ void setAnm(J3DAnmCluster*);
 
     J3DCluster* getClusterPointer(u16 index) {
-        J3D_ASSERT(186, (index < mClusterNum),"Error : range over.");
+        J3D_ASSERT(186, (index < mClusterNum), "Error : range over.");
         return &mClusterPointer[index];
     }
     u16 getClusterNum() const { return mClusterNum; }
     u16 getClusterKeyNum() const { return mClusterKeyNum; }
-    J3DClusterKey* getClusterKeyPointer(u16 i) { return &mClusterKeyPointer[i]; }
+    J3DClusterKey* getClusterKeyPointer(u16 i) {
+        J3D_ASSERT(199, (i < mClusterKeyNum), "Error : range over.");
+        return &mClusterKeyPointer[i];
+    }
     f32* getVtxPos() { return mVtxPos; }
     f32* getVtxNrm() { return mVtxNrm; }
 

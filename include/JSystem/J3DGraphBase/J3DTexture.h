@@ -2,6 +2,7 @@
 #define J3DTEXTURE_H
 
 #include "JSystem/J3DGraphBase/J3DStruct.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "dolphin/types.h"
 
@@ -23,7 +24,10 @@ public:
     /* 803366A4 */ virtual ~J3DTexture() {}
 
     u16 getNum() const { return mNum; }
-    ResTIMG* getResTIMG(u16 entry) const { return &mpRes[entry]; }
+    ResTIMG* getResTIMG(u16 entry) const {
+        J3D_ASSERT(72, entry < mNum, "Error : range over.");
+        return &mpRes[entry];   
+    }
     void setResTIMG(u16 entry, const ResTIMG& timg) {
         mpRes[entry] = timg;
         mpRes[entry].imageOffset = ((mpRes[entry].imageOffset + (u32)&timg - (u32)(mpRes + entry)));

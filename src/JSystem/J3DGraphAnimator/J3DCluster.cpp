@@ -37,7 +37,7 @@ void J3DDeformData::offAllFlag(u32 i_flag) {
 /* 8032E274-8032E298 328BB4 0024+00 0/0 1/1 0/0 .text            deform__13J3DDeformDataFP8J3DModel
  */
 void J3DDeformData::deform(J3DModel* model) {
-    J3D_ASSERT(110, model,"Error : null pointer");
+    J3D_ASSERT(110, model, "Error : null pointer");
 
     deform(model->getVertexBuffer());
 }
@@ -45,7 +45,7 @@ void J3DDeformData::deform(J3DModel* model) {
 /* 8032E298-8032E364 328BD8 00CC+00 1/1 0/0 0/0 .text deform__13J3DDeformDataFP15J3DVertexBuffer
  */
 void J3DDeformData::deform(J3DVertexBuffer* buffer) {
-    J3D_ASSERT(141, buffer,"Error : null pointer");
+    J3D_ASSERT(141, buffer, "Error : null pointer");
 
     buffer->swapVtxPosArrayPointer();
     buffer->swapVtxNrmArrayPointer();
@@ -83,7 +83,7 @@ J3DDeformer::J3DDeformer(J3DDeformData* data) {
 /* 8032E3BC-8032E4A4 328CFC 00E8+00 1/1 0/0 0/0 .text deform__11J3DDeformerFP15J3DVertexBufferUs
  */
 void J3DDeformer::deform(J3DVertexBuffer* buffer, u16 param_1) {
-    J3D_ASSERT(222, buffer,"Error : null pointer");
+    J3D_ASSERT(222, buffer, "Error : null pointer");
 
     u16 var_r31 = 0;
     if (mAnmCluster != NULL) {
