@@ -6,6 +6,7 @@
 #include "d/actor/d_a_e_rd.h"
 #include "d/d_cc_d.h"
 #include "dol2asm.h"
+#include "d/d_com_inf_game.h"
 #include "d/d_camera.h"
 UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
@@ -1231,7 +1232,7 @@ static u8 lit_1009[1 + 3 /* padding */];
 #pragma pop
 
 /* 80519180-80519184 000048 0004+00 2/3 0/0 0/0 .bss             boss */
-static u8 boss[4];
+static e_rd_class* boss;
 
 /* 80519184-80519188 00004C 0004+00 1/2 0/0 0/0 .bss             None */
 static u8 data_80519184[4];
@@ -1243,7 +1244,7 @@ static u8 lit_4224[12];
 #pragma pop
 
 /* 80519194-805191E4 00005C 0050+00 14/18 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[80];
+static daE_RD_HIO_c l_HIO;
 
 /* 805191E4-805191E8 -00001 0004+00 6/10 0/0 0/0 .bss             None */
 /* 805191E4 0002+00 data_805191E4 S_find */
@@ -1257,10 +1258,10 @@ static u8 lit_4242[12];
 #pragma pop
 
 /* 805191F4-80519200 0000BC 000C+00 1/2 0/0 0/0 .bss             S_find_pos */
-static u8 S_find_pos[12];
+static cXyz S_find_pos;
 
 /* 80519200-80519204 0000C8 0004+00 7/11 0/0 0/0 .bss             None */
-static u8 data_80519200[4];
+static int data_80519200;
 
 /* 80519204-8051922C 0000CC 0028+00 3/6 0/0 0/0 .bss             target_info */
 static u8 target_info[40];
@@ -3377,8 +3378,125 @@ SECTION_DEAD static char const* const stringBase_805189A0 = "F_SP115";
 #pragma pop
 
 /* 805171FC-80517AE0 01287C 08E4+00 1/0 0/0 0/0 .text            daE_RD_Create__FP10fopAc_ac_c */
-static void daE_RD_Create(fopAc_ac_c* param_0) {
+static cPhs__Step daE_RD_Create(fopAc_ac_c* a_this) {
     // NONMATCHING
+    e_rd_class* i_this = (e_rd_class*)a_this;
+
+    fopAcM_SetupActor(a_this, e_rd_class);
+
+    i_this->field_0x5b6 = fopAcM_GetParam(a_this);
+    i_this->field_0x5b7 = i_this->field_0x5b6;
+    i_this->field_0x5b8 = fopAcM_GetParam(a_this) >> 12;
+    if (i_this->field_0x5b8 == 15) {
+        i_this->field_0x5b8 = 0;
+    }
+
+    if (((i_this->field_0x5b6 == 4 || i_this->field_0x5b6 == 5) || i_this->field_0x5b6 == 11) || i_this->field_0x5b6 == 12) {
+        if (i_this->field_0x5b6 == 4) {
+            i_this->field_0x129a = 1;
+        } else if (i_this->field_0x5b6 == 5) {
+            i_this->field_0x129a = 2;
+        } else if (i_this->field_0x5b6 == 11) {
+            i_this->field_0x129a = 3;
+        } else if (i_this->field_0x5b6 == 12) {
+            i_this->field_0x129a = 4;
+        }
+
+        i_this->mResName = "E_rdb";
+    } else {
+        i_this->mResName = "E_RD";
+    }
+
+    cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&i_this->mPhase, i_this->mResName);
+    if (phase == cPhs_COMPLEATE_e) {
+        if (strcmp(dComIfGp_getStartStageName(), "F_SP124") == 0) {
+            data_80519200 = 124;
+        } else {
+            if (strcmp(dComIfGp_getStartStageName(), "F_SP118") == 0) {
+                data_80519200 = 118;
+            } else {
+                data_80519200 = 0;
+            }
+        }
+
+        int swBit = fopAcM_GetParam(a_this) >> 24;
+        if (swBit != 0xFF) {
+            if (dComIfGs_isSwitch(swBit, fopAcM_GetRoomNo(a_this))) {
+                return cPhs_ERROR_e;
+            }
+        }
+
+        if (i_this->field_0x5b6 == 0) {
+            coach_game_actor_set(i_this);
+            return cPhs_ERROR_e;
+        }
+
+        if (i_this->field_0x129a != 0) {
+            boss = i_this;
+            i_this->field_0x5b6 = 1;
+        }
+
+        i_this->field_0x5bc = fopAcM_GetParam(a_this) >> 8 & 15;
+        if (i_this->field_0x5bc == 15) {
+            i_this->field_0x5bc = 0;
+        }
+
+        if (i_this->field_0x5bc > 3) {
+            return cPhs_ERROR_e;
+        }
+
+        i_this->field_0x5ba = fopAcM_GetParam(a_this) >> 16;
+        if (i_this->field_0x5ba == 0xFF) {
+            i_this->field_0x5ba = 0;
+        }
+
+        if (i_this->field_0x5ba == 2) {
+            fopAcM_setStageLayer(a_this);
+        }
+
+        i_this->field_0x5b9 = fopAcM_GetParam(a_this) >> 24;
+        if (i_this->field_0x5b8 == 3 || i_this->field_0x5b8 == 4 || i_this->field_0x5b8 == 5 || i_this->field_0x5b8 == 6 || i_this->field_0x5b8 == 7) {
+            if (i_this->field_0x5b8 != 5) {
+                i_this->field_0x1295 = 1;
+            }
+
+            if (i_this->field_0x5b8 == 4) {
+                i_this->field_0x1296 = 1;
+            }
+
+            if (i_this->field_0x5b8 == 6) {
+                i_this->field_0x1299 = 1;
+                i_this->mAction = 25;
+                i_this->field_0x5b4 = 0;
+                i_this->field_0x990[2] = 20;
+                i_this->field_0x1296 = 1;
+            } else if (i_this->field_0x5b8 == 7) {
+                i_this->mAction = 26;
+                i_this->field_0x1296 = 1;
+                i_this->field_0x998 = 20;
+            } else {
+                i_this->mAction = 7;
+            }
+
+            fopAcM_setCullSizeFar(a_this, 30000.0f);
+            i_this->field_0x5b8 = 3;
+        } else if (i_this->field_0x5b8 == 10) {
+            i_this->mAction = 8;
+            i_this->field_0x990[0] = 142;
+        } else if (i_this->field_0x5b8 == 11) {
+            fopAcM_create(PROC_E_RDY, fopAcM_GetParam(a_this), &a_this->home.pos, 
+                          fopAcM_GetRoomNo(a_this), &a_this->home.angle, NULL, -1);
+        }
+
+        if (a_this->home.angle.x == 0 || a_this->home.angle.x == -1) {
+            i_this->field_0x980 = 100000.0f;
+        } else {
+            i_this->field_0x980 = a_this->home.angle.x * 100.0f;
+        }
+
+        i_this->field_0x12a0 = a_this->home.angle.x;
+    }
+
 }
 
 /* 80517AE0-80517CB0 013160 01D0+00 1/1 0/0 0/0 .text            __ct__10e_rd_classFv */
