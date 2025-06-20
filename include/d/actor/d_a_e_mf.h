@@ -14,10 +14,11 @@
  * @details 
  * 
  */
-class e_mf_class : public fopEn_enemy_c {
+class e_mf_class {
 public:
     /* 80712F20 */ e_mf_class();
 
+    /* 0x0000 */ fopEn_enemy_c actor;
     /* 0x05AC */ request_of_phase_process_class mPhase;
     /* 0x05B4 */ s16 field_0x5b4;
     /* 0x05B6 */ u8 field_0x5b6;

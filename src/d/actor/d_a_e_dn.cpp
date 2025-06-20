@@ -88,7 +88,7 @@ daE_DN_HIO_c::daE_DN_HIO_c() {
 
 /* 804E5220-804E52D0 000160 00B0+00 2/2 0/0 0/0 .text            dn_disappear__FP10e_dn_class */
 static void dn_disappear(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     cXyz sp1c, sp28;
 
     MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(2), *calc_mtx);
@@ -189,7 +189,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_2) {
 
 /* 804E5838-804E5B20 000778 02E8+00 1/0 0/0 0/0 .text            daE_DN_Draw__FP10e_dn_class */
 static int daE_DN_Draw(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
 
     if (i_this->field_0x10d8 != 0) {
         return 1;
@@ -251,7 +251,7 @@ static int daE_DN_Draw(e_dn_class* i_this) {
 
 /* 804E5B20-804E5BF8 000A60 00D8+00 2/2 0/0 0/0 .text other_bg_check__FP10e_dn_classP10fopAc_ac_c */
 static BOOL other_bg_check(e_dn_class* i_this, fopAc_ac_c* i_actor) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     dBgS_LinChk lin_chk;
     cXyz start, end;
 
@@ -270,7 +270,7 @@ static BOOL other_bg_check(e_dn_class* i_this, fopAc_ac_c* i_actor) {
 
 /* 804E5BF8-804E5CD0 000B38 00D8+00 1/1 0/0 0/0 .text other_bg_check2__FP10e_dn_classP4cXyz */
 static BOOL other_bg_check2(e_dn_class* i_this, cXyz* param_2) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     dBgS_LinChk lin_chk;
     cXyz start, end;
 
@@ -314,7 +314,7 @@ static void* s_b_sub(void* i_actor, void* i_data) {
 
 /* 804E5D4C-804E61D8 000C8C 048C+00 2/2 0/0 0/0 .text            search_bomb__FP10e_dn_classi */
 static dBomb_c* search_bomb(e_dn_class* i_this, int param_2) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     dBomb_c* bomb;
     if ((i_this->field_0x744 & 0x10000000) == 0) {
         return NULL;
@@ -391,7 +391,7 @@ static dBomb_c* bomb_check(e_dn_class* i_this) {
 
 /* 804E6220-804E6264 001160 0044+00 1/1 0/0 0/0 .text            player_way_check__FP10e_dn_class */
 static BOOL player_way_check(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
 
     s16 sVar1 = a_this->shape_angle.y - dComIfGp_getPlayer(0)->shape_angle.y;
     if ((int)sVar1 < 0) {
@@ -407,7 +407,7 @@ static BOOL player_way_check(e_dn_class* i_this) {
 
 /* 804E6264-804E6340 0011A4 00DC+00 4/4 0/0 0/0 .text            pl_check__FP10e_dn_classfs */
 static int pl_check(e_dn_class* i_this, f32 param_2, s16 param_3) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
 
     if (i_this->mPlayerDistance < param_2) {
@@ -430,7 +430,7 @@ static int pl_check(e_dn_class* i_this, f32 param_2, s16 param_3) {
 
 /* 804E6340-804E6448 001280 0108+00 3/3 0/0 0/0 .text            move_gake_check__FP10e_dn_classfSc */
 static BOOL move_gake_check(e_dn_class* i_this, f32 param_2, s8 param_3) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     dBgS_GndChk gnd_chk;
     cXyz sp84, sp90;
 
@@ -455,7 +455,7 @@ static BOOL move_gake_check(e_dn_class* i_this, f32 param_2, s8 param_3) {
 
 /* 804E6448-804E6608 001388 01C0+00 1/1 0/0 0/0 .text jump_pos_check__FP10e_dn_classP4cXyz */
 static BOOL jump_pos_check(e_dn_class* i_this, cXyz* param_2) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     dBgS_GndChk gnd_chk;
     cXyz sp94, spa0;
     f32 fVar1 = 300.0f;
@@ -496,7 +496,7 @@ static BOOL jump_pos_check(e_dn_class* i_this, cXyz* param_2) {
 
 /* 804E6608-804E6A8C 001548 0484+00 2/1 0/0 0/0 .text            e_dn_stay__FP10e_dn_class */
 static void e_dn_stay(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     cXyz sp30;
 
     i_this->field_0x6f4 = 5;
@@ -598,7 +598,7 @@ static void e_dn_stay(e_dn_class* i_this) {
 
 /* 804E6A8C-804E6DBC 0019CC 0330+00 1/1 0/0 0/0 .text            e_dn_otoreac__FP10e_dn_class */
 static void e_dn_otoreac(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     cXyz sp40, sp4c;
     f32 fVar1 = 0.0f;
     i_this->field_0x6f4 = 2;
@@ -654,7 +654,7 @@ static void e_dn_otoreac(e_dn_class* i_this) {
 
 /* 804E6DBC-804E72C8 001CFC 050C+00 2/1 0/0 0/0 .text            e_dn_bomb_action__FP10e_dn_class */
 static void e_dn_bomb_action(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     s16 sVar2;
     cXyz sp3c, sp48;
     dBomb_c* bomb = bomb_check(i_this);
@@ -771,7 +771,7 @@ static void e_dn_bomb_action(e_dn_class* i_this) {
 
 /* 804E72C8-804E7620 002208 0358+00 1/1 0/0 0/0 .text            e_dn_normal__FP10e_dn_class */
 static void e_dn_normal(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     cXyz sp44, sp50;
     f32 fVar1 = 0.0f;
     s16 sVar1 = 0x4000;
@@ -854,7 +854,7 @@ static void e_dn_normal(e_dn_class* i_this) {
 
 /* 804E7620-804E77A8 002560 0188+00 1/1 0/0 0/0 .text            e_dn_drawback__FP10e_dn_class */
 static void e_dn_drawback(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
 
     switch (i_this->mMode) {
@@ -888,7 +888,7 @@ static void e_dn_drawback(e_dn_class* i_this) {
 
 /* 804E77A8-804E7B34 0026E8 038C+00 1/1 0/0 0/0 .text            e_dn_wolfbite__FP10e_dn_class */
 static void e_dn_wolfbite(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
 
     i_this->field_0x6e8 = 10;
@@ -958,7 +958,7 @@ static void e_dn_wolfbite(e_dn_class* i_this) {
 
 /* 804E7B34-804E7B74 002A74 0040+00 1/1 0/0 0/0 .text            way_check__FP10e_dn_class */
 static int way_check(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     s16 sVar1 = a_this->shape_angle.y - i_this->mYAngleToPlayer;
     if (sVar1 <= 0x4000 && sVar1 >= -0x4000) {
         return 0;
@@ -977,7 +977,7 @@ int learn_check;
 /* 804E7B74-804E7D18 002AB4 01A4+00 1/1 0/0 0/0 .text            shot_s_sub__FPvPv */
 static void* shot_s_sub(void* i_actor, void* i_data) {
     e_dn_class* i_this = (e_dn_class*)i_data;
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     if ((fopAcM_IsActor(i_actor) && (learn_check & 0x80000000) != 0 && fopAcM_GetName(i_actor) == PROC_ARROW && (fopAcM_GetParam(i_actor) == 1 || 
         fopAcM_GetParam(i_actor) == 2))) {
         cXyz sp28(a_this->current.pos - ((fopAc_ac_c*)i_actor)->current.pos);
@@ -991,7 +991,7 @@ static void* shot_s_sub(void* i_actor, void* i_data) {
 
 /* 804E7D18-804E8620 002C58 0908+00 1/1 0/0 0/0 .text            e_dn_fight_run__FP10e_dn_class */
 static void e_dn_fight_run(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     cXyz sp4c, sp58;
     f32 fVar1 = 0.0f;
     int frame = i_this->mpModelMorf->getFrame();
@@ -1222,7 +1222,7 @@ static void e_dn_fight_run(e_dn_class* i_this) {
 
 /* 804E8620-804E8848 003560 0228+00 1/1 0/0 0/0 .text            e_dn_jump__FP10e_dn_class */
 static void e_dn_jump(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     
     i_this->field_0x6f4 = 1;
     switch (i_this->mMode) {
@@ -1279,7 +1279,7 @@ static void e_dn_jump(e_dn_class* i_this) {
 
 /* 804E8848-804E8D78 003788 0530+00 1/1 0/0 0/0 .text            e_dn_gakejump__FP10e_dn_class */
 static void e_dn_gakejump(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     cXyz sp24, sp30;
 
     i_this->field_0x6f4 = 1;
@@ -1394,7 +1394,7 @@ static fopAc_ac_c* at_hit_check(e_dn_class* i_this) {
 
 /* 804E8DD8-804E8F78 003D18 01A0+00 1/1 0/0 0/0 .text            e_dn_attack_0__FP10e_dn_class */
 static void e_dn_attack_0(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     cXyz sp2c, sp38;
     int frame = i_this->mpModelMorf->getFrame();
 
@@ -1429,7 +1429,7 @@ static void e_dn_attack_0(e_dn_class* i_this) {
 
 /* 804E8F78-804E91D4 003EB8 025C+00 1/1 0/0 0/0 .text            e_dn_attack__FP10e_dn_class */
 static void e_dn_attack(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     cXyz sp34, sp40;
     int frame = i_this->mpModelMorf->getFrame();
 
@@ -1490,7 +1490,7 @@ static void e_dn_attack(e_dn_class* i_this) {
 
 /* 804E91D4-804E9354 004114 0180+00 1/1 0/0 0/0 .text            tail_eff_set__FP10e_dn_class */
 static void tail_eff_set(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
 
     J3DModel* model = i_this->mpModelMorf->getModel();
     i_this->field_0x10f8 = dComIfGp_particle_set(i_this->field_0x10f8, 0x815F, &a_this->current.pos, NULL, NULL);
@@ -1510,7 +1510,7 @@ static void tail_eff_set(e_dn_class* i_this) {
 
 /* 804E9354-804E9544 004294 01F0+00 1/1 0/0 0/0 .text            e_dn_tail_attack__FP10e_dn_class */
 static void e_dn_tail_attack(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     cXyz sp30, sp3c;
     int frame = i_this->mpModelMorf->getFrame();
 
@@ -1557,7 +1557,7 @@ static void e_dn_tail_attack(e_dn_class* i_this) {
 
 /* 804E9544-804E973C 004484 01F8+00 2/1 0/0 0/0 .text            e_dn_guard__FP10e_dn_class */
 static void e_dn_guard(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
 
     i_this->field_0x6f1 = 1;
     i_this->field_0x6f4 = 1;
@@ -1619,7 +1619,7 @@ static void e_dn_guard(e_dn_class* i_this) {
 
 /* 804E973C-804E97EC 00467C 00B0+00 1/1 0/0 0/0 .text            e_dn_s_damage__FP10e_dn_class */
 static void e_dn_s_damage(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
 
     switch (i_this->mMode) {
         case 0:
@@ -1649,7 +1649,7 @@ static BOOL kado_check(e_dn_class* i_this) {
         80.0f, -80.0f,
     };
 
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     dBgS_LinChk lin_chk;
     cXyz sp9c, spa8, spb4;
     BOOL rv = FALSE;
@@ -1683,7 +1683,7 @@ static BOOL kado_check(e_dn_class* i_this) {
 
 /* 804E99A0-804E9AF0 0048E0 0150+00 1/1 0/0 0/0 .text            body_gake__FP10e_dn_class */
 static BOOL body_gake(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     J3DModel* model = i_this->mpModelMorf->getModel();
     cXyz sp7c, sp88;
 
@@ -1705,7 +1705,7 @@ static BOOL body_gake(e_dn_class* i_this) {
 
 /* 804E9B68-804EA700 004AA8 0B98+00 2/1 0/0 0/0 .text            e_dn_damage__FP10e_dn_class */
 static void e_dn_damage(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     cXyz sp34, sp40;
 
     if (a_this->health <= 0) {
@@ -2023,7 +2023,7 @@ static void e_dn_damage(e_dn_class* i_this) {
 
 /* 804EA700-804EA854 005640 0154+00 1/1 0/0 0/0 .text            e_dn_backdrop__FP10e_dn_class */
 static void e_dn_backdrop(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
 
     switch (i_this->mMode) {
         case 0:
@@ -2059,7 +2059,7 @@ static void e_dn_backdrop(e_dn_class* i_this) {
 
 /* 804EA854-804EA9F4 005794 01A0+00 1/1 0/0 0/0 .text            e_dn_water__FP10e_dn_class */
 static void e_dn_water(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     cXyz sp20, sp2c, sp38;
 
     MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(2), *calc_mtx);
@@ -2106,7 +2106,7 @@ static void e_dn_water(e_dn_class* i_this) {
 
 /* 804EA9F4-804EAD1C 005934 0328+00 1/1 0/0 0/0 .text            e_dn_reg__FP10e_dn_class */
 static void e_dn_reg(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     cXyz sp34, sp40;
     f32 fVar1 = 0.0f;
     
@@ -2191,7 +2191,7 @@ static void e_dn_reg(e_dn_class* i_this) {
 
 /* 804EAD1C-804EADD4 005C5C 00B8+00 1/1 0/0 0/0 .text            wolfkick_damage__FP10e_dn_class */
 static void wolfkick_damage(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
 
     i_this->field_0x750 = (a_this->shape_angle.y - 0x8000) - i_this->mAtInfo.mHitDirection.y;
@@ -2208,7 +2208,7 @@ static void wolfkick_damage(e_dn_class* i_this) {
 
 /* 804EADD4-804EAEE4 005D14 0110+00 1/1 0/0 0/0 .text            big_damage__FP10e_dn_class */
 static void big_damage(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
 
     i_this->field_0x750 = (a_this->shape_angle.y - 0x8000) - i_this->mAtInfo.mHitDirection.y;
     i_this->field_0x74c = 150.0f;
@@ -2233,7 +2233,7 @@ static void big_damage(e_dn_class* i_this) {
 
 /* 804EAEE4-804EAF94 005E24 00B0+00 1/1 0/0 0/0 .text            small_damage__FP10e_dn_class */
 static void small_damage(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
 
     i_this->mAction = ACTION_S_DAMAGE;
     i_this->mMode = 0;
@@ -2252,7 +2252,7 @@ static void small_damage(e_dn_class* i_this) {
 
 /* 804EAF94-804EB344 005ED4 03B0+00 1/1 0/0 0/0 .text            damage_check__FP10e_dn_class */
 static void damage_check(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
 
     if (l_HIO.field_0x24 != 0) {
@@ -2359,7 +2359,7 @@ static void damage_check(e_dn_class* i_this) {
 
 /* 804EB344-804EC854 006284 1510+00 2/1 0/0 0/0 .text            action__FP10e_dn_class */
 static void action(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
     cXyz sp240, sp24c;
 
@@ -2929,7 +2929,7 @@ int c_start;
 /* 804ECB50-804ED83C 007A90 0CEC+00 2/1 0/0 0/0 .text            daE_DN_Execute__FP10e_dn_class */
 static int daE_DN_Execute(e_dn_class* i_this) {
     // NONMATCHING
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     f32 fVar1 = 0.0f;
     
     if (i_this->field_0x10d8 != 0) {
@@ -3226,7 +3226,7 @@ static int daE_DN_IsDelete(e_dn_class* i_this) {
 
 /* 804ED844-804ED8AC 008784 0068+00 1/0 0/0 0/0 .text            daE_DN_Delete__FP10e_dn_class */
 static int daE_DN_Delete(e_dn_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     dComIfG_resDelete(&i_this->mPhase, "E_dn");
 
     if (i_this->field_0x10d9 != 0) {
