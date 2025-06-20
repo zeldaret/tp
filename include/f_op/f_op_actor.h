@@ -265,6 +265,7 @@ public:
     bool checkWolfDownPullFlg() const { return mFlags & 0x10; }
     bool checkDownFlg() const { return mFlags & 0x1; }
     bool checkCutDownHitFlg() const { return mFlags & 0x2; }
+    bool checkWolfDownStartFlg() const { return mFlags & 0x4; }
     bool checkDeadFlg() const { return mFlags & 0x8; }
     bool checkThrowMode(u8 param_1) const { return mThrowMode & param_1; }
 
