@@ -2160,7 +2160,7 @@ static void damage_check(e_mf_class* i_this) {
             if (i_this->field_0xa7c[i].ChkTgHit() != 0) {
                 i_this->mAtInfo.mpCollider = i_this->field_0xa7c[i].GetTgHitObj();
                 if (player->getCutType() != daPy_py_c::CUT_TYPE_WOLF_B_LEFT && player->getCutType() != daPy_py_c::CUT_TYPE_WOLF_B_RIGHT &&
-                    i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_WOLF_ATTACK) != 0) {
+                    i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_WOLF_ATTACK)) {
                     if (!player->onWolfEnemyHangBite(mf_p)) {
                         return;
                     }
@@ -2174,7 +2174,7 @@ static void damage_check(e_mf_class* i_this) {
                 }
 
                 i_this->field_0x10ba = 3;
-                if (i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_10000000) != 0) {
+                if (i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_10000000)) {
                     wolfkick_damage(i_this);
                     i_this->field_0x6c8 = 1000;
                 } else {
@@ -2186,7 +2186,7 @@ static void damage_check(e_mf_class* i_this) {
                         i_this->mAtInfo.mHitStatus = 0;
                     }
 
-                    if (i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_UNK) != 0) {
+                    if (i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_UNK)) {
                         i_this->field_0x6c8 = 20;
                     } else {
                         i_this->field_0x6c8 = 10;
@@ -2197,7 +2197,7 @@ static void damage_check(e_mf_class* i_this) {
                     }
 
                     i_this->field_0x724 |= i_this->mAtInfo.mHitBit;
-                    if (i_this->mAtInfo.mHitType == 16 || i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_HOOKSHOT) != 0) {
+                    if (i_this->mAtInfo.mHitType == 16 || i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_HOOKSHOT)) {
                         a_this->health = sVar1;
                         i_this->mAction = 12;
                         i_this->field_0x5b4 = 0;
@@ -2344,6 +2344,7 @@ static void action(e_mf_class* i_this) {
         case ACTION_GAKEJUMP:
             e_mf_gakejump(i_this);
             bVar1 = 1;
+            break;
     }
 
     f32 fVar6 = 0.0f;
