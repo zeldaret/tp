@@ -64,7 +64,11 @@ public:
     /* 8030A358 */ virtual ~J2DAnmVtxColor() {}
     /* 8030363C */ virtual void getColor(u8, u16, _GXColor*) const {}
     u16 getAnmTableNum(u8 param_0) const { return mAnmTableNum[param_0]; }
-    J3DAnmVtxColorIndexData* getAnmVtxColorIndexData(u8 param_0, u16 param_1) const { return &mVtxColorIndexData[param_0][param_1]; }
+    J3DAnmVtxColorIndexData* getAnmVtxColorIndexData(u8 param_1, u16 param_2) const {
+        J3D_PANIC(344, param_1 < 2, "Error : range over.");
+        J3D_PANIC(345, param_2 < mAnmTableNum[param_1], "Error : range over.");
+        return &mVtxColorIndexData[param_1][param_2];
+    }
     u16* getVtxColorIndexPointer(u8 param_0) const { return mVtxColorIndexPointer[param_0]; }
 
     /* 0x10 */ u16 mAnmTableNum[2];
