@@ -10,127 +10,127 @@
 
 #ifdef DEBUG
 void daNpcT_cmnListenPropertyEvent(char* param_0, int* param_1, daNpcT_HIOParam* param_2) {
-    sprintf(&param_0[*param_1], "%.3ff,\t//  注目オフセット\n", param_2->unk0);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  注目オフセット\n", param_2->attention_offset);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  重力\n", param_2->unk4);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  重力\n", param_2->gravity);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  スケ−ル\n", param_2->unk8);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  スケ−ル\n", param_2->scale);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  リアル影サイズ\n", param_2->unkC);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  リアル影サイズ\n", param_2->real_shadow_size);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  体重\n", param_2->unk10);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  体重\n", param_2->weight);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  高さ\n", param_2->unk14);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  高さ\n", param_2->height);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  ひざ丈\n", param_2->unk18);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  ひざ丈\n", param_2->knee_length);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  幅\n", param_2->unk1C);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  幅\n", param_2->width);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  腰のＸ角上限\n", param_2->unk20);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  腰のＸ角上限\n", param_2->body_angleX_max);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  腰のＸ角下限\n", param_2->unk24);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  腰のＸ角下限\n", param_2->body_angleX_min);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  腰のＹ角上限\n", param_2->unk28);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  腰のＹ角上限\n", param_2->body_angleY_max);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  腰のＹ角下限\n", param_2->unk2C);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  腰のＹ角下限\n", param_2->body_angleY_min);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  頭のＸ角上限\n", param_2->unk30);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  頭のＸ角上限\n", param_2->head_angleX_max);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  頭のＸ角下限\n", param_2->unk34);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  頭のＸ角下限\n", param_2->head_angleX_min);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  頭のＹ角上限\n", param_2->unk38);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  頭のＹ角上限\n", param_2->head_angleY_max);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  頭のＹ角下限\n", param_2->unk3C);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  頭のＹ角下限\n", param_2->head_angleY_min);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  首の移動割合\n", param_2->unk40);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  首の移動割合\n", param_2->neck_rotation_ratio);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  補間フレ−ム\n", param_2->unk44);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  補間フレ−ム\n", param_2->morf_frame);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%d,   \t//  会話距離\n", param_2->unk48);
+    sprintf(&param_0[*param_1], "%d,   \t//  会話距離\n", param_2->talk_distance);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%d,   \t//  会話角度\n", param_2->unk4A);
+    sprintf(&param_0[*param_1], "%d,   \t//  会話角度\n", param_2->talk_angle);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%d,   \t//  注目距離\n", param_2->unk4C);
+    sprintf(&param_0[*param_1], "%d,   \t//  注目距離\n", param_2->attention_distance);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%d,   \t//  注目角度\n", param_2->unk4E);
+    sprintf(&param_0[*param_1], "%d,   \t//  注目角度\n", param_2->attention_angle);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  視界\n", param_2->unk50);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  視界\n", param_2->fov);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  サ−チ距離\n", param_2->unk54);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  サ−チ距離\n", param_2->search_distance);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  サ−チ高さ\n", param_2->unk58);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  サ−チ高さ\n", param_2->search_height);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  サ−チ低さ\n", param_2->unk5C);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  サ−チ低さ\n", param_2->search_depth);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%d,   \t//  ？\n", param_2->unk60);
+    sprintf(&param_0[*param_1], "%d,   \t//  ？\n", param_2->attention_time);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%d,   \t//  ？\n", param_2->unk62);
+    sprintf(&param_0[*param_1], "%d,   \t//  ？\n", param_2->damage_time);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%d,   \t//  表情\n", param_2->unk64);
+    sprintf(&param_0[*param_1], "%d,   \t//  表情\n", param_2->face_expression);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%d,   \t//  動作\n", param_2->unk66);
+    sprintf(&param_0[*param_1], "%d,   \t//  動作\n", param_2->motion);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%d,   \t//  注視モ−ド\n", param_2->unk68);
+    sprintf(&param_0[*param_1], "%d,   \t//  注視モ−ド\n", param_2->look_mode);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%d,   \t//  デバグモ−ドＯＮ\n", param_2->unk6A);
+    sprintf(&param_0[*param_1], "%d,   \t//  デバグモ−ドＯＮ\n", param_2->debug_mode_ON);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%d,   \t//  デバグ情報ＯＮ\n", param_2->unk6B);
+    sprintf(&param_0[*param_1], "%d,   \t//  デバグ情報ＯＮ\n", param_2->debug_info_ON);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  表情補間フレ−ム\n", param_2->unk6C);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  表情補間フレ−ム\n", param_2->expression_morf_frame);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  箱最小ｘ\n", param_2->unk70);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  箱最小ｘ\n", param_2->box_min_x);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  箱最小ｙ\n", param_2->unk74);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  箱最小ｙ\n", param_2->box_min_y);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  箱最小ｚ\n", param_2->unk78);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  箱最小ｚ\n", param_2->box_min_z);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  箱最大ｘ\n", param_2->unk7C);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  箱最大ｘ\n", param_2->box_max_x);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  箱最大ｙ\n", param_2->unk80);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  箱最大ｙ\n", param_2->box_max_y);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  箱最大ｚ\n", param_2->unk84);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  箱最大ｚ\n", param_2->box_max_z);
     *param_1 = strlen(param_0);
 
-    sprintf(&param_0[*param_1], "%.3ff,\t//  箱オフセット\n", param_2->unk88);
+    sprintf(&param_0[*param_1], "%.3ff,\t//  箱オフセット\n", param_2->box_offset);
     *param_1 = strlen(param_0);
 }
 #endif

@@ -1,6 +1,7 @@
 #ifndef J3DSHAPEMTX_H
 #define J3DSHAPEMTX_H
 
+#include "JSystem/J3DGraphBase/J3DShape.h"
 #include "dolphin/mtx.h"
 
 class J3DTexMtx;
@@ -37,48 +38,6 @@ public:
 
     static J3DTexGenBlock* sTexGenBlock;
     static J3DTexMtxObj* sTexMtxObj;
-};
-
-class J3DShapeMtx;
-typedef void (J3DShapeMtx::*J3DShapeMtx_LoadFunc)(int, u16) const;
-
-/**
- * @ingroup jsystem-j3d
- * 
- */
-class J3DShapeMtx {
-public:
-    J3DShapeMtx(u16 useMtxIndex)
-        : mUseMtxIndex(useMtxIndex)
-    {}
-
-    /* 803130E4 */ void loadMtxIndx_PNGP(int, u16) const;
-    /* 80313128 */ void loadMtxIndx_PCPU(int, u16) const;
-    /* 80313188 */ void loadMtxIndx_NCPU(int, u16) const;
-    /* 803131D4 */ void loadMtxIndx_PNCPU(int, u16) const;
-
-    /* 80314798 */ virtual ~J3DShapeMtx() {}
-    /* 803147E0 */ virtual u32 getType() const { return 'SMTX'; }
-    /* 80273E08 */ virtual u32 getUseMtxNum() const { return 1; }
-    /* 8031459C */ virtual u32 getUseMtxIndex(u16) const { return mUseMtxIndex; }
-    /* 80313B94 */ virtual void load() const;
-    /* 80313BF0 */ virtual void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
-
-    static J3DShapeMtx_LoadFunc sMtxLoadPipeline[4];
-    static u16 sMtxLoadCache[10];
-    static u32 sCurrentPipeline;
-    static u8* sCurrentScaleFlag;
-    static u8 sNBTFlag;
-    static u8 sLODFlag;
-    static u32 sTexMtxLoadType;
-
-    static void setCurrentPipeline(u32 pipeline) { sCurrentPipeline = pipeline; }
-    static void setLODFlag(u8 flag) { sLODFlag = flag; }
-    static u8 getLODFlag() { return sLODFlag; }
-    static void resetMtxLoadCache();
-
-protected:
-    /* 0x04 */ u16 mUseMtxIndex;
 };
 
 class J3DShapeMtxConcatView;

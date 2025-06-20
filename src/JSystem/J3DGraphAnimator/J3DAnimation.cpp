@@ -1120,6 +1120,7 @@ void J3DAnmTexPattern::getTexNo(u16 i_index, u16* o_texNo) const {
 /* 8032B004-8032B09C 325944 0098+00 1/1 1/1 0/0 .text
  * searchUpdateMaterialID__16J3DAnmTexPatternFP16J3DMaterialTable */
 void J3DAnmTexPattern::searchUpdateMaterialID(J3DMaterialTable* i_materialTable) {
+    J3D_ASSERT(1790, i_materialTable, "Error : null pointer.");
     for (u16 i = 0; i < mUpdateMaterialNum; i++) {
         s32 index = i_materialTable->getMaterialName()->getIndex(mUpdateMaterialName.getName(i));
         if (index != -1) {
@@ -1133,13 +1134,15 @@ void J3DAnmTexPattern::searchUpdateMaterialID(J3DMaterialTable* i_materialTable)
 /* 8032B09C-8032B0C0 3259DC 0024+00 0/0 4/4 1/1 .text
  * searchUpdateMaterialID__16J3DAnmTexPatternFP12J3DModelData   */
 void J3DAnmTexPattern::searchUpdateMaterialID(J3DModelData* i_modelData) {
+    J3D_ASSERT(1813, i_modelData, "Error : null pointer.");
     searchUpdateMaterialID(&i_modelData->getMaterialTable());
 }
 
 /* 8032B0C0-8032B1D4 325A00 0114+00 1/1 1/1 0/0 .text
  * searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP16J3DMaterialTable */
 void J3DAnmTextureSRTKey::searchUpdateMaterialID(J3DMaterialTable* i_materialTable) {
-    for (u16 i = 0; i < u16(mTrackNum / 3); i++) {
+    J3D_ASSERT(1832, i_materialTable, "Error : null pointer.");
+    for (u16 i = 0; i < getUpdateMaterialNum(); i++) {
         s32 index = i_materialTable->getMaterialName()->getIndex(mUpdateMaterialName.getName(i));
         if (index != -1) {
             mUpdateMaterialID[i] = index;
@@ -1147,7 +1150,7 @@ void J3DAnmTextureSRTKey::searchUpdateMaterialID(J3DMaterialTable* i_materialTab
             mUpdateMaterialID[i] = -1;
         }
     }
-    for (u16 i = 0; i < u16(field_0x4a / 3); i++) {
+    for (u16 i = 0; i < getPostUpdateMaterialNum(); i++) {
         s32 index = i_materialTable->getMaterialName()->getIndex(mPostUpdateMaterialName.getName(i));
         if (index != -1) {
             mPostUpdateMaterialID[i] = index;
@@ -1160,6 +1163,7 @@ void J3DAnmTextureSRTKey::searchUpdateMaterialID(J3DMaterialTable* i_materialTab
 /* 8032B1D4-8032B1F8 325B14 0024+00 0/0 8/8 6/6 .text
  * searchUpdateMaterialID__19J3DAnmTextureSRTKeyFP12J3DModelData */
 void J3DAnmTextureSRTKey::searchUpdateMaterialID(J3DModelData* i_modelData) {
+    J3D_ASSERT(1871, i_modelData, "Error : null pointer.");
     searchUpdateMaterialID(&i_modelData->getMaterialTable());
 }
 
@@ -1324,6 +1328,7 @@ void J3DAnmTevRegKey::getTevKonstReg(u16 i_index, GXColor* o_color) const {
 /* 8032B780-8032B87C 3260C0 00FC+00 1/1 1/1 0/0 .text
  * searchUpdateMaterialID__15J3DAnmTevRegKeyFP16J3DMaterialTable */
 void J3DAnmTevRegKey::searchUpdateMaterialID(J3DMaterialTable* i_materialTable) {
+    J3D_ASSERT(2083, i_materialTable, "Error : null pointer.");
     for (u16 i = 0; i < mCRegUpdateMaterialNum; i++) {
         s32 index = i_materialTable->getMaterialName()->getIndex(mCRegUpdateMaterialName.getName(i));
         if (index != -1) {
@@ -1345,5 +1350,6 @@ void J3DAnmTevRegKey::searchUpdateMaterialID(J3DMaterialTable* i_materialTable) 
 /* 8032B87C-8032B8A0 3261BC 0024+00 0/0 9/9 4/4 .text
  * searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData    */
 void J3DAnmTevRegKey::searchUpdateMaterialID(J3DModelData* i_modelData) {
+    J3D_ASSERT(2119, i_modelData, "Error : null pointer.");
     searchUpdateMaterialID(&i_modelData->getMaterialTable());
 }

@@ -5,6 +5,7 @@
 
 #include "JSystem/J3DGraphLoader/J3DShapeFactory.h"
 #include "JSystem/J3DGraphBase/J3DShape.h"
+#include "JSystem/J3DGraphBase/J3DShapeMtx.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSupport.h"
 #include "dolphin/os.h"

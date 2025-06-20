@@ -3,6 +3,7 @@
 
 #include "JSystem/J3DGraphBase/J3DTevs.h"
 #include "JSystem/J3DGraphBase/J3DTexture.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "dolphin/types.h"
 
 /**
@@ -304,7 +305,10 @@ public:
     /* 80317BB4 */ virtual s32 countDLSize();
     /* 803229D0 */ virtual void setTexNo(u32 idx, u16 const* texNo) { mTexNo[idx] = *texNo; }
     /* 803229C0 */ virtual void setTexNo(u32 idx, u16 texNo) { mTexNo[idx] = texNo; }
-    /* 803229E4 */ virtual u16 getTexNo(u32 idx) const { return mTexNo[idx]; }
+    /* 803229E4 */ virtual u16 getTexNo(u32 idx) const {
+        J3D_ASSERT(1353, idx < 8, "Error : range over.");
+        return mTexNo[idx];
+    }
     /* 80322A08 */ virtual void setTevOrder(u32 idx, J3DTevOrder const* order) { mTevOrder[idx] = *order; }
     /* 803229F4 */ virtual void setTevOrder(u32 idx, J3DTevOrder order) { mTevOrder[idx] = order; }
     /* 80322A1C */ virtual J3DTevOrder* getTevOrder(u32 idx) { return &mTevOrder[idx]; }
@@ -370,7 +374,10 @@ public:
     /* 80317BCC */ virtual s32 countDLSize();
     /* 8032202C */ virtual void setTexNo(u32 idx, u16 const* texNo) { mTexNo[idx] = *texNo; }
     /* 8032201C */ virtual void setTexNo(u32 idx, u16 texNo) { mTexNo[idx] = texNo; }
-    /* 80322040 */ virtual u16 getTexNo(u32 idx) const { return mTexNo[idx]; }
+    /* 80322040 */ virtual u16 getTexNo(u32 idx) const {
+        J3D_ASSERT(2019, idx < 4, "Error : range over.");
+        return mTexNo[idx];
+    }
     /* 80322064 */ virtual void setTevOrder(u32 idx, J3DTevOrder const* order) { mTevOrder[idx] = *order; }
     /* 80322050 */ virtual void setTevOrder(u32 idx, J3DTevOrder order) { mTevOrder[idx] = order; }
     /* 80322078 */ virtual J3DTevOrder* getTevOrder(u32 idx) { return &mTevOrder[idx]; }
@@ -446,7 +453,10 @@ public:
     /* 80317BC4 */ virtual s32 countDLSize();
     /* 803223F0 */ virtual void setTexNo(u32 idx, u16 const* texNo) { mTexNo[idx] = *texNo; }
     /* 803223E0 */ virtual void setTexNo(u32 idx, u16 texNo) { mTexNo[idx] = texNo; }
-    /* 80322404 */ virtual u16 getTexNo(u32 idx) const { return mTexNo[idx]; }
+    /* 80322404 */ virtual u16 getTexNo(u32 idx) const {
+        J3D_ASSERT(1730, idx < 2, "Error : range over.");
+        return mTexNo[idx];
+    }
     /* 80322428 */ virtual void setTevOrder(u32 idx, J3DTevOrder const* order) { mTevOrder[idx] = *order; }
     /* 80322414 */ virtual void setTevOrder(u32 idx, J3DTevOrder order) { mTevOrder[idx] = order; }
     /* 8032243C */ virtual J3DTevOrder* getTevOrder(u32 idx) { return &mTevOrder[idx]; }
@@ -522,7 +532,10 @@ public:
     /* 80317BD4 */ virtual s32 countDLSize();
     /* 80321C60 */ virtual void setTexNo(u32 idx, u16 const* texNo) { mTexNo[idx] = *texNo; }
     /* 80321C50 */ virtual void setTexNo(u32 idx, u16 texNo) { mTexNo[idx] = texNo; }
-    /* 80321C74 */ virtual u16 getTexNo(u32 idx) const { return mTexNo[idx]; }
+    /* 80321C74 */ virtual u16 getTexNo(u32 idx) const {
+        J3D_ASSERT(2308, idx < 8, "Error : range over.");
+        return mTexNo[idx];
+    }
     /* 80321C98 */ virtual void setTevOrder(u32 idx, J3DTevOrder const* order) { mTevOrder[idx] = *order; }
     /* 80321C84 */ virtual void setTevOrder(u32 idx, J3DTevOrder order) { mTevOrder[idx] = order; }
     /* 80321CAC */ virtual J3DTevOrder* getTevOrder(u32 idx) { return &mTevOrder[idx]; }
@@ -598,7 +611,10 @@ public:
     /* 80317BBC */ virtual s32 countDLSize();
     /* 803227B4 */ virtual void setTexNo(u32 idx, u16 const* no) { mTexNo[idx] = *no; }
     /* 803227A4 */ virtual void setTexNo(u32 idx, u16 no) { mTexNo[idx] = no; }
-    /* 803227C8 */ virtual u16 getTexNo(u32 idx) const { return mTexNo[idx]; }
+    /* 803227C8 */ virtual u16 getTexNo(u32 idx) const {
+        J3D_ASSERT(1574, idx < 1, "Error : range over.");
+        return mTexNo[idx];
+    }
     /* 803227EC */ virtual void setTevOrder(u32 idx, J3DTevOrder const* order) { mTevOrder[idx] = *order; }
     /* 803227D8 */ virtual void setTevOrder(u32 idx, J3DTevOrder order) { mTevOrder[idx] = order; }
     /* 80322800 */ virtual J3DTevOrder* getTevOrder(u32 idx) { return &mTevOrder[idx]; }

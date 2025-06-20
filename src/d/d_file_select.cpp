@@ -4137,29 +4137,42 @@ void dFile_select3D_c::draw() {
 }
 
 /* 8019065C-8019095C 18AF9C 0300+00 2/2 0/0 0/0 .text setJ3D__16dFile_select3D_cFPCcPCcPCc */
-// NONMATCHING regswap
+// NONMATCHING extra mr
 void dFile_select3D_c::setJ3D(char const* param_0, char const* param_1, char const* param_2) {
     JKRArchive* archive = dComIfGp_getCollectResArchive();
-    J3DModelData* modelData = J3DModelLoaderDataBase::load(
-        archive->getResource('BMD ', param_0), 0x51020010);
+    J3DAnmTransform* pbck;
+    J3DAnmTevRegKey* pbrk;
+
+    void* res = archive->getResource('BMD ', param_0);
+    J3DModelData* modelData = J3DModelLoaderDataBase::load(res, 0x51020010);
+    JUT_ASSERT(8823, modelData != 0);
+
     for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
         J3DMaterialAnm* material = new J3DMaterialAnm();
         modelData->getMaterialNodePointer(i)->change();
         modelData->getMaterialNodePointer(i)->setMaterialAnm(material);
     }
+
     mpModel = new J3DModel(modelData, 0, 1);
+    JUT_ASSERT(8836, mpModel != 0);
+
     if (param_1) {
-        J3DAnmTransform* pbck =
-            (J3DAnmTransform*)J3DAnmLoaderDataBase::load(archive->getResource('BCK ', param_1));
+        void* res = archive->getResource('BCK ', param_1);
+        pbck = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(res);
+        JUT_ASSERT(8846, pbck != 0);
+
         mBckAnm = new mDoExt_bckAnm();
         if (mBckAnm == NULL || !mBckAnm->init(pbck, 1, 2, 1.0f, 0, -1, false)) {
             return;
         }
     }
+
     if (param_2) {
-        J3DAnmTevRegKey* pbrk =
-            (J3DAnmTevRegKey*)J3DAnmLoaderDataBase::load(archive->getResource('BRK ', param_2));
+        void* res = archive->getResource('BRK ', param_2);
+        pbrk = (J3DAnmTevRegKey*)J3DAnmLoaderDataBase::load(res);
+        JUT_ASSERT(8859, pbrk != 0);
         pbrk->searchUpdateMaterialID(modelData);
+
         mBrkAnm = new mDoExt_brkAnm();
         if (mBrkAnm == NULL || !mBrkAnm->init(modelData, pbrk, -1, 2, 1.0f, 0, -1)) {
             return;

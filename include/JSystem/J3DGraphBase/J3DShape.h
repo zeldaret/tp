@@ -2,8 +2,11 @@
 #define J3DSHAPE_H
 
 #include "JSystem/J3DGraphBase/J3DShapeDraw.h"
-#include "JSystem/J3DGraphBase/J3DShapeMtx.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "dolphin/gx.h"
+#include "mtx.h"
+
+class J3DShapeMtx;
 
 /**
  * @ingroup jsystem-j3d
@@ -48,11 +51,11 @@ public:
     u32 getMtxIdxRegB() const { return mMtxIdxRegB; }
 
     inline void load() const {
-        J3DFifoWriteCPCmd(0x30, getMtxIdxRegA());  // CP_MATINDEX_A
-        J3DFifoWriteCPCmd(0x40, getMtxIdxRegB());  // CP_MATINDEX_B
+        J3DFifoWriteCPCmd(0x30, mMtxIdxRegA);  // CP_MATINDEX_A
+        J3DFifoWriteCPCmd(0x40, mMtxIdxRegB);  // CP_MATINDEX_B
         J3DFifoWriteXFCmd(0x1018, 2);
-        GXWGFifo.u32 = getMtxIdxRegA();
-        GXWGFifo.u32 = getMtxIdxRegB();
+        GXCmd1u32(mMtxIdxRegA);
+        GXCmd1u32(mMtxIdxRegB);
     }
 
     void setCurrentTexMtx(u8 param_1, u8 param_2, u8 param_3, u8 param_4,
@@ -111,7 +114,7 @@ public:
     bool checkFlag(u32 flag) const { return !!(mFlags & flag); }
     void setDrawMtxDataPointer(J3DDrawMtxData* pMtxData) { mDrawMtxData = pMtxData; }
     void setVertexDataPointer(J3DVertexData* pVtxData) { mVertexData = pVtxData; }
-    void* getVcdVatCmd() const { return mVcdVatCmd; }
+    void* getVcdVatCmd() { return mVcdVatCmd; }
     void setVcdVatCmd(void* pVatCmd) { mVcdVatCmd = (u8*)pVatCmd; }
     void show() { offFlag(J3DShpFlag_Visible); }
     void hide() { onFlag(J3DShpFlag_Visible); }
@@ -124,15 +127,14 @@ public:
     bool getNBTFlag() const { return mHasNBT; }
     u32 getBumpMtxOffset() const { return mBumpMtxOffset; }
     void setBumpMtxOffset(u32 offset) { mBumpMtxOffset = offset; }
-    GXVtxDescList* getVtxDesc() const { return mVtxDesc; }
+    GXVtxDescList* getVtxDesc() { return mVtxDesc; }
 
     J3DMaterial* getMaterial() const { return mMaterial; }
     u16 getIndex() const { return mIndex; }
-    u32 getPipeline() const { return (mFlags >> 2) & 0x07; }
     u32 getTexMtxLoadType() const { return mFlags & 0xF000; }
     u32 getMtxGroupNum() const { return mMtxGroupNum; }
-    J3DShapeDraw* getShapeDraw(u32 idx) const { return mShapeDraw[idx]; }
-    J3DShapeMtx* getShapeMtx(u32 idx) const { return mShapeMtx[idx]; }
+    J3DShapeDraw* getShapeDraw(u16 idx) { return mShapeDraw[idx]; }
+    J3DShapeMtx* getShapeMtx(u16 idx) { return mShapeMtx[idx]; }
     Vec* getMin() { return &mMin; }
     Vec* getMax() { return &mMax; }
 
@@ -165,6 +167,50 @@ private:
     /* 0x5C */ Mtx33** mNrmMtx;
     /* 0x60 */ u32* mCurrentViewNo;
     /* 0x64 */ u32 mBumpMtxOffset;
+};
+
+typedef void (J3DShapeMtx::*J3DShapeMtx_LoadFunc)(int, u16) const;
+
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
+class J3DShapeMtx {
+public:
+    J3DShapeMtx(u16 useMtxIndex)
+        : mUseMtxIndex(useMtxIndex)
+    {}
+
+    /* 803130E4 */ void loadMtxIndx_PNGP(int, u16) const;
+    /* 80313128 */ void loadMtxIndx_PCPU(int, u16) const;
+    /* 80313188 */ void loadMtxIndx_NCPU(int, u16) const;
+    /* 803131D4 */ void loadMtxIndx_PNCPU(int, u16) const;
+
+    /* 80314798 */ virtual ~J3DShapeMtx() {}
+    /* 803147E0 */ virtual u32 getType() const { return 'SMTX'; }
+    /* 80273E08 */ virtual u32 getUseMtxNum() const { return 1; }
+    /* 8031459C */ virtual u32 getUseMtxIndex(u16) const { return mUseMtxIndex; }
+    /* 80313B94 */ virtual void load() const;
+    /* 80313BF0 */ virtual void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
+
+    static J3DShapeMtx_LoadFunc sMtxLoadPipeline[4];
+    static u16 sMtxLoadCache[10];
+    static u32 sCurrentPipeline;
+    static u8* sCurrentScaleFlag;
+    static u8 sNBTFlag;
+    static u8 sLODFlag;
+    static u32 sTexMtxLoadType;
+
+    static void setCurrentPipeline(u32 pipeline) {
+        J3D_ASSERT(91, pipeline < 4, "Error : range over.");
+        sCurrentPipeline = pipeline;
+    }
+    static void setLODFlag(u8 flag) { sLODFlag = flag; }
+    static u32 getLODFlag() { return sLODFlag; }
+    static void resetMtxLoadCache();
+
+protected:
+    /* 0x04 */ u16 mUseMtxIndex;
 };
 
 #endif /* J3DSHAPE_H */

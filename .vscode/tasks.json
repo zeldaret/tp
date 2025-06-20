@@ -32,5 +32,11 @@
       "command": "${command:python.interpreterPath} configure.py --version ${input:gameVersion}",
       "problemMatcher": [],
     },
+    {
+      "label": "ninja changes_all",
+      "type": "shell",
+      "command": "ninja changes_all",
+      "problemMatcher": [],
+    },
   ]
 }

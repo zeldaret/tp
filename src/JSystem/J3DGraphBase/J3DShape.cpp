@@ -47,7 +47,7 @@ void J3DShape::addTexMtxIndexInDL(GXAttr attr, u32 valueBase) {
     s32 stride = 0;
     bool found = false;
 
-    for (GXVtxDescList* vtxDesc = mVtxDesc; vtxDesc->attr != GX_VA_NULL; vtxDesc++) {
+    for (GXVtxDescList* vtxDesc = getVtxDesc(); vtxDesc->attr != GX_VA_NULL; vtxDesc++) {
         if (vtxDesc->attr == GX_VA_PNMTXIDX)
             pnmtxidxOffs = stride;
 
@@ -105,15 +105,15 @@ void J3DShape::addTexMtxIndexInVcd(GXAttr attr) {
 /* 80314DA8-80314E28 30F6E8 0080+00 0/0 1/1 0/0 .text
  * calcNBTScale__8J3DShapeFRC3VecPA3_A3_fPA3_A3_f               */
 void J3DShape::calcNBTScale(Vec const& param_0, f32 (*param_1)[3][3], f32 (*param_2)[3][3]) {
-    for (u16 i = 0; i < getMtxGroupNum(); i++)
-        getShapeMtx(i)->calcNBTScale(param_0, param_1, param_2);
+    for (u16 i = 0; i < mMtxGroupNum; i++)
+        mShapeMtx[i]->calcNBTScale(param_0, param_1, param_2);
 }
 
 /* 80314E28-80314E98 30F768 0070+00 0/0 1/1 0/0 .text            countBumpMtxNum__8J3DShapeCFv */
 u32 J3DShape::countBumpMtxNum() const {
     u32 num = 0;
-    for (u16 i = 0; i < getMtxGroupNum(); i++)
-        num += getShapeMtx(i)->getUseMtxNum();
+    for (u16 i = 0; i < mMtxGroupNum; i++)
+        num += mShapeMtx[i]->getUseMtxNum();
     return num;
 }
 
@@ -141,7 +141,7 @@ void J3DShape::loadVtxArray() const {
 
 /* 80314F5C-80314F98 30F89C 003C+00 0/0 1/1 0/0 .text isSameVcdVatCmd__8J3DShapeFP8J3DShape */
 bool J3DShape::isSameVcdVatCmd(J3DShape* other) {
-    u8* a = other->mVcdVatCmd;
+    u8* a = (u8*)other->getVcdVatCmd();
     u8* b = mVcdVatCmd;
     for (u32 i = 0; i < kVcdVatDLSize; i++)
         if (a[i] != b[i])
@@ -274,7 +274,7 @@ static u8 data_804515D4[4];
 
 /* 80315398-8031544C 30FCD8 00B4+00 1/1 0/0 0/0 .text setArrayAndBindPipeline__8J3DShapeCFv */
 void J3DShape::setArrayAndBindPipeline() const {
-    J3DShapeMtx::setCurrentPipeline(getPipeline());
+    J3DShapeMtx::setCurrentPipeline((mFlags & 0x1C) >> 2);
     loadVtxArray();
     j3dSys.setModelDrawMtx(mDrawMtx[*mCurrentViewNo]);
     j3dSys.setModelNrmMtx(mNrmMtx[*mCurrentViewNo]);
@@ -302,24 +302,24 @@ void J3DShape::drawFast() const {
         if (J3DShapeMtx::getLODFlag() != 0)
             J3DShapeMtx::resetMtxLoadCache();
 
-        for (u16 n = getMtxGroupNum(), i = 0; i < n; i++) {
-            if (getShapeMtx(i) != NULL)
-                getShapeMtx(i)->load();
-            if (getShapeDraw(i) != NULL)
-                getShapeDraw(i)->draw();
+        for (u16 n = mMtxGroupNum, i = 0; i < n; i++) {
+            if (mShapeMtx[i] != NULL)
+                mShapeMtx[i]->load();
+            if (mShapeDraw[i] != NULL)
+                mShapeDraw[i]->draw();
         }
     } else {
         J3DFifoLoadPosMtxImm(*j3dSys.getShapePacket()->getBaseMtxPtr(), GX_PNMTX0);
         J3DFifoLoadNrmMtxImm(*j3dSys.getShapePacket()->getBaseMtxPtr(), GX_PNMTX0);
-        for (u16 n = getMtxGroupNum(), i = 0; i < n; i++)
-            if (getShapeDraw(i) != NULL)
-                getShapeDraw(i)->draw();
+        for (u16 n = mMtxGroupNum, i = 0; i < n; i++)
+            if (mShapeDraw[i] != NULL)
+                mShapeDraw[i]->draw();
     }
 }
 
 /* 803155E0-80315628 30FF20 0048+00 1/0 0/0 0/0 .text            draw__8J3DShapeCFv */
 void J3DShape::draw() const {
-    sOldVcdVatCmd = NULL;
+    resetVcdVatCache();
     loadPreDrawSetting();
     drawFast();
 }
@@ -328,11 +328,11 @@ void J3DShape::draw() const {
 void J3DShape::simpleDraw() const {
     resetVcdVatCache();
     loadPreDrawSetting();
-    J3DShapeMtx::setCurrentPipeline(getPipeline());
+    J3DShapeMtx::setCurrentPipeline((mFlags & 0x1C) >> 2);
     loadVtxArray();
-    for (u16 n = getMtxGroupNum(), i = 0; i < n; i++) {
-        if (getShapeDraw(i) != NULL) {
-            getShapeDraw(i)->draw();
+    for (u16 n = mMtxGroupNum, i = 0; i < n; i++) {
+        if (mShapeDraw[i] != NULL) {
+            mShapeDraw[i]->draw();
         }
     }
 }
@@ -348,7 +348,7 @@ void J3DShape::simpleDrawCache() const {
         mCurrentMtx.load();
 
     loadVtxArray();
-    for (u16 n = getMtxGroupNum(), i = 0; i < n; i++)
-        if (getShapeDraw(i) != NULL)
-            getShapeDraw(i)->draw();
+    for (u16 n = mMtxGroupNum, i = 0; i < n; i++)
+        if (mShapeDraw[i] != NULL)
+            mShapeDraw[i]->draw();
 }
