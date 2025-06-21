@@ -69,6 +69,7 @@ int daE_GI_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     switch (jnt_no) {
     case 3:
         mDoMtx_stack_c::XrotM(field_0x67e);
+        break;
     }
 
     i_model->setAnmMtx(jnt_no, mDoMtx_stack_c::get());
@@ -530,6 +531,7 @@ void daE_GI_c::executeChase() {
             setActionMode(ACTION_ATTACK_e, 0);
             mIsAttackStart = TRUE;
         }
+        break;
     }
 }
 
