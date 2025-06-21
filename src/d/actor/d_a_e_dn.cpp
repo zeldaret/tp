@@ -2929,9 +2929,6 @@ int c_start;
 /* 804ECB50-804ED83C 007A90 0CEC+00 2/1 0/0 0/0 .text            daE_DN_Execute__FP10e_dn_class */
 static int daE_DN_Execute(e_dn_class* i_this) {
     // NONMATCHING
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
-    f32 fVar1 = 0.0f;
-    
     if (i_this->field_0x10d8 != 0) {
         return 1;
     }
@@ -2941,6 +2938,7 @@ static int daE_DN_Execute(e_dn_class* i_this) {
         return 1;
     }
 
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     cXyz sp2c;
     cXyz sp38;
     cXyz sp44;
@@ -2971,21 +2969,21 @@ static int daE_DN_Execute(e_dn_class* i_this) {
     action(i_this);
 
     if (i_this->field_0x840 == 0 && i_this->field_0x5d8 == 0) {
-        if (i_this->field_0x704 != fVar1) {
+        if (i_this->field_0x704) {
             cMtx_YrotS(*calc_mtx, i_this->field_0x724.y);
             sp2c.x = 0.0f;
-            sp2c.y = 0.0f;
+            sp2c.y = TREG_F(8);
             sp2c.z = i_this->field_0x83c;
             MtxPosition(&sp2c, &sp38);
             a_this->current.pos += sp38;
             a_this->old.pos += sp38;
-            cLib_addCalc2(&i_this->field_0x83c, i_this->field_0x704 * 2.0f, 1.0f, 5.0f);
+            cLib_addCalc2(&i_this->field_0x83c, i_this->field_0x704 * (2.0f + TREG_F(9)), 1.0f, 5.0f + TREG_F(17));
         } else {
-            cLib_addCalc0(&i_this->field_0x83c, 1.0f, 5.0f);
+            cLib_addCalc0(&i_this->field_0x83c, 1.0f, 5.0f + TREG_F(17));
         }
 
         i_this->mObjAcch.CrrPos(dComIfG_Bgsp());
-        if (i_this->field_0x704 != fVar1) {
+        if (i_this->field_0x704) {
             a_this->current.pos -= sp38;
             a_this->old.pos -= sp38;
         }
@@ -2999,13 +2997,13 @@ static int daE_DN_Execute(e_dn_class* i_this) {
                 }
             }
         } else {
-            if (i_this->field_0x842 >= 13) {
+            if (i_this->field_0x842 >= 13 + ZREG_S(8)) {
                 i_this->mAction = ACTION_DAMAGE;
                 i_this->mMode = 0;
                 a_this->speed.y = 0.0f;
                 i_this->field_0x704 = -1.0;
                 i_this->field_0x724.x = -0x3000;
-                i_this->field_0x828 = 50;
+                i_this->field_0x828 = 50 + DREG_S(2);
                 i_this->field_0x6e8 = 1000;
                 a_this->health = 0;
             }
@@ -3015,13 +3013,13 @@ static int daE_DN_Execute(e_dn_class* i_this) {
     }
 
     mDoMtx_stack_c::transS(a_this->current.pos.x, a_this->current.pos.y + i_this->field_0x720, a_this->current.pos.z);
-    mDoMtx_stack_c::XrotM(i_this->field_0x72a.x);
-    mDoMtx_stack_c::ZrotM(i_this->field_0x72a.z);
-    mDoMtx_stack_c::YrotM(i_this->field_0x724.y);
-    mDoMtx_stack_c::XrotM(i_this->field_0x724.x);
+    mDoMtx_stack_c::XrotM((s16) i_this->field_0x72a.x);
+    mDoMtx_stack_c::ZrotM((s16) i_this->field_0x72a.z);
+    mDoMtx_stack_c::YrotM((s16) i_this->field_0x724.y);
+    mDoMtx_stack_c::XrotM((s16) i_this->field_0x724.x);
     mDoMtx_stack_c::YrotM(-i_this->field_0x724.y);
-    mDoMtx_stack_c::YrotM(a_this->shape_angle.y);
-    mDoMtx_stack_c::XrotM(a_this->shape_angle.x);
+    mDoMtx_stack_c::YrotM((s16) a_this->shape_angle.y);
+    mDoMtx_stack_c::XrotM((s16) a_this->shape_angle.x);
     mDoMtx_stack_c::ZrotM(a_this->shape_angle.z);
     mDoMtx_stack_c::scaleM(l_HIO.model_size * a_this->scale.x, l_HIO.model_size * a_this->scale.x, l_HIO.model_size * a_this->scale.x);
 
@@ -3034,7 +3032,7 @@ static int daE_DN_Execute(e_dn_class* i_this) {
 
     sp2c.set(0.0f, 0.0f, 0.0f);
     MtxPosition(&sp2c, &sp38);
-    sp2c.set(0.0f, 0.0f, -200.0f);
+    sp2c.set(YREG_F(1), YREG_F(2), -200.0f + YREG_F(3));
     MtxPosition(&sp2c, &sp44);
     if (sp38.y < sp44.y) {
         i_this->field_0x737 = 0;
@@ -3049,7 +3047,7 @@ static int daE_DN_Execute(e_dn_class* i_this) {
     }
 
     MTXCopy(model->getAnmMtx(6), *calc_mtx);
-    sp2c.set(30.0f, 30.0f, 0.0f);
+    sp2c.set(30.0f + KREG_F(12), 30.0f + KREG_F(13), 0.0f + KREG_F(14));
     MtxPosition(&sp2c, &a_this->eyePos);
 
     i_this->field_0xa9c[0].SetC(a_this->eyePos + sp50);
@@ -3060,15 +3058,15 @@ static int daE_DN_Execute(e_dn_class* i_this) {
     }
     
     a_this->attention_info.position = a_this->eyePos;
-    a_this->attention_info.position.y += 70.0f;
+    a_this->attention_info.position.y += 70.0f + BREG_F(7);
 
     MTXCopy(model->getAnmMtx(1), *calc_mtx);
-    sp2c.set(-30.0f, 0.0f, 0.0f);
+    sp2c.set(-30.0f + BREG_F(11), BREG_F(12), BREG_F(13));
     MtxPosition(&sp2c, &sp38);
     i_this->field_0xa9c[1].SetC(sp38 + sp50);
     i_this->field_0xa9c[1].SetR(45.0f);
     MTXCopy(model->getAnmMtx(2), *calc_mtx);
-    sp2c.set(20.0f, 0.0f, 0.0f);
+    sp2c.set(20.0f + BREG_F(14), BREG_F(15), BREG_F(16));
     MtxPosition(&sp2c, &sp38);
     i_this->field_0xa9c[2].SetC(sp38 + sp50);
     i_this->field_0xa9c[2].SetR(45.0f);
@@ -3087,7 +3085,7 @@ static int daE_DN_Execute(e_dn_class* i_this) {
     i_this->mpKnifeModel->setBaseTRMtx(*calc_mtx);
 
     if (i_this->field_0x6ef != 0 && i_this->field_0x6ee <= 1) {
-        sp2c.set(0.0f, 60.0f, 0.0f);
+        sp2c.set(BREG_F(7), 60.0f + BREG_F(8), BREG_F(9));
         MtxPosition(&sp2c, &sp38);
         if (i_this->field_0x6f0 == 0) {
             i_this->field_0x6f0 = 1;
@@ -3129,7 +3127,7 @@ static int daE_DN_Execute(e_dn_class* i_this) {
 
     if (i_this->field_0x6ef != 0 && i_this->field_0x6ee == 2) {
         MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(34), *calc_mtx);
-        sp2c.set(0.0f, 0.0f, 0.0f);
+        sp2c.set(BREG_F(7), BREG_F(8), BREG_F(9));
         MtxPosition(&sp2c, &sp38);
 
         if (i_this->field_0x6f0 == 0) {
@@ -3140,7 +3138,7 @@ static int daE_DN_Execute(e_dn_class* i_this) {
         }
 
         i_this->field_0xe44.SetAtAtp(2);
-        i_this->field_0xe44.SetR(70.0f * l_HIO.model_size);
+        i_this->field_0xe44.SetR((70.0f + BREG_F(10)) * l_HIO.model_size);
     }
 
     if (i_this->field_0x6ef == 0) {
@@ -3155,19 +3153,20 @@ static int daE_DN_Execute(e_dn_class* i_this) {
 
     if (i_this->field_0x6f1 != 0 && i_this->field_0x6ec == 0) {
         MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(12), *calc_mtx);
-        sp2c.set(50.0f, 0.0f, 30.0f);
+        sp2c.set(50.0f + JREG_F(5), JREG_F(6), 30.0f + JREG_F(7));
         MtxPosition(&sp2c, &sp38);
         i_this->field_0xf7c.SetC(sp38);
-        i_this->field_0xf7c.SetR(70.0f * l_HIO.model_size);
+        i_this->field_0xf7c.SetR((70.0f + JREG_F(8)) * l_HIO.model_size);
 
         if (i_this->field_0xf7c.ChkTgHit()) {
             def_se_set(&i_this->mSound, i_this->field_0xf7c.GetTgHitObj(), 40, 0);
             dScnPly_c::setPauseTimer(l_HIO.field_0x1c);
             i_this->field_0x6ec = 10;
-            cMtx_YrotS(*calc_mtx, a_this->shape_angle.y);
-            sp2c.x = 0.0f;
-            sp2c.y = 120.0f;
-            sp2c.z = 50.0f;
+            // The following s16 cast makes ALL the difference in terms of regalloc!
+            cMtx_YrotS(*calc_mtx, (s16) a_this->shape_angle.y);
+            sp2c.x = KREG_F(0);
+            sp2c.y = 120.0f + KREG_F(1);
+            sp2c.z = 50.0f + KREG_F(2);
             MtxPosition(&sp2c, &sp38);
             sp38 += a_this->current.pos;
             dComIfGp_setHitMark(2, NULL, &sp38, &a_this->shape_angle, NULL, 0);
@@ -3183,33 +3182,39 @@ static int daE_DN_Execute(e_dn_class* i_this) {
         cLib_addCalc2(&i_this->field_0x6c8, -20.0f, 1.0f, 0.4f);
     }
 
-    daPy_py_c* player = daPy_getPlayerActorClass();
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
     MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(2), mDoMtx_stack_c::get());
     mDoMtx_stack_c::multVecZero(&sp38);
     sp2c = player->current.pos - sp38;
-    cMtx_YrotS(*calc_mtx, cM_atan2s(sp2c.x, sp2c.z));
+    s16 tans_val = cM_atan2s(sp2c.x, sp2c.z);
+    cMtx_YrotS(*calc_mtx, tans_val);
     sp2c.x = 0.0;
     sp2c.y = 45.0f;
     sp2c.z = 30.0f;
     MtxPosition(&sp2c, &sp44);
     sp44 += sp38;
-    a_this->setDownPos(&sp44);
+    // The following pokes a hole in the "c-style actors don't inherit" theory....
+    ((fopEn_enemy_c*) i_this)->setDownPos(&sp44);
     cXyz sp80(a_this->eyePos);
     sp80.y += 180.0f;
-    a_this->setHeadLockPos(&sp80);
+    ((fopEn_enemy_c*) i_this)->setHeadLockPos(&sp80);
 
     a_this->attention_info.flags |= 0x200000;
 
     if ((a_this->current.pos.y - a_this->home.pos.y) < -5000.0f) {
         fopAcM_delete(a_this);
         OS_REPORT("DN NARAKU\n");
-        int swBit = fopAcM_GetParam(a_this) >> 24;
+        int swBit = (fopAcM_GetParam(a_this) & 0xFF000000) >> 24;
         if (swBit != 0xFF) {
             dComIfGs_onSwitch(swBit, fopAcM_GetRoomNo(a_this));
         }
     }
 
-    if (strcmp(dComIfGp_getStartStageName(), "D_MN07") == 0 && fopAcM_GetRoomNo(a_this) == 8 && a_this->health != 0 && a_this->current.pos.y <= -300.0f) {
+    // City in the Sky - Dynalfos Room:
+    //  i.e. where you can scare the 2 lizard dudes with the clawshot, make them fall to their deaths,
+    //  then the fan in the middle turns on.
+    if (strcmp(dComIfGp_getStartStageName(), "D_MN07") == 0 && fopAcM_GetRoomNo(a_this) == 8
+        && a_this->health != 0 && a_this->current.pos.y <= -300.0f) {
         i_this->mAction = ACTION_DAMAGE;
         i_this->mMode = 0;
         i_this->field_0x704 = 0.0;
@@ -3311,7 +3316,7 @@ static cPhs__Step daE_DN_Create(fopAc_ac_c* a_this) {
 
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&i_this->mPhase, "E_dn");
     if (phase == cPhs_COMPLEATE_e) {
-        int swBit = fopAcM_GetParam(a_this) >> 24;
+        int swBit = (fopAcM_GetParam(a_this) & 0xFF000000) >> 24;
         if (swBit != 0xFF) {
             if (dComIfGs_isSwitch(swBit, fopAcM_GetRoomNo(a_this))) {
                 return cPhs_ERROR_e;
@@ -3321,7 +3326,7 @@ static cPhs__Step daE_DN_Create(fopAc_ac_c* a_this) {
         OS_REPORT("E_dn PARAM %x\n", fopAcM_GetParam(a_this));
         i_this->field_0x5b6 = fopAcM_GetParam(a_this);
         i_this->field_0x5b9 = 1;
-        i_this->field_0x5b7 = (fopAcM_GetParam(a_this) >> 8) & 15;
+        i_this->field_0x5b7 = (fopAcM_GetParam(a_this) & 0xF00) >> 8;
         i_this->field_0x5b8 = (fopAcM_GetParam(a_this) & 0xF000) >> 12;
 
         if ((a_this->home.angle.z & 0xFF) == 0 || (a_this->home.angle.z & 0xFF) == 0xFF) {
