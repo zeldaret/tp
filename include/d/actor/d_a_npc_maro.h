@@ -179,52 +179,16 @@ private:
 
 STATIC_ASSERT(sizeof(daNpc_Maro_c) == 0x1140);
 
+struct daNpc_Maro_HIOParam {
+    /* 0x00 */ daNpcT_HIOParam common;
+    /* 0x8C */ u32 field_0x8c;
+};
+
 class daNpc_Maro_Param_c {
 public:
     /* 805649B0 */ virtual ~daNpc_Maro_Param_c() {}
 
-    struct Data {
-        /* 0x00 */ f32 field_0x00;
-        /* 0x04 */ f32 field_0x04;
-        /* 0x08 */ f32 field_0x08;
-        /* 0x0C */ f32 field_0x0c;
-        /* 0x10 */ f32 field_0x10;
-        /* 0x14 */ f32 field_0x14;
-        /* 0x18 */ f32 field_0x18;
-        /* 0x1C */ f32 field_0x1c;
-        /* 0x20 */ f32 field_0x20;
-        /* 0x24 */ f32 field_0x24;
-        /* 0x28 */ f32 field_0x28;
-        /* 0x2C */ f32 field_0x2c;
-        /* 0x30 */ f32 field_0x30;
-        /* 0x34 */ f32 field_0x34;
-        /* 0x38 */ f32 field_0x38;
-        /* 0x3C */ f32 field_0x3c;
-        /* 0x40 */ f32 field_0x40;
-        /* 0x44 */ f32 field_0x44;
-        /* 0x48 */ s16 field_0x48;
-        /* 0x4A */ s16 field_0x4a;
-        /* 0x4C */ s16 field_0x4c;
-        /* 0x4E */ s16 field_0x4e;
-        /* 0x50 */ f32 field_0x50;
-        /* 0x54 */ u32 field_0x54;
-        /* 0x58 */ u32 field_0x58;
-        /* 0x5C */ u32 field_0x5c;
-        /* 0x60 */ u32 field_0x60;
-        /* 0x64 */ u32 field_0x64;
-        /* 0x68 */ u32 field_0x68;
-        /* 0x6C */ f32 field_0x6c;
-        /* 0x70 */ f32 field_0x70;
-        /* 0x74 */ f32 field_0x74;
-        /* 0x78 */ f32 field_0x78;
-        /* 0x7C */ f32 field_0x7c;
-        /* 0x80 */ f32 field_0x80;
-        /* 0x84 */ f32 field_0x84;
-        /* 0x88 */ f32 field_0x88;
-        /* 0x8C */ u32 field_0x8c;
-    };
-
-    static const Data m;
+    static const daNpc_Maro_HIOParam m;
 };
 
 
