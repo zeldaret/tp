@@ -34,7 +34,7 @@ public:
     /* 0x05D0 */ mDoExt_McaMorfSO* mpModelMorf;
     /* 0x05D4 */ Z2CreatureEnemy mSound;
     /* 0x0678 */ char* mResName;
-    /* 0x067C */ int field_0x67c;
+    /* 0x067C */ int mAnmID;
     /* 0x0680 */ int field_0x680;
     /* 0x0684 */ dJntCol_c mJntCol;
     /* 0x0694 */ J3DModel* field_0x694;
@@ -48,10 +48,13 @@ public:
     /* 0x06BE */ s16 field_0x6be;
     /* 0x06C0 */ s16 field_0x6c0;
     /* 0x06C2 */ s8 field_0x6c2;
-    /* 0x06C3 */ u8 field_0x6c3[9];
+    /* 0x06C3 */ u8 field_0x6c3;
+    /* 0x06C4 */ J3DModel* field_0x6c4[2];
     /* 0x06CC */ f32 field_0x6cc;
     /* 0x06D0 */ f32 field_0x6d0;
-    /* 0x06D4 */ u8 field_0x6d4[0x71c - 0x6d4];
+    /* 0x06D4 */ J3DModel* field_0x6d4[14];
+    /* 0x070C */ u8 field_0x70c[14];
+    /* 0x071A */ u8 field_0x71a[2];
     /* 0x071C */ cXyz field_0x71c[14];
     /* 0x07C4 */ cXyz field_0x7c4[14];
     /* 0x086C */ csXyz field_0x86c[14];
