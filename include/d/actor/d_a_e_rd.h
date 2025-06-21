@@ -5,6 +5,7 @@
 #include "d/d_cc_uty.h"
 #include "d/d_jnt_col.h"
 #include "d/d_msg_flow.h"
+#include "d/d_path.h"
 #include "f_op/f_op_actor_mng.h"
 
 /**
@@ -109,7 +110,8 @@ public:
     /* 0x0AF2 */ s16 field_0xaf2;
     /* 0x0AF4 */ u8 field_0xaf4[7];
     /* 0x0AFB */ s8 field_0xafb;
-    /* 0x0AFC */ u8 field_0xafc[8];
+    /* 0x0AFC */ dPath* mPath;
+    /* 0x0B00 */ u8 field_0xb00[4];
     /* 0x0B04 */ dBgS_AcchCir mAcchCir;
     /* 0x0B44 */ dBgS_ObjAcch mObjAcch;
     /* 0x0D1C */ dCcD_Stts mStts;
@@ -147,7 +149,7 @@ STATIC_ASSERT(sizeof(e_rd_class) == 0x1368);
 class daE_RD_HIO_c {
 public:
     /* 80504A6C */ daE_RD_HIO_c();
-    /* 8051801C */ ~daE_RD_HIO_c();
+    /* 8051801C */ virtual ~daE_RD_HIO_c() {};
 };
 
 

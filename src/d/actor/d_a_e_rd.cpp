@@ -1235,13 +1235,7 @@ static u8 lit_1009[1 + 3 /* padding */];
 static e_rd_class* boss;
 
 /* 80519184-80519188 00004C 0004+00 1/2 0/0 0/0 .bss             None */
-static u8 data_80519184[4];
-
-/* 80519188-80519194 000050 000C+00 0/1 0/0 0/0 .bss             @4224 */
-#pragma push
-#pragma force_active on
-static u8 lit_4224[12];
-#pragma pop
+static u8 l_initHIO;
 
 /* 80519194-805191E4 00005C 0050+00 14/18 0/0 0/0 .bss             l_HIO */
 static daE_RD_HIO_c l_HIO;
@@ -1249,7 +1243,9 @@ static daE_RD_HIO_c l_HIO;
 /* 805191E4-805191E8 -00001 0004+00 6/10 0/0 0/0 .bss             None */
 /* 805191E4 0002+00 data_805191E4 S_find */
 /* 805191E6 0002+00 data_805191E6 None */
-static u8 struct_805191E4[4];
+static s16 S_find;
+
+static s16 lbl_70_bss_AE;
 
 /* 805191E8-805191F4 0000B0 000C+00 0/1 0/0 0/0 .bss             @4242 */
 #pragma push
@@ -3355,7 +3351,7 @@ static void coach_game_actor_set(e_rd_class* param_0) {
 }
 
 /* 80516B04-805171FC 012184 06F8+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
-static void useHeapInit(fopAc_ac_c* param_0) {
+static int useHeapInit(fopAc_ac_c* a_this) {
     // NONMATCHING
 }
 
@@ -3488,13 +3484,97 @@ static cPhs__Step daE_RD_Create(fopAc_ac_c* a_this) {
                           fopAcM_GetRoomNo(a_this), &a_this->home.angle, NULL, -1);
         }
 
-        if (a_this->home.angle.x == 0 || a_this->home.angle.x == -1) {
+        if ((a_this->home.angle.z & 0xFF) == 0 || (a_this->home.angle.z & 0xFF) == 0xFF) {
             i_this->field_0x980 = 100000.0f;
         } else {
-            i_this->field_0x980 = a_this->home.angle.x * 100.0f;
+            i_this->field_0x980 = a_this->home.angle.z * 100.0f;
         }
 
-        i_this->field_0x12a0 = a_this->home.angle.x;
+        i_this->field_0x12a0 = a_this->home.angle.z >> 8 & 0xFF;
+
+        if (i_this->field_0x12a0 == 0xFF) {
+            i_this->field_0x12a0 = 0;
+        }
+
+        fopAcM_OnStatus(a_this, fopAcM_STATUS_UNK_000100);
+        a_this->attention_info.flags = 0;
+
+        if (i_this->field_0x5b6 == 6) {
+            i_this->mAction = 50;
+            i_this->field_0x99c = 30;
+            s_find = 0;
+            lbl_70_bss_AE = 0;
+
+            if (fopAcM_GetRoomNo(a_this) == 0) {
+                fopAcM_setCullSizeFar(a_this, 30000.0f);
+            }
+        } else if (i_this->field_0x5b6 == 7) {
+            i_this->mAction = 0;
+            if ((a_this->home.angle.x & 0xFF) != 0xFF) {
+                i_this->mPath = dPath_GetRoomPath(a_this->home.angle.x & 0xFF, fopAcM_GetRoomNo(a_this));
+                OS_REPORT("//////////////E_RD PPD %x!!\n", i_this->mPath);
+                if (i_this->mPath == NULL) {
+                    OS_REPORT("......RD   NONONONONONO PATH !!!!\n");
+                    return cPhs_ERROR_e;
+                }
+
+                OS_REPORT("//////////////E_RD P0.y %f\n", i_this->mPath->m_points->m_position.y);
+            }
+        } else if (i_this->field_0x5b6 == 8) {
+            i_this->mAction = 52;
+            if (fopAcM_GetRoomNo(a_this) == 0) {
+                fopAcM_setCullSizeFar(a_this, 30000.0f);
+            }
+        } else if (i_this->field_0x5b6 == 9) {
+            i_this->mAction = 53;
+            fopAcM_OffStatus(a_this, 0);
+            a_this->attention_info.flags = 0;
+        } else if (i_this->field_0x5b6 == 35) {
+            i_this->mAction = 3;
+            i_this->field_0x5b4 = 0;
+            i_this->field_0x99c = 200;
+        }
+
+        if (i_this->field_0x5b6 == 13 || i_this->field_0x5b6 == 14) {
+            i_this->mAction = 60;
+            i_this->field_0x5b4 = 0;
+            i_this->field_0xafb = 1;
+            fopAcM_OffStatus(a_this, fopAcM_STATUS_UNK_000100);
+        }
+
+        if (i_this->field_0x5b6 > 2) {
+            i_this->field_0x5b6 = 0;
+        }
+
+        a_this->shape_angle.x = 0;
+        a_this->current.angle.x = 0;
+        a_this->home.angle.x = 0;
+        a_this->shape_angle.z = 0;
+        a_this->current.angle.z = 0;
+        a_this->home.angle.z = 0;
+
+        u32 i_size;
+        if (i_this->field_0x129a == 1) {
+            i_size = 0xAD60;
+        } else if (i_this->field_0x129a == 2) {
+            i_size = 0x3C00;
+        } else if (i_this->field_0x129a == 3) {
+            i_size = 0x4400;
+        } else {
+            i_size = 0x4FF0;
+        }
+
+        if (fopAcM_entrySolidHeap(a_this, useHeapInit, i_size)) {
+            if (i_this->field_0x129a != 0) {
+                ride_game_actor_set(i_this);
+            }
+
+            if (l_initHIO == 0) {
+                i_this->field_0x125c = 1;
+                l_initHIO = 1;
+
+            }
+        }
     }
 
 }
@@ -3561,11 +3641,6 @@ extern "C" void __ct__4cXyzFv() {
 /* 80517FD4-8051801C 013654 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
 // cCcD_GStts::~cCcD_GStts() {
 extern "C" void __dt__10cCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* 8051801C-80518064 01369C 0048+00 2/1 0/0 0/0 .text            __dt__12daE_RD_HIO_cFv */
-daE_RD_HIO_c::~daE_RD_HIO_c() {
     // NONMATCHING
 }
 
