@@ -7999,7 +7999,8 @@ bool dCamera_c::letCamera(s32) {
 /* 801806DC-80180738 17B01C 005C+00 2/2 0/0 0/0 .text            setEventRecoveryTrans__9dCamera_cFs
  */
 void dCamera_c::setEventRecoveryTrans(s16 param_0) {
-    // NONMATCHING
+    pushInfo(&field_0x110.field_0x8, param_0);
+    field_0x110.field_0x28 = positionOf(mpPlayerActor);
 }
 
 /* 80180738-80180A40 17B078 0308+00 1/1 0/0 0/0 .text            runEventRecoveryTrans__9dCamera_cFv
