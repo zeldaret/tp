@@ -8273,6 +8273,7 @@ int dCamera_c::blureCamera() {
         
         cXyz xyz;
         float mult = ((float)mBlure.field_0x4) / ((float)mBlure.field_0x14);
+        float mult = (float)mBlure.field_0x4 / (float)mBlure.field_0x14;
         xyz.x = mBlure.mScale.x + (1.0f - mBlure.mScale.x) * mult;
         xyz.y = mBlure.mScale.y + (1.0f - mBlure.mScale.y) * mult;
         xyz.z = 0.0f;
@@ -8412,8 +8413,83 @@ static void view_setup(camera_process_class* i_this) {
 }
 
 /* 80181804-80181E20 17C144 061C+00 2/2 0/0 0/0 .text            store__FP20camera_process_class */
-static void store(camera_process_class* param_0) {
-    // NONMATCHING
+static void store(camera_process_class* i_camera) {
+    camera_class* a_camera = (camera_class*)i_camera;
+    int camera_id = get_camera_id(a_camera);
+    view_port_class* viewport = get_window(camera_id)->getViewPort();
+    cXyz center = cXyz(*fopCamM_GetCenter_p(a_camera));
+    cXyz eye = cXyz(*fopCamM_GetEye_p(a_camera));
+    cXyz up = cXyz(*fopCamM_GetUp_p(a_camera));
+    cSAngle angle = cSAngle(fopCamM_GetBank(a_camera));
+    f32 fovy = fopCamM_GetFovy(a_camera);
+
+    dDemo_camera_c* demoCamera = dDemo_c::getCamera();
+    if (demoCamera == NULL || dComIfGp_getPEvtManager()->cameraPlay()) {
+        if (!a_camera->mCamera.CheckFlag(1)) {
+            center = a_camera->mCamera.Center();
+            eye = a_camera->mCamera.Eye();
+            up = a_camera->mCamera.Up();
+            angle = a_camera->mCamera.Bank();
+            fovy = a_camera->mCamera.Fovy();
+        }
+    } else {
+        if (demoCamera->checkEnable(dDemo_camera_c::ENABLE_VIEW_TARG_POS_e)) {
+            center = demoCamera->getTarget();
+        }
+        if (demoCamera->checkEnable(dDemo_camera_c::ENABLE_VIEW_POS_e)) {
+            eye = demoCamera->getTrans();
+        }
+        if (demoCamera->checkEnable(dDemo_camera_c::ENABLE_VIEW_UP_VEC_e)) {
+            up = demoCamera->getUp();
+        }
+        if (demoCamera->checkEnable(dDemo_camera_c::ENABLE_VIEW_ROLL_e)) {
+            angle = cSAngle(cAngle::d2s(demoCamera->getRoll()));
+        }
+        if (demoCamera->checkEnable(dDemo_camera_c::ENABLE_PROJ_FOVY_e)) {
+            fovy = demoCamera->getFovy();
+        }       
+    }
+
+    bool error = false;
+    if (eye.x == center.x && eye.z == center.z) {
+        error = true;
+        OS_REPORT("camera: ERROR: bad direction !!\n");
+    }
+    if (fovy < 0.0f || fpclassify(fovy) == FP_QNAN) {
+        error = true;
+        OS_REPORT("camera: ERROR: bad fovy !!\n");
+    }
+    if (fpclassify(eye.x) == FP_QNAN || fpclassify(eye.y) == FP_QNAN || fpclassify(eye.z) == FP_QNAN) {
+        error = true;
+        OS_REPORT("camera: ERROR: bad eye !!\n");
+    }
+    if (fpclassify(center.x) == FP_QNAN || fpclassify(center.y) == FP_QNAN || fpclassify(center.z) == FP_QNAN) {
+        error = true;
+        OS_REPORT("camera: ERROR: bad eye !!\n");
+    }
+ 
+    if (!error) {
+        fopCamM_SetCenter(a_camera, center.x, center.y, center.z);
+        fopCamM_SetEye(a_camera, eye.x, eye.y, eye.z);
+        fopCamM_SetUp(a_camera, up.x, up.y, up.z);
+        fopCamM_SetBank(a_camera, angle.Val());
+        fopCamM_SetFovy(a_camera, fovy);
+    }
+    dStage_stageDt_c* stage = dComIfGp_getStage();
+    if (!a_camera->mCamera.mCamSetup.CheckFlag(0x400)) {
+        if (stage != NULL) {
+            u32 attentionStatus = dComIfGp_getCameraAttentionStatus(camera_id);
+            if (attentionStatus & 8 == 0) {
+                fopCamM_SetNear(a_camera, stage->getStagInfo()->field_0x24);
+            } else {
+                fopCamM_SetNear(a_camera, 30.0f);
+            }
+            fopCamM_SetFar(a_camera, stage->getStagInfo()->field_0x20);
+        }
+    }
+    cSGlobe globe(eye - center);
+    fopCamM_SetAngleY(a_camera, globe.U().Inv());
+    fopCamM_SetAngleY(a_camera, globe.V().Val());
 }
 
 /* 80181E20-80181E64 17C760 0044+00 1/1 0/0 0/0 .text            Up__9dCamera_cFv */
