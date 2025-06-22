@@ -161,7 +161,6 @@ void SetBlureAlpha__9dCamera_cFf();
 void SetBlureScale__9dCamera_cFfff();
 void SetBlurePosition__9dCamera_cFfff();
 void SetBlureActor__9dCamera_cFP10fopAc_ac_c();
-void blureCamera__9dCamera_cFv();
 void onHorseDush__9dCamera_cFv();
 void GetForceLockOnActor__9dCamera_cFv();
 void ForceLockOn__9dCamera_cFP10fopAc_ac_c();
@@ -8256,13 +8255,45 @@ void dCamera_c::SetBlureActor(fopAc_ac_c* i_actor) {
     mBlure.mpActor = i_actor;
 }
 
-/* ############################################################################################## */
-/* 80453918-8045391C 001F18 0004+00 1/1 0/0 0/0 .sdata2          @17392 */
-SECTION_SDATA2 static f32 lit_17392 = 230.0f;
-
 /* 80181280-80181490 17BBC0 0210+00 2/2 0/0 0/0 .text            blureCamera__9dCamera_cFv */
-void dCamera_c::blureCamera() {
-    // NONMATCHING
+int dCamera_c::blureCamera() {
+    if (mBlure.field_0x4 > 0) {
+        if (mBlure.mpActor != NULL) {
+            dDlst_window_c* window = get_window(field_0x0);
+            scissor_class* scissor = window->getScissor();
+            cXyz eyePosition = eyePos(mBlure.mpActor);
+            cXyz res;
+
+            mDoLib_project(&eyePosition, &res);
+            mBlure.mPosition.x = res.x / scissor->width;
+            mBlure.mPosition.y = res.y / scissor->height;
+            mBlure.mPosition.z = 0.0f;
+        }
+        mBlure.field_0x4--;
+        
+        cXyz xyz;
+        float mult = ((float)mBlure.field_0x4) / ((float)mBlure.field_0x14);
+        xyz.x = mBlure.mScale.x + (1.0f - mBlure.mScale.x) * mult;
+        xyz.y = mBlure.mScale.y + (1.0f - mBlure.mScale.y) * mult;
+        xyz.z = 0.0f;
+        
+        mDoMtx_stack_c::transS(mBlure.mPosition.x, mBlure.mPosition.y, mBlure.mPosition.z);
+        mDoMtx_stack_c::scaleM(xyz);
+        mDoMtx_stack_c::XrotM(mBlure.field_0x8.x);
+        mDoMtx_stack_c::YrotM(mBlure.field_0x8.y);
+        mDoMtx_stack_c::ZrotM(mBlure.field_0x8.z);
+        mDoMtx_stack_c::transM(-mBlure.mPosition.x, -mBlure.mPosition.y, -mBlure.mPosition.z);
+        mDoGph_gInf_c::onBlure(mDoMtx_stack_c::get());
+        u8 blureRate = mBlure.mAlpha * 230.0f * mult;
+        mDoMtx_stack_c::scaleM(xyz);
+        mDoGph_gInf_c::setBlureRate(blureRate);
+    }
+    else {
+        mDoGph_gInf_c::offBlure();
+        mBlure.field_0x4 = 0;
+    }
+
+    return mBlure.field_0x4;
 }
 
 /* 80181490-80181500 17BDD0 0070+00 2/2 0/0 0/0 .text            onHorseDush__9dCamera_cFv */
