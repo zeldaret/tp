@@ -62,8 +62,8 @@ struct stage_tresure_class {
 
 // STAG
 struct stage_stag_info_class {
-    /* 0x00 */ f32 field_0x0;
-    /* 0x04 */ f32 field_0x4;
+    /* 0x00 */ f32 mNear;
+    /* 0x04 */ f32 mFar;
     /* 0x08 */ u8 mCameraType;
     /* 0x09 */ u8 field_0x09;
     /* 0x0A */ u16 field_0x0a;

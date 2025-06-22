@@ -8272,7 +8272,6 @@ int dCamera_c::blureCamera() {
         mBlure.field_0x4--;
         
         cXyz xyz;
-        float mult = ((float)mBlure.field_0x4) / ((float)mBlure.field_0x14);
         float mult = (float)mBlure.field_0x4 / (float)mBlure.field_0x14;
         xyz.x = mBlure.mScale.x + (1.0f - mBlure.mScale.x) * mult;
         xyz.y = mBlure.mScale.y + (1.0f - mBlure.mScale.y) * mult;
@@ -8413,26 +8412,20 @@ static void view_setup(camera_process_class* i_this) {
 }
 
 /* 80181804-80181E20 17C144 061C+00 2/2 0/0 0/0 .text            store__FP20camera_process_class */
-static void store(camera_process_class* i_camera) {
-    camera_class* a_camera = (camera_class*)i_camera;
+static void store(camera_class* a_camera) {
+    dCamera_c* dCamera = &a_camera->mCamera;
+    // camera_class* a_camera = (camera_class*)i_camera;
     int camera_id = get_camera_id(a_camera);
     view_port_class* viewport = get_window(camera_id)->getViewPort();
-    cXyz center = cXyz(*fopCamM_GetCenter_p(a_camera));
-    cXyz eye = cXyz(*fopCamM_GetEye_p(a_camera));
-    cXyz up = cXyz(*fopCamM_GetUp_p(a_camera));
-    cSAngle angle = cSAngle(fopCamM_GetBank(a_camera));
+    bool error = false;
+    cXyz center(*fopCamM_GetCenter_p(a_camera));
+    cXyz eye(*fopCamM_GetEye_p(a_camera));
+    cXyz up(*fopCamM_GetUp_p(a_camera));
+    cSAngle angle(fopCamM_GetBank(a_camera));
     f32 fovy = fopCamM_GetFovy(a_camera);
 
     dDemo_camera_c* demoCamera = dDemo_c::getCamera();
-    if (demoCamera == NULL || dComIfGp_getPEvtManager()->cameraPlay()) {
-        if (!a_camera->mCamera.CheckFlag(1)) {
-            center = a_camera->mCamera.Center();
-            eye = a_camera->mCamera.Eye();
-            up = a_camera->mCamera.Up();
-            angle = a_camera->mCamera.Bank();
-            fovy = a_camera->mCamera.Fovy();
-        }
-    } else {
+    if (demoCamera != NULL && !dComIfGp_getPEvtManager()->cameraPlay()) {
         if (demoCamera->checkEnable(dDemo_camera_c::ENABLE_VIEW_TARG_POS_e)) {
             center = demoCamera->getTarget();
         }
@@ -8443,14 +8436,19 @@ static void store(camera_process_class* i_camera) {
             up = demoCamera->getUp();
         }
         if (demoCamera->checkEnable(dDemo_camera_c::ENABLE_VIEW_ROLL_e)) {
-            angle = cSAngle(cAngle::d2s(demoCamera->getRoll()));
+            angle = cSAngle(cAngle::d2s(-demoCamera->getRoll()));
         }
         if (demoCamera->checkEnable(dDemo_camera_c::ENABLE_PROJ_FOVY_e)) {
             fovy = demoCamera->getFovy();
         }       
+    } else if (!dCamera->CheckFlag(1)) {
+        center = dCamera->Center();
+        eye = dCamera->Eye();
+        up = dCamera->Up();
+        angle = dCamera->Bank();
+        fovy = dCamera->Fovy(); 
     }
-
-    bool error = false;
+       
     if (eye.x == center.x && eye.z == center.z) {
         error = true;
         OS_REPORT("camera: ERROR: bad direction !!\n");
@@ -8475,21 +8473,22 @@ static void store(camera_process_class* i_camera) {
         fopCamM_SetBank(a_camera, angle.Val());
         fopCamM_SetFovy(a_camera, fovy);
     }
+
     dStage_stageDt_c* stage = dComIfGp_getStage();
-    if (!a_camera->mCamera.mCamSetup.CheckFlag(0x400)) {
+    if (dComIfGp_getCameraAttentionStatus(camera_id) & 8) {
+        fopCamM_SetNear(a_camera, 30.0f);
+    } else {
         if (stage != NULL) {
-            u32 attentionStatus = dComIfGp_getCameraAttentionStatus(camera_id);
-            if (attentionStatus & 8 == 0) {
-                fopCamM_SetNear(a_camera, stage->getStagInfo()->field_0x24);
-            } else {
-                fopCamM_SetNear(a_camera, 30.0f);
-            }
-            fopCamM_SetFar(a_camera, stage->getStagInfo()->field_0x20);
+            fopCamM_SetNear(a_camera, stage->getStagInfo()->mNear);
         }
     }
+    if (stage != NULL) {
+        fopCamM_SetFar(a_camera, stage->getStagInfo()->mFar);
+    }
+    
     cSGlobe globe(eye - center);
     fopCamM_SetAngleY(a_camera, globe.U().Inv());
-    fopCamM_SetAngleY(a_camera, globe.V().Val());
+    fopCamM_SetAngleX(a_camera, globe.V().Val());
 }
 
 /* 80181E20-80181E64 17C760 0044+00 1/1 0/0 0/0 .text            Up__9dCamera_cFv */
@@ -8530,7 +8529,7 @@ static int camera_execute(camera_process_class* i_this) {
 
     a_this->mCamera.CalcTrimSize();
 
-    store(i_this);
+    store(a_this);
     view_setup(i_this);
     return 1;
 }
@@ -8650,7 +8649,7 @@ static int init_phase2(camera_class* i_this) {
         dStage_stageDt_c* stage_dt = dComIfGp_getStage();
         stage_dt->getStagInfo();
 
-        var_f30 = stage_dt->getStagInfo()->field_0x4;
+        var_f30 = stage_dt->getStagInfo()->mFar;
     }
 
     get_window(camera_id)->getViewPort();
@@ -8662,7 +8661,7 @@ static int init_phase2(camera_class* i_this) {
     fopCamM_SetCenter(i_this, player->current.pos.x, player->current.pos.y, player->current.pos.z);
     fopCamM_SetBank(i_this, 0);
 
-    store(a_this);
+    store(i_this);
     view_setup(a_this);
 
     i_this->mCamera.field_0xb0c = 1;
