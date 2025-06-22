@@ -187,34 +187,40 @@ daNpc_Maro_c::~daNpc_Maro_c() {
 
 /* ############################################################################################## */
 /* 80564BAC-80564C3C 000000 0090+00 15/15 0/0 0/0 .rodata          m__18daNpc_Maro_Param_c */
-daNpc_Maro_Param_c::Data const daNpc_Maro_Param_c::m = {
+const daNpc_Maro_HIOParam daNpc_Maro_Param_c::m = {
     100.0f,
     -3.0f,
     1.0f,
     400.0f,
-    /* 0x10 */ 255.0f,
+    255.0f,
     80.0f,
     35.0f,
     30.0f,
-    /* 0x20 */ 0.0f,
+    0.0f,
     0.0f,
     10.0f,
     -10.0f,
-    /* 0x30 */ 30.0f,
+    30.0f,
     -10.0f,
     30.0f,
     -30.0f,
-    /* 0x40 */ 0.6f,
+    0.6f,
     12.0f,
-    3, 6,
-    5, 6,
+    3,
+    6,
+    5,
+    6,
     110.0f,
-    0x00000000,
-    0x00000000,
-    0x00000000,
-    0x003C0008,
-    0x00000000,
-    0x00000000,
+    0.0f,
+    0.0f,
+    0.0f,
+    60,
+    8,
+    0,
+    0,
+    0,
+    0,
+    0,
     4.0f,
     -15.0f,
     0.0f,
@@ -264,7 +270,7 @@ int daNpc_Maro_c::create() {
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1,
                         &mAcchCir, fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this),
                         fopAcM_GetShapeAngle_p(this));
-        mCcStts.Init(daNpc_Maro_Param_c::m.field_0x10, 0, this);
+        mCcStts.Init(daNpc_Maro_Param_c::m.common.weight, 0, this);
         mCyl1.Set(mCcDCyl);
         mCyl1.SetStts(&mCcStts);
         mCyl1.SetTgHitCallback(tgHitCallBack);
@@ -634,10 +640,10 @@ void daNpc_Maro_c::setParam() {
 
     srchActors();
     u32 uVar7 = 10;
-    s16 sVar10 = daNpc_Maro_Param_c::m.field_0x48;
-    s16 sVar9 = daNpc_Maro_Param_c::m.field_0x4a;
-    s16 sVar8 = daNpc_Maro_Param_c::m.field_0x4c;
-    s16 sVar7 = daNpc_Maro_Param_c::m.field_0x4e;
+    s16 sVar10 = daNpc_Maro_Param_c::m.common.talk_distance;
+    s16 sVar9 = daNpc_Maro_Param_c::m.common.talk_angle;
+    s16 sVar8 = daNpc_Maro_Param_c::m.common.attention_distance;
+    s16 sVar7 = daNpc_Maro_Param_c::m.common.attention_angle;
     if (&daNpc_Maro_c::swdTutorial == field_0x110c) {
         sVar10 = 11;
         sVar9 = 6;
@@ -677,18 +683,18 @@ void daNpc_Maro_c::setParam() {
     attention_info.distances[3] = daNpcT_getDistTableIdx(sVar10, sVar9);
 
     attention_info.flags = uVar7;
-    scale.set(daNpc_Maro_Param_c::m.field_0x08, daNpc_Maro_Param_c::m.field_0x08,
-            daNpc_Maro_Param_c::m.field_0x08);
-    mCcStts.SetWeight(daNpc_Maro_Param_c::m.field_0x10);
-    mCylH = daNpc_Maro_Param_c::m.field_0x14;
-    mWallR = daNpc_Maro_Param_c::m.field_0x1c;
-    mAttnFovY = daNpc_Maro_Param_c::m.field_0x50;
+    scale.set(daNpc_Maro_Param_c::m.common.scale, daNpc_Maro_Param_c::m.common.scale,
+            daNpc_Maro_Param_c::m.common.scale);
+    mCcStts.SetWeight(daNpc_Maro_Param_c::m.common.weight);
+    mCylH = daNpc_Maro_Param_c::m.common.height;
+    mWallR = daNpc_Maro_Param_c::m.common.width;
+    mAttnFovY = daNpc_Maro_Param_c::m.common.fov;
     mAcchCir.SetWallR(mWallR);
-    mAcchCir.SetWallH(daNpc_Maro_Param_c::m.field_0x18);
-    field_0xde8 = daNpc_Maro_Param_c::m.field_0x0c;
-    field_0xa80 = daNpc_Maro_Param_c::m.field_0x6c;
-    mMorfFrames = daNpc_Maro_Param_c::m.field_0x44;
-    gravity = daNpc_Maro_Param_c::m.field_0x04;
+    mAcchCir.SetWallH(daNpc_Maro_Param_c::m.common.knee_length);
+    field_0xde8 = daNpc_Maro_Param_c::m.common.real_shadow_size;
+    field_0xa80 = daNpc_Maro_Param_c::m.common.expression_morf_frame;
+    mMorfFrames = daNpc_Maro_Param_c::m.common.morf_frame;
+    gravity = daNpc_Maro_Param_c::m.common.gravity;
 }
 
 /* 8055CB14-8055CC9C 001674 0188+00 1/0 0/0 0/0 .text            checkChangeEvt__12daNpc_Maro_cFv */
@@ -1015,11 +1021,11 @@ void daNpc_Maro_c::setAttnPos() {
     f32 dVar8 = cM_s2rad(mCurAngle.y - field_0xd7e.y);
     mJntAnm.setParam(
         this, mpMorf[0]->getModel(), &eyeOffset, getBackboneJointNo(), getNeckJointNo(),
-        getHeadJointNo(), daNpc_Maro_Param_c::m.field_0x24, daNpc_Maro_Param_c::m.field_0x20,
-        daNpc_Maro_Param_c::m.field_0x2c, daNpc_Maro_Param_c::m.field_0x28,
-        daNpc_Maro_Param_c::m.field_0x34, daNpc_Maro_Param_c::m.field_0x30,
-        daNpc_Maro_Param_c::m.field_0x3c, daNpc_Maro_Param_c::m.field_0x38,
-        daNpc_Maro_Param_c::m.field_0x40, 0.0f, NULL);
+        getHeadJointNo(), daNpc_Maro_Param_c::m.common.body_angleX_min, daNpc_Maro_Param_c::m.common.body_angleX_max,
+        daNpc_Maro_Param_c::m.common.body_angleY_min, daNpc_Maro_Param_c::m.common.body_angleY_max,
+        daNpc_Maro_Param_c::m.common.head_angleX_min, daNpc_Maro_Param_c::m.common.head_angleX_max,
+        daNpc_Maro_Param_c::m.common.head_angleY_min, daNpc_Maro_Param_c::m.common.head_angleY_max,
+        daNpc_Maro_Param_c::m.common.neck_rotation_ratio, 0.0f, NULL);
     mJntAnm.calcJntRad(0.2f, 1.0f, (float)dVar8);
     setMtx();
     mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
@@ -1027,7 +1033,7 @@ void daNpc_Maro_c::setAttnPos() {
     mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);
     mJntAnm.setEyeAngleY(eyePos, mCurAngle.y, 0, 1.0f, 0);
     eyeOffset.set(0.0f, 0.0f, 0.0f);
-    eyeOffset.y = daNpc_Maro_Param_c::m.field_0x00;
+    eyeOffset.y = daNpc_Maro_Param_c::m.common.attention_offset;
     mDoMtx_stack_c::YrotS(mCurAngle.y);
     mDoMtx_stack_c::multVec(&eyeOffset, &eyeOffset);
     attention_info.position = current.pos + eyeOffset;
@@ -2936,10 +2942,10 @@ int daNpc_Maro_c::wait(void* param_0) {
                     actor_p = (daNpc_Len_c*)mActorMngr[8].getActorP();
                     if (actor_p != NULL &&
                         ((daNpc_Len_c*) actor_p)->checkStartDemo13StbEvt(
-                            this, daNpc_Maro_Param_c::m.field_0x70, daNpc_Maro_Param_c::m.field_0x74,
-                            daNpc_Maro_Param_c::m.field_0x78, daNpc_Maro_Param_c::m.field_0x7c,
-                            daNpc_Maro_Param_c::m.field_0x80, daNpc_Maro_Param_c::m.field_0x84,
-                            daNpc_Maro_Param_c::m.field_0x88))
+                            this, daNpc_Maro_Param_c::m.common.box_min_x, daNpc_Maro_Param_c::m.common.box_min_y,
+                            daNpc_Maro_Param_c::m.common.box_min_z, daNpc_Maro_Param_c::m.common.box_max_x,
+                            daNpc_Maro_Param_c::m.common.box_max_y, daNpc_Maro_Param_c::m.common.box_max_z,
+                            daNpc_Maro_Param_c::m.common.box_offset))
                     {
                         mEvtNo = 7;
                         field_0x1133 = 1;
