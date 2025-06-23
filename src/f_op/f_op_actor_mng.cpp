@@ -622,12 +622,16 @@ BOOL fopAcM_rollPlayerCrash(fopAc_ac_c const* i_crashActor, f32 i_range, u32 i_f
 }
 
 /* 8001AC40-8001ACEC 015580 00AC+00 0/0 0/0 2/2 .text fopAcM_checkCullingBox__FPA4_fffffff */
-s32 fopAcM_checkCullingBox(Mtx m, f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2) {
+bool fopAcM_checkCullingBox(Mtx m, f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2) {
     Vec tmp1 = {x1, y1, z1};
     Vec tmp2 = {x2, y2, z2};
     Mtx tmpMtx;
-    MTXConcat(j3dSys.getViewMtx(), m, tmpMtx);
-    return mDoLib_clipper::clip(tmpMtx, &tmp2, &tmp1) != 0;
+    cMtx_concat(j3dSys.getViewMtx(), m, tmpMtx);
+    
+    if (mDoLib_clipper::clip(tmpMtx, &tmp2, &tmp1))
+        return true;
+    else
+        return false;
 }
 
 /* 803A35F0-803A3740 000710 0150+00 1/1 0/0 0/0 .data            l_cullSizeBox */
