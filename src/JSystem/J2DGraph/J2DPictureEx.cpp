@@ -287,12 +287,12 @@ bool J2DPictureEx::isInsert(u8 pos) const {
     if (texGenNum >= 8 || pos >= 8 || pos > texGenNum) {
         return false;
     }
-    u8 bVar5 = mMaterial->getTevBlock()->getMaxStage();
-    if (bVar5 <= 2 && texGenNum != 0) {
+    u8 maxStage = mMaterial->getTevBlock()->getMaxStage();
+    if (maxStage <= 2 && texGenNum != 0) {
         return false;
     } 
 
-    if (bVar5 == mMaterial->getTevBlock()->getTevStageNum() && texGenNum != 0) {
+    if (maxStage == mMaterial->getTevBlock()->getTevStageNum() && texGenNum != 0) {
         return false;
     }
     
@@ -300,7 +300,6 @@ bool J2DPictureEx::isInsert(u8 pos) const {
 }
 
 /* 8030446C-80304608 2FEDAC 019C+00 1/0 0/0 0/0 .text            remove__12J2DPictureExFUc */
-// NONMATCHING regalloc
 bool J2DPictureEx::remove(u8 pos) {
     if (!isRemove(pos)) {
         return false;
@@ -308,7 +307,7 @@ bool J2DPictureEx::remove(u8 pos) {
 
     u8 tex_gen_num = mMaterial->getTexGenBlock()->getTexGenNum();
     u8 tev_stage_num = mMaterial->getTevBlock()->getTevStageNum();
-    bool bVar1 = tev_stage_num != tex_gen_num + 1;
+    bool bVar1 = tev_stage_num == tex_gen_num + 1 ? false : true;
 
     shiftSetBlendRatio(pos, 0.0f, true, false);
     shiftSetBlendRatio(pos, 0.0f, false, false);
@@ -511,7 +510,6 @@ void J2DPictureEx::draw(f32 param_0, f32 param_1, f32 width, f32 height, bool pa
 }
 
 /* 80304D88-80304EF0 2FF6C8 0168+00 1/0 0/0 0/0 .text            drawOut__12J2DPictureExFffffff */
-// NONMATCHING stack ordering
 void J2DPictureEx::drawOut(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f32 param_4,
                            f32 param_5) {
     if (mMaterial == NULL) {
@@ -528,9 +526,9 @@ void J2DPictureEx::drawOut(f32 param_0, f32 param_1, f32 param_2, f32 param_3, f
 
     JUTTexture* texture = mMaterial->getTevBlock()->getTexture(0);
     if (texture != NULL) {
-        JGeometry::TBox2<f32> box1(param_4, param_5, param_4 + texture->getWidth(), param_5 + texture->getHeight());
-        JGeometry::TBox2<f32> box2(param_0, param_1, param_0 + param_2, param_1 + param_3);
-        drawOut(box1, box2);
+        drawOut(JGeometry::TBox2<f32>(param_0, param_1, param_0 + param_2, param_1 + param_3),
+                JGeometry::TBox2<f32>(param_4, param_5, param_4 + texture->getWidth(),
+                                      param_5 + texture->getHeight()));
     }
 }
 
@@ -887,7 +885,6 @@ void J2DPictureEx::setBlendAlphaRatio(f32 param_0, f32 param_1) {
 
 /* 80305F94-803060DC 3008D4 0148+00 1/0 0/0 0/0 .text changeTexture__12J2DPictureExFPC7ResTIMGUc
  */
-// NONMATCHING small regalloc
 const ResTIMG* J2DPictureEx::changeTexture(ResTIMG const* img, u8 param_1) {
     if (mMaterial == NULL || img == NULL) {
         return NULL;
@@ -899,7 +896,7 @@ const ResTIMG* J2DPictureEx::changeTexture(ResTIMG const* img, u8 param_1) {
     }
 
     u8 max_stage = mMaterial->getTevBlock()->getMaxStage();
-    max_stage = max_stage > 8 ? 8 : max_stage;
+    max_stage = (u8) (max_stage > 8 ? (u8)8 : max_stage);
     if (param_1 >= max_stage) {
         return NULL;
     }
@@ -912,10 +909,9 @@ const ResTIMG* J2DPictureEx::changeTexture(ResTIMG const* img, u8 param_1) {
         }
         getTexture(param_1)->storeTIMG(img, uVar6);
         return texinfo;
-    } else {
-        append(img, 1.0f);
-        return NULL;
     }
+    append(img, 1.0f);
+    return NULL;
 }
 
 /* 803060DC-80306134 300A1C 0058+00 1/0 0/0 0/0 .text            changeTexture__12J2DPictureExFPCcUc
@@ -927,11 +923,6 @@ const ResTIMG* J2DPictureEx::changeTexture(char const* param_0, u8 param_1) {
 
 /* 80306134-80306298 300A74 0164+00 1/0 0/0 0/0 .text
  * changeTexture__12J2DPictureExFPC7ResTIMGUcP10JUTPalette      */
-// NONMATCHING Issues with param_1 >= bVar5. Maybe some inline min function.
-inline u8 mina(u8 a, u8 b) {
-    return a > b ? b : a;
-}
-
 const ResTIMG* J2DPictureEx::changeTexture(ResTIMG const* param_0, u8 param_1, JUTPalette* param_2) {
     if (mMaterial == NULL || param_0 == NULL) {
         return NULL;
@@ -940,10 +931,10 @@ const ResTIMG* J2DPictureEx::changeTexture(ResTIMG const* param_0, u8 param_1, J
     if (param_1 > uVar2) {
         return NULL;
     }
-    u8 bVar5 = mMaterial->getTevBlock()->getMaxStage();
-    bVar5 = bVar5 > 8 ? 8 : bVar5;
+    u8 maxStage = mMaterial->getTevBlock()->getMaxStage();
+    maxStage = (u8) (maxStage > 8 ? (u8) 8 : maxStage);
     
-    if (param_1 >= bVar5) {
+    if (param_1 >= maxStage) {
         return NULL;
     }
     if (param_1 < uVar2) {
@@ -1073,12 +1064,12 @@ bool J2DPictureEx::getBlackWhite(JUtility::TColor* black, JUtility::TColor* whit
     }
 
     u8 tex_gen_num = mMaterial->getTexGenBlock()->getTexGenNum();
-    u32 tev_stage_num = mMaterial->getTevBlock()->getTevStageNum();
+    u8 tev_stage_num = mMaterial->getTevBlock()->getTevStageNum() & 0xff;
     bool bVar1;
     if (tex_gen_num == 1) {
-        bVar1 = tev_stage_num != 1;
+        bVar1 = tev_stage_num == 1 ? false : true;
     } else {
-        bVar1 = tev_stage_num != tex_gen_num + 1;
+        bVar1 = tev_stage_num == tex_gen_num + 1 ? false : true;
     }
 
     *black = 0x00000000;
@@ -1096,7 +1087,6 @@ bool J2DPictureEx::getBlackWhite(JUtility::TColor* black, JUtility::TColor* whit
 
 /* 80306824-803068F8 301164 00D4+00 1/1 0/0 0/0 .text
  * isSetBlackWhite__12J2DPictureExCFQ28JUtility6TColorQ28JUtility6TColor */
-// NONMATCHING missing clrlwi, regalloc
 bool J2DPictureEx::isSetBlackWhite(JUtility::TColor black, JUtility::TColor white) const {
     if (black == 0x00000000 && white == 0xffffffff) {
         return true;
@@ -1114,8 +1104,8 @@ bool J2DPictureEx::isSetBlackWhite(JUtility::TColor black, JUtility::TColor whit
         return false;
     }
 
-    u8 tmp = tex_gen_num == 1 ? 2 : tex_gen_num + 2;
-    return max_tev_stage <= tmp;
+    u8 tmp = (u8)(tex_gen_num == 1 ? 2 : (tex_gen_num + 2));
+    return tmp <= max_tev_stage;
 }
 
 /* 803068F8-80306958 301238 0060+00 1/0 0/0 0/0 .text            getBlack__12J2DPictureExCFv */

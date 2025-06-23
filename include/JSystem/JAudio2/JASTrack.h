@@ -196,7 +196,7 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded<JASTrack> {
     /* 0x170 */ TChannelMgr* mChannelMgrs[4];
     /* 0x180 */ TChannelMgr mDefaultChannelMgr;
     /* 0x1D0 */ int mChannelMgrCount;
-    /* 0x1D4 */ JASDefaultBankTable* mBankTable;
+    /* 0x1D4 */ const JASDefaultBankTable* mBankTable;
     /* 0x1D8 */ f32 field_0x1d8;
     /* 0x1DC */ f32 field_0x1dc;
     /* 0x1E0 */ f32 mVibDepth;

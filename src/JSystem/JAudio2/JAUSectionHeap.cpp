@@ -363,23 +363,25 @@ JASBank* JAUSection::newBank(void const* param_0, u32 param_1) {
 /* 802A5B84-802A5CAC 2A04C4 0128+00 0/0 1/1 0/0 .text            newVoiceBank__10JAUSectionFUlUl */
 // NONMATCHING regalloc
 JASVoiceBank* JAUSection::newVoiceBank(u32 bank_no, u32 param_1) {
-    JUT_ASSERT(685, isOpen());
-    JUT_ASSERT(686, isBuilding());
-    JASWaveBank* waveBank = sectionHeap_->getWaveBankTable().getWaveBank(param_1);
-    JUT_ASSERT(688, waveBank != 0);
-    TPushCurrentHeap push(getHeap_());
-    JASVoiceBank* voiceBank = new JASVoiceBank();
-    if (voiceBank) {
-        if (buildingBankTable_) {
-            JUT_ASSERT(696, buildingBankTable_->getBank( bank_no ) == 0);
-            buildingBankTable_->registBank(bank_no, voiceBank);
-        } else {
-            JUT_ASSERT(701, JASDefaultBankTable::getInstance() ->getBank( bank_no ) == 0);
-            JASDefaultBankTable::getInstance()->registBank(bank_no, voiceBank);
-            data_.registeredBankTables.set(bank_no, true);
+    {
+        JUT_ASSERT(685, isOpen());
+        JUT_ASSERT(686, isBuilding());
+        JASWaveBank* waveBank = sectionHeap_->getWaveBankTable().getWaveBank(param_1);
+        JUT_ASSERT(688, waveBank != 0);
+        TPushCurrentHeap push(getHeap_()); 
+        JASVoiceBank* voiceBank = new JASVoiceBank();
+        if (voiceBank) {
+            if (buildingBankTable_) {
+                JUT_ASSERT(696, buildingBankTable_->getBank( bank_no ) == 0);
+                buildingBankTable_->registBank(bank_no, voiceBank);
+            } else {
+                JUT_ASSERT(701, JASDefaultBankTable::getInstance() ->getBank( bank_no ) == 0);
+                JASDefaultBankTable::getInstance()->registBank(bank_no, voiceBank);
+                data_.registeredBankTables.set(bank_no, true);
+            }
+            voiceBank->assignWaveBank(waveBank);
+            return voiceBank;
         }
-        voiceBank->assignWaveBank(waveBank);
-        return voiceBank;
     }
     return NULL;
 }

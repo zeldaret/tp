@@ -1529,7 +1529,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_cstaF"),
     ActorRel(NonMatching, "d_a_demo_item"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_door_bossL1"),
-    ActorRel(NonMatching, "d_a_e_dn"),
+    ActorRel(Equivalent, "d_a_e_dn"), # weak func order
     ActorRel(Equivalent, "d_a_e_fm"),
     ActorRel(NonMatching, "d_a_e_ga"),
     ActorRel(NonMatching, "d_a_e_hb"),
@@ -1658,7 +1658,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_e_fz"), # weak func order
     ActorRel(NonMatching, "d_a_e_gb"),
     ActorRel(NonMatching, "d_a_e_ge"),
-    ActorRel(NonMatching, "d_a_e_gi"),
+    ActorRel(Equivalent, "d_a_e_gi"), # weak func order
     ActorRel(NonMatching, "d_a_e_gm"),
     ActorRel(Equivalent, "d_a_e_gob"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_gs"),
@@ -1673,7 +1673,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_e_kr"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_mb"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_md"),
-    ActorRel(NonMatching, "d_a_e_mf"),
+    ActorRel(Equivalent, "d_a_e_mf"),
     ActorRel(NonMatching, "d_a_e_mk"),
     ActorRel(NonMatching, "d_a_e_mk_bo"),
     ActorRel(NonMatching, "d_a_e_mm"),

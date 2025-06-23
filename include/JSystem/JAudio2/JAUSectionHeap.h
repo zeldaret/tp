@@ -63,8 +63,8 @@ public:
     /* 802A5D9C */ JAUBankTable* endNewBankTable();
     /* 802A6468 */ virtual ~JAUSection() {}
 
-    bool isBuilding() { return field_0x2c; }
-    bool isOpen();
+    bool isBuilding() const { return field_0x2c; }
+    bool isOpen() const;
     JAUSectionHeap* asSectionHeap() { return (JAUSection*)sectionHeap_ == this ? sectionHeap_ : NULL; }
     JKRHeap* getHeap_();
 
@@ -123,7 +123,7 @@ public:
 };
 
 inline JKRHeap* JAUSection::getHeap_() { return sectionHeap_->mHeap; }
-inline bool JAUSection::isOpen() { return this == sectionHeap_->getOpenSection(); }
+inline bool JAUSection::isOpen() const { return this == sectionHeap_->getOpenSection(); }
 
 JAUSectionHeap* JAUNewSectionHeap(bool);
 
