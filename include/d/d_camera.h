@@ -360,7 +360,7 @@ public:
     /* 8018050C */ bool currentEvCamera();
     /* 801806D4 */ bool letCamera(s32);
     /* 801806DC */ void setEventRecoveryTrans(s16);
-    /* 80180738 */ void runEventRecoveryTrans();
+    /* 80180738 */ s16 runEventRecoveryTrans();
     /* 80180A40 */ void EventRecoverNotime();
     /* 80180AA8 */ int Set(cXyz, cXyz);
     /* 80180AE0 */ int Set(cXyz, cXyz, f32, s16);

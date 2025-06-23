@@ -7988,7 +7988,46 @@ SECTION_DEAD static char const* const stringBase_803942FB = "Continue";
 
 /* 8018050C-801806D4 17AE4C 01C8+00 1/0 0/0 0/0 .text            currentEvCamera__9dCamera_cFv */
 bool dCamera_c::currentEvCamera() {
-    // NONMATCHING
+    int style = mCamTypeData[mEventData.field_0xc].field_0x18[mIsWolf][0];
+    if (style < 0) {
+        style = mCamParam.SearchStyle('CN01');
+    }
+    int i;
+    if (getEvIntData(&i, "Continue", 0)) {
+        setFlag(0x400000);
+    }
+    (this->*engine_tbl[mCamParam.Algorythmn(style)])(style);
+    setFlag(0x8);
+    field_0x88 = 0x4001;
+    clrFlag(0x80080);
+    if (mCamParam.Flag(style, 0x1)) {
+        if (mCurMode == 1 && mCamParam.Flag(style, 0x2) != 0) {
+            field_0x88 = 0x4007;
+        } else if (chkFlag(0x20000)) {
+            field_0x88 = 0x4037;
+        } else {
+            field_0x88 = 0x4017;
+        }
+    } else if (mCamParam.Flag(style, 0x2)) {
+        field_0x88 = 0x4007;
+    }
+    
+    
+
+    if (mCamParam.Flag(style, 0x8)) {
+        field_0x88 |= 0x80;
+    }
+
+    if (mCamParam.Flag(style, 0x10)) {
+        field_0x88 &= ~0x4000;
+    }
+
+    field_0x88 &= ~0x8;
+    if (mCamParam.Flag(style, 0x4)) {
+        field_0x88 = 0;
+    }
+
+    return true;
 }
 
 /* 801806D4-801806DC 17B014 0008+00 1/0 0/0 0/0 .text            letCamera__9dCamera_cFl */
@@ -8005,8 +8044,36 @@ void dCamera_c::setEventRecoveryTrans(s16 param_0) {
 
 /* 80180738-80180A40 17B078 0308+00 1/1 0/0 0/0 .text            runEventRecoveryTrans__9dCamera_cFv
  */
-void dCamera_c::runEventRecoveryTrans() {
-    // NONMATCHING
+s16 dCamera_c::runEventRecoveryTrans() {
+    if (field_0x110.field_0x8.field_0x1e > 0) {
+        field_0x668++;
+        if (field_0x668 >= field_0x110.field_0x8.field_0x1e) {
+            field_0x110.field_0x8.field_0x1e = 0;
+        } else {
+            f32 ratio = dCamMath::rationalBezierRatio(1.0f - (float)field_0x668 / (float)field_0x110.field_0x8.field_0x1e, 1.0f);
+            mCenter = field_0x5c.mCenter + (field_0x110.field_0x8.mCenter - field_0x5c.mCenter) * ratio;
+            cXyz attPos = attentionPos(mpPlayerActor);
+            dBgS_CamLinChk lin_chk;
+            cM3dGPla plane;
+            if (field_0x88 & 0xb7 && lineBGCheck(&attPos, &mCenter, &lin_chk, 0x40b7)) {
+                dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
+                mCenter = lin_chk.GetCross();
+                mCenter += *plane.GetNP() * 5.0f;
+            }
+            mEye = field_0x5c.mEye + (field_0x110.field_0x8.mEye - field_0x5c.mEye) * ratio;
+            if (field_0x88 & 0xb7 && lineBGCheck(&mCenter, &mEye, &lin_chk, 0x40b7)) {
+                dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
+                mEye = lin_chk.GetCross();
+                mEye += *plane.GetNP() * mCamSetup.mBGChk.GazeBackMargin();
+            }
+            mDirection.Val(mEye - mCenter);
+            mFovy = field_0x5c.mFovy + ratio * (field_0x110.field_0x8.mFovy - field_0x5c.mFovy);
+            mBank = field_0x5c.mBank + (field_0x110.field_0x8.mBank - field_0x5c.mBank) * ratio;
+        }
+    }  else {
+        clearInfo(&field_0x110.field_0x8, 0);
+    }
+    return field_0x110.field_0x8.field_0x1e;
 }
 
 /* 80180A40-80180AA8 17B380 0068+00 0/0 3/3 0/0 .text            EventRecoverNotime__9dCamera_cFv */
@@ -8413,9 +8480,9 @@ static void view_setup(camera_process_class* i_this) {
 }
 
 /* 80181804-80181E20 17C144 061C+00 2/2 0/0 0/0 .text            store__FP20camera_process_class */
-static void store(camera_class* a_camera) {
+static void store(camera_process_class* i_camera) {
+    camera_class* a_camera = (camera_class*)i_camera;
     dCamera_c* dCamera = &a_camera->mCamera;
-    // camera_class* a_camera = (camera_class*)i_camera;
     int camera_id = get_camera_id(a_camera);
     view_port_class* viewport = get_window(camera_id)->getViewPort();
     bool error = false;
@@ -8530,7 +8597,7 @@ static int camera_execute(camera_process_class* i_this) {
 
     a_this->mCamera.CalcTrimSize();
 
-    store(a_this);
+    store(i_this);
     view_setup(i_this);
     return 1;
 }
@@ -8662,7 +8729,7 @@ static int init_phase2(camera_class* i_this) {
     fopCamM_SetCenter(i_this, player->current.pos.x, player->current.pos.y, player->current.pos.z);
     fopCamM_SetBank(i_this, 0);
 
-    store(i_this);
+    store(a_this);
     view_setup(a_this);
 
     i_this->mCamera.field_0xb0c = 1;
