@@ -580,7 +580,7 @@ f32 fopAcM_searchActorDistanceXZ2(const fopAc_ac_c* i_actorA, const fopAc_ac_c* 
 
 BOOL fopAcM_rollPlayerCrash(fopAc_ac_c const* i_crashActor, f32 i_range, u32 i_flag, f32 i_max_y,
                             f32 i_min_y, BOOL param_5, f32 param_6);
-s32 fopAcM_checkCullingBox(f32[3][4], f32, f32, f32, f32, f32, f32);
+bool fopAcM_checkCullingBox(f32[3][4], f32, f32, f32, f32, f32, f32);
 s32 fopAcM_cullingCheck(const fopAc_ac_c* i_actor);
 s32 fopAcM_orderTalkEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, u16 i_priority, u16 i_flag);
 s32 fopAcM_orderTalkItemBtnEvent(u16 i_eventType, fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB,
@@ -829,6 +829,7 @@ public:
     static dBgS_ObjLinChk* getLineCheck() { return &mLineCheck; }
     static bool checkMoveBG() { return dComIfG_Bgsp().ChkMoveBG(mLineCheck); }
     static cXyz* getCrossP() { return mLineCheck.GetCrossP(); }
+    static cXyz& getCross() { return mLineCheck.GetCross(); }
     static bool lineCheck(const cXyz*, const cXyz*, const fopAc_ac_c*);
     static bool getTriPla(cM3dGPla* o_tri) { return dComIfG_Bgsp().GetTriPla(mLineCheck, o_tri); }
     static s32 getWallCode() { return dComIfG_Bgsp().GetWallCode(mLineCheck); }
