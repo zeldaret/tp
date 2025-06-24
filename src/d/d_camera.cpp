@@ -8011,8 +8011,6 @@ bool dCamera_c::currentEvCamera() {
     } else if (mCamParam.Flag(style, 0x2)) {
         field_0x88 = 0x4007;
     }
-    
-    
 
     if (mCamParam.Flag(style, 0x8)) {
         field_0x88 |= 0x80;
@@ -8050,18 +8048,18 @@ s16 dCamera_c::runEventRecoveryTrans() {
         if (field_0x668 >= field_0x110.field_0x8.field_0x1e) {
             field_0x110.field_0x8.field_0x1e = 0;
         } else {
-            f32 ratio = dCamMath::rationalBezierRatio(1.0f - (float)field_0x668 / (float)field_0x110.field_0x8.field_0x1e, 1.0f);
+            f32 ratio = dCamMath::rationalBezierRatio(1.0f - (f32)field_0x668 / (f32)field_0x110.field_0x8.field_0x1e, 1.0f);
             mCenter = field_0x5c.mCenter + (field_0x110.field_0x8.mCenter - field_0x5c.mCenter) * ratio;
             cXyz attPos = attentionPos(mpPlayerActor);
             dBgS_CamLinChk lin_chk;
             cM3dGPla plane;
-            if (field_0x88 & 0xb7 && lineBGCheck(&attPos, &mCenter, &lin_chk, 0x40b7)) {
+            if ((field_0x88 & 0xb7) && lineBGCheck(&attPos, &mCenter, &lin_chk, 0x40b7)) {
                 dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
                 mCenter = lin_chk.GetCross();
                 mCenter += *plane.GetNP() * 5.0f;
             }
             mEye = field_0x5c.mEye + (field_0x110.field_0x8.mEye - field_0x5c.mEye) * ratio;
-            if (field_0x88 & 0xb7 && lineBGCheck(&mCenter, &mEye, &lin_chk, 0x40b7)) {
+            if ((field_0x88 & 0xb7) && lineBGCheck(&mCenter, &mEye, &lin_chk, 0x40b7)) {
                 dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
                 mEye = lin_chk.GetCross();
                 mEye += *plane.GetNP() * mCamSetup.mBGChk.GazeBackMargin();
@@ -8340,7 +8338,7 @@ int dCamera_c::blureCamera() {
         mBlure.field_0x4--;
         
         cXyz xyz;
-        float mult = (float)mBlure.field_0x4 / (float)mBlure.field_0x14;
+        f32 mult = (f32)mBlure.field_0x4 / (f32)mBlure.field_0x14;
         xyz.x = mBlure.mScale.x + (1.0f - mBlure.mScale.x) * mult;
         xyz.y = mBlure.mScale.y + (1.0f - mBlure.mScale.y) * mult;
         xyz.z = 0.0f;
