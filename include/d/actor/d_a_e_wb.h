@@ -134,7 +134,7 @@ public:
     /* 0x142F */ s8 field_0x142f;
     /* 0x1430 */ s8 field_0x1430;
     /* 0x1432 */ s16 field_0x1432;
-    /* 0x1434 */ u32 field_0x1434;  // Some actor ID
+    /* 0x1434 */ fpc_ProcID field_0x1434;  // Some actor ID
     /* 0x1438 */ cXyz field_0x1438;
     /* 0x1444 */ cXyz field_0x1444;
     /* 0x1450 */ u8 field_0x1450[0x15d0 - 0x1450];
