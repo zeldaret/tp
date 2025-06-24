@@ -360,7 +360,7 @@ public:
     /* 8018050C */ bool currentEvCamera();
     /* 801806D4 */ bool letCamera(s32);
     /* 801806DC */ void setEventRecoveryTrans(s16);
-    /* 80180738 */ void runEventRecoveryTrans();
+    /* 80180738 */ s16 runEventRecoveryTrans();
     /* 80180A40 */ void EventRecoverNotime();
     /* 80180AA8 */ int Set(cXyz, cXyz);
     /* 80180AE0 */ int Set(cXyz, cXyz, f32, s16);
@@ -377,7 +377,7 @@ public:
     /* 80181210 */ void SetBlureScale(f32, f32, f32);
     /* 80181220 */ void SetBlurePosition(f32, f32, f32);
     /* 80181278 */ void SetBlureActor(fopAc_ac_c*);
-    /* 80181280 */ void blureCamera();
+    /* 80181280 */ int blureCamera();
     /* 80181490 */ void onHorseDush();
     /* 80181500 */ fopAc_ac_c* GetForceLockOnActor();
     /* 80181534 */ int ForceLockOn(fopAc_ac_c*);
