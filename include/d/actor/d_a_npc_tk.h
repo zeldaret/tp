@@ -98,7 +98,6 @@ public:
     void setQuickHanjoHand() { mFlags |= 0x200; }
     BOOL isHanjoHand() { return mIsHanjoHand != 0; }
 
-private:
     /* 0x568 */ request_of_phase_process_class mPhase;
     /* 0x570 */ mDoExt_McaMorfSO* mpMorf;
     /* 0x574 */ Z2Creature mSound;
