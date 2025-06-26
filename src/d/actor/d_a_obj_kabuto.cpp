@@ -506,7 +506,7 @@ void daObjKABUTO_c::ShopAction() {
 /* 80C2CAC4-80C2CADC 001D44 0018+00 1/0 0/0 0/0 .text            Insect_Release__13daObjKABUTO_cFv
  */
 void daObjKABUTO_c::Insect_Release() {
-    field_0x56C = 1;
+    field_0x56c = 1;
     mAction = ACT_MOVE;
     mMode = 0;
 }
@@ -757,7 +757,7 @@ cPhs__Step daObjKABUTO_c::create() {
     if (step == cPhs_COMPLEATE_e) {
         mLocation = fopAcM_GetParam(this) & 0xf;
         if (mLocation == LOC_UNK_2) {
-            field_0x56C = 0;
+            field_0x56c = 0;
             shape_angle.x -= 0x2000;
             fopAcM_OnStatus(this, 0x4000);
         } else {

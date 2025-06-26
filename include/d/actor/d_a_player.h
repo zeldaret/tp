@@ -33,6 +33,7 @@ public:
 class daPy_boomerangMove_c {
 public:
     /* 8015E5B0 */ void initOffset(cXyz const*);
+    void initOffset(cXyz const* xyz, dCcD_GObjInf const*) { initOffset(xyz); }
     /* 8015E654 */ int posMove(cXyz*, s16*, fopAc_ac_c*, s16);
     /* 8015E87C */ void bgCheckAfterOffset(cXyz const*);
 

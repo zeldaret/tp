@@ -633,7 +633,7 @@ bool dMenu_Insect_c::isGiveInsect(u8 i_insectID) {
 
 /* 801D9F3C-801D9F8C 1D487C 0050+00 0/0 1/1 12/12 .text isCatchNotGiveInsect__14dMenu_Insect_cFUc
  */
-u8 dMenu_Insect_c::isCatchNotGiveInsect(u8 param_0) {
+bool dMenu_Insect_c::isCatchNotGiveInsect(u8 param_0) {
     if (isCatchInsect(param_0) != 0 && isGiveInsect(param_0) == 0) {
         return 1;
     }

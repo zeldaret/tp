@@ -1957,7 +1957,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_kage"),
     ActorRel(NonMatching, "d_a_obj_kago"),
     ActorRel(NonMatching, "d_a_obj_kaisou"),
-    ActorRel(NonMatching, "d_a_obj_kamakiri"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_kamakiri"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_kantera"),
     ActorRel(NonMatching, "d_a_obj_katatsumuri"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_kazeneko"),
