@@ -2034,7 +2034,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_maki"),
     ActorRel(NonMatching, "d_a_obj_master_sword"),
     ActorRel(NonMatching, "d_a_obj_mato"),
-    ActorRel(NonMatching, "d_a_obj_mhole"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_mhole"),
     ActorRel(NonMatching, "d_a_obj_mie"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_mirror_6pole"),
     ActorRel(NonMatching, "d_a_obj_mirror_chain"),
