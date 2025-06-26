@@ -5,7 +5,6 @@
 
 #include "d/actor/d_a_e_rd.h"
 #include "d/d_cc_d.h"
-#include "dol2asm.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_camera.h"
 UNK_REL_DATA;
@@ -22,6 +21,7 @@ UNK_REL_DATA;
 #include "d/actor/d_a_e_dn.h"
 #include "d/actor/d_a_e_arrow.h"
 #include "d/actor/d_a_npc_tk.h"
+#include "Z2AudioLib/Z2Instances.h"
 
 enum ACTION {
     /* 0x00 */ ACTION_NORMAL        = 0,
@@ -59,865 +59,69 @@ enum ACTION {
     /* 0x3C */ ACTION_REG           = 60,
 };
 
-//
-// Forward References:
-//
-
-extern "C" void __ct__12daE_RD_HIO_cFv();
-extern "C" static void get_pla__FP10fopAc_ac_c();
-extern "C" static void anm_init__FP10e_rd_classifUcf();
-extern "C" static void horn_anm_init__FP10e_rd_classifUcf();
-extern "C" static void nodeCallBack__FP8J3DJointi();
-extern "C" static void nodeCallBack_B__FP8J3DJointi();
-extern "C" static void nodeCallBack_bow__FP8J3DJointi();
-extern "C" static void daE_RD_Draw__FP10e_rd_class();
-extern "C" static void other_bg_check__FP10e_rd_classP10fopAc_ac_c();
-extern "C" static void otoCheck__FP10fopAc_ac_cf();
-extern "C" static void pl_pass_check__FP10e_rd_classf();
-extern "C" static void s_b_sub__FPvPv();
-extern "C" static void search_bomb__FP10e_rd_classi();
-extern "C" static void way_bg_check__FP10e_rd_classf();
-extern "C" static void ride_off__FP10e_rd_class();
-extern "C" static void s_wb_sub__FPvPv();
-extern "C" static void search_wb__FP10e_rd_classs();
-extern "C" static void wb_check__FP10e_rd_classs();
-extern "C" static void wb_init_ride__FP10e_rd_class();
-extern "C" static void pl_check__FP10e_rd_classfs();
-extern "C" static void bomb_view_check__FP10e_rd_class();
-extern "C" static void bomb_check__FP10e_rd_class();
-extern "C" static void move_gake_check__FP10e_rd_classf();
-extern "C" static void way_check__FP10e_rd_class();
-extern "C" static void path_check__FP10e_rd_class();
-extern "C" static void e_rd_normal__FP10e_rd_class();
-extern "C" static void e_rd_fight_run__FP10e_rd_class();
-extern "C" static void at_hit_check__FP10e_rd_class();
-extern "C" static void e_rd_fight__FP10e_rd_class();
-extern "C" static void e_rd_bow_run__FP10e_rd_class();
-extern "C" static void e_rd_bow__FP10e_rd_class();
-extern "C" static void s_command3_sub__FPvPv();
-extern "C" static void e_rd_bow2__FP10e_rd_class();
-extern "C" static void e_rd_bow_ikki__FP10e_rd_class();
-extern "C" static void e_rd_avoid__FP10e_rd_class();
-extern "C" static void e_rd_wb_search__FP10e_rd_class();
-extern "C" static void e_rd_wb_ride__FP10e_rd_class();
-extern "C" static void e_rd_wb_run__FP10e_rd_class();
-extern "C" static void s_wbrun_sub__FPvPv();
-extern "C" static void e_rd_wb_run_B__FP10e_rd_class();
-extern "C" static void e_rd_wb_bjump__FP10e_rd_class();
-extern "C" static void e_rd_bomb_action__FP10e_rd_class();
-extern "C" static void e_rd_s_damage__FP10e_rd_class();
-extern "C" static void kado_check__FP10e_rd_class();
-extern "C" static void rd_disappear__FP10e_rd_class();
-extern "C" static void body_gake__FP10e_rd_class();
-extern "C" void __dt__14dBgS_ObjGndChkFv();
-extern "C" static void e_rd_damage__FP10e_rd_class();
-extern "C" static void gake_check__FP10e_rd_classf();
-extern "C" static void s_bikkuri_sub__FPvPv();
-extern "C" static void s_saku_sub__FPvPv();
-extern "C" static void e_rd_drop__FP10e_rd_class();
-extern "C" static void e_rd_a_damage__FP10e_rd_class();
-extern "C" static void e_rd_stand__FP10e_rd_class();
-extern "C" static void e_rd_bow3__FP10e_rd_class();
-extern "C" static void s_command2_sub__FPvPv();
-extern "C" static void s_command4_sub__FPvPv();
-extern "C" static void e_rd_commander__FP10e_rd_class();
-extern "C" static void e_rd_excite__FP10e_rd_class();
-extern "C" static void e_rd_water__FP10e_rd_class();
-extern "C" static void e_rd_kiba_start__FP10e_rd_class();
-extern "C" static void e_rd_ikki2_start__FP10e_rd_class();
-extern "C" static void e_rd_kiba_end__FP10e_rd_class();
-extern "C" static void e_rd_ikki_end__FP10e_rd_class();
-extern "C" static void e_rd_ikki2_end__FP10e_rd_class();
-extern "C" static void s_rdb_sub__FPvPv();
-extern "C" static void e_rd_lv9_end__FP10e_rd_class();
-extern "C" static void s_boom_sub__FPvPv();
-extern "C" static void wolfkick_damage__FP10e_rd_class();
-extern "C" static void big_damage__FP10e_rd_class();
-extern "C" static void small_damage__FP10e_rd_classi();
-extern "C" static void part_break__FP10e_rd_class();
-extern "C" static void damage_check__FP10e_rd_class();
-extern "C" static void s_other_sub__FPvPv();
-extern "C" static void s_ep_sub__FPvPv();
-extern "C" static void e_rd_yagura__FP10e_rd_class();
-extern "C" static void e_rd_jyunkai__FP10e_rd_class();
-extern "C" static void e_rd_sleep__FP10e_rd_class();
-extern "C" static void s_tag_sub__FPvPv();
-extern "C" static void e_rd_tag__FP10e_rd_class();
-extern "C" static void e_rd_reg__FP10e_rd_class();
-extern "C" static void action__FP10e_rd_class();
-extern "C" static void fire_eff_set__FP10e_rd_class();
-extern "C" static void s_wb_sub2__FPvPv();
-extern "C" static void s_lv9dn_sub__FPvPv();
-extern "C" static void s_lv9dn_sub2__FPvPv();
-extern "C" static void s_lv9dn_sub3__FPvPv();
-extern "C" static void s_lv9rd_sub__FPvPv();
-extern "C" static void s_lv9rd_sub2__FPvPv();
-extern "C" static void s_lv9rd_sub3__FPvPv();
-extern "C" static void s_lv9arrow_sub__FPvPv();
-extern "C" static void s_lv9arrow_sub2__FPvPv();
-extern "C" static void cam_3d_morf__FP10e_rd_classf();
-extern "C" static void cam_spd_set__FP10e_rd_class();
-extern "C" static void demo_camera__FP10e_rd_class();
-extern "C" static void daE_RD_Execute__FP10e_rd_class();
-extern "C" void abs__4cXyzCFv();
-extern "C" static bool daE_RD_IsDelete__FP10e_rd_class();
-extern "C" static void daE_RD_Delete__FP10e_rd_class();
-extern "C" static void ride_game_actor_set__FP10e_rd_class();
-extern "C" static void coach_game_actor_set__FP10e_rd_class();
-extern "C" static void useHeapInit__FP10fopAc_ac_c();
-extern "C" static void daE_RD_Create__FP10fopAc_ac_c();
-extern "C" void __ct__10e_rd_classFv();
-extern "C" void __dt__8cM3dGSphFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__8dCcD_SphFv();
-extern "C" void __ct__8dCcD_SphFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" void __dt__12dBgS_ObjAcchFv();
-extern "C" void __dt__12dBgS_AcchCirFv();
-extern "C" void __ct__5csXyzFv();
-extern "C" void __ct__4cXyzFv();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void __dt__12daE_RD_HIO_cFv();
-extern "C" void __sinit_d_a_e_rd_cpp();
-extern "C" static void func_805180BC();
-extern "C" static void func_805180C4();
-extern "C" static void func_805180CC();
-extern "C" static void func_805180D4();
-extern "C" static void func_805180DC();
-extern "C" void __dt__5csXyzFv();
-extern "C" void __dt__4cXyzFv();
-extern "C" extern char const* const d_a_e_rd__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void fadeOut__13mDoGph_gInf_cFfR8_GXColor();
-extern "C" void onBlure__13mDoGph_gInf_cFv();
-extern "C" void mDoMtx_XrotM__FPA4_fs();
-extern "C" void mDoMtx_YrotS__FPA4_fs();
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void mDoMtx_ZrotM__FPA4_fs();
-extern "C" void scaleM__14mDoMtx_stack_cFfff();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void
-__ct__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl();
-extern "C" void setAnm__14mDoExt_McaMorfFP15J3DAnmTransformiffffPv();
-extern "C" void play__14mDoExt_McaMorfFP3VecUlSc();
-extern "C" void entryDL__14mDoExt_McaMorfFv();
-extern "C" void modelCalc__14mDoExt_McaMorfFv();
-extern "C" void
-__ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl();
-extern "C" void setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff();
-extern "C" void play__16mDoExt_McaMorfSOFUlSc();
-extern "C" void entryDL__16mDoExt_McaMorfSOFv();
-extern "C" void modelCalc__16mDoExt_McaMorfSOFv();
-extern "C" void stopZelAnime__16mDoExt_McaMorfSOFv();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void cDmrNowMidnaTalk__Fv();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void fopAc_IsActor__FPv();
-extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
-extern "C" void fopAcM_setStageLayer__FPv();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc();
-extern "C" void fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv();
-extern "C" void fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_SetMin__FP10fopAc_ac_cfff();
-extern "C" void fopAcM_SetMax__FP10fopAc_ac_cfff();
-extern "C" void fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_orderPotentialEvent__FP10fopAc_ac_cUsUsUs();
-extern "C" void fopAcM_createDisappear__FPC10fopAc_ac_cPC4cXyzUcUcUc();
-extern "C" void fopAcM_otherBgCheck__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci();
-extern "C" void fopKyM_createWpillar__FPC4cXyzfi();
-extern "C" void fopKyM_createMpillar__FPC4cXyzf();
-extern "C" void fpcEx_Search__FPFPvPv_PvPv();
-extern "C" void fpcSch_JudgeForPName__FPvPv();
-extern "C" void fpcSch_JudgeByID__FPvPv();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGp_getReverb__Fi();
-extern "C" void dComIfGs_BossLife_public_Set__FSc();
-extern "C" void
-dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj();
-extern "C" void checkStateCarry__7dBomb_cFv();
-extern "C" void onEventBit__11dSv_event_cFUs();
-extern "C" void onSwitch__12dSv_danBit_cFi();
-extern "C" void onSwitch__10dSv_info_cFii();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void __ct__9dJntCol_cFv();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void getEmitter__Q213dPa_control_c7level_cFUl();
-extern "C" void setHitMark__13dPa_control_cFUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl();
-extern "C" void
-set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void
-set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void dPath_GetRoomPath__Fii();
-extern "C" void addReal__21dDlst_shadowControl_cFUlP8J3DModel();
-extern "C" void StartShock__12dVibration_cFii4cXyz();
-extern "C" void LockonTarget__12dAttention_cFl();
-extern "C" void LockonTruth__12dAttention_cFv();
-extern "C" void LineCross__4cBgSFP11cBgS_LinChk();
-extern "C" void GroundCross__4cBgSFP11cBgS_GndChk();
-extern "C" void GetActorPointer__4cBgSCFi();
-extern "C" void GetPolyAtt0__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void __ct__12dBgS_AcchCirFv();
-extern "C" void SetWall__12dBgS_AcchCirFff();
-extern "C" void __dt__9dBgS_AcchFv();
-extern "C" void __ct__9dBgS_AcchFv();
-extern "C" void Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz();
-extern "C" void CrrPos__9dBgS_AcchFR4dBgS();
-extern "C" void __ct__11dBgS_GndChkFv();
-extern "C" void __dt__11dBgS_GndChkFv();
-extern "C" void __ct__18dBgS_ObjGndChk_SplFv();
-extern "C" void __dt__18dBgS_ObjGndChk_SplFv();
-extern "C" void __ct__11dBgS_LinChkFv();
-extern "C" void __dt__11dBgS_LinChkFv();
-extern "C" void Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c();
-extern "C" void SetObj__16dBgS_PolyPassChkFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Move__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void __dt__12dCcD_GObjInfFv();
-extern "C" void ChkAtHit__12dCcD_GObjInfFv();
-extern "C" void GetAtHitObj__12dCcD_GObjInfFv();
-extern "C" void ChkTgHit__12dCcD_GObjInfFv();
-extern "C" void GetTgHitObj__12dCcD_GObjInfFv();
-extern "C" void ChkCoHit__12dCcD_GObjInfFv();
-extern "C" void GetCoHitObj__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_SphFRC11dCcD_SrcSph();
-extern "C" void StartCAt__8dCcD_SphFR4cXyz();
-extern "C" void MoveCAt__8dCcD_SphFR4cXyz();
-extern "C" void cc_pl_cut_bit_get__Fv();
-extern "C" void at_power_check__FP11dCcU_AtInfo();
-extern "C" void cc_at_check__FP10fopAc_ac_cP11dCcU_AtInfo();
-extern "C" void Start__9dCamera_cFv();
-extern "C" void Stop__9dCamera_cFv();
-extern "C" void SetTrimSize__9dCamera_cFl();
-extern "C" void Set__9dCamera_cF4cXyz4cXyzsf();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void dKy_Sound_set__F4cXyziUii();
-extern "C" void dKy_Sound_get__Fv();
-extern "C" void dKy_darkworld_check__Fv();
-extern "C" void getStatus__12dMsgObject_cFv();
-extern "C" void __ct__10dMsgFlow_cFv();
-extern "C" void GetAc__8cCcD_ObjFv();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void __pl__4cXyzCFRC3Vec();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void __ml__4cXyzCFf();
-extern "C" void __ct__5csXyzFsss();
-extern "C" void cM_atan2s__Fff();
-extern "C" void cM_rndF__Ff();
-extern "C" void cM_rndFX__Ff();
-extern "C" void cM_rndF2__Ff();
-extern "C" void cM_rndFX2__Ff();
-extern "C" void SetPos__11cBgS_GndChkFPC3Vec();
-extern "C" void SetPos__11cBgS_GndChkFPC4cXyz();
-extern "C" void __dt__13cBgS_PolyInfoFv();
-extern "C" void __dt__8cM3dGCirFv();
-extern "C" void SetC__8cM3dGSphFRC4cXyz();
-extern "C" void SetR__8cM3dGSphFf();
-extern "C" void cLib_addCalc2__FPffff();
-extern "C" void cLib_addCalc0__FPfff();
-extern "C" void cLib_addCalcAngleS2__FPssss();
-extern "C" void MtxTrans__FfffUc();
-extern "C" void MtxScale__FfffUc();
-extern "C" void MtxPosition__FP4cXyzP4cXyz();
-extern "C" void MtxPush__Fv();
-extern "C" void MtxPull__Fv();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void bgmStop__8Z2SeqMgrFUll();
-extern "C" void subBgmStart__8Z2SeqMgrFUl();
-extern "C" void bgmStreamPrepare__8Z2SeqMgrFUl();
-extern "C" void bgmStreamPlay__8Z2SeqMgrFv();
-extern "C" void changeSubBgmStatus__8Z2SeqMgrFl();
-extern "C" void __ct__15Z2CreatureEnemyFv();
-extern "C" void init__15Z2CreatureEnemyFP3VecP3VecUcUc();
-extern "C" void setLinkSearch__15Z2CreatureEnemyFb();
-extern "C" void setEnemyName__15Z2CreatureEnemyFPCc();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void checkPass__12J3DFrameCtrlFf();
-extern "C" void __construct_array();
-extern "C" void _savegpr_15();
-extern "C" void _savegpr_19();
-extern "C" void _savegpr_20();
-extern "C" void _savegpr_21();
-extern "C" void _savegpr_22();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_15();
-extern "C" void _restgpr_19();
-extern "C" void _restgpr_20();
-extern "C" void _restgpr_21();
-extern "C" void _restgpr_22();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 const tempBitLabels__20dSv_event_tmp_flag_c[370 + 2 /* padding */];
-extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" u8 mCurrentMtx__6J3DSys[48];
-extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u8 mBlureFlag__13mDoGph_gInf_c[4];
-extern "C" extern u8 struct_80450C98[4];
-extern "C" u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
-extern "C" u8 m_midnaActor__9daPy_py_c[4];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" void __register_global_object();
-extern "C" void BreakSet__13daObjH_Saku_cFv();
-
-/* 805189E0-80518A48 -00001 0068+00 1/1 0/0 0/0 .data            @5576 */
-SECTION_DATA static void* lit_5576[26] = {
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x160),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x374),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x374),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x374),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x374),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x374),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x374),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x374),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x374),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x374),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x1C0),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x204),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x374),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x374),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x374),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x374),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x374),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x374),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x374),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x374),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x21C),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x288),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x2C8),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x310),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x374),
-    (void*)(((char*)e_rd_fight_run__FP10e_rd_class) + 0x33C),
-};
-
-/* 80518A48-80518AA4 -00001 005C+00 1/1 0/0 0/0 .data            @5775 */
-SECTION_DATA static void* lit_5775[23] = {
-    (void*)(((char*)e_rd_bow_run__FP10e_rd_class) + 0x9C),
-    (void*)(((char*)e_rd_bow_run__FP10e_rd_class) + 0x294),
-    (void*)(((char*)e_rd_bow_run__FP10e_rd_class) + 0x294),
-    (void*)(((char*)e_rd_bow_run__FP10e_rd_class) + 0x294),
-    (void*)(((char*)e_rd_bow_run__FP10e_rd_class) + 0x294),
-    (void*)(((char*)e_rd_bow_run__FP10e_rd_class) + 0x294),
-    (void*)(((char*)e_rd_bow_run__FP10e_rd_class) + 0x294),
-    (void*)(((char*)e_rd_bow_run__FP10e_rd_class) + 0x294),
-    (void*)(((char*)e_rd_bow_run__FP10e_rd_class) + 0x294),
-    (void*)(((char*)e_rd_bow_run__FP10e_rd_class) + 0x294),
-    (void*)(((char*)e_rd_bow_run__FP10e_rd_class) + 0xFC),
-    (void*)(((char*)e_rd_bow_run__FP10e_rd_class) + 0x140),
-    (void*)(((char*)e_rd_bow_run__FP10e_rd_class) + 0x294),
-    (void*)(((char*)e_rd_bow_run__FP10e_rd_class) + 0x294),
-    (void*)(((char*)e_rd_bow_run__FP10e_rd_class) + 0x294),
-    (void*)(((char*)e_rd_bow_run__FP10e_rd_class) + 0x294),
-    (void*)(((char*)e_rd_bow_run__FP10e_rd_class) + 0x294),
-    (void*)(((char*)e_rd_bow_run__FP10e_rd_class) + 0x294),
-    (void*)(((char*)e_rd_bow_run__FP10e_rd_class) + 0x294),
-    (void*)(((char*)e_rd_bow_run__FP10e_rd_class) + 0x294),
-    (void*)(((char*)e_rd_bow_run__FP10e_rd_class) + 0x160),
-    (void*)(((char*)e_rd_bow_run__FP10e_rd_class) + 0x214),
-    (void*)(((char*)e_rd_bow_run__FP10e_rd_class) + 0x274),
-};
-
-/* 80518AA4-80518AC0 -00001 001C+00 1/1 0/0 0/0 .data            @6346 */
-SECTION_DATA static void* lit_6346[7] = {
-    (void*)(((char*)e_rd_wb_search__FP10e_rd_class) + 0x170),
-    (void*)(((char*)e_rd_wb_search__FP10e_rd_class) + 0x1B0),
-    (void*)(((char*)e_rd_wb_search__FP10e_rd_class) + 0x24C),
-    (void*)(((char*)e_rd_wb_search__FP10e_rd_class) + 0x624),
-    (void*)(((char*)e_rd_wb_search__FP10e_rd_class) + 0x86C),
-    (void*)(((char*)e_rd_wb_search__FP10e_rd_class) + 0xA18),
-    (void*)(((char*)e_rd_wb_search__FP10e_rd_class) + 0xA84),
-};
-
-/* 80518AC0-80518B8C -00001 00CC+00 1/1 0/0 0/0 .data            @6656 */
-SECTION_DATA static void* lit_6656[51] = {
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0x1D0),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0x4D0),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0x4F0),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0x5BC),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0x5DC),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0x6B0),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0x7A0),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0x834),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0x8EC),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xA04),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xAA8),
-    (void*)(((char*)e_rd_wb_run__FP10e_rd_class) + 0xA34),
-};
-
-/* 80518B8C-80518BA8 -00001 001C+00 1/1 0/0 0/0 .data            @6966 */
-SECTION_DATA static void* lit_6966[7] = {
-    (void*)(((char*)e_rd_bomb_action__FP10e_rd_class) + 0x98),
-    (void*)(((char*)e_rd_bomb_action__FP10e_rd_class) + 0xD8),
-    (void*)(((char*)e_rd_bomb_action__FP10e_rd_class) + 0x124),
-    (void*)(((char*)e_rd_bomb_action__FP10e_rd_class) + 0x210),
-    (void*)(((char*)e_rd_bomb_action__FP10e_rd_class) + 0x3F4),
-    (void*)(((char*)e_rd_bomb_action__FP10e_rd_class) + 0x250),
-    (void*)(((char*)e_rd_bomb_action__FP10e_rd_class) + 0x2DC),
-};
-
-/* 80518BB8-80518C38 -00001 0080+00 1/1 0/0 0/0 .data            @7346 */
-SECTION_DATA static void* lit_7346[32] = {
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0x184),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0x260),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0x4BC),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0x674),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0xA90),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0xA90),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0xA90),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0xA90),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0xA90),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0xA90),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0x750),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0xA90),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0xA90),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0xA90),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0xA90),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0xA90),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0xA90),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0xA90),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0xA90),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0xA90),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0x838),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0x8D4),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0x954),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0xA90),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0xA90),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0xA90),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0xA90),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0xA90),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0xA90),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0xA90),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0x9A8),
-    (void*)(((char*)e_rd_damage__FP10e_rd_class) + 0xA64),
-};
-
-/* 80518C38-80518C70 -00001 0038+00 1/1 0/0 0/0 .data            @7704 */
-SECTION_DATA static void* lit_7704[14] = {
-    (void*)(((char*)e_rd_bow3__FP10e_rd_class) + 0xD4),
-    (void*)(((char*)e_rd_bow3__FP10e_rd_class) + 0xFC),
-    (void*)(((char*)e_rd_bow3__FP10e_rd_class) + 0x3C0),
-    (void*)(((char*)e_rd_bow3__FP10e_rd_class) + 0x104),
-    (void*)(((char*)e_rd_bow3__FP10e_rd_class) + 0x3C0),
-    (void*)(((char*)e_rd_bow3__FP10e_rd_class) + 0x11C),
-    (void*)(((char*)e_rd_bow3__FP10e_rd_class) + 0x3C0),
-    (void*)(((char*)e_rd_bow3__FP10e_rd_class) + 0x3C0),
-    (void*)(((char*)e_rd_bow3__FP10e_rd_class) + 0x3C0),
-    (void*)(((char*)e_rd_bow3__FP10e_rd_class) + 0x3C0),
-    (void*)(((char*)e_rd_bow3__FP10e_rd_class) + 0x184),
-    (void*)(((char*)e_rd_bow3__FP10e_rd_class) + 0x1FC),
-    (void*)(((char*)e_rd_bow3__FP10e_rd_class) + 0x2B8),
-    (void*)(((char*)e_rd_bow3__FP10e_rd_class) + 0x360),
-};
-
-/* 80518C70-80518CA0 -00001 0030+00 1/1 0/0 0/0 .data            @7812 */
-SECTION_DATA static void* lit_7812[12] = {
-    (void*)(((char*)e_rd_commander__FP10e_rd_class) + 0x8C),
-    (void*)(((char*)e_rd_commander__FP10e_rd_class) + 0x98),
-    (void*)(((char*)e_rd_commander__FP10e_rd_class) + 0xEC),
-    (void*)(((char*)e_rd_commander__FP10e_rd_class) + 0x3D8),
-    (void*)(((char*)e_rd_commander__FP10e_rd_class) + 0x3D8),
-    (void*)(((char*)e_rd_commander__FP10e_rd_class) + 0x140),
-    (void*)(((char*)e_rd_commander__FP10e_rd_class) + 0x16C),
-    (void*)(((char*)e_rd_commander__FP10e_rd_class) + 0x1FC),
-    (void*)(((char*)e_rd_commander__FP10e_rd_class) + 0x3D8),
-    (void*)(((char*)e_rd_commander__FP10e_rd_class) + 0x3D8),
-    (void*)(((char*)e_rd_commander__FP10e_rd_class) + 0x2DC),
-    (void*)(((char*)e_rd_commander__FP10e_rd_class) + 0x350),
-};
-
-/* 80518CA0-80518CBC -00001 001C+00 1/1 0/0 0/0 .data            @7943 */
-SECTION_DATA static void* lit_7943[7] = {
-    (void*)(((char*)e_rd_kiba_start__FP10e_rd_class) + 0x60),
-    (void*)(((char*)e_rd_kiba_start__FP10e_rd_class) + 0x1D8),
-    (void*)(((char*)e_rd_kiba_start__FP10e_rd_class) + 0x8C),
-    (void*)(((char*)e_rd_kiba_start__FP10e_rd_class) + 0xB0),
-    (void*)(((char*)e_rd_kiba_start__FP10e_rd_class) + 0x1D8),
-    (void*)(((char*)e_rd_kiba_start__FP10e_rd_class) + 0x108),
-    (void*)(((char*)e_rd_kiba_start__FP10e_rd_class) + 0x14C),
-};
-
-/* 80518CBC-80518CF8 -00001 003C+00 1/1 0/0 0/0 .data            @8697 */
-SECTION_DATA static void* lit_8697[15] = {
-    (void*)(((char*)e_rd_yagura__FP10e_rd_class) + 0x70),
-    (void*)(((char*)e_rd_yagura__FP10e_rd_class) + 0xE4),
-    (void*)(((char*)e_rd_yagura__FP10e_rd_class) + 0x494),
-    (void*)(((char*)e_rd_yagura__FP10e_rd_class) + 0x494),
-    (void*)(((char*)e_rd_yagura__FP10e_rd_class) + 0x494),
-    (void*)(((char*)e_rd_yagura__FP10e_rd_class) + 0x13C),
-    (void*)(((char*)e_rd_yagura__FP10e_rd_class) + 0x494),
-    (void*)(((char*)e_rd_yagura__FP10e_rd_class) + 0x494),
-    (void*)(((char*)e_rd_yagura__FP10e_rd_class) + 0x494),
-    (void*)(((char*)e_rd_yagura__FP10e_rd_class) + 0x494),
-    (void*)(((char*)e_rd_yagura__FP10e_rd_class) + 0x1D8),
-    (void*)(((char*)e_rd_yagura__FP10e_rd_class) + 0x274),
-    (void*)(((char*)e_rd_yagura__FP10e_rd_class) + 0x330),
-    (void*)(((char*)e_rd_yagura__FP10e_rd_class) + 0x3BC),
-    (void*)(((char*)e_rd_yagura__FP10e_rd_class) + 0x494),
-};
-
-/* 80518CF8-80518D28 -00001 0030+00 1/1 0/0 0/0 .data            @8916 */
-SECTION_DATA static void* lit_8916[12] = {
-    (void*)(((char*)e_rd_sleep__FP10e_rd_class) + 0xB8),
-    (void*)(((char*)e_rd_sleep__FP10e_rd_class) + 0xFC),
-    (void*)(((char*)e_rd_sleep__FP10e_rd_class) + 0x134),
-    (void*)(((char*)e_rd_sleep__FP10e_rd_class) + 0x2BC),
-    (void*)(((char*)e_rd_sleep__FP10e_rd_class) + 0x2BC),
-    (void*)(((char*)e_rd_sleep__FP10e_rd_class) + 0x1DC),
-    (void*)(((char*)e_rd_sleep__FP10e_rd_class) + 0x2BC),
-    (void*)(((char*)e_rd_sleep__FP10e_rd_class) + 0x2BC),
-    (void*)(((char*)e_rd_sleep__FP10e_rd_class) + 0x2BC),
-    (void*)(((char*)e_rd_sleep__FP10e_rd_class) + 0x2BC),
-    (void*)(((char*)e_rd_sleep__FP10e_rd_class) + 0x1F0),
-    (void*)(((char*)e_rd_sleep__FP10e_rd_class) + 0x25C),
-};
-
-/* 80518D48-80518E3C -00001 00F4+00 1/1 0/0 0/0 .data            @9631 */
-SECTION_DATA static void* lit_9631[61] = {
-    (void*)(((char*)action__FP10e_rd_class) + 0x2B8),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x2C8),
-    (void*)(((char*)action__FP10e_rd_class) + 0x2D8),
-    (void*)(((char*)action__FP10e_rd_class) + 0x2E8),
-    (void*)(((char*)action__FP10e_rd_class) + 0x2F8),
-    (void*)(((char*)action__FP10e_rd_class) + 0x308),
-    (void*)(((char*)action__FP10e_rd_class) + 0x31C),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x32C),
-    (void*)(((char*)action__FP10e_rd_class) + 0x338),
-    (void*)(((char*)action__FP10e_rd_class) + 0x344),
-    (void*)(((char*)action__FP10e_rd_class) + 0x354),
-    (void*)(((char*)action__FP10e_rd_class) + 0x37C),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x38C),
-    (void*)(((char*)action__FP10e_rd_class) + 0x398),
-    (void*)(((char*)action__FP10e_rd_class) + 0x3A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x3B0),
-    (void*)(((char*)action__FP10e_rd_class) + 0x3BC),
-    (void*)(((char*)action__FP10e_rd_class) + 0x3C8),
-    (void*)(((char*)action__FP10e_rd_class) + 0x3D8),
-    (void*)(((char*)action__FP10e_rd_class) + 0x3E8),
-    (void*)(((char*)action__FP10e_rd_class) + 0x3FC),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x408),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x418),
-    (void*)(((char*)action__FP10e_rd_class) + 0x428),
-    (void*)(((char*)action__FP10e_rd_class) + 0x438),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x444),
-    (void*)(((char*)action__FP10e_rd_class) + 0x450),
-    (void*)(((char*)action__FP10e_rd_class) + 0x45C),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x468),
-    (void*)(((char*)action__FP10e_rd_class) + 0x478),
-    (void*)(((char*)action__FP10e_rd_class) + 0x484),
-    (void*)(((char*)action__FP10e_rd_class) + 0x490),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x4A4),
-    (void*)(((char*)action__FP10e_rd_class) + 0x49C),
-};
-
-/* 80518E3C-80518ED0 -00001 0094+00 1/1 0/0 0/0 .data            @10414 */
-SECTION_DATA static void* lit_10414[37] = {
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x14CC),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x14CC),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x98),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x138),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x14CC),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x14CC),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x14CC),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x14CC),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x14CC),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x14CC),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x14CC),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x34C),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x418),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x14CC),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x14CC),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x14CC),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x14CC),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x14CC),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x14CC),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x14CC),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x554),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x584),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x6C8),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x8A8),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x984),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0xA74),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0xBEC),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0xCB8),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0xD54),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0xF4C),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x10EC),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x11D0),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x12A8),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x1320),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x138C),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x1410),
-    (void*)(((char*)demo_camera__FP10e_rd_class) + 0x1498),
-};
-
-/* 80518ED0-80518F34 000528 0064+00 0/1 0/0 0/0 .data            time_scale$10547 */
-// static f32 time_scale[25] = {
-//     1.2f, 1.2f, 1.1f, 1.0f,
-//     0.8f, 0.6f, 0.4f, 0.2f,
-//     0.0f, 0.0f, 0.0f, 0.0f,
-//     0.0f, 0.0f, 0.0f, 0.0f,
-//     0.0f, 0.0f, 0.2f, 0.5f,
-//     0.8f, 1.2f, 1.2f, 1.2f,
-//     1.2f,
-// };
-
-/* 80518F34-80518F6C 00058C 0038+00 0/1 0/0 0/0 .data            boss_part_idx$10666 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 boss_part_idx[56] = {
-    0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x1D, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00,
-    0x00, 0x19, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x0D,
-    0x00, 0x00, 0x00, 0x13, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x12, 0x00, 0x00,
-    0x00, 0x0E, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x02,
-};
-#pragma pop
-
-/* 80518F74-80518F7C 0005CC 0006+02 0/1 0/0 0/0 .data            eno$10680 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 eno[6 + 2 /* padding */] = {
-    0x82,
-    0x8C,
-    0x82,
-    0x8D,
-    0x82,
-    0x8E,
-    /* padding */
-    0x00,
-    0x00,
-};
-#pragma pop
-
-/* 80518F7C-80518F88 0005D4 000C+00 0/0 0/0 0/0 .data            jv_offset */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 jv_offset[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#pragma pop
-
-/* 80518FC0-80518FC8 000618 0008+00 1/1 0/0 0/0 .data            ikki2_boss_part_bmd$11488 */
-SECTION_DATA static u8 ikki2_boss_part_bmd[8] = {
-    0x00, 0x00, 0x00, 0x56, 0x00, 0x00, 0x00, 0x57,
-};
-
-// /* 80518FC8-80519008 000620 0040+00 1/1 0/0 0/0 .data            cc_sph_src$11818 */
-// static dCcD_SrcSph cc_sph_src = {
-//     {
-//         {0x0, {{0x0, 0x0, 0x0}, {0xd8fbfdff, 0x3}, 0x75}}, // mObj
-//         {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
-//         {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
-//         {0x0}, // mGObjCo
-//     }, // mObjInf
-//     {
-//         {{0.0f, 0.0f, 0.0f}, 40.0f} // mSph
-//     } // mSphAttr
-// };
-
-// /* 80519008-80519048 000660 0040+00 1/1 0/0 0/0 .data            at_sph_src$11819 */
-// static dCcD_SrcSph at_sph_src = {
-//     {
-//         {0x0, {{AT_TYPE_CSTATUE_SWING, 0x1, 0x1d}, {0x0, 0x0}, 0x0}}, // mObj
-//         {dCcD_SE_METAL, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
-//         {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
-//         {0x0}, // mGObjCo
-//     }, // mObjInf
-//     {
-//         {{0.0f, 0.0f, 0.0f}, 35.0f} // mSph
-//     } // mSphAttr
-// };
-
-/* 80519048-80519068 -00001 0020+00 1/0 0/0 0/0 .data            l_daE_RD_Method */
-static actor_method_class l_daE_RD_Method = {
-    (process_method_func)daE_RD_Create__FP10fopAc_ac_c,
-    (process_method_func)daE_RD_Delete__FP10e_rd_class,
-    (process_method_func)daE_RD_Execute__FP10e_rd_class,
-    (process_method_func)daE_RD_IsDelete__FP10e_rd_class,
-    (process_method_func)daE_RD_Draw__FP10e_rd_class,
-};
-
-/* 80519068-80519098 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_E_RD */
-extern actor_process_profile_definition g_profile_E_RD = {
-  fpcLy_CURRENT_e,        // mLayerID
-  7,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_E_RD,              // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(e_rd_class),     // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  154,                    // mPriority
-  &l_daE_RD_Method,       // sub_method
-  0x00044000,             // mStatus
-  fopAc_ENEMY_e,          // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
-};
-
-/* 80519098-805190A4 0006F0 000C+00 1/1 0/0 0/0 .data            __vt__12dBgS_AcchCir */
-SECTION_DATA extern void* __vt__12dBgS_AcchCir[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_AcchCirFv,
-};
-
-/* 805190A4-805190B0 0006FC 000C+00 2/2 0/0 0/0 .data            __vt__10cCcD_GStts */
-SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10cCcD_GSttsFv,
-};
-
-/* 805190B0-805190BC 000708 000C+00 1/1 0/0 0/0 .data            __vt__10dCcD_GStts */
-SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10dCcD_GSttsFv,
-};
-
-/* 805190BC-805190C8 000714 000C+00 4/4 0/0 0/0 .data            __vt__8cM3dGSph */
-SECTION_DATA extern void* __vt__8cM3dGSph[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGSphFv,
-};
-
-/* 805190C8-805190D4 000720 000C+00 4/4 0/0 0/0 .data            __vt__8cM3dGAab */
-SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGAabFv,
-};
-
-/* 805190D4-805190F8 00072C 0024+00 2/2 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
-SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_ObjAcchFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_805180DC,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_805180D4,
-};
-
-/* 805190F8-80519128 000750 0030+00 3/3 0/0 0/0 .data            __vt__14dBgS_ObjGndChk */
-SECTION_DATA extern void* __vt__14dBgS_ObjGndChk[12] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14dBgS_ObjGndChkFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_805180BC,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_805180CC,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_805180C4,
-};
-
-/* 80519128-80519134 000780 000C+00 2/2 0/0 0/0 .data            __vt__12daE_RD_HIO_c */
-SECTION_DATA extern void* __vt__12daE_RD_HIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12daE_RD_HIO_cFv,
+enum ANIMATION {
+    /* 0x04 */ ANM_ARMAMENT         = 4,
+    /* 0x05 */ ANM_ATTACK01,
+    /* 0x06 */ ANM_AVOID,
+    /* 0x07 */ ANM_BOW_READY,
+    /* 0x08 */ ANM_BOW_R_READY,
+    /* 0x09 */ ANM_BOW_R_SHOOT,
+    /* 0x0A */ ANM_BOW_SHOOT,
+    /* 0x0B */ ANM_DAMAGE_LEFT,
+    /* 0x0C */ ANM_DAMAGE_RIGHT,
+    /* 0x0D */ ANM_DAMAGE_S,
+    /* 0x0E */ ANM_DAMAGE_W,
+    /* 0x0F */ ANM_DEAD_ARROW,
+    /* 0x10 */ ANM_DIE_A,
+    /* 0x11 */ ANM_DIE_A_UP,
+    /* 0x12 */ ANM_DIE_B,
+    /* 0x13 */ ANM_DIE_B_UP,
+    /* 0X14 */ ANM_DROWNED_A,
+    /* 0x15 */ ANM_DROWNED_B,
+    /* 0x16 */ ANM_FURA_2,
+    /* 0x17 */ ANM_GO_SIGN,
+    /* 0x18 */ ANM_JUMP_A,
+    /* 0x19 */ ANM_JUMP_B,
+    /* 0x1A */ ANM_JUMP_C,
+    /* 0x1B */ ANM_KAMAE,
+    /* 0x1C */ ANM_KICK,
+    /* 0x1D */ ANM_KYORO_2,
+    /* 0x1E */ ANM_R_ATTACK01,
+    /* 0x1F */ ANM_R_ATTACK01_WAIT,
+    /* 0x20 */ ANM_R_ATTACK02,
+    /* 0x21 */ ANM_R_ATTACK02_WAIT,
+    /* 0x22 */ ANM_R_ATTACK03,
+    /* 0x23 */ ANM_R_ATTACK04,
+    /* 0x24 */ ANM_R_DAMAGE,
+    /* 0x25 */ ANM_R_DAMAGE_BACK,
+    /* 0x26 */ ANM_R_RUN,
+    /* 0x27 */ ANM_R_RUN_BACK,
+    /* 0x28 */ ANM_R_RUN02_BACK,
+    /* 0x29 */ ANM_R_SHOOT,
+    /* 0x2A */ ANM_R_SHOOT_READY,
+    /* 0x2B */ ANM_R_SHOOT_WAIT,
+    /* 0x2C */ ANM_R_SHOOT_WAIT02,
+    /* 0x2D */ ANM_R_STEP_BACK,
+    /* 0x2E */ ANM_R_STEP_LEFT,
+    /* 0x2F */ ANM_R_STEP_LEFT_BACK,
+    /* 0x30 */ ANM_R_STEP_RIGHT,
+    /* 0x31 */ ANM_R_STEP_RIGHT_BACK,
+    /* 0x32 */ ANM_RUN,
+    /* 0x33 */ ANM_RUN02,
+    /* 0x34 */ ANM_R_WAIT,
+    /* 0x35 */ ANM_R_WAIT_BACK,
+    /* 0x36 */ ANM_R_WALK,
+    /* 0x37 */ ANM_R_WALK_BACK,
+    /* 0x38 */ ANM_SHOOT,
+    /* 0x39 */ ANM_SHOOT_READY,
+    /* 0x3A */ ANM_SHOOT_WAIT,
+    /* 0x3B */ ANM_SHOUT,
+    /* 0x3C */ ANM_SIGN,
+    /* 0x3D */ ANM_SLEEP_LOOKAROUND,
+    /* 0x3E */ ANM_SLEEP_STANDUP,
+    /* 0x3F */ ANM_SLEEP_WAIT,
+    /* 0x40 */ ANM_WAIT01,
+    /* 0x41 */ ANM_WALK,
 };
 
 /* 80504A6C-80504B20 0000EC 00B4+00 1/1 0/0 0/0 .text            __ct__12daE_RD_HIO_cFv */
@@ -1290,7 +494,7 @@ static BOOL otoCheck(fopAc_ac_c* i_actor, f32 param_2) {
 }
 
 /* 80505CD4-80505D80 001354 00AC+00 1/1 0/0 0/0 .text            pl_pass_check__FP10e_rd_classf */
-static bool pl_pass_check(e_rd_class* i_this, f32 param_2) {
+static BOOL pl_pass_check(e_rd_class* i_this, f32 param_2) {
     // NONMATCHING
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     fopAc_ac_c* actor = get_pla(a_this);
@@ -1530,7 +734,7 @@ static void wb_check(e_rd_class* i_this, s16 param_2) {
                 }
             }
 
-            i_this->mAction = 11;
+            i_this->mAction = ACTION_WB_SEARCH;
             i_this->field_0x5b4 = 0;
 
             if ((bullbo->field_0x6be & 1) == 0) {
@@ -1550,7 +754,7 @@ static BOOL wb_init_ride(e_rd_class* i_this) {
     e_wb_class* bullbo = (e_wb_class*)fopAcM_SearchByID(i_this->mWbActorID);
 
     if (bullbo != NULL) {
-        i_this->mAction = 12;
+        i_this->mAction = ACTION_WB_RIDE;
         i_this->field_0x5b4 = 0;
         i_this->field_0x9bc = 2;
         i_this->field_0x9be = i_this->field_0x5b6;
@@ -1695,7 +899,7 @@ static BOOL path_check(e_rd_class* i_this) {
             end.y = points->m_position.y + 10.0f + hREG_F(1);
             end.z = points->m_position.z;
             lin_chk.Set(&start, &end, a_this);
-            if (dComIfG_Bgsp().LineCross(&lin_chk)) {
+            if (!dComIfG_Bgsp().LineCross(&lin_chk)) {
                 check_index[i] = 1;
             } else {
                 check_index[i] = 0;
@@ -1776,13 +980,13 @@ static void e_rd_normal(e_rd_class* i_this) {
             case 2:
                 if (i_this->field_0x990[0] == 0) {
                     if (i_this->mPath != NULL && path_check(i_this)) {
-                        i_this->mAction = 51;
+                        i_this->mAction = ACTION_JYUNKAI;
                         i_this->field_0x5b4 = 0;
                         return;
                     }
 
                     if (way_check(i_this)) {
-                        anm_init(i_this, 65, 10.0f, 2, 1.0f);
+                        anm_init(i_this, ANM_WALK, 10.0f, 2, 1.0f);
                         i_this->field_0x5b4 = 3;
                         i_this->field_0x990[0] = cM_rndF(100.0f) + 100.0f;
                     }
@@ -1798,12 +1002,12 @@ static void e_rd_normal(e_rd_class* i_this) {
                 if (a_this->speedF >= 3.0f && move_gake_check(i_this, 100.0f)) {
                     i_this->field_0x5b4 = 4;
                     i_this->field_0x990[0] = cM_rndF(100.0f) + 50.0f;
-                    anm_init(i_this, 29, 10.0f, 2, 1.0f);
+                    anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
                 } else {
                     if (i_this->field_0x990[0] == 0 || (a_this->speedF >= 3.0f && way_bg_check(i_this, 200.0f))) {
                         i_this->field_0x5b4 = 2;
                         i_this->field_0x990[0] = cM_rndF(100.0f) + 50.0f;
-                        anm_init(i_this, 29, 10.0f, 2, 1.0f);
+                        anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
                     }
                 }
                 break;
@@ -1812,7 +1016,7 @@ static void e_rd_normal(e_rd_class* i_this) {
                 i_this->field_0x9c8 = 0xFF;
                 if (i_this->field_0x990[0] == 0) {
                     i_this->field_0x5cc = a_this->current.angle.y + (s16)cM_rndFX(4000.0f) + 0x8000;
-                    anm_init(i_this, 65, 10.0f, 2, 1.0f);
+                    anm_init(i_this, ANM_WALK, 10.0f, 2, 1.0f);
                     i_this->field_0x5b4 = 3;
                     i_this->field_0x990[0] = cM_rndF(100.0f) + 100.0f;
                 }
@@ -1844,17 +1048,17 @@ static void e_rd_normal(e_rd_class* i_this) {
             } else {
                 if (pl_check(i_this, fVar2, sVar1)) {
                     if (i_this->field_0x5bc == 1) {
-                        i_this->mAction = 3;
+                        i_this->mAction = ACTION_FIGHT_RUN;
                         i_this->field_0x5b4 = 0xFFF6;
                         i_this->field_0x990[0] = 60;
                     } else if (i_this->field_0x5bc >= 2) {
-                        i_this->mAction = 5;
+                        i_this->mAction = ACTION_BOW_RUN;
                         i_this->field_0x5b4 = 0xFFF6;
                     }
                 }
 
                 if (bomb_view_check(i_this) != NULL) {
-                    i_this->mAction = 19;
+                    i_this->mAction = ACTION_BOMB;
                     i_this->field_0x5b4 = 0;
                 }
             }
@@ -1888,11 +1092,11 @@ static void e_rd_fight_run(e_rd_class* i_this) {
 
     if (i_this->field_0x5bc != 1) {
         if (i_this->field_0x5bc >= 2) {
-            i_this->mAction = 5;
+            i_this->mAction = ACTION_BOW_RUN;
         } else {
-            i_this->mAction = 0;
+            i_this->mAction = ACTION_NORMAL;
             i_this->field_0x990[0] = cM_rndF(50.0f) + 50.0f;
-            anm_init(i_this, 29, 10.0f, 2, 1.0f);
+            anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
         }
 
         i_this->field_0x5b4 = 0;
@@ -1911,7 +1115,7 @@ static void e_rd_fight_run(e_rd_class* i_this) {
                 break;
 
             case -10:
-                anm_init(i_this, 64, 7.0f, 2, 1.0f);
+                anm_init(i_this, ANM_WAIT01, 7.0f, 2, 1.0f);
                 i_this->field_0x990[1] = cM_rndF(10.0f) + 15.0f;
                 i_this->field_0x5b4 = 0xFFF7;
                 break;
@@ -1927,7 +1131,7 @@ static void e_rd_fight_run(e_rd_class* i_this) {
                     anm_init(i_this, 4, 2.0f, 0, 1.0f);
                     i_this->field_0x5b4 = 0xFFEC;
                 } else if (i_this->field_0x990[1] == 0) {
-                    anm_init(i_this, 50, 5.0f, 2, cM_rndFX(0.05f) + 1.0f);
+                    anm_init(i_this, ANM_RUN, 5.0f, 2, cM_rndFX(0.05f) + 1.0f);
                     i_this->field_0x5b4 = 1;
                 }
                 break;
@@ -1935,7 +1139,7 @@ static void e_rd_fight_run(e_rd_class* i_this) {
             case 1:
                 fVar3 = fVar1;
                 if (i_this->mPlayerDistance < l_HIO.battle_init_range) {
-                    anm_init(i_this, 27, 5.0f, 2, 1.0f);
+                    anm_init(i_this, ANM_KAMAE, 5.0f, 2, 1.0f);
                     i_this->field_0x5b4 = 2;
                 }
                 break;
@@ -1972,7 +1176,7 @@ static void e_rd_fight_run(e_rd_class* i_this) {
         if (i_this->field_0x5b4 < 5 && move_gake_check(i_this, 100.0f)) {
             i_this->field_0x5b4 = 5;
             i_this->field_0x990[3] = cM_rndF(15.0f) + 30.0f;
-            anm_init(i_this, 64, 5.0f, 2, 1.0f);
+            anm_init(i_this, ANM_WAIT01, 5.0f, 2, 1.0f);
         }
 
         if (i_this->field_0x5b4 >= 0) {
@@ -1986,28 +1190,28 @@ static void e_rd_fight_run(e_rd_class* i_this) {
         cLib_addCalc2(&a_this->speedF, fVar3, 1.0f, 5.0f);
 
         if (!bVar1) {
-            i_this->mAction = 0;
+            i_this->mAction = ACTION_NORMAL;
             if (i_this->field_0x5b4 == 5) {
                 i_this->field_0x5cc = a_this->current.angle.y + (s16)cM_rndFX(4000.0f) + 0x8000;
-                anm_init(i_this, 65, 10.0f, 2, 1.0f);
+                anm_init(i_this, ANM_WALK, 10.0f, 2, 1.0f);
                 i_this->field_0x5b4 = 3;
                 i_this->field_0x990[0] = cM_rndF(100.0f) + 100.0f;
                 i_this->field_0x990[1] = 40;
             } else {
                 i_this->field_0x5b4 = 0;
                 i_this->field_0x990[0] = cM_rndF(50.0f) + 50.0f;
-                anm_init(i_this, 29, 10.0f, 2, 1.0f);
+                anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
             }
         } else {
             if (i_this->mPlayerDistance < l_HIO.battle_init_range && (i_this->field_0xa20 & cc_pl_cut_bit_get()) != 0 &&
                 i_this->field_0x9f0 < 0.1f) {
-                i_this->mAction = 10;
+                i_this->mAction = ACTION_AVOID;
                 i_this->field_0x5b4 = 0;
                 i_this->field_0x998 = 20;
             } else if (i_this->field_0x5bd == 0 && i_this->mPlayerDistance < l_HIO.attack_init_range && i_this->field_0x990[2] == 0) {
                 i_this->field_0x990[2] = cM_rndF(20.0f) + 20.0f;
                 if (cM_rndF(1.0f) < 0.5f) {
-                    i_this->mAction = 4;
+                    i_this->mAction = ACTION_FIGHT;
                     i_this->field_0x5b4 = 0;
                 }
             }
@@ -2016,12 +1220,12 @@ static void e_rd_fight_run(e_rd_class* i_this) {
         if ((i_this->field_0x970 & 15) == 0) {
             wb_check(i_this, 0x3000);
             if (bomb_view_check(i_this) != NULL) {
-                i_this->mAction = 19;
+                i_this->mAction = ACTION_BOMB;
                 i_this->field_0x5b4 = 0;
             }
         }
 
-        if (i_this->mAction == 3 && i_this->field_0x9c8 >= 0) {
+        if (i_this->mAction == ACTION_FIGHT_RUN && i_this->field_0x9c8 >= 0) {
             i_this->field_0x9c8 = 1;
         }
     }
@@ -2048,7 +1252,7 @@ static void e_rd_fight(e_rd_class* i_this) {
 
     switch (i_this->field_0x5b4) {
         case 0:
-            anm_init(i_this, 5, HREG_F(0) + 6.0f, 0, 1.0f);
+            anm_init(i_this, ANM_ATTACK01, HREG_F(0) + 6.0f, 0, 1.0f);
 
             if (l_HIO.field_0x38 == 0) {
                 i_this->field_0x990[0] = 25;
@@ -2071,7 +1275,7 @@ static void e_rd_fight(e_rd_class* i_this) {
             if (frame == 30) {
                 i_this->mpModelMorf->setFrame(0.0f);
             } else if (i_this->field_0x990[0] == 0) {
-                anm_init(i_this, 5, 2.0f, 0, l_HIO.swing_speed);
+                anm_init(i_this, ANM_ATTACK01, 2.0f, 0, l_HIO.swing_speed);
                 i_this->mpModelMorf->setFrame(30.0f);
                 i_this->field_0x5b4 = 2;
             }
@@ -2109,14 +1313,14 @@ static void e_rd_fight(e_rd_class* i_this) {
                     i_this->field_0x990[0] = 10;
                 }
 
-                anm_init(i_this, 27, 5.0f, 2, 1.0f);
+                anm_init(i_this, ANM_KAMAE, 5.0f, 2, 1.0f);
             }
             break;
 
         case 3:
         case 10:
             if (i_this->field_0x990[0] == 0) {
-                i_this->mAction = 3;
+                i_this->mAction = ACTION_FIGHT_RUN;
                 i_this->field_0x5b4 = 0;
             }
             break;
@@ -2164,7 +1368,7 @@ static void e_rd_bow_run(e_rd_class* i_this) {
             break;
 
         case -10:
-            anm_init(i_this, 64, 5.0f, 2, 1.0f);
+            anm_init(i_this, ANM_WAIT01, 5.0f, 2, 1.0f);
             i_this->field_0x990[0] = cM_rndF(10.0f) + 15.0f;
             i_this->field_0x5b4 = 0xFFF7;
             break;
@@ -2181,7 +1385,7 @@ static void e_rd_bow_run(e_rd_class* i_this) {
                 anm_init(i_this, 4, 2.0f, 0, 1.0f);
                 i_this->field_0x5b4 = 0xFFEC;
             } else {
-                anm_init(i_this, 50, 5.0f, 2, 1.0f);
+                anm_init(i_this, ANM_RUN, 5.0f, 2, 1.0f);
                 i_this->field_0x990[0] = cM_rndF(50.0f) + 20.0f;
                 if (i_this->mPlayerDistance < l_HIO.attack_range - 100.0f) {
                     i_this->field_0x5b4 = 1;
@@ -2218,27 +1422,27 @@ static void e_rd_bow_run(e_rd_class* i_this) {
 
     if (i_this->field_0x5bd == 0 && bVar1) {
         if (i_this->field_0x5b8 == 3) {
-            i_this->mAction = 7;
+            i_this->mAction = ACTION_BOW2;
         } else {
-            i_this->mAction = 6;
+            i_this->mAction = ACTION_BOW;
         }
 
         i_this->field_0x5b4 = 0;
         i_this->field_0x990[1] = cM_rndF(150.0f);
     } else if (i_this->field_0x990[2] == 0 && !pl_check(i_this, i_this->field_0x980 + 50.0f, 0x7FFF)) {
-        i_this->mAction = 0;
+        i_this->mAction = ACTION_NORMAL;
         i_this->field_0x5b4 = 0;
         i_this->field_0x990[0] = cM_rndF(50.0f) + 50.0f;
-        anm_init(i_this, 29, 10.0f, 2, 1.0f);
+        anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
     } else if ((i_this->field_0x970 & 15) == 0) {
         wb_check(i_this, 0x3000);
         if (bomb_view_check(i_this) != NULL) {
-            i_this->mAction = 19;
+            i_this->mAction = ACTION_BOMB;
             i_this->field_0x5b4 = 0;
         }
     }
 
-    if (i_this->mAction != 5) {
+    if (i_this->mAction != ACTION_BOW_RUN) {
         i_this->field_0x9c8 = 0;
     }
 }
@@ -2281,7 +1485,7 @@ static void e_rd_bow(e_rd_class* i_this) {
                     i_this->field_0x698->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
                     i_this->field_0x5b4 = 3;
                 } else {
-                    i_this->mAction = 5;
+                    i_this->mAction = ACTION_BOW_RUN;
                     i_this->field_0x5b4 = 0;
                 }
             }
@@ -2302,7 +1506,7 @@ static void e_rd_bow(e_rd_class* i_this) {
             if (i_this->mpModelMorf->isStop()) {
                 if (i_this->field_0x990[1] == 0 && (i_this->mPlayerDistance < l_HIO.attack_range - 200.0f || i_this->mPlayerDistance > l_HIO.attack_range)) {
                     if (!(i_this->mPlayerDistance < l_HIO.attack_range - 200.0f) || !way_bg_check(i_this, -100.0f)) {
-                        i_this->mAction = 5;
+                        i_this->mAction = ACTION_BOW_RUN;
                     }
 
                     i_this->field_0x5b4 = 0;
@@ -2330,7 +1534,7 @@ static s8 e_rd_bow2(e_rd_class* i_this) {
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     fopAc_ac_c* actor = get_pla(a_this);
     int frame = i_this->mpModelMorf->getFrame();
-    int rv = 0;
+    s8 rv = 0;
 
     if (i_this->field_0x5b4 <= 1) {
         if (i_this->mPlayerDistance < i_this->field_0x980 && !other_bg_check(i_this, actor)) {
@@ -2343,7 +1547,7 @@ static s8 e_rd_bow2(e_rd_class* i_this) {
     switch (i_this->field_0x5b4) {
         case 0:
             if (i_this->field_0x990[0] == 0) {
-                anm_init(i_this, 29, 10.0f, 2, 1.0f);
+                anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
                 i_this->field_0x5b4 = 1;
                 i_this->field_0x990[0] = cM_rndF(40.0f) + 60.0f;
             }
@@ -2351,7 +1555,7 @@ static s8 e_rd_bow2(e_rd_class* i_this) {
 
         case 1:
             if (i_this->field_0x990[0] == 0) {
-                anm_init(i_this, 64, 10.0f, 2, 1.0f);
+                anm_init(i_this, ANM_WAIT01, 10.0f, 2, 1.0f);
                 i_this->field_0x990[0] = cM_rndF(100.0f) + 100.0f;
                 i_this->field_0x5b4 = 0;
             }
@@ -2412,7 +1616,7 @@ static s8 e_rd_bow2(e_rd_class* i_this) {
             if (i_this->mpModelMorf->isStop()) {
                 if (i_this->field_0x990[1] == 0 && fabsf(a_this->current.pos.y - actor->current.pos.y) < 300.0f && i_this->mPlayerDistance < l_HIO.attack_range - 200.0f) {
                     if (!way_bg_check(i_this, -100.0f)) {
-                        i_this->mAction = 5;
+                        i_this->mAction = ACTION_BOW_RUN;
                         i_this->field_0x1295 = 0;
                     }
 
@@ -2496,7 +1700,7 @@ static void e_rd_avoid(e_rd_class* i_this) {
 
     switch (i_this->field_0x5b4) {
         case 0:
-            anm_init(i_this, 6, 1.0f, 0, 1.0f);
+            anm_init(i_this, ANM_AVOID, 1.0f, 0, 1.0f);
             i_this->field_0x5b4 = 1;
             a_this->speedF = -30.0f;
             a_this->speed.y = 20.0f;
@@ -2520,7 +1724,7 @@ static void e_rd_avoid(e_rd_class* i_this) {
         case 3:
             cLib_addCalc0(&a_this->speedF, 1.0f, 10.0f);
             if (i_this->mpModelMorf->isStop()) {
-                i_this->mAction = 3;
+                i_this->mAction = ACTION_FIGHT_RUN;
                 i_this->field_0x5b4 = 0;
                 i_this->field_0x990[0] = 30;
             }
@@ -2557,7 +1761,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
     }
 
     if (bVar1) {
-        i_this->mAction = 0;
+        i_this->mAction = ACTION_NORMAL;
         i_this->field_0x5b4 = 0;
         ride_off(i_this);
     } else {
@@ -2568,7 +1772,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
 
         switch (i_this->field_0x5b4) {
             case 0:
-                anm_init(i_this, 64, 10.0f, 2, 1.0f);
+                anm_init(i_this, ANM_WAIT01, 10.0f, 2, 1.0f);
                 i_this->field_0x5b4 = 1;
                 i_this->field_0x990[0] = cM_rndF(15.0f) + 15.0f;
                 // fallthrough
@@ -2577,7 +1781,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
                 if (i_this->field_0x990[0] == 0) {
                     i_this->field_0x5b4 = 2;
                     if (bullbo->speedF > 5.0f) {
-                        anm_init(i_this, 60, 3.0f, 2, 1.0f);
+                        anm_init(i_this, ANM_SIGN, 3.0f, 2, 1.0f);
                         i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_CALLING, -1);
                         i_this->field_0x990[0] = cM_rndF(20.0f) + 30.0f;
                     } else {
@@ -2619,7 +1823,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
                     sp54 = sp60 - a_this->current.pos;
                     i_this->field_0x5cc = cM_atan2s(sp54.x, sp54.z);
                     i_this->field_0x5b4 = 3;
-                    anm_init(i_this, 50, 5.0f, 2, 1.5f);
+                    anm_init(i_this, ANM_RUN, 5.0f, 2, 1.5f);
                 }
                 break;
 
@@ -2652,7 +1856,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
                     if (i_this->field_0x9be == 1) {
                         anm_init(i_this, 4, 2.0f, 0, 1.0f);
                     } else {
-                        anm_init(i_this, 64, 5.0f, 2, 1.0f);
+                        anm_init(i_this, ANM_WAIT01, 5.0f, 2, 1.0f);
                         i_this->field_0x990[0] = 10;
                     }
                 }
@@ -2680,12 +1884,12 @@ static void e_rd_wb_search(e_rd_class* i_this) {
 
                     if (i_this->mpModelMorf->isStop()) {
                         i_this->field_0x5b4 = 5;
-                        anm_init(i_this, 24, 2.0f, 0, 1.0f);
+                        anm_init(i_this, ANM_JUMP_A, 2.0f, 0, 1.0f);
                         i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_JUMP_RIDING, -1);
                     }
                 } else if (i_this->field_0x990[0] == 0) {
                     i_this->field_0x5b4 = 5;
-                    anm_init(i_this, 24, 2.0f, 0, 1.0f);
+                    anm_init(i_this, ANM_JUMP_A, 2.0f, 0, 1.0f);
                     i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_JUMP_RIDING, -1);
                 }
                 break;
@@ -2693,7 +1897,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
             case 5:
                 if (i_this->mpModelMorf->isStop()) {
                     i_this->field_0x5b4 = 6;
-                    anm_init(i_this, 25, 10.0f, 0, 1.0f);
+                    anm_init(i_this, ANM_JUMP_B, 10.0f, 0, 1.0f);
                     i_this->field_0x9bc = 1;
                     i_this->field_0x9c4 = 30.0f;
                     i_this->field_0x990[3] = 20;
@@ -2702,7 +1906,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
 
             case 6:
                 if (i_this->field_0x9c0 <= 0.0f) {
-                    i_this->mAction = 12;
+                    i_this->mAction = ACTION_WB_RIDE;
                     i_this->field_0x5b4 = 0;
                     bullbo->mActionID = 4;
                     bullbo->field_0x5b4 = 0;
@@ -2721,7 +1925,7 @@ static void e_rd_wb_ride(e_rd_class* i_this) {
     e_wb_class* bullbo = (e_wb_class*)fopAcM_SearchByID(i_this->mWbActorID);
 
     if (bullbo == NULL) {
-        i_this->mAction = 0;
+        i_this->mAction = ACTION_NORMAL;
         i_this->field_0x5b4 = 0;
         ride_off(i_this);
     } else if ((bullbo->field_0x6be & 3) == 0) {
@@ -2735,7 +1939,7 @@ static void e_rd_wb_ride(e_rd_class* i_this) {
             case 0:
                 i_this->field_0x5b4 = 1;
                 if (i_this->field_0x129a == 0) {
-                    anm_init(i_this, 26, 1.0f, 0, 1.0f);
+                    anm_init(i_this, ANM_JUMP_C, 1.0f, 0, 1.0f);
                 }
                 // fallthrough
             case 1:
@@ -2748,29 +1952,29 @@ static void e_rd_wb_ride(e_rd_class* i_this) {
                             bullbo->mActionID = 17;
                             if (strcmp(dComIfGp_getStartStageName(), "F_SP121") == 0) {
                                 bullbo->field_0x5b4 = -100;
-                                i_this->mAction = 45;
+                                i_this->mAction = ACTION_IKKI2_START;
                             } else {
-                                i_this->mAction = 13;
+                                i_this->mAction = ACTION_WB_RUN;
                             }
                         } else if (i_this->field_0x129a == 2) {
                             bullbo->mActionID = 15;
-                            i_this->mAction = 13;
+                            i_this->mAction = ACTION_WB_RUN;
                         } else if (i_this->field_0x129a == 4) {
                             bullbo->mActionID = 19;
-                            i_this->mAction = 47;
+                            i_this->mAction = ACTION_LV9_END;
                         } else if (cDmr_SkipInfo == 0) {
-                            i_this->mAction = 40;
+                            i_this->mAction = ACTION_KIBA_START;
                             bullbo->mActionID = 30;
                         } else {
                             bullbo->mActionID = 8;
-                            i_this->mAction = 13;
+                            i_this->mAction = ACTION_WB_RUN;
                             bullbo->field_0x79c = 10;
                             Z2GetAudioMgr()->subBgmStart(Z2BGM_HORSE_BATTLE);
                         }
                     } else {
                         bullbo->mActionID = 6;
                         bullbo->field_0x5b4 = 0;
-                        i_this->mAction = 13;
+                        i_this->mAction = ACTION_WB_RUN;
                         i_this->field_0x5b4 = 0;
                     }
                 }
@@ -2832,25 +2036,25 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                     } else {
                         if ((bullbo->field_0x6be & 8) != 0) {
                             if (i_this->field_0x9be == 1) {
-                                anm_init(i_this, 36, 3.0f, 0, 1.0f);
+                                anm_init(i_this, ANM_R_DAMAGE, 3.0f, 0, 1.0f);
                             } else {
-                                anm_init(i_this, 37, 3.0f, 0, 1.0f);
+                                anm_init(i_this, ANM_R_DAMAGE_BACK, 3.0f, 0, 1.0f);
                             }
 
                             i_this->field_0x990[1] = cM_rndF(50.0f) + 50.0f;
                         } else {
                             if ((bullbo->field_0x6be & 16) != 0) {
                                 if (i_this->field_0x9be == 1) {
-                                    anm_init(i_this, 38, 5.0f, 2, 1.0f);
+                                    anm_init(i_this, ANM_R_RUN, 5.0f, 2, 1.0f);
                                 } else {
                                     anm_init(i_this, 40, 5.0f, 2, 1.0f);
                                 }
                             } else {
                                 if ((bullbo->field_0x6be & 32) != 0) {
                                     if (i_this->field_0x9be == 1) {
-                                        anm_init(i_this, 52, 5.0f, 2, 1.0f);
+                                        anm_init(i_this, ANM_R_WAIT, 5.0f, 2, 1.0f);
                                     } else {
-                                        anm_init(i_this, 53, 5.0f, 2, 1.0f);
+                                        anm_init(i_this, ANM_R_WAIT_BACK, 5.0f, 2, 1.0f);
                                     }
                                 }
                             }
@@ -2887,29 +2091,29 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                     break;
 
                 case 10:
-                    anm_init(i_this, 31, 10.0f, 2, 1.0f);
+                    anm_init(i_this, ANM_R_ATTACK01_WAIT, 10.0f, 2, 1.0f);
                     i_this->field_0x5b4 = 11;
                     // fallthrough
                 case 11:
                     if (playerDistance > 800.0f) {
                         i_this->field_0x5b4 = 0;
                         if (i_this->field_0x9be == 1) {
-                            anm_init(i_this, 38, 10.0f, 2, 1.0f);
+                            anm_init(i_this, ANM_R_RUN, 10.0f, 2, 1.0f);
                         } else {
                             anm_init(i_this, 40, 10.0f, 2, 1.0f);
                         }
                     } else if (playerDistance < 550.0f && i_this->field_0x990[2] == 0) {
                         i_this->field_0x5b4 = 25;
                         if (daPy_getPlayerActorClass()->checkHorseRide()) {
-                            anm_init(i_this, 34, 5.0f, 0, 1.0f);
+                            anm_init(i_this, ANM_R_ATTACK03, 5.0f, 0, 1.0f);
                         } else {
-                            anm_init(i_this, 30, 5.0f, 0, 1.0f);
+                            anm_init(i_this, ANM_R_ATTACK01, 5.0f, 0, 1.0f);
                         }
                     }
                     break;
 
                 case 20:
-                    anm_init(i_this, 33, 10.0f, 2, 1.0f);
+                    anm_init(i_this, ANM_R_ATTACK02_WAIT, 10.0f, 2, 1.0f);
                     i_this->field_0x5b4 = 21;
                     // fallthrough
                 case 21:
@@ -2917,16 +2121,16 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                     if (playerDistance > 800.0f) {
                         i_this->field_0x5b4 = 0;
                         if (i_this->field_0x9be == 1) {
-                            anm_init(i_this, 38, 10.0f, 2, 1.0f);
+                            anm_init(i_this, ANM_R_RUN, 10.0f, 2, 1.0f);
                         } else {
                             anm_init(i_this, 40, 10.0f, 2, 1.0f);
                         }
                     } else if (playerDistance < 550.0f && i_this->field_0x990[2] == 0) {
                         i_this->field_0x5b4 = 25;
                         if (daPy_getPlayerActorClass()->checkHorseRide()) {
-                            anm_init(i_this, 35, 5.0f, 0, 1.0f);
+                            anm_init(i_this, ANM_R_ATTACK04, 5.0f, 0, 1.0f);
                         } else {
-                            anm_init(i_this, 32, 5.0f, 0, 1.0f);
+                            anm_init(i_this, ANM_R_ATTACK02, 5.0f, 0, 1.0f);
                         }
                     }
                     break;
@@ -2942,7 +2146,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
 
                     if (i_this->mpModelMorf->isStop()) {
                         if (i_this->field_0x9be == 1) {
-                            anm_init(i_this, 38, 10.0f, 2, 1.0f);
+                            anm_init(i_this, ANM_R_RUN, 10.0f, 2, 1.0f);
                         } else {
                             anm_init(i_this, 40, 10.0f, 2, 1.0f);
                             i_this->field_0x990[2] = cM_rndF(20.0f) + 20.0f;
@@ -3004,7 +2208,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                 case 40:
                     if (bullbo->mActionID != 7) {
                         i_this->field_0x5b4 = 0;
-                        anm_init(i_this, 53, 5.0f, 2, 1.0f);
+                        anm_init(i_this, ANM_R_WAIT_BACK, 5.0f, 2, 1.0f);
                     }
                     break;
 
@@ -3012,7 +2216,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                     if (i_this->field_0x990[3] == 0) {
                         i_this->field_0x5b4 = 0;
                         if (i_this->field_0x9be == 1) {
-                            anm_init(i_this, 38, 10.0f, 2, 1.0f);
+                            anm_init(i_this, ANM_R_RUN, 10.0f, 2, 1.0f);
                         } else {
                             anm_init(i_this, 40, 10.0f, 2, 1.0f);
                             i_this->field_0x990[2] = cM_rndF(50.0f) + 50.0f;
@@ -3062,9 +2266,9 @@ static void e_rd_wb_run_B(e_rd_class* i_this) {
 
         if (i_this->field_0x5b4 != 0) {
             if ((bullbo->field_0x6be & 0x400) != 0) {
-                anm_init(i_this, 62, 10.0f, 2, 1.0f);
+                anm_init(i_this, ANM_SLEEP_STANDUP, 10.0f, 2, 1.0f);
             } else if ((bullbo->field_0x6be & 0x800) != 0) {
-                anm_init(i_this, 61, 10.0f, 2, 1.0f);
+                anm_init(i_this, ANM_SLEEP_LOOKAROUND, 10.0f, 2, 1.0f);
             }
 
             i_this->mpModelMorf->setPlaySpeed(bullbo->mpModelMorf->getPlaySpeed());
@@ -3074,13 +2278,13 @@ static void e_rd_wb_run_B(e_rd_class* i_this) {
             i_this->field_0x9c8 = 0;
 
             if (i_this->mpModelMorf->isStop()) {
-                anm_init(i_this, 59, 5.0f, 2, 1.0f);
+                anm_init(i_this, ANM_SHOUT, 5.0f, 2, 1.0f);
             }
         } else if (i_this->mAnmID == 56 || i_this->mAnmID == 55 || i_this->mAnmID == 57) {
             if ((int)i_this->mpModelMorf->getFrame() == 21) {
                 i_this->mSound.startCreatureVoice(Z2SE_EN_RDB_HORN, -1);
             }
-        } else if (i_this->mAnmID == 59) {
+        } else if (i_this->mAnmID == ANM_SHOUT) {
             if (i_this->field_0x990[1] == 0) {
                 i_this->field_0x990[1] = cM_rndF(100.0f) + 70.0f;
                 i_this->field_0x990[2] = cM_rndF(30.0f) + 30.0f;
@@ -3091,7 +2295,7 @@ static void e_rd_wb_run_B(e_rd_class* i_this) {
             }
 
             if (a_this->speedF < 5.0f) {
-                anm_init(i_this, 65, 5.0f, 2, 1.0f);
+                anm_init(i_this, ANM_WALK, 5.0f, 2, 1.0f);
             }
         } else {
             i_this->field_0x9c8 = 1;
@@ -3100,7 +2304,7 @@ static void e_rd_wb_run_B(e_rd_class* i_this) {
             }
 
             if (a_this->speedF > 10.0f) {
-                anm_init(i_this, 59, 5.0f, 2, 1.0f);
+                anm_init(i_this, ANM_SHOUT, 5.0f, 2, 1.0f);
             }
         }
 
@@ -3110,7 +2314,7 @@ static void e_rd_wb_run_B(e_rd_class* i_this) {
         }
 
         if ((bullbo->field_0x6be & 0x100) != 0) {
-            i_this->mAction = 14;
+            i_this->mAction = ACTION_S_DAMAGE;
             i_this->field_0x5b4 = 0;
         }
     }
@@ -3141,20 +2345,20 @@ static void e_rd_wb_bjump(e_rd_class* i_this) {
             case 1:
                 if (i_this->mpModelMorf->isStop()) {
                     i_this->field_0x5b4 = 2;
-                    anm_init(i_this, 50, 2.0f, 0, 1.0f);
+                    anm_init(i_this, ANM_RUN, 2.0f, 0, 1.0f);
                 }
                 break;
 
             case 2:
                 if ((bullbo->field_0x6be & 0x200) != 0) {
-                    anm_init(i_this, 51, 2.0f, 0, 1.0f);
+                    anm_init(i_this, ANM_RUN02, 2.0f, 0, 1.0f);
                     i_this->field_0x5b4 = 3;
                 }
                 break;
 
             case 3:
                 if (i_this->mpModelMorf->isStop()) {
-                    i_this->mAction = 13;
+                    i_this->mAction = ACTION_WB_RUN;
                     i_this->field_0x5b4 = 0;
                 }
         }
@@ -3168,7 +2372,7 @@ static void e_rd_bomb_action(e_rd_class* i_this) {
     cXyz sp48, sp54;
     dBomb_c* bomb = bomb_check(i_this);
     if (bomb == NULL) {
-        i_this->mAction = 3;
+        i_this->mAction = ACTION_FIGHT_RUN;
         i_this->field_0x5b4 = 0;
         return;
     }
@@ -3182,13 +2386,13 @@ static void e_rd_bomb_action(e_rd_class* i_this) {
     switch (i_this->field_0x5b4) {
         case 0:
             i_this->field_0x5b4 = 1;
-            anm_init(i_this, 64, 5.0f, 2, 1.0f);
+            anm_init(i_this, ANM_WAIT01, 5.0f, 2, 1.0f);
             i_this->field_0x990[1] = cM_rndF(10.0f) + 10.0f;
             // fallthrough
         case 1:
             if (i_this->field_0x990[1] == 0 && bomb->speedF < 0.1f) {
                 i_this->field_0x5b4 = 2;
-                anm_init(i_this, 50, 5.0f, 2, cM_rndFX(0.05f) + 1.0f);
+                anm_init(i_this, ANM_RUN, 5.0f, 2, cM_rndFX(0.05f) + 1.0f);
             }
             break;
 
@@ -3207,7 +2411,7 @@ static void e_rd_bomb_action(e_rd_class* i_this) {
             fVar1 = l_HIO.dash_speed;
             if (JMAFastSqrt(sp48.x * sp48.x + sp48.z * sp48.z) > 600.0f) {
                 i_this->field_0x5b4 = 3;
-                anm_init(i_this, 64, 5.0f, 2, 1.0f);
+                anm_init(i_this, ANM_WAIT01, 5.0f, 2, 1.0f);
             }
             break;
 
@@ -3226,7 +2430,7 @@ static void e_rd_bomb_action(e_rd_class* i_this) {
             } else if (JMAFastSqrt(sp48.x * sp48.x + sp48.z * sp48.z) < 100.0f) {
                 i_this->field_0x990[0] = 20;
                 i_this->field_0x5b4 = 6;
-                anm_init(i_this, 28, 3.0f, 0, 1.0f);
+                anm_init(i_this, ANM_KICK, 3.0f, 0, 1.0f);
             }
             break;
 
@@ -3250,7 +2454,7 @@ static void e_rd_bomb_action(e_rd_class* i_this) {
             }
 
             if (i_this->mpModelMorf->isStop()) {
-                anm_init(i_this, 64, 5.0f, 2, 1.0f);
+                anm_init(i_this, ANM_WAIT01, 5.0f, 2, 1.0f);
                 i_this->field_0x5b4 = 3;
             }
     }
@@ -3288,14 +2492,14 @@ static void e_rd_s_damage(e_rd_class* i_this) {
 
             if (i_this->mpModelMorf->isStop()) {
                 if (i_this->field_0x974 == 7) {
-                    i_this->mAction = 7;
+                    i_this->mAction = ACTION_BOW2;
                 } else if (i_this->field_0x974 == 26) {
-                    i_this->mAction = 26;
+                    i_this->mAction = ACTION_BOW3;
                 } else if (!other_bg_check(i_this, dComIfGp_getPlayer(0))) {
-                    i_this->mAction = 3;
+                    i_this->mAction = ACTION_FIGHT_RUN;
                     i_this->field_0x990[0] = 40;
                 } else {
-                    i_this->mAction = 0;
+                    i_this->mAction = ACTION_NORMAL;
                 }
 
                 i_this->field_0x5b4 = 0;
@@ -3453,7 +2657,7 @@ static void e_rd_damage(e_rd_class* i_this) {
     s16 sVar1;
     switch (i_this->field_0x5b4) {
         case 0:
-            anm_init(i_this, 18, 3.0f, 0, 1.0f);
+            anm_init(i_this, ANM_DIE_B, 3.0f, 0, 1.0f);
             i_this->field_0x5b4 = 1;
             a_this->speedF = 0.0f;
             ride_off(i_this);
@@ -3518,7 +2722,7 @@ static void e_rd_damage(e_rd_class* i_this) {
                     i_this->field_0x5b4 = 2;
 
                     if (i_this->field_0xa1f == 0) {
-                        anm_init(i_this, 16, 3.0f, 0, 1.0f);
+                        anm_init(i_this, ANM_DIE_A, 3.0f, 0, 1.0f);
                         sVar1 = i_this->field_0xa0e;
                     } else {
                         sVar1 = i_this->field_0xa0e + 0x8000;
@@ -3564,9 +2768,9 @@ static void e_rd_damage(e_rd_class* i_this) {
                 i_this->field_0xa1e = 10;
 
                 if (i_this->field_0xa1f == 0) {
-                    anm_init(i_this, 16, 3.0f, 0, 1.0f);
+                    anm_init(i_this, ANM_DIE_A, 3.0f, 0, 1.0f);
                 } else {
-                    anm_init(i_this, 18, 3.0f, 0, 1.0f);
+                    anm_init(i_this, ANM_DIE_B, 3.0f, 0, 1.0f);
                 }
 
                 i_this->field_0x9ec = 0.0f;
@@ -3615,9 +2819,9 @@ static void e_rd_damage(e_rd_class* i_this) {
                 i_this->field_0x5b4 = 20;
 
                 if (i_this->field_0xa1f == 0) {
-                    anm_init(i_this, 17, 3.0f, 0, 1.0f);
+                    anm_init(i_this, ANM_DIE_A_UP, 3.0f, 0, 1.0f);
                 } else {
-                    anm_init(i_this, 19, 3.0f, 0, 1.0f);
+                    anm_init(i_this, ANM_DIE_B_UP, 3.0f, 0, 1.0f);
                 }
             }
             break;
@@ -3630,7 +2834,7 @@ static void e_rd_damage(e_rd_class* i_this) {
                 if (i_this->mObjAcch.ChkGroundHit()) {
                     i_this->field_0x5b4 = 2;
                     if (i_this->field_0xa1f == 0) {
-                        anm_init(i_this, 16, 3.0f, 0, 1.0f);
+                        anm_init(i_this, ANM_DIE_A, 3.0f, 0, 1.0f);
                         i_this->field_0xa24 = -100.0f;
                         i_this->field_0xa2c = -100.0f;
                     } else {
@@ -3664,7 +2868,7 @@ static void e_rd_damage(e_rd_class* i_this) {
             if (i_this->mpModelMorf->isStop()) {
                 i_this->field_0xa0e = 0;
                 i_this->field_0xa0c = 0;
-                anm_init(i_this, 64, 0.0f, 2, 1.0f);
+                anm_init(i_this, ANM_WAIT01, 0.0f, 2, 1.0f);
                 i_this->field_0x990[0] = 5;
                 i_this->field_0x5b4 = 21;
 
@@ -3676,11 +2880,11 @@ static void e_rd_damage(e_rd_class* i_this) {
             if (i_this->field_0x990[0] == 0) {
                 i_this->field_0x998 = 0;
                 if (pl_check(i_this, 10000.0f, 0x6000)) {
-                    i_this->mAction = 0;
+                    i_this->mAction = ACTION_NORMAL;
                     i_this->field_0x5b4 = 0;
                 } else {
                     i_this->field_0x990[0] = cM_rndF(20.0f) + 20.0f;
-                    anm_init(i_this, 29, 10.0f, 2, 1.0f);
+                    anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
                     i_this->field_0x5b4 = 22;
                 }
             }
@@ -3688,10 +2892,10 @@ static void e_rd_damage(e_rd_class* i_this) {
 
         case 22:
             if (i_this->field_0x990[0] == 0) {
-                i_this->mAction = 0;
+                i_this->mAction = ACTION_NORMAL;
                 i_this->field_0x5b4 = 0;
                 i_this->field_0x990[0] = cM_rndF(50.0f) + 50.0f;
-                anm_init(i_this, 29, 10.0f, 2, 1.0f);
+                anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
             }
             break;
 
@@ -3703,9 +2907,9 @@ static void e_rd_damage(e_rd_class* i_this) {
             if (i_this->field_0x990[0] == 0) {
                 i_this->field_0x5b4 = 31;
                 if (i_this->field_0xa1f == 0) {
-                    anm_init(i_this, 17, 3.0f, 0, 1.0f);
+                    anm_init(i_this, ANM_DIE_A_UP, 3.0f, 0, 1.0f);
                 } else {
-                    anm_init(i_this, 19, 3.0f, 0, 1.0f);
+                    anm_init(i_this, ANM_DIE_B_UP, 3.0f, 0, 1.0f);
                 }
 
                 i_this->field_0x990[0] = 10;
@@ -3742,8 +2946,7 @@ static void e_rd_damage(e_rd_class* i_this) {
 }
 
 /* 8050C12C-8050C2D8 0077AC 01AC+00 1/1 0/0 0/0 .text            gake_check__FP10e_rd_classf */
-static int gake_check(e_rd_class* i_this, f32 param_2) {
-    // NONMATCHING
+static s16 gake_check(e_rd_class* i_this, f32 param_2) {
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     dBgS_GndChk gnd_chk;
     dBgS_LinChk lin_chk;
@@ -3808,7 +3011,7 @@ static void e_rd_drop(e_rd_class* i_this) {
     switch (i_this->field_0x5b4) {
         case 0:
             i_this->mSound.startCreatureVoiceLevel(Z2SE_EN_RD_V_SNIPED_DAMAGE, -1);
-            anm_init(i_this, 13, 2.0f, 0, 1.0f);
+            anm_init(i_this, ANM_DAMAGE_S, 2.0f, 0, 1.0f);
             i_this->field_0x5b4 = 1;
 
             if (data_80519200 != 0) {
@@ -3820,7 +3023,7 @@ static void e_rd_drop(e_rd_class* i_this) {
             i_this->mSound.startCreatureVoiceLevel(Z2SE_EN_RD_V_SNIPED_DAMAGE, -1);
             
             if (i_this->mpModelMorf->isStop()) {
-                anm_init(i_this, 22, 0.0f, 2, 1.0f);
+                anm_init(i_this, ANM_FURA_2, 0.0f, 2, 1.0f);
                 i_this->field_0x5b4 = 2;
 
                 if (i_this->mDemoMode != 0) {
@@ -3842,7 +3045,7 @@ static void e_rd_drop(e_rd_class* i_this) {
             cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->field_0x5cc, 8, 0x400);
 
             if (i_this->field_0x990[0] == 0) {
-                i_this->mAction = 23;
+                i_this->mAction = ACTION_A_DAMAGE;
                 i_this->field_0x5b4 = 0;
                 return;
             }
@@ -3885,14 +3088,14 @@ static void e_rd_drop(e_rd_class* i_this) {
 
             if (i_this->field_0x990[0] == 0 && a_this->current.pos.y <= (KREG_F(17) + i_this->mObjAcch.GetGroundH() + 100.0f)) {
                 if (i_this->field_0x5b7 == 13 || i_this->field_0x5b7 == 14) {
-                    i_this->mAction = 60;
+                    i_this->mAction = ACTION_REG;
                     i_this->field_0x5b4 = 1;
                     i_this->field_0xafb = 1;
                     i_this->field_0xaf2 = 0;
                 } else {
                     a_this->current.pos.y = KREG_F(17) + i_this->mObjAcch.GetGroundH() + 100.0f;
                     i_this->field_0xa0c = -0x4000;
-                    i_this->mAction = 21;
+                    i_this->mAction = ACTION_DAMAGE;
                     i_this->field_0x5b4 = 0;
                     i_this->field_0x9ec = 0.0f;
                     a_this->health = 0;
@@ -3915,7 +3118,7 @@ static void e_rd_a_damage(e_rd_class* i_this) {
     switch (i_this->field_0x5b4) {
         case 0:
             i_this->field_0x5b4 = 1;
-            anm_init(i_this, 15, 5.0f, 0, 1.0f);
+            anm_init(i_this, ANM_DEAD_ARROW, 5.0f, 0, 1.0f);
             i_this->field_0x990[0] = 80;
 
             if (data_80519200 != 0) {
@@ -3942,7 +3145,7 @@ static void e_rd_stand(e_rd_class* i_this) {
     switch (i_this->field_0x5b4) {
         case 0:
             if (i_this->field_0x990[0] == 0) {
-                anm_init(i_this, 29, 10.0f, 2, 1.0f);
+                anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
                 i_this->field_0x5b4 = 1;
                 i_this->field_0x990[0] = cM_rndF(40.0f) + 60.0f;
             }
@@ -3950,7 +3153,7 @@ static void e_rd_stand(e_rd_class* i_this) {
 
         case 1:
             if (i_this->field_0x990[0] == 0) {
-                anm_init(i_this, 64, 10.0f, 2, 1.0f);
+                anm_init(i_this, ANM_WAIT01, 10.0f, 2, 1.0f);
                 i_this->field_0x990[0] = cM_rndF(100.0f) + 100.0f;
                 i_this->field_0x5b4 = 0;
             }
@@ -3971,13 +3174,13 @@ static void e_rd_stand(e_rd_class* i_this) {
 
     if ((i_this->field_0x970 & 7) == 0 && fopAcM_GetRoomNo(a_this) == 0) {
         if ((S_find == 0 || (wb_check(i_this, sVar1), i_this->field_0x9be == 0)) && pl_check(i_this, 500.0f, 0x4000)) {
-            i_this->mAction = 3;
+            i_this->mAction = ACTION_FIGHT_RUN;
             i_this->field_0x5b4 = -10;
             i_this->field_0x990[0] = 60;
         }
     } else if (((i_this->field_0x970 & 7) == 0 || bVar1) && pl_check(i_this, fVar1, sVar1) && i_this->field_0x5bc == 1) {
         OS_REPORT(" <<<<<<<<<<<<<< RD RIDE 4\n");
-        i_this->mAction = 3;
+        i_this->mAction = ACTION_FIGHT_RUN;
         i_this->field_0x5b4 = -10;
         i_this->field_0x990[0] = 60;
     }
@@ -4000,7 +3203,7 @@ static s8 e_rd_bow3(e_rd_class* i_this) {
     switch (i_this->field_0x5b4) {
         case 0:
             bVar1 = 0;
-            anm_init(i_this, 64, 10.0f, 2, 1.0f);
+            anm_init(i_this, ANM_WAIT01, 10.0f, 2, 1.0f);
             i_this->field_0x5b4 = 1;
             break;
 
@@ -4016,15 +3219,15 @@ static s8 e_rd_bow3(e_rd_class* i_this) {
 
         case 5:
             if (i_this->field_0x990[1] == 1) {
-                anm_init(i_this, 29, 5.0f, 2, 1.3f);
+                anm_init(i_this, ANM_KYORO_2, 5.0f, 2, 1.3f);
             }
 
             if (i_this->field_0x990[0] == 10) {
-                anm_init(i_this, 64, 5.0f, 2, 1.0f);
+                anm_init(i_this, ANM_WAIT01, 5.0f, 2, 1.0f);
             }
 
             if (i_this->field_0x990[0] == 0) {
-                i_this->mAction = 7;
+                i_this->mAction = ACTION_BOW2;
                 i_this->field_0x5b4 = 0;
             }
             break;
@@ -4088,7 +3291,7 @@ static s8 e_rd_bow3(e_rd_class* i_this) {
     }
 
     if (i_this->mPlayerDistance < 500.0f) {
-        i_this->mAction = 5;
+        i_this->mAction = ACTION_BOW_RUN;
         i_this->field_0x5b4 = 0;
         i_this->field_0x1295 = 0;
     }
@@ -4124,7 +3327,7 @@ static void e_rd_commander(e_rd_class* i_this) {
     boss = i_this;
 
     if (i_this->field_0x990[2] == 0 && fpcM_Search(s_command4_sub, i_this) == NULL) {
-        i_this->mAction = 7;
+        i_this->mAction = ACTION_BOW2;
         i_this->field_0x5b4 = 0;
     } else {
         switch (i_this->field_0x5b4) {
@@ -4135,7 +3338,7 @@ static void e_rd_commander(e_rd_class* i_this) {
             case 1:
                 bVar1 = 1;
                 if (i_this->field_0x990[0] == 0) {
-                    anm_init(i_this, 29, 10.0f, 2, 1.0f);
+                    anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
                     i_this->field_0x5b4 = 2;
                     i_this->field_0x990[0] = cM_rndF(40.0f) + 60.0f;
                 }
@@ -4144,14 +3347,14 @@ static void e_rd_commander(e_rd_class* i_this) {
             case 2:
                 bVar1 = 1;
                 if (i_this->field_0x990[0] == 0) {
-                    anm_init(i_this, 64, 10.0f, 2, 1.0f);
+                    anm_init(i_this, ANM_WAIT01, 10.0f, 2, 1.0f);
                     i_this->field_0x990[0] = cM_rndF(100.0f) + 100.0f;
                     i_this->field_0x5b4 = 1;
                 }
                 break;
 
             case 5:
-                anm_init(i_this, 64, 5.0f, 2, 1.0f);
+                anm_init(i_this, ANM_WAIT01, 5.0f, 2, 1.0f);
                 i_this->field_0x990[0] = 30;
                 i_this->field_0x5b4 = 6;
                 break;
@@ -4159,7 +3362,7 @@ static void e_rd_commander(e_rd_class* i_this) {
             case 6:
                 bVar2 = 1;
                 if (i_this->field_0x990[0] == 0) {
-                    anm_init(i_this, 23, 3.0f, 0, 1.0f);
+                    anm_init(i_this, ANM_GO_SIGN, 3.0f, 0, 1.0f);
                     i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_COMMANDER, -1);
                     i_this->field_0x5b4 = 7;
 
@@ -4178,7 +3381,7 @@ static void e_rd_commander(e_rd_class* i_this) {
                 }
 
                 if (i_this->field_0x990[0] == 0 && i_this->mpModelMorf->isStop()) {
-                    anm_init(i_this, 64, 5.0f, 2, 1.0f);
+                    anm_init(i_this, ANM_WAIT01, 5.0f, 2, 1.0f);
                     if (!dComIfGp_event_runCheck() && !pl_check(i_this, i_this->field_0x980, 0x4000)) {
                         i_this->field_0x5b4 = 10;
                         i_this->field_0x990[1] = TREG_S(8) + 350;
@@ -4195,7 +3398,7 @@ static void e_rd_commander(e_rd_class* i_this) {
                 break;
 
             case 10:
-                anm_init(i_this, 23, 3.0f, 0, 1.0f);
+                anm_init(i_this, ANM_GO_SIGN, 3.0f, 0, 1.0f);
                 mDoAud_seStart(Z2SE_EN_RD_V_CALLING, 0, 0, 0);
                 fpcM_Search(s_command2_sub, i_this);
                 i_this->field_0x5b4 = 11;
@@ -4204,7 +3407,7 @@ static void e_rd_commander(e_rd_class* i_this) {
             case 11:
                 if (i_this->mpModelMorf->isStop()) {
                     if (i_this->field_0x990[1] == 0) {
-                        anm_init(i_this, 64, 10.0f, 2, 1.0f);
+                        anm_init(i_this, ANM_WAIT01, 10.0f, 2, 1.0f);
                         i_this->field_0x990[0] = cM_rndF(30.0f) + 30.0f;
                         i_this->field_0x5b4 = 1;
                     } else {
@@ -4234,7 +3437,7 @@ static void e_rd_excite(e_rd_class* i_this) {
 
     switch (i_this->field_0x5b4) {
         case 0:
-            anm_init(i_this, 64, 4.0f, 2, 1.0f);
+            anm_init(i_this, ANM_WAIT01, 4.0f, 2, 1.0f);
             i_this->field_0x5b4 = 1;
             i_this->field_0x990[0] = cM_rndF(20.0f) + 20.0f;
             i_this->field_0x5cc = a_this->current.angle.y;
@@ -4248,11 +3451,11 @@ static void e_rd_excite(e_rd_class* i_this) {
             if (i_this->field_0x990[0] == 0) {
                 if (i_this->field_0x1295 != 0) {
                     i_this->field_0x5b4 = 3;
-                    anm_init(i_this, 29, 5.0f, 2, 1.3f);
+                    anm_init(i_this, ANM_KYORO_2, 5.0f, 2, 1.3f);
                     i_this->field_0x990[0] = cM_rndF(20.0f) + 40.0f;
                 } else {
                     i_this->field_0x5b4 = 2;
-                    anm_init(i_this, 50, 2.0f, 2, cM_rndFX(0.05f) + 1.0f);
+                    anm_init(i_this, ANM_RUN, 2.0f, 2, cM_rndFX(0.05f) + 1.0f);
                     i_this->field_0x990[0] = cM_rndF(15.0f) + 30.0f;
                 }
 
@@ -4268,7 +3471,7 @@ static void e_rd_excite(e_rd_class* i_this) {
             sp40 = i_this->field_0x5c0 - a_this->current.pos;
             if (i_this->field_0x990[0] == 0 || move_gake_check(i_this, 100.0f) || sp40.abs() < 100.0f) {
                 i_this->field_0x5b4 = 3;
-                anm_init(i_this, 29, 5.0f, 2, 1.3f);
+                anm_init(i_this, ANM_KYORO_2, 5.0f, 2, 1.3f);
                 i_this->field_0x990[0] = cM_rndF(20.0f) + 40.0f;
             }
             break;
@@ -4276,8 +3479,8 @@ static void e_rd_excite(e_rd_class* i_this) {
         case 3:
             if (i_this->field_0x990[0] == 0) {
                 i_this->mAction = i_this->field_0x974;
-                if (i_this->mAction == 24) {
-                    i_this->mAction = 0;
+                if (i_this->mAction == ACTION_STAND) {
+                    i_this->mAction = ACTION_NORMAL;
                 }
 
                 i_this->field_0x5b4 = 0;
@@ -4297,6 +3500,7 @@ static void e_rd_excite(e_rd_class* i_this) {
 /* 8050DAB8-8050DC10 009138 0158+00 1/1 0/0 0/0 .text            e_rd_water__FP10e_rd_class */
 static void e_rd_water(e_rd_class* i_this) {
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
+    cXyz sp28;
 
     i_this->field_0x998 = 10;
 
@@ -4305,9 +3509,9 @@ static void e_rd_water(e_rd_class* i_this) {
         case 1:
             a_this->speed.y = 0.0f;
             if (i_this->field_0xa1f == 0) {
-                anm_init(i_this, 20, 3.0f, 2, 1.0f);
+                anm_init(i_this, ANM_DROWNED_A, 3.0f, 2, 1.0f);
             } else {
-                anm_init(i_this, 21, 3.0f, 2, 1.0f);
+                anm_init(i_this, ANM_DROWNED_B, 3.0f, 2, 1.0f);
             }
 
             i_this->field_0x990[0] = 60;
@@ -4315,7 +3519,7 @@ static void e_rd_water(e_rd_class* i_this) {
             i_this->field_0x9ec = 0.0f;
             i_this->field_0x9f0 = 0.0f;
             
-            cXyz sp28(a_this->current.pos);
+            sp28 = a_this->current.pos;
             sp28.y = i_this->field_0x984;
             if (i_this->field_0x5b4 == 0) {
                 fopKyM_createWpillar(&sp28, 1.5f, 0);
@@ -4356,7 +3560,7 @@ static void e_rd_kiba_start(e_rd_class* i_this) {
             break;
 
         case 2:
-            anm_init(i_this, 33, 10.0f, 0, 1.0f);
+            anm_init(i_this, ANM_R_ATTACK02_WAIT, 10.0f, 0, 1.0f);
             i_this->field_0x5b4++;
             break;
 
@@ -4380,7 +3584,7 @@ static void e_rd_kiba_start(e_rd_class* i_this) {
             }
 
             if (i_this->mpModelMorf->isStop()) {
-                i_this->mAction = 13;
+                i_this->mAction = ACTION_WB_RUN;
                 i_this->field_0x5b4 = 0;
                 a_this->attention_info.flags = 4;
             }
@@ -4397,19 +3601,19 @@ static void e_rd_ikki2_start(e_rd_class* i_this) {
 
     switch (i_this->field_0x5b4) {
         case 0:
-            anm_init(i_this, 54, 1.0f, 2, 1.0f);
+            anm_init(i_this, ANM_R_WALK, 1.0f, 2, 1.0f);
             i_this->field_0x5b4++;
             break;
             
         case 2:
-            anm_init(i_this, 53, 5.0f, 0, 1.0f);
+            anm_init(i_this, ANM_R_WAIT_BACK, 5.0f, 0, 1.0f);
             i_this->mSound.startCreatureVoice(Z2SE_EN_RDB_V_DEMO_EXCITE, -1);
             i_this->field_0x5b4++;
             break;
 
         case 3:
             if (i_this->mpModelMorf->isStop()) {
-                anm_init(i_this, 54, 10.0f, 2, 1.0f);
+                anm_init(i_this, ANM_R_WALK, 10.0f, 2, 1.0f);
                 i_this->field_0x5b4 = 4;
             }
             break;
@@ -4476,7 +3680,7 @@ static void e_rd_kiba_end(e_rd_class* i_this) {
             }
 
             if (i_this->mpModelMorf->isStop()) {
-                anm_init(i_this, 59, 5.0f, 2, 1.0f);
+                anm_init(i_this, ANM_SHOUT, 5.0f, 2, 1.0f);
                 i_this->field_0x5b4++;
                 i_this->field_0x990[0] = 20;
             }
@@ -4488,7 +3692,7 @@ static void e_rd_kiba_end(e_rd_class* i_this) {
             }
 
             if ((bullbo->field_0x6be & 0x100) != 0) {
-                i_this->mAction = 14;
+                i_this->mAction = ACTION_S_DAMAGE;
                 i_this->field_0x5b4 = 0;
                 i_this->field_0x990[1] = 2000;
                 i_this->field_0x990[2] = 1000;
@@ -4535,9 +3739,9 @@ static void e_rd_ikki_end(e_rd_class* i_this) {
             break;
 
         case 1:
-            if (i_this->mAnmID == 39) {
+            if (i_this->mAnmID == ANM_R_RUN_BACK) {
                 if (i_this->mpModelMorf->isStop()) {
-                    anm_init(i_this, 24, 1.0f, 2, 1.0f);
+                    anm_init(i_this, ANM_JUMP_A, 1.0f, 2, 1.0f);
                 }
             }
 
@@ -4627,14 +3831,14 @@ static void e_rd_lv9_end(e_rd_class* i_this) {
 
         case 1:
             if ((bullbo->field_0x6be & 8) != 0) {
-                anm_init(i_this, 65, 10.0f, 2, 1.0f);
+                anm_init(i_this, ANM_WALK, 10.0f, 2, 1.0f);
                 i_this->field_0x5b4 = 2;
             }
             break;
 
         case 2:
             if ((bullbo->field_0x6be & 8) != 0) {
-                anm_init(i_this, 28, 5.0f, 0, 1.0f);
+                anm_init(i_this, ANM_KICK, 5.0f, 0, 1.0f);
                 i_this->mSound.startCreatureVoice(Z2SE_EN_RDB_V_LV9_END03, -1);
                 i_this->field_0x5b4 = 3;
             }
@@ -4643,12 +3847,12 @@ static void e_rd_lv9_end(e_rd_class* i_this) {
         case 3:
             if (i_this->mAnmID == 28) {
                 if (i_this->mpModelMorf->isStop()) {
-                    anm_init(i_this, 65, 10.0f, 2, 1.0f);
+                    anm_init(i_this, ANM_WALK, 10.0f, 2, 1.0f);
                 }
             } else {
                 e_rdb_class* king_bulblin = (e_rdb_class*)fpcM_Search(s_rdb_sub, i_this);
                 if (king_bulblin != NULL && king_bulblin->mDemoMode == 14) {
-                    anm_init(i_this, 52, 3.0f, 0, 1.0f);
+                    anm_init(i_this, ANM_R_WAIT, 3.0f, 0, 1.0f);
                     bullbo->field_0x5b4++;
                     i_this->field_0x5b4 = 4;
                 }
@@ -4657,7 +3861,7 @@ static void e_rd_lv9_end(e_rd_class* i_this) {
 
         case 4:
             if (i_this->mpModelMorf->isStop()) {
-                anm_init(i_this, 59, 3.0f, 2, 1.0f);
+                anm_init(i_this, ANM_SHOUT, 3.0f, 2, 1.0f);
                 i_this->field_0x5b4 = 5;
             }
             break;
@@ -4681,7 +3885,7 @@ static void wolfkick_damage(e_rd_class* i_this) {
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
 
-    i_this->mAction = 21;
+    i_this->mAction = ACTION_DAMAGE;
     i_this->field_0x5b4 = 0;
     i_this->field_0xa0e = player->shape_angle.y + 0x8000;
     a_this->speed.y = l_HIO.wolf_falling_power_y;
@@ -4695,7 +3899,7 @@ static void wolfkick_damage(e_rd_class* i_this) {
 static void big_damage(e_rd_class* i_this) {
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
 
-    i_this->mAction = 21;
+    i_this->mAction = ACTION_DAMAGE;
     i_this->field_0x5b4 = 0;
     a_this->speed.y = l_HIO.jump_y + 2.0f;
 
@@ -4745,25 +3949,25 @@ static void big_damage(e_rd_class* i_this) {
 static void small_damage(e_rd_class* i_this, int param_2) {
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
 
-    if (i_this->mAction != 20) {
+    if (i_this->mAction != ACTION_S_DAMAGE) {
         i_this->field_0x974 = i_this->mAction;
     }
 
-    i_this->mAction = 20;
+    i_this->mAction = ACTION_S_DAMAGE;
     i_this->field_0x5b4 = 0;
     i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_DAMAGE, -1);
 
     if (param_2 == 0) {
         s16 sVar1 = a_this->shape_angle.y - i_this->mPlayerAngleY;
         if (sVar1 < -0x4000 || sVar1 > 0x4000) {
-                anm_init(i_this, 14, 2.0f, 0, 1.0f);
+                anm_init(i_this, ANM_DAMAGE_W, 2.0f, 0, 1.0f);
             } else if (sVar1 < 0) {
-                anm_init(i_this, 11, 2.0f, 0, 1.0f);
+                anm_init(i_this, ANM_DAMAGE_LEFT, 2.0f, 0, 1.0f);
             } else {
-                anm_init(i_this, 12, 2.0f, 0, 1.0f);
+                anm_init(i_this, ANM_DAMAGE_RIGHT, 2.0f, 0, 1.0f);
             }
     } else {
-        anm_init(i_this, 14, 2.0f, 0, 1.0f);
+        anm_init(i_this, ANM_DAMAGE_W, 2.0f, 0, 1.0f);
     }
 
     i_this->field_0x9f0 = 20.0f;
@@ -4812,12 +4016,12 @@ static void damage_check(e_rd_class* i_this) {
     int iVar1;
 
     if (i_this->field_0x9bc == 2 && bullbo != NULL && (bullbo->field_0x6be & 0xC0) != 0) {
-        if (i_this->mAction == 46) {
+        if (i_this->mAction == ACTION_IKKI2_END) {
             i_this->field_0x5b4 = 10;
             return;
         }
 
-        i_this->mAction = 21;
+        i_this->mAction = ACTION_DAMAGE;
         i_this->field_0x5b4 = 0;
         i_this->field_0x998 = 1000;
 
@@ -4856,12 +4060,12 @@ static void damage_check(e_rd_class* i_this) {
                             bullbo->field_0x79e++;
                             if (bullbo->field_0x79e >= 3) {
                                 mDoAud_bgmStop(30);
-                                i_this->mAction = 46;
+                                i_this->mAction = ACTION_IKKI2_END;
                                 i_this->field_0x5b4 = 0;
                                 i_this->mSound.startCreatureVoice(Z2SE_EN_RDB_V_DAMAGE_L, -1);
                             } else {
                                 bullbo->field_0x169e = 25;
-                                anm_init(i_this, 36, 2.0f, 0, 1.0f);
+                                anm_init(i_this, ANM_R_DAMAGE, 2.0f, 0, 1.0f);
                                 i_this->mSound.startCreatureVoice(Z2SE_EN_RDB_V_DAMAGE, -1);
                             }
 
@@ -4937,7 +4141,7 @@ static void damage_check(e_rd_class* i_this) {
                     if (i_this->field_0x1295 != 0 && (i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_SLINGSHOT) || 
                         (i_this->mAtInfo.mHitType != 1 && i_this->mAtInfo.mHitType != 16 && i_this->mAtInfo.mHitType != 2))) {
                         i_this->field_0x998 = 1000;
-                        i_this->mAction = 22;
+                        i_this->mAction = ACTION_DROP;
                         i_this->field_0x5b4 = 0;
                         a_this->health = 0;
                         cc_at_check(a_this, &i_this->mAtInfo);
@@ -4947,7 +4151,7 @@ static void damage_check(e_rd_class* i_this) {
                     if (i_this->mAtInfo.mHitType == 15) {
                         a_this->health = 0;
                         if (i_this->field_0x9bc == 0) {
-                            i_this->mAction = 23;
+                            i_this->mAction = ACTION_A_DAMAGE;
                             i_this->field_0x5b4 = 0;
                             i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_DAMAGE, -1);
                             a_this->health = 0;
@@ -4996,7 +4200,7 @@ static void damage_check(e_rd_class* i_this) {
 
                                     if (l_HIO.one_hit_kill != 0 || bullbo->field_0x79e >= 2) {
                                         mDoAud_bgmStop(30);
-                                        i_this->mAction = 42;
+                                        i_this->mAction = ACTION_IKKI_END;
                                         i_this->field_0x5b4 = 0;
                                         
                                         if ((i_this->mAtInfo.mHitBit & 0x80) != 0) {
@@ -5038,7 +4242,7 @@ static void damage_check(e_rd_class* i_this) {
                                 }
 
                                 if (bullbo->field_0x79e >= 8) {
-                                    i_this->mAction = 41;
+                                    i_this->mAction = ACTION_KIBA_END;
                                     i_this->field_0x5b4 = 0;
                                     mDoAud_seStart(Z2SE_EN_RDB_V_FAINT, 0, 0, 0);
                                     bullbo->mActionID = 31;
@@ -5059,7 +4263,7 @@ static void damage_check(e_rd_class* i_this) {
                                     iVar1 = i_this->mAnmID;
 
                                     if ((s16)(a_this->shape_angle.y - i_this->mPlayerAngleY) < 0) {
-                                        anm_init(i_this, 37, 2.0f, 0, 1.0f);
+                                        anm_init(i_this, ANM_R_DAMAGE_BACK, 2.0f, 0, 1.0f);
                                     } else {
                                         anm_init(i_this, 38, 2.0f, 0, 1.0f);
                                     }
@@ -5067,8 +4271,8 @@ static void damage_check(e_rd_class* i_this) {
                                     i_this->field_0x680 = iVar1;
                                 }
 
-                                if (i_this->mAction != 13) {
-                                    i_this->mAction = 13;
+                                if (i_this->mAction != ACTION_WB_RUN) {
+                                    i_this->mAction = ACTION_WB_RUN;
                                     i_this->field_0x5b4 = 0;
                                 }
                                 break;  
@@ -5076,7 +4280,7 @@ static void damage_check(e_rd_class* i_this) {
 
                             if (i_this->field_0x9bc != 0 && i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_BOOMERANG)) {
                                 i_this->field_0x998 = 20;
-                                if (i_this->mAction == 13) {
+                                if (i_this->mAction == ACTION_WB_RUN) {
                                     anm_init(i_this, 39, 5.0f, 2, 1.0f);
                                     i_this->field_0x5b4 = 50;
                                     i_this->field_0x990[3] = cM_rndF(20.0f) + 50.0f;
@@ -5158,7 +4362,7 @@ static s8 e_rd_yagura(e_rd_class* i_this) {
             bVar1 = 1;
 
             if (i_this->field_0x990[0] == 0) {
-                anm_init(i_this, 29, 10.0f, 2, 1.0f);
+                anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
                 i_this->field_0x5b4 = 1;
                 i_this->field_0x990[0] = cM_rndF(40.0f) + 60.0f;
             }
@@ -5169,7 +4373,7 @@ static s8 e_rd_yagura(e_rd_class* i_this) {
             bVar1 = 1;
 
             if (i_this->field_0x990[0] == 0) {
-                anm_init(i_this, 64, 10.0f, 2, 1.0f);
+                anm_init(i_this, ANM_WAIT01, 10.0f, 2, 1.0f);
                 i_this->field_0x990[0] = cM_rndF(100.0f) + 100.0f;
                 i_this->field_0x5b4 = 0;
             }
@@ -5179,7 +4383,7 @@ static s8 e_rd_yagura(e_rd_class* i_this) {
             i_this->field_0x9c8 = 4;
 
             if (i_this->field_0x990[0] == 0) {
-                anm_init(i_this, 59, 5.0f, 0, 1.0f);
+                anm_init(i_this, ANM_SHOUT, 5.0f, 0, 1.0f);
                 i_this->field_0x5b4 = 10;
                 i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_FIND_LINK_YELL, -1);
                 dKy_Sound_set(a_this->current.pos, 100, fopAcM_GetID(a_this), 3);
@@ -5238,7 +4442,7 @@ static s8 e_rd_yagura(e_rd_class* i_this) {
             if (i_this->mpModelMorf->isStop()) {
                 if (pl_check(i_this, 10000.0f, 0x7FFF)) {
                     i_this->field_0x5b4 = 10;
-                    anm_init(i_this, 59, 5.0f, 0, 1.0f);
+                    anm_init(i_this, ANM_SHOUT, 5.0f, 0, 1.0f);
                     dKy_Sound_set(a_this->current.pos, 100, fopAcM_GetID(a_this), 3);
                 } else {
                     i_this->field_0x5b4 = 0;
@@ -5251,7 +4455,7 @@ static s8 e_rd_yagura(e_rd_class* i_this) {
     }
 
     if (fabsf(i_this->mObjAcch.GetGroundH() - a_this->home.pos.y) > 10.0f) {
-        i_this->mAction = 21;
+        i_this->mAction = ACTION_DAMAGE;
         i_this->field_0x5b4 = 0;
         i_this->field_0xa0e = a_this->shape_angle.y;
         a_this->speed.y = 20.0f;
@@ -5263,7 +4467,7 @@ static s8 e_rd_yagura(e_rd_class* i_this) {
     }
 
     if (bVar1 && pl_check(i_this, i_this->field_0x980, 0x4000) && (i_this->field_0x980 >= 8000.0f || fpcM_Search(s_ep_sub, i_this) != NULL)) {
-        anm_init(i_this, 64, 4.0f, 2, 1.0f);
+        anm_init(i_this, ANM_WAIT01, 4.0f, 2, 1.0f);
         i_this->field_0x990[0] = 30;
         i_this->field_0x5b4 = 5;
         if (S_find == 0 && (u8)lbl_70_bss_AE == 0 && !daPy_getPlayerActorClass()->checkBoarRide() && !dComIfGp_event_runCheck() &&
@@ -5290,7 +4494,7 @@ static void e_rd_jyunkai(e_rd_class* i_this) {
 
     switch (i_this->field_0x5b4) {
         case 0:
-            anm_init(i_this, 65, 10.0f, 2, 1.0f);
+            anm_init(i_this, ANM_WALK, 10.0f, 2, 1.0f);
             i_this->field_0x5b4 = 1;
             points = i_this->mPath->m_points;
             sVar3 = i_this->field_0xb00;
@@ -5319,7 +4523,7 @@ static void e_rd_jyunkai(e_rd_class* i_this) {
 
                 i_this->field_0x5b4 = 2;
                 i_this->field_0x990[0] = cM_rndF(100.0f) + 100.0f;
-                anm_init(i_this, 29, 10.0f, 2, 1.0f);
+                anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
             }
             break;
             
@@ -5332,7 +4536,7 @@ static void e_rd_jyunkai(e_rd_class* i_this) {
             break;
 
         case 10:
-            anm_init(i_this, 59, 5.0f, 0, 1.0f);
+            anm_init(i_this, ANM_SHOUT, 5.0f, 0, 1.0f);
             i_this->field_0x5b4 = 11;
             dKy_Sound_set(a_this->current.pos, 100, fopAcM_GetID(a_this), 3);
             S_find = 20;
@@ -5342,7 +4546,7 @@ static void e_rd_jyunkai(e_rd_class* i_this) {
             cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mPlayerAngleY, 2, 0x800);
             
             if (i_this->mpModelMorf->isStop()) {
-                i_this->mAction = 3;
+                i_this->mAction = ACTION_FIGHT_RUN;
                 i_this->field_0x5b4 = -10;
                 i_this->field_0x990[0] = 60;
                 return;
@@ -5375,12 +4579,12 @@ static void e_rd_jyunkai(e_rd_class* i_this) {
         if (bVar1) {
             i_this->field_0x5b4 = 2;
             i_this->field_0x990[0] = cM_rndF(100.0f) + 100.0f;
-            anm_init(i_this, 29, 10.0f, 2, 1.0f);
+            anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
         } else if ((i_this->field_0x970 & 7) == 0 && pl_check(i_this, fVar2, sVar1)) {
             if (S_find == 0) {
                 i_this->field_0x5b4 = 10;
             } else {
-                i_this->mAction = 3;
+                i_this->mAction = ACTION_FIGHT_RUN;
                 i_this->field_0x5b4 = -10;
                 i_this->field_0x990[0] = 60;
             }
@@ -5413,13 +4617,13 @@ static void e_rd_sleep(e_rd_class* i_this) {
     switch (i_this->field_0x5b4) {
         case 0:
             i_this->field_0x990[0] = cM_rndF(100.0f) + 200.0f;
-            anm_init(i_this, 63, 10.0f, 2, 1.0f);
+            anm_init(i_this, ANM_SLEEP_WAIT, 10.0f, 2, 1.0f);
             i_this->field_0x5b4 = 1;
             break;
 
         case 1:
             if (bVar1 || i_this->field_0x990[0] == 0) {
-                anm_init(i_this, 61, 5.0f, 0, 1.0f);
+                anm_init(i_this, ANM_SLEEP_LOOKAROUND, 5.0f, 0, 1.0f);
                 i_this->field_0x5b4 = 2;
             }
             break;
@@ -5451,7 +4655,7 @@ static void e_rd_sleep(e_rd_class* i_this) {
             break;
 
         case 10:
-            anm_init(i_this, 59, 5.0f, 0, 1.0f);
+            anm_init(i_this, ANM_SHOUT, 5.0f, 0, 1.0f);
             i_this->field_0x5b4 = 11;
             dKy_Sound_set(a_this->current.pos, 100, fopAcM_GetID(a_this), 3);
             S_find = 20;
@@ -5461,7 +4665,7 @@ static void e_rd_sleep(e_rd_class* i_this) {
             cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mPlayerAngleY, 2, 0x800);
 
             if (i_this->mpModelMorf->isStop()) {
-                i_this->mAction = 3;
+                i_this->mAction = ACTION_FIGHT_RUN;
                 i_this->field_0x5b4 = -10;
                 i_this->field_0x990[0] = 60;
                 return;
@@ -5484,21 +4688,21 @@ static void e_rd_sleep(e_rd_class* i_this) {
             if (S_find == 0) {
                 i_this->field_0x5b4 = 10;
             } else {
-                i_this->mAction = 3;
+                i_this->mAction = ACTION_FIGHT_RUN;
                 i_this->field_0x5b4 = -10;
                 i_this->field_0x990[0] = 60;
                 OS_REPORT("......RD FIND 1!!!\n");
             }
         } else if (cVar1 == 2) {
             i_this->field_0x5b4 = 5;
-            anm_init(i_this, 29, 7.0f, 2, 1.5f);
+            anm_init(i_this, ANM_KYORO_2, 7.0f, 2, 1.5f);
             i_this->field_0x990[0] = cM_rndF(10.0f) + 20.0f;
             OS_REPORT("......RD FIND 2!!!\n");
         }
     }
 
     if (i_this->field_0x980 >= 9900.0f) {
-        i_this->mAction = 24;
+        i_this->mAction = ACTION_STAND;
         i_this->field_0x5b4 = 0;
         i_this->field_0x990[0] = 0;
     }
@@ -5561,7 +4765,7 @@ static void e_rd_reg(e_rd_class* i_this) {
     i_this->field_0x998 = 10;
 
     if (i_this->field_0xafb == 0) {
-        i_this->mAction = 7;
+        i_this->mAction = ACTION_BOW2;
         i_this->field_0x5b4 = 1;
         i_this->field_0x980 = 0.0f;
         return;
@@ -5624,7 +4828,7 @@ static void action(e_rd_class* i_this) {
 
     s16 sVar1 = i_this->mAction;
     damage_check(i_this);
-    if (sVar1 == 11 && i_this->mAction != 11) {
+    if (sVar1 == ACTION_WB_SEARCH && i_this->mAction != ACTION_WB_SEARCH) {
         e_wb_class* bullbo_p = (e_wb_class*)fopAcM_SearchByID(i_this->mWbActorID);
         if (bullbo_p != NULL && bullbo_p->mActionID == 1) {
             bullbo_p->mActionID = 0;
@@ -5796,7 +5000,7 @@ static void action(e_rd_class* i_this) {
             sp25c = sound->position - a_this->current.pos;
             if (sp25c.abs() < sound->field_0xc * 120) {
                 i_this->field_0x974 = i_this->mAction;
-                i_this->mAction = 27;
+                i_this->mAction = ACTION_EXCITE;
                 i_this->field_0x5b4 = 0;
                 S_find_pos = sound->position;
             }
@@ -5815,7 +5019,7 @@ static void action(e_rd_class* i_this) {
 
         f32 fVar3 = i_this->field_0x984 - dComIfG_Bgsp().GroundCross(&obj_gnd_chk);
         if (a_this->current.pos.y < i_this->field_0x984 && fVar3 > 100.0f) {
-            i_this->mAction = 29;
+            i_this->mAction = ACTION_WATER;
             if (dComIfG_Bgsp().GetPolyAtt0(spl_chk) == 6) {
                 i_this->field_0x5b4 = 1;
             } else {
@@ -5902,7 +5106,7 @@ static void action(e_rd_class* i_this) {
         a_this->attention_info.distances[2] = 34;
         e_wb_class* bullbo = (e_wb_class*)fopAcM_SearchByID(i_this->mWbActorID);
         if (bullbo == NULL) {
-            i_this->mAction = 0;
+            i_this->mAction = ACTION_NORMAL;
             i_this->field_0x5b4 = 0;
             return;
         }
@@ -6366,9 +5570,9 @@ static void* s_lv9rd_sub2(void* i_actor, void* i_data) {
         e_rd_class* i_this = (e_rd_class*)i_actor;
         fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
 
-        i_this->mAction = 22;
+        i_this->mAction = ACTION_DROP;
         i_this->field_0x5b4 = 2;
-        anm_init(i_this, 22, 2.0f, 2, 1.0f);
+        anm_init(i_this, ANM_FURA_2, 2.0f, 2, 1.0f);
         i_this->field_0x990[0] = 1000;
         i_this->field_0x5cc = a_this->home.angle.y;
         dComIfGp_setHitMark(1, a_this, &a_this->eyePos, NULL, NULL, 0);
@@ -6958,888 +6162,6 @@ static void demo_camera(e_rd_class* i_this) {
     }
 }
 
-/* ############################################################################################## */
-/* 80518720-80518724 00019C 0004+00 0/0 0/0 0/0 .rodata          @10304 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10304 = -7875.0f;
-COMPILER_STRIP_GATE(0x80518720, &lit_10304);
-#pragma pop
-
-/* 80518724-80518728 0001A0 0004+00 0/0 0/0 0/0 .rodata          @10305 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10305 = 2125.0f;
-COMPILER_STRIP_GATE(0x80518724, &lit_10305);
-#pragma pop
-
-/* 80518728-8051872C 0001A4 0004+00 0/0 0/0 0/0 .rodata          @10306 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10306 = 7895.0f;
-COMPILER_STRIP_GATE(0x80518728, &lit_10306);
-#pragma pop
-
-/* 8051872C-80518730 0001A8 0004+00 0/0 0/0 0/0 .rodata          @10307 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10307 = -7527.0f;
-COMPILER_STRIP_GATE(0x8051872C, &lit_10307);
-#pragma pop
-
-/* 80518730-80518734 0001AC 0004+00 0/0 0/0 0/0 .rodata          @10308 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10308 = 2084.0f;
-COMPILER_STRIP_GATE(0x80518730, &lit_10308);
-#pragma pop
-
-/* 80518734-80518738 0001B0 0004+00 0/0 0/0 0/0 .rodata          @10309 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10309 = 7552.0f;
-COMPILER_STRIP_GATE(0x80518734, &lit_10309);
-#pragma pop
-
-/* 80518738-8051873C 0001B4 0004+00 0/0 0/0 0/0 .rodata          @10310 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_10310 = 0x3B03126F;
-COMPILER_STRIP_GATE(0x80518738, &lit_10310);
-#pragma pop
-
-/* 8051873C-80518740 0001B8 0004+00 0/0 0/0 0/0 .rodata          @10311 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10311 = -5182.0f;
-COMPILER_STRIP_GATE(0x8051873C, &lit_10311);
-#pragma pop
-
-/* 80518740-80518744 0001BC 0004+00 0/0 0/0 0/0 .rodata          @10312 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10312 = 5237.0f;
-COMPILER_STRIP_GATE(0x80518740, &lit_10312);
-#pragma pop
-
-/* 80518744-80518748 0001C0 0004+00 0/0 0/0 0/0 .rodata          @10313 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10313 = 45.0f;
-COMPILER_STRIP_GATE(0x80518744, &lit_10313);
-#pragma pop
-
-/* 80518748-8051874C 0001C4 0004+00 0/0 0/0 0/0 .rodata          @10314 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10314 = -7241.0f;
-COMPILER_STRIP_GATE(0x80518748, &lit_10314);
-#pragma pop
-
-/* 8051874C-80518750 0001C8 0004+00 0/0 0/0 0/0 .rodata          @10315 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10315 = 4310.0f;
-COMPILER_STRIP_GATE(0x8051874C, &lit_10315);
-#pragma pop
-
-/* 80518750-80518754 0001CC 0004+00 0/0 0/0 0/0 .rodata          @10316 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10316 = 7269.0f;
-COMPILER_STRIP_GATE(0x80518750, &lit_10316);
-#pragma pop
-
-/* 80518754-80518758 0001D0 0004+00 0/0 0/0 0/0 .rodata          @10317 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10317 = -6913.0f;
-COMPILER_STRIP_GATE(0x80518754, &lit_10317);
-#pragma pop
-
-/* 80518758-8051875C 0001D4 0004+00 0/0 0/0 0/0 .rodata          @10318 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10318 = 4139.0f;
-COMPILER_STRIP_GATE(0x80518758, &lit_10318);
-#pragma pop
-
-/* 8051875C-80518760 0001D8 0004+00 0/0 0/0 0/0 .rodata          @10319 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10319 = 6948.0f;
-COMPILER_STRIP_GATE(0x8051875C, &lit_10319);
-#pragma pop
-
-/* 80518760-80518764 0001DC 0004+00 0/0 0/0 0/0 .rodata          @10320 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10320 = 3.0f / 20.0f;
-COMPILER_STRIP_GATE(0x80518760, &lit_10320);
-#pragma pop
-
-/* 80518764-80518768 0001E0 0004+00 0/0 0/0 0/0 .rodata          @10321 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_10321 = 0x3BA3D70A;
-COMPILER_STRIP_GATE(0x80518764, &lit_10321);
-#pragma pop
-
-/* 80518768-8051876C 0001E4 0004+00 0/0 0/0 0/0 .rodata          @10322 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10322 = -8330.0f;
-COMPILER_STRIP_GATE(0x80518768, &lit_10322);
-#pragma pop
-
-/* 8051876C-80518770 0001E8 0004+00 0/0 0/0 0/0 .rodata          @10323 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10323 = 4359.0f;
-COMPILER_STRIP_GATE(0x8051876C, &lit_10323);
-#pragma pop
-
-/* 80518770-80518774 0001EC 0004+00 0/0 0/0 0/0 .rodata          @10324 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10324 = 8449.0f;
-COMPILER_STRIP_GATE(0x80518770, &lit_10324);
-#pragma pop
-
-/* 80518774-80518778 0001F0 0004+00 0/0 0/0 0/0 .rodata          @10325 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10325 = -8183.0f;
-COMPILER_STRIP_GATE(0x80518774, &lit_10325);
-#pragma pop
-
-/* 80518778-8051877C 0001F4 0004+00 0/0 0/0 0/0 .rodata          @10326 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10326 = 4264.0f;
-COMPILER_STRIP_GATE(0x80518778, &lit_10326);
-#pragma pop
-
-/* 8051877C-80518780 0001F8 0004+00 0/0 0/0 0/0 .rodata          @10327 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10327 = 7991.0f;
-COMPILER_STRIP_GATE(0x8051877C, &lit_10327);
-#pragma pop
-
-/* 80518780-80518784 0001FC 0004+00 0/0 0/0 0/0 .rodata          @10328 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10328 = -8033.0f;
-COMPILER_STRIP_GATE(0x80518780, &lit_10328);
-#pragma pop
-
-/* 80518784-80518788 000200 0004+00 0/0 0/0 0/0 .rodata          @10329 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10329 = 4259.0f;
-COMPILER_STRIP_GATE(0x80518784, &lit_10329);
-#pragma pop
-
-/* 80518788-8051878C 000204 0004+00 0/0 0/0 0/0 .rodata          @10330 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10330 = 8143.0f;
-COMPILER_STRIP_GATE(0x80518788, &lit_10330);
-#pragma pop
-
-/* 8051878C-80518790 000208 0004+00 0/0 0/0 0/0 .rodata          @10331 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10331 = -8337.0f;
-COMPILER_STRIP_GATE(0x8051878C, &lit_10331);
-#pragma pop
-
-/* 80518790-80518794 00020C 0004+00 0/0 0/0 0/0 .rodata          @10332 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10332 = 4488.0f;
-COMPILER_STRIP_GATE(0x80518790, &lit_10332);
-#pragma pop
-
-/* 80518794-80518798 000210 0004+00 0/0 0/0 0/0 .rodata          @10333 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10333 = 8451.0f;
-COMPILER_STRIP_GATE(0x80518794, &lit_10333);
-#pragma pop
-
-/* 80518798-8051879C 000214 0004+00 0/0 0/0 0/0 .rodata          @10334 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10334 = -4910.0f;
-COMPILER_STRIP_GATE(0x80518798, &lit_10334);
-#pragma pop
-
-/* 8051879C-805187A0 000218 0004+00 0/0 0/0 0/0 .rodata          @10335 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10335 = 2012.0f;
-COMPILER_STRIP_GATE(0x8051879C, &lit_10335);
-#pragma pop
-
-/* 805187A0-805187A4 00021C 0004+00 0/0 0/0 0/0 .rodata          @10336 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10336 = 4976.0f;
-COMPILER_STRIP_GATE(0x805187A0, &lit_10336);
-#pragma pop
-
-/* 805187A4-805187A8 000220 0004+00 0/0 0/0 0/0 .rodata          @10337 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10337 = -5235.0f;
-COMPILER_STRIP_GATE(0x805187A4, &lit_10337);
-#pragma pop
-
-/* 805187A8-805187AC 000224 0004+00 0/0 0/0 0/0 .rodata          @10338 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10338 = 2179.0f;
-COMPILER_STRIP_GATE(0x805187A8, &lit_10338);
-#pragma pop
-
-/* 805187AC-805187B0 000228 0004+00 0/0 0/0 0/0 .rodata          @10339 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10339 = 5302.0f;
-COMPILER_STRIP_GATE(0x805187AC, &lit_10339);
-#pragma pop
-
-/* 805187B0-805187B4 00022C 0004+00 0/1 0/0 0/0 .rodata          @10340 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10340 = 2500.0f;
-COMPILER_STRIP_GATE(0x805187B0, &lit_10340);
-#pragma pop
-
-/* 805187B4-805187B8 000230 0004+00 0/0 0/0 0/0 .rodata          @10341 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10341 = 3.0f / 100.0f;
-COMPILER_STRIP_GATE(0x805187B4, &lit_10341);
-#pragma pop
-
-/* 805187B8-805187BC 000234 0004+00 0/0 0/0 0/0 .rodata          @10342 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10342 = -0.5f;
-COMPILER_STRIP_GATE(0x805187B8, &lit_10342);
-#pragma pop
-
-/* 805187BC-805187C0 000238 0004+00 0/0 0/0 0/0 .rodata          @10343 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10343 = -5197.0f;
-COMPILER_STRIP_GATE(0x805187BC, &lit_10343);
-#pragma pop
-
-/* 805187C0-805187C4 00023C 0004+00 0/0 0/0 0/0 .rodata          @10344 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10344 = 1712.0f;
-COMPILER_STRIP_GATE(0x805187C0, &lit_10344);
-#pragma pop
-
-/* 805187C4-805187C8 000240 0004+00 0/0 0/0 0/0 .rodata          @10345 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10345 = 5039.0f;
-COMPILER_STRIP_GATE(0x805187C4, &lit_10345);
-#pragma pop
-
-/* 805187C8-805187CC 000244 0004+00 0/0 0/0 0/0 .rodata          @10346 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10346 = -5215.0f;
-COMPILER_STRIP_GATE(0x805187C8, &lit_10346);
-#pragma pop
-
-/* 805187CC-805187D0 000248 0004+00 0/0 0/0 0/0 .rodata          @10347 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10347 = 2108.0f;
-COMPILER_STRIP_GATE(0x805187CC, &lit_10347);
-#pragma pop
-
-/* 805187D0-805187D4 00024C 0004+00 0/0 0/0 0/0 .rodata          @10348 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10348 = 5327.0f;
-COMPILER_STRIP_GATE(0x805187D0, &lit_10348);
-#pragma pop
-
-/* 805187D4-805187D8 000250 0004+00 0/0 0/0 0/0 .rodata          @10349 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10349 = -5025.0f;
-COMPILER_STRIP_GATE(0x805187D4, &lit_10349);
-#pragma pop
-
-/* 805187D8-805187DC 000254 0004+00 0/0 0/0 0/0 .rodata          @10350 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10350 = 2270.0f;
-COMPILER_STRIP_GATE(0x805187D8, &lit_10350);
-#pragma pop
-
-/* 805187DC-805187E0 000258 0004+00 0/0 0/0 0/0 .rodata          @10351 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10351 = 4909.0f;
-COMPILER_STRIP_GATE(0x805187DC, &lit_10351);
-#pragma pop
-
-/* 805187E0-805187E4 00025C 0004+00 0/0 0/0 0/0 .rodata          @10352 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10352 = -5529.0f;
-COMPILER_STRIP_GATE(0x805187E0, &lit_10352);
-#pragma pop
-
-/* 805187E4-805187E8 000260 0004+00 0/0 0/0 0/0 .rodata          @10353 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10353 = 2457.0f;
-COMPILER_STRIP_GATE(0x805187E4, &lit_10353);
-#pragma pop
-
-/* 805187E8-805187EC 000264 0004+00 0/0 0/0 0/0 .rodata          @10354 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10354 = 5589.0f;
-COMPILER_STRIP_GATE(0x805187E8, &lit_10354);
-#pragma pop
-
-/* 805187EC-805187F0 000268 0004+00 0/0 0/0 0/0 .rodata          @10355 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10355 = -5232.0f;
-COMPILER_STRIP_GATE(0x805187EC, &lit_10355);
-#pragma pop
-
-/* 805187F0-805187F4 00026C 0004+00 0/0 0/0 0/0 .rodata          @10356 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10356 = 2201.0f;
-COMPILER_STRIP_GATE(0x805187F0, &lit_10356);
-#pragma pop
-
-/* 805187F4-805187F8 000270 0004+00 0/0 0/0 0/0 .rodata          @10357 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10357 = 5295.0f;
-COMPILER_STRIP_GATE(0x805187F4, &lit_10357);
-#pragma pop
-
-/* 805187F8-805187FC 000274 0004+00 0/0 0/0 0/0 .rodata          @10358 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10358 = -5580.0f;
-COMPILER_STRIP_GATE(0x805187F8, &lit_10358);
-#pragma pop
-
-/* 805187FC-80518800 000278 0004+00 0/0 0/0 0/0 .rodata          @10359 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10359 = 2188.0f;
-COMPILER_STRIP_GATE(0x805187FC, &lit_10359);
-#pragma pop
-
-/* 80518800-80518804 00027C 0004+00 0/0 0/0 0/0 .rodata          @10360 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10360 = 5640.0f;
-COMPILER_STRIP_GATE(0x80518800, &lit_10360);
-#pragma pop
-
-/* 80518804-80518808 000280 0004+00 0/1 0/0 0/0 .rodata          @10361 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10361 = 2.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80518804, &lit_10361);
-#pragma pop
-
-/* 80518808-8051880C 000284 0004+00 0/0 0/0 0/0 .rodata          @10362 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10362 = -5821.0f;
-COMPILER_STRIP_GATE(0x80518808, &lit_10362);
-#pragma pop
-
-/* 8051880C-80518810 000288 0004+00 0/0 0/0 0/0 .rodata          @10363 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10363 = 5850.0f;
-COMPILER_STRIP_GATE(0x8051880C, &lit_10363);
-#pragma pop
-
-/* 80518810-80518814 00028C 0004+00 0/0 0/0 0/0 .rodata          @10364 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10364 = -5406.0f;
-COMPILER_STRIP_GATE(0x80518810, &lit_10364);
-#pragma pop
-
-/* 80518814-80518818 000290 0004+00 0/0 0/0 0/0 .rodata          @10365 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10365 = 2168.0f;
-COMPILER_STRIP_GATE(0x80518814, &lit_10365);
-#pragma pop
-
-/* 80518818-8051881C 000294 0004+00 0/0 0/0 0/0 .rodata          @10366 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10366 = 5468.0f;
-COMPILER_STRIP_GATE(0x80518818, &lit_10366);
-#pragma pop
-
-/* 8051881C-80518820 000298 0004+00 0/0 0/0 0/0 .rodata          @10367 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10367 = -5058.0f;
-COMPILER_STRIP_GATE(0x8051881C, &lit_10367);
-#pragma pop
-
-/* 80518820-80518824 00029C 0004+00 0/0 0/0 0/0 .rodata          @10368 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10368 = 2181.0f;
-COMPILER_STRIP_GATE(0x80518820, &lit_10368);
-#pragma pop
-
-/* 80518824-80518828 0002A0 0004+00 0/0 0/0 0/0 .rodata          @10369 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10369 = 5124.0f;
-COMPILER_STRIP_GATE(0x80518824, &lit_10369);
-#pragma pop
-
-/* 80518828-8051882C 0002A4 0004+00 0/0 0/0 0/0 .rodata          @10370 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10370 = -3963.0f;
-COMPILER_STRIP_GATE(0x80518828, &lit_10370);
-#pragma pop
-
-/* 8051882C-80518830 0002A8 0004+00 0/0 0/0 0/0 .rodata          @10371 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10371 = 147.0f;
-COMPILER_STRIP_GATE(0x8051882C, &lit_10371);
-#pragma pop
-
-/* 80518830-80518834 0002AC 0004+00 0/0 0/0 0/0 .rodata          @10372 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10372 = 8094.0f;
-COMPILER_STRIP_GATE(0x80518830, &lit_10372);
-#pragma pop
-
-/* 80518834-80518838 0002B0 0004+00 0/0 0/0 0/0 .rodata          @10373 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10373 = -4080.0f;
-COMPILER_STRIP_GATE(0x80518834, &lit_10373);
-#pragma pop
-
-/* 80518838-8051883C 0002B4 0004+00 0/0 0/0 0/0 .rodata          @10374 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10374 = 134.0f;
-COMPILER_STRIP_GATE(0x80518838, &lit_10374);
-#pragma pop
-
-/* 8051883C-80518840 0002B8 0004+00 0/0 0/0 0/0 .rodata          @10375 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10375 = 8190.0f;
-COMPILER_STRIP_GATE(0x8051883C, &lit_10375);
-#pragma pop
-
-/* 80518840-80518844 0002BC 0004+00 0/0 0/0 0/0 .rodata          @10376 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10376 = -4527.0f;
-COMPILER_STRIP_GATE(0x80518840, &lit_10376);
-#pragma pop
-
-/* 80518844-80518848 0002C0 0004+00 0/0 0/0 0/0 .rodata          @10377 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10377 = 143.0f;
-COMPILER_STRIP_GATE(0x80518844, &lit_10377);
-#pragma pop
-
-/* 80518848-8051884C 0002C4 0004+00 0/0 0/0 0/0 .rodata          @10378 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10378 = 8305.0f;
-COMPILER_STRIP_GATE(0x80518848, &lit_10378);
-#pragma pop
-
-/* 8051884C-80518850 0002C8 0004+00 0/0 0/0 0/0 .rodata          @10379 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10379 = -4676.0f;
-COMPILER_STRIP_GATE(0x8051884C, &lit_10379);
-#pragma pop
-
-/* 80518850-80518854 0002CC 0004+00 0/0 0/0 0/0 .rodata          @10380 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10380 = 161.0f;
-COMPILER_STRIP_GATE(0x80518850, &lit_10380);
-#pragma pop
-
-/* 80518854-80518858 0002D0 0004+00 0/0 0/0 0/0 .rodata          @10381 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10381 = 8282.0f;
-COMPILER_STRIP_GATE(0x80518854, &lit_10381);
-#pragma pop
-
-/* 80518858-8051885C 0002D4 0004+00 0/0 0/0 0/0 .rodata          @10382 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10382 = -4552.0f;
-COMPILER_STRIP_GATE(0x80518858, &lit_10382);
-#pragma pop
-
-/* 8051885C-80518860 0002D8 0004+00 0/0 0/0 0/0 .rodata          @10383 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10383 = 8461.0f;
-COMPILER_STRIP_GATE(0x8051885C, &lit_10383);
-#pragma pop
-
-/* 80518860-80518864 0002DC 0004+00 0/0 0/0 0/0 .rodata          @10384 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10384 = -4701.0f;
-COMPILER_STRIP_GATE(0x80518860, &lit_10384);
-#pragma pop
-
-/* 80518864-80518868 0002E0 0004+00 0/0 0/0 0/0 .rodata          @10385 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10385 = 8438.0f;
-COMPILER_STRIP_GATE(0x80518864, &lit_10385);
-#pragma pop
-
-/* 80518868-8051886C 0002E4 0004+00 0/0 0/0 0/0 .rodata          @10386 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10386 = -5397.0f;
-COMPILER_STRIP_GATE(0x80518868, &lit_10386);
-#pragma pop
-
-/* 8051886C-80518870 0002E8 0004+00 0/0 0/0 0/0 .rodata          @10387 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10387 = 5921.0f;
-COMPILER_STRIP_GATE(0x8051886C, &lit_10387);
-#pragma pop
-
-/* 80518870-80518874 0002EC 0004+00 0/1 0/0 0/0 .rodata          @10388 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_10388 = 0x3A83126F;
-COMPILER_STRIP_GATE(0x80518870, &lit_10388);
-#pragma pop
-
-/* 80518874-80518878 0002F0 0004+00 0/0 0/0 0/0 .rodata          @10389 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10389 = -5275.0f;
-COMPILER_STRIP_GATE(0x80518874, &lit_10389);
-#pragma pop
-
-/* 80518878-8051887C 0002F4 0004+00 0/0 0/0 0/0 .rodata          @10390 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10390 = 2327.0f;
-COMPILER_STRIP_GATE(0x80518878, &lit_10390);
-#pragma pop
-
-/* 8051887C-80518880 0002F8 0004+00 0/0 0/0 0/0 .rodata          @10391 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10391 = 5812.0f;
-COMPILER_STRIP_GATE(0x8051887C, &lit_10391);
-#pragma pop
-
-/* 80518880-80518884 0002FC 0004+00 0/0 0/0 0/0 .rodata          @10392 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10392 = -5367.0f;
-COMPILER_STRIP_GATE(0x80518880, &lit_10392);
-#pragma pop
-
-/* 80518884-80518888 000300 0004+00 0/0 0/0 0/0 .rodata          @10393 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10393 = 2689.0f;
-COMPILER_STRIP_GATE(0x80518884, &lit_10393);
-#pragma pop
-
-/* 80518888-8051888C 000304 0004+00 0/0 0/0 0/0 .rodata          @10394 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10394 = 5495.0f;
-COMPILER_STRIP_GATE(0x80518888, &lit_10394);
-#pragma pop
-
-/* 8051888C-80518890 000308 0004+00 0/0 0/0 0/0 .rodata          @10395 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10395 = -3906.0f;
-COMPILER_STRIP_GATE(0x8051888C, &lit_10395);
-#pragma pop
-
-/* 80518890-80518894 00030C 0004+00 0/0 0/0 0/0 .rodata          @10396 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10396 = 42.0f;
-COMPILER_STRIP_GATE(0x80518890, &lit_10396);
-#pragma pop
-
-/* 80518894-80518898 000310 0004+00 0/0 0/0 0/0 .rodata          @10397 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10397 = 8198.0f;
-COMPILER_STRIP_GATE(0x80518894, &lit_10397);
-#pragma pop
-
-/* 80518898-8051889C 000314 0004+00 0/0 0/0 0/0 .rodata          @10398 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10398 = -4274.0f;
-COMPILER_STRIP_GATE(0x80518898, &lit_10398);
-#pragma pop
-
-/* 8051889C-805188A0 000318 0004+00 0/0 0/0 0/0 .rodata          @10399 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10399 = 272.0f;
-COMPILER_STRIP_GATE(0x8051889C, &lit_10399);
-#pragma pop
-
-/* 805188A0-805188A4 00031C 0004+00 0/0 0/0 0/0 .rodata          @10400 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10400 = 7969.0f;
-COMPILER_STRIP_GATE(0x805188A0, &lit_10400);
-#pragma pop
-
-/* 805188A4-805188A8 000320 0004+00 0/0 0/0 0/0 .rodata          @10401 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10401 = -5712.0f;
-COMPILER_STRIP_GATE(0x805188A4, &lit_10401);
-#pragma pop
-
-/* 805188A8-805188AC 000324 0004+00 0/0 0/0 0/0 .rodata          @10402 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10402 = 2308.0f;
-COMPILER_STRIP_GATE(0x805188A8, &lit_10402);
-#pragma pop
-
-/* 805188AC-805188B0 000328 0004+00 0/0 0/0 0/0 .rodata          @10403 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10403 = 5828.0f;
-COMPILER_STRIP_GATE(0x805188AC, &lit_10403);
-#pragma pop
-
-/* 805188B0-805188B4 00032C 0004+00 0/0 0/0 0/0 .rodata          @10404 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10404 = -5286.0f;
-COMPILER_STRIP_GATE(0x805188B0, &lit_10404);
-#pragma pop
-
-/* 805188B4-805188B8 000330 0004+00 0/0 0/0 0/0 .rodata          @10405 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10405 = 2104.0f;
-COMPILER_STRIP_GATE(0x805188B4, &lit_10405);
-#pragma pop
-
-/* 805188B8-805188BC 000334 0004+00 0/0 0/0 0/0 .rodata          @10406 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10406 = 5957.0f;
-COMPILER_STRIP_GATE(0x805188B8, &lit_10406);
-#pragma pop
-
-/* 805188BC-805188C0 000338 0004+00 0/1 0/0 0/0 .rodata          @10407 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10407 = 1.0f / 50.0f;
-COMPILER_STRIP_GATE(0x805188BC, &lit_10407);
-#pragma pop
-
-/* 805188C0-805188C4 00033C 0004+00 0/0 0/0 0/0 .rodata          @10408 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10408 = -4712.0f;
-COMPILER_STRIP_GATE(0x805188C0, &lit_10408);
-#pragma pop
-
-/* 805188C4-805188C8 000340 0004+00 0/0 0/0 0/0 .rodata          @10409 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10409 = 870.0f;
-COMPILER_STRIP_GATE(0x805188C4, &lit_10409);
-#pragma pop
-
-/* 805188C8-805188CC 000344 0004+00 0/0 0/0 0/0 .rodata          @10410 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10410 = 7432.0f;
-COMPILER_STRIP_GATE(0x805188C8, &lit_10410);
-#pragma pop
-
-/* 805188CC-805188D0 000348 0004+00 0/0 0/0 0/0 .rodata          @10411 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10411 = -4852.0f;
-COMPILER_STRIP_GATE(0x805188CC, &lit_10411);
-#pragma pop
-
-/* 805188D0-805188D4 00034C 0004+00 0/0 0/0 0/0 .rodata          @10412 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10412 = 1171.0f;
-COMPILER_STRIP_GATE(0x805188D0, &lit_10412);
-#pragma pop
-
-/* 805188D4-805188D8 000350 0004+00 0/0 0/0 0/0 .rodata          @10413 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10413 = 7072.0f;
-COMPILER_STRIP_GATE(0x805188D4, &lit_10413);
-#pragma pop
-
-/* 805188D8-805188DC 000354 0004+00 0/1 0/0 0/0 .rodata          @11210 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11210 = -2000.0f;
-COMPILER_STRIP_GATE(0x805188D8, &lit_11210);
-#pragma pop
-
-/* 805188DC-805188E0 000358 0004+00 0/1 0/0 0/0 .rodata          @11211 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11211 = -10.0f;
-COMPILER_STRIP_GATE(0x805188DC, &lit_11211);
-#pragma pop
-
-/* 805188E0-805188E4 00035C 0004+00 0/1 0/0 0/0 .rodata          @11212 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11212 = 21.0f;
-COMPILER_STRIP_GATE(0x805188E0, &lit_11212);
-#pragma pop
-
-/* 805188E4-805188E8 000360 0004+00 0/1 0/0 0/0 .rodata          @11213 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11213 = 38.0f;
-COMPILER_STRIP_GATE(0x805188E4, &lit_11213);
-#pragma pop
-
-/* 805188E8-805188EC 000364 0004+00 0/1 0/0 0/0 .rodata          @11214 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11214 = -6.0f;
-COMPILER_STRIP_GATE(0x805188E8, &lit_11214);
-#pragma pop
-
-/* 805188EC-805188F0 000368 0004+00 0/1 0/0 0/0 .rodata          @11215 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11215 = -20000.0f;
-COMPILER_STRIP_GATE(0x805188EC, &lit_11215);
-#pragma pop
-
-/* 805188F0-805188F4 00036C 0004+00 0/1 0/0 0/0 .rodata          @11216 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11216 = 200000.0f;
-COMPILER_STRIP_GATE(0x805188F0, &lit_11216);
-#pragma pop
-
-/* 805188F4-805188F8 000370 0004+00 0/2 0/0 0/0 .rodata          @11217 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11217 = 30000.0f;
-COMPILER_STRIP_GATE(0x805188F4, &lit_11217);
-#pragma pop
-
-/* 805188F8-805188FC 000374 0004+00 0/1 0/0 0/0 .rodata          @11218 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11218 = 190.0f;
-COMPILER_STRIP_GATE(0x805188F8, &lit_11218);
-#pragma pop
-
-/* 805188FC-80518900 000378 0004+00 0/1 0/0 0/0 .rodata          @11219 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11219 = 120.0f;
-COMPILER_STRIP_GATE(0x805188FC, &lit_11219);
-#pragma pop
-
-/* 80518900-80518904 00037C 0004+00 0/1 0/0 0/0 .rodata          @11220 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11220 = -200000.0f;
-COMPILER_STRIP_GATE(0x80518900, &lit_11220);
-#pragma pop
-
-/* 80518904-80518908 000380 0004+00 0/2 0/0 0/0 .rodata          @11221 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11221 = -200.0f;
-COMPILER_STRIP_GATE(0x80518904, &lit_11221);
-#pragma pop
-
-/* 80518908-8051890C 000384 0004+00 0/1 0/0 0/0 .rodata          @11222 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11222 = -500.0f;
-COMPILER_STRIP_GATE(0x80518908, &lit_11222);
-#pragma pop
-
-/* 8051890C-80518910 000388 0004+00 0/1 0/0 0/0 .rodata          @11223 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11223 = -80.0f;
-COMPILER_STRIP_GATE(0x8051890C, &lit_11223);
-#pragma pop
-
-/* 80518910-80518914 00038C 0004+00 0/1 0/0 0/0 .rodata          @11224 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11224 = -0.0f;
-COMPILER_STRIP_GATE(0x80518910, &lit_11224);
-#pragma pop
-
-/* 80518968-80518968 0003E4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8051897E = "F_SP102";
-#pragma pop
-
 /* 8051933C-80519340 000204 0004+00 0/2 0/0 0/0 .bss             c_start */
 static int c_start;
 
@@ -7847,17 +6169,15 @@ static int c_start;
 static int daE_RD_Execute(e_rd_class* i_this) {
     // NONMATCHING
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
+    fopAc_ac_c* player;
+    f32 fVar1, fVar2, fVar3, fVar4;
 
     if (c_start == 0 && dComIfGp_event_runCheck()) {
         if (data_80519201 != 0) {
             return 1;
         }
 
-        if (cDmrNowMidnaTalk()) {
-            return 1;
-        }
-
-        if (daPy_getPlayerActorClass()->eventInfo.checkCommandDoor()) {
+        if (cDmrNowMidnaTalk() || daPy_getPlayerActorClass()->eventInfo.checkCommandDoor()) {
             return 1;
         }
     }
@@ -7878,10 +6198,10 @@ static int daE_RD_Execute(e_rd_class* i_this) {
     if (i_this->field_0x129a == 0) {
         i_this->field_0x1297 = i_this->field_0x1298;
     } else {
-        fopAc_ac_c* player = dComIfGp_getPlayer(0);
+        player = dComIfGp_getPlayer(0);
 
         if (strcmp(dComIfGp_getStartStageName(), "F_SP102") == 0 && player->current.pos.y < -2000.0f) {
-            cDmr_SkipInfo = 2;
+            cDmr_SkipInfo = 50;
         }
 
         if (cDmr_SkipInfo != 0) {
@@ -7912,7 +6232,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
     }
 
     if (i_this->field_0x99c != 0) {
-        i_this->field_0x99e--;
+        i_this->field_0x99c--;
     }
 
     if (!otoCheck(a_this, 1000.0f)) {
@@ -7933,7 +6253,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         i_this->field_0x9ad = 0;
     }
 
-    if (i_this->field_0x9bc != 2 && i_this->field_0xaf0 == 0 && i_this->mAction != 42) {
+    if (i_this->field_0x9bc != 2 && i_this->field_0xaf0 == 0 && i_this->mAction != ACTION_IKKI_END) {
         spa4.set(0.0f, 0.0f, 0.0f);
         if (i_this->field_0x9ec) {
             cMtx_YrotS(*calc_mtx, i_this->field_0xa0e);
@@ -7950,15 +6270,22 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             spa4.y += KREG_F(0) + -20.0f;
         }
 
-        a_this->current.pos = spa4;
-        a_this->old.pos = spa4;
+        a_this->current.pos += spa4;
+        a_this->old.pos += spa4;
         i_this->mObjAcch.CrrPos(dComIfG_Bgsp());
         a_this->current.pos -= spa4;
         a_this->old.pos -= spa4;
 
-        if (i_this->mObjAcch.ChkGroundHit()) {
+        if (!i_this->mObjAcch.ChkGroundHit()) {
+            if (a_this->speed.y < -10.0f) {
+                i_this->field_0xaf2++;
+                if (i_this->field_0xaf2 == 20 && i_this->field_0x129a == 0) {
+                    i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_DEATH, -1);
+                }
+            }
+        } else {
             if (i_this->field_0xaf2 >= ZREG_S(8) + 20 && i_this->field_0x5b7 != 13 && i_this->field_0x5b7 != 14) {
-                i_this->mAction = 21;
+                i_this->mAction = ACTION_DAMAGE;
                 i_this->field_0x5b4 = 0;
                 a_this->speed.y = 0.0f;
                 i_this->field_0x9ec = -1.0f;
@@ -7968,16 +6295,11 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             }
 
             i_this->field_0xaf2 = 0;
-        } else if (a_this->speed.y < -10.0f) {
-            i_this->field_0xaf2--;
-            if (i_this->field_0xaf2 == 20 && i_this->field_0x129a == 0) {
-                i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_DEATH, -1);
-            }
         }
 
         i_this->field_0x1294 = 0;
 
-        if (i_this->mObjAcch.GetGroundH() != -1000000000.0f && i_this->mObjAcch.ChkWaterHit() && a_this->current.pos.y < i_this->mObjAcch.m_wtr.GetHeight()) {
+        if (i_this->mObjAcch.GetGroundH() != -1000000000.0f && i_this->mObjAcch.ChkWaterHit() && i_this->mObjAcch.m_wtr.GetHeight() > a_this->current.pos.y) {
             i_this->field_0x1294 = 1;
         }
     }
@@ -7994,7 +6316,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         mDoMtx_stack_c::XrotM(a_this->shape_angle.x);
         mDoMtx_stack_c::ZrotM(a_this->shape_angle.z);
 
-        f32 fVar1 = l_HIO.model_size * a_this->scale.x;
+        fVar1 = l_HIO.model_size * a_this->scale.x;
         if (i_this->field_0x129a != 0) {
             fVar1 *= l_HIO.field_0xc;
         }
@@ -8018,10 +6340,10 @@ static int daE_RD_Execute(e_rd_class* i_this) {
 
         if ((i_this->mAnmID == 65 && (i_this->mpModelMorf->checkFrame(1.0f) || i_this->mpModelMorf->checkFrame(15.0f))) ||
             ((i_this->mAnmID == 50 || i_this->mAnmID == 51) && (i_this->mpModelMorf->checkFrame(1.0f) || i_this->mpModelMorf->checkFrame(7.0f)))) {
-            if (i_this->field_0x1294 == 0) {
-                i_this->mSound.startCreatureSound(Z2SE_RIDER_FOOTNOTE, 0, -1);
-            } else {
+            if (i_this->field_0x1294 != 0) {
                 i_this->mSound.startCreatureSound(Z2SE_RIDER_FOOTNOTE_WATER, 0, -1);
+            } else {
+                i_this->mSound.startCreatureSound(Z2SE_RIDER_FOOTNOTE, 0, -1);
             }
         }
 
@@ -8037,10 +6359,10 @@ static int daE_RD_Execute(e_rd_class* i_this) {
 
         if (i_this->field_0x680 != 0 && i_this->mpModelMorf->isStop()) {
             int i_anmID;
-            if (a_this->speedF < 10.0f) {
-                i_anmID = 65;
-            } else {
+            if (a_this->speedF >= 10.0f) {
                 i_anmID = 59;
+            } else {
+                i_anmID = 65;
             }
             i_this->field_0x680 = 0;
             anm_init(i_this, i_anmID, 10.0f, 2, 1.0f);
@@ -8072,7 +6394,6 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             for (int i = 0; i < 2; i++) {
                 MtxPush();
                 s16 sVar1, sVar2;
-                f32 fVar2;
                 if (i == 0) {
                     sp98.set(38.0f, 0.0f, 0.0f);
                     MtxPosition(&sp98, &spa4);
@@ -8080,12 +6401,12 @@ static int daE_RD_Execute(e_rd_class* i_this) {
 
                     sVar1 = cM_atan2s(sp98.x, sp98.z);
                     sVar2 = -cM_atan2s(sp98.y, JMAFastSqrt(sp98.x * sp98.x + sp98.z * sp98.z));
-                    fVar2 = sp98.abs() * 0.001f;
-                    if (fVar2 > 2.0f) {
-                        fVar2 = 2.0f;
+                    fVar1 = sp98.abs() * 0.001f;
+                    if (fVar1 > 2.0f) {
+                        fVar1 = 2.0f;
                     }
 
-                    fVar2 *= i_this->field_0x6cc * time_scale[(int)(dKy_getEnvlight()->daytime / 15.0f) * 4];
+                    fVar1 *= i_this->field_0x6cc * time_scale[(int)(dKy_getEnvlight()->daytime / 15.0f) * 4];
                     
                     sp98.set(38.0f, 0.0f, 6.0f);
                 } else {
@@ -8096,7 +6417,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
                 MtxTrans(spa4.x, spa4.y, spa4.z, 0);
                 cMtx_YrotM(*calc_mtx, sVar1);
                 cMtx_XrotM(*calc_mtx, sVar2);
-                MtxScale(fVar2, fVar2, fVar2, 1);
+                MtxScale(fVar1, fVar1, fVar1, 1);
 
                 i_this->field_0x6c4[i]->setBaseTRMtx(*calc_mtx);
                 MtxPull();
@@ -8112,10 +6433,10 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         sp98.set(YREG_F(1), YREG_F(2) + 100.0f, YREG_F(3));
         MtxPosition(&sp98, &spb0);
 
-        if (spb0.y <= spa4.y) {
-            i_this->field_0xa1f = 1;
-        } else {
+        if (spa4.y < spb0.y) {
             i_this->field_0xa1f = 0;
+        } else {
+            i_this->field_0xa1f = 1;
         }
 
         cXyz spbc(0.0f, 0.0f, 0.0f);
@@ -8124,10 +6445,10 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             spbc.set(-20000.0f, 20000.0f, 30000.0f);
         }
 
-        if (i_this->field_0x129a == 0) {
-            MTXCopy(model->getAnmMtx(13), *calc_mtx);
-        } else {
+        if (i_this->field_0x129a != 0) {
             MTXCopy(model->getAnmMtx(AREG_S(9) + 6), *calc_mtx);
+        } else {
+            MTXCopy(model->getAnmMtx(13), *calc_mtx);
         }
 
         sp98.set(20.0f, 0.0f, 0.0f);
@@ -8154,21 +6475,356 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             a_this->attention_info.position.y += 30.0f;
         }
 
-        if (i_this->field_0x129a == 0) {
+        if (i_this->field_0x129a != 0) {
+            fVar2 = 60.0f;
+            fVar1 = 0.0f;
+            if (i_this->field_0x129a == 2) {
+                fVar2 = 90.0f;
+                fVar1 = l_HIO.field_0x3c;
+            }
+
+            sp98.set(ZREG_F(0), ZREG_F(1), ZREG_F(2));
+            MTXCopy(model->getAnmMtx(2), *calc_mtx);
+            MtxPosition(&sp98, &spa4);
+            i_this->field_0xd58[2].SetC(spa4 + spbc);
+            i_this->field_0xd58[2].SetR(fVar2 + (fVar1 + ZREG_F(3)));
+
+            sp98.set(ZREG_F(4), ZREG_F(5), ZREG_F(6));
+            MTXCopy(model->getAnmMtx(22), *calc_mtx);
+            MtxPosition(&sp98, &spa4);
+            i_this->field_0xd58[1].SetC(spa4 + spbc);
+            i_this->field_0xd58[1].SetR(fVar2 + ZREG_F(7));
+        } else {
             sp98.set(BREG_F(14), BREG_F(15), BREG_F(16));
             MTXCopy(model->getAnmMtx(12), *calc_mtx);
             MtxPosition(&sp98, &spa4);
             i_this->field_0xd58[2].SetC(spa4 + spbc);
             i_this->field_0xd58[2].SetR(35.0f);
+
+            sp98.set(BREG_F(11) + -10.0f, BREG_F(12), BREG_F(13));
+            MTXCopy(model->getAnmMtx(10), *calc_mtx);
+            MtxPosition(&sp98, &spa4);
+            i_this->field_0xd58[1].SetC(spa4 + spbc);
+            i_this->field_0xd58[1].SetR(35.0f);
+        }
+
+        for (int i = 0; i <= 2; i++) {
+            if (i_this->field_0x9ad != 0) {
+                i_this->field_0xd58[i].OnCoSetBit();
+            } else {
+                i_this->field_0xd58[i].OffCoSetBit();
+            }
+
+            dComIfG_Ccsp()->Set(&i_this->field_0xd58[i]);
+
+            if (i_this->field_0x129a == 1 && i_this->field_0x9bc == 2) {
+                i_this->field_0xd58[i].OnTgNoHitMark();
+            } else {
+                i_this->field_0xd58[i].OffTgNoHitMark();
+            }
+
+            if (i_this->field_0x129a == 3) {
+                for (int j = 0; j < 3; j++) {
+                    i_this->field_0xd58[j].SetTgType(0x2022);
+                    i_this->field_0xd58[j].OnTgNoHitMark();
+                }
+            }
         }
     }
+
+    if (i_this->field_0x9ab == 2) {
+        MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(11), *calc_mtx);
+        sp98.set(0.0f, 0.0f, 0.0f);
+        MtxPosition(&sp98, &spa4);
+        i_this->field_0x1100.SetR(l_HIO.model_size * 50.0f);
+        i_this->field_0x1100.SetC(spa4);
+        dComIfG_Ccsp()->Set(&i_this->field_0x1100);
+        i_this->field_0x9ab = 0;
+    }
+
+    if (i_this->field_0x5bc == 1) {
+        if (i_this->field_0x5bd == 0) {
+            MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(24), *calc_mtx);
+        } else {
+            MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(11), *calc_mtx);
+            cMtx_YrotM(*calc_mtx, 6000);
+            cMtx_XrotM(*calc_mtx, 10000);
+            cMtx_ZrotM(*calc_mtx, 18000);
+            MtxTrans(-30.0f, -50.0f, 20.0f, 1);
+        }
+
+        i_this->field_0x694->setBaseTRMtx(*calc_mtx);
+
+        if (i_this->field_0x9ab != 0) {
+            if (daPy_getPlayerActorClass()->checkHorseRide() || daPy_getPlayerActorClass()->checkBoarRide()) {
+                sp98.set(0.0f, nREG_F(15) + 50.0f, 0.0f);
+                i_this->field_0x1100.SetR((nREG_F(16) + 60.0f) * l_HIO.model_size);
+            } else {
+                sp98.set(0.0f, 30.0f, 0.0f);
+                i_this->field_0x1100.SetR(l_HIO.model_size * 50.0f);
+            }
+
+            MtxPosition(&sp98, &spa4);
+
+            if (i_this->field_0x9ac == 0) {
+                i_this->field_0x9ac = 1;
+                i_this->field_0x1100.StartCAt(spa4);
+            } else {
+                i_this->field_0x1100.MoveCAt(spa4);
+            }
+
+            i_this->field_0x9ab = 0;
+        } else {
+            cXyz spc8(-200000.0f, -200000.0f, -200000.0f);
+            i_this->field_0x1100.SetC(spc8);
+            i_this->field_0x1100.SetR(-200.0f);
+            i_this->field_0x9ac = 0;
+        }
+
+        dComIfG_Ccsp()->Set(&i_this->field_0x1100);
+    }
+
+    if (i_this->field_0x5bc >= 2) {
+        model = i_this->mpModelMorf->getModel();
+
+        if (i_this->field_0x9a6 != 0) {
+            i_this->field_0x9a6--;
+        }
+
+        i_this->field_0x9a8 = i_this->field_0x9a6 * cM_ssin(i_this->field_0x9a6 * (TREG_S(9) + 0x7800)) * (TREG_F(5) + 100.0f);
+
+        model = i_this->field_0x698->getModel();
+        if (i_this->field_0x5bd == 0) {
+            model->setBaseTRMtx(i_this->mpModelMorf->getModel()->getAnmMtx(19));
+        } else {
+            MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(11), *calc_mtx);
+            cMtx_YrotM(*calc_mtx, 6000);
+            cMtx_XrotM(*calc_mtx, 10000);
+            cMtx_ZrotM(*calc_mtx, 18000);
+            MtxTrans(-20.0f, -20.0f, 30.0f, 1);
+            model->setBaseTRMtx(*calc_mtx);
+        }
+
+        i_this->field_0x698->play(0, 0);
+        i_this->field_0x698->modelCalc();
+
+        if (i_this->field_0x9a2 != 0) {
+            MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(24), *calc_mtx);
+            i_this->field_0x694->setBaseTRMtx(*calc_mtx);
+
+            if (i_this->field_0x5bc >= 3) {
+                if (i_this->field_0x9bc != 2 || i_this->field_0x990[1] <= 18) {
+                    fire_eff_set(i_this);
+                }
+            } else {
+                i_this->field_0x127c.set(-200000.0f, -200000.0f, -200000.0f);
+            }
+        }
+
+        if (i_this->field_0x9a3 != 0) {
+            if (i_this->field_0x5bc == 3) {
+                i_this->mSound.startCreatureSound(Z2SE_OBJ_ARROW_SHOT_FIRE, 0, -1);
+            } else {
+                i_this->mSound.startCreatureSound(Z2SE_OBJ_ARROW_SHOT_NORMAL, 0, -1);
+            }
+
+            i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_SHOT_ARROW, -1);
+
+            sp98.set(0.0f, 0.0f, 0.0f);
+            MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(24), *calc_mtx);
+            MtxPosition(&sp98, &spa4);
+
+            csXyz local_148;
+            int iVar1 = 0;
+
+            if (i_this->mAction == ACTION_BOW_IKKI) {
+                sp98 = i_this->field_0x9d4 - spa4;
+                local_148.y = cM_atan2s(sp98.x, sp98.z);
+                local_148.x = -cM_atan2s(sp98.y, JMAFastSqrt(sp98.x * sp98.x + sp98.z * sp98.z));
+            } else {
+                fopAc_ac_c* actor = get_pla(a_this);
+                if (actor != dComIfGp_getPlayer(0)) {
+                    iVar1 |= 32;
+                }
+
+                sp98 = actor->eyePos;
+
+                if (i_this->field_0x1296 != 0) {
+                    sp98.x += actor->speed.x * (TREG_F(7) + 15.0f);
+                    sp98.z += actor->speed.z * (TREG_F(7) + 15.0f);
+                }
+
+                sp98 -= spa4;
+                sp98.y -= 30.0f;
+                local_148.y = cM_atan2s(sp98.x, sp98.z);
+
+                if (i_this->field_0x9bc == 2 && !pl_pass_check(i_this, YREG_F(18))) {
+                    s16 sVar3 = cM_rndF(1000.0f) + 2000.0f;
+                    if (cM_rndF(1.0f) < 0.5f) {
+                        sVar3 *= -1;
+                    }
+
+                    local_148.y += sVar3;
+                }
+
+                local_148.x = -cM_atan2s(sp98.y, JMAFastSqrt(sp98.x * sp98.x + sp98.z * sp98.z));
+
+                if (strcmp(dComIfGp_getStartStageName(), "F_SP121") != 0 && i_this->field_0x1296 == 0) {
+                    local_148.x += (s16)(cM_rndFX(200.0f) + -500.0f);
+                    local_148.y += (s16)cM_rndFX(100.0f);
+                }
+            }
+
+            local_148.z = 0;
+            
+            if (i_this->field_0x5bc == 3) {
+                iVar1 |= 1;
+            } else if (i_this->field_0x5bc == 4) {
+                iVar1 |= 2;
+            }
+
+            if (i_this->field_0x5b8 == 11) {
+                iVar1 |= 16;
+            }
+
+            fopAcM_createChild(PROC_E_ARROW, fopAcM_GetID(a_this), iVar1, &spa4, fopAcM_GetRoomNo(a_this), &local_148, NULL, -1, NULL);
+            i_this->field_0x9a3 = 0;
+            i_this->field_0x9a6 = TREG_S(8) + 15;
+        }
+    }
+
+    if (i_this->field_0x968 != 0) {
+        cLib_addCalc2(&i_this->field_0x96c, -20.0f, 1.0f, 0.4f);
+    }
+
+    static int boss_part_idx[14] = {
+        12, 29, 17, 25, 1, 1, 13,
+        19, 6, 18, 14, 2, 6, 2,
+    };
+    static int ikki2_boss_part_idx[2] = {
+        14, 19,
+    };
+    static u16 eno[3] = {
+        0x828C,
+        0x828D,
+        0x828E,
+    };
+
+    if (i_this->field_0x129a != 0) {
+        for (int i = 0; i < 14; i++) {
+            if (i_this->field_0x6d4[i] != NULL) {
+                if (i_this->field_0x70c[i] == 0) {
+                    if (i_this->field_0x129a == 3) {
+                        MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(ikki2_boss_part_idx[i]), *calc_mtx);
+                    } else {
+                        MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(boss_part_idx[i]), *calc_mtx);
+                    }
+
+                    i_this->field_0x6d4[i]->setBaseTRMtx(*calc_mtx);
+                    sp98.set(0.0f, 0.0f, 0.0f);
+                    MtxPosition(&sp98, &i_this->field_0x71c[i]);
+                } else {
+                    i_this->field_0x71c[i] += i_this->field_0x7c4[i];
+                    i_this->field_0x7c4[i].y -= 3.0f;
+                    i_this->field_0x86c[i].y += 0x900;
+                    i_this->field_0x86c[i].x += 0xB00;
+
+                    mDoMtx_stack_c::transS(i_this->field_0x71c[i].x, i_this->field_0x71c[i].y, i_this->field_0x71c[i].z);
+                    mDoMtx_stack_c::YrotM(i_this->field_0x86c[i].y);
+                    mDoMtx_stack_c::XrotM(i_this->field_0x86c[i].x);
+                    mDoMtx_stack_c::scaleM(l_HIO.field_0xc * (l_HIO.model_size * a_this->scale.x), 
+                                           l_HIO.field_0xc * (l_HIO.model_size * a_this->scale.x), l_HIO.field_0xc * (l_HIO.model_size * a_this->scale.x));
+
+                    i_this->field_0x6d4[i]->setBaseTRMtx(mDoMtx_stack_c::get());
+
+                    for (int j = 0; j < 3; j++) {
+                        i_this->field_0x8c0[j] = dComIfGp_particle_set(i_this->field_0x8c0[j], eno[j], &i_this->field_0x71c[i], NULL, NULL);
+                    }
+
+                    if (i_this->field_0x71c[i].y < a_this->current.pos.y - 200.0f) {
+                        i_this->field_0x6d4[i] = NULL;
+                    }
+                }
+            }
+        }
+
+        if (i_this->field_0x6a0 != 0) {
+            if (i_this->field_0x6a0 == 1) {
+                MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(YREG_S(3) + 15), *calc_mtx);
+                sp98.set(0.0f, 0.0f, 0.0f);
+                MtxPosition(&sp98, &i_this->field_0x6a4);
+            } else {
+                i_this->field_0x6a4 += i_this->field_0x6b0;
+                i_this->field_0x6b0.y -= 5.0f;
+                MtxTrans(i_this->field_0x6a4.x, i_this->field_0x6a4.y, i_this->field_0x6a4.z, 0);
+                fVar4 = l_HIO.field_0xc * ( l_HIO.model_size * a_this->scale.x);
+                MtxScale(fVar4, fVar4, fVar4, 1);
+                MtxTrans(BREG_F(5) + 80.0f, BREG_F(6) + 50.0f, BREG_F(7), 1);
+                cMtx_YrotM(*calc_mtx, i_this->field_0x6be);
+                cMtx_XrotM(*calc_mtx, 0x7FFF);
+                cMtx_ZrotM(*calc_mtx, i_this->field_0x6c0);
+                MtxTrans(-(BREG_F(5) + 80.0f), -(BREG_F(6) + 50.0f), -(BREG_F(7) + 0.0f), 1);
+                i_this->field_0x6be += 0x200;
+                i_this->field_0x6c0 += 0xF00;
+            }
+
+            i_this->mpMorfHornAnm->getModel()->setBaseTRMtx(*calc_mtx);
+        }
+
+        if (i_this->field_0x6c2 != 0) {
+            i_this->field_0x6c2 = 0;
+            if (i_this->field_0x680 == 0) {
+                int iVar2 = i_this->mAnmID;
+                if (iVar2 == 59) {
+                    if ((s16)(a_this->shape_angle.y - i_this->mPlayerAngleY) < 0) {
+                        anm_init(i_this, 56, 2.0f, 0, 1.0f);
+                    } else {
+                        anm_init(i_this, 55, 2.0f, 0, 1.0f);
+                    }
+
+                    horn_anm_init(i_this, 4, 2.0f, 0, 1.0f);
+                } else {
+                    anm_init(i_this, 57, 2.0f, 0, 1.0f);
+                    horn_anm_init(i_this, 5, 2.0f, 0, 1.0f);
+                }
+
+                i_this->field_0x680 = iVar2;
+            }
+        }
+
+        if (i_this->field_0x6a0 != 0) {
+            i_this->mpMorfHornAnm->play(NULL, 0, 0);
+            i_this->mpMorfHornAnm->modelCalc();
+        }
+    }
+
+    if (i_this->field_0x129a == 0 && i_this->field_0x9bc == 0) {
+        player = dComIfGp_getPlayer(0);
+        MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(11), mDoMtx_stack_c::get());
+        mDoMtx_stack_c::multVecZero(&spa4);
+        sp98 = player->current.pos - spa4;
+        cMtx_YrotS(*calc_mtx, cM_atan2s(sp98.x, sp98.z));
+        sp98.x = 0.0f;
+        sp98.y = 0.0f;
+        sp98.z = (BREG_F(12) + 40.0f) - 30.0f;
+        MtxPosition(&sp98, &spb0);
+        spb0 += spa4;
+        a_this->setDownPos(&spb0);
+    }
+
+    cXyz spd4(a_this->eyePos);
+    spd4.y += NREG_F(7) + 130.0f;
+    a_this->setHeadLockPos(&spd4);
+    demo_camera(i_this);
+    i_this->field_0x5bb = 1;
+    a_this->attention_info.flags |= 0x200000;
+
+    return 1;
 }
 
-/* 805163C0-805164D4 011A40 0114+00 1/1 0/0 0/0 .text            abs__4cXyzCFv */
-// void cXyz::abs() const {
-extern "C" void abs__4cXyzCFv() {
-    // NONMATCHING
-}
+static u8 jv_offset[12] = {
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+};
 
 /* 805164D4-805164DC 011B54 0008+00 1/0 0/0 0/0 .text            daE_RD_IsDelete__FP10e_rd_class */
 static int daE_RD_IsDelete(e_rd_class* i_this) {
@@ -8176,231 +6832,115 @@ static int daE_RD_IsDelete(e_rd_class* i_this) {
 }
 
 /* 805164DC-80516540 011B5C 0064+00 1/0 0/0 0/0 .text            daE_RD_Delete__FP10e_rd_class */
-static void daE_RD_Delete(e_rd_class* i_this) {
-    // NONMATCHING
+static int daE_RD_Delete(e_rd_class* i_this) {
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
+
+    dComIfG_resDelete(&i_this->mPhase, i_this->mResName);
+    if (i_this->field_0x125c != 0) {
+        l_initHIO = 0;
+    }
+
+    if (a_this->heap != NULL) {
+        i_this->mpModelMorf->stopZelAnime();
+    }
+
+    return 1;
 }
-
-/* ############################################################################################## */
-/* 80518914-80518918 000390 0004+00 0/1 0/0 0/0 .rodata          @11395 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11395 = -4800.0f;
-COMPILER_STRIP_GATE(0x80518914, &lit_11395);
-#pragma pop
-
-/* 80518918-8051891C 000394 0004+00 0/1 0/0 0/0 .rodata          @11396 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11396 = -650.0f;
-COMPILER_STRIP_GATE(0x80518918, &lit_11396);
-#pragma pop
-
-/* 8051891C-80518920 000398 0004+00 0/1 0/0 0/0 .rodata          @11397 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11397 = -4500.0f;
-COMPILER_STRIP_GATE(0x8051891C, &lit_11397);
-#pragma pop
-
-/* 80518920-80518924 00039C 0004+00 0/1 0/0 0/0 .rodata          @11398 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11398 = 1100.0f;
-COMPILER_STRIP_GATE(0x80518920, &lit_11398);
-#pragma pop
-
-/* 80518924-80518928 0003A0 0004+00 0/1 0/0 0/0 .rodata          @11399 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11399 = -5500.0f;
-COMPILER_STRIP_GATE(0x80518924, &lit_11399);
-#pragma pop
-
-/* 80518928-8051892C 0003A4 0004+00 0/1 0/0 0/0 .rodata          @11400 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11400 = -5800.0f;
-COMPILER_STRIP_GATE(0x80518928, &lit_11400);
-#pragma pop
-
-/* 8051892C-80518930 0003A8 0004+00 0/1 0/0 0/0 .rodata          @11401 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11401 = -1100.0f;
-COMPILER_STRIP_GATE(0x8051892C, &lit_11401);
-#pragma pop
-
-/* 80518930-80518934 0003AC 0004+00 0/1 0/0 0/0 .rodata          @11402 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11402 = 34789.0f;
-COMPILER_STRIP_GATE(0x80518930, &lit_11402);
-#pragma pop
-
-/* 80518934-80518938 0003B0 0004+00 0/1 0/0 0/0 .rodata          @11403 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11403 = -290.0f;
-COMPILER_STRIP_GATE(0x80518934, &lit_11403);
-#pragma pop
-
-/* 80518938-8051893C 0003B4 0004+00 0/1 0/0 0/0 .rodata          @11404 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11404 = -36177.0f;
-COMPILER_STRIP_GATE(0x80518938, &lit_11404);
-#pragma pop
-
-/* 8051893C-80518940 0003B8 0004+00 0/1 0/0 0/0 .rodata          @11405 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11405 = -93620.0f;
-COMPILER_STRIP_GATE(0x8051893C, &lit_11405);
-#pragma pop
-
-/* 80518940-80518944 0003BC 0004+00 0/1 0/0 0/0 .rodata          @11406 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11406 = -5750.0f;
-COMPILER_STRIP_GATE(0x80518940, &lit_11406);
-#pragma pop
-
-/* 80518944-80518948 0003C0 0004+00 0/1 0/0 0/0 .rodata          @11407 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11407 = 49650.0f;
-COMPILER_STRIP_GATE(0x80518944, &lit_11407);
-#pragma pop
-
-/* 80519340-80519350 000208 000C+04 0/1 0/0 0/0 .bss             @11269 */
-#pragma push
-#pragma force_active on
-static u8 lit_11269[12 + 4 /* padding */];
-#pragma pop
-
-/* 80519350-8051935C 000218 000C+00 0/1 0/0 0/0 .bss             @11272 */
-#pragma push
-#pragma force_active on
-static u8 lit_11272[12];
-#pragma pop
-
-/* 8051935C-80519368 000224 000C+00 0/1 0/0 0/0 .bss             @11273 */
-#pragma push
-#pragma force_active on
-static u8 lit_11273[12];
-#pragma pop
-
-/* 80519368-80519374 000230 000C+00 0/1 0/0 0/0 .bss             @11274 */
-#pragma push
-#pragma force_active on
-static u8 lit_11274[12];
-#pragma pop
-
-/* 80519374-80519380 00023C 000C+00 0/1 0/0 0/0 .bss             @11275 */
-#pragma push
-#pragma force_active on
-static u8 lit_11275[12];
-#pragma pop
-
-/* 80519380-8051938C 000248 000C+00 0/1 0/0 0/0 .bss             @11276 */
-#pragma push
-#pragma force_active on
-static u8 lit_11276[12];
-#pragma pop
-
-/* 8051938C-805193D4 000254 0048+00 0/1 0/0 0/0 .bss             set_pos$11268 */
-#pragma push
-#pragma force_active on
-static u8 set_pos_11268[72];
-#pragma pop
 
 /* 80516540-80516980 011BC0 0440+00 1/1 0/0 0/0 .text            ride_game_actor_set__FP10e_rd_class */
 static void ride_game_actor_set(e_rd_class* i_this) {
-    // NONMATCHING
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    cXyz sp70, i_pos;
+    csXyz i_angle;
+
+    OS_REPORT("E3 2005 ACTOR SET %d\n", i_this->field_0x129a);
+    static cXyz set_pos[6] = {
+        cXyz(0.0f, 1500.0f, 2500.0f),
+        cXyz(800.0f, 1500.0f, -4800.0f),
+        cXyz(-650.0f, 1500.0f, -4500.0f),
+        cXyz(1100.0f, 1500.0f, -5500.0f),
+        cXyz(0.0f, 1500.0f, -5800.0f),
+        cXyz(-1100.0f, 1500.0f, -5500.0f),
+    };
+
+    dBgS_GndChk gnd_chk;
+    int iVar1 = 6;
+    if (i_this->field_0x129a >= 2) {
+        iVar1 = 1;
+    }
+
+    for (int i = 0; i < iVar1; i++) {
+        u32 i_parameters;
+        if (i_this->field_0x129a == 1) {
+            cMtx_YrotS(*calc_mtx, player->shape_angle.y);
+            sp70 = set_pos[i];
+
+            if (i > 0 && cDmr_SkipInfo == 0) {
+                sp70.z -= 4000.0f;
+            }
+
+            MtxPosition(&sp70, &i_pos);
+            i_pos += player->current.pos;
+            gnd_chk.SetPos(&i_pos);
+            i_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
+            i_angle = player->shape_angle;
+            i_angle.y += 0x4000;
+            i_parameters = 0x80000005;
+        } else if (i_this->field_0x129a == 2) {
+            i_pos.set(34789.0f, -290.0f, -31677.0f);
+            i_angle.set(0, 0, 0);
+            i_parameters = 0x80000007;
+        } else if (i_this->field_0x129a == 3) {
+            i_pos.set(-93620.0f, -5750.0f, 49650.0f);
+            i_angle.set(0, -0x8000, 0);
+            i_parameters = 0x80000008;
+        } else if (i_this->field_0x129a == 4) {
+            i_pos = a_this->home.pos;
+            i_angle = a_this->home.angle;
+            i_parameters = 0x80000009;
+        }
+
+        if (i == 0) {
+            a_this->home.pos = i_pos;
+            a_this->current.pos = a_this->home.pos;
+            a_this->old.pos = a_this->home.pos;
+        } else {
+            i_angle = player->shape_angle;
+            i_parameters = (i << 8 | 0x80000006);
+        }
+
+        fopAcM_create(PROC_E_WB, i_parameters, &i_pos, fopAcM_GetRoomNo(a_this), &i_angle, NULL, -1);
+    }
 }
-
-/* ############################################################################################## */
-/* 80518948-8051894C 0003C4 0004+00 0/1 0/0 0/0 .rodata          @11460 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11460 = -57464.0f;
-COMPILER_STRIP_GATE(0x80518948, &lit_11460);
-#pragma pop
-
-/* 8051894C-80518950 0003C8 0004+00 0/1 0/0 0/0 .rodata          @11461 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11461 = -8000.0f;
-COMPILER_STRIP_GATE(0x8051894C, &lit_11461);
-#pragma pop
-
-/* 80518950-80518954 0003CC 0004+00 0/1 0/0 0/0 .rodata          @11462 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11462 = 82137.0f;
-COMPILER_STRIP_GATE(0x80518950, &lit_11462);
-#pragma pop
-
-/* 80518954-80518958 0003D0 0004+00 0/1 0/0 0/0 .rodata          @11463 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11463 = -58006.0f;
-COMPILER_STRIP_GATE(0x80518954, &lit_11463);
-#pragma pop
-
-/* 80518958-8051895C 0003D4 0004+00 0/1 0/0 0/0 .rodata          @11464 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11464 = 79302.0f;
-COMPILER_STRIP_GATE(0x80518958, &lit_11464);
-#pragma pop
-
-/* 8051895C-80518960 0003D8 0004+00 0/1 0/0 0/0 .rodata          @11465 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11465 = -56848.0f;
-COMPILER_STRIP_GATE(0x8051895C, &lit_11465);
-#pragma pop
-
-/* 80518960-80518964 0003DC 0004+00 0/1 0/0 0/0 .rodata          @11466 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_11466 = 84472.0f;
-COMPILER_STRIP_GATE(0x80518960, &lit_11466);
-#pragma pop
-
-/* 805193D4-805193E4 00029C 000C+04 0/1 0/0 0/0 .bss             @11412 */
-#pragma push
-#pragma force_active on
-static u8 lit_11412[12 + 4 /* padding */];
-#pragma pop
-
-/* 805193E4-805193F0 0002AC 000C+00 0/1 0/0 0/0 .bss             @11415 */
-#pragma push
-#pragma force_active on
-static u8 lit_11415[12];
-#pragma pop
-
-/* 805193F0-805193FC 0002B8 000C+00 0/1 0/0 0/0 .bss             @11416 */
-#pragma push
-#pragma force_active on
-static u8 lit_11416[12];
-#pragma pop
-
-
-/* 805193FC-80519424 0002C4 0024+04 0/1 0/0 0/0 .bss             set_pos$11411 */
-static cXyz set_pos[3];
-
-static s8 gap_05_000002E8_bss;
 
 /* 80516980-80516B04 012000 0184+00 1/1 0/0 0/0 .text coach_game_actor_set__FP10e_rd_class */
 static void coach_game_actor_set(e_rd_class* i_this) {
-    // NONMATCHING
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    csXyz i_angle;
+
+    OS_REPORT("COATH GAME ACTOR SET \n");
+
+    static cXyz set_pos[3] = {
+        cXyz(-57464.0f, -8000.0f, 82137.0f),
+        cXyz(-58006.0f, -8000.0f, 79302.0f),
+        cXyz(-56848.0f, -8000.0f, 84472.0f),
+    };
+
+    dBgS_GndChk gnd_chk;
+    i_angle.set(0, 0, 0);
+    i_angle.y = player->shape_angle.y;
+
+    for (int i = 0; i < NREG_S(7) + 3; i++) {
+        fopAcM_create(PROC_E_WB, (i + 1) * 0x100 | 0x8000000a, &set_pos[i], fopAcM_GetRoomNo(a_this), &i_angle, NULL, -1);
+    }
 }
+
+static s8 gap_05_000002E8_bss;
 
 /* 80516B04-805171FC 012184 06F8+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 static int useHeapInit(fopAc_ac_c* a_this) {
-    // NONMATCHING
     e_rd_class* i_this = (e_rd_class*)a_this;
     J3DModel* model;
     J3DModelData* modelData;
@@ -8430,18 +6970,18 @@ static int useHeapInit(fopAc_ac_c* a_this) {
             i_this->field_0x6a0 = 1;
         }
 
-        static int ikki2_boss_part_idx[2] = {
-            14, 19,
-        };
         static int boss_part_bmd[14] = {
             0x5A, 0x50, 0x5B, 0x4F, 0x51, 0x58, 0x4A,
             0x49, 0x4D, 0x4C, 0x4B, 0x59, 0x4E, 0x52,
+        };
+        static int ikki2_boss_part_bmd[2] = {
+            0x56, 0x57,
         };
 
         for (int i = 0; i < 14; i++) {
             if (i_this->field_0x129a == 3) {
                 if (i < 2) {
-                    modelData = (J3DModelData*)dComIfG_getObjectRes("E_rdb", ikki2_boss_part_idx[i]);
+                    modelData = (J3DModelData*)dComIfG_getObjectRes("E_rdb", ikki2_boss_part_bmd[i]);
                     JUT_ASSERT(10672, modelData != 0);
                     i_this->field_0x6d4[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
                     if (i_this->field_0x6d4[i] == NULL) {
@@ -8631,22 +7171,22 @@ static cPhs__Step daE_RD_Create(fopAc_ac_c* a_this) {
 
             if (i_this->field_0x5b8 == 6) {
                 i_this->field_0x1299 = 1;
-                i_this->mAction = 25;
+                i_this->mAction = ACTION_COMMANDER;
                 i_this->field_0x5b4 = 0;
                 i_this->field_0x990[2] = 20;
                 i_this->field_0x1296 = 1;
             } else if (i_this->field_0x5b8 == 7) {
-                i_this->mAction = 26;
+                i_this->mAction = ACTION_BOW3;
                 i_this->field_0x1296 = 1;
                 i_this->field_0x998 = 20;
             } else {
-                i_this->mAction = 7;
+                i_this->mAction = ACTION_BOW2;
             }
 
             fopAcM_setCullSizeFar(a_this, 30000.0f);
             i_this->field_0x5b8 = 3;
         } else if (i_this->field_0x5b8 == 10) {
-            i_this->mAction = 8;
+            i_this->mAction = ACTION_BOW_IKKI;
             i_this->field_0x990[0] = 142;
         } else if (i_this->field_0x5b8 == 11) {
             fopAcM_create(PROC_E_RDY, fopAcM_GetParam(a_this), &a_this->home.pos, 
@@ -8669,7 +7209,7 @@ static cPhs__Step daE_RD_Create(fopAc_ac_c* a_this) {
         a_this->attention_info.flags = 4;
 
         if (i_this->field_0x5b6 == 6) {
-            i_this->mAction = 50;
+            i_this->mAction = ACTION_YAGURA;
             i_this->field_0x99c = 30;
             S_find = 0;
             lbl_70_bss_AE = 0;
@@ -8678,7 +7218,7 @@ static cPhs__Step daE_RD_Create(fopAc_ac_c* a_this) {
                 fopAcM_setCullSizeFar(a_this, 30000.0f);
             }
         } else if (i_this->field_0x5b6 == 7) {
-            i_this->mAction = 0;
+            i_this->mAction = ACTION_NORMAL;
             if ((u32)(a_this->home.angle.x & 0xFF) != 0xFF) {
                 i_this->mPath = dPath_GetRoomPath(a_this->home.angle.x & 0xFF, fopAcM_GetRoomNo(a_this));
                 OS_REPORT("//////////////E_RD PPD %x!!\n", i_this->mPath);
@@ -8690,27 +7230,27 @@ static cPhs__Step daE_RD_Create(fopAc_ac_c* a_this) {
                 OS_REPORT("//////////////E_RD P0.y %f\n", i_this->mPath->m_points->m_position.y);
             }
         } else if (i_this->field_0x5b6 == 8) {
-            i_this->mAction = 52;
+            i_this->mAction = ACTION_SLEEP;
             if (fopAcM_GetRoomNo(a_this) == 0) {
                 fopAcM_setCullSizeFar(a_this, 30000.0f);
             }
         } else if (i_this->field_0x5b6 == 9) {
-            i_this->mAction = 53;
+            i_this->mAction = ACTION_TAG;
             fopAcM_OffStatus(a_this, 0);
             a_this->attention_info.flags = 0;
         } else if (i_this->field_0x5b6 == 35) {
-            i_this->mAction = 3;
+            i_this->mAction = ACTION_FIGHT_RUN;
             i_this->field_0x5b4 = 0;
             i_this->field_0x99c = 200;
         }
 
         if (i_this->field_0x5bc == 1 && i_this->field_0x5b6 == 0) {
-            i_this->mAction = 24;
+            i_this->mAction = ACTION_STAND;
             i_this->field_0x5b4 = 0;
         }
 
         if (i_this->field_0x5b6 == 13 || i_this->field_0x5b6 == 14) {
-            i_this->mAction = 60;
+            i_this->mAction = ACTION_REG;
             i_this->field_0x5b4 = 0;
             i_this->field_0xafb = 1;
             fopAcM_OffStatus(a_this, fopAcM_STATUS_UNK_000100);
@@ -8840,7 +7380,7 @@ static cPhs__Step daE_RD_Create(fopAc_ac_c* a_this) {
         daE_RD_Execute(i_this);
         c_start = 0;
 
-        if (i_this->mAction == 53) {
+        if (i_this->mAction == ACTION_TAG) {
             i_this->field_0xafb = 1;
             i_this->mSound.setEnemyName(NULL);
         }
@@ -8854,213 +7394,33 @@ e_rd_class::e_rd_class() {
     // NONMATCHING
 }
 
-/* 805180BC-805180C4 01373C 0008+00 1/0 0/0 0/0 .text            @20@__dt__14dBgS_ObjGndChkFv */
-static void func_805180BC() {
-    // NONMATCHING
-}
-
-/* 805180C4-805180CC 013744 0008+00 1/0 0/0 0/0 .text            @76@__dt__14dBgS_ObjGndChkFv */
-static void func_805180C4() {
-    // NONMATCHING
-}
-
-/* 805180CC-805180D4 01374C 0008+00 1/0 0/0 0/0 .text            @60@__dt__14dBgS_ObjGndChkFv */
-static void func_805180CC() {
-    // NONMATCHING
-}
-
-/* 805180D4-805180DC 013754 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
-static void func_805180D4() {
-    // NONMATCHING
-}
-
-/* 805180DC-805180E4 01375C 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
-static void func_805180DC() {
-    // NONMATCHING
-}
-
-/* 805184F8-80518534 013B78 003C+00 1/1 0/0 0/0 .text            __dt__5csXyzFv */
-// csXyz::~csXyz() {
-extern "C" void __dt__5csXyzFv() {
-    // NONMATCHING
-}
-
-/* 80518534-80518570 013BB4 003C+00 4/4 0/0 0/0 .text            __dt__4cXyzFv */
-// cXyz::~cXyz() {
-extern "C" void __dt__4cXyzFv() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80519424-80519428 0002EC 0004+00 0/0 0/0 0/0 .bss
- * sInstance__40JASGlobalInstance<19JASDefaultBankTable>        */
-#pragma push
-#pragma force_active on
-static u8 data_80519424[4];
-#pragma pop
-
-/* 80519428-8051942C 0002F0 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14JASAudioThread>             */
-#pragma push
-#pragma force_active on
-static u8 data_80519428[4];
-#pragma pop
-
-/* 8051942C-80519430 0002F4 0004+00 0/0 0/0 0/0 .bss sInstance__27JASGlobalInstance<7Z2SeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_8051942C[4];
-#pragma pop
-
-/* 80519430-80519434 0002F8 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8Z2SeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_80519430[4];
-#pragma pop
-
-/* 80519434-80519438 0002FC 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SceneMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80519434[4];
-#pragma pop
-
-/* 80519438-8051943C 000300 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2StatusMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80519438[4];
-#pragma pop
-
-/* 8051943C-80519440 000304 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2DebugSys>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8051943C[4];
-#pragma pop
-
-/* 80519440-80519444 000308 0004+00 0/0 0/0 0/0 .bss
- * sInstance__36JASGlobalInstance<15JAISoundStarter>            */
-#pragma push
-#pragma force_active on
-static u8 data_80519440[4];
-#pragma pop
-
-/* 80519444-80519448 00030C 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14Z2SoundStarter>             */
-#pragma push
-#pragma force_active on
-static u8 data_80519444[4];
-#pragma pop
-
-/* 80519448-8051944C 000310 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12Z2SpeechMgr2>               */
-#pragma push
-#pragma force_active on
-static u8 data_80519448[4];
-#pragma pop
-
-/* 8051944C-80519450 000314 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8JAISeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_8051944C[4];
-#pragma pop
-
-/* 80519450-80519454 000318 0004+00 0/0 0/0 0/0 .bss sInstance__29JASGlobalInstance<9JAISeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_80519450[4];
-#pragma pop
-
-/* 80519454-80519458 00031C 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAIStreamMgr>               */
-#pragma push
-#pragma force_active on
-static u8 data_80519454[4];
-#pragma pop
-
-/* 80519458-8051945C 000320 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SoundMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80519458[4];
-#pragma pop
-
-/* 8051945C-80519460 000324 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAISoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_8051945C[4];
-#pragma pop
-
-/* 80519460-80519464 000328 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13JAUSoundTable>              */
-#pragma push
-#pragma force_active on
-static u8 data_80519460[4];
-#pragma pop
-
-/* 80519464-80519468 00032C 0004+00 0/0 0/0 0/0 .bss
- * sInstance__38JASGlobalInstance<17JAUSoundNameTable>          */
-#pragma push
-#pragma force_active on
-static u8 data_80519464[4];
-#pragma pop
-
-/* 80519468-8051946C 000330 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAUSoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_80519468[4];
-#pragma pop
-
-/* 8051946C-80519470 000334 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SoundInfo>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8051946C[4];
-#pragma pop
-
-/* 80519470-80519474 000338 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2SoundObjMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_80519470[4];
-#pragma pop
-
-/* 80519474-80519478 00033C 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2Audience>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80519474[4];
-#pragma pop
-
-/* 80519478-8051947C 000340 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2FxLineMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80519478[4];
-#pragma pop
-
-/* 8051947C-80519480 000344 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2EnvSeMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8051947C[4];
-#pragma pop
-
-/* 80519480-80519484 000348 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SpeechMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80519480[4];
-#pragma pop
-
-/* 80519484-80519488 00034C 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2WolfHowlMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_80519484[4];
-#pragma pop
+AUDIO_INSTANCES
 
 /* 80518968-80518968 0003E4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+
+/* 80519048-80519068 -00001 0020+00 1/0 0/0 0/0 .data            l_daE_RD_Method */
+static actor_method_class l_daE_RD_Method = {
+    (process_method_func)daE_RD_Create,
+    (process_method_func)daE_RD_Delete,
+    (process_method_func)daE_RD_Execute,
+    (process_method_func)daE_RD_IsDelete,
+    (process_method_func)daE_RD_Draw,
+};
+
+/* 80519068-80519098 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_E_RD */
+extern actor_process_profile_definition g_profile_E_RD = {
+  fpcLy_CURRENT_e,        // mLayerID
+  7,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_E_RD,              // mProcName
+  &g_fpcLf_Method.base,  // sub_method
+  sizeof(e_rd_class),     // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  154,                    // mPriority
+  &l_daE_RD_Method,       // sub_method
+  0x00044000,             // mStatus
+  fopAc_ENEMY_e,          // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
+};
