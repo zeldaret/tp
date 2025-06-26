@@ -1,0 +1,10 @@
+name: Rframework
+object_base: orig/RZDE01_00
+object: sys/main.dol
+hash: 0f626c1bfbd05979ed78b634cc85248342452fc2
+splits: config/RZDE01_00/splits.txt
+symbols: config/RZDE01_00/symbols.txt
+# map: orig/RZDE01_00/fixed_maps/RframeworkF.map
+mw_comment_version: 14 # GC Linker 2.7
+# quick_analysis: true # Initial analysis completed
+# detect_objects: true

@@ -47,7 +47,7 @@ VERSIONS = [
 
 # Versions to disable until properly configured
 DISABLED_VERSIONS = [
-    3,  # Wii USA Rev 0
+    #3,  # Wii USA Rev 0
     4,  # Wii USA Rev 2
     5,  # Wii PAL
     6,  # Wii JPN
@@ -351,6 +351,8 @@ def MWVersion(cfg_version: str | None) -> str:
             return "GC/2.7"
         case "GZ2J01":
             return "GC/2.7"
+        case "RZDE01_00":
+            return "Wii/1.0"
         case "ShieldD":
             return "Wii/1.0"
         case _:
