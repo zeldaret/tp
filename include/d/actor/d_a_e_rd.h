@@ -192,8 +192,8 @@ public:
     /* 0x12A0 */ int field_0x12a0;
     /* 0x12A4 */ s16 mDemoMode;
     /* 0x12A6 */ s16 field_0x12a6;
-    /* 0x12A8 */ cXyz field_0x12a8;
-    /* 0x12B4 */ cXyz field_0x12b4;
+    /* 0x12A8 */ cXyz mDemoCamEye;
+    /* 0x12B4 */ cXyz mDemoCamCenter;
     /* 0x12C0 */ cXyz field_0x12c0;
     /* 0x12CC */ cXyz field_0x12cc;
     /* 0x12D8 */ cXyz field_0x12d8;
@@ -203,7 +203,7 @@ public:
     /* 0x1300 */ f32 field_0x1300;
     /* 0x1304 */ u8 mBlureRate;
     /* 0x1305 */ u8 field_0x1305[0x1308 - 0x1305];
-    /* 0x1208 */ f32 field_0x1308;
+    /* 0x1208 */ f32 mDemoCamFovy;
     /* 0x130C */ f32 field_0x130c;
     /* 0x1310 */ u8 field_0x1310[0x131c - 0x1310];
     /* 0x131C */ dMsgFlow_c mMsgFlow;
