@@ -49,24 +49,24 @@ dCcD_SrcCps l_cps_src = {
 static daObjMHole_HIO_c l_HIO;
 
 daObjMHole_HIO_c::daObjMHole_HIO_c() {
-    field_0x8.set(1.0f, 1.0f, 1.0f);
-    field_0x14 = 0x0;
-    field_0x15 = 0x0;
-    field_0x16 = 0x0;
-    field_0x18.set(0, 0, 0);
+    scale.set(1.0f, 1.0f, 1.0f);
+    scale_adjust_on = 0x0;
+    collision_display = 0x0;
+    angle = 0x0;
+    angl.set(0, 0, 0);
 }
 
 void daObjMHole_HIO_c::genMessage(JORMContext* mctx) {
     mctx->genLabel("マグネホール", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    mctx->genCheckBox("スケール調整ＯＮ", &field_0x14, 0x1, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    mctx->genSlider("Ｘスケール", &field_0x8.x, 0.1f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 24);
-    mctx->genSlider("Ｙスケール", &field_0x8.y, 0.1f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 24);
-    mctx->genSlider("Ｚスケール", &field_0x8.z, 0.1f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 24);
-    mctx->genCheckBox("当たり表示", &field_0x15, 0x1, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    mctx->genCheckBox("アングル", &field_0x16, 0x1, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
-    mctx->genSlider("Ｘ", &field_0x18.x, -0x7FFF, 0x7FFF, 0, NULL, 0xffff, 0xffff, 0x200, 24);
-    mctx->genSlider("Ｙ", &field_0x18.y, -0x7FFF, 0x7FFF, 0, NULL, 0xffff, 0xffff, 0x200, 24);
-    mctx->genSlider("Ｚ", &field_0x18.z, -0x7FFF, 0x7FFF, 0, NULL, 0xffff, 0xffff, 0x200, 24);
+    mctx->genCheckBox("スケール調整ＯＮ", &scale_adjust_on, 0x1, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    mctx->genSlider("Ｘスケール", &scale.x, 0.1f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 24);
+    mctx->genSlider("Ｙスケール", &scale.y, 0.1f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 24);
+    mctx->genSlider("Ｚスケール", &scale.z, 0.1f, 10.0f, 0, NULL, 0xffff, 0xffff, 0x200, 24);
+    mctx->genCheckBox("当たり表示", &collision_display, 0x1, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    mctx->genCheckBox("アングル", &angle, 0x1, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    mctx->genSlider("Ｘ", &angl.x, -0x7FFF, 0x7FFF, 0, NULL, 0xffff, 0xffff, 0x200, 24);
+    mctx->genSlider("Ｙ", &angl.y, -0x7FFF, 0x7FFF, 0, NULL, 0xffff, 0xffff, 0x200, 24);
+    mctx->genSlider("Ｚ", &angl.z, -0x7FFF, 0x7FFF, 0, NULL, 0xffff, 0xffff, 0x200, 24);
 }
 #endif
 
@@ -99,11 +99,11 @@ void daObjMHole_c::initBaseMtx() {
 /* 80C93014-80C9307C 000234 0068+00 2/2 0/0 0/0 .text            setBaseMtx__12daObjMHole_cFv */
 void daObjMHole_c::setBaseMtx() {
 #ifdef DEBUG
-    if (l_HIO.field_0x14 != 0) {
-        scale = l_HIO.field_0x8;
+    if (l_HIO.scale_adjust_on != 0) {
+        scale = l_HIO.scale;
     }
-    if (l_HIO.field_0x16 != 0) {
-        current.angle = l_HIO.field_0x18;
+    if (l_HIO.angle != 0) {
+        current.angle = l_HIO.angl;
         shape_angle = current.angle;
     }
 #endif
@@ -387,7 +387,7 @@ int daObjMHole_c::draw() {
     mDoExt_btkAnmRemove(mpModel->getModelData());
 
 #ifdef DEBUG
-    if (l_HIO.field_0x15 != 0) {
+    if (l_HIO.collision_display != 0) {
         GXColor color = {0xFF, 0x0, 0x0, 0xFF};
         if (mCps.GetAtVecP() != NULL) {
             dDbVw_drawArrowXlu(mCps.GetStart(), mCps.GetEnd(), color, 1, 12);

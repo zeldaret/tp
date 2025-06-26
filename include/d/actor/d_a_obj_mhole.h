@@ -60,11 +60,11 @@ public:
 
     void genMessage(JORMContext*);
 
-    /* 0x08 */ cXyz field_0x8;
-    /* 0x14 */ u8 field_0x14;
-    /* 0x15 */ u8 field_0x15;
-    /* 0x16 */ u8 field_0x16;
-    /* 0x18 */ csXyz field_0x18;
+    /* 0x08 */ cXyz scale;
+    /* 0x14 */ u8 scale_adjust_on;
+    /* 0x15 */ u8 collision_display;
+    /* 0x16 */ u8 angle;
+    /* 0x18 */ csXyz angl;
 };
 
 #endif /* D_A_OBJ_MHOLE_H */
