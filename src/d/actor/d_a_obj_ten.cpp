@@ -453,7 +453,7 @@ void daObjTEN_c::checkGroundPos() {
 
 /* 80D0A13C-80D0A154 001A5C 0018+00 1/0 0/0 0/0 .text            Insect_Release__10daObjTEN_cFv */
 void daObjTEN_c::Insect_Release() {
-    field_0x56C = 1;
+    field_0x56c = 1;
     field_0x624 = 2;
     mAction = ACTION_MOVE;
 }
@@ -729,7 +729,7 @@ int daObjTEN_c::create() {
     if (rv == cPhs_COMPLEATE_e) {
         field_0x624 = fopAcM_GetParam(this) & 0xf;
         if (field_0x624 == 2) {
-            field_0x56C = 0;
+            field_0x56c = 0;
             shape_angle.x -= 0x2000;
             fopAcM_OnStatus(this, fopAcM_STATUS_UNK_004000);
         } else {

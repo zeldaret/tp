@@ -30,7 +30,7 @@ SECTION_DATA extern void* __vt__8daItem_c__HACK[] = {
 /* 8015E010-8015E078 158950 0068+00 0/0 0/0 13/13 .text            __ct__9dInsect_cFv */
 dInsect_c::dInsect_c() {
     m_itemId = -1;
-    field_0x56C = 0;
+    field_0x56c = 0;
     mDraw = true;
     m_mode = 0;
     m_itemNo = fpcNm_ITEM_M_MAYFLY;
@@ -127,7 +127,7 @@ void dInsect_c::CalcZBuffer(f32 param_0) {
         pos_projected.z = -10.0f;
     }
 
-    field_0x57C =
+    field_0x57c =
         (((view_near + ((view_far * view_near) / pos_projected.z)) / (view_far - view_near)) +
          1.0f) *
         16777215.0f;

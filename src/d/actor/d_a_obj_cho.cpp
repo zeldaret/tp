@@ -287,7 +287,7 @@ void daObjCHO_c::checkGroundPos() {
 
 /* 80BCB310-80BCB320 0010F0 0010+00 1/0 0/0 0/0 .text            Insect_Release__10daObjCHO_cFv */
 void daObjCHO_c::Insect_Release() {
-    field_0x56C = 1;
+    field_0x56c = 1;
     mAction = ACT_MOVE;
 }
 
@@ -560,7 +560,7 @@ cPhs__Step daObjCHO_c::create() {
     if (step == cPhs_COMPLEATE_e) {
         mLocation = fopAcM_GetParam(this) & 0xf;
         if (mLocation == LOC_UNK_2) {
-            field_0x56C = 0;
+            field_0x56c = 0;
             shape_angle.x -= 0x2000;
             fopAcM_OnStatus(this, 0x4000);
             mTargetSpeedY = -2.0f;
