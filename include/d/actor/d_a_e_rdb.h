@@ -29,7 +29,7 @@ public:
     /* 0x05CC */ f32 field_0x5cc;
     /* 0x05D0 */ Z2CreatureEnemy mSound;
     /* 0x0674 */ int mAnm;
-    /* 0x0678 */ J3DModel* field_0x678;
+    /* 0x0678 */ J3DModel* mpAxeModel;
     /* 0x067C */ s16 field_0x67c;
     /* 0x067E */ s16 mAction;
     /* 0x0680 */ s8 field_0x680;

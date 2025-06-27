@@ -22,7 +22,7 @@ public:
 
     /* 0x0000 */ fopEn_enemy_c actor;
     /* 0x05AC */ request_of_phase_process_class mPhase;
-    /* 0x05B4 */ s16 field_0x5b4;
+    /* 0x05B4 */ s16 mMode;
     /* 0x05B6 */ u8 field_0x5b6;
     /* 0x05B7 */ u8 field_0x5b7;
     /* 0x05B8 */ u8 field_0x5b8;
@@ -42,7 +42,7 @@ public:
     /* 0x0680 */ int field_0x680;
     /* 0x0684 */ dJntCol_c mJntCol;
     /* 0x0694 */ J3DModel* field_0x694;
-    /* 0x0698 */ mDoExt_McaMorfSO* field_0x698;
+    /* 0x0698 */ mDoExt_McaMorfSO* mpMorfBowAnm;
     /* 0x069C */ mDoExt_McaMorf* mpMorfHornAnm;
     /* 0x06A0 */ s8 field_0x6a0;
     /* 0x06A1 */ u8 field_0x6a1[3];
@@ -53,10 +53,10 @@ public:
     /* 0x06C0 */ s16 field_0x6c0;
     /* 0x06C2 */ s8 field_0x6c2;
     /* 0x06C3 */ u8 field_0x6c3;
-    /* 0x06C4 */ J3DModel* field_0x6c4[2];
+    /* 0x06C4 */ J3DModel* mpEyeModels[2];
     /* 0x06CC */ f32 field_0x6cc;
     /* 0x06D0 */ f32 field_0x6d0;
-    /* 0x06D4 */ J3DModel* field_0x6d4[14];
+    /* 0x06D4 */ J3DModel* mpBossParts[14];
     /* 0x070C */ s8 field_0x70c[14];
     /* 0x071A */ u8 field_0x71a[2];
     /* 0x071C */ cXyz field_0x71c[14];
