@@ -1942,7 +1942,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_groundwater"),
     ActorRel(NonMatching, "d_a_obj_grz_rock"),
     ActorRel(NonMatching, "d_a_obj_h_saku"),
-    ActorRel(NonMatching, "d_a_obj_hakai_brl"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_hakai_brl"),
     ActorRel(NonMatching, "d_a_obj_hakai_ftr"),
     ActorRel(NonMatching, "d_a_obj_hasu2"),
     ActorRel(NonMatching, "d_a_obj_hata"),
