@@ -64,54 +64,54 @@ enum Animation {
     /* 0x05 */ ANM_ATTACK01,
     /* 0x06 */ ANM_AVOID,
     /* 0x07 */ ANM_BOW_READY,
-    /* 0x08 */ ANM_BOW_R_READY,
-    /* 0x09 */ ANM_BOW_R_SHOOT,
+    /* 0x08 */ ANM_BOW_RREADY,
+    /* 0x09 */ ANM_BOW_RSHOOT,
     /* 0x0A */ ANM_BOW_SHOOT,
-    /* 0x0B */ ANM_DAMAGE_LEFT,
-    /* 0x0C */ ANM_DAMAGE_RIGHT,
+    /* 0x0B */ ANM_DAMAGE_L,
+    /* 0x0C */ ANM_DAMAGE_R,
     /* 0x0D */ ANM_DAMAGE_S,
     /* 0x0E */ ANM_DAMAGE_W,
     /* 0x0F */ ANM_DEAD_ARROW,
-    /* 0x10 */ ANM_DIE_A,
-    /* 0x11 */ ANM_DIE_A_UP,
-    /* 0x12 */ ANM_DIE_B,
-    /* 0x13 */ ANM_DIE_B_UP,
-    /* 0X14 */ ANM_DROWNED_A,
-    /* 0x15 */ ANM_DROWNED_B,
-    /* 0x16 */ ANM_FURA_2, // (Fura = Onomatopoeia for dizziness)
-    /* 0x17 */ ANM_GO_SIGN,
+    /* 0x10 */ ANM_DIEA,
+    /* 0x11 */ ANM_DIEA_UP,
+    /* 0x12 */ ANM_DIEB,
+    /* 0x13 */ ANM_DIEB_UP,
+    /* 0X14 */ ANM_DROWNEDA,
+    /* 0x15 */ ANM_DROWNEDB,
+    /* 0x16 */ ANM_FURA2, // (Fura = Onomatopoeia for dizziness)
+    /* 0x17 */ ANM_GOSIGN,
     /* 0x18 */ ANM_JUMP_A,
     /* 0x19 */ ANM_JUMP_B,
     /* 0x1A */ ANM_JUMP_C,
     /* 0x1B */ ANM_KAMAE, // (Kamae = Stance)
     /* 0x1C */ ANM_KICK,
-    /* 0x1D */ ANM_KYORO_2, // (Kyoro = Onomatopoeia for looking around nervously)
-    /* 0x1E */ ANM_R_ATTACK01,
-    /* 0x1F */ ANM_R_ATTACK01_WAIT,
-    /* 0x20 */ ANM_R_ATTACK02,
-    /* 0x21 */ ANM_R_ATTACK02_WAIT,
-    /* 0x22 */ ANM_R_ATTACK03,
-    /* 0x23 */ ANM_R_ATTACK04,
-    /* 0x24 */ ANM_R_DAMAGE,
-    /* 0x25 */ ANM_R_DAMAGE_BACK,
-    /* 0x26 */ ANM_R_RUN,
-    /* 0x27 */ ANM_R_RUN_BACK,
-    /* 0x28 */ ANM_R_RUN02_BACK,
-    /* 0x29 */ ANM_R_SHOOT,
-    /* 0x2A */ ANM_R_SHOOT_READY,
-    /* 0x2B */ ANM_R_SHOOT_WAIT,
-    /* 0x2C */ ANM_R_SHOOT_WAIT02,
-    /* 0x2D */ ANM_R_STEP_BACK,
-    /* 0x2E */ ANM_R_STEP_LEFT,
-    /* 0x2F */ ANM_R_STEP_LEFT_BACK,
-    /* 0x30 */ ANM_R_STEP_RIGHT,
-    /* 0x31 */ ANM_R_STEP_RIGHT_BACK,
+    /* 0x1D */ ANM_KYORO2, // (Kyoro = Onomatopoeia for looking around nervously)
+    /* 0x1E */ ANM_RATTACK01,
+    /* 0x1F */ ANM_RATTACK01_WAIT,
+    /* 0x20 */ ANM_RATTACK02,
+    /* 0x21 */ ANM_RATTACK02_WAIT,
+    /* 0x22 */ ANM_RATTACK03,
+    /* 0x23 */ ANM_RATTACK04,
+    /* 0x24 */ ANM_RDAMAGE,
+    /* 0x25 */ ANM_RDAMAGE_BACK,
+    /* 0x26 */ ANM_RRUN,
+    /* 0x27 */ ANM_RRUN_BACK,
+    /* 0x28 */ ANM_RRUN02_BACK,
+    /* 0x29 */ ANM_RSHOOT,
+    /* 0x2A */ ANM_RSHOOT_READY,
+    /* 0x2B */ ANM_RSHOOT_WAIT,
+    /* 0x2C */ ANM_RSHOOT_WAIT02,
+    /* 0x2D */ ANM_RSTEP_BACK,
+    /* 0x2E */ ANM_RSTEP_L,
+    /* 0x2F */ ANM_RSTEP_LBACK,
+    /* 0x30 */ ANM_RSTEP_R,
+    /* 0x31 */ ANM_RSTEP_RBACK,
     /* 0x32 */ ANM_RUN,
     /* 0x33 */ ANM_RUN02,
-    /* 0x34 */ ANM_R_WAIT,
-    /* 0x35 */ ANM_R_WAIT_BACK,
-    /* 0x36 */ ANM_R_WALK,
-    /* 0x37 */ ANM_R_WALK_BACK,
+    /* 0x34 */ ANM_RWAIT,
+    /* 0x35 */ ANM_RWAIT_BACK,
+    /* 0x36 */ ANM_RWALK,
+    /* 0x37 */ ANM_RWALK_BACK,
     /* 0x38 */ ANM_SHOOT,
     /* 0x39 */ ANM_SHOOT_READY,
     /* 0x3A */ ANM_SHOOT_WAIT,
@@ -122,10 +122,6 @@ enum Animation {
     /* 0x3F */ ANM_SLEEP_WAIT,
     /* 0x40 */ ANM_WAIT01,
     /* 0x41 */ ANM_WALK,
-};
-
-enum HORN_ANIMATION {
-    /* 0x42 */
 };
 
 /* 80504A6C-80504B20 0000EC 00B4+00 1/1 0/0 0/0 .text            __ct__12daE_RD_HIO_cFv */
@@ -190,7 +186,7 @@ static void anm_init(e_rd_class* i_this, int i_anmID, f32 i_morf, u8 i_mode, f32
                                         i_mode, i_morf, i_speed, 0.0f, -1.0f);
             i_this->mAnmID = i_anmID;
 
-            if (i_anmID == ANM_KYORO_2) {
+            if (i_anmID == ANM_KYORO2) {
                 i_this->mpModelMorf->setFrame(cM_rndF(30.0f));
             }
         }
@@ -1006,12 +1002,12 @@ static void e_rd_normal(e_rd_class* i_this) {
                 if (a_this->speedF >= 3.0f && move_gake_check(i_this, 100.0f)) {
                     i_this->mMode = 4;
                     i_this->field_0x990[0] = cM_rndF(100.0f) + 50.0f;
-                    anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
+                    anm_init(i_this, ANM_KYORO2, 10.0f, 2, 1.0f);
                 } else {
                     if (i_this->field_0x990[0] == 0 || (a_this->speedF >= 3.0f && way_bg_check(i_this, 200.0f))) {
                         i_this->mMode = 2;
                         i_this->field_0x990[0] = cM_rndF(100.0f) + 50.0f;
-                        anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
+                        anm_init(i_this, ANM_KYORO2, 10.0f, 2, 1.0f);
                     }
                 }
                 break;
@@ -1100,7 +1096,7 @@ static void e_rd_fight_run(e_rd_class* i_this) {
         } else {
             i_this->mAction = ACTION_NORMAL;
             i_this->field_0x990[0] = cM_rndF(50.0f) + 50.0f;
-            anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
+            anm_init(i_this, ANM_KYORO2, 10.0f, 2, 1.0f);
         }
 
         i_this->mMode = 0;
@@ -1204,7 +1200,7 @@ static void e_rd_fight_run(e_rd_class* i_this) {
             } else {
                 i_this->mMode = 0;
                 i_this->field_0x990[0] = cM_rndF(50.0f) + 50.0f;
-                anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
+                anm_init(i_this, ANM_KYORO2, 10.0f, 2, 1.0f);
             }
         } else {
             if (i_this->mPlayerDistance < l_HIO.battle_init_range && (i_this->field_0xa20 & cc_pl_cut_bit_get()) != 0 &&
@@ -1437,7 +1433,7 @@ static void e_rd_bow_run(e_rd_class* i_this) {
         i_this->mAction = ACTION_NORMAL;
         i_this->mMode = 0;
         i_this->field_0x990[0] = cM_rndF(50.0f) + 50.0f;
-        anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
+        anm_init(i_this, ANM_KYORO2, 10.0f, 2, 1.0f);
     } else if ((i_this->field_0x970 & 15) == 0) {
         wb_check(i_this, 0x3000);
         if (bomb_view_check(i_this) != NULL) {
@@ -1551,7 +1547,7 @@ static s8 e_rd_bow2(e_rd_class* i_this) {
     switch (i_this->mMode) {
         case 0:
             if (i_this->field_0x990[0] == 0) {
-                anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
+                anm_init(i_this, ANM_KYORO2, 10.0f, 2, 1.0f);
                 i_this->mMode = 1;
                 i_this->field_0x990[0] = cM_rndF(40.0f) + 60.0f;
             }
@@ -2013,7 +2009,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
             }
 
             if ((bullbo->field_0x6be & 1) == 0 && bullbo->mActionID == ACTION_BOW2 && i_this->mMode != 40) {
-                anm_init(i_this, ANM_R_RUN_BACK, 5.0f, 2, 1.0f);
+                anm_init(i_this, ANM_RRUN_BACK, 5.0f, 2, 1.0f);
                 i_this->mMode = 40;
                 
                 if (i_this->mpMorfBowAnm != NULL) {
@@ -2030,35 +2026,35 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                     if ((bullbo->field_0x6be & 4) != 0) {
                         if (i_this->field_0x9be == 1) {
                             if (bullbo->field_0x6d0 < 0) {
-                                anm_init(i_this, ANM_R_STEP_LEFT, 10.0f, 2, 1.0f);
+                                anm_init(i_this, ANM_RSTEP_L, 10.0f, 2, 1.0f);
                             } else {
-                                anm_init(i_this, ANM_R_STEP_RIGHT, 10.0f, 2, 1.0f);
+                                anm_init(i_this, ANM_RSTEP_R, 10.0f, 2, 1.0f);
                             }
                         } else {
-                            anm_init(i_this, ANM_R_STEP_BACK, 10.0f, 2, 1.0f);
+                            anm_init(i_this, ANM_RSTEP_BACK, 10.0f, 2, 1.0f);
                         }
                     } else {
                         if ((bullbo->field_0x6be & 8) != 0) {
                             if (i_this->field_0x9be == 1) {
-                                anm_init(i_this, ANM_R_DAMAGE, 3.0f, 0, 1.0f);
+                                anm_init(i_this, ANM_RDAMAGE, 3.0f, 0, 1.0f);
                             } else {
-                                anm_init(i_this, ANM_R_DAMAGE_BACK, 3.0f, 0, 1.0f);
+                                anm_init(i_this, ANM_RDAMAGE_BACK, 3.0f, 0, 1.0f);
                             }
 
                             i_this->field_0x990[1] = cM_rndF(50.0f) + 50.0f;
                         } else {
                             if ((bullbo->field_0x6be & 16) != 0) {
                                 if (i_this->field_0x9be == 1) {
-                                    anm_init(i_this, ANM_R_RUN, 5.0f, 2, 1.0f);
+                                    anm_init(i_this, ANM_RRUN, 5.0f, 2, 1.0f);
                                 } else {
-                                    anm_init(i_this, ANM_R_RUN02_BACK, 5.0f, 2, 1.0f);
+                                    anm_init(i_this, ANM_RRUN02_BACK, 5.0f, 2, 1.0f);
                                 }
                             } else {
                                 if ((bullbo->field_0x6be & 32) != 0) {
                                     if (i_this->field_0x9be == 1) {
-                                        anm_init(i_this, ANM_R_WAIT, 5.0f, 2, 1.0f);
+                                        anm_init(i_this, ANM_RWAIT, 5.0f, 2, 1.0f);
                                     } else {
-                                        anm_init(i_this, ANM_R_WAIT_BACK, 5.0f, 2, 1.0f);
+                                        anm_init(i_this, ANM_RWAIT_BACK, 5.0f, 2, 1.0f);
                                     }
                                 }
                             }
@@ -2086,7 +2082,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                             }
                         } else {
                             if (i_this->field_0x990[1] == 0 && i_this->field_0x5bc >= 2) {
-                                anm_init(i_this, ANM_R_SHOOT_READY, 5.0f, 0, 1.0f);
+                                anm_init(i_this, ANM_RSHOOT_READY, 5.0f, 0, 1.0f);
                                 i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 8), 0, 5.0f, 1.0f, 0.0f, -1.0f);
                                 i_this->mMode = 30;
                             }
@@ -2095,29 +2091,29 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                     break;
 
                 case 10:
-                    anm_init(i_this, ANM_R_ATTACK01_WAIT, 10.0f, 2, 1.0f);
+                    anm_init(i_this, ANM_RATTACK01_WAIT, 10.0f, 2, 1.0f);
                     i_this->mMode = 11;
                     // fallthrough
                 case 11:
                     if (playerDistance > 800.0f) {
                         i_this->mMode = 0;
                         if (i_this->field_0x9be == 1) {
-                            anm_init(i_this, ANM_R_RUN, 10.0f, 2, 1.0f);
+                            anm_init(i_this, ANM_RRUN, 10.0f, 2, 1.0f);
                         } else {
-                            anm_init(i_this, ANM_R_RUN02_BACK, 10.0f, 2, 1.0f);
+                            anm_init(i_this, ANM_RRUN02_BACK, 10.0f, 2, 1.0f);
                         }
                     } else if (playerDistance < 550.0f && i_this->field_0x990[2] == 0) {
                         i_this->mMode = 25;
                         if (daPy_getPlayerActorClass()->checkHorseRide()) {
-                            anm_init(i_this, ANM_R_ATTACK03, 5.0f, 0, 1.0f);
+                            anm_init(i_this, ANM_RATTACK03, 5.0f, 0, 1.0f);
                         } else {
-                            anm_init(i_this, ANM_R_ATTACK01, 5.0f, 0, 1.0f);
+                            anm_init(i_this, ANM_RATTACK01, 5.0f, 0, 1.0f);
                         }
                     }
                     break;
 
                 case 20:
-                    anm_init(i_this, ANM_R_ATTACK02_WAIT, 10.0f, 2, 1.0f);
+                    anm_init(i_this, ANM_RATTACK02_WAIT, 10.0f, 2, 1.0f);
                     i_this->mMode = 21;
                     // fallthrough
                 case 21:
@@ -2125,16 +2121,16 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                     if (playerDistance > 800.0f) {
                         i_this->mMode = 0;
                         if (i_this->field_0x9be == 1) {
-                            anm_init(i_this, ANM_R_RUN, 10.0f, 2, 1.0f);
+                            anm_init(i_this, ANM_RRUN, 10.0f, 2, 1.0f);
                         } else {
-                            anm_init(i_this, ANM_R_RUN02_BACK, 10.0f, 2, 1.0f);
+                            anm_init(i_this, ANM_RRUN02_BACK, 10.0f, 2, 1.0f);
                         }
                     } else if (playerDistance < 550.0f && i_this->field_0x990[2] == 0) {
                         i_this->mMode = 25;
                         if (daPy_getPlayerActorClass()->checkHorseRide()) {
-                            anm_init(i_this, ANM_R_ATTACK04, 5.0f, 0, 1.0f);
+                            anm_init(i_this, ANM_RATTACK04, 5.0f, 0, 1.0f);
                         } else {
-                            anm_init(i_this, ANM_R_ATTACK02, 5.0f, 0, 1.0f);
+                            anm_init(i_this, ANM_RATTACK02, 5.0f, 0, 1.0f);
                         }
                     }
                     break;
@@ -2150,9 +2146,9 @@ static void e_rd_wb_run(e_rd_class* i_this) {
 
                     if (i_this->mpModelMorf->isStop()) {
                         if (i_this->field_0x9be == 1) {
-                            anm_init(i_this, ANM_R_RUN, 10.0f, 2, 1.0f);
+                            anm_init(i_this, ANM_RRUN, 10.0f, 2, 1.0f);
                         } else {
-                            anm_init(i_this, ANM_R_RUN02_BACK, 10.0f, 2, 1.0f);
+                            anm_init(i_this, ANM_RRUN02_BACK, 10.0f, 2, 1.0f);
                             i_this->field_0x990[2] = cM_rndF(20.0f) + 20.0f;
                         }
 
@@ -2168,7 +2164,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
 
                     if (i_this->mpModelMorf->isStop()) {
                         i_this->mMode = 31;
-                        anm_init(i_this, ANM_R_SHOOT_WAIT, 4.0f, 2, 1.0f);
+                        anm_init(i_this, ANM_RSHOOT_WAIT, 4.0f, 2, 1.0f);
                     }
 
                     i_this->field_0x9a2 = 1;
@@ -2177,7 +2173,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                 case 31:
                     i_this->field_0x9c8 = 3;
                     if (i_this->field_0x990[1] == 0 && i_this->mPlayerDistance < l_HIO.mounted_launch_distance && i_this->field_0x9a4 == 0 && !dComIfGp_event_runCheck()) {
-                        anm_init(i_this, ANM_R_SHOOT, 1.0f, 0, 1.0f);
+                        anm_init(i_this, ANM_RSHOOT, 1.0f, 0, 1.0f);
                         i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
                         i_this->mMode = 32;
                     }
@@ -2197,7 +2193,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                     i_this->field_0x9c8 = 3;
 
                     if (i_this->mpModelMorf->isStop()) {
-                        anm_init(i_this, ANM_R_SHOOT_READY, 5.0f, 0, 1.0f);
+                        anm_init(i_this, ANM_RSHOOT_READY, 5.0f, 0, 1.0f);
                         i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 8), 0, 5.0f, 1.0f, 0.0f, -1.0f);
                         i_this->mMode = 30;
 
@@ -2212,7 +2208,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                 case 40:
                     if (bullbo->mActionID != 7) {
                         i_this->mMode = 0;
-                        anm_init(i_this, ANM_R_WAIT_BACK, 5.0f, 2, 1.0f);
+                        anm_init(i_this, ANM_RWAIT_BACK, 5.0f, 2, 1.0f);
                     }
                     break;
 
@@ -2220,15 +2216,15 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                     if (i_this->field_0x990[3] == 0) {
                         i_this->mMode = 0;
                         if (i_this->field_0x9be == 1) {
-                            anm_init(i_this, ANM_R_RUN, 10.0f, 2, 1.0f);
+                            anm_init(i_this, ANM_RRUN, 10.0f, 2, 1.0f);
                         } else {
-                            anm_init(i_this, ANM_R_RUN02_BACK, 10.0f, 2, 1.0f);
+                            anm_init(i_this, ANM_RRUN02_BACK, 10.0f, 2, 1.0f);
                             i_this->field_0x990[2] = cM_rndF(50.0f) + 50.0f;
                         }
                     }
             }
 
-            if (i_this->field_0x9be == 2 && i_this->mAnmID == ANM_R_RUN02_BACK) {
+            if (i_this->field_0x9be == 2 && i_this->mAnmID == ANM_RRUN02_BACK) {
                 i_this->mSound.startCreatureVoiceLevel(Z2SE_EN_RD_V_RIDING_YELL, -1);
             }
         }
@@ -2278,13 +2274,13 @@ static void e_rd_wb_run_B(e_rd_class* i_this) {
             i_this->mpModelMorf->setPlaySpeed(bullbo->mpModelMorf->getPlaySpeed());
         }
 
-        if (i_this->mAnmID == ANM_R_STEP_LEFT || i_this->mAnmID == ANM_R_DAMAGE || i_this->mAnmID == ANM_R_STEP_LEFT_BACK || i_this->mAnmID == ANM_R_STEP_RIGHT) {
+        if (i_this->mAnmID == ANM_RSTEP_L || i_this->mAnmID == ANM_RDAMAGE || i_this->mAnmID == ANM_RSTEP_LBACK || i_this->mAnmID == ANM_RSTEP_R) {
             i_this->field_0x9c8 = 0;
 
             if (i_this->mpModelMorf->isStop()) {
                 anm_init(i_this, ANM_SHOUT, 5.0f, 2, 1.0f);
             }
-        } else if (i_this->mAnmID == ANM_SHOOT || i_this->mAnmID == ANM_R_WALK_BACK || i_this->mAnmID == ANM_SHOOT_READY) {
+        } else if (i_this->mAnmID == ANM_SHOOT || i_this->mAnmID == ANM_RWALK_BACK || i_this->mAnmID == ANM_SHOOT_READY) {
             if ((int)i_this->mpModelMorf->getFrame() == 21) {
                 i_this->mSound.startCreatureVoice(Z2SE_EN_RDB_HORN, -1);
             }
@@ -2341,7 +2337,7 @@ static void e_rd_wb_bjump(e_rd_class* i_this) {
         switch (i_this->mMode) {
             case 0:
                 i_this->field_0x680 = 0;
-                anm_init(i_this, ANM_R_STEP_RIGHT_BACK, 3.0f, 0, 1.0f);
+                anm_init(i_this, ANM_RSTEP_RBACK, 3.0f, 0, 1.0f);
                 i_this->mMode = 1;
                 i_this->mSound.startCreatureVoice(Z2SE_EN_RDB_V_HOICK, -1);
                 break;
@@ -2661,7 +2657,7 @@ static void e_rd_damage(e_rd_class* i_this) {
     s16 sVar1;
     switch (i_this->mMode) {
         case 0:
-            anm_init(i_this, ANM_DIE_B, 3.0f, 0, 1.0f);
+            anm_init(i_this, ANM_DIEB, 3.0f, 0, 1.0f);
             i_this->mMode = 1;
             a_this->speedF = 0.0f;
             ride_off(i_this);
@@ -2726,7 +2722,7 @@ static void e_rd_damage(e_rd_class* i_this) {
                     i_this->mMode = 2;
 
                     if (i_this->field_0xa1f == 0) {
-                        anm_init(i_this, ANM_DIE_A, 3.0f, 0, 1.0f);
+                        anm_init(i_this, ANM_DIEA, 3.0f, 0, 1.0f);
                         sVar1 = i_this->field_0xa0e;
                     } else {
                         sVar1 = i_this->field_0xa0e + 0x8000;
@@ -2772,9 +2768,9 @@ static void e_rd_damage(e_rd_class* i_this) {
                 i_this->field_0xa1e = 10;
 
                 if (i_this->field_0xa1f == 0) {
-                    anm_init(i_this, ANM_DIE_A, 3.0f, 0, 1.0f);
+                    anm_init(i_this, ANM_DIEA, 3.0f, 0, 1.0f);
                 } else {
-                    anm_init(i_this, ANM_DIE_B, 3.0f, 0, 1.0f);
+                    anm_init(i_this, ANM_DIEB, 3.0f, 0, 1.0f);
                 }
 
                 i_this->field_0x9ec = 0.0f;
@@ -2823,9 +2819,9 @@ static void e_rd_damage(e_rd_class* i_this) {
                 i_this->mMode = 20;
 
                 if (i_this->field_0xa1f == 0) {
-                    anm_init(i_this, ANM_DIE_A_UP, 3.0f, 0, 1.0f);
+                    anm_init(i_this, ANM_DIEA_UP, 3.0f, 0, 1.0f);
                 } else {
-                    anm_init(i_this, ANM_DIE_B_UP, 3.0f, 0, 1.0f);
+                    anm_init(i_this, ANM_DIEB_UP, 3.0f, 0, 1.0f);
                 }
             }
             break;
@@ -2838,7 +2834,7 @@ static void e_rd_damage(e_rd_class* i_this) {
                 if (i_this->mObjAcch.ChkGroundHit()) {
                     i_this->mMode = 2;
                     if (i_this->field_0xa1f == 0) {
-                        anm_init(i_this, ANM_DIE_A, 3.0f, 0, 1.0f);
+                        anm_init(i_this, ANM_DIEA, 3.0f, 0, 1.0f);
                         i_this->field_0xa24 = -100.0f;
                         i_this->field_0xa2c = -100.0f;
                     } else {
@@ -2888,7 +2884,7 @@ static void e_rd_damage(e_rd_class* i_this) {
                     i_this->mMode = 0;
                 } else {
                     i_this->field_0x990[0] = cM_rndF(20.0f) + 20.0f;
-                    anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
+                    anm_init(i_this, ANM_KYORO2, 10.0f, 2, 1.0f);
                     i_this->mMode = 22;
                 }
             }
@@ -2899,7 +2895,7 @@ static void e_rd_damage(e_rd_class* i_this) {
                 i_this->mAction = ACTION_NORMAL;
                 i_this->mMode = 0;
                 i_this->field_0x990[0] = cM_rndF(50.0f) + 50.0f;
-                anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
+                anm_init(i_this, ANM_KYORO2, 10.0f, 2, 1.0f);
             }
             break;
 
@@ -2911,9 +2907,9 @@ static void e_rd_damage(e_rd_class* i_this) {
             if (i_this->field_0x990[0] == 0) {
                 i_this->mMode = 31;
                 if (i_this->field_0xa1f == 0) {
-                    anm_init(i_this, ANM_DIE_A_UP, 3.0f, 0, 1.0f);
+                    anm_init(i_this, ANM_DIEA_UP, 3.0f, 0, 1.0f);
                 } else {
-                    anm_init(i_this, ANM_DIE_B_UP, 3.0f, 0, 1.0f);
+                    anm_init(i_this, ANM_DIEB_UP, 3.0f, 0, 1.0f);
                 }
 
                 i_this->field_0x990[0] = 10;
@@ -3027,7 +3023,7 @@ static void e_rd_drop(e_rd_class* i_this) {
             i_this->mSound.startCreatureVoiceLevel(Z2SE_EN_RD_V_SNIPED_DAMAGE, -1);
             
             if (i_this->mpModelMorf->isStop()) {
-                anm_init(i_this, ANM_FURA_2, 0.0f, 2, 1.0f);
+                anm_init(i_this, ANM_FURA2, 0.0f, 2, 1.0f);
                 i_this->mMode = 2;
 
                 if (i_this->mDemoMode != 0) {
@@ -3149,7 +3145,7 @@ static void e_rd_stand(e_rd_class* i_this) {
     switch (i_this->mMode) {
         case 0:
             if (i_this->field_0x990[0] == 0) {
-                anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
+                anm_init(i_this, ANM_KYORO2, 10.0f, 2, 1.0f);
                 i_this->mMode = 1;
                 i_this->field_0x990[0] = cM_rndF(40.0f) + 60.0f;
             }
@@ -3223,7 +3219,7 @@ static s8 e_rd_bow3(e_rd_class* i_this) {
 
         case 5:
             if (i_this->field_0x990[1] == 1) {
-                anm_init(i_this, ANM_KYORO_2, 5.0f, 2, 1.3f);
+                anm_init(i_this, ANM_KYORO2, 5.0f, 2, 1.3f);
             }
 
             if (i_this->field_0x990[0] == 10) {
@@ -3342,7 +3338,7 @@ static void e_rd_commander(e_rd_class* i_this) {
             case 1:
                 bVar1 = 1;
                 if (i_this->field_0x990[0] == 0) {
-                    anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
+                    anm_init(i_this, ANM_KYORO2, 10.0f, 2, 1.0f);
                     i_this->mMode = 2;
                     i_this->field_0x990[0] = cM_rndF(40.0f) + 60.0f;
                 }
@@ -3366,7 +3362,7 @@ static void e_rd_commander(e_rd_class* i_this) {
             case 6:
                 bVar2 = 1;
                 if (i_this->field_0x990[0] == 0) {
-                    anm_init(i_this, ANM_GO_SIGN, 3.0f, 0, 1.0f);
+                    anm_init(i_this, ANM_GOSIGN, 3.0f, 0, 1.0f);
                     i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_COMMANDER, -1);
                     i_this->mMode = 7;
 
@@ -3402,7 +3398,7 @@ static void e_rd_commander(e_rd_class* i_this) {
                 break;
 
             case 10:
-                anm_init(i_this, ANM_GO_SIGN, 3.0f, 0, 1.0f);
+                anm_init(i_this, ANM_GOSIGN, 3.0f, 0, 1.0f);
                 mDoAud_seStart(Z2SE_EN_RD_V_CALLING, 0, 0, 0);
                 fpcM_Search(s_command2_sub, i_this);
                 i_this->mMode = 11;
@@ -3455,7 +3451,7 @@ static void e_rd_excite(e_rd_class* i_this) {
             if (i_this->field_0x990[0] == 0) {
                 if (i_this->field_0x1295 != 0) {
                     i_this->mMode = 3;
-                    anm_init(i_this, ANM_KYORO_2, 5.0f, 2, 1.3f);
+                    anm_init(i_this, ANM_KYORO2, 5.0f, 2, 1.3f);
                     i_this->field_0x990[0] = cM_rndF(20.0f) + 40.0f;
                 } else {
                     i_this->mMode = 2;
@@ -3475,7 +3471,7 @@ static void e_rd_excite(e_rd_class* i_this) {
             sp40 = i_this->field_0x5c0 - a_this->current.pos;
             if (i_this->field_0x990[0] == 0 || move_gake_check(i_this, 100.0f) || sp40.abs() < 100.0f) {
                 i_this->mMode = 3;
-                anm_init(i_this, ANM_KYORO_2, 5.0f, 2, 1.3f);
+                anm_init(i_this, ANM_KYORO2, 5.0f, 2, 1.3f);
                 i_this->field_0x990[0] = cM_rndF(20.0f) + 40.0f;
             }
             break;
@@ -3513,9 +3509,9 @@ static void e_rd_water(e_rd_class* i_this) {
         case 1:
             a_this->speed.y = 0.0f;
             if (i_this->field_0xa1f == 0) {
-                anm_init(i_this, ANM_DROWNED_A, 3.0f, 2, 1.0f);
+                anm_init(i_this, ANM_DROWNEDA, 3.0f, 2, 1.0f);
             } else {
-                anm_init(i_this, ANM_DROWNED_B, 3.0f, 2, 1.0f);
+                anm_init(i_this, ANM_DROWNEDB, 3.0f, 2, 1.0f);
             }
 
             i_this->field_0x990[0] = 60;
@@ -3564,7 +3560,7 @@ static void e_rd_kiba_start(e_rd_class* i_this) {
             break;
 
         case 2:
-            anm_init(i_this, ANM_R_ATTACK02_WAIT, 10.0f, 0, 1.0f);
+            anm_init(i_this, ANM_RATTACK02_WAIT, 10.0f, 0, 1.0f);
             i_this->mMode++;
             break;
 
@@ -3578,7 +3574,7 @@ static void e_rd_kiba_start(e_rd_class* i_this) {
         case 5:
             i_this->field_0x6a0 = 1;
             anm_init(i_this, ANM_SHOOT_WAIT, 20.0f, 0, 1.0f);
-            horn_anm_init(i_this, 6, 2.0f, 0, 1.0f);
+            horn_anm_init(i_this, e_rdb_class::ANM_HORN_RPLAY_STOP2, 2.0f, 0, 1.0f);
             i_this->mMode++;
             break;
 
@@ -3605,19 +3601,19 @@ static void e_rd_ikki2_start(e_rd_class* i_this) {
 
     switch (i_this->mMode) {
         case 0:
-            anm_init(i_this, ANM_R_WALK, 1.0f, 2, 1.0f);
+            anm_init(i_this, ANM_RWALK, 1.0f, 2, 1.0f);
             i_this->mMode++;
             break;
             
         case 2:
-            anm_init(i_this, ANM_R_WAIT_BACK, 5.0f, 0, 1.0f);
+            anm_init(i_this, ANM_RWAIT_BACK, 5.0f, 0, 1.0f);
             i_this->mSound.startCreatureVoice(Z2SE_EN_RDB_V_DEMO_EXCITE, -1);
             i_this->mMode++;
             break;
 
         case 3:
             if (i_this->mpModelMorf->isStop()) {
-                anm_init(i_this, ANM_R_WALK, 10.0f, 2, 1.0f);
+                anm_init(i_this, ANM_RWALK, 10.0f, 2, 1.0f);
                 i_this->mMode = 4;
             }
             break;
@@ -3639,7 +3635,7 @@ static void e_rd_kiba_end(e_rd_class* i_this) {
     switch (i_this->mMode) {
         case 0:
             i_this->field_0x680 = 0;
-            anm_init(i_this, ANM_R_SHOOT_WAIT, 1.0f, 0, 1.0f);
+            anm_init(i_this, ANM_RSHOOT_WAIT, 1.0f, 0, 1.0f);
             i_this->mMode++;
             i_this->field_0x990[0] = 14;
             bullbo->field_0x7a2 = 1;
@@ -3663,7 +3659,7 @@ static void e_rd_kiba_end(e_rd_class* i_this) {
             }
 
             if (i_this->mpModelMorf->isStop()) {
-                anm_init(i_this, ANM_R_SHOOT_WAIT02, 2.0f, 2, 1.0f);
+                anm_init(i_this, ANM_RSHOOT_WAIT02, 2.0f, 2, 1.0f);
                 i_this->mMode++;
                 i_this->field_0x990[0] = 110;
             }
@@ -3671,7 +3667,7 @@ static void e_rd_kiba_end(e_rd_class* i_this) {
 
         case 2:
             if (i_this->field_0x990[0] == 0) {
-                anm_init(i_this, ANM_R_STEP_BACK, 2.0f, 0, 1.0f);
+                anm_init(i_this, ANM_RSTEP_BACK, 2.0f, 0, 1.0f);
                 i_this->mMode++;
                 i_this->mSound.startCreatureVoice(Z2SE_EN_RDB_V_AWAKE, -1);
                 i_this->field_0x990[0] = 10;
@@ -3717,7 +3713,7 @@ static void e_rd_ikki_end(e_rd_class* i_this) {
 
     switch (i_this->mMode) {
         case 0:
-            anm_init(i_this, ANM_R_RUN_BACK, 1.0f, 0, 1.0f);
+            anm_init(i_this, ANM_RRUN_BACK, 1.0f, 0, 1.0f);
             i_this->mMode++;
             i_this->field_0x9bc = 0;
 
@@ -3743,7 +3739,7 @@ static void e_rd_ikki_end(e_rd_class* i_this) {
             break;
 
         case 1:
-            if (i_this->mAnmID == ANM_R_RUN_BACK) {
+            if (i_this->mAnmID == ANM_RRUN_BACK) {
                 if (i_this->mpModelMorf->isStop()) {
                     anm_init(i_this, ANM_JUMP_A, 1.0f, 2, 1.0f);
                 }
@@ -3770,7 +3766,7 @@ static void e_rd_ikki2_end(e_rd_class* i_this) {
     switch (i_this->mMode) {
         case 0:
             if (daPy_getPlayerActorClass()->checkHorseRide()) {
-                anm_init(i_this, ANM_R_RUN02_BACK, 0.0f, 0, 1.0f);
+                anm_init(i_this, ANM_RRUN02_BACK, 0.0f, 0, 1.0f);
                 i_this->mMode = 1;
                 bullbo->mActionID = 18;
                 bullbo->field_0x5b4 = 0;
@@ -3781,12 +3777,12 @@ static void e_rd_ikki2_end(e_rd_class* i_this) {
 
         case 1:
             if (i_this->mpModelMorf->isStop()) {
-                anm_init(i_this, ANM_R_SHOOT_READY, 3.0f, 2, 1.0f);
+                anm_init(i_this, ANM_RSHOOT_READY, 3.0f, 2, 1.0f);
             }
             break;
 
         case 10:
-            anm_init(i_this, ANM_R_SHOOT, 2.0f, 0, 1.0f);
+            anm_init(i_this, ANM_RSHOOT, 2.0f, 0, 1.0f);
             i_this->mMode = 11;
             i_this->field_0x9bc = 0;
 
@@ -3856,7 +3852,7 @@ static void e_rd_lv9_end(e_rd_class* i_this) {
             } else {
                 e_rdb_class* king_bulblin = (e_rdb_class*)fpcM_Search(s_rdb_sub, i_this);
                 if (king_bulblin != NULL && king_bulblin->mDemoMode == 14) {
-                    anm_init(i_this, ANM_R_WAIT, 3.0f, 0, 1.0f);
+                    anm_init(i_this, ANM_RWAIT, 3.0f, 0, 1.0f);
                     bullbo->field_0x5b4++;
                     i_this->mMode = 4;
                 }
@@ -3966,9 +3962,9 @@ static void small_damage(e_rd_class* i_this, int param_2) {
         if (sVar1 < -0x4000 || sVar1 > 0x4000) {
                 anm_init(i_this, ANM_DAMAGE_W, 2.0f, 0, 1.0f);
             } else if (sVar1 < 0) {
-                anm_init(i_this, ANM_DAMAGE_LEFT, 2.0f, 0, 1.0f);
+                anm_init(i_this, ANM_DAMAGE_L, 2.0f, 0, 1.0f);
             } else {
-                anm_init(i_this, ANM_DAMAGE_RIGHT, 2.0f, 0, 1.0f);
+                anm_init(i_this, ANM_DAMAGE_R, 2.0f, 0, 1.0f);
             }
     } else {
         anm_init(i_this, ANM_DAMAGE_W, 2.0f, 0, 1.0f);
@@ -4069,7 +4065,7 @@ static void damage_check(e_rd_class* i_this) {
                                 i_this->mSound.startCreatureVoice(Z2SE_EN_RDB_V_DAMAGE_L, -1);
                             } else {
                                 bullbo->field_0x169e = 25;
-                                anm_init(i_this, ANM_R_DAMAGE, 2.0f, 0, 1.0f);
+                                anm_init(i_this, ANM_RDAMAGE, 2.0f, 0, 1.0f);
                                 i_this->mSound.startCreatureVoice(Z2SE_EN_RDB_V_DAMAGE, -1);
                             }
 
@@ -4078,7 +4074,7 @@ static void damage_check(e_rd_class* i_this) {
                             dComIfGs_onSaveDunSwitch(7);
                         } else {
                             uVar1 = 2;
-                            anm_init(i_this, ANM_R_STEP_LEFT, 2.0f, 0, 1.0f);
+                            anm_init(i_this, ANM_RSTEP_L, 2.0f, 0, 1.0f);
                         }
 
                         cXyz sp34, sp40;
@@ -4095,7 +4091,7 @@ static void damage_check(e_rd_class* i_this) {
                             return;
                         }
 
-                        anm_init(i_this, ANM_R_STEP_LEFT, 2.0f, 0, 1.0f);
+                        anm_init(i_this, ANM_RSTEP_L, 2.0f, 0, 1.0f);
                         bullbo->field_0x169e = 25;
                         dScnPly_c::setPauseTimer(0);
 
@@ -4218,7 +4214,7 @@ static void damage_check(e_rd_class* i_this) {
                                     } else {
                                         if (i_this->field_0x680 == 0) {
                                             iVar1 = i_this->mAnmID;
-                                            anm_init(i_this, ANM_R_SHOOT_WAIT, 2.0f, 0, 1.0f);
+                                            anm_init(i_this, ANM_RSHOOT_WAIT, 2.0f, 0, 1.0f);
                                             i_this->field_0x680 = iVar1;
                                         }
 
@@ -4257,7 +4253,7 @@ static void damage_check(e_rd_class* i_this) {
 
                                 i_this->mSound.startCreatureVoice(Z2SE_EN_RDB_V_DAMAGE, -1);
 
-                                if (i_this->mAnmID == ANM_R_WALK_BACK || i_this->mAnmID == ANM_SHOOT || i_this->mAnmID == ANM_SHOOT_READY) {
+                                if (i_this->mAnmID == ANM_RWALK_BACK || i_this->mAnmID == ANM_SHOOT || i_this->mAnmID == ANM_SHOOT_READY) {
                                     i_this->mAnmID = i_this->field_0x680;
                                     i_this->field_0x680 = 0;
                                 }
@@ -4267,9 +4263,9 @@ static void damage_check(e_rd_class* i_this) {
                                     iVar1 = i_this->mAnmID;
 
                                     if ((s16)(a_this->shape_angle.y - i_this->mPlayerAngleY) < 0) {
-                                        anm_init(i_this, ANM_R_DAMAGE_BACK, 2.0f, 0, 1.0f);
+                                        anm_init(i_this, ANM_RDAMAGE_BACK, 2.0f, 0, 1.0f);
                                     } else {
-                                        anm_init(i_this, ANM_R_RUN, 2.0f, 0, 1.0f);
+                                        anm_init(i_this, ANM_RRUN, 2.0f, 0, 1.0f);
                                     }
 
                                     i_this->field_0x680 = iVar1;
@@ -4285,7 +4281,7 @@ static void damage_check(e_rd_class* i_this) {
                             if (i_this->field_0x9bc != 0 && i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_BOOMERANG)) {
                                 i_this->field_0x998 = 20;
                                 if (i_this->mAction == ACTION_WB_RUN) {
-                                    anm_init(i_this, ANM_R_RUN_BACK, 5.0f, 2, 1.0f);
+                                    anm_init(i_this, ANM_RRUN_BACK, 5.0f, 2, 1.0f);
                                     i_this->mMode = 50;
                                     i_this->field_0x990[3] = cM_rndF(20.0f) + 50.0f;
                                 }
@@ -4366,7 +4362,7 @@ static s8 e_rd_yagura(e_rd_class* i_this) {
             bVar1 = 1;
 
             if (i_this->field_0x990[0] == 0) {
-                anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
+                anm_init(i_this, ANM_KYORO2, 10.0f, 2, 1.0f);
                 i_this->mMode = 1;
                 i_this->field_0x990[0] = cM_rndF(40.0f) + 60.0f;
             }
@@ -4527,7 +4523,7 @@ static void e_rd_jyunkai(e_rd_class* i_this) {
 
                 i_this->mMode = 2;
                 i_this->field_0x990[0] = cM_rndF(100.0f) + 100.0f;
-                anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
+                anm_init(i_this, ANM_KYORO2, 10.0f, 2, 1.0f);
             }
             break;
             
@@ -4583,7 +4579,7 @@ static void e_rd_jyunkai(e_rd_class* i_this) {
         if (bVar1) {
             i_this->mMode = 2;
             i_this->field_0x990[0] = cM_rndF(100.0f) + 100.0f;
-            anm_init(i_this, ANM_KYORO_2, 10.0f, 2, 1.0f);
+            anm_init(i_this, ANM_KYORO2, 10.0f, 2, 1.0f);
         } else if ((i_this->field_0x970 & 7) == 0 && pl_check(i_this, fVar2, sVar1)) {
             if (S_find == 0) {
                 i_this->mMode = 10;
@@ -4699,7 +4695,7 @@ static void e_rd_sleep(e_rd_class* i_this) {
             }
         } else if (cVar1 == 2) {
             i_this->mMode = 5;
-            anm_init(i_this, ANM_KYORO_2, 7.0f, 2, 1.5f);
+            anm_init(i_this, ANM_KYORO2, 7.0f, 2, 1.5f);
             i_this->field_0x990[0] = cM_rndF(10.0f) + 20.0f;
             OS_REPORT("......RD FIND 2!!!\n");
         }
@@ -5576,7 +5572,7 @@ static void* s_lv9rd_sub2(void* i_actor, void* i_data) {
 
         i_this->mAction = ACTION_DROP;
         i_this->mMode = 2;
-        anm_init(i_this, ANM_FURA_2, 2.0f, 2, 1.0f);
+        anm_init(i_this, ANM_FURA2, 2.0f, 2, 1.0f);
         i_this->field_0x990[0] = 1000;
         i_this->field_0x5cc = a_this->home.angle.y;
         dComIfGp_setHitMark(1, a_this, &a_this->eyePos, NULL, NULL, 0);
@@ -6270,7 +6266,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             cLib_addCalc0(&i_this->field_0xaec, 1.0f, TREG_F(17) + 5.0f);
         }
 
-        if (i_this->mAnmID == ANM_DIE_B && i_this->field_0xa0c != 0 && i_this->field_0xa1f == 0) {
+        if (i_this->mAnmID == ANM_DIEB && i_this->field_0xa0c != 0 && i_this->field_0xa1f == 0) {
             spa4.y += KREG_F(0) + -20.0f;
         }
 
@@ -6334,11 +6330,11 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_RUNNING_BREATH, -1);
         }
 
-        if (i_this->mAnmID == ANM_KYORO_2 && (frame == 5 || frame == 26)) {
+        if (i_this->mAnmID == ANM_KYORO2 && (frame == 5 || frame == 26)) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_RUNNING_BREATH, -1);
         }
 
-        if ((i_this->mAnmID == ANM_SHOOT_READY && frame == 10) || (i_this->mAnmID == ANM_R_SHOOT_READY && frame == 5) || (i_this->mAnmID == ANM_ARMAMENT && frame == 10)) {
+        if ((i_this->mAnmID == ANM_SHOOT_READY && frame == 10) || (i_this->mAnmID == ANM_RSHOOT_READY && frame == 5) || (i_this->mAnmID == ANM_ARMAMENT && frame == 10)) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_READY_WEAPON, -1);
         }
 
@@ -6352,7 +6348,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         }
 
         if (i_this->field_0x129a != 0) {
-            if (i_this->mAnmID == ANM_R_ATTACK02_WAIT) {
+            if (i_this->mAnmID == ANM_RATTACK02_WAIT) {
                 if (i_this->mpModelMorf->checkFrame(30.0f)) {
                     i_this->mSound.startCreatureVoice(Z2SE_EN_RDB_V_LAUGH, -1);
                 }
@@ -6783,13 +6779,13 @@ static int daE_RD_Execute(e_rd_class* i_this) {
                     if ((s16)(a_this->shape_angle.y - i_this->mPlayerAngleY) < 0) {
                         anm_init(i_this, ANM_SHOOT, 2.0f, 0, 1.0f);
                     } else {
-                        anm_init(i_this, ANM_R_WALK_BACK, 2.0f, 0, 1.0f);
+                        anm_init(i_this, ANM_RWALK_BACK, 2.0f, 0, 1.0f);
                     }
 
-                    horn_anm_init(i_this, 4, 2.0f, 0, 1.0f);
+                    horn_anm_init(i_this, e_rdb_class::ANM_HORN_RPLAY_RUN, 2.0f, 0, 1.0f);
                 } else {
                     anm_init(i_this, ANM_SHOOT_READY, 2.0f, 0, 1.0f);
-                    horn_anm_init(i_this, 5, 2.0f, 0, 1.0f);
+                    horn_anm_init(i_this, e_rdb_class::ANM_HORN_RPLAY_STOP, 2.0f, 0, 1.0f);
                 }
 
                 i_this->field_0x680 = iVar2;
