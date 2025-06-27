@@ -1820,6 +1820,10 @@ inline s16 dComIfGs_getTurnRestartAngleY() {
     return g_dComIfG_gameInfo.info.getTurnRestart().getAngleY();
 }
 
+inline s8 dComIfGs_getTurnRestartRoomNo() {
+    return g_dComIfG_gameInfo.info.getTurnRestart().getRoomNo();
+}
+
 inline u32 dComIfGs_getRestartRoomParam() {
     return g_dComIfG_gameInfo.info.getRestart().getRoomParam();
 }

@@ -835,6 +835,7 @@ public:
     u32 getParam() const { return mParam; }
     cXyz& getPos() { return mPosition; }
     s16 getAngleY() const { return mAngleY; }
+    s8 getRoomNo() const { return unk18; }
 
     f32 getCameraFvy() const { return mCameraFvy; }
     void setCameraFvy(f32 i_fvy) { mCameraFvy = i_fvy; }

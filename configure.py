@@ -335,6 +335,7 @@ cflags_framework = [
 
 if config.version != "ShieldD":
     if config.version == "RZDE01_00":
+        # TODO: whats the correct inlining flag? deferred looks better in some places, others not. something else wrong?
         cflags_framework.extend(["-inline on", "-O4,s", "-sym on"])
     else:
         cflags_framework.extend(["-inline noauto", "-O3,s", "-sym on", "-str reuse,pool,readonly"])
@@ -425,6 +426,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_printf.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_audio.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_controller_pad.cpp"),
+            Object(NonMatching, "m_Do/m_Re_controller_pad.cpp"),
             Object(Equivalent, "m_Do/m_Do_graphic.cpp"), # weak func order
             Object(NonMatching, "m_Do/m_Do_machine.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_mtx.cpp", extra_cflags=["-sym off"]),
@@ -525,6 +527,7 @@ config.libs = [
         "progress_category": "game",
         "host": True,
         "objects": [
+            Object(NonMatching, "d/d_home_button.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_stage.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_map.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_com_inf_game.cpp", extra_cflags=['-pragma "nosyminline on"']),

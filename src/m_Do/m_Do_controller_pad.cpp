@@ -17,23 +17,35 @@ interface_of_controller_pad mDoCPd_c::m_cpadInfo[4];
 
 /* 80007954-80007A94 002294 0140+00 0/0 1/1 0/0 .text            create__8mDoCPd_cFv */
 void mDoCPd_c::create() {
+    #if PLATFORM_GCN || PLATFORM_SHIELD
     JUTGamePad* pad = new JUTGamePad(JUTGamePad::EPort1);
     m_gamePad[0] = pad;
+    #endif
 
     if (mDoMain::developmentMode != 0) {
+        #if PLATFORM_WII
+        m_gamePad[0] = new JUTGamePad(JUTGamePad::EPort1);
+        #endif
+
         m_gamePad[1] = new JUTGamePad(JUTGamePad::EPort2);
         m_gamePad[2] = new JUTGamePad(JUTGamePad::EPort3);
         m_gamePad[3] = new JUTGamePad(JUTGamePad::EPort4);
     } else {
+        #if PLATFORM_WII
+        m_gamePad[0] = NULL;
+        #endif
+
         m_gamePad[1] = NULL;
         m_gamePad[2] = NULL;
         m_gamePad[3] = NULL;
     }
 
+    #if PLATFORM_GCN || PLATFORM_SHIELD
     if (!mDoRst::isReset()) {
         JUTGamePad::clearResetOccurred();
         JUTGamePad::setResetCallback(mDoRst_resetCallBack, NULL);
     }
+    #endif
     JUTGamePad::setAnalogMode(3);
 
     interface_of_controller_pad* cpad = &m_cpadInfo[0];
