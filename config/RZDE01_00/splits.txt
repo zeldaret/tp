@@ -3969,10 +3969,10 @@ PowerPC_EABI_Support/Runtime/Src/__va_arg.c:
 
 PowerPC_EABI_Support/Runtime/Src/global_destructor_chain.c:
 	.text       start:0x803BDC1C end:0x803BDC7C
-	.sbss       start:0x8053B970 end:0x8053B980
+	.sbss       start:0x8053B970 end:0x8053B978
 
 PowerPC_EABI_Support/MSL/MSL_C/MSL_Common/Src/errno.c:
-	.sbss       start:0x8053B980 end:0x8053B988
+	.sbss       start:0x8053B978 end:0x8053B988
 
 PowerPC_EABI_Support/Runtime/Src/NMWException.cp:
 	extab       start:0x800064E0 end:0x80006528
