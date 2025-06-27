@@ -1277,6 +1277,10 @@ dStage_KeepDoorInfo* dStage_GetKeepDoorInfo();
 dStage_KeepDoorInfo* dStage_GetRoomKeepDoorInfo();
 void dStage_dt_c_fieldMapLoader(void* i_data, dStage_dt_c* i_stage);
 
+#if VERSION == VERSION_WII_USA_R0
+void dStage_escapeRestart();
+#endif
+
 inline s32 dStage_roomRead_dt_c_ChkBg(u8 param_0) {
     return param_0 & 0x80;
 }
