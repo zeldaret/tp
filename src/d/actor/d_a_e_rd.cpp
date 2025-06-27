@@ -6974,7 +6974,6 @@ static int useHeapInit(fopAc_ac_c* a_this) {
             i_this->field_0x6a0 = 1;
         }
 
-        // 83 base rdb model
         static int boss_part_bmd[14] = {
             90, 80, 91, 79, 81, 88, 74,
             73, 77, 76, 75, 89, 78, 82,
