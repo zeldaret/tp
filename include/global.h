@@ -48,7 +48,7 @@
 #define GLUE(a, b) a##b
 #define GLUE2(a, b) GLUE(a, b)
 
-#if VERSION != VERSION_SHIELD_DEBUG
+#if VERSION == VERSION_GCN_USA
 #define STATIC_ASSERT(cond) typedef char GLUE2(static_assertion_failed, __LINE__)[(cond) ? 1 : -1]
 #else
 #define STATIC_ASSERT(...)

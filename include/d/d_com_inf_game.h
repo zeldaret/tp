@@ -215,7 +215,7 @@ public:
     /* 0x04F47 */ u8 field_0x4f47[2];
     /* 0x04F49 */ u8 mDirection;
     /* 0x04F4A */ u8 field_0x4f4a;
-#ifdef DEBUG
+#if PLATFORM_WII || PLATFORM_SHIELD
     /* 0x04FE3 */ u8 unk_0x4fe3;
 #endif
     /* 0x04F4B */ u8 field_0x4f4b;  // related to itemInit
@@ -772,6 +772,9 @@ public:
     /* 0x04780 */ dAttention_c mAttention;
     /* 0x04C9C */ dVibration_c mVibration;
     /* 0x04D2C */ u8 field_0x4d2c[4];
+    #if PLATFORM_WII
+    /* 0x04D38 */ u8 unk_0x4d38[8];
+    #endif
     /* 0x04D30 */ JKRArchive* mFieldMapArchive2;
     /* 0x04D34 */ JKRArchive* mMsgArchive[11];
     /* 0x04D60 */ JKRArchive* mDemoMsgArchive;

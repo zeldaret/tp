@@ -47,7 +47,6 @@ VERSIONS = [
 
 # Versions to disable until properly configured
 DISABLED_VERSIONS = [
-    #3,  # Wii USA Rev 0
     4,  # Wii USA Rev 2
     5,  # Wii PAL
     6,  # Wii JPN
@@ -246,6 +245,8 @@ cflags_base = [
 
 if config.version == "ShieldD":
     cflags_base.extend(["-O0", "-inline off", "-RTTI on", "-str reuse", "-enc SJIS", "-DDEBUG=1"])
+elif config.version == "RZDE01_00":
+    cflags_base.extend(["-O4,p", "-inline auto", "-RTTI on", "-str reuse", "-enc SJIS"])
 else:
     cflags_base.extend(["-O4,p", "-inline auto", "-RTTI off", "-str reuse", "-multibyte"])
 
@@ -327,14 +328,16 @@ cflags_dolphin = [
 cflags_framework = [
     *cflags_base,
     "-use_lmw_stmw off",
-    "-inline noauto",
     "-schedule off",
     "-sym on",
     "-fp_contract off",
 ]
 
 if config.version != "ShieldD":
-    cflags_framework.extend(["-O3,s", "-sym on", "-str reuse,pool,readonly"])
+    if config.version == "RZDE01_00":
+        cflags_framework.extend(["-inline on", "-O4,s", "-sym on"])
+    else:
+        cflags_framework.extend(["-inline noauto", "-O3,s", "-sym on", "-str reuse,pool,readonly"])
 
 # REL flags
 cflags_rel = [
@@ -352,7 +355,7 @@ def MWVersion(cfg_version: str | None) -> str:
         case "GZ2J01":
             return "GC/2.7"
         case "RZDE01_00":
-            return "Wii/1.0"
+            return "GC/3.0a3"
         case "ShieldD":
             return "Wii/1.0"
         case _:
