@@ -186,26 +186,26 @@ bool JMessage::TParse::parseHeader_next(const void** ppData_inout, u32* puBlock_
 
     if (memcmp(oHeader.get_signature(), &data::ga4cSignature, sizeof(data::ga4cSignature)) != 0) {
         JGADGET_WARNMSG(355, "unknown signature");
-        return 0;
+        return false;
     }
 
     if (oHeader.get_type() != 'bmg1') {
         JGADGET_WARNMSG(360, "unknown type");
-        return 0;
+        return false;
     }
 
     u8 uEncoding = oHeader.get_encoding();
     if (uEncoding != 0) {
         if (!pContainer_->isEncodingSettable(uEncoding)) {
             JGADGET_WARNMSG(369, "encoding not acceptable");
-            return 0;
+            return false;
         }
 
         pContainer_->setEncoding(uEncoding);
     }
 
     if (param_2 & 0x10) {
-        return 1;
+        return true;
     }
 
     TResourceContainer::TCResource* pResContainer = &pContainer_->resContainer_;
@@ -214,14 +214,14 @@ bool JMessage::TParse::parseHeader_next(const void** ppData_inout, u32* puBlock_
     if (pResource_ == NULL) {
         JGADGET_WARNMSG(384, "can't create resource");
         if (param_2 & 0x20) {
-            return 1;
+            return true;
         } else {
-            return 0;
+            return false;
         }
     } else {
         pResContainer->Push_back(pResource_);
         pResource_->setData_header(oHeader.getRaw());
-        return 1;
+        return true;
     }
 }
 

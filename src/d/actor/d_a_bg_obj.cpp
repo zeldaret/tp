@@ -9,6 +9,7 @@
 #include "dol2asm.h"
 #include "dolphin/os.h"
 #include "d/actor/d_a_set_bgobj.h"
+#include "d/d_s_play.h"
 #include "SSystem/SComponent/c_math.h"
 
 SECTION_DATA extern void* __vt__10cCcD_GStts[3];
@@ -319,102 +320,116 @@ SECTION_DEAD static char const* const stringBase_8045CA7D = "spec.dat";
  */
 // NONMATCHING - close-ish
 bool daBgObj_c::spec_data_c::Set(void* i_ptr) {
-    spec_dat* data = (spec_dat*)i_ptr;
+    JUT_ASSERT(496, i_ptr != 0);
 
-    mSpecType = data->field_0x0;
+    u8* data = (u8*)i_ptr;
+
+    mSpecType = *(u16*)i_ptr;
+
+    u8 block_type;
+    u16 temp_r3;
 
     switch (mSpecType) {
     case 0: {
-        u8 block_type = data->field_0x4;
-        u8* block_p = (u8*)data + 4;
+        block_type = data[4];
+        data += 4;
 
         do {
             switch (block_type) {
             case 0:
                 break;
             case 3:
-                block_p = initTexShareBlock(block_p);
+                data = initTexShareBlock(data);
                 break;
             case 4:
-                block_p = initFarInfoBlock(block_p);
+                data = initFarInfoBlock(data);
                 break;
+            default:
+                // Invalid data block type
+                OS_REPORT_ERROR("データブロックタイプが不正です<%d>\n", block_type);
+                JUT_PANIC(527, "0");
             }
 
             if (block_type == 0) {
                 break;
             }
 
-            block_type = *block_p;
+            block_type = *data;
         } while (1);
         break;
     }
     case 1: {
-        u16 temp_r3 = data->field_0x2;
+        temp_r3 = *(u16*)(data + 2);
         field_0x02 = temp_r3 & 0xF;
         field_0x03 = (temp_r3 >> 0xE) & 3;
         field_0x15 = (temp_r3 >> 0xC) & 3;
         field_0x14 = (temp_r3 >> 9) & 7;
         field_0x16 = (temp_r3 >> 8) & 1;
 
-        u8 block_type = data->field_0x4;
-        u8* block_p = (u8*)i_ptr + 4;
+        block_type = data[4];
+        data += 4;
 
         do {
             switch (block_type) {
             case 0:
                 break;
             case 3:
-                block_p = initTexShareBlock(block_p);
+                data = initTexShareBlock(data);
                 break;
             case 1:
-                block_p = initParticleBlock(block_p);
+                data = initParticleBlock(data);
                 break;
             case 2:
-                block_p = initSoundBlock(block_p);
+                data = initSoundBlock(data);
                 break;
             case 4:
-                block_p = initFarInfoBlock(block_p);
+                data = initFarInfoBlock(data);
                 break;
+            default:
+                // Invalid data block type
+                OS_REPORT_ERROR("データブロックタイプが不正です<%d>\n", block_type);
+                JUT_PANIC(570, "0");
             }
 
             if (block_type == 0) {
                 break;
             }
 
-            block_type = *block_p;
+            block_type = *data;
         } while (1);
         break;
     }
     case 2: {
-        u16 temp_r3_2 = data->field_0x2;
-        field_0x02 = temp_r3_2 & 0xF;
-        field_0x03 = (temp_r3_2 >> 0xE) & 3;
-        field_0x15 = (temp_r3_2 >> 0xC) & 3;
-        field_0x14 = (temp_r3_2 >> 9) & 7;
-        field_0x16 = (temp_r3_2 >> 8) & 1;
+        temp_r3 = *(u16*)(data + 2);
+        field_0x02 = temp_r3 & 0xF;
+        field_0x03 = (temp_r3 >> 0xE) & 3;
+        field_0x15 = (temp_r3 >> 0xC) & 3;
+        field_0x14 = (temp_r3 >> 9) & 7;
+        field_0x16 = (temp_r3 >> 8) & 1;
 
-        u8 block_type = data->field_0x4;
-        u8* block_p = (u8*)i_ptr + 4;
+        block_type = data[4];
+        data += 4;
 
         do {
             switch (block_type) {
             case 0:
                 break;
             case 3:
-                block_p = initTexShareBlock(block_p);
+                data = initTexShareBlock(data);
                 break;
             case 1:
-                block_p = initParticleBlock(block_p);
+                data = initParticleBlock(data);
                 break;
             case 2:
-                block_p = initSoundBlock(block_p);
+                data = initSoundBlock(data);
                 break;
             case 4:
-                block_p = initFarInfoBlock(block_p);
+                data = initFarInfoBlock(data);
                 break;
             default:
                 // "Data Block type invalid<%d>\n"
                 OSReport_Error("データブロックタイプが不正です<%d>\n", block_type);
+                JUT_PANIC(619, "0");
                 break;
             }
 
@@ -422,11 +437,13 @@ bool daBgObj_c::spec_data_c::Set(void* i_ptr) {
                 break;
             }
 
-            block_type = *block_p;
+            block_type = *data;
         } while (1);
         break;
     }
     default:
+        // Terrain unit MoveBG: performance undefined error<%d>!!!
+        OS_REPORT_ERROR("地形ユニットMoveBG : 性能未定義エラー！！！<%d>\n\n", mSpecType);
         return 0;
     }
 
@@ -464,17 +481,44 @@ static const dCcD_SrcCyl l_cyl_src = {
 };
 
 /* 80459BEC-80459D0C 00060C 0120+00 1/1 0/0 0/1 .text            initAtt__9daBgObj_cFv */
-// NONMATCHING - missing nop instruction
 void daBgObj_c::initAtt() {
-    u32 cd3_val = mSpecData.field_0x03 == 0 ? 3 : mSpecData.field_0x03 - 1;
-    u32 ce5_val = mSpecData.field_0x15 == 0 ? 3 : mSpecData.field_0x15 - 1;
-    u32 ce4_val = mSpecData.field_0x14 == 0 ? 7 : mSpecData.field_0x14 - 1;
+    u32 actor_params = 0;
+    u32 cd3_val;
+    if (mSpecData.field_0x03 == 0) {
+        cd3_val = 3;
+    } else {
+        cd3_val = mSpecData.field_0x03 - 1;
+    }
 
-    u32 arg0 = (daBgObj_prm::getObjArg0(this) != 0) ? 1 : 0;
+    u32 ce5_val;
+    if (mSpecData.field_0x15 == 0) {
+        ce5_val = 3;
+    } else {
+        ce5_val = mSpecData.field_0x15 - 1;
+    }
 
-    u32 actor_params =
-        (daBgObj_prm::getSwBit2(this) << 24) |
-        (daBgObj_prm::getSwBit(this) << 16) |
+    u32 ce4_val;
+    if (mSpecData.field_0x14 == 0) {
+        ce4_val = 7;
+    } else {
+        ce4_val = mSpecData.field_0x14 - 1;
+    }
+
+    u32 arg0;
+    if (daBgObj_prm::getObjArg0(this) == 0) {
+        arg0 = 0;
+    } else {
+        arg0 = 1;
+    }
+
+    u32 temp = 0;
+    u32 swbit = daBgObj_prm::getSwBit(this);
+    u32 swbit2 = daBgObj_prm::getSwBit2(this);
+
+    actor_params =
+        (swbit2 << 24) |
+        (swbit << 16) |
+        (temp << 8) |
         (arg0 << 7) |
         (ce4_val << 4) |
         (ce5_val << 2) |
@@ -485,9 +529,14 @@ void daBgObj_c::initAtt() {
 
     if (actor != NULL) {
         setAttentionInfo(actor);
+    } else {
+        // Failed to generate focus actor
+        OS_REPORT_ERROR("「注目点」生成失敗！！！\n");
     }
+    
     mAttnActorID = fopAcM_GetID(actor);
-    eyePos.y += 0.5f * fopAcM_getCullSizeBoxMax(this)->y;
+    const Vec* box = fopAcM_getCullSizeBoxMax(this);
+    eyePos.y += 0.5f * box->y;
 }
 
 /* 80459D0C-80459D3C 00072C 0030+00 2/2 0/0 0/0 .text setAttentionInfo__9daBgObj_cFP10fopAc_ac_c
@@ -1078,13 +1127,14 @@ struct blockItem {
 };
 
 /* 8045B17C-8045B3A0 001B9C 0224+00 3/3 0/0 0/0 .text            setParticle__9daBgObj_cFv */
-// NONMATCHING - out-of-place addi insn
 void daBgObj_c::setParticle() {
     u32 partNum = mSpecData.mParticleNum;
-    u8* partBlockItems = mSpecData.mpParticleBlock + 4;
+    u32* partBlockItems = (u32*)mSpecData.mpParticleBlock;
+    partBlockItems++;
     for (; partNum != 0; partNum--) {
-        u32 flags = *(u32*)partBlockItems;
-        u16 res_id = *(u32*)(partBlockItems + 4);
+        u32 flags = *partBlockItems++;
+        u16 res_id = *partBlockItems;
+        *partBlockItems++;
 
         GXColor prmColor = { 0xFF, 0xFF, 0xFF, 0xFF };
         GXColor envColor = { 0xFF, 0xFF, 0xFF, 0xFF };
@@ -1095,20 +1145,22 @@ void daBgObj_c::setParticle() {
 
         u8 hasColor = 0;
 
+        u8* pColors = (u8*)partBlockItems;
         if ((flags & 0x80000000) != 0) {
-            prmColor.r = partBlockItems[9];
-            prmColor.g = partBlockItems[10];
-            prmColor.b = partBlockItems[11];
+            prmColor.r = pColors[1];
+            prmColor.g = pColors[2];
+            prmColor.b = pColors[3];
             hasColor = 1;
         }
         if ((flags & 0x40000000) != 0) {
-            alpha = partBlockItems[8];
+            alpha = pColors[0];
         }
+        pColors += 4;
         if ((flags & 0x20000000) != 0) {
-            envColor.a = partBlockItems[12];
-            envColor.r = partBlockItems[13];
-            envColor.g = partBlockItems[14];
-            envColor.b = partBlockItems[15];
+            envColor.a = pColors[0];
+            envColor.r = pColors[1];
+            envColor.g = pColors[2];
+            envColor.b = pColors[3];
             hasColor = 1;
         }
         f32 fVar2 = 0.0f;
@@ -1119,40 +1171,43 @@ void daBgObj_c::setParticle() {
         }
 
         dKy_tevstr_c* status;
-        s32 someFlag = (flags >> 0x14 & 0xf);
-        if (someFlag != 0) {
-            J3DModelData* res_ptr = NULL;
+        u8 modelNumber = (flags & 0xf00000) >> 20;
+        u8 unusedFlag = (flags & 0xf0000) >> 16;
+        if (modelNumber != 0) {
+            J3DModelData* bmd = NULL;
+            int unused_sp28 = 0;
             cXyz scale(1.0f, 1.0f, 1.0f);
-            switch (someFlag) {
+            switch (modelNumber) {
                 case 1:
-                    res_ptr = (J3DModelData*)dComIfG_getObjectRes("Always", "BreakWoodBox.bmd");
-                    scale.x = 0.9f;
-                    scale.y = 0.9f;
-                    scale.z = 0.9f;
+                    bmd = (J3DModelData*)dComIfG_getObjectRes("Always", "BreakWoodBox.bmd");
+                    JUT_ASSERT(1683, bmd != 0);
+                    scale.setall(KREG_F(29) + 0.9f);
+                    break;
+                default:
+                    // Multi MoveBG: Particle model number is invalid <%d>
+                    OS_REPORT_ERROR("マルチMoveBG：パーティクルモデル番号が不正<%d>\n", modelNumber);
+                    JUT_PANIC(1689, "0");
                     break;
             }
-            status = NULL;
-            JPABaseEmitter* emitter = dComIfGp_particle_setColor(
+            JPABaseEmitter* emitter = dComIfGp_particle_set(
                 res_id,
                 &current.pos,
-                status,
-                NULL,
-                NULL,
-                1.0f,
-                0xff,
                 &mRotation,
                 NULL,
+                0xff,
                 &dPa_modelEcallBack::getEcallback(),
                 fopAcM_GetRoomNo(this),
+                NULL,
+                NULL,
                 &scale
             );
-            dPa_modelEcallBack::setModel(emitter, res_ptr, tevStr, 3, NULL, 0, 0);
+            dPa_modelEcallBack::setModel(emitter, bmd, tevStr, 3, NULL, 0, 0);
         } else {
-            status = dComIfGp_roomControl_getTevStr(fopAcM_GetRoomNo(this));
+            fopAc_ac_c* unused_player = dComIfGp_getPlayer(0);
             dComIfGp_particle_setColor(
                 res_id,
                 &current.pos,
-                status,
+                dComIfGp_roomControl_getTevStr(fopAcM_GetRoomNo(this)),
                 prmColorPtr,
                 envColorPtr,
                 fVar2,
@@ -1164,7 +1219,7 @@ void daBgObj_c::setParticle() {
                 NULL
             );
         }
-        partBlockItems += 0x10;
+        partBlockItems += 2;
     }
 }
 
@@ -1276,10 +1331,10 @@ void daBgObj_c::orderWait_tri() {
 
 
 /* 8045B7FC-8045B9C4 00221C 01C8+00 1/1 0/0 0/0 .text            orderWait_cyl__9daBgObj_cFv */
-// NONMATCHING - r30/r31 swap
 void daBgObj_c::orderWait_cyl() {
     if (mCyl.ChkTgHit()) {
-        if (checkHitAt(mCyl.GetTgHitObj())) {
+        cCcD_Obj* hitObj = mCyl.GetTgHitObj();
+        if (checkHitAt(hitObj)) {
             setSe();
 
             fopAc_ac_c* hit_ac = mCyl.GetTgHitAc();
@@ -1289,10 +1344,10 @@ void daBgObj_c::orderWait_cyl() {
 
                 mDoMtx_stack_c::YrotS(-shape_angle.y);
                 mDoMtx_stack_c::multVec(&sp1C, &sp1C);
+                cXyz sp28;
                 mDoMtx_stack_c::transS(current.pos);
                 mDoMtx_stack_c::YrotM(shape_angle.y);
 
-                cXyz sp28;
                 if (sp1C.z > 0.0f) {
                     sp28 = cXyz(0.0f, 0.0f, 1.0f);
                 } else {
