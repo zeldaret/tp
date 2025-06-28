@@ -95,14 +95,11 @@ public:
         /* 80C04E14 */ ~daObj_GrA_prtclMngr_c() {}
         /* 80C04E50 */ daObj_GrA_prtclMngr_c() {}
 
-        /* 0x00 */ s8 field_0x0;
-        /* 0x01 */ u8 field_0x1[0x4 - 0x1];
+        /* 0x00 */ bool field_0x0;
         /* 0x04 */ cXyz field_0x4;
         /* 0x10 */ csXyz field_0x10;
-        /* 0x16 */ u8 field_0x16[2];
         /* 0x18 */ cXyz field_0x18;
-        /* 0x24 */ dPaPo_c* field_0x24[6];
-        /* 0x3C */ u8 field_0x3c[0x5c - 0x3c];
+        /* 0x24 */ dPaPo_c field_0x24;
     };
 
     /* 80BFFF58 */ static void rideCallBack(dBgW*, fopAc_ac_c*, fopAc_ac_c*);
@@ -246,13 +243,13 @@ public:
     bool isFirstGra() { return field_0x1fe8 == 0; }
 
     void setDemoMode(s16 mDemoMode) { mDemoCamMode = mDemoMode; }
+    s16 getDemoMode() { return mDemoCamMode; }
 
 private:
     /* 0x0A48 */ u16 field_0xa48;
-    /* 0x0A4A */ u8 field_0xa4a[0xa4c - 0xa4a];
     /* 0x0A4C */ daObj_GrA_Param_c* field_0xa4c;
     /* 0x0A50 */ Process field_0xa50;
-    /* 0x0A5C */ request_of_phase_process_class* field_0xa5c[8];
+    /* 0x0A5C */ request_of_phase_process_class mPhases[4];
     /* 0x0A7C */ u16 field_0xa7c;
     /* 0x0A7E */ u8 mMode;
     /* 0x0A7F */ u8 field_0xa7f;
@@ -325,7 +322,7 @@ private:
     /* 0x1FF0 */ int field_0x1ff0;
     /* 0x1FF4 */ u8 field_0x1ff4;
     /* 0x1FF8 */ int field_0x1ff8;
-    /* 0x1FFC */ u8 field_0x1ffc;
+    /* 0x1FFC */ bool field_0x1ffc;
     /* 0x2000 */ int field_0x2000;
     /* 0x2004 */ u8 field_0x2004;
     /* 0x2005 */ s8 field_0x2005;

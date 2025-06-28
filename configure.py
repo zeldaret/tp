@@ -1935,7 +1935,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_gm"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_goGate"),
     ActorRel(NonMatching, "d_a_obj_gomikabe"),
-    ActorRel(NonMatching, "d_a_obj_gra2"),
+    ActorRel(Equivalent, "d_a_obj_gra2"),  # weak function order
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_graWall"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_gra_rock"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_grave_stone"),
