@@ -10,6 +10,7 @@
 #include "stdio.h"
 #include "SSystem/SComponent/c_malloc.h"
 #include "d/d_com_inf_game.h"
+#include "d/actor/d_a_alink.h"
 #include "d/d_lib.h"
 #include "d/d_map_path_dmap.h"
 #include "d/d_map_path_fmap.h"
@@ -2793,3 +2794,11 @@ void dStage_restartRoom(u32 roomParam, u32 mode, int param_2) {
                           mode, 0, 0, 0, param_2, 0);
     dComIfGs_setRestartRoomParam(roomParam);
 }
+
+#if VERSION == VERSION_WII_USA_R0
+void dStage_escapeRestart() {
+    daAlink_c* player_p = daAlink_getAlinkActorClass();
+    dComIfGs_setTurnRestart(player_p->current.pos, player_p->shape_angle.y, fopAcM_GetRoomNo(player_p), fopAcM_GetParam(player_p));
+    dComIfGp_setNextStage(dComIfGp_getStartStageName(), -2, dComIfGs_getTurnRestartRoomNo(), -1, 0.0f, 0, 0, 9, 0, 1, 0);
+}
+#endif

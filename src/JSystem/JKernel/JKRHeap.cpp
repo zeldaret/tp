@@ -24,7 +24,7 @@ JKRHeap* JKRHeap::sCurrentHeap;
 /* 80451378-8045137C 000878 0004+00 3/3 10/10 0/0 .sbss            sRootHeap__7JKRHeap */
 JKRHeap* JKRHeap::sRootHeap;
 
-#ifdef DEBUG
+#if PLATFORM_WII || PLATFORM_SHIELD
 JKRHeap* JKRHeap::sRootHeap2;
 #endif
 

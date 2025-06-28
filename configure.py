@@ -47,7 +47,6 @@ VERSIONS = [
 
 # Versions to disable until properly configured
 DISABLED_VERSIONS = [
-    3,  # Wii USA Rev 0
     4,  # Wii USA Rev 2
     5,  # Wii PAL
     6,  # Wii JPN
@@ -246,6 +245,8 @@ cflags_base = [
 
 if config.version == "ShieldD":
     cflags_base.extend(["-O0", "-inline off", "-RTTI on", "-str reuse", "-enc SJIS", "-DDEBUG=1"])
+elif config.version == "RZDE01_00":
+    cflags_base.extend(["-O4,p", "-inline auto", "-RTTI on", "-str reuse", "-enc SJIS"])
 else:
     cflags_base.extend(["-O4,p", "-inline auto", "-RTTI off", "-str reuse", "-multibyte"])
 
@@ -327,14 +328,17 @@ cflags_dolphin = [
 cflags_framework = [
     *cflags_base,
     "-use_lmw_stmw off",
-    "-inline noauto",
     "-schedule off",
     "-sym on",
     "-fp_contract off",
 ]
 
 if config.version != "ShieldD":
-    cflags_framework.extend(["-O3,s", "-sym on", "-str reuse,pool,readonly"])
+    if config.version == "RZDE01_00":
+        # TODO: whats the correct inlining flag? deferred looks better in some places, others not. something else wrong?
+        cflags_framework.extend(["-inline on", "-O4,s", "-sym on"])
+    else:
+        cflags_framework.extend(["-inline noauto", "-O3,s", "-sym on", "-str reuse,pool,readonly"])
 
 # REL flags
 cflags_rel = [
@@ -351,6 +355,8 @@ def MWVersion(cfg_version: str | None) -> str:
             return "GC/2.7"
         case "GZ2J01":
             return "GC/2.7"
+        case "RZDE01_00":
+            return "GC/3.0a3"
         case "ShieldD":
             return "Wii/1.0"
         case _:
@@ -420,6 +426,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_printf.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_audio.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_controller_pad.cpp"),
+            Object(NonMatching, "m_Do/m_Re_controller_pad.cpp"),
             Object(Equivalent, "m_Do/m_Do_graphic.cpp"), # weak func order
             Object(NonMatching, "m_Do/m_Do_machine.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_mtx.cpp", extra_cflags=["-sym off"]),
@@ -520,6 +527,7 @@ config.libs = [
         "progress_category": "game",
         "host": True,
         "objects": [
+            Object(NonMatching, "d/d_home_button.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_stage.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_map.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_com_inf_game.cpp", extra_cflags=['-pragma "nosyminline on"']),
@@ -1934,8 +1942,8 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_groundwater"),
     ActorRel(NonMatching, "d_a_obj_grz_rock"),
     ActorRel(NonMatching, "d_a_obj_h_saku"),
-    ActorRel(NonMatching, "d_a_obj_hakai_brl"),
-    ActorRel(NonMatching, "d_a_obj_hakai_ftr"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_hakai_brl"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_hakai_ftr"),
     ActorRel(NonMatching, "d_a_obj_hasu2"),
     ActorRel(NonMatching, "d_a_obj_hata"),
     ActorRel(NonMatching, "d_a_obj_hb"),
@@ -1957,7 +1965,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_kage"),
     ActorRel(NonMatching, "d_a_obj_kago"),
     ActorRel(NonMatching, "d_a_obj_kaisou"),
-    ActorRel(NonMatching, "d_a_obj_kamakiri"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_kamakiri"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_kantera"),
     ActorRel(NonMatching, "d_a_obj_katatsumuri"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_kazeneko"),
