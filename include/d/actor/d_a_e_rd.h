@@ -56,7 +56,7 @@ public:
     /* 0x06C4 */ J3DModel* mpEyeModels[2];
     /* 0x06CC */ f32 field_0x6cc;
     /* 0x06D0 */ f32 field_0x6d0;
-    /* 0x06D4 */ J3DModel* mpBossParts[14];
+    /* 0x06D4 */ J3DModel* mpBossArmorParts[14];
     /* 0x070C */ s8 field_0x70c[14];
     /* 0x071A */ u8 field_0x71a[2];
     /* 0x071C */ cXyz field_0x71c[14];
