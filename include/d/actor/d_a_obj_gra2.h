@@ -96,7 +96,6 @@ public:
         /* 80C04E50 */ daObj_GrA_prtclMngr_c() {}
 
         /* 0x00 */ bool field_0x0;
-        /* 0x01 */ u8 field_0x1[0x4 - 0x1];
         /* 0x04 */ cXyz field_0x4;
         /* 0x10 */ csXyz field_0x10;
         /* 0x18 */ cXyz field_0x18;
@@ -248,7 +247,6 @@ public:
 
 private:
     /* 0x0A48 */ u16 field_0xa48;
-    /* 0x0A4A */ u8 field_0xa4a[0xa4c - 0xa4a];
     /* 0x0A4C */ daObj_GrA_Param_c* field_0xa4c;
     /* 0x0A50 */ Process field_0xa50;
     /* 0x0A5C */ request_of_phase_process_class mPhases[4];

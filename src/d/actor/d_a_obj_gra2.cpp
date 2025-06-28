@@ -173,8 +173,7 @@ cPhs__Step daObj_GrA_c::create() {
         uVar1 += 1;
     }
 
-    i = 0;
-    for (; l_exloadRes_list[mMode][i] >= 0; i++) {
+    for (i = 0; l_exloadRes_list[mMode][i] >= 0; i++) {
         phase = (cPhs__Step)dComIfG_resLoad(&mPhases[i], l_resNames[l_exloadRes_list[mMode][i]]);
         if (phase == cPhs_ERROR_e || phase == cPhs_UNK3_e) {
             return cPhs_ERROR_e;
@@ -195,7 +194,7 @@ cPhs__Step daObj_GrA_c::create() {
     if (uVar1 == (i + 1) && (uVar1 == 3 || uVar1 == 4)) {
         int dzb_id = dComIfG_getObjctResName2Index(getResName(), "grA_stone_col.dzb");
         u32 heap_size = 0x3B10;
-        if (MoveBGCreate(getResName(), dzb_id, NULL, heap_size) == 5) {
+        if (MoveBGCreate(getResName(), dzb_id, NULL, heap_size) == cPhs_ERROR_e) {
             return cPhs_ERROR_e;
         }
 
@@ -1619,7 +1618,7 @@ int daObj_GrA_c::setPrtcl() {
     return 1;
 }
 
-#include "d/actor/d_a_obj_gra2.inc"
+#include "d/actor/d_a_obj_gra2_soldier.inc"
 
 /* 80C03B14-80C03B48 003CF4 0034+00 1/0 0/0 0/0 .text            base000__11daObj_GrA_cFi */
 int daObj_GrA_c::base000(int param_1) {
