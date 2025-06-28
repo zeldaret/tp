@@ -1,4 +1,6 @@
 #
+# Version v2.0
+#
 # Author: YunataSavior
 # Brief: Converts byte-array anm data into their proper forms.
 #
@@ -19,16 +21,25 @@ MOTION_TYPE = "daNpcT_motionAnmData_c l_motionAnmData"
 MOTION_PATTERN = r'SECTION_DATA static u8 l_motionAnmData\[\d+\] = {'
 
 SEQ_FACE_MOTION_TYPE = "daNpcT_MotionSeqMngr_c::sequenceStepData_c l_faceMotionSequenceData"
-SEQ_FACE_MOTION_PATTERN = "SECTION_DATA static u8 l_faceMotionSequenceData\[\d+\] = {"
+SEQ_FACE_MOTION_PATTERN = r'SECTION_DATA static u8 l_faceMotionSequenceData\[\d+\] = {'
 
 SEQ_MOTION_TYPE = "daNpcT_MotionSeqMngr_c::sequenceStepData_c l_motionSequenceData"
-SEQ_MOTION_PATTERN = "SECTION_DATA static u8 l_motionSequenceData\[\d+\] = {"
+SEQ_MOTION_PATTERN = r'SECTION_DATA static u8 l_motionSequenceData\[\d+\] = {'
 
 HEAP_SIZE_TYPE = "int const heapSize"
-HEAP_SIZE_PATTERN = "SECTION_RODATA static u8 const heapSize\[\d+\] = {"
+HEAP_SIZE_PATTERN = r'SECTION_RODATA static u8 const heapSize\[\d+\] = {'
 
 PARAM_TYPE = "::m"
 PARAM_PATTERN = r'SECTION_RODATA u8 const (\w+_Param_c)::m\[\d+\] = {'
+
+EVT_LIST_PATTERN = r'SECTION_DATA static void\* l_evtList\[\d+\] = {'
+RES_NAME_PATTERN = r'SECTION_DATA static void\* l_resNameList\[\d+\] = {'
+CUT_NAME_PATTERN = r'SECTION_DATA void\* ([a-zA-Z_][a-zA-Z0-9_]*)::mCutNameList\[(\d+)\] = \{'
+VOID_PTR_INT_PATTERN = r'\(void\*\)(NULL|0x[0-9A-Fa-f]+)'
+
+STRING_BASE_PATTERN = r'^SECTION_DEAD static char const\* const stringBase_([0-9A-Fa-f]+)\s*=\s*(".*?");'
+STR_NO_OFFSET_PATTERN = r'\(void\*\)&([a-zA-Z0-9_]+)__stringBase0'
+STR_WITH_OFFSET_PATTERN = r'\(void\*\)\(\(\(char\*\)&([a-zA-Z0-9_]+)__stringBase0\) \+ 0x([0-9A-Fa-f]+)\)'
 
 
 def unsigned_val(hexstr):
@@ -70,7 +81,7 @@ def float_to_hex(f):
     return f"{d:08X}"
 
 
-def handle_npc_param(byte_collection, param_name, type):
+def handle_npc_param(byte_collection, param_name, type, no_auto_float):
     my_len = len(byte_collection)
     if my_len % 4 != 0:
         print(f"Error: len() = '{my_len}' isn't divisble by 4")
@@ -79,9 +90,13 @@ def handle_npc_param(byte_collection, param_name, type):
     # Special handling.
     instr_arr = []
     common_name = ""
+    is_raw = False
     if type is None:
         print("ERROR: --type <type> must be specified")
         sys.exit(1)
+    elif type == "raw":
+        print("// Make sure the type isn't actually daNpcT nor daNpcF.")
+        is_raw = True
     elif type == "daNpcT":
         common_name = "daNpcT_HIOParam"
         instr_arr = [
@@ -142,6 +157,7 @@ def handle_npc_param(byte_collection, param_name, type):
     hexstr = ""
     res_array = []
     common_size = 0
+    prms_is_float: list[bool] = []
     while ptr < my_len:
         curbyte = byte_collection[ptr]
         ptr += 1
@@ -164,6 +180,11 @@ def handle_npc_param(byte_collection, param_name, type):
                 val = twos_complement(hexstr, exp_bytes*8)
                 res_array.append(val)
             elif my_type == 'h':
+                if is_raw or common_size != 0:
+                    if no_auto_float:
+                        prms_is_float.append(False)
+                    else:
+                        prms_is_float.append(prm_is_float(hexstr))
                 res_array.append("0x" + hexstr)
             elif my_type == 'f':
                 fvalue = hex_to_float(hexstr)
@@ -176,23 +197,25 @@ def handle_npc_param(byte_collection, param_name, type):
                 sys.exit(1)
 
             hexstr = ""
-            if common_size == 0:
+            if not is_raw and common_size == 0:
                 cur_instr += 1
 
-            if cur_instr == len(instr_arr):
+            if not is_raw and cur_instr == len(instr_arr):
                 if common_size == 0:
                     common_size = ptr
 
-    assert common_size != 0, "Param array is too short for specified type"
+    assert is_raw or common_size != 0, "Param array is too short for specified type"
     hio_name = re.sub(r'_Param_c$', '_HIOParam', param_name)
     res_str = "// Must be put OUTSIDE {}:\n".format(param_name)
     res_str += "struct {} {{\n".format(hio_name)
     idx = common_size
-    res_str += "    /* 0x00 */ {} common;\n".format(common_name)
+    if not is_raw:
+        res_str += "    /* 0x00 */ {} common;\n".format(common_name)
     while idx < my_len:
         upper = f'{idx:02X}'
         lower = f'{idx:02x}'
-        res_str += "    /* 0x{} */ u32 field_0x{};\n".format(upper, lower)
+        mych = 'f' if (prms_is_float[int((idx-common_size) / 4)] is True) else 'u'
+        res_str += "    /* 0x{} */ {}32 field_0x{};\n".format(upper, mych, lower)
         idx += 4
 
     res_str += "};\n\n"
@@ -201,6 +224,7 @@ def handle_npc_param(byte_collection, param_name, type):
     res_str += "const {} {}::m".format(hio_name, param_name)
 
     res_str += " = {\n"
+    cur_pos = 0
     for value in res_array:
         res_str += "    "
 
@@ -209,8 +233,20 @@ def handle_npc_param(byte_collection, param_name, type):
         elif isinstance(value, float):
             res_str += str(value) + "f"
         else:
-            res_str += value
+            adj_pos = cur_pos - len(instr_arr)
+            if adj_pos >= 0 and prms_is_float[adj_pos] is True:
+                fvalue = hex_to_float(value[2:])
+                fvalue = round(fvalue, 6)
+                res_str += f"{fvalue}f"
+                chk_val = "0x" + float_to_hex(fvalue)
+                # Sanity check in case rounding is too aggressive:
+                assert chk_val == value, f"chk_val {chk_val} != value {value}"
+                # if prmfloat_dbg is True:
+                #     res_str += f" // {value}"
+            else:
+                res_str += value
         res_str += ",\n"
+        cur_pos += 1
 
     res_str += "};\n"
     print(res_str)
@@ -340,7 +376,29 @@ def build_anm_struct(byte_collection, anm_type):
     print(res_str)
 
 
-def run_beautify_anm_data(in_file, type=None):
+def handle_charptr_array(int_collection, charptr_collection, charptr_type, class_name):
+    res_str = ""
+    if charptr_type == "l_evtList":
+        assert len(charptr_collection) == len(int_collection)
+        res_str += f"static daNpcT_evtData_c l_evtList[{len(charptr_collection)}] = {{\n"
+    elif charptr_type == "l_resNameList":
+        res_str += f"static char* l_resNameList[{len(charptr_collection)}] = {{\n"
+    elif charptr_type == "mCutNameList":
+        res_str += f"char* {class_name}::mCutNameList[{len(charptr_collection)}] = {{\n"
+    else:
+        raise Exception(f"Unknown charptr_type \"{charptr_type}\"")
+
+    for idx in range(len(charptr_collection)):
+        if charptr_type == "l_evtList":
+            res_str += f"    {{{charptr_collection[idx]}, {int_collection[idx]}}},\n"
+        else:
+            res_str += f"    {charptr_collection[idx]},\n"
+
+    res_str += "};\n"
+    print(res_str)
+
+
+def run_beautify_anm_data(in_file, type=None, no_auto_float=False):
     # Check if the file exists
     if not os.path.isfile(in_file):
         print(f"Error: File '{in_file}' not found.")
@@ -351,16 +409,38 @@ def run_beautify_anm_data(in_file, type=None):
     lines = fConts.splitlines()
 
     in_byte_array = False
+    in_charptr_array = False
     byte_collection = []
+    charptr_collection = []
+    int_collection = []
     anm_type = ""
+    charptr_type = ""
     param_name = ""
+    class_name = ""
+
+    str_lit_start = 0
+    strlit_map = {}
 
     for line in lines:
         words = line.split()
         if len(words) == 0:
             continue
 
-        if in_byte_array is False:
+        sb_match = re.search(STRING_BASE_PATTERN, line)
+        if sb_match:
+            addr = sb_match.group(1)
+            string_lit = sb_match.group(2)
+            addr_int = unsigned_val(addr)
+            offset = 0
+            if str_lit_start == 0:
+                str_lit_start = addr_int
+            else:
+                offset = addr_int - str_lit_start
+            # print(f"Address: 0x{addr}, Offset: {offset} String: {string_lit}")
+            strlit_map[offset] = string_lit
+            continue
+
+        if in_byte_array is False and in_charptr_array is False:
             if re.search(FACE_MOTION_PATTERN, line):
                 in_byte_array = True
                 anm_type = FACE_MOTION_TYPE
@@ -376,6 +456,17 @@ def run_beautify_anm_data(in_file, type=None):
             elif re.search(HEAP_SIZE_PATTERN, line):
                 in_byte_array = True
                 anm_type = HEAP_SIZE_TYPE
+            elif re.search(EVT_LIST_PATTERN, line):
+                in_charptr_array = True
+                charptr_type = "l_evtList"
+            elif re.search(RES_NAME_PATTERN, line):
+                in_charptr_array = True
+                charptr_type = "l_resNameList"
+            elif match := re.search(CUT_NAME_PATTERN, line):
+                in_charptr_array = True
+                class_name = match.group(1)
+                # print(f"Class: {class_name}, Array Size: {match.group(2)}")
+                charptr_type = "mCutNameList"
             else:
                 match = re.search(PARAM_PATTERN, line)
                 if match:
@@ -384,18 +475,47 @@ def run_beautify_anm_data(in_file, type=None):
                     param_name = match.group(1)
         else:
             if words[0] == '};':
-                if anm_type == PARAM_TYPE:
-                    handle_npc_param(byte_collection, param_name, type)
+                if in_byte_array:
+                    if anm_type == PARAM_TYPE:
+                        handle_npc_param(byte_collection, param_name, type, no_auto_float)
+                    else:
+                        build_anm_struct(byte_collection, anm_type)
+                    in_byte_array = False
+                    byte_collection.clear()
                 else:
-                    build_anm_struct(byte_collection, anm_type)
-                in_byte_array = False
-                byte_collection.clear()
+                    handle_charptr_array(int_collection, charptr_collection, charptr_type, class_name)
+                    int_collection.clear()
+                    charptr_collection.clear()
+                    in_charptr_array = False
             else:
-                bytes = re.split(r'[,\s]+', line)
-                for byte in bytes:
-                    if (len(byte) == 0):
-                        continue
-                    byte_collection.append(byte)
+                if in_byte_array:
+                    bytes = re.split(r'[,\s]+', line)
+                    for byte in bytes:
+                        if (len(byte) == 0):
+                            continue
+                        byte_collection.append(byte)
+                else:
+                    if re.search(STR_NO_OFFSET_PATTERN, line):
+                        # symbol = match_no_offset.group(1)
+                        offset = 0
+                        # print(f"Symbol: {symbol}, Offset: {offset}")
+                        charptr_collection.append(strlit_map[offset])
+                    elif match_offset := re.search(STR_WITH_OFFSET_PATTERN, line):
+                        # symbol = match_offset.group(1)
+                        offset = int(match_offset.group(2), 16)
+                        # print(f"Symbol: {symbol}, Offset: {offset}")
+                        charptr_collection.append(strlit_map[offset])
+                    elif vip_match := re.search(VOID_PTR_INT_PATTERN, line):
+                        assert charptr_type == "l_evtList"
+                        value_str = vip_match.group(1)
+                        if value_str == 'NULL':
+                            value = 0
+                        else:
+                            value = int(value_str, 16)
+                        # print(f"Parsed Value: {value}")
+                        int_collection.append(value)
+                    else:
+                        raise Exception(f"ptr parsing: unknown line type: \"{line}\"")
 
     # End of for loop.
     fDesc.close()
