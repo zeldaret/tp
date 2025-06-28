@@ -376,52 +376,36 @@ SECTION_DATA static u8 l_bmdData[48] = {
 };
 
 /* 8053EBAC-8053EC14 -00001 0068+00 0/1 0/0 0/0 .data            l_evtList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtList[26] = {
-    (void*)&d_a_npc_besu__stringBase0,
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x1),
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0xD),
-    (void*)0x0000000B,
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x27),
-    (void*)0x0000000B,
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x41),
-    (void*)0x00000004,
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x5E),
-    (void*)0x00000004,
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x7B),
-    (void*)0x00000004,
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x98),
-    (void*)0x00000009,
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0xAE),
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0xB9),
-    (void*)0x00000006,
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0xC2),
-    (void*)0x00000005,
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0xDD),
-    (void*)0x0000000A,
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0xE3),
-    (void*)0x00000005,
+static daNpcT_evtData_c l_evtList[13] = {
+    {"", 0},
+    {"NO_RESPONSE", 0},
+    {"CONVERSATION_ABOUT_SARU01", 11},
+    {"CONVERSATION_ABOUT_SARU02", 11},
+    {"CONVERSATION_ABOUT_PACHINKO1", 4},
+    {"CONVERSATION_ABOUT_PACHINKO2", 4},
+    {"CONVERSATION_ABOUT_PACHINKO3", 4},
+    {"CACARICO_CONVERSATION", 9},
+    {"DEMO13_STB", 0},
+    {"SURPRISE", 6},
+    {"CONVERSATION_ABOUT_DEATHMT", 5},
+    {"NURSE", 10},
+    {"CONVERSATION_ABOUT_ZORA", 5},
 };
-#pragma pop
 
 /* 8053EC14-8053EC44 -00001 0030+00 3/4 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[12] = {
-    (void*)&d_a_npc_besu__stringBase0,
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0xFB),
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x100),
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x108),
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x10E),
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x114),
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x11A),
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x120),
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x128),
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x12D),
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x133),
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x138),
+static char* l_resNameList[12] = {
+    "",
+    "Besu",
+    "Besu_TW",
+    "Besu0",
+    "Besu1",
+    "Besu2",
+    "Besu3",
+    "Besu_p1",
+    "Len1",
+    "Taro1",
+    "Lud2",
+    "Sera",
 };
 
 /* 8053EC44-8053EC48 0000E8 0004+00 1/0 0/0 0/0 .data            l_loadResPtrn0 */
@@ -598,22 +582,22 @@ static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_motionSequenceData[120] = {
 };
 
 /* 8053F744-8053F780 -00001 003C+00 1/1 0/0 0/0 .data            mCutNameList__12daNpc_Besu_c */
-SECTION_DATA void* daNpc_Besu_c::mCutNameList[15] = {
-    (void*)&d_a_npc_besu__stringBase0,
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x13D),
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x155),
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x171),
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x18C),
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x198),
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x1A4),
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x98),
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0xB9),
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x1B0),
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0xC2),
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x1C6),
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0xDD),
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x1DF),
-    (void*)(((char*)&d_a_npc_besu__stringBase0) + 0x1E9),
+char* daNpc_Besu_c::mCutNameList[15] = {
+    "",
+    "CONVERSATION_ABOUT_SARU",
+    "CONVERSATION_ABOUT_PACHINKO",
+    "CONVERSATION_ABOUT_WOODSWD",
+    "SWDTUTORIAL",
+    "FIND_MONKEY",
+    "GET_WOODSWD",
+    "CACARICO_CONVERSATION",
+    "SURPRISE",
+    "CONVERSATION_IN_HOTEL",
+    "CONVERSATION_ABOUT_DEATHMT",
+    "CONVERSATION_ABOUT_GORON",
+    "NURSE",
+    "CLOTH_TRY",
+    "THANK_YOU",
 };
 
 /* 8053F780-8053F78C -00001 000C+00 0/1 0/0 0/0 .data            @3908 */
@@ -1235,7 +1219,7 @@ daNpc_Besu_c::~daNpc_Besu_c() {
 
 /* ############################################################################################## */
 /* 8053E754-8053E7E4 000000 0090+00 13/13 0/0 0/0 .rodata          m__18daNpc_Besu_Param_c */
-daNpc_Besu_Param_c::Data const daNpc_Besu_Param_c::m = {
+const daNpc_Besu_HIOParam daNpc_Besu_Param_c::m = {
     160.0f,
     -3.0f,
     1.0f,
@@ -1244,8 +1228,8 @@ daNpc_Besu_Param_c::Data const daNpc_Besu_Param_c::m = {
     140.0f,
     35.0f,
     30.0f,
-    0x00000000,
-    0x00000000,
+    0.0f,
+    0.0f,
     10.0f,
     -10.0f,
     30.0f,
@@ -1254,18 +1238,24 @@ daNpc_Besu_Param_c::Data const daNpc_Besu_Param_c::m = {
     -45.0f,
     0.6f,
     12.0f,
-    0x00030006,
-    0x00050006,
+    3,
+    6,
+    5,
+    6,
     110.0f,
-    0x00000000,
-    0x00000000,
-    0x00000000,
-    0x003C0008,
-    0x00000000,
-    0x00000000,
+    0.0f,
+    0.0f,
+    0.0f,
+    60,
+    8,
+    0,
+    0,
+    0,
+    0,
+    0,
     4.0f,
     -15.0f,
-    0x00000000,
+    0.0f,
     -15.0f,
     15.0f,
     30.0f,
