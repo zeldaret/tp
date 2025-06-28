@@ -136,6 +136,35 @@ enum Action {
     /* 0x3C */ ACTION_REG           = 60,
 };
 
+enum Joint {
+    /* 0x00 */ JNT_KOSI,
+    /* 0x01 */ JNT_HIP1,
+    /* 0x02 */ JNT_KOKAL,
+    /* 0x03 */ JNT_MOMOL,
+    /* 0x04 */ JNT_SUNEL1,
+    /* 0x05 */ JNT_ASIL,
+    /* 0x06 */ JNT_KOKAR,
+    /* 0x07 */ JNT_MOMORR,
+    /* 0x08 */ JNT_SUNER1,
+    /* 0x09 */ JNT_ASIR,
+    /* 0x0A */ JNT_MUNE1,
+    /* 0x0B */ JNT_MUNE2,
+    /* 0x0C */ JNT_KUBI,
+    /* 0x0D */ JNT_HEAD,
+    /* 0x0E */ JNT_HIMOL,
+    /* 0x0F */ JNT_HIMOR,
+    /* 0x10 */ JNT_SHOULDERL,
+    /* 0x11 */ JNT_ARML1,
+    /* 0x12 */ JNT_ARML2,
+    /* 0x13 */ JNT_HANDL,
+    /* 0x14 */ JNT_YUBIL,
+    /* 0x15 */ JNT_SHOULDERR,
+    /* 0x16 */ JNT_ARMR1,
+    /* 0x17 */ JNT_ARMR2,
+    /* 0x18 */ JNT_HANDR,
+    /* 0x19 */ JNT_YUBIR,
+};
+
 /* 80504A6C-80504B20 0000EC 00B4+00 1/1 0/0 0/0 .text            __ct__12daE_RD_HIO_cFv */
 daE_RD_HIO_c::daE_RD_HIO_c() {
     field_0x4 = -1;
@@ -220,26 +249,26 @@ static int nodeCallBack(J3DJoint* i_joint, int param_2) {
         e_rd_class* i_this = (e_rd_class*)model->getUserArea();
         if (i_this != NULL) {
             MTXCopy(model->getAnmMtx(jointNo), *calc_mtx);
-            if (jointNo == 0) {
+            if (jointNo == JNT_KOSI) {
                 if (i_this->field_0x9c8 == 3) {
                     cMtx_YrotM(*calc_mtx, i_this->field_0x9ca);
                 }
-            } else if (jointNo == 1) {
+            } else if (jointNo == JNT_HIP1) {
                 if (i_this->field_0x9c8 == 3) {
                     cMtx_XrotM(*calc_mtx, i_this->field_0x9ca);
                 }
 
                 cMtx_YrotM(*calc_mtx, i_this->field_0xae0);
                 cMtx_ZrotM(*calc_mtx, i_this->field_0xabc[2] + (i_this->field_0xade - i_this->field_0xa32[2].x));
-            } else if (jointNo == 2) {
+            } else if (jointNo == JNT_KOKAL) {
                 cMtx_YrotM(*calc_mtx, i_this->field_0xaca);
-            } else if (jointNo == 4) {
+            } else if (jointNo == JNT_SUNEL1) {
                 cMtx_ZrotM(*calc_mtx, i_this->field_0xacc[0]);
-            } else if (jointNo == 6) {
+            } else if (jointNo == JNT_KOKAR) {
                 cMtx_YrotM(*calc_mtx, i_this->field_0xacc[1]);
-            } else if (jointNo == 8) {
+            } else if (jointNo == JNT_SUNER1) {
                 cMtx_ZrotM(*calc_mtx, i_this->field_0xacc[2]);
-            } else if (jointNo == 11) {
+            } else if (jointNo == JNT_MUNE2) {
                 cMtx_YrotM(*calc_mtx, i_this->field_0xa32[1].y);
                 
                 if (i_this->field_0x9c8 == 3) {
@@ -258,12 +287,12 @@ static int nodeCallBack(J3DJoint* i_joint, int param_2) {
                 if (i_this->field_0x9c8 == 3) {
                     cMtx_ZrotM(*calc_mtx, i_this->field_0x9cc);
                 }
-            } else if (jointNo == 13) {
+            } else if (jointNo == JNT_HEAD) {
                 if (i_this->field_0x9c8 != 3 && i_this->field_0x9c8 != 4) {
                     cMtx_YrotM(*calc_mtx, (i_this->field_0x9ce - i_this->field_0x9ca) / 2);
                     cMtx_ZrotM(*calc_mtx, (i_this->field_0xabc[0] + (i_this->field_0xa32[0].x - i_this->field_0x9cc)) / 2);
                 }
-            } else if (jointNo == 12) {
+            } else if (jointNo == JNT_KUBI) {
                 cMtx_YrotM(*calc_mtx, i_this->field_0xa32[0].y);
 
                 if (i_this->field_0x9c8 != 3 && i_this->field_0x9c8 != 4) {
@@ -272,13 +301,13 @@ static int nodeCallBack(J3DJoint* i_joint, int param_2) {
                 } else {
                     cMtx_ZrotM(*calc_mtx, i_this->field_0xa32[0].x + i_this->field_0xabc[0]);
                 }
-            } else if (jointNo == 17) {
+            } else if (jointNo == JNT_ARML1) {
                 cMtx_YrotM(*calc_mtx, i_this->field_0xa32[3].y + i_this->field_0xabc[3]);
-            } else if (jointNo == 18) {
+            } else if (jointNo == JNT_ARML2) {
                 cMtx_YrotM(*calc_mtx, i_this->field_0xa32[4].y + i_this->field_0xac4);
-            } else if (jointNo == 22) {
+            } else if (jointNo == JNT_ARMR1) {
                 cMtx_YrotM(*calc_mtx, i_this->field_0xa32[5].y + i_this->field_0xac6);
-            } else if (jointNo == 23) {
+            } else if (jointNo == JNT_ARMR2) {
                 cMtx_YrotM(*calc_mtx, i_this->field_0xa32[6].y + i_this->field_0xac8);
             }
 
@@ -309,9 +338,9 @@ static int nodeCallBack_B(J3DJoint* i_joint, int param_2) {
         if (i_this != NULL) {
             MTXCopy(model->getAnmMtx(jointNo), *calc_mtx);
 
-            if (jointNo == 1 || jointNo == 2) {
+            if (jointNo == JNT_HIP1 || jointNo == JNT_KOKAL) {
                 cMtx_XrotM(*calc_mtx, i_this->field_0x9ca / 8);
-            } else if (jointNo == 5 || jointNo == 6) {
+            } else if (jointNo == JNT_ASIL || jointNo == JNT_KOKAR) {
                 cMtx_YrotM(*calc_mtx, -(i_this->field_0x9ca / 3));
             }
 
@@ -4806,7 +4835,6 @@ static void action(e_rd_class* i_this) {
 
     if (data_80519200 != 0) {
         if (i_this->field_0x9a0 == 0) {
-            // dScnKy_env_light_c* kankyo = dKy_getEnvlight();
             int iVar1 = dKy_getEnvlight()->daytime / 15.0f;
             if (iVar1 >= 6 && iVar1 <= 17) {
                 i_this->field_0x980 = 10000.0f;
@@ -6934,8 +6962,8 @@ static int useHeapInit(fopAc_ac_c* a_this) {
     J3DModelData* modelData;
 
     if (i_this->field_0x129a != 0) {
-        i_this->mpModelMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_rdb", 83), NULL, NULL,
-                                                   (J3DAnmTransform*)dComIfG_getObjectRes("E_rdb", 65), 2, 1.0f,
+        i_this->mpModelMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_rdb", e_rdb_class::BMDR_RB), NULL, NULL,
+                                                   (J3DAnmTransform*)dComIfG_getObjectRes("E_rdb", e_rdb_class::BCK_RB_RWAIT), 2, 1.0f,
                                                    0, -1, &i_this->mSound, 0x80000, 0x11000084);
         if (i_this->mpModelMorf == NULL || i_this->mpModelMorf->getModel() == NULL) {
             return 0;
@@ -6949,8 +6977,8 @@ static int useHeapInit(fopAc_ac_c* a_this) {
         }
 
         if (i_this->field_0x129a == 1) {
-            i_this->mpMorfHornAnm = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("E_rdb", 84), NULL, NULL,
-                                                      NULL, 2, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000084);
+            i_this->mpMorfHornAnm = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("E_rdb", e_rdb_class::BMDR_RB_HORN), 
+                                                       NULL, NULL, NULL, 2, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000084);
             if (i_this->mpMorfHornAnm == NULL || i_this->mpMorfHornAnm->getModel() == NULL) {
                 return 0;
             }
@@ -6995,8 +7023,8 @@ static int useHeapInit(fopAc_ac_c* a_this) {
             }
         }
     } else {
-        i_this->mpModelMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes(i_this->mResName, 68), NULL, NULL,
-                                                   (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 64), 0, 1.0f,
+        i_this->mpModelMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes(i_this->mResName, BMDR_RD), NULL, NULL,
+                                                   (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, BCK_RD_WAIT01), 0, 1.0f,
                                                    0, -1, &i_this->mSound, 0x80000, 0x11000084);
         if (i_this->mpModelMorf == NULL || i_this->mpModelMorf->getModel() == NULL) {
             return 0;

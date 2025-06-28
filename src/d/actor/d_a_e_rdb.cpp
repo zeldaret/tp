@@ -16,14 +16,14 @@ UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
 
 enum Action {
-    ACTION_START,
-    ACTION_WAIT,
-    ACTION_FIGHT,
-    ACTION_ATTACK,
-    ACTION_SPIN_ATTACK,
-    ACTION_DEFENCE,
-    ACTION_DAMAGE,
-    ACTION_END,
+    /* 0x00 */ ACTION_START,
+    /* 0x01 */ ACTION_WAIT,
+    /* 0x02 */ ACTION_FIGHT,
+    /* 0x03 */ ACTION_ATTACK,
+    /* 0x04 */ ACTION_SPIN_ATTACK,
+    /* 0x05 */ ACTION_DEFENCE,
+    /* 0x06 */ ACTION_DAMAGE,
+    /* 0x07 */ ACTION_END,
 };
 
 /* 807650CC-807650F0 0000EC 0024+00 1/1 0/0 0/0 .text            __ct__13daE_RDB_HIO_cFv */
