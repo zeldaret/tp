@@ -7,7 +7,6 @@
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_debug_viewer.h"
-#include "dol2asm.h"
 #include "m_Do/m_Do_graphic.h"
 
 /* ############################################################################################## */
@@ -87,7 +86,7 @@ static void* searchParentSub(void* i_magLift, void* i_mhole) {
 
 /* 80C92FB8-80C92FD8 0001D8 0020+00 1/1 0/0 0/0 .text            CheckCreateHeap__FP10fopAc_ac_c */
 static int CheckCreateHeap(fopAc_ac_c* p_actor) {
-    static_cast<daObjMHole_c*>(p_actor)->CreateHeap();
+    return static_cast<daObjMHole_c*>(p_actor)->CreateHeap();
 }
 
 /* 80C92FD8-80C93014 0001F8 003C+00 1/1 0/0 0/0 .text            initBaseMtx__12daObjMHole_cFv */
@@ -119,7 +118,7 @@ int daObjMHole_c::Create() {
     if (getType() != 0x2) {
         u8 sw_bit = getSwbit();
         u8 state = TRUE;
-        if (sw_bit != 0xFF && fopAcM_isSwitch(this, sw_bit) == 0) {
+        if (sw_bit != 0xFF && !fopAcM_isSwitch(this, sw_bit)) {
             state = FALSE;
         }
         mIsOn = state;
@@ -143,7 +142,7 @@ int daObjMHole_c::Create() {
 /* 80C93198-80C93204 0003B8 006C+00 1/1 0/0 0/0 .text            checkParent__12daObjMHole_cFv */
 int daObjMHole_c::checkParent() {
     parentActorID = fopAcM_GetID(fpcM_Search(searchParentSub, this));
-    if (parentActorID == -1) {
+    if (parentActorID == fpcM_ERROR_PROCESS_ID_e) {
         return FALSE;
     }
     return TRUE;
@@ -152,83 +151,55 @@ int daObjMHole_c::checkParent() {
 /* ############################################################################################## */
 /* 80C93204-80C93498 000424 0294+00 1/1 0/0 0/0 .text            CreateHeap__12daObjMHole_cFv */
 int daObjMHole_c::CreateHeap() {
-    J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName[mKind], l_bmd[mKind]);
-#ifdef DEBUG
-    if (model_data == NULL) {
-        JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_obj_mhole.cpp", 0x150,
-                                 "modelData != 0");
-        OSPanic("d_a_obj_mhole.cpp", 0x150, "Halt");
-    }
-#endif
-
-    mpModel = mDoExt_J3DModel__create(model_data, 0, 0x19000284);
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName[mKind], l_bmd[mKind]);
+    JUT_ASSERT(336, modelData != 0);
+    mpModel = mDoExt_J3DModel__create(modelData, 0, 0x19000284);
     if (mpModel == NULL) {
         return FALSE;
     }
 
     J3DAnmTevRegKey* pbrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName[mKind], l_brk[mKind]);
-#ifdef DEBUG
-    if (pbrk == NULL) {
-        JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_obj_mhole.cpp", 0x168,
-                                 "pbrk != 0");
-        OSPanic("d_a_obj_mhole.cpp", 0x168, "Halt");
-    }
-#endif
-
+    JUT_ASSERT(360,  pbrk != 0);
     mpBrkAnm = new mDoExt_brkAnm();
     if (mpBrkAnm == NULL ||
-        mpBrkAnm->init(model_data, pbrk, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1) == NULL)
+        !mpBrkAnm->init(modelData, pbrk, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1))
     {
         return FALSE;
     }
     mpBrkAnm->setPlaySpeed(1.0f);
 
-    J3DAnmTextureSRTKey* pbtk1 =
-        (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName[mKind], l_btk1[mKind]);
-#ifdef DEBUG
-    if (pbtk1 == NULL) {
-        JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_obj_mhole.cpp", 0x177,
-                                 "pbtk != 0");
-        OSPanic("d_a_obj_mhole.cpp", 0x177, "Halt");
-    }
-#endif
-
-    mpBtk1Anm = new mDoExt_btkAnm();
-    if (mpBtk1Anm == NULL ||
-        !mpBtk1Anm->init(model_data, pbtk1, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1))
     {
-        return FALSE;
+        J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName[mKind], l_btk1[mKind]);
+        JUT_ASSERT(375,  pbtk != 0);
+        mpBtk1Anm = new mDoExt_btkAnm();
+        if (mpBtk1Anm == NULL ||
+            !mpBtk1Anm->init(modelData, pbtk, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1))
+        {
+            return FALSE;
+        }
+        mpBtk1Anm->setPlaySpeed(1.0f);
     }
-    mpBtk1Anm->setPlaySpeed(1.0f);
 
-    J3DAnmTextureSRTKey* pbtk2 =
-        (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName[mKind], l_btk2[mKind]);
-#ifdef DEBUG
-    if (pbtk2 == NULL) {
-        JUTAssertion::showAssert(JUTAssertion::getSDevice(), "d_a_obj_mhole.cpp", 0x187,
-                                 "pbtk != 0");
-        OSPanic("d_a_obj_mhole.cpp", 0x187, "Halt");
-    }
-#endif
-
-    mpBtk2Anm = new mDoExt_btkAnm();
-    if (mpBtk2Anm == NULL ||
-        !mpBtk2Anm->init(model_data, pbtk2, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1))
     {
-        return FALSE;
+        J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName[mKind], l_btk2[mKind]);
+        JUT_ASSERT(391,  pbtk != 0);
+        mpBtk2Anm = new mDoExt_btkAnm();
+        if (mpBtk2Anm == NULL ||
+            !mpBtk2Anm->init(modelData, pbtk, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1))
+        {
+            return FALSE;
+        }
+        mpBtk2Anm->setPlaySpeed(0.0f);
+        mpBtk2Anm->setFrame(0.0f);
     }
-    mpBtk2Anm->setPlaySpeed(0.0f);
-    mpBtk2Anm->setFrame(0.0f);
 
     return TRUE;
 }
 
 /* 80C934E0-80C93660 000700 0180+00 1/1 0/0 0/0 .text            create__12daObjMHole_cFv */
 int daObjMHole_c::create() {
-    if (!fopAcM_CheckCondition(this, fopAcCnd_INIT_e)) {
-        new (this) daObjMHole_c();
-        fopAcM_OnCondition(this, fopAcCnd_INIT_e);
-    }
+    fopAcM_SetupActor(this, daObjMHole_c);
+
 
     mKind = getKind();
     if (getType() == 0x1 && !checkParent()) {
@@ -239,29 +210,22 @@ int daObjMHole_c::create() {
     if (phase == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, CheckCreateHeap, 0x4000)) {
             return cPhs_ERROR_e;
-        } else if (Create() == 0) {
+        }
+        if (Create() == 0) {
             return cPhs_ERROR_e;
         }
 #ifdef DEBUG
-        else
-        {
-            OSReport("MHole Param<%x> arc<%s>\n", fopAcM_GetParam(this), l_arcName[mKind]);
-            l_HIO.entryHIO("マグネホール");
-        }
-
+        OSReport("MHole Param<%x> arc<%s>\n", fopAcM_GetParam(this), l_arcName[mKind]);
+        l_HIO.entryHIO("マグネホール");
 #endif
     }
+
     return phase;
 }
 
-#ifdef DEBUG
-SECTION_DEAD static char const* const stringBase1 = "Delete -> Hasu(id=%d)\n";
-SECTION_DEAD static char const* const stringBase2 = "Create -> MHole(id=%d)\n";
-#endif
-
 /* 80C936A8-80C93928 0008C8 0280+00 1/1 0/0 0/0 .text            execute__12daObjMHole_cFv */
 int daObjMHole_c::execute() {
-    if (getType() == 0x1 && parentActorID != -1) {
+    if (getType() == 0x1 && parentActorID != fpcM_ERROR_PROCESS_ID_e) {
         fopAc_ac_c* actor = fopAcM_SearchByID(parentActorID);
         if (actor != NULL) {
             current.pos = actor->current.pos;
@@ -272,7 +236,7 @@ int daObjMHole_c::execute() {
     if (getType() != 0x2) {
         u8 sw_bit = getSwbit();
         u8 state = TRUE;
-        if (sw_bit != 0xFF && fopAcM_isSwitch(this, sw_bit) == 0) {
+        if (sw_bit != 0xFF && !fopAcM_isSwitch(this, sw_bit)) {
             state = FALSE;
         }
         mIsOn = state;
@@ -331,7 +295,10 @@ void daObjMHole_c::effectSet() {
                                                      NULL, -1, NULL, -1, NULL, NULL, NULL);
             }
         } else {
-            JGeometry::TVec3<s16> emitter_rot = *(JGeometry::TVec3<s16>*)&shape_angle;
+            JGeometry::TVec3<s16> emitter_rot;
+            emitter_rot.x = shape_angle.x;
+            emitter_rot.y = shape_angle.y;
+            emitter_rot.z = shape_angle.z;
             mpEmitter[i]->setGlobalTranslation(current.pos);
             mpEmitter[i]->setGlobalRotation(emitter_rot);
         }
@@ -360,10 +327,10 @@ int daObjMHole_c::draw() {
     mpBtk2Anm->entry(mpModel->getModelData());
 
     dComIfGd_setListFilter();
-    J3DModelData* model_data = mpModel->getModelData();
-    for (u16 i = 0; i < model_data->getMaterialNum(); i++) {
+    J3DModelData* modelData = mpModel->getModelData();
+    for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
         if (i == 0 || i == 1) {
-            J3DMaterial* material = model_data->getMaterialNodePointer(i);
+            J3DMaterial* material = modelData->getMaterialNodePointer(i);
             if (material->getTexGenBlock()->getTexMtx(0) != NULL) {
                 J3DTexMtxInfo* tex_mtx_info =
                     &material->getTexGenBlock()->getTexMtx(0)->getTexMtxInfo();
@@ -371,11 +338,11 @@ int daObjMHole_c::draw() {
                     cXyz* unused = dKyw_get_wind_vec();
                     cXyz unused2;
                     Mtx effect_mtx;
-                    C_MTXLightPerspective(effect_mtx, dComIfGd_getView()->fovy,
+                    MTXLightPerspective(effect_mtx, dComIfGd_getView()->fovy,
                                           dComIfGd_getView()->aspect, 1.0f, 1.0f, -0.01f, 0.0f);
                     mDoGph_gInf_c::setWideZoomLightProjection(effect_mtx);
                     tex_mtx_info->setEffectMtx(effect_mtx);
-                    model_data->simpleCalcMaterial((MtxP)j3dDefaultMtx);
+                    modelData->simpleCalcMaterial((MtxP)j3dDefaultMtx);
                 }
             }
         }
@@ -422,18 +389,22 @@ static int daObjMHole_Execute(daObjMHole_c* i_this) {
 
 /* 80C93D40-80C93D60 000F60 0020+00 1/0 0/0 0/0 .text            daObjMHole_Delete__FP12daObjMHole_c */
 static int daObjMHole_Delete(daObjMHole_c* i_this) {
+    fopAcM_RegisterDeleteID(i_this, "Hasu");
     return i_this->_delete();
 }
 
 /* 80C93D60-80C93D80 000F80 0020+00 1/0 0/0 0/0 .text            daObjMHole_Create__FP10fopAc_ac_c */
 static int daObjMHole_Create(fopAc_ac_c* i_this) {
+    fopAcM_RegisterCreateID(daObjMHole_c,i_this, "MHole");
     return static_cast<daObjMHole_c*>(i_this)->create();
 }
 
 /* 80C93E68-80C93E88 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjMHole_Method */
 static actor_method_class l_daObjMHole_Method = {
-    (process_method_func)daObjMHole_Create,  (process_method_func)daObjMHole_Delete,
-    (process_method_func)daObjMHole_Execute, 0,
+    (process_method_func)daObjMHole_Create,  
+    (process_method_func)daObjMHole_Delete,
+    (process_method_func)daObjMHole_Execute, 
+    NULL,
     (process_method_func)daObjMHole_Draw,
 };
 
