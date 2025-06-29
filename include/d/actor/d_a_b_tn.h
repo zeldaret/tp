@@ -135,12 +135,12 @@ public:
 private:
     /* 0x05AC */ request_of_phase_process_class mPhaseReq1;
     /* 0x05B4 */ request_of_phase_process_class mPhaseReq2;
-    /* 0x05BC */ J3DModel* mpModels[16];
+    /* 0x05BC */ J3DModel* mpPartModels[16];
     /* 0x05FC */ mDoExt_McaMorfSO* mpModelMorf1;
     /* 0x0600 */ mDoExt_McaMorfSO* mpModelMorf2;
     /* 0x0604 */ mDoExt_brkAnm* mpBrkAnms[16];
     /* 0x0644 */ mDoExt_brkAnm* mpBrkAnm;
-    /* 0x0648 */ J3DModel* mpModel;
+    /* 0x0648 */ J3DModel* swordEffectModel;
     /* 0x064C */ Z2CreatureEnemy mSound;
     /* 0x06F0 */ int mActionMode1;
     /* 0x06F4 */ int mActionMode2;

@@ -13,6 +13,108 @@ UNK_REL_DATA;
 
 #include "f_op/f_op_actor_enemy.h"
 
+enum B_TN_RES_FILE_ID {
+    /* BCK */
+    /* 0x04 */ BCK_TN2B_DIE = 4,
+    /* 0x05 */ BCK_TNA_ATACK_A,
+    /* 0x06 */ BCK_TNA_ATACK_B,
+    /* 0x07 */ BCK_TNA_ATACK_OP,
+    /* 0x08 */ BCK_TNA_ATACK_SHIELD,
+    /* 0x09 */ BCK_TNA_DAMAGE_L,
+    /* 0x0A */ BCK_TNA_DAMAGE_LAST,
+    /* 0x0B */ BCK_TNA_DAMAGE_R,
+    /* 0x0C */ BCK_TNA_GUARD,
+    /* 0x0D */ BCK_TNA_GUARD_DAMAGE,
+    /* 0x0E */ BCK_TNA_TURN_OP,
+    /* 0x0F */ BCK_TNA_WAIT,
+    /* 0x10 */ BCK_TNA_WAIT_B_1,
+    /* 0x11 */ BCK_TNA_WAIT_B_2,
+    /* 0x12 */ BCK_TNA_WAIT_OP,
+    /* 0x13 */ BCK_TNA_WALK,
+    /* 0x14 */ BCK_TNB_ATACK_A,
+    /* 0x15 */ BCK_TNB_ATACK_B,
+    /* 0x16 */ BCK_TNB_ATACK_SHIELD,
+    /* 0x17 */ BCK_TNB_DAMAGE_L,
+    /* 0x18 */ BCK_TNB_DAMAGE_R,
+    /* 0x19 */ BCK_TNB_DIE,
+    /* 0x1A */ BCK_TNB_DOWN,
+    /* 0x1B */ BCK_TNB_DOWN_SIPPU,
+    /* 0x1C */ BCK_TNB_GUARD_A,
+    /* 0x1D */ BCK_TNB_GUARD_B,
+    /* 0x1E */ BCK_TNB_JUMP_B_1,
+    /* 0x1F */ BCK_TNB_JUMP_B_2,
+    /* 0x20 */ BCK_TNB_JUMP_F_1,
+    /* 0x21 */ BCK_TNB_JUMP_F_2,
+    /* 0x22 */ BCK_TNB_JUMP_L_1,
+    /* 0x23 */ BCK_TNB_JUMP_L_2,
+    /* 0x24 */ BCK_TNB_JUMP_R_1,
+    /* 0x25 */ BCK_TNB_JUMP_R_2,
+    /* 0x26 */ BCK_TNB_PULL,
+    /* 0x27 */ BCK_TNB_SWORD_B_PULL_A,
+    /* 0x28 */ BCK_TNB_SWORD_B_PULL_B,
+    /* 0x29 */ BCK_TNB_THROW,
+    /* 0x2A */ BCK_TNB_WAIT,
+    /* 0x2B */ BCK_TNB_WAIT_B_1,
+    /* 0x2C */ BCK_TNB_WAIT_B_2,
+    /* 0X2D */ BCK_TNB_WALK,
+
+    /* BMDR */
+    /* 0x30 */ BMDR_TN_EFFECT = 0x30,
+};
+
+enum B_TNP_RES_FILE_ID {
+    /* BMDR */
+    /* 0x03 */ BMDR_TN = 3,
+    /* 0x04 */ BMDR_TN_ARMOR_ARM_L,
+    /* 0x05 */ BMDR_TN_ARMOR_ARM_R,
+    /* 0x06 */ BMDR_TN_ARMOR_CHEST_B,
+    /* 0x07 */ BMDR_TN_ARMOR_CHEST_F,
+    /* 0x08 */ BMDR_TN_ARMOR_HEAD_B,
+    /* 0x09 */ BMDR_TN_ARMOR_HEAD_F,
+    /* 0x0A */ BMDR_TN_ARMOR_SHOULDER_L,
+    /* 0x0B */ BMDR_TN_ARMOR_SHOULDER_R,
+    /* 0x0C */ BMDR_TN_ARMOR_WAIST_B,
+    /* 0x0D */ BMDR_TN_ARMOR_WAIST_F,
+    /* 0x0E */ BMDR_TN_ARMOR_WAIST_L,
+    /* 0x0F */ BMDR_TN_ARMOR_WAIST_R,
+    /* 0x10 */ BMDR_TN_SHIELD,
+    /* 0x11 */ BMDR_TN_SWORD_A,
+    /* 0x12 */ BMDR_TN_SWORD_B,
+    /* 0x13 */ BMDR_TN_SWORD_B_SAYA,
+};
+
+enum B_TNP2_RES_FILE_ID {
+    /* BMDR */
+    /* 0x04 */ BMDR_TN2 = 4,
+    /* 0x05 */ BMDR_TN2_ARMOR_ARM_L,
+    /* 0x06 */ BMDR_TN2_ARMOR_ARM_R,
+    /* 0x07 */ BMDR_TN2_ARMOR_CHEST_B,
+    /* 0x08 */ BMDR_TN2_ARMOR_CHEST_F,
+    /* 0x09 */ BMDR_TN2_ARMOR_HEAD_A,
+    /* 0x0A */ BMDR_TN2_ARMOR_HEAD_B,
+    /* 0x0B */ BMDR_TN2_ARMOR_SHOULDER_L,
+    /* 0x0C */ BMDR_TN2_ARMOR_SHOULDER_R,
+    /* 0x0D */ BMDR_TN2_ARMOR_WAIST_B,
+    /* 0x0E */ BMDR_TN2_ARMOR_WAIST_F,
+    /* 0x0F */ BMDR_TN2_ARMOR_WAIST_L,
+    /* 0x10 */ BMDR_TN2_ARMOR_WAIST_R,
+    /* 0x11 */ BMDR_TN2_MACE,
+    /* 0x12 */ BMDR_TN2_SHIELD,
+    /* 0x13 */ BMDR_TN2_SWORD_A,
+    /* 0x14 */ BMDR_TN2_SWORD_B,
+    /* 0x15 */ BMDR_TN2_SWORD_B_SAYA,
+
+    /* BRK */
+    /* 0x18 */ BRK_TN2_BODY = 0x18,
+    /* 0x19 */ BRK_TN2_COLOR_1,
+    /* 0x1A */ BRK_TN2_COLOR_2,
+    /* 0x1B */ BRK_TN2_SHIELD,
+};
+
+enum B_TN_JOINT {
+
+};
+
 /* 8062E93C-8062E97C 000038 0040+00 0/1 0/0 0/0 .data            cc_tt_src__22@unnamed@d_a_b_tn_cpp@
  */
 namespace {
@@ -126,8 +228,17 @@ static s8 tn_model_brk_idx2[16] = {
 
 /* 8062EB28-8062EBA8 000224 0080+00 0/1 0/0 0/0 .data tn_part_model_id__22@unnamed@d_a_b_tn_cpp@ */
 static int tn_part_model_id[32] = {
-    4, 5, 6, 7, 8, 9,  10, 11, 12, 13, 14, 15, 16, 17, 19, 18,
-    5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 18, 17, 21, 20,
+    /* TN */
+    BMDR_TN_ARMOR_ARM_L, BMDR_TN_ARMOR_ARM_R, BMDR_TN_ARMOR_CHEST_B, BMDR_TN_ARMOR_CHEST_F, 
+    BMDR_TN_ARMOR_HEAD_B, BMDR_TN_ARMOR_HEAD_F,  BMDR_TN_ARMOR_SHOULDER_L, BMDR_TN_ARMOR_SHOULDER_R, 
+    BMDR_TN_ARMOR_WAIST_B, BMDR_TN_ARMOR_WAIST_F, BMDR_TN_ARMOR_WAIST_L, BMDR_TN_ARMOR_WAIST_R, 
+    BMDR_TN_SHIELD, BMDR_TN_SWORD_A, BMDR_TN_SWORD_B_SAYA, BMDR_TN_SWORD_B,
+
+    /* TN2 */
+    BMDR_TN2_ARMOR_ARM_L, BMDR_TN2_ARMOR_ARM_R, BMDR_TN2_ARMOR_CHEST_B, BMDR_TN2_ARMOR_CHEST_F, 
+    BMDR_TN2_ARMOR_HEAD_A, BMDR_TN2_ARMOR_HEAD_B, BMDR_TN2_ARMOR_SHOULDER_L, BMDR_TN2_ARMOR_SHOULDER_R, 
+    BMDR_TN2_ARMOR_WAIST_B, BMDR_TN2_ARMOR_WAIST_F, BMDR_TN2_ARMOR_WAIST_L, BMDR_TN2_ARMOR_WAIST_R, 
+    BMDR_TN2_SHIELD, BMDR_TN2_MACE, BMDR_TN2_SWORD_B_SAYA, BMDR_TN2_SWORD_B,
 };
 
 /* 8062EBA8-8062EBE8 0002A4 0040+00 2/2 0/0 0/0 .data tn_part_joint__22@unnamed@d_a_b_tn_cpp@ */
@@ -277,7 +388,7 @@ int daB_TN_c::draw() {
                 g_env_light.setLightTevColorType_MAJI(model, &tevStr);
                 mpModelMorf1->entryDL();
             } else {
-                model = mpModels[i];
+                model = mpPartModels[i];
                 g_env_light.setLightTevColorType_MAJI(model, &tevStr);
 
                 if (mType == 1 && mpBrkAnms[i]) {
@@ -294,11 +405,11 @@ int daB_TN_c::draw() {
     }
 
     if (mUpdateModelTimer != 0) {
-        g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
-        modelData = mpModel->getModelData();
+        g_env_light.setLightTevColorType_MAJI(swordEffectModel, &tevStr);
+        modelData = swordEffectModel->getModelData();
         J3DGXColor* mKColor = modelData->getMaterialNodePointer(0)->getTevKColor(3);
         mKColor->a = l_HIO.mKColorA;
-        mDoExt_modelUpdateDL(mpModel);
+        mDoExt_modelUpdateDL(swordEffectModel);
     }
 
     return 1;
@@ -437,7 +548,7 @@ void daB_TN_c::calcShieldMove() {
 
     switch (mStates[12]) {
     case 2:
-        mDoMtx_stack_c::copy(mpModels[12]->getBaseTRMtx());
+        mDoMtx_stack_c::copy(mpPartModels[12]->getBaseTRMtx());
         mDoMtx_stack_c::multVecZero(&mPositions[12]);
         mPositionsCopy[12] = mPositions[12];
         mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &field_0x99c[12]);
@@ -510,7 +621,7 @@ void daB_TN_c::calcSwordMoveA() {
     }
 
     case 2: {
-        mDoMtx_stack_c::copy(mpModels[idx]->getBaseTRMtx());
+        mDoMtx_stack_c::copy(mpPartModels[idx]->getBaseTRMtx());
         mDoMtx_stack_c::multVecZero(&mPositions[idx]);
         mPositionsCopy[idx] = mPositions[idx];
         mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &field_0x99c[idx]);
@@ -650,7 +761,7 @@ void daB_TN_c::calcOtherPartMove(int i_idx) {
         if (i_idx != 14) {
             setArmorBreakEffect(i_idx);
         }
-        mDoMtx_stack_c::copy(mpModels[i_idx]->getBaseTRMtx());
+        mDoMtx_stack_c::copy(mpPartModels[i_idx]->getBaseTRMtx());
         mDoMtx_stack_c::multVecZero(&mPositions[i_idx]);
         mPositionsCopy[i_idx] = mPositions[i_idx];
         mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &field_0x99c[i_idx]);
@@ -1486,7 +1597,7 @@ void daB_TN_c::setAttackBlurEffect(int i_data) {
 
             JPABaseEmitter* mBaseEmitter = dComIfGp_particle_getEmitter(mParticleKeys[i]);
             if (mBaseEmitter) {
-                mBaseEmitter->setGlobalSRTMatrix(mpModels[13]->getBaseTRMtx());
+                mBaseEmitter->setGlobalSRTMatrix(mpPartModels[13]->getBaseTRMtx());
             }
         }
     }
@@ -1757,7 +1868,7 @@ void daB_TN_c::executeOpening() {
     switch (mActionMode2) {
     case ACTION2_0_e:
         speedF = 0.0f;
-        setBck(18, 2, 3.0f, 1.0f);
+        setBck(BCK_TNA_WAIT_OP, 2, 3.0f, 1.0f);
         mActionMode2 = ACTION2_1_e;
         // [[fallthrough]]
 
@@ -1810,7 +1921,7 @@ void daB_TN_c::executeOpening() {
                     mCamCenter.z + field_0x724 * cM_scos(field_0x720));
 
         if (mTimer1 == 0) {
-            setBck(14, 0, 20.0f, 1.0f);
+            setBck(BCK_TNA_TURN_OP, 0, 20.0f, 1.0f);
             mActionMode2 = ACTION2_4_e;
             mBlendStatus = 1;
             mBlend = 0.0f;
@@ -1839,7 +1950,7 @@ void daB_TN_c::executeOpening() {
         mCamEye.set(mCamCenter.x + field_0x724 * cM_ssin(field_0x720), -210.0f,
                     mCamCenter.z + field_0x724 * cM_scos(field_0x720));
         if (mpModelMorf2->isStop()) {
-            setBck(15, 2, 3.0f, 1.0f);
+            setBck(BCK_TNA_WAIT, 2, 3.0f, 1.0f);
             mTimer1 = 60;
             mActionMode2 = ACTION2_10_e;
         }
@@ -1856,7 +1967,7 @@ void daB_TN_c::executeOpening() {
         }
 
         if (mTimer1 == 0) {
-            setBck(7, 0, 10.0f, 1.0f);
+            setBck(BCK_TNA_ATACK_OP, 0, 10.0f, 1.0f);
             mActionMode2 = ACTION2_14_e;
         }
         break;
@@ -1952,7 +2063,7 @@ void daB_TN_c::executeWaitH() {
     switch (mActionMode2) {
     case ACTION2_0_e:
         speedF = 0.0f;
-        setBck(15, 2, 3.0f, 1.0f);
+        setBck(BCK_TNA_WAIT, 2, 3.0f, 1.0f);
         mActionMode2 = ACTION2_1_e;
         // [[fallthrough]]
 
@@ -2021,9 +2132,9 @@ void daB_TN_c::executeChaseH() {
     case ACTION2_8_e:
     case ACTION2_10_e:
         if (mActionMode2 == ACTION2_8_e) {
-            setBck(19, 2, 3.0f, 1.0f);
+            setBck(BCK_TNA_WALK, 2, 3.0f, 1.0f);
         } else {
-            setBck(19, 2, 10.0f, 1.0f);
+            setBck(BCK_TNA_WALK, 2, 10.0f, 1.0f);
         }
 
         mActionMode2 = ACTION2_9_e;
@@ -2050,9 +2161,9 @@ void daB_TN_c::executeChaseH() {
     case ACTION2_1_e:
     case ACTION2_11_e:
         if (mActionMode2 == ACTION2_1_e) {
-            setBck(16, 2, 3.0f, 1.0f);
+            setBck(BCK_TNA_WAIT_B_1, 2, 3.0f, 1.0f);
         } else {
-            setBck(16, 2, 10.0f, 1.0f);
+            setBck(BCK_TNA_WAIT_B_1, 2, 10.0f, 1.0f);
         }
 
         mActionMode2 = ACTION2_2_e;
@@ -2076,7 +2187,7 @@ void daB_TN_c::executeChaseH() {
         break;
 
     case ACTION2_3_e:
-        setBck(16, 2, 3.0f, -1.0f);
+        setBck(BCK_TNA_WAIT_B_1, 2, 3.0f, -1.0f);
         mActionMode2 = ACTION2_4_e;
         current.angle.y = shape_angle.y + 0x8000;
         mWalkDir = 0;
@@ -2112,11 +2223,11 @@ void daB_TN_c::executeChaseH() {
     case ACTION2_5_e:
         if (cM_rnd() < 0.5f) {
             mActionMode2 = ACTION2_6_e;
-            setBck(17, 2, 3.0f, 1.0f);
+            setBck(BCK_TNA_WAIT_B_2, 2, 3.0f, 1.0f);
             current.angle.y = shape_angle.y + 0x4000;
         } else {
             mActionMode2 = ACTION2_7_e;
-            setBck(17, 2, 3.0f, -1.0f);
+            setBck(BCK_TNA_WAIT_B_2, 2, 3.0f, -1.0f);
             current.angle.y = shape_angle.y + -0x4000;
         }
 
@@ -2131,7 +2242,7 @@ void daB_TN_c::executeChaseH() {
 
         if (mTimer1 == 0) {
             if (cM_rnd() < 0.5f) {
-                setBck(17, 2, 3.0f, -1.0f);
+                setBck(BCK_TNA_WAIT_B_2, 2, 3.0f, -1.0f);
                 current.angle.y = shape_angle.y + -0x4000;
                 mActionMode2 = ACTION2_7_e;
             }
@@ -2155,7 +2266,7 @@ void daB_TN_c::executeChaseH() {
 
         if (mTimer1 == 0) {
             if (cM_rnd() < 0.5f) {
-                setBck(17, 2, 3.0f, 1.0f);
+                setBck(BCK_TNA_WAIT_B_2, 2, 3.0f, 1.0f);
                 current.angle.y = shape_angle.y + 0x4000;
                 mActionMode2 = ACTION2_6_e;
             }
@@ -2172,7 +2283,7 @@ void daB_TN_c::executeChaseH() {
         break;
 
     case ACTION2_100_e:
-        setBck(16, 2, 10.0f, 1.0f);
+        setBck(BCK_TNA_WAIT_B_1, 2, 10.0f, 1.0f);
         mActionMode2 = ACTION2_102_e;
         speedF = 2.3f;
         current.angle.y = shape_angle.y;
@@ -2196,24 +2307,24 @@ void daB_TN_c::executeChaseH() {
     case ACTION2_103_e:
         mPlayerDistance = 3.0f;
 
-        if ((u8)checkBck(19)) {
+        if ((u8)checkBck(BCK_TNA_WALK)) {
             mPlayerDistance = 10.0f;
         }
 
         if (abs(sVar5) < 0x2000) {
             if (cM_rnd() < 0.5f) {
                 mActionMode2 = ACTION2_106_e;
-                setBck(17, 2, mPlayerDistance, 1.0f);
+                setBck(BCK_TNA_WAIT_B_2, 2, mPlayerDistance, 1.0f);
             } else {
                 mActionMode2 = ACTION2_107_e;
-                setBck(17, 2, mPlayerDistance, -1.0f);
+                setBck(BCK_TNA_WAIT_B_2, 2, mPlayerDistance, -1.0f);
             }
         } else if (sVar5 < 0) {
             mActionMode2 = ACTION2_106_e;
-            setBck(17, 2, mPlayerDistance, 1.0f);
+            setBck(BCK_TNA_WAIT_B_2, 2, mPlayerDistance, 1.0f);
         } else {
             mActionMode2 = ACTION2_107_e;
-            setBck(17, 2, mPlayerDistance, -1.0f);
+            setBck(BCK_TNA_WAIT_B_2, 2, mPlayerDistance, -1.0f);
         }
 
         mTimer1 = cM_rndFX(20.0f) + 60.0f;
@@ -2246,21 +2357,21 @@ void daB_TN_c::executeChaseH() {
                 mTimer1 = cM_rndFX(20.0f) + 90.0f;
                 if (cM_rnd() < 0.5f) {
                     if (mActionMode2 == ACTION2_106_e) {
-                        setBck(17, 2, 3.0f, -1.0f);
+                        setBck(BCK_TNA_WAIT_B_2, 2, 3.0f, -1.0f);
                         mActionMode2 = ACTION2_107_e;
                     } else {
-                        setBck(17, 2, 3.0f, 1.0f);
+                        setBck(BCK_TNA_WAIT_B_2, 2, 3.0f, 1.0f);
                         mActionMode2 = ACTION2_106_e;
                     }
                 }
             } else if (abs(sVar5) < 0x7000) {
                 if (mActionMode2 == ACTION2_106_e) {
                     if (sVar5 > 0) {
-                        setBck(17, 2, 3.0f, -1.0f);
+                        setBck(BCK_TNA_WAIT_B_2, 2, 3.0f, -1.0f);
                         mActionMode2 = ACTION2_107_e;
                     }
                 } else if (sVar5 < 0) {
-                    setBck(17, 2, 3.0f, 1.0f);
+                    setBck(BCK_TNA_WAIT_B_2, 2, 3.0f, 1.0f);
                     mActionMode2 = ACTION2_106_e;
                 }
             }
@@ -2351,16 +2462,16 @@ void daB_TN_c::executeAttackH() {
 
         if (playerDistance < 250.0f) {
             mActionMode2 = ACTION2_1_e;
-            setBck(5, 0, 3.0f, 1.0f);
+            setBck(BCK_TNA_ATACK_A, 0, 3.0f, 1.0f);
         } else if (playerDistance < 350.0f) {
             mActionMode2 = ACTION2_2_e;
-            setBck(6, 0, 3.0f, 1.0f);
+            setBck(BCK_TNA_ATACK_B, 0, 3.0f, 1.0f);
         } else if (cM_rnd() < 0.5f) {
             mActionMode2 = ACTION2_1_e;
-            setBck(5, 0, 3.0f, 1.0f);
+            setBck(BCK_TNA_ATACK_A, 0, 3.0f, 1.0f);
         } else {
             mActionMode2 = ACTION2_2_e;
-            setBck(6, 0, 3.0f, 1.0f);
+            setBck(BCK_TNA_ATACK_B, 0, 3.0f, 1.0f);
             setAttackBlurEffect(1);
         }
 
@@ -2461,7 +2572,7 @@ void daB_TN_c::executeAttackShieldH() {
     switch (mActionMode2) {
     case ACTION2_0_e:
         speedF = 0.0f;
-        setBck(8, 0, 3.0f, 1.0f);
+        setBck(BCK_TNA_ATACK_SHIELD, 0, 3.0f, 1.0f);
         mActionMode2 = ACTION2_1_e;
         break;
 
@@ -2510,10 +2621,10 @@ void daB_TN_c::executeGuardH() {
 
         if (field_0xaa8) {
             shape_angle.y = fopAcM_searchPlayerAngleY(this);
-            setBck(13, 0, 0.0f, 1.0f);
+            setBck(BCK_TNA_GUARD_DAMAGE, 0, 0.0f, 1.0f);
         } else {
             cLib_chaseAngleS(&shape_angle.y, fopAcM_searchPlayerAngleY(this), 0x2000);
-            setBck(12, 0, 0.0f, 1.0f);
+            setBck(BCK_TNA_GUARD, 0, 0.0f, 1.0f);
         }
         break;
 
@@ -2575,9 +2686,9 @@ void daB_TN_c::executeDamageH() {
             current.pos.set(sp1c.x, current.pos.y, sp1c.z);
 
             if (mActionMode2 == ACTION2_0_e) {
-                setBck(9, 0, 0.0f, 1.0f);
+                setBck(BCK_TNA_DAMAGE_L, 0, 0.0f, 1.0f);
             } else {
-                setBck(11, 0, 0.0f, 1.0f);
+                setBck(BCK_TNA_DAMAGE_R, 0, 0.0f, 1.0f);
             }
 
             mSound.startCreatureVoice(Z2SE_EN_TN_V_DMG, -1);
@@ -2641,7 +2752,7 @@ void daB_TN_c::executeChangeDemo() {
         player->changeDemoMode(4, 1, 0, 0);
 
         speedF = 0.0f;
-        setBck(10, 0, 3.0f, 1.0f);
+        setBck(BCK_TNA_DAMAGE_LAST, 0, 3.0f, 1.0f);
 
         mSound.startCreatureVoice(Z2SE_EN_TN_V_DMG_2, -1);
 
@@ -2688,7 +2799,7 @@ void daB_TN_c::executeChangeDemo() {
         }
 
         if (mpModelMorf2->isStop()) {
-            setBck(30, 0, 3.0f, 1.0f);
+            setBck(BCK_TNB_JUMP_B_1, 0, 3.0f, 1.0f);
             current.angle.y = shape_angle.y + 0x10000 + -0x8000;
             mActionMode2 = ACTION2_2_e;
         }
@@ -2710,7 +2821,7 @@ void daB_TN_c::executeChangeDemo() {
         }
 
         if (mpModelMorf2->isStop() && mAcch.ChkGroundHit()) {
-            setBck(31, 0, 5.0f, 1.0f);
+            setBck(BCK_TNB_JUMP_B_2, 0, 5.0f, 1.0f);
             mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M1, 0, -1);
             mActionMode2 = ACTION2_3_e;
         }
@@ -2727,7 +2838,7 @@ void daB_TN_c::executeChangeDemo() {
 
         if (mpModelMorf2->isStop()) {
             speedF = 0.0f;
-            setBck(41, 0, 3.0f, 1.0f);
+            setBck(BCK_TNB_THROW, 0, 3.0f, 1.0f);
             mActionMode2 = ACTION2_4_e;
         }
         break;
@@ -2766,7 +2877,7 @@ void daB_TN_c::executeChangeDemo() {
 
         if (mpModelMorf2->isStop()) {
             player->changeDemoMode(16, 2, 0, 0);
-            setBck(42, 2, 3.0f, 1.0f);
+            setBck(BCK_TNB_WAIT, 2, 3.0f, 1.0f);
             mTimer1 = 60;
             mActionMode2 = ACTION2_11_e;
         }
@@ -2811,7 +2922,7 @@ void daB_TN_c::executeChangeDemo() {
         cLib_addCalcPos2(&mCamEye, sp34, 0.1f, 70.0f);
 
         if (mTimer1 == 0) {
-            setBck(38, 0, 3.0f, 1.0f);
+            setBck(BCK_TNB_PULL, 0, 3.0f, 1.0f);
             mSound.startCreatureVoice(Z2SE_EN_TN_V_PULL_OUT, -1);
             mActionMode2 = ACTION2_15_e;
             sp28.set(-100.0f, -400.0f, 300.0f);
@@ -2831,7 +2942,7 @@ void daB_TN_c::executeChangeDemo() {
             mSound.startCreatureSound(Z2SE_EN_TN_PULL_OUT, 0, -1);
             mStates[15] = 1;
             mStates[14] = 2;
-            mpModelMorf1->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_tn", 40), 0, 0.0f, 1.0f,
+            mpModelMorf1->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_tn", BCK_TNB_SWORD_B_PULL_B), 0, 0.0f, 1.0f,
                                  0.0f, -1.0f);
         }
 
@@ -2840,7 +2951,7 @@ void daB_TN_c::executeChangeDemo() {
                 mSwordSphs[i].OffCoSetBit();
             }
             mCps.OffCoSetBit();
-            setBck(42, 2, 3.0f, 1.0f);
+            setBck(BCK_TNB_WAIT, 2, 3.0f, 1.0f);
             mTimer1 = 30;
             mActionMode2 = ACTION2_16_e;
             return;
@@ -2876,7 +2987,7 @@ void daB_TN_c::executeZakoChangeDemo() {
 
         mTimer1 = 30;
         speedF = 0.0f;
-        setBck(10, 0, 3.0f, 1.0f);
+        setBck(BCK_TNA_DAMAGE_LAST, 0, 3.0f, 1.0f);
 
         mSound.startCreatureVoice(Z2SE_EN_TN_V_DMG_2, -1);
 
@@ -2896,7 +3007,7 @@ void daB_TN_c::executeZakoChangeDemo() {
         cLib_addCalcAngleS(&shape_angle.y, mPlayerAngleY, 8, 0x100, 16);
 
         if (mpModelMorf2->isStop()) {
-            setBck(30, 0, 3.0f, 1.0f);
+            setBck(BCK_TNB_JUMP_B_1, 0, 3.0f, 1.0f);
             current.angle.y = shape_angle.y + 0x8000;
             mActionMode2 = ACTION2_2_e;
         }
@@ -2921,7 +3032,7 @@ void daB_TN_c::executeZakoChangeDemo() {
             return;
         }
 
-        setBck(31, 0, 5.0f, 1.0f);
+        setBck(BCK_TNB_JUMP_B_2, 0, 5.0f, 1.0f);
 
         mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M1, 0, -1);
         mActionMode2 = ACTION2_3_e;
@@ -2937,7 +3048,7 @@ void daB_TN_c::executeZakoChangeDemo() {
 
         if (mpModelMorf2->isStop()) {
             speedF = 0.0f;
-            setBck(41, 0, 3.0f, 1.0f);
+            setBck(BCK_TNB_THROW, 0, 3.0f, 1.0f);
             mActionMode2 = ACTION2_4_e;
         }
         break;
@@ -2965,7 +3076,7 @@ void daB_TN_c::executeZakoChangeDemo() {
         }
 
         if (mpModelMorf2->isStop()) {
-            setBck(38, 0, 3.0f, 1.0f);
+            setBck(BCK_TNB_PULL, 0, 3.0f, 1.0f);
             mSound.startCreatureVoice(Z2SE_EN_TN_V_PULL_OUT, -1);
             mActionMode2 = ACTION2_5_e;
         }
@@ -2976,7 +3087,7 @@ void daB_TN_c::executeZakoChangeDemo() {
             mSound.startCreatureSound(Z2SE_EN_TN_PULL_OUT, 0, -1);
             mStates[15] = 1;
             mStates[14] = 2;
-            mpModelMorf1->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_tn", 40), 0, 0.0f, 1.0f,
+            mpModelMorf1->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("B_tn", BCK_TNB_SWORD_B_PULL_B), 0, 0.0f, 1.0f,
                                  0.0f, -1.0f);
         }
 
@@ -3052,18 +3163,18 @@ void daB_TN_c::initChaseL(int param_1) {
 
     switch (mActionMode2) {
     case ACTION2_2_e:
-        setBck(42, 2, 10.0f, 1.0f);
+        setBck(BCK_TNB_WAIT, 2, 10.0f, 1.0f);
         mTimer1 = 30;
         break;
 
     case ACTION2_3_e:
-        setBck(45, 2, 10.0f, 1.0f);
+        setBck(BCK_TNB_WALK, 2, 10.0f, 1.0f);
         speedF = 4.7f;
         break;
 
     case ACTION2_4_e:
-        if ((u8)checkBck(43) == 0) {
-            setBck(43, 2, 10.0f, 1.0f);
+        if ((u8)checkBck(BCK_TNB_WAIT_B_1) == 0) {
+            setBck(BCK_TNB_WAIT_B_1, 2, 10.0f, 1.0f);
         }
 
         current.angle.y = shape_angle.y + 0x4000;
@@ -3073,8 +3184,8 @@ void daB_TN_c::initChaseL(int param_1) {
         break;
 
     case ACTION2_5_e:
-        if ((u8)checkBck(44) == 0) {
-            setBck(44, 2, 10.0f, 1.0f);
+        if ((u8)checkBck(BCK_TNB_WAIT_B_2) == 0) {
+            setBck(BCK_TNB_WAIT_B_2, 2, 10.0f, 1.0f);
         }
 
         current.angle.y = shape_angle.y + -0x4000;
@@ -3084,7 +3195,7 @@ void daB_TN_c::initChaseL(int param_1) {
         break;
 
     case ACTION2_6_e:
-        setBck(30, 0, 3.0f, 1.0f);
+        setBck(BCK_TNB_JUMP_B_1, 0, 3.0f, 1.0f);
         break;
 
     case ACTION2_7_e:
@@ -3094,38 +3205,38 @@ void daB_TN_c::initChaseL(int param_1) {
 
     case ACTION2_8_e:
     case ACTION2_17_e:
-        setBck(32, 0, 3.0f, 1.0f);
+        setBck(BCK_TNB_JUMP_F_1, 0, 3.0f, 1.0f);
         break;
 
     case ACTION2_9_e:
-        setBck(33, 0, 5.0f, 1.0f);
+        setBck(BCK_TNB_JUMP_F_2, 0, 5.0f, 1.0f);
         mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M1, 0, -1);
         break;
 
     case ACTION2_10_e:
     case ACTION2_11_e:
-        setBck(36, 0, 3.0f, 1.0f);
+        setBck(BCK_TNB_JUMP_R_1, 0, 3.0f, 1.0f);
         break;
 
     case ACTION2_12_e:
-        setBck(37, 0, 3.0f, 1.0f);
+        setBck(BCK_TNB_JUMP_R_2, 0, 3.0f, 1.0f);
         mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M1, 0, -1);
         speedF = 15.0f;
         break;
 
     case ACTION2_13_e:
     case ACTION2_14_e:
-        setBck(34, 0, 3.0f, 1.0f);
+        setBck(BCK_TNB_JUMP_L_1, 0, 3.0f, 1.0f);
         break;
 
     case ACTION2_15_e:
-        setBck(35, 0, 3.0f, 1.0f);
+        setBck(BCK_TNB_JUMP_L_2, 0, 3.0f, 1.0f);
         mSound.startCreatureSound(Z2SE_EN_TN_FOOT_M1, 0, -1);
         speedF = 15.0f;
         break;
 
     case ACTION2_16_e:
-        setBck(45, 2, 10.0f, 1.0f);
+        setBck(BCK_TNB_WALK, 2, 10.0f, 1.0f);
         speedF = 4.7;
         mTimer1 = 30;
     }
@@ -3455,7 +3566,7 @@ void daB_TN_c::executeChaseL() {
         cLib_addCalcAngleS(&shape_angle.y, mPlayerAngleY, 4, 0x400, 16);
         current.angle.y = shape_angle.y + 0x8000;
 
-        if ((u8)checkBck(30)) {
+        if ((u8)checkBck(BCK_TNB_JUMP_B_1)) {
             if (mpModelMorf2->checkFrame(4.0f)) {
                 speedF = 50.0f;
                 speed.y = 19.0f;
@@ -3467,7 +3578,7 @@ void daB_TN_c::executeChaseL() {
             }
 
             if (mpModelMorf2->isStop()) {
-                setBck(31, 0, 5.0f, 0.0f);
+                setBck(BCK_TNB_JUMP_B_2, 0, 5.0f, 0.0f);
             }
         } else if (mAcch.ChkGroundHit()) {
             initChaseL(7);
@@ -3622,16 +3733,16 @@ void daB_TN_c::executeAttackL() {
         if (mPlayerDistance < 350.0f) {
             if (mActionMode2Copy == ACTION2_20_e) {
                 mActionMode2 = ACTION2_4_e;
-                setBck(42, 2, 3.0f, 1.0f);
+                setBck(BCK_TNB_WAIT, 2, 3.0f, 1.0f);
                 mTimer1 = 3;
             } else {
                 mActionMode2 = ACTION2_2_e;
-                setBck(21, 0, 3.0f, 1.0f);
+                setBck(BCK_TNB_ATACK_B, 0, 3.0f, 1.0f);
             }
         } else {
             if (mActionMode2Copy == ACTION2_20_e || mActionMode2Copy == ACTION2_10_e) {
                 mActionMode2 = ACTION2_3_e;
-                setBck(42, 2, 3.0f, 1.0f);
+                setBck(BCK_TNB_WAIT, 2, 3.0f, 1.0f);
                 if (mActionMode2Copy == ACTION2_10_e) {
                     mTimer1 = 5;
                 } else {
@@ -3639,7 +3750,7 @@ void daB_TN_c::executeAttackL() {
                 }
             } else {
                 mActionMode2 = ACTION2_1_e;
-                setBck(20, 0, 3.0f, 1.0f);
+                setBck(BCK_TNB_ATACK_A, 0, 3.0f, 1.0f);
             }
         }
 
@@ -3658,10 +3769,10 @@ void daB_TN_c::executeAttackL() {
 
         if (cM_rnd() < 0.5f) {
             mActionMode2 = ACTION2_2_e;
-            setBck(21, 0, 10.0f, 1.0f);
+            setBck(BCK_TNB_ATACK_B, 0, 10.0f, 1.0f);
         } else {
             mActionMode2 = ACTION2_1_e;
-            setBck(20, 0, 7.0f, 1.0f);
+            setBck(BCK_TNB_ATACK_A, 0, 7.0f, 1.0f);
         }
 
         mWalkDir = 0;
@@ -3774,7 +3885,7 @@ void daB_TN_c::executeAttackL() {
             }
 
             if (mpModelMorf2->checkFrame(41.0f) && mWalkDir == 10) {
-                setBck(20, 0, 5.0f, 1.0f);
+                setBck(BCK_TNB_ATACK_A, 0, 5.0f, 1.0f);
                 setSwordAtBit(0);
                 setSwordAtBreak(1);
                 mActionMode2 = ACTION2_1_e;
@@ -3803,7 +3914,7 @@ void daB_TN_c::executeAttackL() {
         }
 
         mActionMode2 = ACTION2_1_e;
-        setBck(20, 0, 3.0f, 1.0f);
+        setBck(BCK_TNB_ATACK_A, 0, 3.0f, 1.0f);
         return;
 
     case ACTION2_4_e:
@@ -3812,7 +3923,7 @@ void daB_TN_c::executeAttackL() {
         }
 
         mActionMode2 = ACTION2_2_e;
-        setBck(21, 0, 3.0f, 1.0f);
+        setBck(BCK_TNB_ATACK_B, 0, 3.0f, 1.0f);
         return;
     }
 }
@@ -3836,7 +3947,7 @@ void daB_TN_c::executeAttackShieldL() {
         }
 
         speedF = 0.0f;
-        setBck(22, 0, 3.0f, 1.0f);
+        setBck(BCK_TNB_ATACK_SHIELD, 0, 3.0f, 1.0f);
         mActionMode2 = ACTION2_1_e;
         break;
 
@@ -3892,13 +4003,13 @@ void daB_TN_c::executeGuardL() {
 
             u32 mCutType = getCutType();
             if ((mCutType & 16) != 0) {
-                setBck(28, 0, 3.0f, 1.0f);
+                setBck(BCK_TNB_GUARD_A, 0, 3.0f, 1.0f);
             } else if ((mCutType & 32) != 0) {
-                setBck(29, 0, 3.0f, 1.0f);
+                setBck(BCK_TNB_GUARD_B, 0, 3.0f, 1.0f);
             } else if (cM_rnd() < 0.5f) {
-                setBck(28, 0, 3.0f, 1.0f);
+                setBck(BCK_TNB_GUARD_A, 0, 3.0f, 1.0f);
             } else {
-                setBck(29, 0, 3.0f, 1.0f);
+                setBck(BCK_TNB_GUARD_B, 0, 3.0f, 1.0f);
             }
 
             speedF = 0.0f;
@@ -3911,7 +4022,7 @@ void daB_TN_c::executeGuardL() {
             }
 
             field_0xa91 = false;
-            setBck(26, 0, 3.0f, 1.0f);
+            setBck(BCK_TNB_DOWN, 0, 3.0f, 1.0f);
             speedF = 17.0f;
         }
 
@@ -4029,9 +4140,9 @@ void daB_TN_c::executeDamageL() {
         mSphC.OffAtSetBit();
 
         if (mActionMode2 == ACTION2_0_e) {
-            setBck(23, 0, 3.0f, 1.0f);
+            setBck(BCK_TNB_DAMAGE_L, 0, 3.0f, 1.0f);
         } else {
-            setBck(24, 0, 3.0f, 1.0f);
+            setBck(BCK_TNB_DAMAGE_R, 0, 3.0f, 1.0f);
         }
 
         mSound.startCreatureVoice(Z2SE_EN_TN_V_DMG, -1);
@@ -4075,9 +4186,9 @@ void daB_TN_c::executeYoroke() {
     case ACTION2_0_e:
     case ACTION2_1_e:
         if (mActionMode2 == ACTION2_0_e) {
-            setBck(27, 0, 3.0f, 1.0f);
+            setBck(BCK_TNB_DOWN_SIPPU, 0, 3.0f, 1.0f);
         } else {
-            setBck(27, 0, 3.0f, 1.0f);
+            setBck(BCK_TNB_DOWN_SIPPU, 0, 3.0f, 1.0f);
         }
 
         mActionMode2 = ACTION2_10_e;
@@ -4147,7 +4258,7 @@ void daB_TN_c::executeEnding() {
         camera->mCamera.Stop();
         camera->mCamera.SetTrimSize(3);
 
-        setBck(25, 0, 3.0f, 1.0f);
+        setBck(BCK_TNB_DIE, 0, 3.0f, 1.0f);
         mSound.startCreatureVoice(Z2SE_EN_TN_V_DMG_2, -1);
         mActionMode2 = ACTION2_100_e;
         speedF = 0.0f;
@@ -4546,7 +4657,7 @@ void daB_TN_c::mtx_set() {
         if (i == 15) {
             model2 = mpModelMorf1->getModel();
         } else {
-            model2 = mpModels[i];
+            model2 = mpPartModels[i];
         }
 
         switch (mStates[i]) {
@@ -4580,7 +4691,7 @@ void daB_TN_c::mtx_set() {
         case 4:
         case 5:
             if (mType == 1 && i == 5) {
-                mDoMtx_stack_c::copy(mpModels[4]->getBaseTRMtx());
+                mDoMtx_stack_c::copy(mpPartModels[4]->getBaseTRMtx());
             } else {
                 mDoMtx_stack_c::transS(mPositions[i]);
 
@@ -4603,7 +4714,7 @@ void daB_TN_c::mtx_set() {
     mpModelMorf1->modelCalc();
 
     if (mUpdateModelTimer != 0) {
-        mpModel->setBaseTRMtx(mNewTRMtx);
+        swordEffectModel->setBaseTRMtx(mNewTRMtx);
     }
 }
 
@@ -4724,7 +4835,7 @@ void daB_TN_c::cc_set() {
         mCpsPos = sp38;
         dComIfG_Ccsp()->Set(&mCps);
     } else if (mStates[13] == 3) {
-        mDoMtx_stack_c::copy(mpModels[13]->getBaseTRMtx());
+        mDoMtx_stack_c::copy(mpPartModels[13]->getBaseTRMtx());
 
         for (int i = 0; i < 4; i++) {
             mDoMtx_stack_c::transM(20.0f, 0.0f, 40.0f);
@@ -4887,18 +4998,18 @@ static int daB_TN_Delete(daB_TN_c* i_this) {
 
 /* 8062C868-8062CD10 00DD68 04A8+00 1/1 0/0 0/0 .text            CreateHeap__8daB_TN_cFv */
 int daB_TN_c::CreateHeap() {
-    static int tn2_brk_index[3] = {25, 26, 27};
+    static int tn2_brk_index[3] = {BRK_TN2_COLOR_1, BRK_TN2_COLOR_2, BRK_TN2_SHIELD};
 
     J3DModelData* modelData;
 
     if (mType == 0) {
-        modelData = (J3DModelData*)dComIfG_getObjectRes("B_tnp", 3);
+        modelData = (J3DModelData*)dComIfG_getObjectRes("B_tnp", BMDR_TN);
     } else {
-        modelData = (J3DModelData*)dComIfG_getObjectRes("B_tnp2", 4);
+        modelData = (J3DModelData*)dComIfG_getObjectRes("B_tnp2", BMDR_TN2);
     }
 
     mpModelMorf2 = new mDoExt_McaMorfSO(modelData, NULL, NULL,
-                                        (J3DAnmTransform*)dComIfG_getObjectRes("B_tn", 15), 0, 1.0f,
+                                        (J3DAnmTransform*)dComIfG_getObjectRes("B_tn", BCK_TNA_WAIT), 0, 1.0f,
                                         0, -1, &mSound, 0x80000, 0x11000084);
     if (mpModelMorf2 == NULL || mpModelMorf2->getModel() == NULL) {
         return 0;
@@ -4910,7 +5021,7 @@ int daB_TN_c::CreateHeap() {
             return 0;
         }
 
-        if (mpBrkAnm->init(modelData, (J3DAnmTevRegKey*)dComIfG_getObjectRes(mArcName, 24), 1, 2,
+        if (mpBrkAnm->init(modelData, (J3DAnmTevRegKey*)dComIfG_getObjectRes(mArcName, BRK_TN2_BODY), 1, 2,
                            0.0f, 0, -1) == 0)
         {
             return 0;
@@ -4931,9 +5042,9 @@ int daB_TN_c::CreateHeap() {
         }
 
         model = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
-        mpModels[i] = model;
+        mpPartModels[i] = model;
 
-        if (mpModels[i] == NULL) {
+        if (mpPartModels[i] == NULL) {
             return 0;
         }
 
@@ -4966,17 +5077,17 @@ int daB_TN_c::CreateHeap() {
     modelData = (J3DModelData*)dComIfG_getObjectRes(mArcName, tn_part_model_id[mType * 0x10 + 0xf]);
 
     mpModelMorf1 = new mDoExt_McaMorfSO(modelData, NULL, NULL,
-                                        (J3DAnmTransform*)dComIfG_getObjectRes("B_tn", 39), 0, 1.0f,
+                                        (J3DAnmTransform*)dComIfG_getObjectRes("B_tn", BCK_TNB_SWORD_B_PULL_A), 0, 1.0f,
                                         0, -1, &mSound, 0x80000, 0x11000084);
     if (mpModelMorf1 == NULL || mpModelMorf1->getModel() == NULL) {
         return 0;
     }
 
-    modelData = (J3DModelData*)dComIfG_getObjectRes("B_tn", 48);
+    modelData = (J3DModelData*)dComIfG_getObjectRes("B_tn", BMDR_TN_EFFECT);
     model = mDoExt_J3DModel__create(modelData, 0x80000, 0x31000084);
 
-    mpModel = model;
-    if (mpModel == NULL) {
+    swordEffectModel = model;
+    if (swordEffectModel == NULL) {
         return 0;
     }
     return 1;

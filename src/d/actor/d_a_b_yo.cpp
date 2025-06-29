@@ -20,121 +20,93 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
 
-/* 80639F38-80639F3C 000008 0001+03 1/1 0/0 0/0 .bss             @1109 */
-static u8 lit_1109[1 + 3 /* padding */];
+enum B_YO_RES_FILE_ID {
+    /* BCK */
+    /* 0x07 */ BCK_YKW_B_ANGRY = 7,
+    /* 0x08 */ BCK_YKW_B_ANGRY_WAIT,
+    /* 0x09 */ BCK_YKW_B_DOWN,
+    /* 0x0A */ BCK_YKW_B_DOWNA,
+    /* 0x0B */ BCK_YKW_B_DOWNB,
+    /* 0x0C */ BCK_YKW_B_DOWNC,
+    /* 0x0D */ BCK_YKW_B_FLOAT,
+    /* 0x0E */ BCK_YKW_B_FLOATB,
+    /* 0x0F */ BCK_YKW_B_SCREAM,
+    /* 0x10 */ BCK_YKW_B_SCREAM_WAIT,
+    /* 0x11 */ BCK_YKW_B_TALKA,
+    /* 0x12 */ BCK_YKW_B_TALKB,
+    /* 0x13 */ BCK_YKW_B_TO_TALKB,
+    /* 0x14 */ BCK_YKW_B_WAITA,
+    /* 0x15 */ BCK_YKW_B_WAITB,
+    /* 0x16 */ BCK_YKW_B_WAITC,
+    /* 0x17 */ BCK_YKW_B_WAITC2,
+    /* 0x18 */ BCK_YKW_B_WAITD,
+    /* 0x19 */ BCK_YKW_B_WALK,
 
-/* 80639F3C-80639F40 00000C 0001+03 0/0 0/0 0/0 .bss             @1107 */
-#pragma push
-#pragma force_active on
-static u8 lit_1107[1 + 3 /* padding */];
-#pragma pop
+    /* BMDE */
+    /* 0x1C */ BMDE_YKW_B = 0x1C,
+    /* 0x1D */ BMDE_YO01,
+    /* 0x1E */ BMDE_YO02,
+    /* 0x1F */ BMDE_YO_CORE,
+    /* 0x20 */ BMDE_YO_HIBI,
+    /* 0x21 */ BMDE_YO_ICE,
 
-/* 80639F40-80639F44 000010 0001+03 0/0 0/0 0/0 .bss             @1105 */
-#pragma push
-#pragma force_active on
-static u8 lit_1105[1 + 3 /* padding */];
-#pragma pop
+    /* BRK */
+    /* 0x24 */ BRK_YKW_B = 0x24,
+    /* 0x25 */ BRK_YKW_B_ANGRY,
+    /* 0x26 */ BRK_YKW_B_ANGRY_WAIT,
+    /* 0x27 */ BRK_YKW_B_WHITE,
 
-/* 80639F44-80639F48 000014 0001+03 0/0 0/0 0/0 .bss             @1104 */
-#pragma push
-#pragma force_active on
-static u8 lit_1104[1 + 3 /* padding */];
-#pragma pop
+    /* BTK */
+    /* 0x2A */ BTK_YKW_B_ANGRY = 0x2A,
+    /* 0x2B */ BTK_YKW_B_DOWN,
+    /* 0x2C */ BTK_YKW_B_FLOAT,
+    /* 0x2D */ BTK_YKW_B_SCREAM,
+    /* 0x2E */ BTK_YKW_B_SCREAM_WAIT,
+    /* 0x2F */ BTK_YKW_B_TALKA,
+    /* 0x30 */ BTK_YKW_B_TALKB,
+    /* 0x31 */ BTK_YKW_B_TO_TALKB,
+    /* 0x32 */ BTK_YKW_B_WAITA,
+    /* 0x33 */ BTK_YKW_B_WAITB,
+    /* 0x34 */ BTK_YKW_B_WALK,
+    /* 0x35 */ BTK_YO_KANNKYOU,
 
-/* 80639F48-80639F4C 000018 0001+03 0/0 0/0 0/0 .bss             @1099 */
-#pragma push
-#pragma force_active on
-static u8 lit_1099[1 + 3 /* padding */];
-#pragma pop
+    /* BTP */
+    /* 0x38 */ BTP_YKW_B_ANGRY = 0x38,
+    /* 0x39 */ BTP_YKW_B_FACEA,
+    /* 0x3A */ BTP_YKW_B_FACEB,
+    /* 0x3B */ BTP_YKW_B_FLOAT,
+    /* 0x3C */ BTP_YKW_B_TALKA,
+    /* 0x3D */ BTP_YKW_B_TALKB,
+    /* 0x3E */ BTP_YKW_B_TO_TALKB,
+    /* 0x3F */ BTP_YKW_B_WAITA,
+    /* 0x40 */ BTP_YKW_B_WAITB,
+    /* 0x41 */ BTP_YKW_B_WALK,
+};
 
-/* 80639F4C-80639F50 00001C 0001+03 0/0 0/0 0/0 .bss             @1097 */
-#pragma push
-#pragma force_active on
-static u8 lit_1097[1 + 3 /* padding */];
-#pragma pop
+enum L5_R50_RES_FIL_ID {
+    /* BMDR */
+    /* 0x04 */ BMDR_R50_P1 = 4,
+    /* 0x05 */ BMDR_R50_P2,
+    /* 0x06 */ BMDR_T_R50FURNITURE,
 
-/* 80639F50-80639F54 000020 0001+03 0/0 0/0 0/0 .bss             @1095 */
-#pragma push
-#pragma force_active on
-static u8 lit_1095[1 + 3 /* padding */];
-#pragma pop
+    /* DZB */
+    /* 0x09 */ DZB_R50_P1 = 9,
+    /* 0x0A */ DZB_R50_P2,
+};
 
-/* 80639F54-80639F58 000024 0001+03 0/0 0/0 0/0 .bss             @1094 */
-#pragma push
-#pragma force_active on
-static u8 lit_1094[1 + 3 /* padding */];
-#pragma pop
+UNK_REL_BSS;
 
-/* 80639F58-80639F5C 000028 0001+03 0/0 0/0 0/0 .bss             @1057 */
-#pragma push
-#pragma force_active on
-static u8 lit_1057[1 + 3 /* padding */];
-#pragma pop
-
-/* 80639F5C-80639F60 00002C 0001+03 0/0 0/0 0/0 .bss             @1055 */
-#pragma push
-#pragma force_active on
-static u8 lit_1055[1 + 3 /* padding */];
-#pragma pop
-
-/* 80639F60-80639F64 000030 0001+03 0/0 0/0 0/0 .bss             @1053 */
-#pragma push
-#pragma force_active on
-static u8 lit_1053[1 + 3 /* padding */];
-#pragma pop
-
-/* 80639F64-80639F68 000034 0001+03 0/0 0/0 0/0 .bss             @1052 */
-#pragma push
-#pragma force_active on
-static u8 lit_1052[1 + 3 /* padding */];
-#pragma pop
-
-/* 80639F68-80639F6C 000038 0001+03 0/0 0/0 0/0 .bss             @1014 */
-#pragma push
-#pragma force_active on
-static u8 lit_1014[1 + 3 /* padding */];
-#pragma pop
-
-/* 80639F6C-80639F70 00003C 0001+03 0/0 0/0 0/0 .bss             @1012 */
-#pragma push
-#pragma force_active on
-static u8 lit_1012[1 + 3 /* padding */];
-#pragma pop
-
-/* 80639F70-80639F74 000040 0001+03 0/0 0/0 0/0 .bss             @1010 */
-#pragma push
-#pragma force_active on
-static u8 lit_1010[1 + 3 /* padding */];
-#pragma pop
-
-/* 80639F74-80639F78 -00001 0004+00 2/2 0/0 0/0 .bss             None */
 /* 80639F74 0001+00 data_80639F74 @1009 */
-/* 80639F75 0003+00 data_80639F75 None */
-static u8 struct_80639F74;
 static bool hioInit;
 
 /* 80639F84-80639FE0 000054 005C+00 12/13 0/0 0/0 .bss             l_HIO */
 static daB_YO_HIO_c l_HIO;
 
-/* 80639A60-80639A6C 000000 000C+00 4/4 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80639A6C-80639A80 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
+UNK_REL_DATA;
 
 namespace {
 
-/* 80639A80-80639AC4 000020 0044+00 0/1 0/0 0/0 .data            cc_yo_src__22@unnamed@d_a_b_yo_cpp@
- */
+/* 80639A80-80639AC4 000020 0044+00 0/1 0/0 0/0 .data            cc_yo_src__22@unnamed@d_a_b_yo_cpp@ */
 static dCcD_SrcCyl cc_yo_src = {
     {
         {0x0, {{0x100000, 0x4, 0xD}, {0x0, 0x0}, 0x75}}, // mObj
@@ -186,71 +158,71 @@ static bool yo_material_draw[27] = {
 
 /* 80639B60-80639BAC 000100 004C+00 0/1 0/0 0/0 .data            yo_demo_bck_idx */
 static int yo_demo_bck_idx[19] = {
-    0x07,  // ykw_b_angry
-    0x08,  // ykw_b_angry_wait
-    0x0D,  // ykw_b_float
-    0x11,  // ykw_b_talka
-    0x12,  // ykw_b_talkb
-    0x13,  // ykw_b_to_talkb
-    0x14,  // ykw_b_waita
-    0x15,  // ykw_b_waitb
-    0x19,  // ykw_b_walk
-    0x0F,  // ykw_b_scream
-    0x10,  // ykw_b_scream_wait
-    0x17,  // ykw_b_waitc2
-    0x16,  // ykw_b_waitc
-    0x0E,  // ykw_b_floatb
-    0x18,  // ykw_b_waitd
-    0x0A,  // ykw_b_downa
-    0x0B,  // ykw_b_downb
-    0x0C,  // ykw_b_downc
-    0x09,  // ykw_b_down
+    BCK_YKW_B_ANGRY,
+    BCK_YKW_B_ANGRY_WAIT,
+    BCK_YKW_B_FLOAT,
+    BCK_YKW_B_TALKA,
+    BCK_YKW_B_TALKB,
+    BCK_YKW_B_TO_TALKB,
+    BCK_YKW_B_WAITA,
+    BCK_YKW_B_WAITB,
+    BCK_YKW_B_WALK,
+    BCK_YKW_B_SCREAM,
+    BCK_YKW_B_SCREAM_WAIT,
+    BCK_YKW_B_WAITC2,
+    BCK_YKW_B_WAITC,
+    BCK_YKW_B_FLOATB,
+    BCK_YKW_B_WAITD,
+    BCK_YKW_B_DOWNA,
+    BCK_YKW_B_DOWNB,
+    BCK_YKW_B_DOWNC,
+    BCK_YKW_B_DOWN,
 };
 
 /* 80639BAC-80639BF8 00014C 004C+00 0/1 0/0 0/0 .data            yo_demo_btk_idx */
 static int yo_demo_btk_idx[19] = {
-    0x2A,  // ykw_b_angry
+    BTK_YKW_B_ANGRY,
     0xFF,  // <none>
-    0x2C,  // ykw_b_float
-    0x2F,  // ykw_b_talka
-    0x30,  // ykw_b_talkb
-    0x31,  // ykw_b_to_talkb
-    0x32,  // ykw_b_waita
-    0x33,  // ykw_b_waitb
-    0x34,  // ykw_b_walk
-    0x2D,  // ykw_b_scream
-    0x2E,  // ykw_b_scream_wait
-    0x34,  // ykw_b_walk
-    0x34,  // ykw_b_walk
-    0x34,  // ykw_b_walk
-    0x34,  // ykw_b_walk
-    0x2B,  // ykw_b_down
-    0x2B,  // ykw_b_down
-    0x2B,  // ykw_b_down
-    0x32,  // ykw_b_waita
+    BTK_YKW_B_FLOAT,
+    BTK_YKW_B_TALKA,
+    BTK_YKW_B_TALKB,
+    BTK_YKW_B_TO_TALKB,
+    BTK_YKW_B_WAITA,
+    BTK_YKW_B_WAITB,
+    BTK_YKW_B_WALK,
+    BTK_YKW_B_SCREAM,
+    BTK_YKW_B_SCREAM_WAIT,
+    BTK_YKW_B_WALK,
+    BTK_YKW_B_WALK,
+    BTK_YKW_B_WALK,
+    BTK_YKW_B_WALK,
+    BTK_YKW_B_DOWN,
+    BTK_YKW_B_DOWN,
+    BTK_YKW_B_DOWN,
+    BTK_YKW_B_WAITA,
 };
 
 /* 80639BF8-80639C44 000198 004C+00 0/1 0/0 0/0 .data            yo_demo_btp_idx */
 static int yo_demo_btp_idx[19] = {
-    0x38,  // ykw_b_angry
-    0x39,  // ykw_b_facea
-    0x39,  // ykw_b_facea
-    0x3C,  // ykw_b_talka
-    0x3D,  // ykw_b_talkb
-    0x3E,  // ykw_b_to_talkb
-    0x3A,  // ykw_b_faceb
-    0x39,  // ykw_b_facea
-    0x3A,  // ykw_b_faceb
-    0x39,  // ykw_b_facea
-    0x39,  // ykw_b_facea
-    0x39,  // ykw_b_facea
-    0x39,  // ykw_b_facea
-    0x39,  // ykw_b_facea
-    0x39,  // ykw_b_facea
-    0x39,  // ykw_b_facea
-    0x39,  // ykw_b_facea
-    0x39,  // ykw_b_facea
-    0x3A,  // ykw_b_faceb
+    BTP_YKW_B_ANGRY,
+    BTP_YKW_B_FACEA,
+    BTP_YKW_B_FACEA,
+    BTP_YKW_B_TALKA,
+    BTP_YKW_B_TALKB,
+    BTP_YKW_B_TO_TALKB,
+    BTP_YKW_B_FACEB,
+    BTP_YKW_B_FACEA,
+    BTP_YKW_B_FACEB,
+    BTP_YKW_B_FACEA,
+    BTP_YKW_B_FACEA,
+    BTP_YKW_B_FACEA,
+    BTP_YKW_B_FACEA,
+    BTP_YKW_B_FACEA,
+    BTP_YKW_B_FACEA,
+    BTP_YKW_B_FACEA,
+    BTP_YKW_B_FACEA,
+    BTP_YKW_B_FACEA,
+    BTP_YKW_B_FACEB,
 };
 
 /* 8062F46C-8062F51C 0000EC 00B0+00 1/1 0/0 0/0 .text            __ct__12daB_YO_HIO_cFv */
@@ -447,13 +419,13 @@ void daB_YO_c::setBck(int i_anm, u8 i_attr, f32 i_morf, f32 i_rate) {
     int brk_idx;
     if (i_anm == ANM_ANGRY) {
         field_0xfcc = true;
-        brk_idx = 0x25;
+        brk_idx = BRK_YKW_B_ANGRY;
     } else if (i_anm == ANM_ANGRY_WAIT) {
-        brk_idx = 0x26;
+        brk_idx = BRK_YKW_B_ANGRY_WAIT;
     } else if (field_0xfcc) {
-        brk_idx = 0x24;
+        brk_idx = BRK_YKW_B;
     } else {
-        brk_idx = 0x25;
+        brk_idx = BRK_YKW_B_ANGRY;
     }
     J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes("B_YO", brk_idx);
     mpYetaBrkAnm->init(model_data, brk, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1);
@@ -3158,27 +3130,27 @@ static int daB_YO_Delete(daB_YO_c* i_this) {
 
 /* 806380F8-80638838 008D78 0740+00 1/1 0/0 0/0 .text            CreateHeap__8daB_YO_cFv */
 int daB_YO_c::CreateHeap() {
-    J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("B_YO", 0x1d);
+    J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("B_YO", BMDE_YO01);
     mpModel[0] = mDoExt_J3DModel__create(model_data, 0, 0x11000284);
     if (mpModel[0] == NULL) {
         return 0;
     }
 
-    model_data = (J3DModelData*)dComIfG_getObjectRes("B_YO", 0x1e);
+    model_data = (J3DModelData*)dComIfG_getObjectRes("B_YO", BMDE_YO02);
     mpModel[1] = mDoExt_J3DModel__create(model_data, 0, 0x11000284);
     if (mpModel[1] == NULL) {
         return 0;
     }
 
-    model_data = (J3DModelData*)dComIfG_getObjectRes("B_YO", 0x1f);
+    model_data = (J3DModelData*)dComIfG_getObjectRes("B_YO", BMDE_YO_CORE);
     mpModel[2] = mDoExt_J3DModel__create(model_data, 0, 0x11000284);
     if (mpModel[2] == NULL) {
         return 0;
     }
 
-    model_data = (J3DModelData*)dComIfG_getObjectRes("B_YO", 0x1c);
+    model_data = (J3DModelData*)dComIfG_getObjectRes("B_YO", BMDE_YKW_B);
     mpYetaMorf = new mDoExt_McaMorfSO(
-        model_data, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("B_YO", 0x14),
+        model_data, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("B_YO", BCK_YKW_B_WAITA),
         J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1, &mCreatureSound, 0, 0x11020284
     );
     if (mpYetaMorf == NULL || mpYetaMorf->getModel() == NULL) {
@@ -3189,7 +3161,7 @@ int daB_YO_c::CreateHeap() {
     if (mpBtkAnm == NULL) {
         return 0;
     }
-    J3DAnmTextureSRTKey* btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("B_YO", 0x35);
+    J3DAnmTextureSRTKey* btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("B_YO", BTK_YO_KANNKYOU);
     if (!mpBtkAnm->init(mpModel[0]->getModelData(), btk, FALSE,
                            J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
         return 0;
@@ -3200,7 +3172,7 @@ int daB_YO_c::CreateHeap() {
     if (mpYetaBtkAnm == NULL) {
         return 0;
     }
-    btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("B_YO", 0x32);
+    btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("B_YO", BTK_YKW_B_WAITA);
     if (!mpYetaBtkAnm->init(model_data, btk, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1)) {
         return 0;
     }
@@ -3209,7 +3181,7 @@ int daB_YO_c::CreateHeap() {
     if (mpYetaBtpAnm == NULL) {
         return 5;
     }
-    J3DAnmTexPattern* btp = (J3DAnmTexPattern*)dComIfG_getObjectRes("B_YO", 0x3f);
+    J3DAnmTexPattern* btp = (J3DAnmTexPattern*)dComIfG_getObjectRes("B_YO", BTP_YKW_B_WAITA);
     if (!mpYetaBtpAnm->init(model_data, btp, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1)) {
         return 5;
     }
@@ -3218,7 +3190,7 @@ int daB_YO_c::CreateHeap() {
     if (mpYetaBrkAnm == NULL) {
         return 0;
     }
-    J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes("B_YO", 0x24);
+    J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes("B_YO", BRK_YKW_B);
     if (!mpYetaBrkAnm->init(model_data, brk, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
         return 0;
     }
@@ -3227,7 +3199,7 @@ int daB_YO_c::CreateHeap() {
     if (mpYetaWhiteBrkAnm == NULL) {
         return 0;
     }
-    brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes("B_YO", 0x27);
+    brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes("B_YO", BRK_YKW_B_WHITE);
     if (!mpYetaWhiteBrkAnm->init(model_data, brk, TRUE, J3DFrameCtrl::EMode_NONE, 0.0f, 0, -1)) {
         return 0;
     }
@@ -3236,13 +3208,13 @@ int daB_YO_c::CreateHeap() {
     if (mpRoomNormalBgW == NULL) {
         return 0;
     }
-    cBgD_t* dzb = (cBgD_t*)dComIfG_getObjectRes("L5_R50", 9);
+    cBgD_t* dzb = (cBgD_t*)dComIfG_getObjectRes("L5_R50", DZB_R50_P1);
     if (mpRoomNormalBgW->Set(dzb, 0, &mBgMtx) == 1) {
         return 0;
     }
     mpRoomNormalBgW->SetCrrFunc(dBgS_MoveBGProc_Typical);
 
-    model_data = (J3DModelData*)dComIfG_getObjectRes("L5_R50", 4);
+    model_data = (J3DModelData*)dComIfG_getObjectRes("L5_R50", BMDR_R50_P1);
     mpRoomModel[0] = mDoExt_J3DModel__create(model_data, 0, 0x31000084);
     if (mpRoomModel[0] == NULL) {
         return 0;
@@ -3252,19 +3224,19 @@ int daB_YO_c::CreateHeap() {
     if (mpRoomArenaBgW == NULL) {
         return 0;
     }
-    dzb = (cBgD_t*)dComIfG_getObjectRes("L5_R50", 0xa);
+    dzb = (cBgD_t*)dComIfG_getObjectRes("L5_R50", DZB_R50_P2);
     if (mpRoomArenaBgW->Set(dzb, 0, &mBgMtx) == 1) {
         return 0;
     }
     mpRoomArenaBgW->SetCrrFunc(dBgS_MoveBGProc_Typical);
 
-    model_data = (J3DModelData*)dComIfG_getObjectRes("L5_R50", 5);
+    model_data = (J3DModelData*)dComIfG_getObjectRes("L5_R50", BMDR_R50_P2);
     mpRoomModel[1] = mDoExt_J3DModel__create(model_data, 0, 0x31000084);
     if (mpRoomModel[1] == NULL) {
         return 0;
     }
 
-    model_data = (J3DModelData*)dComIfG_getObjectRes("L5_R50", 6);
+    model_data = (J3DModelData*)dComIfG_getObjectRes("L5_R50", BMDR_T_R50FURNITURE);
     mpFurnitureModel = mDoExt_J3DModel__create(model_data, 0, 0x11000084);
     if (mpFurnitureModel == NULL) {
         return 0;
@@ -3293,13 +3265,13 @@ int daB_YO_c::CreateHeap2() {
     if (mpRoomNormalBgW == NULL) {
         return 0;
     }
-    cBgD_t* dzb = (cBgD_t*)dComIfG_getObjectRes("L5_R50", 9);
+    cBgD_t* dzb = (cBgD_t*)dComIfG_getObjectRes("L5_R50", DZB_R50_P1);
     if (mpRoomNormalBgW->Set(dzb, 0, &mBgMtx) == 1) {
         return 0;
     }
     mpRoomNormalBgW->SetCrrFunc(dBgS_MoveBGProc_Typical);
 
-    J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("L5_R50", 4);
+    J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("L5_R50", BMDR_R50_P1);
     mpRoomModel[0] = mDoExt_J3DModel__create(model_data, 0, 0x31000084);
     if (mpRoomModel[0] == NULL) {
         return 0;
