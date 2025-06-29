@@ -2044,7 +2044,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                 i_this->mMode = 40;
                 
                 if (i_this->mpMorfBowAnm != NULL) {
-                    i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
+                    i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, BCK_RD_BOW_SHOOT), 0, 1.0f, 1.0f, 0.0f, -1.0f);
                 }
             }
 
@@ -2114,7 +2114,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
                         } else {
                             if (i_this->field_0x990[1] == 0 && i_this->field_0x5bc >= 2) {
                                 anm_init(i_this, BCK_RD_RSHOOT_READY, 5.0f, 0, 1.0f);
-                                i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 8), 0, 5.0f, 1.0f, 0.0f, -1.0f);
+                                i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, BCK_RD_BOW_RREADY), 0, 5.0f, 1.0f, 0.0f, -1.0f);
                                 i_this->mMode = 30;
                             }
                         }
