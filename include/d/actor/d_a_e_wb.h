@@ -31,17 +31,17 @@ public:
     BOOL checkNormalRideMode() const;
     void setRunRideMode();
 
-    MtxP getRideMtx() { return field_0x5e0->getModel()->getAnmMtx(15); }
-    f32 nowAnimeFrame() const { return field_0x5e0->getFrame(); }
+    MtxP getRideMtx() { return mpModelMorf->getModel()->getAnmMtx(15); }
+    f32 nowAnimeFrame() const { return mpModelMorf->getFrame(); }
     s16 getWaitRollAngle() const { return mWaitRollAngle; }
     bool checkGetOff() const { return speedF < 3.0f; }
     f32 rideSpeedRate() const { return speedF / mSpeedRate; }
-    f32 getAnimeFrameRate() { return field_0x5e0->getFrame() / field_0x5e0->getEndFrame(); }
-    BOOL checkAnmLoopFrame() { return field_0x5e0->checkFrame(0.0f); }
+    f32 getAnimeFrameRate() { return mpModelMorf->getFrame() / mpModelMorf->getEndFrame(); }
+    BOOL checkAnmLoopFrame() { return mpModelMorf->checkFrame(0.0f); }
 
     J3DModel* getModel() {
-        if (field_0x5e0 != NULL) {
-            return field_0x5e0->getModel();
+        if (mpModelMorf != NULL) {
+            return mpModelMorf->getModel();
         }
 
         return NULL;
@@ -60,11 +60,11 @@ public:
     /* 0x05D0 */ cXyz field_0x5d0;
     /* 0x05DC */ s16 field_0x5dc;
     /* 0x05DE */ s16 field_0x5de;
-    /* 0x05E0 */ mDoExt_McaMorfSO* field_0x5e0;
+    /* 0x05E0 */ mDoExt_McaMorfSO* mpModelMorf;
     /* 0x05E4 */ f32 field_0x5e4;
     /* 0x05E8 */ int mAnmID;
     /* 0x05EC */ Z2CreatureRide mZ2Ride;
-    /* 0x0688 */ u8 field_0x688[4];
+    /* 0x0688 */ int field_0x688;
     /* 0x068C */ s8 field_0x68c;
     /* 0x068E */ s16 field_0x68e;
     /* 0x0690 */ s16 mActionID;
@@ -134,7 +134,7 @@ public:
     /* 0x142F */ s8 field_0x142f;
     /* 0x1430 */ s8 field_0x1430;
     /* 0x1432 */ s16 field_0x1432;
-    /* 0x1434 */ u32 field_0x1434;  // Some actor ID
+    /* 0x1434 */ fpc_ProcID field_0x1434;  // Some actor ID
     /* 0x1438 */ cXyz field_0x1438;
     /* 0x1444 */ cXyz field_0x1444;
     /* 0x1450 */ u8 field_0x1450[0x15d0 - 0x1450];
