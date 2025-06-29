@@ -1194,7 +1194,7 @@ void daB_MGN_c::executeCircle() {
     case 0:
         if (checkBck(BCK_MGN_APPROACH)) {
             setBck(BCK_MGN_DASH, 2, 0.0f, l_HIO.dash_anim);
-        } else if (!checkBck(BCK_MGN_DOWNR_DAMAGE) && !checkBck(BCK_MGN_DOWNR)) {
+        } else if (!checkBck(BCK_MGN_DOWNR_DAMAGE) && !checkBck(BCK_MGN_DOWNL_DAMAGE)) {
             setBck(BCK_MGN_DASH, 2, 3.0f, l_HIO.dash_anim);
         }
 
