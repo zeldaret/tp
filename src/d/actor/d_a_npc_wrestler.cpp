@@ -6,6 +6,7 @@
 #include "d/actor/d_a_npc_wrestler.h"
 #include "dolphin/types.h"
 #include "dol2asm.h"
+#include "f_op/f_op_actor_mng.h"
 #include "d/d_camera.h"
 
 //
@@ -333,10 +334,6 @@ extern "C" void setHomeJump__11daNpc_grA_cFv();
 extern "C" void getMode1__11daNpc_grA_cFv();
 extern "C" void __register_global_object();
 
-//
-// Declarations:
-//
-
 /* ############################################################################################## */
 /* 80B41D7C-80B41D7C 0006A0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 #pragma push
@@ -353,34 +350,15 @@ SECTION_DEAD static char const* const stringBase_80B41DC9 = "GRDS_LOSE";
 SECTION_DEAD static char const* const stringBase_80B41DD3 = "Wrestler";
 #pragma pop
 
-/* 80B41DF8-80B41E04 000000 000C+00 20/20 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80B41E04-80B41E18 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
+UNK_REL_DATA;
 
 /* 80B41E18-80B41E1C -00001 0004+00 1/2 0/0 0/0 .data            l_resALink */
-SECTION_DATA static void* l_resALink = (void*)&d_a_npc_wrestler__stringBase0;
+static char* l_resALink = "alSumou";
 
 /* 80B41E1C-80B41E30 -00001 0014+00 9/13 0/0 0/0 .data            l_resName */
-SECTION_DATA static void* l_resName[5] = {
-    (void*)(((char*)&d_a_npc_wrestler__stringBase0) + 0x8),
-    (void*)(((char*)&d_a_npc_wrestler__stringBase0) + 0xD),
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static char* l_resName[2] = {
+    "Bou3",
+    "grDS",
 };
 
 /* 80B41E30-80B41E44 000038 0014+00 1/1 0/0 0/0 .data            l_bmdGetParamList */
@@ -448,19 +426,19 @@ SECTION_DATA static u8 l_BouFaceParamList[276] = {
 };
 
 /* 80B42150-80B42208 000358 00B8+00 1/0 0/0 0/0 .data            l_BouBtpParamList */
-SECTION_DATA static u8 l_BouBtpParamList[184] = {
-    0x00, 0x00, 0x00, 0x44, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x45, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x46, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x47, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x48, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x49, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x4A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x4B, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x4C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x4D, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x4E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x4F, 0x00, 0x00, 0x00, 0x02,
-    0x00, 0x00, 0x00, 0x50, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x51, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x52, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x53, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x54, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x55, 0x00, 0x00, 0x00, 0x02,
-    0x00, 0x00, 0x00, 0x56, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x02,
-    0x00, 0x00, 0x00, 0x57, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x58, 0x00, 0x00, 0x00, 0x02,
-    0x00, 0x00, 0x00, 0x59, 0x00, 0x00, 0x00, 0x00,
+static daNpc_GetParam1 l_BouBtpParamList[23] = {
+    {0x44, 2}, {0x45, 0}, 
+    {0x46, 0}, {0x47, 0}, 
+    {0x48, 0}, {0x49, 0},
+    {0x4A, 0}, {0x4B, 0},
+    {0x4C, 0}, {0x4D, 0},
+    {0x4E, 0}, {0x4F, 2},
+    {0x50, 0}, {0x51, 0},
+    {0x52, 0}, {0x53, 0},
+    {0x54, 2}, {0x55, 2},
+    {0x56, 0}, {-1, 2},
+    {0x57, 2}, {0x58, 2},
+    {0x59, 0},
 };
 
 /* 80B42208-80B42210 000410 0008+00 1/0 0/0 0/0 .data            l_BouBtkParamList */
@@ -564,13 +542,10 @@ SECTION_DATA static void* l_GrdAnmParamList[4] = {
 };
 
 /* 80B425FC-80B42604 -00001 0008+00 0/1 0/0 0/0 .data            l_anmList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_anmList[2] = {
+static void* l_anmList[2] = {
     (void*)&l_BouAnmParamList,
     (void*)&l_GrdAnmParamList,
 };
-#pragma pop
 
 /* 80B42604-80B42620 -00001 001C+00 2/5 0/0 0/0 .data            l_evtNames */
 SECTION_DATA static void* l_evtNames[7] = {
@@ -584,10 +559,7 @@ SECTION_DATA static void* l_evtNames[7] = {
 };
 
 /* 80B42620-80B42624 -00001 0004+00 0/2 0/0 0/0 .data            l_myName */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_myName = (void*)(((char*)&d_a_npc_wrestler__stringBase0) + 0x57);
-#pragma pop
+static char* l_myName = "Wrestler";
 
 /* 80B42624-80B42630 -00001 000C+00 0/1 0/0 0/0 .data            @3975 */
 #pragma push
@@ -1987,8 +1959,12 @@ COMPILER_STRIP_GATE(0x80B4188C, &lit_4365);
 #pragma pop
 
 /* 80B2F688-80B2F974 0004E8 02EC+00 1/1 0/0 0/0 .text            Create__15daNpcWrestler_cFv */
-void daNpcWrestler_c::Create() {
+cPhs__Step daNpcWrestler_c::Create() {
     // NONMATCHING
+    fopAcM_SetupActor(this, daNpcWrestler_c);
+
+    mType = getType();
+
 }
 
 /* ############################################################################################## */
@@ -2126,9 +2102,8 @@ bool daNpcWrestler_c::setExpressionBtp(int param_0) {
     // NONMATCHING
 }
 
-/* 80B3074C-80B308B0 0015AC 0164+00 1/0 0/0 0/0 .text            setMotionAnm__15daNpcWrestler_cFif
- */
-bool daNpcWrestler_c::setMotionAnm(int param_0, f32 param_1) {
+/* 80B3074C-80B308B0 0015AC 0164+00 1/0 0/0 0/0 .text            setMotionAnm__15daNpcWrestler_cFif */
+void daNpcWrestler_c::setMotionAnm(int param_1, f32 param_2) {
     // NONMATCHING
 }
 
@@ -3654,14 +3629,13 @@ void daNpcWrestler_c::EvCut_grDSEntry5(int param_0) {
     // NONMATCHING
 }
 
-/* 80B3E584-80B3EA2C 00F3E4 04A8+00 1/0 0/0 0/0 .text            EvCut_grDSLose__15daNpcWrestler_cFi
- */
+/* 80B3E584-80B3EA2C 00F3E4 04A8+00 1/0 0/0 0/0 .text            EvCut_grDSLose__15daNpcWrestler_cFi */
 void daNpcWrestler_c::EvCut_grDSLose(int param_0) {
     // NONMATCHING
 }
 
 /* 80B3EA2C-80B3EA4C 00F88C 0020+00 1/0 0/0 0/0 .text            daNpcWrestler_Create__FPv */
-static void daNpcWrestler_Create(void* param_0) {
+static void daNpcWrestler_Create(void* a_this) {
     // NONMATCHING
 }
 

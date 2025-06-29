@@ -11,10 +11,10 @@
  * @details
  *
  */
-class daNpcWrestler_c : public fopAc_ac_c {
+class daNpcWrestler_c : public daNpcF_c {
 public:
     /* 80B2F28C */ daNpcWrestler_c();
-    /* 80B2F688 */ void Create();
+    /* 80B2F688 */ cPhs__Step Create();
     /* 80B2F974 */ void CreateHeap();
     /* 80B2FDB0 */ void Delete();
     /* 80B2FDE4 */ void Execute();
@@ -81,7 +81,7 @@ public:
     /* 80B3023C */ bool setExpressionAnm(int, bool);
     /* 80B30654 */ bool setExpressionBtp(int);
     /* 80B316C8 */ void setExpression(int, f32);
-    /* 80B3074C */ bool setMotionAnm(int, f32);
+    /* 80B3074C */ void setMotionAnm(int, f32);
     /* 80B31680 */ void setMotion(int, f32, int);
     /* 80B40D1C */ BOOL drawDbgInfo();
     /* 80B40D24 */ void drawOtherMdls();
@@ -93,11 +93,20 @@ public:
     static u8 mEvtSeqList[84];
 
 private:
-    /* 0xB48 */ u8 field_0xb48[0xE74 - 0x568];
+    /* 0xB48 */ Z2Creature mSound;
+    /* 0xBD8 */ u8 field_0xbd8[0xbe4 - 0xbd8];
+    /* 0xBE4 */ daNpcF_Lookat_c mLookAt;
+    /* 0xC80 */ daNpcF_ActorMngr_c mActorMngr[2];
+    /* 0xC90 */ dCcD_Cyl field_0xc90;
+    /* 0xDCC */ u8 field_0xdcc[0xE74 - 0xdcc];
     /* 0xE74 */ int mWrestlerAction;
-    /* 0xE78 */ u8 field_0xe78[0xEA0 - 0xE78];
+    /* 0xE78 */ u8 field_0xe78[0xE88 - 0xE78];
+    /* 0xE88 */ int mMsgNo;
+    /* 0xE8C */ u8 field_0xe8c[0xE9b - 0xE8c];
+    /* 0xE9B */ u8 mType;
+    /* 0xE9C */ u8 field_0xe9c[0xEA0 - 0xE9c];
 };
-// STATIC_ASSERT(sizeof(daNpcWrestler_c) == 0xea0);
+STATIC_ASSERT(sizeof(daNpcWrestler_c) == 0xea0);
 
 class daNpcWrestler_Param_c {
 public:
