@@ -22,16 +22,26 @@
 #define ACTION_B_DOWN     23
 #define ACTION_START      50
 
-#define ANM_ATTACK      5
-#define ANM_ATTACK_WAIT 6
-#define ANM_DAMAGE      7
-#define ANM_EAT         8
-#define ANM_EAT_WAIT    9
-#define ANM_NO_DAMAGE   10
-#define ANM_ROUT        11
-#define ANM_WAIT        12
-#define ANM_WAIT01      13
-#define ANM_WAIT02      14
+enum B_BH_RES_FILE_ID {
+    /* BCK */
+    /* 0x05 */ BCK_BH_ATTACK = 5,
+    /* 0x06 */ BCK_BH_ATTACKWAIT,
+    /* 0x07 */ BCK_BH_DAMAGE,
+    /* 0x08 */ BCK_BH_EAT,
+    /* 0x09 */ BCK_BH_EATWAIT,
+    /* 0x0A */ BCK_BH_NODAMAGE,
+    /* 0x0B */ BCK_BH_ROUT,
+    /* 0x0C */ BCK_BH_WAIT,
+    /* 0x0D */ BCK_BH_WAIT01,
+    /* 0x0E */ BCK_BH_WAIT02,
+
+    /* BMDR */
+    /* 0x11 */ BMDR_BH_KUKI = 0x11,
+    /* 0x12 */ BMDR_BH_LEAF,
+
+    /* BMDV */
+    /* 0x15 */ BMDV_BH = 0x15,
+};
 
 /* 805AE26C-805AE2A4 0000EC 0038+00 1/1 0/0 0/0 .text            __ct__12daB_BH_HIO_cFv */
 daB_BH_HIO_c::daB_BH_HIO_c() {
@@ -122,7 +132,7 @@ static void b_bh_wait(b_bh_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_WAIT, 10.0f, 2, 1.0f);
+        anm_init(i_this, BCK_BH_WAIT, 10.0f, 2, 1.0f);
         i_this->mMode = 1;
         if (a_this->health <= 1) {
             i_this->mTimers[1] = ((f32)l_HIO.attack_freq_a / 2) + cM_rndF((f32)l_HIO.attack_freq_a / 2);
@@ -209,7 +219,7 @@ static void b_bh_attack_1(b_bh_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_ATTACK_WAIT, 5.0f, 2, 1.0f);
+        anm_init(i_this, BCK_BH_ATTACKWAIT, 5.0f, 2, 1.0f);
         i_this->mMode = 2;
         i_this->mTimers[0] = NREG_S(0) + 35;
 
@@ -221,7 +231,7 @@ static void b_bh_attack_1(b_bh_class* i_this) {
         break;
     case 2:
         if (i_this->mTimers[0] == NREG_S(4) + 8) {
-            anm_init(i_this, ANM_ATTACK, 3.0f, 0, 1.0f);
+            anm_init(i_this, BCK_BH_ATTACK, 3.0f, 0, 1.0f);
         }
 
         a_this->current.angle.y = i_this->field_0x684;
@@ -279,8 +289,8 @@ static void b_bh_attack_1(b_bh_class* i_this) {
         break;
     }
 
-    if (i_this->mAnm == ANM_ATTACK && i_this->mpModelMorf->isStop()) {
-        anm_init(i_this, ANM_WAIT02, 5.0f, 2, 1.0f);
+    if (i_this->mAnm == BCK_BH_ATTACK && i_this->mpModelMorf->isStop()) {
+        anm_init(i_this, BCK_BH_WAIT02, 5.0f, 2, 1.0f);
     }
 
     cLib_addCalc2(&a_this->speedF, target_speed, 1.0f, var_f30);
@@ -299,7 +309,7 @@ static void b_bh_bombeat(b_bh_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_EAT, 3.0f, 0, 1.0f);
+        anm_init(i_this, BCK_BH_EAT, 3.0f, 0, 1.0f);
         i_this->mMode = 1;
         i_this->mSound.startCreatureVoice(Z2SE_EN_BH_V_EAT, -1);
 
@@ -313,7 +323,7 @@ static void b_bh_bombeat(b_bh_class* i_this) {
         break;
     case 1:
         if (i_this->mpModelMorf->isStop()) {
-            anm_init(i_this, ANM_EAT_WAIT, 1.0f, 2, 1.0f);
+            anm_init(i_this, BCK_BH_EATWAIT, 1.0f, 2, 1.0f);
             i_this->mMode = 2;
             i_this->mTimers[0] = 40;
         }
@@ -321,7 +331,7 @@ static void b_bh_bombeat(b_bh_class* i_this) {
     case 2:
         if (i_this->mTimers[0] == 0) {
             i_this->mMode = 3;
-            anm_init(i_this, ANM_DAMAGE, 1.0f, 0, 1.0f);
+            anm_init(i_this, BCK_BH_DAMAGE, 1.0f, 0, 1.0f);
             i_this->field_0x90c = 2;
             i_this->field_0xf22 = 1;
 
@@ -356,7 +366,7 @@ static s8 b_bh_down(b_bh_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_ROUT, 1.0f, 2, 1.0f);
+        anm_init(i_this, BCK_BH_ROUT, 1.0f, 2, 1.0f);
         i_this->field_0x690 = 0.0f;
         i_this->mMode = 1;
         i_this->mTimers[0] = 200;
@@ -416,7 +426,7 @@ static s8 b_bh_down(b_bh_class* i_this) {
             a_this->current.pos.z = i_this->mBasePos.z;
             a_this->health = 3;
 
-            anm_init(i_this, ANM_WAIT, 10.0f, 2, 1.0f);
+            anm_init(i_this, BCK_BH_WAIT, 10.0f, 2, 1.0f);
             i_this->mAction = ACTION_B_WAIT;
             i_this->mMode = 1;
 
@@ -473,7 +483,7 @@ static void b_bh_b_wait(b_bh_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_WAIT, 10.0f, 2, 1.0f);
+        anm_init(i_this, BCK_BH_WAIT, 10.0f, 2, 1.0f);
         i_this->mMode = 1;
         i_this->mTimers[1] = l_HIO.attack_freq_b + cM_rndF(l_HIO.attack_freq_b);
         break;
@@ -540,14 +550,14 @@ static void b_bh_b_attack_1(b_bh_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_ATTACK_WAIT, 5.0f, 2, 1.0f);
+        anm_init(i_this, BCK_BH_ATTACKWAIT, 5.0f, 2, 1.0f);
         i_this->mMode = 2;
         i_this->mTimers[0] = NREG_S(0) + 35;
         i_this->mSound.startCreatureVoice(Z2SE_EN_BH_V_ATTACK, -1);
         break;
     case 2:
         if (i_this->mTimers[0] == NREG_S(4) + 8) {
-            anm_init(i_this, ANM_ATTACK, 3.0f, 0, 1.0f);
+            anm_init(i_this, BCK_BH_ATTACK, 3.0f, 0, 1.0f);
         }
 
         a_this->current.angle.y = i_this->field_0x684;
@@ -600,8 +610,8 @@ static void b_bh_b_attack_1(b_bh_class* i_this) {
         break;
     }
 
-    if (i_this->mAnm == ANM_ATTACK && i_this->mpModelMorf->isStop()) {
-        anm_init(i_this, ANM_WAIT02, 5.0f, 2, 1.0f);
+    if (i_this->mAnm == BCK_BH_ATTACK && i_this->mpModelMorf->isStop()) {
+        anm_init(i_this, BCK_BH_WAIT02, 5.0f, 2, 1.0f);
     }
 
     cLib_addCalc2(&a_this->speedF, target_speed, 1.0f, speed_step);
@@ -619,13 +629,13 @@ static void b_bh_b_bombeat(b_bh_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_EAT, 3.0f, 0, 1.0f);
+        anm_init(i_this, BCK_BH_EAT, 3.0f, 0, 1.0f);
         i_this->mSound.startCreatureVoice(Z2SE_EN_BH_V_EAT, -1);
         i_this->mMode = 1;
         break;
     case 1:
         if (i_this->mpModelMorf->isStop()) {
-            anm_init(i_this, ANM_EAT_WAIT, 1.0f, 2, 1.0f);
+            anm_init(i_this, BCK_BH_EATWAIT, 1.0f, 2, 1.0f);
             i_this->mMode = 2;
             i_this->mTimers[0] = 60;
         }
@@ -633,7 +643,7 @@ static void b_bh_b_bombeat(b_bh_class* i_this) {
     case 2:
         if (i_this->mTimers[0] == 0) {
             i_this->mMode = 3;
-            anm_init(i_this, ANM_DAMAGE, 1.0f, 0, 1.0f);
+            anm_init(i_this, BCK_BH_DAMAGE, 1.0f, 0, 1.0f);
             i_this->field_0x90c = 2;
             i_this->field_0xf22 = 1;
             i_this->mTimers[0] = 20;
@@ -667,7 +677,7 @@ static s8 b_bh_b_down(b_bh_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_ROUT, 1.0f, 2, 1.0f);
+        anm_init(i_this, BCK_BH_ROUT, 1.0f, 2, 1.0f);
         i_this->field_0x690 = 0.0f;
         i_this->mMode = 1;
         i_this->mTimers[0] = 200;
@@ -735,7 +745,7 @@ static void b_bh_start(b_bh_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_WAIT, 10.0f, 2, 1.0f);
+        anm_init(i_this, BCK_BH_WAIT, 10.0f, 2, 1.0f);
         if (i_this->mID != 0) {
             i_this->mpModelMorf->setFrame(10.0f);
         }
@@ -959,7 +969,7 @@ static void damage_check(b_bh_class* i_this) {
         i_this->mMode = 1;
         i_this->mTimers[1] = l_HIO.attack_freq_a + cM_rndF(l_HIO.attack_freq_a);
         i_this->mTimers[0] = 0;
-        anm_init(i_this, ANM_NO_DAMAGE, 3.0f, 0, 1.0f);
+        anm_init(i_this, BCK_BH_NODAMAGE, 3.0f, 0, 1.0f);
         i_this->mSound.startCreatureVoice(Z2SE_EN_BH_V_NODAMAGE, -1);
         dComIfGp_getVibration().StartShock(VIBMODE_S_POWER8, 0x1F, cXyz(0.0f, 1.0f, 0.0f));
     } else {
@@ -1015,13 +1025,13 @@ static void damage_check(b_bh_class* i_this) {
             def_se_set(&i_this->mSound, i_this->mAtInfo.mpCollider, 0x2D, NULL);
 
             if (i_this->mAction != ACTION_BOMB_EAT && i_this->mAction != ACTION_B_BOMB_EAT) {
-                anm_init(i_this, ANM_NO_DAMAGE, 3.0f, 0, 1.0f);
+                anm_init(i_this, BCK_BH_NODAMAGE, 3.0f, 0, 1.0f);
                 i_this->mSound.startCreatureVoice(Z2SE_EN_BH_V_NODAMAGE, -1);
             }
         }
 
-        if (i_this->mAnm == ANM_NO_DAMAGE && i_this->mpModelMorf->isStop()) {
-            anm_init(i_this, ANM_WAIT, 10.0f, 2, 1.0f);
+        if (i_this->mAnm == BCK_BH_NODAMAGE && i_this->mpModelMorf->isStop()) {
+            anm_init(i_this, BCK_BH_WAIT, 10.0f, 2, 1.0f);
         }
     }
 }
@@ -1207,7 +1217,7 @@ static void anm_se_set(b_bh_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
 
     f32 particle_target_size = 0.0f;
-    if (i_this->mAnm == ANM_WAIT && a_this->current.pos.y > 50.0f) {
+    if (i_this->mAnm == BCK_BH_WAIT && a_this->current.pos.y > 50.0f) {
         particle_target_size = 1.0f;
     }
 
@@ -1446,12 +1456,12 @@ static int daB_BH_Delete(b_bh_class* i_this) {
 static int useHeapInit(fopAc_ac_c* i_this) {
     b_bh_class* a_this = (b_bh_class*)i_this;
 
-    a_this->mpModelMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("B_BH", 0x15), NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("B_BH", 12), 2, 1.0f, 0, -1, &a_this->mSound, 0, 0x11000084);
+    a_this->mpModelMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("B_BH", BMDV_BH), NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("B_BH", 12), 2, 1.0f, 0, -1, &a_this->mSound, 0, 0x11000084);
     if (a_this->mpModelMorf == NULL || a_this->mpModelMorf->getModel() == NULL) {
         return 0;
     }
 
-    void* modelData = dComIfG_getObjectRes("B_BH", 0x11);
+    void* modelData = dComIfG_getObjectRes("B_BH", BMDR_BH_KUKI);
     JUT_ASSERT(2475, modelData != 0);
 
     for (int i = 0; i < 17; i++) {
@@ -1463,7 +1473,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         a_this->field_0x88c[i] = 1.0f;
     }
 
-    modelData = dComIfG_getObjectRes("B_BH", 0x12);
+    modelData = dComIfG_getObjectRes("B_BH", BMDR_BH_LEAF);
     JUT_ASSERT(2491, modelData != 0);
 
     for (int i = 0; i < 17; i++) {
