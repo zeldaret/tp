@@ -271,7 +271,9 @@ int daAlink_c::procGrassWhistleWait() {
             procWaitInit();
         }
     } else {
+        #if VERSION != VERSION_SHIELD_DEBUG
         setGrassCancelStatus(0);
+        #endif
     }
 
     return 1;
