@@ -1273,12 +1273,8 @@ void dKyr_snow_init() {
 }
 
 /* 8005FD48-80061324 05A688 15DC+00 0/0 1/1 0/0 .text            dKyr_snow_move__Fv */
-// NONMATCHING mostly matches, 1 out of order instruction
 void dKyr_snow_move() {
-    f32* temp_r26;
-    cXyz* temp_r25;
     dKankyo_snow_Packet* snow_packet = g_env_light.mpSnowPacket;
-    SNOW_EFF* effect;
     camera_class* camera = (camera_class*)dComIfGp_getCamera(0);
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
 
@@ -1315,9 +1311,7 @@ void dKyr_snow_move() {
     }
 
     snow_packet->field_0x6d74 = camera->lookat.eye;
-    spA0.z = 0.0f;
-    spA0.y = 0.0f;
-    spA0.x = 0.0f;
+    spA0.x = spA0.y = spA0.z = 0.0f;
 
     cXyz* temp_r21 = dKyw_get_wind_vec();
     f32 var_f20 = dKyw_get_wind_pow();
@@ -1349,37 +1343,31 @@ void dKyr_snow_move() {
         f32 gravity = -(2.0f + cM_rndF(6.5f));
         f32 speed = 2.0f * (5.0f + (f32)(i & 15));
 
-        effect = &snow_packet->mSnowEff[i];
         switch (snow_packet->mSnowEff[i].mStatus) {
         case 0:
-            effect->mWindSpeed = speed;
-            effect->mGravity = gravity;
-            effect->mTimer = 0;
-            effect->mBasePos.x = spAC.x + cM_rndFX(1100.0f);
-            effect->mBasePos.y = spAC.y + 1100.0f;
-            effect->mBasePos.z = spAC.z + cM_rndFX(1100.0f);
-            effect->mPosition.x = spB8.x + cM_rndFX(550.0f);
-            effect->mPosition.y = spB8.y + 550.0f;
-            effect->mPosition.z = spB8.z + cM_rndFX(550.0f);
-            effect->mScale = 0.0f;
-            effect->mPosWaveX = cM_rndF(65536.0f);
-            effect->mPosWaveZ = cM_rndF(65536.0f);
-            effect->mStatus++;
+            snow_packet->mSnowEff[i].mWindSpeed = speed;
+            snow_packet->mSnowEff[i].mGravity = gravity;
+            snow_packet->mSnowEff[i].mTimer = 0;
+            snow_packet->mSnowEff[i].mBasePos.x = spAC.x + cM_rndFX(1100.0f);
+            snow_packet->mSnowEff[i].mBasePos.y = spAC.y + 1100.0f;
+            snow_packet->mSnowEff[i].mBasePos.z = spAC.z + cM_rndFX(1100.0f);
+            snow_packet->mSnowEff[i].mPosition.x = spB8.x + cM_rndFX(550.0f);
+            snow_packet->mSnowEff[i].mPosition.y = spB8.y + 550.0f;
+            snow_packet->mSnowEff[i].mPosition.z = spB8.z + cM_rndFX(550.0f);
+            snow_packet->mSnowEff[i].mScale = 0.0f;
+            snow_packet->mSnowEff[i].mPosWaveX = cM_rndF(65536.0f);
+            snow_packet->mSnowEff[i].mPosWaveZ = cM_rndF(65536.0f);
+            snow_packet->mSnowEff[i].mStatus++;
             break;
         case 1:
-            f32 target = cM_rndFX(0.08f);
-            temp_r26 = &effect->mWindSpeed;
-            target = effect->mWindSpeed - target;
-
-            cLib_addCalc(temp_r26, target, 0.5f, 0.1f, 0.01f);
+            cLib_addCalc(&snow_packet->mSnowEff[i].mWindSpeed, snow_packet->mSnowEff[i].mWindSpeed - cM_rndFX(0.08f), 0.5f, 0.1f, 0.01f);
 
             cXyz sp4C;
             sp88 = sp94;
-            temp_r25 = &effect->mPosition;
-            if (camera->lookat.eye.abs(*temp_r25) < 500.0f &&
-                effect->mPosition.y < temp_f19 + 250.0f)
+            if (camera->lookat.eye.abs(snow_packet->mSnowEff[i].mPosition) < 500.0f &&
+                snow_packet->mSnowEff[i].mPosition.y < temp_f19 + 250.0f)
             {
-                f32 var_f1_3 = ((temp_f19 + 250.0f) - effect->mPosition.y) / 250.0f;
+                f32 var_f1_3 = ((temp_f19 + 250.0f) - snow_packet->mSnowEff[i].mPosition.y) / 250.0f;
                 if (var_f1_3 > 1.0f) {
                     var_f1_3 = 1.0f;
                 }
@@ -1387,26 +1375,26 @@ void dKyr_snow_move() {
                 sp88.y = var_f1_3 * 0.45f;
             }
 
-            s16 wave_x = effect->mPosWaveX;
-            s16 wave_z = effect->mPosWaveZ;
+            s16 wave_x = snow_packet->mSnowEff[i].mPosWaveX;
+            s16 wave_z = snow_packet->mSnowEff[i].mPosWaveZ;
 
             sp4C.x = cM_scos(wave_x) * cM_ssin(wave_z);
             sp4C.y = cM_ssin(wave_x);
             sp4C.z = cM_scos(wave_x) * cM_scos(wave_z);
 
-            effect->mPosition.x += sp88.x * *temp_r26;
-            effect->mPosition.z += sp88.z * *temp_r26;
-            effect->mPosition.y += effect->mGravity + (sp88.y * *temp_r26);
+            snow_packet->mSnowEff[i].mPosition.x += sp88.x * snow_packet->mSnowEff[i].mWindSpeed;
+            snow_packet->mSnowEff[i].mPosition.z += sp88.z * snow_packet->mSnowEff[i].mWindSpeed;
+            snow_packet->mSnowEff[i].mPosition.y += snow_packet->mSnowEff[i].mGravity + (sp88.y * snow_packet->mSnowEff[i].mWindSpeed);
 
-            effect->mPosition.x += sp4C.x * 5.3f;
-            effect->mPosition.y += sp4C.y * 5.3f;
-            effect->mPosition.z += sp4C.z * 5.3f;
+            snow_packet->mSnowEff[i].mPosition.x += sp4C.x * 5.3f;
+            snow_packet->mSnowEff[i].mPosition.y += sp4C.y * 5.3f;
+            snow_packet->mSnowEff[i].mPosition.z += sp4C.z * 5.3f;
 
             sp88 = sp94;
-            if (camera->lookat.eye.abs(*temp_r25) < 500.0f &&
-                effect->mBasePos.y < temp_f19 + 250.0f)
+            if (camera->lookat.eye.abs(snow_packet->mSnowEff[i].mPosition) < 500.0f &&
+                snow_packet->mSnowEff[i].mBasePos.y < temp_f19 + 250.0f)
             {
-                f32 var_f1_5 = ((temp_f19 + 250.0f) - effect->mBasePos.y) / 250.0f;
+                f32 var_f1_5 = ((temp_f19 + 250.0f) - snow_packet->mSnowEff[i].mBasePos.y) / 250.0f;
                 if (var_f1_5 > 1.0f) {
                     var_f1_5 = 1.0f;
                 }
@@ -1414,73 +1402,74 @@ void dKyr_snow_move() {
                 sp88.y = var_f1_5 * 0.35f;
             }
 
-            effect->mBasePos.x += sp88.x * *temp_r26;
-            effect->mBasePos.z += sp88.z * *temp_r26;
-            effect->mBasePos.y += effect->mGravity + (sp88.y * *temp_r26);
+            snow_packet->mSnowEff[i].mBasePos.x += sp88.x * snow_packet->mSnowEff[i].mWindSpeed;
+            snow_packet->mSnowEff[i].mBasePos.z += sp88.z * snow_packet->mSnowEff[i].mWindSpeed;
+            snow_packet->mSnowEff[i].mBasePos.y += snow_packet->mSnowEff[i].mGravity + (sp88.y * snow_packet->mSnowEff[i].mWindSpeed);
 
-            effect->mBasePos.x += sp4C.x * 5.3f;
-            effect->mBasePos.y += sp4C.y * 5.3f;
-            effect->mBasePos.z += sp4C.z * 5.3f;
+            snow_packet->mSnowEff[i].mBasePos.x += sp4C.x * 5.3f;
+            snow_packet->mSnowEff[i].mBasePos.y += sp4C.y * 5.3f;
+            snow_packet->mSnowEff[i].mBasePos.z += sp4C.z * 5.3f;
 
-            cLib_addCalc(&effect->mPosWaveX, effect->mPosWaveX + cM_rndF(3000.0f), 0.25f,
+            cLib_addCalc(&snow_packet->mSnowEff[i].mPosWaveX, snow_packet->mSnowEff[i].mPosWaveX + cM_rndF(3000.0f), 0.25f,
                          1500.0f, 0.001f);
-            cLib_addCalc(&effect->mPosWaveZ, effect->mPosWaveZ + cM_rndF(3000.0f), 0.25f,
+            cLib_addCalc(&snow_packet->mSnowEff[i].mPosWaveZ, snow_packet->mSnowEff[i].mPosWaveZ + cM_rndF(3000.0f), 0.25f,
                          1500.0f, 0.001f);
 
-            sp7C = effect->mPosition;
+            sp7C = snow_packet->mSnowEff[i].mPosition;
             f32 var_f1_6 = sp7C.abs(spB8);
 
-            if (effect->mTimer == 0) {
+            if (snow_packet->mSnowEff[i].mTimer == 0) {
                 if (var_f1_6 > 550.0f) {
-                    effect->mTimer = 10;
-                    *temp_r26 = speed;
-                    effect->mGravity = gravity;
+                    snow_packet->mSnowEff[i].mTimer = 10;
+                    snow_packet->mSnowEff[i].mWindSpeed = speed;
+                    snow_packet->mSnowEff[i].mGravity = gravity;
 
                     if (sp7C.abs(spB8) > 600.0f) {
-                        effect->mPosition.x = spB8.x + cM_rndFX(550.0f);
-                        effect->mPosition.y = spB8.y + cM_rndFX(550.0f);
-                        effect->mPosition.z = spB8.z + cM_rndFX(550.0f);
+                        snow_packet->mSnowEff[i].mPosition.x = spB8.x + cM_rndFX(550.0f);
+                        snow_packet->mSnowEff[i].mPosition.y = spB8.y + cM_rndFX(550.0f);
+                        snow_packet->mSnowEff[i].mPosition.z = spB8.z + cM_rndFX(550.0f);
                     } else {
                         f32 temp_f26_2 = cM_rndFX(27.5f);
                         get_vectle_calc(&sp7C, &spB8, &sp70);
 
-                        effect->mPosition.x = spB8.x + sp70.x * (temp_f26_2 + 550.0f);
-                        effect->mPosition.y = spB8.y + sp70.y * (temp_f26_2 + 550.0f);
-                        effect->mPosition.z = spB8.z + sp70.z * (temp_f26_2 + 550.0f);
+                        snow_packet->mSnowEff[i].mPosition.x = spB8.x + sp70.x * (temp_f26_2 + 550.0f);
+                        snow_packet->mSnowEff[i].mPosition.y = spB8.y + sp70.y * (temp_f26_2 + 550.0f);
+                        snow_packet->mSnowEff[i].mPosition.z = spB8.z + sp70.z * (temp_f26_2 + 550.0f);
                     }
                 }
             } else {
-                effect->mTimer--;
+                snow_packet->mSnowEff[i].mTimer--;
             }
 
-            sp7C = effect->mBasePos;
-            if (sp7C.abs(spAC) > 1100.0f) {
+            sp7C = snow_packet->mSnowEff[i].mBasePos;
+            f32 sp18 = sp7C.abs(spAC);
+            if (sp18 > 1100.0f) {
                 if (sp7C.abs(spAC) > 1150.0f) {
-                    effect->mBasePos.x = spAC.x + cM_rndFX(1100.0f);
-                    effect->mBasePos.y = spAC.y + cM_rndFX(1100.0f);
-                    effect->mBasePos.z = spAC.z + cM_rndFX(1100.0f);
+                    snow_packet->mSnowEff[i].mBasePos.x = spAC.x + cM_rndFX(1100.0f);
+                    snow_packet->mSnowEff[i].mBasePos.y = spAC.y + cM_rndFX(1100.0f);
+                    snow_packet->mSnowEff[i].mBasePos.z = spAC.z + cM_rndFX(1100.0f);
                 } else {
                     f32 temp_f26_3 = cM_rndFX(55.0f);
                     get_vectle_calc(&sp7C, &spAC, &sp70);
 
-                    effect->mBasePos.x = spAC.x + sp70.x * (temp_f26_3 + 1100.0f);
-                    effect->mBasePos.y = spAC.y + sp70.y * (temp_f26_3 + 1100.0f);
-                    effect->mBasePos.z = spAC.z + sp70.z * (temp_f26_3 + 1100.0f);
+                    snow_packet->mSnowEff[i].mBasePos.x = spAC.x + sp70.x * (temp_f26_3 + 1100.0f);
+                    snow_packet->mSnowEff[i].mBasePos.y = spAC.y + sp70.y * (temp_f26_3 + 1100.0f);
+                    snow_packet->mSnowEff[i].mBasePos.z = spAC.z + sp70.z * (temp_f26_3 + 1100.0f);
                 }
             }
-            break;
         }
 
-        sp7C = effect->mPosition;
+        sp7C = snow_packet->mSnowEff[i].mPosition;
 
-        f32 var_f26 = sp7C.abs(camera->lookat.eye) / 100.0f;
+        f32 var_f1_11 = sp7C.abs(camera->lookat.eye);
+        f32 var_f26 = var_f1_11 / 100.0f;
         if (var_f26 > 1.0) {
             var_f26 = 1.0;
         }
 
         var_f26 *= 0.4f;
 
-        f32 var_f1_11 = sp7C.abs(spB8);
+        var_f1_11 = sp7C.abs(spB8);
         if (var_f1_11 > 300.0f) {
             f32 var_f1_12 = (550.0f - var_f1_11) / 250.0f;
             if (var_f1_12 < 0.0f) {
@@ -1491,12 +1480,13 @@ void dKyr_snow_move() {
         }
 
         if (i > g_env_light.mSnowCount - 1) {
-            cLib_addCalc(&effect->mScale, 0.0f, 0.2f, 0.1f, 0.01f);
+            var_f26 = 0.0f;
+            cLib_addCalc(&snow_packet->mSnowEff[i].mScale, var_f26, 0.2f, 0.1f, 0.01f);
         } else {
-            effect->mScale = var_f26;
+            snow_packet->mSnowEff[i].mScale = var_f26;
         }
 
-        if (i > g_env_light.mSnowCount - 1 && effect->mScale < 0.01f) {
+        if (i > g_env_light.mSnowCount - 1 && snow_packet->mSnowEff[i].mScale < 0.01f) {
             if (i == snow_packet->field_0x6d88 - 1) {
                 snow_packet->field_0x6d88--;
             }
@@ -1504,46 +1494,48 @@ void dKyr_snow_move() {
 
         if (strcmp(dComIfGp_getStartStageName(), "R_SP127") == 0) {
             if (sp7C.z > -340.0f) {
-                effect->mScale = 0.0f;
+                snow_packet->mSnowEff[i].mScale = 0.0f;
             }
         } else if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0) {
             if (sp7C.z > 9800.0f) {
-                effect->mScale = 0.0f;
+                snow_packet->mSnowEff[i].mScale = 0.0f;
             }
         }
 
-        sp7C = effect->mBasePos;
+        sp7C = snow_packet->mSnowEff[i].mBasePos;
 
-        f32 var_f26_3 = sp7C.abs(camera->lookat.eye) / 100.0f;
-        if (var_f26_3 > 1.0) {
-            var_f26_3 = 1.0;
+        var_f1_11 = sp7C.abs(camera->lookat.eye);
+        f32 temp_f29 = var_f1_11 / 100.0f;
+        if (temp_f29 > 1.0) {
+            temp_f29 = 1.0;
         }
 
-        var_f26_3 *= 0.38f;
+        temp_f29 *= 0.38f;
 
-        f32 var_f1_14 = sp7C.abs(spAC);
-        if (var_f1_14 > 850.0f) {
-            f32 var_f1_15 = (1100.0f - var_f1_14) / 250.0f;
+        var_f1_11 = sp7C.abs(spAC);
+        if (var_f1_11 > 850.0f) {
+            f32 var_f1_15 = (1100.0f - var_f1_11) / 250.0f;
             if (var_f1_15 < 0.0f) {
                 var_f1_15 = 0.0f;
             }
 
-            var_f26_3 *= var_f1_15;
+            temp_f29 *= var_f1_15;
         }
 
         if (i > g_env_light.mSnowCount - 1) {
-            cLib_addCalc(&effect->field_0x30, 0.0f, 0.2f, 0.1f, 0.01f);
+            temp_f29 = 0.0f;
+            cLib_addCalc(&snow_packet->mSnowEff[i].field_0x30, temp_f29, 0.2f, 0.1f, 0.01f);
         } else {
-            effect->field_0x30 = var_f26_3;
+            snow_packet->mSnowEff[i].field_0x30 = temp_f29;
         }
 
         if (strcmp(dComIfGp_getStartStageName(), "R_SP127") == 0) {
             if (sp7C.z > -340.0f) {
-                effect->field_0x30 = 0.0f;
+                snow_packet->mSnowEff[i].field_0x30 = 0.0f;
             }
         } else if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0) {
             if (sp7C.z > 9800.0f) {
-                effect->field_0x30 = 0.0f;
+                snow_packet->mSnowEff[i].field_0x30 = 0.0f;
             }
         }
     }
@@ -1836,7 +1828,6 @@ void cloud_shadow_move() {
 }
 
 /* 800620AC-80062ADC 05C9EC 0A30+00 0/0 1/1 0/0 .text            vrkumo_move__Fv */
-// NONMATCHING - switch case issue, fsubs instead of fsub
 void vrkumo_move() {
     cXyz wind_vecpow = dKyw_get_wind_vecpow();
     dKankyo_vrkumo_Packet* vrkumo_packet = g_env_light.mpVrkumoPacket;
@@ -1896,6 +1887,13 @@ void vrkumo_move() {
 
         if (filelist != NULL) {
             sp2C = dStage_FileList_dt_SeaLevel(filelist);
+            #ifdef DEBUG
+            if (g_kankyoHIO.field_0xB4) {
+                sp2C = g_kankyoHIO.field_0xB8;
+            } else {
+                g_kankyoHIO.field_0xB8 = sp2C;
+            }
+            #endif
         }
 
         sp6C -= 0.09f * (camera->lookat.eye.y - sp2C);
@@ -1911,7 +1909,8 @@ void vrkumo_move() {
             }
 
             f32 var_f31 = sp34 * cM_ssin(sp8);
-            if (fabsf(var_f31 < 5000.0f)) {
+            // @bug - parenthesis should not be on the condition
+            if ((f32)fabs(var_f31 < 5000.0f)) {
                 if (var_f31 > 0.0f) {
                     var_f31 += 5000.0f;
                 } else {
@@ -1923,7 +1922,8 @@ void vrkumo_move() {
             vrkumo_packet->mVrkumoEff[i].mPosition.y = 0.0f;
 
             var_f31 = sp34 * cM_scos(sp8);
-            if (fabsf(var_f31 < 5000.0f)) {
+            // @bug - parenthesis should not be on the condition
+            if ((f32)fabs(var_f31 < 5000.0f)) {
                 if (var_f31 > 0.0f) {
                     var_f31 += 5000.0f;
                 } else {
@@ -1951,7 +1951,8 @@ void vrkumo_move() {
                     }
                     var_f31 = sp34 * cM_ssin(sp8);
 
-                    if (fabsf(var_f31 < 5000.0f)) {
+                    // @bug - parenthesis should not be on the condition
+                    if ((f32)fabs(var_f31 < 5000.0f)) {
                         if (var_f31 > 0.0f) {
                             var_f31 += 5000.0f;
                         } else {
@@ -1963,7 +1964,9 @@ void vrkumo_move() {
                     vrkumo_packet->mVrkumoEff[i].mPosition.y = 0.0f;
 
                     var_f31 = sp34 * cM_scos(sp8);
-                    if (fabsf(var_f31 < 5000.0f)) {
+
+                    // @bug - parenthesis should not be on the condition
+                    if ((f32)fabs(var_f31 < 5000.0f)) {
                         if (var_f31 > 0.0f) {
                             var_f31 += 5000.0f;
                         } else {
@@ -1994,7 +1997,7 @@ void vrkumo_move() {
                 vrkumo_packet->mVrkumoEff[i].mPosition.z += wind_vecpow.z * (sp70 * vrkumo_packet->mVrkumoEff[i].mSpeed) * vrkumo_packet->mVrkumoEff[i].mDistFalloff;
             }
             break;
-        case 2:
+        case 3:
             break;
         }
 
@@ -2693,7 +2696,6 @@ void dKyr_drawSun(Mtx drawMtx, cXyz* ppos, GXColor& unused, u8** tex) {
 
 /* 8006444C-8006562C 05ED8C 11E0+00 0/0 1/1 0/0 .text
  * dKyr_drawLenzflare__FPA4_fP4cXyzR8_GXColorPPUc               */
-// NONMATCHING - some issue with sp5C and float to int conversions
 void dKyr_drawLenzflare(Mtx drawMtx, cXyz* ppos, GXColor& param_2, u8** tex) {
     dKankyo_sunlenz_Packet* lenz_packet = g_env_light.mpSunLenzPacket;
     dKankyo_sun_Packet* sun_packet = g_env_light.mpSunPacket;
@@ -2983,8 +2985,8 @@ void dKyr_drawLenzflare(Mtx drawMtx, cXyz* ppos, GXColor& param_2, u8** tex) {
 
                     GXColor sp60;
                     sp60.r = 0xFF;
+                    sp60.g = 0xFF;
                     sp60.b = 0xFF;
-                    sp60.a = 0xFF;
 
                     f32 sp5C = 0.12f;
                     color_reg0.r = ((f32)spD0.r * (1.0f - sp5C)) + ((f32)sp60.r * sp5C);
@@ -3750,7 +3752,6 @@ void dKyr_drawHousi(Mtx drawMtx, u8** tex) {
 }
 
 /* 80067488-800685DC 061DC8 1154+00 0/0 1/1 0/0 .text            dKyr_drawSnow__FPA4_fPPUc */
-// NONMATCHING - small branching issue
 void dKyr_drawSnow(Mtx drawMtx, u8** tex) {
     camera_class* camera = (camera_class*)dComIfGp_getCamera(0);
     dKankyo_snow_Packet* snow_packet = g_env_light.mpSnowPacket;
@@ -3900,7 +3901,7 @@ void dKyr_drawSnow(Mtx drawMtx, u8** tex) {
                                 if (strcmp(dComIfGp_getStartStageName(), "D_MN11") == 0) {
                                     if (dComIfGp_roomControl_getStayNo() == 4) {
                                         if ((sp7C.x > 2079.0f && sp7C.x < 3013.0f && sp7C.y < 864.0f && sp7C.z > -6000.0f && sp7C.z < -4145.0f) ||
-                                            (sp7C.x > -2960.0f && sp7C.z > -880.0f && sp7C.z < -6000.0f) ||
+                                            sp7C.x < -2960.0f || sp7C.z > -880.0f || sp7C.z < -6000.0f ||
                                             (sp7C.z < -4920.0f && sp7C.y < 864.0f && sp7C.x < -2000.0f))
                                         {
                                             continue;
@@ -4610,6 +4611,14 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
 
         if (filelist != NULL) {
             sp70 = dStage_FileList_dt_SeaLevel(filelist);
+
+            #ifdef DEBUG
+            if (g_kankyoHIO.field_0xB4) {
+                sp70 = g_kankyoHIO.field_0xB8;
+            } else {
+                g_kankyoHIO.field_0xB8 = sp70;
+            }
+            #endif
         }
 
         unused = 1.0f - (0.09f * (camera->lookat.eye.y - sp70));
@@ -4710,8 +4719,14 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
 
                     static f32 howa_loop_cnt = 0.0f;
 
+                    #ifdef DEBUG
+                    spAC = g_kankyoHIO.field_0x3f4;
+                    spA8 = g_kankyoHIO.field_0x3f8;
+                    #else
                     spAC = 0.6f;
                     spA8 = 0.84f;
+                    #endif
+
                     if (dKy_darkworld_check()) {
                         spAC = 0.8f;
                         spA8 = 0.8f;
@@ -5187,7 +5202,7 @@ void dKyr_shstar_move() {}
 /* 8006B8E4-8006B924 066224 0040+00 0/0 1/1 0/0 .text            dKyr_odour_init__Fv */
 void dKyr_odour_init() {
     dScnKy_env_light_c* envlight = dKy_getEnvlight();
-    dKankyo_odour_Packet* odour_packet = envlight->mpOdourPacket;
+    dKankyo_odour_Packet* odour_packet = envlight->mOdourData.mpOdourPacket;
 
     for (int i = 0; i < 2000; i++) {
         odour_packet->mOdourEff[i].mStatus = 0;
@@ -5198,10 +5213,10 @@ void dKyr_odour_init() {
 }
 
 /* 8006B924-8006BE0C 066264 04E8+00 0/0 1/1 0/0 .text            dKyr_odour_move__Fv */
-// NONMATCHING - some small regalloc
 void dKyr_odour_move() {
     dScnKy_env_light_c* envlight = dKy_getEnvlight();
-    dKankyo_odour_Packet* odour_packet = envlight->mpOdourPacket;
+    dKy_Odour_Data* pOdourData = &envlight->mOdourData;
+    dKankyo_odour_Packet* odour_packet = pOdourData->mpOdourPacket;
     
     Mtx camMtx;
     cXyz sp20(0.0f, 1.0f, 0.0f);
@@ -5213,8 +5228,8 @@ void dKyr_odour_move() {
         return;
     }
 
-    odour_packet->field_0x17724 -= (int)cM_rndF(150.0f) + 430;
-    odour_packet->field_0x17726 -= (int)cM_rndF(50.0f) + 200;
+    odour_packet->field_0x17724 -= ((int)cM_rndF(150.0f) + 430);
+    odour_packet->field_0x17726 -= ((int)cM_rndF(50.0f) + 200);
 
     for (int i = 0; i < 2000; i++) {
         EF_ODOUR_EFF* effect = &odour_packet->mOdourEff[i];
@@ -5241,13 +5256,15 @@ void dKyr_odour_move() {
             }
             temp_f31 = 0.3f;
 
-            f32 temp_f30 = cM_scos(odour_packet->field_0x17724 + ((s16)(int)temp_f29 * 38));
+            f32 temp_f30 = cM_scos(odour_packet->field_0x17724 + 38 * (s16)temp_f29);
             effect->mPosition.x = 60.0f * (temp_f30 * temp_f31);
             effect->mPosition.z = 60.0f * (temp_f30 * temp_f31);
 
             if (effect->mStatus < 10) {
-                effect->mPosition.y = 90.0f * ((0.8f + cM_scos(odour_packet->field_0x17724 + ((int)temp_f29 * 160))) * temp_f31);
-                effect->mPosition.y += 110.0f * ((0.8f + cM_ssin(odour_packet->field_0x17726 + ((int)temp_f29 * 45))) * temp_f31);
+                temp_f30 = cM_scos(odour_packet->field_0x17724 + ((s16)temp_f29 * 160));
+                effect->mPosition.y = 90.0f * ((0.8f + temp_f30) * temp_f31);
+                temp_f30 = cM_ssin(odour_packet->field_0x17726 + ((s16)temp_f29 * 45));
+                effect->mPosition.y += 110.0f * ((0.8f + temp_f30) * temp_f31);
             } else {
                 temp_f30 = cM_scos((int)(78.0f * temp_f29) + (int)(f32)odour_packet->field_0x17724);
 
@@ -5255,7 +5272,7 @@ void dKyr_odour_move() {
                 effect->mPosition.x = 150.0f * (temp_f30 * temp_f31);
                 effect->mPosition.z = 140.0f * (temp_f30 * temp_f31);
 
-                temp_f30 = cM_ssin(((int)temp_f29 * 45) + (int)(f32)odour_packet->field_0x17726);
+                temp_f30 = cM_ssin(((s16)temp_f29 * 45) + (int)(f32)odour_packet->field_0x17726);
                 effect->mPosition.x += 100.0f * (temp_f30 * temp_f31);
                 effect->mPosition.z += 100.0f * (temp_f30 * temp_f31);
             }
@@ -5288,7 +5305,7 @@ void dKyr_odour_move() {
 // NONMATCHING - regalloc
 void dKyr_odour_draw(Mtx drawMtx, u8** tex) {
     dScnKy_env_light_c* envlight = dKy_getEnvlight();
-    dKankyo_odour_Packet* odour_packet = envlight->mpOdourPacket;
+    dKankyo_odour_Packet* odour_packet = envlight->mOdourData.mpOdourPacket;
     camera_class* camera = (camera_class*)dComIfGp_getCamera(0);
 
     static f32 rot = 0.0f;

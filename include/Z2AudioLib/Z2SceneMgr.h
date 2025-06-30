@@ -33,7 +33,7 @@ public:
     bool isSceneExist() { return sceneExist; }
     int getCurrentSceneNum() { return sceneNum; }
     s8 getCurrentRoomNum() { return roomNum; }
-    bool isInGame() const { return inGame; }
+    bool isInGame() { return inGame; }
     void setInGame(bool i_inGame) { inGame = i_inGame; }
     bool isInDarkness() const { return inDarkness; }
     s8 getRoomReverb() { return dComIfGp_getReverb(roomNum); }

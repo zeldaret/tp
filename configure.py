@@ -1476,7 +1476,7 @@ config.libs = [
     Rel("f_pc_profile_lst", [Object(Matching, "f_pc/f_pc_profile_lst.cpp")]),
     ActorRel(MatchingFor("GZ2E01"), "d_a_andsw"),
     ActorRel(NonMatching, "d_a_bg"),
-    ActorRel(NonMatching, "d_a_bg_obj"),
+    ActorRel(Equivalent, "d_a_bg_obj"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_dmidna"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_door_dbdoor00"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_door_knob00"),
