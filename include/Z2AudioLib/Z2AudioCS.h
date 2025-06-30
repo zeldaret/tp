@@ -16,7 +16,7 @@ public:
     static void extensionProcess(s32, s32);
     u32 getHandleSoundID(s32);
     void start(s32, s32);
-    void startLevel(s32, s32);
+    static void startLevel(s32, s32);
 };
 
 #endif /* Z2AUDIOCS_H */
