@@ -153,7 +153,7 @@ static int daKytag10_IsDelete(kytag10_class* i_this) {
 /* 8052917C-80529248 0005FC 00CC+00 1/0 0/0 0/0 .text            daKytag10_Delete__FP13kytag10_class
  */
 static int daKytag10_Delete(kytag10_class* i_this) {
-    g_env_light.field_0xf21 = 0;
+    g_env_light.mOdourData.field_0xf21 = 0;
 
     if (i_this->mpEmitter1 != NULL) {
         i_this->mpEmitter1->deleteAllParticle();

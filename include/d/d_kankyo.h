@@ -216,6 +216,13 @@ enum dKy_LIGHT_SIZE {
     LIGHT_SIZE_LL,
 };
 
+struct dKy_Odour_Data {
+    /* 0x0 */ u8 mOdourPacketStatus;
+    /* 0x1 */ u8 field_0xf21;
+    /* 0x4 */ int field_0xf24;
+    /* 0x8 */ dKankyo_odour_Packet* mpOdourPacket;
+};
+
 class dScnKy_env_light_c {
 public:
     /* 8019F2E8 */ dScnKy_env_light_c();
@@ -325,10 +332,7 @@ public:
     /* 0x0ED4 */ EF_THUNDER mThunderEff;
     /* 0x0F18 */ u8 field_0xf18[4];
     /* 0x0F1C */ dKankyo_shstar_Packet* mpShstarPacket;
-    /* 0x0F20 */ u8 mOdourPacketStatus;
-    /* 0x0F21 */ u8 field_0xf21;
-    /* 0x0F24 */ int field_0xf24;
-    /* 0x0F28 */ dKankyo_odour_Packet* mpOdourPacket;
+    /* 0x0F20 */ dKy_Odour_Data mOdourData;
     /* 0x0F2C */ u8 field_0xf2c;
     /* 0x0F30 */ J3DModel* undwater_ef_model;
     /* 0x0F34 */ f32 field_0xf34;
@@ -503,9 +507,12 @@ inline dScnKy_env_light_c* dKy_getEnvlight() {
 
 class dKankyo_HIO_c {
 public:
-    u8 pad[0xB4];
-    /* 0xB4 */ u8 field_0xB4;
-    /* 0xB8 */ f32 field_0xB8;
+    /* 0x000 */ u8 pad[0xB4];
+    /* 0x0B4 */ u8 field_0xB4;
+    /* 0x0B8 */ f32 field_0xB8;
+    /* 0x0BC */ u8 field_0xBC[0x3F4 - 0xbc];
+    /* 0x3F4 */ f32 field_0x3f4;
+    /* 0x3F8 */ f32 field_0x3f8;
 };
 
 extern dKankyo_HIO_c g_kankyoHIO;
