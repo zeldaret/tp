@@ -4,7 +4,7 @@
 //
 
 #include "Z2AudioLib/Z2LinkMgr.h"
-#include "Z2AudioCSD\Z2AudioCS.h"
+#include "Z2AudioLib\Z2AudioCS.h"
 #include "d/d_com_inf_game.h"
 
 /* 802C321C-802C3220 2BDB5C 0004+00 0/0 1/1 0/0 .text setLinkGroupInfo__14Z2CreatureLinkFUc */
