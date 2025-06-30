@@ -16,7 +16,7 @@
  * @details 
  * 
  */
-class e_ba_class : public fopEn_enemy_c {
+class e_ba_class {
 public:
     enum Type {
         /* 0 */ TYPE_NORMAL,
@@ -54,6 +54,7 @@ public:
         /* 0xA */ ANM_WAIT,
     };
 
+    /* 0x000 */ fopEn_enemy_c mEnemy;
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ u8 mHomeType;
     /* 0x5B5 */ u8 mDistanceParam;
