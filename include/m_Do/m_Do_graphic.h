@@ -3,6 +3,7 @@
 
 #include "JSystem/JFramework/JFWDisplay.h"
 #include "dolphin/mtx.h"
+#include "global.h"
 
 int mDoGph_Create();
 void mDoGph_drawFilterQuad(s8 param_0, s8 param_1);
@@ -74,14 +75,58 @@ public:
     static BOOL isAutoForcus() { return data_80450BE7; }
     static void setTickRate(u32 rate) { JFWDisplay::getManager()->setTickRate(rate); }
     static void waitBlanking(int wait) { JFWDisplay::getManager()->waitBlanking(wait); }
-    static f32 getWidthF() { return 608.0f; }
-    static f32 getHeightF() { return 448.0f; }
+
+    static f32 getWidthF() {
+        #if PLATFORM_WII || PLATFORM_SHIELD
+        return m_widthF;
+        #else
+        return 608.0f;
+        #endif
+    }
+
+    static f32 getHeightF() {
+        #if PLATFORM_WII || PLATFORM_SHIELD
+        return m_heightF;
+        #else
+        return 448.0f;
+        #endif
+    }
+
     static f32 getWidth() { return 608.0f; }
     static f32 getHeight() { return 448.0f; }
-    static f32 getMinYF() { return 0.0f; }
-    static f32 getMinXF() { return 0.0f; }
-    static f32 getMaxYF() { return 448.0f; }
-    static f32 getMaxXF() { return 608.0f; }
+
+    static f32 getMinYF() {
+        #if PLATFORM_WII || PLATFORM_SHIELD
+        return m_minYF;
+        #else
+        return 0.0f;
+        #endif
+    }
+
+    static f32 getMinXF() {
+        #if PLATFORM_WII || PLATFORM_SHIELD
+        return m_minXF;
+        #else
+        return 0.0f;
+        #endif
+    }
+
+    static f32 getMaxYF() {
+        #if PLATFORM_WII || PLATFORM_SHIELD
+        return m_maxYF;
+        #else
+        return 448.0f;
+        #endif
+    }
+
+    static f32 getMaxXF() {
+        #if PLATFORM_WII || PLATFORM_SHIELD
+        return m_maxXF;
+        #else
+        return 608.0f;
+        #endif
+    }
+
     static f32 getAspect() { return 1.3571428f; }
     static int getMinY() { return 0; }
     static int getMinX() { return 0; }
@@ -105,7 +150,13 @@ public:
     static void setFrameRate(u16 i_rate) { JFWDisplay::getManager()->setFrameRate(i_rate); }
 
     // NONMATCHING - Need to define all mDoGph_gInf_c shieldD members
-    static u8 isWide() { return false; }
+    static u8 isWide() {
+        #if PLATFORM_WII || PLATFORM_SHIELD
+        return mWide == TRUE;
+        #else
+        return false;
+        #endif
+    }
 
     static GXTexObj mFrameBufferTexObj;
     static GXTexObj mZbufferTexObj;
@@ -123,6 +174,19 @@ public:
     static bool mBlureFlag;
     static u8 mBlureRate;
     static u8 mFade;
+
+    #if PLATFORM_WII || PLATFORM_SHIELD
+    static u8 mWide;
+    static ResTIMG* m_fullFrameBufferTimg;
+    static void* m_fullFrameBufferTex;
+    static GXTexObj m_fullFrameBufferTexObj;
+    static f32 m_minXF;
+    static f32 m_minYF;
+    static f32 m_maxXF;
+    static f32 m_maxYF;
+    static f32 m_heightF;
+    static f32 m_widthF;
+    #endif
 };
 
 #endif /* M_DO_M_DO_GRAPHIC_H */

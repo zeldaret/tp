@@ -3907,6 +3907,9 @@ public:
     /* 0x02018 */ daPy_frameCtrl_c mUpperFrameCtrl[3];
     /* 0x02060 */ mDoExt_MtxCalcOldFrame* field_0x2060;
     /* 0x02064 */ daAlink_sight_c mSight;
+    #if PLATFORM_WII
+        u8 unk_0x20f0[4];
+    #endif
     /* 0x020F0 */ daPy_anmHeap_c mAnmHeap3;
     /* 0x02104 */ daPy_anmHeap_c mAnmHeap4;
     /* 0x02118 */ daPy_anmHeap_c mFaceBtpHeap;

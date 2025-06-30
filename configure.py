@@ -246,7 +246,7 @@ cflags_base = [
 if config.version == "ShieldD":
     cflags_base.extend(["-O0", "-inline off", "-RTTI on", "-str reuse", "-enc SJIS", "-DDEBUG=1"])
 elif config.version == "RZDE01_00":
-    cflags_base.extend(["-O4,p", "-inline auto", "-RTTI on", "-str reuse", "-enc SJIS"])
+    cflags_base.extend(["-O4,p", "-inline auto", "-ipa file", "-RTTI on", "-str reuse", "-enc SJIS"])
 else:
     cflags_base.extend(["-O4,p", "-inline auto", "-RTTI off", "-str reuse", "-multibyte"])
 
@@ -336,7 +336,7 @@ cflags_framework = [
 if config.version != "ShieldD":
     if config.version == "RZDE01_00":
         # TODO: whats the correct inlining flag? deferred looks better in some places, others not. something else wrong?
-        cflags_framework.extend(["-inline on", "-O4,s", "-sym on"])
+        cflags_framework.extend(["-inline noauto", "-O4,s", "-sym on"])
     else:
         cflags_framework.extend(["-inline noauto", "-O3,s", "-sym on", "-str reuse,pool,readonly"])
 
@@ -356,7 +356,7 @@ def MWVersion(cfg_version: str | None) -> str:
         case "GZ2J01":
             return "GC/2.7"
         case "RZDE01_00":
-            return "GC/3.0a3"
+            return "GC/3.0a5.2t"
         case "ShieldD":
             return "Wii/1.0"
         case _:
