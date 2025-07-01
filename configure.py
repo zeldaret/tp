@@ -653,7 +653,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_meter_map.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_meter_string.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_meter2_draw.cpp"),
-            Object(NonMatching, "d/d_meter2_info.cpp"),
+            Object(Equivalent, "d/d_meter2_info.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_meter2.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_msg_out_font.cpp"),
             Object(NonMatching, "d/d_msg_class.cpp"),

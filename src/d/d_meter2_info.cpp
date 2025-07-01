@@ -396,7 +396,6 @@ void dMeter2Info_c::getString(u32 i_stringID, char* o_string, JMSMesgEntry_c* i_
 
 /* 8021C370-8021C544 216CB0 01D4+00 0/0 1/1 0/0 .text
  * getStringKana__13dMeter2Info_cFUlPcP14JMSMesgEntry_c         */
-// NONMATCHING - regalloc
 void dMeter2Info_c::getStringKana(u32 i_stringID, char* o_string, JMSMesgEntry_c* i_msgEntry) {
     strcpy(o_string, "");
 
@@ -416,11 +415,9 @@ void dMeter2Info_c::getStringKana(u32 i_stringID, char* o_string, JMSMesgEntry_c
 
     char* string_ptr = NULL;
     for (u16 i = 0; i < bmg_inf->entry_num; i++) {
-        u8* entry = ((u8*)bmg_inf + (i * sizeof(JMSMesgEntry_c)));
-
         // check if i_stringID equals the message entry "Message ID"
-        if (i_stringID == *(u16*)(entry + 0x14)) {
-            string_ptr = (char*)(string_data + *(u32*)(entry + 0x10));  // use entry "String Offset" to get string pointer
+        if (i_stringID == bmg_inf->entries[i].message_id) {
+            string_ptr = (char*)(string_data + bmg_inf->entries[i].string_offset);  // use entry "String Offset" to get string pointer
 
             int var_r29 = 0;
             int sp14 = 0;
@@ -456,7 +453,7 @@ void dMeter2Info_c::getStringKana(u32 i_stringID, char* o_string, JMSMesgEntry_c
             }
 
             if (i_msgEntry != NULL) {
-                memcpy(i_msgEntry, entry + 0x10, sizeof(JMSMesgEntry_c));
+                memcpy(i_msgEntry, &bmg_inf->entries[i], sizeof(JMSMesgEntry_c));
             }
 
             return;
@@ -470,7 +467,6 @@ void dMeter2Info_c::getStringKana(u32 i_stringID, char* o_string, JMSMesgEntry_c
 
 /* 8021C544-8021C6A4 216E84 0160+00 0/0 32/32 1/1 .text
  * getStringKanji__13dMeter2Info_cFUlPcP14JMSMesgEntry_c        */
-// NONMATCHING - couple wrong instructions
 void dMeter2Info_c::getStringKanji(u32 i_stringID, char* o_string, JMSMesgEntry_c* i_msgEntry) {
     strcpy(o_string, "");
 
@@ -491,8 +487,8 @@ void dMeter2Info_c::getStringKanji(u32 i_stringID, char* o_string, JMSMesgEntry_
     char* string_ptr = NULL;
     for (u16 i = 0; i < bmg_inf->entry_num; i++) {
         // check if i_stringID equals the message entry "Message ID"
-        if (i_stringID == *(u16*)(((u8*)bmg_inf + (i * 0x14)) + 0x14)) {
-            string_ptr = (char*)(string_data + *(u32*)(((u8*)bmg_inf + (i * 0x14)) + 0x10));  // use entry "String Offset" to get string pointer
+        if (i_stringID == bmg_inf->entries[i].message_id) {
+            string_ptr = (char*)(string_data + bmg_inf->entries[i].string_offset);  // use entry "String Offset" to get string pointer
 
             int var_r29 = 0;
             while (var_r29 < 0x200) {
@@ -512,7 +508,7 @@ void dMeter2Info_c::getStringKanji(u32 i_stringID, char* o_string, JMSMesgEntry_
             }
 
             if (i_msgEntry != NULL) {
-                memcpy(i_msgEntry, ((u8*)bmg_inf + (i * 0x14)) + 0x10, 0x14);
+                memcpy(i_msgEntry, &bmg_inf->entries[i], 0x14);
             }
 
             return;
@@ -1460,7 +1456,6 @@ const char* dMeter2Info_getPlusTextureName() {
 }
 
 /* 8021E308-8021E4B0 218C48 01A8+00 0/0 3/3 0/0 .text dMeter2Info_getPixel__FffffffPC7ResTIMG */
-// NONMATCHING
 bool dMeter2Info_getPixel(f32 i_posX, f32 i_posY, f32 param_2, f32 param_3, f32 i_sizeX,
                           f32 i_sizeY, ResTIMG const* i_resTimg) {
     f32 temp_f31 = i_posX - param_2;
@@ -1478,7 +1473,7 @@ bool dMeter2Info_getPixel(f32 i_posX, f32 i_posY, f32 param_2, f32 param_3, f32 
 
     JUT_ASSERT(3065, s < i_resTimg->width && t < i_resTimg->height);
 
-    u32 sp1C = ((s & 7) + ((t & 0xFFFFFFFC) * ((timg_width + 7) & 0xFFFFFFF8))) + ((s & 0xFFFFFFF8) << 2) + ((t & 3) << 3);
+    u32 sp1C = (t & ~3) * ((timg_width + 7) & ~7) + ((s & ~7) * 4 + (s & 7)) + (t & 3) * 8;
     u8* pixel = (u8*)((u32)i_resTimg + (i_resTimg->imageOffset + sp1C));
 
     JUT_ASSERT(3074, *pixel < i_resTimg->numColors);
