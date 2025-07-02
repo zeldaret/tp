@@ -1951,7 +1951,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_heavySw"),
     ActorRel(NonMatching, "d_a_obj_hfuta"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_hsTarget"),
-    ActorRel(NonMatching, "d_a_obj_ice_l"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ice_l"),
     ActorRel(NonMatching, "d_a_obj_ice_s"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_iceblock"),
     ActorRel(NonMatching, "d_a_obj_iceleaf"),
