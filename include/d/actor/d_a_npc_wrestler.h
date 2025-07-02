@@ -2,6 +2,8 @@
 #define D_A_NPC_WRESTLER_H
 
 #include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_npc_bouS.h"
+#include "d/d_meter2_info.h"
 
 /**
  * @ingroup actors-npcs
@@ -48,7 +50,7 @@ struct daNpcWrestler_HIOParamSub {
     /* 0x7C */ f32 camera_rotation_angle;  // カメラ回転角 (Camera Rotation Angle)
     /* 0x80 */ f32 field_0x80;             // 音 土俵際距離 (Sound, Distance From Edge Of Ring)
     /* 0x84 */ f32 field_0x84;             // 動 土俵際距離 (Movement, Distance From Edge Of Ring)
-    /* 0x88 */ f32 field_0x88;
+    /* 0x88 */ f32 fade_speed;
     /* 0x8C */ s16 field_0x8c;
     /* 0x8E */ s16 field_0x8e;
     /* 0x90 */ f32 field_0x90;
@@ -88,7 +90,7 @@ struct daNpcWrestler_HIOParamSub {
 
 class daNpcWrestler_Param_c {
 public:
-    /* 80B41670 */ ~daNpcWrestler_Param_c();
+    /* 80B41670 */ virtual ~daNpcWrestler_Param_c() {};
 
     static daNpcWrestler_HIOParam const m;
 };
@@ -128,6 +130,7 @@ public:
 class daNpcWrestler_c : public daNpcF_c {
 public:
     typedef bool (daNpcWrestler_c::*actionFunc)(void*);
+    typedef BOOL (daNpcWrestler_c::*EventFn)(int);
 
     /* 80B2F28C */ daNpcWrestler_c();
     /* 80B2F688 */ cPhs__Step Create();
@@ -141,16 +144,16 @@ public:
     /* 80B301BC */ BOOL checkStartUp();
     /* 80B308B0 */ void reset();
     /* 80B30AD8 */ int setAction(actionFunc);
-    /* 80B30BEC */ BOOL checkArenaInfo();
+    /* 80B30BEC */ void checkArenaInfo();
     /* 80B30CA4 */ bool checkArenaSub(fopAc_ac_c*);
     /* 80B30D48 */ void setOnToArena(f32);
     /* 80B30F00 */ bool wait(void*);
-    /* 80B316F4 */ void talk(void*);
-    /* 80B31EB0 */ void demo(void*);
+    /* 80B316F4 */ bool talk(void*);
+    /* 80B31EB0 */ bool demo(void*);
     /* 80B32058 */ bool gotoArena(void*);
-    /* 80B32444 */ void gotoLiving(void*);
-    /* 80B32850 */ void sumouReady(void*);
-    /* 80B331CC */ void sumouWait(void*);
+    /* 80B32444 */ bool gotoLiving(void*);
+    /* 80B32850 */ bool sumouReady(void*);
+    /* 80B331CC */ bool sumouWait(void*);
     /* 80B339EC */ void checkOutOfArenaP();
     /* 80B33B3C */ void setNextAction();
     /* 80B34654 */ void sumouPunchHit(void*);
@@ -172,7 +175,7 @@ public:
     /* 80B39334 */ void sumouTackleStaggerRelease(void*);
     /* 80B39554 */ void sumouTacklePush(void*);
     /* 80B39C18 */ void sumouTackleRelease(void*);
-    /* 80B39F88 */ void demoSumouReady(void*);
+    /* 80B39F88 */ bool demoSumouReady(void*);
     /* 80B3AE24 */ void demoSumouWin(void*);
     /* 80B3B4B4 */ void demoSumouLose(void*);
     /* 80B3BC84 */ void demoSumouWin2(void*);
@@ -212,9 +215,193 @@ public:
         return i_action == field_0xdcc;
     }
 
+    s8 getArenaNo() { return (u8)fopAcM_GetParam(this); }
     u32 getStatusNo() { return fopAcM_GetParam(this) >> 24; }
 
-    static u8 mEvtSeqList[84];
+    void setLookMode(int mode) {
+        if (mode > -1 && mode < 4 && mode != mLookMode) {
+            mLookMode = mode;
+        }
+    }
+
+    BOOL chkFindPlayer() {
+        BOOL bVar1;
+        if (mActorMngr[0].getActorP() == NULL) {
+            bVar1 = chkPlayerInSpeakArea(this);
+        } else {
+            bVar1 = chkPlayerInTalkArea(this);
+        }
+
+        if (bVar1) {
+            setLookMode(2);
+            mActorMngr[0].entry(daPy_getPlayerActorClass());
+        } else {
+            setLookMode(0);
+            mActorMngr[0].remove();
+        }
+    }
+
+    BOOL step(s16 param_1, int param_2) {
+        if (mTurnMode == 0) {
+            if (mCurAngle.y == param_1) {
+                mTurnMode++;
+            } else if (param_2 != 0) {
+                if (fabsf(cM_sht2d(param_1 - mCurAngle.y)) > 0x28) {
+                    setExpression(5, -1.0f);
+                    setMotion(6, field_0xbd8->common.morf_frame, 0);
+                }
+            }
+
+            mTurnTargetAngle = param_1;
+            mTurnAmount = 0;
+            current.angle.y = mCurAngle.y;
+            shape_angle.y = current.angle.y;
+            mTurnMode++;
+        } else if (mTurnMode == 1) {
+            if (turn(mTurnTargetAngle, 15.0f, 0)) {
+                shape_angle.y = current.angle.y;
+                mCurAngle.y = current.angle.y;
+                mOldAngle.y = current.angle.y;
+                mTurnMode++;
+            } else {
+                mOldAngle.y = mCurAngle.y;
+                mCurAngle.y = current.angle.y;
+                shape_angle.y = current.angle.y;
+            }
+        }
+
+        return (mTurnMode >> 1) - (((u32)mTurnMode & mTurnMode) >> 31);
+    }
+
+    bool setTalkAngle() {
+        s16 playerAngleY = fopAcM_searchPlayerAngleY(this); 
+        if (playerAngleY == mCurAngle.y) {
+            return true;
+        }
+
+        if (step(playerAngleY, 1)) {
+            setExpression(5, -1.0f);
+            setMotion(0, field_0xbd8->common.morf_frame, 0);
+            mTurnMode = 0;
+        }
+
+        return false;
+    }
+
+    void setExpressionTalkAfter() {
+        switch (mExpression) {
+            case 1:
+                setExpression(3, -1.0f);
+                break;
+
+            case 2:
+                setExpression(4, -1.0f);
+                break;
+
+            default:
+                setExpression(5, -1.0f);
+                break;
+        }
+    }
+
+    void initTalkAngle() { mTurnMode = 0; }
+
+    void setNextSumouEvent(int i_sumouEventNo) {
+        if (i_sumouEventNo == -1) {
+            i_sumouEventNo = mItemNo;
+        }
+
+        OS_REPORT("相撲イベント要求 ステータスNo=%d\n", i_sumouEventNo);
+
+        switch (i_sumouEventNo) {
+            case 1:
+                return;
+
+            case 2:
+                setAction(&daNpcWrestler_c::demoSumouReady);
+                return;
+
+            case 3:
+                setAction(&daNpcWrestler_c::sumouReady);
+                return;
+
+            case 4:
+                setAction(&daNpcWrestler_c::gotoLiving);
+                return;
+
+            case 5:
+                return;
+        }
+
+        setAction(&daNpcWrestler_c::wait);
+    }
+
+    csXyz* fopAcM_GetHomeAngle_p(fopAc_ac_c* i_actor) { return &i_actor->home.angle; }
+    csXyz* fopAcM_GetShapeAngle_p(fopAc_ac_c* i_actor) { return &i_actor->shape_angle; }
+
+    void setBackToLiving() {
+        if (mType != 1) {
+            daPy_py_c* player = daPy_getPlayerActorClass();
+            daNpcBouS_c* bou = (daNpcBouS_c*)fpcM_SearchByID(parentActorID);
+            JUT_ASSERT(2205, bou != 0);
+
+            bou->setMessageNo(7);
+            bou->setForcibleTalk();
+            bou->onDispFlag();
+
+            s16 sVar1 = fopAcM_GetHomeAngle_p(bou)->y + 0x8000;
+            mDoMtx_stack_c::transS(fopAcM_GetPosition(bou));
+            mDoMtx_stack_c::YrotM(fopAcM_GetShapeAngle_p(bou)->y);
+            cXyz sp28(0.0f, 0.0f, field_0xbdc->field_0x1c);
+            mDoMtx_stack_c::multVec(&sp28, &sp28);
+
+            player->setPlayerPosAndAngle(&sp28, sVar1, 0);
+
+            if (mType == 0) {
+                player->setClothesChange(0);
+                OS_REPORT("リンクさん！出番です！着替えてください！\n") // Link! It's your turn! Get changed!
+            }
+
+            if (daNpcF_chkTmpBit(0x2F)) {
+                fopAcM_onSwitch(this, 0x46);
+            }
+
+            field_0xe99 = 1;
+        }
+    }
+
+    void offWrestlerNoDraw() { mWrestlerNoDraw = 0; }
+
+    void initDemoCamera_ArenaSide() {
+        dCamera_c* camBody = dCam_getBody();
+
+        mDemoCamFovy = camBody->Fovy();
+        field_0xe58 = field_0xbd8->field_0xac;
+        field_0xe54 = field_0xbd8->camera_rotation_angle * 65535.0f;
+
+        mDemoCam.mDemoCamCenter.set(mArenaPos.x, mArenaPos.y + 50.0f, mArenaPos.z);
+        field_0xe5e = mArenaAngle;
+
+        mDoMtx_stack_c::transS(mDemoCam.mDemoCamCenter);
+        mDoMtx_stack_c::YrotM(field_0xe54 + fopAcM_GetShapeAngle_p(daPy_getPlayerActorClass())->y);
+        mDoMtx_stack_c::transM(0.0f, 50.0f, -field_0xbd8->field_0xb0);
+        mDoMtx_stack_c::multVecZero(&mDemoCam.mDemoCamEye);
+    }
+
+    void dMeter2Info_setMeterString(s32 i_string) {
+        g_meter2_info.setMeterString(i_string);
+    }
+
+    static EventFn mEvtSeqList[7];
+
+    struct DemoCamera_c {
+        cXyz mDemoCamCenter;
+        cXyz mDemoCamEye;
+        cXyz field_0x18;
+        cXyz field_0x24;
+        cXyz field_0x30;
+        cXyz field_0x3c;
+    };
 
 private:
     /* 0xB48 */ Z2Creature mSound;
@@ -225,28 +412,38 @@ private:
     /* 0xC80 */ daNpcF_ActorMngr_c mActorMngr[2];
     /* 0xC90 */ dCcD_Cyl field_0xc90;
     /* 0xDCC */ actionFunc field_0xdcc;
-    /* 0xDD8 */ u8 field_0xdd8[0xE02 - 0xdd8];
-    /* 0xE02 */ u8 field_0xe02;
+    /* 0xDD8 */ u8 field_0xdd8[0xdf0 - 0xdd8];
+    /* 0xDF0 */ cXyz mArenaPos;
+    /* 0xDFC */ f32 mArenaExtent;
+    /* 0xE00 */ s16 mArenaAngle;
+    /* 0xE02 */ u8 mArenaInfo;
     /* 0xE03 */ u8 field_0xe03;
     /* 0xE04 */ int* field_0xe04;
-    /* 0xE08 */ u8 field_0xe08[0xE40 - 0xe08];
-    /* 0xE40 */ cXyz mArenaPos;
-    /* 0xE4C */ u8 field_0xe4c[0xE64 - 0xe4c];
+    /* 0xE08 */ DemoCamera_c mDemoCam;
+    /* 0xE50 */ f32 mDemoCamFovy;
+    /* 0xE54 */ f32 field_0xe54;
+    /* 0xE58 */ f32 field_0xe58;
+    /* 0xE5C */ u8 field_0xe5c[0xE5e - 0xe5c];
+    /* 0xE5E */ s16 field_0xe5e;
+    /* 0xE60 */ u8 field_0xe60[0xE64 - 0xe60];
     /* 0XE64 */ request_of_phase_process_class mPhase;
     /* 0xE6C */ request_of_phase_process_class mPhase2;
     /* 0xE74 */ int mWrestlerAction;
-    /* 0xE78 */ int field_0xe78;
-    /* 0xE7C */ u32 mStatusNo;
+    /* 0xE78 */ fpc_ProcID field_0xe78;
+    /* 0xE7C */ int mItemNo;
     /* 0xE80 */ int field_0xe80;
     /* 0xE84 */ int field_0xe84;
     /* 0xE88 */ int mMsgNo;
     /* 0xE8C */ f32 field_0xe8c;
-    /* 0xE90 */ s16 field_0xe90;
-    /* 0xE92 */ u8 field_0xe92[0xE96 - 0xE92];
+    /* 0xE90 */ s16 mLookMode;
+    /* 0xE92 */ s16 field_0xe92;
+    /* 0xE94 */ u8 field_0xe94[0xE96 - 0xE94];
     /* 0xE96 */ u16 field_0xe96;
-    /* 0xE98 */ u8 field_0xe98[0xE9b - 0xE98];
+    /* 0xE98 */ u8 field_0xe98;
+    /* 0xE99 */ u8 field_0xe99;
+    /* 0xE9A */ u8 field_0xe9a;
     /* 0xE9B */ u8 mType;
-    /* 0xE9C */ u8 field_0xe9c;
+    /* 0xE9C */ u8 mWrestlerNoDraw;
     /* 0xE9D */ u8 field_0xe9d[0xEA0 - 0xE9d];
 };
 STATIC_ASSERT(sizeof(daNpcWrestler_c) == 0xea0);

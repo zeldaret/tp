@@ -587,8 +587,7 @@ void dMeter2Info_c::onDirectUseItem(int param_0) {
     mDirectUseItem |= (u8)(1 << param_0);
 }
 
-/* 8021C950-8021C970 217290 0020+00 0/0 4/4 0/0 .text            isDirectUseItem__13dMeter2Info_cFi
- */
+/* 8021C950-8021C970 217290 0020+00 0/0 4/4 0/0 .text            isDirectUseItem__13dMeter2Info_cFi */
 BOOL dMeter2Info_c::isDirectUseItem(int param_0) {
     return (mDirectUseItem & (u8)(1 << param_0)) ? TRUE : FALSE;
 }
@@ -596,8 +595,7 @@ BOOL dMeter2Info_c::isDirectUseItem(int param_0) {
 /* 80430188-80430280 05CEA8 00F8+00 4/4 267/267 70/70 .bss             g_meter2_info */
 dMeter2Info_c g_meter2_info;
 
-/* 8021C970-8021C9DC 2172B0 006C+00 0/0 0/0 5/5 .text            setMeterString__13dMeter2Info_cFl
- */
+/* 8021C970-8021C9DC 2172B0 006C+00 0/0 0/0 5/5 .text            setMeterString__13dMeter2Info_cFl */
 int dMeter2Info_c::setMeterString(s32 i_string) {
     if (mMeterString != 0) {
         return 0;
@@ -619,8 +617,7 @@ int dMeter2Info_c::setMeterString(s32 i_string) {
     return 0;
 }
 
-/* 8021C9DC-8021CA04 21731C 0028+00 1/1 3/3 0/0 .text            resetWarpStatus__13dMeter2Info_cFv
- */
+/* 8021C9DC-8021CA04 21731C 0028+00 1/1 3/3 0/0 .text            resetWarpStatus__13dMeter2Info_cFv */
 void dMeter2Info_c::resetWarpStatus() {
     if (mWarpStatus == 2) {
         dComIfGs_resetLastWarpAcceptStage();

@@ -1174,6 +1174,9 @@ public:
     void onForceGrabRebound() {
         onEndResetFlg2(ERFLG2_UNK_8);
     }
+
+    void setSumouReadyAcceptButton() { mSpecialMode = 2; }
+    void setSumouForceStand() { mSpecialMode = 3; }
 };
 
 int daPy_addCalcShort(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 param_4);
