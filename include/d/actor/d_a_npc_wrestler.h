@@ -11,9 +11,123 @@
  * @details
  *
  */
+
+struct daNpcWrestler_HIOParamSub {
+    /* 0x00 */ f32 field_0x0;
+    /* 0x04 */ f32 field_0x4;
+    /* 0x08 */ f32 field_0x8;
+    /* 0x0C */ f32 field_0xc;                   // リアル影サイズ (Real Shadow Size)
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;                  // 見合う距離 (Right Distance)
+    /* 0x18 */ f32 grapple_distance;            // 組み合い距離 (Grapple Distance)
+    /* 0x1C */ f32 field_0x1c;                  // 再配置距離 (Reconfiguration Distance)
+    /* 0x20 */ s16 lateral_movement_time;       // 横移動時間 (Lateral Movement Time)
+    /* 0x22 */ s16 horizontal_movement_speed;   // 横移動速度 (Horizontal Movement Speed)
+    /* 0x24 */ s16 stagger_time;                // ふらふら時間 (Stagger Time)
+    /* 0x26 */ s16 wait_time;                   // 待ち時間 (Wait Time)
+    /* 0x28 */ s16 field_0x28;                  // 曲がり限界 (Bending Limit)
+    /* 0x2C */ f32 lateral_movement_chance;     //  横移動 の確率 (Lateral Movement Chance)
+    /* 0x30 */ f32 hit_chance;                  //  張り手 の確率 (Hit Chance)
+    /* 0x34 */ f32 tackle_chance;               // タックルの確率 (Tackle Chance)
+    /* 0x38 */ f32 wait_chance;                 //  待  機 の確率 (Wait Chance)
+    /* 0x3C */ f32 lateral_movement_chance_2;   //  横移動 の確率 (Lateral Movement Chance)
+    /* 0x40 */ f32 hit_chance_2;                //  張り手 の確率 (Hit Chance)
+    /* 0x44 */ f32 tackle_chance_2;             // タックルの確率 (Tackle Chance)
+    /* 0x48 */ f32 wait_chance_2;               //  待  機 の確率 (Wait Chance)
+};
+
+ struct daNpcWrestler_HIOParam {
+    /* 0x00 */ daNpcF_HIOParam common;
+    /* 0x6C */ s16 ai_action;              // AI行動 (AI Action)
+    /* 0x6E */ s16 ready_appearance_time;  // Ready? 出現時間 (Ready? Appearance Time)
+    /* 0x70 */ s16 fight_appearance_time;  // Fight! 出現時間 (Fight! Appearance Time)
+    /* 0x72 */ s16 field_0x72;
+    /* 0x74 */ s32 slap_hit_impact;        // 張り手Hit衝撃 (Slap Hit Impact)
+    /* 0x78 */ s16 rotation;               // 回転割り (Rotating)
+    /* 0x7A */ s16 field_0x7a;
+    /* 0x7C */ f32 camera_rotation_angle;  // カメラ回転角 (Camera Rotation Angle)
+    /* 0x80 */ f32 field_0x80;             // 音 土俵際距離 (Sound, Distance From Edge Of Ring)
+    /* 0x84 */ f32 field_0x84;             // 動 土俵際距離 (Movement, Distance From Edge Of Ring)
+    /* 0x88 */ f32 field_0x88;
+    /* 0x8C */ s16 field_0x8c;
+    /* 0x8E */ s16 field_0x8e;
+    /* 0x90 */ f32 field_0x90;
+    /* 0x94 */ f32 field_0x94;
+    /* 0x98 */ f32 field_0x98;
+    /* 0x9C */ f32 field_0x9c;
+    /* 0xA0 */ f32 field_0xa0;
+    /* 0xA4 */ f32 field_0xa4;
+    /* 0xA8 */ s16 field_0xa8;
+    /* 0xAA */ s16 field_0xaa;
+    /* 0xAC */ s16 field_0xac;
+    /* 0xAE */ s16 field_0xae;
+    /* 0xB0 */ f32 field_0xb0;
+    /* 0xB4 */ s16 field_0xb4;
+    /* 0xB6 */ s16 field_0xb6;
+    /* 0xB8 */ f32 field_0xb8;
+    /* 0xBC */ f32 field_0xbc;
+    /* 0xC0 */ f32 field_0xc0;
+    /* 0xC4 */ f32 field_0xc4;
+    /* 0xC8 */ f32 field_0xc8;
+    /* 0xCC */ f32 field_0xcc;
+    /* 0xD0 */ f32 field_0xd0;
+    /* 0xD4 */ f32 field_0xd4;
+    /* 0xD8 */ f32 field_0xd8;
+    /* 0xDC */ f32 field_0xdc;
+    /* 0xE0 */ f32 field_0xe0;
+    /* 0xE4 */ f32 field_0xe4;
+    /* 0xE8 */ s16 field_0xe8;
+    /* 0xEA */ s16 field_0xea;
+    /* 0xEC */ s16 field_0xec;
+    /* 0xEE */ s16 field_0xee;
+    /* 0xF0 */ f32 field_0xf0;
+    /* 0xF4 */ f32 vertical_speed;         // 垂直速度 (Vertical Speed)
+    /* 0xF8 */ f32 horizontal_speed;       // 水平速度 (Horizontal Speed)
+    /* 0xFC */ daNpcWrestler_HIOParamSub mTypeParams[2];
+};
+
+class daNpcWrestler_Param_c {
+public:
+    /* 80B41670 */ ~daNpcWrestler_Param_c();
+
+    static daNpcWrestler_HIOParam const m;
+};
+
+class daNpcWrestler_HIO_Node_c: public JORReflexible {
+public:
+    daNpcWrestler_HIO_Node_c() {}
+    virtual ~daNpcWrestler_HIO_Node_c() {}
+
+    void genMessage(JORMContext*);
+    void setParam(daNpcWrestler_HIOParamSub* param_1) { field_0x4 = param_1; }
+
+    /* 0x04 */ daNpcWrestler_HIOParamSub* field_0x4;
+};
+
+class daNpcWrestler_HIO_c
+#ifdef DEBUG
+: public mDoHIO_entry_c
+#endif
+{
+public:
+    daNpcWrestler_HIO_c() {
+        for (int i = 0; i < 2; i++) {
+            field_0x19c[i].setParam(&field_0x8.mTypeParams[i]);
+        }
+    }
+    virtual ~daNpcWrestler_HIO_c() {}
+
+    void genMessage(JORMContext*);
+    void listenPropertyEvent(JORPropertyEvent*);
+
+    /* 0x004 */ u8 field_0x4[0x8 - 0x4];
+    /* 0x008 */ daNpcWrestler_HIOParam field_0x8;
+    /* 0x19C */ daNpcWrestler_HIO_Node_c field_0x19c[2];
+};
+
 class daNpcWrestler_c : public daNpcF_c {
 public:
-    typedef int (daNpcWrestler_c::*actionFunc)(void*);
+    typedef bool (daNpcWrestler_c::*actionFunc)(void*);
 
     /* 80B2F28C */ daNpcWrestler_c();
     /* 80B2F688 */ cPhs__Step Create();
@@ -26,14 +140,14 @@ public:
     /* 80B30170 */ static int ctrlJointCallBack(J3DJoint*, int);
     /* 80B301BC */ BOOL checkStartUp();
     /* 80B308B0 */ void reset();
-    /* 80B30AD8 */ void setAction(bool (daNpcWrestler_c::*)(void*));
-    /* 80B30BEC */ void checkArenaInfo();
-    /* 80B30CA4 */ void checkArenaSub(fopAc_ac_c*);
+    /* 80B30AD8 */ int setAction(actionFunc);
+    /* 80B30BEC */ BOOL checkArenaInfo();
+    /* 80B30CA4 */ bool checkArenaSub(fopAc_ac_c*);
     /* 80B30D48 */ void setOnToArena(f32);
-    /* 80B30F00 */ void wait(void*);
+    /* 80B30F00 */ bool wait(void*);
     /* 80B316F4 */ void talk(void*);
     /* 80B31EB0 */ void demo(void*);
-    /* 80B32058 */ int gotoArena(void*);
+    /* 80B32058 */ bool gotoArena(void*);
     /* 80B32444 */ void gotoLiving(void*);
     /* 80B32850 */ void sumouReady(void*);
     /* 80B331CC */ void sumouWait(void*);
@@ -98,26 +212,37 @@ public:
         return i_action == field_0xdcc;
     }
 
+    u32 getStatusNo() { return fopAcM_GetParam(this) >> 24; }
+
     static u8 mEvtSeqList[84];
 
 private:
     /* 0xB48 */ Z2Creature mSound;
-    /* 0xBD8 */ f32* field_0xbd8;
-    /* 0xBDC */ f32* field_0xbdc;
+    /* 0xBD8 */ const daNpcWrestler_HIOParam* field_0xbd8;
+    /* 0xBDC */ const daNpcWrestler_HIOParamSub* field_0xbdc;
     /* 0xBE0 */ daNpcF_MatAnm_c* mpMatAnm;
     /* 0xBE4 */ daNpcF_Lookat_c mLookAt;
     /* 0xC80 */ daNpcF_ActorMngr_c mActorMngr[2];
     /* 0xC90 */ dCcD_Cyl field_0xc90;
     /* 0xDCC */ actionFunc field_0xdcc;
-    /* 0xDD8 */ u8 field_0xdd8[0xE04 - 0xdd8];
+    /* 0xDD8 */ u8 field_0xdd8[0xE02 - 0xdd8];
+    /* 0xE02 */ u8 field_0xe02;
+    /* 0xE03 */ u8 field_0xe03;
     /* 0xE04 */ int* field_0xe04;
-    /* 0xE08 */ u8 field_0xe08[0xE64 - 0xe08];
+    /* 0xE08 */ u8 field_0xe08[0xE40 - 0xe08];
+    /* 0xE40 */ cXyz mArenaPos;
+    /* 0xE4C */ u8 field_0xe4c[0xE64 - 0xe4c];
     /* 0XE64 */ request_of_phase_process_class mPhase;
     /* 0xE6C */ request_of_phase_process_class mPhase2;
     /* 0xE74 */ int mWrestlerAction;
-    /* 0xE78 */ u8 field_0xe78[0xE88 - 0xE78];
+    /* 0xE78 */ int field_0xe78;
+    /* 0xE7C */ u32 mStatusNo;
+    /* 0xE80 */ int field_0xe80;
+    /* 0xE84 */ int field_0xe84;
     /* 0xE88 */ int mMsgNo;
-    /* 0xE8C */ u8 field_0xe8c[0xE96 - 0xE8c];
+    /* 0xE8C */ f32 field_0xe8c;
+    /* 0xE90 */ s16 field_0xe90;
+    /* 0xE92 */ u8 field_0xe92[0xE96 - 0xE92];
     /* 0xE96 */ u16 field_0xe96;
     /* 0xE98 */ u8 field_0xe98[0xE9b - 0xE98];
     /* 0xE9B */ u8 mType;
@@ -125,107 +250,5 @@ private:
     /* 0xE9D */ u8 field_0xe9d[0xEA0 - 0xE9d];
 };
 STATIC_ASSERT(sizeof(daNpcWrestler_c) == 0xea0);
-
-struct daNpcWrestler_HIOParam {
-    /* 0x000 */ daNpcF_HIOParam common;
-    /* 0x06C */ s16 field_0x6c;
-    /* 0x06E */ s16 field_0x6e;
-    /* 0x070 */ s16 field_0x70;
-    /* 0x072 */ s16 field_0x72;
-    /* 0x074 */ s16 ai_action;              // AI行動 (AI Action)
-    /* 0x076 */ s16 ready_appearance_time;  // Ready? 出現時間 (Ready? Appearance Time)
-    /* 0x078 */ s16 fight_appearance_time;  // Fight! 出現時間 (Fight! Appearance Time)
-    /* 0x07A */ s16 field_0x7a;
-    /* 0x07C */ f32 slap_hit_impact;        // 張り手Hit衝撃 (Slap Hit Impact)
-    /* 0x080 */ f32 rotation_ratio;         // 回転割り (Rotation Ratio)
-    /* 0x084 */ f32 camera_rotation_angle;  // カメラ回転角 (Camera Rotation Angle)
-    /* 0x088 */ f32 field_0x88;             // 音 土俵際距離 (Sound, Distance From Edge Of Ring)
-    /* 0x08C */ s16 field_0x8c;             // 動 土俵際距離 (Movement, Distance From Edge Of Ring)
-    /* 0x08E */ s16 field_0x8e;
-    /* 0x090 */ f32 field_0x90;
-    /* 0x094 */ f32 field_0x94;
-    /* 0x098 */ f32 field_0x98;
-    /* 0x09C */ f32 field_0x9c;
-    /* 0x0A0 */ f32 field_0xa0;
-    /* 0x0A4 */ f32 field_0xa4;
-    /* 0x0A8 */ s16 field_0xa8;
-    /* 0x0AA */ s16 field_0xaa;
-    /* 0x0AC */ s16 field_0xac;
-    /* 0x0AE */ s16 field_0xae;
-    /* 0x0B0 */ f32 field_0xb0;
-    /* 0x0B4 */ s16 field_0xb4;
-    /* 0x0B6 */ s16 field_0xb6;
-    /* 0x0B8 */ f32 field_0xb8;
-    /* 0x0BC */ f32 field_0xbc;
-    /* 0x0C0 */ f32 field_0xc0;
-    /* 0x0C4 */ f32 field_0xc4;
-    /* 0x0C8 */ f32 field_0xc8;
-    /* 0x0CC */ f32 field_0xcc;
-    /* 0x0D0 */ f32 field_0xd0;
-    /* 0x0D4 */ f32 field_0xd4;
-    /* 0x0D8 */ f32 field_0xd8;
-    /* 0x0DC */ f32 field_0xdc;
-    /* 0x0E0 */ f32 field_0xe0;
-    /* 0x0E4 */ f32 field_0xe4;
-    /* 0x0E8 */ s16 field_0xe8;
-    /* 0x0EA */ s16 field_0xea;
-    /* 0x0EC */ s16 field_0xec;
-    /* 0x0EE */ s16 field_0xee;
-    /* 0x0F0 */ f32 field_0xf0;
-    /* 0x0F4 */ f32 field_0xf4;
-    /* 0x0F8 */ f32 field_0xf8;
-    /* 0x0FC */ f32 vertical_speed;         // 垂直速度 (Vertical Speed)
-    /* 0x100 */ f32 horizontal_speed;       // 水平速度 (Horizontal Speed)
-    /* 0x104 */ f32 field_0x104;
-    /* 0x108 */ f32 field_0x108;
-    /* 0x10C */ f32 field_0x10c;
-    /* 0x110 */ f32 field_0x110;
-    /* 0x114 */ f32 field_0x114;
-    /* 0x118 */ f32 field_0x118;
-    /* 0x11C */ s16 field_0x11c;
-    /* 0x11E */ s16 field_0x11e;
-    /* 0x120 */ s16 field_0x120;
-    /* 0x122 */ s16 field_0x122;
-    /* 0x124 */ s16 field_0x124;
-    /* 0x126 */ s16 field_0x126;
-    /* 0x128 */ f32 field_0x128;
-    /* 0x12c */ f32 field_0x12c;
-    /* 0x130 */ f32 field_0x130;
-    /* 0x134 */ f32 field_0x134;
-    /* 0x138 */ f32 field_0x138;
-    /* 0x13C */ f32 field_0x13c;
-    /* 0x140 */ f32 field_0x140;
-    /* 0x144 */ f32 field_0x144;
-    /* 0x148 */ f32 field_0x148;
-    /* 0x14C */ f32 field_0x14c;
-    /* 0x150 */ f32 field_0x150;
-    /* 0x154 */ f32 field_0x154;
-    /* 0x158 */ f32 field_0x158;
-    /* 0x15C */ f32 field_0x15c;
-    /* 0x160 */ f32 field_0x160;
-    /* 0x164 */ f32 field_0x164;
-    /* 0x168 */ s16 field_0x168;
-    /* 0x16A */ s16 field_0x16a;
-    /* 0x16C */ s16 field_0x16c;
-    /* 0x16E */ s16 field_0x16e;
-    /* 0x170 */ s16 field_0x170;
-    /* 0x172 */ s16 field_0x172;
-    /* 0x174 */ f32 field_0x174;
-    /* 0x178 */ f32 field_0x178;
-    /* 0x17C */ f32 field_0x17c;
-    /* 0x180 */ f32 field_0x180;
-    /* 0x184 */ f32 field_0x184;
-    /* 0x188 */ f32 field_0x188;
-    /* 0x18C */ f32 field_0x18c;
-    /* 0x190 */ f32 field_0x190;
-};
-
-class daNpcWrestler_Param_c {
-public:
-    /* 80B41670 */ ~daNpcWrestler_Param_c();
-
-    static const daNpcWrestler_HIOParam m;
-};
-
 
 #endif /* D_A_NPC_WRESTLER_H */
