@@ -4373,6 +4373,132 @@ COMPILER_STRIP_GATE(0x80B41CFC, &lit_9267);
 /* 80B39F88-80B3AE24 00ADE8 0E9C+00 2/0 0/0 0/0 .text demoSumouReady__15daNpcWrestler_cFPv */
 bool daNpcWrestler_c::demoSumouReady(void* param_1) {
     // NONMATCHING
+    dCamera_c* camBody = dCam_getBody();
+
+    switch (field_0xe96) {
+        case 2:
+            if (dComIfGp_getEvent().checkSkipEdge()) {
+                field_0xe84 = 10;
+            }
+
+            switch (field_0xe84) {
+                case 0:
+                    if (field_0xe9a == 0) {
+                        if (!eventInfo.checkCommandDemoAccrpt()) {
+                            fopAcM_orderPotentialEvent(this, 1, 0xFFFF, 0);
+                            eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+                            return false;
+                        }
+
+                        camBody->Stop();
+                        camBody->SetTrimSize(2);
+                        camBody->Set(mDemoCam.mDemoCamCenter, mDemoCam.mDemoCamEye, mDemoCamFovy, 0);
+                        setOnToArena(mArenaExtent * 0.5f);
+                        daPy_getPlayerActorClass()->onPlayerNoDraw();
+                        field_0xe9a = 0;
+                        field_0xe84++;
+                        break;
+                    }
+
+                    setOnToArena(mArenaExtent * 0.5f);
+                    daPy_getPlayerActorClass()->onPlayerNoDraw();
+                    field_0xe9a = 0;
+                    field_0xe84++;
+                    // fallthrough
+                case 1:
+                    field_0xe84++;
+                    // fallthrough
+                case 2:
+                    field_0xe54 += field_0xe58;
+                    cLib_chaseF(&field_0xe58, field_0xbd8->field_0xa4, 0.01f);
+                    mDoMtx_stack_c::transS(mArenaPos);
+                    mDoMtx_stack_c::YrotM(field_0xe5e);
+                    mDoMtx_stack_c::transM(field_0xbd8->field_0xa0 - field_0xe54, field_0xbd8->field_0x98, field_0xbd8->field_0x90);
+                    mDoMtx_stack_c::multVecZero(&mDemoCam.mDemoCamEye);
+                    mDoMtx_stack_c::XrotM(field_0xbd8->field_0xa8);
+                    mDemoCam.mDemoCamCenter.set(0.0f, 0.0f, mArenaExtent * 0.5f - 100.0f);
+                    mDoMtx_stack_c::multVec(&mDemoCam.mDemoCamCenter, &mDemoCam.mDemoCamCenter);
+                    f32 fVar1 = fabsf(field_0xbd8->field_0xa0) - 40.0f;
+                    if (fVar1 < fabsf(field_0xe54)) {
+                        setMotion(7, 8.0f, 0);
+                        field_0xe80 = field_0xbd8->field_0xb4;
+                        field_0xe84++;
+                    }
+                    break;
+
+                case 3:
+                    int iVar1 = field_0xe80;
+                    field_0xe80--;
+                    if (iVar1 < 1) {
+                        mDemoCam.field_0x18.set(0.0f, 0.0f, -100.0f);
+                        mDoMtx_stack_c::transS(current.pos);
+                        mDoMtx_stack_c::YrotM(mCurAngle.y);
+                        mDoMtx_stack_c::transS(cXyz(field_0xbd8->field_0xb8, field_0xbd8->field_0xbc, field_0xbd8->field_0xc0));
+                        mDoMtx_stack_c::multVecZero(&mDemoCam.field_0x24);
+                        mDoMtx_stack_c::XrotM(field_0xbd8->field_0xe8);
+                        mDoMtx_stack_c::multVec(&mDemoCam.field_0x18, &mDemoCam.field_0x18);
+                        field_0xe84++;
+                    }
+                    break;
+
+                case 4:
+                    if ((mType == 0 && mpMorf->checkFrame(103.0f)) || (mType == 1 && mpMorf->checkFrame(94.0f))) {
+                        dComIfGp_getVibration().StartShock(8, 15, cXyz(0.0f, 1.0f, 0.0f));
+
+                        int jointNo = mType == 0 ? 0x1E : 0x1B;
+                        cXyz sp3c;
+
+                        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo));
+                        mDoMtx_stack_c::multVecZero(&sp3c);
+                        sp3c.y = current.pos.y;
+                        fopAcM_effSmokeSet1(&field_0xde8, &field_0xdec, &sp3c, NULL, 0.8f, &tevStr, 1);
+                    }
+
+                    mDemoCam.field_0x18.set(0.0f, 0.0f, -100.0f);
+                    mDoMtx_stack_c::transS(current.pos);
+                    mDoMtx_stack_c::YrotM(mCurAngle.y);
+                    mDoMtx_stack_c::transM(cXyz(field_0xbd8->field_0xb8, field_0xbd8->field_0xbc, field_0xbd8->field_0xc0));
+                    mDoMtx_stack_c::multVecZero(&mDemoCam.field_0x24);
+                    mDoMtx_stack_c::XrotM(field_0xbd8->field_0xe8);
+                    mDoMtx_stack_c::multVec(&mDemoCam.field_0x18, &mDemoCam.field_0x18);
+
+                    if (cLib_addCalcPos(&mDemoCam.mDemoCamEye, mDemoCam.field_0x24, 0.15f, 5.0f, 1.0f) == 0.0f &&
+                        cLib_addCalcPos(&mDemoCam.mDemoCamCenter, mDemoCam.field_0x18, 0.15f, 5.0f, 1.0f) == 0.0f && mMotionPhase == 1) {
+                        mDemoCam.field_0x18.set(0.0f, 0.0f, -100.0f);
+                        mDoMtx_stack_c::transS(current.pos);
+                        mDoMtx_stack_c::YrotM(mCurAngle.y);
+                        mDoMtx_stack_c::transM(cXyz(field_0xbd8->field_0xc4, field_0xbd8->field_0xc8, field_0xbd8->field_0xcc));
+                        mDoMtx_stack_c::multVecZero(&mDemoCam.field_0x24);
+                        mDoMtx_stack_c::XrotM(field_0xbd8->field_0xea);
+                        mDoMtx_stack_c::multVec(&mDemoCam.field_0x18, &mDemoCam.field_0x18);
+                        field_0xe80 = 60;
+                        field_0xe84++;
+                    }
+                    break;
+
+                case 5:
+                    mDemoCam.field_0x18.set(0.0f, 0.0f, -100.0f);
+                    mDoMtx_stack_c::transS(current.pos);
+                    mDoMtx_stack_c::YrotM(mCurAngle.y);
+                    mDoMtx_stack_c::transM(cXyz(field_0xbd8->field_0xc4, field_0xbd8->field_0xc8, field_0xbd8->field_0xcc));
+                    mDoMtx_stack_c::multVecZero(&mDemoCam.field_0x24);
+                    mDoMtx_stack_c::XrotM(field_0xbd8->field_0xea);
+                    mDoMtx_stack_c::multVec(&mDemoCam.field_0x18, &mDemoCam.field_0x18);
+
+                    if (cLib_addCalcPos(&mDemoCam.mDemoCamEye, mDemoCam.field_0x24, 0.15f, 5.0f, 1.0f) == 0.0f && 
+                        cLib_addCalcPos(&mDemoCam.mDemoCamCenter, mDemoCam.field_0x24, 0.15f, 5.0f, 1.0f) == 0.0f) {
+                        int iVar2 = field_0xe80;
+                        field_0xe80--;
+                        if (iVar2 < 1) {
+                            daPy_getPlayerActorClass()->offPlayerNoDraw();
+                            onWrestlerNoDraw();
+                            initDemoCamera_ReadyLink();
+                            field_0xe84++;
+                        }
+                    }
+                    break;
+            }
+    }
 }
 
 /* ############################################################################################## */

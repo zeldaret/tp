@@ -404,6 +404,7 @@ public:
     }
 
     void offWrestlerNoDraw() { mWrestlerNoDraw = 0; }
+    void onWrestlerNoDraw() { mWrestlerNoDraw = 1; }
 
     void initDemoCamera_ArenaSide() {
         dCamera_c* camBody = dCam_getBody();
@@ -476,6 +477,10 @@ public:
         if (param_1) {
             oppositeToPlayer();
         }
+    }
+
+    void initDemoCamera_ReadyLink() {
+        
     }
 
     static EventFn mEvtSeqList[7];
