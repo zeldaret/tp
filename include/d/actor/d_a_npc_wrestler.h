@@ -154,33 +154,33 @@ public:
     /* 80B32444 */ bool gotoLiving(void*);
     /* 80B32850 */ bool sumouReady(void*);
     /* 80B331CC */ bool sumouWait(void*);
-    /* 80B339EC */ void checkOutOfArenaP();
-    /* 80B33B3C */ void setNextAction();
-    /* 80B34654 */ void sumouPunchHit(void*);
-    /* 80B34CD0 */ void sumouPunchChaseHit(void*);
-    /* 80B35364 */ void sumouPunchMiss(void*);
-    /* 80B35780 */ void checkOutOfArenaW();
-    /* 80B358F0 */ void getJointPos(int);
-    /* 80B35968 */ void sumouPunchDraw(void*);
-    /* 80B3606C */ void sumouTackleHit(void*);
-    /* 80B36908 */ void sumouTackleMiss(void*);
-    /* 80B36C8C */ void sumouTackleDraw(void*);
-    /* 80B37270 */ void sumouSideStep(void*);
-    /* 80B378F4 */ void sumouLostBalance(void*);
-    /* 80B37C30 */ void sumouPunchShock(void*);
-    /* 80B37FB8 */ void sumouPunchChaseShock(void*);
-    /* 80B38518 */ void sumouPunchStagger(void*);
-    /* 80B389A4 */ void sumouTackleShock(void*);
-    /* 80B38C90 */ void sumouTackleStagger(void*);
-    /* 80B39334 */ void sumouTackleStaggerRelease(void*);
-    /* 80B39554 */ void sumouTacklePush(void*);
-    /* 80B39C18 */ void sumouTackleRelease(void*);
+    /* 80B339EC */ bool checkOutOfArenaP();
+    /* 80B33B3C */ bool setNextAction();
+    /* 80B34654 */ bool sumouPunchHit(void*);
+    /* 80B34CD0 */ bool sumouPunchChaseHit(void*);
+    /* 80B35364 */ bool sumouPunchMiss(void*);
+    /* 80B35780 */ bool checkOutOfArenaW();
+    /* 80B358F0 */ cXyz getJointPos(int);
+    /* 80B35968 */ bool sumouPunchDraw(void*);
+    /* 80B3606C */ bool sumouTackleHit(void*);
+    /* 80B36908 */ bool sumouTackleMiss(void*);
+    /* 80B36C8C */ bool sumouTackleDraw(void*);
+    /* 80B37270 */ bool sumouSideStep(void*);
+    /* 80B378F4 */ bool sumouLostBalance(void*);
+    /* 80B37C30 */ bool sumouPunchShock(void*);
+    /* 80B37FB8 */ bool sumouPunchChaseShock(void*);
+    /* 80B38518 */ bool sumouPunchStagger(void*);
+    /* 80B389A4 */ bool sumouTackleShock(void*);
+    /* 80B38C90 */ bool sumouTackleStagger(void*);
+    /* 80B39334 */ bool sumouTackleStaggerRelease(void*);
+    /* 80B39554 */ bool sumouTacklePush(void*);
+    /* 80B39C18 */ bool sumouTackleRelease(void*);
     /* 80B39F88 */ bool demoSumouReady(void*);
-    /* 80B3AE24 */ void demoSumouWin(void*);
-    /* 80B3B4B4 */ void demoSumouLose(void*);
-    /* 80B3BC84 */ void demoSumouWin2(void*);
-    /* 80B3C278 */ void demoSumouLose2(void*);
-    /* 80B3CA2C */ void demoSumouUnilateralWin(void*);
+    /* 80B3AE24 */ bool demoSumouWin(void*);
+    /* 80B3B4B4 */ bool demoSumouLose(void*);
+    /* 80B3BC84 */ bool demoSumouWin2(void*);
+    /* 80B3C278 */ bool demoSumouLose2(void*);
+    /* 80B3CA2C */ bool demoSumouUnilateralWin(void*);
     /* 80B3D0C0 */ void demoTalkAfterLose(void*);
     /* 80B3D584 */ void EvCut_grDSEntry(int);
     /* 80B3DB50 */ void EvCut_grDSEntry2(int);
@@ -287,6 +287,39 @@ public:
 
         return false;
     }
+    void setStepAngle() {
+        f32 fVar1[2];
+        daPy_py_c* player = daPy_getPlayerActorClass();
+        
+        mDoMtx_stack_c::transS(*player->getViewerCurrentPosP());
+
+        for (int i = 0; i < 2; i++) {
+            if (i == 0) {
+                mStepAngle = field_0xbdc->horizontal_movement_speed;
+            } else {
+                mStepAngle = -field_0xbdc->horizontal_movement_speed;
+            }
+
+
+            s16 sVar1 = cLib_targetAngleY(player->getViewerCurrentPosP(), &current.pos) + mStepAngle * field_0xbdc->lateral_movement_time;
+            mDoMtx_stack_c::push();
+            mDoMtx_stack_c::YrotM(sVar1);
+            cXyz sp30;
+            mDoMtx_stack_c::multVec(&sp30, &sp30);
+            mDoMtx_stack_c::pop();
+
+            fVar1[i] = sp30.abs2XZ(mArenaPos);
+        }
+
+        s16 stepAngle;
+        if (fVar1[0] > fVar1[1]) {
+            stepAngle = -field_0xbdc->horizontal_movement_speed;
+        } else {
+            stepAngle = field_0xbdc->horizontal_movement_speed;
+        }
+
+        mStepAngle = stepAngle;
+    }
 
     void setExpressionTalkAfter() {
         switch (mExpression) {
@@ -392,6 +425,59 @@ public:
         g_meter2_info.setMeterString(i_string);
     }
 
+    void sumouAI() {
+        if (mType == 1) {
+            if (!daPy_getPlayerActorClass()->checkEquipHeavyBoots()) {
+                mWrestlerAction = 0;
+                return;
+            }
+        }
+
+        if (field_0xbd8->ai_action != 0) {
+            mWrestlerAction = field_0xbd8->ai_action;
+        } else {
+            f32 fVar1 = cM_rnd() * 100.0f;
+
+            BOOL bVar1;
+            if (daNpcF_chkEvtBit(0xE9)) {
+                bVar1 = TRUE;
+            } else {
+                bVar1 = FALSE;
+            }
+
+            f32 fVar2 = field_0xbdc->lateral_movement_chance;
+            f32 fVar3 = fVar2 + field_0xbdc->hit_chance;
+            f32 fVar4 = fVar3 + field_0xbdc->tackle_chance;
+
+            if (fVar1 >= 0.0f && fVar1 < fVar2) {
+                mWrestlerAction = 1;
+            } else if (fVar1 >= fVar2 && fVar1 < fVar3) {
+                mWrestlerAction = 2;
+            } else if (fVar1 >= fVar3 && fVar1 < fVar4) {
+                mWrestlerAction = 3;
+            } else if (fVar1 >= fVar4 && fVar1 < 100.0f) {
+                mWrestlerAction = 4;
+            }
+        }
+    }
+
+    s16 oppositeToPlayer() {
+        s16 rv = cLib_addCalcAngleS(&mCurAngle.y, fopAcM_searchPlayerAngleY(this), field_0xbd8->rotation, 0x4000, 0x40);
+        setAngle(mCurAngle.y);
+        return rv;
+    }
+    void correctGraspPosAngle(bool param_1) {
+        daPy_py_c* player = daPy_getPlayerActorClass();
+        cXyz sp24(0.0f, 0.0f, field_0xbdc->grapple_distance);
+        mDoMtx_stack_c::transS(*player->getViewerCurrentPosP());
+        mDoMtx_stack_c::YrotM(mStepAngle + cLib_targetAngleY(player->getViewerCurrentPosP(), &current.pos));
+        mDoMtx_stack_c::multVec(&sp24, &current.pos);
+
+        if (param_1) {
+            oppositeToPlayer();
+        }
+    }
+
     static EventFn mEvtSeqList[7];
 
     struct DemoCamera_c {
@@ -412,7 +498,12 @@ private:
     /* 0xC80 */ daNpcF_ActorMngr_c mActorMngr[2];
     /* 0xC90 */ dCcD_Cyl field_0xc90;
     /* 0xDCC */ actionFunc field_0xdcc;
-    /* 0xDD8 */ u8 field_0xdd8[0xdf0 - 0xdd8];
+    /* 0xDD8 */ JPABaseEmitter* field_0xdd8;
+    /* 0xDDC */ JPABaseEmitter* field_0xddc;
+    /* 0xDE0 */ JPABaseEmitter* field_0xde0;
+    /* 0xDE4 */ JPABaseEmitter* field_0xde4;
+    /* 0xDE8 */ u32 field_0xde8;
+    /* 0xDEC */ u32 field_0xdec;
     /* 0xDF0 */ cXyz mArenaPos;
     /* 0xDFC */ f32 mArenaExtent;
     /* 0xE00 */ s16 mArenaAngle;
@@ -437,7 +528,7 @@ private:
     /* 0xE8C */ f32 field_0xe8c;
     /* 0xE90 */ s16 mLookMode;
     /* 0xE92 */ s16 field_0xe92;
-    /* 0xE94 */ u8 field_0xe94[0xE96 - 0xE94];
+    /* 0xE94 */ s16 mStepAngle;
     /* 0xE96 */ u16 field_0xe96;
     /* 0xE98 */ u8 field_0xe98;
     /* 0xE99 */ u8 field_0xe99;

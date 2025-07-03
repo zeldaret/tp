@@ -3028,283 +3028,1331 @@ bool daNpcWrestler_c::sumouReady(void* param_1) {
     return 1;
 }
 
-/* ############################################################################################## */
-/* 80B41C90-80B41C94 0005B4 0004+00 0/1 0/0 0/0 .rodata          @6088 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6088 = 3.0f;
-COMPILER_STRIP_GATE(0x80B41C90, &lit_6088);
-#pragma pop
-
-/* 80B41C94-80B41C9C 0005B8 0004+04 0/1 0/0 0/0 .rodata          @6245 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6245[1 + 1 /* padding */] = {
-    6.0f,
-    /* padding */
-    0.0f,
-};
-COMPILER_STRIP_GATE(0x80B41C94, &lit_6245);
-#pragma pop
-
-/* 80B331CC-80B339EC 00402C 0820+00 14/0 0/0 0/0 .text            sumouWait__15daNpcWrestler_cFPv */
-bool daNpcWrestler_c::sumouWait(void* param_0) {
+/* 80B331CC-80B339EC 00402C 0820+00 14/0 0/0 0/0 .text           sumouWait__15daNpcWrestler_cFPv */
+bool daNpcWrestler_c::sumouWait(void* param_1) {
     // NONMATCHING
+    daPy_py_c* player;
+    int iVar1;
+
+    switch (field_0xe96) {
+        case 0:
+            field_0xe80 = field_0xbdc->wait_time;
+            field_0xe98 = 0;
+            
+            sumouAI();
+            setExpression(3, -1.0f);
+            setMotion(8, field_0xe8c, 0);
+            field_0xe8c = -1.0f;
+            field_0xe96 = 2;
+            break;
+
+        case 2:
+            correctGraspPosAngle(true);
+
+            if (cLib_distanceAngleS(mCurAngle.y, fopAcM_searchPlayerAngleY(this)) < 0x600) {
+                setMotion(8, 6.0f, 0);
+            } else {
+                setMotion(9, 6.0f, 0);
+            }
+
+            if (!setNextAction()) {
+                iVar1 = field_0xe80;
+                field_0xe80--;
+                if (iVar1 < 0) {
+                    player = daPy_getPlayerActorClass();
+                    if (mType == 1 && !daPy_getPlayerActorClass()->checkEquipHeavyBoots()) {
+                        setAction(&daNpcWrestler_c::sumouPunchHit);
+                        daPy_getPlayerActorClass()->setSumouForcePunch();
+                    } else {
+                        switch (mWrestlerAction) {
+                            case 1:
+                                setAction(&daNpcWrestler_c::sumouSideStep);
+                                break;
+
+                            case 2:
+                                setAction(&daNpcWrestler_c::sumouPunchHit);
+                                daPy_getPlayerActorClass()->setSumouForcePunch();
+                                break;
+
+                            case 3:
+                                if (player->checkSumouWait()) {
+                                    setAction(&daNpcWrestler_c::sumouTackleHit);
+                                    daPy_getPlayerActorClass()->setSumouForceTackle();
+                                } else if (player->checkSumouLeftMove() || player->checkSumouRightMove()) {
+                                    setAction(&daNpcWrestler_c::sumouTackleMiss);
+                                }
+                                break;
+
+                            case 4:
+                                setAction(&daNpcWrestler_c::sumouWait);
+                                break;
+
+                            case 5:
+                                setAction(&daNpcWrestler_c::sumouWait);
+                                break;
+                        }
+                    }
+                }
+            }
+
+            if (checkOutOfArenaP()) {
+                setAction(&daNpcWrestler_c::demoSumouWin2);
+            }
+            break;
+
+        case 3:
+            break;
+    }
+
+    return true;
 }
 
-/* ############################################################################################## */
-/* 80B41C9C-80B41CA4 0005C0 0008+00 2/2 0/0 0/0 .rodata          @6299 */
-SECTION_RODATA static u8 const lit_6299[8] = {
-    0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80B41C9C, &lit_6299);
-
-/* 80B339EC-80B33B3C 00484C 0150+00 13/13 0/0 0/0 .text checkOutOfArenaP__15daNpcWrestler_cFv */
-void daNpcWrestler_c::checkOutOfArenaP() {
+/* 80B339EC-80B33B3C 00484C 0150+00 13/13 0/0 0/0 .text          checkOutOfArenaP__15daNpcWrestler_cFv */
+bool daNpcWrestler_c::checkOutOfArenaP() {
     // NONMATCHING
+    if (mArenaInfo == 0) {
+        return false;
+    }
+
+    f32 fVar1 = pow(mArenaExtent, 2.0);
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    if (player->getLeftFootPosP()->abs2XZ(mArenaPos) <= fVar1 && player->getRightFootPosP()->abs2XZ(mArenaPos) <= fVar1) {
+        return false;
+    }
+
+    return true;
 }
 
-/* 80B33B3C-80B34654 00499C 0B18+00 1/1 0/0 0/0 .text            setNextAction__15daNpcWrestler_cFv
- */
-void daNpcWrestler_c::setNextAction() {
+/* 80B33B3C-80B34654 00499C 0B18+00 1/1 0/0 0/0 .text            setNextAction__15daNpcWrestler_cFv */
+bool daNpcWrestler_c::setNextAction() {
     // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+
+    if (mType == 1 && !player->checkEquipHeavyBoots()) {
+        if (player->checkSumouSlideLeft() || player->checkSumouSlideRight() || player->checkSumouLeftMove() || player->checkSumouRightMove()) {
+            setAction(&daNpcWrestler_c::sumouPunchChaseHit);
+            return true;
+        }
+
+        if (player->checkSumouPunchDraw()) {
+            setAction(&daNpcWrestler_c::sumouPunchDraw);
+            return true;
+        }
+
+        if (player->checkSumouTackleDraw()) {
+            setAction(&daNpcWrestler_c::sumouTackleDraw);
+            return true;
+        }
+    } else {
+        if (player->checkSumouPunchStagger() || player->checkSumouTackleStagger()) {
+            mWrestlerAction = 3;
+            setAction(&daNpcWrestler_c::sumouTackleHit);
+            player->setSumouForceTackle();
+            return true;
+        }
+
+        switch (mWrestlerAction) {
+            case 1:
+                if (player->checkSumouTackleMiss()) {
+                    setAction(&daNpcWrestler_c::sumouSideStep);
+                    return true;
+                }
+
+                if (player->checkSumouPunchSuccess()) {
+                    setAction(&daNpcWrestler_c::sumouPunchChaseShock);
+                    return true;
+                }
+
+                if (player->checkSumouSlideLeft() || player->checkSumouSlideRight() || player->checkSumouLeftMove() || player->checkSumouRightMove()) {
+                    setAction(&daNpcWrestler_c::sumouSideStep);
+                    return true;
+                }
+                break;
+
+            case 2:
+                if (player->checkSumouSlideLeft() || player->checkSumouSlideRight() || player->checkSumouLeftMove() || player->checkSumouRightMove()) {
+                    setAction(&daNpcWrestler_c::sumouPunchChaseHit);
+                    return true;
+                }
+
+                if (player->checkSumouPunchDraw()) {
+                    setAction(&daNpcWrestler_c::sumouPunchDraw);
+                    return true;
+                }
+
+                if (player->checkSumouTackleSuccess() || player->checkSumouTackleSuccessPunch()) {
+                    setAction(&daNpcWrestler_c::sumouPunchMiss);
+                    return true;
+                }
+                break;
+
+            case 3:
+                if (player->checkSumouSlideLeft() || player->checkSumouSlideRight()) {
+                    setAction(&daNpcWrestler_c::sumouTackleMiss);
+                    return true;
+                }
+
+                if (player->checkSumouPunchMiss()) {
+                    setAction(&daNpcWrestler_c::sumouTackleHit);
+                    return true;
+                }
+
+                if (player->checkSumouTackleDraw()) {
+                    setAction(&daNpcWrestler_c::sumouTackleDraw);
+                    return true;
+                }
+                break;
+
+            case 4:
+                if (player->checkSumouTackleSuccess()) {
+                    setAction(&daNpcWrestler_c::sumouTackleShock);
+                    return true;
+                }
+
+                if (player->checkSumouTackleMiss()) {
+                    setAction(&daNpcWrestler_c::sumouSideStep);
+                    return true;
+                }
+
+                if (player->checkSumouPunchSuccess()) {
+                    setAction(&daNpcWrestler_c::sumouPunchShock);
+                    return true;
+                }
+
+                if (player->checkSumouPunchMiss()) {
+                    setAction(&daNpcWrestler_c::sumouTackleHit);
+                    return true;
+                }
+                break;
+        }
+    }
+
+    return false;
 }
 
-/* ############################################################################################## */
-/* 80B41CA4-80B41CA8 0005C8 0004+00 0/7 0/0 0/0 .rodata          @6610 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6610 = 13.0f;
-COMPILER_STRIP_GATE(0x80B41CA4, &lit_6610);
-#pragma pop
-
-/* 80B41CA8-80B41CAC 0005CC 0004+00 0/2 0/0 0/0 .rodata          @6611 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6611 = -63.5f;
-COMPILER_STRIP_GATE(0x80B41CA8, &lit_6611);
-#pragma pop
-
-/* 80B34654-80B34CD0 0054B4 067C+00 2/0 0/0 0/0 .text            sumouPunchHit__15daNpcWrestler_cFPv
- */
-void daNpcWrestler_c::sumouPunchHit(void* param_0) {
+/* 80B34654-80B34CD0 0054B4 067C+00 2/0 0/0 0/0 .text            sumouPunchHit__15daNpcWrestler_cFPv */
+bool daNpcWrestler_c::sumouPunchHit(void* param_1) {
     // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    int jointNo = mType != 0 ? 0x12 : 0x11;
+    cXyz sp2c;
+
+    switch (field_0xe96) {
+        case 0:
+            setExpressionAnm(6, true);
+            setMotion(12, -1.0f, 0);
+            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo));
+            mDoMtx_stack_c::multVecZero(&sp2c);
+
+            field_0xdd8 = dComIfGp_particle_set(0x8537, &sp2c, &mCurAngle, NULL);
+            if (field_0xdd8 != NULL) {
+                field_0xdd8->becomeImmortalEmitter();
+            }
+
+            field_0xde0 = NULL;
+            field_0xddc = NULL;
+            field_0xe96 = 2;
+            break;
+
+        case 2:
+            oppositeToPlayer();
+            mpMorf->setPlaySpeed(0.0f);
+            mpMorf->setFrameF(player->getBaseAnimeFrame());
+            mpMorf->modelCalc();
+            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo));
+            mDoMtx_stack_c::multVecZero(&sp2c);
+            
+            if (mpMorf->getFrame() == 13.0f) {
+                if (mType == 1 && !player->checkEquipHeavyBoots()) {
+                    setAction(&daNpcWrestler_c::demoSumouUnilateralWin);
+                } else {
+                    dComIfGp_getVibration().StartShock(field_0xbd8->slap_hit_impact, 15, cXyz(0.0f, 1.0f, 0.0f));
+                    field_0xddc = dComIfGp_particle_set(0x8539, &sp2c, &mCurAngle, NULL);
+                    field_0xde0 = dComIfGp_particle_set(0x853A, &sp2c, &mCurAngle, NULL);
+
+                    if (field_0xddc != NULL) {
+                        field_0xddc->becomeImmortalEmitter();
+                    }
+
+                    if (field_0xde0 != NULL) {
+                        field_0xde0->becomeImmortalEmitter();
+                    }
+                }
+            }
+
+            if (field_0xdd8 != NULL) {
+                field_0xdd8->setGlobalRTMatrix(mpMorf->getModel()->getAnmMtx(jointNo));
+            }
+
+            if (field_0xddc != NULL) {
+                field_0xddc->setGlobalTranslation(sp2c);
+            }
+
+            if (field_0xde0 != NULL) {
+                JGeometry::TVec3<s16> emitter_rot;
+                emitter_rot.x = mCurAngle.x;
+                emitter_rot.y = mCurAngle.y;
+                emitter_rot.z = mCurAngle.z;
+                field_0xde0->setGlobalTranslation(sp2c);
+                field_0xde0->setGlobalRotation(emitter_rot);
+            }
+
+            if (checkOutOfArenaP()) {
+                setAction(&daNpcWrestler_c::demoSumouWin2);
+            } else if (player->checkSumouPunchStagger() || player->checkSumouWait()) {
+                field_0xe8c = 0.0f;
+                setAction(&daNpcWrestler_c::sumouWait);
+            }
+            break;
+
+        case 3:
+            if (field_0xdd8 != NULL) {
+                field_0xdd8->quitImmortalEmitter();
+                field_0xdd8 = NULL;
+            }
+
+            if (field_0xddc != NULL) {
+                field_0xddc->quitImmortalEmitter();
+                field_0xddc = NULL;
+            }
+
+            if (field_0xde0 != NULL) {
+                field_0xde0->quitImmortalEmitter();
+                field_0xde0 = NULL;
+            }
+
+            mDoMtx_stack_c::transS(current.pos);
+            mDoMtx_stack_c::YrotM(cLib_targetAngleY(player->getViewerCurrentPosP(), &current.pos));
+            current.pos.set(0.0f, 0.0f, -63.5f);
+            mDoMtx_stack_c::multVec(&current.pos, &current.pos);
+            break;
+    }
+
+    return true;
 }
 
-/* 80B34CD0-80B35364 005B30 0694+00 2/0 0/0 0/0 .text sumouPunchChaseHit__15daNpcWrestler_cFPv */
-void daNpcWrestler_c::sumouPunchChaseHit(void* param_0) {
+/* 80B34CD0-80B35364 005B30 0694+00 2/0 0/0 0/0 .text            sumouPunchChaseHit__15daNpcWrestler_cFPv */
+bool daNpcWrestler_c::sumouPunchChaseHit(void* param_1) {
     // NONMATCHING
+    int jointNo = mType != 0 ? 0x12 : 0x11;
+    cXyz sp38;
+
+    switch (field_0xe96) {
+        case 0:
+            setExpressionAnm(6, true);
+            setMotion(12, -1.0f, 0);
+            daPy_getPlayerActorClass()->setSumouForcePunch();
+            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo));
+            mDoMtx_stack_c::multVecZero(&sp38);
+
+            field_0xdd8 = dComIfGp_particle_set(0x8537, &sp38, &mCurAngle, NULL);
+            if (field_0xdd8 != NULL) {
+                field_0xdd8->becomeImmortalEmitter();
+            }
+
+            field_0xde0 = NULL;
+            field_0xddc = NULL;
+            field_0xe96 = 2;
+            break;
+
+        case 2:
+            mCurAngle.y = fopAcM_searchPlayerAngleY(this);
+            current.angle.y = mCurAngle.y;
+            shape_angle.y = current.angle.y;
+            mpMorf->modelCalc();
+            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo));
+            mDoMtx_stack_c::multVecZero(&sp38);
+
+            if (mpMorf->getFrame() == 13.0f) {
+                if (mType == 1 && !daPy_getPlayerActorClass()->checkEquipHeavyBoots()) {
+                    setAction(&daNpcWrestler_c::demoSumouUnilateralWin);
+                } else {
+                    dComIfGp_getVibration().StartShock(field_0xbd8->slap_hit_impact, 15, cXyz(0.0f, 1.0f, 0.0f));
+                    field_0xddc = dComIfGp_particle_set(0x8539, &sp38, &mCurAngle, NULL);
+                    field_0xde0 = dComIfGp_particle_set(0x853A, &sp38, &mCurAngle, NULL);
+
+                    if (field_0xddc != NULL) {
+                        field_0xddc->becomeImmortalEmitter();
+                    }
+
+                    if (field_0xde0 != NULL) {
+                        field_0xde0->becomeImmortalEmitter();
+                    }
+                }
+            }
+
+            if (field_0xdd8 != NULL) {
+                field_0xdd8->setGlobalRTMatrix(mpMorf->getModel()->getAnmMtx(jointNo));
+            }
+
+            if (field_0xddc != NULL) {
+                field_0xddc->setGlobalTranslation(sp38);
+            }
+
+            if (field_0xde0 != NULL) {
+                JGeometry::TVec3<s16> emitter_rot;
+                emitter_rot.x = mCurAngle.x;
+                emitter_rot.y = mCurAngle.y;
+                emitter_rot.z = mCurAngle.z;
+                field_0xde0->setGlobalTranslation(sp38);
+                field_0xde0->setGlobalRotation(emitter_rot);
+            }
+
+            field_0xe8c = 0.0f;
+
+            if (checkOutOfArenaP()) {
+                setAction(&daNpcWrestler_c::demoSumouWin2);
+            } else if (mpMorf->isStop()) {
+                setAction(&daNpcWrestler_c::sumouWait);
+            }
+            break;
+
+        case 3:
+            if (field_0xdd8 != NULL) {
+                field_0xdd8->quitImmortalEmitter();
+                field_0xdd8 = NULL;
+            }
+
+            if (field_0xddc != NULL) {
+                field_0xddc->quitImmortalEmitter();
+                field_0xddc = NULL;
+            }
+
+            if (field_0xde0 != NULL) {
+                field_0xde0->quitImmortalEmitter();
+                field_0xde0 = NULL;
+            }
+
+            mDoMtx_stack_c::transS(current.pos);
+            mDoMtx_stack_c::YrotM(cLib_targetAngleY(daPy_getPlayerActorClass()->getViewerCurrentPosP(), &current.pos));
+            current.pos.set(0.0f, 0.0f, -63.5f);
+            mDoMtx_stack_c::multVec(&current.pos, &current.pos);
+            break;
+    }
+
+    return true;
 }
 
-/* ############################################################################################## */
-/* 80B41CAC-80B41CB0 0005D0 0004+00 0/3 0/0 0/0 .rodata          @6942 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6942 = 34.0f;
-COMPILER_STRIP_GATE(0x80B41CAC, &lit_6942);
-#pragma pop
-
-/* 80B41CB0-80B41CB4 0005D4 0004+00 0/2 0/0 0/0 .rodata          @6943 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6943 = 35.0f;
-COMPILER_STRIP_GATE(0x80B41CB0, &lit_6943);
-#pragma pop
-
-/* 80B35364-80B35780 0061C4 041C+00 1/0 0/0 0/0 .text sumouPunchMiss__15daNpcWrestler_cFPv */
-void daNpcWrestler_c::sumouPunchMiss(void* param_0) {
+/* 80B35364-80B35780 0061C4 041C+00 1/0 0/0 0/0 .text            sumouPunchMiss__15daNpcWrestler_cFPv */
+bool daNpcWrestler_c::sumouPunchMiss(void* param_1) {
     // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    int jointNo = mType != 0 ? 0x12 : 0x11;
+    cXyz sp2c;
+
+    switch (field_0xe96) {
+        case 0:
+            setExpressionAnm(8, true);
+            setMotion(0x10, -1.0f, 0);
+            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo));
+            mDoMtx_stack_c::multVecZero(&sp2c);
+
+            field_0xdd8 = dComIfGp_particle_set(0x8537, &sp2c, &mCurAngle, NULL);
+            if (field_0xdd8 != NULL) {
+                field_0xdd8->becomeImmortalEmitter();
+            }
+
+            field_0xe96 = 2;
+            break;
+
+        case 2:
+            oppositeToPlayer();
+            mpMorf->setPlaySpeed(0.0f);
+            mpMorf->setFrameF(player->getBaseAnimeFrame());
+            mpMorf->modelCalc();
+            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo));
+            mDoMtx_stack_c::multVecZero(&sp2c);
+            
+            if (mpMorf->getFrame() > 13.0f && mpMorf->getFrame() < 34.0f) {
+                dCam_getBody()->ModeFix(6);
+            }
+
+            if (mpMorf->getFrame() == 35.0f) {
+                dComIfGp_getVibration().StartShock(field_0xbd8->slap_hit_impact, 15, cXyz(0.0f, 1.0f, 0.0f));
+            }
+
+            if (field_0xdd8 != NULL) {
+                field_0xdd8->setGlobalRTMatrix(mpMorf->getModel()->getAnmMtx(jointNo));
+            }
+
+            if (checkOutOfArenaW()) {
+                setAction(&daNpcWrestler_c::demoSumouLose);
+            } else if (player->checkSumouPushFront()) {
+                setAction(&daNpcWrestler_c::sumouTackleStagger);
+            }
+            break;
+
+        case 3:
+            if (field_0xdd8 != NULL) {
+                field_0xdd8->quitImmortalEmitter();
+                field_0xdd8 = NULL;
+            }
+            break;
+    }
+
+    return true;
 }
 
-/* 80B35780-80B358F0 0065E0 0170+00 8/8 0/0 0/0 .text checkOutOfArenaW__15daNpcWrestler_cFv */
-void daNpcWrestler_c::checkOutOfArenaW() {
+/* 80B35780-80B358F0 0065E0 0170+00 8/8 0/0 0/0 .text            checkOutOfArenaW__15daNpcWrestler_cFv */
+bool daNpcWrestler_c::checkOutOfArenaW() {
     // NONMATCHING
+    if (mArenaInfo == 0) {
+        return false;
+    }
+
+    int jointNo = mType == 0 ? 0x1A : 0x18;
+    int jointNo2 = mType == 0 ? 0x1E : 0x1B;
+    f32 fVar1 = pow(mArenaExtent, 2.0);
+
+    field_0x89c = getJointPos(jointNo);
+    field_0x8a8 = getJointPos(jointNo2);
+
+    if (field_0x89c.abs2XZ(mArenaPos) <= fVar1 && field_0x8a8.abs2XZ(mArenaPos) <= fVar1) {
+        return false;
+    }
+
+    return true;
 }
 
 /* 80B358F0-80B35968 006750 0078+00 4/4 0/0 0/0 .text            getJointPos__15daNpcWrestler_cFi */
-void daNpcWrestler_c::getJointPos(int param_0) {
-    // NONMATCHING
+cXyz daNpcWrestler_c::getJointPos(int i_jointNo) {
+    cXyz jointPos;
+    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(i_jointNo));
+    mDoMtx_stack_c::multVecZero(&jointPos);
+    return jointPos;
 }
 
-/* ############################################################################################## */
-/* 80B41CB4-80B41CB8 0005D8 0004+00 0/1 0/0 0/0 .rodata          @7233 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7233 = 18.0f;
-COMPILER_STRIP_GATE(0x80B41CB4, &lit_7233);
-#pragma pop
-
-/* 80B35968-80B3606C 0067C8 0704+00 2/0 0/0 0/0 .text sumouPunchDraw__15daNpcWrestler_cFPv */
-void daNpcWrestler_c::sumouPunchDraw(void* param_0) {
+/* 80B35968-80B3606C 0067C8 0704+00 2/0 0/0 0/0 .text            sumouPunchDraw__15daNpcWrestler_cFPv */
+bool daNpcWrestler_c::sumouPunchDraw(void* param_1) {
     // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    int jointNo = mType != 0 ? 0x12 : 0x11;
+    cXyz sp2c;
+
+    switch (field_0xe96) {
+        case 0:
+            setExpressionAnm(9, true);
+            setMotion(0x11, -1.0f, 0);
+            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo));
+            mDoMtx_stack_c::multVecZero(&sp2c);
+
+            field_0xdd8 = dComIfGp_particle_set(0x8537, &sp2c, &mCurAngle, NULL);
+            if (field_0xdd8 != NULL) {
+                field_0xdd8->becomeImmortalEmitter();
+                field_0xdd8->setLifeTime(5);
+            }
+
+            field_0xde0 = NULL;
+            field_0xddc = NULL;
+            field_0xe96 = 2;
+            break;
+
+        case 2:
+            oppositeToPlayer();
+            mpMorf->setPlaySpeed(0.0f);
+            mpMorf->setFrameF(player->getBaseAnimeFrame());
+            mpMorf->modelCalc();
+            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo));
+            mDoMtx_stack_c::multVecZero(&sp2c);
+            
+            if (mpMorf->getFrame() > 18.0f && mpMorf->getFrame() < 32.0f) {
+                dCam_getBody()->ModeFix(5);
+            }
+
+            if (mpMorf->getFrame() == 13.0f) {
+                if (mType == 1 && !daPy_getPlayerActorClass()->checkEquipHeavyBoots()) {
+                    setAction(&daNpcWrestler_c::demoSumouUnilateralWin);
+                } else {
+                    dComIfGp_getVibration().StartShock(field_0xbd8->slap_hit_impact, 15, cXyz(0.0f, 1.0f, 0.0f));
+                    field_0xddc = dComIfGp_particle_set(0x8539, &sp2c, &mCurAngle, NULL);
+                    if (field_0xddc != NULL) {
+                        field_0xddc->becomeImmortalEmitter();
+                    }
+
+                    field_0xde0 = dComIfGp_particle_set(0x853A, &sp2c, &mCurAngle, NULL);
+                    if (field_0xde0 != NULL) {
+                        field_0xde0->becomeImmortalEmitter();
+                    }
+                }
+            }
+
+            if (field_0xdd8 != NULL) {
+                field_0xdd8->setGlobalRTMatrix(mpMorf->getModel()->getAnmMtx(jointNo));
+            }
+
+            if (field_0xddc != NULL) {
+                field_0xddc->setGlobalTranslation(sp2c);
+            }
+
+            if (field_0xde0 != NULL) {
+                JGeometry::TVec3<s16> emitter_rot;
+                emitter_rot.x = mCurAngle.x;
+                emitter_rot.y = mCurAngle.y;
+                emitter_rot.z = mCurAngle.z;
+                field_0xde0->setGlobalTranslation(sp2c);
+                field_0xde0->setGlobalRotation(emitter_rot);
+            }
+
+            if (checkOutOfArenaW()) {
+                setAction(&daNpcWrestler_c::demoSumouLose2);
+            } else if (checkOutOfArenaP()) {
+                setAction(&daNpcWrestler_c::demoSumouWin2);
+            } else if (player->checkSumouWait()) {
+                field_0xe8c = field_0xbd8->common.morf_frame;
+                setAction(&daNpcWrestler_c::sumouWait);
+            }
+            break;
+
+        case 3:
+            if (field_0xdd8 != NULL) {
+                field_0xdd8->quitImmortalEmitter();
+                field_0xdd8 = NULL;
+            }
+
+            if (field_0xddc != NULL) {
+                field_0xddc->quitImmortalEmitter();
+                field_0xddc = NULL;
+            }
+
+            if (field_0xde0 != NULL) {
+                field_0xde0->quitImmortalEmitter();
+                field_0xde0 = NULL;
+            }
+            break;
+    }
+
+    return true;
 }
 
-/* ############################################################################################## */
-/* 80B41CB8-80B41CBC 0005DC 0004+00 0/1 0/0 0/0 .rodata          @7535 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7535 = 8.0f;
-COMPILER_STRIP_GATE(0x80B41CB8, &lit_7535);
-#pragma pop
-
-/* 80B41CBC-80B41CC0 0005E0 0004+00 0/7 0/0 0/0 .rodata          @7536 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7536 = 60.0f;
-COMPILER_STRIP_GATE(0x80B41CBC, &lit_7536);
-#pragma pop
-
-/* 80B3606C-80B36908 006ECC 089C+00 5/0 0/0 0/0 .text sumouTackleHit__15daNpcWrestler_cFPv */
-void daNpcWrestler_c::sumouTackleHit(void* param_0) {
+/* 80B3606C-80B36908 006ECC 089C+00 5/0 0/0 0/0 .text            sumouTackleHit__15daNpcWrestler_cFPv */
+bool daNpcWrestler_c::sumouTackleHit(void* param_1) {
     // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    int jointNo = mType != 0 ? 0 : 0;
+    cXyz sp2c;
+
+    switch (field_0xe96) {
+        case 0:
+            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo));
+            mDoMtx_stack_c::multVecZero(&sp2c);
+
+            if (player->checkSumouPunchMiss()) {
+                setExpressionAnm(0xD, true);
+                setMotion(0x1C, field_0xbd8->common.morf_frame, 0);
+
+                field_0xdd8 = dComIfGp_particle_set(0x8546, &sp2c, &mCurAngle, NULL);
+                field_0xddc = dComIfGp_particle_set(0x8547, &sp2c, &mCurAngle, NULL);
+
+                if (field_0xdd8 != NULL) {
+                    field_0xdd8->becomeImmortalEmitter();
+                }
+
+                if (field_0xddc != NULL) {
+                    field_0xddc->becomeImmortalEmitter();
+                }
+            } else {
+                setExpressionAnm(0xC, true);
+                setMotion(0xD, field_0xbd8->common.morf_frame, 0);
+
+                field_0xdd8 = dComIfGp_particle_set(0x8543, &sp2c, &mCurAngle, NULL);
+                field_0xddc = dComIfGp_particle_set(0x8544, &sp2c, &mCurAngle, NULL);
+
+                if (field_0xdd8 != NULL) {
+                    field_0xdd8->becomeImmortalEmitter();
+                }
+
+                if (field_0xddc != NULL) {
+                    field_0xddc->becomeImmortalEmitter();
+                }
+            }
+
+            field_0xde4 = NULL;
+            field_0xde0 = NULL;
+
+            if (mType != 0) {
+                setLookMode(0);
+                mActorMngr[0].remove();
+            }
+
+            field_0xe96 = 2;
+            break;
+
+        case 2:
+            correctGraspPosAngle(true);
+            mpMorf->setPlaySpeed(0.0f);
+            mpMorf->setFrameF(player->getBaseAnimeFrame());
+            mpMorf->modelCalc();
+
+            if ((mMotion == 13 && mpMorf->getFrame() == 8.0f) || (mMotion == 0x1C && mpMorf->getFrame() == 34.0f)) {
+                field_0xde0 = dComIfGp_particle_set(0x8539, &sp2c, &mCurAngle, NULL);
+                field_0xde4 = dComIfGp_particle_set(0x853A, &sp2c, &mCurAngle, NULL);
+
+                if (field_0xde0 != NULL) {
+                    field_0xde0->becomeImmortalEmitter();
+                }
+
+                if (field_0xde4 != NULL) {
+                    field_0xde4->becomeImmortalEmitter();
+                }
+            } else {
+                if (mpMorf->getFrame() == 15.0f) {
+                    dComIfGp_getVibration().StartShock(field_0xbd8->slap_hit_impact, 15, cXyz(0.0f, 1.0f, 0.0f));
+                }
+            }
+
+            if (field_0xdd8 != NULL) {
+                field_0xdd8->setGlobalRTMatrix(mpMorf->getModel()->getAnmMtx(jointNo));
+            }
+
+            if (field_0xddc != NULL) {
+                field_0xddc->setGlobalRTMatrix(mpMorf->getModel()->getAnmMtx(jointNo));
+            }
+
+            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo));
+            mDoMtx_stack_c::multVecZero(&sp2c);
+
+            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo));
+            mDoMtx_stack_c::multVecZero(&sp2c);
+
+            mDoMtx_stack_c::transS(sp2c);
+            mDoMtx_stack_c::YrotM(mCurAngle.y);
+            sp2c.set(0.0f, 20.0f, 60.0f);
+            mDoMtx_stack_c::multVec(&sp2c, &sp2c);
+
+            if (field_0xde0 != NULL) {
+                field_0xde0->setGlobalTranslation(sp2c);
+            }
+
+            if (field_0xde4 != NULL) {
+                JGeometry::TVec3<s16> emitter_rot;
+                emitter_rot.x = mCurAngle.x;
+                emitter_rot.y = mCurAngle.y;
+                emitter_rot.z = mCurAngle.z;
+                field_0xde4->setGlobalTranslation(sp2c);
+                field_0xde4->setGlobalRotation(emitter_rot);
+            }
+
+            if (checkOutOfArenaP()) {
+                setAction(&daNpcWrestler_c::sumouTacklePush);
+            } else if (player->checkSumouPushBack()) {
+                setAction(&daNpcWrestler_c::demoSumouWin);
+            }
+            break;
+
+        case 3:
+            if (field_0xdd8 != NULL) {
+                field_0xdd8->quitImmortalEmitter();
+                field_0xdd8 = NULL;
+            }
+
+            if (field_0xddc != NULL) {
+                field_0xddc->quitImmortalEmitter();
+                field_0xddc = NULL;
+            }
+
+            if (field_0xde0 != NULL) {
+                field_0xde0->quitImmortalEmitter();
+                field_0xde0 = NULL;
+            }
+
+            if (field_0xde4 != NULL) {
+                field_0xde4->quitImmortalEmitter();
+                field_0xde4 = NULL;
+            }
+            break;
+    }
+
+    return true;
 }
 
-/* 80B36908-80B36C8C 007768 0384+00 2/0 0/0 0/0 .text sumouTackleMiss__15daNpcWrestler_cFPv */
-void daNpcWrestler_c::sumouTackleMiss(void* param_0) {
+/* 80B36908-80B36C8C 007768 0384+00 2/0 0/0 0/0 .text            sumouTackleMiss__15daNpcWrestler_cFPv */
+bool daNpcWrestler_c::sumouTackleMiss(void* param_1) {
     // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+
+    switch (field_0xe96) {
+        case 0:
+            setLookMode(0);
+            mActorMngr[0].remove();
+            setExpressionAnm(0xE, true);
+            setMotion(0x12, -1.0f, 0);
+            mWrestlerAction = 5;
+            field_0xe96 = 2;
+            break;
+
+        case 2:
+            if (checkOutOfArenaP()) {
+                setAction(&daNpcWrestler_c::demoSumouWin2);
+            } else if (player->checkSumouTackleSuccess()) {
+                setAction(&daNpcWrestler_c::sumouTackleShock);
+            } else if (player->checkSumouPunchSuccess()) {
+                setAction(&daNpcWrestler_c::sumouPunchShock);
+            } else if (mpMorf->isStop()) {
+                setAction(&daNpcWrestler_c::sumouLostBalance);
+            }
+            break;
+
+        case 3:
+            setLookMode(2);
+            mActorMngr[0].entry(daPy_getPlayerActorClass());
+            break;
+    }
+
+    return true;
 }
 
-/* ############################################################################################## */
-/* 80B41CC0-80B41CC4 0005E4 0004+00 0/1 0/0 0/0 .rodata          @7761 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7761 = 4.0f;
-COMPILER_STRIP_GATE(0x80B41CC0, &lit_7761);
-#pragma pop
-
-/* 80B41CC4-80B41CC8 0005E8 0004+00 0/2 0/0 0/0 .rodata          @7762 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7762 = 24.0f;
-COMPILER_STRIP_GATE(0x80B41CC4, &lit_7762);
-#pragma pop
-
-/* 80B36C8C-80B37270 007AEC 05E4+00 2/0 0/0 0/0 .text sumouTackleDraw__15daNpcWrestler_cFPv */
-void daNpcWrestler_c::sumouTackleDraw(void* param_0) {
+/* 80B36C8C-80B37270 007AEC 05E4+00 2/0 0/0 0/0 .text            sumouTackleDraw__15daNpcWrestler_cFPv */
+bool daNpcWrestler_c::sumouTackleDraw(void* param_1) {
     // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    int jointNo = mType != 0 ? 0 : 0;
+    cXyz sp2c;
+
+    switch (field_0xe96) {
+        case 0:
+            setExpressionAnm(0x12, true);
+            setMotion(0x14, -1.0f, 0);
+            field_0xde4 = NULL;
+            field_0xde0 = NULL;
+            field_0xddc = NULL;
+            field_0xdd8 = NULL;
+            field_0xe96 = 2;
+            break;
+
+        case 2:
+            mpMorf->setPlaySpeed(0.0f);
+            mpMorf->setFrameF(player->getBaseAnimeFrame());
+            mpMorf->modelCalc();
+            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo));
+            mDoMtx_stack_c::multVecZero(&sp2c);
+            mDoMtx_stack_c::transS(sp2c);
+            mDoMtx_stack_c::YrotM(mCurAngle.y);
+            mDoMtx_stack_c::transM(0.0f, 20.0f, 60.0f);
+            mDoMtx_stack_c::multVecZero(&sp2c);
+
+            if (mpMorf->getFrame() == 4.0f) {
+                if (mType == 1 && !daPy_getPlayerActorClass()->checkEquipHeavyBoots()) {
+                    setAction(&daNpcWrestler_c::demoSumouUnilateralWin);
+                } else {
+                    dComIfGp_getVibration().StartShock(field_0xbd8->slap_hit_impact, 15, cXyz(0.0f, 1.0f, 0.0f));
+
+                    field_0xde0 = dComIfGp_particle_set(0x8539, &sp2c, &mCurAngle, NULL);
+                    field_0xde4 = dComIfGp_particle_set(0x853A, &sp2c, &mCurAngle, NULL);
+
+                    if (field_0xde0 != NULL) {
+                        field_0xde0->becomeImmortalEmitter();
+                    }
+
+                    if (field_0xde4 != NULL) {
+                        field_0xde4->becomeImmortalEmitter();
+                    }
+                }
+            }
+
+            if (field_0xde0 != NULL || field_0xde4 != NULL) {
+                if (field_0xde0 != NULL) {
+                    field_0xde0->setGlobalTranslation(sp2c);
+                }
+
+                if (field_0xde4 != NULL) {
+                    JGeometry::TVec3<s16> emitter_rot;
+                    emitter_rot.x = mCurAngle.x;
+                    emitter_rot.y = mCurAngle.y;
+                    emitter_rot.z = mCurAngle.z;
+                    field_0xde4->setGlobalTranslation(sp2c);
+                    field_0xde4->setGlobalRotation(emitter_rot);
+                }
+            }
+
+            if (mpMorf->getFrame() > 4.0f && mpMorf->getFrame() < 24.0f) {
+                dCam_getBody()->ModeFix(5);
+            }
+
+            if (checkOutOfArenaW()) {
+                setAction(&daNpcWrestler_c::demoSumouLose2);
+            } else if (checkOutOfArenaP()) {
+                setAction(&daNpcWrestler_c::demoSumouWin2);
+            } else if (player->checkSumouWait()) {
+                field_0xe8c = field_0xbd8->common.morf_frame;
+                setAction(&daNpcWrestler_c::sumouWait);
+            }
+            break;
+
+        case 3:
+            break;
+    }
+
+    return true;
 }
 
-/* ############################################################################################## */
-/* 80B41CC8-80B41CCC 0005EC 0004+00 0/2 0/0 0/0 .rodata          @7963 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7963 = 12.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80B41CC8, &lit_7963);
-#pragma pop
-
-/* 80B41CCC-80B41CD0 0005F0 0004+00 0/1 0/0 0/0 .rodata          @7964 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_7964 = 4.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80B41CCC, &lit_7964);
-#pragma pop
-
-/* 80B37270-80B378F4 0080D0 0684+00 4/0 0/0 0/0 .text            sumouSideStep__15daNpcWrestler_cFPv
- */
-void daNpcWrestler_c::sumouSideStep(void* param_0) {
+/* 80B37270-80B378F4 0080D0 0684+00 4/0 0/0 0/0 .text            sumouSideStep__15daNpcWrestler_cFPv */
+bool daNpcWrestler_c::sumouSideStep(void* param_1) {
     // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    int jointNo, jointNo2;
+
+    switch (field_0xe96) {
+        case 0:
+            field_0xe80 = field_0xbdc->lateral_movement_time;
+            setStepAngle();
+            if (mStepAngle > 0) {
+                setMotion(11, -1.0f, 0);
+            } else {
+                setMotion(10, -1.0f, 0);
+            }
+
+            mpMorf->setPlaySpeed(2.4f);
+            field_0xe96 = 2;
+            break;
+
+        case 2:
+            correctGraspPosAngle(true);
+
+            jointNo = mType == 0 ? 0x1A : 0x18;
+            jointNo2 = mType == 0 ? 0x1E : 0x1B;
+            cXyz sp2c;
+
+            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo));
+            mDoMtx_stack_c::multVecZero(&sp2c);
+            sp2c.y = current.pos.y;
+            fopAcM_effSmokeSet2(&field_0xde8, NULL, &sp2c, &mCurAngle, 0.8f, &tevStr);
+            JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(field_0xde8);
+            if (emitter != NULL) {
+                emitter->setRateStep(1);
+            }
+
+            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo2));
+            mDoMtx_stack_c::multVecZero(&sp2c);
+            sp2c.y = current.pos.y;
+            fopAcM_effSmokeSet2(&field_0xdec, NULL, &sp2c, &mCurAngle, 0.8f, &tevStr);
+            emitter = dComIfGp_particle_getEmitter(field_0xdec);
+            if (emitter != NULL) {
+                emitter->setRateStep(1);
+            }
+
+            field_0xe80--;
+
+            if (checkOutOfArenaP()) {
+                setAction(&daNpcWrestler_c::demoSumouWin2);
+            } else if (daPy_getPlayerActorClass()->checkSumouTackleMiss()) {
+                setAction(&daNpcWrestler_c::sumouPunchChaseShock);
+            } else if (field_0xe80 < 0) {
+                field_0xe8c = field_0xbd8->common.morf_frame;
+                if (daPy_getPlayerActorClass()->checkSumouTackleMiss()) {
+                    setAction(&daNpcWrestler_c::sumouTackleHit);
+                    daPy_getPlayerActorClass()->setSumouForceTackle();
+                } else {
+                    setAction(&daNpcWrestler_c::sumouWait);
+                }
+            }
+            break;
+
+        case 3:
+            mStepAngle = 0;
+            break;
+    }
+
+    return true;
 }
 
-/* 80B378F4-80B37C30 008754 033C+00 1/0 0/0 0/0 .text sumouLostBalance__15daNpcWrestler_cFPv */
-void daNpcWrestler_c::sumouLostBalance(void* param_0) {
+/* 80B378F4-80B37C30 008754 033C+00 1/0 0/0 0/0 .text            sumouLostBalance__15daNpcWrestler_cFPv */
+bool daNpcWrestler_c::sumouLostBalance(void* param_1) {
     // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+
+    switch (field_0xe96) {
+        case 0:
+            field_0xe80 = field_0xbdc->stagger_time;
+            setMotion(8, field_0xbd8->common.morf_frame, 0);
+            mWrestlerAction = 5;
+            field_0xe96 = 2;
+            break;
+
+        case 2:
+            if (abs(oppositeToPlayer()) < 0x1000) {
+                setAction(&daNpcWrestler_c::sumouWait);
+            } else {
+                if (checkOutOfArenaP()) {
+                    setAction(&daNpcWrestler_c::demoSumouWin2);
+                } else if (player->checkSumouTackleSuccess()) {
+                    setAction(&daNpcWrestler_c::sumouTackleShock);
+                } else if (player->checkSumouPunchSuccess()) {
+                    setAction(&daNpcWrestler_c::sumouPunchShock);
+                }
+            }
+            break;
+
+        case 3:
+            break;
+    }
+
+    return true;
 }
 
-/* 80B37C30-80B37FB8 008A90 0388+00 4/0 0/0 0/0 .text sumouPunchShock__15daNpcWrestler_cFPv */
-void daNpcWrestler_c::sumouPunchShock(void* param_0) {
+/* 80B37C30-80B37FB8 008A90 0388+00 4/0 0/0 0/0 .text            sumouPunchShock__15daNpcWrestler_cFPv */
+bool daNpcWrestler_c::sumouPunchShock(void* param_1) {
     // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+
+    switch (field_0xe96) {
+        case 0:
+            setExpressionAnm(7, true);
+            setMotion(0xF, -1.0f, 0);
+            field_0xe96 = 2;
+            break;
+
+        case 2:
+            mpMorf->setPlaySpeed(0.0f);
+            mpMorf->setFrameF(player->getBaseAnimeFrame());
+            if (mpMorf->getFrame() == 13.0f) {
+                dComIfGp_getVibration().StartShock(field_0xbd8->slap_hit_impact, 15, cXyz(0.0f, 1.0f, 0.0f));
+            }
+
+            if (checkOutOfArenaW()) {
+                setAction(&daNpcWrestler_c::demoSumouLose2);
+            } else if (checkOutOfArenaP()) {
+                setAction(&daNpcWrestler_c::demoSumouWin2);
+            } else if (player->checkSumouWait()) {
+                if (field_0xe98 != 0) {
+                    setAction(&daNpcWrestler_c::sumouWait);
+                } else {
+                    setAction(&daNpcWrestler_c::sumouPunchStagger);
+                }
+            }
+            break;
+
+        case 3:
+            break;
+    }
+
+    return true;
 }
 
-/* 80B37FB8-80B38518 008E18 0560+00 2/0 0/0 0/0 .text sumouPunchChaseShock__15daNpcWrestler_cFPv
- */
-void daNpcWrestler_c::sumouPunchChaseShock(void* param_0) {
+/* 80B37FB8-80B38518 008E18 0560+00 2/0 0/0 0/0 .text            sumouPunchChaseShock__15daNpcWrestler_cFPv */
+bool daNpcWrestler_c::sumouPunchChaseShock(void* param_1) {
     // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+
+    switch (field_0xe96) {
+        case 0:
+            setStepAngle();
+            if (mStepAngle > 0) {
+                setMotion(0xB, -1.0f, 0);
+            } else {
+                setMotion(10, -1.0f, 0);
+            }
+
+            mpMorf->setPlaySpeed(2.4f);
+            field_0xe96 = 2;
+            break;
+
+        case 2:
+            if (player->getBaseAnimeFrame() == 13.0f) {
+                setExpressionAnm(7, true);
+                setMotion(0xF, -1.0f, 0);
+                mpMorf->setFrameF(13.0f);
+                dComIfGp_getVibration().StartShock(field_0xbd8->slap_hit_impact, 15, cXyz(0.0f, 1.0f, 0.0f));
+            }
+
+            if (player->getBaseAnimeFrame() >= 13.0f) {
+                mpMorf->setPlaySpeed(0.0f);
+                mpMorf->setFrameF(player->getBaseAnimeFrame());
+            } else {
+                correctGraspPosAngle(true);
+            }
+
+            if (checkOutOfArenaW()) {
+                setAction(&daNpcWrestler_c::demoSumouLose2);
+            } else if (checkOutOfArenaP()) {
+                setAction(&daNpcWrestler_c::demoSumouWin2);
+            } else if (player->checkSumouWait()) {
+                setAction(&daNpcWrestler_c::sumouPunchStagger);
+            }
+            break;
+
+        case 3:
+            mStepAngle = 0;
+            break;
+    }
+
+    return true;
 }
 
-/* 80B38518-80B389A4 009378 048C+00 2/0 0/0 0/0 .text sumouPunchStagger__15daNpcWrestler_cFPv */
-void daNpcWrestler_c::sumouPunchStagger(void* param_0) {
+/* 80B38518-80B389A4 009378 048C+00 2/0 0/0 0/0 .text            sumouPunchStagger__15daNpcWrestler_cFPv */
+bool daNpcWrestler_c::sumouPunchStagger(void* param_1) {
     // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+
+    switch (field_0xe96) {
+        case 0:
+            correctGraspPosAngle(false);
+            field_0xe80 = field_0xbdc->stagger_time;
+            setExpressionAnm(0xB, true);
+            setMotion(0xE, -1.0f, 0);
+            field_0xe98 = 1;
+            mWrestlerAction = 5;
+            field_0xe96 = 2;
+            break;
+
+        case 2:
+            correctGraspPosAngle(false);
+            field_0xe80--;
+
+            if (checkOutOfArenaW()) {
+                setAction(&daNpcWrestler_c::demoSumouLose2);
+            } else if (checkOutOfArenaP()) {
+                setAction(&daNpcWrestler_c::demoSumouWin2);
+            } else if (player->checkSumouTackleSuccess()) {
+                setAction(&daNpcWrestler_c::sumouTackleShock);
+            } else if (player->checkSumouPunchSuccess()) {
+                setAction(&daNpcWrestler_c::sumouPunchShock);
+            } else if (field_0xe80 < 0) {
+                setAction(&daNpcWrestler_c::sumouWait);
+            }
+            break;
+
+        case 3:
+            break;
+    }
+
+    return true;
 }
 
-/* ############################################################################################## */
-/* 80B41CD0-80B41CD4 0005F4 0004+00 0/2 0/0 0/0 .rodata          @8383 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_8383 = 5.0f;
-COMPILER_STRIP_GATE(0x80B41CD0, &lit_8383);
-#pragma pop
-
-/* 80B389A4-80B38C90 009804 02EC+00 4/0 0/0 0/0 .text sumouTackleShock__15daNpcWrestler_cFPv */
-void daNpcWrestler_c::sumouTackleShock(void* param_0) {
+/* 80B389A4-80B38C90 009804 02EC+00 4/0 0/0 0/0 .text            sumouTackleShock__15daNpcWrestler_cFPv */
+bool daNpcWrestler_c::sumouTackleShock(void* param_1) {
     // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+
+    switch (field_0xe96) {
+        case 0:
+            setExpressionAnm(0xF, true);
+            setMotion(0x13, -1.0f, 0);
+            correctGraspPosAngle(true);
+            field_0xe96 = 2;
+            break;
+
+        case 2:
+            mpMorf->setPlaySpeed(0.0f);
+            mpMorf->setFrameF(player->getBaseAnimeFrame());
+            if (mpMorf->getFrame() == 5.0f) {
+                dComIfGp_getVibration().StartShock(field_0xbd8->slap_hit_impact, 15, cXyz(0.0f, 1.0f, 0.0f));
+            }
+
+            if (checkOutOfArenaW()) {
+                setAction(&daNpcWrestler_c::demoSumouLose);
+            } else if (player->checkSumouPushFront()) {
+                setAction(&daNpcWrestler_c::sumouTackleStagger);
+            }
+            break;
+
+        case 3:
+            break;
+    }
+    return true;
 }
 
-/* ############################################################################################## */
-/* 80B41CD4-80B41CDC 0005F8 0004+04 0/6 0/0 0/0 .rodata          @8575 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_8575[1 + 1 /* padding */] = {
-    9.0f / 10.0f,
-    /* padding */
-    0.0f,
-};
-COMPILER_STRIP_GATE(0x80B41CD4, &lit_8575);
-#pragma pop
-
-/* 80B41CDC-80B41CE4 000600 0008+00 0/3 0/0 0/0 .rodata          @8576 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_8576[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80B41CDC, &lit_8576);
-#pragma pop
-
-/* 80B41CE4-80B41CEC 000608 0008+00 0/3 0/0 0/0 .rodata          @8577 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_8577[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80B41CE4, &lit_8577);
-#pragma pop
-
-/* 80B41CEC-80B41CF4 000610 0008+00 0/3 0/0 0/0 .rodata          @8578 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_8578[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80B41CEC, &lit_8578);
-#pragma pop
-
-/* 80B38C90-80B39334 009AF0 06A4+00 2/0 0/0 0/0 .text sumouTackleStagger__15daNpcWrestler_cFPv */
-void daNpcWrestler_c::sumouTackleStagger(void* param_0) {
+/* 80B38C90-80B39334 009AF0 06A4+00 2/0 0/0 0/0 .text            sumouTackleStagger__15daNpcWrestler_cFPv */
+bool daNpcWrestler_c::sumouTackleStagger(void* param_1) {
     // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    int jointNo = mType == 0 ? 0x1A : 0x18;
+    int jointNo2 = mType == 0 ? 0x1E : 0x1B;
+
+    switch (field_0xe96) {
+        case 0:
+            field_0xe80 = field_0xbdc->stagger_time;
+            setExpressionAnm(0x10, true);
+            setMotion(0x15, -1.0f, 0);
+            mWrestlerAction = 5;
+            field_0xe96 = 2;
+            break;
+
+        case 2:
+            correctGraspPosAngle(true);
+            cXyz sp58;
+            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo));
+            mDoMtx_stack_c::multVecZero(&sp58);
+            sp58.y = current.pos.y;
+            fopAcM_effSmokeSet2(&field_0xde8, NULL, &sp58, &mCurAngle, 0.9f, &tevStr);
+
+            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo2));
+            mDoMtx_stack_c::multVecZero(&sp58);
+            sp58.y = current.pos.y;
+            fopAcM_effSmokeSet2(&field_0xdec, NULL, &sp58, &mCurAngle, 0.9f, &tevStr);
+
+            f32 fVar1 = getJointPos(jointNo).absXZ(mArenaPos);
+            f32 fVar2 = getJointPos(jointNo2).absXZ(mArenaPos);
+            if (fVar1 > field_0xbd8->field_0x80 || fVar2 > field_0xbd8->field_0x80) {
+                Z2GetAudioMgr()->changeSubBgmStatus(3);
+            }
+
+            if (fVar1 > field_0xbd8->field_0x84 || fVar2 > field_0xbd8->field_0x84) {
+                player->setSumouPushFrontStop();
+            }
+
+            mpMorf->setPlaySpeed(0.0f);
+            mpMorf->setFrameF(player->getBaseAnimeFrame());
+
+            field_0xe80--;
+
+            if (checkOutOfArenaW()) {
+                setAction(&daNpcWrestler_c::demoSumouLose);
+            } else if (field_0xe80 < 0) {
+                setAction(&daNpcWrestler_c::sumouTackleStaggerRelease);
+            }
+            break;
+
+        case 3:
+            player->setSumouForceGraspCancel();
+            break;
+    }
+
+    return true;
 }
 
-/* 80B39334-80B39554 00A194 0220+00 1/0 0/0 0/0 .text
- * sumouTackleStaggerRelease__15daNpcWrestler_cFPv              */
-void daNpcWrestler_c::sumouTackleStaggerRelease(void* param_0) {
+/* 80B39334-80B39554 00A194 0220+00 1/0 0/0 0/0 .text            sumouTackleStaggerRelease__15daNpcWrestler_cFPv */
+bool daNpcWrestler_c::sumouTackleStaggerRelease(void* param_1) {
     // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+
+    switch (field_0xe96) {
+        case 0:
+            setExpressionAnm(10, true);
+            setMotion(0x18, -1.0f, 0);
+            mWrestlerAction = 0;
+            field_0xe96 = 2;
+            break;
+
+        case 2:
+            correctGraspPosAngle(true);
+            Z2GetAudioMgr()->changeSubBgmStatus(2);
+            mpMorf->setPlaySpeed(0.0f);
+            mpMorf->setFrameF(player->getBaseAnimeFrame());
+
+            if (player->checkSumouWait()) {
+                setAction(&daNpcWrestler_c::sumouWait);
+            }
+            break;
+
+        case 3:
+            break;
+    }
+
+    return true;
 }
 
-/* 80B39554-80B39C18 00A3B4 06C4+00 1/0 0/0 0/0 .text sumouTacklePush__15daNpcWrestler_cFPv */
-void daNpcWrestler_c::sumouTacklePush(void* param_0) {
+/* 80B39554-80B39C18 00A3B4 06C4+00 1/0 0/0 0/0 .text            sumouTacklePush__15daNpcWrestler_cFPv */
+bool daNpcWrestler_c::sumouTacklePush(void* param_1) {
     // NONMATCHING
-}
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    
+    switch (field_0xe96) {
+        case 0:
+            setExpressionAnm(0x11, true);
+            setMotion(0x16, -1.0f, 0);
+            field_0xe96 = 2;
+            break;
 
-/* ############################################################################################## */
-/* 80B41CF4-80B41CF8 000618 0004+00 0/2 0/0 0/0 .rodata          @8935 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_8935 = 23.0f;
-COMPILER_STRIP_GATE(0x80B41CF4, &lit_8935);
-#pragma pop
+        case 2:
+            correctGraspPosAngle(true);
+            int jointNo = mType == 0 ? 0x1A : 0x18;
+            int jointNo2 = mType == 0 ? 0x1E : 0x1B;
+            cXyz sp60;
+
+            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo));
+            mDoMtx_stack_c::multVecZero(&sp60);
+            sp60.y = current.pos.y;
+            fopAcM_effSmokeSet2(&field_0xde8, NULL, &sp60, &mCurAngle, 0.9f, &tevStr);
+
+            mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo2));
+            mDoMtx_stack_c::multVecZero(&sp60);
+            sp60.y = current.pos.y;
+            fopAcM_effSmokeSet2(&field_0xdec, NULL, &sp60, &mCurAngle, 0.9f, &tevStr);
+
+            f32 fVar1 = player->getLeftFootPos().absXZ(mArenaPos);
+            f32 fVar2 = player->getRightFootPos().absXZ(mArenaPos);
+            if (fVar1 > field_0xbd8->field_0x80 || fVar2 > field_0xbd8->field_0x80) {
+                Z2GetAudioMgr()->changeSubBgmStatus(3);
+            }
+
+            if (fVar1 > field_0xbd8->field_0x84 || fVar2 > field_0xbd8->field_0x84) {
+                player->setSumouPushFrontStop();
+            }
+
+            s16 sVar1 = cLib_targetAngleY(mArenaPos, *player->getViewerCurrentPosP()) - mCurAngle.y;
+            if (abs(sVar1) > field_0xbdc->field_0x28) {
+                if (sVar1 <= 0) {
+                    sVar1 = -field_0xbdc->field_0x28;
+                } else {
+                    sVar1 = field_0xbdc->field_0x28;
+                }
+            }
+
+            player->setSumouPushBackDirection(sVar1);
+            
+            mpMorf->setPlaySpeed(0.0f);
+            mpMorf->setFrameF(player->getBaseAnimeFrame());
+
+            if (checkOutOfArenaP()) {
+                setAction(&daNpcWrestler_c::demoSumouWin);
+            } else if (player->checkSumouGraspRelease()) {
+                setAction(&daNpcWrestler_c::sumouTackleRelease);
+            }
+            break;
+
+        case 3:
+            break;
+    }
+
+    return true;
+}
 
 /* 80B39C18-80B39F88 00AA78 0370+00 1/0 0/0 0/0 .text sumouTackleRelease__15daNpcWrestler_cFPv */
-void daNpcWrestler_c::sumouTackleRelease(void* param_0) {
+bool daNpcWrestler_c::sumouTackleRelease(void* param_1) {
     // NONMATCHING
+    switch (field_0xe96) {
+        case 0:
+            setExpressionAnm(5, true);
+            setMotion(0x17, -1.0f, 0);
+            field_0xe96 = 2;
+            break;
+
+        case 2:
+            correctGraspPosAngle(true);
+            if (mpMorf->getFrame() >= 23.0f && mpMorf->getFrame() <= 34.0f) {
+                int jointNo = mType == 0 ? 0x1A : 0x18;
+                int jointNo2 = mType == 0 ? 0x1E : 0x1B;
+                cXyz sp3c;
+
+                mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo));
+                mDoMtx_stack_c::multVecZero(&sp3c);
+                sp3c.y = current.pos.y;
+                fopAcM_effSmokeSet2(&field_0xde8, NULL, &sp3c, &mCurAngle, 0.9f, &tevStr);
+
+                mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo2));
+                mDoMtx_stack_c::multVecZero(&sp3c);
+                sp3c.y = current.pos.y;
+                fopAcM_effSmokeSet2(&field_0xde8, NULL, &sp3c, &mCurAngle, 0.9f, &tevStr);
+            }
+
+            Z2GetAudioMgr()->changeSubBgmStatus(2);
+            mpMorf->setPlaySpeed(0.0f);
+            mpMorf->setFrameF(daPy_getPlayerActorClass()->getBaseAnimeFrame());
+
+            if (daPy_getPlayerActorClass()->checkSumouWait()) {
+                setAction(&daNpcWrestler_c::sumouWait);
+            }
+            break;
+
+        case 3:
+            if (mType != 0) {
+                setLookMode(2);
+                mActorMngr[0].entry(daPy_getPlayerActorClass());
+            }
+            break;
+    }
+
+    return true;
 }
 
 /* ############################################################################################## */
@@ -3323,7 +4371,7 @@ COMPILER_STRIP_GATE(0x80B41CFC, &lit_9267);
 #pragma pop
 
 /* 80B39F88-80B3AE24 00ADE8 0E9C+00 2/0 0/0 0/0 .text demoSumouReady__15daNpcWrestler_cFPv */
-bool daNpcWrestler_c::demoSumouReady(void* param_0) {
+bool daNpcWrestler_c::demoSumouReady(void* param_1) {
     // NONMATCHING
 }
 
@@ -3395,9 +4443,8 @@ SECTION_RODATA static f32 const lit_9391 = 10.0f;
 COMPILER_STRIP_GATE(0x80B41D24, &lit_9391);
 #pragma pop
 
-/* 80B3AE24-80B3B4B4 00BC84 0690+00 2/0 0/0 0/0 .text            demoSumouWin__15daNpcWrestler_cFPv
- */
-void daNpcWrestler_c::demoSumouWin(void* param_0) {
+/* 80B3AE24-80B3B4B4 00BC84 0690+00 2/0 0/0 0/0 .text            demoSumouWin__15daNpcWrestler_cFPv */
+bool daNpcWrestler_c::demoSumouWin(void* param_1) {
     // NONMATCHING
 }
 
@@ -3479,25 +4526,23 @@ SECTION_RODATA static f32 const lit_9581 = 70.0f;
 COMPILER_STRIP_GATE(0x80B41D50, &lit_9581);
 #pragma pop
 
-/* 80B3B4B4-80B3BC84 00C314 07D0+00 3/0 0/0 0/0 .text            demoSumouLose__15daNpcWrestler_cFPv
- */
-void daNpcWrestler_c::demoSumouLose(void* param_0) {
+/* 80B3B4B4-80B3BC84 00C314 07D0+00 3/0 0/0 0/0 .text            demoSumouLose__15daNpcWrestler_cFPv */
+bool daNpcWrestler_c::demoSumouLose(void* param_1) {
     // NONMATCHING
 }
 
 /* 80B3BC84-80B3C278 00CAE4 05F4+00 11/0 0/0 0/0 .text demoSumouWin2__15daNpcWrestler_cFPv */
-void daNpcWrestler_c::demoSumouWin2(void* param_0) {
+bool daNpcWrestler_c::demoSumouWin2(void* param_1) {
     // NONMATCHING
 }
 
 /* 80B3C278-80B3CA2C 00D0D8 07B4+00 5/0 0/0 0/0 .text demoSumouLose2__15daNpcWrestler_cFPv */
-void daNpcWrestler_c::demoSumouLose2(void* param_0) {
+bool daNpcWrestler_c::demoSumouLose2(void* param_1) {
     // NONMATCHING
 }
 
-/* 80B3CA2C-80B3D0C0 00D88C 0694+00 4/0 0/0 0/0 .text demoSumouUnilateralWin__15daNpcWrestler_cFPv
- */
-void daNpcWrestler_c::demoSumouUnilateralWin(void* param_0) {
+/* 80B3CA2C-80B3D0C0 00D88C 0694+00 4/0 0/0 0/0 .text demoSumouUnilateralWin__15daNpcWrestler_cFPv */
+bool daNpcWrestler_c::demoSumouUnilateralWin(void* param_1) {
     // NONMATCHING
 }
 
