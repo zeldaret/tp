@@ -1753,7 +1753,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_mg_fshop"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_mirror"),
     ActorRel(NonMatching, "d_a_movie_player", extra_cflags=["-O3,p"]),
-    ActorRel(NonMatching, "d_a_myna"),
+    ActorRel(Equivalent, "d_a_myna"), # weak function order
     ActorRel(NonMatching, "d_a_ni"),
     ActorRel(NonMatching, "d_a_npc_aru"),
     ActorRel(NonMatching, "d_a_npc_ash"),
