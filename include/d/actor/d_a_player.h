@@ -1180,6 +1180,10 @@ public:
     void setSumouReadyAcceptButton() { mSpecialMode = 2; }
     void setSumouForceStand() { mSpecialMode = 3; }
     void setSumouPushFrontStop() { mSpecialMode = 9; }
+    void setSumouPunchWinEnd() { mSpecialMode = 0xB; }
+    void setSumouPunchLoseEnd() { mSpecialMode = 0xC; }
+    void setSumouMoveWinEnd() { mSpecialMode = 0xD; }
+    void setSumouMoveLoseEnd() { mSpecialMode = 0xE; }
     void setSumouForcePunch() {
         if (mSpecialMode == 0x1F) {
             mSpecialMode = 0x21;

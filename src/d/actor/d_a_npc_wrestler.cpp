@@ -4355,27 +4355,43 @@ bool daNpcWrestler_c::sumouTackleRelease(void* param_1) {
     return true;
 }
 
-/* ############################################################################################## */
-/* 80B41CF8-80B41CFC 00061C 0004+00 0/1 0/0 0/0 .rodata          @9266 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_9266 = 1.0f / 100.0f;
-COMPILER_STRIP_GATE(0x80B41CF8, &lit_9266);
-#pragma pop
-
-/* 80B41CFC-80B41D00 000620 0004+00 0/3 0/0 0/0 .rodata          @9267 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_9267 = 40.0f;
-COMPILER_STRIP_GATE(0x80B41CFC, &lit_9267);
-#pragma pop
-
 /* 80B39F88-80B3AE24 00ADE8 0E9C+00 2/0 0/0 0/0 .text demoSumouReady__15daNpcWrestler_cFPv */
 bool daNpcWrestler_c::demoSumouReady(void* param_1) {
     // NONMATCHING
     dCamera_c* camBody = dCam_getBody();
+    int iVar1;
+    f32 fVar1, fVar2, fVar3;
 
     switch (field_0xe96) {
+        case 0:
+            field_0xe84 = 0;
+            switch (mType) {
+                case 0:
+                    Z2GetAudioMgr()->subBgmStart(Z2BGM_SUMO_D1);
+                    break;
+
+                case 1:
+                    Z2GetAudioMgr()->subBgmStart(Z2BGM_SUMO_D02);
+                    break;
+            }
+
+            daPy_getPlayerActorClass()->setSumouReady(this);
+            initDemoCamera_ReadyWrestler();
+            setExpression(0x1B, field_0xbd8->common.morf_frame);
+
+            if (field_0xe9a != 0) {
+                field_0xe80 = 1.0f / field_0xbd8->fade_speed;
+                mDoGph_gInf_c::fadeOut(-field_0xbd8->fade_speed);
+                camBody->SetTrimSize(2);
+                camBody->Set(mDemoCam.mDemoCamCenter, mDemoCam.mDemoCamEye, mDemoCamFovy, 0);
+            } else {
+                field_0xe80 = 0;
+            }
+
+            dComIfGp_getEvent().startCheckSkipEdge(this);
+            field_0xe96 = 2;
+            break;
+
         case 2:
             if (dComIfGp_getEvent().checkSkipEdge()) {
                 field_0xe84 = 10;
@@ -4418,8 +4434,8 @@ bool daNpcWrestler_c::demoSumouReady(void* param_1) {
                     mDoMtx_stack_c::XrotM(field_0xbd8->field_0xa8);
                     mDemoCam.mDemoCamCenter.set(0.0f, 0.0f, mArenaExtent * 0.5f - 100.0f);
                     mDoMtx_stack_c::multVec(&mDemoCam.mDemoCamCenter, &mDemoCam.mDemoCamCenter);
-                    f32 fVar1 = fabsf(field_0xbd8->field_0xa0) - 40.0f;
-                    if (fVar1 < fabsf(field_0xe54)) {
+
+                    if (fabsf(field_0xe54) > fabsf(field_0xbd8->field_0xa0) - 40.0f) {
                         setMotion(7, 8.0f, 0);
                         field_0xe80 = field_0xbd8->field_0xb4;
                         field_0xe84++;
@@ -4427,13 +4443,13 @@ bool daNpcWrestler_c::demoSumouReady(void* param_1) {
                     break;
 
                 case 3:
-                    int iVar1 = field_0xe80;
+                    iVar1 = field_0xe80;
                     field_0xe80--;
-                    if (iVar1 < 1) {
+                    if (iVar1 <= 0) {
                         mDemoCam.field_0x18.set(0.0f, 0.0f, -100.0f);
                         mDoMtx_stack_c::transS(current.pos);
                         mDoMtx_stack_c::YrotM(mCurAngle.y);
-                        mDoMtx_stack_c::transS(cXyz(field_0xbd8->field_0xb8, field_0xbd8->field_0xbc, field_0xbd8->field_0xc0));
+                        mDoMtx_stack_c::transM(cXyz(field_0xbd8->field_0xb8, field_0xbd8->field_0xbc, field_0xbd8->field_0xc0));
                         mDoMtx_stack_c::multVecZero(&mDemoCam.field_0x24);
                         mDoMtx_stack_c::XrotM(field_0xbd8->field_0xe8);
                         mDoMtx_stack_c::multVec(&mDemoCam.field_0x18, &mDemoCam.field_0x18);
@@ -4487,9 +4503,9 @@ bool daNpcWrestler_c::demoSumouReady(void* param_1) {
 
                     if (cLib_addCalcPos(&mDemoCam.mDemoCamEye, mDemoCam.field_0x24, 0.15f, 5.0f, 1.0f) == 0.0f && 
                         cLib_addCalcPos(&mDemoCam.mDemoCamCenter, mDemoCam.field_0x24, 0.15f, 5.0f, 1.0f) == 0.0f) {
-                        int iVar2 = field_0xe80;
+                        iVar1 = field_0xe80;
                         field_0xe80--;
-                        if (iVar2 < 1) {
+                        if (iVar1 < 1) {
                             daPy_getPlayerActorClass()->offPlayerNoDraw();
                             onWrestlerNoDraw();
                             initDemoCamera_ReadyLink();
@@ -4497,184 +4513,826 @@ bool daNpcWrestler_c::demoSumouReady(void* param_1) {
                         }
                     }
                     break;
+
+                case 6:
+                    field_0xe54 += field_0xe58;
+                    cLib_chaseF(&field_0xe58, field_0xbd8->field_0xa4, 0.01f);
+                    mDoMtx_stack_c::transS(mArenaPos);
+                    mDoMtx_stack_c::YrotM(mArenaAngle);
+                    mDoMtx_stack_c::transM(field_0xe54 - field_0xbd8->field_0xa0, field_0xbd8->field_0x9c, field_0xbd8->field_0x94);
+                    mDoMtx_stack_c::multVecZero(&mDemoCam.mDemoCamEye);
+                    mDoMtx_stack_c::XrotM(field_0xbd8->field_0xaa);
+                    mDemoCam.mDemoCamCenter.set(0.0f, 0.0f, mArenaExtent * 0.5f - 100.0f);
+                    mDoMtx_stack_c::multVec(&mDemoCam.mDemoCamCenter, &mDemoCam.mDemoCamCenter);
+
+                    if (fabsf(field_0xe54) > (fabsf(field_0xbd8->field_0xa0) - 40.0f)) {
+                        daPy_getPlayerActorClass()->changeOriginalDemo();
+                        daPy_getPlayerActorClass()->changeDemoMode(0x33, 0, 0, 0);
+                        field_0xe80 = field_0xbd8->field_0xb6;
+                        field_0xe84++;
+                    }
+                    break;
+
+                case 7:
+                    iVar1 = field_0xe80;
+                    field_0xe80--;
+                    if (iVar1 < 1) {
+                        mDoMtx_stack_c::transS(fopAcM_GetPosition(daPy_getPlayerActorClass()));
+                        mDoMtx_stack_c::YrotM(fopAcM_GetShapeAngle_p(daPy_getPlayerActorClass())->y);
+                        mDoMtx_stack_c::transM(cXyz(field_0xbd8->field_0xd0, field_0xbd8->field_0xd4, field_0xbd8->field_0xd8));
+                        mDoMtx_stack_c::multVecZero(&mDemoCam.field_0x24);
+                        mDoMtx_stack_c::XrotM(field_0xbd8->field_0xec);
+                        mDemoCam.field_0x18.set(0.0f, 0.0f, -100.0f);
+                        mDoMtx_stack_c::multVec(&mDemoCam.field_0x18, &mDemoCam.field_0x18);
+                        field_0xe80 = 0x96 - field_0xbd8->field_0xb6;
+                        field_0xe84++;
+                    }
+                    break;
+
+                case 8:
+                    if (daPy_getPlayerActorClass()->getBaseAnimeFrame() == 126.0f) {
+                        dComIfGp_getVibration().StartShock(3, 15, cXyz(0.0f, 1.0f, 0.0f));
+                    }
+
+                    mDoMtx_stack_c::transS(fopAcM_GetPosition(daPy_getPlayerActorClass()));
+                    mDoMtx_stack_c::YrotM(fopAcM_GetShapeAngle_p(daPy_getPlayerActorClass())->y);
+                    mDoMtx_stack_c::transM(cXyz(field_0xbd8->field_0xd0, field_0xbd8->field_0xd4, field_0xbd8->field_0xd8));
+                    mDoMtx_stack_c::multVecZero(&mDemoCam.field_0x24);
+                    mDoMtx_stack_c::XrotM(field_0xbd8->field_0xec);
+                    mDemoCam.field_0x18.set(0.0f, 0.0f, -100.0f);
+                    mDoMtx_stack_c::multVec(&mDemoCam.field_0x18, &mDemoCam.field_0x18);
+
+                    fVar2 = cLib_addCalcPos(&mDemoCam.mDemoCamCenter, mDemoCam.field_0x18, 0.15f, 5.0f, 1.0f);
+                    fVar3 = cLib_addCalcPos(&mDemoCam.mDemoCamEye, mDemoCam.field_0x24, 0.15f, 5.0f, 1.0f);
+                    
+                    iVar1 = field_0xe80;
+                    field_0xe80--;
+                    if (iVar1 < 1 && fVar3 == 0.0f && fVar1 == 0.0f) {
+                        mDoMtx_stack_c::transS(fopAcM_GetPosition(daPy_getPlayerActorClass()));
+                        mDoMtx_stack_c::YrotM(fopAcM_GetShapeAngle_p(daPy_getPlayerActorClass())->y);
+                        mDoMtx_stack_c::transM(cXyz(field_0xbd8->field_0xdc, field_0xbd8->field_0xc0, field_0xbd8->field_0xc4));
+                        mDoMtx_stack_c::multVecZero(&mDemoCam.field_0x24);
+                        mDoMtx_stack_c::XrotM(field_0xbd8->field_0xee);
+                        mDemoCam.field_0x18.set(0.0f, 0.0f, -100.0f);
+                        mDoMtx_stack_c::multVec(&mDemoCam.field_0x18, &mDemoCam.field_0x18);
+                        field_0xe80 = 60;
+                        field_0xe84++;
+                    }
+                    break;
+
+                case 9:
+                    mDoMtx_stack_c::transS(fopAcM_GetPosition(daPy_getPlayerActorClass()));
+                    mDoMtx_stack_c::YrotM(fopAcM_GetShapeAngle_p(daPy_getPlayerActorClass())->y);
+                    mDoMtx_stack_c::transM(cXyz(field_0xbd8->field_0xdc, field_0xbd8->field_0xc0, field_0xbd8->field_0xc4));
+                    mDoMtx_stack_c::multVecZero(&mDemoCam.field_0x24);
+                    mDoMtx_stack_c::XrotM(field_0xbd8->field_0xee);
+                    mDemoCam.field_0x18.set(0.0f, 0.0f, -100.0f);
+                    mDoMtx_stack_c::multVec(&mDemoCam.field_0x18, &mDemoCam.field_0x18);
+
+                    fVar2 = cLib_addCalcPos(&mDemoCam.mDemoCamCenter, mDemoCam.field_0x18, 0.15f, 5.0f, 1.0f);
+                    fVar3 = cLib_addCalcPos(&mDemoCam.mDemoCamEye, mDemoCam.field_0x24, 0.15f, 5.0f, 1.0f);
+                    if (fVar3 == 0.0f && fVar2 == 0.0f) {
+                        iVar1 = field_0xe80;
+                        field_0xe80--;
+                        if (iVar1 < 1) {
+                            field_0xe84++;
+                        }
+                    }
+                    break;
+
+                case 10:
+                    dComIfGp_getEvent().setSkipProc(this, NULL, 0);
+                    field_0x9ec = true;
+                    mItemNo = 3;
+                    setAction(&daNpcWrestler_c::gotoArena);
+                    break;
             }
+
+            mDemoCamFovy = field_0xbd8->field_0xf0;
+            if (field_0xe84 > 0) {
+                camBody->Set(mDemoCam.mDemoCamCenter, mDemoCam.mDemoCamEye, mDemoCamFovy, 0);
+            }
+            break;
+
+        case 3:
+            break;
     }
+
+    return true;
 }
-
-/* ############################################################################################## */
-/* 80B41D00-80B41D04 000624 0004+00 0/0 0/0 0/0 .rodata          @9268 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_9268 = -100.0f;
-COMPILER_STRIP_GATE(0x80B41D00, &lit_9268);
-#pragma pop
-
-/* 80B41D04-80B41D08 000628 0004+00 0/0 0/0 0/0 .rodata          @9269 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_9269 = 103.0f;
-COMPILER_STRIP_GATE(0x80B41D04, &lit_9269);
-#pragma pop
-
-/* 80B41D08-80B41D0C 00062C 0004+00 0/0 0/0 0/0 .rodata          @9270 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_9270 = 94.0f;
-COMPILER_STRIP_GATE(0x80B41D08, &lit_9270);
-#pragma pop
-
-/* 80B41D0C-80B41D10 000630 0004+00 0/0 0/0 0/0 .rodata          @9271 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_9271 = 3.0f / 20.0f;
-COMPILER_STRIP_GATE(0x80B41D0C, &lit_9271);
-#pragma pop
-
-/* 80B41D10-80B41D14 000634 0004+00 0/0 0/0 0/0 .rodata          @9272 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_9272 = 126.0f;
-COMPILER_STRIP_GATE(0x80B41D10, &lit_9272);
-#pragma pop
-
-/* 80B41D14-80B41D18 000638 0004+00 0/4 0/0 0/0 .rodata          @9387 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_9387 = 80.0f;
-COMPILER_STRIP_GATE(0x80B41D14, &lit_9387);
-#pragma pop
-
-/* 80B41D18-80B41D1C 00063C 0004+00 0/5 0/0 0/0 .rodata          @9388 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_9388 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80B41D18, &lit_9388);
-#pragma pop
-
-/* 80B41D1C-80B41D20 000640 0004+00 1/6 0/0 0/0 .rodata          @9389 */
-SECTION_RODATA static f32 const lit_9389 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80B41D1C, &lit_9389);
-
-/* 80B41D20-80B41D24 000644 0004+00 0/5 0/0 0/0 .rodata          @9390 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_9390 = 1.0f / 25.0f;
-COMPILER_STRIP_GATE(0x80B41D20, &lit_9390);
-#pragma pop
-
-/* 80B41D24-80B41D28 000648 0004+00 0/7 0/0 0/0 .rodata          @9391 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_9391 = 10.0f;
-COMPILER_STRIP_GATE(0x80B41D24, &lit_9391);
-#pragma pop
 
 /* 80B3AE24-80B3B4B4 00BC84 0690+00 2/0 0/0 0/0 .text            demoSumouWin__15daNpcWrestler_cFPv */
 bool daNpcWrestler_c::demoSumouWin(void* param_1) {
     // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    dCamera_c* camBody = dCam_getBody();
+    f32 fVar1;
+    int iVar1;
+
+    switch (field_0xe96) {
+        case 0:
+            field_0xe84 = 0;
+            field_0xe80 = 20;
+            mWrestlerAction = 0;
+            field_0xe96 = 2;
+            break;
+
+        case 2:
+            Z2GetAudioMgr()->changeSubBgmStatus(4);
+            switch (field_0xe84) {
+                case 0:
+                    if (!eventInfo.checkCommandDemoAccrpt()) {
+                        fopAcM_orderPotentialEvent(this, 1, 0xFFFF, 0);
+                        eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+                        return false;
+                    }
+
+                    camBody->SetTrimSize(2);
+                    mDemoCam.mDemoCamCenter = camBody->Center();
+                    mDemoCam.mDemoCamEye = camBody->Eye();
+                    mDemoCamFovy = camBody->Fovy();
+
+                    mDoMtx_stack_c::copy(player->getModelJointMtx(0));
+                    mDoMtx_stack_c::multVecZero(&mDemoCam.field_0x3c);
+                    mDemoCam.field_0x3c = camBody->Eye() - mDemoCam.field_0x3c;
+                    mDemoCam.field_0x3c.y -= 50.0f;
+
+                    player->setSumouMoveLoseEnd();
+                    setExpressionAnm(0x15, true);
+                    setMotionAnm(0x33, field_0xbd8->common.morf_frame);
+                    setLookMode(2);
+                    mActorMngr[0].entry(daPy_getPlayerActorClass());
+                    field_0xe84++;
+                    break;
+
+                case 1:
+                    iVar1 = field_0xe80;
+                    field_0xe80--;
+                    if (iVar1 <= 0) {
+                        camBody->Stop();
+                        camBody->SetTrimSize(2);
+                        field_0xe84++;
+                    }
+                    break;
+
+                case 2:
+                    mDoMtx_stack_c::copy(player->getModelJointMtx(1));
+                    mDoMtx_stack_c::multVecZero(&mDemoCam.field_0x18);
+                    mDemoCam.field_0x18.y += 80.0f;
+                    fVar1 = cLib_addCalcPos(&mDemoCam.mDemoCamCenter, mDemoCam.field_0x18, 0.1f, 50.0f, 0.2f);
+
+                    mDoMtx_stack_c::copy(player->getModelJointMtx(0));
+                    mDoMtx_stack_c::multVecZero(&mDemoCam.field_0x24);
+                    mDemoCam.field_0x24 += mDemoCam.field_0x3c;
+                    mDemoCam.mDemoCamEye = mDemoCam.field_0x24;
+
+                    if (fVar1 == 0.0f) {
+                        setExpressionAnm(0x16, true);
+                        setMotion(0x19, -1.0f, 0);
+                        mDoMtx_stack_c::transS(current.pos);
+                        mDoMtx_stack_c::YrotM(mCurAngle.y);
+
+                        if (mType == 0) {
+                            current.pos.set(0.0f, 0.0f, 80.0f);
+                        } else {
+                            current.pos.set(0.0f, 0.0f, 160.0f);
+                        }
+
+                        mDoMtx_stack_c::multVec(&current.pos, &current.pos);
+                        mDemoCam.mDemoCamEye.set(0.0f, 50.0f, 200.0f);
+                        mDoMtx_stack_c::transS(current.pos);
+                        mDoMtx_stack_c::YrotM(mCurAngle.y);
+                        mDoMtx_stack_c::multVec(&mDemoCam.mDemoCamEye, &mDemoCam.mDemoCamEye);
+                        mDemoCam.mDemoCamCenter = current.pos;
+                        mDemoCam.mDemoCamCenter.y += 50.0f;
+                        mDemoCam.field_0x18.set(mDemoCam.mDemoCamCenter.x, mDemoCam.mDemoCamCenter.y + 100.0f, mDemoCam.mDemoCamCenter.z);
+                        mDemoCamFovy = 60.0f;
+
+                        player->setSumouLoseHeadUp();
+                        field_0xe80 = 20;
+                        field_0xe84++;
+                    }
+                    break;
+
+                case 3:
+                    if (cLib_addCalc(&mDemoCam.mDemoCamCenter.y, mDemoCam.field_0x18.y, 0.04f, 10.0f, 0.9f) == 0.0f) {
+                        iVar1 = field_0xe80;
+                        field_0xe80--;
+                        if (iVar1 <= 0) {
+                            camBody->Reset(mDemoCam.mDemoCamCenter, mDemoCam.mDemoCamEye);
+                            camBody->Start();
+                            camBody->SetTrimSize(0);
+                            dComIfGp_event_reset();
+                            field_0xe8c = 0.0f;
+                            setAction(&daNpcWrestler_c::wait);
+                        }
+                    }
+                    break;
+            }
+
+            if (field_0xe84 > 0) {
+                camBody->Set(mDemoCam.mDemoCamCenter, mDemoCam.mDemoCamEye, mDemoCamFovy, 0);
+            }
+            break;
+
+        case 3:
+            field_0xe99 = 1;
+            break;
+    }
+
+    return true;
 }
-
-/* ############################################################################################## */
-/* 80B41D28-80B41D2C 00064C 0004+00 0/2 0/0 0/0 .rodata          @9571 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_9571 = 180.0f;
-COMPILER_STRIP_GATE(0x80B41D28, &lit_9571);
-#pragma pop
-
-/* 80B41D2C-80B41D30 000650 0004+00 0/2 0/0 0/0 .rodata          @9572 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_9572 = 8.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80B41D2C, &lit_9572);
-#pragma pop
-
-/* 80B41D30-80B41D34 000654 0004+00 0/2 0/0 0/0 .rodata          @9573 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_9573 = 0xC2AE28F6;
-COMPILER_STRIP_GATE(0x80B41D30, &lit_9573);
-#pragma pop
-
-/* 80B41D34-80B41D38 000658 0004+00 0/2 0/0 0/0 .rodata          @9574 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_9574 = 0xC38570A4;
-COMPILER_STRIP_GATE(0x80B41D34, &lit_9574);
-#pragma pop
-
-/* 80B41D38-80B41D3C 00065C 0004+00 0/2 0/0 0/0 .rodata          @9575 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_9575 = 0xC2B9851F;
-COMPILER_STRIP_GATE(0x80B41D38, &lit_9575);
-#pragma pop
-
-/* 80B41D3C-80B41D40 000660 0004+00 0/2 0/0 0/0 .rodata          @9576 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_9576 = 0xC397147B;
-COMPILER_STRIP_GATE(0x80B41D3C, &lit_9576);
-#pragma pop
-
-/* 80B41D40-80B41D44 000664 0004+00 0/2 0/0 0/0 .rodata          @9577 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_9577 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(0x80B41D40, &lit_9577);
-#pragma pop
-
-/* 80B41D44-80B41D48 000668 0004+00 0/2 0/0 0/0 .rodata          @9578 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_9578 = 30.0f;
-COMPILER_STRIP_GATE(0x80B41D44, &lit_9578);
-#pragma pop
-
-/* 80B41D48-80B41D4C 00066C 0004+00 0/2 0/0 0/0 .rodata          @9579 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_9579 = 2.0f / 25.0f;
-COMPILER_STRIP_GATE(0x80B41D48, &lit_9579);
-#pragma pop
-
-/* 80B41D4C-80B41D50 000670 0004+00 0/2 0/0 0/0 .rodata          @9580 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_9580 = 3.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80B41D4C, &lit_9580);
-#pragma pop
-
-/* 80B41D50-80B41D54 000674 0004+00 0/3 0/0 0/0 .rodata          @9581 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_9581 = 70.0f;
-COMPILER_STRIP_GATE(0x80B41D50, &lit_9581);
-#pragma pop
 
 /* 80B3B4B4-80B3BC84 00C314 07D0+00 3/0 0/0 0/0 .text            demoSumouLose__15daNpcWrestler_cFPv */
 bool daNpcWrestler_c::demoSumouLose(void* param_1) {
     // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    dCamera_c* camBody = dCam_getBody();
+    int iVar1;
+    f32 fVar1, fVar2, fVar3;
+
+    switch (field_0xe96) {
+        case 0:
+            field_0xe84 = 0;
+            field_0xe80 = 20;
+            
+            if (mType == 0) {
+                daNpcF_onTmpBit(0x2E);
+            } else {
+                daNpcF_onEvtBit(0x3E);
+            }
+
+            mWrestlerAction = 0;
+            field_0xe96 = 2;
+            break;
+
+        case 2:
+            Z2GetAudioMgr()->changeSubBgmStatus(5);
+            switch (field_0xe84) {
+                case 0:
+                    if (!eventInfo.checkCommandDemoAccrpt()) {
+                        fopAcM_orderPotentialEvent(this, 1, 0xFFFF, 0);
+                        eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+                        return false;
+                    }
+
+                    camBody->Stop();
+                    camBody->SetTrimSize(2);
+                    mDemoCam.mDemoCamCenter = camBody->Center();
+                    mDemoCam.mDemoCamEye = camBody->Eye();
+                    mDemoCamFovy = camBody->Fovy();
+                    mDemoCam.field_0x24.set(camBody->Eye().x, camBody->Eye().y + 180.0f, camBody->Eye().z);
+                    player->setSumouMoveWinEnd();
+
+                    setExpressionAnm(3, true);
+                    setMotion(0x1A, -1.0f, 0);
+                    setLookMode(0);
+                    mActorMngr[0].remove();
+                    field_0xe84++;
+                    break;
+
+                case 1:
+                    if (mMotionPhase == 0 && mpMorf->getFrame() == 40.0f) {
+                        dComIfGp_getVibration().StartShock(8, 15, cXyz(0.0f, 1.0f, 0.0f));
+
+                        int jointNo = mType == 0 ? 0x16 : 0x14;
+                        cXyz sp74;
+                        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo));
+                        mDoMtx_stack_c::multVecZero(&sp74);
+                        fopAcM_effSmokeSet1(&field_0xde8, &field_0xdec, &sp74, NULL, 1.6f, &tevStr, 1);
+                    } else if (mMotionPhase == 0) {
+                        if (mpMorf->getFrame() > mpMorf->getEndFrame() - 1.0f) {
+                            mDoMtx_stack_c::transS(current.pos);
+                            mDoMtx_stack_c::YrotM(mCurAngle.y);
+
+                            if (mType == 0) {
+                                current.pos.set(0.0f, -87.08f, -266.88f);
+                            } else {
+                                current.pos.set(0.0f, -92.76f, -302.16f);
+                            }
+
+                            mDoMtx_stack_c::multVec(&current.pos, &current.pos);
+                            old.pos.set(current.pos);
+                        }
+                    }
+
+                    iVar1 = field_0xe80;
+                    field_0xe80--;
+                    if (iVar1 <= 0) {
+                        fVar1 = cLib_addCalcPos(&mDemoCam.mDemoCamCenter, getJointPos(2), 0.1f, 50.0f, 1.0f);
+                        fVar2 = cLib_addCalc(&mDemoCam.mDemoCamEye.y, mDemoCam.field_0x24.y, 0.05f, 50.0f, 1.0f);
+                        fVar3 = cLib_addCalc(&mDemoCamFovy, 30.0f, 0.08f, 10.0f, 0.3f);
+                        if (fVar1 == 0.0f && fVar2 == 0.0f && fVar3 == 0.0f) {
+                            field_0xe84++;
+                        }
+                    }
+                    break;
+
+                case 2:
+                    mDemoCam.mDemoCamEye.set(0.0f, 70.0f, 200.0f);
+                    mDoMtx_stack_c::transS(*player->getViewerCurrentPosP());
+                    mDoMtx_stack_c::YrotM(fopAcM_GetShapeAngle_p(player)->y);
+                    mDoMtx_stack_c::multVec(&mDemoCam.mDemoCamEye, &mDemoCam.mDemoCamEye);
+                    mDemoCam.mDemoCamCenter = *player->getViewerCurrentPosP();
+                    mDemoCam.mDemoCamCenter.y += 30.0f;
+                    mDemoCam.field_0x18.set(mDemoCam.mDemoCamCenter.x, mDemoCam.mDemoCamCenter.y + 100.0f, mDemoCam.mDemoCamCenter.z);
+                    mDemoCamFovy = 60.0f;
+
+                    player->changeOriginalDemo();
+                    player->changeDemoMode(0x31, 0, 0, 0);
+                    field_0xe80 = 20;
+                    field_0xe84++;
+                    // fallthrough
+                case 3:
+                    if (cLib_addCalc(&mDemoCam.mDemoCamCenter.y, mDemoCam.field_0x18.y, 0.04f, 10.0f, 0.2f) == 0.0f) {
+                        iVar1 = field_0xe80;
+                        field_0xe80--;
+                        if (iVar1 <= 0) {
+                            player->changeDemoMode(1, 0, 0, 0);
+                            camBody->Reset(mDemoCam.mDemoCamCenter, mDemoCam.mDemoCamEye);
+                            camBody->Start();
+                            camBody->SetTrimSize(0);
+                            dComIfGp_event_reset();
+                            field_0xe8c = field_0xbd8->common.morf_frame;
+
+                            if (mType != 0) {
+                                setAction(&daNpcWrestler_c::demoTalkAfterLose);
+                            } else {
+                                setAction(&daNpcWrestler_c::wait);
+                            }
+                        }
+                    }
+                    break;
+            }
+
+            if (field_0xe84 > 0) {
+                camBody->Set(mDemoCam.mDemoCamCenter, mDemoCam.mDemoCamEye, mDemoCamFovy, 0);
+            }
+            break;
+
+        case 3:
+            field_0xe99 = 1;
+            break;
+    }
+
+    return true;
 }
 
 /* 80B3BC84-80B3C278 00CAE4 05F4+00 11/0 0/0 0/0 .text demoSumouWin2__15daNpcWrestler_cFPv */
 bool daNpcWrestler_c::demoSumouWin2(void* param_1) {
     // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    dCamera_c* camBody = dCam_getBody();
+    f32 fVar1;
+    int iVar1;
+
+    switch (field_0xe96) {
+        case 0:
+            field_0xe84 = 0;
+            field_0xe80 = 0;
+            mWrestlerAction = 0;
+            field_0xe96 = 2;
+            break;
+
+        case 2:
+            Z2GetAudioMgr()->changeSubBgmStatus(4);
+            switch (field_0xe84) {
+                case 0:
+                    if (!eventInfo.checkCommandDemoAccrpt()) {
+                        fopAcM_orderPotentialEvent(this, 1, 0xFFFF, 0);
+                        eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+                        return false;
+                    }
+
+                    mDemoCam.mDemoCamCenter = camBody->Center();
+                    mDemoCam.mDemoCamEye = camBody->Eye();
+                    mDemoCamFovy = camBody->Fovy();
+
+                    mDoMtx_stack_c::copy(player->getModelJointMtx(0));
+                    mDoMtx_stack_c::multVecZero(&mDemoCam.field_0x3c);
+                    mDemoCam.field_0x3c = camBody->Eye() - mDemoCam.field_0x3c;
+                    mDemoCam.field_0x3c.y -= 50.0f;
+
+                    camBody->Stop();
+                    camBody->SetTrimSize(2);
+
+                    player->setSumouPunchLoseEnd();
+                    setExpression(5, -1.0f);
+                    setMotionAnm(0x21, field_0xbd8->common.morf_frame);
+                    setLookMode(2);
+                    mActorMngr[0].entry(daPy_getPlayerActorClass());
+                    field_0xe84++;
+                    break;
+
+                case 1:
+                    mDoMtx_stack_c::copy(player->getModelJointMtx(1));
+                    mDoMtx_stack_c::multVecZero(&mDemoCam.field_0x18);
+                    mDemoCam.field_0x18.y += 80.0f;
+                    fVar1 = cLib_addCalcPos(&mDemoCam.mDemoCamCenter, mDemoCam.field_0x18, 0.1f, 50.0f, 0.2f);
+
+                    mDoMtx_stack_c::copy(player->getModelJointMtx(0));
+                    mDoMtx_stack_c::multVecZero(&mDemoCam.field_0x24);
+                    mDemoCam.field_0x24 += mDemoCam.field_0x3c;
+                    mDemoCam.mDemoCamEye = mDemoCam.field_0x24;
+
+                    if (fVar1 == 0.0f) {
+                        setExpressionAnm(0x16, true);
+                        setMotion(0x19, -1.0f, 0);
+                        mDemoCam.mDemoCamEye.set(0.0f, 50.0f, 200.0f);
+                        mDoMtx_stack_c::transS(current.pos);
+                        mDoMtx_stack_c::YrotM(mCurAngle.y);
+                        mDoMtx_stack_c::multVec(&mDemoCam.mDemoCamEye, &mDemoCam.mDemoCamEye);
+                        mDemoCam.mDemoCamCenter = current.pos;
+                        mDemoCam.mDemoCamCenter.y += 50.0f;
+                        mDemoCam.field_0x18.set(mDemoCam.mDemoCamCenter.x, mDemoCam.mDemoCamCenter.y + 100.0f, mDemoCam.mDemoCamCenter.z);
+                        mDemoCamFovy = 60.0f;
+
+                        player->setSumouLoseHeadUp();
+                        field_0xe80 = 20;
+                        field_0xe84++;
+                    }
+                    break;
+
+                case 2:
+                    if (cLib_addCalc(&mDemoCam.mDemoCamCenter.y, mDemoCam.field_0x18.y, 0.04f, 10.0f, 0.9f) == 0.0f) {
+                        iVar1 = field_0xe80;
+                        field_0xe80--;
+                        if (iVar1 <= 0) {
+                            camBody->Reset(mDemoCam.mDemoCamCenter, mDemoCam.mDemoCamEye);
+                            camBody->Start();
+                            camBody->SetTrimSize(0);
+                            dComIfGp_event_reset();
+                            field_0xe8c = 0.0f;
+                            setAction(&daNpcWrestler_c::wait);
+                        }
+                    }
+                    break;
+            }
+
+            if (field_0xe84 > 0) {
+                camBody->Set(mDemoCam.mDemoCamCenter, mDemoCam.mDemoCamEye, mDemoCamFovy, 0);
+            }
+            break;
+            
+        case 3:
+            field_0xe99 = 1;
+            break;
+    }
+
+    return true;
 }
 
 /* 80B3C278-80B3CA2C 00D0D8 07B4+00 5/0 0/0 0/0 .text demoSumouLose2__15daNpcWrestler_cFPv */
 bool daNpcWrestler_c::demoSumouLose2(void* param_1) {
     // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    dCamera_c* camBody = dCam_getBody();
+    int iVar1;
+    f32 fVar1, fVar2, fVar3;
+
+    switch (field_0xe96) {
+        case 0:
+            field_0xe84 = 0;
+
+            if (mType == 0) {
+                daNpcF_onTmpBit(0x2E);
+            } else {
+                daNpcF_onEvtBit(0x3E);
+            }
+
+            mWrestlerAction = 0;
+            field_0xe96 = 2;
+            break;
+
+        case 2:
+            Z2GetAudioMgr()->changeSubBgmStatus(5);
+            switch (field_0xe84) {
+                case 0:
+                    if (!eventInfo.checkCommandDemoAccrpt()) {
+                        fopAcM_orderPotentialEvent(this, 1, 0xFFFF, 0);
+                        eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+                        return false;
+                    }
+
+                    camBody->Stop();
+                    camBody->SetTrimSize(2);
+                    mDemoCam.mDemoCamCenter = camBody->Center();
+                    mDemoCam.mDemoCamEye = camBody->Eye();
+                    mDemoCamFovy = camBody->Fovy();
+                    mDemoCam.field_0x24.set(camBody->Eye().x, camBody->Eye().y + 180.0f, camBody->Eye().z);
+                    
+                    player->setSumouPunchWinEnd();
+                    setExpressionAnm(4, true);
+                    setMotion(0x1B, -1.0f, 0);
+                    setLookMode(0);
+                    mActorMngr[0].remove();
+                    field_0xe84++;
+                    break;
+
+                case 1:
+                    if (mMotionPhase == 0 && mpMorf->getFrame() == 20.0f) {
+                        dComIfGp_getVibration().StartShock(8, 15, cXyz(0.0f, 1.0f, 0.0f));
+
+                        int jointNo = mType == 0 ? 0x16 : 0x14;
+                        cXyz sp74;
+                        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo));
+                        mDoMtx_stack_c::multVecZero(&sp74);
+                        fopAcM_effSmokeSet1(&field_0xde8, &field_0xdec, &sp74, NULL, 1.6f, &tevStr, 1);
+                    } else if (mMotionPhase == 0) {
+                        if (mpMorf->getFrame() > mpMorf->getEndFrame() - 1.0f) {
+                            mDoMtx_stack_c::transS(current.pos);
+                            mDoMtx_stack_c::YrotM(mCurAngle.y);
+
+                            if (mType == 0) {
+                                current.pos.set(0.0f, -87.08f, -266.88f);
+                            } else {
+                                current.pos.set(0.0f, -92.76f, -302.16f);
+                            }
+
+                            mDoMtx_stack_c::multVec(&current.pos, &current.pos);
+                            old.pos.set(current.pos);
+                        }
+                    }
+
+                    fVar1 = cLib_addCalcPos(&mDemoCam.mDemoCamCenter, getJointPos(2), 0.1f, 50.0f, 1.0f);
+                    fVar2 = cLib_addCalc(&mDemoCam.mDemoCamEye.y, mDemoCam.field_0x24.y, 0.05f, 50.0f, 1.0f);
+                    fVar3 = cLib_addCalc(&mDemoCamFovy, 30.0f, 0.08f, 10.0f, 0.3f);
+
+                    if (fVar1 == 0.0f && fVar2 == 0.0f && fVar3 == 0.0f) {
+                        field_0xe84++;
+                    }
+                    break;
+
+                case 2:
+                    mDemoCam.mDemoCamEye.set(0.0f, 70.0f, 200.0f);
+                    mDoMtx_stack_c::transS(*player->getViewerCurrentPosP());
+                    mDoMtx_stack_c::YrotM(fopAcM_GetShapeAngle_p(player)->y);
+                    mDoMtx_stack_c::multVec(&mDemoCam.mDemoCamEye, &mDemoCam.mDemoCamEye);
+                    mDemoCam.mDemoCamCenter = *player->getViewerCurrentPosP();
+                    mDemoCam.mDemoCamCenter.y += 30.0f;
+                    mDemoCam.field_0x18.set(mDemoCam.mDemoCamCenter.x, mDemoCam.mDemoCamCenter.y + 100.0f, mDemoCam.mDemoCamCenter.z);
+                    mDemoCamFovy = 60.0f;
+
+                    player->changeOriginalDemo();
+                    player->changeDemoMode(0x31, 0, 0, 0);
+                    field_0xe80 = 20;
+                    field_0xe84++;
+                    // fallthrough
+                case 3:
+                    if (cLib_addCalc(&mDemoCam.mDemoCamCenter.y, mDemoCam.field_0x18.y, 0.04f, 10.0f, 0.2f) == 0.0f) {
+                        iVar1 = field_0xe80;
+                        field_0xe80--;
+                        if (iVar1 <= 0) {
+                            player->changeDemoMode(1, 0, 0, 0);
+                            camBody->Reset(mDemoCam.mDemoCamCenter, mDemoCam.mDemoCamEye);
+                            camBody->Start();
+                            camBody->SetTrimSize(0);
+                            dComIfGp_event_reset();
+                            field_0xe8c = field_0xbd8->common.morf_frame;
+
+                            if (mType != 0) {
+                                setAction(&daNpcWrestler_c::demoTalkAfterLose);
+                            } else {
+                                setAction(&daNpcWrestler_c::wait);
+                            }
+
+
+                        }
+                    }
+                    break;
+            }
+
+            if (field_0xe84 > 0) {
+                camBody->Set(mDemoCam.mDemoCamCenter, mDemoCam.mDemoCamEye, mDemoCamFovy, 0);
+            }
+            break;
+
+        case 3:
+            field_0xe99 = 1;
+            break;
+    }
+
+    return true;
 }
 
 /* 80B3CA2C-80B3D0C0 00D88C 0694+00 4/0 0/0 0/0 .text demoSumouUnilateralWin__15daNpcWrestler_cFPv */
 bool daNpcWrestler_c::demoSumouUnilateralWin(void* param_1) {
     // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    dCamera_c* camBody = dCam_getBody();
+    f32 fVar1;
+    int iVar1;
+
+    switch (field_0xe96) {
+        case 0:
+            field_0xe84 = 0;
+            field_0xe80 = 0;
+            mWrestlerAction = 0;
+            dMeter2Info_resetMeterString();
+            field_0xe96 = 2;
+            break;
+
+        case 2:
+            Z2GetAudioMgr()->changeSubBgmStatus(4);
+            switch (field_0xe84) {
+                case 0:
+                    if (!eventInfo.checkCommandDemoAccrpt()) {
+                        fopAcM_orderPotentialEvent(this, 1, 0xFFFF, 0);
+                        eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+                        return false;
+                    }
+
+                    mDemoCam.mDemoCamCenter = camBody->Center();
+                    mDemoCam.mDemoCamEye = camBody->Eye();
+                    mDemoCamFovy = camBody->Fovy();
+
+                    mDoMtx_stack_c::copy(player->getModelJointMtx(0));
+                    mDoMtx_stack_c::multVecZero(&mDemoCam.field_0x3c);
+                    mDemoCam.field_0x3c = camBody->Eye() - mDemoCam.field_0x3c;
+                    mDemoCam.field_0x3c.y -= 50.0f;
+
+                    camBody->Stop();
+                    camBody->SetTrimSize(2);
+
+                    player->setSumouMoveLoseEnd();
+                    player->setThrowDamage(mCurAngle.y, field_0xbd8->horizontal_speed, field_0xbd8->vertical_speed, 0, 1, 0);
+                    setExpression(5, -1.0f);
+                    setMotionAnm(0x1B, field_0xbd8->common.morf_frame);
+                    setLookMode(2);
+                    mActorMngr[0].entry(daPy_getPlayerActorClass());
+                    field_0xe84++;
+                    break;
+
+                case 1:
+                    mDoMtx_stack_c::copy(player->getModelJointMtx(1));
+                    mDoMtx_stack_c::multVecZero(&mDemoCam.field_0x18);
+                    mDemoCam.field_0x18.y += 80.0f;
+                    fVar1 = cLib_addCalcPos(&mDemoCam.mDemoCamCenter, mDemoCam.field_0x18, 0.5f, 70.0f, 0.2f);
+
+                    mDoMtx_stack_c::copy(player->getModelJointMtx(0));
+                    mDoMtx_stack_c::multVecZero(&mDemoCam.field_0x24);
+                    mDemoCam.field_0x24 += mDemoCam.field_0x3c;
+                    mDemoCam.mDemoCamEye = mDemoCam.field_0x24;
+
+                    if (fVar1 == 0.0f) {
+                        setExpressionAnm(0x16, true);
+                        setMotion(0x19, -1.0f, 0);
+                        mDoMtx_stack_c::transS(current.pos);
+                        mDoMtx_stack_c::YrotM(mCurAngle.y);
+
+                        if (mType == 0) {
+                            current.pos.set(0.0f, 0.0f, 80.0f);
+                        } else {
+                            current.pos.set(0.0f, 0.0f, 160.0f);
+                        }
+
+                        mDoMtx_stack_c::multVec(&current.pos, &current.pos);
+                        mDemoCam.mDemoCamEye.set(0.0f, 50.0f, 200.0f);
+                        mDoMtx_stack_c::transS(current.pos);
+                        mDoMtx_stack_c::YrotM(mCurAngle.y);
+                        mDoMtx_stack_c::multVec(&mDemoCam.mDemoCamEye, &mDemoCam.mDemoCamEye);
+                        mDemoCam.mDemoCamCenter = current.pos;
+                        mDemoCam.mDemoCamCenter.y += 50.0f;
+                        mDemoCam.field_0x18.set(mDemoCam.mDemoCamCenter.x, mDemoCam.mDemoCamCenter.y + 100.0f, mDemoCam.mDemoCamCenter.z);
+                        mDemoCamFovy = 60.0f;
+
+                        player->setSumouLoseHeadUp();
+                        field_0xe80 = 20;
+                        field_0xe84++;
+                    }
+                    break;
+
+                case 2:
+                    if (cLib_addCalc(&mDemoCam.mDemoCamCenter.y, mDemoCam.field_0x18.y, 0.04f, 10.0f, 0.9f) == 0.0f) {
+                        iVar1 = field_0xe80;
+                        field_0xe80--;
+                        if (iVar1 <= 0) {
+                            camBody->Reset(mDemoCam.mDemoCamCenter, mDemoCam.mDemoCamEye);
+                            camBody->Start();
+                            camBody->SetTrimSize(0);
+                            dComIfGp_event_reset();
+                            field_0xe8c = 0.0f;
+                            setAction(&daNpcWrestler_c::wait);
+                        }
+                    }
+                    break;
+
+                case 3:
+                    break;
+            }
+
+            if (field_0xe84 > 0) {
+                camBody->Set(mDemoCam.mDemoCamCenter, mDemoCam.mDemoCamEye, mDemoCamFovy, 0);
+            }
+            break;
+
+        case 3:
+            field_0xe99 = 1;
+            break;
+    }
+
+    return true;
 }
 
 /* 80B3D0C0-80B3D584 00DF20 04C4+00 2/0 0/0 0/0 .text demoTalkAfterLose__15daNpcWrestler_cFPv */
-void daNpcWrestler_c::demoTalkAfterLose(void* param_0) {
+bool daNpcWrestler_c::demoTalkAfterLose(void* param_1) {
     // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    dCamera_c* camBody = dCam_getBody();
+    int iVar1, i_expression, i_motion, i_expression2, i_motion2;
+
+    switch (field_0xe96) {
+        case 0:
+            initTalk(mMsgNo, NULL);
+            mMsgTimer = 0;
+            field_0xe99 = 0;
+            field_0xe84 = 0;
+            field_0xe96 = 2;
+            break;
+
+        case 2:
+            switch (field_0xe84) {
+                case 0:
+                    if (dComIfGp_event_runCheck() && eventInfo.checkCommandTalk()) {
+                        if (talkProc(NULL, TRUE, NULL)) {
+                            setMotion(0x1D, -1.0f, 0);
+                            field_0xe84++;
+                            break;
+                        }
+
+                        iVar1 = mMsgTimer;
+                        if (ctrlMsgAnm(i_expression, i_motion, this, FALSE)) {
+                            setExpression(i_expression, -1.0f);
+                            break;
+                        }
+
+                        if (iVar1 == 0) {
+                            break;
+                        }
+
+                        if (mMsgTimer != 0) {
+                            break;
+                        }
+
+                        setExpressionTalkAfter();
+                        break;
+                    }
+
+                    eventInfo.onCondition(dEvtCnd_CANTALK_e);
+                    fopAcM_orderSpeakEvent(this, 0, 0);
+                    break;
+
+                case 1:
+                    if (mpMorf->isStop()) {
+                        setLookMode(3);
+                        initTalk(mMsgNo, NULL);
+                        field_0xe84++;
+                    }
+                    break;
+
+                case 2:
+                    if (dComIfGp_event_runCheck() && eventInfo.checkCommandTalk()) {
+                        if (talkProc(NULL, TRUE, NULL)) {
+                            mOrderEvtNo = 6;
+                            changeEvent(l_resName[mType], l_evtNames[mOrderEvtNo], 1, 0xFFFF);
+                            setAction(&daNpcWrestler_c::demo);
+                            return true;
+                        }
+
+                        iVar1 = mMsgTimer;
+                        if (ctrlMsgAnm(i_expression2, i_motion2, this, 0)) {
+                            setExpression(i_expression2, -1.0f);
+                            break;
+                        }
+
+                        if (iVar1 == 0) {
+                            break;
+                        }
+
+                        if (mMsgTimer != 0) {
+                            break;
+                        }
+
+                        setExpressionTalkAfter();
+                        break;
+                    }
+
+                    eventInfo.onCondition(dEvtCnd_CANTALK_e);
+                    fopAcM_orderSpeakEvent(this, 0, 0);
+                    break;
+
+                case 3:
+                    break;
+            }
+            break;
+
+        case 3:
+            setExpression(5, -1.0f);
+            dComIfGp_event_reset();
+            break;
+    }
+
+    return false;
 }
 
 /* ############################################################################################## */

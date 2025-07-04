@@ -181,7 +181,7 @@ public:
     /* 80B3BC84 */ bool demoSumouWin2(void*);
     /* 80B3C278 */ bool demoSumouLose2(void*);
     /* 80B3CA2C */ bool demoSumouUnilateralWin(void*);
-    /* 80B3D0C0 */ void demoTalkAfterLose(void*);
+    /* 80B3D0C0 */ bool demoTalkAfterLose(void*);
     /* 80B3D584 */ void EvCut_grDSEntry(int);
     /* 80B3DB50 */ void EvCut_grDSEntry2(int);
     /* 80B3DCE8 */ void EvCut_grDSEntry3_4(int);
@@ -481,6 +481,21 @@ public:
 
     void initDemoCamera_ReadyLink() {
         
+    }
+
+    void initDemoCamera_ReadyWrestler() {
+        field_0xe5e = mArenaAngle + 0x8000;
+        mDemoCamFovy = dCam_getBody()->Fovy();
+        field_0xe54 = 0.0f;
+        field_0xe58 = 0.0f;
+
+        mDoMtx_stack_c::transS(mArenaPos);
+        mDoMtx_stack_c::YrotM(field_0xe5e);
+        mDoMtx_stack_c::transM(-field_0xbd8->field_0xa0, field_0xbd8->field_0x98, field_0xbd8->field_0x90);
+        mDoMtx_stack_c::multVecZero(&mDemoCam.mDemoCamEye);
+        mDoMtx_stack_c::XrotM(field_0xbd8->field_0xa8);
+        mDemoCam.mDemoCamCenter.set(0.0f, 0.0f, mArenaExtent * 0.5f - 100.0f);
+        mDoMtx_stack_c::multVec(&mDemoCam.mDemoCamCenter, &mDemoCam.mDemoCamCenter);
     }
 
     static EventFn mEvtSeqList[7];
