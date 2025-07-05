@@ -24,8 +24,9 @@ public:
     /* 80C16340 */ void Draw();
     /* 80C1641C */ void Delete();
 
-private:
-    /* 0x568 */ u8 field_0x568[0x850 - 0x568];
+    /* 0x568 */ u8 field_0x568[0x5e0 - 0x568];
+    /* 0x5E0 */ cXyz field_0x5e0;
+    /* 0x5EC */ u8 field_0x5ec[0x850 - 0x5ec];
 };
 
 STATIC_ASSERT(sizeof(daObjH_Saku_c) == 0x850);

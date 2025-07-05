@@ -44,7 +44,7 @@ public:
 
     void setInWater(bool status) { mInWater = status; }
     bool isInWater() { return mInWater; }
-    u8 getLinkState() const { return mLinkState; }
+    u8 getLinkState() { return mLinkState; }
     u8 getMoveSpeed() const { return mMoveSpeed; }
     bool isRiding() const { return mRiding; }
     void setLinkState(u8 i_state) { mLinkState = i_state; }

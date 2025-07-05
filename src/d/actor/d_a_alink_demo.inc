@@ -4173,12 +4173,23 @@ static fopAc_ac_c* daAlink_searchPortal(fopAc_ac_c* i_actor, void* i_data) {
 
 /* 8011F658-8011F7D8 119F98 0180+00 1/1 0/0 0/0 .text            checkAcceptWarp__9daAlink_cFv */
 bool daAlink_c::checkAcceptWarp() {
+    #if VERSION != VERSION_WII_USA_R0
     cM3dGPla plane;
+    #endif
 
-    if (mLinkAcch.ChkGroundHit() && !checkModeFlg(MODE_PLAYER_FLY) &&
-        !checkNoResetFlg0(FLG0_UNDERWATER))
+    if (mLinkAcch.ChkGroundHit() && !checkModeFlg(MODE_PLAYER_FLY)
+        #if VERSION != VERSION_WII_USA_R0
+        && !checkNoResetFlg0(FLG0_UNDERWATER)
+        #endif
+       )
     {
-        if (!getSlidePolygon(&plane) && !checkForestOldCentury()) {
+        if (
+            #if VERSION != VERSION_WII_USA_R0
+            !getSlidePolygon(&plane) &&
+            #endif
+            !checkForestOldCentury()
+           )
+        {
             if (checkMidnaRide() || ((daMidna_c*)getMidnaActor())->checkPortalObjRide()) {
                 if ((checkField() || checkCastleTown()) && !checkStageName("R_SP161")) {
                     if ((checkWolf() && (checkModeFlg(MODE_UNK_1000) ||

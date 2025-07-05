@@ -246,7 +246,7 @@ cflags_base = [
 if config.version == "ShieldD":
     cflags_base.extend(["-O0", "-inline off", "-RTTI on", "-str reuse", "-enc SJIS", "-DDEBUG=1"])
 elif config.version == "RZDE01_00":
-    cflags_base.extend(["-O4,p", "-inline auto", "-RTTI on", "-str reuse", "-enc SJIS"])
+    cflags_base.extend(["-O4,p", "-inline auto", "-ipa file", "-RTTI on", "-str reuse", "-enc SJIS"])
 else:
     cflags_base.extend(["-O4,p", "-inline auto", "-RTTI off", "-str reuse", "-multibyte"])
 
@@ -336,7 +336,7 @@ cflags_framework = [
 if config.version != "ShieldD":
     if config.version == "RZDE01_00":
         # TODO: whats the correct inlining flag? deferred looks better in some places, others not. something else wrong?
-        cflags_framework.extend(["-inline on", "-O4,s", "-sym on"])
+        cflags_framework.extend(["-inline noauto", "-O4,s", "-sym on"])
     else:
         cflags_framework.extend(["-inline noauto", "-O3,s", "-sym on", "-str reuse,pool,readonly"])
 
@@ -356,7 +356,7 @@ def MWVersion(cfg_version: str | None) -> str:
         case "GZ2J01":
             return "GC/2.7"
         case "RZDE01_00":
-            return "GC/3.0a3"
+            return "GC/3.0a5.2t"
         case "ShieldD":
             return "Wii/1.0"
         case _:
@@ -653,7 +653,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_meter_map.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_meter_string.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_meter2_draw.cpp"),
-            Object(NonMatching, "d/d_meter2_info.cpp"),
+            Object(Equivalent, "d/d_meter2_info.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_meter2.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_msg_out_font.cpp"),
             Object(NonMatching, "d/d_msg_class.cpp"),
@@ -1476,7 +1476,7 @@ config.libs = [
     Rel("f_pc_profile_lst", [Object(Matching, "f_pc/f_pc_profile_lst.cpp")]),
     ActorRel(MatchingFor("GZ2E01"), "d_a_andsw"),
     ActorRel(NonMatching, "d_a_bg"),
-    ActorRel(NonMatching, "d_a_bg_obj"),
+    ActorRel(Equivalent, "d_a_bg_obj"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_dmidna"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_door_dbdoor00"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_door_knob00"),
@@ -1517,7 +1517,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_tbox2"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_vrbox"),
     ActorRel(NonMatching, "d_a_vrbox2"),
-    ActorRel(NonMatching, "d_a_arrow"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_arrow"),
     ActorRel(NonMatching, "d_a_boomerang"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_crod"),
     ActorRel(NonMatching, "d_a_demo00"),
@@ -1535,7 +1535,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_bd"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_canoe"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_cstaF"),
-    ActorRel(NonMatching, "d_a_demo_item"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_demo_item"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_door_bossL1"),
     ActorRel(Equivalent, "d_a_e_dn"), # weak func order
     ActorRel(Equivalent, "d_a_e_fm"),
@@ -1662,7 +1662,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_e_dt"), # weak func order
     ActorRel(NonMatching, "d_a_e_fb"),
     ActorRel(NonMatching, "d_a_e_fk"),
-    ActorRel(NonMatching, "d_a_e_fs"),
+    ActorRel(Equivalent, "d_a_e_fs"), # weak func order
     ActorRel(Equivalent, "d_a_e_fz"), # weak func order
     ActorRel(NonMatching, "d_a_e_gb"),
     ActorRel(NonMatching, "d_a_e_ge"),
@@ -1753,7 +1753,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_mg_fshop"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_mirror"),
     ActorRel(NonMatching, "d_a_movie_player", extra_cflags=["-O3,p"]),
-    ActorRel(NonMatching, "d_a_myna"),
+    ActorRel(Equivalent, "d_a_myna"), # weak function order
     ActorRel(NonMatching, "d_a_ni"),
     ActorRel(NonMatching, "d_a_npc_aru"),
     ActorRel(NonMatching, "d_a_npc_ash"),
@@ -1951,7 +1951,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_heavySw"),
     ActorRel(NonMatching, "d_a_obj_hfuta"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_hsTarget"),
-    ActorRel(NonMatching, "d_a_obj_ice_l"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ice_l"),
     ActorRel(NonMatching, "d_a_obj_ice_s"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_iceblock"),
     ActorRel(NonMatching, "d_a_obj_iceleaf"),

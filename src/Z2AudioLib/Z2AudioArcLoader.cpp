@@ -27,7 +27,6 @@ bool Z2AudioArcLoader::readCommandMore(u32 param_0) {
 }
 
 /* 802A9AC8-802A9B54 2A4408 008C+00 1/1 0/0 0/0 .text            readBFCA__16Z2AudioArcLoaderFPCv */
-// NONMATCHING regalloc
 void Z2AudioArcLoader::readBFCA(void const* param_0) {
     JKRHeap* heap = JAUSectionHeap::getInstance()->getHeap();
     JKRArchive* archive = JKRMountArchive((void*)param_0, JKRGetCurrentHeap(), JKRArchive::MOUNT_DIRECTION_TAIL);

@@ -54,6 +54,21 @@ public:
     /* 0x600 */ Z2SoundObjSimple mSound;
     /* 0x620 */ ms_chain_s mChains[4];
     /* 0x8A0 */ u8 field_0x8a0;
+
+    enum MAGNESIMA_RES_FILE_ID {
+        /* BMDR */
+        /* 0x06 */ BMDR_KUSARI = 6,
+        /* 0x07 */ BMDR_S_MAGNE_SIMA,
+
+        /* BRK */
+        /* 0x0A */ BRK_S_MAGNE_SIMA = 0xA,
+
+        /* BTK */
+        /* 0x0D */ BTK_S_MAGNE_SIMA = 0xD,
+
+        /* DZB */
+        /* 0x10 */ DZB_S_MAGNE_SIMA = 0x10,
+    };
 };
 
 STATIC_ASSERT(sizeof(obj_msima_class) == 0x8a4);

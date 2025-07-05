@@ -5,6 +5,7 @@
 
 #include "d/actor/d_a_arrow.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "JSystem/JAudio2/JAUSectionHeap.h"
 #include "SSystem/SComponent/c_math.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "f_op/f_op_kankyo_mng.h"
@@ -1121,7 +1122,6 @@ static int daArrow_execute(daArrow_c* i_this) {
 }
 
 /* 8049D0CC-8049D40C 00354C 0340+00 1/1 0/0 0/0 .text            draw__9daArrow_cFv */
-// NONMATCHING regalloc
 int daArrow_c::draw() {
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
 
@@ -1129,7 +1129,7 @@ int daArrow_c::draw() {
         return TRUE;
     }
     
-    GXColorS10 tmpColor = {0, 0, 0};
+    static const GXColorS10 tmpColor = {0, 0, 0};
     J3DGXColorS10 color = (tmpColor);
 
     daAlink_c* link = daAlink_getAlinkActorClass();
@@ -1150,7 +1150,7 @@ int daArrow_c::draw() {
             if (field_0x950 > explode_time >> 1) {
                 r = fabsf(cM_fsin((field_0x950 - (explode_time >> 1)) * M_PI / (explode_time >> 2)));
             } else if (field_0x950 > explode_time >> 2) {
-                r = fabsf(cM_fsin((field_0x950 - (explode_time >> 1)) * M_PI / (explode_time >> 3)));
+                r = fabsf(cM_fsin((field_0x950 - (explode_time >> 2)) * M_PI / (explode_time >> 3)));
             } else {
                 r = fabsf(cM_fsin((field_0x950 - (explode_time >> 3)) * M_PI / (explode_time >> 4)));
             }
@@ -1276,6 +1276,7 @@ static int daArrow_delete(daArrow_c* i_this) {
 }
 
 AUDIO_INSTANCES;
+JAUSectionHeap* JASGlobalInstance<JAUSectionHeap>::sInstance;
 
 /* 8049DE8C-8049DEAC -00001 0020+00 1/0 0/0 0/0 .data            l_daArrowMethodTable */
 static actor_method_class l_daArrowMethodTable = {
