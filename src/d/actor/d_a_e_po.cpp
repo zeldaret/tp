@@ -212,9 +212,9 @@ static void e_po_opening(e_po_class* i_this) {
     switch(i_this->mType) {
     case 0:
         if (!i_this->field_0x5C0) {
-            if (!daPy_py_c::checkNowWolfEyeUp() || dComIfGp_getAttention().GetLockonList(0) == NULL
-            || !dComIfGp_getAttention().LockonTruth()
-            || dComIfGp_getAttention().GetLockonList(0)->getActor() != a_this) {
+            if (!daPy_py_c::checkNowWolfEyeUp() || dComIfGp_getAttention()->GetLockonList(0) == NULL
+            || !dComIfGp_getAttention()->LockonTruth()
+            || dComIfGp_getAttention()->GetLockonList(0)->getActor() != a_this) {
                 break;
             }
         }
@@ -314,8 +314,8 @@ static void e_po_wait(e_po_class* i_this) {
 
     case 1:
         if (!i_this->field_0x5C1) {
-            if (daPy_py_c::checkNowWolfPowerUp() && dComIfGp_getAttention().GetLockonList(0) != NULL
-            && dComIfGp_getAttention().LockonTruth() && dComIfGp_getAttention().GetLockonList(0)->getActor() == (fopAc_ac_c*)i_this) {
+            if (daPy_py_c::checkNowWolfPowerUp() && dComIfGp_getAttention()->GetLockonList(0) != NULL
+            && dComIfGp_getAttention()->LockonTruth() && dComIfGp_getAttention()->GetLockonList(0)->getActor() == (fopAc_ac_c*)i_this) {
                 i_this->mType = 0;
                 i_this->mSound1.startCreatureVoice(Z2SE_EN_PO_V_FIND, -1);
                 i_this->field_0x757 = 1;
@@ -1270,9 +1270,9 @@ static void e_po_limbering(e_po_class* i_this) {
         a_this->current.angle.y = fopAcM_searchActorAngleY(a_this, player_p) + 0x8000;
         if (i_this->field_0x5C0 || (
             daPy_py_c::checkNowWolfPowerUp()
-        && dComIfGp_getAttention().GetLockonList(0) != NULL
-        && dComIfGp_getAttention().LockonTruth()
-        && dComIfGp_getAttention().GetLockonList(0)->getActor() == (fopAc_ac_c*)i_this)) {
+        && dComIfGp_getAttention()->GetLockonList(0) != NULL
+        && dComIfGp_getAttention()->LockonTruth()
+        && dComIfGp_getAttention()->GetLockonList(0)->getActor() == (fopAc_ac_c*)i_this)) {
             i_this->mSound1.startCreatureVoice(Z2SE_EN_PO_V_FIND, -1);
             i_this->field_0x5C0 = true;
             if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
