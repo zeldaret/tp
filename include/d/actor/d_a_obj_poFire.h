@@ -46,9 +46,9 @@ public:
 
     u8 getMoveEnd() { return mMoveEnd; }
 private:
-    /* 0x568 */ u8 field_0x568[0x59C - 0x568];
-    /* 0x59C */ u8 mMoveEnd;
-    /* 0x59D */ u8 field_0x59D[0x618 - 0x59D];
+    /* 0x568 */ u8 field_0x568[0x594 - 0x568];
+    /* 0x594 */ bool mMoveEnd;
+    /* 0x595 */ u8 field_0x595[0x618 - 0x595];
 };
 
 STATIC_ASSERT(sizeof(daPoFire_c) == 0x618);
