@@ -1936,7 +1936,7 @@ cPhs__Step daNpcWrestler_c::Create() {
         reset();
 
         mSound.init(&current.pos, &eyePos, 3, 1);
-        mAcchCir.SetWall(field_0xbdc->field_0x8, field_0xbdc->field_0x4);
+        mAcchCir.SetWall(field_0xbdc->mWallR, field_0xbdc->mWallH);
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this),
                     fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
         mCcStts.Init(field_0xbd8->common.weight, 0, this);
@@ -1945,7 +1945,7 @@ cPhs__Step daNpcWrestler_c::Create() {
         field_0xc90.SetTgType(0);
         field_0xc90.SetTgSPrm(0);
         field_0xc90.SetH(field_0xbdc->field_0x0);
-        field_0xc90.SetR(field_0xbdc->field_0x8);
+        field_0xc90.SetR(field_0xbdc->mWallR);
         
         mAcch.CrrPos(dComIfG_Bgsp());
         mGndChk = mAcch.m_gnd;
@@ -5335,138 +5335,550 @@ bool daNpcWrestler_c::demoTalkAfterLose(void* param_1) {
     return false;
 }
 
-/* ############################################################################################## */
-/* 80B41D7C-80B41D7C 0006A0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80B41DEC = "pos";
-SECTION_DEAD static char const* const stringBase_80B41DF0 = "angle";
-#pragma pop
-
 /* 80B3D584-80B3DB50 00E3E4 05CC+00 3/0 0/0 0/0 .text EvCut_grDSEntry__15daNpcWrestler_cFi */
-void daNpcWrestler_c::EvCut_grDSEntry(int param_0) {
+bool daNpcWrestler_c::EvCut_grDSEntry(int i_cutIndex) {
     // NONMATCHING
+    dEvent_manager_c* eventManager = dComIfGp_getPEvtManager();
+    int* cutName = (int*)eventManager->getMyNowCutName(i_cutIndex);
+
+    if (eventManager->getIsAddvance(i_cutIndex) != 0) {
+        switch (*cutName) {
+            case 0x30303031:
+                if (mLookMode != 3) {
+                    mLookMode = 3;
+                }
+
+                mActorMngr[0].entry(daPy_getPlayerActorClass());
+                break;
+
+            case 0x30303033:
+                setExpressionAnm(0x3E, false);
+                // fallthrough
+            case 0x30303034:
+                initTalk(mMsgNo, NULL);
+                mMsgTimer = 0;
+                break;
+
+            case 0x30303037:
+                setMotionAnm(2, -1.0f);
+                break;
+
+            case 0x30303032:
+            case 0x30303035:
+            case 0x30303036:
+            case 0x30303038:
+            case 0x30303039:
+                initTalk(mMsgNo, NULL);
+                mMsgTimer = 0;
+                initTalkAngle();
+                break;
+        }
+    }
+
+    int iVar1 = mMsgTimer;
+    int i_expression, i_motion;
+    if (ctrlMsgAnm(i_expression, i_motion, this, FALSE)) {
+        setExpression(i_expression, -1.0f);
+        setMotion(i_motion, -1.0f, 0);
+    } else if (iVar1 != 0 && mMsgTimer == 0) {
+        setExpressionTalkAfter();
+    }
+
+    cXyz* pcVar1;
+    int* piVar1;
+    switch (*cutName) {
+        case 0x30303031:
+        case 0x30303037:
+            return true;
+
+        case 0x30303032:
+        case 0x30303035:
+        case 0x30303036:
+        case 0x30303038:
+        case 0x30303039:
+            if (setTalkAngle() && talkProc(NULL, TRUE, NULL)) {
+                #ifdef DEBUG
+                char* choice;
+                if (mFlow.getChoiceNo() == 0) {
+                    choice = "はい"; 
+                } else {
+                    choice = "いいえ";
+                }
+                OS_REPORT("二択分岐 %s\n", choice);
+                #endif
+
+                if (mFlow.getChoiceNo() == 0) {
+                    mOrderEvtNo = 2;
+                    changeEvent(l_resName[mType], l_evtNames[mOrderEvtNo], 1, 0xFFFF);
+                }
+                return true;
+            }
+            break;
+
+        case 0x30303033:
+            pcVar1 = dComIfGp_evmng_getMyXyzP(i_cutIndex, "pos");
+            if (pcVar1 != NULL && cLib_chasePosXZ(&current.pos, *pcVar1, 3.5f) != 0) {
+                return true;
+            }
+            break;
+
+        case 0x30303034:
+            bool bVar1 = false;
+            iVar1 = talkProc(NULL, TRUE, NULL);
+            pcVar1 = dComIfGp_evmng_getMyXyzP(i_cutIndex, "pos");
+            if (pcVar1 != NULL && cLib_chasePosXZ(&current.pos, *pcVar1, 3.5f) != 0) {
+                piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "angle");
+                if (piVar1 != NULL && cLib_chaseAngleS(&shape_angle.y, *piVar1, 0x100) != 0) {
+                    setMotion(0, -1.0f, 0);
+                    setAngle(shape_angle.y);
+                    return true;
+                }
+            }
+            break;
+    }
+
+    return false;
 }
 
 /* 80B3DB50-80B3DCE8 00E9B0 0198+00 1/0 0/0 0/0 .text EvCut_grDSEntry2__15daNpcWrestler_cFi */
-void daNpcWrestler_c::EvCut_grDSEntry2(int param_0) {
+bool daNpcWrestler_c::EvCut_grDSEntry2(int i_cutIndex) {
     // NONMATCHING
+    dEvent_manager_c* eventManager = dComIfGp_getPEvtManager();
+    int* cutName = (int*)eventManager->getMyNowCutName(i_cutIndex);
+
+    if (eventManager->getIsAddvance(i_cutIndex)) {
+        switch (*cutName) {
+            case 0x30303031:
+            case 0x30303032:
+                setLookMode(3);
+                mActorMngr[0].entry(daPy_getPlayerActorClass());
+                break;
+        }
+    }
+
+    switch (i_cutIndex) {
+        case 0x30303031:
+            return true;
+
+        case 0x30303032:
+            mItemNo = 2;
+            setAction(&daNpcWrestler_c::gotoArena);
+            dComIfGp_event_reset();
+            mOrderEvtNo = 0;
+            mEventIdx = -1;
+            return true;
+    }
+
+    return false;
 }
 
 /* 80B3DCE8-80B3E0FC 00EB48 0414+00 2/0 0/0 0/0 .text EvCut_grDSEntry3_4__15daNpcWrestler_cFi */
-void daNpcWrestler_c::EvCut_grDSEntry3_4(int param_0) {
+bool daNpcWrestler_c::EvCut_grDSEntry3_4(int i_cutIndex) {
     // NONMATCHING
+    dEvent_manager_c* eventManager = dComIfGp_getPEvtManager();
+    int* cutName = (int*)eventManager->getMyNowCutName(i_cutIndex);
+
+    if (cutName != NULL) {
+        if (eventManager->getIsAddvance(i_cutIndex)){
+            switch (*cutName) {
+                case 0x30303031:
+                    setLookMode(3);
+                    mActorMngr[0].entry(daPy_getPlayerActorClass());
+                    initTalk(mMsgNo, NULL);
+                    initTalkAngle();
+                    mMsgTimer = 0;
+                    break;
+            }
+        }
+
+        int iVar1 = mMsgTimer;
+        int i_expression, i_motion;
+        if (ctrlMsgAnm(i_expression, i_motion, this, FALSE) != 0) {
+            setExpression(i_expression, -1.0f);
+            setMotion(i_motion, -1.0f, 0);
+        } else {
+            if (iVar1 != 0 && mMsgTimer == 0) {
+                setExpressionTalkAfter();
+            }
+        }
+
+        switch (*cutName) {
+            case 0x30303031:
+                if (setTalkAngle() && talkProc(NULL, TRUE, NULL)) {
+                    #ifdef DEBUG
+                    char* choice;
+                    if (mFlow.getChoiceNo() == 0) {
+                        choice = "はい"; 
+                    } else {
+                        choice = "いいえ";
+                    }
+                    OS_REPORT("二択分岐 %s\n", choice);
+                    #endif
+
+                    if (mFlow.getChoiceNo() == 0) {
+                        mOrderEvtNo = 5;
+                        changeEvent(l_resName[mType], l_evtNames[mOrderEvtNo], 1, 0xFFFF);
+                    }
+                    return true;
+                }
+                break;
+        }
+    }
+
+    return false;
 }
 
 /* 80B3E0FC-80B3E584 00EF5C 0488+00 1/0 0/0 0/0 .text EvCut_grDSEntry5__15daNpcWrestler_cFi */
-void daNpcWrestler_c::EvCut_grDSEntry5(int param_0) {
+bool daNpcWrestler_c::EvCut_grDSEntry5(int i_cutIndex) {
     // NONMATCHING
+    dEvent_manager_c* eventManager = dComIfGp_getPEvtManager();
+    int* cutName = (int*)eventManager->getMyNowCutName(i_cutIndex);
+
+    if (eventManager->getIsAddvance(i_cutIndex)) {
+        switch (*cutName) {
+            case 0x30303031:
+            case 0x30303032:
+                setLookMode(3);
+                mActorMngr[0].entry(daPy_getPlayerActorClass());
+                initTalk(mMsgNo, NULL);
+                initTalkAngle();
+                mMsgTimer = 0;
+                break;
+        }
+    }
+
+    int iVar1 = mMsgTimer;
+    int i_expression, i_motion;
+    if (ctrlMsgAnm(i_expression, i_motion, this, FALSE) != 0) {
+        setExpression(i_expression, -1.0f);
+        setMotion(i_motion, -1.0f, 0);
+    } else if (iVar1 == 0 && mMsgTimer == 0) {
+        setExpressionTalkAfter();
+    }
+
+    switch (*cutName) {
+        case 0x30303031:
+            return true;
+            
+        case 0x30303032:
+            if (setTalkAngle() && talkProc(NULL, TRUE, NULL)) {
+                mItemNo = 3;
+                setAction(&daNpcWrestler_c::gotoArena);
+                dComIfGp_event_reset();
+                mOrderEvtNo = 0;
+                mEventIdx = -1;
+                return true;
+            }
+    }
+
+    return false;
 }
 
 /* 80B3E584-80B3EA2C 00F3E4 04A8+00 1/0 0/0 0/0 .text            EvCut_grDSLose__15daNpcWrestler_cFi */
-void daNpcWrestler_c::EvCut_grDSLose(int param_0) {
+bool daNpcWrestler_c::EvCut_grDSLose(int i_cutIndex) {
     // NONMATCHING
+    dEvent_manager_c* eventManager = dComIfGp_getPEvtManager();
+    int* cutName = (int*)eventManager->getMyNowCutName(i_cutIndex);
+    int* piVar1;
+    cXyz* pcVar1;
+
+    if (eventManager->getIsAddvance(i_cutIndex)) {
+        switch (*cutName) {
+            case 0x30303031:
+                break;
+
+            case 0x30303032:
+                piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "angle");
+                pcVar1 = dComIfGp_evmng_getMyXyzP(i_cutIndex, "pos");
+                
+                if (pcVar1 != NULL) {
+                    current.pos.set(*pcVar1);
+                    old.pos = current.pos;
+                }
+
+                if (piVar1 != NULL) {
+                    setAngle(*piVar1);
+                }
+
+                setLookMode(3);
+                mActorMngr[0].entry(daPy_getPlayerActorClass());
+                setMotionAnm(0x39, 0.0f);
+                break;
+
+            case 0x30303033:
+            case 0x30303034:
+                initTalk(mMsgNo, NULL);
+                initTalkAngle();
+                mMsgTimer = 0;
+                break;
+        }
+    }
+
+    int iVar1 = mMsgTimer;
+    int i_expression, i_motion;
+    if (ctrlMsgAnm(i_expression, i_motion, this, FALSE) != 0) {
+        setExpression(i_expression, -1.0f);
+        setMotion(i_motion, -1.0f, 0);
+    } else if (iVar1 != 0 && mMsgTimer == 0) {
+        setExpressionTalkAfter();
+    }
+
+    switch (*cutName) {
+        case 0x30303031:
+        case 0x30303032:
+            return true;
+
+        case 0x30303033:
+        case 0x30303034:
+            if (setTalkAngle() && talkProc(NULL, TRUE, NULL)) {
+                mActorMngr[0].entry(daPy_getPlayerActorClass());
+                return true;
+            }
+            break;
+    }
+
+    return false;
 }
 
 /* 80B3EA2C-80B3EA4C 00F88C 0020+00 1/0 0/0 0/0 .text            daNpcWrestler_Create__FPv */
-static void daNpcWrestler_Create(void* a_this) {
-    // NONMATCHING
+static int daNpcWrestler_Create(void* a_this) {
+    daNpcWrestler_c* i_this = (daNpcWrestler_c*)a_this;
+    return i_this->Create();
+
 }
 
 /* 80B3EA4C-80B3EA6C 00F8AC 0020+00 1/0 0/0 0/0 .text            daNpcWrestler_Delete__FPv */
-static void daNpcWrestler_Delete(void* param_0) {
-    // NONMATCHING
+static int daNpcWrestler_Delete(void* a_this) {
+    daNpcWrestler_c* i_this = (daNpcWrestler_c*)a_this;
+    return i_this->Delete();
 }
 
 /* 80B3EA6C-80B3EA8C 00F8CC 0020+00 1/0 0/0 0/0 .text            daNpcWrestler_Execute__FPv */
-static void daNpcWrestler_Execute(void* param_0) {
-    // NONMATCHING
+static int daNpcWrestler_Execute(void* a_this) {
+    daNpcWrestler_c* i_this = (daNpcWrestler_c*)a_this;
+    return i_this->Execute();
 }
 
 /* 80B3EA8C-80B3EAAC 00F8EC 0020+00 1/0 0/0 0/0 .text            daNpcWrestler_Draw__FPv */
-static void daNpcWrestler_Draw(void* param_0) {
-    // NONMATCHING
+static int daNpcWrestler_Draw(void* a_this) {
+    daNpcWrestler_c* i_this = (daNpcWrestler_c*)a_this;
+    return i_this->Draw();
 }
 
 /* 80B3EAAC-80B3EAB4 00F90C 0008+00 1/0 0/0 0/0 .text            daNpcWrestler_IsDelete__FPv */
-static bool daNpcWrestler_IsDelete(void* param_0) {
-    return true;
-}
-
-/* 80B3EAB4-80B3EAE4 00F914 0030+00 1/0 0/0 0/0 .text            calc__11J3DTexNoAnmCFPUs */
-// void J3DTexNoAnm::calc(u16* param_0) const {
-extern "C" void calc__11J3DTexNoAnmCFPUs() {
-    // NONMATCHING
+static int daNpcWrestler_IsDelete(void* a_this) {
+    return 1;
 }
 
 /* 80B3EAE4-80B3EB94 00F944 00B0+00 1/0 0/0 0/0 .text            setParam__15daNpcWrestler_cFv */
 void daNpcWrestler_c::setParam() {
-    // NONMATCHING
+    attention_info.distances[0] = getDistTableIdx(5, 6);
+    attention_info.distances[1] = attention_info.distances[0];
+    attention_info.distances[3] = getDistTableIdx(3, 6);
+    attention_info.flags = 10;
+
+    if (mType == 1 && daPy_py_c::checkNowWolf()) {
+        attention_info.flags = 0;
+    }
+
+    mAcchCir.SetWallR(field_0xbdc->mWallR);
+    mAcchCir.SetWallH(field_0xbdc->mWallH);
+    gravity = field_0xbd8->common.gravity;
 }
 
 /* 80B3EB94-80B3EF10 00F9F4 037C+00 1/0 0/0 0/0 .text            main__15daNpcWrestler_cFv */
 BOOL daNpcWrestler_c::main() {
     // NONMATCHING
+    if (!selectAction() && field_0xdcc != NULL) {
+        (this->*field_0xdcc)(NULL);
+    }
+
+    if (dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk() && field_0xe78 != -1) {
+        dComIfGp_event_setItemPartnerId(field_0xe78);
+        field_0xe78 = -1;
+    }
+
+    playExpression();
+    playMotion();
+    setWrestlerVoice();
+    return TRUE;
 }
-
-/* ############################################################################################## */
-/* 80B41D54-80B41D58 000678 0004+00 0/0 0/0 0/0 .rodata          @10142 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10142 = 3.5f;
-COMPILER_STRIP_GATE(0x80B41D54, &lit_10142);
-#pragma pop
-
-/* 80B41D58-80B41D5C 00067C 0004+00 0/1 0/0 0/0 .rodata          @10652 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10652 = 11.0f;
-COMPILER_STRIP_GATE(0x80B41D58, &lit_10652);
-#pragma pop
-
-/* 80B41D5C-80B41D60 000680 0004+00 0/1 0/0 0/0 .rodata          @10653 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10653 = 2.0f;
-COMPILER_STRIP_GATE(0x80B41D5C, &lit_10653);
-#pragma pop
-
-/* 80B41D60-80B41D64 000684 0004+00 0/1 0/0 0/0 .rodata          @10654 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10654 = 7.0f;
-COMPILER_STRIP_GATE(0x80B41D60, &lit_10654);
-#pragma pop
-
-/* 80B41D64-80B41D68 000688 0004+00 0/1 0/0 0/0 .rodata          @10655 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10655 = 37.0f;
-COMPILER_STRIP_GATE(0x80B41D64, &lit_10655);
-#pragma pop
-
-/* 80B41D68-80B41D6C 00068C 0004+00 0/1 0/0 0/0 .rodata          @10656 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10656 = 42.0f;
-COMPILER_STRIP_GATE(0x80B41D68, &lit_10656);
-#pragma pop
-
-/* 80B41D6C-80B41D70 000690 0004+00 0/1 0/0 0/0 .rodata          @10657 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_10657 = 12.0f;
-COMPILER_STRIP_GATE(0x80B41D6C, &lit_10657);
-#pragma pop
 
 /* 80B3EF10-80B3FCE8 00FD70 0DD8+00 1/1 0/0 0/0 .text setWrestlerVoice__15daNpcWrestler_cFv */
 void daNpcWrestler_c::setWrestlerVoice() {
     // NONMATCHING
+    J3DAnmTransform* anmTransform = mpMorf->getAnm();
+
+    if (mType == 0) {
+        if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x27)) {
+            if (mpMorf->getFrame() == 11.0f) {
+                mSound.startCreatureVoice(Z2SE_BOU_V_SUMO_HARITE_ATK, -1);
+            }
+        } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x29)) {
+            if (mpMorf->getFrame() == 11.0f) {
+                mSound.startCreatureVoice(Z2SE_BOU_V_SUMO_HARITE_ATK, -1);
+            } else if (mpMorf->getFrame() == 35.0f) {
+                mSound.startCreatureVoice(Z2SE_BOU_V_SUMO_HOLDED, -1);
+            }
+        } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x28)) {
+            if (mpMorf->getFrame() == 15.0f) {
+                mSound.startCreatureVoice(Z2SE_BOU_V_SUMO_HARITE_DMG, -1);
+            }
+        } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x2A)) {
+            if (mpMorf->getFrame() == 15.0f) {
+                mSound.startCreatureVoice(Z2SE_BOU_V_SUMO_HARITE_DMG, -1);
+            }
+        } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x30)) {
+            if (mpMorf->getFrame() == 2.0f) {
+                mSound.startCreatureVoice(Z2SE_BOU_V_SUMO_TUCKLE_ATK, -1);
+            }
+        } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x31)) {
+            if (mpMorf->getFrame() == 32.0f) {
+                mSound.startCreatureVoice(Z2SE_BOU_V_SUMO_TUCKLE_ATK, -1);
+            }
+        } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x32)) {
+            if (mpMorf->getFrame() == 2.0f) {
+                mSound.startCreatureVoice(Z2SE_BOU_V_SUMO_TUCKLE_ATK, -1);
+            }
+        } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x33)) {
+            if (mpMorf->getFrame() == 7.0f) {
+                mSound.startCreatureVoice(Z2SE_BOU_V_SUMO_HOLDED, -1);
+            }
+        } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x36)) {
+            if (mpMorf->getFrame() == 7.0f) {
+                mSound.startCreatureVoice(Z2SE_BOU_V_SUMO_HOLDED, -1);
+            }
+        } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x2B)) {
+            if (mpMorf->getFrame() == 5.0f) {
+                mSound.startCreatureVoice(Z2SE_BOU_V_SUMO_HOLD_BACK, -1);
+            }
+        } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x35)) {
+            if (mpMorf->getFrame() == 5.0f) {
+                mSound.startCreatureVoice(Z2SE_BOU_V_SUMO_PUSH, -1);
+            }
+        } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x39)) {
+            if (mpMorf->getFrame() == 10.0f) {
+                mSound.startCreatureVoice(Z2SE_BOU_V_SUMO_PUSH_LAST, -1);
+            }
+        } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x23)) {
+            if (mpMorf->getFrame() == 23.0f) {
+                mSound.startCreatureVoice(Z2SE_BOU_V_SUMO_FALL_LOSE, -1);
+            }
+        } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x24)) {
+            if (mpMorf->getFrame() == 3.0f) {
+                mSound.startCreatureVoice(Z2SE_BOU_V_SUMO_FALL_LOSE, -1);
+            }
+        } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x2D)) {
+            if (mpMorf->getFrame() == 37.0f) {
+                mSound.startCreatureVoice(Z2SE_BOU_V_SUMO_SHIKO, -1);
+            }
+        } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x26)) {
+            if (mpMorf->getFrame() == 13.0f) {
+                mSound.startCreatureVoice(Z2SE_BOU_V_SUMO_PUSHED_BACK, -1);
+            }
+        }
+    } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x31)) {
+        if (mpMorf->getFrame() == 42.0f) {
+            mSound.startCreatureVoice(Z2SE_GRN_V_SUMO_SHIKO, -1);
+        }
+    } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x2C)) {
+        if (mpMorf->getFrame() == 11.0f) {
+            mSound.startCreatureVoice(Z2SE_GRN_V_SUMO_HARITE_ATK, -1);
+        }
+    } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x2E)) {
+        if (mpMorf->getFrame() == 11.0f) {
+            mSound.startCreatureVoice(Z2SE_GRN_V_SUMO_HARITE_ATK, -1);
+        }
+    } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x2D)) {
+        if (mpMorf->getFrame() == 12.0f) {
+            mSound.startCreatureVoice(Z2SE_GRN_V_SUMO_HARITE_DMG, -1);
+        }
+    } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x2F)) {
+        if (mpMorf->getFrame() == 15.0f) {
+            mSound.startCreatureVoice(Z2SE_GRN_V_SUMO_HARITE_DMG, -1);
+        }
+    } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x35)) {
+        if (mpMorf->getFrame() == 2.0f) {
+            mSound.startCreatureVoice(Z2SE_GRN_V_SUMO_TUCKLE_ATK, -1);
+        }
+    } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x36)) {
+        if (mpMorf->getFrame() == 32.0f) {
+            mSound.startCreatureVoice(Z2SE_GRN_V_SUMO_TUCKLE_ATK, -1);
+        }
+    } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x37)) {
+        if (mpMorf->getFrame() == 2.0f) {
+            mSound.startCreatureVoice(Z2SE_GRN_V_SUMO_TUCKLE_ATK, -1);
+        }
+    } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x2E)) {
+        if (mpMorf->getFrame() == 35.0f) {
+            mSound.startCreatureVoice(Z2SE_GRN_V_SUMO_HOLDED, -1);
+        }
+    } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x38)) {
+        if (mpMorf->getFrame() == 7.0f) {
+            mSound.startCreatureVoice(Z2SE_GRN_V_SUMO_HOLDED, -1);
+        }
+    } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x3B)) {
+        if (mpMorf->getFrame() == 7.0f) {
+            mSound.startCreatureVoice(Z2SE_GRN_V_SUMO_HOLDED, -1);
+        }
+    } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x30)) {
+        if (mpMorf->getFrame() == 5.0f) {
+            mSound.startCreatureVoice(Z2SE_GRN_V_SUMO_HOLD_BACK, -1);
+        }
+    } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x2B)) {
+        if (mpMorf->getFrame() == 13.0f) {
+            mSound.startCreatureVoice(Z2SE_GRN_V_SUMO_PUSHED_BACK, -1);
+        }
+    } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x3A)) {
+        if (mpMorf->getFrame() == 5.0f) {
+            mSound.startCreatureVoice(Z2SE_GRN_V_SUMO_PUSH, -1);
+        }
+    } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x43)) {
+        if (mpMorf->getFrame() == 10.0f) {
+            mSound.startCreatureVoice(Z2SE_GRN_V_SUMO_PUSH_LAST, -1);
+        }
+    } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x28)) {
+        if (mpMorf->getFrame() == 23.0f) {
+            mSound.startCreatureVoice(Z2SE_GRN_V_SUMO_FALL_LOSE, -1);
+        }
+    } else if (anmTransform == (J3DAnmTransform*)getTrnsfrmKeyAnmP(l_resName[mType], 0x29)) {
+        if (mpMorf->getFrame() == 3.0f) {
+            mSound.startCreatureVoice(Z2SE_GRN_V_SUMO_FALL_LOSE, -1);
+        }
+    }
 }
 
 /* 80B3FCE8-80B404FC 010B48 0814+00 1/2 0/0 0/0 .text            playMotion__15daNpcWrestler_cFv */
 void daNpcWrestler_c::playMotion() {
     // NONMATCHING
+    daNpcF_anmPlayData playData0 = {0x13, field_0xbd8->common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat0[1] = {&playData0};
+    daNpcF_anmPlayData playData1 = {0x17, field_0xbd8->common.morf_frame, 1};
+    daNpcF_anmPlayData* pDat1[1] = {&playData1};
+    daNpcF_anmPlayData playData2 = {0x19, field_0xbd8->common.morf_frame, 1};
+    daNpcF_anmPlayData* pDat2[1] = {&playData2};
+    daNpcF_anmPlayData playData3 = {0x1A, field_0xbd8->common.morf_frame, 1};
+    daNpcF_anmPlayData* pDat3[1] = {&playData3};
+    daNpcF_anmPlayData playData4 = {0x18, field_0xbd8->common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat4[1] = {&playData4};
+    daNpcF_anmPlayData playData5 = {0x1A, field_0xbd8->common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat5[1] = {&playData5};
+    daNpcF_anmPlayData playData6 = {0, field_0xbd8->common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat6[1] = {&playData6};
+
+    daNpcF_anmPlayData** expressionAnm[7] = {
+        pDat0,
+        pDat1,
+        pDat2,
+        pDat3,
+        pDat4,
+        pDat5,
+        pDat6,
+    };
+
+    if (mMotion >= 0 && mMotion < 30) {
+
+    }
 }
 
 /* 80B404FC-80B405E8 01135C 00EC+00 1/0 0/0 0/0 .text            ctrlBtk__15daNpcWrestler_cFv */

@@ -16,8 +16,8 @@
 
 struct daNpcWrestler_HIOParamSub {
     /* 0x00 */ f32 field_0x0;
-    /* 0x04 */ f32 field_0x4;
-    /* 0x08 */ f32 field_0x8;
+    /* 0x04 */ f32 mWallH;
+    /* 0x08 */ f32 mWallR;
     /* 0x0C */ f32 field_0xc;                   // リアル影サイズ (Real Shadow Size)
     /* 0x10 */ f32 field_0x10;
     /* 0x14 */ f32 field_0x14;                  // 見合う距離 (Right Distance)
@@ -182,11 +182,11 @@ public:
     /* 80B3C278 */ bool demoSumouLose2(void*);
     /* 80B3CA2C */ bool demoSumouUnilateralWin(void*);
     /* 80B3D0C0 */ bool demoTalkAfterLose(void*);
-    /* 80B3D584 */ void EvCut_grDSEntry(int);
-    /* 80B3DB50 */ void EvCut_grDSEntry2(int);
-    /* 80B3DCE8 */ void EvCut_grDSEntry3_4(int);
-    /* 80B3E0FC */ void EvCut_grDSEntry5(int);
-    /* 80B3E584 */ void EvCut_grDSLose(int);
+    /* 80B3D584 */ bool EvCut_grDSEntry(int);
+    /* 80B3DB50 */ bool EvCut_grDSEntry2(int);
+    /* 80B3DCE8 */ bool EvCut_grDSEntry3_4(int);
+    /* 80B3E0FC */ bool EvCut_grDSEntry5(int);
+    /* 80B3E584 */ bool EvCut_grDSLose(int);
     /* 80B3EF10 */ void setWrestlerVoice();
     /* 80B3FCE8 */ void playMotion();
     /* 80B40B3C */ void lookat();
@@ -213,6 +213,15 @@ public:
 
     BOOL chkAction(actionFunc i_action) {
         return i_action == field_0xdcc;
+    }
+    bool selectAction() {
+        field_0xdcc = NULL;
+        if (!chkAction(field_0xdcc)) {
+            setAction(field_0xdcc);
+            return true;
+        }
+
+        return false;
     }
 
     s8 getArenaNo() { return (u8)fopAcM_GetParam(this); }
@@ -496,6 +505,37 @@ public:
         mDoMtx_stack_c::XrotM(field_0xbd8->field_0xa8);
         mDemoCam.mDemoCamCenter.set(0.0f, 0.0f, mArenaExtent * 0.5f - 100.0f);
         mDoMtx_stack_c::multVec(&mDemoCam.mDemoCamCenter, &mDemoCam.mDemoCamCenter);
+    }
+
+    void playExpression() {
+        daNpcF_anmPlayData playData0 = {0x13, field_0xbd8->common.morf_frame, 0};
+        daNpcF_anmPlayData* pDat0[1] = {&playData0};
+        daNpcF_anmPlayData playData1 = {0x17, field_0xbd8->common.morf_frame, 1};
+        daNpcF_anmPlayData* pDat1[1] = {&playData1};
+        daNpcF_anmPlayData playData2 = {0x19, field_0xbd8->common.morf_frame, 1};
+        daNpcF_anmPlayData* pDat2[1] = {&playData2};
+        daNpcF_anmPlayData playData3 = {0x1A, field_0xbd8->common.morf_frame, 1};
+        daNpcF_anmPlayData* pDat3[1] = {&playData3};
+        daNpcF_anmPlayData playData4 = {0x18, field_0xbd8->common.morf_frame, 0};
+        daNpcF_anmPlayData* pDat4[1] = {&playData4};
+        daNpcF_anmPlayData playData5 = {0x1A, field_0xbd8->common.morf_frame, 0};
+        daNpcF_anmPlayData* pDat5[1] = {&playData5};
+        daNpcF_anmPlayData playData6 = {0, field_0xbd8->common.morf_frame, 0};
+        daNpcF_anmPlayData* pDat6[1] = {&playData6};
+
+        daNpcF_anmPlayData** expressionAnm[7] = {
+            pDat0,
+            pDat1,
+            pDat2,
+            pDat3,
+            pDat4,
+            pDat5,
+            pDat6,
+        };
+
+        if (mExpression >= 0 && mExpression < 6) {
+            playExpressionAnm(expressionAnm);
+        }
     }
 
     static EventFn mEvtSeqList[7];
