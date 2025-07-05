@@ -52,9 +52,9 @@ public:
     /* 80539840 */ void changeBck(int*, int*);
     /* 805398DC */ void changeBtp(int*, int*);
     /* 80539968 */ void changeBtk(int*, int*);
-    /* 80539994 */ void selectAction();
-    /* 80539ACC */ int chkAction(int (daNpc_Besu_c::*)(void*));
-    /* 80539AF8 */ void setAction(int (daNpc_Besu_c::*)(void*));
+    /* 80539994 */ int selectAction();
+    /* 80539ACC */ int chkAction(actionFunc);
+    /* 80539AF8 */ int setAction(actionFunc);
     /* 80539BA0 */ void mop(int, int);
     /* 80539CF4 */ int cutConversationAboutSaru(int);
     /* 80539E48 */ int cutConversationAboutPachinko(int);
@@ -70,8 +70,8 @@ public:
     /* 8053BD18 */ int cutNurse(int);
     /* 8053BE84 */ int cutClothTry(int);
     /* 8053BF60 */ int cutThankYou(int);
-    /* 8053C08C */ void wait(void*);
-    /* 8053CAA0 */ void swdTutorial(void*);
+    /* 8053C08C */ int wait(void*);
+    /* 8053CAA0 */ int swdTutorial(void*);
     /* 8053CBB8 */ int nurse(void*);
     /* 8053CF78 */ int giveHotWater(void*);
     /* 8053D078 */ int talk(void*);
@@ -127,7 +127,8 @@ private:
     /* 0x1118 */ u8 field_0x1118[0x1120 - 0x1118];
     /* 0x1120 */ int field_0x1120;
     /* 0x1124 */ int field_0x1124;
-    /* 0x1128 */ u8 field_0x1128[0x112D - 0x1128];
+    /* 0x1128 */ int field_0x1128;
+    /* 0x112C */ u8 field_0x112c;
     /* 0x112D */ u8 field_0x112d;
     /* 0x112E */ u8 field_0x112e;
     /* 0x112F */ u8 field_0x112f;

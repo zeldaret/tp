@@ -1206,156 +1206,640 @@ int daNpc_Besu_c::setCupAnm(int arg0, int i_attr, f32 i_morf) {
 }
 
 /* 805396C4-805396F8 002964 0034+00 1/0 0/0 0/0 .text afterSetMotionAnm__12daNpc_Besu_cFiifi */
-bool daNpc_Besu_c::afterSetMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
-    // NONMATCHING
+bool daNpc_Besu_c::afterSetMotionAnm(int arg0, int arg1, f32 arg2, int param_3) {
+    f32 var_f30 = (mCreating == 1) ? 0.0f : arg2;
+    setCupAnm(arg0, arg1, var_f30);
 }
 
 /* 805396F8-805397B0 002998 00B8+00 1/0 0/0 0/0 .text
  * getFaceMotionAnm__12daNpc_Besu_cF26daNpcT_faceMotionAnmData_c */
-daNpcT_faceMotionAnmData_c daNpc_Besu_c::getFaceMotionAnm(daNpcT_faceMotionAnmData_c param_0) {
-    // NONMATCHING
+daNpcT_faceMotionAnmData_c daNpc_Besu_c::getFaceMotionAnm(daNpcT_faceMotionAnmData_c arg0) {
+    daNpcT_faceMotionAnmData_c rv = arg0;
+    if (chkBesu3() && rv.mBtpFileIdx == 25 && rv.mBtpArcIdx == 3) {
+        rv.mBtpFileIdx = 20;
+        rv.mBtpArcIdx = 6;
+    }
+
+    return rv;
 }
 
 /* 805397B0-80539840 002A50 0090+00 1/0 0/0 0/0 .text            changeAnm__12daNpc_Besu_cFPiPi */
-void daNpc_Besu_c::changeAnm(int* param_0, int* param_1) {
-    // NONMATCHING
+void daNpc_Besu_c::changeAnm(int* arg0, int* arg1) {
+    if (mType == 0x11) {
+        switch (*arg0) {
+			case 14:
+				*arg0 = 0xA;
+				*arg1 = 7;
+				return;
+			case 16:
+				*arg0 = 0xB;
+				*arg1 = 7;
+				return;
+			case 17:
+				*arg0 = 0xC;
+				*arg1 = 7;
+				return;
+			case 19:
+				*arg0 = 0xD;
+				*arg1 = 7;
+				break;
+        }
+    }
 }
 
 /* 80539840-805398DC 002AE0 009C+00 1/0 0/0 0/0 .text            changeBck__12daNpc_Besu_cFPiPi */
-void daNpc_Besu_c::changeBck(int* param_0, int* param_1) {
-    // NONMATCHING
+void daNpc_Besu_c::changeBck(int* arg0, int* arg1) {
+    if (mType == 0x11) {
+        switch (*arg0) {
+			case 5:
+				*arg0 = 5;
+				*arg1 = 7;
+				return;
+			case 6:
+				*arg0 = 6;
+				*arg1 = 7;
+				return;
+			case 7:
+				*arg0 = 7;
+				*arg1 = 7;
+				return;
+			case 8:
+				*arg0 = 8;
+				*arg1 = 7;
+				return;
+			case 9:
+				*arg0 = 9;
+				*arg1 = 7;
+				break;
+        }
+    }
 }
 
 /* 805398DC-80539968 002B7C 008C+00 1/0 0/0 0/0 .text            changeBtp__12daNpc_Besu_cFPiPi */
-void daNpc_Besu_c::changeBtp(int* param_0, int* param_1) {
-    // NONMATCHING
+void daNpc_Besu_c::changeBtp(int* arg0, int* arg1) {
+    if (mType == 0x11) {
+        switch (*arg0) {
+			case 25:
+				*arg0 = 0x13;
+				*arg1 = 7;
+				return;
+			case 18:
+				*arg0 = 0x14;
+				*arg1 = 7;
+				return;
+			case 26:
+				*arg0 = 0x15;
+				*arg1 = 7;
+				return;
+			case 22:
+				*arg0 = 0x16;
+				*arg1 = 7;
+				break;
+        }
+    }
 }
 
 /* 80539968-80539994 002C08 002C+00 1/0 0/0 0/0 .text            changeBtk__12daNpc_Besu_cFPiPi */
-void daNpc_Besu_c::changeBtk(int* param_0, int* param_1) {
-    // NONMATCHING
+void daNpc_Besu_c::changeBtk(int* arg0, int* arg1) {
+    if (mType == 0x11) {
+        if (*arg0 != 0x16) {
+            return;
+        }
+
+        *arg0 = 0x10;
+        *arg1 = 7;
+    }
 }
 
 /* 80539994-80539ACC 002C34 0138+00 1/1 0/0 0/0 .text            selectAction__12daNpc_Besu_cFv */
-void daNpc_Besu_c::selectAction() {
-    // NONMATCHING
+int daNpc_Besu_c::selectAction() {
+    mNextAction = NULL;
+    switch (mType) {
+		case 6:
+            mNextAction = &daNpc_Besu_c::nurse;
+			break;
+		case 7:
+            mNextAction = &daNpc_Besu_c::giveHotWater;
+			break;
+		case 8:
+            mNextAction = &daNpc_Besu_c::nurse;
+			break;
+		case 14:
+			if (daNpcKakashi_chkSwdTutorialStage() & 0xFF) {
+                mNextAction = &daNpc_Besu_c::swdTutorial;
+			} else {
+                mNextAction = &daNpc_Besu_c::wait;
+			}
+
+            break;
+		default:
+            mNextAction = &daNpc_Besu_c::wait;
+			break;
+    }
+
+    return 1;
 }
 
 /* 80539ACC-80539AF8 002D6C 002C+00 2/2 0/0 0/0 .text
  * chkAction__12daNpc_Besu_cFM12daNpc_Besu_cFPCvPvPv_i          */
-int daNpc_Besu_c::chkAction(int (daNpc_Besu_c::*param_0)(void*)) {
-    // NONMATCHING
+int daNpc_Besu_c::chkAction(actionFunc arg0) {
+    return mAction == arg0;
 }
 
 /* 80539AF8-80539BA0 002D98 00A8+00 2/2 0/0 0/0 .text
  * setAction__12daNpc_Besu_cFM12daNpc_Besu_cFPCvPvPv_i          */
-void daNpc_Besu_c::setAction(int (daNpc_Besu_c::*param_0)(void*)) {
-    // NONMATCHING
-}
+int daNpc_Besu_c::setAction(actionFunc arg0) {
+    mMode = MODE_EXIT;
+    if (mAction != NULL) {
+        (this->*(mAction))(NULL);
+    }
 
-/* ############################################################################################## */
-/* 8053E8CC-8053E8D0 000178 0004+00 1/1 0/0 0/0 .rodata          @5582 */
-SECTION_RODATA static f32 const lit_5582 = 4.0f;
-COMPILER_STRIP_GATE(0x8053E8CC, &lit_5582);
+    mMode = MODE_ENTER;
+    mAction = arg0;
+    if (mAction != NULL) {
+        (this->*(mAction))(NULL);
+    }
+
+    return 1;
+}
 
 /* 80539BA0-80539CF4 002E40 0154+00 1/1 0/0 0/0 .text            mop__12daNpc_Besu_cFii */
-void daNpc_Besu_c::mop(int param_0, int param_1) {
-    // NONMATCHING
+void daNpc_Besu_c::mop(int arg0, int arg1) {
+    if (field_0x1120) {
+        action();
+        if (field_0x1120 == 0) {
+            mFaceMotionSeqMngr.setNo(7, 4.0f, 0, 0);
+            mMotionSeqMngr.setNo(0xD, 4.0f, 0, 0);
+            field_0x1124 = arg1;
+        }
+    } else if (field_0x1124) {
+        action();
+        if (field_0x1124 == 0) {
+            mFaceMotionSeqMngr.setNo(4, 4.0f, 0, 0);
+            mMotionSeqMngr.setNo(0xE, 4.0f, 0, 0);
+            field_0x1120 = arg0;
+        }
+    }
 }
-
-/* ############################################################################################## */
-/* 8053E908-8053E908 0001B4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8053EAFB = "prm";
-#pragma pop
 
 /* 80539CF4-80539E48 002F94 0154+00 1/0 0/0 0/0 .text cutConversationAboutSaru__12daNpc_Besu_cFi
  */
-int daNpc_Besu_c::cutConversationAboutSaru(int param_0) {
-    // NONMATCHING
+int daNpc_Besu_c::cutConversationAboutSaru(int arg0) {
+    int retval = 0;
+    int* param_p = NULL;
+    int prm_val = -1;
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "prm");
+    if (param_p != NULL) {
+        prm_val = *param_p;
+    }
+
+    if (dComIfGp_getEventManager().getIsAddvance(arg0)) {
+        switch (prm_val) {
+            case 0: {
+                mPlayerAngle = fopAcM_searchPlayerAngleY(this);
+                if (checkStep()) {
+                    mStepMode = 0;
+                }
+            }
+
+            case 1: {
+                break;
+            }
+        }
+    }
+
+    switch (prm_val) {
+		case 0: {
+			retval = 1;
+			break;
+        }
+
+        case 1: {
+			mJntAnm.lookPlayer(0U);
+			if (mPlayerAngle != mCurAngle.y) {
+				step(mPlayerAngle, 0x1C, 0x11, 0xF, 0);
+			} else {
+				retval = 1;
+			}
+
+            break;
+        }
+    }
+
+    return retval;
 }
-
-/* ############################################################################################## */
-/* 8053E8D0-8053E8DC 00017C 000C+00 0/1 0/0 0/0 .rodata          @5629 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5629[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8053E8D0, &lit_5629);
-#pragma pop
-
-/* 8053E8DC-8053E8E8 000188 000C+00 0/1 0/0 0/0 .rodata          @5644 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5644[12] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-};
-COMPILER_STRIP_GATE(0x8053E8DC, &lit_5644);
-#pragma pop
-
-/* 8053E908-8053E908 0001B4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8053EAFF = "msgNo";
-SECTION_DEAD static char const* const stringBase_8053EB05 = "msgNo2";
-SECTION_DEAD static char const* const stringBase_8053EB0C = "timer";
-#pragma pop
 
 /* 80539E48-8053A45C 0030E8 0614+00 3/0 0/0 0/0 .text
  * cutConversationAboutPachinko__12daNpc_Besu_cFi               */
-int daNpc_Besu_c::cutConversationAboutPachinko(int param_0) {
-    // NONMATCHING
+int daNpc_Besu_c::cutConversationAboutPachinko(int arg0) {
+    int retval = 0;
+    int* param_p = NULL;
+    int prm_val = -1;
+    int msgNo_val = 0;
+    int msgNo2_val = 0;
+    int timer_val = 0;
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "prm");
+    if (param_p != NULL) {
+        prm_val = *param_p;
+    }
+
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "msgNo");
+    if (param_p != NULL) {
+        msgNo_val = *param_p;
+    }
+
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "msgNo2");
+    if (param_p != NULL) {
+        msgNo2_val = *param_p;
+    }
+
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "timer");
+    if (param_p != NULL) {
+        timer_val = *param_p;
+    }
+
+    fopAc_ac_c* speakers[3] = {mActorMngr[0].getActorP(), mActorMngr[1].getActorP(), this};
+    dComIfGp_setMesgCameraInfoActor(speakers[0], speakers[1], speakers[2],
+                                    NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+    if (dComIfGp_getEventManager().getIsAddvance(arg0)) {
+        switch (prm_val) {
+            case 0:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            case 19:
+            case 21:
+                break;
+
+            case 1:
+                mEventTimer = timer_val;
+                initTalk(mFlowNodeNo, speakers);
+                break;
+
+            case 10:
+                field_0x112c = 1;
+                field_0x1128 = 0;
+                initTalk(mFlowNodeNo, speakers);
+                break;
+
+            case 20:
+                initTalk(mFlowNodeNo, speakers);
+                break;
+        }
+    }
+
+    int my_vals[3] = {-1, -1, -1};
+
+    switch (prm_val) {
+        case 0: {
+            retval = 1;
+            break;
+        }
+
+        case 1:
+        case 2:
+        case 3:
+        case 4:
+        case 10:
+        case 11:
+        case 12: {
+            switch (prm_val) {
+                case 1:
+                case 2: {
+                    mJntAnm.lookPlayer(0U);
+                    if (mPlayerAngle != mCurAngle.y) {
+                        if (chkBesu3()) {
+                            step(mPlayerAngle, -1, -1, 15, 0);
+                        } else {
+                            step(mPlayerAngle, -1, -1, 15, 0);
+                        }
+                    }
+
+                    break;
+                }
+
+                case 3: {
+                    JUT_ASSERT(0xD84, 0 != speakers[0]);
+                    mJntAnm.lookActor(speakers[0], -40.0f, 0U);
+                    break;
+                }
+
+                case 4: {
+                    JUT_ASSERT(0xD89, 0 != speakers[0]);
+                    mJntAnm.lookActor(speakers[0], -40.0f, 0U);
+                    if (home.angle.y != mCurAngle.y) {
+                        if (chkBesu3()) {
+                            step(home.angle.y, -1, -1, 15, 0);
+                        } else {
+                            step(home.angle.y, -1, -1, 15, 0);
+                        }
+                    }
+
+                    break;
+                }
+
+                case 10:
+                case 11: {
+                    JUT_ASSERT(0xD9F, 0 != speakers[0]);
+                    mJntAnm.lookActor(speakers[0], -40.0f, 0U);
+                    break;
+                }
+
+                case 12: {
+                    JUT_ASSERT(0xDA4, 0 != speakers[1]);
+                    mJntAnm.lookActor(speakers[1], -40.0f, 0U);
+                    break;
+                }
+            }
+        }
+        /* fallthrough */
+        case 20: {
+            my_vals[0] = msgNo_val;
+            my_vals[1] = msgNo2_val;
+            if (talkProc(my_vals, 0, speakers, 0)) {
+                if (msgNo_val == 0 && msgNo2_val == 0) {
+                    if (mFlow.checkEndFlow()) {
+                        retval = 1;
+                    }
+                } else {
+                    retval = 1;
+                }
+            }
+
+            break;
+        }
+
+        case 21: {
+            dStage_changeScene(10, 0.0f, 0U, fopAcM_GetRoomNo(this), 0, -1);
+            break;
+        }
+    }
+
+    return retval;
 }
-
-/* ############################################################################################## */
-/* 8053E8E8-8053E8EC 000194 0004+00 0/3 0/0 0/0 .rodata          @5769 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5769 = -40.0f;
-COMPILER_STRIP_GATE(0x8053E8E8, &lit_5769);
-#pragma pop
-
-/* 8053E8EC-8053E8F8 000198 000C+00 0/1 0/0 0/0 .rodata          @5779 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5779[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8053E8EC, &lit_5779);
-#pragma pop
 
 /* 8053A45C-8053A7A0 0036FC 0344+00 1/0 0/0 0/0 .text
  * cutConversationAboutWoodSwd__12daNpc_Besu_cFi                */
-int daNpc_Besu_c::cutConversationAboutWoodSwd(int param_0) {
-    // NONMATCHING
-}
+int daNpc_Besu_c::cutConversationAboutWoodSwd(int arg0) {
+    int retval = 0;
+    int* param_p = NULL;
+    int prm_val = -1;
+    int timer_val = 0;
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "prm");
+    if (param_p != NULL) {
+        prm_val = *param_p;
+    }
 
-/* ############################################################################################## */
-/* 8053E8F8-8053E8FC 0001A4 0004+00 0/2 0/0 0/0 .rodata          @5930 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5930 = 50.0f;
-COMPILER_STRIP_GATE(0x8053E8F8, &lit_5930);
-#pragma pop
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "timer");
+    if (param_p != NULL) {
+        timer_val = *param_p;
+    }
+
+    fopAc_ac_c* speakers[3] = {mActorMngr[0].getActorP(), mActorMngr[1].getActorP(), this};
+    dComIfGp_setMesgCameraInfoActor(speakers[0], speakers[1], speakers[2],
+                                    NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+    if (dComIfGp_getEventManager().getIsAddvance(arg0)) {
+        switch (prm_val) {
+            case 0: {
+                mEventTimer = timer_val;
+                initTalk(mFlowNodeNo, speakers);
+                break;
+            }
+
+            case 1: {
+                break;
+            }
+        }
+    }
+
+    switch (prm_val) {
+		case 0: {
+			mJntAnm.lookPlayer(0);
+			if (mPlayerAngle != mCurAngle.y) {
+				if (chkBesu3()) {
+					if (step(mPlayerAngle, 0x1C, 0x1D, 0xF, 0)) {
+						mFaceMotionSeqMngr.setNo(0x1C, -1.0f, 0, 0);
+						mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+					}
+				} else if (step(mPlayerAngle, 0x1C, 0x11, 0xF, 0)) {
+					mFaceMotionSeqMngr.setNo(0x1C, -1.0f, 0, 0);
+					mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+				}
+			}
+
+			if (cLib_calcTimer(&mEventTimer) == 0) {
+				retval = 1;
+			}
+
+			break;
+		}
+
+		case 1: {
+			if (talkProc(NULL, 0, speakers, 0)) {
+                int ev_id;
+				switch (mFlow.getEventId(&ev_id)) {
+                    case 2: {
+                        dStage_changeScene(0xC, 0.0f, 0U, fopAcM_GetRoomNo(this), 0, -1);
+                        break;
+                    }
+
+                    default: {
+                        if (mFlow.checkEndFlow()) {
+                            retval = 1;
+                        }
+
+                        break;
+                    }
+				}
+			}
+
+			break;
+		}
+    }
+
+    return retval;
+}
 
 /* 8053A7A0-8053AA6C 003A40 02CC+00 1/0 0/0 0/0 .text            cutSwdTutorial__12daNpc_Besu_cFi */
-int daNpc_Besu_c::cutSwdTutorial(int param_0) {
-    // NONMATCHING
+int daNpc_Besu_c::cutSwdTutorial(int arg0) {
+    fopAc_ac_c* actor_p = NULL;
+    cXyz my_vec_0;
+    cXyz my_vec_1;
+    int retval = 0;
+    int* param_p = NULL;
+    int prm_val = -1;
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "prm");
+    if (param_p != NULL) {
+        prm_val = *param_p;
+    }
+
+    if (dComIfGp_getEventManager().getIsAddvance(arg0)) {
+        switch (prm_val) {
+            case 0: {
+                break;
+            }
+
+            case 1: {
+                break;
+            }
+
+            case 71: {
+                mFaceMotionSeqMngr.setNo(1, 0.0f, 1, 0);
+                mMotionSeqMngr.setNo(2, 0.0f, 1, 0);
+                setAngle(home.angle.y);
+                my_vec_0.set(50.0f, 0.0f, 0.0f);
+                mDoMtx_stack_c::YrotS(mCurAngle.y);
+                mDoMtx_stack_c::multVec(&my_vec_0, &my_vec_0);
+                my_vec_0 += current.pos;
+                setPos(my_vec_0);
+                break;
+            }
+        }
+    }
+
+    switch (prm_val) {
+		case 0: {
+			mDamageTimer = 1;
+			action();
+			mJntAnm.lookNone(0);
+			retval = 1;
+			break;
+        }
+
+		case 1: {
+			mDamageTimer = 1;
+			action();
+			actor_p = mActorMngr[1].getActorP();
+			JUT_ASSERT(0xE7E, 0 != actor_p);
+			mJntAnm.lookActor(actor_p, -40.0f, 0);
+			retval = 1;
+			break;
+        }
+
+        case 71: {
+			mJntAnm.lookCamera(0);
+			break;
+        }
+    }
+
+    return retval;
 }
 
-/* ############################################################################################## */
-/* 8053E8FC-8053E900 0001A8 0004+00 0/1 0/0 0/0 .rodata          @6067 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6067 = 0.5f;
-COMPILER_STRIP_GATE(0x8053E8FC, &lit_6067);
-#pragma pop
-
 /* 8053AA6C-8053AF5C 003D0C 04F0+00 1/0 0/0 0/0 .text            cutFindMonkey__12daNpc_Besu_cFi */
-int daNpc_Besu_c::cutFindMonkey(int param_0) {
-    // NONMATCHING
+int daNpc_Besu_c::cutFindMonkey(int arg0) {
+    fopAc_ac_c* actor_p = NULL;
+    cXyz my_vec_0;
+    int retval = 0;
+    int* param_p = NULL;
+    int prm_val = -1;
+    int timer_val = 0;
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "prm");
+    if (param_p != NULL) {
+        prm_val = *param_p;
+    }
+
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "timer");
+    if (param_p != NULL) {
+        timer_val = *param_p;
+    }
+
+    if (dComIfGp_getEventManager().getIsAddvance(arg0)) {
+        switch (prm_val) {
+			case 0: {
+				break;
+            }
+
+            case 1: {
+				mFaceMotionSeqMngr.setNo(27, 0.0f, 0, 0);
+				break;
+            }
+
+            case 2: {
+                break;
+            }
+
+            case 3: {
+				setAngle(fopAcM_searchActorAngleY(this, (fopAc_ac_c*) dComIfGp_getHorseActor()));
+				mJntAnm.lookNone(1);
+				mEventTimer = timer_val;
+				if (mEventTimer == 0) {
+					mMotionSeqMngr.setNo(28, -1.0f, 0, 0);
+				}
+
+				break;
+            }
+
+            case 4: {
+				mHide = 1;
+				speedF = 0.0f;
+				speed.setall(0.0f);
+				break;
+            }
+        }
+    }
+
+    switch (prm_val) {
+		case 0: {
+			mJntAnm.lookPlayer(0);
+			retval = 1;
+			break;
+        }
+
+        case 1: {
+			actor_p = mActorMngr[4].getActorP();
+			JUT_ASSERT(0xED5, 0 != actor_p);
+			mJntAnm.lookActor(actor_p, -40.0f, 0U);
+			retval = 1;
+			break;
+        }
+
+        case 2: {
+			break;
+        }
+
+        case 3: {
+			mJntAnm.lookNone(0U);
+			if (mEventTimer == 0) {
+				actor_p = (fopAc_ac_c*) dComIfGp_getHorseActor();
+				JUT_ASSERT(0xEE4, 0 != actor_p);
+				my_vec_0 = actor_p->current.pos;
+				if (50.0f < current.pos.absXZ(my_vec_0)) {
+					cLib_addCalcAngleS2(&current.angle.y, cLib_targetAngleY(&current.pos, &my_vec_0), 4, 0x800);
+					shape_angle.y = current.angle.y;
+					mCurAngle.y = shape_angle.y;
+					cLib_chaseF(&speedF, 10.0f, 0.5f);
+				} else {
+					retval = 1;
+				}
+			} else if (cLib_calcTimer(&mEventTimer) == 0) {
+				mMotionSeqMngr.setNo(28, -1.0f, 0, 0);
+			}
+
+			break;
+        }
+
+        case 4: {
+			retval = 1;
+			break;
+        }
+    }
+
+    return retval;
 }
 
 /* 8053AF5C-8053B058 0041FC 00FC+00 1/0 0/0 0/0 .text            cutGetWoodSwd__12daNpc_Besu_cFi */
@@ -1414,12 +1898,12 @@ int daNpc_Besu_c::cutThankYou(int param_0) {
 }
 
 /* 8053C08C-8053CAA0 00532C 0A14+00 2/0 0/0 0/0 .text            wait__12daNpc_Besu_cFPv */
-void daNpc_Besu_c::wait(void* param_0) {
+int daNpc_Besu_c::wait(void* param_0) {
     // NONMATCHING
 }
 
 /* 8053CAA0-8053CBB8 005D40 0118+00 1/0 0/0 0/0 .text            swdTutorial__12daNpc_Besu_cFPv */
-void daNpc_Besu_c::swdTutorial(void* param_0) {
+int daNpc_Besu_c::swdTutorial(void* param_0) {
     // NONMATCHING
 }
 
@@ -1520,10 +2004,6 @@ SECTION_RODATA static u8 const lit_6105[8] = {
 };
 COMPILER_STRIP_GATE(0x8053E900, &lit_6105);
 #pragma pop
-
-
-// TODO: Remove when done:
-#include "d/actor/d_a_npc_besu_data.inc"
 
 
 /* 8053FCAC-8053FCCC -00001 0020+00 1/0 0/0 0/0 .data            daNpc_Besu_MethodTable */
