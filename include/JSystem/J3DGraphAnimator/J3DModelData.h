@@ -95,6 +95,12 @@ public:
         mJointTree.makeHierarchy(joint, hierarchy, &mMaterialTable, &mShapeTable);
         mShapeTable.initShapeNodes(getDrawMtxData(), &getVertexData());
     }
+    void show() {
+        mShapeTable.show();
+    }
+    void hide() {
+        mShapeTable.hide();
+    }
 
 private:
     friend class J3DModelLoader;
