@@ -1,21 +1,22 @@
 #ifndef D_A_E_PO_H
 #define D_A_E_PO_H
+#include "d/d_bg_s_acch.h"
 #include "d/d_cc_d.h"
 #include "d/d_cc_uty.h"
 #include "d/d_com_inf_game.h"
-#include "d/d_bg_s_acch.h"
+
 
 /**
  * @ingroup actors-enemies
  * @class e_po_class
  * @brief Poe
- * 
- * @details 
- * 
+ *
+ * @details
+ *
  */
 
 enum daE_PO_ANM {
-    ANM_ATTACK = 5,	
+    ANM_ATTACK = 5,
     ANM_AWAKE = 6,
     ANM_DAMAGE = 7,
     ANM_DOWN = 8,
@@ -50,7 +51,7 @@ enum Action_e {
 };
 
 class e_po_class {
-    public:
+public:
     /* 80756900 */ e_po_class();
 
     /* 0x000 */ fopEn_enemy_c enemy;
@@ -63,7 +64,7 @@ class e_po_class {
     /* 0x5BF */ u8 BitSW3;
     /* 0x5C0 */ bool field_0x5C0;
     /* 0x5C1 */ bool field_0x5C1;
-    /* 0x5C2 */ u8 field_0x5C2[0x5D4 - 0x5C2]; // Padding
+    /* 0x5C2 */ u8 field_0x5C2[0x5D4 - 0x5C2];  // Padding
     /* 0x5D4 */ mDoExt_McaMorfSO* mpMorf;
     /* 0x5D8 */ mDoExt_McaMorfSO* mpMorf3;
     /* 0x5DC */ mDoExt_invisibleModel mInvModel;
@@ -77,7 +78,7 @@ class e_po_class {
     /* 0x740 */ s16 field_0x740;
     /* 0x742 */ s16 mActionID;
     /* 0x744 */ f32 field_0x744;
-    /* 0x748 */ u8 field_0x748[0x74A - 0x748]; // Padding
+    /* 0x748 */ u8 field_0x748[0x74A - 0x748];  // Padding
     /* 0x74A */ s16 field_0x74A[5];
     /* 0x754 */ s16 field_0x754;
     /* 0x756 */ u8 field_0x756;
@@ -91,21 +92,21 @@ class e_po_class {
     /* 0x762 */ s16 field_0x762;
     /* 0x764 */ csXyz field_0x764;
     /* 0x76C */ f32 field_0x76C;
-    /* 0x770 */ cXyz field_0x770; // From here on, a lot of joint angles and position vectors...
+    /* 0x770 */ cXyz field_0x770;  // From here on, a lot of joint angles and position vectors...
     /* 0x77C */ cXyz field_0x77C;
     /* 0x788 */ cXyz field_0x788;
     /* 0x794 */ cXyz field_0x794;
     /* 0x7A0 */ cXyz field_0x7A0;
     /* 0x7AC */ cXyz field_0x7AC;
     /* 0x7B8 */ cXyz field_0x7B8;
-    /* 0x7C4 */ f32 field_0x7C4; // Linked to lamp anim after death, flame spawn height above ground ?
-    /* 0x7C8 */ u8 field_0x7C8[0x7D0 - 0x7C8]; // Padding
+    /* 0x7C4 */ f32  field_0x7C4;  // Linked to lamp anim after death, flame spawn height above ground ?
+    /* 0x7C8 */ u8 field_0x7C8[0x7D0 - 0x7C8];  // Padding
     /* 0x7D0 */ f32 field_0x7D0;
     /* 0x7D4 */ f32 field_0x7D4;
-    /* 0x7D8 */ f32 field_0x7D8; // FovY camera ?
+    /* 0x7D8 */ f32 field_0x7D8;  // FovY camera ?
     /* 0x7DC */ bool field_0x7DC;
     /* 0x7DD */ bool field_0x7DD;
-    /* 0x7DE */ s16 field_0x7DE; // Amount of times bitten by wolf
+    /* 0x7DE */ s16 field_0x7DE;  // Amount of times bitten by wolf
     /* 0x7E0 */ s16 field_0x7E0;
     /* 0x7E2 */ s16 field_0x7E2;
     /* 0x7E4 */ s16 field_0x7E4;
@@ -120,8 +121,8 @@ class e_po_class {
     /* 0x814 */ cXyz field_0x814;
     /* 0x820 */ cXyz field_0x820;
     /* 0x82C */ cXyz field_0x82C;
-    /* 0x838 */ cXyz field_0x838; // Eye pointer, camera ?
-    /* 0x844 */ cXyz field_0x844; // Center pointer, camera ?
+    /* 0x838 */ cXyz field_0x838;  // Eye pointer, camera ?
+    /* 0x844 */ cXyz field_0x844;  // Center pointer, camera ?
     /* 0x850 */ dBgS_AcchCir mAcchCir;
     /* 0x890 */ dBgS_ObjAcch mAcch;
     /* 0xA68 */ s8 field_0xA68;
@@ -138,7 +139,7 @@ class e_po_class {
     /* 0xEAC */ u32 mParticleKey4[2];
     /* 0xEB4 */ dPa_hermiteEcallBack_c field_0xEB4;
     /* 0xECC */ u8 field_0xECC;
-    /* 0xECD */ u8 field_0xECD[0xee0 - 0xECD]; // Padding
+    /* 0xECD */ u8 field_0xECD[0xee0 - 0xECD];  // Padding
 };
 
 STATIC_ASSERT(sizeof(e_po_class) == 0xee0);
@@ -148,7 +149,7 @@ public:
     /* 8074C54C */ daE_PO_HIO_c();
     /* 80756DE8 */ virtual ~daE_PO_HIO_c() {};
 
-    /* 0x04 */ s8 field_0x04[4];		
+    /* 0x04 */ s8 field_0x04[4];
     /* 0x08 */ f32 mBaseSize;
     /* 0x0c */ f32 mSearchDist;
     /* 0x10 */ f32 mAttackDist;

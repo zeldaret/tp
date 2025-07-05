@@ -1,18 +1,19 @@
 /**
  * @file d_a_e_po.cpp
- * 
-*/
+ *
+ */
 
 #include "d/actor/d_a_e_po.h"
-#include "d/d_cc_d.h"
 #include "d/actor/d_a_obj_poFire.h"
+#include "d/d_cc_d.h"
 #include "d/d_cc_uty.h"
+
 UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
 
 /* ############################################################################################## */
 
-static u8 padding[0x3C]; // Padding to align .bss
+static u8 padding[0x3C];  // Padding to align .bss
 
 /* 80757ADA-80757ADC 000036 0002+00 6/7 0/0 0/0 .data            mAttackNo */
 static s16 mAttackNo = 3;
@@ -56,7 +57,7 @@ static s16 mRollCount;
 static s16 mRollPlus;
 
 /* 80757E9C-80757EA0 -00001 0004+00 1/3 0/0 0/0 .bss             None */
-static s16 mRollDemoFlag;   
+static s16 mRollDemoFlag;
 static s16 mHollDemoFlag;
 
 /* 8074C5EC-8074C660 00018C 0074+00 13/13 0/0 0/0 .text            mArg0Check */
@@ -80,7 +81,7 @@ static int mArg0Check(e_po_class* i_this, s16 param_1) {
 
 /* 8074C660-8074C70C 000200 00AC+00 12/12 0/0 0/0 .text            anm_init__FP10e_po_classifUcf */
 static void anm_init(e_po_class* i_this, int i_index, f32 i_morf, u8 i_attr, f32 i_rate) {
-    J3DAnmTransform* anm = (J3DAnmTransform*) dComIfG_getObjectRes("E_PO", i_index);
+    J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes("E_PO", i_index);
     i_this->mpMorf->setAnm(anm, i_attr, i_morf, i_rate, 0.0f, -1.0f);
     i_this->mAnmID = i_index;
 }
@@ -91,21 +92,19 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
         int jnt_no = i_joint->getJntNo();
         J3DModel* model_p = j3dSys.getModel();
         e_po_class* i_this = (e_po_class*)model_p->getUserArea();
-        
+
         if (i_this != NULL) {
             MTXCopy(model_p->getAnmMtx(jnt_no), *calc_mtx);
             if (jnt_no >= 17 && jnt_no <= 22) {
                 if (jnt_no >= 21) {
-                    cMtx_YrotM(*calc_mtx, i_this->field_0x7E6[jnt_no-19].y);
-                    cMtx_ZrotM(*calc_mtx, i_this->field_0x7E6[jnt_no-19].x);
-                }
-                else {
-                    cMtx_YrotM(*calc_mtx, i_this->field_0x7E6[jnt_no-17].y);
-                    cMtx_ZrotM(*calc_mtx, i_this->field_0x7E6[jnt_no-17].x);
+                    cMtx_YrotM(*calc_mtx, i_this->field_0x7E6[jnt_no - 19].y);
+                    cMtx_ZrotM(*calc_mtx, i_this->field_0x7E6[jnt_no - 19].x);
+                } else {
+                    cMtx_YrotM(*calc_mtx, i_this->field_0x7E6[jnt_no - 17].y);
+                    cMtx_ZrotM(*calc_mtx, i_this->field_0x7E6[jnt_no - 17].x);
                 }
                 model_p->setAnmMtx(jnt_no, *calc_mtx);
-            }
-            else {
+            } else {
                 if (jnt_no == 2) {
                     cMtx_XrotM(*calc_mtx, i_this->field_0x810);
                 }
@@ -120,7 +119,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
 
 /* 8074C858-8074CCCC 0003F8 0474+00 1/0 0/0 0/0 .text            daE_PO_Draw__FP10e_po_class */
 static int daE_PO_Draw(e_po_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*) i_this;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
 
     if (mArg0Check(i_this, 0xFF) == 3 && mHollDemoFlag == 0) {
         return 1;
@@ -135,9 +134,10 @@ static int daE_PO_Draw(e_po_class* i_this) {
         g_env_light.setLightTevColorType_MAJI(i_this->mpModel, &a_this->tevStr);
         mDoExt_modelUpdateDL(i_this->mpModel);
     }
-    
+
     if (i_this->field_0x800) {
-        J3DMaterial* material_p = i_this->mpMorf2->getModel()->getModelData()->getMaterialNodePointer(0);
+        J3DMaterial* material_p =
+            i_this->mpMorf2->getModel()->getModelData()->getMaterialNodePointer(0);
         if (material_p != NULL) {
             material_p->getTevColor(1)->r = l_HIO.mKanteraColor1R;
             material_p->getTevColor(1)->g = l_HIO.mKanteraColor1G;
@@ -159,10 +159,11 @@ static int daE_PO_Draw(e_po_class* i_this) {
         return 1;
     }
 
-    if (a_this->health == 0 || 
-        (i_this->field_0x5F4 > 1.0f && (!dComIfGp_event_runCheck() ||
-        (fopAcM_getTalkEventPartner(daPy_getLinkPlayerActorClass()) != (fopAc_ac_c*)daPy_py_c::getMidnaActor())))
-    ) {
+    if (a_this->health == 0 || (i_this->field_0x5F4 > 1.0f &&
+                                (!dComIfGp_event_runCheck() ||
+                                 (fopAcM_getTalkEventPartner(daPy_getLinkPlayerActorClass()) !=
+                                  (fopAc_ac_c*)daPy_py_c::getMidnaActor()))))
+    {
         J3DModel* model_p = i_this->mpMorf->getModel();
         g_env_light.setLightTevColorType_MAJI(model_p, &a_this->tevStr);
         J3DModelData* model_data_p = model_p->getModelData();
@@ -170,7 +171,9 @@ static int daE_PO_Draw(e_po_class* i_this) {
         for (u16 i = 0; i < model_data_p->getMaterialNum(); i++) {
             J3DMaterial* material_p = model_data_p->getMaterialNodePointer(i);
             material_p->getTevColor(2)->a = temp_u8;
-            if (i_this->mActionID == ACT_ATTACK && (mArg0Check(i_this, 0xFF) != 2 || mArg0Check(i_this, mAttackNo) != 0)) {
+            if (i_this->mActionID == ACT_ATTACK &&
+                (mArg0Check(i_this, 0xFF) != 2 || mArg0Check(i_this, mAttackNo) != 0))
+            {
                 material_p->getTevColor(0)->r = 17;
                 material_p->getTevColor(0)->g = 3;
                 material_p->getTevColor(0)->b = 37;
@@ -178,8 +181,7 @@ static int daE_PO_Draw(e_po_class* i_this) {
             }
         }
         i_this->mInvModel.entryDL(NULL);
-    }
-    else {
+    } else {
         i_this->field_0x5F4 = 0.0f;
     }
 
@@ -188,10 +190,10 @@ static int daE_PO_Draw(e_po_class* i_this) {
             cLib_addCalc2(&i_this->field_0x7D0, 45.0f, 0.7f, 4.0f);
         }
 
-        if (!((daPy_py_c*) dComIfGp_getPlayer(0))->checkWolfDownAttackPullOut()
-            && i_this->mAnmID != ANM_DOWN_DEAD
-            && i_this->mType < 30) {
-                i_this->enemy.drawBallModel(&a_this->tevStr);
+        if (!((daPy_py_c*)dComIfGp_getPlayer(0))->checkWolfDownAttackPullOut() &&
+            i_this->mAnmID != ANM_DOWN_DEAD && i_this->mType < 30)
+        {
+            i_this->enemy.drawBallModel(&a_this->tevStr);
         }
     }
 
@@ -202,19 +204,22 @@ static int daE_PO_Draw(e_po_class* i_this) {
 
 /* 8074CCCC-8074D16C 00086C 04A0+00 3/3 0/0 0/0 .text            e_po_opening__FP10e_po_class */
 static void e_po_opening(e_po_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*) i_this;
-    
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+
     fopAc_ac_c* player_p = dComIfGp_getPlayer(0);
-    camera_class* camera1 = static_cast<camera_class*>(dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0)));
+    camera_class* camera1 =
+        static_cast<camera_class*>(dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0)));
     camera_class* camera2 = static_cast<camera_class*>(dComIfGp_getCamera(0));
     cXyz temp_vec;
-    
-    switch(i_this->mType) {
+
+    switch (i_this->mType) {
     case 0:
         if (!i_this->field_0x5C0) {
-            if (!daPy_py_c::checkNowWolfEyeUp() || dComIfGp_getAttention()->GetLockonList(0) == NULL
-            || !dComIfGp_getAttention()->LockonTruth()
-            || dComIfGp_getAttention()->GetLockonList(0)->getActor() != a_this) {
+            if (!daPy_py_c::checkNowWolfEyeUp() ||
+                dComIfGp_getAttention()->GetLockonList(0) == NULL ||
+                !dComIfGp_getAttention()->LockonTruth() ||
+                dComIfGp_getAttention()->GetLockonList(0)->getActor() != a_this)
+            {
                 break;
             }
         }
@@ -245,10 +250,11 @@ static void e_po_opening(e_po_class* i_this) {
             dCam_getBody()->StartBlure(20, a_this, 0.5f, 1.5f);
             return;
         }
-        cLib_addCalcAngleS2(&a_this->current.angle.y, fopAcM_searchPlayerAngleY(a_this),
-            8, 0x2000);
+        cLib_addCalcAngleS2(&a_this->current.angle.y, fopAcM_searchPlayerAngleY(a_this), 8, 0x2000);
         a_this->shape_angle.y = a_this->current.angle.y;
-        if (abs((int)(s16)(a_this->shape_angle.y - fopAcM_searchPlayerAngleY((fopAc_ac_c*)i_this))) <= 0x100) {
+        if (abs((int)(s16)(a_this->shape_angle.y -
+                           fopAcM_searchPlayerAngleY((fopAc_ac_c*)i_this))) <= 0x100)
+        {
             anm_init(i_this, ANM_AWAKE, 10.0f, 0, 1.0f);
             i_this->mSound1.startCreatureVoice(Z2SE_EN_PO_V_AWAKE, -1);
             i_this->mType = 2;
@@ -256,7 +262,7 @@ static void e_po_opening(e_po_class* i_this) {
         break;
 
     case 2:
-        if ((int) i_this->mpMorf->getFrame() == 0x41) {
+        if ((int)i_this->mpMorf->getFrame() == 0x41) {
             dCam_getBody()->StartBlure(50, (fopAc_ac_c*)i_this, 0.5f, 1.5f);
         }
         if (i_this->mpMorf->isStop()) {
@@ -305,7 +311,7 @@ static void e_po_opening(e_po_class* i_this) {
 
 /* 8074D16C-8074D338 000D0C 01CC+00 1/1 0/0 0/0 .text            e_po_wait__FP10e_po_class */
 static void e_po_wait(e_po_class* i_this) {
-    switch(i_this->mType) {
+    switch (i_this->mType) {
     case 0:
         anm_init(i_this, ANM_WAIT, 3.0f, 2, 1.0f);
         i_this->field_0x74A[4] = (u8)(50.0f + cM_rndF(50.0f));
@@ -314,8 +320,11 @@ static void e_po_wait(e_po_class* i_this) {
 
     case 1:
         if (!i_this->field_0x5C1) {
-            if (daPy_py_c::checkNowWolfPowerUp() && dComIfGp_getAttention()->GetLockonList(0) != NULL
-            && dComIfGp_getAttention()->LockonTruth() && dComIfGp_getAttention()->GetLockonList(0)->getActor() == (fopAc_ac_c*)i_this) {
+            if (daPy_py_c::checkNowWolfPowerUp() &&
+                dComIfGp_getAttention()->GetLockonList(0) != NULL &&
+                dComIfGp_getAttention()->LockonTruth() &&
+                dComIfGp_getAttention()->GetLockonList(0)->getActor() == (fopAc_ac_c*)i_this)
+            {
                 i_this->mType = 0;
                 i_this->mSound1.startCreatureVoice(Z2SE_EN_PO_V_FIND, -1);
                 i_this->field_0x757 = 1;
@@ -345,7 +354,7 @@ static void e_po_wait(e_po_class* i_this) {
 
 /* 8074D338-8074D500 000ED8 01C8+00 1/1 0/0 0/0 .text            e_po_avoid__FP10e_po_class */
 static void e_po_avoid(e_po_class* i_this) {
-    switch(i_this->mType) {
+    switch (i_this->mType) {
     case 0:
         anm_init(i_this, ANM_SWAY_BACK, 0.0f, 0, 1.0f);
         i_this->mSound1.startCreatureVoice(Z2SE_EN_PO_V_LAUGH, -1);
@@ -353,8 +362,7 @@ static void e_po_avoid(e_po_class* i_this) {
         i_this->enemy.attention_info.flags &= ~0x4;
         if (cM_rndF(1.0f) < 0.5f) {
             i_this->enemy.current.angle.y += 0x4000;
-        }
-        else {
+        } else {
             i_this->enemy.current.angle.y += -0x4000;
         }
         i_this->mType = 1;
@@ -375,7 +383,8 @@ static void e_po_avoid(e_po_class* i_this) {
     }
 
     cLib_addCalc2(&i_this->enemy.speedF, 8.0f, 1.0f, 1.0f);
-    cLib_addCalcAngleS2(&i_this->enemy.shape_angle.y, fopAcM_searchPlayerAngleY((fopAc_ac_c*)i_this), 2, 0x2000);
+    cLib_addCalcAngleS2(&i_this->enemy.shape_angle.y,
+                        fopAcM_searchPlayerAngleY((fopAc_ac_c*)i_this), 2, 0x2000);
     i_this->field_0x754 = 20;
 }
 
@@ -384,7 +393,7 @@ static void e_po_avoid(e_po_class* i_this) {
 /* 8074D500-8074DC40 0010A0 0740+00 1/1 0/0 0/0 .text            e_po_search__FP10e_po_class */
 static void e_po_search(e_po_class* i_this) {
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
-    
+
     fopAc_ac_c* player_p = static_cast<fopAc_ac_c*>(dComIfGp_getPlayer(0));
     cXyz distance_from_home;
     cXyz distance_from_player;
@@ -430,8 +439,7 @@ static void e_po_search(e_po_class* i_this) {
                 i_this->mActionID = ACT_ATTACK;
                 i_this->mType = 0;
             }
-        }
-        else {
+        } else {
             if (i_this->field_0x744 > l_HIO.mAttackDist + 100.0f) {
                 anm_init(i_this, ANM_RUN_AFTER2, 10.0f, 2, 1.0f);
                 i_this->mType = 2;
@@ -463,8 +471,7 @@ static void e_po_search(e_po_class* i_this) {
     cLib_addCalc2(&a_this->speedF, temp_float, 1.0f, 1.0f);
     if (i_this->mType != 4) {
         cLib_addCalc2(&a_this->current.pos.y, player_p->current.pos.y, 0.05f, l_HIO.mMovementSpeed);
-    }
-    else {
+    } else {
         cLib_addCalc2(&a_this->current.pos.y, a_this->home.pos.y, 0.05f, l_HIO.mMovementSpeed);
     }
     cLib_addCalc2(&i_this->field_0x7D4, l_HIO.mMovementSpeed, 1.0f, 0.5f);
@@ -480,7 +487,8 @@ static void e_po_search(e_po_class* i_this) {
         }
     }
     if (i_this->mType != 4) {
-        cLib_addCalcAngleS2(&a_this->current.angle.y, sVar3 + fopAcM_searchPlayerAngleY(a_this), 0x10, 0x800);
+        cLib_addCalcAngleS2(&a_this->current.angle.y, sVar3 + fopAcM_searchPlayerAngleY(a_this),
+                            0x10, 0x800);
     }
 }
 
@@ -499,13 +507,13 @@ static void e_po_attack(e_po_class* i_this) {
         e_po_opening(i_this);
         return;
     }
-    switch(i_this->mType) {
+    switch (i_this->mType) {
     case 10:
         anm_init(i_this, ANM_WAIT02, 10.0f, 2, 1.0f);
         i_this->field_0x74A[0] = l_HIO.mAttackChanceTime;
         i_this->mType += 1;
         break;
-    
+
     case 11:
         if (i_this->field_0x74A[0] != 0) {
             break;
@@ -527,24 +535,22 @@ static void e_po_attack(e_po_class* i_this) {
             if (frame == 23) {
                 i_this->field_0xA68 = 2;
                 i_this->mSound1.startCreatureSound(Z2SE_EN_PO_ATTACK, 0, -1);
+            } else {
+                i_this->field_0xA68 = 3;
             }
-            else {
-            i_this->field_0xA68 = 3;
-            }
-        }
-        else if (frame >= 13 && frame <= 43) {
+        } else if (frame >= 13 && frame <= 43) {
             i_this->field_0xA68 = 1;
         }
-        
+
         if (i_this->mpMorf->isStop()) {
             i_this->mType = 2;
         }
         break;
-    
+
     case 2:
         anm_init(i_this, ANM_RUN_AFTER2, 10.0f, 2, 1.0f);
         if (mArg0Check(i_this, 0xFF) != 2) {
-            if (mArg0Check(i_this, 0) != 0  && i_this->field_0x5C1) {
+            if (mArg0Check(i_this, 0) != 0 && i_this->field_0x5C1) {
                 i_this->mActionID = ACT_WAIT;
                 i_this->mType = 0;
                 return;
@@ -569,8 +575,7 @@ static void e_po_attack(e_po_class* i_this) {
     if (mArg0Check(i_this, 0xFF) == 2 && mAttackNo == 0) {
         i_this->field_0x758 = 1;
         fopAcM_delete(a_this);
-    }
-    else {
+    } else {
         if (mArg0Check(i_this, 0) != 0) {
             cXyz distance_from_home = a_this->home.pos - a_this->current.pos;
             if (distance_from_home.abs() > l_HIO.mType0AtRange || i_this->field_0x5C1) {
@@ -579,7 +584,8 @@ static void e_po_attack(e_po_class* i_this) {
         }
 
         cLib_addCalc2(&a_this->speedF, temp_float, 0.8f, 3.0f);
-        cLib_addCalcAngleS2(&a_this->current.angle.y, fopAcM_searchPlayerAngleY(a_this), 0x10, 0x1000);
+        cLib_addCalcAngleS2(&a_this->current.angle.y, fopAcM_searchPlayerAngleY(a_this), 0x10,
+                            0x1000);
         cLib_addCalc2(&a_this->current.pos.y, player_p->current.pos.y, 0.05f, i_this->field_0x7D4);
         cLib_addCalc2(&i_this->field_0x7D4, l_HIO.mMovementSpeed, 1.0f, 0.5f);
     }
@@ -590,18 +596,15 @@ static void e_po_attack(e_po_class* i_this) {
 /* 8074E168-8074E4EC 001D08 0384+00 1/1 0/0 0/0 .text            damage_check__FP10e_po_class */
 static void damage_check(e_po_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
-    daPy_py_c* player_p = (daPy_py_c*) dComIfGp_getPlayer(0);
-    
+    daPy_py_c* player_p = (daPy_py_c*)dComIfGp_getPlayer(0);
+
     if (i_this->field_0x754 != 0 || i_this->field_0x757 == 0) {
         return;
     }
-    if (
-        i_this->mActionID == ACT_DAMAGE ||
-        i_this->mActionID == ACT_AVOID ||
-        i_this->mActionID == ACT_OPENING ||
-        i_this->mActionID == ACT_HOLL_DEMO ||
-        a_this->health <= 1
-    ) {
+    if (i_this->mActionID == ACT_DAMAGE || i_this->mActionID == ACT_AVOID ||
+        i_this->mActionID == ACT_OPENING || i_this->mActionID == ACT_HOLL_DEMO ||
+        a_this->health <= 1)
+    {
         return;
     }
 
@@ -611,7 +614,10 @@ static void damage_check(e_po_class* i_this) {
     i_this->enemy.scale.set(l_HIO.mBaseSize, l_HIO.mBaseSize, l_HIO.mBaseSize);
     setMidnaBindEffect(&i_this->enemy, &i_this->mSound1, &position, &i_this->enemy.scale);
     i_this->field_0x7DC = TRUE;
-    if (daPy_py_c::checkNowWolf() && ((i_this->mActionID == ACT_ATTACK && i_this->field_0x5F4 > 200.0f) || (i_this->mActionID == ACT_ROLL_MOVE && i_this->field_0x5F4 > 200.0f))) {
+    if (daPy_py_c::checkNowWolf() &&
+        ((i_this->mActionID == ACT_ATTACK && i_this->field_0x5F4 > 200.0f) ||
+         (i_this->mActionID == ACT_ROLL_MOVE && i_this->field_0x5F4 > 200.0f)))
+    {
         i_this->field_0x7DC = FALSE;
     }
     i_this->mColliderStts.Move();
@@ -636,10 +642,14 @@ static void damage_check(e_po_class* i_this) {
         i_this->field_0x754 = 20;
         cXyz temp_vec;
         temp_vec.set(*i_this->mCyl.GetTgHitPosP());
-        if (player_p->getCutType() != daPy_py_c::CUT_TYPE_WOLF_B_LEFT && player_p->getCutType() != daPy_py_c::CUT_TYPE_WOLF_B_RIGHT
-            && i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_WOLF_ATTACK) && player_p->onWolfEnemyHangBite(&i_this->enemy)) {
+        if (player_p->getCutType() != daPy_py_c::CUT_TYPE_WOLF_B_LEFT &&
+            player_p->getCutType() != daPy_py_c::CUT_TYPE_WOLF_B_RIGHT &&
+            i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_WOLF_ATTACK) &&
+            player_p->onWolfEnemyHangBite(&i_this->enemy))
+        {
             dScnPly_c::setPauseTimer(0);
-            dComIfGp_setHitMark(3, &i_this->enemy, &i_this->enemy.getDownPos(), &i_this->enemy.shape_angle, NULL, 0);
+            dComIfGp_setHitMark(3, &i_this->enemy, &i_this->enemy.getDownPos(),
+                                &i_this->enemy.shape_angle, NULL, 0);
             i_this->mActionID = ACT_WOLF_BITE;
             i_this->mType = 0;
             i_this->enemy.speedF = 0.0f;
@@ -659,7 +669,7 @@ static void damage_check(e_po_class* i_this) {
             i_this->enemy.speedF = 20.0f;
             return;
         }
-        
+
         i_this->mActionID = ACT_DAMAGE;
         i_this->mSound1.startCreatureVoice(Z2SE_EN_PO_V_DAMAGE, -1);
         i_this->enemy.speedF = -20.0f;
@@ -693,7 +703,7 @@ static void e_po_damage(e_po_class* i_this) {
                 i_this->mType = 2;
             } else {
                 if (mArg0Check(i_this, 0xFF) == 2) {
-                    mAttackNo = (u8) (3.0f + cM_rndF(4.0f));
+                    mAttackNo = (u8)(3.0f + cM_rndF(4.0f));
                     if (mAttackNo > 6) {
                         mAttackNo = 3;
                     }
@@ -756,7 +766,9 @@ static void e_po_wolfbite(e_po_class* i_this) {
             anm_init(i_this, ANM_HANGED_DAMAGE, 2.0f, 0, 1.0f);
             i_this->field_0x7DE += 1;
         }
-        if (i_this->field_0x7DE > 3 || !player_p->checkWolfEnemyBiteAllOwn(a_this) || i_this->field_0x5F4 < 200.0f) {
+        if (i_this->field_0x7DE > 3 || !player_p->checkWolfEnemyBiteAllOwn(a_this) ||
+            i_this->field_0x5F4 < 200.0f)
+        {
             anm_init(i_this, ANM_HANGED_BRUSH, 2.0f, 0, 1.0f);
             player_p->offWolfEnemyHangBite();
             i_this->mType = 2;
@@ -775,7 +787,7 @@ static void e_po_wolfbite(e_po_class* i_this) {
                 return;
             }
             if (mArg0Check(i_this, 0xFF) == 2) {
-                mAttackNo = (u8) (3.0f + cM_rndF(4.0f));
+                mAttackNo = (u8)(3.0f + cM_rndF(4.0f));
                 if (mAttackNo > 6) {
                     mAttackNo = 3;
                 }
@@ -791,11 +803,27 @@ static void e_po_wolfbite(e_po_class* i_this) {
 
 /* 8074EA6C-807501B0 00260C 1744+00 2/1 0/0 0/0 .text            e_po_dead__FP10e_po_class */
 static void e_po_dead(e_po_class* i_this) {
-    static u16 particleNmaeDt[7] = {0x868A,0x868B,0x868C,0x868D,0x868E,0x868F,0x8698,};
-    static u16 dead_eff_Dt1[4] = {0x8690,0x8691,0x8692,0x8693,};
-    static u16 dead_eff_Dt2[2] = {0x8694,0x8695,};
-    static u16 dead_eff_Dt3[2] = {0x8696,0x8697,};
-    static u16 dead_eff_Dt4[2] = {0x866D,0x869B,};
+    static u16 particleNmaeDt[7] = {
+        0x868A, 0x868B, 0x868C, 0x868D, 0x868E, 0x868F, 0x8698,
+    };
+    static u16 dead_eff_Dt1[4] = {
+        0x8690,
+        0x8691,
+        0x8692,
+        0x8693,
+    };
+    static u16 dead_eff_Dt2[2] = {
+        0x8694,
+        0x8695,
+    };
+    static u16 dead_eff_Dt3[2] = {
+        0x8696,
+        0x8697,
+    };
+    static u16 dead_eff_Dt4[2] = {
+        0x866D,
+        0x869B,
+    };
 
     cXyz local_100;
     cXyz cStack_10c;
@@ -803,7 +831,8 @@ static void e_po_dead(e_po_class* i_this) {
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
 
     daPy_py_c* player_p = (daPy_py_c*)dComIfGp_getPlayer(0);
-    camera_class* camera_player = static_cast<camera_class*>(dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0)));
+    camera_class* camera_player =
+        static_cast<camera_class*>(dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0)));
     camera_class* camera = static_cast<camera_class*>(dComIfGp_getCamera(0));
     dBgS_LinChk lin_chk;
     cXyz scale(1.0f, 1.0f, 1.0f);
@@ -863,8 +892,9 @@ static void e_po_dead(e_po_class* i_this) {
         break;
 
     case 1:
-        if (i_this->field_0x7DD == FALSE &&  (int) i_this->mpMorf->getFrame() == 27) {
-            Z2GetAudioMgr()->seStart(Z2SE_EN_PO_LAMP_LAND, &i_this->field_0x77C, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        if (i_this->field_0x7DD == FALSE && (int)i_this->mpMorf->getFrame() == 27) {
+            Z2GetAudioMgr()->seStart(Z2SE_EN_PO_LAMP_LAND, &i_this->field_0x77C, 0, 0, 1.0f, 1.0f,
+                                     -1.0f, -1.0f, 0);
             i_this->field_0x7DD = TRUE;
         }
         if (i_this->mpMorf->isStop()) {
@@ -893,7 +923,9 @@ static void e_po_dead(e_po_class* i_this) {
         if (i_this->field_0x74A[1] == 0) {
             a_this->onDownFlg();
         }
-        if (i_this->field_0x74A[2] == 0 && (i_this->field_0x74A[0] == 0 || !daPy_py_c::checkNowWolf())) {
+        if (i_this->field_0x74A[2] == 0 &&
+            (i_this->field_0x74A[0] == 0 || !daPy_py_c::checkNowWolf()))
+        {
             i_this->mType = 20;
             i_this->field_0x759 = 0;
             a_this->offDownFlg();
@@ -927,7 +959,8 @@ static void e_po_dead(e_po_class* i_this) {
             a_this->attention_info.flags &= ~0x4;
             a_this->attention_info.distances[fopAc_attn_BATTLE_e] = 0;
             fopAcM_SetGroup(a_this, 0);
-            i_this->mpMorf3->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_PO", 0x17), 0, 0.0f, 1.0f, 0.0f, -1.0f);
+            i_this->mpMorf3->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_PO", 0x17), 0, 0.0f,
+                                    1.0f, 0.0f, -1.0f);
             i_this->mSound1.startCreatureVoice(Z2SE_EN_PO_V_DEATH, -1);
             i_this->mType = 4;
         }
@@ -936,30 +969,34 @@ static void e_po_dead(e_po_class* i_this) {
     case 4:
         J3DModel* model_p = i_this->mpMorf3->getModel();
         for (int i = 0; i < 4; i++) {
-            i_this->mParticleKey[i] = dComIfGp_particle_set(i_this->mParticleKey[i], dead_eff_Dt1[i],
-                                                            &a_this->current.pos, &a_this->shape_angle, &scale);
+            i_this->mParticleKey[i] =
+                dComIfGp_particle_set(i_this->mParticleKey[i], dead_eff_Dt1[i],
+                                      &a_this->current.pos, &a_this->shape_angle, &scale);
             JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->mParticleKey[i]);
             if (emitter != NULL) {
                 emitter->setGlobalRTMatrix(model_p->getAnmMtx(0x10));
             }
 
-            i_this->mParticleKey2[i] = dComIfGp_particle_set(i_this->mParticleKey2[i], dead_eff_Dt1[i],
-                                                            &a_this->current.pos, &a_this->shape_angle, &scale);
+            i_this->mParticleKey2[i] =
+                dComIfGp_particle_set(i_this->mParticleKey2[i], dead_eff_Dt1[i],
+                                      &a_this->current.pos, &a_this->shape_angle, &scale);
             emitter = dComIfGp_particle_getEmitter(i_this->mParticleKey2[i]);
             if (emitter != NULL) {
                 emitter->setGlobalRTMatrix(model_p->getAnmMtx(0x15));
             }
         }
 
-        for (int i=0; i<2; i++) {
-            i_this->mParticleKey3[i] = dComIfGp_particle_set(i_this->mParticleKey3[i], dead_eff_Dt2[i],
-                                                            &a_this->current.pos, &a_this->shape_angle, &scale);
+        for (int i = 0; i < 2; i++) {
+            i_this->mParticleKey3[i] =
+                dComIfGp_particle_set(i_this->mParticleKey3[i], dead_eff_Dt2[i],
+                                      &a_this->current.pos, &a_this->shape_angle, &scale);
             JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->mParticleKey3[i]);
             if (emitter != NULL) {
                 emitter->setGlobalRTMatrix(model_p->getAnmMtx(0xA));
             }
-            i_this->mParticleKey4[i] = dComIfGp_particle_set(i_this->mParticleKey4[i], dead_eff_Dt3[i],
-                                                            &a_this->current.pos, &a_this->shape_angle, &scale);
+            i_this->mParticleKey4[i] =
+                dComIfGp_particle_set(i_this->mParticleKey4[i], dead_eff_Dt3[i],
+                                      &a_this->current.pos, &a_this->shape_angle, &scale);
             emitter = dComIfGp_particle_getEmitter(i_this->mParticleKey4[i]);
             if (emitter != NULL) {
                 emitter->setGlobalRTMatrix(model_p->getAnmMtx(0x7));
@@ -974,7 +1011,7 @@ static void e_po_dead(e_po_class* i_this) {
                 i_this->field_0x788.y = i_this->mAcch.GetGroundH();
             }
         }
-        
+
     case 6:
         if (i_this->field_0x74A[0] == 0) {
             local_100 = a_this->current.pos - i_this->field_0x788;
@@ -1001,7 +1038,7 @@ static void e_po_dead(e_po_class* i_this) {
         break;
 
     case 5:
-        csXyz local_1a4; // Angle for particles
+        csXyz local_1a4;  // Angle for particles
 
         cLib_addCalc0(&i_this->field_0x800, 0.8f, 10.0f);
         if (i_this->field_0x74A[1] != 0) {
@@ -1018,39 +1055,47 @@ static void e_po_dead(e_po_class* i_this) {
                 local_1a4.z = 0;
                 local_1a4.x = 0;
                 local_100.set(i_this->field_0x788);
-                for (int i=0; i<7; i++) {
+                for (int i = 0; i < 7; i++) {
                     dComIfGp_particle_set(particleNmaeDt[i], &local_100, &local_1a4, &scale);
                 }
                 i_this->field_0x74A[2] = 50;
-                Z2GetAudioMgr()->seStart(Z2SE_OBJ_FIRE_EMERGE, &i_this->field_0x788, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                Z2GetAudioMgr()->seStart(Z2SE_OBJ_FIRE_EMERGE, &i_this->field_0x788, 0, 0, 1.0f,
+                                         1.0f, -1.0f, -1.0f, 0);
                 if (i_this->mAcch.GetGroundH() != -1e9f) {
-                    i_this->field_0x7C4 = ((70.0f + i_this->mAcch.GetGroundH()) - i_this->field_0x788.y) / 60.0f;
-                    Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_FIRE_FLY, &a_this->current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                    i_this->field_0x7C4 =
+                        ((70.0f + i_this->mAcch.GetGroundH()) - i_this->field_0x788.y) / 60.0f;
+                    Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_FIRE_FLY, &a_this->current.pos, 0, 0,
+                                                  1.0f, 1.0f, -1.0f, -1.0f, 0);
                 }
             }
         } else if (i_this->field_0x74A[2] != 0) {
-            Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_FIRE_FLY, &i_this->field_0x788, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_FIRE_FLY, &i_this->field_0x788, 0, 0, 1.0f, 1.0f,
+                                          -1.0f, -1.0f, 0);
         } else {
             local_1a4.z = 0;
             local_1a4.y = 0;
             local_1a4.x = 0;
             if (i_this->field_0x758 == 0) {
-                Z2GetAudioMgr()->seStart(Z2SE_OBJ_KNTR_BREAK, &i_this->field_0x788, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                Z2GetAudioMgr()->seStart(Z2SE_OBJ_KNTR_BREAK, &i_this->field_0x788, 0, 0, 1.0f,
+                                         1.0f, -1.0f, -1.0f, 0);
                 i_this->field_0x758 = 1;
             }
-            Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_FIRE_FLY, &i_this->field_0x788, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_FIRE_FLY, &i_this->field_0x788, 0, 0, 1.0f, 1.0f,
+                                          -1.0f, -1.0f, 0);
             i_this->field_0x788.y += i_this->field_0x7C4;
             i_this->field_0x814.x = i_this->field_0x788.x - i_this->field_0x788.x;
-            i_this->field_0x814.y = i_this->field_0x788.y - (i_this->field_0x788.y + i_this->field_0x7C4);
+            i_this->field_0x814.y =
+                i_this->field_0x788.y - (i_this->field_0x788.y + i_this->field_0x7C4);
             i_this->field_0x814.z = i_this->field_0x788.z - i_this->field_0x788.z;
             i_this->field_0x814 *= 0.8f;
-            for (int i=0; i<2; i++) {
-                i_this->mParticleKey5[i] = dComIfGp_particle_set(i_this->mParticleKey5[i], dead_eff_Dt4[i],
-                                                            &i_this->field_0x788, &local_1a4, &scale);
+            for (int i = 0; i < 2; i++) {
+                i_this->mParticleKey5[i] =
+                    dComIfGp_particle_set(i_this->mParticleKey5[i], dead_eff_Dt4[i],
+                                          &i_this->field_0x788, &local_1a4, &scale);
                 JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->mParticleKey5[i]);
                 if (emitter != NULL) {
                     emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
-                    emitter->setUserWork((u32) &i_this->field_0x814);
+                    emitter->setUserWork((u32)&i_this->field_0x814);
                 }
             }
             bool var_r0 = FALSE;
@@ -1063,7 +1108,8 @@ static void e_po_dead(e_po_class* i_this) {
             }
             if (var_r0) {
                 u32 param = i_this->mArg0 | 0xFFFFF000;
-                i_this->field_0x5B8 = fopAcM_create(PROC_Obj_poFire, param, &i_this->field_0x788, fopAcM_GetRoomNo(a_this), NULL, NULL, -1);
+                i_this->field_0x5B8 = fopAcM_create(PROC_Obj_poFire, param, &i_this->field_0x788,
+                                                    fopAcM_GetRoomNo(a_this), NULL, NULL, -1);
                 i_this->mType = 7;
                 i_this->field_0x74A[1] = 50;
             }
@@ -1086,15 +1132,17 @@ static void e_po_dead(e_po_class* i_this) {
             daPy_getPlayerActorClass()->cancelOriginalDemo();
         } else if (mArg0Check(i_this, 0) != 0) {
             if (!fopAcM_isSwitch(a_this, 0x22)) {
-                
-                if (fopAcM_SearchByID(i_this->field_0x5B8, &local_1b0_actor) != 0 && local_1b0_actor != NULL) {
+                if (fopAcM_SearchByID(i_this->field_0x5B8, &local_1b0_actor) != 0 &&
+                    local_1b0_actor != NULL)
+                {
                     daPoFire_c* local_1b0 = static_cast<daPoFire_c*>(local_1b0_actor);
                     i_this->field_0x74A[1] = 50;
                     i_this->field_0x838.x = -490.0f;
                     i_this->field_0x838.y = 1526.0f;
                     i_this->field_0x838.z = -1590.0f;
                     i_this->field_0x844.set(local_1b0_actor->current.pos);
-                    Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_FIRE_FLY, &local_1b0_actor->current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                    Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_FIRE_FLY, &local_1b0_actor->current.pos,
+                                                  0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
                     camera_player->mCamera.Set(i_this->field_0x844, i_this->field_0x838, 20.0f, 0);
                     i_this->field_0x80C = 0.0f;
                     if (local_1b0->getMoveEnd() == 1) {
@@ -1105,9 +1153,12 @@ static void e_po_dead(e_po_class* i_this) {
                 dKy_change_colpat(3);
             }
         } else {
-            if (fopAcM_SearchByID(i_this->field_0x5B8, &local_1b0_actor) != 0 && local_1b0_actor != NULL) {
+            if (fopAcM_SearchByID(i_this->field_0x5B8, &local_1b0_actor) != 0 &&
+                local_1b0_actor != NULL)
+            {
                 daPoFire_c* local_1b0 = static_cast<daPoFire_c*>(local_1b0_actor);
-                Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_FIRE_FLY, &local_1b0->current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_FIRE_FLY, &local_1b0->current.pos, 0, 0,
+                                              1.0f, 1.0f, -1.0f, -1.0f, 0);
             }
             i_this->field_0x844.set(a_this->current.pos);
             cMtx_YrotS(*calc_mtx, player_p->shape_angle.y);
@@ -1126,7 +1177,8 @@ static void e_po_dead(e_po_class* i_this) {
             return;
         }
         scale.x = 6.0f;
-        fopAcM_create(PROC_KYTAG03, 0x10000B2, &i_this->field_0x7B8, fopAcM_GetRoomNo(a_this), &a_this->shape_angle, &scale, -1);
+        fopAcM_create(PROC_KYTAG03, 0x10000B2, &i_this->field_0x7B8, fopAcM_GetRoomNo(a_this),
+                      &a_this->shape_angle, &scale, -1);
         i_this->mType = 10;
 
     case 10:
@@ -1137,7 +1189,7 @@ static void e_po_dead(e_po_class* i_this) {
         break;
 
     case 20:
-        if ((int) i_this->mpMorf->getFrame() < 1) {
+        if ((int)i_this->mpMorf->getFrame() < 1) {
             a_this->health = 90;
             if (mArg0Check(i_this, 0xFF) == 2) {
                 mRollHp = a_this->health;
@@ -1175,7 +1227,10 @@ static void e_po_dead(e_po_class* i_this) {
                 if (dComIfGp_getEventManager().endCheck(i_this->field_0x762) != 0) {
                     dComIfGp_event_reset();
                 } else {
-                    if (strcmp(dComIfGp_getEventManager().getRunEventName(), "DEFAULT_GETITEM") == 0 && i_this->field_0x75C != -1) {
+                    if (strcmp(dComIfGp_getEventManager().getRunEventName(), "DEFAULT_GETITEM") ==
+                            0 &&
+                        i_this->field_0x75C != -1)
+                    {
                         dComIfGp_event_setTalkPartner(NULL);
                         dComIfGp_event_setItemPartnerId(i_this->field_0x75C);
                         i_this->field_0x75C = -1;
@@ -1200,10 +1255,12 @@ static void e_po_dead(e_po_class* i_this) {
             }
         } else {
             if (i_this->field_0x75C == -1) {
-                i_this->field_0x75C = fopAcM_createItemForPresentDemo(&a_this->current.pos, 0xE0, 0, -1, -1, NULL, NULL);
+                i_this->field_0x75C = fopAcM_createItemForPresentDemo(&a_this->current.pos, 0xE0, 0,
+                                                                      -1, -1, NULL, NULL);
             }
             if (fopAcM_IsExecuting(i_this->field_0x75C)) {
-                i_this->field_0x762 = dComIfGp_getEventManager().getEventIdx(a_this, "DEFAULT_GETITEM", 0xFF);
+                i_this->field_0x762 =
+                    dComIfGp_getEventManager().getEventIdx(a_this, "DEFAULT_GETITEM", 0xFF);
                 fopAcM_orderOtherEventId(a_this, i_this->field_0x762, 0xFF, 0xFFFF, 6, 1);
             }
         }
@@ -1250,7 +1307,8 @@ static f32 e_rollingMove(e_po_class* i_this, s16 param_1, f32 param_2, f32 param
     i_this->field_0x82C.set(cStack_44);
     local_38 = cStack_44 - a_this->current.pos;
     a_this->current.angle.y = local_38.atan2sX_Z();
-    return cLib_addCalcPos(&a_this->current.pos, i_this->field_0x82C, 0.7f, i_this->field_0x7D4, 20.0f);
+    return cLib_addCalcPos(&a_this->current.pos, i_this->field_0x82C, 0.7f, i_this->field_0x7D4,
+                           20.0f);
 }
 
 /* ############################################################################################## */
@@ -1262,17 +1320,19 @@ static void e_po_limbering(e_po_class* i_this) {
 
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
     fopAc_ac_c* player_p = dComIfGp_getPlayer(0);
-    camera_class* camera_player = static_cast<camera_class*>(dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0)));
+    camera_class* camera_player =
+        static_cast<camera_class*>(dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0)));
     camera_class* camera = static_cast<camera_class*>(dComIfGp_getCamera(0));
 
     switch (i_this->mType) {
     case 10:
         a_this->current.angle.y = fopAcM_searchActorAngleY(a_this, player_p) + 0x8000;
-        if (i_this->field_0x5C0 || (
-            daPy_py_c::checkNowWolfPowerUp()
-        && dComIfGp_getAttention()->GetLockonList(0) != NULL
-        && dComIfGp_getAttention()->LockonTruth()
-        && dComIfGp_getAttention()->GetLockonList(0)->getActor() == (fopAc_ac_c*)i_this)) {
+        if (i_this->field_0x5C0 ||
+            (daPy_py_c::checkNowWolfPowerUp() &&
+             dComIfGp_getAttention()->GetLockonList(0) != NULL &&
+             dComIfGp_getAttention()->LockonTruth() &&
+             dComIfGp_getAttention()->GetLockonList(0)->getActor() == (fopAc_ac_c*)i_this))
+        {
             i_this->mSound1.startCreatureVoice(Z2SE_EN_PO_V_FIND, -1);
             i_this->field_0x5C0 = true;
             if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
@@ -1287,7 +1347,8 @@ static void e_po_limbering(e_po_class* i_this) {
             local_48.x = -4400.0f;
             local_48.y = player_p->current.pos.y;
             local_48.z = 4000.0f;
-            daPy_getPlayerActorClass()->setPlayerPosAndAngle(&local_48, fopAcM_searchPlayerAngleY(a_this) + 0x8000, 0);
+            daPy_getPlayerActorClass()->setPlayerPosAndAngle(
+                &local_48, fopAcM_searchPlayerAngleY(a_this) + 0x8000, 0);
             anm_init(i_this, ANM_RUN_AFTER2, 10.0f, 2, 1.0f);
             cMtx_YrotS(*calc_mtx, fopAcM_searchPlayerAngleY(a_this) + 0x8000);
             local_48.x = 0.0f;
@@ -1337,7 +1398,7 @@ static void e_po_limbering(e_po_class* i_this) {
                 anm_init(i_this, ANM_RUN_AFTER2, 10.0f, 2, 1.0f);
             }
         } else {
-            mRollCount = (fopAcM_searchPlayerAngleY(a_this) + 0x8000)/256 & 0xFE;
+            mRollCount = (fopAcM_searchPlayerAngleY(a_this) + 0x8000) / 256 & 0xFE;
             i_this->field_0x7E0 = mRollCount;
             i_this->field_0x7D4 = 100.0f;
             i_this->field_0x7E2 = 0;
@@ -1382,7 +1443,7 @@ static void e_po_limbering(e_po_class* i_this) {
 
     case 2:
         mRollCount += 2;
-        mRollCount = (u8) mRollCount;
+        mRollCount = (u8)mRollCount;
         i_this->field_0x7DE += 2;
         if (mRollCount == i_this->field_0x7E0) {
             i_this->field_0x7E2 = mRollCount;
@@ -1405,18 +1466,20 @@ static void e_po_limbering(e_po_class* i_this) {
             param |= i_this->BitSW << 8;
             param |= mRollCount << 16;
             param |= i_this->BitSW3 << 24;
-            fopAcM_create(PROC_E_PO, param, &a_this->current.pos, fopAcM_GetRoomNo(a_this), &a_this->shape_angle, NULL, -1);
+            fopAcM_create(PROC_E_PO, param, &a_this->current.pos, fopAcM_GetRoomNo(a_this),
+                          &a_this->shape_angle, NULL, -1);
             i_this->field_0x7E2 += 1;
         }
         break;
 
     case 3:
-        for(int i=0; i<3; i++) {
-            u32 param = i+4;
+        for (int i = 0; i < 3; i++) {
+            u32 param = i + 4;
             param |= i_this->BitSW << 8;
-            param |= (mRollCount + (i + 1)*0x3F) << 16;
+            param |= (mRollCount + (i + 1) * 0x3F) << 16;
             param |= i_this->BitSW3 << 24;
-            fopAcM_create(PROC_E_PO, param, &a_this->current.pos, fopAcM_GetRoomNo(a_this), &a_this->shape_angle, NULL, -1);
+            fopAcM_create(PROC_E_PO, param, &a_this->current.pos, fopAcM_GetRoomNo(a_this),
+                          &a_this->shape_angle, NULL, -1);
         }
         mRollPlus = 0;
         i_this->field_0x74A[2] = 0;
@@ -1436,7 +1499,7 @@ static void e_po_limbering(e_po_class* i_this) {
         break;
 
     case 15:
-        if ((int) i_this->mpMorf->getFrame() == 65) {
+        if ((int)i_this->mpMorf->getFrame() == 65) {
             dCam_getBody()->StartBlure(50, a_this, 0.5f, 1.5f);
         }
         if (i_this->mpMorf->isStop()) {
@@ -1478,7 +1541,8 @@ static void e_po_limbering(e_po_class* i_this) {
         local_48.x = -4400.0f;
         local_48.y = player_p->current.pos.y;
         local_48.z = 4000.0f;
-        daPy_getPlayerActorClass()->setPlayerPosAndAngle(&local_48, fopAcM_searchPlayerAngleY(a_this) + 0x8000, 0);
+        daPy_getPlayerActorClass()->setPlayerPosAndAngle(
+            &local_48, fopAcM_searchPlayerAngleY(a_this) + 0x8000, 0);
     }
 }
 
@@ -1581,7 +1645,7 @@ static void e_po_roll_move(e_po_class* i_this) {
         }
         if (i_this->field_0x74A[2] == 0) {
             i_this->field_0x7E0 += mRollPlus;
-            i_this->field_0x7E0 = (u8) i_this->field_0x7E0;
+            i_this->field_0x7E0 = (u8)i_this->field_0x7E0;
         }
         if (mArg0Check(i_this, 3) != 0) {
             if (!(mRollCount & 0x3F) && !(mRollPlus & 0x80)) {
@@ -1624,83 +1688,60 @@ static void e_po_roll_move(e_po_class* i_this) {
 
 /* 80751408-807549C0 004FA8 35B8+00 1/1 0/0 0/0 .text            e_po_holl_demo__FP10e_po_class */
 static void e_po_holl_demo(e_po_class* i_this) {
-    static u16 holl_demo_eff_Dt[2] = {0x8670, 0x8671,};
-    static s16 mKAngInit_dt[4] = {0x0000, 0x8000, 0x8000, 0x0000,};
+    static u16 holl_demo_eff_Dt[2] = {
+        0x8670,
+        0x8671,
+    };
+    static s16 mKAngInit_dt[4] = {
+        0x0000,
+        0x8000,
+        0x8000,
+        0x0000,
+    };
 
-    
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
-    daPy_py_c* player_p = (daPy_py_c*) dComIfGp_getPlayer(0);
+    daPy_py_c* player_p = (daPy_py_c*)dComIfGp_getPlayer(0);
     camera_class* camera_player = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     camera_class* camera = dComIfGp_getCamera(0);
-    
 
     cXyz scale(1.0f, 1.0f, 1.0f);
     u32 param = 7;
-    cXyz local_84; // Distance to center
-    cXyz cStack_90; // Distance to Eye
+    cXyz local_84;   // Distance to center
+    cXyz cStack_90;  // Distance to Eye
     static cXyz mKcenterInit_dt[] = {
-        cXyz(-13.0f, 143.0f, 344.0f),
-        cXyz(48.0f, 631.0f, -2300.0f),
-        cXyz(-697.0f, 515.0f, -1640.0f),
-        cXyz(-645.0f, 640.0f, -1900.0f),
-        cXyz(778.0f, 496.0f, -1619.0f),
-        cXyz(-35.0f, 241.0f, -1223.0f),
-        cXyz(50.0f, 635.0f, -2360.0f),
-        cXyz(-32.0f, 177.0f, -846.0f),
-        cXyz(40.0f, 740.0f, -2850.0f),
-        cXyz(0.0f, 39.0f, -577.0f),
-        cXyz(-45.0f, 197.0f, 1620.0f),
-        cXyz(1630.0f, 40.0f, 450.0f),
-        cXyz(1575.0f, 160.0f, -420.0f),
-        cXyz(-715.0f, 1350.0f, 100.0f),
-        cXyz(90.0f, 50.0f, -480.0f),
-        cXyz(-30.0f, 1970.0f, -1090.0f),
-        cXyz(-74.0f, 684.0f, -1095.0f),
-        cXyz(-31.0f, 846.0f, -2029.0f),
+        cXyz(-13.0f, 143.0f, 344.0f),    cXyz(48.0f, 631.0f, -2300.0f),
+        cXyz(-697.0f, 515.0f, -1640.0f), cXyz(-645.0f, 640.0f, -1900.0f),
+        cXyz(778.0f, 496.0f, -1619.0f),  cXyz(-35.0f, 241.0f, -1223.0f),
+        cXyz(50.0f, 635.0f, -2360.0f),   cXyz(-32.0f, 177.0f, -846.0f),
+        cXyz(40.0f, 740.0f, -2850.0f),   cXyz(0.0f, 39.0f, -577.0f),
+        cXyz(-45.0f, 197.0f, 1620.0f),   cXyz(1630.0f, 40.0f, 450.0f),
+        cXyz(1575.0f, 160.0f, -420.0f),  cXyz(-715.0f, 1350.0f, 100.0f),
+        cXyz(90.0f, 50.0f, -480.0f),     cXyz(-30.0f, 1970.0f, -1090.0f),
+        cXyz(-74.0f, 684.0f, -1095.0f),  cXyz(-31.0f, 846.0f, -2029.0f),
     };
     static cXyz mKeyeInit_dt[] = {
-        cXyz(-10.0f, 165.0f, 690.0f),
-        cXyz(53.0f, 563.0f, -1971.0f),
-        cXyz(-942.0f, 433.0f, -1403.0f),
-        cXyz(-590.0f, 715.0f, -1560.0f),
-        cXyz(1030.0f, 410.0f, -1400.0f),
-        cXyz(-45.0f, 84.0f, -851.0f),
-        cXyz(160.0f, 520.0f, -1990.0f),
-        cXyz(-155.0f, 105.0f, -262.0f),
-        cXyz(45.0f, 670.0f, -2520.0f),
-        cXyz(-17.0f, 256.0f, -236.0f),
-        cXyz(-255.0f, 58.0f, 1382.0f),
-        cXyz(1365.0f, 100.0f, 665.0f),
-        cXyz(1440.0f, 175.0f, -95.0f),
-        cXyz(-475.0f, 1415.0f, 350.0f),
-        cXyz(60.0f, 100.0f, -750.0f),
-        cXyz(-30.0f, 2260.0f, -890.0f),
-        cXyz(-94.0f, 693.0f, -739.0f),
-        cXyz(-41.0f, 800.0f, -1676.0f),
+        cXyz(-10.0f, 165.0f, 690.0f),    cXyz(53.0f, 563.0f, -1971.0f),
+        cXyz(-942.0f, 433.0f, -1403.0f), cXyz(-590.0f, 715.0f, -1560.0f),
+        cXyz(1030.0f, 410.0f, -1400.0f), cXyz(-45.0f, 84.0f, -851.0f),
+        cXyz(160.0f, 520.0f, -1990.0f),  cXyz(-155.0f, 105.0f, -262.0f),
+        cXyz(45.0f, 670.0f, -2520.0f),   cXyz(-17.0f, 256.0f, -236.0f),
+        cXyz(-255.0f, 58.0f, 1382.0f),   cXyz(1365.0f, 100.0f, 665.0f),
+        cXyz(1440.0f, 175.0f, -95.0f),   cXyz(-475.0f, 1415.0f, 350.0f),
+        cXyz(60.0f, 100.0f, -750.0f),    cXyz(-30.0f, 2260.0f, -890.0f),
+        cXyz(-94.0f, 693.0f, -739.0f),   cXyz(-41.0f, 800.0f, -1676.0f),
     };
     static cXyz mKPosInit_dt[] = {
-        cXyz(110.0f, 740.0f, -3350.0f),
-        cXyz(50.0f, 550.0f, -2165.0f),
-        cXyz(-726.0f, 540.0f, -2089.0f),
-        cXyz(653.0f, 770.0f, -2231.0f),
-        cXyz(725.0f, 540.0f, -1629.0f),
-        cXyz(-609.0f, 770.0f, -2634.0f),
-        cXyz(-531.0f, 740.0f, -1834.0f),
-        cXyz(458.0f, 970.0f, -2446.0f),
-        cXyz(530.0f, 740.0f, -1844.0f),
-        cXyz(-469.0f, 970.0f, -2409.0f),
-        cXyz(-20.0f, 250.0f, 1500.0f),
-        cXyz(1645.0f, 50.0f, 430.0f),
-        cXyz(1580.0f, 150.0f, -610.0f),
-        cXyz(-1550.0f, 1200.0f, -605.0f),
-        cXyz(80.0f, 100.0f, 2100.0f),
-        cXyz(1645.0f, -200.0f, 430.0f),
-        cXyz(1810.0f, 150.0f, -610.0f),
-        cXyz(-1800.0f, 1200.0f, -590.0f),
-        cXyz(-626.0f, 660.0f, -1839.0f),
-        cXyz(553.0f, 870.0f, -2426.0f),
-        cXyz(625.0f, 640.0f, -1849.0f),
-        cXyz(-549.0f, 870.0f, -2424.0f),
+        cXyz(110.0f, 740.0f, -3350.0f),  cXyz(50.0f, 550.0f, -2165.0f),
+        cXyz(-726.0f, 540.0f, -2089.0f), cXyz(653.0f, 770.0f, -2231.0f),
+        cXyz(725.0f, 540.0f, -1629.0f),  cXyz(-609.0f, 770.0f, -2634.0f),
+        cXyz(-531.0f, 740.0f, -1834.0f), cXyz(458.0f, 970.0f, -2446.0f),
+        cXyz(530.0f, 740.0f, -1844.0f),  cXyz(-469.0f, 970.0f, -2409.0f),
+        cXyz(-20.0f, 250.0f, 1500.0f),   cXyz(1645.0f, 50.0f, 430.0f),
+        cXyz(1580.0f, 150.0f, -610.0f),  cXyz(-1550.0f, 1200.0f, -605.0f),
+        cXyz(80.0f, 100.0f, 2100.0f),    cXyz(1645.0f, -200.0f, 430.0f),
+        cXyz(1810.0f, 150.0f, -610.0f),  cXyz(-1800.0f, 1200.0f, -590.0f),
+        cXyz(-626.0f, 660.0f, -1839.0f), cXyz(553.0f, 870.0f, -2426.0f),
+        cXyz(625.0f, 640.0f, -1849.0f),  cXyz(-549.0f, 870.0f, -2424.0f),
     };
 
     switch (i_this->mType) {
@@ -1783,9 +1824,10 @@ static void e_po_holl_demo(e_po_class* i_this) {
             break;
         }
         a_this->current.pos.set(mKPosInit_dt[0]);
-        for (int i=1; i<4; i++) {
+        for (int i = 1; i < 4; i++) {
             param = i - 0xFFF9;
-            fopAcM_create(PROC_E_PO, param, &a_this->current.pos, fopAcM_GetRoomNo(a_this), &a_this->shape_angle, NULL, -1);
+            fopAcM_create(PROC_E_PO, param, &a_this->current.pos, fopAcM_GetRoomNo(a_this),
+                          &a_this->shape_angle, NULL, -1);
         }
         a_this->health = 2;
         mHollDemoFlag = 7;
@@ -1859,8 +1901,7 @@ static void e_po_holl_demo(e_po_class* i_this) {
             a_this->shape_angle.y = mKAngInit_dt[i_this->mArg0 - 7];
             cLib_addCalcPos(&a_this->current.pos, local_84, 0.5f, 20.0f, 10.0f);
             break;
-        } 
-        else if (mHollDemoFlag != i_this->mArg0) {
+        } else if (mHollDemoFlag != i_this->mArg0) {
             break;
         }
         i_this->field_0x74A[2] = 20;
@@ -1896,17 +1937,18 @@ static void e_po_holl_demo(e_po_class* i_this) {
 
     case 15:
         if (!i_this->mpMorf->isStop()) {
-            if (mArg0Check(i_this, 8) != 0 && (int) i_this->mpMorf->getFrame() == 10) {
+            if (mArg0Check(i_this, 8) != 0 && (int)i_this->mpMorf->getFrame() == 10) {
                 mHollDemoFlag += 1;
             }
-            if (mArg0Check(i_this, 9) != 0 && (int) i_this->mpMorf->getFrame() == 1) {
+            if (mArg0Check(i_this, 9) != 0 && (int)i_this->mpMorf->getFrame() == 1) {
                 mHollDemoFlag += 1;
             }
-            if ((int) i_this->mpMorf->getFrame() == 40) {
+            if ((int)i_this->mpMorf->getFrame() == 40) {
                 fopAcM_offSwitch(a_this, i_this->mArg0 + 27);
-                Z2GetAudioMgr()->seStart(Z2SE_OBJ_FIRE_TAKEN, &i_this->field_0x794, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                Z2GetAudioMgr()->seStart(Z2SE_OBJ_FIRE_TAKEN, &i_this->field_0x794, 0, 0, 1.0f,
+                                         1.0f, -1.0f, -1.0f, 0);
             }
-            if ((int) i_this->mpMorf->getFrame() == 43) {
+            if ((int)i_this->mpMorf->getFrame() == 43) {
                 i_this->field_0x800 = l_HIO.mKanteraColor1A;
                 i_this->field_0x756 = 1;
             }
@@ -1917,7 +1959,7 @@ static void e_po_holl_demo(e_po_class* i_this) {
                 camera_player->mCamera.Set(i_this->field_0x844, i_this->field_0x838);
             }
             if (mArg0Check(i_this, 7) != 0 || mArg0Check(i_this, 0xA) != 0) {
-                mHollDemoFlag  += 1;
+                mHollDemoFlag += 1;
             }
             i_this->mType = 16;
         }
@@ -1951,9 +1993,11 @@ static void e_po_holl_demo(e_po_class* i_this) {
             i_this->field_0x74A[2] = 50;
         } else if (i_this->field_0x74A[2] != 0) {
             if (mArg0Check(i_this, 7) != 0) {
-                Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_POU_GATE_QUAKE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_POU_GATE_QUAKE, NULL, 0, 0, 1.0f, 1.0f,
+                                              -1.0f, -1.0f, 0);
                 if (i_this->field_0x74A[2] == 20) {
-                    dComIfGp_getVibration().StartQuake(VIBMODE_Q_POWER2, 0x1F, cXyz(0.0f, 1.0f, 0.0f));
+                    dComIfGp_getVibration().StartQuake(VIBMODE_Q_POWER2, 0x1F,
+                                                       cXyz(0.0f, 1.0f, 0.0f));
                 }
             }
         } else if (mArg0Check(i_this, 7) != 0) {
@@ -1967,16 +2011,18 @@ static void e_po_holl_demo(e_po_class* i_this) {
         break;
 
     case 17:
-        Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_POU_GATE_QUAKE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_POU_GATE_QUAKE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                      0);
         if (i_this->field_0x74A[2] != 0) {
             break;
         }
         i_this->field_0x74A[2] = 50;
         i_this->mType = 18;
         // Fallthrough
-        
+
     case 18:
-        Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_POU_GATE_QUAKE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_POU_GATE_QUAKE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                      0);
         if (i_this->field_0x74A[2] != 0) {
             break;
         }
@@ -1989,9 +2035,10 @@ static void e_po_holl_demo(e_po_class* i_this) {
         i_this->field_0x74A[2] = 50;
         i_this->mType = 19;
         // Fallthrough
-        
+
     case 19:
-        Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_POU_GATE_QUAKE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_POU_GATE_QUAKE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                      0);
         if (i_this->field_0x74A[2] != 0) {
             break;
         }
@@ -2001,7 +2048,8 @@ static void e_po_holl_demo(e_po_class* i_this) {
         // Fallthrough
 
     case 20:
-        Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_POU_GATE_QUAKE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_POU_GATE_QUAKE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                      0);
         if (i_this->field_0x74A[2] != 0) {
             break;
         }
@@ -2122,7 +2170,9 @@ static void e_po_holl_demo(e_po_class* i_this) {
         }
         cLib_addCalcAngleS2(&a_this->shape_angle.y, a_this->current.angle.y, 1, 0x1000);
         if (i_this->field_0x74A[2] == 0) {
-            if (mArg0Check(i_this, 8) != 0 || mArg0Check(i_this, 9) != 0 || mArg0Check(i_this, 0xA) != 0) {
+            if (mArg0Check(i_this, 8) != 0 || mArg0Check(i_this, 9) != 0 ||
+                mArg0Check(i_this, 0xA) != 0)
+            {
                 i_this->field_0x758 = 1;
                 fopAcM_delete(a_this);
                 return;
@@ -2165,21 +2215,23 @@ static void e_po_holl_demo(e_po_class* i_this) {
                 mHollDemoFlag = 0;
                 i_this->mType = 102;
             } else {
-                for (int i=0, local_100=1; i<4; i++) {
+                for (int i = 0, local_100 = 1; i < 4; i++) {
                     if (i_this->field_0x7E2 & local_100) {
                         param = -0x100;
                         param |= i + 0xB;
-                        i_this->field_0x844.set(mKcenterInit_dt[i+10]);
-                        i_this->field_0x838.set(mKeyeInit_dt[i+10]);
+                        i_this->field_0x844.set(mKcenterInit_dt[i + 10]);
+                        i_this->field_0x838.set(mKeyeInit_dt[i + 10]);
                         i_this->field_0x7E2 ^= local_100;
                         i_this->field_0x7DE += 1;
-                        fopAcM_createChild(PROC_E_PO, fopAcM_GetID(a_this), param, &mKPosInit_dt[i+14], fopAcM_GetRoomNo(a_this), &a_this->shape_angle, NULL, -1, NULL);
+                        fopAcM_createChild(PROC_E_PO, fopAcM_GetID(a_this), param,
+                                           &mKPosInit_dt[i + 14], fopAcM_GetRoomNo(a_this),
+                                           &a_this->shape_angle, NULL, -1, NULL);
                         if (i == 0) {
                             i_this->mType = 102;
                         }
                         break;
                     }
-                    local_100 *=2;
+                    local_100 *= 2;
                 }
                 camera_player->mCamera.Set(i_this->field_0x844, i_this->field_0x838);
                 i_this->field_0x74A[2] = 70;
@@ -2194,24 +2246,24 @@ static void e_po_holl_demo(e_po_class* i_this) {
                 i_this->field_0x838.y = 826.0f;
                 i_this->field_0x838.z = -1590.0f;
                 i_this->field_0x7DE = 0;
-            }
-            else {
-                    if (i_this->field_0x838.x == -490.0f
-                     && i_this->field_0x838.y == 826.0f
-                     && i_this->field_0x838.z == -1590.0f) {
-                        i_this->field_0x7DE += 1;
-                        if (i_this->field_0x7DE > 70) {
-                            camera_player->mCamera.Start();
-                            camera_player->mCamera.SetTrimSize(0);
-                            dComIfGp_event_reset();
-                            daPy_getPlayerActorClass()->cancelOriginalDemo();
-                            i_this->mType = 1000;
-                            return;
-                        }
+            } else {
+                if (i_this->field_0x838.x == -490.0f && i_this->field_0x838.y == 826.0f &&
+                    i_this->field_0x838.z == -1590.0f)
+                {
+                    i_this->field_0x7DE += 1;
+                    if (i_this->field_0x7DE > 70) {
+                        camera_player->mCamera.Start();
+                        camera_player->mCamera.SetTrimSize(0);
+                        dComIfGp_event_reset();
+                        daPy_getPlayerActorClass()->cancelOriginalDemo();
+                        i_this->mType = 1000;
+                        return;
                     }
-                    else {
+                } else {
                     if (i_this->field_0x7DE == mHollDemoFlag) {
-                        if (fopAcM_isSwitch(a_this, 0x23) && fopAcM_isSwitch(a_this, 0x24) && fopAcM_isSwitch(a_this, 0x25)) {
+                        if (fopAcM_isSwitch(a_this, 0x23) && fopAcM_isSwitch(a_this, 0x24) &&
+                            fopAcM_isSwitch(a_this, 0x25))
+                        {
                             i_this->field_0x74A[2] = 140;
                             i_this->mType = 103;
                             i_this->field_0x844.set(mKcenterInit_dt[16]);
@@ -2242,7 +2294,8 @@ static void e_po_holl_demo(e_po_class* i_this) {
         if (i_this->field_0x74A[2] == 0) {
             dComIfGp_getVibration().StartQuake(VIBMODE_Q_POWER2, 0x1F, cXyz(0.0f, 1.0f, 0.0f));
             i_this->field_0x74A[2] = 140;
-            Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_POU_GATE_QUAKE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_POU_GATE_QUAKE, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                          -1.0f, 0);
             fopAcM_offSwitch(a_this, 0x45);
             i_this->mType = 104;
         }
@@ -2251,13 +2304,13 @@ static void e_po_holl_demo(e_po_class* i_this) {
     case 104:
         if (i_this->field_0x74A[2] != 0) {
             if (i_this->field_0x74A[2] > 0x14) {
-                Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_POU_GATE_QUAKE, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_POU_GATE_QUAKE, NULL, 0, 0, 1.0f, 1.0f,
+                                              -1.0f, -1.0f, 0);
             }
             if (i_this->field_0x74A[2] == 0x14) {
                 dComIfGp_getVibration().StopQuake(0x1F);
             }
-        }
-        else {
+        } else {
             camera_player->mCamera.Start();
             camera_player->mCamera.SetTrimSize(0);
             dComIfGp_event_reset();
@@ -2271,12 +2324,15 @@ static void e_po_holl_demo(e_po_class* i_this) {
     case 200:
         fopAc_ac_c* actor_temp;
         if (mArg0Check(i_this, 0xB) != 0) {
-            if (a_this->parentActorID != 0 && fopAcM_SearchByID(a_this->parentActorID, &actor_temp) != 0 && actor_temp != NULL) {
+            if (a_this->parentActorID != 0 &&
+                fopAcM_SearchByID(a_this->parentActorID, &actor_temp) != 0 && actor_temp != NULL)
+            {
                 actor_temp->eyePos.set(a_this->current.pos);
             }
         }
         local_84.set(mKPosInit_dt[i_this->mArg0 - 1]);
-        Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_FIRE_FLY, &a_this->current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_FIRE_FLY, &a_this->current.pos, 0, 0, 1.0f, 1.0f,
+                                      -1.0f, -1.0f, 0);
         i_this->field_0x82C.set(a_this->current.pos);
         cLib_addCalcPos(&a_this->current.pos, local_84, 0.5f, 10.0f, 2.0f);
         cStack_90 = a_this->current.pos - mKPosInit_dt[i_this->mArg0 - 1];
@@ -2295,9 +2351,11 @@ static void e_po_holl_demo(e_po_class* i_this) {
             if (mArg0Check(i_this, 0xB) != 0) {
                 local_84.set(mKPosInit_dt[18]);
                 cLib_addCalcPos(&a_this->current.pos, local_84, 0.5f, 20.0f, 10.0f);
-                
+
                 fopAc_ac_c* po_temp;
-                if (a_this->parentActorID != 0 && fopAcM_SearchByID(a_this->parentActorID, &po_temp) != 0) {
+                if (a_this->parentActorID != 0 &&
+                    fopAcM_SearchByID(a_this->parentActorID, &po_temp) != 0)
+                {
                     e_po_class* var_r26 = (e_po_class*)po_temp;
                     if (var_r26 != NULL) {
                         po_temp->eyePos.set(a_this->current.pos);
@@ -2314,7 +2372,8 @@ static void e_po_holl_demo(e_po_class* i_this) {
             } else {
                 local_84.set(mKPosInit_dt[i_this->mArg0 + 7]);
                 cLib_addCalcPos(&a_this->current.pos, local_84, 0.5f, 20.0f, 10.0f);
-                Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_FIRE_FLY, &a_this->current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_FIRE_FLY, &a_this->current.pos, 0, 0, 1.0f,
+                                              1.0f, -1.0f, -1.0f, 0);
                 cStack_90 = a_this->current.pos - local_84;
                 if (!(cStack_90.abs() > 2.0f)) {
                     i_this->field_0x74A[2] = 50;
@@ -2353,31 +2412,30 @@ static void e_po_holl_demo(e_po_class* i_this) {
         scale.z = 3.0f;
         scale.y = 3.0f;
         scale.x = 3.0f;
-        for(int i=0; i<2; i++) {
-            i_this->mParticleKey5[i] = dComIfGp_particle_set(i_this->mParticleKey5[i], holl_demo_eff_Dt[i],
-                &a_this->current.pos, &a_this->current.angle, &scale);
+        for (int i = 0; i < 2; i++) {
+            i_this->mParticleKey5[i] =
+                dComIfGp_particle_set(i_this->mParticleKey5[i], holl_demo_eff_Dt[i],
+                                      &a_this->current.pos, &a_this->current.angle, &scale);
             JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->mParticleKey5[i]);
         }
     }
 
-    if((i_this->mType == 12 && i_this->field_0x74A[2] == 0) ||
-        i_this->mType == 13 ||
-        i_this->mType == 14 ||
-        (i_this->mType == 16 && mHollDemoFlag < 11)) {
+    if ((i_this->mType == 12 && i_this->field_0x74A[2] == 0) || i_this->mType == 13 ||
+        i_this->mType == 14 || (i_this->mType == 16 && mHollDemoFlag < 11))
+    {
         i_this->field_0x7E2 += 1;
         i_this->field_0x7E2 = i_this->field_0x7E2;
-        i_this->field_0x7E2 = (u8) i_this->field_0x7E2;
+        i_this->field_0x7E2 = (u8)i_this->field_0x7E2;
         cStack_90.y = (s16)(100.0f * cM_ssin(i_this->field_0x7E2 * 2000));
         local_84.y = i_this->field_0x7B8.y + cStack_90.y;
         cLib_addCalc2(&a_this->current.pos.y, local_84.y, 0.3f, 1.0f);
     }
 
-    if((i_this->mType == 30 && i_this->field_0x74A[1] == 0) ||
-        i_this->mType == 17 ||
-        i_this->mType == 18 ||
-        (i_this->mType == 21 && i_this->field_0x74A[2] != 0)) {
+    if ((i_this->mType == 30 && i_this->field_0x74A[1] == 0) || i_this->mType == 17 ||
+        i_this->mType == 18 || (i_this->mType == 21 && i_this->field_0x74A[2] != 0))
+    {
         i_this->field_0x7E2 += 4;
-        i_this->field_0x7E2 = (u8) i_this->field_0x7E2;
+        i_this->field_0x7E2 = (u8)i_this->field_0x7E2;
         a_this->current.angle.z = 500.0f * i_this->field_0x7E2;
         cMtx_ZrotS(*calc_mtx, a_this->current.angle.z);
         local_84.x = 0.0f;
@@ -2394,7 +2452,7 @@ static void e_po_holl_demo(e_po_class* i_this) {
 /* 80754AD8-807550EC 008678 0614+00 2/1 0/0 0/0 .text            action__FP10e_po_class */
 static void action(e_po_class* i_this) {
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
-    daPy_py_c* player_p = (daPy_py_c*) dComIfGp_getPlayer(0);
+    daPy_py_c* player_p = (daPy_py_c*)dComIfGp_getPlayer(0);
 
     cXyz local_3c;
     cXyz local_48;
@@ -2408,7 +2466,9 @@ static void action(e_po_class* i_this) {
         }
     }
     if (i_this->field_0x75A == 0 && i_this->mActionID != ACT_HOLL_DEMO) {
-        if (daPy_py_c::checkNowWolfPowerUp() != 0 || (i_this->mActionID == ACT_DEAD && i_this->mType == 2)) {
+        if (daPy_py_c::checkNowWolfPowerUp() != 0 ||
+            (i_this->mActionID == ACT_DEAD && i_this->mType == 2))
+        {
             if (i_this->field_0x74A[3] == 0) {
                 var_f31 = 230.0f;
                 var_f30 = 60.0f;
@@ -2419,7 +2479,9 @@ static void action(e_po_class* i_this) {
                 }
                 if (i_this->mActionID == ACT_OPENING || i_this->mActionID == ACT_DAMAGE ||
                     i_this->mActionID == ACT_WOLF_BITE || i_this->mActionID == ACT_DEAD ||
-                    i_this->mActionID == ACT_ATTACK || (mArg0Check(i_this, mAttackNo) != 0 && i_this->field_0x74A[2] != 0)) {
+                    i_this->mActionID == ACT_ATTACK ||
+                    (mArg0Check(i_this, mAttackNo) != 0 && i_this->field_0x74A[2] != 0))
+                {
                     var_f31 = 255.0f;
                     var_f30 = 60.0f;
                 }
@@ -2503,9 +2565,12 @@ static void action(e_po_class* i_this) {
         if (i_this->mActionID != ACT_AVOID &&
             (i_this->mActionID != ACT_OPENING || !i_this->field_0x5C0) &&
             i_this->mActionID != ACT_LIMBERING && i_this->mActionID != ACT_ROLL_MOVE &&
-            i_this->mActionID != ACT_HOLL_DEMO) {
+            i_this->mActionID != ACT_HOLL_DEMO)
+        {
             s16 var_r27_2 = a_this->current.angle.y;
-            if (i_this->field_0x5C1 && (daPy_py_c::checkNowWolfPowerUp() != 0 || i_this->field_0x5F4 > 50.0f)) {
+            if (i_this->field_0x5C1 &&
+                (daPy_py_c::checkNowWolfPowerUp() != 0 || i_this->field_0x5F4 > 50.0f))
+            {
                 var_r27_2 = fopAcM_searchPlayerAngleY(a_this) + 0x8000;
             }
             cLib_addCalcAngleS2(&a_this->shape_angle.y, var_r27_2, 2, 0x2000);
@@ -2539,7 +2604,7 @@ static void action(e_po_class* i_this) {
     }
     cLib_addCalcAngleS2(&i_this->field_0x810, var_r4, 2, 0x1000);
     if (i_this->mActionID != ACT_DEAD) {
-        for (int i=0; i<4; i++) {
+        for (int i = 0; i < 4; i++) {
             cLib_addCalcAngleS2(&i_this->field_0x7E6[i].x, 0, 4, 100);
         }
     }
@@ -2552,15 +2617,19 @@ static void action(e_po_class* i_this) {
 
 /* 807550EC-80755C00 008C8C 0B14+00 2/1 0/0 0/0 .text            daE_PO_Execute__FP10e_po_class */
 static int daE_PO_Execute(e_po_class* i_this) {
-    static u8 po_bottleIn_dt[4] = {0xEF,0xF0,0xF1,0xF2,};
-    
+    static u8 po_bottleIn_dt[4] = {
+        0xEF,
+        0xF0,
+        0xF1,
+        0xF2,
+    };
+
     fopAc_ac_c* a_this = (fopAc_ac_c*)&i_this->enemy;
     fopEn_enemy_c* e_this = (fopEn_enemy_c*)a_this;
 
     cXyz local_4c;
     cXyz cStack_58;
     cXyz cStack_64;
-
 
     if (i_this->mType == 1000) {
         return 1;
@@ -2644,7 +2713,9 @@ static int daE_PO_Execute(e_po_class* i_this) {
             var_f1_2 = 6000.0f;
         }
         cLib_addCalc2(&i_this->field_0x76C, var_f1_2, 0.1f, 0.1f * var_f1_2);
-        if (i_this->mAnmID == ANM_ATTACK && (int)i_this->mpMorf->getFrame() > 14 && (int)i_this->mpMorf->getFrame() < 50) {
+        if (i_this->mAnmID == ANM_ATTACK && (int)i_this->mpMorf->getFrame() > 14 &&
+            (int)i_this->mpMorf->getFrame() < 50)
+        {
             local_4c = i_this->field_0x77C - a_this->current.pos;
             i_this->field_0x764.y = local_4c.atan2sX_Z();
             s16 var_r4;
@@ -2659,7 +2730,9 @@ static int daE_PO_Execute(e_po_class* i_this) {
             cLib_addCalcAngleS2(&i_this->field_0x764.x, var_r4, 2, var_r6);
         } else {
             cLib_addCalcAngleS2(&i_this->field_0x764.y, a_this->shape_angle.y + 0x4000, 2, 0x1000);
-            cLib_addCalcAngleS2(&i_this->field_0x764.x, i_this->field_0x76C * cM_ssin(i_this->field_0x740 * 2000), 2, 0x800);
+            cLib_addCalcAngleS2(&i_this->field_0x764.x,
+                                i_this->field_0x76C * cM_ssin(i_this->field_0x740 * 2000), 2,
+                                0x800);
             i_this->field_0x764.z = i_this->field_0x76C * cM_ssin(i_this->field_0x740 * 2500);
             if (a_this->health > 1) {
                 i_this->mSound1.startCreatureSoundLevel(Z2SE_EN_PO_LAMP, 0, -1);
@@ -2668,7 +2741,8 @@ static int daE_PO_Execute(e_po_class* i_this) {
     }
 
     if (i_this->field_0x800) {
-        MTXTrans(mDoMtx_stack_c::now, i_this->field_0x794.x, i_this->field_0x794.y, i_this->field_0x794.z);
+        MTXTrans(mDoMtx_stack_c::now, i_this->field_0x794.x, i_this->field_0x794.y,
+                 i_this->field_0x794.z);
         local_4c = dComIfGp_getCamera(0)->lookat.eye - i_this->field_0x794;
         mDoMtx_stack_c::YrotM((int)local_4c.atan2sX_Z());
         mDoMtx_stack_c::XrotM((int)local_4c.atan2sY_XZ());
@@ -2680,11 +2754,12 @@ static int daE_PO_Execute(e_po_class* i_this) {
 
     if (i_this->field_0x758 == 0 && (i_this->mActionID == ACT_ATTACK || i_this->field_0x756 != 0)) {
         cXyz scale(1.0f, 1.0f, 1.0f);
-        i_this->mParticleKey6 = dComIfGp_particle_set(i_this->mParticleKey6, 0x86AC,
-                                                            &i_this->field_0x794, &i_this->field_0x764, &scale);
+        i_this->mParticleKey6 = dComIfGp_particle_set(
+            i_this->mParticleKey6, 0x86AC, &i_this->field_0x794, &i_this->field_0x764, &scale);
         JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->mParticleKey6);
         if (emitter != NULL) {
-            i_this->field_0xEB4.setup(emitter, &i_this->field_0x794, &i_this->field_0x764, fopAcM_GetRoomNo(a_this));
+            i_this->field_0xEB4.setup(emitter, &i_this->field_0x794, &i_this->field_0x764,
+                                      fopAcM_GetRoomNo(a_this));
             emitter->setEmitterCallBackPtr(&i_this->field_0xEB4);
         }
     }
@@ -2771,9 +2846,12 @@ static int daE_PO_Delete(e_po_class* i_this) {
 
 /* 80755C94-80756020 009834 038C+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 static int useHeapInit(fopAc_ac_c* i_this) {
-    e_po_class* a_this = (e_po_class*) i_this;
+    e_po_class* a_this = (e_po_class*)i_this;
 
-    a_this->mpMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_PO", 0x1B), NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_PO", 0x15), 2, 1.0f, 0, -1, &a_this->mSound1, 0x80000, 0x11000084);
+    a_this->mpMorf =
+        new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_PO", 0x1B), NULL, NULL,
+                             (J3DAnmTransform*)dComIfG_getObjectRes("E_PO", 0x15), 2, 1.0f, 0, -1,
+                             &a_this->mSound1, 0x80000, 0x11000084);
     if (a_this->mpMorf == NULL || a_this->mpMorf->getModel() == NULL) {
         return 0;
     }
@@ -2782,27 +2860,35 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     a_this->mpMorf->getModel()->setUserArea((u32)i_this);
-    for (u16 i=0; i < a_this->mpMorf->getModel()->getModelData()->getJointNum(); i++) {
+    for (u16 i = 0; i < a_this->mpMorf->getModel()->getModelData()->getJointNum(); i++) {
         if (i == 2 || (i >= 17 && i <= 22)) {
-            a_this->mpMorf->getModel()->getModelData()->getJointNodePointer(i)->setCallBack(nodeCallBack);
+            a_this->mpMorf->getModel()->getModelData()->getJointNodePointer(i)->setCallBack(
+                nodeCallBack);
         }
     }
-    
-    a_this->mpModel = mDoExt_J3DModel__create((J3DModelData*)dComIfG_getObjectRes("E_PO", 0x1C), 0x80000, 0x11000084);
+
+    a_this->mpModel = mDoExt_J3DModel__create((J3DModelData*)dComIfG_getObjectRes("E_PO", 0x1C),
+                                              0x80000, 0x11000084);
     if (a_this->mpModel == NULL) {
         return 0;
     }
-    
-    a_this->mpMorf3 = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_PO", 0x1D), NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_PO", 0x17), 0, 1.0f, 0, -1, &a_this->mSound1, 0x80000, 0x11000084);
+
+    a_this->mpMorf3 =
+        new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_PO", 0x1D), NULL, NULL,
+                             (J3DAnmTransform*)dComIfG_getObjectRes("E_PO", 0x17), 0, 1.0f, 0, -1,
+                             &a_this->mSound1, 0x80000, 0x11000084);
     if (a_this->mpMorf3 == NULL || a_this->mpMorf3->getModel() == NULL) {
         return 0;
     }
-    a_this->mpModel2 = mDoExt_J3DModel__create((J3DModelData*)dComIfG_getObjectRes("E_PO", 0x1D), 0x80000, 0x11000084);
+    a_this->mpModel2 = mDoExt_J3DModel__create((J3DModelData*)dComIfG_getObjectRes("E_PO", 0x1D),
+                                               0x80000, 0x11000084);
     if (a_this->mpModel2 == NULL) {
         return 0;
     }
 
-    a_this->mpMorf2 = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("E_PO", 0x1A), NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_PO", 0x4), 2, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000084);
+    a_this->mpMorf2 = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("E_PO", 0x1A), NULL,
+                                         NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_PO", 0x4),
+                                         2, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000084);
     if (a_this->mpMorf2 == NULL || a_this->mpMorf2->getModel() == NULL) {
         return 0;
     }
@@ -2817,7 +2903,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
 /* 80756020-80756900 009BC0 08E0+00 1/0 0/0 0/0 .text            daE_PO_Create__FP10fopAc_ac_c */
 static int daE_PO_Create(fopAc_ac_c* i_this) {
-    e_po_class* a_this = (e_po_class*) i_this;
+    e_po_class* a_this = (e_po_class*)i_this;
     fopAcM_SetupActor(i_this, e_po_class);
 
     int phase_state = dComIfG_resLoad(&a_this->mPhase, "E_PO");
@@ -2854,7 +2940,6 @@ static int daE_PO_Create(fopAc_ac_c* i_this) {
         OS_REPORT("\n\n\n");
         OS_REPORT("E_PO//////////////E_PO SET 1 !!\n");
 
-
         if (!fopAcM_entrySolidHeap(i_this, useHeapInit, 0x6830)) {
             OS_REPORT("//////////////E_PO SET NON !!\n");
             return cPhs_ERROR_e;
@@ -2867,22 +2952,22 @@ static int daE_PO_Create(fopAc_ac_c* i_this) {
         }
 
         a_this->mAcch.Set(fopAcM_GetPosition_p(i_this), fopAcM_GetOldPosition_p(i_this), i_this, 1,
-            &a_this->mAcchCir, fopAcM_GetSpeed_p(i_this), NULL, NULL);
+                          &a_this->mAcchCir, fopAcM_GetSpeed_p(i_this), NULL, NULL);
         a_this->mAcchCir.SetWall(80.0f, 100.0f);
         a_this->mColliderStts.Init(150, 0, i_this);
 
         static dCcD_SrcCyl cc_cyl_src = {
             {
-                {0x0, {{0x0, 0x0, 0x0}, {0xd8000000, 0x3}, 0x0}}, // mObj
-                {dCcD_SE_13, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
-                {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x6}, // mGObjTg
-                {0x0}, // mGObjCo
-            }, // mObjInf
+                {0x0, {{0x0, 0x0, 0x0}, {0xd8000000, 0x3}, 0x0}},  // mObj
+                {dCcD_SE_13, 0x0, 0x0, 0x0, 0x0},                  // mGObjAt
+                {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x6},                // mGObjTg
+                {0x0},                                             // mGObjCo
+            },                                                     // mObjInf
             {
-                {0.0f, 0.0f, 0.0f}, // mCenter
-                50.0f, // mRadius
-                300.0f // mHeight
-            } // mCyl
+                {0.0f, 0.0f, 0.0f},  // mCenter
+                50.0f,               // mRadius
+                300.0f               // mHeight
+            }  // mCyl
         };
 
         a_this->mCyl.Set(cc_cyl_src);
@@ -2891,14 +2976,14 @@ static int daE_PO_Create(fopAc_ac_c* i_this) {
 
         static dCcD_SrcSph at_sph_src = {
             {
-                {0x0, {{AT_TYPE_CSTATUE_SWING, 0x1, 0xd}, {0xd8fbfdff, 0x43}, 0x15}}, // mObj
-                {dCcD_SE_METAL, 0x0, 0x1, 0x0, 0x0}, // mGObjAt
-                {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x6}, // mGObjTg
-                {0x0}, // mGObjCo
-            }, // mObjInf
+                {0x0, {{AT_TYPE_CSTATUE_SWING, 0x1, 0xd}, {0xd8fbfdff, 0x43}, 0x15}},  // mObj
+                {dCcD_SE_METAL, 0x0, 0x1, 0x0, 0x0},                                   // mGObjAt
+                {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x6},                                    // mGObjTg
+                {0x0},                                                                 // mGObjCo
+            },                                                                         // mObjInf
             {
-                {{0.0f, 0.0f, 0.0f}, 30.0f} // mSph
-            } // mSphAttr
+                {{0.0f, 0.0f, 0.0f}, 30.0f}  // mSph
+            }  // mSphAttr
         };
 
         a_this->mSph2.Set(at_sph_src);
@@ -2952,7 +3037,7 @@ static int daE_PO_Create(fopAc_ac_c* i_this) {
                     a_this->field_0x5F4 = 0;
                     a_this->field_0x759 = 1;
                     for (s32 i = 0; i < 4; i++) {
-                        fopAcM_onSwitch(i_this,i + 30);
+                        fopAcM_onSwitch(i_this, i + 30);
                     }
                     if (!fopAcM_isSwitch(i_this, 69)) {
                         fopAcM_onSwitch(i_this, 69);
@@ -3017,11 +3102,10 @@ static int daE_PO_Create(fopAc_ac_c* i_this) {
             a_this->mpMorf->setStartFrame(150.0f);
         }
         a_this->field_0xEB4.setOldPosP(&i_this->current.pos, &i_this->current.pos);
-        if ((a_this->mArg0 < 4 || a_this->mArg0 > 6) &&
-            mArg0Check(a_this, 0xFF) != 3 &&
-            mArg0Check(a_this, 0xFF) != 4 &&
-            a_this->BitSW != 0xFF &&
-            fopAcM_isSwitch(i_this, a_this->BitSW)) {
+        if ((a_this->mArg0 < 4 || a_this->mArg0 > 6) && mArg0Check(a_this, 0xFF) != 3 &&
+            mArg0Check(a_this, 0xFF) != 4 && a_this->BitSW != 0xFF &&
+            fopAcM_isSwitch(i_this, a_this->BitSW))
+        {
             cXyz local_40(1.0f, 1.0f, 1.0f);
             local_40.x = 6.0f;
             a_this->mActionID = ACT_DEAD;
@@ -3082,27 +3166,25 @@ e_po_class::e_po_class() {
 }
 
 static actor_method_class l_daE_PO_Method = {
-    (process_method_func)daE_PO_Create,
-    (process_method_func)daE_PO_Delete,
-    (process_method_func)daE_PO_Execute,
-    (process_method_func)daE_PO_IsDelete,
+    (process_method_func)daE_PO_Create,  (process_method_func)daE_PO_Delete,
+    (process_method_func)daE_PO_Execute, (process_method_func)daE_PO_IsDelete,
     (process_method_func)daE_PO_Draw,
 };
 
 /* 80757D20-80757D50 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_E_PO */
 extern actor_process_profile_definition g_profile_E_PO = {
-  fpcLy_CURRENT_e,        // mLayerID
-  7,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_E_PO,              // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(e_po_class),     // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  162,                    // mPriority
-  &l_daE_PO_Method,       // sub_method
-  0x00044100,             // mStatus
-  fopAc_ENEMY_e,          // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
+    fpcLy_CURRENT_e,         // mLayerID
+    7,                       // mListID
+    fpcPi_CURRENT_e,         // mListPrio
+    PROC_E_PO,               // mProcName
+    &g_fpcLf_Method.base,    // sub_method
+    sizeof(e_po_class),      // mSize
+    0,                       // mSizeOther
+    0,                       // mParameters
+    &g_fopAc_Method.base,    // sub_method
+    162,                     // mPriority
+    &l_daE_PO_Method,        // sub_method
+    0x00044100,              // mStatus
+    fopAc_ENEMY_e,           // mActorType
+    fopAc_CULLBOX_CUSTOM_e,  // cullType
 };
