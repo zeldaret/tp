@@ -1879,7 +1879,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_bbox"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_bed"),
     ActorRel(NonMatching, "d_a_obj_bemos"),
-    ActorRel(NonMatching, "d_a_obj_bhbridge"),
+    ActorRel(Equivalent, "d_a_obj_bhbridge"), # vtable order
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_bk_leaf"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_bky_rock"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_bmWindow"),
