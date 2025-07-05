@@ -1025,7 +1025,7 @@ void dMenu_Fmap_c::portal_warp_map_proc() {
                 }
             } else if (mPortalNo == 3) {
                 if ((dMeter2Info_getMapStatus() == 3
-                                && i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 2
+                                && dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 2
                                 && dComIfGs_isOneZoneSwitch(0xf, -1))
                     || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x33]))
                 {

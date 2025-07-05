@@ -27,6 +27,14 @@ inline float abs(float x) {
 inline float fmod(float x, float y) {
     return ::fmod(x, y);
 }
+
+inline float ceil(float num) {
+    return ::ceilf(num);
+}
+
+inline float floor(float num) {
+    return ::floorf(num);
+}
 }  // namespace std
 
 #endif

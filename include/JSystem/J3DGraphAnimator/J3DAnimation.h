@@ -2,6 +2,7 @@
 #define J3DANIMATION_H
 
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTNameTab.h"
 #include "global.h"
 
@@ -588,13 +589,23 @@ public:
         calcTransform(getFrame(), param_0, pSRTInfo);
     }
 
-    u16 getUpdateMaterialID(u16 idx) const { return mUpdateMaterialID[idx]; }
+    u16 getUpdateMaterialID(u16 idx) const {
+        J3D_ASSERT(1029, idx < mTrackNum / 3, "Error : range over.");
+        return mUpdateMaterialID[idx];
+    }
     u16 getUpdateMaterialNum() const { return mTrackNum / 3; }
+    u16 getPostUpdateMaterialNum() const { return field_0x4a / 3; }
 
-    int getUpdateTexMtxID(u16 idx) { return mUpdateTexMtxID[idx]; }
+    int getUpdateTexMtxID(u16 idx) const {
+        J3D_ASSERT(1017, idx < mTrackNum / 3, "Error : range over.");
+        return mUpdateTexMtxID[idx];
+    }
     bool isValidUpdateMaterialID(u16 idx) const { return mUpdateMaterialID[idx] != 0xffff; }
-    u32 getTexMtxCalcType() const { return mTexMtxCalcType; }
-    Vec* getSRTCenter(u16 idx) { return &mSRTCenter[idx]; }
+    u32 getTexMtxCalcType() { return mTexMtxCalcType; }
+    Vec* getSRTCenter(u16 idx) {
+        J3D_ASSERT(1047, idx < mTrackNum / 3, "Error : range over.");
+        return &mSRTCenter[idx];
+    }
 
     /* 0x0C */ int mDecShift;
     /* 0x10 */ J3DAnmTransformKeyTable* mAnmTable;
@@ -638,7 +649,10 @@ public:
     /* 8032BD20 */ virtual ~J3DAnmTexPattern() {}
     /* 8032BD94 */ virtual s32 getKind() const { return 2; }
 
-    u16 getUpdateMaterialID(u16 idx) const { return mUpdateMaterialID[idx]; }
+    u16 getUpdateMaterialID(u16 idx) const {
+        J3D_ASSERT(2288, idx < mUpdateMaterialNum, "Error : range over.");
+        return mUpdateMaterialID[idx];
+    }
     u16 getUpdateMaterialNum() const { return mUpdateMaterialNum; }
     bool isValidUpdateMaterialID(u16 id) const { return mUpdateMaterialID[id] != 0xFFFF; }
     J3DAnmTexPatternFullTable* getAnmTable() { return mAnmTable; }
@@ -669,8 +683,14 @@ public:
     u16 getCRegUpdateMaterialNum() const { return mCRegUpdateMaterialNum; }
     u16 getKRegUpdateMaterialNum() const { return mKRegUpdateMaterialNum; }
 
-    u16 getCRegUpdateMaterialID(u16 idx) const { return mCRegUpdateMaterialID[idx]; }
-    u16 getKRegUpdateMaterialID(u16 idx) const { return mKRegUpdateMaterialID[idx]; }
+    u16 getCRegUpdateMaterialID(u16 idx) const {
+        J3D_ASSERT(2100, idx < mCRegUpdateMaterialNum, "Error : range over.");
+        return mCRegUpdateMaterialID[idx];
+    }
+    u16 getKRegUpdateMaterialID(u16 idx) const {
+        J3D_ASSERT(2140, idx < mKRegUpdateMaterialNum, "Error : range over.");
+        return mKRegUpdateMaterialID[idx];
+    }
 
     const J3DAnmCRegKeyTable* getAnmCRegKeyTable() const { return mAnmCRegKeyTable; }
     const J3DAnmKRegKeyTable* getAnmKRegKeyTable() const { return mAnmKRegKeyTable; }
@@ -719,7 +739,10 @@ public:
 
     u16 getUpdateMaterialNum() const { return mUpdateMaterialNum; }
     bool isValidUpdateMaterialID(u16 id) const { return mUpdateMaterialID[id] != 0xFFFF; }
-    u16 getUpdateMaterialID(u16 idx) const { return mUpdateMaterialID[idx]; }
+    u16 getUpdateMaterialID(u16 idx) const { 
+        J3D_ASSERT(1578, idx < mUpdateMaterialNum, "Error : range over.");
+        return mUpdateMaterialID[idx];
+    }
 
     /* 0x0C */ u16 field_0xc;
     /* 0x0E */ u16 field_0xe;

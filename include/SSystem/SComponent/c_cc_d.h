@@ -13,6 +13,7 @@ class fopAc_ac_c;
 
 enum CcG_Tg_HitMark {
     CcG_Tg_UNK_MARK_0 = 0,
+    CcG_Tg_UNK_MARK_1 = 1,
     CcG_Tg_UNK_MARK_2 = 2,
     CcG_Tg_UNK_MARK_3 = 3,
     CcG_Tg_UNK_MARK_6 = 6,
@@ -522,6 +523,8 @@ public:
     void OnTgSetBit() { mObjTg.OnSPrmBit(1); }
     void OffTgSetBit() { mObjTg.ClrSet(); }
     void OnCoSetBit() { mObjCo.OnSPrmBit(1); }
+    void OffAtVsEnemyBit() { mObjAt.OffSPrmBit(0x2); }
+    void OnAtVsEnemyBit() { mObjAt.OnSPrmBit(0x2); }
     void OffAtVsPlayerBit() { mObjAt.OffSPrmBit(0xC); }
     void OnAtVsPlayerBit() { mObjAt.OnSPrmBit(0xC); }
     void OnCoSPrmBit(u32 flag) { mObjCo.OnSPrmBit(flag); }

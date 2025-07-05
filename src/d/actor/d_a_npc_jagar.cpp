@@ -10,34 +10,61 @@
 #include "d/d_meter2_info.h"
 #include "d/actor/d_a_tag_push.h"
 
+UNK_REL_DATA;
 
-//
-// Declarations:
-//
+enum JAGAR_RES_FILE_ID {
+    /* BCK */
+    /* 0x06 */ BCK_JAGA_F_TALK_A = 6,
+    /* 0x07 */ BCK_JAGA_FH_TALK_A,
+    /* 0x08 */ BCK_JAGA_STEP,
+    /* 0x09 */ BCK_JAGA_TALK_B,
+    /* 0x0A */ BCK_JAGAR_WAIT_A,
 
-/* ############################################################################################## */
+    /* BMDR */
+    /* 0x0D */ BMDR_JAGAR = 0xD,
 
-/* 80A1A548-80A1A554 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    /* BTK */
+    /* 0x10 */ BTK_JAGA = 0x10,
+
+    /* BTP */
+    /* 0x13 */ BTP_JAGA = 0x13,
+    /* 0x14 */ BTP_JAGA_F_TALK_A,
+    /* 0x15 */ BTP_JAGA_FH_TALK_A,
 };
 
-/* 80A1A554-80A1A568 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
+enum JAGAR1_RES_FILE_ID {
+    /* BCK */
+    /* 0x04 */ BCK_JAGA_CHU = 4,
+    /* 0x05 */ BCK_JAGA_CHU_TO_SIT,
+    /* 0x06 */ BCK_JAGA_F_SMILETALK,
+    /* 0x07 */ BCK_JAGA_SIT,
+    /* 0x08 */ BCK_JAGA_TO_CHU,
+    /* 0x09 */ BCK_JAGA_WAIT_B,
+    /* 0x0A */ BCK_JAGA_WAIT_TO_SIT,
+
+    /* EVT */
+    /* 0x0E */ EVT_EVENT_LIST = 0xE,
 };
-#pragma pop
+
+enum JAGAR3_RES_FILE_ID {
+    /* BCK */
+    /* 0x04 */ BCK_JAGA_F_TALK_B = 4,
+    /* 0x05 */ BCK_JAGA_FH_TALK_B,
+    /* 0x06 */ BCK_JAGA_TALK_A,
+
+    /* BTP */
+    /* 0x09 */ BTP_JAGA_F_TALK_B = 9,
+    /* 0x0A */ BTP_JAGA_FH_TALK_B,
+};
+
+enum JAGAR4_RES_FILE_ID {
+    /* BMDR */
+    /* 0x03 */ BMDR_JAGA_NOUGU = 3,
+};
 
 /* 80A1A568-80A1A570 000020 0008+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[1][2] = {
-    {13, 1},
+    {BMDR_JAGAR, 1},
 };
 
 /* 80A1A570-80A1A5B8 -00001 0048+00 0/1 0/0 0/0 .data            l_evtList */
@@ -63,7 +90,6 @@ static char* l_resNameList[5] = {
 };
 
 /* 80A1A5CC-80A1A5D0 000084 0004+00 1/0 0/0 0/0 .data            l_loadResPtrn0 */
-// SECTION_DATA static u32 l_loadResPtrn0 = 0x010204FF;
 static s8 l_loadResPtrn0[4] = {
     1, 2, 4, -1,
 };
@@ -175,7 +201,6 @@ daNpc_Jagar_c::~daNpc_Jagar_c() {
     deleteRes(l_loadResPtrnList[mType], (char const**)l_resNameList);
 }
 
-/* ############################################################################################## */
 /* 80A1A330-80A1A3D0 000000 00A0+00 13/13 0/0 1/1 .rodata          m__19daNpc_Jagar_Param_c */
 daNpc_Jagar_Param_c::Data const daNpc_Jagar_Param_c::m = {
     170.0f, -3.0f, 1.0f, 400.0f, 255.0f, 160.0f,
@@ -282,20 +307,18 @@ int daNpc_Jagar_c::Draw() {
     return daNpcT_c::draw(0, 0, field_0xde8, NULL, 100.0f, 0, 0, 0);
 }
 
-/* 80A15034-80A15054 000A14 0020+00 1/1 0/0 0/0 .text
- * createHeapCallBack__13daNpc_Jagar_cFP10fopAc_ac_c            */
+/* 80A15034-80A15054 000A14 0020+00 1/1 0/0 0/0 .text            createHeapCallBack__13daNpc_Jagar_cFP10fopAc_ac_c */
 int daNpc_Jagar_c::createHeapCallBack(fopAc_ac_c* i_this) {
     return static_cast<daNpc_Jagar_c*>(i_this)->CreateHeap();
 }
 
-/* 80A15054-80A150AC 000A34 0058+00 1/1 0/0 0/0 .text
- * ctrlJointCallBack__13daNpc_Jagar_cFP8J3DJointi               */
-int daNpc_Jagar_c::ctrlJointCallBack(J3DJoint* param_0, int param_1) {
-    if (param_1 == 0) {
+/* 80A15054-80A150AC 000A34 0058+00 1/1 0/0 0/0 .text            ctrlJointCallBack__13daNpc_Jagar_cFP8J3DJointi */
+int daNpc_Jagar_c::ctrlJointCallBack(J3DJoint* i_joint, int param_2) {
+    if (param_2 == 0) {
         J3DModel* model = j3dSys.getModel();
         daNpc_Jagar_c* i_this = reinterpret_cast<daNpc_Jagar_c*>(model->getUserArea());
         if (i_this != 0) {
-            i_this->ctrlJoint(param_0, model);
+            i_this->ctrlJoint(i_joint, model);
         }
     }
     return 1;
@@ -1416,7 +1439,7 @@ int daNpc_Jagar_c::talkwithBou(void* param_0) {
                     mEvtNo = 7;
                 }
                 if (bo) {
-                    if (field_0x1005 == 0) {
+                    if (mListen == 0) {
                         if (cLib_calcTimer(&field_0xff8) == 0) {
                             if (chkCondition(0) && bo->chkCondition(0)) {
                                 field_0xff8 = cLib_getRndValue(45.0f, 135.0f);

@@ -2693,14 +2693,18 @@ void daMP_ReadThreadCancel() {
 }
 
 /* 80875A28-80875B0C 003348 00E4+00 1/1 0/0 0/0 .text            daMP_Reader__FPv */
-// NONMATCHINIG - regalloc
 void daMP_Reader(void*) {
-    s32 r28 = 0;
-    s32 r30 = daMP_ActivePlayer.field_0xb8;
-    s32 r29 = daMP_ActivePlayer.field_0xbc;
+    daMP_THPReadBuffer* readBuf;
+    int r30;
+    int r29;
+    int r28;
+    int readBytes;
+    r28 = 0;
+    r30 = daMP_ActivePlayer.field_0xb8;
+    r29 = daMP_ActivePlayer.field_0xbc;
     while (true) {
-        daMP_THPReadBuffer* readBuf = daMP_PopFreeReadBuffer();
-        int readBytes = DVDReadPrio(&daMP_ActivePlayer.mFileInfo, readBuf->m00, r29, r30, 2);
+        readBuf = daMP_PopFreeReadBuffer();
+        readBytes = DVDReadPrio(&daMP_ActivePlayer.mFileInfo, readBuf->m00, r29, r30, 2);
         if (readBytes != r29) {
             if (readBytes == -1) {
                 daMP_ActivePlayer.field_0xa8 = -1;
@@ -2983,12 +2987,18 @@ static f32 dummyLiteral() {
 
 /* 8087667C-80876BA8 003F9C 052C+00 1/1 0/0 0/0 .text
  * daMP_THPGXYuv2RgbSetup__FPC16_GXRenderModeObj                */
-// NONMATCHING - stack slightly too small
 static void daMP_THPGXYuv2RgbSetup(GXRenderModeObj const* param_0) {
     int width = param_0->fbWidth;
     int height = param_0->efbHeight;
     f32 var_f31 = 0.0f;
-    Mtx sp50;
+
+    #if PLATFORM_WII || PLATFORM_SHIELD
+    if (!mDoGph_gInf_c::isWide()) {
+        var_f31 = ((u16)height - (width * 808.0f) / 608.0f) * 0.5f;
+    }
+    #endif
+
+    Mtx44 sp50;
     Mtx sp20;
 
     GXSetPixelFmt(GX_PF_RGB8_Z24, GX_ZC_LINEAR);

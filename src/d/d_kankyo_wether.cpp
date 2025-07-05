@@ -266,7 +266,7 @@ static void dKyw_shstar_Draw() {
 
 /* 800573E4-80057414 051D24 0030+00 1/1 0/0 0/0 .text            dKyw_odour_packet__Fi */
 static void dKyw_odour_packet(int i_type) {
-    dKyw_setDrawPacketListIndScreen(g_env_light.mpOdourPacket, i_type);
+    dKyw_setDrawPacketListIndScreen(g_env_light.mOdourData.mpOdourPacket, i_type);
 }
 
 /* 80057414-80057438 051D54 0024+00 1/1 0/0 0/0 .text            dKyw_Odour_Draw__Fv */
@@ -315,10 +315,10 @@ void dKyw_wether_init() {
     g_env_light.mMoyaMode = 0;
     g_env_light.mHousiInitialized = false;
     g_env_light.mHousiCount = 0;
-    g_env_light.mOdourPacketStatus = 0;
-    g_env_light.field_0xf24 = 0;
-    g_env_light.field_0xf21 = 0;
-    g_env_light.mpOdourPacket = NULL;
+    g_env_light.mOdourData.mOdourPacketStatus = 0;
+    g_env_light.mOdourData.field_0xf24 = 0;
+    g_env_light.mOdourData.field_0xf21 = 0;
+    g_env_light.mOdourData.mpOdourPacket = NULL;
     g_env_light.field_0x1038 = 0;
     g_env_light.field_0x103c = 0;
     g_env_light.mMudInitialized = 0;
@@ -407,9 +407,9 @@ void dKyw_wether_delete() {
         g_env_light.mpCloudPacket = NULL;
     }
 
-    if (g_env_light.mOdourPacketStatus) {
-        delete g_env_light.mpOdourPacket;
-        g_env_light.mpOdourPacket = NULL;
+    if (g_env_light.mOdourData.mOdourPacketStatus) {
+        delete g_env_light.mOdourData.mpOdourPacket;
+        g_env_light.mOdourData.mpOdourPacket = NULL;
     }
 
     if (g_env_light.mMudInitialized) {
@@ -489,9 +489,9 @@ static void wether_move_sun() {
     s32 sunVisible = false;
     if (dComIfGp_checkStatus(1) && !g_env_light.hide_vrbox) {
         roomRead_class* room = dComIfGp_getStageRoom();
-        if (room != NULL && room->field_0x0 > dComIfGp_roomControl_getStayNo()) {
+        if (room != NULL && room->num > dComIfGp_roomControl_getStayNo()) {
             sunVisible = dStage_roomRead_dt_c_GetVrboxswitch(
-                *room->field_0x4[dComIfGp_roomControl_getStayNo()]);
+                *room->m_entries[dComIfGp_roomControl_getStayNo()]);
         }
 
         // Stage is Hero Shade arena
@@ -661,9 +661,9 @@ static void wether_move_star() {
             !strcmp(dComIfGp_getStartStageName(), "F_SP200"))
         {
             roomRead_class* room = dComIfGp_getStageRoom();
-            if (room != NULL && room->field_0x0 > dComIfGp_roomControl_getStayNo()) {
+            if (room != NULL && room->num > dComIfGp_roomControl_getStayNo()) {
                 starsVisible = dStage_roomRead_dt_c_GetVrboxswitch(
-                    *room->field_0x4[dComIfGp_roomControl_getStayNo()]);
+                    *room->m_entries[dComIfGp_roomControl_getStayNo()]);
             }
 
             // Stage is Hero Shade arena
@@ -840,35 +840,35 @@ static void wether_move_housi() {
 
 /* 800593DC-80059580 053D1C 01A4+00 1/1 0/0 0/0 .text            wether_move_odour__Fv */
 static void wether_move_odour() {
-    switch (g_env_light.mOdourPacketStatus) {
+    switch (g_env_light.mOdourData.mOdourPacketStatus) {
     case 0:
-        if (g_env_light.field_0xf21 != 0) {
-            g_env_light.mpOdourPacket = new (32) dKankyo_odour_Packet();
+        if (g_env_light.mOdourData.field_0xf21 != 0) {
+            g_env_light.mOdourData.mpOdourPacket = new (32) dKankyo_odour_Packet();
 
-            if (g_env_light.mpOdourPacket != NULL) {
-                g_env_light.mpOdourPacket->mpResTex = (u8*)dComIfG_getObjectRes("Always", 0x53);
+            if (g_env_light.mOdourData.mpOdourPacket != NULL) {
+                g_env_light.mOdourData.mpOdourPacket->mpResTex = (u8*)dComIfG_getObjectRes("Always", 0x53);
                 dKyr_odour_init();
                 dKyr_odour_move();
-                g_env_light.mOdourPacketStatus = 1;
+                g_env_light.mOdourData.mOdourPacketStatus = 1;
             }
         }
         break;
     case 1:
-        if (g_env_light.field_0xf21 == 0) {
-            g_env_light.mOdourPacketStatus = 0;
-            if (g_env_light.mpOdourPacket != NULL) {
-                delete g_env_light.mpOdourPacket;
-                g_env_light.mpOdourPacket = NULL;
+        if (g_env_light.mOdourData.field_0xf21 == 0) {
+            g_env_light.mOdourData.mOdourPacketStatus = 0;
+            if (g_env_light.mOdourData.mpOdourPacket != NULL) {
+                delete g_env_light.mOdourData.mpOdourPacket;
+                g_env_light.mOdourData.mpOdourPacket = NULL;
             }
         } else {
             dKyr_odour_move();
         }
         break;
     case 2:
-        g_env_light.field_0xf21 = 0;
-        g_env_light.mOdourPacketStatus = 0;
-        delete g_env_light.mpOdourPacket;
-        g_env_light.mpOdourPacket = NULL;
+        g_env_light.mOdourData.field_0xf21 = 0;
+        g_env_light.mOdourData.mOdourPacketStatus = 0;
+        delete g_env_light.mOdourData.mpOdourPacket;
+        g_env_light.mOdourData.mpOdourPacket = NULL;
         break;
     }
 }
@@ -951,9 +951,9 @@ static void wether_move_vrkumo() {
     }
 
     roomRead_class* room_p = dComIfGp_getStageRoom();
-    if (room_p != NULL && room_p->field_0x0 > dComIfGp_roomControl_getStayNo()) {
+    if (room_p != NULL && room_p->num > dComIfGp_roomControl_getStayNo()) {
         var_r31 = dStage_roomRead_dt_c_GetVrboxswitch(
-            *room_p->field_0x4[dComIfGp_roomControl_getStayNo()]);
+            *room_p->m_entries[dComIfGp_roomControl_getStayNo()]);
     }
 
     if (strcmp(dComIfGp_getStartStageName(), "F_SP200") == 0) {
@@ -1153,7 +1153,7 @@ void dKyw_wether_draw() {
             dKyw_Housi_Draw();
         }
 
-        if (g_env_light.mOdourPacketStatus != 0) {
+        if (g_env_light.mOdourData.mOdourPacketStatus != 0) {
             dKyw_Odour_Draw();
         }
 

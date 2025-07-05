@@ -38,12 +38,13 @@ J3DMaterialTable::~J3DMaterialTable() {}
 /* 8032F64C-8032F6F8 329F8C 00AC+00 0/0 1/1 5/5 .text
  * removeMatColorAnimator__16J3DMaterialTableFP11J3DAnmColor    */
 int J3DMaterialTable::removeMatColorAnimator(J3DAnmColor* pAnmColor) {
+    JUT_ASSERT_MSG(208, pAnmColor != NULL, "Error : null pointer.")
     int ret = false;
     u16 updateMatNum = pAnmColor->getUpdateMaterialNum();
     for (u16 i = 0; i < updateMatNum; i++) {
         if (pAnmColor->isValidUpdateMaterialID(i)) {
-            J3DMaterial* materialNode = getMaterialNodePointer(pAnmColor->getUpdateMaterialID(i));
-            J3DMaterialAnm* materialAnm = materialNode->getMaterialAnm();
+            u16 materialUpdateId = pAnmColor->getUpdateMaterialID(i);
+            J3DMaterialAnm* materialAnm = getMaterialNodePointer(materialUpdateId)->getMaterialAnm();
             if (materialAnm == NULL) {
                 ret = true;
             } else {
@@ -57,9 +58,10 @@ int J3DMaterialTable::removeMatColorAnimator(J3DAnmColor* pAnmColor) {
 /* 8032F6F8-8032F7B4 32A038 00BC+00 0/0 5/5 10/10 .text
  * removeTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern  */
 int J3DMaterialTable::removeTexNoAnimator(J3DAnmTexPattern* anm) {
+    JUT_ASSERT_MSG(242, anm != NULL, "Error : null pointer.")
     int ret = 0;
     u16 materialNum = anm->getUpdateMaterialNum();
-    J3DAnmTexPatternFullTable* anm_table = anm->mAnmTable;
+    J3DAnmTexPatternFullTable* anm_table = (J3DAnmTexPatternFullTable*)anm->getAnmTable();
 
     for (u16 i = 0; i < materialNum; i++) {
         if (anm->isValidUpdateMaterialID(i)) {
@@ -80,13 +82,16 @@ int J3DMaterialTable::removeTexNoAnimator(J3DAnmTexPattern* anm) {
 /* 8032F7B4-8032F880 32A0F4 00CC+00 0/0 4/4 26/26 .text
  * removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey */
 int J3DMaterialTable::removeTexMtxAnimator(J3DAnmTextureSRTKey* pAnm) {
+    JUT_ASSERT_MSG(278, pAnm != NULL, "Error : null pointer.")
     s32 ret = 0;
     u16 materialNum = pAnm->getUpdateMaterialNum();
+    u16 postUpdateMaterialNum[1];
+    postUpdateMaterialNum[0] = pAnm->getPostUpdateMaterialNum();
 
     for (u16 i = 0; i < materialNum; i++) {
-        u16 materialID = pAnm->getUpdateMaterialID(i);
-        if (materialID != 0xFFFF) {
-            J3DMaterial* pMaterial = getMaterialNodePointer(materialID);
+        if (pAnm->isValidUpdateMaterialID(i)) {
+            u16 updateMaterial = pAnm->getUpdateMaterialID(i);
+            J3DMaterial* pMaterial = getMaterialNodePointer(updateMaterial);
             J3DMaterialAnm* pMatAnm = pMaterial->getMaterialAnm();
             u8 texMtxID = pAnm->getUpdateTexMtxID(i);
             if (pMatAnm == NULL) {
@@ -210,38 +215,36 @@ int J3DMaterialTable::entryTexNoAnimator(J3DAnmTexPattern* param_1) {
 
 /* 8032FCC4-8032FE70 32A604 01AC+00 0/0 14/14 6/6 .text
  * entryTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey */
-// NONMATCHING getUpdateTexMtxID u8 issue
-int J3DMaterialTable::entryTexMtxAnimator(J3DAnmTextureSRTKey* param_1) {
+int J3DMaterialTable::entryTexMtxAnimator(J3DAnmTextureSRTKey* btk) {
+    JUT_ASSERT_MSG(532, btk != NULL, "Error : null pointer.")
     int rv = 0;
-    u16 materialNum = param_1->getUpdateMaterialNum();
-    rv = createTexMtxForAnimator(param_1);
+    u16 materialNum = btk->getUpdateMaterialNum();
+    rv = createTexMtxForAnimator(btk);
     if (rv != 0) {
         return rv;
     }
     if (isLocked()) {
         return 2;
     }
-    for (u16 i = 0; i < materialNum; i++) {
-        if (param_1->isValidUpdateMaterialID(i)) {
-            J3DMaterial* material = getMaterialNodePointer(param_1->getUpdateMaterialID(i));
+    for (u16 no = 0; no < materialNum; no++) {
+        if (btk->isValidUpdateMaterialID(no)) {
+            u16 updateMaterialId = btk->getUpdateMaterialID(no);
+            J3DMaterial* material = getMaterialNodePointer((u16)updateMaterialId);
             J3DMaterialAnm* materialAnm = material->getMaterialAnm();
-            u8 texMtxID = param_1->getUpdateTexMtxID(i);
+            u8 texMtxID = btk->getUpdateTexMtxID(no);
             if (materialAnm == 0) {
                 rv = 1;
             } else {
                 if (texMtxID != 0xff) {
                     if (material->getTexCoord(texMtxID) != NULL) {
-                        material->getTexCoord(texMtxID)->setTexGenMtx(texMtxID * 3 + 30);
+                        material->getTexCoord(texMtxID)->setTexGenMtx((u8)texMtxID * 3 + 30);
                     }
-                    J3DTexMtxInfo& iVar3 = material->getTexMtx(texMtxID)->getTexMtxInfo();
-                    iVar3.mInfo = (iVar3.mInfo & 0x3f) | (param_1->getTexMtxCalcType() << 7);
-                    Vec* vec = param_1->getSRTCenter(i);
-                    iVar3.mCenter.x = vec->x;
-                    vec = param_1->getSRTCenter(i);
-                    iVar3.mCenter.y = vec->y;
-                    vec = param_1->getSRTCenter(i);
-                    iVar3.mCenter.z = vec->z;
-                    J3DTexMtxAnm texMtxAnm(i, param_1);
+                    J3DTexMtxInfo& tmtxinfo = material->getTexMtx(texMtxID)->getTexMtxInfo();
+                    tmtxinfo.mInfo = (tmtxinfo.mInfo & 0x3f) | (btk->getTexMtxCalcType() << 7);
+                    tmtxinfo.mCenter.x = btk->getSRTCenter(no)->x;
+                    tmtxinfo.mCenter.y = btk->getSRTCenter(no)->y;
+                    tmtxinfo.mCenter.z = btk->getSRTCenter(no)->z;
+                    J3DTexMtxAnm texMtxAnm(no, btk);
                     materialAnm->setTexMtxAnm(texMtxID, &texMtxAnm);
                 }
             }

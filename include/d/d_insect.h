@@ -21,19 +21,19 @@ public:
     /* 8015E078 */ void Insect_GetDemoMain();
     /* 8015E26C */ void CalcZBuffer(f32);
 
-    /* 80110648 */ virtual void Insect_Release() { field_0x56C = 1; }
+    /* 80110648 */ virtual void Insect_Release() { field_0x56c = 1; }
     bool ChkGetDemo() { return m_mode > 0; }
     void setItemNo(u8 i_itemNo) { m_itemNo = i_itemNo; }
     void setSaveBitNo(s16 i_saveBitNo) { m_saveBitNo = i_saveBitNo; }
-    bool CheckZ() { return (u32)field_0x57C > field_0x578; }
+    bool CheckZ() { return (u32)field_0x57c > field_0x578; }
 
 public:
-    /* 0x56C */ u8 field_0x56C;
+    /* 0x56C */ u8 field_0x56c;
     /* 0x56D */ bool mDraw;
     /* 0x570 */ u32 mParticleKey1;
     /* 0x574 */ u32 mParticleKey2;
     /* 0x578 */ u32 field_0x578;
-    /* 0x57C */ f32 field_0x57C;
+    /* 0x57C */ f32 field_0x57c;
     /* 0x580 */ u8 m_itemNo;
     /* 0x581 */ u8 mSex;
     /* 0x582 */ s16 m_saveBitNo;

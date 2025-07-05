@@ -620,9 +620,9 @@ void dMsgObject_c::setMessageIndex(u32 param_1, u32 param_2, bool param_3) {
     field_0x172 = 0;
     mpRefer->setPageNum(field_0x172);
 
-    JMSMesgHeader_c* pMsg = (JMSMesgHeader_c*)((char*)mpMsgDt + 0x20);
-    u8* iVar2 = (u8*)pMsg + pMsg->sectionSize;
-    dComIfGp_setMesgCameraAttrInfo(pMsg->entries[getMessageIndex(revoIndex)].field_0x0f);
+    JMSMesgInfo_c* pMsg = (JMSMesgInfo_c*)((char*)mpMsgDt + 0x20);
+    u8* iVar2 = (u8*)pMsg + pMsg->header.size;
+    dComIfGp_setMesgCameraAttrInfo(pMsg->entries[getMessageIndex(revoIndex)].camera_id);
     if (field_0x15c == 1000) {
         mpRefer->setSelMsgPtr(NULL);
     } else {
@@ -630,7 +630,7 @@ void dMsgObject_c::setMessageIndex(u32 param_1, u32 param_2, bool param_3) {
         if (msgIndex == 0x264) {
             mpRefer->setSelMsgPtr(NULL);
         } else {
-            mpRefer->setSelMsgPtr(((char*)iVar2 + pMsg->entries[msgIndex].mStringOffset + 8));
+            mpRefer->setSelMsgPtr(((char*)iVar2 + pMsg->entries[msgIndex].string_offset + 8));
         }
     }
     if (param_3) {
@@ -659,10 +659,10 @@ void dMsgObject_c::setMessageIndexDemo(u32 param_1, bool param_2) {
     changeGroup(groupID);
     field_0x172 = 0;
     mpRefer->setPageNum(field_0x172);
-    JMSMesgHeader_c* info_header_p = (JMSMesgHeader_c*)((char*)mpMsgDt + 0x20);
+    JMSMesgInfo_c* info_header_p = (JMSMesgInfo_c*)((char*)mpMsgDt + 0x20);
     int ind = getMessageIndex(revoMsgIndex);
     JMSMesgEntry_c* info_entries = (JMSMesgEntry_c*)((char*)info_header_p + 0x10);
-    dComIfGp_setMesgCameraAttrInfo(info_entries[ind].field_0x0f);
+    dComIfGp_setMesgCameraAttrInfo(info_entries[ind].camera_id);
     mpRefer->setSelMsgPtr(NULL);
     if (param_2) {
         mpCtrl->setMessageID(mMessageID, 0, NULL);
@@ -673,11 +673,11 @@ void dMsgObject_c::setMessageIndexDemo(u32 param_1, bool param_2) {
  */
 u32 dMsgObject_c::getMessageIndex(u32 param_0) {
     u32 i = 0;
-    JMSMesgHeader_c* pMsg = (JMSMesgHeader_c*)((char*)mpMsgDt + 0x20);
+    JMSMesgInfo_c* pMsg = (JMSMesgInfo_c*)((char*)mpMsgDt + 0x20);
     u32 msgIndexCount = *((u16*)((char*)mpMsgDt + 0x28));
     int rv;
     for (; i < msgIndexCount; i++) {
-        if (pMsg->entries[i].mStringId == param_0) {
+        if (pMsg->entries[i].message_id == param_0) {
             rv = i;
             break;
         }
@@ -695,19 +695,19 @@ u32 dMsgObject_c::getRevoMessageIndex(u32 param_1) {
         return param_1;
     }
     u32 msgIndexCount;
-    JMSMesgHeader_c* pMsg;
+    JMSMesgInfo_c* pMsg;
     int i = 0;
     int rv;
     s16 groupID = getMessageGroup(param_1);
     JUT_ASSERT(1916, groupID==s_groupID || groupID == 0)
     changeGroup(groupID);
-    pMsg = (JMSMesgHeader_c*)((char*)mpMsgDt + 0x20);
+    pMsg = (JMSMesgInfo_c*)((char*)mpMsgDt + 0x20);
     msgIndexCount = *((u16*)((char*)mpMsgDt + 0x28));
     for (; i < msgIndexCount; i++) {
-        if (pMsg->entries[i].mStringId == param_1) {
-            s8* ptr = (s8*)pMsg + pMsg->sectionSize + pMsg->entries[i].mStringOffset + 8;
+        if (pMsg->entries[i].message_id == param_1) {
+            s8* ptr = (s8*)pMsg + pMsg->header.size + pMsg->entries[i].string_offset + 8;
             if (ptr[0] == 26 && ptr[2] == 3 && (s8)ptr[4] == 0) {
-                rv = pMsg->entries[*(int*)(ptr + 5)].mStringId;
+                rv = pMsg->entries[*(int*)(ptr + 5)].message_id;
             } else {
                 rv = param_1;
             }
@@ -725,11 +725,11 @@ u32 dMsgObject_c::getRevoMessageIndex(u32 param_1) {
 /* 802340D4-80234128 22EA14 0054+00 3/3 0/0 0/0 .text getMessageIndexAlways__12dMsgObject_cFUl */
 u32 dMsgObject_c::getMessageIndexAlways(u32 param_0) {
     u32 i = 0;
-    JMSMesgHeader_c* pMsg = (JMSMesgHeader_c*)((char*)mpMsgRes + 0x20);
+    JMSMesgInfo_c* pMsg = (JMSMesgInfo_c*)((char*)mpMsgRes + 0x20);
     u32 msgIndexCount = *((u16*)((char*)mpMsgRes + 0x28));
     int rv;
     for (; i < msgIndexCount; i++) {
-        if (pMsg->entries[i].mStringId == param_0) {
+        if (pMsg->entries[i].message_id == param_0) {
             rv = i;
             break;
         }
@@ -743,7 +743,7 @@ u32 dMsgObject_c::getMessageIndexAlways(u32 param_0) {
 
 /* 80234128-8023413C 22EA68 0014+00 1/1 0/0 0/0 .text getMessageIDAlways__12dMsgObject_cFUl */
 u32 dMsgObject_c::getMessageIDAlways(u32 param_0) {
-    return ((JMSMesgHeader_c*)((u8*)mpMsgRes + 0x20))->entries[param_0].mStringId;
+    return ((JMSMesgInfo_c*)((u8*)mpMsgRes + 0x20))->entries[param_0].message_id;
 }
 
 /* 8023413C-80234150 22EA7C 0014+00 4/4 0/0 0/0 .text            getMessageGroup__12dMsgObject_cFUl
@@ -1784,8 +1784,11 @@ bool dMsgObject_c::isKanbanMessage() {
 }
 
 /* 802370E8-802370FC 231A28 0014+00 6/6 3/3 0/0 .text            isHowlMessage__12dMsgObject_cFv */
-u8 dMsgObject_c::isHowlMessage() {
-    return mFukiKind == 17;
+bool dMsgObject_c::isHowlMessage() {
+    if (mFukiKind == 17) {
+        return true;
+    }
+    return false;
 }
 
 /* 802370FC-80237138 231A3C 003C+00 3/3 2/2 0/0 .text            isMidonaMessage__12dMsgObject_cFv
@@ -1859,22 +1862,22 @@ bool dMsgObject_c::isTalkMessage() {
 
 /* 802372CC-80237334 231C0C 0068+00 0/0 5/5 0/0 .text            getSmellName__12dMsgObject_cFv */
 const char* dMsgObject_c::getSmellName() {
-    JMSMesgHeader_c* info_header_p = (JMSMesgHeader_c*)((char*)mpMsgRes + 0x20);
-    char* data_ptr = (char*)info_header_p + info_header_p->sectionSize;
+    JMSMesgInfo_c* info_header_p = (JMSMesgInfo_c*)((char*)mpMsgRes + 0x20);
+    char* data_ptr = (char*)info_header_p + info_header_p->header.size;
     JMSMesgEntry_c* info_entries = (JMSMesgEntry_c*)((char*)info_header_p + 0x10);
 
     JMSMesgEntry_c* msg_entry = &info_entries[(u16)getMessageIndex(getSmellTypeMessageID())];
-    return data_ptr + msg_entry->mStringOffset + 8;
+    return data_ptr + msg_entry->string_offset + 8;
 }
 
 /* 80237334-8023738C 231C74 0058+00 0/0 5/5 0/0 .text            getPortalName__12dMsgObject_cFv */
 const char* dMsgObject_c::getPortalName() {
-    JMSMesgHeader_c* info_header_p = (JMSMesgHeader_c*)((char*)mpMsgRes + 0x20);
-    char* data_ptr = (char*)info_header_p + info_header_p->sectionSize;
+    JMSMesgInfo_c* info_header_p = (JMSMesgInfo_c*)((char*)mpMsgRes + 0x20);
+    char* data_ptr = (char*)info_header_p + info_header_p->header.size;
     JMSMesgEntry_c* info_entries = (JMSMesgEntry_c*)((char*)info_header_p + 0x10);
 
     JMSMesgEntry_c* msg_entry = &info_entries[getMessageIndex(getPortalMessageID())];
-    return data_ptr + msg_entry->mStringOffset + 8;
+    return data_ptr + msg_entry->string_offset + 8;
 }
 
 /* 8023738C-8023741C 231CCC 0090+00 0/0 5/5 0/0 .text            getBombName__12dMsgObject_cFv */
@@ -1888,32 +1891,32 @@ const char* dMsgObject_c::getBombName() {
         i_cursorPos = i_selectPos;
     }
     JUT_ASSERT(4083, i_cursorPos >= 0 && i_cursorPos < dSv_player_item_c::BOMB_BAG_MAX);
-    JMSMesgHeader_c* info_header_p = (JMSMesgHeader_c*)((char*)mpMsgRes + 0x20);
-    char* data_ptr = (char*)info_header_p + info_header_p->sectionSize;
+    JMSMesgInfo_c* info_header_p = (JMSMesgInfo_c*)((char*)mpMsgRes + 0x20);
+    char* data_ptr = (char*)info_header_p + info_header_p->header.size;
     JMSMesgEntry_c* info_entries = (JMSMesgEntry_c*)((char*)info_header_p + 0x10);
 
     JMSMesgEntry_c* msg_entry = &info_entries[getMessageIndexAlways(getBombMessageIDLocal(i_cursorPos) + 0x165)];
-    return data_ptr + msg_entry->mStringOffset + 8;
+    return data_ptr + msg_entry->string_offset + 8;
 }
 
 /* 8023741C-80237478 231D5C 005C+00 0/0 5/5 0/0 .text            getInsectName__12dMsgObject_cFv */
 const char* dMsgObject_c::getInsectName() {
-    JMSMesgHeader_c* info_header_p = (JMSMesgHeader_c*)((char*)mpMsgRes + 0x20);
-    char* data_ptr = (char*)info_header_p + info_header_p->sectionSize;
+    JMSMesgInfo_c* info_header_p = (JMSMesgInfo_c*)((char*)mpMsgRes + 0x20);
+    char* data_ptr = (char*)info_header_p + info_header_p->header.size;
     JMSMesgEntry_c* info_entries = (JMSMesgEntry_c*)((char*)info_header_p + 0x10);
 
     JMSMesgEntry_c* msg_entry = &info_entries[getMessageIndexAlways(getInsectItemNoLocal() + 0x165)];
-    return data_ptr + msg_entry->mStringOffset + 8;
+    return data_ptr + msg_entry->string_offset + 8;
 }
 
 /* 80237478-802374D0 231DB8 0058+00 0/0 5/5 0/0 .text            getLetterName__12dMsgObject_cFv */
 const char* dMsgObject_c::getLetterName() {
-    JMSMesgHeader_c* info_header_p = (JMSMesgHeader_c*)((char*)mpMsgRes + 0x20);
-    char* data_ptr = (char*)info_header_p + info_header_p->sectionSize;
+    JMSMesgInfo_c* info_header_p = (JMSMesgInfo_c*)((char*)mpMsgRes + 0x20);
+    char* data_ptr = (char*)info_header_p + info_header_p->header.size;
     JMSMesgEntry_c* info_entries = (JMSMesgEntry_c*)((char*)info_header_p + 0x10);
 
     JMSMesgEntry_c* msg_entry = &info_entries[getMessageIndexAlways(getLetterNameIDLocal())];
-    return data_ptr + msg_entry->mStringOffset + 8;
+    return data_ptr + msg_entry->string_offset + 8;
 }
 
 /* 802374D0-80237520 231E10 0050+00 1/1 5/5 0/0 .text            getSelectBombNum__12dMsgObject_cFv

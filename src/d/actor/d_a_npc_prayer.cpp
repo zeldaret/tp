@@ -4,349 +4,872 @@
 */
 
 #include "d/actor/d_a_npc_prayer.h"
-#include "dol2asm.h"
+#include "d/d_com_inf_game.h"
 
-//
-// Forward References:
-//
+UNK_REL_DATA
 
-extern "C" void __ct__11daNpcPray_cFv();
-extern "C" void __dt__8cM3dGCylFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__11daNpcPray_cFv();
-extern "C" void Create__11daNpcPray_cFv();
-extern "C" void CreateHeap__11daNpcPray_cFv();
-extern "C" void Delete__11daNpcPray_cFv();
-extern "C" void Execute__11daNpcPray_cFv();
-extern "C" void Draw__11daNpcPray_cFv();
-extern "C" void ctrlJoint__11daNpcPray_cFP8J3DJointP8J3DModel();
-extern "C" void createHeapCallBack__11daNpcPray_cFP10fopAc_ac_c();
-extern "C" void ctrlJointCallBack__11daNpcPray_cFP8J3DJointi();
-extern "C" void setParam__11daNpcPray_cFv();
-extern "C" void main__11daNpcPray_cFv();
-extern "C" void setAttnPos__11daNpcPray_cFv();
-extern "C" void setMotionAnm__11daNpcPray_cFif();
-extern "C" void setMotion__11daNpcPray_cFifi();
-extern "C" bool drawDbgInfo__11daNpcPray_cFv();
-extern "C" void reset__11daNpcPray_cFv();
-extern "C" void playMotion__11daNpcPray_cFv();
-extern "C" void setAction__11daNpcPray_cFM11daNpcPray_cFPCvPvPv_b();
-extern "C" void setLookMode__11daNpcPray_cFi();
-extern "C" void lookat__11daNpcPray_cFv();
-extern "C" void step__11daNpcPray_cFsi();
-extern "C" void chkFindPlayer__11daNpcPray_cFv();
-extern "C" void wait__11daNpcPray_cFPv();
-extern "C" void fear__11daNpcPray_cFPv();
-extern "C" void talk__11daNpcPray_cFPv();
-extern "C" void demo__11daNpcPray_cFPv();
-extern "C" void createHeart__11daNpcPray_cFv();
-extern "C" void _Evt_GetHeart__11daNpcPray_cFi();
-extern "C" void _Evt_GetHeart_CutInit__11daNpcPray_cFRCi();
-extern "C" void _Evt_GetHeart_CutMain__11daNpcPray_cFRCi();
-extern "C" static void daNpcPray_Create__FPv();
-extern "C" static void daNpcPray_Delete__FPv();
-extern "C" static void daNpcPray_Execute__FPv();
-extern "C" static void daNpcPray_Draw__FPv();
-extern "C" static bool daNpcPray_IsDelete__FPv();
-extern "C" void __dt__18daNpcF_ActorMngr_cFv();
-extern "C" void __ct__18daNpcF_ActorMngr_cFv();
-extern "C" void __dt__15daNpcF_Lookat_cFv();
-extern "C" void __dt__5csXyzFv();
-extern "C" void __ct__5csXyzFv();
-extern "C" void __dt__4cXyzFv();
-extern "C" void __ct__4cXyzFv();
-extern "C" void __dt__8daNpcF_cFv();
-extern "C" void __ct__8daNpcF_cFv();
-extern "C" void __dt__12dBgS_AcchCirFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" void __dt__12dBgS_ObjAcchFv();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" bool ctrlBtk__8daNpcF_cFv();
-extern "C" void setCollisions__8daNpcF_cFv();
-extern "C" bool setExpressionAnm__8daNpcF_cFib();
-extern "C" bool setExpressionBtp__8daNpcF_cFi();
-extern "C" void setExpression__8daNpcF_cFif();
-extern "C" void drawOtherMdls__8daNpcF_cFv();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void __sinit_d_a_npc_prayer_cpp();
-extern "C" void adjustShapeAngle__11daNpcPray_cFv();
-extern "C" void __dt__17daNpcPray_Param_cFv();
-extern "C" static void func_80AB57E4();
-extern "C" static void func_80AB57EC();
-extern "C" u8 const m__17daNpcPray_Param_c[108];
-extern "C" extern char const* const d_a_npc_prayer__stringBase0;
-extern "C" u8 mEvtSeqList__11daNpcPray_c[24];
-
-//
-// External References:
-//
-
-extern "C" void ZXYrotS__14mDoMtx_stack_cFRC5csXyz();
-extern "C" void
-__ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl();
-extern "C" void stopZelAnime__16mDoExt_McaMorfSOFv();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff();
-extern "C" void fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz();
-extern "C" void fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_searchActorDistanceXZ2__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_createItemForBoss__FPC4cXyziiPC5csXyzPC4cXyzffi();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void onSwitch__12dSv_danBit_cFi();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void endCheck__16dEvent_manager_cFs();
-extern "C" void getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci();
-extern "C" void getIsAddvance__16dEvent_manager_cFi();
-extern "C" void getMySubstanceP__16dEvent_manager_cFiPCci();
-extern "C" void cutEnd__16dEvent_manager_cFi();
-extern "C" void ChkPresentEnd__16dEvent_manager_cFv();
-extern "C" void __ct__12dBgS_AcchCirFv();
-extern "C" void SetWall__12dBgS_AcchCirFff();
-extern "C" void __dt__9dBgS_AcchFv();
-extern "C" void __ct__9dBgS_AcchFv();
-extern "C" void Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz();
-extern "C" void CrrPos__9dBgS_AcchFR4dBgS();
-extern "C" void __ct__11dBgS_GndChkFv();
-extern "C" void __dt__11dBgS_GndChkFv();
-extern "C" void __ct__11dBgS_LinChkFv();
-extern "C" void __dt__11dBgS_LinChkFv();
-extern "C" void SetObj__16dBgS_PolyPassChkFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void __dt__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_CylFRC11dCcD_SrcCyl();
-extern "C" void initialize__18daNpcF_ActorMngr_cFv();
-extern "C" void entry__18daNpcF_ActorMngr_cFP10fopAc_ac_c();
-extern "C" void entry__18daNpcF_ActorMngr_cFUi();
-extern "C" void remove__18daNpcF_ActorMngr_cFv();
-extern "C" void getActorP__18daNpcF_ActorMngr_cFv();
-extern "C" void initialize__15daNpcF_Lookat_cFv();
-extern "C" void setParam__15daNpcF_Lookat_cFffffffffffffsP4cXyz();
-extern "C" void calc__15daNpcF_Lookat_cFP10fopAc_ac_cPA4_fPP5csXyziii();
-extern "C" void execute__8daNpcF_cFv();
-extern "C" void draw__8daNpcF_cFiifP11_GXColorS10i();
-extern "C" void setMtx__8daNpcF_cFv();
-extern "C" void setMtx2__8daNpcF_cFv();
-extern "C" void initialize__8daNpcF_cFv();
-extern "C" void getTrnsfrmKeyAnmP__8daNpcF_cFPci();
-extern "C" void setMcaMorfAnm__8daNpcF_cFP18J3DAnmTransformKeyffiii();
-extern "C" void setEnvTevColor__8daNpcF_cFv();
-extern "C" void setRoomNo__8daNpcF_cFv();
-extern "C" void playMotionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData();
-extern "C" void setLookatMtx__8daNpcF_cFiPif();
-extern "C" void ctrlMsgAnm__8daNpcF_cFRiRiP10fopAc_ac_ci();
-extern "C" void orderEvent__8daNpcF_cFiPcUsUsUcUs();
-extern "C" void changeEvent__8daNpcF_cFPcPcUsUs();
-extern "C" void chkActorInSight__8daNpcF_cFP10fopAc_ac_cf();
-extern "C" void chkActorInAttnArea__8daNpcF_cFP10fopAc_ac_cP10fopAc_ac_ci();
-extern "C" void initTalk__8daNpcF_cFiPP10fopAc_ac_c();
-extern "C" void talkProc__8daNpcF_cFPiiPP10fopAc_ac_c();
-extern "C" void turn__8daNpcF_cFsfi();
-extern "C" void getDistTableIdx__8daNpcF_cFii();
-extern "C" void daNpcF_onEvtBit__FUl();
-extern "C" void dKy_darkworld_check__Fv();
-extern "C" void __ct__10dMsgFlow_cFv();
-extern "C" void __dt__10dMsgFlow_cFv();
-extern "C" void getEventId__10dMsgFlow_cFPi();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void __ct__5csXyzFsss();
-extern "C" void __ct__11cBgS_GndChkFv();
-extern "C" void __dt__11cBgS_GndChkFv();
-extern "C" void __dt__13cBgS_PolyInfoFv();
-extern "C" void __dt__8cM3dGCirFv();
-extern "C" void SetC__8cM3dGCylFRC4cXyz();
-extern "C" void SetH__8cM3dGCylFf();
-extern "C" void SetR__8cM3dGCylFf();
-extern "C" void cLib_targetAngleY__FPC3VecPC3Vec();
-extern "C" void cLib_targetAngleX__FPC4cXyzPC4cXyz();
-extern "C" void __ct__17Z2CreatureCitizenFv();
-extern "C" void __dt__17Z2CreatureCitizenFv();
-extern "C" void init__17Z2CreatureCitizenFP3VecP3VecUcUc();
-extern "C" void setMdlType__17Z2CreatureCitizenFScbb();
-extern "C" void playVoice__17Z2CreatureCitizenFi();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void __destroy_arr();
-extern "C" void __construct_array();
-extern "C" void __ptmf_test();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" u8 mCcDCyl__8daNpcF_c[68];
-extern "C" extern void* __vt__8daNpcF_c[18];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mCurrentMtx__6J3DSys[48];
-extern "C" void __register_global_object();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 80AB5964-80AB5964 00015C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80AB5964 = "Prayer";
-SECTION_DEAD static char const* const stringBase_80AB596B = "Wgeneral";
-SECTION_DEAD static char const* const stringBase_80AB5974 = "GET_HEART";
-#pragma pop
-
-/* 80AB5984-80AB5990 000000 000C+00 3/3 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80AB5990-80AB59A4 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
+/* 80AB5BB4-80AB5BB8 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
+static daNpcPray_Param_c l_HIO;
 
 /* 80AB59A4-80AB59EC 000020 0048+00 1/1 0/0 0/0 .data            l_bckGetParamList */
-SECTION_DATA static u8 l_bckGetParamList[72] = {
-    0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00,
-    0x00, 0x02, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x19, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x1A, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x1E, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01,
+static struct {
+    int resIdx;
+    int anmMode;
+    int arcnameIdx;
+} l_bckGetParamList[] = {
+    {5, 0, 0},   // pray
+    {6, 0, 0},   // pray talk
+    {31, 2, 1},  // wait_a
+    {25, 0, 1},  // talk a
+    {26, 2, 1},  // talk b
+    {30, 2, 1},  // to wolf
+};
+
+enum daNpcPray_MOTION_e {
+    MOTION_WAIT_e,
+    MOTION_PRAY_e,
+    MOTION_PRAYTALK_e,
+    MOTION_WOLF_e,
 };
 
 /* 80AB59EC-80AB59F4 -00001 0008+00 4/5 0/0 0/0 .data            l_arcNames */
-SECTION_DATA static void* l_arcNames[2] = {
-    (void*)&d_a_npc_prayer__stringBase0,
-    (void*)(((char*)&d_a_npc_prayer__stringBase0) + 0x7),
+static char* l_arcNames[2] = {
+    "Prayer",
+    "Wgeneral",
 };
 
 /* 80AB59F4-80AB59FC -00001 0008+00 0/2 0/0 0/0 .data            l_evtNames */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtNames[2] = {
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_prayer__stringBase0) + 0x10),
+static char* l_evtNames[2] = {
+    NULL,
+    "GET_HEART",
 };
-#pragma pop
 
 /* 80AB59FC-80AB5A00 -00001 0004+00 0/2 0/0 0/0 .data            l_myName */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_myName = (void*)&d_a_npc_prayer__stringBase0;
-#pragma pop
-
-/* 80AB5A00-80AB5A0C -00001 000C+00 1/1 0/0 0/0 .data            @3804 */
-SECTION_DATA static void* lit_3804[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)_Evt_GetHeart__11daNpcPray_cFi,
-};
+static char* l_myName = "Prayer";
 
 /* 80AB5A0C-80AB5A24 000088 0018+00 1/2 0/0 0/0 .data            mEvtSeqList__11daNpcPray_c */
-SECTION_DATA u8 daNpcPray_c::mEvtSeqList[24] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+daNpcPray_c::EvtSeq daNpcPray_c::mEvtSeqList[] = {
+    NULL,
+    &daNpcPray_c::_Evt_GetHeart,
 };
 
-/* 80AB5A24-80AB5A30 -00001 000C+00 1/1 0/0 0/0 .data            @4425 */
-SECTION_DATA static void* lit_4425[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)wait__11daNpcPray_cFPv,
+/* 80AB2DEC-80AB2F70 0000EC 0184+00 1/1 0/0 0/0 .text            __ct__11daNpcPray_cFv */
+daNpcPray_c::daNpcPray_c() {}
+
+/* 80AB3000-80AB3204 000300 0204+00 1/0 0/0 0/0 .text            __dt__11daNpcPray_cFv */
+daNpcPray_c::~daNpcPray_c() {
+    for (int i = 0; i < 2; i++) {
+        dComIfG_resDelete(&mPhase[i], l_arcNames[i]);
+    }
+
+    fopAc_ac_c* actor = mActorMngr[1].getActorP();
+    if (actor != NULL) {
+        fopAcM_delete(actor);
+        mActorMngr[1].remove();
+    }
+
+    if (heap != NULL) {
+        mpMorf->stopZelAnime();
+    }
+}
+
+/* 80AB5808-80AB5874 000000 006C+00 14/14 0/0 0/0 .rodata          m__17daNpcPray_Param_c */
+const daNpcPray_HIOParam daNpcPray_Param_c::m = {
+    55.0f,
+    -3.0f,
+    1.0f,
+    500.0f,
+    255.0f,
+    140.0f,
+    35.0f,
+    30.0f,
+    0.0f,
+    0.0f,
+    10.0f,
+    -10.0f,
+    30.0f,
+    -10.0f,
+    45.0f,
+    -45.0f,
+    0.6f,
+    12.0f,
+    2,
+    6,
+    3,
+    6,
+    60.0f,
+    500.0f,
+    300.0f,
+    -300.0f,
+    60,
+    0,
+    0,
+    0,
+    0,
+    false,
+    false,
 };
 
-/* 80AB5A30-80AB5A3C -00001 000C+00 0/1 0/0 0/0 .data            @4611 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4611[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)talk__11daNpcPray_cFPv,
-};
-#pragma pop
+/* 80AB3204-80AB348C 000504 0288+00 1/1 0/0 0/0 .text            Create__11daNpcPray_cFv */
+int daNpcPray_c::Create() {
+    fopAcM_SetupActor(this, daNpcPray_c);
 
-/* 80AB5A3C-80AB5A48 -00001 000C+00 0/1 0/0 0/0 .data            @4616 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4616[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)demo__11daNpcPray_cFPv,
-};
-#pragma pop
+    mMessageNo = getMessageNo();
 
-/* 80AB5A48-80AB5A54 -00001 000C+00 0/1 0/0 0/0 .data            @4623 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4623[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)fear__11daNpcPray_cFPv,
-};
-#pragma pop
+    int phase_state = cPhs_ERROR_e;
+    for (int i = 0; i < 2; i++) {
+        phase_state = dComIfG_resLoad(&mPhase[i], l_arcNames[i]);
+        if (phase_state != cPhs_COMPLEATE_e) {
+            return phase_state;
+        }
+    }
 
-/* 80AB5A54-80AB5A60 -00001 000C+00 0/1 0/0 0/0 .data            @4682 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4682[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)demo__11daNpcPray_cFPv,
-};
-#pragma pop
+    if (phase_state == cPhs_COMPLEATE_e) {
+        if (!fopAcM_entrySolidHeap(this, createHeapCallBack, 0x1980)) {
+            return cPhs_ERROR_e;
+        }
 
-/* 80AB5A60-80AB5A6C -00001 000C+00 0/1 0/0 0/0 .data            @4684 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4684[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)wait__11daNpcPray_cFPv,
-};
-#pragma pop
+        J3DModelData* modelData = mpMorf->getModel()->getModelData();
+        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_setCullSizeBox(this, -60.0f, -10.0f, -60.0f, 60.0f, 220.0f, 60.0f);
 
-/* 80AB5A6C-80AB5A78 -00001 000C+00 0/1 0/0 0/0 .data            @4732 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4732[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)wait__11daNpcPray_cFPv,
-};
-#pragma pop
+        mSound.init(&current.pos, &eyePos, 3, 1);
+        mSound.setMdlType(25, 0, 0);
+
+        mAcchCir.SetWall(daNpcPray_Param_c::m.common.width, daNpcPray_Param_c::m.common.knee_length);
+        mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
+        mAcch.CrrPos(dComIfG_Bgsp());
+
+        mCcStts.Init(daNpcPray_Param_c::m.common.weight, 0, this);
+        mCcCyl.Set(mCcDCyl);
+        mCcCyl.SetStts(&mCcStts);
+        mCcCyl.SetTgType(0);
+        mCcCyl.SetTgSPrm(0);
+        mCcCyl.SetH(daNpcPray_Param_c::m.common.height);
+        mCcCyl.SetR(daNpcPray_Param_c::m.common.width);
+
+        mGndChk = mAcch.m_gnd;
+        mGroundH = mAcch.GetGroundH();
+
+        setEnvTevColor();
+        setRoomNo();
+        reset();
+        Execute();
+    }
+
+    return phase_state;
+}
+
+/* 80AB348C-80AB3610 00078C 0184+00 1/1 0/0 0/0 .text            CreateHeap__11daNpcPray_cFv */
+int daNpcPray_c::CreateHeap() {
+    J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_arcNames[0], 9);
+    JUT_ASSERT(313, 0 != mdlData_p);
+
+    mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11000084);
+    if (mpMorf != NULL && mpMorf->getModel() == NULL) {
+        mpMorf->stopZelAnime();
+        mpMorf = NULL;
+    }
+
+    if (mpMorf == NULL) {
+        return 0;
+    }
+
+    cXyz scale(1.0f, 1.0999999f, 1.0f);
+    mpMorf->offTranslate();
+    mpMorf->setTranslateScale(scale);
+
+    J3DModel* model_p = mpMorf->getModel();
+    for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
+        mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
+    }
+
+    model_p->setUserArea((u32)this);
+    setMotion(MOTION_WAIT_e, -1.0f, 0);
+    return 1;
+}
+
+/* 80AB3610-80AB3644 000910 0034+00 1/1 0/0 0/0 .text            Delete__11daNpcPray_cFv */
+int daNpcPray_c::Delete() {
+    fopAcM_GetID(this);
+    this->~daNpcPray_c();
+    return 1;
+}
+
+/* 80AB3644-80AB3668 000944 0024+00 2/2 0/0 0/0 .text            Execute__11daNpcPray_cFv */
+int daNpcPray_c::Execute() {
+    execute();
+    return 1;
+}
+
+/* 80AB3668-80AB36A8 000968 0040+00 1/1 0/0 0/0 .text            Draw__11daNpcPray_cFv */
+int daNpcPray_c::Draw() {
+    draw(FALSE, FALSE, daNpcPray_Param_c::m.common.real_shadow_size, NULL, FALSE);
+    return 1;
+}
+
+/* 80AB36A8-80AB3834 0009A8 018C+00 1/1 0/0 0/0 .text
+ * ctrlJoint__11daNpcPray_cFP8J3DJointP8J3DModel                */
+int daNpcPray_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
+    int jnt_no = i_joint->getJntNo();
+    int spC[] = {1, 2, 3};
+
+    if (jnt_no == 0) {
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
+        mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
+
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(2));
+        mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
+
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
+        mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
+    }
+
+    mDoMtx_stack_c::copy(i_model->getAnmMtx(jnt_no));
+
+    switch (jnt_no) {
+    case 1:
+    case 2:
+    case 3:
+        setLookatMtx(jnt_no, spC, daNpcPray_Param_c::m.common.neck_rotation_ratio);
+        break;
+    }
+
+    i_model->setAnmMtx(jnt_no, mDoMtx_stack_c::get());
+    cMtx_copy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
+    return 1;
+}
+
+/* 80AB3834-80AB3854 000B34 0020+00 1/1 0/0 0/0 .text
+ * createHeapCallBack__11daNpcPray_cFP10fopAc_ac_c              */
+int daNpcPray_c::createHeapCallBack(fopAc_ac_c* i_this) {
+    return ((daNpcPray_c*)i_this)->CreateHeap();
+}
+
+/* 80AB3854-80AB38A0 000B54 004C+00 1/1 0/0 0/0 .text ctrlJointCallBack__11daNpcPray_cFP8J3DJointi
+ */
+int daNpcPray_c::ctrlJointCallBack(J3DJoint* i_joint, int param_1) {
+    if (param_1 == 0) {
+        J3DModel* model_p = j3dSys.getModel();
+        daNpcPray_c* a_this = (daNpcPray_c*)model_p->getUserArea();
+        if (a_this != NULL) {
+            a_this->ctrlJoint(i_joint, model_p);
+        }
+    }
+
+    return 1;
+}
+
+/* 80AB38A0-80AB390C 000BA0 006C+00 1/0 0/0 0/0 .text            setParam__11daNpcPray_cFv */
+void daNpcPray_c::setParam() {
+    attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(daNpcPray_Param_c::m.common.attention_distance, daNpcPray_Param_c::m.common.attention_angle);
+    attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+    attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(daNpcPray_Param_c::m.common.talk_distance, daNpcPray_Param_c::m.common.talk_angle);
+    attention_info.flags = 0xA;
+
+#if VERSION == VERSION_SHIELD_DEBUG
+    scale.set(daNpcPray_Param_c::m.common.scale, daNpcPray_Param_c::m.common.scale, daNpcPray_Param_c::m.common.scale);
+    mAcchCir.SetWallR(daNpcPray_Param_c::m.common.width);
+    mAcchCir.SetWallH(daNpcPray_Param_c::m.common.knee_length);
+    gravity = daNpcPray_Param_c::m.common.gravity;
+#endif
+}
+
+/* 80AB390C-80AB3964 000C0C 0058+00 1/0 0/0 0/0 .text            main__11daNpcPray_cFv */
+BOOL daNpcPray_c::main() {
+    if (mAction != NULL) {
+        (this->*mAction)(NULL);
+    }
+
+    playMotion();
+    return FALSE;
+}
+
+/* 80AB3964-80AB3B0C 000C64 01A8+00 1/0 0/0 0/0 .text            setAttnPos__11daNpcPray_cFv */
+void daNpcPray_c::setAttnPos() {
+    if (mLookMode == LOOK_RESET) {
+        for (int i = 0; i < 3; i++) {
+            mLookatAngle[i].setall(0);
+        }
+    }
+
+    daNpcF_c::setMtx();
+    lookat();
+
+    cXyz sp14(10.0f, 15.0f, 0.0f);
+
+    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
+    mDoMtx_stack_c::multVecZero(&mHeadPos);
+    mDoMtx_stack_c::multVec(&sp14, &eyePos);
+    sp14.x = 0.0f;
+    mDoMtx_stack_c::multVec(&sp14, &sp14);
+
+    mHeadAngle.x = cLib_targetAngleX(&mHeadPos, &sp14);
+    mHeadAngle.y = cLib_targetAngleY(&mHeadPos, &sp14);
+    attention_info.position.set(mHeadPos.x, mHeadPos.y + daNpcPray_Param_c::m.common.attention_offset, mHeadPos.z);
+
+    cXyz cyl_center;
+    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
+    mDoMtx_stack_c::multVecZero(&cyl_center);
+    cyl_center.y = current.pos.y;
+
+    mCcCyl.SetC(cyl_center);
+#if VERSION == VERSION_SHIELD_DEBUG
+    mCcCyl.SetH(daNpcPray_Param_c::m.common.height);
+    mCcCyl.SetR(daNpcPray_Param_c::m.common.width);
+#endif
+    dComIfG_Ccsp()->Set(&mCcCyl);
+}
+
+/* 80AB3B0C-80AB3BDC 000E0C 00D0+00 1/0 0/0 0/0 .text            setMotionAnm__11daNpcPray_cFif */
+void daNpcPray_c::setMotionAnm(int i_idx, f32 i_morf) {
+    J3DAnmTransformKey* bck_p = getTrnsfrmKeyAnmP(l_arcNames[l_bckGetParamList[i_idx].arcnameIdx], l_bckGetParamList[i_idx].resIdx);
+    int anmMode = l_bckGetParamList[i_idx].anmMode;
+    mAnmFlags &= ~(ANM_PLAY_MORF | ANM_PAUSE_MORF);
+
+    if (bck_p != NULL && setMcaMorfAnm(bck_p, 1.0f, i_morf, anmMode, 0, -1)) {
+        mAnmFlags |= (ANM_PLAY_MORF | ANM_PAUSE_MORF);
+        mMotionLoops = 0;
+    }
+}
+
+/* 80AB3BDC-80AB3C24 000EDC 0048+00 1/0 0/0 0/0 .text            setMotion__11daNpcPray_cFifi */
+void daNpcPray_c::setMotion(int i_motion, f32 i_morf, int param_2) {
+    s16 var_r31 = i_motion;
+    if ((param_2 != 0 || mMotion != var_r31) && i_motion >= 0 && i_motion < 4) {
+        mMotion = var_r31;
+        mMotionMorfOverride = i_morf;
+        mMotionPrevPhase = -1;
+        mMotionPhase = 0;
+        field_0xe0a = 0;
+    }
+}
+
+/* 80AB3C24-80AB3C2C 000F24 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__11daNpcPray_cFv */
+BOOL daNpcPray_c::drawDbgInfo() {
+    return false;
+}
+
+/* 80AB3C2C-80AB3DBC 000F2C 0190+00 1/1 0/0 0/0 .text            reset__11daNpcPray_cFv */
+void daNpcPray_c::reset() {
+    initialize();
+    mLookat.initialize();
+
+    for (int i = 0; i < 2; i++) {
+        mActorMngr[i].initialize();
+    }
+
+    field_0xdfc = 0;
+    field_0xe00 = 0;
+    mAction = NULL;
+    mLookMode = -1;
+    mActionMode = 0;
+
+    current.pos.set(home.pos);
+    old.pos.set(current.pos);
+    current.angle.set(0, home.angle.y, 0);
+
+    old.angle = current.angle;
+    shape_angle = current.angle;
+    mCurAngle = current.angle;
+    mOldAngle = mCurAngle;
+
+    speedF = 0.0f;
+    speed.setall(0.0f);
+    field_0xdf8 = -1;
+    mOrderEvtNo = 0;
+
+    setAction(&daNpcPray_c::wait);
+    mMotionMorfOverride = 0.0f;
+}
+
+/* 80AB3DBC-80AB3F54 0010BC 0198+00 1/1 0/0 0/0 .text            playMotion__11daNpcPray_cFv */
+void daNpcPray_c::playMotion() {
+    daNpcF_anmPlayData wait_phase1 = {2, daNpcPray_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* wait_m[] = {&wait_phase1};
+    
+    daNpcF_anmPlayData pray_phase1 = {0, daNpcPray_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData pray_phase2 = {2, daNpcPray_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pray_m[] = {&pray_phase1, &pray_phase2};
+
+    daNpcF_anmPlayData praytalk_phase1 = {1, daNpcPray_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData praytalk_phase2 = {2, daNpcPray_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* praytalk_m[] = {&praytalk_phase1, &praytalk_phase2};
+
+    daNpcF_anmPlayData wolf_phase1 = {5, daNpcPray_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* wolf_m[] = {&wolf_phase1};
+
+    daNpcF_anmPlayData** anmData_p[] = {wait_m, pray_m, praytalk_m, wolf_m};
+
+    if (mMotion >= 0 && mMotion < 4) {
+        field_0xe0a = mMotionPhase;
+        playMotionAnm(anmData_p);
+    }
+}
+
+/* 80AB3F54-80AB3FFC 001254 00A8+00 4/4 0/0 0/0 .text
+ * setAction__11daNpcPray_cFM11daNpcPray_cFPCvPvPv_b            */
+int daNpcPray_c::setAction(bool (daNpcPray_c::*i_action)(void*)) {
+    mActionMode = 3;
+    if (mAction != NULL) {
+        (this->*mAction)(NULL);
+    }
+
+    mActionMode = 0;
+    mAction = i_action;
+
+    if (mAction != NULL) {
+        (this->*mAction)(NULL);
+    }
+
+    return 1;
+}
+
+/* 80AB3FFC-80AB4020 0012FC 0024+00 2/2 0/0 0/0 .text            setLookMode__11daNpcPray_cFi */
+void daNpcPray_c::setLookMode(int i_mode) {
+    if (i_mode >= 0 && i_mode < 4 && i_mode != mLookMode) {
+        mLookMode = i_mode;
+    }
+}
+
+/* 80AB4020-80AB4200 001320 01E0+00 1/1 0/0 0/0 .text            lookat__11daNpcPray_cFv */
+void daNpcPray_c::lookat() {
+    daPy_py_c* player = NULL;
+    J3DModel* model_p = mpMorf->getModel();
+
+    int var_r28 = 0;
+    f32 body_angleX_min = daNpcPray_Param_c::m.common.body_angleX_min;
+    f32 body_angleX_max = daNpcPray_Param_c::m.common.body_angleX_max;
+    f32 body_angleY_min = daNpcPray_Param_c::m.common.body_angleY_min;
+    f32 body_angleY_max = daNpcPray_Param_c::m.common.body_angleY_max;
+    f32 head_angleX_min = daNpcPray_Param_c::m.common.head_angleX_min;
+    f32 head_angleX_max = daNpcPray_Param_c::m.common.head_angleX_max;
+    f32 head_angleY_min = daNpcPray_Param_c::m.common.head_angleY_min;
+    f32 head_angleY_max = daNpcPray_Param_c::m.common.head_angleY_max;
+
+    s16 temp_r26 = mCurAngle.y - mOldAngle.y;
+    cXyz sp30[] = {mLookatPos[0], mLookatPos[1], mLookatPos[2]};
+    csXyz* sp24[] = {&mLookatAngle[0], &mLookatAngle[1], &mLookatAngle[2]};
+
+    cXyz sp18;
+    switch (mLookMode) {
+    case LOOK_NONE:
+        break;
+    case LOOK_RESET:
+        var_r28 = 1;
+        break;
+    case LOOK_PLAYER:
+    case LOOK_PLAYER_TALK:
+        player = daPy_getPlayerActorClass();
+        if (mLookMode == LOOK_PLAYER_TALK) {
+            head_angleY_min = -80.0f;
+            head_angleY_max = 80.0f;
+        }
+        break;
+    }
+
+    if (player != NULL) {
+        mLookPos = player->attention_info.position;
+        if (mLookMode != LOOK_PLAYER && mLookMode != LOOK_PLAYER_TALK) {
+            mLookPos.y -= 40.0f;
+        }
+        mLookat.setAttnPos(&mLookPos);
+    } else {
+        mLookat.setAttnPos(NULL);
+    }
+
+    mLookat.setParam(body_angleX_min, body_angleX_max, body_angleY_min, body_angleY_max,
+                     0.0f, 0.0f, 0.0f, 0.0f,
+                     head_angleX_min, head_angleX_max, head_angleY_min, head_angleY_max,
+                     mCurAngle.y, sp30);
+    mLookat.calc(this, model_p->getBaseTRMtx(), sp24, var_r28, temp_r26, 0);
+}
+
+/* 80AB4200-80AB42F4 001500 00F4+00 2/2 0/0 0/0 .text            step__11daNpcPray_cFsi */
+bool daNpcPray_c::step(s16 i_targetAngle, int) {
+    if (mTurnMode == 0) {
+        mTurnTargetAngle = i_targetAngle;
+        mTurnAmount = 0;
+        if (mCurAngle.y == mTurnTargetAngle) {
+            mTurnMode++;
+        }
+    
+        current.angle.y = mCurAngle.y;
+        shape_angle.y = current.angle.y;
+        mTurnMode++;
+    } else if (mTurnMode == 1) {
+        if (turn(mTurnTargetAngle, 15.0f, 0)) {
+            shape_angle.y = current.angle.y;
+            mCurAngle.y = current.angle.y;
+            mOldAngle.y = current.angle.y;
+            mTurnMode++;
+        } else {
+            shape_angle.y = current.angle.y;
+            mCurAngle.y = current.angle.y;
+        }
+    }
+
+    return mTurnMode > 1;
+}
+
+/* 80AB42F4-80AB43D8 0015F4 00E4+00 1/1 0/0 0/0 .text            chkFindPlayer__11daNpcPray_cFv */
+bool daNpcPray_c::chkFindPlayer() {
+    if (!chkActorInSight(daPy_getPlayerActorClass(), daNpcPray_Param_c::m.common.fov)) {
+        mActorMngr[0].remove();
+        return 0;
+    }
+
+    bool find_player;
+    if (mActorMngr[0].getActorP() == NULL) {
+        find_player = chkPlayerInSpeakArea(this);
+    } else {
+        find_player = chkPlayerInTalkArea(this);
+    }
+
+    if (find_player) {
+        mActorMngr[0].entry(daPy_getPlayerActorClass());
+    } else {
+        mActorMngr[0].remove();
+    }
+
+    return find_player;
+}
+
+/* 80AB43D8-80AB4674 0016D8 029C+00 3/0 0/0 0/0 .text            wait__11daNpcPray_cFPv */
+bool daNpcPray_c::wait(void*) {
+    switch (mActionMode) {
+    case 0:
+        setMotion(MOTION_WAIT_e, -1.0f, 0);
+        speedF = 0.0f;
+        mActionMode = 2;
+        break;
+    case 2:
+        chkFindPlayer();
+
+        if (mActorMngr[0].getActorP() != NULL) {
+            setLookMode(2);
+        } else {
+            setLookMode(0);
+            if (home.angle.y != mCurAngle.y && step(home.angle.y, 1)) {
+                setMotion(MOTION_WAIT_e, -1.0f, 0);
+                mTurnMode = 0;
+            }
+        }
+
+        if (dComIfGp_event_runCheck()) {
+            if (eventInfo.checkCommandTalk()) {
+                if (!dComIfGp_event_chkTalkXY() || dComIfGp_evmng_ChkPresentEnd()) {
+                    setAction(&daNpcPray_c::talk);
+                }
+            } else if (dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0) != -1) {
+                setAction(&daNpcPray_c::demo);
+            }
+        } else {
+            if (!dKy_darkworld_check() && daPy_py_c::checkNowWolf()) {
+                f32 search_range = pow(500.0f, 2.0f);
+                if (fopAcM_searchPlayerDistanceXZ2(this) < search_range) {
+                    setAction(&daNpcPray_c::fear);
+                    break;
+                }
+            }
+
+            if (mOrderEvtNo != 0) {
+                eventInfo.setArchiveName(l_arcNames[0]);
+            }
+
+            orderEvent(field_0xe0e, l_evtNames[mOrderEvtNo], 0xFFFF, 40, 0xFF, 1);
+        }
+        break;
+    case 1:
+    case 3:
+        JUT_ASSERT(1076, 0);
+        break;
+    }
+
+    return 1;
+}
+
+/* 80AB4674-80AB4740 001974 00CC+00 1/0 0/0 0/0 .text            fear__11daNpcPray_cFPv */
+bool daNpcPray_c::fear(void*) {
+    switch (mActionMode) {
+    case 0:
+        setMotion(MOTION_WOLF_e, -1.0f, 0);
+        speedF = 0.0f;
+        mSound.playVoice(2);
+        dComIfGs_onSaveDunSwitch(60);
+        mActionMode = 2;
+        break;
+    case 2:
+        OS_REPORT("-------------prayer frame=%f\n", mpMorf->getFrame());
+        if (1.0f == mpMorf->getFrame()) {
+            OS_REPORT("-------------prayer fear se start!!\n");
+            mSound.playVoice(2);
+        }
+        break;
+    case 1:
+    case 3:
+        JUT_ASSERT(1076, 0);
+        break;
+    }
+
+    return 1;
+}
+
+/* 80AB4740-80AB498C 001A40 024C+00 1/0 0/0 0/0 .text            talk__11daNpcPray_cFPv */
+bool daNpcPray_c::talk(void*) {
+    int sp20 = 0;
+    bool var_r28 = 0;
+
+    switch (mActionMode) {
+    case 0:
+        initTalk(mMessageNo, NULL);
+        mMsgTimer = 0;
+        field_0xe0e = 0;
+        setLookMode(3);
+        mActionMode = 2;
+        break;
+    case 2:
+        if (mCurAngle.y == fopAcM_searchPlayerAngleY(this)) {
+            if (talkProc(NULL, TRUE, NULL)) {
+                mActorMngr[0].entry(daPy_getPlayerActorClass());
+                int itemNo = 0;
+                u16 eventID = mFlow.getEventId(&itemNo);
+                // "at talk end  EventID=%d ItemNo=%d\n"
+                OS_REPORT("会話終了時 イベントID=%d アイテムNo=%d\n", eventID, itemNo);
+
+                if (eventID == 20) {
+                    // "full offering amount reached!\n"
+                    OS_REPORT("お布施額が満額になりました！\n");
+                    daNpcF_onEvtBit(294);
+                    mOrderEvtNo = 1;
+                    changeEvent("Prayer", l_evtNames[mOrderEvtNo], 2, 0xFFFF);
+                    setAction(&daNpcPray_c::demo);
+                    return 1;
+                }
+
+                setAction(&daNpcPray_c::wait);
+                var_r28 = 1;
+                break;
+            }
+
+            int expression;
+            int motion;
+            int timer = mMsgTimer;
+            if (ctrlMsgAnm(expression, motion, this, FALSE)) {
+                setMotion(motion, -1.0f, 0);
+            }
+            break;
+        }
+
+        if (step(fopAcM_searchPlayerAngleY(this), 1)) {
+            setMotion(MOTION_PRAYTALK_e, -1.0f, 0);
+            mTurnMode = 0;
+        }
+        break;
+    case 3:
+        if (field_0x9ec == 0) {
+            dComIfGp_event_reset();
+        }
+        break;
+    default:
+        JUT_ASSERT(1209, 0);
+    }
+
+    return var_r28;
+}
+
+/* 80AB498C-80AB4B20 001C8C 0194+00 2/0 0/0 0/0 .text            demo__11daNpcPray_cFPv */
+bool daNpcPray_c::demo(void*) {
+    dEvent_manager_c& evtmgr = dComIfGp_getEventManager();
+    int var_r25 = 0;
+
+    switch (mActionMode) {
+    case 0:
+        setMotion(MOTION_WAIT_e, -1.0f, 0);
+        mActionMode = 2;
+        break;
+    case 2:
+        if (dComIfGp_event_runCheck() != 0 && !eventInfo.checkCommandTalk()) {
+            dEvent_manager_c& evtmgr = dComIfGp_getEventManager();
+            const int staffID = evtmgr.getMyStaffId(l_myName, NULL, 0);
+            if (staffID != -1) {
+                mStaffID = staffID;
+ 
+                JUT_ASSERT(1243, 0 != mEvtSeqList[mOrderEvtNo]);
+                if ((this->*mEvtSeqList[mOrderEvtNo])(staffID)) {
+                    evtmgr.cutEnd(staffID);
+                    var_r25 = 1;
+                }
+            }
+
+            if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1 && evtmgr.endCheck(mEventIdx)) {
+                switch (mOrderEvtNo) {
+                case 1:
+                    OS_REPORT("------------------heart remove!!\n");
+                    fopAc_ac_c* heart_actor_p = mActorMngr[1].getActorP();
+                    if (heart_actor_p != NULL) {
+                        fopAcM_delete(heart_actor_p);
+                        mActorMngr[1].remove();
+                    }
+                }
+
+                dComIfGp_event_reset();
+                mOrderEvtNo = 0;
+                mEventIdx = -1;
+                setAction(&daNpcPray_c::wait);
+            }
+        }
+        break;
+    case 3:
+        JUT_ASSERT(1280, 0);
+        break;
+    }
+
+    return 1;
+}
+
+/* 80AB4B20-80AB4BFC 001E20 00DC+00 1/1 0/0 0/0 .text            createHeart__11daNpcPray_cFv */
+fpc_ProcID daNpcPray_c::createHeart() {
+    cXyz pos(-4142.7036f, 850.0f, -569.3754f);
+    csXyz rot(0, 0, 0);
+    cXyz size(0.3f, 0.3f, 0.3f);
+    cXyz offset(0.0f, 0.0f, 95.0f);
+
+    mDoMtx_stack_c::ZXYrotS(rot);
+    mDoMtx_stack_c::multVec(&offset, &offset);
+    pos += offset;
+    return fopAcM_createItemForBoss(&pos, fpcNm_ITEM_KAKERA_HEART, fopAcM_GetRoomNo(this), &rot, &size, 0.0f, 0.0f, 0);
+}
+
+/* 80AB4BFC-80AB4CA4 001EFC 00A8+00 1/0 0/0 0/0 .text            _Evt_GetHeart__11daNpcPray_cFi */
+BOOL daNpcPray_c::_Evt_GetHeart(int i_staffID) {
+    dEvent_manager_c& evtmgr = dComIfGp_getEventManager();
+    int cutId = -1;
+
+    int* cutId_p = dComIfGp_evmng_getMyIntegerP(i_staffID, "cutId");
+    if (cutId_p != NULL) {
+        cutId = *cutId_p;
+    } else {
+        return 1;
+    }
+    
+    if (evtmgr.getIsAddvance(i_staffID)) {
+        _Evt_GetHeart_CutInit(cutId);
+    }
+
+    return _Evt_GetHeart_CutMain(cutId);
+}
+
+/* 80AB4CA4-80AB4D34 001FA4 0090+00 1/1 0/0 0/0 .text _Evt_GetHeart_CutInit__11daNpcPray_cFRCi */
+BOOL daNpcPray_c::_Evt_GetHeart_CutInit(const int& i_cutId) {
+    switch (i_cutId) {
+    case 10:
+        break;
+    case 20: {
+        fopAc_ac_c* heart_actor_p = mActorMngr[1].getActorP();
+        if (heart_actor_p != NULL) {
+            fopAcM_SetSpeedF(heart_actor_p, 0.0f);
+            fopAcM_SetSpeed(heart_actor_p, 0.0f, 0.0f, 0.0f);
+            fopAcM_SetGravity(heart_actor_p, -3.0f);
+            fopAcM_SetAngle(heart_actor_p, 0, 0, 0);
+            fopAcM_SetMaxFallSpeed(heart_actor_p, -4.0f);
+        }
+        break;
+    }
+    default:
+        JUT_ASSERT(1396, 0);
+        break;
+    }
+
+    return 1;
+}
+
+/* 80AB4D34-80AB4E88 002034 0154+00 1/1 0/0 0/0 .text _Evt_GetHeart_CutMain__11daNpcPray_cFRCi */
+BOOL daNpcPray_c::_Evt_GetHeart_CutMain(int const& i_cutId) {
+    BOOL var_r28 = 0;
+
+    switch (i_cutId) {
+    case 10:
+        if (mActorMngr[1].getPId() == fpcM_ERROR_PROCESS_ID_e) {
+            fpc_ProcID heart_pid = createHeart();
+            if (heart_pid != fpcM_ERROR_PROCESS_ID_e) {
+                mActorMngr[1].entry(heart_pid);
+                
+                fopAc_ac_c* heart_actor_p = mActorMngr[1].getActorP();
+                if (heart_actor_p != NULL) {
+                    fopAcM_SetSpeedF(heart_actor_p, 0.0f);
+                    fopAcM_SetSpeed(heart_actor_p, 0.0f, 0.0f, 0.0f);
+                    fopAcM_SetGravity(heart_actor_p, 0.0f);
+                    fopAcM_SetAngle(heart_actor_p, 0, 0, 0);
+                    fopAcM_SetMaxFallSpeed(heart_actor_p, -4.0f);
+                    var_r28 = 1;
+                }
+            }
+        } else {
+            fopAc_ac_c* heart_actor_p = mActorMngr[1].getActorP();
+            if (heart_actor_p != NULL) {
+                fopAcM_SetSpeedF(heart_actor_p, 0.0f);
+                fopAcM_SetSpeed(heart_actor_p, 0.0f, 0.0f, 0.0f);
+                fopAcM_SetGravity(heart_actor_p, 0.0f);
+                fopAcM_SetAngle(heart_actor_p, 0, 0, 0);
+                fopAcM_SetMaxFallSpeed(heart_actor_p, -4.0f);
+                var_r28 = 1;
+            }
+        }
+        break;
+    case 20: {
+        fopAc_ac_c* heart_actor_p = mActorMngr[1].getActorP();
+        if (heart_actor_p != NULL) {
+            fopAcM_posMoveF(heart_actor_p, NULL);
+            cXyz& heart_pos = fopAcM_GetPosition(heart_actor_p);
+            if (heart_pos.y < 110.0f) {
+                heart_pos.y = -300.0f;
+                var_r28 = 1;
+            }
+        }
+        break;
+    }
+    default:
+        JUT_ASSERT(1474, 0);
+        var_r28 = 1;
+        break;
+    }
+
+    return var_r28;
+}
+
+/* 80AB4E88-80AB4EA8 002188 0020+00 1/0 0/0 0/0 .text            daNpcPray_Create__FPv */
+static int daNpcPray_Create(void* i_this) {
+    return ((daNpcPray_c*)i_this)->Create();
+}
+
+/* 80AB4EA8-80AB4EC8 0021A8 0020+00 1/0 0/0 0/0 .text            daNpcPray_Delete__FPv */
+static int daNpcPray_Delete(void* i_this) {
+    return ((daNpcPray_c*)i_this)->Delete();
+}
+
+/* 80AB4EC8-80AB4EE8 0021C8 0020+00 1/0 0/0 0/0 .text            daNpcPray_Execute__FPv */
+static int daNpcPray_Execute(void* i_this) {
+    return ((daNpcPray_c*)i_this)->Execute();
+}
+
+/* 80AB4EE8-80AB4F08 0021E8 0020+00 1/0 0/0 0/0 .text            daNpcPray_Draw__FPv */
+static int daNpcPray_Draw(void* i_this) {
+    return ((daNpcPray_c*)i_this)->Draw();
+}
+
+/* 80AB4F08-80AB4F10 002208 0008+00 1/0 0/0 0/0 .text            daNpcPray_IsDelete__FPv */
+static int daNpcPray_IsDelete(void* i_this) {
+    return 1;
+}
 
 /* 80AB5A78-80AB5A98 -00001 0020+00 1/0 0/0 0/0 .data            daNpcPray_MethodTable */
 static actor_method_class daNpcPray_MethodTable = {
-    (process_method_func)daNpcPray_Create__FPv,
-    (process_method_func)daNpcPray_Delete__FPv,
-    (process_method_func)daNpcPray_Execute__FPv,
-    (process_method_func)daNpcPray_IsDelete__FPv,
-    (process_method_func)daNpcPray_Draw__FPv,
+    (process_method_func)daNpcPray_Create,
+    (process_method_func)daNpcPray_Delete,
+    (process_method_func)daNpcPray_Execute,
+    (process_method_func)daNpcPray_IsDelete,
+    (process_method_func)daNpcPray_Draw,
 };
 
 /* 80AB5A98-80AB5AC8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_PRAYER */
@@ -366,771 +889,3 @@ extern actor_process_profile_definition g_profile_NPC_PRAYER = {
   fopAc_NPC_e,            // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80AB5AC8-80AB5B10 000144 0048+00 2/2 0/0 0/0 .data            __vt__11daNpcPray_c */
-SECTION_DATA extern void* __vt__11daNpcPray_c[18] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__11daNpcPray_cFv,
-    (void*)setParam__11daNpcPray_cFv,
-    (void*)main__11daNpcPray_cFv,
-    (void*)ctrlBtk__8daNpcF_cFv,
-    (void*)adjustShapeAngle__11daNpcPray_cFv,
-    (void*)setMtx__8daNpcF_cFv,
-    (void*)setMtx2__8daNpcF_cFv,
-    (void*)setAttnPos__11daNpcPray_cFv,
-    (void*)setCollisions__8daNpcF_cFv,
-    (void*)setExpressionAnm__8daNpcF_cFib,
-    (void*)setExpressionBtp__8daNpcF_cFi,
-    (void*)setExpression__8daNpcF_cFif,
-    (void*)setMotionAnm__11daNpcPray_cFif,
-    (void*)setMotion__11daNpcPray_cFifi,
-    (void*)drawDbgInfo__11daNpcPray_cFv,
-    (void*)drawOtherMdls__8daNpcF_cFv,
-};
-
-/* 80AB5B10-80AB5B1C 00018C 000C+00 3/3 0/0 0/0 .data            __vt__12J3DFrameCtrl */
-SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12J3DFrameCtrlFv,
-};
-
-/* 80AB5B1C-80AB5B40 000198 0024+00 3/3 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
-SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_ObjAcchFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80AB57EC,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80AB57E4,
-};
-
-/* 80AB5B40-80AB5B4C 0001BC 000C+00 3/3 0/0 0/0 .data            __vt__10cCcD_GStts */
-SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10cCcD_GSttsFv,
-};
-
-/* 80AB5B4C-80AB5B58 0001C8 000C+00 2/2 0/0 0/0 .data            __vt__10dCcD_GStts */
-SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10dCcD_GSttsFv,
-};
-
-/* 80AB5B58-80AB5B64 0001D4 000C+00 2/2 0/0 0/0 .data            __vt__12dBgS_AcchCir */
-SECTION_DATA extern void* __vt__12dBgS_AcchCir[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_AcchCirFv,
-};
-
-/* 80AB5B64-80AB5B70 0001E0 000C+00 4/4 0/0 0/0 .data            __vt__18daNpcF_ActorMngr_c */
-SECTION_DATA extern void* __vt__18daNpcF_ActorMngr_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__18daNpcF_ActorMngr_cFv,
-};
-
-/* 80AB5B70-80AB5B7C 0001EC 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGCyl */
-SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGCylFv,
-};
-
-/* 80AB5B7C-80AB5B88 0001F8 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGAab */
-SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGAabFv,
-};
-
-/* 80AB5B88-80AB5B94 000204 000C+00 3/3 0/0 0/0 .data            __vt__15daNpcF_Lookat_c */
-SECTION_DATA extern void* __vt__15daNpcF_Lookat_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__15daNpcF_Lookat_cFv,
-};
-
-/* 80AB2DEC-80AB2F70 0000EC 0184+00 1/1 0/0 0/0 .text            __ct__11daNpcPray_cFv */
-daNpcPray_c::daNpcPray_c() {
-    // NONMATCHING
-}
-
-/* 80AB2F70-80AB2FB8 000270 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
-// cM3dGCyl::~cM3dGCyl() {
-extern "C" void __dt__8cM3dGCylFv() {
-    // NONMATCHING
-}
-
-/* 80AB2FB8-80AB3000 0002B8 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
-// cM3dGAab::~cM3dGAab() {
-extern "C" void __dt__8cM3dGAabFv() {
-    // NONMATCHING
-}
-
-/* 80AB3000-80AB3204 000300 0204+00 1/0 0/0 0/0 .text            __dt__11daNpcPray_cFv */
-daNpcPray_c::~daNpcPray_c() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80AB5808-80AB5874 000000 006C+00 14/14 0/0 0/0 .rodata          m__17daNpcPray_Param_c */
-SECTION_RODATA u8 const daNpcPray_Param_c::m[108] = {
-    0x42, 0x5C, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00,
-    0x43, 0x7F, 0x00, 0x00, 0x43, 0x0C, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
-    0x41, 0xF0, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00, 0x42, 0x34, 0x00, 0x00, 0xC2, 0x34, 0x00, 0x00,
-    0x3F, 0x19, 0x99, 0x9A, 0x41, 0x40, 0x00, 0x00, 0x00, 0x02, 0x00, 0x06, 0x00, 0x03, 0x00, 0x06,
-    0x42, 0x70, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00, 0xC3, 0x96, 0x00, 0x00,
-    0x00, 0x3C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80AB5808, &daNpcPray_Param_c::m);
-
-/* 80AB5874-80AB5878 00006C 0004+00 0/1 0/0 0/0 .rodata          @4169 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4169 = -60.0f;
-COMPILER_STRIP_GATE(0x80AB5874, &lit_4169);
-#pragma pop
-
-/* 80AB5878-80AB587C 000070 0004+00 0/1 0/0 0/0 .rodata          @4170 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4170 = -10.0f;
-COMPILER_STRIP_GATE(0x80AB5878, &lit_4170);
-#pragma pop
-
-/* 80AB587C-80AB5880 000074 0004+00 0/1 0/0 0/0 .rodata          @4171 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4171 = 60.0f;
-COMPILER_STRIP_GATE(0x80AB587C, &lit_4171);
-#pragma pop
-
-/* 80AB5880-80AB5884 000078 0004+00 0/1 0/0 0/0 .rodata          @4172 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4172 = 220.0f;
-COMPILER_STRIP_GATE(0x80AB5880, &lit_4172);
-#pragma pop
-
-/* 80AB3204-80AB348C 000504 0288+00 1/1 0/0 0/0 .text            Create__11daNpcPray_cFv */
-void daNpcPray_c::Create() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80AB5884-80AB5888 00007C 0004+00 1/3 0/0 0/0 .rodata          @4220 */
-SECTION_RODATA static f32 const lit_4220 = 1.0f;
-COMPILER_STRIP_GATE(0x80AB5884, &lit_4220);
-
-/* 80AB5888-80AB588C 000080 0004+00 0/1 0/0 0/0 .rodata          @4221 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4221 = 0x3F8CCCCC;
-COMPILER_STRIP_GATE(0x80AB5888, &lit_4221);
-#pragma pop
-
-/* 80AB588C-80AB5890 000084 0004+00 2/5 0/0 0/0 .rodata          @4222 */
-SECTION_RODATA static f32 const lit_4222 = -1.0f;
-COMPILER_STRIP_GATE(0x80AB588C, &lit_4222);
-
-/* 80AB348C-80AB3610 00078C 0184+00 1/1 0/0 0/0 .text            CreateHeap__11daNpcPray_cFv */
-void daNpcPray_c::CreateHeap() {
-    // NONMATCHING
-}
-
-/* 80AB3610-80AB3644 000910 0034+00 1/1 0/0 0/0 .text            Delete__11daNpcPray_cFv */
-void daNpcPray_c::Delete() {
-    // NONMATCHING
-}
-
-/* 80AB3644-80AB3668 000944 0024+00 2/2 0/0 0/0 .text            Execute__11daNpcPray_cFv */
-void daNpcPray_c::Execute() {
-    // NONMATCHING
-}
-
-/* 80AB3668-80AB36A8 000968 0040+00 1/1 0/0 0/0 .text            Draw__11daNpcPray_cFv */
-void daNpcPray_c::Draw() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80AB5890-80AB589C 000088 000C+00 1/1 0/0 0/0 .rodata          @4241 */
-SECTION_RODATA static u8 const lit_4241[12] = {
-    0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x03,
-};
-COMPILER_STRIP_GATE(0x80AB5890, &lit_4241);
-
-/* 80AB36A8-80AB3834 0009A8 018C+00 1/1 0/0 0/0 .text
- * ctrlJoint__11daNpcPray_cFP8J3DJointP8J3DModel                */
-void daNpcPray_c::ctrlJoint(J3DJoint* param_0, J3DModel* param_1) {
-    // NONMATCHING
-}
-
-/* 80AB3834-80AB3854 000B34 0020+00 1/1 0/0 0/0 .text
- * createHeapCallBack__11daNpcPray_cFP10fopAc_ac_c              */
-void daNpcPray_c::createHeapCallBack(fopAc_ac_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80AB3854-80AB38A0 000B54 004C+00 1/1 0/0 0/0 .text ctrlJointCallBack__11daNpcPray_cFP8J3DJointi
- */
-void daNpcPray_c::ctrlJointCallBack(J3DJoint* param_0, int param_1) {
-    // NONMATCHING
-}
-
-/* 80AB38A0-80AB390C 000BA0 006C+00 1/0 0/0 0/0 .text            setParam__11daNpcPray_cFv */
-void daNpcPray_c::setParam() {
-    // NONMATCHING
-}
-
-/* 80AB390C-80AB3964 000C0C 0058+00 1/0 0/0 0/0 .text            main__11daNpcPray_cFv */
-void daNpcPray_c::main() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80AB589C-80AB58A0 000094 0004+00 0/1 0/0 0/0 .rodata          @4391 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4391 = 10.0f;
-COMPILER_STRIP_GATE(0x80AB589C, &lit_4391);
-#pragma pop
-
-/* 80AB58A0-80AB58A4 000098 0004+00 1/2 0/0 0/0 .rodata          @4392 */
-SECTION_RODATA static f32 const lit_4392 = 15.0f;
-COMPILER_STRIP_GATE(0x80AB58A0, &lit_4392);
-
-/* 80AB58A4-80AB58A8 00009C 0004+00 1/8 0/0 0/0 .rodata          @4393 */
-SECTION_RODATA static u8 const lit_4393[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80AB58A4, &lit_4393);
-
-/* 80AB3964-80AB3B0C 000C64 01A8+00 1/0 0/0 0/0 .text            setAttnPos__11daNpcPray_cFv */
-void daNpcPray_c::setAttnPos() {
-    // NONMATCHING
-}
-
-/* 80AB3B0C-80AB3BDC 000E0C 00D0+00 1/0 0/0 0/0 .text            setMotionAnm__11daNpcPray_cFif */
-bool daNpcPray_c::setMotionAnm(int param_0, f32 param_1) {
-    // NONMATCHING
-}
-
-/* 80AB3BDC-80AB3C24 000EDC 0048+00 1/0 0/0 0/0 .text            setMotion__11daNpcPray_cFifi */
-void daNpcPray_c::setMotion(int param_0, f32 param_1, int param_2) {
-    // NONMATCHING
-}
-
-/* 80AB3C24-80AB3C2C 000F24 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__11daNpcPray_cFv */
-bool daNpcPray_c::drawDbgInfo() {
-    return false;
-}
-
-/* 80AB3C2C-80AB3DBC 000F2C 0190+00 1/1 0/0 0/0 .text            reset__11daNpcPray_cFv */
-void daNpcPray_c::reset() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80AB58A8-80AB58B4 0000A0 000C+00 0/1 0/0 0/0 .rodata          @4452 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4452[12] = {
-    0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80AB58A8, &lit_4452);
-#pragma pop
-
-/* 80AB58B4-80AB58B8 0000AC 0004+00 0/1 0/0 0/0 .rodata          @4453 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4453[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80AB58B4, &lit_4453);
-#pragma pop
-
-/* 80AB58B8-80AB58C4 0000B0 000C+00 0/1 0/0 0/0 .rodata          @4454 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4454[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80AB58B8, &lit_4454);
-#pragma pop
-
-/* 80AB58C4-80AB58D0 0000BC 000C+00 0/1 0/0 0/0 .rodata          @4455 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4455[12] = {
-    0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80AB58C4, &lit_4455);
-#pragma pop
-
-/* 80AB58D0-80AB58D8 0000C8 0008+00 0/1 0/0 0/0 .rodata          @4456 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4456[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80AB58D0, &lit_4456);
-#pragma pop
-
-/* 80AB58D8-80AB58E4 0000D0 000C+00 0/1 0/0 0/0 .rodata          @4457 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4457[12] = {
-    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80AB58D8, &lit_4457);
-#pragma pop
-
-/* 80AB58E4-80AB58F0 0000DC 000C+00 0/1 0/0 0/0 .rodata          @4458 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4458[12] = {
-    0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80AB58E4, &lit_4458);
-#pragma pop
-
-/* 80AB58F0-80AB58F8 0000E8 0008+00 0/1 0/0 0/0 .rodata          @4459 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4459[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80AB58F0, &lit_4459);
-#pragma pop
-
-/* 80AB58F8-80AB5904 0000F0 000C+00 0/1 0/0 0/0 .rodata          @4460 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4460[12] = {
-    0x00, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80AB58F8, &lit_4460);
-#pragma pop
-
-/* 80AB5904-80AB5908 0000FC 0004+00 0/1 0/0 0/0 .rodata          @4461 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4461[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80AB5904, &lit_4461);
-#pragma pop
-
-/* 80AB5908-80AB5918 000100 0010+00 0/1 0/0 0/0 .rodata          @4462 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4462[16] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80AB5908, &lit_4462);
-#pragma pop
-
-/* 80AB3DBC-80AB3F54 0010BC 0198+00 1/1 0/0 0/0 .text            playMotion__11daNpcPray_cFv */
-void daNpcPray_c::playMotion() {
-    // NONMATCHING
-}
-
-/* 80AB3F54-80AB3FFC 001254 00A8+00 4/4 0/0 0/0 .text
- * setAction__11daNpcPray_cFM11daNpcPray_cFPCvPvPv_b            */
-void daNpcPray_c::setAction(bool (daNpcPray_c::*param_0)(void*)) {
-    // NONMATCHING
-}
-
-/* 80AB3FFC-80AB4020 0012FC 0024+00 2/2 0/0 0/0 .text            setLookMode__11daNpcPray_cFi */
-void daNpcPray_c::setLookMode(int param_0) {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80AB5918-80AB5924 000110 000C+00 0/1 0/0 0/0 .rodata          @4495 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4495[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80AB5918, &lit_4495);
-#pragma pop
-
-/* 80AB5924-80AB5928 00011C 0004+00 0/1 0/0 0/0 .rodata          @4543 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4543 = -80.0f;
-COMPILER_STRIP_GATE(0x80AB5924, &lit_4543);
-#pragma pop
-
-/* 80AB5928-80AB592C 000120 0004+00 0/1 0/0 0/0 .rodata          @4544 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4544 = 80.0f;
-COMPILER_STRIP_GATE(0x80AB5928, &lit_4544);
-#pragma pop
-
-/* 80AB592C-80AB5930 000124 0004+00 0/1 0/0 0/0 .rodata          @4545 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4545 = 40.0f;
-COMPILER_STRIP_GATE(0x80AB592C, &lit_4545);
-#pragma pop
-
-/* 80AB4020-80AB4200 001320 01E0+00 1/1 0/0 0/0 .text            lookat__11daNpcPray_cFv */
-void daNpcPray_c::lookat() {
-    // NONMATCHING
-}
-
-/* 80AB4200-80AB42F4 001500 00F4+00 2/2 0/0 0/0 .text            step__11daNpcPray_cFsi */
-void daNpcPray_c::step(s16 param_0, int param_1) {
-    // NONMATCHING
-}
-
-/* 80AB42F4-80AB43D8 0015F4 00E4+00 1/1 0/0 0/0 .text            chkFindPlayer__11daNpcPray_cFv */
-void daNpcPray_c::chkFindPlayer() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80AB5930-80AB5938 000128 0008+00 0/1 0/0 0/0 .rodata          @4653 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4653[8] = {
-    0x40, 0x7F, 0x40, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80AB5930, &lit_4653);
-#pragma pop
-
-/* 80AB5938-80AB5940 000130 0008+00 0/1 0/0 0/0 .rodata          @4654 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4654[8] = {
-    0x40, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80AB5938, &lit_4654);
-#pragma pop
-
-/* 80AB43D8-80AB4674 0016D8 029C+00 3/0 0/0 0/0 .text            wait__11daNpcPray_cFPv */
-void daNpcPray_c::wait(void* param_0) {
-    // NONMATCHING
-}
-
-/* 80AB4674-80AB4740 001974 00CC+00 1/0 0/0 0/0 .text            fear__11daNpcPray_cFPv */
-void daNpcPray_c::fear(void* param_0) {
-    // NONMATCHING
-}
-
-/* 80AB4740-80AB498C 001A40 024C+00 1/0 0/0 0/0 .text            talk__11daNpcPray_cFPv */
-void daNpcPray_c::talk(void* param_0) {
-    // NONMATCHING
-}
-
-/* 80AB498C-80AB4B20 001C8C 0194+00 2/0 0/0 0/0 .text            demo__11daNpcPray_cFPv */
-void daNpcPray_c::demo(void* param_0) {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80AB5940-80AB5944 000138 0004+00 0/1 0/0 0/0 .rodata          @4765 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4765 = 0xC58175A1;
-COMPILER_STRIP_GATE(0x80AB5940, &lit_4765);
-#pragma pop
-
-/* 80AB5944-80AB5948 00013C 0004+00 0/1 0/0 0/0 .rodata          @4766 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4766 = 850.0f;
-COMPILER_STRIP_GATE(0x80AB5944, &lit_4766);
-#pragma pop
-
-/* 80AB5948-80AB594C 000140 0004+00 0/1 0/0 0/0 .rodata          @4767 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4767 = 0xC40E5807;
-COMPILER_STRIP_GATE(0x80AB5948, &lit_4767);
-#pragma pop
-
-/* 80AB594C-80AB5950 000144 0004+00 0/1 0/0 0/0 .rodata          @4768 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4768 = 3.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80AB594C, &lit_4768);
-#pragma pop
-
-/* 80AB5950-80AB5954 000148 0004+00 0/1 0/0 0/0 .rodata          @4769 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4769 = 95.0f;
-COMPILER_STRIP_GATE(0x80AB5950, &lit_4769);
-#pragma pop
-
-/* 80AB4B20-80AB4BFC 001E20 00DC+00 1/1 0/0 0/0 .text            createHeart__11daNpcPray_cFv */
-void daNpcPray_c::createHeart() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80AB5964-80AB5964 00015C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80AB597E = "cutId";
-#pragma pop
-
-/* 80AB4BFC-80AB4CA4 001EFC 00A8+00 1/0 0/0 0/0 .text            _Evt_GetHeart__11daNpcPray_cFi */
-void daNpcPray_c::_Evt_GetHeart(int param_0) {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80AB5954-80AB5958 00014C 0004+00 0/1 0/0 0/0 .rodata          @4800 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4800 = -3.0f;
-COMPILER_STRIP_GATE(0x80AB5954, &lit_4800);
-#pragma pop
-
-/* 80AB5958-80AB595C 000150 0004+00 0/2 0/0 0/0 .rodata          @4801 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4801 = -4.0f;
-COMPILER_STRIP_GATE(0x80AB5958, &lit_4801);
-#pragma pop
-
-/* 80AB4CA4-80AB4D34 001FA4 0090+00 1/1 0/0 0/0 .text _Evt_GetHeart_CutInit__11daNpcPray_cFRCi */
-void daNpcPray_c::_Evt_GetHeart_CutInit(int const& param_0) {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80AB595C-80AB5960 000154 0004+00 0/1 0/0 0/0 .rodata          @4840 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4840 = 110.0f;
-COMPILER_STRIP_GATE(0x80AB595C, &lit_4840);
-#pragma pop
-
-/* 80AB5960-80AB5964 000158 0004+00 0/1 0/0 0/0 .rodata          @4841 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4841 = -300.0f;
-COMPILER_STRIP_GATE(0x80AB5960, &lit_4841);
-#pragma pop
-
-/* 80AB4D34-80AB4E88 002034 0154+00 1/1 0/0 0/0 .text _Evt_GetHeart_CutMain__11daNpcPray_cFRCi */
-void daNpcPray_c::_Evt_GetHeart_CutMain(int const& param_0) {
-    // NONMATCHING
-}
-
-/* 80AB4E88-80AB4EA8 002188 0020+00 1/0 0/0 0/0 .text            daNpcPray_Create__FPv */
-static void daNpcPray_Create(void* param_0) {
-    // NONMATCHING
-}
-
-/* 80AB4EA8-80AB4EC8 0021A8 0020+00 1/0 0/0 0/0 .text            daNpcPray_Delete__FPv */
-static void daNpcPray_Delete(void* param_0) {
-    // NONMATCHING
-}
-
-/* 80AB4EC8-80AB4EE8 0021C8 0020+00 1/0 0/0 0/0 .text            daNpcPray_Execute__FPv */
-static void daNpcPray_Execute(void* param_0) {
-    // NONMATCHING
-}
-
-/* 80AB4EE8-80AB4F08 0021E8 0020+00 1/0 0/0 0/0 .text            daNpcPray_Draw__FPv */
-static void daNpcPray_Draw(void* param_0) {
-    // NONMATCHING
-}
-
-/* 80AB4F08-80AB4F10 002208 0008+00 1/0 0/0 0/0 .text            daNpcPray_IsDelete__FPv */
-static bool daNpcPray_IsDelete(void* param_0) {
-    return true;
-}
-
-/* 80AB4F10-80AB4F58 002210 0048+00 5/4 0/0 0/0 .text            __dt__18daNpcF_ActorMngr_cFv */
-// daNpcF_ActorMngr_c::~daNpcF_ActorMngr_c() {
-extern "C" void __dt__18daNpcF_ActorMngr_cFv() {
-    // NONMATCHING
-}
-
-/* 80AB4F58-80AB4F94 002258 003C+00 2/2 0/0 0/0 .text            __ct__18daNpcF_ActorMngr_cFv */
-// daNpcF_ActorMngr_c::daNpcF_ActorMngr_c() {
-extern "C" void __ct__18daNpcF_ActorMngr_cFv() {
-    // NONMATCHING
-}
-
-/* 80AB4F94-80AB5064 002294 00D0+00 1/0 0/0 0/0 .text            __dt__15daNpcF_Lookat_cFv */
-// daNpcF_Lookat_c::~daNpcF_Lookat_c() {
-extern "C" void __dt__15daNpcF_Lookat_cFv() {
-    // NONMATCHING
-}
-
-/* 80AB5064-80AB50A0 002364 003C+00 5/5 0/0 0/0 .text            __dt__5csXyzFv */
-// csXyz::~csXyz() {
-extern "C" void __dt__5csXyzFv() {
-    // NONMATCHING
-}
-
-/* 80AB50A0-80AB50A4 0023A0 0004+00 2/2 0/0 0/0 .text            __ct__5csXyzFv */
-// csXyz::csXyz() {
-extern "C" void __ct__5csXyzFv() {
-    /* empty function */
-}
-
-/* 80AB50A4-80AB50E0 0023A4 003C+00 5/5 0/0 0/0 .text            __dt__4cXyzFv */
-// cXyz::~cXyz() {
-extern "C" void __dt__4cXyzFv() {
-    // NONMATCHING
-}
-
-/* 80AB50E0-80AB50E4 0023E0 0004+00 2/2 0/0 0/0 .text            __ct__4cXyzFv */
-// cXyz::cXyz() {
-extern "C" void __ct__4cXyzFv() {
-    /* empty function */
-}
-
-/* 80AB50E4-80AB5330 0023E4 024C+00 1/1 0/0 0/0 .text            __dt__8daNpcF_cFv */
-// daNpcF_c::~daNpcF_c() {
-extern "C" void __dt__8daNpcF_cFv() {
-    // NONMATCHING
-}
-
-/* 80AB5330-80AB5520 002630 01F0+00 1/1 0/0 0/0 .text            __ct__8daNpcF_cFv */
-// daNpcF_c::daNpcF_c() {
-extern "C" void __ct__8daNpcF_cFv() {
-    // NONMATCHING
-}
-
-/* 80AB5520-80AB5590 002820 0070+00 1/0 0/0 0/0 .text            __dt__12dBgS_AcchCirFv */
-// dBgS_AcchCir::~dBgS_AcchCir() {
-extern "C" void __dt__12dBgS_AcchCirFv() {
-    // NONMATCHING
-}
-
-/* 80AB5590-80AB55EC 002890 005C+00 1/0 0/0 0/0 .text            __dt__10dCcD_GSttsFv */
-// dCcD_GStts::~dCcD_GStts() {
-extern "C" void __dt__10dCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* 80AB55EC-80AB565C 0028EC 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
-// dBgS_ObjAcch::~dBgS_ObjAcch() {
-extern "C" void __dt__12dBgS_ObjAcchFv() {
-    // NONMATCHING
-}
-
-/* 80AB565C-80AB56A4 00295C 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
-// J3DFrameCtrl::~J3DFrameCtrl() {
-extern "C" void __dt__12J3DFrameCtrlFv() {
-    // NONMATCHING
-}
-
-/* 80AB56A4-80AB56AC 0029A4 0008+00 1/0 0/0 0/0 .text            ctrlBtk__8daNpcF_cFv */
-// bool daNpcF_c::ctrlBtk() {
-extern "C" bool ctrlBtk__8daNpcF_cFv() {
-    return false;
-}
-
-/* 80AB56AC-80AB56B0 0029AC 0004+00 1/0 0/0 0/0 .text            setCollisions__8daNpcF_cFv */
-// void daNpcF_c::setCollisions() {
-extern "C" void setCollisions__8daNpcF_cFv() {
-    /* empty function */
-}
-
-/* 80AB56B0-80AB56B8 0029B0 0008+00 1/0 0/0 0/0 .text            setExpressionAnm__8daNpcF_cFib */
-// bool daNpcF_c::setExpressionAnm(int param_0, bool param_1) {
-extern "C" bool setExpressionAnm__8daNpcF_cFib() {
-    return true;
-}
-
-/* 80AB56B8-80AB56C0 0029B8 0008+00 1/0 0/0 0/0 .text            setExpressionBtp__8daNpcF_cFi */
-// bool daNpcF_c::setExpressionBtp(int param_0) {
-extern "C" bool setExpressionBtp__8daNpcF_cFi() {
-    return true;
-}
-
-/* 80AB56C0-80AB56C4 0029C0 0004+00 1/0 0/0 0/0 .text            setExpression__8daNpcF_cFif */
-// void daNpcF_c::setExpression(int param_0, f32 param_1) {
-extern "C" void setExpression__8daNpcF_cFif() {
-    /* empty function */
-}
-
-/* 80AB56C4-80AB56C8 0029C4 0004+00 1/0 0/0 0/0 .text            drawOtherMdls__8daNpcF_cFv */
-// void daNpcF_c::drawOtherMdls() {
-extern "C" void drawOtherMdls__8daNpcF_cFv() {
-    /* empty function */
-}
-
-/* 80AB56C8-80AB5710 0029C8 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
-// cCcD_GStts::~cCcD_GStts() {
-extern "C" void __dt__10cCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80AB5B94-80AB5BA0 000210 000C+00 2/2 0/0 0/0 .data            __vt__17daNpcPray_Param_c */
-SECTION_DATA extern void* __vt__17daNpcPray_Param_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__17daNpcPray_Param_cFv,
-};
-
-/* 80AB5BA8-80AB5BB4 000008 000C+00 1/1 0/0 0/0 .bss             @3803 */
-static u8 lit_3803[12];
-
-/* 80AB5BB4-80AB5BB8 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[4];
-
-/* 80AB5710-80AB5798 002A10 0088+00 0/0 1/0 0/0 .text            __sinit_d_a_npc_prayer_cpp */
-void __sinit_d_a_npc_prayer_cpp() {
-    // NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80AB5710, __sinit_d_a_npc_prayer_cpp);
-#pragma pop
-
-/* 80AB5798-80AB579C 002A98 0004+00 1/0 0/0 0/0 .text            adjustShapeAngle__11daNpcPray_cFv
- */
-void daNpcPray_c::adjustShapeAngle() {
-    /* empty function */
-}
-
-/* 80AB579C-80AB57E4 002A9C 0048+00 2/1 0/0 0/0 .text            __dt__17daNpcPray_Param_cFv */
-daNpcPray_Param_c::~daNpcPray_Param_c() {
-    // NONMATCHING
-}
-
-/* 80AB57E4-80AB57EC 002AE4 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
-static void func_80AB57E4() {
-    // NONMATCHING
-}
-
-/* 80AB57EC-80AB57F4 002AEC 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
-static void func_80AB57EC() {
-    // NONMATCHING
-}
-
-/* 80AB5964-80AB5964 00015C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

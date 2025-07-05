@@ -35,3 +35,4 @@ __RTTI__11daObjProp_c = .data:0x000000C0; // type:object size:0x8 scope:global
 @114278 = .data:0x000000C8; // type:object size:0xB scope:local data:string
 @114279 = .data:0x000000E0; // type:object size:0x1F scope:local data:string
 __RTTI__30request_of_phase_process_class = .data:0x00000100; // type:object size:0x8 scope:global
+lbl_587_data_108 = .data:0x00000108; // type:object size:0x4

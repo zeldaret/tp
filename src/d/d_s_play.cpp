@@ -90,12 +90,18 @@ dScnPly_env_otherHIO_c::dScnPly_env_otherHIO_c() {
     mDispTransCylinder = false;
 }
 
+void dScnPly_env_otherHIO_c::genMessage(JORMContext* ctx) {
+}
+
 /* 80259468-802594AC 253DA8 0044+00 1/1 0/0 0/0 .text            __ct__22dScnPly_env_debugHIO_cFv */
 dScnPly_env_debugHIO_c::dScnPly_env_debugHIO_c() {
     mBoxCullMinSize.set(-100.0f, -100.0f, -100.0f);
     mBoxCullMaxSize.set(100.0f, 100.0f, 100.0f);
     mSphereCullCenter.set(0.0f, 0.0f, 0.0f);
     mSphereCullRadius = 100.0f;
+}
+
+void dScnPly_env_debugHIO_c::genMessage(JORMContext* ctx) {
 }
 
 /* 802594AC-802597B8 253DEC 030C+00 1/0 0/0 0/0 .text            dScnPly_Draw__FP9dScnPly_c */
@@ -164,7 +170,7 @@ static int dScnPly_Draw(dScnPly_c* i_this) {
     if (!dComIfGp_isPauseFlag()) {
         dEyeHL_mng_c::update();
         dComIfG_Ccsp()->Draw();
-        dComIfGp_getAttention().Draw();
+        dComIfGp_getAttention()->Draw();
     }
 
     return 1;
@@ -192,7 +198,7 @@ static int dScnPly_Execute(dScnPly_c* i_this) {
     if (!dComIfGp_isPauseFlag()) {
         dDemo_c::update();
         dComIfGp_getEvent().Step();
-        dComIfGp_getAttention().Run();
+        dComIfGp_getAttention()->Run();
     }
     return 1;
 }
@@ -236,7 +242,7 @@ static int dScnPly_Delete(dScnPly_c* i_this) {
     dMpath_c::remove();
     dTres_c::remove();
 
-    dComIfGp_getAttention().~dAttention_c();
+    dComIfGp_getAttention()->~dAttention_c();
     dComIfGp_getVibration().Remove();
 
     dComIfG_Bgsp().Dt();
@@ -635,7 +641,7 @@ static int phase_4(dScnPly_c* i_this) {
     mDoGph_gInf_c::setTickRate((OS_BUS_CLOCK / 4) / 30);
     g_envHIO.field_0x4 = -1;
     g_save_bit_HIO.field_0x4 = -1;
-    new (&dComIfGp_getAttention()) dAttention_c(dComIfGp_getPlayer(0), 0);
+    new (dComIfGp_getAttention()) dAttention_c(dComIfGp_getPlayer(0), 0);
     dComIfGp_getVibration().Init();
     daYkgr_c::init();
 

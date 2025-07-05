@@ -34,7 +34,6 @@ public:
     /* 805812BC */ int Draw();
     /* 8058140C */ int Delete();
 
-private:
     /* 0x05A0 */ int field_0x5a0;
     /* 0x05A4 */ int field_0x5a4;
     /* 0x05A8 */ s8 field_0x5a8;

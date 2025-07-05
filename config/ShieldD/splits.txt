@@ -2446,14 +2446,14 @@ JSystem/JAudio2/JASOscillator.cpp:
 	.text       start:0x8048A950 end:0x8048B020
 	.rodata     start:0x80654D60 end:0x80654E70
 	.data       start:0x806FDFE8 end:0x806FE028
-	.sdata      start:0x80748938 end:0x8074894C
+	.sdata      start:0x80748938 end:0x80748948
 	.sdata2     start:0x80751C60 end:0x80751C88
 
 JSystem/JAudio2/JASAiCtrl.cpp:
 	.text       start:0x8048B020 end:0x8048BD30
 	.rodata     start:0x80654E70 end:0x80654E80
 	.data       start:0x806FE028 end:0x806FE188
-	.sdata      start:0x8074894C end:0x80748970
+	.sdata      start:0x80748948 end:0x80748970
 	.sbss       start:0x8074CC68 end:0x8074CCA8
 	.sdata2     start:0x80751C88 end:0x80751CA8
 	.bss        start:0x807C8D78 end:0x807C8D88

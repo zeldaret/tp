@@ -2356,10 +2356,22 @@ void dFile_select_c::screenSet() {
     static u64 l_nouseTag[15] = {
         'w_mcheck', 'w_tabi1', 'w_tabi2',  'w_tabi3',  'w_doko_c', 'w_uwa_c', 'w_cp_chu', 'w_cpsita',
         'w_cp_x',   'w_de',    'w_de_chu', 'w_desita', 'w_de_x',   'w_name',  'w_h_name'};
+    
+    #if (VERSION == VERSION_GCN_JPN) || (VERSION == VERSION_WII_JPN)
+    static u64 l_tagName21[2] = {'w_tabi_s', 'w_tabi_x'};
+    #else
     static u64 l_tagName21[2] = {'t_for', 't_for1'};
+    #endif
+    
     static u64 l_tagName18[3] = {'w_de_ef0', 'w_de_ef1', 'w_de_ef2'};
     static u64 l_tagName19[3] = {'w_cp_ef0', 'w_cp_ef1', 'w_cp_ef2'};
+
+    #if (VERSION == VERSION_GCN_JPN) || (VERSION == VERSION_WII_JPN)
+    static u64 l_tagName20[2] = {'w_er_msg', 'w_er_msR'};
+    #else
     static u64 l_tagName20[2] = {'er_for0', 'er_for1'};
+    #endif
+
     static u64 l_tagName131[3] = {'N_sel_00', 'N_sel_01', 'N_sel_02'};
 
     fileSel.Scr = new J2DScreen();
@@ -2385,10 +2397,19 @@ void dFile_select_c::screenSet() {
     fileSel.Scr->search('Wi_btn_n')->hide();
     field_0x0238 = new CPaneMgrAlpha(fileSel.Scr, 'w_n_bbtn', 2, NULL);
     field_0x023c = new CPaneMgrAlpha(fileSel.Scr, 'w_n_abtn', 2, NULL);
+
+    #if (VERSION == VERSION_GCN_JPN) || (VERSION == VERSION_WII_JPN)
+    field_0x0240 = new CPaneMgrAlpha(fileSel.Scr, 'w_modo', 2, NULL);
+    field_0x0244 = new CPaneMgrAlpha(fileSel.Scr, 'w_kete', 2, NULL);
+    fileSel.Scr->search('f_modo')->hide();
+    fileSel.Scr->search('f_kete')->hide();
+    #else
     field_0x0240 = new CPaneMgrAlpha(fileSel.Scr, 'f_modo', 2, NULL);
     field_0x0244 = new CPaneMgrAlpha(fileSel.Scr, 'f_kete', 2, NULL);
     fileSel.Scr->search('w_modo')->hide();
     fileSel.Scr->search('w_kete')->hide();
+    #endif
+
     ((J2DTextBox*)field_0x0240->getPanePtr())->setFont(fileSel.mpMessageFont[0]);
     ((J2DTextBox*)field_0x0244->getPanePtr())->setFont(fileSel.mpMessageFont[0]);
     ((J2DTextBox*)field_0x0240->getPanePtr())->setString(32, "");
@@ -2442,10 +2463,17 @@ void dFile_select_c::screenSet() {
     for (int i = 0; i < 15; i++) {
         fileSel.Scr->search(l_nouseTag[i])->hide();
     }
+
+    #if (VERSION == VERSION_GCN_JPN) || (VERSION == VERSION_WII_JPN)
+    fileSel.Scr->search('t_for')->hide();
+    fileSel.Scr->search('t_for1')->hide();
+    #else
     fileSel.Scr->search('w_tabi_s')->hide();
     fileSel.Scr->search('w_tabi_x')->hide();
     fileSel.Scr->search('w_mgn1')->hide();
     fileSel.Scr->search('w_mgn2')->hide();
+    #endif
+
     for (int i = 0; i < 2; i++) {
         field_0x020c[i] = new CPaneMgrAlpha(fileSel.Scr, l_tagName21[i], 0, NULL);
         ((J2DTextBox*)field_0x020c[i]->getPanePtr())->setFont(fileSel.mpMessageFont[0]);
@@ -2480,17 +2508,35 @@ void dFile_select_c::screenSet() {
     field_0x0208 = 0;
     field_0x0209 = 0;
     field_0x012c = fileSel.Scr->search('w_er_n');
+
+    #if (VERSION == VERSION_GCN_JPN) || (VERSION == VERSION_WII_JPN)
+    fileSel.Scr->search('er_for0')->hide();
+    fileSel.Scr->search('er_for1')->hide();
+    #else
     fileSel.Scr->search('w_er_msg')->hide();
     fileSel.Scr->search('w_er_msR')->hide();
+    #endif
+
     fileSel.Scr->search('w_er_msE')->hide();
     for (int i = 0; i < 2; i++) {
         field_0x0138[i] = new CPaneMgrAlpha(fileSel.Scr, l_tagName20[i], 0, NULL);
         ((J2DTextBox*)field_0x0138[i]->getPanePtr())->setFont(fileSel.mpMessageFont[0]);
         ((J2DTextBox*)field_0x0138[i]->getPanePtr())->setString(512, "");
+
+        #if (VERSION != VERSION_GCN_JPN) && (VERSION != VERSION_WII_JPN)
         field_0x0138[i]->getPanePtr()->resize(440.0f, 198.0f);
+        #endif
+
         ((J2DTextBox*)field_0x0138[i]->getPanePtr())->setFontSize(21.0f, 21.0f);
+
+        #if (VERSION == VERSION_GCN_JPN) || (VERSION == VERSION_WII_JPN)
+        ((J2DTextBox*)field_0x0138[i]->getPanePtr())->setLineSpace(22.0f);
+        ((J2DTextBox*)field_0x0138[i]->getPanePtr())->setCharSpace(2.0f);
+        #else
         ((J2DTextBox*)field_0x0138[i]->getPanePtr())->setLineSpace(21.0f);
         ((J2DTextBox*)field_0x0138[i]->getPanePtr())->setCharSpace(1.0f);
+        #endif
+
         field_0x0140[i] = ((J2DTextBox*)field_0x0138[i]->getPanePtr())->getStringPtr();
         field_0x0138[i]->show();
     }
@@ -3302,7 +3348,11 @@ void dFile_select_c::MemCardStatCheck() {
         field_0x0280 = false;
         field_0x0284 = NULL;
         field_0x0273 = 2;
+        #if (VERSION == VERSION_GCN_JPN) || (VERSION == VERSION_WII_JPN)
+        field_0x0290 = &dFile_select_c::noFileSpaceDispInit;
+        #else
         field_0x0290 = &dFile_select_c::noSaveSelDispInit;
+        #endif
         field_0x0274 = 18;
         break;
     case 2:
@@ -4087,29 +4137,42 @@ void dFile_select3D_c::draw() {
 }
 
 /* 8019065C-8019095C 18AF9C 0300+00 2/2 0/0 0/0 .text setJ3D__16dFile_select3D_cFPCcPCcPCc */
-// NONMATCHING regswap
+// NONMATCHING extra mr
 void dFile_select3D_c::setJ3D(char const* param_0, char const* param_1, char const* param_2) {
     JKRArchive* archive = dComIfGp_getCollectResArchive();
-    J3DModelData* modelData = J3DModelLoaderDataBase::load(
-        archive->getResource('BMD ', param_0), 0x51020010);
+    J3DAnmTransform* pbck;
+    J3DAnmTevRegKey* pbrk;
+
+    void* res = archive->getResource('BMD ', param_0);
+    J3DModelData* modelData = J3DModelLoaderDataBase::load(res, 0x51020010);
+    JUT_ASSERT(8823, modelData != 0);
+
     for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
         J3DMaterialAnm* material = new J3DMaterialAnm();
         modelData->getMaterialNodePointer(i)->change();
         modelData->getMaterialNodePointer(i)->setMaterialAnm(material);
     }
+
     mpModel = new J3DModel(modelData, 0, 1);
+    JUT_ASSERT(8836, mpModel != 0);
+
     if (param_1) {
-        J3DAnmTransform* pbck =
-            (J3DAnmTransform*)J3DAnmLoaderDataBase::load(archive->getResource('BCK ', param_1));
+        void* res = archive->getResource('BCK ', param_1);
+        pbck = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(res);
+        JUT_ASSERT(8846, pbck != 0);
+
         mBckAnm = new mDoExt_bckAnm();
         if (mBckAnm == NULL || !mBckAnm->init(pbck, 1, 2, 1.0f, 0, -1, false)) {
             return;
         }
     }
+
     if (param_2) {
-        J3DAnmTevRegKey* pbrk =
-            (J3DAnmTevRegKey*)J3DAnmLoaderDataBase::load(archive->getResource('BRK ', param_2));
+        void* res = archive->getResource('BRK ', param_2);
+        pbrk = (J3DAnmTevRegKey*)J3DAnmLoaderDataBase::load(res);
+        JUT_ASSERT(8859, pbrk != 0);
         pbrk->searchUpdateMaterialID(modelData);
+
         mBrkAnm = new mDoExt_brkAnm();
         if (mBrkAnm == NULL || !mBrkAnm->init(modelData, pbrk, -1, 2, 1.0f, 0, -1)) {
             return;
@@ -4278,3 +4341,6 @@ void dFile_select3D_c::toItem3Dpos(f32 param_0, f32 param_1, f32 param_2, cXyz* 
 void dFile_select3D_c::calcViewMtx(Mtx param_0) {
     cMtx_lookAt(param_0, &cXyz(0.0f, 0.0f, -1000.0f), &cXyz::Zero, &cXyz(0.0f, 1.0f, 0.0f), 0);
 }
+
+// Fakematch, should be defined in header but it gets put in the wrong TU
+void J2DAnmTransform::getTransform(u16, J3DTransformInfo*) const {}

@@ -60,11 +60,11 @@ const char* dEvent_exception_c::getEventName() {
             return "(!NO INFO!)";
         }
 
-        if (mEventInfoIdx < 0 || mEventInfoIdx > eventInfo->mCount) {
+        if (mEventInfoIdx < 0 || mEventInfoIdx > eventInfo->num) {
             return "(!BAD NUMBER!)";
         }
 
-        dStage_MapEvent_dt_c* revt = &eventInfo->mData[mEventInfoIdx];
+        dStage_MapEvent_dt_c* revt = &eventInfo->m_entries[mEventInfoIdx];
         switch (revt->mType) {
         case 1:
         case 2:

@@ -165,6 +165,7 @@ public:
     /* 80A00514 */ int checkRemoveJoint(int param_1) { return param_1 == 8; }
     /* 80A00524 */ s32 getFootLJointNo() { return 22; }
     /* 80A0052C */ s32 getFootRJointNo() { return 26; }
+    MtxP getArmLMtx() { return mpMorf[0]->getModel()->getAnmMtx(11); }
 
     int getFlowNodeNo() {
         u16 nodeNo = home.angle.x;
@@ -179,7 +180,7 @@ public:
     static dCcD_SrcGObjInf const mStoneCcDObjInfo;
     static char* mCutNameList[6];
     static cutFunc mCutList[6];
-    static u8 mStoneCcDSph[64];
+    static dCcD_SrcSph mStoneCcDSph;
 private:
     /* 0x0E40 */ int field_0x0E40;
     /* 0x0E44 */ J3DModel* mModel1;

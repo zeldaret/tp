@@ -144,7 +144,7 @@ public:
 
     MtxP getGlbMtx() { return mGlobalMtx; }
 
-    JGeometry::TBox2<f32>& getGlbBounds() { return mGlobalBounds; }
+    const JGeometry::TBox2<f32>& getGlbBounds() const { return mGlobalBounds; }
 
     void setMtx(Mtx m) { MTXCopy(m, mPositionMtx); }
 
@@ -160,6 +160,11 @@ public:
         calcMtx();
     }
 
+    void rotateY(f32 rotate) {
+        mRotateY = rotate;
+        calcMtx();
+    }
+
     int getKind() const { return mKind; }
 
     bool isVisible() const { return mVisible; }
@@ -169,6 +174,7 @@ public:
 
     bool isConnectParent() const { return mConnected; }
 
+    u64 getUserInfo() const { return mUserInfoTag; }
     void setUserInfo(u64 info) { mUserInfoTag = info; }
     const Mtx* getMtx() const { return &mPositionMtx; }
 

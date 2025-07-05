@@ -771,8 +771,7 @@ void daNpcShoe_c::lookat() {
 }
 
 /* 80AE9A00-80AE9AD0 0021A0 00D0+00 1/0 0/0 0/0 .text            setMotionAnm__11daNpcShoe_cFif */
-bool daNpcShoe_c::setMotionAnm(int i_idx, f32 i_morf) {
-    // NONMATCHING
+void daNpcShoe_c::setMotionAnm(int i_idx, f32 i_morf) {
     J3DAnmTransformKey* morfAnm = getTrnsfrmKeyAnmP(l_arcNames[l_bckGetParamList[i_idx].arcIdx], l_bckGetParamList[i_idx].fileIdx);
     
     int morfAttr = l_bckGetParamList[i_idx].attr;

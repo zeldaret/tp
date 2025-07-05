@@ -242,7 +242,7 @@ void cLib_addCalcPosXZ2(cXyz* ppos, const cXyz& target, f32 scale, f32 maxStep) 
  * @param minStep Minimum step amount
  * @return The remaining distance to target
  */
-s16 cLib_addCalcAngleS(s16* pvalue, s16 target, s16 scale, s16 maxStep, s16 minStep) {
+s16 cLib_addCalcAngleS(s16* pvalue, s16 target, const s16 scale, s16 maxStep, s16 minStep) {
     s16 diff = target - *pvalue;
     if (*pvalue != target) {
         s16 step = (diff) / scale;

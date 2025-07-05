@@ -4,235 +4,293 @@
 */
 
 #include "d/actor/d_a_coach_2D.h"
-#include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" void draw__Q211daCoach2D_c6c_listFv();
-extern "C" static void daCoach2D_createHeap__FP10fopAc_ac_c();
-extern "C" void createHeap__11daCoach2D_cFv();
-extern "C" void create__11daCoach2D_cFv();
-extern "C" void destroy__11daCoach2D_cFv();
-extern "C" void draw__11daCoach2D_cFv();
-extern "C" void execute__11daCoach2D_cFv();
-extern "C" void drawMeter__11daCoach2D_cFv();
-extern "C" void initiate__11daCoach2D_cFv();
-extern "C" void update__11daCoach2D_cFv();
-extern "C" void setBrkAnime__11daCoach2D_cFb();
-extern "C" static void daCoach2D_create__FP11daCoach2D_c();
-extern "C" static void daCoach2D_destroy__FP11daCoach2D_c();
-extern "C" static void daCoach2D_execute__FP11daCoach2D_c();
-extern "C" static void daCoach2D_draw__FP11daCoach2D_c();
-extern "C" void draw__12dDlst_base_cFv();
-extern "C" void __dt__15daCoach2D_HIO_cFv();
-extern "C" void __dt__14mDoHIO_entry_cFv();
-extern "C" void __dt__Q211daCoach2D_c6c_listFv();
-extern "C" void __dt__11daCoach2D_cFv();
-extern "C" void __sinit_d_a_coach_2D_cpp();
-extern "C" extern char const* const d_a_coach_2D__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void getResInfo__14dRes_control_cFPCcP11dRes_info_ci();
-extern "C" void getRes__14dRes_control_cFPCcPCcP11dRes_info_ci();
-extern "C" void set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c();
-extern "C" void getStatus__12dMsgObject_cFv();
-extern "C" void __ct__15dMsgScrnLight_cFUcUc();
-extern "C" void draw__15dMsgScrnLight_cFPfffffffQ28JUtility6TColorQ28JUtility6TColor();
-extern "C" void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap();
-extern "C" void paneTrans__8CPaneMgrFff();
-extern "C" void getGlobalVtxCenter__8CPaneMgrFP7J2DPanebs();
-extern "C" void dPaneClass_showNullPane__FP9J2DScreen();
-extern "C" void show__13CPaneMgrAlphaFv();
-extern "C" void hide__13CPaneMgrAlphaFv();
-extern "C" void setAlphaRate__13CPaneMgrAlphaFf();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void getBounds__7J2DPaneFv();
-extern "C" void __ct__9J2DScreenFv();
-extern "C" void setPriority__9J2DScreenFPCcUlP10JKRArchive();
-extern "C" void draw__9J2DScreenFffPC14J2DGrafContext();
-extern "C" void animation__9J2DScreenFv();
-extern "C" void load__20J2DAnmLoaderDataBaseFPCv();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_29();
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" void __register_global_object();
-
-//
-// Declarations:
-//
+#include "d/d_com_inf_game.h"
+#include "d/d_meter2_info.h"
+#include "d/d_msg_object.h"
+#include "JSystem/J2DGraph/J2DGrafContext.h"
+#include "JSystem/J2DGraph/J2DScreen.h"
+#include "JSystem/J2DGraph/J2DAnmLoader.h"
 
 /* 806569CC-80656A18 0000EC 004C+00 1/0 0/0 0/0 .text            draw__Q211daCoach2D_c6c_listFv */
 void daCoach2D_c::c_list::draw() {
-    // NONMATCHING
+    dComIfGp_getCurrentGrafPort()->setup2D();
+    mpCoach2D->drawMeter();
 }
 
 /* 80656A18-80656A38 000138 0020+00 1/1 0/0 0/0 .text daCoach2D_createHeap__FP10fopAc_ac_c */
-static void daCoach2D_createHeap(fopAc_ac_c* param_0) {
-    // NONMATCHING
+static int daCoach2D_createHeap(fopAc_ac_c* i_this) {
+    return ((daCoach2D_c*)i_this)->createHeap();
 }
 
-/* ############################################################################################## */
-/* 80657954-80657954 000030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80657954 = "Coach2D";
-SECTION_DEAD static char const* const stringBase_8065795C = "zelda_game_image_fire_icon.blo";
-SECTION_DEAD static char const* const stringBase_8065797B = "zelda_game_image_fire_icon.brk";
-#pragma pop
-
-/* 8065799C-806579F4 000000 0058+00 1/1 0/0 0/0 .data
- * aParam$localstatic3$__ct__15daCoach2D_HIO_cFv                */
-SECTION_DATA static u8 data_8065799C[88] = {
-    0x42, 0x34, 0x00, 0x00, 0xC1, 0x70, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00,
-    0x00, 0x40, 0xF0, 0x00, 0x00, 0xC0, 0xD0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x00,
-    0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3F,
-    0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x40, 0xA0, 0x00, 0x00,
-    0x40, 0x40, 0x00, 0x00, 0x41, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0xFF, 0xB9, 0x00, 0x9B, 0x00,
-    0x00, 0xFF, 0xFF, 0xFF, 0x57, 0x00, 0x73, 0x00, 0x00, 0x00, 0x14, 0x00, 0x01,
-};
-
 /* 806579F4-806579F8 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&d_a_coach_2D__stringBase0;
+static char* l_arcName = "Coach2D";
+
+/* 80657A9C-80657AF8 000014 005C+00 5/5 0/0 0/0 .bss             l_HOSTIO */
+static daCoach2D_HIO_c l_HOSTIO;
 
 /* 80656A38-80656D18 000158 02E0+00 1/1 0/0 0/0 .text            createHeap__11daCoach2D_cFv */
-void daCoach2D_c::createHeap() {
-    // NONMATCHING
+int daCoach2D_c::createHeap() {
+    mpScrn = new J2DScreen();
+    if (mpScrn == NULL) {
+        return 0;
+    }
+
+    dRes_info_c* resInfo = dComIfG_getObjectResInfo(l_arcName);
+    JUT_ASSERT(285, resInfo != 0);
+
+    JKRArchive* archive = resInfo->getArchive();
+    mpScrn->setPriority("zelda_game_image_fire_icon.blo", 0x20000, archive);
+    dPaneClass_showNullPane(mpScrn);
+
+    void* res = dComIfG_getObjectRes(l_arcName, "zelda_game_image_fire_icon.brk");
+    mpFireIconBrk = (J2DAnmTevRegKey*)J2DAnmLoaderDataBase::load(res);
+    mpFireIconBrk->searchUpdateMaterialID(mpScrn);
+    setBrkAnime(true);
+
+    mpPaneAll = new CPaneMgr(mpScrn, 'n_all', 2, NULL);
+    mpPaneBasha = new CPaneMgr(mpScrn, 'basha_n', 2, NULL);
+    mpPaneFire = new CPaneMgr(mpScrn, 'fire_n', 2, NULL);
+
+    mpScrn->search('fire_b_n')->move(mpPaneFire->getPosX(), mpPaneFire->getPosY());
+
+    mpPaneFireB = new CPaneMgr(mpScrn, 'fire_b_n', 2, NULL);
+
+    mMsgLight = new dMsgScrnLight_c(6, 0xFF);
+
+    if (mpPaneAll == NULL || mpPaneBasha == NULL || mpPaneFire == NULL || mpPaneFireB == NULL || mMsgLight == NULL) {
+        return 0;
+    }
+
+    mList.set(this);
+
+    if (fopAcM_GetParam(this) & 1) {
+        show();
+    } else {
+        hide();
+    }
+
+    return 1;
 }
 
 /* 80656D18-80656D94 000438 007C+00 1/1 0/0 0/0 .text            create__11daCoach2D_cFv */
-void daCoach2D_c::create() {
-    // NONMATCHING
+int daCoach2D_c::create() {
+    int phase_state = dComIfG_resLoad(this, l_arcName);
+    if (phase_state == cPhs_COMPLEATE_e) {
+        if (!fopAcM_entrySolidHeap(this, daCoach2D_createHeap, 0x5050)) {
+            return cPhs_ERROR_e;
+        }
+
+#ifdef DEBUG
+        l_HOSTIO.entryHIO("馬車アイコン");
+#endif
+    }
+
+    return phase_state;
 }
 
 /* 80656D94-80656DE4 0004B4 0050+00 1/1 0/0 0/0 .text            destroy__11daCoach2D_cFv */
-void daCoach2D_c::destroy() {
-    // NONMATCHING
+int daCoach2D_c::destroy() {
+    dComIfG_resDelete(this, l_arcName);
+#ifdef DEBUG
+        l_HOSTIO.removeHIO();
+#endif
+
+    dMeter2Info_offSub2DStatus(0);
+    return 1;
 }
 
 /* 80656DE4-80656E94 000504 00B0+00 1/1 0/0 0/0 .text            draw__11daCoach2D_cFv */
-void daCoach2D_c::draw() {
-    // NONMATCHING
+int daCoach2D_c::draw() {
+    if (isVisible() && !dComIfGp_isPauseFlag() && !dMsgObject_isTalkNowCheck()) {
+        dComIfGd_set2DOpa(&mList);
+        dMeter2Info_onSub2DStatus(0);
+    } else {
+        dMeter2Info_offSub2DStatus(0);
+    }
+
+    return 1;
 }
 
 /* 80656E94-80656ED0 0005B4 003C+00 1/1 0/0 0/0 .text            execute__11daCoach2D_cFv */
-void daCoach2D_c::execute() {
-    // NONMATCHING
+int daCoach2D_c::execute() {
+#ifdef DEBUG
+    s32 freeSize = mDoExt_getCurrentHeap()->getTotalFreeSize();
+#endif
+
+    setBrkAnime(false);
+    mpScrn->animation();
+
+    JUT_ASSERT(426, freeSize == mDoExt_getCurrentHeap()->getTotalFreeSize());
+    return 1;
 }
-
-/* ############################################################################################## */
-/* 80657924-80657928 000000 0004+00 2/2 0/0 0/0 .rodata          @4003 */
-SECTION_RODATA static f32 const lit_4003 = 180.0f;
-COMPILER_STRIP_GATE(0x80657924, &lit_4003);
-
-/* 80657928-8065792C 000004 0004+00 1/2 0/0 0/0 .rodata          @4004 */
-SECTION_RODATA static u8 const lit_4004[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80657928, &lit_4004);
-
-/* 8065792C-80657930 000008 0004+00 0/1 0/0 0/0 .rodata          @4005 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4005 = 1.0f;
-COMPILER_STRIP_GATE(0x8065792C, &lit_4005);
-#pragma pop
-
-/* 80657A90-80657A9C 000008 000C+00 1/1 0/0 0/0 .bss             @3772 */
-static u8 lit_3772[12];
-
-/* 80657A9C-80657AF8 000014 005C+00 5/5 0/0 0/0 .bss             l_HOSTIO */
-static u8 l_HOSTIO[92];
 
 /* 80656ED0-8065722C 0005F0 035C+00 1/1 0/0 0/0 .text            drawMeter__11daCoach2D_cFv */
 void daCoach2D_c::drawMeter() {
-    // NONMATCHING
+    update();
+    if (l_HOSTIO.param.reverse_flag) {
+        mpPaneAll->getPanePtr()->rotateY(180.0f);
+    } else {
+        mpPaneAll->getPanePtr()->rotateY(0.0f);
+    }
+
+    for (int i = 0; i < mMaxHitCount; i++) {
+        mpPaneFire->paneTrans(mIconInfo[i].pos_x, mIconInfo[i].pos_y);
+        mpPaneFireB->paneTrans(mIconInfo[i].pos_x, mIconInfo[i].pos_y);
+
+        if (i < mHitCount) {
+            mpPaneBasha->hide();
+            mpPaneFire->show();
+            mpPaneFireB->hide();
+
+            if (i == mHitCount - 1) {
+                mpPaneFire->scale(1.0f, 1.0f);
+            } else {
+                mpPaneFire->scale(l_HOSTIO.param.icon_size, l_HOSTIO.param.icon_size);
+            }
+
+            mpScrn->draw(0.0f, 0.0f, dComIfGp_getCurrentGrafPort());
+
+            if (mIconInfo[i].field_0x15 == 0xFF) {
+                mIconInfo[i].pikari_anm_frame = 0.0f;
+                mIconInfo[i].field_0x15 = 1;
+            }
+
+            if (mIconInfo[i].field_0x15 == 1) {
+                Vec sp2C = mpPaneFire->getGlobalVtxCenter(false, 0);
+                mIconInfo[i].pikari_pos_x = sp2C.x;
+                mIconInfo[i].pikari_pos_y = sp2C.y;
+            }
+        } else {
+            mpPaneBasha->hide();
+            mpPaneFire->hide();
+            mpPaneFireB->show();
+
+            mpPaneFireB->scale(l_HOSTIO.param.icon_size, l_HOSTIO.param.icon_size);
+            mpScrn->draw(0.0f, 0.0f, dComIfGp_getCurrentGrafPort());
+
+            if (mIconInfo[i].field_0x15 == 0) {
+                mIconInfo[i].field_0x15 = 0xFF;
+            }
+        }
+    }
+
+    mpPaneBasha->show();
+    mpPaneFire->hide();
+    mpPaneFireB->hide();
+
+    mpPaneBasha->paneTrans(l_HOSTIO.param.coach_pos_x, l_HOSTIO.param.coach_pos_y);
+    mpScrn->draw(0.0f, 0.0f, dComIfGp_getCurrentGrafPort());
+
+    for (int i = 0; i < mMaxHitCount; i++) {
+        if (mIconInfo[i].field_0x15 == 1) {
+            mMsgLight->draw(&mIconInfo[i].pikari_anm_frame,
+                              mIconInfo[i].pikari_pos_x, mIconInfo[i].pikari_pos_y,
+                              l_HOSTIO.param.pikari_scale, l_HOSTIO.param.pikari_scale, 1.0f, l_HOSTIO.param.pikari_anim_speed,
+                              JUtility::TColor(l_HOSTIO.param.pikari_moyaR1_R, l_HOSTIO.param.pikari_moyaR1_G, l_HOSTIO.param.pikari_moyaR1_B, l_HOSTIO.param.pikari_moyaR1_A),
+                              JUtility::TColor(l_HOSTIO.param.pikari_moyaR0_R, l_HOSTIO.param.pikari_moyaR0_G, l_HOSTIO.param.pikari_moyaR0_B, l_HOSTIO.param.pikari_moyaR0_A));
+
+            if (0.0f == mIconInfo[i].pikari_anm_frame) {
+                mIconInfo[i].field_0x15 = 0;
+            }
+        }
+    }
 }
 
 /* 8065722C-80657260 00094C 0034+00 1/1 0/0 0/0 .text            initiate__11daCoach2D_cFv */
 void daCoach2D_c::initiate() {
-    // NONMATCHING
+    for (int i = 0; i < 20; i++) {
+        mIconInfo[i].field_0x15 = 0xFF;
+    }
+
+    mMaxHitCount = l_HOSTIO.param.max_damage_num;
 }
-
-/* ############################################################################################## */
-/* 80657930-80657934 00000C 0004+00 0/1 0/0 0/0 .rodata          @4050 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4050 = 4.0f;
-COMPILER_STRIP_GATE(0x80657930, &lit_4050);
-#pragma pop
-
-/* 80657934-80657938 000010 0004+00 0/1 0/0 0/0 .rodata          @4051 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4051 = 255.0f;
-COMPILER_STRIP_GATE(0x80657934, &lit_4051);
-#pragma pop
-
-/* 80657938-8065793C 000014 0004+00 0/1 0/0 0/0 .rodata          @4052 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4052 = 70.0f;
-COMPILER_STRIP_GATE(0x80657938, &lit_4052);
-#pragma pop
-
-/* 8065793C-80657944 000018 0004+04 0/1 0/0 0/0 .rodata          @4053 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4053[1 + 1 /* padding */] = {
-    185.0f,
-    /* padding */
-    0.0f,
-};
-COMPILER_STRIP_GATE(0x8065793C, &lit_4053);
-#pragma pop
-
-/* 80657944-8065794C 000020 0008+00 1/2 0/0 0/0 .rodata          @4055 */
-SECTION_RODATA static u8 const lit_4055[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80657944, &lit_4055);
-
-/* 8065794C-80657954 000028 0008+00 1/2 0/0 0/0 .rodata          @4056 */
-SECTION_RODATA static u8 const lit_4056[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8065794C, &lit_4056);
 
 /* 80657260-80657490 000980 0230+00 1/1 0/0 0/0 .text            update__11daCoach2D_cFv */
 void daCoach2D_c::update() {
-    // NONMATCHING
+    f32 var_f29 = l_HOSTIO.param.icon_space_x;
+    f32 icon_pos_x = l_HOSTIO.param.icon_pos_x + ((mMaxHitCount - 1) * var_f29);
+    f32 var_f28 = l_HOSTIO.param.icon_pos_y;
+
+    for (int i = 0; i < 20; i++) {
+        mIconInfo[i].pos_x = icon_pos_x;
+        mIconInfo[i].pos_y = var_f28;
+        icon_pos_x -= var_f29;
+    }
+
+    f32 var_f30 = 4.0f * ((J2DPicture*)mpScrn->search('basha_p0'))->getWhite().r;
+    if (var_f30 > 255.0f) {
+        var_f30 = 255.0f;
+    }
+
+    f32 temp_f27 = (70.0f + (185.0f * (var_f30 / 255.0f))) / 255.0f;
+    mpPaneAll->paneTrans(l_HOSTIO.param.pos_x, l_HOSTIO.param.pos_y);
+    mpPaneAll->scale(l_HOSTIO.param.size, l_HOSTIO.param.size);
+    mpPaneAll->setAlphaRate(l_HOSTIO.param.alpha);
+    mpPaneFire->setAlphaRate(temp_f27 * (l_HOSTIO.param.icon_alpha * l_HOSTIO.param.alpha));
+    mpPaneFireB->setAlphaRate(l_HOSTIO.param.icon_alpha * l_HOSTIO.param.alpha);
+    mpPaneBasha->scale(l_HOSTIO.param.coach_size, l_HOSTIO.param.coach_size);
+    mpPaneBasha->setAlphaRate(l_HOSTIO.param.coach_alpha * l_HOSTIO.param.alpha);
+
+    if (l_HOSTIO.param.debug_ON) {
+        mMaxHitCount = l_HOSTIO.param.max_damage_num;
+        mHitCount = l_HOSTIO.param.now_damage_num;
+    }
 }
 
 /* 80657490-8065764C 000BB0 01BC+00 2/2 0/0 0/0 .text            setBrkAnime__11daCoach2D_cFb */
 void daCoach2D_c::setBrkAnime(bool param_0) {
-    // NONMATCHING
+    if (mHitCount != 0) {
+        mBrkSpeed = l_HOSTIO.param.blink_speed_min + ((l_HOSTIO.param.blink_speed_max - l_HOSTIO.param.blink_speed_min) * ((f32)mHitCount / (f32)mMaxHitCount));
+    } else {
+        mBrkSpeed = 0.0f;
+    }
+
+    if (mBrkSpeed > 0.0f && !param_0) {
+        mBrkFrame += mBrkSpeed;
+        if (mBrkFrame >= mpFireIconBrk->getFrameMax()) {
+            mBrkFrame -= mpFireIconBrk->getFrameMax();
+        }
+        mpScrn->search('basha_f0')->show();
+    } else {
+        mpScrn->search('basha_f0')->hide();
+        mBrkFrame = 0.0f;
+    }
+
+    mpFireIconBrk->setFrame(mBrkFrame);
+    mpScrn->search('basha_p0')->setAnimation(mpFireIconBrk);
 }
 
-/* ############################################################################################## */
+/* 8065764C-806576D4 000D6C 0088+00 1/0 0/0 0/0 .text            daCoach2D_create__FP11daCoach2D_c
+ */
+static int daCoach2D_create(daCoach2D_c* i_this) {
+    fopAcM_SetupActor(i_this, daCoach2D_c);
+    return i_this->create();
+}
+
+/* 806576D4-806576F4 000DF4 0020+00 1/0 0/0 0/0 .text            daCoach2D_destroy__FP11daCoach2D_c
+ */
+static int daCoach2D_destroy(daCoach2D_c* i_this) {
+    return i_this->destroy();
+}
+
+/* 806576F4-80657714 000E14 0020+00 1/0 0/0 0/0 .text            daCoach2D_execute__FP11daCoach2D_c
+ */
+static int daCoach2D_execute(daCoach2D_c* i_this) {
+    return i_this->execute();
+}
+
+/* 80657714-80657734 000E34 0020+00 1/0 0/0 0/0 .text            daCoach2D_draw__FP11daCoach2D_c */
+static int daCoach2D_draw(daCoach2D_c* i_this) {
+    return i_this->draw();
+}
+
 /* 806579F8-80657A18 -00001 0020+00 1/0 0/0 0/0 .data            daCoach2D_METHODS */
 static actor_method_class daCoach2D_METHODS = {
-    (process_method_func)daCoach2D_create__FP11daCoach2D_c,
-    (process_method_func)daCoach2D_destroy__FP11daCoach2D_c,
-    (process_method_func)daCoach2D_execute__FP11daCoach2D_c,
-    0,
-    (process_method_func)daCoach2D_draw__FP11daCoach2D_c,
+    (process_method_func)daCoach2D_create,
+    (process_method_func)daCoach2D_destroy,
+    (process_method_func)daCoach2D_execute,
+    NULL,
+    (process_method_func)daCoach2D_draw,
 };
 
 /* 80657A18-80657A48 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_COACH2D */
@@ -252,102 +310,3 @@ extern actor_process_profile_definition g_profile_COACH2D = {
   fopAc_ACTOR_e,         // mActorType
   fopAc_CULLBOX_0_e,     // cullType
 };
-
-/* 80657A48-80657A54 0000AC 000C+00 1/1 0/0 0/0 .data            __vt__12dDlst_base_c */
-SECTION_DATA extern void* __vt__12dDlst_base_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__12dDlst_base_cFv,
-};
-
-/* 80657A54-80657A60 0000B8 000C+00 2/2 0/0 0/0 .data            __vt__11daCoach2D_c */
-SECTION_DATA extern void* __vt__11daCoach2D_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__11daCoach2D_cFv,
-};
-
-/* 80657A60-80657A70 0000C4 0010+00 3/3 0/0 0/0 .data            __vt__Q211daCoach2D_c6c_list */
-SECTION_DATA extern void* __vt__Q211daCoach2D_c6c_list[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)draw__Q211daCoach2D_c6c_listFv,
-    (void*)__dt__Q211daCoach2D_c6c_listFv,
-};
-
-/* 8065764C-806576D4 000D6C 0088+00 1/0 0/0 0/0 .text            daCoach2D_create__FP11daCoach2D_c
- */
-static void daCoach2D_create(daCoach2D_c* param_0) {
-    // NONMATCHING
-}
-
-/* 806576D4-806576F4 000DF4 0020+00 1/0 0/0 0/0 .text            daCoach2D_destroy__FP11daCoach2D_c
- */
-static void daCoach2D_destroy(daCoach2D_c* param_0) {
-    // NONMATCHING
-}
-
-/* 806576F4-80657714 000E14 0020+00 1/0 0/0 0/0 .text            daCoach2D_execute__FP11daCoach2D_c
- */
-static void daCoach2D_execute(daCoach2D_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80657714-80657734 000E34 0020+00 1/0 0/0 0/0 .text            daCoach2D_draw__FP11daCoach2D_c */
-static void daCoach2D_draw(daCoach2D_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80657734-80657738 000E54 0004+00 1/0 0/0 0/0 .text            draw__12dDlst_base_cFv */
-// void dDlst_base_c::draw() {
-extern "C" void draw__12dDlst_base_cFv() {
-    /* empty function */
-}
-
-/* ############################################################################################## */
-/* 80657A70-80657A7C 0000D4 000C+00 2/2 0/0 0/0 .data            __vt__15daCoach2D_HIO_c */
-SECTION_DATA extern void* __vt__15daCoach2D_HIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__15daCoach2D_HIO_cFv,
-};
-
-/* 80657A7C-80657A88 0000E0 000C+00 3/3 0/0 0/0 .data            __vt__14mDoHIO_entry_c */
-SECTION_DATA extern void* __vt__14mDoHIO_entry_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14mDoHIO_entry_cFv,
-};
-
-/* 80657738-80657794 000E58 005C+00 2/1 0/0 0/0 .text            __dt__15daCoach2D_HIO_cFv */
-daCoach2D_HIO_c::~daCoach2D_HIO_c() {
-    // NONMATCHING
-}
-
-/* 80657794-806577DC 000EB4 0048+00 1/0 0/0 0/0 .text            __dt__14mDoHIO_entry_cFv */
-// mDoHIO_entry_c::~mDoHIO_entry_c() {
-extern "C" void __dt__14mDoHIO_entry_cFv() {
-    // NONMATCHING
-}
-
-/* 806577DC-80657824 000EFC 0048+00 1/0 0/0 0/0 .text            __dt__Q211daCoach2D_c6c_listFv */
-daCoach2D_c::c_list::~c_list() {
-    // NONMATCHING
-}
-
-/* 80657824-8065789C 000F44 0078+00 1/0 0/0 0/0 .text            __dt__11daCoach2D_cFv */
-daCoach2D_c::~daCoach2D_c() {
-    // NONMATCHING
-}
-
-/* 8065789C-80657910 000FBC 0074+00 0/0 1/0 0/0 .text            __sinit_d_a_coach_2D_cpp */
-void __sinit_d_a_coach_2D_cpp() {
-    // NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x8065789C, __sinit_d_a_coach_2D_cpp);
-#pragma pop
-
-/* 80657954-80657954 000030 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

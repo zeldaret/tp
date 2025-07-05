@@ -16,30 +16,36 @@ struct TControl {
     /* 802A75D4 */ void reset();
     /* 802A7634 */ int update();
     /* 802A76BC */ void render();
-    /* 802A77E8 */ int setMessageCode(u16, u16);
-    /* 802A78F4 */ int setMessageID(u32, u32, bool*);
-    /* 802A7A20 */ bool setMessageCode_inSequence_(JMessage::TProcessor const*, u16, u16);
+    /* 802A77E8 */ int setMessageCode(u16 u16GroupID, u16 u16Index);
+    /* 802A78F4 */ int setMessageID(u32 uMsgID, u32 param_1, bool* pbValid);
+    /* 802A7A20 */ bool setMessageCode_inSequence_(const TProcessor* pProcessor, u16 u16GroupID, u16 u16Index);
 
     bool isReady_update_() const { return pMessageText_begin_ != 0 && pSequenceProcessor_ != NULL; }
-    bool isReady_render_() const { return field_0x20 != 0 && pRenderingProcessor_ != NULL; }
+    bool isReady_render_() const { return pMessageText_current_ != 0 && pRenderingProcessor_ != NULL; }
 
     TProcessor* getProcessor() const {
-        return pSequenceProcessor_ != NULL ? (TProcessor*)pSequenceProcessor_ :
-                                             (TProcessor*)pRenderingProcessor_;
+        if (pSequenceProcessor_ != NULL) {
+            return (TProcessor*)pSequenceProcessor_;
+        } else {
+            return (TProcessor*)pRenderingProcessor_;
+        }                                   
     }
 
-    int setMessageCode(u32 code) {
-        return setMessageCode(code >> 16, code);
+    int setMessageCode(u32 uCode) {
+        return setMessageCode(uCode >> 16, uCode);
     }
 
-    int setMessageCode_inReset_(TProcessor* pProcessor, u16 param_1, u16 param_2) {
-        if (!setMessageCode_inSequence_(pProcessor, param_1, param_2)) {
+    int setMessageCode_inReset_(const TProcessor* pProcessor, u16 u16GroupID, u16 u16Index) {
+        JUT_ASSERT(138, pEntry_==0);
+        JUT_ASSERT(139, pszText_update_current_==0);
+        JUT_ASSERT(140, oStack_renderingProcessor_.empty());
+        
+        if (!setMessageCode_inSequence_(pProcessor, u16GroupID, u16Index)) {
             return 0;
         }
 
         if (isReady_update_()) {
-            pSequenceProcessor_->setBegin_messageEntryText(pResourceCache_, pEntry_,
-                                                           pMessageText_begin_);
+            pSequenceProcessor_->setBegin_messageEntryText(pResourceCache_, pEntry_, pMessageText_begin_);
         }
 
         return 1;
@@ -47,8 +53,10 @@ struct TControl {
 
     const char* getMessageText_begin() const { return pMessageText_begin_; }
     void* getMessageEntry() const { return pEntry_; }
-    void setSequenceProcessor(TSequenceProcessor* processor) { pSequenceProcessor_ = processor; }
-    void setRenderingProcessor(TRenderingProcessor* processor) { pRenderingProcessor_ = processor; }
+    u32 getMessageCode() const { return (uMessageGroupID_ << 16) | uMessageID_; }
+    void setSequenceProcessor(TSequenceProcessor* pProcessor) { pSequenceProcessor_ = pProcessor; }
+    void setRenderingProcessor(TRenderingProcessor* pProcessor) { pRenderingProcessor_ = pProcessor; }
+
     void resetResourceCache() { 
         if (pSequenceProcessor_ != NULL) {
             pSequenceProcessor_->resetResourceCache();
@@ -63,32 +71,22 @@ struct TControl {
 
     void render_synchronize() {
         if (isReady_render_()) {
-            field_0x20 = pszText_update_current_;
+            pMessageText_current_ = pszText_update_current_;
             oStack_renderingProcessor_ = pRenderingProcessor_->oStack_;
         }
     }
 
     /* 0x04 */ TSequenceProcessor* pSequenceProcessor_;
     /* 0x08 */ TRenderingProcessor* pRenderingProcessor_;
-    /* 0x0C */ u16 messageCode_;
-    /* 0x0E */ u16 field_0xe;
+    /* 0x0C */ u16 uMessageGroupID_;
+    /* 0x0E */ u16 uMessageID_;
     /* 0x10 */ const TResource* pResourceCache_;
     /* 0x14 */ void* pEntry_;
     /* 0x18 */ const char* pMessageText_begin_;
     /* 0x1C */ const char* pszText_update_current_;
-    /* 0x20 */ const char* field_0x20;
+    /* 0x20 */ const char* pMessageText_current_;
     /* 0x24 */ TProcessor::TStack_ oStack_renderingProcessor_;
 };
 };  // namespace JMessage
-
-/**
- * @ingroup jsystem-jmessage
- * 
- */
-struct jmessage_tControl : public JMessage::TControl {
-    /* 802299EC */ jmessage_tControl();
-
-    /* 80039B0C */ virtual ~jmessage_tControl();
-};
 
 #endif /* JMESSAGE_CONTROL_H */

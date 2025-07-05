@@ -43,7 +43,7 @@ public:
     /* 801D9E20 */ bool isGiveInsect(int, int);
     /* 801D9ED4 */ static bool isGiveInsect(u8);
     /* 801D9E7C */ static bool isCatchInsect(u8);
-    /* 801D9F3C */ static u8 isCatchNotGiveInsect(u8);
+    /* 801D9F3C */ static bool isCatchNotGiveInsect(u8);
     /* 801D9F8C */ void cursorMove();
     /* 801DA1EC */ void setCursorPos();
     /* 801DA2FC */ u8 dpdMove();

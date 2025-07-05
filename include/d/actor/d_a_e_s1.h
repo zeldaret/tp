@@ -31,7 +31,7 @@ public:
     /* 0x05B5 */ u8 mPrm1;
     /* 0x05B6 */ u8 mGroupID;
     /* 0x05B7 */ u8 mSwBit;
-    /* 0x05B8 */ u8 field_0x5B8[0x05BC - 0x05B8];
+    /* 0x05B8 */ int mEntryNo;
     /* 0x05BC */ dPath* mpPath;
     /* 0x05C0 */ s8 mCurrentPathPointNo;
     /* 0x05C1 */ s8 mPathDirection;

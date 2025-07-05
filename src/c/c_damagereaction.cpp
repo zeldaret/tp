@@ -19,7 +19,7 @@ u8 data_80450C9B;
 u8 data_80450C9C;
 u8 data_80450C9D;
 u8 data_80450C9E;
-u8 data_80450C9F;
+u8 cDmr_FishingWeather;
 
 /* 8001817C-800182A4 012ABC 0128+00 1/0 0/0 0/0 .text
  * execute__24JPTraceParticleCallBack4FP14JPABaseEmitterP15JPABaseParticle */
@@ -67,8 +67,7 @@ BOOL cDmrNowMidnaTalk() {
 }
 
 /* 80450CA0-80450CA4 0001A0 0004+00 0/0 0/0 2/2 .sbss            None */
-extern u8 data_80450CA0[4];
-u8 data_80450CA0[4];
+u8 data_80450CA0;
 
 /* 80450CA4-80450CA8 0001A4 0004+00 1/1 1/1 1/1 .sbss            JPTracePCB4 */
 JPTraceParticleCallBack4 JPTracePCB4;

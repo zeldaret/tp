@@ -195,12 +195,12 @@ public:
     }
 
     TTransform_position_direction*
-    transformOnGet_transform_ifEnabled(TTransform_position_direction* param_1,
+    transformOnGet_transform_ifEnabled(TTransform_position_direction& param_1,
                                        TTransform_position_direction* param_2) const {
         if (!transformOnGet_isEnabled()) {
-            return param_1;
+            return &param_1;
         }
-        transformOnGet_transform(param_1, param_2);
+        transformOnGet_transform(&param_1, param_2);
         return param_2;
     }
 

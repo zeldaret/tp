@@ -80,7 +80,7 @@ public:
     /* 8053E6C8 */ void checkChangeJoint(int);
     /* 8053E6D8 */ void checkRemoveJoint(int);
 
-    static void* mCutNameList[15];
+    static char* mCutNameList[15];
     static u8 mCutList[180];
 
 private:
@@ -89,11 +89,16 @@ private:
 
 STATIC_ASSERT(sizeof(daNpc_Besu_c) == 0x1138);
 
+struct daNpc_Besu_HIOParam {
+    /* 0x00 */ daNpcT_HIOParam common;
+    /* 0x8C */ f32 field_0x8c;
+};
+
 class daNpc_Besu_Param_c {
 public:
     /* 8053E6E8 */ ~daNpc_Besu_Param_c();
 
-    static u8 const m[144];
+    static const daNpc_Besu_HIOParam m;
 };
 
 #endif /* D_A_NPC_BESU_H */

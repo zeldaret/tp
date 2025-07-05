@@ -30,6 +30,16 @@ struct BMG_INF1 : JUTDataBlockHeader {
     /* 0x10 */ u32 entries[6];
 };
 
+#if (VERSION == VERSION_GCN_JPN) || (VERSION == VERSION_WII_JPN)
+#define LINE_HEIGHT 30.0f
+#define LINE_SPACE  30.0f
+#define CHAR_SPACE  3.0f
+#else
+#define LINE_HEIGHT 23.0f
+#define LINE_SPACE  23.0f
+#define CHAR_SPACE  1.0f
+#endif
+
 /* 8009CB88-8009D194 0974C8 060C+00 1/1 0/0 0/0 .text            messageSet__FUlb */
 static void messageSet(u32 status, bool i_drawBg) {
     BMG_INF1* inf1 = (BMG_INF1*)&msg_data[0x20];
@@ -58,22 +68,22 @@ static void messageSet(u32 status, bool i_drawBg) {
     size.mSizeY = 22.0f;
 
     tpane.setFontSize(size);
-    tpane.setCharSpace(1.0f);
-    tpane.setLineSpace(23.0f);
+    tpane.setCharSpace(CHAR_SPACE);
+    tpane.setLineSpace(LINE_SPACE);
     tpane.setCharColor(tcharcolor);
     tpane.setGradColor(tgradcolor);
     tpane.setBlackWhite(tblack, twhite);
     
     spane.setFontSize(size);
-    spane.setCharSpace(1.0f);
-    spane.setLineSpace(23.0f);
+    spane.setCharSpace(CHAR_SPACE);
+    spane.setLineSpace(LINE_SPACE);
     spane.setCharColor(scharcolor);
     spane.setGradColor(sgradcolor);
     spane.setBlackWhite(sblack, swhite);
 
     const int lineMax = 10;
 
-    f32 height = 23.0f;
+    f32 height = LINE_HEIGHT;
     f32 maxWidth = 0.0f;
     int cnt = 0;
     f32 lineWidth[lineMax];
@@ -83,19 +93,23 @@ static void messageSet(u32 status, bool i_drawBg) {
 
     for (; *msg_p != '\0'; msg_p++) {
         if (*msg_p == '\n') {
-            height += 23.0f;
+            height += LINE_HEIGHT;
             cnt++;
             JUT_ASSERT(191, cnt < lineMax);
             continue;
         }
 
         int c = (u8)*msg_p;
+        #if (VERSION == VERSION_GCN_JPN) || (VERSION == VERSION_WII_JPN)
+        if (pfont->isLeadByte_ShiftJIS(c)) {
+        #else
         if (pfont->isLeadByte_EUC(c)) {
+        #endif
             msg_p++;
             c = (c << 8) | (u8)*msg_p;
         }
 
-        lineWidth[cnt] += 1.0f + size.mSizeX * ((f32)pfont->getWidth(c) / (f32)pfont->getCellWidth());
+        lineWidth[cnt] += CHAR_SPACE + size.mSizeX * ((f32)pfont->getWidth(c) / (f32)pfont->getCellWidth());
     }
 
     for (int i = 0; i < lineMax; i++) {
@@ -104,6 +118,18 @@ static void messageSet(u32 status, bool i_drawBg) {
             maxWidth = width;
     }
 
+    #if (VERSION == VERSION_GCN_JPN) || (VERSION == VERSION_WII_JPN)
+    f32 temp_0 = 0.0f; // fixes load order
+    f32 y = temp_0 + ((448.0f - height) / 2);
+
+    if (i_drawBg) {
+        ppane.mAlpha = 0x82;
+        ppane.draw(0.0f, 0.0f, 608.0f, 448.0f, false, false, false);
+    }
+
+    spane.draw(2.0f, y + 10.0f + 2.0f, 608.0f, HBIND_CENTER);
+    tpane.draw(0.0f, y + 10.0f, 608.0f, HBIND_CENTER);
+    #else
     f32 temp_0 = 0.0f; // fixes load order
     f32 x = temp_0 + ((608.0f - maxWidth) / 2);
     f32 y = temp_0 + ((448.0f - height) / 2);
@@ -115,6 +141,7 @@ static void messageSet(u32 status, bool i_drawBg) {
 
     spane.draw(x + 2.0f, y + 10.0f + 2.0f, 608.0f, HBIND_LEFT);
     tpane.draw(x, y + 10.0f, 608.0f, HBIND_LEFT);
+    #endif
 }
 
 /* 8009D194-8009D354 097AD4 01C0+00 1/1 0/0 0/0 .text            draw__14dDvdErrorMsg_cFl */

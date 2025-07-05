@@ -2,6 +2,7 @@
 #define J3DTEXTURE_H
 
 #include "JSystem/J3DGraphBase/J3DStruct.h"
+#include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "dolphin/types.h"
 
@@ -23,7 +24,10 @@ public:
     /* 803366A4 */ virtual ~J3DTexture() {}
 
     u16 getNum() const { return mNum; }
-    ResTIMG* getResTIMG(u16 entry) const { return &mpRes[entry]; }
+    ResTIMG* getResTIMG(u16 entry) const {
+        J3D_ASSERT(72, entry < mNum, "Error : range over.");
+        return &mpRes[entry];   
+    }
     void setResTIMG(u16 entry, const ResTIMG& timg) {
         mpRes[entry] = timg;
         mpRes[entry].imageOffset = ((mpRes[entry].imageOffset + (u32)&timg - (u32)(mpRes + entry)));
@@ -91,10 +95,10 @@ struct J3DTexCoord : public J3DTexCoordInfo {
         __memcpy(this, &info, sizeof(J3DTexCoordInfo));
     }
 
-    u8 getTexGenType() { return mTexGenType; }
-    u8 getTexGenSrc() { return mTexGenSrc; }
-    u8 getTexGenMtx() { return mTexGenMtx & 0xff; }
-    u16 getTexMtxReg() { return mTexMtxReg & 0xff; }
+    u8 getTexGenType() const { return mTexGenType; }
+    u8 getTexGenSrc() const { return mTexGenSrc; }
+    u8 getTexGenMtx() const { return mTexGenMtx; }
+    u32 getTexMtxReg() const { return mTexMtxReg & 0xff; }
     void setTexGenMtx(u8 param_1) { mTexGenMtx = param_1; }
     void setTexMtxReg(u16 reg) { mTexMtxReg = reg; }
     J3DTexCoord& operator=(const J3DTexCoord& other) {

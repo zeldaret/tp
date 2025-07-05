@@ -1,6 +1,7 @@
 #ifndef JMESSAGE_LOCALE_H
 #define JMESSAGE_LOCALE_H
 
+#include <dolphin.h>
 
 namespace JMessage {
 
@@ -15,10 +16,10 @@ struct locale {
         return c >= 0x81 && (c <= 0x9F || (c >= 0xE0 && c <= 0xFC));
     }
 
-    /* 802A9490 */ static int parseCharacter_1Byte(char const**);
-    /* 802A94A8 */ static int parseCharacter_2Byte(char const**);
-    /* 802A9528 */ static int parseCharacter_ShiftJIS(char const**);
-    /* 802A958C */ static int parseCharacter_UTF8(char const**);
+    /* 802A9490 */ static int parseCharacter_1Byte(const char** ppszText);
+    /* 802A94A8 */ static int parseCharacter_2Byte(const char** ppszText);
+    /* 802A9528 */ static int parseCharacter_ShiftJIS(const char** ppszText);
+    /* 802A958C */ static int parseCharacter_UTF8(const char** ppszText);
 };
 };  // namespace JMessage
 

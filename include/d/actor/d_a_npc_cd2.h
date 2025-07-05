@@ -22,7 +22,7 @@ enum AnmNum {
 
 struct daNpcCd2_HIO_Jnt_c : public JORReflexible {
     /* 8015A6E8 */ virtual ~daNpcCd2_HIO_Jnt_c() {}
-    /* 8015A788 */ daNpcCd2_HIO_Jnt_c();
+    /* 8015A788 */ daNpcCd2_HIO_Jnt_c() {}
 
     void genMessage(JORMContext*);
 
@@ -32,7 +32,7 @@ struct daNpcCd2_HIO_Jnt_c : public JORReflexible {
 
 struct daNpcCd2_HIO_MChild_c {
     /* 8015A798 */ virtual ~daNpcCd2_HIO_MChild_c() {}
-    /* 8015A808 */ daNpcCd2_HIO_MChild_c();
+    /* 8015A808 */ daNpcCd2_HIO_MChild_c() {}
 
     /* 0x004 */ daNpcCd2_HIO_Jnt_c field_0x004[19];
     /* 0x1CE */ s16 mMaxLmtY_BACKBONE;
@@ -61,7 +61,7 @@ struct daNpcCd2_HIO_MChild_c {
 
 struct daNpcCd2_HIO_WChild_c {
     /* 8015A678 */ virtual ~daNpcCd2_HIO_WChild_c() {}
-    /* 8015A730 */ daNpcCd2_HIO_WChild_c();
+    /* 8015A730 */ daNpcCd2_HIO_WChild_c() {}
 
     /* 0x004 */ daNpcCd2_HIO_Jnt_c field_0x004[21];
     /* 0x1FE */ s16 mMaxLmtY_BACKBONE;

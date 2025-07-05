@@ -41,6 +41,7 @@ _dtors = .dtors:0x00000000; // type:label scope:global
 @115039 = .rodata:0x00000038; // type:object size:0x4 scope:local
 cNullVec__6Z2Calc = .rodata:0x0000003C; // type:object size:0xC scope:global
 @46916 = .rodata:0x00000048; // type:object size:0x4 scope:local
+lbl_609_rodata_4C = .rodata:0x0000004C; // type:object size:0x18
 @114666 = .data:0x00000000; // type:object size:0x8 scope:local data:string
 l_arcName = .data:0x00000008; // type:object size:0x4 scope:global data:4byte
 l_daObjSM_DOOR_Method = .data:0x00000010; // type:object size:0x20 scope:global

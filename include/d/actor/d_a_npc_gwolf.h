@@ -67,6 +67,13 @@ public:
     static u8 mEvtCutList[60];
 
 private:
+    // /* 0xB48 */ Z2Creature mCreature;
+    // /* 0xBD8 */ daNpcF_MatAnm_c* mpMatAnm;
+    // /* 0xBDC */ daNpcF_Lookat_c mLookAt;
+    // /* 0xC78 */ daNpcF_ActorMngr_c mActorMng[2];
+    // /* 0xC88 */ u8 field_0xc88[4];
+    // /* 0xC8C */ dCcD_Cyl mCyl;
+    // /* 0xDC8 */ u8 field_0xdc8[0xE1C - 0xdc8];
     /* 0x568 */ u8 field_0xb48[0xE1C - 0x568];
     /* 0xE1C */ u8 field_0xe1c;
 };

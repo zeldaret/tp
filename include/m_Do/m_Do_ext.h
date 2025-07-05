@@ -146,6 +146,9 @@ public:
     /* 8000D990 */ void changeBckOnly(J3DAnmTransform* i_bck);
     /* 8000D9CC */ void entry(J3DModelData* i_modelData, f32 i_frame);
     /* 8000D9E8 */ void entryJoint(J3DModelData* i_modelData, u16 i_jntNo, f32 i_frame);
+    inline void entryJoint(J3DModelData* i_modelData, u16 i_jntNo) {
+        entryJoint(i_modelData, i_jntNo, getFrame());
+    }
 
     void entry(J3DModelData* i_modelData) { entry(i_modelData, getFrame()); }
 
@@ -485,19 +488,30 @@ struct mDoExt_MtxCalcAnmBlendTblOld : public mDoExt_MtxCalcAnmBlendTbl {
 
 STATIC_ASSERT(sizeof(mDoExt_MtxCalcAnmBlendTblOld) == 0x10);
 
+struct mDoExt_3Dline_field_0x10_c {
+    s8 x;
+    s8 y;
+    s8 z;
+};
+
+struct mDoExt_3Dline_field_0x18_c {
+    f32 field_0x0;
+    f32 field_0x4;
+};
+
 class mDoExt_3Dline_c {
 public:
-    /* 800123D0 */ int init(u16, int, int);
-    /* 800126BC */ mDoExt_3Dline_c();
+    /* 800123D0 */ int init(u16, int, BOOL);
+    /* 800126BC */ mDoExt_3Dline_c() {}
 
     /* 0x00 */ cXyz* field_0x0;
     /* 0x04 */ f32* field_0x4;
     /* 0x08 */ cXyz* field_0x8;
     /* 0x0C */ cXyz* field_0xc;
-    /* 0x10 */ u8* field_0x10;
-    /* 0x14 */ void* field_0x14;
-    /* 0x18 */ f32* field_0x18;
-    /* 0x1C */ f32* field_0x1c;
+    /* 0x10 */ mDoExt_3Dline_field_0x10_c* field_0x10;
+    /* 0x14 */ mDoExt_3Dline_field_0x10_c* field_0x14;
+    /* 0x18 */ mDoExt_3Dline_field_0x18_c* field_0x18;
+    /* 0x1C */ mDoExt_3Dline_field_0x18_c* field_0x1c;
 };
 
 class mDoExt_3DlineMat_c {

@@ -2340,7 +2340,6 @@ void dMenu_Collect3D_c::draw() {
 }
 
 /* 801B6A30-801B6D30 1B1370 0300+00 2/2 0/0 0/0 .text setJ3D__17dMenu_Collect3D_cFPCcPCcPCc */
-// NONMATCHING regalloc
 void dMenu_Collect3D_c::setJ3D(const char* param_0, const char* param_1, const char* param_2) {
     JKRArchive* resArchive = dComIfGp_getCollectResArchive();
     J3DModelData* modelData = J3DModelLoaderDataBase::load(

@@ -22,6 +22,7 @@ _dtors = .dtors:0x00000000; // type:label scope:global
 @114201 = .rodata:0x0000000C; // type:object size:0x4 scope:local
 cNullVec__6Z2Calc = .rodata:0x00000010; // type:object size:0xC scope:global
 @46916 = .rodata:0x0000001C; // type:object size:0x4 scope:local
+lbl_732_rodata_20 = .rodata:0x00000020; // type:object size:0x14
 daTag_ShopCamera_MethodTable = .data:0x00000000; // type:object size:0x20 scope:global
 g_profile_TAG_SHOPCAM = .data:0x00000020; // type:object size:0x30 scope:global
 __vt__18daTag_ShopCamera_c = .data:0x00000050; // type:object size:0xC scope:global

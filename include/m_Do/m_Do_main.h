@@ -53,6 +53,10 @@ private:
 struct mDoMain {
     static char COPYDATE_STRING[18];
     static u32 memMargin;
+    #ifdef DEBUG
+    static u32 archiveHeapSize;
+    static u32 gameHeapSize;
+    #endif
     static u8 mHeapBriefType;
     static OSTime sPowerOnTime;
     static OSTime sHungUpTime;

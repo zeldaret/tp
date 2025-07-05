@@ -53,7 +53,7 @@ public:
     /* 80AE93A0 */ BOOL main();
     /* 80AE9624 */ void setAttnPos();
     /* 80AE9820 */ void lookat();
-    /* 80AE9A00 */ bool setMotionAnm(int, f32);
+    /* 80AE9A00 */ void setMotionAnm(int, f32);
     /* 80AE9AD0 */ BOOL drawDbgInfo();
     /* 80AEA340 */ void adjustShapeAngle();
 

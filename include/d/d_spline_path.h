@@ -32,6 +32,8 @@ public:
     /* 80097A6C */ cXyz Calc(cXyz*);
     /* 80097B68 */ f32 Spot(f32*, f32);
     /* 801828D4 */ virtual ~d2DBSplinePath() {}
+
+    bool Last() { return field_0x08 == 3; }
 };
 
 #endif /* D_D_SPLINE_PATH_H */

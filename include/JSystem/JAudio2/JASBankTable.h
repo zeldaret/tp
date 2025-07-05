@@ -11,7 +11,7 @@
 template<size_t N>
 class JASBankTable : public JASBankList {
 public:
-    // JASBank* getBank(u32 param_0) { return mArray.get(param_0); }
+    JASBank* getBank(u32 param_0) { return mArray.get(param_0); }
     virtual JASBank* getBank(u32 param_0) const { return mArray.get(param_0); }
     void registBank(u32 param_0, JASBank* param_1) { mArray.set(param_0, param_1); }
 

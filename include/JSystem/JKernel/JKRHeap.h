@@ -3,11 +3,15 @@
 
 #include "JSystem/JKernel/JKRDisposer.h"
 #include <dolphin/os.h>
+#include "global.h"
 
 class JKRHeap;
 typedef void (*JKRErrorHandler)(void*, u32, int);
 
 extern bool data_804508B0;
+extern u8 data_804508B1;
+extern u8 data_804508B2;
+extern u8 data_804508B3;
 
 /**
  * @ingroup jsystem-jkernel
@@ -146,7 +150,8 @@ public:
     static void* getUserRamEnd(void) { return mUserRamEnd; }
     static u32 getMemorySize(void) { return mMemorySize; }
     static JKRHeap* getRootHeap() { return sRootHeap; }
-#ifdef DEBUG
+
+#if PLATFORM_WII || PLATFORM_SHIELD
     static JKRHeap* getRootHeap2() { return sRootHeap2; }
 #endif
 
@@ -170,7 +175,8 @@ public:
     static u32 mMemorySize;
 
     static JKRHeap* sRootHeap;
-#ifdef DEBUG
+
+#if PLATFORM_WII || PLATFORM_SHIELD
     static JKRHeap* sRootHeap2;
 #endif
 
@@ -246,5 +252,17 @@ inline s32 JKRResizeMemBlock(JKRHeap* heap, void* ptr, u32 size) {
 inline JKRHeap* JKRGetRootHeap() {
     return JKRHeap::getRootHeap();
 }
+
+#if PLATFORM_WII || PLATFORM_SHIELD
+inline JKRHeap* JKRGetRootHeap2() {
+    return JKRHeap::getRootHeap2();
+}
+#endif
+
+#ifdef DEBUG
+inline void JKRSetDebugFillNotuse(u8 status) { data_804508B1 = status; }
+inline void JKRSetDebugFillNew(u8 status) { data_804508B2 = status; }
+inline void JKRSetDebugFillDelete(u8 status) { data_804508B3 = status; }
+#endif
 
 #endif /* JKRHEAP_H */

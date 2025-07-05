@@ -653,10 +653,10 @@ private:
 class dSv_event_c {
 public:
     void init();
-    void onEventBit(u16 i_no);
-    void offEventBit(u16 i_no);
-    int isEventBit(u16 i_no) const;
-    void setEventReg(u16 i_reg, u8 i_no);
+    void onEventBit(const u16 i_no);
+    void offEventBit(const u16 i_no);
+    int isEventBit(const u16 i_no) const;
+    void setEventReg(const u16 i_reg, u8 i_no);
     u8 getEventReg(u16 i_reg) const;
 
     void* getPEventBit() { return (void*)mEvent; }
@@ -840,6 +840,7 @@ public:
     u32 getParam() const { return mParam; }
     cXyz& getPos() { return mPosition; }
     s16 getAngleY() const { return mAngleY; }
+    s8 getRoomNo() const { return unk18; }
 
     f32 getCameraFvy() const { return mCameraFvy; }
     void setCameraFvy(f32 i_fvy) { mCameraFvy = i_fvy; }

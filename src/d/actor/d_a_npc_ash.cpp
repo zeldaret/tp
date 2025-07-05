@@ -786,7 +786,7 @@ bool daNpcAsh_c::setExpressionBtp(int i_idx) {
 }
 
 /* 809597C0-80959910 0015C0 0150+00 1/0 0/0 0/0 .text            setMotionAnm__10daNpcAsh_cFif */
-bool daNpcAsh_c::setMotionAnm(int i_idx, f32 i_morf) {
+void daNpcAsh_c::setMotionAnm(int i_idx, f32 i_morf) {
     if (i_idx < 8 || i_idx >= 18) {
         return;
     }
@@ -1513,10 +1513,9 @@ BOOL daNpcAsh_c::ctrlBtk() {
         mpMatAnm->setNowOffsetX(cM_ssin(mEyeAngle.y) * 0.2f * -1.0f);
         mpMatAnm->setNowOffsetY(cM_ssin(mEyeAngle.x) * 0.4f);
         mpMatAnm->onEyeMoveFlag();
-        return true;
-    } else {
-        return false;
+        return TRUE;
     }
+    return FALSE;
 }
 
 /* 8095C5C4-8095C9BC 0043C4 03F8+00 1/0 0/0 0/0 .text            setAttnPos__10daNpcAsh_cFv */

@@ -193,7 +193,11 @@ static bool objectSetCheck(room_of_scene_class* i_this) {
                 if (*dStage_roomControl_c::getDemoArcName() != '\0') {
                     int phase = dComIfG_syncObjectRes(dStage_roomControl_c::getDemoArcName());
 
-                    if (phase >= 0 && phase > 0) {
+                    if (phase < 0) {
+                        #if VERSION == VERSION_WII_USA_R0
+                        dStage_escapeRestart();
+                        #endif
+                    } else if (phase > 0) {
                         return 0;
                     }
                 }
@@ -266,14 +270,14 @@ static bool isReadRoom(int param_0) {
         return false;
     }
 
-    if (room->field_0x0 <= param_0) {
+    if (room->num <= param_0) {
         return false;
     }
 
-    roomRead_data_class* roomData = room->field_0x4[dComIfGp_getNextStageRoomNo()];
-    u8* tmp = roomData->field_0x4;
+    roomRead_data_class* roomData = room->m_entries[dComIfGp_getNextStageRoomNo()];
+    u8* tmp = roomData->m_rooms;
 
-    for (int i = 0; i < roomData->field_0x0; i++) {
+    for (int i = 0; i < roomData->num; i++) {
         if (dStage_roomRead_dt_c_ChkBg(*tmp) &&
             param_0 == dStage_roomRead_dt_c_GetLoadRoomIndex(*tmp))
         {
@@ -342,6 +346,9 @@ static int phase_1(room_of_scene_class* i_this) {
         }
 
         if (!dComIfG_setStageRes(arcName, heap)) {
+            #if VERSION == VERSION_WII_USA_R0
+            dStage_escapeRestart();
+            #endif
             return cPhs_ERROR_e;
         }
     }
@@ -355,6 +362,9 @@ static int phase_2(room_of_scene_class* i_this) {
     int phase = dComIfG_syncStageRes(arcName);
 
     if (phase < 0) {
+        #if VERSION == VERSION_WII_USA_R0
+        dStage_escapeRestart();
+        #endif
         return cPhs_ERROR_e;
     }
 

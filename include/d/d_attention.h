@@ -264,6 +264,11 @@ public:
         mPadNo = i_padNo;
     }
 
+    void offAttnDraw() {
+        draw[0].field_0x173 = 3;
+        draw[1].field_0x173 = 3;
+    }
+
     static type_tbl_entry loc_type_tbl[3];
     static type_tbl_entry act_type_tbl[5];
     static dist_entry dist_table[234];
@@ -310,11 +315,11 @@ public:
     /* 0x49C */ dAttCatch_c mCatghTarget;
     /* 0x4B4 */ dAttLook_c mLookTarget;
     /* 0x4C4 */ int mAttnBlockTimer;
-#ifdef DEBUG
+#if PLATFORM_WII || PLATFORM_SHIELD
     /* 0x4C8 */ u8 field_0x4c8[0x4D0 - 0x4C8];
 #endif
     /* 0x4C8 */ dAttParam_c mAttParam;
-#ifdef DEBUG
+#if PLATFORM_WII || PLATFORM_SHIELD
     /* 0x51C */ u8 field_0x50c[0x520 - 0x51C];
 #else
     /* 0x50C */ u8 field_0x50c[0x514 - 0x50c];

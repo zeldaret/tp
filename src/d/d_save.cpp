@@ -1079,7 +1079,7 @@ void dSv_player_config_c::init() {
     unk0 = 1;
 #endif
 
-#if VERSION != VERSION_SHIELD_DEBUG
+#if PLATFORM_GCN
     if (OSGetSoundMode() == OS_SOUND_MODE_MONO) {
         mSoundMode = OS_SOUND_MODE_MONO;
         Z2AudioMgr::mAudioMgrPtr->setOutputMode(OS_SOUND_MODE_MONO);
@@ -1110,7 +1110,7 @@ void dSv_player_config_c::init() {
 
 /* 80034644-80034684 02EF84 0040+00 0/0 4/4 0/0 .text checkVibration__19dSv_player_config_cCFv */
 u32 dSv_player_config_c::checkVibration() const {
-#if VERSION != VERSION_SHIELD_DEBUG
+#if PLATFORM_GCN
     return JUTGamePad::sRumbleSupported & 0x80000000 ? dComIfGp_getNowVibration() : 0;
 #else
     return dComIfGp_getNowVibration();
@@ -1310,13 +1310,13 @@ void dSv_event_c::offEventBit(u16 i_no) {
 
 /* 800349BC-800349E0 02F2FC 0024+00 3/3 77/77 153/153 .text            isEventBit__11dSv_event_cCFUs
  */
-BOOL dSv_event_c::isEventBit(u16 i_no) const {
+BOOL dSv_event_c::isEventBit(const u16 i_no) const {
     return mEvent[i_no >> 8] & (i_no & 0xFF) ? TRUE : FALSE;
 }
 
 /* 800349E0-80034A04 02F320 0024+00 0/0 12/12 17/17 .text            setEventReg__11dSv_event_cFUsUc
  */
-void dSv_event_c::setEventReg(u16 i_reg, u8 i_no) {
+void dSv_event_c::setEventReg(const u16 i_reg, u8 i_no) {
     mEvent[i_reg >> 8] &= ~(u8)i_reg;
     mEvent[i_reg >> 8] |= i_no;
 }
@@ -1979,7 +1979,7 @@ int dSv_info_c::card_to_memory(char* i_cardPtr, int i_dataNum) {
     memcpy(dComIfGs_getSaveData(), i_cardPtr, sizeof(dSv_save_c));
     i_cardPtr += sizeof(dSv_save_c);
 
-#if VERSION != VERSION_SHIELD_DEBUG
+#if PLATFORM_GCN
     if (OSGetSoundMode() == OS_SOUND_MODE_MONO) {
         g_dComIfG_gameInfo.info.getPlayer().getConfig().setSound(OS_SOUND_MODE_MONO);
         Z2AudioMgr::mAudioMgrPtr->setOutputMode(OS_SOUND_MODE_MONO);

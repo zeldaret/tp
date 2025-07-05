@@ -3,6 +3,18 @@
 
 #include "dolphin/types.h"
 
+enum {
+    NODETYPE_MESSAGE_e = 1,
+    NODETYPE_BRANCH_e = 2,
+    NODETYPE_EVENT_e = 3,
+};
+
+enum {
+    SELTYPE_NONE_e = 0,
+    SELTYPE_VERTICAL_e = 1,
+    SELTYPE_HORIZONTAL_e = 2,
+};
+
 class fopAc_ac_c;
 class msg_class;
 
@@ -11,25 +23,27 @@ struct mesg_flow_node {
     /* 0x00 */ u8 type;
     /* 0x01 */ u8 field_0x1;
     /* 0x02 */ u16 msg_index;
-    /* 0x04 */ u8 params[4];
+    /* 0x04 */ u16 next_node_idx;
+    /* 0x06 */ u16 unk_0x6;
 };  // Size: 0x8
 
 struct mesg_flow_node_branch {
     /* 0x00 */ u8 type;
     /* 0x01 */ u8 field_0x1;
-    /* 0x02 */ u16 msg_index;
-    /* 0x04 */ u16 params[2];
+    /* 0x02 */ u16 query_idx;
+    /* 0x04 */ u16 param;
+    /* 0x06 */ u16 next_node_idx;
 };
 
 struct mesg_flow_node_event {
     /* 0x00 */ u8 type;
-    /* 0x01 */ u8 field_0x1;
-    /* 0x02 */ u16 msg_index;
+    /* 0x01 */ u8 event_idx;
+    /* 0x02 */ u16 next_node_idx;
     /* 0x04 */ u8 params[4];
 };  // Size: 0x8
 
 class dMsgFlow_c;
-typedef int (dMsgFlow_c::*queryFunc)(mesg_flow_node_branch*, fopAc_ac_c*, int);
+typedef u16 (dMsgFlow_c::*queryFunc)(mesg_flow_node_branch*, fopAc_ac_c*, int);
 typedef int (dMsgFlow_c::*eventFunc)(mesg_flow_node_event*, fopAc_ac_c*);
 
 class dMsgFlow_c {
@@ -60,59 +74,59 @@ public:
     /* 8024B0F0 */ int getParam(u16*, u16*, u8*);
     /* 8024B108 */ int getParam(u8*, u8*);
     /* 8024B130 */ int getParam(u8*);
-    /* 8024B138 */ int query001(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B180 */ int query002(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B208 */ int query003(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B250 */ int query004(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B2C0 */ int query005(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B2F8 */ int query006(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B32C */ int query007(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B45C */ int query008(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B4A4 */ int query009(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B4D0 */ int query010(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B504 */ int query011(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B54C */ int query012(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B584 */ int query013(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B5BC */ int query014(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B5F4 */ int query015(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B62C */ int query016(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B664 */ int query017(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B6A8 */ int query018(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B6EC */ int query019(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B730 */ int query020(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B774 */ int query021(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B8E4 */ int query022(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B918 */ int query023(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B954 */ int query024(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B974 */ int query025(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B9BC */ int query026(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024B9E8 */ int query027(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024BA4C */ int query028(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024BAA0 */ int query029(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024BAE0 */ int query030(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024BB18 */ int query031(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024BB74 */ int query032(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024BB9C */ int query033(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024BBE4 */ int query034(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024BC14 */ int query035(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024BC3C */ int query036(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024BC80 */ int query037(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024BCC4 */ int query038(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024BDB0 */ int query039(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024BE4C */ int query040(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024BF50 */ int query041(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024BFEC */ int query042(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024C0A8 */ int query043(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024C144 */ int query044(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024C18C */ int query045(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024C218 */ int query046(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024C248 */ int query047(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024C250 */ int query048(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024C2A0 */ int query049(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024C2FC */ int query050(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024C340 */ int query051(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024C3A0 */ int query052(mesg_flow_node_branch*, fopAc_ac_c*, int);
-    /* 8024C3D4 */ int query053(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B138 */ u16 query001(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B180 */ u16 query002(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B208 */ u16 query003(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B250 */ u16 query004(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B2C0 */ u16 query005(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B2F8 */ u16 query006(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B32C */ u16 query007(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B45C */ u16 query008(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B4A4 */ u16 query009(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B4D0 */ u16 query010(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B504 */ u16 query011(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B54C */ u16 query012(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B584 */ u16 query013(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B5BC */ u16 query014(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B5F4 */ u16 query015(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B62C */ u16 query016(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B664 */ u16 query017(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B6A8 */ u16 query018(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B6EC */ u16 query019(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B730 */ u16 query020(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B774 */ u16 query021(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B8E4 */ u16 query022(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B918 */ u16 query023(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B954 */ u16 query024(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B974 */ u16 query025(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B9BC */ u16 query026(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024B9E8 */ u16 query027(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024BA4C */ u16 query028(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024BAA0 */ u16 query029(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024BAE0 */ u16 query030(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024BB18 */ u16 query031(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024BB74 */ u16 query032(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024BB9C */ u16 query033(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024BBE4 */ u16 query034(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024BC14 */ u16 query035(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024BC3C */ u16 query036(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024BC80 */ u16 query037(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024BCC4 */ u16 query038(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024BDB0 */ u16 query039(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024BE4C */ u16 query040(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024BF50 */ u16 query041(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024BFEC */ u16 query042(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024C0A8 */ u16 query043(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024C144 */ u16 query044(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024C18C */ u16 query045(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024C218 */ u16 query046(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024C248 */ u16 query047(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024C250 */ u16 query048(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024C2A0 */ u16 query049(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024C2FC */ u16 query050(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024C340 */ u16 query051(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024C3A0 */ u16 query052(mesg_flow_node_branch*, fopAc_ac_c*, int);
+    /* 8024C3D4 */ u16 query053(mesg_flow_node_branch*, fopAc_ac_c*, int);
     /* 8024C3FC */ int event000(mesg_flow_node_event*, fopAc_ac_c*);
     /* 8024C488 */ int event001(mesg_flow_node_event*, fopAc_ac_c*);
     /* 8024C514 */ int event002(mesg_flow_node_event*, fopAc_ac_c*);
@@ -157,9 +171,15 @@ public:
     /* 8024DA78 */ int event041(mesg_flow_node_event*, fopAc_ac_c*);
     /* 8024DAA8 */ int event042(mesg_flow_node_event*, fopAc_ac_c*);
 
+    void initWord(fopAc_ac_c*, const char*, u8, int, fopAc_ac_c**);
+
+#ifdef DEBUG
+    void dbgPrint();
+#endif
+
     u8 isSelectMessage() { return mSelectMessage; }
     void onNonStopJunpFlowFlag() { mNonStopJunpFlowFlag = 1; }
-    int getSelectNum() { return query005(NULL, NULL, 0); }
+    u16 getSelectNum() { return query005(NULL, NULL, 0); }
     s16 getChoiceNo() { return mChoiceNo; }
     void setMsg(u32 msg) { mMsg = msg; }
     bool checkEndFlow() { return field_0x26 == 1; }
@@ -170,13 +190,16 @@ public:
 private:
     /* 0x04 */ u8* mFlow_p;
     /* 0x08 */ u8* mLabelInfo_p;
-    /* 0x0C */ mesg_flow_node* mFlowNodeTBL;
-    /* 0x10 */ u16 field_0x10;
+    /* 0x0C */ union mesg_flow {
+        mesg_flow_node message;
+        mesg_flow_node_branch branch;
+        mesg_flow_node_event event;
+    }* mFlowNodeTBL;
+    /* 0x10 */ u16 mNodeIdx;
     /* 0x12 */ u16 field_0x12;
-    /* 0x14 */ u16* field_0x14;
+    /* 0x14 */ u16* mFlowIdxTBL;
     /* 0x18 */ u16* field_0x18;
     /* 0x1C */ u16 mFlow;
-    /* 0x1E */ u8 field_0x1e[2];
     /* 0x20 */ u32 mMsg;
     /* 0x24 */ u8 mSelectMessage;
     /* 0x25 */ u8 field_0x25;
@@ -189,14 +212,14 @@ private:
     /* 0x34 */ int field_0x34;
     /* 0x38 */ u16 field_0x38;
     /* 0x3A */ u16 mChoiceNo;
-    /* 0x3C */ s32 field_0x3c;
+    /* 0x3C */ s32 mTimer;
     /* 0x40 */ u8 field_0x40;
     /* 0x41 */ u8 field_0x41;
     /* 0x42 */ u8 field_0x42;
     /* 0x43 */ u8 field_0x43;
     /* 0x44 */ u8 field_0x44;
     /* 0x45 */ u8 field_0x45;
-    /* 0x46 */ u8 field_0x46;
+    /* 0x46 */ u8 mSelType;
     /* 0x47 */ u8 field_0x47;
     /* 0x48 */ u8 mNonStopJunpFlowFlag;
 };

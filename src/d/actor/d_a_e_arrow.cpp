@@ -13,8 +13,7 @@
 #include "d/d_msg_object.h"
 #include "d/d_s_play.h"
 
-/* 8067C7CC-8067C874 0000EC 00A8+00 1/0 0/0 0/0 .text            daE_ARROW_Draw__FP13e_arrow_class
- */
+/* 8067C7CC-8067C874 0000EC 00A8+00 1/0 0/0 0/0 .text            daE_ARROW_Draw__FP13e_arrow_class */
 static int daE_ARROW_Draw(e_arrow_class* i_this) {
     if (i_this->field_0xa14) {
         return 1;

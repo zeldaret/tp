@@ -37,7 +37,7 @@ public:
     void* getVtxNBTArray() const { return mVtxNBTArray; }
     u32 getNrmNum() const { return mNrmNum; }
     u32 getVtxNum() const { return mVtxNum; }
-    GXVtxAttrFmtList* getVtxAttrFmtList() { return mVtxAttrFmtList; }
+    GXVtxAttrFmtList* getVtxAttrFmtList() const { return mVtxAttrFmtList; }
     u8 getVtxPosFrac() { return mVtxPosFrac; }
     u8 getVtxNrmFrac() { return mVtxNrmFrac; }
     int getVtxPosType() { return mVtxPosType; }
@@ -102,7 +102,7 @@ public:
 
     void* getTransformedVtxPos(int idx) { return mTransformedVtxPosArray[idx]; }
     void* getTransformedVtxNrm(int idx) { return mTransformedVtxNrmArray[idx]; }
-    J3DVertexData* getVertexData() { return mVtxData; }
+    J3DVertexData* getVertexData() const { return mVtxData; }
 
     void swapTransformedVtxPos() {
         void* tmp = mTransformedVtxPosArray[0];

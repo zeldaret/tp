@@ -11,20 +11,7 @@
 #include "d/actor/d_a_tag_myna_light.h"
 #include "SSystem/SComponent/c_math.h"
 
-/* 8094B360-8094B36C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 8094B36C-8094B380 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
+UNK_REL_DATA
 
 /* 8094B488-8094B590 000128 0108+00 2/3 0/0 0/0 .data            init_proc */
 static daMyna_c::ProcFunc init_proc[] = {
@@ -94,98 +81,7 @@ static int jntNodeCallBack(J3DJoint* i_jnt, int param_1) {
     return 1;
 }
 
-/* 8094B9F0-8094B9F4 000008 0001+03 2/2 0/0 0/0 .bss             @1109 */
-static u8 lit_1109[1 + 3 /* padding */];
-
-/* 8094B9F4-8094B9F8 00000C 0001+03 0/0 0/0 0/0 .bss             @1107 */
-#pragma push
-#pragma force_active on
-static u8 lit_1107[1 + 3 /* padding */];
-#pragma pop
-
-/* 8094B9F8-8094B9FC 000010 0001+03 0/0 0/0 0/0 .bss             @1105 */
-#pragma push
-#pragma force_active on
-static u8 lit_1105[1 + 3 /* padding */];
-#pragma pop
-
-/* 8094B9FC-8094BA00 000014 0001+03 0/0 0/0 0/0 .bss             @1104 */
-#pragma push
-#pragma force_active on
-static u8 lit_1104[1 + 3 /* padding */];
-#pragma pop
-
-/* 8094BA00-8094BA04 000018 0001+03 0/0 0/0 0/0 .bss             @1099 */
-#pragma push
-#pragma force_active on
-static u8 lit_1099[1 + 3 /* padding */];
-#pragma pop
-
-/* 8094BA04-8094BA08 00001C 0001+03 0/0 0/0 0/0 .bss             @1097 */
-#pragma push
-#pragma force_active on
-static u8 lit_1097[1 + 3 /* padding */];
-#pragma pop
-
-/* 8094BA08-8094BA0C 000020 0001+03 0/0 0/0 0/0 .bss             @1095 */
-#pragma push
-#pragma force_active on
-static u8 lit_1095[1 + 3 /* padding */];
-#pragma pop
-
-/* 8094BA0C-8094BA10 000024 0001+03 0/0 0/0 0/0 .bss             @1094 */
-#pragma push
-#pragma force_active on
-static u8 lit_1094[1 + 3 /* padding */];
-#pragma pop
-
-/* 8094BA10-8094BA14 000028 0001+03 0/0 0/0 0/0 .bss             @1057 */
-#pragma push
-#pragma force_active on
-static u8 lit_1057[1 + 3 /* padding */];
-#pragma pop
-
-/* 8094BA14-8094BA18 00002C 0001+03 0/0 0/0 0/0 .bss             @1055 */
-#pragma push
-#pragma force_active on
-static u8 lit_1055[1 + 3 /* padding */];
-#pragma pop
-
-/* 8094BA18-8094BA1C 000030 0001+03 0/0 0/0 0/0 .bss             @1053 */
-#pragma push
-#pragma force_active on
-static u8 lit_1053[1 + 3 /* padding */];
-#pragma pop
-
-/* 8094BA1C-8094BA20 000034 0001+03 0/0 0/0 0/0 .bss             @1052 */
-#pragma push
-#pragma force_active on
-static u8 lit_1052[1 + 3 /* padding */];
-#pragma pop
-
-/* 8094BA20-8094BA24 000038 0001+03 0/0 0/0 0/0 .bss             @1014 */
-#pragma push
-#pragma force_active on
-static u8 lit_1014[1 + 3 /* padding */];
-#pragma pop
-
-/* 8094BA24-8094BA28 00003C 0001+03 0/0 0/0 0/0 .bss             @1012 */
-#pragma push
-#pragma force_active on
-static u8 lit_1012[1 + 3 /* padding */];
-#pragma pop
-
-/* 8094BA28-8094BA2C 000040 0001+03 0/0 0/0 0/0 .bss             @1010 */
-#pragma push
-#pragma force_active on
-static u8 lit_1010[1 + 3 /* padding */];
-#pragma pop
-
-/* 8094BA2C-8094BA30 000044 0001+03 0/0 0/0 0/0 .bss             @1009 */
-#pragma push
-#pragma force_active on
-static u8 lit_1009[1 + 3 /* padding */];
-#pragma pop
+UNK_REL_BSS
 
 /* 8094BA3C-8094BA70 000054 0034+00 15/15 0/0 0/0 .bss             l_HOSTIO */
 static daMyna_HIO_c l_HOSTIO;
@@ -1754,16 +1650,20 @@ void daMyna_c::animeControl() {
     case 8:
         attr = J3DFrameCtrl::EMode_NONE;
         break;
-    case 14:
+    case 13:
         attr = J3DFrameCtrl::EMode_NONE;
+        break;
+    case 14:
         break;
     }
 
-    setMcaMorfAnm(getTrnsfrmKeyAnm(l_bckFileNameTBL[field_0x935]), rate, morf, attr, 0, -1);
-    if (cLib_checkBit<u16>(field_0x914, 0x40) == 0) {
+    J3DAnmTransformKey* anm = getTrnsfrmKeyAnm(l_bckFileNameTBL[field_0x935]);
+    setMcaMorfAnm(anm, rate, morf, attr, 0, -1);
+    if (cLib_checkBit<u16>((u16)field_0x914, 0x40) == 0) {
+        int attribute = 2;
         J3DAnmTexPattern* btp = getTexPtrnAnm(l_btpFileNameTBL[field_0x936]);
         if (btp != NULL) {
-            setBtpAnm(btp, mpMorf->getModel()->getModelData(), 1.0f, 2);
+            setBtpAnm(btp, mpMorf->getModel()->getModelData(), 1.0f, attribute);
             cLib_onBit<u16>(field_0x914, 0x44);
         }
     }

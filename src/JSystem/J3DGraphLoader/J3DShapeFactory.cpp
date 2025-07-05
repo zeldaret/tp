@@ -5,6 +5,7 @@
 
 #include "JSystem/J3DGraphLoader/J3DShapeFactory.h"
 #include "JSystem/J3DGraphBase/J3DShape.h"
+#include "JSystem/J3DGraphBase/J3DShapeMtx.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JSupport/JSupport.h"
 #include "dolphin/os.h"
@@ -42,10 +43,6 @@ J3DShape* J3DShapeFactory::create(int no, u32 flag, GXVtxDescList* vtxDesc) {
 
     shape->mIndex = no;
     return shape;
-}
-
-static inline u32 getMdlDataFlag_MtxLoadType(u32 flag) {
-    return flag & 0x10;
 }
 
 enum {

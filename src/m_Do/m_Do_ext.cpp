@@ -69,8 +69,12 @@ static void mDoExt_setJ3DData(Mtx mtx, const J3DTransformInfo* transformInfo, u1
 }
 
 static BOOL isCurrentSolidHeap() {
-    /* Nonmatching */
-    return FALSE;
+    JKRHeap* heap = JKRGetCurrentHeap();
+    if (heap->getHeapType() != 'SLID') {
+        OS_REPORT_ERROR("ソリッドヒープちゃうがな！\n");
+        return FALSE;
+    }
+    return TRUE;
 }
 
 /* 8000D320-8000D428 007C60 0108+00 6/6 0/0 0/0 .text            initPlay__14mDoExt_baseAnmFsifss */
@@ -1701,7 +1705,6 @@ void mDoExt_McaMorf2::ERROR_EXIT() {
 }
 
 /* 800116F4-80011D70 00C034 067C+00 1/0 0/0 0/0 .text            calc__15mDoExt_McaMorf2Fv */
-// NONMATCHING - float regswap, equivalent
 void mDoExt_McaMorf2::calc() {
     if (mpModel != NULL) {
         u16 jnt_no = J3DMtxCalc::getJoint()->getJntNo();
@@ -1728,10 +1731,8 @@ void mDoExt_McaMorf2::calc() {
         f32 var_f31;
         f32 var_f30;
         f32 var_f29;
-        f32 sp1C;
-        f32 sp18;
-        f32 sp14;
-        f32 sp10;
+        f32 sp18[2];
+        f32 sp10[2];
         if (mpQuat == NULL) {
             var_r27 = &sp30;
         } else {
@@ -1762,29 +1763,29 @@ void mDoExt_McaMorf2::calc() {
             } else {
                 field_0x40->getTransform(jnt_no, &spF0[1]);
 
-                sp18 = 1.0f - field_0x44;
-                sp1C = field_0x44;
+                sp18[0] = 1.0f - field_0x44;
+                sp18[1] = field_0x44;
 
-                var_r30->mScale.x = spF0[0].mScale.x * sp18
-                                    + spF0[1].mScale.x * sp1C;
-                var_r30->mScale.y = spF0[0].mScale.y * sp18
-                                    + spF0[1].mScale.y * sp1C;
-                var_r30->mScale.z = spF0[0].mScale.z * sp18
-                                    + spF0[1].mScale.z * sp1C;
-                var_r30->mTranslate.x = spF0[0].mTranslate.x * sp18
-                                    + spF0[1].mTranslate.x * sp1C;
-                var_r30->mTranslate.y = spF0[0].mTranslate.y * sp18
-                                        + spF0[1].mTranslate.y * sp1C;
-                var_r30->mTranslate.z = spF0[0].mTranslate.z * sp18
-                                        + spF0[1].mTranslate.z * sp1C;
+                var_r30->mScale.x = spF0[0].mScale.x * sp18[0]
+                                    + spF0[1].mScale.x * sp18[1];
+                var_r30->mScale.y = spF0[0].mScale.y * sp18[0]
+                                    + spF0[1].mScale.y * sp18[1];
+                var_r30->mScale.z = spF0[0].mScale.z * sp18[0]
+                                    + spF0[1].mScale.z * sp18[1];
+                var_r30->mTranslate.x = spF0[0].mTranslate.x * sp18[0]
+                                    + spF0[1].mTranslate.x * sp18[1];
+                var_r30->mTranslate.y = spF0[0].mTranslate.y * sp18[0]
+                                        + spF0[1].mTranslate.y * sp18[1];
+                var_r30->mTranslate.z = spF0[0].mTranslate.z * sp18[0]
+                                        + spF0[1].mTranslate.z * sp18[1];
 
                 for (int i = 0; i < 2; i++) {
                     JMAEulerToQuat(spF0[i].mRotation.x, spF0[i].mRotation.y, spF0[i].mRotation.z, &sp60[i]);
                 }
 
-                var_f29 = sp1C / (sp18 + sp1C);
-
+                var_f29 = sp18[1] / (sp18[0] + sp18[1]);
                 JMAQuatLerp(&sp60[0], &sp60[1], var_f29, var_r27);
+
                 mDoMtx_quat(spC0, var_r27);
                 mDoExt_setJ3DData(spC0, var_r30, jnt_no);
             }
@@ -1819,27 +1820,27 @@ void mDoExt_McaMorf2::calc() {
             mpAnm->getTransform(jnt_no, &spF0[0]);
             field_0x40->getTransform(jnt_no, &spF0[1]);
 
-            sp10 = 1.0f - field_0x44;
-            sp14 = field_0x44;
+            sp10[0] = 1.0f - field_0x44;
+            sp10[1] = field_0x44;
 
-            sp80.mScale.x = spF0[0].mScale.x * sp10
-                                + spF0[1].mScale.x * sp14;
-            sp80.mScale.y = spF0[0].mScale.y * sp10
-                                + spF0[1].mScale.y * sp14;
-            sp80.mScale.z = spF0[0].mScale.z * sp10
-                                + spF0[1].mScale.z * sp14;
-            sp80.mTranslate.x = spF0[0].mTranslate.x * sp10
-                                + spF0[1].mTranslate.x * sp14;
-            sp80.mTranslate.y = spF0[0].mTranslate.y * sp10
-                                    + spF0[1].mTranslate.y * sp14;
-            sp80.mTranslate.z = spF0[0].mTranslate.z * sp10
-                                    + spF0[1].mTranslate.z * sp14;
+            sp80.mScale.x = spF0[0].mScale.x * sp10[0]
+                                + spF0[1].mScale.x * sp10[1];
+            sp80.mScale.y = spF0[0].mScale.y * sp10[0]
+                                + spF0[1].mScale.y * sp10[1];
+            sp80.mScale.z = spF0[0].mScale.z * sp10[0]
+                                + spF0[1].mScale.z * sp10[1];
+            sp80.mTranslate.x = spF0[0].mTranslate.x * sp10[0]
+                                + spF0[1].mTranslate.x * sp10[1];
+            sp80.mTranslate.y = spF0[0].mTranslate.y * sp10[0]
+                                    + spF0[1].mTranslate.y * sp10[1];
+            sp80.mTranslate.z = spF0[0].mTranslate.z * sp10[0]
+                                    + spF0[1].mTranslate.z * sp10[1];
 
             for (int i = 0; i < 2; i++) {
                 JMAEulerToQuat(spF0[i].mRotation.x, spF0[i].mRotation.y, spF0[i].mRotation.z, &sp40[i]);
             }
 
-            var_f31 = sp14 / (sp10 + sp14);
+            var_f31 = sp10[1] / (sp10[0] + sp10[1]);
             JMAQuatLerp(&sp40[0], &sp40[1], var_f31, &sp20);
 
             var_f31 = (mCurMorf - mPrevMorf) / (1.0f - mPrevMorf);
@@ -2054,7 +2055,7 @@ void mDoExt_invJntPacket::draw() {
 
 /* 800123D0-800125DC 00CD10 020C+00 2/2 0/0 0/0 .text            init__15mDoExt_3Dline_cFUsii */
 // NONMATCHING - regalloc, probably some types are wrong
-int mDoExt_3Dline_c::init(u16 param_0, int param_1, int param_2) {
+int mDoExt_3Dline_c::init(u16 param_0, int param_1, BOOL param_2) {
     field_0x0 = new cXyz[param_0];
     if (field_0x0 == NULL) {
         return 0;
@@ -2081,38 +2082,35 @@ int mDoExt_3Dline_c::init(u16 param_0, int param_1, int param_2) {
         return 0;
     }
 
-    field_0x10 = new u8[param_0 * 3];
+    field_0x10 = new mDoExt_3Dline_field_0x10_c[param_0];
     if (field_0x10 == NULL) {
         return 0;
     }
 
-    field_0x14 = new u8[param_0 * 3];
+    field_0x14 = new mDoExt_3Dline_field_0x10_c[param_0];
     if (field_0x14 == NULL) {
         return 0;
     }
 
-    if (param_2 != 0) {
-        field_0x18 = new f32[sp20];
+    if (param_2) {
+        field_0x18 = new mDoExt_3Dline_field_0x18_c[param_0];
         if (field_0x18 == NULL) {
             return 0;
         }
 
-        field_0x1c = new f32[sp20];
+        field_0x1c = new mDoExt_3Dline_field_0x18_c[param_0];
         if (field_0x1c == NULL) {
             return 0;
         }
 
-        f32* var_r28 = field_0x18;
-        f32* var_r27 = field_0x1c;
-        for (int i = 0; i < param_0; i++) {
-            var_r28[0] = 0.0f;
-            var_r27[0] = 0.0f;
+        mDoExt_3Dline_field_0x18_c* var_r28 = field_0x18;
+        mDoExt_3Dline_field_0x18_c* var_r27 = field_0x1c;
+        for (s32 i = 0; i < param_0; i++) {
+            var_r28++->field_0x0 = 0.0f;
+            var_r27++->field_0x0 = 0.0f;
 
-            var_r28[2] = 1.0f;
-            var_r27[2] = 1.0f;
-
-            var_r28 += 4;
-            var_r27 += 4;
+            var_r28++->field_0x0 = 1.0f;
+            var_r27++->field_0x0 = 1.0f;
         }
     }
 
@@ -2131,7 +2129,7 @@ int mDoExt_3DlineMat0_c::init(u16 param_0, u16 param_1, int param_2) {
     }
 
     for (int i = 0; i < param_0; i++) {
-        if (!field_0x18[i].init(param_1, param_2, 0)) {
+        if (!field_0x18[i].init(param_1, param_2, FALSE)) {
             return 0;
         }
     }
@@ -2140,9 +2138,6 @@ int mDoExt_3DlineMat0_c::init(u16 param_0, u16 param_1, int param_2) {
     field_0x16 = 0;
     return 1;
 }
-
-/* 800126BC-800126C0 00CFFC 0004+00 2/2 0/0 0/0 .text            __ct__15mDoExt_3Dline_cFv */
-mDoExt_3Dline_c::mDoExt_3Dline_c() {}
 
 /* 803A30C0-803A3160 0001E0 0084+1C 1/1 0/0 0/0 .data            l_matDL */
 static u8 l_matDL[132] ALIGN_DECL(32) = {
@@ -2187,7 +2182,6 @@ void mDoExt_3DlineMat0_c::setMaterial() {
 }
 
 /* 80012774-80012874 00D0B4 0100+00 1/0 0/0 0/0 .text            draw__19mDoExt_3DlineMat0_cFv */
-// NONMATCHING - issues with the iterators
 void mDoExt_3DlineMat0_c::draw() {
     GXSetTevColor(GX_TEVREG2, field_0x8);
 
@@ -2196,11 +2190,11 @@ void mDoExt_3DlineMat0_c::draw() {
     }
 
     mDoExt_3Dline_c* var_r28 = field_0x18;
-    int var_r26 = (field_0x14 & 0x7FFF) << 1;
+    int var_r26 = (field_0x14 << 1) & 0xFFFF;
 
     for (int i = 0; i < field_0x10; i++) {
-        GXSetArray(GX_VA_POS, var_r28[field_0x16].field_0x8, sizeof(cXyz));
-        GXSetArray(GX_VA_NRM, var_r28[field_0x16].field_0x10, 3);
+        GXSetArray(GX_VA_POS, ((mDoExt_3Dline_c*)((int)var_r28 + field_0x16 * 4))->field_0x8, sizeof(cXyz));
+        GXSetArray(GX_VA_NRM, ((mDoExt_3Dline_c*)((int)var_r28 + field_0x16 * 4))->field_0x10, 3);
 
         GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, var_r26);
         for (u16 j = 0; j < (u16)var_r26;) {
@@ -2209,135 +2203,278 @@ void mDoExt_3DlineMat0_c::draw() {
             j++;
 
             GXPosition1x16(j);
-            GXNormal1x16(j);
-            j++;
+            GXNormal1x16(j++);
         }
         GXEnd();
         var_r28++;
     }
 
-    field_0x16 ^= 1;
+    field_0x16 ^= (u8)1;
 }
 
 /* 80012874-80012E3C 00D1B4 05C8+00 0/0 0/0 2/2 .text
  * update__19mDoExt_3DlineMat0_cFifR8_GXColorUsP12dKy_tevstr_c  */
 void mDoExt_3DlineMat0_c::update(int param_0, f32 param_1, GXColor& param_2, u16 param_3,
                                      dKy_tevstr_c* param_4) {
-    // NONMATCHING
-}
-
-/* 80012E3C-80013360 00D77C 0524+00 0/0 0/0 9/9 .text
- * update__19mDoExt_3DlineMat0_cFiR8_GXColorP12dKy_tevstr_c     */
-// NONMATCHING
-void mDoExt_3DlineMat0_c::update(int param_0, GXColor& param_1, dKy_tevstr_c* param_2) {
-    field_0x8 = param_1;
-    field_0xc = param_2;
+    field_0x8 = param_2;
+    field_0xc = param_4;
 
     if (param_0 < 0) {
         field_0x14 = field_0x12;
     } else if (param_0 > field_0x12) {
         field_0x14 = field_0x12;
     } else {
-        field_0x14 = param_0;
+        field_0x14 = (u16)param_0;
     }
 
-    view_class* view_p = dComIfGd_getView();
-    mDoExt_3Dline_c* sp30 = field_0x18;
-    int sp2C = field_0x14 * 2;
-    int sp28 = field_0x14 * 12;
+    view_class* sp_2c = dComIfGd_getView();
 
-    cXyz sp134;
-    cXyz sp128;
-    cXyz sp11C;
-    cXyz sp110;
+    mDoExt_3Dline_c* sp_28 = field_0x18;
 
-    for (int i = 0; i < field_0x10; i++) {
-        cXyz* pos_p = sp30->field_0x0;
-        f32* size_p = sp30->field_0x4;
-        JUT_ASSERT(0x1545, size_p != 0);
+    f32 local_f30 = param_3 != 0 ? param_1 / param_3 : 0.0f;
 
-        cXyz* sp20 = &sp30->field_0x8[field_0x16];
-        cXyz* sp24 = sp20;
+    u32 sp_24 = (field_0x14 << 1) * 12;
+    u32 sp_20 = (field_0x14 << 1) * 3;
 
-        u8* sp1C = &sp30->field_0x10[field_0x16];
+    cXyz sp_12c;
+    cXyz sp_120;
+    cXyz sp_114;
+    cXyz sp_108;
 
-        u8* var_r30 = sp1C;
-        u8* var_r29 = var_r30 + 3;
+    cXyz* local_r27;
+    cXyz* local_r26;
+    cXyz* sp_1c;
 
-        sp128 = pos_p[1] - pos_p[0];
-        sp134 = pos_p[0] - view_p->lookat.eye;
-        sp128 = sp128.outprod(sp134);
-        sp128.normalizeZP();
+    mDoExt_3Dline_field_0x10_c* local_r30;
+    mDoExt_3Dline_field_0x10_c* local_r29;
+    mDoExt_3Dline_field_0x10_c* sp_18;
 
-        var_r30[0] = sp128.x * 64.0f;
-        var_r30[1] = sp128.y * 64.0f;
-        var_r30[2] = sp128.z * 64.0f;
-        var_r29[0] = -sp1C[0];
-        var_r29[1] = -sp1C[1];
-        var_r29[2] = -sp1C[2];
+    for (s32 sp_14 = 0; sp_14 < field_0x10; sp_14++) {
+        local_r27 = sp_28->field_0x0;
 
-        sp128 *= *size_p;
-        sp20[0] = pos_p[0] + sp128;
-        sp20[1] = pos_p[0] - sp128;
-        
-        pos_p++;
+        sp_1c = ((mDoExt_3Dline_c*)((int)sp_28 + (field_0x16 << 2)))->field_0x8;
+        local_r26 = sp_1c;
+        sp_18 = ((mDoExt_3Dline_c*)((int)sp_28 + (field_0x16 << 2)))->field_0x10;
+        local_r30 = sp_18;
 
-        sp11C = pos_p[0] + sp128;
-        sp110 = pos_p[0] - sp128;
+        local_r29 = local_r30 + 1;
 
-        for (int sp10 = field_0x14 - 2; sp10 > 0; sp10--) {
-            sp128 = pos_p[1] - pos_p[0];
-            sp134 = pos_p[0] - view_p->lookat.eye;
-            sp128 = sp128.outprod(sp134);
-            sp128.normalizeZP();
+        f32 local_f31 = param_1;
 
-            var_r30 += 6;
-            var_r29 += 6;
+        sp_120 = local_r27[1] - local_r27[0];
+        sp_12c = local_r27[0] - sp_2c->lookat.eye;
+        sp_120 = sp_120.outprod(sp_12c);
+        sp_120.normalizeZP();
 
-            var_r30[0] = sp128.x * 64.0f;
-            var_r30[1] = sp128.y * 64.0f;
-            var_r30[2] = sp128.z * 64.0f;
-            var_r29[0] = -sp1C[0];
-            var_r29[1] = -sp1C[1];
-            var_r29[2] = -sp1C[2];
+        local_r30->x = sp_120.x * 64.0f;
+        local_r30->y = sp_120.y * 64.0f;
+        local_r30->z = sp_120.z * 64.0f;
+        local_r29->x = -local_r30->x;
+        local_r29->y = -local_r30->y;
+        local_r29->z = -local_r30->z;
 
-            sp128 *= *size_p;
-            sp11C += pos_p[0] + sp128;
-            sp110 += pos_p[0] - sp128;
-            *sp24 = sp11C * 0.5f;
-            *sp20 = sp110 * 0.5f;
-            
-            pos_p++;
+        sp_120 *= local_f31;
+        *local_r26++ = *local_r27 + sp_120;
+        *local_r26++ = *local_r27 - sp_120;
+        local_r27++;
+        sp_114 = *local_r27 + sp_120;
+        sp_108 = *local_r27 - sp_120;
 
-            sp11C = pos_p[0] + sp128;
-            sp110 = pos_p[0] - sp128;
+        for (s32 local_r19 = field_0x14 - 2; local_r19 > 0; local_r19--) {
+            if (local_r19 < param_3) {
+                local_f31 -= local_f30;
+            }
+
+            sp_120 = local_r27[1] - local_r27[0];
+            sp_12c = local_r27[0] - sp_2c->lookat.eye;
+            sp_120 = sp_120.outprod(sp_12c);
+            sp_120.normalizeZP();
+
+            local_r30 += 2;
+            local_r29 += 2;
+
+            local_r30->x = sp_120.x * 64.0f;
+            local_r30->y = sp_120.y * 64.0f;
+            local_r30->z = sp_120.z * 64.0f;
+            local_r29->x = -local_r30->x;
+            local_r29->y = -local_r30->y;
+            local_r29->z = -local_r30->z;
+
+            sp_120 *= local_f31;
+            sp_114 += *local_r27 + sp_120;
+            sp_108 += *local_r27 - sp_120;
+            *local_r26++ = sp_114 * 0.5f;
+            *local_r26++ = sp_108 * 0.5f;
+
+            local_r27++;
+
+            sp_114 = *local_r27 + sp_120;
+            sp_108 = *local_r27 - sp_120;
         }
+        local_r29 += 1;
+        local_r29->x = local_r30->x;
+        local_r29->y = local_r30->y;
+        local_r29->z = local_r30->z;
+        local_r30 += 1;
+        local_r29 += 1;
+        local_r29->x = local_r30->x;
+        local_r29->y = local_r30->y;
+        local_r29->z = local_r30->z;
+        if (param_3 != 0) {
+            *local_r26++ = *local_r27;
+            *local_r26 = *local_r27;
+        } else {
+            *local_r26++ = sp_114;
+            *local_r26 = sp_108;
+        }
+        DCStoreRangeNoSync(sp_1c, sp_24);
+        DCStoreRangeNoSync(sp_18, sp_20);
+        sp_28++;
+    }
+}
 
-        var_r29 += 3;
+/* 80012E3C-80013360 00D77C 0524+00 0/0 0/0 9/9 .text
+ * update__19mDoExt_3DlineMat0_cFiR8_GXColorP12dKy_tevstr_c     */
+void mDoExt_3DlineMat0_c::update(int param_0, GXColor& param_2, dKy_tevstr_c* param_4) {
+    field_0x8 = param_2;
+    field_0xc = param_4;
 
-        var_r29[0] = var_r30[0];
-        var_r29[1] = var_r30[1];
-        var_r29[2] = var_r30[2];
+    if (param_0 < 0) {
+        field_0x14 = field_0x12;
+    } else if (param_0 > field_0x12) {
+        field_0x14 = field_0x12;
+    } else {
+        field_0x14 = (u16)param_0;
+    }
 
-        var_r30 += 3;
-        var_r29 += 3;
+    view_class* sp_34 = dComIfGd_getView();
 
-        var_r29[0] = var_r30[0];
-        var_r29[1] = var_r30[1];
-        var_r29[2] = var_r30[2];
+    mDoExt_3Dline_c* sp_30 = field_0x18;
 
-        *sp24 = sp11C;
-        *sp20 = sp110;
+    u32 sp_2c = (field_0x14 << 1) * 12;
+    u32 sp_28 = (field_0x14 << 1) * 3;
 
-        DCStoreRangeNoSync(sp20, sp2C);
-        DCStoreRangeNoSync(sp1C, sp28);
+    cXyz sp_12c;
+    cXyz sp_120;
+    cXyz sp_114;
+    cXyz sp_108;
+
+    cXyz* local_r27;
+    cXyz* sp_24;
+    cXyz* sp_20;
+
+    mDoExt_3Dline_field_0x10_c* local_r30;
+    mDoExt_3Dline_field_0x10_c* local_r29;
+    mDoExt_3Dline_field_0x10_c* sp_1c;
+    f32* sp_18;
+
+    for (s32 sp_14 = 0; sp_14 < field_0x10; sp_14++) {
+        local_r27 = sp_30->field_0x0;
+
+        sp_18 = sp_30->field_0x4;
+
+        JUT_ASSERT(0x1545, sp_18 != 0);
+
+        sp_20 = ((mDoExt_3Dline_c*)((int)sp_30 + (field_0x16 << 2)))->field_0x8;
+        sp_24 = sp_20;
+        sp_1c = ((mDoExt_3Dline_c*)((int)sp_30 + (field_0x16 << 2)))->field_0x10;
+        local_r30 = sp_1c;
+
+        local_r29 = local_r30 + 1;
+
+        sp_120 = local_r27[1] - local_r27[0];
+        sp_12c = local_r27[0] - sp_34->lookat.eye;
+        sp_120 = sp_120.outprod(sp_12c);
+        sp_120.normalizeZP();
+
+        local_r30->x = sp_120.x * 64.0f;
+        local_r30->y = sp_120.y * 64.0f;
+        local_r30->z = sp_120.z * 64.0f;
+        local_r29->x = -local_r30->x;
+        local_r29->y = -local_r30->y;
+        local_r29->z = -local_r30->z;
+
+        sp_120 *= *sp_18;
+        *sp_24++ = *local_r27 + sp_120;
+        *sp_24++ = *local_r27 - sp_120;
+        local_r27++;
+        sp_18++;
+        sp_114 = *local_r27 + sp_120;
+        sp_108 = *local_r27 - sp_120;
+
+        for (s32 local_r19 = field_0x14 - 2; local_r19 > 0; local_r19--) {
+            sp_120 = local_r27[1] - local_r27[0];
+            sp_12c = local_r27[0] - sp_34->lookat.eye;
+            sp_120 = sp_120.outprod(sp_12c);
+            sp_120.normalizeZP();
+
+            local_r30 += 2;
+            local_r29 += 2;
+
+            local_r30->x = sp_120.x * 64.0f;
+            local_r30->y = sp_120.y * 64.0f;
+            local_r30->z = sp_120.z * 64.0f;
+            local_r29->x = -local_r30->x;
+            local_r29->y = -local_r30->y;
+            local_r29->z = -local_r30->z;
+
+            sp_120 *= *sp_18;
+            sp_114 += *local_r27 + sp_120;
+            sp_108 += *local_r27 - sp_120;
+            *sp_24++ = sp_114 * 0.5f;
+            *sp_24++ = sp_108 * 0.5f;
+
+            local_r27++;
+            sp_18++;
+
+            sp_114 = *local_r27 + sp_120;
+            sp_108 = *local_r27 - sp_120;
+        }
+        local_r29 += 1;
+        local_r29->x = local_r30->x;
+        local_r29->y = local_r30->y;
+        local_r29->z = local_r30->z;
+        local_r30 += 1;
+        local_r29 += 1;
+        local_r29->x = local_r30->x;
+        local_r29->y = local_r30->y;
+        local_r29->z = local_r30->z;
+        *sp_24++ = sp_114;
+        *sp_24 = sp_108;
+        DCStoreRangeNoSync(sp_20, sp_2c);
+        DCStoreRangeNoSync(sp_1c, sp_28);
+        sp_30++;
     }
 }
 
 /* 80013360-800134F8 00DCA0 0198+00 0/0 0/0 19/19 .text init__19mDoExt_3DlineMat1_cFUsUsP7ResTIMGi
  */
 int mDoExt_3DlineMat1_c::init(u16 param_0, u16 param_1, ResTIMG* param_2, int param_3) {
-    // NONMATCHING
+    mNumLines = param_0;
+    field_0x32 = param_1;
+    mpLines = new mDoExt_3Dline_c[param_0];
+    if (mpLines == NULL) {
+        return 0;
+    }
+
+    for (s32 iVar2 = 0; iVar2 < param_0; iVar2++) {
+        if (mpLines[iVar2].init(param_1, param_3, TRUE) == 0) {
+            return 0;
+        }
+    }
+
+    field_0x4 = 0;
+    mIsDrawn = 0;
+
+    GXInitTexObj(&mTextureObject, (void*)((int)param_2 + param_2->imageOffset), param_2->width,
+                 param_2->height, (GXTexFmt)param_2->format, (GXTexWrapMode)param_2->wrapS,
+                 (GXTexWrapMode)param_2->wrapT, param_2->mipmapCount > 1 ? GX_TRUE : GX_FALSE);
+    GXInitTexObjLOD(&mTextureObject, (GXTexFilter)param_2->minFilter,
+                    (GXTexFilter)param_2->magFilter, param_2->minLOD * 0.125f,
+                    param_2->maxLOD * 0.125f, param_2->LODBias * 0.01f, (u8)param_2->biasClamp,
+                    (u8)param_2->doEdgeLOD, (GXAnisotropy)param_2->maxAnisotropy);
+
+    return 1;
 }
 
 /* 800134F8-800135D0 00DE38 00D8+00 1/0 0/0 0/0 .text setMaterial__19mDoExt_3DlineMat1_cFv */
@@ -2359,7 +2496,6 @@ void mDoExt_3DlineMat1_c::setMaterial() {
 }
 
 /* 800135D0-8001373C 00DF10 016C+00 1/0 0/0 0/0 .text            draw__19mDoExt_3DlineMat1_cFv */
-// NONMATCHING- some smaller issues
 void mDoExt_3DlineMat1_c::draw() {
     GXLoadTexObj(&mTextureObject, GX_TEXMAP0);
     GXSetTexCoordScaleManually(GX_TEXCOORD0, 1, GXGetTexObjWidth(&mTextureObject), GXGetTexObjHeight(&mTextureObject));
@@ -2368,41 +2504,306 @@ void mDoExt_3DlineMat1_c::draw() {
         dKy_Global_amb_set(mpTevStr);
     }
     mDoExt_3Dline_c* lines = mpLines;
-    s32 vert_num = (field_0x34 & 0x7fff) << 1;
+    u16 vert_num = field_0x34 << 1;
     for (s32 i = 0; i < mNumLines; i++) {
-        GXSetArray(GX_VA_POS, lines[mIsDrawn].field_0x8, 0xC);
-        GXSetArray(GX_VA_NRM, lines[mIsDrawn].field_0x10, 0x3);
-        GXSetArray(GX_VA_TEX0, lines[mIsDrawn].field_0x18, 0x8);
+        GXSetArray(GX_VA_POS, ((mDoExt_3Dline_c*)((s32)lines + (mIsDrawn << 2)))->field_0x8, 0xC);
+        GXSetArray(GX_VA_NRM, ((mDoExt_3Dline_c*)((s32)lines + (mIsDrawn << 2)))->field_0x10, 0x3);
+        GXSetArray(GX_VA_TEX0, ((mDoExt_3Dline_c*)((s32)lines + (mIsDrawn << 2)))->field_0x18, 0x8);
         GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, vert_num);
 
-        s16 tempJ;
-        for (u32 j = 0; j < (u32)field_0x34; j += 1) {
+        u16 j = 0;
+        while (j < vert_num) {
             GXPosition1x16(j);
             GXNormal1x16(j);
             GXTexCoord1x16(j);
-            tempJ = j + 1;
-            GXPosition1x16(tempJ);
-            GXNormal1x16(tempJ);
-            GXTexCoord1x16(tempJ);
+            GXPosition1x16(++j);
+            GXNormal1x16(j);
+            GXTexCoord1x16(j);
+            j++;
         }
         GXEnd();
         lines++;
     }
     GXSetTexCoordScaleManually(GX_TEXCOORD0, 0, 0, 0);
-    mIsDrawn ^= 1;
+    mIsDrawn ^= (u8)1;
 }
 
 /* 8001373C-80013FB0 00E07C 0874+00 0/0 0/0 6/6 .text
  * update__19mDoExt_3DlineMat1_cFifR8_GXColorUsP12dKy_tevstr_c  */
 void mDoExt_3DlineMat1_c::update(int param_0, f32 param_1, _GXColor& param_2, u16 param_3,
                                      dKy_tevstr_c* param_4) {
-    // NONMATCHING
+    mColor = param_2;
+    this->mpTevStr = param_4;
+    if (param_0 < 0) {
+        field_0x34 = field_0x32;
+    } else if (param_0 > field_0x32) {
+        field_0x34 = field_0x32;
+    } else {
+        field_0x34 = param_0;
+    }
+    view_class* sp_3c = dComIfGd_getView();
+    mDoExt_3Dline_c* sp_38 = mpLines;
+    f32 local_f30;
+    f32 local_f26;
+    f32 local_f29;
+    f32 local_f27;
+    if (param_3 != 0) {
+        local_f26 = param_1 / param_3;
+    } else {
+        local_f26 = 0.0f;
+    }
+    local_f27 = local_f26;
+
+    u32 sp_34 = (field_0x34 << 1) * 12;
+    u32 sp_30 = (field_0x34 << 1) * 3;
+    u32 sp_2c = (field_0x34 << 1) * 8;
+
+    cXyz sp_13c;
+    cXyz sp_130;
+    cXyz sp_124;
+    cXyz sp_118;
+
+    cXyz* local_r27;
+    cXyz* sp_28;
+    cXyz* sp_24;
+
+    mDoExt_3Dline_field_0x10_c* local_r30;
+    mDoExt_3Dline_field_0x10_c* local_r28;
+    mDoExt_3Dline_field_0x10_c* sp_20;
+
+    mDoExt_3Dline_field_0x18_c* sp_1c;
+
+    mDoExt_3Dline_field_0x18_c* sp_18;
+
+    f32 local_f31 = 0.0f;
+
+    for (s32 sp_14 = 0; sp_14 < mNumLines; sp_14++) {
+        local_r27 = sp_38[0].field_0x0;
+        sp_24 = ((mDoExt_3Dline_c*)((int)sp_38 + (mIsDrawn << 2)))->field_0x8;
+        sp_28 = sp_24;
+
+        sp_20 = ((mDoExt_3Dline_c*)((int)sp_38 + (mIsDrawn << 2)))->field_0x10;
+        local_r30 = sp_20;
+        local_r28 = local_r30 + 1;
+
+        sp_18 = ((mDoExt_3Dline_c*)((int)sp_38 + (mIsDrawn << 2)))->field_0x18;
+        sp_1c = sp_18;
+
+        local_f29 = param_1;
+
+        sp_1c++->field_0x4 = local_f31;
+        sp_1c++->field_0x4 = local_f31;
+
+        sp_130 = local_r27[1] - local_r27[0];
+        local_f30 = sp_130.abs();
+
+        if (param_1 < 8.0f) {
+            local_f31 += local_f30 * 0.1f;
+        } else {
+            local_f31 += local_f30 * 0.02f * (8.0f / param_1);
+        }
+
+        sp_13c = *local_r27 - sp_3c->lookat.eye;
+        sp_130 = sp_130.outprod(sp_13c);
+        sp_130.normalizeZP();
+
+        local_r30->x = sp_130.x * 64.0f;
+        local_r30->y = sp_130.y * 64.0f;
+        local_r30->z = sp_130.z * 64.0f;
+        local_r28->x = -local_r30->x;
+        local_r28->y = -local_r30->y;
+        local_r28->z = -local_r30->z;
+
+        sp_130 *= param_1;
+        *sp_28++ = *local_r27 + sp_130;
+        *sp_28++ = *local_r27 - sp_130;
+        local_r27++;
+        sp_124 = *local_r27 + sp_130;
+        sp_118 = *local_r27 - sp_130;
+
+        for (s32 sp_10 = field_0x34 - 2; sp_10 > 0; sp_10--) {
+            if (sp_10 < param_3) {
+                local_f29 -= local_f27;
+            }
+
+            sp_1c++->field_0x4 = local_f31;
+            sp_1c++->field_0x4 = local_f31;
+
+            sp_130 = local_r27[1] - local_r27[0];
+            local_f30 = sp_130.abs();
+
+            if (param_1 < 8.0f) {
+                local_f31 += local_f30 * 0.1f;
+            } else {
+                local_f31 += local_f30 * 0.02f * (8.0f / param_1);
+            }
+
+            sp_13c = local_r27[0] - sp_3c->lookat.eye;
+            sp_130 = sp_130.outprod(sp_13c);
+            sp_130.normalizeZP();
+
+            local_r30 += 2;
+            local_r28 += 2;
+
+            local_r30->x = sp_130.x * 64.0f;
+            local_r30->y = sp_130.y * 64.0f;
+            local_r30->z = sp_130.z * 64.0f;
+            local_r28->x = -local_r30->x;
+            local_r28->y = -local_r30->y;
+            local_r28->z = -local_r30->z;
+
+            sp_130 *= local_f29;
+            sp_124 += *local_r27 + sp_130;
+            sp_118 += *local_r27 - sp_130;
+            *sp_28++ = sp_124 * 0.5f;
+            *sp_28++ = sp_118 * 0.5f;
+
+            local_r27++;
+            sp_124 = local_r27[0] + sp_130;
+            sp_118 = local_r27[0] - sp_130;
+        }
+
+        sp_1c++->field_0x4 = local_f31;
+        sp_1c->field_0x4 = local_f31;
+
+        local_r28 += 1;
+        local_r28->x = local_r30->x;
+        local_r28->y = local_r30->y;
+        local_r28->z = local_r30->z;
+        local_r30 += 1;
+        local_r28 += 1;
+        local_r28->x = local_r30->x;
+        local_r28->y = local_r30->y;
+        local_r28->z = local_r30->z;
+
+        if (param_3 != 0) {
+            *sp_28++ = *local_r27;
+            *sp_28 = *local_r27;
+        } else {
+            *sp_28++ = sp_124;
+            *sp_28 = sp_118;
+        }
+        DCStoreRangeNoSync(sp_24, sp_34);
+        DCStoreRangeNoSync(sp_20, sp_30);
+        DCStoreRangeNoSync(sp_18, sp_2c);
+        sp_38++;
+    }
 }
 
 /* 80013FB0-80014738 00E8F0 0788+00 0/0 0/0 14/14 .text
  * update__19mDoExt_3DlineMat1_cFiR8_GXColorP12dKy_tevstr_c     */
-void mDoExt_3DlineMat1_c::update(int param_0, _GXColor& param_1, dKy_tevstr_c* param_2) {
-    // NONMATCHING
+void mDoExt_3DlineMat1_c::update(int param_0, _GXColor& param_2, dKy_tevstr_c* param_4) {
+    mColor = param_2;
+    this->mpTevStr = param_4;
+    if (param_0 < 0) {
+        field_0x34 = field_0x32;
+    } else if (param_0 > field_0x32) {
+        field_0x34 = field_0x32;
+    } else {
+        field_0x34 = param_0;
+    }
+    view_class* stack_3c = dComIfGd_getView();
+    mDoExt_3Dline_c* sp_38 = mpLines;
+    f32 local_f30;
+    f32 local_f29;
+
+    u32 sp_34 = (field_0x34 << 1) * 12;
+    u32 sp_30 = (field_0x34 << 1) * 3;
+    u32 sp_2c = (field_0x34 << 1) * 8;
+    cXyz sp_13c;
+    cXyz sp_130;
+    cXyz sp_124;
+    cXyz sp_118;
+    cXyz* local_r27;
+    cXyz* sp_28;
+    cXyz* sp_24;
+    mDoExt_3Dline_field_0x10_c* local_r30;
+    mDoExt_3Dline_field_0x10_c* local_r28;
+    mDoExt_3Dline_field_0x10_c* sp_20;
+    mDoExt_3Dline_field_0x18_c* sp_1c;
+    mDoExt_3Dline_field_0x18_c* sp_18;
+    f32 local_f31 = 0.0f;
+    f32* local_r18;
+    for (s32 sp_14 = 0; sp_14 < mNumLines; sp_14++) {
+        local_r27 = sp_38[0].field_0x0;
+        local_r18 = sp_38->field_0x4;
+        JUT_ASSERT(0x16f3, sp_18 != 0);
+        sp_24 = ((mDoExt_3Dline_c*)((int)sp_38 + (mIsDrawn << 2)))->field_0x8;
+        sp_28 = sp_24;
+        sp_20 = ((mDoExt_3Dline_c*)((int)sp_38 + (mIsDrawn << 2)))->field_0x10;
+        local_r30 = sp_20;
+        local_r28 = local_r30 + 1;
+        sp_18 = ((mDoExt_3Dline_c*)((int)sp_38 + (mIsDrawn << 2)))->field_0x18;
+        sp_1c = sp_18;
+        sp_1c++->field_0x4 = local_f31;
+        sp_1c++->field_0x4 = local_f31;
+        sp_130 = local_r27[1] - local_r27[0];
+        local_f30 = sp_130.abs();
+        local_f31 += local_f30 * 0.1f;
+        sp_13c = local_r27[0] - stack_3c->lookat.eye;
+        sp_130 = sp_130.outprod(sp_13c);
+        sp_130.normalizeZP();
+        local_r30->x = sp_130.x * 64.0f;
+        local_r30->y = sp_130.y * 64.0f;
+        local_r30->z = sp_130.z * 64.0f;
+        local_r28->x = -local_r30->x;
+        local_r28->y = -local_r30->y;
+        local_r28->z = -local_r30->z;
+        sp_130 *= *local_r18;
+        *sp_28++ = local_r27[0] + sp_130;
+        *sp_28++ = local_r27[0] - sp_130;
+        local_r27++;
+        local_r18++;
+        sp_124 = local_r27[0] + sp_130;
+        sp_118 = local_r27[0] - sp_130;
+        for (s32 sp_10 = field_0x34 - 2; sp_10 > 0; sp_10--) {
+            sp_1c++->field_0x4 = local_f31;
+            sp_1c++->field_0x4 = local_f31;
+            sp_130 = local_r27[1] - local_r27[0];
+            local_f30 = sp_130.abs();
+            local_f31 += local_f30 * 0.1f;
+            sp_13c = local_r27[0] - stack_3c->lookat.eye;
+            sp_130 = sp_130.outprod(sp_13c);
+            sp_130.normalizeZP();
+            local_r30 += 2;
+            local_r28 += 2;
+            local_r30->x = sp_130.x * 64.0f;
+            local_r30->y = sp_130.y * 64.0f;
+            local_r30->z = sp_130.z * 64.0f;
+            local_r28->x = -local_r30->x;
+            local_r28->y = -local_r30->y;
+            local_r28->z = -local_r30->z;
+            sp_130 *= *local_r18;
+            sp_124 += local_r27[0] + sp_130;
+            sp_118 += local_r27[0] - sp_130;
+            *sp_28++ = sp_124 * 0.5f;
+            *sp_28++ = sp_118 * 0.5f;
+            local_r27++;
+            local_r18++;
+            sp_124 = local_r27[0] + sp_130;
+            sp_118 = local_r27[0] - sp_130;
+        }
+
+        sp_1c++->field_0x4 = local_f31;
+        sp_1c->field_0x4 = local_f31;
+
+        local_r28 += 1;
+        local_r28->x = local_r30->x;
+        local_r28->y = local_r30->y;
+        local_r28->z = local_r30->z;
+        local_r30 += 1;
+        local_r28 += 1;
+        local_r28->x = local_r30->x;
+        local_r28->y = local_r30->y;
+        local_r28->z = local_r30->z;
+
+        *sp_28++ = sp_124;
+        *sp_28 = sp_118;
+        DCStoreRangeNoSync(sp_24, sp_34);
+        DCStoreRangeNoSync(sp_20, sp_30);
+        DCStoreRangeNoSync(sp_18, sp_2c);
+        sp_38 += 1;
+    }
 }
 
 /* 80014738-8001479C 00F078 0064+00 0/0 0/0 29/29 .text
@@ -2719,7 +3120,6 @@ OSThread* mDoExt_GetCurrentRunningThread() {
 
 /* 80014E20-80014E7C 00F760 005C+00 1/0 2/2 0/0 .text __dt__26mDoExt_3DlineMatSortPacketFv */
 mDoExt_3DlineMatSortPacket::~mDoExt_3DlineMatSortPacket() {
-    // NONMATCHING
 }
 
 /* 80014E7C-80014E84 00F7BC 0008+00 1/0 0/0 0/0 .text getMaterialID__19mDoExt_3DlineMat1_cFv */

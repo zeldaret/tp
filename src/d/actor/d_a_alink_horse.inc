@@ -79,9 +79,36 @@ int daAlink_c::getReinRideDirection() {
     return DIR_RIGHT;
 }
 
+/* 803918E8-803918F4 01DF48 000C+00 0/1 0/0 0/0 .rodata          m_handLeftOutSidePos__9daAlink_c */
+Vec const daAlink_c::m_handLeftOutSidePos = {
+    9.0f, -5.0f, 3.0f
+};
+
+/* 803918F4-80391900 01DF54 000C+00 0/1 0/0 0/0 .rodata          m_handRightOutSidePos__9daAlink_c
+ */
+Vec const daAlink_c::m_handRightOutSidePos = {
+    9.0f, -5.0f, -3.0f
+};
+
+/* 80391900-8039190C 01DF60 000C+00 0/1 0/0 1/1 .rodata          m_handLeftInSidePos__9daAlink_c */
+Vec const daAlink_c::m_handLeftInSidePos = {
+    9.0f, 5.0f, 3.0f
+};
+
+/* 8039190C-80391918 01DF6C 000C+00 0/1 0/0 1/1 .rodata          m_handRightInSidePos__9daAlink_c */
+Vec const daAlink_c::m_handRightInSidePos = {
+    9.0f, 5.0f, -3.0f
+};
+
 /* 800EC8F8-800ECA3C 0E7238 0144+00 1/1 0/0 0/0 .text            checkReinRideBgCheck__9daAlink_cFv
  */
 int daAlink_c::checkReinRideBgCheck() {
+    static const Vec horseLocalLeft = {20.0f, 0.0f, 0.0f};
+    static const Vec horseLocalRight = {-20.0f, 0.0f, 0.0f};
+    static const Vec horseLocalBack = {0.0f, 0.0f, -200.0f};
+    static const Vec boarLocalLeft = {200.0f, 0.0f, -18.0f};
+    static const Vec boarLocalRight = {-200.0f, 0.0f, -18.0f};
+
     int direction = getReinRideDirection();
 
     fopAc_ac_c* temp_r4 = field_0x27f4;
@@ -387,7 +414,8 @@ int daAlink_c::setSyncHorsePos() {
         checkUnderMove0BckNoArc(ANM_HORSE_TURN_RIGHT))
     {
         if (mProcID == PROC_HORSE_RUN) {
-            mDoMtx_multVec(horse_p->getSaddleMtx(), &localHorseRun_18095, &current.pos);
+            static const Vec localHorseRun = {15.0f, 0.0f, -45.0f};
+            mDoMtx_multVec(horse_p->getSaddleMtx(), &localHorseRun, &current.pos);
 
             if (!horse_p->checkTurn() && !horse_p->checkStop()) {
                 f32 frame = horse_p->getAnmFrame(0) / horse_p->getAnmFrameMax(0) + 0.5f;
@@ -400,7 +428,8 @@ int daAlink_c::setSyncHorsePos() {
                 getNowAnmPackUnder(UNDER_0)->setFrame(var_f0);
             }
         } else {
-            mDoMtx_multVec(horse_p->getSaddleMtx(), &localHorseRun_18103, &current.pos);
+            static const Vec localHorseRun = {30.0f, 0.0f, -10.0f};
+            mDoMtx_multVec(horse_p->getSaddleMtx(), &localHorseRun, &current.pos);
         }
 
         csXyz sp58;
@@ -494,7 +523,8 @@ int daAlink_c::setSyncBoarRunPos() {
     MtxP ride_mtx = e_wb_p->getRideMtx();
     field_0x2f99 = 0x60;
 
-    mDoMtx_multVec(ride_mtx, &localOffset_18237, &current.pos);
+    static const Vec localOffset = {-30.0f, -18.0f, 0.0f};
+    mDoMtx_multVec(ride_mtx, &localOffset, &current.pos);
 
     csXyz sp28;
     mDoMtx_MtxToRot(ride_mtx, &sp28);
@@ -978,7 +1008,7 @@ void daAlink_c::setBaseBoarAnime() {
     if (var_f31 < 0.2f) {
         setDoubleAnime(var_f31, 1.0f, 1.0f, ANM_HORSE_WAIT, ANM_HORSE_WALK_A, 0xA, -1.0f);
     } else if (var_f31 < 0.5f) {
-        setDoubleAnime(3.333333f * (var_f31 - 0.2f), 1.0f, 1.0f, ANM_HORSE_WALK_A, ANM_HORSE_WALK_B, 0xA, -1.0f);
+        setDoubleAnime(3.3333333f * (var_f31 - 0.2f), 1.0f, 1.0f, ANM_HORSE_WALK_A, ANM_HORSE_WALK_B, 0xA, -1.0f);
     } else {
         setDoubleAnime(2.0f * (var_f31 - 0.5f), 1.0f, 1.0f, ANM_HORSE_WALK_B, ANM_HORSE_DASH_A, 0xA, -1.0f);
     }
@@ -1359,6 +1389,7 @@ int daAlink_c::procHorseRideInit() {
     mDoMtx_stack_c::ZXYrotS(field_0x27f4->shape_angle.x, field_0x27f4->shape_angle.y, 0);
 
     if (checkBoarRide()) {
+        static Vec const boarRideOffset = {-0.87f, 3.3299999f, -23.77f};
         mDoMtx_stack_c::multVec(&boarRideOffset, &sp2C);
         current.pos += sp2C;
         var_f31 += sp2C.y;
@@ -1549,6 +1580,8 @@ int daAlink_c::procHorseGetOffInit(int param_0) {
         } else {
             var_r29 = ANM_HORSE_FALL_LEFT;
         }
+
+        static Vec const leftOffset = {75.0f, 102.0f, 6.224f};
         mDoMtx_stack_c::multVec(&leftOffset, &spC);
     } else {
         if (checkHorseRide()) {
@@ -1556,6 +1589,8 @@ int daAlink_c::procHorseGetOffInit(int param_0) {
         } else {
             var_r29 = ANM_HORSE_FALL_RIGHT;
         }
+
+        static Vec const rightOffset = {-75.0f, 102.0f, 6.221f};
         mDoMtx_stack_c::multVec(&rightOffset, &spC);
     }
 
@@ -1979,8 +2014,43 @@ int daAlink_c::procHorseCutInit() {
         var_r28 = (int)cM_rndF(4.0f) % 4;
     }
 
+    static daAlink_cutHorseParamTbl const cutParamTable[] = {
+        {
+            daAlink_c::FTANM_UNK_20,
+            0x91,
+            0x10C,
+            0x00,
+            0x0E,
+            0x22,
+        },
+        {
+            daAlink_c::FTANM_UNK_21,
+            0x92,
+            0x10D,
+            0x00,
+            0x13,
+            0x23,
+        },
+        {
+            daAlink_c::FTANM_UNK_22,
+            0x93,
+            0x10E,
+            0x00,
+            0x13,
+            0x2A,
+        },
+        {
+            daAlink_c::FTANM_UNK_23,
+            0x94,
+            0x10F,
+            0x00,
+            0x00,
+            0x2A,
+        },
+    };
+
     const daAlinkHIO_hoCut_c1* var_r29;
-    const daAlink_cutHorseParamTbl* temp_r27 = &cutParamTable_19765[var_r28];
+    const daAlink_cutHorseParamTbl* temp_r27 = &cutParamTable[var_r28];
     field_0x2f96 = 2;
     
     if (var_r28 == 0) {
@@ -2205,6 +2275,14 @@ int daAlink_c::procHorseDamageInit(dCcD_GObjInf* param_0) {
     }
 
     setSyncRide(0);
+
+    static u16 const anmIdx[] = {
+        0x00BA,
+        0x00B8,
+        0x00BB,
+        0x00BC,
+        0x00B9,
+    };
 
     if (checkUnderMove0BckNoArc(ANM_HORSE_STOP) || checkUnderMove0BckNoArc(ANM_HORSE_STOP_TO_STAND) || checkUnderMove0BckNoArc(ANM_HORSE_STAND) || checkUnderMove0BckNoArc(ANM_HORSE_DASH_B) || checkUnderMove0BckNoArc(ANM_HORSE_DASH_A) || checkUnderMove0BckNoArc(ANM_HORSE_DASH_START)) {
         mProcVar4.field_0x3010 = 0;

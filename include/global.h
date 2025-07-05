@@ -6,7 +6,20 @@
 #define VERSION_GCN_USA          0
 #define VERSION_GCN_PAL          1
 #define VERSION_GCN_JPN          2
-#define VERSION_SHIELD_DEBUG 3
+#define VERSION_WII_USA_R0       3
+#define VERSION_WII_USA_R2       4
+#define VERSION_WII_PAL          5
+#define VERSION_WII_JPN          6
+#define VERSION_WII_KOR          7
+#define VERSION_WII_USA_KIOSK    8
+#define VERSION_WII_PAL_KIOSK    9
+#define VERSION_SHIELD           10
+#define VERSION_SHIELD_PROD      11
+#define VERSION_SHIELD_DEBUG     12
+
+#define PLATFORM_GCN    (VERSION >= VERSION_GCN_USA && VERSION <= VERSION_GCN_JPN)
+#define PLATFORM_WII    (VERSION >= VERSION_WII_USA_R0 && VERSION <= VERSION_WII_PAL_KIOSK)
+#define PLATFORM_SHIELD (VERSION >= VERSION_SHIELD && VERSION <= VERSION_SHIELD_DEBUG)
 
 #define ALIGN_DECL(ALIGNMENT) __attribute__((aligned(ALIGNMENT)))
 
@@ -35,7 +48,7 @@
 #define GLUE(a, b) a##b
 #define GLUE2(a, b) GLUE(a, b)
 
-#if VERSION != VERSION_SHIELD_DEBUG
+#if VERSION == VERSION_GCN_USA
 #define STATIC_ASSERT(cond) typedef char GLUE2(static_assertion_failed, __LINE__)[(cond) ? 1 : -1]
 #else
 #define STATIC_ASSERT(...)

@@ -14,7 +14,7 @@
  */
 class npc_worm_class : public dInsect_c {
 public:
-    bool check_release() { return field_0x56C == 1; }
+    bool check_release() { return field_0x56c == 1; }
 
     /* 0x590 */ request_of_phase_process_class mPhase;
     /* 0x598 */ u8 field_0x598;

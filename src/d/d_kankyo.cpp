@@ -1020,7 +1020,9 @@ static void plight_set() {
 
         for (int i = 0; i < dComIfGp_getStagePlightNumInfo(); i++) {
             if (plight_no < 30) {
-                g_env_light.mLightInfluence[plight_no].mPosition = plight_info[i].position;
+                g_env_light.mLightInfluence[plight_no].mPosition.x = plight_info[i].position.x;
+                g_env_light.mLightInfluence[plight_no].mPosition.y = plight_info[i].position.y;
+                g_env_light.mLightInfluence[plight_no].mPosition.z = plight_info[i].position.z;
                 g_env_light.mLightInfluence[plight_no].mColor.r = plight_info[i].color.r;
                 g_env_light.mLightInfluence[plight_no].mColor.g = plight_info[i].color.g;
                 g_env_light.mLightInfluence[plight_no].mColor.b = plight_info[i].color.b;
@@ -3055,9 +3057,9 @@ void dScnKy_env_light_c::settingTevStruct_plightcol_plus(cXyz* pos_p, dKy_tevstr
             {
                 cLib_addCalc(&tevstr_p->field_0x344, 0.0f, 0.75f, 0.21f, 0.0001f);
             } else if (tevstr_p->Type == 9 && player->getSinkShapeOffset() < -35.0f) {
-                cLib_addCalc(&tevstr_p->field_0x344, 0.0f, 0.1f, 0.001f, 0.00001f);
+                cLib_addCalc(&tevstr_p->field_0x344, 0.0f, 0.1f, 0.01f, 0.00001f);
             } else if (tevstr_p->Type == 10 && player->getSinkShapeOffset() < -100.0f) {
-                cLib_addCalc(&tevstr_p->field_0x344, 0.0f, 0.1f, 0.001f, 0.00001f);
+                cLib_addCalc(&tevstr_p->field_0x344, 0.0f, 0.1f, 0.01f, 0.00001f);
             } else if (init_timer != 0) {
                 tevstr_p->field_0x344 = kankyo->field_0x1238 +
                                         (var_f31 * (kankyo->field_0x123c - kankyo->field_0x1238));
@@ -4999,7 +5001,7 @@ void dKy_fog_startendz_set(f32 param_0, f32 param_1, f32 ratio) {
         ratio = 0.0f;
     }
 
-    if (ratio < 0.0000000000001f) {
+    if (ratio < 0.0001f) {
         ratio = 0.0f;
     }
 
@@ -6850,7 +6852,6 @@ static J3DAlphaCompInfo l_alphaCompInfo = {
 };
 
 /* 801ACD24-801ADBBC 1A7664 0E98+00 0/0 0/0 7/7 .text            dKy_bg_MAxx_proc__FPv */
-// NONMATCHING - `setAlphaCompInfo` is incorrect, and instruction in the wrong order at the start
 void dKy_bg_MAxx_proc(void* bg_model_p) {
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
     J3DModel* model_p = (J3DModel*)bg_model_p;

@@ -270,7 +270,7 @@ public:
     /* 80051ADC */ void setScissor(f32, f32, f32, f32);
 
     void setCameraID(int id) { mCameraID = id; }
-    s8 getCameraID() { return mCameraID; }
+    int getCameraID() { return mCameraID; }
     void setMode(int mode) { mMode = mode; }
     view_port_class* getViewPort() { return &mViewport; }
     scissor_class* getScissor() { return &mViewport.scissor; }

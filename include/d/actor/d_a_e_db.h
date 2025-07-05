@@ -11,8 +11,11 @@
  * 
  */
 class e_db_class : public fopEn_enemy_c {
-private:
-    /* 0x5ac */ u8 field_0x5ac[0x1270 - 0x5ac];
+public:
+    /* 0x5ac */ u8 field_0x5ac[0x66a - 0x5ac];
+    /* 0x66A */ s16 field_0x66a;
+    /* 0x66C */ s16 field_0x66c;
+    /* 0x66E */ u8 field_0x66e[0x1270 - 0x66e];
 };
 
 STATIC_ASSERT(sizeof(e_db_class) == 0x1270);

@@ -74,8 +74,9 @@ BOOL daAlink_c::checkForestOldCentury() {
 /* 800E145C-800E1530 0DBD9C 00D4+00 1/0 0/0 0/0 .text            checkCopyRodTopUse__9daAlink_cFv */
 BOOL daAlink_c::checkCopyRodTopUse() {
     // Event flag 0x2580: Dominion Rod power restored
-    return (dComIfGs_isEventBit(0x2580) && !(mProcID == PROC_UNEQUIP && mProcVar3.field_0x300e != 0)) ||
-           i_dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x15 ||
+    return (dComIfGs_isEventBit(0x2580) &&
+            !(mProcID == PROC_UNEQUIP && mProcVar3.field_0x300e != 0)) ||
+           dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 0x15 ||
            checkForestOldCentury();
 }
 
@@ -252,7 +253,8 @@ void daAlink_c::checkUpperItemActionCopyRodFly() {
 int daAlink_c::checkNextActionCopyRod() {
     if ((checkBoomerangCatchAnime() &&
          mUpperFrameCtrl[2].getFrame() <= daAlinkHIO_boom_c0::m.mCatchAnm.mCancelFrame) ||
-        checkNoResetFlg1(FLG1_UNK_10000)) {
+        checkNoResetFlg1(FLG1_UNK_10000))
+    {
         return 0;
     }
 
@@ -382,7 +384,10 @@ int daAlink_c::procCopyRodSwingInit() {
     commonProcInit(PROC_COPY_ROD_SWING);
     daCstatue_c* statue = (daCstatue_c*)getCopyRodControllActor();
 
-    if (statue != NULL && ((fopAcM_GetName(statue) == PROC_CSTATUE && !statue->checkNotSmallType()) || fopAcM_GetName(statue) != PROC_CSTATUE)) {
+    if (statue != NULL &&
+        ((fopAcM_GetName(statue) == PROC_CSTATUE && statue->checkNotSmallType()) ||
+         fopAcM_GetName(statue) != PROC_CSTATUE))
+    {
         setSingleAnimeParam(ANM_COPYROD_SWING_LARGE, &daAlinkHIO_copyRod_c0::m.mBigSwingAnm);
         field_0x3478 = 13.0f;
         field_0x347c = 21.0f;

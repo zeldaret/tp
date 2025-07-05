@@ -4,7 +4,6 @@
 #include "JSystem/JGadget/linklist.h"
 #include "JSystem/JMessage/data.h"
 #include "JSystem/JMessage/locale.h"
-#include "JSystem/JStudio/JStudio/fvb-data.h"
 
 namespace JMessage {
 
@@ -14,33 +13,40 @@ namespace JMessage {
  */
 struct TResource {
     TResource()
-        : field_0x8(NULL), field_0xc(NULL), field_0x10(NULL), field_0x14(0), mMessageID(NULL) {}
+        : oParse_THeader_(NULL),
+          oParse_TBlock_info_(NULL),
+          pMessageText_(NULL),
+          pStringAttribute_(NULL),
+          oParse_TBlock_messageID_(NULL)
+          {}
 
-    /* 802A8CDC */ u16 toMessageIndex_messageID(u32, u32, bool*) const;
+    /* 802A8CDC */ u16 toMessageIndex_messageID(u32 uMsgID, u32, bool* pbValid) const;
 
-    bool isContained_messageIndex(u16 messageIndex) const {
-        return messageIndex < getMessageEntryNumber();
+    bool isContained_messageIndex(u16 uMessageIndex) const {
+        return uMessageIndex < getMessageEntryNumber();
     }
 
-    u16 getMessageEntrySize() const { return field_0xc.get_messageEntrySize(); }
-    u16 getMessageEntryNumber() const { return field_0xc.get_messageEntryNumber(); }
+    u32 getMessageEntrySize() const { return oParse_TBlock_info_.get_messageEntrySize(); }
+    u32 getMessageEntryNumber() const { return oParse_TBlock_info_.get_messageEntryNumber(); }
 
-    u16 getGroupID() const { return field_0xc.get_groupID(); }
+    u16 getGroupID() const { return oParse_TBlock_info_.get_groupID(); }
 
-    void* getMessageEntry_messageIndex(u16 messageIndex) const {
-        if (!isContained_messageIndex(messageIndex)) {
+    void* getMessageEntry_messageIndex(u16 uMessageIndex) const {
+        if (!isContained_messageIndex(uMessageIndex)) {
             return NULL;
         }
 
-        return field_0xc.getContent() + (messageIndex * getMessageEntrySize());
+        void* pEntry = oParse_TBlock_info_.getContent() + (uMessageIndex * getMessageEntrySize());
+        return pEntry;
     }
 
     char* getMessageText_messageEntry(const void* pEntry) const {
-        return field_0x10 + *(int*)pEntry;
+        JUT_ASSERT(141, pEntry!=0);
+        return pMessageText_ + *(int*)pEntry;
     }
 
-    const char* getMessageText_messageIndex(u16 messageIndex) const {
-        void* pEntry = getMessageEntry_messageIndex(messageIndex);
+    const char* getMessageText_messageIndex(u16 uMessageIndex) const {
+        void* pEntry = getMessageEntry_messageIndex(uMessageIndex);
         if (pEntry == NULL) {
             return NULL;
         }
@@ -49,14 +55,35 @@ struct TResource {
     }
 
     void setData_header(const void* pData) {
-        field_0x8.setRaw(pData);
+        oParse_THeader_.setRaw(pData);
     }
+
+    void setData_block_info(const void* pData) {
+        oParse_TBlock_info_.setRaw(pData);
+
+        JGADGET_ASSERTWARN(75, oParse_TBlock_info_.get_groupID()<= data::MESSAGEGROUPID_USER_ENUM_MAX);
+
+        JGADGET_ASSERTWARN(77, oParse_TBlock_info_.get_messageEntryNumber()<= data::MESSAGEINDEX_USER_ENUM_MAX);
+    }
+
+    void setData_block_messageText(const void* pData) {
+        pMessageText_ = data::TParse_TBlock_messageText(pData).getContent();
+    }
+
+    void setData_block_stringAttribute(const void* pData) {
+        pStringAttribute_ = data::TParse_TBlock_stringAttribute(pData).getContent();
+    }
+
+    void setData_block_messageID(const void* pData) {
+        oParse_TBlock_messageID_.setRaw(pData);
+    }
+
     JGadget::TLinkListNode ocObject_;
-    /* 0x08 */ data::TParse_THeader field_0x8;
-    /* 0x0C */ data::TParse_TBlock_info field_0xc;
-    /* 0x10 */ char* field_0x10;
-    /* 0x14 */ int field_0x14;
-    /* 0x18 */ data::TParse_TBlock_messageID mMessageID;
+    /* 0x08 */ data::TParse_THeader oParse_THeader_;
+    /* 0x0C */ data::TParse_TBlock_info oParse_TBlock_info_;
+    /* 0x10 */ char* pMessageText_;
+    /* 0x14 */ char* pStringAttribute_;
+    /* 0x18 */ data::TParse_TBlock_messageID oParse_TBlock_messageID_;
 };
 
 /**
@@ -64,14 +91,18 @@ struct TResource {
  * 
  */
 struct TResource_color {
-    TResource_color() : field_0x0(NULL), field_0x4(NULL) {}
+    TResource_color()
+        : oParse_THeader_(NULL),
+          oParse_TBlock_color_(NULL)
+          {}
+
     void reset() { 
-        field_0x0.setRaw(NULL);
-        field_0x4.setRaw(NULL);
+        oParse_THeader_.setRaw(NULL);
+        oParse_TBlock_color_.setRaw(NULL);
     }
 
-    /* 0x0 */ data::TParse_THeader field_0x0;
-    /* 0x4 */ data::TParse_TBlock_color field_0x4;
+    /* 0x0 */ data::TParse_THeader oParse_THeader_;
+    /* 0x4 */ data::TParse_TBlock_color oParse_TBlock_color_;
 };  // Size: 0x8
 
 /**
@@ -81,24 +112,26 @@ struct TResource_color {
 struct TResourceContainer {
     struct TCResource : public JGadget::TLinkList_factory<TResource, 0> {
         /* 802A8EC0 */ TCResource();
-        /* 802A8F6C */ TResource* Get_groupID(u16);
+        /* 802A8F6C */ TResource* Get_groupID(u16 u16GroupID);
 
         /* 802A8EF8 */ virtual ~TCResource();
         /* 802A8FFC */ virtual JMessage::TResource* Do_create();
-        /* 802A9048 */ virtual void Do_destroy(JMessage::TResource*);
-
-        // u8 field_0x0[0x10];
+        /* 802A9048 */ virtual void Do_destroy(JMessage::TResource* pResource);
     };
 
     /* 802A906C */ TResourceContainer();
-    /* 802A90B8 */ void setEncoding(u8);
-    /* 802A90F0 */ void setEncoding_(u8);
+    /* 802A90B8 */ void setEncoding(u8 e);
+    /* 802A90F0 */ void setEncoding_(u8 e);
 
-    int parseCharacter(const char** string) const { return pfnParseCharacter_(string); }
-    TResource* getResource_groupID(u16 groupID) { return resContainer_.Get_groupID(groupID); }
-    TResource* getResource_groupID(u16 groupID) const { return getResource_groupID(groupID); }
+    int parseCharacter(const char** ppszText) const {
+        JUT_ASSERT(330, pfnParseCharacter_!=0);
+        return pfnParseCharacter_(ppszText);
+    }
 
-    bool isEncodingSettable(u8 e) const { return mEncodingType == e || mEncodingType == 0; }
+    TResource* getResource_groupID(u16 u16GroupID) { return resContainer_.Get_groupID(u16GroupID); }
+    TResource* getResource_groupID(u16 u16GroupID) const { return getResource_groupID(u16GroupID); }
+
+    bool isEncodingSettable(u8 e) const { return encodingType_ == e || encodingType_ == 0; }
     const TCResource* getResourceContainer() const { return &resContainer_; }
     void destroyResource() {
         resContainer_.Clear_destroy();
@@ -113,8 +146,8 @@ struct TResourceContainer {
 
     static JMessage::locale::parseCharacter_function sapfnParseCharacter_[5];
 
-    /* 0x00 */ u8 mEncodingType;
-    /* 0x04 */ int (*pfnParseCharacter_)(const char** string);
+    /* 0x00 */ u8 encodingType_;
+    /* 0x04 */ JMessage::locale::parseCharacter_function pfnParseCharacter_;
     /* 0x08 */ TCResource resContainer_;
     /* 0x18 */ TResource_color resColor_;
 };
@@ -124,11 +157,11 @@ struct TResourceContainer {
  * 
  */
 struct TParse : public JGadget::binary::TParse_header_block {
-    /* 802A9130 */ TParse(JMessage::TResourceContainer*);
+    /* 802A9130 */ TParse(JMessage::TResourceContainer* pContainer);
 
     /* 802A9158 */ virtual ~TParse();
-    /* 802A91B8 */ virtual bool parseHeader_next(void const**, u32*, u32);
-    /* 802A92F4 */ virtual bool parseBlock_next(void const**, u32*, u32);
+    /* 802A91B8 */ virtual bool parseHeader_next(const void** ppData_inout, u32* puBlock_out, u32);
+    /* 802A92F4 */ virtual bool parseBlock_next(const void** ppData_inout, u32* puData_out, u32);
 
     /* 0x4 */ TResourceContainer* pContainer_;
     /* 0x8 */ TResource* pResource_;

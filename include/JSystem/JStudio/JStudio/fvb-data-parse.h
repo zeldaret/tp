@@ -36,10 +36,10 @@ public:
 class TParse_TParagraph : public TParseData_aligned<4> {
 public:
     struct TData {
-        /* 0x04 */ u32 u32Size;
-        /* 0x08 */ u32 u32Type;
-        /* 0x0C */ const void* pContent;
-        /* 0x10 */ const void* next;
+        /* 0x00 */ u32 u32Size;
+        /* 0x04 */ u32 u32Type;
+        /* 0x08 */ const void* pContent;
+        /* 0x0C */ const void* next;
     };
     TParse_TParagraph(const void* content) : TParseData_aligned<4>(content) {}
 

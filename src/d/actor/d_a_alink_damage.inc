@@ -31,8 +31,8 @@ bool daAlink_c::checkMiddleBossGoronRoom() {
 
 /* 800D6DF0-800D6E24 0D1730 0034+00 1/0 0/0 0/0 .text setDkCaught__9daAlink_cFP10fopAc_ac_c */
 void daAlink_c::setDkCaught(fopAc_ac_c* param_0) {
-    if (!checkNoResetFlg1(FLG1_UNK_1)) {
-        onNoResetFlg1(FLG1_UNK_1);
+    if (!checkNoResetFlg1(FLG1_DK_CAUGHT)) {
+        onNoResetFlg1(FLG1_DK_CAUGHT);
         field_0x28f8 = fopAcM_GetID(param_0);
     }
 }
@@ -200,7 +200,7 @@ int daAlink_c::setDamagePoint(int i_dmgAmount, int i_checkZoraMag, int i_setDmgT
         dComIfGp_setItemLifeCount(-magnified_dmg, 0);
     }
 
-    onResetFlg1(RFLG1_UNK_400);
+    onResetFlg1(RFLG1_DAMAGE_IMPACT);
     mSwordUpTimer = 0;
 
     if (i_setDmgTimer) {
@@ -363,12 +363,12 @@ void daAlink_c::damageTimerCount() {
         }
         mDamageTimer--;
 
-        if (mProcID != PROC_DK_CAUGHT && checkNoResetFlg1(FLG1_UNK_1)) {
-            offNoResetFlg1(FLG1_UNK_1);
+        if (mProcID != PROC_DK_CAUGHT && checkNoResetFlg1(FLG1_DK_CAUGHT)) {
+            offNoResetFlg1(FLG1_DK_CAUGHT);
         }
 
-        if (!checkDkCaught2Anime() && checkNoResetFlg0(FLG0_UNK_20000)) {
-            offNoResetFlg0(FLG0_UNK_20000);
+        if (!checkDkCaught2Anime() && checkNoResetFlg0(FLG0_DK_CAUGHT)) {
+            offNoResetFlg0(FLG0_DK_CAUGHT);
         }
     } else if (mDamageColorTime != 0) {
         mDamageColorTime--;
@@ -431,22 +431,22 @@ BOOL daAlink_c::checkDamageAction() {
     }
 
     if (checkEventRun()) {
-        offNoResetFlg1(FLG1_UNK_1);
-        offNoResetFlg0(FLG0_UNK_20000);
+        offNoResetFlg1(FLG1_DK_CAUGHT);
+        offNoResetFlg0(FLG0_DK_CAUGHT);
         return 0;
     }
 
-    if (checkNoResetFlg1(FLG1_UNK_1)) {
+    if (checkNoResetFlg1(FLG1_DK_CAUGHT)) {
         if (!checkModeFlg(0x70C52) && !checkWolf() && procDkCaughtInit(field_0x28f8)) {
             return 1;
         }
 
         if (mProcID != PROC_DK_CAUGHT) {
-            offNoResetFlg1(FLG1_UNK_1);
+            offNoResetFlg1(FLG1_DK_CAUGHT);
         }
     }
 
-    if (checkNoResetFlg0(FLG0_UNK_20000)) {
+    if (checkNoResetFlg0(FLG0_DK_CAUGHT)) {
         if ((!checkModeFlg(0x70C52)) && (!checkWolf()) && (!checkDkCaught2Anime())) {
             setUpperAnimeBase(getMainBckData(ANM_HORSE_WAIT_D_B)->m_underID);
             setFacePriAnime(ANM_HORSE_WAIT_D_B);
@@ -458,7 +458,7 @@ BOOL daAlink_c::checkDamageAction() {
         }
 
         if (!checkDkCaught2Anime()) {
-            offNoResetFlg0(FLG0_UNK_20000);
+            offNoResetFlg0(FLG0_DK_CAUGHT);
         }
     }
 
@@ -1429,7 +1429,7 @@ int daAlink_c::procLargeDamageUp() {
             } else if (dMsgObject_isTalkNowCheck()) {
                 offNoResetFlg0(FLG0_UNK_200000);
             }
-        } else if (checkEndResetFlg1(ERFLG1_UNK_8000000) && temp_r30->getFrame() > field_0x3484) {
+        } else if (checkEndResetFlg1(ERFLG1_LARGE_DAMAGE_UP_STOP) && temp_r30->getFrame() > field_0x3484) {
             temp_r30->setFrame(field_0x3484);
             getNowAnmPackUnder(UNDER_0)->setFrame(field_0x3484);
         }
@@ -1805,7 +1805,7 @@ int daAlink_c::procDkCaughtInit(fpc_ProcID param_0) {
     }
 
     setSingleAnimeBase(ANM_WAIT_D_B);
-    onNoResetFlg1(FLG1_UNK_1);
+    onNoResetFlg1(FLG1_DK_CAUGHT);
 
     field_0x28f8 = param_0;
     mNormalSpeed = 0.0f;
@@ -1823,7 +1823,7 @@ int daAlink_c::procDkCaughtInit(fpc_ProcID param_0) {
 /* 800DB860-800DBC98 0D61A0 0438+00 1/0 0/0 0/0 .text            procDkCaught__9daAlink_cFv */
 int daAlink_c::procDkCaught() {
     fopAc_ac_c* temp_r3 = fopAcM_SearchByID(field_0x28f8);
-    if (temp_r3 == NULL || !checkNoResetFlg1(FLG1_UNK_1)) {
+    if (temp_r3 == NULL || !checkNoResetFlg1(FLG1_DK_CAUGHT)) {
         voiceStart(Z2SE_AL_V_ZENTEN_FAIL_2);
         return procFrontRollSuccessInit();
     }

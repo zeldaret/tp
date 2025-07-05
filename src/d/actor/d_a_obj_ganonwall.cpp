@@ -65,8 +65,8 @@ int daObjGWall_c::Create() {
     fopAcM_setCullSizeBox2(this, mpModel->getModelData());
     cullSizeFar = 1000000.f;
     mMatIdx = 0xffff;
-    JUTNameTab* name_table = mpModel->mModelData->getMaterialTable().getMaterialName();
-    for (u16 i = 0; i < mpModel->mModelData->getMaterialTable().getMaterialNum(); i++) {
+    JUTNameTab* name_table = mpModel->getModelData()->getMaterialTable().getMaterialName();
+    for (u16 i = 0; i < mpModel->getModelData()->getMaterialTable().getMaterialNum(); i++) {
         if (strcmp(name_table->getName(i), l_matName) == 0) {
             mMatIdx = i;
         }
@@ -85,7 +85,7 @@ int daObjGWall_c::CreateHeap() {
     J3DAnmTextureSRTKey* btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 7);
     mpBtkAnm = new mDoExt_btkAnm();
     if (mpBtkAnm == NULL ||
-        mpBtkAnm->init(&model_data->getMaterialTable(), btk, 1, 2, 1.0, 0, -1) == 0)
+        mpBtkAnm->init(model_data, btk, 1, 2, 1.0, 0, -1) == 0)
     {
         return 0;
     }
@@ -130,30 +130,27 @@ int daObjGWall_c::draw() {
     }
 
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     mpBtkAnm->entry(mpModel->getModelData());
 
-    J3DModelData* model_data;
-    for (u16 i = 0;
-         model_data = mpModel->getModelData(), i < model_data->getMaterialTable().getMaterialNum();
-         i++)
-    {
-        J3DMaterial* mat = model_data->getMaterialTable().getMaterialNodePointer(i);
+    for (u16 i = 0; i < mpModel->getModelData()->getMaterialTable().getMaterialNum(); i++) {
+        J3DMaterial* mat = mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(i);
         J3DFog* fog = mat->getPEBlock()->getFog();
         if (fog != NULL) {
             fog = mat->getPEBlock()->getFog();
-            fog->getFogInfo()->mColor.r = '\0';
-            fog->getFogInfo()->mColor.g = '\0';
-            fog->getFogInfo()->mColor.b = '\0';
-            fog->getFogInfo()->mStartZ = 1000.0f;
-            fog->getFogInfo()->mEndZ = 250000.0f;
+            J3DFogInfo* fog_info = fog->getFogInfo();
+            fog_info->mColor.r = 0;
+            fog_info->mColor.g = 0;
+            fog_info->mColor.b = 0;
+            fog_info->mStartZ = 1000.0f;
+            fog_info->mEndZ = 250000.0f;
         }
     }
 
     int hour = dKy_getdaytime_hour();
     float minute = dKy_getdaytime_minute();
     J3DGXColor* mat_tev_k_color =
-        mpModel->mModelData->getMaterialTable().getMaterialNodePointer(mMatIdx)->getTevKColor(1);
+        mpModel->getModelData()->getMaterialTable().getMaterialNodePointer(mMatIdx)->getTevKColor(1);
     int idx1 = l_idx[hour][0];
     int idx2 = l_idx[hour][1];
     mat_tev_k_color->r = (l_color[idx1].r +
@@ -204,8 +201,10 @@ static int daObjGWall_Create(daObjGWall_c* i_this) {
 
 /* 80BF56EC-80BF570C -00001 0020+00 1/0 0/0 0/0 .data            l_daObjGWall_Method */
 static actor_method_class l_daObjGWall_Method = {
-    (process_method_func)daObjGWall_Create,  (process_method_func)daObjGWall_Delete,
-    (process_method_func)daObjGWall_Execute, 0,
+    (process_method_func)daObjGWall_Create,  
+    (process_method_func)daObjGWall_Delete,
+    (process_method_func)daObjGWall_Execute, 
+    0,
     (process_method_func)daObjGWall_Draw,
 };
 

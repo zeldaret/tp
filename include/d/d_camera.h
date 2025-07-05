@@ -10,7 +10,7 @@
 #include "d/d_stage.h"
 #include "f_op/f_op_actor.h"
 
-dAttention_c& dComIfGp_getAttention();
+dAttention_c* dComIfGp_getAttention();
 
 struct dCamMapToolData {
     dCamMapToolData() { Clr(); }
@@ -140,6 +140,8 @@ class camera_class;
 class dCamera_c;
 typedef bool (dCamera_c::*engine_fn)(s32);
 
+#pragma warn_illunionmembers off
+
 class dCamera_c {
 public:
     class dCamInfo_c {
@@ -242,7 +244,7 @@ public:
     /* 8008BE2C */ bool uniformTransEvCamera();
     /* 8008BE50 */ bool uniformBrakeEvCamera();
     /* 8008BE74 */ bool uniformAcceleEvCamera();
-    /* 8008BE98 */ void transEvCamera(int);
+    /* 8008BE98 */ bool transEvCamera(int);
     /* 8008E938 */ bool watchActorEvCamera();
     /* 8008FAE8 */ bool restorePosEvCamera();
     /* 80090174 */ bool talktoEvCamera();
@@ -358,7 +360,7 @@ public:
     /* 8018050C */ bool currentEvCamera();
     /* 801806D4 */ bool letCamera(s32);
     /* 801806DC */ void setEventRecoveryTrans(s16);
-    /* 80180738 */ void runEventRecoveryTrans();
+    /* 80180738 */ s16 runEventRecoveryTrans();
     /* 80180A40 */ void EventRecoverNotime();
     /* 80180AA8 */ int Set(cXyz, cXyz);
     /* 80180AE0 */ int Set(cXyz, cXyz, f32, s16);
@@ -375,7 +377,7 @@ public:
     /* 80181210 */ void SetBlureScale(f32, f32, f32);
     /* 80181220 */ void SetBlurePosition(f32, f32, f32);
     /* 80181278 */ void SetBlureActor(fopAc_ac_c*);
-    /* 80181280 */ void blureCamera();
+    /* 80181280 */ int blureCamera();
     /* 80181490 */ void onHorseDush();
     /* 80181500 */ fopAc_ac_c* GetForceLockOnActor();
     /* 80181534 */ int ForceLockOn(fopAc_ac_c*);
@@ -417,9 +419,9 @@ public:
     }
 
     void Att() {
-        dAttention_c& attn = dComIfGp_getAttention();
-        mpLockonTarget = attn.LockonTruth() ? attn.LockonTarget(0) : NULL;
-        attn.LockSoundOn();
+        dAttention_c* attn = dComIfGp_getAttention();
+        mpLockonTarget = attn->LockonTruth() ? attn->LockonTarget(0) : NULL;
+        attn->LockSoundOn();
     }
 
     void SetWindow(f32 param_0, f32 param_1) {
@@ -443,8 +445,16 @@ public:
     static engine_fn engine_tbl[];
 
     /* 0x000 */ camera_class* field_0x0;
-    /* 0x004 */ int mRoomNo;
-    /* 0x008 */ u8 field_0x8[0x20 - 0x8];
+#if VERSION == VERSION_SHIELD_DEBUG
+    cXyz dbg_field_0x04[16];
+    u8 dbg_field_c4[0xDC - 0xC4];
+#endif
+    struct {
+        /* 0x00 */ int mRoomNo;
+        /* 0x04 */ cXyz field_0x04;
+        /* 0x10 */ cXyz field_0x10;
+    }
+    /* 0x004 */ field_0x004;
     /* 0x020 */ u8 field_0x20;
     /* 0x021 */ u8 field_0x21;
     /* 0x022 */ u8 field_0x22[2];
@@ -553,7 +563,7 @@ public:
     /* 0x2C4 */ int field_0x2c4;
     /* 0x2C8 */ f32 field_0x2c8;
     /* 0x2CC */ BG mBG;
-    /* 0x3E8 */ union {
+    /* 0x3E8 */ union mWork {
         struct {
             /* 0x00 */ int field_0x0;
             /* 0x04 */ int field_0x4;
@@ -744,11 +754,341 @@ public:
             /* 0x14 */ cXyz field_0x14;
             /* 0x20 */ bool field_0x20;
         } hookshot;
-        struct {
+        struct event {
             /* 0x00 */ bool field_0x0;
+            /* 0x01 */ bool field_0x1;
             /* 0x04 */ int field_0x4;
             /* 0x08 */ int field_0x8;
+            /* 0x0C */ u8 field_0xc[0x10 - 0xc];
+            /* 0x10 */ cXyz field_0x10;
+            /* 0x1C */ f32 mFovy;
+            /* 0x20 */ f32 mBank;
+            /* 0x24 */ fopAc_ac_c* mRelActor;
+            /* 0x28 */ char mRelUseMask;
+            /* 0x29 */ char field_0x29;
+            /* 0x2C */ int mTimer;
+            /* 0x30 */ bool field_0x30;
+            /* 0x34 */ cXyz mBasePos;
+            /* 0x40 */ char field_0x40;
+            /* 0x41 */ char field_0x41;
+            /* 0x42 */ u8 field_0x42[0x48 - 0x42];
+            /* 0x48 */ char field_0x48;
+            /* 0x49 */ u8 field_0x49[0x4c - 0x49];
+            /* 0x4C */ int field_0x4c;
+            /* 0x50 */ int field_0x50;
+            /* 0x54 */ u8 field_0x54[0x5c - 0x54];
+            /* 0x5C */ f32* field_0x5c;
+            /* 0x60 */ u8 field_0x60[0x6c - 0x60];
+            /* 0x6C */ int field_0x6c;
         } event;
+        struct fixedFrame {
+            /* 0x00 */ bool field_0x0;
+            /* 0x04 */ cXyz field_0x4;
+            /* 0x10 */ cXyz field_0x10;
+            /* 0x1C */ f32 field_0x1c;
+            /* 0x20 */ f32 field_0x20;
+            /* 0x24 */ fopAc_ac_c* mpRelActor;
+            /* 0x28 */ char mRelUseMask[4];
+            /* 0x2C */ int mTimer;
+            /* 0x30 */ bool field_0x30;
+            /* 0x34 */ cXyz mBasePos;
+        } fixedFrame;
+        struct stoker {
+            /* 0x00 */ bool field_0x0;
+            /* 0x01 */ bool field_0x1;
+            /* 0x02 */ u8 field_0x2[2];
+            /* 0x04 */ cXyz field_0x4;
+            /* 0x10 */ cXyz field_0x10;
+            /* 0x1C */ f32 field_0x1c;
+            /* 0x20 */ f32 field_0x20;
+            /* 0x24 */ f32 field_0x24;
+            /* 0x28 */ f32 field_0x28;
+            /* 0x2C */ fopAc_ac_c* field_0x2c;
+            /* 0x30 */ fopAc_ac_c* field_0x30;
+            /* 0x34 */ fpc_ProcID field_0x34;
+            /* 0x38 */ fpc_ProcID field_0x38;
+            /* 0x3C */ u8 field_0x3c[0x40 - 0x3c];
+            /* 0x40 */ int field_0x40;
+        } stoker;
+        struct rolling {
+            /* 0x00 */ bool field_0x0;
+            /* 0x00 */ bool field_0x1;
+            /* 0x04 */ cXyz field_0x4;
+            /* 0x10 */ cXyz field_0x10;
+            /* 0x1C */ cXyz mEye;
+            /* 0x28 */ cXyz mCenter;
+            /* 0x34 */ f32 mFovy;
+            /* 0x38 */ f32 mBank;
+            /* 0x3C */ fopAc_ac_c* mpRelActor;
+            /* 0x40 */ char mRelActor[4];
+            /* 0x44 */ int mTimer;
+            /* 0x48 */ int mTransType;
+            /* 0x4C */ f32 mRoll;
+            /* 0x50 */ f32 mRadiusAdd;
+            /* 0x54 */ f32 mLatitude;
+            /* 0x58 */ f32 mCtrCus;
+        } rolling;
+        struct fixedPos {
+            /* 0x00 */ bool field_0x0;
+            /* 0x00 */ bool field_0x1;
+            /* 0x04 */ cXyz field_0x4;
+            /* 0x10 */ cXyz field_0x10;
+            /* 0x1C */ cXyz field_0x1c;
+            /* 0x28 */ f32 field_0x28;
+            /* 0x2C */ f32 field_0x2c;
+            /* 0x30 */ f32 field_0x30;
+            /* 0x34 */ f32 field_0x34;
+            /* 0x38 */ f32 field_0x38;
+            /* 0x3C */ fopAc_ac_c* field_0x3c;
+            /* 0x40 */ fopAc_ac_c* field_0x40;
+            /* 0x44 */ fpc_ProcID field_0x44;
+            /* 0x48 */ u8 field_0x48[0x4c - 0x48];
+            /* 0x4C */ u32 field_0x4c;
+        } fixedPos;
+        struct trans {
+            /* 0x00 */ cXyz mStartEye;
+            /* 0x0C */ cXyz mStartCenter;
+            /* 0x18 */ f32 mStartFovy;
+            /* 0x1C */ f32 field_0x1c;
+            /* 0x20 */ cXyz mEye;
+            /* 0x2C */ cXyz mCenter;
+            /* 0x38 */ f32 mFovy;
+            /* 0x3C */ f32 field_0x3c;
+            /* 0x40 */ fopAc_ac_c* mRelActor;
+            /* 0x44 */ fpc_ProcID mRelActorID;
+            /* 0x48 */ char mRelUseMask;
+            /* 0x49 */ char field_0x49;
+            /* 0x4A */ char field_0x4a;
+            /* 0x4B */ char field_0x4b;
+            /* 0x4C */ u8 field_0x4c[4];
+            /* 0x50 */ int mTimer;
+            /* 0x54 */ int mTransType;
+            /* 0x58 */ f32 mCushion;
+            /* 0x5C */ f32* mBSpPoints;
+            /* 0x60 */ cSGlobe field_0x60;
+            /* 0x68 */ bool field_0x68;
+            /* 0x6C */ int mBSpCurve;
+        } trans;
+        struct actor {
+            /* 0x00 */ cXyz mCtrGap;
+            /* 0x0C */ cXyz field_0xc;
+            /* 0x18 */ f32 mCushion;
+            /* 0x1C */ int mNearTimer;
+            /* 0x20 */ f32 mNearDist;
+            /* 0x24 */ int mFarTimer;
+            /* 0x28 */ f32 mFarDist;
+            /* 0x2C */ f32 mZoomDist;
+            /* 0x30 */ f32 mZoomVAngle;
+            /* 0x34 */ fopAc_ac_c* mTargetActor;
+            /* 0x38 */ fpc_ProcID mTargetActorID;
+            /* 0x3C */ cSGlobe field_0x3c;
+            /* 0x44 */ int field_0x44;
+            /* 0x48 */ u8 field_0x48[4];
+            /* 0x4C */ cSGlobe field_0x4c;
+            /* 0x54 */ int field_0x54;
+            /* 0x58 */ int mBlure;
+            /* 0x5C */ f32 mFrontAngle;
+            /* 0x60 */ f32 mFovy;
+            /* 0x64 */ u8 field_0x64[4];
+            /* 0x68 */ int field_0x68;
+        } actor;
+        struct restorePos {
+            /* 0x000 */ cXyz field_0x0;
+            /* 0x00C */ cXyz field_0xc;
+            /* 0x018 */ f32 field_0x18;
+            /* 0x01C */ int field_0x1c;
+            /* 0x020 */ f32 field_0x20;
+            /* 0x024 */ int field_0x24;
+            /* 0x028 */ f32 field_0x28;
+            /* 0x02C */ u8 field_0x2c[0x034 - 0x02C];
+            /* 0x034 */ fopAc_ac_c* field_0x34;
+            /* 0x038 */ cSGlobe field_0x38;
+            /* 0x040 */ int field_0x40;
+            /* 0x044 */ int field_0x44;
+            /* 0x048 */ dCamInfo_c field_0x48;
+            /* 0x068 */ int field_0x68;
+            /* 0x06C */ u8 field_0x6c[0x100 - 0x6c];
+        } restorePos;
+        struct gameOver {
+            /* 0x00 */ int field_0x0;
+            /* 0x04 */ int field_0x4;
+            /* 0x08 */ int field_0x8;
+            /* 0x0C */ int mType;
+            /* 0x10 */ cXyz field_0x10;
+            /* 0x1C */ cSGlobe field_0x1c;
+            /* 0x24 */ u8 field_0x24[0x3c - 0x24];
+            /* 0x3C */ bool field_0x3c;
+        } gameOver;
+        struct tact {
+            /* 0x00 */ int field_0x0;
+            /* 0x04 */ int field_0x4;
+            /* 0x08 */ int field_0x8;
+            /* 0x0C */ int field_0xc;
+            /* 0x10 */ u8 field_0x10[4];
+            /* 0x14 */ int field_0x14;
+            /* 0x18 */ u8 field_0x18[4];
+            /* 0x1C */ cXyz* field_0x1c;
+            /* 0x20 */ cXyz* field_0x20;
+            /* 0x24 */ int field_0x24;
+            /* 0x28 */ u8 field_0x28[4];
+            /* 0x2C */ f32 field_0x2c;
+            /* 0x30 */ cXyz field_0x30;
+            /* 0x3C */ cXyz field_0x3c;
+        } tact;
+        struct load {
+            /* 0x00 */ int mTimer;
+            /* 0x04 */ int mSlot;
+            /* 0x08 */ int mType;
+            /* 0x0C */ cSGlobe field_0xc;
+            /* 0x14 */ cSGlobe field_0x14;
+            /* 0x1C */ cXyz field_0x1c;
+            /* 0x28 */ cXyz field_0x28;
+            /* 0x34 */ cXyz field_0x34;
+            /* 0x40 */ cSAngle field_0x40;
+            /* 0x42 */ cSAngle field_0x42;
+            /* 0x44 */ f32 field_0x44;
+            /* 0x48 */ f32 field_0x48;
+        } load;
+        struct item {
+            /* 0x00 */ int field_0x0;
+            /* 0x04 */ int field_0x4;
+            /* 0x08 */ int mType;
+            /* 0x0C */ cXyz field_0xc;
+            /* 0x18 */ f32 field_0x18;
+            /* 0x1C */ int field_0x1c;
+            /* 0x20 */ int field_0x20;
+            /* 0x24 */ cSGlobe field_0x24;
+            /* 0x2C */ cXyz field_0x2c;
+            /* 0x38 */ cXyz field_0x38;
+            /* 0x44 */ cXyz field_0x44;
+            /* 0x50 */ cXyz field_0x50;
+            /* 0x5C */ f32 field_0x5c;
+        } item;
+        struct getItem {
+            /* 0x000 */ u8 field_0x0[4];
+            /* 0x004 */ int mTimer;
+            /* 0x008 */ int field_0x8;
+            /* 0x00C */ fopAc_ac_c* mRelActor;
+            /* 0x010 */ fpc_ProcID mRelActorID;
+            /* 0x014 */ f32* mCurvePoints;
+            /* 0x018 */ int field_0x18;
+            /* 0x01C */ cXyz mStartCenter;
+            /* 0x028 */ cXyz mStartEye;
+            /* 0x034 */ u8 field_0x34[8];
+            /* 0x03C */ cSGlobe field_0x3c;
+            /* 0x044 */ cXyz field_0x44;
+            /* 0x050 */ cXyz field_0x50;
+            /* 0x05C */ u8 field_0x5C[8];
+            /* 0x064 */ cSGlobe field_0x64;
+        } getItem;
+        struct possessed {
+            /* 0x00 */ int field_0x0;
+            /* 0x04 */ int mType;
+            /* 0x08 */ int mTimer;
+            /* 0x0C */ int field_0xc;
+            /* 0x10 */ f32 mRadius;
+            /* 0x14 */ cSAngle mLatitude;
+            /* 0x16 */ cSAngle mLongitude;
+            /* 0x18 */ f32 mFovy;
+            /* 0x1C */ f32 mCushion;
+            /* 0x20 */ int mBlure;
+            /* 0x24 */ fopAc_ac_c* mTargetActor;
+            /* 0x28 */ cSGlobe field_0x28;
+        } possessed;
+        struct fixedFrames {
+            /* 0x00 */ bool field_0x0;
+            /* 0x04 */ cXyz field_0x4;
+            /* 0x10 */ cXyz field_0x10;
+            /* 0x1C */ cXyz* field_0x1c[2];
+            /* 0x24 */ f32* field_0x24;
+            /* 0x28 */ f32 field_0x28;
+            /* 0x2C */ fopAc_ac_c* mRelActor;
+            /* 0x30 */ char mRelUseMask;
+            /* 0x31 */ char field_0x31;
+            /* 0x34 */ int mTimer;
+            /* 0x38 */ int field_0x38;
+            /* 0x3C */ int mChoice;
+        } fixedFrames;
+        struct bSpline {
+            /* 0x00 */ cXyz* mCenters;
+            /* 0x04 */ cXyz* mEyes;
+            /* 0x08 */ f32* mFovys;
+            /* 0x0C */ int mTimer;
+            /* 0x10 */ int field_0x10;
+            /* 0x14 */ fopAc_ac_c* mRelActor;
+            /* 0x18 */ u8 field_0x18[4];
+            /* 0x1c */ bool field_0x1c;
+        } bSpline;
+        struct twoActor0 {
+            /* 0x00 */ fopAc_ac_c* mActor1;
+            /* 0x04 */ fopAc_ac_c* mActor2;
+            /* 0x08 */ u8 field_0x8[4];
+            /* 0x0C */ fpc_ProcID mActor1ID;
+            /* 0x10 */ fpc_ProcID mActor2ID;
+            /* 0x14 */ f32 mCtrCus;
+            /* 0x18 */ f32 mEyeCus;
+            /* 0x1C */ f32 mRadiusMin;
+            /* 0x20 */ f32 mRadiusMax;
+            /* 0x24 */ f32 mLatitudeMin;
+            /* 0x28 */ f32 mLatitudeMax;
+            /* 0x2C */ f32 mLongitudeMin;
+            /* 0x30 */ f32 mLongitudeMax;
+            /* 0x34 */ int mLongitudeType;
+            /* 0x38 */ f32 mFovy;
+            /* 0x3C */ f32 mCtrRatio;
+            /* 0x40 */ cXyz mCtrGap;
+            /* 0x4C */ f32 field_0x4c;
+            /* 0x50 */ f32 field_0x50;
+            /* 0x54 */ cSAngle field_0x54;
+            /* 0x56 */ cSAngle field_0x56;
+            /* 0x58 */ cSAngle field_0x58;
+            /* 0x5A */ cSAngle field_0x5a;
+        } twoActor0;
+        struct digHole {
+            /* 0x00 */ int field_0x0;
+            /* 0x04 */ int mType;
+            /* 0x08 */ int field_0x8;
+            /* 0x0C */ f32 field_0xc;
+            /* 0x10 */ u8 field_0x10;
+            /* 0x11 */ u8 field_0x11[3];
+            /* 0x14 */ cXyz field_0x14;
+            /* 0x20 */ cXyz field_0x20;
+        } digHole;
+        struct hintTalk {
+            /* 0x00 */ fopAc_ac_c* mTeacher;
+            /* 0x04 */ fopAc_ac_c* mStudent;
+            /* 0x08 */ cXyz field_0x8;
+            /* 0x14 */ cXyz field_0x14;
+            /* 0x20 */ cSGlobe mDirection;
+            /* 0x28 */ cSGlobe field_0x28;
+            /* 0x30 */ f32 mRadius;
+            /* 0x34 */ f32 mFovy;
+            /* 0x38 */ f32 mCtrGapY;
+            /* 0x3C */ int mTimer;
+            /* 0x40 */ cXyz field_0x40;
+        } hintTalk;
+        struct bspTrans {
+            /* 0x00 */ int mTimer;
+            /* 0x04 */ f32* mBase;
+            /* 0x08 */ f32* mSet1;
+            /* 0x0C */ d2DBSplinePath mSplinePath1;
+            /* 0x40 */ f32* mSet2;
+            /* 0x44 */ d2DBSplinePath mSplinePath2;
+            /* 0x78 */ cXyz field_0x78;
+            /* 0x84 */ cXyz field_0x84;
+            /* 0x90 */ f32 field_0x90;
+            /* 0x94 */ cXyz field_0x94;
+            /* 0xA0 */ cXyz field_0xa0;
+            /* 0xAC */ f32 field_0xac;
+            /* 0xB0 */ fopAc_ac_c* mRelActor;
+            /* 0xB4 */ fpc_ProcID mRelActorID;
+            /* 0xB8 */ char mRelUseMask;
+            /* 0xB9 */ char field_0xb9;
+            /* 0xBC */ f32 mCushion;
+            /* 0xC0 */ u32 field_0xc0[6];
+            
+
+        } bspTrans;
         struct {
             u8 field_0x0[0x100];
         } bytes;
@@ -845,6 +1185,8 @@ public:
     /* 0xB0C */ u8 field_0xb0c;
     /* 0xB0D */ u8 field_0xb0d[0xd58 - 0xb0d];
 };  // Size: 0xD58
+
+#pragma warn_illunionmembers on
 
 dCamera_c* dCam_getBody();
 camera_class* dCam_getCamera();

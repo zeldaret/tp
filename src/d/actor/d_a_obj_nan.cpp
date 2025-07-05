@@ -321,7 +321,7 @@ void daObjNAN_c::bin_wait() {
         fopAcM_OnStatus(this, 0x4000);
         mDraw = false;
         field_0x7d0++;
-    } else if (field_0x7d0 != -1 && field_0x56C != 0) {
+    } else if (field_0x7d0 != -1 && field_0x56c != 0) {
         current.angle.y = daPy_getPlayerActorClass()->current.angle.y - 0x4000;
         if (strcmp("R_SP160", dComIfGp_getStartStageName()) == 0 &&
             dComIfGp_getStartStageRoomNo() == 3)
@@ -558,7 +558,7 @@ static u8 const l_nan_itemno[2] = {
 /* 80CA276C-80CA2904 0022AC 0198+00 1/1 0/0 0/0 .text            execute__10daObjNAN_cFv */
 int daObjNAN_c::execute() {
     if (ChkGetDemo()) {
-        field_0x57C = field_0x578 + 10000.0f;
+        field_0x57c = field_0x578 + 10000.0f;
         mCreatureSound.startCreatureSoundLevel(Z2SE_INSCT_KIRA, 0, -1);
         Insect_GetDemoMain();
         nan_setParticle();

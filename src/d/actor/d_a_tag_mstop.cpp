@@ -55,8 +55,8 @@ int daTagMstop_c::create() {
     if (!checkNoAttention()) {
         s32 room = fopAcM_GetRoomNo(this);
         cXyz* pos = &dComIfGp_getRoomArrow(room)
-                         ->mEntries[dComIfGp_getRoomCamera(room)->mEntries[idx].field_0x10]
-                         .mPosition;
+                         ->m_entries[dComIfGp_getRoomCamera(room)->m_entries[idx].m_arrow_idx]
+                         .position;
 
         eyePos.set(pos->x, pos->y, pos->z);
         attention_info.position = eyePos;

@@ -21,12 +21,12 @@ struct Z2StatusMgr : public JASGlobalInstance<Z2StatusMgr> {
     void setCameraGroupInfo(u8);
     void setCameraInWaterDepth(float);
 
-    u8 getDemoStatus() const { return mDemoStatus; }
+    u8 getDemoStatus() { return mDemoStatus; }
     void setHour(s32 hour) { mHour = hour; }
     void setMinute(s32 min) { mMinute = min; }
     void setWeekday(s32 day) { mWeekday = day; }
     f32 getCameraInWaterDepth() { return mUnderwaterDepth; }
-    f32 getCameraInWaterDepthRatio() const { return mCameraInWaterDepthRatio; }
+    f32 getCameraInWaterDepthRatio() { return mCameraInWaterDepthRatio; }
     u8 getHour() { return mHour; }
     bool isPaused() { return mPauseFlag; }
     bool isHeartGuageOn() { return mHeartGaugeOn; }

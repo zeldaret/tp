@@ -29,8 +29,6 @@ u32 JASAramStream::sChannelMax;
 /* 80451260 0001+00 data_80451260 None */
 /* 80451261 0001+00 data_80451261 None */
 /* 80451262 0006+00 data_80451262 None */
-extern bool struct_80451260;
-extern bool struct_80451261;
 bool struct_80451260;
 bool struct_80451261;
 
@@ -331,7 +329,7 @@ bool JASAramStream::load() {
     }
     field_0x10c++;
     if (field_0x10c >= field_0x108) {
-        u32 uvar8 = mBlock - 1 + field_0x108;
+        u32 uvar8 = field_0x108 - 1 + mBlock;
         if (mLoop) {
             while (uvar8 > loop_end_block) {
                 uvar8 -= loop_end_block;
@@ -364,7 +362,6 @@ s32 JASAramStream::channelProcCallback(void* i_this) {
 
 /* 80296D94-80296DF0 2916D4 005C+00 2/1 0/0 0/0 .text            dvdErrorCheck__13JASAramStreamFPv
  */
-// NONMATCHING supposed to use a switch table
 s32 JASAramStream::dvdErrorCheck(void* param_0) {
     switch (DVDGetDriveStatus()) {
     case DVD_STATE_END:
@@ -375,7 +372,6 @@ s32 JASAramStream::dvdErrorCheck(void* param_0) {
     case DVD_STATE_WAITING:
     case DVD_STATE_COVER_CLOSED:
     case DVD_STATE_NO_DISK:
-    case DVD_STATE_COVER_OPEN:
     case DVD_STATE_WRONG_DISK:
     case DVD_STATE_MOTOR_STOPPED:
     case DVD_STATE_IGNORED:
@@ -436,7 +432,7 @@ void JASAramStream::updateChannel(u32 i_callbackType, JASChannel* i_channel,
                         i_dspChannel->field_0x110 = 0;
                         field_0x120 = 0;
                         field_0x12c |= 2;
-                        if (field_0x0c4 < -1) {
+                        if (field_0x0c4 < 0xffffffff) {
                             field_0x0c4++;
                         }
                         field_0x0c0 = false;
@@ -447,7 +443,7 @@ void JASAramStream::updateChannel(u32 i_callbackType, JASChannel* i_channel,
                 }
                 f32 fvar1 = field_0x0c4;
                 fvar1 *= mLoopEnd - mLoopStart;
-                if (field_0x0c4 < -1) {
+                if (field_0x0c4 < 0xffffffff) {
                     fvar1 += field_0x0b8;
                 }
                 fvar1 /= field_0x164;
@@ -579,7 +575,7 @@ void JASAramStream::updateChannel(u32 i_callbackType, JASChannel* i_channel,
 }
 
 /* 802974AC-80297658 291DEC 01AC+00 1/1 0/0 0/0 .text            channelProc__13JASAramStreamFv */
-// NONMATCHING instruction ordering
+// NONMATCHING instruction ordering / regalloc
 s32 JASAramStream::channelProc() {
     OSMessage msg;
     while (OSReceiveMessage(&field_0x020, &msg, OS_MESSAGE_NOBLOCK)) {

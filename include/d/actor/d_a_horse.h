@@ -243,7 +243,7 @@ public:
     void offEndResetStateFlg0(daHorse_ERFLG0 i_flag) { m_endResetStateFlg0 &= ~i_flag;}
     void onResetStateFlg0(daHorse_RFLG0 i_flag) { m_resetStateFlg0 |= i_flag;}
     void offNoDrawWait() { offStateFlg0(FLG0_NO_DRAW_WAIT); }
-    bool checkSpecialWallHit(const cXyz& param_0) { return (this->*m_checkSpecialWallHit)(param_0); }
+    bool checkSpecialWallHit(const cXyz& param_0) const { return (this->*m_checkSpecialWallHit)(param_0); }
     MtxP getSaddleMtx() { return m_model->getAnmMtx(21); }
     MtxP getRootMtx() { return m_model->getAnmMtx(0); }
     f32 getAnmFrameMax(int i_idx) const { return m_frameCtrl[i_idx].getEnd(); }
@@ -255,6 +255,7 @@ public:
     int callHorse(const cXyz* param_0) { return (this->*m_callHorse)(param_0); }
 
     daHoZelda_c* getZeldaActor() { return (daHoZelda_c*)m_zeldaActorKeep.getActor(); }
+    void setZeldaActor(fopAc_ac_c* i_actor) { m_zeldaActorKeep.setData(i_actor); }
 
     bool checkTurnStandCamera() const { return checkResetStateFlg0(RFLG0_TURN_STAND_CAMERA); }
     bool checkTurnStand() const { return checkResetStateFlg0(RFLG0_TURN_STAND); }
@@ -262,6 +263,7 @@ public:
     bool checkCutTurnCancel() const { return checkEndResetStateFlg0(ERFLG0_CUT_TURN_CANCEL); }
     bool checkTurnCancelKeep() const { return checkStateFlg0(FLG0_TURN_CANCEL_KEEP); }
     BOOL checkRodeoLeft() const { return checkStateFlg0(FLG0_RODEO_LEFT); }
+    BOOL checkHorseCallWait() const { return checkStateFlg0(FLG0_NO_DRAW_WAIT); }
     BOOL checkTurn() const { return m_procID == PROC_TURN_e && field_0x1720 == 0; }
     BOOL checkStop() const { return m_procID == PROC_STOP_e; }
     bool checkJump() const { return m_procID == PROC_JUMP_e; }
@@ -323,6 +325,14 @@ public:
     u32 getShadowID() const { return m_shadowID; }
 
     bool checkInputOnR() const { return m_padStickValue > 0.05f; }
+
+    void onBagMaterial() {
+        m_modelData->getMaterialNodePointer(5)->getShape()->show();
+    }
+
+    void offBagMaterial() {
+        m_modelData->getMaterialNodePointer(5)->getShape()->hide();
+    }
 
     static u16 const m_footJointTable[];
     static f32 const m_callLimitDistance2;

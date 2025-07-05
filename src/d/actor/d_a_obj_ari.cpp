@@ -256,7 +256,7 @@ void daObjARI_c::Action() {
 
 /* 80BA33F8-80BA3408 000E58 0010+00 1/0 0/0 0/0 .text            Insect_Release__10daObjARI_cFv */
 void daObjARI_c::Insect_Release() {
-    field_0x56C = 1;
+    field_0x56c = 1;
     mAction = 1;
 }
 
@@ -637,7 +637,7 @@ cPhs__Step daObjARI_c::create() {
     if (step == cPhs_COMPLEATE_e) {
         mLocation = fopAcM_GetParam(this) & 0xf;
         if (mLocation == LOC_UNK_2) {
-            field_0x56C = 0;
+            field_0x56c = 0;
             shape_angle.x -= 0x2000;
             fopAcM_OnStatus(this, 0x4000);
         } else {

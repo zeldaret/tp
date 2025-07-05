@@ -7,6 +7,10 @@
 
 typedef struct leafdraw_method_class leafdraw_method_class;
 
+struct fopCamM_prm_class {
+    /* 0x00 */ fopAcM_prmBase_class base;
+};  // Size: 0x18
+
 class camera_process_class : public view_class {
 public:
     /* 0x210 */ create_tag_class create_tag;
@@ -26,6 +30,14 @@ public:
     /* 0x240 */ request_of_phase_process_class phase_request;
     /* 0x248 */ dCamera_c mCamera;
 };
+
+inline void fopCamM_SetAngleX(camera_class* i_camera, s16 angle) {
+    i_camera->angle.x = angle;
+}
+
+inline void fopCamM_SetAngleY(camera_class* i_camera, s16 angle) {
+    i_camera->angle.y = angle;
+}
 
 inline void fopCamM_SetNear(camera_class* i_this, f32 near) {
     i_this->near = near;
@@ -49,6 +61,10 @@ inline void fopCamM_SetEye(camera_class* i_this, f32 x, f32 y, f32 z) {
 
 inline void fopCamM_SetCenter(camera_class* i_this, f32 x, f32 y, f32 z) {
     i_this->lookat.center.set(x, y, z);
+}
+
+inline void fopCamM_SetUp(camera_class* i_this, f32 x, f32 y, f32 z) {
+    i_this->lookat.up.set(x, y, z);
 }
 
 inline void fopCamM_SetBank(camera_class* i_this, s16 bank) {
@@ -89,6 +105,10 @@ inline cXyz* fopCamM_GetEye_p(camera_class* i_camera) {
 
 inline cXyz* fopCamM_GetCenter_p(camera_class* i_camera) {
     return &i_camera->lookat.center;
+}
+
+inline cXyz* fopCamM_GetUp_p(camera_class* i_camera) {
+    return &i_camera->lookat.up;
 }
 
 inline s16 fopCamM_GetBank(camera_class* i_camera) {

@@ -1,6 +1,7 @@
 #ifndef J3DMATERIALATTACH_H
 #define J3DMATERIALATTACH_H
 
+#include "JSystem/JUtility/JUTAssert.h"
 #include "dolphin/types.h"
 
 class J3DMaterial;
@@ -31,7 +32,10 @@ public:
 
     /* 8032F604 */ virtual ~J3DMaterialTable();
 
-    J3DMaterial* getMaterialNodePointer(u16 idx) const { return mMaterialNodePointer[idx]; }
+    J3DMaterial* getMaterialNodePointer(u16 idx) const {
+        J3D_ASSERT(92, idx < mMaterialNum, "Error : range over.");
+        return mMaterialNodePointer[idx];
+    }
 
     J3DTexture* getTexture() const { return mTexture; }
     JUTNameTab* getTextureName() const { return mTextureName; }

@@ -1156,8 +1156,8 @@ bool dComIfGp_getMapTrans(int i_roomNo, f32* o_transX, f32* o_transY, s16* o_ang
         return false;
     }
 
-    dStage_Mult_info* info = multi->mInfo;
-    for (int i = 0; i < multi->field_0x0; i++) {
+    dStage_Mult_info* info = multi->m_entries;
+    for (int i = 0; i < multi->num; i++) {
         if (i_roomNo == info->mRoomNo) {
             *o_transX = info->mTransX;
             *o_transY = info->mTransY;
@@ -1262,7 +1262,7 @@ void dComIfGp_setNextStage(char const* i_stage, s16 i_point, s8 i_roomNo, s8 i_l
 BOOL dComIfGs_isStageTbox(int i_stageNo, int i_no) {
     stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
 
-    if (i_stageNo == i_dStage_stagInfo_GetSaveTbl(stag_info)) {
+    if (i_stageNo == dStage_stagInfo_GetSaveTbl(stag_info)) {
         return dComIfGs_isTbox(i_no);
     } else {
         return dComIfGs_isSaveTbox(i_stageNo, i_no);
@@ -1272,7 +1272,7 @@ BOOL dComIfGs_isStageTbox(int i_stageNo, int i_no) {
 void dComIfGs_onStageSwitch(int i_stageNo, int i_no) {
     stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
 
-    if (i_stageNo == i_dStage_stagInfo_GetSaveTbl(stag_info)) {
+    if (i_stageNo == dStage_stagInfo_GetSaveTbl(stag_info)) {
         dComIfGs_onSwitch(i_no, -1);
     }
 
@@ -1282,7 +1282,7 @@ void dComIfGs_onStageSwitch(int i_stageNo, int i_no) {
 void dComIfGs_offStageSwitch(int i_stageNo, int i_no) {
     stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
 
-    if (i_stageNo == i_dStage_stagInfo_GetSaveTbl(stag_info)) {
+    if (i_stageNo == dStage_stagInfo_GetSaveTbl(stag_info)) {
         dComIfGs_offSwitch(i_no, -1);
     }
 
@@ -1292,7 +1292,7 @@ void dComIfGs_offStageSwitch(int i_stageNo, int i_no) {
 BOOL dComIfGs_isStageSwitch(int i_stageNo, int i_no) {
     stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
 
-    if (i_stageNo == i_dStage_stagInfo_GetSaveTbl(stag_info)) {
+    if (i_stageNo == dStage_stagInfo_GetSaveTbl(stag_info)) {
         return dComIfGs_isSwitch(i_no, -1);
     } else {
         return dComIfGs_isSaveSwitch(i_stageNo, i_no);
@@ -1302,7 +1302,7 @@ BOOL dComIfGs_isStageSwitch(int i_stageNo, int i_no) {
 void dComIfGs_onStageBossEnemy(int i_stageNo) {
     stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
 
-    if (i_stageNo == i_dStage_stagInfo_GetSaveTbl(stag_info)) {
+    if (i_stageNo == dStage_stagInfo_GetSaveTbl(stag_info)) {
         dComIfGs_onStageBossEnemy();
     }
 
@@ -1312,7 +1312,7 @@ void dComIfGs_onStageBossEnemy(int i_stageNo) {
 s32 dComIfGs_isDungeonItemWarp(int i_stageNo) {
     stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
 
-    if (i_stageNo == i_dStage_stagInfo_GetSaveTbl(stag_info)) {
+    if (i_stageNo == dStage_stagInfo_GetSaveTbl(stag_info)) {
         return dComIfGs_isDungeonItemWarp();
     } else {
         return g_dComIfG_gameInfo.info.getSavedata()
@@ -2189,7 +2189,7 @@ void dComIfGs_setKeyNum(int i_stageNo, u8 i_keyNum) {
     if (dComIfGp_getStageStagInfo()) {
         stage_stag_info_class* stag_info = dComIfGp_getStageStagInfo();
 
-        if (i_stageNo == i_dStage_stagInfo_GetSaveTbl(stag_info)) {
+        if (i_stageNo == dStage_stagInfo_GetSaveTbl(stag_info)) {
             dComIfGs_setKeyNum(i_keyNum);
         }
     }
@@ -2443,10 +2443,10 @@ void dComIfGs_shake_kandelaar() {
     g_dComIfG_gameInfo.field_0x1ddfa = 1;
 }
 
-bool dComIfGs_shake_kandelaar_check() {
-    bool check = false;
+int dComIfGs_shake_kandelaar_check() {
+    int check = 0;
     if (g_dComIfG_gameInfo.field_0x1ddfa == 2) {
-        check = true;
+        check = 1;
     }
     return check;
 }
