@@ -584,9 +584,8 @@ private:
     /* 0xE50 */ f32 mDemoCamFovy;
     /* 0xE54 */ f32 field_0xe54;
     /* 0xE58 */ f32 field_0xe58;
-    /* 0xE5C */ u8 field_0xe5c[0xE5e - 0xe5c];
     /* 0xE5E */ s16 field_0xe5e;
-    /* 0xE60 */ u8 field_0xe60[0xE64 - 0xe60];
+    /* 0xE60 */ u8 field_0xe60[0xe64 - 0xe60];
     /* 0XE64 */ request_of_phase_process_class mPhase;
     /* 0xE6C */ request_of_phase_process_class mPhase2;
     /* 0xE74 */ int mWrestlerAction;
@@ -605,7 +604,6 @@ private:
     /* 0xE9A */ u8 field_0xe9a;
     /* 0xE9B */ u8 mType;
     /* 0xE9C */ u8 mWrestlerNoDraw;
-    /* 0xE9D */ u8 field_0xe9d[0xEA0 - 0xE9d];
 };
 STATIC_ASSERT(sizeof(daNpcWrestler_c) == 0xea0);
 
