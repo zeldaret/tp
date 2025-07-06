@@ -124,7 +124,8 @@ private:
     /* 0x10C8 */ daNpcT_ActorMngr_c mActorMngr[7];
     /* 0x1100 */ actionFunc mNextAction;
     /* 0x110C */ actionFunc mAction;
-    /* 0x1118 */ u8 field_0x1118[0x1120 - 0x1118];
+    /* 0x1118 */ int field_0x1118;
+    /* 0x111C */ int field_0x111c;
     /* 0x1120 */ int field_0x1120;
     /* 0x1124 */ int field_0x1124;
     /* 0x1128 */ int field_0x1128;
@@ -132,7 +133,8 @@ private:
     /* 0x112D */ u8 field_0x112d;
     /* 0x112E */ u8 field_0x112e;
     /* 0x112F */ u8 field_0x112f;
-    /* 0x1130 */ u8 field_0x1130[0x1134 - 0x1130];
+    /* 0x1130 */ u8 field_0x1130;
+    /* 0x1131 */ u8 field_0x1131[0x1134 - 0x1131];
     /* 0x1134 */ u8 field_0x1134;
 };
 

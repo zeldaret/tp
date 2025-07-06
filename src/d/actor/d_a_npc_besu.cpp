@@ -4,10 +4,10 @@
 */
 
 #include "d/actor/d_a_npc_besu.h"
+#include "d/actor/d_a_npc_len.h"
 #include "d/actor/d_a_tag_push.h"
 #include "d/d_com_static.h"
 #include "d/d_item.h"
-#include "dol2asm.h"
 
 
 #ifndef DEBUG
@@ -1010,13 +1010,13 @@ void daNpc_Besu_c::setAttnPos() {
         daPy_getPlayerActorClass()->onWolfEyeKeep();
     }
 
-    BOOL var_r28 = 0;
-    if (mMotionSeqMngr.getNo() == 0x12 && mMotionSeqMngr.checkEndSequence() == 0) {
-        var_r28 = 1;
+    BOOL var_r28 = FALSE;
+    if (mMotionSeqMngr.getNo() == 0x12 && !mMotionSeqMngr.checkEndSequence()) {
+        var_r28 = TRUE;
     }
 
     mStagger.calc(var_r28);
-    f32 dVar8 = cM_s2rad(mCurAngle.y - field_0xd7e.y);
+    f32 rad_val = cM_s2rad(mCurAngle.y - field_0xd7e.y);
     if (chkNurse()) {
         mJntAnm.setParam(
             this, mpMorf[0]->getModel(), &eyeOffset, getBackboneJointNo(), getNeckJointNo(),
@@ -1034,7 +1034,7 @@ void daNpc_Besu_c::setAttnPos() {
             daNpc_Besu_Param_c::m.common.neck_rotation_ratio, 0.0f, NULL);
     }
 
-    mJntAnm.calcJntRad(0.2f, 1.0f, (float)dVar8);
+    mJntAnm.calcJntRad(0.2f, 1.0f, rad_val);
     mpMorf[0]->setPlaySpeed(daNpc_Besu_Param_c::m.field_0x8c);
     setMtx();
     if (mpBesuMorf != NULL) {
@@ -2281,35 +2281,418 @@ int daNpc_Besu_c::cutThankYou(int arg0) {
 
 /* 8053C08C-8053CAA0 00532C 0A14+00 2/0 0/0 0/0 .text            wait__12daNpc_Besu_cFPv */
 int daNpc_Besu_c::wait(void* param_0) {
-    // NONMATCHING
+    fopAc_ac_c* actor_p = NULL;
+    switch (mMode) {
+        case 0:
+        case 1: {
+            if (mStagger.checkStagger() == 0) {
+                switch (mType) {
+                    case 2: {
+                        if (getBitSW() != 0xFF && dComIfGs_isSwitch(getBitSW(), fopAcM_GetRoomNo(this))) {
+                            mFaceMotionSeqMngr.setNo(0x18, -1.0f, 0, 0);
+                            mMotionSeqMngr.setNo(0x1A, -1.0f, 0, 0);
+                        } else {
+                            mFaceMotionSeqMngr.setNo(0x17, -1.0f, 0, 0);
+                            mMotionSeqMngr.setNo(0x19, -1.0f, 0, 0);
+                        }
+
+                        break;
+                    }
+
+                    case 5: {
+                        mFaceMotionSeqMngr.setNo(0x13, -1.0f, 0, 0);
+                        mMotionSeqMngr.setNo(6, -1.0f, 0, 0);
+                        break;
+                    }
+
+                    default: {
+                        if (chkBesu3()) {
+                            mFaceMotionSeqMngr.setNo(28, -1.0f, 0, 0);
+                            mMotionSeqMngr.setNo(8, -1.0f, 0, 0);
+                        } else {
+                            mFaceMotionSeqMngr.setNo(28, -1.0f, 0, 0);
+                            mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+                        }
+
+                        break;
+                    }
+                }
+
+                field_0x1118 = 0;
+                field_0x111c = 0;
+                mMode = 2;
+            }
+        }
+
+        case 2: {
+            switch (mType) {
+                case 0: {
+                    if (daNpcT_chkEvtBit(0x1F) && mHide) {
+                        fopAcM_delete(this);
+                        return 1;
+                    }
+
+                    break;
+                }
+
+                case 2: {
+                    actor_p = (daNpc_Len_c*) mActorMngr[3].getActorP();
+                    if (actor_p != NULL &&
+                        ((daNpc_Len_c*) actor_p)->checkStartDemo13StbEvt(
+                            this, daNpc_Besu_Param_c::m.common.box_min_x, daNpc_Besu_Param_c::m.common.box_min_y,
+                            daNpc_Besu_Param_c::m.common.box_min_z, daNpc_Besu_Param_c::m.common.box_max_x,
+                            daNpc_Besu_Param_c::m.common.box_max_y, daNpc_Besu_Param_c::m.common.box_max_z,
+                            daNpc_Besu_Param_c::m.common.box_offset))
+                    {
+                        mEvtNo = 8;
+                        field_0x112f = 1;
+                    }
+
+                    if (field_0x112f && daNpcT_chkEvtBit(0x3C) && dComIfGp_event_runCheck() == 0) {
+                        field_0x112f = 0;
+                    }
+
+                    break;
+                }
+
+                case 13: {
+                    if (daNpcT_chkEvtBit(0x25C)) {
+                        fopAcM_delete(this);
+                        return 1;
+                    }
+
+                    break;
+                }
+            }
+
+            if (mStagger.checkStagger() == 0) {
+                if (mType == 2) {
+                    mJntAnm.lookNone(0);
+                    if (getBitSW() != 0xFF) {
+                        if (dComIfGs_isSwitch(getBitSW(), fopAcM_GetRoomNo(this))
+                            && mMotionSeqMngr.getNo() != 26) {
+                            mMode = 1;
+                        }
+                    }
+
+                    attention_info.flags = 0;
+                } else {
+                    u8 var_r28 = 0;
+                    if (daNpcKakashi_chkSwdTutorialStage() & 0xFF) {
+                        mPlayerActorMngr.remove();
+                    } else {
+                        if (mType == 11 || mType == 17) {
+                            mPlayerActorMngr.remove();
+                        } else if (mType == 12) {
+                            var_r28 = dComIfGs_getTmpReg(0xFBFF);
+                            if (var_r28 == 2 || var_r28 == 1) {
+                                mPlayerActorMngr.entry(daPy_getPlayerActorClass());
+                            } else if (var_r28 == 0) {
+                                mPlayerActorMngr.remove();
+                            }
+                        }
+                    }
+
+                    if (mPlayerActorMngr.getActorP() != NULL && mTwilight == 0) {
+                        if (mType == 3 || mType == 4) {
+                            dComIfGs_onTmpBit(0xD02);
+                        }
+
+                        mJntAnm.lookPlayer(0);
+                        if (mType == 0xC) {
+                            if (var_r28 == 1) {
+                                mJntAnm.lookNone(0);
+                            }
+                        } else {
+                            if (chkActorInSight(mPlayerActorMngr.getActorP(), mAttnFovY, mCurAngle.y) == 0) {
+                                mJntAnm.lookNone(0);
+                            }
+
+                            if (!srchPlayerActor() && home.angle.y == mCurAngle.y) {
+                                mMode = 1;
+                            }
+                        }
+                    } else {
+                        if (mType == 3 || mType == 4) {
+                            dComIfGs_offTmpBit(0xD02);
+                        }
+
+                        mJntAnm.lookNone(0);
+                        if (home.angle.y != mCurAngle.y) {
+                            if (field_0xe34) {
+                                if (chkBesu3()) {
+                                    if (step(home.angle.y, 0x1C, 0x1D, 0xF, 0)) {
+                                        mMode = 1;
+                                    }
+                                } else if (step(home.angle.y, 0x1C, 0x11, 0xF, 0)) {
+                                    mMode = 1;
+                                }
+                            } else {
+                                setAngle(home.angle.y);
+                                mMode = 1;
+                            }
+                            attention_info.flags = 0;
+                        } else if (daNpcKakashi_chkSwdTutorialStage() & 0xFF) {
+                            mJntAnm.lookPlayer(0);
+                        } else if (mTwilight == 0) {
+                            srchPlayerActor();
+                        }
+                    }
+                }
+
+                switch (mJntAnm.getMode()) {
+                    case 0: {
+                        switch (mType) {
+                            case 3:
+                            case 4: {
+                                dComIfGs_offTmpBit(0xE40);
+                                break;
+                            }
+
+                            case 11: {
+                                if (daNpcT_chkTmpBit(0x64)) {
+                                    field_0x1130 = 1;
+                                }
+
+                                if (field_0x1130) {
+                                    mJntAnm.lookCamera(0);
+                                } else {
+                                    if (cLib_calcTimer(&field_0x1128) == 0) {
+                                        ++field_0x112c;
+                                        field_0x1128 = cLib_getRndValue(30, 90);
+                                    }
+
+                                    if (field_0x112c & 1) {
+                                        actor_p = mActorMngr[1].getActorP();
+                                    } else {
+                                        actor_p = mActorMngr[0].getActorP();
+                                    }
+
+                                    if (actor_p != NULL) {
+                                        mJntAnm.lookActor((fopAc_ac_c *) actor_p, -40.0f, 0U);
+                                    }
+                                }
+
+                                break;
+                            }
+
+                            case 17: {
+                                actor_p = mActorMngr[5].getActorP();
+                                if (actor_p != NULL) {
+                                    mJntAnm.lookActor(actor_p, -40.0f, 0);
+                                }
+
+                                break;
+                            }
+                        }
+
+                        break;
+                    }
+
+                    case 1: {
+                        switch (mType) {
+                            case 3:
+                            case 4: {
+                                dComIfGs_onTmpBit(0xE40);
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                }
+
+                switch (mType) {
+                    case 12: {
+                        attention_info.flags = 0;
+                        break;
+                    }
+                }
+            }
+        }
+
+        case 3: {
+            break;
+        }
+    }
+
+    return 1;
 }
 
 /* 8053CAA0-8053CBB8 005D40 0118+00 1/0 0/0 0/0 .text            swdTutorial__12daNpc_Besu_cFPv */
 int daNpc_Besu_c::swdTutorial(void* param_0) {
-    // NONMATCHING
-}
+    switch (mMode) {
+        case 0:
+        case 1: {
+            if (!mStagger.checkStagger()) {
+                mFaceMotionSeqMngr.setNo(28, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+                mMode = 2;
+            }
+        }
+        /* fallthrough */
+        case 2: {
+            if (!mStagger.checkStagger()) {
+                mJntAnm.lookPlayer(0);
+            }
 
-/* ############################################################################################## */
-/* 8053E908-8053E908 0001B4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8053EB20 = "EVT_CONVERSATION_IN_HOTEL1_e";
-SECTION_DEAD static char const* const stringBase_8053EB3D = "EVT_CONVERSATION_IN_HOTEL2_e";
-#pragma pop
+            attention_info.flags = 0;
+            break;
+        }
+
+        case 3: {
+            break;
+        }
+    }
+
+    return 1;
+}
 
 /* 8053CBB8-8053CF78 005E58 03C0+00 3/0 0/0 0/0 .text            nurse__12daNpc_Besu_cFPv */
 int daNpc_Besu_c::nurse(void* param_0) {
-    // NONMATCHING
+    switch (mMode) {
+        case 0:
+        case 1: {
+            if (mFaceMotionSeqMngr.getNo() != 0x15) {
+                mFaceMotionSeqMngr.setNo(7, -1.0f, 0, 0);
+            }
+
+            if (mMotionSeqMngr.getNo() != 0x17) {
+                mMotionSeqMngr.setNo(0xD, -1.0f, 0, 0);
+            }
+
+            mMorfLoops = 0;
+            if (mType == 8) {
+                field_0x1120 = 1;
+                field_0x1124 = 0;
+            }
+
+            mMode = 2;
+        }
+        /* fallthrough */
+        case 2: {
+            mJntAnm.lookNone(0);
+            mAcch.SetWallNone();
+            switch (mMotionSeqMngr.getNo()) {
+                case 13: {
+                    if (0 != strcmp(dComIfGp_getEventManager().getRunEventName(), "EVT_CONVERSATION_IN_HOTEL1_e")) {
+                        if (0 != strcmp(dComIfGp_getEventManager().getRunEventName(), "EVT_CONVERSATION_IN_HOTEL2_e")
+                            && mType != 8 && mMorfLoops >= 2) {
+                            mFaceMotionSeqMngr.setNo(18, -1.0f, 0, 0);
+                            mMotionSeqMngr.setNo(21, -1.0f, 0, 0);
+                        }
+                    }
+
+                    break;
+                }
+
+                case 21:
+                case 23: {
+                    if (mMotionSeqMngr.checkEndSequence()) {
+                        mFaceMotionSeqMngr.setNo(7, -1.0f, 0, 0);
+                        mMotionSeqMngr.setNo(0xD, -1.0f, 0, 0);
+                    }
+
+                    break;
+                }
+            }
+
+            if (mType == 8) {
+                if (field_0x1120) {
+                    cLib_calcTimer(&field_0x1120);
+                    cLib_calcTimer(&field_0x1124);
+                    if (field_0x1120 == 0) {
+                        mFaceMotionSeqMngr.setNo(7, -1.0f, 0, 0);
+                        mMotionSeqMngr.setNo(13, -1.0f, 0, 0);
+                        field_0x1124 = 92;
+                    }
+                } else if (field_0x1124) {
+                    cLib_calcTimer(&field_0x1120);
+                    cLib_calcTimer(&field_0x1124);
+                    if (field_0x1124 == 0) {
+                        mFaceMotionSeqMngr.setNo(4, -1.0f, 0, 0);
+                        mMotionSeqMngr.setNo(14, -1.0f, 0, 0);
+                        field_0x1120 = 92;
+                    }
+                }
+            }
+            break;
+        }
+
+        case 3: {
+            break;
+        }
+    }
+
+    return 1;
 }
 
 /* 8053CF78-8053D078 006218 0100+00 2/0 0/0 0/0 .text            giveHotWater__12daNpc_Besu_cFPv */
 int daNpc_Besu_c::giveHotWater(void* param_0) {
-    // NONMATCHING
+    switch (mMode) {
+        case 0:
+        case 1: {
+            mFaceMotionSeqMngr.setNo(9, -1.0f, 0, 0);
+            mMotionSeqMngr.setNo(5, -1.0f, 0, 0);
+            mMode = 2;
+        }
+        /* fallthrough */
+        case 2: {
+            mJntAnm.lookNone(0);
+            mAcch.SetWallNone();
+            break;
+        }
+
+        case 3: {
+            break;
+        }
+    }
+
+    return 1;
 }
 
 /* 8053D078-8053D29C 006318 0224+00 3/0 0/0 0/0 .text            talk__12daNpc_Besu_cFPv */
 int daNpc_Besu_c::talk(void* param_0) {
-    // NONMATCHING
+    switch (mMode) {
+        case 0:
+        case 1: {
+            if (!mStagger.checkStagger()) {
+                initTalk(mFlowNodeNo, NULL);
+                mMode = 2;
+            }
+        }
+        /* fallthrough */
+        case 2: {
+            if (!mStagger.checkStagger()) {
+                if (mTwilight != 0 || mPlayerAngle == mCurAngle.y || mType == 5 || chkNurse()) {
+                    if (talkProc(NULL, 0, NULL, 0) && mFlow.checkEndFlow()) {
+                        mPlayerActorMngr.entry(daPy_getPlayerActorClass());
+                        dComIfGp_event_reset();
+                        mMode = 3;
+                    }
+
+                    mJntAnm.lookPlayer(0);
+                    if ((mTwilight != 0) || (chkNurse())) {
+                        mJntAnm.lookNone(0);
+                    }
+                } else {
+                    mJntAnm.lookPlayer(0);
+                    if (chkBesu3()) {
+                        step(mPlayerAngle, 0x1C, 0x1D, 0xF, 0);
+                    } else {
+                        step(mPlayerAngle, 0x1C, 0x11, 0xF, 0);
+                    }
+                }
+            }
+
+            break;
+        }
+
+        case 3: {
+            break;
+        }
+    }
+
+    return 0;
 }
 
 /* 8053D29C-8053D2BC 00653C 0020+00 1/0 0/0 0/0 .text            daNpc_Besu_Create__FPv */
