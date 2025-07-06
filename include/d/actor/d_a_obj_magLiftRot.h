@@ -64,7 +64,7 @@ STATIC_ASSERT(sizeof(daMagLiftRot_c) == 0x634);
 class daMagLiftRot_HIO_c : public mDoHIO_entry_c {
 public:
     /* 80C8E94C */ daMagLiftRot_HIO_c();
-    /* 80C8FA3C */ virtual ~daMagLiftRot_HIO_c();
+    /* 80C8FA3C */ virtual ~daMagLiftRot_HIO_c() {}
 
     void genMessage(JORMContext*);
 
