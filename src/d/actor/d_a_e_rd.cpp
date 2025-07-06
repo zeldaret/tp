@@ -711,6 +711,7 @@ static fpc_ProcID search_wb(e_rd_class* i_this, s16 param_2) {
     f32 fVar1 = 100.0f;
 
     f32 fVar2 = 1500.0f;
+    // Hyrule Field - Bridge of Eldin
     if (strcmp(dComIfGp_getStartStageName(), "F_SP121") == 0 && fopAcM_GetRoomNo(a_this) == 0) {
         fVar2 = HREG_F(0) + 5000.0f;
     }
@@ -816,6 +817,7 @@ static BOOL pl_check(e_rd_class* i_this, f32 param_2, s16 param_3) {
         return FALSE;
     }
 
+    // Hidden Village
     if (strcmp(dComIfGp_getStartStageName(), "F_SP128") == 0 && actor->current.pos.z < -9800.0f) {
         return FALSE;
     }
@@ -877,6 +879,7 @@ static BOOL way_check(e_rd_class* i_this) {
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     cXyz spac;
 
+    // Hidden Village
     if (strcmp(dComIfGp_getStartStageName(), "F_SP128") == 0 && a_this->current.pos.z < -8400.0f) {
         spac.x = a_this->home.pos.x - a_this->current.pos.x;
         spac.z = a_this->home.pos.z - a_this->current.pos.z;
@@ -914,11 +917,9 @@ static BOOL way_check(e_rd_class* i_this) {
     return FALSE;
 }
 
-/* 80519234-80519334 0000FC 00FF+01 1/1 0/0 0/0 .bss             check_index$5284 */
-static u8 check_index[255];
-
 /* 80506A60-80506C8C 0020E0 022C+00 1/1 0/0 0/0 .text            path_check__FP10e_rd_class */
 static BOOL path_check(e_rd_class* i_this) {
+    static u8 check_index[255];
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     dBgS_LinChk lin_chk;
     cXyz start, end;
@@ -1978,9 +1979,10 @@ static void e_rd_wb_ride(e_rd_class* i_this) {
                     if (i_this->field_0x129a != 0) {
                         bullbo->field_0x5b4 = 0;
                         i_this->mMode = 0;
-                        
+
                         if (i_this->field_0x129a == 3) {
                             bullbo->mActionID = 17;
+                            // Hyrule Field
                             if (strcmp(dComIfGp_getStartStageName(), "F_SP121") == 0) {
                                 bullbo->field_0x5b4 = -100;
                                 i_this->mAction = ACTION_IKKI2_START;
@@ -2015,250 +2017,254 @@ static void e_rd_wb_ride(e_rd_class* i_this) {
 
 /* 805098E4-8050A3EC 004F64 0B08+00 2/1 0/0 0/0 .text            e_rd_wb_run__FP10e_rd_class */
 static void e_rd_wb_run(e_rd_class* i_this) {
-    // NONMATCHING
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
-    dAttention_c* attention;
     cXyz sp3c, sp48;
-    e_wb_class* bullbo = (e_wb_class*)fopAcM_SearchByID(i_this->mWbActorID);
-    s16 sVar1;
+    fopAc_ac_c* base_bulb_p = (fopAc_ac_c*) fopAcM_SearchByID(i_this->mWbActorID);
 
-    if (bullbo == NULL) {
+    if (base_bulb_p == NULL) {
         fopAcM_delete(a_this);
-    } else {
-        if (bullbo->field_0x17e1 != 0) {
-            fopAcM_setStageLayer(a_this);
+        return;
+    }
+
+    e_wb_class* bullbo = (e_wb_class*) base_bulb_p;
+    if (bullbo->field_0x17e1) {
+        fopAcM_setStageLayer(a_this);
+    }
+
+    if ((bullbo->field_0x6be & 3) == 0) {
+        fopAcM_delete(a_this);
+        return;
+    }
+
+    if (daPy_getPlayerActorClass()->checkHorseRide()) {
+        dAttention_c* attention = dComIfGp_getAttention();
+        if (attention->Lockon() && a_this == attention->LockonTarget(0)) {
+            bullbo->field_0x6c0 = 1;
         }
+    }
 
-        if ((bullbo->field_0x6be & 3) == 0) {
-            fopAcM_delete(a_this);
-        } else {
-            if (daPy_getPlayerActorClass()->checkHorseRide()) {
-                attention = dComIfGp_getAttention();
-                if (attention->Lockon() && i_this == (e_rd_class*)attention->LockonTarget(0)) {
-                    bullbo->field_0x6c0 = 1;
-                }
-            }
+    if ((bullbo->field_0x6be & 1) == 0 && bullbo->mActionID == ACTION_BOW2 && i_this->mMode != 40) {
+        anm_init(i_this, BCK_RD_RRUN02_BACK, 5.0f, 2, 1.0f);
+        i_this->mMode = 40;
 
-            if ((bullbo->field_0x6be & 1) == 0 && bullbo->mActionID == ACTION_BOW2 && i_this->mMode != 40) {
-                anm_init(i_this, BCK_RD_RRUN02_BACK, 5.0f, 2, 1.0f);
-                i_this->mMode = 40;
-                
-                if (i_this->mpMorfBowAnm != NULL) {
-                    i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, BCK_RD_BOW_SHOOT), 0, 1.0f, 1.0f, 0.0f, -1.0f);
-                }
-            }
+        if (i_this->mpMorfBowAnm != NULL) {
+            i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, BCK_RD_BOW_SHOOT),
+                                         0, 1.0f, 1.0f, 0.0f, -1.0f);
+        }
+    }
 
-            f32 playerDistance = fopAcM_searchPlayerDistanceXZ(a_this);
-            int frame = i_this->mpModelMorf->getFrame();
+    f32 playerDistance = fopAcM_searchPlayerDistanceXZ(a_this);
+    int frame = i_this->mpModelMorf->getFrame();
 
-
-            switch (i_this->mMode) {
-                case 0:
-                    if ((bullbo->field_0x6be & 4) != 0) {
-                        if (i_this->field_0x9be == 1) {
-                            if (bullbo->field_0x6d0 < 0) {
-                                anm_init(i_this, BCK_RD_RSTEP_L, 10.0f, 2, 1.0f);
-                            } else {
-                                anm_init(i_this, BCK_RD_RSTEP_R, 10.0f, 2, 1.0f);
-                            }
-                        } else {
-                            anm_init(i_this, BCK_RD_RSTEP_BACK, 10.0f, 2, 1.0f);
-                        }
+    switch (i_this->mMode) {
+        case 0:
+            if ((bullbo->field_0x6be & 4) != 0) {
+                if (i_this->field_0x9be == 1) {
+                    if (bullbo->field_0x6d0 < 0) {
+                        anm_init(i_this, BCK_RD_RSTEP_L, 10.0f, 2, 1.0f);
                     } else {
-                        if ((bullbo->field_0x6be & 8) != 0) {
-                            if (i_this->field_0x9be == 1) {
-                                anm_init(i_this, BCK_RD_RDAMAGE, 3.0f, 0, 1.0f);
-                            } else {
-                                anm_init(i_this, BCK_RD_RDAMAGE_BACK, 3.0f, 0, 1.0f);
-                            }
-
-                            i_this->field_0x990[1] = cM_rndF(50.0f) + 50.0f;
-                        } else {
-                            if ((bullbo->field_0x6be & 16) != 0) {
-                                if (i_this->field_0x9be == 1) {
-                                    anm_init(i_this, BCK_RD_RRUN, 5.0f, 2, 1.0f);
-                                } else {
-                                    anm_init(i_this, BCK_RD_RRUN_BACK, 5.0f, 2, 1.0f);
-                                }
-                            } else {
-                                if ((bullbo->field_0x6be & 32) != 0) {
-                                    if (i_this->field_0x9be == 1) {
-                                        anm_init(i_this, BCK_RD_RWAIT, 5.0f, 2, 1.0f);
-                                    } else {
-                                        anm_init(i_this, BCK_RD_RWAIT_BACK, 5.0f, 2, 1.0f);
-                                    }
-                                }
-                            }
-                        }
+                        anm_init(i_this, BCK_RD_RSTEP_R, 10.0f, 2, 1.0f);
                     }
-
-                    i_this->mpModelMorf->setPlaySpeed(bullbo->mpModelMorf->getPlaySpeed());
-
+                } else {
+                    anm_init(i_this, BCK_RD_RSTEP_BACK, 10.0f, 2, 1.0f);
+                }
+            } else {
+                if ((bullbo->field_0x6be & 8) != 0) {
                     if (i_this->field_0x9be == 1) {
-                        i_this->field_0x9c8 = 2;
+                        anm_init(i_this, BCK_RD_RDAMAGE, 3.0f, 0, 1.0f);
                     } else {
-                        i_this->field_0x9c8 = 1;
-                        if (i_this->field_0x5bc == 1 && bullbo->speedF > 10.0f) {
-                            if (playerDistance < TREG_F(11) + 850.0f && playerDistance < TREG_F(11) + 750.0f && i_this->field_0x990[2] == 0) {
-                                sVar1 = a_this->shape_angle.y - i_this->mPlayerAngleY;
-                                if (sVar1 > 0x1000 && sVar1 < 0x4000) {
-                                    i_this->mMode = 10;
-                                } else if (sVar1 < -0x1000 && sVar1 > -0x4000) {
-                                    i_this->mMode = 20;
-                                }
+                        anm_init(i_this, BCK_RD_RDAMAGE_BACK, 3.0f, 0, 1.0f);
+                    }
 
-                                if (daPy_getPlayerActorClass()->checkHorseRide() && dComIfGp_getHorseActor()->speedF >= 20.0f) {
-                                    i_this->field_0x990[2] = cM_rndF(20.0f) + 20.0f;
-                                }
-                            }
+                    i_this->field_0x990[1] = cM_rndF(50.0f) + 50.0f;
+                } else {
+                    if ((bullbo->field_0x6be & 16) != 0) {
+                        if (i_this->field_0x9be == 1) {
+                            anm_init(i_this, BCK_RD_RRUN, 5.0f, 2, 1.0f);
                         } else {
-                            if (i_this->field_0x990[1] == 0 && i_this->field_0x5bc >= 2) {
-                                anm_init(i_this, BCK_RD_RSHOOT_READY, 5.0f, 0, 1.0f);
-                                i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, BCK_RD_BOW_RREADY), 0, 5.0f, 1.0f, 0.0f, -1.0f);
-                                i_this->mMode = 30;
+                            anm_init(i_this, BCK_RD_RRUN_BACK, 5.0f, 2, 1.0f);
+                        }
+                    } else {
+                        if ((bullbo->field_0x6be & 32) != 0) {
+                            if (i_this->field_0x9be == 1) {
+                                anm_init(i_this, BCK_RD_RWAIT, 5.0f, 2, 1.0f);
+                            } else {
+                                anm_init(i_this, BCK_RD_RWAIT_BACK, 5.0f, 2, 1.0f);
                             }
                         }
                     }
-                    break;
+                }
+            }
 
-                case 10:
-                    anm_init(i_this, BCK_RD_RATTACK01_WAIT, 10.0f, 2, 1.0f);
-                    i_this->mMode = 11;
-                    // fallthrough
-                case 11:
-                    if (playerDistance > 800.0f) {
-                        i_this->mMode = 0;
-                        if (i_this->field_0x9be == 1) {
-                            anm_init(i_this, BCK_RD_RRUN, 10.0f, 2, 1.0f);
-                        } else {
-                            anm_init(i_this, BCK_RD_RRUN_BACK, 10.0f, 2, 1.0f);
+            i_this->mpModelMorf->setPlaySpeed(bullbo->mpModelMorf->getPlaySpeed());
+
+            if (i_this->field_0x9be == 1) {
+                i_this->field_0x9c8 = 2;
+            } else {
+                i_this->field_0x9c8 = 1;
+                if (i_this->field_0x5bc == 1 && base_bulb_p->speedF > 10.0f) {
+                    if (playerDistance < TREG_F(11) + 850.0f && playerDistance < TREG_F(11) + 750.0f
+                        && i_this->field_0x990[2] == 0) {
+                        s16 sVar1 = a_this->shape_angle.y - i_this->mPlayerAngleY;
+                        if (sVar1 > 0x1000 && sVar1 < 0x4000) {
+                            i_this->mMode = 10;
+                        } else if (sVar1 < -0x1000 && sVar1 > -0x4000) {
+                            i_this->mMode = 20;
                         }
-                    } else if (playerDistance < 550.0f && i_this->field_0x990[2] == 0) {
-                        i_this->mMode = 25;
-                        if (daPy_getPlayerActorClass()->checkHorseRide()) {
-                            anm_init(i_this, BCK_RD_RATTACK03, 5.0f, 0, 1.0f);
-                        } else {
-                            anm_init(i_this, BCK_RD_RATTACK01, 5.0f, 0, 1.0f);
-                        }
-                    }
-                    break;
 
-                case 20:
-                    anm_init(i_this, BCK_RD_RATTACK02_WAIT, 10.0f, 2, 1.0f);
-                    i_this->mMode = 21;
-                    // fallthrough
-                case 21:
-                    i_this->field_0x9ab = 1;
-                    if (playerDistance > 800.0f) {
-                        i_this->mMode = 0;
-                        if (i_this->field_0x9be == 1) {
-                            anm_init(i_this, BCK_RD_RRUN, 10.0f, 2, 1.0f);
-                        } else {
-                            anm_init(i_this, BCK_RD_RRUN_BACK, 10.0f, 2, 1.0f);
-                        }
-                    } else if (playerDistance < 550.0f && i_this->field_0x990[2] == 0) {
-                        i_this->mMode = 25;
-                        if (daPy_getPlayerActorClass()->checkHorseRide()) {
-                            anm_init(i_this, BCK_RD_RATTACK04, 5.0f, 0, 1.0f);
-                        } else {
-                            anm_init(i_this, BCK_RD_RATTACK02, 5.0f, 0, 1.0f);
-                        }
-                    }
-                    break;
-
-                case 25:
-                    if (frame <= 23) {
-                        i_this->field_0x9ab = 1;
-                    }
-
-                    if (i_this->mpModelMorf->checkFrame(15.0f)) {
-                        i_this->mSound.startCreatureSound(Z2SE_EN_RD_SWING_CLUB, 0, -1);
-                    }
-
-                    if (i_this->mpModelMorf->isStop()) {
-                        if (i_this->field_0x9be == 1) {
-                            anm_init(i_this, BCK_RD_RRUN, 10.0f, 2, 1.0f);
-                        } else {
-                            anm_init(i_this, BCK_RD_RRUN_BACK, 10.0f, 2, 1.0f);
+                        if (daPy_getPlayerActorClass()->checkHorseRide() && dComIfGp_getHorseActor()->speedF >= 20.0f) {
                             i_this->field_0x990[2] = cM_rndF(20.0f) + 20.0f;
                         }
-
-                        i_this->mMode = 0;
                     }
-                    break;
-
-                case 30:
-                    i_this->field_0x9c8 = 3;
-                    if (frame == 14) {
-                        i_this->mSound.startCreatureSound(Z2SE_OBJ_ARROW_DRAW_NORMAL, 0, -1);
-                    }
-
-                    if (i_this->mpModelMorf->isStop()) {
-                        i_this->mMode = 31;
-                        anm_init(i_this, BCK_RD_RSHOOT_WAIT, 4.0f, 2, 1.0f);
-                    }
-
-                    i_this->field_0x9a2 = 1;
-                    break;
-
-                case 31:
-                    i_this->field_0x9c8 = 3;
-                    if (i_this->field_0x990[1] == 0 && i_this->mPlayerDistance < l_HIO.mounted_launch_distance && i_this->field_0x9a4 == 0 && !dComIfGp_event_runCheck()) {
-                        anm_init(i_this, BCK_RD_RSHOOT, 1.0f, 0, 1.0f);
-                        i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 10), 0, 1.0f, 1.0f, 0.0f, -1.0f);
-                        i_this->mMode = 32;
-                    }
-
-                    i_this->field_0x9a2 = 1;
-                    break;
-
-                case 32:
-                    if (frame <= 3) {
-                        i_this->field_0x9a2 = 1;
-                    }
-
-                    if (frame == 2) {
-                        i_this->field_0x9a3 = 1;
-                    }
-
-                    i_this->field_0x9c8 = 3;
-
-                    if (i_this->mpModelMorf->isStop()) {
+                } else {
+                    if (i_this->field_0x990[1] == 0 && i_this->field_0x5bc >= 2) {
                         anm_init(i_this, BCK_RD_RSHOOT_READY, 5.0f, 0, 1.0f);
-                        i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 8), 0, 5.0f, 1.0f, 0.0f, -1.0f);
+                        i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, BCK_RD_BOW_RREADY), 0, 5.0f, 1.0f, 0.0f, -1.0f);
                         i_this->mMode = 30;
-
-                        if (i_this->field_0x9bc == 2 && i_this->field_0x5bb != 0) {
-                            i_this->field_0x990[1] = cM_rndF(30.0f) + 20.0f;
-                        } else {
-                            i_this->field_0x990[1] = cM_rndF(50.0f) + 30.0f;
-                        }
                     }
-                    break;
+                }
+            }
+            break;
 
-                case 40:
-                    if (bullbo->mActionID != 7) {
-                        i_this->mMode = 0;
-                        anm_init(i_this, BCK_RD_RWAIT_BACK, 5.0f, 2, 1.0f);
-                    }
-                    break;
+        case 10:
+            anm_init(i_this, BCK_RD_RATTACK01_WAIT, 10.0f, 2, 1.0f);
+            i_this->mMode = 11;
+            // fallthrough
+        case 11:
+            if (playerDistance > 800.0f + TREG_F(10)) {
+                i_this->mMode = 0;
+                if (i_this->field_0x9be == 1) {
+                    anm_init(i_this, BCK_RD_RRUN, 10.0f, 2, 1.0f);
+                } else {
+                    anm_init(i_this, BCK_RD_RRUN_BACK, 10.0f, 2, 1.0f);
+                }
+            } else if (playerDistance < 550.0f && i_this->field_0x990[2] == 0) {
+                i_this->mMode = 25;
+                if (daPy_getPlayerActorClass()->checkHorseRide()) {
+                    anm_init(i_this, BCK_RD_RATTACK03, 5.0f, 0, 1.0f);
+                } else {
+                    anm_init(i_this, BCK_RD_RATTACK01, 5.0f, 0, 1.0f);
+                }
+            }
+            break;
 
-                case 50:
-                    if (i_this->field_0x990[3] == 0) {
-                        i_this->mMode = 0;
-                        if (i_this->field_0x9be == 1) {
-                            anm_init(i_this, BCK_RD_RRUN, 10.0f, 2, 1.0f);
-                        } else {
-                            anm_init(i_this, BCK_RD_RRUN_BACK, 10.0f, 2, 1.0f);
-                            i_this->field_0x990[2] = cM_rndF(50.0f) + 50.0f;
-                        }
-                    }
+        case 20:
+            anm_init(i_this, BCK_RD_RATTACK02_WAIT, 10.0f, 2, 1.0f);
+            i_this->mMode = 21;
+            // fallthrough
+        case 21:
+            i_this->field_0x9ab = 1;
+            if (playerDistance > 800.0f + TREG_F(10)) {
+                i_this->mMode = 0;
+                if (i_this->field_0x9be == 1) {
+                    anm_init(i_this, BCK_RD_RRUN, 10.0f, 2, 1.0f);
+                } else {
+                    anm_init(i_this, BCK_RD_RRUN_BACK, 10.0f, 2, 1.0f);
+                }
+            } else if (playerDistance < 550.0f && i_this->field_0x990[2] == 0) {
+                i_this->mMode = 25;
+                if (daPy_getPlayerActorClass()->checkHorseRide()) {
+                    anm_init(i_this, BCK_RD_RATTACK04, 5.0f, 0, 1.0f);
+                } else {
+                    anm_init(i_this, BCK_RD_RATTACK02, 5.0f, 0, 1.0f);
+                }
+            }
+            break;
+
+        case 25:
+            if (frame <= 23) {
+                i_this->field_0x9ab = 1;
             }
 
-            if (i_this->field_0x9be == 2 && i_this->mAnmID == BCK_RD_RRUN_BACK) {
-                i_this->mSound.startCreatureVoiceLevel(Z2SE_EN_RD_V_RIDING_YELL, -1);
+            if (i_this->mpModelMorf->checkFrame(15.0f)) {
+                i_this->mSound.startCreatureSound(Z2SE_EN_RD_SWING_CLUB, 0, -1);
             }
-        }
+
+            if (i_this->mpModelMorf->isStop()) {
+                if (i_this->field_0x9be == 1) {
+                    anm_init(i_this, BCK_RD_RRUN, 10.0f, 2, 1.0f);
+                } else {
+                    anm_init(i_this, BCK_RD_RRUN_BACK, 10.0f, 2, 1.0f);
+                    i_this->field_0x990[2] = cM_rndF(20.0f) + 20.0f;
+                }
+
+                i_this->mMode = 0;
+            }
+            break;
+
+        case 30:
+            i_this->field_0x9c8 = 3;
+            if (frame == 14) {
+                i_this->mSound.startCreatureSound(Z2SE_OBJ_ARROW_DRAW_NORMAL, 0, -1);
+            }
+
+            if (i_this->mpModelMorf->isStop()) {
+                i_this->mMode = 31;
+                anm_init(i_this, BCK_RD_RSHOOT_WAIT, 4.0f, 2, 1.0f);
+            }
+
+            i_this->field_0x9a2 = 1;
+            break;
+
+        case 31:
+            i_this->field_0x9c8 = 3;
+            if (i_this->field_0x990[1] == 0 && i_this->mPlayerDistance < l_HIO.mounted_launch_distance
+                && i_this->field_0x9a4 == 0 && !dComIfGp_event_runCheck()) {
+                anm_init(i_this, BCK_RD_RSHOOT, 1.0f, 0, 1.0f);
+                i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 10),
+                                                0, 1.0f, 1.0f, 0.0f, -1.0f);
+                i_this->mMode = 32;
+            }
+
+            i_this->field_0x9a2 = 1;
+            break;
+
+        case 32:
+            if (frame <= 3 + XREG_S(5)) {
+                i_this->field_0x9a2 = 1;
+            }
+
+            if (frame == 2 + XREG_S(7)) {
+                i_this->field_0x9a3 = 1;
+            }
+
+            i_this->field_0x9c8 = 3;
+
+            if (i_this->mpModelMorf->isStop()) {
+                anm_init(i_this, BCK_RD_RSHOOT_READY, 5.0f, 0, 1.0f);
+                i_this->mpMorfBowAnm->setAnm((J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 8),
+                                                0, 5.0f, 1.0f, 0.0f, -1.0f);
+                i_this->mMode = 30;
+
+                if (i_this->field_0x9bc == 2 && i_this->field_0x5bb != 0) {
+                    i_this->field_0x990[1] = cM_rndF(30.0f) + 20.0f;
+                } else {
+                    i_this->field_0x990[1] = cM_rndF(50.0f) + 30.0f;
+                }
+            }
+            break;
+
+        case 40:
+            if (bullbo->mActionID != 7) {
+                i_this->mMode = 0;
+                anm_init(i_this, BCK_RD_RWAIT_BACK, 5.0f, 2, 1.0f);
+            }
+            break;
+
+        case 50:
+            if (i_this->field_0x990[3] == 0) {
+                i_this->mMode = 0;
+                if (i_this->field_0x9be == 1) {
+                    anm_init(i_this, BCK_RD_RRUN, 10.0f, 2, 1.0f);
+                } else {
+                    anm_init(i_this, BCK_RD_RRUN_BACK, 10.0f, 2, 1.0f);
+                    i_this->field_0x990[2] = cM_rndF(50.0f) + 50.0f;
+                }
+            }
+    }
+
+    if (i_this->field_0x9be == 2 && i_this->mAnmID == BCK_RD_RRUN_BACK) {
+        i_this->mSound.startCreatureVoiceLevel(Z2SE_EN_RD_V_RIDING_YELL, -1);
     }
 }
 
@@ -2277,7 +2283,6 @@ static void* s_wbrun_sub(void* i_actor, void* i_data) {
 
 /* 8050A578-8050A908 005BF8 0390+00 1/1 0/0 0/0 .text            e_rd_wb_run_B__FP10e_rd_class */
 static void e_rd_wb_run_B(e_rd_class* i_this) {
-    // NONMATCHING
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     e_wb_class* bullbo = (e_wb_class*)fopAcM_SearchByID(i_this->mWbActorID);
     dAttention_c* attention;
@@ -2295,14 +2300,17 @@ static void e_rd_wb_run_B(e_rd_class* i_this) {
             }
         }
 
-        if (i_this->mMode != 0) {
-            if ((bullbo->field_0x6be & 0x400) != 0) {
-                anm_init(i_this, e_rdb_class::BCK_RB_RSTARTLOOP, 10.0f, 2, 1.0f);
-            } else if ((bullbo->field_0x6be & 0x800) != 0) {
-                anm_init(i_this, e_rdb_class::BCK_RB_RSTART, 10.0f, 2, 1.0f);
-            }
+        switch (i_this->mMode) {
+            case 0: {
+                if ((bullbo->field_0x6be & 0x400) != 0) {
+                    anm_init(i_this, e_rdb_class::BCK_RB_RSTARTLOOP, 10.0f, 2, 1.0f);
+                } else if ((bullbo->field_0x6be & 0x800) != 0) {
+                    anm_init(i_this, e_rdb_class::BCK_RB_RSTART, 10.0f, 2, 1.0f);
+                }
 
-            i_this->mpModelMorf->setPlaySpeed(bullbo->mpModelMorf->getPlaySpeed());
+                i_this->mpModelMorf->setPlaySpeed(bullbo->mpModelMorf->getPlaySpeed());
+                break;
+            }
         }
 
         if (i_this->mAnmID == e_rdb_class::BCK_RB_RGUARD_F || i_this->mAnmID == e_rdb_class::BCK_RB_RDAMAGEB 
@@ -3057,6 +3065,7 @@ static void e_rd_drop(e_rd_class* i_this) {
                 if (i_this->mDemoMode != 0) {
                     i_this->field_0x5cc = i_this->mPlayerAngleY;
                 } else if (strcmp(dComIfGp_getStartStageName(), "F_SP128") == 0) {
+                    // Hidden Village
                     i_this->field_0x5cc = a_this->home.angle.y;
                 } else {
                     i_this->field_0x5cc = gake_check(i_this, 200.0f);
@@ -5657,16 +5666,16 @@ static void cam_spd_set(e_rd_class* i_this) {
 
 /* 8051309C-80514640 00E71C 15A4+00 2/1 0/0 0/0 .text            demo_camera__FP10e_rd_class */
 static void demo_camera(e_rd_class* i_this) {
-    // NONMATCHING
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
-    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
-    camera_class* camera_2 = dComIfGp_getCamera(0);
-    daNPC_TK_c* hawk = (daNPC_TK_c*)fopAcM_SearchByName(PROC_NPC_TK);
+    camera_class* camera = (camera_class*) dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    camera_class* camera_2 = (camera_class*) dComIfGp_getCamera(0);
+    daNPC_TK_c* hawk_tuah_p = (daNPC_TK_c*) fopAcM_SearchByName(PROC_NPC_TK);
+    fopAc_ac_c* hawk = hawk_tuah_p;
     cXyz sp38, sp44, sp50, sp5c;
     s8 bVar1 = 0;
     s16 sVar1 = 0;
-    
+
     switch (i_this->mDemoMode + 1) {
         case 1:
             if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
@@ -5834,7 +5843,8 @@ static void demo_camera(e_rd_class* i_this) {
                     daPy_getPlayerActorClass()->setPlayerPosAndAngle(&sp44, 0xFFFFE051, 0);
                 }
 
-                if (i_this->field_0x12a6 == 120 || i_this->field_0x12a6 == 130 || i_this->field_0x12a6 == 140 || i_this->field_0x12a6 == 150) {
+                if (i_this->field_0x12a6 == 120 || i_this->field_0x12a6 == 130
+                    || i_this->field_0x12a6 == 140 || i_this->field_0x12a6 == 150) {
                     fpcM_Search(s_lv9dn_sub, i_this);
                 }
 
@@ -5871,7 +5881,7 @@ static void demo_camera(e_rd_class* i_this) {
 
             if (i_this->field_0x12a6 == 55) {
                 i_this->mDemoCamCenter.set(-8330.0f, 4359.0f, 8449.0f);
-                i_this->mDemoCamEye.set(-8183.0f, 4246.0f, 7991.0f);
+                i_this->mDemoCamEye.set(-8183.0f, 4264.0f, 7991.0f);
                 i_this->mDemoCamFovy = 55.0f;
                 i_this->mDemoMode = 23;
                 i_this->field_0x12a6 = 0;
@@ -5902,7 +5912,7 @@ static void demo_camera(e_rd_class* i_this) {
                 i_this->field_0x9a4 = 0;
                 i_this->mDemoMode = 24;
                 i_this->field_0x12a6 = 0;
-                i_this->field_0x12cc.set(-4910.0f, 2012.0f, 4967.0f);
+                i_this->field_0x12cc.set(-4910.0f, 2012.0f, 4976.0f);
                 i_this->field_0x12c0.set(-5235.0f, 2179.0f, 5302.0f);
                 cam_spd_set(i_this);
             }
@@ -5928,7 +5938,7 @@ static void demo_camera(e_rd_class* i_this) {
 
                 if (i_this->field_0x12a6 == 20) {
                     daPy_getPlayerActorClass()->changeDemoMode(20, 1, 0, 0);
-                    hawk->mSound.startCreatureVoice(Z2SE_HAWK_V_REGI_DEMO_1, -1);
+                    hawk_tuah_p->mSound.startCreatureVoice(Z2SE_HAWK_V_REGI_DEMO_1, -1);
                 }
 
                 if (i_this->field_0x12a6 == 41) {
@@ -6012,7 +6022,9 @@ static void demo_camera(e_rd_class* i_this) {
                 }
             }
 
-            if (i_this->field_0x12a6 != 230) break;
+            if (i_this->field_0x12a6 != 230) {
+                break;
+            }
 
             i_this->mDemoMode = 28;
             i_this->field_0x12a6 = 0;
@@ -6030,7 +6042,7 @@ static void demo_camera(e_rd_class* i_this) {
                 cLib_addCalc2(&i_this->field_0x130c, BREG_F(16) + 0.2f, 1.0f, BREG_F(17) + 0.01f);
 
                 if (i_this->field_0x12a6 == 23) {
-                    hawk->setResistanceDemo();
+                    hawk_tuah_p->setResistanceDemo();
                 }
             } else {
                 if (i_this->field_0x12a6 == 25) {
@@ -6046,7 +6058,7 @@ static void demo_camera(e_rd_class* i_this) {
 
                 if (i_this->field_0x12a6 >= 55) {
                     if (i_this->field_0x12a6 == 110) {
-                        hawk->mSound.startCreatureVoice(Z2SE_HAWK_V_REGI_DEMO_2, -1);
+                        hawk_tuah_p->mSound.startCreatureVoice(Z2SE_HAWK_V_REGI_DEMO_2, -1);
                     }
 
                     if (i_this->field_0x12a6 < 135) {
@@ -6155,7 +6167,7 @@ static void demo_camera(e_rd_class* i_this) {
         case 35:
             if (i_this->field_0x12a6 == 120) {
                 bVar1 = true;
-                int swBit = fopAcM_GetParam(a_this) >> 24;
+                int swBit = (fopAcM_GetParam(a_this) & 0xFF000000) >> 24;
                 if (swBit != 0xFF) {
                     dComIfGs_onSwitch(swBit, fopAcM_GetRoomNo(a_this));
                 }
@@ -6188,11 +6200,6 @@ static int c_start;
 
 /* 80514640-805163C0 00FCC0 1D80+00 2/1 0/0 0/0 .text            daE_RD_Execute__FP10e_rd_class */
 static int daE_RD_Execute(e_rd_class* i_this) {
-    // NONMATCHING
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
-    fopAc_ac_c* player;
-    f32 fVar1, fVar2, fVar3, fVar4;
-
     if (c_start == 0 && dComIfGp_event_runCheck()) {
         if (data_80519201 != 0) {
             return 1;
@@ -6203,6 +6210,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         }
     }
 
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     cXyz sp98, spa4, spb0;
 
     if (i_this->field_0x5b8 == 11) {
@@ -6219,8 +6227,9 @@ static int daE_RD_Execute(e_rd_class* i_this) {
     if (i_this->field_0x129a == 0) {
         i_this->field_0x1297 = i_this->field_0x1298;
     } else {
-        player = dComIfGp_getPlayer(0);
+        fopAc_ac_c* player = dComIfGp_getPlayer(0);
 
+        // Bridge of Eldin Battle
         if (strcmp(dComIfGp_getStartStageName(), "F_SP102") == 0 && player->current.pos.y < -2000.0f) {
             cDmr_SkipInfo = 50;
         }
@@ -6323,25 +6332,25 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         }
     }
 
-    J3DModel* model;
     if (i_this->field_0xafb == 0) {
         mDoMtx_stack_c::transS(a_this->current.pos.x, a_this->current.pos.y + i_this->field_0x9c0, a_this->current.pos.z);
-        mDoMtx_stack_c::XrotM(i_this->field_0xa12);
-        mDoMtx_stack_c::ZrotM(i_this->field_0xa16);
-        mDoMtx_stack_c::YrotM(i_this->field_0xa0e);
-        mDoMtx_stack_c::XrotM(i_this->field_0xa0c);
+        mDoMtx_stack_c::XrotM((s16) i_this->field_0xa12);
+        mDoMtx_stack_c::ZrotM((s16) i_this->field_0xa16);
+        mDoMtx_stack_c::YrotM((s16) i_this->field_0xa0e);
+        mDoMtx_stack_c::XrotM((s16) i_this->field_0xa0c);
         mDoMtx_stack_c::YrotM(-i_this->field_0xa0e);
-        mDoMtx_stack_c::YrotM(a_this->shape_angle.y);
-        mDoMtx_stack_c::XrotM(a_this->shape_angle.x);
+        mDoMtx_stack_c::YrotM((s16) a_this->shape_angle.y);
+        mDoMtx_stack_c::XrotM((s16) a_this->shape_angle.x);
         mDoMtx_stack_c::ZrotM(a_this->shape_angle.z);
 
-        fVar1 = l_HIO.model_size * a_this->scale.x;
+        f32 fVar1 = l_HIO.model_size * a_this->scale.x;
         if (i_this->field_0x129a != 0) {
             fVar1 *= l_HIO.field_0xc;
         }
         mDoMtx_stack_c::scaleM(fVar1, fVar1, fVar1);
 
-        i_this->mpModelMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+        J3DModel* my_model_p = i_this->mpModelMorf->getModel();
+        my_model_p->setBaseTRMtx(mDoMtx_stack_c::get());
         i_this->mpModelMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(a_this)));
         int frame = i_this->mpModelMorf->getFrame();
 
@@ -6394,11 +6403,11 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         }
 
         if (i_this->field_0x1297 != 0) {
-            model = i_this->mpModelMorf->getModel();
+            J3DModel* model = i_this->mpModelMorf->getModel();
             cLib_addCalc2(&i_this->field_0x6cc, i_this->field_0x6d0, 1.0f, 0.02f);
             i_this->field_0x6d0 = 1.0f;
             MTXCopy(model->getAnmMtx(13), *calc_mtx);
-            camera_class* camera = dComIfGp_getCamera(0);
+            camera_class* camera = (camera_class*) dComIfGp_getCamera(0);
             
             static f32 time_scale[25] = {
                 1.2f, 1.2f, 1.1f, 1.0f,
@@ -6412,7 +6421,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
 
             for (int i = 0; i < 2; i++) {
                 MtxPush();
-                s16 sVar1, sVar2;
+                s16 sVar2, sVar1;
                 if (i == 0) {
                     sp98.set(38.0f, 0.0f, 0.0f);
                     MtxPosition(&sp98, &spa4);
@@ -6420,13 +6429,14 @@ static int daE_RD_Execute(e_rd_class* i_this) {
 
                     sVar1 = cM_atan2s(sp98.x, sp98.z);
                     sVar2 = -cM_atan2s(sp98.y, JMAFastSqrt(sp98.x * sp98.x + sp98.z * sp98.z));
-                    fVar1 = sp98.abs() * 0.001f;
-                    if (fVar1 > 2.0f) {
-                        fVar1 = 2.0f;
+                    fVar1 = sp98.abs() * (0.001f + JREG_F(8));
+                    if (fVar1 > 2.0f + JREG_F(17)) {
+                        fVar1 = 2.0f + JREG_F(17);
                     }
 
-                    fVar1 *= i_this->field_0x6cc * time_scale[(int)(dKy_getEnvlight()->daytime / 15.0f) * 4];
-                    
+                    dScnKy_env_light_c* env_light = dKy_getEnvlight();
+                    int my_scale = env_light->daytime / 15.0f;
+                    fVar1 *= i_this->field_0x6cc * time_scale[my_scale];
                     sp98.set(38.0f, 0.0f, 6.0f);
                 } else {
                     sp98.set(38.0f, 0.0f, -6.0f);
@@ -6445,7 +6455,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
     }
 
     if (i_this->field_0xafb == 0) {
-        model = i_this->mpModelMorf->getModel();
+        J3DModel* model = i_this->mpModelMorf->getModel();
         MTXCopy(model->getAnmMtx(11), *calc_mtx);
         sp98.set(0.0f, 0.0f, 0.0f);
         MtxPosition(&sp98, &spa4);
@@ -6461,7 +6471,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         cXyz spbc(0.0f, 0.0f, 0.0f);
         
         if (i_this->field_0x998 != 0) {
-            spbc.set(-20000.0f, 20000.0f, 30000.0f);
+            spbc.set(-20000.0f, 200000.0f, 30000.0f);
         }
 
         if (i_this->field_0x129a != 0) {
@@ -6495,8 +6505,8 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         }
 
         if (i_this->field_0x129a != 0) {
-            fVar2 = 60.0f;
-            fVar1 = 0.0f;
+            f32 fVar2 = 60.0f;
+            f32 fVar1 = 0.0f;
             if (i_this->field_0x129a == 2) {
                 fVar2 = 90.0f;
                 fVar1 = l_HIO.field_0x3c;
@@ -6506,7 +6516,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             MTXCopy(model->getAnmMtx(2), *calc_mtx);
             MtxPosition(&sp98, &spa4);
             i_this->field_0xd58[2].SetC(spa4 + spbc);
-            i_this->field_0xd58[2].SetR(fVar2 + (fVar1 + ZREG_F(3)));
+            i_this->field_0xd58[2].SetR((fVar2 + ZREG_F(3)) + fVar1);
 
             sp98.set(ZREG_F(4), ZREG_F(5), ZREG_F(6));
             MTXCopy(model->getAnmMtx(22), *calc_mtx);
@@ -6604,7 +6614,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
     }
 
     if (i_this->field_0x5bc >= 2) {
-        model = i_this->mpModelMorf->getModel();
+        J3DModel* model = i_this->mpModelMorf->getModel();
 
         if (i_this->field_0x9a6 != 0) {
             i_this->field_0x9a6--;
@@ -6669,8 +6679,9 @@ static int daE_RD_Execute(e_rd_class* i_this) {
                 sp98 = actor->eyePos;
 
                 if (i_this->field_0x1296 != 0) {
-                    sp98.x += actor->speed.x * (TREG_F(7) + 15.0f);
-                    sp98.z += actor->speed.z * (TREG_F(7) + 15.0f);
+                    f32 mult_fact = TREG_F(7) + 15.0f;
+                    sp98.x += actor->speed.x * mult_fact;
+                    sp98.z += actor->speed.z * mult_fact;
                 }
 
                 sp98 -= spa4;
@@ -6688,6 +6699,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
 
                 local_148.x = -cM_atan2s(sp98.y, JMAFastSqrt(sp98.x * sp98.x + sp98.z * sp98.z));
 
+                // NOT Hyrule Field
                 if (strcmp(dComIfGp_getStartStageName(), "F_SP121") != 0 && i_this->field_0x1296 == 0) {
                     local_148.x += (s16)(cM_rndFX(200.0f) + -500.0f);
                     local_148.y += (s16)cM_rndFX(100.0f);
@@ -6695,7 +6707,6 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             }
 
             local_148.z = 0;
-            
             if (i_this->field_0x5bc == 3) {
                 iVar1 |= 1;
             } else if (i_this->field_0x5bc == 4) {
@@ -6751,13 +6762,14 @@ static int daE_RD_Execute(e_rd_class* i_this) {
                     mDoMtx_stack_c::transS(i_this->field_0x71c[i].x, i_this->field_0x71c[i].y, i_this->field_0x71c[i].z);
                     mDoMtx_stack_c::YrotM(i_this->field_0x86c[i].y);
                     mDoMtx_stack_c::XrotM(i_this->field_0x86c[i].x);
-                    mDoMtx_stack_c::scaleM(l_HIO.field_0xc * (l_HIO.model_size * a_this->scale.x), 
-                                           l_HIO.field_0xc * (l_HIO.model_size * a_this->scale.x), l_HIO.field_0xc * (l_HIO.model_size * a_this->scale.x));
+                    f32 my_scale = l_HIO.field_0xc * (l_HIO.model_size * a_this->scale.x);
+                    mDoMtx_stack_c::scaleM(my_scale, my_scale, my_scale);
 
                     i_this->mpBossArmorParts[i]->setBaseTRMtx(mDoMtx_stack_c::get());
 
                     for (int j = 0; j < 3; j++) {
-                        i_this->field_0x8c0[j] = dComIfGp_particle_set(i_this->field_0x8c0[j], eno[j], &i_this->field_0x71c[i], NULL, NULL);
+                        i_this->field_0x8c0[i][j] = dComIfGp_particle_set(i_this->field_0x8c0[i][j], eno[j],
+                                                                          &i_this->field_0x71c[i], NULL, NULL);
                     }
 
                     if (i_this->field_0x71c[i].y < a_this->current.pos.y - 200.0f) {
@@ -6776,7 +6788,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
                 i_this->field_0x6a4 += i_this->field_0x6b0;
                 i_this->field_0x6b0.y -= 5.0f;
                 MtxTrans(i_this->field_0x6a4.x, i_this->field_0x6a4.y, i_this->field_0x6a4.z, 0);
-                fVar4 = l_HIO.field_0xc * ( l_HIO.model_size * a_this->scale.x);
+                f32 fVar4 = l_HIO.field_0xc * ( l_HIO.model_size * a_this->scale.x);
                 MtxScale(fVar4, fVar4, fVar4, 1);
                 MtxTrans(BREG_F(5) + 80.0f, BREG_F(6) + 50.0f, BREG_F(7), 1);
                 cMtx_YrotM(*calc_mtx, i_this->field_0x6be);
@@ -6795,7 +6807,8 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             if (i_this->field_0x680 == 0) {
                 int iVar2 = i_this->mAnmID;
                 if (iVar2 == e_rdb_class::BCK_RB_RRUN) {
-                    if ((s16)(a_this->shape_angle.y - i_this->mPlayerAngleY) < 0) {
+                    s16 angle_diff = a_this->shape_angle.y - i_this->mPlayerAngleY;
+                    if (angle_diff < 0) {
                         anm_init(i_this, e_rdb_class::BCK_RB_RPLAY_RUNR, 2.0f, 0, 1.0f);
                     } else {
                         anm_init(i_this, e_rdb_class::BCK_RB_RPLAY_RUNL, 2.0f, 0, 1.0f);
@@ -6818,11 +6831,12 @@ static int daE_RD_Execute(e_rd_class* i_this) {
     }
 
     if (i_this->field_0x129a == 0 && i_this->field_0x9bc == 0) {
-        player = dComIfGp_getPlayer(0);
+        fopAc_ac_c* player2_p = dComIfGp_getPlayer(0);
         MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(11), mDoMtx_stack_c::get());
         mDoMtx_stack_c::multVecZero(&spa4);
-        sp98 = player->current.pos - spa4;
-        cMtx_YrotS(*calc_mtx, cM_atan2s(sp98.x, sp98.z));
+        sp98 = player2_p->current.pos - spa4;
+        s16 atan_val = cM_atan2s(sp98.x, sp98.z);
+        cMtx_YrotS(*calc_mtx, atan_val);
         sp98.x = 0.0f;
         sp98.y = 0.0f;
         sp98.z = (BREG_F(12) + 40.0f) - 30.0f;
@@ -6907,7 +6921,7 @@ static void ride_game_actor_set(e_rd_class* i_this) {
             i_angle.y += 0x4000;
             i_parameters = 0x80000005;
         } else if (i_this->field_0x129a == 2) {
-            i_pos.set(34789.0f, -290.0f, -31677.0f);
+            i_pos.set(34789.0f, -290.0f, -36177.0f);
             i_angle.set(0, 0, 0);
             i_parameters = 0x80000007;
         } else if (i_this->field_0x129a == 3) {
@@ -7138,9 +7152,11 @@ static cPhs__Step daE_RD_Create(fopAc_ac_c* a_this) {
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&i_this->mPhase, i_this->mResName);
     if (phase == cPhs_COMPLEATE_e) {
         if (strcmp(dComIfGp_getStartStageName(), "F_SP124") == 0) {
+            // Gerudo Desert
             data_80519200 = 124;
         } else {
             if (strcmp(dComIfGp_getStartStageName(), "F_SP118") == 0) {
+                // Arbiter's Grounds Exterior
                 data_80519200 = 118;
             } else {
                 data_80519200 = 0;
@@ -7387,6 +7403,7 @@ static cPhs__Step daE_RD_Create(fopAc_ac_c* a_this) {
 
             if (data_80519200 != 0 || strcmp(dComIfGp_getStartStageName(), "F_SP115") == 0 ||
                 (strcmp(dComIfGp_getStartStageName(), "F_SP121") == 0 && fopAcM_GetRoomNo(a_this) == 0)) {
+                // Lake Hylia or Hyrule Field
                 fopAcM_OffStatus(a_this, fopAcM_STATUS_UNK_004000);
             }
         } else if (i_this->field_0x129a != 4) {
@@ -7394,6 +7411,7 @@ static cPhs__Step daE_RD_Create(fopAc_ac_c* a_this) {
         }
 
         if (strcmp(dComIfGp_getStartStageName(), "F_SP121") == 0 && fopAcM_GetRoomNo(a_this) == 0) {
+            // Hyrule Field - Bridge of Eldin
             data_80519201 = 1;
         } else {
             data_80519201 = 0;
