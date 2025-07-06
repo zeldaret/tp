@@ -7,8 +7,6 @@
 #include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
-#include "dol2asm.h"
-
 #include <cmath.h>
 
 #define ACTION_MODE_WAIT 0
@@ -17,9 +15,32 @@
 #define ACTION_MODE_HURT 3
 #define ACTION_MODE_DIE 4
 
-//
-// Declarations:
-//
+enum E_DK_RES_FILE_ID {
+    /* BCK */
+    /* 0x06 */ BCK_DK_ATTACK = 6,
+    /* 0x07 */ BCK_DK_CHARGE,
+    /* 0x08 */ BCK_DK_C_ATTACK,
+    /* 0x09 */ BCK_DK_C_CHARGE,
+    /* 0x0A */ BCK_DK_C_DEAD,
+    /* 0x0B */ BCK_DK_C_GUARD,
+    /* 0x0C */ BCK_DK_C_WAIT,
+    /* 0x0D */ BCK_DK_GUARD,
+    /* 0x0E */ BCK_DK_SHELLDEAD,
+    /* 0x0F */ BCK_DK_WAIT,
+
+    /* BMDR */
+    /* 0x12 */ BMDR_DK = 0x12,
+    /* 0x13 */ BMDR_DK_CORE,
+
+    /* BRK */
+    /* 0x16 */ BRK_DK_ATTACK = 0x16,
+    /* 0x17 */ BRK_DK_WAIT,
+
+    /* BTK */
+    /* 0x1A */ BTK_DK_ATTACK = 0x1A,
+    /* 0x1B */ BTK_DK_WAIT,
+};
+
 
 UNK_REL_DATA;
 
@@ -62,8 +83,8 @@ daE_DK_HIO_c::daE_DK_HIO_c() {
     first_attack_range = 1000.0f;
 }
 
-static u32 const dk_brk_name[2] = { 0x17, 0x16 };
-static u32 const dk_btk_name[2] = { 0x1B, 0x1A };
+static u32 const dk_brk_name[2] = { BRK_DK_WAIT, BRK_DK_ATTACK };
+static u32 const dk_btk_name[2] = { BTK_DK_WAIT, BTK_DK_ATTACK };
 
 /* 806AA228-806AA5A8 000128 0380+00 1/1 0/0 0/0 .text            draw__8daE_DK_cFv */
 int daE_DK_c::draw() {
@@ -141,7 +162,7 @@ static int daE_DK_Draw(daE_DK_c* i_this) {
 /* 806AA5C8-806AA68C 0004C8 00C4+00 5/5 0/0 0/0 .text            setBck__8daE_DK_cFiUcff */
 void daE_DK_c::setBck(int i_resIndex, u8 i_attr, f32 i_morf, f32 i_rate) {
     field_0x6a0 = 0;
-    if (i_resIndex == 7 || i_resIndex == 6) {
+    if (i_resIndex == BCK_DK_CHARGE || i_resIndex == BCK_DK_ATTACK) {
         field_0x6a0 = 1;
     }
 
@@ -388,8 +409,8 @@ void daE_DK_c::executeWait() {
     cXyz dirFromHome;
     switch (mMoveMode) {
     case 0: {
-        setBck(0xf, 2, 3.0f, 1.0f);
-        setBckCore(0xc, 2, 3.0f, 1.0f);
+        setBck(BCK_DK_WAIT, 2, 3.0f, 1.0f);
+        setBckCore(BCK_DK_C_WAIT, 2, 3.0f, 1.0f);
         mMoveMode = 1;
         break;
     }
@@ -453,8 +474,8 @@ void daE_DK_c::executeChase() {
     cXyz dirFromHome;
     switch (mMoveMode) {
     case 0: {
-        setBck(0xf, 2, 3.0f, 1.0f);
-        setBckCore(0xc, 2, 3.0f, 1.0f);
+        setBck(BCK_DK_WAIT, 2, 3.0f, 1.0f);
+        setBckCore(BCK_DK_C_WAIT, 2, 3.0f, 1.0f);
         mMoveMode = 1;
         break;
     }
@@ -517,8 +538,8 @@ void daE_DK_c::executeChase() {
 void daE_DK_c::executeAttack() {
     switch (mMoveMode) {
     case 0: {
-        setBck(7, 2, 6.0f, 2.0f);
-        setBckCore(9, 2, 3.0f, 2.0f);
+        setBck(BCK_DK_CHARGE, 2, 6.0f, 2.0f);
+        setBckCore(BCK_DK_C_CHARGE, 2, 3.0f, 2.0f);
         field_0x698 = 45 + nREG_S(9);
         mMoveMode = 1;
         break;
@@ -530,8 +551,8 @@ void daE_DK_c::executeAttack() {
         cLib_chaseF(&speed.y, -3.0f, 0.2f);
         cLib_chaseF(&speedF, 0.0f, 0.2f);
         if (field_0x698 == 0) {
-            setBck(6, 2, 3.0f, 1.0f);
-            setBckCore(8, 2, 3.0f, 1.0f);
+            setBck(BCK_DK_ATTACK, 2, 3.0f, 1.0f);
+            setBckCore(BCK_DK_C_ATTACK, 2, 3.0f, 1.0f);
             field_0x698 = 100;
             mMoveMode = 2;
         }
@@ -581,8 +602,8 @@ void daE_DK_c::executeDamage() {
 
         shape_angle.x = 0xf000;
 
-        setBck(13, 0, 3.0f, 1.0f);
-        setBckCore(11, 0, 3.0f, 1.0f);
+        setBck(BCK_DK_GUARD, 0, 3.0f, 1.0f);
+        setBckCore(BCK_DK_C_GUARD, 0, 3.0f, 1.0f);
 
         shape_angle.y = mAtInfo.mHitDirection.y;
         current.angle.y = mAtInfo.mHitDirection.y + 0x8000;
@@ -641,8 +662,8 @@ void daE_DK_c::executeDeath() {
     case 1: {
         setBodyDeadEffect();
 
-        setBck(14, 0, 3.0f, 0.0f);
-        setBckCore(10, 0, 3.0f, 0.0f);
+        setBck(BCK_DK_SHELLDEAD, 0, 3.0f, 0.0f);
+        setBckCore(BCK_DK_C_DEAD, 0, 3.0f, 0.0f);
 
         field_0x6a2 = 1;
 
@@ -947,10 +968,10 @@ static int daE_DK_Delete(daE_DK_c* i_this) {
 
 /* 806ACAA4-806ACDAC 0029A4 0308+00 1/1 0/0 0/0 .text            CreateHeap__8daE_DK_cFv */
 int daE_DK_c::CreateHeap() {
-    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_DK", 0x12);
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_DK", BMDR_DK);
     JUT_ASSERT(1488, modelData != NULL);
     mpMorfSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
-                                    (J3DAnmTransform*)dComIfG_getObjectRes("E_DK", 0xf), 0, 1.0f, 0,
+                                    (J3DAnmTransform*)dComIfG_getObjectRes("E_DK", BCK_DK_WAIT), 0, 1.0f, 0,
                                     -1, &mCreatureSound, 0x80000, 0x31000284);
 
     if (mpMorfSO == NULL || mpMorfSO->getModel() == NULL) {
@@ -983,10 +1004,10 @@ int daE_DK_c::CreateHeap() {
         }
     }
 
-    modelData = (J3DModelData*)dComIfG_getObjectRes("E_DK", 0x13);
+    modelData = (J3DModelData*)dComIfG_getObjectRes("E_DK", BMDR_DK_CORE);
     JUT_ASSERT(1537, modelData != NULL);
     mpCoreMorfSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
-                                        (J3DAnmTransform*)dComIfG_getObjectRes("E_DK", 0xc), 0,
+                                        (J3DAnmTransform*)dComIfG_getObjectRes("E_DK", BCK_DK_C_WAIT), 0,
                                         1.0f, 0, -1, &mCreatureSound, 0x80000, 0x11000084);
 
     if (mpCoreMorfSO == NULL || mpCoreMorfSO->getModel() == NULL) {

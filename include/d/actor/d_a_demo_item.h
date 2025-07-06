@@ -50,7 +50,7 @@ public:
 
     void setAction(u8 i_action) { mAction = i_action; }
 
-    u32 chkArgFlag(u8 i_flag) { return field_0x93d & i_flag; }
+    u8 chkArgFlag(u8 i_flag) { return field_0x93d & i_flag; }
 
     void setOffsetPos(cXyz i_pos) { mOffsetPos = i_pos; }
     void setMaxScale(f32 i_scale) { mMaxScale = i_scale; }

@@ -8,7 +8,22 @@
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_b_go.h"
 
+enum Action {
+    /* 0x00 */ ACTION_WAIT,
+    /* 0x01 */ ACTION_WALK,
+    /* 0x02 */ ACTION_BALL,
+    /* 0x03 */ ACTION_STICK,
+};
 
+enum B_GOS_RES_FILE_ID {
+    /* BCK */
+    /* 0x04 */ BCK_GRA_WAIT_AGRA_RUN_A = 4,
+    /* 0x05 */ BCK_GRA_WAIT_AGRA_TO_STONE_NORMAL,
+    /* 0x06 */ BCK_GRA_WAIT_AGRA_WAIT_A,
+
+    /* BMDR */
+    /* 0x09 */ BMDR_GRA_A = 9,
+};
 
 /* 8060541C-80605514 000000 00F8+00 1/1 0/0 0/0 .data            j_info */
 static b_gos_j_info j_info[] = {
@@ -61,13 +76,13 @@ static void wait(b_gos_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, 6, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+        anm_init(i_this, BCK_GRA_WAIT_AGRA_WAIT_A, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode = 1;
         i_this->mTimers[0] = cM_rndF(30) + 30.0f;
         break;
     case 1:
         if (i_this->mTimers[0] == 0) {
-            i_this->mAction = 1;
+            i_this->mAction = ACTION_WALK;
             i_this->mMode = 0;
         }
         break;
@@ -89,7 +104,7 @@ static void walk(b_gos_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, 4, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+        anm_init(i_this, BCK_GRA_WAIT_AGRA_RUN_A, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode = 1;
         i_this->mTimers[0] = cM_rndF(60) + 60.0f;
         i_this->mWalkDirection = cM_rndF(0x10000);
@@ -97,7 +112,7 @@ static void walk(b_gos_class* i_this) {
     case 1:
         speed = l_HIO.mNormalSpeed;
         if (i_this->mTimers[0] == 0) {
-            i_this->mAction = 0;
+            i_this->mAction = ACTION_WAIT;
             i_this->mMode = 0;
         }
         break;
@@ -116,14 +131,14 @@ static void ball(b_gos_class* i_this) {
         // fallthrough
     case 1:
         if (i_this->mTimers[0] == 0) {
-            anm_init(i_this, 5, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+            anm_init(i_this, BCK_GRA_WAIT_AGRA_TO_STONE_NORMAL, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mMode = 2;
             i_this->mTimers[0] = cM_rndF(30) + 60.0f;
         }
         break;
     case 2:
         if (i_this->mTimers[0] == 0) {
-            i_this->mAction = 3;
+            i_this->mAction = ACTION_STICK;
             i_this->mMode = 0;
         }
         break;
@@ -197,17 +212,17 @@ static void action(b_gos_class* i_this) {
     var_r29 = 0;
 
     switch (i_this->mAction) {
-    case 0:
+    case ACTION_WAIT:
         wait(i_this);
         break;
-    case 1:
+    case ACTION_WALK:
         walk(i_this);
         break;
-    case 2:
+    case ACTION_BALL:
         ball(i_this);
         var_r29 = 1;
         break;
-    case 3:
+    case ACTION_STICK:
         stick(i_this);
         on_cyl_co = false;
         update_pos = false;
@@ -252,7 +267,7 @@ static void action(b_gos_class* i_this) {
         }
 
         if (boss->field_0x692 == 1) {
-            i_this->mAction = 0;
+            i_this->mAction = ACTION_WAIT;
             i_this->mMode = 0;
             i_this->speedF = cM_rndF(10);
             i_this->speed.y = cM_rndF(10);
@@ -262,7 +277,7 @@ static void action(b_gos_class* i_this) {
         cLib_addCalc0(&i_this->field_0x69c, 1.0f, 2.5f);
 
         if (boss->field_0x692 == 2) {
-            i_this->mAction = 2;
+            i_this->mAction = ACTION_BALL;
             i_this->mMode = 0;
             i_this->speedF = 0.0f;
         }
@@ -383,7 +398,7 @@ static int daB_GOS_Create(fopAc_ac_c* i_this) {
         a_this->mAtInfo.mpSound = &a_this->mSound;
 
         a_this->gravity = -7.0f;
-        a_this->mAction = 0;
+        a_this->mAction = ACTION_WAIT;
 
         static dCcD_SrcCyl cc_cyl_src = {
             {

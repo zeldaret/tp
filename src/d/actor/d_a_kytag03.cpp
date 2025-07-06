@@ -150,7 +150,7 @@ static void odour_move(kytag03_class* i_this) {
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
 
     dPath* var_r27;
-    dKankyo_odour_Packet* packet = kankyo->mpOdourPacket;
+    dKankyo_odour_Packet* packet = kankyo->mOdourData.mpOdourPacket;
     dPath* var_r25;
 
     cXyz sp94;
@@ -449,7 +449,7 @@ static int daKytag03_Create(fopAc_ac_c* i_this) {
         a_this->mpPath = set_path_info(i_this);
         a_this->field_0x570 = 0.0f;
         a_this->field_0x580 = 0;
-        g_env_light.field_0xf21 = 1;
+        g_env_light.mOdourData.field_0xf21 = 1;
     } else {
         if (a_this->field_0x585 == 0xFF) {
             return cPhs_UNK3_e;

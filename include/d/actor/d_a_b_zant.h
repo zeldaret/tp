@@ -142,7 +142,7 @@ public:
     /* 0x05BC */ J3DModel* mpSwordRModel;
     /* 0x05C0 */ J3DModel* mpMahojinModel;
     /* 0x05C4 */ J3DModel* mpMahojinModel2;
-    /* 0x05C8 */ mDoExt_brkAnm* mpMahojinBrk;
+    /* 0x05C8 */ mDoExt_brkAnm* mpMahojinEndBrk;
     /* 0x05CC */ mDoExt_btkAnm* mpMahojinBtk;
     /* 0x05D0 */ mDoExt_btkAnm* mpMahojinStartBtk;
     /* 0x05D4 */ mDoExt_brkAnm* mpMahojinBrk2;
@@ -240,6 +240,91 @@ public:
     /* 0x38AC */ u32 field_0x38ac[2];
     /* 0x38B4 */ u32 field_0x38b4;
     /* 0x38B8 */ u8 mInitHIO;
+
+    enum B_ZAN_RES_FILE_ID {
+        /* BCK */
+        /* 0x07 */ BCK_ZAN_DAMAGEL_A = 7,
+        /* 0x08 */ BCK_ZAN_DAMAGER_A,
+        /* 0x09 */ BCK_ZAN_DIE_DEMO,
+        /* 0x0A */ BCK_ZAN_FAINT,
+        /* 0x0B */ BCK_ZAN_FALL,
+        /* 0x0C */ BCK_ZAN_FLOAT_APPEAR,
+        /* 0x0D */ BCK_ZAN_FLOAT_APPEARSHORT,
+        /* 0x0E */ BCK_ZAN_FLOAT_APPEARWAIT,
+        /* 0x0F */ BCK_ZAN_FLOAT_DAMAGEL,
+        /* 0x10 */ BCK_ZAN_FLOAT_DAMAGER,
+        /* 0x11 */ BCK_ZAN_FLOAT_REACTION,
+        /* 0x12 */ BCK_ZAN_FLOAT_WAIT,
+        /* 0x13 */ BCK_ZAN_FLOAT_WAITRETURN,
+        /* 0x14 */ BCK_ZAN_GROUND_REACTION,
+        /* 0x15 */ BCK_ZAN_HOOK_HIT,
+        /* 0x16 */ BCK_ZAN_HOOK_RELEASE,
+        /* 0x17 */ BCK_ZAN_HOOK_WAIT,
+        /* 0x18 */ BCK_ZAN_HUGE,
+        /* 0x19 */ BCK_ZAN_HUGE_LANDING,
+        /* 0x1A */ BCK_ZAN_JUMP_A,
+        /* 0x1B */ BCK_ZAN_JUMP_B,
+        /* 0x1C */ BCK_ZAN_LANDING,
+        /* 0x1D */ BCK_ZAN_LANDING_DAMAGE,
+        /* 0x1E */ BCK_ZAN_LANDING_WAIT,
+        /* 0x1F */ BCK_ZAN_LAST_DEMO,
+        /* 0x20 */ BCK_ZAN_LV1_FATIGUE,
+        /* 0x21 */ BCK_ZAN_LV1_JUMP_A,
+        /* 0x22 */ BCK_ZAN_LV1_JUMP_B,
+        /* 0x23 */ BCK_ZAN_MAGICSHOOTA_A,
+        /* 0x24 */ BCK_ZAN_MAGICSHOOTA_B,
+        /* 0x25 */ BCK_ZAN_MAGICSHOOTA_B_A,
+        /* 0x26 */ BCK_ZAN_MAGICSHOOTA_B_B,
+        /* 0x27 */ BCK_ZAN_MAGICSHOOTA_B_C,
+        /* 0x28 */ BCK_ZAN_MAGICSHOOTA_C,
+        /* 0x29 */ BCK_ZAN_MAGICSHOOTA_D,
+        /* 0x2A */ BCK_ZAN_OP_1,
+        /* 0x2B */ BCK_ZAN_OP_2,
+        /* 0x2C */ BCK_ZAN_OP_3,
+        /* 0x2D */ BCK_ZAN_OP_RISE,
+        /* 0x2E */ BCK_ZAN_SHIND_L,
+        /* 0x2F */ BCK_ZAN_SHIND_R,
+        /* 0x30 */ BCK_ZAN_SPIN,
+        /* 0x31 */ BCK_ZAN_SWAMP_FALL_A,
+        /* 0x32 */ BCK_ZAN_SWAMP_FALL_B,
+        /* 0x33 */ BCK_ZAN_SWAMP_FALL_LOOP,
+        /* 0x34 */ BCK_ZAN_SWAMP_LANDING,
+        /* 0x35 */ BCK_ZAN_SWIM,
+        /* 0x36 */ BCK_ZAN_SW_ATTACK,
+        /* 0x37 */ BCK_ZAN_SW_ATTACKB,
+        /* 0x38 */ BCK_ZAN_SW_DAMAGEL,
+        /* 0x39 */ BCK_ZAN_SW_DAMAGER,
+        /* 0x3A */ BCK_ZAN_SW_FATIGUE,
+        /* 0x3B */ BCK_ZAN_SW_WAIT,
+        /* 0x3C */ BCK_ZAN_SW_WALK,
+        /* 0x3D */ BCK_ZAN_TRAMPLEA,
+        /* 0x3E */ BCK_ZAN_TRAMPLEB,
+        /* 0x3F */ BCK_ZAN_TRAMPLEC,
+        /* 0x40 */ BCK_ZAN_TRAMPLED,
+        /* 0x41 */ BCK_ZAN_WAIT,
+        /* 0x42 */ BCK_ZZ_APPEARANCE,
+        /* 0x43 */ BCK_ZZ_CLOSE,
+        /* 0x44 */ BCK_ZZ_OPEN,
+
+        /* BMDR */
+        /* 0x47 */ BMDR_EF_TK2BALL = 0x47,
+        /* 0x48 */ BMDR_ZAN,
+        /* 0x49 */ BMDR_ZAN_MAHOJIN,
+        /* 0x4A */ BMDR_ZAN_SWORD_L,
+        /* 0x4B */ BMDR_ZAN_SWORD_R,
+        /* 0x4C */ BMDR_ZZ,
+
+        /* BRK */
+        /* 0x4F */ BRK_ZAN_MAHOJIN_END = 0x4F,
+        /* 0x50 */ BRK_ZZ,
+
+        /* BTK */
+        /* 0x53 */ BTK_ZAN_MAHOJIN = 0x53,
+        /* 0x54 */ BTK_ZAN_MAHOJIN_START,
+
+        /* DZB */
+        /* 0x57 */ DZB_ZZ = 0x57,
+    };
 };
 
 STATIC_ASSERT(sizeof(daB_ZANT_c) == 0x38BC);

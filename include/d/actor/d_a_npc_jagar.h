@@ -67,6 +67,29 @@ class daNpc_Jagar_Param_c {
 
 class daNpc_Jagar_c : public daNpcT_c {
 public:
+    enum JAGAR2_RES_FILE_ID {
+        /* BCK */
+        /* 0x05 */ BCK_JAGA_F_SURPRISE = 5,
+        /* 0x06 */ BCK_JAGA_F_SURPRISE_WAIT,
+        /* 0x07 */ BCK_JAGA_F_WORRY_TALK,
+        /* 0x08 */ BCK_JAGA_RUN_A,
+        /* 0x09 */ BCK_JAGA_SURPRISE,
+        /* 0x0A */ BCK_JAGA_SURPRISE_WAIT,
+        /* 0x0B */ BCK_JAGA_UNADUKI,
+        /* 0x0C */ BCK_JAGA_WORRY_TALK,
+        /* 0x0D */ BCK_JAGA_WORRY_WAIT,
+        /* 0x0E */ BCK_JAGA_WORRY_WALK,
+
+        /* BTP */
+        /* 0x11 */ BTP_JAGA_BLINK = 0x11,
+        /* 0x12 */ BTP_JAGA_F_SURPRISE,
+        /* 0x13 */ BTP_JAGA_F_SURPRISE_WAIT,
+        /* 0x14 */ BTP_JAGA_F_WORRY_TALK,
+
+        /* EVT */
+        /* 0x17 */ EVT_EVENT_LIST = 0x17,
+    };
+
     typedef int (daNpc_Jagar_c::*cutFunc)(int);
     typedef int (daNpc_Jagar_c::*actionFunc)(void*);
 

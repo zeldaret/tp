@@ -4,6 +4,7 @@
 //
 
 #include "Z2AudioLib/Z2LinkMgr.h"
+#include "Z2AudioLib\Z2AudioCS.h"
 #include "d/d_com_inf_game.h"
 
 /* 802C321C-802C3220 2BDB5C 0004+00 0/0 1/1 0/0 .text setLinkGroupInfo__14Z2CreatureLinkFUc */
@@ -272,13 +273,34 @@ Z2SoundHandlePool* Z2CreatureLink::startLinkSound(JAISoundID i_soundID, u32 para
 
 /* 802C3E68-802C4320 2BE7A8 04B8+00 1/1 3/3 0/0 .text
  * startLinkSoundLevel__14Z2CreatureLinkF10JAISoundIDUlSc       */
-// NONMATCHING - small issue with i_soundID in startCreatureSoundLevel call
 JAISoundHandle* Z2CreatureLink::startLinkSoundLevel(JAISoundID i_soundID, u32 param_1, s8 param_2) {
+    #if VERSION == VERSION_SHIELD_DEBUG
+    if (Z2GetSceneMgr()->isSceneExist()) {
+        int iVar3 = -1;
+        switch((u32)i_soundID) {
+        case Z2SE_AL_REEL_SLOW_LOOP:
+            iVar3 = 0x16;
+            break;
+        case Z2SE_AL_REEL_FAST_LOOP:
+            iVar3 = 0x17;
+            break;
+        case Z2SE_LK_HS_WIND_UP:
+            iVar3 = 0x19;
+            break;
+        }
+        
+        if (iVar3 >= 0 && Z2AudioCS::startLevel(iVar3, 0) != 0)
+        {
+            return NULL;
+        }
+    }
+    #endif
+
     if (i_soundID == Z2SE_AL_LIGHTNING_SW_GLOW && (Z2GetStatusMgr()->getDemoStatus() == 2 || !Z2GetSceneMgr()->isInGame())) {
         return NULL;
     }
 
-    Z2SoundHandlePool* temp_r3 = startCreatureSoundLevel(i_soundID, param_1, param_2);
+    Z2SoundHandlePool* temp_r3 = startCreatureSoundLevel((u32)i_soundID, param_1, param_2);
     if (temp_r3 != NULL && *temp_r3) {
         f32 var_f31 = 1.0f;
         f32 var_f30 = 1.0f;
@@ -311,7 +333,7 @@ JAISoundHandle* Z2CreatureLink::startLinkSoundLevel(JAISoundID i_soundID, u32 pa
             break;
         case Z2SE_AL_SNOBO_RIDE:
         case Z2SE_AL_SNOBO_BREAK:
-            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[266]) && Z2GetSeqMgr()->getSubBgmID() != Z2BGM_SNOW_BOARD) {
+            if (dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[266]) && Z2GetSeqMgr()->getSubBgmID() != Z2BGM_SNOW_BOARD) {
                 var_f31 = 0.0f;
                 var_r30 = 0;
             } else if (mMoveSpeed == 0) {
@@ -558,6 +580,7 @@ bool Z2LinkSoundStarter::startSound(JAISoundID i_soundID, JAISoundHandle* param_
         if (param_3 == 44) {
             param_3 = 23;
         } else {
+            JUT_WARN_DEVICE(929, 1, "%s", "mapinfo > 26\n");
             param_3 = 0;
         }
     }
@@ -664,9 +687,9 @@ bool Z2LinkSoundStarter::startSound(JAISoundID i_soundID, JAISoundHandle* param_
     }
 
     if (bVar3) {
-        if (Z2GetLink()->mLinkState == 4) {
+        if (Z2GetLink()->getLinkState() == 4) {
             Z2GetLink()->startLinkSound(Z2SE_FN_ARMER_LIGHT_ADD, 0, param_4 * 127.0f);
-        } else if (Z2GetLink()->mLinkState == 5) {
+        } else if (Z2GetLink()->getLinkState() == 5) {
             Z2GetLink()->startLinkSound(Z2SE_FN_ARMER_HEAVY_ADD, 0, param_4 * 127.0f);
         }
     }
@@ -735,7 +758,7 @@ bool Z2RideSoundStarter::startSound(JAISoundID i_soundID, JAISoundHandle* param_
         break;
     }
 
-    bool ret = Z2SoundStarter::startSound(i_soundID, param_1, param_2, param_3, param_4, param_5,
+    bool ret = Z2SoundStarter::startSound((u32)i_soundID, param_1, param_2, param_3, param_4, param_5,
                                           param_6, param_7, param_8, param_9);
 
     if (mRide->isLinkRiding() && uVar3 != 0) {
