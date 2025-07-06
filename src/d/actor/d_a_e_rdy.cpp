@@ -1536,7 +1536,6 @@ static void* s_kusa_sub(void* i_proc, void* i_this) {
 }
 
 /* 8076F71C-807701F4 003A3C 0AD8+00 2/1 0/0 0/0 .text            e_rdy_tkusa__FP11e_rdy_class */
-// NONMATCHING regswap
 static void e_rdy_tkusa(e_rdy_class* i_this) {
     fopAc_ac_c* a_this = &i_this->actor;
     cXyz vec;
@@ -1547,7 +1546,7 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
         i_this->mKargarokID = fopAcM_GetID(fopAcM_SearchByName(PROC_E_YC));
     }
 
-    fopAc_ac_c* a_karg = fopAcM_SearchByID(i_this->mKargarokID);
+    fopAc_ac_c* a_karg = (fopAc_ac_c*) fopAcM_SearchByID(i_this->mKargarokID);
     e_yc_class* kargarok = (e_yc_class*) a_karg;
     if (kargarok != NULL) {
         kargarok->mRiderID = fopAcM_GetID(i_this);
