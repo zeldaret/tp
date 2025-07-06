@@ -3770,7 +3770,6 @@ static void* s_adel_sub(void* i_proc, void* i_this) {
 }
 
 /* 80775B50-80777330 009E70 17E0+00 2/1 0/0 0/0 .text            demo_camera__FP11e_rdy_class */
-// NONMATCHING regalloc
 static void demo_camera(e_rdy_class* i_this) {
     fopAc_ac_c* a_this = &i_this->actor;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
@@ -4219,7 +4218,7 @@ static void demo_camera(e_rdy_class* i_this) {
     }
 
     if (cVar12 != 0) {
-        fopAc_ac_c* a_arr = fopAcM_SearchByName(PROC_E_ARROW);
+        fopAc_ac_c* a_arr = (fopAc_ac_c*) fopAcM_SearchByName(PROC_E_ARROW);
         if (a_arr != NULL) {
             e_arrow_class* arrow = (e_arrow_class*) a_arr;
             if (cVar12 == 3) {
@@ -4481,7 +4480,7 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
         cLib_addCalc2(&i_this->mEyeScale, i_this->mTargetEyeScale, 1.0f, 0.02f);
         i_this->mTargetEyeScale = 1.0f;
         MTXCopy(model->getAnmMtx(JNT_HEAD), *calc_mtx);
-        camera_class* camera = dComIfGp_getCamera(0);
+        camera_class* camera = (camera_class*) dComIfGp_getCamera(0);
         s16 ang_x, ang_y;
         for (int i = 0; i < 2; i++) {
             MtxPush();
