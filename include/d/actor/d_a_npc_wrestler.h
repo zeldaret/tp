@@ -132,7 +132,7 @@ public:
     typedef bool (daNpcWrestler_c::*actionFunc)(void*);
     typedef BOOL (daNpcWrestler_c::*EventFn)(int);
 
-    /* 80B2F28C */ daNpcWrestler_c();
+    /* 80B2F28C */ daNpcWrestler_c() {};
     /* 80B2F688 */ cPhs__Step Create();
     /* 80B2F974 */ int CreateHeap();
     /* 80B2FDB0 */ int Delete();
@@ -489,7 +489,17 @@ public:
     }
 
     void initDemoCamera_ReadyLink() {
-        
+        field_0xe5e = mArenaAngle;
+        mDemoCamFovy = dCam_getBody()->Fovy();
+        field_0xe54 = 0.0f;
+        field_0xe58 = 0.0f;
+        mDoMtx_stack_c::transS(mArenaPos);
+        mDoMtx_stack_c::YrotM(field_0xe5e);
+        mDoMtx_stack_c::transM(-field_0xbd8->field_0xa0, field_0xbd8->field_0x9c, field_0xbd8->field_0x94);
+        mDoMtx_stack_c::multVecZero(&mDemoCam.mDemoCamEye);
+        mDoMtx_stack_c::XrotM(field_0xbd8->field_0xaa);
+        mDemoCam.mDemoCamCenter.set(0.0f, 0.0f, mArenaExtent * 0.5f - 100.0f);
+        mDoMtx_stack_c::multVec(&mDemoCam.mDemoCamCenter, &mDemoCam.mDemoCamCenter);
     }
 
     void initDemoCamera_ReadyWrestler() {
