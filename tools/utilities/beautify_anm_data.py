@@ -29,6 +29,9 @@ SEQ_MOTION_PATTERN = r'SECTION_DATA static u8 l_motionSequenceData\[\d+\] = {'
 HEAP_SIZE_TYPE = "int const heapSize"
 HEAP_SIZE_PATTERN = r'SECTION_RODATA static u8 const heapSize\[\d+\] = {'
 
+BMD_DATA_TYPE = "int l_bmdData"
+BMD_DATA_PATTERN = r'SECTION_DATA static u8 l_bmdData\[\d+\] = {'
+
 PARAM_TYPE = "::m"
 PARAM_PATTERN = r'SECTION_RODATA u8 const (\w+_Param_c)::m\[\d+\] = {'
 
@@ -281,6 +284,10 @@ def build_anm_struct(byte_collection, anm_type):
         elif anm_type is HEAP_SIZE_TYPE:
             piece_size = 4
             instr_arr = ["h4"]
+        elif anm_type is BMD_DATA_TYPE:
+            piece_size = 8
+            instr_arr = ["s4", "s4"]
+            is_array = True
 
         if my_len % piece_size != 0:
             print(f"Error: len() = '{my_len}' isn't divisble by '{piece_size}'")
@@ -332,6 +339,9 @@ def build_anm_struct(byte_collection, anm_type):
         cutoff_num = 4
 
     res_str += "[{}]".format(int(res_len))
+    if anm_type == BMD_DATA_TYPE:
+        res_str += "[2]"
+
     res_str += " = {\n"
     cur_in_line = 0
     cur_idx = 0
@@ -456,6 +466,9 @@ def run_beautify_anm_data(in_file, type=None, no_auto_float=False):
             elif re.search(HEAP_SIZE_PATTERN, line):
                 in_byte_array = True
                 anm_type = HEAP_SIZE_TYPE
+            elif re.search(BMD_DATA_PATTERN, line):
+                in_byte_array = True
+                anm_type = BMD_DATA_TYPE
             elif re.search(EVT_LIST_PATTERN, line):
                 in_charptr_array = True
                 charptr_type = "l_evtList"

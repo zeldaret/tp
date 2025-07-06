@@ -210,13 +210,13 @@ public:
     /* 0x0C */ f32 field_0xc;               // リーダーサイズ比     (Leader size ratio)
     /* 0x10 */ f32 movement_speed;          // 移動速度            (Movement speed)
 
-    /* 〜〜  こん棒兵の場合  〜〜 (In the case of the club soldier) */
+    /*   こん棒兵の場合   (In the case of the club soldier) */
     /* 0x14 */ f32 dash_speed;              // 突進速度            (Rush speed)
     /* 0x18 */ f32 battle_init_range;       // 戦闘開始範囲         (Battle starting range)
     /* 0x1C */ f32 attack_init_range;       // 攻撃開始範囲         (Attack starting range)
     /* 0x20 */ f32 swing_speed;             // 振り速さ            (Swing speed)
 
-    /* 〜〜  矢兵の場合  〜〜 (In the case of arrow soldiers) */
+    /*   矢兵の場合   (In the case of arrow soldiers) */
     /* 0x24 */ s16 field_0x24;              // 号令→構えの間        (Command → Preparation)
     /* 0x26 */ u8 padding[2];
     /* 0x28 */ f32 attack_range;            // 攻撃範囲            (Attack range)
