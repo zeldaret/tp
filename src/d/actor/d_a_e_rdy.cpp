@@ -4314,7 +4314,6 @@ static void demo_camera(e_rdy_class* i_this) {
 static BOOL c_start;
 
 /* 80777330-8077892C 00B650 15FC+00 2/1 0/0 0/0 .text            daE_RDY_Execute__FP11e_rdy_class */
-// NONMATCHING regalloc
 static int daE_RDY_Execute(e_rdy_class* i_this) {
     f32 scale;
     fopEn_enemy_c* a_this = &i_this->actor;
