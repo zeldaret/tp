@@ -1542,7 +1542,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_ga"),
     ActorRel(NonMatching, "d_a_e_hb"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_nest"),
-    ActorRel(NonMatching, "d_a_e_rd"),
+    ActorRel(Equivalent, "d_a_e_rd"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_econt"),
     ActorRel(NonMatching, "d_a_fr"),
     ActorRel(NonMatching, "d_a_grass"),
@@ -1697,7 +1697,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_e_pz", extra_cflags=['-pragma "nosyminline off"']), # weak func order, inline issue
     ActorRel(Equivalent, "d_a_e_rb"), # weak func order
     ActorRel(Equivalent, "d_a_e_rdb"), # weak func order
-    ActorRel(NonMatching, "d_a_e_rdy"),
+    ActorRel(Equivalent, "d_a_e_rdy"),  # weak func order
     ActorRel(NonMatching, "d_a_e_s1"),
     ActorRel(NonMatching, "d_a_e_sb"),
     ActorRel(NonMatching, "d_a_e_sf"),

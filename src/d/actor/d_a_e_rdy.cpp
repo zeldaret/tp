@@ -465,6 +465,14 @@ static void* s_b_sub(void* i_proc, void* i_this) {
     return NULL;
 }
 
+// The bit is sort of a fakematch. This gets GCN to match, but this function doesn't inline in Debug:
+inline u16 absoluteValue(s16 num) {
+    if (num < 0) {
+        num = -1*num;
+    }
+    return num;
+}
+
 /* 8076CB24-8076CE10 000E44 02EC+00 2/2 0/0 0/0 .text            search_bomb__FP11e_rdy_classi */
 // NONMATCHING regalloc
 static dBomb_c* search_bomb(e_rdy_class* i_this, BOOL param_1) {
@@ -499,11 +507,7 @@ static dBomb_c* search_bomb(e_rdy_class* i_this, BOOL param_1) {
                     f32 abs_res = fabsf(50.0f + bomb->current.pos.y - a_this->eyePos.y);
                     if (abs_res <= 300.0f) {
                         s16 ang_y = a_this->shape_angle.y - cM_atan2s(vec1.x, vec1.z);
-                        if (ang_y < 0) {
-                            ang_y = -1*ang_y;
-                        }
-
-                        if ((u16)ang_y < 20000) {
+                        if (absoluteValue(ang_y) < 20000) {
                             return bomb;
                         }
 
@@ -1536,7 +1540,6 @@ static void* s_kusa_sub(void* i_proc, void* i_this) {
 }
 
 /* 8076F71C-807701F4 003A3C 0AD8+00 2/1 0/0 0/0 .text            e_rdy_tkusa__FP11e_rdy_class */
-// NONMATCHING regswap
 static void e_rdy_tkusa(e_rdy_class* i_this) {
     fopAc_ac_c* a_this = &i_this->actor;
     cXyz vec;
@@ -1547,7 +1550,7 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
         i_this->mKargarokID = fopAcM_GetID(fopAcM_SearchByName(PROC_E_YC));
     }
 
-    fopAc_ac_c* a_karg = fopAcM_SearchByID(i_this->mKargarokID);
+    fopAc_ac_c* a_karg = (fopAc_ac_c*) fopAcM_SearchByID(i_this->mKargarokID);
     e_yc_class* kargarok = (e_yc_class*) a_karg;
     if (kargarok != NULL) {
         kargarok->mRiderID = fopAcM_GetID(i_this);
@@ -3771,7 +3774,6 @@ static void* s_adel_sub(void* i_proc, void* i_this) {
 }
 
 /* 80775B50-80777330 009E70 17E0+00 2/1 0/0 0/0 .text            demo_camera__FP11e_rdy_class */
-// NONMATCHING regalloc
 static void demo_camera(e_rdy_class* i_this) {
     fopAc_ac_c* a_this = &i_this->actor;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
@@ -4220,7 +4222,7 @@ static void demo_camera(e_rdy_class* i_this) {
     }
 
     if (cVar12 != 0) {
-        fopAc_ac_c* a_arr = fopAcM_SearchByName(PROC_E_ARROW);
+        fopAc_ac_c* a_arr = (fopAc_ac_c*) fopAcM_SearchByName(PROC_E_ARROW);
         if (a_arr != NULL) {
             e_arrow_class* arrow = (e_arrow_class*) a_arr;
             if (cVar12 == 3) {
@@ -4316,7 +4318,6 @@ static void demo_camera(e_rdy_class* i_this) {
 static BOOL c_start;
 
 /* 80777330-8077892C 00B650 15FC+00 2/1 0/0 0/0 .text            daE_RDY_Execute__FP11e_rdy_class */
-// NONMATCHING regalloc
 static int daE_RDY_Execute(e_rdy_class* i_this) {
     f32 scale;
     fopEn_enemy_c* a_this = &i_this->actor;
@@ -4482,7 +4483,7 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
         cLib_addCalc2(&i_this->mEyeScale, i_this->mTargetEyeScale, 1.0f, 0.02f);
         i_this->mTargetEyeScale = 1.0f;
         MTXCopy(model->getAnmMtx(JNT_HEAD), *calc_mtx);
-        camera_class* camera = dComIfGp_getCamera(0);
+        camera_class* camera = (camera_class*) dComIfGp_getCamera(0);
         s16 ang_x, ang_y;
         for (int i = 0; i < 2; i++) {
             MtxPush();
