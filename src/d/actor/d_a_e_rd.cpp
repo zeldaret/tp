@@ -5670,8 +5670,8 @@ static void demo_camera(e_rd_class* i_this) {
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
     camera_class* camera = (camera_class*) dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     camera_class* camera_2 = (camera_class*) dComIfGp_getCamera(0);
-    daNPC_TK_c* hawk_tuah_p = (daNPC_TK_c*) fopAcM_SearchByName(PROC_NPC_TK);
-    fopAc_ac_c* hawk = hawk_tuah_p;
+    daNPC_TK_c* hawk_p = (daNPC_TK_c*) fopAcM_SearchByName(PROC_NPC_TK);
+    fopAc_ac_c* a_hwk = hawk_p;
     cXyz sp38, sp44, sp50, sp5c;
     s8 bVar1 = 0;
     s16 sVar1 = 0;
@@ -5938,7 +5938,7 @@ static void demo_camera(e_rd_class* i_this) {
 
                 if (i_this->field_0x12a6 == 20) {
                     daPy_getPlayerActorClass()->changeDemoMode(20, 1, 0, 0);
-                    hawk_tuah_p->mSound.startCreatureVoice(Z2SE_HAWK_V_REGI_DEMO_1, -1);
+                    hawk_p->mSound.startCreatureVoice(Z2SE_HAWK_V_REGI_DEMO_1, -1);
                 }
 
                 if (i_this->field_0x12a6 == 41) {
@@ -6042,14 +6042,14 @@ static void demo_camera(e_rd_class* i_this) {
                 cLib_addCalc2(&i_this->field_0x130c, BREG_F(16) + 0.2f, 1.0f, BREG_F(17) + 0.01f);
 
                 if (i_this->field_0x12a6 == 23) {
-                    hawk_tuah_p->setResistanceDemo();
+                    hawk_p->setResistanceDemo();
                 }
             } else {
                 if (i_this->field_0x12a6 == 25) {
                     i_this->field_0x130c = 0.0f;
                 }
 
-                sp5c = hawk->current.pos;
+                sp5c = a_hwk->current.pos;
                 cLib_addCalc2(&i_this->mDemoCamCenter.x, sp5c.x, 0.2f, i_this->field_0x130c * 100.0f);
                 cLib_addCalc2(&i_this->mDemoCamCenter.y, sp5c.y + BREG_F(13), 0.2f, i_this->field_0x130c * 100.0f);
                 cLib_addCalc2(&i_this->mDemoCamCenter.z, sp5c.z, 0.2f, i_this->field_0x130c * 100.0f);
@@ -6058,7 +6058,7 @@ static void demo_camera(e_rd_class* i_this) {
 
                 if (i_this->field_0x12a6 >= 55) {
                     if (i_this->field_0x12a6 == 110) {
-                        hawk_tuah_p->mSound.startCreatureVoice(Z2SE_HAWK_V_REGI_DEMO_2, -1);
+                        hawk_p->mSound.startCreatureVoice(Z2SE_HAWK_V_REGI_DEMO_2, -1);
                     }
 
                     if (i_this->field_0x12a6 < 135) {
@@ -6079,7 +6079,7 @@ static void demo_camera(e_rd_class* i_this) {
         case 29:
             i_this->mDemoCamFovy = 55.0f;
             i_this->mDemoCamEye.set(-3963.0f, 147.0f, 8094.0f);
-            sp5c = hawk->current.pos;
+            sp5c = a_hwk->current.pos;
 
             if (i_this->field_0x12a6 == 0) {
                 i_this->mDemoCamCenter = sp5c;
@@ -6831,10 +6831,10 @@ static int daE_RD_Execute(e_rd_class* i_this) {
     }
 
     if (i_this->field_0x129a == 0 && i_this->field_0x9bc == 0) {
-        fopAc_ac_c* player2_p = dComIfGp_getPlayer(0);
+        fopAc_ac_c* player = dComIfGp_getPlayer(0);
         MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(11), mDoMtx_stack_c::get());
         mDoMtx_stack_c::multVecZero(&spa4);
-        sp98 = player2_p->current.pos - spa4;
+        sp98 = player->current.pos - spa4;
         s16 atan_val = cM_atan2s(sp98.x, sp98.z);
         cMtx_YrotS(*calc_mtx, atan_val);
         sp98.x = 0.0f;
