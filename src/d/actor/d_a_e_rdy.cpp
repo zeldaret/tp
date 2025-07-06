@@ -465,6 +465,14 @@ static void* s_b_sub(void* i_proc, void* i_this) {
     return NULL;
 }
 
+// The bit is sort of a fakematch. This gets GCN to match, but this function doesn't inline in Debug:
+inline u16 absoluteValue(s16 num) {
+    if (num < 0) {
+        num = -1*num;
+    }
+    return num;
+}
+
 /* 8076CB24-8076CE10 000E44 02EC+00 2/2 0/0 0/0 .text            search_bomb__FP11e_rdy_classi */
 // NONMATCHING regalloc
 static dBomb_c* search_bomb(e_rdy_class* i_this, BOOL param_1) {
@@ -499,11 +507,7 @@ static dBomb_c* search_bomb(e_rdy_class* i_this, BOOL param_1) {
                     f32 abs_res = fabsf(50.0f + bomb->current.pos.y - a_this->eyePos.y);
                     if (abs_res <= 300.0f) {
                         s16 ang_y = a_this->shape_angle.y - cM_atan2s(vec1.x, vec1.z);
-                        if (ang_y < 0) {
-                            ang_y = -1*ang_y;
-                        }
-
-                        if ((u16)ang_y < 20000) {
+                        if (absoluteValue(ang_y) < 20000) {
                             return bomb;
                         }
 
