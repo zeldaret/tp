@@ -90,12 +90,12 @@ public:
         // "construct"
         OS_REPORT("|%06d:%x|daNpc_Besu_c -> コンストラクト\n", g_Counter.mCounter0, this);
     }
-    /* 8053E6A8 */ s32 getEyeballMaterialNo();
-    /* 8053E6B0 */ s32 getHeadJointNo();
-    /* 8053E6B8 */ s32 getNeckJointNo();
-    /* 8053E6C0 */ s32 getBackboneJointNo();
-    /* 8053E6C8 */ BOOL checkChangeJoint(int);
-    /* 8053E6D8 */ BOOL checkRemoveJoint(int);
+    /* 8053E6A8 */ s32 getEyeballMaterialNo() { return 2; }
+    /* 8053E6B0 */ s32 getHeadJointNo() { return 4; }
+    /* 8053E6B8 */ s32 getNeckJointNo() { return 3; }
+    /* 8053E6C0 */ s32 getBackboneJointNo() { return true; }
+    /* 8053E6C8 */ BOOL checkChangeJoint(int arg0) { return arg0 == 4; }
+    /* 8053E6D8 */ BOOL checkRemoveJoint(int arg0) { return arg0 == 6; }
 
     u32 getFlowNodeNo() { 
         u16 nodeNo = home.angle.x;
@@ -145,7 +145,7 @@ struct daNpc_Besu_HIOParam {
 
 class daNpc_Besu_Param_c {
 public:
-    /* 8053E6E8 */ virtual ~daNpc_Besu_Param_c();
+    /* 8053E6E8 */ virtual ~daNpc_Besu_Param_c() {}
 
     static const daNpc_Besu_HIOParam m;
 };
