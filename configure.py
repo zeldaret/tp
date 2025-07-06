@@ -1542,7 +1542,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_ga"),
     ActorRel(NonMatching, "d_a_e_hb"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_nest"),
-    ActorRel(NonMatching, "d_a_e_rd"),
+    ActorRel(Equivalent, "d_a_e_rd"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_econt"),
     ActorRel(NonMatching, "d_a_fr"),
     ActorRel(NonMatching, "d_a_grass"),
