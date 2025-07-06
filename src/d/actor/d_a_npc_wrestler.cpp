@@ -5851,22 +5851,84 @@ void daNpcWrestler_c::setWrestlerVoice() {
 /* 80B3FCE8-80B404FC 010B48 0814+00 1/2 0/0 0/0 .text            playMotion__15daNpcWrestler_cFv */
 void daNpcWrestler_c::playMotion() {
     // NONMATCHING
-    daNpcF_anmPlayData playData0 = {0x13, field_0xbd8->common.morf_frame, 0};
+    daNpcF_anmPlayData playData0 = {0x39, field_0xbd8->common.morf_frame, 0};
     daNpcF_anmPlayData* pDat0[1] = {&playData0};
-    daNpcF_anmPlayData playData1 = {0x17, field_0xbd8->common.morf_frame, 1};
+    daNpcF_anmPlayData playData1 = {0x39, 0.0f, 0};
     daNpcF_anmPlayData* pDat1[1] = {&playData1};
-    daNpcF_anmPlayData playData2 = {0x19, field_0xbd8->common.morf_frame, 1};
+    daNpcF_anmPlayData playData2 = {0x3A, field_0xbd8->common.morf_frame, 1};
     daNpcF_anmPlayData* pDat2[1] = {&playData2};
-    daNpcF_anmPlayData playData3 = {0x1A, field_0xbd8->common.morf_frame, 1};
+    daNpcF_anmPlayData playData3 = {0x3B, field_0xbd8->common.morf_frame, 0};
     daNpcF_anmPlayData* pDat3[1] = {&playData3};
-    daNpcF_anmPlayData playData4 = {0x18, field_0xbd8->common.morf_frame, 0};
+    daNpcF_anmPlayData playData4 = {0x3B, field_0xbd8->common.morf_frame, 0};
     daNpcF_anmPlayData* pDat4[1] = {&playData4};
-    daNpcF_anmPlayData playData5 = {0x1A, field_0xbd8->common.morf_frame, 0};
+    daNpcF_anmPlayData playData5 = {0x3C, field_0xbd8->common.morf_frame, 1};
     daNpcF_anmPlayData* pDat5[1] = {&playData5};
-    daNpcF_anmPlayData playData6 = {0, field_0xbd8->common.morf_frame, 0};
+    daNpcF_anmPlayData playData6 = {0x3B, field_0xbd8->common.morf_frame, 0};
     daNpcF_anmPlayData* pDat6[1] = {&playData6};
+    daNpcF_anmPlayData playData7 = {0x3D, field_0xbd8->common.morf_frame, 1};
+    daNpcF_anmPlayData* pDat7[1] = {&playData7};
+    daNpcF_anmPlayData playData8 = {0x3B, field_0xbd8->common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat8[1] = {&playData8};
+    daNpcF_anmPlayData playData9 = {0x1D, 4.0f, 0};
+    daNpcF_anmPlayData* pDat9[1] = {&playData9};
+    daNpcF_anmPlayData playData10 = {0x20, field_0xbd8->common.morf_frame, 1};
+    daNpcF_anmPlayData* pDat10[1] = {&playData10};
+    daNpcF_anmPlayData playData11 = {0x1E, 24.0f, 0};
+    daNpcF_anmPlayData* pDat11[1] = {&playData11};
+    daNpcF_anmPlayData playData12 = {0x21, 0.0f, 0};
+    daNpcF_anmPlayData* pDat12[1] = {&playData12};
+    daNpcF_anmPlayData playData13 = {0x22, 6.0f, 1};
+    daNpcF_anmPlayData* pDat13[1] = {&playData13};
+    daNpcF_anmPlayData playData14 = {0x23, 6.0f, 0};
+    daNpcF_anmPlayData* pDat14[1] = {&playData14};
+    daNpcF_anmPlayData playData15 = {0x24, 6.0f, 0};
+    daNpcF_anmPlayData* pDat15[1] = {&playData15};
+    daNpcF_anmPlayData playData16 = {0x25, 6.0f, 1};
+    daNpcF_anmPlayData* pDat16[1] = {&playData16};
+    daNpcF_anmPlayData playData17 = {0x29, 6.0f, 1};
+    daNpcF_anmPlayData* pDat17[1] = {&playData17};
+    daNpcF_anmPlayData playData18 = {0x30, 0.0f, 0};
+    daNpcF_anmPlayData* pDat18[1] = {&playData18};
+    daNpcF_anmPlayData playData19 = {0x26, 6.0f, 1};
+    daNpcF_anmPlayData* pDat19[1] = {&playData19};
+    daNpcF_anmPlayData playData20 = {0x27, 6.0f, 1};
+    daNpcF_anmPlayData* pDat20[1] = {&playData20};
+    daNpcF_anmPlayData playData21 = {0x28, 6.0f, 1};
+    daNpcF_anmPlayData* pDat21[1] = {&playData21};
+    daNpcF_anmPlayData playData22 = {0x2B, 6.0f, 1};
+    daNpcF_anmPlayData* pDat22[1] = {&playData22};
+    daNpcF_anmPlayData playData23 = {0x2E, 0.0f, 1};
+    daNpcF_anmPlayData* pDat23[1] = {&playData23};
+    daNpcF_anmPlayData playData24 = {0x2F, 6.0f, 1};
+    daNpcF_anmPlayData* pDat24[1] = {&playData24};
+    daNpcF_anmPlayData playData25 = {0x2C, 0.0f, 1};
+    daNpcF_anmPlayData* pDat25[1] = {&playData25};
+    daNpcF_anmPlayData playData26 = {0x2D, 6.0f, 0};
+    daNpcF_anmPlayData* pDat26[1] = {&playData26};
+    daNpcF_anmPlayData playData27 = {0x31, 6.0f, 0};
+    daNpcF_anmPlayData* pDat27[1] = {&playData27};
+    daNpcF_anmPlayData playData28 = {0x32, 6.0f, 0};
+    daNpcF_anmPlayData* pDat28[1] = {&playData28};
+    daNpcF_anmPlayData playData29 = {0x38, 0.0f, 1};
+    daNpcF_anmPlayData* pDat29[1] = {&playData29};
+    daNpcF_anmPlayData playData30 = {0x39, 0.0f, 0};
+    daNpcF_anmPlayData* pDat30[1] = {&playData30};
+    daNpcF_anmPlayData playData31 = {0x34, field_0xbd8->common.morf_frame, 1};
+    daNpcF_anmPlayData* pDat31[1] = {&playData31};
+    daNpcF_anmPlayData playData32 = {0x36, 0.0f, 0};
+    daNpcF_anmPlayData* pDat32[1] = {&playData32};
+    daNpcF_anmPlayData playData33 = {0x35, field_0xbd8->common.morf_frame, 1};
+    daNpcF_anmPlayData* pDat33[1] = {&playData33};
+    daNpcF_anmPlayData playData34 = {0x36, 0.0f, 0};
+    daNpcF_anmPlayData* pDat34[1] = {&playData34};
+    daNpcF_anmPlayData playData35 = {0x2A, 6.0f, 1};
+    daNpcF_anmPlayData* pDat35[1] = {&playData35};
+    daNpcF_anmPlayData playData36 = {0x37, field_0xbd8->common.morf_frame, 1};
+    daNpcF_anmPlayData* pDat36[1] = {&playData36};
+    daNpcF_anmPlayData playData37 = {0x1B, 6.0f, 0};
+    daNpcF_anmPlayData* pDat37[1] = {&playData37};
 
-    daNpcF_anmPlayData** expressionAnm[7] = {
+    daNpcF_anmPlayData** motionAnm[38] = {
         pDat0,
         pDat1,
         pDat2,
@@ -5874,16 +5936,67 @@ void daNpcWrestler_c::playMotion() {
         pDat4,
         pDat5,
         pDat6,
+        pDat7,
+        pDat8,
+        pDat9,
+        pDat10,
+        pDat11,
+        pDat12,
+        pDat13,
+        pDat14,
+        pDat15,
+        pDat16,
+        pDat17,
+        pDat18,
+        pDat19,
+        pDat20,
+        pDat21,
+        pDat22,
+        pDat23,
+        pDat24,
+        pDat25,
+        pDat26,
+        pDat27,
+        pDat28,
+        pDat29,
+        pDat30,
+        pDat31,
+        pDat32,
+        pDat33,
+        pDat34,
+        pDat35,
+        pDat36,
+        pDat37
     };
 
     if (mMotion >= 0 && mMotion < 30) {
-
+        field_0xe92 = mMotionPhase;
+        playMotionAnm(motionAnm);
     }
 }
 
 /* 80B404FC-80B405E8 01135C 00EC+00 1/0 0/0 0/0 .text            ctrlBtk__15daNpcWrestler_cFv */
+// NONMATCHING somehow this needs to not inline TSinCosTable<13,f32>::sinShort
 BOOL daNpcWrestler_c::ctrlBtk() {
-    // NONMATCHING
+    J3DAnmTextureSRTKey* btkAnm;
+    if (mpMatAnm != NULL) {
+        if (field_0xe04[3] >= 0) {
+            btkAnm = (J3DAnmTextureSRTKey*)getTexSRTKeyAnmP(l_resName[mType], field_0xe04[3]);
+        } else {
+            btkAnm = NULL;
+        }
+
+        if (btkAnm == mBtkAnm.getBtkAnm()) {
+            mpMatAnm->setNowOffsetX(cM_ssin(mEyeAngle.y) * 0.2f * -1.0f);
+            mpMatAnm->setNowOffsetY(cM_ssin(mEyeAngle.x) * 0.2f);
+            mpMatAnm->onEyeMoveFlag();
+            return TRUE;
+        }
+
+        mpMatAnm->offEyeMoveFlag();
+    }
+
+    return FALSE;
 }
 
 /* ############################################################################################## */
@@ -5913,13 +6026,77 @@ static u8 lit_4628[12];
 /* 80B42E34-80B42E38 000024 0004+00 1/1 0/0 0/0 .bss             None */
 static u8 data_80B42E34[4];
 
-/* 80B42E38-80B42E44 000028 000C+00 1/1 0/0 0/0 .bss
- * eyeOffset$localstatic3$setAttnPos__15daNpcWrestler_cFv       */
-static u8 data_80B42E38[12];
+/* 80B42E38-80B42E44 000028 000C+00 1/1 0/0 0/0 .bss             eyeOffset$localstatic3$setAttnPos__15daNpcWrestler_cFv */
+// static cXyz setAttnPos;
 
 /* 80B405E8-80B40B3C 011448 0554+00 1/1 0/0 0/0 .text            setAttnPos__15daNpcWrestler_cFv */
 void daNpcWrestler_c::setAttnPos() {
     // NONMATCHING
+    static cXyz eyeOffset(-10.0f, 10.0f, 0.0f);
+    static cXyz setAttnPos;
+    cXyz sp44, sp50, sp5c;
+
+    mDoMtx_stack_c::YrotS(field_0x990);
+    cLib_addCalc2(&field_0x984[0], 0.0f, 0.1f, 125.0f);
+    cLib_addCalc2(&field_0x984[2], 0.0f, 0.1f, 125.0f);
+
+    for (int i = 0; i < 3; i++) {
+        sp50.set(0.0f, 0.0f, field_0x984[i] * cM_ssin(field_0x992));
+        mDoMtx_stack_c::multVec(&sp50, &sp5c);
+        field_0x908[i].x = -sp5c.z;
+        field_0x908[i].z = -sp5c.x;
+    }
+
+    cLib_chaseS(&field_0x992, 0, 0x555);
+    if (mLookMode == 1) {
+        for (int i = 0; i < 3; i++) {
+            mLookatAngle[i].setall(0);
+        }
+    }
+
+    setParam();
+    lookat();
+
+    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+    mDoMtx_stack_c::multVecZero(&mHeadPos);
+    mDoMtx_stack_c::multVec(&eyeOffset, &eyePos);
+    setAttnPos.y = 0.0f;
+    mDoMtx_stack_c::multVec(&eyeOffset, &sp50);
+    mHeadAngle.x = cLib_targetAngleX(&mHeadPos, &sp50);
+    mHeadAngle.y = cLib_targetAngleY(&mHeadPos, &sp50);
+
+    cXyz* attnPos = mLookAt.getAttnPos();
+    if (attnPos != NULL) {
+        sp44 = *attnPos - eyePos;
+        mEyeAngle.y = -mCurAngle.y - mLookatAngle[2].y;
+        mEyeAngle.y = cM_atan2s(sp44.x, sp44.z);
+        mEyeAngle.x = -cM_atan2s(sp44.y, sp44.absXZ());
+    } else {
+        mEyeAngle.y = 0;
+        mEyeAngle.x = 0;
+    }
+
+    cXyz sp68;
+    f32 fVar1 = field_0xbd8->common.attention_offset;
+    sp44.set(0.0f, 0.0f, field_0xbdc->field_0x10);
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::ZXYrotM(mCurAngle.x, mCurAngle.y, mCurAngle.z);
+    mDoMtx_stack_c::multVec(&sp44, &sp68);
+    
+    if (chkAction(&daNpcWrestler_c::wait)) {
+        if (!chkAction(&daNpcWrestler_c::talk)) {
+            attention_info.position.set(sp68.x, 200.0f, sp68.z);
+        }
+    } else {
+        attention_info.position.set(sp68.x, sp68.y + fVar1, sp68.z);
+    }
+
+    if (chkAction(&daNpcWrestler_c::wait)) {
+        if (chkAction(&daNpcWrestler_c::talk)) {
+            field_0xc90.SetC(sp68);
+            dComIfG_Ccsp()->Set(&field_0xc90);
+        }
+    }
 }
 
 /* ############################################################################################## */
@@ -5933,6 +6110,45 @@ COMPILER_STRIP_GATE(0x80B41D78, &lit_10841);
 /* 80B40B3C-80B40D1C 01199C 01E0+00 1/1 0/0 0/0 .text            lookat__15daNpcWrestler_cFv */
 void daNpcWrestler_c::lookat() {
     // NONMATCHING
+    int iVar1 = 0;
+    f32 fVar1 = field_0xbd8->common.body_angleX_min;
+    f32 fVar2 = field_0xbd8->common.body_angleX_max;
+    f32 fVar3 = field_0xbd8->common.body_angleY_min;
+    f32 fVar4 = field_0xbd8->common.body_angleY_max;
+    s16 sVar1 = mOldAngle.y;
+    s16 sVar2 = mCurAngle.y;
+    cXyz spd0(mLookatPos[0]);
+    cXyz spc4(mLookatPos[1]);
+    cXyz spb8(mLookatPos[2]);
+    csXyz local_dc = mLookatAngle[0];
+    csXyz local_d8 = mLookatAngle[1];
+    csXyz local_d4 = mLookatAngle[2];
+    cXyz spe8;
+    daPy_py_c* player;
+
+    switch (mLookMode) {
+        case 1:
+            iVar1 = 1;
+            break;
+
+        case 2:
+        case 3:
+            player = daPy_getPlayerActorClass();
+            break;
+    }
+
+    if (player == NULL) {
+        mLookAt.setAttnPos(NULL);
+    } else {
+        mLookPos = player->attention_info.position;
+        if (mLookMode != 2 && mLookMode != 3) {
+            mLookPos.y -= 40.0f;
+        }
+
+        mLookAt.setAttnPos(mLookAt.getAttnPos());
+    }
+
+    // mLookAt.setParam(fVar1, fVar2, fVar3, fVar4, 0.0f, 0.0f, 0.0f, 0.0f, sVar1, sVar2, )
 }
 
 /* 80B40D1C-80B40D24 011B7C 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__15daNpcWrestler_cFv */
