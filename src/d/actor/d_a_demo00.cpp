@@ -4,8 +4,12 @@
 */
 
 #include "d/actor/d_a_demo00.h"
+#include "d/d_kankyo_rain.h"
 #include "dol2asm.h"
 #include "d/d_camera.h"
+#include "m_Do/m_Do_graphic.h"
+#include "m_Do/m_Do_ext.h"
+#include "Z2AudioLib/Z2Instances.h"
 
 
 
@@ -204,29 +208,34 @@ extern "C" void __register_global_object();
 
 /* 804A430C-804A4338 0000EC 002C+00 3/3 0/0 0/0 .text            reset__16daDemo00_resID_cFv */
 void daDemo00_resID_c::reset() {
-    // NONMATCHING
+    field_0x0 = -1;
+    field_0x4 = -1;
+    field_0x8 = -1;
+    field_0xc = -1;
+    field_0x10 = -1;
+    field_0x14 = -1;
+    field_0x18 = -1;
+    field_0x1c = -1;
+    field_0x20 = -1;
 }
 
 /* 804A4338-804A4388 000118 0050+00 1/1 0/0 0/0 .text            reset__16daDemo00_model_cFv */
 void daDemo00_model_c::reset() {
     // NONMATCHING
+
 }
 
 /* 804A4388-804A4420 000168 0098+00 1/1 0/0 0/0 .text            __dt__10daDemo00_cFv */
 daDemo00_c::~daDemo00_c() {
-    // NONMATCHING
+    if (heap != NULL) {
+        if (mpModelMorf != NULL) {
+            mpModelMorf->stopZelAnime();
+        }
+    }
 }
 
 /* 804A4420-804A449C 000200 007C+00 2/2 0/0 0/0 .text            __dt__12demo_s1_ke_sFv */
-demo_s1_ke_s::~demo_s1_ke_s() {
-    // NONMATCHING
-}
-
-/* 804A449C-804A44D8 00027C 003C+00 5/5 0/0 0/0 .text            __dt__4cXyzFv */
-// cXyz::~cXyz() {
-extern "C" void __dt__4cXyzFv() {
-    // NONMATCHING
-}
+demo_s1_ke_s::~demo_s1_ke_s() {}
 
 /* ############################################################################################## */
 /* 804A8998-804A8998 000138 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
@@ -235,23 +244,7 @@ extern "C" void __dt__4cXyzFv() {
 SECTION_DEAD static char const* const stringBase_804A8998 = "V_24_tri_joint";
 #pragma pop
 
-/* 804A89C0-804A89CC 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 804A89CC-804A89E0 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
+UNK_REL_DATA;
 
 /* 804A89E0-804A89F8 -00001 0018+00 0/0 0/0 0/0 .data            l_lightData */
 #pragma push
@@ -449,33 +442,6 @@ SECTION_DATA static void* lit_6395[26] = {
     (void*)(((char*)execute__10daDemo00_cFv) + 0x5C0),
 };
 
-/* 804A8B94-804A8BB4 -00001 0020+00 1/0 0/0 0/0 .data            l_daDemo00_Method */
-static actor_method_class l_daDemo00_Method = {
-    (process_method_func)daDemo00_Create__FP10fopAc_ac_c,
-    (process_method_func)daDemo00_Delete__FP10daDemo00_c,
-    (process_method_func)daDemo00_Execute__FP10daDemo00_c,
-    (process_method_func)daDemo00_IsDelete__FP10daDemo00_c,
-    (process_method_func)daDemo00_Draw__FP10daDemo00_c,
-};
-
-/* 804A8BB4-804A8BE4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_DEMO00 */
-extern actor_process_profile_definition g_profile_DEMO00 = {
-  fpcLy_CURRENT_e,       // mLayerID
-  7,                     // mListID
-  fpcPi_CURRENT_e,       // mListPrio
-  PROC_DEMO00,           // mProcName
-  &g_fpcLf_Method.base, // sub_method
-  sizeof(daDemo00_c),    // mSize
-  0,                     // mSizeOther
-  0,                     // mParameters
-  &g_fopAc_Method.base,  // sub_method
-  685,                   // mPriority
-  &l_daDemo00_Method,    // sub_method
-  0x00044000,            // mStatus
-  fopAc_ACTOR_e,         // mActorType
-  fopAc_CULLBOX_0_e,     // cullType
-};
-
 /* 804A8BE4-804A8BF8 000224 0014+00 1/1 0/0 0/0 .data            __vt__18mDoExt_3DlineMat_c */
 SECTION_DATA extern void* __vt__18mDoExt_3DlineMat_c[5] = {
     (void*)NULL /* RTTI */, (void*)NULL, (void*)NULL, (void*)NULL, (void*)NULL,
@@ -488,157 +454,160 @@ SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
     (void*)__dt__12J3DFrameCtrlFv,
 };
 
-/* 804A8C04-804A8C10 000244 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGPla */
-SECTION_DATA extern void* __vt__8cM3dGPla[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGPlaFv,
-};
-
-/* 804A44D8-804A4520 0002B8 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGPlaFv */
-// cM3dGPla::~cM3dGPla() {
-extern "C" void __dt__8cM3dGPlaFv() {
+/* 804A4520-804A45A0 000300 0080+00 1/1 0/0 0/0 .text            get_foward_angle__FP4cXyzP4cXyzPsPs */
+static void get_foward_angle(cXyz* param_1, cXyz* param_2, s16* param_3, s16* param_4) {
     // NONMATCHING
+    cXyz sp38;
+
+    dKyr_get_vectle_calc(param_1, param_2, &sp38);
+    *param_3 = cM_atan2s(JMAFastSqrt(sp38.x * sp38.x + sp38.z * sp38.z), sp38.y);
+    *param_4 = sp38.atan2sX_Z();
 }
-
-/* ############################################################################################## */
-/* 804A8860-804A886C 000000 000C+00 11/11 0/0 0/0 .rodata          @3727 */
-SECTION_RODATA static u8 const lit_3727[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x804A8860, &lit_3727);
-
-/* 804A886C-804A8870 00000C 0004+00 3/10 0/0 0/0 .rodata          @4004 */
-SECTION_RODATA static u8 const lit_4004[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x804A886C, &lit_4004);
-
-/* 804A4520-804A45A0 000300 0080+00 1/1 0/0 0/0 .text            get_foward_angle__FP4cXyzP4cXyzPsPs
- */
-static void get_foward_angle(cXyz* param_0, cXyz* param_1, s16* param_2, s16* param_3) {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 804A8870-804A8874 000010 0004+00 0/1 0/0 0/0 .rodata          @4122 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4122 = 1000.0f;
-COMPILER_STRIP_GATE(0x804A8870, &lit_4122);
-#pragma pop
-
-/* 804A8874-804A8878 000014 0004+00 1/2 0/0 0/0 .rodata          @4123 */
-SECTION_RODATA static f32 const lit_4123 = 10000000.0f;
-COMPILER_STRIP_GATE(0x804A8874, &lit_4123);
-
-/* 804A8878-804A8880 000018 0008+00 0/3 0/0 0/0 .rodata          @4124 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4124[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x804A8878, &lit_4124);
-#pragma pop
-
-/* 804A8880-804A8888 000020 0008+00 0/3 0/0 0/0 .rodata          @4125 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4125[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x804A8880, &lit_4125);
-#pragma pop
-
-/* 804A8888-804A8890 000028 0008+00 0/3 0/0 0/0 .rodata          @4126 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4126[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x804A8888, &lit_4126);
-#pragma pop
-
-/* 804A8890-804A8894 000030 0004+00 0/1 0/0 0/0 .rodata          @4127 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4127 = 1.5f;
-COMPILER_STRIP_GATE(0x804A8890, &lit_4127);
-#pragma pop
-
-/* 804A8894-804A8898 000034 0004+00 0/1 0/0 0/0 .rodata          @4128 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4128 = -1000000000.0f;
-COMPILER_STRIP_GATE(0x804A8894, &lit_4128);
-#pragma pop
 
 /* 804A45A0-804A4948 000380 03A8+00 2/2 0/0 0/0 .text            setBaseMtx__10daDemo00_cFv */
 void daDemo00_c::setBaseMtx() {
     // NONMATCHING
+    s16 sVar1, sVar2;
+    cXyz sp38;
+    BOOL bVar1 = FALSE;
+    cM3dGPla plane;
+
+    if (tevStr.mInitTimer == 1) {
+        field_0x574 = shape_angle;
+    }
+
+    sp38 = current.pos;
+
+    if (field_0x6a2 != 0 || field_0x6a3 != 0) {
+        cXyz sp44(current.pos.x, current.pos.y + 1000.0f, current.pos.z);
+        mGndChk->SetPos(&sp44);
+        sp38.y = dComIfG_Bgsp().GroundCross(mGndChk);
+    }
+
+    if (field_0x6a4 != 0 && field_0x568.x != 10000000.0f) {
+        if (current.pos != field_0x568) {
+            if (current.pos.abs(field_0x568) >= 1.5f) {
+                get_foward_angle(&field_0x568, &current.pos, &sVar1, &sVar2);
+                shape_angle.x = field_0x574.x = sVar1;
+                shape_angle.y = field_0x574.y = sVar2;
+            }
+        } else {
+            shape_angle.x = field_0x574.x;
+            shape_angle.y = field_0x574.y;
+        }
+    }
+
+    field_0x568 = current.pos;
+
+    if (field_0x6a3 != 0) {
+        if (sp38.y != -1000000000.0f) {
+            bVar1 = dComIfG_Bgsp().GetTriPla(*mGndChk, &plane);
+        }
+
+        if (bVar1 && cBgW_CheckBGround(plane.mNormal.y)) {
+            shape_angle.x = fopAcM_getPolygonAngle(&plane, shape_angle.y);
+        }
+    }
+
+    if (tevStr.mInitTimer != 0 || field_0x6a3 == 0) {
+        current.angle = shape_angle;
+    } else {
+        cLib_addCalcAngleS2(&current.angle.x, shape_angle.x, 4, 0x2000);
+        cLib_addCalcAngleS2(&current.angle.y, shape_angle.y, 4, 0x2000);
+        cLib_addCalcAngleS2(&current.angle.z, shape_angle.z, 4, 0x2000);
+    }
+
+    mDoMtx_stack_c::transS(sp38.x, sp38.y, sp38.z);
+    mDoMtx_stack_c::XYZrotM(current.angle.x, current.angle.y, current.angle.z);
+    field_0x5d4->setBaseTRMtx(mDoMtx_stack_c::get());
+    field_0x5d4->setBaseScale(scale);
 }
-
-/* ############################################################################################## */
-/* 804A8898-804A889C 000038 0004+00 0/1 0/0 0/0 .rodata          @4284 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4284 = 100000000.0f;
-COMPILER_STRIP_GATE(0x804A8898, &lit_4284);
-#pragma pop
-
-/* 804A889C-804A88A0 00003C 0004+00 0/1 0/0 0/0 .rodata          @4285 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4285 = -100000000.0f;
-COMPILER_STRIP_GATE(0x804A889C, &lit_4285);
-#pragma pop
-
-/* 804A88A0-804A88A4 000040 0004+00 0/2 0/0 0/0 .rodata          @4286 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4286 = 0.5f;
-COMPILER_STRIP_GATE(0x804A88A0, &lit_4286);
-#pragma pop
-
-/* 804A88A4-804A88A8 000044 0004+00 0/5 0/0 0/0 .rodata          @4287 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4287 = 3.0f;
-COMPILER_STRIP_GATE(0x804A88A4, &lit_4287);
-#pragma pop
-
-/* 804A88A8-804A88AC 000048 0004+00 0/1 0/0 0/0 .rodata          @4288 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4288 = 0.25f;
-COMPILER_STRIP_GATE(0x804A88A8, &lit_4288);
-#pragma pop
 
 /* 804A4948-804A4D48 000728 0400+00 1/1 0/0 0/0 .text            setShadowSize__10daDemo00_cFv */
 void daDemo00_c::setShadowSize() {
     // NONMATCHING
-}
+    J3DModelData* modelData = field_0x5d4->getModelData();
+    cXyz sp98(100000000.0f, 100000000.0f, 100000000.0f);
+    cXyz spa4(-100000000.0f, -100000000.0f, -100000000.0f);
 
-/* ############################################################################################## */
-/* 804A8998-804A8998 000138 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_804A89A7 = "B_dummy";
-SECTION_DEAD static char const* const stringBase_804A89AF = "cy_kankyo";
-#pragma pop
+    for (u16 i = 0; i < modelData->getJointNum(); i++) {
+        J3DJoint* jntNodeP = modelData->getJointNodePointer(i);
+        if (jntNodeP->getKind() == 0) {
+            cXyz spb0, spbc;
+            cMtx_multVec(field_0x5d4->getAnmMtx(i), jntNodeP->getMin(), &spb0);
+            cMtx_multVec(field_0x5d4->getAnmMtx(i), jntNodeP->getMin(), &spbc);
+
+            if (spb0.x < sp98.x) {
+                sp98.x = spb0.x;
+            }
+
+            if (spb0.y < sp98.y) {
+                sp98.y = spb0.y;
+            }
+
+            if (spb0.z < sp98.z) {
+                sp98.z = spb0.z;
+            }
+
+            if (spa4.x < spbc.x) {
+                spa4.x = spbc.x;
+            }
+
+            if (spa4.y < spbc.y) {
+                spa4.y = spbc.y;
+            }
+
+            if (spa4.z < spbc.z) {
+                spa4.z = spbc.z;
+            }
+        }
+    }
+
+    *field_0x5ec[1] = (spa4.x + sp98.x) * 0.5f;
+    *field_0x5ec[2] = (spa4.y + sp98.y) * 0.5f;
+    *field_0x5ec[3] = (spa4.z + sp98.z) * 0.5f;
+    cXyz spc8(spa4 - sp98);
+    *field_0x5ec[7] = spc8.abs() * 3.0f;
+    *field_0x5ec[8] = spc8.absXZ() * 0.25f;
+}
 
 /* 804A4D48-804A4F54 000B28 020C+00 1/1 0/0 0/0 .text            awaCheck__FP8J3DModel */
-static void awaCheck(J3DModel* param_0) {
-    // NONMATCHING
+static BOOL awaCheck(J3DModel* i_model) {
+    J3DModelData* modelData = i_model->getModelData();
+    J3DTexture* texture = modelData->getTexture();
+
+    if (texture != NULL) {
+        JUTNameTab* nameTab = modelData->getTextureName();
+        if (nameTab != NULL) {
+            for (u16 i = 0; i < texture->getNum(); i++) {
+                const char* name = nameTab->getName(i);
+                if (strcmp(name, "B_dummy") == 0 || strcmp(name, "cy_kankyo") == 0) {
+                    J3DSkinDeform* skinDeform = new J3DSkinDeform();
+                    if (skinDeform == NULL) {
+                        return FALSE;
+                    }
+
+                    if (i_model->setSkinDeform(skinDeform, 1) != 0) {
+                        return FALSE;
+                    }
+
+                    if (strcmp(name, "B_dummy") == 0) {
+                        texture->setResTIMG(i, *mDoGph_gInf_c::getFrameBufferTimg());
+                        mDoExt_modelTexturePatch(modelData);
+                    }
+                }
+            }
+        }
+    }
+
+    return TRUE;
 }
 
-/* 804A4F54-804A4F74 000D34 0020+00 1/1 0/0 0/0 .text            createHeapCallBack__FP10fopAc_ac_c
- */
-static void createHeapCallBack(fopAc_ac_c* param_0) {
+/* 804A4F54-804A4F74 000D34 0020+00 1/1 0/0 0/0 .text            createHeapCallBack__FP10fopAc_ac_c */
+static int createHeapCallBack(fopAc_ac_c* a_this) {
     // NONMATCHING
+    daDemo00_c* i_this = (daDemo00_c*)a_this;
+    return i_this->createHeap();
 }
 
 /* ############################################################################################## */
@@ -667,7 +636,7 @@ SECTION_DEAD static char const* const stringBase_804A89B9 = "Always";
 #pragma pop
 
 /* 804A4F74-804A5750 000D54 07DC+00 1/1 0/0 0/0 .text            createHeap__10daDemo00_cFv */
-void daDemo00_c::createHeap() {
+int daDemo00_c::createHeap() {
     // NONMATCHING
 }
 
@@ -1327,182 +1296,33 @@ SECTION_RODATA static f32 const lit_6394 = 90.0f;
 COMPILER_STRIP_GATE(0x804A8994, &lit_6394);
 #pragma pop
 
-/* 804A8E20-804A8E24 000210 0004+00 0/0 0/0 0/0 .bss
- * sInstance__40JASGlobalInstance<19JASDefaultBankTable>        */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E20[4];
-#pragma pop
-
-/* 804A8E24-804A8E28 000214 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14JASAudioThread>             */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E24[4];
-#pragma pop
-
-/* 804A8E28-804A8E2C 000218 0004+00 0/0 0/0 0/0 .bss sInstance__27JASGlobalInstance<7Z2SeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E28[4];
-#pragma pop
-
-/* 804A8E2C-804A8E30 00021C 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8Z2SeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E2C[4];
-#pragma pop
-
-/* 804A8E30-804A8E34 000220 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SceneMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E30[4];
-#pragma pop
-
-/* 804A8E34-804A8E38 000224 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2StatusMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E34[4];
-#pragma pop
-
-/* 804A8E38-804A8E3C 000228 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2DebugSys>
- */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E38[4];
-#pragma pop
-
-/* 804A8E3C-804A8E40 00022C 0004+00 0/0 0/0 0/0 .bss
- * sInstance__36JASGlobalInstance<15JAISoundStarter>            */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E3C[4];
-#pragma pop
-
-/* 804A8E40-804A8E44 000230 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14Z2SoundStarter>             */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E40[4];
-#pragma pop
-
-/* 804A8E44-804A8E48 000234 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12Z2SpeechMgr2>               */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E44[4];
-#pragma pop
-
-/* 804A8E48-804A8E4C 000238 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8JAISeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E48[4];
-#pragma pop
-
-/* 804A8E4C-804A8E50 00023C 0004+00 0/0 0/0 0/0 .bss sInstance__29JASGlobalInstance<9JAISeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E4C[4];
-#pragma pop
-
-/* 804A8E50-804A8E54 000240 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAIStreamMgr>               */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E50[4];
-#pragma pop
-
-/* 804A8E54-804A8E58 000244 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SoundMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E54[4];
-#pragma pop
-
-/* 804A8E58-804A8E5C 000248 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAISoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E58[4];
-#pragma pop
-
-/* 804A8E5C-804A8E60 00024C 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13JAUSoundTable>              */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E5C[4];
-#pragma pop
-
-/* 804A8E60-804A8E64 000250 0004+00 0/0 0/0 0/0 .bss
- * sInstance__38JASGlobalInstance<17JAUSoundNameTable>          */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E60[4];
-#pragma pop
-
-/* 804A8E64-804A8E68 000254 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAUSoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E64[4];
-#pragma pop
-
-/* 804A8E68-804A8E6C 000258 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SoundInfo>
- */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E68[4];
-#pragma pop
-
-/* 804A8E6C-804A8E70 00025C 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2SoundObjMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E6C[4];
-#pragma pop
-
-/* 804A8E70-804A8E74 000260 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2Audience>
- */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E70[4];
-#pragma pop
-
-/* 804A8E74-804A8E78 000264 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2FxLineMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E74[4];
-#pragma pop
-
-/* 804A8E78-804A8E7C 000268 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2EnvSeMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E78[4];
-#pragma pop
-
-/* 804A8E7C-804A8E80 00026C 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SpeechMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E7C[4];
-#pragma pop
-
-/* 804A8E80-804A8E84 000270 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2WolfHowlMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E80[4];
-#pragma pop
-
-/* 804A8E84-804A8E88 000274 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14JAUSectionHeap>             */
-#pragma push
-#pragma force_active on
-static u8 data_804A8E84[4];
-#pragma pop
+AUDIO_INSTANCES;
 
 /* 804A8998-804A8998 000138 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+
+/* 804A8B94-804A8BB4 -00001 0020+00 1/0 0/0 0/0 .data            l_daDemo00_Method */
+static actor_method_class l_daDemo00_Method = {
+    (process_method_func)daDemo00_Create,
+    (process_method_func)daDemo00_Delete,
+    (process_method_func)daDemo00_Execute,
+    (process_method_func)daDemo00_IsDelete,
+    (process_method_func)daDemo00_Draw,
+};
+
+/* 804A8BB4-804A8BE4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_DEMO00 */
+extern actor_process_profile_definition g_profile_DEMO00 = {
+  fpcLy_CURRENT_e,       // mLayerID
+  7,                     // mListID
+  fpcPi_CURRENT_e,       // mListPrio
+  PROC_DEMO00,           // mProcName
+  &g_fpcLf_Method.base, // sub_method
+  sizeof(daDemo00_c),    // mSize
+  0,                     // mSizeOther
+  0,                     // mParameters
+  &g_fopAc_Method.base,  // sub_method
+  685,                   // mPriority
+  &l_daDemo00_Method,    // sub_method
+  0x00044000,            // mStatus
+  fopAc_ACTOR_e,         // mActorType
+  fopAc_CULLBOX_0_e,     // cullType
+};
