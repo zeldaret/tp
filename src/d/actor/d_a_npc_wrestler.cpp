@@ -1029,6 +1029,61 @@ void daNpcWrestler_c::setOnToArena(f32 param_1) {
     }
 }
 
+inline void daNpcWrestler_c::setLookMode(int mode) {
+    if (mode > -1 && mode < 4 && mode != mLookMode) {
+        mLookMode = mode;
+    }
+}
+
+inline BOOL daNpcWrestler_c::chkFindPlayer() {
+    BOOL bVar1;
+    if (mActorMngr[0].getActorP() == NULL) {
+        bVar1 = chkPlayerInSpeakArea(this);
+    } else {
+        bVar1 = chkPlayerInTalkArea(this);
+    }
+
+    if (bVar1) {
+        setLookMode(2);
+        mActorMngr[0].entry(daPy_getPlayerActorClass());
+    } else {
+        setLookMode(0);
+        mActorMngr[0].remove();
+    }
+}
+
+inline BOOL daNpcWrestler_c::step(s16 param_1, int param_2) {
+    if (mTurnMode == 0) {
+        if (mCurAngle.y == param_1) {
+            mTurnMode++;
+        } else if (param_2 != 0) {
+            if (fabsf(cM_sht2d(param_1 - mCurAngle.y)) > 0x28) {
+                setExpression(5, -1.0f);
+                setMotion(6, field_0xbd8->common.morf_frame, 0);
+            }
+        }
+
+        mTurnTargetAngle = param_1;
+        mTurnAmount = 0;
+        current.angle.y = mCurAngle.y;
+        shape_angle.y = current.angle.y;
+        mTurnMode++;
+    } else if (mTurnMode == 1) {
+        if (turn(mTurnTargetAngle, 15.0f, 0)) {
+            shape_angle.y = current.angle.y;
+            mCurAngle.y = current.angle.y;
+            mOldAngle.y = current.angle.y;
+            mTurnMode++;
+        } else {
+            mOldAngle.y = mCurAngle.y;
+            mCurAngle.y = current.angle.y;
+            shape_angle.y = current.angle.y;
+        }
+    }
+
+    return (mTurnMode >> 1) - (((u32)mTurnMode & mTurnMode) >> 31);
+}
+
 /* 80B30F00-80B31680 001D60 0780+00 13/1 0/0 0/0 .text            wait__15daNpcWrestler_cFPv */
 bool daNpcWrestler_c::wait(void* param_1) {
     // NONMATCHING
@@ -1165,6 +1220,37 @@ void daNpcWrestler_c::setExpression(int i_expression, f32 i_expressionMorfOvveri
         mExpressionMorfOverride = i_expressionMorfOvveride;
         mExpressionPrevPhase = -1;
         mExpressionPhase = 0;
+    }
+}
+
+inline bool daNpcWrestler_c::setTalkAngle() {
+    s16 playerAngleY = fopAcM_searchPlayerAngleY(this); 
+    if (playerAngleY == mCurAngle.y) {
+        return true;
+    }
+
+    if (step(playerAngleY, 1)) {
+        setExpression(5, -1.0f);
+        setMotion(0, field_0xbd8->common.morf_frame, 0);
+        mTurnMode = 0;
+    }
+
+    return false;
+}
+
+inline void daNpcWrestler_c::setExpressionTalkAfter() {
+    switch (mExpression) {
+        case 1:
+            setExpression(3, -1.0f);
+            break;
+
+        case 2:
+            setExpression(4, -1.0f);
+            break;
+
+        default:
+            setExpression(5, -1.0f);
+            break;
     }
 }
 
@@ -1351,6 +1437,36 @@ bool daNpcWrestler_c::demo(void* param_1) {
     return true;
 }
 
+inline void daNpcWrestler_c::setNextSumouEvent(int i_sumouEventNo) {
+    if (i_sumouEventNo == -1) {
+        i_sumouEventNo = mItemNo;
+    }
+
+    OS_REPORT("相撲イベント要求 ステータスNo=%d\n", i_sumouEventNo);
+
+    switch (i_sumouEventNo) {
+        case 1:
+            return;
+
+        case 2:
+            setAction(&daNpcWrestler_c::demoSumouReady);
+            return;
+
+        case 3:
+            setAction(&daNpcWrestler_c::sumouReady);
+            return;
+
+        case 4:
+            setAction(&daNpcWrestler_c::gotoLiving);
+            return;
+
+        case 5:
+            return;
+    }
+
+    setAction(&daNpcWrestler_c::wait);
+}
+
 /* 80B32058-80B32444 002EB8 03EC+00 7/0 0/0 0/0 .text            gotoArena__15daNpcWrestler_cFPv */
 bool daNpcWrestler_c::gotoArena(void* param_1) {
     // NONMATCHING
@@ -1411,6 +1527,37 @@ bool daNpcWrestler_c::gotoArena(void* param_1) {
     return true;
 }
 
+inline void daNpcWrestler_c::setBackToLiving() {
+    if (mType != 1) {
+        daPy_py_c* player = daPy_getPlayerActorClass();
+        daNpcBouS_c* bou = (daNpcBouS_c*)fpcM_SearchByID(parentActorID);
+        JUT_ASSERT(2205, bou != 0);
+
+        bou->setMessageNo(7);
+        bou->setForcibleTalk();
+        bou->onDispFlag();
+
+        s16 sVar1 = fopAcM_GetHomeAngle_p(bou)->y + 0x8000;
+        mDoMtx_stack_c::transS(fopAcM_GetPosition(bou));
+        mDoMtx_stack_c::YrotM(fopAcM_GetShapeAngle_p(bou)->y);
+        cXyz sp28(0.0f, 0.0f, field_0xbdc->field_0x1c);
+        mDoMtx_stack_c::multVec(&sp28, &sp28);
+
+        player->setPlayerPosAndAngle(&sp28, sVar1, 0);
+
+        if (mType == 0) {
+            player->setClothesChange(0);
+            OS_REPORT("リンクさん！出番です！着替えてください！\n") // Link! It's your turn! Get changed!
+        }
+
+        if (daNpcF_chkTmpBit(0x2F)) {
+            fopAcM_onSwitch(this, 0x46);
+        }
+
+        field_0xe99 = 1;
+    }
+}
+
 /* 80B32444-80B32850 0032A4 040C+00 1/0 0/0 0/0 .text            gotoLiving__15daNpcWrestler_cFPv */
 bool daNpcWrestler_c::gotoLiving(void* param_1) {
     // NONMATCHING
@@ -1468,6 +1615,26 @@ bool daNpcWrestler_c::gotoLiving(void* param_1) {
     }
 
     return true;
+}
+
+inline void daNpcWrestler_c::initDemoCamera_ArenaSide() {
+    dCamera_c* camBody = dCam_getBody();
+
+    mDemoCamFovy = camBody->Fovy();
+    field_0xe58 = field_0xbd8->field_0xac;
+    field_0xe54 = field_0xbd8->camera_rotation_angle * 65535.0f;
+
+    mDemoCam.mDemoCamCenter.set(mArenaPos.x, mArenaPos.y + 50.0f, mArenaPos.z);
+    field_0xe5e = mArenaAngle;
+
+    mDoMtx_stack_c::transS(mDemoCam.mDemoCamCenter);
+    mDoMtx_stack_c::YrotM(field_0xe54 + fopAcM_GetShapeAngle_p(daPy_getPlayerActorClass())->y);
+    mDoMtx_stack_c::transM(0.0f, 50.0f, -field_0xbd8->field_0xb0);
+    mDoMtx_stack_c::multVecZero(&mDemoCam.mDemoCamEye);
+}
+
+inline void dMeter2Info_setMeterString(s32 i_string) {
+    g_meter2_info.setMeterString(i_string);
 }
 
 /* 80B32850-80B331CC 0036B0 097C+00 2/0 0/0 0/0 .text            sumouReady__15daNpcWrestler_cFPv */
@@ -1611,6 +1778,60 @@ bool daNpcWrestler_c::sumouReady(void* param_1) {
     }
     
     return 1;
+}
+
+inline void daNpcWrestler_c::sumouAI() {
+    if (mType == 1) {
+        if (!daPy_getPlayerActorClass()->checkEquipHeavyBoots()) {
+            mWrestlerAction = 0;
+            return;
+        }
+    }
+
+    if (field_0xbd8->ai_action != 0) {
+        mWrestlerAction = field_0xbd8->ai_action;
+    } else {
+        f32 fVar1 = cM_rnd() * 100.0f;
+
+        BOOL bVar1;
+        if (daNpcF_chkEvtBit(0xE9)) {
+            bVar1 = TRUE;
+        } else {
+            bVar1 = FALSE;
+        }
+
+        f32 fVar2 = field_0xbdc->lateral_movement_chance;
+        f32 fVar3 = fVar2 + field_0xbdc->hit_chance;
+        f32 fVar4 = fVar3 + field_0xbdc->tackle_chance;
+
+        if (fVar1 >= 0.0f && fVar1 < fVar2) {
+            mWrestlerAction = 1;
+        } else if (fVar1 >= fVar2 && fVar1 < fVar3) {
+            mWrestlerAction = 2;
+        } else if (fVar1 >= fVar3 && fVar1 < fVar4) {
+            mWrestlerAction = 3;
+        } else if (fVar1 >= fVar4 && fVar1 < 100.0f) {
+            mWrestlerAction = 4;
+        }
+    }
+}
+
+inline s16 daNpcWrestler_c::oppositeToPlayer() {
+    s16 rv = cLib_addCalcAngleS(&mCurAngle.y, fopAcM_searchPlayerAngleY(this), field_0xbd8->rotation, 0x4000, 0x40);
+    setAngle(mCurAngle.y);
+    return rv;
+}
+
+inline void daNpcWrestler_c::correctGraspPosAngle(bool param_1) {
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    cXyz sp24(0.0f, 0.0f, field_0xbdc->grapple_distance);
+    mDoMtx_stack_c::transS(*player->getViewerCurrentPosP());
+    mDoMtx_stack_c::YrotM(mStepAngle + cLib_targetAngleY(player->getViewerCurrentPosP(), &current.pos));
+    mDoMtx_stack_c::multVec(&sp24, &current.pos);
+
+    if (param_1) {
+        oppositeToPlayer();
+    }
 }
 
 /* 80B331CC-80B339EC 00402C 0820+00 14/0 0/0 0/0 .text           sumouWait__15daNpcWrestler_cFPv */
@@ -2470,6 +2691,40 @@ bool daNpcWrestler_c::sumouTackleDraw(void* param_1) {
     return true;
 }
 
+inline void daNpcWrestler_c::setStepAngle() {
+    f32 fVar1[2];
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    
+    mDoMtx_stack_c::transS(*player->getViewerCurrentPosP());
+
+    for (int i = 0; i < 2; i++) {
+        if (i == 0) {
+            mStepAngle = field_0xbdc->horizontal_movement_speed;
+        } else {
+            mStepAngle = -field_0xbdc->horizontal_movement_speed;
+        }
+
+
+        s16 sVar1 = cLib_targetAngleY(player->getViewerCurrentPosP(), &current.pos) + mStepAngle * field_0xbdc->lateral_movement_time;
+        mDoMtx_stack_c::push();
+        mDoMtx_stack_c::YrotM(sVar1);
+        cXyz sp30;
+        mDoMtx_stack_c::multVec(&sp30, &sp30);
+        mDoMtx_stack_c::pop();
+
+        fVar1[i] = sp30.abs2XZ(mArenaPos);
+    }
+
+    s16 stepAngle;
+    if (fVar1[0] > fVar1[1]) {
+        stepAngle = -field_0xbdc->horizontal_movement_speed;
+    } else {
+        stepAngle = field_0xbdc->horizontal_movement_speed;
+    }
+
+    mStepAngle = stepAngle;
+}
+
 /* 80B37270-80B378F4 0080D0 0684+00 4/0 0/0 0/0 .text            sumouSideStep__15daNpcWrestler_cFPv */
 bool daNpcWrestler_c::sumouSideStep(void* param_1) {
     // NONMATCHING
@@ -2944,6 +3199,35 @@ bool daNpcWrestler_c::sumouTackleRelease(void* param_1) {
     }
 
     return true;
+}
+
+inline void daNpcWrestler_c::initDemoCamera_ReadyLink() {
+    field_0xe5e = mArenaAngle;
+    mDemoCamFovy = dCam_getBody()->Fovy();
+    field_0xe54 = 0.0f;
+    field_0xe58 = 0.0f;
+    mDoMtx_stack_c::transS(mArenaPos);
+    mDoMtx_stack_c::YrotM(field_0xe5e);
+    mDoMtx_stack_c::transM(-field_0xbd8->field_0xa0, field_0xbd8->field_0x9c, field_0xbd8->field_0x94);
+    mDoMtx_stack_c::multVecZero(&mDemoCam.mDemoCamEye);
+    mDoMtx_stack_c::XrotM(field_0xbd8->field_0xaa);
+    mDemoCam.mDemoCamCenter.set(0.0f, 0.0f, mArenaExtent * 0.5f - 100.0f);
+    mDoMtx_stack_c::multVec(&mDemoCam.mDemoCamCenter, &mDemoCam.mDemoCamCenter);
+}
+
+inline void daNpcWrestler_c::initDemoCamera_ReadyWrestler() {
+    field_0xe5e = mArenaAngle + 0x8000;
+    mDemoCamFovy = dCam_getBody()->Fovy();
+    field_0xe54 = 0.0f;
+    field_0xe58 = 0.0f;
+
+    mDoMtx_stack_c::transS(mArenaPos);
+    mDoMtx_stack_c::YrotM(field_0xe5e);
+    mDoMtx_stack_c::transM(-field_0xbd8->field_0xa0, field_0xbd8->field_0x98, field_0xbd8->field_0x90);
+    mDoMtx_stack_c::multVecZero(&mDemoCam.mDemoCamEye);
+    mDoMtx_stack_c::XrotM(field_0xbd8->field_0xa8);
+    mDemoCam.mDemoCamCenter.set(0.0f, 0.0f, mArenaExtent * 0.5f - 100.0f);
+    mDoMtx_stack_c::multVec(&mDemoCam.mDemoCamCenter, &mDemoCam.mDemoCamCenter);
 }
 
 /* 80B39F88-80B3AE24 00ADE8 0E9C+00 2/0 0/0 0/0 .text demoSumouReady__15daNpcWrestler_cFPv */
@@ -4277,6 +4561,47 @@ void daNpcWrestler_c::setParam() {
     gravity = field_0xbd8->common.gravity;
 }
 
+inline bool daNpcWrestler_c::selectAction() {
+    field_0xdcc = NULL;
+    if (!chkAction(field_0xdcc)) {
+        setAction(field_0xdcc);
+        return true;
+    }
+
+    return false;
+}
+
+inline void daNpcWrestler_c::playExpression() {
+    daNpcF_anmPlayData playData0 = {0x13, field_0xbd8->common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat0[1] = {&playData0};
+    daNpcF_anmPlayData playData1 = {0x17, field_0xbd8->common.morf_frame, 1};
+    daNpcF_anmPlayData* pDat1[1] = {&playData1};
+    daNpcF_anmPlayData playData2 = {0x19, field_0xbd8->common.morf_frame, 1};
+    daNpcF_anmPlayData* pDat2[1] = {&playData2};
+    daNpcF_anmPlayData playData3 = {0x1A, field_0xbd8->common.morf_frame, 1};
+    daNpcF_anmPlayData* pDat3[1] = {&playData3};
+    daNpcF_anmPlayData playData4 = {0x18, field_0xbd8->common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat4[1] = {&playData4};
+    daNpcF_anmPlayData playData5 = {0x1A, field_0xbd8->common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat5[1] = {&playData5};
+    daNpcF_anmPlayData playData6 = {0, field_0xbd8->common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat6[1] = {&playData6};
+
+    daNpcF_anmPlayData** expressionAnm[7] = {
+        pDat0,
+        pDat1,
+        pDat2,
+        pDat3,
+        pDat4,
+        pDat5,
+        pDat6,
+    };
+
+    if (mExpression >= 0 && mExpression < 6) {
+        playExpressionAnm(expressionAnm);
+    }
+}
+
 /* 80B3EB94-80B3EF10 00F9F4 037C+00 1/0 0/0 0/0 .text            main__15daNpcWrestler_cFv */
 BOOL daNpcWrestler_c::main() {
     // NONMATCHING
@@ -4730,8 +5055,6 @@ void daNpcWrestler_c::drawOtherMdls() {
 void daNpcWrestler_c::adjustShapeAngle() {
     /* empty function */
 }
-
-/* 80B41D7C-80B41D7C 0006A0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 
 /* 80B42CD8-80B42CF8 -00001 0020+00 1/0 0/0 0/0 .data            daNpcWrestler_MethodTable */
 static actor_method_class daNpcWrestler_MethodTable = {
