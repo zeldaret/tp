@@ -132,6 +132,7 @@ public:
     void setAnmFrameMax(f32 max) { mAnmFrameMax = max; }
     f32 getAnmFrame() { return mAnmFrame; }
     dDemo_prm_c* getPrm() { return &mPrm; }
+    f32 getAnmTransition() { return mAnmTransition; }
 
 private:
     /* 0x04 */ u16 mFlags;
