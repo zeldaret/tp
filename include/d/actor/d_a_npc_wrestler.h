@@ -90,7 +90,7 @@ struct daNpcWrestler_HIOParamSub {
 
 class daNpcWrestler_Param_c {
 public:
-    /* 80B41670 */ virtual ~daNpcWrestler_Param_c() {};
+    /* 80B41670 */ virtual ~daNpcWrestler_Param_c() {}
 
     static daNpcWrestler_HIOParam const m;
 };
@@ -182,11 +182,11 @@ public:
     /* 80B3C278 */ bool demoSumouLose2(void*);
     /* 80B3CA2C */ bool demoSumouUnilateralWin(void*);
     /* 80B3D0C0 */ bool demoTalkAfterLose(void*);
-    /* 80B3D584 */ bool EvCut_grDSEntry(int);
-    /* 80B3DB50 */ bool EvCut_grDSEntry2(int);
-    /* 80B3DCE8 */ bool EvCut_grDSEntry3_4(int);
-    /* 80B3E0FC */ bool EvCut_grDSEntry5(int);
-    /* 80B3E584 */ bool EvCut_grDSLose(int);
+    /* 80B3D584 */ BOOL EvCut_grDSEntry(int);
+    /* 80B3DB50 */ BOOL EvCut_grDSEntry2(int);
+    /* 80B3DCE8 */ BOOL EvCut_grDSEntry3_4(int);
+    /* 80B3E0FC */ BOOL EvCut_grDSEntry5(int);
+    /* 80B3E584 */ BOOL EvCut_grDSLose(int);
     /* 80B3EF10 */ void setWrestlerVoice();
     /* 80B3FCE8 */ void playMotion();
     /* 80B40B3C */ void lookat();

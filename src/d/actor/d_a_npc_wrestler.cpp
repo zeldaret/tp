@@ -360,12 +360,12 @@ static char* l_myName = "Wrestler";
 /* 80B4266C-80B426C0 000874 0054+00 0/2 0/0 0/0 .data            mEvtSeqList__15daNpcWrestler_c */
 daNpcWrestler_c::EventFn daNpcWrestler_c::mEvtSeqList[7] = {
     NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
+    &daNpcWrestler_c::EvCut_grDSEntry,
+    &daNpcWrestler_c::EvCut_grDSEntry2,
+    &daNpcWrestler_c::EvCut_grDSEntry3_4,
+    &daNpcWrestler_c::EvCut_grDSEntry3_4,
+    &daNpcWrestler_c::EvCut_grDSEntry5,
+    &daNpcWrestler_c::EvCut_grDSLose,
 };
 
 /* 80B416DC-80B41870 000000 0194+00 35/35 0/0 0/0 .rodata          m__21daNpcWrestler_Param_c */
@@ -547,7 +547,7 @@ cPhs__Step daNpcWrestler_c::Create() {
 /* 80B2F974-80B2FBF4 0007D4 0280+00 1/1 0/0 0/0 .text            CreateHeap__15daNpcWrestler_cFv */
 int daNpcWrestler_c::CreateHeap() {
     J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resName[mType], l_bmdGetParamList[mType]);
-    JUT_ASSERT(mdlData_p != 0);
+    JUT_ASSERT(830, 0 != mdlData_p);
 
     mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
     if (mpMorf != NULL && mpMorf->getModel() == NULL) {
@@ -668,7 +668,7 @@ int daNpcWrestler_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
 
 /* 80B30150-80B30170 000FB0 0020+00 1/1 0/0 0/0 .text            createHeapCallBack__15daNpcWrestler_cFP10fopAc_ac_c */
 int daNpcWrestler_c::createHeapCallBack(fopAc_ac_c* a_this) {
-    ((daNpcWrestler_c*)a_this)->CreateHeap();
+    return ((daNpcWrestler_c*)a_this)->CreateHeap();
 }
 
 /* 80B30170-80B301BC 000FD0 004C+00 1/1 0/0 0/0 .text            ctrlJointCallBack__15daNpcWrestler_cFP8J3DJointi */
@@ -686,7 +686,7 @@ int daNpcWrestler_c::ctrlJointCallBack(J3DJoint* i_joint, int param_2) {
 /* 80B301BC-80B3023C 00101C 0080+00 0/0 0/0 1/1 .text            checkStartUp__15daNpcWrestler_cFv */
 BOOL daNpcWrestler_c::checkStartUp() {
     // NONMATCHING
-    return chkAction(&daNpcWrestler_c::gotoArena) >> 5 & 0xFF && field_0xe96 == 2;
+    return ((chkAction(&daNpcWrestler_c::gotoArena) >> 5) & 0xFF) && field_0xe96 == 2;
 }
 
 /* 80B3023C-80B30654 00109C 0418+00 2/0 0/0 0/0 .text setExpressionAnm__15daNpcWrestler_cFib */
@@ -963,13 +963,16 @@ static void* s_sub1(void* i_actor, void* i_data) {
 void daNpcWrestler_c::checkArenaInfo() {
     // NONMATCHING
     daTagArena_c* arena;
-    if (mArenaInfo == 0 && (arena = (daTagArena_c*)fpcM_Search(s_sub1, this),  arena != NULL)) {
-        mArenaPos.x = arena->getArenaPos().x;
-        mArenaPos.y = arena->getArenaPos().y;
-        mArenaPos.z = arena->getArenaPos().z;
-        mArenaExtent = arena->getArenaExtent();
-        mArenaAngle = arena->getArenaAngle();
-        mArenaInfo = 1;
+    if (mArenaInfo == 0) {
+        arena = (daTagArena_c*)fpcM_Search(s_sub1, this);
+        if (arena != NULL) {
+            mArenaPos.x = arena->getArenaPos().x;
+            mArenaPos.y = arena->getArenaPos().y;
+            mArenaPos.z = arena->getArenaPos().z;
+            mArenaExtent = arena->getArenaExtent();
+            mArenaAngle = arena->getArenaAngle();
+            mArenaInfo = 1;
+        }
     }
 }
 
@@ -2752,7 +2755,6 @@ bool daNpcWrestler_c::sumouSideStep(void* param_1) {
 
             jointNo = mType == 0 ? 0x1A : 0x18;
             jointNo2 = mType == 0 ? 0x1E : 0x1B;
-            // cXyz sp2c;
 
             mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo));
             mDoMtx_stack_c::multVecZero(&sp2c);
@@ -4211,14 +4213,14 @@ bool daNpcWrestler_c::demoTalkAfterLose(void* param_1) {
 }
 
 /* 80B3D584-80B3DB50 00E3E4 05CC+00 3/0 0/0 0/0 .text EvCut_grDSEntry__15daNpcWrestler_cFi */
-bool daNpcWrestler_c::EvCut_grDSEntry(int i_cutIndex) {
+BOOL daNpcWrestler_c::EvCut_grDSEntry(int i_cutIndex) {
     // NONMATCHING
     dEvent_manager_c* eventManager = dComIfGp_getPEvtManager();
     int* cutName = (int*)eventManager->getMyNowCutName(i_cutIndex);
 
     if (eventManager->getIsAddvance(i_cutIndex) != 0) {
         switch (*cutName) {
-            case 0x30303031:
+            case '0001':
                 if (mLookMode != 3) {
                     mLookMode = 3;
                 }
@@ -4226,23 +4228,23 @@ bool daNpcWrestler_c::EvCut_grDSEntry(int i_cutIndex) {
                 mActorMngr[0].entry(daPy_getPlayerActorClass());
                 break;
 
-            case 0x30303033:
+            case '0003':
                 setExpressionAnm(0x3E, false);
                 // fallthrough
-            case 0x30303034:
+            case '0004':
                 initTalk(mMsgNo, NULL);
                 mMsgTimer = 0;
                 break;
 
-            case 0x30303037:
+            case '0007':
                 setMotionAnm(2, -1.0f);
                 break;
 
-            case 0x30303032:
-            case 0x30303035:
-            case 0x30303036:
-            case 0x30303038:
-            case 0x30303039:
+            case '0002':
+            case '0005':
+            case '0006':
+            case '0008':
+            case '0009':
                 initTalk(mMsgNo, NULL);
                 mMsgTimer = 0;
                 initTalkAngle();
@@ -4262,15 +4264,15 @@ bool daNpcWrestler_c::EvCut_grDSEntry(int i_cutIndex) {
     cXyz* pcVar1;
     int* piVar1;
     switch (*cutName) {
-        case 0x30303031:
-        case 0x30303037:
-            return true;
+        case '0001':
+        case '0007':
+            return TRUE;
 
-        case 0x30303032:
-        case 0x30303035:
-        case 0x30303036:
-        case 0x30303038:
-        case 0x30303039:
+        case '0002':
+        case '0005':
+        case '0006':
+        case '0008':
+        case '0009':
             if (setTalkAngle() && talkProc(NULL, TRUE, NULL)) {
                 #ifdef DEBUG
                 char* choice;
@@ -4286,18 +4288,18 @@ bool daNpcWrestler_c::EvCut_grDSEntry(int i_cutIndex) {
                     mOrderEvtNo = 2;
                     changeEvent(l_resName[mType], l_evtNames[mOrderEvtNo], 1, 0xFFFF);
                 }
-                return true;
+                return TRUE;
             }
             break;
 
-        case 0x30303033:
+        case '0003':
             pcVar1 = dComIfGp_evmng_getMyXyzP(i_cutIndex, "pos");
             if (pcVar1 != NULL && cLib_chasePosXZ(&current.pos, *pcVar1, 3.5f) != 0) {
-                return true;
+                return TRUE;
             }
             break;
 
-        case 0x30303034:
+        case '0004':
             bool bVar1 = false;
             iVar1 = talkProc(NULL, TRUE, NULL);
             pcVar1 = dComIfGp_evmng_getMyXyzP(i_cutIndex, "pos");
@@ -4306,25 +4308,25 @@ bool daNpcWrestler_c::EvCut_grDSEntry(int i_cutIndex) {
                 if (piVar1 != NULL && cLib_chaseAngleS(&shape_angle.y, *piVar1, 0x100) != 0) {
                     setMotion(0, -1.0f, 0);
                     setAngle(shape_angle.y);
-                    return true;
+                    return TRUE;
                 }
             }
             break;
     }
 
-    return false;
+    return FALSE;
 }
 
 /* 80B3DB50-80B3DCE8 00E9B0 0198+00 1/0 0/0 0/0 .text EvCut_grDSEntry2__15daNpcWrestler_cFi */
-bool daNpcWrestler_c::EvCut_grDSEntry2(int i_cutIndex) {
+BOOL daNpcWrestler_c::EvCut_grDSEntry2(int i_cutIndex) {
     // NONMATCHING
     dEvent_manager_c* eventManager = dComIfGp_getPEvtManager();
     int* cutName = (int*)eventManager->getMyNowCutName(i_cutIndex);
 
     if (eventManager->getIsAddvance(i_cutIndex)) {
         switch (*cutName) {
-            case 0x30303031:
-            case 0x30303032:
+            case '0001':
+            case '0002':
                 setLookMode(3);
                 mActorMngr[0].entry(daPy_getPlayerActorClass());
                 break;
@@ -4332,23 +4334,23 @@ bool daNpcWrestler_c::EvCut_grDSEntry2(int i_cutIndex) {
     }
 
     switch (i_cutIndex) {
-        case 0x30303031:
-            return true;
+        case '0001':
+            return TRUE;
 
-        case 0x30303032:
+        case '0002':
             mItemNo = 2;
             setAction(&daNpcWrestler_c::gotoArena);
             dComIfGp_event_reset();
             mOrderEvtNo = 0;
             mEventIdx = -1;
-            return true;
+            return TRUE;
     }
 
-    return false;
+    return FALSE;
 }
 
 /* 80B3DCE8-80B3E0FC 00EB48 0414+00 2/0 0/0 0/0 .text EvCut_grDSEntry3_4__15daNpcWrestler_cFi */
-bool daNpcWrestler_c::EvCut_grDSEntry3_4(int i_cutIndex) {
+BOOL daNpcWrestler_c::EvCut_grDSEntry3_4(int i_cutIndex) {
     // NONMATCHING
     dEvent_manager_c* eventManager = dComIfGp_getPEvtManager();
     int* cutName = (int*)eventManager->getMyNowCutName(i_cutIndex);
@@ -4356,7 +4358,7 @@ bool daNpcWrestler_c::EvCut_grDSEntry3_4(int i_cutIndex) {
     if (cutName != NULL) {
         if (eventManager->getIsAddvance(i_cutIndex)){
             switch (*cutName) {
-                case 0x30303031:
+                case '0001':
                     setLookMode(3);
                     mActorMngr[0].entry(daPy_getPlayerActorClass());
                     initTalk(mMsgNo, NULL);
@@ -4378,7 +4380,7 @@ bool daNpcWrestler_c::EvCut_grDSEntry3_4(int i_cutIndex) {
         }
 
         switch (*cutName) {
-            case 0x30303031:
+            case '0001':
                 if (setTalkAngle() && talkProc(NULL, TRUE, NULL)) {
                     #ifdef DEBUG
                     char* choice;
@@ -4394,25 +4396,25 @@ bool daNpcWrestler_c::EvCut_grDSEntry3_4(int i_cutIndex) {
                         mOrderEvtNo = 5;
                         changeEvent(l_resName[mType], l_evtNames[mOrderEvtNo], 1, 0xFFFF);
                     }
-                    return true;
+                    return TRUE;
                 }
                 break;
         }
     }
 
-    return false;
+    return FALSE;
 }
 
 /* 80B3E0FC-80B3E584 00EF5C 0488+00 1/0 0/0 0/0 .text EvCut_grDSEntry5__15daNpcWrestler_cFi */
-bool daNpcWrestler_c::EvCut_grDSEntry5(int i_cutIndex) {
+BOOL daNpcWrestler_c::EvCut_grDSEntry5(int i_cutIndex) {
     // NONMATCHING
     dEvent_manager_c* eventManager = dComIfGp_getPEvtManager();
     int* cutName = (int*)eventManager->getMyNowCutName(i_cutIndex);
 
     if (eventManager->getIsAddvance(i_cutIndex)) {
         switch (*cutName) {
-            case 0x30303031:
-            case 0x30303032:
+            case '0001':
+            case '0002':
                 setLookMode(3);
                 mActorMngr[0].entry(daPy_getPlayerActorClass());
                 initTalk(mMsgNo, NULL);
@@ -4432,25 +4434,25 @@ bool daNpcWrestler_c::EvCut_grDSEntry5(int i_cutIndex) {
     }
 
     switch (*cutName) {
-        case 0x30303031:
-            return true;
+        case '0001':
+            return TRUE;
             
-        case 0x30303032:
+        case '0002':
             if (setTalkAngle() && talkProc(NULL, TRUE, NULL)) {
                 mItemNo = 3;
                 setAction(&daNpcWrestler_c::gotoArena);
                 dComIfGp_event_reset();
                 mOrderEvtNo = 0;
                 mEventIdx = -1;
-                return true;
+                return TRUE;
             }
     }
 
-    return false;
+    return FALSE;
 }
 
 /* 80B3E584-80B3EA2C 00F3E4 04A8+00 1/0 0/0 0/0 .text            EvCut_grDSLose__15daNpcWrestler_cFi */
-bool daNpcWrestler_c::EvCut_grDSLose(int i_cutIndex) {
+BOOL daNpcWrestler_c::EvCut_grDSLose(int i_cutIndex) {
     // NONMATCHING
     dEvent_manager_c* eventManager = dComIfGp_getPEvtManager();
     int* cutName = (int*)eventManager->getMyNowCutName(i_cutIndex);
@@ -4459,10 +4461,10 @@ bool daNpcWrestler_c::EvCut_grDSLose(int i_cutIndex) {
 
     if (eventManager->getIsAddvance(i_cutIndex)) {
         switch (*cutName) {
-            case 0x30303031:
+            case '0001':
                 break;
 
-            case 0x30303032:
+            case '0002':
                 piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "angle");
                 pcVar1 = dComIfGp_evmng_getMyXyzP(i_cutIndex, "pos");
                 
@@ -4480,8 +4482,8 @@ bool daNpcWrestler_c::EvCut_grDSLose(int i_cutIndex) {
                 setMotionAnm(0x39, 0.0f);
                 break;
 
-            case 0x30303033:
-            case 0x30303034:
+            case '0003':
+            case '0004':
                 initTalk(mMsgNo, NULL);
                 initTalkAngle();
                 mMsgTimer = 0;
@@ -4499,20 +4501,20 @@ bool daNpcWrestler_c::EvCut_grDSLose(int i_cutIndex) {
     }
 
     switch (*cutName) {
-        case 0x30303031:
-        case 0x30303032:
-            return true;
+        case '0001':
+        case '0002':
+            return TRUE;
 
-        case 0x30303033:
-        case 0x30303034:
+        case '0003':
+        case '0004':
             if (setTalkAngle() && talkProc(NULL, TRUE, NULL)) {
                 mActorMngr[0].entry(daPy_getPlayerActorClass());
-                return true;
+                return TRUE;
             }
             break;
     }
 
-    return false;
+    return FALSE;
 }
 
 /* 80B3EA2C-80B3EA4C 00F88C 0020+00 1/0 0/0 0/0 .text            daNpcWrestler_Create__FPv */
@@ -4547,9 +4549,9 @@ static int daNpcWrestler_IsDelete(void* a_this) {
 
 /* 80B3EAE4-80B3EB94 00F944 00B0+00 1/0 0/0 0/0 .text            setParam__15daNpcWrestler_cFv */
 void daNpcWrestler_c::setParam() {
-    attention_info.distances[0] = getDistTableIdx(5, 6);
-    attention_info.distances[1] = attention_info.distances[0];
-    attention_info.distances[3] = getDistTableIdx(3, 6);
+    attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(5, 6);
+    attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+    attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(3, 6);
     attention_info.flags = 10;
 
     if (mType == 1 && daPy_py_c::checkNowWolf()) {
