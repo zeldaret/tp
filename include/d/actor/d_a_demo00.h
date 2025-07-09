@@ -37,6 +37,19 @@ public:
     /* 0x24 */ daDemo00_resID_c mID;
 };
 
+struct daDemo00_bgc_c {
+    /* 0x00 */ dBgS_GndChk mGndChk;
+    /* 0x54 */ f32 field_0x54;
+};
+
+struct daDemo00_shadow_c {
+    /* 0x00 */ u32 field_0x0;
+    /* 0x04 */ cXyz field_0x4;
+    /* 0x10 */ cXyz field_0x10;
+    /* 0x1C */ f32 field_0x1c;
+    /* 0x20 */ f32 field_0x20;
+};
+
 /**
  * @ingroup actors-unsorted
  * @class daDemo00_c
@@ -56,8 +69,8 @@ public:
     /* 804A5798 */ int actStandby(dDemo_actor_c*);
     /* 804A594C */ int actPerformance(dDemo_actor_c*);
     /* 804A604C */ int actLeaving(dDemo_actor_c*);
-    /* 804A6F94 */ void draw();
-    /* 804A7BA8 */ void execute();
+    /* 804A6F94 */ int draw();
+    /* 804A7BA8 */ int execute();
 
     void setAction(actionFunc action) { field_0x57c = action; }
     void action(dDemo_actor_c* actor) { (this->*field_0x57c)(actor); }
@@ -73,12 +86,13 @@ public:
     /* 0x05E0 */ mDoExt_btpAnm* mpBtpAnm;
     /* 0x05E4 */ mDoExt_btkAnm* mpBtkAnm;
     /* 0x05E8 */ mDoExt_brkAnm* mpBrkAnm;
-    /* 0x05EC */ f32** field_0x5ec;
+    /* 0x05EC */ daDemo00_shadow_c* mShadow;
     /* 0x05F0 */ J3DDeformData* mDeformData;
     /* 0x05F4 */ mDoExt_blkAnm* mpBlkAnm;
-    /* 0x05F8 */ dBgS_GndChk* mGndChk;
+    /* 0x05F8 */ daDemo00_bgc_c* mBgc;
     /* 0x05FC */ Z2Creature mSound;
-    /* 0x068C */ u8 field_0x68c[0x694 - 0x68c];
+    /* 0x068C */ u32 field_0x68c;
+    /* 0x0690 */ u8 field_0x690[0x694 - 0x690];
     /* 0x0694 */ s32 field_0x694;
     /* 0x0698 */ int field_0x698;
     /* 0x069C */ s16 field_0x69c;
@@ -91,17 +105,20 @@ public:
     /* 0x06A5 */ u8 field_0x6a5;
     /* 0x06A6 */ u8 field_0x6a6;
     /* 0x06A7 */ s8 field_0x6a7;
-    /* 0x06A8 */ u8 field_0x6a8;
+    /* 0x06A8 */ s8 field_0x6a8;
     /* 0x06A9 */ s8 field_0x6a9;
-    /* 0x06AA */ u8 field_0x6aa;
+    /* 0x06AA */ s8 field_0x6aa;
     /* 0x06AB */ s8 field_0x6ab;
     /* 0x06AC */ u8 field_0x6ac;
     /* 0x06AD */ u8 field_0x6ad;
     /* 0x06AE */ u8 field_0x6ae;
-    /* 0x06AF */ u8 field_0x6af[0x6b3 - 0x6af];
-    /* 0x06B3 */ u8 field_0x6b3;
+    /* 0x06AF */ u8 field_0x6af[0x6b2 - 0x6af];
+    /* 0x06B2 */ u8 field_0x6b2;
+    /* 0x06B3 */ s8 field_0x6b3;
     /* 0x06B4 */ s8 field_0x6b4;
-    /* 0x06B5 */ u8 field_0x6b5[0x6b8 - 0x6b5];
+    /* 0x06B5 */ u8 field_0x6b5;
+    /* 0x06B6 */ u8 field_0x6b6;
+    /* 0x06B7 */ u8 field_0x6b7;
     /* 0x06B8 */ u8 field_0x6b8;
     /* 0x06B9 */ u8 field_0x6b9[0x6bc - 0x6b9];
     /* 0x06BC */ mDoExt_3DlineMat1_c field_0x6bc;

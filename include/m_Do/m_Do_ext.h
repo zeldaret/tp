@@ -207,6 +207,9 @@ public:
 
     J3DAnmCluster* getBlkAnm() { return mpAnm; }
 
+    void entryFrame() { entryFrame(getFrame()); }
+    void entryFrame(f32 frame) { mpAnm->setFrame(frame); }
+
 private:
     /* 0x14 */ J3DAnmCluster* mpAnm;
 };

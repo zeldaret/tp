@@ -357,8 +357,7 @@ static void branchFile(char const* resName) {
     dDemo_c::setBranchData(branchData);
 }
 
-/* 800387EC-80038920 03312C 0134+00 1/0 0/0 0/0 .text            JSGSetData__13dDemo_actor_cFUlPCvUl
- */
+/* 800387EC-80038920 03312C 0134+00 1/0 0/0 0/0 .text            JSGSetData__13dDemo_actor_cFUlPCvUl */
 void dDemo_actor_c::JSGSetData(u32 id, void const* pdata, u32 param_2) {
     if (id == ID_UNK_1) {
         JStudio::stb::TParseData_fixed<50, TValueIterator_misaligned<u16> > data(pdata);
