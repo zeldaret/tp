@@ -1344,6 +1344,15 @@ static int daDemo00_Execute(daDemo00_c* i_this) {
 /* 804A7BA8-804A84AC 003988 0904+00 7/1 0/0 0/0 .text            execute__10daDemo00_cFv */
 int daDemo00_c::execute() {
     // NONMATCHING
+    field_0x6a1 = 0;
+    dDemo_actor_c* i_this = dDemo_c::getActor(demoActorID);
+
+    if (i_this != NULL) {
+
+    } else {
+        fopAcM_delete(this);
+        OS_REPORT("汎用くん<dactor%d>削除！！\n", subtype);
+    }
 }
 
 /* 804A84AC-804A84B4 00428C 0008+00 1/0 0/0 0/0 .text            daDemo00_IsDelete__FP10daDemo00_c */
