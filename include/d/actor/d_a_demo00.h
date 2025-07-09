@@ -1,6 +1,7 @@
 #ifndef D_A_DEMO00_H
 #define D_A_DEMO00_H
 
+#include "d/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
 #include "d/d_demo.h"
 
@@ -72,6 +73,16 @@ public:
     /* 804A6F94 */ int draw();
     /* 804A7BA8 */ int execute();
 
+    int create() {
+        dKy_tevstr_init(&tevStr, dComIfGp_roomControl_getStayNo(), 0xFF);
+        tevStr.field_0x384 = 1;
+        mSound.init(&eyePos, NULL, 10, 1);
+        setAction(&daDemo00_c::actStandby);
+        mModel.field_0x0.reset();
+        field_0x6a0 = -1;
+        return 4;
+    }
+
     void setAction(actionFunc action) { field_0x57c = action; }
     void action(dDemo_actor_c* actor) { (this->*field_0x57c)(actor); }
 
@@ -97,10 +108,10 @@ public:
     /* 0x0698 */ int field_0x698;
     /* 0x069C */ s16 field_0x69c;
     /* 0x069E */ s16 field_0x69e;
-    /* 0x06A0 */ u8 field_0x6a0;
+    /* 0x06A0 */ s8 field_0x6a0;
     /* 0x06A1 */ u8 field_0x6a1;
     /* 0x06A2 */ u8 field_0x6a2;
-    /* 0x06A3 */ u8 field_0x6a3;
+    /* 0x06A3 */ u8 mground2;
     /* 0x06A4 */ u8 field_0x6a4;
     /* 0x06A5 */ u8 field_0x6a5;
     /* 0x06A6 */ u8 field_0x6a6;
@@ -112,7 +123,9 @@ public:
     /* 0x06AC */ u8 field_0x6ac;
     /* 0x06AD */ u8 field_0x6ad;
     /* 0x06AE */ u8 field_0x6ae;
-    /* 0x06AF */ u8 field_0x6af[0x6b2 - 0x6af];
+    /* 0x06AF */ s8 field_0x6af;
+    /* 0x06B0 */ s8 field_0x6b0;
+    /* 0x06B1 */ s8 field_0x6b1;
     /* 0x06B2 */ u8 field_0x6b2;
     /* 0x06B3 */ s8 field_0x6b3;
     /* 0x06B4 */ s8 field_0x6b4;
@@ -120,7 +133,8 @@ public:
     /* 0x06B6 */ u8 field_0x6b6;
     /* 0x06B7 */ u8 field_0x6b7;
     /* 0x06B8 */ u8 field_0x6b8;
-    /* 0x06B9 */ u8 field_0x6b9[0x6bc - 0x6b9];
+    /* 0x06B9 */ s8 field_0x6b9;
+    /* 0x06BA */ u8 field_0x6ba[0x6bc - 0x6ba];
     /* 0x06BC */ mDoExt_3DlineMat1_c field_0x6bc;
     /* 0x06F8 */ demo_s1_ke_s field_0x6f8[22];
     /* 0x2900 */ mDoExt_3DlineMat0_c field_0x2900;

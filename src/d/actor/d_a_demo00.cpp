@@ -7,6 +7,7 @@
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "d/d_com_inf_game.h"
+#include "d/d_item.h"
 #include "d/d_kankyo_rain.h"
 #include "dol2asm.h"
 #include "d/d_camera.h"
@@ -15,6 +16,7 @@
 #include "d/d_demo.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "m_Do/m_Do_lib.h"
+#include "d/actor/d_a_movie_player.h"
 #ifdef DEBUG
 #include "d/d_debug_viewer.h"
 #endif
@@ -58,12 +60,8 @@ daDemo00_c::~daDemo00_c() {
 /* 804A4420-804A449C 000200 007C+00 2/2 0/0 0/0 .text            __dt__12demo_s1_ke_sFv */
 demo_s1_ke_s::~demo_s1_ke_s() {}
 
-/* ############################################################################################## */
 /* 804A8998-804A8998 000138 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_804A8998 = "V_24_tri_joint";
-#pragma pop
+static char const* const stringBase_804A8998 = "V_24_tri_joint";
 
 UNK_REL_DATA;
 
@@ -91,7 +89,7 @@ void daDemo00_c::setBaseMtx() {
 
     sp38 = current.pos;
 
-    if (field_0x6a2 != 0 || field_0x6a3 != 0) {
+    if (field_0x6a2 != 0 || mground2 != 0) {
         cXyz sp44(current.pos.x, current.pos.y + 1000.0f, current.pos.z);
         mBgc->mGndChk.SetPos(&sp44);
         sp38.y = dComIfG_Bgsp().GroundCross(&mBgc->mGndChk);
@@ -112,7 +110,7 @@ void daDemo00_c::setBaseMtx() {
 
     field_0x568 = current.pos;
 
-    if (field_0x6a3 != 0) {
+    if (mground2 != 0) {
         if (sp38.y != -1000000000.0f) {
             bVar1 = dComIfG_Bgsp().GetTriPla(mBgc->mGndChk, &plane);
         }
@@ -122,7 +120,7 @@ void daDemo00_c::setBaseMtx() {
         }
     }
 
-    if (tevStr.mInitTimer != 0 || field_0x6a3 == 0) {
+    if (tevStr.mInitTimer != 0 || mground2 == 0) {
         current.angle = shape_angle;
     } else {
         cLib_addCalcAngleS2(&current.angle.x, shape_angle.x, 4, 0x2000);
@@ -724,7 +722,7 @@ static void mDad00_changeXluMaterial(J3DMaterial* i_material, int param_2) {
     };
     static J3DZModeInfo l_zmodeInfoOPA = {
         1,
-        2,
+        3,
         1,
         0,
     };
@@ -747,6 +745,14 @@ static void mDad00_changeXluMaterial(J3DMaterial* i_material, int param_2) {
         i_material->getPEBlock()->getZMode()->setZModeInfo(l_zmodeInfoOPA);
     }
 }
+
+/* 804A88CC-804A88D0 00006C 0004+00 1/1 0/0 0/0 .rodata          l_itemNo$localstatic3$execute__10daDemo00_cFv */
+// static u8 const l_itemNo[4] = {
+//     0x29,
+//     0xFF,
+//     0xFF,
+//     0xFF,
+// };
 
 /* 804A61F0-804A6428 001FD0 0238+00 1/1 0/0 0/0 .text            teduna_calc__FP4cXyzP4cXyzP4cXyzsi */
 static void teduna_calc(cXyz* param_1, cXyz* param_2, cXyz* param_3, s16 param_4, int param_5) {
@@ -1341,18 +1347,466 @@ static int daDemo00_Execute(daDemo00_c* i_this) {
     return i_this->execute();
 }
 
+static u8 const l_itemNo[4] = {
+    0x29,
+    0xFF,
+    0xFF,
+    0xFF,
+};
+
 /* 804A7BA8-804A84AC 003988 0904+00 7/1 0/0 0/0 .text            execute__10daDemo00_cFv */
 int daDemo00_c::execute() {
     // NONMATCHING
+
     field_0x6a1 = 0;
-    dDemo_actor_c* i_this = dDemo_c::getActor(demoActorID);
+    dDemo_actor_c* actor = dDemo_c::getActor(demoActorID);
 
-    if (i_this != NULL) {
-
-    } else {
+    if (actor == NULL) {
         fopAcM_delete(this);
         OS_REPORT("汎用くん<dactor%d>削除！！\n", subtype);
+    } else {
+        if (actor->checkEnable(0x10)) {
+            mModel.field_0x0.mShapeID = actor->getShapeId();
+        }
+
+        if (actor->checkEnable(0x20)) {
+            mModel.field_0x0.field_0x4 = actor->getAnmId();
+        }
+
+        int piVar1, piVar2, piVar3;
+        u16 upVar1;
+        u8 upVar2;
+        if (actor->checkEnable(1)) {
+            while (actor->getDemoIDData(&piVar1, &piVar2, &piVar3, &upVar1, &upVar2) != 0) {
+                if (piVar1 == 0) {
+                    switch (piVar3) {
+                        case 0:
+                            u16 uVar1 = upVar1 >> 8;
+                            u32 resID8 = uVar1 & 0xFF;
+                            switch (uVar1) {
+                                case 1:
+                                    switch ((u8)upVar1) {
+                                        case 1:
+                                            field_0x6b4 = 1;
+                                            break;
+
+                                        case 2:
+                                            field_0x6a5 = 1;
+                                            break;
+
+                                        case 3:
+                                            field_0x6a5 = 2;
+                                            break;
+
+                                        case 4:
+                                            field_0x6a6 = 1;
+                                            break;
+
+                                        case 5:
+                                            field_0x6a6 = 2;
+                                            break;
+
+                                        case 6:
+                                            field_0x6a6 = 3;
+                                            break;
+                                    }
+                                    break;
+
+                                case 2:
+                                    if (resID8 == 0) {
+                                        field_0x6a2 = 0;
+                                        mground2 = 0;
+                                    } else if (resID8 == 1) {
+                                        field_0x6a2 = 1;
+                                    } else {
+                                        mground2 = 1;
+                                    }
+
+                                    OS_REPORT("\nmground2=[%d]", mground2);
+                                    break;
+
+                                case 3:
+                                    JUT_ASSERT(1389, resID8 < (sizeof(l_itemNo)/sizeof(u8)));
+                                    if (l_itemNo[resID8] != 0xFF) {
+                                        execItemGet(l_itemNo[resID8]);
+                                    }
+                                    break;
+
+                                case 4:
+                                case 5:
+                                case 6:
+                                case 7:
+                                    BOOL bVar1 = FALSE;
+                                    BOOL bVar2 = FALSE;
+                                    if (uVar1 == 5 || uVar1 == 7) {
+                                        bVar1 = TRUE;
+                                    }
+
+                                    if (uVar1 == 6 || uVar1 == 7) {
+                                        bVar2 = TRUE;
+                                    }
+
+                                    u32 uVar2 = resID8;
+                                    if (resID8 == 0xFF) {
+                                        uVar2 = 0x1A;
+                                    }
+
+                                    if (bVar1) {
+                                        if (!bVar1) {
+                                            GXColor fadeInColor;
+                                            if (!bVar2) {
+                                                fadeInColor = g_blackColor;
+                                            } else {
+                                                fadeInColor = g_saftyWhiteColor;
+                                            }
+
+                                            mDoGph_gInf_c::fadeIn(1.0f / uVar2, fadeInColor);
+                                        }
+                                    } else {
+                                        GXColor fadeOutColor;
+                                        if (!bVar2) {
+                                            fadeOutColor = g_blackColor;
+                                        } else {
+                                            fadeOutColor = g_saftyWhiteColor;
+                                        }
+
+                                        mDoGph_gInf_c::fadeOut(1.0f / uVar2, fadeOutColor);
+                                    }
+                                    break;
+
+                                case 8:
+                                    u32 uVar4 = upVar1 & 0x3F;
+
+                                    switch ((upVar1 & 0xC0) >> 6) {
+                                        case 0:
+                                            dComIfGp_getVibration().StopQuake(1);
+                                            break;
+
+                                        case 1:
+                                           dComIfGp_getVibration().StartShock(uVar4, 1, cXyz(0.0f, 1.0f, 0.0f));
+                                           break;
+                                           
+                                        case 2:
+                                            dComIfGp_getVibration().StartQuake(uVar4, 1, cXyz(0.0f, 1.0f, 0.0f));
+
+                                        default:
+                                            OS_REPORT("\nデモ汎用君振動設定エラー!!"); // Demo General-Kun Vibration Setting Error!!
+                                    }
+                                    break;
+
+                                case 9:
+                                    if (resID8 == 0) {
+                                        field_0x6a4 = 0;
+                                    } else {
+                                        field_0x6a4 = 1;
+                                    }
+                                    break;
+
+                                case 10:
+                                    if ((uVar1 & 0xFF) < 0x40) {
+                                        dKy_change_colpat(resID8);
+                                        OS_REPORT("\nパレット型[%d]へ変更", resID8);
+                                    }
+                                    break;
+
+                                case 11:
+                                    switch (resID8) {
+                                        case 0:
+                                            g_env_light.mThunderEff.field_0x2 = 1;
+                                            break;
+
+                                        case 1:
+                                            field_0x6b2 = 1;
+                                            break;
+
+                                        case 2:
+                                            field_0x6b2 = 2;
+                                            break;
+
+                                        case 3:
+                                            field_0x69c = 0xFA;
+                                            break;
+
+                                        case 4:
+                                            field_0x69c = 0;
+                                            break;
+
+                                        case 5:
+                                            field_0x69e = 0x32;
+                                            break;
+
+                                        case 6:
+                                            field_0x69e = 0;
+                                            break;
+                                    }
+                                    break;
+
+                                case 12:
+                                    switch (resID8) {
+                                        case 0:
+                                            field_0x6a7 = 0;
+                                            break;
+
+                                        case 1:
+                                            field_0x6a7 = 2;
+                                            break;
+
+                                        case 2:
+                                            field_0x6a7 = 3;
+                                            break;
+
+                                        case 3:
+                                            field_0x6a7 = 1;
+                                            break;
+
+                                        case 4:
+                                            field_0x6a7 = 8;
+                                            break;
+
+                                        case 5:
+                                            field_0x6a7 = 4;
+                                            break;
+
+                                        case 6:
+                                            field_0x6b6 = 1;
+                                            break;
+
+                                        case 7:
+                                            field_0x6b6 = 2;
+                                            break;
+
+                                        case 8:
+                                            field_0x6a7 = 6;
+                                            break;
+
+                                        case 9:
+                                            field_0x6a7 = 7;
+                                            break;
+
+                                        case 10:
+                                            field_0x6a7 = 5;
+                                            break;
+                                    }
+                                    break;
+
+                                case 13:
+                                    field_0x6a9 = upVar1;
+                                    break;
+
+                                case 14:
+                                    field_0x6a8 = upVar1;
+                                    break;
+
+                                case 15:
+                                    if (resID8 == 1) {
+                                        field_0x6aa = 1;
+                                    } else {
+                                        field_0x6aa = 0;
+                                    }
+                                    break;
+
+                                case 16:
+                                    field_0x6ab = upVar1;
+                                    break;
+
+                                case 17:
+                                    switch (resID8) {
+                                        case 1:
+                                            field_0x6ac = 2;
+                                            break;
+
+                                        case 2:
+                                            field_0x6ac = 4;
+                                            break;
+
+                                        case 3:
+                                            field_0x6ac = 7;
+                                            break;
+
+                                        case 4:
+                                            field_0x6ac = 9;
+                                            break;
+
+                                        case 5:
+                                            field_0x6ac = 1;
+                                            break;
+
+                                        case 6:
+                                            field_0x6ac = 16;
+                                            break;
+
+                                        case 7:
+                                            field_0x6ac = 17;
+                                            break;
+
+                                        case 8:
+                                            field_0x6ac = 18;
+                                            break;
+
+                                        case 9:
+                                            field_0x6ac = 19;
+                                            break;
+
+                                        case 10:
+                                            field_0x6ac = 10;
+                                            break;
+
+                                        case 11:
+                                            field_0x6ac = 14;
+                                            break;
+
+                                        case 12:
+                                            field_0x6ac = 3;
+                                            break;
+
+                                        case 13:
+                                            field_0x6ac = 5;
+                                            break;
+
+                                        case 14:
+                                            field_0x6ac = 15;
+                                            break;
+                                    }
+                                    break;
+
+                                case 18:
+                                    field_0x6ae = 1;
+                                    break;
+
+                                case 19:
+                                    field_0x6af = upVar1;
+                                    break;
+
+                                case 20:
+                                    field_0x6b0 = upVar1;
+                                    break;
+
+                                case 21:
+                                    field_0x6b1 = 1;
+                                    break;
+
+                                case 22:
+                                    field_0x6b5 = upVar1;
+                                    break;
+
+                                case 23:
+                                    field_0x6b7 = upVar1;
+                                    break;
+
+                                case 24:
+                                    field_0x6b8 = 1;
+                                    break;
+
+                                case 25:
+                                    cXyz sp90, sp9c;
+                                    sp90.x = 0.0f;
+                                    sp90.y = 0.0f;
+                                    sp90.z = 0.0f;
+                                    sp9c.x = 1.0f;
+                                    sp9c.y = 1.0f;
+                                    sp9c.z = 1.0f;
+                                    field_0x6b9 = 1;
+                                    dComIfGp_particle_set((u16)mModel.field_0x0.mShapeID, &sp90, NULL, NULL, &sp9c);
+                                    mModel.field_0x0.reset();
+                                    mModel.field_0x0.mShapeID = -1;
+                                    actor->offEnable(16);
+                                    break;
+                            }
+                            break;
+
+                        case 1:
+                            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[upVar1]);
+                            break;
+
+                        case 2:
+                            if ((upVar1 & 0xC000) == 0) {
+                                fopAcM_create(PROC_MOVIE_PLAYER, upVar1, NULL, fopAcM_GetRoomNo(this), NULL, NULL, 0xFF);
+                                mDoGph_gInf_c::fadeOut(1.0f);
+                            } else {
+                                switch (upVar1) {
+                                    case 0:
+                                        daMP_c::daMP_c_THPPlayerPlay();
+                                        break;
+
+                                    case 1:
+                                        daMP_c::daMP_c_THPPlayerPause();
+                                        break;
+                                }
+                            }
+                            break;
+
+                        case 3:
+                            dComIfGs_onTmpBit(dSv_event_tmp_flag_c::tempBitLabels[upVar1]);
+                            break;
+                    }
+                } else {
+                    switch (piVar3) {
+                        case 1:
+                            mModel.field_0x0.reset();
+                            mModel.field_0x0.mShapeID = upVar1;
+                            break;
+
+                        case 2:
+                            mModel.field_0x0.field_0x4 = upVar1;
+                            break;
+
+                        case 3:
+                            if (upVar2 == 0) {
+                                mModel.field_0x0.field_0x10 = upVar1;
+                            } else {
+                                mModel.field_0x0.field_0x10 = upVar1 | 0x10000000;
+                            }
+                            break;
+
+                        case 4:
+                            if (upVar2 == 0) {
+                                mModel.field_0x0.field_0x14 = upVar1;
+                            } else {
+                                mModel.field_0x0.field_0x14 = upVar1 | 0x10000000;
+                            }
+                            break;
+
+                        case 5:
+                            mModel.field_0x0.field_0xc = upVar1;
+                            break;
+
+                        case 6:
+                            mModel.field_0x0.field_0x1c = upVar1;
+                            break;
+
+                        case 7:
+                            mModel.field_0x0.field_0x20 = upVar1;
+                            break;
+
+                        case 8:
+                            mModel.field_0x0.field_0x8 = upVar1;
+                            break;
+                    }
+                }
+            }
+
+            actor->offEnable(1);
+        }
+
+        action(actor);
     }
+
+    if (field_0x6ae != 0) {
+        f32 cutoff = shape_angle.z / 182.04445f;
+        GXColor color;
+        color.r = scale.x;
+        color.g = scale.y;
+        color.b = scale.z;
+        color.a = 0xFF;
+        dKy_BossSpotLight_set(&current.pos, shape_angle.x / 182.04445f, shape_angle.y / 182.04445f - 90.0f, 
+                              cutoff, &color, gravity, field_0x6b0, field_0x6af);
+    }
+
+    if (field_0x6b8 != 0) {
+        dComIfGs_setTime(current.pos.x * 15.0f);
+    }
+
+    return 1;
 }
 
 /* 804A84AC-804A84B4 00428C 0008+00 1/0 0/0 0/0 .text            daDemo00_IsDelete__FP10daDemo00_c */
@@ -1362,53 +1816,61 @@ static int daDemo00_IsDelete(daDemo00_c* i_this) {
 
 /* 804A84B4-804A84DC 004294 0028+00 1/0 0/0 0/0 .text            daDemo00_Delete__FP10daDemo00_c */
 static int daDemo00_Delete(daDemo00_c* i_this) {
-    // NONMATCHING
+    fopAcM_GetID(i_this);
+    i_this->~daDemo00_c();
+    return 1;
 }
 
 /* 804A84DC-804A86B4 0042BC 01D8+00 1/0 0/0 0/0 .text            daDemo00_Create__FP10fopAc_ac_c */
-static int daDemo00_Create(fopAc_ac_c* i_this) {
+static int daDemo00_Create(fopAc_ac_c* a_this) {
     // NONMATCHING
+    daDemo00_c* i_this = (daDemo00_c*)a_this;
+    fopAcM_SetupActor(a_this, daDemo00_c);
+
+    i_this->field_0x6a2 = 0;
+    i_this->mground2 = 0;
+    i_this->field_0x6a4 = 0;
+    i_this->field_0x6b2 = 0;
+    i_this->field_0x69c = -1;
+    i_this->field_0x69e = -1;
+    i_this->field_0x694 = 0;
+    i_this->field_0x698 = 0;
+    i_this->field_0x568.x = 10000000.0f;
+    i_this->field_0x568.y = 10000000.0f;
+    i_this->field_0x568.z = 10000000.0f;
+    i_this->field_0x6a5 = 0;
+    i_this->field_0x6a6 = 0;
+    i_this->field_0x6a7 = 0xFF;
+    i_this->field_0x6a8 = -1;
+    i_this->field_0x6a9 = -1;
+    i_this->field_0x6aa = 0xFF;
+    i_this->field_0x6ab = -1;
+    i_this->field_0x6ac = 0;
+    i_this->field_0x6ad = 0;
+    i_this->field_0x6ae = 0;
+    i_this->field_0x6b8 = 0;
+    i_this->field_0x6b9 = 0;
+    i_this->field_0x6af = 3;
+    i_this->field_0x6b0 = 2;
+    i_this->field_0x6b4 = 0;
+    i_this->field_0x6b1 = 0;
+    i_this->field_0x6b5 = 1;
+    i_this->field_0x6b6 = 0;
+    i_this->field_0x6b7 = 1;
+    S_ganon_left_hand_pos.x = 0.0f;
+    S_ganon_left_hand_pos.y = 0.0f;
+    S_ganon_left_hand_pos.z = 0.0f;
+    S_ganon_right_hand_pos.x = 0.0f;
+    S_ganon_right_hand_pos.y = 0.0f;
+    S_ganon_right_hand_pos.z = 0.0f;
+
+    return i_this->create(); 
 }
 
 /* 804A86B4-804A871C 004494 0068+00 1/1 0/0 0/0 .text            __ct__12demo_s1_ke_sFv */
-demo_s1_ke_s::demo_s1_ke_s() {
-    // NONMATCHING
-}
-
-/* 804A871C-804A8720 0044FC 0004+00 2/2 0/0 0/0 .text            __ct__4cXyzFv */
-// cXyz::cXyz() {
-extern "C" void __ct__4cXyzFv() {
-    /* empty function */
-}
-
-/* 804A87DC-804A8814 0045BC 0038+00 1/1 0/0 0/0 .text            __arraydtor$5213 */
-void func_804A87DC() {
-    // NONMATCHING
-}
-
-/* 804A8814-804A884C 0045F4 0038+00 1/1 0/0 0/0 .text            __arraydtor$5211 */
-void func_804A8814() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 804A8990-804A8994 000130 0004+00 0/0 0/0 0/0 .rodata          @6393 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_6393 = 0x43360B61;
-COMPILER_STRIP_GATE(0x804A8990, &lit_6393);
-#pragma pop
-
-/* 804A8994-804A8998 000134 0004+00 0/0 0/0 0/0 .rodata          @6394 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6394 = 90.0f;
-COMPILER_STRIP_GATE(0x804A8994, &lit_6394);
-#pragma pop
+demo_s1_ke_s::demo_s1_ke_s() {}
 
 AUDIO_INSTANCES;
-
-/* 804A8998-804A8998 000138 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 
 /* 804A8B94-804A8BB4 -00001 0020+00 1/0 0/0 0/0 .data            l_daDemo00_Method */
 static actor_method_class l_daDemo00_Method = {

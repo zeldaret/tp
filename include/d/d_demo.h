@@ -123,6 +123,7 @@ public:
     void setModel(J3DModel* p_model) { mModel = p_model; }
     BOOL checkEnable(u16 flag) { return mFlags & flag; }
     void onEnable(u16 flag) { mFlags |= flag; }
+    void offEnable(u16 flag) { mFlags &= ~flag; }
     cXyz& getTrans() { return mTrans; }
     cXyz& getScale() { return mScale; }
     csXyz& getRatate() { return mRotate; }
@@ -133,6 +134,7 @@ public:
     f32 getAnmFrame() { return mAnmFrame; }
     dDemo_prm_c* getPrm() { return &mPrm; }
     f32 getAnmTransition() { return mAnmTransition; }
+    u32 getShapeId() { return mShape; }
 
 private:
     /* 0x04 */ u16 mFlags;
