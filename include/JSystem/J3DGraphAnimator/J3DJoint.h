@@ -70,6 +70,8 @@ public:
 
     static J3DMtxCalc* mCurrentMtxCalc;
 
+    inline u8 getKind() { return mKind & 15; }
+
 private:
     friend struct J3DJointFactory;
     friend class J3DJointTree;

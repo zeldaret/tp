@@ -207,6 +207,9 @@ public:
 
     J3DAnmCluster* getBlkAnm() { return mpAnm; }
 
+    void entryFrame() { entryFrame(getFrame()); }
+    void entryFrame(f32 frame) { mpAnm->setFrame(frame); }
+
 private:
     /* 0x14 */ J3DAnmCluster* mpAnm;
 };
@@ -851,6 +854,7 @@ void mDoExt_setupStageTexture(J3DModelData* i_modelData);
 OSThread* mDoExt_GetCurrentRunningThread();
 void mDoExt_setupShareTexture(J3DModelData* i_modelData, J3DModelData* i_shareModelData);
 void mDoExt_btkAnmRemove(J3DModelData* i_modelData);
+void mDoExt_modelTexturePatch(J3DModelData* i_modelData);
 
 #if VERSION == VERSION_SHIELD_DEBUG
 s32 mDoExt_getSafeZeldaHeapSize();
