@@ -1046,7 +1046,6 @@ void daObjLv6Bm_c::initActionDead() {
 
 /* 80C81154-80C81428 003014 02D4+00 2/0 0/0 0/0 .text            actionDead__12daObjLv6Bm_cFv */
 void daObjLv6Bm_c::actionDead() {
-    // NONMATCHING
     switch (mMode) {
         case 0:
             if (!cLib_calcTimer(&field_0xa11)) {
