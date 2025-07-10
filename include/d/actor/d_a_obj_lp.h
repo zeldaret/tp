@@ -14,8 +14,8 @@
  
 struct wd_ss {
 public:
-    /* 80C559C8 */ ~wd_ss() {};
-    /* 80C55A04 */ wd_ss() {};
+    /* 80C559C8 */ ~wd_ss() {}
+    /* 80C55A04 */ wd_ss() {}
     
     /* 0x00 */ J3DModel* mpModel;
     /* 0x04 */ cXyz field_0x4;
@@ -31,15 +31,16 @@ public:
     /* 0x42 */ s16 field_0x42;
     /* 0x44 */ s16 field_0x44;
     /* 0x46 */ u8 field_0x46[0x4e - 0x46];
-    /* 0x4E */ u8 field_0x4e;
+    /* 0x4E */ s8 field_0x4e;
     /* 0x4F */ u8 field_0x4f;
     /* 0x50 */ int field_0x50;
 };
 
 STATIC_ASSERT(sizeof(wd_ss) == 0x54);
 
-class obj_lp_class : public fopAc_ac_c {
+class obj_lp_class {
 public:
+    /* 0x0000 */ fopAc_ac_c mActor;
     /* 0x0568 */ request_of_phase_process_class mPhase;
     /* 0x0570 */ u8 field_0x570;
     /* 0x0571 */ u8 field_0x571;

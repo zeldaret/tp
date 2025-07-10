@@ -15,6 +15,7 @@
  */
 class dalv4CandleDemoTag_c : public fopAc_ac_c, public request_of_phase_process_class, public dEvLib_callback_c {
 public:
+    typedef void (dalv4CandleDemoTag_c::*procFunc)();
     dalv4CandleDemoTag_c() : dEvLib_callback_c(this) {}
 
     /* 80C5CA58 */ void setBaseMtx();
@@ -39,7 +40,7 @@ public:
     int getSwOK() { return shape_angle.x & 0xFF; }
     int getEventID() { return fopAcM_GetParamBit(this, 0x18, 8); }
 
-    /* 80C5D184 */ virtual ~dalv4CandleDemoTag_c();
+    /* 80C5D184 */ virtual ~dalv4CandleDemoTag_c() {}
     /* 80C5CF78 */ virtual bool eventStart();
 
 private:
@@ -56,7 +57,7 @@ STATIC_ASSERT(sizeof(dalv4CandleDemoTag_c) == 0x590);
 class dalv4CandleDemoTag_HIO_c : public mDoHIO_entry_c {
 public:
     /* 80C5C9EC */ dalv4CandleDemoTag_HIO_c();
-    /* 80C5D07C */ virtual ~dalv4CandleDemoTag_HIO_c();
+    /* 80C5D07C */ virtual ~dalv4CandleDemoTag_HIO_c() {}
 
     void genMessage(JORMContext*);
 
