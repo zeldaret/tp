@@ -700,6 +700,8 @@ public:
     bool checkGoronSideMove() const { return mSpecialMode == 0x2B; }
     cXyz* getRightFootPosP() { return &mRightFootPos; }
     cXyz* getLeftFootPosP() { return &mLeftFootPos; }
+    cXyz getLeftFootPos() const { return mLeftFootPos; }
+    cXyz getRightFootPos() const { return mRightFootPos; }
     BOOL checkCopyRodThrowAfter() const { return checkNoResetFlg3(FLG3_COPY_ROD_THROW_AFTER); }
     u32 checkRide() const { return checkHorseRide() || checkBoarRide() || checkSpinnerRide() || checkCanoeRide() || checkBoardRide(); }
     cXyz getRightHandPos() const { return mRightHandPos; }
@@ -1174,6 +1176,41 @@ public:
     void onForceGrabRebound() {
         onEndResetFlg2(ERFLG2_UNK_8);
     }
+
+    void setSumouReadyAcceptButton() { mSpecialMode = 2; }
+    void setSumouForceStand() { mSpecialMode = 3; }
+    void setSumouPushFrontStop() { mSpecialMode = 9; }
+    void setSumouPunchWinEnd() { mSpecialMode = 0xB; }
+    void setSumouPunchLoseEnd() { mSpecialMode = 0xC; }
+    void setSumouMoveWinEnd() { mSpecialMode = 0xD; }
+    void setSumouMoveLoseEnd() { mSpecialMode = 0xE; }
+    void setSumouForcePunch() {
+        if (mSpecialMode == 0x1F) {
+            mSpecialMode = 0x21;
+        } else {
+            mSpecialMode = 0x1C;
+        }
+    }
+    void setSumouForceTackle() { mSpecialMode = 0x1B; }
+    void setSumouForceGraspCancel() { mSpecialMode = 0x24; }
+
+    BOOL checkSumouPushFront() { return mSpecialMode == 7; }
+    BOOL checkSumouPushBack() { return mSpecialMode == 8; }
+    BOOL checkSumouTackleSuccess() { return mSpecialMode == 0xF; }
+    BOOL checkSumouTackleSuccessPunch() { return mSpecialMode == 0x10; }
+    BOOL checkSumouTackleMiss() { return mSpecialMode == 0x11; }
+    BOOL checkSumouTackleDraw() { return mSpecialMode == 0x12; }
+    BOOL checkSumouPunchSuccess() { return mSpecialMode == 0x13; }
+    BOOL checkSumouPunchMiss() { return mSpecialMode == 0x14; }
+    BOOL checkSumouPunchDraw() { return mSpecialMode == 0x15; }
+    BOOL checkSumouWait() { return mSpecialMode == 0x16; }
+    BOOL checkSumouLeftMove() { return mSpecialMode == 0x17; }
+    BOOL checkSumouRightMove() { return mSpecialMode == 0x18; }
+    BOOL checkSumouSlideLeft() { return mSpecialMode == 0x19; }
+    BOOL checkSumouSlideRight() { return mSpecialMode == 0x1A; }
+    BOOL checkSumouPunchStagger() { return mSpecialMode == 0x1F; }
+    BOOL checkSumouTackleStagger() { return mSpecialMode == 0x20; }
+    BOOL checkSumouGraspRelease() { return mSpecialMode == 0x23; }
 };
 
 int daPy_addCalcShort(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 param_4);

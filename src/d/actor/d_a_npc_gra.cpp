@@ -1855,8 +1855,9 @@ void daNpc_grA_c::getMode() {
 }
 
 /* 809C1160-809C116C 002900 000C+00 4/4 0/0 1/1 .text            getMode1__11daNpc_grA_cFv */
-void daNpc_grA_c::getMode1() {
+u8 daNpc_grA_c::getMode1() {
     // NONMATCHING
+    return fopAcM_GetParam(this) & 0xFF00 >> 8;
 }
 
 /* 809C116C-809C1238 00290C 00CC+00 2/1 0/0 0/0 .text            getTypeFromParam__11daNpc_grA_cFv
