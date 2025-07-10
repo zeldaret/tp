@@ -347,7 +347,7 @@ public:
 
 };  // namespace
 
-static int dDemo_setDemoData(fopAc_ac_c*, u8, mDoExt_McaMorf*, char const*, int, u16*, u32, s8);
+int dDemo_setDemoData(fopAc_ac_c*, u8, mDoExt_McaMorf*, char const*, int, u16*, u32, s8);
 
 class dDemo_c {
 public:
