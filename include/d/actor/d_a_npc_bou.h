@@ -117,7 +117,7 @@ public:
     /* 809727CC */ virtual s32 getBackboneJointNo();
     /* 809727C4 */ virtual s32 getNeckJointNo();
     /* 809727BC */ virtual s32 getHeadJointNo();
-    /* 809727B4 */ virtual s32 getEyeballMaterialNo();
+    /* 809727B4 */ virtual u16 getEyeballMaterialNo();
     /* 8096DD44 */ virtual void afterJntAnm(int);
     /* 8096DDC8 */ virtual void setParam();
     /* 8096DF9C */ virtual BOOL checkChangeEvt();
@@ -206,7 +206,7 @@ private:
 STATIC_ASSERT(sizeof(daNpc_Bou_c) == 0xffc);
 
 /* 809727B4-809727BC 005914 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__11daNpc_Bou_cFv */
-s32 daNpc_Bou_c::getEyeballMaterialNo() {
+u16 daNpc_Bou_c::getEyeballMaterialNo() {
     return 1;
 }
 

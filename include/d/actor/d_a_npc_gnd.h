@@ -56,8 +56,8 @@ public:
                                daNpcT_evtData_c const* param_7, char** param_8) :
                                daNpcT_c(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8)
                                 {}
-    /* 809BE40C */ s32 getEyeballRMaterialNo();
-    /* 809BE414 */ s32 getEyeballLMaterialNo();
+    /* 809BE40C */ u16 getEyeballRMaterialNo();
+    /* 809BE414 */ u16 getEyeballLMaterialNo();
     /* 809BE41C */ s32 getHeadJointNo();
     /* 809BE424 */ s32 getNeckJointNo();
     /* 809BE42C */ s32 getBackboneJointNo();

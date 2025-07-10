@@ -58,7 +58,7 @@ public:
     /* 8055A4A0 */ virtual s32 getHeadJointNo();
     /* 8055A4D8 */ virtual s32 getFootLJointNo();
     /* 8055A4E0 */ virtual s32 getFootRJointNo();
-    /* 8055A498 */ virtual s32 getEyeballMaterialNo();
+    /* 8055A498 */ virtual u16 getEyeballMaterialNo();
     /* 80554EBC */ virtual void afterJntAnm(int);
     /* 80554F48 */ virtual void setParam();
     /* 80555118 */ virtual BOOL checkChangeEvt();

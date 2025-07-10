@@ -438,7 +438,7 @@ int daNpc_Moi_c::Draw() {
         }
     }
 
-    return daNpcT_c::draw(0, 0, field_0xde8, NULL, 100.0f, 0, 0, 0);
+    return daNpcT_c::draw(0, 0, mRealShadowSize, NULL, 100.0f, 0, 0, 0);
 }
 
 /* 80A74B80-80A74BA0 000D20 0020+00 1/1 0/0 0/0 .text
@@ -664,17 +664,17 @@ void daNpc_Moi_c::setParam() {
     }
     mAcchCir.SetWallR(mWallR);
     mAcchCir.SetWallH(daNpc_Moi_Param_c::m.field_0x18);
-    field_0xde8 = daNpc_Moi_Param_c::m.field_0x0c;
+    mRealShadowSize = daNpc_Moi_Param_c::m.field_0x0c;
     if (mType == TYPE_1) {
-        field_0xde8 = 600.0f;
+        mRealShadowSize = 600.0f;
     } else if (mType == TYPE_2) {
-        field_0xde8 = 600.0f;
+        mRealShadowSize = 600.0f;
         if (field_0x166d) {
-            field_0xde8 = 800.0f;
+            mRealShadowSize = 800.0f;
         }
     }
     gravity = daNpc_Moi_Param_c::m.field_0x04;
-    field_0xa80 = daNpc_Moi_Param_c::m.field_0x6c;
+    mExpressionMorfFrame = daNpc_Moi_Param_c::m.field_0x6c;
     mMorfFrames = daNpc_Moi_Param_c::m.field_0x44;
     if (mType == TYPE_3) {
         mAcch.SetGrndNone();

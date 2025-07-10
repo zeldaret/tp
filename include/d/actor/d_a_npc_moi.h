@@ -146,7 +146,7 @@ public:
         : daNpcT_c(i_faceMotionAnmData, i_motionAnmData, i_faceMotionSequenceData,
                    i_faceMotionStepNum, i_motionSequenceData, i_motionStepNum, i_evtData,
                    i_arcNames) {}
-    /* 80A7AE0C */ s32 getEyeballMaterialNo() { return chkMoiN() ? 4 : 2; }
+    /* 80A7AE0C */ u16 getEyeballMaterialNo() { if (chkMoiN()) { return 4; } else { return 2; } }
     /* 80A7AE3C */ s32 getHeadJointNo() { return 4; }
     /* 80A7AE44 */ s32 getNeckJointNo() { return 3; }
     /* 80A7AE4C */ s32 getBackboneJointNo() { return 1; }

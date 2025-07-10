@@ -498,7 +498,7 @@ int daNpc_Besu_c::Draw() {
         material->setMaterialAnm(matAnm);
     }
 
-    return draw(FALSE, 0, field_0xde8, NULL, 100.0f, 0, 0, 0);
+    return draw(FALSE, 0, mRealShadowSize, NULL, 100.0f, 0, 0, 0);
 }
 
 /* 805379FC-80537A1C 000C9C 0020+00 1/1 0/0 0/0 .text
@@ -740,12 +740,12 @@ void daNpc_Besu_c::setParam() {
 
     mAcchCir.SetWallR(mWallR);
     mAcchCir.SetWallH(daNpc_Besu_Param_c::m.common.knee_length);
-    field_0xde8 = daNpc_Besu_Param_c::m.common.real_shadow_size;
+    mRealShadowSize = daNpc_Besu_Param_c::m.common.real_shadow_size;
     if (chkNurse()) {
-        field_0xde8 = 500.0f;
+        mRealShadowSize = 500.0f;
     }
 
-    field_0xa80 = daNpc_Besu_Param_c::m.common.expression_morf_frame;
+    mExpressionMorfFrame = daNpc_Besu_Param_c::m.common.expression_morf_frame;
     mMorfFrames = daNpc_Besu_Param_c::m.common.morf_frame;
     gravity = daNpc_Besu_Param_c::m.common.gravity;
 }

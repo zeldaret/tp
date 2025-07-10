@@ -1581,7 +1581,7 @@ BOOL daNpcT_c::ctrlBtk() {
                 field_0xe2a = 0;
             }
 
-            mpMatAnm[0]->onEyeMoveFlg();
+            mpMatAnm[0]->onEyeMoveFlag();
             return TRUE;
         }
 
@@ -1590,7 +1590,7 @@ BOOL daNpcT_c::ctrlBtk() {
             field_0xe2a = 0;
         }
 
-        mpMatAnm[0]->offEyeMoveFlg();
+        mpMatAnm[0]->offEyeMoveFlag();
     }
 
     return FALSE;
@@ -1629,11 +1629,11 @@ void daNpcT_c::ctrlFaceMotion() {
         setFaceMotionAnm(motionNo, true);
 
         if (morfFrm < 0.0f) {
-            mpMorf[0]->setMorf(field_0xa80);
-            field_0xdfc = field_0xa80;
+            mpMorf[0]->setMorf(mExpressionMorfFrame);
+            field_0xdfc = mExpressionMorfFrame;
 
             if (mpMorf[1]) {
-                mpMorf[1]->setMorf(field_0xa80);
+                mpMorf[1]->setMorf(mExpressionMorfFrame);
             }
         } else {
             mpMorf[0]->setMorf(morfFrm);
@@ -2839,6 +2839,149 @@ void daNpcT_offTmpBit(u32 i_no) {
 /* 8014CB6C-8014CBAC 1474AC 0040+00 0/0 0/0 38/38 .text            daNpcT_chkTmpBit__FUl */
 BOOL daNpcT_chkTmpBit(u32 i_no) {
     return dComIfGs_isTmpBit(dSv_event_tmp_flag_c::tempBitLabels[i_no]);
+}
+
+void daNpcT_cmnGenMessage(JORMContext* ctx, daNpcT_HIOParam* i_hioParam) {
+    ctx->genSlider("注目オフセット  ", &i_hioParam->attention_offset,
+                   0.0f, 1000.0f, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genSlider("重力            ", &i_hioParam->gravity,
+                   -100.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genSlider("スケ−ル        ", &i_hioParam->scale,
+                   0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genSlider("リアル影サイズ  ", &i_hioParam->real_shadow_size,
+                   0.0f, 10000.0f, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genSlider("体重            ", &i_hioParam->weight,
+                   0.0f, 255.0f, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genSlider("高さ            ", &i_hioParam->height,
+                   0.0f, 1000.0f, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genSlider("ひざ丈          ", &i_hioParam->knee_length,
+                   0.0f, 1000.0f, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genSlider("幅              ", &i_hioParam->width,
+                   0.0f, 1000.0f, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genSlider("腰のＸ角上限    ", &i_hioParam->body_angleX_max, -90.0f, 90.0f, 0, NULL,
+                   0xffff, 0xffff, 512, 24);
+    ctx->genSlider("腰のＸ角下限    ", &i_hioParam->body_angleX_min, -90.0f, 90.0f, 0, NULL,
+                   0xffff, 0xffff, 512, 24);
+    ctx->genSlider("腰のＹ角上限    ", &i_hioParam->body_angleY_max, -180.0f, 179.0f, 0, NULL,
+                   0xffff, 0xffff, 512, 24);
+    ctx->genSlider("腰のＹ角下限    ", &i_hioParam->body_angleY_min, -180.0f, 179.0f, 0, NULL,
+                   0xffff, 0xffff, 512, 24);
+    ctx->genSlider("頭のＸ角上限    ", &i_hioParam->head_angleX_max, -90.0f, 90.0f, 0, NULL,
+                   0xffff, 0xffff, 512, 24);
+    ctx->genSlider("頭のＸ角下限    ", &i_hioParam->head_angleX_min, -90.0f, 90.0f, 0, NULL,
+                   0xffff, 0xffff, 512, 24);
+    ctx->genSlider("頭のＹ角上限    ", &i_hioParam->head_angleY_max, -180.0f, 179.0f, 0, NULL,
+                   0xffff, 0xffff, 512, 24);
+    ctx->genSlider("頭のＹ角下限    ", &i_hioParam->head_angleY_min, -180.0f, 179.0f, 0, NULL,
+                   0xffff, 0xffff, 512, 24);
+    ctx->genSlider("首の移動割合    ", &i_hioParam->neck_rotation_ratio,
+                   0.0f, 1.0f, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genSlider("補間フレ－ム    ", &i_hioParam->morf_frame,
+                   0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->startComboBox("会話距離        ", &i_hioParam->talk_distance,
+                   0, NULL, 0xffff, 0xffff, 0x100, 26);
+    ctx->genComboBoxItem("  50", 0);
+    ctx->genComboBoxItem(" 100", 1);
+    ctx->genComboBoxItem(" 150", 2);
+    ctx->genComboBoxItem(" 200", 3);
+    ctx->genComboBoxItem(" 250", 4);
+    ctx->genComboBoxItem(" 300", 5);
+    ctx->genComboBoxItem(" 350", 6);
+    ctx->genComboBoxItem(" 400", 7);
+    ctx->genComboBoxItem(" 450", 8);
+    ctx->genComboBoxItem(" 500", 9);
+    ctx->genComboBoxItem(" 550", 10);
+    ctx->genComboBoxItem(" 600", 11);
+    ctx->genComboBoxItem(" 650", 12);
+    ctx->genComboBoxItem(" 700", 13);
+    ctx->genComboBoxItem(" 750", 14);
+    ctx->genComboBoxItem(" 800", 15);
+    ctx->genComboBoxItem(" 850", 16);
+    ctx->genComboBoxItem(" 900", 17);
+    ctx->genComboBoxItem(" 950", 18);
+    ctx->genComboBoxItem("1000", 19);
+    ctx->endComboBox();
+    ctx->startComboBox("会話角度        ", &i_hioParam->talk_angle,
+                       0, NULL, 0xffff, 0xffff, 0x100, 26);
+    ctx->genComboBoxItem("  30", 0);
+    ctx->genComboBoxItem("  45", 1);
+    ctx->genComboBoxItem("  60", 2);
+    ctx->genComboBoxItem("  90", 3);
+    ctx->genComboBoxItem(" 110", 4);
+    ctx->genComboBoxItem(" 135", 5);
+    ctx->genComboBoxItem(" 180", 6);
+    ctx->endComboBox();
+    ctx->startComboBox("注目距離        ", &i_hioParam->attention_distance,
+                       0, NULL, 0xffff, 0xffff, 0x100, 26);
+    ctx->genComboBoxItem("  50", 0);
+    ctx->genComboBoxItem(" 100", 1);
+    ctx->genComboBoxItem(" 150", 2);
+    ctx->genComboBoxItem(" 200", 3);
+    ctx->genComboBoxItem(" 250", 4);
+    ctx->genComboBoxItem(" 300", 5);
+    ctx->genComboBoxItem(" 350", 6);
+    ctx->genComboBoxItem(" 400", 7);
+    ctx->genComboBoxItem(" 450", 8);
+    ctx->genComboBoxItem(" 500", 9);
+    ctx->genComboBoxItem(" 550", 10);
+    ctx->genComboBoxItem(" 600", 11);
+    ctx->genComboBoxItem(" 650", 12);
+    ctx->genComboBoxItem(" 700", 13);
+    ctx->genComboBoxItem(" 750", 14);
+    ctx->genComboBoxItem(" 800", 15);
+    ctx->genComboBoxItem(" 850", 16);
+    ctx->genComboBoxItem(" 900", 17);
+    ctx->genComboBoxItem(" 950", 18);
+    ctx->genComboBoxItem("1000", 19);
+    ctx->endComboBox();
+    ctx->startComboBox("注目角度        ", &i_hioParam->attention_angle,
+                       0, NULL, 0xffff, 0xffff, 0x100, 26);
+    ctx->genComboBoxItem("  30", 0);
+    ctx->genComboBoxItem("  45", 1);
+    ctx->genComboBoxItem("  60", 2);
+    ctx->genComboBoxItem("  90", 3);
+    ctx->genComboBoxItem(" 110", 4);
+    ctx->genComboBoxItem(" 135", 5);
+    ctx->genComboBoxItem(" 180", 6);
+    ctx->endComboBox();
+    ctx->genSlider("視界            ", &i_hioParam->fov,
+                   0.0f, 180.0f, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genSlider("サ－チ距離      ", &i_hioParam->search_distance,
+                   0.0f, 10000.0f, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genSlider("サ－チ高さ      ", &i_hioParam->search_height,
+                   -10000.0f, 10000.0f, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genSlider("サ－チ低さ      ", &i_hioParam->search_depth,
+                   -10000.0f, 10000.0f, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genSlider("？              ", &i_hioParam->attention_time,
+                   0, 10000, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genSlider("？              ", &i_hioParam->damage_time,
+                   0, 10000, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genSlider("表情            ", &i_hioParam->face_expression,
+                   0, 0xff, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genSlider("動作            ", &i_hioParam->motion,
+                   0, 0xff, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genSlider("注視モ－ド      ", &i_hioParam->look_mode,
+                   0, 0xff, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genCheckBox("デバグモ－ドＯＮ", &i_hioParam->debug_mode_ON, 1, 0, NULL,
+                   0xffff, 0xffff, 512, 24);
+    ctx->genCheckBox("デバグ情報ＯＮ  ", &i_hioParam->debug_info_ON, 1, 0, NULL,
+                   0xffff, 0xffff, 512, 24);
+    ctx->genSlider("表情補間フレ－ム", &i_hioParam->expression_morf_frame,
+                   0.0f, 100.0f, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genSlider("箱最小ｘ        ", &i_hioParam->box_min_x,
+                   -1000.0f, 1000.0f, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genSlider("箱最小ｙ        ", &i_hioParam->box_min_y,
+                   -1000.0f, 1000.0f, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genSlider("箱最小ｚ        ", &i_hioParam->box_min_z,
+                   -1000.0f, 1000.0f, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genSlider("箱最大ｘ        ", &i_hioParam->box_max_x,
+                   -1000.0f, 1000.0f, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genSlider("箱最大ｙ        ", &i_hioParam->box_max_y,
+                   -1000.0f, 1000.0f, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genSlider("箱最大ｚ        ", &i_hioParam->box_max_z,
+                   -1000.0f, 1000.0f, 0, NULL, 0xffff, 0xffff, 512, 24);
+    ctx->genSlider("箱オフセット    ", &i_hioParam->box_offset,
+                   -1000.0f, 1000.0f, 0, NULL, 0xffff, 0xffff, 512, 24);
 }
 
 /* 80392680-803926B0 01ECE0 0030+00 1/1 0/0 4/4 .rodata          mCcDObjData__8daNpcT_c */

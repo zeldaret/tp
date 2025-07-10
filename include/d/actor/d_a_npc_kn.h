@@ -317,9 +317,9 @@ public:
     /* 80A3949C */ virtual int ctrlBtk();
     /* 80A3B7B4 */ virtual s32 getFootLJointNo();
     /* 80A3B7AC */ virtual s32 getFootRJointNo();
-    /* 80A3BD1C */ virtual int getEyeballLMaterialNo();
-    /* 80A3BD24 */ virtual s32 getEyeballRMaterialNo();
-    /* 80A3BD14 */ virtual s32 getEyeballMaterialNo();
+    /* 80A3BD1C */ virtual u16 getEyeballLMaterialNo();
+    /* 80A3BD24 */ virtual u16 getEyeballRMaterialNo();
+    /* 80A3BD14 */ virtual u16 getEyeballMaterialNo();
     /* 80A3989C */ virtual int ctrlJoint(J3DJoint*, J3DModel*);
     /* 80A3B720 */ virtual void afterJntAnm(int);
     /* 80A3B7A4 */ virtual BOOL checkChangeEvt();

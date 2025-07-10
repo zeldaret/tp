@@ -163,7 +163,7 @@ public:
                    i_arcNames) {
         OS_REPORT("|%06d:%x|daNpc_Taro_c -> コンストラクト\n", g_Counter.mCounter0, this);
     }
-    /* 805715AC */ s32 getEyeballMaterialNo() { return 2; }
+    /* 805715AC */ u16 getEyeballMaterialNo() { return 2; }
     /* 805715B4 */ s32 getHeadJointNo() { return 4; }
     /* 805715BC */ s32 getNeckJointNo() { return 3; }
     /* 805715C4 */ s32 getBackboneJointNo() { return 1; }

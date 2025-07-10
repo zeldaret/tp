@@ -58,7 +58,7 @@ public:
                         : daNpcT_c(i_faceMotionAnmData, i_motionAnmData, i_faceMotionSequenceData,
                         i_faceMotionStepNum, i_motionSequenceData, i_motionStepNum, i_evtData,
                         i_arcNames) {}
-    /* 80B521E4 */ s32 getEyeballMaterialNo() { return 1; }
+    /* 80B521E4 */ u16 getEyeballMaterialNo() { return 1; }
     /* 80B521EC */ s32 getHeadJointNo() { return 4; }
     /* 80B521F4 */ s32 getNeckJointNo() { return 3; }
     /* 80B521FC */ s32 getBackboneJointNo() { return 1; }

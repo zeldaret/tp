@@ -333,7 +333,7 @@ int daObj_Sekizoa_c::Draw() {
     {
         temp_int = 1;
     }
-    return daNpcT_c::draw(0, 0, field_0xde8, NULL, 0.0f, temp_int, (mType == TYPE_6), 0);
+    return daNpcT_c::draw(0, 0, mRealShadowSize, NULL, 0.0f, temp_int, (mType == TYPE_6), 0);
 }
 
 /* 80CCED74-80CCED94 000B14 0020+00 1/1 0/0 0/0 .text
@@ -503,8 +503,8 @@ void daObj_Sekizoa_c::setParam() {
 
     mAcchCir.SetWallR(mWallR);
     mAcchCir.SetWallH(daObj_Sekizoa_Param_c::m.field_0x18);
-    field_0xde8 = daObj_Sekizoa_Param_c::m.field_0x0C;
-    field_0xa80 = daObj_Sekizoa_Param_c::m.field_0x6C;
+    mRealShadowSize = daObj_Sekizoa_Param_c::m.field_0x0C;
+    mExpressionMorfFrame = daObj_Sekizoa_Param_c::m.field_0x6C;
     mMorfFrames = daObj_Sekizoa_Param_c::m.field_0x44;
     gravity = daObj_Sekizoa_Param_c::m.field_0x04;
 

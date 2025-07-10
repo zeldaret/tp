@@ -25,7 +25,7 @@ struct dPath {
     /* 0x8 */ dPnt* m_points;
 };
 
-inline BOOL dPath_ChkClose(dPath* i_path) { return i_path->m_closed & 1; }
+inline BOOL dPath_ChkClose(const dPath* i_path) { return i_path->m_closed & 1; }
 
 dPath* dPath_GetRoomPath(int path_index, int room_no);
 dPath* dPath_GetNextRoomPath(dPath const* i_path, int room_no);

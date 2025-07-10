@@ -96,8 +96,8 @@ extern "C" void __dt__12J3DFrameCtrlFv();
 extern "C" void setEyeAngleY__15daNpcT_JntAnm_cF4cXyzsifs();
 extern "C" void setEyeAngleX__15daNpcT_JntAnm_cF4cXyzfs();
 extern "C" void ctrlSubFaceMotion__8daNpcT_cFi();
-extern "C" bool getEyeballLMaterialNo__8daNpcT_cFv();
-extern "C" bool getEyeballRMaterialNo__8daNpcT_cFv();
+extern "C" u16 getEyeballLMaterialNo__8daNpcT_cFv();
+extern "C" u16 getEyeballRMaterialNo__8daNpcT_cFv();
 extern "C" bool evtEndProc__8daNpcT_cFv();
 extern "C" void afterMoved__8daNpcT_cFv();
 extern "C" bool chkXYItems__8daNpcT_cFv();
@@ -114,7 +114,7 @@ extern "C" void func_8055A1E0(void* _this, int, int);
 extern "C" void __sinit_d_a_npc_kolin_cpp();
 extern "C" void
 __ct__13daNpc_Kolin_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
-extern "C" s32 getEyeballMaterialNo__13daNpc_Kolin_cFv();
+extern "C" u16 getEyeballMaterialNo__13daNpc_Kolin_cFv();
 extern "C" s32 getHeadJointNo__13daNpc_Kolin_cFv();
 extern "C" s32 getNeckJointNo__13daNpc_Kolin_cFv();
 extern "C" bool getBackboneJointNo__13daNpc_Kolin_cFv();
@@ -2023,14 +2023,14 @@ extern "C" void ctrlSubFaceMotion__8daNpcT_cFi() {
 /* 8055A10C-8055A114 00620C 0008+00 1/0 0/0 0/0 .text            getEyeballLMaterialNo__8daNpcT_cFv
  */
 // bool daNpcT_c::getEyeballLMaterialNo() {
-extern "C" bool getEyeballLMaterialNo__8daNpcT_cFv() {
+extern "C" u16 getEyeballLMaterialNo__8daNpcT_cFv() {
     return false;
 }
 
 /* 8055A114-8055A11C 006214 0008+00 1/0 0/0 0/0 .text            getEyeballRMaterialNo__8daNpcT_cFv
  */
 // bool daNpcT_c::getEyeballRMaterialNo() {
-extern "C" bool getEyeballRMaterialNo__8daNpcT_cFv() {
+extern "C" u16 getEyeballRMaterialNo__8daNpcT_cFv() {
     return false;
 }
 
@@ -2138,7 +2138,7 @@ REGISTER_CTORS(0x8055A25C, __sinit_d_a_npc_kolin_cpp);
 } */
 
 /* 8055A498-8055A4A0 006598 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__13daNpc_Kolin_cFv */
-s32 daNpc_Kolin_c::getEyeballMaterialNo() {
+u16 daNpc_Kolin_c::getEyeballMaterialNo() {
     return 2;
 }
 

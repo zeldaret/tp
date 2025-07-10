@@ -346,9 +346,9 @@ void daPeru_c::reset() {
     mWallR = daPeru_Param_c::m.field_0x00[7];
     mAcchCir.SetWallR(mWallR);
     mAcchCir.SetWallH(daPeru_Param_c::m.field_0x00[6]);
-    field_0xde8 = daPeru_Param_c::m.field_0x00[3];
+    mRealShadowSize = daPeru_Param_c::m.field_0x00[3];
     gravity = daPeru_Param_c::m.field_0x00[1];
-    field_0xa80 = daPeru_Param_c::m.field_0x64[2];
+    mExpressionMorfFrame = daPeru_Param_c::m.field_0x64[2];
     mMorfFrames = daPeru_Param_c::m.field_0x00[17];
     mActionFunc = NULL;
     if (mpMatAnm[0] != NULL) {
@@ -381,9 +381,9 @@ void daPeru_c::setParam() {
     mWallR = daPeru_Param_c::m.field_0x00[7];
     mAcchCir.SetWallR(mWallR);
     mAcchCir.SetWallH(daPeru_Param_c::m.field_0x00[6]);
-    field_0xde8 = daPeru_Param_c::m.field_0x00[3];
+    mRealShadowSize = daPeru_Param_c::m.field_0x00[3];
     gravity = daPeru_Param_c::m.field_0x00[1];
-    field_0xa80 = daPeru_Param_c::m.field_0x64[2];
+    mExpressionMorfFrame = daPeru_Param_c::m.field_0x64[2];
     mMorfFrames = daPeru_Param_c::m.field_0x00[17];
 }
 

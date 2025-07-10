@@ -334,7 +334,7 @@ int daNpc_Uri_c::Draw() {
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
 
-    return daNpcT_c::draw(0, 0, field_0xde8, NULL, 100.0f, 0, 0, 0);
+    return daNpcT_c::draw(0, 0, mRealShadowSize, NULL, 100.0f, 0, 0, 0);
 }
 
 /* 80B27174-80B27194 000AB4 0020+00 1/1 0/0 0/0 .text
@@ -525,9 +525,9 @@ void daNpc_Uri_c::setParam() {
     mAttnFovY = daNpc_Uri_Param_c::m.field_0x50;
     mAcchCir.SetWallR(mWallR);
     mAcchCir.SetWallH(daNpc_Uri_Param_c::m.field_0x18);
-    field_0xde8 = daNpc_Uri_Param_c::m.field_0x0c;
+    mRealShadowSize = daNpc_Uri_Param_c::m.field_0x0c;
     gravity = daNpc_Uri_Param_c::m.field_0x04;
-    field_0xa80 = daNpc_Uri_Param_c::m.field_0x6c;
+    mExpressionMorfFrame = daNpc_Uri_Param_c::m.field_0x6c;
     mMorfFrames = daNpc_Uri_Param_c::m.field_0x44;
     if (mType == TYPE_4) {
         mAcch.SetGrndNone();

@@ -177,8 +177,8 @@ void daNpc_FairySeirei_c::setParam() {
     mAttnFovY = daNpc_FairySeirei_Param_c::m[20];
     mAcchCir.SetWallR(mWallR);
     mAcchCir.SetWallH(daNpc_FairySeirei_Param_c::m[6]);
-    field_0xde8 = daNpc_FairySeirei_Param_c::m[3];
-    field_0xa80 = daNpc_FairySeirei_Param_c::m[27];
+    mRealShadowSize = daNpc_FairySeirei_Param_c::m[3];
+    mExpressionMorfFrame = daNpc_FairySeirei_Param_c::m[27];
     mMorfFrames = daNpc_FairySeirei_Param_c::m[17];
     gravity = daNpc_FairySeirei_Param_c::m[1];
 }

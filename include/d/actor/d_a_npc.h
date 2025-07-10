@@ -2,6 +2,7 @@
 #define D_A_D_A_NPC_H
 
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
+#include "SSystem/SComponent/c_counter.h"
 #include "SSystem/SComponent/c_math.h"
 #include "Z2AudioLib/Z2Creature.h"
 #include "d/actor/d_a_player.h"
@@ -55,8 +56,8 @@ public:
 
     void setNowOffsetX(f32 i_value) { mNowOffsetX = i_value; }
     void setNowOffsetY(f32 i_value) { mNowOffsetY = i_value; }
-    void onEyeMoveFlg() { mEyeMoveFlg = 1; }
-    void offEyeMoveFlg() { mEyeMoveFlg = 0; }
+    void onEyeMoveFlag() { mEyeMoveFlg = 1; }
+    void offEyeMoveFlag() { mEyeMoveFlg = 0; }
     void setMorfFrm(u8 i_value) { mMorfFrm = i_value; }
 };
 
@@ -157,7 +158,7 @@ public:
         mEyeAngle.x = field_0x132.x * (1.0f - 1.0f / param_2) +
                       sVar3 * (1.0f / param_2);
     }
-    
+
     void setEyeAngleY(cXyz param_1, s16 param_2, BOOL param_3, f32 param_4, s16 param_5) {
         cXyz cStack_50;
         s16 sVar3 = 0;
@@ -266,7 +267,7 @@ public:
         setMode(LOOK_PLAYER, FALSE);
         setDirect(isDirect);
     }
-    
+
     void lookCamera(u8 isDirect) {
         setMode(LOOK_CAMERA, FALSE);
         setDirect(isDirect);
@@ -313,8 +314,9 @@ public:
     /* 80147E3C */ void calc(BOOL);
 
     void initialize() {
+        u8 zero = 0;
         for (int i = 0; i < 2; i++) {
-            mAngle[i].setall(0);
+            mAngle[i].setall(zero);
             mPower[i] = 0.0f;
         }
         mStagger = 0;
@@ -481,7 +483,7 @@ public:
     /* 0x9C0 */ dPaPoT_c field_0x9c0;
     /* 0xA40 */ dCcD_Stts field_0xa40;
     /* 0xA7C */ u32 mFlowNodeNo;
-    /* 0xA80 */ f32 field_0xa80;
+    /* 0xA80 */ f32 mExpressionMorfFrame;
     /* 0xA84 */ f32 mMorfFrames;
     /* 0xA88 */ bool mCreating;
     /* 0xA89 */ bool mTwilight;
@@ -530,7 +532,7 @@ public:
     /* 0xDDC */ f32 mTurnCount;
     /* 0xDE0 */ f32 field_0xde0;
     /* 0xDE4 */ f32 field_0xde4;
-    /* 0xDE8 */ f32 field_0xde8;
+    /* 0xDE8 */ f32 mRealShadowSize;
     /* 0xDEC */ f32 mCylH;
     /* 0xDF0 */ f32 mWallR;
     /* 0xDF4 */ f32 mGroundH;
@@ -578,6 +580,7 @@ public:
         mpArcNames(i_arcNames),
         mFaceMotionSeqMngr(i_faceMotionSequenceData, i_faceMotionStepNum),
         mMotionSeqMngr(i_motionSequenceData, i_motionStepNum) {
+        OS_REPORT("|%06d:%x|daNpcT_c -> コンストラクト\n", g_Counter.mCounter0, this);
         initialize();
     }
 
@@ -644,9 +647,9 @@ public:
     /* 8014CC4C */ virtual s32 getHeadJointNo() { return -1; }
     /* 8014CC90 */ virtual s32 getFootLJointNo() { return -1; }
     /* 8014CC88 */ virtual s32 getFootRJointNo() { return -1; }
-    /* 8014D0A8 */ virtual s32 getEyeballLMaterialNo() { return 0; }
-    /* 8014D0B0 */ virtual s32 getEyeballRMaterialNo() { return 0; }
-    /* 8014D0B8 */ virtual s32 getEyeballMaterialNo() { return 0; }
+    /* 8014D0A8 */ virtual u16 getEyeballLMaterialNo() { return 0; }
+    /* 8014D0B0 */ virtual u16 getEyeballRMaterialNo() { return 0; }
+    /* 8014D0B8 */ virtual u16 getEyeballMaterialNo() { return 0; }
     /* 8014951C */ virtual int ctrlJoint(J3DJoint*, J3DModel*);
     /* 8014CC48 */ virtual void afterJntAnm(int) {}
     /* 8014CC24 */ virtual void setParam() {}
@@ -1222,7 +1225,7 @@ private:
     /* 0x00 */ u16 mNurbs;
     /* 0x02 */ u16 field_0x02;
     /* 0x04 */ u8 mIsReversed;
-    /* 0x05 */ bool mIsClosed;
+    /* 0x05 */ u8 mIsClosed;
     /* 0x08 */ dPnt mPoints[96];
 
 public:
@@ -1367,6 +1370,10 @@ struct daNpcT_HIOParam {
     /* 0x84 */ f32 box_max_z;
     /* 0x88 */ f32 box_offset;
 };
+
+void daNpcT_cmnGenMessage(JORMContext*, daNpcT_HIOParam* param_1);
+
+void daNpcT_cmnListenPropertyEvent(char*, int*, daNpcT_HIOParam*);
 
 struct daNpcF_HIOParam {
     /* 0x00 */ f32 attention_offset;

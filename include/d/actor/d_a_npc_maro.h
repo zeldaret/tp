@@ -108,7 +108,7 @@ public:
                    i_arcNames) {
         OS_REPORT("|%06d:%x|daNpc_Maro_c -> コンストラクト\n", g_Counter.mCounter0, this);
     }
-    /* 80564970 */ s32 getEyeballMaterialNo();
+    /* 80564970 */ u16 getEyeballMaterialNo();
     /* 80564978 */ s32 getHeadJointNo();
     /* 80564980 */ s32 getNeckJointNo();
     /* 80564988 */ s32 getBackboneJointNo();

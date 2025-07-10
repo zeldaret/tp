@@ -302,7 +302,7 @@ int daNpc_Saru_c::Execute() {
 
 /* 80AC0AA8-80AC0AEC 000768 0044+00 1/1 0/0 0/0 .text            Draw__12daNpc_Saru_cFv */
 int daNpc_Saru_c::Draw() {
-    return draw(FALSE, FALSE, field_0xde8, NULL, 100.0f, FALSE, FALSE, FALSE);
+    return draw(FALSE, FALSE, mRealShadowSize, NULL, 100.0f, FALSE, FALSE, FALSE);
 }
 
 /* 80AC0AEC-80AC0B0C 0007AC 0020+00 1/1 0/0 0/0 .text            createHeapCallBack__12daNpc_Saru_cFP10fopAc_ac_c */
@@ -463,8 +463,8 @@ void daNpc_Saru_c::setParam() {
     mAttnFovY = daNpc_Saru_Param_c::m.mAttnFovy;
     mAcchCir.SetWallR(mWallR);
     mAcchCir.SetWallH(daNpc_Saru_Param_c::m.mWallH);
-    field_0xde8 = daNpc_Saru_Param_c::m.field_0x0c;
-    field_0xa80 = daNpc_Saru_Param_c::m.field_0x6c;
+    mRealShadowSize = daNpc_Saru_Param_c::m.field_0x0c;
+    mExpressionMorfFrame = daNpc_Saru_Param_c::m.field_0x6c;
     mMorfFrames = daNpc_Saru_Param_c::m.mMorfFrames;
     gravity = daNpc_Saru_Param_c::m.mGravity;
 }
