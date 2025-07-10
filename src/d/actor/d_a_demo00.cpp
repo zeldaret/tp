@@ -9,7 +9,6 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_item.h"
 #include "d/d_kankyo_rain.h"
-#include "dol2asm.h"
 #include "d/d_camera.h"
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_ext.h"
@@ -227,13 +226,11 @@ int daDemo00_c::createHeap() {
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectIDRes(dStage_roomControl_c::getDemoArcName(), (u16)mModel.mID.mShapeID);
         mDoExt_bckAnmRemove(modelData);
 
-        #ifdef DEBUG
         if (modelData == NULL) {
             OS_REPORT("\ngetDemoArcName=[%s]", dStage_roomControl_c::getDemoArcName());
             OS_REPORT("\nmModel.mID.mShapeID=[%d]\n", mModel.mID.mShapeID);
             JUT_ASSERT(441, modelData != 0);
         }
-        #endif
 
         s32 uVar1 = 0x11000084;
         for (int i = 0; i < modelData->getShapeNum(); i++) {
@@ -484,7 +481,7 @@ int daDemo00_c::actPerformance(dDemo_actor_c* actor) {
             }
 
             fVar1 = 0.0f;
-            if (actor->checkEnable(0x80)) {
+            if (actor->checkEnable(dDemo_actor_c::ENABLE_ANM_TRANSITION_e)) {
                 fVar1 = actor->getAnmTransition();
             }
             mpModelMorf->setAnm(anm, -1, fVar1, 1.0f, 0.0f, -1.0f);
@@ -582,7 +579,7 @@ int daDemo00_c::actPerformance(dDemo_actor_c* actor) {
 
         setBaseMtx();
 
-        if (actor->checkEnable(0x40)) {
+        if (actor->checkEnable(dDemo_actor_c::ENABLE_ANM_FRAME_e)) {
             fVar1 = actor->getAnmFrame();
             if (fVar1 > 1.0f) {
                 f32 fVar2 = fVar1 - 1.0f;
@@ -685,7 +682,7 @@ int daDemo00_c::actPerformance(dDemo_actor_c* actor) {
             mpBlkAnm->play();
         }
 
-        if (actor->checkEnable(4)) {
+        if (actor->checkEnable(dDemo_actor_c::ENABLE_SCALE_e)) {
             scale = actor->getScale();
         }
     }
@@ -746,14 +743,6 @@ static void mDad00_changeXluMaterial(J3DMaterial* i_material, int param_2) {
     }
 }
 
-/* 804A88CC-804A88D0 00006C 0004+00 1/1 0/0 0/0 .rodata          l_itemNo$localstatic3$execute__10daDemo00_cFv */
-// static u8 const l_itemNo[4] = {
-//     0x29,
-//     0xFF,
-//     0xFF,
-//     0xFF,
-// };
-
 /* 804A61F0-804A6428 001FD0 0238+00 1/1 0/0 0/0 .text            teduna_calc__FP4cXyzP4cXyzP4cXyzsi */
 static void teduna_calc(cXyz* param_1, cXyz* param_2, cXyz* param_3, s16 param_4, int param_5) {
     // NONMATCHING
@@ -778,7 +767,7 @@ static void teduna_calc(cXyz* param_1, cXyz* param_2, cXyz* param_3, s16 param_4
         *param_3 = *param_1 - (sp70 * (i / 15.0f));
         f32 fVar2 = cM_ssin((i / 15.0f) * 32768.0f);
         *param_3 += sp88 * fVar2;
-        param_3->y += fVar2 * (fVar1 * cM_ssin(g_Counter.mCounter0 * 0x9C4 + i * 0x640));
+        param_3->y += fVar2 * (fVar1 * cM_ssin(g_Counter.mCounter0 * 2500 + i * 1600));
         param_3++;
     }
 }
@@ -1365,18 +1354,18 @@ int daDemo00_c::execute() {
         fopAcM_delete(this);
         OS_REPORT("汎用くん<dactor%d>削除！！\n", subtype);
     } else {
-        if (actor->checkEnable(0x10)) {
+        if (actor->checkEnable(dDemo_actor_c::ENABLE_SHAPE_e)) {
             mModel.field_0x0.mShapeID = actor->getShapeId();
         }
 
-        if (actor->checkEnable(0x20)) {
+        if (actor->checkEnable(dDemo_actor_c::ENABLE_ANM_e)) {
             mModel.field_0x0.field_0x4 = actor->getAnmId();
         }
 
         int piVar1, piVar2, piVar3;
         u16 upVar1;
         u8 upVar2;
-        if (actor->checkEnable(1)) {
+        if (actor->checkEnable(dDemo_actor_c::ENABLE_UNK_e)) {
             while (actor->getDemoIDData(&piVar1, &piVar2, &piVar3, &upVar1, &upVar2) != 0) {
                 if (piVar1 == 0) {
                     switch (piVar3) {
@@ -1785,7 +1774,7 @@ int daDemo00_c::execute() {
                 }
             }
 
-            actor->offEnable(1);
+            actor->offEnable(dDemo_actor_c::ENABLE_UNK_e);
         }
 
         action(actor);

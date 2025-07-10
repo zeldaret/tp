@@ -134,7 +134,6 @@ public:
     /* 0x06B7 */ u8 field_0x6b7;
     /* 0x06B8 */ u8 field_0x6b8;
     /* 0x06B9 */ s8 field_0x6b9;
-    /* 0x06BA */ u8 field_0x6ba[0x6bc - 0x6ba];
     /* 0x06BC */ mDoExt_3DlineMat1_c field_0x6bc;
     /* 0x06F8 */ demo_s1_ke_s field_0x6f8[22];
     /* 0x2900 */ mDoExt_3DlineMat0_c field_0x2900;

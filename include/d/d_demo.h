@@ -65,6 +65,7 @@ public:
 class dDemo_actor_c : public JStage::TActor {
 public:
     enum Enable_e {
+        ENABLE_UNK_e = 1,
         ENABLE_TRANS_e = (1 << 1),
         ENABLE_SCALE_e = (1 << 2),
         ENABLE_ROTATE_e = (1 << 3),
@@ -346,7 +347,7 @@ public:
 
 };  // namespace
 
-inline static int dDemo_setDemoData(fopAc_ac_c*, u8, mDoExt_McaMorf*, char const*, int, u16*, u32, s8);
+static int dDemo_setDemoData(fopAc_ac_c*, u8, mDoExt_McaMorf*, char const*, int, u16*, u32, s8);
 
 class dDemo_c {
 public:
