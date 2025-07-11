@@ -78,7 +78,7 @@ extern "C" bool checkChangeJoint__8daNpcT_cFi();
 extern "C" bool checkRemoveJoint__8daNpcT_cFi();
 extern "C" s32 getFootLJointNo__8daNpcT_cFv();
 extern "C" s32 getFootRJointNo__8daNpcT_cFv();
-extern "C" s32 getEyeballMaterialNo__8daNpcT_cFv();
+extern "C" u16 getEyeballMaterialNo__8daNpcT_cFv();
 extern "C" bool checkChangeEvt__8daNpcT_cFv();
 extern "C" bool evtEndProc__8daNpcT_cFv();
 extern "C" void afterMoved__8daNpcT_cFv();
@@ -98,8 +98,8 @@ extern "C" void
 __ct__11daNpc_Gnd_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
 extern "C" void __dt__8cM3dGCylFv();
 extern "C" void __dt__8cM3dGAabFv();
-extern "C" s32 getEyeballRMaterialNo__11daNpc_Gnd_cFv();
-extern "C" s32 getEyeballLMaterialNo__11daNpc_Gnd_cFv();
+extern "C" u16 getEyeballRMaterialNo__11daNpc_Gnd_cFv();
+extern "C" u16 getEyeballLMaterialNo__11daNpc_Gnd_cFv();
 extern "C" s32 getHeadJointNo__11daNpc_Gnd_cFv();
 extern "C" s32 getNeckJointNo__11daNpc_Gnd_cFv();
 extern "C" bool getBackboneJointNo__11daNpc_Gnd_cFv();
@@ -715,7 +715,7 @@ int daNpc_Gnd_c::Draw() {
         J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
-    return daNpcT_c::draw(0, 0, field_0xde8, NULL, 100.0f, 0, 0, 0);
+    return daNpcT_c::draw(0, 0, mRealShadowSize, NULL, 100.0f, 0, 0, 0);
 }
 
 /* 809BBF44-809BBF64 000A24 0020+00 1/1 0/0 0/0 .text
@@ -1205,12 +1205,12 @@ REGISTER_CTORS(0x809BE268, __sinit_d_a_npc_gnd_cpp);
 // }
 
 /* 809BE40C-809BE414 002EEC 0008+00 1/0 0/0 0/0 .text getEyeballRMaterialNo__11daNpc_Gnd_cFv */
-s32 daNpc_Gnd_c::getEyeballRMaterialNo() {
+u16 daNpc_Gnd_c::getEyeballRMaterialNo() {
     return 3;
 }
 
 /* 809BE414-809BE41C 002EF4 0008+00 1/0 0/0 0/0 .text getEyeballLMaterialNo__11daNpc_Gnd_cFv */
-s32 daNpc_Gnd_c::getEyeballLMaterialNo() {
+u16 daNpc_Gnd_c::getEyeballLMaterialNo() {
     return 2;
 }
 

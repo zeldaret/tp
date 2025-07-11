@@ -79,7 +79,7 @@ extern "C" void setEyeAngleX__15daNpcT_JntAnm_cF4cXyzfs();
 extern "C" void ctrlSubFaceMotion__8daNpcT_cFi();
 extern "C" s32 getFootLJointNo__8daNpcT_cFv();
 extern "C" s32 getFootRJointNo__8daNpcT_cFv();
-extern "C" s32 getEyeballMaterialNo__8daNpcT_cFv();
+extern "C" u16 getEyeballMaterialNo__8daNpcT_cFv();
 extern "C" bool checkChangeEvt__8daNpcT_cFv();
 extern "C" bool evtEndProc__8daNpcT_cFv();
 extern "C" void afterMoved__8daNpcT_cFv();
@@ -98,8 +98,8 @@ extern "C" void changeBtk__8daNpcT_cFPiPi();
 extern "C" void __sinit_d_a_npc_zelRo_cpp();
 extern "C" void
 __ct__13daNpc_ZelRo_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
-extern "C" s32 getEyeballRMaterialNo__13daNpc_ZelRo_cFv();
-extern "C" s32 getEyeballLMaterialNo__13daNpc_ZelRo_cFv();
+extern "C" u16 getEyeballRMaterialNo__13daNpc_ZelRo_cFv();
+extern "C" u16 getEyeballLMaterialNo__13daNpc_ZelRo_cFv();
 extern "C" s32 getHeadJointNo__13daNpc_ZelRo_cFv();
 extern "C" s32 getNeckJointNo__13daNpc_ZelRo_cFv();
 extern "C" bool getBackboneJointNo__13daNpc_ZelRo_cFv();
@@ -1171,12 +1171,12 @@ daNpc_ZelRo_c::daNpc_ZelRo_c(daNpcT_faceMotionAnmData_c const* param_0,
 }
 
 /* 80B74BA8-80B74BB0 002CE8 0008+00 1/0 0/0 0/0 .text getEyeballRMaterialNo__13daNpc_ZelRo_cFv */
-s32 daNpc_ZelRo_c::getEyeballRMaterialNo() {
+u16 daNpc_ZelRo_c::getEyeballRMaterialNo() {
     return 7;
 }
 
 /* 80B74BB0-80B74BB8 002CF0 0008+00 1/0 0/0 0/0 .text getEyeballLMaterialNo__13daNpc_ZelRo_cFv */
-s32 daNpc_ZelRo_c::getEyeballLMaterialNo() {
+u16 daNpc_ZelRo_c::getEyeballLMaterialNo() {
     return 6;
 }
 

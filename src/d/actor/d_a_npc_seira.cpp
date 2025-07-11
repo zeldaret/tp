@@ -112,7 +112,7 @@ extern "C" void func_80ACFA44(void* _this, int, int);
 extern "C" void __sinit_d_a_npc_seira_cpp();
 extern "C" void
 __ct__13daNpc_Seira_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
-extern "C" s32 getEyeballMaterialNo__13daNpc_Seira_cFv();
+extern "C" u16 getEyeballMaterialNo__13daNpc_Seira_cFv();
 extern "C" s32 getHeadJointNo__13daNpc_Seira_cFv();
 extern "C" s32 getNeckJointNo__13daNpc_Seira_cFv();
 extern "C" bool getBackboneJointNo__13daNpc_Seira_cFv();
@@ -1690,7 +1690,7 @@ daNpc_Seira_c::daNpc_Seira_c(daNpcT_faceMotionAnmData_c const* param_0,
 }
 
 /* 80ACFC14-80ACFC1C 004534 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__13daNpc_Seira_cFv */
-s32 daNpc_Seira_c::getEyeballMaterialNo() {
+u16 daNpc_Seira_c::getEyeballMaterialNo() {
     return 2;
 }
 

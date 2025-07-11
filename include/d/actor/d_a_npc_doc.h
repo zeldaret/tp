@@ -46,7 +46,7 @@ public:
                                daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
                                daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
                                daNpcT_evtData_c const*, char**);
-    /* 809AA24C */ s32 getEyeballMaterialNo();
+    /* 809AA24C */ u16 getEyeballMaterialNo();
     /* 809AA254 */ s32 getHeadJointNo();
     /* 809AA25C */ s32 getNeckJointNo();
     /* 809AA264 */ bool getBackboneJointNo();

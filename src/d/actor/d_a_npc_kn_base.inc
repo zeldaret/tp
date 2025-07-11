@@ -424,7 +424,7 @@ int daNpc_Kn_c::ctrlBtk() {
                 field_0xe31 = 0;
             }
 
-            mpMatAnm->onEyeMoveFlg();
+            mpMatAnm->onEyeMoveFlag();
             return 1;
         }
 
@@ -433,7 +433,7 @@ int daNpc_Kn_c::ctrlBtk() {
             field_0xe31 = 0;
         }
 
-        mpMatAnm->offEyeMoveFlg();
+        mpMatAnm->offEyeMoveFlag();
     }
 
     return 0;

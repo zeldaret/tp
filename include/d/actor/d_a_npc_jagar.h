@@ -146,7 +146,7 @@ public:
                                 daNpcT_evtData_c const* param_7, char** param_8) :
                                 daNpcT_c(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8)
                                  {}
-    /* 80A1A274 */ s32 getEyeballMaterialNo() { return 1; }
+    /* 80A1A274 */ u16 getEyeballMaterialNo() { return 1; }
     /* 80A1A27C */ s32 getHeadJointNo() { return 4; }
     /* 80A1A284 */ s32 getNeckJointNo() { return 3; }
     /* 80A1A28C */ s32 getBackboneJointNo() { return 1; }

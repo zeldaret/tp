@@ -76,7 +76,7 @@ extern "C" s32 getFootLJointNo__8daNpcT_cFv();
 extern "C" s32 getFootRJointNo__8daNpcT_cFv();
 extern "C" bool getEyeballLMaterialNo__8daNpcT_cFv();
 extern "C" bool getEyeballRMaterialNo__8daNpcT_cFv();
-extern "C" s32 getEyeballMaterialNo__8daNpcT_cFv();
+extern "C" u16 getEyeballMaterialNo__8daNpcT_cFv();
 extern "C" void afterJntAnm__8daNpcT_cFi();
 extern "C" void setAfterTalkMotion__8daNpcT_cFv();
 extern "C" void afterMoved__8daNpcT_cFv();

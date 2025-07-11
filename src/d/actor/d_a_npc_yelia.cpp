@@ -488,7 +488,7 @@ int daNpc_Yelia_c::Draw() {
         J3DModelData* model_data = mpMorf[0]->getModel()->getModelData();
         model_data->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
-    return draw(FALSE, FALSE, field_0xde8, NULL, 100.0f, FALSE, FALSE, FALSE);
+    return draw(FALSE, FALSE, mRealShadowSize, NULL, 100.0f, FALSE, FALSE, FALSE);
 }
 
 /* 80B4DD08-80B4DD28 000AE8 0020+00 1/1 0/0 0/0 .text
@@ -631,9 +631,9 @@ void daNpc_Yelia_c::setParam() {
     }
     mAcchCir.SetWallR(mWallR);
     mAcchCir.SetWallH(l_HIO.m.mWallH);
-    field_0xde8 = l_HIO.m.mShadowDepth;
+    mRealShadowSize = l_HIO.m.mShadowDepth;
     gravity = l_HIO.m.mGravity;
-    field_0xa80 = l_HIO.m.field_0x6c;
+    mExpressionMorfFrame = l_HIO.m.field_0x6c;
     mMorfFrames = l_HIO.m.mMorfFrames;
     if (mType == TYPE_TWILIGHT || mType == TYPE_AFTER_ESCORT) {
         mAcch.SetGrndNone();
