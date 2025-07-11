@@ -28,7 +28,7 @@ public:
 
     /* 80C1B878 */ int create1st();
     /* 80C1BB7C */ bool setParticle(u16*, int, PSetTbl*, int, int);
-    /* 80C1C474 */ virtual ~daObjHBombkoya_c();
+    /* 80C1C474 */ virtual ~daObjHBombkoya_c() {}
 
     /* 80C1B938 */ virtual int CreateHeap();
     /* 80C1B9CC */ virtual int Create();

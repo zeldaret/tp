@@ -5,9 +5,6 @@
 
 #include "d/actor/d_a_obj_hfuta.h"
 #include "d/d_com_inf_game.h"
-#include "Z2AudioLib/Z2WolfHowlMgr.h"
-#include "JSystem/JAudio2/JASAudioThread.h"
-#include "JSystem/JAudio2/JAUSoundTable.h"
 #include "Z2AudioLib/Z2Instances.h"
 
 /* 80C1DD8C-80C1DDC8 0000EC 003C+00 1/1 0/0 0/0 .text            initBaseMtx__11daObjFuta_cFv */
@@ -17,7 +14,6 @@ void daObjFuta_c::initBaseMtx() {
 }
 
 /* 80C1DDC8-80C1DE94 000128 00CC+00 2/2 0/0 0/0 .text            setBaseMtx__11daObjFuta_cFv */
-// Matches with literals
 void daObjFuta_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
@@ -44,23 +40,7 @@ int daObjFuta_c::Create() {
     return 1;
 }
 
-/* 80C1EEA4-80C1EEB0 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80C1EEB0-80C1EEC4 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
+UNK_REL_DATA
 
 /* 80C1EEC4-80C1EEC8 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "Obj_hfuta";

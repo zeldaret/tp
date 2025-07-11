@@ -7,23 +7,7 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_bg_w.h"
 
-/* 80CB9ACC-80CB9AD8 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80CB9AD8-80CB9AEC 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
+UNK_REL_DATA
 
 /* 80CB8E6C-80CB8EBC 0000EC 0050+00 1/1 0/0 0/0 .text            __ct__14daRfHole_HIO_cFv */
 daRfHole_HIO_c::daRfHole_HIO_c() {
@@ -115,9 +99,9 @@ int daRfHole_c::playerAreaCheck() {
 }
 
 /* 80CB940C-80CB9464 00068C 0058+00 1/0 0/0 0/0 .text            Execute__10daRfHole_cFPPA3_A4_f */
-int daRfHole_c::Execute(f32 (**param_1)[3][4]) {
+int daRfHole_c::Execute(Mtx** i_mtx) {
     holeProc();
-    *param_1 = &mModel->getBaseTRMtx();
+    *i_mtx = &mModel->getBaseTRMtx();
     setBaseMtx();
     field_0x5ae = 0;
     return 1;
@@ -240,7 +224,7 @@ static actor_method_class l_daRfHole_Method = {
     (process_method_func)daRfHole_Create,
     (process_method_func)daRfHole_Delete,
     (process_method_func)daRfHole_Execute,
-    0,
+    NULL,
     (process_method_func)daRfHole_Draw,
 };
 

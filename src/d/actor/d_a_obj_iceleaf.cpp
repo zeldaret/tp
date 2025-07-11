@@ -20,23 +20,7 @@ void daObjIceLeaf_c::initBaseMtx() {
     setBaseMtx();
 }
 
-/* 80C25DB0-80C25DBC 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80C25DBC-80C25DD0 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
+UNK_REL_DATA
 
 /* 80C25DD0-80C25DD4 -00001 0004+00 7/7 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "V_IceLeaf";
@@ -111,7 +95,7 @@ static dCcD_SrcCyl l_cyl_src = {
 };
 
 /* 80C249E4-80C24BC4 000344 01E0+00 1/1 0/0 0/0 .text            Create__14daObjIceLeaf_cFv */
-// NONMATCHING - J3DTransformInfo operator= seems to be inline asm, needs work
+// NONMATCHING - regalloc
 int daObjIceLeaf_c::Create() {
     J3DJoint* joint = mpModel->getModelData()->getJointNodePointer(0);
     mTransformInfo = joint->getTransformInfo();

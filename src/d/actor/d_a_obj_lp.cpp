@@ -10,13 +10,13 @@
 #include "d/actor/d_a_player.h"
 #include "Z2AudioLib/Z2Instances.h"
 
-
-
 UNK_REL_BSS
 
 /* 80C54198-80C542FC 000078 0164+00 1/0 0/0 0/0 .text            daObj_Lp_Draw__FP12obj_lp_class */
 static int daObj_Lp_Draw(obj_lp_class* i_this) {
-    // NONMATCHING
+    fopAc_ac_c* a_this = (fopAc_ac_c*)&i_this->mActor;
+    wd_ss* mWdSs = i_this->mWdSs;
+    int roomNo = fopAcM_GetRoomNo(a_this);
     static _GXColor l_color = {
         0x14,
         0x0A,
@@ -24,25 +24,24 @@ static int daObj_Lp_Draw(obj_lp_class* i_this) {
         0xFF,
     };
 
-    wd_ss* mWdSs = i_this->mWdSs;
     J3DGXColorS10 color;
 
-    for (int i = 0; i < i_this->field_0xad98; i++) {
-        if (mWdSs[i].field_0x4e && !mWdSs[i].field_0x4f) {
+    for (int i = 0; i < i_this->field_0xad98; i++, mWdSs++) {
+        if (mWdSs->field_0x4e && !mWdSs->field_0x4f) {
             if (g_env_light.fishing_hole_season == 1) {
                 color.r = 6;
                 color.g = 6;
                 color.b = 4;
                 color.a = 0xff;
-                mWdSs[i].mpModel->getModelData()->getMaterialNodePointer(0)->setTevColor(0, &color);
+                mWdSs->mpModel->getModelData()->getMaterialNodePointer(0)->setTevColor(0, &color);
             }
 
-            dComIfGp_entrySimpleModel(mWdSs[i].mpModel, fopAcM_GetRoomNo(i_this));
+            dComIfGp_entrySimpleModel(mWdSs->mpModel, roomNo);
         }
     }
 
     if (i_this->field_0xadb1 && !i_this->field_0xadb2) {
-        i_this->field_0xad7c.update(3, l_color, &i_this->tevStr);
+        i_this->field_0xad7c.update(3, l_color, &a_this->tevStr);
         dComIfGd_set3DlineMat(&i_this->field_0xad7c);
     }
 
@@ -76,7 +75,6 @@ static void* s_ks_sub(void* param_1, void* param_2) {
 
 /* 80C54374-80C546D8 000254 0364+00 1/1 0/0 0/0 .text            hit_check__FP12obj_lp_classP5wd_ss */
 static int hit_check(obj_lp_class* i_this, wd_ss* WdSs) {
-    // NONMATCHING
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
     cXyz sp6c, sp60;
     f32 fVar1, fVar2;
@@ -86,8 +84,9 @@ static int hit_check(obj_lp_class* i_this, wd_ss* WdSs) {
     for (int i = 0; i < target_info_count; i++) {
         sp6c = WdSs->field_0x10 - *(cXyz *)(target_info[i] + 0x4d0);
         if (sp6c.y >= -3.0f) {
-            if (JMAFastSqrt(sp6c.x * sp6c.x + sp6c.z * sp6c.z) <= fVar1 * WdSs->field_0x3c) {
-                fVar2 = fVar1 * WdSs->field_0x3c - fVar1;
+            f32 dist = JMAFastSqrt(sp6c.x * sp6c.x + sp6c.z * sp6c.z);
+            if (dist <= fVar1 * WdSs->field_0x3c) {
+                fVar2 = fVar1 * WdSs->field_0x3c - dist;
                 cLib_addCalc2(&WdSs->field_0x28.x, fVar2, 0.1f, fVar2 * 0.5f);
                 cLib_addCalcAngleS2(&WdSs->field_0x34, cM_atan2s(sp6c.x, sp6c.z), 0x20, 0x400);
                 cLib_addCalcAngleS2(&WdSs->field_0x36, -4000, 0x20, 0x400);
@@ -122,9 +121,9 @@ static int hit_check(obj_lp_class* i_this, wd_ss* WdSs) {
             fVar2 = 300.0f;
         }
 
-        if (fabsf(sp60.x) < fVar8 + 70.0f && fVar1 > sp60.z && sp60.z < fVar2) {
+        if (fabsf(sp60.x) < fVar8 + 70.0f && sp60.z > fVar1 && sp60.z < fVar2) {
             fVar8 = fVar8 + 70.0f - fabsf(sp60.x);
-            if (fVar1 > sp60.z && sp60.z < fVar1 + 75.0f) {
+            if (sp60.z > fVar1 && sp60.z < fVar1 + 75.0f) {
                 sp60.z -= fVar1;
                 fVar8 *= fabsf(sp60.z) * 0.01333f;
             }
@@ -199,9 +198,9 @@ static void hasu_action(obj_lp_class* i_this, wd_ss* WdSs) {
 
 /* 80C54B20-80C54D40 000A00 0220+00 1/1 0/0 0/0 .text set_out_check__FP12obj_lp_classP4cXyz */
 static int set_out_check(obj_lp_class* i_this, cXyz* param_2) {
-    // NONMATCHING
-    cXyz sp3c = *param_2 - i_this->current.pos;
-    if (fabsf(sp3c.y) > 100.0f || 100.0f > i_this->field_0x571 * sp3c.abs()) {
+    fopAc_ac_c* a_this = (fopAc_ac_c*)&i_this->mActor;
+    cXyz sp3c = *param_2 - a_this->current.pos;
+    if (fabsf(sp3c.y) > 100.0f || sp3c.abs() > i_this->field_0x571 * 100.0f) {
         return 1;
     }
 
@@ -210,8 +209,9 @@ static int set_out_check(obj_lp_class* i_this, cXyz* param_2) {
     s16 sVar1 = cM_atan2s(sp3c.x, sp3c.z);
     sp3c = *param_2 - camera->lookat.eye;
     s16 sVar2 = cM_atan2s(sp3c.x, sp3c.z);
+    s16 diff = sVar1 - sVar2;
 
-    if (sVar1 - sVar2 > 0x3000 || sVar1 - sVar2 < -0x3000) {
+    if (diff > 0x3000 || diff < -0x3000) {
         return 1;
     }
 
@@ -220,7 +220,6 @@ static int set_out_check(obj_lp_class* i_this, cXyz* param_2) {
 
 /* 80C54D40-80C550F0 000C20 03B0+00 2/1 0/0 0/0 .text            daObj_Lp_Execute__FP12obj_lp_class */
 static int daObj_Lp_Execute(obj_lp_class* i_this) {
-    // NONMATCHING
     i_this->field_0x574++;
     if (i_this->field_0xadb0) {
         i_this->field_0xadb0 += -1;
@@ -278,7 +277,8 @@ static int daObj_Lp_Execute(obj_lp_class* i_this) {
     if ((i_this->field_0x574 & 15) == 0) {
         fopAc_ac_c* player = dComIfGp_getPlayer(0);
         if (!set_out_check(i_this, &player->current.pos)) {
-            if (fabsf(player->speedF) > 1.0f) {
+            fVar7 = fabsf(player->speedF);
+            if (fVar7 > 1.0f) {
                 i_this->field_0xad9c = player->current.pos;
             }
         }
@@ -319,10 +319,10 @@ static int daObj_Lp_IsDelete(obj_lp_class* i_this) {
 
 /* 80C550F8-80C5518C 000FD8 0094+00 1/0 0/0 0/0 .text            daObj_Lp_Delete__FP12obj_lp_class */
 static int daObj_Lp_Delete(obj_lp_class* i_this) {
-    // NONMATCHING
+    fopAc_ac_c* a_this = (fopAc_ac_c*)&i_this->mActor;
     if (i_this->field_0xadb4) {
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Obj_lp", 3);
-        dComIfGp_removeSimpleModel(modelData, fopAcM_GetRoomNo(i_this));
+        dComIfGp_removeSimpleModel(modelData, fopAcM_GetRoomNo(a_this));
     }
     dComIfG_resDelete(&i_this->mPhase, "Obj_lp");
     return 1;
@@ -377,9 +377,8 @@ static int set_pos_check(obj_lp_class* i_this, int param_2) {
 
 /* 80C55488-80C559C8 001368 0540+00 1/0 0/0 0/0 .text            daObj_Lp_Create__FP10fopAc_ac_c */
 static int daObj_Lp_Create(fopAc_ac_c* a_this) {
-    // NONMATCHING
+    fopAcM_SetupActor(a_this, obj_lp_class);
     obj_lp_class* i_this = (obj_lp_class*)a_this;
-    fopAcM_SetupActor(i_this, obj_lp_class);
 
     int phase_state = dComIfG_resLoad(&i_this->mPhase, "Obj_lp");
     if (phase_state == cPhs_COMPLEATE_e) {
@@ -414,19 +413,19 @@ static int daObj_Lp_Create(fopAc_ac_c* a_this) {
             iVar3 = 0x1e8;
         }
 
-        if (!fopAcM_entrySolidHeap(i_this, useHeapInit, i_this->field_0xad98 * iVar3)) {
+        if (!fopAcM_entrySolidHeap(a_this, useHeapInit, i_this->field_0xad98 * iVar3)) {
             OS_REPORT("//////////////OBJ_LP SET NON !!\n");
             return cPhs_ERROR_e;
         }
            
         OS_REPORT("//////////////OBJ_LP NUM : %d !!\n", i_this->field_0xad98);
 
-        fopAcM_SetMtx(i_this, i_this->mWdSs[0].mpModel->getBaseTRMtx());
+        fopAcM_SetMtx(a_this, i_this->mWdSs[0].mpModel->getBaseTRMtx());
             
         f32 fVar1 = i_this->field_0x571 * 70.0f + 50.0f;
-        fopAcM_SetMin(i_this, -fVar1, -100.0f, -fVar1);
-        fopAcM_SetMax(i_this, fVar1, 100.0f, fVar1);
-        MtxTrans(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z, 0);
+        fopAcM_SetMin(a_this, -fVar1, -100.0f, -fVar1);
+        fopAcM_SetMax(a_this, fVar1, 100.0f, fVar1);
+        MtxTrans(a_this->current.pos.x, a_this->current.pos.y, a_this->current.pos.z, 0);
 
         cXyz sp13c(0.0f, 0.0f, 0.0f);
         dBgS_GndChk dStack_dc;
@@ -441,30 +440,30 @@ static int daObj_Lp_Create(fopAc_ac_c* a_this) {
             MtxPush();
             cMtx_YrotM(*calc_mtx, cM_rndF(65536.0f));
             MtxPosition(&sp13c, &i_this->mWdSs[i].field_0x10);
-            f32 rndF = cM_rndF(1.0f);
-            f32 fVar1 = 1.0f - rndF * rndF;
-            sp13c.z = fVar1 * (i_this->field_0x571 * 100.0f);
+            sp13c.z = cM_rndF(1.0f);
+            sp13c.z = 1.0f - sp13c.z * sp13c.z;
+            sp13c.z *= (i_this->field_0x571 * 100.0f);
             MtxPull();
 
-            cXyz sp148;
+            Vec sp148;
             sp148.x = i_this->mWdSs[i].field_0x10.x;
             sp148.y = i_this->mWdSs[i].field_0x10.y + 100.0f;
             sp148.z = i_this->mWdSs[i].field_0x10.z;
 
-            dStack_dc.SetPos(&(Vec)sp148);
-            cStack_130.SetPos(&(Vec)sp148);
+            dStack_dc.SetPos(&sp148);
+            cStack_130.SetPos(&sp148);
             i_this->mWdSs[i].field_0x10.y = dComIfG_Bgsp().GroundCross(&cStack_130);
 
             i_this->mWdSs[i].field_0x38 = cM_rndF(65536.0f);
 
             if (i == 0) {
-                i_this->current.pos.y = i_this->mWdSs[i].field_0x10.y;
+                a_this->current.pos.y = i_this->mWdSs[i].field_0x10.y;
             }
 
             i_this->mWdSs[i].field_0x1c.y = dComIfG_Bgsp().GroundCross(&dStack_dc);
 
             if ((set_pos_check(i_this, i) && i_this->mWdSs[i].field_0x10.y - i_this->mWdSs[i].field_0x1c.y > 10.0f) && 
-                (i_this->field_0xadb1 != 0 && i_this->mWdSs[i].field_0x10.y - i_this->mWdSs[i].field_0x1c.y < 200.0f)) {
+                (i_this->field_0xadb1 == 0 || i_this->mWdSs[i].field_0x10.y - i_this->mWdSs[i].field_0x1c.y < 200.0f)) {
                 i_this->mWdSs[i].field_0x4e = 1;
                 i_this->mWdSs[i].field_0x3c = fVar13 * (cM_rndFX(0.2f) + 1.0f);
                 i_this->mWdSs[i].field_0x4 = i_this->mWdSs[i].field_0x10;
@@ -489,7 +488,7 @@ static int daObj_Lp_Create(fopAc_ac_c* a_this) {
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Obj_lp", 3);
         JUT_ASSERT(0x3b0, modelData != 0);
 
-        dComIfGp_addSimpleModel(modelData, fopAcM_GetRoomNo(i_this), 0);
+        dComIfGp_addSimpleModel(modelData, fopAcM_GetRoomNo(a_this), 0);
         if (modelData == NULL) {
             OS_REPORT("\x1b[43;30mリリーパッド:シンプルモデル登録失敗しました。\n");
         }
