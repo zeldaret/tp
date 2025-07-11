@@ -197,41 +197,22 @@ static int nodeCallBack(J3DJoint* i_joint, int param_2) {
 
 /* 80C7CE24-80C7CE60 000384 003C+00 1/1 0/0 0/0 .text            initBaseMtx__11daObjL6Bm_cFv */
 void daObjL6Bm_c::initBaseMtx() {
-    // NONMATCHING
+    field_0x5a8->setBaseScale(scale);
+    setBaseMtx();
 }
 
 /* 80C7CE60-80C7CED4 0003C0 0074+00 2/2 0/0 0/0 .text            setBaseMtx__11daObjL6Bm_cFv */
 void daObjL6Bm_c::setBaseMtx() {
-    // NONMATCHING
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::YrotM(shape_angle.y);
+    field_0x5a8->setBaseTRMtx(mDoMtx_stack_c::get());
+    MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
-/* ############################################################################################## */
-/* 80C7DF6C-80C7DF6C 0000A0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80C7DF6C = "Obj_lv6bm";
-#pragma pop
-
-/* 80C7DF78-80C7DF84 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80C7DF84-80C7DF98 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
+UNK_REL_DATA;
 
 /* 80C7DF98-80C7DF9C -00001 0004+00 4/4 0/0 0/0 .data            l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&d_a_obj_lv6bemos__stringBase0;
+static char* l_arcName = "Obj_lv6bm";
 
 /* 80C7DF9C-80C7DFB4 000024 0018+00 1/1 0/0 0/0 .data            l_cull_box */
 static f32 l_cull_box[6] = {
@@ -400,6 +381,55 @@ SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
 /* 80C7CFD0-80C7D2B0 000530 02E0+00 1/0 0/0 0/0 .text            CreateHeap__11daObjL6Bm_cFv */
 int daObjL6Bm_c::CreateHeap() {
     // NONMATCHING
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 0xE);
+    JUT_ASSERT(620, modelData != 0);
+    field_0x5a8 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+    if (field_0x5a8 == NULL) {
+        return 0;
+    }
+
+    modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 0xD);
+    JUT_ASSERT(634, modelData != 0);
+    field_0x880 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
+    if (field_0x880 == NULL) {
+        return 0;
+    }
+
+    J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 0x13);
+    JUT_ASSERT(648, pbtk != 0);
+    mpBtkAnm = new mDoExt_btkAnm();
+    if (mpBtkAnm == NULL || mpBtkAnm->init(modelData, pbtk, 1, 0, 1.0f, 0, -1) == 0) {
+        return 0;
+    }
+
+    #ifdef DEBUG
+    pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 0x12);
+    JUT_ASSERT(660, pbtk != 0);
+    #endif
+
+    pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 0x11);
+    JUT_ASSERT(0x29A, pbtk != 0);
+    mpBtkAnm2 = new mDoExt_btkAnm();
+    if (mpBtkAnm2 == NULL || mpBtkAnm2->init(modelData, pbtk, 1, 2, 1.0f, 0, -1) == 0) {
+        return 0;
+    }
+
+    J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 7);
+    JUT_ASSERT(678, pbck != 0);
+    mpBckAnm = new mDoExt_bckAnm();
+    if (mpBckAnm == NULL || mpBckAnm->init(pbck, 1, 2, 1.0f, 0, -1, false) == 0) {
+        return 0;
+    }
+
+    if (field_0x891 != 0) {
+        mpBtkAnm->setFrame(mpBtkAnm->getEndFrame());
+        mpBtkAnm->setPlaySpeed(1.0f);
+        field_0x8b2 = 0x1000;
+        field_0x8b4 = 4;
+        field_0x890 = 5;
+    }
+
+    return 1;
 }
 
 /* 80C7D2B0-80C7D2F8 000810 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */

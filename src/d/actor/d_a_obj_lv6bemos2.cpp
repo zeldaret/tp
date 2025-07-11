@@ -279,7 +279,7 @@ int daObjLv6Bm_c::CreateHeap() {
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, BMDR_EF_BIMOL6);
-    JUT_ASSERT(666, modelData != 0);
+    JUT_ASSERT(0x29A, modelData != 0);
     mBeamEffectModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (mBeamEffectModel == NULL) {
         return 0;
