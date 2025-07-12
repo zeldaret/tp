@@ -912,7 +912,7 @@ public:
     u16 getSwordAtUpTime() const { return mSwordUpTimer; }
     s16 getDamageWaitTimer() const { return mDamageTimer; }
     bool checkWaterInMove() const { return checkNoResetFlg0(FLG0_UNDERWATER); }
-    bool checkSceneChangeAreaStart() const { return checkNoResetFlg2(FLG2_SCN_CHG_START); }
+    u32 checkSceneChangeAreaStart() const { return checkNoResetFlg2(FLG2_SCN_CHG_START); }
     bool checkFrontRollCrash() const { return checkResetFlg0(RFLG0_FRONT_ROLL_CRASH); }
     bool checkWolfAttackReverse() const { return checkResetFlg1(RFLG1_WOLF_ATTACK_REVERSE); }
     bool checkFreezeDamage() const { return checkNoResetFlg1(FLG1_ICE_FREEZE); }

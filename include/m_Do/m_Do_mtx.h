@@ -100,7 +100,7 @@ inline void cMtx_multVecArray(Mtx mtx, const Vec* src, Vec* dst, u32 count) {
     mDoMtx_multVecArray(mtx, src, dst, count);
 }
 
-inline void mDoMtx_multVecZero(MtxP param_0, Vec* param_1) {
+inline void mDoMtx_multVecZero(CMtxP param_0, Vec* param_1) {
     param_1->x = param_0[0][3];
     param_1->y = param_0[1][3];
     param_1->z = param_0[2][3];

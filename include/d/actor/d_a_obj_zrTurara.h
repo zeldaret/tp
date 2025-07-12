@@ -46,9 +46,9 @@ private:
     /* 0x768 */ u8 mDebrisCount;
 
 public:
-    u8 getSwBit1() { return fopAcM_GetParamBit(this, 0, 8); }
-    u8 getSwBit2() { return fopAcM_GetParamBit(this, 8, 8); }
-    u8 getScale() { return fopAcM_GetParamBit(this, 0x10, 8); }
+    int getSwBit1() { return fopAcM_GetParamBit(this, 0, 8); }
+    int getSwBit2() { return fopAcM_GetParamBit(this, 8, 8); }
+    int getScale() { return fopAcM_GetParamBit(this, 0x10, 8); }
 
     static dCcD_SrcGObjInf const mCcDObjInfo;
     static dCcD_SrcCyl mCcDCyl;
