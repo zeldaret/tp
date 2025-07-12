@@ -80,7 +80,6 @@ void daHoZelda_matAnm_c::calc(J3DMaterial* i_material) const {
 }
 
 /* 80846000-8084642C 0001E0 042C+00 1/1 0/0 0/0 .text            createHeap__11daHoZelda_cFv */
-// NONMATCHING
 int daHoZelda_c::createHeap() {
     mpZeldaModel = mDoExt_J3DModel__create((J3DModelData*)dComIfG_getObjectRes(l_arcName, 0x23), 0, 0x11020284);
     if (mpZeldaModel == NULL) {

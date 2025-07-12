@@ -4,39 +4,9 @@
 */
 
 #include "d/actor/d_a_scene_exit.h"
-#include "dol2asm.h"
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_player.h"
 #include "m_Do/m_Do_mtx.h"
-
-//
-// Forward References:
-//
-
-extern "C" void checkWork__8daScex_cFv();
-extern "C" static void daScex_Create__FP10fopAc_ac_c();
-extern "C" static void daScex_Execute__FP8daScex_c();
-extern "C" void execute__8daScex_cFv();
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" void onSwitch__10dSv_info_cFii();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_29();
-extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-
-//
-// Declarations:
-//
 
 /* 80485838-80485974 000078 013C+00 1/1 0/0 0/0 .text            checkWork__8daScex_cFv */
 int daScex_c::checkWork() {
@@ -50,75 +20,42 @@ int daScex_c::checkWork() {
         }
     }
 
-    u16 offBit = getOffEventBit();
-    if (offBit != 0x0FFF && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[offBit])) {
+    u16 eventBit = getOffEventBit();
+    if (eventBit != 0x0FFF && dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[eventBit])) {
         return 0;
     }
 
-    u16 onBit = getOnEventBit();
-    if (onBit != 0x0FFF && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[onBit])) {
+    eventBit = getOnEventBit();
+    if (eventBit != 0x0FFF && !dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[eventBit])) {
         return 0;
     }
 
     return 1;
 }
 
-/* ############################################################################################## */
-/* 80485C98-80485C9C 000000 0004+00 2/2 0/0 0/0 .rodata          @3758 */
-SECTION_RODATA static f32 const lit_3758 = 75.0f;
-COMPILER_STRIP_GATE(0x80485C98, &lit_3758);
+inline int daScex_c::create() {
+    fopAcM_SetupActor(this, daScex_c);
 
-/* 80485C9C-80485CA0 000004 0004+00 1/1 0/0 0/0 .rodata          @3759 */
-SECTION_RODATA static f32 const lit_3759 = 150.0f;
-COMPILER_STRIP_GATE(0x80485C9C, &lit_3759);
-
-/* 80485974-80485A30 0001B4 00BC+00 1/0 0/0 0/0 .text            daScex_Create__FP10fopAc_ac_c */
-static int daScex_Create(fopAc_ac_c* i_this) {
-    fopAcM_SetupActor(i_this, daScex_c);
-    daScex_c* scex = static_cast<daScex_c*>(i_this);
-
-    mDoMtx_stack_c::transS(scex->current.pos.x, scex->current.pos.y, scex->current.pos.z);
-    mDoMtx_stack_c::YrotM(scex->shape_angle.y);
-    MTXInverse(mDoMtx_stack_c::get(), scex->mMatrix);
-    scex->scale.x *= 75.0f;
-    scex->scale.z *= 75.0f;
-    scex->scale.y *= 150.0f;
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::YrotM(shape_angle.y);
+    mDoMtx_inverse(mDoMtx_stack_c::get(), mMatrix);
+    scale.x *= 75.0f;
+    scale.z *= 75.0f;
+    scale.y *= 150.0f;
 
     return cPhs_COMPLEATE_e;
 }
 
-
-/* 80485A30-80485A50 000270 0020+00 1/0 0/0 0/0 .text            daScex_Execute__FP8daScex_c */
-static void daScex_Execute(daScex_c* param_0) {
-    // NONMATCHING
+/* 80485974-80485A30 0001B4 00BC+00 1/0 0/0 0/0 .text            daScex_Create__FP10fopAc_ac_c */
+static int daScex_Create(fopAc_ac_c* i_this) {
+    daScex_c* scx = static_cast<daScex_c*>(i_this);
+    return scx->create();
 }
 
-/* ############################################################################################## */
-/* 80485CA0-80485CA4 000008 0004+00 0/1 0/0 0/0 .rodata          @3840 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3840[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80485CA0, &lit_3840);
-#pragma pop
-
-/* 80485CA4-80485CA8 00000C 0004+00 0/1 0/0 0/0 .rodata          @3841 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3841 = 1.0f;
-COMPILER_STRIP_GATE(0x80485CA4, &lit_3841);
-#pragma pop
-
-/* 80485CA8-80485CAC 000010 0004+00 0/1 0/0 0/0 .rodata          @3842 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3842 = -1.0f;
-COMPILER_STRIP_GATE(0x80485CA8, &lit_3842);
-#pragma pop
+/* 80485A30-80485A50 000270 0020+00 1/0 0/0 0/0 .text            daScex_Execute__FP8daScex_c */
+static int daScex_Execute(daScex_c* i_this) {
+    return i_this->execute();
+}
 
 /* 80485A50-80485C90 000290 0240+00 1/1 0/0 0/0 .text            execute__8daScex_cFv */
 // NONMATCHING - regalloc, this matches debug but not retail :/
@@ -167,9 +104,9 @@ int daScex_c::execute() {
 /* ############################################################################################## */
 /* 80485CAC-80485CCC -00001 0020+00 1/0 0/0 0/0 .data            l_daScex_Method */
 static actor_method_class l_daScex_Method = {
-    (process_method_func)daScex_Create__FP10fopAc_ac_c,
-    0,
-    (process_method_func)daScex_Execute__FP8daScex_c,
+    (process_method_func)daScex_Create,
+    NULL,
+    (process_method_func)daScex_Execute,
 };
 
 /* 80485CCC-80485D00 -00001 0034+00 0/0 0/0 1/0 .data            g_profile_SCENE_EXIT */

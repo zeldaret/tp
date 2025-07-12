@@ -13,8 +13,9 @@ class dBgW;
  * @details
  *
  */
-class obj_fmobj_class : public fopAc_ac_c {
+class obj_fmobj_class {
 public:
+    /* 0x000 */ fopAc_ac_c mActor;
     /* 0x568 */ request_of_phase_process_class mPhase;
     /* 0x570 */ u8 field_0x570;
     /* 0x574 */ J3DModel* mpModel;

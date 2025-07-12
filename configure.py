@@ -1567,7 +1567,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_cboard"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_digplace"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_eff"),
-    ActorRel(NonMatching, "d_a_obj_fmobj"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_fmobj"),
     ActorRel(NonMatching, "d_a_obj_gpTaru"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_hhashi"),
     ActorRel(NonMatching, "d_a_obj_kanban2"),
@@ -2169,7 +2169,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ystone"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_zcloth"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_zdoor"),
-    ActorRel(NonMatching, "d_a_obj_zrTurara"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_zrTurara"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_zrTuraraRock"),
     ActorRel(Equivalent, "d_a_obj_zraMark"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_zra_freeze"),

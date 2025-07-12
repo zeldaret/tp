@@ -75,8 +75,7 @@ int daGoGate_c::Execute(Mtx** param_0) {
 /* 80BFE11C-80BFE128 000014 000C+00 4/4 0/0 0/0 .bss             l_HIO */
 static daGoGate_HIO_c l_HIO;
 
-/* 80BFD9D4-80BFDAD8 000414 0104+00 1/1 0/0 0/0 .text
-    // NONMATCHING  moveGate__10daGoGate_cFv */
+/* 80BFD9D4-80BFDAD8 000414 0104+00 1/1 0/0 0/0 .text            moveGate__10daGoGate_cFv */
 void daGoGate_c::moveGate() {
     typedef void (daGoGate_c::*daGoGate_modeFunc)();
     static daGoGate_modeFunc mode_proc[] = {

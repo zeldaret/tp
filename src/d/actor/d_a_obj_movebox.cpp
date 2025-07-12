@@ -45,22 +45,7 @@ daObjMovebox::Bgc_c::Bgc_c() {
     mState = STATE_0_e;
 }
 
-UNK_BSS(1109)
-UNK_BSS(1107)
-UNK_BSS(1105)
-UNK_BSS(1104)
-UNK_BSS(1099)
-UNK_BSS(1097)
-UNK_BSS(1095)
-UNK_BSS(1094)
-UNK_BSS(1057)
-UNK_BSS(1055)
-UNK_BSS(1053)
-UNK_BSS(1052)
-UNK_BSS(1014)
-UNK_BSS(1012)
-UNK_BSS(1010)
-UNK_BSS(1009)
+UNK_REL_BSS
 
 /* 804818D4-80482060 000054 078C+00 7/8 0/0 0/0 .bss             M_gnd_work__Q212daObjMovebox5Bgc_c
  */
@@ -739,19 +724,28 @@ int daObjMovebox::Act_c::Create() {
 
 /* 8047F11C-8047F38C 00171C 0270+00 1/1 0/0 0/0 .text            afl_sway__Q212daObjMovebox5Act_cFv
  */
-// NONMATCHING regalloc
 void daObjMovebox::Act_c::afl_sway() {
+    const BgcSrc_c* pbgc;
+    s32 check_num;
+    bool var_r22;
+    bool var_r21;
+
     f32 var_f31 = field_0x8c0 * field_0x8c0 + field_0x8c4 * field_0x8c4;
     f32 var_f29 = i_attr().mMaxTiltPower * i_attr().mMaxTiltPower;
 
-    const BgcSrc_c* pbgc = i_attr().field_0x9e ? mBgc.M_lin20 : mBgc.M_lin5;
-    int check_num = i_attr().field_0x9e ? 21 : 5;
+    if (i_attr().field_0x9e) {
+        pbgc = mBgc.M_lin20;
+    } else {
+        pbgc = mBgc.M_lin5;
+    }
 
-    bool var_r22 = mBgc.chk_wall_touch2(this, pbgc, check_num, M_dir_base[0]) ||
-                   mBgc.chk_wall_touch2(this, pbgc, check_num, M_dir_base[2]);
+    check_num = i_attr().field_0x9e ? 21 : 5;
 
-    bool var_r21 = mBgc.chk_wall_touch2(this, pbgc, check_num, M_dir_base[1]) ||
-                   mBgc.chk_wall_touch2(this, pbgc, check_num, M_dir_base[3]);
+    var_r22 = mBgc.chk_wall_touch2(this, pbgc, check_num, M_dir_base[0]) ||
+              mBgc.chk_wall_touch2(this, pbgc, check_num, M_dir_base[2]);
+
+    var_r21 = mBgc.chk_wall_touch2(this, pbgc, check_num, M_dir_base[1]) ||
+              mBgc.chk_wall_touch2(this, pbgc, check_num, M_dir_base[3]);
 
     if (var_f31 > var_f29) {
         f32 var_f30 = i_attr().mMaxTiltPower / JMAFastSqrt(var_f31);
@@ -759,10 +753,16 @@ void daObjMovebox::Act_c::afl_sway() {
         field_0x8c4 *= var_f30;
     }
 
-    f32 var_f28 = i_attr().mTiltSpringFactor * -(field_0x8c8 - field_0x8c0);
-    f32 var_f27 = i_attr().mTiltSpringFactor * -(field_0x8cc - field_0x8c4);
-    f32 var_f26 = -field_0x8d0 * i_attr().mTiltViscoscityResistance;
-    f32 var_f25 = -field_0x8d4 * i_attr().mTiltViscoscityResistance;
+    f32 var_f28;
+    f32 var_f27;
+    f32 var_f26;
+    f32 var_f25;
+    f32 var_f24_debug = field_0x8c8 - field_0x8c0;
+    f32 var_f23_debug = field_0x8cc - field_0x8c4;
+    var_f28 = i_attr().mTiltSpringFactor * -(var_f24_debug);
+    var_f27 = i_attr().mTiltSpringFactor * -(var_f23_debug);
+    var_f26 = -field_0x8d0 * i_attr().mTiltViscoscityResistance;
+    var_f25 = -field_0x8d4 * i_attr().mTiltViscoscityResistance;
 
     field_0x8d0 += var_f28 + var_f26;
     field_0x8d4 += var_f27 + var_f25;
