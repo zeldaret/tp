@@ -182,10 +182,12 @@ int daE_WS_c::checkPlayerPos() {
         gndchk.SetPos(&gndpos);
         gndpos.y = dComIfG_Bgsp().GroundCross(&gndchk);
         if (current.pos.y - gndpos.y > l_HIO.dist_to_ground) {
+            // Return 1 if walltula is looking towards player
             if (cLib_distanceAngleS(shape_angle.y, calcTargetAngle(current.pos, player_pos)) < l_HIO.search_angle) {
                 return 1;
             }
 
+            // otherwise return 2 if player is near the walltula
             if (calcTargetDist(current.pos, player_pos) < 150.0f) {
                 return 2;
             }
@@ -230,12 +232,12 @@ void daE_WS_c::executeWait() {
 
     switch (mMode) {
     case 0:
-        field_0x68c = 50.0f + cM_rndF(50.0f);
+        mMoveWaitTimer = 50.0f + cM_rndF(50.0f);
         setBck(9, 2, 3.0f, 1.0f);
         mMode = 1;
         /* fallthrough */
     case 1:
-        if (field_0x68c == 0) {
+        if (mMoveWaitTimer == 0) {
             mMode = 2;
         }
         break;
@@ -263,19 +265,19 @@ void daE_WS_c::executeWait() {
 
         if (cLib_chaseAngleS(&shape_angle.y, mTargetAngle, mTargetStep)) {
             mMode = 4;
-            field_0x68c = 10;
+            mMoveWaitTimer = 10;
             setBck(9, 2, 3.0f, 1.0f);
         }
         break;
     case 4:
-        if (field_0x68c == 0) {
+        if (mMoveWaitTimer == 0) {
             mMode = 5;
         }
         break;
     case 5:
         mMode = 6;
         speedF = 3.0f;
-        field_0x68c = 20.0f + cM_rndF(10.0f);
+        mMoveWaitTimer = 20.0f + cM_rndF(10.0f);
         setBck(7, 2, 3.0f, 1.0f);
         /* fallthrough */
     case 6:
@@ -283,15 +285,15 @@ void daE_WS_c::executeWait() {
 
         if (field_0x690 == 0) {
             if (calcTargetDist(current.pos, field_0x65c) >= l_HIO.move_range) {
-                field_0x68c = 0;
+                mMoveWaitTimer = 0;
             }
         }
 
         if (checkBeforeBg(shape_angle.y)) {
-            field_0x68c = 0;
+            mMoveWaitTimer = 0;
         }
 
-        if (field_0x68c == 0) {
+        if (mMoveWaitTimer == 0) {
             speedF = 0.0f;
             mMode = 0;
         }
@@ -322,12 +324,12 @@ void daE_WS_c::executeAttack() {
                 mMode = 2;
                 setBck(10, 2, 3.0f, 1.0f);
                 mSound.startCreatureVoice(Z2SE_EN_WS_V_YOKOKU, -1);
-                field_0x68c = 10;
+                mMoveWaitTimer = 10;
             }
         }
         break;
     case 2:
-        if (field_0x68c == 0) {
+        if (mMoveWaitTimer == 0) {
             speedF = l_HIO.attack_speed * mBodyScale;
             setBck(7, 2, 3.0f, 3.0f);
             mMode = 3;
@@ -410,7 +412,7 @@ void daE_WS_c::executeDown() {
             speedF = 3.0f + cM_rndF(2.0f);
             speed.y = 12.0f;
             mMode = 3;
-            field_0x68c = 30;
+            mMoveWaitTimer = 30;
             setBck(6, 0, 5.0f, 1.0f);
             mSound.startCreatureSound(Z2SE_CM_BODYFALL_S, 0, -1);
         }
@@ -445,7 +447,7 @@ void daE_WS_c::executeDown() {
         cLib_addCalc2(&mDownColor, -20.0f, 1.0f, 0.4f);
 
         if (mpModelMorf->isStop()) {
-            field_0x68c = 15;
+            mMoveWaitTimer = 15;
             mMode = 5;
             return;
         }
@@ -453,7 +455,7 @@ void daE_WS_c::executeDown() {
     case 5:
         cLib_addCalc2(&mDownColor, -20.0f, 1.0f, 0.4f);
 
-        if (field_0x68c == 0) {
+        if (mMoveWaitTimer == 0) {
             fopAcM_delete(this);
             fopAcM_createDisappear(this, &current.pos, 7, 0, 7);
 
@@ -480,7 +482,7 @@ void daE_WS_c::executeWindDown() {
         setBck(7, 2, 3.0f, 1.0f);
     
         mSound.startCreatureVoice(Z2SE_EN_WS_V_DAMAGE, -1);
-        field_0x68c = 5;
+        mMoveWaitTimer = 5;
         mAcch.SetGroundUpY(20.0f);
         attention_info.flags = 0;
         speed.y = 0.0f;
@@ -496,7 +498,7 @@ void daE_WS_c::executeWindDown() {
         shape_angle.z += 0x800;
         speed.y = 30.0f;
 
-        if (field_0x68c == 0) {
+        if (mMoveWaitTimer == 0) {
             mMode = 2;
             gravity = -3.0f;
         }
@@ -512,7 +514,7 @@ void daE_WS_c::executeWindDown() {
             speedF = 3.0f + cM_rndF(2.0f);
             speed.y = 12.0f;
             mMode = 3;
-            field_0x68c = 30;
+            mMoveWaitTimer = 30;
             setBck(6, 0, 5.0f, 1.0f);
             mSound.startCreatureVoice(Z2SE_EN_WS_V_DEATH, -1);
             mSound.startCreatureSound(Z2SE_CM_BODYFALL_S, 0, -1);
@@ -539,13 +541,13 @@ void daE_WS_c::executeWindDown() {
         shape_angle.y += mTargetStep;
 
         if (mpModelMorf->isStop()) {
-            field_0x68c = 15;
+            mMoveWaitTimer = 15;
             mMode = 5;
         }
         break;
     case 5:
         cLib_addCalc2(&mDownColor, -20.0f, 1.0f, 0.4f);
-        if (field_0x68c == 0) {
+        if (mMoveWaitTimer == 0) {
             fopAcM_delete(this);
             fopAcM_createDisappear(this, &current.pos, 7, 0, 7);
 
@@ -690,8 +692,8 @@ void daE_WS_c::cc_set() {
 
 /* 807E5C0C-807E5CB8 0022EC 00AC+00 1/1 0/0 0/0 .text            execute__8daE_WS_cFv */
 int daE_WS_c::execute() {
-    if (field_0x68c != 0) {
-        field_0x68c--;
+    if (mMoveWaitTimer != 0) {
+        mMoveWaitTimer--;
     }
 
     if (mInvulnerabilityTimer != 0) {
