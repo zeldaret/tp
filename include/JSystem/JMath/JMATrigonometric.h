@@ -19,6 +19,7 @@ struct TAngleConstant_<f32> {
     static f32 RADIAN_TO_DEGREE_FACTOR() { return 180.0f / RADIAN_DEG180(); }
 };
 
+namespace JMath {
 /**
  * @ingroup jsystem-jmath
  * 
@@ -93,7 +94,6 @@ struct TAsinAcosTable {
     }
 };
 
-namespace JMath {
 extern TSinCosTable<13, f32> sincosTable_;
 extern TAtanTable atanTable_;
 extern TAsinAcosTable asinAcosTable_;

@@ -1194,23 +1194,23 @@ public:
     void setSumouForceTackle() { mSpecialMode = 0x1B; }
     void setSumouForceGraspCancel() { mSpecialMode = 0x24; }
 
-    BOOL checkSumouPushFront() { return mSpecialMode == 7; }
-    BOOL checkSumouPushBack() { return mSpecialMode == 8; }
-    BOOL checkSumouTackleSuccess() { return mSpecialMode == 0xF; }
-    BOOL checkSumouTackleSuccessPunch() { return mSpecialMode == 0x10; }
-    BOOL checkSumouTackleMiss() { return mSpecialMode == 0x11; }
-    BOOL checkSumouTackleDraw() { return mSpecialMode == 0x12; }
-    BOOL checkSumouPunchSuccess() { return mSpecialMode == 0x13; }
-    BOOL checkSumouPunchMiss() { return mSpecialMode == 0x14; }
-    BOOL checkSumouPunchDraw() { return mSpecialMode == 0x15; }
-    BOOL checkSumouWait() { return mSpecialMode == 0x16; }
-    BOOL checkSumouLeftMove() { return mSpecialMode == 0x17; }
-    BOOL checkSumouRightMove() { return mSpecialMode == 0x18; }
-    BOOL checkSumouSlideLeft() { return mSpecialMode == 0x19; }
-    BOOL checkSumouSlideRight() { return mSpecialMode == 0x1A; }
-    BOOL checkSumouPunchStagger() { return mSpecialMode == 0x1F; }
-    BOOL checkSumouTackleStagger() { return mSpecialMode == 0x20; }
-    BOOL checkSumouGraspRelease() { return mSpecialMode == 0x23; }
+    BOOL checkSumouPushFront() const { return mSpecialMode == 7; }
+    BOOL checkSumouPushBack() const { return mSpecialMode == 8; }
+    BOOL checkSumouTackleSuccess() const { return mSpecialMode == 0xF; }
+    BOOL checkSumouTackleSuccessPunch() const { return mSpecialMode == 0x10; }
+    BOOL checkSumouTackleMiss() const { return mSpecialMode == 0x11; }
+    BOOL checkSumouTackleDraw() const { return mSpecialMode == 0x12; }
+    BOOL checkSumouPunchSuccess() const { return mSpecialMode == 0x13; }
+    BOOL checkSumouPunchMiss() const { return mSpecialMode == 0x14; }
+    BOOL checkSumouPunchDraw() const { return mSpecialMode == 0x15; }
+    BOOL checkSumouWait() const { return mSpecialMode == 0x16; }
+    BOOL checkSumouLeftMove() const { return mSpecialMode == 0x17; }
+    BOOL checkSumouRightMove() const { return mSpecialMode == 0x18; }
+    BOOL checkSumouSlideLeft() const { return mSpecialMode == 0x19; }
+    BOOL checkSumouSlideRight() const { return mSpecialMode == 0x1A; }
+    BOOL checkSumouPunchStagger() const { return mSpecialMode == 0x1F; }
+    BOOL checkSumouTackleStagger() const { return mSpecialMode == 0x20; }
+    BOOL checkSumouGraspRelease() const { return mSpecialMode == 0x23; }
 };
 
 int daPy_addCalcShort(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 param_4);

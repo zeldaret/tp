@@ -737,6 +737,10 @@ inline s16 dMeter2Info_getHorseLifeCount() {
     return g_meter2_info.getHorseLifeCount();
 }
 
+inline void dMeter2Info_setMeterString(s32 i_string) {
+    g_meter2_info.setMeterString(i_string);
+}
+
 inline void dMeter2Info_resetMeterString() {
     g_meter2_info.resetMeterString();
 }

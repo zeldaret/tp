@@ -245,6 +245,10 @@ inline cXyz* fopAcM_GetOldPosition_p(fopAc_ac_c* i_actor) {
     return &i_actor->old.pos;
 }
 
+inline cXyz* fopAcM_GetScale_p(fopAc_ac_c* i_actor) {
+    return &i_actor->scale;
+}
+
 inline cXyz* fopAcM_GetSpeed_p(fopAc_ac_c* i_actor) {
     return &i_actor->speed;
 }

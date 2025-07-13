@@ -2,8 +2,6 @@
 #define D_A_NPC_WRESTLER_H
 
 #include "d/actor/d_a_npc.h"
-#include "d/actor/d_a_npc_bouS.h"
-#include "d/d_meter2_info.h"
 
 /**
  * @ingroup actors-npcs
@@ -28,14 +26,12 @@ struct daNpcWrestler_HIOParamSub {
     /* 0x24 */ s16 stagger_time;                // ふらふら時間 (Stagger Time)
     /* 0x26 */ s16 wait_time;                   // 待ち時間 (Wait Time)
     /* 0x28 */ s16 field_0x28;                  // 曲がり限界 (Bending Limit)
-    /* 0x2C */ f32 lateral_movement_chance;     //  横移動 の確率 (Lateral Movement Chance)
-    /* 0x30 */ f32 hit_chance;                  //  張り手 の確率 (Hit Chance)
-    /* 0x34 */ f32 tackle_chance;               // タックルの確率 (Tackle Chance)
-    /* 0x38 */ f32 wait_chance;                 //  待  機 の確率 (Wait Chance)
-    /* 0x3C */ f32 lateral_movement_chance_2;   //  横移動 の確率 (Lateral Movement Chance)
-    /* 0x40 */ f32 hit_chance_2;                //  張り手 の確率 (Hit Chance)
-    /* 0x44 */ f32 tackle_chance_2;             // タックルの確率 (Tackle Chance)
-    /* 0x48 */ f32 wait_chance_2;               //  待  機 の確率 (Wait Chance)
+    /* 0x2C */ struct {
+        f32 lateral_movement_chance;            //  横移動 の確率 (Lateral Movement Chance)
+        f32 hit_chance;                         //  張り手 の確率 (Hit Chance)
+        f32 tackle_chance;                      // タックルの確率 (Tackle Chance)
+        f32 wait_chance;                        //  待  機 の確率 (Wait Chance)
+    } chances[2];
 };
 
  struct daNpcWrestler_HIOParam {
@@ -66,18 +62,10 @@ struct daNpcWrestler_HIOParamSub {
     /* 0xB0 */ f32 field_0xb0;
     /* 0xB4 */ s16 field_0xb4;
     /* 0xB6 */ s16 field_0xb6;
-    /* 0xB8 */ f32 field_0xb8;
-    /* 0xBC */ f32 field_0xbc;
-    /* 0xC0 */ f32 field_0xc0;
-    /* 0xC4 */ f32 field_0xc4;
-    /* 0xC8 */ f32 field_0xc8;
-    /* 0xCC */ f32 field_0xcc;
-    /* 0xD0 */ f32 field_0xd0;
-    /* 0xD4 */ f32 field_0xd4;
-    /* 0xD8 */ f32 field_0xd8;
-    /* 0xDC */ f32 field_0xdc;
-    /* 0xE0 */ f32 field_0xe0;
-    /* 0xE4 */ f32 field_0xe4;
+    /* 0xB8 */ Vec field_0xb8;
+    /* 0xC4 */ Vec field_0xc4;
+    /* 0xD0 */ Vec field_0xd0;
+    /* 0xDC */ Vec field_0xdc;
     /* 0xE8 */ s16 field_0xe8;
     /* 0xEA */ s16 field_0xea;
     /* 0xEC */ s16 field_0xec;
@@ -127,12 +115,28 @@ public:
     /* 0x19C */ daNpcWrestler_HIO_Node_c field_0x19c[2];
 };
 
+struct WrestlerParamList {
+    daNpc_GetParam1* bck_list;
+    daNpc_GetParam2* face_list;
+    daNpc_GetParam1* btp_list;
+    daNpc_GetParam1* btk_list;
+};
+
+struct DemoCamera_c {
+    cXyz mDemoCamCenter;
+    cXyz mDemoCamEye;
+    cXyz field_0x18;
+    cXyz field_0x24;
+    cXyz field_0x30;
+    cXyz field_0x3c;
+};
+
 class daNpcWrestler_c : public daNpcF_c {
 public:
     typedef bool (daNpcWrestler_c::*actionFunc)(void*);
     typedef BOOL (daNpcWrestler_c::*EventFn)(int);
 
-    /* 80B2F28C */ daNpcWrestler_c() {};
+    /* 80B2F28C */ daNpcWrestler_c();
     /* 80B2F688 */ cPhs__Step Create();
     /* 80B2F974 */ int CreateHeap();
     /* 80B2FDB0 */ int Delete();
@@ -141,7 +145,7 @@ public:
     /* 80B2FE84 */ int ctrlJoint(J3DJoint*, J3DModel*);
     /* 80B30150 */ static int createHeapCallBack(fopAc_ac_c*);
     /* 80B30170 */ static int ctrlJointCallBack(J3DJoint*, int);
-    /* 80B301BC */ BOOL checkStartUp();
+    /* 80B301BC */ bool checkStartUp();
     /* 80B308B0 */ void reset();
     /* 80B30AD8 */ int setAction(actionFunc);
     /* 80B30BEC */ void checkArenaInfo();
@@ -191,11 +195,11 @@ public:
     /* 80B3FCE8 */ void playMotion();
     /* 80B40B3C */ void lookat();
 
-    /* 80B2F4A0 */ virtual ~daNpcWrestler_c() {}
+    /* 80B2F4A0 */ virtual ~daNpcWrestler_c();
     /* 80B3EAE4 */ void setParam();
     /* 80B3EB94 */ BOOL main();
     /* 80B404FC */ BOOL ctrlBtk();
-    /* 80B4166C */ void adjustShapeAngle();
+    /* 80B4166C */ void adjustShapeAngle() {}
     /* 80B405E8 */ void setAttnPos();
     /* 80B3023C */ bool setExpressionAnm(int, bool);
     /* 80B30654 */ bool setExpressionBtp(int);
@@ -205,11 +209,11 @@ public:
     /* 80B40D1C */ BOOL drawDbgInfo();
     /* 80B40D24 */ void drawOtherMdls();
 
-    int getMessageNo() { return fopAcM_GetParam(this) >> 8; }
+    s16 getMessageNo() { return (fopAcM_GetParam(this) >> 8) & 0xFFFF; }
     int getWrestlerAction() { return mWrestlerAction; }
     u8 getType() { return subtype & 0x7F; }
     u8 getWrestlerType() { return getType(); }
-    BOOL chkAction(actionFunc i_action) { return i_action == field_0xdcc; }
+    bool chkAction(actionFunc i_action) { return i_action == field_0xdcc; }
     bool selectAction();
     s8 getArenaNo() { return (u8)fopAcM_GetParam(this); }
     u32 getStatusNo() { return fopAcM_GetParam(this) >> 24; }
@@ -222,12 +226,10 @@ public:
     void initTalkAngle() { mTurnMode = 0; }
     void setNextSumouEvent(int);
     csXyz* fopAcM_GetHomeAngle_p(fopAc_ac_c* i_actor) { return &i_actor->home.angle; }
-    csXyz* fopAcM_GetShapeAngle_p(fopAc_ac_c* i_actor) { return &i_actor->shape_angle; }
     void setBackToLiving();
     void offWrestlerNoDraw() { mWrestlerNoDraw = 0; }
     void onWrestlerNoDraw() { mWrestlerNoDraw = 1; }
     void initDemoCamera_ArenaSide();
-    void dMeter2Info_setMeterString(s32);
     void sumouAI();
     s16 oppositeToPlayer();
     void correctGraspPosAngle(bool);
@@ -236,15 +238,6 @@ public:
     void playExpression();
 
     static EventFn mEvtSeqList[7];
-
-    struct DemoCamera_c {
-        cXyz mDemoCamCenter;
-        cXyz mDemoCamEye;
-        cXyz field_0x18;
-        cXyz field_0x24;
-        cXyz field_0x30;
-        cXyz field_0x3c;
-    };
 
 private:
     /* 0xB48 */ Z2Creature mSound;
@@ -261,16 +254,19 @@ private:
     /* 0xDE4 */ JPABaseEmitter* field_0xde4;
     /* 0xDE8 */ u32 field_0xde8;
     /* 0xDEC */ u32 field_0xdec;
-    /* 0xDF0 */ cXyz mArenaPos;
+    /* 0xDF0 */ Vec mArenaPos;
     /* 0xDFC */ f32 mArenaExtent;
     /* 0xE00 */ s16 mArenaAngle;
-    /* 0xE02 */ u8 mArenaInfo;
+    /* 0xE02 */ struct {
+        u8 chkFlag;
+    } mArenaInfo;
     /* 0xE03 */ u8 field_0xe03;
-    /* 0xE04 */ int* field_0xe04;
+    /* 0xE04 */ WrestlerParamList* field_0xe04;
     /* 0xE08 */ DemoCamera_c mDemoCam;
     /* 0xE50 */ f32 mDemoCamFovy;
     /* 0xE54 */ f32 field_0xe54;
     /* 0xE58 */ f32 field_0xe58;
+    /* 0xE5C */ s16 field_0xe5c;
     /* 0xE5E */ s16 field_0xe5e;
     /* 0xE60 */ u8 field_0xe60[0xe64 - 0xe60];
     /* 0XE64 */ request_of_phase_process_class mPhase;
