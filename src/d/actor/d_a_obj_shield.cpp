@@ -90,7 +90,7 @@ int daItemShield_c::Create() {
     mCcCyl.SetStts(&mCcStts);
     mCcCyl.SetR(dItem_data::getR(m_itemNo));
     mCcCyl.SetH(dItem_data::getH(m_itemNo));
-    fopAcM_SetCullSize(this, 15);
+    fopAcM_SetCullSize(this, fopAc_CULLSPHERE_0_e);
     actionWaitInit();
     if (fopAcM_isSwitch(this, getSwBit())) {
         field_0x94a = 3;

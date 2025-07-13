@@ -2163,7 +2163,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_wind_stone"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_window"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_wood_pendulum"),
-    ActorRel(NonMatching, "d_a_obj_wood_statue"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_wood_statue"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_wsword"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_yel_bag"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ystone"),
