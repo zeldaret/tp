@@ -3172,7 +3172,6 @@ BOOL daObjCarry_c::chkSinkObj() {
 }
 
 /* 8047573C-80476618 0067BC 0EDC+00 1/1 0/0 0/0 .text            bg_check__12daObjCarry_cFv */
-// NONMATCHING - regalloc, equivalent?
 void daObjCarry_c::bg_check() {
     bool roof_hit = mAcch.ChkRoofHit();
     bool wall_hit = mAcch.ChkWallHit();
