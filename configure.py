@@ -2181,7 +2181,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_zra_rock"),
     ActorRel(NonMatching, "d_a_passer_mng"),
     ActorRel(Equivalent, "d_a_peru"),
-    ActorRel(NonMatching, "d_a_ppolamp"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_ppolamp"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_skip_2D"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_startAndGoal", extra_cflags=['-pragma "nosyminline off"']),
     ActorRel(MatchingFor("GZ2E01"), "d_a_swBall"),
