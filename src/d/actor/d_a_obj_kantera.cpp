@@ -70,7 +70,7 @@ int daItemKantera_c::Create() {
     mCcCyl.SetStts(&mCcStts);
     mCcCyl.SetR(dItem_data::getR(m_itemNo));
     mCcCyl.SetH(dItem_data::getH(m_itemNo));
-    fopAcM_SetCullSize(this, 0xF);
+    fopAcM_SetCullSize(this, fopAc_CULLSPHERE_0_e);
     actionWaitInit();
     fopAcM_SetGravity(this, -6.0f);
     fopAcM_OnCarryType(this, fopAcM_CARRY_ITEM);
