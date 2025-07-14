@@ -2187,7 +2187,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_swBall"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_swLBall"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_swTime"),
-    ActorRel(NonMatching, "d_a_tag_Lv6Gate"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_tag_Lv6Gate"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_Lv7Gate"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_Lv8Gate"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_TWgate"),
