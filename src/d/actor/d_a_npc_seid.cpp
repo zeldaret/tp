@@ -221,7 +221,7 @@ int daNpc_seiD_c::Draw() {
         J3DMaterial* material = modelData->getMaterialNodePointer(getEyeballMaterialNo());
         material->setMaterialAnm(matAnm);
     }
-    return draw(FALSE, TRUE, field_0xde8, NULL, 100.0f, FALSE, FALSE, FALSE);
+    return draw(FALSE, TRUE, mRealShadowSize, NULL, 100.0f, FALSE, FALSE, FALSE);
 }
 
 /* 80AC9BA8-80AC9BC8 000608 0020+00 1/1 0/0 0/0 .text            createHeapCallBack__12daNpc_seiD_cFP10fopAc_ac_c */
@@ -289,9 +289,9 @@ void daNpc_seiD_c::setParam() {
     mWallR = daNpc_seiD_Param_c::m.mWallR;
     mAcchCir.SetWallR(mWallR);
     mAcchCir.SetWallH(daNpc_seiD_Param_c::m.mWallH);
-    field_0xde8 = daNpc_seiD_Param_c::m.field_0x0c;
+    mRealShadowSize = daNpc_seiD_Param_c::m.field_0x0c;
     gravity = daNpc_seiD_Param_c::m.mGravity;
-    field_0xa80 = daNpc_seiD_Param_c::m.field_0x6c;
+    mExpressionMorfFrame = daNpc_seiD_Param_c::m.field_0x6c;
     mMorfFrames = daNpc_seiD_Param_c::m.mMorfFrames;
 }
 

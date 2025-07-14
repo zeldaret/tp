@@ -362,7 +362,7 @@ int daNpc_Maro_c::Draw() {
         J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
-    return daNpcT_c::draw(0, 0, field_0xde8, NULL, 100.0f, 0, 0, 0);
+    return daNpcT_c::draw(0, 0, mRealShadowSize, NULL, 100.0f, 0, 0, 0);
 }
 
 /* 8055BFA0-8055BFC0 000B00 0020+00 1/1 0/0 0/0 .text
@@ -691,8 +691,8 @@ void daNpc_Maro_c::setParam() {
     mAttnFovY = daNpc_Maro_Param_c::m.common.fov;
     mAcchCir.SetWallR(mWallR);
     mAcchCir.SetWallH(daNpc_Maro_Param_c::m.common.knee_length);
-    field_0xde8 = daNpc_Maro_Param_c::m.common.real_shadow_size;
-    field_0xa80 = daNpc_Maro_Param_c::m.common.expression_morf_frame;
+    mRealShadowSize = daNpc_Maro_Param_c::m.common.real_shadow_size;
+    mExpressionMorfFrame = daNpc_Maro_Param_c::m.common.expression_morf_frame;
     mMorfFrames = daNpc_Maro_Param_c::m.common.morf_frame;
     gravity = daNpc_Maro_Param_c::m.common.gravity;
 }
@@ -3478,7 +3478,7 @@ static int daNpc_Maro_IsDelete(void* i_this) {
 static daNpc_Maro_Param_c l_HIO;
 
 /* 80564970-80564978 0094D0 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__12daNpc_Maro_cFv */
-s32 daNpc_Maro_c::getEyeballMaterialNo() {
+u16 daNpc_Maro_c::getEyeballMaterialNo() {
     return 1;
 }
 

@@ -520,7 +520,7 @@ int daNpc_Taro_c::Draw() {
         material->setMaterialAnm(matAnm);
     }
 
-    return draw(FALSE, 0, field_0xde8, NULL, 100.0f, 0, 0, 0);
+    return draw(FALSE, 0, mRealShadowSize, NULL, 100.0f, 0, 0, 0);
 }
 
 /* 805669F8-80566A18 000C58 0020+00 1/1 0/0 0/0 .text
@@ -780,11 +780,11 @@ void daNpc_Taro_c::setParam() {
     }
     mAcchCir.SetWallR(mWallR);
     mAcchCir.SetWallH(daNpc_Taro_Param_c::m.mWallH);
-    field_0xde8 = daNpc_Taro_Param_c::m.field_0x0c;
+    mRealShadowSize = daNpc_Taro_Param_c::m.field_0x0c;
     if (&daNpc_Taro_c::practice == mAction) {
-        field_0xde8 = 500.0f;
+        mRealShadowSize = 500.0f;
     }
-    field_0xa80 = daNpc_Taro_Param_c::m.field_0x6c;
+    mExpressionMorfFrame = daNpc_Taro_Param_c::m.field_0x6c;
     mMorfFrames = daNpc_Taro_Param_c::m.mMorfFrames;
     gravity = daNpc_Taro_Param_c::m.mGravity;
 }

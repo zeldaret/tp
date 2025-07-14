@@ -66,7 +66,7 @@ extern "C" void __dt__12dBgS_AcchCirFv();
 extern "C" void __dt__10dCcD_GSttsFv();
 extern "C" void __dt__12dBgS_ObjAcchFv();
 extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" s32 getEyeballMaterialNo__8daNpcT_cFv();
+extern "C" u16 getEyeballMaterialNo__8daNpcT_cFv();
 extern "C" void ctrlSubFaceMotion__8daNpcT_cFi();
 extern "C" s32 getFootLJointNo__8daNpcT_cFv();
 extern "C" s32 getFootRJointNo__8daNpcT_cFv();

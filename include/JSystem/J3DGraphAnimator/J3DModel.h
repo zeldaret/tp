@@ -100,6 +100,7 @@ public:
     Vec* getBaseScale() { return &mBaseScale; }
     void setAnmMtx(int jointNo, Mtx m) { mMtxBuffer->setAnmMtx(jointNo, m); }
     MtxP getAnmMtx(int jointNo) { return mMtxBuffer->getAnmMtx(jointNo); }
+    J3DSkinDeform* getSkinDeform() { return mSkinDeform; }
 
     /* 0x04 */ J3DModelData* mModelData;
     /* 0x08 */ u32 mFlags;

@@ -49,10 +49,31 @@ public:
     /* 80977AC0 */ void drawOtherMdls();
     /* 809783A0 */ void adjustShapeAngle();
 
+    void setHome() { 
+        current.pos = home.pos;
+        old.pos = current.pos;
+        shape_angle.y = home.angle.y;
+    }
+
+    void offDispFlag() { mDispFlag = 0; }
+    void onDispFlag() { mDispFlag = 1; }
+
+    void setMessageNo(s16 i_msgNo) {
+        mMsgNo = i_msgNo;
+    }
+
+    void setForcibleTalk() {
+        mForcibleTalk = 1;
+    }
+
     static u8 mEvtSeqList[48];
 
 private:
-    /* 0x568 */ u8 field_0x568[0xe00 - 0x568];
+    /* 0x568 */ u8 field_0x568[0xdf0 - 0x568];
+    /* 0xDF0 */ int mMsgNo;
+    /* 0xDF4 */ u8 field_0xdf4[0xdfe - 0xdf4];
+    /* 0xDFE */ u8 mForcibleTalk;
+    /* 0xDFF */ u8 mDispFlag;
 };
 
 STATIC_ASSERT(sizeof(daNpcBouS_c) == 0xe00);

@@ -105,7 +105,7 @@ extern "C" void func_805531EC(void* _this, int, int);
 extern "C" void __sinit_d_a_npc_kkri_cpp();
 extern "C" void
 __ct__12daNpc_Kkri_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
-extern "C" s32 getEyeballMaterialNo__12daNpc_Kkri_cFv();
+extern "C" u16 getEyeballMaterialNo__12daNpc_Kkri_cFv();
 extern "C" s32 getHeadJointNo__12daNpc_Kkri_cFv();
 extern "C" s32 getNeckJointNo__12daNpc_Kkri_cFv();
 extern "C" bool getBackboneJointNo__12daNpc_Kkri_cFv();
@@ -1490,7 +1490,7 @@ daNpc_Kkri_c::daNpc_Kkri_c(daNpcT_faceMotionAnmData_c const* param_0,
 }
 
 /* 805533E4-805533EC 004124 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__12daNpc_Kkri_cFv */
-s32 daNpc_Kkri_c::getEyeballMaterialNo() {
+u16 daNpc_Kkri_c::getEyeballMaterialNo() {
     return 2;
 }
 

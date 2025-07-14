@@ -98,7 +98,7 @@ extern "C" void changeBtk__8daNpcT_cFPiPi();
 extern "C" void __sinit_d_a_npc_kyury_cpp();
 extern "C" void
 __ct__13daNpc_Kyury_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
-extern "C" s32 getEyeballMaterialNo__13daNpc_Kyury_cFv();
+extern "C" u16 getEyeballMaterialNo__13daNpc_Kyury_cFv();
 extern "C" s32 getHeadJointNo__13daNpc_Kyury_cFv();
 extern "C" s32 getNeckJointNo__13daNpc_Kyury_cFv();
 extern "C" bool getBackboneJointNo__13daNpc_Kyury_cFv();
@@ -1391,7 +1391,7 @@ daNpc_Kyury_c::daNpc_Kyury_c(daNpcT_faceMotionAnmData_c const* param_0,
 }
 
 /* 80A63800-80A63808 003820 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__13daNpc_Kyury_cFv */
-s32 daNpc_Kyury_c::getEyeballMaterialNo() {
+u16 daNpc_Kyury_c::getEyeballMaterialNo() {
     return 2;
 }
 

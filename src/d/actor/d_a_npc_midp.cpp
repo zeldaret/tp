@@ -230,7 +230,7 @@ int daNpc_midP_c::Draw() {
         modelData->getMaterialNodePointer(getEyeballRMaterialNo())->setMaterialAnm(mpMatAnm[1]);
     }
 
-    return daNpcT_c::draw(0, 0, field_0xde8, NULL, 0.0f, 1, 0, 0);
+    return daNpcT_c::draw(0, 0, mRealShadowSize, NULL, 0.0f, 1, 0, 0);
 }
 
 /* 80A715D4-80A715F4 000A54 0020+00 1/1 0/0 0/0 .text   createHeapCallBack__12daNpc_midP_cFP10fopAc_ac_c */
@@ -312,8 +312,8 @@ BOOL daNpc_midP_c::ctrlBtk() {
                 field_0xe2a = 0;
             }
 
-            mpMatAnm[0]->onEyeMoveFlg();
-            mpMatAnm[1]->onEyeMoveFlg();
+            mpMatAnm[0]->onEyeMoveFlag();
+            mpMatAnm[1]->onEyeMoveFlag();
             return TRUE;
         }
 
@@ -323,8 +323,8 @@ BOOL daNpc_midP_c::ctrlBtk() {
             field_0xe2a = 0;
         }
 
-        mpMatAnm[0]->offEyeMoveFlg();
-        mpMatAnm[1]->offEyeMoveFlg();
+        mpMatAnm[0]->offEyeMoveFlag();
+        mpMatAnm[1]->offEyeMoveFlag();
     }
 
     return FALSE;
@@ -352,8 +352,8 @@ void daNpc_midP_c::setParam() {
     mAttnFovY = daNpc_midP_Param_c::m.mAttnFovY;
     mAcchCir.SetWallR(mWallR);
     mAcchCir.SetWallH(daNpc_midP_Param_c::m.mWallH);
-    field_0xde8 = daNpc_midP_Param_c::m.field_0x0c;
-    field_0xa80 = daNpc_midP_Param_c::m.field_0x6c;
+    mRealShadowSize = daNpc_midP_Param_c::m.field_0x0c;
+    mExpressionMorfFrame = daNpc_midP_Param_c::m.field_0x6c;
     mMorfFrames = daNpc_midP_Param_c::m.mMorfFrames;
     gravity = daNpc_midP_Param_c::m.mGravity;
 }
@@ -647,12 +647,12 @@ static u8 lit_3811[12];
 static u8 l_HIO[4];
 
 /* 80A7390C-80A73914 002D8C 0008+00 1/0 0/0 0/0 .text getEyeballRMaterialNo__12daNpc_midP_cFv */
-s32 daNpc_midP_c::getEyeballRMaterialNo() {
+u16 daNpc_midP_c::getEyeballRMaterialNo() {
     return 3;
 }
 
 /* 80A73914-80A7391C 002D94 0008+00 1/0 0/0 0/0 .text getEyeballLMaterialNo__12daNpc_midP_cFv */
-s32 daNpc_midP_c::getEyeballLMaterialNo() {
+u16 daNpc_midP_c::getEyeballLMaterialNo() {
     return 2;
 }
 

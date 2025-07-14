@@ -108,7 +108,7 @@ extern "C" void func_809679F4(void* _this, u8*);
 extern "C" void __sinit_d_a_npc_bans_cpp();
 extern "C" void
 __ct__12daNpc_Bans_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
-extern "C" s32 getEyeballMaterialNo__12daNpc_Bans_cFv();
+extern "C" u16 getEyeballMaterialNo__12daNpc_Bans_cFv();
 extern "C" s32 getHeadJointNo__12daNpc_Bans_cFv();
 extern "C" s32 getNeckJointNo__12daNpc_Bans_cFv();
 extern "C" bool getBackboneJointNo__12daNpc_Bans_cFv();
@@ -1662,7 +1662,7 @@ daNpc_Bans_c::daNpc_Bans_c(daNpcT_faceMotionAnmData_c const* param_0,
 }
 
 /* 80967BE4-80967BEC 005404 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__12daNpc_Bans_cFv */
-s32 daNpc_Bans_c::getEyeballMaterialNo() {
+u16 daNpc_Bans_c::getEyeballMaterialNo() {
     return 2;
 }
 

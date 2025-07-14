@@ -65,6 +65,7 @@ public:
 class dDemo_actor_c : public JStage::TActor {
 public:
     enum Enable_e {
+        ENABLE_UNK_e = 1,
         ENABLE_TRANS_e = (1 << 1),
         ENABLE_SCALE_e = (1 << 2),
         ENABLE_ROTATE_e = (1 << 3),
@@ -123,6 +124,7 @@ public:
     void setModel(J3DModel* p_model) { mModel = p_model; }
     BOOL checkEnable(u16 flag) { return mFlags & flag; }
     void onEnable(u16 flag) { mFlags |= flag; }
+    void offEnable(u16 flag) { mFlags &= ~flag; }
     cXyz& getTrans() { return mTrans; }
     cXyz& getScale() { return mScale; }
     csXyz& getRatate() { return mRotate; }
@@ -132,6 +134,8 @@ public:
     void setAnmFrameMax(f32 max) { mAnmFrameMax = max; }
     f32 getAnmFrame() { return mAnmFrame; }
     dDemo_prm_c* getPrm() { return &mPrm; }
+    f32 getAnmTransition() { return mAnmTransition; }
+    u32 getShapeId() { return mShape; }
 
 private:
     /* 0x04 */ u16 mFlags;
@@ -342,6 +346,8 @@ public:
 };
 
 };  // namespace
+
+int dDemo_setDemoData(fopAc_ac_c*, u8, mDoExt_McaMorf*, char const*, int, u16*, u32, s8);
 
 class dDemo_c {
 public:

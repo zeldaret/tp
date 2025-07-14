@@ -38,8 +38,10 @@ public:
     /* 0x100 */ f32 mNowOffsetY;
 };
 
-class daHoZelda_hio_c {
+class daHoZelda_hio_c : public JORReflexible {
 public:
+    daHoZelda_hio_c() {}
+    void genMessage(JORMContext*);
 };
 
 /**

@@ -57,8 +57,8 @@ public:
                                 daNpcT_evtData_c const* param_7, char** param_8) :
                                 daNpcT_c(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8)
                                  {}
-    /* 80B71A34 */ s32 getEyeballRMaterialNo();
-    /* 80B71A3C */ s32 getEyeballLMaterialNo();
+    /* 80B71A34 */ u16 getEyeballRMaterialNo();
+    /* 80B71A3C */ u16 getEyeballLMaterialNo();
     /* 80B71A44 */ s32 getHeadJointNo();
     /* 80B71A4C */ s32 getBackboneJointNo();
     /* 80B71A54 */ BOOL checkChangeJoint(int param_1) { return param_1 == 3; };

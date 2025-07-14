@@ -187,7 +187,7 @@ int daNpc_Zant_c::Draw() {
         J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
-    return daNpcT_c::draw(0, 0, field_0xde8, NULL, 0.0f, 1, 0, 0);
+    return daNpcT_c::draw(0, 0, mRealShadowSize, NULL, 0.0f, 1, 0, 0);
 }
 
 /* 80B6C7E8-80B6C808 000728 0020+00 1/1 0/0 0/0 .text createHeapCallBack__12daNpc_Zant_cFP10fopAc_ac_c */
@@ -283,9 +283,9 @@ void daNpc_Zant_c::setParam() {
     mAcchCir.SetWallR(mWallR);
     mAcchCir.SetWallH(daNpc_Zant_Param_c::m.field_0x18);
 
-    field_0xde8 = daNpc_Zant_Param_c::m.field_0xc;
+    mRealShadowSize = daNpc_Zant_Param_c::m.field_0xc;
     gravity = daNpc_Zant_Param_c::m.field_0x4;
-    field_0xa80 = daNpc_Zant_Param_c::m.field_0x6c;
+    mExpressionMorfFrame = daNpc_Zant_Param_c::m.field_0x6c;
     mMorfFrames = daNpc_Zant_Param_c::m.field_0x44;
 }
 

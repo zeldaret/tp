@@ -47,7 +47,7 @@ public:
     /* 809C105C */ bool drawDbgInfo();
     /* 809C1064 */ void drawOtherMdls();
     /* 809C1154 */ void getMode();
-    /* 809C1160 */ void getMode1();
+    /* 809C1160 */ u8 getMode1();
     /* 809C116C */ void getTypeFromParam();
     /* 809C1238 */ void getSwBit();
     /* 809C1244 */ void isDelete();
@@ -95,11 +95,15 @@ public:
     /* 809C9044 */ void test(void*);
     /* 809C9D28 */ void adjustShapeAngle();
 
+    int getType() { return mType; }
+
     static void* mEvtCutNameList[12];
     static u8 mEvtCutList[144];
 
 private:
-    /* 0x568 */ u8 field_0x568[0x1698 - 0x568];
+    /* 0x0568 */ u8 field_0x568[0x1474 - 0x568];
+    /* 0x1474 */ u8 mType;
+    /* 0x1475 */ u8 field_0x1475[0x1698 - 0x1475];
 };
 
 STATIC_ASSERT(sizeof(daNpc_grA_c) == 0x1698);

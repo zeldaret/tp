@@ -106,7 +106,7 @@ extern "C" void func_80B24728(void* _this, int*);
 extern "C" void __sinit_d_a_npc_toby_cpp();
 extern "C" void
 __ct__12daNpc_Toby_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
-extern "C" s32 getEyeballMaterialNo__12daNpc_Toby_cFv();
+extern "C" u16 getEyeballMaterialNo__12daNpc_Toby_cFv();
 extern "C" s32 getHeadJointNo__12daNpc_Toby_cFv();
 extern "C" s32 getNeckJointNo__12daNpc_Toby_cFv();
 extern "C" bool getBackboneJointNo__12daNpc_Toby_cFv();
@@ -2062,7 +2062,7 @@ daNpc_Toby_c::daNpc_Toby_c(daNpcT_faceMotionAnmData_c const* param_0,
 }
 
 /* 80B24920-80B24928 0063C0 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__12daNpc_Toby_cFv */
-s32 daNpc_Toby_c::getEyeballMaterialNo() {
+u16 daNpc_Toby_c::getEyeballMaterialNo() {
     return 2;
 }
 

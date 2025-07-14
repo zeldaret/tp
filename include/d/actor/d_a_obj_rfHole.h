@@ -28,7 +28,7 @@ public:
     /* 80CB8FF8 */ int create();
     /* 80CB9148 */ static void rideCallBack(dBgW*, fopAc_ac_c*, fopAc_ac_c*);
     /* 80CB9194 */ int playerAreaCheck();
-    /* 80CB940C */ int Execute(f32 (**)[3][4]);
+    /* 80CB940C */ int Execute(Mtx**);
     /* 80CB9464 */ void holeProc();
     /* 80CB9520 */ void init_modeWait();
     /* 80CB952C */ void modeWait();
@@ -50,7 +50,6 @@ private:
     /* 0x5AE */ u8 field_0x5ae;
     /* 0x5AF */ u8 field_0x5af;
     /* 0x5B0 */ s8 mRoofSoundOn;
-    /* 0x5B1 */ u8 field_0x5b1[0x5b4 - 0x5b1];
 };
 
 STATIC_ASSERT(sizeof(daRfHole_c) == 0x5b4);

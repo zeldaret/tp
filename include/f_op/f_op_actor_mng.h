@@ -86,16 +86,9 @@ struct fopAcM_search_prm {
     /* 0x0A */ s8 subtype;
 };
 
-// define to avoid vtable mess in WIP TUs
-#ifndef HIO_entry_c_NO_VIRTUAL
 struct fOpAcm_HIO_entry_c : public mDoHIO_entry_c {
     virtual ~fOpAcm_HIO_entry_c() {}
 };
-#else
-struct fOpAcm_HIO_entry_c {
-    ~fOpAcm_HIO_entry_c();
-};
-#endif
 
 class l_HIO {
 public:
@@ -245,6 +238,10 @@ inline cXyz* fopAcM_GetOldPosition_p(fopAc_ac_c* i_actor) {
     return &i_actor->old.pos;
 }
 
+inline cXyz* fopAcM_GetScale_p(fopAc_ac_c* i_actor) {
+    return &i_actor->scale;
+}
+
 inline cXyz* fopAcM_GetSpeed_p(fopAc_ac_c* i_actor) {
     return &i_actor->speed;
 }
@@ -385,7 +382,7 @@ inline const Vec* fopAcM_getCullSizeBoxMax(const fopAc_ac_c* i_actor) {
     return &i_actor->cull.box.max;
 }
 
-inline void fopAcM_SetCullSize(fopAc_ac_c* i_actor, s8 i_cullsize) {
+inline void fopAcM_SetCullSize(fopAc_ac_c* i_actor, int i_cullsize) {
     i_actor->cullType = i_cullsize;
 }
 

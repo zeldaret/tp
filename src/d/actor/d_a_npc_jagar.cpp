@@ -304,7 +304,7 @@ int daNpc_Jagar_c::Draw() {
         J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
-    return daNpcT_c::draw(0, 0, field_0xde8, NULL, 100.0f, 0, 0, 0);
+    return daNpcT_c::draw(0, 0, mRealShadowSize, NULL, 100.0f, 0, 0, 0);
 }
 
 /* 80A15034-80A15054 000A14 0020+00 1/1 0/0 0/0 .text            createHeapCallBack__13daNpc_Jagar_cFP10fopAc_ac_c */
@@ -460,8 +460,8 @@ void daNpc_Jagar_c::setParam() {
     mAttnFovY = daNpc_Jagar_Param_c::m.field_0x50;
     mAcchCir.SetWallR(mWallR);
     mAcchCir.SetWallH(daNpc_Jagar_Param_c::m.field_0x18);
-    field_0xde8 = daNpc_Jagar_Param_c::m.field_0x0c;
-    field_0xa80 = daNpc_Jagar_Param_c::m.field_0x6c;
+    mRealShadowSize = daNpc_Jagar_Param_c::m.field_0x0c;
+    mExpressionMorfFrame = daNpc_Jagar_Param_c::m.field_0x6c;
     mMorfFrames = daNpc_Jagar_Param_c::m.field_0x44;
     gravity = daNpc_Jagar_Param_c::m.field_0x04;
 }

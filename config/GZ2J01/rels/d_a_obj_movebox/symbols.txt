@@ -173,4 +173,4 @@ sInstance__32JASGlobalInstance<11Z2FxLineMgr> = .bss:0x000013CC; // type:object 
 sInstance__31JASGlobalInstance<10Z2EnvSeMgr> = .bss:0x000013D0; // type:object size:0x4 scope:global
 sInstance__32JASGlobalInstance<11Z2SpeechMgr> = .bss:0x000013D4; // type:object size:0x4 scope:global
 sInstance__34JASGlobalInstance<13Z2WolfHowlMgr> = .bss:0x000013D8; // type:object size:0x4 scope:global
-lbl_20_bss_13DC = .bss:0x000013DC; // type:object size:0x1 data:byte
+init$localstatic4$mode_proc_call__Q212daObjMovebox5Act_cFv = .bss:0x000013DC; // type:object size:0x1 data:byte

@@ -726,6 +726,8 @@ struct J3DBlend : public J3DBlendInfo {
     void load(u8 ditherEnable) {
         J3DGDSetBlendMode(getBlendMode(), getSrcFactor(), getDstFactor(), getLogicOp(), ditherEnable);
     }
+
+    void setBlendInfo(const J3DBlendInfo& i_blendInfo) { *static_cast<J3DBlendInfo*>(this) = i_blendInfo; }
 };
 
 extern const J3DFogInfo j3dDefaultFogInfo;

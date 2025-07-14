@@ -111,7 +111,7 @@ extern "C" void
 __ct__11daNpc_Sha_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc();
 extern "C" void __dt__8cM3dGCylFv();
 extern "C" void __dt__8cM3dGAabFv();
-extern "C" s32 getEyeballMaterialNo__11daNpc_Sha_cFv();
+extern "C" u16 getEyeballMaterialNo__11daNpc_Sha_cFv();
 extern "C" s32 getHeadJointNo__11daNpc_Sha_cFv();
 extern "C" s32 getNeckJointNo__11daNpc_Sha_cFv();
 extern "C" bool getBackboneJointNo__11daNpc_Sha_cFv();
@@ -271,7 +271,6 @@ extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" extern void* __vt__14J3DMaterialAnm[4];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_Counter[12 + 4 /* padding */];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
@@ -1955,7 +1954,7 @@ extern "C" void __dt__8cM3dGAabFv() {
 }
 
 /* 80AE6B1C-80AE6B24 003E3C 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__11daNpc_Sha_cFv */
-s32 daNpc_Sha_c::getEyeballMaterialNo() {
+u16 daNpc_Sha_c::getEyeballMaterialNo() {
     return true;
 }
 

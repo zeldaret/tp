@@ -55,8 +55,8 @@ public:
                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_5, int param_6,
                                 daNpcT_evtData_c const* param_7, char** param_8) :
                                 daNpcT_c(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8) {}
-    /* 80A7390C */ s32 getEyeballRMaterialNo();
-    /* 80A73914 */ s32 getEyeballLMaterialNo();
+    /* 80A7390C */ u16 getEyeballRMaterialNo();
+    /* 80A73914 */ u16 getEyeballLMaterialNo();
     /* 80A7391C */ s32 getHeadJointNo();
     /* 80A73924 */ s32 getNeckJointNo();
     /* 80A7392C */ s32 getBackboneJointNo();

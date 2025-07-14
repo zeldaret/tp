@@ -288,7 +288,7 @@ int daNpc_Bou_c::Draw() {
         J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
-    return daNpcT_c::draw(0, 0, field_0xde8, NULL, 100.0f, 0, 0, 0);
+    return daNpcT_c::draw(0, 0, mRealShadowSize, NULL, 100.0f, 0, 0, 0);
 }
 
 /* 8096D8A0-8096D8C0 000A00 0020+00 1/1 0/0 0/0 .text
@@ -480,8 +480,8 @@ void daNpc_Bou_c::setParam() {
     mAttnFovY = daNpc_Bou_Param_c::m.field_0x50;
     mAcchCir.SetWallR(mWallR);
     mAcchCir.SetWallH(daNpc_Bou_Param_c::m.field_0x18);
-    field_0xde8 = daNpc_Bou_Param_c::m.field_0x0c;
-    field_0xa80 = daNpc_Bou_Param_c::m.field_0x6c;
+    mRealShadowSize = daNpc_Bou_Param_c::m.field_0x0c;
+    mExpressionMorfFrame = daNpc_Bou_Param_c::m.field_0x6c;
     mMorfFrames = daNpc_Bou_Param_c::m.field_0x44;
     gravity = daNpc_Bou_Param_c::m.field_0x04;
 }

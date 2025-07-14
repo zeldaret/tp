@@ -90,7 +90,7 @@ public:
         // "construct"
         OS_REPORT("|%06d:%x|daNpc_Besu_c -> コンストラクト\n", g_Counter.mCounter0, this);
     }
-    /* 8053E6A8 */ s32 getEyeballMaterialNo() { return 2; }
+    /* 8053E6A8 */ u16 getEyeballMaterialNo() { return 2; }
     /* 8053E6B0 */ s32 getHeadJointNo() { return 4; }
     /* 8053E6B8 */ s32 getNeckJointNo() { return 3; }
     /* 8053E6C0 */ s32 getBackboneJointNo() { return true; }

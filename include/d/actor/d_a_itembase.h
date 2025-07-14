@@ -33,7 +33,7 @@ public:
     void hide();
     void show();
     void changeDraw();
-    u8 chkDraw();
+    bool chkDraw();
     void dead();
     bool chkDead();
     int CreateItemHeap(char const*, s16, s16, s16, s16, s16, s16, s16);

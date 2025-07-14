@@ -213,15 +213,13 @@ int mDoExt_brkAnm::init(J3DMaterialTable* i_matTable, J3DAnmTevRegKey* i_brk, in
     return 1;
 }
 
-/* 8000D7A8-8000D7DC 0080E8 0034+00 0/0 8/8 96/96 .text
- * entry__13mDoExt_brkAnmFP16J3DMaterialTablef                  */
+/* 8000D7A8-8000D7DC 0080E8 0034+00 0/0 8/8 96/96 .text          entry__13mDoExt_brkAnmFP16J3DMaterialTablef */
 void mDoExt_brkAnm::entry(J3DMaterialTable* i_matTable, f32 i_frame) {
     mpAnm->setFrame(i_frame);
     i_matTable->entryTevRegAnimator(mpAnm);
 }
 
-/* 8000D7DC-8000D8E4 00811C 0108+00 0/0 18/18 85/85 .text
- * init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb               */
+/* 8000D7DC-8000D8E4 00811C 0108+00 0/0 18/18 85/85 .text        init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb */
 int mDoExt_bckAnm::init(J3DAnmTransform* i_bck, int i_play, int i_attr, f32 i_rate,
                         s16 i_startF, s16 i_endF, bool i_modify) {
     JUT_ASSERT(614, (i_modify || isCurrentSolidHeap()) && i_bck != 0);
@@ -241,29 +239,25 @@ int mDoExt_bckAnm::init(J3DAnmTransform* i_bck, int i_play, int i_attr, f32 i_ra
     return 1;
 }
 
-/* 8000D990-8000D9CC 0082D0 003C+00 0/0 5/5 31/31 .text
- * changeBckOnly__13mDoExt_bckAnmFP15J3DAnmTransform            */
+/* 8000D990-8000D9CC 0082D0 003C+00 0/0 5/5 31/31 .text          changeBckOnly__13mDoExt_bckAnmFP15J3DAnmTransform */
 void mDoExt_bckAnm::changeBckOnly(J3DAnmTransform* i_bck) {
     mAnm = i_bck;
     mpMtxCalc->setAnmTransform(mAnm);
 }
 
-/* 8000D9CC-8000D9E8 00830C 001C+00 0/0 11/11 59/59 .text entry__13mDoExt_bckAnmFP12J3DModelDataf
- */
+/* 8000D9CC-8000D9E8 00830C 001C+00 0/0 11/11 59/59 .text        entry__13mDoExt_bckAnmFP12J3DModelDataf */
 void mDoExt_bckAnm::entry(J3DModelData* i_modelData, f32 i_frame) {
     mAnm->setFrame(i_frame);
     i_modelData->getJointNodePointer(0)->setMtxCalc(mpMtxCalc);
 }
 
-/* 8000D9E8-8000DA08 008328 0020+00 0/0 1/1 1/1 .text
- * entryJoint__13mDoExt_bckAnmFP12J3DModelDataUsf               */
+/* 8000D9E8-8000DA08 008328 0020+00 0/0 1/1 1/1 .text            entryJoint__13mDoExt_bckAnmFP12J3DModelDataUsf */
 void mDoExt_bckAnm::entryJoint(J3DModelData* i_modelData, u16 i_jntNo, f32 i_frame) {
     mAnm->setFrame(i_frame);
     i_modelData->getJointNodePointer(i_jntNo)->setMtxCalc(mpMtxCalc);
 }
 
-/* 8000DA08-8000DAA8 008348 00A0+00 0/0 1/1 3/3 .text
- * init__13mDoExt_blkAnmFP13J3DDeformDataP13J3DAnmClusteriifss  */
+/* 8000DA08-8000DAA8 008348 00A0+00 0/0 1/1 3/3 .text            init__13mDoExt_blkAnmFP13J3DDeformDataP13J3DAnmClusteriifss */
 int mDoExt_blkAnm::init(J3DDeformData* i_deformData, J3DAnmCluster* i_blk, int i_anmPlay,
                         int i_attribute, f32 i_rate, s16 i_start, s16 param_6) {
     mpAnm = i_blk;
@@ -283,8 +277,7 @@ int mDoExt_blkAnm::init(J3DDeformData* i_deformData, J3DAnmCluster* i_blk, int i
     return 1;
 }
 
-/* 8000DAA8-8000DB10 0083E8 0068+00 3/3 0/0 0/0 .text            mDoExt_changeMaterial__FP8J3DModel
- */
+/* 8000DAA8-8000DB10 0083E8 0068+00 3/3 0/0 0/0 .text            mDoExt_changeMaterial__FP8J3DModel */
 static void mDoExt_changeMaterial(J3DModel* i_model) {
     J3DModelData* model_data = i_model->getModelData();
 
@@ -293,8 +286,7 @@ static void mDoExt_changeMaterial(J3DModel* i_model) {
     }
 }
 
-/* 8000DB10-8000DBC8 008450 00B8+00 0/0 0/0 1/1 .text mDoExt_modelTexturePatch__FP12J3DModelData
- */
+/* 8000DB10-8000DBC8 008450 00B8+00 0/0 0/0 1/1 .text mDoExt_modelTexturePatch__FP12J3DModelData */
 void mDoExt_modelTexturePatch(J3DModelData* i_modelData) {
     j3dSys.setTexture(i_modelData->getTexture());
 
@@ -355,8 +347,7 @@ void mDoExt_modelUpdateDL(J3DModel* i_model) {
     i_model->viewCalc();
 }
 
-/* 8000DD64-8000DDF0 0086A4 008C+00 4/4 3/3 10/10 .text            mDoExt_modelEntryDL__FP8J3DModel
- */
+/* 8000DD64-8000DDF0 0086A4 008C+00 4/4 3/3 10/10 .text            mDoExt_modelEntryDL__FP8J3DModel */
 void mDoExt_modelEntryDL(J3DModel* i_model) {
     J3DModelData* model_data = i_model->getModelData();
 
@@ -373,7 +364,7 @@ void mDoExt_modelEntryDL(J3DModel* i_model) {
     i_model->viewCalc();
 }
 
-/* 8000DDF0-8000DE8C 008730 009C+00 0/0 0/0 14/14 .text mDoExt_btkAnmRemove__FP12J3DModelData */
+/* 8000DDF0-8000DE8C 008730 009C+00 0/0 0/0 14/14 .text          mDoExt_btkAnmRemove__FP12J3DModelData */
 void mDoExt_btkAnmRemove(J3DModelData* i_modelData) {
     for (u16 i = 0; i < i_modelData->getMaterialNum(); i++) {
         J3DMaterialAnm* matAnm = i_modelData->getMaterialNodePointer(i)->getMaterialAnm();
@@ -386,7 +377,7 @@ void mDoExt_btkAnmRemove(J3DModelData* i_modelData) {
     }
 }
 
-/* 8000DE8C-8000DF3C 0087CC 00B0+00 0/0 0/0 7/7 .text mDoExt_brkAnmRemove__FP12J3DModelData */
+/* 8000DE8C-8000DF3C 0087CC 00B0+00 0/0 0/0 7/7 .text            mDoExt_brkAnmRemove__FP12J3DModelData */
 void mDoExt_brkAnmRemove(J3DModelData* i_modelData) {
     for (u16 i = 0; i < i_modelData->getMaterialNum(); i++) {
         J3DMaterialAnm* matAnm = i_modelData->getMaterialNodePointer(i)->getMaterialAnm();
@@ -400,8 +391,7 @@ void mDoExt_brkAnmRemove(J3DModelData* i_modelData) {
     }
 }
 
-/* 8000E53C-8000E5F8 008E7C 00BC+00 0/0 0/0 19/19 .text
- * create__21mDoExt_invisibleModelFP8J3DModelUc                 */
+/* 8000E53C-8000E5F8 008E7C 00BC+00 0/0 0/0 19/19 .text          create__21mDoExt_invisibleModelFP8J3DModelUc */
 int mDoExt_invisibleModel::create(J3DModel* i_model, u8 param_1) {
     J3DModelData* model_data = i_model->getModelData();
 
@@ -421,7 +411,7 @@ int mDoExt_invisibleModel::create(J3DModel* i_model, u8 param_1) {
     return 1;
 }
 
-/* 8000E6C8-8000E7C0 009008 00F8+00 1/1 0/0 0/0 .text entryJoint__21mDoExt_invisibleModelFP4cXyz
+/* 8000E6C8-8000E7C0 009008 00F8+00 1/1 0/0 0/0 .text            entryJoint__21mDoExt_invisibleModelFP4cXyz
  */
 void mDoExt_invisibleModel::entryJoint(cXyz* param_0) {
     J3DModelData* modelData = mModel->getModelData();

@@ -201,7 +201,7 @@ int daNpc_seiB_c::Draw() {
         mdlData_p->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
 
-    return draw(FALSE, TRUE, field_0xde8, NULL, 100.0f, FALSE, FALSE, FALSE);
+    return draw(FALSE, TRUE, mRealShadowSize, NULL, 100.0f, FALSE, FALSE, FALSE);
 }
 
 /* 80AC5608-80AC5628 000608 0020+00 1/1 0/0 0/0 .text
@@ -269,9 +269,9 @@ void daNpc_seiB_c::setParam() {
     mAcchCir.SetWallR(mWallR);
     mAcchCir.SetWallH(mpParam->m.mWallH);
 
-    field_0xde8 = mpParam->m.field_0xc;
+    mRealShadowSize = mpParam->m.field_0xc;
     gravity = mpParam->m.mGravity;
-    field_0xa80 = mpParam->m.field_0x6c;
+    mExpressionMorfFrame = mpParam->m.field_0x6c;
     mMorfFrames = mpParam->m.mMorfFrames;
 }
 

@@ -139,7 +139,7 @@ public:
                                daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_5,
                                int param_6, daNpcT_evtData_c const* param_7, char** param_8)
         : daNpcT_c(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8) {}
-    /* 80B2CD44 */ s32 getEyeballMaterialNo() { return 2; }
+    /* 80B2CD44 */ u16 getEyeballMaterialNo() { return 2; }
     /* 80B2CD4C */ s32 getHeadJointNo() { return 4; }
     /* 80B2CD54 */ s32 getNeckJointNo() { return 3; }
     /* 80B2CD5C */ s32 getBackboneJointNo() { return 1; }

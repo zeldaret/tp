@@ -3561,17 +3561,17 @@ daNpc_Kn_c::daNpc_Kn_c(daNpcT_faceMotionAnmData_c const* param_0,
 }
 
 /* 80A3BD14-80A3BD1C 0113F4 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__10daNpc_Kn_cFv */
-s32 daNpc_Kn_c::getEyeballMaterialNo() {
+u16 daNpc_Kn_c::getEyeballMaterialNo() {
     return false;
 }
 
 /* 80A3BD1C-80A3BD24 0113FC 0008+00 1/0 0/0 0/0 .text getEyeballLMaterialNo__10daNpc_Kn_cFv */
-int daNpc_Kn_c::getEyeballLMaterialNo() {
+u16 daNpc_Kn_c::getEyeballLMaterialNo() {
     return false;
 }
 
 /* 80A3BD24-80A3BD2C 011404 0008+00 1/0 0/0 0/0 .text getEyeballRMaterialNo__10daNpc_Kn_cFv */
-s32 daNpc_Kn_c::getEyeballRMaterialNo() {
+u16 daNpc_Kn_c::getEyeballRMaterialNo() {
     return false;
 }
 
