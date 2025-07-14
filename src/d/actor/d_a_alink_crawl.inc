@@ -669,9 +669,8 @@ int daAlink_c::procCrawlMove() {
 }
 
 /* 800F99FC-800F9ABC 0F433C 00C0+00 1/1 0/0 0/0 .text procCrawlAutoMoveInit__9daAlink_cFiP4cXyz */
-// NONMATCHING - extrwi vs rlwinm
 int daAlink_c::procCrawlAutoMoveInit(int param_0, cXyz* param_1) {
-    BOOL var_r30 = dComIfGp_checkPlayerStatus0(0, 0x2000);
+    BOOL var_r30 = dComIfGp_checkPlayerStatus0(0, 0x2000) != 0 ? TRUE : FALSE;
     commonProcInit(PROC_CRAWL_AUTO_MOVE);
     field_0x37c8 = *param_1;
     field_0x33cc = 1.0f;
