@@ -147,7 +147,7 @@ STATIC_ASSERT(sizeof(e_po_class) == 0xee0);
 class daE_PO_HIO_c {
 public:
     /* 8074C54C */ daE_PO_HIO_c();
-    /* 80756DE8 */ virtual ~daE_PO_HIO_c() {};
+    /* 80756DE8 */ virtual ~daE_PO_HIO_c() {}
 
     /* 0x04 */ s8 field_0x04[4];
     /* 0x08 */ f32 mBaseSize;
@@ -171,9 +171,5 @@ public:
     /* 0x36 */ s16 field_0x36;
     /* 0x38 */ f32 mModelSize;
 };
-
-inline void dComIfGs_addPohSpiritNum() {
-    g_dComIfG_gameInfo.info.getPlayer().getCollect().addPohNum();
-}
 
 #endif /* D_A_E_PO_H */

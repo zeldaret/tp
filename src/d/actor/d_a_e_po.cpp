@@ -226,7 +226,7 @@ static void e_po_opening(e_po_class* i_this) {
         i_this->field_0x5C0 = true;
         i_this->mSound1.startCreatureVoice(Z2SE_EN_PO_V_FIND, -1);
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
-            fopAcM_orderPotentialEvent((fopAc_ac_c*)i_this, 2, -1, 0);
+            fopAcM_orderPotentialEvent(a_this, 2, -1, 0);
             a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             i_this->field_0x838 = *fopCamM_GetEye_p(camera2);
             i_this->field_0x844 = *fopCamM_GetCenter_p(camera2);
@@ -236,7 +236,7 @@ static void e_po_opening(e_po_class* i_this) {
         }
         camera1->mCamera.Stop();
         camera1->mCamera.SetTrimSize(3);
-        a_this->current.angle.y = fopAcM_searchPlayerAngleY((fopAc_ac_c*)i_this) + 0x8000;
+        a_this->current.angle.y = fopAcM_searchPlayerAngleY(a_this) + 0x8000;
         a_this->shape_angle.y = a_this->current.angle.y;
         i_this->field_0x74A[0] = 10;
         i_this->mType = 1;
@@ -253,7 +253,7 @@ static void e_po_opening(e_po_class* i_this) {
         cLib_addCalcAngleS2(&a_this->current.angle.y, fopAcM_searchPlayerAngleY(a_this), 8, 0x2000);
         a_this->shape_angle.y = a_this->current.angle.y;
         if (abs((int)(s16)(a_this->shape_angle.y -
-                           fopAcM_searchPlayerAngleY((fopAc_ac_c*)i_this))) <= 0x100)
+                           fopAcM_searchPlayerAngleY(a_this))) <= 0x100)
         {
             anm_init(i_this, ANM_AWAKE, 10.0f, 0, 1.0f);
             i_this->mSound1.startCreatureVoice(Z2SE_EN_PO_V_AWAKE, -1);
@@ -263,7 +263,7 @@ static void e_po_opening(e_po_class* i_this) {
 
     case 2:
         if ((int)i_this->mpMorf->getFrame() == 0x41) {
-            dCam_getBody()->StartBlure(50, (fopAc_ac_c*)i_this, 0.5f, 1.5f);
+            dCam_getBody()->StartBlure(50, a_this, 0.5f, 1.5f);
         }
         if (i_this->mpMorf->isStop()) {
             i_this->field_0x74A[0] = 2;
@@ -311,6 +311,8 @@ static void e_po_opening(e_po_class* i_this) {
 
 /* 8074D16C-8074D338 000D0C 01CC+00 1/1 0/0 0/0 .text            e_po_wait__FP10e_po_class */
 static void e_po_wait(e_po_class* i_this) {
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+
     switch (i_this->mType) {
     case 0:
         anm_init(i_this, ANM_WAIT, 3.0f, 2, 1.0f);
@@ -323,7 +325,7 @@ static void e_po_wait(e_po_class* i_this) {
             if (daPy_py_c::checkNowWolfPowerUp() &&
                 dComIfGp_getAttention()->GetLockonList(0) != NULL &&
                 dComIfGp_getAttention()->LockonTruth() &&
-                dComIfGp_getAttention()->GetLockonList(0)->getActor() == (fopAc_ac_c*)i_this)
+                dComIfGp_getAttention()->GetLockonList(0)->getActor() == a_this)
             {
                 i_this->mType = 0;
                 i_this->mSound1.startCreatureVoice(Z2SE_EN_PO_V_FIND, -1);
@@ -331,7 +333,7 @@ static void e_po_wait(e_po_class* i_this) {
                 i_this->mActionID = ACT_SEARCH;
                 return;
             }
-            i_this->enemy.current.angle.y = fopAcM_searchPlayerAngleY((fopAc_ac_c*)i_this) + 0x8000;
+            i_this->enemy.current.angle.y = fopAcM_searchPlayerAngleY(a_this) + 0x8000;
             return;
         }
         if (mArg0Check(i_this, 3) == 0) {
@@ -354,11 +356,13 @@ static void e_po_wait(e_po_class* i_this) {
 
 /* 8074D338-8074D500 000ED8 01C8+00 1/1 0/0 0/0 .text            e_po_avoid__FP10e_po_class */
 static void e_po_avoid(e_po_class* i_this) {
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
+
     switch (i_this->mType) {
     case 0:
         anm_init(i_this, ANM_SWAY_BACK, 0.0f, 0, 1.0f);
         i_this->mSound1.startCreatureVoice(Z2SE_EN_PO_V_LAUGH, -1);
-        i_this->enemy.current.angle.y = fopAcM_searchPlayerAngleY((fopAc_ac_c*)i_this);
+        i_this->enemy.current.angle.y = fopAcM_searchPlayerAngleY(a_this);
         i_this->enemy.attention_info.flags &= ~0x4;
         if (cM_rndF(1.0f) < 0.5f) {
             i_this->enemy.current.angle.y += 0x4000;
@@ -384,7 +388,7 @@ static void e_po_avoid(e_po_class* i_this) {
 
     cLib_addCalc2(&i_this->enemy.speedF, 8.0f, 1.0f, 1.0f);
     cLib_addCalcAngleS2(&i_this->enemy.shape_angle.y,
-                        fopAcM_searchPlayerAngleY((fopAc_ac_c*)i_this), 2, 0x2000);
+                        fopAcM_searchPlayerAngleY(a_this), 2, 0x2000);
     i_this->field_0x754 = 20;
 }
 
@@ -2520,41 +2524,41 @@ static void action(e_po_class* i_this) {
     int var_r27 = 0;
     damage_check(i_this);
     switch (i_this->mActionID) {
-    case 0:
+    case ACT_WAIT:
         e_po_wait(i_this);
         break;
-    case 1:
+    case ACT_AVOID:
         e_po_avoid(i_this);
         break;
-    case 2:
+    case ACT_OPENING:
         e_po_opening(i_this);
         break;
-    case 3:
+    case ACT_SEARCH:
         e_po_search(i_this);
         var_r27 = 1;
         i_this->field_0x812 = 1;
         break;
-    case 4:
+    case ACT_ATTACK:
         e_po_attack(i_this);
         var_r27 = 1;
         i_this->field_0x812 = 1;
         break;
-    case 10:
+    case ACT_DAMAGE:
         e_po_damage(i_this);
         break;
-    case 11:
+    case ACT_WOLF_BITE:
         e_po_wolfbite(i_this);
         break;
-    case 12:
+    case ACT_DEAD:
         e_po_dead(i_this);
         break;
-    case 5:
+    case ACT_LIMBERING:
         e_po_limbering(i_this);
         break;
-    case 6:
+    case ACT_ROLL_MOVE:
         e_po_roll_move(i_this);
         break;
-    case 20:
+    case ACT_HOLL_DEMO:
         e_po_holl_demo(i_this);
         break;
     }
@@ -2933,10 +2937,10 @@ static int daE_PO_Create(fopAc_ac_c* i_this) {
         }
 
         OS_REPORT("\n\n\n");
-        OS_REPORT("E_PO：i_this->arg0 %d\n", a_this->mArg0);
-        OS_REPORT("E_PO：i_this->bitsw %d\n", a_this->BitSW);
-        OS_REPORT("E_PO：i_this->bitsw2 %d\n", a_this->BitSW2);
-        OS_REPORT("E_PO：i_this->bitsw3 %d\n", a_this->BitSW3);
+        OS_REPORT("E_PO：i_this->arg0 %d\n", i_this->mArg0);
+        OS_REPORT("E_PO：i_this->bitsw %d\n", i_this->BitSW);
+        OS_REPORT("E_PO：i_this->bitsw2 %d\n", i_this->BitSW2);
+        OS_REPORT("E_PO：i_this->bitsw3 %d\n", i_this->BitSW3);
         OS_REPORT("\n\n\n");
         OS_REPORT("E_PO//////////////E_PO SET 1 !!\n");
 
