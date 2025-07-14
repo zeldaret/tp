@@ -89,25 +89,22 @@ SECTION_DEAD static char const* const stringBase_80BD4051 = "CaravanPiece.bmd";
 /* 80BD4064-80BD4068 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static const char* l_arcName = "SrvFence";
 
-/* 80BD3338-80BD33E8 000078 00B0+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
-static int useHeapInit(fopAc_ac_c* param_0) {
-    J3DModelData* modelData;
-    modelData = (J3DModelData*) dRes_control_c::getRes(l_arcName,"CaravanPiece.bmd", 
-        g_dComIfG_gameInfo.mResControl.mObjectInfo, 0x80);
+int daObjCRVHAHEN_c::CreateHeap() {
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName,"CaravanPiece.bmd");
     
-    J3DModel* model; 
-    int i = 0, j = 0;
-    for (; i < 10; i++) {
-        model = mDoExt_J3DModel__create(modelData, 0x20000, 0x11000084);
-        *(J3DModel**)(param_0 + j + 0x760) = model;
-
-        if (*(int*)(param_0 + j + 0x760) == 0) {
+    for (int i = 0; i < 10; i++) {
+        mpModel[i] = mDoExt_J3DModel__create(modelData, 0x20000, 0x11000084);
+        if (mpModel[i] == NULL) {
             return 0;
         }
-        j = j + 4;
     }
 
     return 1;
+}
+
+/* 80BD3338-80BD33E8 000078 00B0+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
+static int useHeapInit(fopAc_ac_c* i_this) {
+    return ((daObjCRVHAHEN_c*)i_this)->CreateHeap();
 }
 
 /* 80BD33E8-80BD3408 000128 0020+00 1/0 0/0 0/0 .text daObjCRVHAHEN_Create__FP10fopAc_ac_c */

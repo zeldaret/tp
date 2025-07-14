@@ -24,6 +24,8 @@ public:
     /* 80BD3B74 */ int Delete();
     /* 80BD3C0C */ void setBaseMtx();
     /* 80BD3DBC */ int create();
+    
+    /* 80BD3338 */ inline int CreateHeap();
 
     /* 0x568 */ cXyz field1_0x568[10];
     /* 0x5e0 */ cXyz field2_0x5e0[10];
@@ -33,9 +35,8 @@ public:
     /* 0x748 */ u32 field_0x748;
     /* 0x74c */ float field7_0x74c;
     /* 0x750 */ char field8_0x750;
-private:
-    /* 0x751 */ u8 field_0x751[0x788 - 0x751]; // padding
-public:
+    /* 0x751 */ u8 field_0x751[0x760 - 0x751]; // padding
+    /* 0x760 */ J3DModel* mpModel[10];
     /* 0x788 */ request_of_phase_process_class mPhase;
     /* 0x790 */ u8 field_0x790;
     /* 0x791 */ u8 field_0x791;
