@@ -153,21 +153,25 @@ void daObjCRVHAHEN_c::HahenSet(cXyz param_0, cXyz param_1, cXyz param_2, cXyz pa
 
 /* 80BD3628-80BD36E4 000368 00BC+00 1/1 0/0 0/0 .text Wall_Check__15daObjCRVHAHEN_cF4cXyz4cXyz */
 bool daObjCRVHAHEN_c::Wall_Check(cXyz origin, cXyz target) {
+    // Must be first to match
     dBgS_LinChk lineCheck;
-    cXyz linePos = cXyz(origin.x + target.x, origin.y, origin.z + target.z);
+    
+    cXyz linePos(origin.x + target.x, origin.y, origin.z + target.z);
 
     lineCheck.Set(&origin, &linePos, NULL);
 
-    bool someBool = dComIfG_Bgsp().LineCross(&lineCheck);
+    bool didLineCross;
+    didLineCross = dComIfG_Bgsp().LineCross(&lineCheck);
 
-    if (someBool != true) {
+    if (didLineCross != true) {
         lineCheck.~dBgS_LinChk();
     }
-    else {
-        lineCheck.~dBgS_LinChk();
-    }
-    return someBool == true;
+    // else {
+    //     lineCheck.~dBgS_LinChk();
+    // }
+    return didLineCross;
 }
+
 
 /* 80BD36E4-80BD3720 000424 003C+00 1/1 0/0 0/0 .text            __dt__4cXyzFv */
 // cXyz::~cXyz() {
