@@ -414,6 +414,7 @@ def MatchingFor(*versions) -> bool:
 
 # For whatever reason, daNpcF_c::daNpcF_c gets inlined.
 #  Using the following prevents that from happening:
+# TODO: This is just a temporary hack and should be looked into more extensively in the future
 DANPCF_C_HACK = '-pragma "inline_max_size(494)"'
 
 config.warn_missing_config = True
@@ -1854,7 +1855,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_tr"),
     ActorRel(NonMatching, "d_a_npc_uri"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_worm", extra_cflags=['-pragma "nosyminline off"']),
-    ActorRel(NonMatching, "d_a_npc_wrestler"),
+    ActorRel(NonMatching, "d_a_npc_wrestler", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(NonMatching, "d_a_npc_yamid"),
     ActorRel(NonMatching, "d_a_npc_yamis"),
     ActorRel(NonMatching, "d_a_npc_yamit"),
