@@ -412,6 +412,11 @@ def MatchingFor(*versions) -> bool:
     return config.version in versions
 
 
+# For whatever reason, daNpcF_c::daNpcF_c gets inlined.
+#  Using the following prevents that from happening:
+# TODO: This is just a temporary hack and should be looked into more extensively in the future
+DANPCF_C_HACK = '-pragma "inline_max_size(494)"'
+
 config.warn_missing_config = True
 config.warn_missing_source = False
 config.libs = [
@@ -1756,8 +1761,8 @@ config.libs = [
     ActorRel(Equivalent, "d_a_myna"), # weak function order
     ActorRel(NonMatching, "d_a_ni"),
     ActorRel(NonMatching, "d_a_npc_aru"),
-    ActorRel(NonMatching, "d_a_npc_ash"),
-    ActorRel(NonMatching, "d_a_npc_ashB"),
+    ActorRel(NonMatching, "d_a_npc_ash", extra_cflags=[DANPCF_C_HACK]),
+    ActorRel(NonMatching, "d_a_npc_ashB", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(NonMatching, "d_a_npc_bans"),
     ActorRel(NonMatching, "d_a_npc_blue_ns"),
     ActorRel(Equivalent, "d_a_npc_bou"),
@@ -1791,7 +1796,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_npc_hanjo"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_henna0"),
     ActorRel(NonMatching, "d_a_npc_hoz"),
-    ActorRel(NonMatching, "d_a_npc_impal"),
+    ActorRel(NonMatching, "d_a_npc_impal", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(NonMatching, "d_a_npc_inko"),
     ActorRel(NonMatching, "d_a_npc_ins"),
     ActorRel(NonMatching, "d_a_npc_jagar"),
@@ -1821,7 +1826,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_passer2"),
     ActorRel(NonMatching, "d_a_npc_post"),
     ActorRel(NonMatching, "d_a_npc_pouya"),
-    ActorRel(NonMatching, "d_a_npc_prayer"),
+    ActorRel(Equivalent, "d_a_npc_prayer", extra_cflags=[DANPCF_C_HACK]),  # weak func order
     ActorRel(NonMatching, "d_a_npc_raca"),
     ActorRel(NonMatching, "d_a_npc_rafrel"),
     ActorRel(NonMatching, "d_a_npc_saru"),
@@ -1833,14 +1838,14 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_seirei"),
     ActorRel(NonMatching, "d_a_npc_shad"),
     ActorRel(NonMatching, "d_a_npc_shaman"),
-    ActorRel(NonMatching, "d_a_npc_shoe"),
+    ActorRel(NonMatching, "d_a_npc_shoe", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_shop0"),
     ActorRel(Equivalent, "d_a_npc_shop_maro"), # weak function order
     ActorRel(NonMatching, "d_a_npc_sola"),
     ActorRel(NonMatching, "d_a_npc_soldierA"),
     ActorRel(NonMatching, "d_a_npc_soldierB"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_sq"),
-    ActorRel(NonMatching, "d_a_npc_the"),
+    ActorRel(NonMatching, "d_a_npc_the", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(NonMatching, "d_a_npc_theB"),
     ActorRel(Equivalent, "d_a_npc_tk"), # weak function order
     ActorRel(NonMatching, "d_a_npc_tkc"),
@@ -1850,7 +1855,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_tr"),
     ActorRel(NonMatching, "d_a_npc_uri"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_worm", extra_cflags=['-pragma "nosyminline off"']),
-    ActorRel(NonMatching, "d_a_npc_wrestler"),
+    ActorRel(NonMatching, "d_a_npc_wrestler", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(NonMatching, "d_a_npc_yamid"),
     ActorRel(NonMatching, "d_a_npc_yamis"),
     ActorRel(NonMatching, "d_a_npc_yamit"),
@@ -1862,9 +1867,9 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_zelR"),
     ActorRel(NonMatching, "d_a_npc_zelRo"),
     ActorRel(Equivalent, "d_a_npc_zelda"), # weak function order
-    ActorRel(NonMatching, "d_a_npc_zra"),
-    ActorRel(NonMatching, "d_a_npc_zrc"),
-    ActorRel(NonMatching, "d_a_npc_zrz"),
+    ActorRel(NonMatching, "d_a_npc_zra", extra_cflags=[DANPCF_C_HACK]),
+    ActorRel(NonMatching, "d_a_npc_zrc", extra_cflags=[DANPCF_C_HACK]),
+    ActorRel(NonMatching, "d_a_npc_zrz", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_Lv5Key"),
     ActorRel(Equivalent, "d_a_obj_Turara"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_TvCdlst"),
