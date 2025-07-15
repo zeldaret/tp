@@ -1,7 +1,10 @@
 #ifndef D_A_E_YMB_H
 #define D_A_E_YMB_H
 
+#include "d/d_cc_d.h"
+#include "d/d_cc_uty.h"
 #include "f_op/f_op_actor_mng.h"
+#include "d/d_bg_w.h"
 
 /**
  * @ingroup actors-enemies
@@ -13,8 +16,8 @@
  */
 class daE_YMB_c : public fopEn_enemy_c {
 public:
-    /* 8081615C */ void ctrlJoint(J3DJoint*, J3DModel*);
-    /* 808164F0 */ void JointCallBack(J3DJoint*, int);
+    /* 8081615C */ int ctrlJoint(J3DJoint*, J3DModel*);
+    /* 808164F0 */ static int JointCallBack(J3DJoint*, int);
     /* 80816554 */ void draw();
     /* 8081697C */ void setBck(int, u8, f32, f32);
     /* 80816A20 */ void checkBck(int);
@@ -71,24 +74,110 @@ public:
     /* 80820128 */ void getDownLockPoint();
     /* 808203D8 */ void setAttentionPos();
     /* 80820668 */ void cc_set();
-    /* 808207AC */ void execute();
-    /* 80820A40 */ void _delete();
-    /* 80820AF0 */ void CreateHeap();
-    /* 80820DD0 */ void create();
+    /* 808207AC */ int execute();
+    /* 80820A40 */ int _delete();
+    /* 80820AF0 */ int CreateHeap();
+    /* 80820DD0 */ cPhs__Step create();
 
     int getMaxLockAttack() { return 6; }
     u8 getSwitchBit() { return mSwitchBit; }
 
-    /* 0x5AC */ u8 field_0x5ac[0x6C0 - 0x5ac];
-    /* 0x6C0 */ u8 mSwitchBit;
-    /* 0x6C1 */ u8 field_0x6c1[0x1524 - 0x6C1];
+    /* 0x05AC */ request_of_phase_process_class mPhase;
+    /* 0x05B4 */ mDoExt_invisibleModel mInvisModel;
+    /* 0x05BC */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x05C0 */ mDoExt_brkAnm* mpBrkAnm;
+    /* 0x05C4 */ Z2CreatureEnemy mSound;
+    /* 0x0668 */ f32 field_0x668[6];
+    /* 0x0680 */ int field_0x680[6];
+    /* 0x0698 */ int field_0x698;
+    /* 0x069C */ cXyz field_0x69c;
+    /* 0x06A8 */ cXyz field_0x6a8;
+    /* 0x06B4 */ int mAction;
+    /* 0x06B8 */ int mMode;
+    /* 0x06BC */ u32 mShadowKey;
+    /* 0x06C0 */ u8 mSwitchBit;
+    /* 0x06C1 */ u8 field_0x6c1;
+    /* 0x06C2 */ u8 field_0x6c2[0x6c4 - 0x6c2];
+    /* 0x06C4 */ f32 field_0x6c4;
+    /* 0x06C8 */ f32 field_0x6c8;
+    /* 0x06CC */ f32 field_0x6cc;
+    /* 0x06D0 */ f32 field_0x6d0;
+    /* 0x06D4 */ u8 field_0x6d4[0x6d8 - 0x6d4];
+    /* 0x06D8 */ f32 field_0x6d8;
+    /* 0x06DC */ f32 field_0x6dc;
+    /* 0x06E0 */ f32 field_0x6e0;
+    /* 0x06E4 */ s16 field_0x6e4;
+    /* 0x06E6 */ s16 field_0x6e6;
+    /* 0x06E8 */ s16 field_0x6e8;
+    /* 0x06EA */ s16 field_0x6ea;
+    /* 0x06EC */ int field_0x6ec;
+    /* 0x06F0 */ int field_0x6f0;
+    /* 0x06F4 */ int field_0x6f4;
+    /* 0x06F8 */ int field_0x6f8;
+    /* 0x06FC */ int field_0x6fc;
+    /* 0x0700 */ int field_0x700;
+    /* 0x0704 */ int field_0x704;
+    /* 0x0708 */ int field_0x708;
+    /* 0x070C */ int field_0x70c;
+    /* 0x0710 */ u8 field_0x710;
+    /* 0x0711 */ u8 field_0x711;
+    /* 0x0712 */ u8 field_0x712;
+    /* 0x0713 */ u8 field_0x713;
+    /* 0x0714 */ u8 field_0x714;
+    /* 0x0715 */ u8 field_0x715;
+    /* 0x0716 */ u8 field_0x716;
+    /* 0x0717 */ u8 field_0x717;
+    /* 0x0718 */ u8 field_0x718;
+    /* 0x0719 */ u8 field_0x719[0x71f - 0x719];
+    /* 0x071F */ u8 field_0x71f;
+    /* 0x0720 */ u8 field_0x720;
+    /* 0x0721 */ u8 field_0x721;
+    /* 0x0722 */ u8 field_0x722;
+    /* 0x0723 */ u8 field_0x723;
+    /* 0x0724 */ s8 field_0x724;
+    /* 0x0725 */ u8 field_0x725;
+    /* 0x0726 */ u8 field_0x726[0x728 - 0x726];
+    /* 0x0728 */ cXyz field_0x728;
+    /* 0x0734 */ cXyz field_0x734;
+    /* 0x0740 */ cXyz field_0x740;
+    /* 0x074C */ cXyz field_0x74c;
+    /* 0x0758 */ f32 field_0x758;
+    /* 0x075C */ f32 field_0x75c;
+    /* 0x0760 */ s16 field_0x760;
+    /* 0x0762 */ s16 field_0x762;
+    /* 0x0764 */ u8 field_0x764;
+    /* 0x0765 */ u8 field_0x765;
+    /* 0x0766 */ u8 field_0x766[0x768 - 0x766];
+    /* 0x0768 */ Mtx field_0x768;
+    /* 0x0798 */ dBgW* mpBgW;
+    /* 0x079C */ u8 field_0x79c[0x7f0 - 0x79c];
+    /* 0x07F0 */ dCcD_Stts mStts;
+    /* 0x082C */ dCcD_Sph field_0x82c[2];
+    /* 0x0A9C */ dCcD_Sph field_0xa9c;
+    /* 0x0BD4 */ dCcD_Sph field_0xbd4[6];
+    /* 0x1324 */ dCcD_Sph field_0x1324;
+    /* 0x145C */ dCcU_AtInfo mAtInfo;
+    /* 0x1480 */ u8 field_0x1480[0x1490 - 0x1480];
+    /* 0x1490 */ u32 field_0x1490[3];
+    /* 0x149C */ u8 field_0x149c[0x1520 - 0x149c];
+    /* 0x1520 */ u8 field_0x1520;
+    /* 0x1521 */ u8 field_0x1521[0x1524 - 0x1521];
 };
 
 STATIC_ASSERT(sizeof(daE_YMB_c) == 0x1524);
 
 struct daE_YMB_HIO_c {
+public:
     /* 8081610C */ daE_YMB_HIO_c();
-    /* 80821460 */ ~daE_YMB_HIO_c();
+    /* 80821460 */ virtual ~daE_YMB_HIO_c() {};
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 model_size;                  // モデルサイズ (Model Size)
+    /* 0x0C */ f32 fly_movement_speed;          // 飛行移動速度 (Fly Movement Speed)
+    /* 0x10 */ f32 swim_attack_speed;           // 泳ぎ攻撃速度 (Swim Attack Speed)
+    /* 0x14 */ f32 fly_attack_speed;            // 飛行攻撃速度 (Fly Attack Speed)
+    /* 0x18 */ f32 rollover_time;               // ひっくり返り時間 (Rollover Time)
+    /* 0x1C */ f32 fly_height_adjust;           // 飛行高度-加減値 (Fly Height Adjust)
 };
 
 #endif /* D_A_E_YMB_H */
