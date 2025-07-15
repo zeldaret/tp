@@ -7,7 +7,6 @@
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_procname.h"
-#include "dol2asm.h"
 
 /* 80D4F898-80D4F8B8 000078 0020+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
 static int createSolidHeap(fopAc_ac_c* i_this) {
@@ -75,21 +74,6 @@ static int daTagLv6Gate_Create(fopAc_ac_c* i_this) {
     return static_cast<daTagLv6Gate_c*>(i_this)->create();
 }
 
-void daTagLv6Gate_c::seStair() {
-    Vec se_pos = {0.0f, 1800.0f, -6800.0f};
-    mDoAud_seStart(Z2SE_OBJ_LV6_GATE_STAIR, &se_pos, 0, 0);
-}
-
-void daTagLv6Gate_c::seGlassOff() {
-    Vec se_pos = {0.0f, 2887.0f, -8330.0f};
-    mDoAud_seStart(Z2SE_OBJ_LV6_GATE_GLASS_OFF, &se_pos, 0, 0);
-}
-
-void daTagLv6Gate_c::seGlassOn() {
-    Vec se_pos = {0.0f, 2887.0f, -8330.0f};
-    mDoAud_seStart(Z2SE_OBJ_LV6_GATE_GLASS_ON, &se_pos, 0, 0);
-}
-
 void daTagLv6Gate_c::initBaseMtx() {
     fopAcM_SetMtx(this, mpModel[0]->getBaseTRMtx());
 
@@ -106,13 +90,200 @@ void daTagLv6Gate_c::initBaseMtx() {
     mBgW[1].Move();
 }
 
+inline bool daTagLv6Gate_c::checkOpenArea() {
+    if (!fopAcM_isSwitch(this, getSwitchNo2())) {
+        return false;
+    }
+    fopAc_ac_c* actor = NULL;
+    cXyz pos;
+
+    mDoMtx_stack_c::copy(mpModel[1]->getBaseTRMtx());
+    mDoMtx_stack_c::inverse();
+
+    for (int i = 0; i < 2; i++) {
+        actor =
+            (i == 0) ? daPy_getPlayerActorClass() : fopAcM_SearchByName(PROC_NPC_TKS);
+        if (actor != NULL) {
+            mDoMtx_stack_c::push();
+            mDoMtx_stack_c::multVec(fopAcM_GetPosition_p(actor), &pos);
+            mDoMtx_stack_c::pop();
+            if (pos.x >= l_minRelative[0] && pos.x <= l_maxRelative[0] &&
+                pos.z >= l_minRelative[2] && pos.z <= l_maxRelative[2])
+            {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+/* 80D4FEDC-80D5068C 0006BC 07B0+00 1/1 0/0 0/0 .text            execute__14daTagLv6Gate_cFv */
+inline int daTagLv6Gate_c::execute() {
+    dComIfG_inf_c& game_info = g_dComIfG_gameInfo;  // Fake match?
+
+    if (game_info.getPlay().getEvent().runCheck() && !eventInfo.checkCommandTalk()) {
+        dEvent_manager_c& eventManager = dComIfGp_getEventManager();
+        s32 cut_index = eventManager.getMyStaffId(l_arcName, NULL, 0);
+        if (cut_index != -1) {
+            int* cut_name = (int*)eventManager.getMyNowCutName(cut_index);
+
+            daPy_getPlayerActorClass()->onShieldBackBone();
+
+            if (eventManager.getIsAddvance(cut_index)) {
+                switch (*cut_name) {
+                case '0001': {
+                    dComIfGp_getEvent().setSkipZev(this, "LV6_GATE_APPEAR_SKIP");
+
+                    cXyz pos(0.0f, 0.0f, 78.0f);
+
+                    mDoMtx_stack_c::transS(current.pos);
+                    mDoMtx_stack_c::YrotM(shape_angle.y);
+                    mDoMtx_stack_c::multVec(&pos, &pos);
+                    daPy_getPlayerActorClass()->setPlayerPosAndAngle(&pos, shape_angle.y + 0x10000 - 0x8000, 0);
+                    break;
+                }
+                case '0002': {
+                    cXyz pos(0.0f, 0.0f, 0.0f);
+                    csXyz angle(0, 0, 0);
+                    dComIfGp_particle_set(0x8B89, &pos, &angle, NULL);
+                    break;
+                }
+                case '0003':
+                    fopAcM_onSwitch(this, getSwitchNo2());
+                    Vec se_pos = {0.0f, 1800.0f, -6800.0f};
+                    Z2GetAudioMgr()->seStart(Z2SE_OBJ_LV6_GATE_STAIR, &se_pos, 0, 0, 1.0f, 1.0f,
+                                             -1.0f, -1.0f, 0);
+                    break;
+                case '0004': {
+                    cXyz pos(117.8473f, 1677.0f, -5110.8394f);
+
+                    fopAc_ac_c* actor1;
+                    fopAc_ac_c* actor2;
+
+                    actor1 = NULL;
+                    fopAcM_SearchByID(parentActorID, &actor1);
+
+                    if (actor1 == NULL) {
+                        break;
+                    }
+
+                    fopAcM_GetOldPosition_p(actor1)->set(pos);
+                    fopAcM_GetPosition_p(actor1)->set(pos);
+
+                    #if VERSION != VERSION_SHIELD_DEBUG
+
+                    actor2 = NULL;
+                    fopAcM_SearchByName(PROC_NPC_TKC, &actor2);
+
+                    if (actor2 == NULL) {
+                        break;
+                    }
+
+                    *fopAcM_GetOldPosition_p(actor2) = pos;
+                    *fopAcM_GetPosition_p(actor2) = pos;
+                    #endif
+                    break;
+                }
+                case '0006':
+                    fopAcM_onSwitch(this, getSwitchNo2());
+                    mpBtk[0]->setFrame(mpBtk[0]->getEndFrame());
+                    if (!mBgW[0].ChkUsed()) {
+                        dComIfG_Bgsp().Regist(&mBgW[0], this);
+                    }
+                    fopAcM_delete(parentActorID);
+                    break;
+                default:
+                    JUT_PANIC(332, "0");
+                }
+            }
+
+            switch (*cut_name) {
+            case '0001':
+            case '0002':
+            case '0003':
+            case '0004':
+            case '0005':
+            case '0006':
+                eventManager.cutEnd(cut_index);
+                break;
+            default:
+                JUT_PANIC(345, "0");
+            }
+
+            if (eventInfo.checkCommandDemoAccrpt() && mEvtId != -1 &&
+                eventManager.endCheck(mEvtId))
+            {
+                dComIfGp_event_reset();
+                mEvtId = -1;
+            }
+        }
+    } else if (mIsMasterSwordStabbed && !fopAcM_isSwitch(this, getSwitchNo1())) {
+        eventInfo.setArchiveName(l_arcName);
+        dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
+        mEvtId = dComIfGp_getEventManager().getEventIdx(this, "LV6_GATE_APPEAR", -1);
+        fopAcM_orderOtherEventId(this, mEvtId, -1, -1, 0, 1);
+        fopAcM_onSwitch(this, getSwitchNo1());
+        attention_info.flags = 0;
+    }
+
+    if (fopAcM_isSwitch(this, getSwitchNo2())) {
+        if (!mBgW[0].ChkUsed()) {
+            dComIfG_Bgsp().Regist(&mBgW[0], this);
+        }
+
+        mpBtk[0]->play();
+        mpBtk[1]->play();
+    }
+
+    if (checkOpenArea()) {
+        if (mBgW[1].ChkUsed()) {
+            dComIfG_Bgsp().Release(&mBgW[1]);
+            Vec se_pos = {0.0f, 2887.0f, -8330.0f};
+            Z2GetAudioMgr()->seStart(Z2SE_OBJ_LV6_GATE_GLASS_OFF, &se_pos, 0, 0, 1.0f, 1.0f, -1.0f,
+                                     -1.0f, 0);
+        }
+
+        field_0x760[0] -= 12.75f;
+        field_0x760[1] -= 5.75f;
+
+        if (field_0x760[0] < 0.0f) {
+            field_0x760[0] = 0.0f;
+        }
+
+        if (field_0x760[1] < 0.0f) {
+            field_0x760[1] = 0.0f;
+        }
+    } else {
+        if (!mBgW[1].ChkUsed()) {
+            dComIfG_Bgsp().Regist(&mBgW[1], this);
+            Vec se_pos = {0.0f, 2887.0f, -8330.0f};
+            Z2GetAudioMgr()->seStart(Z2SE_OBJ_LV6_GATE_GLASS_ON, &se_pos, 0, 0, 1.0f, 1.0f, -1.0f,
+                                     -1.0f, 0);
+        }
+
+        field_0x760[0] += 12.75f;
+        field_0x760[1] += 5.75f;
+
+        if (field_0x760[0] > 255.0f) {
+            field_0x760[0] = 255.0f;
+        }
+
+        if (field_0x760[1] > 115.0f) {
+            field_0x760[1] = 115.0f;
+        }
+    }
+
+    return 1;
+}
+
 void daTagLv6Gate_c::create_init() {
     fopAcM_setCullSizeBox(this, -50.0f, 0.0f, -50.0f, 50.0f, 100.0f, 50.0f);
     attention_info.position = current.pos;
     attention_info.flags = (fopAcM_isSwitch(this, getSwitchNo1()) != 0) ? 0 : 0x80;
     attention_info.distances[fopAc_attn_ETC_e] = 89;
     mEvtId = -1;
-    field_0x76a = 0;
+    mIsMasterSwordStabbed = 0;
 
     field_0x760[0] = 255.0f;
     field_0x760[1] = 115.0f;
@@ -145,185 +316,6 @@ int daTagLv6Gate_c::create() {
 /* 80D4FEBC-80D4FEDC 00069C 0020+00 1/0 0/0 0/0 .text daTagLv6Gate_Execute__FP14daTagLv6Gate_c */
 static int daTagLv6Gate_Execute(daTagLv6Gate_c* i_this) {
     return i_this->execute();
-}
-
-bool daTagLv6Gate_c::checkOpenArea() {
-    if (!fopAcM_isSwitch(this, getSwitchNo2())) {
-        return false;
-    }
-
-    mDoMtx_stack_c::copy(mpModel[1]->getBaseTRMtx());
-    mDoMtx_stack_c::inverse();
-
-    for (int i = 0; i < 2; i++) {
-        fopAc_ac_c* actor =
-            (i == 0) ? daPy_getPlayerActorClass() : fopAcM_SearchByName(PROC_NPC_TKS);
-        if (actor != NULL) {
-            cXyz pos;
-            mDoMtx_stack_c::push();
-            mDoMtx_stack_c::multVec(fopAcM_GetPosition_p(actor), &pos);
-            mDoMtx_stack_c::pop();
-            if (pos.x >= l_minRelative[0] && pos.x <= l_maxRelative[0] &&
-                pos.z >= l_minRelative[2] && pos.z <= l_maxRelative[2])
-            {
-                return true;
-            }
-        }
-    }
-
-    return false;
-}
-
-void daTagLv6Gate_c::cut1() {
-    dComIfGp_getEvent().setSkipZev(this, "LV6_GATE_APPEAR_SKIP");
-
-    cXyz pos(0.0f, 0.0f, 78.0f);
-
-    mDoMtx_stack_c::transS(current.pos);
-    mDoMtx_stack_c::YrotM(shape_angle.y);
-    mDoMtx_stack_c::multVec(&pos, &pos);
-    daPy_getPlayerActorClass()->setPlayerPosAndAngle(&pos, shape_angle.y + 0x10000 - 0x8000, 0);
-}
-
-void daTagLv6Gate_c::cut2() {
-    cXyz pos(0.0f, 0.0f, 0.0f);
-    dComIfGp_particle_set(0x8B89, &pos, &csXyz(0, 0, 0), NULL);
-}
-
-void daTagLv6Gate_c::cut4() {
-    cXyz pos(117.8473f, 1677.0f, -5110.8394f);
-
-    fopAc_ac_c* actor2;
-    fopAc_ac_c* actor1;
-
-    actor1 = NULL;
-    fopAcM_SearchByID(parentActorID, &actor1);
-
-    if (actor1 == NULL) {
-        return;
-    }
-
-    *fopAcM_GetOldPosition_p(actor1) = pos;
-    *fopAcM_GetPosition_p(actor1) = pos;
-
-    actor2 = NULL;
-    fopAcM_SearchByName(PROC_NPC_TKC, &actor2);
-
-    if (actor2 == NULL) {
-        return;
-    }
-
-    *fopAcM_GetOldPosition_p(actor2) = pos;
-    *fopAcM_GetPosition_p(actor2) = pos;
-}
-
-/* 80D4FEDC-80D5068C 0006BC 07B0+00 1/1 0/0 0/0 .text            execute__14daTagLv6Gate_cFv */
-// NONMATCHING
-int daTagLv6Gate_c::execute() {
-    dComIfG_inf_c& game_info = g_dComIfG_gameInfo;  // Fake match?
-
-    if (game_info.getPlay().getEvent().runCheck() && !eventInfo.checkCommandTalk()) {
-        s32 cut_index = dComIfGp_getEventManager().getMyStaffId(l_arcName, NULL, 0);
-        if (cut_index != -1) {
-            int* cut_name = (int*)dComIfGp_getEventManager().getMyNowCutName(cut_index);
-
-            daPy_getPlayerActorClass()->onShieldBackBone();
-
-            if (dComIfGp_evmng_getIsAddvance(cut_index)) {
-                switch (*cut_name) {
-                case '0001':
-                    cut1();
-                    break;
-                case '0002':
-                    cut2();
-                    break;
-                case '0003':
-                    fopAcM_onSwitch(this, getSwitchNo2());
-                    seStair();
-                    break;
-                case '0004':
-                    cut4();
-                    break;
-                case '0006':
-                    fopAcM_onSwitch(this, getSwitchNo2());
-                    mpBtk[0]->setFrame(mpBtk[0]->getEndFrame());
-                    if (!mBgW[0].ChkUsed()) {
-                        dComIfG_Bgsp().Regist(&mBgW[0], this);
-                    }
-                    fopAcM_delete(parentActorID);
-                }
-            }
-
-            switch (*cut_name) {
-            case '0001':
-            case '0002':
-            case '0003':
-            case '0004':
-            case '0005':
-            case '0006':
-                dComIfGp_evmng_cutEnd(cut_index);
-            }
-
-            if (eventInfo.checkCommandDemoAccrpt() && mEvtId != -1 &&
-                dComIfGp_evmng_endCheck(mEvtId))
-            {
-                dComIfGp_event_reset();
-                mEvtId = -1;
-            }
-        }
-    } else if (field_0x76a && !fopAcM_isSwitch(this, getSwitchNo1())) {
-        eventInfo.setArchiveName(l_arcName);
-        dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
-        mEvtId = dComIfGp_getEventManager().getEventIdx(this, "LV6_GATE_APPEAR", -1);
-        fopAcM_orderOtherEventId(this, mEvtId, -1, -1, 0, 1);
-        fopAcM_onSwitch(this, getSwitchNo1());
-        attention_info.flags = 0;
-    }
-
-    if (fopAcM_isSwitch(this, getSwitchNo2())) {
-        if (!mBgW[0].ChkUsed()) {
-            dComIfG_Bgsp().Regist(&mBgW[0], this);
-        }
-
-        mpBtk[0]->play();
-        mpBtk[1]->play();
-    }
-
-    if (checkOpenArea()) {
-        if (mBgW[1].ChkUsed()) {
-            dComIfG_Bgsp().Release(&mBgW[1]);
-            seGlassOff();
-        }
-
-        field_0x760[0] -= 12.75f;
-        field_0x760[1] -= 5.75f;
-
-        if (field_0x760[0] < 0.0f) {
-            field_0x760[0] = 0.0f;
-        }
-
-        if (field_0x760[1] < 0.0f) {
-            field_0x760[1] = 0.0f;
-        }
-    } else {
-        if (!mBgW[1].ChkUsed()) {
-            dComIfG_Bgsp().Regist(&mBgW[1], this);
-            seGlassOn();
-        }
-
-        field_0x760[0] += 12.75f;
-        field_0x760[1] += 5.75f;
-
-        if (field_0x760[0] > 255.0f) {
-            field_0x760[0] = 255.0f;
-        }
-
-        if (field_0x760[1] > 115.0f) {
-            field_0x760[1] = 115.0f;
-        }
-    }
-
-    return 1;
 }
 
 /* 80D5068C-80D506AC 000E6C 0020+00 1/0 0/0 0/0 .text daTagLv6Gate_Draw__FP14daTagLv6Gate_c */
