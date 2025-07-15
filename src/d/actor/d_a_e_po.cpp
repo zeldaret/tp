@@ -49,7 +49,7 @@ daE_PO_HIO_c::daE_PO_HIO_c() {
 }
 
 /* 80757E5C-80757E98 000054 003C+00 9/11 0/0 0/0 .bss             l_HIO */
-static u8 lbl_221_bss_45;
+static u8 l_HIOInit;
 static daE_PO_HIO_c l_HIO;
 
 /* 80757E98-80757E9C -00001 0004+00 0/1 0/0 0/0 .bss             None */
@@ -2839,7 +2839,7 @@ static int daE_PO_Delete(e_po_class* i_this) {
 
     dComIfG_resDelete(&i_this->mPhase, "E_PO");
     if (i_this->field_0xECC != 0) {
-        lbl_221_bss_45 = FALSE;
+        l_HIOInit = FALSE;
     }
     if (a_this->heap != NULL) {
         i_this->mSound1.deleteObject();
@@ -2949,9 +2949,9 @@ static int daE_PO_Create(fopAc_ac_c* i_this) {
             return cPhs_ERROR_e;
         }
 
-        if (lbl_221_bss_45 == FALSE) {
+        if (l_HIOInit == FALSE) {
             a_this->field_0xECC = 1;
-            lbl_221_bss_45 = TRUE;
+            l_HIOInit = TRUE;
             l_HIO.field_0x04[0] = mDoHIO_CREATE_CHILD("ポウ", &l_HIO);
         }
 
