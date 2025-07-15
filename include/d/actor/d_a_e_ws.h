@@ -61,7 +61,7 @@ public:
     /* 0x684 */ u32 mShadowId;
     /* 0x688 */ s16 mTargetAngle;
     /* 0x68A */ s16 mTargetStep;
-    /* 0x68C */ u8 field_0x68c;
+    /* 0x68C */ u8 mMoveWaitTimer;
     /* 0x68E */ s16 mInvulnerabilityTimer;
     /* 0x690 */ u8 field_0x690;
     /* 0x691 */ u8 field_0x691;
