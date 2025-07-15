@@ -151,6 +151,10 @@ public:
         genNodeSub(label, obj, param_2, param_3);
     }
 
+    void endUpdateNode() {
+        // empty function
+    }
+
     void startUpdateNode(JORReflexible* obj) {
         putNode(obj);
     }
@@ -240,6 +244,7 @@ public:
 
     void updateControl(u32 mode, u32 id, u32 param_2);
     void updateControl(u32 mode, u32 id, const char* param_2);
+    void updateLabel(u32 mode, u32 id, const char* param_2) { updateControl(mode, id, param_2); }
     void updateSliderSub(u32 mode, u32 id, s32 value, s32 rangeMin, s32 rangeMax,
                          u32 param_5);
     void updateCheckBoxSub(u32 mode, u32 id, u16 value, u16 mask, u32 param_4);

@@ -214,7 +214,6 @@ int daAlink_c::setIronBallGroundVec(cXyz const* param_0, cXyz* param_1) {
 
 /* 80112E7C-80113CA0 10D7BC 0E24+00 1/1 0/0 0/0 .text            setIronBallChainPos__9daAlink_cFv
  */
-// NONMATCHING - alot of regalloc
 void daAlink_c::setIronBallChainPos() {
     cXyz sp2A4;
     cXyz sp298;
@@ -225,9 +224,13 @@ void daAlink_c::setIronBallChainPos() {
     *(&mIronBallChainPos[mItemMode] + 1) = mHeldItemRootPos;
     *(&mIronBallChainAngle[mItemMode] + 1) = field_0x316c;
 
-    cXyz* var_r29;
     cXyz* var_r27;
+    cXyz* var_r29;
     cXyz* var_r26;
+    int i;
+    csXyz* sp3C;
+    int sp38;
+    int sp34;
 
     if (mItemVar0.field_0x3018 == 2) {
         var_r29 = mIronBallChainPos + 1;
@@ -237,7 +240,7 @@ void daAlink_c::setIronBallChainPos() {
         sp2A4 = mHookshotTopPos - *mIronBallChainPos;
         sp2A4.normalizeZP();
 
-        for (int i = 0; i < mItemMode; i++, var_r29++, var_r26++) {
+        for (i = 0; i < mItemMode; i++, var_r29++, var_r26++) {
             sp28C = *var_r29;
             *var_r29 = *var_r27 + (sp2A4 * 10.0f);
 
@@ -249,10 +252,10 @@ void daAlink_c::setIronBallChainPos() {
         var_r26 = &field_0x3848[mItemMode];
         var_r27 = var_r29 + 1;
 
-        int sp38 = mItemMode * daAlinkHIO_ironBall_c0::m.mReturnChainRate;
-        int sp34 = sp38;
+        sp38 = mItemMode * daAlinkHIO_ironBall_c0::m.mReturnChainRate;
+        sp34 = sp38;
 
-        for (int i = mItemMode; i >= 0; i--, var_r29--, var_r26--) {
+        for (i = mItemMode; i >= 0; i--, var_r29--, var_r26--) {
             sp2A4 = (*var_r29 - *var_r27) + *var_r26;
 
             if (i == 0) {
@@ -285,7 +288,7 @@ void daAlink_c::setIronBallChainPos() {
         var_r27 = var_r29 - 1;
         var_r26 = field_0x3848 + 1;
 
-        for (int i = 0; i < mItemMode; i++, var_r29++, var_r26++) {
+        for (i = 0; i < mItemMode; i++, var_r29++, var_r26++) {
             sp28C = *var_r29;
             sp2A4 = (*var_r29 - *var_r27) + *var_r26;
             sp2A4.y += daAlinkHIO_ironBall_c0::m.mChainGravity;
@@ -308,7 +311,6 @@ void daAlink_c::setIronBallChainPos() {
     } else if (mItemVar0.field_0x3018 == 1 || mItemVar0.field_0x3018 == 3 || mItemVar0.field_0x3018 == 4) {
         daPy_frameCtrl_c* sp30 = &mUnderFrameCtrl[0];
 
-        int sp38;
         if (mItemVar0.field_0x3018 == 1) {
             f32 temp_f25 = sp30->getEnd() - 13.0f;
             f32 temp_f29 = (sp30->getFrame() - 13.0f) / temp_f25;
@@ -337,7 +339,7 @@ void daAlink_c::setIronBallChainPos() {
         var_r26 = &field_0x3848[mItemMode];
         var_r27 = var_r29 + 1;
 
-        for (int i = mItemMode; i >= 0; i--, var_r29--, var_r26--) {
+        for (i = mItemMode; i >= 0; i--, var_r29--, var_r26--) {
             sp28C = *var_r29;
             sp2A4 = (*var_r29 - *var_r27) + *var_r26;
 
@@ -381,12 +383,12 @@ void daAlink_c::setIronBallChainPos() {
         } else {
             var_f30 = daAlinkHIO_ironBall_c0::m.mChainGravity;
         }
-    
+
         var_r29 = mIronBallChainPos + 1;
         var_r27 = var_r29 - 1;
         var_r26 = field_0x3848 + 1;
 
-        for (int i = 0; i < mItemMode; i++, var_r29++, var_r26++) {
+        for (i = 0; i < mItemMode; i++, var_r29++, var_r26++) {
             sp2A4 = (*var_r29 - *var_r27) + *var_r26;
             sp2A4.y += var_f30;
             sp2A4.normalizeZP();
@@ -405,7 +407,7 @@ void daAlink_c::setIronBallChainPos() {
         f32 temp_f28 = temp_f31 * cM_scos(shape_angle.y);
         temp_f31 *= cM_ssin(shape_angle.y);
 
-        for (int i = mItemMode; i > 0; i--, var_r29--, var_r26--) {
+        for (i = mItemMode; i > 0; i--, var_r29--, var_r26--) {
             sp28C = *var_r29;
 
             if (i == mItemMode) {
@@ -432,16 +434,17 @@ void daAlink_c::setIronBallChainPos() {
         }
     }
 
-    csXyz* sp3C = mIronBallChainAngle + 1;
+    sp3C = mIronBallChainAngle + 1;
     var_r29 = mIronBallChainPos + 1;
     var_r27 = var_r29 - 1;
+    s16 sp10;
     s16 spE = mIronBallChainAngle->z + 0x3000;
 
-    for (int i = 0; i < mItemMode; i++, sp3C++, var_r29++, spE += 0x3000) {
+    for (i = 0; i < mItemMode; i++, sp3C++, var_r29++, spE += 0x3000) {
         sp2A4 = (*var_r27 - *var_r29);
 
-        s16 sp10;
-        if (sp2A4.absXZ() < 1.0f) {
+        f32 var_f27 = sp2A4.absXZ();
+        if (var_f27 < 1.0f) {
             sp10 = sp3C[-1].y;
         } else {
             sp10 = sp2A4.atan2sX_Z();
@@ -451,12 +454,12 @@ void daAlink_c::setIronBallChainPos() {
         var_r27 = var_r29;
     }
 
-    cXyz* temp_r29 = &mIronBallChainPos[mItemMode] + 1;
-    csXyz* sp3C_2 = &mIronBallChainAngle[mItemMode] + 1;
+    var_r29 = &mIronBallChainPos[mItemMode] + 1;
+    sp3C = &mIronBallChainAngle[mItemMode] + 1;
 
-    for (int i = mItemMode + 2; i < 102; i++) {
-        mIronBallChainPos[i] = *temp_r29;
-        mIronBallChainAngle[i] = *sp3C_2;
+    for (i = mItemMode + 2; i < 102; i++) {
+        mIronBallChainPos[i] = *var_r29;
+        mIronBallChainAngle[i] = *sp3C;
         field_0x3848[i] = cXyz::Zero;
     }
 }

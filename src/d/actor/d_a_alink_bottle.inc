@@ -812,9 +812,3 @@ int daAlink_c::procBottleGet() {
 
     return 1;
 }
-
-/* 80110648-80110654 10AF88 000C+00 0/0 1/0 0/0 .text            Insect_Release__9dInsect_cFv */
-// asm void dInsect_c::Insect_Release() {
-extern "C" void Insect_Release__9dInsect_cFv() {
-    // NONMATCHING
-}

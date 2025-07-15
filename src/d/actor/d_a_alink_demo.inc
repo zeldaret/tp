@@ -1338,10 +1338,9 @@ void daAlink_c::setHighModelBck(mDoExt_bckAnm* i_bck, u16 i_anmID) {
 
 /* 801190A4-80119134 1139E4 0090+00 1/1 0/0 0/0 .text            setHighModelFaceBtk__9daAlink_cFUs
  */
-// NONMATCHING - extra mr
 void daAlink_c::setHighModelFaceBtk(u16 i_anmID) {
-    J3DAnmTextureSRTKey* btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectIDRes(
-        dStage_roomControl_c::getDemoArcName(), i_anmID);
+    J3DAnmTextureSRTKey* btk = static_cast<J3DAnmTextureSRTKey*>(dComIfG_getObjectIDRes(
+        dStage_roomControl_c::getDemoArcName(), i_anmID));
 
     if (btk && field_0x068c != btk) {
         btk->searchUpdateMaterialID(mpDemoFCTongueModel->getModelData());
@@ -1356,8 +1355,8 @@ void daAlink_c::setHighModelFaceBtk(u16 i_anmID) {
  * setDemoBrk__9daAlink_cFPP15J3DAnmTevRegKeyP8J3DModelUs       */
 // NONMATCHING - extra mr
 void daAlink_c::setDemoBrk(J3DAnmTevRegKey** param_0, J3DModel* param_1, u16 i_anmID) {
-    J3DAnmTevRegKey* brk =
-        (J3DAnmTevRegKey*)dComIfG_getObjectIDRes(dStage_roomControl_c::getDemoArcName(), i_anmID);
+    J3DAnmTevRegKey* brk = static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectIDRes(
+        dStage_roomControl_c::getDemoArcName(), i_anmID));
 
     if (brk != NULL && *param_0 != brk) {
         brk->searchUpdateMaterialID(param_1->getModelData());
