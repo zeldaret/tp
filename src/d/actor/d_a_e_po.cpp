@@ -2906,34 +2906,34 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* ############################################################################################## */
 
 /* 80756020-80756900 009BC0 08E0+00 1/0 0/0 0/0 .text            daE_PO_Create__FP10fopAc_ac_c */
-static int daE_PO_Create(fopAc_ac_c* i_this) {
-    e_po_class* a_this = (e_po_class*)i_this;
-    fopAcM_SetupActor(i_this, e_po_class);
+static int daE_PO_Create(fopAc_ac_c* i_act_this) {
+    e_po_class* i_this = (e_po_class*)i_act_this;
+    fopAcM_SetupActor(i_act_this, e_po_class);
 
-    int phase_state = dComIfG_resLoad(&a_this->mPhase, "E_PO");
+    int phase_state = dComIfG_resLoad(&i_this->mPhase, "E_PO");
     if (phase_state == cPhs_COMPLEATE_e) {
-        if (fopAcM_isSwitch(i_this, 0x26)) {
+        if (fopAcM_isSwitch(i_act_this, 0x26)) {
             return cPhs_ERROR_e;
         }
 
-        OS_REPORT("E_PO PARAM %x\n", fopAcM_GetParam(i_this));
+        OS_REPORT("E_PO PARAM %x\n", fopAcM_GetParam(i_act_this));
 
-        a_this->mArg0 = fopAcM_GetParam(i_this);
-        if (a_this->mArg0 == 0xFF) {
-            a_this->mArg0 = 1;
+        i_this->mArg0 = fopAcM_GetParam(i_act_this);
+        if (i_this->mArg0 == 0xFF) {
+            i_this->mArg0 = 1;
         }
-        if (a_this->mArg0 == 0) {
-            a_this->field_0x5C1 = TRUE;
+        if (i_this->mArg0 == 0) {
+            i_this->field_0x5C1 = TRUE;
         }
-        a_this->field_0x808 = l_HIO.mBaseSize;
-        a_this->BitSW = fopAcM_GetParam(i_this) >> 8;
-        a_this->BitSW2 = fopAcM_GetParam(i_this) >> 0x10;
-        a_this->BitSW3 = fopAcM_GetParam(i_this) >> 0x18;
+        i_this->field_0x808 = l_HIO.mBaseSize;
+        i_this->BitSW = fopAcM_GetParam(i_act_this) >> 8;
+        i_this->BitSW2 = fopAcM_GetParam(i_act_this) >> 0x10;
+        i_this->BitSW3 = fopAcM_GetParam(i_act_this) >> 0x18;
         if (ZREG_S(0) != 0) {
-            a_this->BitSW = ZREG_S(0);
+            i_this->BitSW = ZREG_S(0);
         }
-        if (mArg0Check(a_this, 3) == 0 && mArg0Check(a_this, 0xFF) == 2) {
-            a_this->BitSW2 = 0xFF;
+        if (mArg0Check(i_this, 3) == 0 && mArg0Check(i_this, 0xFF) == 2) {
+            i_this->BitSW2 = 0xFF;
         }
 
         OS_REPORT("\n\n\n");
@@ -2944,21 +2944,21 @@ static int daE_PO_Create(fopAc_ac_c* i_this) {
         OS_REPORT("\n\n\n");
         OS_REPORT("E_PO//////////////E_PO SET 1 !!\n");
 
-        if (!fopAcM_entrySolidHeap(i_this, useHeapInit, 0x6830)) {
+        if (!fopAcM_entrySolidHeap(i_act_this, useHeapInit, 0x6830)) {
             OS_REPORT("//////////////E_PO SET NON !!\n");
             return cPhs_ERROR_e;
         }
 
         if (l_HIOInit == FALSE) {
-            a_this->field_0xECC = 1;
+            i_this->field_0xECC = 1;
             l_HIOInit = TRUE;
-            l_HIO.field_0x04[0] = mDoHIO_CREATE_CHILD("ポウ", &l_HIO);
+            l_HIO.field_0x04[0] = mDoHIO_CREATE_CHILD("ポウ", (JORReflexible*)&l_HIO);
         }
 
-        a_this->mAcch.Set(fopAcM_GetPosition_p(i_this), fopAcM_GetOldPosition_p(i_this), i_this, 1,
-                          &a_this->mAcchCir, fopAcM_GetSpeed_p(i_this), NULL, NULL);
-        a_this->mAcchCir.SetWall(80.0f, 100.0f);
-        a_this->mColliderStts.Init(150, 0, i_this);
+        i_this->mAcch.Set(fopAcM_GetPosition_p(i_act_this), fopAcM_GetOldPosition_p(i_act_this), i_act_this, 1,
+                          &i_this->mAcchCir, fopAcM_GetSpeed_p(i_act_this), NULL, NULL);
+        i_this->mAcchCir.SetWall(80.0f, 100.0f);
+        i_this->mColliderStts.Init(150, 0, i_act_this);
 
         static dCcD_SrcCyl cc_cyl_src = {
             {
@@ -2974,9 +2974,9 @@ static int daE_PO_Create(fopAc_ac_c* i_this) {
             }  // mCyl
         };
 
-        a_this->mCyl.Set(cc_cyl_src);
-        a_this->mCyl.SetStts(&a_this->mColliderStts);
-        a_this->mCyl.SetTgHitCallback(mPo_tgHitCallback);
+        i_this->mCyl.Set(cc_cyl_src);
+        i_this->mCyl.SetStts(&i_this->mColliderStts);
+        i_this->mCyl.SetTgHitCallback(mPo_tgHitCallback);
 
         static dCcD_SrcSph at_sph_src = {
             {
@@ -2990,176 +2990,176 @@ static int daE_PO_Create(fopAc_ac_c* i_this) {
             }  // mSphAttr
         };
 
-        a_this->mSph2.Set(at_sph_src);
-        a_this->mSph2.SetStts(&a_this->mColliderStts);
-        i_this->health = 90;
-        i_this->field_0x560 = 90;
-        fopAcM_SetMin(i_this, -500.0f, -500.0f, -500.0f);
-        fopAcM_SetMax(i_this, 500.0f, 500.0f, 500.0f);
-        if (mArg0Check(a_this, 0xFF) == 2 && mRollHp < i_this->health) {
-            i_this->health = mRollHp;
+        i_this->mSph2.Set(at_sph_src);
+        i_this->mSph2.SetStts(&i_this->mColliderStts);
+        i_act_this->health = 90;
+        i_act_this->field_0x560 = 90;
+        fopAcM_SetMin(i_act_this, -500.0f, -500.0f, -500.0f);
+        fopAcM_SetMax(i_act_this, 500.0f, 500.0f, 500.0f);
+        if (mArg0Check(i_this, 0xFF) == 2 && mRollHp < i_act_this->health) {
+            i_act_this->health = mRollHp;
         }
-        a_this->field_0x794.set(i_this->current.pos);
+        i_this->field_0x794.set(i_act_this->current.pos);
         if (BREG_S(4) != 0) {
-            i_this->field_0x560 = i_this->health = 2;
+            i_act_this->field_0x560 = i_act_this->health = 2;
         }
-        a_this->field_0x800 = l_HIO.mKanteraColor1A;
-        a_this->mSound1.init(&i_this->current.pos, &i_this->eyePos, 3, 1);
-        a_this->mSound2.init(&i_this->current.pos, &i_this->eyePos, 3, 1);
-        a_this->mSound1.setEnemyName("E_po");
+        i_this->field_0x800 = l_HIO.mKanteraColor1A;
+        i_this->mSound1.init(&i_act_this->current.pos, &i_act_this->eyePos, 3, 1);
+        i_this->mSound2.init(&i_act_this->current.pos, &i_act_this->eyePos, 3, 1);
+        i_this->mSound1.setEnemyName("E_po");
 
-        a_this->mAtInfo.mpSound = &a_this->mSound1;
-        a_this->field_0x740 = cM_rndF(65536.0f);
-        a_this->mActionID = ACT_WAIT;
-        a_this->field_0x7FE = g_env_light.wether_pat1;
-        if (mArg0Check(a_this, 3) == 0 && mArg0Check(a_this, 0xFF) == 2) {
-            a_this->mAcch.CrrPos(dComIfG_Bgsp());
-            a_this->field_0x7E2 = (u8)(fopAcM_GetParam(i_this) >> 16);
-            a_this->mActionID = ACT_ROLL_MOVE;
-            i_this->attention_info.distances[fopAc_attn_BATTLE_e] = 25;
+        i_this->mAtInfo.mpSound = &i_this->mSound1;
+        i_this->field_0x740 = cM_rndF(65536.0f);
+        i_this->mActionID = ACT_WAIT;
+        i_this->field_0x7FE = g_env_light.wether_pat1;
+        if (mArg0Check(i_this, 3) == 0 && mArg0Check(i_this, 0xFF) == 2) {
+            i_this->mAcch.CrrPos(dComIfG_Bgsp());
+            i_this->field_0x7E2 = (u8)(fopAcM_GetParam(i_act_this) >> 16);
+            i_this->mActionID = ACT_ROLL_MOVE;
+            i_act_this->attention_info.distances[fopAc_attn_BATTLE_e] = 25;
         }
-        fopAcM_OffStatus(i_this, 0);
-        i_this->attention_info.flags &= ~0x4;
+        fopAcM_OffStatus(i_act_this, 0);
+        i_act_this->attention_info.flags &= ~0x4;
 
-        if (mArg0Check(a_this, 0xFF) == 3 || mArg0Check(a_this, 0xFF) == 4) {
-            a_this->BitSW = 0xFF;
-            a_this->mActionID = ACT_HOLL_DEMO;
-            a_this->mSph2.OffCoSetBit();
-            a_this->field_0x800 = 0.0f;
-            a_this->field_0x808 = 0.0f;
-            i_this->attention_info.distances[fopAc_attn_BATTLE_e] = 0;
-            fopAcM_SetGroup(i_this, 0);
-            if (mArg0Check(a_this, 7) != 0) {
+        if (mArg0Check(i_this, 0xFF) == 3 || mArg0Check(i_this, 0xFF) == 4) {
+            i_this->BitSW = 0xFF;
+            i_this->mActionID = ACT_HOLL_DEMO;
+            i_this->mSph2.OffCoSetBit();
+            i_this->field_0x800 = 0.0f;
+            i_this->field_0x808 = 0.0f;
+            i_act_this->attention_info.distances[fopAc_attn_BATTLE_e] = 0;
+            fopAcM_SetGroup(i_act_this, 0);
+            if (mArg0Check(i_this, 7) != 0) {
                 s32 unused = 0;
-                a_this->field_0x759 = 1;
-                i_this->health = 0;
+                i_this->field_0x759 = 1;
+                i_act_this->health = 0;
 
                 if (BREG_S(2) != 0) {
-                    a_this->mType = 0x64;
-                    a_this->field_0x758 = 1;
-                    a_this->field_0x800 = 0;
-                    a_this->field_0x5F4 = 0;
-                    a_this->field_0x759 = 1;
+                    i_this->mType = 0x64;
+                    i_this->field_0x758 = 1;
+                    i_this->field_0x800 = 0;
+                    i_this->field_0x5F4 = 0;
+                    i_this->field_0x759 = 1;
                     for (s32 i = 0; i < 4; i++) {
-                        fopAcM_onSwitch(i_this, i + 30);
+                        fopAcM_onSwitch(i_act_this, i + 30);
                     }
-                    if (!fopAcM_isSwitch(i_this, 69)) {
-                        fopAcM_onSwitch(i_this, 69);
+                    if (!fopAcM_isSwitch(i_act_this, 69)) {
+                        fopAcM_onSwitch(i_act_this, 69);
                         for (s32 i = 0; i < 4; i++) {
-                            fopAcM_offSwitch(i_this, i + 34);
+                            fopAcM_offSwitch(i_act_this, i + 34);
                         }
                     }
-                    fopAcM_onSwitch(i_this, 67);
-                    fopAcM_onSwitch(i_this, 34);
+                    fopAcM_onSwitch(i_act_this, 67);
+                    fopAcM_onSwitch(i_act_this, 34);
                 }
 
                 s32 i;
                 s32 local_48;
                 for (i = 0, local_48 = 0; i < 4; i++) {
-                    if (fopAcM_isSwitch(i_this, i + 30)) {
+                    if (fopAcM_isSwitch(i_act_this, i + 30)) {
                         local_48++;
                     }
                 }
-                a_this->mType = 0;
+                i_this->mType = 0;
                 if (local_48 == 0) {
-                    if (!fopAcM_isSwitch(i_this, 67)) {
+                    if (!fopAcM_isSwitch(i_act_this, 67)) {
                         for (i = 0; i < 4; i++) {
-                            fopAcM_onSwitch(i_this, i + 34);
+                            fopAcM_onSwitch(i_act_this, i + 34);
                         }
-                        fopAcM_offSwitch(i_this, 0x45);
+                        fopAcM_offSwitch(i_act_this, 0x45);
                     } else {
-                        a_this->mType = 1000;
+                        i_this->mType = 1000;
                     }
                 } else {
                     for (i = 0; i < 4; i++) {
-                        if (fopAcM_isSwitch(i_this, i + 30) && !fopAcM_isSwitch(i_this, i + 34)) {
+                        if (fopAcM_isSwitch(i_act_this, i + 30) && !fopAcM_isSwitch(i_act_this, i + 34)) {
                             if (i == 0) {
-                                a_this->field_0x7E2 |= 1;
+                                i_this->field_0x7E2 |= 1;
                             } else {
-                                a_this->field_0x7E2 |= 1 << i;
+                                i_this->field_0x7E2 |= 1 << i;
                             }
-                            a_this->field_0x758 = 1;
-                            a_this->field_0x800 = 0.0f;
-                            a_this->field_0x5F4 = 0.0f;
-                            a_this->field_0x759 = 1;
-                            a_this->mType = 100;
-                            fopAcM_OnStatus(i_this, 0x4000);
+                            i_this->field_0x758 = 1;
+                            i_this->field_0x800 = 0.0f;
+                            i_this->field_0x5F4 = 0.0f;
+                            i_this->field_0x759 = 1;
+                            i_this->mType = 100;
+                            fopAcM_OnStatus(i_act_this, 0x4000);
                         }
                     }
-                    if (a_this->mType == 0) {
+                    if (i_this->mType == 0) {
                         return cPhs_ERROR_e;
                     }
                 }
             } else {
-                if (mArg0Check(a_this, 0xFF) == 3) {
-                    a_this->mType = 10;
-                } else if (mArg0Check(a_this, 0xFF) == 4) {
-                    a_this->field_0x758 = 1;
-                    a_this->field_0x800 = 0.0f;
-                    a_this->field_0x5F4 = 0.0f;
-                    a_this->field_0x759 = 1;
-                    i_this->health = 0;
-                    a_this->mType = 200;
+                if (mArg0Check(i_this, 0xFF) == 3) {
+                    i_this->mType = 10;
+                } else if (mArg0Check(i_this, 0xFF) == 4) {
+                    i_this->field_0x758 = 1;
+                    i_this->field_0x800 = 0.0f;
+                    i_this->field_0x5F4 = 0.0f;
+                    i_this->field_0x759 = 1;
+                    i_act_this->health = 0;
+                    i_this->mType = 200;
                 }
             }
-            anm_init(a_this, ANM_WAIT, 0.0f, 0, 1.0f);
-            a_this->mpMorf->setStartFrame(150.0f);
+            anm_init(i_this, ANM_WAIT, 0.0f, 0, 1.0f);
+            i_this->mpMorf->setStartFrame(150.0f);
         }
-        a_this->field_0xEB4.setOldPosP(&i_this->current.pos, &i_this->current.pos);
-        if ((a_this->mArg0 < 4 || a_this->mArg0 > 6) && mArg0Check(a_this, 0xFF) != 3 &&
-            mArg0Check(a_this, 0xFF) != 4 && a_this->BitSW != 0xFF &&
-            fopAcM_isSwitch(i_this, a_this->BitSW))
+        i_this->field_0xEB4.setOldPosP(&i_act_this->current.pos, &i_act_this->current.pos);
+        if ((i_this->mArg0 < 4 || i_this->mArg0 > 6) && mArg0Check(i_this, 0xFF) != 3 &&
+            mArg0Check(i_this, 0xFF) != 4 && i_this->BitSW != 0xFF &&
+            fopAcM_isSwitch(i_act_this, i_this->BitSW))
         {
             cXyz local_40(1.0f, 1.0f, 1.0f);
             local_40.x = 6.0f;
-            a_this->mActionID = ACT_DEAD;
-            a_this->mType = 9;
-            fopAcM_SetMtx(i_this, a_this->mpMorf3->getModel()->getBaseTRMtx());
-            if (a_this->mAcch.GetGroundH() != -1e9f) {
-                i_this->current.pos.y = a_this->mAcch.GetGroundH();
+            i_this->mActionID = ACT_DEAD;
+            i_this->mType = 9;
+            fopAcM_SetMtx(i_act_this, i_this->mpMorf3->getModel()->getBaseTRMtx());
+            if (i_this->mAcch.GetGroundH() != -1e9f) {
+                i_act_this->current.pos.y = i_this->mAcch.GetGroundH();
             }
-            a_this->mpMorf3->setStartFrame(95.0f);
-            a_this->field_0x74A[0] = 2;
-            a_this->field_0x800 = 0.0f;
-            if (mArg0Check(a_this, 0) != 0) {
-                i_this->current.pos.set(0.0f, -20.0f, -600.0f);
-                i_this->shape_angle.y = i_this->current.angle.y = 0;
+            i_this->mpMorf3->setStartFrame(95.0f);
+            i_this->field_0x74A[0] = 2;
+            i_this->field_0x800 = 0.0f;
+            if (mArg0Check(i_this, 0) != 0) {
+                i_act_this->current.pos.set(0.0f, -20.0f, -600.0f);
+                i_act_this->shape_angle.y = i_act_this->current.angle.y = 0;
                 dKy_change_colpat(3);
-            } else if (mArg0Check(a_this, 1) != 0) {
-                i_this->current.pos.set(4170.0f, 150.0f, -5180.0f);
-                i_this->shape_angle.y = i_this->current.angle.y = 0;
-            } else if (mArg0Check(a_this, 2) != 0) {
-                i_this->current.pos.set(5630.0f, 1050.0f, 4560.0f);
-                i_this->shape_angle.y = i_this->current.angle.y = 0x4000;
-            } else if (mArg0Check(a_this, 3) != 0) {
-                i_this->current.pos.set(-4550.0f, 1055.0f, 4000.0f);
-                i_this->shape_angle.y = i_this->current.angle.y = -0x8000;
+            } else if (mArg0Check(i_this, 1) != 0) {
+                i_act_this->current.pos.set(4170.0f, 150.0f, -5180.0f);
+                i_act_this->shape_angle.y = i_act_this->current.angle.y = 0;
+            } else if (mArg0Check(i_this, 2) != 0) {
+                i_act_this->current.pos.set(5630.0f, 1050.0f, 4560.0f);
+                i_act_this->shape_angle.y = i_act_this->current.angle.y = 0x4000;
+            } else if (mArg0Check(i_this, 3) != 0) {
+                i_act_this->current.pos.set(-4550.0f, 1055.0f, 4000.0f);
+                i_act_this->shape_angle.y = i_act_this->current.angle.y = -0x8000;
             }
-            a_this->field_0x758 = 1;
-            a_this->field_0x75A = 1;
-            a_this->field_0x757 = 0;
-            a_this->field_0x5F4 = 0.0f;
-            i_this->health = 0;
+            i_this->field_0x758 = 1;
+            i_this->field_0x75A = 1;
+            i_this->field_0x757 = 0;
+            i_this->field_0x5F4 = 0.0f;
+            i_act_this->health = 0;
         } else {
-            if (a_this->mArg0 >= 1 && a_this->mArg0 <= 2) {
-                fopAcM_OffStatus(i_this, 0x4000);
+            if (i_this->mArg0 >= 1 && i_this->mArg0 <= 2) {
+                fopAcM_OffStatus(i_act_this, 0x4000);
             }
-            fopAcM_SetMtx(i_this, a_this->mpMorf->getModel()->getBaseTRMtx());
-            if (mArg0Check(a_this, 3) != 0) {
-                a_this->mAcch.CrrPos(dComIfG_Bgsp());
-                a_this->field_0x5C1 = TRUE;
+            fopAcM_SetMtx(i_act_this, i_this->mpMorf->getModel()->getBaseTRMtx());
+            if (mArg0Check(i_this, 3) != 0) {
+                i_this->mAcch.CrrPos(dComIfG_Bgsp());
+                i_this->field_0x5C1 = TRUE;
             }
-            if (a_this->field_0x5C1) {
-                i_this->attention_info.flags = 0x400000;
+            if (i_this->field_0x5C1) {
+                i_act_this->attention_info.flags = 0x400000;
             }
-            if (mArg0Check(a_this, 0) != 0) {
-                if (!fopAcM_isSwitch(i_this, 0x43)) {
+            if (mArg0Check(i_this, 0) != 0) {
+                if (!fopAcM_isSwitch(i_act_this, 0x43)) {
                     return cPhs_ERROR_e;
                 }
                 dKy_change_colpat(1);
             }
         }
-        daE_PO_Execute(a_this);
+        daE_PO_Execute(i_this);
     }
     return phase_state;
 }
