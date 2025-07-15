@@ -7,127 +7,28 @@
 #include "SSystem/SComponent/c_lib.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_cc_d.h"
-#include "dol2asm.h"
 
+enum Obj_lv6bm_RES_File_ID {
+    /* BCK */
+    /* 0x07 */ BCK_EF_BIMOBEAM = 0x07,
 
-//
-// Forward References:
-//
+    /* BMDE */
+    /* 0x0A */ BMDE_BM6 = 0xA,
 
-extern "C" static void nodeCallBack__FP8J3DJointi();
-extern "C" void initBaseMtx__11daObjL6Bm_cFv();
-extern "C" void setBaseMtx__11daObjL6Bm_cFv();
-extern "C" void Create__11daObjL6Bm_cFv();
-extern "C" void CreateHeap__11daObjL6Bm_cFv();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" void create1st__11daObjL6Bm_cFv();
-extern "C" void Execute__11daObjL6Bm_cFPPA3_A4_f();
-extern "C" void action__11daObjL6Bm_cFv();
-extern "C" void actionWait__11daObjL6Bm_cFv();
-extern "C" void actionFindPlayer__11daObjL6Bm_cFv();
-extern "C" void actionAttack__11daObjL6Bm_cFv();
-extern "C" void Draw__11daObjL6Bm_cFv();
-extern "C" void __dt__8cM3dGPlaFv();
-extern "C" void Delete__11daObjL6Bm_cFv();
-extern "C" static void daObjL6Bm_create1st__FP11daObjL6Bm_c();
-extern "C" void __dt__14dBgS_ObjGndChkFv();
-extern "C" void __dt__8cM3dGSphFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" static void daObjL6Bm_MoveBGDelete__FP11daObjL6Bm_c();
-extern "C" static void daObjL6Bm_MoveBGExecute__FP11daObjL6Bm_c();
-extern "C" static void daObjL6Bm_MoveBGDraw__FP11daObjL6Bm_c();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void func_80C7DE90(void* _this, u8*);
-extern "C" static void func_80C7DEAC();
-extern "C" static void func_80C7DEB4();
-extern "C" static void func_80C7DEBC();
-extern "C" extern char const* const d_a_obj_lv6bemos__stringBase0;
+    /* BMDR */
+    /* 0x0D */ BMDR_EF_BIMOBEAM = 0xD,
+    /* 0x0E */ BMDR_K_BIMO00,
 
-//
-// External References:
-//
+    /* BTK */
+    /* 0x11 */ BTK_EF_BIMOBEAM = 0x11,
+    /* 0x12 */ BTK_EF_BIMOBEAM_0FF,
+    /* 0x13 */ BTK_EF_BIMOBEAM_ON,
 
-extern "C" void mDoMtx_XrotM__FPA4_fs();
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void push__14mDoMtx_stack_cFv();
-extern "C" void pop__14mDoMtx_stack_cFv();
-extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void play__14mDoExt_baseAnmFv();
-extern "C" void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss();
-extern "C" void entry__13mDoExt_btkAnmFP16J3DMaterialTablef();
-extern "C" void init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb();
-extern "C" void entry__13mDoExt_bckAnmFP12J3DModelDataf();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff();
-extern "C" void fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void onSwitch__10dSv_info_cFii();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void
-set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void setSimple__21dDlst_shadowControl_cFP4cXyzffP4cXyzsfP9_GXTexObj();
-extern "C" void GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla();
-extern "C" void __ct__11dBgS_GndChkFv();
-extern "C" void __dt__11dBgS_GndChkFv();
-extern "C" void __ct__16dBgS_MoveBgActorFv();
-extern "C" bool IsDelete__16dBgS_MoveBgActorFv();
-extern "C" bool ToFore__16dBgS_MoveBgActorFv();
-extern "C" bool ToBack__16dBgS_MoveBgActorFv();
-extern "C" void
-MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f();
-extern "C" void MoveBGDelete__16dBgS_MoveBgActorFv();
-extern "C" void MoveBGExecute__16dBgS_MoveBgActorFv();
-extern "C" void SetObj__16dBgS_PolyPassChkFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void ChkTgHit__12dCcD_GObjInfFv();
-extern "C" void GetTgHitObj__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_CpsFRC11dCcD_SrcCps();
-extern "C" void CalcAtVec__8dCcD_CpsFv();
-extern "C" void Set__8dCcD_SphFRC11dCcD_SrcSph();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void cM_atan2s__Fff();
-extern "C" void __ct__8cM3dGCpsFv();
-extern "C" void Set__8cM3dGCpsFRC9cM3dGCpsS();
-extern "C" void SetC__8cM3dGSphFRC4cXyz();
-extern "C" void cLib_addCalc0__FPfff();
-extern "C" void cLib_addCalcAngleS2__FPssss();
-extern "C" void cLib_targetAngleY__FPC3VecPC3Vec();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__8dCcD_Cps[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__12cCcD_CpsAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" u8 mCurrentMtx__6J3DSys[48];
-extern "C" extern u8 data_80C7E138[4];
+    /* DZB */
+    /* 0x16 */ DZB_K_BIMO00 = 0x16,
+    /* 0x17 */ DZB_LV6_OBJ_BEMOS,
+};
 
-/* ############################################################################################## */
 /* 80C7DECC-80C7DF0C 000000 0040+00 5/5 0/0 0/0 .rodata          l_sph_src */
 const static dCcD_SrcSph l_sph_src = {
     {
@@ -177,7 +78,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_2) {
             mDoMtx_stack_c::transS(i_this->field_0x894);
             mDoMtx_stack_c::YrotM(i_this->field_0x892);
             mDoMtx_stack_c::XrotM(sVar1);
-            i_this->field_0x880->setBaseTRMtx(mDoMtx_stack_c::get());
+            i_this->mBeamEffectModel->setBaseTRMtx(mDoMtx_stack_c::get());
             cXyz sp40(0.0f, 0.0f, 1200.0f);
             mDoMtx_stack_c::multVec(&sp40, &i_this->field_0x72c.mEnd);
             i_this->field_0x72c.mStart = i_this->field_0x894;
@@ -197,7 +98,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_2) {
 
 /* 80C7CE24-80C7CE60 000384 003C+00 1/1 0/0 0/0 .text            initBaseMtx__11daObjL6Bm_cFv */
 void daObjL6Bm_c::initBaseMtx() {
-    field_0x5a8->setBaseScale(scale);
+    mBeamosModel->setBaseScale(scale);
     setBaseMtx();
 }
 
@@ -205,7 +106,7 @@ void daObjL6Bm_c::initBaseMtx() {
 void daObjL6Bm_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
-    field_0x5a8->setBaseTRMtx(mDoMtx_stack_c::get());
+    mBeamosModel->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
@@ -236,7 +137,7 @@ static dCcD_SrcCps l_cps_src = {
 /* 80C7CED4-80C7CFD0 000434 00FC+00 1/0 0/0 0/0 .text            Create__11daObjL6Bm_cFv */
 int daObjL6Bm_c::Create() {
     initBaseMtx();
-    fopAcM_SetMtx(this, field_0x5a8->getBaseTRMtx());
+    fopAcM_SetMtx(this, mBeamosModel->getBaseTRMtx());
     mStts.Init(0xFF, 0xFF, this);
     field_0x5e8.Set(l_cps_src);
     field_0x5e8.SetStts(&mStts);
@@ -245,17 +146,17 @@ int daObjL6Bm_c::Create() {
 
     fopAcM_setCullSizeBox(this, l_cull_box[0], l_cull_box[1], l_cull_box[2], l_cull_box[3], l_cull_box[4], l_cull_box[5]);
 
-    J3DJoint* neckJnt = field_0x5a8->getModelData()->getJointNodePointer(1);
+    J3DJoint* neckJnt = mBeamosModel->getModelData()->getJointNodePointer(1);
     if (neckJnt != NULL) {
         neckJnt->setCallBack(nodeCallBack);
     }
 
-    J3DJoint* eyeJnt = field_0x5a8->getModelData()->getJointNodePointer(2);
+    J3DJoint* eyeJnt = mBeamosModel->getModelData()->getJointNodePointer(2);
     if (eyeJnt != NULL) {
         eyeJnt->setCallBack(nodeCallBack);
     }
 
-    field_0x5a8->setUserArea((u32)this);
+    mBeamosModel->setUserArea((u32)this);
 
     if (neckJnt == NULL) {
         OS_REPORT_ERROR("表ビーモス：首ジョイントが見つかりませんでした！\n"); // Table Beamos : Neck joint not found!
@@ -269,133 +170,23 @@ int daObjL6Bm_c::Create() {
     return 1;
 }
 
-/* ############################################################################################## */
-/* 80C7DF38-80C7DF3C 00006C 0004+00 2/4 0/0 0/0 .rodata          @3880 */
-SECTION_RODATA static f32 const lit_3880 = 1.0f;
-COMPILER_STRIP_GATE(0x80C7DF38, &lit_3880);
-
-/* 80C7DF3C-80C7DF44 000070 0008+00 1/1 0/0 0/0 .rodata          @3882 */
-SECTION_RODATA static u8 const lit_3882[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C7DF3C, &lit_3882);
-
-/* 80C7E000-80C7E00C -00001 000C+00 0/1 0/0 0/0 .data            @3939 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3939[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionWait__11daObjL6Bm_cFv,
-};
-#pragma pop
-
-/* 80C7E00C-80C7E018 -00001 000C+00 0/1 0/0 0/0 .data            @3940 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3940[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionFindPlayer__11daObjL6Bm_cFv,
-};
-#pragma pop
-
-/* 80C7E018-80C7E024 -00001 000C+00 0/1 0/0 0/0 .data            @3941 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3941[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionAttack__11daObjL6Bm_cFv,
-};
-#pragma pop
-
-/* 80C7E024-80C7E048 0000AC 0024+00 0/1 0/0 0/0 .data            l_func$3938 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_func[36] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#pragma pop
-
-/* 80C7E098-80C7E0A4 000120 000C+00 2/2 0/0 0/0 .data            __vt__10cCcD_GStts */
-SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10cCcD_GSttsFv,
-};
-
-/* 80C7E0A4-80C7E0B0 00012C 000C+00 1/1 0/0 0/0 .data            __vt__10dCcD_GStts */
-SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10dCcD_GSttsFv,
-};
-
-/* 80C7E0B0-80C7E0E0 000138 0030+00 2/2 0/0 0/0 .data            __vt__14dBgS_ObjGndChk */
-SECTION_DATA extern void* __vt__14dBgS_ObjGndChk[12] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14dBgS_ObjGndChkFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80C7DEAC,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80C7DEBC,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80C7DEB4,
-};
-
-/* 80C7E0E0-80C7E0EC 000168 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGSph */
-SECTION_DATA extern void* __vt__8cM3dGSph[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGSphFv,
-};
-
-/* 80C7E0EC-80C7E0F8 000174 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGAab */
-SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGAabFv,
-};
-
-/* 80C7E0F8-80C7E104 000180 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGPla */
-SECTION_DATA extern void* __vt__8cM3dGPla[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGPlaFv,
-};
-
-/* 80C7E104-80C7E110 00018C 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
-SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12J3DFrameCtrlFv,
-};
-
 /* 80C7CFD0-80C7D2B0 000530 02E0+00 1/0 0/0 0/0 .text            CreateHeap__11daObjL6Bm_cFv */
 int daObjL6Bm_c::CreateHeap() {
-    // NONMATCHING
-    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 0xE);
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, BMDR_K_BIMO00);
     JUT_ASSERT(620, modelData != 0);
-    field_0x5a8 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
-    if (field_0x5a8 == NULL) {
+    mBeamosModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+    if (mBeamosModel == NULL) {
         return 0;
     }
 
-    modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 0xD);
+    modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, BMDR_EF_BIMOBEAM);
     JUT_ASSERT(634, modelData != 0);
-    field_0x880 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
-    if (field_0x880 == NULL) {
+    mBeamEffectModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
+    if (mBeamEffectModel == NULL) {
         return 0;
     }
 
-    J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 0x13);
+    J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, BTK_EF_BIMOBEAM_ON);
     JUT_ASSERT(648, pbtk != 0);
     mpBtkAnm = new mDoExt_btkAnm();
     if (mpBtkAnm == NULL || mpBtkAnm->init(modelData, pbtk, 1, 0, 1.0f, 0, -1) == 0) {
@@ -403,27 +194,27 @@ int daObjL6Bm_c::CreateHeap() {
     }
 
     #ifdef DEBUG
-    pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 0x12);
+    pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, BTK_EF_BIMOBEAM_OFF);
     JUT_ASSERT(660, pbtk != 0);
     #endif
 
-    pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 0x11);
+    pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, BTK_EF_BIMOBEAM);
     JUT_ASSERT(0x29A, pbtk != 0);
     mpBtkAnm2 = new mDoExt_btkAnm();
     if (mpBtkAnm2 == NULL || mpBtkAnm2->init(modelData, pbtk, 1, 2, 1.0f, 0, -1) == 0) {
         return 0;
     }
 
-    J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 7);
+    J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, BCK_EF_BIMOBEAM);
     JUT_ASSERT(678, pbck != 0);
-    mpBckAnm = new mDoExt_bckAnm();
-    if (mpBckAnm == NULL || mpBckAnm->init(pbck, 1, 2, 1.0f, 0, -1, false) == 0) {
+    mBeamBck = new mDoExt_bckAnm();
+    if (mBeamBck == NULL || mBeamBck->init(pbck, 1, 2, 1.0f, 0, -1, false) == 0) {
         return 0;
     }
 
     if (field_0x891 != 0) {
         mpBtkAnm->setFrame(mpBtkAnm->getEndFrame());
-        mpBtkAnm->setPlaySpeed(1.0f);
+        mpBtkAnm2->setPlaySpeed(1.0f);
         field_0x8b2 = 0x1000;
         field_0x8b4 = 4;
         field_0x890 = 5;
@@ -432,71 +223,131 @@ int daObjL6Bm_c::CreateHeap() {
     return 1;
 }
 
-/* 80C7D2B0-80C7D2F8 000810 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
-// J3DFrameCtrl::~J3DFrameCtrl() {
-extern "C" void __dt__12J3DFrameCtrlFv() {
-    // NONMATCHING
-}
-
 /* 80C7D2F8-80C7D3A4 000858 00AC+00 1/1 0/0 0/0 .text            create1st__11daObjL6Bm_cFv */
-void daObjL6Bm_c::create1st() {
-    // NONMATCHING
-}
+cPhs__Step daObjL6Bm_c::create1st() {
+    if (fopAcM_isSwitch(this, getSwBit())) {
+        OS_REPORT("ビーモス破壊済み！<%d>\n", getSwBit() & 0xFF); // Beamos has been destroyed! <%d>\n
+        return cPhs_ERROR_e;
+    }
 
-/* ############################################################################################## */
-/* 80C7DF44-80C7DF50 000078 000C+00 1/1 0/0 0/0 .rodata          l_particle_id$3914 */
-SECTION_RODATA static u8 const l_particle_id[12] = {
-    0x82, 0x8F, 0x82, 0x90, 0x82, 0x91, 0x82, 0x92, 0x82, 0x93, 0x82, 0x94,
-};
-COMPILER_STRIP_GATE(0x80C7DF44, &l_particle_id);
+    cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&mPhase, l_arcName);
+    if (phase == cPhs_COMPLEATE_e) {
+        phase = (cPhs__Step)MoveBGCreate(l_arcName, DZB_K_BIMO00, NULL, 0x4000, NULL);
+        if (phase == cPhs_ERROR_e) {
+            return phase;
+        }
+    }
+
+    return phase;
+}
 
 /* 80C7D3A4-80C7D4F4 000904 0150+00 1/0 0/0 0/0 .text            Execute__11daObjL6Bm_cFPPA3_A4_f */
-int daObjL6Bm_c::Execute(f32 (**param_0)[3][4]) {
-    // NONMATCHING
+int daObjL6Bm_c::Execute(f32 (**param_1)[3][4]) {
+    static u16 const l_particle_id[6] = {
+        0x828F, 0x8290, 0x8291, 0x8292, 0x8293, 0x8294,
+    };
+
+    if (field_0x891 != 0) {
+        mBeamBck->play();
+        dComIfG_Ccsp()->Set(&field_0x5e8);
+    }
+
+    if (field_0x748.ChkTgHit() && field_0x748.GetTgHitObj() != NULL) {
+        for (int i = 0; i < 5; i++) {
+            dComIfGp_particle_set(l_particle_id[i], &current.pos, NULL, &scale, 0xFF, NULL, -1, NULL, NULL, NULL);
+        }
+
+        fopAcM_delete(this);
+        fopAcM_onSwitch(this, getSwBit());
+    }
+
+    field_0x748.SetC(field_0x894);
+    dComIfG_Ccsp()->Set(&field_0x748);
+    action();
+    *param_1 = &mBgMtx;
+    setBaseMtx();
+    return 1;
 }
 
 /* 80C7D4F4-80C7D598 000A54 00A4+00 1/1 0/0 0/0 .text            action__11daObjL6Bm_cFv */
 void daObjL6Bm_c::action() {
-    // NONMATCHING
+    static daObjL6Bm_c::actionFunc l_func[3] = {
+        &daObjL6Bm_c::actionWait,
+        &daObjL6Bm_c::actionFindPlayer,
+        &daObjL6Bm_c::actionAttack,
+    };
+
+    (this->*l_func[mAction])();
 }
-
-/* ############################################################################################## */
-/* 80C7DF50-80C7DF54 000084 0004+00 0/2 0/0 0/0 .rodata          @3993 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3993 = 50.0f;
-COMPILER_STRIP_GATE(0x80C7DF50, &lit_3993);
-#pragma pop
-
-/* 80C7DF54-80C7DF5C 000088 0004+04 0/2 0/0 0/0 .rodata          @3994 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3994[1 + 1 /* padding */] = {
-    1000.0f,
-    /* padding */
-    0.0f,
-};
-COMPILER_STRIP_GATE(0x80C7DF54, &lit_3994);
-#pragma pop
-
-/* 80C7DF5C-80C7DF64 000090 0008+00 0/2 0/0 0/0 .rodata          @3996 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3996[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C7DF5C, &lit_3996);
-#pragma pop
 
 /* 80C7D598-80C7D6CC 000AF8 0134+00 1/0 0/0 0/0 .text            actionWait__11daObjL6Bm_cFv */
 void daObjL6Bm_c::actionWait() {
     // NONMATCHING
+    f32 fVar1;
+    f32 playerDistance = fopAcM_searchPlayerDistanceXZ(this);
+
+    if (getArg0() != 0xFF) {
+        fVar1 = getArg0() * 50.0f;
+    } else {
+        fVar1 = 1000.0f;
+    }
+
+    if (playerDistance < fVar1 && (s16)abs((s16)(cLib_targetAngleY(fopAcM_GetPosition_p(this), fopAcM_GetPosition_p(dComIfGp_getPlayer(0))) - current.angle.y)) < 0x1000) {
+        setAction(1);
+        field_0x911 = 20;
+    } else {
+        s16 sVar1;
+        if (getArg1() == 0xFF) {
+            sVar1 = 0x4B0;
+        } else {
+            sVar1 = (u16)getArg1() * 100;
+        }
+        current.angle.y += sVar1;
+    }
+
+    field_0x892 = current.angle.y;
+    if (mpBtkAnm->play() != 0) {
+        mpBtkAnm->setPlaySpeed(0.0f);
+    }
 }
 
-/* 80C7D6CC-80C7D894 000C2C 01C8+00 1/0 0/0 0/0 .text            actionFindPlayer__11daObjL6Bm_cFv
- */
+/* 80C7D6CC-80C7D894 000C2C 01C8+00 1/0 0/0 0/0 .text            actionFindPlayer__11daObjL6Bm_cFv */
 void daObjL6Bm_c::actionFindPlayer() {
     // NONMATCHING
+    f32 fVar1;
+    f32 playerDistance = fopAcM_searchPlayerDistanceXZ(this);
+
+    if (getArg0() != 0xFF) {
+        fVar1 = getArg0() * 50.0f;
+    } else {
+        fVar1 = 1000.0f;
+    }
+
+    if (playerDistance < fVar1) {
+        OS_REPORT("プレイヤー離れました！\n"); // Player has left!\n
+        setAction(0);
+
+        if (field_0x891 != 0) {
+            mpBtkAnm->init(mBeamEffectModel->getModelData(), (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, BTK_EF_BIMOBEAM_0FF),
+                           1, 0, 1.0f, 0, -1);
+            field_0x891 = 0;
+        }
+    } else {
+        cLib_addCalcAngleS2(&current.angle.y, fopAcM_searchPlayerAngleY(this), 10, 0x400);
+        if (cLib_calcTimer(&field_0x911) == 0) {
+            if (field_0x891 == 0) {
+                mpBtkAnm->init(mBeamEffectModel->getModelData(), (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, BTK_EF_BIMOBEAM_ON),
+                               1, 0, 0.0f, 0, -1);
+                field_0x891 = 1;
+                mpBtkAnm->setPlaySpeed(1.0f);
+            }
+
+            mpBtkAnm->play();
+            mpBtkAnm2->play();
+        }
+    }
+
+    field_0x892 = current.angle.y;
 }
 
 /* 80C7D894-80C7D898 000DF4 0004+00 1/0 0/0 0/0 .text            actionAttack__11daObjL6Bm_cFv */
@@ -504,123 +355,62 @@ void daObjL6Bm_c::actionAttack() {
     /* empty function */
 }
 
-/* ############################################################################################## */
-/* 80C7DF64-80C7DF68 000098 0004+00 0/1 0/0 0/0 .rodata          @4160 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4160 = -1000000000.0f;
-COMPILER_STRIP_GATE(0x80C7DF64, &lit_4160);
-#pragma pop
-
-/* 80C7DF68-80C7DF6C 00009C 0004+00 0/1 0/0 0/0 .rodata          @4161 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4161 = 120.0f;
-COMPILER_STRIP_GATE(0x80C7DF68, &lit_4161);
-#pragma pop
-
 /* 80C7D898-80C7DA74 000DF8 01DC+00 1/0 0/0 0/0 .text            Draw__11daObjL6Bm_cFv */
 int daObjL6Bm_c::Draw() {
-    // NONMATCHING
-}
+    g_env_light.settingTevStruct(16, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mBeamosModel, &tevStr);
+    dComIfGd_setListBG();
+    mDoExt_modelUpdateDL(mBeamosModel);
+    dComIfGd_setList();
 
-/* 80C7DA74-80C7DABC 000FD4 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGPlaFv */
-// cM3dGPla::~cM3dGPla() {
-extern "C" void __dt__8cM3dGPlaFv() {
-    // NONMATCHING
+    if (field_0x891 != 0) {
+        g_env_light.setLightTevColorType_MAJI(mBeamEffectModel, &tevStr);
+        mpBtkAnm->entry(mBeamEffectModel->getModelData());
+        mpBtkAnm2->entry(mBeamEffectModel->getModelData());
+        mBeamBck->entry(mBeamEffectModel->getModelData());
+        mDoExt_modelUpdateDL(mBeamEffectModel);
+        mBeamBck->remove(mBeamEffectModel->getModelData());
+        mpBtkAnm->remove(mBeamEffectModel->getModelData());
+        mpBtkAnm2->remove(mBeamEffectModel->getModelData());
+    }
+
+    if (field_0x90c != -1000000000.0f) {
+        cM3dGPla plane;
+        if (dComIfG_Bgsp().GetTriPla(mObjGndChk, &plane)) {
+            dComIfGd_setSimpleShadow(&current.pos, field_0x90c, 120.0f, &plane.mNormal, 0, 
+                                     1.0f, dDlst_shadowControl_c::getSimpleTex());
+        }
+    }
+
+    return 1;
 }
 
 /* 80C7DABC-80C7DAF0 00101C 0034+00 1/0 0/0 0/0 .text            Delete__11daObjL6Bm_cFv */
 int daObjL6Bm_c::Delete() {
-    // NONMATCHING
+    dComIfG_resDelete(&mPhase, l_arcName);
+    return 1;
 }
-
-/* ############################################################################################## */
-/* 80C7E110-80C7E138 000198 0028+00 1/1 0/0 0/0 .data            __vt__11daObjL6Bm_c */
-SECTION_DATA extern void* __vt__11daObjL6Bm_c[10] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)CreateHeap__11daObjL6Bm_cFv,
-    (void*)Create__11daObjL6Bm_cFv,
-    (void*)Execute__11daObjL6Bm_cFPPA3_A4_f,
-    (void*)Draw__11daObjL6Bm_cFv,
-    (void*)Delete__11daObjL6Bm_cFv,
-    (void*)IsDelete__16dBgS_MoveBgActorFv,
-    (void*)ToFore__16dBgS_MoveBgActorFv,
-    (void*)ToBack__16dBgS_MoveBgActorFv,
-};
 
 /* 80C7DAF0-80C7DC78 001050 0188+00 1/0 0/0 0/0 .text daObjL6Bm_create1st__FP11daObjL6Bm_c */
-static void daObjL6Bm_create1st(daObjL6Bm_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80C7DC78-80C7DCF0 0011D8 0078+00 4/3 0/0 0/0 .text            __dt__14dBgS_ObjGndChkFv */
-// dBgS_ObjGndChk::~dBgS_ObjGndChk() {
-extern "C" void __dt__14dBgS_ObjGndChkFv() {
-    // NONMATCHING
-}
-
-/* 80C7DCF0-80C7DD38 001250 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
-// cM3dGSph::~cM3dGSph() {
-extern "C" void __dt__8cM3dGSphFv() {
-    // NONMATCHING
-}
-
-/* 80C7DD38-80C7DD80 001298 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
-// cM3dGAab::~cM3dGAab() {
-extern "C" void __dt__8cM3dGAabFv() {
-    // NONMATCHING
-}
-
-/* 80C7DD80-80C7DDDC 0012E0 005C+00 1/0 0/0 0/0 .text            __dt__10dCcD_GSttsFv */
-// dCcD_GStts::~dCcD_GStts() {
-extern "C" void __dt__10dCcD_GSttsFv() {
-    // NONMATCHING
+static int daObjL6Bm_create1st(daObjL6Bm_c* i_this) {
+    fopAcM_SetupActor(i_this, daObjL6Bm_c);
+    return i_this->create1st();
 }
 
 /* 80C7DDDC-80C7DDFC 00133C 0020+00 1/0 0/0 0/0 .text daObjL6Bm_MoveBGDelete__FP11daObjL6Bm_c */
-static void daObjL6Bm_MoveBGDelete(daObjL6Bm_c* param_0) {
-    // NONMATCHING
+static int daObjL6Bm_MoveBGDelete(daObjL6Bm_c* i_this) {
+    return i_this->MoveBGDelete();
 }
 
 /* 80C7DDFC-80C7DE1C 00135C 0020+00 1/0 0/0 0/0 .text daObjL6Bm_MoveBGExecute__FP11daObjL6Bm_c */
-static void daObjL6Bm_MoveBGExecute(daObjL6Bm_c* param_0) {
-    // NONMATCHING
+static int daObjL6Bm_MoveBGExecute(daObjL6Bm_c* i_this) {
+    return i_this->MoveBGExecute();
 }
 
 /* 80C7DE1C-80C7DE48 00137C 002C+00 1/0 0/0 0/0 .text daObjL6Bm_MoveBGDraw__FP11daObjL6Bm_c */
-static void daObjL6Bm_MoveBGDraw(daObjL6Bm_c* param_0) {
-    // NONMATCHING
+static int daObjL6Bm_MoveBGDraw(daObjL6Bm_c* i_this) {
+    return i_this->MoveBGDraw();
 }
-
-/* 80C7DE48-80C7DE90 0013A8 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
-// cCcD_GStts::~cCcD_GStts() {
-extern "C" void __dt__10cCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* 80C7DE90-80C7DEAC 0013F0 001C+00 1/1 0/0 0/0 .text            cLib_calcTimer<Uc>__FPUc */
-extern "C" void func_80C7DE90(void* _this, u8* param_0) {
-    // NONMATCHING
-}
-
-/* 80C7DEAC-80C7DEB4 00140C 0008+00 1/0 0/0 0/0 .text            @20@__dt__14dBgS_ObjGndChkFv */
-static void func_80C7DEAC() {
-    // NONMATCHING
-}
-
-/* 80C7DEB4-80C7DEBC 001414 0008+00 1/0 0/0 0/0 .text            @76@__dt__14dBgS_ObjGndChkFv */
-static void func_80C7DEB4() {
-    // NONMATCHING
-}
-
-/* 80C7DEBC-80C7DEC4 00141C 0008+00 1/0 0/0 0/0 .text            @60@__dt__14dBgS_ObjGndChkFv */
-static void func_80C7DEBC() {
-    // NONMATCHING
-}
-
-/* 80C7DF6C-80C7DF6C 0000A0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 
 /* 80C7E048-80C7E068 -00001 0020+00 1/0 0/0 0/0 .data            daObjL6Bm_METHODS */
 static actor_method_class daObjL6Bm_METHODS = {
