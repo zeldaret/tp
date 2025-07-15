@@ -835,6 +835,11 @@ public:
         getTriPla(&poly);
         return cBgW_CheckBWall(poly.mNormal.y);
     }
+    static bool checkGroundHit() {
+        cM3dGPla poly;
+        getTriPla(&poly);
+        return cBgW_CheckBGround(poly.mNormal.y);
+    }
 
     static dBgS_ObjLinChk mLineCheck;
 };
