@@ -1317,6 +1317,10 @@ inline void dComIfGs_setCollectSmell(u8 smell) {
     g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setSelectEquip(3, smell);
 }
 
+inline void dComIfGs_addPohSpiritNum() {
+    g_dComIfG_gameInfo.info.getPlayer().getCollect().addPohNum();
+}
+
 inline u8 dComIfGs_getPohSpiritNum() {
     return g_dComIfG_gameInfo.info.getPlayer().getCollect().getPohNum();
 }
