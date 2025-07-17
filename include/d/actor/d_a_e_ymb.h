@@ -20,7 +20,7 @@ public:
     /* 808164F0 */ static int JointCallBack(J3DJoint*, int);
     /* 80816554 */ int draw();
     /* 8081697C */ void setBck(int, u8, f32, f32);
-    /* 80816A20 */ bool checkBck(int);
+    /* 80816A20 */ BOOL checkBck(int);
     /* 80816A7C */ void setActionMode(int, int);
     /* 80816A88 */ void setLastDamage();
     /* 80816B7C */ void damage_check();
@@ -62,7 +62,7 @@ public:
     /* 8081D4D8 */ void setCreateDrop();
     /* 8081D594 */ void executeDeath();
     /* 8081DBD0 */ void demo_skip(int);
-    /* 8081DDE0 */ void DemoSkipCallBack(void*, int);
+    /* 8081DDE0 */ static int DemoSkipCallBack(void*, int);
     /* 8081DE14 */ void calcLakeDemoPlayerPos();
     /* 8081DE84 */ void executeLakeDemo();
     /* 8081E5B4 */ void executeStartDemo();
@@ -71,7 +71,7 @@ public:
     /* 8081FAC8 */ void action();
     /* 8081FF88 */ void mtx_set();
     /* 808200A0 */ void getBellyBitePos(cXyz*);
-    /* 80820128 */ void getDownLockPoint();
+    /* 80820128 */ int getDownLockPoint();
     /* 808203D8 */ void setAttentionPos();
     /* 80820668 */ void cc_set();
     /* 808207AC */ int execute();
@@ -84,7 +84,7 @@ public:
 
     /* 0x05AC */ request_of_phase_process_class mPhase;
     /* 0x05B4 */ mDoExt_invisibleModel mInvisModel;
-    /* 0x05BC */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x05BC */ mDoExt_McaMorfSO* mpModelMorf;
     /* 0x05C0 */ mDoExt_brkAnm* mpBrkAnm;
     /* 0x05C4 */ Z2CreatureEnemy mSound;
     /* 0x0668 */ f32 field_0x668[6];
@@ -97,7 +97,6 @@ public:
     /* 0x06BC */ u32 mShadowKey;
     /* 0x06C0 */ u8 mSwitchBit;
     /* 0x06C1 */ u8 field_0x6c1;
-    /* 0x06C2 */ u8 field_0x6c2[0x6c4 - 0x6c2];
     /* 0x06C4 */ f32 field_0x6c4;
     /* 0x06C8 */ f32 field_0x6c8;
     /* 0x06CC */ f32 field_0x6cc;
@@ -119,7 +118,7 @@ public:
     /* 0x0704 */ int field_0x704;
     /* 0x0708 */ int field_0x708;
     /* 0x070C */ int field_0x70c;
-    /* 0x0710 */ s8 field_0x710;
+    /* 0x0710 */ u8 field_0x710;
     /* 0x0711 */ u8 field_0x711;
     /* 0x0712 */ u8 field_0x712;
     /* 0x0713 */ u8 field_0x713;
@@ -134,20 +133,18 @@ public:
     /* 0x0721 */ u8 field_0x721;
     /* 0x0722 */ u8 field_0x722;
     /* 0x0723 */ u8 field_0x723;
-    /* 0x0724 */ s8 field_0x724;
+    /* 0x0724 */ u8 field_0x724;
     /* 0x0725 */ u8 field_0x725;
-    /* 0x0726 */ u8 field_0x726[0x728 - 0x726];
-    /* 0x0728 */ cXyz field_0x728;
-    /* 0x0734 */ cXyz field_0x734;
+    /* 0x0728 */ cXyz mDemoCamEye;
+    /* 0x0734 */ cXyz mDemoCamCenter;
     /* 0x0740 */ cXyz field_0x740;
     /* 0x074C */ cXyz field_0x74c;
-    /* 0x0758 */ f32 field_0x758;
+    /* 0x0758 */ f32 mDemoCamFovy;
     /* 0x075C */ f32 field_0x75c;
     /* 0x0760 */ s16 field_0x760;
     /* 0x0762 */ s16 field_0x762;
     /* 0x0764 */ u8 field_0x764;
     /* 0x0765 */ u8 field_0x765;
-    /* 0x0766 */ u8 field_0x766[0x768 - 0x766];
     /* 0x0768 */ Mtx field_0x768;
     /* 0x0798 */ dBgW* mpBgW;
     /* 0x079C */ dBgS_GndChk mGndChk;
@@ -157,16 +154,15 @@ public:
     /* 0x0BD4 */ dCcD_Sph field_0xbd4[6];
     /* 0x1324 */ dCcD_Sph field_0x1324;
     /* 0x145C */ dCcU_AtInfo mAtInfo;
-    /* 0x1480 */ u32 field_0x1480[4];
-    /* 0x1490 */ u32 field_0x1490[3];
+    /* 0x1480 */ u32 mElecParticles[4];
+    /* 0x1490 */ u32 mMidnaBindParticles[3];
     /* 0x149C */ u8 field_0x149c[0x14d8 - 0x149c];
-    /* 0x14D8 */ u32 field_0x14d8[6];
-    /* 0x14F0 */ u32 field_0x14f0[7];
-    /* 0x150C */ u32 field_0x150c[2];
-    /* 0x1514 */ u32 field_0x1514[2];
-    /* 0x151C */ u32 field_0x151c;
+    /* 0x14D8 */ u32 mWaterParticles1[6];
+    /* 0x14F0 */ u32 mWaterParticles2[7];
+    /* 0x150C */ u32 mDownHamonParticles[2];
+    /* 0x1514 */ u32 mBlurParticles[2];
+    /* 0x151C */ u32 mDamageParticle;
     /* 0x1520 */ u8 field_0x1520;
-    /* 0x1521 */ u8 field_0x1521[0x1524 - 0x1521];
 };
 
 STATIC_ASSERT(sizeof(daE_YMB_c) == 0x1524);
