@@ -274,7 +274,7 @@ void daObjDAN_c::Insect_Release() {
 }
 
 /* 80BDC42C-80BDC430 00007C 0002+02 1/2 0/0 0/0 .rodata          l_dan_itemno */
-static u8 const l_dan_itemno[2] = {0xCA, 0xCB};
+static u8 const l_dan_itemno[2] = {fpcNm_ITEM_M_DANGOMUSHI, fpcNm_ITEM_F_DANGOMUSHI};
 
 /* 80BDB0E8-80BDB264 000C48 017C+00 1/1 0/0 0/0 .text            Z_BufferChk__10daObjDAN_cFv */
 void daObjDAN_c::Z_BufferChk() {
