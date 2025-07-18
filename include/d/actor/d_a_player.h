@@ -757,7 +757,7 @@ public:
     virtual BOOL checkCutCharge() const { return FALSE; }
     virtual BOOL checkCutTurnCharge() const { return FALSE; }
     virtual BOOL checkCutLargeJumpCharge() const { return FALSE; }
-    virtual bool getBokoFlamePos(cXyz*) { return FALSE; }
+    virtual BOOL getBokoFlamePos(cXyz*) { return FALSE; }
     virtual BOOL checkComboCutTurn() const { return FALSE; }
     virtual BOOL checkClimbMove() const { return FALSE; }
     virtual BOOL checkGrassWhistle() const { return FALSE; }
