@@ -76,7 +76,7 @@ public:
     /* 804CAEE8 */ int execute();
     /* 804CBC60 */ int draw();
 
-    virtual bool checkExplodeNow() { return field_0xb51 != 0; }
+    virtual u8 checkExplodeNow() { return field_0xb51 != 0; }
     virtual void deleteBombAndEffect() {
         fopAcM_delete(this);
         onStateFlg0(FLG0_UNK_40);
