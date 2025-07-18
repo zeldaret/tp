@@ -1211,6 +1211,12 @@ public:
     BOOL checkSumouPunchStagger() const { return mSpecialMode == 0x1F; }
     BOOL checkSumouTackleStagger() const { return mSpecialMode == 0x20; }
     BOOL checkSumouGraspRelease() const { return mSpecialMode == 0x23; }
+
+    void onHeavyState() { onNoResetFlg0(FLG0_UNK_40000000); }
+    void onHeavyStateMidnaPanic() {
+        onHeavyState();
+        onEndResetFlg1(ERFLG1_UNK_40000);
+    }
 };
 
 int daPy_addCalcShort(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 param_4);

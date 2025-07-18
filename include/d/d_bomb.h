@@ -32,7 +32,7 @@ public:
     static bool checkWaterBomb(fopAc_ac_c*);
     static bool checkInsectBombMove(fopAc_ac_c*);
 
-    virtual BOOL checkExplodeNow() { return FALSE; }
+    virtual bool checkExplodeNow() { return FALSE; }
     virtual void deleteBombAndEffect() {}
     virtual void setCargoBombExplode() {}
 
