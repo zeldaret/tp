@@ -28,14 +28,8 @@ public:
         c_list() { mBalloon = NULL; }
         void set(daBalloon2D_c* i_this) { mBalloon = i_this; }
 
-        #ifdef NONMATCHING
         /* 806534CC */ virtual void draw();
         /* 8065544C */ virtual ~c_list();
-        #else
-        void draw();
-        ~c_list();
-        void* vtable;
-        #endif
 
         daBalloon2D_c* mBalloon;
     };
@@ -69,9 +63,7 @@ public:
     /* 80654730 */ void drawAddScore();
     /* 80654E8C */ void setHIO(bool);
     /* 80655494 */ 
-    #ifdef NONMATCHING
     virtual
-    #endif
     ~daBalloon2D_c();
 
     void show() { mIsVisible = 1; }
@@ -87,10 +79,6 @@ public:
         u8 field_0xf;
     };
 
-    #ifdef NONMATCHING
-    #else
-    /* 0x570 */ u32 vtable;
-    #endif
     /* 0x574 */ J2DScreen* mScreen;
     /* 0x578 */ CPaneMgr* field_0x578;
     /* 0x57C */ CPaneMgr* field_0x57c;
