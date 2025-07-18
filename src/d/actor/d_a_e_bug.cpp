@@ -1,13 +1,11 @@
 /**
  * @file d_a_e_bug.cpp
- * 
-*/
+ *
+ */
 
 #include "d/actor/d_a_e_bug.h"
+#include "d/d_path.h"
 #include "dol2asm.h"
-
-
-
 
 //
 // Forward References:
@@ -148,20 +146,20 @@ static actor_method_class l_daE_Bug_Method = {
 
 /* 80697DE8-80697E18 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_E_BUG */
 extern actor_process_profile_definition g_profile_E_BUG = {
-  fpcLy_CURRENT_e,        // mLayerID
-  7,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_E_BUG,             // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(e_bug_class),    // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  182,                    // mPriority
-  &l_daE_Bug_Method,      // sub_method
-  0x00044000,             // mStatus
-  fopAc_ACTOR_e,          // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
+    fpcLy_CURRENT_e,         // mLayerID
+    7,                       // mListID
+    fpcPi_CURRENT_e,         // mListPrio
+    PROC_E_BUG,              // mProcName
+    &g_fpcLf_Method.base,    // sub_method
+    sizeof(e_bug_class),     // mSize
+    0,                       // mSizeOther
+    0,                       // mParameters
+    &g_fopAc_Method.base,    // sub_method
+    182,                     // mPriority
+    &l_daE_Bug_Method,       // sub_method
+    0x00044000,              // mStatus
+    fopAc_ACTOR_e,           // mActorType
+    fopAc_CULLBOX_CUSTOM_e,  // cullType
 };
 
 /* 80697E18-80697E24 000070 000C+00 2/2 0/0 0/0 .data            __vt__13daE_Bug_HIO_c */
@@ -267,7 +265,7 @@ static u8 lit_1010[1 + 3 /* padding */];
 /* 80697E6C-80697E70 -00001 0004+00 1/2 0/0 0/0 .bss             None */
 /* 80697E6C 0001+00 data_80697E6C @1009 */
 /* 80697E6D 0003+00 data_80697E6D None */
-static u8 struct_80697E6C[4];
+static u8 l_initHIO;
 
 /* 80697E70-80697E7C 000048 000C+00 0/1 0/0 0/0 .bss             @3824 */
 #pragma push
@@ -786,7 +784,7 @@ static void daE_Bug_Delete(e_bug_class* param_0) {
 }
 
 /* 806976B4-806977A8 002C14 00F4+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
-static void useHeapInit(fopAc_ac_c* param_0) {
+static int useHeapInit(fopAc_ac_c* param_0) {
     // NONMATCHING
 }
 
@@ -816,13 +814,61 @@ SECTION_DEAD static char const* const stringBase_80697D9E = "T_ENEMY";
 #pragma pop
 
 /* 806977A8-80697B4C 002D08 03A4+00 1/0 0/0 0/0 .text            daE_Bug_Create__FP10fopAc_ac_c */
-static void daE_Bug_Create(fopAc_ac_c* param_0) {
+static cPhs__Step daE_Bug_Create(fopAc_ac_c* a_this) {
     // NONMATCHING
-}
+    e_bug_class* i_this = (e_bug_class*)a_this;
 
-/* 80697B4C-80697BB8 0030AC 006C+00 1/1 0/0 0/0 .text            __dt__5bug_sFv */
-bug_s::~bug_s() {
-    // NONMATCHING
+    fopAcM_SetupActor(a_this, e_bug_class);
+
+    cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&i_this->mPhase, "E_bug");
+    if (phase == cPhs_COMPLEATE_e) {
+        OS_REPORT("E_BUG PARAM %x\n", fopAcM_GetParam(a_this));
+        i_this->field_0x570 = fopAcM_GetParam(a_this);
+        i_this->field_0x7d88 = i_this->field_0x570 + 1;
+
+        if (i_this->field_0x7d88 > 0x100) {
+            i_this->field_0x7d88 = 0x100;
+        }
+
+        if (strcmp(dComIfGp_getStartStageName(), "T_ENEMY") == 0) {
+            i_this->field_0x7d88 = 0x100;
+        }
+
+        OS_REPORT("E_BUG//////////////E_BUG SET 1 !!\n");
+        if (!fopAcM_entrySolidHeap(a_this, useHeapInit, 0x4b000)) {
+            OS_REPORT("//////////////E_BUG SET NON !!\n");
+            return cPhs_ERROR_e;
+        }
+
+        OS_REPORT("//////////////E_BUG SET 2 !!\n");
+        if (l_initHIO == 0) {
+            i_this->field_0x7dac = 1;
+            l_initHIO = 1;
+        }
+
+        i_this->field_0x574 = (fopAcM_GetParam(a_this) & 0xFF0000) >> 16;
+        i_this->field_0x578 = fopAcM_GetParam(a_this) >> 24;
+        i_this->field_0x57c = ((fopAcM_GetParam(a_this) & 0xFF00) >> 8) * 100.0f;
+
+        u8 uVar1 = a_this->home.angle.z;
+        a_this->home.angle.z = 0;
+        a_this->current.angle.z = 0;
+
+        for (int i = 0; i < i_this->field_0x7d88; i++) {
+            i_this->mBugs[i].field_0x8 = i;
+            i_this->mBugs[i].field_0x50 = 0xFF;
+            i_this->mBugs[i].field_0x18 = a_this->home.pos;
+            i_this->mBugs[i].field_0x52 = i;
+            i_this->mBugs[i].field_0x28 = cM_rndFX(0.1f) + 1.0f;
+            i_this->mBugs[i].field_0x48 = cM_rndF(65536.0f);
+            i_this->mBugs[i].field_0x4c = cM_rndF(65536.0f);
+        }
+
+        if (uVar1 != 0) {
+            dPath* roomPath = dPath_GetRoomPath(uVar1, fopAcM_GetRoomNo(a_this));
+            // if (roomPath != NULL && )
+        }
+    }
 }
 
 /* 80697BB8-80697BEC 003118 0034+00 1/1 0/0 0/0 .text            __ct__5bug_sFv */
