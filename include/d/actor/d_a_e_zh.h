@@ -1,6 +1,10 @@
 #ifndef D_A_E_ZH_H
 #define D_A_E_ZH_H
 
+#include "d/actor/d_a_obj_carry.h"
+#include "d/d_bg_s_acch.h"
+#include "d/d_cc_d.h"
+#include "d/d_cc_uty.h"
 #include "f_op/f_op_actor_mng.h"
 
 /**
@@ -45,18 +49,61 @@ class daE_ZH_c : public fopEn_enemy_c {
     /* 8082E2FC */ void execute();
     /* 8082E3E8 */ void _delete();
     /* 8082E4E4 */ void CreateHeap();
-    /* 8082E730 */ void create();
+    /* 8082E730 */ cPhs__Step create();
     /* 8082ECEC */ daE_ZH_c();
         
 private:
-    /* 0x5ac */ u8 field_0x5ac[0xe08 - 0x5ac];
+    /* 0x5AC */ request_of_phase_process_class mPhase;
+    /* 0x5B4 */ mDoExt_McaMorfSO* mpModelMorf;
+    /* 0x5B8 */ u8 field_0x5b8[0x5c0 - 0x5b8];
+    /* 0x5C0 */ Z2CreatureEnemy mSound;
+    /* 0x664 */ daObjCarry_c* field_0x664;
+    /* 0x668 */ cXyz field_0x668;
+    /* 0x674 */ u8 field_0x674[0x6c8 - 0x674];
+    /* 0x6C8 */ cXyz field_0x6c8[3];
+    /* 0x6EC */ u8 field_0x6ec[0x6f8 - 0x6ec];
+    /* 0x6F8 */ cXyz field_0x6f8[8];
+    /* 0x758 */ u8 field_0x758[8];
+    /* 0x760 */ u8 field_0x760[0x764 - 0x760];
+    /* 0x764 */ f32 field_0x764[3];
+    /* 0x770 */ u8 field_0x770[0x774 - 0x770];
+    /* 0x774 */ f32 field_0x774;
+    /* 0x778 */ f32 field_0x778;
+    /* 0x77C */ u8 field_0x77c[0x78c - 0x77c];
+    /* 0x78C */ int field_0x78c;
+    /* 0x790 */ u8 field_0x790[0x7a9 - 0x790];
+    /* 0x7A9 */ u8 bitSw;
+    /* 0x7AA */ u8 bitSwEnd;
+    /* 0x7AB */ u8 arg0;
+    /* 0x7AC */ u8 field_0x7ac;
+    /* 0x7AD */ u8 field_0x7ad[0x7b4 - 0x7ad];
+    /* 0x7B4 */ dBgS_AcchCir mAcchCir;
+    /* 0x7F4 */ dBgS_ObjAcch mObjAcch;
+    /* 0x9CC */ dCcD_Stts mStts;
+    /* 0xA08 */ dCcD_Sph field_0xa08;
+    /* 0xB40 */ dCcD_Cyl field_0xb40;
+    /* 0xC7C */ dCcD_Cyl field_0xc7c;
+    /* 0xDB8 */ dCcU_AtInfo mAtInfo;
+    /* 0xDDC */ u8 field_0xddc[0xe04 - 0xddc];
+    /* 0xE04 */ u8 field_0xe04;
+    /* 0xE05 */ u8 field_0xe05[0xe08 - 0xe05];
 };
 
 STATIC_ASSERT(sizeof(daE_ZH_c) == 0xe08);
 
-class daE_ZH_HIO_c {
+class daE_ZH_HIO_c: public JORReflexible {
+public:
     /* 8082902C */ daE_ZH_HIO_c();
-    /* 8082F160 */ ~daE_ZH_HIO_c();
+    /* 8082F160 */ virtual ~daE_ZH_HIO_c() {}
+
+    // ボールマスター (Ball Master)
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 model_size;          // モデルサイズ (Model Size)
+    /* 0x0C */ f32 ascent_rate;         // 上昇速度（落下後）(Rate of ascent (after falling))
+    /* 0x10 */ f32 wandering_area;      // うろうろ範囲 (Wandering Area)
+    /* 0x14 */ s16 wait_time;           // 玉取られ後移動開始待ち時間 (Waiting time after the stone is taken and movement begins)
+    /* 0x16 */ s16 piyori_time;         // ピヨリ時間 (Piyori Time)
+    /* 0x18 */ u8 dungeon_bit_check;    // ダンジョンビットチェックON／OFF (Dungeon Bit Check ON/OFF)
 };
 
 
