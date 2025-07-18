@@ -5,7 +5,6 @@
 
 #include "d/actor/d_a_e_bug.h"
 #include "d/actor/d_a_player.h"
-#include "d/d_com_inf_game.h"
 #include "d/d_path.h"
 #include "d/actor/d_a_nbomb.h"
 #include "Z2AudioLib/Z2Instances.h"
