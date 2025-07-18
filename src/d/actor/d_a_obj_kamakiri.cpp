@@ -520,7 +520,7 @@ void daObjKAM_c::Insect_Release() {
     field_0x980 = 1;
 }
 
-static u8 const l_kam_itemno[2] = {0xCC, 0xCD};
+static u8 const l_kam_itemno[2] = {fpcNm_ITEM_M_MANTIS, fpcNm_ITEM_F_MANTIS};
 
 f32 floatDummy() {
     return -9.0f;
