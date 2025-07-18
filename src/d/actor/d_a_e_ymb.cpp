@@ -428,7 +428,7 @@ void daE_YMB_c::damage_check() {
             tgHitObj = field_0xa9c.GetTgHitObj();
         }
 
-        if (tgHitObj != NULL && ((mAction == 1 || mAction == 2) || mAction == 4)) {
+        if (tgHitObj != NULL && (mAction == 1 || mAction == 2 || mAction == 4)) {
             setActionMode(4, 0);
         }
     }
@@ -1167,7 +1167,7 @@ void daE_YMB_c::executeFlyAttack() {
             }
 
             static s16 ymb_chance_time[3] = {
-                0x006E, 0x0050, 0x0032,
+                110, 80, 50,
             };
             if (field_0x6fc == 0) {
                 mMode = 9;
@@ -1636,7 +1636,6 @@ void daE_YMB_c::executeWaterJump() {
 
 /* 8081BC10-8081BEE8 005BF0 02D8+00 1/1 0/0 0/0 .text            getNearDownPos__9daE_YMB_cFv */
 void daE_YMB_c::getNearDownPos() {
-    // NONMATCHING
     s16 sVar2;
     int iVar2;
     f32 fVar2;
@@ -1681,22 +1680,17 @@ void daE_YMB_c::getNearDownPos() {
         }
     }
 
-    iVar2 = 0;
-    while (true) {
-        if (iVar1[iVar2] != -1 && fVar1[iVar2] < 1000.0f && sVar1[iVar2] < 0x3000) {
-            field_0x711 = iVar1[iVar2];
+    for (int i = 0; i < 3; i++) {
+        if (iVar1[i] != -1 && fVar1[i] < 1000.0f && sVar1[i] < 0x3000) {
+            field_0x711 = iVar1[i];
             return;
         }
+    }
 
-        iVar2++;
-        if (iVar2 == 3) {
-            if (iVar1[0] != -1) {
-                field_0x711 = iVar1[0];
-            } else {
-                field_0x711 = 0;
-            }
-            return;
-        }
+    if (iVar1[0] != -1) {
+        field_0x711 = iVar1[0];
+    } else {
+        field_0x711 = 0;
     }
 }
 
