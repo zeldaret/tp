@@ -226,39 +226,53 @@ daE_YMB_HIO_c::daE_YMB_HIO_c() {
 
 /* 8081615C-808164B4 00013C 0358+00 1/1 0/0 0/0 .text ctrlJoint__9daE_YMB_cFP8J3DJointP8J3DModel */
 int daE_YMB_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
-    // NONMATCHING
     int jntNo = i_joint->getJntNo();
     cXyz sp54, sp60;
     csXyz local_8c, local_94;
 
     mDoMtx_stack_c::copy(i_model->getAnmMtx(jntNo));
 
-    if (jntNo < 0x1F && jntNo < 0x13) {
-        int iVar1 = (jntNo - 0x13) / 2;
-        if (field_0x668[iVar1] != 0.0f) {
-            if (((u16)jntNo & 1) != 0) {
-                mDoMtx_stack_c::multVecZero(&sp54);
-                mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &local_8c);
-                s16 sVar1 = (s16)(0x4000 - local_8c.z) * field_0x668[iVar1];
-                mDoMtx_stack_c::transS(sp54);
-                mDoMtx_stack_c::ZXYrotM(local_8c.x, local_8c.y, local_8c.z + sVar1);
-                mDoMtx_stack_c::scaleM(1.0f, 1.0f, 1.0f);
-            } else {
-                mDoMtx_stack_c::multVecZero(&sp54);
-                mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &local_8c);
-                mDoMtx_stack_c::copy(i_model->getAnmMtx(jntNo - 1));
-                mDoMtx_stack_c::transM(-100.0f, 0.0f, 0.0f);
-                mDoMtx_stack_c::multVecZero(&sp60);
+    switch (jntNo) {
+        case 0x13:
+        case 0x14:
+        case 0x15:
+        case 0x16:
+        case 0x17:
+        case 0x18:
+        case 0x19:
+        case 0x1A:
+        case 0x1B:
+        case 0x1C:
+        case 0x1D:
+        case 0x1E: {
+            int iVar1 = (jntNo - 0x13) / 2;
+            if (field_0x668[iVar1] != 0.0f) {
+                if (((u16)jntNo & 1) != 0) {
+                    mDoMtx_stack_c::multVecZero(&sp54);
+                    mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &local_8c);
+                    s16 sVar1 = (s16)(0x4000 - local_8c.z) * field_0x668[iVar1];
+                    mDoMtx_stack_c::transS(sp54);
+                    mDoMtx_stack_c::ZXYrotM(local_8c.x, local_8c.y, local_8c.z + sVar1);
+                    mDoMtx_stack_c::scaleM(1.0f, 1.0f, 1.0f);
+                } else {
+                    mDoMtx_stack_c::multVecZero(&sp54);
+                    mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &local_8c);
+                    mDoMtx_stack_c::copy(i_model->getAnmMtx(jntNo - 1));
+                    mDoMtx_stack_c::transM(-100.0f, 0.0f, 0.0f);
+                    mDoMtx_stack_c::multVecZero(&sp60);
 
-                mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &local_94);
-                sp54 = ((sp54 * (1.0f - field_0x668[iVar1])) + (sp60 * field_0x668[iVar1]));
-                local_8c.set(local_8c.x * (1.0f - field_0x668[iVar1]) + local_94.x * field_0x668[iVar1],
-                             local_8c.y * (1.0f - field_0x668[iVar1]) + local_94.y * field_0x668[iVar1],
-                             local_8c.z * (1.0f - field_0x668[iVar1]) + local_94.z * field_0x668[iVar1]);
-                mDoMtx_stack_c::transS(sp54);
-                mDoMtx_stack_c::ZXYrotM(local_8c);
-                mDoMtx_stack_c::scaleM(1.0f, 1.0f, 1.0f);
+                    mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &local_94);
+                    sp54 = ((sp54 * (1.0f - field_0x668[iVar1])) + (sp60 * field_0x668[iVar1]));
+                    local_8c.set(local_8c.x * (1.0f - field_0x668[iVar1]) + local_94.x * field_0x668[iVar1],
+                                local_8c.y * (1.0f - field_0x668[iVar1]) + local_94.y * field_0x668[iVar1],
+                                local_8c.z * (1.0f - field_0x668[iVar1]) + local_94.z * field_0x668[iVar1]);
+                    mDoMtx_stack_c::transS(sp54);
+                    mDoMtx_stack_c::ZXYrotM(local_8c);
+                    mDoMtx_stack_c::scaleM(1.0f, 1.0f, 1.0f);
+                }
             }
+
+            break;
         }
     }
 
@@ -362,8 +376,12 @@ void daE_YMB_c::setBck(int i_index, u8 i_attr, f32 i_morf, f32 i_rate) {
 }
 
 /* 80816A20-80816A7C 000A00 005C+00 5/5 0/0 0/0 .text            checkBck__9daE_YMB_cFi */
-BOOL daE_YMB_c::checkBck(int i_index) {
-    return mpModelMorf->getAnm() == (J3DAnmTransform*)dComIfG_getObjectRes("E_YB", i_index);
+bool daE_YMB_c::checkBck(int i_index) {
+    if (mpModelMorf->getAnm() == (J3DAnmTransform*)dComIfG_getObjectRes("E_YB", i_index)) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 /* 80816A7C-80816A88 000A5C 000C+00 15/15 0/0 0/0 .text            setActionMode__9daE_YMB_cFii */
@@ -496,11 +514,8 @@ static daE_YMB_HIO_c l_HIO;
 
 /* 80817064-80817164 001044 0100+00 1/1 0/0 0/0 .text            checkWaterPos__9daE_YMB_cFv */
 void daE_YMB_c::checkWaterPos() {
-    // NONMATCHING
-    Vec pos;
-    pos.x = current.pos.x;
-    pos.z = current.pos.z;
-    pos.y = current.pos.y + 1000.0f;
+    Vec pos = current.pos;
+    pos.y += 1000.0f;
 
     dBgS_ObjGndChk_Spl wtr_chk;
     wtr_chk.SetPos(&pos);
@@ -509,11 +524,8 @@ void daE_YMB_c::checkWaterPos() {
         field_0x6cc = wtr_pos;
         field_0x69c.y = wtr_pos + 1000.0f + l_HIO.fly_height_adjust;
 
-        #ifdef DEBUG
-        abs(field_0x6cc - current.pos.y);
-        #endif
-        
-        if (current.pos.y + 200.0f < field_0x6cc) {
+        std::fabsf(field_0x6cc - current.pos.y);
+        if (current.pos.y < (200.0f + field_0x6cc)) {
             if (field_0x715 == 0) {
                 setWaterEffect1();
             }
@@ -708,34 +720,31 @@ void daE_YMB_c::setDownHamonEffect() {
 
 /* 80817CF0-80817E7C 001CD0 018C+00 1/1 0/0 0/0 .text            setFlyBlurEffect__9daE_YMB_cFv */
 void daE_YMB_c::setFlyBlurEffect() {
-    // NONMATCHING
     static u16 w_eff_id[2] = {
         ZL2_HANEBLUR64I4_1, ZL2_HANEBLUR64I4_2,
     };
 
-    if (field_0x717 == 0) {
+    if (field_0x717 == 0 || !field_0x6dc) {
         return;
     }
 
-    if (!field_0x6dc && field_0x6d8) {
-        switch (field_0x710) {
-            case 0:
-                J3DModel* model = mpModelMorf->getModel();
-                cXyz pos;
-                mDoMtx_stack_c::copy(model->getAnmMtx(1));
-                mDoMtx_stack_c::multVecZero(&pos);
-                if (pos.y < field_0x6cc) {
-                    return;
-                }
+    if (!field_0x6d8 || field_0x710) {
+        return;
+    }
 
-                for (int i = 0; i < 2; i++) {
-                    mBlurParticles[i] = dComIfGp_particle_set(mBlurParticles[i], w_eff_id[i], &pos, &tevStr);
-                    JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(mBlurParticles[i]);
-                    if (emitter != NULL) {
-                        emitter->setGlobalSRTMatrix(model->getAnmMtx(1));
-                    }
-                }
-                break;
+    J3DModel* model = mpModelMorf->getModel();
+    cXyz pos;
+    mDoMtx_stack_c::copy(model->getAnmMtx(1));
+    mDoMtx_stack_c::multVecZero(&pos);
+    if (pos.y < field_0x6cc) {
+        return;
+    }
+
+    for (int i = 0; i < 2; i++) {
+        mBlurParticles[i] = dComIfGp_particle_set(mBlurParticles[i], w_eff_id[i], &pos, &tevStr);
+        JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(mBlurParticles[i]);
+        if (emitter != NULL) {
+            emitter->setGlobalSRTMatrix(model->getAnmMtx(1));
         }
     }
 }
@@ -883,17 +892,16 @@ bool daE_YMB_c::checkWolfLockIn() {
 
 /* 80818AE8-80819610 002AC8 0B28+00 1/1 0/0 0/0 .text            executeFly__9daE_YMB_cFv */
 void daE_YMB_c::executeFly() {
-    // NONMATCHING
     daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz sp44(player->current.pos);
+    s16 adj_angle;
     s16 playerAngleY = fopAcM_searchPlayerAngleY(this);
     cXyz sp50;
 
     mSound.startCreatureSoundLevel(Z2SE_EN_YB_FLY, 0, -1);
     setFlyWaitVoice();
 
-    f32 fVar1, fVar2;
-    s16 sVar1;
+    f32 fVar1;
     if (!checkStartBattleDemo()) {
         field_0x712 = 1;
         switch (mMode) {
@@ -915,37 +923,37 @@ void daE_YMB_c::executeFly() {
                 // fallthrough
             case 2:
                 fVar1 = current.pos.absXZ(field_0x69c);
-                fVar2 = sp44.absXZ(field_0x69c);
-                if (fVar2 > 3000.0f || fVar1 > 3000.0f) {
+                if (sp44.absXZ(field_0x69c) > 3000.0f || fVar1 > 3000.0f) {
                     field_0x6a8 = field_0x69c;
-                } else if (fVar1 > 2200.0f) {
-                    playerAngleY = cLib_targetAngleY(&current.pos, &field_0x69c);
                 } else {
-                    if (fVar1 > 1800.0f) {
-                        sVar1 = playerAngleY + 0x8000 + cM_rndFX(2048.0f);
-                        if ((s16)(cLib_targetAngleY(&current.pos, &field_0x69c) - playerAngleY) > 0) {
-                            playerAngleY = sVar1 - 0x1800;
-                        } else {
-                            playerAngleY = sVar1 + 0x1800;
-                        }
+                    if (fVar1 > 2200.0f) {
+                        adj_angle = cLib_targetAngleY(&current.pos, &field_0x69c);
                     } else {
-                        sVar1 = playerAngleY + 0x8000 + cM_rndFX(2048.0f);
-                        if (cM_rnd() < 0.5f) {
-                            playerAngleY = sVar1 + 0x1800;
+                        if (fVar1 > 1800.0f) {
+                            adj_angle = playerAngleY + 0x8000 + cM_rndFX(2048.0f);
+                            if ((s16)(cLib_targetAngleY(&current.pos, &field_0x69c) - playerAngleY) > 0) {
+                                adj_angle -= (s16) 0x1800;
+                            } else {
+                                adj_angle += (s16) 0x1800;
+                            }
                         } else {
-                            playerAngleY = sVar1 - 0x1800;
+                            adj_angle = playerAngleY + 0x8000 + cM_rndFX(2048.0f);
+                            if (cM_rnd() < 0.5f) {
+                                adj_angle += (s16) 0x1800;
+                            } else {
+                                adj_angle -= (s16) 0x1800;
+                            }
                         }
                     }
 
                     sp50.set(0.0f, 0.0f, 1000.0f);
-                    cLib_offsetPos(&field_0x6a8, &sp44, playerAngleY, &sp50);
+                    cLib_offsetPos(&field_0x6a8, &sp44, adj_angle, &sp50);
                     field_0x6a8.y = field_0x69c.y;
                 }
-                
+
                 current.angle.y = cLib_targetAngleY(&current.pos, &field_0x6a8);
                 current.angle.x = cLib_targetAngleX(&current.pos, &field_0x6a8);
-                speed.y = 0.0f;
-                speedF = 0.0f;
+                speedF = speed.y = 0.0f;
                 field_0x6c8 = 0.0f;
                 field_0x6fc = 30;
                 mMode = 3;
@@ -1001,8 +1009,7 @@ void daE_YMB_c::executeFly() {
                 }
 
                 if (field_0x6fc == 0) {
-                    speed.y = 0.0f;
-                    speedF = 0.0f;
+                    speedF = speed.y = 0.0f;
                     mMode = 2;
                 }
 
@@ -1017,9 +1024,9 @@ void daE_YMB_c::executeFly() {
                 if (sp44.absXZ(field_0x69c) < 2000.0f) {
                     if (sp44.absXZ(current.pos) > 700.0f) {
                         if (std::abs(field_0x69c.y - current.pos.y) < 200.0f) {
-                            speed.y = 0.0f;
-                            speedF = 0.0f;
+                            speedF = speed.y = 0.0f;
                             setActionMode(2, 0);
+                            return;
                         }
                     }
                 }
@@ -1030,10 +1037,8 @@ void daE_YMB_c::executeFly() {
 
 /* 80819610-80819FD0 0035F0 09C0+00 2/1 0/0 0/0 .text            executeFlyAttack__9daE_YMB_cFv */
 void daE_YMB_c::executeFlyAttack() {
-    // NONMATCHING
     daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz sp28;
-    
     mSound.startCreatureSoundLevel(Z2SE_EN_YB_FLY, 0, -1);
     setFlyWaitVoice();
 
@@ -1084,7 +1089,7 @@ void daE_YMB_c::executeFlyAttack() {
             sp28 = field_0x6a8 - current.pos;
             cLib_chaseAngleS(&shape_angle.y, cLib_targetAngleY(&current.pos, &field_0x6a8), 0x800);
             current.angle.y = shape_angle.y;
-            sVar1 = cM_atan2s(sp28.absXZ(), sp28.y);
+            sVar1 = (s16) cM_atan2s(sp28.absXZ(), sp28.y);
             cLib_chaseF(&speedF, l_HIO.fly_attack_speed * (cM_ssin(sVar1)), 3.0f);
             cLib_chaseF(&speed.y, l_HIO.fly_attack_speed * cM_scos(sVar1), 5.0f);
 
@@ -1230,7 +1235,6 @@ void daE_YMB_c::executeFlyAttack() {
 
 /* 80819FD0-8081A718 003FB0 0748+00 1/1 0/0 0/0 .text            executeRunAway__9daE_YMB_cFv */
 void daE_YMB_c::executeRunAway() {
-    // NONMATCHING
     daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz sp34(player->current.pos);
     s16 playerAngleY = fopAcM_searchPlayerAngleY(this);
@@ -1240,33 +1244,33 @@ void daE_YMB_c::executeRunAway() {
     setFlyWaitVoice();
     field_0x712 = 1;
 
-    s16 sVar1;
     switch (mMode) {
         case 0:
             setBck(BCK_YB_FLY_WAIT, 2, 5.0f, 1.0f);
             mMode = 1;
             // fallthrough
-        case 1:
+        case 1: {
+            s16 adj_angle;
             if (current.pos.absXZ(field_0x69c) > 2200.0f) {
-                playerAngleY = cLib_targetAngleY(&current.pos, &field_0x69c);
+                adj_angle = cLib_targetAngleY(&current.pos, &field_0x69c);
             } else if (current.pos.absXZ(field_0x69c) > 1800.0f) {
-                sVar1 = playerAngleY + 0x8000 + cM_rndFX(2048.0f);
+                adj_angle = playerAngleY + 0x8000 + cM_rndFX(2048.0f);
                 if ((s16)(cLib_targetAngleY(&current.pos, &field_0x69c) - playerAngleY) > 0) {
-                    playerAngleY = sVar1 - 0x1800;
+                    adj_angle -= 0x1800;
                 } else {
-                    playerAngleY = sVar1 + 0x1800;
+                    adj_angle += 0x1800;
                 }
             } else {
-                sVar1 = playerAngleY + 0x8000 + cM_rndFX(2048.0f);
+                adj_angle = playerAngleY + 0x8000 + cM_rndFX(2048.0f);
                 if (cM_rnd() < 0.5f) {
-                    playerAngleY = sVar1 + 0x1800;
+                    adj_angle += 0x1800;
                 } else {
-                    playerAngleY = sVar1 - 0x1800;
+                    adj_angle -= 0x1800;
                 }
             }
 
             sp40.set(0.0f, 0.0f, 1300.0f);
-            cLib_offsetPos(&field_0x6a8, &sp34, playerAngleY, &sp40);
+            cLib_offsetPos(&field_0x6a8, &sp34, adj_angle, &sp40);
             field_0x6a8.y = field_0x69c.y;
             current.angle.y = cLib_targetAngleY(&current.pos, &field_0x6a8);
             current.angle.x = cLib_targetAngleX(&current.pos, &field_0x6a8);
@@ -1276,6 +1280,7 @@ void daE_YMB_c::executeRunAway() {
             field_0x6fc = 30;
             mMode = 2;
             break;
+        }
 
         case 2:
             current.angle.y = cLib_targetAngleY(&current.pos, &field_0x6a8);
@@ -1345,10 +1350,9 @@ void daE_YMB_c::executeGuard() {
 
 /* 8081A88C-8081B78C 00486C 0F00+00 2/1 0/0 0/0 .text            executeSwim__9daE_YMB_cFv */
 void daE_YMB_c::executeSwim() {
-    // NONMATCHING
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
-    s16 camAngleY = fopCamM_GetAngleY(camera);
-    s16 playerAngleY = (s16)fopAcM_searchPlayerAngleY(this);
+    s16 camAngleY = (s16) fopCamM_GetAngleY(camera);
+    s16 cam_ply_ang_diff = camAngleY - fopAcM_searchPlayerAngleY(this);
     daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz player_pos(player->current.pos);
     cXyz sp40;
@@ -1452,7 +1456,7 @@ void daE_YMB_c::executeSwim() {
             mSound.startCreatureSoundLevel(Z2SE_EN_YB_MOVE_ONWATER, 0, -1);
             setWaterEffect2();
             setElecEffect2();
-            if (abs(field_0x6e4 - (fopAcM_searchPlayerAngleY(this) - 0x8000)) < 0x1000) {
+            if (abs( s16(field_0x6e4 - s16(fopAcM_searchPlayerAngleY(this) - 0x8000)) ) < 0x1000) {
                 field_0x6e4 -= 0x180;
             }
 
@@ -1476,7 +1480,7 @@ void daE_YMB_c::executeSwim() {
                         }
                     }
 
-                    if (bVar1 || abs((int)(s16)(camAngleY - playerAngleY)) > 0x5800) {
+                    if (bVar1 || abs(cam_ply_ang_diff) > 0x5800) {
                         mMode = 6;
                         field_0x6fc = 45;
                     }
@@ -1851,18 +1855,16 @@ void daE_YMB_c::setMidnaBindInit(cXyz* i_pos) {
 
 /* 8081C7D0-8081C908 0067B0 0138+00 1/1 0/0 0/0 .text            setMidnaBindLevel__9daE_YMB_cFi */
 void daE_YMB_c::setMidnaBindLevel(int i_index) {
-    // NONMATCHING
     cXyz i_scale(1.0f, 1.0f, 1.0f);
     cXyz i_pos;
-    
     mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(YMB_DOWN_ATT_JNT[i_index]));
     mDoMtx_stack_c::multVecZero(&i_pos);
 
+    static GXColor e_prim = {0xFF, 0x64, 0x78, 0x00};
+    static GXColor e_env = {0x3C, 0x1E, 0x1E, 0x00};
     static u16 eff_id[3] = {
         ZL2_MIDONAHAIR03_1, ZL2_MIDONAHAIR03_2, ZL2_MIDONAHAIR01,
     };
-    static GXColor e_prim = {0xFF, 0x64, 0x78, 0x00};
-    static GXColor e_env = {0x3C, 0x1E, 0x1E, 0x00};
     int iVar1 = i_index * 3;
     for (int i = 0; i < 3; i++) {
         mMidnaBindParticles[iVar1 + i] = dComIfGp_particle_set(mMidnaBindParticles[iVar1 + i], eff_id[i], &i_pos, &tevStr, &shape_angle, &i_scale, 0xFF, 0, fopAcM_GetRoomNo(this), &e_prim, &e_env, NULL);
@@ -2105,7 +2107,6 @@ void daE_YMB_c::setCreateDrop() {
 
 /* 8081D594-8081DBD0 007574 063C+00 1/1 0/0 0/0 .text            executeDeath__9daE_YMB_cFv */
 void daE_YMB_c::executeDeath() {
-    // NONMATCHING
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz sp24, pos;
@@ -2187,7 +2188,7 @@ void daE_YMB_c::executeDeath() {
             current.pos.y -= 2.0f;
             cLib_chaseF(&field_0x6e0, -100.0f, 2.0f);
 
-            if (((field_0x6fc >> 5 & 0xFF) & mpModelMorf->isStop()) != 0) {
+            if ( ((field_0x6fc == 0) & mpModelMorf->isStop()) != 0) {
                 field_0x710 = 1;
                 mMode = 4;
                 field_0x6fc = 90;
@@ -2438,7 +2439,6 @@ void daE_YMB_c::executeLakeDemo() {
 
 /* 8081E5B4-8081F140 008594 0B8C+00 2/1 0/0 0/0 .text            executeStartDemo__9daE_YMB_cFv */
 void daE_YMB_c::executeStartDemo() {
-    // NONMATCHING
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz sp28, sp34;
@@ -2446,17 +2446,12 @@ void daE_YMB_c::executeStartDemo() {
     switch (mMode) {
         case 0:
             field_0x710 = 1;
-            
             if (player->current.pos.absXZ(field_0x69c) > 2500.0f) {
                 return;
             }
 
-            if (dComIfGp_checkPlayerStatus0(0, 0x100000)) {
+            if (dComIfGp_checkPlayerStatus0(0, 0x100000) || dComIfGp_checkPlayerStatus0(0, 0x100)) {
                 return;
-            }
-
-            if (dComIfGp_checkPlayerStatus0(0, 0x100)) {
-                break;
             }
 
             mMode = 1;
@@ -2944,34 +2939,42 @@ int daE_YMB_c::getDownLockPoint() {
     daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz sp54;
     int uVar1 = field_0x6f4 - 1;
+    int var_r26 = 0;
     f32 fVar1 = 3000.0f;
     s16 sVar1 = 0x4000;
     f32 fVar2;
-    int iVar1;
 
     if (player->getCutType() != daPy_py_c::CUT_TYPE_WOLF_LOCK && field_0x718 == 0) {
-        uVar1 = 0;
         for (int i = 0; i < 6; i++) {
             mDoMtx_stack_c::copy(mpModelMorf->getModel()->getAnmMtx(YMB_DOWN_ATT_JNT[i]));
             mDoMtx_stack_c::multVecZero(&sp54);
             fVar2 = sp54.abs(player->current.pos);
 
-            if ((fVar2 < fVar1 || fVar2 < 300.0f) && fVar1 < 500.0f) {
-                fVar1 = 500.0f;
-                iVar1 = abs((s16)(cLib_targetAngleY(&player->current.pos, &sp54) - player->shape_angle.y));
-                if ((s16)iVar1 < sVar1) {
-                    sVar1 = iVar1;
+            if (fVar2 < fVar1 || fVar2 < 300.0f) {
+                fVar1 = fVar2;
+                if (fVar1 < 500.0f) {
+                    fVar1 = 500.0f;
+                    s16 spd_0x8 = abs((s16)(cLib_targetAngleY(&player->current.pos, &sp54) - player->shape_angle.y));
+                    if (spd_0x8 >= sVar1) {
+                        continue;
+                    }
+
+                    sVar1 = spd_0x8;
+                    var_r26 = i;
+                } else {
+                    var_r26 = i;
                 }
             }
         }
 
         if (dComIfGp_getAttention()->LockonTruth()) {
             if (dComIfGp_getAttention()->LockonTarget(0) == this) {
-                uVar1 = field_0x725;
+                var_r26 = field_0x725;
             }
         }
 
-        field_0x725 = uVar1;
+        field_0x725 = var_r26;
+        uVar1 = var_r26;
     }
 
     if (uVar1 >= 6) {
@@ -3224,7 +3227,8 @@ cPhs__Step daE_YMB_c::create() {
     mSwitchBit = fopAcM_GetParam(this);
     if (mSwitchBit != 0xFF) {
         if (dComIfGs_isSwitch(mSwitchBit, fopAcM_GetRoomNo(this))) {
-            OS_REPORT("E_YMB やられ後なので再セットしません\n") // E_YMB I'm not going to reset it because I've been defeated\n
+            // E_YMB I'm not going to reset it because I've been defeated\n
+            OS_REPORT("E_YMB やられ後なので再セットしません\n");
             return cPhs_ERROR_e;
         }
     }

@@ -1732,7 +1732,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_e_yk"), # weak func order
     ActorRel(Equivalent, "d_a_e_ym"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_ym_tag"),
-    ActorRel(NonMatching, "d_a_e_ymb"),
+    ActorRel(Equivalent, "d_a_e_ymb"),  # weak func order
     ActorRel(NonMatching, "d_a_e_yr"),
     ActorRel(NonMatching, "d_a_e_zh"),
     ActorRel(NonMatching, "d_a_e_zm"),
