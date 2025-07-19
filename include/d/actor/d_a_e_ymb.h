@@ -20,7 +20,7 @@ public:
     /* 808164F0 */ static int JointCallBack(J3DJoint*, int);
     /* 80816554 */ int draw();
     /* 8081697C */ void setBck(int, u8, f32, f32);
-    /* 80816A20 */ BOOL checkBck(int);
+    /* 80816A20 */ bool checkBck(int);
     /* 80816A7C */ void setActionMode(int, int);
     /* 80816A88 */ void setLastDamage();
     /* 80816B7C */ void damage_check();
