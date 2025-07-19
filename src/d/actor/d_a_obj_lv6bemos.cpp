@@ -194,7 +194,7 @@ int daObjL6Bm_c::CreateHeap() {
     }
 
     #ifdef DEBUG
-    pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, BTK_EF_BIMOBEAM_OFF);
+    pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, BTK_EF_BIMOBEAM_0FF);
     JUT_ASSERT(660, pbtk != 0);
     #endif
 

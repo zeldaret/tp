@@ -83,7 +83,7 @@ int daTagWljump_c::execute() {
         if (!midna->checkShadowModeTalkWait()) {
             if (shape_angle.x != 0 && (field_0x571 == 0xff || !fopAcM_isSwitch(this, field_0x571))) {
                 if (field_0x56f == 0) {
-                    mMsgFlow.init(this, shape_angle.x & 0xFFFF, 0, NULL);
+                    mMsgFlow.init(this, (u16)shape_angle.x, 0, NULL);
                     field_0x56f = 1;
                     mDoAud_seStart(Z2SE_NAVI_TALK_START, NULL, 0, 0);
                 } else {
@@ -207,7 +207,11 @@ int daTagWljump_c::execute() {
                 field_0x570 = field_0x568;
                 field_0x568 = -1;
             } else {
+#if DEBUG
+                attention_info.flags |= 0x801;
+#else
                 attention_info.flags |= 0x81;
+#endif
             }
         } else {
             field_0x572 = 0;

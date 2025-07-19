@@ -140,123 +140,114 @@ int daObjFchain_c::execute() {
     } else {
         field_0x588 = 0;
     }
-    cXyz* local_148 = &current.pos;
-    cXyz local_54;
-    cXyz cStack_60;
+    cXyz* sp_38 = &current.pos;
+    cXyz sp_12c;
+    cXyz sp_120;
     if (field_0x586 != 0) {
         field_0x586--;
     }
-    cXyz* pcVar12 = field_0x694;
-    cXyz* local_150 = field_0x79c;
+    int i;
+    cXyz* var_r28 = field_0x694;
+    cXyz* sp_30 = field_0x79c;
     u32 isWolf = daPy_py_c::checkNowWolf();
     daPy_py_c* player = daPy_getLinkPlayerActorClass();
-    for (int i = 0; i < 22; i++) {
-        local_54 = (*pcVar12 - *local_148) + *local_150;
-        local_54.y += -1.5f;
+    for (i = 0; i < 22; i++, var_r28++, sp_30++) {
+        sp_12c = (*var_r28 - *sp_38) + *sp_30;
+        sp_12c.y += -1.5f;
         if (dComIfGs_isEventBit(0x510)) {
             if (isWolf) {
-                checkPlayerFoot(pcVar12, player->getLeftHandPosP(), &local_54);
-                checkPlayerFoot(pcVar12, player->getRightHandPosP(), &local_54);
+                checkPlayerFoot(var_r28, player->getLeftHandPosP(), &sp_12c);
+                checkPlayerFoot(var_r28, player->getRightHandPosP(), &sp_12c);
             }
-            checkPlayerFoot(pcVar12, player->getLeftFootPosP(), &local_54);
-            checkPlayerFoot(pcVar12, player->getRightFootPosP(), &local_54);
+            checkPlayerFoot(var_r28, player->getLeftFootPosP(), &sp_12c);
+            checkPlayerFoot(var_r28, player->getRightFootPosP(), &sp_12c);
         }
-        cStack_60 = local_54;
-        local_54.normalizeZP();
-        *pcVar12 = *local_148 + (local_54 * 9.0f);
-        if (pcVar12->y < current.pos.y) {
-            setGroundVec(&cStack_60, current.pos.y - pcVar12->y);
-            *pcVar12 = *local_148 + (cStack_60 * 9.0f);
+        sp_120 = sp_12c;
+        sp_12c.normalizeZP();
+        *var_r28 = *sp_38 + (sp_12c * 9.0f);
+        if (var_r28->y < current.pos.y) {
+            setGroundVec(&sp_120, current.pos.y - var_r28->y);
+            *var_r28 = *sp_38 + (sp_120 * 9.0f);
         }
-        local_150++;
-        local_148 = pcVar12;
-        pcVar12++;
+        sp_38 = var_r28;
     }
     if (isWolf && !dComIfGs_isEventBit(0x510)) {
         mDoMtx_multVec(
             player->getModelJointMtx(17), &wolfChainBaseOffset,
             &field_0x694[21]);
-        cXyz diff = (field_0x694[21] - current.pos);
-        f32 dVar13 = diff.abs();
+        sp_12c = (field_0x694[21] - current.pos);
+        f32 dVar13 = sp_12c.abs();
         if (dVar13 > 198.0f) {
-            s16 sVar10 = cM_atan2s(-local_54.x, -local_54.z);
-            player->setOutPower(dVar13 - 198.0f, sVar10, 0);
+            player->setOutPower(dVar13 - 198.0f, cM_atan2s(-sp_12c.x, -sp_12c.z), 0);
             player->onWolfFchainPull();
-            cXyz* pcVar8 = field_0x694;
-            local_148 = &current.pos;
-            local_54 *= 9.0f / dVar13;
-            for (int i = 0; pcVar12 = pcVar8, i < 22; i++) {
-                *pcVar8 = *local_148 + local_54;
-                local_148 = pcVar8;
-                pcVar8++;
+            var_r28 = field_0x694;
+            sp_38 = &current.pos;
+            sp_12c *= 9.0f / dVar13;
+            for (i = 0; i < 22; i++, var_r28++) {
+                *var_r28 = *sp_38 + sp_12c;
+                sp_38 = var_r28;
             }
             field_0x584 = 0;
         } else {
-            cXyz* pcVar8 = &field_0x694[20];
-            local_150 = &field_0x79c[20];
-            local_148 = pcVar8 + 1;
-            for (int i = 20; i >= 0; i--) {
-                local_54 = (*pcVar8 - *local_148) + *local_150;
-                local_54.y += -1.5f;
-                cStack_60 = local_54;
-                local_54.normalizeZP();
-                *pcVar8 = *local_148 + (local_54 * 9.0f);
-                if (pcVar8->y < current.pos.y) {
-                    setGroundVec(&cStack_60, current.pos.y - pcVar8->y);
-                    *pcVar8 = *local_148 + (cStack_60 * 9.0f);
+            var_r28 = &field_0x694[20];
+            sp_30 = &field_0x79c[20];
+            sp_38 = var_r28 + 1;
+            for (i = 20; i >= 0; i--, var_r28--, sp_30--) {
+                sp_12c = (*var_r28 - *sp_38) + *sp_30;
+                sp_12c.y += -1.5f;
+                sp_120 = sp_12c;
+                sp_12c.normalizeZP();
+                *var_r28 = *sp_38 + (sp_12c * 9.0f);
+                if (var_r28->y < current.pos.y) {
+                    setGroundVec(&sp_120, current.pos.y - var_r28->y);
+                    *var_r28 = *sp_38 + (sp_120 * 9.0f);
                 }
-                local_150--;
-                local_148 = pcVar8;
-                pcVar8--;
+                sp_38 = var_r28;
             }
         }
     }
-    local_148 = &current.pos;
-    local_150 = field_0x694;
-    cXyz* pcVar8 = field_0x79c;
-    csXyz* local_15c = field_0x8a4;
-    cXyz* local_160 = field_0x58c;
-    s16 local_178 = 0;
-    for (int i = 0; i < 22; i++) {
-        *local_150 = (*pcVar8 - *local_160) * 0.3f;
-        *local_160 = *pcVar8;
-        local_54 = *local_148 - *pcVar8;
-        local_15c->x = local_54.atan2sY_XZ();
-        if (!(local_54.absXZ() < 3.5f)) {
-            local_15c->y = local_54.atan2sX_Z();
+    sp_38 = &current.pos;
+    var_r28 = field_0x694;
+    sp_30 = field_0x79c;
+    csXyz* sp_24 = field_0x8a4;
+    cXyz* sp_20 = field_0x58c;
+    s16 sp_08 = 0;
+    for (i = 0; i < 22; i++, var_r28++, sp_30++, sp_24++, sp_20++) {
+        *sp_30 = (*var_r28 - *sp_20) * 0.3f;
+        *sp_20 = *var_r28;
+        sp_12c = *sp_38 - *var_r28;
+        sp_24->x = sp_12c.atan2sY_XZ();
+        if (!(sp_12c.absXZ() < 3.5f)) {
+            sp_24->y = sp_12c.atan2sX_Z();
         }
-        if (local_150->abs2() > 3.0f && field_0x586 == 0) {
+        if (sp_30->abs2() > 3.0f && field_0x586 == 0) {
             f32 fVar1;
             if (cM_rnd() < 0.5f) {
                 fVar1 = 1.0f;
             } else {
                 fVar1 = -1.0f;
             }
-            local_15c->z = local_178 + 0x4000 + 
+            sp_24->z = sp_08 + 0x4000 +
                           (fVar1 * (cM_rndF(4096.0f) + 1536.0f));
-            if (pcVar8->y <= current.pos.y + 2.0f) {
-                if ((local_15c->z >= 0 && local_15c->z < 0x4000) ||
-                    (local_15c->z > -0x7fff && local_15c->z < -0x4000))
+            if (var_r28->y <= current.pos.y + 2.0f) {
+                if ((sp_24->z >= 0 && sp_24->z < 0x4000) ||
+                    (sp_24->z > -0x7fff && sp_24->z < -0x4000))
                 {
-                    local_15c->z = cM_rndFX(2048.0f) + 4096.0f;
+                    sp_24->z = cM_rndFX(2048.0f) + 4096.0f;
                 } else {
-                    local_15c->z = cM_rndFX(2048.0f) + -4096.0f;
+                    sp_24->z = cM_rndFX(2048.0f) + -4096.0f;
                 }
             }
         }
-        local_178 = local_15c->z;
-        local_150++;
-        local_15c++;
-        local_160++;
-        local_148 = pcVar8;
-        pcVar8++;
+        sp_08 = sp_24->z;
+        sp_38 = var_r28;
     }
     if (field_0x584 == 0) {
         field_0x584 = 1;
-        local_150 = field_0x79c;
+        sp_30 = field_0x79c;
         for (int i = 0; i < 22; i++) {
-            *local_150 = cXyz::Zero;
-            local_150++;
+            *sp_30 = cXyz::Zero;
+            sp_30++;
         }
         field_0x586 = 5;
     }

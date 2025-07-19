@@ -16,12 +16,11 @@
  * @details
  *
  */
-class fr_class : public fopAc_ac_c {
+class fr_class : public fopEn_enemy_c {
 public:
-    /* 0x568 */ u8 field_0x568[0x5ac - 0x568];
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ u8 field_0x5b4;
-    /* 0x5B5 */ u8 field_0x5b5[0x5c4 - 0x5b5];
+    /* 0x5B5 */ cXyz field_0x5b8;
     /* 0x5C4 */ mDoExt_McaMorf* mMorf;
     /* 0x5C8 */ mDoExt_btkAnm* mBtkAnm;
     /* 0x5CC */ u8 field_0x5cc;
@@ -77,6 +76,7 @@ public:
     /* 0x20 */ f32 field_0x20;
     /* 0x24 */ f32 field_0x24;
     /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
 };
 
 
