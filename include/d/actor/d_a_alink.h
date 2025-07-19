@@ -221,10 +221,11 @@ public:
     /* 0x0 */ u8 unk_0x0;
 };
 
-class daAlinkHIO_c {
+class daAlinkHIO_c : JORReflexible {
 public:
     /* 80140B88 */ daAlinkHIO_c();
     /* 80140C10 */ virtual ~daAlinkHIO_c();
+    virtual void genMessage(JORMContext*);
 
     void jumpStateUpdate(const cXyz*, const cXyz*, f32);
 

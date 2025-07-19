@@ -32,7 +32,7 @@ class Act_c : public fopAc_ac_c {
         /* 80485284 */ void mode_wait();
         /* 804852E0 */ void mode_count_init();
         /* 80485324 */ void mode_count();
-        /* 804854BC */ int _execute();
+        /* 804854BC */ bool _execute();
 
         int prm_get_swSave() {
             return daObj::PrmAbstract(this,PRM_8, PRM_16);

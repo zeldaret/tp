@@ -28,7 +28,7 @@ public:
         context->genSlider("モデルスケール(メス)", &mMaleModelScale, 0.1f, 4.0f, 0, NULL, 0xffff, 0xffff,
                            0x200, 0x18);
         // btk speed
-        context->genSlider("btkスピード", &field_0x10, 0.0f, 4.0f, 0, NULL, 0xffff, 0xffff, 0x200,
+        context->genSlider("btkスピード", &mBtkSpeed, 0.0f, 4.0f, 0, NULL, 0xffff, 0xffff, 0x200,
                            0x18);
     }
     #endif

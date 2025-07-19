@@ -27,4 +27,4 @@ lbl_22_data_10 = .data:0x00000010; // type:object size:0x10
 mode_proc$3725 = .data:0x00000038; // type:object size:0x18 scope:local
 Mthd_Table__Q210daObjTimer27@unnamed@d_a_obj_timer_cpp@ = .data:0x00000050; // type:object size:0x20 scope:global
 g_profile_Obj_Timer = .data:0x00000070; // type:object size:0x30 scope:global
-lbl_22_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
+init$1527 = .bss:0x00000000; // type:object size:0x1 data:byte
