@@ -1102,6 +1102,8 @@ public:
 
     static bool checkPeepEndSceneChange() { return getLastSceneMode() == 7; }
 
+    static bool checkWolfCargoCarrySceneChange() { return getLastSceneMode() == 10; }
+
     static int getLastSceneDamage() { return (dComIfGs_getLastSceneMode() >> 4) & 0x7F; }
     static u8 getLastSceneSwordAtUpTime() { return (dComIfGs_getLastSceneMode() >> 11) & 0xFF; }
 

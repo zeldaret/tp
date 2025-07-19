@@ -369,6 +369,14 @@ public:
 
     void onForceMorfCancel() { onEndResetStateFlg0(ERFLG0_FORCE_MORF_CANCEL); }
 
+    void setCargoActor(fopAc_ac_c* i_actor) {
+        mpKago = (daKago_c*)i_actor;
+    }
+
+    void offCargoActor() {
+        mpKago = NULL;
+    }
+
     static daMidna_texData_s const m_texDataTable[21];
     static daMidna_anmData_s const m_anmDataTable[53];
 

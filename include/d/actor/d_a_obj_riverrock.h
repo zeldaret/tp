@@ -45,7 +45,6 @@ public:
     /* 80CBD8E0 */ int Draw();
     /* 80CBD964 */ int Delete();
 
-private:
     /* 0x5A0 */ ActionEnum mAction;
     /* 0x5A4 */ BreakSubAction mBreakSubAction;
     /* 0x5A8 */ u8 field_0x5a8;
