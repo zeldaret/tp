@@ -45,4 +45,5 @@
       "--function-arg-placeholders=0",
       "-header-insertion=never",
   ],
+  "clangd.detectExtensionConflicts": true,
 }
