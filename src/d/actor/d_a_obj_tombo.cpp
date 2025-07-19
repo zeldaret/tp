@@ -8,7 +8,6 @@
 #include "d/d_menu_insect.h"
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
 #include "f_pc/f_pc_name.h"
 #include "m_Do/m_Do_lib.h"
 
@@ -28,7 +27,7 @@ public:
         context->genSlider("モデルスケール(メス)", &mMaleModelScale, 0.1f, 4.0f, 0, NULL, 0xffff, 0xffff,
                            0x200, 0x18);
         // btk speed
-        context->genSlider("btkスピード", &field_0x10, 0.0f, 4.0f, 0, NULL, 0xffff, 0xffff, 0x200,
+        context->genSlider("btkスピード", &mBtkSpeed, 0.0f, 4.0f, 0, NULL, 0xffff, 0xffff, 0x200,
                            0x18);
     }
     #endif
