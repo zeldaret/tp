@@ -221,11 +221,12 @@ public:
     /* 0x0 */ u8 unk_0x0;
 };
 
-class daAlinkHIO_c {
+class daAlinkHIO_c : public mDoHIO_entry_c {
 public:
     /* 80140B88 */ daAlinkHIO_c();
     /* 80140C10 */ virtual ~daAlinkHIO_c();
 
+    void genMessage(JORMContext*);
     void jumpStateUpdate(const cXyz*, const cXyz*, f32);
 
     /* 0x04 */ u8 field_0x4[0xC - 0x4];
