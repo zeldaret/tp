@@ -2141,7 +2141,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_tmoon"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_toaru_maki"),
     ActorRel(NonMatching, "d_a_obj_toby"),
-    ActorRel(NonMatching, "d_a_obj_tobyhouse"),
+    ActorRel(Equivalent, "d_a_obj_tobyhouse"), # weak function order
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_togeTrap"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_tombo"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_tornado"),
