@@ -16,10 +16,11 @@
  * 
  */
 class daE_ZH_c : public fopEn_enemy_c {
-    /* 8082907C */ void draw();
+public:
+    /* 8082907C */ int draw();
     /* 808293A8 */ void setBck(int, u8, f32, f32);
     /* 80829454 */ void setActionMode(int, int);
-    /* 80829570 */ void startDemoCheck();
+    /* 80829570 */ bool startDemoCheck();
     /* 80829658 */ void mBallBGCheck();
     /* 808298BC */ void mGateOpen();
     /* 808299F8 */ void mColorSet(bool, f32, f32);
@@ -51,15 +52,17 @@ class daE_ZH_c : public fopEn_enemy_c {
     /* 8082E4E4 */ void CreateHeap();
     /* 8082E730 */ cPhs__Step create();
     /* 8082ECEC */ daE_ZH_c();
-        
-private:
+
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ mDoExt_McaMorfSO* mpModelMorf;
-    /* 0x5B8 */ u8 field_0x5b8[0x5c0 - 0x5b8];
+    /* 0x5B8 */ J3DModel* field_0x5b8;
+    /* 0x5BC */ mDoExt_btkAnm* mpBtkAnm;
     /* 0x5C0 */ Z2CreatureEnemy mSound;
     /* 0x664 */ daObjCarry_c* field_0x664;
     /* 0x668 */ cXyz field_0x668;
-    /* 0x674 */ u8 field_0x674[0x6c8 - 0x674];
+    /* 0x674 */ u8 field_0x674[0x6b0 - 0x674];
+    /* 0x6B0 */ cXyz field_0x6b0;
+    /* 0x6BC */ u8 field_0x6bc[0x6c8 - 0x6bc];
     /* 0x6C8 */ cXyz field_0x6c8[3];
     /* 0x6EC */ u8 field_0x6ec[0x6f8 - 0x6ec];
     /* 0x6F8 */ cXyz field_0x6f8[8];
@@ -69,14 +72,24 @@ private:
     /* 0x770 */ u8 field_0x770[0x774 - 0x770];
     /* 0x774 */ f32 field_0x774;
     /* 0x778 */ f32 field_0x778;
-    /* 0x77C */ u8 field_0x77c[0x78c - 0x77c];
+    /* 0x77C */ f32 field_0x77c;
+    /* 0x780 */ int mAction;
+    /* 0x784 */ int mMode;
+    /* 0x788 */ u32 mShadowKey;
     /* 0x78C */ int field_0x78c;
-    /* 0x790 */ u8 field_0x790[0x7a9 - 0x790];
+    /* 0x790 */ int mAnm;
+    /* 0x794 */ u8 field_0x794[0x79c - 0x794];
+    /* 0x79C */ int field_0x79c;
+    /* 0x7A0 */ u8 field_0x7a0[0x7a4 - 0x7a0];
+    /* 0x7A4 */ int field_0x7a4;
+    /* 0x7A8 */ u8 field_0x7a8[0x7a9 - 0x7a8];
     /* 0x7A9 */ u8 bitSw;
     /* 0x7AA */ u8 bitSwEnd;
     /* 0x7AB */ u8 arg0;
     /* 0x7AC */ u8 field_0x7ac;
-    /* 0x7AD */ u8 field_0x7ad[0x7b4 - 0x7ad];
+    /* 0x7AD */ u8 field_0x7ad;
+    /* 0x7AE */ u8 field_0x7ae;
+    /* 0x7AF */ u8 field_0x7af[0x7b4 - 0x7af];
     /* 0x7B4 */ dBgS_AcchCir mAcchCir;
     /* 0x7F4 */ dBgS_ObjAcch mObjAcch;
     /* 0x9CC */ dCcD_Stts mStts;
@@ -84,7 +97,9 @@ private:
     /* 0xB40 */ dCcD_Cyl field_0xb40;
     /* 0xC7C */ dCcD_Cyl field_0xc7c;
     /* 0xDB8 */ dCcU_AtInfo mAtInfo;
-    /* 0xDDC */ u8 field_0xddc[0xe04 - 0xddc];
+    /* 0xDDC */ u8 field_0xddc[0xdec - 0xddc];
+    /* 0xDEC */ cXyz field_0xdec;
+    /* 0xDF8 */ cXyz field_0xdf8;
     /* 0xE04 */ u8 field_0xe04;
     /* 0xE05 */ u8 field_0xe05[0xe08 - 0xe05];
 };

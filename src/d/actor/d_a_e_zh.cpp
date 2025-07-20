@@ -449,23 +449,6 @@ daE_ZH_HIO_c::daE_ZH_HIO_c() {
     dungeon_bit_check = 0;
 }
 
-/* ############################################################################################## */
-/* 8082F214-8082F218 00000C 0004+00 0/1 0/0 0/0 .rodata          @3866 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3866 = 1200.0f;
-COMPILER_STRIP_GATE(0x8082F214, &lit_3866);
-#pragma pop
-
-/* 8082F218-8082F21C 000010 0004+00 1/20 0/0 0/0 .rodata          @3867 */
-SECTION_RODATA static u8 const lit_3867[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x8082F218, &lit_3867);
-
 UNK_REL_BSS;
 
 /* 8082F724-8082F728 -00001 0004+00 1/2 0/0 0/0 .bss             None */
@@ -480,45 +463,95 @@ static daE_ZH_HIO_c l_HIO;
 static int mStartFlag;
 
 /* 8082907C-8082934C 00013C 02D0+00 1/1 0/0 0/0 .text            draw__8daE_ZH_cFv */
-void daE_ZH_c::draw() {
-    // NONMATCHING
-}
+int daE_ZH_c::draw() {
+    J3DModelData* modelData;
+    J3DMaterial* matNodeP;
 
-/* 8082934C-80829388 00040C 003C+00 2/2 0/0 0/0 .text            __dt__4cXyzFv */
-// cXyz::~cXyz() {
-extern "C" void __dt__4cXyzFv() {
-    // NONMATCHING
+    if (arg0 == 2) {
+        return 1;
+    }
+
+    if (field_0x7ae != 0) {
+        return 1;
+    }
+    
+    if (arg0 == 1) {
+        g_env_light.settingTevStruct(8, &current.pos, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(field_0x5b8, &tevStr);
+
+        modelData = field_0x5b8->getModelData();
+        for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
+            matNodeP = modelData->getMaterialNodePointer(i);
+            if (matNodeP != NULL) {
+                matNodeP->getTevKColor(3)->a = field_0x77c;
+            }
+        }
+
+        mDoExt_modelUpdateDL(field_0x5b8);
+
+        if (mStartFlag == 0) {
+            return 1;
+        }
+    }
+
+    if ((mAction == 2 && mMode < 2) || (mAction == 11 && mMode == 10)) {
+        return 1;
+    }
+
+    J3DModel* model = mpModelMorf->getModel();
+    
+    g_env_light.settingTevStruct(8, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(model, &tevStr);
+
+    modelData = model->getModelData();
+    for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
+        matNodeP = modelData->getMaterialNodePointer(i);
+        if (matNodeP != NULL) {
+            matNodeP->getTevColor(1)->r = (int)field_0x764[0] & 0xFF;
+            matNodeP->getTevColor(1)->g = (int)field_0x764[1] & 0xFF;
+            matNodeP->getTevColor(1)->b = (int)field_0x764[2] & 0xFF;
+        }
+    }
+
+    mpBtkAnm->entry(model->getModelData());
+    fopAcM_setEffectMtx(this, model->getModelData());
+    mpModelMorf->entryDL();
+
+    cXyz sp68;
+    sp68.set(current.pos.x, current.pos.y + 10.0f, current.pos.z);
+    mShadowKey = dComIfGd_setShadow(mShadowKey, 0, model, &sp68, 1200.0f, 0.0f,
+                                    current.pos.y, mObjAcch.GetGroundH(), mObjAcch.m_gnd,
+                                    &tevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
+
+    return 1;
 }
 
 /* 80829388-808293A8 000448 0020+00 1/0 0/0 0/0 .text            daE_ZH_Draw__FP8daE_ZH_c */
-static void daE_ZH_Draw(daE_ZH_c* param_0) {
-    // NONMATCHING
+static int daE_ZH_Draw(daE_ZH_c* i_this) {
+    return i_this->draw();
 }
 
-/* ############################################################################################## */
-/* 8082F21C-8082F220 000014 0004+00 1/1 0/0 0/0 .rodata          @3884 */
-SECTION_RODATA static f32 const lit_3884 = -1.0f;
-COMPILER_STRIP_GATE(0x8082F21C, &lit_3884);
-
-/* 8082F410-8082F410 000208 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8082F410 = "E_ZH";
-#pragma pop
-
 /* 808293A8-80829454 000468 00AC+00 10/10 0/0 0/0 .text            setBck__8daE_ZH_cFiUcff */
-void daE_ZH_c::setBck(int param_0, u8 param_1, f32 param_2, f32 param_3) {
-    // NONMATCHING
+void daE_ZH_c::setBck(int i_anm, u8 i_attr, f32 i_morf, f32 i_rate) {
+    mpModelMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_ZH", i_anm), i_attr, i_morf, 
+                        i_rate, 0.0f, -1.0f);
+    mAnm = i_anm;
 }
 
 /* 80829454-80829460 000514 000C+00 14/14 0/0 0/0 .text            setActionMode__8daE_ZH_cFii */
-void daE_ZH_c::setActionMode(int param_0, int param_1) {
-    // NONMATCHING
+void daE_ZH_c::setActionMode(int i_action, int i_mode) {
+    mAction = i_action;
+    mMode = i_mode;
 }
 
 /* 80829460-80829500 000520 00A0+00 3/3 0/0 0/0 .text            s_BallSearch__FPvPv */
 static void* s_BallSearch(void* i_actor, void* i_data) {
-    // NONMATCHING
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_Obj_Carry && ((daObjCarry_c*)i_actor)->prm_chk_type_lightball() &&
+        ((((daE_ZH_c*)i_data)->bitSw == 16 && ((daObjCarry_c*)i_actor)->getType() == 8) || (((daE_ZH_c*)i_data)->bitSw == 17 && ((daObjCarry_c*)i_actor)->getType() == 9))) {
+        return i_actor;
+    }
+
+    return NULL;
 }
 
 /* 80829500-80829570 0005C0 0070+00 2/2 0/0 0/0 .text            s_BallSearch_Tag__FPvPv */
@@ -531,85 +564,100 @@ static void* s_BallSearch_Tag(void* i_actor, void* i_data) {
 }
 
 /* 80829570-80829658 000630 00E8+00 4/4 0/0 0/0 .text            startDemoCheck__8daE_ZH_cFv */
-void daE_ZH_c::startDemoCheck() {
-    // NONMATCHING
+bool daE_ZH_c::startDemoCheck() {
+    camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    camera_class* camera2 = dComIfGp_getCamera(0);
+
+    if (!eventInfo.checkCommandDemoAccrpt()) {
+        fopAcM_orderPotentialEvent(this, 2, 0xFFFF, 0);
+        eventInfo.onCondition(dEvtCnd_CANDEMO_e);
+        field_0xdec = camera2->lookat.eye;
+        field_0xdf8 = camera2->lookat.center;
+        return false;
+    }
+
+    camera->mCamera.Stop();
+    camera->mCamera.SetTrimSize(3);
+    daPy_getPlayerActorClass()->changeOriginalDemo();
+    return true;
 }
-
-/* ############################################################################################## */
-/* 8082F220-8082F224 000018 0004+00 0/8 0/0 0/0 .rodata          @4031 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4031 = 50.0f;
-COMPILER_STRIP_GATE(0x8082F220, &lit_4031);
-#pragma pop
-
-/* 8082F224-8082F228 00001C 0004+00 0/7 0/0 0/0 .rodata          @4032 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4032 = 100.0f;
-COMPILER_STRIP_GATE(0x8082F224, &lit_4032);
-#pragma pop
-
-/* 8082F228-8082F22C 000020 0004+00 0/1 0/0 0/0 .rodata          @4033 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4033 = 180.0f;
-COMPILER_STRIP_GATE(0x8082F228, &lit_4033);
-#pragma pop
 
 /* 80829658-808298BC 000718 0264+00 2/2 0/0 0/0 .text            mBallBGCheck__8daE_ZH_cFv */
 void daE_ZH_c::mBallBGCheck() {
     // NONMATCHING
+    field_0x6b0.zero();
+
+    if (field_0x664 != NULL) {
+        s16 sVar1;
+        cXyz spa4, spb0, start;
+        dBgS_LinChk lin_chk;
+
+        start.set(field_0x664->current.pos);
+        start.y += 50.0f;
+
+        for (int i = 0; i < 8; i++) {
+            cMtx_YrotS(*calc_mtx, sVar1);
+            spa4.x = 0.0f;
+            spa4.y = 100.0f;
+            spa4.z = 180.0f;
+            MtxPosition(&spa4, &spb0);
+            field_0x6f8[i] = spb0 + field_0x664->current.pos;
+            lin_chk.Set(&start, &field_0x6f8[i], this);
+
+            if (dComIfG_Bgsp().LineCross(&lin_chk)) {
+                field_0x758[i] ^= 0xFF;
+                cMtx_YrotS(*calc_mtx, sVar1 + 0x8000);
+                spa4.x = 0.0f;
+                spa4.y = 100.0f;
+                spa4.z = 180.0f;
+                MtxPosition(&spa4, &spb0);
+
+                if (fabsf(field_0x6b0.x) < fabsf(spb0.x)) {
+                    field_0x6b0.x = spb0.x;
+                }
+
+                if (fabsf(field_0x6b0.z) < fabsf(spb0.z)) {
+                    field_0x6b0.z = spb0.z;
+                }
+            } else {
+                field_0x758[i] = 0xFF;
+            }
+
+            if (i != 3) {
+                sVar1 += 0x4000;
+            } else {
+                if (field_0x6b0.x || field_0x6b0.z) {
+                    return;
+                }
+                
+                sVar1 = 0x2000;
+            }
+        }
+    }
 }
-
-/* ############################################################################################## */
-/* 8082F22C-8082F230 000024 0004+00 0/5 0/0 0/0 .rodata          @4053 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4053 = 255.0f;
-COMPILER_STRIP_GATE(0x8082F22C, &lit_4053);
-#pragma pop
-
-/* 8082F230-8082F234 000028 0004+00 0/1 0/0 0/0 .rodata          @4054 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4054 = 0.5f;
-COMPILER_STRIP_GATE(0x8082F230, &lit_4054);
-#pragma pop
-
-/* 8082F234-8082F238 00002C 0004+00 0/7 0/0 0/0 .rodata          @4055 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4055 = 5.0f;
-COMPILER_STRIP_GATE(0x8082F234, &lit_4055);
-#pragma pop
-
-/* 8082F238-8082F23C 000030 0004+00 0/1 0/0 0/0 .rodata          @4056 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4056 = 80.0f;
-COMPILER_STRIP_GATE(0x8082F238, &lit_4056);
-#pragma pop
-
-/* 8082F23C-8082F240 000034 0004+00 0/2 0/0 0/0 .rodata          @4057 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4057 = 40.0f;
-COMPILER_STRIP_GATE(0x8082F23C, &lit_4057);
-#pragma pop
-
-/* 8082F240-8082F248 000038 0008+00 0/3 0/0 0/0 .rodata          @4059 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4059[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8082F240, &lit_4059);
-#pragma pop
 
 /* 808298BC-808299F8 00097C 013C+00 3/3 0/0 0/0 .text            mGateOpen__8daE_ZH_cFv */
 void daE_ZH_c::mGateOpen() {
     // NONMATCHING
+    switch (field_0x79c) {
+        case 0:
+            field_0x77c = 0.0f;
+            mSound.startCreatureSound(Z2SE_EN_ZH_MV_WALL, 0, -1);
+            field_0x79c++;
+            // fallthrough
+        case 1:
+            cLib_addCalc2(&field_0x77c, 255.0f, 0.5f, 10.0f);
+            break;
+
+        case 2:
+            field_0x7a4 += 5.0f;
+            cLib_addCalc2(&field_0x77c, 80.0f + cM_ssin(field_0x7a4 << 8) * 40.0f, 0.5f, 10.0f);
+            break;
+
+        case 3:
+            cLib_addCalc0(&field_0x77c, 0.5f, 10.0f);
+            break;
+    }
 }
 
 /* ############################################################################################## */
@@ -1396,12 +1444,12 @@ void daE_ZH_c::execute() {
 }
 
 /* 8082E3C0-8082E3E0 005480 0020+00 2/1 0/0 0/0 .text            daE_ZH_Execute__FP8daE_ZH_c */
-static void daE_ZH_Execute(daE_ZH_c* param_0) {
+static void daE_ZH_Execute(daE_ZH_c* i_this) {
     // NONMATCHING
 }
 
 /* 8082E3E0-8082E3E8 0054A0 0008+00 1/0 0/0 0/0 .text            daE_ZH_IsDelete__FP8daE_ZH_c */
-static bool daE_ZH_IsDelete(daE_ZH_c* param_0) {
+static bool daE_ZH_IsDelete(daE_ZH_c* i_this) {
     return true;
 }
 
@@ -1411,7 +1459,7 @@ void daE_ZH_c::_delete() {
 }
 
 /* 8082E4C4-8082E4E4 005584 0020+00 1/0 0/0 0/0 .text            daE_ZH_Delete__FP8daE_ZH_c */
-static void daE_ZH_Delete(daE_ZH_c* param_0) {
+static void daE_ZH_Delete(daE_ZH_c* i_this) {
     // NONMATCHING
 }
 
@@ -1634,7 +1682,7 @@ extern "C" void __ct__4cXyzFv() {
 }
 
 /* 8082F0F8-8082F118 0061B8 0020+00 1/0 0/0 0/0 .text            daE_ZH_Create__FP8daE_ZH_c */
-static void daE_ZH_Create(daE_ZH_c* param_0) {
+static void daE_ZH_Create(daE_ZH_c* i_this) {
     // NONMATCHING
 }
 
