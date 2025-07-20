@@ -386,7 +386,8 @@ int daDemo00_c::createHeap() {
 
         if (mModel.mID.field_0x1c != -1) {
             mDeformData = (J3DDeformData*)dComIfG_getObjectIDRes(dStage_roomControl_c::getDemoArcName(), (u16)mModel.mID.field_0x1c);
-            JUT_ASSERT(687, mModel.mDeformData != 0);
+            // Should be mModel.mDeformData
+            JUT_ASSERT(687, mDeformData != 0);
 
             if (mModel.mID.field_0x20 != -1) {
                 mpBlkAnm = new mDoExt_blkAnm();
@@ -396,7 +397,7 @@ int daDemo00_c::createHeap() {
 
                 J3DAnmCluster* anm_cluster = (J3DAnmCluster*)dComIfG_getObjectIDRes(dStage_roomControl_c::getDemoArcName(), (u16)mModel.mID.field_0x20);
                 if (anm_cluster == NULL) {
-                    OS_REPORT("ESC_WARNING指定blkアニメーションが見つかりません！(%d)\n", field_0x5ac.field_0x20); // ESC_WARNING: Specified blk animation not found! (%d)
+                    OS_REPORT("ESC_WARNING指定blkアニメーションが見つかりません！(%d)\n", mModel.mID.field_0x20); // ESC_WARNING: Specified blk animation not found! (%d)
                 } else {
                     if (mpBlkAnm->init(mDeformData, anm_cluster, 1, -1, 1.0f, 0, -1) == 0) {
                         return 0;
@@ -557,7 +558,8 @@ int daDemo00_c::actPerformance(dDemo_actor_c* actor) {
         }
 
         if (mModel.mID.field_0x20 != mModel.field_0x0.field_0x20) {
-            JUT_ASSERT(1049, mModel.mDeformData != 0 && mModel.mBlkAnm != 0);
+            // Should be mModel.mDeformData and mModel.mBlkAnm
+            JUT_ASSERT(1049, mDeformData != 0 && mpBlkAnm != 0);
 
             J3DAnmCluster* anmCluster = (J3DAnmCluster*)dComIfG_getObjectIDRes(dStage_roomControl_c::getDemoArcName(), (u16)mModel.field_0x0.field_0x20);
             if (anmCluster == NULL) {

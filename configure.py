@@ -2142,7 +2142,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_toaru_maki"),
     ActorRel(NonMatching, "d_a_obj_toby"),
     ActorRel(NonMatching, "d_a_obj_tobyhouse"),
-    ActorRel(NonMatching, "d_a_obj_togeTrap"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_togeTrap"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_tombo"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_tornado"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_tornado2"),
