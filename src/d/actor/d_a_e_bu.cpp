@@ -4,838 +4,1164 @@
 */
 
 #include "d/actor/d_a_e_bu.h"
-#include "d/d_cc_d.h"
-#include "dol2asm.h"
+
 UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
 
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__12daE_BU_HIO_cFv();
-extern "C" static void bu_disappear__FP10fopAc_ac_c();
-extern "C" static void anm_init__FP10e_bu_classifUcf();
-extern "C" static void nodeCallBack__FP8J3DJointi();
-extern "C" static void daE_BU_Draw__FP10e_bu_class();
-extern "C" static void other_bg_check__FP10e_bu_classP10fopAc_ac_c();
-extern "C" static void pl_check__FP10e_bu_classfs();
-extern "C" static void damage_check__FP10e_bu_class();
-extern "C" static void path_check__FP10e_bu_class();
-extern "C" static void fly_move__FP10e_bu_class();
-extern "C" static void e_bu_wait__FP10e_bu_class();
-extern "C" static void e_bu_fight_fly__FP10e_bu_class();
-extern "C" static void e_bu_fight__FP10e_bu_class();
-extern "C" static void e_bu_attack__FP10e_bu_class();
-extern "C" static void e_bu_fly__FP10e_bu_class();
-extern "C" static void e_bu_path_fly__FP10e_bu_class();
-extern "C" static void e_bu_chance__FP10e_bu_class();
-extern "C" static void e_bu_head__FP10e_bu_class();
-extern "C" static void action__FP10e_bu_class();
-extern "C" static void daE_BU_Execute__FP10e_bu_class();
-extern "C" static bool daE_BU_IsDelete__FP10e_bu_class();
-extern "C" static void daE_BU_Delete__FP10e_bu_class();
-extern "C" static void useHeapInit__FP10fopAc_ac_c();
-extern "C" static void daE_BU_Create__FP10fopAc_ac_c();
-extern "C" void __dt__8cM3dGSphFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" void __dt__12dBgS_ObjAcchFv();
-extern "C" void __dt__12dBgS_AcchCirFv();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void __dt__12daE_BU_HIO_cFv();
-extern "C" void __sinit_d_a_e_bu_cpp();
-extern "C" static void func_80694258();
-extern "C" static void func_80694260();
-extern "C" extern char const* const d_a_e_bu__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_XrotM__FPA4_fs();
-extern "C" void mDoMtx_YrotS__FPA4_fs();
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void mDoMtx_ZrotM__FPA4_fs();
-extern "C" void scaleM__14mDoMtx_stack_cFfff();
-extern "C" void
-__ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl();
-extern "C" void setAnm__16mDoExt_McaMorfSOFP15J3DAnmTransformiffff();
-extern "C" void play__16mDoExt_McaMorfSOFUlSc();
-extern "C" void entryDL__16mDoExt_McaMorfSOFv();
-extern "C" void modelCalc__16mDoExt_McaMorfSOFv();
-extern "C" void stopZelAnime__16mDoExt_McaMorfSOFv();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_SetMin__FP10fopAc_ac_cfff();
-extern "C" void fopAcM_SetMax__FP10fopAc_ac_cfff();
-extern "C" void fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_createDisappear__FPC10fopAc_ac_cPC4cXyzUcUcUc();
-extern "C" void fopAcM_otherBgCheck__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_effSmokeSet1__FPUlPUlPC4cXyzPC5csXyzfPC12dKy_tevstr_ci();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGp_getReverb__Fi();
-extern "C" void dComIfGd_setSimpleShadow__FP4cXyzffR13cBgS_PolyInfosfP9_GXTexObj();
-extern "C" void onSwitch__10dSv_info_cFii();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void getEmitter__Q213dPa_control_c7level_cFUl();
-extern "C" void
-set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void
-set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void dPath_GetRoomPath__Fii();
-extern "C" void LineCross__4cBgSFP11cBgS_LinChk();
-extern "C" void __ct__12dBgS_AcchCirFv();
-extern "C" void SetWall__12dBgS_AcchCirFff();
-extern "C" void __dt__9dBgS_AcchFv();
-extern "C" void __ct__9dBgS_AcchFv();
-extern "C" void Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz();
-extern "C" void CrrPos__9dBgS_AcchFR4dBgS();
-extern "C" void __ct__11dBgS_LinChkFv();
-extern "C" void __dt__11dBgS_LinChkFv();
-extern "C" void Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c();
-extern "C" void SetObj__16dBgS_PolyPassChkFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Move__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void ChkTgHit__12dCcD_GObjInfFv();
-extern "C" void GetTgHitObj__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_SphFRC11dCcD_SrcSph();
-extern "C" void cc_at_check__FP10fopAc_ac_cP11dCcU_AtInfo();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void dKy_darkworld_check__Fv();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void cM_atan2s__Fff();
-extern "C" void cM_rndF__Ff();
-extern "C" void cM_rndFX__Ff();
-extern "C" void __dt__13cBgS_PolyInfoFv();
-extern "C" void __dt__8cM3dGCirFv();
-extern "C" void SetC__8cM3dGSphFRC4cXyz();
-extern "C" void SetR__8cM3dGSphFf();
-extern "C" void cLib_addCalc2__FPffff();
-extern "C" void cLib_addCalc0__FPfff();
-extern "C" void cLib_addCalcAngleS2__FPssss();
-extern "C" void MtxPosition__FP4cXyzP4cXyz();
-extern "C" void func_80280808();
-extern "C" void __ct__15Z2CreatureEnemyFv();
-extern "C" void init__15Z2CreatureEnemyFP3VecP3VecUcUc();
-extern "C" void setEnemyName__15Z2CreatureEnemyFPCc();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void checkPass__12J3DFrameCtrlFf();
-extern "C" void _savegpr_19();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_19();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" u8 mCurrentMtx__6J3DSys[48];
-extern "C" u8 sincosTable___5JMath[65536];
-extern "C" u8 mParticleTracePCB__13dPa_control_c[4 + 4 /* padding */];
-extern "C" u8 m_midnaActor__9daPy_py_c[4];
-extern "C" void __register_global_object();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 806946BC-806946C0 00002C 0004+00 0/2 0/0 0/0 .rodata          @3809 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3809 = 1.5f;
-COMPILER_STRIP_GATE(0x806946BC, &lit_3809);
-#pragma pop
-
-/* 806946C0-806946C4 000030 0004+00 0/1 0/0 0/0 .rodata          @3810 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3810 = 15.0f;
-COMPILER_STRIP_GATE(0x806946C0, &lit_3810);
-#pragma pop
-
-/* 806946C4-806946C8 000034 0004+00 0/1 0/0 0/0 .rodata          @3811 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3811 = 250.0f;
-COMPILER_STRIP_GATE(0x806946C4, &lit_3811);
-#pragma pop
-
-/* 806946C8-806946CC 000038 0004+00 0/2 0/0 0/0 .rodata          @3812 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3812 = 40.0f;
-COMPILER_STRIP_GATE(0x806946C8, &lit_3812);
-#pragma pop
-
-/* 806947B4-806947E8 -00001 0034+00 1/1 0/0 0/0 .data            @4457 */
-SECTION_DATA static void* lit_4457[13] = {
-    (void*)(((char*)e_bu_head__FP10e_bu_class) + 0x48),
-    (void*)(((char*)e_bu_head__FP10e_bu_class) + 0x68),
-    (void*)(((char*)e_bu_head__FP10e_bu_class) + 0x11C),
-    (void*)(((char*)e_bu_head__FP10e_bu_class) + 0x15C),
-    (void*)(((char*)e_bu_head__FP10e_bu_class) + 0x278),
-    (void*)(((char*)e_bu_head__FP10e_bu_class) + 0x438),
-    (void*)(((char*)e_bu_head__FP10e_bu_class) + 0x438),
-    (void*)(((char*)e_bu_head__FP10e_bu_class) + 0x438),
-    (void*)(((char*)e_bu_head__FP10e_bu_class) + 0x438),
-    (void*)(((char*)e_bu_head__FP10e_bu_class) + 0x438),
-    (void*)(((char*)e_bu_head__FP10e_bu_class) + 0x2D0),
-    (void*)(((char*)e_bu_head__FP10e_bu_class) + 0x328),
-    (void*)(((char*)e_bu_head__FP10e_bu_class) + 0x398),
+enum daE_BU_TYPE {
+    TYPE_NORMAL,
+    TYPE_FIRE,
+    TYPE_ICE,
 };
 
-/* 806947E8-80694840 -00001 0058+00 1/1 0/0 0/0 .data            @4547 */
-SECTION_DATA static void* lit_4547[22] = {
-    (void*)(((char*)action__FP10e_bu_class) + 0x8C),
-    (void*)(((char*)action__FP10e_bu_class) + 0xA4),
-    (void*)(((char*)action__FP10e_bu_class) + 0xB0),
-    (void*)(((char*)action__FP10e_bu_class) + 0xBC),
-    (void*)(((char*)action__FP10e_bu_class) + 0x168),
-    (void*)(((char*)action__FP10e_bu_class) + 0xD4),
-    (void*)(((char*)action__FP10e_bu_class) + 0xE0),
-    (void*)(((char*)action__FP10e_bu_class) + 0x168),
-    (void*)(((char*)action__FP10e_bu_class) + 0x168),
-    (void*)(((char*)action__FP10e_bu_class) + 0x168),
-    (void*)(((char*)action__FP10e_bu_class) + 0xEC),
-    (void*)(((char*)action__FP10e_bu_class) + 0x168),
-    (void*)(((char*)action__FP10e_bu_class) + 0x168),
-    (void*)(((char*)action__FP10e_bu_class) + 0x168),
-    (void*)(((char*)action__FP10e_bu_class) + 0x168),
-    (void*)(((char*)action__FP10e_bu_class) + 0x104),
-    (void*)(((char*)action__FP10e_bu_class) + 0x168),
-    (void*)(((char*)action__FP10e_bu_class) + 0x168),
-    (void*)(((char*)action__FP10e_bu_class) + 0x168),
-    (void*)(((char*)action__FP10e_bu_class) + 0x168),
-    (void*)(((char*)action__FP10e_bu_class) + 0x168),
-    (void*)(((char*)action__FP10e_bu_class) + 0x11C),
-};
-
-/* 80694840-80694848 0000C4 0008+00 1/1 0/0 0/0 .data            fire_name$4572 */
-SECTION_DATA static u8 fire_name[8] = {
-    0x82, 0x1D, 0x82, 0x1E, 0x82, 0x1F, 0x82, 0x20,
-};
-
-/* 80694848-80694850 0000CC 0006+02 1/1 0/0 0/0 .data            ice_name$4573 */
-SECTION_DATA static u8 ice_name[6 + 2 /* padding */] = {
-    0x82,
-    0x21,
-    0x82,
-    0x22,
-    0x82,
-    0x23,
-    /* padding */
-    0x00,
-    0x00,
-};
-
-/* 80694850-80694890 0000D4 0040+00 1/1 0/0 0/0 .data            cc_sph_src$4803 */
-static dCcD_SrcSph cc_sph_src = {
-    {
-        {0x0, {{AT_TYPE_CSTATUE_SWING, 0x1, 0xd}, {0xd8fbfdff, 0x3}, 0x75}}, // mObj
-        {dCcD_SE_HARD_BODY, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
-        {0x0}, // mGObjCo
-    }, // mObjInf
-    {
-        {{0.0f, 0.0f, 0.0f}, 40.0f} // mSph
-    } // mSphAttr
-};
-
-/* 80694890-806948B0 -00001 0020+00 1/0 0/0 0/0 .data            l_daE_BU_Method */
-static actor_method_class l_daE_BU_Method = {
-    (process_method_func)daE_BU_Create__FP10fopAc_ac_c,
-    (process_method_func)daE_BU_Delete__FP10e_bu_class,
-    (process_method_func)daE_BU_Execute__FP10e_bu_class,
-    (process_method_func)daE_BU_IsDelete__FP10e_bu_class,
-    (process_method_func)daE_BU_Draw__FP10e_bu_class,
-};
-
-/* 806948B0-806948E0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_E_BU */
-extern actor_process_profile_definition g_profile_E_BU = {
-  fpcLy_CURRENT_e,        // mLayerID
-  7,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_E_BU,              // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(e_bu_class),     // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  181,                    // mPriority
-  &l_daE_BU_Method,       // sub_method
-  0x100C0120,             // mStatus
-  fopAc_ENEMY_e,          // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
-};
-
-/* 806948E0-806948EC 000164 000C+00 1/1 0/0 0/0 .data            __vt__12dBgS_AcchCir */
-SECTION_DATA extern void* __vt__12dBgS_AcchCir[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_AcchCirFv,
-};
-
-/* 806948EC-806948F8 000170 000C+00 2/2 0/0 0/0 .data            __vt__10cCcD_GStts */
-SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10cCcD_GSttsFv,
-};
-
-/* 806948F8-80694904 00017C 000C+00 1/1 0/0 0/0 .data            __vt__10dCcD_GStts */
-SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10dCcD_GSttsFv,
-};
-
-/* 80694904-80694910 000188 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGSph */
-SECTION_DATA extern void* __vt__8cM3dGSph[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGSphFv,
-};
-
-/* 80694910-8069491C 000194 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGAab */
-SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGAabFv,
-};
-
-/* 8069491C-80694940 0001A0 0024+00 2/2 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
-SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_ObjAcchFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80694260,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80694258,
-};
-
-/* 80694940-8069494C 0001C4 000C+00 2/2 0/0 0/0 .data            __vt__12daE_BU_HIO_c */
-SECTION_DATA extern void* __vt__12daE_BU_HIO_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12daE_BU_HIO_cFv,
+enum daE_BU_ACTION {
+    ACTION_WAIT,
+    ACTION_FIGHT_FLY,
+    ACTION_FIGHT,
+    ACTION_ATTACK,
+    ACTION_FLY = 5,
+    ACTION_PATH_FLY,
+    ACTION_CHANCE = 10,
+    ACTION_HEAD = 15,
+    ACTION_DEAD = 21,
 };
 
 /* 806911AC-806911F0 0000EC 0044+00 1/1 0/0 0/0 .text            __ct__12daE_BU_HIO_cFv */
 daE_BU_HIO_c::daE_BU_HIO_c() {
-    // NONMATCHING
+    id = -1;
+    base_size = 1.5f;
+    fly_speed = 15.0f;
+    attack_range = 250.0f;
+    attack_speed = 15.0f;
+    dash_speed = 40.0f;
 }
 
 /* 806911F0-80691250 000130 0060+00 1/1 0/0 0/0 .text            bu_disappear__FP10fopAc_ac_c */
-static void bu_disappear(fopAc_ac_c* param_0) {
-    // NONMATCHING
+static void bu_disappear(fopAc_ac_c* i_this) {
+    fopAcM_createDisappear(i_this, &i_this->current.pos, 6, 0, 0x1C);
+
+    int swbit = (fopAcM_GetParam(i_this) & 0xFF000000) >> 0x18;
+    if (swbit != 0xFF) {
+        dComIfGs_onSwitch(swbit, fopAcM_GetRoomNo(i_this));
+    }
 }
 
-/* ############################################################################################## */
-/* 806946CC-806946D0 00003C 0004+00 1/1 0/0 0/0 .rodata          @3836 */
-SECTION_RODATA static f32 const lit_3836 = -1.0f;
-COMPILER_STRIP_GATE(0x806946CC, &lit_3836);
-
-/* 80694770-80694770 0000E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80694770 = "E_BU";
-#pragma pop
-
 /* 80691250-806912FC 000190 00AC+00 6/6 0/0 0/0 .text            anm_init__FP10e_bu_classifUcf */
-static void anm_init(e_bu_class* param_0, int param_1, f32 param_2, u8 param_3, f32 param_4) {
-    // NONMATCHING
+static void anm_init(e_bu_class* i_this, int i_anm, f32 i_morf, u8 i_mode, f32 i_speed) {
+    i_this->modelMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_BU", i_anm), i_mode, i_morf, i_speed, 0.0f, -1.0f);
+    i_this->anm = i_anm;
 }
 
 /* 806912FC-80691458 00023C 015C+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
-static void nodeCallBack(J3DJoint* param_0, int param_1) {
-    // NONMATCHING
+static int nodeCallBack(J3DJoint* i_joint, int param_1) {
+    if (param_1 == 0) {
+        int jnt_no = i_joint->getJntNo();
+        J3DModel* model = j3dSys.getModel();
+        e_bu_class* a_this = (e_bu_class*)model->getUserArea();
+
+        if (a_this != NULL) {
+            if (jnt_no == TREG_S(0)) {
+                MTXCopy(model->getAnmMtx(jnt_no), *calc_mtx);
+                cMtx_YrotM(*calc_mtx, TREG_S(1));
+                cMtx_XrotM(*calc_mtx, TREG_S(2));
+                cMtx_ZrotM(*calc_mtx, TREG_S(3));
+                model->setAnmMtx(jnt_no, *calc_mtx);
+                MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
+            }
+
+            if (jnt_no == 17) {
+                MTXCopy(model->getAnmMtx(jnt_no), *calc_mtx);
+                cMtx_ZrotM(*calc_mtx, a_this->jaw_rot);
+                model->setAnmMtx(jnt_no, *calc_mtx);
+                MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
+            }
+        }
+    }
+
+    return 1;
 }
 
-/* ############################################################################################## */
-/* 806946D0-806946D4 000040 0004+00 1/5 0/0 0/0 .rodata          @3889 */
-SECTION_RODATA static f32 const lit_3889 = 30.0f;
-COMPILER_STRIP_GATE(0x806946D0, &lit_3889);
-
 /* 80694958-8069495C 000008 0004+00 2/2 0/0 0/0 .bss             None */
-static u8 data_80694958[4];
-
-/* 8069495C-80694968 00000C 000C+00 1/1 0/0 0/0 .bss             @3804 */
-static u8 lit_3804[12];
+static u8 l_HIOInit;
 
 /* 80694968-80694984 000018 001C+00 11/11 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[28];
+static daE_BU_HIO_c l_HIO;
 
 /* 80691458-80691504 000398 00AC+00 1/0 0/0 0/0 .text            daE_BU_Draw__FP10e_bu_class */
-static void daE_BU_Draw(e_bu_class* param_0) {
-    // NONMATCHING
+static int daE_BU_Draw(e_bu_class* i_this) {
+    fopAc_ac_c* actor = &i_this->enemy;
+    J3DModel* model = i_this->modelMorf->getModel();
+
+    g_env_light.settingTevStruct(0, &actor->current.pos, &actor->tevStr);
+    g_env_light.setLightTevColorType_MAJI(model, &actor->tevStr);
+
+    i_this->modelMorf->entryDL();
+    dComIfGd_setSimpleShadow(&actor->current.pos, i_this->acch.GetGroundH(), (30.0f + TREG_F(11)) * l_HIO.base_size, i_this->acch.m_gnd, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
+    return 1;
 }
 
 /* 80691504-806915DC 000444 00D8+00 1/1 0/0 0/0 .text other_bg_check__FP10e_bu_classP10fopAc_ac_c
  */
-static void other_bg_check(e_bu_class* param_0, fopAc_ac_c* param_1) {
-    // NONMATCHING
+static BOOL other_bg_check(e_bu_class* i_this, fopAc_ac_c* i_other) {
+    fopAc_ac_c* actor = &i_this->enemy;
+    dBgS_LinChk linchk;
+    cXyz sp28;
+    cXyz startpos;
+    cXyz endpos;
+
+    endpos = i_other->current.pos;
+    endpos.y += 100.0f;
+
+    startpos = actor->current.pos;
+    startpos.y = actor->eyePos.y;
+
+    linchk.Set(&startpos, &endpos, actor);
+    if (dComIfG_Bgsp().LineCross(&linchk)) {
+        return TRUE;
+    }
+
+    return FALSE;
 }
 
 /* 806915DC-80691660 00051C 0084+00 5/5 0/0 0/0 .text            pl_check__FP10e_bu_classfs */
-static void pl_check(e_bu_class* param_0, f32 param_1, s16 param_2) {
-    // NONMATCHING
+static BOOL pl_check(e_bu_class* i_this, f32 i_range, s16 i_angle) {
+    fopAc_ac_c* actor = &i_this->enemy;
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    
+    if (i_this->dist_to_player < i_range) {
+        s16 temp_r28 = actor->shape_angle.y - i_this->angle_to_player;
+        if ((i_angle == 1 || (temp_r28 < i_angle && temp_r28 > (s16)-i_angle)) && !other_bg_check(i_this, player)) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
 }
-
-/* ############################################################################################## */
-/* 806946D4-806946D8 000044 0004+00 0/3 0/0 0/0 .rodata          @3968 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3968 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(0x806946D4, &lit_3968);
-#pragma pop
-
-/* 806946D8-806946DC 000048 0004+00 0/1 0/0 0/0 .rodata          @3969 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3969 = 80.0f;
-COMPILER_STRIP_GATE(0x806946D8, &lit_3969);
-#pragma pop
 
 /* 80691660-8069182C 0005A0 01CC+00 1/1 0/0 0/0 .text            damage_check__FP10e_bu_class */
-static void damage_check(e_bu_class* param_0) {
-    // NONMATCHING
+static void damage_check(e_bu_class* i_this) {
+    fopAc_ac_c* actor = &i_this->enemy;
+    daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
+    
+    if (i_this->invulnerabilityTimer == 0) {
+        i_this->ccStts.Move();
+
+        if (i_this->ccSph.ChkTgHit()) {
+            OS_REPORT("E_BU HP %d\n", actor->health);
+            i_this->atInfo.mpCollider = i_this->ccSph.GetTgHitObj();
+            cc_at_check(actor, &i_this->atInfo);
+            OS_REPORT("E_BU AP %d\n", i_this->atInfo.mAttackPower);
+
+            if (i_this->atInfo.mpCollider->ChkAtType(AT_TYPE_WOLF_ATTACK | AT_TYPE_WOLF_CUT_TURN | AT_TYPE_10000000 | AT_TYPE_MIDNA_LOCK)) {
+                i_this->invulnerabilityTimer = 20;
+            } else {
+                i_this->invulnerabilityTimer = 10;
+            }
+
+            if (actor->health <= 0) {
+                i_this->sound.startCreatureVoice(Z2SE_EN_BU_V_DEAD, -1);
+                i_this->modelMorf->setPlaySpeed(0.2f);
+                i_this->is_dead = TRUE;
+                i_this->hit_speed = 80.0f + TREG_F(13);
+                i_this->hit_rot = i_this->atInfo.mHitDirection.y;
+            } else {
+                i_this->sound.startCreatureVoice(Z2SE_EN_BU_V_DMG, -1);
+                i_this->action = ACTION_HEAD;
+                i_this->mode = 0;
+
+                if (i_this->atInfo.mpCollider->ChkAtType(AT_TYPE_HOOKSHOT)) {
+                    actor->speedF = 0.0f;
+                    i_this->head_rot_y = i_this->atInfo.mHitDirection.y;
+                } else if (player->getCutType() == 10 && player->checkCutJumpCancelTurn()) {
+                    i_this->invulnerabilityTimer = NREG_S(7) + 3;
+                    actor->speedF = 0.0f;
+                } else {
+                    i_this->head_rot_y = i_this->atInfo.mHitDirection.y + 0x8000;
+                    actor->speedF = 40.0f + AREG_F(0);
+                }
+            }
+        }
+
+        if (actor->health <= 1) {
+            actor->health = 0;
+            i_this->ccSph.SetTgHitMark((CcG_Tg_HitMark)3);
+        }
+    }
 }
-
-/* ############################################################################################## */
-/* 806946DC-806946E0 00004C 0004+00 0/1 0/0 0/0 .rodata          @4001 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4001 = 50.0f;
-COMPILER_STRIP_GATE(0x806946DC, &lit_4001);
-#pragma pop
-
-/* 80694984-80694A83 000034 00FF+00 1/1 0/0 0/0 .bss             check_index$4007 */
-static u8 check_index[255];
 
 /* 8069182C-80691A94 00076C 0268+00 2/2 0/0 0/0 .text            path_check__FP10e_bu_class */
-static void path_check(e_bu_class* param_0) {
-    // NONMATCHING
+static BOOL path_check(e_bu_class* i_this) {
+    static u8 check_index[255];
+
+    if (i_this->ppd != NULL) {
+        dPnt* pnt;
+        fopAc_ac_c* actor = &i_this->enemy;
+        dBgS_LinChk linchk;
+        cXyz startpos;
+        cXyz endpos;
+
+        startpos = actor->current.pos;
+        startpos.y += 100.0f;
+
+        pnt = i_this->ppd->m_points;
+        for (int i = 0; i < i_this->ppd->m_num; i++, pnt++) {
+            endpos.x = pnt->m_position.x;
+            endpos.y = 100.0f + pnt->m_position.y;
+            endpos.z = pnt->m_position.z;
+            linchk.Set(&startpos, &endpos, actor);
+
+            if (!dComIfG_Bgsp().LineCross(&linchk)) {
+                check_index[i] = TRUE;
+            } else {
+                check_index[i] = FALSE;
+            }
+        }
+    
+        f32 pnt_search_range = 0.0f;
+        u8 pnt_found = FALSE;
+
+        for (int i = 0; i < 100; i++, pnt_search_range += 50.0f) {
+            pnt = i_this->ppd->m_points;
+
+            for (int j = 0; j < i_this->ppd->m_num; j++, pnt++) {
+                if (check_index[j]) {
+                    Vec pnt_vec;
+                    pnt_vec.x = actor->current.pos.x - pnt->m_position.x;
+                    pnt_vec.y = actor->current.pos.y - pnt->m_position.y;
+                    pnt_vec.z = actor->current.pos.z - pnt->m_position.z;
+
+                    if (JMAFastSqrt(SQUARE(pnt_vec.x) + SQUARE(pnt_vec.y) + SQUARE(pnt_vec.z)) < pnt_search_range) {
+                        i_this->now_path_pntNo = j - i_this->path_step;
+                        if (i_this->now_path_pntNo >= (s8)i_this->ppd->m_num) {
+                            i_this->now_path_pntNo = i_this->ppd->m_num;
+                        } else if (i_this->now_path_pntNo < 0) {
+                            i_this->now_path_pntNo = 0;
+                        }
+                        pnt_found = TRUE;
+                        break;
+                    }
+                }
+            }
+
+            if (pnt_found) {
+                break;
+            }
+        }
+
+        if (!pnt_found) {
+            i_this->field_0x5b8 = 0;
+        } else {
+            i_this->field_0x5b8 = i_this->pathNo + 1;
+            return TRUE;
+        }
+    }
+
+    return FALSE;
 }
-
-/* ############################################################################################## */
-/* 806946E0-806946E4 000050 0004+00 0/4 0/0 0/0 .rodata          @4087 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4087 = 2000.0f;
-COMPILER_STRIP_GATE(0x806946E0, &lit_4087);
-#pragma pop
-
-/* 806946E4-806946E8 000054 0004+00 0/1 0/0 0/0 .rodata          @4088 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4088 = 1.0f / 25.0f;
-COMPILER_STRIP_GATE(0x806946E4, &lit_4088);
-#pragma pop
 
 /* 80691A94-80691C24 0009D4 0190+00 4/4 0/0 0/0 .text            fly_move__FP10e_bu_class */
-static void fly_move(e_bu_class* param_0) {
-    // NONMATCHING
+static void fly_move(e_bu_class* i_this) {
+    fopAc_ac_c* actor = &i_this->enemy;
+    cXyz sp8;
+    f32 dist_x = i_this->move_pos.x - actor->current.pos.x;
+    f32 dist_y = i_this->move_pos.y - actor->current.pos.y;
+    f32 dist_z = i_this->move_pos.z - actor->current.pos.z;
+    
+    s16 temp_r28 = cM_atan2s(dist_x, dist_z);
+    s16 temp_r27 = -cM_atan2s(dist_y, JMAFastSqrt(SQUARE(dist_x) + SQUARE(dist_z)));
+    i_this->field_0x694 = 2000.0f;
+
+    cLib_addCalcAngleS2(&actor->current.angle.y, temp_r28, (TREG_S(3) + 10), (i_this->field_0x694 * i_this->field_0x690));
+    cLib_addCalcAngleS2(&actor->current.angle.x, temp_r27, (TREG_S(3) + 10), (i_this->field_0x694 * i_this->field_0x690));
+    cLib_addCalc2(&i_this->field_0x690, 1.0f, 1.0f, 0.04f);
+
+    sp8.x = 0.0f;
+    sp8.y = 0.0f;
+    sp8.z = actor->speedF;
+    cMtx_YrotS(*calc_mtx, actor->current.angle.y);
+    cMtx_XrotM(*calc_mtx, actor->current.angle.x);
+    MtxPosition(&sp8, &actor->speed);
+    actor->current.pos += actor->speed;
 }
-
-/* ############################################################################################## */
-/* 806946E8-806946EC 000058 0004+00 0/1 0/0 0/0 .rodata          @4118 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4118 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(0x806946E8, &lit_4118);
-#pragma pop
-
-/* 806946EC-806946F0 00005C 0004+00 0/3 0/0 0/0 .rodata          @4119 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4119 = 20.0f;
-COMPILER_STRIP_GATE(0x806946EC, &lit_4119);
-#pragma pop
-
-/* 806946F0-806946F4 000060 0004+00 0/5 0/0 0/0 .rodata          @4120 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4120 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(0x806946F0, &lit_4120);
-#pragma pop
-
-/* 806946F4-806946F8 000064 0004+00 0/1 0/0 0/0 .rodata          @4121 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4121 = 35.0f;
-COMPILER_STRIP_GATE(0x806946F4, &lit_4121);
-#pragma pop
 
 /* 80691C24-80691DC4 000B64 01A0+00 1/1 0/0 0/0 .text            e_bu_wait__FP10e_bu_class */
-static void e_bu_wait(e_bu_class* param_0) {
-    // NONMATCHING
-}
+static void e_bu_wait(e_bu_class* i_this) {
+    fopAc_ac_c* actor = &i_this->enemy;
+    int anm_frame = i_this->modelMorf->getFrame();
 
-/* ############################################################################################## */
-/* 806946F8-806946FC 000068 0004+00 0/4 0/0 0/0 .rodata          @4142 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4142 = 10.0f;
-COMPILER_STRIP_GATE(0x806946F8, &lit_4142);
-#pragma pop
+    switch (i_this->mode) {
+    case 0:
+        anm_init(i_this, 6, 1.0f, 0, 0.0f);
+        i_this->mode = 1;
+        break;
+    case 1:
+        if (pl_check(i_this, i_this->pl_search_range, 1)) {
+            i_this->mode = 2;
+            i_this->modelMorf->setPlaySpeed(1.0f);
+        }
+        break;
+    case 2:
+        if (anm_frame == 36) {
+            i_this->sound.startCreatureSound(Z2SE_EN_BU_WING, 0, -1);
+        }
+
+        if (anm_frame >= 37) {
+            cLib_addCalc2(&actor->current.pos.y, 100.0f + actor->home.pos.y, 0.05f, 20.0f);
+        }
+
+        if (anm_frame >= JREG_S(0) + 41) {
+            i_this->mode = 3;
+            anm_init(i_this, 7, 1.0f + JREG_F(12), 2, 1.0f + cM_rndF(0.1f));
+            actor->current.pos.y += 35.0f + JREG_F(13);
+            i_this->timers[0] = 30;
+        }
+        break;
+    case 3:
+        cLib_addCalc2(&actor->current.pos.y, 100.0f + actor->home.pos.y, 0.05f, 20.0f);
+
+        if (i_this->timers[0] == 0) {
+            i_this->action = ACTION_FIGHT_FLY;
+            i_this->mode = 1;
+        }
+        break;
+    }
+}
 
 /* 80691DC4-80691F10 000D04 014C+00 1/1 0/0 0/0 .text            e_bu_fight_fly__FP10e_bu_class */
-static void e_bu_fight_fly(e_bu_class* param_0) {
-    // NONMATCHING
+static void e_bu_fight_fly(e_bu_class* i_this) {
+    fopAc_ac_c* actor = &i_this->enemy;
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+
+    switch (i_this->mode) {
+    case 0:
+        anm_init(i_this, 7, 10.0f, 2, 1.0f + cM_rndF(0.1f));
+        i_this->mode = 1;
+        break;
+    case 1:
+        if (!pl_check(i_this, 2000.0f, 1)) {
+            if (!path_check(i_this)) {
+                i_this->action = ACTION_FLY;
+                i_this->mode = 1;
+            } else {
+                i_this->action = ACTION_PATH_FLY;
+                i_this->mode = 1;
+            }
+        } else if (pl_check(i_this, l_HIO.attack_range, 1)) {
+            i_this->action = ACTION_FIGHT;
+            i_this->mode = 0;
+        }
+        break;
+    }
+
+    cLib_addCalc2(&actor->speedF, l_HIO.fly_speed, 1.0f, 0.1f * l_HIO.fly_speed);
+    i_this->move_pos = player->current.pos;
+    fly_move(i_this);
 }
-
-/* ############################################################################################## */
-/* 806946FC-80694700 00006C 0004+00 0/1 0/0 0/0 .rodata          @4205 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4205 = 12288.0f;
-COMPILER_STRIP_GATE(0x806946FC, &lit_4205);
-#pragma pop
-
-/* 80694700-80694704 000070 0004+00 0/2 0/0 0/0 .rodata          @4206 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4206 = 150.0f;
-COMPILER_STRIP_GATE(0x80694700, &lit_4206);
-#pragma pop
 
 /* 80691F10-8069222C 000E50 031C+00 1/1 0/0 0/0 .text            e_bu_fight__FP10e_bu_class */
-static void e_bu_fight(e_bu_class* param_0) {
-    // NONMATCHING
+static void e_bu_fight(e_bu_class* i_this) {
+    fopAc_ac_c* actor = &i_this->enemy;
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    cXyz sp24;
+    cXyz sp18;
+    s16 sp8 = player->shape_angle.y;
+
+    switch (i_this->mode) {
+    case 0:
+        i_this->modelMorf->setPlaySpeed(1.0f);
+        i_this->mode = 1;
+        i_this->timers[0] = 0;
+        i_this->timers[1] = 30.0f + cM_rndF(100.0f);
+        break;
+    case 1:
+        if (i_this->timers[0] == 0) {
+            cMtx_YrotS(*calc_mtx, sp8 + (s16)cM_rndFX(12288.0f));
+            sp24.x = 0.0f;
+            sp24.y = 150.0f + cM_rndF(100.0f);
+            sp24.z = 150.0f + cM_rndF(150.0f);
+            MtxPosition(&sp24, &i_this->move_pos);
+            i_this->move_pos += player->current.pos;
+            sp24 = i_this->move_pos - actor->current.pos;
+            cMtx_YrotS(*calc_mtx, cM_atan2s(sp24.x, sp24.z));
+            cMtx_XrotM(*calc_mtx, -cM_atan2s(sp24.y, JMAFastSqrt((sp24.x * sp24.x) + (sp24.z * sp24.z))));
+
+            sp24.x = 0.0f;
+            sp24.y = 0.0f;
+            sp24.z = l_HIO.attack_speed;
+            MtxPosition(&sp24, &actor->speed);
+            i_this->timers[0] = 10.0f + cM_rndF(30.0f);
+            i_this->field_0x690 = 0.0f;
+        }
+
+        if (i_this->timers[1] == 0) {
+            i_this->timers[1] = 30.0f + cM_rndF(100.0f);
+            i_this->action = ACTION_ATTACK;
+            i_this->mode = 0;
+        }
+        break;
+    }
+
+    cLib_addCalc2(&actor->current.pos.x, i_this->move_pos.x, 0.2f, i_this->field_0x690 * fabsf(actor->speed.x));
+    cLib_addCalc2(&actor->current.pos.y, i_this->move_pos.y, 0.2f, i_this->field_0x690 * fabsf(actor->speed.y));
+    cLib_addCalc2(&actor->current.pos.z, i_this->move_pos.z, 0.2f, i_this->field_0x690 * fabsf(actor->speed.z));
+    cLib_addCalc2(&i_this->field_0x690, 1.0f, 1.0f, 0.1f);
+    cLib_addCalcAngleS2(&actor->current.angle.y, i_this->angle_to_player, 4, 0x800);
+
+    if (!pl_check(i_this, 2000.0f, 1)) {
+        if (!path_check(i_this)) {
+            i_this->action = ACTION_FLY;
+            i_this->mode = 1;
+        } else {
+            i_this->action = ACTION_PATH_FLY;
+            i_this->mode = 1;
+        }
+    }
 }
-
-/* ############################################################################################## */
-/* 80694704-80694708 000074 0004+00 0/1 0/0 0/0 .rodata          @4258 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4258 = 2.0f;
-COMPILER_STRIP_GATE(0x80694704, &lit_4258);
-#pragma pop
-
-/* 80694708-8069470C 000078 0004+00 0/1 0/0 0/0 .rodata          @4259 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4259 = 120.0f;
-COMPILER_STRIP_GATE(0x80694708, &lit_4259);
-#pragma pop
-
-/* 8069470C-80694710 00007C 0004+00 0/1 0/0 0/0 .rodata          @4260 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4260 = 3000.0f;
-COMPILER_STRIP_GATE(0x8069470C, &lit_4260);
-#pragma pop
-
-/* 80694710-80694714 000080 0004+00 0/1 0/0 0/0 .rodata          @4261 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4261 = 70.0f;
-COMPILER_STRIP_GATE(0x80694710, &lit_4261);
-#pragma pop
 
 /* 8069222C-8069243C 00116C 0210+00 1/1 0/0 0/0 .text            e_bu_attack__FP10e_bu_class */
-static void e_bu_attack(e_bu_class* param_0) {
-    // NONMATCHING
+static void e_bu_attack(e_bu_class* i_this) {
+    fopAc_ac_c* actor = &i_this->enemy;
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    cXyz sp18;
+    cXyz spC;
+    f32 var_f31 = 0.0f;
+
+    i_this->field_0x690 = 0.0f;
+
+    switch (i_this->mode) {
+    case 0:
+        i_this->modelMorf->setPlaySpeed(2.0f);
+        i_this->mode = 1;
+        i_this->timers[1] = 20;
+        break;
+    case 1:
+        i_this->move_pos = player->current.pos;
+        i_this->move_pos.y += 120.0f;
+        i_this->field_0x690 = 2.0f;
+
+        if (i_this->timers[1] == 0) {
+            i_this->mode = 2;
+            i_this->timers[0] = BREG_S(7) + 10;
+            i_this->sound.startCreatureVoice(Z2SE_EN_BU_V_ATK, -1);
+        }
+
+        cLib_addCalcAngleS2(&i_this->jaw_rot, -(3000.0f + (2000.0f * cM_ssin(i_this->lifetime * 0x3100))), 1, 0x1000);
+        break;
+    case 2:
+        var_f31 = l_HIO.dash_speed;
+
+        if (i_this->ccSph.ChkAtShieldHit()) {
+            i_this->action = ACTION_CHANCE;
+            i_this->mode = 0;
+            i_this->hit_speed = 70.0f + TREG_F(19);
+            i_this->hit_rot = actor->shape_angle.y;
+            i_this->is_dead = FALSE;
+        } else if (i_this->timers[0] == 0) {
+            i_this->mode = 3;
+        }
+        break;
+    case 3:
+        if (actor->speedF <= 1.0f) {
+            i_this->action = ACTION_FIGHT;
+            i_this->mode = 0;
+        }
+        break;
+    }
+
+    cLib_addCalc2(&actor->speedF, var_f31, 1.0f, 0.2f * l_HIO.dash_speed);
+    fly_move(i_this);
 }
-
-/* ############################################################################################## */
-/* 80694714-80694718 000084 0004+00 0/1 0/0 0/0 .rodata          @4299 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4299 = 500.0f;
-COMPILER_STRIP_GATE(0x80694714, &lit_4299);
-#pragma pop
-
-/* 80694718-8069471C 000088 0004+00 0/3 0/0 0/0 .rodata          @4300 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4300 = 200.0f;
-COMPILER_STRIP_GATE(0x80694718, &lit_4300);
-#pragma pop
-
-/* 8069471C-80694720 00008C 0004+00 0/2 0/0 0/0 .rodata          @4301 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4301 = 3.0f / 10.0f;
-COMPILER_STRIP_GATE(0x8069471C, &lit_4301);
-#pragma pop
 
 /* 8069243C-8069262C 00137C 01F0+00 1/1 0/0 0/0 .text            e_bu_fly__FP10e_bu_class */
-static void e_bu_fly(e_bu_class* param_0) {
-    // NONMATCHING
-}
+static void e_bu_fly(e_bu_class* i_this) {
+    fopAc_ac_c* actor = &i_this->enemy;
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    cXyz sp14;
 
-/* ############################################################################################## */
-/* 80694720-80694724 000090 0004+00 0/3 0/0 0/0 .rodata          @4362 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4362 = 3.0f;
-COMPILER_STRIP_GATE(0x80694720, &lit_4362);
-#pragma pop
+    switch (i_this->mode) {
+    case 0:
+        anm_init(i_this, 7, 10.0f, 2, 1.0f + cM_rndF(0.1f));
+        i_this->mode = 1;
+        break;
+    case 1:
+        if (i_this->timers[0] == 0) {
+            i_this->move_pos.x = actor->home.pos.x + cM_rndFX(500.0f);
+            i_this->move_pos.y = actor->home.pos.y + cM_rndFX(200.0f);
+            i_this->move_pos.z = actor->home.pos.z + cM_rndFX(500.0f);
+            sp14 = i_this->move_pos - actor->current.pos;
+            cMtx_YrotS(*calc_mtx, cM_atan2s(sp14.x, sp14.z));
+            cMtx_XrotM(*calc_mtx, -cM_atan2s(sp14.y, JMAFastSqrt((sp14.x * sp14.x) + (sp14.z * sp14.z))));
+            sp14.x = 0.0f;
+            sp14.y = 0.0f;
+            sp14.z = l_HIO.attack_speed;
+            MtxPosition(&sp14, &actor->speed);
+            i_this->timers[0] = 10.0f + cM_rndF(30.0f);
+            i_this->field_0x690 = 0.0f;
+        }
+        break;
+    }
+
+    cLib_addCalc2(&actor->speedF, l_HIO.fly_speed, 1.0f, 0.3f * l_HIO.fly_speed);
+    fly_move(i_this);
+
+    if (pl_check(i_this, i_this->pl_search_range, 1)) {
+        i_this->action = ACTION_FIGHT_FLY;
+        i_this->mode = 1;
+    }
+}
 
 /* 8069262C-80692930 00156C 0304+00 1/1 0/0 0/0 .text            e_bu_path_fly__FP10e_bu_class */
-static void e_bu_path_fly(e_bu_class* param_0) {
-    // NONMATCHING
+static void e_bu_path_fly(e_bu_class* i_this) {
+    fopAc_ac_c* actor = &i_this->enemy;
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    cXyz sp18;
+
+    switch (i_this->mode) {
+    case 0:
+        anm_init(i_this, 7, 3.0f, 2, 1.0f + cM_rndF(0.1f));
+        i_this->mode = 1;
+        /* fallthrough */
+    case 1:
+        i_this->now_path_pntNo += i_this->path_step;
+        if (i_this->now_path_pntNo >= (s8)i_this->ppd->m_num) {
+            if (dPath_ChkClose(i_this->ppd)) {
+                i_this->now_path_pntNo = 0;
+            } else {
+                i_this->path_step = -1;
+                i_this->now_path_pntNo = i_this->ppd->m_num - 2;
+            }
+
+            int next_path_id = i_this->ppd->m_nextID;
+            if (next_path_id != 0xFFFF) {
+                i_this->ppd = dPath_GetRoomPath(next_path_id, fopAcM_GetRoomNo(actor));
+                JUT_ASSERT(919, i_this->ppd != 0);
+            }
+        } else if (i_this->now_path_pntNo < 0) {
+            i_this->path_step = 1;
+            i_this->now_path_pntNo = 1;
+        }
+        /* fallthrough */
+    case 2:
+        i_this->mode = 3;
+        
+        dPnt* pnt = i_this->ppd->m_points;
+        pnt += i_this->now_path_pntNo;
+
+        i_this->field_0x690 = TREG_F(7);
+        i_this->move_pos.x = pnt->m_position.x + cM_rndFX(150.0f);
+        i_this->move_pos.y = pnt->m_position.y + cM_rndFX(150.0f);
+        i_this->move_pos.z = pnt->m_position.z + cM_rndFX(150.0f);
+        break;
+    case 3:
+        sp18 = i_this->move_pos - actor->current.pos;
+        if (sp18.abs() < 200.0f + (10.0f * TREG_F(10))) {
+            i_this->mode = 1;
+        }
+        break;
+    }
+
+    cLib_addCalc2(&actor->speedF, l_HIO.fly_speed, 1.0f, 0.3f * l_HIO.fly_speed);
+    fly_move(i_this);
+
+    if (pl_check(i_this, i_this->pl_search_range, 1)) {
+        i_this->action = ACTION_FIGHT_FLY;
+        i_this->mode = 1;
+    }
 }
 
-/* ############################################################################################## */
-/* 80694724-80694728 000094 0004+00 0/1 0/0 0/0 .rodata          @4381 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4381 = 0.5f;
-COMPILER_STRIP_GATE(0x80694724, &lit_4381);
-#pragma pop
-
-/* 80694728-8069472C 000098 0004+00 0/1 0/0 0/0 .rodata          @4382 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4382 = 65536.0f;
-COMPILER_STRIP_GATE(0x80694728, &lit_4382);
-#pragma pop
-
-/* 8069472C-80694730 00009C 0004+00 0/1 0/0 0/0 .rodata          @4383 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4383 = 5.0f;
-COMPILER_STRIP_GATE(0x8069472C, &lit_4383);
-#pragma pop
-
 /* 80692930-80692AF4 001870 01C4+00 1/1 0/0 0/0 .text            e_bu_chance__FP10e_bu_class */
-static void e_bu_chance(e_bu_class* param_0) {
-    // NONMATCHING
+static s8 e_bu_chance(e_bu_class* i_this) {
+    fopAc_ac_c* actor = &i_this->enemy;
+    s8 is_smoke_eff = FALSE;
+
+    switch (i_this->mode) {
+    case 0:
+        anm_init(i_this, 7, 3.0f, 2, 1.5f);
+        i_this->mode = 1;
+        i_this->timers[0] = 100.0f + cM_rndF(30.0f);
+        actor->speed.set(0.0f, 0.0f, 0.0f);
+        break;
+    case 1:
+        if (i_this->acch.ChkGroundHit()) {
+            actor->speed.y = JREG_F(7) + (20.0f + cM_rndF(10.0f));
+            actor->speed.x = cM_rndFX(20.0f + JREG_F(6));
+            actor->speed.z = cM_rndFX(20.0f + JREG_F(6));
+
+            if (cM_rndF(1.0f) < 0.5f) {
+                i_this->field_0x69e.z = 0;
+            } else {
+                i_this->field_0x69e.z = -0x8000;
+            }
+
+            i_this->field_0x69e.y = cM_rndF(65536.0f);
+            is_smoke_eff = TRUE;
+            i_this->sound.startCreatureSound(Z2SE_EN_BU_NODMG_BOUND, 0, -1);
+        }
+
+        if (i_this->timers[0] == 0) {
+            actor->current.angle.z = 0;
+            i_this->action = ACTION_FIGHT;
+            i_this->mode = 0;
+            return is_smoke_eff;
+        }
+        break;
+    }
+
+    actor->current.pos += actor->speed;
+    actor->speed.y -= 5.0f + JREG_F(8);
+    cLib_addCalcAngleS2(&actor->current.angle.y, i_this->field_0x69e.y, 2, 0x1000);
+    cLib_addCalcAngleS2(&actor->current.angle.z, i_this->field_0x69e.z, 1, 0x1000);
+    return is_smoke_eff;
 }
 
 /* 80692AF4-80693074 001A34 0580+00 2/1 0/0 0/0 .text            e_bu_head__FP10e_bu_class */
-static void e_bu_head(e_bu_class* param_0) {
-    // NONMATCHING
+static s8 e_bu_head(e_bu_class* i_this) {
+    fopAc_ac_c* actor = &i_this->enemy;
+    cXyz sp20;
+    cXyz sp14;
+    s8 is_smoke_eff = FALSE;
+
+    switch (i_this->mode) {
+    case 0:
+        anm_init(i_this, 8, 3.0f, 0, 1.0f);
+        i_this->mode = 1;
+        break;
+    case 1:
+        i_this->head_rot_x += 6000;
+
+        if (i_this->acch.ChkGroundHit()) {
+            actor->speedF *= 0.5f;
+            actor->speed.y = 30.0f;
+            i_this->mode = 2;
+            i_this->head_rot_y += (s16)cM_rndFX(10000.0f);
+
+            if (cM_rndF(1.0f) < 0.5f) {
+                i_this->field_0x6bc = 0x4000;
+            } else {
+                i_this->field_0x6bc = -0x4000;
+            }
+
+            is_smoke_eff = TRUE;
+            i_this->sound.startCreatureSound(Z2SE_EN_BU_DMG_BOUND, 20, -1);
+        }
+        break;
+    case 2:
+        i_this->head_rot_x += (s16)(actor->speedF * (400.0f + AREG_F(1)));
+
+        if (!i_this->acch.ChkGroundHit()) {
+            break;
+        }
+
+        i_this->mode = 3;
+        actor->speed.y = 20.0f;
+    case 3:
+        i_this->head_rot_x += (s16)(actor->speedF * (400.0f + AREG_F(1)));
+        i_this->head_rot_y += i_this->field_0x6b8;
+
+        cLib_addCalc2(&actor->speedF, 10.0f, 1.0f, 2.0f + TREG_F(16));
+        if (actor->speedF <= 10.0f) {
+            i_this->field_0x6b8 = 0;
+            if (i_this->head_rot_x <= 2000 && i_this->head_rot_x > -2000) {
+                i_this->mode = 4;
+                i_this->timers[1] = 30.0f + cM_rndF(20.0f);
+                actor->speedF = 0.0f;
+            }
+        } else if (i_this->timers[2] == 0) {
+            i_this->timers[2] = cM_rndF(10.0f);
+            i_this->field_0x6b8 = cM_rndFX(4000.0f);
+
+            actor->speed.y = cM_rndF(actor->speedF);
+            if (actor->speed.y > 20.0f) {
+                actor->speed.y = 20.0f;
+            }
+        }
+
+        cLib_addCalcAngleS2(&actor->current.angle.z, i_this->field_0x6bc, 1, 0x400);
+        break;
+    case 4:
+        cLib_addCalcAngleS2(&i_this->head_rot_x, 0, 1, 0x1000);
+        cLib_addCalcAngleS2(&actor->current.angle.z, i_this->field_0x6bc, 1, 0x1000);
+
+        if (i_this->timers[1] == 0) {
+            i_this->mode = 10;
+            anm_init(i_this, 5, 3.0f, 2, 1.0f);
+        }
+        break;
+    case 10:
+        if (i_this->timers[1] == 0) {
+            i_this->timers[0] = 200.0f + cM_rndF(100.0f);
+            i_this->timers[1] = 5.0f + cM_rndF(10.0f);
+            i_this->mode = 12;
+        }
+        break;
+    case 11:
+        if (i_this->acch.ChkGroundHit()) {
+            i_this->timers[1] = 5.0f + cM_rndF(10.0f);
+            i_this->mode = 12;
+            actor->speedF = 0.0f;
+            is_smoke_eff = TRUE;
+            i_this->sound.startCreatureSound(Z2SE_EN_BU_MOVE_BOUND, 0, -1);
+        }
+        break;
+    case 12:
+        if (i_this->timers[1] == 0) {
+            if (i_this->timers[0] == 0) {
+                i_this->action = ACTION_FIGHT;
+                i_this->mode = 0;
+                anm_init(i_this, 7, 10.0f, 2, 1.0f + cM_rndF(0.1f));
+            } else {
+                actor->current.angle.y += (s16)cM_rndFX(8000.0f);
+                i_this->mode = 11;
+                actor->speed.y = JREG_F(7) + (20.0f + cM_rndF(10.0f));
+                actor->speedF = 10.0f + cM_rndF(10.0f);
+            }
+        }
+        break;
+    }
+
+    if (i_this->mode < 10) {
+        cMtx_YrotS(*calc_mtx, i_this->head_rot_y);
+        if (i_this->timers[0] == 0 && i_this->acch.ChkWallHit()) {
+            actor->speedF *= -0.4f;
+            i_this->timers[0] = 30;
+        }
+        i_this->field_0x6a8 = (15.0f + AREG_F(3)) * l_HIO.base_size;
+    } else {
+        cLib_addCalcAngleS2(&i_this->head_rot_y, 0, 2, 0x800);
+        cLib_addCalcAngleS2(&actor->current.angle.z, 0, 2, 0x800);
+        cMtx_YrotS(*calc_mtx, actor->current.angle.y);
+        cLib_addCalc2(&i_this->field_0x6a8, (20.0f + AREG_F(4)) * l_HIO.base_size, 1.0f, 2.0f);
+    }
+
+    sp20.x = 0.0f;
+    sp20.y = 0.0f;
+    sp20.z = actor->speedF;
+    MtxPosition(&sp20, &sp14);
+    actor->current.pos.x += sp14.x;
+    actor->current.pos.z += sp14.z;
+    actor->current.pos.y += actor->speed.y;
+    actor->speed.y -= 7.0f + JREG_F(8);
+    return is_smoke_eff;
 }
 
 /* 80693074-80693528 001FB4 04B4+00 2/1 0/0 0/0 .text            action__FP10e_bu_class */
-static void action(e_bu_class* param_0) {
-    // NONMATCHING
+static s8 action(e_bu_class* i_this) {
+    fopAc_ac_c* actor = &i_this->enemy;
+    daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
+    cXyz sp30;
+    cXyz sp24;
+
+    i_this->angle_to_player = fopAcM_searchPlayerAngleY(actor);
+    i_this->dist_to_player = fopAcM_searchPlayerDistance(actor);
+
+    damage_check(i_this);
+    i_this->ccSph.OffAtVsPlayerBit();
+
+    s8 do_smoke_eff = FALSE;
+    s8 is_mtrl_eff = TRUE;
+    s8 down_status = 0;
+
+    switch (i_this->action) {
+    case ACTION_WAIT:
+        e_bu_wait(i_this);
+        i_this->field_0x6a8 = 0.0f;
+        is_mtrl_eff = FALSE;
+        break;
+    case ACTION_FIGHT_FLY:
+        e_bu_fight_fly(i_this);
+        break;
+    case ACTION_FIGHT:
+        e_bu_fight(i_this);
+        break;
+    case ACTION_ATTACK:
+        e_bu_attack(i_this);
+        i_this->ccSph.OnAtVsPlayerBit();
+        break;
+    case ACTION_FLY:
+        e_bu_fly(i_this);
+        break;
+    case ACTION_PATH_FLY:
+        e_bu_path_fly(i_this);
+        break;
+    case ACTION_CHANCE:
+        do_smoke_eff = e_bu_chance(i_this);
+        is_mtrl_eff = FALSE;
+        down_status = 1;
+        break;
+    case ACTION_HEAD:
+        do_smoke_eff = e_bu_head(i_this);
+        is_mtrl_eff = FALSE;
+        down_status = 1;
+        break;
+    case ACTION_DEAD:
+        actor->current.pos.y += actor->speed.y;
+        actor->speed.y -= 7.0f + JREG_F(8);
+        i_this->invulnerabilityTimer = 10;
+
+        if (i_this->timers[3] == 0) {
+            bu_disappear(actor);
+            fopAcM_delete(actor);
+        }
+
+        is_mtrl_eff = FALSE;
+        down_status = 2;
+        break;
+    }
+
+    fopEn_enemy_c* enemy = (fopEn_enemy_c*)actor;
+
+    if (down_status == 1) {
+        enemy->onDownFlg();
+        enemy->setDownPos(&actor->current.pos);
+    } else {
+        enemy->offDownFlg();
+    }
+
+    if (fopAcM_checkHookCarryNow(actor)) {
+        actor->speed.y = 0.0f;
+        actor->speedF = 0.0f;
+    }
+
+    if (enemy->checkCutDownHitFlg()) {
+        enemy->offCutDownHitFlg();
+        enemy->offDownFlg();
+        actor->health = 0;
+        i_this->timers[3] = 10;
+        i_this->action = ACTION_DEAD;
+
+        i_this->sound.startCreatureVoice(Z2SE_EN_BU_V_DEAD, -1);
+        i_this->modelMorf->setPlaySpeed(0.0f);
+        i_this->ccSph.OffCoSetBit();
+    }
+
+    if (i_this->hit_speed > 0.1f) {
+        sp30.x = 0.0f;
+        sp30.y = 0.0f;
+        sp30.z = -i_this->hit_speed;
+        cMtx_YrotS(*calc_mtx, i_this->hit_rot);
+        MtxPosition(&sp30, &sp24);
+        actor->current.pos += sp24;
+
+        cLib_addCalc0(&i_this->hit_speed, 1.0f, 5.0f);
+
+        if (i_this->is_dead) {
+            i_this->invulnerabilityTimer = 3;
+            actor->shape_angle.y += 0x1300;
+            actor->shape_angle.z += 0x1700;
+
+            if (i_this->hit_speed <= 1.0f || i_this->acch.ChkWallHit()) {
+                bu_disappear(actor);
+                fopAcM_delete(actor);
+            }
+        }
+    } else {
+        cLib_addCalcAngleS2(&actor->shape_angle.y, actor->current.angle.y, 4, 0x2000);
+        cLib_addCalcAngleS2(&actor->shape_angle.x, 0, 4, 0x2000);
+        cLib_addCalcAngleS2(&actor->shape_angle.z, actor->current.angle.z, 4, 0x2000);
+    }
+
+    actor->current.pos.y -= i_this->field_0x6a8;
+    actor->old.pos.y -= i_this->field_0x6a8;
+    i_this->acch.CrrPos(dComIfG_Bgsp());
+    actor->current.pos.y += i_this->field_0x6a8;
+    actor->old.pos.y += i_this->field_0x6a8;
+
+    if (down_status != 2) {
+        cLib_addCalc2(&i_this->field_0x6a8, 30.0f * l_HIO.base_size, 1.0f, 1.0f);
+    }
+
+    if (player->current.pos.y - 30.0f < actor->current.pos.y && i_this->action != ACTION_WAIT) {
+        if (fopAcM_otherBgCheck(player, actor)) {
+            fopAcM_OffStatus(actor, 0);
+            actor->attention_info.flags = 0;
+        } else {
+            fopAcM_OnStatus(actor, 0);
+            actor->attention_info.flags = 4;
+        }
+    } else {
+        fopAcM_OffStatus(actor, 0);
+        actor->attention_info.flags = 0;
+    }
+
+    if (do_smoke_eff) {
+        fopAcM_effSmokeSet1(&i_this->field_0xa7c, &i_this->field_0xa80, &actor->current.pos, &actor->shape_angle, 0.8f + NREG_F(18), &actor->tevStr, 1);
+    }
+
+    cLib_addCalcAngleS2(&i_this->jaw_rot, 0, 2, 0x400);
+
+    cXyz effsize(0.75f, 0.75f, 0.75f);
+    setMidnaBindEffect((fopEn_enemy_c*)actor, &i_this->sound, &actor->eyePos, &effsize);
+    return is_mtrl_eff;
 }
 
-/* ############################################################################################## */
-/* 80694730-80694734 0000A0 0004+00 0/0 0/0 0/0 .rodata          @4451 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4451 = 10000.0f;
-COMPILER_STRIP_GATE(0x80694730, &lit_4451);
-#pragma pop
-
-/* 80694734-80694738 0000A4 0004+00 0/0 0/0 0/0 .rodata          @4452 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4452 = 400.0f;
-COMPILER_STRIP_GATE(0x80694734, &lit_4452);
-#pragma pop
-
-/* 80694738-8069473C 0000A8 0004+00 0/0 0/0 0/0 .rodata          @4453 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4453 = 4000.0f;
-COMPILER_STRIP_GATE(0x80694738, &lit_4453);
-#pragma pop
-
-/* 8069473C-80694740 0000AC 0004+00 0/0 0/0 0/0 .rodata          @4454 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4454 = 8000.0f;
-COMPILER_STRIP_GATE(0x8069473C, &lit_4454);
-#pragma pop
-
-/* 80694740-80694744 0000B0 0004+00 0/0 0/0 0/0 .rodata          @4455 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4455 = -2.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80694740, &lit_4455);
-#pragma pop
-
-/* 80694744-80694748 0000B4 0004+00 0/0 0/0 0/0 .rodata          @4456 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4456 = 7.0f;
-COMPILER_STRIP_GATE(0x80694744, &lit_4456);
-#pragma pop
-
-/* 80694748-8069474C 0000B8 0004+00 0/1 0/0 0/0 .rodata          @4545 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4545 = 4.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80694748, &lit_4545);
-#pragma pop
-
-/* 8069474C-80694750 0000BC 0004+00 0/0 0/0 0/0 .rodata          @4546 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4546 = 0.75f;
-COMPILER_STRIP_GATE(0x8069474C, &lit_4546);
-#pragma pop
-
-/* 80694750-80694754 0000C0 0004+00 0/1 0/0 0/0 .rodata          @4716 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4716 = 4.0f;
-COMPILER_STRIP_GATE(0x80694750, &lit_4716);
-#pragma pop
-
-/* 80694754-80694758 0000C4 0004+00 0/1 0/0 0/0 .rodata          @4717 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4717 = 6.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80694754, &lit_4717);
-#pragma pop
-
-/* 80694758-8069475C 0000C8 0004+00 0/1 0/0 0/0 .rodata          @4718 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4718 = 30000.0f;
-COMPILER_STRIP_GATE(0x80694758, &lit_4718);
-#pragma pop
-
 /* 80693528-80693A30 002468 0508+00 2/1 0/0 0/0 .text            daE_BU_Execute__FP10e_bu_class */
-static void daE_BU_Execute(e_bu_class* param_0) {
-    // NONMATCHING
+static int daE_BU_Execute(e_bu_class* i_this) {
+    fopAc_ac_c* actor = &i_this->enemy;
+    cXyz sp34;
+    cXyz sp28;
+
+    i_this->lifetime++;
+
+    for (int i = 0; i < 4; i++) {
+        if (i_this->timers[i] != 0) {
+            i_this->timers[i]--;
+        }
+    }
+
+    if (i_this->invulnerabilityTimer != 0) {
+        i_this->invulnerabilityTimer--;
+    }
+
+    s8 do_mtrl_eff = action(i_this);
+
+    mDoMtx_stack_c::transS(actor->current.pos.x, actor->current.pos.y, actor->current.pos.z);
+    mDoMtx_stack_c::YrotM(i_this->head_rot_y);
+    mDoMtx_stack_c::XrotM(i_this->head_rot_x);
+    mDoMtx_stack_c::YrotM(-i_this->head_rot_y);
+    mDoMtx_stack_c::YrotM(actor->shape_angle.y);
+    mDoMtx_stack_c::ZrotM(actor->shape_angle.z);
+    mDoMtx_stack_c::scaleM(l_HIO.base_size, l_HIO.base_size, l_HIO.base_size);
+
+    J3DModel* model = i_this->modelMorf->getModel();
+    model->setBaseTRMtx(mDoMtx_stack_c::get());
+
+    i_this->modelMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(actor)));
+
+    if (i_this->anm == 7 && i_this->modelMorf->checkFrame(4.0f)) {
+        if (i_this->modelMorf->getPlaySpeed() > 1.2f) {
+            i_this->sound.startCreatureSound(Z2SE_EN_BU_WING_L, 0, -1);
+        } else {
+            i_this->sound.startCreatureSound(Z2SE_EN_BU_WING, 0, -1);
+        }
+    }
+
+    i_this->anm_frame = i_this->modelMorf->getFrame();
+    i_this->modelMorf->modelCalc();
+
+    actor->eyePos = actor->current.pos;
+    actor->eyePos.y += 30.0f;
+
+    actor->attention_info.position = actor->eyePos;
+    actor->attention_info.position.y += 20.0f;
+
+    sp34.set(0.0f, 0.0f, 0.0f);
+    MtxPosition(&sp34, &sp28);
+
+    if (i_this->invulnerabilityTimer != 0) {
+        sp28.z += 30000.0f;
+    }
+
+    i_this->ccSph.SetC(sp28);
+    i_this->ccSph.SetR((30.0f + JREG_F(3)) * l_HIO.base_size);
+    dComIfG_Ccsp()->Set(&i_this->ccSph);
+
+    if (do_mtrl_eff && i_this->type != TYPE_NORMAL) {
+        i_this->field_0x6c0 = actor->current.pos - actor->old.pos;
+        i_this->field_0x6c0 *= 0.8f;
+
+        if (i_this->type == TYPE_FIRE) {
+            i_this->sound.startCreatureSoundLevel(Z2SE_EN_BU_LV_FIRE, 0, -1);
+
+            for (int i = 0; i < 4; i++) {
+                static u16 fire_name[] = {0x821D, 0x821E, 0x821F, 0x8220};
+                i_this->mtrl_emitter_id[i] = dComIfGp_particle_set(i_this->mtrl_emitter_id[i], fire_name[i], &actor->current.pos, NULL, NULL);
+                
+                JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->mtrl_emitter_id[i]);
+                if (emitter != NULL) {
+                    emitter->setGlobalSRTMatrix(i_this->modelMorf->getModel()->getAnmMtx(0));
+                    emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
+                    emitter->setUserWork((u32)&i_this->field_0x6c0);
+                }
+            }
+        } else {
+            for (int i = 0; i < 3; i++) {
+                static u16 ice_name[] = {0x8221, 0x8222, 0x8223};
+                i_this->mtrl_emitter_id[i] = dComIfGp_particle_set(i_this->mtrl_emitter_id[i], ice_name[i], &actor->current.pos, NULL, NULL);
+                
+                JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->mtrl_emitter_id[i]);
+                if (emitter != NULL) {
+                    emitter->setGlobalSRTMatrix(i_this->modelMorf->getModel()->getAnmMtx(0));
+                    emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
+                    emitter->setUserWork((u32)&i_this->field_0x6c0);
+                }
+            }
+        }
+    }
+
+    return 1;
 }
 
 /* 80693A30-80693A38 002970 0008+00 1/0 0/0 0/0 .text            daE_BU_IsDelete__FP10e_bu_class */
-static bool daE_BU_IsDelete(e_bu_class* param_0) {
-    return true;
+static int daE_BU_IsDelete(e_bu_class* i_this) {
+    return 1;
 }
 
 /* 80693A38-80693AA0 002978 0068+00 1/0 0/0 0/0 .text            daE_BU_Delete__FP10e_bu_class */
-static void daE_BU_Delete(e_bu_class* param_0) {
-    // NONMATCHING
+static int daE_BU_Delete(e_bu_class* i_this) {
+    fopAc_ac_c* actor = &i_this->enemy;
+    fpc_ProcID id = fopAcM_GetID(actor);
+    dComIfG_resDelete(&i_this->phase, "E_BU");
+
+    if (i_this->HIOInit != 0) {
+        l_HIOInit = 0;
+        mDoHIO_DELETE_CHILD(l_HIO.id);
+    }
+
+    if (actor->heap != NULL) {
+        i_this->modelMorf->stopZelAnime();
+    }
+
+    return 1;
 }
 
 /* 80693AA0-80693BD4 0029E0 0134+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
-static void useHeapInit(fopAc_ac_c* param_0) {
-    // NONMATCHING
+static int useHeapInit(fopAc_ac_c* i_this) {
+    e_bu_class* a_this = (e_bu_class*)i_this;
+
+    a_this->modelMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_BU", 11), NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_BU", 7), 2, 1.0f, 0, -1, &a_this->sound, 0x80000, 0x11000084);
+    if (a_this->modelMorf == NULL || a_this->modelMorf->getModel() == NULL) {
+        return 0;
+    }
+
+    J3DModel* model = a_this->modelMorf->getModel();
+    model->setUserArea((u32)a_this);
+
+    for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
+        model->getModelData()->getJointNodePointer(i)->setCallBack(nodeCallBack);
+    }
+
+    return 1;
 }
-
-/* ############################################################################################## */
-/* 8069475C-80694760 0000CC 0004+00 0/1 0/0 0/0 .rodata          @4918 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4918 = -200.0f;
-COMPILER_STRIP_GATE(0x8069475C, &lit_4918);
-#pragma pop
-
-/* 80694760-80694768 0000D0 0004+04 0/1 0/0 0/0 .rodata          @4919 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4919[1 + 1 /* padding */] = {
-    55.0f,
-    /* padding */
-    0.0f,
-};
-COMPILER_STRIP_GATE(0x80694760, &lit_4919);
-#pragma pop
-
-/* 80694768-80694770 0000D8 0008+00 0/1 0/0 0/0 .rodata          @4921 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4921[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80694768, &lit_4921);
-#pragma pop
-
-/* 80694770-80694770 0000E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80694775 = "E_bu";
-#pragma pop
 
 /* 80693BD4-80693FC0 002B14 03EC+00 1/0 0/0 0/0 .text            daE_BU_Create__FP10fopAc_ac_c */
-static void daE_BU_Create(fopAc_ac_c* param_0) {
-    // NONMATCHING
+static int daE_BU_Create(fopAc_ac_c* i_this) {
+    e_bu_class* a_this = (e_bu_class*)i_this;
+    fopAcM_SetupActor(i_this, e_bu_class);
+
+    int phase_state = dComIfG_resLoad(&a_this->phase, "E_BU");
+    if (phase_state == cPhs_COMPLEATE_e) {
+        OS_REPORT("E_BU PARAM %x\n", fopAcM_GetParam(i_this));
+        
+        int swbit = (fopAcM_GetParam(i_this) & 0xFF000000) >> 0x18;
+        if (swbit != 0xFF && dComIfGs_isSwitch(swbit, fopAcM_GetRoomNo(i_this))) {
+            return cPhs_ERROR_e;
+        }
+    
+        a_this->prm0 = fopAcM_GetParam(i_this);
+        a_this->prm1 = (fopAcM_GetParam(i_this) & 0xF00) >> 8;
+        a_this->type = (fopAcM_GetParam(i_this) & 0xF000) >> 0xC;
+        a_this->pathNo = (fopAcM_GetParam(i_this) & 0xFF0000) >> 0x10;
+
+        if (a_this->prm0 == 0xFF) {
+            a_this->prm0 = 0;
+        }
+
+        if (a_this->prm1 == 0xFF) {
+            a_this->prm1 = 10;
+        }
+
+        if (a_this->type == 0xF) {
+            a_this->type = TYPE_NORMAL;
+        }
+
+        a_this->pl_search_range = 100.0f * a_this->prm1;
+        OS_REPORT("E_BU//////////////E_BU SET 1 !!\n");
+
+        if (!fopAcM_entrySolidHeap(i_this, useHeapInit, 0x15C0)) {
+            OS_REPORT("//////////////E_BU SET NON !!\n");
+            return cPhs_ERROR_e;
+        }
+    
+        OS_REPORT("//////////////E_BU SET 2 !!\n");
+
+        if (a_this->pathNo != 0xFF) {
+            a_this->ppd = dPath_GetRoomPath(a_this->pathNo, fopAcM_GetRoomNo(i_this));
+            if (a_this->ppd == NULL) {
+                return cPhs_ERROR_e;
+            }
+
+            a_this->field_0x5b8 = a_this->pathNo + 1;
+            a_this->path_step = 1;
+            a_this->action = ACTION_PATH_FLY;
+        } else if (a_this->prm0 == 1) {
+            a_this->action = ACTION_FLY;
+        }
+
+        if (!l_HIOInit) {
+            a_this->HIOInit = TRUE;
+            l_HIOInit = TRUE;
+            l_HIO.id = mDoHIO_CREATE_CHILD("バブル", &l_HIO);
+        }
+
+        i_this->attention_info.flags = 4;
+        fopAcM_SetMtx(i_this, a_this->modelMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMin(i_this, -200.0f, -200.0f, -200.0f);
+        fopAcM_SetMax(i_this, 200.0f, 200.0f, 200.0f);
+
+        i_this->health = 40;
+        i_this->field_0x560 = 40;
+
+        static dCcD_SrcSph cc_sph_src = {
+            {
+                {0x0, {{AT_TYPE_CSTATUE_SWING, 0x1, 0xd}, {0xd8fbfdff, 0x3}, 0x75}}, // mObj
+                {dCcD_SE_HARD_BODY, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
+                {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2}, // mGObjTg
+                {0x0}, // mGObjCo
+            }, // mObjInf
+            {
+                {{0.0f, 0.0f, 0.0f}, 40.0f} // mSph
+            } // mSphAttr
+        };
+
+        a_this->ccStts.Init(Z2SE_SY_TALK_CURSOR_OK, 0, i_this);
+        a_this->ccSph.Set(cc_sph_src);
+        a_this->ccSph.SetStts(&a_this->ccStts);
+
+        if (a_this->type == TYPE_FIRE) {
+            a_this->ccSph.SetAtType(AT_TYPE_100);
+            a_this->ccSph.SetAtMtrl(dCcD_MTRL_FIRE);
+        } else if (a_this->type == TYPE_ICE) {
+            a_this->ccSph.SetAtType(AT_TYPE_100);
+            a_this->ccSph.SetAtMtrl(dCcD_MTRL_ICE);
+        }
+
+        a_this->acch.Set(fopAcM_GetPosition_p(i_this), fopAcM_GetOldPosition_p(i_this), i_this, 1, &a_this->acchcir, fopAcM_GetSpeed_p(i_this), NULL, NULL);
+        a_this->acchcir.SetWall(55.0f, 55.0f);
+
+        a_this->sound.init(&i_this->current.pos, &i_this->eyePos, 3, 1);
+        a_this->atInfo.mpSound = &a_this->sound;
+        a_this->sound.setEnemyName("E_bu");
+        a_this->atInfo.mPowerType = 4;
+
+        daE_BU_Execute(a_this);
+    }
+
+    return phase_state;
 }
 
-/* 80693FC0-80694008 002F00 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
-// cM3dGSph::~cM3dGSph() {
-extern "C" void __dt__8cM3dGSphFv() {
-    // NONMATCHING
-}
+/* 80694890-806948B0 -00001 0020+00 1/0 0/0 0/0 .data            l_daE_BU_Method */
+static actor_method_class l_daE_BU_Method = {
+    (process_method_func)daE_BU_Create,
+    (process_method_func)daE_BU_Delete,
+    (process_method_func)daE_BU_Execute,
+    (process_method_func)daE_BU_IsDelete,
+    (process_method_func)daE_BU_Draw,
+};
 
-/* 80694008-80694050 002F48 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
-// cM3dGAab::~cM3dGAab() {
-extern "C" void __dt__8cM3dGAabFv() {
-    // NONMATCHING
-}
-
-/* 80694050-806940AC 002F90 005C+00 1/0 0/0 0/0 .text            __dt__10dCcD_GSttsFv */
-// dCcD_GStts::~dCcD_GStts() {
-extern "C" void __dt__10dCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* 806940AC-8069411C 002FEC 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
-// dBgS_ObjAcch::~dBgS_ObjAcch() {
-extern "C" void __dt__12dBgS_ObjAcchFv() {
-    // NONMATCHING
-}
-
-/* 8069411C-8069418C 00305C 0070+00 1/0 0/0 0/0 .text            __dt__12dBgS_AcchCirFv */
-// dBgS_AcchCir::~dBgS_AcchCir() {
-extern "C" void __dt__12dBgS_AcchCirFv() {
-    // NONMATCHING
-}
-
-/* 8069418C-806941D4 0030CC 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
-// cCcD_GStts::~cCcD_GStts() {
-extern "C" void __dt__10cCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* 806941D4-8069421C 003114 0048+00 2/1 0/0 0/0 .text            __dt__12daE_BU_HIO_cFv */
-daE_BU_HIO_c::~daE_BU_HIO_c() {
-    // NONMATCHING
-}
-
-/* 8069421C-80694258 00315C 003C+00 0/0 1/0 0/0 .text            __sinit_d_a_e_bu_cpp */
-void __sinit_d_a_e_bu_cpp() {
-    // NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x8069421C, __sinit_d_a_e_bu_cpp);
-#pragma pop
-
-/* 80694258-80694260 003198 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
-static void func_80694258() {
-    // NONMATCHING
-}
-
-/* 80694260-80694268 0031A0 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
-static void func_80694260() {
-    // NONMATCHING
-}
-
-/* 80694770-80694770 0000E0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+/* 806948B0-806948E0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_E_BU */
+extern actor_process_profile_definition g_profile_E_BU = {
+    fpcLy_CURRENT_e,        // mLayerID
+    7,                      // mListID
+    fpcPi_CURRENT_e,        // mListPrio
+    PROC_E_BU,              // mProcName
+    &g_fpcLf_Method.base,  // sub_method
+    sizeof(e_bu_class),     // mSize
+    0,                      // mSizeOther
+    0,                      // mParameters
+    &g_fopAc_Method.base,   // sub_method
+    181,                    // mPriority
+    &l_daE_BU_Method,       // sub_method
+    0x100C0120,             // mStatus
+    fopAc_ENEMY_e,          // mActorType
+    fopAc_CULLBOX_CUSTOM_e, // cullType
+};
