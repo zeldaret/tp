@@ -9,7 +9,7 @@
 /**
  * @ingroup actors-enemies
  * @class daE_ZH_c
- * @brief Zant Head
+ * @brief Ball Master
  * 
  * @details 
  * 
