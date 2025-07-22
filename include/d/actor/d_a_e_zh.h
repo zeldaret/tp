@@ -1,7 +1,6 @@
 #ifndef D_A_E_ZH_H
 #define D_A_E_ZH_H
 
-#include "d/actor/d_a_obj_carry.h"
 #include "d/d_bg_s_acch.h"
 #include "d/d_cc_d.h"
 #include "d/d_cc_uty.h"
@@ -15,6 +14,9 @@
  * @details 
  * 
  */
+
+class daObjCarry_c;
+
 class daE_ZH_c : public fopEn_enemy_c {
 public:
     /* 8082907C */ int draw();
@@ -49,16 +51,16 @@ public:
     /* 8082DF44 */ void cc_set();
     /* 8082E2FC */ int execute();
     /* 8082E3E8 */ int _delete();
-    /* 8082E4E4 */ void CreateHeap();
+    /* 8082E4E4 */ int CreateHeap();
     /* 8082E730 */ cPhs__Step create();
-    /* 8082ECEC */ daE_ZH_c();
+    /* 8082ECEC */ daE_ZH_c() {}
 
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ mDoExt_McaMorfSO* mpModelMorf;
-    /* 0x5B8 */ J3DModel* field_0x5b8;
+    /* 0x5B8 */ J3DModel* mEntranceModel;
     /* 0x5BC */ mDoExt_btkAnm* mpBtkAnm;
     /* 0x5C0 */ Z2CreatureEnemy mSound;
-    /* 0x664 */ daObjCarry_c* field_0x664;
+    /* 0x664 */ daObjCarry_c* mS_Ball;
     /* 0x668 */ cXyz field_0x668;
     /* 0x674 */ u8 field_0x674[0x680 - 0x674];
     /* 0x680 */ cXyz field_0x680;
@@ -107,7 +109,6 @@ public:
     /* 0xDEC */ cXyz mDemoCamEye;
     /* 0xDF8 */ cXyz mDemoCamCenter;
     /* 0xE04 */ u8 field_0xe04;
-    /* 0xE05 */ u8 field_0xe05[0xe08 - 0xe05];
 };
 
 STATIC_ASSERT(sizeof(daE_ZH_c) == 0xe08);
@@ -126,6 +127,5 @@ public:
     /* 0x16 */ s16 piyori_time;         // ピヨリ時間 (Piyori Time)
     /* 0x18 */ u8 dungeon_bit_check;    // ダンジョンビットチェックON／OFF (Dungeon Bit Check ON/OFF)
 };
-
 
 #endif /* D_A_E_ZH_H */

@@ -279,7 +279,7 @@ public:
     bool isDraw() { return mDraw == false; }
     void onCarryHookOK() { mCarryHookOK = 1; }
     void offCarryHookOK() { mCarryHookOK = 0; }
-    u8 checkRecover() { return mRecover; }
+    BOOL checkRecover() { return mRecover; }
     void reset() { mReset = 1; }
 
     void setPower(fopAc_ac_c* cannon_actor, f32 my_0xde0, f32 my_0xde4, s16 my_0xde8) {
