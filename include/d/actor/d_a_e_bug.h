@@ -13,9 +13,6 @@
  */
 
 struct bug_s {
-    /* 80697B4C */ ~bug_s() {}
-    /* 80697BB8 */ bug_s() {}
-
     /* 0x00 */ J3DModel* field_0x0;
     /* 0x04 */ J3DModel* field_0x4;
     /* 0x08 */ int field_0x8;
@@ -47,13 +44,13 @@ public:
     /* 0x0000 */ fopAc_ac_c actor;
     /* 0x0568 */ request_of_phase_process_class mPhase;
     /* 0x0570 */ u8 field_0x570;
-    /* 0x0574 */ int mSwitchBit;
+    /* 0x0574 */ int bitSw;
     /* 0x0578 */ u32 field_0x578;
     /* 0x057C */ f32 field_0x57c;
     /* 0x0580 */ s16 field_0x580;
     /* 0x0582 */ u8 field_0x582[0x588 - 0x582];
-    /* 0x0588 */ bug_s mBugs[256];
-    /* 0x7D88 */ int mNumOfBugs;
+    /* 0x0588 */ bug_s Bug_s[256];
+    /* 0x7D88 */ int bug_num;
     /* 0x7D8C */ Z2SoundObjBeeGroup mSound;
     /* 0x7DAC */ u8 field_0x7dac;
     /* 0x7DAD */ u8 field_0x7dad;

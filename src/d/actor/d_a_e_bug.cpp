@@ -41,9 +41,9 @@ static s8 data_80697E8D;
 
 /* 80694BBC-80694CC8 00011C 010C+00 1/0 0/0 0/0 .text            daE_Bug_Draw__FP11e_bug_class */
 static int daE_Bug_Draw(e_bug_class* i_this) {
-    bug_s* bugs = i_this->mBugs;
+    bug_s* bugs = i_this->Bug_s;
 
-    for (int i = 0; i < i_this->mNumOfBugs; i++, bugs++) {
+    for (int i = 0; i < i_this->bug_num; i++, bugs++) {
         if (bugs->field_0x50 == 4) {
             if ((bugs->field_0x8 & 1) != 0) {
                 dComIfGp_entrySimpleModel(bugs->field_0x0, l_roomNo);
@@ -492,8 +492,8 @@ static void set_wait(e_bug_class* a_this, bug_s* i_this) {
 
     switch (i_this->field_0x51) {
         case 0:
-            if (a_this->mSwitchBit != 0xFF) {
-                if (dComIfGs_isSwitch(a_this->mSwitchBit, l_roomNo)) {
+            if (a_this->bitSw != 0xFF) {
+                if (dComIfGs_isSwitch(a_this->bitSw, l_roomNo)) {
                     sVar1 = 1;
                 }
             } else {
@@ -583,9 +583,9 @@ static void normal_move(e_bug_class* a_this, bug_s* i_this) {
 
         cLib_addCalc2(&i_this->field_0x2c, fVar4, 0.2f, 2.0f);
         int iVar1 = i_this->field_0x8 + 1;
-        for (int i = iVar1; i < a_this->mNumOfBugs; i++) {
-            sp68.x = a_this->mBugs[i].field_0x18.x - i_this->field_0x18.x;
-            sp68.z = a_this->mBugs[i].field_0x18.z - i_this->field_0x18.z;
+        for (int i = iVar1; i < a_this->bug_num; i++) {
+            sp68.x = a_this->Bug_s[i].field_0x18.x - i_this->field_0x18.x;
+            sp68.z = a_this->Bug_s[i].field_0x18.z - i_this->field_0x18.z;
             fVar4 = JMAFastSqrt(sp68.x * sp68.x + sp68.z * sp68.z);
             iVar1 = i;
 
@@ -632,12 +632,12 @@ static void bug_control(e_bug_class* a_this) {
     fopAc_ac_c* actor = (fopAc_ac_c*)&a_this->actor;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
     cXyz sp1c, sp28;
-    bug_s* i_this = a_this->mBugs;
+    bug_s* i_this = a_this->Bug_s;
     u8 sVar1 = 0;
     u8 sVar2 = 0;
     u8 uVar1 = 0;
 
-    for (int i = 0; i < a_this->mNumOfBugs; i++, i_this++) {
+    for (int i = 0; i < a_this->bug_num; i++, i_this++) {
         if (i_this->field_0x50 != 0) {
             if (i_this->field_0x18.y < actor->home.pos.y - 2000.0f) {
                 i_this->field_0x50 = 0;
@@ -801,8 +801,8 @@ static int daE_Bug_Delete(e_bug_class* i_this) {
 
     if (a_this->heap != NULL) {
         i_this->mSound.deleteObject();
-        for (int i = 0; i < i_this->mNumOfBugs; i++) {
-            i_this->mBugs[i].mSound.deleteObject();
+        for (int i = 0; i < i_this->bug_num; i++) {
+            i_this->Bug_s[i].mSound.deleteObject();
         }
     }
 
@@ -819,14 +819,14 @@ static int useHeapInit(fopAc_ac_c* a_this) {
     J3DModelData* modelData2 = static_cast<J3DModelData*>(dComIfG_getObjectRes("E_bug", BMDG_MU05));
     JUT_ASSERT(1327, modelData2 != 0);
 
-    for (int i = 0; i < i_this->mNumOfBugs; i++) {
-        i_this->mBugs[i].field_0x0 = mDoExt_J3DModel__create(modelData, 0x20000, 0x11000084);
-        if (i_this->mBugs[i].field_0x0 == NULL) {
+    for (int i = 0; i < i_this->bug_num; i++) {
+        i_this->Bug_s[i].field_0x0 = mDoExt_J3DModel__create(modelData, 0x20000, 0x11000084);
+        if (i_this->Bug_s[i].field_0x0 == NULL) {
             return 0;
         }
         
-        i_this->mBugs[i].field_0x4 = mDoExt_J3DModel__create(modelData2, 0x20000, 0x11000084);
-        if (i_this->mBugs[i].field_0x4 == NULL) {
+        i_this->Bug_s[i].field_0x4 = mDoExt_J3DModel__create(modelData2, 0x20000, 0x11000084);
+        if (i_this->Bug_s[i].field_0x4 == NULL) {
             return 0;
         }
     }
@@ -844,14 +844,14 @@ static cPhs__Step daE_Bug_Create(fopAc_ac_c* a_this) {
     if (phase == cPhs_COMPLEATE_e) {
         OS_REPORT("E_BUG PARAM %x\n", fopAcM_GetParam(a_this));
         i_this->field_0x570 = fopAcM_GetParam(a_this);
-        i_this->mNumOfBugs = i_this->field_0x570 + 1;
+        i_this->bug_num = i_this->field_0x570 + 1;
 
-        if (i_this->mNumOfBugs > 0x100) {
-            i_this->mNumOfBugs = 0x100;
+        if (i_this->bug_num > 0x100) {
+            i_this->bug_num = 0x100;
         }
 
         if (strcmp(dComIfGp_getStartStageName(), "T_ENEMY") == 0) {
-            i_this->mNumOfBugs = 0x100;
+            i_this->bug_num = 0x100;
         }
 
         OS_REPORT("E_BUG//////////////E_BUG SET 1 !!\n");
@@ -867,7 +867,7 @@ static cPhs__Step daE_Bug_Create(fopAc_ac_c* a_this) {
             l_HIO.field_0x4 = -1;
         }
 
-        i_this->mSwitchBit = (fopAcM_GetParam(a_this) & 0xFF0000) >> 16;
+        i_this->bitSw = (fopAcM_GetParam(a_this) & 0xFF0000) >> 16;
         i_this->field_0x578 = fopAcM_GetParam(a_this) >> 24;
         i_this->field_0x57c = ((fopAcM_GetParam(a_this) & 0xFF00) >> 8) * 100.0f;
 
@@ -875,15 +875,15 @@ static cPhs__Step daE_Bug_Create(fopAc_ac_c* a_this) {
         a_this->home.angle.z = 0;
         a_this->current.angle.z = 0;
 
-        for (int i = 0; i < i_this->mNumOfBugs; i++) {
-            i_this->mBugs[i].field_0x8 = i;
-            i_this->mBugs[i].field_0x50 = -1;
-            i_this->mBugs[i].field_0x18 = a_this->home.pos;
-            i_this->mBugs[i].field_0x52 = i;
-            i_this->mBugs[i].field_0x28 = cM_rndFX(0.1f) + 1.0f;
-            i_this->mBugs[i].field_0x48 = cM_rndF(65536.0f);
-            i_this->mBugs[i].field_0x4c = cM_rndF(65536.0f);
-            i_this->mBugs[i].mSound.init(&i_this->mBugs[i].field_0x18, 1);
+        for (int i = 0; i < i_this->bug_num; i++) {
+            i_this->Bug_s[i].field_0x8 = i;
+            i_this->Bug_s[i].field_0x50 = -1;
+            i_this->Bug_s[i].field_0x18 = a_this->home.pos;
+            i_this->Bug_s[i].field_0x52 = i;
+            i_this->Bug_s[i].field_0x28 = cM_rndFX(0.1f) + 1.0f;
+            i_this->Bug_s[i].field_0x48 = cM_rndF(65536.0f);
+            i_this->Bug_s[i].field_0x4c = cM_rndF(65536.0f);
+            i_this->Bug_s[i].mSound.init(&i_this->Bug_s[i].field_0x18, 1);
         }
 
         if (uVar1 != 0) {
@@ -891,12 +891,12 @@ static cPhs__Step daE_Bug_Create(fopAc_ac_c* a_this) {
             if (roomPath != NULL) {
                 dPnt* mPnts = roomPath->m_points;
                 if (roomPath->m_num >= 1 && roomPath->m_num <= 4) {
-                    int iVar1 = i_this->mNumOfBugs / (roomPath->m_num + 1);
+                    int iVar1 = i_this->bug_num / (roomPath->m_num + 1);
                     for (int i = 0; i < roomPath->m_num; i++, mPnts++) {
                         for (int j = iVar1 * (i + 1); j < iVar1 * (i + 2); j++) {
-                            i_this->mBugs[j].field_0x18.x = mPnts->m_position.x;
-                            i_this->mBugs[j].field_0x18.y = mPnts->m_position.y;
-                            i_this->mBugs[j].field_0x18.z = mPnts->m_position.z;
+                            i_this->Bug_s[j].field_0x18.x = mPnts->m_position.x;
+                            i_this->Bug_s[j].field_0x18.y = mPnts->m_position.y;
+                            i_this->Bug_s[j].field_0x18.z = mPnts->m_position.z;
                         }
                     }
                 }
@@ -911,7 +911,7 @@ static cPhs__Step daE_Bug_Create(fopAc_ac_c* a_this) {
             JUT_ASSERT(1476, modelData != 0);
 
             if (dComIfGp_addSimpleModel(modelData, fopAcM_GetRoomNo(a_this), 0) == -1) {
-                OS_REPORT(1Bh,"[43;30m虫の集団：シンプルモデル登録失敗しました。\n",1Bh,"[m"); // 1Bh, group of insects: Simple model registration failed.
+                OS_REPORT("1Bh", "[43;30m虫の集団：シンプルモデル登録失敗しました。\n", "1Bh", "[m"); // 1Bh, group of insects: Simple model registration failed.
             }
 
             i_this->field_0x7dad = 1;
