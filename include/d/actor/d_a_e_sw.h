@@ -1,6 +1,9 @@
 #ifndef D_A_E_SW_H
 #define D_A_E_SW_H
 
+#include "d/d_bg_s_acch.h"
+#include "d/d_cc_d.h"
+#include "d/d_cc_uty.h"
 #include "f_op/f_op_actor_mng.h"
 
 /**
@@ -12,21 +15,24 @@
  * 
  */
 class daE_SW_c : public fopEn_enemy_c {
+public:
+    typedef int (daE_SW_c::*actionFunc)();
+
     /* 807A7460 */ void bckSet(int, f32, u8, f32);
-    /* 807A7504 */ void draw();
+    /* 807A7504 */ int draw();
     /* 807A76E4 */ void setBeforeJumpEffect();
     /* 807A77CC */ void setJumpEffect();
     /* 807A78B4 */ void setSmokeEffect();
     /* 807A7A08 */ void setDiveEffect();
     /* 807A7AC0 */ void setHideEffect();
     /* 807A7B64 */ void setActionMode(s16, s16);
-    /* 807A7C50 */ void search_bomb();
-    /* 807A7CD0 */ void bomb_check();
-    /* 807A7D48 */ void setModeBack();
+    /* 807A7C50 */ fopAc_ac_c* search_bomb();
+    /* 807A7CD0 */ BOOL bomb_check();
+    /* 807A7D48 */ bool setModeBack();
     /* 807A7DAC */ void checkFall();
-    /* 807A7EFC */ void checkBeforeWall();
+    /* 807A7EFC */ bool checkBeforeWall();
     /* 807A7F88 */ void executeWait();
-    /* 807A8290 */ void checkRunChase();
+    /* 807A8290 */ int checkRunChase();
     /* 807A831C */ void executeChaseSlow();
     /* 807A8B98 */ void executeChaseFast();
     /* 807A9580 */ void executeBomb();
@@ -38,7 +44,7 @@ class daE_SW_c : public fopEn_enemy_c {
     /* 807AA91C */ void executeDamage();
     /* 807AAB7C */ void executeDie();
     /* 807AADCC */ void executeMaster();
-    /* 807AAF70 */ void checkSuddenAttack(int);
+    /* 807AAF70 */ bool checkSuddenAttack(int);
     /* 807AB310 */ void executeSuddenAttack();
     /* 807AB5C4 */ void executeFall();
     /* 807AB6C4 */ void action();
@@ -49,7 +55,7 @@ class daE_SW_c : public fopEn_enemy_c {
     /* 807ABE50 */ void execute();
     /* 807AC170 */ void _delete();
     /* 807AC204 */ void CreateHeap();
-    /* 807AC31C */ void create();
+    /* 807AC31C */ cPhs__Step create();
     /* 807ACA40 */ void d_setAction(void (daE_SW_c::*)());
     /* 807ACAE4 */ void d_checkFall();
     /* 807ACCB0 */ void d_damage_check();
@@ -69,14 +75,87 @@ class daE_SW_c : public fopEn_enemy_c {
     /* 807AF4B4 */ void d_fall();
     /* 807AF57C */ void d_execute();
 private:
-    /* 0x5ac */ u8 field_0x5ac[0xb18 - 0x5ac];
+    /* 0x5AC */ request_of_phase_process_class mPhase;
+    /* 0x5B4 */ mDoExt_McaMorfSO* mpModelMorf;
+    /* 0x5B8 */ Z2CreatureEnemy mSound;
+    /* 0x65C */ cXyz field_0x65c;
+    /* 0x668 */ cXyz field_0x668;
+    /* 0x674 */ cXyz field_0x674;
+    /* 0x680 */ s16 mMoveMode;
+    /* 0x682 */ s16 mActionMode;
+    /* 0x684 */ u8 field_0x684;
+    /* 0x685 */ u8 field_0x685[0x688 - 0x685];
+    /* 0x688 */ fpc_ProcID field_0x688;
+    /* 0x68C */ u8 field_0x68c;
+    /* 0x68D */ u8 field_0x68d[0x690 - 0x68d];
+    /* 0x690 */ f32 field_0x690;
+    /* 0x694 */ u8 field_0x694;
+    /* 0x695 */ u8 field_0x695;
+    /* 0x696 */ u8 field_0x696;
+    /* 0x697 */ u8 field_0x697;
+    /* 0x698 */ int field_0x698;
+    /* 0x69C */ s16 field_0x69c;
+    /* 0x69E */ s16 field_0x69e;
+    /* 0x6A0 */ s16 field_0x6a0;
+    /* 0x6A2 */ s16 field_0x6a2;
+    /* 0x6A4 */ s16 field_0x6a4;
+    /* 0x6A6 */ u8 field_0x6a6[0x6a8 - 0x6a6];
+    /* 0x6A8 */ cXyz field_0x6a8;
+    /* 0x6B4 */ f32 field_0x6b4;
+    /* 0x6B8 */ f32 field_0x6b8;
+    /* 0x6BC */ s16 field_0x6bc;
+    /* 0x6BE */ u8 field_0x6be[0x6c8 - 0x6be];
+    /* 0x6C8 */ f32 field_0x6c8;
+    /* 0x6CC */ s16 field_0x6cc;
+    /* 0x6CE */ u8 field_0x6ce[0x6d0 - 0x6ce];
+    /* 0x6D0 */ f32 field_0x6d0;
+    /* 0x6D4 */ f32 field_0x6d4;
+    /* 0x6D8 */ f32 field_0x6d8;
+    /* 0x6DC */ f32 field_0x6dc;
+    /* 0x6E0 */ u32 field_0x6e0;
+    /* 0x6E4 */ u8 field_0x6e4;
+    /* 0x6E5 */ u8 field_0x6e5;
+    /* 0x6E6 */ u8 field_0x6e6;
+    /* 0x6E7 */ u8 field_0x6e7;
+    /* 0x6E8 */ u8 field_0x6e8;
+    /* 0x6E9 */ u8 field_0x6e9;
+    /* 0x6EA */ s16 field_0x6ea;
+    /* 0x6EC */ s16 field_0x6ec;
+    /* 0x6EE */ s16 field_0x6ee;
+    /* 0x6F0 */ s16 field_0x6f0;
+    /* 0x6F2 */ s16 field_0x6f2;
+    /* 0x6F4 */ u8 field_0x6f4[0x6f6 - 0x6f4];
+    /* 0x6F6 */ s16 field_0x6f6;
+    /* 0x6F8 */ dBgS_AcchCir field_0x6f8[2];
+    /* 0x778 */ dBgS_ObjAcch mBgc;
+    /* 0x950 */ dCcD_Stts mStts;
+    /* 0x98C */ dCcD_Sph field_0x98c;
+    /* 0xAC4 */ dCcU_AtInfo mAtInfo;
+    /* 0xAE8 */ u32 field_0xae8;
+    /* 0xAEC */ u32 field_0xaec;
+    /* 0xAF0 */ u32 field_0xaf0;
+    /* 0xAF4 */ u32 field_0xaf4;
+    /* 0xAF8 */ u8 field_0xaf8;
+    /* 0xAF9 */ u8 field_0xaf9;
+    /* 0xAFA */ u8 field_0xafa[0xb18 - 0xafa];
 };
 
 STATIC_ASSERT(sizeof(daE_SW_c) == 0xb18);
 
 class daE_SW_HIO_c {
+public:
+    /* サンドワーム (Sandworm) */
     /* 807A740C */ daE_SW_HIO_c();
-    /* 807AF870 */ ~daE_SW_HIO_c();
+    /* 807AF870 */ virtual ~daE_SW_HIO_c() {}
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 basic_size;                  // 基本サイズ (Basic Size)
+    /* 0x0C */ f32 bomb_notice_dist;            // 爆弾認識距離 (Bomb Recognition Distance)
+    /* 0x10 */ f32 bomb_attack_start_range;     // 爆弾攻撃開始範囲 (Bomb Attack Start Range)
+    /* 0x14 */ f32 human_attack_init_range;     // 人用攻撃開始範囲 (Human Attack Initiation Range)
+    /* 0x18 */ f32 horse_attack_init_range;     // 馬用攻撃開始範囲 (Horse Attack Initiation Range)
+    /* 0x1C */ f32 character_notice_dist;       // 人認識距離(ダンジョン用) (Character Recognition Distance (For Dungeon))
+    /* 0x20 */ u8 movement_range_debug_display; // 移動範囲デバック表示 (Movement Range Debug Display)
 };
 
 
