@@ -9,6 +9,7 @@
 #include "d/d_s_play.h"
 #include "d/d_camera.h"
 #include "Z2AudioLib/Z2Instances.h"
+#include "d/d_debug_viewer.h"
 
 enum E_ZH_RES_File_ID {
     /* BCK */
@@ -134,6 +135,90 @@ static int mStartFlag;
 
 /* 8082907C-8082934C 00013C 02D0+00 1/1 0/0 0/0 .text            draw__8daE_ZH_cFv */
 int daE_ZH_c::draw() {
+    GXColor i_color, i_color2;
+    if (WREG_S(0) != 0) {
+        cXyz i_pos = home.pos;
+        i_color.r = 0x82;
+        i_color.g = 0x82;
+        i_color.b = 0xFF;
+        i_color.a = 0xFA;
+
+        if (arg0 == 2) {
+            i_pos.y += 10.0f;
+            dDbVw_drawCircleXlu(i_pos, field_0x778, i_color, 1, 12);
+        }
+
+        if (mActionMode == ACTION_EXECUTE_BG_HIT_SH_MOVE && (field_0x6bc.x || field_0x6bc.y || field_0x6bc.z)) {
+            i_color2.r = 0x1E;
+            i_color2.g = 0x46;
+            i_color2.b = 0x9B;
+            i_color2.a = 0xFA;
+            dDbVw_drawCircleXlu(field_0x6bc, l_HIO.wandering_area, i_color2, 1, 12);
+        }
+
+        if (mS_Ball != NULL) {
+            i_color.r = 0x82;
+            i_color.g = 0x82;
+            i_color.b = 0xFF;
+            i_color.a = 0xFA;
+            i_pos.set(mS_Ball->current.pos);
+            i_pos.y += 50.0f;
+
+            for (int i = 0; i < 8; i++) {
+                if (field_0x6f8[i].x || field_0x6f8[i].z) {
+                    i_color.r = (u8)i * 20 + 100;
+
+                    if (i > 3) {
+                        i_color.b = (u8)i * 20 + 100;
+                    }
+
+                    i_color.a = field_0x758[i];
+                    dDbVw_drawLineXlu(i_pos, field_0x6f8[i], i_color, 1, 12);
+                }
+            }
+        }
+
+        if (WREG_S(1) != 0) {
+            i_color.r = 0x82;
+            i_color.g = 0x82;
+            i_color.b = 0xFF;
+            i_color.a = 0xFA;
+            dDbVw_drawLineXlu(current.pos, field_0x680, i_color, 1, 12);
+        }
+
+        if (WREG_S(2) != 0) {
+            i_color.r = 0xFA;
+            i_color.g = 0x82;
+            i_color.b = 0x82;
+            i_color.a = 0xFA;
+            i_pos.set(current.pos);
+            i_pos.y += 10.0f;
+            dDbVw_drawLineXlu(i_pos, field_0x68c, i_color, 1, 12);
+        }
+
+        if (WREG_S(3) != 0) {
+            i_color.r = 0x7D;
+            i_color.g = 0xFF;
+            i_color.b = 0x7D;
+            i_color.a = 0xFA;
+            if (mRetrunStartLine.x || mRetrunStartLine.z) {
+                dDbVw_drawLineXlu(mRetrunStartLine, mRetrunEndLine, i_color, 1, 12);
+            }
+        }
+
+        if (WREG_S(4) != 0 && mS_Ball != NULL) {
+            cXyz i_end = mS_Ball->current.pos + mBallHosei;
+            i_color.r = 0xFF;
+            i_color.g = 0x14;
+            i_color.b = 0x14;
+            i_color.a = 0xFA;
+
+            for (int i = 0; i < 3; i++) {
+                dDbVw_drawLineXlu(field_0x6c8[i], i_end, i_color, 1, 12);
+            }
+        }
+    }
+
     J3DModelData* modelData;
     J3DMaterial* matNodeP;
 
@@ -144,6 +229,10 @@ int daE_ZH_c::draw() {
     if (field_0x7ae != 0) {
         return 1;
     }
+
+    #ifdef DEBUG
+    mBgc.DrawWall(dComIfG_Bgsp());
+    #endif
     
     if (arg0 == 1) {
         g_env_light.settingTevStruct(8, &current.pos, &tevStr);
@@ -189,7 +278,7 @@ int daE_ZH_c::draw() {
 
     cXyz sp68;
     sp68.set(current.pos.x, current.pos.y + 10.0f, current.pos.z);
-    mShadowKey = dComIfGd_setShadow(mShadowKey, 0, model, &sp68, 1200.0f, 0.0f,
+    mShadowKey = dComIfGd_setShadow(mShadowKey, 0, model, &sp68, BREG_F(18) + 1200.0f, BREG_F(19) + 0.0f,
                                     current.pos.y, mBgc.GetGroundH(), mBgc.m_gnd,
                                     &tevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
 
@@ -258,7 +347,7 @@ void daE_ZH_c::mBallBGCheck() {
     mBallHosei.zero();
 
     if (mS_Ball != NULL) {
-        s16 sVar1;
+        s16 sVar1 = 0;
         cXyz spa4, spb0, start;
         dBgS_LinChk lin_chk;
 
@@ -269,7 +358,7 @@ void daE_ZH_c::mBallBGCheck() {
             cMtx_YrotS(*calc_mtx, sVar1);
             spa4.x = 0.0f;
             spa4.y = 100.0f;
-            spa4.z = 180.0f;
+            spa4.z = BREG_F(10) + 180.0f;
             MtxPosition(&spa4, &spb0);
             field_0x6f8[i] = spb0 + mS_Ball->current.pos;
             lin_chk.Set(&start, &field_0x6f8[i], this);
@@ -279,7 +368,7 @@ void daE_ZH_c::mBallBGCheck() {
                 cMtx_YrotS(*calc_mtx, sVar1 + 0x8000);
                 spa4.x = 0.0f;
                 spa4.y = 100.0f;
-                spa4.z = 180.0f;
+                spa4.z = BREG_F(10) + 180.0f;
                 MtxPosition(&spa4, &spb0);
 
                 if (fabsf(mBallHosei.x) < fabsf(spb0.x)) {
@@ -295,7 +384,7 @@ void daE_ZH_c::mBallBGCheck() {
 
             if (i != 3) {
                 sVar1 += 0x4000;
-            } else {
+            } else if (i == 3) {
                 if (mBallHosei.x || mBallHosei.z) {
                     return;
                 }
@@ -316,16 +405,16 @@ void daE_ZH_c::mGateOpen() {
             field_0x794[2]++;
             // fallthrough
         case 1:
-            cLib_addCalc2(&field_0x77c, 255.0f, 0.5f, 10.0f);
+            cLib_addCalc2(&field_0x77c, 255.0f, NREG_F(4) + 0.5f, NREG_F(5) + 10.0f);
             break;
 
         case 2:
-            field_0x7a4 += 5.0f;
-            cLib_addCalc2(&field_0x77c, 80.0f + cM_ssin(field_0x7a4 << 8) * 40.0f, 0.5f, 10.0f);
+            field_0x7a4 += NREG_F(6) + 5.0f;
+            cLib_addCalc2(&field_0x77c, NREG_F(7) + 80.0f + (cM_ssin((s16)(field_0x7a4 << 8)) * 40.0f), NREG_F(4) + 0.5f, NREG_F(5) + 10.0f);
             break;
 
         case 3:
-            cLib_addCalc0(&field_0x77c, 0.5f, 10.0f);
+            cLib_addCalc0(&field_0x77c, NREG_F(4) + 0.5f, NREG_F(5) + 10.0f);
             break;
     }
 }
@@ -392,11 +481,11 @@ bool daE_ZH_c::mReturnLineMove() {
     }
 
     if (arg0 == 0) {
-        mRetrunStartLine.set(home.pos);
+        mRetrunEndLine.set(home.pos);
         mRetrunStartLine.set(0.0f, 0.0f, -800.0f);
     } else {
-        mRetrunStartLine.set(mRoomLine_dt[uVar1]);
-        mRetrunStartLine.z = mRoomLine_dt[uVar1 ^ 1].z;
+        mRetrunEndLine.set(mRoomLine_dt[uVar1]);
+        mRetrunEndLine.z = mRoomLine_dt[uVar1 ^ 1].z;
         mRetrunStartLine.set(mRoomLine_dt[uVar1]);
     }
 
@@ -427,7 +516,7 @@ bool daE_ZH_c::mBallBgLineCheck() {
         cMtx_YrotS(*calc_mtx, sVar1 + sVar2);
         sp9c.x = 0.0f;
         sp9c.y = 100.0f;
-        sp9c.z = 170.0f;
+        sp9c.z = BREG_F(12) + 170.0f;
         MtxPosition(&sp9c, &field_0x6c8[i]);
         field_0x6c8[i] += current.pos;
         end.set(current.pos);
@@ -491,16 +580,14 @@ bool daE_ZH_c::mSearchMove(u8 param_1) {
                 sp5c.y -= 600.0f;
             }
         }
-    } else {
-        if (mBallHosei.x || mBallHosei.z) {
-            sp5c = mS_Ball->current.pos + mBallHosei;
-        }
+    } else if (mBallHosei.x || mBallHosei.z) {
+        sp5c = mS_Ball->current.pos + mBallHosei;
     }
 
     sp5c.y = current.pos.y;
     f32 suu = cLib_addCalcPos(&current.pos, sp5c, 0.7f, 5.0f, 1.0f);
     sp50 = sp5c - current.pos;
-    cLib_addCalcAngleS2(&mRollAngle, 0x400, 8, 0x40);
+    cLib_addCalcAngleS2(&mRollAngle, BREG_S(5) + 0x400, 8, BREG_S(6) + 0x40);
 
     if (mBallHosei.x || mBallHosei.z) {
         field_0x7af = 1;
@@ -534,10 +621,8 @@ bool daE_ZH_c::mSearchMove(u8 param_1) {
         if (suu <= BREG_F(13) + 8.0f && abs((s16)(shape_angle.y - angle)) < 0x1000) {
             rv = true;
         }
-    } else {
-        if (suu <= BREG_F(14) + 100.0f && abs((s16)(shape_angle.y - angle)) < 0x2000) {
-            rv = true;
-        }
+    } else if (suu <= BREG_F(14) + 100.0f && abs((s16)(shape_angle.y - angle)) < 0x2000) {
+        rv = true;
     }
 
     if (mBallBgLineCheck()) {
@@ -546,11 +631,9 @@ bool daE_ZH_c::mSearchMove(u8 param_1) {
             setActionMode(ACTION_EXECUTE_BG_HIT_SH_MOVE, 0);
             rv = false;
         }
-    } else {
-        if (mBgc.ChkWallHit() && suu <= BREG_F(15) + 170.0f) {
-            field_0x7af = 1;
-            rv = true;
-        }
+    } else if (mBgc.ChkWallHit() && suu <= BREG_F(15) + 170.0f) {
+        field_0x7af = 1;
+        rv = true;
     }
 
     return rv;
@@ -925,16 +1008,16 @@ void daE_ZH_c::executeOpenStart() {
             if (!mpModelMorf->isStop()) {
                 if (field_0x794[0] != 0) {
                     mColorSet(true, 42.5f, 8.333333f);
-                    return;
+                    break;
                 }
 
                 mColorSet(false, 42.5f, 8.333333f);
-                return;
+                break;
             }
 
             if (mStartFlag == 0 && ((fopAcM_GetRoomNo(this) == 51 && !fopAcM_isSwitch(this, 0x5A)) || fopAcM_GetRoomNo(this) == 52 && !fopAcM_isSwitch(this, 0x5B))) {
                 mMoveMode = 10;
-                return;
+                break;
             }
 
             field_0x794[0] = l_HIO.wait_time & 0xFF;
@@ -955,11 +1038,11 @@ void daE_ZH_c::executeOpenStart() {
 
         case 10:
             if (mStartFlag == 0) {
-                return;
+                break;
             }
 
             if (!startDemoCheck()) {
-                return;
+                break;
             }
 
             if (fopAcM_GetRoomNo(this) == 51) {
@@ -991,7 +1074,7 @@ void daE_ZH_c::executeOpenStart() {
 
         case 13:
             if ((int)mpModelMorf->getFrame() < 84) {
-                return;
+                break;
             }
 
             if ((int)mpModelMorf->getFrame() == 84) {
@@ -1004,12 +1087,12 @@ void daE_ZH_c::executeOpenStart() {
             camera->mCamera.Set(mDemoCamCenter, mDemoCamEye, 40.0f, 0);
 
             if (!mpModelMorf->isStop()) {
-                return;
+                break;
             }
 
             #ifdef DEBUG
             if (ZREG_S(0) == 0) {
-                return;
+                break;
             }
             #endif
 
@@ -1214,18 +1297,16 @@ void daE_ZH_c::executeCatchMove() {
                     if (field_0x794[0] == 1) {
                         field_0x794[1] = field_0x7ad;
                     }
-                } else {
-                    if (field_0x794[1] != 0) {
-                        mColorSet(true, 31.875f, 6.25f);
-                        if (field_0x794[1] == 1) {
-                            field_0x7ad -= 2;
+                } else if (field_0x794[1] != 0) {
+                    mColorSet(true, 31.875f, 6.25f);
+                    if (field_0x794[1] == 1) {
+                        field_0x7ad -= 2;
 
-                            if (field_0x7ad < 2) {
-                                field_0x7ad = 2;
-                            }
-
-                            field_0x794[0] = field_0x7ad;
+                        if (field_0x7ad < 2) {
+                            field_0x7ad = 2;
                         }
+
+                        field_0x794[0] = field_0x7ad;
                     }
                 }
             } else {
@@ -1805,7 +1886,6 @@ void daE_ZH_c::tagAction() {
 
 /* 8082DB84-8082DE18 004C44 0294+00 2/1 0/0 0/0 .text            action__8daE_ZH_cFv */
 void daE_ZH_c::action() {
-    // NONMATCHING
     mS_Ball = (daObjCarry_c*)fpcM_Search(s_BallSearch, this);
     damage_check();
     mBallHosei.zero();
