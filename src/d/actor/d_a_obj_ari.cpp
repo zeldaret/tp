@@ -24,7 +24,7 @@ daObj_AriHIO_c::daObj_AriHIO_c() {
 }
 
 /* 80BA5410-80BA5414 000008 0002+02 1/2 0/0 0/0 .rodata          l_ari_itemno */
-static u8 const l_ari_itemno[2] = {0xD4, 0xD5};
+static u8 const l_ari_itemno[2] = {fpcNm_ITEM_M_ANT, fpcNm_ITEM_F_ANT};
 
 /* 80BA26BC-80BA2728 00011C 006C+00 1/1 0/0 0/0 .text            InitCcSph__10daObjARI_cFv */
 void daObjARI_c::InitCcSph() {

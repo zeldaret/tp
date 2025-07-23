@@ -292,7 +292,7 @@ void daObjCHO_c::Insect_Release() {
 }
 
 /* 80BCC630-80BCC634 0000B8 0002+02 1/2 0/0 0/0 .rodata          l_cho_itemno */
-static u8 const l_cho_itemno[2] = {0xC2, 0xC3};
+static u8 const l_cho_itemno[2] = {fpcNm_ITEM_M_BUTTERFLY, fpcNm_ITEM_F_BUTTERFLY};
 
 // Some unused function went here.
 // This fake function is here in its place to make the literals match

@@ -6,6 +6,7 @@
 #include "d/actor/d_a_obj_kuwagata.h"
 #include "d/d_cc_d.h"
 #include "dol2asm.h"
+#include "f_pc/f_pc_name.h"
 
 
 
@@ -550,12 +551,9 @@ void daObjKUW_c::Insect_Release() {
 
 /* ############################################################################################## */
 /* 80C4D548-80C4D54C 0000B8 0002+02 1/2 0/0 0/0 .rodata          l_kuw_itemno */
-SECTION_RODATA static u16 const l_kuw_itemno[1 + 1 /* padding */] = {
-    0xC4C5,
-    /* padding */
-    0x0000,
+static u8 const l_kuw_itemno[2] = {
+    fpcNm_ITEM_M_STAG_BEETLE, fpcNm_ITEM_F_STAG_BEETLE,
 };
-COMPILER_STRIP_GATE(0x80C4D548, &l_kuw_itemno);
 
 /* 80C4D54C-80C4D550 0000BC 0004+00 0/0 0/0 0/0 .rodata          @4438 */
 #pragma push

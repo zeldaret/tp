@@ -21,7 +21,7 @@ enum Obj_lv6bm_RES_File_ID {
 
     /* BTK */
     /* 0x11 */ BTK_EF_BIMOBEAM = 0x11,
-    /* 0x12 */ BTK_EF_BIMOBEAM_0FF,
+    /* 0x12 */ BTK_EF_BIMOBEAM_OFF,
     /* 0x13 */ BTK_EF_BIMOBEAM_ON,
 
     /* DZB */
@@ -194,12 +194,12 @@ int daObjL6Bm_c::CreateHeap() {
     }
 
     #ifdef DEBUG
-    pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, BTK_EF_BIMOBEAM_OFF);
+    pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, BTK_EF_BIMOBEAM_0FF);
     JUT_ASSERT(660, pbtk != 0);
     #endif
 
     pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, BTK_EF_BIMOBEAM);
-    JUT_ASSERT(0x29A, pbtk != 0);
+    JUT_ASSERT(666, pbtk != 0);
     mpBtkAnm2 = new mDoExt_btkAnm();
     if (mpBtkAnm2 == NULL || mpBtkAnm2->init(modelData, pbtk, 1, 2, 1.0f, 0, -1) == 0) {
         return 0;
@@ -328,7 +328,7 @@ void daObjL6Bm_c::actionFindPlayer() {
         setAction(0);
 
         if (field_0x891 != 0) {
-            mpBtkAnm->init(mBeamEffectModel->getModelData(), (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, BTK_EF_BIMOBEAM_0FF),
+            mpBtkAnm->init(mBeamEffectModel->getModelData(), (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, BTK_EF_BIMOBEAM_OFF),
                            1, 0, 1.0f, 0, -1);
             field_0x891 = 0;
         }

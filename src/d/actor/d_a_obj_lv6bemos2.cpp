@@ -220,7 +220,7 @@ int daObjLv6Bm_c::Create() {
 
     #ifdef DEBUG
     if (mEyeMaterial == NULL) {
-        OS_REPORT("Lv6ビーモス：目のマテリアル<%s>がありません\n", l_eye_matName) // Lv6 Beamos: Eye material <%s> is not available.
+        OS_REPORT("Lv6ビーモス：目のマテリアル<%s>がありません\n", l_eye_matName); // Lv6 Beamos: Eye material <%s> is not available.
         return 0;
     }
     #endif

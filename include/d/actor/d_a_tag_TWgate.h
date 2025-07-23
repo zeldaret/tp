@@ -3,7 +3,7 @@
 
 #include "d/d_msg_flow.h"
 #include "f_op/f_op_actor_mng.h"
-#include "SSystem\SComponent\c_phase.h"
+#include "SSystem/SComponent/c_phase.h"
 
 class daTagTWGate_c;
 typedef void (daTagTWGate_c::*actionFunc)();
