@@ -2073,7 +2073,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_pillar"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_pleaf"),
     ActorRel(NonMatching, "d_a_obj_poCandle"),
-    ActorRel(NonMatching, "d_a_obj_poFire"),
+    ActorRel(Equivalent, "d_a_obj_poFire"),
     ActorRel(NonMatching, "d_a_obj_poTbox"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_prop"),
     ActorRel(NonMatching, "d_a_obj_pumpkin"),
