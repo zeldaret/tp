@@ -388,7 +388,7 @@ void daPoFire_c::modeFireEnd() {
             dComIfGp_particle_levelEmitterOnEventMove(mParticleKeys[i]);
         }
     }
-    fopAcM_delete((fopAc_ac_c*)this);
+    fopAcM_delete(this);
 }
 
 /* 80CB3B70-80CB3BE0 001310 0070+00 2/1 0/0 0/0 .text            eventStart__10daPoFire_cFv */
@@ -482,7 +482,7 @@ cXyz daPoCandle_c::getFirePos() {
 /* 80CB4050-80CB4070 -00001 0020+00 1/0 0/0 0/0 .data            l_daPoFire_Method */
 static actor_method_class l_daPoFire_Method = {
     (process_method_func)daPoFire_Create,  (process_method_func)daPoFire_Delete,
-    (process_method_func)daPoFire_Execute, 0,
+    (process_method_func)daPoFire_Execute, NULL,
     (process_method_func)daPoFire_Draw,
 };
 
