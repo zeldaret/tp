@@ -1683,7 +1683,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_is"),
     ActorRel(Equivalent, "d_a_e_kg"),
     ActorRel(Equivalent, "d_a_e_kk"), # weak func order
-    ActorRel(NonMatching, "d_a_e_kr"),
+    ActorRel(Equivalent, "d_a_e_kr"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_mb"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_md"),
     ActorRel(Equivalent, "d_a_e_mf"),

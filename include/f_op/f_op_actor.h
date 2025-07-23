@@ -263,7 +263,7 @@ public:
     bool checkHeadLockFlg() const { return mFlags & 0x80; }
     bool checkWolfBiteDamage() const { return mFlags & 0x40; }
     bool checkWolfDownPullFlg() const { return mFlags & 0x10; }
-    bool checkDownFlg() const { return mFlags & 0x1; }
+    bool checkDownFlg() { return mFlags & 0x1; }
     bool checkCutDownHitFlg() const { return mFlags & 0x2; }
     bool checkWolfDownStartFlg() const { return mFlags & 0x4; }
     bool checkDeadFlg() const { return mFlags & 0x8; }
