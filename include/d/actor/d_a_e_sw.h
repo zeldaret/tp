@@ -16,7 +16,7 @@
  */
 class daE_SW_c : public fopEn_enemy_c {
 public:
-    typedef int (daE_SW_c::*actionFunc)();
+    typedef void (daE_SW_c::*actionFunc)();
 
     /* 807A7460 */ void bckSet(int, f32, u8, f32);
     /* 807A7504 */ int draw();
@@ -52,18 +52,18 @@ public:
     /* 807AB930 */ void cc_set();
     /* 807ABAB0 */ void damage_check();
     /* 807ABD28 */ void checkGroundSand();
-    /* 807ABE50 */ void execute();
-    /* 807AC170 */ void _delete();
-    /* 807AC204 */ void CreateHeap();
+    /* 807ABE50 */ int execute();
+    /* 807AC170 */ int _delete();
+    /* 807AC204 */ int CreateHeap();
     /* 807AC31C */ cPhs__Step create();
     /* 807ACA40 */ void d_setAction(void (daE_SW_c::*)());
     /* 807ACAE4 */ void d_checkFall();
     /* 807ACCB0 */ void d_damage_check();
     /* 807ACFF8 */ void d_action();
-    /* 807AD10C */ void d_bomb_check();
+    /* 807AD10C */ bool d_bomb_check();
     /* 807AD17C */ void d_bm_chase();
     /* 807AD4A8 */ void d_wait();
-    /* 807AD7C0 */ void d_chaseCheck();
+    /* 807AD7C0 */ bool d_chaseCheck();
     /* 807ADA08 */ void d_chase();
     /* 807ADE50 */ void d_attk();
     /* 807AE4B4 */ void d_chance();
@@ -73,7 +73,15 @@ public:
     /* 807AEE44 */ void d_die();
     /* 807AF01C */ void d_hook();
     /* 807AF4B4 */ void d_fall();
-    /* 807AF57C */ void d_execute();
+    /* 807AF57C */ int d_execute();
+
+    bool d_checkAction(void (daE_SW_c::*action)()) {
+        return field_0xafc == action;
+    }
+
+    bool d_checkOldAction(void (daE_SW_c::*action)()) {
+        return field_0xb0c == action;
+    }
 private:
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ mDoExt_McaMorfSO* mpModelMorf;
@@ -137,7 +145,11 @@ private:
     /* 0xAF4 */ u32 field_0xaf4;
     /* 0xAF8 */ u8 field_0xaf8;
     /* 0xAF9 */ u8 field_0xaf9;
-    /* 0xAFA */ u8 field_0xafa[0xb18 - 0xafa];
+    /* 0xAFA */ u8 field_0xafa[0xafc - 0xafa];
+    /* 0xAFC */ actionFunc field_0xafc;
+    /* 0xB0C */ actionFunc field_0xb0c;
+    /* 0xB14 */ bool field_0xb14;
+    /* 0xB15 */ u8 field_0xb15[0xb18 - 0xb15];
 };
 
 STATIC_ASSERT(sizeof(daE_SW_c) == 0xb18);
