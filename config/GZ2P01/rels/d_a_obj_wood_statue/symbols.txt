@@ -95,4 +95,4 @@ __vt__8cM3dGAab = .data:0x00000154; // type:object size:0xC scope:global
 __vt__12dBgS_ObjAcch = .data:0x00000160; // type:object size:0x24 scope:global
 __vt__14daObjWStatue_c = .data:0x00000184; // type:object size:0x44 scope:global
 __vt__8cM3dGPla = .data:0x000001C8; // type:object size:0xC scope:global
-lbl_691_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
+init$2078 = .bss:0x00000000; // type:object size:0x1 data:byte

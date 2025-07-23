@@ -28,8 +28,8 @@ void daItemBase_c::changeDraw() {
     }
 }
 
-u8 daItemBase_c::chkDraw() {
-    return cLib_checkBit<u8>(field_0x92b, 1) != 0;
+bool daItemBase_c::chkDraw() {
+    return cLib_checkBit<u8>(field_0x92b, 1);
 }
 
 void daItemBase_c::dead() {

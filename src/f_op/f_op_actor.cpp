@@ -217,7 +217,7 @@ static int fopAc_Create(void* i_this) {
 }
 
 /* 80019404-800194FC 013D44 00F8+00 0/0 0/0 2/2 .text            initBallModel__13fopEn_enemy_cFv */
-bool fopEn_enemy_c::initBallModel() {
+BOOL fopEn_enemy_c::initBallModel() {
     void* objRes = dComIfG_getObjectRes("Alink", daAlink_c::getBallModelIdx());
     mBallModel = mDoExt_J3DModel__create((J3DModelData*)objRes, 0x80000, 0x11000284);
 

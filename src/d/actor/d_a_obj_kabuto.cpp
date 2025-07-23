@@ -512,7 +512,7 @@ void daObjKABUTO_c::Insect_Release() {
 }
 
 /* 80C2E1E0-80C2E1E4 0000D0 0002+02 1/2 0/0 0/0 .rodata          l_kab_itemno */
-static u8 const l_kab_itemno[2] = {0xC0, 0xC1};
+static u8 const l_kab_itemno[2] = {fpcNm_ITEM_M_BEETLE, fpcNm_ITEM_F_BEETLE};
 
 // Some unused function went here.
 // This fake function is here in its place to make the literals match

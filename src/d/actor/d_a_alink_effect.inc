@@ -958,7 +958,6 @@ static const u16 effNameWater[] = {
 };
 
 /* 80122F78-801233A4 11D8B8 042C+00 1/1 0/0 0/0 .text            setCutTurnEffect__9daAlink_cFv */
-// NONMATCHING - should match when data order is fixed
 void daAlink_c::setCutTurnEffect() {
     static Vec const waterEffScale = {1.5f, 1.5f, 1.5f};
 
@@ -1956,14 +1955,15 @@ static void setBezierPos(cXyz const* start, cXyz const* control_1, cXyz const* c
 
 /* 8012589C-80125B0C 1201DC 0270+00 1/1 0/0 0/0 .text
  * copyBlur__14daAlink_blur_cFPC4cXyzPC4cXyzPC4cXyz             */
-// NONMATCHING
 void daAlink_blur_c::copyBlur(cXyz const* param_0, cXyz const* param_1, cXyz const* param_2) {
-    for (int i = 59 - 10; i >= 0; i--) {
-        field_0x38[i + 10] = field_0x38[i];
-        field_0x308[i + 10] = field_0x308[i];
+    s32 temp = 10;
+
+    for (int i = 59 - temp; i >= 0; i--) {
+        field_0x38[i + temp] = field_0x38[i];
+        field_0x308[i + temp] = field_0x308[i];
     }
 
-    f32 temp_f30 = 1.0f / 10;
+    f32 temp_f30 = 1.0f / temp;
     f32 var_f31 = 0.0f;
 
     cXyz sp4C;
@@ -1971,14 +1971,14 @@ void daAlink_blur_c::copyBlur(cXyz const* param_0, cXyz const* param_1, cXyz con
     cXyz sp64;
     cXyz sp70;
 
-    sp58 = field_0x308[10] + (field_0x2c * 30.0f);
+    sp58 = field_0x308[temp] + (field_0x2c * 30.0f);
     sp4C = *param_1 + (*param_2 * -30.0f);
-    sp70 = field_0x38[10] + (field_0x2c * 60.0f);
+    sp70 = field_0x38[temp] + (field_0x2c * 60.0f);
     sp64 = *param_0 + (*param_2 * -60.0f);
 
-    for (int i = 0; i < 10; i++) {
-        setBezierPos(param_1, &field_0x308[10], &sp4C, &sp58, var_f31, &field_0x308[i]);
-        setBezierPos(param_0, &field_0x38[10], &sp64, &sp70, var_f31, &field_0x38[i]);
+    for (int i = 0; i < temp; i++) {
+        setBezierPos(param_1, &field_0x308[temp], &sp4C, &sp58, var_f31, &field_0x308[i]);
+        setBezierPos(param_0, &field_0x38[temp], &sp64, &sp70, var_f31, &field_0x38[i]);
 
         field_0x38[i] += (field_0x38[i] - field_0x308[i]) * field_0x24;
         var_f31 += temp_f30;

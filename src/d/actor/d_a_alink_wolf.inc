@@ -112,20 +112,20 @@ void daAlink_c::changeCommon() {
 void daAlink_c::changeWolf() {
     JKRHeap* current_heap = mAnmHeap3.setAnimeHeap();
 
-    mpLinkModel = initModel((J3DModelData*)dComIfG_getObjectRes(l_wArcName, 14), 0x80000, 0x20200);
+    mpLinkModel = initModel((J3DModelData*)dComIfG_getObjectRes(l_wArcName, 14), 0x20200);
 
     J3DModelData* chainModelData = (J3DModelData*)dComIfG_getObjectRes(l_wArcName, 15);
     for (u16 i = 0; i < 4; i++) {
-        mpWlChainModels[i] = initModel(chainModelData, 0x80000, 0);
+        mpWlChainModels[i] = initModel(chainModelData, 0);
     }
 
-    mpWlMidnaModel = initModel((J3DModelData*)dComIfG_getObjectRes(l_wArcName, 10), 0, 0x1020200);
+    mpWlMidnaModel = initModelEnv((J3DModelData*)dComIfG_getObjectRes(l_wArcName, 10), 0x1020200);
     mpWlMidnaMaskModel =
-        initModel((J3DModelData*)dComIfG_getObjectRes(l_wArcName, 7), 0x80000, 0x1000000);
+        initModel((J3DModelData*)dComIfG_getObjectRes(l_wArcName, 7), 0x1000000);
     mpWlMidnaHandModel =
-        initModel((J3DModelData*)dComIfG_getObjectRes(l_wArcName, 6), 0x80000, 0x1000000);
+        initModel((J3DModelData*)dComIfG_getObjectRes(l_wArcName, 6), 0x1000000);
     mpWlMidnaHairModel =
-        initModel((J3DModelData*)dComIfG_getObjectRes(l_wArcName, 11), 0, 0x1000000);
+        initModelEnv((J3DModelData*)dComIfG_getObjectRes(l_wArcName, 11), 0x1000000);
 
     mpDMidnaBrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_wArcName, 18);
     mpDMidnaBrk->searchUpdateMaterialID(mpWlMidnaModel->getModelData());
@@ -217,12 +217,11 @@ void daAlink_c::changeWolf() {
     attention_info.field_0xa = 50;
 
     dCcD_Cyl* cyl_p = field_0x850;
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++, cyl_p++) {
         cyl_p->OffTgShieldFrontRange();
         cyl_p->OffTgSmallShield();
         cyl_p->OffTgSpShield();
         cyl_p->OffTgShield();
-        cyl_p++;
     }
 
     field_0xFB8.StartCAt(current.pos);
@@ -238,7 +237,7 @@ void daAlink_c::changeWolf() {
     mMagicArmorBodyBrk = NULL;
     mMagicArmorHeadBrk = NULL;
 
-    field_0x2fc7 = dStage_stagInfo_GetWolfDashType(dComIfGp_getStage()->getStagInfo());
+    field_0x2fc7 = (u8)dStage_stagInfo_GetWolfDashType(dComIfGp_getStage()->getStagInfo());
 }
 
 /* 80126F3C-80127C54 12187C 0D18+00 2/2 0/0 0/0 .text            changeLink__9daAlink_cFi */
@@ -7188,12 +7187,11 @@ void daAlink_c::setWolfEnemyThrowUpperAnime(daAlink_c::daAlink_WANM i_anmID, f32
  * setWolfEnemyHangBitePos__9daAlink_cFP13fopEn_enemy_c         */
 BOOL daAlink_c::setWolfEnemyHangBitePos(fopEn_enemy_c* i_enemy) {
     if (i_enemy != NULL) {
-        current.pos = i_enemy->getDownPos();
-        cXyz old_pos = current.pos;
+        cXyz old_pos = current.pos = i_enemy->getDownPos();
 
         current.pos.x -= 60.0f * cM_ssin(shape_angle.y);
-        current.pos.x -= 135.0f;
-        current.pos.x -= 60.0f * cM_scos(shape_angle.y);
+        current.pos.y -= 135.0f;
+        current.pos.z -= 60.0f * cM_scos(shape_angle.y);
 
         if (commonLineCheck(&field_0x3540, &current.pos)) {
             current.pos = old_pos;

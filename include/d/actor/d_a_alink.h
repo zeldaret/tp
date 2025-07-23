@@ -3,8 +3,6 @@
 
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
-#include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "Z2AudioLib/Z2Creature.h"
 #include "Z2AudioLib/Z2WolfHowlMgr.h"
 #include "d/actor/d_a_player.h"
 #include "d/actor/d_a_tag_mmsg.h"
@@ -223,10 +221,17 @@ public:
     /* 0x0 */ u8 unk_0x0;
 };
 
-class daAlinkHIO_c {
+class daAlinkHIO_c 
+#ifdef DEBUG
+: public mDoHIO_entry_c 
+#endif
+{
 public:
     /* 80140B88 */ daAlinkHIO_c();
     /* 80140C10 */ virtual ~daAlinkHIO_c();
+
+    void genMessage(JORMContext*);
+    void jumpStateUpdate(const cXyz*, const cXyz*, f32);
 
     /* 0x04 */ u8 field_0x4[0xC - 0x4];
     /* 0x0C */ daAlinkHIO_cut_c mCut;
