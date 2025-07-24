@@ -941,7 +941,7 @@ static void damage_check(e_sm2_class* i_this) {
                     i_this->isPiece = TRUE;
                     actor->speed.y = 20.0f + BREG_F(6);
                     i_this->field_0xfd4 = 1;
-                    fopAcM_OffStatus(actor, 0x100);
+                    fopAcM_OffStatus(actor, fopAcM_STATUS_UNK_000100);
                 }
                 return;
             }
