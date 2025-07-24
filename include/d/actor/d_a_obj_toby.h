@@ -5,9 +5,6 @@
 
 struct yuka_s {
 public:
-    /* 80D154F4 */ ~yuka_s() {}
-    /* 80D15530 */ yuka_s() {}
-
     /* 0x00 */ J3DModel* mModel1;
     /* 0x04 */ J3DModel* mModel2;
     /* 0x08 */ cXyz mPos;

@@ -6,9 +6,6 @@
 
 struct tg_ss {
 public:
-    /* 80D083C0 */ ~tg_ss() {}
-    /* 80D08494 */ tg_ss() {}
-
     /* 0x000 */ J3DModel* mModel;
     /* 0x004 */ cXyz mPos;
     /* 0x010 */ cXyz mScale;
