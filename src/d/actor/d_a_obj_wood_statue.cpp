@@ -477,7 +477,7 @@ int daObjWStatue_c::_delete() {
     DeleteBase(dItem_data::getFieldArc(m_itemNo));
 
     #ifdef DEBUG
-    l_HIO.removeHIO();
+    l_HIO.removeHIO(this);
     #endif
 
     return 1;

@@ -14,14 +14,18 @@ typedef struct process_method_class process_method_class;
 typedef struct process_profile_definition process_profile_definition;
 typedef struct profile_method_class profile_method_class;
 
+typedef struct state_class {
+    /* 0x00 */ s8 init_state;  // maybe inaccurate name
+    /* 0x01 */ u8 create_phase;
+} state_class;
+
 typedef struct base_process_class {
     /* 0x00 */ int type;
     /* 0x04 */ fpc_ProcID id;
     /* 0x08 */ s16 name;
     /* 0x0A */ s8 unk_0xA;
     /* 0x0B */ u8 pause_flag;
-    /* 0x0C */ s8 init_state;  // maybe inaccurate name
-    /* 0x0D */ u8 create_phase;
+    /* 0x0C */ state_class state;
     /* 0x0E */ s16 profname;
     /* 0x10 */ process_profile_definition* profile;
     /* 0x14 */ struct create_request* create_req;

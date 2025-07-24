@@ -54,7 +54,7 @@ inline BOOL fpcM_IsJustType(int i_typeA, int i_typeB) {
 }
 
 inline bool fpcM_IsFirstCreating(void* i_process) {
-    return ((base_process_class*)i_process)->init_state == 0;
+    return ((base_process_class*)i_process)->state.init_state == 0;
 }
 
 inline process_profile_definition* fpcM_GetProfile(void* i_process) {

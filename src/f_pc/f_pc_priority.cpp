@@ -85,7 +85,7 @@ s32 fpcPi_Change(process_priority_class* i_procPriority, fpc_ProcID i_layerID, u
     base_process_class* process = (base_process_class*)i_procPriority->base.mpTagData;
     BOOL changed = FALSE;
 
-    if (process->init_state == 3)
+    if (process->state.init_state == 3)
         return 0;
 
     if (!fpcPi_IsNormal(i_layerID, i_listID, i_priority))
@@ -108,7 +108,7 @@ s32 fpcPi_Change(process_priority_class* i_procPriority, fpc_ProcID i_layerID, u
         changed = TRUE;
     }
 
-    if (process->init_state == 0 || process->init_state == 1) {
+    if (process->state.init_state == 0 || process->state.init_state == 1) {
         i_procPriority->current_info = i_procPriority->queue_info;
         return 1;
     }
