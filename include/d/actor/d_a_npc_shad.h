@@ -13,9 +13,9 @@
  */
 class daNpcShad_c : public daNpcF_c {
 public:
-    /* 80AD820C */ daNpcShad_c();
+    /* 80AD820C */ daNpcShad_c() : daNpcF_c() {}
     /* 80AD8420 */ ~daNpcShad_c();
-    /* 80AD8620 */ void Create();
+    /* 80AD8620 */ cPhs__Step Create();
     /* 80AD8B60 */ void CreateHeap();
     /* 80AD90E0 */ void Delete();
     /* 80AD9114 */ void Execute();
@@ -28,7 +28,7 @@ public:
     /* 80AD982C */ void setMotionAnm(int, f32);
     /* 80AD99B4 */ void reset();
     /* 80AD9C0C */ void setWaitAction();
-    /* 80AD9E04 */ void getPathPoint(u8, int, Vec*);
+    /* 80AD9E04 */ bool getPathPoint(u8, int, Vec*);
     /* 80AD9E90 */ void isSneaking();
     /* 80AD9F00 */ void wait_type0(void*);
     /* 80ADA630 */ void setMotion(int, f32, int);
@@ -60,6 +60,9 @@ public:
     /* 80AE153C */ BOOL drawDbgInfo();
 
     static u8 mEvtSeqList[168];
+
+    u8 getPathID() { return (fopAcM_GetParam(this) >> 8) & 0xFF; }
+    s16 getMessageNo() { return shape_angle.x; }
 
 private:
     /* 0xB48 */ J3DModel* field_0xb48;

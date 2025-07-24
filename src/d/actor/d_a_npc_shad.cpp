@@ -4,274 +4,8 @@
 */
 
 #include "d/actor/d_a_npc_shad.h"
+#include "d/actor/d_a_npc.h"
 #include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__11daNpcShad_cFv();
-extern "C" void __dt__8cM3dGCylFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__11daNpcShad_cFv();
-extern "C" void Create__11daNpcShad_cFv();
-extern "C" void CreateHeap__11daNpcShad_cFv();
-extern "C" void __dt__15J3DTevKColorAnmFv();
-extern "C" void __ct__15J3DTevKColorAnmFv();
-extern "C" void __dt__14J3DTevColorAnmFv();
-extern "C" void __ct__14J3DTevColorAnmFv();
-extern "C" void __dt__11J3DTexNoAnmFv();
-extern "C" void __ct__11J3DTexNoAnmFv();
-extern "C" void __dt__12J3DTexMtxAnmFv();
-extern "C" void __ct__12J3DTexMtxAnmFv();
-extern "C" void __dt__14J3DMatColorAnmFv();
-extern "C" void __ct__14J3DMatColorAnmFv();
-extern "C" void Delete__11daNpcShad_cFv();
-extern "C" void Execute__11daNpcShad_cFv();
-extern "C" void Draw__11daNpcShad_cFv();
-extern "C" void ctrlJoint__11daNpcShad_cFP8J3DJointP8J3DModel();
-extern "C" void createHeapCallBack__11daNpcShad_cFP10fopAc_ac_c();
-extern "C" void ctrlJointCallBack__11daNpcShad_cFP8J3DJointi();
-extern "C" void setExpressionAnm__11daNpcShad_cFib();
-extern "C" void setExpressionBtp__11daNpcShad_cFi();
-extern "C" void setMotionAnm__11daNpcShad_cFif();
-extern "C" void reset__11daNpcShad_cFv();
-extern "C" void setWaitAction__11daNpcShad_cFv();
-extern "C" void getPathPoint__11daNpcShad_cFUciP3Vec();
-extern "C" void isSneaking__11daNpcShad_cFv();
-extern "C" void wait_type0__11daNpcShad_cFPv();
-extern "C" void setMotion__11daNpcShad_cFifi();
-extern "C" void setExpression__11daNpcShad_cFif();
-extern "C" void wait_type1__11daNpcShad_cFPv();
-extern "C" void wait_type2__11daNpcShad_cFPv();
-extern "C" void talk__11daNpcShad_cFPv();
-extern "C" void demo__11daNpcShad_cFPv();
-extern "C" void leave__11daNpcShad_cFPv();
-extern "C" void EvCut_Introduction__11daNpcShad_cFi();
-extern "C" void EvCut_Meeting__11daNpcShad_cFi();
-extern "C" void EvCut_ToChantSpell1__11daNpcShad_cFi();
-extern "C" void EvCut_ToChantSpell2__11daNpcShad_cFi();
-extern "C" void EvCut_ToChantSpell2Skip__11daNpcShad_cFi();
-extern "C" void EvCut_DiscoveryCannon__11daNpcShad_cFi();
-extern "C" void EvCut_DiscoveryCannonSkip__11daNpcShad_cFi();
-extern "C" void EvCut_Disappear__11daNpcShad_cFi();
-extern "C" void EvCut_DisappearSkip__11daNpcShad_cFi();
-extern "C" void EvCut_CallBack__11daNpcShad_cFi();
-extern "C" void EvCut_WiretapSponsor__11daNpcShad_cFi();
-extern "C" void EvCut_WiretapEntrant__11daNpcShad_cFi();
-extern "C" static void daNpcShad_Create__FPv();
-extern "C" static void daNpcShad_Delete__FPv();
-extern "C" static void daNpcShad_Execute__FPv();
-extern "C" static void daNpcShad_Draw__FPv();
-extern "C" static bool daNpcShad_IsDelete__FPv();
-extern "C" void calc__11J3DTexNoAnmCFPUs();
-extern "C" void setParam__11daNpcShad_cFv();
-extern "C" void main__11daNpcShad_cFv();
-extern "C" void playMotion__11daNpcShad_cFv();
-extern "C" void playExpression__11daNpcShad_cFv();
-extern "C" void ctrlBtk__11daNpcShad_cFv();
-extern "C" void setAttnPos__11daNpcShad_cFv();
-extern "C" void lookat__11daNpcShad_cFv();
-extern "C" bool drawDbgInfo__11daNpcShad_cFv();
-extern "C" void func_80AE1544(void* _this, s16);
-extern "C" void __sinit_d_a_npc_shad_cpp();
-extern "C" void __dt__18daNpcF_ActorMngr_cFv();
-extern "C" void __ct__18daNpcF_ActorMngr_cFv();
-extern "C" void __dt__15daNpcF_Lookat_cFv();
-extern "C" void __dt__5csXyzFv();
-extern "C" void __ct__5csXyzFv();
-extern "C" void __dt__4cXyzFv();
-extern "C" void __ct__4cXyzFv();
-extern "C" void __dt__8daNpcF_cFv();
-extern "C" void __ct__8daNpcF_cFv();
-extern "C" void __dt__12dBgS_AcchCirFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" void __dt__12dBgS_ObjAcchFv();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" void adjustShapeAngle__8daNpcF_cFv();
-extern "C" void setCollisions__8daNpcF_cFv();
-extern "C" void drawOtherMdls__8daNpcF_cFv();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void chkPointInArea__15daTag_EvtArea_cF4cXyz();
-extern "C" void __dt__17daNpcShad_Param_cFv();
-extern "C" static void func_80AE1FB8();
-extern "C" static void func_80AE1FC0();
-extern "C" u8 const m__17daNpcShad_Param_c[112];
-extern "C" extern char const* const d_a_npc_shad__stringBase0;
-extern "C" u8 mEvtSeqList__11daNpcShad_c[168];
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void changeBckOnly__13mDoExt_bckAnmFP15J3DAnmTransform();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void
-__ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl();
-extern "C" void modelCalc__16mDoExt_McaMorfSOFv();
-extern "C" void stopZelAnime__16mDoExt_McaMorfSOFv();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
-extern "C" void fopAcM_SearchByName__FsPP10fopAc_ac_c();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff();
-extern "C" void fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_seenActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_orderChangeEventId__FP10fopAc_ac_csUsUs();
-extern "C" void fopAcM_createItemForPresentDemo__FPC4cXyziUciiPC5csXyzPC4cXyz();
-extern "C" void fpcSch_JudgeForPName__FPvPv();
-extern "C" void getLayerNo__14dComIfG_play_cFi();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGs_isStageSwitch__Fii();
-extern "C" void setItem__17dSv_player_item_cFiUc();
-extern "C" void onSwitch__12dSv_memBit_cFi();
-extern "C" void isSwitch__12dSv_memBit_cCFi();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void reset__14dEvt_control_cFPv();
-extern "C" void dEv_noFinishSkipProc__FPvi();
-extern "C" void setSkipProc__14dEvt_control_cFPvPFPvi_ii();
-extern "C" void onSkipFade__14dEvt_control_cFv();
-extern "C" void convPId__14dEvt_control_cFUi();
-extern "C" void setPtI_Id__14dEvt_control_cFUi();
-extern "C" void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc();
-extern "C" void endCheck__16dEvent_manager_cFs();
-extern "C" void getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci();
-extern "C" void getIsAddvance__16dEvent_manager_cFi();
-extern "C" void getMyActIdx__16dEvent_manager_cFiPCPCciii();
-extern "C" void getMyNowCutName__16dEvent_manager_cFi();
-extern "C" void getMySubstanceP__16dEvent_manager_cFiPCci();
-extern "C" void cutEnd__16dEvent_manager_cFi();
-extern "C" void ChkPresentEnd__16dEvent_manager_cFv();
-extern "C" void dPath_GetPnt__FPC5dPathi();
-extern "C" void dPath_GetRoomPath__Fii();
-extern "C" void __ct__12dBgS_AcchCirFv();
-extern "C" void SetWallR__12dBgS_AcchCirFf();
-extern "C" void SetWall__12dBgS_AcchCirFff();
-extern "C" void __dt__9dBgS_AcchFv();
-extern "C" void __ct__9dBgS_AcchFv();
-extern "C" void Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz();
-extern "C" void CrrPos__9dBgS_AcchFR4dBgS();
-extern "C" void __ct__11dBgS_GndChkFv();
-extern "C" void __dt__11dBgS_GndChkFv();
-extern "C" void __ct__11dBgS_LinChkFv();
-extern "C" void __dt__11dBgS_LinChkFv();
-extern "C" void SetObj__16dBgS_PolyPassChkFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void __dt__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_CylFRC11dCcD_SrcCyl();
-extern "C" void initialize__18daNpcF_ActorMngr_cFv();
-extern "C" void entry__18daNpcF_ActorMngr_cFP10fopAc_ac_c();
-extern "C" void remove__18daNpcF_ActorMngr_cFv();
-extern "C" void getActorP__18daNpcF_ActorMngr_cFv();
-extern "C" void initialize__15daNpcF_MatAnm_cFv();
-extern "C" void initialize__15daNpcF_Lookat_cFv();
-extern "C" void setParam__15daNpcF_Lookat_cFffffffffffffsP4cXyz();
-extern "C" void calc__15daNpcF_Lookat_cFP10fopAc_ac_cPA4_fPP5csXyziii();
-extern "C" void execute__8daNpcF_cFv();
-extern "C" void draw__8daNpcF_cFiifP11_GXColorS10i();
-extern "C" void setMtx__8daNpcF_cFv();
-extern "C" void setMtx2__8daNpcF_cFv();
-extern "C" void initialize__8daNpcF_cFv();
-extern "C" void getTrnsfrmKeyAnmP__8daNpcF_cFPci();
-extern "C" void getTexPtrnAnmP__8daNpcF_cFPci();
-extern "C" void getTexSRTKeyAnmP__8daNpcF_cFPci();
-extern "C" void setMcaMorfAnm__8daNpcF_cFP18J3DAnmTransformKeyffiii();
-extern "C" void setBckAnm__8daNpcF_cFP15J3DAnmTransformfiiib();
-extern "C" void setBtpAnm__8daNpcF_cFP16J3DAnmTexPatternP12J3DModelDatafi();
-extern "C" void setBtkAnm__8daNpcF_cFP19J3DAnmTextureSRTKeyP12J3DModelDatafi();
-extern "C" void setEnvTevColor__8daNpcF_cFv();
-extern "C" void setRoomNo__8daNpcF_cFv();
-extern "C" void playExpressionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData();
-extern "C" void playMotionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData();
-extern "C" void setLookatMtx__8daNpcF_cFiPif();
-extern "C" void ctrlMsgAnm__8daNpcF_cFRiRiP10fopAc_ac_ci();
-extern "C" void orderEvent__8daNpcF_cFiPcUsUsUcUs();
-extern "C" void changeEvent__8daNpcF_cFPcPcUsUs();
-extern "C" void chkActorInSight__8daNpcF_cFP10fopAc_ac_cf();
-extern "C" void chkActorInAttnArea__8daNpcF_cFP10fopAc_ac_cP10fopAc_ac_ci();
-extern "C" void initTalk__8daNpcF_cFiPP10fopAc_ac_c();
-extern "C" void talkProc__8daNpcF_cFPiiPP10fopAc_ac_c();
-extern "C" void turn__8daNpcF_cFsfi();
-extern "C" void setAngle__8daNpcF_cFs();
-extern "C" void getDistTableIdx__8daNpcF_cFii();
-extern "C" void getEvtAreaTagP__8daNpcF_cFii();
-extern "C" void daNpcF_chkEvtBit__FUl();
-extern "C" void daNpcF_onEvtBit__FUl();
-extern "C" void daNpcF_chkTmpBit__FUl();
-extern "C" void daNpcF_offTmpBit__FUl();
-extern "C" void daNpcF_clearMessageTmpBit__Fv();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void onKillMessageFlag__12dMsgObject_cFv();
-extern "C" void __ct__10dMsgFlow_cFv();
-extern "C" void __dt__10dMsgFlow_cFv();
-extern "C" void getEventId__10dMsgFlow_cFPi();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void cM_atan2s__Fff();
-extern "C" void __ct__11cBgS_GndChkFv();
-extern "C" void __dt__11cBgS_GndChkFv();
-extern "C" void __dt__13cBgS_PolyInfoFv();
-extern "C" void __dt__8cM3dGCirFv();
-extern "C" void SetC__8cM3dGCylFRC4cXyz();
-extern "C" void SetH__8cM3dGCylFf();
-extern "C" void SetR__8cM3dGCylFf();
-extern "C" void cLib_targetAngleY__FPC3VecPC3Vec();
-extern "C" void cLib_targetAngleX__FPC4cXyzPC4cXyz();
-extern "C" void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void subBgmStart__8Z2SeqMgrFUl();
-extern "C" void bgmStreamPrepare__8Z2SeqMgrFUl();
-extern "C" void bgmStreamPlay__8Z2SeqMgrFv();
-extern "C" void bgmStreamStop__8Z2SeqMgrFUl();
-extern "C" void __ct__10Z2CreatureFv();
-extern "C" void __dt__10Z2CreatureFv();
-extern "C" void init__10Z2CreatureFP3VecP3VecUcUc();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void getTexNo__16J3DAnmTexPatternCFUsPUs();
-extern "C" void initialize__14J3DMaterialAnmFv();
-extern "C" void __destroy_arr();
-extern "C" void __construct_array();
-extern "C" void __ptmf_test();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" u8 mCcDCyl__8daNpcF_c[68];
-extern "C" extern void* __vt__8daNpcF_c[18];
-extern "C" extern void* __vt__15daNpcF_MatAnm_c[4 + 6 /* padding */];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mCurrentMtx__6J3DSys[48];
-extern "C" u8 sincosTable___5JMath[65536];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" void chkPointInArea__15daTag_EvtArea_cF4cXyz4cXyz();
-extern "C" void __register_global_object();
 
 //
 // Declarations:
@@ -301,23 +35,7 @@ SECTION_DEAD static char const* const stringBase_80AE25B5 = "RESIST_WIRETAP_SHAD
 SECTION_DEAD static char const* const stringBase_80AE25C9 = "RESIST_WIRETAP_RAFREL";
 #pragma pop
 
-/* 80AE2620-80AE262C 000000 000C+00 7/7 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80AE262C-80AE2640 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
+UNK_REL_DATA
 
 /* 80AE2640-80AE27F0 000020 01B0+00 1/2 0/0 0/0 .data            l_bckGetParamList */
 SECTION_DATA static u8 l_bckGetParamList[432] = {
@@ -395,28 +113,11 @@ SECTION_DATA static void* l_loadRes_list[3] = {
 
 /* 80AE28E0-80AE28F0 -00001 0010+00 6/8 0/0 0/0 .data            l_arcNames */
 SECTION_DATA static void* l_arcNames[4] = {
-    (void*)&d_a_npc_shad__stringBase0,
-    (void*)(((char*)&d_a_npc_shad__stringBase0) + 0x5),
-    (void*)(((char*)&d_a_npc_shad__stringBase0) + 0xB),
-    (void*)(((char*)&d_a_npc_shad__stringBase0) + 0x11),
 };
 
 /* 80AE28F0-80AE2928 -00001 0038+00 3/6 0/0 0/0 .data            l_evtNames */
 SECTION_DATA static void* l_evtNames[14] = {
-    (void*)(((char*)&d_a_npc_shad__stringBase0) + 0x17),
-    (void*)(((char*)&d_a_npc_shad__stringBase0) + 0x18),
-    (void*)(((char*)&d_a_npc_shad__stringBase0) + 0x29),
-    (void*)(((char*)&d_a_npc_shad__stringBase0) + 0x38),
-    (void*)(((char*)&d_a_npc_shad__stringBase0) + 0x4D),
-    (void*)(((char*)&d_a_npc_shad__stringBase0) + 0x62),
-    (void*)(((char*)&d_a_npc_shad__stringBase0) + 0x7C),
-    (void*)(((char*)&d_a_npc_shad__stringBase0) + 0x92),
-    (void*)(((char*)&d_a_npc_shad__stringBase0) + 0xAD),
-    (void*)(((char*)&d_a_npc_shad__stringBase0) + 0xBC),
-    (void*)(((char*)&d_a_npc_shad__stringBase0) + 0xD0),
-    (void*)(((char*)&d_a_npc_shad__stringBase0) + 0xDE),
-    (void*)(((char*)&d_a_npc_shad__stringBase0) + 0xF1),
-    (void*)(((char*)&d_a_npc_shad__stringBase0) + 0x105),
+
 };
 
 /* 80AE2928-80AE2960 000308 0038+00 3/6 0/0 0/0 .data            l_evtArcs */
@@ -430,142 +131,10 @@ SECTION_DATA static u8 l_evtArcs[56] = {
 /* 80AE2960-80AE2964 -00001 0004+00 0/3 0/0 0/0 .data            l_myName */
 #pragma push
 #pragma force_active on
-SECTION_DATA static void* l_myName = (void*)&d_a_npc_shad__stringBase0;
-#pragma pop
-
-/* 80AE2964-80AE2970 -00001 000C+00 0/1 0/0 0/0 .data            @3932 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3932[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)EvCut_Introduction__11daNpcShad_cFi,
-};
-#pragma pop
-
-/* 80AE2970-80AE297C -00001 000C+00 0/1 0/0 0/0 .data            @3933 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3933[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)EvCut_Meeting__11daNpcShad_cFi,
-};
-#pragma pop
-
-/* 80AE297C-80AE2988 -00001 000C+00 0/1 0/0 0/0 .data            @3934 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3934[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)EvCut_ToChantSpell1__11daNpcShad_cFi,
-};
-#pragma pop
-
-/* 80AE2988-80AE2994 -00001 000C+00 0/1 0/0 0/0 .data            @3935 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3935[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)EvCut_ToChantSpell2__11daNpcShad_cFi,
-};
-#pragma pop
-
-/* 80AE2994-80AE29A0 -00001 000C+00 0/1 0/0 0/0 .data            @3936 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3936[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)EvCut_ToChantSpell2Skip__11daNpcShad_cFi,
-};
-#pragma pop
-
-/* 80AE29A0-80AE29AC -00001 000C+00 0/1 0/0 0/0 .data            @3937 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3937[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)EvCut_DiscoveryCannon__11daNpcShad_cFi,
-};
-#pragma pop
-
-/* 80AE29AC-80AE29B8 -00001 000C+00 0/1 0/0 0/0 .data            @3938 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3938[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)EvCut_DiscoveryCannonSkip__11daNpcShad_cFi,
-};
-#pragma pop
-
-/* 80AE29B8-80AE29C4 -00001 000C+00 0/1 0/0 0/0 .data            @3939 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3939[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)EvCut_Disappear__11daNpcShad_cFi,
-};
-#pragma pop
-
-/* 80AE29C4-80AE29D0 -00001 000C+00 0/1 0/0 0/0 .data            @3940 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3940[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)EvCut_DisappearSkip__11daNpcShad_cFi,
-};
-#pragma pop
-
-/* 80AE29D0-80AE29DC -00001 000C+00 0/1 0/0 0/0 .data            @3941 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3941[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)EvCut_CallBack__11daNpcShad_cFi,
-};
-#pragma pop
-
-/* 80AE29DC-80AE29E8 -00001 000C+00 0/1 0/0 0/0 .data            @3942 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3942[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)EvCut_WiretapEntrant__11daNpcShad_cFi,
-};
-#pragma pop
-
-/* 80AE29E8-80AE29F4 -00001 000C+00 0/1 0/0 0/0 .data            @3943 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3943[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)EvCut_WiretapSponsor__11daNpcShad_cFi,
-};
-#pragma pop
-
-/* 80AE29F4-80AE2A00 -00001 000C+00 0/1 0/0 0/0 .data            @3944 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3944[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)EvCut_WiretapEntrant__11daNpcShad_cFi,
-};
+SECTION_DATA static void* l_myName;
 #pragma pop
 
 /* 80AE2A00-80AE2AA8 0003E0 00A8+00 0/2 0/0 0/0 .data            mEvtSeqList__11daNpcShad_c */
-#pragma push
-#pragma force_active on
 SECTION_DATA u8 daNpcShad_c::mEvtSeqList[168] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -579,274 +148,17 @@ SECTION_DATA u8 daNpcShad_c::mEvtSeqList[168] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-#pragma pop
 
-/* 80AE2AA8-80AE2ADC -00001 0034+00 1/1 0/0 0/0 .data            @4739 */
-SECTION_DATA static void* lit_4739[13] = {
-    (void*)(((char*)setExpressionAnm__11daNpcShad_cFib) + 0xA0),
-    (void*)(((char*)setExpressionAnm__11daNpcShad_cFib) + 0xBC),
-    (void*)(((char*)setExpressionAnm__11daNpcShad_cFib) + 0xD8),
-    (void*)(((char*)setExpressionAnm__11daNpcShad_cFib) + 0xF4),
-    (void*)(((char*)setExpressionAnm__11daNpcShad_cFib) + 0x110),
-    (void*)(((char*)setExpressionAnm__11daNpcShad_cFib) + 0x12C),
-    (void*)(((char*)setExpressionAnm__11daNpcShad_cFib) + 0x148),
-    (void*)(((char*)setExpressionAnm__11daNpcShad_cFib) + 0x164),
-    (void*)(((char*)setExpressionAnm__11daNpcShad_cFib) + 0x180),
-    (void*)(((char*)setExpressionAnm__11daNpcShad_cFib) + 0x19C),
-    (void*)(((char*)setExpressionAnm__11daNpcShad_cFib) + 0x1B8),
-    (void*)(((char*)setExpressionAnm__11daNpcShad_cFib) + 0x1D4),
-    (void*)(((char*)setExpressionAnm__11daNpcShad_cFib) + 0x1F0),
-};
-
-/* 80AE2ADC-80AE2AE8 -00001 000C+00 0/3 0/0 0/0 .data            @4923 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4923[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)wait_type0__11daNpcShad_cFPv,
-};
-#pragma pop
-
-/* 80AE2AE8-80AE2AF4 -00001 000C+00 0/3 0/0 0/0 .data            @4926 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4926[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)wait_type1__11daNpcShad_cFPv,
-};
-#pragma pop
-
-/* 80AE2AF4-80AE2B00 -00001 000C+00 0/3 0/0 0/0 .data            @4929 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4929[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)wait_type2__11daNpcShad_cFPv,
-};
-#pragma pop
-
-/* 80AE2B00-80AE2B0C -00001 000C+00 0/1 0/0 0/0 .data            @5064 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5064[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)talk__11daNpcShad_cFPv,
-};
-#pragma pop
-
-/* 80AE2B0C-80AE2B18 -00001 000C+00 0/1 0/0 0/0 .data            @5069 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5069[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)demo__11daNpcShad_cFPv,
-};
-#pragma pop
-
-/* 80AE2B18-80AE2B24 -00001 000C+00 0/1 0/0 0/0 .data            @5295 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5295[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)talk__11daNpcShad_cFPv,
-};
-#pragma pop
-
-/* 80AE2B24-80AE2B30 -00001 000C+00 0/1 0/0 0/0 .data            @5300 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5300[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)demo__11daNpcShad_cFPv,
-};
-#pragma pop
-
-/* 80AE2B30-80AE2B3C -00001 000C+00 1/1 0/0 0/0 .data            @5565 */
-SECTION_DATA static void* lit_5565[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)leave__11daNpcShad_cFPv,
-};
-
-/* 80AE2B3C-80AE2B5C -00001 0020+00 1/1 0/0 0/0 .data            @6551 */
-SECTION_DATA static void* lit_6551[8] = {
-    (void*)(((char*)EvCut_DiscoveryCannon__11daNpcShad_cFi) + 0x480),
-    (void*)(((char*)EvCut_DiscoveryCannon__11daNpcShad_cFi) + 0x730),
-    (void*)(((char*)EvCut_DiscoveryCannon__11daNpcShad_cFi) + 0x480),
-    (void*)(((char*)EvCut_DiscoveryCannon__11daNpcShad_cFi) + 0x730),
-    (void*)(((char*)EvCut_DiscoveryCannon__11daNpcShad_cFi) + 0x488),
-    (void*)(((char*)EvCut_DiscoveryCannon__11daNpcShad_cFi) + 0x730),
-    (void*)(((char*)EvCut_DiscoveryCannon__11daNpcShad_cFi) + 0x730),
-    (void*)(((char*)EvCut_DiscoveryCannon__11daNpcShad_cFi) + 0x488),
-};
-
-/* 80AE2B5C-80AE2B7C -00001 0020+00 1/1 0/0 0/0 .data            @6550 */
-SECTION_DATA static void* lit_6550[8] = {
-    (void*)(((char*)EvCut_DiscoveryCannon__11daNpcShad_cFi) + 0x7C),
-    (void*)(((char*)EvCut_DiscoveryCannon__11daNpcShad_cFi) + 0x280),
-    (void*)(((char*)EvCut_DiscoveryCannon__11daNpcShad_cFi) + 0x12C),
-    (void*)(((char*)EvCut_DiscoveryCannon__11daNpcShad_cFi) + 0x25C),
-    (void*)(((char*)EvCut_DiscoveryCannon__11daNpcShad_cFi) + 0x20C),
-    (void*)(((char*)EvCut_DiscoveryCannon__11daNpcShad_cFi) + 0x25C),
-    (void*)(((char*)EvCut_DiscoveryCannon__11daNpcShad_cFi) + 0x25C),
-    (void*)(((char*)EvCut_DiscoveryCannon__11daNpcShad_cFi) + 0x20C),
-};
-
-/* 80AE2B7C-80AE2B9C -00001 0020+00 1/0 0/0 0/0 .data            daNpcShad_MethodTable */
-static actor_method_class daNpcShad_MethodTable = {
-    (process_method_func)daNpcShad_Create__FPv,
-    (process_method_func)daNpcShad_Delete__FPv,
-    (process_method_func)daNpcShad_Execute__FPv,
-    (process_method_func)daNpcShad_IsDelete__FPv,
-    (process_method_func)daNpcShad_Draw__FPv,
-};
-
-/* 80AE2B9C-80AE2BCC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_SHAD */
-extern actor_process_profile_definition g_profile_NPC_SHAD = {
-  fpcLy_CURRENT_e,        // mLayerID
-  7,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_NPC_SHAD,          // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(daNpcShad_c),    // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  413,                    // mPriority
-  &daNpcShad_MethodTable, // sub_method
-  0x00040100,             // mStatus
-  fopAc_NPC_e,            // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
-};
-
-/* 80AE2BCC-80AE2BD8 0005AC 000C+00 2/2 0/0 0/0 .data            __vt__11J3DTexNoAnm */
-SECTION_DATA extern void* __vt__11J3DTexNoAnm[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)calc__11J3DTexNoAnmCFPUs,
-};
-
-/* 80AE2BD8-80AE2C20 0005B8 0048+00 2/2 0/0 0/0 .data            __vt__11daNpcShad_c */
-SECTION_DATA extern void* __vt__11daNpcShad_c[18] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__11daNpcShad_cFv,
-    (void*)setParam__11daNpcShad_cFv,
-    (void*)main__11daNpcShad_cFv,
-    (void*)ctrlBtk__11daNpcShad_cFv,
-    (void*)adjustShapeAngle__8daNpcF_cFv,
-    (void*)setMtx__8daNpcF_cFv,
-    (void*)setMtx2__8daNpcF_cFv,
-    (void*)setAttnPos__11daNpcShad_cFv,
-    (void*)setCollisions__8daNpcF_cFv,
-    (void*)setExpressionAnm__11daNpcShad_cFib,
-    (void*)setExpressionBtp__11daNpcShad_cFi,
-    (void*)setExpression__11daNpcShad_cFif,
-    (void*)setMotionAnm__11daNpcShad_cFif,
-    (void*)setMotion__11daNpcShad_cFifi,
-    (void*)drawDbgInfo__11daNpcShad_cFv,
-    (void*)drawOtherMdls__8daNpcF_cFv,
-};
-
-/* 80AE2C20-80AE2C2C 000600 000C+00 3/3 0/0 0/0 .data            __vt__12J3DFrameCtrl */
-SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12J3DFrameCtrlFv,
-};
-
-/* 80AE2C2C-80AE2C50 00060C 0024+00 3/3 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
-SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_ObjAcchFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80AE1FC0,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80AE1FB8,
-};
-
-/* 80AE2C50-80AE2C5C 000630 000C+00 3/3 0/0 0/0 .data            __vt__10cCcD_GStts */
-SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10cCcD_GSttsFv,
-};
-
-/* 80AE2C5C-80AE2C68 00063C 000C+00 2/2 0/0 0/0 .data            __vt__10dCcD_GStts */
-SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10dCcD_GSttsFv,
-};
-
-/* 80AE2C68-80AE2C74 000648 000C+00 2/2 0/0 0/0 .data            __vt__12dBgS_AcchCir */
-SECTION_DATA extern void* __vt__12dBgS_AcchCir[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_AcchCirFv,
-};
-
-/* 80AE2C74-80AE2C80 000654 000C+00 4/4 0/0 0/0 .data            __vt__18daNpcF_ActorMngr_c */
-SECTION_DATA extern void* __vt__18daNpcF_ActorMngr_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__18daNpcF_ActorMngr_cFv,
-};
-
-/* 80AE2C80-80AE2C8C 000660 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGCyl */
-SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGCylFv,
-};
-
-/* 80AE2C8C-80AE2C98 00066C 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGAab */
-SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGAabFv,
-};
-
-/* 80AE2C98-80AE2CA4 000678 000C+00 3/3 0/0 0/0 .data            __vt__15daNpcF_Lookat_c */
-SECTION_DATA extern void* __vt__15daNpcF_Lookat_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__15daNpcF_Lookat_cFv,
-};
-
-/* 80AD820C-80AD8390 0000EC 0184+00 1/1 0/0 0/0 .text            __ct__11daNpcShad_cFv */
-daNpcShad_c::daNpcShad_c() {
-    // NONMATCHING
-}
-
-/* 80AD8390-80AD83D8 000270 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
-// cM3dGCyl::~cM3dGCyl() {
-extern "C" void __dt__8cM3dGCylFv() {
-    // NONMATCHING
-}
-
-/* 80AD83D8-80AD8420 0002B8 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
-// cM3dGAab::~cM3dGAab() {
-extern "C" void __dt__8cM3dGAabFv() {
-    // NONMATCHING
-}
+// /* 80AD820C-80AD8390 0000EC 0184+00 1/1 0/0 0/0 .text            __ct__11daNpcShad_cFv */
+// daNpcShad_c::daNpcShad_c() : daNpcF_c() {
+//     // NONMATCHING
+// }
 
 /* 80AD8420-80AD8620 000300 0200+00 1/0 0/0 0/0 .text            __dt__11daNpcShad_cFv */
 daNpcShad_c::~daNpcShad_c() {
     // NONMATCHING
 }
 
-/* ############################################################################################## */
 /* 80AE1FDC-80AE204C 000000 0070+00 19/19 0/0 0/0 .rodata          m__17daNpcShad_Param_c */
 const daNpcShad_HIOParam daNpcShad_Param_c::m = {
     35.0f,
@@ -943,8 +255,68 @@ SECTION_DEAD static char const* const stringBase_80AE25EF = "D_MN09";
 #pragma pop
 
 /* 80AD8620-80AD8B60 000500 0540+00 1/1 0/0 0/0 .text            Create__11daNpcShad_cFv */
-void daNpcShad_c::Create() {
+cPhs__Step daNpcShad_c::Create() {
     // NONMATCHING
+    fopAcM_SetupActor(this, daNpcShad_c);
+
+    if (strcmp(dComIfGp_getStartStageName(), "R_SP116") == 0 && dComIfG_play_c::getLayerNo(0) == 4) {
+        if (daNpcF_chkEvtBit(0x169) && daNpcF_chkEvtBit(0x10A) && daNpcF_chkEvtBit(0x10B) && !daNpcF_chkEvtBit(0x10C)) {
+            return cPhs_ERROR_e;
+        }
+
+        if (dComIfGs_isStageSwitch(0x18, 0x4B)) {
+            return cPhs_ERROR_e;
+        }
+
+        field_0xe20 = 0;
+    } else {
+        if (strcmp(dComIfGp_getStartStageName(), "R_SP209") == 0) {
+            if (daNpcF_chkEvtBit(0x311)) {
+                return cPhs_ERROR_e;
+            }
+
+            if (!daNpcF_chkEvtBit(0x10B) || (daNpcF_chkEvtBit(0x12E) && !daNpcF_chkEvtBit(0x31C))) {
+                return cPhs_ERROR_e;
+            }
+
+            if (daNpcF_chkEvtBit(0x12F)) {
+                if (!daNpcF_chkEvtBit(0x312)) {
+                    if (getPathPoint(getPathID(), 1, &home.pos)) {
+                        current.pos = home.pos;
+                        old.pos = current.pos;
+                    }
+                } else {
+                    home.pos.set(4342.718f, -1518.5f, -3942.323);
+                    current.pos = home.pos;
+                    old.pos = current.pos;
+                    setAngle(-0x2581);
+                }
+            }
+
+            field_0xe20 = 1;
+        } else {
+            if (strcmp(dComIfGp_getStartStageName(), "D_MN09") == 0) {
+                if (dComIfGs_isSaveSwitch(20)) {
+                    return cPhs_ERROR_e;
+                }
+
+                fopAcM_OnStatus(this, 0x4000);
+                field_0xe20 = 2;
+            }
+        }
+    }
+
+    s16 sVar1;
+    if (field_0xe20 == 1 && daNpcF_chkEvtBit(0x31C)) {
+        sVar1 = 0x42;
+    } else {
+        sVar1 = getMessageNo();
+    }
+
+    field_0xe14 = sVar1;
+    field_0xe16 = field_0xe14;
+
+    
 }
 
 /* ############################################################################################## */
@@ -1092,7 +464,7 @@ void daNpcShad_c::setWaitAction() {
 }
 
 /* 80AD9E04-80AD9E90 001CE4 008C+00 1/1 0/0 0/0 .text getPathPoint__11daNpcShad_cFUciP3Vec */
-void daNpcShad_c::getPathPoint(u8 param_0, int param_1, Vec* param_2) {
+bool daNpcShad_c::getPathPoint(u8 param_0, int param_1, Vec* param_2) {
     // NONMATCHING
 }
 
@@ -2416,14 +1788,6 @@ extern "C" void func_80AE1544(void* _this, s16 param_0) /* const */ {
     // NONMATCHING
 }
 
-/* ############################################################################################## */
-/* 80AE2CA4-80AE2CB0 000684 000C+00 2/2 0/0 0/0 .data            __vt__17daNpcShad_Param_c */
-SECTION_DATA extern void* __vt__17daNpcShad_Param_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__17daNpcShad_Param_cFv,
-};
-
 /* 80AE2CB8-80AE2CC4 000008 000C+00 1/1 0/0 0/0 .bss             @3931 */
 static u8 lit_3931[12];
 
@@ -2480,12 +1844,6 @@ extern "C" void __dt__4cXyzFv() {
 // cXyz::cXyz() {
 extern "C" void __ct__4cXyzFv() {
     /* empty function */
-}
-
-/* 80AE18FC-80AE1B48 0097DC 024C+00 1/1 0/0 0/0 .text            __dt__8daNpcF_cFv */
-// daNpcF_c::~daNpcF_c() {
-extern "C" void __dt__8daNpcF_cFv() {
-    // NONMATCHING
 }
 
 /* 80AE1B48-80AE1D38 009A28 01F0+00 1/1 0/0 0/0 .text            __ct__8daNpcF_cFv */
@@ -2572,3 +1930,30 @@ COMPILER_STRIP_GATE(0x80AE24C0, &lit_7144);
 #pragma pop
 
 /* 80AE24C4-80AE24C4 0004E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+
+/* 80AE2B7C-80AE2B9C -00001 0020+00 1/0 0/0 0/0 .data            daNpcShad_MethodTable */
+static actor_method_class daNpcShad_MethodTable = {
+    (process_method_func)daNpcShad_Create,
+    (process_method_func)daNpcShad_Delete,
+    (process_method_func)daNpcShad_Execute,
+    (process_method_func)daNpcShad_IsDelete,
+    (process_method_func)daNpcShad_Draw,
+};
+
+/* 80AE2B9C-80AE2BCC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_SHAD */
+extern actor_process_profile_definition g_profile_NPC_SHAD = {
+  fpcLy_CURRENT_e,        // mLayerID
+  7,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_NPC_SHAD,          // mProcName
+  &g_fpcLf_Method.base,  // sub_method
+  sizeof(daNpcShad_c),    // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  413,                    // mPriority
+  &daNpcShad_MethodTable, // sub_method
+  0x00040100,             // mStatus
+  fopAc_NPC_e,            // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
+};
