@@ -379,9 +379,8 @@ int daAlink_c::procKandelaarSwingInit() {
         BOOL is_sm2 = name == PROC_E_SM2;
 
         if (name == PROC_OBJ_OILTUBO ||
-            (name == PROC_TAG_SSDRINK &&
-             static_cast<daTag_SSDrink_c*>(catch_target_p)->checkShopOil()) ||
-            (is_sm2 && static_cast<e_sm2_class*>(catch_target_p)->checkYellow()))
+            (name == PROC_TAG_SSDRINK && ((daTag_SSDrink_c*)catch_target_p)->checkShopOil()) ||
+            (is_sm2 && ((e_sm2_class*)catch_target_p)->checkYellow()))
         {
             return procBottleSwingInit(catch_target_p, is_sm2);
         }
