@@ -10,6 +10,23 @@ UNK_REL_DATA;
 #include <cmath.h>
 #include "Z2AudioLib/Z2Instances.h"
 
+enum E_SW_RES_File_ID {
+    /* BCK */
+    /* 0x04 */ BCK_SW_ATTACK = 0x4,
+    /* 0x05 */ BCK_SW_ATTACK_END,
+    /* 0x06 */ BCK_SW_ATTACK_MIDDLE,
+    /* 0x07 */ BCK_SW_ATTACK_START,
+    /* 0x08 */ BCK_SW_CHANCE,
+    /* 0x09 */ BCK_SW_DAMAGE,
+    /* 0x0A */ BCK_SW_DIE,
+    /* 0x0B */ BCK_SW_DIVE,
+    /* 0x0C */ BCK_SW_RUN,
+    /* 0x0D */ BCK_SW_WAIT,
+
+    /* BMDR */
+    /* 0x10 */ BMDR_SW = 0x10,
+};
+
 enum Action {
     /* 0x0 */ ACTION_EXECUTE_WAIT,
     /* 0x1 */ ACTION_EXECUTE_CHASE_SLOW,
@@ -25,6 +42,24 @@ enum Action {
     /* 0xB */ ACTION_EXECUTE_MASTER,
     /* 0xC */ ACTION_EXECUTE_SUDDEN_ATTACK,
     /* 0xD */ ACTION_EXECUTE_FALL,
+};
+
+enum Particle {
+    /* 0x837F */ ZL2_ROCK_1 = 0x837F,
+    /* 0x8380 */ ZLM_SAND00_IA_1,
+    /* 0x836F */ DKM_REALSMOKE01_IA = 0x836F,
+    /* 0x8370 */ ZL2_ROCK_2,
+    /* 0x8371 */ ZLM_SAND00_IA_2,
+    /* 0x8372 */ ZL2_SMOKE00_1,
+    /* 0x837C */ ZL2_ROCK_3 = 0x837C,
+    /* 0x837D */ ZLM_SAND00_IA_3,
+    /* 0x837E */ ZL2_SMOKE00_2,
+    /* 0x8373 */ ZL2_TSUBU_IA01_1 = 0x8373,
+    /* 0x8374 */ ZL2_TSUBU_IA01_2,
+    /* 0x8375 */ ZLM_SAND00_IA_4,
+    /* 0x8376 */ ZL2_ROCK_4,
+    /* 0x8377 */ ZLM_SAND00_IA_5,
+    /* 0x8378 */ ZLM_SAND00_IA_6,
 };
 
 /* 807AFEB4-807AFEF4 000038 0040+00 1/1 0/0 0/0 .data cc_sph_src__22@unnamed@d_a_e_sw_cpp@ */
@@ -87,7 +122,7 @@ int daE_SW_c::draw() {
     if (field_0x6e4 == 0) {
         cXyz i_pos;
         i_pos.set(current.pos.x, current.pos.y + 100.0f, current.pos.z);
-        field_0x6e0 = dComIfGd_setShadow(field_0x6e0, 1, model, &i_pos, 700.0f, 0.0f, current.pos.y, 
+        mShadowKey = dComIfGd_setShadow(mShadowKey, 1, model, &i_pos, 700.0f, 0.0f, current.pos.y, 
                                             mBgc.GetGroundH(), mBgc.m_gnd, &tevStr, 0, 1.0f, 
                                             dDlst_shadowControl_c::getSimpleTex());
     }
@@ -102,14 +137,14 @@ static int daE_SW_Draw(daE_SW_c* i_this) {
 
 /* 807A76E4-807A77CC 0003C4 00E8+00 5/5 0/0 0/0 .text            setBeforeJumpEffect__8daE_SW_cFv */
 void daE_SW_c::setBeforeJumpEffect() {
-    field_0xae8 = dComIfGp_particle_set(field_0xae8, 0x837F, &field_0x674, &tevStr, &shape_angle, NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
-    field_0xaec = dComIfGp_particle_set(field_0xaec, 0x8380, &field_0x674, &tevStr, &shape_angle, NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
+    field_0xae8 = dComIfGp_particle_set(field_0xae8, ZL2_ROCK_1, &field_0x674, &tevStr, &shape_angle, NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
+    field_0xaec = dComIfGp_particle_set(field_0xaec, ZLM_SAND00_IA_1, &field_0x674, &tevStr, &shape_angle, NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
 }
 
 /* 807A77CC-807A78B4 0004AC 00E8+00 2/2 0/0 0/0 .text            setJumpEffect__8daE_SW_cFv */
 void daE_SW_c::setJumpEffect() {
-    field_0xae8 = dComIfGp_particle_set(field_0xae8, 0x8373, &field_0x674, &tevStr, &shape_angle, NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
-    field_0xaec = dComIfGp_particle_set(field_0xaec, 0x8374, &field_0x674, &tevStr, &shape_angle, NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
+    field_0xae8 = dComIfGp_particle_set(field_0xae8, ZL2_TSUBU_IA01_1, &field_0x674, &tevStr, &shape_angle, NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
+    field_0xaec = dComIfGp_particle_set(field_0xaec, ZL2_TSUBU_IA01_2, &field_0x674, &tevStr, &shape_angle, NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
 }
 
 /* 807A78B4-807A7A08 000594 0154+00 9/9 0/0 0/0 .text            setSmokeEffect__8daE_SW_cFv */
@@ -117,8 +152,8 @@ void daE_SW_c::setSmokeEffect() {
     if (field_0x6e4 != 0 && speedF) {
         cXyz sp14(field_0x674);
         sp14.y += 100.0f;
-        field_0xaf0 = dComIfGp_particle_set(field_0xaf0, 0x8375, &sp14, &tevStr, &shape_angle, NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
-        field_0xaf4 = dComIfGp_particle_set(field_0xaf4, 0x8376, &sp14, &tevStr, &shape_angle, NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
+        field_0xaf0 = dComIfGp_particle_set(field_0xaf0, ZLM_SAND00_IA_4, &sp14, &tevStr, &shape_angle, NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
+        field_0xaf4 = dComIfGp_particle_set(field_0xaf4, ZL2_ROCK_4, &sp14, &tevStr, &shape_angle, NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
         mSound.startCreatureSoundLevel(Z2SE_EN_SW_MOVE, field_0x6e9, -1);
     }
 }
@@ -126,7 +161,7 @@ void daE_SW_c::setSmokeEffect() {
 /* 807A7A08-807A7AC0 0006E8 00B8+00 2/2 0/0 0/0 .text            setDiveEffect__8daE_SW_cFv */
 void daE_SW_c::setDiveEffect() {
     csXyz acStack_18(0, shape_angle.y, 0);
-    static u16 l_SW_DIVE_EFFECT_ID[4] = {0x836F, 0x8370, 0x8371, 0x8372};
+    static u16 l_SW_DIVE_EFFECT_ID[4] = {DKM_REALSMOKE01_IA, ZL2_ROCK_2, ZLM_SAND00_IA_2, ZL2_SMOKE00_1};
     for (int i = 0; i < 4; i++) {
         dComIfGp_particle_set(l_SW_DIVE_EFFECT_ID[i], &current.pos, &tevStr, &acStack_18, NULL);
     }
@@ -134,7 +169,7 @@ void daE_SW_c::setDiveEffect() {
 
 /* 807A7AC0-807A7B64 0007A0 00A4+00 2/2 0/0 0/0 .text            setHideEffect__8daE_SW_cFv */
 void daE_SW_c::setHideEffect() {
-    static u16 l_SW_HIDE_EFFECT_ID[3] = {0x837C, 0x837D, 0x837E};
+    static u16 l_SW_HIDE_EFFECT_ID[3] = {ZL2_ROCK_3, ZLM_SAND00_IA_3, ZL2_SMOKE00_2};
     for (int i = 0; i < 3; i++) {
         dComIfGp_particle_set(l_SW_HIDE_EFFECT_ID[i], &current.pos, &tevStr, &shape_angle, NULL);
     }
@@ -281,7 +316,7 @@ void daE_SW_c::executeWait() {
         case 0:
             field_0x6e4 = 1;
             field_0x6e5 = 1;
-            bckSet(0xD, 10.0f, 2, 1.0f);
+            bckSet(BCK_SW_WAIT, 10.0f, 2, 1.0f);
             mMoveMode = 1;
             field_0x6ea = 50;
             // fallthrough
@@ -389,7 +424,7 @@ void daE_SW_c::executeChaseSlow() {
         switch (mMoveMode) {
             case 0:
                 field_0x6b8 = cM_rndF(100.0f) + 800.0f;
-                bckSet(0xC, 10.0f, 2, 1.0f);
+                bckSet(BCK_SW_RUN, 10.0f, 2, 1.0f);
 
                 if (cM_rnd() < 0.5f) {
                     field_0x6a2 = -0x200;
@@ -634,7 +669,7 @@ void daE_SW_c::executeBomb() {
 
     switch (mMoveMode) {
         case 0:
-            bckSet(0xC, 10.0f, 2, 1.0f);
+            bckSet(BCK_SW_RUN, 10.0f, 2, 1.0f);
             mMoveMode = 1;
             // fallthrough
         case 1:
@@ -683,7 +718,7 @@ void daE_SW_c::executeAttack() {
             setDiveEffect();
             mSound.startCreatureSound(Z2SE_EN_SW_JUMP_OUT, field_0x6e9, -1);
             gravity = -4.0f;
-            bckSet(6, 0.0f, 0, 1.0f);
+            bckSet(BCK_SW_ATTACK_MIDDLE, 0.0f, 0, 1.0f);
             shape_angle.x = -0x4000;
 
             if (field_0x69c == 1) {
@@ -743,7 +778,7 @@ void daE_SW_c::executeAttack() {
             if (speed.y < 0.0f) {
                 field_0x6d8 = 0.0f;
                 current.pos.y -= 120.0f;
-                bckSet(5, 10.0f, 0, 1.0f);
+                bckSet(BCK_SW_ATTACK_END, 10.0f, 0, 1.0f);
                 field_0x6ea = 60;
                 mMoveMode = 2;
             }
@@ -834,7 +869,7 @@ void daE_SW_c::executeHook() {
             field_0x6e4 = 0;
             field_0x6e5 = 0;
             field_0x98c.SetTgType(0);
-            bckSet(9, 1.0f, 2, 1.0f);
+            bckSet(BCK_SW_DAMAGE, 1.0f, 2, 1.0f);
             field_0x6d8 = 0.0f;
             speed.y = 0.0f;
             speedF = 0.0f;
@@ -888,7 +923,7 @@ void daE_SW_c::executeMoveOut() {
 
     switch (mMoveMode) {
         case 0:
-            bckSet(0xC, 10.0f, 2, 1.0f);
+            bckSet(BCK_SW_RUN, 10.0f, 2, 1.0f);
             // fallthrough
         case 1:
             sVar1 = cLib_targetAngleY(&home.pos, &current.pos) + cM_rndFX(4096.0f);
@@ -927,7 +962,7 @@ void daE_SW_c::executeChance() {
             field_0x6d8 = 0.0f;
             field_0x98c.SetTgType(0xd8fbfdff);
             mMoveMode = 1;
-            bckSet(8, 5.0f, 2, 1.0f);
+            bckSet(BCK_SW_CHANCE, 5.0f, 2, 1.0f);
             speedF = 0.0f;
             gravity = -5.0f;
             field_0x6ea = 100;
@@ -943,7 +978,7 @@ void daE_SW_c::executeChance() {
             // fallthrough
         case 2:
             if ((field_0x6bc & 1) != 0 && mBgc.ChkGroundHit()) {
-                field_0xae8 = dComIfGp_particle_set(field_0xae8, 0x8378, &field_0x674, &tevStr, &shape_angle, NULL, 
+                field_0xae8 = dComIfGp_particle_set(field_0xae8, ZLM_SAND00_IA_6, &field_0x674, &tevStr, &shape_angle, NULL, 
                                                     0xFF, NULL, -1, NULL, NULL, NULL);
             }
 
@@ -973,7 +1008,7 @@ void daE_SW_c::executeChance() {
 
         case 5:
             field_0x98c.SetTgType(0xd8fbfdff);
-            bckSet(9, 3.0f, 2, 1.0f);
+            bckSet(BCK_SW_DAMAGE, 3.0f, 2, 1.0f);
             mMoveMode = 6;
             speedF = 12.0f;
             speed.y = 35.0f;
@@ -996,7 +1031,7 @@ void daE_SW_c::executeDive() {
     switch (mMoveMode) {
         case 0:
             if (field_0x6ea == 0) {
-                bckSet(0xB, 5.0f, 0, 1.0f);
+                bckSet(BCK_SW_DIVE, 5.0f, 0, 1.0f);
                 mMoveMode = 1;
                 setHideEffect();
             }
@@ -1046,7 +1081,7 @@ void daE_SW_c::executeDamage() {
             field_0x98c.OffTgSetBit();
             field_0x6e4 = 0;
             field_0x6e5 = 0;
-            bckSet(9, 3.0f, 2, 1.0f);
+            bckSet(BCK_SW_DAMAGE, 3.0f, 2, 1.0f);
             speed.y = cM_rndF(3.0f) + 48.0f;
             speedF = cM_rndF(3.0f) + 15.0f;
             mMoveMode = 1;
@@ -1070,7 +1105,7 @@ void daE_SW_c::executeDamage() {
             break;
 
         case 2:
-            field_0xae8 = dComIfGp_particle_set(field_0xae8, 0x8378, &field_0x674, &tevStr, &shape_angle, NULL,
+            field_0xae8 = dComIfGp_particle_set(field_0xae8, ZLM_SAND00_IA_6, &field_0x674, &tevStr, &shape_angle, NULL,
                                                 0xFF, NULL, -1, NULL, NULL, NULL);
             cLib_addCalcAngleS(&shape_angle.z, 0, 8, 0x800, 0x10);
 
@@ -1106,7 +1141,7 @@ void daE_SW_c::executeDie() {
 
             if (field_0x6ea == 0) {
                 mMoveMode = 2;
-                bckSet(0xA, 10.0f, 0, 1.0f);
+                bckSet(BCK_SW_DIE, 10.0f, 0, 1.0f);
                 gravity = -1.0f;
                 field_0x6ea = 30;
             } else {
@@ -1281,7 +1316,7 @@ void daE_SW_c::executeFall() {
             cLib_chaseF(&speedF, 0.0f, 1.0f);
 
             if (field_0x6ea == 0) {
-                bckSet(0xC, 10.0f, 2, 1.0f);
+                bckSet(BCK_SW_RUN, 10.0f, 2, 1.0f);
                 fopAcM_delete(this);
             }
             break;
@@ -1625,8 +1660,8 @@ static int daE_SW_Delete(daE_SW_c* i_this) {
 
 /* 807AC204-807AC2FC 004EE4 00F8+00 1/1 0/0 0/0 .text            CreateHeap__8daE_SW_cFv */
 int daE_SW_c::CreateHeap() {
-    mpModelMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_SW", 0x10), NULL, NULL,
-                                       (J3DAnmTransform*)dComIfG_getObjectRes("E_SW", 0xD), 0, 1.0f, 0, -1, &mSound, 0x80000, 0x11000084);
+    mpModelMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_SW", BMDR_SW), NULL, NULL,
+                                       (J3DAnmTransform*)dComIfG_getObjectRes("E_SW", BCK_SW_WAIT), 0, 1.0f, 0, -1, &mSound, 0x80000, 0x11000084);
     if (mpModelMorf == NULL || mpModelMorf->getModel() == NULL) {
         return 0;
     }
@@ -1972,7 +2007,7 @@ void daE_SW_c::d_bm_chase() {
         } else {
             switch (mMoveMode) {
                 case 0:
-                    bckSet(0xC, 10.0f, 2, 1.0f);
+                    bckSet(BCK_SW_RUN, 10.0f, 2, 1.0f);
                     mMoveMode++;
                     return;
 
@@ -2024,7 +2059,7 @@ void daE_SW_c::d_wait() {
             field_0x98c.SetTgType(0x4000);
             field_0x6e4 = 1;
             field_0x6e5 = 1;
-            bckSet(0xC, 10.0f, 2, 1.0f);
+            bckSet(BCK_SW_RUN, 10.0f, 2, 1.0f);
             field_0x6ea = 50;
             field_0x6ec = cM_rndF(30.0f) + 30.0f;
             mMoveMode++;
@@ -2138,7 +2173,7 @@ void daE_SW_c::d_chase() {
 
     switch (mMoveMode) {
         case 0:
-            bckSet(0xC, 10.0f, 2, 1.0f);
+            bckSet(BCK_SW_RUN, 10.0f, 2, 1.0f);
             field_0xb14 = true;
             field_0x6ea = 60;
             field_0x6ee = 240;
@@ -2207,7 +2242,7 @@ void daE_SW_c::d_attk() {
             field_0x6e5 = 0;
             setDiveEffect();
             mSound.startCreatureSound(Z2SE_EN_SW_JUMP_OUT, field_0x6e9, -1);
-            bckSet(6, 0.0f, 0, 1.0f);
+            bckSet(BCK_SW_ATTACK_MIDDLE, 0.0f, 0, 1.0f);
             shape_angle.x = -0x4000;
             field_0xb14 = true;
             sVar1 = field_0x69e;
@@ -2235,7 +2270,7 @@ void daE_SW_c::d_attk() {
             if (speed.y <= 0.0f) {
                 field_0x6d8 = 0.0f;
                 current.pos.y -= 120.0f;
-                bckSet(5, 10.0f, 0, 1.0f);
+                bckSet(BCK_SW_ATTACK_END, 10.0f, 0, 1.0f);
                 field_0x6ea = 60;
                 mMoveMode++;
             }
@@ -2332,7 +2367,7 @@ void daE_SW_c::d_chance() {
             field_0x98c.SetTgType(0xd8fbfdff);
             gravity = -5.0f;
             mMoveMode++;
-            bckSet(8, 5.0f, 2, 1.0f);
+            bckSet(BCK_SW_CHANCE, 5.0f, 2, 1.0f);
             speedF = 0.0f;
 
             if (d_checkOldAction(daE_SW_c::d_hook)) {
@@ -2354,7 +2389,7 @@ void daE_SW_c::d_chance() {
 
         case 2:
             if ((field_0x6bc & 1) != 0 && mBgc.ChkGroundHit()) {
-                field_0xae8 = dComIfGp_particle_set(field_0xae8, 0x8378, &field_0x674, &tevStr, &shape_angle,
+                field_0xae8 = dComIfGp_particle_set(field_0xae8, ZLM_SAND00_IA_6, &field_0x674, &tevStr, &shape_angle,
                                                     NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
             }
 
@@ -2388,7 +2423,7 @@ void daE_SW_c::d_chance2() {
     switch (mMoveMode) {
         case 0:
             field_0x98c.SetTgType(0xd8fbfdff);
-            bckSet(9, 3.0f, 2, 1.0f);
+            bckSet(BCK_SW_DAMAGE, 3.0f, 2, 1.0f);
             speedF = 12.0f;
             speed.y = 35.0f;
             current.angle.y = fopAcM_searchPlayerAngleY(this) + 0x8000;
@@ -2413,7 +2448,7 @@ void daE_SW_c::d_dive() {
     switch (mMoveMode) {
         case 0:
             if (field_0x6ea == 0) {
-                bckSet(0xB, 5.0f, 0, 1.0f);
+                bckSet(BCK_SW_DIVE, 5.0f, 0, 1.0f);
                 setHideEffect();
                 mMoveMode++;
             }
@@ -2457,7 +2492,7 @@ void daE_SW_c::d_damage() {
             field_0x98c.OffTgSetBit();
             field_0x6e4 = 0;
             field_0x6e5 = 0;
-            bckSet(9, 3.0f, 2, 1.0f);
+            bckSet(BCK_SW_DAMAGE, 3.0f, 2, 1.0f);
             speed.y = cM_rndF(3.0f) + 48.0f;
             speedF = cM_rndF(3.0f) + 15.0f;
             gravity = -4.0f;
@@ -2488,7 +2523,7 @@ void daE_SW_c::d_damage() {
             break;
 
         case 2:
-            field_0xae8 = dComIfGp_particle_set(field_0xae8, 0x8378, &field_0x674, &tevStr, &shape_angle,
+            field_0xae8 = dComIfGp_particle_set(field_0xae8, ZLM_SAND00_IA_6, &field_0x674, &tevStr, &shape_angle,
                                                 NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
             cLib_addCalcAngleS(&shape_angle.z, 0, 8, 0x800, 0x10);
             
@@ -2543,7 +2578,7 @@ void daE_SW_c::d_die() {
             cLib_addCalc2(&field_0x6b4, nREG_F(9) + -50.0f, nREG_F(8) + 1.0f, nREG_F(7) + 0.5f);
 
             if (field_0x6ea == 0) {
-                bckSet(0xA, 10.0f, 0, 1.0f);
+                bckSet(BCK_SW_DIE, 10.0f, 0, 1.0f);
                 gravity = -1.0f;
                 field_0x6ea = 30;
                 mMoveMode++;
@@ -2584,7 +2619,7 @@ void daE_SW_c::d_hook() {
             field_0x6e4 = 0;
             field_0x6e5 = 0;
             field_0x98c.SetTgType(0);
-            bckSet(9, 1.0f, 2, 1.0f);
+            bckSet(BCK_SW_DAMAGE, 1.0f, 2, 1.0f);
             field_0x6d8 = 0.0f;
             speed.y = 0.0f;
             speedF = 0.0f;
@@ -2670,7 +2705,7 @@ void daE_SW_c::d_fall() {
             cLib_chaseF(&speedF, 0.0f, 1.0f);
 
             if (field_0x6ea == 0) {
-                bckSet(0xC, 10.0f, 2, 1.0f);
+                bckSet(BCK_SW_RUN, 10.0f, 2, 1.0f);
                 fopAcM_delete(this);
             }
             break;
