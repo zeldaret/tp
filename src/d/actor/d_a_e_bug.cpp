@@ -911,7 +911,7 @@ static cPhs__Step daE_Bug_Create(fopAc_ac_c* a_this) {
             JUT_ASSERT(1476, modelData != 0);
 
             if (dComIfGp_addSimpleModel(modelData, fopAcM_GetRoomNo(a_this), 0) == -1) {
-                OS_REPORT("1Bh", "[43;30m虫の集団：シンプルモデル登録失敗しました。\n", "1Bh", "[m"); // 1Bh, group of insects: Simple model registration failed.
+                OS_REPORT("1Bh[43;30m虫の集団：シンプルモデル登録失敗しました。\n1Bh[m"); // 1Bh, group of insects: Simple model registration failed.
             }
 
             i_this->field_0x7dad = 1;
