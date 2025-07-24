@@ -1260,11 +1260,11 @@ void daKago_c::executeStagger() {
         mDoMtx_stack_c::multVecZero(&field_0x674);
 
         if (field_0x6e7 == 0) {
-            mSound.startCreatureSound(0x70236, 0, -1);
-            mSound.startCreatureVoice(0x7048f, -1);
+            mSound.startCreatureSound(Z2SE_EN_YC_CRASH, 0, -1);
+            mSound.startCreatureVoice(Z2SE_EN_YC_V_HANGED, -1);
         } else {
-            mSound.startCreatureSound(0x70499, 0, -1);
-            mSound.startCreatureVoice(0x7049a, -1);
+            mSound.startCreatureSound(Z2SE_EN_KC_CRASH, 0, -1);
+            mSound.startCreatureVoice(Z2SE_EN_KC_V_CRASH, -1);
         }
 
         setBck(7, 0, 10.0f, 1.0f);
@@ -1309,7 +1309,7 @@ void daKago_c::executeStagger() {
             }
         }
 
-        mSound.startCreatureSound(0x704b3, 0, -1);
+        mSound.startCreatureSound(Z2SE_EN_YC_HIT_SIDE, 0, -1);
         dComIfGp_getVibration().StartQuake(1, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
 
         field_0x744 = 5;
@@ -1324,11 +1324,11 @@ void daKago_c::executeStagger() {
         mDoMtx_stack_c::multVecZero(&field_0x674);
 
         if (field_0x6e7 == 0) {
-            mSound.startCreatureSound(0x70236, 0, -1);
-            mSound.startCreatureVoice(0x7048f, -1);
+            mSound.startCreatureSound(Z2SE_EN_YC_CRASH, 0, -1);
+            mSound.startCreatureVoice(Z2SE_EN_YC_V_HANGED, -1);
         } else {
-            mSound.startCreatureSound(0x70499, 0, -1);
-            mSound.startCreatureVoice(0x7049a, -1);
+            mSound.startCreatureSound(Z2SE_EN_KC_CRASH, 0, -1);
+            mSound.startCreatureVoice(Z2SE_EN_KC_V_CRASH, -1);
         }
 
         setBck(7, 0, 10.0f, 1.0f);
@@ -1581,9 +1581,9 @@ void daKago_c::executeAttack() {
             cLib_chaseF(&field_0x6f8, 30.0f, l_HIO.mDashTimeMultiplier * 3.0f);
             if (mpMorf->checkFrame(9.0f)) {
                 if (field_0x6e7 == 0) {
-                    mSound.startCreatureSound(0x70492, 0, -1);
+                    mSound.startCreatureSound(Z2SE_EN_YC_DASH, 0, -1);
                 } else {
-                    mSound.startCreatureSound(0x7049b, 0, -1);
+                    mSound.startCreatureSound(Z2SE_EN_KC_DASH, 0, -1);
                 }
             }
             if (mpMorf->checkFrame(12.0f)) {
@@ -1910,9 +1910,9 @@ bool daKago_c::executePerchDemo() {
         } else {
             if (field_0x754 == 0) {
                 if (field_0x6e7 == 1) {
-                    mSound.startCreatureVoice(0x705b9, -1);
+                    mSound.startCreatureVoice(Z2SE_EN_KC_V_NAKU, -1);
                 } else {
-                    mSound.startCreatureVoice(0x705b8, -1);
+                    mSound.startCreatureVoice(Z2SE_EN_YC_V_NAKU, -1);
                 }
                 field_0x754 = 1;
             }
@@ -1974,9 +1974,9 @@ bool daKago_c::executePerchDemo() {
                 shape_angle.x = current.angle.x;
                 if (field_0x728 == 1) {
                     if (field_0x6e7 == 1) {
-                        mSound.startCreatureVoice(0x705b9, -1);
+                        mSound.startCreatureVoice(Z2SE_EN_KC_V_NAKU, -1);
                     } else {
-                        mSound.startCreatureVoice(0x705b8, -1);
+                        mSound.startCreatureVoice(Z2SE_EN_YC_V_NAKU, -1);
                     }
                 }
             } else {
@@ -2171,9 +2171,9 @@ bool daKago_c::PerchDemoAwayForward() {
 
         if (field_0x728 == 0x14 && field_0x744 == 0) {
             if (field_0x6e7 == 1) {
-                mSound.startCreatureVoice(0x705b9, -1);
+                mSound.startCreatureVoice(Z2SE_EN_KC_V_NAKU, -1);
             } else {
-                mSound.startCreatureVoice(0x705b8, -1);
+                mSound.startCreatureVoice(Z2SE_EN_YC_V_NAKU, -1);
             }
         }
 
@@ -2573,9 +2573,9 @@ bool daKago_c::executeFirstDemo() {
 
             if (field_0x728 == 0x14) {
                 if (field_0x6e7 == 1) {
-                    mSound.startCreatureVoice(0x705b9, -1);
+                    mSound.startCreatureVoice(Z2SE_EN_KC_V_NAKU, -1);
                 } else {
-                    mSound.startCreatureVoice(0x705b8, -1);
+                    mSound.startCreatureVoice(Z2SE_EN_YC_V_NAKU, -1);
                 }
             }
 
@@ -2766,9 +2766,9 @@ bool daKago_c::executeFirstDemo() {
 
         if (unkFlag1 != 0) {
             if (field_0x6e7 == 1) {
-                mSound.startCreatureVoice(0x705b9, -1);
+                mSound.startCreatureVoice(Z2SE_EN_KC_V_NAKU, -1);
             } else {
-                mSound.startCreatureVoice(0x705b8, -1);
+                mSound.startCreatureVoice(Z2SE_EN_YC_V_NAKU, -1);
             }
         }
 
@@ -2857,9 +2857,9 @@ void daKago_c::executeLandingLakeHairia() {
     case 2:
         if (field_0x728 == 0x8c) {
             if (field_0x6e7 == 0x01) {
-                mSound.startCreatureVoice(0x705b9, -1);
+                mSound.startCreatureVoice(Z2SE_EN_KC_V_NAKU, -1);
             } else {
-                mSound.startCreatureVoice(0x705b8, -1);
+                mSound.startCreatureVoice(Z2SE_EN_YC_V_NAKU, -1);
             }
         }
 
@@ -2965,9 +2965,9 @@ void daKago_c::executeLandingLakeHairia() {
 
         if (field_0x728 == 90) {
             if (field_0x6e7 == 0x01) {
-                mSound.startCreatureVoice(0x705b9, -1);
+                mSound.startCreatureVoice(Z2SE_EN_KC_V_NAKU, -1);
             } else {
-                mSound.startCreatureVoice(0x705b8, -1);
+                mSound.startCreatureVoice(Z2SE_EN_YC_V_NAKU, -1);
             }
         }
 
@@ -3035,9 +3035,9 @@ void daKago_c::executeLandingBoartHouse() {
     case 1: {
         if (field_0x728 == 0x46) {
             if (field_0x6e7 == 0x01) {
-                mSound.startCreatureVoice(0x705b9, -1);
+                mSound.startCreatureVoice(Z2SE_EN_KC_V_NAKU, -1);
             } else {
-                mSound.startCreatureVoice(0x705b8, -1);
+                mSound.startCreatureVoice(Z2SE_EN_YC_V_NAKU, -1);
             }
         }
 
@@ -3100,9 +3100,9 @@ void daKago_c::executeLandingBoartHouse() {
 
         if (field_0x728 == 0x50) {
             if (field_0x6e7 == 0x01) {
-                mSound.startCreatureVoice(0x705b9, -1);
+                mSound.startCreatureVoice(Z2SE_EN_KC_V_NAKU, -1);
             } else {
-                mSound.startCreatureVoice(0x705b8, -1);
+                mSound.startCreatureVoice(Z2SE_EN_YC_V_NAKU, -1);
             }
         }
 
@@ -3199,9 +3199,9 @@ void daKago_c::moveDemoFly() {
             cLib_chaseF(&field_0x6f8, 30.0f, l_HIO.mDashTimeMultiplier * 3.0f);
             if (mpMorf->checkFrame(9.0f)) {
                 if (field_0x6e7 == 0) {
-                    mSound.startCreatureSound(0x70492, 0, -1);
+                    mSound.startCreatureSound(Z2SE_EN_YC_DASH, 0, -1);
                 } else {
-                    mSound.startCreatureSound(0x7049b, 0, -1);
+                    mSound.startCreatureSound(Z2SE_EN_KC_DASH, 0, -1);
                 }
             }
             if (mpMorf->checkFrame(12.0f)) {
@@ -3448,9 +3448,9 @@ void daKago_c::setSibukiEffect() {
     }
 
     if (field_0x6e7 == 0) {
-        mSound.startCreatureSoundLevel(0x70496, 0, -1);
+        mSound.startCreatureSoundLevel(Z2SE_EN_YC_SPLASH, 0, -1);
     } else {
-        mSound.startCreatureSoundLevel(0x7049c, 0, -1);
+        mSound.startCreatureSoundLevel(Z2SE_EN_KC_SPLASH, 0, -1);
     }
 }
 
@@ -3477,9 +3477,9 @@ void daKago_c::setWaterFallEffect() {
                                   0, 0xff, 0, 0xffffffff, 0, 0, 0);
     }
     if (field_0x6e7 == 0) {
-        mSound.startCreatureSoundLevel(0x70496, 0, -1);
+        mSound.startCreatureSoundLevel(Z2SE_EN_YC_SPLASH, 0, -1);
     } else {
-        mSound.startCreatureSoundLevel(0x7049c, 0, -1);
+        mSound.startCreatureSoundLevel(Z2SE_EN_KC_SPLASH, 0, -1);
     }
 }
 
@@ -3531,17 +3531,17 @@ void daKago_c::setFlySound() {
             }
         } else if (checkBck(12) || checkBck(13)) {
             if (field_0x6e7 == 0) {
-                mSound.startCreatureSoundLevel(0x70235, 0, -1);
+                mSound.startCreatureSoundLevel(Z2SE_EN_YC_GLIDE, 0, -1);
             } else {
-                mSound.startCreatureSoundLevel(0x70498, 0, -1);
+                mSound.startCreatureSoundLevel(Z2SE_EN_KC_GLIDE, 0, -1);
             }
         }
 
         if (unkFlag1) {
             if (field_0x6e7 == 0) {
-                mSound.startCreatureSound(0x70234, 0, -1);
+                mSound.startCreatureSound(Z2SE_EN_YC_WING, 0, -1);
             } else {
-                mSound.startCreatureSound(0x70497, 0, -1);
+                mSound.startCreatureSound(Z2SE_EN_KC_WING, 0, -1);
             }
         }
     }
