@@ -33,10 +33,18 @@ public:
     /* 80CB242C */ void Delete();
     /* 80CB2610 */ ~daPoCandle_c();
 
-    /* 80CB3E3C */ void getFirePos(); // implemented in d_a_obj_poFire.cpp
+    /* 80CB3E3C */ cXyz getFirePos(); // implemented in d_a_obj_poFire.cpp
+    u8 getIDNum() {return mIDNum;}
+    void setFireFlag(u8 flag) { field_0x5D2 = flag; }
 
 private:
-    /* 0x568 */ u8 field_0x568[0x614 - 0x568];
+    /* 0x568 */ u8 field_0x568[0x5C4 - 0x568];
+    /* 0x5C4 */ cXyz mFirePos;
+    /* 0x5D0 */ u8 field_0x5D0[0x5D2 - 0x5D0];
+    /* 0x5D2 */ u8 field_0x5D2;
+    /* 0x5D3 */ u8 field_0x5D3[0x5D5 - 0x5D3];
+    /* 0x5D5 */ u8 mIDNum;
+    /* 0x5DB */ u8 field_0x5DB[0x614 - 0x5D6];
 };
 
 STATIC_ASSERT(sizeof(daPoCandle_c) == 0x614);

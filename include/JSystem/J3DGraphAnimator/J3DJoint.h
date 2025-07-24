@@ -28,7 +28,10 @@ public:
     virtual void calc() = 0;
 
     static J3DMtxBuffer* getMtxBuffer() { return mMtxBuffer; }
-    static J3DJoint* getJoint() { return mJoint; }
+    static J3DJoint* getJoint() {
+        J3D_ASSERT(185, mJoint != NULL, "Error : null pointer.")
+        return mJoint;
+    }
     static void setJoint(J3DJoint* joint) { mJoint = joint; }
 
     static J3DMtxBuffer* mMtxBuffer;

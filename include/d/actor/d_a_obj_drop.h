@@ -55,8 +55,10 @@ public:
     u8 getYmSwbit() { return fopAcM_GetParamBit(this, 8, 8); }
     u8 getSave() { return fopAcM_GetParamBit(this, 0, 6); }
 
+    void setPos(cXyz i_pos) { current.pos = i_pos; }
     void setDemoMode(u8 i_mode) { mDemoMode = i_mode; }
     void setMode(u8 i_mode) { mMode = i_mode; }
+    void setAppear() { mAppear = 1; }
     u8 chkDemoMode() { return mDemoMode; }
 
     /* 0x568 */ cXyz mLinePos[3];

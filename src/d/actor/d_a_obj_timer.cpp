@@ -89,7 +89,7 @@ void daObjTimer::Act_c::mode_count() {
 }
 
 /* 804854BC-804855A4 00039C 00E8+00 1/1 0/0 0/0 .text            _execute__Q210daObjTimer5Act_cFv */
-int daObjTimer::Act_c::_execute() {
+bool daObjTimer::Act_c::_execute() {
     static daObjTimer::Act_c::modeProc const mode_proc[2] = {
         &daObjTimer::Act_c::mode_wait,
         &daObjTimer::Act_c::mode_count,
@@ -97,10 +97,10 @@ int daObjTimer::Act_c::_execute() {
 
     if (fopAcM_isSwitch(this, prm_get_sw2Save())) {
         fopAcM_delete(this);
-        return 1;
+        return true;
     } else {
         (this->*mode_proc[field_0x568])();
-        return 1;
+        return true;
     }
 }
 
@@ -136,8 +136,8 @@ namespace {
         (process_method_func)Mthd_Create,
         (process_method_func)Mthd_Delete,
         (process_method_func)Mthd_Execute, 
-        (process_method_func)Mthd_Draw,
         (process_method_func)Mthd_IsDelete,
+        (process_method_func)Mthd_Draw,
     };
 }
 

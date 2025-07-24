@@ -552,7 +552,7 @@ void daObjNAN_c::action() {
 /* ############################################################################################## */
 /* 80CA3270-80CA3274 0000B4 0002+02 0/1 0/0 0/0 .rodata          l_nan_itemno */
 static u8 const l_nan_itemno[2] = {
-    0xC8, 0xC9,
+    fpcNm_ITEM_M_NANAFUSHI, fpcNm_ITEM_F_NANAFUSHI,
 };
 
 /* 80CA276C-80CA2904 0022AC 0198+00 1/1 0/0 0/0 .text            execute__10daObjNAN_cFv */

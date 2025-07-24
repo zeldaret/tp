@@ -12,6 +12,8 @@ public:
     /* 80D5DC20 */ int Draw();
     /* 80D5DC28 */ int Delete();
 
+    void setFireFlag(u8 flag) { field_0x569 = flag; }
+
     /* 0x568 */ u8 field_0x568;
     /* 0x569 */ u8 field_0x569;
     /* 0x56A */ u16 field_0x56a;

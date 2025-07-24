@@ -453,7 +453,7 @@ inline void dMsgObject_setSmellType(u8 type) {
 }
 
 inline u8 dMsgObject_getSelectCursorPos() {
-    return dMsgObject_c::getSelectCursorPos();
+    return dMsgObject_getMsgObjectClass()->getSelectCursorPos();
 }
 
 inline void dMsgObject_setTalkPartner(fopAc_ac_c* actor) {
