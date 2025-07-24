@@ -934,6 +934,7 @@ public:
     void onForceAutoJump() { onEndResetFlg0(ERFLG0_FORCE_AUTO_JUMP); }
     void onNotAutoJump() { onEndResetFlg0(ERFLG0_NOT_AUTO_JUMP); }
     void onNotHang() { onEndResetFlg0(ERFLG0_NOT_HANG); }
+    void onLeafSe() { onEndResetFlg0(ERFLG0_UNK_200000); }
     void onWolfFchainPull() { onEndResetFlg0(ERFLG0_WOLF_FCHAIN_PULL); }
     void onFishingRodGetFish() { onEndResetFlg0(ERFLG0_FISHING_ROD_GET_FISH); }
     void onShieldBackBone() { onEndResetFlg1(ERFLG1_GANON_FINISH); }

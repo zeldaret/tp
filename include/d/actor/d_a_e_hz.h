@@ -11,6 +11,7 @@
  * 
  */
 class daE_HZ_c : public fopEn_enemy_c {
+public:
     /* 806EA690 */ void setBck(int, u8, f32, f32);
     /* 806EA734 */ void checkBck(int);
     /* 806EA790 */ void draw();
@@ -19,7 +20,7 @@ class daE_HZ_c : public fopEn_enemy_c {
     /* 806EAEDC */ void checkAttackStart();
     /* 806EB05C */ void checkArrowCharge();
     /* 806EB0A4 */ void setTgSetBit(int);
-    /* 806EB0FC */ void isWait();
+    /* 806EB0FC */ bool isWait();
     /* 806EB13C */ void checkFall();
     /* 806EB2E8 */ void setCloseSmokeEffect();
     /* 806EB3EC */ void executeWait();
