@@ -848,16 +848,42 @@ daNpcShad_c::~daNpcShad_c() {
 
 /* ############################################################################################## */
 /* 80AE1FDC-80AE204C 000000 0070+00 19/19 0/0 0/0 .rodata          m__17daNpcShad_Param_c */
-SECTION_RODATA u8 const daNpcShad_Param_c::m[112] = {
-    0x42, 0x0C, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xC8, 0x00, 0x00,
-    0x43, 0x7F, 0x00, 0x00, 0x43, 0x48, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x42, 0x34, 0x00, 0x00, 0xC2, 0x34, 0x00, 0x00,
-    0x41, 0xF0, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00, 0xC2, 0x20, 0x00, 0x00,
-    0x3F, 0x19, 0x99, 0x9A, 0x41, 0x40, 0x00, 0x00, 0x00, 0x03, 0x00, 0x06, 0x00, 0x05, 0x00, 0x06,
-    0x42, 0xA0, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00, 0xC3, 0x96, 0x00, 0x00,
-    0x00, 0x3C, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x40, 0x00, 0x00,
+const daNpcShad_HIOParam daNpcShad_Param_c::m = {
+    35.0f,
+    -3.0f,
+    1.0f,
+    400.0f,
+    255.0f,
+    200.0f,
+    35.0f,
+    30.0f,
+    0.0f,
+    0.0f,
+    45.0f,
+    -45.0f,
+    30.0f,
+    -10.0f,
+    40.0f,
+    -40.0f,
+    0.6f,
+    12.0f,
+    3,
+    6,
+    5,
+    6,
+    80.0f,
+    500.0f,
+    300.0f,
+    -300.0f,
+    60,
+    8,
+    0,
+    0,
+    0,
+    false,
+    false,
+    12.0f,
 };
-COMPILER_STRIP_GATE(0x80AE1FDC, &daNpcShad_Param_c::m);
 
 /* 80AE204C-80AE2050 000070 0004+00 0/1 0/0 0/0 .rodata          @4402 */
 #pragma push
@@ -1040,20 +1066,18 @@ void daNpcShad_c::ctrlJointCallBack(J3DJoint* param_0, int param_1) {
     // NONMATCHING
 }
 
-/* 80AD94B8-80AD974C 001398 0294+00 2/0 0/0 0/0 .text            setExpressionAnm__11daNpcShad_cFib
- */
-void daNpcShad_c::setExpressionAnm(int param_0, bool param_1) {
+/* 80AD94B8-80AD974C 001398 0294+00 2/0 0/0 0/0 .text            setExpressionAnm__11daNpcShad_cFib */
+bool daNpcShad_c::setExpressionAnm(int param_0, bool param_1) {
     // NONMATCHING
 }
 
-/* 80AD974C-80AD982C 00162C 00E0+00 1/0 0/0 0/0 .text            setExpressionBtp__11daNpcShad_cFi
- */
-void daNpcShad_c::setExpressionBtp(int param_0) {
+/* 80AD974C-80AD982C 00162C 00E0+00 1/0 0/0 0/0 .text            setExpressionBtp__11daNpcShad_cFi */
+bool daNpcShad_c::setExpressionBtp(int param_0) {
     // NONMATCHING
 }
 
 /* 80AD982C-80AD99B4 00170C 0188+00 1/0 0/0 0/0 .text            setMotionAnm__11daNpcShad_cFif */
-bool daNpcShad_c::setMotionAnm(int param_0, f32 param_1) {
+void daNpcShad_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 
@@ -2325,7 +2349,7 @@ void daNpcShad_c::setParam() {
 }
 
 /* 80AE0438-80AE04D8 008318 00A0+00 1/0 0/0 0/0 .text            main__11daNpcShad_cFv */
-void daNpcShad_c::main() {
+BOOL daNpcShad_c::main() {
     // NONMATCHING
 }
 
@@ -2345,7 +2369,7 @@ SECTION_RODATA static f32 const lit_6995 = 1.0f / 5.0f;
 COMPILER_STRIP_GATE(0x80AE24B0, &lit_6995);
 
 /* 80AE0ED0-80AE0FAC 008DB0 00DC+00 1/0 0/0 0/0 .text            ctrlBtk__11daNpcShad_cFv */
-void daNpcShad_c::ctrlBtk() {
+BOOL daNpcShad_c::ctrlBtk() {
     // NONMATCHING
 }
 
@@ -2383,7 +2407,7 @@ void daNpcShad_c::lookat() {
 }
 
 /* 80AE153C-80AE1544 00941C 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__11daNpcShad_cFv */
-bool daNpcShad_c::drawDbgInfo() {
+BOOL daNpcShad_c::drawDbgInfo() {
     return false;
 }
 
