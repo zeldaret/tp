@@ -3517,6 +3517,10 @@ inline BOOL dComIfGp_evmng_startCheck(char const* i_event) {
     return g_dComIfG_gameInfo.play.getEvtManager().startCheckOld(i_event);
 }
 
+inline BOOL dComIfGp_evmng_startCheck(s16 i_eventId) {
+    return g_dComIfG_gameInfo.play.getEvtManager().startCheck(i_eventId);
+}
+
 inline BOOL dComIfGp_evmng_endCheck(const char* event) {
     return g_dComIfG_gameInfo.play.getEvtManager().endCheckOld(event);
 }

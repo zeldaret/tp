@@ -2153,7 +2153,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_usaku"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_vground"),
     ActorRel(NonMatching, "d_a_obj_volcball"),
-    ActorRel(NonMatching, "d_a_obj_volcbom"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_volcbom"),
     ActorRel(NonMatching, "d_a_obj_warp_kbrg"),
     ActorRel(NonMatching, "d_a_obj_warp_obrg"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_waterGate"),

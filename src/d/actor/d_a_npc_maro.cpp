@@ -3316,7 +3316,7 @@ int daNpc_Maro_c::arrowTutorial(void* ) {
                     field_0xe33 = 1;
                 } else {
                     actor_p = (daTag_EvtArea_c*) mActorMngr[6].getActorP();
-                    if (actor_p != NULL && !(daPy_getPlayerActorClass()->eventInfo.chkCondition(1) == 0)) {
+                    if (actor_p != NULL && !(daPy_getPlayerActorClass()->eventInfo.chkCondition(dEvtCnd_CANTALK_e) == 0)) {
                         if (actor_p->chkPointInArea(daPy_getPlayerActorClass()->current.pos) == 0) {
                             mEvtNo = 9;
                         }
