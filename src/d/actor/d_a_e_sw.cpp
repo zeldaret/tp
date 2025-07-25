@@ -232,7 +232,7 @@ fopAc_ac_c* daE_SW_c::search_bomb() {
     target_info = NULL;
     target_dist = l_HIO.bomb_notice_dist;
     fpcM_Search(s_b_sub, this);
-    field_0x688 = -1;
+    field_0x688 = fpcM_ERROR_PROCESS_ID_e;
 
     if (target_info != NULL) {
         field_0x688 = fopAcM_GetID(target_info);
