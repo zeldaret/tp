@@ -313,7 +313,6 @@ int daObjThDoor_c::demoProc() {
         if (cLib_chaseS(&field_0x608, 0, field_0x5b8) == 0) {
             break;
         }
-        ;
         dComIfGp_getVibration().StartShock(4, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
         dComIfGp_evmng_cutEnd(mStaffId);
         break;
