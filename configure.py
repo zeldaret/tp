@@ -2135,7 +2135,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_testcube"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_tgake"),
     ActorRel(NonMatching, "d_a_obj_thashi"),
-    ActorRel(NonMatching, "d_a_obj_thdoor"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_thdoor"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_timeFire"),
     ActorRel(NonMatching, "d_a_obj_tks"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_tmoon"),
@@ -2178,7 +2178,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_zrTuraraRock"),
     ActorRel(Equivalent, "d_a_obj_zraMark"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_zra_freeze"),
-    ActorRel(NonMatching, "d_a_obj_zra_rock"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_zra_rock"),
     ActorRel(NonMatching, "d_a_passer_mng"),
     ActorRel(Equivalent, "d_a_peru"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_ppolamp"),

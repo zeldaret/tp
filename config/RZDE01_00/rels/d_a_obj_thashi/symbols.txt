@@ -77,4 +77,4 @@ lbl_658_data_182 = .data:0x00000182; // type:object size:0xF data:string
 lbl_658_data_191 = .data:0x00000191; // type:object size:0xF data:string
 lbl_658_data_1A0 = .data:0x000001A0; // type:object size:0xF data:string
 lbl_658_data_1AF = .data:0x000001AF; // type:object size:0x11
-lbl_658_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
+init$1622 = .bss:0x00000000; // type:object size:0x1 data:byte scope:local
