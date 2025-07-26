@@ -1201,7 +1201,7 @@ void daE_ZH_c::executeBgHitSHMove() {
 
     if (NREG_S(0) != 0) {
         OS_REPORT("mRetrunStartLine.x %f\n", mRetrunStartLine.x);
-        OS_REPORT("mRetrunEndLine.x %f\n". mRetrunEndLine.x);
+        OS_REPORT("mRetrunEndLine.x %f\n", mRetrunEndLine.x);
         OS_REPORT("mRetrunStartLine.z %f\n", mRetrunStartLine.z);
         OS_REPORT("mRetrunEndLine.z %f\n", mRetrunEndLine.z);
         OS_REPORT("\n");

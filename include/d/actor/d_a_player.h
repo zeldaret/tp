@@ -437,7 +437,7 @@ public:
         FLG3_COPY_ROD_ATN_KEEP = 0x10000000,
         FLG3_BOOMERANG_ATN_KEEP = 0x8000000,
         FLG3_UNK_4000000 = 0x4000000,
-        FLG3_UNK_2000000 = 0x2000000,
+        FLG3_WARP_OBJ_DEMO = 0x2000000,
         FLG3_UNK_1000000 = 0x1000000,
         FLG3_UNK_800000 = 0x800000,
         FLG3_UNK_400000 = 0x400000,
@@ -963,6 +963,7 @@ public:
         }
     }
     void onMidnaTalkPolySpeed() { onNoResetFlg3(FLG3_MIDNA_TALK_POLY_SPEED); }
+    void onWarpObjDemo() { onNoResetFlg3(FLG3_WARP_OBJ_DEMO); }
 
     void offCargoCarry() {
         if (checkCargoCarry()) {

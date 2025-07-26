@@ -136,6 +136,7 @@ public:
         FLG0_UNK_4 = 4,
         FLG0_UNK_2 = 2,
         FLG0_UNK_1 = 1,
+        FLG0_TAG_PORTAL = FLG0_TAG_WAIT | FLG0_PORTAL_OBJ_CALL,
     };
 
     enum daMidna_FLG1 {
@@ -296,6 +297,11 @@ public:
         mTagWaitPos = *param_0;
         onStateFlg0(FLG0_TAG_WAIT);
         onEndResetStateFlg0(ERFLG0_UNK_2);
+    }
+
+    void onTagWaitPosPortalObj(const cXyz& i_pos) {
+        mTagWaitPos = i_pos;
+        onStateFlg0(FLG0_TAG_PORTAL);
     }
 
     void onTagWaitPos(const cXyz* param_0) {

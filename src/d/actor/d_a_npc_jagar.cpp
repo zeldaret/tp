@@ -1314,7 +1314,7 @@ int daNpc_Jagar_c::wait(void* param_0) {
                             if (chkSitMotion() || field_0x1002 != 0) {
                                 if (!daNpcT_chkEvtBit(0x235) && !daNpcT_chkEvtBit(0x87) &&
                                 daNpcT_chkTmpBit(0x10)) {
-                                    if (daPy_getPlayerActorClass()->eventInfo.chkCondition(1) != 0 ? 1 : 0) {
+                                    if (daPy_getPlayerActorClass()->eventInfo.chkCondition(dEvtCnd_CANTALK_e) != 0 ? 1 : 0) {
                                         mEvtNo = 3;
                                     }
                                 }

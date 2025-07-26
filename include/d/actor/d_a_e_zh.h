@@ -118,6 +118,8 @@ public:
     /* 8082902C */ daE_ZH_HIO_c();
     /* 8082F160 */ virtual ~daE_ZH_HIO_c() {}
 
+    void genMessage(JORMContext* ctx);
+
     // ボールマスター (Ball Master)
     /* 0x04 */ s8 field_0x4;
     /* 0x08 */ f32 model_size;          // モデルサイズ (Model Size)

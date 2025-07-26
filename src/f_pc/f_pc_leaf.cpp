@@ -57,7 +57,7 @@ int g_fpcLf_type;
 
 /* 80021B14-80021B88 0074+00 s=1 e=0 z=0  None .text      fpcLf_Create__FP14leafdraw_class */
 s32 fpcLf_Create(leafdraw_class* i_leaf) {
-    if (i_leaf->base.init_state == 0) {
+    if (i_leaf->base.state.init_state == 0) {
         leaf_process_profile_definition* pprofile = (leaf_process_profile_definition*)i_leaf->base.profile;
         i_leaf->leaf_methods = pprofile->sub_method;
         i_leaf->base.subtype = fpcBs_MakeOfType(&g_fpcLf_type);
