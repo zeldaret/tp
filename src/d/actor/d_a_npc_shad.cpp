@@ -1684,16 +1684,16 @@ inline BOOL daNpcShad_c::chkFindPlayer() {
     return rv;
 }
 
-inline void daNpcShad_c::setLookMode(int param_1, daPy_py_c* param_2, cXyz* param_3) {
+inline void daNpcShad_c::setLookMode(int param_1, fopAc_ac_c* param_2, cXyz* param_3) {
     switch (param_1) {
         case 0:
         case 1:
         case 2:
         case 3:
         case 4:
-            if (field_0xe18 != param_1 || field_0xca8 != NULL) {
+            if (field_0xe18 != param_1 || (daPy_py_c*)param_2 != field_0xca8) {
                 field_0xe18 = param_1;
-                field_0xca8 = param_2;
+                field_0xca8 = (daPy_py_c*)param_2;
             }
             break;
 
@@ -2245,21 +2245,91 @@ bool daNpcShad_c::leave(void* param_1) {
     return true;
 }
 
-/* ############################################################################################## */
-/* 80AE24C4-80AE24C4 0004E8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80AE2612 = "prm";
-#pragma pop
-
 /* 80ADC700-80ADC800 0045E0 0100+00 1/0 0/0 0/0 .text            EvCut_Introduction__11daNpcShad_cFi */
-BOOL daNpcShad_c::EvCut_Introduction(int param_0) {
-    // NONMATCHING
+BOOL daNpcShad_c::EvCut_Introduction(int i_index) {
+    dEvent_manager_c* eventManager = &dComIfGp_getEventManager();
+    int* piVar1 = dComIfGp_evmng_getMyIntegerP(i_index, "prm");
+    if (piVar1 == NULL) {
+        return FALSE;
+    }
+
+    if (eventManager->getIsAddvance(i_index)) {
+        switch (*piVar1) {
+            case 0:
+            case 2:
+                setLookMode(0, NULL, NULL);
+                return TRUE;
+
+            case 1:
+                setLookMode(2, NULL, NULL);
+                return TRUE;
+
+            default:
+                JUT_ASSERT(2184, 0);
+                break;
+        }
+    }
+
+    return FALSE;
 }
 
 /* 80ADC800-80ADCAD8 0046E0 02D8+00 1/0 0/0 0/0 .text            EvCut_Meeting__11daNpcShad_cFi */
-BOOL daNpcShad_c::EvCut_Meeting(int param_0) {
-    // NONMATCHING
+BOOL daNpcShad_c::EvCut_Meeting(int i_index) {
+    dEvent_manager_c* eventManager = &dComIfGp_getEventManager();
+    int* piVar1 = dComIfGp_evmng_getMyIntegerP(i_index, "prm");
+    if (piVar1 == NULL) {
+        return FALSE;
+    }
+
+    if (eventManager->getIsAddvance(i_index)) {
+        switch (*piVar1) {
+            case 0:
+                setExpression(12, -1.0f);
+                setMotion(4, -1.0f, 0);
+                break;
+
+            case 1:
+                setLookMode(2, NULL, NULL);
+                break;
+
+            default:
+                JUT_ASSERT(2221, 0);
+                break;
+        }
+    }
+
+    int iVar1, iVar2, iVar3;
+    iVar3 = mMsgTimer;
+
+    if (ctrlMsgAnm(iVar1, iVar2, this, FALSE)) {
+        setExpression(iVar1, -1.0f);
+        setMotion(iVar2, -1.0f, 0);
+    } else {
+        if (iVar3 != 0 && mMsgTimer == 0) {
+            setExpressionTalkAfter();
+        }
+    }
+
+    fopAc_ac_c* actor;
+    switch (*piVar1) {
+        case 0:
+            actor = dComIfGp_event_getTalkPartner();
+            if (actor == this) {
+                actor = NULL;
+            }
+
+            setLookMode(4, actor, NULL);
+            return TRUE;
+
+        case 1:
+            return TRUE;
+
+        default:
+            JUT_ASSERT(2245, 0);
+            break;
+    }
+
+    return FALSE;
 }
 
 /* ############################################################################################## */
@@ -2312,8 +2382,147 @@ COMPILER_STRIP_GATE(0x80AE2484, &lit_6115);
 #pragma pop
 
 /* 80ADCAD8-80ADD720 0049B8 0C48+00 1/0 0/0 0/0 .text EvCut_ToChantSpell1__11daNpcShad_cFi */
-BOOL daNpcShad_c::EvCut_ToChantSpell1(int param_0) {
+BOOL daNpcShad_c::EvCut_ToChantSpell1(int i_index) {
     // NONMATCHING
+    dEvent_manager_c* eventManager = &dComIfGp_getEventManager();
+    int* piVar1 = (int*)eventManager->getMyNowCutName(i_index);
+
+    if (eventManager->getIsAddvance(i_index)) {
+        switch (*piVar1) {
+            case 0x30303031:
+            case 0x30303032:
+                setLookMode(0, NULL, NULL);
+                initTalk(field_0xe14, NULL);
+                break;
+
+            case 0x30303035:
+                initTalk(field_0xe14, NULL);
+                setExpression(10, -1.0f);
+                setMotion(7, -1.0f, 0);
+                break;
+
+            case 0x30303036:
+                mTurnMode = 0;
+                setMotion(0x14, -1.0f, 0);
+                break;
+
+            case 0x30303037:
+                current.pos = home.pos;
+                old.pos = current.pos;
+                speedF = 0.0f;
+                setMotion(0, -1.0f, 0);
+                field_0xe1e = 0;
+                break;
+
+            case 0x30303038:
+                initTalk(field_0xe14, NULL);
+                Z2GetAudioMgr()->subBgmStart(Z2BGM_ITEM_GET);
+                break;
+
+            case 0x30303039:
+                setAngle(home.angle.y - 0x2000);
+                // fallthrough
+            case 0x30303130:
+                initTalk(field_0xe14, NULL);
+                break;
+
+            default:
+                JUT_ASSERT(2298, 0);
+                break;
+        }
+
+        int iVar1, iVar2, iVar3;
+        iVar3 = mMsgTimer;
+
+        if (ctrlMsgAnm(iVar1, iVar2, this, FALSE)) {
+            setExpression(iVar1, -1.0f);
+            setMotion(iVar2, -1.0f, 0);
+        } else if (iVar3 != 0 && mMsgTimer == 0) {
+            setExpressionTalkAfter();
+        }
+
+        cXyz sp30;
+        switch (*piVar1) {
+            case 0x3031:
+                if (!step(fopAcM_searchPlayerAngleY(this), 21, 15.0f)) {
+                    break;
+                }
+
+                setExpression(12, -1.0f);
+                setMotion(0, -1.0f, 0);
+                mTurnMode = 0;
+                return TRUE;
+
+            case 0x3032:
+            // case 0x3035:
+
+                if (mCurAngle.y == fopAcM_searchPlayerAngleY(this)) {
+                    if (talkProc(NULL, TRUE, NULL)) {
+                        return TRUE;
+                    }
+                } else
+                    if (step(fopAcM_searchPlayerAngleY(this), 21, 15.0f)) {
+                        setMotion(0, -1.0f, 0);
+                        mTurnMode = 0;
+                    }
+                break;
+
+            case 0x3033:
+                sp30.set(-429.5251f, -770.0f, -2582.803f);
+                step(cLib_targetAngleY(fopAcM_GetPosition_p(this), &sp30), -1, 60.0f);
+                speedF = 4.7f;
+                return TRUE;
+
+            case 0x3037:
+                Z2GetAudioMgr()->seStartLevel(Z2SE_AL_COPYROD_COMEBACK, fopAcM_GetPosition_p(daPy_getPlayerActorClass()), 0,
+                                              0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                return TRUE;
+
+            case 0x3038:
+                Z2GetAudioMgr()->seStartLevel(Z2SE_AL_COPYROD_COMEBACK, fopAcM_GetPosition_p(daPy_getPlayerActorClass()), 0,
+                                              0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+
+                if (talkProc(NULL, TRUE, NULL)) {
+                    fopAcM_delete(this);
+                    return TRUE;
+                }
+                break;
+
+            case 0x3039:
+                if (home.angle.y == mCurAngle.y) {
+                    if (talkProc(NULL, TRUE, NULL)) {
+                        if (mMotion != 0x12) {
+                            Z2GetAudioMgr()->muteSceneBgm(190, 0.0f);
+                        }
+
+                        mSound.startCreatureVoiceLevel(Z2SE_SHAD_V_INCANTATION, -1);
+                        setExpression(11, -1.0f);
+                        setMotion(0x12, -1.0f, 0);
+                        return TRUE;
+                    }
+                } else if (step(home.angle.y, 21, 15.0f)) {
+                    setMotion(0, -1.0f, 0);
+                    mTurnMode = 0;
+                }
+                break;
+
+            case 0x3130:
+                if (talkProc(NULL, TRUE, NULL)) {
+                    Z2GetAudioMgr()->unMuteSceneBgm(70);
+                    setExpression(12, -1.0f);
+                    setMotion(0, -1.0f, 0);
+                    setAngle(fopAcM_searchPlayerAngleY(this));
+                    return TRUE;
+                }
+                break;
+
+            default:
+                JUT_ASSERT(2382, 0);
+                break;
+        }
+    }
+
+    return FALSE;
 }
 
 /* ############################################################################################## */

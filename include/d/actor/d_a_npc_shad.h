@@ -96,7 +96,7 @@ public:
     }
 
     inline BOOL chkFindPlayer();
-    inline void setLookMode(int, daPy_py_c*, cXyz*);
+    inline void setLookMode(int, fopAc_ac_c*, cXyz*);
     inline BOOL step(s16, int, f32);
 
     inline void setExpressionTalkAfter();
