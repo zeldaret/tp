@@ -4,897 +4,896 @@
 */
 
 #include "d/actor/d_a_obj_warp_kbrg.h"
-#include "dol2asm.h"
+#include "d/d_com_inf_game.h"
+#include "d/actor/d_a_player.h"
+#include "d/actor/d_a_midna.h"
+#include "d/d_s_play.h"
+#include "d/d_bg_w.h"
+#include "d/d_meter2_info.h"
 
+/* 80D295B4-80D295BC 000000 0008+00 6/6 0/0 0/0 .rodata          l_bmd_idx */
+static const int l_bmd_idx[] = {9, 11};
 
+/* 80D295BC-80D295C4 000008 0008+00 1/1 0/0 0/0 .rodata          l_dzb_idx */
+static const int l_dzb_idx[] = {15, 22};
 
-//
-// Forward References:
-//
+/* 80D295C4-80D295CC 000010 0008+00 0/1 0/0 0/0 .rodata          l_btk_idx */
+static const int l_btk_idx[] = {12, 19};
 
-extern "C" static void eventCallBack__FPvi();
-extern "C" void initBaseMtx__15daObjWarpKBrg_cFv();
-extern "C" void setBaseMtx__15daObjWarpKBrg_cFv();
-extern "C" void Create__15daObjWarpKBrg_cFv();
-extern "C" void CreateHeap__15daObjWarpKBrg_cFv();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" void create1st__15daObjWarpKBrg_cFv();
-extern "C" void Execute__15daObjWarpKBrg_cFPPA3_A4_f();
-extern "C" void event_proc_call__15daObjWarpKBrg_cFv();
-extern "C" void orderZHintEvent__15daObjWarpKBrg_cFv();
-extern "C" void actionWait__15daObjWarpKBrg_cFv();
-extern "C" void actionOrderEvent__15daObjWarpKBrg_cFv();
-extern "C" void actionWaitWarpEvent__15daObjWarpKBrg_cFv();
-extern "C" void actionOrderATalkEvent__15daObjWarpKBrg_cFv();
-extern "C" void actionTalkEvent__15daObjWarpKBrg_cFv();
-extern "C" void actionWarpEvent__15daObjWarpKBrg_cFv();
-extern "C" void actionDead__15daObjWarpKBrg_cFv();
-extern "C" void actionWait2__15daObjWarpKBrg_cFv();
-extern "C" void actionOrderEvent2__15daObjWarpKBrg_cFv();
-extern "C" void actionWarpEvent2__15daObjWarpKBrg_cFv();
-extern "C" void actionDead2__15daObjWarpKBrg_cFv();
-extern "C" void demoProc__15daObjWarpKBrg_cFv();
-extern "C" void calcObjPos__15daObjWarpKBrg_cFv();
-extern "C" void checkTalkDistance__15daObjWarpKBrg_cFv();
-extern "C" void calcMidnaWaitPos__15daObjWarpKBrg_cFv();
-extern "C" void setBindEffect__15daObjWarpKBrg_cFv();
-extern "C" void followBindEffect__15daObjWarpKBrg_cFv();
-extern "C" void setSrcEffect__15daObjWarpKBrg_cFv();
-extern "C" void setDstEffect__15daObjWarpKBrg_cFv();
-extern "C" void followSrcEffect__15daObjWarpKBrg_cFv();
-extern "C" void followDstEffect__15daObjWarpKBrg_cFv();
-extern "C" void endSrcEffect__15daObjWarpKBrg_cFv();
-extern "C" void endDstEffect__15daObjWarpKBrg_cFv();
-extern "C" void Draw__15daObjWarpKBrg_cFv();
-extern "C" void Delete__15daObjWarpKBrg_cFv();
-extern "C" static void daObjWarpKBrg_create1st__FP15daObjWarpKBrg_c();
-extern "C" static void daObjWarpKBrg_MoveBGDelete__FP15daObjWarpKBrg_c();
-extern "C" static void daObjWarpKBrg_MoveBGExecute__FP15daObjWarpKBrg_c();
-extern "C" static void daObjWarpKBrg_MoveBGDraw__FP15daObjWarpKBrg_c();
-extern "C" void func_80D29590(void* _this, u8*);
-extern "C" extern char const* const d_a_obj_warp_kbrg__stringBase0;
+/* 80D295CC-80D295D4 000018 0008+00 1/2 0/0 0/0 .rodata          l_bck_idx */
+static const int l_bck_idx[] = {6, 7};
 
-//
-// External References:
-//
+/* 80D295D4-80D295E0 000020 000A+02 0/1 0/0 0/0 .rodata          l_disapp_eff */
+static const u16 l_disapp_eff[] = {0x8532, 0x8533, 0x8534, 0x8535, 0x8536};
 
-extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void transM__14mDoMtx_stack_cFfff();
-extern "C" void scaleM__14mDoMtx_stack_cFfff();
-extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();
-extern "C" void play__14mDoExt_baseAnmFv();
-extern "C" void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss();
-extern "C" void entry__13mDoExt_btkAnmFP16J3DMaterialTablef();
-extern "C" void init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss();
-extern "C" void entry__13mDoExt_brkAnmFP16J3DMaterialTablef();
-extern "C" void init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb();
-extern "C" void entry__13mDoExt_bckAnmFP12J3DModelDataf();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_btkAnmRemove__FP12J3DModelData();
-extern "C" void mDoExt_brkAnmRemove__FP12J3DModelData();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void fopAcM_setCullSizeBox2__FP10fopAc_ac_cP12J3DModelData();
-extern "C" void fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGp_getReverb__Fi();
-extern "C" void dComIfGp_TargetWarpPt_set__FUc();
-extern "C" void dComIfGp_TransportWarp_check__Fv();
-extern "C" void onEventBit__11dSv_event_cFUs();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" void onSwitch__10dSv_info_cFii();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void setSkipProc__14dEvt_control_cFPvPFPvi_ii();
-extern "C" void setPt2__14dEvt_control_cFPv();
-extern "C" void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc();
-extern "C" void startCheck__16dEvent_manager_cFs();
-extern "C" void endCheck__16dEvent_manager_cFs();
-extern "C" void getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci();
-extern "C" void getIsAddvance__16dEvent_manager_cFi();
-extern "C" void getMyActIdx__16dEvent_manager_cFiPCPCciii();
-extern "C" void getMySubstanceP__16dEvent_manager_cFiPCci();
-extern "C" void cutEnd__16dEvent_manager_cFi();
-extern "C" void getRunEventName__16dEvent_manager_cFv();
-extern "C" void
-set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void StartShock__12dVibration_cFii4cXyz();
-extern "C" void request__10dAttHint_cFP10fopAc_ac_ci();
-extern "C" void Release__4cBgSFP9dBgW_Base();
-extern "C" void Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c();
-extern "C" void dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz();
-extern "C" void __ct__16dBgS_MoveBgActorFv();
-extern "C" bool IsDelete__16dBgS_MoveBgActorFv();
-extern "C" bool ToFore__16dBgS_MoveBgActorFv();
-extern "C" bool ToBack__16dBgS_MoveBgActorFv();
-extern "C" void
-MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f();
-extern "C" void MoveBGDelete__16dBgS_MoveBgActorFv();
-extern "C" void MoveBGExecute__16dBgS_MoveBgActorFv();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void __ct__10dMsgFlow_cFv();
-extern "C" void init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c();
-extern "C" void doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci();
-extern "C" void getEventId__10dMsgFlow_cFPi();
-extern "C" void ChkUsed__9cBgW_BgIdCFv();
-extern "C" void cLib_targetAngleY__FPC3VecPC3Vec();
-extern "C" void cLib_targetAngleX__FPC4cXyzPC4cXyz();
-extern "C" void func_802807E0();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void getName__10JUTNameTabCFUs();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_meter2_info[248];
-extern "C" u8 m_midnaActor__9daPy_py_c[4];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 data_80D29928[4];
+/* 80D295E0-80D295E8 00002C 0006+02 0/1 0/0 0/0 .rodata          l_start_eff */
+static const u16 l_start_eff[] = {0x8B3F, 0x8B40, 0x8B41};
 
-//
-// Declarations:
-//
+/* 80D295E8-80D295F4 000034 000C+00 0/1 0/0 0/0 .rodata          l_app_eff */
+static const u16 l_app_eff[] = {0x852D, 0x852E, 0x852F, 0x8530, 0x8531, 0x8B3C};
+
+/* 80D295F4-80D295F8 000040 0004+00 0/1 0/0 0/0 .rodata          l_end_eff */
+static const u16 l_end_eff[] = {0x8B3D, 0x8B3E};
+
+/* 80D295F8-80D29600 000044 0008+00 1/1 0/0 0/0 .rodata          l_bind_eff */
+static const u16 l_bind_eff[] = {0x8B4F, 0x8B50, 0x8B51, 0x8B52};
+
+/* 80D29600-80D29608 00004C 0008+00 1/1 0/0 0/0 .rodata          l_heap_size */
+static const u32 l_heap_size[] = {0x6400, 0x7E60};
+
+/* 80D29608-80D29614 000054 000C+00 1/1 0/0 0/0 .rodata          l_midna_wait_offset */
+static const Vec l_midna_wait_offset = {0.0f, -200.0f, 1200.0f};
 
 /* 80D26F38-80D26FA8 000078 0070+00 1/1 0/0 0/0 .text            eventCallBack__FPvi */
-static void eventCallBack(void* param_0, int param_1) {
-    // NONMATCHING
+static int eventCallBack(void* i_proc, int param_1) {
+    daPy_py_c* player_p = daPy_getPlayerActorClass();
+
+    if (i_proc != NULL) {
+        player_p->skipPortalObjWarp();
+        if (dComIfGp_TransportWarp_check()) {
+            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[51]);
+            // "Kakariko Bridge: Warp destination is correct"
+            OS_REPORT("\x1B[43;30mカカリコ橋：ワープ先正解です\n\x1B[m");
+        }
+    }
+
+    return 1;
 }
 
 /* 80D26FA8-80D27008 0000E8 0060+00 1/1 0/0 0/0 .text            initBaseMtx__15daObjWarpKBrg_cFv */
 void daObjWarpKBrg_c::initBaseMtx() {
-    // NONMATCHING
+    mpBridgeModel->setBaseScale(scale);
+
+    if (mpPortalModel != NULL) {
+        mpPortalModel->setBaseScale(scale);
+    }
+
+    setBaseMtx();
 }
-
-/* ############################################################################################## */
-/* 80D295B4-80D295BC 000000 0008+00 6/6 0/0 0/0 .rodata          l_bmd_idx */
-SECTION_RODATA static u8 const l_bmd_idx[8] = {
-    0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x0B,
-};
-COMPILER_STRIP_GATE(0x80D295B4, &l_bmd_idx);
-
-/* 80D295BC-80D295C4 000008 0008+00 1/1 0/0 0/0 .rodata          l_dzb_idx */
-SECTION_RODATA static u8 const l_dzb_idx[8] = {
-    0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x16,
-};
-COMPILER_STRIP_GATE(0x80D295BC, &l_dzb_idx);
-
-/* 80D295C4-80D295CC 000010 0008+00 0/1 0/0 0/0 .rodata          l_btk_idx */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const l_btk_idx[8] = {
-    0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x13,
-};
-COMPILER_STRIP_GATE(0x80D295C4, &l_btk_idx);
-#pragma pop
-
-/* 80D295CC-80D295D4 000018 0008+00 1/2 0/0 0/0 .rodata          l_bck_idx */
-SECTION_RODATA static u8 const l_bck_idx[8] = {
-    0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x07,
-};
-COMPILER_STRIP_GATE(0x80D295CC, &l_bck_idx);
-
-/* 80D295D4-80D295E0 000020 000A+02 0/1 0/0 0/0 .rodata          l_disapp_eff */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const l_disapp_eff[10 + 2 /* padding */] = {
-    0x85,
-    0x32,
-    0x85,
-    0x33,
-    0x85,
-    0x34,
-    0x85,
-    0x35,
-    0x85,
-    0x36,
-    /* padding */
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80D295D4, &l_disapp_eff);
-#pragma pop
-
-/* 80D295E0-80D295E8 00002C 0006+02 0/1 0/0 0/0 .rodata          l_start_eff */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const l_start_eff[6 + 2 /* padding */] = {
-    0x8B,
-    0x3F,
-    0x8B,
-    0x40,
-    0x8B,
-    0x41,
-    /* padding */
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80D295E0, &l_start_eff);
-#pragma pop
-
-/* 80D295E8-80D295F4 000034 000C+00 0/1 0/0 0/0 .rodata          l_app_eff */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const l_app_eff[12] = {
-    0x85, 0x2D, 0x85, 0x2E, 0x85, 0x2F, 0x85, 0x30, 0x85, 0x31, 0x8B, 0x3C,
-};
-COMPILER_STRIP_GATE(0x80D295E8, &l_app_eff);
-#pragma pop
-
-/* 80D295F4-80D295F8 000040 0004+00 0/1 0/0 0/0 .rodata          l_end_eff */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const l_end_eff = 0x8B3D8B3E;
-COMPILER_STRIP_GATE(0x80D295F4, &l_end_eff);
-#pragma pop
-
-/* 80D295F8-80D29600 000044 0008+00 1/1 0/0 0/0 .rodata          l_bind_eff */
-SECTION_RODATA static u8 const l_bind_eff[8] = {
-    0x8B, 0x4F, 0x8B, 0x50, 0x8B, 0x51, 0x8B, 0x52,
-};
-COMPILER_STRIP_GATE(0x80D295F8, &l_bind_eff);
-
-/* 80D29600-80D29608 00004C 0008+00 1/1 0/0 0/0 .rodata          l_heap_size */
-SECTION_RODATA static u8 const l_heap_size[8] = {
-    0x00, 0x00, 0x64, 0x00, 0x00, 0x00, 0x7E, 0x60,
-};
-COMPILER_STRIP_GATE(0x80D29600, &l_heap_size);
-
-/* 80D29608-80D29614 000054 000C+00 1/1 0/0 0/0 .rodata          l_midna_wait_offset */
-SECTION_RODATA static u8 const l_midna_wait_offset[12] = {
-    0x00, 0x00, 0x00, 0x00, 0xC3, 0x48, 0x00, 0x00, 0x44, 0x96, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D29608, &l_midna_wait_offset);
-
-/* 80D29614-80D29618 000060 0004+00 0/1 0/0 0/0 .rodata          @3726 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3726 = -7643.0f;
-COMPILER_STRIP_GATE(0x80D29614, &lit_3726);
-#pragma pop
-
-/* 80D29618-80D2961C 000064 0004+00 0/1 0/0 0/0 .rodata          @3727 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3727 = -2770.0f;
-COMPILER_STRIP_GATE(0x80D29618, &lit_3727);
-#pragma pop
-
-/* 80D2961C-80D29620 000068 0004+00 0/1 0/0 0/0 .rodata          @3728 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3728 = 56750.0f;
-COMPILER_STRIP_GATE(0x80D2961C, &lit_3728);
-#pragma pop
-
-/* 80D29620-80D29624 00006C 0004+00 0/2 0/0 0/0 .rodata          @3729 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3729 = 5.0f;
-COMPILER_STRIP_GATE(0x80D29620, &lit_3729);
-#pragma pop
 
 /* 80D27008-80D270C4 000148 00BC+00 2/2 0/0 0/0 .text            setBaseMtx__15daObjWarpKBrg_cFv */
 void daObjWarpKBrg_c::setBaseMtx() {
-    // NONMATCHING
+    mDoMtx_stack_c::transS(current.pos);
+    mpBridgeModel->setBaseTRMtx(mDoMtx_stack_c::get());
+
+    mDoMtx_stack_c::ZXYrotM(shape_angle);
+    MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
+
+    if (mpPortalModel != NULL) {
+        cXyz portal_pos(-7643.0f, -2770.0f + KREG_F(0), 56750.0f);
+
+        mDoMtx_stack_c::transS(portal_pos);
+        mDoMtx_stack_c::scaleM(5.0f, 5.0f, 5.0f);
+        mpPortalModel->setBaseTRMtx(mDoMtx_stack_c::get());
+    }
 }
 
-/* ############################################################################################## */
-/* 80D29624-80D2962C 000070 0004+04 1/3 0/0 0/0 .rodata          @3825 */
-SECTION_RODATA static u8 const lit_3825[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80D29624, &lit_3825);
-
-/* 80D2962C-80D29634 000078 0008+00 1/1 0/0 0/0 .rodata          @3827 */
-SECTION_RODATA static u8 const lit_3827[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D2962C, &lit_3827);
-
-/* 80D29688-80D29688 0000D4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80D29688 = "Obj_kbrgS";
-SECTION_DEAD static char const* const stringBase_80D29692 = "Obj_kbrgD";
-SECTION_DEAD static char const* const stringBase_80D2969C = "Obj_kbrg";
-SECTION_DEAD static char const* const stringBase_80D296A5 = "PORTAL_WARP_KBRIDGE";
-SECTION_DEAD static char const* const stringBase_80D296B9 = "PORTAL_WARP_KBRIDGE_OUT";
-SECTION_DEAD static char const* const stringBase_80D296D1 = "WarpBrg";
-SECTION_DEAD static char const* const stringBase_80D296D9 = "effect_p";
-#pragma pop
-
-/* 80D29710-80D2971C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80D2971C-80D29730 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
+UNK_REL_DATA
 
 /* 80D29730-80D29738 -00001 0008+00 5/5 0/0 0/0 .data            l_arcName */
-SECTION_DATA static void* l_arcName[2] = {
-    (void*)&d_a_obj_warp_kbrg__stringBase0,
-    (void*)(((char*)&d_a_obj_warp_kbrg__stringBase0) + 0xA),
+static char* l_arcName[2] = {
+    "Obj_kbrgS",
+    "Obj_kbrgD",
 };
 
 /* 80D29738-80D2973C -00001 0004+00 3/3 0/0 0/0 .data            l_evArcName */
-SECTION_DATA static void* l_evArcName = (void*)(((char*)&d_a_obj_warp_kbrg__stringBase0) + 0x14);
+static char* l_evArcName = "Obj_kbrg";
 
 /* 80D2973C-80D29744 -00001 0008+00 1/1 0/0 0/0 .data            l_portal_warp_name */
-SECTION_DATA static void* l_portal_warp_name[2] = {
-    (void*)(((char*)&d_a_obj_warp_kbrg__stringBase0) + 0x1D),
-    (void*)(((char*)&d_a_obj_warp_kbrg__stringBase0) + 0x31),
+static char* l_portal_warp_name[2] = {
+    "PORTAL_WARP_KBRIDGE",
+    "PORTAL_WARP_KBRIDGE_OUT",
 };
-
-/* 80D270C4-80D27300 000204 023C+00 1/0 0/0 0/0 .text            Create__15daObjWarpKBrg_cFv */
-void daObjWarpKBrg_c::Create() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80D29634-80D29638 000080 0004+00 2/5 0/0 0/0 .rodata          @3964 */
-SECTION_RODATA static f32 const lit_3964 = 1.0f;
-COMPILER_STRIP_GATE(0x80D29634, &lit_3964);
-
-/* 80D29688-80D29688 0000D4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80D296E2 = "WAIT";
-SECTION_DEAD static char const* const stringBase_80D296E7 = "FLY";
-SECTION_DEAD static char const* const stringBase_80D296EB = "DOWN";
-SECTION_DEAD static char const* const stringBase_80D296F0 = "P_APP";
-SECTION_DEAD static char const* const stringBase_80D296F6 = "P_DIS";
-SECTION_DEAD static char const* const stringBase_80D296FC = "B_APP";
-SECTION_DEAD static char const* const stringBase_80D29702 = "BEAM";
-#pragma pop
 
 /* 80D29744-80D29748 -00001 0004+00 4/4 0/0 0/0 .data            l_staff_name */
-SECTION_DATA static void* l_staff_name = (void*)(((char*)&d_a_obj_warp_kbrg__stringBase0) + 0x49);
+static char* l_staff_name = "WarpBrg";
 
-/* 80D29748-80D29754 -00001 000C+00 0/1 0/0 0/0 .data            @4029 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4029[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionWait__15daObjWarpKBrg_cFv,
-};
-#pragma pop
+/* 80D270C4-80D27300 000204 023C+00 1/0 0/0 0/0 .text            Create__15daObjWarpKBrg_cFv */
+int daObjWarpKBrg_c::Create() {
+    switch (getNameArg()) {
+    case 0:
+        mEventType = 0;
+        break;
+    case 1:
+        if (!fopAcM_isSwitch(this, getSwbit())) {
+            setAction(8);
 
-/* 80D29754-80D29760 -00001 000C+00 0/1 0/0 0/0 .data            @4030 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4030[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionOrderEvent__15daObjWarpKBrg_cFv,
-};
-#pragma pop
+            if (mpBgW != NULL && mpBgW->ChkUsed()) {
+                dComIfG_Bgsp().Release(mpBgW);
+            }
+        } else {
+            mpBridgeBck->setFrame(mpBridgeBck->getEndFrame());
+            mpBridgeBtk->setFrame(mpBridgeBtk->getEndFrame());
+            field_0x5c8 = 1;
+            mpPortalBrk->setFrame(0.0f);
 
-/* 80D29760-80D2976C -00001 000C+00 0/1 0/0 0/0 .data            @4031 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4031[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionTalkEvent__15daObjWarpKBrg_cFv,
-};
-#pragma pop
+            setAction(10);
+        }
 
-/* 80D2976C-80D29778 -00001 000C+00 0/1 0/0 0/0 .data            @4032 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4032[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionWaitWarpEvent__15daObjWarpKBrg_cFv,
-};
-#pragma pop
+        mEventType = 1;
+        break;
+    }
 
-/* 80D29778-80D29784 -00001 000C+00 0/1 0/0 0/0 .data            @4033 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4033[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionWarpEvent__15daObjWarpKBrg_cFv,
-};
-#pragma pop
+    if (getNameArg() == 0) {
+        JUTNameTab* jnt_nametab = mpBridgeModel->getModelData()->getJointTree().getJointName();
+        mEffJointNo = 0xFFFF;
 
-/* 80D29784-80D29790 -00001 000C+00 0/1 0/0 0/0 .data            @4034 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4034[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionOrderATalkEvent__15daObjWarpKBrg_cFv,
-};
-#pragma pop
+        for (u16 i = 0; i < mpBridgeModel->getModelData()->getJointNum(); i++) {
+            if (strcmp(jnt_nametab->getName(i), "effect_p") == 0) {
+                mEffJointNo = i;
+                break;
+            }
+        }
 
-/* 80D29790-80D2979C -00001 000C+00 0/1 0/0 0/0 .data            @4035 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4035[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionDead__15daObjWarpKBrg_cFv,
-};
-#pragma pop
+        #ifdef DEBUG
+        if (mEffJointNo == 0xFFFF) {
+            // "Kakariko Bridge: joint effect_p not found"
+            OSReport_Error("カカリコ橋；ジョイント effect_p が見つかりませんでした\n");
+            return 0;
+        }
+        #endif
+    }
 
-/* 80D2979C-80D297A8 -00001 000C+00 0/1 0/0 0/0 .data            @4036 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4036[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionWait2__15daObjWarpKBrg_cFv,
-};
-#pragma pop
+    initBaseMtx();
+    fopAcM_SetMtx(this, mpBridgeModel->getBaseTRMtx());
+    fopAcM_setCullSizeBox2(this, mpBridgeModel->getModelData());
 
-/* 80D297A8-80D297B4 -00001 000C+00 0/1 0/0 0/0 .data            @4037 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4037[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionOrderEvent2__15daObjWarpKBrg_cFv,
-};
-#pragma pop
+    attention_info.distances[fopAc_attn_TALK_e] = 54;
+    attention_info.distances[fopAc_attn_SPEAK_e] = 54;
 
-/* 80D297B4-80D297C0 -00001 000C+00 0/1 0/0 0/0 .data            @4038 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4038[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionWarpEvent2__15daObjWarpKBrg_cFv,
-};
-#pragma pop
+    eventInfo.setArchiveName(l_evArcName);
 
-/* 80D297C0-80D297CC -00001 000C+00 0/1 0/0 0/0 .data            @4039 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4039[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionDead2__15daObjWarpKBrg_cFv,
-};
-#pragma pop
+    for (int i = 0; i < 2; i++) {
+        mEventId[i] = dComIfGp_getEventManager().getEventIdx(this, l_portal_warp_name[i], 0xFF);
+    }
 
-/* 80D297CC-80D29850 0000BC 0084+00 0/1 0/0 0/0 .data            l_func$4028 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_func[132] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#pragma pop
-
-/* 80D29850-80D2986C -00001 001C+00 1/1 0/0 0/0 .data            action_table$4265 */
-SECTION_DATA static void* action_table[7] = {
-    (void*)(((char*)&d_a_obj_warp_kbrg__stringBase0) + 0x5A),
-    (void*)(((char*)&d_a_obj_warp_kbrg__stringBase0) + 0x5F),
-    (void*)(((char*)&d_a_obj_warp_kbrg__stringBase0) + 0x63),
-    (void*)(((char*)&d_a_obj_warp_kbrg__stringBase0) + 0x68),
-    (void*)(((char*)&d_a_obj_warp_kbrg__stringBase0) + 0x6E),
-    (void*)(((char*)&d_a_obj_warp_kbrg__stringBase0) + 0x74),
-    (void*)(((char*)&d_a_obj_warp_kbrg__stringBase0) + 0x7A),
-};
-
-/* 80D2986C-80D29888 -00001 001C+00 1/1 0/0 0/0 .data            @4535 */
-SECTION_DATA static void* lit_4535[7] = {
-    (void*)(((char*)demoProc__15daObjWarpKBrg_cFv) + 0x3F4),
-    (void*)(((char*)demoProc__15daObjWarpKBrg_cFv) + 0x414),
-    (void*)(((char*)demoProc__15daObjWarpKBrg_cFv) + 0x4B4),
-    (void*)(((char*)demoProc__15daObjWarpKBrg_cFv) + 0x7C8),
-    (void*)(((char*)demoProc__15daObjWarpKBrg_cFv) + 0x55C),
-    (void*)(((char*)demoProc__15daObjWarpKBrg_cFv) + 0x584),
-    (void*)(((char*)demoProc__15daObjWarpKBrg_cFv) + 0x5AC),
-};
-
-/* 80D29888-80D298A4 -00001 001C+00 1/1 0/0 0/0 .data            @4533 */
-SECTION_DATA static void* lit_4533[7] = {
-    (void*)(((char*)demoProc__15daObjWarpKBrg_cFv) + 0x9C),
-    (void*)(((char*)demoProc__15daObjWarpKBrg_cFv) + 0xD8),
-    (void*)(((char*)demoProc__15daObjWarpKBrg_cFv) + 0x1A8),
-    (void*)(((char*)demoProc__15daObjWarpKBrg_cFv) + 0x23C),
-    (void*)(((char*)demoProc__15daObjWarpKBrg_cFv) + 0x268),
-    (void*)(((char*)demoProc__15daObjWarpKBrg_cFv) + 0x310),
-    (void*)(((char*)demoProc__15daObjWarpKBrg_cFv) + 0x380),
-};
-
-/* 80D298A4-80D298C4 -00001 0020+00 1/0 0/0 0/0 .data            daObjWarpKBrg_METHODS */
-static actor_method_class daObjWarpKBrg_METHODS = {
-    (process_method_func)daObjWarpKBrg_create1st__FP15daObjWarpKBrg_c,
-    (process_method_func)daObjWarpKBrg_MoveBGDelete__FP15daObjWarpKBrg_c,
-    (process_method_func)daObjWarpKBrg_MoveBGExecute__FP15daObjWarpKBrg_c,
-    0,
-    (process_method_func)daObjWarpKBrg_MoveBGDraw__FP15daObjWarpKBrg_c,
-};
-
-/* 80D298C4-80D298F4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_KakarikoBrg */
-extern actor_process_profile_definition g_profile_Obj_KakarikoBrg = {
-  fpcLy_CURRENT_e,         // mLayerID
-  3,                       // mListID
-  fpcPi_CURRENT_e,         // mListPrio
-  PROC_Obj_KakarikoBrg,    // mProcName
-  &g_fpcLf_Method.base,   // sub_method
-  sizeof(daObjWarpKBrg_c), // mSize
-  0,                       // mSizeOther
-  0,                       // mParameters
-  &g_fopAc_Method.base,    // sub_method
-  530,                     // mPriority
-  &daObjWarpKBrg_METHODS,  // sub_method
-  0x00040000,              // mStatus
-  fopAc_ACTOR_e,           // mActorType
-  fopAc_CULLBOX_CUSTOM_e,  // cullType
-};
-
-/* 80D298F4-80D29900 0001E4 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
-SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12J3DFrameCtrlFv,
-};
-
-/* 80D27300-80D2766C 000440 036C+00 1/0 0/0 0/0 .text            CreateHeap__15daObjWarpKBrg_cFv */
-void daObjWarpKBrg_c::CreateHeap() {
-    // NONMATCHING
+    calcMidnaWaitPos();
+    MoveBGExecute();
+    return 1;
 }
 
-/* 80D2766C-80D276B4 0007AC 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
-// J3DFrameCtrl::~J3DFrameCtrl() {
-extern "C" void __dt__12J3DFrameCtrlFv() {
-    // NONMATCHING
+/* 80D27300-80D2766C 000440 036C+00 1/0 0/0 0/0 .text            CreateHeap__15daObjWarpKBrg_cFv */
+int daObjWarpKBrg_c::CreateHeap() {
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName[getNameArg()], l_bmd_idx[getNameArg()]);
+    JUT_ASSERT(380, modelData != 0);
+
+    u32 sp2C = 0x11000284;
+    mpBridgeModel = mDoExt_J3DModel__create(modelData, 0x80000, sp2C);
+    if (mpBridgeModel == NULL) {
+        return 0;
+    }
+
+    J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName[getNameArg()], l_btk_idx[getNameArg()]);
+    JUT_ASSERT(394, pbtk != 0);
+    mpBridgeBtk = new mDoExt_btkAnm();
+    if (mpBridgeBtk == NULL || !mpBridgeBtk->init(modelData, pbtk, TRUE, 0, 1.0f, 0, -1)) {
+        return 0;
+    }
+    mpBridgeBtk->setFrame(0.0f);
+
+    J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName[getNameArg()], l_bck_idx[getNameArg()]);
+    JUT_ASSERT(407, pbck != 0);
+    mpBridgeBck = new mDoExt_bckAnm();
+    if (mpBridgeBck == NULL || !mpBridgeBck->init(pbck, TRUE, 0, 1.0f, 0, -1, false)) {
+        return 0;
+    }
+
+    if (getNameArg() == 1) {
+        modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName[getNameArg()], 10);
+        JUT_ASSERT(424, modelData != 0);
+        mpPortalModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
+        if (mpPortalModel == NULL) {
+            return 0;
+        }
+
+        pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName[getNameArg()], 18);
+        JUT_ASSERT(438, pbtk != 0);
+        mpPortalBtk = new mDoExt_btkAnm();
+        if (mpPortalBtk == NULL || !mpPortalBtk->init(modelData, pbtk, TRUE, 2, 1.0f, 0, -1)) {
+            return 0;
+        }
+        mpPortalBtk->setFrame(0.0f);
+
+        J3DAnmTevRegKey* pbrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName[getNameArg()], 14);
+        JUT_ASSERT(451, pbrk != 0);
+        mpPortalBrk = new mDoExt_brkAnm();
+        if (mpPortalBrk == NULL || !mpPortalBrk->init(modelData, pbrk, TRUE, 0, 1.0f, 0, -1)) {
+            return 0;
+        }
+
+        #if VERSION == VERSION_SHIELD_DEBUG
+        pbrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName[getNameArg()], 15);
+        JUT_ASSERT(463, pbrk != 0);
+        #endif
+    }
+
+    return 1;
 }
 
 /* 80D276B4-80D2781C 0007F4 0168+00 1/1 0/0 0/0 .text            create1st__15daObjWarpKBrg_cFv */
-void daObjWarpKBrg_c::create1st() {
-    // NONMATCHING
+int daObjWarpKBrg_c::create1st() {
+    if (!mPrmInit) {
+        mMsgID = home.angle.z;
+        mPrmInit = TRUE;
+        home.angle.z = 0;
+        current.angle.z = 0;
+        shape_angle.z = 0;
+    }
+
+    switch (getNameArg()) {
+    case 0:
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[51])) {
+            // "Kakariko Bridge: already warped so creation cancelled!"
+            OS_REPORT("\x1B[43;30mカカリコ橋：ワープさせたので発生取り消し！\n\x1B[m");
+            return cPhs_ERROR_e;
+        }
+        break;
+    case 1:
+        if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[51])) {
+            // "Kakariko Bridge: not warped so creation cancelled!"
+            OS_REPORT("\x1B[43;30mカカリコ橋：ワープさせてないので発生取り消し！\n\x1B[m");
+            return cPhs_ERROR_e;
+        }
+        break;
+    }
+
+    int phase_state = dComIfG_resLoad(&mEvPhase, l_evArcName);
+    if (phase_state != cPhs_COMPLEATE_e) {
+        return phase_state;
+    }
+
+    phase_state = dComIfG_resLoad(&mPhase, l_arcName[getNameArg()]);
+    if (phase_state == cPhs_COMPLEATE_e) {
+        phase_state = MoveBGCreate(l_arcName[getNameArg()], l_dzb_idx[getNameArg()], dBgS_MoveBGProc_TypicalRotY, l_heap_size[getNameArg()], NULL);
+        if (phase_state == cPhs_ERROR_e) {
+            return phase_state;
+        }
+    }
+
+    return phase_state;
 }
 
 /* 80D2781C-80D27890 00095C 0074+00 1/0 0/0 0/0 .text Execute__15daObjWarpKBrg_cFPPA3_A4_f */
-void daObjWarpKBrg_c::Execute(f32 (**param_0)[3][4]) {
-    // NONMATCHING
+int daObjWarpKBrg_c::Execute(f32 (**param_0)[3][4]) {
+    #if VERSION == VERSION_SHIELD_DEBUG
+    calcMidnaWaitPos();
+    #endif
+
+    if (getNameArg() == 0 && daPy_py_c::getMidnaActor() == NULL) {
+        return 1;
+    }
+
+    event_proc_call();
+
+    *param_0 = &mBgMtx;
+    setBaseMtx();
+    return 1;
 }
 
 /* 80D27890-80D27A38 0009D0 01A8+00 1/1 0/0 0/0 .text event_proc_call__15daObjWarpKBrg_cFv */
 void daObjWarpKBrg_c::event_proc_call() {
-    // NONMATCHING
-}
+    static void (daObjWarpKBrg_c::*l_func[])() = {
+        &daObjWarpKBrg_c::actionWait,
+        &daObjWarpKBrg_c::actionOrderEvent,
+        &daObjWarpKBrg_c::actionTalkEvent,
+        &daObjWarpKBrg_c::actionWaitWarpEvent,
+        &daObjWarpKBrg_c::actionWarpEvent,
+        &daObjWarpKBrg_c::actionOrderATalkEvent,
+        &daObjWarpKBrg_c::actionDead,
+        &daObjWarpKBrg_c::actionWait2,
+        &daObjWarpKBrg_c::actionOrderEvent2,
+        &daObjWarpKBrg_c::actionWarpEvent2,
+        &daObjWarpKBrg_c::actionDead2,
+    };
 
-/* ############################################################################################## */
-/* 80D29638-80D2963C 000084 0004+00 1/1 0/0 0/0 .rodata          @4071 */
-SECTION_RODATA static f32 const lit_4071 = -1.0f;
-COMPILER_STRIP_GATE(0x80D29638, &lit_4071);
+    attention_info.flags = 0;
+
+    if (field_0x69b != 0) {
+        field_0x69b--;
+    }
+
+    (this->*l_func[mAction])();
+
+    if (!eventInfo.chkCondition(1)) {
+        field_0x69a = 0;
+    }
+}
 
 /* 80D27A38-80D27B2C 000B78 00F4+00 1/1 0/0 0/0 .text orderZHintEvent__15daObjWarpKBrg_cFv */
 void daObjWarpKBrg_c::orderZHintEvent() {
-    // NONMATCHING
+    daMidna_c* midna_p = (daMidna_c*)daPy_py_c::getMidnaActor();
+    daPy_py_c* player_p = daPy_getPlayerActorClass();
+
+    if (checkTalkDistance()) {
+        eventInfo.onCondition(1);
+        if (!player_p->checkPlayerFly()) {
+            dComIfGp_att_ZHintRequest(this,  0x1FF);
+
+            if (field_0x69a == 0) {
+                field_0x69a = 1;
+                if (field_0x69b == 0) {
+                    mDoAud_seStart(Z2SE_NAVI_CALLVOICE, NULL, 0, 0);
+                }
+                field_0x69b = 60;
+            }
+        }
+    }
 }
 
 /* 80D27B2C-80D27C6C 000C6C 0140+00 1/0 0/0 0/0 .text            actionWait__15daObjWarpKBrg_cFv */
 void daObjWarpKBrg_c::actionWait() {
-    // NONMATCHING
+    daMidna_c* midna_p = (daMidna_c*)daPy_py_c::getMidnaActor();
+    daPy_py_c* player_p = daPy_getPlayerActorClass();
+
+    if (fopAcM_isSwitch(this, getSwbit2()) && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[54])) {
+        setAction(1);
+        actionOrderEvent();
+    }
+
+    if (dComIfGp_evmng_startCheck(mEventId[mEventType])) {
+        if (strcmp(dComIfGp_getEventManager().getRunEventName(), "PORTAL_WARP_KBRIDGE") == 0) {
+            midna_p->onTagWaitPosPortalObj(&mMidnaWaitPos);
+            dComIfGp_getEvent().setPt2(this);
+            mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
+            setAction(4);
+            demoProc();
+        }
+    }
 }
-
-/* ############################################################################################## */
-/* 80D2963C-80D29644 000088 0008+00 0/1 0/0 0/0 .rodata          @4147 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4147[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D2963C, &lit_4147);
-#pragma pop
-
-/* 80D29644-80D2964C 000090 0008+00 0/1 0/0 0/0 .rodata          @4148 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4148[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D29644, &lit_4148);
-#pragma pop
-
-/* 80D2964C-80D29654 000098 0008+00 0/1 0/0 0/0 .rodata          @4149 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4149[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D2964C, &lit_4149);
-#pragma pop
 
 /* 80D27C6C-80D27E08 000DAC 019C+00 2/1 0/0 0/0 .text actionOrderEvent__15daObjWarpKBrg_cFv */
 void daObjWarpKBrg_c::actionOrderEvent() {
-    // NONMATCHING
+    daMidna_c* midna_p = (daMidna_c*)daPy_py_c::getMidnaActor();
+
+    if (eventInfo.checkCommandTalk()) {
+        midna_p->onTagWaitPosPortalObj(&mMidnaWaitPos);
+        if (midna_p->current.pos.abs(mMidnaWaitPos) < 5.0f) {
+            setAction(2);
+            mMsgFlow.init(this, getMsgID(), 0, NULL);
+        }
+    } else {
+        orderZHintEvent();
+    }
 }
 
 /* 80D27E08-80D27ED0 000F48 00C8+00 1/0 0/0 0/0 .text actionWaitWarpEvent__15daObjWarpKBrg_cFv */
 void daObjWarpKBrg_c::actionWaitWarpEvent() {
-    // NONMATCHING
+    daMidna_c* midna_p = (daMidna_c*)daPy_py_c::getMidnaActor();
+
+    if (dComIfGp_evmng_startCheck(mEventId[mEventType])) {
+        midna_p->onTagWaitPosPortalObj(&mMidnaWaitPos);
+        dComIfGp_getEvent().setPt2(this);
+        mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
+        setAction(4);
+        demoProc();
+    }
 }
 
 /* 80D27ED0-80D28040 001010 0170+00 1/0 0/0 0/0 .text actionOrderATalkEvent__15daObjWarpKBrg_cFv
  */
 void daObjWarpKBrg_c::actionOrderATalkEvent() {
-    // NONMATCHING
+    daMidna_c* midna_p = (daMidna_c*)daPy_py_c::getMidnaActor();
+
+    if (eventInfo.checkCommandTalk()) {
+        setAction(2);
+        mMsgFlow.init(this, getMsgID(), 0, NULL);
+    } else if (dComIfGp_evmng_startCheck(mEventId[mEventType])) {
+        midna_p->onTagWaitPosPortalObj(&mMidnaWaitPos);
+        dComIfGp_getEvent().setPt2(this);
+        mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
+        setAction(4);
+        demoProc();
+    } else if (checkTalkDistance()) {
+        midna_p->onTagWaitPosPortalObj(&mMidnaWaitPos);
+        dComIfGp_TargetWarpPt_set(3);
+        eventInfo.onCondition(1);
+        attention_info.flags = 0xA;
+    } else {
+        midna_p->offTagWaitPos();
+        setAction(0);
+    }
 }
 
 /* 80D28040-80D280CC 001180 008C+00 1/0 0/0 0/0 .text actionTalkEvent__15daObjWarpKBrg_cFv */
 void daObjWarpKBrg_c::actionTalkEvent() {
-    // NONMATCHING
+    if (mMsgFlow.doFlow(this, NULL, 0)) {
+        dComIfGp_event_reset();
+        field_0x5d9 = 1;
+
+        int sp8;
+        if (mMsgFlow.getEventId(&sp8) == 11) {
+            dMeter2Info_setPauseStatus(6);
+        }
+
+        setAction(5);
+        // "Kakariko Bridge: talk end!"
+        OS_REPORT_ERROR("カカリコ橋：会話終了！\n");
+    }
 }
 
 /* 80D280CC-80D28144 00120C 0078+00 1/0 0/0 0/0 .text actionWarpEvent__15daObjWarpKBrg_cFv */
 void daObjWarpKBrg_c::actionWarpEvent() {
-    // NONMATCHING
+    if (!dComIfGp_evmng_endCheck(mEventId[mEventType])) {
+        dComIfGp_getEvent().setSkipProc(this, eventCallBack, 0);
+        demoProc();
+    }
 }
 
 /* 80D28144-80D28148 001284 0004+00 1/0 0/0 0/0 .text            actionDead__15daObjWarpKBrg_cFv */
-void daObjWarpKBrg_c::actionDead() {
-    /* empty function */
-}
+void daObjWarpKBrg_c::actionDead() {}
 
 /* 80D28148-80D2814C 001288 0004+00 1/0 0/0 0/0 .text            actionWait2__15daObjWarpKBrg_cFv */
-void daObjWarpKBrg_c::actionWait2() {
-    /* empty function */
-}
+void daObjWarpKBrg_c::actionWait2() {}
 
 /* 80D2814C-80D281E4 00128C 0098+00 1/0 0/0 0/0 .text actionOrderEvent2__15daObjWarpKBrg_cFv */
 void daObjWarpKBrg_c::actionOrderEvent2() {
-    // NONMATCHING
+    if (eventInfo.checkCommandDemoAccrpt()) {
+        setAction(9);
+        mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
+        demoProc();
+    } else {
+        fopAcM_orderOtherEventId(this, mEventId[mEventType], 0xFF, 0xFFFF, 2, 1);
+    }
 }
 
 /* 80D281E4-80D28248 001324 0064+00 1/0 0/0 0/0 .text actionWarpEvent2__15daObjWarpKBrg_cFv */
 void daObjWarpKBrg_c::actionWarpEvent2() {
-    // NONMATCHING
+    if (dComIfGp_evmng_endCheck(mEventId[mEventType])) {
+        setAction(0xA);
+    } else {
+        demoProc();
+    }
 }
 
 /* 80D28248-80D2824C 001388 0004+00 1/0 0/0 0/0 .text            actionDead2__15daObjWarpKBrg_cFv */
-void daObjWarpKBrg_c::actionDead2() {
-    /* empty function */
-}
-
-/* ############################################################################################## */
-/* 80D29688-80D29688 0000D4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80D29707 = "Timer";
-#pragma pop
+void daObjWarpKBrg_c::actionDead2() {}
 
 /* 80D2824C-80D28A50 00138C 0804+00 8/6 0/0 0/0 .text            demoProc__15daObjWarpKBrg_cFv */
 void daObjWarpKBrg_c::demoProc() {
-    // NONMATCHING
+    static char* action_table[7] = {
+        "WAIT",
+        "FLY",
+        "DOWN",
+        "P_APP",
+        "P_DIS",
+        "B_APP",
+        "BEAM",
+    };
+
+    daPy_py_c* player_p = daPy_getPlayerActorClass();
+    daMidna_c* midna_p = (daMidna_c*)daPy_py_c::getMidnaActor();
+    int act_idx = dComIfGp_evmng_getMyActIdx(mStaffId, action_table, 7, 0, 0);
+
+    if (dComIfGp_evmng_getIsAddvance(mStaffId)) {
+        switch (act_idx) {
+        case 0: {
+            int* timer_p = dComIfGp_evmng_getMyIntegerP(mStaffId, "Timer");
+            if (timer_p == NULL) {
+                mTimer = 1;
+            } else {
+                mTimer = *timer_p;
+            }
+            break;
+        }
+        case 1:
+            mpBridgeBck->setPlaySpeed(1.0f);
+            mpBridgeBtk->setPlaySpeed(1.0f);
+
+            shape_angle.setall(0);
+            field_0x5c8 = 1;
+            setSrcEffect();
+            fopAcM_seStart(this, Z2SE_OBJ_KKRK_BRG_LIFT_UP, 0);
+
+            if (mpBgW != NULL && mpBgW->ChkUsed()) {
+                dComIfG_Bgsp().Release(mpBgW);
+            }
+
+            if (dComIfGp_TransportWarp_check()) {
+                dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[51]);
+                // "Kakariko Bridge: Warp destination is correct"
+                OS_REPORT("\x1B[43;30mカカリコ橋：ワープ先正解です\n\x1B[m");
+            }
+            break;
+        case 2:
+            mpBridgeBtk->setPlaySpeed(1.0f);
+            mpBridgeBck->setPlaySpeed(1.0f);
+
+            if (mpBgW != NULL) {
+                dComIfG_Bgsp().Regist(mpBgW, this);
+            }
+
+            mDoAud_seStart(Z2SE_OBJ_KKRK_BRG_LIFT_DW, &mObjPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+            player_p->onPlayerNoDraw();
+            player_p->onPlayerShadowNoDraw();
+            break;
+        case 3:
+            mpPortalBrk->setFrame(mpPortalBrk->getEndFrame());
+            break;
+        case 4:
+            mpPortalBrk->init((J3DModelData*)dComIfG_getObjectRes(l_arcName[getNameArg()], 10), (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName[getNameArg()], 15), 0, 0, 1.0f, 0, -1);
+            mpPortalBrk->setFrame(0.0f);
+            mpPortalBrk->setPlaySpeed(1.0f);
+            mpPortalBtk->setPlaySpeed(1.0f);
+            break;
+        case 5:
+            field_0x5c8 = 1;
+            mTimer = 35;
+            setDstEffect();
+            calcObjPos();
+            mDoAud_seStart(Z2SE_OBJ_KKRK_BRG_WARP_OUT, &mObjPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+            break;
+        case 6:
+            setBindEffect();
+            fopAcM_seStart(this, Z2SE_MDN_WARP_MAGIC, 0);
+            break;
+        }
+    }
+
+    cXyz effpos;
+    cXyz sp28;
+    csXyz effrot;
+    switch (act_idx) {
+    case 0:
+        if (cLib_calcTimer<u8>(&mTimer) == 0) {
+            dComIfGp_evmng_cutEnd(mStaffId);
+        }
+        break;
+    case 1: {
+        int temp_r25 = mpBridgeBtk->play();
+        temp_r25 &= mpBridgeBck->play();
+
+        if (240.0f == mpBridgeBck->getFrame()) {
+            calcObjPos();
+            mDoAud_seStart(Z2SE_OBJ_KKRK_BRG_WARP_IN, &mObjPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+            // "Kakariko Bridge: Warp SE"
+            OS_REPORT("カカリコ橋：ワープＳＥ\n");
+        }
+
+        if (temp_r25 != 0) {
+            dComIfGp_evmng_cutEnd(mStaffId);
+        }
+
+        followSrcEffect();
+        break;
+    }
+    case 2:
+        mpBridgeBtk->play();
+
+        if (180.0f == mpBridgeBck->getFrame()) {
+            dComIfGp_getVibration().StartShock(8, 0x1F, cXyz(0.0f, 1.0f, 0.0f));
+        }
+
+        if (mpBridgeBck->play()) {
+            player_p->offPlayerNoDraw();
+            player_p->offPlayerShadowNoDraw();
+            fopAcM_onSwitch(this, getSwbit());
+            dComIfGp_evmng_cutEnd(mStaffId);
+        }
+
+        followDstEffect();
+        calcObjPos();
+        break;
+    case 4:
+        if (mpPortalBrk->play()) {
+            dComIfGp_evmng_cutEnd(mStaffId);
+        }
+        endDstEffect();
+        break;
+    case 5:
+        if (cLib_calcTimer<u8>(&mTimer) == 0) {
+            dComIfGp_evmng_cutEnd(mStaffId);
+        }
+        followDstEffect();
+        break;
+    case 6: {
+        mDoMtx_stack_c::copy(midna_p->getMtxHairTop());
+        mDoMtx_stack_c::transM(-10.0f, -65.0f, 55.0f);
+        mDoMtx_stack_c::multVecZero(&sp28);
+
+        mDoMtx_stack_c::copy(mpBridgeModel->getAnmMtx(0));
+        mDoMtx_stack_c::transM(0.0f, -180.0f, 0.0f);
+        mDoMtx_stack_c::multVecZero(&effpos);
+
+        effrot.y = cLib_targetAngleY(&effpos, &sp28);
+        effrot.x = cLib_targetAngleX(&sp28, &effpos);
+        effrot.z = 0;
+
+        f32 h_scale = 0.01f * effpos.abs(sp28);
+
+        JPABaseEmitter* emitter_p = dComIfGp_particle_set(0x8B53, &effpos, &effrot, NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
+        if (emitter_p != NULL) {
+            emitter_p->setGlobalParticleHeightScale(h_scale);
+        }
+
+        followBindEffect();
+        dComIfGp_evmng_cutEnd(mStaffId);
+        break;
+    }
+    default:
+        dComIfGp_evmng_cutEnd(mStaffId);
+        break;
+    }
+
+    if (mpPortalBtk != NULL) {
+        mpPortalBtk->play();
+    }
 }
 
 /* 80D28A50-80D28AE0 001B90 0090+00 1/1 0/0 0/0 .text            calcObjPos__15daObjWarpKBrg_cFv */
 void daObjWarpKBrg_c::calcObjPos() {
-    // NONMATCHING
+    J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName[getNameArg()], l_bck_idx[getNameArg()]);
+    JUT_ASSERT(1191, pbck != 0);
+
+    J3DTransformInfo transinfo;
+    pbck->getTransform(0, &transinfo);
+    mObjPos.x = transinfo.mTranslate.x;
+    mObjPos.y = transinfo.mTranslate.y;
+    mObjPos.z = transinfo.mTranslate.z;
 }
-
-/* ############################################################################################## */
-/* 80D29654-80D29658 0000A0 0004+00 0/0 0/0 0/0 .rodata          @4526 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4526 = 240.0f;
-COMPILER_STRIP_GATE(0x80D29654, &lit_4526);
-#pragma pop
-
-/* 80D29658-80D2965C 0000A4 0004+00 0/0 0/0 0/0 .rodata          @4527 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4527 = 180.0f;
-COMPILER_STRIP_GATE(0x80D29658, &lit_4527);
-#pragma pop
-
-/* 80D2965C-80D29660 0000A8 0004+00 0/0 0/0 0/0 .rodata          @4528 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4528 = -10.0f;
-COMPILER_STRIP_GATE(0x80D2965C, &lit_4528);
-#pragma pop
-
-/* 80D29660-80D29664 0000AC 0004+00 0/0 0/0 0/0 .rodata          @4529 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4529 = -65.0f;
-COMPILER_STRIP_GATE(0x80D29660, &lit_4529);
-#pragma pop
-
-/* 80D29664-80D29668 0000B0 0004+00 0/0 0/0 0/0 .rodata          @4530 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4530 = 55.0f;
-COMPILER_STRIP_GATE(0x80D29664, &lit_4530);
-#pragma pop
-
-/* 80D29668-80D2966C 0000B4 0004+00 0/0 0/0 0/0 .rodata          @4531 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4531 = -180.0f;
-COMPILER_STRIP_GATE(0x80D29668, &lit_4531);
-#pragma pop
-
-/* 80D2966C-80D29670 0000B8 0004+00 0/0 0/0 0/0 .rodata          @4532 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4532 = 1.0f / 100.0f;
-COMPILER_STRIP_GATE(0x80D2966C, &lit_4532);
-#pragma pop
-
-/* 80D29670-80D29674 0000BC 0004+00 1/1 0/0 0/0 .rodata          @4576 */
-SECTION_RODATA static f32 const lit_4576 = 10.0f;
-COMPILER_STRIP_GATE(0x80D29670, &lit_4576);
-
-/* 80D29674-80D2967C 0000C0 0004+04 1/1 0/0 0/0 .rodata          @4577 */
-SECTION_RODATA static f32 const lit_4577[1 + 1 /* padding */] = {
-    500.0f,
-    /* padding */
-    0.0f,
-};
-COMPILER_STRIP_GATE(0x80D29674, &lit_4577);
-
-/* 80D2967C-80D29684 0000C8 0008+00 1/1 0/0 0/0 .rodata          @4579 */
-SECTION_RODATA static u8 const lit_4579[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80D2967C, &lit_4579);
 
 /* 80D28AE0-80D28B7C 001C20 009C+00 2/2 0/0 0/0 .text checkTalkDistance__15daObjWarpKBrg_cFv */
-void daObjWarpKBrg_c::checkTalkDistance() {
-    // NONMATCHING
-}
+bool daObjWarpKBrg_c::checkTalkDistance() {
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    f32 player_dist = fopAcM_searchPlayerDistanceXZ(this);
 
-/* ############################################################################################## */
-/* 80D29684-80D29688 0000D0 0004+00 1/1 0/0 0/0 .rodata          @4590 */
-SECTION_RODATA static f32 const lit_4590 = 250.0f;
-COMPILER_STRIP_GATE(0x80D29684, &lit_4590);
+    if ((getArg0() != 0xFF && player_dist < (10.0f * getArg0())) || (getArg0() == 0xFF && player_dist < 500.0f)) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
 /* 80D28B7C-80D28C10 001CBC 0094+00 1/1 0/0 0/0 .text calcMidnaWaitPos__15daObjWarpKBrg_cFv */
 void daObjWarpKBrg_c::calcMidnaWaitPos() {
-    // NONMATCHING
+    cXyz offset(l_midna_wait_offset);
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::ZXYrotM(shape_angle);
+    mDoMtx_stack_c::multVec(&offset, &mMidnaWaitPos);
+
+    attention_info.position = mMidnaWaitPos;
+    attention_info.position.y += 250.0f;
 }
 
 /* 80D28C10-80D28CDC 001D50 00CC+00 1/1 0/0 0/0 .text            setBindEffect__15daObjWarpKBrg_cFv
  */
 void daObjWarpKBrg_c::setBindEffect() {
-    // NONMATCHING
+    for (int i = 0; i < 4; i++) {
+        mBindEfEmitterID[i] = dComIfGp_particle_set(l_bind_eff[i], &current.pos, &home.angle, &scale, 0xFF, NULL, -1, NULL, NULL, NULL);
+        if (mBindEfEmitterID[i] != NULL) {
+            mBindEfEmitterID[i]->becomeImmortalEmitter();
+        }
+    }
 }
 
 /* 80D28CDC-80D28D4C 001E1C 0070+00 1/1 0/0 0/0 .text followBindEffect__15daObjWarpKBrg_cFv */
 void daObjWarpKBrg_c::followBindEffect() {
-    // NONMATCHING
+    for (int i = 0; i < 4; i++) {
+        if (mBindEfEmitterID[i] != NULL) {
+            mBindEfEmitterID[i]->setGlobalRTMatrix(mpBridgeModel->getAnmMtx(0));
+        }
+    }
 }
 
 /* 80D28D4C-80D28E9C 001E8C 0150+00 1/1 0/0 0/0 .text            setSrcEffect__15daObjWarpKBrg_cFv
  */
 void daObjWarpKBrg_c::setSrcEffect() {
-    // NONMATCHING
+    for (int i = 0; i < 5; i++) {
+        mDisappEfEmitterID[i] = dComIfGp_particle_set(l_disapp_eff[i], &current.pos, &home.angle, &scale, 0xFF, NULL, -1, NULL, NULL, NULL);
+        if (mDisappEfEmitterID[i] != NULL) {
+            mDisappEfEmitterID[i]->becomeImmortalEmitter();
+        }
+    }
+
+    for (int i = 0; i < 3; i++) {
+        mStartEfEmitterID[i] = dComIfGp_particle_set(l_start_eff[i], &current.pos, &home.angle, &scale, 0xFF, NULL, -1, NULL, NULL, NULL);
+        if (mStartEfEmitterID[i] != NULL) {
+            mStartEfEmitterID[i]->becomeImmortalEmitter();
+        }
+    }
 }
 
 /* 80D28E9C-80D28FEC 001FDC 0150+00 1/1 0/0 0/0 .text            setDstEffect__15daObjWarpKBrg_cFv
  */
 void daObjWarpKBrg_c::setDstEffect() {
-    // NONMATCHING
+    for (int i = 0; i < 6; i++) {
+        mAppEfEmitterID[i] = dComIfGp_particle_set(l_app_eff[i], &current.pos, &home.angle, &scale, 0xFF, NULL, -1, NULL, NULL, NULL);
+        if (mAppEfEmitterID[i] != NULL) {
+            mAppEfEmitterID[i]->becomeImmortalEmitter();
+        }
+    }
+
+    for (int i = 0; i < 2; i++) {
+        mEndEfEmitterID[i] = dComIfGp_particle_set(l_end_eff[i], &current.pos, &home.angle, &scale, 0xFF, NULL, -1, NULL, NULL, NULL);
+        if (mEndEfEmitterID[i] != NULL) {
+            mEndEfEmitterID[i]->becomeImmortalEmitter();
+        }
+    }
 }
 
 /* 80D28FEC-80D290A8 00212C 00BC+00 1/1 0/0 0/0 .text followSrcEffect__15daObjWarpKBrg_cFv */
 void daObjWarpKBrg_c::followSrcEffect() {
-    // NONMATCHING
+    for (int i = 0; i < 5; i++) {
+        if (mDisappEfEmitterID[i] != NULL) {
+            mDisappEfEmitterID[i]->setGlobalRTMatrix(mpBridgeModel->getAnmMtx(mEffJointNo));
+        }
+    }
+
+    for (int i = 0; i < 3; i++) {
+        if (mStartEfEmitterID[i] != NULL) {
+            mStartEfEmitterID[i]->setGlobalRTMatrix(mpBridgeModel->getAnmMtx(0));
+        }
+    }
 }
 
 /* 80D290A8-80D29158 0021E8 00B0+00 1/1 0/0 0/0 .text followDstEffect__15daObjWarpKBrg_cFv */
 void daObjWarpKBrg_c::followDstEffect() {
-    // NONMATCHING
+    for (int i = 0; i < 6; i++) {
+        if (mAppEfEmitterID[i] != NULL) {
+            mAppEfEmitterID[i]->setGlobalRTMatrix(mpBridgeModel->getAnmMtx(0));
+        }
+    }
+
+    for (int i = 0; i < 2; i++) {
+        if (mEndEfEmitterID[i] != NULL) {
+            mEndEfEmitterID[i]->setGlobalRTMatrix(mpBridgeModel->getAnmMtx(0));
+        }
+    }
 }
 
 /* 80D29158-80D291FC 002298 00A4+00 1/1 0/0 0/0 .text            endSrcEffect__15daObjWarpKBrg_cFv
  */
 void daObjWarpKBrg_c::endSrcEffect() {
-    // NONMATCHING
+    for (int i = 0; i < 5; i++) {
+        if (mDisappEfEmitterID[i] != NULL) {
+            mDisappEfEmitterID[i]->becomeInvalidEmitter();
+            mDisappEfEmitterID[i]->quitImmortalEmitter();
+            mDisappEfEmitterID[i] = NULL;
+        }
+    }
+
+    for (int i = 0; i < 3; i++) {
+        if (mStartEfEmitterID[i] != NULL) {
+            mStartEfEmitterID[i]->becomeInvalidEmitter();
+            mStartEfEmitterID[i]->quitImmortalEmitter();
+            mStartEfEmitterID[i] = NULL;
+        }
+    }
 }
 
 /* 80D291FC-80D292A0 00233C 00A4+00 2/2 0/0 0/0 .text            endDstEffect__15daObjWarpKBrg_cFv
  */
 void daObjWarpKBrg_c::endDstEffect() {
-    // NONMATCHING
+    for (int i = 0; i < 6; i++) {
+        if (mAppEfEmitterID[i] != NULL) {
+            mAppEfEmitterID[i]->becomeInvalidEmitter();
+            mAppEfEmitterID[i]->quitImmortalEmitter();
+            mAppEfEmitterID[i] = NULL;
+        }
+    }
+
+    for (int i = 0; i < 2; i++) {
+        if (mEndEfEmitterID[i] != NULL) {
+            mEndEfEmitterID[i]->becomeInvalidEmitter();
+            mEndEfEmitterID[i]->quitImmortalEmitter();
+            mEndEfEmitterID[i] = NULL;
+        }
+    }
 }
 
 /* 80D292A0-80D29448 0023E0 01A8+00 1/0 0/0 0/0 .text            Draw__15daObjWarpKBrg_cFv */
-void daObjWarpKBrg_c::Draw() {
-    // NONMATCHING
+int daObjWarpKBrg_c::Draw() {
+    if (getNameArg() == 1) {
+        g_env_light.settingTevStruct(32, &current.pos, &tevStr);
+    } else {
+        g_env_light.settingTevStruct(16, &current.pos, &tevStr);
+    }
+
+    g_env_light.setLightTevColorType_MAJI(mpBridgeModel, &tevStr);
+    dComIfGd_setListBG();
+
+    if (field_0x5c8 && mpBridgeBck != NULL) {
+        mpBridgeBck->entry(mpBridgeModel->getModelData());
+    }
+
+    if (mpBridgeBtk != NULL) {
+        mpBridgeBtk->entry(mpBridgeModel->getModelData());
+    }
+
+    mDoExt_modelUpdateDL(mpBridgeModel);
+    mDoExt_bckAnmRemove(mpBridgeModel->getModelData());
+    dComIfGd_setList();
+
+    if (mpPortalModel != NULL) {
+        dComIfGd_setListDark();
+        mpPortalBtk->entry(mpPortalModel->getModelData());
+        mpPortalBrk->entry(mpPortalModel->getModelData());
+        mDoExt_modelUpdateDL(mpPortalModel);
+        mDoExt_brkAnmRemove(mpBridgeModel->getModelData());
+        mDoExt_btkAnmRemove(mpBridgeModel->getModelData());
+        dComIfGd_setList();
+    }
+
+    return 1;
 }
 
 /* 80D29448-80D294B0 002588 0068+00 1/0 0/0 0/0 .text            Delete__15daObjWarpKBrg_cFv */
-void daObjWarpKBrg_c::Delete() {
-    // NONMATCHING
-}
+int daObjWarpKBrg_c::Delete() {
+    endSrcEffect();
+    endDstEffect();
 
-/* ############################################################################################## */
-/* 80D29900-80D29928 0001F0 0028+00 1/1 0/0 0/0 .data            __vt__15daObjWarpKBrg_c */
-SECTION_DATA extern void* __vt__15daObjWarpKBrg_c[10] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)CreateHeap__15daObjWarpKBrg_cFv,
-    (void*)Create__15daObjWarpKBrg_cFv,
-    (void*)Execute__15daObjWarpKBrg_cFPPA3_A4_f,
-    (void*)Draw__15daObjWarpKBrg_cFv,
-    (void*)Delete__15daObjWarpKBrg_cFv,
-    (void*)IsDelete__16dBgS_MoveBgActorFv,
-    (void*)ToFore__16dBgS_MoveBgActorFv,
-    (void*)ToBack__16dBgS_MoveBgActorFv,
-};
+    dComIfG_resDelete(&mPhase, l_arcName[getNameArg()]);
+    dComIfG_resDelete(&mEvPhase, l_evArcName);
+    return 1;
+}
 
 /* 80D294B0-80D29524 0025F0 0074+00 1/0 0/0 0/0 .text daObjWarpKBrg_create1st__FP15daObjWarpKBrg_c
  */
-static void daObjWarpKBrg_create1st(daObjWarpKBrg_c* param_0) {
-    // NONMATCHING
+static int daObjWarpKBrg_create1st(daObjWarpKBrg_c* i_this) {
+    fopAcM_SetupActor(i_this, daObjWarpKBrg_c);
+    return i_this->create1st();
 }
 
 /* 80D29524-80D29544 002664 0020+00 1/0 0/0 0/0 .text
  * daObjWarpKBrg_MoveBGDelete__FP15daObjWarpKBrg_c              */
-static void daObjWarpKBrg_MoveBGDelete(daObjWarpKBrg_c* param_0) {
-    // NONMATCHING
+static int daObjWarpKBrg_MoveBGDelete(daObjWarpKBrg_c* i_this) {
+    return i_this->MoveBGDelete();
 }
 
 /* 80D29544-80D29564 002684 0020+00 1/0 0/0 0/0 .text
  * daObjWarpKBrg_MoveBGExecute__FP15daObjWarpKBrg_c             */
-static void daObjWarpKBrg_MoveBGExecute(daObjWarpKBrg_c* param_0) {
-    // NONMATCHING
+static int daObjWarpKBrg_MoveBGExecute(daObjWarpKBrg_c* i_this) {
+    return i_this->MoveBGExecute();
 }
 
 /* 80D29564-80D29590 0026A4 002C+00 1/0 0/0 0/0 .text
  * daObjWarpKBrg_MoveBGDraw__FP15daObjWarpKBrg_c                */
-static void daObjWarpKBrg_MoveBGDraw(daObjWarpKBrg_c* param_0) {
-    // NONMATCHING
+static int daObjWarpKBrg_MoveBGDraw(daObjWarpKBrg_c* i_this) {
+    return i_this->MoveBGDraw();
 }
 
-/* 80D29590-80D295AC 0026D0 001C+00 1/1 0/0 0/0 .text            cLib_calcTimer<Uc>__FPUc */
-extern "C" void func_80D29590(void* _this, u8* param_0) {
-    // NONMATCHING
-}
+/* 80D298A4-80D298C4 -00001 0020+00 1/0 0/0 0/0 .data            daObjWarpKBrg_METHODS */
+static actor_method_class daObjWarpKBrg_METHODS = {
+    (process_method_func)daObjWarpKBrg_create1st,
+    (process_method_func)daObjWarpKBrg_MoveBGDelete,
+    (process_method_func)daObjWarpKBrg_MoveBGExecute,
+    (process_method_func)NULL,
+    (process_method_func)daObjWarpKBrg_MoveBGDraw,
+};
 
-/* 80D29688-80D29688 0000D4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+/* 80D298C4-80D298F4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_KakarikoBrg */
+extern actor_process_profile_definition g_profile_Obj_KakarikoBrg = {
+    fpcLy_CURRENT_e,         // mLayerID
+    3,                       // mListID
+    fpcPi_CURRENT_e,         // mListPrio
+    PROC_Obj_KakarikoBrg,    // mProcName
+    &g_fpcLf_Method.base,   // sub_method
+    sizeof(daObjWarpKBrg_c), // mSize
+    0,                       // mSizeOther
+    0,                       // mParameters
+    &g_fopAc_Method.base,    // sub_method
+    530,                     // mPriority
+    &daObjWarpKBrg_METHODS,  // sub_method
+    0x00040000,              // mStatus
+    fopAc_ACTOR_e,           // mActorType
+    fopAc_CULLBOX_CUSTOM_e,  // cullType
+};

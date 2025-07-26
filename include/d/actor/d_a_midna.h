@@ -383,6 +383,11 @@ public:
         mpKago = NULL;
     }
 
+    void onTagWaitPosPortalObj(const cXyz* i_pos) {
+        mTagWaitPos = *i_pos;
+        onStateFlg0(daMidna_FLG0(FLG0_PORTAL_OBJ_CALL | FLG0_TAG_WAIT));
+    }
+
     static daMidna_texData_s const m_texDataTable[21];
     static daMidna_anmData_s const m_anmDataTable[53];
 
