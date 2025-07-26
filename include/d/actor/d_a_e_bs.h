@@ -64,10 +64,12 @@ public:
 
 STATIC_ASSERT(sizeof(e_bs_class) == 0xcfc);
 
-class daE_BS_HIO_c {
+class daE_BS_HIO_c : public JORReflexible {
 public:
     /* 8068E12C */ daE_BS_HIO_c();
     /* 8069091C */ virtual ~daE_BS_HIO_c() {}
+
+    void genMessage(JORMContext* ctx);
 
     /* 0x04 */ s8 id;
     /* 0x08 */ f32 base_size;
