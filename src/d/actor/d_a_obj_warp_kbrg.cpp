@@ -116,7 +116,7 @@ int daObjWarpKBrg_c::Create() {
         break;
     case 1:
         if (!fopAcM_isSwitch(this, getSwbit())) {
-            setAction(8);
+            setAction(ACTION_ORDER_EVENT2_e);
 
             if (mpBgW != NULL && mpBgW->ChkUsed()) {
                 dComIfG_Bgsp().Release(mpBgW);
@@ -127,7 +127,7 @@ int daObjWarpKBrg_c::Create() {
             field_0x5c8 = 1;
             mpPortalBrk->setFrame(0.0f);
 
-            setAction(10);
+            setAction(ACTION_DEAD2_e);
         }
 
         mEventType = 1;
@@ -346,7 +346,7 @@ void daObjWarpKBrg_c::actionWait() {
     daPy_py_c* player_p = daPy_getPlayerActorClass();
 
     if (fopAcM_isSwitch(this, getSwbit2()) && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[54])) {
-        setAction(1);
+        setAction(ACTION_ORDER_EVENT_e);
         actionOrderEvent();
     }
 
@@ -355,7 +355,7 @@ void daObjWarpKBrg_c::actionWait() {
             midna_p->onTagWaitPosPortalObj(&mMidnaWaitPos);
             dComIfGp_getEvent().setPt2(this);
             mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
-            setAction(4);
+            setAction(ACTION_WARP_EVENT_e);
             demoProc();
         }
     }
@@ -368,7 +368,7 @@ void daObjWarpKBrg_c::actionOrderEvent() {
     if (eventInfo.checkCommandTalk()) {
         midna_p->onTagWaitPosPortalObj(&mMidnaWaitPos);
         if (midna_p->current.pos.abs(mMidnaWaitPos) < 5.0f) {
-            setAction(2);
+            setAction(ACTION_TALK_EVENT_e);
             mMsgFlow.init(this, getMsgID(), 0, NULL);
         }
     } else {
@@ -384,7 +384,7 @@ void daObjWarpKBrg_c::actionWaitWarpEvent() {
         midna_p->onTagWaitPosPortalObj(&mMidnaWaitPos);
         dComIfGp_getEvent().setPt2(this);
         mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
-        setAction(4);
+        setAction(ACTION_WARP_EVENT_e);
         demoProc();
     }
 }
@@ -395,13 +395,13 @@ void daObjWarpKBrg_c::actionOrderATalkEvent() {
     daMidna_c* midna_p = (daMidna_c*)daPy_py_c::getMidnaActor();
 
     if (eventInfo.checkCommandTalk()) {
-        setAction(2);
+        setAction(ACTION_TALK_EVENT_e);
         mMsgFlow.init(this, getMsgID(), 0, NULL);
     } else if (dComIfGp_evmng_startCheck(mEventId[mEventType])) {
         midna_p->onTagWaitPosPortalObj(&mMidnaWaitPos);
         dComIfGp_getEvent().setPt2(this);
         mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
-        setAction(4);
+        setAction(ACTION_WARP_EVENT_e);
         demoProc();
     } else if (checkTalkDistance()) {
         midna_p->onTagWaitPosPortalObj(&mMidnaWaitPos);
@@ -410,7 +410,7 @@ void daObjWarpKBrg_c::actionOrderATalkEvent() {
         attention_info.flags = 0xA;
     } else {
         midna_p->offTagWaitPos();
-        setAction(0);
+        setAction(ACTION_WAIT_e);
     }
 }
 
@@ -425,7 +425,7 @@ void daObjWarpKBrg_c::actionTalkEvent() {
             dMeter2Info_setPauseStatus(6);
         }
 
-        setAction(5);
+        setAction(ACTION_ORDER_A_TALK_EVENT_e);
         // "Kakariko Bridge: talk end!"
         OS_REPORT_ERROR("カカリコ橋：会話終了！\n");
     }
@@ -448,7 +448,7 @@ void daObjWarpKBrg_c::actionWait2() {}
 /* 80D2814C-80D281E4 00128C 0098+00 1/0 0/0 0/0 .text actionOrderEvent2__15daObjWarpKBrg_cFv */
 void daObjWarpKBrg_c::actionOrderEvent2() {
     if (eventInfo.checkCommandDemoAccrpt()) {
-        setAction(9);
+        setAction(ACTION_WARP_EVENT2_e);
         mStaffId = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
         demoProc();
     } else {
@@ -459,7 +459,7 @@ void daObjWarpKBrg_c::actionOrderEvent2() {
 /* 80D281E4-80D28248 001324 0064+00 1/0 0/0 0/0 .text actionWarpEvent2__15daObjWarpKBrg_cFv */
 void daObjWarpKBrg_c::actionWarpEvent2() {
     if (dComIfGp_evmng_endCheck(mEventId[mEventType])) {
-        setAction(0xA);
+        setAction(ACTION_DEAD2_e);
     } else {
         demoProc();
     }

@@ -15,6 +15,20 @@
  */
 class daObjWarpKBrg_c : public dBgS_MoveBgActor {
 public:
+    enum Action_e {
+        ACTION_WAIT_e,
+        ACTION_ORDER_EVENT_e,
+        ACTION_TALK_EVENT_e,
+        ACTION_WAIT_WARP_EVENT_e,
+        ACTION_WARP_EVENT_e,
+        ACTION_ORDER_A_TALK_EVENT_e,
+        ACTION_DEAD_e,
+        ACTION_WAIT2_e,
+        ACTION_ORDER_EVENT2_e,
+        ACTION_WARP_EVENT2_e,
+        ACTION_DEAD2_e,
+    };
+
     /* 80D26FA8 */ void initBaseMtx();
     /* 80D27008 */ void setBaseMtx();
     /* 80D276B4 */ int create1st();

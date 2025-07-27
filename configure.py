@@ -2155,7 +2155,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_volcball"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_volcbom"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_warp_kbrg"),
-    ActorRel(NonMatching, "d_a_obj_warp_obrg"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_warp_obrg"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_waterGate"),
     ActorRel(Equivalent, "d_a_obj_waterPillar"), # vtable order
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_waterfall"),
