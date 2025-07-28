@@ -2,6 +2,7 @@
 #define D_A_E_SB_H
 #include "d/d_bg_s_acch.h"
 #include "d/d_cc_d.h"
+#include "d/d_cc_uty.h"
 #include "f_op/f_op_actor_mng.h"
 
 /**
@@ -67,13 +68,13 @@ private:
     /* 0x5C8 */ int field_0x5c8;
     /* 0x5CC */ u32 field_0x5cc;
     /* 0x5D0 */ u8 field_0x5d0;
-    /* 0x5D1 */ u8 field_0x5d1[0x5D8 - 0x5D1];
-    /* 0x5D8 */ s16 field_0x5d8;
-    /* 0x5DA */ s16 field_0x5da;
-    /* 0x5DC */ u8 field_0x5dc[0x5DE - 0x5DC];
-    /* 0x5DE */ s16 field_0x5de;
-    /* 0x5E0 */ s16 field_0x5e0;
-    /* 0x5E2 */ u8 field_0x5e2[0x5EC - 0x5E2];
+    /* 0x5D2 */ s16 field_0x5d2;
+    /* 0x5D1 */ f32 field_0x5d4;
+    /* 0x5D8 */ csXyz field_0x5d8;
+    /* 0x5DE */ csXyz field_0x5de;
+    /* 0x5E4 */ u8 field_0x5e4;
+    /* 0x5E6 */ s16 field_0x5e6;
+    /* 0x5E8 */ u8 field_0x5e8;
 public:
     /* 0x5EC */ cXyz* field_0x5ec;
     /* 0x5F0 */ f32 field_0x5f0;
@@ -84,21 +85,21 @@ private:
     /* 0x603 */ u8 field_0x603;
     /* 0x604 */ u8 field_0x604;
     /* 0x608 */ int field_0x608;
-    /* 0x60C */ u8 field_0x60c[0x610 - 0x60C];
+    /* 0x60C */ int field_0x60c;
     /* 0x610 */ s16 field_0x610;
     /* 0x612 */ s16 field_0x612;
-    /* 0x614 */ u8 field_0x614[0x61A - 0x614];
+    /* 0x614 */ csXyz field_0x614;
     /* 0x61A */ u8 field_0x61a;
     /* 0x61C */ mDoExt_McaMorfSO* mpMorf;
     /* 0x620 */ request_of_phase_process_class mPhaseReq;
-    /* 0x628 */ u8 field_0x628[0x62C - 0x628];
+    /* 0x628 */ int mShadowKey;
     /* 0x62C */ Z2CreatureEnemy mSound;
     /* 0x6D0 */ dBgS_AcchCir mAcchCir;
     /* 0x710 */ dBgS_ObjAcch mAcch;
     /* 0x8E8 */ dCcD_Stts mStts;
     /* 0x924 */ dCcD_Sph mSph;
     /* 0xA5C */ dCcD_Cyl mCyl;
-    /* 0xB98 */ u8 field_0xb98[0xBBC - 0xB98];
+    /* 0xB98 */ dCcU_AtInfo mAtInfo;
     /* 0xBBC */ u8 field_0xbbc;
 };
 
