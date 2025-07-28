@@ -45,7 +45,7 @@ public:
     /* 0x5B7 */ u8 field_0x5B7;
     /* 0x5B8 */ u8 field_0x5B8;
     /* 0x5B9 */ u8 field_0x5B9;
-    /* 0x5B8 */ char pad5B8[0x8];  // Padding
+    /* 0x5B8 */ char pad5B8[0x8];           // Padding
     /* 0x5C2 */ s8 field_0x5C2;
     /* 0x5C4 */ cXyz field_0x5C4;
     /* 0x5D0 */ s16 mTargetAngleY;
@@ -57,11 +57,11 @@ public:
     /* 0x5E8 */ mDoExt_btkAnm* mpBtk;
     /* 0x5EC */ s8 field_0x5EC;
     /* 0x5F0 */ s32 mAnmID;
-    /* 0x5F4 */ s16 field_0x5F4;  // Chirpdist ?
+    /* 0x5F4 */ s16 mChirpDist;
     /* 0x5F8 */ Z2SoundObjSimple mSound;
     /* 0x618 */ s16 field_0x618;
     /* 0x61A */ s16 mActionID;
-    /* 0x61C */ s16 field_0x61C;  // mMode ?? Gnd type ?
+    /* 0x61C */ s16 field_0x61C;
     /* 0x61E */ s16 field_0x61E;
     /* 0x620 */ f32 field_0x620;
     /* 0x624 */ f32 field_0x624;
@@ -72,7 +72,7 @@ public:
     /* 0x640 */ s16 field_0x640;
     /* 0x642 */ s16 field_0x642;
     /* 0x644 */ char pad644[1];              // Padding
-    /* 0x645 */ s8 field_0x645;              // Last thing in land_pos
+    /* 0x645 */ s8 field_0x645;
     /* 0x646 */ char pad646[0x64C - 0x646];  // Padding
     /* 0x64C */ s16 field_0x64C[4];
     /* 0x654 */ s16 field_0x654;

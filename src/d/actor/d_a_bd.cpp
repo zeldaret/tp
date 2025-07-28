@@ -197,7 +197,7 @@ static void pl_check(bd_class* i_this) {
             i_this->field_0x624 = 0.0f;
             i_this->field_0x628 = 6.0f + cM_rndF(2.0f);
             anm_init(i_this, ANM_FLY, 1.0f, 2, 1.0f);
-            i_this->field_0x5F4 = l_HIO.mChirpDist;
+            i_this->mChirpDist = l_HIO.mChirpDist;
             return;
         }
         i_this->field_0x64C[0] = ((f32)l_HIO.mFlightTime + cM_rndF(0.5f * (f32)l_HIO.mFlightTime));
@@ -411,7 +411,7 @@ static void bd_ground(bd_class* i_this) {
             i_this->field_0x624 = 0.0f;
             i_this->field_0x628 = 6.0f + cM_rndF(2.0f);
             anm_init(i_this, ANM_FLY, 1.0f, 2, 1.0f);
-            i_this->field_0x5F4 = l_HIO.mChirpDist;
+            i_this->mChirpDist = l_HIO.mChirpDist;
         }
     } else {
         i_this->field_0x658--;
@@ -714,7 +714,7 @@ static void bd_rope(bd_class* i_this) {
         i_this->field_0x624 = 0.0f;
         i_this->field_0x628 = (6.0f + cM_rndF(2.0f));
         anm_init(i_this, ANM_FLY, 1.0f, 2, 1.0f);
-        i_this->field_0x5F4 = l_HIO.mChirpDist;
+        i_this->mChirpDist = l_HIO.mChirpDist;
     }
 }
 
@@ -747,7 +747,7 @@ static void bd_kkri(bd_class* i_this) {
         i_this->field_0x624 = 0.0f;
         i_this->field_0x628 = (6.0f + cM_rndF(2.0f));
         anm_init(i_this, ANM_FLY, 1.0f, 2, 1.0f);
-        i_this->field_0x5F4 = l_HIO.mChirpDist;
+        i_this->mChirpDist = l_HIO.mChirpDist;
     }
 }
 
@@ -935,8 +935,8 @@ static int daBd_Execute(bd_class* i_this) {
     J3DModel* model_p = i_this->mpMorf->getModel();
     model_p->setBaseTRMtx(mDoMtx_stack_c::get());
     i_this->mpMorf->play(&a_this->eyePos, 0, 0);
-    if (i_this->mAnmID == ANM_FLY && i_this->field_0x5F4 != 0) {
-        i_this->field_0x5F4--;
+    if (i_this->mAnmID == ANM_FLY && i_this->mChirpDist != 0) {
+        i_this->mChirpDist--;
         i_this->mSound.startLevelSound(Z2SE_BIRD_FLYING, 0, -1);
     }
     i_this->mpBtk->setFrame((f32)(int)i_this->field_0x5EC);
