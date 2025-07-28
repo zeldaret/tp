@@ -33,6 +33,7 @@ public:
 
     cXyz& getBallPos() { return m_ballPos; }
     void onPlayerRide() { m_isPlayerRide = true; }
+    void onCoverVanishFlg() { m_coverVanishFlg = 1; }
 
     struct BckTbl {
         u16 idx[4];

@@ -17,9 +17,9 @@ struct daNpcShad_HIOParam {
     /* 0x6C */ f32 traveling_speed;     // 走行速度 (Traveling Speed)
 };
 
-class daNpcShad_Param_c {
+class daNpcShad_Param_c: public JORReflexible {
 public:
-    /* 80AE1F70 */ ~daNpcShad_Param_c();
+    /* 80AE1F70 */ virtual ~daNpcShad_Param_c() {}
 
     static const daNpcShad_HIOParam m;
 };
@@ -44,7 +44,7 @@ public:
     /* 80AD982C */ void setMotionAnm(int, f32);
     /* 80AD99B4 */ void reset();
     /* 80AD9C0C */ inline void setWaitAction();
-    /* 80AD9E04 */ bool getPathPoint(u8, int, Vec*);
+    /* 80AD9E04 */ inline bool getPathPoint(u8, int, Vec*);
     /* 80AD9E90 */ inline bool isSneaking();
     /* 80AD9F00 */ bool wait_type0(void*);
     /* 80ADA630 */ void setMotion(int, f32, int);
@@ -95,11 +95,34 @@ public:
         }
     }
 
+    inline csXyz* unk_inline();
     inline BOOL chkFindPlayer();
     inline void setLookMode(int, fopAc_ac_c*, cXyz*);
     inline BOOL step(s16, int, f32);
-
     inline void setExpressionTalkAfter();
+    inline void setLookObliquenessUp();
+
+    inline void searchActors() {
+        if (mMode == 0) {
+            if (mActorMngr[1].getActorP() == NULL) {
+                mActorMngr[1].entry(fopAcM_SearchByName(PROC_NPC_ASH));
+            }
+
+            if (mActorMngr[2].getActorP() == NULL) {
+                mActorMngr[2].entry(fopAcM_SearchByName(PROC_NPC_RAFREL));
+            }
+
+            if (mActorMngr[3].getActorP() == NULL) {
+                mActorMngr[3].entry(fopAcM_SearchByName(PROC_NPC_MOIR));
+            }
+
+            if (mActorMngr[4].getActorP() == NULL) {
+                mActorMngr[4].entry(getEvtAreaTagP(17, 0));
+            }
+        } else if (mMode == 1 && daNpcF_chkEvtBit(0x12E) && mActorMngr[4].getActorP() == NULL) {
+            mActorMngr[4].entry(getEvtAreaTagP(18, 0));
+        }
+    }
 
 private:
     /* 0xB48 */ J3DModel* field_0xb48;
@@ -113,7 +136,7 @@ private:
     /* 0xCB0 */ dCcD_Cyl field_0xcb0;
     /* 0xDEC */ ActionFn mActionFn;
     /* 0xDF8 */ request_of_phase_process_class mPhases[2];
-    /* 0xE08 */ fpc_ProcID field_0xe08;
+    /* 0xE08 */ fpc_ProcID mItemPartnerId;
     /* 0xE0C */ int field_0xe0c;
     /* 0xE10 */ int field_0xe10;
     /* 0xE14 */ s16 field_0xe14;
