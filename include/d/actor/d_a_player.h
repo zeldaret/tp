@@ -437,7 +437,7 @@ public:
         FLG3_COPY_ROD_ATN_KEEP = 0x10000000,
         FLG3_BOOMERANG_ATN_KEEP = 0x8000000,
         FLG3_UNK_4000000 = 0x4000000,
-        FLG3_UNK_2000000 = 0x2000000,
+        FLG3_WARP_OBJ_DEMO = 0x2000000,
         FLG3_UNK_1000000 = 0x1000000,
         FLG3_UNK_800000 = 0x800000,
         FLG3_UNK_400000 = 0x400000,
@@ -934,6 +934,7 @@ public:
     void onForceAutoJump() { onEndResetFlg0(ERFLG0_FORCE_AUTO_JUMP); }
     void onNotAutoJump() { onEndResetFlg0(ERFLG0_NOT_AUTO_JUMP); }
     void onNotHang() { onEndResetFlg0(ERFLG0_NOT_HANG); }
+    void onLeafSe() { onEndResetFlg0(ERFLG0_UNK_200000); }
     void onWolfFchainPull() { onEndResetFlg0(ERFLG0_WOLF_FCHAIN_PULL); }
     void onFishingRodGetFish() { onEndResetFlg0(ERFLG0_FISHING_ROD_GET_FISH); }
     void onShieldBackBone() { onEndResetFlg1(ERFLG1_GANON_FINISH); }
@@ -962,6 +963,7 @@ public:
         }
     }
     void onMidnaTalkPolySpeed() { onNoResetFlg3(FLG3_MIDNA_TALK_POLY_SPEED); }
+    void onWarpObjDemo() { onNoResetFlg3(FLG3_WARP_OBJ_DEMO); }
 
     void offCargoCarry() {
         if (checkCargoCarry()) {
@@ -1213,6 +1215,12 @@ public:
     BOOL checkSumouPunchStagger() const { return mSpecialMode == 0x1F; }
     BOOL checkSumouTackleStagger() const { return mSpecialMode == 0x20; }
     BOOL checkSumouGraspRelease() const { return mSpecialMode == 0x23; }
+
+    void onHeavyState() { onNoResetFlg0(FLG0_UNK_40000000); }
+    void onHeavyStateMidnaPanic() {
+        onHeavyState();
+        onEndResetFlg1(ERFLG1_UNK_40000);
+    }
 };
 
 int daPy_addCalcShort(s16* param_0, s16 param_1, s16 param_2, s16 param_3, s16 param_4);

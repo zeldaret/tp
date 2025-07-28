@@ -33,7 +33,7 @@ BOOL fpcEx_IsExist(fpc_ProcID i_id) {
 
 /* 800213C4-80021418 0054+00 s=0 e=1 z=0  None .text      fpcEx_Execute__FP18base_process_class */
 s32 fpcEx_Execute(base_process_class* i_proc) {
-    if (i_proc->init_state != 2 || fpcPause_IsEnable(i_proc, 1) == TRUE)
+    if (i_proc->state.init_state != 2 || fpcPause_IsEnable(i_proc, 1) == TRUE)
         return 0;
 
     return fpcBs_Execute(i_proc);
@@ -56,7 +56,7 @@ s32 fpcEx_ToLineQ(base_process_class* i_proc) {
         }
 #endif
 
-        i_proc->init_state = 2;
+        i_proc->state.init_state = 2;
         if (fpcBs_Is_JustOfType(g_fpcNd_type, i_proc->subtype)) {
             fpcLyIt_OnlyHere(&((process_node_class*)i_proc)->layer, (fpcLyIt_OnlyHereFunc)fpcEx_ToLineQ, i_proc);
         }
@@ -71,7 +71,7 @@ s32 fpcEx_ToLineQ(base_process_class* i_proc) {
  */
 s32 fpcEx_ExecuteQTo(base_process_class* i_proc) {
     if (fpcLyTg_QueueTo(&i_proc->layer_tag) == 1) {
-        i_proc->init_state = 3;
+        i_proc->state.init_state = 3;
         return 1;
     }
     

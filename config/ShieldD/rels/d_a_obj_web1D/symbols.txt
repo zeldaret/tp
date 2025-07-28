@@ -69,5 +69,5 @@ __RTTI__16daObj_Web1_HIO_c = .data:0x00000220; // type:object size:0x8 scope:glo
 @117165 = .data:0x0000029C; // type:object size:0x11 scope:local data:string
 @117166 = .data:0x000002C4; // type:object size:0xD scope:local data:string
 lbl_676_data_2D1 = .data:0x000002D1; // type:object size:0x13
-lbl_676_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
+init$1712 = .bss:0x00000000; // type:object size:0x1 scope:local data:byte
 l_HIO = .bss:0x00000008; // type:object size:0x8 scope:global data:byte

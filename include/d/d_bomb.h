@@ -32,7 +32,7 @@ public:
     static bool checkWaterBomb(fopAc_ac_c*);
     static bool checkInsectBombMove(fopAc_ac_c*);
 
-    virtual BOOL checkExplodeNow() { return FALSE; }
+    virtual u8 checkExplodeNow() { return false; }
     virtual void deleteBombAndEffect() {}
     virtual void setCargoBombExplode() {}
 
@@ -82,6 +82,11 @@ public:
     static fopAc_ac_c* createEnemyWaterBombHookshot(cXyz* i_pos, csXyz* i_angle, int i_roomNo) {
         return (fopAc_ac_c*)fopAcM_fastCreate(PROC_NBOMB, 16, i_pos, i_roomNo, i_angle, NULL, -1,
                                               NULL, NULL);
+    }
+
+    static fopAc_ac_c* createBombCargoCarry(cXyz* i_pos, csXyz* i_angle, int i_roomNo) {
+        return (fopAc_ac_c*)fopAcM_fastCreate(PROC_NBOMB, 0x11, i_pos, i_roomNo, i_angle, NULL, -1,
+                                 NULL, NULL);
     }
 };
 

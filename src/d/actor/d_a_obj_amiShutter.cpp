@@ -8,12 +8,6 @@
 #include "c/c_damagereaction.h"
 #include "d/d_bg_w.h"
 
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-
 UNK_REL_DATA
 
 /* 80BA14CC-80BA1514 0000EC 0048+00 1/1 0/0 0/0 .text            __ct__18daAmiShutter_HIO_cFv */

@@ -4229,7 +4229,7 @@ void daAlink_c::skipPortalObjWarp() {
         return;
     }
 
-    if (checkNoResetFlg3(FLG3_UNK_2000000) &&
+    if (checkNoResetFlg3(FLG3_WARP_OBJ_DEMO) &&
         (dComIfGp_TargetWarpPt_get() == 9 && dComIfGp_TransportWarp_check()))
     {
         dStage_changeScene(2, 0.0f, 0, fopAcM_GetRoomNo(this), shape_angle.y, -1);
