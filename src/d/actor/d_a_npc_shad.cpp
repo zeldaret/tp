@@ -874,6 +874,7 @@ void daNpcShad_c::playMotion() {
     }
 }
 
+// This is probably incorrect but was the only way I could get the proper order for rodata that is used later in lookat()
 inline csXyz* daNpcShad_c::unk_inline() {
     csXyz* local_fc[3] = {&mLookatAngle[0], &mLookatAngle[1], &mLookatAngle[2]};
     return *local_fc;
@@ -1223,7 +1224,6 @@ bool daNpcShad_c::wait_type1(void* param_1) {
 
 /* 80ADB428-80ADB628 003308 0200+00 1/0 0/0 0/0 .text            wait_type2__11daNpcShad_cFPv */
 bool daNpcShad_c::wait_type2(void* param_1) {
-    // NONMATCHING
     switch (field_0xe1a) {
         case 0:
             setExpression(8, -1.0f);
@@ -1294,7 +1294,6 @@ inline void daNpcShad_c::setExpressionTalkAfter() {
 
 /* 80ADB628-80ADBEA8 003508 0880+00 2/0 0/0 0/0 .text            talk__11daNpcShad_cFPv */
 bool daNpcShad_c::talk(void* param_1) {
-    // NONMATCHING
     int itemNo, iVar1, iVar2, iVar3;
     u16 eventID;
     s16 eventIdx;
@@ -1423,7 +1422,6 @@ bool daNpcShad_c::demo(void* param_1) {
 
 /* 80ADC3DC-80ADC700 0042BC 0324+00 1/0 0/0 0/0 .text            leave__11daNpcShad_cFPv */
 bool daNpcShad_c::leave(void* param_1) {
-    // NONMATCHING
     cXyz sp28(-6253.387f, 0.0f, 6251.7603f);
 
     switch (field_0xe1a) {
@@ -1484,7 +1482,6 @@ BOOL daNpcShad_c::EvCut_Introduction(int i_cutIndex) {
 
 /* 80ADC800-80ADCAD8 0046E0 02D8+00 1/0 0/0 0/0 .text            EvCut_Meeting__11daNpcShad_cFi */
 BOOL daNpcShad_c::EvCut_Meeting(int i_cutIndex) {
-    // NONMATCHING
     dEvent_manager_c* eventManager = &dComIfGp_getEventManager();
     int* piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
     if (piVar1 == NULL) {
@@ -1544,7 +1541,6 @@ BOOL daNpcShad_c::EvCut_Meeting(int i_cutIndex) {
 
 /* 80ADCAD8-80ADD720 0049B8 0C48+00 1/0 0/0 0/0 .text EvCut_ToChantSpell1__11daNpcShad_cFi */
 BOOL daNpcShad_c::EvCut_ToChantSpell1(int i_cutIndex) {
-    // NONMATCHING
     dEvent_manager_c* eventManager = &dComIfGp_getEventManager();
     int* cutName = (int*)eventManager->getMyNowCutName(i_cutIndex);
 
@@ -1687,7 +1683,6 @@ BOOL daNpcShad_c::EvCut_ToChantSpell1(int i_cutIndex) {
 
 /* 80ADD720-80ADE47C 005600 0D5C+00 1/0 0/0 0/0 .text EvCut_ToChantSpell2__11daNpcShad_cFi */
 BOOL daNpcShad_c::EvCut_ToChantSpell2(int i_cutIndex) {
-    // NONMATCHING
     dEvent_manager_c* eventManager = dComIfGp_getPEvtManager();
     int* cutName = (int*)eventManager->getMyNowCutName(i_cutIndex);
     fopAc_ac_c* actor;
@@ -1850,7 +1845,6 @@ BOOL daNpcShad_c::EvCut_ToChantSpell2(int i_cutIndex) {
 
 /* 80ADE47C-80ADE5F8 00635C 017C+00 1/0 0/0 0/0 .text EvCut_ToChantSpell2Skip__11daNpcShad_cFi */
 BOOL daNpcShad_c::EvCut_ToChantSpell2Skip(int i_cutIndex) {
-    // NONMATCHING
     dEvent_manager_c* eventManager = &dComIfGp_getEventManager();
     int* cutName = (int*)eventManager->getMyNowCutName(i_cutIndex);
 
@@ -1888,7 +1882,6 @@ inline void daNpcShad_c::setLookObliquenessUp() {
 
 /* 80ADE5F8-80ADED68 0064D8 0770+00 3/0 0/0 0/0 .text EvCut_DiscoveryCannon__11daNpcShad_cFi */
 BOOL daNpcShad_c::EvCut_DiscoveryCannon(int i_cutIndex) {
-    // NONMATCHING
     dEvent_manager_c* eventManager = &dComIfGp_getEventManager();
     int* cutName = (int*)eventManager->getMyNowCutName(i_cutIndex);
     cXyz* pcVar1;
@@ -2008,7 +2001,6 @@ BOOL daNpcShad_c::EvCut_DiscoveryCannon(int i_cutIndex) {
 
 /* 80ADED68-80ADEEE4 006C48 017C+00 1/0 0/0 0/0 .text EvCut_DiscoveryCannonSkip__11daNpcShad_cFi */
 BOOL daNpcShad_c::EvCut_DiscoveryCannonSkip(int i_cutIndex) {
-    // NONMATCHING
     dEvent_manager_c* eventManager = &dComIfGp_getEventManager();
     int* cutName = (int*)eventManager->getMyNowCutName(i_cutIndex);
     cXyz* pos;
@@ -2048,7 +2040,6 @@ BOOL daNpcShad_c::EvCut_DiscoveryCannonSkip(int i_cutIndex) {
 
 /* 80ADEEE4-80ADF810 006DC4 092C+00 1/0 0/0 0/0 .text            EvCut_Disappear__11daNpcShad_cFi */
 BOOL daNpcShad_c::EvCut_Disappear(int i_cutIndex) {
-    // NONMATCHING
     dEvent_manager_c* eventManager = &dComIfGp_getEventManager();
     int* cutName = (int*)eventManager->getMyNowCutName(i_cutIndex);
     cXyz* pos;
@@ -2208,7 +2199,6 @@ BOOL daNpcShad_c::EvCut_DisappearSkip(int i_cutIndex) {
 
 /* 80ADF8DC-80ADFB70 0077BC 0294+00 1/0 0/0 0/0 .text            EvCut_CallBack__11daNpcShad_cFi */
 BOOL daNpcShad_c::EvCut_CallBack(int i_cutIndex) {
-    // NONMATCHING
     dEvent_manager_c* eventManager = &dComIfGp_getEventManager();
     int* cutName = (int*)eventManager->getMyNowCutName(i_cutIndex);
     cXyz sp30;
@@ -2260,7 +2250,6 @@ BOOL daNpcShad_c::EvCut_CallBack(int i_cutIndex) {
 
 /* 80ADFB70-80ADFE74 007A50 0304+00 1/0 0/0 0/0 .text EvCut_WiretapSponsor__11daNpcShad_cFi */
 BOOL daNpcShad_c::EvCut_WiretapSponsor(int i_cutIndex) {
-    // NONMATCHING
     dEvent_manager_c* eventManager = &dComIfGp_getEventManager();
     fopAc_ac_c* actors[4] = {mActorMngr[2].getActorP(), mActorMngr[1].getActorP(), this, mActorMngr[3].getActorP()};
     int* cutName = (int*)eventManager->getMyNowCutName(i_cutIndex);
@@ -2310,7 +2299,6 @@ BOOL daNpcShad_c::EvCut_WiretapSponsor(int i_cutIndex) {
 
 /* 80ADFE74-80AE0104 007D54 0290+00 2/0 0/0 0/0 .text EvCut_WiretapEntrant__11daNpcShad_cFi */
 BOOL daNpcShad_c::EvCut_WiretapEntrant(int i_cutIndex) {
-    // NONMATCHING
     dEvent_manager_c* eventManager = &dComIfGp_getEventManager();
     int* prm = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
 
