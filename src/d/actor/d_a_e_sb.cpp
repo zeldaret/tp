@@ -378,7 +378,7 @@ void daE_SB_c::Attack_Motion() {
 
             if (mpMorf->getFrame() > 53.0f) {
                 mCyl.OnTgShield();
-                mCyl.SetTgHitMark((CcG_Tg_HitMark) 2);
+                mCyl.SetTgHitMark(CcG_Tg_UNK_MARK_2);
                 mCyl.OnAtSetBit();
                 gravity = -9.0f;
                 field_0x5ac = 2;
@@ -392,7 +392,7 @@ void daE_SB_c::Attack_Motion() {
             mSound.startCreatureSound(Z2SE_EN_SB_JUMP, 0, -1);
             AttackSetSP();
             field_0x5ac = 3;
-            mCyl.SetTgHitMark((CcG_Tg_HitMark) 2);
+            mCyl.SetTgHitMark(CcG_Tg_UNK_MARK_2);
             mCyl.OnTgShield();
             break;
         }
@@ -611,72 +611,213 @@ void daE_SB_c::Jump_Motion() {
 
 /* 80782E90-80782ED4 001930 0044+00 1/1 0/0 0/0 .text            Death_Motion__8daE_SB_cFv */
 void daE_SB_c::Death_Motion() {
-    // NONMATCHING
+    fopAcM_createDisappear(this, &current.pos, 10, 0, 15);
+    fopAcM_delete(this);
 }
 
 /* 80782ED4-80782EF4 001974 0020+00 1/1 0/0 0/0 .text            Hanekaeri__8daE_SB_cFv */
 void daE_SB_c::Hanekaeri() {
-    // NONMATCHING
+    // Japanese for "Bounce"
+    mCyl.OnTgShield();
+    mCyl.SetTgHitMark(CcG_Tg_UNK_MARK_2);
+    field_0x5d0 = 1;
 }
 
 /* 80782EF4-80782F10 001994 001C+00 1/1 0/0 0/0 .text            Hit__8daE_SB_cFv */
 void daE_SB_c::Hit() {
-    // NONMATCHING
+    mCyl.OffTgShield();
+    mCyl.SetTgHitMark(CcG_Tg_UNK_MARK_0);
+    field_0x5d0 = 0;
 }
 
 /* 80782F10-80783010 0019B0 0100+00 5/5 0/0 0/0 .text            ActionCheck__8daE_SB_cFv */
 void daE_SB_c::ActionCheck() {
-    // NONMATCHING
-}
+    if (field_0x5b0 == 0 || field_0x602 == 1) {
+        u8 temp_r27 = daPy_getPlayerActorClass()->getCutCount();
+        u8 temp_r29 = daPy_getPlayerActorClass()->getCutType();
+        daPy_py_c* player = daPy_getPlayerActorClass();
+        cXyz& unused_pos = fopAcM_GetPosition(player);
+        s16 tgt_ang = cLib_targetAngleY(&current.pos, s_LinkPos);
+        if ( (s16) (shape_angle.y - tgt_ang) > -0x3000 && (s16) (shape_angle.y - tgt_ang) < 0x3000) {
+            if (temp_r27 > 1U) {
+                Hit();
+            } else if (temp_r29 == 1 || temp_r29 == 10 || temp_r29 == 0x29 || dComIfGp_checkPlayerStatus0(0, 0x4000U)) {
+                Hanekaeri();
+            } else {
+                Hit();
+            }
+        } else {
+            Hanekaeri();
+        }
 
-/* ############################################################################################## */
-/* 80784E38-80784E3C 0000D0 0004+00 0/2 0/0 0/0 .rodata          @4370 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4370 = 400.0f;
-COMPILER_STRIP_GATE(0x80784E38, &lit_4370);
-#pragma pop
+        return;
+    }
+
+    Hanekaeri();
+}
 
 /* 80783010-80783404 001AB0 03F4+00 1/1 0/0 0/0 .text            Search__8daE_SB_cFv */
 void daE_SB_c::Search() {
-    // NONMATCHING
+    f32 temp_f31 = current.pos.absXZ(*s_LinkPos);
+    f32 temp_f30 = field_0x5f4.absXZ(current.pos);
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    mSound.setLinkSearch(0);
+    attention_info.flags = 0;
+    if (temp_f31 < l_HIO.search_area) {
+        if (!other_bg_check(this, player)) {
+            attention_info.flags = 4;
+            mSound.setLinkSearch(1);
+            field_0x5b0 = 4;
+            if (temp_f31 < l_HIO.atk_start_range && (s16) (shape_angle.y - s_TargetAngle) > -0x3000
+                && (s16) (shape_angle.y - s_TargetAngle) < 0x3000) {
+                field_0x5b0 = 0;
+            }
+        } else {
+            field_0x5b0 = 4;
+            field_0x5c0 = 1;
+        }
+    } else if (temp_f31 < (400.0f + l_HIO.search_area)) {
+        if (!other_bg_check(this, player)) {
+            attention_info.flags = 4;
+        }
+    } else if (temp_f30 > l_HIO.distance_home) {
+        field_0x5b0 = 4;
+        field_0x5c0 = 1;
+    } else if (field_0x608 != 12) {
+        field_0x5b0 = 1;
+        field_0x5b4 = 0;
+    }
+
+    Search_Bomb();
+    if (current.pos.y - home.pos.y > 200.0f) {
+        field_0x5b0 = 4;
+        field_0x5c0 = 1;
+    }
 }
 
 /* 80783404-807834FC 001EA4 00F8+00 1/1 0/0 0/0 .text            Wait_Motion__8daE_SB_cFv */
 void daE_SB_c::Wait_Motion() {
-    // NONMATCHING
+    switch (field_0x5b4) {
+        case 0:
+            SetAnm(0xC, 2, 5.0f, l_HIO.other_anm_speed);
+            mSound.startCreatureSound(Z2SE_EN_SB_WAIT, 0, -1);
+            field_0x5b4 = 1;
+            break;
+        case 1:
+            if (mpMorf->getFrame() == 0.0f) {
+                mSound.startCreatureSound(Z2SE_EN_SB_WAIT, 0, -1);
+            }
+
+            Search();
+            break;
+    }
+
+    ActionCheck();
+    Obj_Damage();
 }
 
 /* 807834FC-807835A0 001F9C 00A4+00 1/1 0/0 0/0 .text            Attack__8daE_SB_cFv */
 void daE_SB_c::Attack() {
-    // NONMATCHING
+    field_0x5cc = dComIfGp_particle_set(field_0x5cc, 0x8473, &current.pos, &tevStr, &shape_angle,
+                                        NULL, 0xFF, NULL, -1, NULL, NULL, NULL);
+    mCyl.SetTgHitMark(CcG_Tg_UNK_MARK_2);
+    mCyl.OnTgShield();
+    Attack_Motion();
 }
 
 /* 807835A0-80783678 002040 00D8+00 1/1 0/0 0/0 .text            Shield__8daE_SB_cFv */
 void daE_SB_c::Shield() {
-    // NONMATCHING
-}
+    switch (field_0x5b8) {
+        case 0:
+            cLib_addCalc2(&speedF, 0.0f, 0.2f, 30.0f);
+            if (speedF > -1.0f) {
+                speedF = 0.0f;
+                field_0x5b8 = 1;
+            }
 
-extern "C" void Anm_Motion__8daE_SB_cFv();
-/* 80784E6C-80784E88 -00001 001C+00 1/1 0/0 0/0 .data            @4468 */
-SECTION_DATA static void* lit_4468[7] = {
-    (void*)(((char*)Anm_Motion__8daE_SB_cFv) + 0x4C),
-    (void*)(((char*)Anm_Motion__8daE_SB_cFv) + 0x44),
-    (void*)(((char*)Anm_Motion__8daE_SB_cFv) + 0x64),
-    (void*)(((char*)Anm_Motion__8daE_SB_cFv) + 0xE4),
-    (void*)(((char*)Anm_Motion__8daE_SB_cFv) + 0x54),
-    (void*)(((char*)Anm_Motion__8daE_SB_cFv) + 0x5C),
-    (void*)(((char*)Anm_Motion__8daE_SB_cFv) + 0xEC),
-};
+            break;
+        case 1:
+            ActionCheck();
+            if (mpMorf->isStop() != 0) {
+                field_0x602 = 0;
+                MemberClear();
+            }
+            break;
+    }
+
+    Obj_Damage();
+}
 
 /* 80783678-80783854 002118 01DC+00 2/1 0/0 0/0 .text            Anm_Motion__8daE_SB_cFv */
 void daE_SB_c::Anm_Motion() {
-    // NONMATCHING
+    switch (field_0x5b0) {
+        case 1:
+            Wait_Motion();
+            break;
+        case 0:
+            Attack();
+            break;
+        case 4:
+            Jump_Motion();
+            break;
+        case 5:
+            Shield();
+            break;
+
+        case 2: {
+            if (mpMorf->checkFrame(49.5f)) {
+                mSound.startCreatureSound(Z2SE_EN_SB_LAND, 0, -1);
+            }
+
+            if (mpMorf->isStop() != 0) {
+                Death_Motion();
+            }
+
+            break;
+        }
+
+        case 3:
+            Bomb_Death_Motion();
+            break;
+
+        case 6: {
+            ActionCheck();
+            if (2.0f == mpMorf->getFrame()) {
+                mSound.startCreatureSound(Z2SE_EN_SB_DEFENCE, 0, -1);
+            }
+
+            if (mpMorf->isStop() != 0) {
+                MemberClear();
+                field_0x5b0 = 1;
+                SetAnm(0xC, 2, 5.0f, l_HIO.other_anm_speed);
+                mSound.startCreatureSound(Z2SE_EN_SB_WAIT, 0, -1);
+            }
+
+            Obj_Damage();
+            break;
+        }
+    }
 }
 
 /* 80783854-80783914 0022F4 00C0+00 1/1 0/0 0/0 .text            Search_Bomb__8daE_SB_cFv */
 void daE_SB_c::Search_Bomb() {
-    // NONMATCHING
+    s_Bomb = (fopAc_ac_c*) fpcM_Search(s_obj_sub, this);
+    if (s_Bomb != NULL) {
+        if (!other_bg_check(this, s_Bomb) && !(field_0x5f0 < 100.0f)) {
+            if (field_0x5f0 < 400.0f) {
+                field_0x5b0 = 0;
+                field_0x5c0 = 2;
+                return;
+            }
+
+            if (field_0x5f0 < 1000.0f) {
+                field_0x5b0 = 4;
+                field_0x5c0 = 2;
+            }
+        }
+    } else {
+        field_0x5c0 = 0;
+    }
 }
 
 /* 80783914-80783A9C 0023B4 0188+00 1/1 0/0 0/0 .text            ChanceMotion__8daE_SB_cFv */
@@ -693,14 +834,6 @@ void daE_SB_c::NoChanceMotion() {
 void daE_SB_c::Obj_Damage() {
     // NONMATCHING
 }
-
-/* ############################################################################################## */
-/* 80784E3C-80784E40 0000D4 0004+00 0/0 0/0 0/0 .rodata          @4467 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4467 = 49.5f;
-COMPILER_STRIP_GATE(0x80784E3C, &lit_4467);
-#pragma pop
 
 /* 80784E40-80784E44 0000D8 0004+00 0/1 0/0 0/0 .rodata          @4656 */
 #pragma push
