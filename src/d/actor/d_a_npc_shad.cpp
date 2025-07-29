@@ -9,70 +9,197 @@
 #include "d/actor/d_a_tag_evtarea.h"
 #include "d/d_msg_object.h"
 
+enum Shad_RES_File_ID {
+    /* BCK */
+    /* 0x07 */ BCK_SHAD_F_DISCOURAGED = 0x7,
+    /* 0x08 */ BCK_SHAD_F_HAPPY,
+    /* 0x09 */ BCK_SHAD_F_TALK_A,
+    /* 0x0A */ BCK_SHAD_FH_DISCOURAGED,
+    /* 0x0B */ BCK_SHAD_FH_HAPPY,
+    /* 0x0C */ BCK_SHAD_RUN_A,
+
+    /* BMDR */
+    /* 0x0F */ BMDR_SHAD = 0xF,
+    /* 0x10 */ BMDR_SHAD_BOOK_KNIFE,
+
+    /* BTK */
+    /* 0x13 */ BTK_SHAD = 0x13,
+
+    /* BTP */
+    /* 0x16 */ BTP_SHAD = 0x16,
+    /* 0x17 */ BTP_SHAD_F_DISCOURAGED,
+    /* 0x18 */ BTP_SHAD_F_HAPPY,
+    /* 0x19 */ BTP_SHAD_FH_DISCOURAGED,
+    /* 0x1A */ BTP_SHAD_FH_HAPPY,
+
+    /* EVT */
+    /* 0x1D */ EVT_EVENT_LIST = 0x1D,
+};
+
+enum Shad1_RES_File_ID {
+    /* BCK */
+    /* 0x06 */ BCK_SHAD_BOOK_TALK_A = 0x6,
+    /* 0x07 */ BCK_SHAD_BOOK_WAIT,
+    /* 0x08 */ BCK_SHAD_CHANT,
+    /* 0x09 */ BCK_SHAD_DISCOURAGED,
+    /* 0x0A */ BCK_SHAD_DISCOURAGED_WAIT,
+    /* 0x0B */ BCK_SHAD_F_ANGER,
+    /* 0x0C */ BCK_SHAD_F_CHANT,
+    /* 0x0D */ BCK_SHAD_F_KOMON,
+    /* 0x0E */ BCK_SHAD_F_SURPRISE,
+    /* 0x0F */ BCK_SHAD_FH_ANGER,
+    /* 0x10 */ BCK_SHAD_FH_KOMON,
+    /* 0x11 */ BCK_SHAD_FH_SURPRISE,
+    /* 0x12 */ BCK_SHAD_HI,
+    /* 0x13 */ BCK_SHAD_LOOK,
+    /* 0x14 */ BCK_SHAD_LOOK_WAIT,
+    /* 0x15 */ BCK_SHAD_LOOKBACK,
+    /* 0x16 */ BCK_SHAD_READ_KOMON,
+    /* 0x17 */ BCK_SHAD_SAD_WALK,
+    /* 0x18 */ BCK_SHAD_STEP,
+    /* 0x19 */ BCK_SHAD_STEPB,
+    /* 0x1A */ BCK_SHAD_SURPRISE,
+    /* 0x1B */ BCK_SHAD_SURPRISE_WAIT,
+    /* 0x1C */ BCK_SHAD_TAKE_KOMON,
+    /* 0x1D */ BCK_SHAD_TALK_A,
+    /* 0x1E */ BCK_SHAD_WAIT_A,
+    /* 0x1F */ BCK_SHAD_WALK_A,
+
+    /* BMDR */
+    /* 0x22 */ BMDR_SHAD_KOMONSHO = 0x22,
+
+    /* BTK */
+    /* 0x25 */ BTK_SHAD_DISCOURAGED = 0x25,
+    /* 0x26 */ BTK_SHAD_DISCOURAGED_WAIT,
+    /* 0x27 */ BTK_SHAD_READ_KOMON,
+    /* 0x28 */ BTK_SHAD_TAKE_KOMON,
+
+    /* BTP */
+    /* 0x2B */ BTP_SHAD_F_ANGER = 0x2B,
+    /* 0x2C */ BTP_SHAD_F_CHANT,
+    /* 0x2D */ BTP_SHAD_F_KOMON,
+    /* 0x2E */ BTP_SHAD_F_SURPRISE,
+    /* 0x2F */ BTP_SHAD_FH_ANGER,
+    /* 0x30 */ BTP_SHAD_FH_KOMON,
+    /* 0x31 */ BTP_SHAD_FH_SURPRISE,
+};
+
+enum Shad2_RES_File_ID {
+    /* BCK */
+    /* 0x3 */ BCK_SHAD_SIT_A = 0x3,
+    /* 0x4 */ BCK_SHAD_SITTALK_A,
+};
+
+enum Shad3_RES_File_ID {
+    /* BCK */
+    /* 0x3 */ BCK_SHAD_LOOKUP = 0x3,
+};
+
+enum arcIdx {
+    /* 0x0 */ SHAD,
+    /* 0x1 */ SHAD1,
+    /* 0x2 */ SHAD2,
+    /* 0x3 */ SHAD3,
+};
+
+enum Joint {
+    /* 0x00 */ JNT_CENTER,
+    /* 0x01 */ JNT_BACKBONE1,
+    /* 0x02 */ JNT_BACKBONE2,
+    /* 0x03 */ JNT_COLLOR,
+    /* 0x04 */ JNT_NECK,
+    /* 0x05 */ JNT_HEAD,
+    /* 0x06 */ JNT_CHIN,
+    /* 0x07 */ JNT_MAYUL,
+    /* 0x08 */ JNT_MAYUR,
+    /* 0x09 */ JNT_MOUTH,
+    /* 0x0A */ JNT_NECKTIE,
+    /* 0x0B */ JNT_SHOULDERL,
+    /* 0x0C */ JNT_ARML1,
+    /* 0x0D */ JNT_ARML2,
+    /* 0x0E */ JNT_HANDL,
+    /* 0x0F */ JNT_FINGERL,
+    /* 0x10 */ JNT_THUMBL,
+    /* 0x11 */ JNT_SHOULDERR,
+    /* 0x12 */ JNT_ARMR1,
+    /* 0x13 */ JNT_ARMR2,
+    /* 0x14 */ JNT_HANDR,
+    /* 0x15 */ JNT_FINGERR,
+    /* 0x16 */ JNT_THUMBR,
+    /* 0x17 */ JNT_WAIST,
+    /* 0x18 */ JNT_BOOK,
+    /* 0x19 */ JNT_LEGL1,
+    /* 0x1A */ JNT_LEGL2,
+    /* 0x1B */ JNT_FOOTL,
+    /* 0x1C */ JNT_LEGR1,
+    /* 0x1D */ JNT_LEGR2,
+    /* 0x1E */ JNT_FOOTR,
+};
+
 UNK_REL_DATA
 
 /* 80AE2640-80AE27F0 000020 01B0+00 1/2 0/0 0/0 .data            l_bckGetParamList */
 static daNpc_GetParam2 l_bckGetParamList[36] = {
-    {-1, 2, 0},
-    {9, 0, 0},
-    {8, 0, 0},
-    {0xB, 0, 1},
-    {7, 0, 0},
-    {0xC, 2, 1},
-    {0xD, 0, 1},
-    {0xE, 0, 1},
-    {0x11, 2, 1},
-    {0x10, 2, 1},
-    {0xB, 2, 0},
-    {0xF, 2, 1},
-    {0xA, 2, 0},
-    {0x1E, 2, 1},
-    {0x1D, 0, 1},
-    {0x18, 0, 1},
-    {0x19, 2, 1},
-    {7, 2, 1},
-    {6, 0, 1},
-    {0x12, 0, 1},
-    {0xC, 2, 0},
-    {0x1F, 2, 1},
-    {3, 2, 2},
-    {0x15, 0, 1},
-    {8, 2, 1},
-    {9, 0, 1},
-    {0xA, 2, 1},
-    {4, 0, 2},
-    {0x13, 0, 1},
-    {0x14, 2, 1},
-    {0x17, 2, 1},
-    {3, 2, 3},
-    {0x1C, 0, 1},
-    {0x16, 2, 1},
-    {0x1A, 0, 1},
-    {0x1B, 2, 1},
+    {-1, J3DFrameCtrl::EMode_LOOP, SHAD},
+    {BCK_SHAD_F_TALK_A, J3DFrameCtrl::EMode_NONE, SHAD},
+    {BCK_SHAD_F_HAPPY, J3DFrameCtrl::EMode_NONE, SHAD},
+    {BCK_SHAD_F_ANGER, J3DFrameCtrl::EMode_NONE, SHAD1},
+    {BCK_SHAD_F_DISCOURAGED, J3DFrameCtrl::EMode_NONE, SHAD},
+    {BCK_SHAD_F_CHANT, J3DFrameCtrl::EMode_LOOP, SHAD1},
+    {BCK_SHAD_F_KOMON, J3DFrameCtrl::EMode_NONE, SHAD1},
+    {BCK_SHAD_F_SURPRISE, J3DFrameCtrl::EMode_NONE, SHAD1},
+    {BCK_SHAD_FH_SURPRISE, J3DFrameCtrl::EMode_LOOP, SHAD1},
+    {BCK_SHAD_FH_KOMON, J3DFrameCtrl::EMode_LOOP, SHAD1},
+    {BCK_SHAD_FH_HAPPY, J3DFrameCtrl::EMode_LOOP, SHAD},
+    {BCK_SHAD_FH_ANGER, J3DFrameCtrl::EMode_LOOP, SHAD1},
+    {BCK_SHAD_FH_DISCOURAGED, J3DFrameCtrl::EMode_LOOP, SHAD},
+    {BCK_SHAD_WAIT_A, J3DFrameCtrl::EMode_LOOP, SHAD1},
+    {BCK_SHAD_TALK_A, J3DFrameCtrl::EMode_NONE, SHAD1},
+    {BCK_SHAD_STEP, J3DFrameCtrl::EMode_NONE, SHAD1},
+    {BCK_SHAD_STEPB, J3DFrameCtrl::EMode_LOOP, SHAD1},
+    {BCK_SHAD_BOOK_WAIT, J3DFrameCtrl::EMode_LOOP, SHAD1},
+    {BCK_SHAD_BOOK_TALK_A, J3DFrameCtrl::EMode_NONE, SHAD1},
+    {BCK_SHAD_HI, J3DFrameCtrl::EMode_NONE, SHAD1},
+    {BCK_SHAD_RUN_A, J3DFrameCtrl::EMode_LOOP, SHAD},
+    {BCK_SHAD_WALK_A, J3DFrameCtrl::EMode_LOOP, SHAD1},
+    {BCK_SHAD_SIT_A, J3DFrameCtrl::EMode_LOOP, SHAD2},
+    {BCK_SHAD_LOOKBACK, J3DFrameCtrl::EMode_NONE, SHAD1},
+    {BCK_SHAD_CHANT, J3DFrameCtrl::EMode_LOOP, SHAD1},
+    {BCK_SHAD_DISCOURAGED, J3DFrameCtrl::EMode_NONE, SHAD1},
+    {BCK_SHAD_DISCOURAGED_WAIT, J3DFrameCtrl::EMode_LOOP, SHAD1},
+    {BCK_SHAD_SITTALK_A, J3DFrameCtrl::EMode_NONE, SHAD2},
+    {BCK_SHAD_LOOK, J3DFrameCtrl::EMode_NONE, SHAD1},
+    {BCK_SHAD_LOOK_WAIT, J3DFrameCtrl::EMode_LOOP, SHAD1},
+    {BCK_SHAD_SAD_WALK, J3DFrameCtrl::EMode_LOOP, SHAD1},
+    {BCK_SHAD_LOOKUP, J3DFrameCtrl::EMode_LOOP, SHAD3},
+    {BCK_SHAD_TAKE_KOMON, J3DFrameCtrl::EMode_NONE, SHAD1},
+    {BCK_SHAD_READ_KOMON, J3DFrameCtrl::EMode_LOOP, SHAD1},
+    {BCK_SHAD_SURPRISE, J3DFrameCtrl::EMode_NONE, SHAD1},
+    {BCK_SHAD_SURPRISE_WAIT, J3DFrameCtrl::EMode_LOOP, SHAD1},
 };
 
 /* 80AE27F0-80AE2874 0001D0 0084+00 1/1 0/0 0/0 .data            l_btpGetParamList */
 static daNpc_GetParam2 l_btpGetParamList[11] = {
-    {0x16, 2, 0},
-    {0x2B, 0, 1},
-    {0x17, 0, 0},
-    {0x18, 0, 0},
-    {0x2D, 0, 1},
-    {0x2E, 0, 1},
-    {0x31, 2, 1},
-    {0x30, 2, 1},
-    {0x2F, 2, 1},
-    {0x19, 2, 0},
-    {0x1A, 2, 0},
+    {BTP_SHAD, J3DFrameCtrl::EMode_LOOP, SHAD},
+    {BTP_SHAD_F_ANGER, J3DFrameCtrl::EMode_NONE, SHAD1},
+    {BTP_SHAD_F_DISCOURAGED, J3DFrameCtrl::EMode_NONE, SHAD},
+    {BTP_SHAD_F_HAPPY, J3DFrameCtrl::EMode_NONE, SHAD},
+    {BTP_SHAD_F_KOMON, J3DFrameCtrl::EMode_NONE, SHAD1},
+    {BTP_SHAD_F_SURPRISE, J3DFrameCtrl::EMode_NONE, SHAD1},
+    {BTP_SHAD_FH_SURPRISE, J3DFrameCtrl::EMode_LOOP, SHAD1},
+    {BTP_SHAD_FH_KOMON, J3DFrameCtrl::EMode_LOOP, SHAD1},
+    {BTP_SHAD_FH_ANGER, J3DFrameCtrl::EMode_LOOP, SHAD1},
+    {BTP_SHAD_FH_DISCOURAGED, J3DFrameCtrl::EMode_LOOP, SHAD},
+    {BTP_SHAD_FH_HAPPY, J3DFrameCtrl::EMode_LOOP, SHAD},
 };
 
 /* 80AE2874-80AE28B0 000254 003C+00 1/2 0/0 0/0 .data            l_btkGetParamList */
 static daNpc_GetParam2 l_btkGetParamList[5] = {
-    {0x13, 2, 0},
-    {0x25, 0, 1},
-    {0x26, 2, 1},
-    {0x28, 0, 1},
-    {0x27, 2, 1},
+    {BTK_SHAD, J3DFrameCtrl::EMode_LOOP, SHAD},
+    {BTK_SHAD_DISCOURAGED, J3DFrameCtrl::EMode_NONE, SHAD1},
+    {BTK_SHAD_DISCOURAGED_WAIT, J3DFrameCtrl::EMode_LOOP, SHAD1},
+    {BTK_SHAD_TAKE_KOMON, J3DFrameCtrl::EMode_NONE, SHAD1},
+    {BTK_SHAD_READ_KOMON, J3DFrameCtrl::EMode_LOOP, SHAD1},
 };
 
 /* 80AE28B0-80AE28BC 000290 000C+00 1/0 0/0 0/0 .data            l_loadRes_SHAD0 */
@@ -256,7 +383,7 @@ cPhs__Step daNpcShad_c::Create() {
                     return cPhs_ERROR_e;
                 }
 
-                fopAcM_OnStatus(this, 0x4000);
+                fopAcM_OnStatus(this, fopAcM_STATUS_UNK_004000);
                 mMode = 2;
             }
         }
@@ -340,7 +467,7 @@ cPhs__Step daNpcShad_c::Create() {
 
 /* 80AD8B60-80AD8F24 000A40 03C4+00 1/1 0/0 0/0 .text            CreateHeap__11daNpcShad_cFv */
 int daNpcShad_c::CreateHeap() {
-    J3DModelData* mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], 0xF));
+    J3DModelData* mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], BMDR_SHAD));
     JUT_ASSERT(483, 0 != mdlData_p);
     mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1,
                                   &mSound, 0x80000, 0x11020284);
@@ -364,46 +491,46 @@ int daNpcShad_c::CreateHeap() {
         return 0;
     }
 
-    field_0xb48 = NULL;
+    mBookKnifeModel = NULL;
     if (mMode == 1 || mMode == 2) {
-        mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], 0x10));
+        mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], BMDR_SHAD_BOOK_KNIFE));
         JUT_ASSERT(518, mdlData_p != 0);
-        field_0xb48 = mDoExt_J3DModel__create(mdlData_p, 0x80000, 0x11000084);
-        if (field_0xb48 == NULL) {
+        mBookKnifeModel = mDoExt_J3DModel__create(mdlData_p, 0x80000, 0x11000084);
+        if (mBookKnifeModel == NULL) {
             return 0;
         }
 
         if (mMode == 2) {
-            mdlData_p = field_0xb48->getModelData();
+            mdlData_p = mBookKnifeModel->getModelData();
             mdlData_p->getMaterialNodePointer(1)->getShape()->hide();
         }
     }
 
-    field_0xb4c = NULL;
+    mKomonshoModel = NULL;
     if (mMode == 1) {
-        mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[1], 0x22));
+        mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[1], BMDR_SHAD_KOMONSHO));
         JUT_ASSERT(530, mdlData_p != 0);
-        field_0xb4c = mDoExt_J3DModel__create(mdlData_p, 0x80000, 0x11000084);
-        if (field_0xb4c == NULL) {
+        mKomonshoModel = mDoExt_J3DModel__create(mdlData_p, 0x80000, 0x11000084);
+        if (mKomonshoModel == NULL) {
             return 0;
         }
     }
 
-    if (!setExpressionAnm(1, false)) {
+    if (!setExpressionAnm(1, false)) { // BCK_SHAD_F_TALK_A
         return 0;
     }
 
     switch (mMode) {
         case 0:
-            setMotionAnm(0x16, 0.0f);
+            setMotionAnm(0x16, 0.0f); // BCK_SHAD_SIT_A
             break;
 
         case 1:
-            setMotionAnm(0xD, 0.0f);
+            setMotionAnm(0xD, 0.0f); // BCK_SHAD_WAIT_A
             break;
 
         case 2:
-            setMotionAnm(0x1F, 0.0f);
+            setMotionAnm(0x1F, 0.0f); // BCK_SHAD_LOOKUP
             break;
 
         default:
@@ -435,18 +562,18 @@ int daNpcShad_c::Draw() {
     mpMorf->getModel()->getModelData()->getMaterialNodePointer(1)->setMaterialAnm(mpMatAnm);
     draw(FALSE, FALSE, daNpcShad_Param_c::m.common.real_shadow_size, NULL, FALSE);
 
-    if (field_0xb48 != NULL) {
-        g_env_light.setLightTevColorType_MAJI(field_0xb48, &tevStr);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(0xF));
-        field_0xb48->setBaseTRMtx(mDoMtx_stack_c::get());
-        mDoExt_modelUpdateDL(field_0xb48);
+    if (mBookKnifeModel != NULL) {
+        g_env_light.setLightTevColorType_MAJI(mBookKnifeModel, &tevStr);
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_FINGERL));
+        mBookKnifeModel->setBaseTRMtx(mDoMtx_stack_c::get());
+        mDoExt_modelUpdateDL(mBookKnifeModel);
     }
 
-    if (field_0xb4c != NULL && (mMotion == 0xB || mMotion == 0xC)) {
-        g_env_light.setLightTevColorType_MAJI(field_0xb4c, &tevStr);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(0x15));
-        field_0xb4c->setBaseTRMtx(mDoMtx_stack_c::get());
-        mDoExt_modelUpdateDL(field_0xb4c);
+    if (mKomonshoModel != NULL && (mMotion == MOT_TAKE_KOMON || mMotion == MOT_READ_KOMON)) {
+        g_env_light.setLightTevColorType_MAJI(mKomonshoModel, &tevStr);
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_FINGERR));
+        mKomonshoModel->setBaseTRMtx(mDoMtx_stack_c::get());
+        mDoExt_modelUpdateDL(mKomonshoModel);
     }
 
     return 1;
@@ -455,31 +582,31 @@ int daNpcShad_c::Draw() {
 /* 80AD9280-80AD944C 001160 01CC+00 1/1 0/0 0/0 .text            ctrlJoint__11daNpcShad_cFP8J3DJointP8J3DModel                */
 int daNpcShad_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     int jntNo = i_joint->getJntNo();
-    int iVar1[3] = {1, 4, 5};
+    int lookatJoints[3] = {JNT_BACKBONE1, JNT_NECK, JNT_HEAD};
 
-    if (jntNo == 0) {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
+    if (jntNo == JNT_CENTER) {
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_BACKBONE1));
         mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(4));
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_NECK));
         mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(5));
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_HEAD));
         mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
     }
 
     mDoMtx_stack_c::copy(i_model->getAnmMtx(jntNo));
 
     switch (jntNo) {
-        case 1:
-        case 4:
-        case 5:
-            setLookatMtx(jntNo, iVar1, daNpcShad_Param_c::m.common.neck_rotation_ratio);
+        case JNT_BACKBONE1:
+        case JNT_NECK:
+        case JNT_HEAD:
+            setLookatMtx(jntNo, lookatJoints, daNpcShad_Param_c::m.common.neck_rotation_ratio);
             break;
     }
 
     i_model->setAnmMtx(jntNo, mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
 
-    if ((jntNo == 5 || jntNo == 9) && (mAnmFlags & 0x100) != 0) {
+    if ((jntNo == JNT_HEAD || jntNo == JNT_MOUTH) && (mAnmFlags & ANM_PLAY_BCK) != 0) {
         J3DAnmTransform* anmTransform = mBckAnm.getBckAnm();
         mBckAnm.changeBckOnly(mpMorf->getAnm());
         mpMorf->changeAnm(anmTransform);
@@ -524,55 +651,55 @@ bool daNpcShad_c::setExpressionAnm(int i_idx, bool i_modify) {
 
     switch (i_idx) {
         case 0:
-            bVar1 = setExpressionBtp(0);
+            bVar1 = setExpressionBtp(0); // BTP_SHAD
             break;
 
         case 1:
-            bVar1 = setExpressionBtp(0);
+            bVar1 = setExpressionBtp(0); // BTP_SHAD
             break;
 
         case 2:
-            bVar1 = setExpressionBtp(3);
+            bVar1 = setExpressionBtp(3); // BTP_SHAD_F_HAPPY
             break;
 
         case 3:
-            bVar1 = setExpressionBtp(1);
+            bVar1 = setExpressionBtp(1); // BTP_SHAD_F_ANGER
             break;
 
         case 4:
-            bVar1 = setExpressionBtp(2);
+            bVar1 = setExpressionBtp(2); // BTP_SHAD_F_DISCOURAGED
             break;
 
         case 5:
-            bVar1 = setExpressionBtp(0);
+            bVar1 = setExpressionBtp(0); // BTP_SHAD
             break;
 
         case 6:
-            bVar1 = setExpressionBtp(4);
+            bVar1 = setExpressionBtp(4); // BTP_SHAD_F_KOMON
             break;
 
         case 7:
-            bVar1 = setExpressionBtp(5);
+            bVar1 = setExpressionBtp(5); // BTP_SHAD_F_SURPRISE
             break;
 
         case 8:
-            bVar1 = setExpressionBtp(6);
+            bVar1 = setExpressionBtp(6); // BTP_SHAD_FH_SURPRISE
             break;
 
         case 9:
-            bVar1 = setExpressionBtp(7);
+            bVar1 = setExpressionBtp(7); // BTP_SHAD_FH_KOMON
             break;
 
         case 10:
-            bVar1 = setExpressionBtp(10);
+            bVar1 = setExpressionBtp(10); // BTP_SHAD_FH_HAPPY
             break;
 
         case 11:
-            bVar1 = setExpressionBtp(8);
+            bVar1 = setExpressionBtp(8); // BTP_SHAD_FH_ANGER
             break;
 
         case 12:
-            bVar1 = setExpressionBtp(9);
+            bVar1 = setExpressionBtp(9); // BTP_SHAD_FH_DISCOURAGED
             break;
 
         default:
@@ -588,7 +715,7 @@ bool daNpcShad_c::setExpressionAnm(int i_idx, bool i_modify) {
     }
 
     if (setBckAnm(anmTransform, 1.0f, i_attr, 0, -1, i_modify)) {
-        mAnmFlags |= 0x140;
+        mAnmFlags |= ANM_PLAY_BCK | ANM_PAUSE_BCK;
         mExpressionLoops = 0;
         return true;
     }
@@ -609,10 +736,10 @@ bool daNpcShad_c::setExpressionBtp(int i_idx) {
     }
 
     if (setBtpAnm(anmTexPattern, mpMorf->getModel()->getModelData(), 1.0f, i_attr)) {
-        mAnmFlags |= 0x280;
+        mAnmFlags |= ANM_PLAY_BTP | ANM_PAUSE_BTP;
 
         if (i_idx == 0) {
-            mAnmFlags |= 0x800;
+            mAnmFlags |= ANM_FLAG_800;
         }
             
         return true;
@@ -630,7 +757,7 @@ void daNpcShad_c::setMotionAnm(int i_idx, f32 i_morf) {
     mAnmFlags &= 0xFFFFFFC0;
 
     if (anmTransformKey != NULL && setMcaMorfAnm(anmTransformKey, 1.0f, i_morf, i_attr, 0, -1)) {
-        mAnmFlags |= 9;
+        mAnmFlags |= ANM_PLAY_MORF | ANM_PAUSE_MORF;
         mMotionLoops = 0;
     }
 
@@ -658,7 +785,7 @@ void daNpcShad_c::setMotionAnm(int i_idx, f32 i_morf) {
 
     if (anmTextureSRTKey != NULL) {
         if (setBtkAnm(anmTextureSRTKey, mpMorf->getModel()->getModelData(), 1.0f, i_attr)) {
-            mAnmFlags |= 0x12;
+            mAnmFlags |= ANM_PLAY_BTK | ANM_PAUSE_BTK;
         }
     }
 }
@@ -676,7 +803,7 @@ void daNpcShad_c::reset() {
     field_0xe0c = 0;
     field_0xe10 = 0;
     mActionFn = NULL;
-    field_0xe18 = -1;
+    mLookMode = -1;
     field_0xe1a = 0;
     field_0xe1e = 1;
     field_0xe1f = 0;
@@ -711,7 +838,7 @@ void daNpcShad_c::reset() {
     mMotionMorfOverride = 0.0f;
 
     if (isSneaking()) {
-        fopAcM_OnStatus(this, 0x4000);
+        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_004000);
     }
 
     setWaitAction();
@@ -764,34 +891,34 @@ inline bool daNpcShad_c::isSneaking() {
 
 /* 80AE0B58-80AE0ED0 008A38 0378+00 1/1 0/0 0/0 .text            playExpression__11daNpcShad_cFv */
 void daNpcShad_c::playExpression() {
-    daNpcF_anmPlayData dat0 = {0x1, daNpcShad_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat0 = {ANM_F_TALK_A, daNpcShad_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat0[1] = {&dat0};
-    daNpcF_anmPlayData dat1a = {0x2, daNpcShad_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat1b = {0xA, 0.0f, 0};
+    daNpcF_anmPlayData dat1a = {ANM_F_HAPPY, daNpcShad_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat1b = {ANM_FH_HAPPY, 0.0f, 0};
     daNpcF_anmPlayData* pDat1[2] = {&dat1a, &dat1b};
-    daNpcF_anmPlayData dat2a = {0x3, daNpcShad_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat2b = {0xB, 0.0f, 0};
+    daNpcF_anmPlayData dat2a = {ANM_F_ANGER, daNpcShad_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat2b = {ANM_FH_ANGER, 0.0f, 0};
     daNpcF_anmPlayData* pDat2[2] = {&dat2a, &dat2b};
-    daNpcF_anmPlayData dat3a = {0x4, daNpcShad_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat3b = {0xC, 0.0f, 0};
+    daNpcF_anmPlayData dat3a = {ANM_F_DISCOURAGED, daNpcShad_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat3b = {ANM_FH_DISCOURAGED, 0.0f, 0};
     daNpcF_anmPlayData* pDat3[2] = {&dat3a, &dat3b};
-    daNpcF_anmPlayData dat4 = {0x6, daNpcShad_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat4 = {ANM_F_KOMON, daNpcShad_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat4[1] = {&dat4};
-    daNpcF_anmPlayData dat5 = {0x7, 0.0f, 0};
+    daNpcF_anmPlayData dat5 = {ANM_F_SURPRISE, 0.0f, 0};
     daNpcF_anmPlayData* pDat5[1] = {&dat5};
-    daNpcF_anmPlayData dat6 = {0x8, 0.0f, 0};
+    daNpcF_anmPlayData dat6 = {ANM_FH_SURPRISE, 0.0f, 0};
     daNpcF_anmPlayData* pDat6[1] = {&dat6};
-    daNpcF_anmPlayData dat7 = {0x9, 0.0f, 0};
+    daNpcF_anmPlayData dat7 = {ANM_FH_KOMON, 0.0f, 0};
     daNpcF_anmPlayData* pDat7[1] = {&dat7};
-    daNpcF_anmPlayData dat8 = {0xA, 0.0f, 0};
+    daNpcF_anmPlayData dat8 = {ANM_FH_HAPPY, 0.0f, 0};
     daNpcF_anmPlayData* pDat8[1] = {&dat8};
-    daNpcF_anmPlayData dat9 = {0xB, 0.0f, 0};
+    daNpcF_anmPlayData dat9 = {ANM_FH_ANGER, 0.0f, 0};
     daNpcF_anmPlayData* pDat9[1] = {&dat9};
-    daNpcF_anmPlayData dat10 = {0xC, 0.0f, 0};
+    daNpcF_anmPlayData dat10 = {ANM_FH_DISCOURAGED, 0.0f, 0};
     daNpcF_anmPlayData* pDat10[1] = {&dat10};
-    daNpcF_anmPlayData dat11 = {0x5, daNpcShad_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat11 = {ANM_F_CHANT, daNpcShad_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat11[1] = {&dat11};
-    daNpcF_anmPlayData dat12 = {0x0, daNpcShad_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat12 = {ANM_NONE, daNpcShad_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat12[1] = {&dat12};
     daNpcF_anmPlayData** ppDat[13] = {
         pDat0, pDat1, pDat2, pDat3, pDat4,
@@ -806,60 +933,60 @@ void daNpcShad_c::playExpression() {
 
 /* 80AE04D8-80AE0B58 0083B8 0680+00 1/1 0/0 0/0 .text            playMotion__11daNpcShad_cFv */
 void daNpcShad_c::playMotion() {
-    daNpcF_anmPlayData dat0 = {0xD, daNpcShad_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat0 = {ANM_WAIT_A, daNpcShad_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat0[1] = {&dat0};
-    daNpcF_anmPlayData dat1a = {0x12, daNpcShad_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat1b = {0x11, 0.0f, 0};
+    daNpcF_anmPlayData dat1a = {ANM_BOOK_TALK_A, daNpcShad_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat1b = {ANM_BOOK_WAIT, 0.0f, 0};
     daNpcF_anmPlayData* pDat1[2] = {&dat1a, &dat1b};
-    daNpcF_anmPlayData dat2 = {0x11, daNpcShad_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat2 = {ANM_BOOK_WAIT, daNpcShad_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat2[1] = {&dat2};
-    daNpcF_anmPlayData dat3a = {0x13, daNpcShad_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat3b = {0xD, 0.0f, 0};
+    daNpcF_anmPlayData dat3a = {ANM_HI, daNpcShad_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat3b = {ANM_WAIT_A, 0.0f, 0};
     daNpcF_anmPlayData* pDat3[2] = {&dat3a, &dat3b};
-    daNpcF_anmPlayData dat4 = {0x16, daNpcShad_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat4 = {ANM_SIT_A, daNpcShad_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat4[1] = {&dat4};
-    daNpcF_anmPlayData dat5a = {0x17, daNpcShad_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat5b = {0xD, 0.0f, 0};
+    daNpcF_anmPlayData dat5a = {ANM_LOOKBACK, daNpcShad_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat5b = {ANM_WAIT_A, 0.0f, 0};
     daNpcF_anmPlayData* pDat5[2] = {&dat5a, &dat5b};
-    daNpcF_anmPlayData dat6a = {0x19, daNpcShad_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat6b = {0x1A, 0.0f, 0};
+    daNpcF_anmPlayData dat6a = {ANM_DISCOURAGED, daNpcShad_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat6b = {ANM_DISCOURAGED_WAIT, 0.0f, 0};
     daNpcF_anmPlayData* pDat6[2] = {&dat6a, &dat6b};
-    daNpcF_anmPlayData dat7 = {0x1A, daNpcShad_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat7 = {ANM_DISCOURAGED_WAIT, daNpcShad_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat7[1] = {&dat7};
-    daNpcF_anmPlayData dat8a = {0xE, daNpcShad_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat8b = {0xD, daNpcShad_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat8a = {ANM_TALK_A, daNpcShad_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat8b = {ANM_WAIT_A, daNpcShad_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat8[2] = {&dat8a, &dat8b};
-    daNpcF_anmPlayData dat9a = {0x1B, daNpcShad_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat9b = {0x16, daNpcShad_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat9a = {ANM_SITTALK_A, daNpcShad_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat9b = {ANM_SIT_A, daNpcShad_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat9[2] = {&dat9a, &dat9b};
-    daNpcF_anmPlayData dat10a = {0x1C, daNpcShad_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat10b = {0x1D, 0.0f, 0};
+    daNpcF_anmPlayData dat10a = {ANM_LOOK, daNpcShad_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat10b = {ANM_LOOK_WAIT, 0.0f, 0};
     daNpcF_anmPlayData* pDat10[2] = {&dat10a, &dat10b};
-    daNpcF_anmPlayData dat11a = {0x20, daNpcShad_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat11b = {0x21, 0.0f, 0};
+    daNpcF_anmPlayData dat11a = {ANM_TAKE_KOMON, daNpcShad_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat11b = {ANM_READ_KOMON, 0.0f, 0};
     daNpcF_anmPlayData* pDat11[2] = {&dat11a, &dat11b};
-    daNpcF_anmPlayData dat12 = {0x21, daNpcShad_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat12 = {ANM_READ_KOMON, daNpcShad_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat12[1] = {&dat12};
-    daNpcF_anmPlayData dat13 = {0x1D, daNpcShad_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat13 = {ANM_LOOK_WAIT, daNpcShad_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat13[1] = {&dat13};
-    daNpcF_anmPlayData dat14a = {0x22, daNpcShad_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat14b = {0x23, 0.0f, 0};
+    daNpcF_anmPlayData dat14a = {ANM_SURPRISE, daNpcShad_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat14b = {ANM_SURPRISE_WAIT, 0.0f, 0};
     daNpcF_anmPlayData* pDat14[2] = {&dat14a, &dat14b};
-    daNpcF_anmPlayData dat15 = {0x23, daNpcShad_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat15 = {ANM_SURPRISE_WAIT, daNpcShad_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat15[1] = {&dat15};
-    daNpcF_anmPlayData dat16 = {0x1F, daNpcShad_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat16 = {ANM_LOOKUP, daNpcShad_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat16[1] = {&dat16};
-    daNpcF_anmPlayData dat17 = {0x1E, daNpcShad_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat17 = {ANM_SAD_WALK, daNpcShad_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat17[1] = {&dat17};
-    daNpcF_anmPlayData dat18 = {0x18, daNpcShad_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat18 = {ANM_CHANT, daNpcShad_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat18[1] = {&dat18};
-    daNpcF_anmPlayData dat19 = {0x14, 4.0f, 0};
+    daNpcF_anmPlayData dat19 = {ANM_RUN_A, 4.0f, 0};
     daNpcF_anmPlayData* pDat19[1] = {&dat19};
-    daNpcF_anmPlayData dat20 = {0x15, 4.0f, 0};
+    daNpcF_anmPlayData dat20 = {ANM_WALK_A, 4.0f, 0};
     daNpcF_anmPlayData* pDat20[1] = {&dat20};
-    daNpcF_anmPlayData dat21 = {0xF, 4.0f, 0};
+    daNpcF_anmPlayData dat21 = {ANM_STEP, 4.0f, 0};
     daNpcF_anmPlayData* pDat21[1] = {&dat21};
-    daNpcF_anmPlayData dat22 = {0x10, 0.0f, 0};
+    daNpcF_anmPlayData dat22 = {ANM_STEPB, 0.0f, 0};
     daNpcF_anmPlayData* pDat22[1] = {&dat22};
     daNpcF_anmPlayData** ppDat[23] = {
         pDat0, pDat1, pDat2, pDat3, pDat4,
@@ -909,21 +1036,21 @@ inline BOOL daNpcShad_c::chkFindPlayer() {
     return rv;
 }
 
-inline void daNpcShad_c::setLookMode(int param_1, fopAc_ac_c* param_2, cXyz* param_3) {
-    switch (param_1) {
-        case 0:
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-            if (field_0xe18 != param_1 || (daPy_py_c*)param_2 != field_0xca8) {
-                field_0xe18 = param_1;
+inline void daNpcShad_c::setLookMode(int i_lookMode, fopAc_ac_c* param_2, cXyz* param_3) {
+    switch (i_lookMode) {
+        case LOOK_NONE:
+        case LOOK_RESET:
+        case LOOK_PLAYER:
+        case LOOK_PLAYER_TALK:
+        case LOOK_ACTOR:
+            if (mLookMode != i_lookMode || (daPy_py_c*)param_2 != field_0xca8) {
+                mLookMode = i_lookMode;
                 field_0xca8 = (daPy_py_c*)param_2;
             }
             break;
 
-        case 5:
-            field_0xe18 = param_1;
+        case LOOK_ATTN:
+            mLookMode = i_lookMode;
             field_0xca8 = NULL;
 
             if (param_3 != NULL) {
@@ -933,16 +1060,16 @@ inline void daNpcShad_c::setLookMode(int param_1, fopAc_ac_c* param_2, cXyz* par
     }
 }
 
-inline BOOL daNpcShad_c::step(s16 param_1, int param_2, f32 param_3) {
+inline BOOL daNpcShad_c::step(s16 i_targetAngle, int i_motion, f32 i_rate) {
     if (mTurnMode == 0) {
-        if (param_2 != -1) {
-            if ((int)fabsf(cM_sht2d((s16)(param_1 - mCurAngle.y))) > 40) {
+        if (i_motion != -1) {
+            if ((int)fabsf(cM_sht2d((s16)(i_targetAngle - mCurAngle.y))) > 40) {
                 setExpression(12, -1.0f);
-                setMotion(param_2, -1.0f, 0);
+                setMotion(i_motion, -1.0f, FALSE);
             }
         }
 
-        mTurnTargetAngle = param_1;
+        mTurnTargetAngle = i_targetAngle;
         mTurnAmount = 0;
 
         if (mCurAngle.y == mTurnTargetAngle) {
@@ -953,7 +1080,7 @@ inline BOOL daNpcShad_c::step(s16 param_1, int param_2, f32 param_3) {
         shape_angle.y = current.angle.y;
         mTurnMode++;
     } else if (mTurnMode == 1) {
-        if (turn(mTurnTargetAngle, param_3, 0)) {
+        if (turn(mTurnTargetAngle, i_rate, 0)) {
             shape_angle.y = current.angle.y;
             mCurAngle.y = current.angle.y;
             mOldAngle.y = current.angle.y;
@@ -972,8 +1099,8 @@ bool daNpcShad_c::wait_type0(void* param_1) {
     // NONMATCHING
     switch (field_0xe1a) {
         case 0:
-            setExpression(12, -1.0f);
-            setMotion(4, -1.0f, 0);
+            setExpression(EXPR_NONE, -1.0f);
+            setMotion(MOT_SIT_A, -1.0f, FALSE);
             mTurnMode = 0;
             speedF = 0.0f;
             field_0xe1a = 2;
@@ -981,7 +1108,7 @@ bool daNpcShad_c::wait_type0(void* param_1) {
 
         case 2:
             if (isSneaking()) {
-                setLookMode(0, NULL, NULL);
+                setLookMode(LOOK_NONE, NULL, NULL);
             } else {
                 if (mActorMngr[0].getActorP() != NULL) {
                     if (!chkFindPlayer()) {
@@ -994,13 +1121,13 @@ bool daNpcShad_c::wait_type0(void* param_1) {
                 }
 
                 if (mActorMngr[0].getActorP() != NULL) {
-                    setLookMode(2, NULL, NULL);
+                    setLookMode(LOOK_PLAYER, NULL, NULL);
                 } else {
-                    setLookMode(0, NULL, NULL);
+                    setLookMode(LOOK_NONE, NULL, NULL);
 
-                    if (home.angle.y != mCurAngle.y && step(home.angle.y, 21, 15.0f)) {
-                        setExpression(12, -1.0f);
-                        setMotion(4, -1.0f, 0);
+                    if (home.angle.y != mCurAngle.y && step(home.angle.y, MOT_STEP, 15.0f)) {
+                        setExpression(EXPR_NONE, -1.0f);
+                        setMotion(MOT_SIT_A, -1.0f, FALSE);
                         mTurnMode = 0;
                     }
                 }
@@ -1047,21 +1174,21 @@ bool daNpcShad_c::wait_type0(void* param_1) {
 }
 
 /* 80ADA630-80ADA674 002510 0044+00 1/0 0/0 0/0 .text            setMotion__11daNpcShad_cFifi */
-void daNpcShad_c::setMotion(int i_motion, f32 i_motionMorfOverride, int param_3) {
-    s16 sVar1 = i_motion;
-    if ((param_3 != 0 || mMotion != sVar1) && i_motion >= 0 && i_motion < 0x17) {
-        mMotion = sVar1;
-        mMotionMorfOverride = i_motionMorfOverride;
+void daNpcShad_c::setMotion(int i_motion, f32 i_morf, BOOL i_restart) {
+    s16 motion = i_motion;
+    if ((i_restart || mMotion != motion) && i_motion >= 0 && i_motion < 0x17) {
+        mMotion = motion;
+        mMotionMorfOverride = i_morf;
         mMotionPrevPhase = -1;
         mMotionPhase = 0;
     }
 }
 
 /* 80ADA674-80ADA6A0 002554 002C+00 1/0 0/0 0/0 .text            setExpression__11daNpcShad_cFif */
-void daNpcShad_c::setExpression(int i_expression, f32 i_expressionMorfOverride) {
+void daNpcShad_c::setExpression(int i_expression, f32 i_morf) {
     if (i_expression >= 0 && i_expression < 0xD) {
         mExpression = i_expression;
-        mExpressionMorfOverride = i_expressionMorfOverride;
+        mExpressionMorfOverride = i_morf;
         mExpressionPrevPhase = -1;
         mExpressionPhase = 0;
     }
@@ -1073,15 +1200,15 @@ bool daNpcShad_c::wait_type1(void* param_1) {
     switch (field_0xe1a) {
         case 0:
             if (daNpcF_chkEvtBit(0x12F) && !daNpcF_chkEvtBit(0x312)) {
-                setExpression(10, -1.0f);
-                setMotion(7, -1.0f, 0);
+                setExpression(EXPR_H_DISCOURAGED, -1.0f);
+                setMotion(MOT_DISCOURAGED_WAIT, -1.0f, FALSE);
             } else {
-                setExpression(12, -1.0f);
-                setMotion(0, -1.0f, 0);
+                setExpression(EXPR_NONE, -1.0f);
+                setMotion(MOT_WAIT_A, -1.0f, FALSE);
             }
 
             mActorMngr[0].remove();
-            setLookMode(0, NULL, NULL);
+            setLookMode(LOOK_NONE, NULL, NULL);
             mTurnMode = 0;
             speedF = 0.0f;
             field_0xe1c = fopAcM_searchPlayerAngleY(this);
@@ -1090,15 +1217,15 @@ bool daNpcShad_c::wait_type1(void* param_1) {
 
         case 2:
             if (daNpcF_chkEvtBit(0x312)) {
-                setLookMode(2, NULL, NULL);
+                setLookMode(LOOK_PLAYER, NULL, NULL);
 
                 if (mCurAngle.y == field_0xe1c) {
                     if (fopAcM_seenPlayerAngleY(this) > cM_deg2s(daNpcShad_Param_c::m.common.body_angleY_max + daNpcShad_Param_c::m.common.head_angleY_max)) {
                         field_0xe1c = fopAcM_searchPlayerAngleY(this);
                     }
-                } else if (step(field_0xe1c, 22, 30.0f)) {
-                    setExpression(12, -1.0f);
-                    setMotion(0, -1.0f, 0);
+                } else if (step(field_0xe1c, MOT_STEPB, 30.0f)) {
+                    setExpression(EXPR_NONE, -1.0f);
+                    setMotion(MOT_WAIT_A, -1.0f, FALSE);
                     mTurnMode = 0;
                 }
 
@@ -1118,15 +1245,15 @@ bool daNpcShad_c::wait_type1(void* param_1) {
                     }
                 }
             } else if (field_0xe1f != 0) {
-                setLookMode(2, NULL, NULL);
+                setLookMode(LOOK_PLAYER, NULL, NULL);
 
                 if (mCurAngle.y == field_0xe1c) {
                     if (fopAcM_seenPlayerAngleY(this) > cM_deg2s(daNpcShad_Param_c::m.common.body_angleY_max + daNpcShad_Param_c::m.common.head_angleY_max)) {
                         field_0xe1c = fopAcM_searchPlayerAngleY(this);
                     }
-                } else if (step(field_0xe1c, 22, 30.0f)) {
-                    setExpression(12, -1.0f);
-                    setMotion(0, -1.0f, 0);
+                } else if (step(field_0xe1c, MOT_STEPB, 30.0f)) {
+                    setExpression(EXPR_NONE, -1.0f);
+                    setMotion(MOT_WAIT_A, -1.0f, FALSE);
                     mTurnMode = 0;
                 }
 
@@ -1143,12 +1270,12 @@ bool daNpcShad_c::wait_type1(void* param_1) {
                 }
 
                 if (mActorMngr[0].getActorP() != NULL) {
-                    setLookMode(2, NULL, NULL);
+                    setLookMode(LOOK_PLAYER, NULL, NULL);
                 } else {
-                    setLookMode(0, NULL, NULL);
-                    if (home.angle.y != mCurAngle.y && step(home.angle.y, 21, 15.0f)) {
-                        setExpression(12, -1.0f);
-                        setMotion(0, -1.0f, 0);
+                    setLookMode(LOOK_NONE, NULL, NULL);
+                    if (home.angle.y != mCurAngle.y && step(home.angle.y, MOT_STEP, 15.0f)) {
+                        setExpression(EXPR_NONE, -1.0f);
+                        setMotion(MOT_WAIT_A, -1.0f, FALSE);
                         mTurnMode = 0;
                     }
                 }
@@ -1226,12 +1353,12 @@ bool daNpcShad_c::wait_type1(void* param_1) {
 bool daNpcShad_c::wait_type2(void* param_1) {
     switch (field_0xe1a) {
         case 0:
-            setExpression(8, -1.0f);
-            setMotion(0x10, -1.0f, 0);
+            setExpression(EXPR_H_HAPPY, -1.0f);
+            setMotion(MOT_LOOKUP, -1.0f, FALSE);
             mTurnMode = 0;
             speedF = 0.0f;
             mActorMngr[0].entry(daPy_getPlayerActorClass());
-            setLookMode(0, NULL, NULL);
+            setLookMode(LOOK_NONE, NULL, NULL);
             field_0xe1a = 2;
             break;
 
@@ -1272,23 +1399,23 @@ bool daNpcShad_c::wait_type2(void* param_1) {
 inline void daNpcShad_c::setExpressionTalkAfter() {
     switch (mExpression) {
         case 1:
-            setExpression(8, -1.0f);
+            setExpression(EXPR_H_HAPPY, -1.0f);
             break;
 
         case 2:
-            setExpression(9, -1.0f);
+            setExpression(EXPR_H_ANGER, -1.0f);
             break;
 
         case 3:
-            setExpression(10, -1.0f);
+            setExpression(EXPR_H_DISCOURAGED, -1.0f);
             break;
 
         case 4:
-            setExpression(7, -1.0f);
+            setExpression(EXPR_H_KOMON, -1.0f);
             break;
 
         default:
-            setExpression(12, -1.0f);
+            setExpression(EXPR_NONE, -1.0f);
     }
 }
 
@@ -1305,7 +1432,7 @@ bool daNpcShad_c::talk(void* param_1) {
             mTurnMode = 0;
             mMsgTimer = 0;
             speedF = 0.0f;
-            setLookMode(3, NULL, NULL);
+            setLookMode(LOOK_PLAYER_TALK, NULL, NULL);
             field_0xe1a = 2;
             break;
 
@@ -1336,13 +1463,13 @@ bool daNpcShad_c::talk(void* param_1) {
                     iVar3 = mMsgTimer;
                     if (ctrlMsgAnm(iVar1, iVar2, this, FALSE)) {
                         setExpression(iVar1, -1.0f);
-                        setMotion(iVar2, -1.0f, 0);
+                        setMotion(iVar2, -1.0f, FALSE);
                     } else if (iVar3 != 0 && mMsgTimer == 0) {
                         setExpressionTalkAfter();
                     }
                 }
-            } else if (step(fopAcM_searchPlayerAngleY(this), 21, 15.0f)) {
-                setMotion(0, -1.0f, 0);
+            } else if (step(fopAcM_searchPlayerAngleY(this), MOT_STEP, 15.0f)) {
+                setMotion(MOT_WAIT_A, -1.0f, FALSE);
                 mTurnMode = 0;
             }
             break;
@@ -1350,7 +1477,7 @@ bool daNpcShad_c::talk(void* param_1) {
         case 3:
             field_0xe1f = 1;
             field_0xe14 = field_0xe16;
-            setExpression(12, -1.0f);
+            setExpression(EXPR_NONE, -1.0f);
 
             if (!field_0x9ec) {
                 dComIfGp_event_reset();
@@ -1373,8 +1500,8 @@ bool daNpcShad_c::demo(void* param_1) {
 
     switch (field_0xe1a) {
         case 0:
-            setExpression(12, -1.0f);
-            setMotion(0, -1.0f, 0);
+            setExpression(EXPR_NONE, -1.0f);
+            setMotion(MOT_WAIT_A, -1.0f, FALSE);
             field_0xe1a = 2;
             // fallthrough
         case 2:
@@ -1426,15 +1553,15 @@ bool daNpcShad_c::leave(void* param_1) {
 
     switch (field_0xe1a) {
         case 0:
-            setExpression(12, -1.0f);
-            setMotion(0x13, -1.0f, 0);
+            setExpression(EXPR_NONE, -1.0f);
+            setMotion(MOT_RUN_A, -1.0f, FALSE);
             mTurnMode = 0;
             speedF = daNpcShad_Param_c::m.traveling_speed;
             field_0xe1a = 2;
             break;
 
         case 2:
-            step(cLib_targetAngleY(&current.pos, &sp28), 21, 15.0f);
+            step(cLib_targetAngleY(&current.pos, &sp28), MOT_STEP, 15.0f);
 
             if (mAcch.ChkWallHit() || current.pos.abs(sp28) < speedF) {
                 fopAcM_delete(this);
@@ -1464,11 +1591,11 @@ BOOL daNpcShad_c::EvCut_Introduction(int i_cutIndex) {
         switch (*piVar1) {
             case 0:
             case 2:
-                setLookMode(0, NULL, NULL);
+                setLookMode(LOOK_NONE, NULL, NULL);
                 return TRUE;
 
             case 1:
-                setLookMode(2, NULL, NULL);
+                setLookMode(LOOK_PLAYER, NULL, NULL);
                 return TRUE;
 
             default:
@@ -1491,12 +1618,12 @@ BOOL daNpcShad_c::EvCut_Meeting(int i_cutIndex) {
     if (eventManager->getIsAddvance(i_cutIndex)) {
         switch (*piVar1) {
             case 0:
-                setExpression(12, -1.0f);
-                setMotion(4, -1.0f, 0);
+                setExpression(EXPR_NONE, -1.0f);
+                setMotion(MOT_SIT_A, -1.0f, FALSE);
                 break;
 
             case 1:
-                setLookMode(2, NULL, NULL);
+                setLookMode(LOOK_PLAYER, NULL, NULL);
                 break;
 
             default:
@@ -1510,7 +1637,7 @@ BOOL daNpcShad_c::EvCut_Meeting(int i_cutIndex) {
 
     if (ctrlMsgAnm(iVar1, iVar2, this, FALSE)) {
         setExpression(iVar1, -1.0f);
-        setMotion(iVar2, -1.0f, 0);
+        setMotion(iVar2, -1.0f, FALSE);
     } else {
         if (iVar3 != 0 && mMsgTimer == 0) {
             setExpressionTalkAfter();
@@ -1525,7 +1652,7 @@ BOOL daNpcShad_c::EvCut_Meeting(int i_cutIndex) {
                 actor = NULL;
             }
 
-            setLookMode(4, actor, NULL);
+            setLookMode(LOOK_ACTOR, actor, NULL);
             return TRUE;
 
         case 1:
@@ -1548,26 +1675,26 @@ BOOL daNpcShad_c::EvCut_ToChantSpell1(int i_cutIndex) {
         switch (*cutName) {
             case '0001':
             case '0002':
-                setLookMode(0, NULL, NULL);
+                setLookMode(LOOK_NONE, NULL, NULL);
                 initTalk(field_0xe14, NULL);
                 break;
 
             case '0005':
                 initTalk(field_0xe14, NULL);
-                setExpression(10, -1.0f);
-                setMotion(7, -1.0f, 0);
+                setExpression(EXPR_H_DISCOURAGED, -1.0f);
+                setMotion(MOT_DISCOURAGED_WAIT, -1.0f, FALSE);
                 break;
 
             case '0006':
                 mTurnMode = 0;
-                setMotion(0x14, -1.0f, 0);
+                setMotion(MOT_WALK_A, -1.0f, FALSE);
                 break;
 
             case '0007':
                 current.pos = home.pos;
                 old.pos = current.pos;
                 speedF = 0.0f;
-                setMotion(0, -1.0f, 0);
+                setMotion(MOT_WAIT_A, -1.0f, FALSE);
                 field_0xe1e = 0;
                 break;
 
@@ -1595,7 +1722,7 @@ BOOL daNpcShad_c::EvCut_ToChantSpell1(int i_cutIndex) {
 
     if (ctrlMsgAnm(iVar1, iVar2, this, FALSE)) {
         setExpression(iVar1, -1.0f);
-        setMotion(iVar2, -1.0f, 0);
+        setMotion(iVar2, -1.0f, FALSE);
     } else if (iVar3 != 0 && mMsgTimer == 0) {
         setExpressionTalkAfter();
     }
@@ -1603,12 +1730,12 @@ BOOL daNpcShad_c::EvCut_ToChantSpell1(int i_cutIndex) {
     cXyz sp30;
     switch (*cutName) {
         case '0001':
-            if (!step(fopAcM_searchPlayerAngleY(this), 21, 15.0f)) {
+            if (!step(fopAcM_searchPlayerAngleY(this), MOT_STEP, 15.0f)) {
                 break;
             }
 
-            setExpression(12, -1.0f);
-            setMotion(0, -1.0f, 0);
+            setExpression(EXPR_NONE, -1.0f);
+            setMotion(MOT_WAIT_A, -1.0f, FALSE);
             mTurnMode = 0;
             return TRUE;
 
@@ -1618,8 +1745,8 @@ BOOL daNpcShad_c::EvCut_ToChantSpell1(int i_cutIndex) {
                 if (talkProc(NULL, TRUE, NULL)) {
                     return TRUE;
                 }
-            } else if (step(fopAcM_searchPlayerAngleY(this), 21, 15.0f)) {
-                setMotion(0, -1.0f, 0);
+            } else if (step(fopAcM_searchPlayerAngleY(this), MOT_STEP, 15.0f)) {
+                setMotion(MOT_WAIT_A, -1.0f, FALSE);
                 mTurnMode = 0;
             }
             break;
@@ -1648,17 +1775,17 @@ BOOL daNpcShad_c::EvCut_ToChantSpell1(int i_cutIndex) {
         case '0009':
             if (home.angle.y == mCurAngle.y) {
                 if (talkProc(NULL, TRUE, NULL)) {
-                    if (mMotion != 0x12) {
+                    if (mMotion != MOT_CHANT) {
                         Z2GetAudioMgr()->muteSceneBgm(190, 0.0f);
                     }
 
                     mSound.startCreatureVoiceLevel(Z2SE_SHAD_V_INCANTATION, -1);
-                    setExpression(11, -1.0f);
-                    setMotion(0x12, -1.0f, 0);
+                    setExpression(EXPR_CHANT, -1.0f);
+                    setMotion(MOT_CHANT, -1.0f, FALSE);
                     return TRUE;
                 }
-            } else if (step(home.angle.y, 21, 15.0f)) {
-                setMotion(0, -1.0f, 0);
+            } else if (step(home.angle.y, MOT_STEP, 15.0f)) {
+                setMotion(MOT_WAIT_A, -1.0f, FALSE);
                 mTurnMode = 0;
             }
             break;
@@ -1666,8 +1793,8 @@ BOOL daNpcShad_c::EvCut_ToChantSpell1(int i_cutIndex) {
         case '0010':
             if (talkProc(NULL, TRUE, NULL)) {
                 Z2GetAudioMgr()->unMuteSceneBgm(70);
-                setExpression(12, -1.0f);
-                setMotion(0, -1.0f, 0);
+                setExpression(EXPR_NONE, -1.0f);
+                setMotion(MOT_WAIT_A, -1.0f, FALSE);
                 setAngle(fopAcM_searchPlayerAngleY(this));
                 return TRUE;
             }
@@ -1704,24 +1831,24 @@ BOOL daNpcShad_c::EvCut_ToChantSpell2(int i_cutIndex) {
                 dComIfGp_getEvent().onSkipFade();
                 // fallthrough
             case '0003':
-                setLookMode(0, NULL, NULL);
+                setLookMode(LOOK_NONE, NULL, NULL);
                 // falllthrough
             case '0005':
                 initTalk(field_0xe14, NULL);
-                setExpression(12, -1.0f);
-                setMotion(0, -1.0f, 0);
+                setExpression(EXPR_NONE, -1.0f);
+                setMotion(MOT_WAIT_A, -1.0f, FALSE);
                 break;
 
             case '0006':
                 Z2GetAudioMgr()->unMuteSceneBgm(70);
                 initTalk(field_0xe14, NULL);
-                setExpression(12, -1.0f);
-                setMotion(0, -1.0f, 0);
+                setExpression(EXPR_NONE, -1.0f);
+                setMotion(MOT_WAIT_A, -1.0f, FALSE);
                 break;
 
             case '0007':
                 mTurnMode = 0;
-                setMotion(0x11, 15.0f, 0);
+                setMotion(MOT_SAD_WALK, 15.0f, FALSE);
                 break;
 
             case '0008':
@@ -1730,8 +1857,8 @@ BOOL daNpcShad_c::EvCut_ToChantSpell2(int i_cutIndex) {
                     old.pos = current.pos;
                     speedF = 0.0f;
                     field_0xe14 = 0x42;
-                    setExpression(10, -1.0f);
-                    setMotion(7, -1.0f, 0);
+                    setExpression(EXPR_H_DISCOURAGED, -1.0f);
+                    setMotion(MOT_DISCOURAGED_WAIT, -1.0f, FALSE);
                 }
                 break;
 
@@ -1769,7 +1896,7 @@ BOOL daNpcShad_c::EvCut_ToChantSpell2(int i_cutIndex) {
 
     if (ctrlMsgAnm(iVar1, iVar2, this, FALSE) != 0) {
         setExpression(iVar1, -1.0f);
-        setMotion(iVar2, -1.0f, 0);
+        setMotion(iVar2, -1.0f, FALSE);
     } else if (iVar3 != 0 && mMsgTimer == 0) {
         setExpressionTalkAfter();
     }
@@ -1777,9 +1904,9 @@ BOOL daNpcShad_c::EvCut_ToChantSpell2(int i_cutIndex) {
     cXyz sp30;
     switch (*cutName) {
         case '0002':
-            if (step(fopAcM_searchPlayerAngleY(this), 21, 15.0f)) {
-                setExpression(12, -1.0f);
-                setMotion(0, -1.0f, 0);
+            if (step(fopAcM_searchPlayerAngleY(this), MOT_STEP, 15.0f)) {
+                setExpression(EXPR_NONE, -1.0f);
+                setMotion(MOT_WAIT_A, -1.0f, FALSE);
                 mTurnMode = 0;
                 return TRUE;
             }
@@ -1790,8 +1917,8 @@ BOOL daNpcShad_c::EvCut_ToChantSpell2(int i_cutIndex) {
                 if (talkProc(NULL, TRUE, NULL)) {
                     return TRUE;
                 }
-            } else if (step(fopAcM_searchPlayerAngleY(this), 21, 15.0f)) {
-                setMotion(0, -1.0f, 0);
+            } else if (step(fopAcM_searchPlayerAngleY(this), MOT_STEP, 15.0f)) {
+                setMotion(MOT_WAIT_A, -1.0f, FALSE);
                 mTurnMode = 0;
             }
             break;
@@ -1816,18 +1943,18 @@ BOOL daNpcShad_c::EvCut_ToChantSpell2(int i_cutIndex) {
         case '0009':
             if (home.angle.y == mCurAngle.y) {
                 if (talkProc(NULL, TRUE, NULL)) {
-                    if (mMotion != 0x12) {
+                    if (mMotion != MOT_CHANT) {
                         Z2GetAudioMgr()->muteSceneBgm(190, 0.0f);
                     }
 
                     mSound.startCreatureVoiceLevel(Z2SE_SHAD_V_INCANTATION_L, -1);
-                    setExpression(11, -1.0f);
-                    setMotion(0x12, -1.0f, 0);
+                    setExpression(EXPR_CHANT, -1.0f);
+                    setMotion(MOT_CHANT, -1.0f, FALSE);
                     return TRUE;
                 }
-            } else if (step(home.angle.y, 21, 15.0f)) {
-                setMotion(0, -1.0f, 0);
-                mTurnMode = 0;
+            } else if (step(home.angle.y, MOT_STEP, 15.0f)) {
+                setMotion(MOT_WAIT_A, -1.0f, FALSE);
+                mTurnMode = MOT_WAIT_A;
             }
 
             break;
@@ -1858,8 +1985,8 @@ BOOL daNpcShad_c::EvCut_ToChantSpell2Skip(int i_cutIndex) {
                     current.pos = home.pos;
                     old.pos = current.pos;
                     speedF = 0.0f;
-                    setExpression(10, -1.0f);
-                    setMotion(7, -1.0f, 0);
+                    setExpression(EXPR_H_DISCOURAGED, -1.0f);
+                    setMotion(MOT_DISCOURAGED_WAIT, -1.0f, FALSE);
                 }
                 return TRUE;
 
@@ -1877,15 +2004,15 @@ inline void daNpcShad_c::setLookObliquenessUp() {
     mDoMtx_stack_c::transS(mLookatPos[2]);
     mDoMtx_stack_c::YrotM(shape_angle.y);
     mDoMtx_stack_c::multVec(&sp18, &sp18);
-    setLookMode(5, NULL, &sp18);
+    setLookMode(LOOK_ATTN, NULL, &sp18);
 }
 
 /* 80ADE5F8-80ADED68 0064D8 0770+00 3/0 0/0 0/0 .text EvCut_DiscoveryCannon__11daNpcShad_cFi */
 BOOL daNpcShad_c::EvCut_DiscoveryCannon(int i_cutIndex) {
     dEvent_manager_c* eventManager = &dComIfGp_getEventManager();
     int* cutName = (int*)eventManager->getMyNowCutName(i_cutIndex);
-    cXyz* pcVar1;
-    int* piVar1;
+    cXyz* pos;
+    int* angle;
 
     if (eventManager->getIsAddvance(i_cutIndex)) {
         switch (*cutName) {
@@ -1893,26 +2020,26 @@ BOOL daNpcShad_c::EvCut_DiscoveryCannon(int i_cutIndex) {
                 dComIfGp_getEvent().startCheckSkipEdge(this);
                 Z2GetAudioMgr()->bgmStreamPrepare(0x200007C);
                 Z2GetAudioMgr()->bgmStreamPlay();
-                setExpression(12, 0.0f);
-                setMotion(0, 0.0f, 0);
-                setLookMode(2, NULL, NULL);
+                setExpression(EXPR_NONE, 0.0f);
+                setMotion(MOT_WAIT_A, 0.0f, FALSE);
+                setLookMode(LOOK_PLAYER, NULL, NULL);
                 break;
 
             case '0003':
-                pcVar1 = dComIfGp_evmng_getMyXyzP(i_cutIndex, "POS");
-                piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "ANGLE");
+                pos = dComIfGp_evmng_getMyXyzP(i_cutIndex, "POS");
+                angle = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "ANGLE");
 
-                if (pcVar1 != NULL) {
-                    current.pos = *pcVar1;
+                if (pos != NULL) {
+                    current.pos = *pos;
                     old.pos = current.pos;
                 }
 
-                if (piVar1 != NULL) {
-                    setAngle(*piVar1);
+                if (angle != NULL) {
+                    setAngle(*angle);
                 }
 
-                setExpression(12, -1.0f);
-                setMotion(0, -1.0f, 0);
+                setExpression(EXPR_NONE, -1.0f);
+                setMotion(MOT_WAIT_A, -1.0f, FALSE);
                 mTurnMode = 0;
                 speedF = 0.0f;
                 break;
@@ -1920,15 +2047,15 @@ BOOL daNpcShad_c::EvCut_DiscoveryCannon(int i_cutIndex) {
             case '0005':
             case '0008':
                 mTurnMode = 0;
-                setExpression(6, -1.0f);
-                setMotion(0x14, -1.0f, 0);
+                setExpression(EXPR_H_SURPRISE, -1.0f);
+                setMotion(MOT_WALK_A, -1.0f, FALSE);
                 speedF = 5.0f;
                 break;
 
             case '0004':
             case '0006':
             case '0007':
-                setLookMode(0, NULL, NULL);
+                setLookMode(LOOK_NONE, NULL, NULL);
                 // fallthrough
             case '0002':
                 dComIfGs_onSaveSwitch(79);
@@ -1950,14 +2077,14 @@ BOOL daNpcShad_c::EvCut_DiscoveryCannon(int i_cutIndex) {
         changeEvent(l_evtArcs[mOrderEvtNo], l_evtNames[mOrderEvtNo], 1, 0xFFFF);
     }
 
-    cXyz* pcVar2;
-    int iVar1, iVar2, iVar3;
-    iVar3 = mMsgTimer;
+    cXyz* pos2;
+    int i_expression, i_motion, i_msgTimer;
+    i_msgTimer = mMsgTimer;
 
-    if (ctrlMsgAnm(iVar1, iVar2, this, FALSE) != 0) {
-        setExpression(iVar1, -1.0f);
-        setMotion(iVar2, -1.0f, 0);
-    } else if (iVar3 != 0 && mMsgTimer == 0) {
+    if (ctrlMsgAnm(i_expression, i_motion, this, FALSE) != 0) {
+        setExpression(i_expression, -1.0f);
+        setMotion(i_motion, -1.0f, FALSE);
+    } else if (i_msgTimer != 0 && mMsgTimer == 0) {
         setExpressionTalkAfter();
     }
 
@@ -1969,14 +2096,14 @@ BOOL daNpcShad_c::EvCut_DiscoveryCannon(int i_cutIndex) {
         case '0005':
         case '0008':
             setLookObliquenessUp();
-            pcVar2 = dComIfGp_evmng_getMyXyzP(i_cutIndex, "POS");
+            pos2 = dComIfGp_evmng_getMyXyzP(i_cutIndex, "POS");
 
-            if (pcVar2 != NULL) {
-                step(cLib_targetAngleY(&current.pos, pcVar2), -1, 15.0f);
+            if (pos2 != NULL) {
+                step(cLib_targetAngleY(&current.pos, pos2), -1, 15.0f);
 
-                if (pcVar2->absXZ(current.pos) < 15.0f) {
+                if (pos2->absXZ(current.pos) < 15.0f) {
                     speedF = 0.0f;
-                    setMotion(0, -1.0f, 0);
+                    setMotion(MOT_WAIT_A, -1.0f, FALSE);
                     return TRUE;
                 }
             }
@@ -2024,8 +2151,8 @@ BOOL daNpcShad_c::EvCut_DiscoveryCannonSkip(int i_cutIndex) {
                     setAngle(*angle);
                 }
 
-                setExpression(12, -1.0f);
-                setMotion(0, -1.0f, 0);
+                setExpression(EXPR_NONE, -1.0f);
+                setMotion(MOT_WAIT_A, -1.0f, FALSE);
                 speedF = 0.0f;
                 return TRUE;
 
@@ -2051,9 +2178,9 @@ BOOL daNpcShad_c::EvCut_Disappear(int i_cutIndex) {
                 dComIfGp_getEvent().startCheckSkipEdge(this);
                 // fallthrough
             case '0004':
-                setExpression(12, -1.0f);
-                setMotion(0, -1.0f, 0);
-                setLookMode(2, NULL, NULL);
+                setExpression(EXPR_NONE, -1.0f);
+                setMotion(MOT_WAIT_A, -1.0f, FALSE);
+                setLookMode(LOOK_PLAYER, NULL, NULL);
                 initTalk(68, NULL);
                 break;
 
@@ -2070,16 +2197,16 @@ BOOL daNpcShad_c::EvCut_Disappear(int i_cutIndex) {
                     setAngle(*angle);
                 }
 
-                setExpression(12, -1.0f);
-                setMotion(0, -1.0f, 0);
-                setLookMode(1, NULL, NULL);
+                setExpression(EXPR_NONE, -1.0f);
+                setMotion(MOT_WAIT_A, -1.0f, FALSE);
+                setLookMode(LOOK_RESET, NULL, NULL);
                 speedF = 0.0f;
                 break;
 
             case '0005':
             case '0003':
-                setExpression(6, -1.0f);
-                setMotion(0x13, -1.0f, 0);
+                setExpression(EXPR_H_SURPRISE, -1.0f);
+                setMotion(MOT_RUN_A, -1.0f, FALSE);
                 mTurnMode = 0;
                 speedF = daNpcShad_Param_c::m.traveling_speed;
                 break;
@@ -2097,7 +2224,7 @@ BOOL daNpcShad_c::EvCut_Disappear(int i_cutIndex) {
     iVar3 = mMsgTimer;
     if (ctrlMsgAnm(iVar1, iVar2, this, FALSE) != 0) {
         setExpression(iVar1, -1.0f);
-        setMotion(iVar2, -1.0f, 0);
+        setMotion(iVar2, -1.0f, FALSE);
     } else if (iVar3 != 0 && mMsgTimer == 0) {
         setExpressionTalkAfter();
     }
@@ -2106,7 +2233,7 @@ BOOL daNpcShad_c::EvCut_Disappear(int i_cutIndex) {
     iVar6 = mMsgTimer;
     if (ctrlMsgAnm(iVar4, iVar5, this, FALSE) != 0) {
         setExpression(iVar4, -1.0f);
-        setMotion(iVar5, -1.0f, 0);
+        setMotion(iVar5, -1.0f, FALSE);
     } else if (iVar6 != 0 && mMsgTimer == 0) {
         setExpressionTalkAfter();
     }
@@ -2124,11 +2251,11 @@ BOOL daNpcShad_c::EvCut_Disappear(int i_cutIndex) {
         case '0001':
             if (fopAcM_searchPlayerAngleY(this) == mCurAngle.y) {
                 if (talkProc(NULL, TRUE, NULL)) {
-                    setLookMode(0, NULL, NULL);
+                    setLookMode(LOOK_NONE, NULL, NULL);
                     return TRUE;
                 }
-            } else if (step(fopAcM_searchPlayerAngleY(this), 21, 15.0f)) {
-                setMotion(0, -1.0f, 0);
+            } else if (step(fopAcM_searchPlayerAngleY(this), MOT_STEP, 15.0f)) {
+                setMotion(MOT_WAIT_A, -1.0f, FALSE);
                 mTurnMode = 0;
             }
             break;
@@ -2138,7 +2265,7 @@ BOOL daNpcShad_c::EvCut_Disappear(int i_cutIndex) {
 
         case '0004':
             if (talkProc(NULL, TRUE, NULL)) {
-                setLookMode(0, NULL, NULL);
+                setLookMode(LOOK_NONE, NULL, NULL);
                 return TRUE;
             }
             break;
@@ -2152,7 +2279,7 @@ BOOL daNpcShad_c::EvCut_Disappear(int i_cutIndex) {
                 
                 if (pos2->x > current.pos.x) {
                     speedF = 0.0f;
-                    setMotion(0, -1.0f, 0);
+                    setMotion(MOT_WAIT_A, -1.0f, FALSE);
                     return TRUE;
                 }
             }
@@ -2208,7 +2335,7 @@ BOOL daNpcShad_c::EvCut_CallBack(int i_cutIndex) {
             case '0001':
                 sp30.set(4100.0f, -1520.0f, -3855.8125f);
                 setAngle(cLib_targetAngleY(&current.pos, &sp30));
-                setLookMode(1, NULL, NULL);
+                setLookMode(LOOK_RESET, NULL, NULL);
                 break;
 
             case '0002':
@@ -2225,7 +2352,7 @@ BOOL daNpcShad_c::EvCut_CallBack(int i_cutIndex) {
     iVar3 = mMsgTimer;
     if (ctrlMsgAnm(iVar1, iVar2, this, FALSE) != 0) {
         setExpression(iVar1, -1.0f);
-        setMotion(iVar2, -1.0f, 0);
+        setMotion(iVar2, -1.0f, FALSE);
     } else if (iVar3 != 0 && mMsgTimer == 0) {
         setExpressionTalkAfter();
     }
@@ -2271,7 +2398,7 @@ BOOL daNpcShad_c::EvCut_WiretapSponsor(int i_cutIndex) {
     iVar3 = mMsgTimer;
     if (ctrlMsgAnm(iVar1, iVar2, this, FALSE) != 0) {
         setExpression(iVar1, -1.0f);
-        setMotion(iVar2, -1.0f, 0);
+        setMotion(iVar2, -1.0f, FALSE);
     } else if (iVar3 != 0 && mMsgTimer == 0) {
         setExpressionTalkAfter();
     }
@@ -2287,7 +2414,7 @@ BOOL daNpcShad_c::EvCut_WiretapSponsor(int i_cutIndex) {
             if (talkPartner == this) {
                 talkPartner = mActorMngr[2].getActorP();
             }
-            setLookMode(4, talkPartner, NULL);
+            setLookMode(LOOK_ACTOR, talkPartner, NULL);
             break;
 
         default:
@@ -2309,8 +2436,8 @@ BOOL daNpcShad_c::EvCut_WiretapEntrant(int i_cutIndex) {
     if (eventManager->getIsAddvance(i_cutIndex)) {
         switch (*prm) {
             case 0:
-                setExpression(12, -1.0f);
-                setMotion(4, -1.0f, 0);
+                setExpression(EXPR_NONE, -1.0f);
+                setMotion(MOT_SIT_A, -1.0f, FALSE);
                 break;
 
             default:
@@ -2323,7 +2450,7 @@ BOOL daNpcShad_c::EvCut_WiretapEntrant(int i_cutIndex) {
     iVar3 = mMsgTimer;
     if (ctrlMsgAnm(iVar1, iVar2, this, FALSE) != 0) {
         setExpression(iVar1, -1.0f);
-        setMotion(iVar2, -1.0f, 0);
+        setMotion(iVar2, -1.0f, FALSE);
     } else if (iVar3 != 0 && mMsgTimer == 0) {
         setExpressionTalkAfter();
     }
@@ -2335,7 +2462,7 @@ BOOL daNpcShad_c::EvCut_WiretapEntrant(int i_cutIndex) {
             if (talkPartner == this) {
                 talkPartner = mActorMngr[2].getActorP();
             }
-            setLookMode(4, talkPartner, NULL);
+            setLookMode(LOOK_ACTOR, talkPartner, NULL);
             return TRUE;
 
         default:
@@ -2439,7 +2566,7 @@ BOOL daNpcShad_c::ctrlBtk() {
 /* 80AE0FAC-80AE1320 008E8C 0374+00 1/0 0/0 0/0 .text            setAttnPos__11daNpcShad_cFv */
 void daNpcShad_c::setAttnPos() {
     // NONMATCHING
-    if (field_0xe18 == 1) {
+    if (mLookMode == 1) {
         for (int i = 0; i < 3; i++) {
             mLookatAngle[i].setall(0);
         }
@@ -2449,7 +2576,7 @@ void daNpcShad_c::setAttnPos() {
     lookat();
 
     cXyz sp40(10.0f, 10.0f, 0.0f);
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(5));
+    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_HEAD));
     mDoMtx_stack_c::multVecZero(&mHeadPos);
     mDoMtx_stack_c::multVec(&sp40, &eyePos);
     sp40.x = 0.0f;
@@ -2470,7 +2597,7 @@ void daNpcShad_c::setAttnPos() {
 
     attention_info.position.set(mHeadPos.x, mHeadPos.y + daNpcShad_Param_c::m.common.attention_offset, mHeadPos.z);
     cXyz sp58;
-    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(2));
+    mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_BACKBONE2));
     mDoMtx_stack_c::multVecZero(&sp58);
     sp58.y = current.pos.y;
     
@@ -2523,7 +2650,7 @@ void daNpcShad_c::lookat() {
     csXyz* local_fc = unk_inline();
     cXyz sp108;
 
-    switch (field_0xe18) {
+    switch (mLookMode) {
         case LOOK_RESET:
             iVar1 = 1;
             break;
@@ -2541,12 +2668,12 @@ void daNpcShad_c::lookat() {
             break;
     }
 
-    if (field_0xe18 == LOOK_ATTN) {
+    if (mLookMode == LOOK_ATTN) {
         mLookat.setAttnPos(&mLookPos);
     } else if (player != NULL) {
         mLookPos = player->attention_info.position;
 
-        if (field_0xe18 != LOOK_PLAYER && field_0xe18 != LOOK_PLAYER_TALK) {
+        if (mLookMode != LOOK_PLAYER && mLookMode != LOOK_PLAYER_TALK) {
             mLookPos.y -= 40.0f;
         }
 
