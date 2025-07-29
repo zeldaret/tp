@@ -19,7 +19,7 @@ struct daNpcShad_HIOParam {
 
 class daNpcShad_Param_c: public JORReflexible {
 public:
-    /* 80AE1F70 */ ~daNpcShad_Param_c();
+    /* 80AE1F70 */ virtual ~daNpcShad_Param_c();
 
     static const daNpcShad_HIOParam m;
 };
