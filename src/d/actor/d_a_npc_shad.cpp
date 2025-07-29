@@ -289,9 +289,7 @@ daNpcShad_c::EventFn daNpcShad_c::mEvtSeqList[14] = {
     &daNpcShad_c::EvCut_WiretapEntrant,
 };
 
-daNpcShad_c::daNpcShad_c() {
-    // NONMATCHING
-};
+daNpcShad_c::daNpcShad_c() {};
 
 /* 80AD8420-80AD8620 000300 0200+00 1/0 0/0 0/0 .text            __dt__11daNpcShad_cFv */
 daNpcShad_c::~daNpcShad_c() {
@@ -2690,9 +2688,7 @@ BOOL daNpcShad_c::drawDbgInfo() {
     return FALSE;
 }
 
-daNpcShad_Param_c::~daNpcShad_Param_c() {
-    // NONMATCHING
-}
+daNpcShad_Param_c::~daNpcShad_Param_c() {}
 
 /* 80AE2CB8-80AE2CC4 000008 000C+00 1/1 0/0 0/0 .bss             @3931 */
 static u8 lit_3931[12];
