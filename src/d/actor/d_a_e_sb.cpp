@@ -9,7 +9,6 @@
 #include "d/d_bomb.h"
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
 #include "Z2AudioLib/Z2Instances.h"
 
 /* 8078164C-807816D8 0000EC 008C+00 1/1 0/0 0/0 .text            __ct__12daE_SB_HIO_cFv */
@@ -266,7 +265,7 @@ static void* s_bomb_sub(void* arg0, void* arg1) {
 
 UNK_REL_BSS;
 
-static u8 lbl_227_bss_45;
+static u8 l_HIOInit;
 
 /* 80784F84-80784FC4 000054 0040+00 14/16 0/0 0/0 .bss             l_HIO */
 static daE_SB_HIO_c l_HIO;
@@ -588,7 +587,7 @@ void daE_SB_c::Jump_Motion() {
                     gravity = -9.0f;
                     SetAnm(0xA, 0, 5.0f, l_HIO.other_anm_speed);
                     mSound.startCreatureSound(Z2SE_EN_SB_LAND, 0, -1);
-                    Particle_Set(0x8479U);
+                    Particle_Set(0x8479);
                     field_0x5bc = 2;
                     return;
                 }
@@ -916,8 +915,8 @@ void daE_SB_c::Obj_Damage() {
                         MemberClear();
                         field_0x5b0 = 5;
                         mCyl.OffAtSetBit();
-                        Particle_Set(0x849EU);
-                        Particle_Set(0x8478U);
+                        Particle_Set(0x849E);
+                        Particle_Set(0x8478);
                     }
                 }
             } else {
@@ -1107,7 +1106,7 @@ int daE_SB_c::Draw() {
 int daE_SB_c::Delete() {
     dComIfG_resDelete(&mPhaseReq, "E_SB");
     if (field_0xbbc) {
-        lbl_227_bss_45 = 0;
+        l_HIOInit = 0;
     }
 
     if (heap != NULL) {
@@ -1140,7 +1139,7 @@ static int daE_SB_Execute(daE_SB_c* i_this) {
 
 /* 807846F8-80784700 003198 0008+00 1/0 0/0 0/0 .text            daE_SB_IsDelete__FP8daE_SB_c */
 static int daE_SB_IsDelete(daE_SB_c*) {
-    return true;
+    return 1;
 }
 
 /* 80784700-80784720 0031A0 0020+00 1/0 0/0 0/0 .text            daE_SB_Delete__FP8daE_SB_c */
@@ -1163,8 +1162,8 @@ cPhs__Step daE_SB_c::Create() {
             return cPhs_ERROR_e;
         }
 
-        if (lbl_227_bss_45 == 0) {
-            lbl_227_bss_45 = 1;
+        if (l_HIOInit == 0) {
+            l_HIOInit = 1;
             field_0xbbc = 1;
             l_HIO.field_0x04 = -1;
         }
