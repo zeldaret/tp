@@ -44,7 +44,6 @@ const static dCcD_SrcSph l_sph_src = {
 
 /* 80C7CB18-80C7CE24 000078 030C+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
 static int nodeCallBack(J3DJoint* i_joint, int param_2) {
-    // NONMATCHING
     if (param_2 == 0) {
         int jntNo = i_joint->getJntNo();
         J3DModel* model = j3dSys.getModel();
@@ -66,11 +65,12 @@ static int nodeCallBack(J3DJoint* i_joint, int param_2) {
             }
 
             f32 fVar1 = player->current.pos.absXZ(i_this->field_0x894);
+            f32 yDiff = i_this->field_0x894.y - player->current.pos.y;
             if (fVar1 > i_this->field_0x914) {
                 fVar1 -= i_this->field_0x914;
             }
 
-            s16 sVar1 = cM_atan2s(i_this->field_0x894.y - player->current.pos.y, fVar1);
+            s16 sVar1 = cM_atan2s(yDiff, fVar1);
             if (sVar1 > 8000) {
                 sVar1 = 8000;
             }
@@ -282,7 +282,8 @@ void daObjL6Bm_c::action() {
 
 /* 80C7D598-80C7D6CC 000AF8 0134+00 1/0 0/0 0/0 .text            actionWait__11daObjL6Bm_cFv */
 void daObjL6Bm_c::actionWait() {
-    // NONMATCHING
+    bool var_r28 = false;
+    bool var_r27 = false;
     f32 fVar1;
     f32 playerDistance = fopAcM_searchPlayerDistanceXZ(this);
 
@@ -292,15 +293,26 @@ void daObjL6Bm_c::actionWait() {
         fVar1 = 1000.0f;
     }
 
-    if (playerDistance < fVar1 && (s16)abs((s16)(cLib_targetAngleY(fopAcM_GetPosition_p(this), fopAcM_GetPosition_p(dComIfGp_getPlayer(0))) - current.angle.y)) < 0x1000) {
+    if (playerDistance < fVar1) {
+        var_r28 = true;
+    }
+
+    s16 targetAngle = cLib_targetAngleY(fopAcM_GetPosition_p(this), fopAcM_GetPosition_p(dComIfGp_getPlayer(0)));
+    s16 angleDiff = (s16)abs((s16)(targetAngle - current.angle.y));
+    s16 unkBound = 0x2000;
+    if (angleDiff < unkBound / 2) {
+        var_r27 = true;
+    }
+
+    if (var_r28 && var_r27) {
         setAction(1);
         field_0x911 = 20;
     } else {
         s16 sVar1;
-        if (getArg1() == 0xFF) {
-            sVar1 = 0x4B0;
-        } else {
+        if (getArg1() != 0xFF) {
             sVar1 = (u16)getArg1() * 100;
+        } else {
+            sVar1 = 0x4B0;
         }
         current.angle.y += sVar1;
     }
@@ -313,8 +325,8 @@ void daObjL6Bm_c::actionWait() {
 
 /* 80C7D6CC-80C7D894 000C2C 01C8+00 1/0 0/0 0/0 .text            actionFindPlayer__11daObjL6Bm_cFv */
 void daObjL6Bm_c::actionFindPlayer() {
-    // NONMATCHING
     f32 fVar1;
+    bool var_r28 = false;
     f32 playerDistance = fopAcM_searchPlayerDistanceXZ(this);
 
     if (getArg0() != 0xFF) {
@@ -324,6 +336,10 @@ void daObjL6Bm_c::actionFindPlayer() {
     }
 
     if (playerDistance < fVar1) {
+        var_r28 = true;
+    }
+
+    if (!var_r28) {
         OS_REPORT("プレイヤー離れました！\n"); // Player has left!\n
         setAction(0);
 

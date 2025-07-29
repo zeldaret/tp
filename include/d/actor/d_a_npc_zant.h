@@ -60,7 +60,7 @@ public:
     static cutFunc mCutList[1];
 
 private:
-    /* 0xE40 */ u8 field_0xe40[0xe44- 0xe40];
+    /* 0xE40 */ u8 field_0xe40[0xe44 - 0xe40];
     /* 0xE44 */ dCcD_Cyl mCyl;
     /* 0xF80 */ u8 mType;
     /* 0xF81 */ u8 field_0xf81[0xf84 - 0xf81];
@@ -73,7 +73,7 @@ STATIC_ASSERT(sizeof(daNpc_Zant_c) == 0xfa0);
 
 class daNpc_Zant_Param_c {
 public:
-    /* 80B6E93C */ ~daNpc_Zant_Param_c() {};
+    /* 80B6E93C */ virtual ~daNpc_Zant_Param_c() {}
     struct Data {
         /* 0x00 */ f32 field_0x0;
         /* 0x04 */ f32 field_0x4;
@@ -112,11 +112,19 @@ public:
         /* 0x7C */ f32 field_0x7c;
         /* 0x80 */ f32 field_0x80;
         /* 0x84 */ f32 field_0x84;
-        /* 0x88 */ f32 field_0x88;        
+        /* 0x88 */ f32 field_0x88;
     };
 
     static const Data m;
 };
 
+class daNpc_Zant_HIO_c {
+public:
+    virtual ~daNpc_Zant_HIO_c() {}
+
+#if DEBUG
+    daNpc_Zant_Param_c::Data param;
+#endif
+};
 
 #endif /* D_A_NPC_ZANT_H */

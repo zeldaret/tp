@@ -11,24 +11,42 @@
  */
 
 class daMant_packet_c : public J3DPacket {
-    public:
-        /* 80861298 */ void draw();
-        /* 80862BA4 */ ~daMant_packet_c();
+public:
+    /* 80861298 */ void draw();
+    /* 80862BA4 */ ~daMant_packet_c();
 
-        /* 0x0010 */ Mtx mMtx;
-        /* 0x0040 */ Mtx mMtx2;
-        /* 0x0070 */ dKy_tevstr_c* field_0x70;
-        /* 0x0074 */ u8 field_0x74;
-        /* 0x0075 */ u8 field_0x75[0x78 - 0x75];
-        /* 0x0078 */ cXyz mPos[338];
-        /* 0x1050 */ cXyz mNrm[338];
-        /* 0x2028 */ u8 field_0x2028;
-        /* 0x2029 */ u8 mArg0;
-        /* 0x202a */ u8 field_0x202a[0x202b - 0x202a];
+    /* 0x0010 */ Mtx mMtx;
+    /* 0x0040 */ Mtx mMtx2;
+    /* 0x0070 */ dKy_tevstr_c* mTevStr;
+    /* 0x0074 */ u8 field_0x74;
+    /* 0x0078 */ cXyz mPos[2][169];
+    /* 0x1050 */ cXyz mNrm[2][169];
+    /* 0x2028 */ u8 field_0x2028;
+    /* 0x2029 */ u8 mArg0;
 
-        cXyz* getPos() {
-            return this->mPos + this->field_0x74 * 0xa9;
-        }
+    daMant_packet_c() {
+        field_0x74 = 0;
+    }
+
+    cXyz* getPos() {
+        return &mPos[field_0x74][0];
+    }
+
+    cXyz* getNrm() {
+        return &mNrm[field_0x74][0];
+    }
+
+    void setTevStr(dKy_tevstr_c* tevStr) {
+        mTevStr = tevStr;
+    }
+
+    MtxP getMtx2() {
+        return mMtx2;
+    }
+
+    MtxP getMtx() {
+        return mMtx;
+    }
 };
 struct mant_j_s {
     public:
