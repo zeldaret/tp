@@ -20,7 +20,7 @@ public:
     /* 80BD3720 */ void Hahen_Hakai(int, int);
     /* 80BD38DC */ void CheckCull();
     /* 80BD3A9C */ void checkViewArea(cXyz*);
-    /* 80BD3B20 */ void Execute();
+    /* 80BD3B20 */ int Execute();
     /* 80BD3B74 */ int Delete();
     /* 80BD3C0C */ void setBaseMtx();
     /* 80BD3DBC */ int create();
@@ -34,12 +34,12 @@ public:
     /* 0x7ac */ csXyz field5_0x70c[10];
     /* 0x748 */ u32 field_0x748;
     /* 0x74c */ float field7_0x74c;
-    /* 0x750 */ char field8_0x750;
+    /* 0x750 */ bool field8_0x750;
     /* 0x751 */ u8 field_0x751[0x760 - 0x751]; // padding
     /* 0x760 */ J3DModel* mpModel[10];
     /* 0x788 */ request_of_phase_process_class mPhase;
     /* 0x790 */ u8 field_0x790;
-    /* 0x791 */ u8 field_0x791;
+    /* 0x791 */ bool field33_0x791;
     /* 0x792 */ u8 field_0x792;
     /* 0x793 */ u8 field_0x793;
 };
