@@ -222,7 +222,7 @@ void daObjWarpOBrg_c::event_proc_call() {
 
     (this->*l_func[mAction])();
 
-    if (!eventInfo.chkCondition(1)) {
+    if (!eventInfo.chkCondition(dEvtCnd_CANTALK_e)) {
         field_0x639 = 0;
     }
 }
@@ -241,9 +241,9 @@ void daObjWarpOBrg_c::actionWait() {
                 setAction(ACTION_TALK_EVENT_e);
             }
         } else if (fopAcM_isSwitch(this, getSwNo2()) && checkTalkDistance()) {
-            eventInfo.onCondition(1);
+            eventInfo.onCondition(dEvtCnd_CANTALK_e);
             if (!daPy_getPlayerActorClass()->checkPlayerFly()) {
-                dComIfGp_att_ZHintRequest(this,  0x1FF);
+                dComIfGp_att_ZHintRequest(this, 0x1FF);
 
                 if (field_0x639 == 0) {
                     field_0x639 = 1;

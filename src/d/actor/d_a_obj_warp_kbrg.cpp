@@ -314,7 +314,7 @@ void daObjWarpKBrg_c::event_proc_call() {
 
     (this->*l_func[mAction])();
 
-    if (!eventInfo.chkCondition(1)) {
+    if (!eventInfo.chkCondition(dEvtCnd_CANTALK_e)) {
         field_0x69a = 0;
     }
 }
@@ -325,7 +325,7 @@ void daObjWarpKBrg_c::orderZHintEvent() {
     daPy_py_c* player_p = daPy_getPlayerActorClass();
 
     if (checkTalkDistance()) {
-        eventInfo.onCondition(1);
+        eventInfo.onCondition(dEvtCnd_CANTALK_e);
         if (!player_p->checkPlayerFly()) {
             dComIfGp_att_ZHintRequest(this,  0x1FF);
 
@@ -406,7 +406,7 @@ void daObjWarpKBrg_c::actionOrderATalkEvent() {
     } else if (checkTalkDistance()) {
         midna_p->onTagWaitPosPortalObj(&mMidnaWaitPos);
         dComIfGp_TargetWarpPt_set(3);
-        eventInfo.onCondition(1);
+        eventInfo.onCondition(dEvtCnd_CANTALK_e);
         attention_info.flags = 0xA;
     } else {
         midna_p->offTagWaitPos();
