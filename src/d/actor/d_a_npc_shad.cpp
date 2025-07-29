@@ -289,6 +289,10 @@ daNpcShad_c::EventFn daNpcShad_c::mEvtSeqList[14] = {
     &daNpcShad_c::EvCut_WiretapEntrant,
 };
 
+daNpcShad_c::daNpcShad_c() {
+    // NONMATCHING
+};
+
 /* 80AD8420-80AD8620 000300 0200+00 1/0 0/0 0/0 .text            __dt__11daNpcShad_cFv */
 daNpcShad_c::~daNpcShad_c() {
     for (int i = 0; l_loadRes_list[mMode][i] >= 0; i++) {
@@ -414,18 +418,18 @@ cPhs__Step daNpcShad_c::Create() {
     }
 
     if (phase == cPhs_COMPLEATE_e) {
-        int iVar1 = 0;
+        int i_size = 0;
         switch (mMode) {
             case 0:
-                iVar1 = 0x3610;
+                i_size = 0x3610;
                 break;
 
             case 1:
-                iVar1 = 0x4CA0;
+                i_size = 0x4CA0;
                 break;
 
             case 2:
-                iVar1 = 0x44A0;
+                i_size = 0x44A0;
                 break;
 
             default:
@@ -433,7 +437,7 @@ cPhs__Step daNpcShad_c::Create() {
                 break;
         }
 
-        if (!fopAcM_entrySolidHeap(this, createHeapCallBack, iVar1)) {
+        if (!fopAcM_entrySolidHeap(this, createHeapCallBack, i_size)) {
             return cPhs_ERROR_e;
         }
 
@@ -516,21 +520,21 @@ int daNpcShad_c::CreateHeap() {
         }
     }
 
-    if (!setExpressionAnm(1, false)) { // BCK_SHAD_F_TALK_A
+    if (!setExpressionAnm(ANM_F_TALK_A, false)) {
         return 0;
     }
 
     switch (mMode) {
         case 0:
-            setMotionAnm(0x16, 0.0f); // BCK_SHAD_SIT_A
+            setMotionAnm(ANM_SIT_A, 0.0f);
             break;
 
         case 1:
-            setMotionAnm(0xD, 0.0f); // BCK_SHAD_WAIT_A
+            setMotionAnm(ANM_WAIT_A, 0.0f);
             break;
 
         case 2:
-            setMotionAnm(0x1F, 0.0f); // BCK_SHAD_LOOKUP
+            setMotionAnm(ANM_LOOKUP, 0.0f);
             break;
 
         default:
@@ -650,56 +654,56 @@ bool daNpcShad_c::setExpressionAnm(int i_idx, bool i_modify) {
     bool bVar1 = false;
 
     switch (i_idx) {
-        case 0:
-            bVar1 = setExpressionBtp(0); // BTP_SHAD
+        case ANM_NONE:
+            bVar1 = setExpressionBtp(EXPR_BTP_SHAD);
             break;
 
-        case 1:
-            bVar1 = setExpressionBtp(0); // BTP_SHAD
+        case ANM_F_TALK_A:
+            bVar1 = setExpressionBtp(EXPR_BTP_SHAD);
             break;
 
-        case 2:
-            bVar1 = setExpressionBtp(3); // BTP_SHAD_F_HAPPY
+        case ANM_F_HAPPY:
+            bVar1 = setExpressionBtp(EXPR_BTP_F_HAPPY);
             break;
 
-        case 3:
-            bVar1 = setExpressionBtp(1); // BTP_SHAD_F_ANGER
+        case ANM_F_ANGER:
+            bVar1 = setExpressionBtp(EXPR_BTP_F_ANGER);
             break;
 
-        case 4:
-            bVar1 = setExpressionBtp(2); // BTP_SHAD_F_DISCOURAGED
+        case ANM_F_DISCOURAGED:
+            bVar1 = setExpressionBtp(EXPR_BTP_F_DISCOURAGED);
             break;
 
-        case 5:
-            bVar1 = setExpressionBtp(0); // BTP_SHAD
+        case ANM_F_CHANT:
+            bVar1 = setExpressionBtp(EXPR_BTP_SHAD);
             break;
 
-        case 6:
-            bVar1 = setExpressionBtp(4); // BTP_SHAD_F_KOMON
+        case ANM_F_KOMON:
+            bVar1 = setExpressionBtp(EXPR_BTP_F_KOMON);
             break;
 
-        case 7:
-            bVar1 = setExpressionBtp(5); // BTP_SHAD_F_SURPRISE
+        case ANM_F_SURPRISE:
+            bVar1 = setExpressionBtp(EXPR_BTP_F_SURPRISE);
             break;
 
-        case 8:
-            bVar1 = setExpressionBtp(6); // BTP_SHAD_FH_SURPRISE
+        case ANM_FH_SURPRISE:
+            bVar1 = setExpressionBtp(EXPR_BTP_FH_SURPRISE);
             break;
 
-        case 9:
-            bVar1 = setExpressionBtp(7); // BTP_SHAD_FH_KOMON
+        case ANM_FH_KOMON:
+            bVar1 = setExpressionBtp(EXPR_BTP_FH_KOMON);
             break;
 
-        case 10:
-            bVar1 = setExpressionBtp(10); // BTP_SHAD_FH_HAPPY
+        case ANM_FH_HAPPY:
+            bVar1 = setExpressionBtp(EXPR_BTP_FH_HAPPY);
             break;
 
-        case 11:
-            bVar1 = setExpressionBtp(8); // BTP_SHAD_FH_ANGER
+        case ANM_FH_ANGER:
+            bVar1 = setExpressionBtp(EXPR_BTP_FH_ANGER);
             break;
 
-        case 12:
-            bVar1 = setExpressionBtp(9); // BTP_SHAD_FH_DISCOURAGED
+        case ANM_FH_DISCOURAGED:
+            bVar1 = setExpressionBtp(EXPR_BTP_FH_DISCOURAGED);
             break;
 
         default:
@@ -761,27 +765,27 @@ void daNpcShad_c::setMotionAnm(int i_idx, f32 i_morf) {
         mMotionLoops = 0;
     }
 
-    int iVar1 = 0;
+    int i_index = 0;
     switch (i_idx) {
-        case 0x19:
-            iVar1 = 1;
+        case ANM_DISCOURAGED:
+            i_index = 1;
             break;
 
-        case 0x1A:
-            iVar1 = 2;
+        case ANM_DISCOURAGED_WAIT:
+            i_index = 2;
             break;
 
-        case 0x20:
-            iVar1 = 3;
+        case ANM_TAKE_KOMON:
+            i_index = 3;
             break;
 
-        case 0x21:
-            iVar1 = 4;
+        case ANM_READ_KOMON:
+            i_index = 4;
             break;
     }
 
-    J3DAnmTextureSRTKey* anmTextureSRTKey = getTexSRTKeyAnmP(l_arcNames[l_btkGetParamList[iVar1].arcIdx], l_btkGetParamList[iVar1].fileIdx);
-    i_attr = l_btkGetParamList[iVar1].attr;
+    J3DAnmTextureSRTKey* anmTextureSRTKey = getTexSRTKeyAnmP(l_arcNames[l_btkGetParamList[i_index].arcIdx], l_btkGetParamList[i_index].fileIdx);
+    i_attr = l_btkGetParamList[i_index].attr;
 
     if (anmTextureSRTKey != NULL) {
         if (setBtkAnm(anmTextureSRTKey, mpMorf->getModel()->getModelData(), 1.0f, i_attr)) {
@@ -1064,7 +1068,7 @@ inline BOOL daNpcShad_c::step(s16 i_targetAngle, int i_motion, f32 i_rate) {
     if (mTurnMode == 0) {
         if (i_motion != -1) {
             if ((int)fabsf(cM_sht2d((s16)(i_targetAngle - mCurAngle.y))) > 40) {
-                setExpression(12, -1.0f);
+                setExpression(EXPR_NONE, -1.0f);
                 setMotion(i_motion, -1.0f, FALSE);
             }
         }
@@ -1421,7 +1425,7 @@ inline void daNpcShad_c::setExpressionTalkAfter() {
 
 /* 80ADB628-80ADBEA8 003508 0880+00 2/0 0/0 0/0 .text            talk__11daNpcShad_cFPv */
 bool daNpcShad_c::talk(void* param_1) {
-    int itemNo, iVar1, iVar2, iVar3;
+    int itemNo, i_expression, i_motion, i_msgTimer;
     u16 eventID;
     s16 eventIdx;
     bool rv = false;
@@ -1460,11 +1464,11 @@ bool daNpcShad_c::talk(void* param_1) {
 
                     rv = true;
                 } else {
-                    iVar3 = mMsgTimer;
-                    if (ctrlMsgAnm(iVar1, iVar2, this, FALSE)) {
-                        setExpression(iVar1, -1.0f);
-                        setMotion(iVar2, -1.0f, FALSE);
-                    } else if (iVar3 != 0 && mMsgTimer == 0) {
+                    i_msgTimer = mMsgTimer;
+                    if (ctrlMsgAnm(i_expression, i_motion, this, FALSE)) {
+                        setExpression(i_expression, -1.0f);
+                        setMotion(i_motion, -1.0f, FALSE);
+                    } else if (i_msgTimer != 0 && mMsgTimer == 0) {
                         setExpressionTalkAfter();
                     }
                 }
@@ -1610,13 +1614,13 @@ BOOL daNpcShad_c::EvCut_Introduction(int i_cutIndex) {
 /* 80ADC800-80ADCAD8 0046E0 02D8+00 1/0 0/0 0/0 .text            EvCut_Meeting__11daNpcShad_cFi */
 BOOL daNpcShad_c::EvCut_Meeting(int i_cutIndex) {
     dEvent_manager_c* eventManager = &dComIfGp_getEventManager();
-    int* piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
-    if (piVar1 == NULL) {
+    int* prm = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
+    if (prm == NULL) {
         return FALSE;
     }
 
     if (eventManager->getIsAddvance(i_cutIndex)) {
-        switch (*piVar1) {
+        switch (*prm) {
             case 0:
                 setExpression(EXPR_NONE, -1.0f);
                 setMotion(MOT_SIT_A, -1.0f, FALSE);
@@ -1632,20 +1636,17 @@ BOOL daNpcShad_c::EvCut_Meeting(int i_cutIndex) {
         }
     }
 
-    int iVar1, iVar2, iVar3;
-    iVar3 = mMsgTimer;
-
-    if (ctrlMsgAnm(iVar1, iVar2, this, FALSE)) {
-        setExpression(iVar1, -1.0f);
-        setMotion(iVar2, -1.0f, FALSE);
-    } else {
-        if (iVar3 != 0 && mMsgTimer == 0) {
-            setExpressionTalkAfter();
-        }
+    int i_expression, i_motion, i_msgTimer;
+    i_msgTimer = mMsgTimer;
+    if (ctrlMsgAnm(i_expression, i_motion, this, FALSE)) {
+        setExpression(i_expression, -1.0f);
+        setMotion(i_motion, -1.0f, FALSE);
+    } else if (i_msgTimer != 0 && mMsgTimer == 0) {
+        setExpressionTalkAfter();
     }
 
     fopAc_ac_c* actor;
-    switch (*piVar1) {
+    switch (*prm) {
         case 0:
             actor = dComIfGp_event_getTalkPartner();
             if (actor == this) {
@@ -1717,13 +1718,12 @@ BOOL daNpcShad_c::EvCut_ToChantSpell1(int i_cutIndex) {
 
     }
 
-    int iVar1, iVar2, iVar3;
-    iVar3 = mMsgTimer;
-
-    if (ctrlMsgAnm(iVar1, iVar2, this, FALSE)) {
-        setExpression(iVar1, -1.0f);
-        setMotion(iVar2, -1.0f, FALSE);
-    } else if (iVar3 != 0 && mMsgTimer == 0) {
+    int i_expression, i_motion, i_msgTimer;
+    i_msgTimer = mMsgTimer;
+    if (ctrlMsgAnm(i_expression, i_motion, this, FALSE)) {
+        setExpression(i_expression, -1.0f);
+        setMotion(i_motion, -1.0f, FALSE);
+    } else if (i_msgTimer != 0 && mMsgTimer == 0) {
         setExpressionTalkAfter();
     }
 
@@ -1891,13 +1891,12 @@ BOOL daNpcShad_c::EvCut_ToChantSpell2(int i_cutIndex) {
         changeEvent(l_evtArcs[mOrderEvtNo], l_evtNames[mOrderEvtNo], 1, 0xFFFF);
     }
 
-    int iVar1, iVar2, iVar3;
-    iVar3 = mMsgTimer;
-
-    if (ctrlMsgAnm(iVar1, iVar2, this, FALSE) != 0) {
-        setExpression(iVar1, -1.0f);
-        setMotion(iVar2, -1.0f, FALSE);
-    } else if (iVar3 != 0 && mMsgTimer == 0) {
+    int i_expression, i_motion, i_msgTimer;
+    i_msgTimer = mMsgTimer;
+    if (ctrlMsgAnm(i_expression, i_motion, this, FALSE) != 0) {
+        setExpression(i_expression, -1.0f);
+        setMotion(i_motion, -1.0f, FALSE);
+    } else if (i_msgTimer != 0 && mMsgTimer == 0) {
         setExpressionTalkAfter();
     }
 
@@ -2080,7 +2079,6 @@ BOOL daNpcShad_c::EvCut_DiscoveryCannon(int i_cutIndex) {
     cXyz* pos2;
     int i_expression, i_motion, i_msgTimer;
     i_msgTimer = mMsgTimer;
-
     if (ctrlMsgAnm(i_expression, i_motion, this, FALSE) != 0) {
         setExpression(i_expression, -1.0f);
         setMotion(i_motion, -1.0f, FALSE);
@@ -2220,21 +2218,21 @@ BOOL daNpcShad_c::EvCut_Disappear(int i_cutIndex) {
         }
     }
 
-    int iVar1, iVar2, iVar3;
-    iVar3 = mMsgTimer;
-    if (ctrlMsgAnm(iVar1, iVar2, this, FALSE) != 0) {
-        setExpression(iVar1, -1.0f);
-        setMotion(iVar2, -1.0f, FALSE);
-    } else if (iVar3 != 0 && mMsgTimer == 0) {
+    int i_expression, i_motion, i_msgTimer;
+    i_msgTimer = mMsgTimer;
+    if (ctrlMsgAnm(i_expression, i_motion, this, FALSE) != 0) {
+        setExpression(i_expression, -1.0f);
+        setMotion(i_motion, -1.0f, FALSE);
+    } else if (i_msgTimer != 0 && mMsgTimer == 0) {
         setExpressionTalkAfter();
     }
 
-    int iVar4, iVar5, iVar6;
-    iVar6 = mMsgTimer;
-    if (ctrlMsgAnm(iVar4, iVar5, this, FALSE) != 0) {
-        setExpression(iVar4, -1.0f);
-        setMotion(iVar5, -1.0f, FALSE);
-    } else if (iVar6 != 0 && mMsgTimer == 0) {
+    int i_expression2, i_motion2, i_msgTimer2;
+    i_msgTimer2 = mMsgTimer;
+    if (ctrlMsgAnm(i_expression2, i_motion2, this, FALSE) != 0) {
+        setExpression(i_expression2, -1.0f);
+        setMotion(i_motion2, -1.0f, FALSE);
+    } else if (i_msgTimer2 != 0 && mMsgTimer == 0) {
         setExpressionTalkAfter();
     }
 
@@ -2348,12 +2346,12 @@ BOOL daNpcShad_c::EvCut_CallBack(int i_cutIndex) {
         }
     }
 
-    int iVar1, iVar2, iVar3;
-    iVar3 = mMsgTimer;
-    if (ctrlMsgAnm(iVar1, iVar2, this, FALSE) != 0) {
-        setExpression(iVar1, -1.0f);
-        setMotion(iVar2, -1.0f, FALSE);
-    } else if (iVar3 != 0 && mMsgTimer == 0) {
+    int i_expression, i_motion, i_msgTimer;
+    i_msgTimer = mMsgTimer;
+    if (ctrlMsgAnm(i_expression, i_motion, this, FALSE) != 0) {
+        setExpression(i_expression, -1.0f);
+        setMotion(i_motion, -1.0f, FALSE);
+    } else if (i_msgTimer != 0 && mMsgTimer == 0) {
         setExpressionTalkAfter();
     }
 
@@ -2394,12 +2392,12 @@ BOOL daNpcShad_c::EvCut_WiretapSponsor(int i_cutIndex) {
         }
     }
 
-    int iVar1, iVar2, iVar3;
-    iVar3 = mMsgTimer;
-    if (ctrlMsgAnm(iVar1, iVar2, this, FALSE) != 0) {
-        setExpression(iVar1, -1.0f);
-        setMotion(iVar2, -1.0f, FALSE);
-    } else if (iVar3 != 0 && mMsgTimer == 0) {
+    int i_expression, i_motion, i_msgTimer;
+    i_msgTimer = mMsgTimer;
+    if (ctrlMsgAnm(i_expression, i_motion, this, FALSE) != 0) {
+        setExpression(i_expression, -1.0f);
+        setMotion(i_motion, -1.0f, FALSE);
+    } else if (i_msgTimer != 0 && mMsgTimer == 0) {
         setExpressionTalkAfter();
     }
 
@@ -2446,12 +2444,12 @@ BOOL daNpcShad_c::EvCut_WiretapEntrant(int i_cutIndex) {
         }
     }
 
-    int iVar1, iVar2, iVar3;
-    iVar3 = mMsgTimer;
-    if (ctrlMsgAnm(iVar1, iVar2, this, FALSE) != 0) {
-        setExpression(iVar1, -1.0f);
-        setMotion(iVar2, -1.0f, FALSE);
-    } else if (iVar3 != 0 && mMsgTimer == 0) {
+    int i_expression, i_motion, i_msgTimer;
+    i_msgTimer = mMsgTimer;
+    if (ctrlMsgAnm(i_expression, i_motion, this, FALSE) != 0) {
+        setExpression(i_expression, -1.0f);
+        setMotion(i_motion, -1.0f, FALSE);
+    } else if (i_msgTimer != 0 && mMsgTimer == 0) {
         setExpressionTalkAfter();
     }
 
@@ -2690,6 +2688,10 @@ void daNpcShad_c::lookat() {
 /* 80AE153C-80AE1544 00941C 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__11daNpcShad_cFv */
 BOOL daNpcShad_c::drawDbgInfo() {
     return FALSE;
+}
+
+daNpcShad_Param_c::~daNpcShad_Param_c() {
+    // NONMATCHING
 }
 
 /* 80AE2CB8-80AE2CC4 000008 000C+00 1/1 0/0 0/0 .bss             @3931 */
