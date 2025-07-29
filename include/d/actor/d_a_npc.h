@@ -456,6 +456,8 @@ public:
         mDirection = 0;
         field_0x1E = 1;
     }
+
+    BOOL chkNextId() { return mPathInfo->m_nextID != 0xFFFF; }
 };
 
 class mDoExt_McaMorfSO;

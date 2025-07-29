@@ -26,7 +26,7 @@ public:
     /* 80B5FA74 */ void getOtherYkwP(int);
     /* 80B5FB50 */ void srchYkm(void*, void*);
     /* 80B5FBEC */ void getOtherYkmP(int);
-    /* 80B5FCC8 */ void getType();
+    /* 80B5FCC8 */ u8 getType();
     /* 80B5FD30 */ void isDelete();
     /* 80B5FE6C */ void reset();
     /* 80B601C8 */ void afterJntAnm(int);

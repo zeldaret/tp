@@ -1377,7 +1377,7 @@ void daNpc_ykW_c::getOtherYkmP(int param_0) {
 }
 
 /* 80B5FCC8-80B5FD30 000EA8 0068+00 3/2 0/0 1/1 .text            getType__11daNpc_ykW_cFv */
-void daNpc_ykW_c::getType() {
+u8 daNpc_ykW_c::getType() {
     // NONMATCHING
 }
 
