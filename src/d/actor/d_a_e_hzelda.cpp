@@ -1045,7 +1045,7 @@ static int daE_HZELDA_Execute(e_hzelda_class* i_this) {
     BOOL on_player_at_sph = FALSE;
 
     if (daPy_py_c::checkMasterSwordEquip()) {
-        if (daPy_getPlayerActorClass()->getCutType() != 0) {
+        if (daPy_getPlayerActorClass()->getCutType() != daPy_py_c::CUT_TYPE_NONE) {
             i_this->mSwordAtTimer++;
             if (i_this->mSwordAtTimer < 6) {
                 on_player_at_sph = TRUE;

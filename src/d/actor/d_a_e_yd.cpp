@@ -134,7 +134,7 @@ static void damage_check(e_yd_class* i_this) {
                         j = i_this->field_0xff4.mpCollider->ChkAtType(AT_TYPE_BOMB | AT_TYPE_40);
                         if (j != 0 || i_this->field_0x66e == 6) {
                             at_power_check(&i_this->field_0xff4);
-                            if (daPy_getPlayerActorClass()->getCutType() != 0) {
+                            if (daPy_getPlayerActorClass()->getCutType() != daPy_py_c::CUT_TYPE_NONE) {
                                 cVar6 = 1;
                             } else {
                                 cVar6 = 2;

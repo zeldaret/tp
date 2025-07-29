@@ -9,11 +9,11 @@
 #include "d/actor/d_a_npc_kkri.h"
 #include "d/d_cc_d.h"
 #include "d/d_s_play.h"
-
+#include "Z2AudioLib/Z2Instances.h"
+UNK_REL_BSS
 
 /* ############################################################################################## */
 
-static u8 padding[0x3D];  // Padding to align .bss
 
 struct land_pos {
     /* 0x00 */ s32 unk;
@@ -176,7 +176,7 @@ static void pl_check(bd_class* i_this) {
     }
 
     if ((i_this->field_0x618 & 0xF) == 0) {
-        var_r28 = (u32)fpcM_Search((fopAcIt_JudgeFunc)s_a_sub, a_this);
+        var_r28 = (u32)fpcM_Search(s_a_sub, a_this);
     }
 
     if (daPy_getPlayerActorClass()->checkHorseRide()) {
@@ -186,7 +186,7 @@ static void pl_check(bd_class* i_this) {
     }
 
     var_f31 = l_HIO.mLinkDetectRange + 10.0f * fabsf(var_f30);
-    if (player->getCutType() != 0) {
+    if (player->getCutType() != daPy_py_c::CUT_TYPE_NONE) {
         var_f31 += 300.0f;
     }
     if (i_this->field_0x5DC < var_f31 || sp8.abs() < var_f31 || var_r28 != 0) {
@@ -392,7 +392,7 @@ static void bd_ground(bd_class* i_this) {
     }
     drop_check(i_this);
     if (i_this->field_0x658 == 0) {
-        if (fopAcM_CheckCondition(a_this, fopAcCnd_NODRAW_e) != 0) {
+        if (fopAcM_CheckCondition(a_this, fopAcCnd_NODRAW_e)) {
             if (i_this->field_0x64C[3] > 50) {
                 i_this->field_0x64C[3] = 30.0f + cM_rndF(20.0f);
             }
@@ -1115,3 +1115,5 @@ extern actor_process_profile_definition g_profile_BD = {
     fopAc_ACTOR_e,         // mActorType
     fopAc_CULLBOX_0_e,     // cullType
 };
+
+AUDIO_INSTANCES
