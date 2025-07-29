@@ -153,22 +153,22 @@ void daObjCRVHAHEN_c::HahenSet(cXyz param_0, cXyz param_1, cXyz param_2, cXyz pa
 
 /* 80BD3628-80BD36E4 000368 00BC+00 1/1 0/0 0/0 .text Wall_Check__15daObjCRVHAHEN_cF4cXyz4cXyz */
 bool daObjCRVHAHEN_c::Wall_Check(cXyz origin, cXyz target) {
-    // Must be first to match
     dBgS_LinChk lineCheck;
     
     cXyz linePos(origin.x + target.x, origin.y, origin.z + target.z);
 
     lineCheck.Set(&origin, &linePos, NULL);
 
-    bool didLineCross;
-    didLineCross = dComIfG_Bgsp().LineCross(&lineCheck);
+    bool didLineCross = dComIfG_Bgsp().LineCross(&lineCheck);
 
-    if (didLineCross != true) {
-        lineCheck.~dBgS_LinChk();
+    if (didLineCross == true) {
+        // lineCheck.~dBgS_LinChk();
+        return true;
     }
-    // else {
-    //     lineCheck.~dBgS_LinChk();
-    // }
+    else {
+        // lineCheck.~dBgS_LinChk();
+        return false;
+    }
     return didLineCross;
 }
 
@@ -285,15 +285,20 @@ void daObjCRVHAHEN_c::checkViewArea(cXyz* param_0) {
 }
 
 /* 80BD3B20-80BD3B74 000860 0054+00 1/1 0/0 0/0 .text            Execute__15daObjCRVHAHEN_cFv */
-void daObjCRVHAHEN_c::Execute() {
-    // NONMATCHING
+int daObjCRVHAHEN_c::Execute() {
+    if (field8_0x750 != false) {
+        daObjCRVHAHEN_c::Hahen_Hakai(0, 10);
+    }
+    daObjCRVHAHEN_c::setBaseMtx();
+    daObjCRVHAHEN_c::CheckCull();
+    return 1;
 }
 
 /* 80BD3B74-80BD3C0C 0008B4 0098+00 1/1 0/0 0/0 .text            Delete__15daObjCRVHAHEN_cFv */
 int daObjCRVHAHEN_c::Delete() {
     J3DModelData* modelData;
 
-    if (field_0x791 != 0) {
+    if (field33_0x791) {
         modelData = (J3DModelData*) dRes_control_c::getRes(l_arcName, "CaravanPiece.bmd", 
         g_dComIfG_gameInfo.mResControl.mObjectInfo, 0x80);
         g_dComIfG_gameInfo.play.removeSimpleModel(modelData, current.roomNo);
@@ -316,8 +321,9 @@ static void daObjCRVHAHEN_Draw(daObjCRVHAHEN_c* param_0) {
 
 /* 80BD3D9C-80BD3DBC 000ADC 0020+00 2/1 0/0 0/0 .text daObjCRVHAHEN_Execute__FP15daObjCRVHAHEN_c
  */
-static void daObjCRVHAHEN_Execute(daObjCRVHAHEN_c* param_0) {
-    // NONMATCHING
+static void daObjCRVHAHEN_Execute(daObjCRVHAHEN_c* i_this) {
+    static_cast<daObjCRVHAHEN_c*>(i_this)->Execute();
+    return;
 }
 
 /* ############################################################################################## */
