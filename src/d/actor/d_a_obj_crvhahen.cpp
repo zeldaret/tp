@@ -303,7 +303,13 @@ int daObjCRVHAHEN_c::Delete() {
 
 /* 80BD3C0C-80BD3CA0 00094C 0094+00 1/1 0/0 0/0 .text            setBaseMtx__15daObjCRVHAHEN_cFv */
 void daObjCRVHAHEN_c::setBaseMtx() {
-    // NONMATCHING
+    int i;
+    for (i = 0; i < 10; i++) {
+        mDoMtx_stack_c::transS(field1_0x568[i]);
+        mDoMtx_stack_c::ZXYrotM(field4_0x6d0[i]);
+        mDoMtx_stack_c::scaleM(field3_0x658[i]);
+        PSMTXCopy(mDoMtx_stack_c::now, mpModel[i]->mBaseTransformMtx);
+    }
 }
 
 /* 80BD3CA0-80BD3D9C 0009E0 00FC+00 1/0 0/0 0/0 .text daObjCRVHAHEN_Draw__FP15daObjCRVHAHEN_c */
