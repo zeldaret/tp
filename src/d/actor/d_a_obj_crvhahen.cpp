@@ -87,7 +87,7 @@ SECTION_DEAD static char const* const stringBase_80BD4051 = "CaravanPiece.bmd";
 #pragma pop
 
 /* 80BD4064-80BD4068 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
-SECTION_DATA static const char* l_arcName = "SrvFence";
+SECTION_DATA static const char* l_arcName = "CrvFence";
 
 int daObjCRVHAHEN_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName,"CaravanPiece.bmd");
@@ -219,15 +219,7 @@ void daObjCRVHAHEN_c::Hahen_Hakai(int param_0, int param_1) {
 #pragma push
 #pragma force_active on
 SECTION_RODATA static u8 const lit_3836[4 + 4 /* padding */] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    /* padding */
-    0x00,
-    0x00,
-    0x00,
-    0x00,
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 COMPILER_STRIP_GATE(0x80BD4010, &lit_3836);
 #pragma pop
@@ -301,7 +293,7 @@ int daObjCRVHAHEN_c::Delete() {
     if (field33_0x791) {
         modelData = (J3DModelData*) dRes_control_c::getRes(l_arcName, "CaravanPiece.bmd", 
         g_dComIfG_gameInfo.mResControl.mObjectInfo, 0x80);
-        g_dComIfG_gameInfo.play.removeSimpleModel(modelData, current.roomNo);
+        g_dComIfG_gameInfo.play.removeSimpleModel(modelData, (int)(char)current.roomNo);
     }
 
     dComIfG_resDelete(&this->mPhase, l_arcName);
@@ -381,16 +373,16 @@ int daObjCRVHAHEN_c::create() {
     int phase_state = dComIfG_resLoad(&this->mPhase, l_arcName);
 
     if(phase_state == cPhs_COMPLEATE_e) {
-        if( fopAcM_entrySolidHeap(this, useHeapInit, 0x1320)) {
+        if(fopAcM_entrySolidHeap(this, useHeapInit, 0x1320)) {
             field8_0x750 = 0;
             gravity = -9.0f;
-            // data = (J3DModelData*)dComIfG_getObjectRes("CaravanPiece.bmd", 0x80);
             modelData = (J3DModelData*) dRes_control_c::getRes(l_arcName, "CaravanPiece.bmd", 
                 g_dComIfG_gameInfo.mResControl.mObjectInfo, 0x80);
             g_dComIfG_gameInfo.play.addSimpleModel(modelData, current.roomNo, 0);
             field33_0x791 = true;
             field7_0x74c = current.pos.y;
-            fopAcM_setCullSizeBox(this, -1000.0,-500.0, -1000.0, 1000.0, 500.0, 1000.0);
+            // fopAcM_setCullSizeBox(this, -1000.0,-500.0, -1000.0, 1000.0, 500.0, 1000.0);
+            fopAcM_setCullSizeBox(this, lit_3993, lit_3994, lit_3993, lit_3995, lit_3996, lit_3995);
             daObjCRVHAHEN_Execute(this);
         }
         else {
