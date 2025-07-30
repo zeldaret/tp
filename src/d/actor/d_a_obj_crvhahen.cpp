@@ -80,14 +80,15 @@ extern "C" u8 now__14mDoMtx_stack_c[48];
 
 /* ############################################################################################## */
 /* 80BD4048-80BD4048 000058 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80BD4048 = "CrvFence";
-SECTION_DEAD static char const* const stringBase_80BD4051 = "CaravanPiece.bmd";
-#pragma pop
+// #pragma push
+// #pragma force_active on
+// SECTION_DEAD static char const* const stringBase_80BD4048 = "CrvFence";
+// SECTION_DEAD static char const* const stringBase_80BD4051 = "CaravanPiece.bmd";
+// #pragma pop
 
 /* 80BD4064-80BD4068 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
-SECTION_DATA static const char* l_arcName = "CrvFence";
+// SECTION_DATA static const char* l_arcName = "CrvFence";
+static const char* l_arcName = "CrvFence";
 
 int daObjCRVHAHEN_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName,"CaravanPiece.bmd");
@@ -216,69 +217,87 @@ void daObjCRVHAHEN_c::Hahen_Hakai(int param_0, int param_1) {
 
 /* ############################################################################################## */
 /* 80BD4010-80BD4018 000020 0004+04 0/2 0/0 0/0 .rodata          @3836 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3836[4 + 4 /* padding */] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80BD4010, &lit_3836);
-#pragma pop
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static u8 const lit_3836[4 + 4 /* padding */] = {
+//     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+// };
+// COMPILER_STRIP_GATE(0x80BD4010, &lit_3836);
+// #pragma pop
 
-/* 80BD4018-80BD4020 000028 0008+00 0/1 0/0 0/0 .rodata          @3837 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3837[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80BD4018, &lit_3837);
-#pragma pop
+// /* 80BD4018-80BD4020 000028 0008+00 0/1 0/0 0/0 .rodata          @3837 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static u8 const lit_3837[8] = {
+//     0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+// };
+// COMPILER_STRIP_GATE(0x80BD4018, &lit_3837);
+// #pragma pop
 
-/* 80BD4020-80BD4028 000030 0008+00 0/1 0/0 0/0 .rodata          @3838 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3838[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80BD4020, &lit_3838);
-#pragma pop
+// /* 80BD4020-80BD4028 000030 0008+00 0/1 0/0 0/0 .rodata          @3838 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static u8 const lit_3838[8] = {
+//     0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+// };
+// COMPILER_STRIP_GATE(0x80BD4020, &lit_3838);
+// #pragma pop
 
-/* 80BD4028-80BD4030 000038 0008+00 0/1 0/0 0/0 .rodata          @3839 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3839[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80BD4028, &lit_3839);
-#pragma pop
+// /* 80BD4028-80BD4030 000038 0008+00 0/1 0/0 0/0 .rodata          @3839 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static u8 const lit_3839[8] = {
+//     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+// };
+// COMPILER_STRIP_GATE(0x80BD4028, &lit_3839);
+// #pragma pop
 
 /* 80BD38DC-80BD3A9C 00061C 01C0+00 1/1 0/0 0/0 .text            CheckCull__15daObjCRVHAHEN_cFv */
 void daObjCRVHAHEN_c::CheckCull() {
-    // NONMATCHING
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    cXyz& playerPos = fopAcM_GetPosition((fopAc_ac_c*)player);
+    int culledNum = 1;
+
+    for (int i = 0; i < 10; i++) {
+        float fVar2 = field1_0x568[i].absXZ(playerPos);
+        if ((fVar2 > field26_0x75c) && !checkViewArea(&field1_0x568[i])) {
+            culledNum++;
+            if (culledNum == 10) {
+                fopAcM_delete(this);
+            }
+        }
+    }
 }
 
 /* ############################################################################################## */
 /* 80BD4030-80BD4034 000040 0004+00 0/1 0/0 0/0 .rodata          @3852 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3852 = 608.0f;
-COMPILER_STRIP_GATE(0x80BD4030, &lit_3852);
-#pragma pop
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_3852 = 608.0f;
+// COMPILER_STRIP_GATE(0x80BD4030, &lit_3852);
+// #pragma pop
 
-/* 80BD4034-80BD4038 000044 0004+00 0/1 0/0 0/0 .rodata          @3853 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3853 = 448.0f;
-COMPILER_STRIP_GATE(0x80BD4034, &lit_3853);
-#pragma pop
+// /* 80BD4034-80BD4038 000044 0004+00 0/1 0/0 0/0 .rodata          @3853 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_3853 = 448.0f;
+// COMPILER_STRIP_GATE(0x80BD4034, &lit_3853);
+// #pragma pop
 
 /* 80BD3A9C-80BD3B20 0007DC 0084+00 1/1 0/0 0/0 .text checkViewArea__15daObjCRVHAHEN_cFP4cXyz */
-void daObjCRVHAHEN_c::checkViewArea(cXyz* i_this) {
-    // NONMATCHING
+bool daObjCRVHAHEN_c::checkViewArea(cXyz* i_this) {
+    Vec proj;
+    mDoLib_project(i_this, &proj);
+    bool ret = false;
+    if (proj.x >= 0.0f && proj.x <= 608.0f && proj.y >= 0.0f && proj.y <= 448.0f) {
+        ret = true;
+    }
+    return ret;
 }
 
 /* 80BD3B20-80BD3B74 000860 0054+00 1/1 0/0 0/0 .text            Execute__15daObjCRVHAHEN_cFv */
 int daObjCRVHAHEN_c::Execute() {
-    if (field8_0x750 != false) {
+    if (field14_0x750 != false) {
         daObjCRVHAHEN_c::Hahen_Hakai(0, 10);
     }
     daObjCRVHAHEN_c::setBaseMtx();
@@ -324,7 +343,7 @@ static int daObjCRVHAHEN_Draw(daObjCRVHAHEN_c* i_this) {
 
     dComIfGd_setListBG();
 
-    if (i_this->field8_0x750 != false) {
+    if (i_this->field14_0x750 != false) {
         for (i = 0; i < 10; i++) {
             // Suggestion from ChatGPT, worked
             volatile u8* roomNoPtr = (u8*)((char*)i_this + 0x4e2); // 0x4e2 is i_this->base.current.roomNo
@@ -349,32 +368,32 @@ static void daObjCRVHAHEN_Execute(daObjCRVHAHEN_c* i_this) {
 
 /* ############################################################################################## */
 /* 80BD4038-80BD403C 000048 0004+00 0/1 0/0 0/0 .rodata          @3993 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3993 = -1000.0f;
-COMPILER_STRIP_GATE(0x80BD4038, &lit_3993);
-#pragma pop
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_3993 = -1000.0f;
+// COMPILER_STRIP_GATE(0x80BD4038, &lit_3993);
+// #pragma pop
 
-/* 80BD403C-80BD4040 00004C 0004+00 0/1 0/0 0/0 .rodata          @3994 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3994 = -500.0f;
-COMPILER_STRIP_GATE(0x80BD403C, &lit_3994);
-#pragma pop
+// /* 80BD403C-80BD4040 00004C 0004+00 0/1 0/0 0/0 .rodata          @3994 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_3994 = -500.0f;
+// COMPILER_STRIP_GATE(0x80BD403C, &lit_3994);
+// #pragma pop
 
-/* 80BD4040-80BD4044 000050 0004+00 0/1 0/0 0/0 .rodata          @3995 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3995 = 1000.0f;
-COMPILER_STRIP_GATE(0x80BD4040, &lit_3995);
-#pragma pop
+// /* 80BD4040-80BD4044 000050 0004+00 0/1 0/0 0/0 .rodata          @3995 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_3995 = 1000.0f;
+// COMPILER_STRIP_GATE(0x80BD4040, &lit_3995);
+// #pragma pop
 
-/* 80BD4044-80BD4048 000054 0004+00 0/1 0/0 0/0 .rodata          @3996 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3996 = 500.0f;
-COMPILER_STRIP_GATE(0x80BD4044, &lit_3996);
-#pragma pop
+// /* 80BD4044-80BD4048 000054 0004+00 0/1 0/0 0/0 .rodata          @3996 */
+// #pragma push
+// #pragma force_active on
+// SECTION_RODATA static f32 const lit_3996 = 500.0f;
+// COMPILER_STRIP_GATE(0x80BD4044, &lit_3996);
+// #pragma pop
 
 /* 80BD3DBC-80BD3F9C 000AFC 01E0+00 1/1 0/0 0/0 .text            create__15daObjCRVHAHEN_cFv */
 int daObjCRVHAHEN_c::create() {
@@ -389,7 +408,7 @@ int daObjCRVHAHEN_c::create() {
             phase_state = cPhs_ERROR_e;
         }
         else {
-            field8_0x750 = 0;
+            field14_0x750 = 0;
             gravity = -9.0f;
             modelData = (J3DModelData*) dRes_control_c::getRes(l_arcName, "CaravanPiece.bmd", 
                 g_dComIfG_gameInfo.mResControl.mObjectInfo, 0x80);

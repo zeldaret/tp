@@ -4,6 +4,7 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/d_com_inf_game.h"
 #include "m_Do/m_Do_ext.h"
+#include "m_Do/m_Do_lib.h"
 
 /**
  * @ingroup actors-objects
@@ -19,7 +20,7 @@ public:
     /* 80BD3628 */ bool Wall_Check(cXyz, cXyz);
     /* 80BD3720 */ void Hahen_Hakai(int, int);
     /* 80BD38DC */ void CheckCull();
-    /* 80BD3A9C */ void checkViewArea(cXyz*);
+    /* 80BD3A9C */ bool checkViewArea(cXyz*);
     /* 80BD3B20 */ int Execute();
     /* 80BD3B74 */ int Delete();
     /* 80BD3C0C */ void setBaseMtx();
@@ -34,8 +35,9 @@ public:
     /* 0x7ac */ csXyz field5_0x70c[10];
     /* 0x748 */ u32 field_0x748;
     /* 0x74c */ float field7_0x74c;
-    /* 0x750 */ bool field8_0x750;
-    /* 0x751 */ u8 field_0x751[0x760 - 0x751]; // padding
+    /* 0x750 */ bool field14_0x750;
+    /* 0x751 */ u8 field_0x751[0x75c - 0x751]; // padding
+    /* 0x75c */ float field26_0x75c;
     /* 0x760 */ J3DModel* mpModel[10];
     /* 0x788 */ request_of_phase_process_class mPhase;
     /* 0x790 */ u8 field_0x790;
