@@ -149,6 +149,7 @@ public:
     u32 MaskRoofHit() const { return m_flags & ROOF_HIT; }
     bool ChkRoofHit() const { return MaskRoofHit() != 0; }
     void OffClrSpeedY() { m_flags |= CLR_SPEED_Y; }
+    void OnClrSpeedY() { m_flags &= ~CLR_SPEED_Y; }
     bool ChkClrSpeedY() const { return !(m_flags & CLR_SPEED_Y); }
     void SetGroundFind() { m_flags |= GROUND_FIND; }
     void SetGroundHit() { m_flags |= GROUND_HIT; }
