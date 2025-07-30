@@ -373,20 +373,19 @@ int daObjCRVHAHEN_c::create() {
     int phase_state = dComIfG_resLoad(&this->mPhase, l_arcName);
 
     if(phase_state == cPhs_COMPLEATE_e) {
-        if(fopAcM_entrySolidHeap(this, useHeapInit, 0x1320)) {
+        if(!fopAcM_entrySolidHeap(this, useHeapInit, 0x1320)) {
+            phase_state = cPhs_ERROR_e;
+        }
+        else {
             field8_0x750 = 0;
             gravity = -9.0f;
             modelData = (J3DModelData*) dRes_control_c::getRes(l_arcName, "CaravanPiece.bmd", 
                 g_dComIfG_gameInfo.mResControl.mObjectInfo, 0x80);
-            g_dComIfG_gameInfo.play.addSimpleModel(modelData, current.roomNo, 0);
+            g_dComIfG_gameInfo.play.addSimpleModel(modelData, (int)(char)current.roomNo, '\0');
             field33_0x791 = true;
             field7_0x74c = current.pos.y;
-            // fopAcM_setCullSizeBox(this, -1000.0,-500.0, -1000.0, 1000.0, 500.0, 1000.0);
-            fopAcM_setCullSizeBox(this, lit_3993, lit_3994, lit_3993, lit_3995, lit_3996, lit_3995);
+            fopAcM_setCullSizeBox(this, -1000.0,-500.0, -1000.0, 1000.0, 500.0, 1000.0);
             daObjCRVHAHEN_Execute(this);
-        }
-        else {
-            phase_state = cPhs_ERROR_e;
         }
     }
     return phase_state;
