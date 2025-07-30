@@ -289,7 +289,7 @@ daNpcShad_c::EventFn daNpcShad_c::mEvtSeqList[14] = {
     &daNpcShad_c::EvCut_WiretapEntrant,
 };
 
-daNpcShad_c::daNpcShad_c() {};
+daNpcShad_c::daNpcShad_c() {}
 
 /* 80AD8420-80AD8620 000300 0200+00 1/0 0/0 0/0 .text            __dt__11daNpcShad_cFv */
 daNpcShad_c::~daNpcShad_c() {
