@@ -310,7 +310,8 @@ void daObjCRVHAHEN_c::setBaseMtx() {
 static int daObjCRVHAHEN_Draw(daObjCRVHAHEN_c* i_this) {
     g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
 
-    int i;
+    int i = 0;
+    int j = i; // forces reuse instead of new li
     for (i = 0; i < 10; i++) {
         g_env_light.setLightTevColorType_MAJI(i_this->mpModel[i], &i_this->tevStr);
     }
@@ -319,12 +320,17 @@ static int daObjCRVHAHEN_Draw(daObjCRVHAHEN_c* i_this) {
 
     if (i_this->field8_0x750 != false) {
         for (i = 0; i < 10; i++) {
-            int roomNum = fopAcM_GetRoomNo(i_this);
-            g_dComIfG_gameInfo.play.entrySimpleModel(i_this->mpModel[i], roomNum);
+            // Suggestion from ChatGPT, worked
+            volatile u8* roomNoPtr = (u8*)((char*)i_this + 0x4e2); // 0x4e2 is i_this->base.current.roomNo
+            s8 roomNo = *roomNoPtr;
+
+            // int roomNo = fopAcM_GetRoomNo(i_this); // puts the mr, addi, and lwzx instructions in the wrong place
+
+            g_dComIfG_gameInfo.play.entrySimpleModel(i_this->mpModel[i], roomNo);
         }
     }
 
-    dComIfGd_setListBG();
+    dComIfGd_setList();
 
     return 1;
 }
