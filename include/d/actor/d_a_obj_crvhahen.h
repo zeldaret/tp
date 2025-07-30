@@ -25,7 +25,7 @@ public:
     /* 80BD3C0C */ void setBaseMtx();
     /* 80BD3DBC */ int create();
     
-    /* 80BD3338 */ inline int CreateHeap();
+    /* 80BD3338 */ inline bool CreateHeap();
 
     /* 0x568 */ cXyz field1_0x568[10];
     /* 0x5e0 */ cXyz field2_0x5e0[10];
