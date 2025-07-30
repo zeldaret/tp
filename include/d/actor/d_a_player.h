@@ -599,7 +599,8 @@ public:
     };
 
     enum CutType {
-        /* 0x01 */ CUT_TYPE_NM_VERTICAL = 1,
+        /* 0x00 */ CUT_TYPE_NONE,
+        /* 0x01 */ CUT_TYPE_NM_VERTICAL,
         /* 0x02 */ CUT_TYPE_NM_STAB,
         /* 0x03 */ CUT_TYPE_NM_RIGHT,
         /* 0x04 */ CUT_TYPE_NM_LEFT,

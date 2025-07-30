@@ -57,11 +57,23 @@ public:
     /* 80553404 */ void checkChangeJoint(int);
     /* 80553414 */ void checkRemoveJoint(int);
 
+    MtxP getBd3Mtx() {
+        return mpMorf->getModel()->getAnmMtx(0x11);
+    }
+    MtxP getBd2Mtx() {
+        return mpMorf->getModel()->getAnmMtx(6);
+    }
+    MtxP getBd1Mtx() {
+        return mpMorf->getModel()->getAnmMtx(5);
+    }
+
     static void* mCutNameList[3];
     static u8 mCutList[36];
 
 private:
-    /* 0x568 */ u8 field_0x568[0xfdc - 0x568];
+    /* 0x568 */ u8 field_0x568[0x578 - 0x568];
+    /* 0x578 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x57C */ u8 field_0x57C[0xfdc - 0x57C];
 };
 
 STATIC_ASSERT(sizeof(daNpc_Kkri_c) == 0xfdc);
