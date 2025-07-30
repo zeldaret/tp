@@ -89,7 +89,7 @@ SECTION_DEAD static char const* const stringBase_80BD4051 = "CaravanPiece.bmd";
 /* 80BD4064-80BD4068 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static const char* l_arcName = "SrvFence";
 
-bool daObjCRVHAHEN_c::CreateHeap() {
+int daObjCRVHAHEN_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName,"CaravanPiece.bmd");
     
     for (int i = 0; i < 10; i++) {
