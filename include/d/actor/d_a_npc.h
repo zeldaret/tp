@@ -334,6 +334,9 @@ public:
             mPower[i] = power;
         }
     }
+    void setRebirth() {
+        mRebirth = true;
+    }
 
     /* 0x00 */ csXyz mAngle[2];
     /* 0x0C */ f32 mPower[2];
