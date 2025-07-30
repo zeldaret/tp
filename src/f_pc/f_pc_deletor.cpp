@@ -100,7 +100,7 @@ s32 fpcDt_ToDeleteQ(base_process_class* i_proc) {
             }
         }
 
-        i_proc->init_state = 3;
+        i_proc->state.init_state = 3;
         return 1;
     }
     
@@ -124,7 +124,7 @@ s32 fpcDt_Delete(void* i_proc) {
         if (fpcCt_IsDoing(proc) == TRUE)
             return 0;
 
-        if (proc->init_state == 3)
+        if (proc->state.init_state == 3)
             return 0;
 
         int ret = fpcDt_ToDeleteQ(proc);

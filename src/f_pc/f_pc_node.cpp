@@ -105,7 +105,7 @@ s32 fpcNd_Create(process_node_class* i_procNode) {
     layer_class* save_layer;
     s32 ret;
 
-    if (procnode->base.init_state == 0) {
+    if (procnode->base.state.init_state == 0) {
         node_process_profile_definition* pprofile = (node_process_profile_definition*)procnode->base.profile;
         procnode->base.subtype = fpcBs_MakeOfType(&g_fpcNd_type);
         procnode->nodedraw_method = (nodedraw_method_class*)pprofile->sub_methods;

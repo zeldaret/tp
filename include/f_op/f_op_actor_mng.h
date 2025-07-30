@@ -88,6 +88,18 @@ struct fopAcM_search_prm {
 
 struct fOpAcm_HIO_entry_c : public mDoHIO_entry_c {
     virtual ~fOpAcm_HIO_entry_c() {}
+
+    #ifdef DEBUG
+    void removeHIO(const fopAc_ac_c* i_this) { removeHIO(*i_this); }
+    void removeHIO(const fopAc_ac_c& i_this) { removeHIO(static_cast<const leafdraw_class&>(i_this)); }
+    void removeHIO(const leafdraw_class& i_this) { removeHIO(i_this.base); }
+    void removeHIO(const base_process_class& i_this) { removeHIO(i_this.state); }
+    void removeHIO(const state_class& state) { 
+        if (state.create_phase == cPhs_NEXT_e) {
+            mDoHIO_entry_c::removeHIO(); 
+        }
+    }
+    #endif
 };
 
 class l_HIO {

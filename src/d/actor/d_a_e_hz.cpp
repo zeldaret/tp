@@ -649,7 +649,7 @@ void daE_HZ_c::setTgSetBit(int param_0) {
 }
 
 /* 806EB0FC-806EB13C 000BDC 0040+00 0/0 0/0 1/1 .text            isWait__8daE_HZ_cFv */
-void daE_HZ_c::isWait() {
+bool daE_HZ_c::isWait() {
     // NONMATCHING
 }
 

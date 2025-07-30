@@ -1491,7 +1491,7 @@ int daNpc_Uri_c::wait(void* param_0) {
                     if (chkPointInArea(acStack_70, attention_info.position, 200.0f, fVar2, fVar3,
                                        0))
                     {
-                        if (daPy_getPlayerActorClass()->eventInfo.chkCondition(1) != 0 &&
+                        if (daPy_getPlayerActorClass()->eventInfo.chkCondition(dEvtCnd_CANTALK_e) != 0 &&
                             chkPlayerCarryBasket())
                         {
                             mEvtNo = 5;
@@ -1511,7 +1511,7 @@ int daNpc_Uri_c::wait(void* param_0) {
                                    daNpc_Uri_Param_c::m.field_0x5c, mCurAngle.y))
                 {
                     if (!daPy_getPlayerActorClass()->checkPlayerFly()) {
-                        if (daPy_getPlayerActorClass()->eventInfo.chkCondition(1) != 0) {
+                        if (daPy_getPlayerActorClass()->eventInfo.chkCondition(dEvtCnd_CANTALK_e) != 0) {
                             if (chkActorInSight(daPy_getPlayerActorClass(), mAttnFovY,
                                                 home.angle.y))
                             {

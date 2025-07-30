@@ -1894,7 +1894,7 @@ int daNpc_Moi_c::walkOnEggshell(void* param_1) {
                 if (field_0x1658) {
                     field_0x1658 = injuryCheck();
                     if (field_0x1658) {
-                        if (daPy_getPlayerActorClass()->eventInfo.chkCondition(1) != 0) {
+                        if (daPy_getPlayerActorClass()->eventInfo.chkCondition(dEvtCnd_CANTALK_e) != 0) {
                             f32 fVar = daPy_getPlayerActorClass()->attention_info.position.absXZ(
                                 attention_info.position);
                         }

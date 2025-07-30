@@ -295,7 +295,7 @@ int daTogeTrap_c::Delete() {
     dComIfG_resDelete(&mPhase, "P_Toge");
 
     #ifdef DEBUG
-    l_HIO.removeHIO();
+    l_HIO.removeHIO(this);
     #endif
 
     return 1;
