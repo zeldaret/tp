@@ -1880,7 +1880,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_avalanche"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_balloon"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_barDesk"),
-    ActorRel(NonMatching, "d_a_obj_batta"),
+    ActorRel(Equivalent, "d_a_obj_batta"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_bbox"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_bed"),
     ActorRel(NonMatching, "d_a_obj_bemos"),
