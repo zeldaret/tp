@@ -89,7 +89,7 @@ SECTION_DEAD static char const* const stringBase_80BD4051 = "CaravanPiece.bmd";
 /* 80BD4064-80BD4068 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static const char* l_arcName = "SrvFence";
 
-int daObjCRVHAHEN_c::CreateHeap() {
+bool daObjCRVHAHEN_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName,"CaravanPiece.bmd");
     
     for (int i = 0; i < 10; i++) {
@@ -280,7 +280,7 @@ COMPILER_STRIP_GATE(0x80BD4034, &lit_3853);
 #pragma pop
 
 /* 80BD3A9C-80BD3B20 0007DC 0084+00 1/1 0/0 0/0 .text checkViewArea__15daObjCRVHAHEN_cFP4cXyz */
-void daObjCRVHAHEN_c::checkViewArea(cXyz* param_0) {
+void daObjCRVHAHEN_c::checkViewArea(cXyz* i_this) {
     // NONMATCHING
 }
 
@@ -315,15 +315,32 @@ void daObjCRVHAHEN_c::setBaseMtx() {
 }
 
 /* 80BD3CA0-80BD3D9C 0009E0 00FC+00 1/0 0/0 0/0 .text daObjCRVHAHEN_Draw__FP15daObjCRVHAHEN_c */
-static void daObjCRVHAHEN_Draw(daObjCRVHAHEN_c* param_0) {
-    // NONMATCHING
+static int daObjCRVHAHEN_Draw(daObjCRVHAHEN_c* i_this) {
+    g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
+
+    int i;
+    for (i = 0; i < 10; i++) {
+        g_env_light.setLightTevColorType_MAJI(i_this->mpModel[i], &i_this->tevStr);
+    }
+
+    dComIfGd_setListBG();
+
+    if (i_this->field8_0x750 != false) {
+        for (i = 0; i < 10; i++) {
+            int roomNum = fopAcM_GetRoomNo(i_this);
+            g_dComIfG_gameInfo.play.entrySimpleModel(i_this->mpModel[i], roomNum);
+        }
+    }
+
+    dComIfGd_setListBG();
+
+    return 1;
 }
 
 /* 80BD3D9C-80BD3DBC 000ADC 0020+00 2/1 0/0 0/0 .text daObjCRVHAHEN_Execute__FP15daObjCRVHAHEN_c
  */
 static void daObjCRVHAHEN_Execute(daObjCRVHAHEN_c* i_this) {
     static_cast<daObjCRVHAHEN_c*>(i_this)->Execute();
-    return;
 }
 
 /* ############################################################################################## */
@@ -357,18 +374,28 @@ COMPILER_STRIP_GATE(0x80BD4044, &lit_3996);
 
 /* 80BD3DBC-80BD3F9C 000AFC 01E0+00 1/1 0/0 0/0 .text            create__15daObjCRVHAHEN_cFv */
 int daObjCRVHAHEN_c::create() {
-    if (!fopAcM_CheckCondition(this, 8)) {
-        new (this) daObjCRVHAHEN_c();
-        fopAcM_OnCondition(this, 8);
-    }
+    fopAcM_SetupActor(this, daObjCRVHAHEN_c);
 
-    int phase_state = dComIfG_resLoad(&this->mPhase, "CrvFence");
+    J3DModelData* modelData;
+
+    int phase_state = dComIfG_resLoad(&this->mPhase, l_arcName);
 
     if(phase_state == cPhs_COMPLEATE_e) {
-        // bool bvar3 = fopAcM_entrySolidHeap(this, useHeapInit(this), 0x1320);
-    }
-    else {
-        phase_state = cPhs_ERROR_e;
+        if( fopAcM_entrySolidHeap(this, useHeapInit, 0x1320)) {
+            field8_0x750 = 0;
+            gravity = -9.0f;
+            // data = (J3DModelData*)dComIfG_getObjectRes("CaravanPiece.bmd", 0x80);
+            modelData = (J3DModelData*) dRes_control_c::getRes(l_arcName, "CaravanPiece.bmd", 
+                g_dComIfG_gameInfo.mResControl.mObjectInfo, 0x80);
+            g_dComIfG_gameInfo.play.addSimpleModel(modelData, current.roomNo, 0);
+            field33_0x791 = true;
+            field7_0x74c = current.pos.y;
+            fopAcM_setCullSizeBox(this, -1000.0,-500.0, -1000.0, 1000.0, 500.0, 1000.0);
+            daObjCRVHAHEN_Execute(this);
+        }
+        else {
+            phase_state = cPhs_ERROR_e;
+        }
     }
     return phase_state;
 }
@@ -393,7 +420,7 @@ extern "C" void __ct__4cXyzFv() {
 
 /* 80BD3FE0-80BD3FE8 000D20 0008+00 1/0 0/0 0/0 .text daObjCRVHAHEN_IsDelete__FP15daObjCRVHAHEN_c
  */
-static bool daObjCRVHAHEN_IsDelete(daObjCRVHAHEN_c* param_0) {
+static bool daObjCRVHAHEN_IsDelete(daObjCRVHAHEN_c* i_this) {
     return true;
 }
 
