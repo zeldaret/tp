@@ -2560,97 +2560,90 @@ int daNpc_ykM_c::cutSlideDown(int i_cutIndex) {
     return rv;
 }
 
-/* ############################################################################################## */
-/* 80B5D96C-80B5D974 0001D8 0008+00 0/0 0/0 0/0 .rodata          @5955 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5955[8] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-};
-COMPILER_STRIP_GATE(0x80B5D96C, &lit_5955);
-#pragma pop
-
-/* 80B5D974-80B5D978 0001E0 0004+00 0/0 0/0 0/0 .rodata          @6136 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6136 = -200.0f;
-COMPILER_STRIP_GATE(0x80B5D974, &lit_6136);
-#pragma pop
-
-/* 80B5D978-80B5D97C 0001E4 0004+00 0/0 0/0 0/0 .rodata          @6137 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6137 = 65.0f;
-COMPILER_STRIP_GATE(0x80B5D978, &lit_6137);
-#pragma pop
-
-/* 80B5D97C-80B5D980 0001E8 0004+00 0/0 0/0 0/0 .rodata          @6138 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6138 = 62.0f;
-COMPILER_STRIP_GATE(0x80B5D97C, &lit_6138);
-#pragma pop
-
-/* 80B5D980-80B5D984 0001EC 0004+00 0/0 0/0 0/0 .rodata          @6139 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6139 = -14483.0f;
-COMPILER_STRIP_GATE(0x80B5D980, &lit_6139);
-#pragma pop
-
-/* 80B5D984-80B5D988 0001F0 0004+00 0/0 0/0 0/0 .rodata          @6140 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6140 = 2023.0f;
-COMPILER_STRIP_GATE(0x80B5D984, &lit_6140);
-#pragma pop
-
-/* 80B5D988-80B5D98C 0001F4 0004+00 0/0 0/0 0/0 .rodata          @6141 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6141 = -9768.0f;
-COMPILER_STRIP_GATE(0x80B5D988, &lit_6141);
-#pragma pop
-
-/* 80B5D98C-80B5D990 0001F8 0004+00 0/0 0/0 0/0 .rodata          @6142 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6142 = 22.0f;
-COMPILER_STRIP_GATE(0x80B5D98C, &lit_6142);
-#pragma pop
-
-/* 80B5D990-80B5D994 0001FC 0004+00 0/0 0/0 0/0 .rodata          @6143 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6143 = 27.0f;
-COMPILER_STRIP_GATE(0x80B5D990, &lit_6143);
-#pragma pop
-
-/* 80B5D994-80B5D99C 000200 0008+00 0/0 0/0 0/0 .rodata          @6165 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_6165[8] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-};
-COMPILER_STRIP_GATE(0x80B5D994, &lit_6165);
-#pragma pop
-
-/* 80B5D99C-80B5D9A0 000208 0004+00 0/1 0/0 0/0 .rodata          @6239 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6239 = 1000.0f;
-COMPILER_STRIP_GATE(0x80B5D99C, &lit_6239);
-#pragma pop
-
-/* 80B5DA40-80B5DA40 0002AC 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80B5DAE1 = "msgNo";
-#pragma pop
-
 /* 80B572C8-80B57638 003EC8 0370+00 1/0 0/0 0/0 .text            cutMeetingAgain__11daNpc_ykM_cFi */
 int daNpc_ykM_c::cutMeetingAgain(int i_cutIndex) {
     // NONMATCHING
+    cXyz work;
+    int rv = 0;
+    int prm = -1;
+    int timer = 0;
+    
+    int* piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
+    if (piVar1 != NULL) {
+        prm = *piVar1;
+    }
+
+    piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "timer");
+    if (piVar1 != NULL) {
+        timer = *piVar1;
+    }
+
+    dComIfGp_evmng_getMyIntegerP(i_cutIndex, "msgNo");
+
+    dEvent_manager_c* eventManager = &dComIfGp_getEventManager();
+
+    if (eventManager->getIsAddvance(i_cutIndex)) {
+        switch (prm) {
+            case 0:
+                daNpcT_offTmpBit(0xB);
+                daNpcT_offTmpBit(0xC);
+                daNpcT_offTmpBit(0xD);
+                initTalk(mFlowNodeNo, NULL);
+                break;
+
+            case 1:
+                mEventTimer = timer;
+                field_0x156c = fopAcM_searchActorAngleY(daPy_getPlayerActorClass(), this);
+                work.set(0.0f, 0.0f, 1000.0f);
+                mDoMtx_stack_c::YrotS(field_0x156c);
+                mDoMtx_stack_c::multVec(&work, &work);
+                field_0x1520 = work + daPy_getPlayerActorClass()->current.pos;
+                dComIfGp_evmng_setGoal(&field_0x1520);
+
+                work.set(0.0f, 0.0f, 80.0f);
+                mDoMtx_stack_c::YrotS(field_0x156c);
+                mDoMtx_stack_c::multVec(&work, &work);
+                work += daPy_getPlayerActorClass()->current.pos;
+                daPy_getPlayerActorClass()->setPlayerPosAndAngle(&work, field_0x156c, 0);
+                break;
+
+            case 2:
+                initTalk(mFlowNodeNo, NULL);
+                daPy_getPlayerActorClass()->setPlayerPosAndAngle(&field_0x1520, field_0x156c, 0);
+                break;
+
+            case 3:
+                break;
+        }
+    }
+
+    switch (prm) {
+        case 0:
+            mJntAnm.lookPlayer(0);
+            if (talkProc(NULL, FALSE, NULL, FALSE) && mFlow.checkEndFlow()) {
+                rv = 1;
+            }
+            break;
+
+        case 1:
+            if (cLib_calcTimer(&mEventTimer) == 0) {
+                rv = 1;
+            }
+            break;
+
+        case 2:
+            mJntAnm.lookPlayer(0);
+            if (talkProc(NULL, FALSE, NULL, FALSE) && mFlow.checkEndFlow()) {
+                rv = 1;
+            }
+            break;
+
+        case 3:
+            rv = 1;
+            break;
+    }
+
+    return rv;
 }
 
 /* ############################################################################################## */
@@ -2678,8 +2671,10 @@ COMPILER_STRIP_GATE(0x80B5D9AC, &lit_6550);
 #pragma pop
 
 /* 80B57638-80B5806C 004238 0A34+00 3/0 0/0 0/0 .text            cutGetTomatoPuree__11daNpc_ykM_cFi */
-int daNpc_ykM_c::cutGetTomatoPuree(int param_0) {
+int daNpc_ykM_c::cutGetTomatoPuree(int i_cutIndex) {
     // NONMATCHING
+    cXyz work;
+    csXyz angle;
 }
 
 /* ############################################################################################## */
