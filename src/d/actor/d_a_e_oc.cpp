@@ -354,7 +354,7 @@ int daE_OC_c::searchPlayerShakeHead() {
 int daE_OC_c::searchSound() {
     if (field_0x6b4 == 2 && mpBridge && mpBridge->getPlayerRide())
         return 0;
-    if (daPy_getPlayerActorClass()->getCutType() != 0 && fopAcM_searchPlayerDistance(this) < mPlayerRange) {
+    if (daPy_getPlayerActorClass()->getCutType() != daPy_py_c::CUT_TYPE_NONE && fopAcM_searchPlayerDistance(this) < mPlayerRange) {
         field_0x67c = dComIfGp_getPlayer(0)->current.pos;
         setActionMode(8, 0);
         return 1;
