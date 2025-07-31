@@ -147,7 +147,7 @@ static void e_tk_ball_move(e_tk_ball_class* i_this) {
     if (i_this->mTgSph.ChkTgHit() || i_this->mAtSph.ChkAtShieldHit()) {
         impact_eff_set(i_this);
         actor->current.angle.x *= -1;
-        if (actor_lockon && daPy_getPlayerActorClass()->getCutType() != 0x00) {
+        if (actor_lockon && daPy_getPlayerActorClass()->getCutType() != daPy_py_c::CUT_TYPE_NONE) {
             i_this->mAction = ACT_TK_BALL_RETURN;
             i_this->mMode = MODE_TK_BALL_INIT;
             actor->current.angle.y -= 0x8000;
@@ -168,7 +168,7 @@ static void e_tk_ball_move(e_tk_ball_class* i_this) {
         i_this->mInitalDistance = direction_vec.abs();
         speed_vec.x = 0.0;
         speed_vec.y = 0.0;
-        if (daPy_getPlayerActorClass()->getCutType() != 0x00) {
+        if (daPy_getPlayerActorClass()->getCutType() != daPy_py_c::CUT_TYPE_NONE) {
             speed_vec.z = 60.0f;
         }
         cMtx_YrotS(*calc_mtx, actor->current.angle.y);
