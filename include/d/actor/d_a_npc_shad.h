@@ -19,7 +19,11 @@ struct daNpcShad_HIOParam {
 
 class daNpcShad_Param_c: public JORReflexible {
 public:
-    /* 80AE1F70 */ virtual ~daNpcShad_Param_c();
+    /* 80AE1F70 */ virtual ~daNpcShad_Param_c() {}
+
+#ifdef DEBUG
+    void genMessage(JORMContext*);
+#endif
 
     static const daNpcShad_HIOParam m;
 };

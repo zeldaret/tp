@@ -255,21 +255,24 @@ static char* l_evtArcs[14] = {
     NULL,
     NULL,
     NULL,
+    l_arcNames[0],
+    l_arcNames[0],
+    l_arcNames[0],
+    l_arcNames[0],
+    l_arcNames[0],
+    l_arcNames[0],
+    l_arcNames[0],
+    l_arcNames[0],
     NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
-    NULL,
+    l_arcNames[0],
     NULL,
 };
 
 /* 80AE2960-80AE2964 -00001 0004+00 0/3 0/0 0/0 .data            l_myName */
 static char* l_myName = "Shad";
+
+/* 80AE2CC4-80AE2CC8 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
+static daNpcShad_Param_c l_HIO;
 
 /* 80AE2A00-80AE2AA8 0003E0 00A8+00 0/2 0/0 0/0 .data            mEvtSeqList__11daNpcShad_c */
 daNpcShad_c::EventFn daNpcShad_c::mEvtSeqList[14] = {
@@ -811,18 +814,18 @@ void daNpcShad_c::reset() {
     field_0xe1f = 0;
 
     if (isSneaking()) {
-        attention_info.distances[0] = 78;
-        attention_info.distances[1] = attention_info.distances[0];
-        attention_info.distances[3] = 77;
+        attention_info.distances[fopAc_attn_LOCK_e] = 78;
+        attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+        attention_info.distances[fopAc_attn_SPEAK_e] = 77;
         attention_info.flags |= 0x800000;
     } else if (mMode == 0) {
-        attention_info.distances[0] = getDistTableIdx(3, 3);
-        attention_info.distances[1] = attention_info.distances[0];
-        attention_info.distances[3] = getDistTableIdx(2, 3);
+        attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(3, 3);
+        attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+        attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(2, 3);
     } else {
-        attention_info.distances[0] = getDistTableIdx(daNpcShad_Param_c::m.common.attention_distance, daNpcShad_Param_c::m.common.attention_angle);
-        attention_info.distances[1] = attention_info.distances[0];
-        attention_info.distances[3] = getDistTableIdx(daNpcShad_Param_c::m.common.talk_distance, daNpcShad_Param_c::m.common.talk_angle);
+        attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(daNpcShad_Param_c::m.common.attention_distance, daNpcShad_Param_c::m.common.attention_angle);
+        attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+        attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(daNpcShad_Param_c::m.common.talk_distance, daNpcShad_Param_c::m.common.talk_angle);
     }
 
     current.pos = home.pos;
@@ -1003,10 +1006,73 @@ void daNpcShad_c::playMotion() {
     }
 }
 
-// This is probably incorrect but was the only way I could get the proper order for rodata that is used later in lookat()
-inline csXyz* daNpcShad_c::unk_inline() {
+/* 80AE1320-80AE153C 009200 021C+00 1/1 0/0 0/0 .text            lookat__11daNpcShad_cFv */
+inline void daNpcShad_c::lookat() {
+    daPy_py_c* player = NULL;
+    J3DModel* model = mpMorf->getModel();
+    int iVar1 = 0;
+    f32 body_angleX_min = daNpcShad_Param_c::m.common.body_angleX_min;
+    f32 body_angleX_max = daNpcShad_Param_c::m.common.body_angleX_max;
+
+    f32 body_angleY_min;
+    if (mMode == 1) {
+        body_angleY_min = -30.0f;
+    } else {
+        body_angleY_min = daNpcShad_Param_c::m.common.body_angleY_min;
+    }
+
+    f32 body_angleY_max;
+    if (mMode == 1) {
+        body_angleY_max = 30.0f;
+    } else {
+        body_angleY_max = daNpcShad_Param_c::m.common.body_angleY_max;
+    }
+
+    f32 head_angleX_min = daNpcShad_Param_c::m.common.head_angleX_min;
+    f32 head_angleX_max = daNpcShad_Param_c::m.common.head_angleX_max;
+    f32 head_angleY_min = daNpcShad_Param_c::m.common.head_angleY_min;
+    f32 head_angleY_max = daNpcShad_Param_c::m.common.head_angleY_max;
+
+    s16 sVar1 = mCurAngle.y - mOldAngle.y;
+    cXyz spf0[3] = {mLookatPos[0], mLookatPos[1], mLookatPos[2]};
     csXyz* local_fc[3] = {&mLookatAngle[0], &mLookatAngle[1], &mLookatAngle[2]};
-    return *local_fc;
+    cXyz sp108;
+
+    switch (mLookMode) {
+        case LOOK_RESET:
+            iVar1 = 1;
+            break;
+
+        case LOOK_PLAYER:
+        case LOOK_PLAYER_TALK:
+            player = daPy_getPlayerActorClass();
+            break;
+
+        case LOOK_ACTOR:
+            player = field_0xca8;
+            break;
+
+        case LOOK_ATTN:
+            break;
+    }
+
+    if (mLookMode == LOOK_ATTN) {
+        mLookat.setAttnPos(&mLookPos);
+    } else if (player != NULL) {
+        mLookPos = player->attention_info.position;
+
+        if (mLookMode != LOOK_PLAYER && mLookMode != LOOK_PLAYER_TALK) {
+            mLookPos.y -= 40.0f;
+        }
+
+        mLookat.setAttnPos(&mLookPos);
+    } else {
+        mLookat.setAttnPos(NULL);
+    }
+
+    mLookat.setParam(body_angleX_min, body_angleX_max, body_angleY_min, body_angleY_max, 0.0f, 0.0f, 0.0f, 0.0f, head_angleX_min, head_angleX_max, 
+                     head_angleY_min, head_angleY_max, mCurAngle.y, spf0);
+    mLookat.calc(this, model->getBaseTRMtx(), (csXyz**)local_fc, iVar1, sVar1, FALSE);
 }
 
 inline BOOL daNpcShad_c::chkFindPlayer() {
@@ -1098,7 +1164,6 @@ inline BOOL daNpcShad_c::step(s16 i_targetAngle, int i_motion, f32 i_rate) {
 
 /* 80AD9F00-80ADA630 001DE0 0730+00 1/0 0/0 0/0 .text            wait_type0__11daNpcShad_cFPv */
 bool daNpcShad_c::wait_type0(void* param_1) {
-    // NONMATCHING
     switch (field_0xe1a) {
         case 0:
             setExpression(EXPR_NONE, -1.0f);
@@ -1137,7 +1202,7 @@ bool daNpcShad_c::wait_type0(void* param_1) {
 
             if (dComIfGp_event_runCheck()) {
                 if (eventInfo.checkCommandTalk()) {
-                    if (!dComIfGp_event_chkTalkXY() || dComIfGp_evmng_ChkPresentEnd()) {
+                    if (dComIfGp_event_chkTalkXY() == 0 || dComIfGp_evmng_ChkPresentEnd()) {
                         if (isSneaking()) {
                             mOrderEvtNo = 12;
                             changeEvent(l_evtArcs[mOrderEvtNo], l_evtNames[mOrderEvtNo], 1, 0xFFFF);
@@ -1198,7 +1263,6 @@ void daNpcShad_c::setExpression(int i_expression, f32 i_morf) {
 
 /* 80ADA6A0-80ADB428 002580 0D88+00 1/0 0/0 0/0 .text            wait_type1__11daNpcShad_cFPv */
 bool daNpcShad_c::wait_type1(void* param_1) {
-    // NONMATCHING
     switch (field_0xe1a) {
         case 0:
             if (daNpcF_chkEvtBit(0x12F) && !daNpcF_chkEvtBit(0x312)) {
@@ -1283,7 +1347,7 @@ bool daNpcShad_c::wait_type1(void* param_1) {
                 }
             }
 
-            if (dComIfGp_event_runCheck()) {
+            if (dComIfGp_event_runCheck() != 0) {
                 if (eventInfo.checkCommandTalk()) {
                     if (dComIfGp_event_chkTalkXY()) {
                         if (!dComIfGp_evmng_ChkPresentEnd()) {
@@ -1333,7 +1397,7 @@ bool daNpcShad_c::wait_type1(void* param_1) {
 
                 char* event;
                 if (mOrderEvtNo != 0) {
-                    event = l_evtArcs[mOrderEvtNo];
+                    event = l_evtNames[mOrderEvtNo];
                 } else {
                     event = NULL;
                 }
@@ -1496,9 +1560,7 @@ bool daNpcShad_c::talk(void* param_1) {
 
 /* 80ADBEA8-80ADC3DC 003D88 0534+00 2/0 0/0 0/0 .text            demo__11daNpcShad_cFPv */
 bool daNpcShad_c::demo(void* param_1) {
-    // NONMATCHING
-    int iVar1, iVar2;
-    dEvent_manager_c* eventManager;
+    int iVar2;
 
     switch (field_0xe1a) {
         case 0:
@@ -1507,12 +1569,12 @@ bool daNpcShad_c::demo(void* param_1) {
             field_0xe1a = 2;
             // fallthrough
         case 2:
-            if (dComIfGp_event_runCheck() && !eventInfo.checkCommandTalk()) {
-                eventManager = &dComIfGp_getEventManager();
-                iVar1 = eventManager->getMyStaffId(l_myName, NULL, 0);
+            if (dComIfGp_event_runCheck() != 0 && !eventInfo.checkCommandTalk()) {
+                dEvent_manager_c& eventManager = dComIfGp_getEventManager();
+                s32 iVar1 = eventManager.getMyStaffId(l_myName, NULL, 0);
                 if (iVar1 != -1) {
                     mStaffID = iVar1;
-                    iVar2 = eventManager->getMyActIdx(iVar1, l_evtNames, 14, 0, 0);
+                    iVar2 = eventManager.getMyActIdx(iVar1, l_evtNames, 14, 0, 0);
 
                     if (iVar2 > 0 && iVar2 < 14) {
                         mOrderEvtNo = iVar2;
@@ -1521,11 +1583,11 @@ bool daNpcShad_c::demo(void* param_1) {
                     JUT_ASSERT(2082, 0 != mEvtSeqList[mOrderEvtNo]);
 
                     if ((this->*mEvtSeqList[mOrderEvtNo])(iVar1)) {
-                        eventManager->cutEnd(iVar1);
+                        eventManager.cutEnd(iVar1);
                     }
                 }
 
-                if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1 && eventManager->endCheck(mEventIdx)) {
+                if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1 && eventManager.endCheck(mEventIdx)) {
                     dComIfGp_event_reset();
                     mOrderEvtNo = 0;
                     mEventIdx = -1;
@@ -2504,18 +2566,18 @@ void daNpcShad_c::setParam() {
     attention_info.flags = 10;
 
     if (isSneaking()) {
-        attention_info.distances[0] = 78;
-        attention_info.distances[1] = attention_info.distances[0];
-        attention_info.distances[3] = 77;
+        attention_info.distances[fopAc_attn_LOCK_e] = 78;
+        attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+        attention_info.distances[fopAc_attn_SPEAK_e] = 77;
         attention_info.flags |= 0x800000;
     } else if (mMode == 0) {
-        attention_info.distances[0] = getDistTableIdx(3, 5);
-        attention_info.distances[1] = attention_info.distances[0];
-        attention_info.distances[3] = getDistTableIdx(2, 5);
+        attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(3, 5);
+        attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+        attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(2, 5);
     } else {
-        attention_info.distances[0] = getDistTableIdx(daNpcShad_Param_c::m.common.attention_distance, daNpcShad_Param_c::m.common.attention_angle);
-        attention_info.distances[1] = attention_info.distances[0];
-        attention_info.distances[3] = getDistTableIdx(daNpcShad_Param_c::m.common.talk_distance, daNpcShad_Param_c::m.common.talk_angle);
+        attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(daNpcShad_Param_c::m.common.attention_distance, daNpcShad_Param_c::m.common.attention_angle);
+        attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+        attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(daNpcShad_Param_c::m.common.talk_distance, daNpcShad_Param_c::m.common.talk_angle);
     }
 
     mAcchCir.SetWallR(daNpcShad_Param_c::m.common.width);
@@ -2540,14 +2602,13 @@ BOOL daNpcShad_c::main() {
 }
 
 /* 80AE0ED0-80AE0FAC 008DB0 00DC+00 1/0 0/0 0/0 .text            ctrlBtk__11daNpcShad_cFv */
-// NONMATCHING inlining issues
-BOOL daNpcShad_c::ctrlBtk() {
+inline BOOL daNpcShad_c::ctrlBtk() {
     if (mpMatAnm != NULL) {
         J3DAnmTextureSRTKey* btkAnm = NULL;
         btkAnm = getTexSRTKeyAnmP(l_arcNames[l_btkGetParamList[0].arcIdx], l_btkGetParamList[0].fileIdx);
 
         if (btkAnm == mBtkAnm.getBtkAnm()) {
-            mpMatAnm->setNowOffsetX(cM_ssin(mEyeAngle.y) * -1.0f * 0.2f);
+            mpMatAnm->setNowOffsetX(cM_ssin(mEyeAngle.y) * 0.2f * -1.0f);
             mpMatAnm->setNowOffsetY(cM_ssin(mEyeAngle.x) * 0.2f);
             mpMatAnm->onEyeMoveFlag();
             return TRUE;
@@ -2560,8 +2621,7 @@ BOOL daNpcShad_c::ctrlBtk() {
 }
 
 /* 80AE0FAC-80AE1320 008E8C 0374+00 1/0 0/0 0/0 .text            setAttnPos__11daNpcShad_cFv */
-void daNpcShad_c::setAttnPos() {
-    // NONMATCHING
+inline void daNpcShad_c::setAttnPos() {
     if (mLookMode == 1) {
         for (int i = 0; i < 3; i++) {
             mLookatAngle[i].setall(0);
@@ -2583,9 +2643,9 @@ void daNpcShad_c::setAttnPos() {
     cXyz* attnPos = mLookat.getAttnPos();
     if (attnPos != NULL) {
         cXyz sp4c(*attnPos - eyePos);
-        mEyeAngle.y = -(mCurAngle.y - mLookatAngle[2].y);
+        mEyeAngle.y = -mLookatAngle[2].y - mCurAngle.y;
         mEyeAngle.y += cM_atan2s(sp4c.x, sp4c.z);
-        mEyeAngle.x -= cM_atan2s(sp4c.x, sp4c.absXZ());
+        mEyeAngle.x = mHeadAngle.x - cM_atan2s(sp4c.y, sp4c.absXZ());
     } else {
         mEyeAngle.y = 0;
         mEyeAngle.x = 0;
@@ -2613,88 +2673,10 @@ void daNpcShad_c::setAttnPos() {
     }
 }
 
-/* 80AE1320-80AE153C 009200 021C+00 1/1 0/0 0/0 .text            lookat__11daNpcShad_cFv */
-void daNpcShad_c::lookat() {
-    // NONMATCHING
-    daPy_py_c* player = NULL;
-    J3DModel* model = mpMorf->getModel();
-    int iVar1 = 0;
-    f32 body_angleX_min = daNpcShad_Param_c::m.common.body_angleX_min;
-    f32 body_angleX_max = daNpcShad_Param_c::m.common.body_angleX_max;
-
-    f32 body_angleY_min;
-    if (mMode == 1) {
-        body_angleY_min = -30.0f;
-    } else {
-        body_angleY_min = daNpcShad_Param_c::m.common.body_angleY_min;
-    }
-
-    f32 body_angleY_max;
-    if (mMode == 1) {
-        body_angleY_max = 30.0f;
-    } else {
-        body_angleY_max = daNpcShad_Param_c::m.common.body_angleY_max;
-    }
-
-    f32 head_angleX_min = daNpcShad_Param_c::m.common.head_angleX_min;
-    f32 head_angleX_max = daNpcShad_Param_c::m.common.head_angleX_max;
-    f32 head_angleY_min = daNpcShad_Param_c::m.common.head_angleY_min;
-    f32 head_angleY_max = daNpcShad_Param_c::m.common.head_angleY_max;
-
-    s16 sVar1 = mCurAngle.y - mOldAngle.y;
-    cXyz spf0[3] = {mLookatPos[0], mLookatPos[1], mLookatPos[2]};
-    csXyz* local_fc = unk_inline();
-    cXyz sp108;
-
-    switch (mLookMode) {
-        case LOOK_RESET:
-            iVar1 = 1;
-            break;
-
-        case LOOK_PLAYER:
-        case LOOK_PLAYER_TALK:
-            player = daPy_getPlayerActorClass();
-            break;
-
-        case LOOK_ACTOR:
-            player = field_0xca8;
-            break;
-
-        case LOOK_ATTN:
-            break;
-    }
-
-    if (mLookMode == LOOK_ATTN) {
-        mLookat.setAttnPos(&mLookPos);
-    } else if (player != NULL) {
-        mLookPos = player->attention_info.position;
-
-        if (mLookMode != LOOK_PLAYER && mLookMode != LOOK_PLAYER_TALK) {
-            mLookPos.y -= 40.0f;
-        }
-
-        mLookat.setAttnPos(&mLookPos);
-    } else {
-        mLookat.setAttnPos(NULL);
-    }
-
-    mLookat.setParam(body_angleX_min, body_angleX_max, body_angleY_min, body_angleY_max, 0.0f, 0.0f, 0.0f, 0.0f, head_angleX_min, head_angleX_max, 
-                     head_angleY_min, head_angleY_max, mCurAngle.y, spf0);
-    mLookat.calc(this, model->getBaseTRMtx(), (csXyz**)local_fc, iVar1, sVar1, FALSE);
-}
-
 /* 80AE153C-80AE1544 00941C 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__11daNpcShad_cFv */
 BOOL daNpcShad_c::drawDbgInfo() {
     return FALSE;
 }
-
-daNpcShad_Param_c::~daNpcShad_Param_c() {}
-
-/* 80AE2CB8-80AE2CC4 000008 000C+00 1/1 0/0 0/0 .bss             @3931 */
-static u8 lit_3931[12];
-
-/* 80AE2CC4-80AE2CC8 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[4];
 
 /* 80AE2B7C-80AE2B9C -00001 0020+00 1/0 0/0 0/0 .data            daNpcShad_MethodTable */
 static actor_method_class daNpcShad_MethodTable = {
