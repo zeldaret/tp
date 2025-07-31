@@ -27,7 +27,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 }
 
 /* 80BD33E8-80BD3408 000128 0020+00 1/0 0/0 0/0 .text daObjCRVHAHEN_Create__FP10fopAc_ac_c */
-static void daObjCRVHAHEN_Create(fopAc_ac_c* i_this) {
+static int daObjCRVHAHEN_Create(fopAc_ac_c* i_this) {
     static_cast<daObjCRVHAHEN_c*>(i_this)->create();
 }
 
@@ -39,17 +39,17 @@ static int daObjCRVHAHEN_Delete(daObjCRVHAHEN_c* i_this) {
 
 /* 80BD342C-80BD3628 00016C 01FC+00 0/0 0/0 2/2 .text
  * HahenSet__15daObjCRVHAHEN_cF4cXyz4cXyz4cXyz4cXyzf            */
-int daObjCRVHAHEN_c::HahenSet(cXyz param_1, cXyz param_2, cXyz param_3, cXyz param_4,
+int daObjCRVHAHEN_c::HahenSet(cXyz i_param_1, cXyz i_param_2, cXyz i_param_3, cXyz i_param_4,
                               f32 duration) {
     mDrawHahen = true;
     mTimer = duration;
 
     for (int i = 0; i < 10; i++) {
-        mPos[i].set(param_2.x + cM_rndFX(param_1.x), param_2.y + cM_rndF(param_1.y),
-                    param_2.z + cM_rndFX(param_1.z));
+        mPos[i].set(i_param_2.x + cM_rndFX(i_param_1.x), i_param_2.y + cM_rndF(i_param_1.y),
+                    i_param_2.z + cM_rndFX(i_param_1.z));
         mInitialPos[i].set(cM_rndF(1.0f) + 0.5f, cM_rndF(1.0f) + 0.5f, cM_rndF(1.0f) + 0.5f);
-        mVelocity[i].set(param_4.x + cM_rndFX(param_3.x), param_4.y + cM_rndF(param_3.y),
-                         param_4.z + cM_rndF(param_3.z));
+        mVelocity[i].set(i_param_4.x + cM_rndFX(i_param_3.x), i_param_4.y + cM_rndF(i_param_3.y),
+                         i_param_4.z + cM_rndF(i_param_3.z));
 
         mDoMtx_stack_c::transS(current.pos);
         mDoMtx_stack_c::ZXYrotM(shape_angle);
@@ -67,12 +67,12 @@ int daObjCRVHAHEN_c::HahenSet(cXyz param_1, cXyz param_2, cXyz param_3, cXyz par
 }
 
 /* 80BD3628-80BD36E4 000368 00BC+00 1/1 0/0 0/0 .text Wall_Check__15daObjCRVHAHEN_cF4cXyz4cXyz */
-bool daObjCRVHAHEN_c::Wall_Check(cXyz origin, cXyz target) {
+bool daObjCRVHAHEN_c::Wall_Check(cXyz i_origin, cXyz i_target) {
     dBgS_LinChk line_check;
 
-    cXyz linePos(origin.x + target.x, origin.y, origin.z + target.z);
+    cXyz linePos(i_origin.x + i_target.x, i_origin.y, i_origin.z + i_target.z);
 
-    line_check.Set(&origin, &linePos, NULL);
+    line_check.Set(&i_origin, &linePos, NULL);
 
     bool did_line_cross = dComIfG_Bgsp().LineCross(&line_check);
 
@@ -86,8 +86,8 @@ bool daObjCRVHAHEN_c::Wall_Check(cXyz origin, cXyz target) {
 
 /* 80BD3720-80BD38DC 000460 01BC+00 1/1 0/0 0/0 .text            Hahen_Hakai__15daObjCRVHAHEN_cFii
  */
-void daObjCRVHAHEN_c::Hahen_Hakai(int start, int end) {
-    for (int i = start; i < end; ++i) {
+void daObjCRVHAHEN_c::Hahen_Hakai(int i_start, int i_end) {
+    for (int i = i_start; i < i_end; ++i) {
         if (mStatus[i] > 3) {
             mPos[i].y = mGroundHeight;
             mRotation[i].x = 0x4000;
@@ -95,9 +95,13 @@ void daObjCRVHAHEN_c::Hahen_Hakai(int start, int end) {
             mVelocity[i].y += +-9.0f;
             Wall_Check(mPos[i], mVelocity[i]);
 
-            mPos[i].x = mPos[i].x + mVelocity[i].x;
-            mPos[i].y = mPos[i].y + mVelocity[i].y;
-            mPos[i].z = mPos[i].z + mVelocity[i].z;
+            // mPos[i].x = mPos[i].x + mVelocity[i].x;
+            // mPos[i].y = mPos[i].y + mVelocity[i].y;
+            // mPos[i].z = mPos[i].z + mVelocity[i].z;
+
+            mPos[i].x += mVelocity[i].x;
+            mPos[i].y += mVelocity[i].y;
+            mPos[i].z += mVelocity[i].z;
 
             mRotation[i].x += mRotSpeed[i].x;
             mRotation[i].y += mRotSpeed[i].y;
@@ -111,6 +115,10 @@ void daObjCRVHAHEN_c::Hahen_Hakai(int start, int end) {
                 mVelocity[i].x = mVelocity[i].x * 0.8f;
                 mVelocity[i].z = mVelocity[i].z * 0.8f;
 
+                // mVelocity[i].y *= -0.6f;
+                // mVelocity[i].x *= 0.8f;
+                // mVelocity[i].z *= 0.8f;
+
                 mRotation[i].x = 0x4000;
                 mRotation[i].y = mRotation[i].y + mRotSpeed[i].y;
             }
@@ -122,11 +130,10 @@ void daObjCRVHAHEN_c::Hahen_Hakai(int start, int end) {
 void daObjCRVHAHEN_c::CheckCull() {
     daPy_py_c* player_actor = daPy_getPlayerActorClass();
     cXyz& player_pos = fopAcM_GetPosition((fopAc_ac_c*)player_actor);
-    int culled_num = 1;
 
+    int culled_num = 1;
     for (int i = 0; i < 10; i++) {
-        float fVar2 = mPos[i].absXZ(player_pos);
-        if ((fVar2 > mTimer) && !checkViewArea(&mPos[i])) {
+        if ((mPos[i].absXZ(player_pos) > mTimer) && !checkViewArea(&mPos[i])) {
             culled_num++;
             if (culled_num == 10) {
                 fopAcM_delete(this);
@@ -151,7 +158,7 @@ bool daObjCRVHAHEN_c::checkViewArea(cXyz* i_this) {
 
 /* 80BD3B20-80BD3B74 000860 0054+00 1/1 0/0 0/0 .text            Execute__15daObjCRVHAHEN_cFv */
 int daObjCRVHAHEN_c::Execute() {
-    if (mDrawHahen != false) {
+    if (mDrawHahen) {
         daObjCRVHAHEN_c::Hahen_Hakai(0, 10);
     }
 
@@ -163,27 +170,24 @@ int daObjCRVHAHEN_c::Execute() {
 
 /* 80BD3B74-80BD3C0C 0008B4 0098+00 1/1 0/0 0/0 .text            Delete__15daObjCRVHAHEN_cFv */
 int daObjCRVHAHEN_c::Delete() {
-    J3DModelData* model_data;
-
     if (mInitialized) {
-        model_data = (J3DModelData*)dRes_control_c::getRes(
+        J3DModelData* model_data = (J3DModelData*)dRes_control_c::getRes(
             l_arcName, "CaravanPiece.bmd", g_dComIfG_gameInfo.mResControl.mObjectInfo, 0x80);
-        g_dComIfG_gameInfo.play.removeSimpleModel(model_data, (int)(char)current.roomNo);
+        dComIfGp_removeSimpleModel(model_data, (int)(char)current.roomNo);
     }
 
-    dComIfG_resDelete(&this->mPhase, l_arcName);
+    dComIfG_resDelete(&mPhase, l_arcName);
 
     return 1;
 }
 
 /* 80BD3C0C-80BD3CA0 00094C 0094+00 1/1 0/0 0/0 .text            setBaseMtx__15daObjCRVHAHEN_cFv */
 void daObjCRVHAHEN_c::setBaseMtx() {
-    int i;
-    for (i = 0; i < 10; i++) {
+    for (int i = 0; i < 10; i++) {
         mDoMtx_stack_c::transS(mPos[i]);
         mDoMtx_stack_c::ZXYrotM(mRotation[i]);
         mDoMtx_stack_c::scaleM(mInitialPos[i]);
-        PSMTXCopy(mDoMtx_stack_c::get(), mpModel[i]->mBaseTransformMtx);
+        mpModel[i]->setBaseTRMtx(mDoMtx_stack_c::get());
     }
 }
 
@@ -214,7 +218,7 @@ static int daObjCRVHAHEN_Draw(daObjCRVHAHEN_c* i_this) {
 }
 
 /* 80BD3D9C-80BD3DBC 000ADC 0020+00 2/1 0/0 0/0 .text daObjCRVHAHEN_Execute__FP15daObjCRVHAHEN_c */
-static void daObjCRVHAHEN_Execute(daObjCRVHAHEN_c* i_this) {
+static int daObjCRVHAHEN_Execute(daObjCRVHAHEN_c* i_this) {
     i_this->Execute();
 }
 
@@ -222,30 +226,29 @@ static void daObjCRVHAHEN_Execute(daObjCRVHAHEN_c* i_this) {
 int daObjCRVHAHEN_c::create() {
     fopAcM_SetupActor(this, daObjCRVHAHEN_c);
 
-    J3DModelData* model_data;
+    
 
-    int phase_state = dComIfG_resLoad(&this->mPhase, l_arcName);
+    int phase_state = dComIfG_resLoad(&mPhase, l_arcName);
 
     if (phase_state == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, useHeapInit, 0x1320)) {
             return cPhs_ERROR_e;
-        } else {
-            mDrawHahen = 0;
-            gravity = -9.0f;
-            model_data = (J3DModelData*)dRes_control_c::getRes(
-                l_arcName, "CaravanPiece.bmd", g_dComIfG_gameInfo.mResControl.mObjectInfo, 0x80);
-            g_dComIfG_gameInfo.play.addSimpleModel(model_data, (int)(char)current.roomNo, '\0');
-            mInitialized = true;
-            mGroundHeight = current.pos.y;
-            fopAcM_setCullSizeBox(this, -1000.0, -500.0, -1000.0, 1000.0, 500.0, 1000.0);
-            daObjCRVHAHEN_Execute(this);
         }
+        mDrawHahen = 0;
+        gravity = -9.0f;
+        J3DModelData* model_data = (J3DModelData*)dRes_control_c::getRes(
+            l_arcName, "CaravanPiece.bmd", g_dComIfG_gameInfo.mResControl.mObjectInfo, 0x80);
+        dComIfGp_addSimpleModel(model_data, (int)(char)current.roomNo, '\0');
+        mInitialized = true;
+        mGroundHeight = current.pos.y;
+        fopAcM_setCullSizeBox(this, -1000.0, -500.0, -1000.0, 1000.0, 500.0, 1000.0);
+        daObjCRVHAHEN_Execute(this);
     }
     return phase_state;
 }
 
 /* 80BD3FE0-80BD3FE8 000D20 0008+00 1/0 0/0 0/0 .text daObjCRVHAHEN_IsDelete__FP15daObjCRVHAHEN_c */
-static bool daObjCRVHAHEN_IsDelete(daObjCRVHAHEN_c* i_this) {
+static int daObjCRVHAHEN_IsDelete(daObjCRVHAHEN_c* i_this) {
     return true;
 }
 

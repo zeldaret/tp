@@ -9,7 +9,7 @@
 /**
  * @ingroup actors-objects
  * @class daObjCRVHAHEN_c
- * @brief Carven Wood Splinters
+ * @brief Bulblin Camp Caraven Wooden Fence Fragments
  *
  * @details Hahen (はへん) a fragment, shard, or splinter.
  * physics-enabled shards or fragments that simulate debris from destruction.
@@ -36,11 +36,11 @@ public:
     /* 0x6d0 */ csXyz mRotation[10];
     /* 0x70c */ csXyz mRotSpeed[10];
     /* 0x748 */ u32 mFlags;
-    /* 0x74c */ float mGroundHeight;
+    /* 0x74c */ f32 mGroundHeight;
     /* 0x750 */ bool mDrawHahen;
     /* 0x751 */ u8 mStatus[10];
     /* 0x75b */ u8 field_0x75b;
-    /* 0x75c */ float mTimer;
+    /* 0x75c */ f32 mTimer;
     /* 0x760 */ J3DModel* mpModel[10];
     /* 0x788 */ request_of_phase_process_class mPhase;
     /* 0x790 */ u8 mEffectState;
