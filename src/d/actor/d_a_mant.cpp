@@ -1,6 +1,6 @@
 /**
  * @file d_a_mant.cpp
- * 
+ *
 */
 
 #include "d/actor/d_a_mant.h"
@@ -9,20 +9,7 @@
 #include "d/d_com_inf_game.h"
 #include "dol2asm.h"
 
-/* 80862D20-80862D2C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80862D2C-80862D40 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
+UNK_REL_DATA
 
 /* 80862D40-80866D40 000020 4000+00 2/1 0/0 0/0 .data            l_Egnd_mantTEX */
 #include "assets/l_Egnd_mantTEX.h"
@@ -276,87 +263,87 @@ static void* tex_d[2] = {
 static char lbl_277_bss_0;
 
 /* 80861298-808616B8 000078 0420+00 1/0 0/0 0/0 .text            draw__15daMant_packet_cFv */
+// NONMATCHING - missing some weird stack duplication
 void daMant_packet_c::draw() {
-    // NONMATCHING
     void* image = tex_d[0];
     void* lut = pal_d;
 
     j3dSys.reinitGX();
     GXSetNumIndStages(0);
     dKy_setLight_again();
-    dKy_GxFog_tevstr_set(this->field_0x70);
+    dKy_GxFog_tevstr_set(this->mTevStr);
     GXClearVtxDesc();
 
     GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
-    GXSetVtxDesc(GX_VA_NRM,GX_INDEX8);
-    GXSetVtxDesc(GX_VA_TEX0,GX_INDEX8);
+    GXSetVtxDesc(GX_VA_NRM, GX_INDEX8);
+    GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
 
-    GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_POS,GX_CLR_RGBA,GX_F32,0);
-    GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_NRM,GX_CLR_RGB,GX_F32,0);
-    GXSetVtxAttrFmt(GX_VTXFMT0,GX_VA_TEX0,GX_CLR_RGBA,GX_F32,0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_NRM, GX_CLR_RGB, GX_F32, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_F32, 0);
 
     GXSetArray(GX_VA_POS, this->getPos(), 12);
-    GXSetArray(GX_VA_NRM, &this->mNrm[this->field_0x74 * 0xa9], 12);
+    GXSetArray(GX_VA_NRM, this->getNrm(), 12);
     GXSetArray(GX_VA_TEX0, &l_texCoord, 8);
 
     GXSetZCompLoc(0);
-    GXSetZMode(GX_ENABLE,GX_LEQUAL,GX_ENABLE);
+    GXSetZMode(GX_ENABLE, GX_LEQUAL, GX_ENABLE);
     GXSetNumChans(1);
-    GXSetChanCtrl(GX_COLOR0,GX_ENABLE,GX_SRC_REG,GX_SRC_REG,0xff,GX_DF_CLAMP,GX_AF_SPOT);
+    GXSetChanCtrl(GX_COLOR0, GX_ENABLE, GX_SRC_REG, GX_SRC_REG, 0xff, GX_DF_CLAMP, GX_AF_SPOT);
     GXSetNumTexGens(1);
-    GXSetTexCoordGen2(GX_TEXCOORD0,GX_TG_MTX2x4,GX_TG_TEX0,0x3c,0,0x7d);
+    GXSetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 0x3c);
     GXSetNumTevStages(1);
-    GXSetTevSwapMode(GX_TEVSTAGE0,GX_TEV_SWAP0,GX_TEV_SWAP0);
+    GXSetTevSwapMode(GX_TEVSTAGE0, GX_TEV_SWAP0, GX_TEV_SWAP0);
 
-    dKy_Global_amb_set(this->field_0x70);
-    GXSetTevOrder(GX_TEVSTAGE0,GX_TEXCOORD0,GX_TEXMAP0,GX_COLOR0A0);
+    dKy_Global_amb_set(this->mTevStr);
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
 
     GXColor local_84 = {1, 0, 0, 0};
     GXSetTevColor(GX_TEVREG0, local_84);
     GXColor local_8c = {1, 0, 0, 0};
     GXSetTevKColor(GX_KCOLOR0, local_8c);
 
-    GXSetTevKColorSel(GX_TEVSTAGE0,GX_TEV_KCSEL_K0);
-    GXSetTevColorIn(GX_TEVSTAGE0,GX_CC_KONST,GX_CC_TEXC,GX_CC_RASC,GX_CC_C0);
-    GXSetTevColorOp(GX_TEVSTAGE0,GX_TEV_ADD,GX_TB_ZERO,GX_CS_SCALE_4,GX_TRUE,GX_TEVPREV);
-    GXSetTevAlphaIn(GX_TEVSTAGE0,GX_CA_ZERO,GX_CA_KONST,GX_CA_TEXA,GX_CA_ZERO);
-    GXSetTevAlphaOp(GX_TEVSTAGE0,GX_TEV_ADD,GX_TB_ZERO,GX_CS_SCALE_1,GX_TRUE,GX_TEVPREV);
-    GXSetTevKAlphaSel(GX_TEVSTAGE0,GX_TEV_KASEL_K3_A);
-    GXSetAlphaCompare(GX_GREATER,0,GX_AOP_OR,GX_GREATER,0);
+    GXSetTevKColorSel(GX_TEVSTAGE0, GX_TEV_KCSEL_K0);
+    GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_KONST, GX_CC_TEXC, GX_CC_RASC, GX_CC_C0);
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_4, GX_TRUE, GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_KONST, GX_CA_TEXA, GX_CA_ZERO);
+    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+    GXSetTevKAlphaSel(GX_TEVSTAGE0, GX_TEV_KASEL_K3_A);
+    GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_OR, GX_GREATER, 0);
 
     GXTlutObj GStack_80;
-    GXInitTlutObj(&GStack_80,pal_d,GX_TL_RGB5A3,0x100);
+    GXInitTlutObj(&GStack_80, lut, GX_TL_RGB5A3, 0x100);
 
     GXTexObj GStack_74;
-    GXInitTexObjCI(&GStack_74,lut,0x80,0x80,GX_TF_C8,GX_CLAMP,GX_CLAMP,0,0);
-    GXInitTexObjLOD(&GStack_74,GX_LINEAR,GX_LINEAR,0.0,0.0,0.0,0,0,GX_ANISO_1);
+    GXInitTexObjCI(&GStack_74, image, 0x80, 0x80, GX_TF_C8, GX_CLAMP, GX_CLAMP, 0, 0);
+    GXInitTexObjLOD(&GStack_74, GX_LINEAR, GX_LINEAR, 0.0, 0.0, 0.0, 0, 0, GX_ANISO_1);
 
-    GXLoadTlut(&GStack_80,0);
-    GXLoadTexObj(&GStack_74,GX_TEXMAP0);
+    GXLoadTlut(&GStack_80, 0);
+    GXLoadTexObj(&GStack_74, GX_TEXMAP0);
 
     GXSetCullMode(GX_CULL_BACK);
 
     GXLoadPosMtxImm(this->mMtx, GX_PNMTX0);
     Mtx MStack_54;
-    mDoMtx_inverseTranspose(this->mMtx, MStack_54);
+    cMtx_inverseTranspose(this->mMtx, MStack_54);
 
-    GXLoadNrmMtxImm(MStack_54,GX_PNMTX0);
+    GXLoadNrmMtxImm(MStack_54, GX_PNMTX0);
     GXCallDisplayList(l_Egnd_mantDL, 0x3e0);
-    
-    GXInitTexObjCI(&GStack_74,image,0x80,0x80,GX_TF_C8,GX_CLAMP,GX_CLAMP,0,0);
-    GXInitTexObjLOD(&GStack_74,GX_LINEAR,GX_LINEAR,0.0,0.0,0.0,0,0,GX_ANISO_1);
-    GXLoadTexObj(&GStack_74,GX_TEXMAP0);
+
+    GXInitTexObjCI(&GStack_74, l_Egnd_mantTEX_U, 0x80, 0x80, GX_TF_C8, GX_CLAMP, GX_CLAMP, 0, 0);
+    GXInitTexObjLOD(&GStack_74, GX_LINEAR, GX_LINEAR, 0.0, 0.0, 0.0, 0, 0, GX_ANISO_1);
+    GXLoadTexObj(&GStack_74, GX_TEXMAP0);
 
     GXColor local_94 = {0, 0, 0, 0};
-    GXSetTevColor(GX_TEVREG0,local_94);
+    GXSetTevColor(GX_TEVREG0, local_94);
     GXColor local_9c = {0, 0, 0, 0};
-    GXSetTevKColor(GX_KCOLOR0,local_9c);
+    GXSetTevKColor(GX_KCOLOR0, local_9c);
 
     GXSetCullMode(GX_CULL_FRONT);
     GXLoadPosMtxImm(this->mMtx2, GX_PNMTX0);
-    mDoMtx_inverseTranspose(this->mMtx2, MStack_54);
+    cMtx_inverseTranspose(this->mMtx2, MStack_54);
 
-    GXLoadNrmMtxImm(MStack_54,GX_PNMTX0);
+    GXLoadNrmMtxImm(MStack_54, GX_PNMTX0);
     GXCallDisplayList(l_Egnd_mantDL, 0x3e0);
 
     this->field_0x74 = lbl_277_bss_0 & 1;
@@ -365,19 +352,15 @@ void daMant_packet_c::draw() {
 
 /* 808616B8-8086176C 000498 00B4+00 1/0 0/0 0/0 .text            daMant_Draw__FP10mant_class */
 static int daMant_Draw(mant_class* i_this) {
-    // NONMATCHING
     g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
 
     MtxTrans(0.0f, 0.0f, 0.0f, 0.0f);
 
-    Mtx* viewMtx = &j3dSys.mViewMtx;
-    Mtx* mtx1 = &i_this->field_0x0570.mMtx;
-    cMtx_concat(*viewMtx, *calc_mtx, *mtx1);
+    cMtx_concat(j3dSys.getViewMtx(), *calc_mtx, i_this->field_0x0570.getMtx());
 
-    Mtx* mtx2 = &i_this->field_0x0570.mMtx2;
-    cMtx_concat(*viewMtx, *calc_mtx, *mtx2);
+    cMtx_concat(j3dSys.getViewMtx(), *calc_mtx, i_this->field_0x0570.getMtx2());
 
-    i_this->field_0x0570.field_0x70 = &i_this->tevStr;
+    i_this->field_0x0570.setTevStr(&i_this->tevStr);
 
     j3dSys.getDrawBuffer(0)->entryImm(&i_this->field_0x0570, 0);
 
@@ -385,12 +368,12 @@ static int daMant_Draw(mant_class* i_this) {
 }
 
 /* 8086176C-80861F60 00054C 07F4+00 1/1 0/0 0/0 .text joint_control__FP10mant_classP8mant_j_siff */
+// NONMATCHING - regalloc
 static void joint_control(mant_class* i_this, mant_j_s* param_2, int param_3, f32 param_4, f32 param_5) {
-    // NONMATCHING
     static f32 d_p[12] = {
         1.4000001f, 0.6f, 0.35f, 0.3f, 0.3f, 0.3f, 0.25f, 0.2f, 0.2f, 0.2f, 0.15f, 0.1f
     };
-    
+
     cXyz local_134, local_140, local_14c, local_158, local_164;
     BOOL bVar2 = FALSE;
     f32 dVar14, dVar16, dVar17, dVar18, dVar19, dVar20;
@@ -422,7 +405,7 @@ static void joint_control(mant_class* i_this, mant_j_s* param_2, int param_3, f3
     cXyz local_188(0.0f, 0.0f, 0.0f);
     cXyz local_194(0.0f, 0.0f, 0.0f);
     cXyz local_1a0(0.0f, 0.0f, 0.0f);
-    
+
     cMtx_YrotS(*calc_mtx, param_2->field_0x013a);
     local_134.x = 0.0f;
     local_134.y = 0.0f;
@@ -450,14 +433,14 @@ static void joint_control(mant_class* i_this, mant_j_s* param_2, int param_3, f3
 
             dVar18 = i_this->field_0x3958;
             dVar18 *= 1.0f - i * 0.07f;
-            
+
             local_1ac.zero();
 
 
             // (1.0f / 100.0f)
             if (param_4 > 0.01f) {
                 dVar16 = 0.0f;
-                f32 dVar14 = param_4 * (i * 0.05f + 1.0f);
+                f32 dVar14 = param_4 * (i * 0.2f + 1.0f);
                 cMtx_YrotS(*calc_mtx, param_2->field_0x013a);
                 cMtx_XrotM(*calc_mtx, param_2->field_0x0138);
 
@@ -466,7 +449,7 @@ static void joint_control(mant_class* i_this, mant_j_s* param_2, int param_3, f3
                 local_140.z = -15.0f;
                 MtxPosition(&local_140, &local_1ac);
             }
-            
+
             if (param_5 > 0.01f) {
                 dVar14 = param_5 * (i * 0.2f + 1.0f);
                 cMtx_YrotS(*calc_mtx, param_2->field_0x013a + -6000);
@@ -539,16 +522,15 @@ static void joint_control(mant_class* i_this, mant_j_s* param_2, int param_3, f3
 
 /* 80861F9C-80862424 000D7C 0488+00 1/1 0/0 0/0 .text            mant_v_calc__FP10mant_class */
 static void mant_v_calc(mant_class* i_this) {
-    // NONMATCHING
     cXyz local_e4, cStack_f0, local_fc, local_108;
     f32 dVar16, dVar15, dVar14, uVar15;
     csXyz local_134(0, 0, 0);
-    // mant_j_s* mantJS;
+    mant_j_s* mantJS;
 
     local_fc = i_this->field_0x3928[0] - i_this->field_0x3928[1];
     local_134.y = cM_atan2s(local_fc.x, local_fc.z) + 0x4000;
 
-    // mantJS = i_this->field_0x25a8;
+    mantJS = i_this->field_0x25a8;
 
     local_e4.x = 0.0f;
 
@@ -558,7 +540,7 @@ static void mant_v_calc(mant_class* i_this) {
 
     local_108 = (i_this->current.pos - i_this->field_0x3940) * 0.9f;
 
-    if (10.0f < local_108.abs()) {
+    if (local_108.abs() < 10.0f) {
         uVar15 = 0.0f;
     } else {
         local_134.y = cM_atan2s(local_108.x, local_108.z);
@@ -575,7 +557,7 @@ static void mant_v_calc(mant_class* i_this) {
     f32 uVar14 = 0.0f;
     if (i_this->field_0x3965 == 0) {
         if (i_this->field_0x3969 == 1) {
-            uVar14 = (1.0f / 20.0f);
+            uVar14 = (1.0f / 5.0f);
         } else if (i_this->field_0x3969 == 2) {
             uVar14 = 0.6f;
         } else if (i_this->field_0x3969 == 3) {
@@ -583,30 +565,30 @@ static void mant_v_calc(mant_class* i_this) {
         }
     }
 
-    for (int i = 0; i < 13; i++) {
-        i_this->field_0x25a8[i].field_0x0[0].x = i_this->field_0x3928[1].x  + (dVar16 * i);
-        i_this->field_0x25a8[i].field_0x0[0].y = i_this->field_0x3928[1].y  + (dVar15 * i);
-        i_this->field_0x25a8[i].field_0x0[0].z = i_this->field_0x3928[1].z  + (dVar14 * i);
+    for (int i = 0; i < 13; i++, mantJS++) {
+        i_this->field_0x25a8[i].field_0x0[0].x = i_this->field_0x3928[1].x + (dVar16 * i);
+        i_this->field_0x25a8[i].field_0x0[0].y = i_this->field_0x3928[1].y + (dVar15 * i);
+        i_this->field_0x25a8[i].field_0x0[0].z = i_this->field_0x3928[1].z + (dVar14 * i);
 
         cMtx_YrotS(*calc_mtx, local_134.y);
 
-        local_e4.z = cM_fsin(i * 0.2617994f);
-        local_e4.y = local_e4.z * -10.0f;
-        local_e4.z = local_e4.z * -20.0f;
+        f32 temp = cM_fsin(i * 0.2617994f);
+        local_e4.y = temp * -10.0f;
+        local_e4.z = temp * -20.0f;
 
         MtxPosition(&local_e4, &cStack_f0);
 
-        i_this->field_0x25a8[i].field_0x0[i] += cStack_f0;
+        i_this->field_0x25a8[i].field_0x0[0] += cStack_f0;
 
         i_this->field_0x25a8[i].field_0x0138 = local_134.x;
         i_this->field_0x25a8[i].field_0x013a = local_134.y + (i + -6) * 0x5dc;
 
-        for (int j = 0; j < 12; j++) {
+        for (int j = 1; j < 13; j++) {
             i_this->field_0x25a8[i].field_0x0[j].x += local_108.x;
             i_this->field_0x25a8[i].field_0x0[j].z += local_108.z;
         }
 
-        joint_control(i_this, i_this->field_0x25a8, i, uVar15, uVar14);
+        joint_control(i_this, mantJS, i, uVar15, uVar14);
     }
 }
 
@@ -629,9 +611,8 @@ static int mant_cut_type;
 
 /* 808624E8-80862908 0012C8 0420+00 2/1 0/0 0/0 .text            daMant_Execute__FP10mant_class */
 static int daMant_Execute(mant_class* i_this) {
-    // NONMATCHING
-    f32 in_f30, in_f31;
-    int unaff_r29, iVar2, uVar1, uVar4;
+    f32 var_f31, var_f30;
+    int iVar8, unaff_r29, iVar2, uVar1, uVar4;
 
     i_this->field_0x25a0++;
     lbl_277_bss_0++;
@@ -668,7 +649,7 @@ static int daMant_Execute(mant_class* i_this) {
 
     i_this->field_0x3940 = i_this->current.pos;
 
-    int iVar8 = 0;
+    iVar8 = 0;
 
     if (i_this->field_0x3967 != 0) {
         mant_cut_type = i_this->field_0x3967;
@@ -684,18 +665,18 @@ static int daMant_Execute(mant_class* i_this) {
             }
 
             unaff_r29 = cM_rndF(65536.0f);
-            in_f31 = cM_rndFX(32.0f);
-            in_f30 = cM_rndFX(32.0f);
+            var_f31 = cM_rndFX(32.0f);
+            var_f30 = cM_rndFX(32.0f);
         }
 
         i_this->field_0x3967 = 0;
     }
 
     for (int i = 0; i < iVar8; i++) {
-        in_f31 += cM_ssin(unaff_r29);
-        in_f30 -= cM_scos(unaff_r29);
+        var_f31 += cM_ssin(unaff_r29);
+        var_f30 -= cM_scos(unaff_r29);
 
-        uVar4 = (int)(in_f31 + 64.0f) | (int)(in_f30 + 64.0f) << 7;
+        uVar4 = (int)(var_f31 + 64.0f) | (int)(var_f30 + 64.0f) << 7;
 
         if (mant_cut_type == 0) {
             if (i <= 3 || 36 <= i) {
@@ -720,34 +701,30 @@ static int daMant_Execute(mant_class* i_this) {
         }
 
         for (int j = 0; j < iVar2; j++) {
-            if (j != 0) {
-                if (j == 1) {
-                    uVar4 = uVar1++;
-                } else if (j == 2) {
-                    uVar4 = uVar1 + 0x80;
-                } else if (j == 3) {
-                    uVar4 = uVar1 + 0x81;
-                } else {
-                    if (j == 3) {
-                        uVar4 = uVar1 + 0x81;
-                    } else {
-                        if (j == 4) {
-                            uVar4 = uVar1 + 2; 
-                        } else if (j == 5) {
-                            uVar4 = uVar1 + 0x82;
-                        } else if (j == 6) {
-                            uVar4 = uVar1 + 0x102;
-                        } else if (j == 7) {
-                            uVar4 = uVar1 + 0x101;
-                        } else if (j == 8) {
-                            uVar4 = uVar1 + 0x100;
-                        }
-                    }
-                }
+            if (j == 0) {
+                uVar1 = uVar4;
+            } else if (j == 1) {
+                uVar1 = uVar4 + 1;
+            } else if (j == 2) {
+                uVar1 = uVar4 + 0x80;
+            } else if (j == 3) {
+                uVar1 = uVar4 + 0x81;
+            } else if (j == 3) {
+                uVar1 = uVar4 + 0x81;
+            } else if (j == 4) {
+                uVar1 = uVar4 + 2;
+            } else if (j == 5) {
+                uVar1 = uVar4 + 0x82;
+            } else if (j == 6) {
+                uVar1 = uVar4 + 0x102;
+            } else if (j == 7) {
+                uVar1 = uVar4 + 0x101;
+            } else if (j == 8) {
+                uVar1 = uVar4 + 0x100;
             }
 
-            if (0 <= uVar4 && uVar4 < 0x4000) {
-                int iVar5 = (uVar4 & 7) + (uVar4 & 0x78) * 4 + (uVar4 >> 4 & 0x18) + (uVar4 & 0x3e00);
+            if (0 <= uVar1 && uVar1 < 0x4000) {
+                int iVar5 = (uVar1 & 7) + (uVar1 & 0x78) * 4 + (uVar1 >> 4 & 0x18) + (uVar1 & 0x3e00);
                 l_Egnd_mantTEX_U[iVar5] = 0;
                 l_Egnd_mantTEX[iVar5] = 0;
             }
@@ -769,11 +746,10 @@ static int daMant_Delete(mant_class* i_this) {
 
 /* 80862918-80862AC0 0016F8 01A8+00 1/0 0/0 0/0 .text            daMant_Create__FP10fopAc_ac_c */
 static int daMant_Create(fopAc_ac_c* i_this) {
-    // NONMATCHING
     mant_class* m_this = (mant_class*)i_this;
-    
-    // m_this->field_0x0570.field_0x74 = 0;
+
     fopAcM_SetupActor(m_this, mant_class);
+    //m_this->field_0x0570.field_0x74 = 0;
     m_this->field_0x259c = fopAcM_GetParam(i_this);
 
     fopAcM_SetMin(i_this, -2000.0f, -2000.0f, -2000.0f);

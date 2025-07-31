@@ -70,7 +70,7 @@ public:
     }
 
     u32 getTalkAngle() {
-        u32 talkAngle = (fopAcM_GetParam(this) & 0xe0) >> 5;
+        u32 talkAngle = (fopAcM_GetParam(this) >> 5) & 0x7;
         if (talkAngle == 7) {
             return 0;
         } else {

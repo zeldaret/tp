@@ -1863,7 +1863,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_ykm"),
     ActorRel(NonMatching, "d_a_npc_ykw"),
     ActorRel(NonMatching, "d_a_npc_zanb"),
-    ActorRel(NonMatching, "d_a_npc_zant"),
+    ActorRel(Equivalent, "d_a_npc_zant"), # weak func order
     ActorRel(NonMatching, "d_a_npc_zelR"),
     ActorRel(NonMatching, "d_a_npc_zelRo"),
     ActorRel(Equivalent, "d_a_npc_zelda"), # weak function order
@@ -2029,7 +2029,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_lv6Tenbin"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv6TogeRoll"),
     ActorRel(NonMatching, "d_a_obj_lv6TogeTrap"),
-    ActorRel(NonMatching, "d_a_obj_lv6bemos"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv6bemos"),
     ActorRel(NonMatching, "d_a_obj_lv6bemos2"),
     ActorRel(NonMatching, "d_a_obj_lv6egate"),
     ActorRel(NonMatching, "d_a_obj_lv6elevta"),
