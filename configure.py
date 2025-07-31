@@ -1850,7 +1850,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_npc_tk"), # weak function order
     ActorRel(NonMatching, "d_a_npc_tkc"),
     ActorRel(NonMatching, "d_a_npc_tkj2"),
-    ActorRel(Equivalent, "d_a_npc_tks"), # weak function order, sinShort inline issue
+    ActorRel(NonMatching, "d_a_npc_tks"),
     ActorRel(NonMatching, "d_a_npc_toby"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_tr"),
     ActorRel(NonMatching, "d_a_npc_uri"),
@@ -2137,7 +2137,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_thashi"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_thdoor"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_timeFire"),
-    ActorRel(NonMatching, "d_a_obj_tks", extra_cflags=[DANPCF_C_HACK]),
+    ActorRel(Equivalent, "d_a_obj_tks", extra_cflags=[DANPCF_C_HACK]), # weak function order, sinShort inline issue
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_tmoon"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_toaru_maki"),
     ActorRel(NonMatching, "d_a_obj_toby"),
