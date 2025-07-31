@@ -3649,9 +3649,6 @@ BOOL daNpc_ykM_c::checkRemoveJoint(int param_1) {
     return param_1 == 9;
 }
 
-/* 80B5D6C8-80B5D710 00A2C8 0048+00 2/1 0/0 0/0 .text            __dt__17daNpc_ykM_Param_cFv */
-// daNpc_ykM_Param_c::~daNpc_ykM_Param_c() {}
-
 AUDIO_INSTANCES;
 
 /* 80B5EB4C-80B5EB6C -00001 0020+00 1/0 0/0 0/0 .data            daNpc_ykM_MethodTable */
