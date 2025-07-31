@@ -2,6 +2,7 @@
 #define D_A_NPC_YKM_H
 
 #include "d/actor/d_a_npc.h"
+#include "d/d_save.h"
 #include "d/actor/d_a_npc_ykw.h"
 
 /**
@@ -37,7 +38,7 @@ struct daNpc_ykM_HIOParam {
 
 class daNpc_ykM_Param_c : public JORReflexible {
 public:
-    /* 80B5D6C8 */ virtual ~daNpc_ykM_Param_c();
+    /* 80B5D6C8 */ virtual ~daNpc_ykM_Param_c() {}
 
     static daNpc_ykM_HIOParam const m;
 };
@@ -97,7 +98,7 @@ public:
     /* 80B59B90 */ int cutEndSnowboardRace(int);
     /* 80B5A0B8 */ int cutHug(int);
     /* 80B5A128 */ void setDialogueMotion();
-    /* 80B5A224 */ void dialogue();
+    /* 80B5A224 */ int dialogue();
     /* 80B5A3FC */ BOOL wait(void*);
     /* 80B5ABA8 */ BOOL cook(void*);
     /* 80B5B260 */ BOOL race(void*);
@@ -136,6 +137,10 @@ public:
     int getBitTRB() { return (fopAcM_GetParam(this) & 0x3F0000) >> 16; }
     u32 getPathID() { return (fopAcM_GetParam(this) & 0xFF00) >> 8; }
 
+    void dComIfGs_setRaceGameTime(u32 i_time) {
+        g_dComIfG_gameInfo.info.getMiniGame().setRaceGameTime(i_time);
+    }
+
     static char* mCutNameList[10];
     static cutFunc mCutList[10];
 private:
@@ -152,11 +157,23 @@ private:
     /* 0x14E0 */ dPath* mRoomPath;
     /* 0x14E4 */ ActionFn field_0x14e4;
     /* 0x14F0 */ ActionFn field_0x14f0;
-    /* 0x14FC */ u8 field_0x14fc[0x1520 - 0x14fc];
+    /* 0x14FC */ cXyz field_0x14fc;
+    /* 0x1508 */ cXyz field_0x1508;
+    /* 0x1514 */ cXyz field_0x1514;
     /* 0x1520 */ cXyz field_0x1520;
-    /* 0x152C */ u8 field_0x152c[0x1540 - 0x152c];
+    /* 0x152C */ u8 field_0x152c[0x1534 - 0x152c];
+    /* 0x1534 */ fpc_ProcID field_0x1534;
+    /* 0x1538 */ int field_0x1538;
+    /* 0x153C */ int field_0x153c;
     /* 0x1540 */ int field_0x1540;
-    /* 0x1544 */ u8 field_0x1544[0x1568 - 0x1544];
+    /* 0x1544 */ int field_0x1544;
+    /* 0x1548 */ int field_0x1548;
+    /* 0x154C */ int field_0x154c;
+    /* 0x1550 */ int field_0x1550;
+    /* 0x1554 */ u8 field_0x1554[0x1558 - 0x1554];
+    /* 0x1558 */ daNpcT_pntData_c field_0x1558;
+    /* 0x1560 */ int field_0x1560;
+    /* 0x1564 */ u8 field_0x1564[0x1568 - 0x1564];
     /* 0x1568 */ f32 field_0x1568;
     /* 0x156C */ s16 field_0x156c;
     /* 0x156E */ u8 field_0x156e[0x1570 - 0x156e];
@@ -169,13 +186,17 @@ private:
     /* 0x1579 */ u8 field_0x1579;
     /* 0x157A */ u8 field_0x157a;
     /* 0x157B */ u8 field_0x157b;
-    /* 0x157C */ u8 field_0x157c[0x157e - 0x157c];
+    /* 0x157C */ u8 field_0x157c;
+    /* 0x157D */ u8 field_0x157d;
     /* 0x157E */ u8 field_0x157e;
     /* 0x157F */ u8 field_0x157f;
     /* 0x1580 */ u8 field_0x1580;
     /* 0x1581 */ u8 field_0x1581;
     /* 0x1582 */ u8 field_0x1582;
-    /* 0x1583 */ u8 field_0x1583[0x1588 - 0x1583];
+    /* 0x1583 */ u8 field_0x1583;
+    /* 0x1584 */ u8 field_0x1584;
+    /* 0x1585 */ u8 field_0x1585;
+    /* 0x1586 */ u8 field_0x1586[0x1588 - 0x1586];
     /* 0x1588 */ int field_0x1588;
 };
 
