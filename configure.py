@@ -1905,7 +1905,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_crope"),
     ActorRel(NonMatching, "d_a_obj_crvfence"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_crvgate"),
-    ActorRel(NonMatching, "d_a_obj_crvhahen"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_crvhahen"),
     ActorRel(NonMatching, "d_a_obj_crvlh_down"),
     ActorRel(NonMatching, "d_a_obj_crvlh_up"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_crvsteel"),

@@ -1,91 +1,18 @@
 /**
  * @file d_a_obj_crvhahen.cpp
- * 
-*/
+ *
+ */
 
 #include "d/actor/d_a_obj_crvhahen.h"
-#include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" void useHeapInit__FP10fopAc_ac_c();
-extern "C" void daObjCRVHAHEN_Create__FP10fopAc_ac_c();
-extern "C" void daObjCRVHAHEN_Delete__FP15daObjCRVHAHEN_c();
-extern "C" void HahenSet__15daObjCRVHAHEN_cF4cXyz4cXyz4cXyz4cXyzf();
-extern "C" void Wall_Check__15daObjCRVHAHEN_cF4cXyz4cXyz();
-extern "C" void __dt__4cXyzFv();
-extern "C" void Hahen_Hakai__15daObjCRVHAHEN_cFii();
-extern "C" void CheckCull__15daObjCRVHAHEN_cFv();
-extern "C" void checkViewArea__15daObjCRVHAHEN_cFP4cXyz();
-extern "C" void Execute__15daObjCRVHAHEN_cFv();
-extern "C" void Delete__15daObjCRVHAHEN_cFv();
-extern "C" void setBaseMtx__15daObjCRVHAHEN_cFv();
-extern "C" void daObjCRVHAHEN_Draw__FP15daObjCRVHAHEN_c();
-extern "C" void daObjCRVHAHEN_Execute__FP15daObjCRVHAHEN_c();
-extern "C" void create__15daObjCRVHAHEN_cFv();
-extern "C" void __dt__5csXyzFv();
-extern "C" void __ct__5csXyzFv();
-extern "C" void __ct__4cXyzFv();
-extern "C" bool daObjCRVHAHEN_IsDelete__FP15daObjCRVHAHEN_c();
-// extern "C" extern char const* const d_a_obj_crvhahen__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void scaleM__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void ZXYrotS__14mDoMtx_stack_cFRC5csXyz();
-extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void mDoLib_project__FP3VecP3Vec();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff();
-extern "C" void addSimpleModel__14dComIfG_play_cFP12J3DModelDataiUc();
-extern "C" void removeSimpleModel__14dComIfG_play_cFP12J3DModelDatai();
-extern "C" void entrySimpleModel__14dComIfG_play_cFP8J3DModeli();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void getRes__14dRes_control_cFPCcPCcP11dRes_info_ci();
-extern "C" void LineCross__4cBgSFP11cBgS_LinChk();
-extern "C" void __ct__11dBgS_LinChkFv();
-extern "C" void __dt__11dBgS_LinChkFv();
-extern "C" void Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void cM_rndF__Ff();
-extern "C" void cM_rndFX__Ff();
-extern "C" void __dl__FPv();
-extern "C" void __construct_array();
-extern "C" void _savegpr_21();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_21();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_29();
-extern "C" u8 now__14mDoMtx_stack_c[48];
-// extern "C" extern u8 g_dComIfG_gameInfo[122384];
-
-//
-// Declarations:
-//
 
 /* 80BD4064-80BD4068 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static const char* l_arcName = "CrvFence";
 
-int daObjCRVHAHEN_c::CreateHeap() {
-    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName,"CaravanPiece.bmd");
-    
+inline int daObjCRVHAHEN_c::CreateHeap() {
+    J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "CaravanPiece.bmd");
+
     for (int i = 0; i < 10; i++) {
-        mpModel[i] = mDoExt_J3DModel__create(modelData, 0x20000, 0x11000084);
+        mpModel[i] = mDoExt_J3DModel__create(model_data, 0x20000, 0x11000084);
         if (mpModel[i] == NULL) {
             return 0;
         }
@@ -106,114 +33,100 @@ static void daObjCRVHAHEN_Create(fopAc_ac_c* i_this) {
 
 /* 80BD3408-80BD342C 000148 0024+00 1/0 0/0 0/0 .text daObjCRVHAHEN_Delete__FP15daObjCRVHAHEN_c */
 static int daObjCRVHAHEN_Delete(daObjCRVHAHEN_c* i_this) {
-    static_cast<daObjCRVHAHEN_c*>(i_this)->Delete();
+    i_this->Delete();
     return 1;
 }
 
 /* 80BD342C-80BD3628 00016C 01FC+00 0/0 0/0 2/2 .text
  * HahenSet__15daObjCRVHAHEN_cF4cXyz4cXyz4cXyz4cXyzf            */
-int daObjCRVHAHEN_c::HahenSet(cXyz param_1, cXyz param_2, cXyz param_3, cXyz param_4, f32 param_5) {
-    field_0x750 = true;
-    field_0x75c = param_5;
+int daObjCRVHAHEN_c::HahenSet(cXyz param_1, cXyz param_2, cXyz param_3, cXyz param_4,
+                              f32 duration) {
+    mDrawHahen = true;
+    mTimer = duration;
 
     for (int i = 0; i < 10; i++) {
-        field_0x568[i].set(param_2.x + cM_rndFX(param_1.x), param_2.y + cM_rndF(param_1.y), param_2.z + cM_rndFX(param_1.z));
-        field_0x658[i].set(cM_rndF(1.0f) + 0.5f,cM_rndF(1.0f) + 0.5f,cM_rndF(1.0f) + 0.5f);
-        field_0x5e0[i].set(param_4.x + cM_rndFX(param_3.x), param_4.y + cM_rndF(param_3.y), param_4.z + cM_rndF(param_3.z));
+        mPos[i].set(param_2.x + cM_rndFX(param_1.x), param_2.y + cM_rndF(param_1.y),
+                    param_2.z + cM_rndFX(param_1.z));
+        mInitialPos[i].set(cM_rndF(1.0f) + 0.5f, cM_rndF(1.0f) + 0.5f, cM_rndF(1.0f) + 0.5f);
+        mVelocity[i].set(param_4.x + cM_rndFX(param_3.x), param_4.y + cM_rndF(param_3.y),
+                         param_4.z + cM_rndF(param_3.z));
 
         mDoMtx_stack_c::transS(current.pos);
         mDoMtx_stack_c::ZXYrotM(shape_angle);
-        
-        MtxP mtx = mDoMtx_stack_c::get();
-        PSMTXMultVec(mtx, field_0x568, field_0x568);
-        mDoMtx_stack_c::ZXYrotM(shape_angle);
-        PSMTXMultVec(mtx, field_0x5e0, field_0x5e0);
 
-        field_0x70c[i].x = cM_rndFX(5000.0f);
-        field_0x70c[i].y = cM_rndFX(5000.0f);
-        field_0x6d0[i].x = cM_rndFX(65536.0f);
-        field_0x6d0[i].y = cM_rndFX(65536.0f);
+        mDoMtx_stack_c::multVec(&mPos[i], &mPos[i]);
+        mDoMtx_stack_c::ZXYrotS(shape_angle);
+        mDoMtx_stack_c::multVec(&mVelocity[i], &mVelocity[i]);
+
+        mRotSpeed[i].x = cM_rndFX(5000.0f);
+        mRotSpeed[i].y = cM_rndFX(5000.0f);
+        mRotation[i].x = cM_rndFX(65536.0f);
+        mRotation[i].y = cM_rndFX(65536.0f);
     }
     return 1;
 }
 
 /* 80BD3628-80BD36E4 000368 00BC+00 1/1 0/0 0/0 .text Wall_Check__15daObjCRVHAHEN_cF4cXyz4cXyz */
 bool daObjCRVHAHEN_c::Wall_Check(cXyz origin, cXyz target) {
-    dBgS_LinChk lineCheck;
-    
+    dBgS_LinChk line_check;
+
     cXyz linePos(origin.x + target.x, origin.y, origin.z + target.z);
 
-    lineCheck.Set(&origin, &linePos, NULL);
+    line_check.Set(&origin, &linePos, NULL);
 
-    bool didLineCross = dComIfG_Bgsp().LineCross(&lineCheck);
+    bool did_line_cross = dComIfG_Bgsp().LineCross(&line_check);
 
-    if (didLineCross == true) {
-        // lineCheck.~dBgS_LinChk();
+    if (did_line_cross == true) {
         return true;
-    }
-    else {
-        // lineCheck.~dBgS_LinChk();
+    } else {
         return false;
     }
-    return didLineCross;
-}
-
-
-/* 80BD36E4-80BD3720 000424 003C+00 1/1 0/0 0/0 .text            __dt__4cXyzFv */
-// cXyz::~cXyz() {
-extern "C" void __dt__4cXyzFv() {
-    // NONMATCHING
+    return did_line_cross;
 }
 
 /* 80BD3720-80BD38DC 000460 01BC+00 1/1 0/0 0/0 .text            Hahen_Hakai__15daObjCRVHAHEN_cFii
  */
 void daObjCRVHAHEN_c::Hahen_Hakai(int start, int end) {
-    cXyz origin, target;
+    for (int i = start; i < end; ++i) {
+        if (mStatus[i] > 3) {
+            mPos[i].y = mGroundHeight;
+            mRotation[i].x = 0x4000;
+        } else {
+            mVelocity[i].y += +-9.0f;
+            Wall_Check(mPos[i], mVelocity[i]);
 
-    for (int i = start; start < end; start++) {
-        if (*(u8 *)((int)this->mpModel + i + -0xf) < 4) {
-            field_0x5e0[i].z = field_0x5e0[i].z + -9.0f;
+            mPos[i].x = mPos[i].x + mVelocity[i].x;
+            mPos[i].y = mPos[i].y + mVelocity[i].y;
+            mPos[i].z = mPos[i].z + mVelocity[i].z;
 
-            origin.set(field_0x568[i].x, field_0x568[i].y, field_0x568[i].z);
-            target.set(field_0x5e0[i].x, field_0x5e0[i].y, field_0x5e0[i].z);
+            mRotation[i].x += mRotSpeed[i].x;
+            mRotation[i].y += mRotSpeed[i].y;
+            mRotation[i].z += mRotSpeed[i].z;
 
-            Wall_Check(origin, target);
+            if ((mGroundHeight + 13.0f) >= mPos[i].y) {
+                ++mStatus[i];
+                mPos[i].y = mGroundHeight + 13.0f;
 
-            // field_0x568[i].set(field_0x568[i].x + field_0x5e0[i].x, field_0x568[i].y + field_0x5e0[i].y,field_0x568[i].z + field_0x5e0[i].z);
-            field_0x568[i].x = field_0x568[i].x + field_0x5e0[i].x;
-            field_0x568[i].y = field_0x568[i].y + field_0x5e0[i].y;
-            field_0x568[i].z = field_0x568[i].z + field_0x5e0[i].z;
-            
-            if ( field_0x568[i].y <= field_0x74c + 13.0f) {
-                // *(char *)((int)mpModel + start + -0xf) = *(char *)((int)mpModel + start + -0xf) + '\x01'; // ????
-                mpModel[i] = mpModel[i] + 1;
-                // field_0x74c = field_0x74c + 1;
-                field_0x568[i].y = field_0x74c + 13.0f;
+                mVelocity[i].y = mVelocity[i].y * -0.6f;
+                mVelocity[i].x = mVelocity[i].x * 0.8f;
+                mVelocity[i].z = mVelocity[i].z * 0.8f;
 
-                field_0x5e0[i].y = field_0x5e0[i].y * -0.6f;
-                field_0x5e0[i].x = field_0x5e0[i].x * 0.8f;
-                field_0x5e0[i].z = field_0x5e0[i].z * 0.8f;
-
-                field_0x6d0[i].x = 0x4000;
-                field_0x6d0[i].y = field_0x6d0[i].y + field_0x70c[i].y;
+                mRotation[i].x = 0x4000;
+                mRotation[i].y = mRotation[i].y + mRotSpeed[i].y;
             }
-        }
-        else {
-            field_0x568[i].y = field_0x74c;
-            field_0x6d0[i].x = 0x4000;
         }
     }
 }
 
 /* 80BD38DC-80BD3A9C 00061C 01C0+00 1/1 0/0 0/0 .text            CheckCull__15daObjCRVHAHEN_cFv */
 void daObjCRVHAHEN_c::CheckCull() {
-    daPy_py_c* player = daPy_getPlayerActorClass();
-    cXyz& playerPos = fopAcM_GetPosition((fopAc_ac_c*)player);
+    daPy_py_c* player_actor = daPy_getPlayerActorClass();
+    cXyz& player_pos = fopAcM_GetPosition((fopAc_ac_c*)player_actor);
     int culled_num = 1;
 
     for (int i = 0; i < 10; i++) {
-        float fVar2 = field_0x568[i].absXZ(playerPos);
-        if ((fVar2 > field_0x75c) && !checkViewArea(&field_0x568[i])) {
+        float fVar2 = mPos[i].absXZ(player_pos);
+        if ((fVar2 > mTimer) && !checkViewArea(&mPos[i])) {
             culled_num++;
             if (culled_num == 10) {
                 fopAcM_delete(this);
@@ -226,20 +139,25 @@ void daObjCRVHAHEN_c::CheckCull() {
 bool daObjCRVHAHEN_c::checkViewArea(cXyz* i_this) {
     Vec proj;
     mDoLib_project(i_this, &proj);
+
     bool ret = false;
+
     if (proj.x >= 0.0f && proj.x <= 608.0f && proj.y >= 0.0f && proj.y <= 448.0f) {
         ret = true;
     }
+
     return ret;
 }
 
 /* 80BD3B20-80BD3B74 000860 0054+00 1/1 0/0 0/0 .text            Execute__15daObjCRVHAHEN_cFv */
 int daObjCRVHAHEN_c::Execute() {
-    if (field_0x750 != false) {
+    if (mDrawHahen != false) {
         daObjCRVHAHEN_c::Hahen_Hakai(0, 10);
     }
+
     daObjCRVHAHEN_c::setBaseMtx();
     daObjCRVHAHEN_c::CheckCull();
+
     return 1;
 }
 
@@ -247,9 +165,9 @@ int daObjCRVHAHEN_c::Execute() {
 int daObjCRVHAHEN_c::Delete() {
     J3DModelData* model_data;
 
-    if (field_0x791) {
-        model_data = (J3DModelData*) dRes_control_c::getRes(l_arcName, "CaravanPiece.bmd", 
-        g_dComIfG_gameInfo.mResControl.mObjectInfo, 0x80);
+    if (mInitialized) {
+        model_data = (J3DModelData*)dRes_control_c::getRes(
+            l_arcName, "CaravanPiece.bmd", g_dComIfG_gameInfo.mResControl.mObjectInfo, 0x80);
         g_dComIfG_gameInfo.play.removeSimpleModel(model_data, (int)(char)current.roomNo);
     }
 
@@ -262,34 +180,26 @@ int daObjCRVHAHEN_c::Delete() {
 void daObjCRVHAHEN_c::setBaseMtx() {
     int i;
     for (i = 0; i < 10; i++) {
-        mDoMtx_stack_c::transS(field_0x568[i]);
-        mDoMtx_stack_c::ZXYrotM(field_0x6d0[i]);
-        mDoMtx_stack_c::scaleM(field_0x658[i]);
+        mDoMtx_stack_c::transS(mPos[i]);
+        mDoMtx_stack_c::ZXYrotM(mRotation[i]);
+        mDoMtx_stack_c::scaleM(mInitialPos[i]);
         PSMTXCopy(mDoMtx_stack_c::get(), mpModel[i]->mBaseTransformMtx);
     }
 }
 
-/* 80BD3CA0-80BD3D9C 0009E0 00FC+00 1/0 0/0 0/0 .text daObjCRVHAHEN_Draw__FP15daObjCRVHAHEN_c */
-static int daObjCRVHAHEN_Draw(daObjCRVHAHEN_c* i_this) {
-    g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
+inline int daObjCRVHAHEN_c::Draw() {
+    g_env_light.settingTevStruct(0, &current.pos, &tevStr);
 
-    int i = 0;
-    int j = i; // forces reuse instead of new li
-    for (i = 0; i < 10; i++) {
-        g_env_light.setLightTevColorType_MAJI(i_this->mpModel[i], &i_this->tevStr);
+    for (int i = 0, j = i; i < 10; i = i + 1) {
+        g_env_light.setLightTevColorType_MAJI(mpModel[i], &tevStr);
     }
 
     dComIfGd_setListBG();
 
-    if (i_this->field_0x750 != false) {
-        for (i = 0; i < 10; i++) {
-            // Suggestion from ChatGPT, worked
-            volatile u8* room_number_ptr = (u8*)((char*)i_this + 0x4e2); // 0x4e2 is i_this->base.current.roomNo
-            s8 room_number = *room_number_ptr;
-
-            // int room_number = fopAcM_GetRoomNo(i_this); // puts the mr, addi, and lwzx instructions in the wrong place
-
-            g_dComIfG_gameInfo.play.entrySimpleModel(i_this->mpModel[i], room_number);
+    if (mDrawHahen) {
+        for (int i = 0; i < 10; i = i + 1) {
+            s8 roomno = fopAcM_GetRoomNo(this);
+            dComIfGp_entrySimpleModel(mpModel[i], roomno);
         }
     }
 
@@ -298,11 +208,15 @@ static int daObjCRVHAHEN_Draw(daObjCRVHAHEN_c* i_this) {
     return 1;
 }
 
-/* 80BD3D9C-80BD3DBC 000ADC 0020+00 2/1 0/0 0/0 .text daObjCRVHAHEN_Execute__FP15daObjCRVHAHEN_c */
-static void daObjCRVHAHEN_Execute(daObjCRVHAHEN_c* i_this) {
-    static_cast<daObjCRVHAHEN_c*>(i_this)->Execute();
+/* 80BD3CA0-80BD3D9C 0009E0 00FC+00 1/0 0/0 0/0 .text daObjCRVHAHEN_Draw__FP15daObjCRVHAHEN_c */
+static int daObjCRVHAHEN_Draw(daObjCRVHAHEN_c* i_this) {
+    return i_this->Draw();
 }
 
+/* 80BD3D9C-80BD3DBC 000ADC 0020+00 2/1 0/0 0/0 .text daObjCRVHAHEN_Execute__FP15daObjCRVHAHEN_c */
+static void daObjCRVHAHEN_Execute(daObjCRVHAHEN_c* i_this) {
+    i_this->Execute();
+}
 
 /* 80BD3DBC-80BD3F9C 000AFC 01E0+00 1/1 0/0 0/0 .text            create__15daObjCRVHAHEN_cFv */
 int daObjCRVHAHEN_c::create() {
@@ -312,45 +226,25 @@ int daObjCRVHAHEN_c::create() {
 
     int phase_state = dComIfG_resLoad(&this->mPhase, l_arcName);
 
-    if(phase_state == cPhs_COMPLEATE_e) {
-        if(!fopAcM_entrySolidHeap(this, useHeapInit, 0x1320)) {
-            phase_state = cPhs_ERROR_e;
-        }
-        else {
-            field_0x750 = 0;
+    if (phase_state == cPhs_COMPLEATE_e) {
+        if (!fopAcM_entrySolidHeap(this, useHeapInit, 0x1320)) {
+            return cPhs_ERROR_e;
+        } else {
+            mDrawHahen = 0;
             gravity = -9.0f;
-            model_data = (J3DModelData*) dRes_control_c::getRes(l_arcName, "CaravanPiece.bmd", 
-                g_dComIfG_gameInfo.mResControl.mObjectInfo, 0x80);
+            model_data = (J3DModelData*)dRes_control_c::getRes(
+                l_arcName, "CaravanPiece.bmd", g_dComIfG_gameInfo.mResControl.mObjectInfo, 0x80);
             g_dComIfG_gameInfo.play.addSimpleModel(model_data, (int)(char)current.roomNo, '\0');
-            field_0x791 = true;
-            field_0x74c = current.pos.y;
-            fopAcM_setCullSizeBox(this, -1000.0,-500.0, -1000.0, 1000.0, 500.0, 1000.0);
+            mInitialized = true;
+            mGroundHeight = current.pos.y;
+            fopAcM_setCullSizeBox(this, -1000.0, -500.0, -1000.0, 1000.0, 500.0, 1000.0);
             daObjCRVHAHEN_Execute(this);
         }
     }
     return phase_state;
 }
 
-/* 80BD3F9C-80BD3FD8 000CDC 003C+00 1/1 0/0 0/0 .text            __dt__5csXyzFv */
-// csXyz::~csXyz() {
-extern "C" void __dt__5csXyzFv() {
-    // NONMATCHING
-}
-
-/* 80BD3FD8-80BD3FDC 000D18 0004+00 1/1 0/0 0/0 .text            __ct__5csXyzFv */
-// csXyz::csXyz() {
-extern "C" void __ct__5csXyzFv() {
-    /* empty function */
-}
-
-/* 80BD3FDC-80BD3FE0 000D1C 0004+00 1/1 0/0 0/0 .text            __ct__4cXyzFv */
-// cXyz::cXyz() {
-extern "C" void __ct__4cXyzFv() {
-    /* empty function */
-}
-
-/* 80BD3FE0-80BD3FE8 000D20 0008+00 1/0 0/0 0/0 .text daObjCRVHAHEN_IsDelete__FP15daObjCRVHAHEN_c
- */
+/* 80BD3FE0-80BD3FE8 000D20 0008+00 1/0 0/0 0/0 .text daObjCRVHAHEN_IsDelete__FP15daObjCRVHAHEN_c */
 static bool daObjCRVHAHEN_IsDelete(daObjCRVHAHEN_c* i_this) {
     return true;
 }
@@ -358,29 +252,25 @@ static bool daObjCRVHAHEN_IsDelete(daObjCRVHAHEN_c* i_this) {
 /* ############################################################################################## */
 /* 80BD4068-80BD4088 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjCRVHAHEN_Method */
 static actor_method_class l_daObjCRVHAHEN_Method = {
-    (process_method_func)daObjCRVHAHEN_Create__FP10fopAc_ac_c,
-    (process_method_func)daObjCRVHAHEN_Delete__FP15daObjCRVHAHEN_c,
-    (process_method_func)daObjCRVHAHEN_Execute__FP15daObjCRVHAHEN_c,
-    (process_method_func)daObjCRVHAHEN_IsDelete__FP15daObjCRVHAHEN_c,
-    (process_method_func)daObjCRVHAHEN_Draw__FP15daObjCRVHAHEN_c,
+    (process_method_func)daObjCRVHAHEN_Create,  (process_method_func)daObjCRVHAHEN_Delete,
+    (process_method_func)daObjCRVHAHEN_Execute, (process_method_func)daObjCRVHAHEN_IsDelete,
+    (process_method_func)daObjCRVHAHEN_Draw,
 };
 
 /* 80BD4088-80BD40B8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_CRVHAHEN */
 extern actor_process_profile_definition g_profile_Obj_CRVHAHEN = {
-  fpcLy_CURRENT_e,         // mLayerID
-  3,                       // mListID
-  fpcPi_CURRENT_e,         // mListPrio
-  PROC_Obj_CRVHAHEN,       // mProcName
-  &g_fpcLf_Method.base,   // sub_method
-  sizeof(daObjCRVHAHEN_c), // mSize
-  0,                       // mSizeOther
-  0,                       // mParameters
-  &g_fopAc_Method.base,    // sub_method
-  468,                     // mPriority
-  &l_daObjCRVHAHEN_Method, // sub_method
-  0x00040000,              // mStatus
-  fopAc_ACTOR_e,           // mActorType
-  fopAc_CULLBOX_CUSTOM_e,  // cullType
+    fpcLy_CURRENT_e,          // mLayerID
+    3,                        // mListID
+    fpcPi_CURRENT_e,          // mListPrio
+    PROC_Obj_CRVHAHEN,        // mProcName
+    &g_fpcLf_Method.base,     // sub_method
+    sizeof(daObjCRVHAHEN_c),  // mSize
+    0,                        // mSizeOther
+    0,                        // mParameters
+    &g_fopAc_Method.base,     // sub_method
+    468,                      // mPriority
+    &l_daObjCRVHAHEN_Method,  // sub_method
+    0x00040000,               // mStatus
+    fopAc_ACTOR_e,            // mActorType
+    fopAc_CULLBOX_CUSTOM_e,   // cullType
 };
-
-/* 80BD4048-80BD4048 000058 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
