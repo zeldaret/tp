@@ -16,7 +16,7 @@
  */
 class daObjCRVHAHEN_c : public fopAc_ac_c {
 public:
-    /* 80BD342C */ void HahenSet(cXyz, cXyz, cXyz, cXyz, f32);
+    /* 80BD342C */ int HahenSet(cXyz, cXyz, cXyz, cXyz, f32);
     /* 80BD3628 */ bool Wall_Check(cXyz, cXyz);
     /* 80BD3720 */ void Hahen_Hakai(int, int);
     /* 80BD38DC */ void CheckCull();
@@ -28,20 +28,20 @@ public:
     
     /* 80BD3338 */ inline int CreateHeap();
 
-    /* 0x568 */ cXyz field1_0x568[10];
-    /* 0x5e0 */ cXyz field2_0x5e0[10];
-    /* 0x658 */ cXyz field3_0x658[10];
-    /* 0x6d0 */ csXyz field4_0x6d0[10];
-    /* 0x7ac */ csXyz field5_0x70c[10];
+    /* 0x568 */ cXyz field_0x568[10];
+    /* 0x5e0 */ cXyz field_0x5e0[10];
+    /* 0x658 */ cXyz field_0x658[10];
+    /* 0x6d0 */ csXyz field_0x6d0[10];
+    /* 0x7ac */ csXyz field_0x70c[10];
     /* 0x748 */ u32 field_0x748;
-    /* 0x74c */ float field7_0x74c;
-    /* 0x750 */ bool field14_0x750;
+    /* 0x74c */ float field_0x74c;
+    /* 0x750 */ bool field_0x750;
     /* 0x751 */ u8 field_0x751[0x75c - 0x751]; // padding
-    /* 0x75c */ float field26_0x75c;
+    /* 0x75c */ float field_0x75c;
     /* 0x760 */ J3DModel* mpModel[10];
     /* 0x788 */ request_of_phase_process_class mPhase;
     /* 0x790 */ u8 field_0x790;
-    /* 0x791 */ bool field33_0x791;
+    /* 0x791 */ bool field_0x791;
     /* 0x792 */ u8 field_0x792;
     /* 0x793 */ u8 field_0x793;
 };
