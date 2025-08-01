@@ -105,7 +105,7 @@ enum ykM2_RES_File_ID {
     /* 0x0D */ BCK_YKM_SB_JUMP_A,
     /* 0x0E */ BCK_YKM_SB_JUMP_B,
     /* 0x0F */ BCK_YKM_SB_JUMP_C,
-    /* 0x10 */ BCK_YKM_SB_TUNRL,
+    /* 0x10 */ BCK_YKM_SB_TURNL,
     /* 0x11 */ BCK_YKM_SB_TURNR,
     /* 0x12 */ BCK_YKM_SB_WAIT,
 
@@ -167,6 +167,39 @@ enum RES_Name {
     /* 0x4 */ YKM3,
 };
 
+enum Joint {
+    /* 0x00 */ JNT_CENTER,
+    /* 0x01 */ JNT_BB1,
+    /* 0x02 */ JNT_BB2,
+    /* 0x03 */ JNT_NECK,
+    /* 0x04 */ JNT_HEAD,
+    /* 0x05 */ JNT_CHIN,
+    /* 0x06 */ JNT_MAYUL,
+    /* 0x07 */ JNT_MAYUR,
+    /* 0x08 */ JNT_MOUTH,
+    /* 0x09 */ JNT_YKM_KURA,
+    /* 0x0A */ JNT_SHOULDERL,
+    /* 0x0B */ JNT_ARML1,
+    /* 0x0C */ JNT_ARML2,
+    /* 0x0D */ JNT_HANDL,
+    /* 0x0E */ JNT_FINGERL,
+    /* 0x0F */ JNT_THUMBL,
+    /* 0x10 */ JNT_SHOUDLERR,
+    /* 0x11 */ JNT_ARMR1,
+    /* 0x12 */ JNT_ARMR2,
+    /* 0x13 */ JNT_HANDR,
+    /* 0x14 */ JNT_FINGERR,
+    /* 0x15 */ JNT_THUMBR,
+    /* 0x16 */ JNT_WAIST,
+    /* 0x17 */ JNT_LEGL1,
+    /* 0x18 */ JNT_LEGL2,
+    /* 0x19 */ JNT_FOOTL,
+    /* 0x1A */ JNT_LEGR1,
+    /* 0x1B */ JNT_LEGR2,
+    /* 0x1C */ JNT_FOOTR,
+    /* 0x1D */ JNT_TAIL,
+};
+
 UNK_REL_DATA;
 
 /* 80B5DB08-80B5DB38 000020 0030+00 1/1 0/0 0/0 .data            l_bmdData */
@@ -222,77 +255,178 @@ static s8* l_loadResPtrnList[8] = {
 
 /* 80B5DBD4-80B5DD94 0000EC 01C0+00 0/1 0/0 0/0 .data            l_faceMotionAnmData */
 static daNpcT_faceMotionAnmData_c l_faceMotionAnmData[16] = {
-    {-1, 0, 0, BTP_YKM, 2, YKM, TRUE},
-    {BCK_YKM_F_TALK_A, 0, YKM, BTP_YKM, 2, YKM, TRUE},
-    {BCK_YKM_F_TALK_B, 0, YKM, BTP_YKM, 2, YKM, TRUE},
-    {BCK_YKM_F_TALK_C, 0, YKM, BTP_YKM, 2, YKM, TRUE},
-    {BCK_YKM_F_TALK_D, 0, YKM1, BTP_YKM, 2, YKM, TRUE},
-    {BCK_YKM_F_REGRET, 0, YKM, BTP_YKM_F_REGRET, 0, YKM, FALSE},
-    {BCK_YKM_F_LAUGH, 0, YKM, BTP_YKM_F_LAUGH, 0, YKM, FALSE},
-    {BCK_YKM_F_ASK, 0, YKM, BTP_YKM_F_ASK, 0, YKM, FALSE},
-    {BCK_YKM_FH_LAUGH, 2, YKM, BTP_YKM_FH_LAUGH, 2, YKM, FALSE},
-    {BCK_YKM_FH_REGRET, 2, YKM, BTP_YKM_FH_REGRET, 2, YKM, FALSE},
-    {BCK_YKM_F_TALK_X, 0, YKM1, BTP_YKM, 2, YKM, TRUE},
-    {BCK_YKM_F_TALK_Y, 0, YKM1, BTP_YKM, 2, YKM, TRUE},
-    {BCK_YKM_F_SHOUT, 0, YKM1, BTP_YKM, 2, YKM, TRUE},
-    {BCK_YKM_F_SHUT, 0, YKM1, BTP_YKM_F_SHUT, 0, YKM1, FALSE},
-    {BCK_YKM_F_HAPPY, 0, YKM1, BTP_YKM_F_HAPPY, 0, YKM1, FALSE},
-    {BCK_YKM_FH_HAPPY, 2, YKM1, BTP_YKM_FH_HAPPY, 2, YKM1, FALSE},
+    {-1, J3DFrameCtrl::EMode_NONE, 0, BTP_YKM, J3DFrameCtrl::EMode_LOOP, YKM, TRUE},
+    {BCK_YKM_F_TALK_A, J3DFrameCtrl::EMode_NONE, YKM, BTP_YKM, J3DFrameCtrl::EMode_LOOP, YKM, TRUE},
+    {BCK_YKM_F_TALK_B, J3DFrameCtrl::EMode_NONE, YKM, BTP_YKM, J3DFrameCtrl::EMode_LOOP, YKM, TRUE},
+    {BCK_YKM_F_TALK_C, J3DFrameCtrl::EMode_NONE, YKM, BTP_YKM, J3DFrameCtrl::EMode_LOOP, YKM, TRUE},
+    {BCK_YKM_F_TALK_D, J3DFrameCtrl::EMode_NONE, YKM1, BTP_YKM, J3DFrameCtrl::EMode_LOOP, YKM, TRUE},
+    {BCK_YKM_F_REGRET, J3DFrameCtrl::EMode_NONE, YKM, BTP_YKM_F_REGRET, J3DFrameCtrl::EMode_NONE, YKM, FALSE},
+    {BCK_YKM_F_LAUGH, J3DFrameCtrl::EMode_NONE, YKM, BTP_YKM_F_LAUGH, J3DFrameCtrl::EMode_NONE, YKM, FALSE},
+    {BCK_YKM_F_ASK, J3DFrameCtrl::EMode_NONE, YKM, BTP_YKM_F_ASK, J3DFrameCtrl::EMode_NONE, YKM, FALSE},
+    {BCK_YKM_FH_LAUGH, J3DFrameCtrl::EMode_LOOP, YKM, BTP_YKM_FH_LAUGH, J3DFrameCtrl::EMode_LOOP, YKM, FALSE},
+    {BCK_YKM_FH_REGRET, J3DFrameCtrl::EMode_LOOP, YKM, BTP_YKM_FH_REGRET, J3DFrameCtrl::EMode_LOOP, YKM, FALSE},
+    {BCK_YKM_F_TALK_X, J3DFrameCtrl::EMode_NONE, YKM1, BTP_YKM, J3DFrameCtrl::EMode_LOOP, YKM, TRUE},
+    {BCK_YKM_F_TALK_Y, J3DFrameCtrl::EMode_NONE, YKM1, BTP_YKM, J3DFrameCtrl::EMode_LOOP, YKM, TRUE},
+    {BCK_YKM_F_SHOUT, J3DFrameCtrl::EMode_NONE, YKM1, BTP_YKM, J3DFrameCtrl::EMode_LOOP, YKM, TRUE},
+    {BCK_YKM_F_SHUT, J3DFrameCtrl::EMode_NONE, YKM1, BTP_YKM_F_SHUT, J3DFrameCtrl::EMode_NONE, YKM1, FALSE},
+    {BCK_YKM_F_HAPPY, J3DFrameCtrl::EMode_NONE, YKM1, BTP_YKM_F_HAPPY, J3DFrameCtrl::EMode_NONE, YKM1, FALSE},
+    {BCK_YKM_FH_HAPPY, J3DFrameCtrl::EMode_LOOP, YKM1, BTP_YKM_FH_HAPPY, J3DFrameCtrl::EMode_LOOP, YKM1, FALSE},
 };
 
 /* 80B5DD94-80B5E328 0002AC 0594+00 0/1 0/0 0/0 .data            l_motionAnmData */
 static daNpcT_motionAnmData_c l_motionAnmData[51] = {
-    {0x12, 2, YKM, 0x19, 0, YKM, 1, 0},
-    {0x18, 2, YKM1, 0x2A, 0, YKM1, 0, 0},
-    {0x19, 2, YKM1, 0x19, 0, YKM, 1, 0},
-    {-1, 0, 0, -1, 0, 0, 0, 0},
-    {0x1A, 2, YKM1, 0x19, 0, YKM, 1, 0},
-    {0xE, 2, YKM, 0x19, 0, YKM, 1, 0},
-    {9, 2, YKM2, 0x19, 2, YKM2, 0, 0},
-    {0x10, 0, YKM, 0x19, 0, YKM, 1, 0},
-    {0x11, 0, YKM, 0x19, 0, YKM, 1, 0},
-    {0x16, 0, YKM1, 0x29, 0, YKM1, 0, 0},
-    {0x17, 0, YKM1, 0x19, 0, YKM, 1, 0},
-    {-1, 0, 0, -1, 0, 0, 0, 0},
-    {0x13, 0, YKM1, 0x19, 0, YKM, 1, 0},
-    {0x11, 0, YKM1, 0x28, 0, YKM1, 0, 0},
-    {0x12, 0, YKM1, 0x19, 0, YKM, 1, 0},
-    {8, 0, YKM2, 0x18, 0, YKM2, 0, 0},
-    {7, 0, YKM2, 0x19, 0, YKM, 1, 0},
-    {6, 0, YKM2, 0x19, 0, YKM, 1, 0},
-    {0x13, 2, YKM, 0x19, 0, YKM, 1, 0},
-    {0xF, 0, YKM, 0x19, 0, YKM, 1, 0},
-    {0x17, 2, YKM3, 0x19, 0, YKM, 1, 0},
-    {0xE, 0, YKM3, 0x1F, 0, 4, 0, 0},
-    {0x18, 2, YKM3, 0x25, 2, 4, 0, 0},
-    {0xF, 0, YKM3, 0x20, 0, 4, 0, 0},
-    {0x15, 0, YKM3, 0x19, 0, YKM, 1, 0},
-    {0x16, 0, YKM3, 0x19, 0, YKM, 1, 0},
-    {0x13, 0, YKM3, 0x23, 0, 4, 0, 0},
-    {0x14, 2, YKM3, 0x24, 2, 4, 0, 0},
-    {0x10, 0, YKM3, 0x19, 0, YKM, 1, 0},
-    {0xD, 0, YKM3, 0x19, 0, YKM, 1, 0},
-    {0x11, 0, YKM3, 0x21, 0, 4, 0, 0},
-    {0x12, 2, YKM3, 0x22, 2, 4, 0, 0},
-    {0x12, 2, YKM2, 0x19, 0, YKM, 1, 0},
-    {0xD, 0, YKM2, 0x19, 0, YKM, 1, 0},
-    {0xE, 2, YKM2, 0x19, 0, YKM, 1, 0},
-    {0xF, 0, YKM2, 0x19, 0, YKM, 1, 0},
-    {0x10, 2, YKM2, 0x19, 0, YKM, 1, 0},
-    {0x11, 2, YKM2, 0x19, 0, YKM, 1, 0},
-    {0xA, 0, YKM2, 0x1A, 0, YKM2, 0, 0},
-    {0xB, 0, YKM2, 0x19, 0, YKM, 1, 0},
-    {0xC, 2, YKM2, 0x19, 0, YKM, 1, 0},
-    {7, 0, YKM1, 0x19, 0, YKM, 1, 0},
-    {0x14, 2, YKM1, 0x19, 0, YKM, 1, 0},
-    {0x15, 0, YKM1, 0x19, 0, YKM, 1, 0},
-    {0x1D, 2, YKM1, 0x19, 0, YKM, 1, 0},
-    {0x1F, 0, YKM1, 0x19, 0, YKM, 1, 0},
-    {0x1E, 2, YKM1, 0x19, 0, YKM, 1, 3},
-    {0xF, 0, YKM1, 0x19, 0, YKM, 1, 0},
-    {0x1B, 2, YKM1, 0x19, 0, YKM, 1, 0},
-    {0x10, 0, YKM1, 0x19, 0, YKM, 1, 0},
-    {0x1C, 2, YKM1, 0x19, 0, YKM, 1, 0},
+    {BCK_YKM_WAIT_A, J3DFrameCtrl::EMode_LOOP, YKM, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_WAIT_B, J3DFrameCtrl::EMode_LOOP, YKM1, 
+        BTK_YKM_WAIT_B, J3DFrameCtrl::EMode_NONE, YKM1, 0, 0},
+
+    {BCK_YKM_WAIT_C, J3DFrameCtrl::EMode_LOOP, YKM1, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {-1, J3DFrameCtrl::EMode_NONE, 0, 
+        -1, J3DFrameCtrl::EMode_NONE, 0, 0, 0},
+
+    {BCK_YKM_WAIT_X, J3DFrameCtrl::EMode_LOOP, YKM1, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_FUNWAIT, J3DFrameCtrl::EMode_LOOP, YKM, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_REGRETWAIT, J3DFrameCtrl::EMode_LOOP, YKM2, 
+        BTK_YKM_REGRETWAIT, J3DFrameCtrl::EMode_LOOP, YKM2, 0, 0},
+
+    {BCK_YKM_TALK_B, J3DFrameCtrl::EMode_NONE, YKM, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_TALK_C, J3DFrameCtrl::EMode_NONE, YKM, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_TALK_D, J3DFrameCtrl::EMode_NONE, YKM1, 
+        BTK_YKM_TALK_D, J3DFrameCtrl::EMode_NONE, YKM1, 0, 0},
+
+    {BCK_YKM_TALK_E, J3DFrameCtrl::EMode_NONE, YKM1, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {-1, J3DFrameCtrl::EMode_NONE, 0, 
+        -1, J3DFrameCtrl::EMode_NONE, 0, 0, 0},
+
+    {BCK_YKM_PUSH, J3DFrameCtrl::EMode_NONE, YKM1, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_PICKUP, J3DFrameCtrl::EMode_NONE, YKM1, 
+        BTK_YKM_PICKUP, J3DFrameCtrl::EMode_NONE, YKM1, 0, 0},
+
+    {BCK_YKM_POUR, J3DFrameCtrl::EMode_NONE, YKM1, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_REGRET, J3DFrameCtrl::EMode_NONE, YKM2, 
+        BTK_YKM_REGRET, J3DFrameCtrl::EMode_NONE, YKM2, 0, 0},
+
+    {BCK_YKM_LAUGH, J3DFrameCtrl::EMode_NONE, YKM2, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_ASK, J3DFrameCtrl::EMode_NONE, YKM2, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_WALK, J3DFrameCtrl::EMode_LOOP, YKM, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_STEP, J3DFrameCtrl::EMode_NONE, YKM, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_FISH_WAIT_A, J3DFrameCtrl::EMode_LOOP, YKM3, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_FISH_ATTACK, J3DFrameCtrl::EMode_NONE, YKM3, 
+        BTK_YKM_FISH_ATTACK, J3DFrameCtrl::EMode_NONE, YKM3, 0, 0},
+
+    {BCK_YKM_FISH_WAIT_B, J3DFrameCtrl::EMode_LOOP, YKM3, 
+        BTK_YKM_FISH_WAIT_B, J3DFrameCtrl::EMode_LOOP, YKM3, 0, 0},
+
+    {BCK_YKM_FISH_JUMP, J3DFrameCtrl::EMode_NONE, YKM3, 
+        BTK_YKM_FISH_JUMP, J3DFrameCtrl::EMode_NONE, YKM3, 0, 0},
+
+    {BCK_YKM_FISH_TALK_B, J3DFrameCtrl::EMode_NONE, YKM3, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_FISH_TALK_C, J3DFrameCtrl::EMode_NONE, YKM3, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_FISH_REGRET, J3DFrameCtrl::EMode_NONE, YKM3, 
+        BTK_YKM_FISH_REGRET, J3DFrameCtrl::EMode_NONE, YKM3, 0, 0},
+
+    {BCK_YKM_FISH_REGRETWAIT, J3DFrameCtrl::EMode_LOOP, YKM3, 
+        BTK_YKM_FISH_REGRETWAIT, J3DFrameCtrl::EMode_LOOP, YKM3, 0, 0},
+
+    {BCK_YKM_FISH_LAUGH, J3DFrameCtrl::EMode_NONE, YKM3, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_FISH_ASK, J3DFrameCtrl::EMode_NONE, YKM3, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_FISH_LOOK, J3DFrameCtrl::EMode_NONE, YKM3, 
+        BTK_YKM_FISH_LOOK, J3DFrameCtrl::EMode_NONE, YKM3, 0, 0},
+
+    {BCK_YKM_FISH_LOOKWAIT, J3DFrameCtrl::EMode_LOOP, YKM3, 
+        BTK_YKM_FISH_LOOKWAIT, J3DFrameCtrl::EMode_LOOP, YKM3, 0, 0},
+
+    {BCK_YKM_SB_WAIT, J3DFrameCtrl::EMode_LOOP, YKM2, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_SB_JUMP_A, J3DFrameCtrl::EMode_NONE, YKM2, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_SB_JUMP_B, J3DFrameCtrl::EMode_LOOP, YKM2, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_SB_JUMP_C, J3DFrameCtrl::EMode_NONE, YKM2, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_SB_TURNL, J3DFrameCtrl::EMode_LOOP, YKM2, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_SB_TURNR, J3DFrameCtrl::EMode_LOOP, YKM2, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_SB_DAMAGE, J3DFrameCtrl::EMode_NONE, YKM2, 
+        BTK_YKM_SB_DAMAGE, J3DFrameCtrl::EMode_NONE, YKM2, 0, 0},
+
+    {BCK_YKM_SB_GOAL, J3DFrameCtrl::EMode_NONE, YKM2, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_SB_GOALWAIT, J3DFrameCtrl::EMode_LOOP, YKM2, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_DENY, J3DFrameCtrl::EMode_NONE, YKM1, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_RUN, J3DFrameCtrl::EMode_LOOP, YKM1, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_STOP, J3DFrameCtrl::EMode_NONE, YKM1, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_WAITLIE, J3DFrameCtrl::EMode_LOOP, YKM1, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_WAKE, J3DFrameCtrl::EMode_NONE, YKM1, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_WAITWAKE, J3DFrameCtrl::EMode_LOOP, YKM1, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 3},
+
+    {BCK_YKM_HOLD, J3DFrameCtrl::EMode_NONE, YKM1, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_WAITHOLD, J3DFrameCtrl::EMode_LOOP, YKM1, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_HOLD_B, J3DFrameCtrl::EMode_NONE, YKM1, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+
+    {BCK_YKM_WAITHOLD_B_B, J3DFrameCtrl::EMode_LOOP, YKM1, 
+        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
 };
 
 /* 80B5E328-80B5E428 000840 0100+00 0/1 0/0 0/0 .data            l_faceMotionSequenceData */
@@ -400,12 +534,12 @@ daNpc_ykM_c::~daNpc_ykM_c() {
         mpMorf[0]->stopZelAnime();
     }
 
-    if (field_0xe40 != NULL) {
-        field_0xe40->stopZelAnime();
+    if (mFishModelMorf != NULL) {
+        mFishModelMorf->stopZelAnime();
     }
 
-    if (field_0xe44 != NULL) {
-        field_0xe44->stopZelAnime();
+    if (mLeafModelMorf != NULL) {
+        mLeafModelMorf->stopZelAnime();
     }
 
     deleteRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
@@ -414,7 +548,7 @@ daNpc_ykM_c::~daNpc_ykM_c() {
         mDoAud_subBgmStop();
     }
 
-    daNpcT_offTmpBit(0x54);
+    daNpcT_offTmpBit(0x54); // dSv_event_tmp_flag_c::T_0084 - Snowpeak mountain - Racing with Yeto
 }
 
 /* 80B5D794-80B5D85C 000000 00C8+00 23/23 0/0 0/0 .rodata          m__17daNpc_ykM_Param_c */
@@ -572,15 +706,15 @@ int daNpc_ykM_c::CreateHeap() {
 
     static int const bmdTypeList[3] = {1, 2, 3};
     switch (mType) {
-        case 1:
+        case TYPE_COOK:
             for (int i = 0; i < 3; i++) {
                 if (l_bmdData[bmdTypeList[i]][0] >= 0) {
-                    mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[bmdTypeList[i]][1]], 
-                                                                    l_bmdData[bmdTypeList[i]][0]);
+                    mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[bmdTypeList[i]][1]], l_bmdData[bmdTypeList[i]][0]);
                 } else {
                     mdlData_p = NULL;
                 }
 
+                // field_0xe4c holds a Pumpkin, Leaf, and Cheese model (in that order)
                 if (mdlData_p != NULL) {
                     field_0xe4c[i] = mDoExt_J3DModel__create(mdlData_p, 0x80000, 0x11000084);
                 } else {
@@ -589,27 +723,29 @@ int daNpc_ykM_c::CreateHeap() {
             }
             break;
 
-        case 2:
+        case TYPE_2:
             mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[4][1]], l_bmdData[4][0]);
+
             JUT_ASSERT(1595, 0 != mdlData_p);
-            field_0xe40 = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1,
+
+            mFishModelMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1,
                                                NULL, 0x80000, 0x11000084);
-            if (field_0xe40 == NULL || field_0xe40->getModel() == NULL) {
+            if (mFishModelMorf == NULL || mFishModelMorf->getModel() == NULL) {
                 return 0;
             }
 
             mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[5][1]], l_bmdData[5][0]);
+
             JUT_ASSERT(1622, 0 != mdlData_p);
-            field_0xe44 = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1,
+
+            mLeafModelMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1,
                                                NULL, 0x80000, 0x11000084);
-            if (field_0xe44 == NULL || field_0xe44->getModel() == NULL) {
+            if (mLeafModelMorf == NULL || mLeafModelMorf->getModel() == NULL) {
                 return 0;
             }
+            setLeafAnm(ANM_LEAF_WAIT_A, 0.0f);
 
-            setLeafAnm(0, 0.0f);
-
-            mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[bmdTypeList[1]][1]],
-                                                            l_bmdData[bmdTypeList[1]][0]);
+            mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[bmdTypeList[1]][1]], l_bmdData[bmdTypeList[1]][0]);
             if (mdlData_p != NULL) {
                 field_0xe4c[1] = mDoExt_J3DModel__create(mdlData_p, 0x80000, 0x11000084);
             } else {
@@ -617,12 +753,11 @@ int daNpc_ykM_c::CreateHeap() {
             }
             break;
 
-        case 3:
+        case TYPE_3:
             break;
 
-        case 4:
-            mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[bmdTypeList[1]][1]],
-                                                            l_bmdData[bmdTypeList[1]][0]);
+        case TYPE_4:
+            mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[bmdTypeList[1]][1]], l_bmdData[bmdTypeList[1]][0]);
             if (mdlData_p != NULL) {
                 field_0xe4c[1] = mDoExt_J3DModel__create(mdlData_p, 0x80000, 0x11000084);
             } else {
@@ -808,53 +943,53 @@ fopAc_ac_c* daNpc_ykM_c::getOtherYkwP(int param_1) {
 u8 daNpc_ykM_c::getType() {
     switch (fopAcM_GetParam(this) & 0xFF) {
         case 0:
-            return 0;
+            return TYPE_0;
 
         case 1:
-            return 1;
+            return TYPE_COOK;
 
         case 2:
-            return 2;
+            return TYPE_2;
 
         case 3:
-            return 3;
+            return TYPE_3;
 
         case 4:
-            return 4;
+            return TYPE_4;
 
         case 5:
-            return 5;
+            return TYPE_5;
 
         case 6:
-            return 6;
+            return TYPE_6;
 
         default:
-            return 7;
+            return TYPE_7;
     }
 }
 
 /* 80B54808-80B548A8 001408 00A0+00 2/1 0/0 0/0 .text            isDelete__11daNpc_ykM_cFv */
 BOOL daNpc_ykM_c::isDelete() {
     switch (mType) {
-        case 0:
+        case TYPE_0:
             return FALSE;
 
-        case 1:
+        case TYPE_COOK:
             return dComIfGs_isDungeonItemBossKey();
 
-        case 2:
-            return daNpcT_chkEvtBit(0x134);
+        case TYPE_2:
+            return daNpcT_chkEvtBit(0x134); // dSv_event_flag_c::F_0308 - Snowpeak mountain - Watched first meeting event with Yeto at top of mountain (human)
 
-        case 3:
+        case TYPE_3:
             return dComIfGs_isStageBossEnemy();
 
-        case 4:
+        case TYPE_4:
             return FALSE;
 
-        case 5:
+        case TYPE_5:
             return FALSE;
 
-        case 6:
+        case TYPE_6:
             return FALSE;
 
         default:
@@ -866,7 +1001,7 @@ BOOL daNpc_ykM_c::isDelete() {
 void daNpc_ykM_c::reset() {
     // NONMATCHING
     csXyz angle;
-    int iVar1 = (u8*)&field_0x1588 - (u8*)&field_0x14e4;
+    int iVar1 = (u8*)&field_0x1588 - (u8*)&mpNextAction;
 
     if (mpMatAnm[0] != NULL) {
         mpMatAnm[0]->initialize();
@@ -876,14 +1011,14 @@ void daNpc_ykM_c::reset() {
         mActorMngr[i].initialize();
     }
 
-    memset(&field_0x14e4, 0, iVar1);
+    memset(&mpNextAction, 0, iVar1);
     
     if (getPathID() != 0xFF) {
         mPath.initialize();
         mPath.setPathInfo(getPathID(), fopAcM_GetRoomNo(this), 0);
 
         mRoomPath = NULL;
-        if (mType == 4 && mPath.chkNextId()) {
+        if (mType == TYPE_4 && mPath.chkNextId()) {
             dPath* path = mPath.getPathInfo();
             mRoomPath = dPath_GetRoomPath(path->m_nextID, fopAcM_GetRoomNo(this));
         }
@@ -893,37 +1028,37 @@ void daNpc_ykM_c::reset() {
     angle.y = home.angle.y;
 
     switch (mType) {
-        case 2:
+        case TYPE_2:
             field_0x1568 = -20.0f;
             field_0x1579 = 1;
             eventInfo.setIdx(0);
             break;
 
-        case 3:
+        case TYPE_3:
             mHide = true;
             fopAcM_OnStatus(this, fopAcM_STATUS_UNK_80000000);
             break;
 
-        case 4:
+        case TYPE_4:
             eventInfo.setIdx(0);
             break;
 
-        case 5:
+        case TYPE_5:
             mHide = true;
             fopAcM_OnStatus(this, fopAcM_STATUS_UNK_80000000);
             eventInfo.setIdx(1);
             break;
 
-        case 6:
+        case TYPE_6:
             mHide = true;
             fopAcM_OnStatus(this, fopAcM_STATUS_UNK_80000000);
             eventInfo.setIdx(2);
             break;
     }
 
-    daNpcT_offTmpBit(0x53);
-    daNpcT_offTmpBit(0x54);
-    daNpcT_offTmpBit(0x55);
+    daNpcT_offTmpBit(0x53); // dSv_event_tmp_flag_c::T_0083 - LV5 Dungeon - Speak with Yeta at top of mountain as wolf after clearing Snowpeak Ruins
+    daNpcT_offTmpBit(0x54); // dSv_event_tmp_flag_c::T_0084 - Snowpeak mountain - Racing with Yeto
+    daNpcT_offTmpBit(0x55); // dSv_event_tmp_flag_c::T_0085 - Snowpeak mountain - Racing with Yeta
     setAngle(angle);
 }
 
@@ -943,7 +1078,7 @@ void daNpc_ykM_c::setParam() {
     selectAction();
     srchActors();
 
-    if (mType != 5 && mType != 6) {
+    if (mType != TYPE_5 && mType != TYPE_6) {
         u32 uVar1 = 10;
         dComIfGp_getAttention()->getDistTable(71).mDistMax = daNpc_ykM_Param_c::m.attention_dist;
         dComIfGp_getAttention()->getDistTable(71).mDistMaxRelease = daNpc_ykM_Param_c::m.attention_dist;
@@ -951,8 +1086,8 @@ void daNpc_ykM_c::setParam() {
         dComIfGp_getAttention()->getDistTable(70).mDistMaxRelease = daNpc_ykM_Param_c::m.conversation_dist;
         u32 uVar2 = 4;
 
-        if (mType == 1 || mType == 2) {
-            if (mType == 1) {
+        if (mType == TYPE_COOK || mType == TYPE_2) {
+            if (mType == TYPE_COOK) {
                 dComIfGp_getAttention()->getDistTable(71).mDistMax = 350.0f;
                 dComIfGp_getAttention()->getDistTable(71).mDistMaxRelease = 350.0f;
                 dComIfGp_getAttention()->getDistTable(70).mDistMax = 350.0f;
@@ -960,7 +1095,7 @@ void daNpc_ykM_c::setParam() {
             }
 
             uVar2 |= 0x80;
-        } else if (mType == 4) {
+        } else if (mType == TYPE_4) {
             dComIfGp_getAttention()->getDistTable(71).mDistMax = 800.0f;
             dComIfGp_getAttention()->getDistTable(71).mDistMaxRelease = 900.0f;
             dComIfGp_getAttention()->getDistTable(70).mDistMax = 600.0f;
@@ -997,7 +1132,7 @@ void daNpc_ykM_c::setParam() {
         fopAcM_OffStatus(this, fopAcM_STATUS_UNK_000100);
     }
 
-    if (mType == 3) {
+    if (mType == TYPE_3) {
         fopAcM_OffStatus(this, fopAcM_STATUS_UNK_000100);
         mRealShadowSize = 1800.0f;
     }
@@ -1017,7 +1152,7 @@ BOOL daNpc_ykM_c::checkChangeEvt() {
 
         if (dComIfGp_event_chkTalkXY()) {
             if (dComIfGp_evmng_ChkPresentEnd()) {
-                mEvtNo = 1;
+                mEvtNo = EVENT_NO_RESPONSE;
                 evtChange();
             }
 
@@ -1025,41 +1160,43 @@ BOOL daNpc_ykM_c::checkChangeEvt() {
         }
 
         switch (mType) {
-            case 0:
+            case TYPE_0:
                 break;
 
-            case 1:
-                if (!daNpcT_chkEvtBit(4) && checkItemGet(fpcNm_ITEM_TASTE, 1) != 0) {
-                    mEvtNo = 5;
+            case TYPE_COOK:
+                if (!daNpcT_chkEvtBit(4) /* dSv_event_flag_c::TEST_004 - Snowpeak Ruins - Handed over secret ingredient */
+                    && checkItemGet(fpcNm_ITEM_TASTE, 1) != 0) {
+                    mEvtNo = EVENT_GET_TASTE;
                     evtChange();
                     return TRUE;
                 }
 
-                if (!daNpcT_chkEvtBit(3) && checkItemGet(fpcNm_ITEM_TOMATO_PUREE, 1) != 0) {
-                    mEvtNo = 4;
+                if (!daNpcT_chkEvtBit(3) /* dSv_event_flag_c::TEST_003 - Snowpeak Ruins - Handed over tomato puree */ 
+                    && checkItemGet(fpcNm_ITEM_TOMATO_PUREE, 1) != 0) {
+                    mEvtNo = EVENT_GET_TOMATOPUREE;
                     evtChange();
                     return TRUE;
                 }
                 break;
 
-            case 2:
+            case TYPE_2:
                 break;
 
-            case 3:
-                mEvtNo = 9;
+            case TYPE_3:
+                mEvtNo = EVENT_HUG;
                 evtChange();
                 return TRUE;
 
-            case 4:
+            case TYPE_4:
                 if (daPy_py_c::checkNowWolf()) {
-                    mEvtNo = 6;
+                    mEvtNo = EVENT_FIND_WOLF;
                     evtChange();
                     return TRUE;
                 }
                 break;
 
-            case 5:
-            case 6:
+            case TYPE_5:
+            case TYPE_6:
                 break;
         }
     }
@@ -1069,20 +1206,19 @@ BOOL daNpc_ykM_c::checkChangeEvt() {
 
 /* 80B55004-80B550A4 001C04 00A0+00 1/0 0/0 0/0 .text            setAfterTalkMotion__11daNpc_ykM_cFv */
 void daNpc_ykM_c::setAfterTalkMotion() {
-    int i_index = 15;
-    int iVar2 = mFaceMotionSeqMngr.getNo();
+    int i_index = FACE_NONE;
 
-    switch (iVar2) {
-        case 4:
-            i_index = 13;
+    switch (mFaceMotionSeqMngr.getNo()) {
+        case FACE_REGRET:
+            i_index = FACE_H_REGRET;
             break;
 
-        case 5:
-            i_index = 14;
+        case FACE_LAUGH:
+            i_index = FACE_H_LAUGH;
             break;
 
-        case 10:
-            i_index = 11;
+        case FACE_HAPPY:
+            i_index = FACE_H_HAPPY;
             break;
     }
 
@@ -1092,7 +1228,7 @@ void daNpc_ykM_c::setAfterTalkMotion() {
 /* 80B550A4-80B55254 001CA4 01B0+00 1/1 0/0 0/0 .text            srchActors__11daNpc_ykM_cFv */
 void daNpc_ykM_c::srchActors() {
     switch (mType) {
-        case 1:
+        case TYPE_COOK:
             if (mActorMngr[6].getActorP() == NULL) {
                 mActorMngr[6].entry(getEvtAreaTagP(14, 0));
             }
@@ -1106,19 +1242,19 @@ void daNpc_ykM_c::srchActors() {
             }
             break;
 
-        case 2:
+        case TYPE_2:
             if (mActorMngr[6].getActorP() == NULL) {
                 mActorMngr[6].entry(getEvtAreaTagP(14, 0));
             }
             break;
 
-        case 3:
+        case TYPE_3:
             if (mActorMngr[5].getActorP() == NULL) {
-                mActorMngr[5].entry(getNearestActorP(0x27C));
+                mActorMngr[5].entry(getNearestActorP(PROC_NPC_YKW));
             }
             break;
 
-        case 4:
+        case TYPE_4:
             if (mActorMngr[6].getActorP() == NULL) {
                 mActorMngr[6].entry(getEvtAreaTagP(14, 1));
             }
@@ -1132,8 +1268,8 @@ void daNpc_ykM_c::srchActors() {
             }
             break;
 
-        case 5:
-        case 6:
+        case TYPE_5:
+        case TYPE_6:
             break;
     }
 }
@@ -1141,7 +1277,7 @@ void daNpc_ykM_c::srchActors() {
 /* 80B55254-80B552F4 001E54 00A0+00 1/0 0/0 0/0 .text            evtTalk__11daNpc_ykM_cFv */
 BOOL daNpc_ykM_c::evtTalk() {
     if (chkAction(&daNpc_ykM_c::talk)) {
-        (this->*field_0x14f0)(NULL);
+        (this->*mpAction)(NULL);
     } else {
         setAction(&daNpc_ykM_c::talk);
     }
@@ -1182,7 +1318,7 @@ void daNpc_ykM_c::action() {
 
     if (actor != NULL && field_0x157b != 0) {
         mStagger.setParam(this, actor, mCurAngle.y);
-        mMotionSeqMngr.setNo(0x28, 0.0f, 0, 0);
+        mMotionSeqMngr.setNo(MOTION_SB_DAMAGE, 0.0f, 0, 0);
 
         mDamageTimer = mCutType == 8 ? 20 : 8;
         mDamageTimerStart = 0;
@@ -1198,11 +1334,11 @@ void daNpc_ykM_c::action() {
         mMode = 1;
     }
 
-    if (field_0x14e4) {
-        if (field_0x14f0 == field_0x14e4) {
-            (this->*field_0x14f0)(NULL);
+    if (mpNextAction) {
+        if (mpAction == mpNextAction) {
+            (this->*mpAction)(NULL);
         } else {
-            setAction(field_0x14e4);
+            setAction(mpNextAction);
         }
     }
 
@@ -1281,7 +1417,7 @@ void daNpc_ykM_c::setAttnPos() {
     cXyz sp110(80.0f, 0.0f, 0.0f);
 
     if (field_0x157b != 0) {
-        if (mStagger.checkStagger() && (mMotionSeqMngr.getNo() != 0x28 || mMotionSeqMngr.checkEndSequence())) {
+        if (mStagger.checkStagger() && (mMotionSeqMngr.getNo() != MOTION_SB_DAMAGE || mMotionSeqMngr.checkEndSequence())) {
             mStagger.setRebirth();
         }
     } else {
@@ -1301,7 +1437,7 @@ void daNpc_ykM_c::setAttnPos() {
     mJntAnm.setParam(this, model, &sp104, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(), fVar9, fVar8, fVar7, fVar6, fVar5, fVar4, fVar3, 
                      fVar2, daNpc_ykM_Param_c::m.common.neck_rotation_ratio, fVar1, &sp110);
     
-    if (mJntAnm.getMode() == 8) {
+    if (mJntAnm.getMode() == daNpcT_JntAnm_c::LOOK_MODE_8) {
         mJntAnm.calcJntRad(0.1f, 1.0f, fVar1);
     } else {
         mJntAnm.calcJntRad(0.2f, 1.0f, fVar1);
@@ -1327,32 +1463,32 @@ void daNpc_ykM_c::setAttnPos() {
 
     mpMorf[0]->modelCalc();
 
-    if (field_0xe40 != NULL) {
+    if (mFishModelMorf != NULL) {
         cXyz sp128;
-        field_0xe40->play(0, 0);
-        mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(0x14));
+        mFishModelMorf->play(0, 0);
+        mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(JNT_FINGERR));
         mDoMtx_stack_c::multVecZero(&sp128);
 
         Mtx mtx;
         MTXCopy(mDoMtx_stack_c::get(), mtx);
-        field_0xe40->getModel()->setBaseTRMtx(mtx);
-        field_0xe40->modelCalc();
+        mFishModelMorf->getModel()->setBaseTRMtx(mtx);
+        mFishModelMorf->modelCalc();
 
         if (field_0x1579 != 0) {
             mDoAud_seStartLevel(Z2SE_YM_FISH, &sp128, 0, 0);
         }
     }
 
-    if (field_0xe44 != NULL) {
-        field_0xe44->play(0, 0);
+    if (mLeafModelMorf != NULL) {
+        mLeafModelMorf->play(0, 0);
 
         fopAc_ac_c* otherYkmP = getOtherYkmP(5);
         if (otherYkmP != NULL) {
             mDoMtx_stack_c::transS(otherYkmP->current.pos);
             mDoMtx_stack_c::ZXYrotM(otherYkmP->shape_angle);
             mDoMtx_stack_c::scaleM(otherYkmP->scale);
-            field_0xe44->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
-            field_0xe44->modelCalc();
+            mLeafModelMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+            mLeafModelMorf->modelCalc();
         }
     }
 
@@ -1367,7 +1503,7 @@ void daNpc_ykM_c::setAttnPos() {
 
     if (field_0x1581 != 0) {
         sp104.set(55.0f, 440.0f, 55.0f);
-    } else if (mType == 1) {
+    } else if (mType == TYPE_COOK) {
         sp104.set(0.0f, 480.0f, 50.0f);
     }
 
@@ -1402,7 +1538,7 @@ void daNpc_ykM_c::setCollision() {
             }
         }
 
-        int iVar1[4] = {2, 13, 19, 29};
+        int jointNo[4] = {JNT_BB2, JNT_HANDL, JNT_HANDR, JNT_TAIL};
         f32 fVar1[4] = {140.0f, 60.0f, 60.0f, 140.0f};
         for (int i = 0; i < 4; i++) {
             field_0xf94[i].SetCoSPrm(0x79);
@@ -1412,9 +1548,9 @@ void daNpc_ykM_c::setCollision() {
             field_0xf94[i].SetAtSPrm(atSPrm);
             field_0xf94[i].OnTgNoHitMark();
 
-            mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(iVar1[i]));
+            mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(jointNo[i]));
 
-            if (iVar1[i] == 29) {
+            if (jointNo[i] == 29) {
                 sp28.set(170.0f, 0.0f, 0.0f);
                 mDoMtx_stack_c::multVec(&sp28, &sp28);
             } else {
@@ -1435,7 +1571,7 @@ void daNpc_ykM_c::setCollision() {
         field_0xe58.SetH(mCylH);
         field_0xe58.SetR(mWallR);
 
-        mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(0));
+        mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(JNT_CENTER));
         mDoMtx_stack_c::multVecZero(&sp28);
         sp28.y = current.pos.y;
         field_0xe58.SetC(sp28);
@@ -1467,33 +1603,33 @@ int daNpc_ykM_c::drawDbgInfo() {
 void daNpc_ykM_c::drawOtherMdl() {
     J3DModel* model = mpMorf[0]->getModel();
 
-    if (field_0xe40 != NULL) {
-        g_env_light.setLightTevColorType_MAJI(field_0xe40->getModel(), &tevStr);
+    if (mFishModelMorf != NULL) {
+        g_env_light.setLightTevColorType_MAJI(mFishModelMorf->getModel(), &tevStr);
 
         if (field_0x1579 == 0) {
-            field_0xe40->getModel()->getModelData()->hide();
+            mFishModelMorf->getModel()->getModelData()->hide();
         } else {
-            field_0xe40->getModel()->getModelData()->show();
+            mFishModelMorf->getModel()->getModelData()->show();
         }
 
-        field_0xe40->entryDL();
-        dComIfGd_addRealShadow(mShadowKey, field_0xe40->getModel());
+        mFishModelMorf->entryDL();
+        dComIfGd_addRealShadow(mShadowKey, mFishModelMorf->getModel());
     }
 
-    if (field_0xe44 != NULL) {
-        g_env_light.setLightTevColorType_MAJI(field_0xe44->getModel(), &tevStr);
+    if (mLeafModelMorf != NULL) {
+        g_env_light.setLightTevColorType_MAJI(mLeafModelMorf->getModel(), &tevStr);
 
         if (field_0x1576 != 0) {
-            field_0xe44->getModel()->getModelData()->hide();
+            mLeafModelMorf->getModel()->getModelData()->hide();
         } else {
-            field_0xe44->getModel()->getModelData()->show();
+            mLeafModelMorf->getModel()->getModelData()->show();
         }
 
-        field_0xe44->entryDL();
+        mLeafModelMorf->entryDL();
     }
 
     static int const jointNo[3] = {
-        0x14, 0x1C, 0x14,
+        JNT_FINGERR, JNT_FOOTR, JNT_FINGERR,
     };
     for (int i = 0; i < 3; i++) {
         if (field_0xe4c[i] != NULL && ((i == 0 && field_0x1577 != 0) || (i == 2 && field_0x1578 != 0) || (i == 1 && field_0x1576 != 0))) {
@@ -1545,13 +1681,13 @@ bool daNpc_ykM_c::setFishAnm(int i_index, int i_attr, f32 i_morf) {
 
     J3DAnmTransform* anmTransform = NULL;
 
-    if (field_0xe40 != NULL) {
+    if (mFishModelMorf != NULL) {
         if (fishAnmData[i_index].resIdx > 0) {
             anmTransform = getTrnsfrmKeyAnmP(l_resNameList[fishAnmData[i_index].arcIdx], fishAnmData[i_index].resIdx);
         }
 
         if (anmTransform != NULL) {
-            field_0xe40->setAnm(anmTransform, i_attr, i_morf, 1.0f, 0.0f, -1.0f);
+            mFishModelMorf->setAnm(anmTransform, i_attr, i_morf, 1.0f, 0.0f, -1.0f);
         }
     }
 
@@ -1565,20 +1701,20 @@ bool daNpc_ykM_c::setLeafAnm(int i_index, f32 i_morf) {
         int attr;
         int arcIdx;
     } leafAnmData[3] = {
-        {BCK_LEAF_WAIT_A, 2, YKM3},
-        {BCK_LEAF_FALL, 0, YKM3},
-        {BCK_LEAF_WAIT_B, 2, YKM3},
+        {BCK_LEAF_WAIT_A, J3DFrameCtrl::EMode_LOOP, YKM3},
+        {BCK_LEAF_FALL, J3DFrameCtrl::EMode_NONE, YKM3},
+        {BCK_LEAF_WAIT_B, J3DFrameCtrl::EMode_LOOP, YKM3},
     };
 
     J3DAnmTransform* anmTransform = NULL;
 
-    if (field_0xe44 != NULL) {
+    if (mLeafModelMorf != NULL) {
         if (leafAnmData[i_index].resIdx > 0) {
             anmTransform = getTrnsfrmKeyAnmP(l_resNameList[leafAnmData[i_index].arcIdx], leafAnmData[i_index].resIdx);
         }
 
         if (anmTransform != NULL) {
-            field_0xe44->setAnm(anmTransform, leafAnmData[i_index].attr, i_morf, 1.0f, 0.0f, -1.0f);
+            mLeafModelMorf->setAnm(anmTransform, leafAnmData[i_index].attr, i_morf, 1.0f, 0.0f, -1.0f);
         }
     }
 
@@ -1602,35 +1738,35 @@ bool daNpc_ykM_c::afterSetMotionAnm(int i_index, int i_attr, f32 i_morf, int par
 
 /* 80B5680C-80B56954 00340C 0148+00 1/1 0/0 0/0 .text            selectAction__11daNpc_ykM_cFv */
 int daNpc_ykM_c::selectAction() {
-    field_0x14e4 = NULL;
+    mpNextAction = NULL;
 
     switch (mType) {
-        case 1:
-            field_0x14e4 = &daNpc_ykM_c::cook;
+        case TYPE_COOK:
+            mpNextAction = &daNpc_ykM_c::cook;
             break;
 
-        case 2:
+        case TYPE_2:
             if (field_0x157b != 0) {
-                field_0x14e4 = &daNpc_ykM_c::race;
+                mpNextAction = &daNpc_ykM_c::race;
                 mAcch.SetWallNone();
             } else {
-                field_0x14e4 = &daNpc_ykM_c::wait;
+                mpNextAction = &daNpc_ykM_c::wait;
                 mAcch.ClrWallNone();
             }
             break;
 
-        case 4:
+        case TYPE_4:
             if (field_0x157b != 0) {
-                field_0x14e4 = &daNpc_ykM_c::race;
+                mpNextAction = &daNpc_ykM_c::race;
                 mAcch.SetWallNone();
             } else {
-                field_0x14e4 = &daNpc_ykM_c::wait;
+                mpNextAction = &daNpc_ykM_c::wait;
                 mAcch.ClrWallNone();
             }
             break;
 
         default:
-            field_0x14e4 = &daNpc_ykM_c::wait;
+            mpNextAction = &daNpc_ykM_c::wait;
             break;
     }
 
@@ -1639,22 +1775,22 @@ int daNpc_ykM_c::selectAction() {
 
 /* 80B56954-80B56980 003554 002C+00 2/2 0/0 0/0 .text            chkAction__11daNpc_ykM_cFM11daNpc_ykM_cFPCvPvPv_i */
 BOOL daNpc_ykM_c::chkAction(ActionFn action) {
-    return field_0x14f0 == action;
+    return mpAction == action;
 }
 
 /* 80B56980-80B56A28 003580 00A8+00 2/2 0/0 0/0 .text            setAction__11daNpc_ykM_cFM11daNpc_ykM_cFPCvPvPv_i */
 int daNpc_ykM_c::setAction(ActionFn action) {
     mMode = 3;
 
-    if (field_0x14f0) {
-        (this->*field_0x14f0)(NULL);
+    if (mpAction) {
+        (this->*mpAction)(NULL);
     }
 
     mMode = 0;
-    field_0x14f0 = action;
+    mpAction = action;
 
-    if (field_0x14f0) {
-        (this->*field_0x14f0)(NULL);
+    if (mpAction) {
+        (this->*mpAction)(NULL);
     }
 
     return 1;
@@ -1662,12 +1798,14 @@ int daNpc_ykM_c::setAction(ActionFn action) {
 
 /* 80B56A28-80B56AB4 003628 008C+00 2/2 0/0 0/0 .text chkContinueAttnPlayer__11daNpc_ykM_cFv */
 BOOL daNpc_ykM_c::chkContinueAttnPlayer() {
-    if (mType == 1 && daNpcT_chkEvtBit(0xB)) {
-        if (daNpcT_chkEvtBit(4) && daNpcT_chkEvtBit(8)) {
+    if (mType == TYPE_COOK && daNpcT_chkEvtBit(0xB) /* dSv_event_flag_c::F_0007 - Snowpeak Ruins - Spoke to Yeta while holding cheese */) {
+        if (daNpcT_chkEvtBit(4) /* dSv_event_flag_c::TEST_004 - Snowpeak Ruins - Handed over secret ingredient */
+            && daNpcT_chkEvtBit(8) /* dSv_event_flag_c::F_0004 - Snowpeak Ruins - Handed over secret ingredient and left room */) {
             return TRUE;
         }
 
-        if (daNpcT_chkEvtBit(3) && daNpcT_chkEvtBit(7)) {
+        if (daNpcT_chkEvtBit(3) /* dSv_event_flag_c::TEST_003 - Snowpeak Ruins - Handed over tomato puree */
+            && daNpcT_chkEvtBit(7) /* dSv_event_flag_c::F_0003 - Snowpeak Ruins - Handed over tomato puree and left room */) {
             return TRUE;
         }
     }
@@ -1733,8 +1871,8 @@ int daNpc_ykM_c::cutSlideDown(int i_cutIndex) {
                 break;
 
             case 1:
-                mFaceMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(0x29, -1.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOTION_FISH_WAIT_A_2, -1.0f, FALSE, 0);
                 work.set(400.0f, 500.0f, -200.0f);
                 angle.y = mCurAngle.y;
                 mDoMtx_stack_c::YrotS(angle.y);
@@ -1765,16 +1903,16 @@ int daNpc_ykM_c::cutSlideDown(int i_cutIndex) {
                 break;
 
             case 3:
-                mMotionSeqMngr.setNo(0x2A, 0.0f, TRUE, 0);
+                mMotionSeqMngr.setNo(MOTION_FISH_ATTACK, 0.0f, TRUE, 0);
                 mJntAnm.lookNone(1);
                 break;
 
             case 4:
-                setLeafAnm(1, 0.0f);
+                setLeafAnm(ANM_LEAF_FALL, 0.0f);
                 break;
 
             case 5:
-                mMotionSeqMngr.setNo(0x2B, 0.0f, TRUE, 0);
+                mMotionSeqMngr.setNo(MOTION_FISH_JUMP, 0.0f, TRUE, 0);
                 actor_p = getOtherYkmP(5);
                 
                 JUT_ASSERT(3475, 0 != actor_p);
@@ -1782,7 +1920,7 @@ int daNpc_ykM_c::cutSlideDown(int i_cutIndex) {
                 setPos(actor_p->current.pos);
                 setAngle(actor_p->shape_angle.y);
                 field_0x1568 = 0.0f;
-                setLeafAnm(2, 0.0f);
+                setLeafAnm(ANM_LEAF_WAIT_B, 0.0f);
                 mSound.startCreatureVoice(Z2SE_YKM_V_JUMP_TO_LEAF, -1);
                 break;
 
@@ -1832,7 +1970,7 @@ int daNpc_ykM_c::cutSlideDown(int i_cutIndex) {
         case 4:
             mJntAnm.lookNone(0);
 
-            if (field_0xe44->isStop()) {
+            if (mLeafModelMorf->isStop()) {
                 actor_p = getOtherYkmP(5);
 
                 JUT_ASSERT(3565, 0 != actor_p);
@@ -1844,7 +1982,7 @@ int daNpc_ykM_c::cutSlideDown(int i_cutIndex) {
             } else {
                 actor_p = getOtherYkmP(5);
 
-                if (actor_p != NULL && field_0xe44->checkFrame(22.0f)) {
+                if (actor_p != NULL && mLeafModelMorf->checkFrame(22.0f)) {
                     mDoAud_seStart(Z2SE_OBJ_LEAF_FALL_DOWN, &actor_p->current.pos, 0, 0);
                 }
             }
@@ -1898,9 +2036,9 @@ int daNpc_ykM_c::cutMeetingAgain(int i_cutIndex) {
     if (eventManager->getIsAddvance(i_cutIndex)) {
         switch (prm) {
             case 0:
-                daNpcT_offTmpBit(0xB);
-                daNpcT_offTmpBit(0xC);
-                daNpcT_offTmpBit(0xD);
+                daNpcT_offTmpBit(0xB); // General use - General use temporary flag (flow control) A
+                daNpcT_offTmpBit(0xC); // General use - General use temporary flag (flow control) B
+                daNpcT_offTmpBit(0xD); // General use - General use temporary flag (flow control) C
                 initTalk(mFlowNodeNo, NULL);
                 break;
 
@@ -1992,9 +2130,9 @@ int daNpc_ykM_c::cutGetTomatoPuree(int i_cutIndex) {
         switch (prm) {
             case 0:
                 mJntAnm.lookNone(0);
-                daNpcT_offTmpBit(0xB);
-                daNpcT_offTmpBit(0xC);
-                daNpcT_offTmpBit(0xD);
+                daNpcT_offTmpBit(0xB); // General use - General use temporary flag (flow control) A
+                daNpcT_offTmpBit(0xC); // General use - General use temporary flag (flow control) B
+                daNpcT_offTmpBit(0xD); // General use - General use temporary flag (flow control) C
                 initTalk(mFlowNodeNo, NULL);
                 break;
 
@@ -2011,14 +2149,14 @@ int daNpc_ykM_c::cutGetTomatoPuree(int i_cutIndex) {
                 break;
 
             case 4:
-                mFaceMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(6, 0.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOTION_PUSH, 0.0f, FALSE, 0);
                 mEventTimer = timer;
                 break;
 
             case 5:
-                mFaceMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(8, -1.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOTION_PICKUP, -1.0f, FALSE, 0);
                 break;
 
             case 6:
@@ -2026,8 +2164,8 @@ int daNpc_ykM_c::cutGetTomatoPuree(int i_cutIndex) {
                 break;
 
             case 7:
-                mFaceMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(0x1F, -1.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOTION_POUR, -1.0f, FALSE, 0);
                 mEventTimer = timer;
                 setAngle(home.angle.y);
                 break;
@@ -2085,7 +2223,7 @@ int daNpc_ykM_c::cutGetTomatoPuree(int i_cutIndex) {
         case 4:
             mJntAnm.lookPlayer(0);
 
-            if (mMotionSeqMngr.getNo() != 6) break;
+            if (mMotionSeqMngr.getNo() != MOTION_PUSH) break;
 
             if (mEventTimer != 0 || dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
                 if (cLib_calcTimer(&mEventTimer) == 0) {
@@ -2112,7 +2250,7 @@ int daNpc_ykM_c::cutGetTomatoPuree(int i_cutIndex) {
             break;
 
         case 5:
-            if (mMotionSeqMngr.getNo() == 8) {
+            if (mMotionSeqMngr.getNo() == MOTION_PICKUP) {
                 if (mMotionSeqMngr.getStepNo() == 0) {
                     if (mpMorf[0]->checkFrame(19.0f)) {
                         field_0x1577 = 1;
@@ -2128,7 +2266,7 @@ int daNpc_ykM_c::cutGetTomatoPuree(int i_cutIndex) {
             break;
 
         case 7:
-            if (mMotionSeqMngr.getNo() == 31) {
+            if (mMotionSeqMngr.getNo() == MOTION_POUR) {
                 if (mMotionSeqMngr.getStepNo() == 0) {
                     if (mpMorf[0]->checkFrame(18.0f)) {
                         if (field_0x1577 != 0) {
@@ -2166,7 +2304,7 @@ int daNpc_ykM_c::cutGetTomatoPuree(int i_cutIndex) {
     if (prm == 5 || prm == 6) {
         if (field_0x1577 != 0) {
             field_0x1575 = 1;
-            mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(0x14));
+            mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(JNT_FINGERR));
             mDoMtx_stack_c::multVecZero(&field_0xd6c);
             mJntAnm.lookPos(&field_0xd6c, 0);
         } else {
@@ -2219,9 +2357,9 @@ int daNpc_ykM_c::cutGetTaste(int i_cutIndex) {
         switch (prm) {
             case 2:
                 mJntAnm.lookNone(0);
-                daNpcT_offTmpBit(0xB);
-                daNpcT_offTmpBit(0xC);
-                daNpcT_offTmpBit(0xD);
+                daNpcT_offTmpBit(0xB); // General use - General use temporary flag (flow control) A
+                daNpcT_offTmpBit(0xC); // General use - General use temporary flag (flow control) B
+                daNpcT_offTmpBit(0xD); // General use - General use temporary flag (flow control) C
                 initTalk(mFlowNodeNo, NULL);
                 break;
 
@@ -2230,14 +2368,14 @@ int daNpc_ykM_c::cutGetTaste(int i_cutIndex) {
                 break;
 
             case 4:
-                mFaceMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(6, 0.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOTION_PUSH, 0.0f, FALSE, 0);
                 mEventTimer = timer;
                 break;
 
             case 5:
-                mFaceMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(8, -1.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOTION_PICKUP, -1.0f, FALSE, 0);
                 break;
 
             case 6:
@@ -2245,8 +2383,8 @@ int daNpc_ykM_c::cutGetTaste(int i_cutIndex) {
                 break;
 
             case 7:
-                mFaceMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(0x1F, -1.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOTION_POUR, -1.0f, FALSE, 0);
                 mEventTimer = timer;
                 setAngle(home.angle.y);
                 break;
@@ -2291,7 +2429,7 @@ int daNpc_ykM_c::cutGetTaste(int i_cutIndex) {
         case 4:
             mJntAnm.lookPlayer(0);
 
-            if (mMotionSeqMngr.getNo() != 6) break;
+            if (mMotionSeqMngr.getNo() != MOTION_PUSH) break;
 
             if (mEventTimer != 0 || dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
                 if (cLib_calcTimer(&mEventTimer) == 0) {
@@ -2318,7 +2456,7 @@ int daNpc_ykM_c::cutGetTaste(int i_cutIndex) {
             break;
 
         case 5:
-            if (mMotionSeqMngr.getNo() == 8) {
+            if (mMotionSeqMngr.getNo() == MOTION_PICKUP) {
                 if (mMotionSeqMngr.getStepNo() == 0) {
                     if (mpMorf[0]->checkFrame(19.0f)) {
                         field_0x1578 = 1;
@@ -2333,7 +2471,7 @@ int daNpc_ykM_c::cutGetTaste(int i_cutIndex) {
             }
             break;
         case 7:
-            if (mMotionSeqMngr.getNo() == 31) {
+            if (mMotionSeqMngr.getNo() == MOTION_POUR) {
                 if (mMotionSeqMngr.getStepNo() == 0) {
                     if (mpMorf[0]->checkFrame(18.0f)) {
                         if (field_0x1578 != 0) {
@@ -2371,7 +2509,7 @@ int daNpc_ykM_c::cutGetTaste(int i_cutIndex) {
     if (prm == 5 || prm == 6) {
         if (field_0x1578 != 0) {
             field_0x1575 = 1;
-            mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(0x14));
+            mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(JNT_FINGERR));
             mDoMtx_stack_c::multVecZero(&field_0xd6c);
             mJntAnm.lookPos(&field_0xd6c, 0);
         } else {
@@ -2414,15 +2552,15 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
     if (dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
         switch (prm) {
             case 0:
-                mFaceMotionSeqMngr.setNo(0xF, 0.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(0x1B, 0.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, 0.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOTION_WAIT_X, 0.0f, FALSE, 0);
                 mJntAnm.lookNone(1);
                 mHide = false;
                 fopAcM_OffStatus(this, fopAcM_STATUS_UNK_80000000);
                 break;
 
             case 1:
-                mMotionSeqMngr.setNo(0x23, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOTION_RUN, -1.0f, FALSE, 0);
                 mSound.startCreatureVoice(Z2SE_YKM_V_DASH, -1);
                 mEventTimer = timer;
                 daPy_getPlayerActorClass()->setPlayerPosAndAngle(&player->current.pos, fopAcM_searchActorAngleY(player, this), 0);
@@ -2430,37 +2568,37 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
                 break;
 
             case 2:
-                mFaceMotionSeqMngr.setNo(0xF, 0.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(0x15, 0.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, 0.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOTION_WAITLIE, 0.0f, FALSE, 0);
                 mEventTimer = timer;
                 break;
 
             case 3:
-                mMotionSeqMngr.setNo(0x16, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOTION_WAKE, -1.0f, FALSE, 0);
                 break;
 
             case 4:
-                mFaceMotionSeqMngr.setNo(8, -1.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(0x17, -1.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_SHUT, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOTION_DENY, -1.0f, FALSE, 0);
                 break;
 
             case 5:
-                mFaceMotionSeqMngr.setNo(9, 0.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(0x18, 0.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_TALK_X, 0.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOTION_WAITWAKE, 0.0f, FALSE, 0);
                 break;
 
             case 6:
-                mFaceMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(0x19, -1.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOTION_HOLD, -1.0f, FALSE, 0);
                 break;
 
             case 7:
-                mFaceMotionSeqMngr.setNo(9, -1.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_TALK_X, -1.0f, FALSE, 0);
                 break;
 
             case 8:
-                mFaceMotionSeqMngr.setNo(0xB, -1.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(0x25, -1.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_H_HAPPY, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOTION_HOLD_B, -1.0f, FALSE, 0);
                 mSound.startCreatureVoice(Z2SE_YKM_V_HUG, -1);
                 break;
 
@@ -2469,7 +2607,7 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
                 break;
 
             case 12:
-                mFaceMotionSeqMngr.setNo(7, -1.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_SHOUT, -1.0f, FALSE, 0);
                 mEventTimer = timer;
                 daPy_py_c::getMidnaActor()->onTagNoHairLead();
                 break;
@@ -2479,8 +2617,8 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
                 break;
 
             case 20:
-                mFaceMotionSeqMngr.setNo(0xF, 0.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(0x24, 0.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, 0.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOTION_STOP, 0.0f, FALSE, 0);
                 actor_p = mActorMngr[5].getActorP();
 
                 JUT_ASSERT(4401, 0 != actor_p);
@@ -2490,7 +2628,7 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
                 break;
 
             case 21:
-                mFaceMotionSeqMngr.setNo(0xC, -1.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_TALK_Y, -1.0f, FALSE, 0);
                 break;
 
             case 30:
@@ -2503,8 +2641,8 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
                 break;
 
             case 99:
-                mFaceMotionSeqMngr.setNo(0xB, 0.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(0x1C, 0.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_H_HAPPY, 0.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOTION_WAITHOLD_B_B, 0.0f, FALSE, 0);
                 actor_p = mActorMngr[5].getActorP();
 
                 JUT_ASSERT(4424, 0 != actor_p);
@@ -2680,8 +2818,8 @@ int daNpc_ykM_c::cutFindWolf(int i_cutIndex) {
 
         case 1:
             if (talkProc(NULL, TRUE, &actors[0], FALSE) && mFlow.checkEndFlow()) {
-                mFaceMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(0, -1.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOTION_WAIT_A, -1.0f, FALSE, 0);
                 rv = 1;
             }
             break;
@@ -2720,14 +2858,14 @@ int daNpc_ykM_c::cutStartSnowboardRace(int i_cutIndex) {
                 break;
 
             case 1:
-                mFaceMotionSeqMngr.setNo(0xF, 0.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(0x20, 0.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, 0.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOTION_SB_WAIT, 0.0f, FALSE, 0);
                 mJntAnm.lookNone(1);
                 field_0x1585 = 0;
                 field_0x157e = 0;
                 field_0x1576 = 1;
                 field_0x157c = 0;
-                daNpcT_onTmpBit(0x54);
+                daNpcT_onTmpBit(0x54); // dSv_event_tmp_flag_c::T_0084 - Snowpeak mountain - Racing with Yeto
                 field_0x157e = 0;
                 actor_p = getOtherYkmP(5);
 
@@ -2795,12 +2933,10 @@ int daNpc_ykM_c::cutStartSnowboardRace(int i_cutIndex) {
                 if ((dTimer_c*)fpcM_SearchByID(field_0x1534) == dComIfG_getTimerPtr()) {
                     rv = 1;
                 }
+            } else if (dComIfG_getTimerPtr() != NULL) {
+                dComIfG_TimerDeleteRequest(dComIfG_getTimerMode());
             } else {
-                if (dComIfG_getTimerPtr() != NULL) {
-                    dComIfG_TimerDeleteRequest(dComIfG_getTimerMode());
-                } else {
-                    field_0x1534 = dTimer_createTimer(5, 0x989298, 1, 0, 210.0f, 410.0f, 32.0f, 419.0f);
-                }
+                field_0x1534 = dTimer_createTimer(5, 0x989298, 1, 0, 210.0f, 410.0f, 32.0f, 419.0f);
             }
             break;
 
@@ -2838,11 +2974,11 @@ int daNpc_ykM_c::cutEndSnowboardRace(int i_cutIndex) {
                 break;
 
             case 2:
-                mFaceMotionSeqMngr.setNo(0xF, 0.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(0, 0.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, 0.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOTION_WAIT_A, 0.0f, FALSE, 0);
                 mJntAnm.lookPlayer(0);
                 field_0x1576 = 0;
-                daNpcT_offTmpBit(0x54);
+                daNpcT_offTmpBit(0x54); // dSv_event_tmp_flag_c::T_0084 - Snowpeak mountain - Racing with Yeto
                 field_0x157b = 0;
                 field_0x1558.field_0x0 = 0;
                 field_0x1560 = 0;
@@ -2875,10 +3011,10 @@ int daNpc_ykM_c::cutEndSnowboardRace(int i_cutIndex) {
                 break;
 
             case 3:
-                daNpcT_onTmpBit(0x56);
+                daNpcT_onTmpBit(0x56); // dSv_event_tmp_flag_c::T_0086 - Snowpeak mountain - Won race against Yeto/Yeta
 
                 if (field_0x157c != 0) {
-                    daNpcT_offTmpBit(0x56);
+                    daNpcT_offTmpBit(0x56); // dSv_event_tmp_flag_c::T_0086 - Snowpeak mountain - Won race against Yeto/Yeta
                 }
 
                 mFlowNodeNo = 0x1FE;
@@ -2886,8 +3022,8 @@ int daNpc_ykM_c::cutEndSnowboardRace(int i_cutIndex) {
                 break;
 
             case 5:
-                mFaceMotionSeqMngr.setNo(0xF, 0.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(0, 0.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, 0.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOTION_WAIT_A, 0.0f, FALSE, 0);
                 actor_p = getOtherYkmP(6);
 
                 JUT_ASSERT(4943, 0 != actor_p);
@@ -2924,7 +3060,7 @@ int daNpc_ykM_c::cutEndSnowboardRace(int i_cutIndex) {
             if (talkProc(NULL, FALSE, NULL, FALSE)) {
                 switch ((int)mFlow.getEventId(&iVar1)) {
                     case 13:
-                        mEvtNo = 7;
+                        mEvtNo = EVENT_START_SNOWBOARDRACE;
                         evtChange();
                         break;
 
@@ -2977,10 +3113,10 @@ void daNpc_ykM_c::setDialogueMotion() {
     }
 
     static int const motionTbl2[4] = {
-        2, 3, 0xC, 2,
+        MOTION_TALK_B, MOTION_TALK_C, MOTION_LAUGH, MOTION_TALK_B,
     };
     static int const motionTbl1[2] = {
-        2, 0xD,
+        MOTION_TALK_B, MOTION_ASK,
     };
 
     if ((field_0x154c & 1) != 0) {
@@ -3061,19 +3197,17 @@ BOOL daNpc_ykM_c::wait(void* param_1) {
         case 1:
             if (!mStagger.checkStagger()) {
                 if (field_0x1581 != 0) {
-                    mFaceMotionSeqMngr.setNo(0xB, 0.0f, FALSE, 0);
-                    mMotionSeqMngr.setNo(0x1C, 0.0f, FALSE, 0);
-                } else if (mType == 2) {
-                    mFaceMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
-                    mMotionSeqMngr.setNo(0x29, -1.0f, FALSE, 0);
+                    mFaceMotionSeqMngr.setNo(FACE_H_HAPPY, 0.0f, FALSE, 0);
+                    mMotionSeqMngr.setNo(MOTION_WAITHOLD_B_B, 0.0f, FALSE, 0);
+                } else if (mType == TYPE_2) {
+                    mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                    mMotionSeqMngr.setNo(MOTION_FISH_WAIT_A_2, -1.0f, FALSE, 0);
+                } else if (daNpcT_chkTmpBit(0x55)) { // dSv_event_tmp_flag_c::T_0085 - Snowpeak mountain - Racing with Yeta
+                    mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                    mMotionSeqMngr.setNo(MOTION_FUNWAIT, -1.0f, FALSE, 0);
                 } else {
-                    if (daNpcT_chkTmpBit(0x55)) {
-                        mFaceMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
-                        mMotionSeqMngr.setNo(10, -1.0f, FALSE, 0);
-                    } else {
-                        mFaceMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
-                        mMotionSeqMngr.setNo(0, -1.0f, FALSE, 0);
-                    }
+                    mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                    mMotionSeqMngr.setNo(MOTION_WAIT_A, -1.0f, FALSE, 0);
                 }
 
                 field_0x1544 = cLib_getRndValue(180, 90);
@@ -3089,9 +3223,9 @@ BOOL daNpc_ykM_c::wait(void* param_1) {
 
                     if (actor_p != NULL) {
                         if (actor_p->chkPointInArea(player->current.pos)) {
-                            if (mType == 2) {
+                            if (mType == TYPE_2) {
                                 if (!daPy_py_c::checkNowWolf()) {
-                                    mEvtNo = 2;
+                                    mEvtNo = EVENT_SLIDEDOWN;
                                 }
                             } else {
                                 mSpeakEvent = true;
@@ -3104,102 +3238,100 @@ BOOL daNpc_ykM_c::wait(void* param_1) {
 
             if (field_0x1581 != 0) {
                 mJntAnm.lookNone(0);
-            } else {
-                if (!mStagger.checkStagger()) {
-                    if (mType == 4) {
-                        if (field_0x1583 != 0) {
-                            mPlayerActorMngr.entry(daPy_getPlayerActorClass());
-                        }
-                    } else if (mType == 2) {
-                        if (mPlayerActorMngr.getActorP() != NULL) {
-                            if (cLib_calcTimer(&field_0x1538) == 0) {
-                                field_0x1538 = cLib_getRndValue(90, 90);
-                                field_0x153c ^= 1;
-                            }
-
-                            if (field_0x153c != 0) {
-                                mPlayerActorMngr.remove();
-                            }
-                        } else {
-                            field_0x1538 = 0;
-                            field_0x153c = 0;
-                        }
+            } else if (!mStagger.checkStagger()) {
+                if (mType == TYPE_4) {
+                    if (field_0x1583 != 0) {
+                        mPlayerActorMngr.entry(daPy_getPlayerActorClass());
                     }
-
-                    if (daNpcT_chkTmpBit(0x55)) {
-                        mPlayerActorMngr.remove();
-                    }
-
+                } else if (mType == TYPE_2) {
                     if (mPlayerActorMngr.getActorP() != NULL) {
-                        mJntAnm.lookPlayer(0);
-
-                        if (mType != 4) {
-                            if (!chkActorInSight(mPlayerActorMngr.getActorP(), mAttnFovY, mCurAngle.y)) {
-                                mJntAnm.lookNone(0);
-                            }
+                        if (cLib_calcTimer(&field_0x1538) == 0) {
+                            field_0x1538 = cLib_getRndValue(90, 90);
+                            field_0x153c ^= 1;
                         }
 
-                        if (!srchPlayerActor() && home.angle.y == mCurAngle.y) {
-                            mMode = 1;
+                        if (field_0x153c != 0) {
+                            mPlayerActorMngr.remove();
                         }
                     } else {
-                        mJntAnm.lookNone(0);
+                        field_0x1538 = 0;
+                        field_0x153c = 0;
+                    }
+                }
 
-                        if (home.angle.y != mCurAngle.y) {
-                            if (field_0xe34 != 0) {
-                                if (step(home.angle.y, 15, 30, daNpc_ykM_Param_c::m.step_speed, 0)) {
-                                    mMode = 1;
-                                }
-                            } else {
-                                setAngle(home.angle.y);
-                                mMode = 1;
-                            }
+                if (daNpcT_chkTmpBit(0x55)) { // dSv_event_tmp_flag_c::T_0085 - Snowpeak mountain - Racing with Yeta
+                    mPlayerActorMngr.remove();
+                }
 
-                            attention_info.flags = 0;
-                        } else {
-                            srchPlayerActor();
+                if (mPlayerActorMngr.getActorP() != NULL) {
+                    mJntAnm.lookPlayer(0);
+
+                    if (mType != TYPE_4) {
+                        if (!chkActorInSight(mPlayerActorMngr.getActorP(), mAttnFovY, mCurAngle.y)) {
+                            mJntAnm.lookNone(0);
                         }
                     }
 
-                    if (mType == 4) {
-                        dComIfGs_offTmpBit(0xD02);
+                    if (!srchPlayerActor() && home.angle.y == mCurAngle.y) {
+                        mMode = 1;
                     }
+                } else {
+                    mJntAnm.lookNone(0);
 
-                    switch (mJntAnm.getMode()) {
-                        case 1:
-                            if (mType == 4) {
-                                dComIfGs_onTmpBit(0xD02);
+                    if (home.angle.y != mCurAngle.y) {
+                        if (field_0xe34 != 0) {
+                            if (step(home.angle.y, 15, 30, daNpc_ykM_Param_c::m.step_speed, 0)) {
+                                mMode = 1;
+                            }
+                        } else {
+                            setAngle(home.angle.y);
+                            mMode = 1;
+                        }
 
-                                if (mMotionSeqMngr.getNo() != 0) {
-                                    mMotionSeqMngr.setNo(0, -1.0f, FALSE, 0);
+                        attention_info.flags = 0;
+                    } else {
+                        srchPlayerActor();
+                    }
+                }
+
+                if (mType == TYPE_4) {
+                    dComIfGs_offTmpBit(0xD02);
+                }
+
+                switch (mJntAnm.getMode()) {
+                    case daNpcT_JntAnm_c::LOOK_PLAYER:
+                        if (mType == TYPE_4) {
+                            dComIfGs_onTmpBit(0xD02);
+
+                            if (mMotionSeqMngr.getNo() != MOTION_WAIT_A) {
+                                mMotionSeqMngr.setNo(MOTION_WAIT_A, -1.0f, FALSE, 0);
+                            }
+                        }
+                        break;
+
+                    case daNpcT_JntAnm_c::LOOK_NONE:
+                        if (mType == TYPE_4) {
+                            if (daNpcT_chkTmpBit(0x55)) { // dSv_event_tmp_flag_c::T_0085 - Snowpeak mountain - Racing with Yeta
+                                actor_p = (daTag_EvtArea_c*)mActorMngr[5].getActorP();
+
+                                if (actor_p != NULL) {
+                                    mJntAnm.lookActor(actor_p, -40.0f, 0);
+                                }
+                            } else if (dComIfGs_isTmpBit(0xE40)) {
+                                mJntAnm.lookPlayer(0);
+                            } else {
+                                actor_p = (daTag_EvtArea_c*)mActorMngr[5].getActorP();
+
+                                if (actor_p != NULL) {
+                                    mJntAnm.lookActor(actor_p, -40.0f, 0);
+
+                                    if (dialogue() != 0) {
+                                        mMode = 1;
+                                    }
                                 }
                             }
-                            break;
-
-                        case 0:
-                            if (mType == 4) {
-                                if (daNpcT_chkTmpBit(0x55)) {
-                                    actor_p = (daTag_EvtArea_c*)mActorMngr[5].getActorP();
-
-                                    if (actor_p != NULL) {
-                                        mJntAnm.lookActor(actor_p, -40.0f, 0);
-                                    }
-                                } else if (dComIfGs_isTmpBit(0xE40)) {
-                                    mJntAnm.lookPlayer(0);
-                                } else {
-                                    actor_p = (daTag_EvtArea_c*)mActorMngr[5].getActorP();
-
-                                    if (actor_p != NULL) {
-                                        mJntAnm.lookActor(actor_p, -40.0f, 0);
-
-                                        if (dialogue() != 0) {
-                                            mMode = 1;
-                                        }
-                                    }
-                                }
-                            }
-                            break;
-                    }
+                        }
+                        break;
                 }
             }
 
@@ -3227,32 +3359,33 @@ BOOL daNpc_ykM_c::cook(void* param_1) {
         case 0:
         case 1:
             if (!mStagger.checkStagger()) {
-                mFaceMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(0, -1.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOTION_WAIT_A, -1.0f, FALSE, 0);
                 field_0x1538 = 0;
                 field_0x153c = 1;
                 mMode = 2;
             }
             // fallthrough
         case 2:
-            if (!daPy_py_c::checkNowWolf() && !checkItemGet(fpcNm_ITEM_TOMATO_PUREE, 1) && !checkItemGet(fpcNm_ITEM_TASTE, 1) && !daNpcT_chkEvtBit(10)) {
+            if (!daPy_py_c::checkNowWolf() && !checkItemGet(fpcNm_ITEM_TOMATO_PUREE, 1) && !checkItemGet(fpcNm_ITEM_TASTE, 1) && 
+                !daNpcT_chkEvtBit(10) /* dSv_event_flag_c::F_0006 - Snowpeak Ruins - First conversation with Yeto in kitchen */) {
                 actor_p = mActorMngr[6].getActorP();
 
                 if (actor_p != NULL) {
                     if (((daTag_EvtArea_c*)actor_p)->chkPointInArea(player->current.pos)) {
-                        mEvtNo = 3;
+                        mEvtNo = EVENT_MEETING_AGAIN;
                         field_0xe33 = true;
                     }
                 }
             }
 
             if (!mStagger.checkStagger()) {
-                if (daNpcT_chkEvtBit(10)) {
+                if (daNpcT_chkEvtBit(10) /* dSv_event_flag_c::F_0006 - Snowpeak Ruins - First conversation with Yeto in kitchen */) {
                     if (!chkContinueAttnPlayer()) {
                         mPlayerActorMngr.remove();
                     }
 
-                    if (!daNpcT_chkEvtBit(3)) {
+                    if (!daNpcT_chkEvtBit(3) /* dSv_event_flag_c::TEST_003 - Snowpeak Ruins - Handed over tomato puree */) {
                         bVar1 = TRUE;
                     }
                 }
@@ -3268,14 +3401,14 @@ BOOL daNpc_ykM_c::cook(void* param_1) {
                         mMode = 1;
                     }
                 } else {
-                    if (mMotionSeqMngr.getNo() == 5 && mMotionSeqMngr.getStepNo() > 0) {
+                    if (mMotionSeqMngr.getNo() == MOTION_TALK_E && mMotionSeqMngr.getStepNo() > 0) {
                         mJntAnm.lookPos(&field_0x1508, 0);
                     }
 
                     if (cLib_calcTimer(&field_0x1538) == 0) {
                         if (field_0x153c != 0) {
-                            mFaceMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
-                            mMotionSeqMngr.setNo(0, -1.0f, FALSE, 0);
+                            mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                            mMotionSeqMngr.setNo(MOTION_WAIT_A, -1.0f, FALSE, 0);
                             mJntAnm.lookPos(&field_0x1508, 0);
                             field_0x1538 = cLib_getRndValue(waitTime / 2, waitTime);
                             field_0x1538 <<= 1;
@@ -3284,12 +3417,12 @@ BOOL daNpc_ykM_c::cook(void* param_1) {
                             if (bVar1 && 0.6f < fVar1) {
                                 mJntAnm.lookAround2(0, 0x2D);
                             } else if (0.5f < cM_rnd()) {
-                                mFaceMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
-                                mMotionSeqMngr.setNo(5, -1.0f, FALSE, 0);
+                                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                                mMotionSeqMngr.setNo(MOTION_TALK_E, -1.0f, FALSE, 0);
                                 mJntAnm.lookNone(0);
                             } else {
-                                mFaceMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
-                                mMotionSeqMngr.setNo(4, -1.0f, FALSE, 0);
+                                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                                mMotionSeqMngr.setNo(MOTION_TALK_D, -1.0f, FALSE, 0);
                                 mJntAnm.lookNone(0);
                             }
 
@@ -3301,11 +3434,11 @@ BOOL daNpc_ykM_c::cook(void* param_1) {
                 }
 
                 switch (mJntAnm.getMode()) {
-                    case 0:
+                    case daNpcT_JntAnm_c::LOOK_NONE:
                         break;
 
-                    case 3:
-                    case 8:
+                    case daNpcT_JntAnm_c::LOOK_POS:
+                    case daNpcT_JntAnm_c::LOOK_MODE_8:
                         mSound.startCreatureVoiceLevel(Z2SE_YKM_V_HUMMING, -1);
                 }
             }
@@ -3329,8 +3462,8 @@ BOOL daNpc_ykM_c::race(void* param_1) {
         case 0:
         case 1:
             if (!mStagger.checkStagger()) {
-                mFaceMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(0x20, -1.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOTION_SB_WAIT, -1.0f, FALSE, 0);
                 field_0x1576 = 1;
                 mMode = 2;
             }
@@ -3367,7 +3500,7 @@ BOOL daNpc_ykM_c::race(void* param_1) {
                             }
                         }
 
-                        mEvtNo = 8;
+                        mEvtNo = EVENT_END_SNOWBOARDRACE;
                     }
                 }
 
@@ -3392,7 +3525,7 @@ BOOL daNpc_ykM_c::race(void* param_1) {
                 }
             } else {
                 if (field_0x157e != 0 && mAcch.ChkGroundHit()) {
-                    mMotionSeqMngr.setNo(0x22, -1.0f, FALSE, 0);
+                    mMotionSeqMngr.setNo(MOTION_SB_JUMP_C, -1.0f, FALSE, 0);
                     mSound.startCreatureSound(Z2SE_YM_SNOBO_LAND, 0, -1);
                     field_0x157e = 0;
                 }
@@ -3408,25 +3541,30 @@ BOOL daNpc_ykM_c::race(void* param_1) {
 
                             if (mPath.setNextIdx(mPath.getNumPnts()) != 0) {
                                 field_0x1585 = 1;
-                                mMotionSeqMngr.setNo(0x2E, -1.0f, FALSE, 0);
+                                mMotionSeqMngr.setNo(MOTION_SB_GOAL, -1.0f, FALSE, 0);
                                 break;
                             }
                         }
 
-                        work = mPath.getPntPos(mPath.getIdx());
+                        int idx;
+                        if (field_0x157e != 0) {
+                            if (!mStagger.checkStagger()) {
+                                mMotionSeqMngr.setNo(MOTION_SB_JUMP_A, -1.0f, FALSE, 0);
+                            }
+
+                            field_0x1514 = current.pos;
+                            idx = mPath.getIdx();
+                            field_0x1520 = mPath.getPntPos(idx);
+                            current.angle.y = cLib_targetAngleY(&field_0x1514, &field_0x1520);
+                            int iVar3 = (int)((field_0x1520 - field_0x1514).absXZ() / speedF) + 1;
+                            speed.y = (field_0x1520.y - field_0x1514.y) + iVar3 * iVar3 * fabsf(gravity) * 0.5f;
+                            speed.y /= iVar3;
+                        }
+
+                        idx = mPath.getIdx();
+                        work = mPath.getPntPos(idx);
                         break;
                     } while (field_0x157e == 0);
-                } else {
-                    if (!mStagger.checkStagger()) {
-                        mMotionSeqMngr.setNo(0x21, -1.0f, FALSE, 0);
-                    }
-
-                    field_0x1514 = current.pos;
-                    field_0x1520 = mPath.getPntPos(mPath.getIdx());
-                    current.angle.y = cLib_targetAngleY(&field_0x1514, &field_0x1520);
-                    f32 fVar1 = (int)(field_0x1520.absXZ() / speedF) + 1;
-                    speed.y = (field_0x1520.y - field_0x1514.y) + fVar1 * fVar1 * fabsf(gravity) * 0.5f;
-                    speed.y /= fVar1;
                 }
 
                 if (field_0x1585 == 0 && field_0x157e == 0) {
@@ -3434,29 +3572,27 @@ BOOL daNpc_ykM_c::race(void* param_1) {
                     cLib_addCalcAngleS2(&shape_angle.y, current.angle.y, 8, 0x100);
                     mCurAngle.y = shape_angle.y;
 
-                    s16 sVar2;
-                    if (!mStagger.checkStagger() && (mMotionSeqMngr.getNo() != 0x22 || mMotionSeqMngr.checkEndSequence())) {
-                        sVar2 = sVar1 - mCurAngle.y;
+                    if (!mStagger.checkStagger() && (mMotionSeqMngr.getNo() != MOTION_SB_JUMP_C || mMotionSeqMngr.checkEndSequence())) {
+                        int sVar2 = sVar1 - mCurAngle.y;
                         if (0.0f < cM_sht2d(sVar2)) {
                             if (4.0f < cM_sht2d(sVar2)) {
-                                mMotionSeqMngr.setNo(0x2C, 24.0f, FALSE, 0);
+                                mMotionSeqMngr.setNo(MOTION_SB_TURNL, 24.0f, FALSE, 0);
                             } else {
-                                mMotionSeqMngr.setNo(0x20, 24.0f, FALSE, 0);
+                                mMotionSeqMngr.setNo(MOTION_SB_WAIT, 24.0f, FALSE, 0);
                             }
                         } else {
                             if (cM_sht2d(sVar2) < -4.0f) {
-                                mMotionSeqMngr.setNo(0x2D, 24.0f, FALSE, 0);
+                                mMotionSeqMngr.setNo(MOTION_SB_TURNR, 24.0f, FALSE, 0);
                             } else {
-                                mMotionSeqMngr.setNo(0x20, 24.0f, FALSE, 0);
+                                mMotionSeqMngr.setNo(MOTION_SB_WAIT, 24.0f, FALSE, 0);
                             }
                         }
                     }
 
-                    sVar2 = -fopAcM_getPolygonAngle(mGndChk, current.angle.y + 0x4000);
+                    s16 sVar3 = -fopAcM_getPolygonAngle(mGndChk, current.angle.y + 0x4000);
                     cLib_addCalcAngleS2(&mCurAngle.x, mGroundAngle, 6, 0x200);
-                    cLib_addCalcAngleS2(&mCurAngle.z, sVar2, 6, 0x200);
-                    int iVar1 = field_0x1558.field_0x0;
-                    int iVar2 = field_0x1560;
+                    cLib_addCalcAngleS2(&mCurAngle.z, sVar3, 6, 0x200);
+                    int iVar1 = field_0x1560 - field_0x1558.field_0x0;
                     f32 fVar2 = daNpc_ykM_Param_c::m.slide_speed * cM_scos(mGroundAngle);
 
                     if (mStagger.checkStagger()) {
@@ -3470,8 +3606,9 @@ BOOL daNpc_ykM_c::race(void* param_1) {
                             field_0x1540 = 8;
                         }
 
-                        if (cLib_minMaxLimit<int>(((iVar2 - iVar1) + daNpc_ykM_Param_c::m.competition_prm_a), 0, daNpc_ykM_Param_c::m.competition_prm_b) > 0) {
-                            fVar2 *= (daNpc_ykM_Param_c::m.competition_prm_c * 0.1f) * abs(iVar2) + 1.0f;
+                        int iVar2 = cLib_minMaxLimit<int>(iVar1 + daNpc_ykM_Param_c::m.competition_prm_a, 0, daNpc_ykM_Param_c::m.competition_prm_b);
+                        if (iVar2 > 0) {
+                            fVar2 *= daNpc_ykM_Param_c::m.competition_prm_c * 0.1f * abs(iVar2) + 1.0f;
                         }
                     }
 
@@ -3503,11 +3640,12 @@ BOOL daNpc_ykM_c::talk(void* param_1) {
                 initTalk(mFlowNodeNo, NULL);
                 field_0x157f = 0;
 
-                if (mType == 1) {
-                    mFaceMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
-                    mMotionSeqMngr.setNo(0, -1.0f, FALSE, 0);
+                if (mType == TYPE_COOK) {
+                    mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                    mMotionSeqMngr.setNo(MOTION_WAIT_A, -1.0f, FALSE, 0);
 
-                    if (daNpcT_chkEvtBit(10) && !chkContinueAttnPlayer()) {
+                    if (daNpcT_chkEvtBit(10) /* dSv_event_flag_c::F_0006 - Snowpeak Ruins - First conversation with Yeto in kitchen */ 
+                        && !chkContinueAttnPlayer()) {
                         field_0x157f = 1;
                     }
                 }
@@ -3517,13 +3655,13 @@ BOOL daNpc_ykM_c::talk(void* param_1) {
             // fallthrough
         case 2:
             if (!mStagger.checkStagger()) {
-                if (mTwilight || mPlayerAngle == mCurAngle.y || mType == 1 || mType == 2) {
+                if (mTwilight || mPlayerAngle == mCurAngle.y || mType == TYPE_COOK || mType == TYPE_2) {
                     if (talkProc(NULL, FALSE, NULL, FALSE)) {
                         field_0x1583 = 0;
 
                         switch ((int)mFlow.getEventId(&iVar1)) {
                             case 13:
-                                mEvtNo = 7;
+                                mEvtNo = EVENT_START_SNOWBOARDRACE;
                                 evtChange();
                                 break;
 
@@ -3626,27 +3764,27 @@ u16 daNpc_ykM_c::getEyeballMaterialNo() {
 
 /* 80B5D690-80B5D698 00A290 0008+00 1/0 0/0 0/0 .text            getHeadJointNo__11daNpc_ykM_cFv */
 s32 daNpc_ykM_c::getHeadJointNo() {
-    return 4;
+    return JNT_HEAD;
 }
 
 /* 80B5D698-80B5D6A0 00A298 0008+00 1/0 0/0 0/0 .text            getNeckJointNo__11daNpc_ykM_cFv */
 s32 daNpc_ykM_c::getNeckJointNo() {
-    return 3;
+    return JNT_NECK;
 }
 
 /* 80B5D6A0-80B5D6A8 00A2A0 0008+00 1/0 0/0 0/0 .text            getBackboneJointNo__11daNpc_ykM_cFv */
 s32 daNpc_ykM_c::getBackboneJointNo() {
-    return 1;
+    return JNT_BB1;
 }
 
 /* 80B5D6A8-80B5D6B8 00A2A8 0010+00 1/0 0/0 0/0 .text            checkChangeJoint__11daNpc_ykM_cFi */
-BOOL daNpc_ykM_c::checkChangeJoint(int param_1) {
-    return param_1 == 4;
+BOOL daNpc_ykM_c::checkChangeJoint(int i_joint) {
+    return i_joint == JNT_HEAD;
 }
 
 /* 80B5D6B8-80B5D6C8 00A2B8 0010+00 1/0 0/0 0/0 .text            checkRemoveJoint__11daNpc_ykM_cFi */
-BOOL daNpc_ykM_c::checkRemoveJoint(int param_1) {
-    return param_1 == 9;
+BOOL daNpc_ykM_c::checkRemoveJoint(int i_joint) {
+    return i_joint == JNT_YKM_KURA;
 }
 
 AUDIO_INSTANCES;

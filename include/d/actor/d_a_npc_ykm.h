@@ -45,6 +45,104 @@ public:
 
 class daNpc_ykM_c : public daNpcT_c {
 public:
+    enum FaceMotion {
+        /* 0x0 */ FACE_TALK_A,
+        /* 0x1 */ FACE_TALK_B,
+        /* 0x2 */ FACE_TALK_C,
+        /* 0x3 */ FACE_TALK_D,
+        /* 0x4 */ FACE_REGRET,
+        /* 0x5 */ FACE_LAUGH,
+        /* 0x6 */ FACE_ASK,
+        /* 0x7 */ FACE_SHOUT,
+        /* 0x8 */ FACE_SHUT,
+        /* 0x9 */ FACE_TALK_X,
+        /* 0xA */ FACE_HAPPY,
+        /* 0xB */ FACE_H_HAPPY,
+        /* 0xC */ FACE_TALK_Y,
+        /* 0xD */ FACE_H_REGRET,
+        /* 0xE */ FACE_H_LAUGH,
+        /* 0xF */ FACE_NONE,
+    };
+
+    enum Motion {
+        /* 0x00 */ MOTION_WAIT_A,
+        /* 0x01 */ MOTION_WAIT_B,
+        /* 0x02 */ MOTION_TALK_B,
+        /* 0x03 */ MOTION_TALK_C,
+        /* 0x04 */ MOTION_TALK_D,
+        /* 0x05 */ MOTION_TALK_E,
+        /* 0x06 */ MOTION_PUSH,
+        /* 0x08 */ MOTION_PICKUP = 8,
+        /* 0x09 */ MOTION_WAIT_C,
+        /* 0x0A */ MOTION_FUNWAIT,
+        /* 0x0B */ MOTION_REGRET,
+        /* 0x0C */ MOTION_LAUGH,
+        /* 0x0D */ MOTION_ASK,
+        /* 0x0E */ MOTION_FISH_WAIT_A,
+        /* 0x0F */ MOTION_FISH_TALK_B,
+        /* 0x10 */ MOTION_FISH_TALK_C,
+        /* 0x11 */ MOTION_FISH_REGRET,
+        /* 0x12 */ MOTION_FISH_LAUGH,
+        /* 0x13 */ MOTION_FISH_ASK,
+        /* 0x14 */ MOTION_FISH_LOOK,
+        /* 0x15 */ MOTION_WAITLIE,
+        /* 0x16 */ MOTION_WAKE,
+        /* 0x17 */ MOTION_DENY,
+        /* 0x18 */ MOTION_WAITWAKE,
+        /* 0x19 */ MOTION_HOLD,
+        /* 0x1A */ MOTION_WAITHOLD,
+        /* 0x1B */ MOTION_WAIT_X,
+        /* 0x1C */ MOTION_WAITHOLD_B_B,
+        /* 0x1D */ MOTION_WALK,
+        /* 0x1E */ MOTION_STEP,
+        /* 0x1F */ MOTION_POUR,
+        /* 0x20 */ MOTION_SB_WAIT,
+        /* 0x21 */ MOTION_SB_JUMP_A,
+        /* 0x22 */ MOTION_SB_JUMP_C,
+        /* 0x23 */ MOTION_RUN,
+        /* 0x24 */ MOTION_STOP,
+        /* 0x25 */ MOTION_HOLD_B,
+        /* 0x26 */ MOTION_38,
+        /* 0x27 */ MOTION_39,
+        /* 0x28 */ MOTION_SB_DAMAGE,
+        /* 0x29 */ MOTION_FISH_WAIT_A_2,
+        /* 0x2A */ MOTION_FISH_ATTACK,
+        /* 0x2B */ MOTION_FISH_JUMP,
+        /* 0x2C */ MOTION_SB_TURNL,
+        /* 0x2D */ MOTION_SB_TURNR,
+        /* 0x2E */ MOTION_SB_GOAL,
+    };
+
+    enum Leaf_Animation {
+        /* 0x00 */ ANM_LEAF_WAIT_A,
+        /* 0x01 */ ANM_LEAF_FALL,
+        /* 0x02 */ ANM_LEAF_WAIT_B,
+    };
+
+    enum Type {
+        /* 0x0 */ TYPE_0,
+        /* 0x1 */ TYPE_COOK,
+        /* 0x2 */ TYPE_2,
+        /* 0x3 */ TYPE_3,
+        /* 0x4 */ TYPE_4,
+        /* 0x5 */ TYPE_5,
+        /* 0x6 */ TYPE_6,
+        /* 0x7 */ TYPE_7,
+    };
+
+    enum Event {
+        /* 0x0 */ EVENT_NONE,
+        /* 0x1 */ EVENT_NO_RESPONSE,
+        /* 0x2 */ EVENT_SLIDEDOWN,
+        /* 0x3 */ EVENT_MEETING_AGAIN,
+        /* 0x4 */ EVENT_GET_TOMATOPUREE,
+        /* 0x5 */ EVENT_GET_TASTE,
+        /* 0x6 */ EVENT_FIND_WOLF,
+        /* 0x7 */ EVENT_START_SNOWBOARDRACE,
+        /* 0x8 */ EVENT_END_SNOWBOARDRACE,
+        /* 0x9 */ EVENT_HUG,
+    };
+
     typedef int (daNpc_ykM_c::*cutFunc)(int);
     typedef BOOL (daNpc_ykM_c::*ActionFn)(void*);
     
@@ -134,6 +232,7 @@ public:
 
         return rv;
     }
+
     int getBitTRB() { return (fopAcM_GetParam(this) & 0x3F0000) >> 16; }
     u32 getPathID() { return (fopAcM_GetParam(this) & 0xFF00) >> 8; }
 
@@ -144,19 +243,18 @@ public:
     static char* mCutNameList[10];
     static cutFunc mCutList[10];
 private:
-    /* 0x0E40 */ mDoExt_McaMorfSO* field_0xe40;
-    /* 0x0E44 */ mDoExt_McaMorfSO* field_0xe44;
+    /* 0x0E40 */ mDoExt_McaMorfSO* mFishModelMorf;
+    /* 0x0E44 */ mDoExt_McaMorfSO* mLeafModelMorf;
     /* 0x0E48 */ u8 field_0xe48[0xe4c - 0xe48];
     /* 0x0E4C */ J3DModel* field_0xe4c[3];
     /* 0x0E58 */ dCcD_Cyl field_0xe58;
     /* 0x0F94 */ dCcD_Sph field_0xf94[4];
     /* 0x1474 */ u8 mType;
-    /* 0x1475 */ u8 field_0x1475[0x1478 - 0x1475];
     /* 0x1478 */ daNpcT_ActorMngr_c mActorMngr[8];
     /* 0x14B8 */ daNpcT_Path_c mPath;
     /* 0x14E0 */ dPath* mRoomPath;
-    /* 0x14E4 */ ActionFn field_0x14e4;
-    /* 0x14F0 */ ActionFn field_0x14f0;
+    /* 0x14E4 */ ActionFn mpNextAction;
+    /* 0x14F0 */ ActionFn mpAction;
     /* 0x14FC */ cXyz field_0x14fc;
     /* 0x1508 */ cXyz field_0x1508;
     /* 0x1514 */ cXyz field_0x1514;
@@ -176,7 +274,6 @@ private:
     /* 0x1564 */ u8 field_0x1564[0x1568 - 0x1564];
     /* 0x1568 */ f32 field_0x1568;
     /* 0x156C */ s16 field_0x156c;
-    /* 0x156E */ u8 field_0x156e[0x1570 - 0x156e];
     /* 0x1570 */ u32 field_0x1570;
     /* 0x1574 */ u8 field_0x1574;
     /* 0x1575 */ u8 field_0x1575;
@@ -196,7 +293,6 @@ private:
     /* 0x1583 */ u8 field_0x1583;
     /* 0x1584 */ u8 field_0x1584;
     /* 0x1585 */ u8 field_0x1585;
-    /* 0x1586 */ u8 field_0x1586[0x1588 - 0x1586];
     /* 0x1588 */ int field_0x1588;
 };
 
