@@ -26,7 +26,7 @@ public:
     /* 80B5FA74 */ void getOtherYkwP(int);
     /* 80B5FB50 */ void srchYkm(void*, void*);
     /* 80B5FBEC */ void getOtherYkmP(int);
-    /* 80B5FCC8 */ void getType();
+    /* 80B5FCC8 */ u8 getType();
     /* 80B5FD30 */ void isDelete();
     /* 80B5FE6C */ void reset();
     /* 80B601C8 */ void afterJntAnm(int);
@@ -77,8 +77,24 @@ public:
 
     static void* mCutNameList[8];
     static u8 mCutList[96];
+
+    void setDialogueTmr1(int param_1) {
+        field_0x1024 = param_1;
+        field_0x1018 = 10;
+    }
+
+    void setDialogueTmr2(int param_1) {
+        field_0x1024 = param_1;
+        field_0x101c = 10;
+    }
+
 private:
-    /* 0x568 */ u8 field_0x568[0x1078 - 0x568];
+    /* 0x0568 */ u8 field_0x568[0x1018 - 0x568];
+    /* 0x1018 */ int field_0x1018;
+    /* 0x101C */ int field_0x101c;
+    /* 0x1020 */ u8 field_0x1020[0x1024 - 0x1020];
+    /* 0x1024 */ int field_0x1024;
+    /* 0x1028 */ u8 field_0x1028[0x1078 - 0x1028];
 };
 
 STATIC_ASSERT(sizeof(daNpc_ykW_c) == 0x1078);

@@ -672,6 +672,8 @@ public:
     u32 getRaceGameTime() const { return mRaceGameTime; }
     u32 getBalloonScore() const { return mBalloonScore; }
 
+    void setRaceGameTime(u32 i_time) { mRaceGameTime = i_time; }
+
 private:
     /* 0x00 */ u8 unk0[1][4];
     /* 0x04 */ u32 mStarTime;

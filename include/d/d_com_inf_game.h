@@ -1746,7 +1746,7 @@ inline char* dComIfGs_getHorseName() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerInfo().getHorseName();
 }
 
-inline u32 dComIfGs_getRaceGameTime() {
+inline int dComIfGs_getRaceGameTime() {
     return g_dComIfG_gameInfo.info.getMiniGame().getRaceGameTime();
 }
 

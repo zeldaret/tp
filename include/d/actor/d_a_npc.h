@@ -289,6 +289,15 @@ public:
         setDirect(i_direct);
     }
 
+    void lookAround2(u8 i_direct, int i_baseTimer) {
+        if (setMode(LOOK_MODE_8, FALSE)) {
+            mTimer = 0;
+        }
+
+        mBaseTimer = i_baseTimer;
+        setDirect(i_direct);
+    }
+
     void sorasu1(cXyz *arg0, u8 arg1) {
         BOOL diff_ptrs = mAttnPosP != arg0;
         if (setMode(5, diff_ptrs) != 0) {
@@ -333,6 +342,9 @@ public:
         for (int i = 0; i < 2; i++) {
             mPower[i] = power;
         }
+    }
+    void setRebirth() {
+        mRebirth = true;
     }
 
     /* 0x00 */ csXyz mAngle[2];
@@ -432,6 +444,8 @@ public:
 
     Vec getPntPos(int i_idx) { return mPathInfo->m_points[i_idx].m_position; }
 
+    u8 getArg0() { return mPathInfo->m_points[mIdx].mArg0; }
+
     int chkClose() {
         BOOL rt = dPath_ChkClose(mPathInfo);
         return rt;
@@ -456,6 +470,8 @@ public:
         mDirection = 0;
         field_0x1E = 1;
     }
+
+    BOOL chkNextId() { return mPathInfo->m_nextID != 0xFFFF; }
 };
 
 class mDoExt_McaMorfSO;
@@ -761,6 +777,7 @@ void daNpcT_onEvtBit(u32 i_idx);
 BOOL daNpcT_chkTmpBit(u32 i_idx);
 BOOL daNpcT_getPlayerInfoFromPlayerList(int param_0, int i_roomNo, cXyz* o_spawnPos,
                                         csXyz* o_angle);
+int daNpcT_judgeRace(dPath* i_path, fopAc_ac_c** param_1, daNpcT_pntData_c* i_pntData, int param_3, int* param_4);
 
 class daBaseNpc_matAnm_c : public J3DMaterialAnm {
 public:
