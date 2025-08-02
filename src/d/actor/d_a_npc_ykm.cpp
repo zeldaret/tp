@@ -275,158 +275,57 @@ static daNpcT_faceMotionAnmData_c l_faceMotionAnmData[16] = {
 
 /* 80B5DD94-80B5E328 0002AC 0594+00 0/1 0/0 0/0 .data            l_motionAnmData */
 static daNpcT_motionAnmData_c l_motionAnmData[51] = {
-    {BCK_YKM_WAIT_A, J3DFrameCtrl::EMode_LOOP, YKM, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_WAIT_B, J3DFrameCtrl::EMode_LOOP, YKM1, 
-        BTK_YKM_WAIT_B, J3DFrameCtrl::EMode_NONE, YKM1, 0, 0},
-
-    {BCK_YKM_WAIT_C, J3DFrameCtrl::EMode_LOOP, YKM1, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {-1, J3DFrameCtrl::EMode_NONE, 0, 
-        -1, J3DFrameCtrl::EMode_NONE, 0, 0, 0},
-
-    {BCK_YKM_WAIT_X, J3DFrameCtrl::EMode_LOOP, YKM1, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_FUNWAIT, J3DFrameCtrl::EMode_LOOP, YKM, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_REGRETWAIT, J3DFrameCtrl::EMode_LOOP, YKM2, 
-        BTK_YKM_REGRETWAIT, J3DFrameCtrl::EMode_LOOP, YKM2, 0, 0},
-
-    {BCK_YKM_TALK_B, J3DFrameCtrl::EMode_NONE, YKM, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_TALK_C, J3DFrameCtrl::EMode_NONE, YKM, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_TALK_D, J3DFrameCtrl::EMode_NONE, YKM1, 
-        BTK_YKM_TALK_D, J3DFrameCtrl::EMode_NONE, YKM1, 0, 0},
-
-    {BCK_YKM_TALK_E, J3DFrameCtrl::EMode_NONE, YKM1, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {-1, J3DFrameCtrl::EMode_NONE, 0, 
-        -1, J3DFrameCtrl::EMode_NONE, 0, 0, 0},
-
-    {BCK_YKM_PUSH, J3DFrameCtrl::EMode_NONE, YKM1, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_PICKUP, J3DFrameCtrl::EMode_NONE, YKM1, 
-        BTK_YKM_PICKUP, J3DFrameCtrl::EMode_NONE, YKM1, 0, 0},
-
-    {BCK_YKM_POUR, J3DFrameCtrl::EMode_NONE, YKM1, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_REGRET, J3DFrameCtrl::EMode_NONE, YKM2, 
-        BTK_YKM_REGRET, J3DFrameCtrl::EMode_NONE, YKM2, 0, 0},
-
-    {BCK_YKM_LAUGH, J3DFrameCtrl::EMode_NONE, YKM2, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_ASK, J3DFrameCtrl::EMode_NONE, YKM2, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_WALK, J3DFrameCtrl::EMode_LOOP, YKM, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_STEP, J3DFrameCtrl::EMode_NONE, YKM, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_FISH_WAIT_A, J3DFrameCtrl::EMode_LOOP, YKM3, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_FISH_ATTACK, J3DFrameCtrl::EMode_NONE, YKM3, 
-        BTK_YKM_FISH_ATTACK, J3DFrameCtrl::EMode_NONE, YKM3, 0, 0},
-
-    {BCK_YKM_FISH_WAIT_B, J3DFrameCtrl::EMode_LOOP, YKM3, 
-        BTK_YKM_FISH_WAIT_B, J3DFrameCtrl::EMode_LOOP, YKM3, 0, 0},
-
-    {BCK_YKM_FISH_JUMP, J3DFrameCtrl::EMode_NONE, YKM3, 
-        BTK_YKM_FISH_JUMP, J3DFrameCtrl::EMode_NONE, YKM3, 0, 0},
-
-    {BCK_YKM_FISH_TALK_B, J3DFrameCtrl::EMode_NONE, YKM3, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_FISH_TALK_C, J3DFrameCtrl::EMode_NONE, YKM3, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_FISH_REGRET, J3DFrameCtrl::EMode_NONE, YKM3, 
-        BTK_YKM_FISH_REGRET, J3DFrameCtrl::EMode_NONE, YKM3, 0, 0},
-
-    {BCK_YKM_FISH_REGRETWAIT, J3DFrameCtrl::EMode_LOOP, YKM3, 
-        BTK_YKM_FISH_REGRETWAIT, J3DFrameCtrl::EMode_LOOP, YKM3, 0, 0},
-
-    {BCK_YKM_FISH_LAUGH, J3DFrameCtrl::EMode_NONE, YKM3, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_FISH_ASK, J3DFrameCtrl::EMode_NONE, YKM3, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_FISH_LOOK, J3DFrameCtrl::EMode_NONE, YKM3, 
-        BTK_YKM_FISH_LOOK, J3DFrameCtrl::EMode_NONE, YKM3, 0, 0},
-
-    {BCK_YKM_FISH_LOOKWAIT, J3DFrameCtrl::EMode_LOOP, YKM3, 
-        BTK_YKM_FISH_LOOKWAIT, J3DFrameCtrl::EMode_LOOP, YKM3, 0, 0},
-
-    {BCK_YKM_SB_WAIT, J3DFrameCtrl::EMode_LOOP, YKM2, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_SB_JUMP_A, J3DFrameCtrl::EMode_NONE, YKM2, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_SB_JUMP_B, J3DFrameCtrl::EMode_LOOP, YKM2, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_SB_JUMP_C, J3DFrameCtrl::EMode_NONE, YKM2, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_SB_TURNL, J3DFrameCtrl::EMode_LOOP, YKM2, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_SB_TURNR, J3DFrameCtrl::EMode_LOOP, YKM2, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_SB_DAMAGE, J3DFrameCtrl::EMode_NONE, YKM2, 
-        BTK_YKM_SB_DAMAGE, J3DFrameCtrl::EMode_NONE, YKM2, 0, 0},
-
-    {BCK_YKM_SB_GOAL, J3DFrameCtrl::EMode_NONE, YKM2, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_SB_GOALWAIT, J3DFrameCtrl::EMode_LOOP, YKM2, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_DENY, J3DFrameCtrl::EMode_NONE, YKM1, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_RUN, J3DFrameCtrl::EMode_LOOP, YKM1, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_STOP, J3DFrameCtrl::EMode_NONE, YKM1, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_WAITLIE, J3DFrameCtrl::EMode_LOOP, YKM1, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_WAKE, J3DFrameCtrl::EMode_NONE, YKM1, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_WAITWAKE, J3DFrameCtrl::EMode_LOOP, YKM1, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 3},
-
-    {BCK_YKM_HOLD, J3DFrameCtrl::EMode_NONE, YKM1, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_WAITHOLD, J3DFrameCtrl::EMode_LOOP, YKM1, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_HOLD_B, J3DFrameCtrl::EMode_NONE, YKM1, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
-
-    {BCK_YKM_WAITHOLD_B_B, J3DFrameCtrl::EMode_LOOP, YKM1, 
-        BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_WAIT_A, J3DFrameCtrl::EMode_LOOP, YKM, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_WAIT_B, J3DFrameCtrl::EMode_LOOP, YKM1, BTK_YKM_WAIT_B, J3DFrameCtrl::EMode_NONE, YKM1, 0, 0},
+    {BCK_YKM_WAIT_C, J3DFrameCtrl::EMode_LOOP, YKM1, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {-1, J3DFrameCtrl::EMode_NONE, 0, -1, J3DFrameCtrl::EMode_NONE, 0, 0, 0},
+    {BCK_YKM_WAIT_X, J3DFrameCtrl::EMode_LOOP, YKM1, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_FUNWAIT, J3DFrameCtrl::EMode_LOOP, YKM, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_REGRETWAIT, J3DFrameCtrl::EMode_LOOP, YKM2, BTK_YKM_REGRETWAIT, J3DFrameCtrl::EMode_LOOP, YKM2, 0, 0},
+    {BCK_YKM_TALK_B, J3DFrameCtrl::EMode_NONE, YKM, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_TALK_C, J3DFrameCtrl::EMode_NONE, YKM, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_TALK_D, J3DFrameCtrl::EMode_NONE, YKM1, BTK_YKM_TALK_D, J3DFrameCtrl::EMode_NONE, YKM1, 0, 0},
+    {BCK_YKM_TALK_E, J3DFrameCtrl::EMode_NONE, YKM1, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {-1, J3DFrameCtrl::EMode_NONE, 0, -1, J3DFrameCtrl::EMode_NONE, 0, 0, 0},
+    {BCK_YKM_PUSH, J3DFrameCtrl::EMode_NONE, YKM1, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_PICKUP, J3DFrameCtrl::EMode_NONE, YKM1, BTK_YKM_PICKUP, J3DFrameCtrl::EMode_NONE, YKM1, 0, 0},
+    {BCK_YKM_POUR, J3DFrameCtrl::EMode_NONE, YKM1, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_REGRET, J3DFrameCtrl::EMode_NONE, YKM2, BTK_YKM_REGRET, J3DFrameCtrl::EMode_NONE, YKM2, 0, 0},
+    {BCK_YKM_LAUGH, J3DFrameCtrl::EMode_NONE, YKM2, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_ASK, J3DFrameCtrl::EMode_NONE, YKM2, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_WALK, J3DFrameCtrl::EMode_LOOP, YKM, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_STEP, J3DFrameCtrl::EMode_NONE, YKM, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_FISH_WAIT_A, J3DFrameCtrl::EMode_LOOP, YKM3, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_FISH_ATTACK, J3DFrameCtrl::EMode_NONE, YKM3, BTK_YKM_FISH_ATTACK, J3DFrameCtrl::EMode_NONE, YKM3, 0, 0},
+    {BCK_YKM_FISH_WAIT_B, J3DFrameCtrl::EMode_LOOP, YKM3, BTK_YKM_FISH_WAIT_B, J3DFrameCtrl::EMode_LOOP, YKM3, 0, 0},
+    {BCK_YKM_FISH_JUMP, J3DFrameCtrl::EMode_NONE, YKM3, BTK_YKM_FISH_JUMP, J3DFrameCtrl::EMode_NONE, YKM3, 0, 0},
+    {BCK_YKM_FISH_TALK_B, J3DFrameCtrl::EMode_NONE, YKM3, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_FISH_TALK_C, J3DFrameCtrl::EMode_NONE, YKM3, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_FISH_REGRET, J3DFrameCtrl::EMode_NONE, YKM3, BTK_YKM_FISH_REGRET, J3DFrameCtrl::EMode_NONE, YKM3, 0, 0},
+    {BCK_YKM_FISH_REGRETWAIT, J3DFrameCtrl::EMode_LOOP, YKM3, BTK_YKM_FISH_REGRETWAIT, J3DFrameCtrl::EMode_LOOP, YKM3, 0, 0},
+    {BCK_YKM_FISH_LAUGH, J3DFrameCtrl::EMode_NONE, YKM3, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_FISH_ASK, J3DFrameCtrl::EMode_NONE, YKM3, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_FISH_LOOK, J3DFrameCtrl::EMode_NONE, YKM3, BTK_YKM_FISH_LOOK, J3DFrameCtrl::EMode_NONE, YKM3, 0, 0},
+    {BCK_YKM_FISH_LOOKWAIT, J3DFrameCtrl::EMode_LOOP, YKM3, BTK_YKM_FISH_LOOKWAIT, J3DFrameCtrl::EMode_LOOP, YKM3, 0, 0},
+    {BCK_YKM_SB_WAIT, J3DFrameCtrl::EMode_LOOP, YKM2, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_SB_JUMP_A, J3DFrameCtrl::EMode_NONE, YKM2, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_SB_JUMP_B, J3DFrameCtrl::EMode_LOOP, YKM2, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_SB_JUMP_C, J3DFrameCtrl::EMode_NONE, YKM2, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_SB_TURNL, J3DFrameCtrl::EMode_LOOP, YKM2, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_SB_TURNR, J3DFrameCtrl::EMode_LOOP, YKM2, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_SB_DAMAGE, J3DFrameCtrl::EMode_NONE, YKM2, BTK_YKM_SB_DAMAGE, J3DFrameCtrl::EMode_NONE, YKM2, 0, 0},
+    {BCK_YKM_SB_GOAL, J3DFrameCtrl::EMode_NONE, YKM2, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_SB_GOALWAIT, J3DFrameCtrl::EMode_LOOP, YKM2, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_DENY, J3DFrameCtrl::EMode_NONE, YKM1, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_RUN, J3DFrameCtrl::EMode_LOOP, YKM1, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_STOP, J3DFrameCtrl::EMode_NONE, YKM1, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_WAITLIE, J3DFrameCtrl::EMode_LOOP, YKM1, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_WAKE, J3DFrameCtrl::EMode_NONE, YKM1, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_WAITWAKE, J3DFrameCtrl::EMode_LOOP, YKM1, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 3},
+    {BCK_YKM_HOLD, J3DFrameCtrl::EMode_NONE, YKM1, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_WAITHOLD, J3DFrameCtrl::EMode_LOOP, YKM1, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_HOLD_B, J3DFrameCtrl::EMode_NONE, YKM1, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
+    {BCK_YKM_WAITHOLD_B_B, J3DFrameCtrl::EMode_LOOP, YKM1, BTK_YKM, J3DFrameCtrl::EMode_NONE, YKM, 1, 0},
 };
 
 /* 80B5E328-80B5E428 000840 0100+00 0/1 0/0 0/0 .data            l_faceMotionSequenceData */
