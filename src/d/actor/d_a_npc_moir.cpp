@@ -246,173 +246,110 @@ extern "C" u8 sincosTable___5JMath[65536];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 80A83840-80A83840 000594 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80A83840 = "MoiR";
-SECTION_DEAD static char const* const stringBase_80A83845 = "MoiR1";
-SECTION_DEAD static char const* const stringBase_80A8384B = "MoiR2";
-SECTION_DEAD static char const* const stringBase_80A83851 = "MoiR3";
-SECTION_DEAD static char const* const stringBase_80A83857 = "";
-SECTION_DEAD static char const* const stringBase_80A83858 = "THE_INTRODUCTION";
-SECTION_DEAD static char const* const stringBase_80A83869 = "MOIR_APPEAR";
-SECTION_DEAD static char const* const stringBase_80A83875 = "MOIR_APPEAR2";
-#pragma pop
-
-/* 80A838B0-80A838BC 000000 000C+00 9/9 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80A838BC-80A838D0 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
+UNK_REL_DATA;
 
 /* 80A838D0-80A83AA4 000020 01D4+00 3/4 0/0 0/0 .data            l_bckGetParamList */
-SECTION_DATA static u8 l_bckGetParamList[468] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x07,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x06,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x08,
-    0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x14, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x15,
-    0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x09,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x0E, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x02,
-    0x00, 0x00, 0x00, 0x0D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x0B,
-    0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x0C, 0x00, 0x00, 0x00, 0x02,
-    0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02,
-    0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x12,
-    0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x13, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02,
-    0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x04,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x09, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x03,
-    0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x08,
-    0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x02,
-    0x00, 0x00, 0x00, 0x03,
+static daNpc_GetParam2 l_bckGetParamList[39] = {
+    {-1, 0, 0},
+    {7, 0, 0},
+    {6, 0, 0},
+    {5, 0, 0},
+    {7, 0, 2},
+    {6, 0, 0},
+    {3, 0, 3},
+    {8, 2, 0},
+    {9, 2, 0},
+    {8, 2, 0},
+    {4, 0, 3},
+    {0xC, 2, 0},
+    {0x14, 2, 2},
+    {0x15, 2, 2},
+    {0xB, 0, 0},
+    {0xA, 0, 0},
+    {0xA, 2, 2},
+    {9, 0, 2},
+    {0xE, 0, 2},
+    {0xF, 2, 2},
+    {0xD, 0, 2},
+    {0xB, 2, 2},
+    {0xC, 2, 2},
+    {4, 0, 2},
+    {0x11, 0, 2},
+    {0x12, 2, 2},
+    {0x13, 0, 2},
+    {0x10, 0, 2},
+    {3, 2, 1},
+    {4, 0, 1},
+    {6, 0, 1},
+    {7, 2, 1},
+    {8, 0, 1},
+    {5, 0, 1},
+    {6, 0, 3},
+    {9, 2, 3},
+    {7, 0, 3},
+    {8, 2, 3},
+    {5, 2, 3},
 };
 
 /* 80A83AA4-80A83ABC 0001F4 0018+00 1/1 0/0 0/0 .data            l_btpGetParamList */
-SECTION_DATA static u8 l_btpGetParamList[24] = {
-    0x00, 0x00, 0x00, 0x16, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x17, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
+static daNpc_GetParam2 l_btpGetParamList[2] = {
+    {0x16, 2, 0},
+    {0x17, 2, 0},
 };
 
 /* 80A83ABC-80A83AC8 00020C 000C+00 1/2 0/0 0/0 .data            l_btkGetParamList */
-SECTION_DATA static u8 l_btkGetParamList[12] = {
-    0x00, 0x00, 0x00, 0x13, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
+static daNpc_GetParam2 l_btkGetParamList[1] = {
+    {0x13, 2, 0},
 };
 
 /* 80A83AC8-80A83AD4 000218 000C+00 1/0 0/0 0/0 .data            l_loadRes_MOIR0 */
-SECTION_DATA static u8 l_loadRes_MOIR0[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF,
+static int l_loadRes_MOIR0[3] = {
+    0, 1, -1,
 };
 
 /* 80A83AD4-80A83AE0 000224 000C+00 1/0 0/0 0/0 .data            l_loadRes_MOIR1 */
-SECTION_DATA static u8 l_loadRes_MOIR1[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xFF, 0xFF, 0xFF, 0xFF,
+static int l_loadRes_MOIR1[3] = {
+    0, 2, -1,
 };
 
 /* 80A83AE0-80A83AEC 000230 000C+00 1/0 0/0 0/0 .data            l_loadRes_MOIR2 */
-SECTION_DATA static u8 l_loadRes_MOIR2[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0xFF, 0xFF, 0xFF, 0xFF,
+static int l_loadRes_MOIR2[12] = {
+    0, 3, -1,
 };
 
 /* 80A83AEC-80A83AF8 -00001 000C+00 2/2 0/0 0/0 .data            l_loadRes_list */
-SECTION_DATA static void* l_loadRes_list[3] = {
-    (void*)&l_loadRes_MOIR0,
-    (void*)&l_loadRes_MOIR1,
-    (void*)&l_loadRes_MOIR2,
+static int* l_loadRes_list[3] = {
+    l_loadRes_MOIR0,
+    l_loadRes_MOIR1,
+    l_loadRes_MOIR2,
 };
 
 /* 80A83AF8-80A83B08 -00001 0010+00 8/13 0/0 0/0 .data            l_arcNames */
-SECTION_DATA static void* l_arcNames[4] = {
-    (void*)&d_a_npc_moir__stringBase0,
-    (void*)(((char*)&d_a_npc_moir__stringBase0) + 0x5),
-    (void*)(((char*)&d_a_npc_moir__stringBase0) + 0xB),
-    (void*)(((char*)&d_a_npc_moir__stringBase0) + 0x11),
+static char* l_arcNames[4] = {
+    "MoiR",
+    "MoiR1",
+    "MoiR2",
+    "MoiR3",
 };
 
 /* 80A83B08-80A83B18 -00001 0010+00 0/5 0/0 0/0 .data            l_evtNames */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtNames[4] = {
-    (void*)(((char*)&d_a_npc_moir__stringBase0) + 0x17),
-    (void*)(((char*)&d_a_npc_moir__stringBase0) + 0x18),
-    (void*)(((char*)&d_a_npc_moir__stringBase0) + 0x29),
-    (void*)(((char*)&d_a_npc_moir__stringBase0) + 0x35),
+static char* l_evtNames[4] = {
+    "",
+    "THE_INTRODUCTION",
+    "MOIR_APPEAR",
+    "MOIR_APPEAR2",
 };
-#pragma pop
 
 /* 80A83B18-80A83B1C -00001 0004+00 0/3 0/0 0/0 .data            l_myName */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_myName = (void*)&d_a_npc_moir__stringBase0;
-#pragma pop
-
-/* 80A83B1C-80A83B28 -00001 000C+00 0/1 0/0 0/0 .data            @3855 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3855[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)EvCut_Introduction__11daNpcMoiR_cFi,
-};
-#pragma pop
-
-/* 80A83B28-80A83B34 -00001 000C+00 0/1 0/0 0/0 .data            @3856 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3856[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)EvCut_Appear__11daNpcMoiR_cFi,
-};
-#pragma pop
-
-/* 80A83B34-80A83B40 -00001 000C+00 0/1 0/0 0/0 .data            @3857 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3857[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)EvCut_Appear2__11daNpcMoiR_cFi,
-};
-#pragma pop
+static char* l_myName = "MoiR";
 
 /* 80A83B40-80A83B70 000290 0030+00 0/2 0/0 0/0 .data            mEvtSeqList__11daNpcMoiR_c */
-#pragma push
-#pragma force_active on
-SECTION_DATA u8 daNpcMoiR_c::mEvtSeqList[48] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+daNpcMoiR_c::EventFn daNpcMoiR_c::mEvtSeqList[4] = {
+    NULL,
+    &daNpcMoiR_c::EvCut_Introduction,
+    &daNpcMoiR_c::EvCut_Appear,
+    &daNpcMoiR_c::EvCut_Appear2,
 };
-#pragma pop
 
 /* 80A83B70-80A83B9C -00001 002C+00 1/1 0/0 0/0 .data            @4538 */
 SECTION_DATA static void* lit_4538[11] = {
@@ -550,33 +487,6 @@ SECTION_DATA static void* lit_5387[3] = {
     (void*)wait_type1__11daNpcMoiR_cFPv,
 };
 
-/* 80A83C38-80A83C58 -00001 0020+00 1/0 0/0 0/0 .data            daNpcMoiR_MethodTable */
-static actor_method_class daNpcMoiR_MethodTable = {
-    (process_method_func)daNpcMoiR_Create__FPv,
-    (process_method_func)daNpcMoiR_Delete__FPv,
-    (process_method_func)daNpcMoiR_Execute__FPv,
-    (process_method_func)daNpcMoiR_IsDelete__FPv,
-    (process_method_func)daNpcMoiR_Draw__FPv,
-};
-
-/* 80A83C58-80A83C88 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_MOIR */
-extern actor_process_profile_definition g_profile_NPC_MOIR = {
-  fpcLy_CURRENT_e,        // mLayerID
-  7,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_NPC_MOIR,          // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(daNpcMoiR_c),    // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  415,                    // mPriority
-  &daNpcMoiR_MethodTable, // sub_method
-  0x00040100,             // mStatus
-  fopAc_NPC_e,            // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
-};
-
 /* 80A83C88-80A83C94 0003D8 000C+00 2/2 0/0 0/0 .data            __vt__11J3DTexNoAnm */
 SECTION_DATA extern void* __vt__11J3DTexNoAnm[3] = {
     (void*)NULL /* RTTI */,
@@ -676,80 +586,150 @@ SECTION_DATA extern void* __vt__15daNpcF_Lookat_c[3] = {
 };
 
 /* 80A7C16C-80A7C2F0 0000EC 0184+00 1/1 0/0 0/0 .text            __ct__11daNpcMoiR_cFv */
-daNpcMoiR_c::daNpcMoiR_c() {
-    // NONMATCHING
-}
-
-/* 80A7C2F0-80A7C338 000270 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
-// cM3dGCyl::~cM3dGCyl() {
-extern "C" void __dt__8cM3dGCylFv() {
-    // NONMATCHING
-}
-
-/* 80A7C338-80A7C380 0002B8 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
-// cM3dGAab::~cM3dGAab() {
-extern "C" void __dt__8cM3dGAabFv() {
-    // NONMATCHING
-}
+daNpcMoiR_c::daNpcMoiR_c() {}
 
 /* 80A7C380-80A7C580 000300 0200+00 1/0 0/0 0/0 .text            __dt__11daNpcMoiR_cFv */
 daNpcMoiR_c::~daNpcMoiR_c() {
     // NONMATCHING
 }
 
-/* ############################################################################################## */
 /* 80A832AC-80A83320 000000 0074+00 17/17 0/0 0/0 .rodata          m__17daNpcMoiR_Param_c */
-SECTION_RODATA u8 const daNpcMoiR_Param_c::m[116] = {
-    0x42, 0x0C, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xC8, 0x00,
-    0x00, 0x43, 0x7F, 0x00, 0x00, 0x43, 0x48, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0xF0,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1,
-    0x20, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00, 0x42, 0x34, 0x00, 0x00,
-    0xC2, 0x34, 0x00, 0x00, 0x3F, 0x19, 0x99, 0x9A, 0x41, 0x40, 0x00, 0x00, 0x00, 0x03, 0x00,
-    0x06, 0x00, 0x05, 0x00, 0x06, 0x42, 0xA0, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00, 0x43, 0x96,
-    0x00, 0x00, 0xC3, 0x96, 0x00, 0x00, 0x00, 0x3C, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00, 0x15, 0xCD, 0x00, 0x00,
+daNpcMoiR_HIOParam const daNpcMoiR_Param_c::m = {
+    35.0f,
+    -3.0f,
+    1.0f,
+    400.0f,
+    255.0f,
+    200.0f,
+    35.0f,
+    30.0f,
+    0.0f,
+    0.0f,
+    10.0f,
+    -10.0f,
+    30.0f,
+    -10.0f,
+    45.0f,
+    -45.0f,
+    0.6f,
+    12.0f,
+    3,
+    6,
+    5,
+    6,
+    80.0f,
+    500.0f,
+    300.0f,
+    -300.0f,
+    60,
+    8,
+    0,
+    0,
+    0,
+    false,
+    false,
+    300.0f,
+    0x15CD,
+    0,
 };
-COMPILER_STRIP_GATE(0x80A832AC, &daNpcMoiR_Param_c::m);
-
-/* 80A83320-80A83324 000074 0004+00 0/1 0/0 0/0 .rodata          @4276 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4276 = -100.0f;
-COMPILER_STRIP_GATE(0x80A83320, &lit_4276);
-#pragma pop
-
-/* 80A83324-80A83328 000078 0004+00 0/1 0/0 0/0 .rodata          @4277 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4277 = -50.0f;
-COMPILER_STRIP_GATE(0x80A83324, &lit_4277);
-#pragma pop
-
-/* 80A83328-80A8332C 00007C 0004+00 0/1 0/0 0/0 .rodata          @4278 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4278 = 100.0f;
-COMPILER_STRIP_GATE(0x80A83328, &lit_4278);
-#pragma pop
-
-/* 80A8332C-80A83330 000080 0004+00 0/1 0/0 0/0 .rodata          @4279 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4279 = 220.0f;
-COMPILER_STRIP_GATE(0x80A8332C, &lit_4279);
-#pragma pop
-
-/* 80A83840-80A83840 000594 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80A83882 = "R_SP116";
-SECTION_DEAD static char const* const stringBase_80A8388A = "F_SP108";
-SECTION_DEAD static char const* const stringBase_80A83892 = "D_MN09";
-#pragma pop
 
 /* 80A7C580-80A7C978 000500 03F8+00 1/1 0/0 0/0 .text            Create__11daNpcMoiR_cFv */
-void daNpcMoiR_c::Create() {
+cPhs__Step daNpcMoiR_c::Create() {
     // NONMATCHING
+    fopAcM_SetupActor(this, daNpcMoiR_c);
+
+    if (strcmp(dComIfGp_getStartStageName(), "R_SP116") == 0 && dComIfG_play_c::getLayerNo(0) == 4) {
+        if (daNpcF_chkEvtBit(0x169) /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
+            && daNpcF_chkEvtBit(0x10A) /* dSv_event_flag_c::F_0266 - Snowpeak Ruins - Snowpeak Ruins clear */
+            && !daNpcF_chkEvtBit(0x10B) /* dSv_event_flag_c::F_0267 - Temple of Time - Temple of Time clear */) {
+            return cPhs_ERROR_e;
+        }
+
+        if (dComIfGs_isStageSwitch(0x18, 0x4B)) {
+            return cPhs_ERROR_e;
+        }
+
+        mType = 0;
+    } else {
+        if (strcmp(dComIfGp_getStartStageName(), "F_SP108") == 0) {
+            if (daNpcF_chkEvtBit(0x10B) /* dSv_event_flag_c::F_0267 - Temple of Time - Temple of Time clear */) {
+                return cPhs_ERROR_e;
+            }
+
+            mType = 1;
+        } else {
+            if (strcmp(dComIfGp_getStartStageName(), "D_MN09") == 0) {
+                if (dComIfGs_isSaveSwitch(0x14)) {
+                    return cPhs_ERROR_e;
+                }
+
+                fopAcM_OnStatus(this, fopAcM_STATUS_UNK_004000);
+                mType = 2;
+            }
+        }
+    }
+
+    mMsgNo = getMessageNo();
+    cPhs__Step phase = cPhs_ERROR_e;
+    for (int i = 0; i < 3; i++) {
+        phase = (cPhs__Step)dComIfG_resLoad(&mPhase[i], l_arcNames[l_loadRes_list[mType][i]]);
+        if (phase != cPhs_COMPLEATE_e) {
+            return phase;
+        }
+    }
+
+    if (phase == cPhs_COMPLEATE_e) {
+        u32 i_size = 0;
+        switch (mType) {
+            case 0:
+                i_size = 0x4850;
+                break;
+
+            case 1:
+                i_size = 0x4860;
+                break;
+
+            case 2:
+                i_size = 0x4850;
+                break;
+
+            default:
+                JUT_ASSERT(343, 0);
+                break;
+        }
+
+        if (!fopAcM_entrySolidHeap(this, createHeapCallBack, i_size)) {
+            return cPhs_ERROR_e;
+        }
+
+        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_setCullSizeBox(this, -100.0f, -50.0f, -100.0f, 100.0f, 220.0f, 100.0f);
+        mSound.init(&current.pos, &eyePos, 3, 1);
+
+        mAcchCir.SetWall(daNpcMoiR_Param_c::m.common.body_angleX_min, daNpcMoiR_Param_c::m.common.body_angleX_max);
+        mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1,
+                  &mAcchCir, fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
+        mAcch.SetRoofNone();
+        mAcch.SetWaterNone();
+        mAcch.CrrPos(dComIfG_Bgsp());
+
+        mCcStts.Init(daNpcMoiR_Param_c::m.common.knee_length, 0, this);
+        field_0xca0.Set(mCcDCyl);
+        field_0xca0.SetStts(&mCcStts);
+        field_0xca0.SetTgType(0);
+        field_0xca0.SetTgSPrm(0);
+
+        mGndChk = mAcch.m_gnd;
+        mGroundH = mAcch.GetGroundH();
+
+        setEnvTevColor();
+        setRoomNo();
+        mpMorf->modelCalc();
+        reset();
+        Execute();
+    }
+
+    return phase;
 }
 
 /* ############################################################################################## */
@@ -861,7 +841,7 @@ void daNpcMoiR_c::ctrlJoint(J3DJoint* param_0, J3DModel* param_1) {
 
 /* 80A7D0CC-80A7D0EC 00104C 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__11daNpcMoiR_cFP10fopAc_ac_c              */
-void daNpcMoiR_c::createHeapCallBack(fopAc_ac_c* param_0) {
+int daNpcMoiR_c::createHeapCallBack(fopAc_ac_c* param_0) {
     // NONMATCHING
 }
 
@@ -873,18 +853,18 @@ void daNpcMoiR_c::ctrlJointCallBack(J3DJoint* param_0, int param_1) {
 
 /* 80A7D138-80A7D394 0010B8 025C+00 2/0 0/0 0/0 .text            setExpressionAnm__11daNpcMoiR_cFib
  */
-void daNpcMoiR_c::setExpressionAnm(int param_0, bool param_1) {
+bool daNpcMoiR_c::setExpressionAnm(int param_0, bool param_1) {
     // NONMATCHING
 }
 
 /* 80A7D394-80A7D474 001314 00E0+00 1/0 0/0 0/0 .text            setExpressionBtp__11daNpcMoiR_cFi
  */
-void daNpcMoiR_c::setExpressionBtp(int param_0) {
+bool daNpcMoiR_c::setExpressionBtp(int param_0) {
     // NONMATCHING
 }
 
 /* 80A7D474-80A7D5C4 0013F4 0150+00 1/0 0/0 0/0 .text            setMotionAnm__11daNpcMoiR_cFif */
-bool daNpcMoiR_c::setMotionAnm(int param_0, f32 param_1) {
+void daNpcMoiR_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 
@@ -2068,12 +2048,12 @@ SECTION_DEAD static char const* const stringBase_80A838A9 = "prm";
 
 /* 80A802C4-80A803A0 004244 00DC+00 1/0 0/0 0/0 .text            EvCut_Introduction__11daNpcMoiR_cFi
  */
-void daNpcMoiR_c::EvCut_Introduction(int param_0) {
+BOOL daNpcMoiR_c::EvCut_Introduction(int param_0) {
     // NONMATCHING
 }
 
 /* 80A803A0-80A8081C 004320 047C+00 1/0 0/0 0/0 .text            EvCut_Appear__11daNpcMoiR_cFi */
-void daNpcMoiR_c::EvCut_Appear(int param_0) {
+BOOL daNpcMoiR_c::EvCut_Appear(int param_0) {
     // NONMATCHING
 }
 
@@ -2086,7 +2066,7 @@ COMPILER_STRIP_GATE(0x80A8380C, &lit_5816);
 #pragma pop
 
 /* 80A8081C-80A81044 00479C 0828+00 1/0 0/0 0/0 .text            EvCut_Appear2__11daNpcMoiR_cFi */
-void daNpcMoiR_c::EvCut_Appear2(int param_0) {
+BOOL daNpcMoiR_c::EvCut_Appear2(int param_0) {
     // NONMATCHING
 }
 
@@ -2127,7 +2107,7 @@ void daNpcMoiR_c::setParam() {
 }
 
 /* 80A81274-80A815D4 0051F4 0360+00 1/0 0/0 0/0 .text            main__11daNpcMoiR_cFv */
-void daNpcMoiR_c::main() {
+BOOL daNpcMoiR_c::main() {
     // NONMATCHING
 }
 
@@ -2169,7 +2149,7 @@ SECTION_RODATA static f32 const lit_6069 = 1.0f / 5.0f;
 COMPILER_STRIP_GATE(0x80A8381C, &lit_6069);
 
 /* 80A8210C-80A821E0 00608C 00D4+00 1/0 0/0 0/0 .text            ctrlBtk__11daNpcMoiR_cFv */
-void daNpcMoiR_c::ctrlBtk() {
+BOOL daNpcMoiR_c::ctrlBtk() {
     // NONMATCHING
 }
 
@@ -2247,8 +2227,8 @@ void daNpcMoiR_c::drawOtherMdls() {
 }
 
 /* 80A82900-80A82908 006880 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__11daNpcMoiR_cFv */
-bool daNpcMoiR_c::drawDbgInfo() {
-    return false;
+BOOL daNpcMoiR_c::drawDbgInfo() {
+    return FALSE;
 }
 
 /* 80A82908-80A82950 006888 0048+00 5/4 0/0 0/0 .text            __dt__18daNpcF_ActorMngr_cFv */
@@ -2397,3 +2377,30 @@ static void func_80A83290() {
 }
 
 /* 80A83840-80A83840 000594 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+
+/* 80A83C38-80A83C58 -00001 0020+00 1/0 0/0 0/0 .data            daNpcMoiR_MethodTable */
+static actor_method_class daNpcMoiR_MethodTable = {
+    (process_method_func)daNpcMoiR_Create,
+    (process_method_func)daNpcMoiR_Delete,
+    (process_method_func)daNpcMoiR_Execute,
+    (process_method_func)daNpcMoiR_IsDelete,
+    (process_method_func)daNpcMoiR_Draw,
+};
+
+/* 80A83C58-80A83C88 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_MOIR */
+extern actor_process_profile_definition g_profile_NPC_MOIR = {
+  fpcLy_CURRENT_e,        // mLayerID
+  7,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_NPC_MOIR,          // mProcName
+  &g_fpcLf_Method.base,  // sub_method
+  sizeof(daNpcMoiR_c),    // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  415,                    // mPriority
+  &daNpcMoiR_MethodTable, // sub_method
+  0x00040100,             // mStatus
+  fopAc_NPC_e,            // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
+};
