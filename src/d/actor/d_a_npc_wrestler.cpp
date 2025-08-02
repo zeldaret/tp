@@ -1781,7 +1781,6 @@ inline bool daNpcWrestler_c::talk(void* param_1) {
 
 /* 80B31EB0-80B32058 002D10 01A8+00 4/0 0/0 0/0 .text            demo__15daNpcWrestler_cFPv */
 inline bool daNpcWrestler_c::demo(void* param_1) {
-    // NONMATCHING - register weirdness in GCN
     dEvent_manager_c* eventManager = &dComIfGp_getEventManager();
 
     switch (field_0xe96) {
@@ -1790,7 +1789,7 @@ inline bool daNpcWrestler_c::demo(void* param_1) {
             break;
 
         case 2: {
-            int staffID = eventManager->getMyStaffId(l_myName, NULL, 0);
+            s32 staffID = eventManager->getMyStaffId(l_myName, NULL, 0);
             mStaffID = staffID;
             JUT_ASSERT(2886, 0 != mEvtSeqList[mOrderEvtNo]);
 
