@@ -33,13 +33,13 @@ public:
     /* 80A7C16C */ daNpcMoiR_c();
     /* 80A7C380 */ ~daNpcMoiR_c();
     /* 80A7C580 */ cPhs__Step Create();
-    /* 80A7C978 */ void CreateHeap();
-    /* 80A7CE48 */ void Delete();
-    /* 80A7CE7C */ void Execute();
-    /* 80A7CEA0 */ void Draw();
-    /* 80A7CEFC */ void ctrlJoint(J3DJoint*, J3DModel*);
+    /* 80A7C978 */ int CreateHeap();
+    /* 80A7CE48 */ int Delete();
+    /* 80A7CE7C */ int Execute();
+    /* 80A7CEA0 */ int Draw();
+    /* 80A7CEFC */ int ctrlJoint(J3DJoint*, J3DModel*);
     /* 80A7D0CC */ static int createHeapCallBack(fopAc_ac_c*);
-    /* 80A7D0EC */ void ctrlJointCallBack(J3DJoint*, int);
+    /* 80A7D0EC */ static int ctrlJointCallBack(J3DJoint*, int);
     /* 80A7D138 */ bool setExpressionAnm(int, bool);
     /* 80A7D394 */ bool setExpressionBtp(int);
     /* 80A7D474 */ void setMotionAnm(int, f32);
@@ -70,13 +70,14 @@ public:
 
     MtxP getHandRMtx() { return mpMorf->getModel()->getAnmMtx(17); }
 
-    int getMessageNo() { return fopAcM_GetParam(this) >> 8; }
+    u16 getMessageNo() { return fopAcM_GetParam(this) >> 8; }
 
     static EventFn mEvtSeqList[4];
 
 private:
     /* 0xB48 */ Z2Creature mSound;
-    /* 0xBD8 */ u8 field_0xbd8[0xbe0 - 0xbd8];
+    /* 0xBD8 */ J3DModel* field_0xbd8;
+    /* 0xBDC */ daNpcF_MatAnm_c* mpMatAnm;
     /* 0xBE0 */ daNpcF_Lookat_c mLookat;
     /* 0xC7C */ daNpcF_ActorMngr_c mActorMngr[4];
     /* 0xC9C */ u8 field_0xc9c[0xca0 - 0xc9c];
@@ -86,7 +87,7 @@ private:
     /* 0xE00 */ u8 field_0xe00[0xe04 - 0xe00];
     /* 0xE04 */ s16 mMsgNo;
     /* 0xE06 */ u8 field_0xe06[0xe0b - 0xe06];
-    /* 0xE0B */ u8 mType;
+    /* 0xE0B */ u8 mMode;
 };
 
 STATIC_ASSERT(sizeof(daNpcMoiR_c) == 0xe0c);
