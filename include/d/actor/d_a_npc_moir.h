@@ -28,6 +28,7 @@ public:
 
 class daNpcMoiR_c : public daNpcF_c {
 public:
+    typedef bool (daNpcMoiR_c::*ActionFn)(void*);
     typedef BOOL (daNpcMoiR_c::*EventFn)(int);
 
     /* 80A7C16C */ daNpcMoiR_c();
@@ -45,11 +46,11 @@ public:
     /* 80A7D474 */ void setMotionAnm(int, f32);
     /* 80A7D5C4 */ void reset();
     /* 80A7D73C */ void setWaitAction();
-    /* 80A7D934 */ void wait_type0(void*);
+    /* 80A7D934 */ bool wait_type0(void*);
     /* 80A7DD94 */ void setMotion(int, f32, int);
     /* 80A7DDD8 */ void setExpression(int, f32);
-    /* 80A7DE04 */ void wait_type1(void*);
-    /* 80A7E668 */ void wait_type2(void*);
+    /* 80A7DE04 */ bool wait_type1(void*);
+    /* 80A7E668 */ bool wait_type2(void*);
     /* 80A7E8C0 */ void talk(void*);
     /* 80A7EFBC */ void multiTalk(void*);
     /* 80A7F40C */ void fight(void*);
@@ -72,6 +73,24 @@ public:
 
     u16 getMessageNo() { return fopAcM_GetParam(this) >> 8; }
 
+    void setAction(ActionFn action) {
+        field_0xe08 = 3;
+
+        if (mAction) {
+            (this->*mAction)(NULL);
+        }
+
+        field_0xe08 = 0;
+        mAction = action;
+
+        if (mAction) {
+            (this->*mAction)(NULL);
+        }
+    }
+
+    inline BOOL chkFindPlayer();
+    inline void setLookMode(int i_lookMode);
+
     static EventFn mEvtSeqList[4];
 
 private:
@@ -82,11 +101,13 @@ private:
     /* 0xC7C */ daNpcF_ActorMngr_c mActorMngr[4];
     /* 0xC9C */ u8 field_0xc9c[0xca0 - 0xc9c];
     /* 0xCA0 */ dCcD_Cyl field_0xca0;
-    /* 0xDDC */ u8 field_0xddc[0xde8 - 0xddc];
+    /* 0xDDC */ ActionFn mAction;
     /* 0xDE8 */ request_of_phase_process_class mPhase[3];
-    /* 0xE00 */ u8 field_0xe00[0xe04 - 0xe00];
+    /* 0xE00 */ int field_0xe00;
     /* 0xE04 */ s16 mMsgNo;
-    /* 0xE06 */ u8 field_0xe06[0xe0b - 0xe06];
+    /* 0xE06 */ s16 mLookMode;
+    /* 0xE08 */ s16 field_0xe08;
+    /* 0xE0A */ u8 field_0xe0a;
     /* 0xE0B */ u8 mMode;
 };
 

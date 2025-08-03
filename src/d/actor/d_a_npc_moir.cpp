@@ -843,24 +843,107 @@ bool daNpcMoiR_c::setExpressionAnm(int i_index, bool i_modify) {
 }
 
 /* 80A7D394-80A7D474 001314 00E0+00 1/0 0/0 0/0 .text            setExpressionBtp__11daNpcMoiR_cFi */
-bool daNpcMoiR_c::setExpressionBtp(int param_0) {
-    // NONMATCHING
+bool daNpcMoiR_c::setExpressionBtp(int i_index) {
+    J3DAnmTexPattern* anmTexPattern = getTexPtrnAnmP(l_arcNames[l_btpGetParamList[i_index].arcIdx], l_btpGetParamList[i_index].fileIdx);
+    int i_attr = l_btpGetParamList[i_index].attr;
 
+    mAnmFlags &= 0xFFFFF57F;
+
+    if (anmTexPattern == NULL) {
+        return true;
+    }
+
+    if (setBtpAnm(anmTexPattern, mpMorf->getModel()->getModelData(), 1.0f, i_attr)) {
+        mAnmFlags |= ANM_PLAY_BTP | ANM_PAUSE_BTP;
+
+        if (i_index == 0) {
+            mAnmFlags |= ANM_FLAG_800;
+        }
+
+        return true;
+    }
+
+    OS_REPORT("%s: 表情Btpアニメーションの登録に失敗しました！\n", "d_a_npc_moir.cpp");
+    return false;
 }
 
 /* 80A7D474-80A7D5C4 0013F4 0150+00 1/0 0/0 0/0 .text            setMotionAnm__11daNpcMoiR_cFif */
-void daNpcMoiR_c::setMotionAnm(int param_0, f32 param_1) {
-    // NONMATCHING
+void daNpcMoiR_c::setMotionAnm(int i_index, f32 i_morf) {
+    if (i_index < 11 || i_index >= 0x27) {
+        return;
+    }
+
+    J3DAnmTransformKey* morfAnm = getTrnsfrmKeyAnmP(l_arcNames[l_bckGetParamList[i_index].arcIdx], l_bckGetParamList[i_index].fileIdx);
+    J3DAnmTextureSRTKey* btkAnm = getTexSRTKeyAnmP(l_arcNames[l_btkGetParamList[0].arcIdx], l_btkGetParamList[0].fileIdx);
+    int i_morfAttr = l_bckGetParamList[i_index].attr;
+    int i_btkAttr = l_btkGetParamList[0].attr;
+
+    mAnmFlags &= 0xFFFFFFC0;
+
+    if (morfAnm != NULL && setMcaMorfAnm(morfAnm, 1.0f, i_morf, i_morfAttr, 0, -1)) {
+        mAnmFlags |= ANM_PLAY_MORF | ANM_PAUSE_MORF;
+        mMotionLoops = 0;
+    }
+
+    if (btkAnm != NULL) {
+        if (setBtkAnm(btkAnm, mpMorf->getModel()->getModelData(), 1.0f, i_btkAttr)) {
+            mAnmFlags |= ANM_PLAY_BTK | ANM_PAUSE_BTK;
+        }
+    }
 }
 
 /* 80A7D5C4-80A7D73C 001544 0178+00 1/1 0/0 0/0 .text            reset__11daNpcMoiR_cFv */
 void daNpcMoiR_c::reset() {
-    // NONMATCHING
+    initialize();
+    mpMatAnm->initialize();
+    mLookat.initialize();
+
+    for (int i = 0; i < 4; i++) {
+        mActorMngr[i].initialize();
+    }
+
+    mPhase[2].id = cPhs_INIT_e;
+    field_0xe00 = 0;
+    mAction = NULL;
+    mLookMode = -1;
+    field_0xe08 = 0;
+    current.pos.set(home.pos);
+    old.pos.set(current.pos);
+    current.angle.set(0, home.angle.y, 0);
+    old.angle = current.angle;
+    shape_angle = current.angle;
+    mCurAngle = current.angle;
+    mOldAngle = mCurAngle;
+    speedF = 0.0f;
+    speed.setall(0.0f);
+    mPhase[2].mpHandlerTable = (cPhs__Handler*)-1;
+    mOrderEvtNo = 0;
+    mExpressionMorfOverride = 0.0f;
+    mMotionMorfOverride = 0.0f;
+    field_0xe0a = 1;
+    setWaitAction();
 }
 
 /* 80A7D73C-80A7D934 0016BC 01F8+00 1/1 0/0 0/0 .text            setWaitAction__11daNpcMoiR_cFv */
 void daNpcMoiR_c::setWaitAction() {
     // NONMATCHING
+    switch (mMode) {
+        case 0:
+            setAction(&daNpcMoiR_c::wait_type0);
+            break;
+
+        case 1:
+            setAction(&daNpcMoiR_c::wait_type1);
+            break;
+
+        case 2:
+            setAction(&daNpcMoiR_c::wait_type2);
+            break;
+
+        default:
+            JUT_ASSERT(1315, 0);
+            break;
+    }
 }
 
 /* ############################################################################################## */
@@ -1822,9 +1905,80 @@ SECTION_RODATA static f32 const lit_4961 = 135.0f;
 COMPILER_STRIP_GATE(0x80A83794, &lit_4961);
 #pragma pop
 
+BOOL daNpcMoiR_c::chkFindPlayer() {
+    BOOL rv;
+    f32 fVar1 = mMode == 0 ? 135.0f : daNpcMoiR_Param_c::m.common.fov;
+
+    if (chkActorInSight(daPy_getPlayerActorClass(), fVar1)) {
+        BOOL bVar1;
+        if (mActorMngr[0].getActorP() == NULL) {
+            bVar1 = chkPlayerInSpeakArea(this);
+        } else {
+            bVar1 = chkPlayerInTalkArea(this);
+        }
+
+        rv = bVar1;
+
+        if (rv) {
+            mActorMngr[0].entry(daPy_getPlayerActorClass());
+        } else {
+            mActorMngr[0].remove();
+        }
+    } else {
+        mActorMngr[0].remove();
+        return FALSE;
+    }
+
+    return rv;
+}
+
+void daNpcMoiR_c::setLookMode(int i_lookMode) {
+    if (i_lookMode >= 0 && i_lookMode <= 3 && i_lookMode != mLookMode) {
+        mLookMode = i_lookMode;
+    }
+}
+
 /* 80A7D934-80A7DD94 0018B4 0460+00 1/0 0/0 0/0 .text            wait_type0__11daNpcMoiR_cFPv */
-void daNpcMoiR_c::wait_type0(void* param_0) {
+bool daNpcMoiR_c::wait_type0(void* param_1) {
     // NONMATCHING
+    switch (field_0xe08) {
+        case 2:
+            if (mActorMngr[0].getActorP() == NULL) {
+                if (chkFindPlayer()) {
+                    mTurnMode = 0;
+                }
+            } else {
+                if (!chkFindPlayer()) {
+                    mTurnMode = 0;
+                }
+            }
+
+            if (mActorMngr[0].getActorP() == NULL) {
+                setLookMode(0);
+            } else {
+                setLookMode(2);
+            }
+
+            if (!dComIfGp_event_runCheck()) {
+                if (mOrderEvtNo != 0) {
+                    eventInfo.setArchiveName("MoiR1");
+                }
+
+                char* i_evtName;
+                if (mOrderEvtNo != 0) {
+                    i_evtName = l_evtNames[mOrderEvtNo];
+                } else {
+                    i_evtName = NULL;
+                }
+
+                orderEvent(mOrderSpeakEvt, i_evtName, 0xFFFF, 0x28, 0xFF, 1);
+            } else {
+                if (!eventInfo.checkCommandTalk()) {
+                    
+                }
+            }
+            break;
+    }
 }
 
 /* 80A7DD94-80A7DDD8 001D14 0044+00 1/0 0/0 0/0 .text            setMotion__11daNpcMoiR_cFifi */
@@ -1884,7 +2038,7 @@ SECTION_RODATA static u8 const lit_5166[8] = {
 COMPILER_STRIP_GATE(0x80A837B4, &lit_5166);
 
 /* 80A7DE04-80A7E668 001D84 0864+00 2/0 0/0 0/0 .text            wait_type1__11daNpcMoiR_cFPv */
-void daNpcMoiR_c::wait_type1(void* param_0) {
+bool daNpcMoiR_c::wait_type1(void* param_0) {
     // NONMATCHING
 }
 
@@ -1904,7 +2058,7 @@ COMPILER_STRIP_GATE(0x80A837C0, &lit_5202);
 #pragma pop
 
 /* 80A7E668-80A7E8C0 0025E8 0258+00 1/0 0/0 0/0 .text            wait_type2__11daNpcMoiR_cFPv */
-void daNpcMoiR_c::wait_type2(void* param_0) {
+bool daNpcMoiR_c::wait_type2(void* param_0) {
     // NONMATCHING
 }
 
