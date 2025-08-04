@@ -21,7 +21,7 @@ struct daNpcMoiR_HIOParam {
 
 class daNpcMoiR_Param_c {
 public:
-    /* 80A83240 */ virtual ~daNpcMoiR_Param_c();
+    /* 80A83240 */ virtual ~daNpcMoiR_Param_c() {}
 
     static daNpcMoiR_HIOParam const m;
 };
@@ -31,7 +31,104 @@ public:
     typedef bool (daNpcMoiR_c::*ActionFn)(void*);
     typedef BOOL (daNpcMoiR_c::*EventFn)(int);
 
-    /* 80A7C16C */ daNpcMoiR_c();
+    enum Animation {
+        /* 0x00 */ ANM_NONE,
+        /* 0x01 */ ANM_F_TALK_A,
+        /* 0x02 */ ANM_F_HOLD_S,
+        /* 0x03 */ ANM_3,
+        /* 0x04 */ ANM_F_SURPRISED,
+        /* 0x05 */ ANM_F_HOLD_S_LOOP,
+        /* 0x06 */ ANM_F_TAKAJO_HI,
+        /* 0x07 */ ANM_FH_HOLD_S,
+        /* 0x08 */ ANM_FH_SERIOUS,
+        /* 0x09 */ ANM_FH_HOLD_S_2,
+        /* 0x0A */ ANM_FH_TAKAJO_HI,
+        /* 0x0B */ ANM_WAIT_A,
+        /* 0x0C */ ANM_WAIT_B,
+        /* 0x0D */ ANM_WAIT_C,
+        /* 0x0E */ ANM_TALK_A,
+        /* 0x0F */ ANM_STEP,
+        /* 0x10 */ ANM_LOOK_AROUND,
+        /* 0x11 */ ANM_FUE,
+        /* 0x12 */ ANM_TAKAJO_NI,
+        /* 0x13 */ ANM_TAKAJO_WAIT_NI,
+        /* 0x14 */ ANM_SURPRISED,
+        /* 0x15 */ ANM_SQUAREUP,
+        /* 0x16 */ ANM_SQUAREUP_STEP,
+        /* 0x17 */ ANM_DRIVEAWAY,
+        /* 0x18 */ ANM_TAKEOFF,
+        /* 0x19 */ ANM_TAKING_OFF,
+        /* 0x1A */ ANM_TAKING_OFF_TALK,
+        /* 0x1B */ ANM_TAKE_MET,
+        /* 0x1C */ ANM_SIT,
+        /* 0x1D */ ANM_SIT_TALK,
+        /* 0x1E */ ANM_TAKEOFF_SIT,
+        /* 0x1F */ ANM_TAKING_OFF_SIT,
+        /* 0x20 */ ANM_TAKING_OFF_SIT_TALK,
+        /* 0x21 */ ANM_TAKE_MET_SIT,
+        /* 0x22 */ ANM_TAKAJO,
+        /* 0x23 */ ANM_TAKAJO_WAIT,
+        /* 0x24 */ ANM_TAKAJO_HI,
+        /* 0x25 */ ANM_TAKAJO_HI_WAIT,
+        /* 0x26 */ ANM_RUN,
+    };
+
+    enum Expression {
+        /* 0x00 */ EXPR_F_TALK_A,
+        /* 0x03 */ EXPR_F_HOLD_S_LOOP = 0x3,
+        /* 0x0A */ EXPR_ANM_3 = 0xA,
+        /* 0x0B */ EXPR_FH_SERIOUS,
+        /* 0x0C */ EXPR_F_TAKAJO_HI,
+        /* 0x0D */ EXPR_FH_TAKAJO_HI,
+        /* 0x0E */ EXPR_FH_HOLD_S,
+        /* 0x0F */ EXPR_F_SURPRISED,
+        /* 0x10 */ EXPR_F_HOLD_S,
+        /* 0x11 */ EXPR_FH_HOLD_S_LOOP,
+        /* 0x12 */ EXPR_NONE,
+    };
+
+    enum Expression_BTP {
+        /* 0x0 */ EXPR_BTP_MOIR,
+        /* 0x1 */ EXPR_BTP_FH_SERIOUS
+    };
+
+    enum Motion {
+        /* 0x00 */ MOT_WAIT_A,
+        /* 0x01 */ MOT_TALK_A,
+        /* 0x02 */ MOT_WAIT_B,
+        /* 0x07 */ MOT_WAIT_C = 0x7,
+        /* 0x14 */ MOT_LOOK_AROUND_LOOP = 0x14,
+        /* 0x15 */ MOT_TAKAJO_WAIT_NI,
+        /* 0x16 */ MOT_SIT,
+        /* 0x17 */ MOT_SIT_TALK,
+        /* 0x18 */ MOT_SQUAREUP,
+        /* 0x19 */ MOT_DRIVEAWAY,
+        /* 0x1A */ MOT_TAKEOFF,
+        /* 0x1B */ MOT_TAKING_OFF,
+        /* 0x1C */ MOT_TAKING_OFF_TALK,
+        /* 0x1D */ MOT_TAKE_MET,
+        /* 0x1E */ MOT_TAKEOFF_SIT,
+        /* 0x1F */ MOT_TAKING_OFF_SIT,
+        /* 0x20 */ MOT_TAKING_OFF_SIT_TALK,
+        /* 0x21 */ MOT_TAKE_MET_SIT,
+        /* 0x22 */ MOT_RUN,
+        /* 0x23 */ MOT_TAKAJO_HI_WAIT,
+        /* 0x24 */ MOT_TAKAJO_HI,
+        /* 0x25 */ MOT_SURPRISED,
+        /* 0x26 */ MOT_SQUAREUP_STEP,
+        /* 0x27 */ MOT_TAKAJO_NI,
+        /* 0x28 */ MOT_FUE,
+        /* 0x29 */ MOT_LOOK_AROUND,
+        /* 0x2A */ MOT_STEP,
+    };
+
+    enum Mode {
+        /* 0x0 */ MODE_SIT,
+        /* 0x1 */ MODE_STAND,
+        /* 0x2 */ MODE_2,
+    };
+
+    /* 80A7C16C */ daNpcMoiR_c() {}
     /* 80A7C380 */ ~daNpcMoiR_c();
     /* 80A7C580 */ cPhs__Step Create();
     /* 80A7C978 */ int CreateHeap();
@@ -52,7 +149,7 @@ public:
     /* 80A7DE04 */ bool wait_type1(void*);
     /* 80A7E668 */ bool wait_type2(void*);
     /* 80A7E8C0 */ bool talk(void*);
-    /* 80A7EFBC */ void multiTalk(void*);
+    /* 80A7EFBC */ BOOL multiTalk(void*);
     /* 80A7F40C */ bool fight(void*);
     /* 80A7F9AC */ bool demo(void*);
     /* 80A7FEE8 */ bool leave(void*);
@@ -63,9 +160,9 @@ public:
     /* 80A81274 */ BOOL main();
     /* 80A815D4 */ void checkHeadGear();
     /* 80A818B4 */ void playMotion();
-    /* 80A8210C */ BOOL ctrlBtk();
-    /* 80A821E0 */ void setAttnPos();
-    /* 80A825A0 */ void lookat();
+    /* 80A8210C */ inline BOOL ctrlBtk();
+    /* 80A821E0 */ inline void setAttnPos();
+    /* 80A825A0 */ inline void lookat();
     /* 80A82878 */ void drawOtherMdls();
     /* 80A82900 */ BOOL drawDbgInfo();
 
@@ -73,7 +170,7 @@ public:
 
     u16 getMessageNo() { return fopAcM_GetParam(this) >> 8; }
 
-    void setAction(ActionFn action) {
+    inline void setAction(ActionFn action) {
         field_0xe08 = 3;
 
         if (mAction) {
@@ -90,21 +187,7 @@ public:
     
     inline void playExpression();
     inline BOOL step(s16, int);
-    inline void setExpressionTalkAfter() {
-        switch (mExpression) {
-            case 3:
-                setExpression(0xE, -1.0f);
-                break;
-
-            case 10:
-                setExpression(0x11, -1.0f);
-                break;
-
-            default:
-                setExpression(0x12, -1.0f);
-                break;
-        }
-    }
+    inline void setExpressionTalkAfter();
     inline BOOL chkFindPlayer();
     inline bool chkAction(ActionFn action) {
         return action == mAction;
@@ -116,7 +199,7 @@ public:
 
 private:
     /* 0xB48 */ Z2Creature mSound;
-    /* 0xBD8 */ J3DModel* field_0xbd8;
+    /* 0xBD8 */ J3DModel* mpHeadgearModel;
     /* 0xBDC */ daNpcF_MatAnm_c* mpMatAnm;
     /* 0xBE0 */ daNpcF_Lookat_c mLookat;
     /* 0xC7C */ daNpcF_ActorMngr_c mActorMngr[4];
@@ -130,7 +213,7 @@ private:
     /* 0xE04 */ s16 mMsgNo;
     /* 0xE06 */ s16 mLookMode;
     /* 0xE08 */ u16 field_0xe08;
-    /* 0xE0A */ u8 field_0xe0a;
+    /* 0xE0A */ bool mWearHelmet;
     /* 0xE0B */ u8 mMode;
 };
 

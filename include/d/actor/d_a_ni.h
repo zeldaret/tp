@@ -16,16 +16,6 @@
 #define BCK_WALK_A 12
 #define BCK_WALK_B 13
 
-#define JNT_WAIST 0
-#define JNT_LEGL 1
-#define JNT_FOOTL 2
-#define JNT_LEGR 3
-#define JNT_FOOTR 4
-#define JNT_NECK 5
-#define JNT_HEAD 6
-#define JNT_WINGL 7
-#define JNT_WINGR 8
-
 enum daNi_color {
     COLOR_WHITE,
     COLOR_BLACK,

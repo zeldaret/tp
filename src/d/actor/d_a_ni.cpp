@@ -15,9 +15,23 @@
 #include "m_Do/m_Do_graphic.h"
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_ni.h"
+#include "d/actor/d_a_npc_moir.h"
 #include "d/actor/d_a_player.h"
 #include "SSystem/SComponent/c_math.h"
 #include "c/c_damagereaction.h"
+#include "Z2AudioLib/Z2Instances.h"
+
+enum Joint {
+    /* 0x0 */ JNT_WAIST,
+    /* 0x1 */ JNT_LEGL,
+    /* 0x2 */ JNT_FOOTL,
+    /* 0x3 */ JNT_LEGR,
+    /* 0x4 */ JNT_FOOTR,
+    /* 0x5 */ JNT_NECK,
+    /* 0x6 */ JNT_HEAD,
+    /* 0x7 */ JNT_WINGL,
+    /* 0x8 */ JNT_WINGR,
+};
 
 //
 // Forward References:
@@ -204,23 +218,7 @@ extern "C" void __register_global_object();
 // Declarations:
 //
 
-/* 80951330-8095133C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 8095133C-80951350 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
+UNK_REL_DATA
 
 /* 8094BC2C-8094BCA8 0000EC 007C+00 1/1 0/0 0/0 .text            __ct__10daNi_HIO_cFv */
 daNi_HIO_c::daNi_HIO_c() {
@@ -405,101 +403,7 @@ static void damage_check(ni_class* i_this) {
     }
 }
 
-/* ############################################################################################## */
-/* 80951550-80951554 000008 0001+03 1/1 0/0 0/0 .bss             @1109 */
-static u8 lit_1109[1 + 3 /* padding */];
-
-/* 80951554-80951558 00000C 0001+03 0/0 0/0 0/0 .bss             @1107 */
-#pragma push
-#pragma force_active on
-static u8 lit_1107[1 + 3 /* padding */];
-#pragma pop
-
-/* 80951558-8095155C 000010 0001+03 0/0 0/0 0/0 .bss             @1105 */
-#pragma push
-#pragma force_active on
-static u8 lit_1105[1 + 3 /* padding */];
-#pragma pop
-
-/* 8095155C-80951560 000014 0001+03 0/0 0/0 0/0 .bss             @1104 */
-#pragma push
-#pragma force_active on
-static u8 lit_1104[1 + 3 /* padding */];
-#pragma pop
-
-/* 80951560-80951564 000018 0001+03 0/0 0/0 0/0 .bss             @1099 */
-#pragma push
-#pragma force_active on
-static u8 lit_1099[1 + 3 /* padding */];
-#pragma pop
-
-/* 80951564-80951568 00001C 0001+03 0/0 0/0 0/0 .bss             @1097 */
-#pragma push
-#pragma force_active on
-static u8 lit_1097[1 + 3 /* padding */];
-#pragma pop
-
-/* 80951568-8095156C 000020 0001+03 0/0 0/0 0/0 .bss             @1095 */
-#pragma push
-#pragma force_active on
-static u8 lit_1095[1 + 3 /* padding */];
-#pragma pop
-
-/* 8095156C-80951570 000024 0001+03 0/0 0/0 0/0 .bss             @1094 */
-#pragma push
-#pragma force_active on
-static u8 lit_1094[1 + 3 /* padding */];
-#pragma pop
-
-/* 80951570-80951574 000028 0001+03 0/0 0/0 0/0 .bss             @1057 */
-#pragma push
-#pragma force_active on
-static u8 lit_1057[1 + 3 /* padding */];
-#pragma pop
-
-/* 80951574-80951578 00002C 0001+03 0/0 0/0 0/0 .bss             @1055 */
-#pragma push
-#pragma force_active on
-static u8 lit_1055[1 + 3 /* padding */];
-#pragma pop
-
-/* 80951578-8095157C 000030 0001+03 0/0 0/0 0/0 .bss             @1053 */
-#pragma push
-#pragma force_active on
-static u8 lit_1053[1 + 3 /* padding */];
-#pragma pop
-
-/* 8095157C-80951580 000034 0001+03 0/0 0/0 0/0 .bss             @1052 */
-#pragma push
-#pragma force_active on
-static u8 lit_1052[1 + 3 /* padding */];
-#pragma pop
-
-/* 80951580-80951584 000038 0001+03 0/0 0/0 0/0 .bss             @1014 */
-#pragma push
-#pragma force_active on
-static u8 lit_1014[1 + 3 /* padding */];
-#pragma pop
-
-/* 80951584-80951588 00003C 0001+03 0/0 0/0 0/0 .bss             @1012 */
-#pragma push
-#pragma force_active on
-static u8 lit_1012[1 + 3 /* padding */];
-#pragma pop
-
-/* 80951588-8095158C 000040 0001+03 0/0 0/0 0/0 .bss             @1010 */
-#pragma push
-#pragma force_active on
-static u8 lit_1010[1 + 3 /* padding */];
-#pragma pop
-
-/* 8095158C-80951590 -00001 0004+00 2/2 0/0 0/0 .bss             None */
-/* 8095158C 0001+00 data_8095158C @1009 */
-/* 8095158D 0003+00 data_8095158D None */
-#pragma push
-#pragma force_active on
-static u8 struct_8095158C;
-#pragma pop
+UNK_REL_BSS;
 
 static u8 data_8095158d;
 
@@ -1119,13 +1023,6 @@ static void ni_windspin(ni_class* i_this) {
     i_this->gravity = 0.0f;
     i_this->speed.y = 0.0f;
 }
-
-class daNpcMoiR_c : public fopAc_ac_c {
-public:
-    MtxP getHandRMtx() { return mpMorf->getModel()->getAnmMtx(0x11); }
-
-    /* 0x568 */ mDoExt_McaMorfSO* mpMorf;
-};
 
 /* 8094DED0-8094E2B0 002390 03E0+00 1/2 0/0 0/0 .text            ni_demo0__FP8ni_class */
 static int ni_demo0(ni_class* i_this) {
@@ -2289,7 +2186,7 @@ static int daNi_Create(fopAc_ac_c* i_this) {
             a_this->mCcSph.OffTgSetBit();
         }
 
-        i_this->attention_info.distances[fopAc_attn_SPEAK_e] = 7;
+        i_this->attention_info.distances[fopAc_attn_CARRY_e] = 7;
         a_this->mCounter = cM_rndF(0x10000);
 
         cXyz sp34(i_this->current.pos);
@@ -2315,178 +2212,7 @@ static int daNi_Create(fopAc_ac_c* i_this) {
     return phase_state;
 }
 
-/* 80951620-80951624 0000D8 0004+00 0/0 0/0 0/0 .bss
- * sInstance__40JASGlobalInstance<19JASDefaultBankTable>        */
-#pragma push
-#pragma force_active on
-static u8 data_80951620[4];
-#pragma pop
-
-/* 80951624-80951628 0000DC 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14JASAudioThread>             */
-#pragma push
-#pragma force_active on
-static u8 data_80951624[4];
-#pragma pop
-
-/* 80951628-8095162C 0000E0 0004+00 0/0 0/0 0/0 .bss sInstance__27JASGlobalInstance<7Z2SeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_80951628[4];
-#pragma pop
-
-/* 8095162C-80951630 0000E4 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8Z2SeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_8095162C[4];
-#pragma pop
-
-/* 80951630-80951634 0000E8 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SceneMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80951630[4];
-#pragma pop
-
-/* 80951634-80951638 0000EC 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2StatusMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80951634[4];
-#pragma pop
-
-/* 80951638-8095163C 0000F0 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2DebugSys>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80951638[4];
-#pragma pop
-
-/* 8095163C-80951640 0000F4 0004+00 0/0 0/0 0/0 .bss
- * sInstance__36JASGlobalInstance<15JAISoundStarter>            */
-#pragma push
-#pragma force_active on
-static u8 data_8095163C[4];
-#pragma pop
-
-/* 80951640-80951644 0000F8 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14Z2SoundStarter>             */
-#pragma push
-#pragma force_active on
-static u8 data_80951640[4];
-#pragma pop
-
-/* 80951644-80951648 0000FC 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12Z2SpeechMgr2>               */
-#pragma push
-#pragma force_active on
-static u8 data_80951644[4];
-#pragma pop
-
-/* 80951648-8095164C 000100 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8JAISeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_80951648[4];
-#pragma pop
-
-/* 8095164C-80951650 000104 0004+00 0/0 0/0 0/0 .bss sInstance__29JASGlobalInstance<9JAISeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_8095164C[4];
-#pragma pop
-
-/* 80951650-80951654 000108 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAIStreamMgr>               */
-#pragma push
-#pragma force_active on
-static u8 data_80951650[4];
-#pragma pop
-
-/* 80951654-80951658 00010C 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SoundMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80951654[4];
-#pragma pop
-
-/* 80951658-8095165C 000110 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAISoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_80951658[4];
-#pragma pop
-
-/* 8095165C-80951660 000114 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13JAUSoundTable>              */
-#pragma push
-#pragma force_active on
-static u8 data_8095165C[4];
-#pragma pop
-
-/* 80951660-80951664 000118 0004+00 0/0 0/0 0/0 .bss
- * sInstance__38JASGlobalInstance<17JAUSoundNameTable>          */
-#pragma push
-#pragma force_active on
-static u8 data_80951660[4];
-#pragma pop
-
-/* 80951664-80951668 00011C 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAUSoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_80951664[4];
-#pragma pop
-
-/* 80951668-8095166C 000120 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SoundInfo>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80951668[4];
-#pragma pop
-
-/* 8095166C-80951670 000124 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2SoundObjMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_8095166C[4];
-#pragma pop
-
-/* 80951670-80951674 000128 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2Audience>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80951670[4];
-#pragma pop
-
-/* 80951674-80951678 00012C 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2FxLineMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80951674[4];
-#pragma pop
-
-/* 80951678-8095167C 000130 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2EnvSeMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80951678[4];
-#pragma pop
-
-/* 8095167C-80951680 000134 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SpeechMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8095167C[4];
-#pragma pop
-
-/* 80951680-80951684 000138 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2WolfHowlMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_80951680[4];
-#pragma pop
-
-/* 8095131C-8095131C 00015C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+AUDIO_INSTANCES;
 
 /* 80951480-809514A0 -00001 0020+00 1/0 0/0 0/0 .data            l_daNi_Method */
 SECTION_DATA static void* l_daNi_Method[8] = {
