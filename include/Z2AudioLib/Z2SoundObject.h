@@ -17,7 +17,7 @@ public:
     bool isAlive() const { return mIsInitialized; }
     void setSoundStarter(Z2SoundStarter* i_soundStarter) { mSoundStarter = i_soundStarter; }
 
-    virtual void framework(u32, s8);
+    virtual void framework(u32, s8 reverb);
     virtual void dispose();
     virtual bool stopOK(Z2SoundHandlePool& pool);
     virtual void init(Vec* pSoundPos, u8 pNumHandles);

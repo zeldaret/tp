@@ -1919,7 +1919,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_drop"),
     ActorRel(NonMatching, "d_a_obj_dust"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_enemy_create"),
-    ActorRel(NonMatching, "d_a_obj_fallobj"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_fallobj"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_fan"),
     ActorRel(Equivalent, "d_a_obj_fchain"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_fireWood"),
