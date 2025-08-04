@@ -1,6 +1,7 @@
 #ifndef D_A_OBJ_GADGET_H
 #define D_A_OBJ_GADGET_H
 
+#include "SSystem/SComponent/c_math.h"
 #include "f_op/f_op_actor_mng.h"
 
 /**
@@ -30,8 +31,34 @@ public:
     /* 80BF4600 */ void setWaterPrtcl();
     /* 80BF4728 */ void setHamonPrtcl();
 
+    u32 getType() { return fopAcM_GetParam(this) & 0xFF; }
+    void setCoNone() { field_0xa40 = 1; }
+    void offHide() { mHide = 0; }
+    void onHide() { mHide = 1; }
+
+    void popup(f32 param_1, f32 param_2, cXyz* param_3) {
+        if (param_3 != NULL) {
+            current.pos = *param_3;
+            old.pos = current.pos;
+        }
+
+        int iVar1 = cM_deg2s(param_2);
+        speed.setall(0.0f);
+        speed.y = param_1 * cM_ssin(iVar1);
+        speedF = param_1 * cM_scos(iVar1);
+        field_0xa14 = 0x4000;
+        field_0xa43 = 1;
+    }
+
 private:
-    /* 0x568 */ u8 field_0x568[0xa4c - 0x568];
+    /* 0x568 */ u8 field_0x568[0xa14 - 0x568];
+    /* 0xA14 */ s16 field_0xa14;
+    /* 0xA16 */ u8 field_0xa16[0xa40 - 0xa16];
+    /* 0xA40 */ u8 field_0xa40;
+    /* 0xA41 */ u8 field_0xa41[0xa43 - 0xa41];
+    /* 0xA43 */ u8 field_0xa43;
+    /* 0xA44 */ u8 mHide;
+    /* 0xA45 */ u8 field_0xa45[0xa4c - 0xa45];
 };
 
 STATIC_ASSERT(sizeof(daObj_Gadget_c) == 0xa4c);

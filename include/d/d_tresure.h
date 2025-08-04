@@ -94,6 +94,10 @@ public:
     static type_group_list mTypeGroupListAll[17];
     static typeGroupData_c* mTypeGroupData;
     static u16 mNum;
+
+    static void setNpcYkmPosition(int param_1, Vec* param_2) {
+        setPosition(param_1, 13, param_2, -1);
+    }
 };
 
 #endif /* D_D_TRESURE_H */
