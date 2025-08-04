@@ -1347,7 +1347,6 @@ BOOL daNpcMoiR_c::multiTalk(void* param_1) {
 
 /* 80A7E8C0-80A7EFBC 002840 06FC+00 2/0 0/0 0/0 .text            talk__11daNpcMoiR_cFPv */
 bool daNpcMoiR_c::talk(void* param_1) {
-    // NONMATCHING
     int itemNo, msgTimer, i_expression, i_actionID;
     s16 i_eventID;
     u16 endConversationID;
@@ -1544,7 +1543,6 @@ bool daNpcMoiR_c::demo(void* param_1) {
 
 /* 80A7FEE8-80A802C4 003E68 03DC+00 1/0 0/0 0/0 .text            leave__11daNpcMoiR_cFPv */
 bool daNpcMoiR_c::leave(void* param_1) {
-    // NONMATCHING
     cXyz sp24(-6253.387, 0.0f, 6251.7603f);
     daNPC_TK_c* actor_p = NULL;
 
@@ -1613,7 +1611,6 @@ BOOL daNpcMoiR_c::EvCut_Introduction(int i_cutIndex) {
 
 /* 80A803A0-80A8081C 004320 047C+00 1/0 0/0 0/0 .text            EvCut_Appear__11daNpcMoiR_cFi */
 BOOL daNpcMoiR_c::EvCut_Appear(int i_cutIndex) {
-    // NONMATCHING
     dEvent_manager_c* eventManager = &dComIfGp_getEventManager();
     int* cutName = (int*)eventManager->getMyNowCutName(i_cutIndex);
 
@@ -1686,7 +1683,6 @@ BOOL daNpcMoiR_c::EvCut_Appear(int i_cutIndex) {
 
 /* 80A8081C-80A81044 00479C 0828+00 1/0 0/0 0/0 .text            EvCut_Appear2__11daNpcMoiR_cFi */
 BOOL daNpcMoiR_c::EvCut_Appear2(int i_cutIndex) {
-    // NONMATCHING
     ni_class* actor_p;
     dEvent_manager_c* eventManager = &dComIfGp_getEventManager();
     int* cutName = (int*)eventManager->getMyNowCutName(i_cutIndex);
