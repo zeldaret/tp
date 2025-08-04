@@ -119,6 +119,39 @@ public:
         /* 0x02 */ ANM_LEAF_WAIT_B,
     };
 
+    enum Joint {
+        /* 0x00 */ JNT_CENTER,
+        /* 0x01 */ JNT_BB1,
+        /* 0x02 */ JNT_BB2,
+        /* 0x03 */ JNT_NECK,
+        /* 0x04 */ JNT_HEAD,
+        /* 0x05 */ JNT_CHIN,
+        /* 0x06 */ JNT_MAYUL,
+        /* 0x07 */ JNT_MAYUR,
+        /* 0x08 */ JNT_MOUTH,
+        /* 0x09 */ JNT_YKM_KURA,
+        /* 0x0A */ JNT_SHOULDERL,
+        /* 0x0B */ JNT_ARML1,
+        /* 0x0C */ JNT_ARML2,
+        /* 0x0D */ JNT_HANDL,
+        /* 0x0E */ JNT_FINGERL,
+        /* 0x0F */ JNT_THUMBL,
+        /* 0x10 */ JNT_SHOUDLERR,
+        /* 0x11 */ JNT_ARMR1,
+        /* 0x12 */ JNT_ARMR2,
+        /* 0x13 */ JNT_HANDR,
+        /* 0x14 */ JNT_FINGERR,
+        /* 0x15 */ JNT_THUMBR,
+        /* 0x16 */ JNT_WAIST,
+        /* 0x17 */ JNT_LEGL1,
+        /* 0x18 */ JNT_LEGL2,
+        /* 0x19 */ JNT_FOOTL,
+        /* 0x1A */ JNT_LEGR1,
+        /* 0x1B */ JNT_LEGR2,
+        /* 0x1C */ JNT_FOOTR,
+        /* 0x1D */ JNT_TAIL,
+    };
+
     enum Type {
         /* 0x0 */ TYPE_0,
         /* 0x1 */ TYPE_COOK,
@@ -216,12 +249,12 @@ public:
         : daNpcT_c(i_faceMotionAnmData, i_motionAnmData, i_faceMotionSequenceData,
         i_faceMotionStepNum, i_motionSequenceData, i_motionStepNum, i_evtData,
         i_arcNames) {}
-    /* 80B5D688 */ u16 getEyeballMaterialNo();
-    /* 80B5D690 */ s32 getHeadJointNo();
-    /* 80B5D698 */ s32 getNeckJointNo();
-    /* 80B5D6A0 */ s32 getBackboneJointNo();
-    /* 80B5D6A8 */ BOOL checkChangeJoint(int);
-    /* 80B5D6B8 */ BOOL checkRemoveJoint(int);
+    /* 80B5D688 */ u16 getEyeballMaterialNo() { return 2; }
+    /* 80B5D690 */ s32 getHeadJointNo() { return JNT_HEAD; }
+    /* 80B5D698 */ s32 getNeckJointNo() { return JNT_NECK; }
+    /* 80B5D6A0 */ s32 getBackboneJointNo() { return JNT_BB1; }
+    /* 80B5D6A8 */ BOOL checkChangeJoint(int i_joint) { return i_joint == JNT_HEAD; }
+    /* 80B5D6B8 */ BOOL checkRemoveJoint(int i_joint) { return i_joint == JNT_YKM_KURA; }
 
     u32 getFlowNodeNo() {
         u32 rv = (u16)home.angle.x;

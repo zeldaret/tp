@@ -167,39 +167,6 @@ enum RES_Name {
     /* 0x4 */ YKM3,
 };
 
-enum Joint {
-    /* 0x00 */ JNT_CENTER,
-    /* 0x01 */ JNT_BB1,
-    /* 0x02 */ JNT_BB2,
-    /* 0x03 */ JNT_NECK,
-    /* 0x04 */ JNT_HEAD,
-    /* 0x05 */ JNT_CHIN,
-    /* 0x06 */ JNT_MAYUL,
-    /* 0x07 */ JNT_MAYUR,
-    /* 0x08 */ JNT_MOUTH,
-    /* 0x09 */ JNT_YKM_KURA,
-    /* 0x0A */ JNT_SHOULDERL,
-    /* 0x0B */ JNT_ARML1,
-    /* 0x0C */ JNT_ARML2,
-    /* 0x0D */ JNT_HANDL,
-    /* 0x0E */ JNT_FINGERL,
-    /* 0x0F */ JNT_THUMBL,
-    /* 0x10 */ JNT_SHOUDLERR,
-    /* 0x11 */ JNT_ARMR1,
-    /* 0x12 */ JNT_ARMR2,
-    /* 0x13 */ JNT_HANDR,
-    /* 0x14 */ JNT_FINGERR,
-    /* 0x15 */ JNT_THUMBR,
-    /* 0x16 */ JNT_WAIST,
-    /* 0x17 */ JNT_LEGL1,
-    /* 0x18 */ JNT_LEGL2,
-    /* 0x19 */ JNT_FOOTL,
-    /* 0x1A */ JNT_LEGR1,
-    /* 0x1B */ JNT_LEGR2,
-    /* 0x1C */ JNT_FOOTR,
-    /* 0x1D */ JNT_TAIL,
-};
-
 UNK_REL_DATA;
 
 /* 80B5DB08-80B5DB38 000020 0030+00 1/1 0/0 0/0 .data            l_bmdData */
@@ -1003,9 +970,9 @@ void daNpc_ykM_c::setParam() {
 
         dComIfGp_getAttention()->getDistTable(71).mAngleSelect = uVar2;
         dComIfGp_getAttention()->getDistTable(70).mAngleSelect = uVar2;
-        attention_info.distances[0] = 71;
-        attention_info.distances[1] = attention_info.distances[0];
-        attention_info.distances[3] = 70;
+        attention_info.distances[fopAc_attn_LOCK_e] = 71;
+        attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+        attention_info.distances[fopAc_attn_SPEAK_e] = 70;
 
         if (daPy_py_c::checkNowWolf()) {
             uVar1 |= 0x800000;
@@ -1064,14 +1031,14 @@ BOOL daNpc_ykM_c::checkChangeEvt() {
 
             case TYPE_COOK:
                 if (!daNpcT_chkEvtBit(4) /* dSv_event_flag_c::TEST_004 - Snowpeak Ruins - Handed over secret ingredient */
-                    && checkItemGet(fpcNm_ITEM_TASTE, 1) != 0) {
+                    && checkItemGet(fpcNm_ITEM_TASTE, 1)) {
                     mEvtNo = EVENT_GET_TASTE;
                     evtChange();
                     return TRUE;
                 }
 
                 if (!daNpcT_chkEvtBit(3) /* dSv_event_flag_c::TEST_003 - Snowpeak Ruins - Handed over tomato puree */ 
-                    && checkItemGet(fpcNm_ITEM_TOMATO_PUREE, 1) != 0) {
+                    && checkItemGet(fpcNm_ITEM_TOMATO_PUREE, 1)) {
                     mEvtNo = EVENT_GET_TOMATOPUREE;
                     evtChange();
                     return TRUE;
@@ -1206,13 +1173,13 @@ void daNpc_ykM_c::action() {
 
     int i = 0;
     do {
-        actor = hitChk(&field_0xf94[i], 0xFFFFFFFF);
+        actor = hitChk(&field_0xf94[i], -1);
         if (actor != NULL) break;
         i++;
     } while (i < 4);
 
     if (actor == NULL) {
-        actor = hitChk(&field_0xe58, 0xFFFFFFFF);
+        actor = hitChk(&field_0xe58, -1);
     }
 
     if (actor != NULL && field_0x157b != 0) {
@@ -1228,7 +1195,7 @@ void daNpc_ykM_c::action() {
         mSound.startCreatureVoice(Z2SE_YM_V_SNOBO_SPIN, -1);
     }
 
-    if (mStagger.checkRebirth() != 0) {
+    if (mStagger.checkRebirth()) {
         mStagger.initialize();
         mMode = 1;
     }
@@ -1301,7 +1268,7 @@ void daNpc_ykM_c::afterMoved() {
             fVar1 = 0.0f;
         }
 
-        if (fVar2  <= 0.000001f && fVar2 >= (-mAcchCir.GetWallH() - fVar1)) {
+        if (fVar2 <= 0.000001f && fVar2 >= -mAcchCir.GetWallH() - fVar1) {
             current.pos.y = mGroundH;
             mAcch.SetGroundHit();
             speed.y = 0.0f;
@@ -3655,36 +3622,6 @@ static csXyz l_SBRaceStartAngle;
 
 /* 80B5EDA0-80B5EDA4 000080 0004+00 0/1 0/0 0/0 .bss             l_HIO */
 static daNpc_ykM_Param_c l_HIO;
-
-/* 80B5D688-80B5D690 00A288 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__11daNpc_ykM_cFv */
-u16 daNpc_ykM_c::getEyeballMaterialNo() {
-    return 2;
-}
-
-/* 80B5D690-80B5D698 00A290 0008+00 1/0 0/0 0/0 .text            getHeadJointNo__11daNpc_ykM_cFv */
-s32 daNpc_ykM_c::getHeadJointNo() {
-    return JNT_HEAD;
-}
-
-/* 80B5D698-80B5D6A0 00A298 0008+00 1/0 0/0 0/0 .text            getNeckJointNo__11daNpc_ykM_cFv */
-s32 daNpc_ykM_c::getNeckJointNo() {
-    return JNT_NECK;
-}
-
-/* 80B5D6A0-80B5D6A8 00A2A0 0008+00 1/0 0/0 0/0 .text            getBackboneJointNo__11daNpc_ykM_cFv */
-s32 daNpc_ykM_c::getBackboneJointNo() {
-    return JNT_BB1;
-}
-
-/* 80B5D6A8-80B5D6B8 00A2A8 0010+00 1/0 0/0 0/0 .text            checkChangeJoint__11daNpc_ykM_cFi */
-BOOL daNpc_ykM_c::checkChangeJoint(int i_joint) {
-    return i_joint == JNT_HEAD;
-}
-
-/* 80B5D6B8-80B5D6C8 00A2B8 0010+00 1/0 0/0 0/0 .text            checkRemoveJoint__11daNpc_ykM_cFi */
-BOOL daNpc_ykM_c::checkRemoveJoint(int i_joint) {
-    return i_joint == JNT_YKM_KURA;
-}
 
 AUDIO_INSTANCES;
 
