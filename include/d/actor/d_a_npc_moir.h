@@ -21,7 +21,7 @@ struct daNpcMoiR_HIOParam {
 
 class daNpcMoiR_Param_c {
 public:
-    /* 80A83240 */ ~daNpcMoiR_Param_c();
+    /* 80A83240 */ virtual ~daNpcMoiR_Param_c();
 
     static daNpcMoiR_HIOParam const m;
 };
@@ -45,17 +45,17 @@ public:
     /* 80A7D394 */ bool setExpressionBtp(int);
     /* 80A7D474 */ void setMotionAnm(int, f32);
     /* 80A7D5C4 */ void reset();
-    /* 80A7D73C */ void setWaitAction();
+    /* 80A7D73C */ inline void setWaitAction();
     /* 80A7D934 */ bool wait_type0(void*);
     /* 80A7DD94 */ void setMotion(int, f32, int);
     /* 80A7DDD8 */ void setExpression(int, f32);
     /* 80A7DE04 */ bool wait_type1(void*);
     /* 80A7E668 */ bool wait_type2(void*);
-    /* 80A7E8C0 */ void talk(void*);
+    /* 80A7E8C0 */ bool talk(void*);
     /* 80A7EFBC */ void multiTalk(void*);
-    /* 80A7F40C */ void fight(void*);
-    /* 80A7F9AC */ void demo(void*);
-    /* 80A7FEE8 */ void leave(void*);
+    /* 80A7F40C */ bool fight(void*);
+    /* 80A7F9AC */ bool demo(void*);
+    /* 80A7FEE8 */ bool leave(void*);
     /* 80A802C4 */ BOOL EvCut_Introduction(int);
     /* 80A803A0 */ BOOL EvCut_Appear(int);
     /* 80A8081C */ BOOL EvCut_Appear2(int);
@@ -87,9 +87,30 @@ public:
             (this->*mAction)(NULL);
         }
     }
+    
+    inline void playExpression();
+    inline BOOL step(s16, int);
+    inline void setExpressionTalkAfter() {
+        switch (mExpression) {
+            case 3:
+                setExpression(0xE, -1.0f);
+                break;
 
+            case 10:
+                setExpression(0x11, -1.0f);
+                break;
+
+            default:
+                setExpression(0x12, -1.0f);
+                break;
+        }
+    }
     inline BOOL chkFindPlayer();
+    inline bool chkAction(ActionFn action) {
+        return action == mAction;
+    }
     inline void setLookMode(int i_lookMode);
+    inline void searchActors();
 
     static EventFn mEvtSeqList[4];
 
@@ -102,11 +123,13 @@ private:
     /* 0xC9C */ u8 field_0xc9c[0xca0 - 0xc9c];
     /* 0xCA0 */ dCcD_Cyl field_0xca0;
     /* 0xDDC */ ActionFn mAction;
-    /* 0xDE8 */ request_of_phase_process_class mPhase[3];
+    /* 0xDE8 */ request_of_phase_process_class mPhase[2];
+    /* 0xDF8 */ fpc_ProcID field_0xdf8;
+    /* 0xDFC */ fpc_ProcID field_0xdfc;
     /* 0xE00 */ int field_0xe00;
     /* 0xE04 */ s16 mMsgNo;
     /* 0xE06 */ s16 mLookMode;
-    /* 0xE08 */ s16 field_0xe08;
+    /* 0xE08 */ u16 field_0xe08;
     /* 0xE0A */ u8 field_0xe0a;
     /* 0xE0B */ u8 mMode;
 };

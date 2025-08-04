@@ -73,6 +73,8 @@ public:
         mpMorf->getModel()->setBaseTRMtx(mtx);
     }
 
+    void changeMode() { field_0x5fe = 1; }
+
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ u8 field_0x5b4;
     /* 0x5B5 */ u8 mType;
