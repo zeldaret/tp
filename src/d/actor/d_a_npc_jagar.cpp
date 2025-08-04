@@ -12,7 +12,7 @@
 
 UNK_REL_DATA;
 
-enum JAGAR_RES_FILE_ID {
+enum Jagar_RES_File_ID {
     /* BCK */
     /* 0x06 */ BCK_JAGA_F_TALK_A = 6,
     /* 0x07 */ BCK_JAGA_FH_TALK_A,
@@ -32,21 +32,45 @@ enum JAGAR_RES_FILE_ID {
     /* 0x15 */ BTP_JAGA_FH_TALK_A,
 };
 
-enum JAGAR1_RES_FILE_ID {
+enum Jagar1_RES_File_ID {
     /* BCK */
     /* 0x04 */ BCK_JAGA_CHU = 4,
     /* 0x05 */ BCK_JAGA_CHU_TO_SIT,
     /* 0x06 */ BCK_JAGA_F_SMILETALK,
     /* 0x07 */ BCK_JAGA_SIT,
-    /* 0x08 */ BCK_JAGA_TO_CHU,
-    /* 0x09 */ BCK_JAGA_WAIT_B,
-    /* 0x0A */ BCK_JAGA_WAIT_TO_SIT,
+    /* 0x08 */ BCK_JAGA_SIT_TO_WAIT,
+    /* 0x09 */ BCK_JAGA_TO_CHU,
+    /* 0x0A */ BCK_JAGA_WAIT_B,
+    /* 0x0B */ BCK_JAGA_WAIT_TO_SIT,
 
     /* EVT */
-    /* 0x0E */ EVT_EVENT_LIST = 0xE,
+    /* 0x0E */ EVT_JAGAR1_EVENT_LIST = 0xE,
 };
 
-enum JAGAR3_RES_FILE_ID {
+enum Jagar2_RES_File_ID {
+    /* BCK */
+    /* 0x05 */ BCK_JAGA_F_SURPRISE = 0x5,
+    /* 0x06 */ BCK_JAGA_F_SURPRISE_WAIT,
+    /* 0x07 */ BCK_JAGA_F_WORRY_TALK,
+    /* 0x08 */ BCK_JAGA_RUN_A,
+    /* 0x09 */ BCK_JAGA_SURPRISE,
+    /* 0x0A */ BCK_JAGA_SURPRISE_WAIT,
+    /* 0x0B */ BCK_JAGA_UNADUKI,
+    /* 0x0C */ BCK_JAGA_WORRY_TALK,
+    /* 0x0D */ BCK_JAGA_WORRY_WAIT,
+    /* 0x0E */ BCK_JAGA_WORRY_WALK,
+
+    /* BTP */
+    /* 0x11 */ BTP_JAGA_BLINK = 0x11,
+    /* 0x12 */ BTP_JAGA_F_SURPRISE,
+    /* 0x13 */ BTP_JAGA_F_SURPRISE_WAIT,
+    /* 0x14 */ BTP_JAGA_F_WORRY_TALK,
+
+    /* EVT */
+    /* 0x17 */ EVT_JAGAR2_EVENT_LIST = 0x17,
+};
+
+enum Jagar3_RES_File_ID {
     /* BCK */
     /* 0x04 */ BCK_JAGA_F_TALK_B = 4,
     /* 0x05 */ BCK_JAGA_FH_TALK_B,
@@ -57,9 +81,61 @@ enum JAGAR3_RES_FILE_ID {
     /* 0x0A */ BTP_JAGA_FH_TALK_B,
 };
 
-enum JAGAR4_RES_FILE_ID {
+enum Jagar4_RES_File_ID {
     /* BMDR */
     /* 0x03 */ BMDR_JAGA_NOUGU = 3,
+};
+
+enum RES_Name {
+    /* 0x1 */ Jagar = 0x1,
+    /* 0x2 */ Jagar1,
+    /* 0x3 */ Jagar2,
+    /* 0x4 */ Jagar3,
+};
+
+enum FaceMotion {
+    /* 0x00 */ FACE_TALK_A,
+    /* 0x01 */ FACE_SURPRISE,
+    /* 0x02 */ FACE_SMILETALK,
+    /* 0x03 */ FACE_TALK_B,
+    /* 0x04 */ FACE_WORRY_TALK,
+    /* 0x05 */ FACE_H_TALK_B,
+    /* 0x06 */ FACE_H_TALK_A,
+    /* 0x07 */ FACE_7,
+    /* 0x08 */ FACE_NONE,
+};
+
+enum Motion {
+    /* 0x00 */ MOT_WAIT_A,
+    /* 0x01 */ MOT_TALK_A,
+    /* 0x02 */ MOT_CHU,
+    /* 0x03 */ MOT_SIT,
+    /* 0x04 */ MOT_TALK_B,
+    /* 0x05 */ MOT_WORRY_WAIT,
+    /* 0x06 */ MOT_WORRY_TALK,
+    /* 0x07 */ MOT_SURPRISE,
+    /* 0x08 */ MOT_UNADUKI,
+    /* 0x09 */ MOT_SURPRISE_WAIT,
+    /* 0x0A */ MOT_SIT_TO_WAIT,
+    /* 0x0B */ MOT_TO_CHU,
+    /* 0x0C */ MOT_CHU_TO_SIT,
+    /* 0x0D */ MOT_WAIT_TO_SIT,
+    /* 0x0E */ MOT_STEP,
+    /* 0x0F */ MOT_RUN_A,
+    /* 0x10 */ MOT_WORRY_WALK,
+    /* 0x11 */ MOT_WAIT_B,
+};
+
+enum Event {
+    /* 0x0 */ EVENT_NONE,
+    /* 0x1 */ EVENT_NO_RESPONSE,
+    /* 0x2 */ EVENT_CLIMBUP,
+    /* 0x3 */ EVENT_NEED_YOUR_HELP,
+    /* 0x4 */ EVENT_ANGER,
+    /* 0x5 */ EVENT_CONVERSATION_WITH_BOU,
+    /* 0x6 */ EVENT_CONFIDENTIAL_CONVERSATION,
+    /* 0x7 */ EVENT_FIND_WOLF,
+    /* 0x8 */ EVENT_FIND_WOLF_VER2,
 };
 
 /* 80A1A568-80A1A570 000020 0008+00 1/1 0/0 0/0 .data            l_bmdData */
@@ -114,60 +190,101 @@ static s8* l_loadResPtrnList[4] = {
 
 /* 80A1A5EC-80A1A704 0000A4 0118+00 0/1 0/0 0/0 .data            l_faceMotionAnmData */
 static daNpcT_faceMotionAnmData_c l_faceMotionAnmData[10] = {
-    {-1, 0, 0, 19, 2, 1, 1},
-    {6, 0, 1, 20, 0, 1, 0},
-    {6, 0, 2, 19, 2, 1, 1},
-    {4, 0, 4, 9, 0, 4, 0},
-    {7, 0, 3, 20, 0, 3, 0},
-    {5, 2, 4, 10, 2, 4, 0},
-    {-1, 0, 0, -1, 0, 0, 0},
-    {7, 2, 1, 21, 2, 1, 0},
-    {5, 0, 3, 18, 0, 3, 0},
-    {6, 2, 3, 19, 2, 3, 0},
+    {-1, J3DFrameCtrl::EMode_NONE, 0,
+        BTP_JAGA, J3DFrameCtrl::EMode_LOOP, Jagar, 1},
+    {BCK_JAGA_F_TALK_A, J3DFrameCtrl::EMode_NONE, Jagar,
+        BTP_JAGA_F_TALK_A, J3DFrameCtrl::EMode_NONE, Jagar, 0},
+    {BCK_JAGA_F_SMILETALK, J3DFrameCtrl::EMode_NONE, Jagar1,
+        BTP_JAGA, J3DFrameCtrl::EMode_LOOP, Jagar, 1},
+    {BCK_JAGA_F_TALK_B, J3DFrameCtrl::EMode_NONE, Jagar3,
+        BTP_JAGA_F_TALK_B, J3DFrameCtrl::EMode_NONE, Jagar3, 0},
+    {BCK_JAGA_F_WORRY_TALK, J3DFrameCtrl::EMode_NONE, Jagar2,
+        BTP_JAGA_F_WORRY_TALK, J3DFrameCtrl::EMode_NONE, Jagar2, 0},
+    {BCK_JAGA_FH_TALK_B, J3DFrameCtrl::EMode_LOOP, Jagar3,
+        BTP_JAGA_FH_TALK_B, J3DFrameCtrl::EMode_LOOP, Jagar3, 0},
+    {-1, J3DFrameCtrl::EMode_NONE, 0,
+        -1, J3DFrameCtrl::EMode_NONE, 0, 0},
+    {BCK_JAGA_FH_TALK_A, J3DFrameCtrl::EMode_LOOP, Jagar,
+        BTP_JAGA_FH_TALK_A, J3DFrameCtrl::EMode_LOOP, Jagar, 0},
+    {BCK_JAGA_F_SURPRISE, J3DFrameCtrl::EMode_NONE, Jagar2,
+        BTP_JAGA_F_SURPRISE, J3DFrameCtrl::EMode_NONE, Jagar2, 0},
+    {BCK_JAGA_F_SURPRISE_WAIT, J3DFrameCtrl::EMode_LOOP, Jagar2,
+        BTP_JAGA_F_SURPRISE_WAIT, J3DFrameCtrl::EMode_LOOP, Jagar2, 0},
 };
 
 /* 80A1A704-80A1A8FC 0001BC 01F8+00 0/1 0/0 0/0 .data            l_motionAnmData */
 daNpcT_motionAnmData_c l_motionAnmData[18] = {
-    {10, 2, 1, 16, 0, 1, 1, 0},
-    {4, 2, 2, 16, 0, 1, 1, 0},
-    {7, 2, 2, 16, 0, 1, 1, 0},
-    {10, 2, 2, 16, 0, 1, 1, 0},
-    {8, 0, 2, 16, 0, 1, 1, 0},
-    {9, 0, 2, 16, 0, 1, 1, 0},
-    {5, 0, 2, 16, 0, 1, 1, 0},
-    {11, 0, 2, 16, 0, 1, 1, 0},
-    {6, 0, 4, 16, 0, 1, 1, 0},
-    {9, 0, 1, 16, 0, 1, 1, 0},
-    {8, 0, 1, 16, 0, 1, 1, 0},
-    {8, 2, 3, 16, 0, 1, 1, 0},
-    {13, 2, 3, 16, 0, 1, 1, 0},
-    {12, 0, 3, 16, 0, 1, 1, 0},
-    {14, 2, 3, 16, 0, 1, 1, 0},
-    {9, 0, 3, 16, 0, 1, 1, 0},
-    {11, 0, 3, 16, 0, 1, 1, 0},
-    {10, 2, 3, 16, 0, 1, 1, 0},
+    {BCK_JAGAR_WAIT_A, J3DFrameCtrl::EMode_LOOP, Jagar,
+        BTK_JAGA, J3DFrameCtrl::EMode_NONE, Jagar, 1, 0},
+    {BCK_JAGA_CHU, J3DFrameCtrl::EMode_LOOP, Jagar1,
+        BTK_JAGA, J3DFrameCtrl::EMode_NONE, Jagar, 1, 0},
+    {BCK_JAGA_SIT, J3DFrameCtrl::EMode_LOOP, Jagar1,
+        BTK_JAGA, J3DFrameCtrl::EMode_NONE, Jagar, 1, 0},
+    {BCK_JAGA_WAIT_B, J3DFrameCtrl::EMode_LOOP, Jagar1,
+        BTK_JAGA, J3DFrameCtrl::EMode_NONE, Jagar, 1, 0},
+    {BCK_JAGA_SIT_TO_WAIT, J3DFrameCtrl::EMode_NONE, Jagar1,
+        BTK_JAGA, J3DFrameCtrl::EMode_NONE, Jagar, 1, 0},
+    {BCK_JAGA_TO_CHU, J3DFrameCtrl::EMode_NONE, Jagar1,
+        BTK_JAGA, J3DFrameCtrl::EMode_NONE, Jagar, 1, 0},
+    {BCK_JAGA_CHU_TO_SIT, J3DFrameCtrl::EMode_NONE, Jagar1,
+        BTK_JAGA, J3DFrameCtrl::EMode_NONE, Jagar, 1, 0},
+    {BCK_JAGA_WAIT_TO_SIT, J3DFrameCtrl::EMode_NONE, Jagar1,
+        BTK_JAGA, J3DFrameCtrl::EMode_NONE, Jagar, 1, 0},
+    {BCK_JAGA_TALK_A, J3DFrameCtrl::EMode_NONE, Jagar3,
+        BTK_JAGA, J3DFrameCtrl::EMode_NONE, Jagar, 1, 0},
+    {BCK_JAGA_TALK_B, J3DFrameCtrl::EMode_NONE, Jagar,
+        BTK_JAGA, J3DFrameCtrl::EMode_NONE, Jagar, 1, 0},
+    {BCK_JAGA_STEP, J3DFrameCtrl::EMode_NONE, Jagar,
+        BTK_JAGA, J3DFrameCtrl::EMode_NONE, Jagar, 1, 0},
+    {BCK_JAGA_RUN_A, J3DFrameCtrl::EMode_LOOP, Jagar2,
+        BTK_JAGA, J3DFrameCtrl::EMode_NONE, Jagar, 1, 0},
+    {BCK_JAGA_WORRY_WAIT, J3DFrameCtrl::EMode_LOOP, Jagar2,
+        BTK_JAGA, J3DFrameCtrl::EMode_NONE, Jagar, 1, 0},
+    {BCK_JAGA_WORRY_TALK, J3DFrameCtrl::EMode_NONE, Jagar2,
+        BTK_JAGA, J3DFrameCtrl::EMode_NONE, Jagar, 1, 0},
+    {BCK_JAGA_WORRY_WALK, J3DFrameCtrl::EMode_LOOP, Jagar2,
+        BTK_JAGA, J3DFrameCtrl::EMode_NONE, Jagar, 1, 0},
+    {BCK_JAGA_SURPRISE, J3DFrameCtrl::EMode_NONE, Jagar2,
+        BTK_JAGA, J3DFrameCtrl::EMode_NONE, Jagar, 1, 0},
+    {BCK_JAGA_UNADUKI, J3DFrameCtrl::EMode_NONE, Jagar2,
+        BTK_JAGA, J3DFrameCtrl::EMode_NONE, Jagar, 1, 0},
+    {BCK_JAGA_SURPRISE_WAIT, J3DFrameCtrl::EMode_LOOP, Jagar2,
+        BTK_JAGA, J3DFrameCtrl::EMode_NONE, Jagar, 1, 0},
 };
 
 /* 80A1A8FC-80A1A98C 0003B4 0090+00 0/1 0/0 0/0 .data            l_faceMotionSequenceData */
 static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_faceMotionSequenceData[36] = {
-    {1, -1, 1}, {7, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {8, -1, 1}, {9, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {2, -1, 1}, {6, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {3, -1, 1}, {5, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {4, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {5, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {7, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {6, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {1, -1, 1}, {7, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {8, -1, 1}, {9, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {2, -1, 1}, {6, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {3, -1, 1}, {5, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {4, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {5, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {7, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {6, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
     {0, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
 };
 
 /* 80A1A98C-80A1AABC 000444 0130+00 0/1 0/0 0/0 .data            l_motionSequenceData */
 static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_motionSequenceData[76] = {
-    {0, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {8, -1, 1}, {0, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {1, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {2, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {9, -1, 1}, {3, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {12, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {13, -1, 1}, {12, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {15, -1, 1}, {17, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {16, -1, 1}, {12, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {17, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {4, -1, 1}, {0, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {5, -1, 1}, {1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {6, -1, 1}, {2, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {7, -1, 1}, {2, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {10, 4, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {11, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {14, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {3, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {0, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {8, -1, 1}, {0, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {1, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {2, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {9, -1, 1}, {3, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {12, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {13, -1, 1}, {12, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {15, -1, 1}, {17, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {16, -1, 1}, {12, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {17, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {4, -1, 1}, {0, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {5, -1, 1}, {1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {6, -1, 1}, {2, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {7, -1, 1}, {2, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {10, 4, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {11, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {14, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {3, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
     {13, -1, 1}, {12, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
 };
 
@@ -219,6 +336,7 @@ int daNpc_Jagar_c::create() {
         (const daNpcT_motionAnmData_c *)l_motionAnmData, (const daNpcT_MotionSeqMngr_c::sequenceStepData_c *) l_faceMotionSequenceData, 4,
         (const daNpcT_MotionSeqMngr_c::sequenceStepData_c *)l_motionSequenceData, 4, (const daNpcT_evtData_c *)l_evtList, (char **)l_resNameList
     );
+
     mType = getType();
     mFlowNodeNo = getFlowNodeNo();
     mTwilight = 0;
@@ -227,9 +345,11 @@ int daNpc_Jagar_c::create() {
         if (isDelete()) {
             return cPhs_ERROR_e;
         }
+
         if (!fopAcM_entrySolidHeap(this, createHeapCallBack, heapSize[mType])) {
             return cPhs_ERROR_e;
         }
+
         J3DModelData* modelData = mpMorf[0]->getModel()->getModelData();
         fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -200.0f, -100.0f, -200.0f, 200.0f, 300.0f, 200.0f);
@@ -250,6 +370,7 @@ int daNpc_Jagar_c::create() {
             setEnvTevColor();
             setRoomNo();
         }
+
         mCreating = 1;
         Execute();
         mCreating = 0;
@@ -264,25 +385,26 @@ int daNpc_Jagar_c::CreateHeap() {
     if (modelData == NULL) {
         return 0;
     }
-    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound,
-        0x80000, 0x11020284);
+    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
     if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
         return 0;
     }
+    
     J3DModel* model = mpMorf[0]->getModel();
     for (u16 i = 0; i < modelData->getJointNum(); i++) {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
     model->setUserArea((u32)this);
+
     mpMatAnm[0] = new daNpcT_MatAnm_c();
     if (mpMatAnm[0] == NULL) {
         return 0;
     }
 
-    if (setFaceMotionAnm(1, false) && setMotionAnm(0, 0.0f, 0))
-    {
+    if (setFaceMotionAnm(1, false) && setMotionAnm(0, 0.0f, 0)) {
         return 1;
     }
+
     return 0;
 }
 
@@ -329,10 +451,13 @@ u8 daNpc_Jagar_c::getType() {
     switch ((u8)fopAcM_GetParam(this)) {
         case 0:
             return TYPE_0;
+
         case 1:
             return TYPE_1;
+
         case 2:
             return TYPE_2;
+
         default:
             return TYPE_3;
     }
@@ -343,18 +468,22 @@ int daNpc_Jagar_c::isDelete() {
     switch (mType) {
         case TYPE_0:
             return FALSE;
+
         case TYPE_1: {
             bool rv = true;
-            if (!daNpcT_chkEvtBit(0xd3) && !dComIfGs_isCollectShield(0)) {
+            if (!daNpcT_chkEvtBit(0xD3) /* dSv_event_flag_c::F_0211 - Ordon Village - Successfully eavesdrop on Bo and Jaggle */
+                && !dComIfGs_isCollectShield(0)) {
                 rv = false;
             }
             return rv;
         }
+        // fallthrough
         case TYPE_2:
             return FALSE;
+
         default:
             return FALSE;
-        }
+    }
 }
 
 /* 80A15198-80A15364 000B78 01CC+00 1/1 0/0 0/0 .text            reset__13daNpc_Jagar_cFv */
@@ -375,17 +504,18 @@ void daNpc_Jagar_c::reset() {
     acStack_20.y = home.angle.y;
     switch (mType) {
         case TYPE_0:
-            if (daNpcT_chkEvtBit(0x1c) != 0) {
-                if (daNpcT_chkEvtBit(0x86) == 0) {
+            if (daNpcT_chkEvtBit(0x1C) /* dSv_event_flag_c::F_0023 - Ordon Village - Called by Jaggle from below hill */) {
+                if (!daNpcT_chkEvtBit(0x86) /* dSv_event_flag_c::F_0036 - Ordon Village - Spoke to Jaggle using L-focus before climbing vines? */) {
                     daNpcT_onEvtBit(0x86);
                 }
                 field_0x1001 = 1;
             }
+            // fallthrough
         case TYPE_1:
         case TYPE_2:
         default:
-            daNpcT_offTmpBit(0x1b);
-            daNpcT_offTmpBit(0x10);
+            daNpcT_offTmpBit(0x1B); // dSv_event_tmp_flag_c::T_0027 - Ordon Village - Rampaging goats complete
+            daNpcT_offTmpBit(0x10); // dSv_event_tmp_flag_c::T_0015 - Ordon Village - Link came up the hill afte being called by Jaggle
             setAngle(acStack_20);
     }
 }
@@ -410,6 +540,7 @@ void daNpc_Jagar_c::setParam() {
     s16 sVar9 = daNpc_Jagar_Param_c::m.field_0x4a;
     s16 sVar8 = daNpc_Jagar_Param_c::m.field_0x4c;
     s16 sVar7 = daNpc_Jagar_Param_c::m.field_0x4e;
+
     switch (mType) {
         case TYPE_0:
             sVar10 = 4;
@@ -417,6 +548,7 @@ void daNpc_Jagar_c::setParam() {
             sVar8 = 5;
             sVar7 = 6;
             break;
+
         case TYPE_1:
             field_0xff0 = 3;
             field_0xff4 = 6;
@@ -425,6 +557,7 @@ void daNpc_Jagar_c::setParam() {
             sVar8 = 19;
             sVar7 = 6;
             break;
+
         case TYPE_2:
             sVar10 = 3;
             sVar9 = 6;
@@ -432,9 +565,11 @@ void daNpc_Jagar_c::setParam() {
             sVar7 = 6;
             break;
     }
-    attention_info.distances[0] = daNpcT_getDistTableIdx(sVar8, sVar7);
-    attention_info.distances[1] = attention_info.distances[0];
-    attention_info.distances[3] = daNpcT_getDistTableIdx(sVar10, sVar9);
+    
+    attention_info.distances[fopAc_attn_LOCK_e] = daNpcT_getDistTableIdx(sVar8, sVar7);
+    attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+    attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(sVar10, sVar9);
+
     if (mType == TYPE_1) {
         uVar7 |= (0x80 << 16);
         field_0xfec = getActorDistance(daPy_getPlayerActorClass(), 
@@ -443,14 +578,13 @@ void daNpc_Jagar_c::setParam() {
         if (field_0xfec < 4) {
             g_meter2_info.mBlinkButton |= 1;
         }
-    } else {
-        if (chkChuMotion() != 0) {
-            attention_info.distances[0] = 20;
-            attention_info.distances[1] = 20;
-            attention_info.distances[3] = 20;
-            uVar7 = 2;
-        }
+    } else if (chkChuMotion() != 0) {
+        attention_info.distances[fopAc_attn_LOCK_e] = 20;
+        attention_info.distances[fopAc_attn_TALK_e] = 20;
+        attention_info.distances[fopAc_attn_SPEAK_e] = 20;
+        uVar7 = 2;
     }
+
     attention_info.flags = uVar7;
     scale.set(daNpc_Jagar_Param_c::m.field_0x08, daNpc_Jagar_Param_c::m.field_0x08,
             daNpc_Jagar_Param_c::m.field_0x08);
@@ -472,25 +606,30 @@ int daNpc_Jagar_c::checkChangeEvt() {
         mPreItemNo = 0;
         if (dComIfGp_event_chkTalkXY()) {
             if (dComIfGp_evmng_ChkPresentEnd()) {
-                mEvtNo = 1;
+                mEvtNo = EVENT_NO_RESPONSE;
                 evtChange();
             }
             return true;
         }
+
         switch (mType) {
             case TYPE_0:
-                if (daNpcT_chkEvtBit(0x1c) && chkChuMotion()) {
-                    mEvtNo = 2;
+                if (daNpcT_chkEvtBit(0x1C) /* dSv_event_flag_c::F_0023 - Ordon Village - Called by Jaggle from below hill */
+                    && chkChuMotion()) {
+                    mEvtNo = EVENT_CLIMBUP;
                     evtChange();
                     return true;
                 }
                 break;
+                
             case TYPE_1:
                 if (field_0xfec < 4) {
-                    mEvtNo = 6;
+                    mEvtNo = EVENT_CONFIDENTIAL_CONVERSATION;
                     evtChange();
                     return true;
                 }
+                break;
+
             case TYPE_2:
                 break;
         }
@@ -502,18 +641,22 @@ int daNpc_Jagar_c::checkChangeEvt() {
 void daNpc_Jagar_c::setAfterTalkMotion() {
     int iVar2 = 8;
     switch(mFaceMotionSeqMngr.getNo()) {
-        case 0:
+        case FACE_TALK_A:
             iVar2 = 6;
             break;
-        case 1:
+
+        case FACE_SURPRISE:
             break;
-        case 2:
+
+        case FACE_SMILETALK:
             iVar2 = 7;
             break;
-        case 3:
+
+        case FACE_TALK_B:
             iVar2 = 5;
             break;
     }
+
     mFaceMotionSeqMngr.setNo(iVar2, -1.0f, 0, 0);
 }
 
@@ -529,6 +672,7 @@ void daNpc_Jagar_c::srchActors() {
                 mActorMngr[0].entry(getNearestActorP(0x10d));
             }
             break;
+
         case TYPE_1:
             if (!mActorMngr[1].getActorP()) {
                 mActorMngr[1].entry(getNearestActorP(0x15a));
@@ -537,6 +681,8 @@ void daNpc_Jagar_c::srchActors() {
             if (!mActorMngr[2].getActorP()) {
                 mActorMngr[2].entry(getNearestActorP(0x246));
             }
+            break;
+
         case TYPE_2:
             break;
     }
@@ -557,7 +703,7 @@ BOOL daNpc_Jagar_c::evtCutProc() {
     int staffId = dComIfGp_getEventManager().getMyStaffId("Jagar", this, -1);
     if (staffId != -1) {
         mStaffId = staffId;
-        int actIdx = dComIfGp_getEventManager().getMyActIdx(mStaffId, (char**)mCutNameList, 7, 0, 0);
+        int actIdx = dComIfGp_getEventManager().getMyActIdx(mStaffId, mCutNameList, 7, 0, 0);
         if ((this->*(mCutList[actIdx]))(mStaffId) != 0) {
             dComIfGp_getEventManager().cutEnd(mStaffId);
         }
@@ -575,7 +721,7 @@ void daNpc_Jagar_c::action() {
             if (bo && bo->getType() == TYPE_1) {
                 if (bo->mStagger.checkStagger() ? 0 : 1) {
                     bo->mFaceMotionSeqMngr.setNo(1, -1, 0, 0);
-                    bo->mMotionSeqMngr.setNo(3, -1, 0, 0);
+                    bo->mMotionSeqMngr.setNo(MOT_SIT, -1, 0, 0);
                     field_0xff8 = 0;
                     field_0x1000 = 1;
                 }
@@ -608,8 +754,9 @@ void daNpc_Jagar_c::action() {
     if (uVar4) {
         switch ((int)uVar4->getId()) {
             case 2:
-                mEvtNo = 5;
+                mEvtNo = EVENT_CONVERSATION_WITH_BOU;
                 break;
+
             default:
                 break;
         }
@@ -656,6 +803,7 @@ void daNpc_Jagar_c::setAttnPos() {
     if (field_0x1004 == 2) {
         cStack_3c.set(0.0f, 100.0f, -60.0f);
     }
+
     mDoMtx_stack_c::YrotS(mCurAngle.y);
     mDoMtx_stack_c::multVec(&cStack_3c, &cStack_3c);
     attention_info.position = current.pos + cStack_3c;
@@ -675,12 +823,11 @@ void daNpc_Jagar_c::setCollision() {
         if (mTwilight) {
             tgType = 0;
             tgSPrm = 0;
-        } else {
-            if (mStagger.checkStagger()) {
-                tgType = 0;
-                tgSPrm = 0;
-            }
+        } else if (mStagger.checkStagger()) {
+            tgType = 0;
+            tgSPrm = 0;
         }
+
         mCyl1.SetCoSPrm(0x79);
         mCyl1.SetTgType(tgType);
         mCyl1.SetTgSPrm(tgSPrm);
@@ -692,6 +839,7 @@ void daNpc_Jagar_c::setCollision() {
             cylHeight = 70.0f;
             cylRadius = 90.0f;
         }
+
         mDoMtx_stack_c::YrotS(mCurAngle.y);
         mDoMtx_stack_c::multVec(&cStack_48, &cStack_48);
         cStack_48 += current.pos;
@@ -700,6 +848,7 @@ void daNpc_Jagar_c::setCollision() {
         mCyl1.SetC(cStack_48);
         dComIfG_Ccsp()->Set(&mCyl1);
     }
+
     mCyl1.ClrCoHit();
     mCyl1.ClrTgHit();
 }
@@ -725,6 +874,7 @@ int daNpc_Jagar_c::selectAction() {
         case TYPE_1:
             field_0xfd4 = &daNpc_Jagar_c::talkwithBou;
             break;
+
         default:
             field_0xfd4 = &daNpc_Jagar_c::wait;
             break;
@@ -732,56 +882,59 @@ int daNpc_Jagar_c::selectAction() {
     return 1;
 }
 
-/* 80A162B0-80A162DC 001C90 002C+00 2/2 0/0 0/0 .text
- * chkAction__13daNpc_Jagar_cFM13daNpc_Jagar_cFPCvPvPv_i        */
+/* 80A162B0-80A162DC 001C90 002C+00 2/2 0/0 0/0 .text            chkAction__13daNpc_Jagar_cFM13daNpc_Jagar_cFPCvPvPv_i */
 int daNpc_Jagar_c::chkAction(int (daNpc_Jagar_c::*action)(void*)) {
     return field_0xfe0 == action;
 }
 
-/* 80A162DC-80A16384 001CBC 00A8+00 2/2 0/0 0/0 .text
- * setAction__13daNpc_Jagar_cFM13daNpc_Jagar_cFPCvPvPv_i        */
+/* 80A162DC-80A16384 001CBC 00A8+00 2/2 0/0 0/0 .text            setAction__13daNpc_Jagar_cFM13daNpc_Jagar_cFPCvPvPv_i */
 int daNpc_Jagar_c::setAction(int (daNpc_Jagar_c::*action)(void*)) {
     mMode = 3;
     if (field_0xfe0 != NULL) {
         (this->*field_0xfe0)(NULL);
     }
+
     mMode = 0;
     field_0xfe0 = action;
     if (field_0xfe0 != NULL) {
         (this->*field_0xfe0)(NULL);
     }
+
     return 1;
 }
 
 /* 80A16384-80A16544 001D64 01C0+00 1/0 0/0 0/0 .text            cutClimbUp__13daNpc_Jagar_cFi */
-int daNpc_Jagar_c::cutClimbUp(int param_0) {
+int daNpc_Jagar_c::cutClimbUp(int i_cutIndex) {
     int rv = 0;
-    int iVar4 = -1;
-    int* piVar1 = dComIfGp_evmng_getMyIntegerP(param_0, "prm");
+    int prm = -1;
+    int* piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
     if (piVar1) {
-        iVar4 = *piVar1;
+        prm = *piVar1;
     }
 
-    if (dComIfGp_getEventManager().getIsAddvance(param_0)) {
-        switch (iVar4) {
+    if (dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
+        switch (prm) {
             case 0:
-                mFaceMotionSeqMngr.setNo(8, 0.0f, 0, 0);
-                mMotionSeqMngr.setNo(2, 0.0f, 0, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, 0.0f, 0, 0);
+                mMotionSeqMngr.setNo(MOT_CHU, 0.0f, 0, 0);
                 mJntAnm.lookNone(1);
                 field_0x1003 = 1;
                 setAngle(home.angle.y);
                 initTalk(mFlowNodeNo, NULL);
                 break;
+
             case 2:
                 break;
         }
     }
-    switch (iVar4) {
+
+    switch (prm) {
         case 0:
             if (talkProc(NULL, 0, NULL, 0) && mFlow.checkEndFlow()) {
                 rv = 1;
             }
             break;
+
         case 2:
             rv = 1;
             break;
@@ -790,37 +943,43 @@ int daNpc_Jagar_c::cutClimbUp(int param_0) {
 }
 
 /* 80A16544-80A16CD8 001F24 0794+00 1/0 0/0 0/0 .text            cutNeedYourHelp__13daNpc_Jagar_cFi */
-int daNpc_Jagar_c::cutNeedYourHelp(int param_1) {
+int daNpc_Jagar_c::cutNeedYourHelp(int i_cutIndex) {
     int rv = 0;
-    int iVar12 = -1;
-    int local_30 = 0;
-    int local_34 = 0;
-    int local_38 = 0;
+    int prm = -1;
+    int msgNo = 0;
+    int msgNo2 = 0;
+    int send = 0;
     fopAc_ac_c* actor_p;
-    int* piVar5 = dComIfGp_evmng_getMyIntegerP(param_1, "prm");
+    int* piVar5 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
     if (piVar5) {
-        iVar12 = *piVar5;
+        prm = *piVar5;
     }
-    piVar5 = dComIfGp_evmng_getMyIntegerP(param_1, "msgNo");
+
+    piVar5 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "msgNo");
     if (piVar5) {
-        local_30 = *piVar5;
+        msgNo = *piVar5;
     }
-    piVar5 = dComIfGp_evmng_getMyIntegerP(param_1, "msgNo2");
+
+    piVar5 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "msgNo2");
     if (piVar5) {
-        local_34 = *piVar5;
+        msgNo2 = *piVar5;
     }
-    piVar5 = dComIfGp_evmng_getMyIntegerP(param_1, "send");
+
+    piVar5 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "send");
     if (piVar5) {
-        local_38 = *piVar5;
+        send = *piVar5;
     }
-    if (dComIfGp_getEventManager().getIsAddvance(param_1)) {
-        switch(iVar12) {
+
+    if (dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
+        switch(prm) {
             case 0:
                 dComIfGp_getEvent().setPt2(mActorMngr[0].getActorP());
                 break;
+
             case 1:
                 initTalk(mFlowNodeNo, NULL);
                 break;
+                
             case 7: {
                 fopAc_ac_c* iVar6 = mActorMngr[1].getActorP();
                 if (iVar6) {
@@ -828,44 +987,49 @@ int daNpc_Jagar_c::cutNeedYourHelp(int param_1) {
                 }
                 break;
             }
+
             case 8:
                 field_0x1002 = 0;
                 field_0x1003 = 0;
         }
-    }   
+    }
+
     int local_2c[3] = {-1, -1, -1};
-    switch (iVar12) {
+    switch (prm) {
         case 0:
             mJntAnm.lookNone(0);
-            if (mMotionSeqMngr.getNo() == 10) {
+            if (mMotionSeqMngr.getNo() == MOT_SIT_TO_WAIT) {
                 if (mMotionSeqMngr.getStepNo() <= 0) {
                     break;
                 }
-                mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
-                mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0f, 0, 0);
                 rv = 1;
                 break;
             }
-            if (!mMotionSeqMngr.getNo()) {
+            if (mMotionSeqMngr.getNo() == MOT_WAIT_A) {
                 rv = 1;
                 break;
             }
             break;
+
         case 1:
             mJntAnm.lookPlayer(0);
             if (mPlayerAngle == mCurAngle.y) {
                 rv = 1;
                 break;
             }
-            step(mPlayerAngle,8,0xe,0xf,0);
+
+            step(mPlayerAngle, 8, 0xe, 0xf, 0);
             break;
+
         case 2:
         case 3:
         case 4:
         case 5:
         case 6:
         case 7:
-            switch (iVar12) {
+            switch (prm) {
                 case 3:
                 case 4:
                 case 5:
@@ -879,6 +1043,7 @@ int daNpc_Jagar_c::cutNeedYourHelp(int param_1) {
                         mJntAnm.lookPos(&field_0xd6c, 0);
                     }
                     break;
+                    
                 case 7: {
                     fopAc_ac_c* actor_p = mActorMngr[1].getActorP();
                     if (actor_p) {
@@ -891,13 +1056,15 @@ int daNpc_Jagar_c::cutNeedYourHelp(int param_1) {
                     }
                     break;
                 }
+
                 default:
                     mJntAnm.lookPlayer(0);
             }
-            local_2c[0] = local_30;
-            local_2c[1] = local_34;
-            if (talkProc(local_2c, local_38, NULL, 0)) {
-                if (!local_30 && !local_34) {
+
+            local_2c[0] = msgNo;
+            local_2c[1] = msgNo2;
+            if (talkProc(local_2c, send, NULL, 0)) {
+                if (!msgNo && !msgNo2) {
                     if (mFlow.checkEndFlow() == 1) {
                         rv = 1;
                     }
@@ -905,7 +1072,8 @@ int daNpc_Jagar_c::cutNeedYourHelp(int param_1) {
                     rv = 1;
                 }
             }
-            if (iVar12 == 4) {
+
+            if (prm == 4) {
                 rv = 1;
             }
             break;
@@ -918,34 +1086,39 @@ int daNpc_Jagar_c::cutNeedYourHelp(int param_1) {
 }
 
 /* 80A16CD8-80A16EFC 0026B8 0224+00 1/0 0/0 0/0 .text            cutAnger__13daNpc_Jagar_cFi */
-int daNpc_Jagar_c::cutAnger(int param_0) {
+int daNpc_Jagar_c::cutAnger(int i_cutIndex) {
     int rv = 0;
-    int local_b4 = -1;
+    int prm = -1;
     s16 sVar3;
-    int* piVar1 = dComIfGp_evmng_getMyIntegerP(param_0, "prm");
+    int* piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
     if (piVar1 != NULL) {
-        local_b4 = *piVar1;
+        prm = *piVar1;
     }
-    if (dComIfGp_getEventManager().getIsAddvance(param_0)) {
-        switch (local_b4) {
+
+    if (dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
+        switch (prm) {
             case 0:
-                mFaceMotionSeqMngr.setNo(8, 0.0f, 0, 0);
-                mMotionSeqMngr.setNo(0, 0.0, 0, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, 0.0f, 0, 0);
+                mMotionSeqMngr.setNo(MOT_WAIT_A, 0.0, 0, 0);
                 field_0x1003 = 0;
                 sVar3 = fopAcM_searchActorAngleY(this, dComIfGp_getPlayer(0));
                 setAngle(sVar3);
                 initTalk(mFlowNodeNo, NULL);
+                break;
+
             case 1:
                 break;
         }
     }
-    switch (local_b4) {
+
+    switch (prm) {
         case 0:
             mJntAnm.lookPlayer(0);
             if (talkProc(NULL, 0, NULL, 0) && mFlow.checkEndFlow() == 1) {
                 rv = 1;
             }
             break;
+
         case 1:
             mJntAnm.lookNone(0);
             if (home.angle.y == mCurAngle.y) {
@@ -954,83 +1127,95 @@ int daNpc_Jagar_c::cutAnger(int param_0) {
                 step(home.angle.y, 8, 14, 15, 0);
             }
             break;
+
         default:
             break;
     }
+
     return rv;
 }
 
 /* 80A16EFC-80A1705C 0028DC 0160+00 1/0 0/0 0/0 .text cutConversationWithBou__13daNpc_Jagar_cFi */
-int daNpc_Jagar_c::cutConversationWithBou(int param_0) {
+int daNpc_Jagar_c::cutConversationWithBou(int i_cutIndex) {
     daTag_Push_c* this_00 = (daTag_Push_c*)field_0xba0.getActorP();
     int rv = 0;
-    int iVar5 = -1;
-    int* piVar2 = (int*)dComIfGp_evmng_getMyIntegerP(param_0, "prm");
+    int prm = -1;
+    int* piVar2 = (int*)dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
     if (piVar2) {
-        iVar5 = *piVar2;
+        prm = *piVar2;
     }
-    fopAc_ac_c* actors[2] = {(fopAc_ac_c *) this, mActorMngr[2].getActorP()};
-    dComIfGp_setMesgCameraInfoActor(actors[0], actors[1], 0, 0, 0, 0, 0, 0, 0, 0);
-    if (dComIfGp_getEventManager().getIsAddvance(param_0)) {
-        switch (iVar5) {
+
+    fopAc_ac_c* speakers[2] = {(fopAc_ac_c *) this, mActorMngr[2].getActorP()};
+    dComIfGp_setMesgCameraInfoActor(speakers[0], speakers[1], 0, 0, 0, 0, 0, 0, 0, 0);
+    if (dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
+        switch (prm) {
             case 0:
-                initTalk(this_00->getFlowNodeNo(), &actors[0]);
+                initTalk(this_00->getFlowNodeNo(), &speakers[0]);
+                break;
         }
     }
-    switch (iVar5) {
+
+    switch (prm) {
         case 0:
-            iVar5 = talkProc(NULL, 0, &actors[0], 0);
-            if (iVar5 && mFlow.checkEndFlow() == 1) {
+            if (talkProc(NULL, 0, &speakers[0], 0) && mFlow.checkEndFlow() == 1) {
                 rv = 1;
             }
+            break;
     }
+
     return rv;
 }
 
-/* 80A1705C-80A173D8 002A3C 037C+00 1/0 0/0 0/0 .text
- * cutConfidentialConversation__13daNpc_Jagar_cFi               */
-int daNpc_Jagar_c::cutConfidentialConversation(int param_0) {
+/* 80A1705C-80A173D8 002A3C 037C+00 1/0 0/0 0/0 .text            cutConfidentialConversation__13daNpc_Jagar_cFi */
+int daNpc_Jagar_c::cutConfidentialConversation(int i_cutIndex) {
     int rv = 0;
-    int iVar8 = -1;
-    int iVar7 = 0;
-    int* piVar2 = dComIfGp_evmng_getMyIntegerP(param_0, "prm");
+    int prm = -1;
+    int msgNo = 0;
+    int* piVar2 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
     if(piVar2) {
-        iVar8 = *piVar2;
+        prm = *piVar2;
     }
-    piVar2 = dComIfGp_evmng_getMyIntegerP(param_0, "msgNo");
+
+    piVar2 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "msgNo");
     if(piVar2) {
-        iVar7 = *piVar2;
+        msgNo = *piVar2;
     }
+
     fopAc_ac_c* actors[2] = {(fopAc_ac_c *) this, mActorMngr[2].getActorP()};
     dComIfGp_setMesgCameraInfoActor(actors[0], actors[1], 0, 0, 0, 0, 0, 0, 0, 0);
-    if (dComIfGp_getEventManager().getIsAddvance(param_0)) {
-        switch (iVar8) {
+    if (dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
+        switch (prm) {
             case 0:
-                mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
-                mMotionSeqMngr.setNo(5, -1.0f, 0, 0);
-                initTalk(0xd7, &actors[0]);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(MOT_WORRY_WAIT, -1.0f, 0, 0);
+                initTalk(0xD7, &actors[0]);
                 break;
+
             case 1:
                 dComIfGp_getEvent().setPt2(mActorMngr[1].getActorP());
+                break;
+
             case 2:
                 break;
         }
     }
+
     int local_30[3] = {-1, -1, -1};
-    switch (iVar8) {
+    switch (prm) {
         case 0:
         case 1:
         case 2:
         case 3: {
-            if (iVar8 == 0 || iVar8 == 2) {
+            if (prm == 0 || prm == 2) {
                 mJntAnm.lookActor(mActorMngr[2].getActorP(), -40.0f, 0);
-            } else if (iVar8 == 1) {
+            } else if (prm == 1) {
                 fopAc_ac_c* pfVar3 = mActorMngr[1].getActorP();
                 mJntAnm.lookActor(pfVar3, 0.0f, 0);
             }
-            local_30[0] = iVar7;
+
+            local_30[0] = msgNo;
             if (talkProc(&local_30[0], 0, &actors[0], 0)) {
-                if (iVar7 == 0) {
+                if (msgNo == 0) {
                     if (mFlow.checkEndFlow()) {
                         rv = 1;
                     }
@@ -1042,42 +1227,47 @@ int daNpc_Jagar_c::cutConfidentialConversation(int param_0) {
         }
 
         case 4:
-            mEvtNo = 7;
+            mEvtNo = EVENT_FIND_WOLF;
             evtChange();
             break;
     }
+
     return rv;
 }
 
 /* 80A173D8-80A17898 002DB8 04C0+00 3/0 0/0 0/0 .text            cutFindWolf__13daNpc_Jagar_cFi */
-int daNpc_Jagar_c::cutFindWolf(int param_0) {
+int daNpc_Jagar_c::cutFindWolf(int i_cutIndex) {
     int rv = 0;
-    int uVar6 = -1;
-    int iVar4 = 0;
-    int* piVar1 = dComIfGp_evmng_getMyIntegerP(param_0, "prm");
+    int prm = -1;
+    int timer = 0;
+
+    int* piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
     if (piVar1 != NULL) {
-        uVar6 = *piVar1;
-    }
-    int* puVar2 = dComIfGp_evmng_getMyIntegerP(param_0, "timer");
-    if (puVar2 != NULL) {
-        iVar4 = *puVar2;
+        prm = *piVar1;
     }
 
-    if (dComIfGp_getEventManager().getIsAddvance(param_0)) {
-        switch (uVar6) {
+    int* piVar2 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "timer");
+    if (piVar2 != NULL) {
+        timer = *piVar2;
+    }
+
+    if (dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
+        switch (prm) {
             case 0:
-                mFaceMotionSeqMngr.setNo(1, -1.0f, 0, 0);
-                mMotionSeqMngr.setNo(7, -1.0f, 0, 0);
+                mFaceMotionSeqMngr.setNo(FACE_SURPRISE, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(MOT_SURPRISE, -1.0f, 0, 0);
                 mSound.startCreatureVoice(Z2SE_JAGA_V_SURPRISE, -1);
                 mPlayerAngle = fopAcM_searchActorAngleY(this, daPy_getPlayerActorClass());
                 if (checkStep()) {
                     mStepMode = 0;
                 }
+
                 dComIfGp_getVibration().StartShock(9, 15, cXyz(0.0f, 1.0f, 0.0f));
                 break;
+
             case 2:
-                mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
-                mMotionSeqMngr.setNo(15, -1.0f, 0, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(MOT_RUN_A, -1.0f, 0, 0);
                 current.angle.y = home.angle.y;
                 if ((s16)(mPlayerAngle - home.angle.y) > 0) {
                     current.angle.y = current.angle.y + -0x4000;
@@ -1085,11 +1275,13 @@ int daNpc_Jagar_c::cutFindWolf(int param_0) {
                     current.angle.y = current.angle.y + 0x4000;
                     
                 }
-                mEventTimer = iVar4;
+
+                mEventTimer = timer;
                 break;
+
             case 3:
-                mFaceMotionSeqMngr.setNo(8, 0.0f, 0, 0);
-                mMotionSeqMngr.setNo(5, 0.0f, 0, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, 0.0f, 0, 0);
+                mMotionSeqMngr.setNo(MOT_WORRY_WAIT, 0.0f, 0, 0);
                 setPos(home.pos);
                 setAngle(home.angle.y);
                 speedF = 0;
@@ -1097,9 +1289,11 @@ int daNpc_Jagar_c::cutFindWolf(int param_0) {
                 mAcch.ClrWallNone();
                 mHide = 1;
                 break;
+
             case 11:
-                mEventTimer = iVar4;
+                mEventTimer = timer;
                 break;
+
             case 4:
             case 5:
             case 6:
@@ -1110,7 +1304,8 @@ int daNpc_Jagar_c::cutFindWolf(int param_0) {
                 break;
         }
     }
-    switch (uVar6) {
+
+    switch (prm) {
         case 0:
             mJntAnm.lookPlayer(0);
             if (mPlayerAngle == mCurAngle.y) {
@@ -1119,10 +1314,12 @@ int daNpc_Jagar_c::cutFindWolf(int param_0) {
                 step(mPlayerAngle, -1, -1, 15, 0);
             }
             break;
+
         case 1:
             mJntAnm.lookPlayer(0);
             rv = 1;
             break;
+
         case 2:
             mJntAnm.lookPlayer(0);
             cLib_chaseS(&shape_angle.y, current.angle.y, 0x800);
@@ -1134,73 +1331,82 @@ int daNpc_Jagar_c::cutFindWolf(int param_0) {
                 rv = 1;
             }
             break;
+
         case 3:
             mJntAnm.lookNone(0);
             rv = 1;
             break;
+
         case 10:
             if (mMotionSeqMngr.getStepNo() > 0) {
                 rv = 1;
             }
             break;
+
         case 11:
             if (cLib_calcTimer(&mEventTimer) == 0) {
                 rv = 1;
             }
+            break;
     }
+
     return rv;
 }
 
 /* 80A17898-80A17924 003278 008C+00 1/1 0/0 0/0 .text            chkSitMotion__13daNpc_Jagar_cFv */
 int daNpc_Jagar_c::chkSitMotion() {
-    if ((daNpcT_chkEvtBit(0x235) != 0)) {
+    if (daNpcT_chkEvtBit(0x235) /* dSv_event_flag_c::F_0565 - N/A - 2nd Day Complete */) {
         if (field_0x1002) {
             return 0;
         }
-    } else if (daNpcT_chkEvtBit(0x1c) != 0) {
-        if (daNpcT_chkEvtBit(0x87) != 0) {
+    } else if (daNpcT_chkEvtBit(0x1C) /* dSv_event_flag_c::F_0023 - Ordon Village - Called by Jaggle from below hill */) {
+        if (daNpcT_chkEvtBit(0x87) /* dSv_event_flag_c::F_0037 - Ordon Village - Jaggle - Spoke on the hill? */) {
             return 0;
         } else if (field_0x1002) {
             return 0;
         }
     }
+
     return 1;
 }
 
 /* 80A17924-80A17984 003304 0060+00 1/1 0/0 0/0 .text            chkSitMotion2__13daNpc_Jagar_cFv */
 int daNpc_Jagar_c::chkSitMotion2() {
-    if (daNpcT_chkEvtBit(0x235) != 0) {
-        if (daNpcT_chkEvtBit(0x224) != 0) {
+    if (daNpcT_chkEvtBit(0x235) /* dSv_event_flag_c::F_0565 - N/A - 2nd Day Complete */) {
+        if (daNpcT_chkEvtBit(0x224) /* dSv_event_flag_c::F_0548 - Ordon Village - Opening 3rd day - spoke with Jaggle */) {
             return 1;
         }
-    } else {
-        if (daNpcT_chkEvtBit(0x8a) != 0) {
-            return 1;
-        }
+    } else if (daNpcT_chkEvtBit(0x8A) /* dSv_event_flag_c::F_0040 - Ordon Village - 2nd day: Spoke to Jaggle after blowing on whistle */) {
+        return 1;
     }
+
     return 0;
 }
 
 /* 80A17984-80A179F8 003364 0074+00 3/3 0/0 0/0 .text            chkChuMotion__13daNpc_Jagar_cFv */
 int daNpc_Jagar_c::chkChuMotion() {
-    if (daNpcT_chkEvtBit(0x235) == 0 && daNpcT_chkEvtBit(0x1c) != 0) {
-        if (daNpcT_chkEvtBit(0x87) != 0) {
-            return false;
+    if (!daNpcT_chkEvtBit(0x235) /* dSv_event_flag_c::F_0565 - N/A - 2nd Day Complete */
+        && daNpcT_chkEvtBit(0x1C) /* dSv_event_flag_c::F_0023 - Ordon Village - Called by Jaggle from below hill */) {
+        if (daNpcT_chkEvtBit(0x87) /* dSv_event_flag_c::F_0037 - Ordon Village - Jaggle - Spoke on the hill? */) {
+            return 0;
         } else {
             return field_0x1001 == 0 ? 1 : 0;
         }
     }
-    return false;
+
+    return 0;
 }
 
 /* 80A179F8-80A17A2C 0033D8 0034+00 1/1 0/0 0/0 .text            chkToMotion__13daNpc_Jagar_cFv */
 int daNpc_Jagar_c::chkToMotion() {
-    return mMotionSeqMngr.getNo() == 10 || mMotionSeqMngr.getNo() == 11 || mMotionSeqMngr.getNo() == 12 || mMotionSeqMngr.getNo() == 13;
+    return mMotionSeqMngr.getNo() == MOT_SIT_TO_WAIT || mMotionSeqMngr.getNo() == MOT_TO_CHU ||
+           mMotionSeqMngr.getNo() == MOT_CHU_TO_SIT || mMotionSeqMngr.getNo() == MOT_WAIT_TO_SIT;
 }
 
 /* 80A17A2C-80A1856C 00340C 0B40+00 1/0 0/0 0/0 .text            wait__13daNpc_Jagar_cFPv */
-int daNpc_Jagar_c::wait(void* param_0) {
+int daNpc_Jagar_c::wait(void* param_1) {
     cXyz cStack_24;
+
     field_0x1004 = 0;
     if (mType == TYPE_0) {
         if(chkSitMotion2()) {
@@ -1208,7 +1414,7 @@ int daNpc_Jagar_c::wait(void* param_0) {
         } else if (chkSitMotion()) {
             if (chkChuMotion()) {
                 field_0x1004 = 1;
-            }else {
+            } else {
                 field_0x1004 = 2;
             }
         }
@@ -1222,81 +1428,94 @@ int daNpc_Jagar_c::wait(void* param_0) {
         case 0:
         case 1:
             if (mCreating) {
-                    switch (field_0x1004) {
-                        case 0:
-                            if (mType == TYPE_2) {
-                                mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
-                                mMotionSeqMngr.setNo(17, -1.0, 0, 0);
-                            } else {
-                                mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
-                                mMotionSeqMngr.setNo(0, -1.0, 0, 0);
-                            }
-                            field_0x1003 = 0;
-                            break;
-                        case 1:
-                            mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
-                            mMotionSeqMngr.setNo(2, -1.0, 0, 0);
-                            field_0x1003 = 1;
-                            break;
-                        case 2:
-                            mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
-                            mMotionSeqMngr.setNo(3, -1.0, 0, 0);
-                            field_0x1003 = 2;
-                    }
-                    mMode = 2;
-                
-            } else {
-                if (!mStagger.checkStagger()) {
-                    switch (field_0x1004) {
-                        case 0:
-                            switch (field_0x1003) {
-                                case 2:
-                                    mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
-                                    mMotionSeqMngr.setNo(10, -1.0, 0, 0);
-                                    break;
-                                default:
-                                    if (mType == TYPE_2) {
-                                        mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
-                                        mMotionSeqMngr.setNo(17, -1.0, 0, 0);
-                                    } else {
-                                        mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
-                                        mMotionSeqMngr.setNo(0, -1.0, 0, 0);
-                                    }
-                                    field_0x1003 = 0;
-                            }
-                            break;
-                        case 1:
-                            switch (field_0x1003) {
-                                case 2:
-                                    mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
-                                    mMotionSeqMngr.setNo(11, -1.0, 0, 0);
-                                    break;
-                                default:
-                                    mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
-                                    mMotionSeqMngr.setNo(2, -1.0, 0, 0);
-                                    field_0x1003 = 1;
-                            }
-                            break;
-                        case 2:
-                            if (home.angle.y == mCurAngle.y) {
-                                switch (field_0x1003) {
-                                    case 0:
-                                        mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
-                                        mMotionSeqMngr.setNo(13, -1.0, 0, 0);
-                                        break;
-                                    case 1:
-                                        mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
-                                        mMotionSeqMngr.setNo(12, -1.0, 0, 0);
-                                }
-                            }
-                    }
-                    mMode = 2;
+                switch (field_0x1004) {
+                    case 0:
+                        if (mType == TYPE_2) {
+                            mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                            mMotionSeqMngr.setNo(MOT_WAIT_B, -1.0, 0, 0);
+                        } else {
+                            mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                            mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0, 0, 0);
+                        }
+
+                        field_0x1003 = 0;
+                        break;
+
+                    case 1:
+                        mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                        mMotionSeqMngr.setNo(MOT_CHU, -1.0, 0, 0);
+                        field_0x1003 = 1;
+                        break;
+
+                    case 2:
+                        mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                        mMotionSeqMngr.setNo(MOT_SIT, -1.0, 0, 0);
+                        field_0x1003 = 2;
+                        break;
                 }
+
+                mMode = 2;
+            } else if (!mStagger.checkStagger()) {
+                switch (field_0x1004) {
+                    case 0:
+                        switch (field_0x1003) {
+                            case 2:
+                                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                                mMotionSeqMngr.setNo(MOT_SIT_TO_WAIT, -1.0, 0, 0);
+                                break;
+
+                            default:
+                                if (mType == TYPE_2) {
+                                    mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                                    mMotionSeqMngr.setNo(MOT_WAIT_B, -1.0, 0, 0);
+                                } else {
+                                    mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                                    mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0, 0, 0);
+                                }
+
+                                field_0x1003 = 0;
+                                break;
+                        }
+                        break;
+
+                    case 1:
+                        switch (field_0x1003) {
+                            case 2:
+                                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                                mMotionSeqMngr.setNo(MOT_TO_CHU, -1.0, 0, 0);
+                                break;
+
+                            default:
+                                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                                mMotionSeqMngr.setNo(MOT_CHU, -1.0, 0, 0);
+                                field_0x1003 = 1;
+                                break;
+                        }
+                        break;
+
+                    case 2:
+                        if (home.angle.y == mCurAngle.y) {
+                            switch (field_0x1003) {
+                                case 0:
+                                    mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                                    mMotionSeqMngr.setNo(MOT_WAIT_TO_SIT, -1.0, 0, 0);
+                                    break;
+
+                                case 1:
+                                    mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                                    mMotionSeqMngr.setNo(MOT_CHU_TO_SIT, -1.0, 0, 0);
+                                    break;
+                            }
+                        }
+                        break;
+                }
+                mMode = 2;
             }
+            // fallthrough
         case 2:
             switch (mType) {
                 case TYPE_0:
-                    daNpcT_offTmpBit(0x10);
+                    daNpcT_offTmpBit(0x10); // dSv_event_tmp_flag_c::T_0015 - Ordon Village - Link came up the hill afte being called by Jaggle
                     cStack_24.set(daNpc_Jagar_Param_c::m.field_0x54, 10.0f, daNpc_Jagar_Param_c::m.field_0x54);
                     if (chkPointInArea(daPy_getPlayerActorClass()->current.pos, current.pos,
                         cStack_24, 0)) {
@@ -1305,30 +1524,33 @@ int daNpc_Jagar_c::wait(void* param_0) {
                                 field_0x1002 = 1;
                             }
                         }
-                        daNpcT_onTmpBit(0x10);
+
+                        daNpcT_onTmpBit(0x10); // dSv_event_tmp_flag_c::T_0015 - Ordon Village - Link came up the hill afte being called by Jaggle
                     }
-                    if (!daNpcT_chkEvtBit(0x235)) {
-                        if (!daNpcT_chkEvtBit(0xae) && daNpcT_chkTmpBit(0x1b)) {
-                            mEvtNo = 4;
-                        } else {
-                            if (chkSitMotion() || field_0x1002 != 0) {
-                                if (!daNpcT_chkEvtBit(0x235) && !daNpcT_chkEvtBit(0x87) &&
-                                daNpcT_chkTmpBit(0x10)) {
-                                    if (daPy_getPlayerActorClass()->eventInfo.chkCondition(dEvtCnd_CANTALK_e) != 0 ? 1 : 0) {
-                                        mEvtNo = 3;
-                                    }
+
+                    if (!daNpcT_chkEvtBit(0x235) /* dSv_event_flag_c::F_0565 - N/A - 2nd Day Complete */) {
+                        if (!daNpcT_chkEvtBit(0xAE) /* dSv_event_flag_c::F_0075 - Ordon Village - Angered Jaggle by destroying pumpkin */
+                            && daNpcT_chkTmpBit(0x1B) /* dSv_event_tmp_flag_c::T_0026 - Ordon Village - Destroy pumpkin near Jaggle (Jaggle gets angry) */) {
+                            mEvtNo = EVENT_ANGER;
+                        } else if (chkSitMotion() || field_0x1002 != 0) {
+                            if (!daNpcT_chkEvtBit(0x235) /* dSv_event_flag_c::F_0565 - N/A - 2nd Day Complete */
+                                && !daNpcT_chkEvtBit(0x87) /* dSv_event_flag_c::F_0037 - Ordon Village - Jaggle - Spoke on the hill? */
+                                && daNpcT_chkTmpBit(0x10) /* dSv_event_tmp_flag_c::T_0015 - Ordon Village - Link came up the hill afte being called by Jaggle */) {
+                                if (daPy_getPlayerActorClass()->eventInfo.chkCondition(dEvtCnd_CANTALK_e) != 0 ? 1 : 0) {
+                                    mEvtNo = EVENT_NEED_YOUR_HELP;
                                 }
                             }
                         }
                     }
                     break;
+
                 case TYPE_2:
                     if (!mHide) {
                         if (daNpcT_c::chkFindWolf(mCurAngle.y, daNpcT_getDistTableIdx(field_0xff0, field_0xff4),
                                                   field_0xfec, daNpc_Jagar_Param_c::m.field_0x54, 180.0f,
                                                   daNpc_Jagar_Param_c::m.field_0x58,
                                                   daNpc_Jagar_Param_c::m.field_0x5c, 1)) {
-                            mEvtNo = 8;
+                            mEvtNo = EVENT_FIND_WOLF_VER2;
                         }
                     }
             }
@@ -1338,28 +1560,31 @@ int daNpc_Jagar_c::wait(void* param_0) {
                     if (mMotionSeqMngr.getStepNo() > 0) {
                         switch (field_0x1004) {
                             case 0:
-                                mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
-                                mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+                                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                                mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0f, 0, 0);
                                 field_0x1003 = 0;
                                 break;
+
                             case 1:
-                                mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
-                                mMotionSeqMngr.setNo(2, -1.0f, 0, 0);
+                                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                                mMotionSeqMngr.setNo(MOT_CHU, -1.0f, 0, 0);
                                 field_0x1003 = 1;
                                 break;
+
                             case 2:
-                                mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
-                                mMotionSeqMngr.setNo(3, -1.0f, 0, 0);
+                                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                                mMotionSeqMngr.setNo(MOT_SIT, -1.0f, 0, 0);
                                 field_0x1003 = 2;
+                                break;
                         }
-                    } else {
-                        if (mMotionSeqMngr.getNo() != 11) {
-                            attention_info.flags = 0;
-                        }
+                    } else if (mMotionSeqMngr.getNo() != MOT_TO_CHU) {
+                        attention_info.flags = 0;
                     }
+
                     mJntAnm.lookNone(0);
                     break;
                 }
+
                 if (field_0x1004 == 2) {
                     mPlayerActorMngr.remove();
                 } else if (field_0x1004 == 1) {
@@ -1368,6 +1593,7 @@ int daNpc_Jagar_c::wait(void* param_0) {
 
                 if (mPlayerActorMngr.getActorP()) {
                     mJntAnm.lookPlayer(0);
+
                     if (!chkActorInSight(mPlayerActorMngr.getActorP(), mAttnFovY, mCurAngle.y)) {
                         mJntAnm.lookNone(0);
                     }
@@ -1378,7 +1604,7 @@ int daNpc_Jagar_c::wait(void* param_0) {
                         }
 
                         if (field_0x1003 == 1) {
-                            if (!daNpcT_chkEvtBit(0x86)) {
+                            if (!daNpcT_chkEvtBit(0x86) /* dSv_event_flag_c::F_0036 - Ordon Village - Spoke to Jaggle using L-focus before climbing vines? */) {
                                 daNpcT_onEvtBit(0x86);
                             }
                             field_0x1001 = 1;
@@ -1386,11 +1612,12 @@ int daNpc_Jagar_c::wait(void* param_0) {
                     }
                 } else {
                     mJntAnm.lookNone(0);
+
                     if (home.angle.y != mCurAngle.y) {
                         if (field_0xe34) {
                             if (step(home.angle.y, 8, 14, 15, 0)) {
                                 mMode = 1;
-                            } 
+                            }
                         } else {
                             setAngle(home.angle.y);
                             mMode = 1;
@@ -1402,26 +1629,29 @@ int daNpc_Jagar_c::wait(void* param_0) {
                 }
             }
             break;
+            
         case 3:
             break;
     }
+    
     return 1;
 }
 
 /* 80A1856C-80A18B74 003F4C 0608+00 1/0 0/0 0/0 .text            talkwithBou__13daNpc_Jagar_cFPv */
 int daNpc_Jagar_c::talkwithBou(void* param_0) {
     daNpc_Bou_c* bo = (daNpc_Bou_c *)mActorMngr[2].getActorP();
+
     switch (mMode) {
         case 0:
         case 1:
-            if (mStagger.checkStagger() == 0) {
-                mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
-                mMotionSeqMngr.setNo(5, -1.0f, 0, 0);
+            if (!mStagger.checkStagger()) {
+                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(MOT_WORRY_WAIT, -1.0f, 0, 0);
                 mMode = 2;
             }
-
+            // fallthrough
         case 2:
-            if (mHide != 0 && daNpcT_chkEvtBit(0xd3) == 0) {
+            if (mHide != 0 && !daNpcT_chkEvtBit(0xD3) /* dSv_event_flag_c::F_0211 - Ordon Village - Successfully eavesdrop on Bo and Jaggle */) {
                 f32 actor_dist = fopAcM_searchActorDistanceXZ(this, daPy_getPlayerActorClass());
                 if (daNpc_Jagar_Param_c::m.field_0x9c < actor_dist && field_0xe34 == 0) {
                     if (bo) {
@@ -1436,8 +1666,9 @@ int daNpc_Jagar_c::talkwithBou(void* param_0) {
                 fopAcM_setCullSizeBox((fopAc_ac_c *)this, -300.0f, -50.0f, -200.0f, 300.0f, 300.0f, 400.0f);
             } else {
                 if (chkFindWolf() || (bo && bo->chkFindWolf())) {
-                    mEvtNo = 7;
+                    mEvtNo = EVENT_FIND_WOLF;
                 }
+
                 if (bo) {
                     if (mListen == 0) {
                         if (cLib_calcTimer(&field_0xff8) == 0) {
@@ -1446,23 +1677,26 @@ int daNpc_Jagar_c::talkwithBou(void* param_0) {
                                 field_0x1000 ^= 1;
                                 if ((field_0x1000 & 0x1) == 0) {
                                     bo->mFaceMotionSeqMngr.setNo(10, -1.0f, 0, 0);
+
                                     f32 zero_f_val = 0.0f;
                                     if (0.0f < zero_f_val + (cM_rnd() - 0.5f)) {
                                         bo->mMotionSeqMngr.setNo(4, -1.0f, 0, 0);
                                     } else {
                                         bo->mMotionSeqMngr.setNo(1, -1.0f, 0, 0);
                                     }
-                                    mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
-                                    mMotionSeqMngr.setNo(6, -1.0f, 0, 0);
+
+                                    mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                                    mMotionSeqMngr.setNo(MOT_WORRY_TALK, -1.0f, 0, 0);
                                 } else {
                                     bo->mFaceMotionSeqMngr.setNo(10, -1.0f, 0, 0);
                                     bo->mMotionSeqMngr.setNo(2, -1.0f, 0, 0);
-                                    mFaceMotionSeqMngr.setNo(8, -1.0f, 0, 0);
+                                    mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+
                                     f32 val = 0.0f;
                                     if (0.0f < val + (cM_rnd() - 0.5f)) {
-                                        mMotionSeqMngr.setNo(8, -1.0f, 0, 0);
+                                        mMotionSeqMngr.setNo(MOT_UNADUKI, -1.0f, 0, 0);
                                     } else {
-                                        mMotionSeqMngr.setNo(5, -1.0f, 0, 0);
+                                        mMotionSeqMngr.setNo(MOT_WORRY_WAIT, -1.0f, 0, 0);
                                     }
                                 }
                             }
@@ -1471,6 +1705,7 @@ int daNpc_Jagar_c::talkwithBou(void* param_0) {
                         field_0xff8 = 0;
                     }
                 }
+
                 fopAcM_setCullSizeBox((fopAc_ac_c *)this,-300.0f,-50.0f,-300.0f,300.0f,450.0f,300.0f);
             }
 
@@ -1479,7 +1714,6 @@ int daNpc_Jagar_c::talkwithBou(void* param_0) {
             } else {
                 mJntAnm.lookNone(0);
             }
-
             break;
 
         case 3:
@@ -1492,35 +1726,39 @@ int daNpc_Jagar_c::talkwithBou(void* param_0) {
     return 1;
 }
 
-/* REGALLOC ISSUE */
 /* 80A18B74-80A18F28 004554 03B4+00 3/0 0/0 0/0 .text            talk__13daNpc_Jagar_cFPv */
 int daNpc_Jagar_c::talk(void* param_0) {
     switch(mMode) {
         case 0:
         case 1:
-        if (!mStagger.checkStagger()) {
-            if (mType == TYPE_1) {
-                daNpc_Bou_c *bo = (daNpc_Bou_c *)mActorMngr[2].getActorP();
-                if (bo && bo->getType() == TYPE_1 && ((bo->mStagger.checkStagger()) ? 0 : 1)) {
-                    bo->mFaceMotionSeqMngr.setNo(10, -1.0f, 0, 0);
-                    if (0.0f < -10.0f + (cM_rnd() - 0.5f)) {
-                        bo->mMotionSeqMngr.setNo(4, -1.0f, 0, 0);
-                    } else {
-                        bo->mMotionSeqMngr.setNo(1, -1.0f, 0, 0);
+            if (!mStagger.checkStagger()) {
+                if (mType == TYPE_1) {
+                    daNpc_Bou_c *bo = (daNpc_Bou_c *)mActorMngr[2].getActorP();
+                    if (bo && bo->getType() == TYPE_1 && ((bo->mStagger.checkStagger()) ? 0 : 1)) {
+                        bo->mFaceMotionSeqMngr.setNo(10, -1.0f, 0, 0);
+                        
+                        if (0.0f < -10.0f + (cM_rnd() - 0.5f)) {
+                            bo->mMotionSeqMngr.setNo(4, -1.0f, 0, 0);
+                        } else {
+                            bo->mMotionSeqMngr.setNo(1, -1.0f, 0, 0);
+                        }
                     }
+
+                    switch (field_0xfec) {
+                        case 4:
+                            initTalk(0xd6, NULL); 
+                            break;
+
+                        default:
+                            initTalk(0xd5, NULL);
+                            break;
+                    }
+                } else {
+                    initTalk(mFlowNodeNo, NULL);
                 }
-                switch (field_0xfec) {
-                    case 4:
-                        initTalk(0xd6, NULL); 
-                        break;
-                    default:
-                        initTalk(0xd5, NULL);
-                }
-            } else {
-                initTalk(mFlowNodeNo, NULL);
+                mMode = 2;
             }
-            mMode = 2;
-        }
+            // fallthrough
         case 2:
             if (!mStagger.checkStagger()) {
                 if (mTwilight != 0 || mPlayerAngle == mCurAngle.y || mType == TYPE_1 || field_0x1003 != 0) {
@@ -1534,7 +1772,8 @@ int daNpc_Jagar_c::talk(void* param_0) {
                         mJntAnm.lookActor(mActorMngr[2].getActorP(), -40.0f, 0);
                     } else {
                         mJntAnm.lookPlayer(0);
-                        if (mTwilight != 0 || field_0x1003 == 2) {
+
+                        if (mTwilight || field_0x1003 == 2) {
                             mJntAnm.lookNone(0);
                         }
                     }
@@ -1544,6 +1783,7 @@ int daNpc_Jagar_c::talk(void* param_0) {
                 }
             }
             break;
+
         case 3:
         default:
             break;
