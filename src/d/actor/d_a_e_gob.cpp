@@ -44,16 +44,58 @@ enum E_gob_RES_file_ID {
     /* 0x1D */ BCK_MG_LANDING,
     /* 0x1E */ BCK_MG_N_STEP,
     /* 0x1F */ BCK_MG_N_TALK,
-    /* 0x20 */ BCK_MG_SHIELD,
-    /* 0x21 */ BCK_MG_STAND,
-    /* 0x22 */ BCK_MG_ST_WAIT,
-    /* 0x23 */ BCK_MG_ST_WALK,
-    /* 0x24 */ BCK_MG_WAIT,
-    /* 0x25 */ BCK_MG_WALK,
+    /* 0x20 */ BCK_MG_N_WAIT,
+    /* 0x21 */ BCK_MG_SHIELD,
+    /* 0x22 */ BCK_MG_STAND,
+    /* 0x23 */ BCK_MG_ST_WAIT,
+    /* 0x24 */ BCK_MG_ST_WALK,
+    /* 0x25 */ BCK_MG_WAIT,
+    /* 0x26 */ BCK_MG_WALK,
 
     /* BMDR */
     /* 0x29 */ BMDR_MG = 0x29,
     /* 0x2A */ BMDR_MG_MET,
+};
+
+enum Joint {
+    /* 0x00 */ JNT_WORLD_ROOT,
+    /* 0x01 */ JNT_BACK_BONE1,
+    /* 0x02 */ JNT_BACK_BONE2,
+    /* 0x03 */ JNT_BACK_BONE3,
+    /* 0x04 */ JNT_ARM_L1,
+    /* 0x05 */ JNT_ARM_L2,
+    /* 0x06 */ JNT_ARM_L3,
+    /* 0x07 */ JNT_ARM_L4,
+    /* 0x08 */ JNT_FINGER_L1,
+    /* 0x09 */ JNT_FINGER_L2,
+    /* 0x0A */ JNT_FINGER_L3,
+    /* 0x0B */ JNT_THUMB_L1,
+    /* 0x0C */ JNT_THUMB_L2,
+    /* 0x0D */ JNT_ARM_R1,
+    /* 0x0E */ JNT_ARM_R2,
+    /* 0x0F */ JNT_ARM_R3,
+    /* 0x10 */ JNT_ARM_R4,
+    /* 0x11 */ JNT_FINGER_R1,
+    /* 0x12 */ JNT_FINGER_R2,
+    /* 0x13 */ JNT_FINGER_R3,
+    /* 0x14 */ JNT_THUMB_R1,
+    /* 0x15 */ JNT_THUMB_R2,
+    /* 0x16 */ JNT_BACK_BONE4,
+    /* 0x17 */ JNT_NECK,
+    /* 0x18 */ JNT_HEAD,
+    /* 0x19 */ JNT_JAW,
+    /* 0x1A */ JNT_LIP,
+    /* 0x1B */ JNT_BUST,
+    /* 0x1C */ JNT_BODY_1,
+    /* 0x1D */ JNT_WAIST,
+    /* 0x1E */ JNT_LEG_L1,
+    /* 0x1F */ JNT_LEG_L2,
+    /* 0x20 */ JNT_LEG_L3,
+    /* 0x21 */ JNT_LEG_L4,
+    /* 0x22 */ JNT_LEG_R1,
+    /* 0x23 */ JNT_LEG_R2,
+    /* 0x24 */ JNT_LEG_R3,
+    /* 0x25 */ JNT_LEG_R4,
 };
 
 enum daE_GOB_ACTION {
@@ -84,20 +126,20 @@ daE_GOB_HIO_c::daE_GOB_HIO_c() {
 }
 
 /* 806D80E0-806D842C 000140 034C+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
-static int nodeCallBack(J3DJoint* i_joint, int param_1) {
-    if (param_1 == 0) {
+static int nodeCallBack(J3DJoint* i_joint, int param_2) {
+    if (param_2 == 0) {
         int jnt_no = i_joint->getJntNo();
         J3DModel* model = j3dSys.getModel();
         e_gob_class* enemy = (e_gob_class*)model->getUserArea();
 
         if (enemy != NULL) {
-            if (jnt_no == 22 || jnt_no == 23) {
+            if (jnt_no == JNT_BACK_BONE4 || jnt_no == JNT_NECK) {
                 MTXCopy(model->getAnmMtx(jnt_no), *calc_mtx);
                 cMtx_YrotM(*calc_mtx, enemy->mHeadRotY);
                 cMtx_ZrotM(*calc_mtx, enemy->mHeadRotZ);
                 model->setAnmMtx(jnt_no, *calc_mtx);
                 MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
-            } else if (jnt_no == 1 || jnt_no == 2) {
+            } else if (jnt_no == JNT_BACK_BONE1 || jnt_no == JNT_BACK_BONE2) {
                 MTXCopy(model->getAnmMtx(jnt_no), *calc_mtx);
                 cMtx_YrotM(*calc_mtx, enemy->mBodyRotY);
                 cMtx_ZrotM(*calc_mtx, enemy->mBodyRotZ);
@@ -105,7 +147,8 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
                 MTXCopy(*calc_mtx, J3DSys::mCurrentMtx);
             }
 
-            if (jnt_no == 1 || jnt_no == 2 || jnt_no == 3 || jnt_no == 4 || jnt_no == 5 || jnt_no == 6 || jnt_no == 13 || jnt_no == 14 || jnt_no == 15) {
+            if (jnt_no == JNT_BACK_BONE1 || jnt_no == JNT_BACK_BONE2 || jnt_no == JNT_BACK_BONE3 || jnt_no == JNT_ARM_L1
+                || jnt_no == JNT_ARM_L2 || jnt_no == JNT_ARM_L3 || jnt_no == JNT_ARM_R1 || jnt_no == JNT_ARM_R2 || jnt_no == JNT_ARM_R3) {
                 int sp10 = jnt_no & 3;
                 MTXCopy(model->getAnmMtx(jnt_no), *calc_mtx);
                 cMtx_YrotM(*calc_mtx, enemy->field_0x6c6[sp10]);
@@ -257,6 +300,7 @@ static void fight(e_gob_class* i_this) {
         i_this->mTimers[0] = 20.0f + cM_rndF(20.0f);
         actor->home.pos.y = actor->current.pos.y;
         break;
+
     case 1:
         speed_target = l_HIO.normal_walk_speed;
 
@@ -270,6 +314,7 @@ static void fight(e_gob_class* i_this) {
             i_this->mMode = 2;
         }
         break;
+
     case 2:
         i_this->mTimers[2] = 200.0f + cM_rndF(70.0f);
 
@@ -306,6 +351,7 @@ static void fight(e_gob_class* i_this) {
 
         i_this->mTimers[0] = 20.0f + cM_rndF(20.0f);
         break;
+
     case 5:
         if (anm_frame == 102) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_GOB_V_PROVOKE_B, -1);
@@ -321,6 +367,7 @@ static void fight(e_gob_class* i_this) {
             i_this->mTimers[2] = 200.0f + cM_rndF(70.0f);
         }
         break;
+
     case 10:
         speed_target = l_HIO.normal_walk_speed;
         angle_target = i_this->field_0x668;
@@ -331,6 +378,7 @@ static void fight(e_gob_class* i_this) {
             i_this->mTimers[0] = 60.0f + cM_rndF(30.0f);
         }
         break;
+
     case 11:
         angle_target = i_this->field_0x668;
         angle_step = 0;
@@ -381,6 +429,7 @@ static u8 attack(e_gob_class* i_this) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_GOB_V_ATK_B_READY, -1);
         }
         break;
+
     case 1:
         var_r28 = 1;
 
@@ -390,6 +439,7 @@ static u8 attack(e_gob_class* i_this) {
             i_this->mTimers[0] = l_HIO.swing_time_a;
         }
         break;
+
     case 2:
         var_r28 = 1;
         if (anm_frame == 1) {
@@ -407,6 +457,7 @@ static u8 attack(e_gob_class* i_this) {
             i_this->mMode = 3;
         }
         break;
+
     case 3:
         var_r25 = 0;
         i_this->field_0x6a8 = 0x400;
@@ -419,6 +470,7 @@ static u8 attack(e_gob_class* i_this) {
             var_r26 = 1;
         }
         break;
+
     case 11:
         var_r28 = 1;
 
@@ -428,6 +480,7 @@ static u8 attack(e_gob_class* i_this) {
             i_this->mTimers[0] = l_HIO.swing_time_b;
         }
         break;
+
     case 12:
         var_r28 = 1;
         i_this->mSound.startCreatureVoiceLevel(Z2SE_EN_GOB_V_ATK_B_WAIT, -1);
@@ -441,6 +494,7 @@ static u8 attack(e_gob_class* i_this) {
             i_this->mMode = 13;
         }
         break;
+
     case 13:
         var_r25 = 0;
         i_this->field_0x6a8 = 0x400;
@@ -501,6 +555,7 @@ static void defence(e_gob_class* i_this) {
         i_this->mSound.startCreatureVoice(Z2SE_EN_GOB_V_GUARD, -1);
         i_this->mMode = 1;
         break;
+
     case 1:
         if (i_this->mpModelMorf->isStop()) {
             anm_finished = TRUE;
@@ -567,6 +622,7 @@ static u8 ball(e_gob_class* i_this) {
             }
         }
         break;
+
     case 3:
         i_this->field_0x6b4 = l_HIO.rotation_speed;
         speed_target = l_HIO.roll_speed;
@@ -581,6 +637,7 @@ static u8 ball(e_gob_class* i_this) {
             i_this->mMode = 4;
         }
         break;
+
     case 4:
         speed_step = 2.0f;
         cLib_addCalcAngleS2(&i_this->field_0x6b2, 0, 1, 0x800);
@@ -594,6 +651,7 @@ static u8 ball(e_gob_class* i_this) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_GOB_V_RECOVER, -1);
         }
         break;
+
     case 5:
         if (anm_frame == 16) {
             i_this->mSound.startCreatureSound(Z2SE_EN_GOB_KNUCKLE_GROUND, 0, -1);
@@ -749,6 +807,7 @@ static u8 glab(e_gob_class* i_this) {
         actor->speedF = 0.0f;
         anm_init(i_this, 0x1C, 5.0f, 2, 1.0f);
         break;
+
     case 1:
         if (enemy->checkThrowMode(8)) {
             enemy->offThrowMode(8);
@@ -767,6 +826,7 @@ static u8 glab(e_gob_class* i_this) {
         spA = 1;
         actor->speed.y = 0.0f;
         break;
+
     case 2:
         if (anm_frame == 1) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_GOB_V_CATCHED_ANNOY, -1);
@@ -796,6 +856,7 @@ static u8 glab(e_gob_class* i_this) {
             i_this->speed.y = 0.0f;
         }
         break;
+
     case 3:
     case 4:
         if (i_this->field_0x6d8 >= 2) {
@@ -833,6 +894,7 @@ static u8 glab(e_gob_class* i_this) {
             }
         }
         break;
+
     case 5: {
         actor->speed.y = 0.0f;
         cLib_addCalcAngleS2(&i_this->field_0x6b2, 0, 1, 0x800);
@@ -901,6 +963,7 @@ static u8 glab(e_gob_class* i_this) {
         cLib_addCalcAngleS2(&actor->current.angle.y, i_this->mPlayerAngleDist, 1, 0x200);
         break;
     }
+    // fallthrough
     case 6:
         spB = 1;
         cLib_addCalcAngleS2(&actor->current.angle.y, i_this->mPlayerAngleDist, 1, 0x200);
@@ -992,6 +1055,7 @@ static void jump(e_gob_class* i_this) {
             }
         }
         break;
+
     case 1:
         actor->current.pos.x += i_this->field_0x6b8.x;
         actor->current.pos.z += i_this->field_0x6b8.z;
@@ -1049,6 +1113,7 @@ static void start(e_gob_class* i_this) {
         anm_init(i_this, 0x16, 0.0f, 2, 1.0f);
         i_this->mMode = 1;
         break;
+
     case 1:
         if (!dComIfGp_checkPlayerStatus0(0, 0x100) && ms != NULL && ms->field_0x5c4[0] != 0) {
             i_this->mDemoCamMode = 1;
@@ -1056,6 +1121,7 @@ static void start(e_gob_class* i_this) {
             i_this->mTimers[0] = 120;
         }
         break;
+
     case 2:
         if (i_this->mTimers[0] == 1) {
             anm_init(i_this, 0x18, 10.0f, 0, 1.0f);
@@ -1065,6 +1131,7 @@ static void start(e_gob_class* i_this) {
             anm_init(i_this, 0x19, 10.0f, 2, 1.0f);
         }
         break;
+
     case 3:
         if (i_this->mAnm == 0x13 && i_this->mpModelMorf->isStop()) {
             actor->speed.y = 150.0f;
@@ -1073,6 +1140,7 @@ static void start(e_gob_class* i_this) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_GOB_V_JUMP, -1);
         }
         break;
+
     case 4:
         if (actor->speed.y <= 0.0f) {
             actor->current.pos.z = 0.0f;
@@ -1088,12 +1156,14 @@ static void start(e_gob_class* i_this) {
             }
         }
         break;
+
     case 5:
         if (i_this->mpModelMorf->isStop()) {
             anm_init(i_this, 0x23, 5.0f, 2, 1.0f);
             i_this->mMode = 6;
         }
         break;
+
     case 6:
         break;
     }
@@ -1114,22 +1184,27 @@ static void end(e_gob_class* i_this) {
         i_this->mSound.startCreatureSound(Z2SE_EN_GOB_HIP_DOWN, 0, -1);
         i_this->mMode = 1;
         break;
+
     case 1:
         break;
+
     case 2:
         anm_init(i_this, 0x11, 5.0f, 0, 1.0f);
         i_this->mSound.startCreatureVoice(Z2SE_EN_GOB_V_GETUP_LAST, -1);
         i_this->mMode = 3;
         break;
+
     case 3:
         if (i_this->mpModelMorf->isStop()) {
             anm_init(i_this, 0x12, 5.0f, 2, 1.0f);
         }
         break;
+
     case 4:
         anm_init(i_this, 0x17, 5.0f, 0, 1.0f);
         i_this->mMode = 5;
         break;
+
     case 5:
         if (i_this->mpModelMorf->isStop()) {
             anm_init(i_this, 0x25, 5.0f, 2, 1.0f);
@@ -1235,6 +1310,7 @@ static void action(e_gob_class* i_this) {
         stop_subbgm = FALSE;
         sp28 = 0;
         break;
+
     case 1:
         start(i_this);
         on_attention = FALSE;
@@ -1242,31 +1318,38 @@ static void action(e_gob_class* i_this) {
         stop_subbgm = FALSE;
         sp28 = 0;
         break;
+
     case 2:
         fight(i_this);
         i_this->field_0x6ac = 1;
         spD = 1;
         break;
+
     case 3:
         spB = attack(i_this);
         i_this->field_0x6ac = 1;
         break;
+
     case 4:
         defence(i_this);
         i_this->field_0x6ac = 1;
         spD = 1;
         break;
+
     case 5:
         spC = ball(i_this);
         spF = 1;
         sp2C = 1;
         break;
+
     case 6:
         s_damage(i_this);
         break;
+
     case 7:
         damage(i_this);
         break;
+
     case 8:
         sp10 = glab(i_this);
         on_co_bit = FALSE;
@@ -1278,6 +1361,7 @@ static void action(e_gob_class* i_this) {
             spA = 0;
         }
         break;
+
     case 9:
         jump(i_this);
         on_attention = FALSE;
@@ -1288,12 +1372,14 @@ static void action(e_gob_class* i_this) {
         spA = 0;
         sp9 = 0;
         break;
+
     case 10:
         end(i_this);
         on_attention = FALSE;
         spA = 0;
         sp9 = 0;
         break;
+
     case 11:
         spA = 0;
         sp9 = 0;
@@ -1451,6 +1537,7 @@ static void action(e_gob_class* i_this) {
         } else if (sp1E < -6000) {
             sp1E = -6000;
         }
+
         if (sp1C > 6000) {
             sp1C = 6000;
         } else if (sp1C < -6000) {
@@ -1569,6 +1656,7 @@ static void demo_camera(e_gob_class* i_this) {
     switch (i_this->mDemoCamMode) {
     case 0:
         break;
+
     case 1:
         if (!actor->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(actor, 2, 0xFFFF, 0);
@@ -1589,6 +1677,7 @@ static void demo_camera(e_gob_class* i_this) {
         player->changeOriginalDemo();
         Z2GetAudioMgr()->subBgmStart(Z2BGM_MAGNE_GORON_D01);
         dComIfGp_getEvent().startCheckSkipEdge(i_this);
+        // fallthrough
     case 2:
         if (i_this->mDemoCamTimer < 20) {
             sp88.set(0.0f, player->current.pos.y, 1100.0f);
@@ -1608,6 +1697,7 @@ static void demo_camera(e_gob_class* i_this) {
             i_this->mDemoCamCenterSpd.z = fabsf(i_this->mDemoCamCenterTarget.z - i_this->mDemoCamCenter.z);
         }
         break;
+
     case 3:
         cam_3d_morf(i_this, 0.2f);
         cLib_addCalc2(&i_this->field_0xd88, 0.1f + VREG_F(1), 1.0f, 0.002f + VREG_F(2));
@@ -1629,6 +1719,7 @@ static void demo_camera(e_gob_class* i_this) {
             }
         }
         break;
+
     case 4:
         if (i_this->mDemoCamTimer > 36) {
             i_this->mDemoCamMode = 5;
@@ -1638,6 +1729,7 @@ static void demo_camera(e_gob_class* i_this) {
             Z2GetAudioMgr()->subBgmStart(Z2BGM_MAGNE_GORON_D02);
         }
         break;
+
     case 5:
         if (i_this->mDemoCamTimer == 10) {
             player->changeDemoMode(1, 1, 2, 0);
@@ -1683,6 +1775,7 @@ static void demo_camera(e_gob_class* i_this) {
             i_this->mDemoCamEye.set(-341.0f, 24.0f, 2223.0f);
         }
         break;
+
     case 6:
         if (i_this->mDemoCamTimer == 30) {
             dComIfGp_getVibration().StartShock(VIBMODE_S_POWER8, 0x1F, cXyz(0.0f, 1.0f, 0.0f));
@@ -1707,6 +1800,7 @@ static void demo_camera(e_gob_class* i_this) {
             ms->field_0x584 = 0;
         }
         break;
+
     case 7:
         cam_3d_morf(i_this, 0.2f);
         cLib_addCalc2(&i_this->field_0xd88, 0.05f + VREG_F(1), 1.0f, 0.001f + VREG_F(2));
@@ -1718,9 +1812,11 @@ static void demo_camera(e_gob_class* i_this) {
             Z2GetAudioMgr()->subBgmStart(Z2BGM_MAGNE_GORON);
         }
         break;
+
     case 10:
         player->cancelGoronThrowEvent();
         i_this->mDemoCamMode = 11;
+        // fallthrough
     case 11:
         if (!actor->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(actor, 2, 0xFFFF, 0);
@@ -1744,6 +1840,7 @@ static void demo_camera(e_gob_class* i_this) {
         camera->mCamera.SetTrimSize(3);
         sp88.set(0.0f, 500.0f + player->current.pos.y, -400.0f);
         daPy_getPlayerActorClass()->setPlayerPosAndAngle(&sp88, 0, 0);
+        // fallthrough
     case 12:
         if (i_this->mDemoCamTimer == 2) {
             daPy_getPlayerActorClass()->changeDemoMode(0x17, 1, 2, 0);
@@ -1787,6 +1884,7 @@ static void demo_camera(e_gob_class* i_this) {
         i_this->mDemoCamTimer = 0;
         i_this->mDemoCamEye.set(306.0f, 1187.0f, -372.0f);
         i_this->mDemoCamCenter = actor->eyePos;
+        // fallthrough
     case 13:
         sp88.set(0.0f, player->current.pos.y, -200.0f);
         daPy_getPlayerActorClass()->setPlayerPosAndAngle(&sp88, 0, 0);
@@ -1814,6 +1912,7 @@ static void demo_camera(e_gob_class* i_this) {
                 i_this->mDemoCamTimer = 0;
             }
         }
+        // fallthrough
     case 14:
         cLib_addCalc2(&i_this->mDemoCamCenter.x, actor->eyePos.x + NREG_F(7), 0.1f, 50.0f);
         cLib_addCalc2(&i_this->mDemoCamCenter.y, actor->eyePos.y + NREG_F(8), 0.1f, 50.0f);
@@ -1835,6 +1934,7 @@ static void demo_camera(e_gob_class* i_this) {
         actor->shape_angle = player->shape_angle;
         my->current.pos.y = 1000.0f + (ms->field_0x58c - 700.0f) + YREG_F(1);
         dComIfGp_getVibration().StartQuake(VIBMODE_Q_POWER2, 1, cXyz(0.0f, 1.0f, 0.0f));
+        // fallthrough
     case 15:
         if (i_this->mDemoCamTimer == 2) {
             i_this->mDemoCamFovy = 60.0f;
@@ -1869,6 +1969,7 @@ static void demo_camera(e_gob_class* i_this) {
             fopAcM_onSwitch(actor, 14);
         }
         break;
+
     case 100:
         camera->mCamera.Reset(i_this->mDemoCamCenter, i_this->mDemoCamEye, i_this->mDemoCamFovy, 0);
         camera->mCamera.Start();
@@ -1876,6 +1977,7 @@ static void demo_camera(e_gob_class* i_this) {
         dComIfGp_event_reset();
         daPy_getPlayerActorClass()->cancelOriginalDemo();
         i_this->mDemoCamMode = 0;
+        break;
     }
 
     if (i_this->mDemoCamMode != 0) {
@@ -2153,7 +2255,7 @@ static int daE_GOB_Delete(e_gob_class* i_this) {
 static int useHeapInit(fopAc_ac_c* i_this) {
     e_gob_class* a_this = (e_gob_class*)i_this;
 
-    a_this->mpModelMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_gob", 0x29), NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_gob", 0x25), 2, 1.0f, 0, -1, &a_this->mSound, 0x80000, 0x11000084);
+    a_this->mpModelMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_gob", BMDR_MG), NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_gob", 0x25), 2, 1.0f, 0, -1, &a_this->mSound, 0x80000, 0x11000084);
     if (a_this->mpModelMorf == NULL || a_this->mpModelMorf->getModel() == NULL) {
         return 0;
     }
@@ -2165,7 +2267,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         model->getModelData()->getJointNodePointer(i)->setCallBack(nodeCallBack);
     }
 
-    void* modelData = dComIfG_getObjectRes("E_gob", 0x2A);
+    void* modelData = dComIfG_getObjectRes("E_gob", BMDR_MG_MET);
     JUT_ASSERT(3631, modelData != 0);
     a_this->mpArmorModel = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
     if (a_this->mpArmorModel == NULL) {
