@@ -1729,7 +1729,7 @@ static void demo_camera(e_fm_class* i_this) {
         if (i_this->mDemoCamTimer == VREG_S(3) + 110) {
             i_this->mDemoCamMode = 100;
             dComIfGs_onStageBossEnemy();
-            dComIfGs_onEventBit((u16)dSv_event_flag_c::saveBitLabels[64]);
+            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[64]); // dSv_event_flag_c::M_031 - Goron Mines - Goron Mines clear
         }
         break;
     }
@@ -1810,11 +1810,11 @@ static s8 e_fm_down(e_fm_class* i_this) {
             i_this->mMode = 2;
             i_this->mTimers[0] = 33;
             i_this->mTimers[1] = l_HIO.field_0x9c;
-            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[256]);
+            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[256]); // dSv_event_flag_c::F_0256 - For E3 2006 - Knocked down boss at leased once
         }
         break;
     case 2:
-        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[257]);
+        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[257]); // dSv_event_flag_c::F_0257 - For E3 2006 - Only ON when boss is in hollow state (normally off, changes in real time)
 
         if (i_this->mAnm == BCK_FM_DOWNDAMAGE && i_this->mpFmModelMorf->isStop()) {
             anm_init(i_this, BCK_FM_DOWNWAIT, 5.0f, 2, 1.0f);
@@ -2142,10 +2142,10 @@ static void damage_check(e_fm_class* i_this) {
                 }
 
                 i_this->mSound.startCreatureVoice(Z2SE_EN_FM_V_DAMAGE, -1);
-                dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[670]);
+                dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[670]); // dSv_event_flag_c::F_0670 - Goron Mines - Hitting knocked-down Fyrus
             } else {
                 i_this->field_0x804++;
-                dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[254]);
+                dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[254]); // dSv_event_flag_c::F_0254 - For E3 2006 - Hit boss's weak spot at least once
 
                 if (i_this->field_0x804 >= 10) {
                     i_this->mDownCnt++;
@@ -2508,7 +2508,7 @@ static void chain_control3(e_fm_class* i_this, chain_s* i_chain_s, int param_2) 
                     }
 
                     i_chain_s->field_0x617e = 0;
-                    dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[669]);
+                    dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[669]); // dSv_event_flag_c::F_0669 - Goron Mines - Pulled on Fyrus chains at least once
                 }
             }
         } else {
@@ -2579,8 +2579,8 @@ static void action(e_fm_class* i_this) {
 
     i_this->field_0x1b07c = 1;
 
-    dComIfGs_offEventBit((u16)dSv_event_flag_c::saveBitLabels[255]);
-    dComIfGs_offEventBit((u16)dSv_event_flag_c::saveBitLabels[257]);
+    dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[255]); // dSv_event_flag_c::F_0255 - For E3 2006 - Boss exhausted (grabbing chains) only on during state (normally off)
+    dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[257]); // dSv_event_flag_c::F_0257 - For E3 2006 - Only ON when boss is in hollow state (normally off, changes in real time)
 
     switch (i_this->mAction) {
     case ACTION_NORMAL:
@@ -2601,7 +2601,7 @@ static void action(e_fm_class* i_this) {
         break;
     case ACTION_DAMAGE_RUN:
         e_fm_damage_run(i_this);
-        dComIfGs_onEventBit((u16)dSv_event_flag_c::saveBitLabels[255]);
+        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[255]); // dSv_event_flag_c::F_0255 - For E3 2006 - Boss exhausted (grabbing chains) only on during state (normally off)
         break;
     case ACTION_ANIMAL:
         e_fm_animal(i_this);
@@ -3460,7 +3460,8 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     J3DModelData* modelData;
     e_fm_class* a_this = (e_fm_class*)i_this;
 
-    a_this->mpFmModelMorf = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("E_fm", BMDR_FM), NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_fm", BCK_FM_WAIT01), 0, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000284);
+    a_this->mpFmModelMorf = new mDoExt_McaMorf(static_cast<J3DModelData*>(dComIfG_getObjectRes("E_fm", BMDR_FM)), NULL, NULL,
+                                               static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("E_fm", BCK_FM_WAIT01)), 0, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000284);
     if (a_this->mpFmModelMorf == NULL || a_this->mpFmModelMorf->getModel() == NULL) {
         return 0;
     }
@@ -3491,7 +3492,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
             BRK_FM, BRK_FM_ATTACK, BRK_FM_PUTOUT, BRK_FM_PUTOUTWAIT, BRK_FM_ANIMAL02, 
             BRK_FM_OPDEMO, BRK_FM_HANGWAIT, BRK_FM_DEMOEND01, BRK_FM_DEMOEND02
         };
-        if (!a_this->mpFmBrk[i]->init(a_this->mpFmModelMorf->getModel()->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_fm", brk[i]), 1, anm_mode, 1.0f, 0, -1)) {
+        if (!a_this->mpFmBrk[i]->init(a_this->mpFmModelMorf->getModel()->getModelData(), static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes("E_fm", brk[i])), 1, anm_mode, 1.0f, 0, -1)) {
             return 0;
         }
 
@@ -3504,12 +3505,13 @@ static int useHeapInit(fopAc_ac_c* i_this) {
             BTK_FM, BTK_FM_ATTACK, BTK_FM_PUTOUT, BTK_FM_PUTOUTWAIT, BTK_FM_ANIMAL02, 
             BTK_FM_OPDEMO, BTK_FM_HANGWAIT, BTK_FM_DEMOEND01, BTK_FM_DEMOEND02
         };
-        if (!a_this->mpFmBtk[i]->init(a_this->mpFmModelMorf->getModel()->getModelData(), (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("E_fm", btk[i]), 1, anm_mode, 1.0f, 0, -1)) {
+        if (!a_this->mpFmBtk[i]->init(a_this->mpFmModelMorf->getModel()->getModelData(), static_cast<J3DAnmTextureSRTKey*>(dComIfG_getObjectRes("E_fm", btk[i])), 1, anm_mode, 1.0f, 0, -1)) {
             return 0;
         }
     }
 
-    a_this->mpDemoFmModelMorf = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("E_fm", BMDR_FM), NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_fm", BCK_FM_DEMOEND03), 0, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000284);
+    a_this->mpDemoFmModelMorf = new mDoExt_McaMorf(static_cast<J3DModelData*>(dComIfG_getObjectRes("E_fm", BMDR_FM)), NULL, NULL,
+                                                   static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("E_fm", BCK_FM_DEMOEND03)), 0, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000284);
     if (a_this->mpDemoFmModelMorf == NULL || a_this->mpDemoFmModelMorf->getModel() == NULL) {
         return 0;
     }
@@ -3519,11 +3521,11 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         return 0;
     }
 
-    if (!a_this->mpDemoFmBrk->init(a_this->mpFmModelMorf->getModel()->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_fm", BRK_FM_DEMOEND03), 1, 0, 1.0f, 0, -1)) {
+    if (!a_this->mpDemoFmBrk->init(a_this->mpFmModelMorf->getModel()->getModelData(), static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes("E_fm", BRK_FM_DEMOEND03)), 1, 0, 1.0f, 0, -1)) {
         return 0;
     }
 
-    modelData = (J3DModelData*)dComIfG_getObjectRes("E_fm", BMDE_FM_CORE);
+    modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("E_fm", BMDE_FM_CORE));
     JUT_ASSERT(7257, modelData != 0);
     a_this->mpCoreModel = mDoExt_J3DModel__create(modelData, 0, 0x11020203);
     if (a_this->mpCoreModel == NULL) {
@@ -3535,7 +3537,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         return 0;
     }
 
-    if (!a_this->mpCoreBrk->init(a_this->mpCoreModel->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_fm", BRK_CORE_LIGHTON), 1, 2, 1.0f, 0, -1)) {
+    if (!a_this->mpCoreBrk->init(a_this->mpCoreModel->getModelData(), static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes("E_fm", BRK_CORE_LIGHTON)), 1, 2, 1.0f, 0, -1)) {
         return 0;
     }
 
@@ -3544,7 +3546,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         return 0;
     }
 
-    if (!a_this->mpCoreBtk->init(a_this->mpCoreModel->getModelData(), (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("E_fm", BTK_CORE_BEAT), 1, 0, 1.0f, 0, -1)) {
+    if (!a_this->mpCoreBtk->init(a_this->mpCoreModel->getModelData(), static_cast<J3DAnmTextureSRTKey*>(dComIfG_getObjectRes("E_fm", BTK_CORE_BEAT)), 1, 0, 1.0f, 0, -1)) {
         return 0;
     }
 
@@ -3552,7 +3554,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
     for (int i = 0; i < 2; i++) {
         static int eff_bmd[] = {BMDR_EF_FMATTACK_A, BMDR_EF_FMATTACK_B};
-        a_this->mpAttackEfModelMorf[i] = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("E_fm", eff_bmd[i]), NULL, NULL, NULL, 0, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000284);
+        a_this->mpAttackEfModelMorf[i] = new mDoExt_McaMorf(static_cast<J3DModelData*>(dComIfG_getObjectRes("E_fm", eff_bmd[i])), NULL, NULL, NULL, 0, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000284);
         if (a_this->mpAttackEfModelMorf[i] == NULL || a_this->mpAttackEfModelMorf[i]->getModel() == NULL) {
             return 0;
         }
@@ -3563,7 +3565,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
                 return 0;
             }
 
-            if (!a_this->mpAttackEfBrk->init(a_this->mpAttackEfModelMorf[i]->getModel()->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_fm", BRK_EF_FMATTACK_B), 1, 2, 1.0f, 0, -1)) {
+            if (!a_this->mpAttackEfBrk->init(a_this->mpAttackEfModelMorf[i]->getModel()->getModelData(), static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes("E_fm", BRK_EF_FMATTACK_B)), 1, 2, 1.0f, 0, -1)) {
                 return 0;
             }
         }
@@ -3574,7 +3576,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         }
 
         static int eff_btk[] = {BTK_EF_FMATTACK_A, BTK_EF_FMATTACK_B};
-        if (!a_this->mpAttackEfBtk[i]->init(a_this->mpAttackEfModelMorf[i]->getModel()->getModelData(), (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("E_fm", eff_btk[i]), 1, 2, 1.0f, 0, -1)) {
+        if (!a_this->mpAttackEfBtk[i]->init(a_this->mpAttackEfModelMorf[i]->getModel()->getModelData(), static_cast<J3DAnmTextureSRTKey*>(dComIfG_getObjectRes("E_fm", eff_btk[i])), 1, 2, 1.0f, 0, -1)) {
             return 0;
         }
     }
@@ -3582,7 +3584,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     modelData = (J3DModelData*)dComIfG_getObjectRes("E_fm", BMDR_KUSARI);
     JUT_ASSERT(7404, modelData != 0);
     
-    J3DModelData* modelData2 = (J3DModelData*)dComIfG_getObjectRes("E_fm", BMDR_HANDLE);
+    J3DModelData* modelData2 = static_cast<J3DModelData*>(dComIfG_getObjectRes("E_fm", BMDR_HANDLE));
     JUT_ASSERT(7408, modelData2 != 0);
 
     for (int i = 0; i < 4; i++) {
@@ -3824,10 +3826,10 @@ static int daE_FM_Create(fopAc_ac_c* i_this) {
         a_this->field_0x794 = 1.0f;
         a_this->field_0x778 = 1.0f;
 
-        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[254]);
-        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[256]);
-        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[669]);
-        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[670]);
+        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[254]); // dSv_event_flag_c::F_0254 - For E3 2006 - Hit boss's weak spot at least once
+        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[256]); // dSv_event_flag_c::F_0256 - For E3 2006 - Knocked down boss at leased once
+        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[669]); // dSv_event_flag_c::F_0669 - Goron Mines - Pulled on Fyrus chains at least once
+        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[670]); // dSv_event_flag_c::F_0670 - Goron Mines - Hitting knocked-down Fyrus
         demo_stop = 0;
 
         daE_FM_Execute(a_this);
