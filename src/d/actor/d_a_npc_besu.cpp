@@ -9,6 +9,273 @@
 #include "d/d_com_static.h"
 #include "d/d_item.h"
 
+enum Besu_RES_File_ID {
+    /* BMDR */
+    /* 0x3 */ BMDR_BESU = 0x3,
+};
+
+enum Besu_TW_RES_File_ID {
+    /* BCK */
+    /* 0x5 */ BCK_BESU_DEMO_FEAR = 0x5,
+    /* 0x6 */ BCK_BESU_DEMO_WAIT,
+    /* 0x7 */ BCK_BESU_F_DEMO_FEAR,
+    /* 0x8 */ BCK_BESU_F_DEMO_WAIT,
+
+    /* BMDR */
+    /* 0xB */ BMDR_BESU_TW = 0xB,
+
+    /* BTP */
+    /* 0xE */ BTP_BESU_F_DEMO_FEAR = 0xE,
+    /* 0xF */ BTP_BESU_F_DEMO_WAIT,
+};
+
+enum Besu0_RES_File_ID {
+    /* BCK */
+    /* 0x05 */ BCK_BESU_BODY_TALK = 0x5,
+    /* 0x06 */ BCK_BESU_BODY_WAIT,
+    /* 0x07 */ BCK_BESU_F_TALK_C,
+    /* 0x08 */ BCK_BESU_F_YOKERU,
+    /* 0x09 */ BCK_BESU_FH_BIKKURI,
+    /* 0x0A */ BCK_BESU_MAD,
+    /* 0x0B */ BCK_BESU_MAD_WAIT,
+    /* 0x0C */ BCK_BESU_NORMAL_STEP,
+    /* 0x0D */ BCK_BESU_NORMAL_TALK,
+    /* 0x0E */ BCK_BESU_NORMAL_TALK_B,
+    /* 0x0F */ BCK_BESU_NORMAL_WAIT,
+    /* 0x10 */ BCK_BESU_STEP,
+    /* 0x11 */ BCK_BESU_WAIT_A,
+    /* 0x12 */ BCK_BESU_WAIT_C,
+    /* 0x13 */ BCK_BESU_YOKERU,
+
+    /* BTK */
+    /* 0x16 */ BTK_BESU = 0x16,
+
+    /* BTP */
+    /* 0x19 */ BTP_BESU = 0x19,
+    /* 0x1A */ BTP_BESU_F_YOKERU,
+    /* 0x1B */ BTP_BESU_FH_BIKKURI,
+};
+
+enum Besu1_RES_File_ID {
+    /* BCK */
+    /* 0x05 */ BCK_BESU_F_MADTALK = 0x5,
+    /* 0x06 */ BCK_BESU_F_TALK_A,
+    /* 0x07 */ BCK_BESU_F_TALK_B,
+    /* 0x08 */ BCK_BESU_F_WAIT_B,
+    /* 0x09 */ BCK_BESU_FH_MADTALK,
+    /* 0x0A */ BCK_BESU_FH_TALK_A,
+    /* 0x0B */ BCK_BESU_FH_TALK_B,
+    /* 0x0C */ BCK_BESU_RUN,
+    /* 0x0D */ BCK_BESU_TALK_A,
+    /* 0x0E */ BCK_BESU_TALK_B,
+    /* 0x0F */ BCK_BESU_WAIT_B,
+
+    /* BTP */
+    /* 0x12 */ BTP_BESU_F_MADTALK = 0x12,
+    /* 0x13 */ BTP_BESU_F_TALK_A,
+    /* 0x14 */ BTP_BESU_F_TALK_B,
+    /* 0x15 */ BTP_BESU_F_WAIT_B,
+    /* 0x16 */ BTP_BESU_FH_MADTALK,
+    /* 0x17 */ BTP_BESU_FH_TALK_A,
+    /* 0x18 */ BTP_BESU_FH_TALK_B,
+
+    /* EVT */
+    /* 0x1B */ BESU1_EVT_EVENT_LIST = 0x1B,
+};
+
+enum Besu2_RES_File_ID {
+    /* BCK */
+    /* 0x06 */ BCK_BESU_AMAZED_A = 0x6,
+    /* 0x07 */ BCK_BESU_AMAZED_B,
+    /* 0x08 */ BCK_BESU_AMAZED_C,
+    /* 0x09 */ BCK_BESU_CUP,
+    /* 0x0A */ BCK_BESU_CUP_A,
+    /* 0x0B */ BCK_BESU_CUP_B,
+    /* 0x0C */ BCK_BESU_F_AMAZED_A,
+    /* 0x0D */ BCK_BESU_F_AMAZED_B,
+    /* 0x0E */ BCK_BESU_F_AMAZED_C,
+    /* 0x0F */ BCK_BESU_F_CUP_A,
+    /* 0x10 */ BCK_BESU_F_CUP_B,
+    /* 0x11 */ BCK_BESU_F_GLARE_A,
+    /* 0x12 */ BCK_BESU_F_GLARE_WAIT,
+    /* 0x13 */ BCK_BESU_F_MOP_A,
+    /* 0x14 */ BCK_BESU_F_MOP_B,
+    /* 0x15 */ BCK_BESU_F_MOP_C,
+    /* 0x16 */ BCK_BESU_F_NURSE_A,
+    /* 0x17 */ BCK_BESU_F_TALK_N_A,
+    /* 0x18 */ BCK_BESU_F_TALK_N_B,
+    /* 0x19 */ BCK_BESU_F_TALK_N_C,
+    /* 0x1A */ BCK_BESU_GLARE_A,
+    /* 0x1B */ BCK_BESU_GLARE_WAIT,
+    /* 0x1C */ BCK_BESU_MOP_A,
+    /* 0x1D */ BCK_BESU_MOP_B,
+    /* 0x1E */ BCK_BESU_MOP_C,
+    /* 0x1F */ BCK_BESU_NURSE_A,
+    /* 0x20 */ BCK_BESU_TALK_N_A,
+    /* 0x21 */ BCK_BESU_TALK_N_B,
+    /* 0x22 */ BCK_BESU_TALK_N_C,
+
+    /* BMDR */
+    /* 0x25 */ BMDR_BESU_CLOTH = 0x25,
+    /* 0x26 */ BMDR_BESU_CUP,
+    /* 0x27 */ BMDR_BESUB,
+
+    /* BTP */
+    /* 0x2A */ BTP_BESU_F_AMAZED_A = 0x2A,
+    /* 0x2B */ BTP_BESU_F_AMAZED_B,
+    /* 0x2C */ BTP_BESU_F_AMAZED_C,
+    /* 0x2D */ BTP_BESU_F_CUP_A,
+    /* 0x2E */ BTP_BESU_F_CUP_B,
+    /* 0x2F */ BTP_BESU_F_GLARE_A,
+    /* 0x30 */ BTP_BESU_F_GLARE_WAIT,
+    /* 0x31 */ BTP_BESU_F_MOP_A,
+    /* 0x32 */ BTP_BESU_F_MOP_B,
+    /* 0x33 */ BTP_BESU_F_MOP_C,
+    /* 0x34 */ BTP_BESU_F_NURSE_A,
+    /* 0x35 */ BTP_BESU_F_TALK_N_A,
+    /* 0x36 */ BTP_BESU_F_TALK_N_B,
+    /* 0x37 */ BTP_BESU_F_TALK_N_C,
+
+    /* EVT */
+    /* 0x3A */ BESU2_EVT_EVENT_LIST = 0x3A,
+};
+
+enum Besu3_RES_file_ID {
+    /* BCK */
+    /* 0x07 */ BCK_BESU3_F_WORRY = 0x7,
+    /* 0x08 */ BCK_BESU3_FH_WORRY,
+    /* 0x09 */ BCK_BESU_F_SURPRISE,
+    /* 0x0A */ BCK_BESU_FH_SURPRISE,
+    /* 0x0B */ BCK_BESU_SURPRISE,
+
+    /* BMDR */
+    /* 0x0E */ BMDR_BESU3 = 0xE,
+
+    /* BTK */
+    /* 0x11 */ BTK_BESU_SURPRISE = 0x11,
+
+    /* BTP */
+    /* 0x14 */ BTP_BESU3 = 0x14,
+    /* 0x15 */ BTP_BESU3_F_SURPRISE,
+    /* 0x16 */ BTP_BESU3_F_WORRY,
+    /* 0x17 */ BTP_BESU3_FH_SURPRISE,
+    /* 0x18 */ BTP_BESU3_FH_WORRY,
+
+    /* EVT */
+    /* 0x1B */ BESU3_EVT_EVENT_LIST = 0x1B,
+};
+
+enum Besu_p1_RES_File_ID {
+    /* BCK */
+    /* 0x05 */ BESU_P1_BCK_BESU_F_MADTALK = 0x5,
+    /* 0x06 */ BESU_P1_BCK_BESU_F_TALK_A,
+    /* 0x07 */ BESU_P1_BCK_BESU_F_TALK_C,
+    /* 0x08 */ BESU_P1_BCK_BESU_F_YOKERU,
+    /* 0x09 */ BESU_P1_BCK_BESU_FH_MADTALK,
+    /* 0x0A */ BESU_P1_BCK_BESU_NORMAL_TALK_B,
+    /* 0x0B */ BESU_P1_BCK_BESU_STEP,
+    /* 0x0C */ BESU_P1_BCK_BESU_WAIT_A,
+    /* 0x0D */ BESU_P1_BCK_BESU_YOKERU,
+
+    /* BTK */
+    /* 0x10 */ BESU_P1_BTK_BESU = 0x10,
+
+    /* BTP */
+    /* 0x13 */ BESU_P1_BTP_BESU = 0x13,
+    /* 0x14 */ BESU_P1_BTP_BESU_F_MADTALK,
+    /* 0x15 */ BESU_P1_BTP_BESU_F_YOKERU,
+    /* 0x16 */ BESU_P1_BTP_BESU_FH_MADTALK,
+};
+
+enum RES_Name {
+    /* 0x1 */ BESU = 0x1,
+    /* 0x2 */ BESU_TW,
+    /* 0x3 */ BESU0,
+    /* 0x4 */ BESU1,
+    /* 0x5 */ BESU2,
+    /* 0x6 */ BESU3,
+};
+
+enum FaceMotion {
+    /* 0x00 */ FACE_TALK_C,
+    /* 0x01 */ FACE_TALK_A,
+    /* 0x02 */ FACE_TALK_B,
+    /* 0x03 */ FACE_TALK_N_B,
+    /* 0x04 */ FACE_MOP_A_C,
+    /* 0x05 */ FACE_MOP_A_B,
+    /* 0x06 */ FACE_MOP_C,
+    /* 0x07 */ FACE_NURSE_A,
+    /* 0x08 */ FACE_MADTALK,
+    /* 0x09 */ FACE_CUP_A,
+    /* 0x0A */ FACE_SURPISE,
+    /* 0x0B */ FACE_WORRY,
+    /* 0x0C */ FACE_YOKERU,
+    /* 0x0D */ FACE_H_TALK_A,
+    /* 0x0E */ FACE_H_TALK_B,
+    /* 0x0F */ FACE_H_MADTALK,
+    /* 0x10 */ FACE_TALK_N_A,
+    /* 0x11 */ FACE_TALK_N_C,
+    /* 0x12 */ FACE_GLARE_A,
+    /* 0x13 */ FACE_H_SURPRISE,
+    /* 0x14 */ FACE_AMAZED_A,
+    /* 0x15 */ FACE_AMAZED_C,
+    /* 0x16 */ FACE_CUP_B,
+    /* 0x17 */ FACE_DEMO_WAIT,
+    /* 0x18 */ FACE_DEMO_FEAR,
+    /* 0x19 */ FACE_GLARE_WAIT,
+    /* 0x1A */ FACE_H_WORRY,
+    /* 0x1B */ FACE_H_BIKKURI,
+    /* 0x1C */ FACE_NONE,
+};
+
+enum Motion {
+    /* 0x00 */ MOT_WAIT_A,
+    /* 0x01 */ MOT_WAIT_B,
+    /* 0x02 */ MOT_TALK_A,
+    /* 0x03 */ MOT_TALK_A_2,
+    /* 0x04 */ MOT_TALK_N_B,
+    /* 0x05 */ MOT_CUP_A,
+    /* 0x06 */ MOT_SURPRISE,
+    /* 0x07 */ MOT_WAIT_C,
+    /* 0x08 */ MOT_NORMAL_WAIT,
+    /* 0x09 */ MOT_NORMAL_TALK,
+    /* 0x0A */ MOT_MAD,
+    /* 0x0B */ MOT_NORMAL_TALK_B,
+    /* 0x0C */ MOT_BODY_TALK,
+    /* 0x0D */ MOT_NURSE_A,
+    /* 0x0E */ MOT_MOP_A_C,
+    /* 0x0F */ MOT_MOP_A_B,
+    /* 0x10 */ MOT_MOP_C,
+    /* 0x11 */ MOT_STEP,
+    /* 0x12 */ MOT_YOKERU,
+    /* 0x13 */ MOT_TALK_N_A,
+    /* 0x14 */ MOT_TALK_N_C,
+    /* 0x15 */ MOT_GLARE_A,
+    /* 0x16 */ MOT_AMAZED_A,
+    /* 0x17 */ MOT_AMAZED_C,
+    /* 0x18 */ MOT_CUP_B,
+    /* 0x19 */ MOT_DEMO_WAIT,
+    /* 0x1A */ MOT_DEMO_FEAR,
+    /* 0x1B */ MOT_GLARE_WAIT,
+    /* 0x1C */ MOT_RUN,
+    /* 0x1D */ MOT_NORMAL_STEP,
+};
+
+enum Event {
+    /* 0x0 */ EVENT_NONE,
+    /* 0x1 */ EVENT_NO_RESPONSE,
+    /* 0x2 */ EVENT_CONVERSATION_ABOUT_SARU01,
+    /* 0x3 */ EVENT_CONVERSATION_ABOUT_SARU02,
+    /* 0x4 */ EVENT_CONVERSATION_ABOUT_PACHINKO1,
+    /* 0x5 */ EVENT_CONVERSATION_ABOUT_PACHINKO2,
+    /* 0x6 */ EVENT_CONVERSATION_ABOUT_PACHINKO3,
+    /* 0x7 */ EVENT_CACARICO_CONVERSATION,
+    /* 0x8 */ EVENT_DEMO13_STB,
+    /* 0x9 */ EVENT_SURPRISE,
+    /* 0xA */ EVENT_CONVERSATION_ABOUT_DEATHMT,
+    /* 0xB */ EVENT_NURSE,
+    /* 0xC */ EVENT_CONVERSATION_ABOUT_ZORA,
+};
 
 #ifndef DEBUG
 UNK_REL_DATA;
@@ -102,111 +369,140 @@ static s8* l_loadResPtrnList[19] = {
 
 /* 8053ECB0-8053EFF8 000154 0348+00 0/1 0/0 0/0 .data            l_faceMotionAnmData */
 static daNpcT_faceMotionAnmData_c l_faceMotionAnmData[30] = {
-    {-1, 0, 0, 25, 2, 3, 1},
-    {6, 0, 4, 19, 0, 4, 0},
-    {7, 0, 4, 20, 0, 4, 0},
-    {7, 0, 3, 25, 2, 3, 1},
-    {5, 0, 4, 18, 0, 4, 0},
-    {10, 2, 4, 23, 2, 4, 0},
-    {11, 2, 4, 24, 2, 4, 0},
-    {9, 2, 4, 22, 2, 4, 0},
-    {8, 0, 3, 26, 0, 3, 0},
-    {22, 2, 5, 52, 2, 5, 0},
-    {19, 0, 5, 49, 0, 5, 0},
-    {20, 2, 5, 50, 2, 5, 0},
-    {21, 0, 5, 51, 0, 5, 0},
-    {23, 0, 5, 53, 0, 5, 0},
-    {24, 2, 5, 54, 2, 5, 0},
-    {25, 0, 5, 55, 0, 5, 0},
-    {17, 0, 5, 47, 0, 5, 0},
-    {15, 2, 5, 45, 2, 5, 0},
-    {16, 2, 5, 46, 2, 5, 0},
-    {9, 0, 6, 21, 0, 6, 0},
-    {10, 2, 6, 23, 2, 6, 0},
-    {7, 0, 6, 22, 0, 6, 0},
-    {8, 2, 6, 24, 2, 6, 0},
-    {12, 0, 5, 42, 0, 5, 0},
-    {13, 2, 5, 43, 2, 5, 0},
-    {14, 0, 5, 44, 0, 5, 0},
-    {8, 2, 2, 15, 2, 2, 0},
-    {7, 2, 2, 14, 2, 2, 0},
-    {18, 2, 5, 48, 2, 5, 0},
-    {9, 2, 3, 27, 2, 3, 0},
+    {-1, J3DFrameCtrl::EMode_NONE, 0, BTP_BESU, J3DFrameCtrl::EMode_LOOP, BESU0, 1},
+    {BCK_BESU_F_TALK_A, J3DFrameCtrl::EMode_NONE, BESU1, BTP_BESU_F_TALK_A, J3DFrameCtrl::EMode_NONE, BESU1, 0},
+    {BCK_BESU_F_TALK_B, J3DFrameCtrl::EMode_NONE, BESU1, BTP_BESU_F_TALK_B, J3DFrameCtrl::EMode_NONE, BESU1, 0},
+    {BCK_BESU_F_TALK_C, J3DFrameCtrl::EMode_NONE, BESU0, BTP_BESU, J3DFrameCtrl::EMode_LOOP, BESU0, 1},
+    {BCK_BESU_F_MADTALK, J3DFrameCtrl::EMode_NONE, BESU1, BTP_BESU_F_MADTALK, J3DFrameCtrl::EMode_NONE, BESU1, 0},
+    {BCK_BESU_FH_TALK_A, J3DFrameCtrl::EMode_LOOP, BESU1, BTP_BESU_FH_TALK_A, J3DFrameCtrl::EMode_LOOP, BESU1, 0},
+    {BCK_BESU_FH_TALK_B, J3DFrameCtrl::EMode_LOOP, BESU1, BTP_BESU_FH_TALK_B, J3DFrameCtrl::EMode_LOOP, BESU1, 0},
+    {BCK_BESU_FH_MADTALK, J3DFrameCtrl::EMode_LOOP, BESU1, BTP_BESU_FH_MADTALK, J3DFrameCtrl::EMode_LOOP, BESU1, 0},
+    {BCK_BESU_F_YOKERU, J3DFrameCtrl::EMode_NONE, BESU0, BTP_BESU_F_YOKERU, J3DFrameCtrl::EMode_NONE, BESU0, 0},
+    {BCK_BESU_F_NURSE_A, J3DFrameCtrl::EMode_LOOP, BESU2, BTP_BESU_F_NURSE_A, J3DFrameCtrl::EMode_LOOP, BESU2, 0},
+    {BCK_BESU_F_MOP_A, J3DFrameCtrl::EMode_NONE, BESU2, BTP_BESU_F_MOP_A, J3DFrameCtrl::EMode_NONE, BESU2, 0},
+    {BCK_BESU_F_MOP_B, J3DFrameCtrl::EMode_LOOP, BESU2, BTP_BESU_F_MOP_B, J3DFrameCtrl::EMode_LOOP, BESU2, 0},
+    {BCK_BESU_F_MOP_C, J3DFrameCtrl::EMode_NONE, BESU2, BTP_BESU_F_MOP_C, J3DFrameCtrl::EMode_NONE, BESU2, 0},
+    {BCK_BESU_F_TALK_N_A, J3DFrameCtrl::EMode_NONE, BESU2, BTP_BESU_F_TALK_N_A, J3DFrameCtrl::EMode_NONE, BESU2, 0},
+    {BCK_BESU_F_TALK_N_B, J3DFrameCtrl::EMode_LOOP, BESU2, BTP_BESU_F_TALK_N_B, J3DFrameCtrl::EMode_LOOP, BESU2, 0},
+    {BCK_BESU_F_TALK_N_C, J3DFrameCtrl::EMode_NONE, BESU2, BTP_BESU_F_TALK_N_C, J3DFrameCtrl::EMode_NONE, BESU2, 0},
+    {BCK_BESU_F_GLARE_A, J3DFrameCtrl::EMode_NONE, BESU2, BTP_BESU_F_GLARE_A, J3DFrameCtrl::EMode_NONE, BESU2, 0},
+    {BCK_BESU_F_CUP_A, J3DFrameCtrl::EMode_LOOP, BESU2, BTP_BESU_F_CUP_A, J3DFrameCtrl::EMode_LOOP, BESU2, 0},
+    {BCK_BESU_F_CUP_B, J3DFrameCtrl::EMode_LOOP, BESU2, BTP_BESU_F_CUP_B, J3DFrameCtrl::EMode_LOOP, BESU2, 0},
+    {BCK_BESU_F_SURPRISE, J3DFrameCtrl::EMode_NONE, BESU3, BTP_BESU3_F_SURPRISE, J3DFrameCtrl::EMode_NONE, BESU3, 0},
+    {BCK_BESU_FH_SURPRISE, J3DFrameCtrl::EMode_LOOP, BESU3, BTP_BESU3_FH_SURPRISE, J3DFrameCtrl::EMode_LOOP, BESU3, 0},
+    {BCK_BESU3_F_WORRY, J3DFrameCtrl::EMode_NONE, BESU3, BTP_BESU3_F_WORRY, J3DFrameCtrl::EMode_NONE, BESU3, 0},
+    {BCK_BESU3_FH_WORRY, J3DFrameCtrl::EMode_LOOP, BESU3, BTP_BESU3_FH_WORRY, J3DFrameCtrl::EMode_LOOP, BESU3, 0},
+    {BCK_BESU_F_AMAZED_A, J3DFrameCtrl::EMode_NONE, BESU2, BTP_BESU_F_AMAZED_A, J3DFrameCtrl::EMode_NONE, BESU2, 0},
+    {BCK_BESU_F_AMAZED_B, J3DFrameCtrl::EMode_LOOP, BESU2, BTP_BESU_F_AMAZED_B, J3DFrameCtrl::EMode_LOOP, BESU2, 0},
+    {BCK_BESU_F_AMAZED_C, J3DFrameCtrl::EMode_NONE, BESU2, BTP_BESU_F_AMAZED_C, J3DFrameCtrl::EMode_NONE, BESU2, 0},
+    {BCK_BESU_F_DEMO_WAIT, J3DFrameCtrl::EMode_LOOP, BESU_TW, BTP_BESU_F_DEMO_WAIT, J3DFrameCtrl::EMode_LOOP, BESU_TW, 0},
+    {BCK_BESU_F_DEMO_FEAR, J3DFrameCtrl::EMode_LOOP, BESU_TW, BTP_BESU_F_DEMO_FEAR, J3DFrameCtrl::EMode_LOOP, BESU_TW, 0},
+    {BCK_BESU_F_GLARE_WAIT, J3DFrameCtrl::EMode_LOOP, BESU2, BTP_BESU_F_GLARE_WAIT, J3DFrameCtrl::EMode_LOOP, BESU2, 0},
+    {BCK_BESU_FH_BIKKURI, J3DFrameCtrl::EMode_LOOP, BESU0, BTP_BESU_FH_BIKKURI, J3DFrameCtrl::EMode_LOOP, BESU0, 0},
 };
 
 /* 8053EFF8-8053F394 00049C 039C+00 0/1 0/0 0/0 .data            l_motionAnmData */
 static daNpcT_motionAnmData_c l_motionAnmData[33] = {
-    {17, 2, 3, 22, 0, 3, 1, 0},
-    {15, 2, 4, 22, 0, 3, 1, 0},
-    {18, 2, 3, 22, 0, 3, 1, 0},
-    {15, 2, 3, 22, 0, 3, 1, 0},
-    {13, 0, 4, 22, 0, 3, 1, 0},
-    {14, 0, 4, 22, 0, 3, 1, 0},
-    {13, 0, 3, 22, 0, 3, 1, 0},
-    {19, 0, 3, 22, 0, 3, 1, 0},
-    {16, 0, 3, 22, 0, 3, 1, 0},
-    {12, 0, 3, 22, 0, 3, 1, 0},
-    {31, 2, 5, 22, 0, 3, 1, 0},
-    {28, 0, 5, 22, 0, 3, 0, 0},
-    {29, 2, 5, 22, 0, 3, 0, 0},
-    {30, 0, 5, 22, 0, 3, 0, 0},
-    {32, 0, 5, 22, 0, 3, 0, 0},
-    {33, 2, 5, 22, 0, 3, 0, 0},
-    {34, 0, 5, 22, 0, 3, 0, 0},
-    {26, 0, 5, 22, 0, 3, 0, 0},
-    {10, 2, 5, 22, 0, 3, 0, 0},
-    {11, 2, 5, 22, 0, 3, 0, 0},
-    {11, 2, 6, 17, 2, 6, 0, 0},
-    {6, 0, 5, 22, 0, 3, 0, 0},
-    {7, 2, 5, 22, 0, 3, 0, 0},
-    {8, 0, 5, 22, 0, 3, 0, 0},
-    {6, 2, 2, -1, 0, 0, 0, 0},
-    {5, 2, 2, -1, 0, 0, 0, 0},
-    {27, 2, 5, 22, 0, 3, 0, 0},
-    {12, 2, 4, 22, 0, 3, 0, 0},
-    {10, 0, 3, 22, 0, 3, 1, 0},
-    {11, 2, 3, 22, 0, 3, 1, 0},
-    {14, 0, 3, 22, 0, 3, 1, 0},
-    {5, 0, 3, 22, 0, 3, 1, 0},
-    {6, 2, 3, 22, 0, 3, 1, 0},
+    {BCK_BESU_WAIT_A, J3DFrameCtrl::EMode_LOOP, BESU0, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 1, 0},
+    {BCK_BESU_WAIT_B, J3DFrameCtrl::EMode_LOOP, BESU1, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 1, 0},
+    {BCK_BESU_WAIT_C, J3DFrameCtrl::EMode_LOOP, BESU0, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 1, 0},
+    {BCK_BESU_NORMAL_WAIT, J3DFrameCtrl::EMode_LOOP, BESU0, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 1, 0},
+    {BCK_BESU_TALK_A, J3DFrameCtrl::EMode_NONE, BESU1, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 1, 0},
+    {BCK_BESU_TALK_B, J3DFrameCtrl::EMode_NONE, BESU1, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 1, 0},
+    {BCK_BESU_NORMAL_TALK, J3DFrameCtrl::EMode_NONE, BESU0, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 1, 0},
+    {BCK_BESU_YOKERU, J3DFrameCtrl::EMode_NONE, BESU0, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 1, 0},
+    {BCK_BESU_STEP, J3DFrameCtrl::EMode_NONE, BESU0, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 1, 0},
+    {BCK_BESU_NORMAL_STEP, J3DFrameCtrl::EMode_NONE, BESU0, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 1, 0},
+    {BCK_BESU_NURSE_A, J3DFrameCtrl::EMode_LOOP, BESU2, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 1, 0},
+    {BCK_BESU_MOP_A, J3DFrameCtrl::EMode_NONE, BESU2, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 0, 0},
+    {BCK_BESU_MOP_B, J3DFrameCtrl::EMode_LOOP, BESU2, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 0, 0},
+    {BCK_BESU_MOP_C, J3DFrameCtrl::EMode_NONE, BESU2, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 0, 0},
+    {BCK_BESU_TALK_N_A, J3DFrameCtrl::EMode_NONE, BESU2, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 0, 0},
+    {BCK_BESU_TALK_N_B, J3DFrameCtrl::EMode_LOOP, BESU2, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 0, 0},
+    {BCK_BESU_TALK_N_C, J3DFrameCtrl::EMode_NONE, BESU2, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 0, 0},
+    {BCK_BESU_GLARE_A, J3DFrameCtrl::EMode_NONE, BESU2, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 0, 0},
+    {BCK_BESU_CUP_A, J3DFrameCtrl::EMode_LOOP, BESU2, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 0, 0},
+    {BCK_BESU_CUP_B, J3DFrameCtrl::EMode_LOOP, BESU2, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 0, 0},
+    {BCK_BESU_SURPRISE, J3DFrameCtrl::EMode_LOOP, BESU3, BTK_BESU_SURPRISE, J3DFrameCtrl::EMode_LOOP, BESU3, 0, 0},
+    {BCK_BESU_AMAZED_A, J3DFrameCtrl::EMode_NONE, BESU2, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 0, 0},
+    {BCK_BESU_AMAZED_B, J3DFrameCtrl::EMode_LOOP, BESU2, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 0, 0},
+    {BCK_BESU_AMAZED_C, J3DFrameCtrl::EMode_NONE, BESU2, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 0, 0},
+    {BCK_BESU_DEMO_WAIT, J3DFrameCtrl::EMode_LOOP, BESU_TW, -1, J3DFrameCtrl::EMode_NONE, 0, 0, 0},
+    {BCK_BESU_DEMO_FEAR, J3DFrameCtrl::EMode_LOOP, BESU_TW, -1, J3DFrameCtrl::EMode_NONE, 0, 0, 0},
+    {BCK_BESU_GLARE_WAIT, J3DFrameCtrl::EMode_LOOP, BESU2, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 0, 0},
+    {BCK_BESU_RUN, J3DFrameCtrl::EMode_LOOP, BESU1, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 0, 0},
+    {BCK_BESU_MAD, J3DFrameCtrl::EMode_NONE, BESU0, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 1, 0},
+    {BCK_BESU_MAD_WAIT, J3DFrameCtrl::EMode_LOOP, BESU0, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 1, 0},
+    {BCK_BESU_NORMAL_TALK_B, J3DFrameCtrl::EMode_NONE, BESU0, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 1, 0},
+    {BCK_BESU_BODY_TALK, J3DFrameCtrl::EMode_NONE, BESU0, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 1, 0},
+    {BCK_BESU_BODY_WAIT, J3DFrameCtrl::EMode_LOOP, BESU0, BTK_BESU, J3DFrameCtrl::EMode_NONE, BESU0, 1, 0},
 };
 
 /* 8053F394-8053F564 000838 01D0+00 0/1 0/0 0/0 .data            l_faceMotionSequenceData */
 static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_faceMotionSequenceData[116] = {
-    {3, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {1, -1, 1}, {5, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {2, -1, 1}, {6, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {14, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {10, 0, 1}, {12, 0, 1}, {-1, 0, 0}, {-1, 0, 0}, {10, 0, 1}, {11, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {12, 0, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {9, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {4, -1, 1}, {7, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {17, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {19, -1, 1}, {20, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {21, -1, 1}, {22, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {8, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {5, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {6, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {7, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {13, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {15, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {16, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {20, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {23, -1, 1}, {24, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {25, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {18, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {26, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {27, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {28, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {22, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {29, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {3, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {1, -1, 1}, {5, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {2, -1, 1}, {6, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {14, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {10, 0, 1}, {12, 0, 1}, {-1, 0, 0}, {-1, 0, 0}, 
+    {10, 0, 1}, {11, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {12, 0, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {9, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {4, -1, 1}, {7, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {17, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {19, -1, 1}, {20, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {21, -1, 1}, {22, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {8, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {5, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {6, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {7, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {13, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {15, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {16, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {20, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {23, -1, 1}, {24, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {25, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {18, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {26, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {27, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {28, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {22, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {29, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
     {0, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
 };
 
 /* 8053F564-8053F744 000A08 01E0+00 0/1 0/0 0/0 .data            l_motionSequenceData */
 static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_motionSequenceData[120] = {
-    {0, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {1, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {4, -1, 1}, {1, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {4, -1, 1}, {1, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {15, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {18, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {20, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {2, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {3, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {6, -1, 1}, {3, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {28, -1, 1}, {29, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {30, -1, 1}, {0, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {31, -1, 1}, {32, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {10, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {11, 0, 1}, {13, 0, 1}, {-1, 0, 0}, {-1, 0, 0}, {11, 0, 1}, {12, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {13, 0, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {8, 4, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {7, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {14, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {16, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {17, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {21, -1, 1}, {22, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {23, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {19, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {24, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {25, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {26, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {27, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {9, 4, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {0, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {1, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {4, -1, 1}, {1, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {4, -1, 1}, {1, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {15, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {18, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {20, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {2, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {3, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {6, -1, 1}, {3, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {28, -1, 1}, {29, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {30, -1, 1}, {0, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {31, -1, 1}, {32, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {10, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {11, 0, 1}, {13, 0, 1}, {-1, 0, 0}, {-1, 0, 0}, 
+    {11, 0, 1}, {12, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {13, 0, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {8, 4, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {7, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {14, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {16, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {17, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {21, -1, 1}, {22, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {23, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {19, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {24, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {25, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {26, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {27, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, 
+    {9, 4, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
 };
 
 /* 8053F744-8053F780 -00001 003C+00 1/1 0/0 0/0 .data            mCutNameList__12daNpc_Besu_c */
@@ -255,8 +551,8 @@ daNpc_Besu_c::~daNpc_Besu_c() {
         mpMorf[0]->stopZelAnime();
     }
 
-    if (mpBesuMorf != NULL) {
-        mpBesuMorf->stopZelAnime();
+    if (mpCupModelMorf != NULL) {
+        mpCupModelMorf->stopZelAnime();
     }
 
 // #ifdef DEBUG
@@ -268,7 +564,6 @@ daNpc_Besu_c::~daNpc_Besu_c() {
     deleteRes((l_loadResPtrnList)[mType], (const char**)l_resNameList);
 }
 
-/* ############################################################################################## */
 /* 8053E754-8053E7E4 000000 0090+00 13/13 0/0 0/0 .rodata          m__18daNpc_Besu_Param_c */
 const daNpc_Besu_HIOParam daNpc_Besu_Param_c::m = {
     160.0f,
@@ -437,9 +732,9 @@ int daNpc_Besu_c::CreateHeap() {
         }
 
         dbg_0x24 = 0x11000084;
-        mpBesuMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f,
+        mpCupModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f,
                                           0, -1, NULL, 0x80000, dbg_0x24);
-        if (mpBesuMorf == NULL || mpBesuMorf->getModel() == NULL) {
+        if (mpCupModelMorf == NULL || mpCupModelMorf->getModel() == NULL) {
             return 0;
         }
     }
@@ -453,10 +748,10 @@ int daNpc_Besu_c::CreateHeap() {
         }
 
         if (modelData != NULL) {
-            mpModel[0] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+            mpClothModel[0] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
         }
 
-        if (mpModel[0] == NULL) {
+        if (mpClothModel[0] == NULL) {
             return 0;
         }
     }
@@ -501,14 +796,12 @@ int daNpc_Besu_c::Draw() {
     return draw(FALSE, 0, mRealShadowSize, NULL, 100.0f, 0, 0, 0);
 }
 
-/* 805379FC-80537A1C 000C9C 0020+00 1/1 0/0 0/0 .text
- * createHeapCallBack__12daNpc_Besu_cFP10fopAc_ac_c             */
+/* 805379FC-80537A1C 000C9C 0020+00 1/1 0/0 0/0 .text            createHeapCallBack__12daNpc_Besu_cFP10fopAc_ac_c */
 int daNpc_Besu_c::createHeapCallBack(fopAc_ac_c* i_this) {
     return static_cast<daNpc_Besu_c*>(i_this)->CreateHeap();
 }
 
-/* 80537A1C-80537A74 000CBC 0058+00 1/1 0/0 0/0 .text
- * ctrlJointCallBack__12daNpc_Besu_cFP8J3DJointi                */
+/* 80537A1C-80537A74 000CBC 0058+00 1/1 0/0 0/0 .text            ctrlJointCallBack__12daNpc_Besu_cFP8J3DJointi */
 int daNpc_Besu_c::ctrlJointCallBack(J3DJoint* param_0, int param_1) {
     if (param_1 == 0) {
         J3DModel* model = j3dSys.getModel();
@@ -569,41 +862,95 @@ u8 daNpc_Besu_c::getType() {
 BOOL daNpc_Besu_c::isDelete() {
     switch (mType) {
         case 0:
-            return !daNpcT_chkEvtBit(0x12) || daNpcT_chkEvtBit(0x1F);
+                    /* dSv_event_flag_c::F_0014 - Ordon Village - sword tutorial ends */
+            return !daNpcT_chkEvtBit(0x12) ||
+                    /* dSv_event_flag_c::F_0026 - Ordon Village - gave wooden sword to talo on 3rd day */
+                    daNpcT_chkEvtBit(0x1F);
+
         case 1:
+                   /* dSv_event_flag_c::F_0014 - Ordon Village - sword tutorial ends */
             return daNpcT_chkEvtBit(0x12) == 0;
+
         case 2:
             return 0;
+
         case 3:
-            return !daNpcT_chkEvtBit(0x3D) || daNpcT_chkEvtBit(0xA4);
+                    /* dSv_event_flag_c::M_028 - Cutscene - [cutscene: 14] restore mountain spirit - Reuinion with Colin et al. */
+            return !daNpcT_chkEvtBit(0x3D) ||
+                    /* dSv_event_flag_c::F_0066 - Death Mountain - First saw Goron cutscene on mountain path */
+                    daNpcT_chkEvtBit(0xA4);
+
         case 4:
-            return !daNpcT_chkEvtBit(0xA4) || daNpcT_chkEvtBit(0x35);
+                    /* dSv_event_flag_c::F_0066 - Death Mountain - First saw Goron cutscene on mountain path */
+            return !daNpcT_chkEvtBit(0xA4) ||
+                    /* dSv_event_flag_c::M_020 - Cutscene - [cutscene: ] Colin kidnapped : ON once watched */
+                    daNpcT_chkEvtBit(0x35);
+
         case 5:
-            return !daNpcT_chkEvtBit(0x35) || daNpcT_chkEvtBit(0x55);
+                    /* dSv_event_flag_c::M_020 - Cutscene - [cutscene: ] Colin kidnapped : ON once watched */
+            return !daNpcT_chkEvtBit(0x35) ||
+                    /* dSv_event_flag_c::M_052 - Main Event - Horseback battle clear */
+                    daNpcT_chkEvtBit(0x55);
+
         case 6:
-            return !daNpcT_chkEvtBit(0x55) || daNpcT_chkEvtBit(0x40);
+                    /* dSv_event_flag_c::M_052 - Main Event - Horseback battle clear */
+            return !daNpcT_chkEvtBit(0x55) ||
+                    /* dSv_event_flag_c::M_031 - Goron Mines - Goron Mines clear */
+                    daNpcT_chkEvtBit(0x40);
+
         case 7:
-            return !daNpcT_chkEvtBit(0x40) || daNpcT_chkEvtBit(0x44);
+                    /* dSv_event_flag_c::M_031 - Goron Mines - Goron Mines clear */
+            return !daNpcT_chkEvtBit(0x40) ||
+                    /* dSv_event_flag_c::M_035 - Cutscene - [cutscene: 35] after carriage guarding event */
+                    daNpcT_chkEvtBit(0x44);
+
         case 8:
-            return !daNpcT_chkEvtBit(0x44) || daNpcT_chkEvtBit(0x108);
+                    /* dSv_event_flag_c::M_035 - Cutscene - [cutscene: 35] after carriage guarding event */
+            return !daNpcT_chkEvtBit(0x44) ||
+                    /* dSv_event_flag_c::F_0264 - Cutscene - Get master sword */
+                    daNpcT_chkEvtBit(0x108);
+
         case 9:
             return 0;
+
         case 10:
+                   /* dSv_event_flag_c::F_0264 - Cutscene - Get master sword */
             return daNpcT_chkEvtBit(0x108) == 0;
+
         case 11:
+                   /* dSv_event_flag_c::F_0015 - Ordon Village - Slingshot tutorial ends */
             return daNpcT_chkEvtBit(0x13);
+
         case 12:
-            return !daNpcT_chkEvtBit(0x13) || daNpcT_chkEvtBit(0x12);
+                    /* dSv_event_flag_c::F_0015 - Ordon Village - Slingshot tutorial ends */
+            return !daNpcT_chkEvtBit(0x13) ||
+                    /* dSv_event_flag_c::F_0014 - Ordon Village - sword tutorial ends */
+                    daNpcT_chkEvtBit(0x12);
+
         case 13:
-            return !daNpcT_chkEvtBit(0x12) || daNpcT_chkEvtBit(0x25C);
+                    /* dSv_event_flag_c::F_0014 - Ordon Village - sword tutorial ends */
+            return !daNpcT_chkEvtBit(0x12) ||
+                    /* dSv_event_flag_c::F_0616 - Ordon Village - 3rd Day - Spoke to Talo/Malo after handing over wooden sword (1st time) */
+                    daNpcT_chkEvtBit(0x25C);
+
         case 14:
             return 0;
+
         case 15:
-            return !daNpcT_chkEvtBit(0x25C) || daNpcT_chkEvtBit(0x80);
+                    /* dSv_event_flag_c::F_0616 - Ordon Village - 3rd Day - Spoke to Talo/Malo after handing over wooden sword (1st time) */
+            return !daNpcT_chkEvtBit(0x25C) ||
+                    /* dSv_event_flag_c::M_095 - Faron Woods - First time meeting Coro (obtain lantern) */
+                    daNpcT_chkEvtBit(0x80);
+
         case 16:
-            return !daNpcT_chkEvtBit(0x80) || daNpcT_chkEvtBit(0x235);
+                    /* dSv_event_flag_c::M_095 - Faron Woods - First time meeting Coro (obtain lantern) */
+            return !daNpcT_chkEvtBit(0x80) ||
+                    /* dSv_event_flag_c::F_0565 - N/A - 2nd Day Complete */
+                    daNpcT_chkEvtBit(0x235);
+
         case 17:
             return 0;
+
         default:
             return 0;
     }
@@ -629,7 +976,8 @@ void daNpc_Besu_c::reset() {
             eventInfo.setIdx(0);
             break;
         case 1:
-            mHide = daNpcT_chkEvtBit(0x1f) == 0;
+                    /* dSv_event_flag_c::F_0026 - Ordon Village - gave wooden sword to talo on 3rd day */
+            mHide = daNpcT_chkEvtBit(0x1F) == 0;
             eventInfo.setIdx(1);
             break;
         case 6:
@@ -645,6 +993,7 @@ void daNpc_Besu_c::reset() {
             break;
     }
 
+    /* dSv_event_tmp_flag_c::T_0100 - Ordon Village - cutscene at start of 2nd day, start focus on kids Flags */
     daNpcT_offTmpBit(0x64);
     setAngle(acStack_20);
 }
@@ -756,7 +1105,7 @@ BOOL daNpc_Besu_c::checkChangeEvt() {
         mPreItemNo = 0;
         if (dComIfGp_event_chkTalkXY()) {
             if (dComIfGp_evmng_ChkPresentEnd()) {
-                mEvtNo = 1;
+                mEvtNo = EVENT_NO_RESPONSE;
                 evtChange();
             }
             return 1;
@@ -768,36 +1117,38 @@ BOOL daNpc_Besu_c::checkChangeEvt() {
 
             case 3:
             case 4:
-                mEvtNo = 7;
+                mEvtNo = EVENT_CACARICO_CONVERSATION;
                 evtChange();
                 return 1;
             case 6:
-                mEvtNo = 0xA;
+                mEvtNo = EVENT_CONVERSATION_ABOUT_DEATHMT;
                 evtChange();
                 return 1;
             case 7:
-                mEvtNo = 0xB;
+                mEvtNo = EVENT_NURSE;
                 evtChange();
                 return 1;
             case 8:
-                mEvtNo = 0xC;
+                mEvtNo = EVENT_CONVERSATION_ABOUT_ZORA;
                 evtChange();
                 return 1;
             case 11:
                 if (checkItemGet(0x4B, 1)) {
-                    mEvtNo = 6;
+                    mEvtNo = EVENT_CONVERSATION_ABOUT_PACHINKO3;
+                           /* dSv_event_flag_c::F_0024 - Ordon Village - Spoke with Talo/Malo/Beth (before obtaining slingshot) */
                 } else if (daNpcT_chkEvtBit(0x1D)) {
-                    mEvtNo = 5;
+                    mEvtNo = EVENT_CONVERSATION_ABOUT_PACHINKO2;
                 } else {
-                    mEvtNo = 4;
+                    mEvtNo = EVENT_CONVERSATION_ABOUT_PACHINKO1;
                 }
                 evtChange();
                 return 1;
             case 17:
+                    /* dSv_event_flag_c::F_0601 - Faron Woods - Spoke to imprisoned Talo */
                 if (daNpcT_chkEvtBit(0x24D)) {
-                    mEvtNo = 3;
+                    mEvtNo = EVENT_CONVERSATION_ABOUT_SARU02;
                 } else {
-                    mEvtNo = 2;
+                    mEvtNo = EVENT_CONVERSATION_ABOUT_SARU01;
                 }
                 evtChange();
                 return 1;
@@ -809,22 +1160,22 @@ BOOL daNpc_Besu_c::checkChangeEvt() {
 
 /* 80538490-8053853C 001730 00AC+00 2/0 0/0 0/0 .text setAfterTalkMotion__12daNpc_Besu_cFv */
 void daNpc_Besu_c::setAfterTalkMotion() {
-    int idx = 0x1C;
+    int idx = FACE_NONE;
     switch (mFaceMotionSeqMngr.getNo()) {
-        case 1:
-            idx = 0xD;
+        case FACE_TALK_A:
+            idx = FACE_H_TALK_A;
             break;
-        case 2:
-            idx = 0xE;
+        case FACE_TALK_B:
+            idx = FACE_H_TALK_B;
             break;
-        case 8:
-            idx = 0xF;
+        case FACE_MADTALK:
+            idx = FACE_H_MADTALK;
             break;
-        case 10:
-            idx = 0x13;
+        case FACE_SURPISE:
+            idx = FACE_H_SURPRISE;
             break;
-        case 11:
-            idx = 0x1A;
+        case FACE_WORRY:
+            idx = FACE_H_WORRY;
             break;
     }
 
@@ -981,7 +1332,7 @@ void daNpc_Besu_c::action() {
     if (actor_p != NULL) {
         switch (((daTag_Push_c*) actor_p)->getId()) {
             case 6: {
-                mEvtNo = 9;
+                mEvtNo = EVENT_SURPRISE;
             }
         }
     }
@@ -1011,7 +1362,7 @@ void daNpc_Besu_c::setAttnPos() {
     }
 
     BOOL var_r28 = FALSE;
-    if (mMotionSeqMngr.getNo() == 0x12 && !mMotionSeqMngr.checkEndSequence()) {
+    if (mMotionSeqMngr.getNo() == MOT_YOKERU && !mMotionSeqMngr.checkEndSequence()) {
         var_r28 = TRUE;
     }
 
@@ -1037,13 +1388,13 @@ void daNpc_Besu_c::setAttnPos() {
     mJntAnm.calcJntRad(0.2f, 1.0f, rad_val);
     mpMorf[0]->setPlaySpeed(daNpc_Besu_Param_c::m.field_0x8c);
     setMtx();
-    if (mpBesuMorf != NULL) {
-        mpBesuMorf->play(0, 0);
+    if (mpCupModelMorf != NULL) {
+        mpCupModelMorf->play(0, 0);
         Mtx jointAnmMtx;
         mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(10));
         cMtx_copy(mDoMtx_stack_c::get(), jointAnmMtx);
-        mpBesuMorf->getModel()->setBaseTRMtx(jointAnmMtx);
-        mpBesuMorf->modelCalc();
+        mpCupModelMorf->getModel()->setBaseTRMtx(jointAnmMtx);
+        mpCupModelMorf->modelCalc();
     }
 
     mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
@@ -1153,30 +1504,30 @@ int daNpc_Besu_c::drawDbgInfo() {
 /* 8053949C-805395F4 00273C 0158+00 1/0 0/0 0/0 .text            drawOtherMdl__12daNpc_Besu_cFv */
 void daNpc_Besu_c::drawOtherMdl() {
     J3DModel* model_p = mpMorf[0]->getModel();
-    if (mpBesuMorf != NULL) {
-        g_env_light.setLightTevColorType_MAJI(mpBesuMorf->getModel(), &tevStr);
+    if (mpCupModelMorf != NULL) {
+        g_env_light.setLightTevColorType_MAJI(mpCupModelMorf->getModel(), &tevStr);
         if (field_0x112e == 0) {
-            mpBesuMorf->getModel()->getModelData()->hide();
+            mpCupModelMorf->getModel()->getModelData()->hide();
         } else {
-            mpBesuMorf->getModel()->getModelData()->show();
+            mpCupModelMorf->getModel()->getModelData()->show();
         }
 
-        mpBesuMorf->entryDL();
-        dComIfGd_addRealShadow(mShadowKey, mpBesuMorf->getModel());
+        mpCupModelMorf->entryDL();
+        dComIfGd_addRealShadow(mShadowKey, mpCupModelMorf->getModel());
     }
 
     for (int i = 0; i < 1; i++) {
-        if (mpModel[i] != NULL && i == 0 && field_0x112d != 0) {
-            g_env_light.setLightTevColorType_MAJI(mpModel[i], &tevStr);
+        if (mpClothModel[i] != NULL && i == 0 && field_0x112d != 0) {
+            g_env_light.setLightTevColorType_MAJI(mpClothModel[i], &tevStr);
 
             static int const jointNo[1] = {14};
 
             mDoMtx_stack_c::copy(model_p->getAnmMtx(jointNo[i]));
             Mtx jointAnmMtx;
             cMtx_copy(mDoMtx_stack_c::get(), jointAnmMtx);
-            mpModel[i]->setBaseTRMtx(jointAnmMtx);
-            mDoExt_modelUpdateDL(mpModel[i]);
-            dComIfGd_addRealShadow(mShadowKey, mpModel[i]);
+            mpClothModel[i]->setBaseTRMtx(jointAnmMtx);
+            mDoExt_modelUpdateDL(mpClothModel[i]);
+            dComIfGd_addRealShadow(mShadowKey, mpClothModel[i]);
         }
     }
 }
@@ -1192,13 +1543,13 @@ int daNpc_Besu_c::setCupAnm(int arg0, int i_attr, f32 i_morf) {
     };
 
     J3DAnmTransform* transform_p = NULL;
-    if (mpBesuMorf != NULL) {
+    if (mpCupModelMorf != NULL) {
         if (cupAnmData[arg0][0] > 0) {
             transform_p = getTrnsfrmKeyAnmP(l_resNameList[cupAnmData[arg0][1]], cupAnmData[arg0][0]);
         }
 
-        if (transform_p != NULL && transform_p != mpBesuMorf->getAnm()) {
-            mpBesuMorf->setAnm(transform_p, i_attr, i_morf, 1.0f, 0.0f, -1.0f);
+        if (transform_p != NULL && transform_p != mpCupModelMorf->getAnm()) {
+            mpCupModelMorf->setAnm(transform_p, i_attr, i_morf, 1.0f, 0.0f, -1.0f);
         }
     }
 
@@ -1368,15 +1719,15 @@ void daNpc_Besu_c::mop(int arg0, int arg1) {
     if (field_0x1120) {
         action();
         if (field_0x1120 == 0) {
-            mFaceMotionSeqMngr.setNo(7, 4.0f, 0, 0);
-            mMotionSeqMngr.setNo(0xD, 4.0f, 0, 0);
+            mFaceMotionSeqMngr.setNo(FACE_NURSE_A, 4.0f, 0, 0);
+            mMotionSeqMngr.setNo(MOT_NURSE_A, 4.0f, 0, 0);
             field_0x1124 = arg1;
         }
     } else if (field_0x1124) {
         action();
         if (field_0x1124 == 0) {
-            mFaceMotionSeqMngr.setNo(4, 4.0f, 0, 0);
-            mMotionSeqMngr.setNo(0xE, 4.0f, 0, 0);
+            mFaceMotionSeqMngr.setNo(FACE_MOP_A_C, 4.0f, 0, 0);
+            mMotionSeqMngr.setNo(MOT_MOP_A_C, 4.0f, 0, 0);
             field_0x1120 = arg0;
         }
     }
@@ -1633,12 +1984,12 @@ int daNpc_Besu_c::cutConversationAboutWoodSwd(int arg0) {
             if (mPlayerAngle != mCurAngle.y) {
                 if (chkBesu3()) {
                     if (step(mPlayerAngle, 0x1C, 0x1D, 0xF, 0)) {
-                        mFaceMotionSeqMngr.setNo(0x1C, -1.0f, 0, 0);
-                        mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+                        mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                        mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0f, 0, 0);
                     }
                 } else if (step(mPlayerAngle, 0x1C, 0x11, 0xF, 0)) {
-                    mFaceMotionSeqMngr.setNo(0x1C, -1.0f, 0, 0);
-                    mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+                    mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                    mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0f, 0, 0);
                 }
             }
 
@@ -1699,8 +2050,8 @@ int daNpc_Besu_c::cutSwdTutorial(int arg0) {
             }
 
             case 71: {
-                mFaceMotionSeqMngr.setNo(1, 0.0f, 1, 0);
-                mMotionSeqMngr.setNo(2, 0.0f, 1, 0);
+                mFaceMotionSeqMngr.setNo(FACE_TALK_A, 0.0f, 1, 0);
+                mMotionSeqMngr.setNo(MOT_TALK_A, 0.0f, 1, 0);
                 setAngle(home.angle.y);
                 my_vec_0.set(50.0f, 0.0f, 0.0f);
                 mDoMtx_stack_c::YrotS(mCurAngle.y);
@@ -1765,7 +2116,7 @@ int daNpc_Besu_c::cutFindMonkey(int arg0) {
             }
 
             case 1: {
-                mFaceMotionSeqMngr.setNo(27, 0.0f, 0, 0);
+                mFaceMotionSeqMngr.setNo(FACE_H_BIKKURI, 0.0f, 0, 0);
                 break;
             }
 
@@ -1778,7 +2129,7 @@ int daNpc_Besu_c::cutFindMonkey(int arg0) {
                 mJntAnm.lookNone(1);
                 mEventTimer = timer_val;
                 if (mEventTimer == 0) {
-                    mMotionSeqMngr.setNo(28, -1.0f, 0, 0);
+                    mMotionSeqMngr.setNo(MOT_RUN, -1.0f, 0, 0);
                 }
 
                 break;
@@ -1827,7 +2178,7 @@ int daNpc_Besu_c::cutFindMonkey(int arg0) {
                     retval = 1;
                 }
             } else if (cLib_calcTimer(&mEventTimer) == 0) {
-                mMotionSeqMngr.setNo(28, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(MOT_RUN, -1.0f, 0, 0);
             }
 
             break;
@@ -1921,8 +2272,8 @@ int daNpc_Besu_c::cutCacaricoConversation(int arg0) {
             mJntAnm.lookPlayer(0);
             if (mPlayerAngle != mCurAngle.y) {
                 if (step(mPlayerAngle, 0x1C, 0x11, 0xF, 0)) {
-                    mFaceMotionSeqMngr.setNo(28, -1.0f, 0, 0);
-                    mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+                    mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                    mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0f, 0, 0);
                 }
             } else {
                 retval = 1;
@@ -1955,8 +2306,8 @@ int daNpc_Besu_c::cutSurprise(int arg0) {
     if (dComIfGp_getEventManager().getIsAddvance(arg0)) {
         switch (prm_val) {
             case 0:
-                mFaceMotionSeqMngr.setNo(0x13, 0.0f, 0, 0);
-                mMotionSeqMngr.setNo(6, 0.0f, 0, 0);
+                mFaceMotionSeqMngr.setNo(FACE_H_SURPRISE, 0.0f, 0, 0);
+                mMotionSeqMngr.setNo(MOT_SURPRISE, 0.0f, 0, 0);
                 mJntAnm.lookNone(1);
                 tagpush_p->pushBackPlayer(1);
                 break;
@@ -2020,15 +2371,15 @@ int daNpc_Besu_c::cutConversationInHotel(int arg0) {
                 field_0x1124 = 0;
                 break;
             case 1:
-                mFaceMotionSeqMngr.setNo(0x15, 0.0f, 1, 0);
-                mMotionSeqMngr.setNo(0x17, 0.0f, 1, 0);
+                mFaceMotionSeqMngr.setNo(FACE_AMAZED_C, 0.0f, 1, 0);
+                mMotionSeqMngr.setNo(MOT_AMAZED_C, 0.0f, 1, 0);
                 break;
             case 2:
                 mEventTimer = timer_val;
                 break;
             case 3:
-                mFaceMotionSeqMngr.setNo(7, 0.0f, 1, 0);
-                mMotionSeqMngr.setNo(0xD, 0.0f, 1, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NURSE_A, 0.0f, 1, 0);
+                mMotionSeqMngr.setNo(MOT_NURSE_A, 0.0f, 1, 0);
                 break;
         }
     }
@@ -2044,8 +2395,8 @@ int daNpc_Besu_c::cutConversationInHotel(int arg0) {
         case 2:
             if (mEventTimer != 0) {
                 if (cLib_calcTimer(&mEventTimer) == 0) {
-                    mFaceMotionSeqMngr.setNo(0x14, 0.0f, 0, 0);
-                    mMotionSeqMngr.setNo(0x16, 0.0f, 0, 0);
+                    mFaceMotionSeqMngr.setNo(FACE_AMAZED_A, 0.0f, 0, 0);
+                    mMotionSeqMngr.setNo(MOT_AMAZED_A, 0.0f, 0, 0);
                     mSound.startCreatureVoice(Z2SE_BESU_V_SHIKARARE, -1);
                 } else {
                     mop(timer1_val, timer2_val);
@@ -2076,17 +2427,17 @@ int daNpc_Besu_c::cutConversationAboutDeathMt(int arg0) {
     if (dComIfGp_getEventManager().getIsAddvance(arg0)) {
         switch (prm_val) {
             case 0:
-                mFaceMotionSeqMngr.setNo(3, -1.0f, 0, 0);
-                mMotionSeqMngr.setNo(4, -1.0f, 0, 0);
+                mFaceMotionSeqMngr.setNo(FACE_TALK_N_B, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(MOT_TALK_N_B, -1.0f, 0, 0);
                 initTalk(mFlowNodeNo, NULL);
                 break;
             case 1:
-                mFaceMotionSeqMngr.setNo(16, -1.0f, 0, 0);
-                mMotionSeqMngr.setNo(19, -1.0f, 0, 0);
+                mFaceMotionSeqMngr.setNo(FACE_TALK_N_A, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(MOT_TALK_N_A, -1.0f, 0, 0);
                 break;
             case 2:
-                mFaceMotionSeqMngr.setNo(17, -1.0f, 0, 0);
-                mMotionSeqMngr.setNo(20, -1.0f, 0, 0);
+                mFaceMotionSeqMngr.setNo(FACE_TALK_N_C, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(MOT_TALK_N_C, -1.0f, 0, 0);
                 break;
         }
     }
@@ -2127,21 +2478,21 @@ int daNpc_Besu_c::cutConversationAboutGoron(int arg0) {
     if (dComIfGp_getEventManager().getIsAddvance(arg0)) {
         switch (prm_val) {
             case 0:
-                mFaceMotionSeqMngr.setNo(5, -1.0f, 0, 0);
-                mMotionSeqMngr.setNo(0xF, -1.0f, 0, 0);
+                mFaceMotionSeqMngr.setNo(FACE_MOP_A_B, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(MOT_MOP_A_B, -1.0f, 0, 0);
                 break;
             case 1:
-                mFaceMotionSeqMngr.setNo(6, -1.0f, 0, 0);
-                mMotionSeqMngr.setNo(0x10, -1.0f, 0, 0);
+                mFaceMotionSeqMngr.setNo(FACE_MOP_C, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(MOT_MOP_C, -1.0f, 0, 0);
                 field_0x1120 = 0x20;
                 break;
             case 2:
-                mFaceMotionSeqMngr.setNo(5, 0.0f, 1, 0);
-                mMotionSeqMngr.setNo(0xF, 0.0f, 1, 0);
+                mFaceMotionSeqMngr.setNo(FACE_MOP_A_B, 0.0f, 1, 0);
+                mMotionSeqMngr.setNo(MOT_MOP_A_B, 0.0f, 1, 0);
                 break;
             case 3:
-                mFaceMotionSeqMngr.setNo(6, -1.0f, 0, 0);
-                mMotionSeqMngr.setNo(0x10, -1.0f, 0, 0);
+                mFaceMotionSeqMngr.setNo(FACE_MOP_C, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(MOT_MOP_C, -1.0f, 0, 0);
                 field_0x1120 = 0x20;
                 break;
         }
@@ -2186,12 +2537,12 @@ int daNpc_Besu_c::cutNurse(int arg0) {
             case 0:
                 break;
             case 1:
-                mFaceMotionSeqMngr.setNo(22, -1.0f, 0, 0);
-                mMotionSeqMngr.setNo(24, -1.0f, 0, 0);
+                mFaceMotionSeqMngr.setNo(FACE_CUP_B, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(MOT_CUP_B, -1.0f, 0, 0);
                 break;
             case 2:
-                mFaceMotionSeqMngr.setNo(9, 0.0f, 1, 0);
-                mMotionSeqMngr.setNo(5, 0.0f, 1, 0);
+                mFaceMotionSeqMngr.setNo(FACE_CUP_A, 0.0f, 1, 0);
+                mMotionSeqMngr.setNo(MOT_CUP_A, 0.0f, 1, 0);
                 break;
         }
     }
@@ -2259,8 +2610,8 @@ int daNpc_Besu_c::cutThankYou(int arg0) {
             }
 
             case 1: {
-                mFaceMotionSeqMngr.setNo(25, 0.0f, 0, 0);
-                mMotionSeqMngr.setNo(27, 0.0f, 0, 0);
+                mFaceMotionSeqMngr.setNo(FACE_GLARE_WAIT, 0.0f, 0, 0);
+                mMotionSeqMngr.setNo(MOT_GLARE_WAIT, 0.0f, 0, 0);
                 break;
             }
         }
@@ -2289,29 +2640,29 @@ int daNpc_Besu_c::wait(void* param_0) {
                 switch (mType) {
                     case 2: {
                         if (getBitSW() != 0xFF && dComIfGs_isSwitch(getBitSW(), fopAcM_GetRoomNo(this))) {
-                            mFaceMotionSeqMngr.setNo(0x18, -1.0f, 0, 0);
-                            mMotionSeqMngr.setNo(0x1A, -1.0f, 0, 0);
+                            mFaceMotionSeqMngr.setNo(FACE_DEMO_FEAR, -1.0f, 0, 0);
+                            mMotionSeqMngr.setNo(MOT_DEMO_FEAR, -1.0f, 0, 0);
                         } else {
-                            mFaceMotionSeqMngr.setNo(0x17, -1.0f, 0, 0);
-                            mMotionSeqMngr.setNo(0x19, -1.0f, 0, 0);
+                            mFaceMotionSeqMngr.setNo(FACE_DEMO_WAIT, -1.0f, 0, 0);
+                            mMotionSeqMngr.setNo(MOT_DEMO_WAIT, -1.0f, 0, 0);
                         }
 
                         break;
                     }
 
                     case 5: {
-                        mFaceMotionSeqMngr.setNo(0x13, -1.0f, 0, 0);
-                        mMotionSeqMngr.setNo(6, -1.0f, 0, 0);
+                        mFaceMotionSeqMngr.setNo(FACE_H_SURPRISE, -1.0f, 0, 0);
+                        mMotionSeqMngr.setNo(MOT_SURPRISE, -1.0f, 0, 0);
                         break;
                     }
 
                     default: {
                         if (chkBesu3()) {
-                            mFaceMotionSeqMngr.setNo(28, -1.0f, 0, 0);
-                            mMotionSeqMngr.setNo(8, -1.0f, 0, 0);
+                            mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                            mMotionSeqMngr.setNo(MOT_NORMAL_WAIT, -1.0f, 0, 0);
                         } else {
-                            mFaceMotionSeqMngr.setNo(28, -1.0f, 0, 0);
-                            mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+                            mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                            mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0f, 0, 0);
                         }
 
                         break;
@@ -2327,6 +2678,7 @@ int daNpc_Besu_c::wait(void* param_0) {
         case 2: {
             switch (mType) {
                 case 0: {
+                        /* dSv_event_flag_c::F_0026 - Ordon Village - gave wooden sword to talo on 3rd day */
                     if (daNpcT_chkEvtBit(0x1F) && mHide) {
                         fopAcM_delete(this);
                         return 1;
@@ -2344,10 +2696,11 @@ int daNpc_Besu_c::wait(void* param_0) {
                             daNpc_Besu_Param_c::m.common.box_max_y, daNpc_Besu_Param_c::m.common.box_max_z,
                             daNpc_Besu_Param_c::m.common.box_offset))
                     {
-                        mEvtNo = 8;
+                        mEvtNo = EVENT_DEMO13_STB;
                         field_0x112f = 1;
                     }
 
+                                        /* dSv_event_flag_c::M_027 - Cutscene - [cutscene: 13] kids in the church (beast eyes) */
                     if (field_0x112f && daNpcT_chkEvtBit(0x3C) && dComIfGp_event_runCheck() == 0) {
                         field_0x112f = 0;
                     }
@@ -2356,6 +2709,7 @@ int daNpc_Besu_c::wait(void* param_0) {
                 }
 
                 case 13: {
+                        /* dSv_event_flag_c::F_0616 - Ordon Village - 3rd Day - Spoke to Talo/Malo after handing over wooden sword (1st time) */
                     if (daNpcT_chkEvtBit(0x25C)) {
                         fopAcM_delete(this);
                         return 1;
@@ -2370,7 +2724,7 @@ int daNpc_Besu_c::wait(void* param_0) {
                     mJntAnm.lookNone(0);
                     if (getBitSW() != 0xFF) {
                         if (dComIfGs_isSwitch(getBitSW(), fopAcM_GetRoomNo(this))
-                            && mMotionSeqMngr.getNo() != 26) {
+                            && mMotionSeqMngr.getNo() != MOT_DEMO_FEAR) {
                             mMode = 1;
                         }
                     }
@@ -2395,6 +2749,7 @@ int daNpc_Besu_c::wait(void* param_0) {
 
                     if (mPlayerActorMngr.getActorP() != NULL && mTwilight == 0) {
                         if (mType == 3 || mType == 4) {
+                            /* dSv_event_tmp_flag_c::YKM_ATTN - Snowpeak Mountain - Player focus while Yeto waits for snowboard race */
                             dComIfGs_onTmpBit(0xD02);
                         }
 
@@ -2414,6 +2769,7 @@ int daNpc_Besu_c::wait(void* param_0) {
                         }
                     } else {
                         if (mType == 3 || mType == 4) {
+                            /* dSv_event_tmp_flag_c::YKM_ATTN - Snowpeak Mountain - Player focus while Yeto waits for snowboard race */
                             dComIfGs_offTmpBit(0xD02);
                         }
 
@@ -2445,11 +2801,15 @@ int daNpc_Besu_c::wait(void* param_0) {
                         switch (mType) {
                             case 3:
                             case 4: {
+                                /* dSv_event_tmp_flag_c::YKW_ATTN - Snowpeak Mountain - Player focus while Yeta waits for 
+                                                                    snowboard race */
                                 dComIfGs_offTmpBit(0xE40);
                                 break;
                             }
 
                             case 11: {
+                                    /* dSv_event_tmp_flag_c::T_0100 - Ordon Village - cutscene at start of 2nd day, 
+                                                                      start focus on kids Flags */
                                 if (daNpcT_chkTmpBit(0x64)) {
                                     field_0x1130 = 1;
                                 }
@@ -2493,6 +2853,8 @@ int daNpc_Besu_c::wait(void* param_0) {
                         switch (mType) {
                             case 3:
                             case 4: {
+                                /* dSv_event_tmp_flag_c::YKW_ATTN - Snowpeak Mountain - Player focus while Yeta waits for 
+                                                                    snowboard race */
                                 dComIfGs_onTmpBit(0xE40);
                                 break;
                             }
@@ -2524,8 +2886,8 @@ int daNpc_Besu_c::swdTutorial(void* param_0) {
         case 0:
         case 1: {
             if (!mStagger.checkStagger()) {
-                mFaceMotionSeqMngr.setNo(28, -1.0f, 0, 0);
-                mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0f, 0, 0);
                 mMode = 2;
             }
         }
@@ -2552,12 +2914,12 @@ int daNpc_Besu_c::nurse(void* param_0) {
     switch (mMode) {
         case 0:
         case 1: {
-            if (mFaceMotionSeqMngr.getNo() != 0x15) {
-                mFaceMotionSeqMngr.setNo(7, -1.0f, 0, 0);
+            if (mFaceMotionSeqMngr.getNo() != FACE_AMAZED_C) {
+                mFaceMotionSeqMngr.setNo(FACE_NURSE_A, -1.0f, 0, 0);
             }
 
-            if (mMotionSeqMngr.getNo() != 0x17) {
-                mMotionSeqMngr.setNo(0xD, -1.0f, 0, 0);
+            if (mMotionSeqMngr.getNo() != MOT_AMAZED_C) {
+                mMotionSeqMngr.setNo(MOT_NURSE_A, -1.0f, 0, 0);
             }
 
             mMorfLoops = 0;
@@ -2573,23 +2935,23 @@ int daNpc_Besu_c::nurse(void* param_0) {
             mJntAnm.lookNone(0);
             mAcch.SetWallNone();
             switch (mMotionSeqMngr.getNo()) {
-                case 13: {
+                case MOT_NURSE_A: {
                     if (0 != strcmp(dComIfGp_getEventManager().getRunEventName(), "EVT_CONVERSATION_IN_HOTEL1_e")) {
                         if (0 != strcmp(dComIfGp_getEventManager().getRunEventName(), "EVT_CONVERSATION_IN_HOTEL2_e")
                             && mType != 8 && mMorfLoops >= 2) {
-                            mFaceMotionSeqMngr.setNo(18, -1.0f, 0, 0);
-                            mMotionSeqMngr.setNo(21, -1.0f, 0, 0);
+                            mFaceMotionSeqMngr.setNo(FACE_GLARE_A, -1.0f, 0, 0);
+                            mMotionSeqMngr.setNo(MOT_GLARE_A, -1.0f, 0, 0);
                         }
                     }
 
                     break;
                 }
 
-                case 21:
-                case 23: {
+                case MOT_GLARE_A:
+                case MOT_AMAZED_C: {
                     if (mMotionSeqMngr.checkEndSequence()) {
-                        mFaceMotionSeqMngr.setNo(7, -1.0f, 0, 0);
-                        mMotionSeqMngr.setNo(0xD, -1.0f, 0, 0);
+                        mFaceMotionSeqMngr.setNo(FACE_NURSE_A, -1.0f, 0, 0);
+                        mMotionSeqMngr.setNo(MOT_NURSE_A, -1.0f, 0, 0);
                     }
 
                     break;
@@ -2601,16 +2963,16 @@ int daNpc_Besu_c::nurse(void* param_0) {
                     cLib_calcTimer(&field_0x1120);
                     cLib_calcTimer(&field_0x1124);
                     if (field_0x1120 == 0) {
-                        mFaceMotionSeqMngr.setNo(7, -1.0f, 0, 0);
-                        mMotionSeqMngr.setNo(13, -1.0f, 0, 0);
+                        mFaceMotionSeqMngr.setNo(FACE_NURSE_A, -1.0f, 0, 0);
+                        mMotionSeqMngr.setNo(MOT_NURSE_A, -1.0f, 0, 0);
                         field_0x1124 = 92;
                     }
                 } else if (field_0x1124) {
                     cLib_calcTimer(&field_0x1120);
                     cLib_calcTimer(&field_0x1124);
                     if (field_0x1124 == 0) {
-                        mFaceMotionSeqMngr.setNo(4, -1.0f, 0, 0);
-                        mMotionSeqMngr.setNo(14, -1.0f, 0, 0);
+                        mFaceMotionSeqMngr.setNo(FACE_MOP_A_C, -1.0f, 0, 0);
+                        mMotionSeqMngr.setNo(MOT_MOP_A_C, -1.0f, 0, 0);
                         field_0x1120 = 92;
                     }
                 }
@@ -2631,8 +2993,8 @@ int daNpc_Besu_c::giveHotWater(void* param_0) {
     switch (mMode) {
         case 0:
         case 1: {
-            mFaceMotionSeqMngr.setNo(9, -1.0f, 0, 0);
-            mMotionSeqMngr.setNo(5, -1.0f, 0, 0);
+            mFaceMotionSeqMngr.setNo(FACE_CUP_A, -1.0f, 0, 0);
+            mMotionSeqMngr.setNo(MOT_CUP_A, -1.0f, 0, 0);
             mMode = 2;
         }
         /* fallthrough */

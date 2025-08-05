@@ -218,7 +218,9 @@ public:
             if (mActorMngr[4].getActorP() == NULL) {
                 mActorMngr[4].entry(getEvtAreaTagP(17, 0));
             }
-        } else if (mMode == 1 && daNpcF_chkEvtBit(0x12E) && mActorMngr[4].getActorP() == NULL) {
+        } else if (mMode == 1
+                     /* dSv_event_flag_c::F_0302 - Kakariko Village - Saw cutscene of Shad casting spells underneat Kakariko Village */
+                  && daNpcF_chkEvtBit(0x12E) && mActorMngr[4].getActorP() == NULL) {
             mActorMngr[4].entry(getEvtAreaTagP(18, 0));
         }
     }

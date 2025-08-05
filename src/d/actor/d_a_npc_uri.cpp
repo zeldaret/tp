@@ -433,6 +433,7 @@ void daNpc_Uri_c::reset() {
         field_0xfd8 = cStack_44;
         field_0xfe4.setall(0);
         field_0xfe4.y = cLib_targetAngleY(&acStack_38, &field_0xfd8);
+            /* dSv_event_flag_c::F_0032 - Ordon Ranch - 3rd day - First convo with fado (before forced goat chase) */
         if (daNpcT_chkEvtBit(0x25)) {
             setPos(cStack_44);
             cStack_a0.y = cLib_targetAngleY(&acStack_38, &cStack_44);
@@ -445,15 +446,23 @@ void daNpc_Uri_c::reset() {
             cStack_a0.y = cLib_targetAngleY(&acStack_38, &cStack_44);
             mPath.setNextIdx(mPath.getNumPnts());
         }
-        if (daNpcT_chkEvtBit(0x20) != 0 || daNpcT_chkEvtBit(0x1e) != 0 ||
-            daNpcT_chkEvtBit(0x92) != 0)
+            /* dSv_event_flag_c::F_0027 - Ordon Village - Uli tutorial ends (same whether pass or fail) */
+        if (daNpcT_chkEvtBit(0x20)
+               /* dSv_event_flag_c::F_0025 - Ordon Village - Pass Uli's pick-up tutorial */
+            || daNpcT_chkEvtBit(0x1E)
+               /* dSv_event_flag_c::F_0048 - Ordon Village - Uli's pick-up tutorial <fail> */
+            || daNpcT_chkEvtBit(0x92) )
         {
             setPos(home.pos);
-            if (daNpcT_chkEvtBit(0x20) != 0) {
+                /* dSv_event_flag_c::F_0027 - Ordon Village - Uli tutorial ends (same whether pass or fail) */
+            if (daNpcT_chkEvtBit(0x20)) {
                 field_0x100d = 1;
 
             } else {
-                if (daNpcT_chkEvtBit(0x1e) != 0 || daNpcT_chkEvtBit(0x92) != 0) {
+                    /* dSv_event_flag_c::F_0025 - Ordon Village - Pass Uli's pick-up tutorial */
+                if (daNpcT_chkEvtBit(0x1E)
+                       /* dSv_event_flag_c::F_0048 - Ordon Village - Uli's pick-up tutorial <fail> */
+                    || daNpcT_chkEvtBit(0x92)) {
                     field_0x100f = 1;
                 }
             }
@@ -469,7 +478,9 @@ void daNpc_Uri_c::reset() {
         break;
     }
 
+    /* T_0007 - Ordon Village - During Uli's pick-up tutorial */
     daNpcT_offTmpBit(7);
+    /* dSv_event_tmp_flag_c::GUARD_URI - Ordon Village - Rusl is guarding Uli, Ordon village night */
     dComIfGs_offTmpBit(0x1308);
     setAngle(cStack_a0);
 }
@@ -551,8 +562,13 @@ BOOL daNpc_Uri_c::checkChangeEvt() {
 
         switch (mType) {
         case TYPE_1:
-            if (!daNpcT_chkEvtBit(0x1E) && !daNpcT_chkEvtBit(0x92)) {
+                 /* dSv_event_flag_c::F_0025 - Ordon Village - Pass Uli's pick-up tutorial */
+            if (!daNpcT_chkEvtBit(0x1E)
+                    /* dSv_event_flag_c::F_0048 - Ordon Village - Uli's pick-up tutorial <fail> */
+                && !daNpcT_chkEvtBit(0x92)) {
+                     /* T_0007 - Ordon Village - During Uli's pick-up tutorial */
                 if (!daNpcT_chkTmpBit(0x7)) {
+                        /* dSv_event_flag_c::F_0031 - Ordon Village - 2nd day - Spoke to Uli bfore finding basket */
                     if (daNpcT_chkEvtBit(0x24)) {
                         mEvtNo = 4;
                     } else {
@@ -561,6 +577,7 @@ BOOL daNpc_Uri_c::checkChangeEvt() {
                     evtChange();
                     return TRUE;
                 }
+                        /* dSv_event_flag_c::F_0027 - Ordon Village - Uli tutorial ends (same whether pass or fail) */
             } else if (!daNpcT_chkEvtBit(0x20) && field_0x100b == 0) {
                 mEvtNo = 7;
                 evtChange();
@@ -568,7 +585,10 @@ BOOL daNpc_Uri_c::checkChangeEvt() {
             }
             break;
         case TYPE_4:
-            if (daNpcT_chkEvtBit(0x3D) && !daNpcT_chkEvtBit(0x14A)) {
+                /* dSv_event_flag_c::M_028 - Cutscene - [cutscene: 14] restore mountain spirit - Reuinion with Colin et al. */
+            if (daNpcT_chkEvtBit(0x3D)
+                    /* dSv_event_flag_c::F_0330 - Ordon Village - Meet again with Uli for the first time (first forced conversation) */
+                && !daNpcT_chkEvtBit(0x14A)) {
                 mEvtNo = 10;
                 evtChange();
                 return TRUE;
@@ -889,6 +909,7 @@ int daNpc_Uri_c::selectAction() {
             field_0xfc0[0] = &daNpc_Uri_c::sitWait;
         } else {
             if (field_0x100e != NULL) {
+                    /* T_0007 - Ordon Village - During Uli's pick-up tutorial */
                 if (daNpcT_chkTmpBit(7) && field_0x100f == NULL) {
                     field_0xfc0[0] = &daNpc_Uri_c::walk;
                 } else {
@@ -1159,8 +1180,11 @@ int daNpc_Uri_c::cutEndCarryTutorial(int param_1) {
                     fopAcM_createItemForPresentDemo(&current.pos, local_48, 0, -1, -1, NULL, NULL);
             }
             if (fopAcM_IsExecuting(mItemPartnerId)) {
+                /* T_0007 - Ordon Village - During Uli's pick-up tutorial */
                 daNpcT_offTmpBit(7);
+                /* dSv_event_tmp_flag_c::T_0009 - Ordon Village - Walked a bit during Uli's pick-up tutorial */
                 daNpcT_offTmpBit(10);
+                /* dSv_event_tmp_flag_c::T_0031 - Ordon Village - Borrow Rusl's sword */
                 daNpcT_offTmpBit(0x20);
                 field_0x100b = 1;
                 mEvtNo = 1;
@@ -1255,7 +1279,7 @@ int daNpc_Uri_c::cutFindWolf(int param_1) {
             mGndChk.SetPos(&cStack_2c);
             cStack_2c.y = dComIfG_Bgsp().GroundCross(&mGndChk);
             daPy_getPlayerActorClass()->setPlayerPosAndAngle(&cStack_2c, sVar9 - (s16)0x8000, 0);
-            // GUARD_URI
+            /* dSv_event_tmp_flag_c::GUARD_URI - Ordon Village - Rusl is guarding Uli, Ordon village night */
             dComIfGs_onTmpBit(0x1308);
             break;
         case 1:
@@ -1310,6 +1334,7 @@ int daNpc_Uri_c::cutMeetingAgain(int param_1) {
         switch (iVar10) {
         case 0:
             mJntAnm.lookPlayer(0);
+            /* dSv_event_tmp_flag_c::T_0010 - General use - General use temporary flag (flow control) A */
             daNpcT_offTmpBit(0xB);
             initTalk(mFlowNodeNo, NULL);
             break;
@@ -1432,7 +1457,10 @@ int daNpc_Uri_c::wait(void* param_0) {
                     mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
                 } else {
                     if (field_0x100f) {
-                        if (!daNpcT_chkEvtBit(0x1e) && !daNpcT_chkEvtBit(0x92)) {
+                             /* dSv_event_flag_c::F_0025 - Ordon Village - Pass Uli's pick-up tutorial */
+                        if (!daNpcT_chkEvtBit(0x1E)
+                                /* dSv_event_flag_c::F_0048 - Ordon Village - Uli's pick-up tutorial <fail> */
+                            && !daNpcT_chkEvtBit(0x92)) {
                             mFaceMotionSeqMngr.setNo(17, -1.0f, 0, 0);
                             mMotionSeqMngr.setNo(8, -1.0f, 0, 0);
                         } else {
@@ -1440,6 +1468,7 @@ int daNpc_Uri_c::wait(void* param_0) {
                             mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
                         }
                     } else {
+                            /* dSv_event_flag_c::F_0031 - Ordon Village - 2nd day - Spoke to Uli bfore finding basket */
                         if (daNpcT_chkEvtBit(0x24)) {
                             mFaceMotionSeqMngr.setNo(5, -1.0f, 0, 0);
                             mMotionSeqMngr.setNo(12, -1.0f, 0, 0);
@@ -1451,6 +1480,7 @@ int daNpc_Uri_c::wait(void* param_0) {
                 }
                 break;
             case TYPE_3:
+                    /* dSv_event_tmp_flag_c::GUARD_URI - Ordon Village - Rusl is guarding Uli, Ordon village night */
                 if (dComIfGs_isTmpBit(0x1308)) {
                     mFaceMotionSeqMngr.setNo(12, -1.0f, 0, 0);
                     mMotionSeqMngr.setNo(22, -1.0f, 0, 0);
@@ -1468,6 +1498,7 @@ int daNpc_Uri_c::wait(void* param_0) {
     case MODE_RUN:
         switch (mType) {
         case TYPE_1:
+                /* T_0007 - Ordon Village - During Uli's pick-up tutorial */
             if (daNpcT_chkTmpBit(0x7)) {
                 if (chkPlayerCarryBasket()) {
                     switch (getTutorialCond(daPy_getPlayerActorClass()->current.pos)) {
@@ -1483,7 +1514,10 @@ int daNpc_Uri_c::wait(void* param_0) {
                     }
                 }
             } else {
-                if (!daNpcT_chkEvtBit(0x1e) && !daNpcT_chkEvtBit(0x92)) {
+                     /* dSv_event_flag_c::F_0025 - Ordon Village - Pass Uli's pick-up tutorial */
+                if (!daNpcT_chkEvtBit(0x1E)
+                        /* dSv_event_flag_c::F_0048 - Ordon Village - Uli's pick-up tutorial <fail> */
+                    && !daNpcT_chkEvtBit(0x92)) {
                     cXyz acStack_70 = getAttnPos(daPy_getPlayerActorClass());
                     int dist_index = attention_info.distances[1];
                     f32 fVar2 = dComIfGp_getAttention()->getDistTable(dist_index).mLowerY * -1.0f;
@@ -1504,7 +1538,8 @@ int daNpc_Uri_c::wait(void* param_0) {
         case TYPE_2:
             break;
         case TYPE_3:
-            if (daNpcT_chkEvtBit(0xcd)) {
+                /* dSv_event_flag_c::F_0205 - Ordon Village - Heard Rusl and Uli talking in Ordon village at night */
+            if (daNpcT_chkEvtBit(0xCD)) {
                 cXyz cStack_7c = getAttnPos(daPy_getPlayerActorClass());
                 if (chkPointInArea(cStack_7c, attention_info.position,
                                    daNpc_Uri_Param_c::m.field_0x54, daNpc_Uri_Param_c::m.field_0x58,
@@ -1531,6 +1566,7 @@ int daNpc_Uri_c::wait(void* param_0) {
                 mSpeakEvent = true;
                 field_0xe33 = true;
             }
+                /* dSv_event_tmp_flag_c::GUARD_URI - Ordon Village - Rusl is guarding Uli, Ordon village night */
             if (dComIfGs_isTmpBit(0x1308)) {
                 mPlayerActorMngr.entry(daPy_getPlayerActorClass());
                 mJntAnm.lookPlayer(0);
@@ -1729,7 +1765,13 @@ int daNpc_Uri_c::sitWait(void* param_0) {
                 }
                 break;
             case TYPE_4:
-                if (daNpcT_chkEvtBit(0x3D) && (daNpcT_chkEvtBit(0x14a) || daNpcT_chkEvtBit(0x204)))
+                    /* dSv_event_flag_c::M_028 - Cutscene - [cutscene: 14] restore mountain spirit - Reuinion with Colin et al. */
+                if (daNpcT_chkEvtBit(0x3D)
+                        /* dSv_event_flag_c::F_0330 - Ordon Village - Meet again with Uli for the first time 
+                                                                      (first forced conversation) */
+                    && (daNpcT_chkEvtBit(0x14A)
+                           /* dSv_event_flag_c::F_0516 - Ordon Village - Told Uli directly about having found kids */
+                        || daNpcT_chkEvtBit(0x204)))
                 {
                     mFaceMotionSeqMngr.setNo(17, -1.0f, 0, 0);
                     mMotionSeqMngr.setNo(3, -1.0f, 0, 0);
@@ -1742,7 +1784,9 @@ int daNpc_Uri_c::sitWait(void* param_0) {
             mMode = MODE_RUN;
         }
     case MODE_RUN:
-        if (mType == TYPE_4 && !daNpcT_chkEvtBit(0x14a)) {
+                                /* dSv_event_flag_c::F_0330 - Ordon Village - Meet again with Uli for the first time 
+                                                                              (first forced conversation) */
+        if (mType == TYPE_4 && !daNpcT_chkEvtBit(0x14A)) {
             mSpeakEvent = true;
             field_0xe33 = true;
         }
