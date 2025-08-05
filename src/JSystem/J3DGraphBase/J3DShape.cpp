@@ -110,8 +110,8 @@ void J3DShape::calcNBTScale(Vec const& param_0, f32 (*param_1)[3][3], f32 (*para
 }
 
 /* 80314E28-80314E98 30F768 0070+00 0/0 1/1 0/0 .text            countBumpMtxNum__8J3DShapeCFv */
-u32 J3DShape::countBumpMtxNum() const {
-    u32 num = 0;
+u16 J3DShape::countBumpMtxNum() const {
+    u16 num = 0;
     for (u16 i = 0; i < mMtxGroupNum; i++)
         num += mShapeMtx[i]->getUseMtxNum();
     return num;

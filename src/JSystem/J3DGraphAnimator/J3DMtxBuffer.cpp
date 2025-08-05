@@ -21,6 +21,15 @@ Mtx* J3DMtxBuffer::sNoUseDrawMtxPtr = &J3DMtxBuffer::sNoUseDrawMtx;
 /* 80450974-80450978 -00001 0004+00 1/1 0/0 0/0 .sdata           sNoUseNrmMtxPtr__12J3DMtxBuffer */
 Mtx33* J3DMtxBuffer::sNoUseNrmMtxPtr = &J3DMtxBuffer::sNoUseNrmMtx;
 
+// force .sdata2 order
+f32 dummy1() {
+    return 1.0f;
+}
+
+f32 dummy0() {
+    return 0.0f;
+}
+
 /* 80326214-80326258 320B54 0044+00 0/0 1/1 0/0 .text            initialize__12J3DMtxBufferFv */
 void J3DMtxBuffer::initialize() {
     mJointTree = NULL;

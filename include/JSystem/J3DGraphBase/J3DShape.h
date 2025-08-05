@@ -96,7 +96,7 @@ public:
     /* 80314BB8 */ void addTexMtxIndexInDL(_GXAttr, u32);
     /* 80314CBC */ void addTexMtxIndexInVcd(_GXAttr);
     /* 80314DA8 */ void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
-    /* 80314E28 */ u32 countBumpMtxNum() const;
+    /* 80314E28 */ u16 countBumpMtxNum() const;
     /* 80314EEC */ void loadVtxArray() const;
     /* 80314F5C */ bool isSameVcdVatCmd(J3DShape*);
     /* 80314F98 */ void makeVtxArrayCmd();
@@ -188,8 +188,8 @@ public:
 
     /* 80314798 */ virtual ~J3DShapeMtx() {}
     /* 803147E0 */ virtual u32 getType() const { return 'SMTX'; }
-    /* 80273E08 */ virtual u32 getUseMtxNum() const { return 1; }
-    /* 8031459C */ virtual u32 getUseMtxIndex(u16) const { return mUseMtxIndex; }
+    /* 80273E08 */ virtual u16 getUseMtxNum() const { return 1; }
+    /* 8031459C */ virtual u16 getUseMtxIndex(u16) const { return mUseMtxIndex; }
     /* 80313B94 */ virtual void load() const;
     /* 80313BF0 */ virtual void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
 

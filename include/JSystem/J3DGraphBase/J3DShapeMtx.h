@@ -13,9 +13,15 @@ class J3DTexGenBlock;
  */
 class J3DTexMtxObj {
 public:
-    Mtx& getMtx(u16 idx) { return mpTexMtx[idx]; }
-    Mtx44& getEffectMtx(u16 idx) { return mpEffectMtx[idx]; }
-    u16 getNumTexMtx() { return mTexMtxNum; }
+    Mtx& getMtx(u16 idx) {
+        J3D_ASSERT(0x113, idx <= mTexMtxNum, "Error : range over");
+        return mpTexMtx[idx];
+    }
+    Mtx44& getEffectMtx(u16 idx) {
+        J3D_ASSERT(0x125, idx <= mTexMtxNum, "Error : range over");
+        return mpEffectMtx[idx];
+    }
+    u16 getNumTexMtx() const { return mTexMtxNum; }
     void setMtx(u16 idx, Mtx const* mtx) { MTXCopy(*mtx, mpTexMtx[idx]); }
 
     /* 0x00 */ Mtx* mpTexMtx;
@@ -114,8 +120,8 @@ public:
 
     /* 803146B0 */ virtual ~J3DShapeMtxMulti() {}
     /* 803147E0 */ virtual u32 getType() const { return 'SMML'; }
-    /* 80273E08 */ virtual u32 getUseMtxNum() const { return mUseMtxNum; }
-    /* 8031459C */ virtual u32 getUseMtxIndex(u16 no) const { return mUseMtxIndexTable[no]; }
+    /* 80273E08 */ virtual u16 getUseMtxNum() const { return mUseMtxNum; }
+    /* 8031459C */ virtual u16 getUseMtxIndex(u16 no) const { return mUseMtxIndexTable[no]; }
     /* 80313E4C */ virtual void load() const;
     /* 80313EEC */ virtual void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
 
@@ -138,8 +144,8 @@ public:
 
     /* 8031461C */ virtual ~J3DShapeMtxMultiConcatView() {}
     /* 803147E0 */ virtual u32 getType() const { return 'SMMC'; }
-    /* 80273E08 */ virtual u32 getUseMtxNum() const { return mUseMtxNum; }
-    /* 8031459C */ virtual u32 getUseMtxIndex(u16 no) const { return mUseMtxIndexTable[no]; }
+    /* 80273E08 */ virtual u16 getUseMtxNum() const { return mUseMtxNum; }
+    /* 8031459C */ virtual u16 getUseMtxIndex(u16 no) const { return mUseMtxIndexTable[no]; }
     /* 80313FA4 */ virtual void load() const;
     /* 803146AC */ virtual void loadNrmMtx(int, u16) const {}
     /* 8031419C */ virtual void loadNrmMtx(int, u16, f32 (*)[4]) const;

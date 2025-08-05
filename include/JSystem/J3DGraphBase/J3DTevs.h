@@ -69,6 +69,7 @@ struct J3DTevStage {
         setTevStageInfo(j3dDefaultTevStageInfo);
         setTevSwapModeInfo(j3dDefaultTevSwapMode);
     }
+
     void setTevColorOp(u8 param_1, u8 param_2, u8 param_3, u8 param_4, u8 param_5) {
         mTevColorOp = mTevColorOp & ~(0x01 << 2) | param_1 << 2;
         if (param_1 <= 1) {
@@ -128,10 +129,16 @@ struct J3DTevStage {
         setTexSel(param_0.mTexSel);
         setRasSel(param_0.mRasSel);
     }
+
+    void setStageNo(u32 param_0) {
+        field_0x0 = 0xC0 + param_0 * 2;
+        field_0x4 = 0xC1 + param_0 * 2;
+    }
+
     void setRasSel(u8 ras_sel) { mTevSwapModeInfo = (mTevSwapModeInfo & ~3) | ras_sel; }
     void setTexSel(u8 tex_sel) { mTevSwapModeInfo = (mTevSwapModeInfo & ~0xc) | (tex_sel << 2); }
 
-    void load(u32 param_1) {
+    void load(u32 param_1) const {
         J3DGDWriteBPCmd(*(u32*)&field_0x0);
         J3DGDWriteBPCmd(*(u32*)&field_0x4);
     }
@@ -203,7 +210,7 @@ struct J3DIndTevStage {
     void setLod(u8 lod) { mInfo = (mInfo & ~0x80000) | (lod << 19); }
     void setAlphaSel(u8 alphaSel) { mInfo = (mInfo & ~0x180) | (alphaSel << 7); }
 
-    void load(u32 param_1) {
+    void load(u32 param_1) const {
         J3DGDWriteBPCmd(mInfo | (param_1 + 0x10) * 0x1000000);
     }
 
@@ -251,14 +258,20 @@ struct J3DTevSwapModeTable {
     J3DTevSwapModeTable(J3DTevSwapModeTableInfo const& info) {
         mIdx = calcTevSwapTableID(info.field_0x0, info.field_0x1, info.field_0x2, info.field_0x3);
     }
+
+    J3DTevSwapModeTable& operator=(const J3DTevSwapModeTable& rhs) {
+        mIdx = rhs.mIdx;
+        return *this;
+    }
+
     u8 calcTevSwapTableID(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
         return 0x40 * param_0 + 0x10 * param_1 + 4 * param_2 + param_3;
     }
 
-    u8 getR() { return j3dTevSwapTableTable[mIdx * 4]; }
-    u8 getG() { return j3dTevSwapTableTable[mIdx * 4 + 1]; }
-    u8 getB() { return j3dTevSwapTableTable[mIdx * 4 + 2]; }
-    u8 getA() { return j3dTevSwapTableTable[mIdx * 4 + 3]; }
+    u8 getR() const { return *(&j3dTevSwapTableTable[mIdx * 4] + 0); }
+    u8 getG() const { return *(&j3dTevSwapTableTable[mIdx * 4] + 1); }
+    u8 getB() const { return *(&j3dTevSwapTableTable[mIdx * 4] + 2); }
+    u8 getA() const { return *(&j3dTevSwapTableTable[mIdx * 4] + 3); }
 
     /* 0x0 */ u8 mIdx;
 };  // Size: 0x1
