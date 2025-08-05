@@ -14,6 +14,48 @@
 #include "c/c_damagereaction.h"
 #include "Z2AudioLib/Z2Instances.h"
 
+enum E_gob_RES_file_ID {
+    /* BCK */
+    /* 0x04 */ BCK_MG_ATTACK_A_A = 0x4,
+    /* 0x05 */ BCK_MG_ATTACK_A_B,
+    /* 0x06 */ BCK_MG_ATTACK_A_C,
+    /* 0x07 */ BCK_MG_ATTACK_B_A,
+    /* 0x08 */ BCK_MG_ATTACK_B_B,
+    /* 0x09 */ BCK_MG_ATTACK_B_C,
+    /* 0x0A */ BCK_MG_BALL,
+    /* 0x0B */ BCK_MG_CUR,
+    /* 0x0C */ BCK_MG_DAMAGE_L,
+    /* 0x0D */ BCK_MG_DAMAGE_R,
+    /* 0x0E */ BCK_MG_DEFENSE_A,
+    /* 0x0F */ BCK_MG_DEFENSE_B,
+    /* 0x10 */ BCK_MG_DEFENSE_C,
+    /* 0x11 */ BCK_MG_DE_GETUP,
+    /* 0x12 */ BCK_MG_DE_GETUPWAIT,
+    /* 0x13 */ BCK_MG_DE_JUMP_A,
+    /* 0x14 */ BCK_MG_DE_JUMP_B,
+    /* 0x15 */ BCK_MG_DE_LANDING,
+    /* 0x16 */ BCK_MG_DE_SITWAIT,
+    /* 0x17 */ BCK_MG_DE_STANDUP_ED,
+    /* 0x18 */ BCK_MG_DE_STANDUP_ST,
+    /* 0x19 */ BCK_MG_DE_TALK_ST,
+    /* 0x1A */ BCK_MG_EXCITE,
+    /* 0x1B */ BCK_MG_FIRE,
+    /* 0x1C */ BCK_MG_HOLD,
+    /* 0x1D */ BCK_MG_LANDING,
+    /* 0x1E */ BCK_MG_N_STEP,
+    /* 0x1F */ BCK_MG_N_TALK,
+    /* 0x20 */ BCK_MG_SHIELD,
+    /* 0x21 */ BCK_MG_STAND,
+    /* 0x22 */ BCK_MG_ST_WAIT,
+    /* 0x23 */ BCK_MG_ST_WALK,
+    /* 0x24 */ BCK_MG_WAIT,
+    /* 0x25 */ BCK_MG_WALK,
+
+    /* BMDR */
+    /* 0x29 */ BMDR_MG = 0x29,
+    /* 0x2A */ BMDR_MG_MET,
+};
+
 enum daE_GOB_ACTION {
     ACTION_S_SET,
     ACTION_START,
@@ -658,7 +700,7 @@ static void damage(e_gob_class* i_this) {
         i_this->mAction = ACTION_BALL;
         i_this->mMode = 0;
         i_this->mDamageInvulnerabilityTimer = 30;
-        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[672]);
+        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[672]); // dSv_event_flag_c::F_0672 - Goron Mines - First time seeing magnet goron tumbling
     }
 
     cLib_addCalc2(&actor->speedF, speed_target, 1.0f, 2.0f);
@@ -1358,7 +1400,7 @@ static void action(e_gob_class* i_this) {
         i_this->mAction = ACTION_JUMP;
         i_this->mMode = 0;
         i_this->field_0x6d6 = 0;
-        dComIfGs_onEventBit((u16)dSv_event_flag_c::saveBitLabels[671]);
+        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[671]); // dSv_event_flag_c::F_0671 - Goron Mines - Through magnet goron into lava once
 
         i_this->field_0x6d8++;
         OS_REPORT("//////////////E_GOB DOWN CT %d\n", i_this->field_0x6d8);
@@ -2250,8 +2292,8 @@ static int daE_GOB_Create(fopAc_ac_c* i_this) {
         }
 
         dComIfGs_onZoneSwitch(5, -1);
-        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[671]);
-        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[672]);
+        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[671]); // dSv_event_flag_c::F_0671 - Goron Mines - Through magnet goron into lava once
+        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[672]); // dSv_event_flag_c::F_0672 - Goron Mines - First time seeing magnet goron tumbling
         daE_GOB_Execute(a_this);
     }
 
