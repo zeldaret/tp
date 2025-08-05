@@ -13,6 +13,9 @@
  */
 class daNpc_Kolin_c : public daNpcT_c {
 public:
+    typedef int (daNpc_Kolin_c::*cutFunc)(int);
+    typedef int (daNpc_Kolin_c::*actionFunc)(void*);
+
     /* 80553FEC */ ~daNpc_Kolin_c();
     /* 80554138 */ void create();
     /* 80554414 */ void CreateHeap();
@@ -31,16 +34,16 @@ public:
     /* 80555FFC */ void calcFollowSpeedAndAngle(fopAc_ac_c*, int, int);
     /* 805563BC */ void followPlayer(int);
     /* 805567AC */ void lookup(u8);
-    /* 805568AC */ void cutNoRide(int);
-    /* 80556A04 */ void cutHail(int);
-    /* 80556DB4 */ void cutGiveMeWoodSwd(int);
-    /* 80557054 */ void cutGetWoodSwd(int);
-    /* 805576C4 */ void cutConversationAboutLoopHole(int);
-    /* 805579DC */ void cutCacaricoConversation(int);
-    /* 80557BD4 */ void cutConversationAboutDeathMt(int);
-    /* 80557C6C */ void cutConversationAboutGoron(int);
-    /* 80557D04 */ void cutClothTry(int);
-    /* 80557E38 */ void cutThankYou(int);
+    /* 805568AC */ int cutNoRide(int);
+    /* 80556A04 */ int cutHail(int);
+    /* 80556DB4 */ int cutGiveMeWoodSwd(int);
+    /* 80557054 */ int cutGetWoodSwd(int);
+    /* 805576C4 */ int cutConversationAboutLoopHole(int);
+    /* 805579DC */ int cutCacaricoConversation(int);
+    /* 80557BD4 */ int cutConversationAboutDeathMt(int);
+    /* 80557C6C */ int cutConversationAboutGoron(int);
+    /* 80557D04 */ int cutClothTry(int);
+    /* 80557E38 */ int cutThankYou(int);
     /* 80557ED8 */ void wait(void*);
     /* 80558698 */ void timidWalk(void*);
     /* 80558AF8 */ void follow(void*);
@@ -74,8 +77,8 @@ public:
     /* 80555DC4 */ virtual void changeAnm(int*, int*);
     /* 80555DEC */ virtual void changeBck(int*, int*);
 
-    static void* mCutNameList[11];
-    static u8 mCutList[132];
+    static char* mCutNameList[11];
+    static cutFunc mCutList[11];
 
     BOOL orderNoRideEvt() {
         if (field_0xf84 == 11) {
@@ -103,9 +106,19 @@ public:
     }
 
 private:
-    /* 0x0E40 */ u8 field_0xe40[0xF84 - 0xE40];
+    /* 0x0E40 */ u8 field_0xe40[0xe44 - 0xE40];
+    /* 0x0E44 */ J3DModel* field_0xe44;
+    /* 0x0E48 */ dCcD_Cyl field_0xe48;
     /* 0x0F84 */ u8 field_0xf84;
-    /* 0x0F85 */ u8 field_0xf85[0x1020 - 0xF85];
+    /* 0x0F85 */ u8 field_0xf85[0xf88 - 0xf85];
+    /* 0x0F88 */ daNpcT_ActorMngr_c mActorMngr[5];
+    /* 0x0FB0 */ daNpcT_Path_c mPath;
+    /* 0x0FD8 */ u8 field_0xfd8[0x1004 - 0xfd8];
+    /* 0x1004 */ int field_0x1004;
+    /* 0x1008 */ int field_0x1008;
+    /* 0x100C */ u8 field_0x100c[0x1010 - 0x100c];
+    /* 0x1010 */ f32 field_0x1010;
+    /* 0x1014 */ u8 field_0x1014[0x1020 - 0x1014];
 };
 
 STATIC_ASSERT(sizeof(daNpc_Kolin_c) == 0x1020);
