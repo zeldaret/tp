@@ -208,7 +208,7 @@ private:
     /* 0xDDC */ ActionFn mAction;
     /* 0xDE8 */ request_of_phase_process_class mPhase[2];
     /* 0xDF8 */ fpc_ProcID field_0xdf8;
-    /* 0xDFC */ fpc_ProcID field_0xdfc;
+    /* 0xDFC */ int field_0xdfc;
     /* 0xE00 */ int field_0xe00;
     /* 0xE04 */ s16 mMsgNo;
     /* 0xE06 */ s16 mLookMode;

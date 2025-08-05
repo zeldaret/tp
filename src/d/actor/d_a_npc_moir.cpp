@@ -492,7 +492,7 @@ int daNpcMoiR_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
 /* 80A7D0CC-80A7D0EC 00104C 0020+00 1/1 0/0 0/0 .text            createHeapCallBack__11daNpcMoiR_cFP10fopAc_ac_c */
 int daNpcMoiR_c::createHeapCallBack(fopAc_ac_c* a_this) {
     daNpcMoiR_c* i_this = (daNpcMoiR_c*)a_this;
-    i_this->CreateHeap();
+    return i_this->CreateHeap();
 }
 
 /* 80A7D0EC-80A7D138 00106C 004C+00 1/1 0/0 0/0 .text            ctrlJointCallBack__11daNpcMoiR_cFP8J3DJointi */
@@ -664,7 +664,7 @@ void daNpcMoiR_c::reset() {
         mActorMngr[i].initialize();
     }
 
-    field_0xdfc = cPhs_INIT_e;
+    field_0xdfc = 0;
     field_0xe00 = 0;
     mAction = NULL;
     mLookMode = -1;
@@ -1043,9 +1043,9 @@ bool daNpcMoiR_c::wait_type0(void* param_1) {
             }
 
             if (mActorMngr[0].getActorP() != NULL) {
-                setLookMode(2);
+                setLookMode(LOOK_PLAYER);
             } else {
-                setLookMode(0);
+                setLookMode(LOOK_NONE);
             }
 
             if (dComIfGp_event_runCheck()) {
@@ -1129,9 +1129,9 @@ bool daNpcMoiR_c::wait_type1(void* param_1) {
             }
 
             if (mActorMngr[0].getActorP() != NULL) {
-                setLookMode(2);
+                setLookMode(LOOK_PLAYER);
             } else {
-                setLookMode(0);
+                setLookMode(LOOK_NONE);
             }
 
             if (mOrderEvtNo == 0 && home.angle.y != mCurAngle.y && step(home.angle.y, 1)) {
@@ -1212,7 +1212,7 @@ bool daNpcMoiR_c::wait_type2(void* param_1) {
             mTurnMode = 0;
             speedF = 0.0f;
             mActorMngr[0].entry(daPy_getPlayerActorClass());
-            setLookMode(0);
+            setLookMode(LOOK_NONE);
             field_0xe08 = 2;
             break;
 
@@ -1287,8 +1287,8 @@ BOOL daNpcMoiR_c::multiTalk(void* param_1) {
             initTalk(mMsgNo, NULL);
             mMsgTimer = 0;
 
-            if (mLookMode != 0) {
-                mLookMode = 0;
+            if (mLookMode != LOOK_NONE) {
+                mLookMode = LOOK_NONE;
             }
 
             field_0xe08 = 2;
@@ -1358,7 +1358,7 @@ bool daNpcMoiR_c::talk(void* param_1) {
             mTurnMode = 0;
             mMsgTimer = 0;
             speedF = 0.0f;
-            setLookMode(3);
+            setLookMode(LOOK_PLAYER_TALK);
             field_0xe08 = 2;
             break;
 
@@ -1431,7 +1431,7 @@ bool daNpcMoiR_c::fight(void* param_1) {
             setExpression(EXPR_F_SURPRISED, -1.0f);
             setMotion(MOT_SURPRISED, -1.0f, 0);
             mSound.startCreatureVoice(Z2SE_MOIR_V_WOLF_SURPRISE, -1);
-            setLookMode(2);
+            setLookMode(LOOK_PLAYER);
             mTurnMode = 0;
             field_0xe08 = 2;
             break;
@@ -1593,11 +1593,11 @@ BOOL daNpcMoiR_c::EvCut_Introduction(int i_cutIndex) {
         switch (*prm) {
             case 0:
             case 2:
-                setLookMode(0);
+                setLookMode(LOOK_NONE);
                 return TRUE;
 
             case 1:
-                setLookMode(2);
+                setLookMode(LOOK_PLAYER);
                 return TRUE;
 
             default:
@@ -1691,13 +1691,13 @@ BOOL daNpcMoiR_c::EvCut_Appear2(int i_cutIndex) {
         switch (*cutName) {
             case '0001':
             case '0005':
-                setLookMode(3);
+                setLookMode(LOOK_PLAYER_TALK);
                 initTalk(mMsgNo, NULL);
                 mMsgTimer = 0;
                 break;
 
             case '0002':
-                setLookMode(0);
+                setLookMode(LOOK_NONE);
                 break;
 
             case '0003':
