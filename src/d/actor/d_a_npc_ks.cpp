@@ -220,13 +220,13 @@ static int daNpc_Ks_Draw(npc_ks_class* npc_ks) {
     npc_ks->mpModelMorf->entryDL();
 
     if (npc_ks->field_0xc17 != 0) {
-        g_env_light.setLightTevColorType_MAJI(npc_ks->field_0xc00, &a_this->tevStr);
-        mDoExt_modelUpdateDL(npc_ks->field_0xc00);
+        g_env_light.setLightTevColorType_MAJI(npc_ks->mpStickModel, &a_this->tevStr);
+        mDoExt_modelUpdateDL(npc_ks->mpStickModel);
     }
 
-    if (npc_ks->field_0xbfc != NULL) {
-        g_env_light.setLightTevColorType_MAJI(npc_ks->field_0xbfc, &a_this->tevStr);
-        mDoExt_modelUpdateDL(npc_ks->field_0xbfc);
+    if (npc_ks->mpRoseModel != NULL) {
+        g_env_light.setLightTevColorType_MAJI(npc_ks->mpRoseModel, &a_this->tevStr);
+        mDoExt_modelUpdateDL(npc_ks->mpRoseModel);
     }
 
     cXyz sp28;
@@ -235,7 +235,7 @@ static int daNpc_Ks_Draw(npc_ks_class* npc_ks) {
                                             npc_ks->mObjAcch.GetGroundH(), npc_ks->mObjAcch.m_gnd, &a_this->tevStr,
                                             0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
     if (npc_ks->field_0xc17 != 0) {
-        dComIfGd_addRealShadow(npc_ks->mShadowKey, npc_ks->field_0xc00);
+        dComIfGd_addRealShadow(npc_ks->mShadowKey, npc_ks->mpStickModel);
     }
 
     return 1;
@@ -3052,6 +3052,7 @@ static void demo_camera(npc_ks_class* i_this) {
             i_this->field_0xb84.y = std::fabsf(i_this->field_0xb6c.y - i_this->field_0xb60.y);
             i_this->field_0xb84.z = std::fabsf(i_this->field_0xb6c.z - i_this->field_0xb60.z);
             i_this->field_0xbc4 = 0.0f;
+            /* dSv_event_flag_c::F_0224 - Faron Woods - Flag for lantern guide monkey cutscene */
             dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0xE0]);
             // fallthrough
         case 201:
@@ -3208,7 +3209,8 @@ static void demo_camera(npc_ks_class* i_this) {
                 i_this->field_0xb42 = 100;
                 i_this->mMode = 302;
                 anm_init(i_this, 51, 5.0f, 2, 1.0f);
-                dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0xe1]);
+                /* dSv_event_flag_c::F_0225 - Faron Woods - Lanter guide monkey doesn't come out a second time */
+                dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0xE1]);
                 dComIfGs_offSwitch(61, fopAcM_GetRoomNo(a_this));
             }
             break;
@@ -3283,6 +3285,7 @@ static void demo_camera(npc_ks_class* i_this) {
             if (i_this->field_0xb44 == 230) {
                 i_this->field_0xb42 = 100;
                 fpcM_Search(s_fsdown_sub, i_this);
+                /* dSv_event_flag_c::F_0544 - Faron Woods - Watched cutscene of monkey girl running away after being attacked by puppet */
                 dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x220]);
             }
             break;
@@ -5465,7 +5468,9 @@ static int npc_ks_mori(npc_ks_class* i_this) {
 
     switch (i_this->mMode) {
         case 0:
+                /* dSv_event_flag_c::F_0225 - Faron Woods - Lanter guide monkey doesn't come out a second time */
             if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[225])) {
+                     /* dSv_event_flag_c::F_0226 - Faron Woods - Get lantern back from monkey */
                 if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[226])) {
                     i_this->mMode = 302;
                     i_this->field_0xc17 = 3;
@@ -5473,6 +5478,7 @@ static int npc_ks_mori(npc_ks_class* i_this) {
                 }
             } else {
                 i_this->field_0xaec = 1;
+                    /* dSv_event_flag_c::F_0224 - Faron Woods - Flag for lantern guide monkey cutscene */
                 if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[224])) {
                     i_this->mMode = 3;
                     call_pt = 0;
@@ -5996,6 +6002,7 @@ static void npc_ks_kago(npc_ks_class* i_this) {
     cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->field_0x5c8, 2, 0x2000);
     i_this->field_0xaec = 0;
 
+        /* dSv_event_flag_c::F_0577 - Ordon Village - 2nd Day - Retrieved basket from monkey (hit hawk) */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x241])) {
         fopAcM_delete(a_this);
     }
@@ -6568,7 +6575,7 @@ static void* s_kago_sub(void* i_actor, void* i_data) {
 static void kantera_sub(npc_ks_class* i_this) {
     fopAc_ac_c* a_this = &i_this->actor;
     MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(14), mDoMtx_stack_c::get());
-    i_this->field_0xc00->setBaseTRMtx(mDoMtx_stack_c::get());
+    i_this->mpStickModel->setBaseTRMtx(mDoMtx_stack_c::get());
 
 #if VERSION == VERSION_SHIELD_DEBUG
     #define KANTERA_SUB_BIT 0x80UL
@@ -6730,8 +6737,8 @@ static int daNpc_Ks_Execute(npc_ks_class* i_this) {
         }
     }
 
-    if (i_this->field_0xbfc != NULL) {
-        i_this->field_0xbfc->setBaseTRMtx(i_this->mpModelMorf->getModel()->getAnmMtx(4));
+    if (i_this->mpRoseModel != NULL) {
+        i_this->mpRoseModel->setBaseTRMtx(i_this->mpModelMorf->getModel()->getAnmMtx(4));
     }
 
     kantera_sub(i_this);
@@ -6856,8 +6863,8 @@ static int daNpc_Ks_Delete(npc_ks_class* i_this) {
 static int useHeapInit(fopAc_ac_c* a_this) {
     npc_ks_class* i_this = (npc_ks_class*)a_this;
 
-    i_this->mpModelMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes(i_this->mResName, 59), NULL, NULL, 
-                                               (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, 51), 0, 1.0f, 0, -1, 
+    i_this->mpModelMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes(i_this->mResName, npc_ks_class::BMDR_SARU), NULL, NULL, 
+                                               (J3DAnmTransform*)dComIfG_getObjectRes(i_this->mResName, npc_ks_class::BCK_SARU_WAIT_A), 0, 1.0f, 0, -1, 
                                                &i_this->mSound, 0x80000, 0x11020084);
     if (i_this->mpModelMorf == NULL || i_this->mpModelMorf->getModel() == NULL) {
         return 0;
@@ -6874,7 +6881,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
         return 0;
     }
     if (i_this->mBtp1->init(i_this->mpModelMorf->getModel()->getModelData(), 
-                            (J3DAnmTexPattern*)dComIfG_getObjectRes(i_this->mResName, 64), 1, 0, 1.0f, 0, -1) == 0) {
+                            (J3DAnmTexPattern*)dComIfG_getObjectRes(i_this->mResName, npc_ks_class::BTP_SARU), 1, 0, 1.0f, 0, -1) == 0) {
         return 0;
     }
 
@@ -6883,22 +6890,22 @@ static int useHeapInit(fopAc_ac_c* a_this) {
         return 0;
     }
     if (i_this->mBtp2->init(i_this->mpModelMorf->getModel()->getModelData(), 
-                            (J3DAnmTexPattern*)dComIfG_getObjectRes(i_this->mResName, 65), 1, 2, 1.0f, 0, -1) == 0) {
+                            (J3DAnmTexPattern*)dComIfG_getObjectRes(i_this->mResName, npc_ks_class::BTP_SARU_RELIEF), 1, 2, 1.0f, 0, -1) == 0) {
         return 0;
     }
 
-    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(i_this->mResName, 61);
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(i_this->mResName, npc_ks_class::BMDR_SARU_STICK);
     JUT_ASSERT(10232, modelData != 0);
-    i_this->field_0xc00 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
-    if (i_this->field_0xc00 == NULL) {
+    i_this->mpStickModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+    if (i_this->mpStickModel == NULL) {
         return 0;
     }
 
     if (i_this->mRoomMonkeyID == 0 || i_this->mRoomMonkeyID == 10 || i_this->mRoomMonkeyID == 20 || i_this->mRoomMonkeyID == 21 || i_this->mRoomMonkeyID == 22) {
-        modelData = (J3DModelData*)dComIfG_getObjectRes(i_this->mResName, 60);
+        modelData = (J3DModelData*)dComIfG_getObjectRes(i_this->mResName, npc_ks_class::BMDR_SARU_BARA);
         JUT_ASSERT(10249, modelData != 0);
-        i_this->field_0xbfc = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
-        if (i_this->field_0xbfc == NULL) {
+        i_this->mpRoseModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+        if (i_this->mpRoseModel == NULL) {
             return 0;
         }
     }
@@ -7321,7 +7328,11 @@ static int daNpc_Ks_Create(fopAc_ac_c* a_this) {
             i_this->mRoomMonkeyID = 0;
         }
 
-        if (i_this->mRoomMonkeyID == 20 && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0xE1]) && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0xE2])) {
+        if (i_this->mRoomMonkeyID == 20
+               /* dSv_event_flag_c::F_0225 - Faron Woods - Lanter guide monkey doesn't come out a second time */
+            && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0xE1])
+               /* dSv_event_flag_c::F_0226 - Faron Woods - Get lantern back from monkey */
+            && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0xE2])) {
             return cPhs_ERROR_e;
         }
 

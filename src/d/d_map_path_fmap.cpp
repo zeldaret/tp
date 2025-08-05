@@ -599,6 +599,7 @@ bool dMenuFmapIconDisp_c::isDrawDisp() {
             if (dComIfGp_getStartStageDarkArea() == 2) {
                 int tres_no = mpTresData->mNo;
                 if (tres_no == 0x33 || tres_no == 0x34 || tres_no == 0x35) {
+                        /* dSv_event_flag_c::M_086 - Twilight Hyrule Field - Show Boss Bug's Tear of Light on the map */
                     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[119])) {
                         bVar1 = true;
                     }

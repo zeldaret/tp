@@ -240,7 +240,10 @@ void Z2EnvSeMgr::framework() {
     int sceneNum = Z2GetSceneMgr()->getCurrentSceneNum();
     if (field_0x64.getPosCount() >= 0) {
         if (field_0x214 == 0x12 ||
-            (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[104]) && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[250])))
+             /* dSv_event_flag_c::M_071 - Cutscene - [cutscene: 20] Zant appears (during Midna's desperate hour) */
+            (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[104])
+                /* dSv_event_flag_c::F_0250 - Cutscene - [cutscene: 21] reunion with Zelda / Midna revived (Hyrule Castle barrier appears) */
+            && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[250])))
         {
             int lVar12 = 0;
             if (sceneNum == 0x17 || sceneNum == 0x18 || (sceneNum == 0x19)) {

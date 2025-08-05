@@ -211,6 +211,7 @@ public:
                 rv = 0;
                 break;
             }
+                /* dSv_event_flag_c::F_0281 - Shop - Malo Mart opens in Castle Town */
             if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[281]) && rv == 9) {
                 rv = 0xb;
             }
@@ -244,6 +245,7 @@ public:
                 rv = 0;
                 break;
             }
+                /* dSv_event_flag_c::F_0281 - Shop - Malo Mart opens in Castle Town */
             if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[281]) && rv == 10) {
                 rv = 12;
             }

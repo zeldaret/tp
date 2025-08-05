@@ -89,19 +89,27 @@ int daObjTable_c::Create() {
         mpModel->getModelData()->getMaterialNodePointer(2)->getShape()->hide();
     } else {
         if (dComIfG_play_c::getLayerNo(0) == 4) {
+                 /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
             if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])) {
                 mpModel->getModelData()->getMaterialNodePointer(0)->getShape()->hide();
             }
-            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]) &&
-                dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[266]) &&
-                !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[267]))
+                /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
+            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])
+                   /* dSv_event_flag_c::F_0266 - Snowpeak Ruins - Snowpeak Ruins clear */
+                && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[266])
+                    /* dSv_event_flag_c::F_0267 - Temple of Time - Temple of Time clear */
+                && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[267]))
             {
                 mpModel->getModelData()->getMaterialNodePointer(1)->getShape()->hide();
             }
-            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]) &&
-                dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[266]) &&
-                dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[267]) &&
-                !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[268]))
+                /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
+            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])
+                   /* dSv_event_flag_c::F_0266 - Snowpeak Ruins - Snowpeak Ruins clear */
+                && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[266])
+                   /* dSv_event_flag_c::F_0267 - Temple of Time - Temple of Time clear */
+                && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[267])
+                    /* dSv_event_flag_c::F_0268 - City in the Sky - City in the Sky clear */
+                && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[268]))
             {
                 mpModel->getModelData()->getMaterialNodePointer(2)->getShape()->hide();
             }
@@ -110,9 +118,12 @@ int daObjTable_c::Create() {
         }
     }
 
-    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[103]) &&
-        !(!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[268]) &&
-          dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[264])))
+        /* dSv_event_flag_c::M_070 - Cutscene - [cutscene: 18] Lanayru spirit restored */
+    if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[103])
+              /* dSv_event_flag_c::F_0268 - City in the Sky - City in the Sky clear */
+        && !(!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[268])
+                /* dSv_event_flag_c::F_0264 - Cutscene - Get master sword */
+             && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[264])))
     {
         mpModel->getModelData()->getMaterialNodePointer(4)->getShape()->hide();
         attention_info.flags = 0;

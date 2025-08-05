@@ -154,6 +154,7 @@ int daObjFchain_c::execute() {
     for (i = 0; i < 22; i++, var_r28++, sp_30++) {
         sp_12c = (*var_r28 - *sp_38) + *sp_30;
         sp_12c.y += -1.5f;
+            /* dSv_event_flag_c::M_011 - Inside Hyrule Castle - Midna removes wolf's chains in prison */
         if (dComIfGs_isEventBit(0x510)) {
             if (isWolf) {
                 checkPlayerFoot(var_r28, player->getLeftHandPosP(), &sp_12c);
@@ -171,6 +172,7 @@ int daObjFchain_c::execute() {
         }
         sp_38 = var_r28;
     }
+                   /* dSv_event_flag_c::M_011 - Inside Hyrule Castle - Midna removes wolf's chains in prison */
     if (isWolf && !dComIfGs_isEventBit(0x510)) {
         mDoMtx_multVec(
             player->getModelJointMtx(17), &wolfChainBaseOffset,
@@ -284,6 +286,7 @@ void daObjFchain_shape_c::draw() {
     dKy_GxFog_tevstr_set(tevStr);
     GXLoadLightObjImm(&tevStr->mLightObj.mLightObj, GX_LIGHT0);
     int local_30;
+        /* dSv_event_flag_c::M_011 - Inside Hyrule Castle - Midna removes wolf's chains in prison */
     if (dComIfGs_isEventBit(0x510)) {
         local_30 = 17;
     } else {

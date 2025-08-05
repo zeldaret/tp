@@ -1729,7 +1729,8 @@ static void demo_camera(e_fm_class* i_this) {
         if (i_this->mDemoCamTimer == VREG_S(3) + 110) {
             i_this->mDemoCamMode = 100;
             dComIfGs_onStageBossEnemy();
-            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[64]); // dSv_event_flag_c::M_031 - Goron Mines - Goron Mines clear
+            /* dSv_event_flag_c::M_031 - Goron Mines - Goron Mines clear */
+            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[64]);
         }
         break;
     }
@@ -1810,11 +1811,13 @@ static s8 e_fm_down(e_fm_class* i_this) {
             i_this->mMode = 2;
             i_this->mTimers[0] = 33;
             i_this->mTimers[1] = l_HIO.field_0x9c;
-            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[256]); // dSv_event_flag_c::F_0256 - For E3 2006 - Knocked down boss at leased once
+            /* dSv_event_flag_c::F_0256 - For E3 2006 - Knocked down boss at leased once */
+            dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[256]);
         }
         break;
     case 2:
-        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[257]); // dSv_event_flag_c::F_0257 - For E3 2006 - Only ON when boss is in hollow state (normally off, changes in real time)
+        /* dSv_event_flag_c::F_0257 - For E3 2006 - Only ON when boss is in hollow state (normally off, changes in real time) */
+        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[257]);
 
         if (i_this->mAnm == BCK_FM_DOWNDAMAGE && i_this->mpFmModelMorf->isStop()) {
             anm_init(i_this, BCK_FM_DOWNWAIT, 5.0f, 2, 1.0f);
@@ -2142,10 +2145,12 @@ static void damage_check(e_fm_class* i_this) {
                 }
 
                 i_this->mSound.startCreatureVoice(Z2SE_EN_FM_V_DAMAGE, -1);
-                dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[670]); // dSv_event_flag_c::F_0670 - Goron Mines - Hitting knocked-down Fyrus
+                /* dSv_event_flag_c::F_0670 - Goron Mines - Hitting knocked-down Fyrus */
+                dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[670]);
             } else {
                 i_this->field_0x804++;
-                dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[254]); // dSv_event_flag_c::F_0254 - For E3 2006 - Hit boss's weak spot at least once
+                /* dSv_event_flag_c::F_0254 - For E3 2006 - Hit boss's weak spot at least once */
+                dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[254]);
 
                 if (i_this->field_0x804 >= 10) {
                     i_this->mDownCnt++;
@@ -2508,7 +2513,8 @@ static void chain_control3(e_fm_class* i_this, chain_s* i_chain_s, int param_2) 
                     }
 
                     i_chain_s->field_0x617e = 0;
-                    dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[669]); // dSv_event_flag_c::F_0669 - Goron Mines - Pulled on Fyrus chains at least once
+                    /* dSv_event_flag_c::F_0669 - Goron Mines - Pulled on Fyrus chains at least once */
+                    dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[669]);
                 }
             }
         } else {
@@ -2579,8 +2585,10 @@ static void action(e_fm_class* i_this) {
 
     i_this->field_0x1b07c = 1;
 
-    dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[255]); // dSv_event_flag_c::F_0255 - For E3 2006 - Boss exhausted (grabbing chains) only on during state (normally off)
-    dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[257]); // dSv_event_flag_c::F_0257 - For E3 2006 - Only ON when boss is in hollow state (normally off, changes in real time)
+    /* dSv_event_flag_c::F_0255 - For E3 2006 - Boss exhausted (grabbing chains) only on during state (normally off) */
+    dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[255]);
+    /* dSv_event_flag_c::F_0257 - For E3 2006 - Only ON when boss is in hollow state (normally off, changes in real time) */
+    dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[257]);
 
     switch (i_this->mAction) {
     case ACTION_NORMAL:
@@ -2601,7 +2609,8 @@ static void action(e_fm_class* i_this) {
         break;
     case ACTION_DAMAGE_RUN:
         e_fm_damage_run(i_this);
-        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[255]); // dSv_event_flag_c::F_0255 - For E3 2006 - Boss exhausted (grabbing chains) only on during state (normally off)
+        /* dSv_event_flag_c::F_0255 - For E3 2006 - Boss exhausted (grabbing chains) only on during state (normally off) */
+        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[255]);
         break;
     case ACTION_ANIMAL:
         e_fm_animal(i_this);
@@ -3826,10 +3835,14 @@ static int daE_FM_Create(fopAc_ac_c* i_this) {
         a_this->field_0x794 = 1.0f;
         a_this->field_0x778 = 1.0f;
 
-        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[254]); // dSv_event_flag_c::F_0254 - For E3 2006 - Hit boss's weak spot at least once
-        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[256]); // dSv_event_flag_c::F_0256 - For E3 2006 - Knocked down boss at leased once
-        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[669]); // dSv_event_flag_c::F_0669 - Goron Mines - Pulled on Fyrus chains at least once
-        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[670]); // dSv_event_flag_c::F_0670 - Goron Mines - Hitting knocked-down Fyrus
+        /* dSv_event_flag_c::F_0254 - For E3 2006 - Hit boss's weak spot at least once */
+        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[254]);
+        /* dSv_event_flag_c::F_0256 - For E3 2006 - Knocked down boss at leased once */
+        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[256]);
+        /* dSv_event_flag_c::F_0669 - Goron Mines - Pulled on Fyrus chains at least once */
+        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[669]);
+        /* dSv_event_flag_c::F_0670 - Goron Mines - Hitting knocked-down Fyrus */
+        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[670]);
         demo_stop = 0;
 
         daE_FM_Execute(a_this);

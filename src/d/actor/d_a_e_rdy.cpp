@@ -348,7 +348,9 @@ static int nodeCallBack_bow(J3DJoint* i_joint, int param_1) {
 /* 8076C54C-8076C9D0 00086C 0484+00 1/0 0/0 0/0 .text            daE_RDY_Draw__FP11e_rdy_class */
 static int daE_RDY_Draw(e_rdy_class* i_this) {
     fopAc_ac_c* a_this = &i_this->actor;
-    if (i_this->field_0x5b8 == 12 && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[239])) {
+    if (i_this->field_0x5b8 == 12
+            /* dSv_event_flag_c::T_0239 - Lake Hylia - Spoke with Fyer (start dark carge) */
+        && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[239])) {
         return 1;
     }
     
@@ -4911,6 +4913,8 @@ static cPhs__Step daE_RDY_Create(fopAc_ac_c* i_this) {
         } else if (_this->field_0x5b8 == 11) {
             _this->mAction = ACT_BOW_IKKI2;
         } else if (_this->field_0x5b8 == 12) {
+                /* dSv_event_flag_c::M_051 - Main Event - Shadow Kargorok (?) (Large) event complete 
+                                             (Horse grass appears in various places) */
             if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[84])) {
                 return cPhs_ERROR_e;
             }

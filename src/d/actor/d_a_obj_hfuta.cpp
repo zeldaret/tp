@@ -27,6 +27,7 @@ void daObjFuta_c::setBaseMtx() {
 
 /* 80C1DE94-80C1DF2C 0001F4 0098+00 1/0 0/0 0/0 .text            Create__11daObjFuta_cFv */
 int daObjFuta_c::Create() {
+        /* dSv_event_flag_c::F_0070 - Ordon Woods - Colin went deep into the woods */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[168])) {
         setMode(MODE_2);
         mode_end();

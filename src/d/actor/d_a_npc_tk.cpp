@@ -352,7 +352,10 @@ void daNPC_TK_c::executeFly() {
                 mpMaster = NULL;
             }
         }
-        if (mpMaster != NULL && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0xcf]) != 0) {
+
+        if (mpMaster != NULL
+               /* dSv_event_flag_c::F_0207 - Ordon Village - Viewed Hanch, the Hawker cutscene */
+            && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0xCF])) {
             setActionMode(6);
             mSphere.OffCoSetBit();
         }
@@ -1271,6 +1274,7 @@ void daNPC_TK_c::executeBack() {
                     }
 
                     if (fopAcM_GetName(field_0x634) == PROC_OBJ_KAGO &&
+                         /* dSv_event_flag_c::F_0577 - Ordon Village - 2nd Day - Retrieved basket from monkey (hit hawk) */
                         !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x241]))
                     {
                         Z2GetAudioMgr()->changeBgmStatus(1);
@@ -1375,10 +1379,12 @@ void daNPC_TK_c::executeBack() {
                 if (current.pos.absXZ(playerPos) < 200.0f) {
                     field_0x6b4 = 0;
                     if (fopAcM_GetName(field_0x634) == PROC_OBJ_KAGO &&
+                         /* dSv_event_flag_c::F_0577 - Ordon Village - 2nd Day - Retrieved basket from monkey (hit hawk) */
                         !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x241]))
                     {
                         Z2GetAudioMgr()->changeBgmStatus(0);
 
+                        /* dSv_event_flag_c::F_0577 - Ordon Village - 2nd Day - Retrieved basket from monkey (hit hawk) */
                         dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x241]);
 
                         field_0x6b8 = 0x46;

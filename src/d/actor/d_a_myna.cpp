@@ -607,6 +607,7 @@ void daMyna_c::greet_talk_init() {
 void daMyna_c::greet_talk_move() {
     if (eventInfo.checkCommandTalk() && mMsgFlow.doFlow(this, NULL, 0) != 0) {
         dComIfGp_event_reset();
+            /* dSv_event_flag_c::F_0802 - Faron Woods - Trill attacks when stealing */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {
             field_0x937 = 20;
             field_0x92C = 19;
@@ -624,6 +625,7 @@ void daMyna_c::shopping_wait_init() {
 /* 809471E8-809475B4 001668 03CC+00 1/0 0/0 0/0 .text            shopping_wait_move__8daMyna_cFv */
 void daMyna_c::shopping_wait_move() {
     if (!daPy_py_c::checkNowWolf()) {
+            /* dSv_event_flag_c::F_0802 - Faron Woods - Trill attacks when stealing */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {
             field_0x92C = 17;
             field_0x937 = 20;
@@ -663,8 +665,9 @@ void daMyna_c::shopping_wait_move() {
                     }
                 }
 
-                if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[203]) &&
-                    daMyna_evtTagActor1 != NULL)
+                     /* dSv_event_flag_c::F_0203 - Shop - First tried to steal from unnmaned shop (Havent checked donation box) */
+                if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[203])
+                    && daMyna_evtTagActor1 != NULL)
                 {
                     cXyz stack_2c(1.0f, 1.0f, 1.0f);
                     if (chkPlayerInEvtArea(daMyna_evtTagActor1, stack_2c)) {
@@ -806,6 +809,7 @@ void daMyna_c::byebye_talk_move() {
         }
 
         dComIfGp_event_reset();
+            /* dSv_event_flag_c::F_0802 - Faron Woods - Trill attacks when stealing */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {
             field_0x92C = 0x11;
             field_0x937 = 0x14;
@@ -969,6 +973,7 @@ void daMyna_c::attack_wait2_move() {
 
         if (daMyna_evtTagActor0 != NULL) {
             cXyz stack_1c(1.0f, 1.0f, 1.0f);
+                /* dSv_event_flag_c::F_0802 - Faron Woods - Trill attacks when stealing */
             if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {
                 if (chkPlayerInEvtArea(daMyna_evtTagActor0, stack_1c)) {
                     field_0x937 = 20;
@@ -1025,6 +1030,7 @@ void daMyna_c::attack_fly2_move() {
 
         if (dMsgObject_getTotalPayment() > field_0x922) {
             field_0x937 = 0;
+            /* dSv_event_flag_c::F_0802 - Faron Woods - Trill attacks when stealing */
             dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[802]);
             field_0x939 = 1;
         }
@@ -1038,6 +1044,7 @@ void daMyna_c::attack_fly2_move() {
             }
         } else if (fly_return_move()) {
             if (field_0x937 == 0) {
+                /* dSv_event_flag_c::F_0802 - Faron Woods - Trill attacks when stealing */
                 dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[802]);
             }
             field_0x92C = 17;
@@ -1064,6 +1071,7 @@ void daMyna_c::attack2_move() {
         if (field_0x937 != 0) {
             field_0x937--;
             if (dComIfGs_getLife() <= 1) {
+                /* dSv_event_flag_c::F_0802 - Faron Woods - Trill attacks when stealing */
                 dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[802]);
                 field_0x937 = 0;
             }
@@ -1289,6 +1297,7 @@ void daMyna_c::initiate() {
     field_0x920 = 0;
     field_0x922 = 0;
 
+         /* dSv_event_flag_c::F_0802 - Faron Woods - Trill attacks when stealing */
     if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {
         field_0x932 = 0;
         field_0x938 = 0;
@@ -1585,6 +1594,7 @@ void daMyna_c::checkDead() {
             if (daMyna_evtTagActor0 == NULL ||
                 (daMyna_evtTagActor0 != NULL && !chkPlayerInEvtArea(daMyna_evtTagActor0, var1)))
             {
+                     /* dSv_event_flag_c::F_0203 - Shop - First tried to steal from unnmaned shop (Havent checked donation box) */
                 if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[203])) {
                     dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[203]);
                 }

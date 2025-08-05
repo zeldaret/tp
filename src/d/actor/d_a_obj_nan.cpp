@@ -655,7 +655,10 @@ static int daObjNAN_Execute(daObjNAN_c* i_this) {
 
 /* ############################################################################################## */
 /* 80CA3294-80CA3298 0000D8 0004+00 0/1 0/0 0/0 .rodata          l_musiya_num */
-static u16 const l_musiya_num[2] = {0x0199, 0x019A};
+static u16 const l_musiya_num[2] = {
+    0x0199, /* dSv_event_flag_c::F_0409 - Misc. - Phasmid (M) */
+    0x019A, /* dSv_event_flag_c::F_0410 - Misc. - Phasmid (F) */
+};
 
 /* 80CA3298-80CA329C 0000DC 0004+00 0/1 0/0 0/0 .rodata          l_heapsize */
 static u16 const l_heapsize[2] = {0x0EE0, 0x0EC0};

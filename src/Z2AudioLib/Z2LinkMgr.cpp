@@ -333,7 +333,9 @@ JAISoundHandle* Z2CreatureLink::startLinkSoundLevel(JAISoundID i_soundID, u32 pa
             break;
         case Z2SE_AL_SNOBO_RIDE:
         case Z2SE_AL_SNOBO_BREAK:
-            if (dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[266]) && Z2GetSeqMgr()->getSubBgmID() != Z2BGM_SNOW_BOARD) {
+                /* dSv_event_flag_c::F_0266 - Snowpeak Ruins - Snowpeak Ruins clear */
+            if (dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[266])
+                && Z2GetSeqMgr()->getSubBgmID() != Z2BGM_SNOW_BOARD) {
                 var_f31 = 0.0f;
                 var_r30 = 0;
             } else if (mMoveSpeed == 0) {

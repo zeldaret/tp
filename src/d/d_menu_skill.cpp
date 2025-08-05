@@ -646,7 +646,13 @@ void dMenu_Skill_c::setNameString(u16 i_stringID) {
 /* 801F9470-801F9500 1F3DB0 0090+00 1/1 0/0 0/0 .text            getSkillNum__13dMenu_Skill_cFv */
 u8 dMenu_Skill_c::getSkillNum() {
     static u32 evt_id[7] = {
-        339, 338, 340, 341, 342, 343, 344,
+        339, /* dSv_event_flag_c::F_0339 - Secret techniques - Obtained 2 secret techinques */
+        338, /* dSv_event_flag_c::F_0338 - Secret techniques - Obtained 1 secret techinques - Shield attack */
+        340, /* dSv_event_flag_c::F_0340 - Secret techniques - Obtained 3 secret techinques */
+        341, /* dSv_event_flag_c::F_0341 - Secret techniques - Obtained 4 secret techinques */
+        342, /* dSv_event_flag_c::F_0342 - Secret techniques - Obtained 5 secret techinques */
+        343, /* dSv_event_flag_c::F_0343 - Secret techniques - Obtained 6 secret techinques */
+        344, /* dSv_event_flag_c::F_0344 - Secret techniques - Obtained 7 secret techinques */
     };
 
     u8 skillNum = 0;

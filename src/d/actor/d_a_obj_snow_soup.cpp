@@ -91,6 +91,7 @@ int daObjSnowSoup_c::execute() {
     mDoAud_seStartLevel(Z2SE_OBJ_FIREWOOD_BURNING, &mFirewoodPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
     switch (mState) {
     case 0:
+            /* dSv_event_flag_c::F_0003 - Snowpeak Ruins - Handed over tomato puree and left room */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[7])) {
             deleteSmkEmtChange(mState);
             mState = 1;
@@ -101,6 +102,7 @@ int daObjSnowSoup_c::execute() {
         }
         break;
     case 1:
+            /* dSv_event_flag_c::F_0004 - Snowpeak Ruins - Handed over secret ingredient and left room */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[8])) {
             deleteSmkEmtChange(mState);
             mState = 2;
@@ -120,8 +122,10 @@ int daObjSnowSoup_c::execute() {
 /* 80CDFE14-80CDFEA4 000634 0090+00 1/1 0/0 0/0 .text            init__15daObjSnowSoup_cFv */
 void daObjSnowSoup_c::init() {
     mState = 0;
+        /* dSv_event_flag_c::F_0004 - Snowpeak Ruins - Handed over secret ingredient and left room */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[8])) {
         mState = 2;
+               /* dSv_event_flag_c::F_0003 - Snowpeak Ruins - Handed over tomato puree and left room */
     } else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[7])) {
         mState = 1;
     }

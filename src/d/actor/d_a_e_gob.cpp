@@ -758,7 +758,8 @@ static void damage(e_gob_class* i_this) {
         i_this->mAction = ACTION_BALL;
         i_this->mMode = 0;
         i_this->mDamageInvulnerabilityTimer = 30;
-        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[672]); // dSv_event_flag_c::F_0672 - Goron Mines - First time seeing magnet goron tumbling
+        /* dSv_event_flag_c::F_0672 - Goron Mines - First time seeing magnet goron tumbling */
+        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[672]);
     }
 
     cLib_addCalc2(&actor->speedF, speed_target, 1.0f, 2.0f);
@@ -1486,7 +1487,8 @@ static void action(e_gob_class* i_this) {
         i_this->mAction = ACTION_JUMP;
         i_this->mMode = 0;
         i_this->field_0x6d6 = 0;
-        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[671]); // dSv_event_flag_c::F_0671 - Goron Mines - Through magnet goron into lava once
+        /* dSv_event_flag_c::F_0671 - Goron Mines - Through magnet goron into lava once */
+        dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[671]);
 
         i_this->field_0x6d8++;
         OS_REPORT("//////////////E_GOB DOWN CT %d\n", i_this->field_0x6d8);
@@ -2394,8 +2396,10 @@ static int daE_GOB_Create(fopAc_ac_c* i_this) {
         }
 
         dComIfGs_onZoneSwitch(5, -1);
-        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[671]); // dSv_event_flag_c::F_0671 - Goron Mines - Through magnet goron into lava once
-        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[672]); // dSv_event_flag_c::F_0672 - Goron Mines - First time seeing magnet goron tumbling
+        /* dSv_event_flag_c::F_0671 - Goron Mines - Through magnet goron into lava once */
+        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[671]);
+        /* dSv_event_flag_c::F_0672 - Goron Mines - First time seeing magnet goron tumbling */
+        dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[672]);
         daE_GOB_Execute(a_this);
     }
 

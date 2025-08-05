@@ -100,10 +100,12 @@ int daCanoe_c::create() {
     fopAcM_SetupActor(this, daCanoe_c);
 
     if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0) {
+             /* dSv_event_flag_c::F_0463 - Fishing Pond - Reserved for fishing */
         if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[463])) {
             return cPhs_ERROR_e;
         }
 
+            /* dSv_event_flag_c::F_0464 - Fishing Pond - Reserved for fishing */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[464])) {
             fopAcM_SetParam(this, 2);
         } else {

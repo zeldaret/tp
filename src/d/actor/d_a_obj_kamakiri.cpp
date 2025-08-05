@@ -747,7 +747,10 @@ static int daObjKAM_Execute(daObjKAM_c* i_this) {
 
 /* ############################################################################################## */
 /* 80C384E4-80C384E8 0000DC 0004+00 1/2 0/0 0/0 .rodata          l_musiya_num */
-static u16 const l_musiya_num[2] = {0x019D, 0x019E};
+static u16 const l_musiya_num[2] = {
+    0x019D, /* dSv_event_flag_c::F_0413 - Misc. - Mantis (M) */
+    0x019E, /* dSv_event_flag_c::F_0414 - Misc. - Mantis (F) */
+};
 
 /* 80C378F4-80C37AA0 002854 01AC+00 1/1 0/0 0/0 .text            CreateChk__10daObjKAM_cFv */
 u8 daObjKAM_c::CreateChk() {
