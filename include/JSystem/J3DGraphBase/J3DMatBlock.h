@@ -1000,8 +1000,8 @@ struct J3DIndTexCoordScale : public J3DIndTexCoordScaleInfo {
     /* 8000E0E4 */ J3DIndTexCoordScale() : J3DIndTexCoordScaleInfo(j3dDefaultIndTexCoordScaleInfo) {}
     J3DIndTexCoordScale(J3DIndTexCoordScaleInfo const& info) : J3DIndTexCoordScaleInfo(info) {}
     /* 8000E024 */ ~J3DIndTexCoordScale() {}
-    GXIndTexScale getScaleS() { return (GXIndTexScale)mScaleS; }
-    GXIndTexScale getScaleT() { return (GXIndTexScale)mScaleT; }
+    u8 getScaleS() { return mScaleS; }
+    u8 getScaleT() { return mScaleT; }
 
     J3DIndTexCoordScale& operator=(const J3DIndTexCoordScale& other) {
         //__memcpy(this, &other, sizeof(J3DIndTexCoordScaleInfo));
@@ -1020,8 +1020,8 @@ struct J3DIndTexMtx : public J3DIndTexMtxInfo {
     /* 8000E0F0 */ J3DIndTexMtx() { *(J3DIndTexMtxInfo*)this = j3dDefaultIndTexMtxInfo; }
     J3DIndTexMtx(J3DIndTexMtxInfo const& info) { *(J3DIndTexMtxInfo*)this = info; }
     /* 8000E064 */ ~J3DIndTexMtx() {}
-    void load(u32 param_1) {
-        J3DGDSetIndTexMtx((GXIndTexMtxID)(param_1 + 1), field_0x0, field_0x18);
+    void load(u32 param_1) const {
+        J3DGDSetIndTexMtx((GXIndTexMtxID)(param_1 + 1), (Mtx3P)field_0x0, field_0x18);
     }
 };  // Size: 0x1C
 
@@ -1045,8 +1045,8 @@ extern const J3DIndTexOrderInfo j3dDefaultIndTexOrderNull;
 struct J3DIndTexOrder : public J3DIndTexOrderInfo {
     /* 8000E128 */ J3DIndTexOrder() : J3DIndTexOrderInfo(j3dDefaultIndTexOrderNull) {}
     J3DIndTexOrder(J3DIndTexOrderInfo const& info) : J3DIndTexOrderInfo(info) {}
-    GXTexMapID getMap() { return (GXTexMapID)mMap; }
-    GXTexCoordID getCoord() { return (GXTexCoordID)mCoord; }
+    u8 getMap() const { return (GXTexMapID)mMap; }
+    u8 getCoord() const { return (GXTexCoordID)mCoord; }
 
     J3DIndTexOrder& operator=(const J3DIndTexOrder& other) {
         //__memcpy(this, &other, sizeof(J3DIndTexOrderInfo));
@@ -1195,23 +1195,22 @@ struct J3DColorChan {
         mColorChanID = calcColorChanID(info.mEnable, info.mMatSrc, info.mLightMask,
             info.mDiffuseFn, info.mAttnFn, ambSrc);
     }
-    u8 getLightMask() { return ((mColorChanID >> 2) & 0xf) | ((mColorChanID >> 11) & 0xf) << 4; }
+    u8 getLightMask() const { return ((mColorChanID >> 2) & 0xf) | ((mColorChanID >> 11) & 0xf) << 4; }
     void setLightMask(u8 param_1) {
         mColorChanID = (mColorChanID & ~0x3c) | ((param_1 & 0xf) << 2);
         mColorChanID = (mColorChanID & ~0x7800) | ((param_1 & 0xf0) << 7);
     }
 
-    u8 getEnable() { return (mColorChanID >> 1) & 1; }
-    GXColorSrc getAmbSrc() { return (GXColorSrc)((mColorChanID >> 6) & 1); }
-    GXColorSrc getMatSrc() { return (GXColorSrc)(mColorChanID & 1); }
-    GXDiffuseFn getDiffuseFn() { return (GXDiffuseFn) ((mColorChanID >> 7) & 3); }
+    u8 getEnable() const { return (mColorChanID >> 1) & 1; }
+    u8 getAmbSrc() const { return (GXColorSrc)((mColorChanID >> 6) & 1); }
+    u8 getMatSrc() const { return (GXColorSrc)(mColorChanID & 1); }
+    u8 getDiffuseFn() const { return ((mColorChanID >> 7) & 3); }
     // This function has to appear in J3DMatBlock.cpp because it generates extra data in .sdata2
-    inline GXAttnFn getAttnFn();
+    inline u8 getAttnFn() const;
 
-    // NONMATCHING regalloc
-    void load() {
-        J3DGDWrite_u32(setChanCtrlMacro(getEnable(), getAmbSrc(), getMatSrc(), getLightMask(),
-                                        getDiffuseFn(), getAttnFn()));
+    void load() const {
+        J3DGDWrite_u32(setChanCtrlMacro(getEnable(), (GXColorSrc)getAmbSrc(), (GXColorSrc)getMatSrc(), getLightMask(),
+                                        (GXDiffuseFn)getDiffuseFn(), (GXAttnFn)getAttnFn()));
     }
 
     /* 0x0 */ u16 mColorChanID;

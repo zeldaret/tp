@@ -1085,7 +1085,7 @@ config.libs = [
             Object(NonMatching, "JSystem/J3DGraphBase/J3DShapeDraw.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphBase/J3DShape.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphBase/J3DMaterial.cpp", extra_cflags=['-pragma "nosyminline off"']),
-            Object(NonMatching, "JSystem/J3DGraphBase/J3DMatBlock.cpp"),
+            Object(Equivalent, "JSystem/J3DGraphBase/J3DMatBlock.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphBase/J3DTevs.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphBase/J3DDrawBuffer.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphBase/J3DStruct.cpp"),
@@ -1919,7 +1919,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_drop"),
     ActorRel(NonMatching, "d_a_obj_dust"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_enemy_create"),
-    ActorRel(NonMatching, "d_a_obj_fallobj"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_fallobj"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_fan"),
     ActorRel(Equivalent, "d_a_obj_fchain"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_fireWood"),

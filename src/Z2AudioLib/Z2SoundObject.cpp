@@ -39,10 +39,10 @@ void Z2SoundObjBase::deleteObject() {
     deleteHandlesPool();
 }
 
-void Z2SoundObjBase::framework(u32 p1, s8 p2) {
+void Z2SoundObjBase::framework(u32 p1, s8 reverb) {
     if (mIsInitialized) {
         field_0x1c = p1;
-        field_0x1e = p2;
+        field_0x1e = reverb;
         setPos(*mSoundPos);
     }
 }
