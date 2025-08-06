@@ -548,7 +548,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_a_item_static.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_a_shop_item_static.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_a_horse_static.cpp"),
-            Object(NonMatching, "d/d_demo.cpp"),
+            Object(MatchingFor("GZ2E01"), "d/d_demo.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_door_param2.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(NonMatching, "d/d_resorce.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_map_path.cpp"),

@@ -404,7 +404,7 @@ bool dMenu_StageMapCtrl_c::getTreasureList(f32* o_posX, f32* o_posY, s8* param_2
         Vec sp10;
         sp10 = *field_0x8c->getPos();
 
-        if (getRendPointer(0)->isDrawIconSingle(field_0x8c->getDataPointer(), (s8)dComIfGp_roomControl_getStayNo(), field_0xf7, true, true, &sp10)) {
+        if (getRendPointer(0)->isDrawIconSingle(field_0x8c->getDataPointer(), (s8)dComIfGp_roomControl_getStayNo(), field_0xf7, 1, true, &sp10)) {
             cnvPosTo2Dpos(sp10.x, sp10.z, o_posX, o_posY);
 
             if (param_2 != NULL) {
