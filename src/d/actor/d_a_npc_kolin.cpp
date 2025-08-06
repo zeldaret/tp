@@ -1944,117 +1944,297 @@ int daNpc_Kolin_c::cutHail(int i_cutIndex) {
     return rv;
 }
 
-/* ############################################################################################## */
-/* 8055A728-8055A72C 000174 0004+00 0/2 0/0 0/0 .rodata          @5652 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5652 = -613.0f;
-COMPILER_STRIP_GATE(0x8055A728, &lit_5652);
-#pragma pop
-
-/* 8055A72C-8055A730 000178 0004+00 0/2 0/0 0/0 .rodata          @5653 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5653 = 1306.0f;
-COMPILER_STRIP_GATE(0x8055A72C, &lit_5653);
-#pragma pop
-
-/* 8055A730-8055A734 00017C 0004+00 0/2 0/0 0/0 .rodata          @5654 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5654 = -2048.0f;
-COMPILER_STRIP_GATE(0x8055A730, &lit_5654);
-#pragma pop
-
-/* 8055A734-8055A738 000180 0004+00 0/1 0/0 0/0 .rodata          @5655 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5655 = 153.0f;
-COMPILER_STRIP_GATE(0x8055A734, &lit_5655);
-#pragma pop
-
-/* 8055A738-8055A73C 000184 0004+00 0/1 0/0 0/0 .rodata          @5656 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5656 = 1300.0f;
-COMPILER_STRIP_GATE(0x8055A738, &lit_5656);
-#pragma pop
-
-/* 8055A73C-8055A740 000188 0004+00 0/1 0/0 0/0 .rodata          @5657 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5657 = -1278.0f;
-COMPILER_STRIP_GATE(0x8055A73C, &lit_5657);
-#pragma pop
-
-/* 80556DB4-80557054 002EB4 02A0+00 1/0 0/0 0/0 .text            cutGiveMeWoodSwd__13daNpc_Kolin_cFi
- */
+/* 80556DB4-80557054 002EB4 02A0+00 1/0 0/0 0/0 .text            cutGiveMeWoodSwd__13daNpc_Kolin_cFi */
 int daNpc_Kolin_c::cutGiveMeWoodSwd(int i_cutIndex) {
-    // NONMATCHING
+    cXyz work;
+    csXyz angle;
+    int rv = 0;
+    int prm = -1;
+
+    int* piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
+    if (piVar1 != NULL) {
+        prm = *piVar1;
+    }
+
+    if (dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
+        switch (prm) {
+            case 0:
+                break;
+
+            case 1:
+                mFaceMotionSeqMngr.setNo(0xD, 0.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(2, 0.0f, FALSE, 0);
+                mJntAnm.lookNone(1);
+                speedF = 0.0f;
+                speed.setall(0.0f);
+                work.set(-613.0f, 1306.0f, -2048.0f);
+                setPos(work);
+                setAngle(cM_deg2s(-130.0f));
+                break;
+
+            case 2:
+                mFaceMotionSeqMngr.setNo(0xD, 0.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(2, 0.0f, FALSE, 0);
+                mJntAnm.lookNone(1);
+                work.set(153.0f, 1300.0f, -1278.0f);
+                setPos(work);
+                setAngle(cM_deg2s(-130.0f));
+                break;
+        }
+    }
+
+    switch (prm) {
+        case 0:
+            action();
+            rv = 1;
+            break;
+
+        case 1:
+        case 2:
+            rv = 1;
+            break;
+    }
+
+    return rv;
 }
-
-/* ############################################################################################## */
-/* 8055A740-8055A74C 00018C 000C+00 0/1 0/0 0/0 .rodata          @5679 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5679[12] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-};
-COMPILER_STRIP_GATE(0x8055A740, &lit_5679);
-#pragma pop
-
-/* 8055A77C-8055A77C 0001C8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8055A8BF = "timer";
-#pragma pop
 
 /* 80557054-805576C4 003154 0670+00 3/0 0/0 0/0 .text            cutGetWoodSwd__13daNpc_Kolin_cFi */
 int daNpc_Kolin_c::cutGetWoodSwd(int i_cutIndex) {
     // NONMATCHING
+    cXyz work;
+    csXyz angle;
+    int rv = 0;
+    int prm = -1;
+    int timer = 0;
+    int msgNo = 0;
+
+    int* piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
+    if (piVar1 != NULL) {
+        prm = *piVar1;
+    }
+
+    piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "timer");
+    if (piVar1 != NULL) {
+        timer = *piVar1;
+    }
+
+    piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "msgNo");
+    if (piVar1 != NULL) {
+        msgNo = *piVar1;
+    }
+
+    if (dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
+        switch (prm) {
+            case 0:
+                break;
+
+            case 1:
+                mFaceMotionSeqMngr.setNo(0xD, 0.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(2, 0.0f, FALSE, 0);
+                mJntAnm.lookNone(1);
+                speedF = 0.0f;
+                speed.setall(0.0f);
+                work.set(-613.0f, 1306.0f, -2048.0f);
+                setPos(work);
+                setAngle(cM_deg2s(-130.0f));
+                mHide = true;
+                break;
+
+            case 2:
+                mEventTimer = timer;
+                break;
+
+            case 3:
+                work.set(0.0f, 0.0f, 100.0f);
+                angle.y = daPy_getPlayerActorClass()->shape_angle.y + cM_deg2s(20.0f);
+                mDoMtx_stack_c::YrotS(angle.y);
+                mDoMtx_stack_c::multVec(&work, &work);
+                work += daPy_getPlayerActorClass()->current.pos;
+                setPos(work);
+                setAngle(cLib_targetAngleY(&work, &daPy_getPlayerActorClass()->current.pos));
+                daNpcT_offTmpBit(11);
+                mHide = false;
+                break;
+
+            case 4:
+                initTalk(48, NULL);
+                break;
+
+            case 5:
+                mFaceMotionSeqMngr.setNo(0xD, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
+                home.pos = current.pos;
+                home.angle.y = mCurAngle.y;
+                mEventTimer = timer;
+                break;
+
+            case 6:
+                speedF = 0.0f;
+                speed.setall(0.0f);
+                mHide = true;
+                break;
+
+            case 7:
+                break;
+        }
+    }
+
+    int iVar1[3] = {-1, -1, -1};
+    switch (prm) {
+        case 0:
+            action();
+            rv = 1;
+            break;
+
+        case 1:
+            rv = 1;
+            break;
+
+        case 2:
+            if (cLib_calcTimer<int>(&mEventTimer) == 0) {
+                rv = 1;
+            }
+            break;
+
+        case 3:
+            rv = 1;
+            break;
+
+        case 4:
+        case 7:
+            mJntAnm.lookPlayer(0);
+            iVar1[0] = msgNo;
+
+            if (talkProc(iVar1, FALSE, NULL, FALSE)) {
+                if (msgNo == 0) {
+                    if (mFlow.checkEndFlow()) {
+                        rv = 1;
+                    }
+                } else {
+                    rv = 1;
+                }
+            }
+            break;
+
+        case 5:
+            mJntAnm.lookNone(0);
+            work.set(0.0f, 0.0f, 1600.0f);
+            mDoMtx_stack_c::YrotS(home.angle.y + cM_deg2s(-160.0f));
+            mDoMtx_stack_c::multVec(&work, &work);
+            work += home.pos;
+
+            if (50.0f < current.pos.absXZ(work)) {
+                current.angle.y = cLib_targetAngleY(&current.pos, &work);
+                cLib_addCalcAngleS2(&shape_angle.y, current.angle.y, 4, 0x800);
+                mCurAngle.y = shape_angle.y;
+                cLib_chaseF(&speedF, 10.0f, 0.5f);
+            }
+
+            if (cLib_calcTimer<int>(&mEventTimer) == 0) {
+                rv = 1;
+            }
+            break;
+
+        case 6:
+            /* dSv_event_flag_c::F_0026 - Ordon Village - gave wooden sword to talo on 3rd day */
+            daNpcT_onEvtBit(31);
+            rv = 1;
+            break;
+    }
+
+    return rv;
 }
 
-/* ############################################################################################## */
-/* 8055A74C-8055A750 000198 0004+00 0/0 0/0 0/0 .rodata          @5839 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5839 = 1600.0f;
-COMPILER_STRIP_GATE(0x8055A74C, &lit_5839);
-#pragma pop
-
-/* 8055A750-8055A754 00019C 0004+00 0/0 0/0 0/0 .rodata          @5840 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5840 = 10.0f;
-COMPILER_STRIP_GATE(0x8055A750, &lit_5840);
-#pragma pop
-
-/* 8055A754-8055A75C 0001A0 0008+00 0/1 0/0 0/0 .rodata          @5852 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5852[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8055A754, &lit_5852);
-#pragma pop
-
-/* 8055A75C-8055A768 0001A8 000C+00 0/1 0/0 0/0 .rodata          @5862 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5862[12] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-};
-COMPILER_STRIP_GATE(0x8055A75C, &lit_5862);
-#pragma pop
-
-/* 805576C4-805579DC 0037C4 0318+00 1/0 0/0 0/0 .text
- * cutConversationAboutLoopHole__13daNpc_Kolin_cFi              */
+/* 805576C4-805579DC 0037C4 0318+00 1/0 0/0 0/0 .text            cutConversationAboutLoopHole__13daNpc_Kolin_cFi */
 int daNpc_Kolin_c::cutConversationAboutLoopHole(int i_cutIndex) {
-    // NONMATCHING
+    int rv = 0;
+    int prm = -1;
+    int msgNo = 0;
+    int timer = 0;
+
+    int* piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "prm");
+    if (piVar1 != NULL) {
+        prm = *piVar1;
+    }
+
+    piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "msgNo");
+    if (piVar1 != NULL) {
+        msgNo = *piVar1;
+    }
+
+    piVar1 = dComIfGp_evmng_getMyIntegerP(i_cutIndex, "timer");
+    if (piVar1 != NULL) {
+        timer = *piVar1;
+    }
+
+    fopAc_ac_c* speakers[2] = {mActorMngr[3].getActorP(), this};
+    dComIfGp_setMesgCameraInfoActor(speakers[0], speakers[1], NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+    if (dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
+        switch (prm) {
+            case 0:
+                daNpcT_offTmpBit(11);
+                daNpcT_offTmpBit(12);
+                initTalk(64, (fopAc_ac_c**)&speakers[0]);
+                break;
+
+            case 2:
+            case 3:
+                initTalk(64, (fopAc_ac_c**)&speakers[0]);
+                break;
+
+            case 4:
+                mEventTimer = timer;
+                break;
+        }
+    }
+
+    int iVar1[3] = {-1, -1, -1};
+    switch (prm) {
+        case 0:
+            if (mPlayerAngle != mCurAngle.y) {
+                mJntAnm.lookNone(0);
+
+                if (step(mPlayerAngle, 13, 10, 15, 0)) {
+                    mFaceMotionSeqMngr.setNo(0xD, -1.0f, FALSE, 0);
+                    mMotionSeqMngr.setNo(1, -1.0f, FALSE, 0);
+                }
+
+                shape_angle.y = mPlayerAngle;
+            } else {
+                lookup(0);
+                rv = 1;
+            }
+            break;
+
+        case 1:
+        case 2:
+        case 3:
+            lookup(0);
+            iVar1[0] = msgNo;
+
+            if (talkProc(iVar1, FALSE, (fopAc_ac_c**)&speakers[0], FALSE)) {
+                if (msgNo == 0) {
+                    if (mFlow.checkEndFlow()) {
+                        rv = 1;
+                    }
+                } else {
+                    rv = 1;
+                }
+            }
+            break;
+
+        case 4:
+            if (cLib_calcTimer<int>(&mEventTimer) == 0) {
+                rv = 1;
+            }
+            break;
+    }
+
+    return rv;
 }
 
-/* 805579DC-80557BD4 003ADC 01F8+00 1/0 0/0 0/0 .text cutCacaricoConversation__13daNpc_Kolin_cFi
- */
+/* 805579DC-80557BD4 003ADC 01F8+00 1/0 0/0 0/0 .text cutCacaricoConversation__13daNpc_Kolin_cFi */
 int daNpc_Kolin_c::cutCacaricoConversation(int i_cutIndex) {
     // NONMATCHING
 }
