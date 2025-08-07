@@ -526,49 +526,56 @@ static BOOL forward_overhead_bg_chk(cXyz* ppos, f32 dist) {
 /* 8005D18C-8005E8B0 057ACC 1724+00 0/0 1/1 0/0 .text            dKyr_rain_move__Fv */
 // NONMATCHING reg alloc, equivalent?
 void dKyr_rain_move() {
+    dKankyo_rain_Packet* rain_packet;
     camera_class* camera;
 
-    dKankyo_rain_Packet* rain_packet = g_env_light.mpRainPacket;
+    rain_packet = g_env_light.mpRainPacket;
     camera = (camera_class*)dComIfGp_getCamera(0);
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    cXyz spFC;
+    cXyz spF0;
+    cXyz spE4;
+    cXyz spD8;
+    cXyz spCC = dKyw_get_wind_vecpow();
 
-    cXyz spE0;
-    cXyz spD4;
-    cXyz spC8 = dKyw_get_wind_vecpow();
-    cXyz spBC;
-    cXyz spB0;
+    cXyz spC0;
+    cXyz spB4;
+    cXyz spA8;
+    cXyz sp9C;
+    cXyz sp90;
 
-    BOOL var_r20;
-    BOOL var_r21;
-    BOOL var_r22;
-    BOOL var_r23;
-    BOOL var_r24;
+    cXyz* sp3C;
+    f32 sp38;
+    BOOL sp34;
+    BOOL sp30;
+    BOOL sp2C;
+    u32 sp28;
+    BOOL sp24 = 0;
+    f32 sp20;
+    BOOL sp1C = 0;
 
-    var_r21 = 0;
-    var_r20 = 0;
+    f32 var_f31;
+    f32 var_f30;
+    f32 var_f29;
+    f32 var_f28;
 
-    dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo());
+    sp28 = dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo());
 
-    cXyz spA4;
-    cXyz sp98;
-    cXyz sp8C;
-
-    spA4.x = 0.0f;
-    spA4.y = -2.5f;
-    spA4.z = 0.0f;
+    spA8.x = 0.0f;
+    spA8.y = -2.5f;
+    spA8.z = 0.0f;
 
     if (rain_packet->raincnt <= g_env_light.raincnt) {
         rain_packet->raincnt = g_env_light.raincnt;
     }
 
     if (rain_packet->raincnt != 0) {
-        dKyr_get_vectle_calc(&camera->lookat.center, &rain_packet->mCamCenterPos, &spB0);
+        dKyr_get_vectle_calc(&camera->lookat.center, &rain_packet->mCamCenterPos, &spB4);
 
-        f32 var_f1 = rain_packet->mCamEyePos.abs(camera->lookat.eye);
+        var_f30 = rain_packet->mCamEyePos.abs(camera->lookat.eye);
 
-        f32 var_f30;
-        if (var_f1 > 10.0f) {
-            var_f30 = (var_f1 - 10.0f) / 50.0f;
+        if (var_f30 > 10.0f) {
+            var_f30 = (var_f30 - 10.0f) / 50.0f;
             if (var_f30 > 1.0f) {
                 var_f30 = 1.0f;
             }
@@ -579,193 +586,182 @@ void dKyr_rain_move() {
         rain_packet->mCamEyePos.x = camera->lookat.eye.x;
         rain_packet->mCamEyePos.z = camera->lookat.eye.z;
 
-        f32 var_f1_2 = rain_packet->mCamEyePos.abs(camera->lookat.eye);
-        f32 var_f2 = var_f1_2 / 20.0f;
-        if (var_f2 > 1.0f) {
-            var_f2 = 1.0f;
+        var_f28 = rain_packet->mCamEyePos.abs(camera->lookat.eye);
+        var_f28 = var_f28 / 20.0f;
+        if (var_f28 > 1.0f) {
+            var_f28 = 1.0f;
         }
 
-        spA4.y -= var_f2 * 15.0f;
+        spA8.y += -(var_f28 * 15.0f);
         rain_packet->mCamEyePos = camera->lookat.eye;
 
-        f32 var_f1_3 = rain_packet->mCamCenterPos.abs(camera->lookat.center);
-
-        f32 var_f1_4;
-        if (var_f1_3 > 10.0f) {
-            var_f1_4 = (var_f1_3 - 10.0f) / 50.0f;
-            if (var_f1_4 > 1.0f) {
-                var_f1_4 = 1.0f;
+        var_f29 = rain_packet->mCamCenterPos.abs(camera->lookat.center);
+        if (var_f29 > 10.0f) {
+            var_f29 = (var_f29 - 10.0f) / 50.0f;
+            if (var_f29 > 1.0f) {
+                var_f29 = 1.0f;
             }
         } else {
-            var_f1_4 = 0.0f;
+            var_f29 = 0.0f;
         }
 
-        cLib_addCalc(&rain_packet->mCenterDeltaMul, var_f30 * var_f1_4, 0.2f, 0.1f, 0.01f);
+        cLib_addCalc(&rain_packet->mCenterDeltaMul, var_f30 * var_f29, 0.2f, 0.1f, 0.01f);
         if (rain_packet->mCenterDeltaMul > 0.3f) {
             rain_packet->mCenterDeltaMul = 0.3f;
         }
 
-        cLib_addCalc(&rain_packet->mCenterDelta.x, spB0.x, 0.2f, 0.1f, 0.01f);
-        cLib_addCalc(&rain_packet->mCenterDelta.y, spB0.y, 0.2f, 0.1f, 0.01f);
-        cLib_addCalc(&rain_packet->mCenterDelta.z, spB0.z, 0.2f, 0.1f, 0.01f);
+        cLib_addCalc(&rain_packet->mCenterDelta.x, spB4.x, 0.2f, 0.1f, 0.01f);
+        cLib_addCalc(&rain_packet->mCenterDelta.y, spB4.y, 0.2f, 0.1f, 0.01f);
+        cLib_addCalc(&rain_packet->mCenterDelta.z, spB4.z, 0.2f, 0.1f, 0.01f);
         rain_packet->mCamCenterPos = camera->lookat.center;
 
-        dKy_set_eyevect_calc2(camera, &spE0, 700.0f, 600.0f);
-        spD4.z = 0.0f;
-        spD4.y = 0.0f;
-        spD4.x = 0.0f;
+        dKy_set_eyevect_calc2(camera, &spFC, 700.0f, 600.0f);
+        spD8.x = spD8.y = spD8.z = 0.0f;
 
-        dKyw_get_wind_vec();
-        dKyw_get_wind_pow();
+        sp3C = dKyw_get_wind_vec();
+        sp38 = dKyw_get_wind_pow();
 
         rain_packet->field_0x36cc = 0;
         rain_packet->field_0x36c8 = 0;
         rain_packet->mStatus = 0;
 
-        var_r22 = 0;
-        var_r23 = 0;
-        var_r24 = 0;
-        f32 var_f29;
+        sp34 = 0;
+        sp30 = 0;
+        sp2C = 0;
 
         if (strcmp(dComIfGp_getStartStageName(), "R_SP30") == 0) {
             if (dComIfGp_roomControl_getStayNo() == 0 || dComIfGp_roomControl_getStayNo() == 4) {
-                var_r20 = 1;
+                sp1C = 1;
             }
         } else if (strcmp(dComIfGp_getStartStageName(), "R_SP107") == 0 &&
                    dComIfGp_roomControl_getStayNo() == 1)
         {
-            var_r20 = 2;
+            sp1C = 2;
         } else if (strcmp(dComIfGp_getStartStageName(), "R_SP127") == 0) {
-            var_r20 = 3;
+            sp1C = 3;
         }
 
-        if (var_r20 == 0) {
-            var_r24 = overhead_bg_chk();
-            var_r23 = forward_overhead_bg_chk(&sp98, 700.0f);
-            var_r22 = forward_overhead_bg_chk(&sp8C, 1400.0f);
+        if (sp1C == 0) {
+            sp34 = overhead_bg_chk();
+            sp30 = forward_overhead_bg_chk(&sp9C, 700.0f);
+            sp2C = forward_overhead_bg_chk(&sp90, 1400.0f);
 
-            if (var_r24) {
-                rain_packet->mStatus |= 1;
-            } else if (var_r23) {
-                rain_packet->mStatus |= 2;
+            if (sp34) {
+                rain_packet->mStatus |= (u8)1;
+            } else if (sp30) {
+                rain_packet->mStatus |= (u8)2;
             }
         } else {
-            var_r21 = 1;
-            rain_packet->mStatus |= 1;
-            var_f29 = 1200.0f;
+            sp24 = 1;
+            rain_packet->mStatus |= (u8)1;
+            sp20 = 1200.0f;
         }
 
-        if (var_r24) {
+        if (sp34) {
             cLib_addCalc(&rain_packet->mOverheadFade, 0.0f, 0.5f, 0.2f, 0.01f);
         } else {
             cLib_addCalc(&rain_packet->mOverheadFade, 1.0f, 0.1f, 0.1f, 0.001f);
         }
 
-        if (var_r23) {
+        if (sp30) {
             cLib_addCalc(&rain_packet->mFwdFade1, 0.0f, 0.5f, 0.2f, 0.01f);
         } else {
             cLib_addCalc(&rain_packet->mFwdFade1, 1.0f, 0.1f, 0.1f, 0.001f);
         }
 
-        if (var_r22) {
+        if (sp2C) {
             cLib_addCalc(&rain_packet->mFwdFade2, 0.0f, 0.5f, 0.2f, 0.01f);
         } else {
             cLib_addCalc(&rain_packet->mFwdFade2, 1.0f, 0.1f, 0.1f, 0.001f);
         }
 
-        f32 temp_f30 = 1.0f;
         for (int i = rain_packet->raincnt - 1; i >= 0; i--) {
-            rain_packet->mRainEff[i].mBasePos.y = spE0.y;
-            RAIN_EFF* effect = &rain_packet->mRainEff[i];
+            rain_packet->mRainEff[i].mBasePos.y = spFC.y;
 
             switch (rain_packet->mRainEff[i].mStatus) {
             case 0:
-                effect->field_0x24 = -(cM_rndF(10.0f) + 35.5f);
-                effect->mTimer = 0;
-                effect->mBasePos = spE0;
-                effect->mPosition.x = cM_rndFX(800.0f);
-                effect->mPosition.y = cM_rndF(600.0f);
-                effect->mPosition.z = cM_rndFX(800.0f);
-                effect->mAlpha = 1.0f;
-                effect->field_0x1c = cM_rndF(360.0f);
-                effect->field_0x20 = cM_rndF(360.0f);
+                rain_packet->mRainEff[i].field_0x24 = -(cM_rndF(10.0f) + 35.5f);
+                rain_packet->mRainEff[i].mTimer = 0;
+                rain_packet->mRainEff[i].mBasePos.x = spFC.x;
+                rain_packet->mRainEff[i].mBasePos.y = spFC.y;
+                rain_packet->mRainEff[i].mBasePos.z = spFC.z;
+                rain_packet->mRainEff[i].mPosition.x = cM_rndFX(800.0f);
+                rain_packet->mRainEff[i].mPosition.y = cM_rndF(600.0f);
+                rain_packet->mRainEff[i].mPosition.z = cM_rndFX(800.0f);
+                rain_packet->mRainEff[i].mAlpha = 1.0f;
+                rain_packet->mRainEff[i].field_0x1c = cM_rndF(360.0f);
+                rain_packet->mRainEff[i].field_0x20 = cM_rndF(360.0f);
 
                 rain_bg_chk(rain_packet, i);
-                effect->mStatus++;
+                rain_packet->mRainEff[i].mStatus++;
                 break;
             case 1:
             case 2:
             case 3:
-                f32 target = cM_rndFX(0.1f);
-                f32* temp_r27 = &effect->field_0x24;
-                target = effect->field_0x24 - target;
+                cLib_addCalc(&rain_packet->mRainEff[i].field_0x24, rain_packet->mRainEff[i].field_0x24 - cM_rndFX(0.1f), 0.5f, 0.1f, 0.01f);
 
-                cLib_addCalc(temp_r27, target, 0.5f, 0.1f, 0.01f);
-
-                effect->mPosition.x +=
+                rain_packet->mRainEff[i].mPosition.x +=
                     20.0f *
-                    ((spC8.x + (10.0f * (rain_packet->mCenterDelta.x * rain_packet->mCenterDeltaMul))) +
-                     (spA4.x + (0.08f * (f32)(i & 7))));
+                    ((spCC.x + (10.0f * (rain_packet->mCenterDelta.x * rain_packet->mCenterDeltaMul))) +
+                     (spA8.x + (0.08f * (f32)(i & 7))));
 
-                effect->mPosition.y +=
+                rain_packet->mRainEff[i].mPosition.y +=
                     ((f32)(i & 7) * -2.0f) +
                     (20.0f *
-                     (spA4.y +
-                      (spC8.y + ((rain_packet->mCenterDelta.y * rain_packet->mCenterDeltaMul) * 10.0f))));
+                     (spA8.y +
+                      (spCC.y + ((rain_packet->mCenterDelta.y * rain_packet->mCenterDeltaMul) * 10.0f))));
 
-                effect->mPosition.z +=
+                rain_packet->mRainEff[i].mPosition.z +=
                     20.0f *
-                    ((spC8.z + (10.0f * (rain_packet->mCenterDelta.z * rain_packet->mCenterDeltaMul))) +
-                     (spA4.z + (0.08f * (f32)(i & 3))));
+                    ((spCC.z + (10.0f * (rain_packet->mCenterDelta.z * rain_packet->mCenterDeltaMul))) +
+                     (spA8.z + (0.08f * (f32)(i & 3))));
 
-                spBC.x = effect->mBasePos.x + effect->mPosition.x;
-                spBC.y = spE0.y;
-                spBC.z = effect->mBasePos.z + effect->mPosition.z;
+                spC0.x = rain_packet->mRainEff[i].mBasePos.x + rain_packet->mRainEff[i].mPosition.x;
+                spC0.y = spFC.y;
+                spC0.z = rain_packet->mRainEff[i].mBasePos.z + rain_packet->mRainEff[i].mPosition.z;
 
-                f32 var_f1_5 = spBC.abs(spE0);
+                f32 var_f1 = spC0.abs(spFC);
 
-                if (effect->mTimer == 0) {
-                    if (var_f1_5 > 800.0f) {
-                        effect->mTimer = 10;
-                        *temp_r27 = -(cM_rndF(10.0f) + 35.5f);
-                        effect->mBasePos = spE0;
+                if (rain_packet->mRainEff[i].mTimer == 0) {
+                    if (var_f1 > 800.0f) {
+                        rain_packet->mRainEff[i].mTimer = 10;
+                        rain_packet->mRainEff[i].field_0x24 = -(cM_rndF(10.0f) + 35.5f);
+                        rain_packet->mRainEff[i].mBasePos = spFC;
 
-                        f32 var_f1_6 = spBC.abs(spE0);
-                        if (var_f1_6 > 850.0f) {
-                            effect->mPosition.x = cM_rndFX(800.0f);
-                            effect->mPosition.y = cM_rndFX(800.0f);
-                            effect->mPosition.z = cM_rndFX(800.0f);
+                        if (spC0.abs(spFC) > 850.0f) {
+                            rain_packet->mRainEff[i].mPosition.x = cM_rndFX(800.0f);
+                            rain_packet->mRainEff[i].mPosition.y = cM_rndFX(800.0f);
+                            rain_packet->mRainEff[i].mPosition.z = cM_rndFX(800.0f);
                         } else {
-                            f32 temp_f31 = cM_rndFX(40.0f);
-                            get_vectle_calc(&spBC, &spE0, &spB0);
+                            var_f31 = cM_rndFX(40.0f);
+                            get_vectle_calc(&spC0, &spFC, &spB4);
 
-                            effect->mPosition.x = spB0.x * (temp_f31 + 800.0f);
-                            effect->mPosition.y = spB0.y * (temp_f31 + 800.0f);
-                            effect->mPosition.z = spB0.z * (temp_f31 + 800.0f);
+                            rain_packet->mRainEff[i].mPosition.x = spB4.x * (var_f31 + 800.0f);
+                            rain_packet->mRainEff[i].mPosition.y = spB4.y * (var_f31 + 800.0f);
+                            rain_packet->mRainEff[i].mPosition.z = spB4.z * (var_f31 + 800.0f);
                         }
 
-                        effect->mStatus = 1;
+                        rain_packet->mRainEff[i].mStatus = 1;
                         rain_bg_chk(rain_packet, i);
                     }
 
-                    spBC.y = effect->mBasePos.y + effect->mPosition.y;
-                    if (spBC.y < effect->field_0x30 + 20.0f) {
-                        effect->mBasePos = spE0;
-                        effect->mPosition.x = cM_rndFX(800.0f);
-                        effect->mPosition.y = 200.0f;
-                        effect->mPosition.z = cM_rndFX(800.0f);
+                    spC0.y = rain_packet->mRainEff[i].mBasePos.y + rain_packet->mRainEff[i].mPosition.y;
+                    if (spC0.y < rain_packet->mRainEff[i].field_0x30 + 20.0f) {
+                        rain_packet->mRainEff[i].mBasePos = spFC;
+                        rain_packet->mRainEff[i].mPosition.x = cM_rndFX(800.0f);
+                        rain_packet->mRainEff[i].mPosition.y = 200.0f;
+                        rain_packet->mRainEff[i].mPosition.z = cM_rndFX(800.0f);
                         rain_bg_chk(rain_packet, i);
-                        effect->mTimer = 10;
+                        rain_packet->mRainEff[i].mTimer = 10;
                     }
                 } else {
-                    effect->mTimer--;
+                    rain_packet->mRainEff[i].mTimer--;
                 }
-                break;
             }
 
-            spBC.x = effect->mBasePos.x + effect->mPosition.x;
-            spBC.y = effect->mBasePos.y + effect->mPosition.y;
-            spBC.z = effect->mBasePos.z + effect->mPosition.z;
+            spC0.x = rain_packet->mRainEff[i].mBasePos.x + rain_packet->mRainEff[i].mPosition.x;
+            spC0.y = rain_packet->mRainEff[i].mBasePos.y + rain_packet->mRainEff[i].mPosition.y;
+            spC0.z = rain_packet->mRainEff[i].mBasePos.z + rain_packet->mRainEff[i].mPosition.z;
 
             if (i > g_env_light.raincnt - 1) {
                 if (i == rain_packet->raincnt - 1) {
@@ -773,69 +769,72 @@ void dKyr_rain_move() {
                 }
             }
 
-            f32 var_f31 = 1.0f;
-            if (var_r24 || rain_packet->mOverheadFade < 1.0f) {
+            var_f31 = 1.0f;
+            if (sp34 || rain_packet->mOverheadFade < 1.0f) {
                 cXyz sp80;
-                sp80 = spBC;
+                f32 sp10 = 800.0f;
+                sp80 = spC0;
                 sp80.y = camera->lookat.eye.y;
 
-                if (camera->lookat.eye.abs(sp80) < 800.0f) {
+                if (camera->lookat.eye.abs(sp80) < sp10) {
                     var_f31 *= rain_packet->mOverheadFade * 1.0f;
                 }
             }
 
-            if (var_r23 || rain_packet->mFwdFade1 < 1.0f) {
+            if (sp30 || rain_packet->mFwdFade1 < 1.0f) {
                 cXyz sp74;
-                sp74 = spBC;
-                sp74.y = sp98.y;
+                f32 sp0C = 550.0f;
+                sp74 = spC0;
+                sp74.y = sp9C.y;
 
-                if (sp98.abs(sp74) < 550.0f) {
+                if (sp9C.abs(sp74) < sp0C) {
                     var_f31 *= rain_packet->mFwdFade1;
                 }
             }
 
-            if (var_r22 || rain_packet->mFwdFade2 < 1.0f) {
+            if (sp2C || rain_packet->mFwdFade2 < 1.0f) {
                 cXyz sp68;
-                sp68 = spBC;
-                sp68.y = sp8C.y;
+                f32 sp08 = 550.0f;
+                sp68 = spC0;
+                sp68.y = sp90.y;
 
-                if (sp8C.abs(sp68) < 550.0f) {
+                if (sp90.abs(sp68) < sp08) {
                     var_f31 *= rain_packet->mFwdFade2;
                 }
             }
 
-            if (var_r21) {
+            if (sp24) {
                 cXyz sp5C;
                 if (strcmp(dComIfGp_getStartStageName(), "R_SP30") == 0) {
                     if (dComIfGp_roomControl_getStayNo() == 0) {
-                        if (spBC.x > -2680.0f && spBC.z < 2200.0f) {
+                        if (spC0.x > -2680.0f && spC0.z < 2200.0f) {
                             var_f31 = 0.0f;
                         }
-                    } else if (dComIfGp_roomControl_getStayNo() == 4 && spBC.z > 1600.0f) {
+                    } else if (dComIfGp_roomControl_getStayNo() == 4 && spC0.z > 1600.0f) {
                         var_f31 = 0.0f;
                     }
-                } else if (var_r20 == 2) {
+                } else if (sp1C == 2) {
                     cXyz sp50;
                     sp50.x = 27453.0f;
-                    sp50.y = spBC.y;
+                    sp50.y = spC0.y;
                     sp50.z = 8528.0f;
 
-                    if (spBC.y < 1300.0f || player->current.pos.y < 1100.0f) {
-                        if (spBC.abs(sp50) > 80.0f) {
+                    if (spC0.y < 1300.0f || player->current.pos.y < 1100.0f) {
+                        if (spC0.abs(sp50) > 80.0f) {
                             var_f31 = 0.0f;
                         }
                     } else {
-                        if (spBC.abs(sp50) > 500.0f) {
+                        if (spC0.abs(sp50) > 500.0f) {
                             var_f31 = 0.0f;
                         }
                     }
-                } else if (var_r20 == 3) {
+                } else if (sp1C == 3) {
                     cXyz sp44;
                     sp44.x = -228.0f;
-                    sp44.y = spBC.y;
+                    sp44.y = spC0.y;
                     sp44.z = 795.0f;
 
-                    if (spBC.abs(sp44) < 1500.0f) {
+                    if (spC0.abs(sp44) < 1500.0f) {
                         var_f31 = 0.0f;
                     }
 
@@ -843,40 +842,40 @@ void dKyr_rain_move() {
                         var_f31 = 0.0f;
                     }
                 } else {
-                    sp5C = spBC;
+                    sp5C = spC0;
                     sp5C.y = 0.0f;
 
-                    if (sp5C.abs() < var_f29) {
+                    if (sp5C.abs() < sp20) {
                         var_f31 = 0.0f;
                     }
                 }
             } else if (strcmp(dComIfGp_getStartStageName(), "F_SP113") == 0 &&
                        dComIfGp_roomControl_getStayNo() == 1)
             {
-                if (spBC.z < 5100.0f || (spBC.x < -3250.0f && spBC.y < -50.0f) ||
-                    (spBC.x < -2700.0f && spBC.z > 15750.0f))
+                if (spC0.z < 5100.0f || (spC0.x < -3250.0f && spC0.y < -50.0f) ||
+                    (spC0.x < -2700.0f && spC0.z > 15750.0f))
                 {
                     var_f31 = 0.0f;
-                    rain_packet->mStatus |= 1;
+                    rain_packet->mStatus |= (u8)1;
                 }
             } else if (strcmp(dComIfGp_getStartStageName(), "D_MN09") == 0 &&
                        dComIfGp_roomControl_getStayNo() == 9)
             {
-                if (spBC.x < -3680.0f && spBC.z > -11975.0f && spBC.z < -10530.0f) {
+                if (spC0.x < -3680.0f && spC0.z > -11975.0f && spC0.z < -10530.0f) {
                     var_f31 = 0.0f;
-                    rain_packet->mStatus |= 1;
-                } else if (spBC.x > 3350.0f && spBC.z > -13027.0f && spBC.z < -11430.0f) {
+                    rain_packet->mStatus |= (u8)1;
+                } else if (spC0.x > 3350.0f && spC0.z > -13027.0f && spC0.z < -11430.0f) {
                     var_f31 = 0.0f;
-                    rain_packet->mStatus |= 1;
+                    rain_packet->mStatus |= (u8)1;
                 }
             } else if (strcmp(dComIfGp_getStartStageName(), "R_SP107") == 0 &&
-                       dComIfGp_roomControl_getStayNo() == 2 && spBC.z > 36900.0f)
+                       dComIfGp_roomControl_getStayNo() == 2 && spC0.z > 36900.0f)
             {
                 var_f31 = 0.0f;
-                rain_packet->mStatus |= 1;
+                rain_packet->mStatus |= (u8)1;
             }
 
-            effect->mAlpha = var_f31 * (temp_f30 + cM_rndFX(0.5f));
+            rain_packet->mRainEff[i].mAlpha = var_f31 * (1.0f + cM_rndFX(0.5f));
         }
     }
 }

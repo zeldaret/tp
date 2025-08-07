@@ -160,7 +160,7 @@ public:
     void setGlobalParticleScale(f32 scaleX, f32 scaleY) {
         mGlobalPScl.set(scaleX, scaleY);
     }
-    void getGlobalParticleScale(JGeometry::TVec3<f32>& scale) {
+    void getGlobalParticleScale(JGeometry::TVec3<f32>& scale) const {
         scale.set(mGlobalPScl.x, mGlobalPScl.y, 1.0f);
     }
     void setGlobalScale(const JGeometry::TVec3<f32>& scale) {
