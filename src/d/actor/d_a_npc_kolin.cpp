@@ -10,19 +10,138 @@
 #include "d/actor/d_a_tag_evtarea.h"
 
 enum Kolin_RES_File_ID {
+    /* BCK */
+    /* 0x06 */ BCK_KOLIN_F_TALK_A = 0x6,
+    /* 0x07 */ BCK_KOLIN_STEP,
+    /* 0x08 */ BCK_KOLIN_WAIT_A,
 
+    /* BMDR */
+    /* 0x0B */ BMDR_KOLIN = 0xB,
+
+    /* BTK */
+    /* 0x0E */ BTK_KOLIN = 0xE,
+
+    /* BTP */
+    /* 0x11 */ BTP_KOLIN = 0x11,
+    /* 0x12 */ BTP_KOLIN_F_TALK_A,
 };
 
 enum Kolin_TW_RES_File_ID {
+    /* BCK */
+    /* 0x06 */ BCK_KOLIN_DEMO_FEAR = 0x6,
+    /* 0x07 */ BCK_KOLIN_DEMO_WAIT,
+    /* 0x08 */ BCK_KOLIN_F_DEMO_FEAR,
+    /* 0x09 */ BCK_KOLIN_F_DEMO_WAIT,
 
+    /* BMDR */
+    /* 0x0C */ BMDR_KOLIN_TW = 0xC,
+
+    /* BTK */
+    /* 0x0F */ BTK_KOLIN_DEMO_FEAR = 0xF,
+    /* 0x10 */ BTK_KOLIN_DEMO_WAIT,
+
+    /* BTP */
+    /* 0x13 */ BTP_KOLIN_F_DEMO_FEAR = 0x13,
+    /* 0x14 */ BTP_KOLIN_F_DEMO_WAIT,
 };
 
 enum Kolin1_RES_File_ID {
+    /* BCK */ 
+    /* 0x06 */ BCK_KOLIN_CLUP = 0x6,
+    /* 0x07 */ BCK_KOLIN_F_CLUP,
+    /* 0x08 */ BCK_KOLIN_F_HAPPY_TALK,
+    /* 0x09 */ BCK_KOLIN_F_KIZUKU,
+    /* 0x0A */ BCK_KOLIN_F_NORMAL_TALK,
+    /* 0x0B */ BCK_KOLIN_F_STONE,
+    /* 0x0C */ BCK_KOLIN_F_WALK_A,
+    /* 0x0D */ BCK_KOLIN_FH_KIZUKU,
+    /* 0x0E */ BCK_KOLIN_FH_NORMAL_TALK,
+    /* 0x0F */ BCK_KOLIN_FH_WAIT_D,
+    /* 0x10 */ BCK_KOLIN_HAIHAI,
+    /* 0x11 */ BCK_KOLIN_HAPPY_TALK,
+    /* 0x12 */ BCK_KOLIN_HAPPY_WAIT,
+    /* 0x13 */ BCK_KOLIN_NORMAL_TALK,
+    /* 0x14 */ BCK_KOLIN_NOZOKU,
+    /* 0x15 */ BCK_KOLIN_RUN,
+    /* 0x16 */ BCK_KOLIN_STONE,
+    /* 0x17 */ BCK_KOLIN_TALK_A,
+    /* 0x18 */ BCK_KOLIN_TURN,
+    /* 0x19 */ BCK_KOLIN_WAIT_B,
+    /* 0x1A */ BCK_KOLIN_WAIT_C,
+    /* 0x1B */ BCK_KOLIN_WAIT_D,
+    /* 0x1C */ BCK_KOLIN_WALK_A,
+    /* 0x1D */ BCK_KOLIN_WALK_B,
 
+    /* BTK */
+    /* 0x20 */ BTK_KOLIN_CLUP = 0x20,
+    /* 0x21 */ BTK_KOLIN_NOZOKU,
+    /* 0x22 */ BTK_KOLIN_STONE,
+    /* 0x23 */ BTK_KOLIN_WALK_A,
+    
+    /* BTP */
+    /* 0x26 */ BTP_KOLIN_F_CLUP = 0x26,
+    /* 0x27 */ BTP_KOLIN_F_KIZUKU,
+    /* 0x28 */ BTP_KOLIN_F_STONE,
+    /* 0x29 */ BTP_KOLIN_F_WALK_A,
+    /* 0x2A */ BTP_KOLIN_FH_WAIT_D,
+
+    /* EVT */
+    /* 0x2D */ EVT_KOLIN1_EVENT_LIST = 0x2D,
 };
 
 enum Kolin2_RES_File_ID {
+    /* BCK */
+    /* 0x06 */ BCK_KOLIN_CLOTH_TRY = 0x6,
+    /* 0x07 */ BCK_KOLIN_CLOTH_WAIT,
+    /* 0x08 */ BCK_KOLIN_F_CLOTH_TRY,
 
+    /* BMDR */
+    /* 0x0B */ BMDR_KOLIN_CLOTH = 0xB,
+
+    /* BTK */
+    /* 0x0E */ BTK_KOLIN_CLOTH_TRY = 0xE,
+
+    /* BTP */
+    /* 0x11 */ BTP_KOLIN_F_CLOTH_TRY = 0x11,
+};
+
+enum FaceMotion {
+    /* 0x0 */ FACE_TALK_A,
+    /* 0x1 */ FACE_STONE,
+    /* 0x2 */ FACE_WALK_A,
+    /* 0x3 */ FACE_NORMAL_TALK,
+    /* 0x4 */ FACE_HAPPY_TALK,
+    /* 0x5 */ FACE_CLUP,
+    /* 0x6 */ FACE_H_WAIT_D,
+    /* 0x7 */ FACE_KIZUKU,
+    /* 0x8 */ FACE_H_NORMAL_TALK,
+    /* 0x9 */ FACE_H_KIZUKU,
+    /* 0xA */ FACE_DEMO_WAIT,
+    /* 0xB */ FACE_DEMO_FEAR,
+    /* 0xC */ FACE_CLOTH_TRY,
+    /* 0xD */ FACE_NONE,
+};
+
+enum Motion {
+    /* 0x01 */ MOT_WAIT_A = 0x1,
+    /* 0x02 */ MOT_WAIT_B,
+    /* 0x03 */ MOT_WAIT_C,
+    /* 0x04 */ MOT_TALK_A,
+    /* 0x05 */ MOT_STONE,
+    /* 0x06 */ MOT_NORMAL_TALK,
+    /* 0x07 */ MOT_HAPPY_TALK,
+    /* 0x08 */ MOT_CLUP,
+    /* 0x09 */ MOT_CLOTH_WAIT,
+    /* 0x0A */ MOT_STEP,
+    /* 0x0B */ MOT_NOZOKU,
+    /* 0x0C */ MOT_TURN,
+    /* 0x0D */ MOT_WALK_A,
+    /* 0x0E */ MOT_WALK_B,
+    /* 0x0F */ MOT_RUN,
+    /* 0x10 */ MOT_HAIHAI,
+    /* 0x11 */ MOT_DEMO_WAIT,
+    /* 0x12 */ MOT_DEMO_FEAR,
+    /* 0x13 */ MOT_CLOTH_TRY,
 };
 
 enum RES_Name {
@@ -49,9 +168,9 @@ UNK_REL_DATA;
 
 /* 8055A8E8-8055A900 000020 0018+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[3][2] = {
-    {11, 1},
-    {12, 2},
-    {11, 4},
+    {BMDR_KOLIN, KOLIN},
+    {BMDR_KOLIN_TW, KOLIN_TW},
+    {BMDR_KOLIN_CLOTH, KOLIN2},
 };
 
 /* 8055A900-8055A948 -00001 0048+00 0/1 0/0 0/0 .data            l_evtList */
@@ -119,70 +238,87 @@ static s8* l_loadResPtrnList[15] = {
 
 /* 8055A9C4-8055AB4C 0000FC 0188+00 0/1 0/0 0/0 .data            l_faceMotionAnmData */
 static daNpcT_faceMotionAnmData_c l_faceMotionAnmData[14] = {
-    {-1, J3DFrameCtrl::EMode_NONE, 0, 17, J3DFrameCtrl::EMode_LOOP, KOLIN, 1},
-    {0xC, J3DFrameCtrl::EMode_LOOP, KOLIN1, 41, J3DFrameCtrl::EMode_LOOP, KOLIN1, 0},
-    {0xB, J3DFrameCtrl::EMode_NONE, KOLIN1, 40, J3DFrameCtrl::EMode_NONE, KOLIN1, 0},
-    {0xE, J3DFrameCtrl::EMode_LOOP, KOLIN1, 17, J3DFrameCtrl::EMode_LOOP, KOLIN, 1},
-    {9, J3DFrameCtrl::EMode_NONE, KOLIN1, 39, J3DFrameCtrl::EMode_NONE, KOLIN1, 0},
-    {0xD, J3DFrameCtrl::EMode_LOOP, KOLIN1, 17, J3DFrameCtrl::EMode_LOOP, KOLIN, 1},
-    {0xF, J3DFrameCtrl::EMode_LOOP, KOLIN1, 42, J3DFrameCtrl::EMode_LOOP, KOLIN1, 0},
-    {9, J3DFrameCtrl::EMode_LOOP, KOLIN_TW, 20, J3DFrameCtrl::EMode_LOOP, KOLIN_TW, 0},
-    {8, J3DFrameCtrl::EMode_LOOP, KOLIN_TW, 19, J3DFrameCtrl::EMode_LOOP, KOLIN_TW, 0},
-    {8, J3DFrameCtrl::EMode_NONE, KOLIN2, 17, J3DFrameCtrl::EMode_NONE, 4, 0},
-    {6, J3DFrameCtrl::EMode_NONE, KOLIN, 18, J3DFrameCtrl::EMode_NONE, KOLIN, 0},
-    {0xA, J3DFrameCtrl::EMode_NONE, KOLIN1, 17, J3DFrameCtrl::EMode_LOOP, KOLIN, 1},
-    {8, J3DFrameCtrl::EMode_NONE, KOLIN1, 17, J3DFrameCtrl::EMode_LOOP, KOLIN, 1},
-    {7, J3DFrameCtrl::EMode_NONE, KOLIN1, 38, J3DFrameCtrl::EMode_NONE, KOLIN1, 0},
+    {-1, J3DFrameCtrl::EMode_NONE, 0, BTP_KOLIN, J3DFrameCtrl::EMode_LOOP, KOLIN, 1},
+    {BCK_KOLIN_F_WALK_A, J3DFrameCtrl::EMode_LOOP, KOLIN1, BTP_KOLIN_F_WALK_A, J3DFrameCtrl::EMode_LOOP, KOLIN1, 0},
+    {BCK_KOLIN_F_STONE, J3DFrameCtrl::EMode_NONE, KOLIN1, BTP_KOLIN_F_STONE, J3DFrameCtrl::EMode_NONE, KOLIN1, 0},
+    {BCK_KOLIN_FH_NORMAL_TALK, J3DFrameCtrl::EMode_LOOP, KOLIN1, BTP_KOLIN, J3DFrameCtrl::EMode_LOOP, KOLIN, 1},
+    {BCK_KOLIN_F_KIZUKU, J3DFrameCtrl::EMode_NONE, KOLIN1, BTP_KOLIN_F_KIZUKU, J3DFrameCtrl::EMode_NONE, KOLIN1, 0},
+    {BCK_KOLIN_FH_KIZUKU, J3DFrameCtrl::EMode_LOOP, KOLIN1, BTP_KOLIN, J3DFrameCtrl::EMode_LOOP, KOLIN, 1},
+    {BCK_KOLIN_FH_WAIT_D, J3DFrameCtrl::EMode_LOOP, KOLIN1, BTP_KOLIN_FH_WAIT_D, J3DFrameCtrl::EMode_LOOP, KOLIN1, 0},
+    {BCK_KOLIN_F_DEMO_WAIT, J3DFrameCtrl::EMode_LOOP, KOLIN_TW, BTP_KOLIN_F_DEMO_WAIT, J3DFrameCtrl::EMode_LOOP, KOLIN_TW, 0},
+    {BCK_KOLIN_F_DEMO_FEAR, J3DFrameCtrl::EMode_LOOP, KOLIN_TW, BTP_KOLIN_F_DEMO_FEAR, J3DFrameCtrl::EMode_LOOP, KOLIN_TW, 0},
+    {BCK_KOLIN_F_CLOTH_TRY, J3DFrameCtrl::EMode_NONE, KOLIN2, BTP_KOLIN_F_CLOTH_TRY, J3DFrameCtrl::EMode_NONE, KOLIN2, 0},
+    {BCK_KOLIN_F_TALK_A, J3DFrameCtrl::EMode_NONE, KOLIN, BTP_KOLIN_F_TALK_A, J3DFrameCtrl::EMode_NONE, KOLIN, 0},
+    {BCK_KOLIN_F_NORMAL_TALK, J3DFrameCtrl::EMode_NONE, KOLIN1, BTP_KOLIN, J3DFrameCtrl::EMode_LOOP, KOLIN, 1},
+    {BCK_KOLIN_F_HAPPY_TALK, J3DFrameCtrl::EMode_NONE, KOLIN1, BTP_KOLIN, J3DFrameCtrl::EMode_LOOP, KOLIN, 1},
+    {BCK_KOLIN_F_CLUP, J3DFrameCtrl::EMode_NONE, KOLIN1, BTP_KOLIN_F_CLUP, J3DFrameCtrl::EMode_NONE, KOLIN1, 0},
 };
 
 /* 8055AB4C-8055AD98 000284 024C+00 0/1 0/0 0/0 .data            l_motionAnmData */
 static daNpcT_motionAnmData_c l_motionAnmData[21] = {
-    {8, J3DFrameCtrl::EMode_LOOP, KOLIN, 14, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
-    {25, J3DFrameCtrl::EMode_LOOP, KOLIN1, 14, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
-    {26, J3DFrameCtrl::EMode_LOOP, KOLIN1, 14, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
-    {27, J3DFrameCtrl::EMode_LOOP, KOLIN1, 14, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
-    {18, J3DFrameCtrl::EMode_LOOP, KOLIN1, 14, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
-    {23, J3DFrameCtrl::EMode_NONE, KOLIN1, 14, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
-    {19, J3DFrameCtrl::EMode_NONE, KOLIN1, 14, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
-    {17, J3DFrameCtrl::EMode_NONE, KOLIN1, 14, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
-    {28, J3DFrameCtrl::EMode_LOOP, KOLIN1, 35, J3DFrameCtrl::EMode_LOOP, KOLIN1, 0, 0},
-    {29, J3DFrameCtrl::EMode_LOOP, KOLIN1, 14, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
-    {21, J3DFrameCtrl::EMode_LOOP, KOLIN1, 14, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
-    {16, J3DFrameCtrl::EMode_LOOP, KOLIN1, 14, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
-    {24, J3DFrameCtrl::EMode_NONE, KOLIN1, 14, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
-    {22, J3DFrameCtrl::EMode_NONE, KOLIN1, 34, J3DFrameCtrl::EMode_NONE, KOLIN1, 0, 0},
-    {6, J3DFrameCtrl::EMode_NONE, KOLIN1, 32, J3DFrameCtrl::EMode_NONE, KOLIN1, 0, 0},
-    {20, J3DFrameCtrl::EMode_NONE, KOLIN1, 33, J3DFrameCtrl::EMode_NONE, KOLIN1, 0, 0},
-    {7, J3DFrameCtrl::EMode_NONE, KOLIN, 14, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
-    {7, J3DFrameCtrl::EMode_LOOP, KOLIN_TW, 16, J3DFrameCtrl::EMode_LOOP, KOLIN_TW, 0, 0},
-    {6, J3DFrameCtrl::EMode_LOOP, KOLIN_TW, 15, J3DFrameCtrl::EMode_LOOP, KOLIN_TW, 0, 0},
-    {7, J3DFrameCtrl::EMode_LOOP, KOLIN2, 14, J3DFrameCtrl::EMode_LOOP, KOLIN, 1, 0},
-    {6, J3DFrameCtrl::EMode_NONE, KOLIN2, 14, J3DFrameCtrl::EMode_NONE, KOLIN2, 0, 0},
+    {BCK_KOLIN_WAIT_A, J3DFrameCtrl::EMode_LOOP, KOLIN, BTK_KOLIN, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
+    {BCK_KOLIN_WAIT_B, J3DFrameCtrl::EMode_LOOP, KOLIN1, BTK_KOLIN, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
+    {BCK_KOLIN_WAIT_C, J3DFrameCtrl::EMode_LOOP, KOLIN1, BTK_KOLIN, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
+    {BCK_KOLIN_WAIT_D, J3DFrameCtrl::EMode_LOOP, KOLIN1, BTK_KOLIN, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
+    {BCK_KOLIN_HAPPY_WAIT, J3DFrameCtrl::EMode_LOOP, KOLIN1, BTK_KOLIN, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
+    {BCK_KOLIN_TALK_A, J3DFrameCtrl::EMode_NONE, KOLIN1, BTK_KOLIN, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
+    {BCK_KOLIN_NORMAL_TALK, J3DFrameCtrl::EMode_NONE, KOLIN1, BTK_KOLIN, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
+    {BCK_KOLIN_HAPPY_TALK, J3DFrameCtrl::EMode_NONE, KOLIN1, BTK_KOLIN, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
+    {BCK_KOLIN_WALK_A, J3DFrameCtrl::EMode_LOOP, KOLIN1, BTK_KOLIN_WALK_A, J3DFrameCtrl::EMode_LOOP, KOLIN1, 0, 0},
+    {BCK_KOLIN_WALK_B, J3DFrameCtrl::EMode_LOOP, KOLIN1, BTK_KOLIN, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
+    {BCK_KOLIN_RUN, J3DFrameCtrl::EMode_LOOP, KOLIN1, BTK_KOLIN, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
+    {BCK_KOLIN_HAIHAI, J3DFrameCtrl::EMode_LOOP, KOLIN1, BTK_KOLIN, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
+    {BCK_KOLIN_TURN, J3DFrameCtrl::EMode_NONE, KOLIN1, BTK_KOLIN, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
+    {BCK_KOLIN_STONE, J3DFrameCtrl::EMode_NONE, KOLIN1, BTK_KOLIN_STONE, J3DFrameCtrl::EMode_NONE, KOLIN1, 0, 0},
+    {BCK_KOLIN_CLUP, J3DFrameCtrl::EMode_NONE, KOLIN1, BTK_KOLIN_CLUP, J3DFrameCtrl::EMode_NONE, KOLIN1, 0, 0},
+    {BCK_KOLIN_NOZOKU, J3DFrameCtrl::EMode_NONE, KOLIN1, BTK_KOLIN_NOZOKU, J3DFrameCtrl::EMode_NONE, KOLIN1, 0, 0},
+    {BCK_KOLIN_STEP, J3DFrameCtrl::EMode_NONE, KOLIN, BTK_KOLIN, J3DFrameCtrl::EMode_NONE, KOLIN, 1, 0},
+    {BCK_KOLIN_DEMO_WAIT, J3DFrameCtrl::EMode_LOOP, KOLIN_TW, BTK_KOLIN_DEMO_WAIT, J3DFrameCtrl::EMode_LOOP, KOLIN_TW, 0, 0},
+    {BCK_KOLIN_DEMO_FEAR, J3DFrameCtrl::EMode_LOOP, KOLIN_TW, BTK_KOLIN_DEMO_FEAR, J3DFrameCtrl::EMode_LOOP, KOLIN_TW, 0, 0},
+    {BCK_KOLIN_CLOTH_WAIT, J3DFrameCtrl::EMode_LOOP, KOLIN2, BTK_KOLIN, J3DFrameCtrl::EMode_LOOP, KOLIN, 1, 0},
+    {BCK_KOLIN_CLOTH_TRY, J3DFrameCtrl::EMode_NONE, KOLIN2, BTK_KOLIN_CLOTH_TRY, J3DFrameCtrl::EMode_NONE, KOLIN2, 0, 0},
 };
 
 /* 8055AD98-8055AE78 0004D0 00E0+00 0/1 0/0 0/0 .data            l_faceMotionSequenceData */
 static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_faceMotionSequenceData[56] = {
-    {10, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {2, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {1, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {11, -1, 1}, {3, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {12, -1, 1}, {3, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {13, -1, 1}, {5, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {6, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {4, -1, 1}, {5, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {3, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {5, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {7, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {8, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {9, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {0, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {10, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {2, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {1, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {11, -1, 1}, {3, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {12, -1, 1}, {3, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {13, -1, 1}, {5, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {6, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {4, -1, 1}, {5, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {3, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {5, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {7, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {8, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {9, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {0, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
 };
 
 /* 8055AE78-8055AFB8 0005B0 0140+00 0/1 0/0 0/0 .data            l_motionSequenceData */
 static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_motionSequenceData[80] = {
-    {0, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {0, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {1, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {2, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {5, -1, 1}, {1, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {13, -1, 1}, {1, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {6, -1, 1}, {0, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {7, -1, 1}, {4, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {14, -1, 1}, {3, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {19, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {16, 3, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {15, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {12, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {8, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {9, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {10, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {11, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {17, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
-    {18, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0}, {20, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {0, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {0, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {1, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {2, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {5, -1, 1}, {1, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {13, -1, 1}, {1, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {6, -1, 1}, {0, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {7, -1, 1}, {4, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {14, -1, 1}, {3, -1, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {19, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {16, 3, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {15, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {12, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {8, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {9, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {10, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {11, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {17, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {18, -1, 0}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
+    {20, -1, 1}, {-1, 0, 0}, {-1, 0, 0}, {-1, 0, 0},
 };
 
 char* daNpc_Kolin_c::mCutNameList[11] = {
@@ -344,7 +480,7 @@ cPhs__Step daNpc_Kolin_c::create() {
 int daNpc_Kolin_c::CreateHeap() {
     int bmdIdx;
 
-    if (mTwilight == 1) {
+    if (mTwilight == true) {
         bmdIdx = 1;
     } else {
         bmdIdx = 0;
@@ -379,10 +515,10 @@ int daNpc_Kolin_c::CreateHeap() {
         }
 
         if (modelData != NULL) {
-            field_0xe44 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+            mpClothModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
         }
 
-        if (field_0xe44 == NULL) {
+        if (mpClothModel == NULL) {
             return 0;
         }
     }
@@ -725,18 +861,18 @@ BOOL daNpc_Kolin_c::checkChangeEvt() {
 
 /* 8055523C-805552DC 00133C 00A0+00 1/0 0/0 0/0 .text setAfterTalkMotion__13daNpc_Kolin_cFv */
 void daNpc_Kolin_c::setAfterTalkMotion() {
-    int i_index = 0xD;
+    int i_index = FACE_NONE;
     
     switch (mFaceMotionSeqMngr.getNo()) {
-        case 3:
-            i_index = 8;
+        case FACE_NORMAL_TALK:
+            i_index = FACE_H_NORMAL_TALK;
             break;
 
-        case 4:
-            i_index = 8;
+        case FACE_HAPPY_TALK:
+            i_index = FACE_H_NORMAL_TALK;
             break;
 
-        case 9:
+        case FACE_H_KIZUKU:
             return;
     }
 
@@ -958,15 +1094,15 @@ void daNpc_Kolin_c::drawOtherMdl() {
     J3DModel* model = mpMorf[0]->getModel();
 
     for (int i = 0; i < 1; i++) {
-        if (field_0xe44 != NULL && i == 0 && field_0x1017 != 0) {
-            g_env_light.setLightTevColorType_MAJI(field_0xe44, &tevStr);
+        if (mpClothModel != NULL && i == 0 && field_0x1017 != 0) {
+            g_env_light.setLightTevColorType_MAJI(mpClothModel, &tevStr);
             static int const jointNo[1] = {0x12};
             mDoMtx_stack_c::copy(model->getAnmMtx(jointNo[0]));
             Mtx mtx;
             MTXCopy(mDoMtx_stack_c::get(), mtx);
-            field_0xe44->setBaseTRMtx(mtx);
-            mDoExt_modelUpdateDL(field_0xe44);
-            dComIfGd_addRealShadow(mShadowKey, field_0xe44);
+            mpClothModel->setBaseTRMtx(mtx);
+            mDoExt_modelUpdateDL(mpClothModel);
+            dComIfGd_addRealShadow(mShadowKey, mpClothModel);
         }
     }
 }
@@ -1076,14 +1212,14 @@ void daNpc_Kolin_c::calcFollowSpeedAndAngle(fopAc_ac_c* actor, int param_2, int 
             old.pos = current.pos;
         }
 
-        if (mMotionSeqMngr.getNo() == 0xF) {
+        if (mMotionSeqMngr.getNo() == MOT_RUN) {
             cLib_chaseF(&speedF, daNpc_Kolin_Param_c::m.run_speed, 0.5f);
         } else if (mFootLOffset.y < mFootROffset.y) {
             speedF = (mFootLOffset - mOldFootLOffset).absXZ();
         } else {
             speedF = (mFootROffset - mOldFootROffset).absXZ();
         }
-    } else if (mMotionSeqMngr.getNo() == 0xF) {
+    } else if (mMotionSeqMngr.getNo() == MOT_RUN) {
         cLib_chaseF(&speedF, 0.0f, 1.0f);
     } else {
         speedF = 0.0f;
@@ -1138,7 +1274,7 @@ void daNpc_Kolin_c::followPlayer(int param_1) {
     cXyz sp98 = attnPos - attention_info.position;
 
     if (300.0f < fabsf(sp98.y)) {
-        if (mMotionSeqMngr.getNo() == 0xF) {
+        if (mMotionSeqMngr.getNo() == MOT_RUN) {
             cLib_chaseF(&speedF, 0.0f, 1.0f);
         } else {
             speedF = 0.0f;
@@ -1146,16 +1282,16 @@ void daNpc_Kolin_c::followPlayer(int param_1) {
     }
 
     if (cM3d_IsZero(speedF)) {
-        if (mMotionSeqMngr.getNo() != 1) {
-            mMotionSeqMngr.setNo(1, -1.0f, FALSE, 0);
+        if (mMotionSeqMngr.getNo() != MOT_WAIT_A) {
+            mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0f, FALSE, 0);
         }
-    } else if (mMotionSeqMngr.getNo() != 0xF) {
+    } else if (mMotionSeqMngr.getNo() != MOT_RUN) {
         if (fopAcM_searchActorDistanceXZ(this, daPy_getPlayerActorClass()) < daNpc_Kolin_Param_c::m.start_distance) {
-            if (mMotionSeqMngr.getNo() != 0xE) {
-                mMotionSeqMngr.setNo(0xE, 4.0f, FALSE, 0);
+            if (mMotionSeqMngr.getNo() != MOT_WALK_B) {
+                mMotionSeqMngr.setNo(MOT_WALK_B, 4.0f, FALSE, 0);
             }
         } else {
-            mMotionSeqMngr.setNo(0xF, 4.0f, FALSE, 0);
+            mMotionSeqMngr.setNo(MOT_RUN, 4.0f, FALSE, 0);
         }
     }
 
@@ -1232,8 +1368,8 @@ int daNpc_Kolin_c::cutHail(int i_cutIndex) {
     if (dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
         switch (prm) {
             case 0: {
-                mFaceMotionSeqMngr.setNo(0xD, 0.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(2, 0.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, 0.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOT_WAIT_B, 0.0f, FALSE, 0);
                 mJntAnm.lookNone(1);
                 initTalk(mFlowNodeNo, NULL);
                 speedF = 0.0f;
@@ -1313,8 +1449,8 @@ int daNpc_Kolin_c::cutGiveMeWoodSwd(int i_cutIndex) {
                 break;
 
             case 1:
-                mFaceMotionSeqMngr.setNo(0xD, 0.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(2, 0.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, 0.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOT_WAIT_B, 0.0f, FALSE, 0);
                 mJntAnm.lookNone(1);
                 speedF = 0.0f;
                 speed.setall(0.0f);
@@ -1324,8 +1460,8 @@ int daNpc_Kolin_c::cutGiveMeWoodSwd(int i_cutIndex) {
                 break;
 
             case 2:
-                mFaceMotionSeqMngr.setNo(0xD, 0.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(2, 0.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, 0.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOT_WAIT_B, 0.0f, FALSE, 0);
                 mJntAnm.lookNone(1);
                 work.set(153.0f, 1300.0f, -1278.0f);
                 setPos(work);
@@ -1379,8 +1515,8 @@ int daNpc_Kolin_c::cutGetWoodSwd(int i_cutIndex) {
                 break;
 
             case 1:
-                mFaceMotionSeqMngr.setNo(0xD, 0.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(2, 0.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, 0.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOT_WAIT_B, 0.0f, FALSE, 0);
                 mJntAnm.lookNone(1);
                 speedF = 0.0f;
                 speed.setall(0.0f);
@@ -1411,8 +1547,8 @@ int daNpc_Kolin_c::cutGetWoodSwd(int i_cutIndex) {
                 break;
 
             case 5:
-                mFaceMotionSeqMngr.setNo(0xD, -1.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOT_RUN, -1.0f, FALSE, 0);
                 home.pos = current.pos;
                 home.angle.y = mCurAngle.y;
                 mEventTimer = timer;
@@ -1546,8 +1682,8 @@ int daNpc_Kolin_c::cutConversationAboutLoopHole(int i_cutIndex) {
                 mJntAnm.lookNone(0);
 
                 if (step(mPlayerAngle, 13, 10, 15, 0)) {
-                    mFaceMotionSeqMngr.setNo(0xD, -1.0f, FALSE, 0);
-                    mMotionSeqMngr.setNo(1, -1.0f, FALSE, 0);
+                    mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                    mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0f, FALSE, 0);
                 }
 
                 shape_angle.y = mPlayerAngle;
@@ -1615,8 +1751,8 @@ int daNpc_Kolin_c::cutCacaricoConversation(int i_cutIndex) {
 
             if (mPlayerAngle != mCurAngle.y) {
                 if (step(mPlayerAngle, 13, 10, 15, 0)) {
-                    mFaceMotionSeqMngr.setNo(0xD, -1.0f, FALSE, 0);
-                    mMotionSeqMngr.setNo(1, -1.0f, FALSE, 0);
+                    mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                    mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0f, FALSE, 0);
                 }
             } else {
                 rv = 1;
@@ -1742,26 +1878,26 @@ int daNpc_Kolin_c::wait(void* param_1) {
             if (!mStagger.checkStagger()) {
                 switch (mType) {
                     case 0:
-                        mFaceMotionSeqMngr.setNo(8, -1.0f, FALSE, 0);
-                        mMotionSeqMngr.setNo(1, -1.0f, FALSE, 0);
+                        mFaceMotionSeqMngr.setNo(FACE_H_NORMAL_TALK, -1.0f, FALSE, 0);
+                        mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0f, FALSE, 0);
                         break;
 
                     case 4:
                         if (getBitSW() != 0xFF) {
                             if (dComIfGs_isSwitch(getBitSW(), fopAcM_GetRoomNo(this))) {
-                                mFaceMotionSeqMngr.setNo(0xB, -1.0f, FALSE, 0);
-                                mMotionSeqMngr.setNo(0x12, -1.0f, FALSE, 0);
+                                mFaceMotionSeqMngr.setNo(FACE_DEMO_FEAR, -1.0f, FALSE, 0);
+                                mMotionSeqMngr.setNo(MOT_DEMO_FEAR, -1.0f, FALSE, 0);
                                 break;
                             }
                         }
 
-                        mFaceMotionSeqMngr.setNo(10, -1.0f, FALSE, 0);
-                        mMotionSeqMngr.setNo(0x11, -1.0f, FALSE, 0);
+                        mFaceMotionSeqMngr.setNo(FACE_DEMO_WAIT, -1.0f, FALSE, 0);
+                        mMotionSeqMngr.setNo(MOT_DEMO_WAIT, -1.0f, FALSE, 0);
                         break;
 
                     default:
-                        mFaceMotionSeqMngr.setNo(0xD, -1.0f, FALSE, 0);
-                        mMotionSeqMngr.setNo(1, -1.0f, FALSE, 0);
+                        mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                        mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0f, FALSE, 0);
                         break;
                 }
 
@@ -1795,7 +1931,7 @@ int daNpc_Kolin_c::wait(void* param_1) {
                     mJntAnm.lookNone(0);
                     
                     if (getBitSW() != 0xFF) {
-                        if (dComIfGs_isSwitch(getBitSW(), fopAcM_GetRoomNo(this)) && mMotionSeqMngr.getNo() != 0x12) {
+                        if (dComIfGs_isSwitch(getBitSW(), fopAcM_GetRoomNo(this)) && mMotionSeqMngr.getNo() != MOT_DEMO_FEAR) {
                             mMode = 1;
                         }
                     }
@@ -1914,8 +2050,8 @@ int daNpc_Kolin_c::timidWalk(void* param_1) {
         case 0:
         case 1:
             if (!mStagger.checkStagger()) {
-                mFaceMotionSeqMngr.setNo(0xD, -1.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(1, -1.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0f, FALSE, 0);
                 field_0x1016 = 1;
                 field_0x1008 = 0;
                 field_0x1004 = 0;
@@ -1952,8 +2088,8 @@ int daNpc_Kolin_c::timidWalk(void* param_1) {
 
                     if (field_0x1016 != 0) {
                         if (field_0x1008 == 0) {
-                            mFaceMotionSeqMngr.setNo(0xD, -1.0f, FALSE, 0);
-                            mMotionSeqMngr.setNo(0xD, -1.0f, FALSE, 0);
+                            mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                            mMotionSeqMngr.setNo(MOT_WALK_A, -1.0f, FALSE, 0);
                             field_0x1004 = cLib_getRndValue<int>(shy_walk_time / 2, shy_walk_time);
                             field_0x1016 = 0;
                         } else {
@@ -1965,13 +2101,13 @@ int daNpc_Kolin_c::timidWalk(void* param_1) {
 
                         if (field_0x1004 == 0) {
                             if (cM3d_IsZero(speedF)) {
-                                mFaceMotionSeqMngr.setNo(0xD, -1.0f, FALSE, 0);
+                                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
 
                                 if (field_0x1010 <= cM_rnd()) {
-                                    mMotionSeqMngr.setNo(5, 8.0f, FALSE, 0);
+                                    mMotionSeqMngr.setNo(MOT_STONE, 8.0f, FALSE, 0);
                                     field_0x1010 = 0.7f;
                                 } else {
-                                    mMotionSeqMngr.setNo(2, 8.0f, FALSE, 0);
+                                    mMotionSeqMngr.setNo(MOT_WAIT_B, 8.0f, FALSE, 0);
                                     field_0x1010 -= 0.1f;
                                 }
 
@@ -2007,8 +2143,8 @@ int daNpc_Kolin_c::follow(void* param_1) {
         case 0:
         case 1:
             if (!mStagger.checkStagger()) {
-                mFaceMotionSeqMngr.setNo(0xD, -1.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(1, -1.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0f, FALSE, 0);
                 field_0x1016 = 1;
                 field_0x1008 = 0;
                 field_0x1004 = 0;
@@ -2042,8 +2178,8 @@ int daNpc_Kolin_c::clothWait(void* param_1) {
         case 0:
         case 1:
             if (!mStagger.checkStagger()) {
-                mFaceMotionSeqMngr.setNo(0xD, -1.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(9, -1.0f, FALSE, 0);
+                mFaceMotionSeqMngr.setNo(FACE_NONE, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOT_CLOTH_WAIT, -1.0f, FALSE, 0);
                 field_0x1008 = sulk_time + (int)(sulk_time * (cM_rnd() - 0.5f));
                 mMode = 2;
             }
@@ -2063,8 +2199,8 @@ int daNpc_Kolin_c::clothWait(void* param_1) {
                     attention_info.flags = 0;
                 } else if (field_0x1008 != 0) {
                     if (cLib_calcTimer<int>(&field_0x1008) == 0) {
-                        mFaceMotionSeqMngr.setNo(0xC, -1.0f, FALSE, 0);
-                        mMotionSeqMngr.setNo(0x13, -1.0f, FALSE, 0);
+                        mFaceMotionSeqMngr.setNo(FACE_CLOTH_TRY, -1.0f, FALSE, 0);
+                        mMotionSeqMngr.setNo(MOT_CLOTH_TRY, -1.0f, FALSE, 0);
                     }
                 } else if (mMotionSeqMngr.checkEndSequence() != 0) {
                     mMode = 1;
@@ -2085,8 +2221,8 @@ int daNpc_Kolin_c::talk(void* param_1) {
         case 0:
         case 1:
             if (!mStagger.checkStagger()) {
-                if (mMotionSeqMngr.getNo() == 0xF) {
-                    mMotionSeqMngr.setNo(1, -1.0f, FALSE, 0);
+                if (mMotionSeqMngr.getNo() == MOT_RUN) {
+                    mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0f, FALSE, 0);
                 }
 
                 initTalk(mFlowNodeNo, NULL);

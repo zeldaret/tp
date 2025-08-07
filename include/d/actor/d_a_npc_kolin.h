@@ -146,7 +146,7 @@ public:
 
 private:
     /* 0x0E40 */ u8 field_0xe40[0xe44 - 0xE40];
-    /* 0x0E44 */ J3DModel* field_0xe44;
+    /* 0x0E44 */ J3DModel* mpClothModel;
     /* 0x0E48 */ dCcD_Cyl field_0xe48;
     /* 0x0F84 */ u8 mType;
     /* 0x0F85 */ u8 field_0xf85[0xf88 - 0xf85];
