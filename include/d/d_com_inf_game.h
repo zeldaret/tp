@@ -604,6 +604,7 @@ public:
     JKRArchive* getRubyArchive() { return mRubyArchive; }
     JKRArchive* getMeterButtonArchive() { return mMeterButtonArchive; }
     JKRArchive* getAllMapArchive() { return mAllMapArchive; }
+    JKRArchive* getCardIconResArchive() { return mCardIconResArchive; }
 
     void setFieldMapArchive2(JKRArchive* arc) { mFieldMapArchive2 = arc; }
     void setAnmArchive(JKRArchive* arc) { mAnmArchive = arc; }
@@ -2291,6 +2292,10 @@ inline JKRArchive* dComIfGp_getMsgArchive(int idx) {
 
 inline JKRArchive* dComIfGp_getMsgCommonArchive() {
     return g_dComIfG_gameInfo.play.getMsgCommonArchive();
+}
+
+inline JKRArchive* dComIfGp_getCardIconResArchive() {
+    return g_dComIfG_gameInfo.play.getCardIconResArchive();
 }
 
 inline void dComIfGp_setFieldMapArchive2(JKRArchive* arc) {
