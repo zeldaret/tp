@@ -24,7 +24,7 @@ struct daNpc_Kolin_HIOParam {
 
 class daNpc_Kolin_Param_c {
 public:
-    /* 8055A4E8 */ ~daNpc_Kolin_Param_c();
+    /* 8055A4E8 */ virtual ~daNpc_Kolin_Param_c() {}
 
     static daNpc_Kolin_HIOParam const m;
 };
@@ -79,14 +79,14 @@ public:
         : daNpcT_c(i_faceMotionAnmData, i_motionAnmData, i_faceMotionSequenceData,
         i_faceMotionStepNum, i_motionSequenceData, i_motionStepNum, i_evtData,
         i_arcNames) {}
-    /* 8055A4B8 */ virtual int checkChangeJoint(int);
-    /* 8055A4C8 */ virtual int checkRemoveJoint(int);
-    /* 8055A4B0 */ virtual s32 getBackboneJointNo();
-    /* 8055A4A8 */ virtual s32 getNeckJointNo();
-    /* 8055A4A0 */ virtual s32 getHeadJointNo();
-    /* 8055A4D8 */ virtual s32 getFootLJointNo();
-    /* 8055A4E0 */ virtual s32 getFootRJointNo();
-    /* 8055A498 */ virtual u16 getEyeballMaterialNo();
+    /* 8055A4B8 */ virtual int checkChangeJoint(int i_joint) { return i_joint == 4; }
+    /* 8055A4C8 */ virtual int checkRemoveJoint(int i_joint) { return i_joint == 8; }
+    /* 8055A4B0 */ virtual s32 getBackboneJointNo() { return 1; }
+    /* 8055A4A8 */ virtual s32 getNeckJointNo() { return 3; }
+    /* 8055A4A0 */ virtual s32 getHeadJointNo() { return 4; }
+    /* 8055A4D8 */ virtual s32 getFootLJointNo() { return 22; }
+    /* 8055A4E0 */ virtual s32 getFootRJointNo() { return 25; }
+    /* 8055A498 */ virtual u16 getEyeballMaterialNo() { return 2; }
     /* 80554EBC */ virtual void afterJntAnm(int);
     /* 80554F48 */ virtual void setParam();
     /* 80555118 */ virtual BOOL checkChangeEvt();
@@ -154,7 +154,9 @@ private:
     /* 0x0FB0 */ daNpcT_Path_c mPath;
     /* 0x0FD8 */ actionFunc mNextAction;
     /* 0x0FE4 */ actionFunc mAction;
-    /* 0x0FF0 */ u8 field_0xff0[0x1004 - 0xff0];
+    /* 0x0FF0 */ u8 field_0xff0[0xffc - 0xff0];
+    /* 0x0FFC */ int field_0xffc;
+    /* 0x1000 */ int field_0x1000;
     /* 0x1004 */ int field_0x1004;
     /* 0x1008 */ int field_0x1008;
     /* 0x100C */ u8 field_0x100c[0x1010 - 0x100c];
@@ -163,7 +165,8 @@ private:
     /* 0x1015 */ u8 field_0x1015;
     /* 0x1016 */ u8 field_0x1016;
     /* 0x1017 */ u8 field_0x1017;
-    /* 0x1018 */ u8 field_0x1018[0x101c - 0x1018];
+    /* 0x1018 */ u8 field_0x1018;
+    /* 0x1019 */ u8 field_0x1019[0x101c - 0x1019];
     /* 0x101C */ u8 field_0x101c;
     /* 0x101D */ u8 field_0x101d[0x1020 - 0x101d];
 };
