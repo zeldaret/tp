@@ -237,7 +237,7 @@ int daNpc_yamiD_c::Execute() {
 
 /* 80B437DC-80B43884 00097C 00A8+00 1/1 0/0 0/0 .text            Draw__13daNpc_yamiD_cFv */
 int daNpc_yamiD_c::Draw() {
-    if (field_0xf81 != 0) {
+    if (mVanish != 0) {
         return 0;
     }
 
@@ -324,88 +324,158 @@ void daNpc_yamiD_c::reset() {
     // NONMATCHING
     initialize();
 
-    // int i_size = (u8*)&field_0xfc4 - (u8*)&mNextAction;
-    memset(&mNextAction, 0, field_0xfc4 - 0);
+    memset(&mNextAction, 0, (u8*)&field_0xfc4 - (u8*)&mNextAction);
 
     if (mpMatAnm[0] != NULL) {
         mpMatAnm[0]->initialize();
     }
     
-    if (getPathID() != -1) {
+    if (getPathID() != 0xFF) {
         mPath.initialize();
         mPath.setPathInfo(getPathID(), fopAcM_GetRoomNo(this), 0);
     }
+
+    if (_is_vanish_prm()) {
+        vanish_on();
+        off_CoHit();
+    } else {
+        vanish_off();
+        on_CoHit();
+    }
+
+    if (mType == 1) {
+        fopAcM_offSwitch(this, 3);
+    }
+
+    setAngle(home.angle.y);
+    setAction(&daNpc_yamiD_c::wait);
 }
 
 /* 80B43C34-80B43CC0 000DD4 008C+00 1/0 0/0 0/0 .text            afterJntAnm__13daNpc_yamiD_cFi */
-void daNpc_yamiD_c::afterJntAnm(int param_0) {
-    // NONMATCHING
+void daNpc_yamiD_c::afterJntAnm(int param_1) {
+    if (param_1 == 2) {
+        mDoMtx_stack_c::YrotM(mStagger.getAngleZ(1));
+        mDoMtx_stack_c::ZrotM(-mStagger.getAngleX(1));
+    } else if (param_1 == 4) {
+        mDoMtx_stack_c::YrotM(-mStagger.getAngleZ(0));
+        mDoMtx_stack_c::ZrotM(mStagger.getAngleX(0));
+    }
 }
 
 /* 80B43CC0-80B43DBC 000E60 00FC+00 1/0 0/0 0/0 .text            setParam__13daNpc_yamiD_cFv */
 void daNpc_yamiD_c::setParam() {
-    // NONMATCHING
-}
+    selectAction();
+    srchActors();
 
-/* ############################################################################################## */
-/* 80B46100-80B46104 0000B4 0004+00 1/2 0/0 0/0 .rodata          @4577 */
-SECTION_RODATA static f32 const lit_4577 = -1.0f;
-COMPILER_STRIP_GATE(0x80B46100, &lit_4577);
+    s16 talk_distance = daNpc_yamiD_Param_c::m.common.talk_distance;
+    s16 talk_angle = daNpc_yamiD_Param_c::m.common.talk_angle;
+    s16 attention_distance = daNpc_yamiD_Param_c::m.common.attention_distance;
+    s16 attention_angle = daNpc_yamiD_Param_c::m.common.attention_angle;
+
+    attention_info.distances[fopAc_attn_LOCK_e] = daNpcT_getDistTableIdx(attention_distance, attention_angle);
+    attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+    attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(talk_distance, talk_angle);
+    attention_info.flags = 0;
+
+    scale.set(daNpc_yamiD_Param_c::m.common.scale, daNpc_yamiD_Param_c::m.common.scale, daNpc_yamiD_Param_c::m.common.scale);
+    mCcStts.SetWeight(daNpc_yamiD_Param_c::m.common.weight);
+    mCylH = daNpc_yamiD_Param_c::m.common.height;
+    mWallR = daNpc_yamiD_Param_c::m.common.width;
+    mAttnFovY = daNpc_yamiD_Param_c::m.common.fov;
+    mAcchCir.SetWallR(mWallR);
+    mAcchCir.SetWallH(daNpc_yamiD_Param_c::m.common.knee_length);
+    mRealShadowSize = daNpc_yamiD_Param_c::m.common.real_shadow_size;
+    gravity = daNpc_yamiD_Param_c::m.common.gravity;
+    mExpressionMorfFrame = daNpc_yamiD_Param_c::m.common.expression_morf_frame;
+    mMorfFrames = daNpc_yamiD_Param_c::m.common.morf_frame;
+}
 
 /* 80B43DBC-80B43E1C 000F5C 0060+00 1/0 0/0 0/0 .text setAfterTalkMotion__13daNpc_yamiD_cFv */
 void daNpc_yamiD_c::setAfterTalkMotion() {
-    // NONMATCHING
+    mFaceMotionSeqMngr.getNo();
+    mFaceMotionSeqMngr.setNo(1, -1.0f, FALSE, 0);
 }
 
 /* 80B43E1C-80B43E28 000FBC 000C+00 1/1 0/0 0/0 .text            srchActors__13daNpc_yamiD_cFv */
 void daNpc_yamiD_c::srchActors() {
-    // NONMATCHING
+    if ((int)mType == 1) {
+        return;
+    }
 }
 
 /* 80B43E28-80B43F0C 000FC8 00E4+00 1/0 0/0 0/0 .text            evtTalk__13daNpc_yamiD_cFv */
 BOOL daNpc_yamiD_c::evtTalk() {
-    // NONMATCHING
+    if (chkAction(&daNpc_yamiD_c::talk)) {
+        (this->*mAction)(NULL);
+    } else if (dComIfGp_event_chkTalkXY() == 0 || dComIfGp_evmng_ChkPresentEnd()) {
+        setAction(&daNpc_yamiD_c::talk);
+    }
+
+    return TRUE;
 }
 
 /* 80B43F0C-80B43FD4 0010AC 00C8+00 1/0 0/0 0/0 .text            evtCutProc__13daNpc_yamiD_cFv */
 BOOL daNpc_yamiD_c::evtCutProc() {
-    // NONMATCHING
+    int rv = FALSE;
+
+    int staffId = dComIfGp_getEventManager().getMyStaffId("yamiD", this, -1);
+    if (staffId != -1) {
+        mStaffId = staffId;
+        int actIdx = dComIfGp_getEventManager().getMyActIdx(mStaffId, mCutNameList, 2, 0, 0);
+        if ((this->*mCutList[actIdx])(mStaffId)) {
+            dComIfGp_getEventManager().cutEnd(mStaffId);
+        }
+
+        rv = TRUE;
+    }
+
+    return rv;
 }
 
 /* 80B43FD4-80B440C0 001174 00EC+00 1/0 0/0 0/0 .text            action__13daNpc_yamiD_cFv */
 void daNpc_yamiD_c::action() {
-    // NONMATCHING
+    if (mStagger.checkRebirth()) {
+        mStagger.initialize();
+        mMode = 1;
+    }
+
+    if (mNextAction) {
+        if (mAction == mNextAction) {
+            (this->*mAction)(NULL);
+        } else {
+            setAction(mNextAction);
+        }
+    }
 }
 
 /* 80B440C0-80B44138 001260 0078+00 1/0 0/0 0/0 .text            beforeMove__13daNpc_yamiD_cFv */
 void daNpc_yamiD_c::beforeMove() {
-    // NONMATCHING
+    if (checkHide() || mNoDraw) {
+        attention_info.flags = 0;
+    }
 }
-
-/* ############################################################################################## */
-/* 80B46104-80B46108 0000B8 0004+00 0/1 0/0 0/0 .rodata          @4697 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4697 = -30.0f;
-COMPILER_STRIP_GATE(0x80B46104, &lit_4697);
-#pragma pop
-
-/* 80B46108-80B4610C 0000BC 0004+00 0/1 0/0 0/0 .rodata          @4698 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4698 = 0x38C90FDB;
-COMPILER_STRIP_GATE(0x80B46108, &lit_4698);
-#pragma pop
-
-/* 80B4610C-80B46114 0000C0 0008+00 1/3 0/0 0/0 .rodata          @4700 */
-SECTION_RODATA static u8 const lit_4700[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80B4610C, &lit_4700);
 
 /* 80B44138-80B44364 0012D8 022C+00 1/0 0/0 0/0 .text            setAttnPos__13daNpc_yamiD_cFv */
 void daNpc_yamiD_c::setAttnPos() {
-    // NONMATCHING
+    cXyz work(-30.0f, 0.0f, 0.0f);
+
+    mStagger.calc(FALSE);
+    f32 rad = cM_s2rad(mCurAngle.y - field_0xd7e.y);
+    mJntAnm.setParam(this, mpMorf[0]->getModel(), &work, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
+                     daNpc_yamiD_Param_c::m.common.body_angleX_min, daNpc_yamiD_Param_c::m.common.body_angleX_max,
+                     daNpc_yamiD_Param_c::m.common.body_angleY_min, daNpc_yamiD_Param_c::m.common.body_angleY_max,
+                     daNpc_yamiD_Param_c::m.common.head_angleX_min, daNpc_yamiD_Param_c::m.common.head_angleX_max,
+                     daNpc_yamiD_Param_c::m.common.head_angleY_min, daNpc_yamiD_Param_c::m.common.head_angleY_max,
+                     daNpc_yamiD_Param_c::m.common.neck_rotation_ratio, rad, NULL);
+    mJntAnm.calcJntRad(0.2f, 1.0f, rad);
+    setMtx();
+    mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
+    mDoMtx_stack_c::multVec(&work, &eyePos);
+    mJntAnm.setEyeAngleX(eyePos, 1.0f, 0);
+    mJntAnm.setEyeAngleY(eyePos, mCurAngle.y, TRUE, 1.0f, 0);
+    
+    attention_info.position = current.pos;
+    attention_info.position.y += daNpc_yamiD_Param_c::m.common.attention_offset;
 }
 
 /* 80B44364-80B44498 001504 0134+00 1/0 0/0 0/0 .text            setCollision__13daNpc_yamiD_cFv */
@@ -441,12 +511,12 @@ void daNpc_yamiD_c::setAction(actionFunc action) {
 }
 
 /* 80B44628-80B44900 0017C8 02D8+00 2/0 0/0 0/0 .text            wait__13daNpc_yamiD_cFPv */
-void daNpc_yamiD_c::wait(void* param_1) {
+int daNpc_yamiD_c::wait(void* param_1) {
     // NONMATCHING
 }
 
 /* 80B44900-80B44AF8 001AA0 01F8+00 2/0 0/0 0/0 .text            talk__13daNpc_yamiD_cFPv */
-void daNpc_yamiD_c::talk(void* param_1) {
+int daNpc_yamiD_c::talk(void* param_1) {
     // NONMATCHING
 }
 

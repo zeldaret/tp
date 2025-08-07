@@ -55,8 +55,8 @@ public:
     /* 80B4450C */ void selectAction();
     /* 80B44554 */ BOOL chkAction(int (daNpc_yamiD_c::*)(void*));
     /* 80B44580 */ void setAction(int (daNpc_yamiD_c::*)(void*));
-    /* 80B44628 */ void wait(void*);
-    /* 80B44900 */ void talk(void*);
+    /* 80B44628 */ int wait(void*);
+    /* 80B44900 */ int talk(void*);
     /* 80B44AF8 */ int cutStopper(int);
     /* 80B44B8C */ void _cutStopper_Init(int const&);
     /* 80B44BD4 */ void _cutStopper_Main(int const&);
@@ -82,6 +82,24 @@ public:
 
     u32 getPathID() { return (fopAcM_GetParam(this) & 0xFF00) >> 8; }
     int getSwitchBitNo() { return (fopAcM_GetParam(this) >> 16) & 0xFF; }
+    bool _is_vanish_prm() {
+        int bVar1 = (fopAcM_GetParam(this) >> 28) != 0;
+        if (bVar1 == 15) {
+            return false;
+        }
+        return true;
+        
+    }
+    void vanish_on() { mVanish = 1; }
+    void vanish_off() { mVanish = 0; }
+    void on_CoHit() {
+        field_0xe44.OnCoSetBit();
+        field_0xe44.OnTgSetBit();
+    }
+    void off_CoHit() {
+        field_0xe44.OffCoSetBit();
+        field_0xe44.OffTgSetBit();
+    }
 
     static char* mCutNameList[2];
     static cutFunc mCutList[2];
@@ -90,7 +108,7 @@ private:
     /* 0xE40 */ u8 field_0xe40[0xe44 - 0xe40];
     /* 0xE44 */ dCcD_Cyl field_0xe44;
     /* 0xF80 */ u8 mType;
-    /* 0xF81 */ s8 field_0xf81;
+    /* 0xF81 */ s8 mVanish;
     /* 0xF82 */ u8 field_0xf82[0xf84 - 0xf82];
     /* 0xF84 */ actionFunc mNextAction;
     /* 0xF90 */ actionFunc mAction;
