@@ -214,6 +214,7 @@ public:
     };
 
     void onForcePanic() { onEndResetStateFlg0(ERFLG0_FORCE_PANIC); }
+    void onRatBody(int) { onForcePanic(); }
     u32 checkForceNormalColor() const { return checkStateFlg1(FLG1_FORCE_NORMAL_COL); }
     u32 checkForceTiredColor() const { return checkStateFlg1(FLG1_FORCE_TIRED_COL); }
     void onNoServiceWait() { onEndResetStateFlg0(ERFLG0_NO_SERVICE_WAIT); }
