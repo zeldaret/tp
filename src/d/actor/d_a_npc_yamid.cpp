@@ -319,7 +319,7 @@ u8 daNpc_yamiD_c::getType() {
 u32 daNpc_yamiD_c::getFlowNodeNo() {
     u32 rv = -1;
 
-        /* dSv_event_flag_c::F_0570 - Palace of Twilight - Cleared Palace of Twilight */
+    /* dSv_event_flag_c::F_0570 - Palace of Twilight - Cleared Palace of Twilight */
     if (daNpcT_chkEvtBit(570)) {
         rv = 0x326;
     } else {
@@ -339,7 +339,7 @@ BOOL daNpc_yamiD_c::isDelete() {
     switch (mType) {
         case 0:
         case 1:
-                /* dSv_event_flag_c::F_0570 - Palace of Twilight - Cleared Palace of Twilight */
+            /* dSv_event_flag_c::F_0570 - Palace of Twilight - Cleared Palace of Twilight */
             if (!daNpcT_chkEvtBit(570)) {
                 if (!fopAcM_isSwitch(this, getSwitchBitNo())) {
                     rv = TRUE;
