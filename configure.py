@@ -1856,7 +1856,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_uri"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_worm", extra_cflags=['-pragma "nosyminline off"']),
     ActorRel(NonMatching, "d_a_npc_wrestler", extra_cflags=[DANPCF_C_HACK]),
-    ActorRel(NonMatching, "d_a_npc_yamid"),
+    ActorRel(Equivalent, "d_a_npc_yamid"), # weak function order
     ActorRel(NonMatching, "d_a_npc_yamis"),
     ActorRel(NonMatching, "d_a_npc_yamit"),
     ActorRel(Equivalent, "d_a_npc_yelia"), # weak function order
