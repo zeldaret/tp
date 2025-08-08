@@ -1081,11 +1081,11 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphBase/J3DTransform.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphBase/J3DTexture.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphBase/J3DPacket.cpp"),
-            Object(NonMatching, "JSystem/J3DGraphBase/J3DShapeMtx.cpp"),
+            Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphBase/J3DShapeMtx.cpp"),
             Object(NonMatching, "JSystem/J3DGraphBase/J3DShapeDraw.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphBase/J3DShape.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphBase/J3DMaterial.cpp", extra_cflags=['-pragma "nosyminline off"']),
-            Object(Equivalent, "JSystem/J3DGraphBase/J3DMatBlock.cpp"),
+            Object(Equivalent, "JSystem/J3DGraphBase/J3DMatBlock.cpp"), # virtual function order
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphBase/J3DTevs.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphBase/J3DDrawBuffer.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphBase/J3DStruct.cpp"),
