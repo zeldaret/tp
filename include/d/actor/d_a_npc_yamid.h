@@ -25,7 +25,7 @@ public:
 
 class daNpc_yamiD_c : public daNpcT_c {
 public:
-    typedef int (daNpc_yamiD_c::*cutFunc)(int);
+    typedef BOOL (daNpc_yamiD_c::*cutFunc)(int);
     typedef int (daNpc_yamiD_c::*actionFunc)(void*);
 
     /* 80B42F4C */ ~daNpc_yamiD_c();
@@ -52,14 +52,14 @@ public:
     /* 80B44364 */ void setCollision();
     /* 80B44498 */ int drawDbgInfo();
     /* 80B444A0 */ void drawGhost();
-    /* 80B4450C */ void selectAction();
+    /* 80B4450C */ int selectAction();
     /* 80B44554 */ BOOL chkAction(int (daNpc_yamiD_c::*)(void*));
-    /* 80B44580 */ void setAction(int (daNpc_yamiD_c::*)(void*));
+    /* 80B44580 */ int setAction(int (daNpc_yamiD_c::*)(void*));
     /* 80B44628 */ int wait(void*);
     /* 80B44900 */ int talk(void*);
-    /* 80B44AF8 */ int cutStopper(int);
-    /* 80B44B8C */ void _cutStopper_Init(int const&);
-    /* 80B44BD4 */ void _cutStopper_Main(int const&);
+    /* 80B44AF8 */ BOOL cutStopper(int);
+    /* 80B44B8C */ BOOL _cutStopper_Init(int const&);
+    /* 80B44BD4 */ BOOL _cutStopper_Main(int const&);
     /* 80B45E74 */ daNpc_yamiD_c(
             daNpcT_faceMotionAnmData_c const* i_faceMotionAnmData,
             daNpcT_motionAnmData_c const* i_motionAnmData,
@@ -72,24 +72,31 @@ public:
         : daNpcT_c(i_faceMotionAnmData, i_motionAnmData, i_faceMotionSequenceData,
         i_faceMotionStepNum, i_motionSequenceData, i_motionStepNum, i_evtData,
         i_arcNames) {}
-    /* 80B45F34 */ u16 getEyeballMaterialNo();
-    /* 80B45F3C */ s32 getHeadJointNo();
-    /* 80B45F44 */ s32 getNeckJointNo();
-    /* 80B45F4C */ s32 getBackboneJointNo();
-    /* 80B45F54 */ BOOL checkChangeJoint(int);
-    /* 80B45F64 */ BOOL checkRemoveJoint(int);
-    /* 80B45F74 */ BOOL evtEndProc();
+    /* 80B45F34 */ u16 getEyeballMaterialNo() { return 1; }
+    /* 80B45F3C */ s32 getHeadJointNo() { return 4; }
+    /* 80B45F44 */ s32 getNeckJointNo() { return 3; }
+    /* 80B45F4C */ s32 getBackboneJointNo() { return 1; }
+    /* 80B45F54 */ BOOL checkChangeJoint(int i_joint) { return i_joint == 4; }
+    /* 80B45F64 */ BOOL checkRemoveJoint(int i_joint) { return i_joint == 6; }
+    /* 80B45F74 */ BOOL evtEndProc() {
+                        mJntAnm.lookNone(0);
+                        eventInfo.setIdx(0);
+                        mEvtNo = 0;
+                        return TRUE;
+                    }
 
     u32 getPathID() { return (fopAcM_GetParam(this) & 0xFF00) >> 8; }
     int getSwitchBitNo() { return (fopAcM_GetParam(this) >> 16) & 0xFF; }
-    bool _is_vanish_prm() {
-        int bVar1 = (fopAcM_GetParam(this) >> 28) != 0;
-        if (bVar1 == 15) {
-            return false;
+    BOOL _is_vanish_prm() {
+        u8 uVar1 = ((fopAcM_GetParam(this) >> 28)) ? 1 : 0;
+        int iVar1 = uVar1;
+        if (iVar1 == 15) {
+            iVar1 = 0;
         }
-        return true;
+        return iVar1;
         
     }
+    bool is_vanish() { return mVanish; }
     void vanish_on() { mVanish = 1; }
     void vanish_off() { mVanish = 0; }
     void on_CoHit() {
@@ -109,12 +116,12 @@ private:
     /* 0xE44 */ dCcD_Cyl field_0xe44;
     /* 0xF80 */ u8 mType;
     /* 0xF81 */ s8 mVanish;
-    /* 0xF82 */ u8 field_0xf82[0xf84 - 0xf82];
+    /* 0xF82 */ s8 field_0xf82;
+    /* 0xF83 */ u8 field_0xf83;
     /* 0xF84 */ actionFunc mNextAction;
     /* 0xF90 */ actionFunc mAction;
     /* 0xF9C */ daNpcT_Path_c mPath;
     /* 0xFC4 */ u8 field_0xfc4;
-    /* 0xFC5 */ u8 field_0xfc5[0xfc8 - 0xfc5];
     /* 0xFC8 */ int field_0xfc8;
 };
 
