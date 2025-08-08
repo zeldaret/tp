@@ -249,35 +249,74 @@ extern "C" void getHandPos2__11daNpcTheB_cFi();
 //
 
 /* 8099D6D8-8099D72C 000078 0054+00 1/1 0/0 0/0 .text            jointHorseCallBack__FP8J3DJointi */
-static void jointHorseCallBack(J3DJoint* param_0, int param_1) {
+static void jointHorseCallBack(J3DJoint* i_joint, int param_2) {
     // NONMATCHING
 }
 
 /* 8099D72C-8099D80C 0000CC 00E0+00 1/1 0/0 0/0 .text jointFrontWheelCallBack__FP8J3DJointi */
-static void jointFrontWheelCallBack(J3DJoint* param_0, int param_1) {
+static void jointFrontWheelCallBack(J3DJoint* i_joint, int param_2) {
     // NONMATCHING
 }
 
 /* 8099D80C-8099D8EC 0001AC 00E0+00 1/1 0/0 0/0 .text jointRearWheelCallBack__FP8J3DJointi */
-static void jointRearWheelCallBack(J3DJoint* param_0, int param_1) {
+static void jointRearWheelCallBack(J3DJoint* i_joint, int param_2) {
     // NONMATCHING
 }
 
-/* ############################################################################################## */
 /* 809A4ED0-809A4F70 000000 00A0+00 19/19 0/0 0/0 .rodata          M_attr__12daNpcCoach_c */
-SECTION_RODATA u8 const daNpcCoach_c::M_attr[160] = {
-    0xC0, 0x40, 0x00, 0x00, 0xC3, 0x48, 0x00, 0x00, 0xBE, 0x80, 0x00, 0x00, 0xC3, 0xC1, 0x80, 0x00,
-    0xC3, 0x3E, 0x00, 0x00, 0x42, 0xA4, 0x00, 0x00, 0x42, 0xC0, 0x00, 0x00, 0x42, 0xA0, 0x00, 0x00,
-    0x3F, 0x00, 0x00, 0x00, 0x3F, 0x59, 0x99, 0x9A, 0x40, 0xC0, 0x00, 0x00, 0x41, 0xB0, 0x00, 0x00,
-    0x41, 0xF0, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00, 0x43, 0xC8, 0x00, 0x00,
-    0x44, 0xBB, 0x80, 0x00, 0x41, 0x80, 0x00, 0x00, 0x42, 0x78, 0x00, 0x00, 0xC2, 0x6B, 0x5A, 0x02,
-    0x42, 0x87, 0x41, 0x06, 0x00, 0x00, 0x00, 0x00, 0x3F, 0x19, 0x99, 0x9A, 0x41, 0xA0, 0x00, 0x00,
-    0x00, 0x0D, 0x18, 0x00, 0x01, 0x00, 0x04, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x05, 0xDC, 0x07, 0x00, 0x00, 0x00, 0x44, 0x7A, 0x00, 0x00,
-    0xE0, 0x00, 0x40, 0x00, 0x00, 0x00, 0xFF, 0x50, 0x00, 0x03, 0x00, 0x00, 0x45, 0xBB, 0x80, 0x00,
-    0x41, 0x20, 0x00, 0x00, 0x41, 0xA0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x19,
+daNpcCoach_Attr_c const daNpcCoach_c::M_attr = {
+    -3.0f,
+    -200.0f,
+    -0.25f,
+    -387.0f,
+    -190.0f,
+    82.0f,
+    96.0f,
+    80.0f,
+    0.5f,
+    0.85f,
+    6.0f,
+    22.0f,
+    30.0f,
+    40.0f,
+    4.0f,
+    400.0f,
+    1500.0f,
+    16.0f,
+    62.0f,
+    -58.837898f,
+    67.626999f,
+    0.0f,
+    0.6f,
+    20.0f,
+    13,
+    0x1800,
+    0x100,
+    0x400,
+    0x400,
+    0,
+    0,
+    0,
+    0,
+    1,
+    0x5DC,
+    7,
+    0,
+    0,
+    0,
+    1000.0f,
+    0xE000,
+    0x4000,
+    0,
+    0xFF50,
+    3,
+    0,
+    6000.0f,
+    10.0f,
+    20.0f,
+    0.0f,
+    0x19,
 };
-COMPILER_STRIP_GATE(0x809A4ED0, &daNpcCoach_c::M_attr);
 
 /* 809A4F70-809A4F74 0000A0 0004+00 3/19 0/0 0/0 .rodata          @4121 */
 SECTION_RODATA static u8 const lit_4121[4] = {
@@ -289,14 +328,12 @@ SECTION_RODATA static u8 const lit_4121[4] = {
 COMPILER_STRIP_GATE(0x809A4F70, &lit_4121);
 
 /* 8099D8EC-8099D9AC 00028C 00C0+00 1/1 0/0 0/0 .text            jointCoachCallBack__FP8J3DJointi */
-static void jointCoachCallBack(J3DJoint* param_0, int param_1) {
+static void jointCoachCallBack(J3DJoint* i_joint, int param_2) {
     // NONMATCHING
 }
 
-/* 8099D9AC-8099DA24 00034C 0078+00 1/1 0/0 0/0 .text
- * arrowStickCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_cR4cXyz  */
-static void arrowStickCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2,
-                                   cXyz& param_3) {
+/* 8099D9AC-8099DA24 00034C 0078+00 1/1 0/0 0/0 .text            arrowStickCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_cR4cXyz */
+static void arrowStickCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2, cXyz& param_3) {
     // NONMATCHING
 }
 
@@ -306,20 +343,17 @@ extern "C" void __dt__4cXyzFv() {
     // NONMATCHING
 }
 
-/* 8099DA60-8099DBA4 000400 0144+00 1/1 0/0 0/0 .text            hitFireArrow__12daNpcCoach_cF4cXyz
- */
-void daNpcCoach_c::hitFireArrow(cXyz param_0) {
+/* 8099DA60-8099DBA4 000400 0144+00 1/1 0/0 0/0 .text            hitFireArrow__12daNpcCoach_cF4cXyz */
+void daNpcCoach_c::hitFireArrow(cXyz param_1) {
     // NONMATCHING 
 }
 
-/* 8099DBA4-8099DCE8 000544 0144+00 0/0 0/0 1/1 .text            deleteFireArrow__12daNpcCoach_cFUi
- */
-void daNpcCoach_c::deleteFireArrow(unsigned int param_0) {
+/* 8099DBA4-8099DCE8 000544 0144+00 0/0 0/0 1/1 .text            deleteFireArrow__12daNpcCoach_cFUi */
+void daNpcCoach_c::deleteFireArrow(unsigned int param_1) {
     // NONMATCHING
 }
 
-/* 8099DCE8-8099DD28 000688 0040+00 0/0 0/0 1/1 .text deleteFireArrowFromList__12daNpcCoach_cFUi
- */
+/* 8099DCE8-8099DD28 000688 0040+00 0/0 0/0 1/1 .text            deleteFireArrowFromList__12daNpcCoach_cFUi */
 bool daNpcCoach_c::deleteFireArrowFromList(unsigned int i_actorID) {
     for (int i = 0; i < 5; i++) {
         if (field_0x247c[i] == i_actorID) {
@@ -330,14 +364,13 @@ bool daNpcCoach_c::deleteFireArrowFromList(unsigned int i_actorID) {
     return false;
 }
 
-/* 8099DD28-8099DD7C 0006C8 0054+00 0/0 0/0 3/3 .text setPosAngle__12daNpcCoach_cFR4cXyzR5csXyz */
+/* 8099DD28-8099DD7C 0006C8 0054+00 0/0 0/0 3/3 .text            setPosAngle__12daNpcCoach_cFR4cXyzR5csXyz */
 void daNpcCoach_c::setPosAngle(cXyz& param_0, csXyz& param_1) {
     // NONMATCHING
 }
 
-/* 8099DD7C-8099DE18 00071C 009C+00 1/1 0/0 0/0 .text
- * ctrlJointHorse__12daNpcCoach_cFP8J3DJointP8J3DModel          */
-void daNpcCoach_c::ctrlJointHorse(J3DJoint* param_0, J3DModel* param_1) {
+/* 8099DD7C-8099DE18 00071C 009C+00 1/1 0/0 0/0 .text            ctrlJointHorse__12daNpcCoach_cFP8J3DJointP8J3DModel */
+void daNpcCoach_c::ctrlJointHorse(J3DJoint* i_joint, J3DModel* i_model) {
     // NONMATCHING
 }
 
@@ -349,8 +382,7 @@ SECTION_RODATA static f32 const lit_4358 = 500.0f;
 COMPILER_STRIP_GATE(0x809A4F74, &lit_4358);
 #pragma pop
 
-/* 8099DE18-8099E0E0 0007B8 02C8+00 2/2 0/0 0/0 .text
- * initCoachPosition__12daNpcCoach_cFR3VecR4SVec                */
+/* 8099DE18-8099E0E0 0007B8 02C8+00 2/2 0/0 0/0 .text            initCoachPosition__12daNpcCoach_cFR3VecR4SVec */
 void daNpcCoach_c::initCoachPosition(Vec& param_0, SVec& param_1) {
     // NONMATCHING
 }
@@ -360,9 +392,7 @@ static void s_sub(void* param_0, void* param_1) {
     // NONMATCHING
 }
 
-/* ############################################################################################## */
-/* 809A4F78-809A4FBC 0000A8 0044+00 1/1 0/0 0/0 .rodata
- * ccCylSrc$localstatic3$initCollision__12daNpcCoach_cFv        */
+/* 809A4F78-809A4FBC 0000A8 0044+00 1/1 0/0 0/0 .rodata              ccCylSrc$localstatic3$initCollision__12daNpcCoach_cFv */
 SECTION_RODATA static u8 const data_809A4F78[68] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x24, 0x20, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x79,
@@ -372,8 +402,7 @@ SECTION_RODATA static u8 const data_809A4F78[68] = {
 };
 COMPILER_STRIP_GATE(0x809A4F78, &data_809A4F78);
 
-/* 809A4FBC-809A4FFC 0000EC 0040+00 1/1 0/0 0/0 .rodata
- * ccSphSrc$localstatic4$initCollision__12daNpcCoach_cFv        */
+/* 809A4FBC-809A4FFC 0000EC 0040+00 1/1 0/0 0/0 .rodata              ccSphSrc$localstatic4$initCollision__12daNpcCoach_cFv */
 SECTION_RODATA static u8 const data_809A4FBC[64] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -416,8 +445,7 @@ SECTION_RODATA static u8 const lit_4848[8] = {
 COMPILER_STRIP_GATE(0x809A5010, &lit_4848);
 #pragma pop
 
-/* 8099E138-8099E4A0 000AD8 0368+00 2/2 0/0 0/0 .text
- * changeAtherPath__12daNpcCoach_cFScR4cXyzR5csXyz              */
+/* 8099E138-8099E4A0 000AD8 0368+00 2/2 0/0 0/0 .text            changeAtherPath__12daNpcCoach_cFScR4cXyzR5csXyz */
 void daNpcCoach_c::changeAtherPath(s8 param_0, cXyz& param_1, csXyz& param_2) {
     // NONMATCHING
 }
@@ -428,8 +456,7 @@ static void createSolidHeap(fopAc_ac_c* param_0) {
 }
 
 /* ############################################################################################## */
-/* 809A5018-809A502C 000148 0014+00 1/1 0/0 0/0 .rodata
- * ParticleName$localstatic3$setCoachBlazing__12daNpcCoach_cFUc */
+/* 809A5018-809A502C 000148 0014+00 1/1 0/0 0/0 .rodata              ParticleName$localstatic3$setCoachBlazing__12daNpcCoach_cFUc */
 SECTION_RODATA static u8 const data_809A5018[20] = {
     0x85, 0xF0, 0x85, 0xEF, 0x85, 0xE7, 0x85, 0xE8, 0x85, 0xE9,
     0x85, 0xEA, 0x85, 0xEB, 0x85, 0xEC, 0x85, 0xED, 0x85, 0xEE,
@@ -468,33 +495,6 @@ SECTION_DATA static u8 data_809A51AC[4] = {
     0x0F,
     0x00,
     0xFF,
-};
-
-/* 809A51B0-809A51D0 -00001 0020+00 1/0 0/0 0/0 .data            l_daNpcCoach_Method */
-static actor_method_class l_daNpcCoach_Method = {
-    (process_method_func)daNpcCoach_Create__FP10fopAc_ac_c,
-    (process_method_func)daNpcCoach_Delete__FP12daNpcCoach_c,
-    (process_method_func)daNpcCoach_Execute__FP12daNpcCoach_c,
-    (process_method_func)daNpcCoach_IsDelete__FP12daNpcCoach_c,
-    (process_method_func)daNpcCoach_Draw__FP12daNpcCoach_c,
-};
-
-/* 809A51D0-809A5200 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_COACH */
-extern actor_process_profile_definition g_profile_NPC_COACH = {
-  fpcLy_CURRENT_e,        // mLayerID
-  3,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_NPC_COACH,         // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(daNpcCoach_c),   // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  330,                    // mPriority
-  &l_daNpcCoach_Method,   // sub_method
-  0x00040100,             // mStatus
-  fopAc_ACTOR_e,          // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
 };
 
 /* 809A5200-809A5214 0000D0 0014+00 1/1 0/0 0/0 .data            __vt__18mDoExt_3DlineMat_c */
@@ -1175,9 +1175,7 @@ void daNpcCoach_c::initCoachBlazing() {
 }
 
 /* 809A48A8-809A4B9C 007248 02F4+00 1/1 0/0 0/0 .text            __ct__12daNpcCoach_cFv */
-daNpcCoach_c::daNpcCoach_c() {
-    // NONMATCHING
-}
+daNpcCoach_c::daNpcCoach_c() {}
 
 /* 809A4B9C-809A4BF8 00753C 005C+00 1/0 0/0 0/0 .text            __dt__10dCcD_GSttsFv */
 // dCcD_GStts::~dCcD_GStts() {
@@ -1249,4 +1247,29 @@ static void func_809A4EC0() {
     // NONMATCHING
 }
 
-/* 809A5120-809A5120 000250 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+/* 809A51B0-809A51D0 -00001 0020+00 1/0 0/0 0/0 .data            l_daNpcCoach_Method */
+static actor_method_class l_daNpcCoach_Method = {
+    (process_method_func)daNpcCoach_Create,
+    (process_method_func)daNpcCoach_Delete,
+    (process_method_func)daNpcCoach_Execute,
+    (process_method_func)daNpcCoach_IsDelete,
+    (process_method_func)daNpcCoach_Draw,
+};
+
+/* 809A51D0-809A5200 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_COACH */
+extern actor_process_profile_definition g_profile_NPC_COACH = {
+  fpcLy_CURRENT_e,        // mLayerID
+  3,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_NPC_COACH,         // mProcName
+  &g_fpcLf_Method.base,  // sub_method
+  sizeof(daNpcCoach_c),   // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  330,                    // mPriority
+  &l_daNpcCoach_Method,   // sub_method
+  0x00040100,             // mStatus
+  fopAc_ACTOR_e,          // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
+};
