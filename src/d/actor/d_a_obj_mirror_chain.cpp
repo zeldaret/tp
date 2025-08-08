@@ -208,6 +208,7 @@ extern void* __vt__12J3DFrameCtrl[3];
  */
 int daObjMirrorChain_c::createHeap() {
     J3DModelData* model_data;
+        /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
         model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 16);
         mpModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000284);
@@ -226,6 +227,7 @@ int daObjMirrorChain_c::createHeap() {
         return 0;
     }
 
+        /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
         J3DModelData* portal_model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 12);
         mpPortalModel = mDoExt_J3DModel__create(portal_model_data, 0, 0x11000084);
@@ -260,6 +262,7 @@ int daObjMirrorChain_c::createHeap() {
         J3DAnmTransform* bck_anm = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 8);
         mpBckAnm = new mDoExt_bckAnm();
         bool b = fopAcM_isSwitch(this, getSwitchNo())
+                /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
              || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]);
         f32 rate = b ? 1.0f : 0.0f;
         if (mpBckAnm == NULL
@@ -268,6 +271,7 @@ int daObjMirrorChain_c::createHeap() {
             return 0;
         }
         if (fopAcM_isSwitch(this, getSwitchNo())
+                /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
              || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]))
         {
             mpBckAnm->setFrame(bck_anm->getFrameMax());
@@ -339,6 +343,7 @@ int daObjMirrorChain_c::draw() {
     static f32 const SCISSOR_SIZE = 984.0f;
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
+        /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
         g_env_light.setLightTevColorType_MAJI(mpPortalModel, &tevStr);
         if (mpBckAnm != NULL) {
@@ -474,6 +479,7 @@ int daObjMirrorChain_c::execute() {
         mpPortalBrkAnm->play();
     }
 
+         /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
     if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])
                                 && mpBckAnm != NULL && mpBckAnm->getPlaySpeed() > 0.0f) {
         if (mpActiveBgW == &mBgW[0]) {
@@ -526,7 +532,9 @@ static int daObjMirrorChain_Delete(daObjMirrorChain_c* i_this) {
 }
 
 void daObjMirrorChain_c::create_init() {
-    if (mpBckAnm != NULL && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
+    if (mpBckAnm != NULL
+            /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
+        && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
         mpBckAnm->setPlaySpeed(FLOAT_LABEL(lit_3917));
     }
     mpEmitter = NULL;
@@ -535,6 +543,7 @@ void daObjMirrorChain_c::create_init() {
     mBgW[1].SetCrrFunc(NULL);
     mBgW[1].SetRoomId(fopAcM_GetRoomNo(this));
     bool b = fopAcM_isSwitch(this, getSwitchNo())
+                /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
              || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]);
     mpActiveBgW = b ? &mBgW[1] : &mBgW[0];
     dComIfG_Bgsp().Regist(mpActiveBgW, this);

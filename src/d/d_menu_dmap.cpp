@@ -1208,9 +1208,13 @@ void dMenu_Dmap_c::screenInit() {
             if (dComIfGs_isDungeonItemBossKey()) {
                 itemNo = fpcNm_ITEM_LV5_BOSS_KEY;
                 field_0x174[2] = (u8)dComIfGs_isDungeonItemBossKey() ? fpcNm_ITEM_LV5_BOSS_KEY : 0;
+                                                                    /* dSv_event_flag_c::F_0003 - Snowpeak Ruins - Handed over 
+                                                                                                  tomato puree and left room */
             } else if (checkItemGet(fpcNm_ITEM_TOMATO_PUREE, 1) && !dComIfGs_isEventBit(2)) {
                 itemNo = fpcNm_ITEM_TOMATO_PUREE;
                 field_0x174[2] = fpcNm_ITEM_TOMATO_PUREE;
+                                                             /* dSv_event_flag_c::F_0004 - Snowpeak Ruins - Handed over secret 
+                                                                                           ingredient and left room */
             } else if (checkItemGet(fpcNm_ITEM_TASTE, 1) && !dComIfGs_isEventBit(1)) {
                 itemNo = fpcNm_ITEM_TASTE;
                 field_0x174[2] = fpcNm_ITEM_TASTE;

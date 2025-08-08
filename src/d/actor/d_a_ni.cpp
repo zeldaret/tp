@@ -2301,6 +2301,7 @@ static int daNi_Create(fopAc_ac_c* i_this) {
         }
 
         if (strcmp(dComIfGp_getStartStageName(), "F_SP108") == 0 &&
+             /* dSv_event_flag_c::F_0528 - Faron Woods - Resistance Rusl summoned golden cucco */
             !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[528]))
         {
             a_this->mAction = ACTION_DEMO0_e;

@@ -358,6 +358,7 @@ int daBg_c::draw() {
                             field_0x5f0 = 0;
                         }
 
+                            /* Main Event - Get shadow crystal (can now transform) */
                         if (dComIfGs_isEventBit(dSv_event_flag_c::M_077)) {
                             field_0x5f0 = 9;
                         }

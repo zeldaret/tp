@@ -131,6 +131,7 @@ int daTag_Event_c::create() {
     scale.z *= 100.0f;
 
     if (horseRodeo()) {
+            /* Main Event - Epona rescued flag */
         if (dComIfGs_isEventBit(dSv_event_flag_c::M_023)) {
             return cPhs_ERROR_e;
         }

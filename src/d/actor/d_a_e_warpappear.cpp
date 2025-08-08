@@ -216,8 +216,9 @@ static void action(e_warpappear_class* i_this) {
                 fpcM_Search(s_s1entry_sub, i_this);
             }
 
-            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x40]) &&
-                dComIfGs_isSwitch(18, fopAcM_GetRoomNo(a_this)))
+                /* dSv_event_flag_c::M_031 - Goron Mines - Goron Mines clear */
+            if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x40])
+                && dComIfGs_isSwitch(18, fopAcM_GetRoomNo(a_this)))
             {
                 i_this->field_0x596 = 1;
                 i_this->field_0x59e = 20;
@@ -510,6 +511,7 @@ static void demo_camera(e_warpappear_class* i_this) {
             daPy_getPlayerActorClass()->cancelOriginalDemo();
             fopAcM_delete(i_this);
             fpcM_Search(s_s1fight_sub, i_this);
+            /* dSv_event_flag_c::F_0053 - Faron Woods - Saw night stalker appearance cutscene */
             dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[151]);
         }
         break;
@@ -881,6 +883,7 @@ static int daE_Warpappear_Create(fopAc_ac_c* actor) {
         i_this->field_0x570 = fopAcM_GetParam(i_this);
         if (i_this->field_0x570 != 53) {
             if (i_this->field_0x570 == 0xff) {
+                    /* dSv_event_flag_c::F_0053 - Faron Woods - Saw night stalker appearance cutscene */
                 if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x97])) {
                     return cPhs_ERROR_e;
                 }

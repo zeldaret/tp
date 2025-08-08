@@ -2272,8 +2272,9 @@ static int daE_S1_Create(fopAc_ac_c* i_this) {
 
         a_this->field_0x6aa = 30;
 
-        if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[83]) &&
-            strcmp(dComIfGp_getStartStageName(), "F_SP121") == 0 && a_this->mPrm1 == 0xFE)
+             /* dSv_event_flag_c::M_050 - Main Event - Eldin Bridge disappears */
+        if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[83])
+            && strcmp(dComIfGp_getStartStageName(), "F_SP121") == 0 && a_this->mPrm1 == 0xFE)
         {
             i_this->current.pos.y += 50000.0f;
             i_this->current.pos.x += 50000.0f;

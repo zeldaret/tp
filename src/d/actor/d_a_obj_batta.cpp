@@ -600,7 +600,10 @@ static int daObjBATTA_Execute(daObjBATTA_c* i_this) {
 
 /* ############################################################################################## */
 /* 80BACA5C-80BACA60 0000EC 0004+00 0/1 0/0 0/0 .rodata          l_musiya_num */
-static u16 const l_musiya_num[2] = { 0x197, 0x198 };
+static u16 const l_musiya_num[2] = {
+    0x197, /* dSv_event_flag_c::F_0407 - Misc. - Grasshopper (M) */
+    0x198, /* dSv_event_flag_c::F_0408 - Misc. - Grasshopper (F) */
+};
 
 /* 80BAC194-80BAC6A0 002454 050C+00 1/1 0/0 0/0 .text            create__12daObjBATTA_cFv */
 int daObjBATTA_c::create() {

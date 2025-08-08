@@ -699,7 +699,15 @@ int daObjBossWarp_c::demoProc() {
     };
 
     static int const l_dangeon_clr_bitNo[9] = {
-        0x37, 0x40, 0x4E, 0x109, 0x10A, 0x10B, 0x10C, -1, -1
+        0x37, /* dSv_event_flag_c::M_022 - Forest Temple - Forest Temple clear (Midna creates warp hole) */
+        0x40, /* dSv_event_flag_c::M_031 - Goron Mines - Goron Mines clear */
+        0x4E, /* dSv_event_flag_c::M_045 - Lakebed Temple - Lakebed Temple clear */
+        0x109, /* dSv_event_flag_c::F_0265 - Arbiter's Grounds - Arbiter's Grounds clear */
+        0x10A, /* dSv_event_flag_c::F_0266 - Snowpeak Ruins - Snowpeak Ruins clear */
+        0x10B, /* dSv_event_flag_c::F_0267 - Temple of Time - Temple of Time clear */
+        0x10C,
+        -1,
+        -1
     };
 
     daPy_py_c* player = (daPy_py_c*)daPy_getPlayerActorClass();

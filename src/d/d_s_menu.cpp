@@ -724,6 +724,7 @@ int dScnMenu_Draw(dScnMenu_c* i_this) {
         JUTReport(400, 420, "Ｚ：鎧固定");
     }
 
+        /* Main Event - Midna riding / not riding (ON == riding) */
     if (dComIfGs_isEventBit(dSv_event_flag_c::M_067)) {
         // "Midna ON"
         JUTReport(500, 420, "ミドナＯＮ");
@@ -758,9 +759,13 @@ int toGameScene(dScnMenu_c* i_this) {
     }
 
     if (strcmp(dComIfGp_getNextStageName(), "OPENING") == 0) {
+        /* Main Event - when OFF, wolf carries sword and shield on back */
         dComIfGs_offEventBit(dSv_event_flag_c::M_068);
+        /* Main Event - Get shadow crystal (can now transform) */
         dComIfGs_offEventBit(dSv_event_flag_c::M_077);
+        /* dSv_event_flag_c::F_0550 - Main Event - Gain ability to use sense */
         dComIfGs_offEventBit((u16)dSv_event_flag_c::saveBitLabels[550]);
+        /* Secret techniques - Obtained 1 secret techinques - Shield attack */
         dComIfGs_offEventBit(dSv_event_flag_c::F_0338);
         rt = fopScnM_ChangeReq(i_this, PROC_PLAY_SCENE, 0, 5);
         dComIfGs_init();
@@ -774,6 +779,7 @@ int toGameScene(dScnMenu_c* i_this) {
             strcmp(dComIfGp_getNextStageName(), "D_MN04A") == 0 ||
             strcmp(dComIfGp_getNextStageName(), "F_SP127") == 0)
         {
+            /* Main Event - Get shadow crystal (can now transform) */
             dComIfGs_offEventBit(dSv_event_flag_c::M_077);
         }
 
@@ -1048,48 +1054,77 @@ void setEnvData(menu_data_class* i_data) {
             dComIfGs_onTransformLV(1);
             dComIfGs_onTransformLV(2);
             dComIfGs_onTransformLV(3);
+            /* Cutscene - [cutscene: 21] reunion with Zelda / Midna revived (Hyrule Castle barrier appears) */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0250);
         } else if (memcmp(&i_data->env_data[i], "奥１", 4) == 0) {
             // Hidden Skill 1
+            /* Secret techniques - Obtained 2 secret techinques */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0339);
         } else if (memcmp(&i_data->env_data[i], "奥２", 4) == 0) {
             // Hidden Skill 2
+            /* Secret techniques - Obtained 1 secret techinques - Shield attack */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0338);
+            /* Secret techniques - Obtained 2 secret techinques */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0339);
         } else if (memcmp(&i_data->env_data[i], "奥３", 4) == 0) {
             // Hidden Skill 3
+            /* Secret techniques - Obtained 1 secret techinques - Shield attack */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0338);
+            /* Secret techniques - Obtained 2 secret techinques */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0339);
+            /* Secret techniques - Obtained 3 secret techinques */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0340);
         } else if (memcmp(&i_data->env_data[i], "奥４", 4) == 0) {
             // Hidden Skill 4
+            /* Secret techniques - Obtained 1 secret techinques - Shield attack */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0338);
+            /* Secret techniques - Obtained 2 secret techinques */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0339);
+            /* Secret techniques - Obtained 3 secret techinques */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0340);
+            /* Secret techniques - Obtained 4 secret techinques */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0341);
         } else if (memcmp(&i_data->env_data[i], "奥５", 4) == 0) {
             // Hidden Skill 5
+            /* Secret techniques - Obtained 1 secret techinques - Shield attack */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0338);
+            /* Secret techniques - Obtained 2 secret techinques */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0339);
+            /* Secret techniques - Obtained 3 secret techinques */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0340);
+            /* Secret techniques - Obtained 4 secret techinques */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0341);
+            /* Secret techniques - Obtained 5 secret techinques */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0342);
         } else if (memcmp(&i_data->env_data[i], "奥６", 4) == 0) {
             // Hidden Skill 6
+            /* Secret techniques - Obtained 1 secret techinques - Shield attack */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0338);
+            /* Secret techniques - Obtained 2 secret techinques */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0339);
+            /* Secret techniques - Obtained 3 secret techinques */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0340);
+            /* Secret techniques - Obtained 4 secret techinques */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0341);
+            /* Secret techniques - Obtained 5 secret techinques */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0342);
+            /* Secret techniques - Obtained 6 secret techinques */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0343);
         } else if (memcmp(&i_data->env_data[i], "奥７", 4) == 0) {
             // Hidden Skill 7
+            /* Secret techniques - Obtained 1 secret techinques - Shield attack */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0338);
+            /* Secret techniques - Obtained 2 secret techinques */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0339);
+            /* Secret techniques - Obtained 3 secret techinques */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0340);
+            /* Secret techniques - Obtained 4 secret techinques */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0341);
+            /* Secret techniques - Obtained 5 secret techinques */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0342);
+            /* Secret techniques - Obtained 6 secret techinques */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0343);
+            /* Secret techniques - Obtained 7 secret techinques */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0344);
         }
     }
@@ -1362,8 +1397,11 @@ block_24:
     }
 
     if (mDoCPd_c::getTrigA(PAD_3)) {
-        if (dComIfGs_isEventBit(dSv_event_flag_c::M_067) != 0) {
+            /* Main Event - Midna riding / not riding (ON == riding) */
+        if (dComIfGs_isEventBit(dSv_event_flag_c::M_067)) {
+            /* Main Event - Midna riding / not riding (ON == riding) */
             dComIfGs_offEventBit(dSv_event_flag_c::M_067);
+            /* Inside Hyrule Castle - Midna removes wolf's chains in prison */
             dComIfGs_offEventBit(dSv_event_flag_c::M_011);
             dComIfGs_offGetMagicUseFlag();
 
@@ -1371,7 +1409,9 @@ block_24:
                 dComIfGs_offLightDropGetFlag(i);
             }
         } else {
+            /* Main Event - Midna riding / not riding (ON == riding) */
             dComIfGs_onEventBit(dSv_event_flag_c::M_067);
+            /* Inside Hyrule Castle - Midna removes wolf's chains in prison */
             dComIfGs_onEventBit(dSv_event_flag_c::M_011);
 
             for (int i = 0; i < 4; i++) {
@@ -1590,8 +1630,11 @@ int phase_2(dScnMenu_c* i_this) {
     fapGmHIO_onMenu();
     i_this->current_category = menu_info->stage_data[l_cursolID].field_0x43;
 
+    /* Main Event - Get shadow crystal (can now transform) */
     dComIfGs_onEventBit(dSv_event_flag_c::M_077);
+    /* Main Event - when OFF, wolf carries sword and shield on back */
     dComIfGs_onEventBit(dSv_event_flag_c::M_068);
+    /* dSv_event_flag_c::F_0550 - Main Event - Gain ability to use sense */
     dComIfGs_onEventBit((u16)dSv_event_flag_c::saveBitLabels[550]);
     return cPhs_COMPLEATE_e;
 }
@@ -1681,6 +1724,7 @@ void dScnMenu_setPlayerDebugMode() {
             dComIfGp_setMaxOxygen(600);
             dComIfGp_setOxygen(600);
             g_dComIfG_gameInfo.info.getSavedata().getSave(17).getBit().onDungeonItemBossKey();
+            /* Main Event - Midna riding / not riding (ON == riding) */
             dComIfGs_onEventBit(dSv_event_flag_c::M_067);
 
             if (strcmp(dComIfGp_getNextStageName(), "D_MN54") == 0) {

@@ -124,6 +124,7 @@ u16 dSv_player_status_a_c::getRupeeMax() const {
 void dSv_player_status_a_c::onMagicFlag(u8 i_magic) {
     JUT_ASSERT(203, 0 <= i_magic && i_magic < 8);
     if (i_magic == 0) {
+        /* Main Event - Can use magic */
         dComIfGs_onEventBit(dSv_event_flag_c::M_097);
     }
 
@@ -133,6 +134,7 @@ void dSv_player_status_a_c::onMagicFlag(u8 i_magic) {
 void dSv_player_status_a_c::offMagicFlag(u8 i_magic) {
     JUT_ASSERT(222, 0 <= i_magic && i_magic < 8);
     if (i_magic == 0) {
+        /* Main Event - Can use magic */
         dComIfGs_offEventBit(dSv_event_flag_c::M_097);
     }
 
@@ -143,6 +145,7 @@ void dSv_player_status_a_c::offMagicFlag(u8 i_magic) {
 BOOL dSv_player_status_a_c::isMagicFlag(u8 i_magic) const {
     JUT_ASSERT(241, 0 <= i_magic && i_magic < 8);
     if (i_magic == 0) {
+        /* Main Event - Can use magic */
         return dComIfGs_isEventBit(dSv_event_flag_c::M_097);
     }
 
@@ -249,8 +252,7 @@ void dSv_player_field_last_stay_info_c::init() {
     }
 }
 
-/* 80032DE0-80032E4C 02D720 006C+00 0/0 2/2 0/0 .text
- * set__33dSv_player_field_last_stay_info_cFPCcRC4cXyzsScUc     */
+/* 80032DE0-80032E4C 02D720 006C+00 0/0 2/2 0/0 .text           set__33dSv_player_field_last_stay_info_cFPCcRC4cXyzsScUc */
 void dSv_player_field_last_stay_info_c::set(const char* i_name, const cXyz& i_pos, s16 i_angle,
                                             s8 i_spawn, u8 i_regionNo) {
     JUT_ASSERT(468, strlen(i_name) <= 7);
@@ -261,8 +263,7 @@ void dSv_player_field_last_stay_info_c::set(const char* i_name, const cXyz& i_po
     mRegionNo = i_regionNo;
 }
 
-/* 80032E4C-80032E78 02D78C 002C+00 0/0 1/1 0/0 .text
- * onRegionBit__33dSv_player_field_last_stay_info_cFi           */
+/* 80032E4C-80032E78 02D78C 002C+00 0/0 1/1 0/0 .text            onRegionBit__33dSv_player_field_last_stay_info_cFi */
 void dSv_player_field_last_stay_info_c::onRegionBit(int i_region) {
     if (i_region >= 0 && i_region < 8) {
         mRegion |= (u8)(1 << i_region);
@@ -271,8 +272,7 @@ void dSv_player_field_last_stay_info_c::onRegionBit(int i_region) {
     }
 }
 
-/* 80032E78-80032EB0 02D7B8 0038+00 0/0 2/2 0/0 .text
- * isRegionBit__33dSv_player_field_last_stay_info_cCFi          */
+/* 80032E78-80032EB0 02D7B8 0038+00 0/0 2/2 0/0 .text           isRegionBit__33dSv_player_field_last_stay_info_cCFi */
 BOOL dSv_player_field_last_stay_info_c::isRegionBit(int i_region) const {
     if (i_region >= 0 && i_region < 8) {
         return (mRegion & (u8)(1 << i_region)) ? TRUE : FALSE;
@@ -682,8 +682,7 @@ void dSv_player_item_c::setRodTypeLevelUp() {
     }
 }
 
-/* 80033D40-80033E40 02E680 0100+00 0/0 2/2 0/0 .text            setBaitItem__17dSv_player_item_cFUc
- */
+/* 80033D40-80033E40 02E680 0100+00 0/0 2/2 0/0 .text            setBaitItem__17dSv_player_item_cFUc */
 void dSv_player_item_c::setBaitItem(u8 i_itemNo) {
     switch (i_itemNo) {
     case fpcNm_ITEM_BEE_CHILD: {
@@ -751,8 +750,7 @@ BOOL dSv_player_get_item_c::isFirstBit(u8 i_itemno) const {
     return mItemFlags[index] & (1 << bit) ? TRUE : FALSE;
 }
 
-/* 80033F00-80033F6C 02E840 006C+00 1/1 0/0 0/0 .text            init__24dSv_player_item_record_cFv
- */
+/* 80033F00-80033F6C 02E840 006C+00 1/1 0/0 0/0 .text            init__24dSv_player_item_record_cFv */
 void dSv_player_item_record_c::init() {
     mArrowNum = 0;
 
@@ -1302,27 +1300,23 @@ void dSv_event_c::onEventBit(u16 i_no) {
     mEvent[i_no >> 8] |= (u8)i_no;
 }
 
-/* 800349A4-800349BC 02F2E4 0018+00 1/1 14/14 23/23 .text            offEventBit__11dSv_event_cFUs
- */
+/* 800349A4-800349BC 02F2E4 0018+00 1/1 14/14 23/23 .text            offEventBit__11dSv_event_cFUs */
 void dSv_event_c::offEventBit(u16 i_no) {
     mEvent[i_no >> 8] &= ~(u8)i_no;
 }
 
-/* 800349BC-800349E0 02F2FC 0024+00 3/3 77/77 153/153 .text            isEventBit__11dSv_event_cCFUs
- */
+/* 800349BC-800349E0 02F2FC 0024+00 3/3 77/77 153/153 .text            isEventBit__11dSv_event_cCFUs */
 BOOL dSv_event_c::isEventBit(const u16 i_no) const {
     return mEvent[i_no >> 8] & (i_no & 0xFF) ? TRUE : FALSE;
 }
 
-/* 800349E0-80034A04 02F320 0024+00 0/0 12/12 17/17 .text            setEventReg__11dSv_event_cFUsUc
- */
+/* 800349E0-80034A04 02F320 0024+00 0/0 12/12 17/17 .text            setEventReg__11dSv_event_cFUsUc */
 void dSv_event_c::setEventReg(const u16 i_reg, u8 i_no) {
     mEvent[i_reg >> 8] &= ~(u8)i_reg;
     mEvent[i_reg >> 8] |= i_no;
 }
 
-/* 80034A04-80034A1C 02F344 0018+00 0/0 19/19 20/20 .text            getEventReg__11dSv_event_cCFUs
- */
+/* 80034A04-80034A1C 02F344 0018+00 0/0 19/19 20/20 .text            getEventReg__11dSv_event_cCFUs */
 u8 dSv_event_c::getEventReg(u16 i_reg) const {
     return (u8)i_reg & mEvent[i_reg >> 8];
 }
@@ -2251,7 +2245,7 @@ u16 dSv_event_flag_c::saveBitLabels[822] = {
     F_0525, F_0526, F_0527, F_0528, F_0529, F_0530, F_0531, F_0532, F_0533, F_0534, F_0535, F_0536, 
     F_0537, F_0538, F_0539, F_0540, F_0541, F_0542, F_0543, F_0544, F_0545, F_0546, F_0547, F_0548, 
     F_0549, F_0550, F_0551, F_0552, F_0553, F_0554, F_0555, F_0556, F_0557, F_0558, F_0559, F_0560, 
-    F_0561, F_0562, F_0563, F_0564, F_0565, F_0566, F_0567, F_0568, F_0569, F_0570, F_0571, F_0572, 
+    F_0561, F_0562, F_0563, F_0564, F_0565, F_0566, F_0567, F_0568, F_0569, F_0570, F_0571, F_0572,
     F_0573, F_0574, F_0575, F_0576, F_0577, F_0578, F_0579, F_0580, F_0581, F_0582, F_0583, F_0584, 
     F_0585, F_0586, F_0587, F_0588, F_0589, F_0590, F_0591, F_0592, F_0593, F_0594, F_0595, F_0596, 
     F_0597, F_0598, F_0599, F_0600, F_0601, UNUSED, F_0700, F_0701, F_0702, F_0606, F_0607, F_0608, 

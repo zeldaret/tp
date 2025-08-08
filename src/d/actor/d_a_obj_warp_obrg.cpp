@@ -151,6 +151,7 @@ int daObjWarpOBrg_c::create1st() {
 
     switch (getNameArg()) {
     case 0:
+            /* dSv_event_flag_c::M_092 - Hyrule Field - Warped Eldin Bridge */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[125])) {
             // "Eldin Bridge: already warped so creation cancelled!"
             OS_REPORT("\x1B[43;30mオルディン大橋：ワープさせたので発生取り消し！\n\x1B[m");
@@ -158,6 +159,7 @@ int daObjWarpOBrg_c::create1st() {
         }
         break;
     case 1:
+             /* dSv_event_flag_c::M_092 - Hyrule Field - Warped Eldin Bridge */
         if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[125])) {
             // "Eldin Bridge: not warped so creation cancelled!"
             OS_REPORT("\x1B[43;30mオルディン大橋：ワープさせてないので発生取り消し！\n\x1B[m");
@@ -316,19 +318,30 @@ void daObjWarpOBrg_c::actionWarpEvent() {
         demoProc();
 
         if (dComIfGp_getEvent().checkSkipEdge()) {
+            /* dSv_event_tmp_flag_c::T_0010 - General use - General use temporary flag (flow control) A */
             dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[11]);
+            /* dSv_event_tmp_flag_c::T_0011 - General use - General use temporary flag (flow control) B */
             dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[12]);
+            /* dSv_event_tmp_flag_c::T_0012 - General use - General use temporary flag (flow control) C */
             dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[13]);
+            /* dSv_event_tmp_flag_c::T_0013 - General use - General use temporary flag (flow control) D */
             dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[14]);
+            /* dSv_event_tmp_flag_c::T_0014 - General use - General use temporary flag (flow control) E */
             dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[15]);
+            /* dSv_event_tmp_flag_c::T_0051 - General use - General use temporary flag (flow control) F */
             dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[51]);
+            /* dSv_event_tmp_flag_c::T_0052 - General use - General use temporary flag (flow control) G */
             dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[52]);
+            /* dSv_event_tmp_flag_c::T_0053 - General use - General use temporary flag (flow control) H */
             dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[53]);
+            /* dSv_event_tmp_flag_c::T_0054 - General use - General use temporary flag (flow control) I */
             dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[54]);
+            /* dSv_event_tmp_flag_c::T_0055 - General use - General use temporary flag (flow control) J */
             dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[55]);
 
             daPy_getPlayerActorClass()->skipPortalObjWarp();
             if (dComIfGp_TransportWarp_check()) {
+                /* dSv_event_flag_c::M_092 - Hyrule Field - Warped Eldin Bridge */
                 dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[125]);
                 // "Eldin Bridge: Warp destination is correct"
                 OS_REPORT("\x1B[43;30mオルディン大橋：ワープ先正解です\n\x1B[m");
@@ -388,6 +401,7 @@ void daObjWarpOBrg_c::demoProc() {
             }
 
             if (dComIfGp_TransportWarp_check()) {
+                /* dSv_event_flag_c::M_092 - Hyrule Field - Warped Eldin Bridge */
                 dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[125]);
                 // "Eldin Bridge: Warp destination is correct"
                 OS_REPORT("\x1B[43;30mオルディン大橋：ワープ先正解です\n\x1B[m");

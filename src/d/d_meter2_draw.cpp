@@ -3160,8 +3160,13 @@ void dMeter2Draw_c::setButtonIconMidonaAlpha(u32 param_0) {
         bool var_r31 = 1;
 
         if (getCanoeFishing() ||
+              /*dSv_event_flag_c::M_009 - Cutscene - [cutscene: 6B] Prison escape - Midna rides on back */
             (!dComIfGs_isEventBit(0x0540) && !dMeter2Info_isUseButton(0x800)) ||
-            !dComIfGs_isEventBit(0x0C10) || dComIfGs_isEventBit(0x6140))
+             /* dSv_event_flag_c::M_067 - Main Event - Midna riding / not riding (ON == riding) */
+            !dComIfGs_isEventBit(0x0C10) ||
+            /* dSv_event_flag_c::F_0800 - Cutscene - After returning to Ordon Woods, until Midna comes out of the shadows 
+                                                     (If 800 is ON, Midna can't be called) */
+            dComIfGs_isEventBit(0x6140))
         {
             var_f29 = 0.0f;
         } else if (dComIfGp_isPauseFlag()) {

@@ -738,6 +738,7 @@ static cPhs__Step daE_Fs_Create(fopAc_ac_c* i_this) {
         _this->field_0x5b5 = (fopAcM_GetParam(_this) >> 8) & 0xff;
         _this->field_0x5b7 = (fopAcM_GetParam(_this) >> 0x18) & 0xff;
 
+            /* dSv_event_flag_c::F_0522 - Faron Woods - Heard about Sacred Grove from saved monkey girl */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[522])
             && !strcmp("F_SP108", dComIfGp_getStartStageName()))
         {

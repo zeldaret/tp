@@ -90,6 +90,7 @@ static u32 l_dzbFileIdx = 7;
 /* 80CC0F40-80CC1038 000460 00F8+00 1/1 0/0 0/0 .text            create__13daObj_Roten_cFv */
 int daObj_Roten_c::create() {
     fopAcM_SetupActor(this, daObj_Roten_c);
+         /* dSv_event_flag_c::M_031 - Goron Mines - Goron Mines clear */
     if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x40])) {
         return cPhs_ERROR_e;
     }

@@ -473,7 +473,10 @@ cPhs__Step daNpcAsh_c::Create() {
     fopAcM_SetupActor(this, daNpcAsh_c);
 
     if (!strcmp(dComIfGp_getStartStageName(), "R_SP116") && dComIfG_play_c::getLayerNo(0) == 4) {
-        if (daNpcF_chkEvtBit(0x169) && !daNpcF_chkEvtBit(0x10a)) {
+            /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
+        if (daNpcF_chkEvtBit(0x169)
+                /* dSv_event_flag_c::F_0266 - Snowpeak Ruins - Snowpeak Ruins clear */
+            && !daNpcF_chkEvtBit(0x10A)) {
             return cPhs_ERROR_e;
         }
         if (dComIfGs_isStageSwitch(0x18, 0x4b)) {
@@ -1563,8 +1566,14 @@ void daNpcAsh_c::setAttnPos() {
     mCcCyl[0].SetR(daNpcAsh_Param_c::m.mWallR);
     dComIfG_Ccsp()->Set(&mCcCyl[0]);
 
-    if (mType == TYPE_BAR && (!daNpcF_chkEvtBit(0x169) || !daNpcF_chkEvtBit(0x10a)
-                            || !daNpcF_chkEvtBit(0x10b) || daNpcF_chkEvtBit(0x10c))) {
+                               /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
+    if (mType == TYPE_BAR && (!daNpcF_chkEvtBit(0x169)
+                                  /* dSv_event_flag_c::F_0266 - Snowpeak Ruins - Snowpeak Ruins clear */
+                              || !daNpcF_chkEvtBit(0x10A)
+                                  /* dSv_event_flag_c::F_0267 - Temple of Time - Temple of Time clear */
+                              || !daNpcF_chkEvtBit(0x10B)
+                                 /* dSv_event_flag_c::F_0268 - City in the Sky - City in the Sky clear */
+                              || daNpcF_chkEvtBit(0x10C))) {
         center.set(3070.0f, -1150.0f, 2446.0f);
         mCcCyl[1].SetC(center);
         mCcCyl[1].SetH(170.0f);

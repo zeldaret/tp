@@ -363,6 +363,7 @@ public:
     }
 
     static bool checkMidnaTired() {
+                                                   /* dSv_event_flag_c::F_0250 - Cutscene - [cutscene: 21] reunion with Zelda / Midna revived (Hyrule Castle barrier appears) */
         return dComIfGs_isTransformLV(3) && !dComIfGs_isEventBit(0x1E08);
     }
 

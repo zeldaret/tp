@@ -42,16 +42,25 @@ static GXColor const l_color = {0x03, 0x96, 0xFF, 0xFF};
 
 /* 80CF59D4-80CF59E0 000004 000C+00 0/1 0/0 0/0 .rodata          l_event_bitA */
 static u16 const l_event_bitA[6] = {
-    0x4304, 0x4302, 0x4301, 0x4480, 0x4440, 0x4420,
+    0x4304, /* dSv_event_flag_c::F_0551 - Palace of Twilight - Palace of Twilight control use 1 */
+    0x4302, /* dSv_event_flag_c::F_0552 - Palace of Twilight - Palace of Twilight control use 2 */
+    0x4301, /* dSv_event_flag_c::F_0553 - Palace of Twilight - Palace of Twilight control use 3 */
+    0x4480, /* dSv_event_flag_c::F_0554 - Palace of Twilight - Palace of Twilight control use 4 */
+    0x4440, /* dSv_event_flag_c::F_0555 - Palace of Twilight - Palace of Twilight control use 5 */
+    0x4420, /* dSv_event_flag_c::F_0556 - Palace of Twilight - Palace of Twilight control use 6 */
 };
 
 /* 80CF59E0-80CF59EC 000010 000C+00 0/1 0/0 0/0 .rodata          l_event_bitB */
 static u16 const l_event_bitB[6] = {
-    0x4410, 0x4408, 0x4404, 0x4402, 0x4401, 0x4580,
+    0x4410, /* dSv_event_flag_c::F_0557 - Palace of Twilight - Palace of Twilight control use 7 */
+    0x4408, /* dSv_event_flag_c::F_0558 - Palace of Twilight - Palace of Twilight control use 8 */
+    0x4404, /* dSv_event_flag_c::F_0559 - Palace of Twilight - Palace of Twilight control use 9 */
+    0x4402, /* dSv_event_flag_c::F_0560 - Palace of Twilight - Palace of Twilight control use 10 */
+    0x4401, /* dSv_event_flag_c::F_0561 - Palace of Twilight - Palace of Twilight control use 11 */
+    0x4580, /* dSv_event_flag_c::F_0562 - Palace of Twilight - Palace of Twilight control use 12 */
 };
 
-/* 80CF466C-80CF47BC 00012C 0150+00 1/1 0/0 0/0 .text
- * checkArea_sub__14daObjSwBallB_cFP10fopAc_ac_c                */
+/* 80CF466C-80CF47BC 00012C 0150+00 1/1 0/0 0/0 .text            checkArea_sub__14daObjSwBallB_cFP10fopAc_ac_c */
 int daObjSwBallB_c::checkArea_sub(fopAc_ac_c* param_1) {
     if (param_1 == NULL) {
         return 0;

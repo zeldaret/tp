@@ -353,7 +353,10 @@ cPhs__Step daNpcAshB_c::Create() {
 
     fopAcM_SetupActor(this, daNpcAshB_c);
 
-    if (!daNpcF_chkEvtBit(0x169) || daNpcF_chkEvtBit(0x14f)) {
+         /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
+    if (!daNpcF_chkEvtBit(0x169)
+           /* dSv_event_flag_c::F_0335 - Snowpeak mountain - Obtained scribble from Ashei at mountain pass */
+        || daNpcF_chkEvtBit(0x14F)) {
         return cPhs_ERROR_e;
     } else {
         mFlowID = getMessageNo();
@@ -836,8 +839,9 @@ bool daNpcAshB_c::wait(void* param_0) {
                 }
             }
         }
-
-        if (!daNpcF_chkEvtBit(0x14f) && field_0xded == 0 && !daPy_py_c::checkNowWolf()) {
+             /* dSv_event_flag_c::F_0335 - Snowpeak mountain - Obtained scribble from Ashei at mountain pass */
+        if (!daNpcF_chkEvtBit(0x14F)
+            && field_0xded == 0 && !daPy_py_c::checkNowWolf()) {
             f32 res = pow(600.0f, 2.0f);
             if (fopAcM_searchPlayerDistanceXZ2(this) <= res) {
                 daNpcF_offTmpBit(0xb);
@@ -881,7 +885,8 @@ bool daNpcAshB_c::wait(void* param_0) {
 
             orderEvent(field_0xdec,l_evtNames[mOrderEvtNo*1],-1, 40, -1, 1);
 
-            if (daNpcF_chkEvtBit(0x14f)) {
+                /* dSv_event_flag_c::F_0335 - Snowpeak mountain - Obtained scribble from Ashei at mountain pass */
+            if (daNpcF_chkEvtBit(0x14F)) {
                 eventInfo.onCondition(0x20);
             }
             

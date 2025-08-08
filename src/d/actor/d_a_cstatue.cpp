@@ -1122,6 +1122,7 @@ int daCstatue_c::execute() {
                 !fopAcM_CheckCondition(this, 4))
             {
                 if (!fopAcM_lc_c::lineCheck(&eyePos, &link->eyePos, this)) {
+                    /* dSv_event_flag_c::F_0684 - Temple of Time - Look at R00 statue using sense */
                     dComIfGs_onEventBit(0x5440);
                 }
             }
