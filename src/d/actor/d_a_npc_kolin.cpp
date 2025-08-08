@@ -556,7 +556,7 @@ int daNpc_Kolin_c::Draw() {
         modelData->getMaterialNodePointer(getEyeballMaterialNo())->setMaterialAnm(mpMatAnm[0]);
     }
 
-    draw(FALSE, FALSE, mRealShadowSize, NULL, 100.0f, FALSE, FALSE, FALSE);
+    return draw(FALSE, FALSE, mRealShadowSize, NULL, 100.0f, FALSE, FALSE, FALSE);
 }
 
 /* 80554A18-80554A38 000B18 0020+00 1/1 0/0 0/0 .text            createHeapCallBack__13daNpc_Kolin_cFP10fopAc_ac_c */

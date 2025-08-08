@@ -145,11 +145,10 @@ public:
     }
 
 private:
-    /* 0x0E40 */ u8 field_0xe40[0xe44 - 0xE40];
+    /* 0x0E40 */ u8 field_0xe40[0xe44 - 0xe40];
     /* 0x0E44 */ J3DModel* mpClothModel;
     /* 0x0E48 */ dCcD_Cyl field_0xe48;
     /* 0x0F84 */ u8 mType;
-    /* 0x0F85 */ u8 field_0xf85[0xf88 - 0xf85];
     /* 0x0F88 */ daNpcT_ActorMngr_c mActorMngr[5];
     /* 0x0FB0 */ daNpcT_Path_c mPath;
     /* 0x0FD8 */ actionFunc mNextAction;
@@ -168,7 +167,6 @@ private:
     /* 0x1018 */ u8 field_0x1018;
     /* 0x1019 */ u8 field_0x1019[0x101c - 0x1019];
     /* 0x101C */ u8 field_0x101c;
-    /* 0x101D */ u8 field_0x101d[0x1020 - 0x101d];
 };
 
 STATIC_ASSERT(sizeof(daNpc_Kolin_c) == 0x1020);
