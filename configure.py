@@ -1562,7 +1562,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_npc_henna"), # weak func order
     ActorRel(NonMatching, "d_a_npc_kakashi"),
     ActorRel(NonMatching, "d_a_npc_kkri"),
-    ActorRel(NonMatching, "d_a_npc_kolin"),
+    ActorRel(Equivalent, "d_a_npc_kolin"), # weak func order
     ActorRel(Equivalent, "d_a_npc_maro"), # weak func order
     ActorRel(NonMatching, "d_a_npc_taro"),
     ActorRel(NonMatching, "d_a_npc_tkj"),
@@ -1806,7 +1806,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_kdk"),
     ActorRel(NonMatching, "d_a_npc_kn"),
     ActorRel(NonMatching, "d_a_npc_knj"),
-    ActorRel(NonMatching, "d_a_npc_kolinb"),
+    ActorRel(Equivalent, "d_a_npc_kolinb"), # weak func order
     ActorRel(Equivalent, "d_a_npc_ks"),  # weak func order
     ActorRel(NonMatching, "d_a_npc_kyury"),
     ActorRel(NonMatching, "d_a_npc_len"),
