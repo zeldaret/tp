@@ -43,12 +43,13 @@ struct daNpcCoach_Attr_c {
     /* 0x64 */ s16 horiz_sway_range;        // 横揺れ幅 - Horizontal Sway Range
     /* 0x66 */ s16 field_0x66;
     /* 0x68 */ s16 field_0x68;
-    /* 0x6A */ s16 field_0x6a;
+    /* 0x6A */ s8 field_0x6a;
+    /* 0x6B */ u8 field_0x6b;
     /* 0x6C */ u8 field_0x6c;
     /* 0x6D */ u8 shake_test;               // 揺れ実験 - Shake Test
     /* 0x6E */ s16 field_0x6e;
-    /* 0x70 */ s32 damage_reduction;        // ダメージ減量 - Damage Reduction
-    /* 0x74 */ s32 damage_durability;       // ダメージ耐久度 - Damage Durability
+    /* 0x70 */ int damage_reduction;        // ダメージ減量 - Damage Reduction
+    /* 0x74 */ int damage_durability;       // ダメージ耐久度 - Damage Durability
     /* 0x78 */ u8 damage_extinguish_level;  // ダメージ消火度 - Damage Extinguish Level
     /* 0x79 */ u8 horse_camera;             // 馬カメラ - Horse Camera
     /* 0x7A */ u8 field_0x7a;
@@ -57,8 +58,10 @@ struct daNpcCoach_Attr_c {
     /* 0x80 */ s16 camera_elevation_angle;  // カメラ仰角 - Camera Elevation Angle
     /* 0x82 */ s16 camera_rotation_angle;   // カメラ回転角 - Camera Rotation Angle
     /* 0x84 */ s16 field_0x84;
-    /* 0x86 */ s16 field_0x86;
-    /* 0x88 */ s16 field_0x88;
+    /* 0x86 */ u8 field_0x86;
+    /* 0x87 */ u8 field_0x87;
+    /* 0x88 */ u8 field_0x88;
+    /* 0x89 */ u8 field_0x89;
     /* 0x8A */ s16 field_0x8a;
     /* 0x8C */ f32 field_0x8c;
     /* 0x90 */ f32 field_0x90;
@@ -80,14 +83,16 @@ struct daNpcChReins_c {
 
 struct daNpcChHorse_c {
     /* 0x000 */ mDoExt_McaMorf2* mpModelMorf;
-    /* 0x004 */ u8 field_0x4[0x8 - 0x4];
+    /* 0x004 */ mDoExt_btpAnm* mpBtpAnm;
     /* 0x008 */ mDoExt_bckAnm* mpBckAnm;
     /* 0x00C */ dBgS_ObjAcch mBgc;
     /* 0x1F0 */ dCcD_Cyl field_0x1f0[4];
     /* 0x6D4 */ Z2CreatureRide mSound;
     /* 0x770 */ u8 field_0x770[0x77c - 0x770];
     /* 0x77C */ f32 mAnmRate;
-    /* 0x780 */ u8 field_0x780[0x78c - 0x780];
+    /* 0x780 */ f32 mAimSpeed;
+    /* 0x784 */ f32 field_0x784;
+    /* 0x788 */ int field_0x788;
     /* 0x78C */ int field_0x78c;
     /* 0x790 */ u8 field_0x790[0x798 - 0x790];
     /* 0x798 */ daNpcChReins_c mChReins;
@@ -109,7 +114,7 @@ public:
     /* 0x38C */ dBgS_ObjAcch mBgc;
     /* 0x564 */ dCcD_Cyl field_0x564;
     /* 0x6A0 */ dBgW* field_0x6a0;
-    /* 0x6A4 */ u8 field_0x6a4[0x6d4 - 0x6a4];
+    /* 0x6A4 */ Mtx mMtx;
     /* 0x6D4 */ cXyz field_0x6d4;
     /* 0x6E0 */ cXyz field_0x6e0;
     /* 0x6EC */ cXyz field_0x6ec;
@@ -127,12 +132,15 @@ public:
     /* 0x000 */ J3DModel* field_0x0;
     /* 0x004 */ dKy_tevstr_c mTevStr;
     /* 0x38C */ dBgS_ObjAcch mBgc;
-    /* 0x564 */ u8 field_0x564[0x598 - 0x564];
-    /* 0x598 */ Mtx mMtx;
-    /* 0x5C8 */ u8 field_0x5c8[0x5e0 - 0x5c8];
+    /* 0x564 */ dBgW* field_0x564;
+    /* 0x568 */ Mtx field_0x568;
+    /* 0x598 */ Mtx field_0x598;
+    /* 0x5C8 */ cXyz field_0x5c8;
+    /* 0x5D4 */ cXyz field_0x5d4;
     /* 0x5E0 */ cXyz field_0x5e0;
     /* 0x5EC */ cXyz field_0x5ec;
-    /* 0x5F8 */ u8 field_0x5f8[0x620 - 0x5f8];
+    /* 0x5F8 */ JPABaseEmitter* field_0x5f8[2];
+    /* 0x600 */ u8 field_0x600[0x620 - 0x600];
     /* 0x620 */ Z2SoundObjCoach mSound;
     /* 0x644 */ dCcD_Sph field_0x644;
     /* 0x77C */ int field_0x77c;
@@ -193,7 +201,7 @@ struct daNpcChPath_c {
         }
     }
     inline bool isPath() { return mpPath != NULL; }
-    inline s8 getCurrentId() { return mCurrentID; }
+    inline int getCurrentId() { return mCurrentID; }
 
     /* 0x00 */ dPath* mpPath;
     /* 0x04 */ cXyz* field_0x4;
@@ -211,8 +219,8 @@ public:
     /* 8099DD7C */ int ctrlJointHorse(J3DJoint*, J3DModel*);
     /* 8099DE18 */ void initCoachPosition(Vec&, SVec&);
     /* 8099E138 */ void changeAtherPath(s8, cXyz&, csXyz&);
-    /* 8099E4C0 */ void createHeap();
-    /* 8099EB40 */ void execute();
+    /* 8099E4C0 */ int createHeap();
+    /* 8099EB40 */ int execute();
     /* 8099EEA0 */ void checkCoachDamage();
     /* 8099F1B8 */ void setCoachBlazing(u8);
     /* 8099F4BC */ void reinsExecute();
@@ -234,46 +242,60 @@ public:
     /* 809A46C4 */ void initCoachBlazing();
     /* 809A48A8 */ daNpcCoach_c();
 
-    bool checkCoachBlazing() { return mCoachBlazing; }
-    Mtx* getCoachMtx() { return &mCoachMtx; }
-    csXyz* getFrontWheelRot(int param_1) {
+    inline bool checkCoachBlazing() { return mCoachBlazing; }
+    inline Mtx* getCoachMtx() { return &mCoachMtx; }
+    inline csXyz* getFrontWheelRot(int param_1) {
         if (param_1 == 2) {
             return &mChHarness.field_0x70c.mWheelRot;
         }
 
         return &mChHarness.field_0x730.mWheelRot;
     }
-    csXyz* getRearWheelRot(int param_1) {
+    inline csXyz* getRearWheelRot(int param_1) {
         if (param_1 == 1) {
             return &mChCoach.field_0x7a8.mWheelRot;
         }
 
         return &mChCoach.field_0x7cc.mWheelRot;
     }
-    s16 getCoachRotate() { return mChCoach.mCoachRot; }
-    f32 getCoachTrans() { return mChCoach.mCoachTrans; }
-    s8 getRailID() { return mChPath.getCurrentId(); }
+    inline s16 getCoachRotate() { return mChCoach.mCoachRot; }
+    inline f32 getCoachTrans() { return mChCoach.mCoachTrans; }
+    inline int getRailID() { return mChPath.getCurrentId(); }
+
+    inline void setDriverMtx();
+    inline void calcDriverMotion() { setDriverMtx(); }
+    inline void calcYeliaMotion();
+    inline void setYeliaMtx() {
+        mDoMtx_stack_c::copy(mChCoach.field_0x0->getAnmMtx(6));
+        mDoMtx_stack_c::multVecZero(&mChYelia.field_0x6c4);
+        mChYelia.mpModelMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+    }
 
     const daNpcCoach_Attr_c& attr() { return M_attr; }
 
     static daNpcCoach_Attr_c const M_attr;
+    static u16 const ParticleName[10];
 private:
     /* 0x0568 */ daNpcChHorse_c mChHorse;
     /* 0x0E7C */ daNpcChHarness_c mChHarness;
     /* 0x15D0 */ daNpcChCoach_c mChCoach;
-    /* 0x1DC0 */ u8 field_0x1dc0[0x1dc4 - 0x1dc0];
+    /* 0x1DC0 */ int field_0x1dc0;
     /* 0x1DC4 */ bool mCoachBlazing;
-    /* 0x1DC5 */ u8 field_0x1dc5[0x1dc8 - 0x1dc5];
+    /* 0x1DC5 */ u8 field_0x1dc5;
+    /* 0x1DC6 */ u8 field_0x1dc6;
+    /* 0x1DC7 */ u8 field_0x1dc7;
     /* 0x1DC8 */ daNpcChYelia_c mChYelia;
     /* 0x2468 */ daNpcChPath_c mChPath;
     /* 0x247C */ fpc_ProcID field_0x247c[5];
     /* 0x2490 */ Mtx mCoachMtx;
     /* 0x24C0 */ int field_0x24c0;
     /* 0x24C4 */ int field_0x24c4;
-    /* 0x24C8 */ u8 field_0x24c8[0x24cc - 0x24c8];
+    /* 0x24C8 */ f32 field_0x24c8;
     /* 0x24CC */ dBgS_AcchCir mAcchCir;
     /* 0x250C */ dCcD_Stts mStts;
-    /* 0x2548 */ u8 field_0x2548[0x2559 - 0x2548];
+    /* 0x2548 */ u8 field_0x2548[0x2554 - 0x2548];
+    /* 0x2554 */ fpc_ProcID field_0x2554;
+    /* 0x2558 */ u8 field_0x2558;
     /* 0x2559 */ u8 field_0x2559;
     /* 0x255A */ u8 field_0x255a[0x255c - 0x255a];
     /* 0x255C */ cXyz field_0x255c;

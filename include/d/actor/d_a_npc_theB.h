@@ -11,7 +11,7 @@
  * @details
  *
  */
-class daNpcTheB_c : public fopAc_ac_c {
+class daNpcTheB_c : public daNpcF_c {
 public:
     /* 80AFC76C */ daNpcTheB_c();
     /* 80AFC980 */ ~daNpcTheB_c();
@@ -26,14 +26,14 @@ public:
     /* 80AFD508 */ void getHandPos1(int);
     /* 80AFD5F0 */ void getHandPos2(int);
     /* 80AFD6D8 */ void setHintEvent(s32, u16, int);
-    /* 80AFD6F0 */ void main();
+    /* 80AFD6F0 */ BOOL main();
     /* 80AFD938 */ void setParam();
-    /* 80AFDAA4 */ void ctrlBtk();
+    /* 80AFDAA4 */ BOOL ctrlBtk();
     /* 80AFDB70 */ void setAttnPos();
-    /* 80AFDEC0 */ void setExpressionAnm(int, bool);
-    /* 80AFE0BC */ void setExpressionBtp(int);
-    /* 80AFE1BC */ bool setMotionAnm(int, f32);
-    /* 80AFE398 */ bool drawDbgInfo();
+    /* 80AFDEC0 */ bool setExpressionAnm(int, bool);
+    /* 80AFE0BC */ bool setExpressionBtp(int);
+    /* 80AFE1BC */ void setMotionAnm(int, f32);
+    /* 80AFE398 */ BOOL drawDbgInfo();
     /* 80AFE3A0 */ void reset();
     /* 80AFE574 */ void playExpression();
     /* 80AFE704 */ void playMotion();
@@ -51,10 +51,15 @@ public:
     /* 80AFFFE0 */ void EvCut_TheBHint(int);
     /* 80B00204 */ void EvCut_CoachGuardGameOver(int);
 
+    inline void setTRMtx(MtxP mtx) { mpMorf->getModel()->setBaseTRMtx(mtx); }
+    inline void setGameOver() { mGameOver = 1; }
+
     static u8 mEvtSeqList[72];
 
 private:
-    /* 0x568 */ u8 field_0x568[0xe14 - 0x568];
+    /* 0xB48 */ u8 field_0xb48[0xe0d - 0xb48];
+    /* 0xE0D */ u8 mGameOver;
+    /* 0xE0E */ u8 field_0xe0e[0xe14 - 0xe0e];
 };
 
 STATIC_ASSERT(sizeof(daNpcTheB_c) == 0xe14);

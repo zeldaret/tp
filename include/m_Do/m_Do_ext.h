@@ -408,6 +408,7 @@ public:
         mpAnm = anm;
         field_0x40 = anm2;
     }
+    inline J3DModel* getModel() { return mpModel; }
 private:
     /* 0x38 */ mDoExt_McaMorfCallBack1_c* mpCallback1;
     /* 0x3C */ mDoExt_McaMorfCallBack2_c* mpCallback2;
