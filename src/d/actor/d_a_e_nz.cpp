@@ -85,7 +85,7 @@ static void anm_init(e_nz_class* i_this, int param_2, f32 param_3, u8 param_4, f
 
 /* 80729AE8-80729B24 0001E8 003C+00 1/1 0/0 0/0 .text            pl_check__FP10e_nz_classf */
 static BOOL pl_check(e_nz_class* i_this, f32 param_1) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->mBase;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->enemy;
     dComIfGp_getPlayer(0);
     if (i_this->mPlayerDistance < param_1) {
         s16 angleDiff = a_this->shape_angle.y - i_this->mPlayerAngleY;
@@ -98,7 +98,7 @@ static BOOL pl_check(e_nz_class* i_this, f32 param_1) {
 
 /* 80729B24-80729C24 000224 0100+00 1/0 0/0 0/0 .text            daE_NZ_Draw__FP10e_nz_class */
 static int daE_NZ_Draw(e_nz_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->mBase;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->enemy;
     J3DModel* model = i_this->mpMorf->getModel();
     if (i_this->field_0x5b8 != 0) {
         return 1;
@@ -133,7 +133,7 @@ static u8 data_8072C454[4];
 
 /* 80729C24-8072A044 000324 0420+00 1/1 0/0 0/0 .text            e_nz_normal__FP10e_nz_class */
 static void e_nz_normal(e_nz_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->mBase;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->enemy;
     f32 dVar9 = 0.0f;
     cXyz local_44;
     if ((i_this->field_0x698 & 0x1f) == 0 && cM_rndF(1.0f) < 0.5f) {
@@ -217,7 +217,7 @@ static void e_nz_normal(e_nz_class* i_this) {
 
 /* 8072A044-8072A680 000744 063C+00 1/1 0/0 0/0 .text            e_nz_attack__FP10e_nz_class */
 static s8 e_nz_attack(e_nz_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->mBase;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->enemy;
     cXyz local_38;
     s8 rv = 0;
     switch(i_this->mSubAction) {
@@ -310,7 +310,7 @@ static void e_nz_stick(e_nz_class* i_this) {
 
 /* 8072A7C4-8072A8CC 000EC4 0108+00 1/1 0/0 0/0 .text            damage_check__FP10e_nz_class */
 static void damage_check(e_nz_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->mBase;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->enemy;
     dComIfGp_getPlayer(0);
     if (i_this->field_0x6aa == 0) {
         i_this->mStts.Move();
@@ -342,7 +342,7 @@ static void damage_check(e_nz_class* i_this) {
 
 /* 8072A8CC-8072AA90 000FCC 01C4+00 1/1 0/0 0/0 .text            e_nz_damage__FP10e_nz_class */
 static void e_nz_damage(e_nz_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->mBase;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->enemy;
     i_this->field_0x6aa = 6;
     switch (i_this->mSubAction) {
     case 0:
@@ -406,7 +406,7 @@ static s8 action(e_nz_class* i_this) {
         0x01BB,
     };
 
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->mBase;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->enemy;
     cXyz local_74;
     cXyz local_80;
     i_this->mPlayerDistance = fopAcM_searchPlayerDistance(a_this);
@@ -525,7 +525,7 @@ static s8 action(e_nz_class* i_this) {
 
 /* 8072B09C-8072B5D4 00179C 0538+00 2/1 0/0 0/0 .text            daE_NZ_Execute__FP10e_nz_class */
 static int daE_NZ_Execute(e_nz_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->mBase;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->enemy;
     
     f32 alphaTarget = 0.0f;
     f32 alphaStep = l_HIO.mVanishingAlphaSpeed;
@@ -649,7 +649,7 @@ static int daE_NZ_IsDelete(e_nz_class* i_this) {
 
 /* 8072B5DC-8072B680 001CDC 00A4+00 1/0 0/0 0/0 .text            daE_NZ_Delete__FP10e_nz_class */
 static int daE_NZ_Delete(e_nz_class* i_this) {
-    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->mBase;
+    fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->enemy;
     fopAcM_GetID(i_this);
     dComIfG_resDelete(&i_this->mPhase, "E_NZ");
     if (i_this->mIsHIOOwner) {

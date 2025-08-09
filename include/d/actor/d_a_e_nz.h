@@ -16,7 +16,7 @@
  */
 class e_nz_class {
 public:
-    /* 0x000 */ fopEn_enemy_c mBase;
+    /* 0x000 */ fopEn_enemy_c enemy;
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ s16 mSubAction;
     /* 0x5B6 */ u8 field_0x5b6;
