@@ -1552,7 +1552,7 @@ bool daNpcMoiR_c::leave(void* param_1) {
             setMotion(MOT_RUN, -1.0f, 0);
             mTurnMode = 0;
             speedF = 0.0f;
-            fopAcM_SearchByName(0x100, (fopAc_ac_c**)&actor_p);
+            fopAcM_SearchByName(PROC_NPC_TK, (fopAc_ac_c**)&actor_p);
 
             if (actor_p != NULL) {
                 actor_p->setAway();
