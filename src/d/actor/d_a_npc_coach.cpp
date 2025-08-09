@@ -4,6 +4,8 @@
 */
 
 #include "d/actor/d_a_npc_coach.h"
+#include "d/actor/d_a_coach_fire.h"
+#include "d/actor/d_a_e_kr.h"
 #include "dol2asm.h"
 
 //
@@ -249,18 +251,59 @@ extern "C" void getHandPos2__11daNpcTheB_cFi();
 //
 
 /* 8099D6D8-8099D72C 000078 0054+00 1/1 0/0 0/0 .text            jointHorseCallBack__FP8J3DJointi */
-static void jointHorseCallBack(J3DJoint* i_joint, int param_2) {
-    // NONMATCHING
+static int jointHorseCallBack(J3DJoint* i_joint, int param_2) {
+    if (param_2 != 0) {
+        return 1;
+    }
+
+    J3DModel* model = j3dSys.getModel();
+    daNpcCoach_c* i_this = (daNpcCoach_c*)model->getUserArea();
+    if (i_this != NULL) {
+        i_this->ctrlJointHorse(i_joint, model);
+    }
+    return 1;
 }
 
 /* 8099D72C-8099D80C 0000CC 00E0+00 1/1 0/0 0/0 .text jointFrontWheelCallBack__FP8J3DJointi */
-static void jointFrontWheelCallBack(J3DJoint* i_joint, int param_2) {
+static int jointFrontWheelCallBack(J3DJoint* i_joint, int param_2) {
     // NONMATCHING
+    if (param_2 != 0) {
+        return 1;
+    }
+
+    int jointNo = i_joint->getJntNo();
+    J3DModel* model = j3dSys.getModel();
+    daNpcCoach_c* i_this = (daNpcCoach_c*)model->getUserArea();
+    csXyz* front_wheel_rot = i_this->getFrontWheelRot(jointNo);
+    MTXCopy(model->getAnmMtx(jointNo), mDoMtx_stack_c::get());
+    mDoMtx_stack_c::YrotM(front_wheel_rot->y);
+    mDoMtx_stack_c::ZrotM(front_wheel_rot->z);
+    mDoMtx_stack_c::XrotM(front_wheel_rot->x);
+    model->setAnmMtx(jointNo, mDoMtx_stack_c::get());
+    mDoMtx_copy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
+
+    return 1;
 }
 
 /* 8099D80C-8099D8EC 0001AC 00E0+00 1/1 0/0 0/0 .text jointRearWheelCallBack__FP8J3DJointi */
-static void jointRearWheelCallBack(J3DJoint* i_joint, int param_2) {
+static int jointRearWheelCallBack(J3DJoint* i_joint, int param_2) {
     // NONMATCHING
+    if (param_2 != 0) {
+        return 1;
+    }
+
+    int jointNo = i_joint->getJntNo();
+    J3DModel* model = j3dSys.getModel();
+    daNpcCoach_c* i_this = (daNpcCoach_c*)model->getUserArea();
+    csXyz* rear_wheel_rot = i_this->getRearWheelRot(jointNo);
+    MTXCopy(model->getAnmMtx(jointNo), mDoMtx_stack_c::get());
+    mDoMtx_stack_c::YrotM(rear_wheel_rot->y);
+    mDoMtx_stack_c::ZrotM(rear_wheel_rot->z);
+    mDoMtx_stack_c::XrotM(rear_wheel_rot->x);
+    model->setAnmMtx(jointNo, mDoMtx_stack_c::get());
+    mDoMtx_copy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
+
+    return 1;
 }
 
 /* 809A4ED0-809A4F70 000000 00A0+00 19/19 0/0 0/0 .rodata          M_attr__12daNpcCoach_c */
@@ -318,39 +361,88 @@ daNpcCoach_Attr_c const daNpcCoach_c::M_attr = {
     0x19,
 };
 
-/* 809A4F70-809A4F74 0000A0 0004+00 3/19 0/0 0/0 .rodata          @4121 */
-SECTION_RODATA static u8 const lit_4121[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x809A4F70, &lit_4121);
-
 /* 8099D8EC-8099D9AC 00028C 00C0+00 1/1 0/0 0/0 .text            jointCoachCallBack__FP8J3DJointi */
-static void jointCoachCallBack(J3DJoint* i_joint, int param_2) {
-    // NONMATCHING
+static int jointCoachCallBack(J3DJoint* i_joint, int param_2) {
+    if (param_2 != 0) {
+        return 1;
+    }
+
+    int jointNo = i_joint->getJntNo();
+    J3DModel* model = j3dSys.getModel();
+    daNpcCoach_c* i_this = (daNpcCoach_c*)model->getUserArea();
+    MTXCopy(model->getAnmMtx(jointNo), mDoMtx_stack_c::get());
+    mDoMtx_stack_c::XrotM(i_this->getCoachRotate());
+    mDoMtx_stack_c::transM(0.0f, i_this->getCoachTrans(), 0.0f);
+    model->setAnmMtx(jointNo, mDoMtx_stack_c::get());
+    mDoMtx_copy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
+
+    return 1;
 }
 
 /* 8099D9AC-8099DA24 00034C 0078+00 1/1 0/0 0/0 .text            arrowStickCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_cR4cXyz */
-static void arrowStickCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2, cXyz& param_3) {
-    // NONMATCHING
-}
-
-/* 8099DA24-8099DA60 0003C4 003C+00 2/2 0/0 0/0 .text            __dt__4cXyzFv */
-// cXyz::~cXyz() {
-extern "C" void __dt__4cXyzFv() {
-    // NONMATCHING
+static void arrowStickCallBack(dBgW* i_bgw, fopAc_ac_c* a_this, fopAc_ac_c* i_actor, cXyz& i_pos) {
+    if (fopAcM_GetName(i_actor) == PROC_E_ARROW) {
+        if (!daPy_getPlayerActorClass()->checkBoarSingleBattleSecond()) {
+            ((daNpcCoach_c*)a_this)->hitFireArrow(i_pos);
+            fopAcM_delete(i_actor);
+        }
+    }
 }
 
 /* 8099DA60-8099DBA4 000400 0144+00 1/1 0/0 0/0 .text            hitFireArrow__12daNpcCoach_cF4cXyz */
-void daNpcCoach_c::hitFireArrow(cXyz param_1) {
-    // NONMATCHING 
+void daNpcCoach_c::hitFireArrow(cXyz i_pos) {
+    if (field_0x24c0 == 0) {
+        mChYelia.mSound.startCreatureVoice(Z2SE_YELIA_V_KYAAA_TRIG, -1);
+    }
+
+    if (field_0x24c0 < 5) {
+        for (int i = 0; i < 5; i++) {
+            if (field_0x247c[i] == 0xFFFFFFFF) {
+                cXyz work;
+                mDoMtx_stack_c::copy(mChCoach.mMtx);
+                mDoMtx_stack_c::multVec(&i_pos, &work);
+                field_0x247c[i] = fopAcM_createChild(PROC_COACH_FIRE, fopAcM_GetID(this),
+                                                     0, &work, fopAcM_GetRoomNo(this),
+                                                     NULL, NULL, -1, NULL);
+                mChCoach.mSound.startSound(Z2SE_COACH_HIT_ARROW, 0, -1);
+                field_0x24c0++;
+                return;
+            }
+        }
+    }
 }
 
 /* 8099DBA4-8099DCE8 000544 0144+00 0/0 0/0 1/1 .text            deleteFireArrow__12daNpcCoach_cFUi */
-void daNpcCoach_c::deleteFireArrow(unsigned int param_1) {
+void daNpcCoach_c::deleteFireArrow(fpc_ProcID param_1) {
     // NONMATCHING
+    for (int i = 0; i < 5; i++) {
+        if (param_1 == field_0x247c[i]) break;
+    }
+    
+    field_0x2559 = 1;
+    mChCoach.mSound.startSound(Z2SE_COACH_HIT_WIND, 0, -1);
+
+    field_0x24c4 = (field_0x24c4 / attr().damage_durability - attr().damage_extinguish_level) * attr().damage_durability;
+
+    if (field_0x24c4 <= 0) {
+        field_0x24c4 = 0;
+        field_0x24c0 = 0;
+
+        for (int i = 0; i < 5; i++) {
+            if (field_0x247c[i] != fpcM_ERROR_PROCESS_ID_e) {
+                fopAcM_delete(field_0x247c[i]);
+                field_0x247c[i] = fpcM_ERROR_PROCESS_ID_e;
+            }
+        }
+    } else {
+        for (int i = 0; i < 5; i++) {
+            if (field_0x247c[i] != fpcM_ERROR_PROCESS_ID_e) {
+                ((daCoachFire_c*)fpcM_SearchByID(field_0x247c[i]))->setNoHitTimer();
+            }
+        }
+
+        mChCoach.field_0x77c = 20;
+    }
 }
 
 /* 8099DCE8-8099DD28 000688 0040+00 0/0 0/0 1/1 .text            deleteFireArrowFromList__12daNpcCoach_cFUi */
@@ -365,31 +457,78 @@ bool daNpcCoach_c::deleteFireArrowFromList(unsigned int i_actorID) {
 }
 
 /* 8099DD28-8099DD7C 0006C8 0054+00 0/0 0/0 3/3 .text            setPosAngle__12daNpcCoach_cFR4cXyzR5csXyz */
-void daNpcCoach_c::setPosAngle(cXyz& param_0, csXyz& param_1) {
-    // NONMATCHING
+void daNpcCoach_c::setPosAngle(cXyz& param_1, csXyz& param_2) {
+    initCoachPosition(param_1, param_2);
+    changeAtherPath(getRailID(), param_1, param_2);
 }
 
 /* 8099DD7C-8099DE18 00071C 009C+00 1/1 0/0 0/0 .text            ctrlJointHorse__12daNpcCoach_cFP8J3DJointP8J3DModel */
-void daNpcCoach_c::ctrlJointHorse(J3DJoint* i_joint, J3DModel* i_model) {
-    // NONMATCHING
+int daNpcCoach_c::ctrlJointHorse(J3DJoint* i_joint, J3DModel* i_model) {
+    int jointNo = i_joint->getJntNo();
+
+    if ((jointNo == 0xB || jointNo == 0x10) && mChHorse.field_0x78c != 0) {
+        J3DAnmTransform* morfAnm = mChHorse.mpBckAnm->getBckAnm();
+        J3DAnmTransform* bckAnm = mChHorse.mpModelMorf->getAnm();
+        mChHorse.mpBckAnm->changeBckOnly(bckAnm);
+        mChHorse.mpModelMorf->changeAnm(morfAnm, NULL);
+        f32 anmRate = mChHorse.mpModelMorf->getAnmRate();
+        mChHorse.mpModelMorf->setAnmRate(mChHorse.mAnmRate);
+        mChHorse.mAnmRate = anmRate;
+    }
+
+    return 1;
 }
 
-/* ############################################################################################## */
-/* 809A4F74-809A4F78 0000A4 0004+00 0/1 0/0 0/0 .rodata          @4358 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4358 = 500.0f;
-COMPILER_STRIP_GATE(0x809A4F74, &lit_4358);
-#pragma pop
-
 /* 8099DE18-8099E0E0 0007B8 02C8+00 2/2 0/0 0/0 .text            initCoachPosition__12daNpcCoach_cFR3VecR4SVec */
-void daNpcCoach_c::initCoachPosition(Vec& param_0, SVec& param_1) {
-    // NONMATCHING
+void daNpcCoach_c::initCoachPosition(Vec& i_pos, SVec& i_angle) {
+    current.pos = i_pos;
+    shape_angle.set(i_angle.x, i_angle.y, i_angle.z);
+    old.pos = current.pos;
+
+    mDoMtx_stack_c::transS(i_pos);
+    mDoMtx_stack_c::ZXYrotM(i_angle.x, i_angle.y, i_angle.z);
+    mDoMtx_stack_c::transM(0.0f, 0.0f, attr().field_0xc);
+    mDoMtx_stack_c::multVecZero(&mChHarness.field_0x6e0);
+    mChHarness.field_0x6ec = mChHarness.field_0x6e0;
+    mChHarness.field_0x700.y = shape_angle.y;
+    mChHarness.field_0x706 = mChHarness.field_0x700;
+    mChHarness.field_0x70c.field_0x0.set(attr().field_0x14, 0.0f, 0.0f);
+    mChHarness.field_0x730.field_0x0.set(-attr().field_0x14, 0.0f, 0.0f);
+    mDoMtx_stack_c::multVec(&mChHarness.field_0x70c.field_0x0, &mChHarness.field_0x70c.field_0x0);
+    mDoMtx_stack_c::multVec(&mChHarness.field_0x730.field_0x0, &mChHarness.field_0x730.field_0x0);
+
+    mDoMtx_stack_c::transM(0.0f, 0.0f, attr().field_0x10);
+    mDoMtx_stack_c::multVecZero(&mChCoach.field_0x5e0);
+    mChCoach.field_0x5ec = mChCoach.field_0x5e0;
+    mChCoach.field_0x79a.y = shape_angle.y;
+    mChCoach.field_0x7a0 = mChCoach.field_0x79a;
+    mChCoach.field_0x788 = attr().shake_dist + cM_rndF(attr().shake_dist);
+    mChCoach.field_0x7a8.field_0x0.set(attr().field_0x18, 0.0f, 0.0f);
+    mChCoach.field_0x7cc.field_0x0.set(-attr().field_0x18, 0.0f, 0.0f);
+    mDoMtx_stack_c::multVec(&mChCoach.field_0x7a8.field_0x0, &mChCoach.field_0x7a8.field_0x0);
+    mDoMtx_stack_c::multVec(&mChCoach.field_0x7cc.field_0x0, &mChCoach.field_0x7cc.field_0x0);
+
+    cXyz work(mChHarness.field_0x6e0.x, mChHarness.field_0x6e0.y + 500.0f, mChHarness.field_0x6e0.z);
+    field_0x255c = work;
+
+    if (fopAcM_gc_c::gndCheck(&work)) {
+        mChHarness.field_0x6e0.y = fopAcM_gc_c::getGroundY();
+    }
+
+    work.set(mChCoach.field_0x5e0.x, mChCoach.field_0x5e0.y + 500.0f, mChCoach.field_0x5e0.z);
+
+    if (fopAcM_gc_c::gndCheck(&work)) {
+        mChCoach.field_0x5e0.y = fopAcM_gc_c::getGroundY(); 
+    }
 }
 
 /* 8099E0E0-8099E138 000A80 0058+00 1/1 0/0 0/0 .text            s_sub__FPvPv */
-static void s_sub(void* param_0, void* param_1) {
-    // NONMATCHING
+static void* s_sub(void* i_actor, void* i_data) {
+    if (fopAc_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_KR && ((e_kr_class*)i_actor)->getId() >= 0) {
+        return i_actor;
+    }
+
+    return NULL;
 }
 
 /* 809A4F78-809A4FBC 0000A8 0044+00 1/1 0/0 0/0 .rodata              ccCylSrc$localstatic3$initCollision__12daNpcCoach_cFv */
@@ -411,43 +550,62 @@ SECTION_RODATA static u8 const data_809A4FBC[64] = {
 };
 COMPILER_STRIP_GATE(0x809A4FBC, &data_809A4FBC);
 
-/* 809A4FFC-809A5000 00012C 0004+00 0/2 0/0 0/0 .rodata          @4845 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4845 = 1000000000.0f;
-COMPILER_STRIP_GATE(0x809A4FFC, &lit_4845);
-#pragma pop
 
-/* 809A5000-809A5008 000130 0008+00 0/7 0/0 0/0 .rodata          @4846 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4846[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x809A5000, &lit_4846);
-#pragma pop
+inline BOOL daNpcChPath_c::setPath(int path_index, int room_no, cXyz* param_3, bool param_4) {
+    mpPath = dPath_GetRoomPath(path_index, room_no);
 
-/* 809A5008-809A5010 000138 0008+00 0/7 0/0 0/0 .rodata          @4847 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4847[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x809A5008, &lit_4847);
-#pragma pop
+    if (mpPath == NULL) {
+        return FALSE;
+    }
 
-/* 809A5010-809A5018 000140 0008+00 0/7 0/0 0/0 .rodata          @4848 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4848[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x809A5010, &lit_4848);
-#pragma pop
+    mCurrentID = path_index;
+    mPntIndex = 0;
+
+    if (param_4 && param_3 != NULL) {
+        f32 fVar1 = 1000000000.0f;
+        for (int pnt_index = 0; pnt_index < mpPath->m_num; pnt_index++) {
+            f32 fVar2 = param_3->abs2(dPath_GetPnt(mpPath, pnt_index)->m_position);
+            if (fVar2 < fVar1) {
+                mPntIndex = pnt_index;
+                fVar1 = fVar2;
+            }
+        }
+
+        setNextPoint();
+    }
+
+    field_0x8 = 1000000000.0f;
+
+    if (param_3 != NULL) {
+        field_0x4 = param_3;
+        cXyz targetPoint;
+        getTargetPoint(targetPoint);
+        field_0x8 = field_0x4->abs(targetPoint);
+    }
+
+    return TRUE;
+}
 
 /* 8099E138-8099E4A0 000AD8 0368+00 2/2 0/0 0/0 .text            changeAtherPath__12daNpcCoach_cFScR4cXyzR5csXyz */
-void daNpcCoach_c::changeAtherPath(s8 param_0, cXyz& param_1, csXyz& param_2) {
+void daNpcCoach_c::changeAtherPath(s8 path_index, cXyz& param_2, csXyz& param_3) {
     // NONMATCHING
+    mChPath.setPath(path_index, fopAcM_GetRoomNo(this), &param_2, true);
+
+    if (mChPath.isPath()) {
+        field_0x2568 = path_index;
+
+        cXyz targetPoint;
+        mChPath.getTargetPoint(targetPoint);
+
+        if (cLib_distanceAngleS(param_3.y, cLib_targetAngleY(&param_2, &targetPoint)) >= 0x4000) {
+            mChPath.setNextPoint();
+            mChPath.getTargetPoint(targetPoint);
+            
+            if (cLib_distanceAngleS(shape_angle.y, cLib_targetAngleY(&param_2, &targetPoint)) >= 0x4000) {
+                mChPath.setPrevPoint();
+            }
+        }
+    }
 }
 
 /* 8099E4A0-8099E4C0 000E40 0020+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
