@@ -24,6 +24,8 @@
   "search.exclude": {
     "build/*/config.json": true,
     "build/*/report.json": true,
+    "build/*/report_changes.json": true,
+    "build/*/baseline.json": true,
     "build/**/*.MAP": true,
     "build/**/*.o": true,
     "build/**/*.plf": true,
