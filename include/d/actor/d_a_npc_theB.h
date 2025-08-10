@@ -23,8 +23,8 @@ public:
     /* 80AFD2A8 */ void ctrlJoint(J3DJoint*, J3DModel*);
     /* 80AFD49C */ void createHeapCallBack(fopAc_ac_c*);
     /* 80AFD4BC */ void ctrlJointCallBack(J3DJoint*, int);
-    /* 80AFD508 */ void getHandPos1(int);
-    /* 80AFD5F0 */ void getHandPos2(int);
+    /* 80AFD508 */ cXyz getHandPos1(int);
+    /* 80AFD5F0 */ cXyz getHandPos2(int);
     /* 80AFD6D8 */ void setHintEvent(s32, u16, int);
     /* 80AFD6F0 */ BOOL main();
     /* 80AFD938 */ void setParam();

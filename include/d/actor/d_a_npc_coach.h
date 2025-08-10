@@ -75,7 +75,7 @@ struct daNpcChReins_c {
     /* 0x03C */ mDoExt_3DlineMat1_c field_0x3c;
     /* 0x078 */ cXyz field_0x78[10];
     /* 0x0F0 */ cXyz field_0xf0[10];
-    /* 0x168 */ u8 field_0x168[0x16C - 0x168];
+    /* 0x168 */ f32 field_0x168;
     /* 0x16C */ s8 field_0x16c;
     /* 0x16D */ u8 field_0x16d[0x170 - 0x16d];
     /* 0x170 */ cXyz field_0x170;
@@ -102,7 +102,11 @@ struct daNpcChWheel_c {
     /* 0x00 */ cXyz field_0x0;
     /* 0x0C */ u32 field_0xc[2];
     /* 0x14 */ csXyz mWheelRot;
-    /* 0x1A */ u8 field_0x1a[0x24 - 0x1a];
+    /* 0x1A */ s16 field_0x1a;
+    /* 0x1C */ s16 field_0x1c;
+    /* 0x1E */ s16 field_0x1e;
+    /* 0x20 */ s16 field_0x20;
+    /* 0x22 */ u8 field_0x22[0x24 - 0x22];
 };
 
 class daNpcChHarness_c {
@@ -118,7 +122,8 @@ public:
     /* 0x6D4 */ cXyz field_0x6d4;
     /* 0x6E0 */ cXyz field_0x6e0;
     /* 0x6EC */ cXyz field_0x6ec;
-    /* 0x6F8 */ u8 field_0x6f8[0x700 - 0x6f8];
+    /* 0x6F8 */ u8 field_0x6f8[0x6fc - 0x6f8];
+    /* 0x6FC */ f32 field_0x6fc;
     /* 0x700 */ csXyz field_0x700;
     /* 0x706 */ csXyz field_0x706;
     /* 0x70C */ daNpcChWheel_c field_0x70c;
@@ -144,10 +149,12 @@ public:
     /* 0x620 */ Z2SoundObjCoach mSound;
     /* 0x644 */ dCcD_Sph field_0x644;
     /* 0x77C */ int field_0x77c;
-    /* 0x780 */ u8 field_0x780[0x788 - 0x780];
+    /* 0x780 */ u8 field_0x780[0x784 - 0x780];
+    /* 0x784 */ f32 field_0x784;
     /* 0x788 */ f32 field_0x788;
     /* 0x78C */ f32 mCoachTrans;
-    /* 0x790 */ u8 field_0x790[0x798 - 0x790];
+    /* 0x790 */ f32 field_0x790;
+    /* 0x794 */ f32 field_0x794;
     /* 0x798 */ s16 mCoachRot;
     /* 0x79A */ csXyz field_0x79a;
     /* 0x7A0 */ csXyz field_0x7a0;
@@ -270,6 +277,13 @@ public:
         mDoMtx_stack_c::multVecZero(&mChYelia.field_0x6c4);
         mChYelia.mpModelMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
     }
+    inline void setCoachCollision();
+    inline s16 getGroundSlope(dBgS_ObjAcch*, s16);
+    inline void calcSpringF(f32*, f32, f32*);
+    inline void calcSpringS(s16*, s16, f32*);
+    inline void setCoachMtx();
+    inline void setWheelSmoke(daNpcChWheel_c*, dBgS_ObjAcch*, dKy_tevstr_c*, csXyz*);
+    inline void setHarnessCollision();
 
     const daNpcCoach_Attr_c& attr() { return M_attr; }
 

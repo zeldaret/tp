@@ -767,7 +767,7 @@ SECTION_RODATA static u8 const lit_4396[24] = {
 COMPILER_STRIP_GATE(0x80B00E00, &lit_4396);
 
 /* 80AFD508-80AFD5F0 000E88 00E8+00 0/0 0/0 2/2 .text            getHandPos1__11daNpcTheB_cFi */
-void daNpcTheB_c::getHandPos1(int param_0) {
+cXyz daNpcTheB_c::getHandPos1(int param_1) {
     // NONMATCHING
 }
 
@@ -780,7 +780,7 @@ SECTION_RODATA static u8 const lit_4424[24] = {
 COMPILER_STRIP_GATE(0x80B00E18, &lit_4424);
 
 /* 80AFD5F0-80AFD6D8 000F70 00E8+00 0/0 0/0 2/2 .text            getHandPos2__11daNpcTheB_cFi */
-void daNpcTheB_c::getHandPos2(int param_0) {
+cXyz daNpcTheB_c::getHandPos2(int param_1) {
     // NONMATCHING
 }
 
