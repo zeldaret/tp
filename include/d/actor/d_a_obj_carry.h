@@ -290,10 +290,13 @@ public:
         field_0xdea = 1;
     }
 
-    static void make_prm(csXyz* param_1, u8 param_2, u8 param_3, u8 param_4, u8 param_5,
-                         u8 param_6 = 0) {
-        param_1->x = (param_4 << 8) | param_3;
-        param_1->z = param_5 | (param_6 << 13) | ((u32(param_2) & 0xFF) << 1);
+    static void make_prm(u32* o_params, csXyz* o_paramsEx, u8 param_2, u8 i_itemNo, u8 i_itemBit, u8 i_itemType, u8 param_6) {
+        o_paramsEx->x = (i_itemBit << 8) | (i_itemNo & 0xFF);
+        o_paramsEx->z = (param_6 << 13) | (param_2 << 1) | i_itemType;
+    }
+
+    static void make_prm_bokkuri(u32* o_params, csXyz* o_paramsEx, u8 i_itemNo, u8 i_itemBit, u8 i_itemType, u8 param_5) {
+        make_prm(o_params, o_paramsEx, 6, i_itemNo, i_itemBit, i_itemType, param_5);
     }
 
     static const daObjCarry_dt_t mData[];

@@ -13,10 +13,10 @@ static int CheckCreateHeap(fopAc_ac_c* i_this) {
 }
 
 /* 80BB60F8-80BB618C 000098 0094+00 2/2 0/0 0/0 .text            setBokkuri__10daBkLeaf_cFv */
-// fake match?
 void daBkLeaf_c::setBokkuri() {
-    csXyz currentAngle = current.angle;
-    daObjCarry_c::make_prm(&currentAngle, 6, getItem(), getItemBit(), 1, 2);
+    u32 sp10 = 0;
+    csXyz currentAngle(current.angle);
+    daObjCarry_c::make_prm(&sp10, &currentAngle, 6, getItem(), getItemBit(), 1, 2);
     field_0x578 = fopAcM_createChild(PROC_Obj_Carry, fopAcM_GetID(this), 0, &current.pos,
                                      fopAcM_GetRoomNo(this), &currentAngle, &scale, -1, 0);
 }
