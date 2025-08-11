@@ -103,7 +103,7 @@ inline f32 acosDegree(f32 x) {
 }
 };  // namespace JMath
 
-inline f32 JMASCosShort(s16 v) {
+inline f32 JMACosShort(s16 v) {
     return JMath::sincosTable_.cosShort(v);
 }
 inline f32 JMASinShort(s16 v) {
@@ -111,7 +111,7 @@ inline f32 JMASinShort(s16 v) {
 }
 
 inline f32 JMASCos(s16 v) {
-    return JMASCosShort(v);
+    return JMACosShort(v);
 }
 inline f32 JMASSin(s16 v) {
     return JMASinShort(v);
