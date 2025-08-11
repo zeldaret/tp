@@ -432,9 +432,9 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_audio.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_controller_pad.cpp"),
             Object(NonMatching, "m_Do/m_Re_controller_pad.cpp"),
-            Object(Equivalent, "m_Do/m_Do_graphic.cpp"), # weak func order
+            Object(MatchingFor("GZ2E01"), "m_Do/m_Do_graphic.cpp"),
             Object(NonMatching, "m_Do/m_Do_machine.cpp"),
-            Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_mtx.cpp", extra_cflags=["-sym off"]),
+            Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_mtx.cpp"),
             Object(NonMatching, "m_Do/m_Do_ext.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_lib.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_Reset.cpp"),
@@ -564,7 +564,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_particle_name.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_particle_copoly.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_path.cpp"),
-            Object(NonMatching, "d/d_drawlist.cpp"),
+            Object(Equivalent, "d/d_drawlist.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_kankyo_data.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_kankyo_wether.cpp"),
             Object(NonMatching, "d/d_kankyo_rain.cpp"),
@@ -591,7 +591,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_bg_w_base.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(NonMatching, "d/d_bg_w_kcol.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_bg_w_sv.cpp"),
-            Object(Equivalent, "d/d_cc_d.cpp"), # weak func order
+            Object(Equivalent, "d/d_cc_d.cpp", extra_cflags=['-sym off']), # weak func order
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_cc_mass_s.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(NonMatching, "d/d_cc_s.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_cc_uty.cpp"),
@@ -658,7 +658,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_meter_map.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_meter_string.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_meter2_draw.cpp"),
-            Object(Equivalent, "d/d_meter2_info.cpp"),
+            Object(MatchingFor("GZ2E01"), "d/d_meter2_info.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_meter2.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_msg_out_font.cpp"),
             Object(NonMatching, "d/d_msg_class.cpp"),

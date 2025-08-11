@@ -4,6 +4,12 @@
 #include "JSystem/JFramework/JFWDisplay.h"
 #include "dolphin/mtx.h"
 #include "global.h"
+// Possibly fakematch?
+// Using `sym off` for this header fixes cXyz::~cXyz being incorrectly placed in
+// a separate .text section.
+#pragma sym off
+#include "SSystem/SComponent/c_xyz.h"
+#pragma sym on
 
 int mDoGph_Create();
 void mDoGph_drawFilterQuad(s8 param_0, s8 param_1);
@@ -176,6 +182,9 @@ public:
     static u8 mFade;
 
     #if PLATFORM_WII || PLATFORM_SHIELD
+    static cXyz m_nowEffPos;
+    static cXyz m_oldEffPos;
+    static cXyz m_oldOldEffPos;
     static u8 mWide;
     static ResTIMG* m_fullFrameBufferTimg;
     static void* m_fullFrameBufferTex;

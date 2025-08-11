@@ -31,6 +31,8 @@ public:
         mFrameMax = 0;
     }
     /* 80053C94 */ virtual ~J2DAnmBase() {}
+    // this is supposed to be inline, but doing so causes problems
+    // with where the vtable is placed in the final framework.dol
     /* 800569B0 */ virtual void searchUpdateMaterialID(J2DScreen*);
 
     s16 getFrameMax() const { return mFrameMax; }

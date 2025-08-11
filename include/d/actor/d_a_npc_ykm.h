@@ -38,6 +38,10 @@ struct daNpc_ykM_HIOParam {
 
 class daNpc_ykM_Param_c : public JORReflexible {
 public:
+#if DEBUG
+    virtual void genMessage(JORMContext*);
+#endif
+
     /* 80B5D6C8 */ virtual ~daNpc_ykM_Param_c() {}
 
     void genMessage(JORMContext*);
