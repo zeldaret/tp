@@ -19,6 +19,7 @@ public:
     /* 80705004 */ e_kr_class();
 
     inline s32 getId() { return field_0xf00; }
+    inline s32 checkBombDrop() { return field_0xf04; }
 
     /* 0x000 */ fopEn_enemy_c enemy;
     /* 0x5AC */ request_of_phase_process_class mPhase;
