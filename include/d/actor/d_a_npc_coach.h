@@ -77,7 +77,6 @@ struct daNpcChReins_c {
     /* 0x0F0 */ cXyz field_0xf0[10];
     /* 0x168 */ f32 field_0x168;
     /* 0x16C */ s8 field_0x16c;
-    /* 0x16D */ u8 field_0x16d[0x170 - 0x16d];
     /* 0x170 */ cXyz field_0x170;
 };
 
@@ -107,7 +106,6 @@ struct daNpcChWheel_c {
     /* 0x1C */ s16 field_0x1c;
     /* 0x1E */ s16 field_0x1e;
     /* 0x20 */ s16 field_0x20;
-    /* 0x22 */ u8 field_0x22[0x24 - 0x22];
 };
 
 class daNpcChHarness_c {
@@ -158,7 +156,6 @@ public:
     /* 0x798 */ s16 mCoachRot;
     /* 0x79A */ csXyz field_0x79a;
     /* 0x7A0 */ csXyz field_0x7a0;
-    /* 0x7A6 */ u8 field_0x7a6[0x7a8 - 0x7a6];
     /* 0x7A8 */ daNpcChWheel_c field_0x7a8;
     /* 0x7CC */ daNpcChWheel_c field_0x7cc;
 };

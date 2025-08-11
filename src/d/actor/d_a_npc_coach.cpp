@@ -222,7 +222,7 @@ daNpcCoach_Attr_c const daNpcCoach_c::M_attr = {
     16.0f,
     62.0f,
     -58.837898f,
-    67.626999f,
+    67.627f,
     0.0f,
     0.6f,
     20.0f,
@@ -294,7 +294,7 @@ void daNpcCoach_c::hitFireArrow(cXyz i_pos) {
 
     if (field_0x24c0 < 5) {
         for (int i = 0; i < 5; i++) {
-            if (field_0x247c[i] == 0xFFFFFFFF) {
+            if (field_0x247c[i] == fpcM_ERROR_PROCESS_ID_e) {
                 cXyz work;
                 mDoMtx_stack_c::copy(mChCoach.field_0x598);
                 mDoMtx_stack_c::multVec(&i_pos, &work);
@@ -1309,16 +1309,16 @@ void daNpcCoach_c::calcRearWheelRotate() {
         s16 sVar2 = sVar1 + (s16)iVar1;
         sVar1 -= iVar1;
 
-        if (sVar2 > 0x1194) {
-            sVar2 = 0x1194;
-        } else if (sVar2 < -0x1194) {
-            sVar2 = -0x1194;
+        if (sVar2 > 4500) {
+            sVar2 = 4500;
+        } else if (sVar2 < -4500) {
+            sVar2 = -4500;
         }
 
-        if (sVar1 > 0x1194) {
-            sVar1 = 0x1194;
-        } else if (sVar1 < -0x1194) {
-            sVar1 = -0x1194;
+        if (sVar1 > 4500) {
+            sVar1 = 4500;
+        } else if (sVar1 < -4500) {
+            sVar1 = -4500;
         }
 
         mChCoach.field_0x7a8.mWheelRot.x += sVar2;
@@ -1437,16 +1437,16 @@ void daNpcCoach_c::calcFrontWheelRotate() {
         s16 sVar2 = (s16)sVar1 + (s16)iVar1;
         sVar1 -= iVar1;
 
-        if (sVar2 > 0x1194) {
-            sVar2 = 0x1194;
-        } else if (sVar2 < -0x1194) {
-            sVar2 = -0x1194;
+        if (sVar2 > 4500) {
+            sVar2 = 4500;
+        } else if (sVar2 < -4500) {
+            sVar2 = -4500;
         }
 
-        if (sVar1 > 0x1194) {
-            sVar1 = 0x1194;
-        } else if (sVar1 < -0x1194) {
-            sVar1 = -0x1194;
+        if (sVar1 > 4500) {
+            sVar1 = 4500;
+        } else if (sVar1 < -4500) {
+            sVar1 = -4500;
         }
 
         mChHarness.field_0x70c.mWheelRot.x += sVar2;
