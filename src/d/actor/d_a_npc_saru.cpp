@@ -248,7 +248,7 @@ daNpc_Saru_c::~daNpc_Saru_c() {
 
 /* ############################################################################################## */
 /* 80AC44F8-80AC4588 000000 0090+00 9/9 0/0 0/0 .rodata          m__18daNpc_Saru_Param_c */
-daNpc_Saru_HIO_c const daNpc_Saru_Param_c::m = {
+daNpc_Saru_HIOParam const daNpc_Saru_Param_c::m = {
     140.0f,
     -3.0f,
     1.0f,

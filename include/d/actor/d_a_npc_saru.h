@@ -12,12 +12,9 @@
  *
  */
 
-struct daNpc_Saru_HIO_c
-#ifdef DEBUG
-: public mDoHIO_entry_c 
-#endif
+struct daNpc_Saru_HIOParam
 {
-public:
+
     /* 0x00 */ daNpcT_HIOParam common;
     /* 0x8C */ s16 scared_time;          // 怯える時間       - Scared Time
     /* 0x8E */ s16 field_0x8e;
@@ -31,7 +28,12 @@ public:
     void genMessage(JORMContext*);
 #endif
 
-    static const daNpc_Saru_HIO_c m;
+    static const daNpc_Saru_HIOParam m;
+};
+
+class daNpc_Saru_HIO_c : public mDoHIO_entry_c {
+public:
+    daNpc_Saru_HIOParam param;
 };
 
 class daNpc_Saru_c : public daNpcT_c {

@@ -115,6 +115,9 @@ public:
     /* 80A4738C */ int cutThankYou(int);
     /* 80A4742C */ int wait(void*);
     /* 80A475D4 */ int talk(void*);
+#if DEBUG
+    int test(void*);
+#endif
     /* 80A4854C */ daNpc_Kolinb_c(
             daNpcT_faceMotionAnmData_c const* i_faceMotionAnmData,
             daNpcT_motionAnmData_c const* i_motionAnmData,

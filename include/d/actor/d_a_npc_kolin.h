@@ -67,6 +67,9 @@ public:
     /* 80558AF8 */ int follow(void*);
     /* 80558C4C */ int clothWait(void*);
     /* 80558E90 */ int talk(void*);
+#if DEBUG
+    int test(void*);
+#endif
     /* 8055A3B8 */ daNpc_Kolin_c(
             daNpcT_faceMotionAnmData_c const* i_faceMotionAnmData,
             daNpcT_motionAnmData_c const* i_motionAnmData,
