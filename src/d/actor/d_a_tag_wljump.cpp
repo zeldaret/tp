@@ -182,7 +182,7 @@ int daTagWljump_c::execute() {
 
             mLandArea = point_p->mArg0 * 10.0f;
 
-            if (point_p->field_0x1 == 1) {
+            if (point_p->mArg2 == 1) {
                 shape_angle.z = 1;
             } else {
                 shape_angle.z = 0;

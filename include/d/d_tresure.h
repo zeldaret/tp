@@ -98,6 +98,10 @@ public:
     static void setNpcYkmPosition(int param_1, Vec* param_2) {
         setPosition(param_1, 13, param_2, -1);
     }
+
+    static void setCoachPosition(int param_1, Vec* param_2, int param_3) {
+        setPosition(param_1, 10, param_2, param_3);
+    }
 };
 
 #endif /* D_D_TRESURE_H */

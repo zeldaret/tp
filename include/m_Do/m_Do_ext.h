@@ -403,11 +403,17 @@ public:
     /* 800113FC */ virtual ~mDoExt_McaMorf2();
     /* 800116F4 */ virtual void calc();
 
+    inline f32 getAnmRate() { return mAnmRate; }
+    inline void changeAnm(J3DAnmTransform* anm, J3DAnmTransform* anm2) {
+        mpAnm = anm;
+        field_0x40 = anm2;
+    }
+    inline J3DModel* getModel() { return mpModel; }
 private:
     /* 0x38 */ mDoExt_McaMorfCallBack1_c* mpCallback1;
     /* 0x3C */ mDoExt_McaMorfCallBack2_c* mpCallback2;
     /* 0x40 */ J3DAnmTransform* field_0x40;
-    /* 0x44 */ f32 field_0x44;
+    /* 0x44 */ f32 mAnmRate;
     /* 0x48 */ Z2Creature* mpSound;
     /* 0x4C */ void* mpBas;
 };
