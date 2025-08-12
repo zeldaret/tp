@@ -53,6 +53,12 @@ public:
         actionWaitInit();
     }
 
+    void seStartTwinkle(u32 i_soundId, cXyz* param_1) {
+        field_0x978 = *param_1;
+        mDoAud_seStartLevel(i_soundId, &field_0x978, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+        field_0x984 = 1;
+    }
+
     /* 0x568 */ u8 field_0x568[0x978 - 0x568];
     /* 0x978 */ cXyz field_0x978;
     /* 0x984 */ u8 field_0x984;

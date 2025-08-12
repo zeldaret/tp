@@ -89,7 +89,7 @@ static int daE_MK_Draw(e_mk_class* i_this) {
 static void* s_obj_delete(void* i_actor, void* i_data) {
     if (fopAcM_IsActor(i_actor)) {
         if (fopAcM_GetName(i_actor) == PROC_E_DB) {
-            static_cast<e_db_class*>(i_actor)->health = 1000;
+            static_cast<e_db_class*>(i_actor)->enemy.health = 1000;
         } else if (fopAcM_GetName(i_actor) == PROC_E_DB_LEAF) {
             fopAcM_delete(static_cast<e_db_leaf_class*>(i_actor));
         }
@@ -216,7 +216,7 @@ static e_db_class* search_db(e_mk_class* i_this) {
         int i = 0;
         while (i < target_info_count) {
             pDekuBaba = (e_db_class*)target_info[i];
-            sp44 = pDekuBaba->current.pos - i_this->enemy.current.pos;
+            sp44 = pDekuBaba->enemy.current.pos - i_this->enemy.current.pos;
 
             f32 fVar2 = sp44.abs();
             if ((cM_rndF(1.0f) < 0.5f && fVar2 > 500.0f) && fVar2 < fVar1) {
@@ -491,7 +491,7 @@ static void e_mk_shoot(e_mk_class* i_this) {
         break;
 
     case 10:
-        sp48 = i_this->field_0x70c->current.pos - i_this->enemy.current.pos;
+        sp48 = i_this->field_0x70c->enemy.current.pos - i_this->enemy.current.pos;
         cLib_addCalcAngleS2(&i_this->enemy.current.angle.y, cM_atan2s(sp48.x, sp48.z), 2, 0x1000);
         if (i_this->mpModelMorf->checkFrame(15.0f)) {
             i_this->mSound.startCreatureVoice(Z2SE_EN_MK_V_THROW_BOOM, -1);

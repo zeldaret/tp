@@ -1975,7 +1975,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_katatsumuri"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_kazeneko"),
     ActorRel(NonMatching, "d_a_obj_kbox"),
-    ActorRel(NonMatching, "d_a_obj_key"),
+    ActorRel(Equivalent, "d_a_obj_key"), # weak func order
     ActorRel(NonMatching, "d_a_obj_keyhole"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ki"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_kiPot"),
