@@ -51,8 +51,8 @@ public:
     /* 80AFFFE0 */ void EvCut_TheBHint(int);
     /* 80B00204 */ void EvCut_CoachGuardGameOver(int);
 
-    inline void setTRMtx(MtxP mtx) { mpMorf->getModel()->setBaseTRMtx(mtx); }
-    inline void setGameOver() { mGameOver = 1; }
+    void setTRMtx(MtxP mtx) { mpMorf->getModel()->setBaseTRMtx(mtx); }
+    void setGameOver() { mGameOver = 1; }
 
     static u8 mEvtSeqList[72];
 

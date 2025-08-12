@@ -844,50 +844,44 @@ void daNpcCoach_c::setCoachBlazing(u8 param_1) {
         param_1 = 0;
         uVar2 = 0;
         attention_info.flags = 0;
-    } else {
-        if (mCoachBlazing) {
-            // uVar2 = param_1;
+    } else if (mCoachBlazing) {
+        switch (uVar1) {
+            case 0:
+                uVar1 = 4;
+                break;
 
-            switch (uVar1) {
-                case 0:
-                    uVar1 = 4;
-                    break;
-
-                case 1:
-                    uVar1 = 5;
-                    fVar2 = 1.5f;
-                    break;
-
-                case 2:
-                    uVar1 = 7;
-                    fVar1 = 0.4f;
-                    fVar2 = 1.5f;
-                    break;
-
-                case 3:
-                case 4:
-                    uVar1 = 10;
-                    fVar1 = 0.6f;
-                    fVar2 = 1.5f;
-                    break;
-
-                default:
-                    JUT_ASSERT(2552, 0);
-                    break;
-            }
-        } else {
-            if (uVar1 == 1) {
+            case 1:
                 uVar1 = 5;
-                mCoachBlazing = true;
-                uVar2 = 0;
-                attention_info.flags = 0x101;
-            } else {
-                uVar1 = 2;
-                param_1 = 0;
-                uVar2 = 0;
-                attention_info.flags = 0;
-            }
+                fVar2 = 1.5f;
+                break;
+
+            case 2:
+                uVar1 = 7;
+                fVar1 = 0.4f;
+                fVar2 = 1.5f;
+                break;
+
+            case 3:
+            case 4:
+                uVar1 = 10;
+                fVar1 = 0.6f;
+                fVar2 = 1.5f;
+                break;
+
+            default:
+                JUT_ASSERT(2552, 0);
+                break;
         }
+    } else if (uVar1 == 1) {
+        uVar1 = 5;
+        mCoachBlazing = true;
+        uVar2 = 0;
+        attention_info.flags = 0x101;
+    } else {
+        uVar1 = 2;
+        param_1 = 0;
+        uVar2 = 0;
+        attention_info.flags = 0;
     }
 
     cXyz work;
