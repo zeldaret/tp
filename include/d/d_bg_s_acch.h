@@ -250,7 +250,9 @@ public:
     }
 
     /* 80BB336C */ virtual ~dBgS_ObjAcch() {}
-};
+}; // Size: 0x1D8
+
+STATIC_ASSERT(sizeof(dBgS_ObjAcch) == 0x1D8);
 
 class dBgS_StatueAcch : public dBgS_Acch {
 public:
