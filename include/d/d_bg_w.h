@@ -328,6 +328,7 @@ public:
 
     void SetCrrFunc(dBgW_CrrFunc func) { m_crr_func = func; }
     void SetRideCallback(dBgW_RideCallback func) { m_ride_callback = func; }
+    void SetArrowStickCallback(dBgW_ArrowStickCallback func) { m_arrow_stick_callback = func; }
     void OnMoveFlag() { m_flags |= 1; }
 
 private:

@@ -1753,8 +1753,8 @@ void mDoExt_McaMorf2::calc() {
             } else {
                 field_0x40->getTransform(jnt_no, &spF0[1]);
 
-                sp18[0] = 1.0f - field_0x44;
-                sp18[1] = field_0x44;
+                sp18[0] = 1.0f - mAnmRate;
+                sp18[1] = mAnmRate;
 
                 var_r30->mScale.x = spF0[0].mScale.x * sp18[0]
                                     + spF0[1].mScale.x * sp18[1];
@@ -1810,8 +1810,8 @@ void mDoExt_McaMorf2::calc() {
             mpAnm->getTransform(jnt_no, &spF0[0]);
             field_0x40->getTransform(jnt_no, &spF0[1]);
 
-            sp10[0] = 1.0f - field_0x44;
-            sp10[1] = field_0x44;
+            sp10[0] = 1.0f - mAnmRate;
+            sp10[1] = mAnmRate;
 
             sp80.mScale.x = spF0[0].mScale.x * sp10[0]
                                 + spF0[1].mScale.x * sp10[1];
@@ -1866,7 +1866,7 @@ void mDoExt_McaMorf2::setAnm(J3DAnmTransform* param_0, J3DAnmTransform* param_1,
                              int i_attr, f32 i_morf, f32 i_speed, f32 i_start, f32 i_end) {
     mpAnm = param_0;
     field_0x40 = param_1;
-    field_0x44 = param_2;
+    mAnmRate = param_2;
 
     setStartFrame(i_start);
 
@@ -1912,9 +1912,9 @@ void mDoExt_McaMorf2::setAnm(J3DAnmTransform* param_0, J3DAnmTransform* param_1,
 /* 80011FCC-800120A0 00C90C 00D4+00 0/0 0/0 2/2 .text            setAnmRate__15mDoExt_McaMorf2Ff */
 void mDoExt_McaMorf2::setAnmRate(f32 param_0) {
     void* pBas = NULL;
-    field_0x44 = param_0;
+    mAnmRate = param_0;
     if (mpSound != NULL) {
-        if (field_0x44 < 0.5f) {
+        if (mAnmRate < 0.5f) {
             if (mpAnm != NULL) {
                 pBas = ((mDoExt_transAnmBas*)mpAnm)->getBas();
             }

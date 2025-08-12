@@ -64,7 +64,7 @@ dBgS_Acch::dBgS_Acch() {
     pm_speed = NULL;
     m_ground_h = -1000000000.0f;
     field_0x90 = 0.0f;
-    field_0x9c = 60.0f;
+    m_gnd_chk_offset = 60.0f;
     field_0x94 = 0.0f;
     field_0xb4 = 0;
     field_0xb8 = 0.0f;
@@ -151,7 +151,7 @@ void dBgS_Acch::GroundCheck(dBgS& i_bgs) {
     if (!(m_flags & GRND_NONE)) {
         cXyz grnd_pos;
         grnd_pos = *pm_pos;
-        grnd_pos.y += field_0x94 + (field_0x9c - field_0x90);
+        grnd_pos.y += field_0x94 + (m_gnd_chk_offset - field_0x90);
 
         if (!ChkGndThinCellingOff()) {
             static dBgS_RoofChk tmpRoofChk;
@@ -367,12 +367,12 @@ void dBgS_Acch::CrrPos(dBgS& i_bgs) {
         field_0xb8 = GetPos()->y;
         field_0xc0 = 0;
         f32 fvar12 = tmp2 + GetOldPos()->y;
-        f32 fvar1 = field_0x9c + GetPos()->y;
+        f32 fvar1 = m_gnd_chk_offset + GetPos()->y;
         bool bvar2 = false;
 
         OffLineCheckHit();
         if (!ChkLineCheckNone() && !cM3d_IsZero(tmp) &&
-            (dvar10 > (tmp * tmp) || fvar12 > fvar1 || dvar11 > field_0x9c || ChkLineCheck()))
+            (dvar10 > (tmp * tmp) || fvar12 > fvar1 || dvar11 > m_gnd_chk_offset || ChkLineCheck()))
         {
             bvar2 = true;
             LineCheck(i_bgs);
