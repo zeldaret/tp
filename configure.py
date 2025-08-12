@@ -1776,7 +1776,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_coach"),
     ActorRel(NonMatching, "d_a_npc_df"),
     ActorRel(NonMatching, "d_a_npc_doc"),
-    ActorRel(NonMatching, "d_a_npc_doorboy", extra_cflags=[DANPCF_C_HACK]),
+    ActorRel(Equivalent, "d_a_npc_doorboy", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(NonMatching, "d_a_npc_drainSol"),
     ActorRel(NonMatching, "d_a_npc_du"),
     ActorRel(NonMatching, "d_a_npc_fairy"),
