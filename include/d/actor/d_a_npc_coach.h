@@ -13,7 +13,8 @@
  *
 */
 
-struct daNpcCoach_Attr_c {
+class daNpcCoach_Attr_c {
+public:
     /* 0x00 */ f32 gravity;                 // 重力 - Gravity
     /* 0x04 */ f32 max_fall_speed;          // 最大落下速度 - Maximum Fall Speed
     /* 0x08 */ f32 jump_coeff;              // 跳係数 - Jump Coefficient
@@ -70,7 +71,8 @@ struct daNpcCoach_Attr_c {
     /* 0x9C */ s32 deceleration_time;       // 減速時間 - Deceleration Time
 };
 
-struct daNpcChReins_c {
+class daNpcChReins_c {
+public:
     /* 0x000 */ mDoExt_3DlineMat1_c field_0x0;
     /* 0x03C */ mDoExt_3DlineMat1_c field_0x3c;
     /* 0x078 */ cXyz field_0x78[10];
@@ -80,7 +82,8 @@ struct daNpcChReins_c {
     /* 0x170 */ cXyz field_0x170;
 };
 
-struct daNpcChHorse_c {
+class daNpcChHorse_c {
+public:
     /* 0x000 */ mDoExt_McaMorf2* mpModelMorf;
     /* 0x004 */ mDoExt_btpAnm* mpBtpAnm;
     /* 0x008 */ mDoExt_bckAnm* mpBckAnm;
@@ -98,7 +101,8 @@ struct daNpcChHorse_c {
     /* 0x798 */ daNpcChReins_c mChReins;
 };
 
-struct daNpcChWheel_c {
+class daNpcChWheel_c {
+public:
     /* 0x00 */ cXyz field_0x0;
     /* 0x0C */ u32 field_0xc[2];
     /* 0x14 */ csXyz mWheelRot;
@@ -160,7 +164,8 @@ public:
     /* 0x7CC */ daNpcChWheel_c field_0x7cc;
 };
 
-struct daNpcChYelia_c {
+class daNpcChYelia_c {
+public:
     /* 0x000 */ mDoExt_McaMorfSO* mpModelMorf;
     /* 0x004 */ dKy_tevstr_c mTevStr;
     /* 0x38C */ Z2Creature mSound;
@@ -168,10 +173,11 @@ struct daNpcChYelia_c {
     /* 0x694 */ cXyz field_0x694;
 };
 
-struct daNpcChPath_c {
-    inline BOOL setPath(int, int, cXyz*, bool);
-    inline BOOL isClose() { return dPath_ChkClose(mpPath); }
-    inline bool setNextPoint() {
+class daNpcChPath_c {
+public:
+    BOOL setPath(int, int, cXyz*, bool);
+    BOOL isClose() { return dPath_ChkClose(mpPath); }
+    bool setNextPoint() {
         mPntIndex++;
 
         if (mPntIndex >= mpPath->m_num) {
@@ -185,7 +191,7 @@ struct daNpcChPath_c {
 
         return TRUE;
     }
-    inline BOOL setPrevPoint() {
+    BOOL setPrevPoint() {
         mPntIndex--;
 
         if (mPntIndex < 0) {
@@ -199,17 +205,17 @@ struct daNpcChPath_c {
 
         return TRUE;
     }
-    inline void getTargetPoint(cXyz& param_1) {
+    void getTargetPoint(cXyz& param_1) {
         if (mpPath != NULL) {
             param_1 = dPath_GetPnt(mpPath, mPntIndex)->m_position;
         }
     }
-    inline bool isPath() { return mpPath != NULL; }
-    inline int getCurrentId() { return mCurrentID; }
-    inline s8 getArg0() { return mpPath->m_points[mPntIndex].mArg0; }
-    inline s8 getArg1() { return mpPath->m_points[mPntIndex].mArg1; }
-    inline s8 getArg2() { return mpPath->m_points[mPntIndex].mArg2; }
-    inline int getArg3() { return mpPath->m_points[mPntIndex].mArg3; }
+    bool isPath() { return mpPath != NULL; }
+    int getCurrentId() { return mCurrentID; }
+    s8 getArg0() { return mpPath->m_points[mPntIndex].mArg0; }
+    s8 getArg1() { return mpPath->m_points[mPntIndex].mArg1; }
+    s8 getArg2() { return mpPath->m_points[mPntIndex].mArg2; }
+    int getArg3() { return mpPath->m_points[mPntIndex].mArg3; }
     inline int checkNearAttackPoint();
     inline bool checkPoint(cXyz*, f32);
     inline bool setNextTarget();
