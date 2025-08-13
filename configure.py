@@ -2098,7 +2098,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_obj_sekizoa"), # weak function order
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_shield"),
     ActorRel(Equivalent, "d_a_obj_sm_door"), # vtable order
-    ActorRel(NonMatching, "d_a_obj_smallkey"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_smallkey"),
     ActorRel(NonMatching, "d_a_obj_smgdoor"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_smoke"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_smtile"),
