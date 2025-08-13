@@ -909,7 +909,6 @@ static void e_dd_normal(e_dd_class* i_this) {
 
 /* 806A3AE8-806A3D64 001968 027C+00 1/1 0/0 0/0 .text            e_dd_run__FP10e_dd_class */
 static void e_dd_run(e_dd_class* i_this) {
-    // NONMATCHING
     fopAc_ac_c* a_this = &i_this->actor;
 
     if (i_this->field_0x6d4 != 0) {
