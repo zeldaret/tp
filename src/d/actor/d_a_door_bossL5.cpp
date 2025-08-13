@@ -330,7 +330,7 @@ int daBdoorL5_c::unlockInit() {
     obj_keyhole_class* keyHole = (obj_keyhole_class*)fopAcM_SearchByID(mKeyHoleId);
     if (keyHole != NULL) {
         keyHole->setOpen();
-        mDoAud_seStart(Z2SE_OBJ_BOSS_LOCK_OPEN_LV5, &keyHole->current.pos, 0, 0);
+        mDoAud_seStart(Z2SE_OBJ_BOSS_LOCK_OPEN_LV5, &keyHole->actor.current.pos, 0, 0);
     }
     dComIfGs_onSwitch(door_param2_c::getSwbit(this), fopAcM_GetRoomNo(this));
     return 1;
