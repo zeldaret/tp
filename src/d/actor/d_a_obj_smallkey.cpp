@@ -64,7 +64,7 @@ static f32 Reflect(cXyz* i_vec, cBgS_PolyInfo const& i_polyinfo, f32 i_scale) {
         cXyz reflect_vec;
         f32 mag = i_vec->absXZ();
 
-        C_VECReflect(i_vec, &plane.mNormal, &reflect_vec);
+        VECReflect(i_vec, &plane.mNormal, &reflect_vec);
         *i_vec = (reflect_vec * mag) * i_scale;
         return i_vec->absXZ();
     }
