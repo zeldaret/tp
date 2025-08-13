@@ -5,9 +5,6 @@
 
 struct kita_s {
 public:
-    /* 80C45E44 */ ~kita_s() {}
-    /* 80C45E80 */ kita_s() {}
-
     /* 0x00 */ J3DModel* mModel;
     /* 0x04 */ cXyz mPos;
     /* 0x10 */ cXyz field_0x10;
