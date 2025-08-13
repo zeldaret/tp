@@ -1979,7 +1979,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_keyhole"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ki"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_kiPot"),
-    ActorRel(NonMatching, "d_a_obj_kita"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_kita"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_kjgjs"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_kkanban"),
     ActorRel(NonMatching, "d_a_obj_knBullet"),
