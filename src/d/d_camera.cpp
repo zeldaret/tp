@@ -3396,8 +3396,8 @@ bool dCamera_c::bumpCheck(u32 i_flags) {
  * lineBGCheckBoth__9dCamera_cFP4cXyzP4cXyzP11dBgS_LinChkUl     */
 bool dCamera_c::lineBGCheckBoth(cXyz* i_start, cXyz* i_end, dBgS_LinChk* i_linchk,
                                 u32 i_flags) {
-    i_linchk->onBackFlag();
-    i_linchk->onFrontFlag();
+    i_linchk->OnBackFlag();
+    i_linchk->OnFrontFlag();
     return lineBGCheck(i_start, i_end, i_linchk, i_flags);
 }
 

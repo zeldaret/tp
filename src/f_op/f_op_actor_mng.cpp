@@ -136,10 +136,10 @@ void fopAcM_Log(fopAc_ac_c const* i_actor, char const* i_message) {}
 
 /* 80019C7C-80019CB8 0145BC 003C+00 0/0 10/10 483/483 .text            fopAcM_delete__FP10fopAc_ac_c
  */
-void fopAcM_delete(fopAc_ac_c* i_actor) {
+s32 fopAcM_delete(fopAc_ac_c* i_actor) {
     // "Deleting Actor"
     fopAcM_Log(i_actor, "アクターの削除");
-    fpcM_Delete(i_actor);
+    return fpcM_Delete(i_actor);
 }
 
 /* 80019CB8-80019D18 0145F8 0060+00 0/0 3/3 12/12 .text            fopAcM_delete__FUi */

@@ -44,8 +44,6 @@ public:
 
     /* 80B5D6C8 */ virtual ~daNpc_ykM_Param_c() {}
 
-    void genMessage(JORMContext*);
-
     static daNpc_ykM_HIOParam const m;
 };
 

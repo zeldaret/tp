@@ -255,6 +255,7 @@ private:
 
 class mDoExt_invisibleModel {
 public:
+    mDoExt_invisibleModel() {}
     /* 8000E53C */ int create(J3DModel* i_model, u8 param_1);
     /* 8000E6C8 */ void entryJoint(cXyz*);
     /* 8000E7C0 */ void entryDL(cXyz*);
