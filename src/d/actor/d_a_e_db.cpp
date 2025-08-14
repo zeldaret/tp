@@ -1484,7 +1484,7 @@ static s8 e_db_escape(e_db_class* i_this) {
         actor->old.pos.y += temp_f31;
     }
 
-    if (spB != 0 && (((actor->current.pos.y - 35.0f) + TREG_F(8)) < temp_f30)) {
+    if (spB != 0 && (actor->current.pos.y - 35.0f) + TREG_F(8) < temp_f30) {
         i_this->mode = 50;
         anm_init(i_this, 0xE, 20.0f, 0, 1.0f);
         i_this->sound.startCreatureVoice(Z2SE_EN_DB_V_DEATH, -1);
