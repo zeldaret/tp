@@ -431,7 +431,7 @@ static void CheckRoof(npc_tkj2_class* i_this) {
 }
 
 /* 80B116E4-80B11AB0 0009E4 03CC+00 1/1 0/0 0/0 .text            CheckWall__FP14npc_tkj2_classs */
-static BOOL CheckWall(npc_tkj2_class* i_this, s16 param_2) {
+static bool CheckWall(npc_tkj2_class* i_this, s16 param_2) {
     // NONMATCHING
     fopAc_ac_c* a_this = &i_this->actor;
     cXyz sp1b0(0.0f, -100.0f, a_this->speedF);
@@ -453,11 +453,11 @@ static BOOL CheckWall(npc_tkj2_class* i_this, s16 param_2) {
     lin_chk_3.Set(&sp1c8, &sp1d4, NULL);
 
     if (dComIfG_Bgsp().LineCross(&lin_chk_2)) {
-        return FALSE;
+        return false;
     }
 
     if (!dComIfG_Bgsp().LineCross(&lin_chk_3)) {
-        return FALSE;
+        return false;
     }
 
     if (dComIfG_Bgsp().LineCross(&lin_chk_1)) {
@@ -472,92 +472,135 @@ static BOOL CheckWall(npc_tkj2_class* i_this, s16 param_2) {
         s16 sVar2 = cM_atan2s(np->z, np->y);
         cLib_chaseAngleS(&i_this->field_0x5ec.x, sVar2, 0x150);
         cLib_chaseAngleS(&i_this->field_0x5ec.z, sVar1, 0x150);
+        return true;
+    }
+
+    return false;
+}
+
+/* 80B11AB0-80B11BD0 000DB0 0120+00 3/3 0/0 0/0 .text            GndCheck2__FP14npc_tkj2_class */
+static BOOL GndCheck2(npc_tkj2_class* i_this) {
+    dBgS_ObjGndChk obj_gnd_chk;
+    cXyz sp78(i_this->field_0x5b8.x, i_this->field_0x5b8.y + 100.0f, i_this->field_0x5b8.z);
+    obj_gnd_chk.SetPos(&sp78);
+    sp78.y = dComIfG_Bgsp().GroundCross(&obj_gnd_chk);
+
+    if (i_this->field_0x5b8.y - sp78.y > 500.0f) {
         return TRUE;
     }
 
     return FALSE;
 }
 
-/* ############################################################################################## */
-/* 80B14328-80B1432C 00004C 0004+00 1/1 0/0 0/0 .rodata          @4015 */
-SECTION_RODATA static f32 const lit_4015 = 500.0f;
-COMPILER_STRIP_GATE(0x80B14328, &lit_4015);
-
-/* 80B11AB0-80B11BD0 000DB0 0120+00 3/3 0/0 0/0 .text            GndCheck2__FP14npc_tkj2_class */
-static void GndCheck2(npc_tkj2_class* i_this) {
-    // NONMATCHING
-}
-
-/* 80B11BD0-80B11C48 000ED0 0078+00 4/3 0/0 0/0 .text            __dt__14dBgS_ObjGndChkFv */
-// dBgS_ObjGndChk::~dBgS_ObjGndChk() {
-extern "C" void __dt__14dBgS_ObjGndChkFv() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 80B1432C-80B14330 000050 0004+00 1/1 0/0 0/0 .rodata          @4035 */
-SECTION_RODATA static f32 const lit_4035 = -500.0f;
-COMPILER_STRIP_GATE(0x80B1432C, &lit_4035);
-
 /* 80B11C48-80B11CCC 000F48 0084+00 2/2 0/0 0/0 .text            GndCheck__FP14npc_tkj2_class4cXyz */
-static void GndCheck(npc_tkj2_class* i_this, cXyz param_1) {
-    // NONMATCHING
+static bool GndCheck(npc_tkj2_class* i_this, cXyz param_2) {
+    fopAc_ac_c* a_this = &i_this->actor;
+    cXyz sp14;
+
+    cMtx_YrotS(*calc_mtx, i_this->field_0x5c4);
+    MtxPosition(&param_2, &sp14);
+    sp14 += a_this->current.pos;
+
+    if (a_this->current.pos.y - a_this->home.pos.y < -500.0f) {
+        return true;
+    }
+
+    return false;
 }
 
-/* ############################################################################################## */
-/* 80B14330-80B14334 000054 0004+00 0/2 0/0 0/0 .rodata          @4107 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4107 = 70.0f;
-COMPILER_STRIP_GATE(0x80B14330, &lit_4107);
-#pragma pop
-
-/* 80B14334-80B14338 000058 0004+00 0/2 0/0 0/0 .rodata          @4108 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4108 = 3.0f;
-COMPILER_STRIP_GATE(0x80B14334, &lit_4108);
-#pragma pop
-
-/* 80B14338-80B1433C 00005C 0004+00 0/3 0/0 0/0 .rodata          @4109 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4109 = 200.0f;
-COMPILER_STRIP_GATE(0x80B14338, &lit_4109);
-#pragma pop
-
-/* 80B1433C-80B14340 000060 0004+00 0/1 0/0 0/0 .rodata          @4110 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4110 = 300.0f;
-COMPILER_STRIP_GATE(0x80B1433C, &lit_4110);
-#pragma pop
-
-/* 80B14340-80B14344 000064 0004+00 0/1 0/0 0/0 .rodata          @4111 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4111 = 4000.0f;
-COMPILER_STRIP_GATE(0x80B14340, &lit_4111);
-#pragma pop
-
-/* 80B14344-80B14348 000068 0004+00 0/2 0/0 0/0 .rodata          @4112 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4112 = 30.0f;
-COMPILER_STRIP_GATE(0x80B14344, &lit_4112);
-#pragma pop
-
-/* 80B14348-80B1434C 00006C 0004+00 0/1 0/0 0/0 .rodata          @4113 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4113 = 60.0f;
-COMPILER_STRIP_GATE(0x80B14348, &lit_4113);
-#pragma pop
-
-/* 80B11CCC-80B120DC 000FCC 0410+00 1/1 0/0 0/0 .text            npc_tkj2_normal__FP14npc_tkj2_class
- */
+/* 80B11CCC-80B120DC 000FCC 0410+00 1/1 0/0 0/0 .text            npc_tkj2_normal__FP14npc_tkj2_class */
 static void npc_tkj2_normal(npc_tkj2_class* i_this) {
     // NONMATCHING
+    fopAc_ac_c* a_this = &i_this->actor;
+    cXyz sp38, sp44;
+    f32 fVar1 = 0.0f;
+    cXyz sp50(0.0f, 100.0f, 0.0f);
+
+    switch (i_this->field_0x60a) {
+        case 0:
+            i_this->field_0x610 = cM_rndF(70.0f) + 50.0f;
+            anm_init(i_this, 0xA, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+            i_this->field_0x60a++;
+
+            if (i_this->field_0x630 != 0) {
+                i_this->field_0x60a++;
+            }
+            break;
+
+        case 1:
+            if (i_this->field_0x610 == 0) {
+                i_this->field_0x60a = 10;
+                sp50.set(0.0f, 100.0f, 200.0f);
+                sp38 = a_this->home.pos - a_this->current.pos;
+                sp38.x += cM_rndFX(300.0f);
+                sp38.z += cM_rndFX(300.0f);
+                i_this->field_0x5c4 = cM_atan2s(sp38.x, sp38.z);
+
+                if (GndCheck(i_this, sp50)) {
+                    i_this->field_0x5c4 = a_this->current.angle.y + (s16)cM_rndFX(4000.0f) + 0x8000;
+                } else {
+                    if (fopAcM_wayBgCheck(a_this, 100.0f, 30.0f)) {
+                        i_this->field_0x5c4 = a_this->current.angle.y + (s16)cM_rndFX(4000.0f) + 0x8000;
+                    }
+                }
+
+                i_this->field_0x610 = cM_rndF(60.0f) + 30.0f;
+                anm_init(i_this, 0xB, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+            }
+            break;
+
+        case 2:
+            if (i_this->field_0x610 == 0) {
+                i_this->field_0x60a = 11;
+                sp50.set(0.0f, 100.0f, 200.0f);
+                sp38 = a_this->home.pos - a_this->current.pos;
+                sp44.set(0.0f, 0.0f, 0.0f);
+                mDoMtx_stack_c::ZXYrotS(i_this->field_0x5ec);
+                mDoMtx_stack_c::multVec(&sp38, &sp44);
+                sp44.x += cM_rndFX(300.0f);
+                sp44.z += cM_rndFX(300.0f);
+                i_this->field_0x5c4 = cM_atan2s(sp44.x, sp44.z);
+
+                if (!CheckWall(i_this, i_this->field_0x5c4)) {
+                    i_this->field_0x5c4 += 0x8000;
+                }
+
+                i_this->field_0x610 = cM_rndF(60.0f) + 30.0f;
+                anm_init(i_this, 0xB, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+            }
+            break;
+
+        case 10:
+            fVar1 = 5.0f;
+            sp50.set(0.0f, 100.0f, 100.0f);
+            
+            if (GndCheck(i_this, sp50)) {
+                i_this->field_0x60a = 1;
+                i_this->field_0x610 = 0;
+            }
+
+            if (i_this->field_0x610 == 0) {
+                i_this->field_0x60a = 0;
+                a_this->speedF = 0.0f;
+                fVar1 = 3.0f;
+            }
+            break;
+
+        case 11:
+            fVar1 = 5.0f;
+
+            if (!CheckWall(i_this, a_this->current.angle.y)) {
+                fVar1 = 0.0f;
+            }
+
+            if (i_this->field_0x610 == 0) {
+                i_this->field_0x60a = 0;
+            }
+            break;
+    }
+
+    cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->field_0x5c4, 8, 0x400);
+    cLib_addCalc2(&a_this->speedF, fVar1, 1.0f, 5.0f);
 }
 
 /* 80B120DC-80B122AC 0013DC 01D0+00 1/1 0/0 0/0 .text            return_pos_get__FP14npc_tkj2_class
