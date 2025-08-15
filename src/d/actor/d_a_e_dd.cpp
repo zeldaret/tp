@@ -236,7 +236,7 @@ static void damage_check(e_dd_class* i_this) {
             i_this->mAtInfo.mpCollider = i_this->field_0xa74[2].GetTgHitObj();
             at_power_check(&i_this->mAtInfo);
 
-            if (i_this->mAtInfo.mHitType == 16) {
+            if (i_this->mAtInfo.mHitType == HIT_TYPE_STUN) {
                 if (i_this->field_0x6aa[2] == 0) {
                     i_this->mAction = 7;
                     i_this->field_0x68c = 0;
@@ -280,7 +280,7 @@ static void damage_check(e_dd_class* i_this) {
 
                 if (a_this->health <= 1) {
                     a_this->health = 0;
-                    i_this->field_0xa74[2].SetTgHitMark((CcG_Tg_HitMark)3);
+                    i_this->field_0xa74[2].SetTgHitMark(CcG_Tg_UNK_MARK_3);
                 }
             }
         } else {
@@ -289,7 +289,7 @@ static void damage_check(e_dd_class* i_this) {
                     i_this->mAtInfo.mpCollider = i_this->field_0xa74[i].GetTgHitObj();
                     at_power_check(&i_this->mAtInfo);
 
-                    if (i_this->mAtInfo.mHitType == 16) {
+                    if (i_this->mAtInfo.mHitType == HIT_TYPE_STUN) {
                         i_this->mAction = 5;
                         i_this->field_0x68c = 0;
                         i_this->mSound.startCreatureVoice(Z2SE_EN_DD_V_GUARD, -1);
@@ -329,13 +329,11 @@ static BOOL way_bg_check(e_dd_class* i_this, f32 param_2) {
 u8 l_initHIO;
 
 /* 806A74C8-806A74F0 000018 0028+00 9/9 0/0 0/0 .bss             l_HIO */
-daE_DD_HIO_c l_HIO;
-
-/* 806A74F0-806A75EF 000040 00FF+00 1/1 0/0 0/0 .bss             check_index$4196 */
-static u8 check_index[255];
+static daE_DD_HIO_c l_HIO;
 
 /* 806A2CE8-806A2F14 000B68 022C+00 2/2 0/0 0/0 .text            path_check__FP10e_dd_class */
 static BOOL path_check(e_dd_class* i_this) {
+    static u8 check_index[255];
     fopAc_ac_c* a_this = &i_this->actor;
     dBgS_LinChk lin_chk;
     cXyz start, end;
@@ -1534,14 +1532,14 @@ static int daE_DD_Execute(e_dd_class* i_this) {
 
     if (bVar2 != 0) {
         i_this->field_0xa74[0].OnTgShield();
-        i_this->field_0xa74[0].SetTgHitMark((CcG_Tg_HitMark)2);
+        i_this->field_0xa74[0].SetTgHitMark(CcG_Tg_UNK_MARK_2);
         i_this->field_0xa74[1].OnTgShield();
-        i_this->field_0xa74[1].SetTgHitMark((CcG_Tg_HitMark)2);
+        i_this->field_0xa74[1].SetTgHitMark(CcG_Tg_UNK_MARK_2);
     } else {
         i_this->field_0xa74[0].OffTgShield();
-        i_this->field_0xa74[0].SetTgHitMark((CcG_Tg_HitMark)0);
+        i_this->field_0xa74[0].SetTgHitMark(CcG_Tg_UNK_MARK_0);
         i_this->field_0xa74[1].OffTgShield();
-        i_this->field_0xa74[1].SetTgHitMark((CcG_Tg_HitMark)0);
+        i_this->field_0xa74[1].SetTgHitMark(CcG_Tg_UNK_MARK_0);
     }
 
     if (i_this->field_0x5b6 != 0) {
@@ -1757,17 +1755,17 @@ static cPhs__Step daE_DD_Create(fopAc_ac_c* a_this) {
 
             if (i == 2) {
                 i_this->field_0xa74[i].OffTgShield();
-                i_this->field_0xa74[i].SetTgHitMark((CcG_Tg_HitMark)0);
+                i_this->field_0xa74[i].SetTgHitMark(CcG_Tg_UNK_MARK_0);
             } else {
                 i_this->field_0xa74[i].OnTgShield();
-                i_this->field_0xa74[i].SetTgHitMark((CcG_Tg_HitMark)2);
+                i_this->field_0xa74[i].SetTgHitMark(CcG_Tg_UNK_MARK_2);
             }
         }
 
         i_this->mFireSph.Set(fire_sph_src);
         i_this->mFireSph.SetStts(&i_this->mStts);
         i_this->mFireSph.SetAtType(AT_TYPE_100);
-        i_this->mFireSph.SetAtMtrl(1);
+        i_this->mFireSph.SetAtMtrl(dCcD_MTRL_FIRE);
         i_this->mObjAcch.Set(fopAcM_GetPosition_p(a_this), fopAcM_GetOldPosition_p(a_this), a_this, 1, &i_this->mAcchCir,
                              fopAcM_GetSpeed_p(a_this), NULL, NULL);
         i_this->mAcchCir.SetWall(50.0f, 100.0f);
