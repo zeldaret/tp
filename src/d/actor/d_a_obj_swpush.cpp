@@ -149,7 +149,7 @@ void daObjSwpush::Act_c::is_switch2() const {
 
 /* 80482DC4-80482DE8 000164 0024+00 1/1 0/0 0/0 .text
  * solidHeapCB__Q211daObjSwpush5Act_cFP10fopAc_ac_c             */
-void daObjSwpush::Act_c::solidHeapCB(fopAc_ac_c* param_0) {
+int daObjSwpush::Act_c::solidHeapCB(fopAc_ac_c* param_0) {
     // NONMATCHING
 }
 
@@ -223,39 +223,92 @@ void daObjSwpush::Act_c::create_heap() {
 }
 
 /* 80482FE8-80483038 000388 0050+00 1/1 0/0 0/0 .text create_res_load__Q211daObjSwpush5Act_cFv */
-void daObjSwpush::Act_c::create_res_load() {
+cPhs__Step daObjSwpush::Act_c::create_res_load() {
     // NONMATCHING
 }
 
-/* ############################################################################################## */
-/* 80484D20-80484D2C 000010 000C+00 0/1 0/0 0/0 .rodata          M_heap_size__Q211daObjSwpush5Act_c
- */
-#pragma push
-#pragma force_active on
-SECTION_RODATA u8 const daObjSwpush::Act_c::M_heap_size[12] = {
-    0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x10, 0x00, 0x00, 0x00, 0x10, 0x00,
-};
-COMPILER_STRIP_GATE(0x80484D20, &daObjSwpush::Act_c::M_heap_size);
-#pragma pop
+/* 80484D20-80484D2C 000010 000C+00 0/1 0/0 0/0 .rodata          M_heap_size__Q211daObjSwpush5Act_c */
+u32 const daObjSwpush::Act_c::M_heap_size[3] = {0x1000, 0x1000, 0x1000};
 
 /* 80484D2C-80484E08 00001C 00DC+00 4/10 0/0 0/0 .rodata          M_attr__Q211daObjSwpush5Act_c */
-SECTION_RODATA u8 const daObjSwpush::Act_c::M_attr[220] = {
-    0x00, 0x00, 0x00, 0x03, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x66, 0x66, 0x66, 0x3F, 0x19, 0x99, 0x9A,
-    0x00, 0x00, 0x00, 0x00, 0xBE, 0x99, 0x99, 0x9A, 0x00, 0x01, 0x00, 0x06, 0x00, 0x06, 0x00, 0x0D,
-    0x3F, 0x80, 0x00, 0x00, 0x40, 0x20, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x20,
-    0x3F, 0xA0, 0x00, 0x00, 0x3F, 0x66, 0x66, 0x66, 0x3F, 0x19, 0x99, 0x9A, 0x00, 0x00, 0x00, 0x00,
-    0xBE, 0x99, 0x99, 0x9A, 0x00, 0x01, 0x00, 0x06, 0x00, 0x06, 0x00, 0x0D, 0x3F, 0x80, 0x00, 0x00,
-    0x40, 0x20, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x13, 0x3F, 0x80, 0x00, 0x00,
-    0x3F, 0x66, 0x66, 0x66, 0x3F, 0x19, 0x99, 0x9A, 0x00, 0x00, 0x00, 0x00, 0xBE, 0x99, 0x99, 0x9A,
-    0x00, 0x01, 0x00, 0x06, 0x00, 0x06, 0x00, 0x0D, 0x3F, 0x80, 0x00, 0x00, 0x40, 0x20, 0x00, 0x00,
-    0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x66, 0x66, 0x66,
-    0x3F, 0x19, 0x99, 0x9A, 0x00, 0x00, 0x00, 0x00, 0xBE, 0x99, 0x99, 0x9A, 0x00, 0x01, 0x00, 0x06,
-    0x00, 0x06, 0x00, 0x0D, 0x3F, 0x80, 0x00, 0x00, 0x40, 0x20, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x20, 0x3F, 0x80, 0x00, 0x00, 0x3F, 0x66, 0x66, 0x66, 0x3F, 0x19, 0x99, 0x9A,
-    0x00, 0x00, 0x00, 0x00, 0xBE, 0x99, 0x99, 0x9A, 0x00, 0x01, 0x00, 0x06, 0x00, 0x06, 0x00, 0x0D,
-    0x3F, 0x80, 0x00, 0x00, 0x40, 0x20, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x00,
+daObjSwpush::Hio_c::Attr_c const daObjSwpush::Act_c::M_attr[5] = {
+    {
+        3,
+        1.0f,
+        0.89999998f,
+        0.6f,
+        0.0f,
+        -0.3f,
+        1,
+        6,
+        6,
+        13,
+        1.0f,
+        2.5f,
+        10,
+    },
+    {
+        32,
+        1.25f,
+        0.89999998f,
+        0.6f,
+        0.0f,
+        -0.3f,
+        1,
+        6,
+        6,
+        13,
+        1.0f,
+        2.5f,
+        10,
+    },
+    {
+        19,
+        1.0f,
+        0.89999998f,
+        0.6f,
+        0.0f,
+        -0.3f,
+        1,
+        6,
+        6,
+        13,
+        1.0f,
+        2.5f,
+        10,
+    },
+    {
+        4,
+        1.0f,
+        0.89999998f,
+        0.6f,
+        0.0f,
+        -0.3f,
+        1,
+        6,
+        6,
+        13,
+        1.0f,
+        2.5f,
+        10,
+    },
+    {
+        32,
+        1.0f,
+        0.89999998f,
+        0.6f,
+        0.0f,
+        -0.3f,
+        1,
+        6,
+        6,
+        13,
+        1.0f,
+        2.5f,
+        10,
+    },
+
 };
-COMPILER_STRIP_GATE(0x80484D2C, &daObjSwpush::Act_c::M_attr);
 
 /* 80484E08-80484E0C 0000F8 0004+00 0/3 0/0 0/0 .rodata          M_op_vtx__Q211daObjSwpush5Act_c */
 #pragma push
@@ -334,14 +387,60 @@ COMPILER_STRIP_GATE(0x80484E30, &lit_3881);
 #pragma pop
 
 /* 80483038-80483450 0003D8 0418+00 1/1 0/0 0/0 .text Mthd_Create__Q211daObjSwpush5Act_cFv */
-void daObjSwpush::Act_c::Mthd_Create() {
+cPhs__Step daObjSwpush::Act_c::Mthd_Create() {
     // NONMATCHING
-}
+    fopAcM_SetupActor(this, daObjSwpush::Act_c);
 
-/* 80483450-8048348C 0007F0 003C+00 1/1 0/0 0/0 .text            __dt__4cXyzFv */
-// cXyz::~cXyz() {
-extern "C" void __dt__4cXyzFv() {
-    // NONMATCHING
+    prmZ_init();
+    mType = prm_get_type();
+    field_0x5f4 = prm_get_mdl();
+
+    if (mType == 4) {
+        field_0x5f4 = 1;
+    } else if (field_0x5f4 == 15) {
+        field_0x5f4 = 0;
+    }
+
+    cPhs__Step phase = create_res_load();
+    if (phase == cPhs_COMPLEATE_e) {
+        scale.x *= attr().scale;
+        scale.z *= attr().scale;
+
+        if (mType != 4) {
+            scale.y = 0.5f;
+        }
+
+        field_0x5f8.x = 1.25f;
+        field_0x5f8.y = 0.5f;
+        field_0x5f8.z = 1.25f;
+
+        if (prm_get_couple() != 0) {
+            scale.x *= 2.0f;
+            scale.z *= 2.0f;
+        }
+
+        if (!fopAcM_entrySolidHeap(this, solidHeapCB, M_heap_size[field_0x5f4])) {
+            return cPhs_ERROR_e;
+        }
+
+        if (dComIfG_Bgsp().Regist(mpBgW, this)) {
+            return cPhs_ERROR_e;
+        }
+
+        mDoMtx_stack_c::transS(current.pos);
+        mDoMtx_stack_c::ZXYrotM(shape_angle);
+        mDoMtx_stack_c::scaleM(field_0x5f8);
+        MTXCopy(mDoMtx_stack_c::get(), mMtx);
+        mpBgW->ClrNoCalcVtx();
+        mpBgW->SetBaseMtxP(mMtx);
+        mpBgW->GlobalVtx();
+        mpBgW->SetBaseMtxP(NULL);
+        mpBgW->SetNoCalcVtx();
+        field_0x5a4 = mpBgW->GetVtxTbl()->y;
+        mpBgW->SetRideCallback(rideCB);
+
+        fopAcM_SetMtx(this, field_0x5a8->getBaseTRMtx());
+    }
 }
 
 /* 8048348C-804834E8 00082C 005C+00 1/1 0/0 0/0 .text Mthd_Delete__Q211daObjSwpush5Act_cFv */
@@ -518,7 +617,7 @@ extern actor_process_profile_definition g_profile_Obj_Swpush = {
   fpcPi_CURRENT_e,        // mListPrio
   PROC_Obj_Swpush,        // mProcName
   &g_fpcLf_Method.base,  // sub_method
-  sizeof(daObjSwpush),    // mSize
+  sizeof(daObjSwpush::Act_c),    // mSize
   0,                      // mSizeOther
   0,                      // mParameters
   &g_fopAc_Method.base,   // sub_method
