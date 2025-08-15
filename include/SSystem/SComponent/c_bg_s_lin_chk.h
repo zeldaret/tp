@@ -39,9 +39,9 @@ public:
     cXyz* GetCrossP() { return &mLin.GetEndP(); }
     cM3dGLin* GetLinP() { return &mLin; }
     bool ChkBackFlag() const { return mBackFlag; }
-    void onBackFlag() { mBackFlag = true; }
+    void OnBackFlag() { mBackFlag = true; }
     bool ChkFrontFlag() const { return mFrontFlag; }
-    void onFrontFlag() { mFrontFlag = true; }
+    void OnFrontFlag() { mFrontFlag = true; }
     bool GetPreWallChk() const { return mPreWallChk; }
     bool GetPreGroundChk() const { return mPreGroundChk; }
     bool GetPreRoofChk() const { return mPreRoofChk; }

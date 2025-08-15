@@ -511,7 +511,7 @@ fopAcM_prm_class* createAppend(u16 i_setId, u32 i_parameters, const cXyz* i_pos,
 
 void fopAcM_Log(fopAc_ac_c const* i_actor, char const* i_message);
 
-void fopAcM_delete(fopAc_ac_c* i_actor);
+s32 fopAcM_delete(fopAc_ac_c* i_actor);
 
 s32 fopAcM_delete(fpc_ProcID i_actorID);
 

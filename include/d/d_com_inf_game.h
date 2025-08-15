@@ -3558,7 +3558,7 @@ inline int dComIfGp_evmng_startDemo(int param_0) {
     return dComIfGp_getPEvtManager()->setStartDemo(param_0);
 }
 
-inline void dComIfGp_event_setTalkPartner(fopAc_ac_c* i_actor) {
+inline void dComIfGp_event_setTalkPartner(void* i_actor) {
     g_dComIfG_gameInfo.play.getEvent().setPtT(i_actor);
 }
 

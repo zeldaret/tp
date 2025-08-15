@@ -1391,7 +1391,7 @@ bool daNpcMoiR_c::talk(void* param_1) {
                 } else {
                     msgTimer = mMsgTimer;
                     if (ctrlMsgAnm(i_expression, i_actionID, this, FALSE)) {
-                        OS_REPORT("レジスタンスモイ 表情番号=%d 動作番号=%d\n", i_expressionID, i_actionID); // "Resistance Moi Expression Number=%d Action Number=%d\n"
+                        OS_REPORT("レジスタンスモイ 表情番号=%d 動作番号=%d\n", i_expression, i_actionID); // "Resistance Moi Expression Number=%d Action Number=%d\n"
                         setExpression(i_expression, -1.0f);
                         setMotion(i_actionID, -1.0f, 0);
                     } else if (msgTimer != 0 && mMsgTimer == 0) {
@@ -1657,7 +1657,7 @@ BOOL daNpcMoiR_c::EvCut_Appear(int i_cutIndex) {
         case '0005':
             if (fopAcM_searchPlayerAngleY(this) == mCurAngle.y) {
                 if (talkProc(NULL, TRUE, NULL)) {
-                    OS_REPORT("二択分岐 %s\n", getChoiceNo() == 0 ? "はい" : "いいえ");
+                    OS_REPORT("二択分岐 %s\n", mFlow.getChoiceNo() == 0 ? "はい" : "いいえ");
 
                     if (mFlow.getChoiceNo() == 0) {
                         mOrderEvtNo = 3;

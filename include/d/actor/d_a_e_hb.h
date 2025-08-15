@@ -77,8 +77,12 @@ public:
 
 STATIC_ASSERT(sizeof(e_hb_class) == 0x1268);
 
-class daE_HB_HIO_c {
+class daE_HB_HIO_c : public JORReflexible {
 public:
+#if DEBUG
+    virtual void genMessage(JORMContext*);
+#endif
+
     /* 804FBD6C */ daE_HB_HIO_c();
     /* 805005D0 */ virtual ~daE_HB_HIO_c() {}
 

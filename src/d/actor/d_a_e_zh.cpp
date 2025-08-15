@@ -859,7 +859,7 @@ void daE_ZH_c::executeBallWait() {
             spa4.z = WREG_F(1) + 2000.0f;
             MtxPosition(&spa4, &spb0);
             field_0x680 = spb0 + current.pos;
-            lin_chk.onBackFlag();
+            lin_chk.OnBackFlag();
             lin_chk.Set(&current.pos, &field_0x680, this);
 
             if (dComIfG_Bgsp().LineCross(&lin_chk)) {

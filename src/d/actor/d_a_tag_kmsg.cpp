@@ -197,8 +197,8 @@ int daTag_KMsg_c::Execute() {
             vec54.z = vec60.z + 80.0f * angle.Cos();
             dBgS_LinChk lin_chk;
             lin_chk.ClrSttsWallOff();
-            lin_chk.onBackFlag();
-            lin_chk.onFrontFlag();
+            lin_chk.OnBackFlag();
+            lin_chk.OnFrontFlag();
             lin_chk.Set(&vec54, &vec60, NULL);
             if (dComIfG_Bgsp().LineCross(&lin_chk)) {
                 cXyz vec48;
