@@ -64,7 +64,7 @@ private:
     /* 0xBEC */ u8 field_0xbec[0xbf0 - 0xbec];
     /* 0xBF0 */ daNpcF_Lookat_c mLookat;
     /* 0xC8C */ daNpcF_ActorMngr_c mActorMngr[1];
-    /* 0xC95 */ u8 field_0xc95[0xc98 - 0xc95];
+    /* 0xC95 */ u8 field_0xc94[0xc98 - 0xc94];
     /* 0xC98 */ dCcD_Cyl field_0xc98;
     /* 0xDD4 */ actionFunc mAction;
     /* 0xDE0 */ request_of_phase_process_class mPhases[2];
