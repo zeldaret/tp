@@ -53,14 +53,16 @@ namespace daObjSwpush {
         };
 
         const Hio_c::Attr_c& attr() const { return M_attr[mType]; }
+        u8 prmZ_get_swSave2() const { return mPrmZ & 0xFF; }
         int prm_get_couple() const { return daObj::PrmAbstract(this, PRM_1_e, PRM_1D_e); }
-        int prm_get_evId() const { return daObj::PrmAbstract(this, PRM_8_e, PRM_0_e); }
+        u8 prm_get_evId() const { return daObj::PrmAbstract(this, PRM_8_e, PRM_0_e); }
         int prm_get_mdl() const { return daObj::PrmAbstract(this, PRM_4_e, PRM_10_e); }
         int prm_get_swSave() const { return daObj::PrmAbstract(this, PRM_8_e, PRM_8_e); }
         int prm_get_type() const { return daObj::PrmAbstract(this, PRM_3_e, PRM_18_e); }
+        bool is_switch() { return fopAcM_isSwitch(this, prm_get_swSave()); }
 
         /* 80482D4C */ void prmZ_init();
-        /* 80482D7C */ void is_switch2() const;
+        /* 80482D7C */ bool is_switch2() const;
         /* 80482DC4 */ static int solidHeapCB(fopAc_ac_c*);
         /* 80482DE8 */ void create_heap();
         /* 80482FE8 */ cPhs__Step create_res_load();
@@ -102,7 +104,7 @@ namespace daObjSwpush {
         static u8 const M_dzb[6 + 2 /* padding */];
         static u32 const M_heap_size[3];
         static Hio_c::Attr_c const M_attr[5];
-        static u32 const M_op_vtx;
+        static u8 const M_op_vtx[4];
         static void* M_arcname[3];
 
         /* 0x568 */ u8 field_0x568[0x570 - 0x568];
@@ -111,7 +113,34 @@ namespace daObjSwpush {
         /* 0x5A4 */ f32 field_0x5a4;
         /* 0x5A8 */ J3DModel* field_0x5a8;
         /* 0x5AC */ int mType;
-        /* 0x5B0 */ u8 field_0x5b0[0x5f4 - 0x5b0];
+        /* 0x5B0 */ u8 field_0x5b0[0x5ba - 0x5b0];
+        /* 0x5BA */ s16 field_0x5ba;
+        /* 0x5BC */ u16 mPrmZ;
+        /* 0x5BE */ bool mPrmZInit;
+        /* 0x5BF */ u8 field_0x5bf;
+        /* 0x5C0 */ u8 field_0x5c0;
+        /* 0x5C1 */ u8 field_0x5c1;
+        /* 0x5C2 */ s16 field_0x5c2;
+        /* 0x5C4 */ u8 field_0x5c4;
+        /* 0x5C5 */ u8 field_0x5c5;
+        /* 0x5C6 */ u8 field_0x5c6;
+        /* 0x5C7 */ u8 field_0x5c7;
+        /* 0x5C8 */ s16 field_0x5c8;
+        /* 0x5CA */ u8 field_0x5ca;
+        /* 0x5CB */ u8 field_0x5cb;
+        /* 0x5CC */ f32 field_0x5cc;
+        /* 0x5D0 */ f32 field_0x5d0;
+        /* 0x5D4 */ f32 field_0x5d4;
+        /* 0x5D8 */ f32 field_0x5d8;
+        /* 0x5DC */ f32 field_0x5dc;
+        /* 0x5E0 */ s16 field_0x5e0;
+        /* 0x5E2 */ u8 field_0x5e2[0x5e4 - 0x5e2];
+        /* 0x5E4 */ f32 field_0x5e4;
+        /* 0x5E8 */ f32 field_0x5e8;
+        /* 0x5EC */ f32 field_0x5ec;
+        /* 0x5F0 */ u8 field_0x5f0[0x5f2 - 0x5f0];
+        /* 0x5F2 */ u8 field_0x5f2;
+        /* 0x5F3 */ u8 field_0x5f3;
         /* 0x5F4 */ u8 field_0x5f4;
         /* 0x5F5 */ u8 field_0x5f5[0x5f8 - 0x5f5];
         /* 0x5F8 */ cXyz field_0x5f8;

@@ -4,6 +4,8 @@
 */
 
 #include "d/actor/d_a_obj_swpush.h"
+#include "SSystem/SComponent/c_lib.h"
+#include "d/d_com_inf_game.h"
 #include "dol2asm.h"
 
 
@@ -127,7 +129,6 @@ extern "C" void _restgpr_27();
 extern "C" void _restgpr_29();
 extern "C" extern void* __vt__6dBgWSv[65 + 1 /* padding */];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
@@ -136,15 +137,22 @@ extern "C" void __register_global_object();
 // Declarations:
 //
 
-/* 80482D4C-80482D7C 0000EC 0030+00 1/1 0/0 0/0 .text            prmZ_init__Q211daObjSwpush5Act_cFv
- */
+/* 80482D4C-80482D7C 0000EC 0030+00 1/1 0/0 0/0 .text            prmZ_init__Q211daObjSwpush5Act_cFv */
 void daObjSwpush::Act_c::prmZ_init() {
-    // NONMATCHING
+    if (mPrmZInit) {
+        return;
+    }
+    mPrmZ = home.angle.z;
+    mPrmZInit = true;
+    home.angle.z = 0;
+    current.angle.z = 0;
+    shape_angle.z = 0;
 }
 
 /* 80482D7C-80482DC4 00011C 0048+00 2/2 0/0 0/0 .text is_switch2__Q211daObjSwpush5Act_cCFv */
-void daObjSwpush::Act_c::is_switch2() const {
+bool daObjSwpush::Act_c::is_switch2() const {
     // NONMATCHING
+    return fopAcM_isSwitch(this, prmZ_get_swSave2() & 0xFF);
 }
 
 /* 80482DC4-80482DE8 000164 0024+00 1/1 0/0 0/0 .text
@@ -192,23 +200,7 @@ SECTION_DEAD static char const* const stringBase_80484E69 = "bottan";
 SECTION_DEAD static char const* const stringBase_80484E70 = "botan";
 #pragma pop
 
-/* 80484E84-80484E90 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80484E90-80484EA4 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
+UNK_REL_DATA;
 
 /* 80484EA4-80484EB0 -00001 000C+00 3/3 0/0 0/0 .data            M_arcname__Q211daObjSwpush5Act_c */
 SECTION_DATA void* daObjSwpush::Act_c::M_arcname[3] = {
@@ -311,84 +303,10 @@ daObjSwpush::Hio_c::Attr_c const daObjSwpush::Act_c::M_attr[5] = {
 };
 
 /* 80484E08-80484E0C 0000F8 0004+00 0/3 0/0 0/0 .rodata          M_op_vtx__Q211daObjSwpush5Act_c */
-#pragma push
-#pragma force_active on
-SECTION_RODATA u32 const daObjSwpush::Act_c::M_op_vtx = 0x0D0B0A0C;
-COMPILER_STRIP_GATE(0x80484E08, &daObjSwpush::Act_c::M_op_vtx);
-#pragma pop
-
-/* 80484E0C-80484E10 0000FC 0004+00 0/1 0/0 0/0 .rodata          @3872 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3872 = 0.5f;
-COMPILER_STRIP_GATE(0x80484E0C, &lit_3872);
-#pragma pop
-
-/* 80484E10-80484E14 000100 0004+00 0/2 0/0 0/0 .rodata          @3873 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3873 = 1.25f;
-COMPILER_STRIP_GATE(0x80484E10, &lit_3873);
-#pragma pop
-
-/* 80484E14-80484E18 000104 0004+00 0/2 0/0 0/0 .rodata          @3874 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3874 = 2.0f;
-COMPILER_STRIP_GATE(0x80484E14, &lit_3874);
-#pragma pop
-
-/* 80484E18-80484E1C 000108 0004+00 0/1 0/0 0/0 .rodata          @3875 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3875 = 80.0f;
-COMPILER_STRIP_GATE(0x80484E18, &lit_3875);
-#pragma pop
-
-/* 80484E1C-80484E20 00010C 0004+00 0/1 0/0 0/0 .rodata          @3876 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3876 = -80.0f;
-COMPILER_STRIP_GATE(0x80484E1C, &lit_3876);
-#pragma pop
-
-/* 80484E20-80484E24 000110 0004+00 0/1 0/0 0/0 .rodata          @3877 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3877 = -2.0f;
-COMPILER_STRIP_GATE(0x80484E20, &lit_3877);
-#pragma pop
-
-/* 80484E24-80484E28 000114 0004+00 0/1 0/0 0/0 .rodata          @3878 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3878 = 39.0f;
-COMPILER_STRIP_GATE(0x80484E24, &lit_3878);
-#pragma pop
-
-/* 80484E28-80484E2C 000118 0004+00 3/6 0/0 0/0 .rodata          @3879 */
-SECTION_RODATA static u8 const lit_3879[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80484E28, &lit_3879);
-
-/* 80484E2C-80484E30 00011C 0004+00 2/8 0/0 0/0 .rodata          @3880 */
-SECTION_RODATA static f32 const lit_3880 = 1.0f;
-COMPILER_STRIP_GATE(0x80484E2C, &lit_3880);
-
-/* 80484E30-80484E34 000120 0004+00 0/3 0/0 0/0 .rodata          @3881 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3881 = -35.5f;
-COMPILER_STRIP_GATE(0x80484E30, &lit_3881);
-#pragma pop
+u8 const daObjSwpush::Act_c::M_op_vtx[4] = {0x0D, 0x0B, 0x0A, 0x0C};
 
 /* 80483038-80483450 0003D8 0418+00 1/1 0/0 0/0 .text Mthd_Create__Q211daObjSwpush5Act_cFv */
 cPhs__Step daObjSwpush::Act_c::Mthd_Create() {
-    // NONMATCHING
     fopAcM_SetupActor(this, daObjSwpush::Act_c);
 
     prmZ_init();
@@ -419,28 +337,81 @@ cPhs__Step daObjSwpush::Act_c::Mthd_Create() {
             scale.z *= 2.0f;
         }
 
-        if (!fopAcM_entrySolidHeap(this, solidHeapCB, M_heap_size[field_0x5f4])) {
-            return cPhs_ERROR_e;
+        if (fopAcM_entrySolidHeap(this, solidHeapCB, M_heap_size[field_0x5f4])) {
+            if (dComIfG_Bgsp().Regist(mpBgW, this)) {
+                phase = cPhs_ERROR_e;
+            } else {
+                mDoMtx_stack_c::transS(current.pos);
+                mDoMtx_stack_c::ZXYrotM(shape_angle);
+                mDoMtx_stack_c::scaleM(field_0x5f8);
+                MTXCopy(mDoMtx_stack_c::get(), mMtx);
+                mpBgW->ClrNoCalcVtx();
+                mpBgW->SetBaseMtxP(mMtx);
+                mpBgW->GlobalVtx();
+                mpBgW->SetBaseMtxP(NULL);
+                mpBgW->SetNoCalcVtx();
+                field_0x5a4 = mpBgW->GetVtxTbl()[M_op_vtx[0]].y;
+                mpBgW->SetRideCallback(rideCB);
+
+                fopAcM_SetMtx(this, field_0x5a8->getBaseTRMtx());
+                init_mtx();
+                fopAcM_setCullSizeBox(this, attr().scale * -80.0f, -2.0f, attr().scale * -80.0f, attr().scale * 80.0f, 39.0f, attr().scale * 80.0f);
+                field_0x5bf = 0;
+                field_0x5c0 = 0;
+                field_0x5c1 = 0;
+                field_0x5c2 = 0;
+                field_0x5c4 = 0;
+                field_0x5c6 = 0;
+                field_0x5c7 = 0;
+                field_0x5c8 = 0;
+                field_0x5ca = 0;
+                field_0x5d4 = 0.0f;
+                field_0x5e0 = 0;
+                field_0x5e4 = 0;
+                field_0x5f2 = 0;
+                field_0x5f3 = 0;
+                
+                set_btp_frame();
+
+                bool is_toggle = cLib_checkBit<int>(attr().field_0x0, 4);
+                bool on_is_up = cLib_checkBit<int>(attr().field_0x0, 16);
+                bool unkFlg = cLib_checkBit<int>(attr().field_0x0, 32);
+                bool is_sw = is_switch();
+                bool is_sw2 = is_switch2();
+                
+                if ((is_toggle || (!is_sw && !on_is_up) || (is_sw && on_is_up)) && (!unkFlg || !is_sw2)) {
+                    field_0x5cc = 1.0f;
+                    field_0x5d0 = 1.0f;
+                    field_0x5d8 = 0.0f;
+                    field_0x5dc = 1.0f;
+                    field_0x5e8 = 1.0f;
+                    field_0x5ec = 0.0f;
+                    mode_upper_init();
+                } else {
+                    field_0x5cc = 0.0f;
+                    field_0x5d0 = 0.0f;
+                    field_0x5d8 = -35.5f;
+                    field_0x5dc = 0.0f;
+                    field_0x5e8 = 0.0f;
+                    field_0x5ec = -35.5f;
+                    field_0x5c2 = 5;
+                    field_0x5c4 = 1;
+                    mode_lower_init();
+                }
+
+                field_0x5ba = dComIfGp_getEventManager().getEventIdx(this, prm_get_evId());
+
+                OS_REPORT("踏みスイッチ<%x><%d %d>\n", fopAcM_GetParam(this), prm_get_evId() & 0xFF, field_0x5ba);
+
+                demo_non_init();
+                Mthd_Execute();
+            }
+        } else {
+            phase = cPhs_ERROR_e;
         }
-
-        if (dComIfG_Bgsp().Regist(mpBgW, this)) {
-            return cPhs_ERROR_e;
-        }
-
-        mDoMtx_stack_c::transS(current.pos);
-        mDoMtx_stack_c::ZXYrotM(shape_angle);
-        mDoMtx_stack_c::scaleM(field_0x5f8);
-        MTXCopy(mDoMtx_stack_c::get(), mMtx);
-        mpBgW->ClrNoCalcVtx();
-        mpBgW->SetBaseMtxP(mMtx);
-        mpBgW->GlobalVtx();
-        mpBgW->SetBaseMtxP(NULL);
-        mpBgW->SetNoCalcVtx();
-        field_0x5a4 = mpBgW->GetVtxTbl()->y;
-        mpBgW->SetRideCallback(rideCB);
-
-        fopAcM_SetMtx(this, field_0x5a8->getBaseTRMtx());
     }
+
+    return phase;
 }
 
 /* 8048348C-804834E8 00082C 005C+00 1/1 0/0 0/0 .text Mthd_Delete__Q211daObjSwpush5Act_cFv */
@@ -453,8 +424,7 @@ void daObjSwpush::Act_c::set_mtx() {
     // NONMATCHING
 }
 
-/* 80483534-80483570 0008D4 003C+00 1/1 0/0 0/0 .text            init_mtx__Q211daObjSwpush5Act_cFv
- */
+/* 80483534-80483570 0008D4 003C+00 1/1 0/0 0/0 .text            init_mtx__Q211daObjSwpush5Act_cFv */
 void daObjSwpush::Act_c::init_mtx() {
     // NONMATCHING
 }
