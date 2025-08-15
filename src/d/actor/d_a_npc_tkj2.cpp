@@ -155,7 +155,7 @@ static void Wind_effect(npc_tkj2_class* i_this) {
     if (i_this->field_0x88c.ChkTgHit()) {
         if (!fopAcM_checkCarryNow(a_this) && i_this->field_0x5f2 == 0 && i_this->field_0x5ea == 0) {
             dCcD_GObjInf* tgHitObj = i_this->field_0x88c.GetTgHitGObj();
-            if (tgHitObj->GetAtMtrl() == 3) {
+            if (tgHitObj->GetAtMtrl() == dCcD_MTRL_WIND) {
                 if (i_this->field_0x5eb == 0) {
                     i_this->mpModelMorf->setPlaySpeed(VREG_F(1) + 2.0f);
 
@@ -464,7 +464,7 @@ static s8 npc_tkj2_carry(npc_tkj2_class* i_this) {
             if (player->checkEquipHeavyBoots() && speed.y != 0.0f) {
                 i_this->mpModelMorf->setPlaySpeed(l_HIO.boots_struggle_sp);
             } else if (i_this->field_0x88c.ChkTgHit()) {
-                if (i_this->field_0x88c.GetTgHitGObj()->GetAtMtrl() == 3) {
+                if (i_this->field_0x88c.GetTgHitGObj()->GetAtMtrl() == dCcD_MTRL_WIND) {
                     i_this->mpModelMorf->setPlaySpeed(2.0f);
                     i_this->field_0x88c.ClrTgHit();
                 }
