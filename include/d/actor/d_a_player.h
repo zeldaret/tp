@@ -709,6 +709,7 @@ public:
     const cXyz getLeftHandPos() const { return mLeftHandPos; }
     const cXyz getItemPos() const { return mItemPos; }
     bool getDkCaught() const { return checkNoResetFlg1(FLG1_DK_CAUGHT); }
+    bool getDkCaught2() const { return checkNoResetFlg0(FLG0_DK_CAUGHT); }
     bool getStCaught() const { return checkNoResetFlg1(FLG1_UNK_80000000); }
 
     /* vt 0X008 */ virtual cXyz* getMidnaAtnPos() const { return NULL; }
@@ -942,6 +943,8 @@ public:
     void onWolfEyeKeep() { onEndResetFlg1(ERFLG1_WOLF_EYE_KEEP); }
     void onPortalWarpMidnaAtnKeep() { onEndResetFlg2(ERFLG2_PORTAL_WARP_MIDNA_ATN_KEEP); }
     void onFogFade() { onNoResetFlg2(FLG2_UNK_4000); }
+    void onDkCaught2() { onNoResetFlg0(FLG0_DK_CAUGHT); }
+
     BOOL checkStickArrowReset() const { return checkResetFlg0(RFLG0_UNK_1); }
     u32 getCutAtFlg() const { return checkNoResetFlg0(FLG0_UNK_40); }
     u32 checkBoarSingleBattleFirst() const { return checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }

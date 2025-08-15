@@ -322,7 +322,7 @@ static void chain_control_01(obj_key_class* i_this) {
     } else if (fopAcM_GetName(pparent) == PROC_E_DB || fopAcM_GetName(pparent) == PROC_E_HB) {
         e_db_class* db = (e_db_class*)pparent;
 
-        if (db->field_0x66a == 20) {
+        if (db->action == 20) {
             spB8 = db->field_0x69c[2];
         } else {
             spB8 = db->field_0x69c[TREG_S(3) + 9];

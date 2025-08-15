@@ -830,7 +830,7 @@ static void e_hb_damage(e_hb_class* i_this) {
             i_this->action = ACTION_WAIT;
             i_this->mode = 0;
         }
-    }    
+    }
 }
 
 /* 804FE5C8-804FE8F8 002948 0330+00 1/1 0/0 0/0 .text            kuki_control1__FP10e_hb_class */
