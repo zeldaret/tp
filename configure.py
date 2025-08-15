@@ -1849,7 +1849,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_theB"),
     ActorRel(Equivalent, "d_a_npc_tk"), # weak function order
     ActorRel(NonMatching, "d_a_npc_tkc"),
-    ActorRel(NonMatching, "d_a_npc_tkj2"),
+    ActorRel(Equivalent, "d_a_npc_tkj2"), # weak function order
     ActorRel(NonMatching, "d_a_npc_tks"),
     ActorRel(NonMatching, "d_a_npc_toby"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_tr"),
