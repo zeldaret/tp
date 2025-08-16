@@ -90,6 +90,10 @@ public:
         setPosition(i_tboxNo, 11, i_pos, -1);
     }
 
+    static void offStatus(int param_0, int i_flag) {
+        offStatus(0, param_0, i_flag);
+    }
+
     static u8 const typeToTypeGroup[17][2];
     static type_group_list mTypeGroupListAll[17];
     static typeGroupData_c* mTypeGroupData;
@@ -97,6 +101,10 @@ public:
 
     static void setNpcYkmPosition(int param_1, Vec* param_2) {
         setPosition(param_1, 13, param_2, -1);
+    }
+
+    static void setCoachPosition(int param_1, Vec* param_2, int param_3) {
+        setPosition(param_1, 10, param_2, param_3);
     }
 };
 

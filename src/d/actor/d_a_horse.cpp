@@ -593,9 +593,15 @@ int daHorse_c::create() {
     }
 
     if (!checkStateFlg0(FLG0_UNK_8000) &&
-        (((dComIfGs_isEventBit(dSv_event_flag_c::M_008) && !dComIfGs_isEventBit(dSv_event_flag_c::M_023)) &&
-        (!daAlink_c::checkStageName("F_SP109") || !dComIfGs_isEventBit(dSv_event_flag_c::F_0066))) ||
-        dComIfGs_isTmpBit(dSv_event_tmp_flag_c::NO_TELOP)))
+           /* Cutscene - Cutscene - attacked by monsters at Ordon spring */
+        (((dComIfGs_isEventBit(dSv_event_flag_c::M_008)
+            /* Main Event - Epona rescued flag */
+        && !dComIfGs_isEventBit(dSv_event_flag_c::M_023))
+        && (!daAlink_c::checkStageName("F_SP109")
+            /* Death Mountain - First saw Goron cutscene on mountain path */
+        || !dComIfGs_isEventBit(dSv_event_flag_c::F_0066)))
+           /* General use - When on (while changing scenes) stage name is not shown */
+        || dComIfGs_isTmpBit(dSv_event_tmp_flag_c::NO_TELOP)))
     {
         return cPhs_ERROR_e;
     }
@@ -626,7 +632,11 @@ int daHorse_c::create() {
         m_offRideFlg = &daHorse_c::offRideFlgSubstance;
 
         if (!daAlink_getAlinkActorClass()->checkHorseStart() && !checkStateFlg0(FLG0_UNK_8000)) {
-            if (strcmp(dComIfGs_getHorseRestartStageName(), "") != 0 && (!dComIfGs_isEventBit(0x1580) || dComIfGs_isEventBit(0x601))) {
+            if (strcmp(dComIfGs_getHorseRestartStageName(), "") != 0
+                     /* dSv_event_flag_c::M_002 - Cutscene - [cutscene: 2] Met with Ilia (brings horse to spring) */
+                && (!dComIfGs_isEventBit(0x1580)
+                   /* dSv_event_flag_c::M_023 - Main Event - Epona rescued flag */
+                || dComIfGs_isEventBit(0x601))) {
                 if (daAlink_c::checkStageName(dComIfGs_getHorseRestartStageName()) && (room_no == -1 || fopAcM_GetRoomNo(this) == dComIfGs_getHorseRestartRoomNo())) {
                     current.pos = dComIfGs_getHorseRestartPos();
                     old.pos = current.pos;

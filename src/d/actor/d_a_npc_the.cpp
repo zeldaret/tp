@@ -1183,8 +1183,11 @@ cPhs__Step daNpcThe_c::create() {
         mFlowID = -1;
     }
 
-    if (mType == TYPE_KAKARIKO && (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[68])
-                        || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[78]))) {
+    if (mType == TYPE_KAKARIKO
+             /* dSv_event_flag_c::M_035 - Cutscene - [cutscene: 35] after carriage guarding event */
+        && (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[68])
+           /* dSv_event_flag_c::M_045 - Lakebed Temple - Lakebed Temple clear */
+        || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[78]))) {
         return cPhs_ERROR_e;
     }
 
@@ -1431,6 +1434,7 @@ BOOL daNpcThe_c::doEvent() {
         dEvent_manager_c& event_manager = dComIfGp_getEventManager();
         if (eventInfo.checkCommandTalk()) {
             if (mTwilight) {
+                    /* dSv_event_flag_c::F_0277 - Castle Town - Hear conversation between Telma and Ilia in Telma's shop (Twilight) */
                 if (daNpcF_chkEvtBit(0x115)) {
                     mOrderEvtNo = 2;
                 } else {

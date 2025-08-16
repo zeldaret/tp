@@ -1131,6 +1131,7 @@ static void e_po_dead(e_po_class* i_this) {
             dComIfGp_event_reset();
             dComIfGs_addPohSpiritNum();
             if (g_dComIfG_gameInfo.info.getPlayer().getCollect().getPohNum() == 0x14) {
+                /* dSv_event_flag_c::F_0457 - Castle Town - Revived cat */
                 dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[457]);
             }
             daPy_getPlayerActorClass()->cancelOriginalDemo();

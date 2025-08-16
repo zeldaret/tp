@@ -1939,6 +1939,7 @@ void daB_DR_c::executeWeekHit() {
         break;
     case 1000:
         if (cLib_calcTimer<int>(&mTimer[0]) == 0) {
+            /* City in the Sky - City in the Sky clear */
             dComIfGs_onEventBit(dSv_event_flag_c::F_0268);
             dComIfGs_onStageBossEnemy(0x16);
             fopAcM_onSwitch(this, 0x38);

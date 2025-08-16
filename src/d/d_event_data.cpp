@@ -883,11 +883,16 @@ void dEvDtStaff_c::specialProcDirector() {
             if (specTypeP != NULL) {
                 switch (*specTypeP) {
                 case 8:
+                        /* dSv_event_flag_c::F_0506 - N/A - Only met Ooccoo Sr. - not yet son (shared Forest - Snowpeak) */
                     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[506])) {
+                        /* dSv_event_flag_c::F_0566 - Ooccoo Sr. stuff - Letter from Ooccoo Sr. came in OK (no son) */
                         dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[566]);
                     }
 
+                        /* dSv_event_flag_c::F_0507 - N/A - Also met the son in dungeon with first Ooccoo Sr. meeting - 
+                                                            turns 506 OFF (shared Forest - Snowpeak) */
                     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[507])) {
+                        /* dSv_event_flag_c::F_0567 - Ooccoo Sr. stuff - Letter from Ooccoo Sr. came in OK (yes son) */
                         dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[567]);
                     }
                 }

@@ -432,9 +432,9 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_audio.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_controller_pad.cpp"),
             Object(NonMatching, "m_Do/m_Re_controller_pad.cpp"),
-            Object(Equivalent, "m_Do/m_Do_graphic.cpp"), # weak func order
+            Object(MatchingFor("GZ2E01"), "m_Do/m_Do_graphic.cpp"),
             Object(NonMatching, "m_Do/m_Do_machine.cpp"),
-            Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_mtx.cpp", extra_cflags=["-sym off"]),
+            Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_mtx.cpp"),
             Object(NonMatching, "m_Do/m_Do_ext.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_lib.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "m_Do/m_Do_Reset.cpp"),
@@ -548,7 +548,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_a_item_static.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_a_shop_item_static.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_a_horse_static.cpp"),
-            Object(NonMatching, "d/d_demo.cpp"),
+            Object(MatchingFor("GZ2E01"), "d/d_demo.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_door_param2.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(NonMatching, "d/d_resorce.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_map_path.cpp"),
@@ -564,7 +564,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_particle_name.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_particle_copoly.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_path.cpp"),
-            Object(NonMatching, "d/d_drawlist.cpp"),
+            Object(Equivalent, "d/d_drawlist.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_kankyo_data.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_kankyo_wether.cpp"),
             Object(NonMatching, "d/d_kankyo_rain.cpp"),
@@ -591,7 +591,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_bg_w_base.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(NonMatching, "d/d_bg_w_kcol.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_bg_w_sv.cpp"),
-            Object(Equivalent, "d/d_cc_d.cpp"), # weak func order
+            Object(Equivalent, "d/d_cc_d.cpp", extra_cflags=['-sym off']), # weak func order
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_cc_mass_s.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(NonMatching, "d/d_cc_s.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_cc_uty.cpp"),
@@ -658,7 +658,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_meter_map.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_meter_string.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_meter2_draw.cpp"),
-            Object(Equivalent, "d/d_meter2_info.cpp"),
+            Object(MatchingFor("GZ2E01"), "d/d_meter2_info.cpp", extra_cflags=['-pragma "nosyminline on"']),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_meter2.cpp"),
             Object(MatchingFor("GZ2E01"), "d/d_msg_out_font.cpp"),
             Object(NonMatching, "d/d_msg_class.cpp"),
@@ -1081,11 +1081,11 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphBase/J3DTransform.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphBase/J3DTexture.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphBase/J3DPacket.cpp"),
-            Object(NonMatching, "JSystem/J3DGraphBase/J3DShapeMtx.cpp"),
+            Object(MatchingFor("GZ2E01"), "JSystem/J3DGraphBase/J3DShapeMtx.cpp"),
             Object(NonMatching, "JSystem/J3DGraphBase/J3DShapeDraw.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphBase/J3DShape.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphBase/J3DMaterial.cpp", extra_cflags=['-pragma "nosyminline off"']),
-            Object(NonMatching, "JSystem/J3DGraphBase/J3DMatBlock.cpp"),
+            Object(Equivalent, "JSystem/J3DGraphBase/J3DMatBlock.cpp"), # virtual function order
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphBase/J3DTevs.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphBase/J3DDrawBuffer.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphBase/J3DStruct.cpp"),
@@ -1545,7 +1545,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_e_dn"), # weak func order
     ActorRel(Equivalent, "d_a_e_fm"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_ga"),
-    ActorRel(NonMatching, "d_a_e_hb"),
+    ActorRel(Equivalent, "d_a_e_hb"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_nest"),
     ActorRel(Equivalent, "d_a_e_rd"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_econt"),
@@ -1562,7 +1562,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_npc_henna"), # weak func order
     ActorRel(NonMatching, "d_a_npc_kakashi"),
     ActorRel(NonMatching, "d_a_npc_kkri"),
-    ActorRel(NonMatching, "d_a_npc_kolin"),
+    ActorRel(Equivalent, "d_a_npc_kolin"), # weak func order
     ActorRel(Equivalent, "d_a_npc_maro"), # weak func order
     ActorRel(NonMatching, "d_a_npc_taro"),
     ActorRel(NonMatching, "d_a_npc_tkj"),
@@ -1651,7 +1651,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_arrow"),
     ActorRel(Equivalent, "d_a_e_ba"), # weak func order
     ActorRel(NonMatching, "d_a_e_bee"),
-    ActorRel(NonMatching, "d_a_e_bg"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_e_bg"),
     ActorRel(NonMatching, "d_a_e_bi"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_bi_leaf"),
     ActorRel(Equivalent, "d_a_e_bs"), # weak func order
@@ -1659,9 +1659,9 @@ config.libs = [
     ActorRel(Equivalent, "d_a_e_bug"), # weak func order
     ActorRel(Equivalent, "d_a_e_cr"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_cr_egg"),
-    ActorRel(NonMatching, "d_a_e_db"),
+    ActorRel(Equivalent, "d_a_e_db"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_db_leaf"),
-    ActorRel(NonMatching, "d_a_e_dd"),
+    ActorRel(Equivalent, "d_a_e_dd"), # weak func order
     ActorRel(Equivalent, "d_a_e_df"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_dk"),
     ActorRel(Equivalent, "d_a_e_dt"), # weak func order
@@ -1692,7 +1692,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_e_mm"),
     ActorRel(NonMatching, "d_a_e_mm_mt"),
     ActorRel(Equivalent, "d_a_e_ms"), # weak func order
-    ActorRel(NonMatching, "d_a_e_nz"),
+    ActorRel(Equivalent, "d_a_e_nz"), # weak func order
     ActorRel(Equivalent, "d_a_e_oc"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_oct_bg"),
     ActorRel(Equivalent, "d_a_e_ot"), # weak func order
@@ -1776,7 +1776,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_coach"),
     ActorRel(NonMatching, "d_a_npc_df"),
     ActorRel(NonMatching, "d_a_npc_doc"),
-    ActorRel(NonMatching, "d_a_npc_doorboy"),
+    ActorRel(Equivalent, "d_a_npc_doorboy", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(NonMatching, "d_a_npc_drainSol"),
     ActorRel(NonMatching, "d_a_npc_du"),
     ActorRel(NonMatching, "d_a_npc_fairy"),
@@ -1806,7 +1806,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_kdk"),
     ActorRel(NonMatching, "d_a_npc_kn"),
     ActorRel(NonMatching, "d_a_npc_knj"),
-    ActorRel(NonMatching, "d_a_npc_kolinb"),
+    ActorRel(Equivalent, "d_a_npc_kolinb"), # weak func order
     ActorRel(Equivalent, "d_a_npc_ks"),  # weak func order
     ActorRel(NonMatching, "d_a_npc_kyury"),
     ActorRel(NonMatching, "d_a_npc_len"),
@@ -1815,7 +1815,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_midp"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_mk"),
     ActorRel(NonMatching, "d_a_npc_moi"),
-    ActorRel(NonMatching, "d_a_npc_moir"),
+    ActorRel(NonMatching, "d_a_npc_moir", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(NonMatching, "d_a_npc_myna2"),
     ActorRel(NonMatching, "d_a_npc_ne"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_p2"),
@@ -1836,7 +1836,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_seira"),
     ActorRel(NonMatching, "d_a_npc_seira2"),
     ActorRel(NonMatching, "d_a_npc_seirei"),
-    ActorRel(NonMatching, "d_a_npc_shad", extra_cflags=[DANPCF_C_HACK]),
+    ActorRel(Equivalent, "d_a_npc_shad", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(NonMatching, "d_a_npc_shaman"),
     ActorRel(NonMatching, "d_a_npc_shoe", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_shop0"),
@@ -1856,7 +1856,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_uri"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_worm", extra_cflags=['-pragma "nosyminline off"']),
     ActorRel(NonMatching, "d_a_npc_wrestler", extra_cflags=[DANPCF_C_HACK]),
-    ActorRel(NonMatching, "d_a_npc_yamid"),
+    ActorRel(Equivalent, "d_a_npc_yamid"), # weak function order
     ActorRel(NonMatching, "d_a_npc_yamis"),
     ActorRel(NonMatching, "d_a_npc_yamit"),
     ActorRel(Equivalent, "d_a_npc_yelia"), # weak function order
@@ -1919,7 +1919,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_drop"),
     ActorRel(NonMatching, "d_a_obj_dust"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_enemy_create"),
-    ActorRel(NonMatching, "d_a_obj_fallobj"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_fallobj"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_fan"),
     ActorRel(Equivalent, "d_a_obj_fchain"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_fireWood"),
@@ -1939,7 +1939,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_glowSphere"),
     ActorRel(NonMatching, "d_a_obj_gm"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_goGate"),
-    ActorRel(NonMatching, "d_a_obj_gomikabe"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_gomikabe"),
     ActorRel(Equivalent, "d_a_obj_gra2"),  # weak function order
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_graWall"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_gra_rock"),
@@ -1975,11 +1975,11 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_katatsumuri"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_kazeneko"),
     ActorRel(NonMatching, "d_a_obj_kbox"),
-    ActorRel(NonMatching, "d_a_obj_key"),
-    ActorRel(NonMatching, "d_a_obj_keyhole"),
+    ActorRel(Equivalent, "d_a_obj_key"), # weak func order
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_keyhole"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ki"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_kiPot"),
-    ActorRel(NonMatching, "d_a_obj_kita"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_kita"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_kjgjs"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_kkanban"),
     ActorRel(NonMatching, "d_a_obj_knBullet"),
@@ -2098,7 +2098,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_obj_sekizoa"), # weak function order
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_shield"),
     ActorRel(Equivalent, "d_a_obj_sm_door"), # vtable order
-    ActorRel(NonMatching, "d_a_obj_smallkey"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_smallkey"),
     ActorRel(NonMatching, "d_a_obj_smgdoor"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_smoke"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_smtile"),

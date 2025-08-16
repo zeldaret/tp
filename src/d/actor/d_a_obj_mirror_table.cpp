@@ -33,6 +33,7 @@ int daObjMirrorTable_c::createHeap() {
         return 0;
     }
 
+                        /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
     int mirror_res_id = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]) ? 13 : 14;
     J3DModelData* mirror_model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, mirror_res_id);
     mpMirrorModel = mDoExt_J3DModel__create(mirror_model_data, 0, 0x11000084);
@@ -55,6 +56,7 @@ int daObjMirrorTable_c::createHeap() {
         return 0;
     }
 
+                        /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
     int mirror_dzb_id = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]) ? 31 : 32;
     cBgD_t* mirror_dzb = (cBgD_t*)dComIfG_getObjectRes(l_arcName, mirror_dzb_id);
     if (mBgW[1].Set(mirror_dzb, 1, &mMtx[1])) {
@@ -70,6 +72,7 @@ int daObjMirrorTable_c::createHeap() {
     mpMSquareBckAnm = NULL;
     mpLightBtkAnm = NULL;
 
+        /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
         J3DModelData* stair_model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 20);
         mpStairModel = mDoExt_J3DModel__create(stair_model_data, 0x80000, 0x11000084);
@@ -127,7 +130,9 @@ int daObjMirrorTable_c::createHeap() {
 /* 80C99F7C-80C9A040 0006DC 00C4+00 1/1 0/0 0/0 .text            isSwitch__18daObjMirrorTable_cFv */
 bool daObjMirrorTable_c::isSwitch() {
     return fopAcM_isSwitch(this, getSwitchNo())
+           /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
         || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])
+           /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
         || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])
         ? 1 : 0;
 }
@@ -306,6 +311,7 @@ int daObjMirrorTable_c::execute() {
         Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_MR_TBLE, &pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
     }
 
+         /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
     if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
         if (!mBgW[0].ChkUsed() && mpTableUpBckAnm->getPlaySpeed() > 0.0f) {
             dComIfG_Bgsp().Regist(&mBgW[0], this);
@@ -395,6 +401,7 @@ cPhs__Step daObjMirrorTable_c::create() {
 /* 80C9ABFC-80C9AFD0 00135C 03D4+00 1/1 0/0 0/0 .text            create_init__18daObjMirrorTable_cFv
  */
 void daObjMirrorTable_c::create_init() {
+                                /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
     bool mirror_complete_flag = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]);
     mpTableUpBckAnm->setPlaySpeed(0.0f);
 
@@ -435,7 +442,9 @@ void daObjMirrorTable_c::create_init() {
 
     field_0x874 = false;
 
+         /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
     if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])
+           /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
         && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]))
     {
         cXyz pos(1760.0f, 4714.3f, -20624.0f);

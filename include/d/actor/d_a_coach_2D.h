@@ -46,6 +46,8 @@ public:
     void show() { mIsVisible = true; }
     void hide() { mIsVisible = false; }
     bool isVisible() { return mIsVisible ? true : false; }
+    void setHitCount(u8 i_hitCount) { mHitCount = i_hitCount; }
+    void setMaxHitCount(u8 i_maxHitCount) { mMaxHitCount = i_maxHitCount; }
 
     /* 0x574 */ J2DScreen* mpScrn;
     /* 0x578 */ J2DAnmTevRegKey* mpFireIconBrk;

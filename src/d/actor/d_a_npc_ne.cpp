@@ -1055,6 +1055,7 @@ static void npc_ne_tame(npc_ne_class* i_this) {
 
         i_this->mpMorf->setPlaySpeed(i_this->mAnmSpeed);
 
+            /* dSv_event_flag_c::F_0470 - Fishing Pond - Reserved for fishing */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[470])) {
             if (fpcEx_Search(s_fish_sub, _this) != NULL) {
                 i_this->mAction = npc_ne_class::ACT_HOME;
@@ -1715,6 +1716,7 @@ static BOOL npc_ne_home(npc_ne_class* i_this) {
                 i_this->current.pos.set(236.0f, 93.3f, -777.5f);
                 i_this->current.angle.y = 0x5f94;
                 i_this->mAngleYStep = 5000.0f;
+                /* dSv_event_flag_c::F_0038 - Ordon Village - Opening (2nd day) cat returns home */
                 dComIfGs_onEventBit(0x1001);
             } else {
                 i_this->mMode = 13;
@@ -2269,6 +2271,7 @@ static void npc_ne_dish(npc_ne_class* i_this) {
 
     case 1:
     default:
+             /* dSv_event_flag_c::F_0038 - Ordon Village - Opening (2nd day) cat returns home */
         if (!dComIfGs_isEventBit(0x1001)) {
             i_this->current.pos.y = 20000.0f;
             i_this->speed.y = 0.0f;
@@ -3032,6 +3035,7 @@ static int daNpc_Ne_Execute(npc_ne_class* i_this) {
     i_this->mCounter++;
 
     if (i_this->mWantsFish && (i_this->mCounter & 0xf) == 0) {
+            /* dSv_event_flag_c::F_0470 - Fishing Pond - Reserved for fishing */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[470])
                                     && i_this->mDistToTarget < 1500.0f) {
             if (fopAcM_SearchByName(PROC_MG_ROD) != NULL) {
@@ -3221,6 +3225,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     
     if (_this->mBehavior == npc_ne_class::BHV_DISH) {
         static int dish_bck[2] = {npc_ne_class::ANM_EMPTY_DISH, npc_ne_class::ANM_DRINK_DISH};
+                        /* dSv_event_flag_c::F_0038 - Ordon Village - Opening (2nd day) cat returns home */
         s32 dish_flag = dComIfGs_isEventBit(0x1001) ? 1 : 0;
         _this->mpDishMorf = new mDoExt_McaMorf(
             static_cast<J3DModelData*>(dComIfG_getObjectRes(_this->mResName, 29)), NULL, NULL,
@@ -3254,8 +3259,9 @@ static cPhs__Step daNpc_Ne_Create(fopAc_ac_c* i_this) {
         _this->mPathIndex = (u8)(fopAcM_GetParam(_this) >> 0x10);
         _this->mIsGengle = (u8)(fopAcM_GetParam(_this) >> 0x18);
 
-        if (_this->mIsGengle == 1 &&
-                        !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[457])) {
+        if (_this->mIsGengle == 1 
+                /* dSv_event_flag_c::F_0457 - Castle Town - Revived cat */
+            && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[457])) {
             return cPhs_ERROR_e;
         }
 
@@ -3279,6 +3285,7 @@ static cPhs__Step daNpc_Ne_Create(fopAc_ac_c* i_this) {
             if (_this->mBehavior == npc_ne_class::BHV_TAME) {
                 _this->mAction = npc_ne_class::ACT_TAME;
             } else if (_this->mBehavior == npc_ne_class::BHV_PIER) {
+                    /* dSv_event_flag_c::F_0038 - Ordon Village - Opening (2nd day) cat returns home */
                 if (dComIfGs_isEventBit(0x1001)) {
                     _this->mAction = npc_ne_class::ACT_ROOF;
                     i_this->current.pos.set(1005.0f, 766.0f, -1423.0f);

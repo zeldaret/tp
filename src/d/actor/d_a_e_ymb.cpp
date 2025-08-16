@@ -2290,6 +2290,7 @@ void daE_YMB_c::executeLakeDemo() {
             field_0x82c[1].OffTgSetBit();
             field_0xa9c.OffTgSetBit();
 
+                 /* dSv_event_flag_c::F_0005 - Misc. - Gathered 14 Tears of Light in area 4 */
             if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[9])) {
                 return;
             }
@@ -2345,6 +2346,7 @@ void daE_YMB_c::executeLakeDemo() {
             field_0x6e4 = 0x7FFF;
             field_0x710 = 0;
             dComIfGs_onSaveSwitch(15);
+            /* dSv_event_flag_c::M_086 - Twilight Hyrule Field - Show Boss Bug's Tear of Light on the map */
             dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x77]);
             break;
 

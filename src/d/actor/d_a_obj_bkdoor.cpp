@@ -67,6 +67,7 @@ static Vec const l_roll_crash_check_areaR[] = {
 
 /* 80578E14-80578EA0 000174 008C+00 1/0 0/0 0/0 .text            Create__13daObjBkDoor_cFv */
 int daObjBkDoor_c::Create() {
+        /* dSv_event_flag_c::F_0011 - Ordon Ranch - Fence jumping complete */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[15])) {
         shape_angle.y -= 0x8000;
     }
@@ -120,16 +121,16 @@ void daObjBkDoor_c::openCheck() {
     }
 }
 
-/* 8057902C-805792E4 00038C 02B8+00 1/0 0/0 0/0 .text            Execute__13daObjBkDoor_cFPPA3_A4_f
- */
+/* 8057902C-805792E4 00038C 02B8+00 1/0 0/0 0/0 .text            Execute__13daObjBkDoor_cFPPA3_A4_f */
 int daObjBkDoor_c::Execute(Mtx** i_mtxP) {
     daPy_py_c* player = dComIfGp_getLinkPlayer();
-    BOOL unk_event = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[15]);
+                                  /* dSv_event_flag_c::F_0011 - Ordon Ranch - Fence jumping complete */
+    BOOL fence_jumping_complete = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[15]);
 
     mFrameCounter++;
     openCheck();
 
-    if (player->checkFrontRollCrash() && !unk_event) {
+    if (player->checkFrontRollCrash() && !fence_jumping_complete) {
         cXyz check_area_posA;
         cXyz check_area_posB;
 

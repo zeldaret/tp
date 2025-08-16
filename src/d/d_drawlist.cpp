@@ -4,17 +4,18 @@
 //
 
 #include "d/d_drawlist.h"
-#include "d/d_s_play.h"
+#include "JSystem/J2DGraph/J2DAnimation.h"
+#include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "SSystem/SComponent/c_bg_s_shdw_draw.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_com_inf_game.h"
+#include "d/d_s_play.h"
 #include "dol2asm.h"
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_lib.h"
 #include "m_Do/m_Do_mtx.h"
-#include "JSystem/J2DGraph/J2DGrafContext.h"
 
 class dDlst_blo_c : public dDlst_base_c {
 public:
@@ -911,6 +912,11 @@ void dDlst_2DMt_c::draw() {
     }
 }
 
+// stand-in for a stripped function that calls J2DPicture::getTexture
+JUTTexture* dummy_getTexture(J2DPicture* picture) {
+    return picture->getTexture(0);
+}
+
 /* 80053A00-80053A9C 04E340 009C+00 0/0 1/1 0/0 .text            __ct__10dDlst_2D_cFP7ResTIMGssssUc
  */
 dDlst_2D_c::dDlst_2D_c(ResTIMG* i_timg, s16 i_posX, s16 i_posY, s16 i_sizeX, s16 i_sizeY,
@@ -932,6 +938,23 @@ void dDlst_2D_c::draw() {
 /* 80053B64-80053BA0 04E4A4 003C+00 1/0 0/0 0/0 .text            draw__11dDlst_blo_cFv */
 void dDlst_blo_c::draw() {
     mScreen.draw(field_0x120, field_0x124, dComIfGp_getCurrentGrafPort());
+}
+
+// stand-in for a function that pulls in a bunch of inline functions but was presumably stripped
+void dummy_misc() {
+    J2DScreen* screen;
+    J2DPane* pane;
+    J2DPicture* picture;
+    J2DAnmBase* anmBase;
+    J2DAnmColor* anmColor;
+    delete anmBase;
+    picture->setBlack(JUtility::TColor(0, 0, 0, 0));
+    picture->setWhite(JUtility::TColor(0, 0, 0, 0));
+    pane->getTypeID();
+    pane->makeMatrix(0.0f, 0.0f);
+    pane->calcMtx();
+    screen->clearAnmTransform();
+    anmColor->searchUpdateMaterialID(screen);
 }
 
 /* 80053CDC-80053CEC 04E61C 0010+00 0/0 2/2 0/0 .text            init__8cM_rnd_cFiii */

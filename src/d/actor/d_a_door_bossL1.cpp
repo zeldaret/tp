@@ -756,7 +756,7 @@ int daBdoorL1_c::unlockInit() {
     obj_keyhole_class* keyhole = (obj_keyhole_class*)fopAcM_SearchByID(mKeyHoleId);
     if (keyhole != NULL) {
         keyhole->setOpen();
-        mDoAud_seStart(Z2SE_OBJ_BOSS_LOCK_OPEN, &keyhole->current.pos, 0, 0);
+        mDoAud_seStart(Z2SE_OBJ_BOSS_LOCK_OPEN, &keyhole->actor.current.pos, 0, 0);
     }
     field_0x59b = 1;
     return 1;

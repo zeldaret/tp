@@ -12,60 +12,28 @@
  *
  */
 
-#ifdef DEBUG
-class daNpc_Saru_HIO_c : public mDoHIO_entry_c {
+struct daNpc_Saru_HIOParam
+{
 
+    /* 0x00 */ daNpcT_HIOParam common;
+    /* 0x8C */ s16 scared_time;          // 怯える時間       - Scared Time
+    /* 0x8E */ s16 field_0x8e;
 };
+
+class daNpc_Saru_Param_c : public JORReflexible {
+public:
+    /* 80AC448C */ virtual ~daNpc_Saru_Param_c() {}
+
+#ifdef DEBUG
+    void genMessage(JORMContext*);
 #endif
 
-class daNpc_Saru_Param_c {
+    static const daNpc_Saru_HIOParam m;
+};
+
+class daNpc_Saru_HIO_c : public mDoHIO_entry_c {
 public:
-    /* 80AC448C */ virtual ~daNpc_Saru_Param_c() {};
-
-    struct Data {
-        /* 0x00 */ f32 field_0x00;
-        /* 0x04 */ f32 mGravity;
-        /* 0x08 */ f32 field_0x08;
-        /* 0x0C */ f32 field_0x0c;
-        /* 0x10 */ f32 mWeight;
-        /* 0x14 */ f32 mCylH;
-        /* 0x18 */ f32 mWallH;
-        /* 0x1C */ f32 mWallR;
-        /* 0x20 */ f32 mBodyDownAngle;
-        /* 0x24 */ f32 mBodyUpAngle;
-        /* 0x28 */ f32 mBodyRightAngle;
-        /* 0x2C */ f32 mBodyLeftAngle;
-        /* 0x30 */ f32 mHeadDownAngle;
-        /* 0x34 */ f32 mHeadUpAngle;
-        /* 0x38 */ f32 mHeadRightAngle;
-        /* 0x3C */ f32 mHeadLeftAngle;
-        /* 0x40 */ f32 field_0x40;
-        /* 0x44 */ f32 mMorfFrames;
-        /* 0x48 */ s16 field_0x48;
-        /* 0x4A */ s16 field_0x4a;
-        /* 0x4C */ s16 field_0x4c;
-        /* 0x4E */ s16 field_0x4e;
-        /* 0x50 */ f32 mAttnFovy;
-        /* 0x54 */ f32 field_0x54;
-        /* 0x58 */ f32 field_0x58;
-        /* 0x5C */ f32 field_0x5c;
-        /* 0x60 */ s16 field_0x60;
-        /* 0x62 */ s16 field_0x62;
-        /* 0x64 */ f32 field_0x64;
-        /* 0x68 */ f32 field_0x68;
-        /* 0x6C */ f32 field_0x6c;
-        /* 0x70 */ f32 field_0x70;
-        /* 0x74 */ f32 field_0x74;
-        /* 0x78 */ f32 field_0x78;
-        /* 0x7C */ f32 field_0x7c;
-        /* 0x80 */ f32 field_0x80;
-        /* 0x84 */ f32 field_0x84;
-        /* 0x88 */ f32 field_0x88;
-        /* 0x8C */ s16 field_0x8c;
-        /* 0x8E */ s16 field_0x8e;
-    };
-
-    static const Data m;
+    daNpc_Saru_HIOParam param;
 };
 
 class daNpc_Saru_c : public daNpcT_c {
@@ -78,6 +46,31 @@ public:
         TYPE_1,
         TYPE_2,
         TYPE_3,
+    };
+
+    enum Joint {
+        /* 0x00 */ JNT_CENTER,
+        /* 0x01 */ JNT_BACKBONE_1,
+        /* 0x02 */ JNT_BACKBONE_2,
+        /* 0x03 */ JNT_NECK,
+        /* 0x04 */ JNT_HEAD,
+        /* 0x05 */ JNT_CHIN,
+        /* 0x06 */ JNT_MOUTH,
+        /* 0x07 */ JNT_SHOULDER_L,
+        /* 0x08 */ JNT_ARM_L_1,
+        /* 0x09 */ JNT_ARM_L_2,
+        /* 0x0A */ JNT_HAND_L,
+        /* 0x0B */ JNT_SHOULDER_R,
+        /* 0x0C */ JNT_ARM_R_1,
+        /* 0x0D */ JNT_ARM_R_2,
+        /* 0x0E */ JNT_HAND_R,
+        /* 0x0F */ JNT_WAIST,
+        /* 0x10 */ JNT_LEG_L_1,
+        /* 0x11 */ JNT_LEG_L_2,
+        /* 0x12 */ JNT_FOOT_L,
+        /* 0x13 */ JNT_LEG_R_1,
+        /* 0x14 */ JNT_LEG_R_2,
+        /* 0x15 */ JNT_FOOR_R,
     };
 
     /* 80AC042C */ ~daNpc_Saru_c();
@@ -120,9 +113,9 @@ public:
                                 daNpcT_evtData_c const* param_7, char** param_8) :
                                 daNpcT_c(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8)
                                 {}
-    /* 80AC4474 */ s32 getHeadJointNo();
-    /* 80AC447C */ s32 getNeckJointNo();
-    /* 80AC4484 */ s32 getBackboneJointNo();
+    /* 80AC4474 */ s32 getHeadJointNo() { return JNT_HEAD; }
+    /* 80AC447C */ s32 getNeckJointNo() { return JNT_NECK; }
+    /* 80AC4484 */ s32 getBackboneJointNo() { return JNT_BACKBONE_1; }
 
     u32 getFlowNodeNo() {
         u16 rv = home.angle.x;
@@ -137,13 +130,12 @@ public:
 
     static char* mCutNameList[4];
     static cutFunc mCutList[4];
-
 private:
     #ifdef DEBUG
     /* 0xE90 */ daNpc_Saru_HIO_c* field_0xe90;
     #endif
     /* 0xE40 */ u8 field_0xe40[0xe44 - 0xe40];
-    /* 0xE44 */ J3DModel* field_0xe44[2];
+    /* 0xE44 */ J3DModel* mpRoseModels[2];
     /* 0xE4C */ dCcD_Cyl field_0xe4c;
     /* 0xF88 */ u8 mType;
     /* 0xF8C */ daNpcT_ActorMngr_c mActrMngr[1];

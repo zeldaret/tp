@@ -378,6 +378,7 @@ void daObjTobyHouse_c::demoProc() {
             mActiveBck->setPlaySpeed(1.0f);
             mActiveBck->setFrame(0.0f);
             fopAcM_seStart(this, Z2SE_OBJ_THOUSE_CLOSE, 0);
+            /* dSv_event_flag_c::F_0063 - Lake Hylia - Used Fyer's cannon for first time */
             dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[161]);
             break;
         case 2:

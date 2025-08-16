@@ -6,6 +6,7 @@
 #include "d/d_s_logo.h"
 #include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
+#include "JSystem/JKernel/JKRMemArchive.h"
 #include "c/c_dylink.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_item.h"
@@ -18,9 +19,20 @@
 #if VERSION == VERSION_GCN_JPN
 #define LOGO_ARC  "Logo"
 #define MSG_PATH  "/res/Msgjp/bmgres.arc"
+#elif VERSION == VERSION_GCN_PAL
+#define LOGO_ARC "LogoPal"
+#define MSG_PATH  "/res/Msgus/bmgres.arc"
 #else
 #define LOGO_ARC "LogoUs"
 #define MSG_PATH  "/res/Msgus/bmgres.arc"
+#endif
+
+#if VERSION == VERSION_GCN_PAL
+#define PROGRESSIVE_MODE_OFF OS_EURGB60_OFF
+#define PROGRESSIVE_MODE_ON  OS_EURGB60_ON
+#else
+#define PROGRESSIVE_MODE_OFF OS_PROGRESSIVE_MODE_OFF
+#define PROGRESSIVE_MODE_ON  OS_PROGRESSIVE_MODE_ON
 #endif
 
 /* 803C2E38-803C2E44 01FF58 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
@@ -80,12 +92,24 @@ bool dScnLogo_c::preLoad_dyl() {
 
 /* 80256198-80256210 250AD8 0078+00 1/1 0/0 0/0 .text            checkProgSelect__10dScnLogo_cFv */
 void dScnLogo_c::checkProgSelect() {
+    #if VERSION == VERSION_GCN_PAL
+    if (mDoRst::getProgSeqFlag() == 0) {
+        field_0x20a = 1;
+
+        if (isProgressiveMode()) {
+            field_0x209 = 0;
+        } else {
+            field_0x209 = 1;
+        }
+    }
+    #else
     if (mDoRst::getProgSeqFlag() == 0 && VIGetDTVStatus() != 0) {
         if (isProgressiveMode() || mDoCPd_c::getHoldB(PAD_1)) {
             field_0x20a = 1;
             field_0x209 = 0;
         }
     }
+    #endif
 }
 
 /* 80256210-80256264 250B50 0054+00 1/1 0/0 0/0 .text            draw__10dScnLogo_cFv */
@@ -139,12 +163,12 @@ void dScnLogo_c::progSelDraw() {
         if (mDoCPd_c::getTrigA(PAD_1) || mTimer == 0) {
             if (field_0x209 == 0) {
                 mProgressiveSel->getPicture()->changeTexture(mProgressivePro, 0);
-                setProgressiveMode(1);
+                setProgressiveMode(PROGRESSIVE_MODE_ON);
                 mDoRst::setProgChgFlag(1);
                 mDoAud_seStart(Z2SE_SY_CURSOR_OK, NULL, 0, 0);
             } else {
                 mProgressiveSel->getPicture()->changeTexture(mProgressiveInter, 0);
-                setProgressiveMode(0);
+                setProgressiveMode(PROGRESSIVE_MODE_OFF);
                 mDoAud_seStart(Z2SE_SY_CURSOR_OK, NULL, 0, 0);
             }
 
@@ -210,7 +234,11 @@ void dScnLogo_c::progOutDraw() {
     dComIfGd_set2DOpa(mProgressiveNo);
 
     if (mTimer == 0) {
+        #if VERSION == VERSION_GCN_PAL
+        if (field_0x218 == 1 && field_0x209 == 0) {
+        #else
         if (field_0x218 != 0 && field_0x209 == 0) {
+        #endif
             mExecCommand = EXEC_PROG_CHANGE;
             mTimer = 150;
         } else if (field_0x218 == 0 && field_0x209 != 0) {
@@ -427,6 +455,12 @@ dScnLogo_c::~dScnLogo_c() {
     delete mProgressiveNo;
     delete mProgressiveSel;
 
+    #if VERSION == VERSION_GCN_PAL
+    mpPalLogoResCommand->getArchive()->removeResourceAll();
+    mpPalLogoResCommand->getArchive()->unmount();
+    mpPalLogoResCommand->destroy();
+    #endif
+
     preLoad_dyl_remove();
     dComIfG_deleteObjectResMain(LOGO_ARC);
 
@@ -513,6 +547,27 @@ static int phase_0(dScnLogo_c* i_this) {
     i_this->field_0x1d0 = JKRExpHeap::create(i_this->dummyGameAlloc, 0x340000, NULL, false);
     i_this->field_0x1d4 = JKRExpHeap::create(0x130000, i_this->field_0x1d0, false);
 
+    #if VERSION == VERSION_GCN_PAL
+    switch (i_this->getPalLanguage()) {
+    case 1:
+        i_this->mpPalLogoResCommand = mDoDvdThd_mountArchive_c::create("/res/Layout/LogoPalGm.arc", 0, NULL);
+        break;
+    case 2:
+        i_this->mpPalLogoResCommand = mDoDvdThd_mountArchive_c::create("/res/Layout/LogoPalFr.arc", 0, NULL);
+        break;
+    case 3:
+        i_this->mpPalLogoResCommand = mDoDvdThd_mountArchive_c::create("/res/Layout/LogoPalSp.arc", 0, NULL);
+        break;
+    case 4:
+        i_this->mpPalLogoResCommand = mDoDvdThd_mountArchive_c::create("/res/Layout/LogoPalIt.arc", 0, NULL);
+        break;
+    case 0:
+    default:
+        i_this->mpPalLogoResCommand = mDoDvdThd_mountArchive_c::create("/res/Layout/LogoPalUk.arc", 0, NULL);
+        break;
+    }
+    #endif
+
     return cPhs_NEXT_e;
 }
 
@@ -525,6 +580,16 @@ static int phase_1(dScnLogo_c* i_this) {
     if (!mDoAud_zelAudio_c::isInitFlag() || Z2AudioMgr::getInterface()->checkFirstWaves()) {
         return cPhs_INIT_e;
     }
+
+    #if VERSION == VERSION_GCN_PAL
+    if (!SyncWidthSound) {
+        return cPhs_INIT_e;
+    }
+
+    if (!i_this->mpPalLogoResCommand->sync()) {
+        return cPhs_INIT_e;
+    }
+    #endif
 
     dComIfG_setObjectRes(LOGO_ARC, (u8)0, i_this->field_0x1d0);
     mDoRst::setLogoScnFlag(1);
@@ -605,6 +670,89 @@ void dScnLogo_c::logoInitGC() {
     ResTIMG* dolbyImg = (ResTIMG*)dComIfG_getObjectRes(LOGO_ARC, 3);
     mDolbyLogo = new dDlst_2D_c(dolbyImg, 189, 150, 232, 112, 255);
 
+#if VERSION == VERSION_GCN_PAL
+    u8 language = getPalLanguage();
+    if (language >= 5) {
+        language = 0;
+    }
+
+    static const char* choice[] = {
+        "50_60_choice_eng.bti",
+        "50_60_choice_ger.bti",
+        "50_60_choice_fra.bti",
+        "50_60_choice_spa.bti",
+        "50_60_choice_ita.bti",
+    };
+
+    static const char* yes[] = {
+        "60_set_eng.bti",
+        "60_set_ger.bti",
+        "60_set_fra.bti",
+        "60_set_spa.bti",
+        "60_set_ita.bti",
+    };
+
+    static const char* no[] = {
+        "50_set_eng.bti",
+        "50_set_ger.bti",
+        "50_set_fra.bti",
+        "50_set_spa.bti",
+        "50_set_ita.bti",
+    };
+
+    static const char* prog[] = {
+        "progressive_pro.bti",
+        "progressive_pro_gm.bti",
+        "progressive_pro_fr.bti",
+        "progressive_pro_sp.bti",
+        "progressive_pro_it.bti",
+    };
+
+    static const char* intr[] = {
+        "progressive_inter.bti",
+        "progressive_inter_gm.bti",
+        "progressive_inter_fr.bti",
+        "progressive_inter_sp.bti",
+        "progressive_inter_it.bti",
+    };
+
+    static const char* warning[] = {
+        "warning.bti",
+        "warning_gm.bti",
+        "warning_fr.bti",
+        "warning_sp.bti",
+        "warning_it.bti",
+    };
+
+    static const char* warningPs[] = {
+        "warning_pstart.bti",
+        "warning_pstart_gm.bti",
+        "warning_pstart_fr.bti",
+        "warning_pstart_sp.bti",
+        "warning_pstart_it.bti",
+    };
+
+    ResTIMG* warningImg = (ResTIMG*)mpPalLogoResCommand->getArchive()->getResource('DAT ', warning[language]);
+    mWarning = new dDlst_2D_c(warningImg, 0, 0, 608, 448, 255);
+
+    ResTIMG* warnStartImg = (ResTIMG*)mpPalLogoResCommand->getArchive()->getResource('DAT ', warningPs[language]);
+    mWarningStart = new dDlst_2D_c(warnStartImg, 0, 359, 608, 48, 255);
+
+    ResTIMG* progChoiceImg = (ResTIMG*)mpPalLogoResCommand->getArchive()->getResource('DAT ', choice[language]);
+    mProgressiveChoice = new dDlst_2D_c(progChoiceImg, 113, 143, 416, 210, 255);
+
+    ResTIMG* progYesImg = (ResTIMG*)mpPalLogoResCommand->getArchive()->getResource('DAT ', yes[language]);
+    mProgressiveYes = new dDlst_2D_c(progYesImg, 121, 352, 200, 72, 255);
+    mProgressiveYes->getPicture()->setWhite(JUtility::TColor(160, 160, 160, 255));
+
+    ResTIMG* progNoImg = (ResTIMG*)mpPalLogoResCommand->getArchive()->getResource('DAT ', no[language]);
+    mProgressiveNo = new dDlst_2D_c(progNoImg, 320, 352, 200, 72, 255);
+    mProgressiveNo->getPicture()->setWhite(JUtility::TColor(160, 160, 160, 255));
+
+    mProgressivePro = (ResTIMG*)mpPalLogoResCommand->getArchive()->getResource('DAT ', prog[language]);
+    mProgressiveInter = (ResTIMG*)mpPalLogoResCommand->getArchive()->getResource('DAT ', intr[language]);
+    mProgressiveSel = new dDlst_2D_c(mProgressivePro, 153, 309, 336, 88, 255);
+#else
     ResTIMG* warningImg = (ResTIMG*)dComIfG_getObjectRes(LOGO_ARC, 10);
     mWarning = new dDlst_2D_c(warningImg, 0, 0, 608, 448, 255);
 
@@ -625,6 +773,7 @@ void dScnLogo_c::logoInitGC() {
     mProgressivePro = (ResTIMG*)dComIfG_getObjectRes(LOGO_ARC, 8);
     mProgressiveInter = (ResTIMG*)dComIfG_getObjectRes(LOGO_ARC, 6);
     mProgressiveSel = new dDlst_2D_c(mProgressivePro, 153, 309, 336, 88, 255);
+#endif
 }
 
 /* 80257FEC-80258420 25292C 0434+00 1/1 0/0 0/0 .text            dvdDataLoad__10dScnLogo_cFv */
@@ -656,8 +805,30 @@ void dScnLogo_c::dvdDataLoad() {
         "/res/Layout/button.arc", 0, JKRArchive::MOUNT_ARAM, mDoExt_getJ2dHeap());
     mpCardIconCommand = mDoDvdThd_mountXArchive_c::create(
         "/res/CardIcon/cardicon.arc", 0, JKRArchive::MOUNT_ARAM, mDoExt_getJ2dHeap());
-    mpBmgResCommand =
-        mDoDvdThd_mountXArchive_c::create(MSG_PATH, 0, JKRArchive::MOUNT_MEM, NULL);
+
+    #if VERSION == VERSION_GCN_PAL
+    switch (getPalLanguage()) {
+    case 1:
+        mpBmgResCommand = mDoDvdThd_mountXArchive_c::create("/res/Msgde/bmgres.arc", 0, JKRArchive::MOUNT_MEM, NULL);
+        break;
+    case 2:
+        mpBmgResCommand = mDoDvdThd_mountXArchive_c::create("/res/Msgfr/bmgres.arc", 0, JKRArchive::MOUNT_MEM, NULL);
+        break;
+    case 3:
+        mpBmgResCommand = mDoDvdThd_mountXArchive_c::create("/res/Msgsp/bmgres.arc", 0, JKRArchive::MOUNT_MEM, NULL);
+        break;
+    case 4:
+        mpBmgResCommand = mDoDvdThd_mountXArchive_c::create("/res/Msgit/bmgres.arc", 0, JKRArchive::MOUNT_MEM, NULL);
+        break;
+    case 0:
+    default:
+        mpBmgResCommand = mDoDvdThd_mountXArchive_c::create("/res/Msguk/bmgres.arc", 0, JKRArchive::MOUNT_MEM, NULL);
+        break;
+    }
+    #else
+    mpBmgResCommand = mDoDvdThd_mountXArchive_c::create(MSG_PATH, 0, JKRArchive::MOUNT_MEM, NULL);
+    #endif
+
     mpMsgComCommand = mDoDvdThd_mountXArchive_c::create(
         "/res/Layout/msgcom.arc", 0, JKRArchive::MOUNT_ARAM, mDoExt_getJ2dHeap());
     mpMsgResCommand[0] = mDoDvdThd_mountXArchive_c::create(
@@ -681,10 +852,16 @@ void dScnLogo_c::dvdDataLoad() {
         "/res/Layout/msgres06.arc", 0, JKRArchive::MOUNT_ARAM, mDoExt_getJ2dHeap());
     mpMain2DCommand =
         mDoDvdThd_mountXArchive_c::create("/res/Layout/main2D.arc", 0, JKRArchive::MOUNT_MEM, NULL);
+
 #if VERSION == VERSION_GCN_JPN
     mpFontResCommand = mDoDvdThd_mountXArchive_c::create("/res/Fontjp/fontres.arc", 1,
                                                          JKRArchive::MOUNT_MEM, NULL);
     mpRubyResCommand = mDoDvdThd_mountXArchive_c::create("/res/Fontjp/rubyres.arc", 0,
+                                                         JKRArchive::MOUNT_MEM, NULL);
+#elif VERSION == VERSION_GCN_PAL
+    mpFontResCommand = mDoDvdThd_mountXArchive_c::create("/res/Fonteu/fontres.arc", 0,
+                                                         JKRArchive::MOUNT_MEM, NULL);
+    mpRubyResCommand = mDoDvdThd_mountXArchive_c::create("/res/Fonteu/rubyres.arc", 0,
                                                          JKRArchive::MOUNT_MEM, NULL);
 #else
     mpFontResCommand = mDoDvdThd_mountXArchive_c::create("/res/Fontus/fontres.arc", 0,
@@ -732,22 +909,62 @@ static int dScnLogo_IsDelete(dScnLogo_c* i_this) {
     return 1;
 }
 
+#if VERSION == VERSION_GCN_PAL
+u8 dScnLogo_c::getPalLanguage() {
+    u8 language;
+    switch (OSGetLanguage()) {
+    case OS_LANGUAGE_ENGLISH:
+        language = 0;
+        break;
+    case OS_LANGUAGE_GERMAN:
+        language = 1;
+        break;
+    case OS_LANGUAGE_FRENCH:
+        language = 2;
+        break;
+    case OS_LANGUAGE_SPANISH:
+        language = 3;
+        break;
+    case OS_LANGUAGE_ITALIAN:
+        language = 4;
+        break;
+    case OS_LANGUAGE_DUTCH:
+        language = 5;
+        break;
+    }
+
+    return language;
+}
+#endif
+
 /* 802584D8-802584FC 252E18 0024+00 1/1 0/0 0/0 .text            setProgressiveMode__10dScnLogo_cFUc
  */
 void dScnLogo_c::setProgressiveMode(u8 mode) {
+    #if VERSION == VERSION_GCN_PAL
+    OSSetEuRgb60Mode(mode);
+    #else
     OSSetProgressiveMode(mode);
+    #endif
 }
 
 /* 802584FC-80258520 252E3C 0024+00 3/3 0/0 0/0 .text            getProgressiveMode__10dScnLogo_cFv
  */
 u8 dScnLogo_c::getProgressiveMode() {
+    #if VERSION == VERSION_GCN_PAL
+    return OSGetEuRgb60Mode();
+    #else
     return OSGetProgressiveMode();
+    #endif
 }
 
 /* 80258520-8025854C 252E60 002C+00 1/1 0/0 0/0 .text            isProgressiveMode__10dScnLogo_cFv
  */
 bool dScnLogo_c::isProgressiveMode() {
-    return OSGetProgressiveMode() == 1;
+    #if VERSION == VERSION_GCN_PAL
+    return OSGetEuRgb60Mode() == OS_EURGB60_ON;
+    #else
+    return OSGetProgressiveMode() == OS_PROGRESSIVE_MODE_ON;
+    #endif
 }
 
 /* 8025854C-8025855C 252E8C 0010+00 1/1 0/0 0/0 .text            setRenderMode__10dScnLogo_cFv */

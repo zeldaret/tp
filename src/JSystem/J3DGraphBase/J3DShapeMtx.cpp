@@ -109,7 +109,6 @@ J3DTexGenBlock* J3DDifferedTexMtx::sTexGenBlock;
 J3DTexMtxObj* J3DDifferedTexMtx::sTexMtxObj;
 
 /* 8031322C-80313828 30DB6C 05FC+00 7/5 0/0 0/0 .text loadExecute__17J3DDifferedTexMtxFPA4_Cf */
-// NONMATCHING regalloc
 void J3DDifferedTexMtx::loadExecute(f32 const (*param_0)[4]) {
     static Mtx qMtx = {
         {0.5f, 0.0f, 0.5f, 0.0f},
@@ -121,194 +120,193 @@ void J3DDifferedTexMtx::loadExecute(f32 const (*param_0)[4]) {
         {0.0f, -0.5f, 0.0f, 0.5f},
         {0.0f, 0.0f, 1.0f, 0.0f}
     };
-    J3DTexCoord* tex_coord;
-    J3DTexMtx* tex_mtx;
-    Mtx* mtx;
-    Mtx44* eff_mtx;
-    Mtx tmp2;
-    Mtx44 tmp1, tmp0;
-    J3DTexMtxInfo* tex_mtx_info;
-    J3DTexGenBlock* tex_gen_block = sTexGenBlock;
-    J3DTexMtxObj* tex_mtx_obj = sTexMtxObj;
+
+    Mtx* mtx; // sp_64
+    Mtx sp_e8;
+    Mtx44 sp_a8, sp_68;
+
+    J3DTexGenBlock* tex_gen_block = sTexGenBlock; // sp_60
+    JUT_ASSERT_MSG(0xc3, tex_gen_block != NULL, "Error : null pointer");
+
+    J3DTexMtxObj* tex_mtx_obj = sTexMtxObj; // sp_5c
+    JUT_ASSERT_MSG(0xc6, tex_mtx_obj != NULL, "Error : null pointer");
+
+    J3DTexMtxInfo* tex_mtx_info_1; // sp_58
+    int tex_gen_type; // sp_54
+    J3DTexMtx* tex_mtx_2; // sp_50
+
     u16 tex_mtx_num = tex_mtx_obj->getNumTexMtx();
-    if ((j3dSys.checkFlag(J3DSysFlag_PostTexMtx))) {
-        for (u16 i = 0; i < (u16)tex_mtx_num; i++) {
-            tex_coord = tex_gen_block->getTexCoord(i);
-            int tex_gen_type = tex_coord->getTexGenType();
+
+    if (j3dSys.checkFlag(J3DSysFlag_PostTexMtx)) {
+        for (u16 i = 0; i < tex_mtx_num; i++) {
+            tex_gen_type = tex_gen_block->getTexCoord(i)->getTexGenType();
             if (tex_gen_type == 1 || tex_gen_type == 0) {
-                tex_mtx = tex_gen_block->getTexMtx(i);
-                u8 tex_gen_src = tex_mtx->getTexMtxInfo().mInfo;
-                u32 unk;
-                switch (tex_gen_src & 0x3f) {
+                tex_mtx_2 = tex_gen_block->getTexMtx(i);
+                JUT_ASSERT_MSG(0xd7, tex_mtx_2 != NULL, "Error : null pointer");
+                tex_mtx_info_1 = &tex_mtx_2->getTexMtxInfo();
+                u32 sp_4c = tex_mtx_info_1->mInfo & 0x3f;
+                switch (sp_4c) {
                 case 3:
                 case 9: {
-                    Mtx& tmp5 = tex_mtx_obj->getMtx(i);
-                    mtx = &tmp5;
+                    mtx = &tex_mtx_obj->getMtx(i);
                     break;
                 }
                 case 1:
                 case 6:
                 case 7: {
-                    Mtx& tmp6 = tex_mtx_obj->getMtx(i);
-                    mtx = &tmp6;
+                    mtx = &tex_mtx_obj->getMtx(i);
                     break;
                 }
                 case 2:
-                case 8:
-                    PSMTXInverse(j3dSys.mViewMtx, tmp2);
-                    PSMTXConcat(tex_mtx_obj->getMtx(i), tmp2, tmp2);
-                    mtx = &tmp2;
+                case 8: {
+                    MTXInverse(j3dSys.getViewMtx(), sp_e8);
+                    MTXConcat(tex_mtx_obj->getMtx(i), sp_e8, sp_e8);
+                    mtx = &sp_e8;
                     break;
-                case 5:
-                    tex_mtx_info = &tex_mtx->getTexMtxInfo();
-                    unk = (tex_gen_src & 0x80) >> 7;
-                    if (unk == 0) {
-                        J3DGetTextureMtxOld(tex_mtx_info->mSRT, tex_mtx_info->mCenter, tmp0);
-                    } else if (unk == 1) {
-                        J3DGetTextureMtxMayaOld(tex_mtx_info->mSRT, tmp0);
+                }
+                case 5: {
+                    J3DTexMtxInfo* tex_mtx_info_2 = &tex_mtx_2->getTexMtxInfo(); // sp_48
+                    u32 sp_44 = (u32)(tex_mtx_info_2->mInfo & 0x80) >> 7;
+                    if (sp_44 == 0) {
+                        J3DGetTextureMtxOld(tex_mtx_info_2->mSRT, tex_mtx_info_2->mCenter, sp_68);
+                    } else if (sp_44 == 1) {
+                        J3DGetTextureMtxMayaOld(tex_mtx_info_2->mSRT, sp_68);
                     }
-                    eff_mtx = &tex_mtx_obj->getEffectMtx(i);
-                    J3DMtxProjConcat(tmp0, *eff_mtx, tmp2);
-                    PSMTXInverse(j3dSys.mViewMtx, tmp1);
-                    PSMTXConcat(tmp2, tmp1, tmp2);
-                    tmp2[2][3] = 0.0f;
-                    tmp2[1][3] = 0.0f;
-                    tmp2[0][3] = 0.0f;
-                    mtx = &tmp2;
+                    J3DMtxProjConcat(sp_68, tex_mtx_obj->getEffectMtx(i), sp_e8);
+                    MTXInverse(j3dSys.getViewMtx(), sp_a8);
+                    MTXConcat(sp_e8, sp_a8, sp_e8);
+                    sp_e8[0][3] = sp_e8[1][3] = sp_e8[2][3] = 0.0f;
+                    mtx = &sp_e8;
                     break;
-                case 10:
-                    tex_mtx_info = &tex_mtx->getTexMtxInfo();
-                    unk = (tex_gen_src & 0x80) >> 7;
-                    if (unk == 0) {
-                        J3DGetTextureMtx(tex_mtx_info->mSRT, tex_mtx_info->mCenter, tmp0);
-                    } else if (unk == 1) {
-                        J3DGetTextureMtxMaya(tex_mtx_info->mSRT, tmp0);
+                }
+                case 11: {
+                    J3DTexMtxInfo* tex_mtx_info_2 = &tex_mtx_2->getTexMtxInfo(); // sp_40
+                    u32 sp_3c = (u32)(tex_mtx_info_2->mInfo & 0x80) >> 7;
+                    if (sp_3c == 0) {
+                        J3DGetTextureMtx(tex_mtx_info_2->mSRT, tex_mtx_info_2->mCenter, sp_68);
+                    } else if (sp_3c == 1) {
+                        J3DGetTextureMtxMaya(tex_mtx_info_2->mSRT, sp_68);
                     }
-                    PSMTXConcat(tmp0, qMtx, tmp0);
-                    eff_mtx = &tex_mtx_obj->getEffectMtx(i);
-                    J3DMtxProjConcat(tmp0, *eff_mtx, tmp2);
-                    PSMTXInverse(j3dSys.mViewMtx, tmp1);
-                    PSMTXConcat(tmp2, tmp1, tmp2);
-                    tmp2[2][3] = 0.0f;
-                    tmp2[1][3] = 0.0f;
-                    tmp2[0][3] = 0.0f;
-                    mtx = &tmp2;
+                    MTXConcat(sp_68, qMtx, sp_68);
+                    J3DMtxProjConcat(sp_68, tex_mtx_obj->getEffectMtx(i), sp_e8);
+                    MTXInverse(j3dSys.getViewMtx(), sp_a8);
+                    MTXConcat(sp_e8, sp_a8, sp_e8);
+                    sp_e8[0][3] = sp_e8[1][3] = sp_e8[2][3] = 0.0f;
+                    mtx = &sp_e8;
                     break;
-                case 11:
-                    tex_mtx_info = &tex_mtx->getTexMtxInfo();
-                    unk = (tex_gen_src & 0x80) >> 7;
-                    if (unk == 0) {
-                        J3DGetTextureMtx(tex_mtx_info->mSRT, tex_mtx_info->mCenter, tmp0);
-                    } else if (unk == 1) {
-                        J3DGetTextureMtxMaya(tex_mtx_info->mSRT, tmp0);
+                }
+                case 10: {
+                    J3DTexMtxInfo* tex_mtx_info_2 = &tex_mtx_2->getTexMtxInfo(); // sp_38
+                    u32 sp_34 = (u32)(tex_mtx_info_2->mInfo & 0x80) >> 7;
+                    if (sp_34 == 0) {
+                        J3DGetTextureMtx(tex_mtx_info_2->mSRT, tex_mtx_info_2->mCenter, sp_68);
+                    } else if (sp_34 == 1) {
+                        J3DGetTextureMtxMaya(tex_mtx_info_2->mSRT, sp_68);
                     }
-                    PSMTXConcat(tmp0, qMtx2, tmp0);
-                    eff_mtx = &tex_mtx_obj->getEffectMtx(i);
-                    J3DMtxProjConcat(tmp0, *eff_mtx, tmp2);
-                    PSMTXInverse(j3dSys.mViewMtx, tmp1);
-                    PSMTXConcat(tmp2, tmp1, tmp2);
-                    tmp2[2][3] = 0.0f;
-                    tmp2[1][3] = 0.0f;
-                    tmp2[0][3] = 0.0f;
-                    mtx = &tmp2;
+                    MTXConcat(sp_68, qMtx2, sp_68);
+                    J3DMtxProjConcat(sp_68, tex_mtx_obj->getEffectMtx(i), sp_e8);
+                    MTXInverse(j3dSys.getViewMtx(), sp_a8);
+                    MTXConcat(sp_e8, sp_a8, sp_e8);
+                    sp_e8[0][3] = sp_e8[1][3] = sp_e8[2][3] = 0.0f;
+                    mtx = &sp_e8;
                     break;
-                default:
-                    Mtx& tmp7 = tex_mtx_obj->getMtx(i);
-                    mtx = &tmp7;
-                    break;
+                }
+                case 0:
+                case 4:
+                default: {
+                    mtx = &tex_mtx_obj->getMtx(i);
+                }
                 }
                 GXLoadTexMtxImm(*mtx, i * 3 + 0x40, GX_MTX3x4);
             }
         }
     } else {
-        for (u16 i = 0; i < (u16)tex_mtx_num; i++) {
+        for (u16 i = 0; i < tex_mtx_num; i++) {
             int tex_gen_type = tex_gen_block->getTexCoord(i)->getTexGenType();
             if (tex_gen_type == 1 || tex_gen_type == 0) {
-                tex_mtx = tex_gen_block->getTexMtx(i);
-                u8 tex_gen_src = tex_mtx->getTexMtxInfo().mInfo;
-                u32 unk;
-                switch (tex_gen_src & 0x3f) {
+                J3DTexMtx* tex_mtx = tex_gen_block->getTexMtx(i); // sp_2c
+                JUT_ASSERT_MSG(0x145, tex_mtx != NULL, "Error : null pointer");
+                tex_mtx_info_1 = &tex_mtx->getTexMtxInfo();
+                u32 tex_gen_src = tex_mtx_info_1->mInfo & 0x3f; // sp_28
+                switch (tex_gen_src) {
                 case 3:
                 case 9:
-                    PSMTXConcat(tex_mtx_obj->getMtx(i), param_0, tmp2);
-                    mtx = &tmp2;
+                    MTXConcat(tex_mtx_obj->getMtx(i), param_0, sp_e8);
+                    mtx = &sp_e8;
                     break;
                 case 1:
                 case 6:
                 case 7:
-                    PSMTXCopy(param_0, tmp1);
-                    tmp1[2][3] = 0.0f;
-                    tmp1[1][3] = 0.0f;
-                    tmp1[0][3] = 0.0f;
-                    PSMTXConcat(tex_mtx_obj->getMtx(i), tmp1, tmp2);
-                    mtx = &tmp2;
+                    MTXCopy(param_0, sp_a8);
+                    sp_a8[0][3] = sp_a8[1][3] = sp_a8[2][3] = 0.0f;
+                    MTXConcat(tex_mtx_obj->getMtx(i), sp_a8, sp_e8);
+                    mtx = &sp_e8;
                     break;
                 case 2:
                 case 8:
                     mtx = &tex_mtx_obj->getMtx(i);
                     break;
-                case 5:
-                    tex_mtx_info = &tex_mtx->getTexMtxInfo();
-                    unk = (tex_gen_src & 0x80) >> 7;
-                    if (unk == 0) {
-                        J3DGetTextureMtxOld(tex_mtx_info->mSRT, tex_mtx_info->mCenter, tmp0);
-                    } else if (unk == 1) {
-                        J3DGetTextureMtxMayaOld(tex_mtx_info->mSRT, tmp0);
+                case 5: {
+                    J3DTexMtxInfo* tex_mtx_info_2 = &tex_mtx->getTexMtxInfo(); // sp_24
+                    u32 sp_24 = (u32)(tex_mtx_info_2->mInfo & 0x80) >> 7;
+                    if (sp_24 == 0) {
+                        J3DGetTextureMtxOld(tex_mtx_info_2->mSRT, tex_mtx_info_2->mCenter, sp_68);
+                    } else if (sp_24 == 1) {
+                        J3DGetTextureMtxMayaOld(tex_mtx_info_2->mSRT, sp_68);
                     }
-                    eff_mtx = &tex_mtx_obj->getEffectMtx(i);
-                    J3DMtxProjConcat(tmp0, *eff_mtx, tmp2);
-                    PSMTXInverse(j3dSys.mViewMtx, tmp1);
-                    PSMTXConcat(tmp2, tmp1, tmp2);
-                    PSMTXConcat(tmp2, param_0, tmp2);
-                    tmp2[2][3] = 0.0f;
-                    tmp2[1][3] = 0.0f;
-                    tmp2[0][3] = 0.0f;
-                    mtx = &tmp2;
+                    J3DMtxProjConcat(sp_68, tex_mtx_obj->getEffectMtx(i), sp_e8);
+                    MTXInverse(j3dSys.getViewMtx(), sp_a8);
+                    MTXConcat(sp_e8, sp_a8, sp_e8);
+                    MTXConcat(sp_e8, param_0, sp_e8);
+                    sp_e8[0][3] = sp_e8[1][3] = sp_e8[2][3] = 0.0f;
+                    mtx = &sp_e8;
                     break;
-                case 10:
-                    tex_mtx_info = &tex_mtx->getTexMtxInfo();
-                    unk = (tex_gen_src & 0x80) >> 7;
-                    if (unk == 0) {
-                        J3DGetTextureMtx(tex_mtx_info->mSRT, tex_mtx_info->mCenter, tmp0);
-                    } else if (unk == 1) {
-                        J3DGetTextureMtxMaya(tex_mtx_info->mSRT, tmp0);
+                }
+                case 11: {
+                    J3DTexMtxInfo* tex_mtx_info_2 = &tex_mtx->getTexMtxInfo(); // sp_1c
+                    u32 sp_18 = (u32)(tex_mtx_info_2->mInfo & 0x80) >> 7;
+                    if (sp_18 == 0) {
+                        J3DGetTextureMtx(tex_mtx_info_2->mSRT, tex_mtx_info_2->mCenter, sp_68);
+                    } else if (sp_18 == 1) {
+                        J3DGetTextureMtxMaya(tex_mtx_info_2->mSRT, sp_68);
                     }
-                    PSMTXConcat(tmp0, qMtx, tmp0);
-                    eff_mtx = &tex_mtx_obj->getEffectMtx(i);
-                    J3DMtxProjConcat(tmp0, *eff_mtx, tmp2);
-                    PSMTXInverse(j3dSys.mViewMtx, tmp1);
-                    PSMTXConcat(tmp2, tmp1, tmp2);
-                    PSMTXConcat(tmp2, param_0, tmp2);
-                    tmp2[2][3] = 0.0f;
-                    tmp2[1][3] = 0.0f;
-                    tmp2[0][3] = 0.0f;
-                    mtx = &tmp2;
+                    MTXConcat(sp_68, qMtx, sp_68);
+                    J3DMtxProjConcat(sp_68, tex_mtx_obj->getEffectMtx(i), sp_e8);
+                    MTXInverse(j3dSys.getViewMtx(), sp_a8);
+                    MTXConcat(sp_e8, sp_a8, sp_e8);
+                    MTXConcat(sp_e8, param_0, sp_e8);
+                    sp_e8[0][3] = sp_e8[1][3] = sp_e8[2][3] = 0.0f;
+                    mtx = &sp_e8;
                     break;
-                case 11:
-                    tex_mtx_info = &tex_mtx->getTexMtxInfo();
-                    unk = (tex_gen_src & 0x80) >> 7;
-                    if (unk == 0) {
-                        J3DGetTextureMtx(tex_mtx_info->mSRT, tex_mtx_info->mCenter, tmp0);
-                    } else if (unk == 1) {
-                        J3DGetTextureMtxMaya(tex_mtx_info->mSRT, tmp0);
+                }
+                case 10: {
+                    J3DTexMtxInfo* tex_mtx_info_2 = &tex_mtx->getTexMtxInfo(); // sp_14
+                    u32 sp_10 = (u32)(tex_mtx_info_2->mInfo & 0x80) >> 7;
+                    if (sp_10 == 0) {
+                        J3DGetTextureMtx(tex_mtx_info_2->mSRT, tex_mtx_info_2->mCenter, sp_68);
+                    } else if (sp_10 == 1) {
+                        J3DGetTextureMtxMaya(tex_mtx_info_2->mSRT, sp_68);
                     }
-                    PSMTXConcat(tmp0, qMtx2, tmp0);
-                    eff_mtx = &tex_mtx_obj->getEffectMtx(i);
-                    J3DMtxProjConcat(tmp0, *eff_mtx, tmp2);
-                    PSMTXInverse(j3dSys.mViewMtx, tmp1);
-                    PSMTXConcat(tmp2, tmp1, tmp2);
-                    PSMTXConcat(tmp2, param_0, tmp2);
-                    tmp2[2][3] = 0.0f;
-                    tmp2[1][3] = 0.0f;
-                    tmp2[0][3] = 0.0f;
-                    mtx = &tmp2;
+                    MTXConcat(sp_68, qMtx2, sp_68);
+                    J3DMtxProjConcat(sp_68, tex_mtx_obj->getEffectMtx(i), sp_e8);
+                    MTXInverse(j3dSys.getViewMtx(), sp_a8);
+                    MTXConcat(sp_e8, sp_a8, sp_e8);
+                    MTXConcat(sp_e8, param_0, sp_e8);
+                    sp_e8[2][3] = 0.0f;
+                    sp_e8[1][3] = 0.0f;
+                    sp_e8[0][3] = 0.0f;
+                    mtx = &sp_e8;
                     break;
-                default:
+                }
+                case 0:
+                case 4:
+                default: {
                     mtx = &tex_mtx_obj->getMtx(i);
                     break;
                 }
-                GXLoadTexMtxImm(*mtx, i * 3 + 0x1e,
-                                (GXTexMtxType)tex_mtx->getTexMtxInfo().mProjection);
+                }
+                GXLoadTexMtxImm(*mtx, i * 3 + 30,
+                                (GXTexMtxType)tex_mtx_info_1->mProjection);
             }
         }
     }

@@ -242,6 +242,7 @@ void daObjIceLeaf_c::action() {
 void daObjIceLeaf_c::modeDropWait() {
     daPy_py_c* player = daPy_getPlayerActorClass();
 
+        /* dSv_event_flag_c::F_0308 - Snowpeak mountain - Watched first meeting event with Yeto at top of mountain (human) */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x134])) {
         bool start_drop = false;
         if (player->current.pos.abs(current.pos) < 250.0f &&

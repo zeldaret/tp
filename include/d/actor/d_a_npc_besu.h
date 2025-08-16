@@ -115,9 +115,9 @@ public:
     static cutFunc mCutList[15];
 
 private:
-    /* 0x0E40 */ mDoExt_McaMorfSO* mpBesuMorf;
+    /* 0x0E40 */ mDoExt_McaMorfSO* mpCupModelMorf;
     /* 0x0E44 */ u8 field_0xe44[0x0E48 - 0xE44];
-    /* 0x0E48 */ J3DModel* mpModel[1];
+    /* 0x0E48 */ J3DModel* mpClothModel[1];
     /* 0x0E4C */ dCcD_Cyl mCyl1;
     /* 0x0F88 */ dCcD_Cyl mCyl2;
     /* 0x10C4 */ u8 mType;

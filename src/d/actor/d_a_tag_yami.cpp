@@ -26,6 +26,7 @@ const static dCcD_SrcCyl l_sph_src = {
 int daTagYami_c::create() {
     fopAcM_SetupActor(this, daTagYami_c);
 
+        /* dSv_event_flag_c::F_0570 - Palace of Twilight - Cleared Palace of Twilight */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[570])) {
         return cPhs_ERROR_e;
     }

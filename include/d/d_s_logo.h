@@ -8,6 +8,7 @@ class JKRHeap;
 struct ResTIMG;
 class dDlst_2D_c;
 class mDoDvdThd_mountXArchive_c;
+class mDoDvdThd_mountArchive_c;
 class mDoDvdThd_toMainRam_c;
 
 class dLog_HIO_c {
@@ -68,6 +69,10 @@ public:
     /* 80258520 */ bool isProgressiveMode();
     /* 8025854C */ void setRenderMode();
 
+    #if VERSION == VERSION_GCN_PAL
+    u8 getPalLanguage();
+    #endif
+
 public:
     /* 0x1C4 */ request_of_phase_process_class field_0x1c4;
     /* 0x1CC */ mDoDvdThd_toMainRam_c* sceneCommand;
@@ -82,6 +87,9 @@ public:
     /* 0x1F0 */ dDlst_2D_c* mProgressiveYes;
     /* 0x1F4 */ dDlst_2D_c* mProgressiveNo;
     /* 0x1F8 */ dDlst_2D_c* mProgressiveSel;
+#if VERSION == VERSION_GCN_PAL
+    /* 0x1FC */ mDoDvdThd_mountArchive_c* mpPalLogoResCommand;
+#endif
     /* 0x1FC */ request_of_phase_process_class* m_preLoad_dylPhase;
     /* 0x200 */ ResTIMG* mProgressivePro;
     /* 0x204 */ ResTIMG* mProgressiveInter;

@@ -336,6 +336,7 @@ static cPhs__Step daNpc_Sq_Create(fopAc_ac_c* i_this) {
 
     cPhs__Step step = (cPhs__Step)dComIfG_resLoad(&_this->mPhaseReq, "Sq");
     if (step == cPhs_COMPLEATE_e) {
+            /* dSv_event_flag_c::D_0001 - Ordon Village - Stopped by squirrel in front of house at night */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[25])) {
             return cPhs_ERROR_e;
         }

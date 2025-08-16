@@ -76,6 +76,7 @@ void daObjMirrorScrew_c::initDown() {
     speedF = 0.0f;
     mSpinCount = M_attr.mResetSpinCount;
 
+    /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
     dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[361]);
 
     dComIfGp_getVibration().StartShock(8, 0xf, cXyz(0.0f, 1.0f, 0.0f));
@@ -177,8 +178,10 @@ static int daObjMirrorScrew_Delete(daObjMirrorScrew_c* i_this) {
 cPhs__Step daObjMirrorScrew_c::create() {
     fopAcM_SetupActor(this, daObjMirrorScrew_c);
     if (fopAcM_isSwitch(this, getSwitchNo()) ||
-        dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]) ||
-        dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]))
+        /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
+        dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])
+           /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
+        || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]))
     {
         return cPhs_ERROR_e;
     }

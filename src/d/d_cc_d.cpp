@@ -364,6 +364,10 @@ dCcD_GObjInf* dCcD_GetGObjInf(cCcD_Obj* p_obj) {
     return (dCcD_GObjInf*)p_obj->GetGObjInf();
 }
 
+cCcD_ShapeAttr* dCcD_Pnt::GetShapeAttr() {
+    return this;
+}
+
 /* 800847D0-80084814 07F110 0044+00 0/0 1/1 20/20 .text            Set__8dCcD_CpsFRC11dCcD_SrcCps */
 void dCcD_Cps::Set(dCcD_SrcCps const& src) {
     dCcD_GObjInf::Set(src.mObjInf);

@@ -84,6 +84,7 @@ public:
     f32 getPlayerRange() const { return mPlayerRange; }
     int getActionMode() const { return mActionMode; }
     daE_OC_c* getTalkOc() const { return mpTalk; }
+    J3DModel* getOcModel() { return mpMorf->getModel(); }
 
 private:
     /* 0x5a0 */ request_of_phase_process_class mPhaseReqs[2];

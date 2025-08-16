@@ -214,6 +214,7 @@ public:
     };
 
     void onForcePanic() { onEndResetStateFlg0(ERFLG0_FORCE_PANIC); }
+    void onRatBody(int) { onForcePanic(); }
     u32 checkForceNormalColor() const { return checkStateFlg1(FLG1_FORCE_NORMAL_COL); }
     u32 checkForceTiredColor() const { return checkStateFlg1(FLG1_FORCE_TIRED_COL); }
     void onNoServiceWait() { onEndResetStateFlg0(ERFLG0_NO_SERVICE_WAIT); }
@@ -363,6 +364,7 @@ public:
     }
 
     static bool checkMidnaTired() {
+                                                   /* dSv_event_flag_c::F_0250 - Cutscene - [cutscene: 21] reunion with Zelda / Midna revived (Hyrule Castle barrier appears) */
         return dComIfGs_isTransformLV(3) && !dComIfGs_isEventBit(0x1E08);
     }
 

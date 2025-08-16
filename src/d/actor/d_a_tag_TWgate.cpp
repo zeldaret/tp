@@ -688,6 +688,7 @@ void daTagTWGate_c::initDemoRanail3() {
         dComIfGp_getEventManager().getEventIdx(this, l_zevParamTbl[mType].mInEventName, -1);
     dComIfGp_getEvent().reset(this);
     fopAcM_orderChangeEventId(this, mEventID, 1, -1);
+    /* dSv_event_flag_c::F_0071 - Twilight Hyrule Field - Cannot warp to Lanayru */
     dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[170]);
 }
 

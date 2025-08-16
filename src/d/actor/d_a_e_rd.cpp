@@ -4227,6 +4227,7 @@ static void damage_check(e_rd_class* i_this) {
                                     bullbo->field_0x79e++;
                                     if (bullbo->field_0x79e == 1) {
                                         a_this->health = 0;
+                                        /* dSv_event_flag_c::M_055 - Main Event - Did damage at least once during joust/one-on-one battle */
                                         dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x58]);
                                         part_break(i_this);
                                         bullbo->field_0x169e = 20;

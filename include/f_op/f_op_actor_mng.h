@@ -511,7 +511,7 @@ fopAcM_prm_class* createAppend(u16 i_setId, u32 i_parameters, const cXyz* i_pos,
 
 void fopAcM_Log(fopAc_ac_c const* i_actor, char const* i_message);
 
-void fopAcM_delete(fopAc_ac_c* i_actor);
+s32 fopAcM_delete(fopAc_ac_c* i_actor);
 
 s32 fopAcM_delete(fpc_ProcID i_actorID);
 
@@ -664,8 +664,8 @@ fopAc_ac_c* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo,
                                   f32* i_speedY, int i_itemBitNo, int param_9,
                                   createFunc i_createFunc);
 
-fpc_ProcID fopAcM_createBokkuri(u16 i_setId, const cXyz* i_pos, int param_3, int param_4,
-                                int i_roomNo, const cXyz* param_6, int param_7, int param_8);
+fpc_ProcID fopAcM_createBokkuri(u16 i_setId, const cXyz* i_pos, int i_itemNo, int i_itemBit,
+                                int i_roomNo, const cXyz* param_6, int i_itemType, int param_8);
 fpc_ProcID fopAcM_createWarpHole(const cXyz* i_pos, const csXyz* i_angle, int i_roomNo, u8 param_4,
                                  u8 param_5, u8 param_6);
 
@@ -706,12 +706,6 @@ inline void make_prm_warp_hole(u32* o_params, u8 prm1, u8 prm2, u8 prm3) {
     u32 pprm2 = (prm2 << 0x10);
     u32 pprm3 = (prm1 << 0x1B) | 0x170000FF;
     *o_params = pprm2 | pprm3 | pprm1;
-}
-
-inline void make_prm_bokkuri(u32* i_params, csXyz* i_angle, u8 param_2, u8 param_3, u8 param_4,
-                             u8 param_5, u8 param_6) {
-    i_angle->x = (param_4 << 0x8) | (param_3 & 0xFF);
-    i_angle->z = (param_6 << 0xD) | (param_2 << 0x1) | param_5;
 }
 
 inline fopAc_ac_c* dComIfGp_getPlayer(int);

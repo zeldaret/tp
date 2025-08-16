@@ -17,7 +17,12 @@
 #include "m_Do/m_Do_machine.h"
 #include "m_Do/m_Do_main.h"
 #include "SSystem/SComponent/c_math.h"
+// Possibly fakematch?
+// Using `sym off` for this header fixes J2DOrthoGraph::~J2DOrthoGraph being
+// incorrectly placed in a separate .text section.
+#pragma sym off
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
+#pragma sym on
 #include "JSystem/JParticle/JPADrawInfo.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JFramework/JFWSystem.h"
@@ -510,7 +515,7 @@ static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_
             GXBegin(GX_QUADS, GX_VTXFMT0, 4);
             GXPosition3s16(x_orig, y_orig_pos, -5);
             GXTexCoord2s8(0, 0);
-            GXPosition3s16(width, y_orig_pos, -5); 
+            GXPosition3s16(width, y_orig_pos, -5);
             GXTexCoord2s8(1, 0);
             GXPosition3s16(width, height, -5);
             GXTexCoord2s8(1, 1);

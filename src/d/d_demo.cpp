@@ -255,7 +255,9 @@ int dDemo_actor_c::getDemoIDData(int* param_0, int* param_1, int* param_2, u16* 
     return 1;
 }
 
+#if DEBUG
 s16 dDemo_c::m_branchNum = 0;
+#endif
 
 /* 80038490-80038518 032DD0 0088+00 1/1 0/0 0/0 .text            dDemo_getJaiPointer__FPCcUliPUs */
 static void* dDemo_getJaiPointer(char const* arcName, u32 anmID, int param_2, u16* param_3) {
@@ -287,8 +289,7 @@ int dDemo_setDemoData(fopAc_ac_c* i_actor, u8 i_flags, mDoExt_McaMorf* i_morf, c
 
     u8 flags = demo_actor->checkEnable(i_flags);
     if (flags & dDemo_actor_c::ENABLE_TRANS_e) {
-        i_actor->current.pos = demo_actor->getTrans();
-        i_actor->old.pos = i_actor->current.pos;
+        i_actor->old.pos = i_actor->current.pos = demo_actor->getTrans();
     }
 
     if (flags & dDemo_actor_c::ENABLE_ROTATE_e) {
@@ -311,24 +312,26 @@ int dDemo_setDemoData(fopAc_ac_c* i_actor, u8 i_flags, mDoExt_McaMorf* i_morf, c
 
     if (flags & dDemo_actor_c::ENABLE_ANM_e) {
         u32 anmID = demo_actor->getAnmId();
+        void* ptr;
 
         if (anmID != demo_actor->getOldAnmId()) {
             const char* a_name;
             if (anmID & 0x10000) {
                 a_name = dStage_roomControl_c::getDemoArcName();
-                JUT_ASSERT(267, a_name != NULL);
+                JUT_ASSERT(0x267, a_name != NULL);
             } else {
                 a_name = i_arcName;
             }
 
             demo_actor->setOldAnmId(anmID);
 
-            J3DAnmTransform* i_key = (J3DAnmTransform*)dComIfG_getObjectIDRes(a_name, anmID);
+            J3DAnmTransform* i_key = (J3DAnmTransform*)dComIfG_getObjectIDRes(a_name, anmID & 0xffff);
             JUT_ASSERT(272, i_key != 0);
 
-            void* ptr = dDemo_getJaiPointer(a_name, anmID, param_4, param_5);
+            ptr = dDemo_getJaiPointer(a_name, anmID & 0xffff, param_4, param_5);
 
-            i_morf->setAnm(i_key, -1, demo_actor->getPrm_Morf(), 1.0f, 0.0f, -1.0f, ptr);
+            f32 prmMorf = demo_actor->getPrm_Morf();
+            i_morf->setAnm(i_key, -1, prmMorf, 1.0f, 0.0f, -1.0f, ptr);
             demo_actor->setAnmFrameMax(i_morf->getEndFrame());
         }
     }
@@ -337,7 +340,8 @@ int dDemo_setDemoData(fopAc_ac_c* i_actor, u8 i_flags, mDoExt_McaMorf* i_morf, c
         f32 anm_frame = demo_actor->getAnmFrame();
 
         if (anm_frame > 1.0f) {
-            i_morf->setFrame(anm_frame - 1.0f);
+            anm_frame -= 1.0f;
+            i_morf->setFrame(anm_frame);
             i_morf->play(&i_actor->current.pos, param_6, i_reverb);
         } else {
             i_morf->setFrame(anm_frame);
