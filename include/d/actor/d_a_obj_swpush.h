@@ -63,8 +63,8 @@ namespace daObjSwpush {
 
         /* 80482D4C */ void prmZ_init();
         /* 80482D7C */ bool is_switch2() const;
-        /* 80482DC4 */ static int solidHeapCB(fopAc_ac_c*);
-        /* 80482DE8 */ void create_heap();
+        /* 80482DC4 */ static BOOL solidHeapCB(fopAc_ac_c*);
+        /* 80482DE8 */ bool create_heap();
         /* 80482FE8 */ cPhs__Step create_res_load();
         /* 80483038 */ cPhs__Step Mthd_Create();
         /* 8048348C */ void Mthd_Delete();

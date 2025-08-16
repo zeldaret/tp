@@ -155,10 +155,10 @@ bool daObjSwpush::Act_c::is_switch2() const {
     return fopAcM_isSwitch(this, prmZ_get_swSave2() & 0xFF);
 }
 
-/* 80482DC4-80482DE8 000164 0024+00 1/1 0/0 0/0 .text
- * solidHeapCB__Q211daObjSwpush5Act_cFP10fopAc_ac_c             */
-int daObjSwpush::Act_c::solidHeapCB(fopAc_ac_c* param_0) {
+/* 80482DC4-80482DE8 000164 0024+00 1/1 0/0 0/0 .text            solidHeapCB__Q211daObjSwpush5Act_cFP10fopAc_ac_c */
+BOOL daObjSwpush::Act_c::solidHeapCB(fopAc_ac_c* a_this) {
     // NONMATCHING
+    return static_cast<daObjSwpush::Act_c*>(a_this)->create_heap();
 }
 
 /* ############################################################################################## */
@@ -210,7 +210,7 @@ SECTION_DATA void* daObjSwpush::Act_c::M_arcname[3] = {
 };
 
 /* 80482DE8-80482FE8 000188 0200+00 1/1 0/0 0/0 .text create_heap__Q211daObjSwpush5Act_cFv */
-void daObjSwpush::Act_c::create_heap() {
+bool daObjSwpush::Act_c::create_heap() {
     // NONMATCHING
 }
 
