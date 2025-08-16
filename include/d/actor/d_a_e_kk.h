@@ -11,7 +11,7 @@
 /**
  * @ingroup actors-enemies
  * @class daE_KK_c
- * @brief Chilfos
+ * @brief Chilfos (Koori no Kenshi)
  *
  * @details Enemy - Ice Knight
  *

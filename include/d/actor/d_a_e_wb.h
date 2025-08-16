@@ -8,10 +8,40 @@
 
 enum daE_wb_ACT {
     /* 0x00 */ ACT_WAIT,
+    /* 0x01 */ ACT_WAIT2,
+    /* 0x04 */ ACT_RIDE = 0x04,
+    /* 0x05 */ ACT_F_WAIT,
+    /* 0x06 */ ACT_C_F_RUN,
+    /* 0x07 */ ACT_A_RUN,
+    /* 0x08 */ ACT_B_WAIT,
+    /* 0x09 */ ACT_B_WAIT2,
+    /* 0x0A */ ACT_B_RUN,
+    /* 0x0B */ ACT_B_RUN2,
+    /* 0x0F */ ACT_B_IKKI = 0x0F,
+    /* 0x10 */ ACT_B_IKKI_END,
+    /* 0x11 */ ACT_B_IKKI2,
+    /* 0x12 */ ACT_B_IKKI2_END,
+    /* 0x13 */ ACT_B_LV9_END,
     /* 0x15 */ ACT_S_DAMAGE = 0x15,
+    /* 0x16 */ ACT_DAMAGE,
+    /* 0x17 */ ACT_BG_DAMAGE,
+    /* 0x18 */ ACT_LR_DAMAGE,
+    /* 0x1E */ ACT_KIBA_START = 0x1E,
+    /* 0x1F */ ACT_KIBA_END,
+    /* 0x32 */ ACT_EVENT = 0x32,
     /* 0x65 */ ACT_PL_RIDE = 0x65,
-    /* 0x67 */ ACT_PL_RIDE_NOW = 0x67,
+    /* 0x66 */ ACT_PL_RIDE2,
+    /* 0x67 */ ACT_PL_RIDE_NOW,
+    /* 0x6E */ ACT_CRV_WAIT = 0x6E,
 };
+
+struct himo_s {
+    /* 807E1CCC */ ~himo_s();
+    /* 807E1D2C */ himo_s();
+
+    /* 0x0 */ cXyz field_0x0[16];
+};
+
 
 /**
  * @ingroup actors-enemies
@@ -49,19 +79,19 @@ public:
 
 public:
     /* 0x05AC */ request_of_phase_process_class mPhase;
-    /* 0x05B4 */ s16 field_0x5b4;
+    /* 0x05B4 */ s16 mActionMode;
     /* 0x05B8 */ char* mResName;
-    /* 0x05BC */ u8 field_0x5bc;
-    /* 0x05BD */ u8 field_0x5bd;
+    /* 0x05BC */ u8 mParam;
+    /* 0x05BD */ u8 mParam2;
     /* 0x05BE */ u8 field_0x5be;
     /* 0x05BF */ bool field_0x5bf;
     /* 0x05C0 */ u8 field_0x5c0;
     /* 0x05C4 */ cXyz field_0x5c4;
     /* 0x05D0 */ cXyz field_0x5d0;
-    /* 0x05DC */ s16 field_0x5dc;
+    /* 0x05DC */ s16 mAngleTarget;
     /* 0x05DE */ s16 field_0x5de;
     /* 0x05E0 */ mDoExt_McaMorfSO* mpModelMorf;
-    /* 0x05E4 */ f32 field_0x5e4;
+    /* 0x05E4 */ f32 mPlaySpeed;
     /* 0x05E8 */ int mAnmID;
     /* 0x05EC */ Z2CreatureRide mZ2Ride;
     /* 0x0688 */ int field_0x688;
@@ -70,12 +100,13 @@ public:
     /* 0x0690 */ s16 mActionID;
     /* 0x0692 */ u16 field_0x692;
     /* 0x0694 */ u32 field_0x694;
-    /* 0x0698 */ s16 field_0x698[4];
+    /* 0x0698 */ s16 field_0x698;
+    /* 0x069A */ s16 field_0x69a;
+    /* 0x069C */ s16 field_0x69c;
+    /* 0x069E */ s16 field_0x69e;
     /* 0x06A0 */ s16 field_0x6a0;
     /* 0x06A2 */ u8 field_0x6a2[0x6ae - 0x6a2];
-    /* 0x06AE */ s16 field_0x6ae;
-    /* 0x06B0 */ s16 field_0x6b0;
-    /* 0x06B2 */ s16 field_0x6b2;
+    /* 0x06AE */ csXyz field_0x6ae;
     /* 0x06B4 */ u8 field_0x6b4[0x6b6 - 0x6b4];
     /* 0x06B6 */ s16 field_0x6b6;
     /* 0x06B8 */ u8 field_0x6b8[0x6ba - 0x6b8];
@@ -84,17 +115,22 @@ public:
     /* 0x06BD */ u8 field_0x6bd;
     /* 0x06BE */ u16 field_0x6be;
     /* 0x06C0 */ s8 field_0x6c0;
-    /* 0x06C4 */ cXyz field_0x6c4;
+    /* 0x06C4 */ f32 field_0x6c4;
+    /* 0x06C8 */ int mBPathIdx; // The b_path indexer
+    /* 0x06CC */ int mBPathIdxIter; // The amount to change the b_path indexer by
     /* 0x06D0 */ s16 field_0x6d0;
-    /* 0x06D2 */ s16 field_0x6d2;
+    /* 0x06D2 */ s16 mTargetAngleStep;
     /* 0x06D4 */ s16 field_0x6d4;
     /* 0x06D6 */ s16 field_0x6d6;
-    /* 0x06D8 */ u8 field_0x6d8[0x6da - 0x6d8];
+    /* 0x06D8 */ s16 field_0x6d8;
     /* 0x06DA */ s16 field_0x6da;
     /* 0x06DC */ s16 field_0x6dc;
-    /* 0x06DE */ u8 field_0x6de[0x6e4 - 0x6de];
+    /* 0x06DE */ s16 field_0x6de;
+    /* 0x06E0 */ s16 field_0x6e0;
+    /* 0x06E2 */ s16 field_0x6e2;
     /* 0x06E4 */ u8 field_0x6e4;
-    /* 0x06E5 */ u8 field_0x6e5[0x79a - 0x6e5];
+    /* 0x06E5 */ u8 field_0x6e5[0x6ec - 0x6e5];
+    /* 0x06EC */ csXyz field_0x6ec[0x1d];
     /* 0x079A */ s16 field_0x79a;
     /* 0x079C */ u8 field_0x79c;
     /* 0x079D */ s8 field_0x79d;
@@ -107,7 +143,7 @@ public:
     /* 0x07A7 */ s8 field_0x7a7;
     /* 0x07A8 */ f32 field_0x7a8;
     /* 0x07AC */ dBgS_AcchCir field_0x7ac;
-    /* 0x07EC */ dBgS_Acch field_0x7ec;
+    /* 0x07EC */ dBgS_ObjAcch field_0x7ec;
     /* 0x09C4 */ dCcD_Stts field_0x9c4;
     /* 0x0A00 */ dCcD_Sph field_0xa00[7];
     /* 0x1288 */ dCcD_Sph field_0x1288;
@@ -135,11 +171,9 @@ public:
     /* 0x1430 */ s8 field_0x1430;
     /* 0x1432 */ s16 field_0x1432;
     /* 0x1434 */ fpc_ProcID field_0x1434;  // Some actor ID
-    /* 0x1438 */ cXyz field_0x1438;
-    /* 0x1444 */ cXyz field_0x1444;
-    /* 0x1450 */ u8 field_0x1450[0x15d0 - 0x1450];
-    /* 0x15D0 */ mDoExt_3DlineMat1_c field_0x15d0;
-    /* 0x160C */ mDoExt_3DlineMat1_c field_0x160c;
+    /* 0x1438 */ cXyz field_0x1438[2];
+    /* 0x1450 */ himo_s field_0x1450[2];
+    /* 0x15D0 */ mDoExt_3DlineMat1_c field_0x15d0[2];
     /* 0x1648 */ mDoExt_3DlineMat1_c field_0x1648;
     /* 0x1684 */ f32 field_0x1684;
     /* 0x1688 */ u8 field_0x1688;
@@ -180,14 +214,21 @@ public:
 
 STATIC_ASSERT(sizeof(e_wb_class) == 0x17EC);
 
-struct himo_s {
-    /* 807E1CCC */ ~himo_s();
-    /* 807E1D2C */ himo_s();
-};
-
 class daE_WB_HIO_c {
+public:
     /* 807D248C */ daE_WB_HIO_c();
     /* 807E20DC */ ~daE_WB_HIO_c();
+
+    /* 0x00 */ s8 field_0x00[0x4];
+    /* 0x04 */ s8 field_0x04;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ u8 field_0x18[0x24 - 0x18];
+    /* 0x24 */ f32 field_0x24;
+    /* 0x24 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
+    /* 0x30 */ f32 field_0x30;
+    /* 0x34 */ cXyz field_0x34[2];
+    /* 0x4C */ u8 field_0x4c[92 - 0x4c];
 };
 
 

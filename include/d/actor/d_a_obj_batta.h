@@ -9,7 +9,7 @@
 /**
  * @ingroup actors-objects
  * @class daObjBATTA_c
- * @brief Insect - Grasshopper
+ * @brief Insect - Grasshopper (Batta)
  *
  * @details
  *
