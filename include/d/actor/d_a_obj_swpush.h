@@ -67,12 +67,12 @@ namespace daObjSwpush {
         /* 80482DE8 */ bool create_heap();
         /* 80482FE8 */ cPhs__Step create_res_load();
         /* 80483038 */ cPhs__Step Mthd_Create();
-        /* 8048348C */ void Mthd_Delete();
+        /* 8048348C */ int Mthd_Delete();
         /* 804834E8 */ void set_mtx();
         /* 80483534 */ void init_mtx();
         /* 80483570 */ void set_btp_frame();
         /* 80483574 */ static void rideCB(dBgW*, fopAc_ac_c*, fopAc_ac_c*);
-        /* 804839B4 */ void jnodeCB(J3DJoint*, int);
+        /* 804839B4 */ static int jnodeCB(J3DJoint*, int);
         /* 80483A5C */ void calc_top_pos();
         /* 80483B70 */ void top_bg_aim_req(f32, s16);
         /* 80483B7C */ void set_push_flag();
@@ -100,18 +100,18 @@ namespace daObjSwpush {
         /* 80484908 */ void Mthd_Execute();
         /* 80484BB8 */ void Mthd_Draw();
 
-        static u8 const M_bmd[6 + 2 /* padding */];
-        static u8 const M_dzb[6 + 2 /* padding */];
+        static s16 const M_bmd[3];
+        static s16 const M_dzb[3];
         static u32 const M_heap_size[3];
         static Hio_c::Attr_c const M_attr[5];
         static u8 const M_op_vtx[4];
-        static void* M_arcname[3];
+        static char* M_arcname[3];
 
-        /* 0x568 */ u8 field_0x568[0x570 - 0x568];
+        /* 0x568 */ request_of_phase_process_class mPhase;
         /* 0x570 */ dBgWSv* mpBgW;
         /* 0x574 */ Mtx mMtx;
         /* 0x5A4 */ f32 field_0x5a4;
-        /* 0x5A8 */ J3DModel* field_0x5a8;
+        /* 0x5A8 */ J3DModel* mpModel;
         /* 0x5AC */ int mType;
         /* 0x5B0 */ u8 field_0x5b0[0x5ba - 0x5b0];
         /* 0x5BA */ s16 field_0x5ba;
