@@ -12,7 +12,7 @@ class JKRAramArchive;
 class JKRExpHeap;
 class JKRHeap;
 class STControl;
-class ResTIMG;
+struct ResTIMG;
 class dMenu_Fmap_stage_data_c;
 class dMenu_Fmap_world_data_c;
 class dMenu_Fmap_region_data_c;
