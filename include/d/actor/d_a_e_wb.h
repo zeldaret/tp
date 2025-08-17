@@ -99,7 +99,7 @@ public:
     /* 0x068E */ s16 field_0x68e;
     /* 0x0690 */ s16 mActionID;
     /* 0x0692 */ u16 field_0x692;
-    /* 0x0694 */ u32 field_0x694;
+    /* 0x0694 */ int mShadowKey;
     /* 0x0698 */ s16 field_0x698;
     /* 0x069A */ s16 field_0x69a;
     /* 0x069C */ s16 field_0x69c;
@@ -143,7 +143,7 @@ public:
     /* 0x07A7 */ s8 field_0x7a7;
     /* 0x07A8 */ f32 field_0x7a8;
     /* 0x07AC */ dBgS_AcchCir field_0x7ac;
-    /* 0x07EC */ dBgS_ObjAcch field_0x7ec;
+    /* 0x07EC */ dBgS_ObjAcch mAcch;
     /* 0x09C4 */ dCcD_Stts field_0x9c4;
     /* 0x0A00 */ dCcD_Sph field_0xa00[7];
     /* 0x1288 */ dCcD_Sph field_0x1288;
@@ -176,7 +176,7 @@ public:
     /* 0x15D0 */ mDoExt_3DlineMat1_c field_0x15d0[2];
     /* 0x1648 */ mDoExt_3DlineMat1_c field_0x1648;
     /* 0x1684 */ f32 field_0x1684;
-    /* 0x1688 */ u8 field_0x1688;
+    /* 0x1688 */ s16 field_0x1688;
     /* 0x168A */ u16 field_0x168a;
     /* 0x168C */ f32 field_0x168c;
     /* 0x1690 */ f32 field_0x1690;
@@ -214,21 +214,35 @@ public:
 
 STATIC_ASSERT(sizeof(e_wb_class) == 0x17EC);
 
-class daE_WB_HIO_c {
+class daE_WB_HIO_c : public JORReflexible {
 public:
     /* 807D248C */ daE_WB_HIO_c();
-    /* 807E20DC */ ~daE_WB_HIO_c();
+    /* 807E20DC */ virtual ~daE_WB_HIO_c() {};
 
-    /* 0x00 */ s8 field_0x00[0x4];
+    /* 0x00 */ // vtable
     /* 0x04 */ s8 field_0x04;
+    /* 0x08 */ f32 field_0x08;
+    /* 0x0C */ f32 field_0x0c;
+    /* 0x10 */ f32 field_0x10;
     /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ u8 field_0x18[0x24 - 0x18];
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ f32 field_0x1c;
+    /* 0x20 */ f32 field_0x20;
     /* 0x24 */ f32 field_0x24;
-    /* 0x24 */ f32 field_0x28;
+    /* 0x28 */ f32 field_0x28;
     /* 0x2C */ f32 field_0x2c;
     /* 0x30 */ f32 field_0x30;
-    /* 0x34 */ cXyz field_0x34[2];
-    /* 0x4C */ u8 field_0x4c[92 - 0x4c];
+    /* 0x34 */ f32 field_0x34;
+    /* 0x38 */ f32 field_0x38;
+    /* 0x3C */ f32 field_0x3c;
+    /* 0x40 */ f32 field_0x40;
+    /* 0x44 */ s16 field_0x44;
+    /* 0x48 */ f32 field_0x48;
+    /* 0x4C */ f32 field_0x4c;
+    /* 0x50 */ f32 field_0x50;
+    /* 0x54 */ f32 field_0x54;
+    /* 0x58 */ u8 field_0x58;
+    /* 0x59 */ u8 field_0x59;
 };
 
 
