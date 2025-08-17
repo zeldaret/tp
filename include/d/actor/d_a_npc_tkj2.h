@@ -36,7 +36,7 @@ public:
     /* 0x5F4 */ int field_0x5f4;
     /* 0x5F8 */ s16 field_0x5f8;
     /* 0x5FC */ cXyz field_0x5fc;
-    /* 0x608 */ s16 field_0x608;
+    /* 0x608 */ s16 mAction;
     /* 0x60A */ s16 field_0x60a;
     /* 0x60C */ u32 mShadowKey;
     /* 0x610 */ s16 field_0x610[4];

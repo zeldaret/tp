@@ -127,7 +127,7 @@ static void npc_tkj2_carry_check(npc_tkj2_class* i_this) {
 
     if (fopAcM_checkCarryNow(a_this)) {
         cLib_offBit<u32>(a_this->attention_info.flags, 0x10);
-        i_this->field_0x608 = 1;
+        i_this->mAction = 1;
         i_this->field_0x60a = 0;
         a_this->speed.y = 0.0f;
         a_this->speedF = 0.0f;
@@ -159,17 +159,17 @@ static void Wind_effect(npc_tkj2_class* i_this) {
                 if (i_this->field_0x5eb == 0) {
                     i_this->mpModelMorf->setPlaySpeed(VREG_F(1) + 2.0f);
 
-                    if (i_this->field_0x608 == 0) {
+                    if (i_this->mAction == 0) {
                         i_this->field_0x60a = 0;
                         a_this->speedF = 5.0f;
                         a_this->speed.y = 20.0f;
-                        i_this->field_0x608 = 2;
+                        i_this->mAction = 2;
                         i_this->field_0x60a = 0;
                     }
                 }
 
                 cXyz* atVecP = tgHitObj->GetAtVecP();
-                *atVecP *= (yREG_F(2) + 2.0f);
+                *atVecP *= yREG_F(2) + 2.0f;
                 cLib_addCalc(&i_this->field_0x5fc.x, atVecP->x, 0.1f, 100.0f, 0.0f);
                 cLib_addCalc(&i_this->field_0x5fc.y, atVecP->y, 0.1f, 100.0f, 0.0f);
                 cLib_addCalc(&i_this->field_0x5fc.z, atVecP->z, 0.1f, 100.0f, 0.0f);
@@ -482,17 +482,17 @@ static s8 npc_tkj2_carry(npc_tkj2_class* i_this) {
             i_this->field_0x60a = 0;
             a_this->speedF = 20.0f;
             a_this->speed.y = 15.0f;
-            i_this->field_0x608 = 2;
+            i_this->mAction = 2;
             i_this->field_0x60a = 0;
         } else if (i_this->mObjAcch.ChkGroundHit()) {
-            i_this->field_0x608 = 0;
+            i_this->mAction = 0;
             i_this->field_0x60a = 0;
             i_this->field_0x610[0] = 15;
         } else if (speed.y < 0.0f) {
-            i_this->field_0x608 = 6;
+            i_this->mAction = 6;
             i_this->field_0x60a = 0;
         } else {
-            i_this->field_0x608 = 3;
+            i_this->mAction = 3;
             i_this->field_0x60a = 0;
         }
 
@@ -529,7 +529,7 @@ static void npc_tkj2_fly(npc_tkj2_class* i_this) {
             break;
         
         case 1:
-            fVar1 = 0.30000001192092896f;
+            fVar1 = 0.3f;
             break;
     }
 
@@ -547,7 +547,7 @@ static void npc_tkj2_fly(npc_tkj2_class* i_this) {
     }
 
     if (i_this->field_0x610[0] == 0) {
-        i_this->field_0x608 = 4;
+        i_this->mAction = 4;
         i_this->field_0x60a = 0;
         i_this->field_0x5f8 = 0x500;
 
@@ -555,7 +555,7 @@ static void npc_tkj2_fly(npc_tkj2_class* i_this) {
             i_this->field_0x5b8 = fopAcM_GetPosition(player);
         }
     } else if (i_this->mObjAcch.ChkGroundHit()) {
-        i_this->field_0x608 = 0;
+        i_this->mAction = 0;
         i_this->field_0x60a = 0;
         a_this->home.pos = a_this->current.pos;
     }
@@ -578,7 +578,7 @@ static void npc_tkj2_drop(npc_tkj2_class* i_this) {
     i_this->field_0x5d0 = -2.0f;
 
     if (i_this->mObjAcch.ChkGroundHit()) {
-        i_this->field_0x608 = 0;
+        i_this->mAction = 0;
         i_this->field_0x60a = 0;
         a_this->home.pos = a_this->current.pos;
     }
@@ -605,7 +605,7 @@ static void npc_tkj2_return(npc_tkj2_class* i_this) {
             i_this->field_0xa98 = 0.5f;
             // fallthrough
         case 1:
-            fVar1 = 0.20000000298023224f;
+            fVar1 = 0.2f;
             cLib_addCalc2(&i_this->field_0xa98, 2.0f, 0.2f, 0.1f);
             break;
     }
@@ -643,7 +643,7 @@ static void npc_tkj2_return(npc_tkj2_class* i_this) {
     if (fVar2 < 100.0f) {
         if (!GndCheck2(i_this)) {
             anm_init(i_this, BCK_TKJ_FLY_FALL, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
-            i_this->field_0x608 = 6;
+            i_this->mAction = 6;
             i_this->field_0x60a = 0;
         } else {
             a_this->home.pos = fopAcM_GetPosition(player);
@@ -653,7 +653,7 @@ static void npc_tkj2_return(npc_tkj2_class* i_this) {
 
     if (i_this->mObjAcch.ChkGroundHit()) {
         anm_init(i_this, BCK_TKJ_FLY_FALL, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
-        i_this->field_0x608 = 6;
+        i_this->mAction = 6;
         i_this->field_0x60a = 0;
     }
 }
@@ -679,7 +679,7 @@ static void ObjHit(npc_tkj2_class* i_this) {
             i_this->field_0x60a = 0;
             a_this->speedF = 5.0f;
             a_this->speed.y = 20.0f;
-            i_this->field_0x608 = 2;
+            i_this->mAction = 2;
             i_this->field_0x60a = 0;
             anm_init(i_this, BCK_TKJ_FLY, 1.0f, J3DFrameCtrl::EMode_LOOP, 2.0f);
             i_this->field_0x60a++;
@@ -716,7 +716,7 @@ static void action(npc_tkj2_class* i_this) {
     cXyz sp50(0.0f, 100.0f, 0.0f);
     i_this->field_0xa8c = 0;
 
-    switch (i_this->field_0x608) {
+    switch (i_this->mAction) {
         case ACTION_NORMAL:
             npc_tkj2_normal(i_this);
             sVar1 = 1;
@@ -758,7 +758,7 @@ static void action(npc_tkj2_class* i_this) {
                 i_this->field_0x60a = 0;
                 a_this->speedF = 5.0f;
                 a_this->speed.y = 10.0f;
-                i_this->field_0x608 = 4;
+                i_this->mAction = 4;
 
                 if (GndCheck2(i_this)) {
                     i_this->field_0x5b8 = fopAcM_GetPosition(player);
@@ -777,7 +777,7 @@ static void action(npc_tkj2_class* i_this) {
                 i_this->field_0x60a = 0;
                 a_this->speedF = 5.0f;
                 a_this->speed.y = 10.0f;
-                i_this->field_0x608 = 4;
+                i_this->mAction = 4;
                 i_this->field_0x5f8 = 0x500;
                 i_this->field_0x5c4 = fopAcM_searchPlayerAngleY(a_this) + 0x8000;
             }
@@ -801,14 +801,14 @@ static void action(npc_tkj2_class* i_this) {
         i_this->field_0x5ea = 0;
 
         if (dComIfGp_checkPlayerStatus1(0, 0x2000000) || dComIfGp_checkPlayerStatus1(0, 0x10000)) {
-            i_this->field_0x608 = 3;
+            i_this->mAction = 3;
             i_this->field_0x630 = 0;
             i_this->field_0x60a = 0;
             a_this->speedF = 0.0f;
             a_this->speed.y = 0.0f;
         } else if (player->setForceGrab(a_this, 0, 1)) {
             cLib_offBit<u32>(a_this->attention_info.flags, 0x10);
-            i_this->field_0x608 = 1;
+            i_this->mAction = 1;
             i_this->field_0x630 = 0;
             i_this->field_0x60a = 0;
             a_this->speedF = 0.0f;
@@ -821,10 +821,10 @@ static void action(npc_tkj2_class* i_this) {
             i_this->field_0x60a = 0;
             a_this->speedF = 20.0f;
             a_this->speed.y = 15.0f;
-            i_this->field_0x608 = 2;
+            i_this->mAction = 2;
             i_this->field_0x60a = 0;
         } else if (a_this->speed.y <= -15.0f) {
-            i_this->field_0x608 = 3;
+            i_this->mAction = 3;
             i_this->field_0x60a = 0;
             a_this->speed.y = 0.0f;
             bVar1 = TRUE;
@@ -931,7 +931,7 @@ static void action(npc_tkj2_class* i_this) {
 
         if (i_this->field_0x5f3 != 0) {
             if (player->getGrabUpEnd() || player->getGrabUpStart()) {
-                i_this->field_0x608 = 0;
+                i_this->mAction = 0;
                 i_this->field_0x630 = 0;
                 i_this->field_0x60a = 0;
                 a_this->speedF = 0.0f;
@@ -940,7 +940,7 @@ static void action(npc_tkj2_class* i_this) {
                 i_this->field_0x5f3 = 0;
             } else if (player->setForceGrab(a_this, 0, 1)) {
                 cLib_offBit<u32>(a_this->attention_info.flags, 0x10);
-                i_this->field_0x608 = 1;
+                i_this->mAction = 1;
                 i_this->field_0x630 = 0;
                 i_this->field_0x60a = 0;
                 a_this->speedF = 0.0f;
@@ -948,7 +948,7 @@ static void action(npc_tkj2_class* i_this) {
                 i_this->field_0x5f2 = 0;
                 i_this->field_0x5f3 = 0;
             } else {
-                i_this->field_0x608 = 0;
+                i_this->mAction = 0;
                 i_this->field_0x630 = 0;
                 i_this->field_0x60a = 0;
                 a_this->speedF = 0.0f;
@@ -964,7 +964,7 @@ static void action(npc_tkj2_class* i_this) {
         }
     }
 
-    if (i_this->field_0x608 != 1) {
+    if (i_this->mAction != 1) {
         npc_tkj2_carry_check(i_this);
     }
 
@@ -1128,7 +1128,7 @@ static cPhs__Step daNpc_Tkj2_Create(fopAc_ac_c* a_this) {
         #endif
 
         a_this->attention_info.flags = 0;
-        i_this->field_0x608 = 0;
+        i_this->mAction = 0;
 
         fopAcM_SetMtx(a_this, i_this->mpModelMorf->getModel()->getBaseTRMtx());
         i_this->mObjAcch.Set(fopAcM_GetPosition_p(a_this), fopAcM_GetOldPosition_p(a_this), a_this, 1, &i_this->mAcchCir,
