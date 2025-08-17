@@ -1498,7 +1498,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_carry"),
     ActorRel(NonMatching, "d_a_obj_ito"),
     ActorRel(NonMatching, "d_a_obj_movebox"),
-    ActorRel(NonMatching, "d_a_obj_swpush"),
+    ActorRel(Equivalent, "d_a_obj_swpush"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_timer"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_path_line"),
     ActorRel(NonMatching, "d_a_scene_exit"),

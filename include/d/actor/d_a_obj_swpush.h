@@ -3,7 +3,7 @@
 
 #include "d/d_a_obj.h"
 #include "d/d_bg_w_sv.h"
-#include "f_op/f_op_actor_mng.h"
+#include "d/d_com_inf_game.h"
 
 /**
  * @ingroup actors-objects
@@ -13,15 +13,23 @@
  * @details This is a multi-purpose depression switch actor.
  * Used by: Gold Pressure Switch, Lakebed Pressure Switch
  *
- */
+*/
 namespace daObjSwpush {
-// public:
+    enum AttrFlag_e {
+        FLAG_OBEY_SAVE = 0x1,
+        FLAG_STAY_PRESSED = 0x2,
+        FLAG_IS_TOGGLE = 0x4,
+        FLAG_REQ_HEAVY = 0x8,
+        FLAG_ON_IS_UP = 0x10,
+        FLAG_UNK20 = 0x20,
+    };
+    
     class Hio_c {
     public:
         class Attr_c {
         public:
             /* § 踏みスイッチ §\n - Foot Switch */
-            /* 0x00 */ int field_0x0;
+            /* 0x00 */ AttrFlag_e flags;
             /* 0x04 */ f32 scale;
             /* 0x08 */ f32 draw_spring;             // draw_spring
             /* 0x0C */ f32 draw_resist;             // draw_resist
@@ -52,6 +60,21 @@ namespace daObjSwpush {
             /* 0x1D */ PRM_1D_e = 0x1D,
         };
 
+        enum Mode_e {
+            MODE_UPPER = 0,
+            MODE_U_L = 1,
+            MODE_LOWER = 2,
+            MODE_L_U = 3
+        };
+
+        enum DemoMode_e {
+            DEMO_MODE_NON = 0,
+            DEMO_MODE_REQ_PAUSE = 1,
+            DEMO_MODE_RUN_PAUSE = 2,
+            DEMO_MODE_REQ_SW = 3,
+            DEMO_MODE_RUN_SW = 4
+        };
+
         const Hio_c::Attr_c& attr() const { return M_attr[mType]; }
         u8 prmZ_get_swSave2() const { return mPrmZ & 0xFF; }
         int prm_get_couple() const { return daObj::PrmAbstract(this, PRM_1_e, PRM_1D_e); }
@@ -60,6 +83,10 @@ namespace daObjSwpush {
         int prm_get_swSave() const { return daObj::PrmAbstract(this, PRM_8_e, PRM_8_e); }
         int prm_get_type() const { return daObj::PrmAbstract(this, PRM_3_e, PRM_18_e); }
         bool is_switch() { return fopAcM_isSwitch(this, prm_get_swSave()); }
+        void fopAcM_revSwitch(fopAc_ac_c* i_actor, int param) { dComIfGs_revSwitch(param, fopAcM_GetHomeRoomNo(i_actor)); }
+        void rev_switch() { fopAcM_revSwitch(this, prm_get_swSave()); }
+        void off_switch() { fopAcM_offSwitch(this, prm_get_swSave()); }
+        void on_switch() { fopAcM_onSwitch(this, prm_get_swSave()); }
 
         /* 80482D4C */ void prmZ_init();
         /* 80482D7C */ bool is_switch2() const;
@@ -95,10 +122,10 @@ namespace daObjSwpush {
         /* 804847B4 */ void demo_reqSw();
         /* 80484828 */ void demo_runSw_init();
         /* 80484834 */ void demo_runSw();
-        /* 80484890 */ void check_ride_couple(s16);
-        /* 804848D8 */ void nr_ride_people(char);
-        /* 80484908 */ void Mthd_Execute();
-        /* 80484BB8 */ void Mthd_Draw();
+        /* 80484890 */ bool check_ride_couple(s16);
+        /* 804848D8 */ int nr_ride_people(char);
+        /* 80484908 */ int Mthd_Execute();
+        /* 80484BB8 */ int Mthd_Draw();
 
         static s16 const M_bmd[3];
         static s16 const M_dzb[3];
@@ -113,36 +140,36 @@ namespace daObjSwpush {
         /* 0x5A4 */ f32 field_0x5a4;
         /* 0x5A8 */ J3DModel* mpModel;
         /* 0x5AC */ int mType;
-        /* 0x5B0 */ u8 field_0x5b0[0x5ba - 0x5b0];
-        /* 0x5BA */ s16 field_0x5ba;
+        /* 0x5B0 */ int mMode;
+        /* 0x5B4 */ int mDemoMode;
+        /* 0x5B8 */ s16 mPauseTimer;
+        /* 0x5BA */ s16 mEventID;
         /* 0x5BC */ u16 mPrmZ;
         /* 0x5BE */ bool mPrmZInit;
-        /* 0x5BF */ u8 field_0x5bf;
-        /* 0x5C0 */ u8 field_0x5c0;
-        /* 0x5C1 */ u8 field_0x5c1;
-        /* 0x5C2 */ s16 field_0x5c2;
-        /* 0x5C4 */ u8 field_0x5c4;
+        /* 0x5BF */ u8 mVibTimer;
+        /* 0x5C0 */ u8 mRidingMode;
+        /* 0x5C1 */ bool mPrevRiding;
+        /* 0x5C2 */ s16 mMiniPushTimer;
+        /* 0x5C4 */ bool mMiniPushFlg;
         /* 0x5C5 */ u8 field_0x5c5;
-        /* 0x5C6 */ u8 field_0x5c6;
-        /* 0x5C7 */ u8 field_0x5c7;
-        /* 0x5C8 */ s16 field_0x5c8;
-        /* 0x5CA */ u8 field_0x5ca;
-        /* 0x5CB */ u8 field_0x5cb;
-        /* 0x5CC */ f32 field_0x5cc;
-        /* 0x5D0 */ f32 field_0x5d0;
-        /* 0x5D4 */ f32 field_0x5d4;
+        /* 0x5C6 */ bool mHeavyRiding;
+        /* 0x5C7 */ bool mPrevHeavyRiding;
+        /* 0x5C8 */ s16 mPushTimer;
+        /* 0x5CA */ bool mPushFlg;
+        /* 0x5CB */ bool mChangingState;
+        /* 0x5CC */ f32 mTargetHFrac;
+        /* 0x5D0 */ f32 mCurHFrac;
+        /* 0x5D4 */ f32 mSpeed;
         /* 0x5D8 */ f32 field_0x5d8;
         /* 0x5DC */ f32 field_0x5dc;
         /* 0x5E0 */ s16 field_0x5e0;
-        /* 0x5E2 */ u8 field_0x5e2[0x5e4 - 0x5e2];
         /* 0x5E4 */ f32 field_0x5e4;
         /* 0x5E8 */ f32 field_0x5e8;
-        /* 0x5EC */ f32 field_0x5ec;
-        /* 0x5F0 */ u8 field_0x5f0[0x5f2 - 0x5f0];
-        /* 0x5F2 */ u8 field_0x5f2;
+        /* 0x5EC */ f32 mTopPos;
+        /* 0x5F0 */ s16 mDebounceTimer;
+        /* 0x5F2 */ s8 field_0x5f2;
         /* 0x5F3 */ u8 field_0x5f3;
-        /* 0x5F4 */ u8 field_0x5f4;
-        /* 0x5F5 */ u8 field_0x5f5[0x5f8 - 0x5f5];
+        /* 0x5F4 */ u8 mMdl;
         /* 0x5F8 */ cXyz field_0x5f8;
     };
 
@@ -174,14 +201,5 @@ namespace daObjSwpush {
 };
 
 STATIC_ASSERT(sizeof(daObjSwpush::Act_c) == 0x604);
-
-// struct daObj {
-// public:
-//     template <typename A1>
-//     void PrmAbstract(/* ... */);
-//     /* 80484CE4 */ /* daObj::PrmAbstract<daObjSwpush::Act_c::Prm_e> */
-//     void func_80484CE4(void* _this, fopAc_ac_c const*, daObjSwpush::Act_c::Prm_e,
-//                        daObjSwpush::Act_c::Prm_e);
-// };
 
 #endif /* D_A_OBJ_SWPUSH_H */
