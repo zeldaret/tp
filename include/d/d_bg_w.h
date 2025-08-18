@@ -225,6 +225,9 @@ public:
     bool ChkRoofRegist() { return field_0x91 & 4;}
     cBgD_Vtx_t* GetVtxTbl() const { return pm_vtx_tbl; }
     int GetVtxNum() const { return pm_bgd->m_v_num; }
+    void ClrNoCalcVtx() { mFlags &= ~NO_CALC_VTX_e; }
+    void SetBaseMtxP(MtxP mtx) { pm_base = mtx; }
+    void SetNoCalcVtx() { mFlags |= NO_CALC_VTX_e; }
 
 public:
     /* 0x18 */ MtxP pm_base;  // Model Matrix

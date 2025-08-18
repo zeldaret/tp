@@ -85,6 +85,8 @@ public:
     /* 806A226C */ daE_DD_HIO_c();
     /* 806A6D08 */ virtual ~daE_DD_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* ドドンゴ - Dodongo */
     /* 0x04 */ s8 field_0x4;
     /* 0x08 */ f32 basic_size;      // 基本サイズ - Basic Size

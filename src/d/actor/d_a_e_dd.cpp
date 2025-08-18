@@ -1439,7 +1439,7 @@ static int daE_DD_Execute(e_dd_class* i_this) {
 
     anm_se_set(i_this);
 
-    MTXCopy(model->getAnmMtx(AREG_S(4) + JNT_NECK), *calc_mtx);
+    MTXCopy(model->getAnmMtx((int)AREG_S(4) + JNT_NECK), *calc_mtx);
     sp1c.set(AREG_F(0) + 40.0f, AREG_F(1), AREG_F(2) + -40.0f);
     MtxPosition(&sp1c, &i_this->field_0xe40);
     sp1c.set(AREG_F(13), AREG_F(14), AREG_F(15));
@@ -1683,7 +1683,7 @@ static cPhs__Step daE_DD_Create(fopAc_ac_c* a_this) {
         u8 uVar1 = fopAcM_GetParam(a_this) >> 16 & 0xFF;
         if ((int)(fopAcM_GetParam(a_this) >> 24) != 0xFF) {
             if (dComIfGs_isSwitch(fopAcM_GetParam(a_this) >> 24, fopAcM_GetRoomNo(a_this))) {
-                OS_REPORT("E_DD やられ後なので再セットしません\n") // Since I was attacked in E_DD, I will not reset\n
+                OS_REPORT("E_DD やられ後なので再セットしません\n"); // Since I was attacked in E_DD, I will not reset\n
                 return cPhs_ERROR_e;
             }
         }
