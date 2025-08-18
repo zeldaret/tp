@@ -2009,7 +2009,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_lv4RailWall"),
     ActorRel(NonMatching, "d_a_obj_lv4SlideWall"),
     ActorRel(NonMatching, "d_a_obj_lv4bridge"),
-    ActorRel(NonMatching, "d_a_obj_lv4chandelier"),
+    ActorRel(Equivalent, "d_a_obj_lv4chandelier"), # weak function order
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv4digsand"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv4floor"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv4gear"),
