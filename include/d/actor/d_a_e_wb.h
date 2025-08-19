@@ -6,7 +6,28 @@
 #include "SSystem/SComponent/c_phase.h"
 #include "d/d_cc_uty.h"
 
-enum daE_wb_ACT {
+// copypasta, fix when actual names known
+enum daE_WB_ANM {
+    ANM_APPEAR = 7,
+    ANM_ATTACK,
+    ANM_ATTACK_A,
+    ANM_ATTACK_B,
+    ANM_ATTACK_C,
+    ANM_BOMB_DAMAGE,
+    ANM_CORE_DAMAGE,
+    ANM_DAMAGE_WAIT,
+    ANM_DEAD,
+    ANM_LOOK_M,
+    ANM_NO_DAMAGE,
+    ANM_RETURN_01,
+    ANM_RETURN_02,
+    ANM_RUNAWAY,
+    ANM_TEST_MOTION,
+    ANM_TODOME,
+    ANM_WAIT_01,
+};
+
+enum daE_WB_ACT {
     /* 0x00 */ ACT_WAIT,
     /* 0x01 */ ACT_WAIT2,
     /* 0x04 */ ACT_RIDE = 0x04,
@@ -221,28 +242,28 @@ public:
 
     /* 0x00 */ // vtable
     /* 0x04 */ s8 field_0x04;
-    /* 0x08 */ f32 field_0x08;
-    /* 0x0C */ f32 field_0x0c;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1c;
-    /* 0x20 */ f32 field_0x20;
-    /* 0x24 */ f32 field_0x24;
-    /* 0x28 */ f32 field_0x28;
-    /* 0x2C */ f32 field_0x2c;
-    /* 0x30 */ f32 field_0x30;
-    /* 0x34 */ f32 field_0x34;
-    /* 0x38 */ f32 field_0x38;
-    /* 0x3C */ f32 field_0x3c;
-    /* 0x40 */ f32 field_0x40;
-    /* 0x44 */ s16 field_0x44;
-    /* 0x48 */ f32 field_0x48;
-    /* 0x4C */ f32 field_0x4c;
-    /* 0x50 */ f32 field_0x50;
-    /* 0x54 */ f32 field_0x54;
+    /* 0x08 */ f32 mBaseSize;
+    /* 0x0C */ f32 mLeaderSizeRatio;
+    /* 0x10 */ f32 mMovementSpeed;
+    /* 0x14 */ f32 mMaxSpeed;
+    /* 0x18 */ f32 mCalvaryBattleMaxSpeed;
+    /* 0x1C */ f32 mNormalSpeedVi;
+    /* 0x20 */ f32 mMediumSpeedVi;
+    /* 0x24 */ f32 mMaxSpeedVi;
+    /* 0x28 */ f32 mLeaderWalkingSpeed;
+    /* 0x2C */ f32 mLeaderMaxSpeed;
+    /* 0x30 */ f32 mLeaderCalvaryBattleMaxSpeed;
+    /* 0x34 */ f32 mSingleRiderSpeed;
+    /* 0x38 */ f32 mPlayerRecognitionDistance;
+    /* 0x3C */ f32 mPlayerMountedMaxSpeed;
+    /* 0x40 */ f32 mPlayerMountedMotionPlaybackSpeed;
+    /* 0x44 */ s16 mPlayerMountedDashTime;
+    /* 0x48 */ f32 mSearchIgnoreDistance1;
+    /* 0x4C */ f32 mSearchIgnoreDistance2;
+    /* 0x50 */ f32 mGuidanceDisplayDistance1;
+    /* 0x54 */ f32 mGuidanceDisplayDistance2;
     /* 0x58 */ u8 field_0x58;
-    /* 0x59 */ u8 field_0x59;
+    /* 0x59 */ u8 mNoReins;
 };
 
 

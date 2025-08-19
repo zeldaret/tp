@@ -10,7 +10,7 @@
 
 #include "SSystem/SComponent/c_phase.h"
 #include "Z2AudioLib/Z2Creature.h"
-#include "f_op/f_op_actor.h"
+#include "f_op/f_op_actor_mng.h"
 #include "d/d_bg_s_acch.h"
 #include "d/d_cc_d.h"
 #include "d/d_cc_uty.h"
@@ -39,11 +39,12 @@ enum daE_YK_Action {
  * @brief Shadow Keese Host Input Output class.
  * 
  */
-class daE_YK_HIO_c {
+class daE_YK_HIO_c : public JORReflexible {
 public:
     /* 8080482C */ daE_YK_HIO_c();
     /* 808077E0 */ virtual ~daE_YK_HIO_c() {}
 
+    /* 0x00 */ // vtable
     /* 0x04 */ s8 field_0x04;       ///< @brief Initialized to -1, appears unused.
     /* 0x08 */ f32 mModelScale;     ///< @brief Base model scale factor (default: 1.0).
     /* 0x0C */ f32 mFlySpeed;       ///< @brief Base flying speed (default: 15.0).
@@ -55,7 +56,7 @@ public:
 /**
  * @ingroup actors-enemies
  * @class e_yk_class
- * @brief Twilight Keese
+ * @brief Twilight Keese (Yami Keese)
  * 
  * @details 
  * 

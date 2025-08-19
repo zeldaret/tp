@@ -39,6 +39,18 @@ daE_YK_HIO_c::daE_YK_HIO_c() {
     mChargeSpeed = 40.0f;   
 }
 
+#ifdef DEBUG
+daE_YK_HIO_c::genMessage(JORMContext* ctx) {
+  ctx->genLabel("闇キース", 0x80000001, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
+  ctx->genSlider("基本サイズ", &mModelScale, 0.0f, 3.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x512, 24);
+  ctx->genSlider("飛行速度", &mFlySpeed, 0.0f, 50.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
+  ctx->genSlider("戦闘開始範囲", &mAttackRange, 0.0f, 600.0f,0, NULL, 0xFFFF, 0xFFFF, 512, 24);
+  ctx->genSlider("戦闘速度", &mCruiseSpeed, 0.0f, 50.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
+  ctx->genSlider("突進速度", &mChargeSpeed, 0.0f, 50.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
+}
+#endif
+
+
 /**
  * @brief Makes a Shadow Keese disappear with effects and item drops
  * 
