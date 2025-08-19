@@ -1652,7 +1652,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_e_ba"), # weak func order
     ActorRel(NonMatching, "d_a_e_bee"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_bg"),
-    ActorRel(NonMatching, "d_a_e_bi"),
+    ActorRel(Equivalent, "d_a_e_bi"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_bi_leaf"),
     ActorRel(Equivalent, "d_a_e_bs"), # weak func order
     ActorRel(Equivalent, "d_a_e_bu"),
@@ -1930,7 +1930,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_obj_flag2"), # weak function order
     ActorRel(NonMatching, "d_a_obj_flag3"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_food"),
-    ActorRel(NonMatching, "d_a_obj_fw"),
+    ActorRel(Equivalent, "d_a_obj_fw"), # weak function order
     ActorRel(NonMatching, "d_a_obj_gadget"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ganonwall"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ganonwall2"),
