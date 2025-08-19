@@ -1930,7 +1930,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_obj_flag2"), # weak function order
     ActorRel(NonMatching, "d_a_obj_flag3"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_food"),
-    ActorRel(NonMatching, "d_a_obj_fw"),
+    ActorRel(Equivalent, "d_a_obj_fw"), # weak function order
     ActorRel(NonMatching, "d_a_obj_gadget"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ganonwall"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ganonwall2"),
