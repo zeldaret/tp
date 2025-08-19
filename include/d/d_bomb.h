@@ -88,6 +88,16 @@ public:
         return (fopAc_ac_c*)fopAcM_fastCreate(PROC_NBOMB, 0x11, i_pos, i_roomNo, i_angle, NULL, -1,
                                  NULL, NULL);
     }
+
+    static fopAc_ac_c* createEnemyBombHookshot(cXyz* i_pos, csXyz* i_angle, int i_roomNo) {
+        return (fopAc_ac_c*)fopAcM_fastCreate(PROC_NBOMB, 13, i_pos, i_roomNo, i_angle, NULL, -1,
+                                              NULL, NULL);
+    }
+
+    static fopAc_ac_c* createEnemyBomb(cXyz* i_pos, csXyz* i_angle, int i_roomNo) {
+        return (fopAc_ac_c*)fopAcM_fastCreate(PROC_NBOMB, 0xB, i_pos, i_roomNo, i_angle, NULL, -1,
+                                              NULL, NULL);
+    }
 };
 
 #endif /* D_D_BOMB_H */
