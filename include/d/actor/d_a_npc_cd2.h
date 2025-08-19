@@ -407,9 +407,7 @@ public:
     /* 0xAA4 */ int field_0xaa4;
     /* 0xAA8 */ int mHitodamaEmitters[2];
     /* 0xAB0 */ daTagEscape_c* mEscapeTag;
-    /* 0xAB4 */ f32 field_0xab4;
-    /* 0xAB8 */ f32 field_0xab8;
-    /* 0xABC */ f32 field_0xabc;
+    /* 0xAB4 */ cXyz field_0xab4;
     /* 0xAC0 */ s16 field_0xac0;
     /* 0xAC2 */ s16 field_0xac2;
     /* 0xAC4 */ s16 field_0xac4;
