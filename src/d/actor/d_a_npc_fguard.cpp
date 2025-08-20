@@ -146,12 +146,11 @@ void daNpcFgd_c::checkGroundHeight() {
 
     s16 sVar1 = 0;
     cM3dGPla plane;
-
     if (dComIfG_Bgsp().GetTriPla(mAcch.m_gnd, &plane)) {
         sVar1 = fopAcM_getPolygonAngle(&plane, shape_angle.y);
     }
-
-    if (sVar1 != 0) {
+    
+    if (sVar1) {
         field_0xad4 = current.pos.y;
     }
 
@@ -164,8 +163,7 @@ void daNpcFgd_c::setCollision() {
     mCyl.SetH(Cd2_HIO_cylH(m_type));
     #endif
     
-    cXyz sp18(current.pos.x, field_0xad4, current.pos.z);
-    mCyl.SetC(sp18);
+    mCyl.SetC(cXyz(current.pos.x, field_0xad4, current.pos.z));
     dComIfG_Ccsp()->Set(&mCyl);
 }
 
@@ -173,11 +171,11 @@ int daNpcFgd_c::execute() {
     mAcchCir.SetWallH(Cd2_HIO_chkWallH(m_type));
     mAcchCir.SetWallR(Cd2_HIO_chkWallR(m_type));
 
-    if (mFlag != 0) {
+    if (mFlag) {
         fopAcM_OffStatus(this, 0x8000000);
     } else {
         fopAcM_OnStatus(this, 0x8000000);
-        return 1;
+        // return 1;
     }
 
     checkGroundHeight();
