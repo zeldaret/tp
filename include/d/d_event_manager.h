@@ -33,6 +33,10 @@ public:
 
 class dEvent_manager_c {
 public:
+    enum Event_Cut_Nums {
+        /* 0x1 */ NUM_EVT_CUTS_e = 0x1,
+    };
+
     void* getSubstance(dEvDtData_c* p_data, int type);
     void setDbgData(const char*);
     dEvent_manager_c();
