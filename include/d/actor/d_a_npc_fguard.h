@@ -11,7 +11,8 @@
  *
  * @details
  *
- */
+*/
+
 class daNpcFgd_c : public daNpcCd2_c {
 public:
     /* 809BA53C */ void initPosAngle(Vec&, s16);
@@ -23,7 +24,7 @@ public:
     int getObjNum() { return (fopAcM_GetParam(this) >> 8) & 0xFF; }
     inline int createHeap();
     inline void initCollision();
-    u8 getFirstFlag() { return ((fopAcM_GetParam(this) >> 16) & 0xFF) != 0; }
+    int getFirstFlag() { return ((fopAcM_GetParam(this) >> 16) & 0xFF) != 0; }
     void setAnime(int param_1) { setAnm((J3DAnmTransformKey*)getAnmP(param_1, mObjNum), 1.0f, 12.0f, 2, cM_rndF(5.0f), -1); }
     inline void setBaseMtx();
     inline void checkGroundHeight();

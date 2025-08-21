@@ -38,8 +38,7 @@ void daNpcFgd_c::initPosAngle(Vec& i_pos, s16 param_2) {
 
 /* 809BA564-809BA584 000124 0020+00 1/0 0/0 0/0 .text            daNpcFgd_Create__FPv */
 static int daNpcFgd_Create(void* a_this) {
-    daNpcFgd_c* i_this = (daNpcFgd_c*)a_this;
-    return i_this->create();
+    return static_cast<daNpcFgd_c*>(a_this)->create();
 }
 
 /* 809BA584-809BA730 000144 01AC+00 1/1 0/0 0/0 .text            create__10daNpcFgd_cFv */
@@ -53,7 +52,7 @@ cPhs__Step daNpcFgd_c::create() {
     cPhs__Step phase = (cPhs__Step)loadResrc(m_type, mObjNum);
     if (phase == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, createHeapCallBack, 0x1910)) {
-            OS_REPORT("隊列兵士アクター生成失敗しました！\n") // Failed to generate the squad soldier actor!
+            OS_REPORT("隊列兵士アクター生成失敗しました！\n"); // Failed to generate the squad soldier actor!
 
             return cPhs_ERROR_e;
         }
@@ -120,8 +119,7 @@ void daNpcFgd_c::create_init() {
 
 /* 809BAA4C-809BAA80 00060C 0034+00 1/0 0/0 0/0 .text            daNpcFgd_Delete__FPv */
 static int daNpcFgd_Delete(void* a_this) {
-    daNpcFgd_c* i_this = (daNpcFgd_c*)a_this;
-    i_this->~daNpcFgd_c();
+    static_cast<daNpcFgd_c*>(a_this)->~daNpcFgd_c();
     return 1;
 }
 
@@ -146,7 +144,8 @@ void daNpcFgd_c::checkGroundHeight() {
 
     s16 sVar1 = 0;
     cM3dGPla plane;
-    if (dComIfG_Bgsp().GetTriPla(mAcch.m_gnd, &plane)) {
+    bool bVar1 = dComIfG_Bgsp().GetTriPla(mAcch.m_gnd, &plane);
+    if (bVar1) {
         sVar1 = fopAcM_getPolygonAngle(&plane, shape_angle.y);
     }
     
@@ -163,7 +162,8 @@ void daNpcFgd_c::setCollision() {
     mCyl.SetH(Cd2_HIO_cylH(m_type));
     #endif
     
-    mCyl.SetC(cXyz(current.pos.x, field_0xad4, current.pos.z));
+    cXyz sp18(current.pos.x, field_0xad4, current.pos.z);
+    mCyl.SetC(sp18);
     dComIfG_Ccsp()->Set(&mCyl);
 }
 
@@ -175,7 +175,7 @@ int daNpcFgd_c::execute() {
         fopAcM_OffStatus(this, 0x8000000);
     } else {
         fopAcM_OnStatus(this, 0x8000000);
-        // return 1;
+        return 1;
     }
 
     checkGroundHeight();
@@ -188,9 +188,7 @@ int daNpcFgd_c::execute() {
 
 /* 809BAB04-809BAD3C 0006C4 0238+00 1/0 0/0 0/0 .text            daNpcFgd_Execute__FPv */
 static int daNpcFgd_Execute(void* a_this) {
-    // NONMATCHING
-    daNpcFgd_c* i_this = (daNpcFgd_c*)a_this;
-    return i_this->execute();
+    return static_cast<daNpcFgd_c*>(a_this)->execute();
 }
 
 int daNpcFgd_c::draw() {
@@ -207,8 +205,7 @@ int daNpcFgd_c::draw() {
 
 /* 809BAD84-809BAE20 000944 009C+00 1/0 0/0 0/0 .text            daNpcFgd_Draw__FPv */
 static int daNpcFgd_Draw(void* a_this) {
-    daNpcFgd_c* i_this = (daNpcFgd_c*)a_this;
-    return i_this->draw();
+    return static_cast<daNpcFgd_c*>(a_this)->draw();
 }
 
 /* 809BAE20-809BAE28 0009E0 0008+00 1/0 0/0 0/0 .text            daNpcFgd_IsDelete__FPv */
@@ -217,23 +214,28 @@ static int daNpcFgd_IsDelete(void* pa_this) {
 }
 
 /* 809BB440-809BB460 -00001 0020+00 1/0 0/0 0/0 .data            daNpcFgd_METHODS */
-static void* daNpcFgd_METHODS[8] = {
-    (void*)daNpcFgd_Create,
-    (void*)daNpcFgd_Delete,
-    (void*)daNpcFgd_Execute,
-    (void*)daNpcFgd_IsDelete,
-    (void*)daNpcFgd_Draw,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class daNpcFgd_METHODS = {
+    (process_method_func)daNpcFgd_Create,
+    (process_method_func)daNpcFgd_Delete,
+    (process_method_func)daNpcFgd_Execute,
+    (process_method_func)daNpcFgd_IsDelete,
+    (process_method_func)daNpcFgd_Draw,
 };
 
 /* 809BB460-809BB490 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_FGUARD */
-extern void* g_profile_NPC_FGUARD[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,
-    (void*)0x02940000, (void*)&g_fpcLf_Method,
-    (void*)0x00000ADC, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x01990000, (void*)&daNpcFgd_METHODS,
-    (void*)0x00040107, (void*)0x040E0000,
+extern actor_process_profile_definition g_profile_NPC_FGUARD = {
+    fpcLy_CURRENT_e,        // mLayerID
+    7,                      // mListID
+    fpcPi_CURRENT_e,        // mListPrio
+    PROC_NPC_FGUARD,            // mProcName
+    &g_fpcLf_Method.base,       // sub_method
+    sizeof(daNpcFgd_c),         // mSize
+    0,                          // mSizeOther
+    0,                          // mParameters
+    &g_fopAc_Method.base,       // sub_method
+    409,                        // mPriority
+    &daNpcFgd_METHODS,          // sub_method
+    0x00040107,                 // mStatus
+    fopAc_NPC_e,                // mActorType
+    fopAc_CULLBOX_CUSTOM_e      // cullType
 };
