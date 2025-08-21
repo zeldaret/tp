@@ -552,7 +552,7 @@ BOOL daNpc_grC_c::ctrlBtk() {
 
 /* 809CC3F4-809CC930 001014 053C+00 1/0 0/0 0/0 .text            setAttnPos__11daNpc_grC_cFv */
 void daNpc_grC_c::setAttnPos() {
-    static cXyz eyeOffset(16.0f, 60.0f, 0.0f);
+    static cXyz const eyeOffset(16.0f, 60.0f, 0.0f);
 
     cXyz sp7c, sp88, sp94, spa0;
     f32 attention_offset = daNpc_grC_Param_c::m.common.attention_offset;
