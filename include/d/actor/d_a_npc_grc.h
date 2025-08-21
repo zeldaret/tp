@@ -51,7 +51,7 @@ public:
     /* 809CDA74 */ BOOL doEvent();
     /* 809CDD50 */ void setLookMode(int);
     /* 809CDD74 */ void lookat();
-    /* 809CDFFC */ void chkFindPlayer();
+    /* 809CDFFC */ BOOL chkFindPlayer();
     /* 809CE12C */ void setExpressionTalkAfter();
     /* 809CE1F8 */ BOOL wait(void*);
     /* 809CE3A8 */ BOOL waitTW(void*);
@@ -72,7 +72,7 @@ private:
     /* 0xC78 */ dPaPo_c mPaPo;
     /* 0xCB0 */ daNpcF_ActorMngr_c mActorMngr[2];
     /* 0xCC0 */ u8 field_0xcc0[0xcc4 - 0xcc0];
-    /* 0xCC4 */ dCcD_Cyl field_0xcc4;
+    /* 0xCC4 */ dCcD_Cyl mCyl;
     /* 0xE00 */ ActionFn mNextAction;
     /* 0xE0C */ ActionFn mAction;
     /* 0xE18 */ request_of_phase_process_class mPhases[3];
@@ -80,14 +80,13 @@ private:
     /* 0xE34 */ int field_0xe34;
     /* 0xE38 */ int field_0xe38;
     /* 0xE3C */ int field_0xe3c;
-    /* 0xE40 */ int field_0xe40;
+    /* 0xE40 */ int mFlowID;
     /* 0xE44 */ s16 mLookMode;
-    /* 0xE46 */ s16 mMode;
+    /* 0xE46 */ u16 mMode;
     /* 0xE48 */ u8 mType;
-    /* 0xE49 */ u8 field_0xe49[0xe4c - 0xe49];
-    /* 0xE4C */ fpc_ProcID field_0xe4c;
-    /* 0xE50 */ u8 field_0xe50;
-    /* 0xE51 */ u8 field_0xe51;
+    /* 0xE4C */ fpc_ProcID mItemID;
+    /* 0xE50 */ bool mIsSpringWaterShopClosed;
+    /* 0xE51 */ bool field_0xe51;
 };
 
 STATIC_ASSERT(sizeof(daNpc_grC_c) == 0xe54);
