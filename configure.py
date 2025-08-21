@@ -1995,7 +1995,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv1Candle00"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv1Candle01"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv3Candle"),
-    ActorRel(NonMatching, "d_a_obj_lv3Water"),
+    ActorRel(Equivalent, "d_a_obj_lv3Water"),
     ActorRel(Equivalent, "d_a_obj_lv3Water2"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv3WaterB"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv3saka00"),
@@ -2054,7 +2054,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_mirror_sand"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_mirror_screw"),
     ActorRel(NonMatching, "d_a_obj_mirror_table"),
-    ActorRel(NonMatching, "d_a_obj_msima"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_msima"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_mvstair"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_myogan"),
     ActorRel(NonMatching, "d_a_obj_nagaisu"),
