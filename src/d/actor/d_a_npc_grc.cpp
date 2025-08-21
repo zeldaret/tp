@@ -356,9 +356,9 @@ cPhs__Step daNpc_grC_c::create() {
         Execute();
 
         return cPhs_COMPLEATE_e;
-    } else {
-        return cPhs_INIT_e;
     }
+
+    return cPhs_INIT_e;
 }
 
 /* 809CBBD4-809CBDC4 0007F4 01F0+00 1/1 0/0 0/0 .text            CreateHeap__11daNpc_grC_cFv */
@@ -415,7 +415,7 @@ int daNpc_grC_c::Execute() {
 
 /* 809CBE18-809CBE8C 000A38 0074+00 1/1 0/0 0/0 .text            Draw__11daNpc_grC_cFv */
 int daNpc_grC_c::Draw() {
-    draw(chkAction(&daNpc_grC_c::test), FALSE, daNpc_grC_Param_c::m.common.real_shadow_size, NULL, FALSE);
+    return draw(chkAction(&daNpc_grC_c::test), FALSE, daNpc_grC_Param_c::m.common.real_shadow_size, NULL, FALSE);
 }
 
 /* 809CBE8C-809CC0C0 000AAC 0234+00 1/1 0/0 0/0 .text            ctrlJoint__11daNpc_grC_cFP8J3DJointP8J3DModel */
@@ -884,9 +884,9 @@ u8 daNpc_grC_c::getTypeFromParam() {
 
 /* 809CCF38-809CCFBC 001B58 0084+00 1/1 0/0 0/0 .text            isDelete__11daNpc_grC_cFv */
 BOOL daNpc_grC_c::isDelete() {
-    if ((mType == TYPE_6 || mType == TYPE_0 || mType == TYPE_TWILIGHT) || (mType == TYPE_SPA &&
+    if (mType == TYPE_6 || mType == TYPE_0 || mType == TYPE_TWILIGHT || mType == TYPE_SPA &&
         /*dSv_event_flag_c::M_031 - Goron Mines - Goron Mines clear */
-        daNpcF_chkEvtBit(64)) ||
+        daNpcF_chkEvtBit(64) ||
         mType == TYPE_3 || mType == TYPE_BUYER || mType == TYPE_5) {
         return FALSE;
     }
