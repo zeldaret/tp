@@ -1780,7 +1780,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_drainSol"),
     ActorRel(NonMatching, "d_a_npc_du"),
     ActorRel(NonMatching, "d_a_npc_fairy"),
-    ActorRel(NonMatching, "d_a_npc_fguard"),
+    ActorRel(Equivalent, "d_a_npc_fguard"), # weak func order
     ActorRel(NonMatching, "d_a_npc_gnd"),
     ActorRel(NonMatching, "d_a_npc_gra"),
     ActorRel(NonMatching, "d_a_npc_grc"),
