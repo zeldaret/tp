@@ -146,7 +146,7 @@ inline f32 Cd2_HIO_maxSpeed(int param_1) {
 }
 
 inline f32 Cd2_HIO_anmPlaySpeed(int param_1) {
-    return param_1 < 16 ? l_Cd2_HIO.field_0x0004[param_1].mAnmPlaySpeed : l_Cd2_HIO.field_0x20c4[param_1 - 16].mAnmPlaySpeed;
+    return (f32)(param_1 < 16 ? l_Cd2_HIO.field_0x0004[param_1].mAnmPlaySpeed : l_Cd2_HIO.field_0x20c4[param_1 - 16].mAnmPlaySpeed);
 }
 
 inline f32 Cd2_HIO_chkWallH(int param_1) {
