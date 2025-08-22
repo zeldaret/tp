@@ -5,17 +5,77 @@
 
 #include "d/actor/d_a_npc_grmc.h"
 
+enum grC_RES_File_ID {
+    /* BCK */
+    /* 0x05 */ BCK_GRC_F_CHEERFUL = 0x5,
+    /* 0x06 */ BCK_GRC_F_CHEERFUL_T,
+    /* 0x07 */ BCK_GRC_GRUMPY,
+    /* 0x08 */ BCK_GRC_GRUMPY_T,
+    /* 0x09 */ BCK_GRC_F_SAD_TALK,
+    /* 0x0A */ BCK_GRC_F_TALK_A,
+    /* 0x0B */ BCK_GRC_F_WAIT_A,
+    /* 0x0C */ BCK_GRC_FH_CLOSEEYE,
+    /* 0x0D */ BCK_GRC_FH_SAD_TALK,
+    /* 0x0E */ BCK_GRC_GET_UP,
+    /* 0x0F */ BCK_GRC_SAD_TALK,
+    /* 0x10 */ BCK_GRC_SAD_WAIT,
+    /* 0x11 */ BCK_GRC_SIT_A,
+    /* 0x12 */ BCK_GRC_STEP,
+    /* 0x13 */ BCK_GRC_TALK_A,
+    /* 0x14 */ BCK_GRC_TALK_B,
+    /* 0x15 */ BCK_GRC_TOSIT_A,
+    /* 0x16 */ BCK_GRC_WAIT_A,
+
+    /* BTK */
+    /* 0x19 */ BTK_GRC_A = 0x19,
+
+    /* BTP */
+    /* 0x1C */ BTP_GRC_A = 0x1C,
+    /* 0x1D */ BTP_GRC_F_CHEERFUL_T,
+    /* 0x1E */ BTP_GRC_F_GRUMPY_T,
+    /* 0x1F */ BTP_GRC_F_SAD_TALK,
+    /* 0x20 */ BTP_GRC_FH_CLOSEEYE,
+    /* 0x21 */ BTP_GRC_FH_SAD_TALK,
+};
+
+enum grC_Mdl_RES_File_ID {
+    /* BMDR */
+    /* 0x3 */ BMDR_GRC_A = 0x3,
+};
+
 enum RES_Name {
     /* 0x0 */ NONE,
     /* 0x1 */ GRC,
     /* 0x2 */ GRC_MDL,
 };
 
+enum FaceMotion {
+    /* 0x0 */ FACE_TALK_A,
+    /* 0x1 */ FACE_GRUMPY_T,
+    /* 0x2 */ FACE_CHEERFUL_T,
+    /* 0x9 */ FACE_SAD_TALK = 0x9,
+    /* 0xA */ FACE_GRUMPY,
+    /* 0xB */ FACE_CHEERFUL,
+    /* 0xC */ FACE_H_SAD_TALK,
+    /* 0xD */ FACE_WAIT_A,
+};
+
+enum Motion {
+    /* 0x0 */ MOT_WAIT_A,
+    /* 0x1 */ MOT_GET_UP,
+    /* 0x2 */ MOT_TALK_A,
+    /* 0x3 */ MOT_TALK_B,
+    /* 0x4 */ MOT_TOSIT_A,
+    /* 0x5 */ MOT_SIT_A,
+    /* 0x6 */ MOT_SAD_TALK,
+    /* 0x8 */ MOT_SAD_WAIT = 0x8,
+};
+
 UNK_REL_DATA;
 
 /* 809D9EAC-809D9EB4 000020 0008+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[1][2] = {
-    {3, 2},
+    {BMDR_GRC_A, GRC_MDL},
 };  
 
 /* 809D9EB4-809D9EC4 -00001 0010+00 0/1 0/0 0/0 .data            l_evtList */
@@ -41,28 +101,28 @@ static s8* l_loadResPtrnList[1] = {l_loadResPtrn0};
 
 /* 809D9ED8-809D9FD4 00004C 00FC+00 0/1 0/0 0/0 .data            l_faceMotionAnmData */
 static daNpcT_faceMotionAnmData_c l_faceMotionAnmData[9] = {
-    {-1, 0, 0, 28, 2, 1, 1},
-    {11, 2, 1, 28, 2, 1, 1},
-    {7, 2, 1, 28, 2, 1, 1},
-    {5, 2, 1, 28, 2, 1, 1},
-    {13, 2, 1, 33, 2, 1, 1},
-    {10, 0, 1, 28, 2, 1, 1},
-    {8, 0, 1, 30, 0, 1, 1},
-    {6, 0, 1, 29, 0, 1, 1},
-    {9, 0, 1, 31, 0, 1, 1},
+    {-1, 0, J3DFrameCtrl::EMode_NONE, BTP_GRC_A, J3DFrameCtrl::EMode_LOOP, GRC, 1},
+    {BCK_GRC_F_WAIT_A, J3DFrameCtrl::EMode_LOOP, GRC, BTP_GRC_A, J3DFrameCtrl::EMode_LOOP, GRC, 1},
+    {BCK_GRC_GRUMPY, J3DFrameCtrl::EMode_LOOP, GRC, BTP_GRC_A, J3DFrameCtrl::EMode_LOOP, GRC, 1},
+    {BCK_GRC_F_CHEERFUL, J3DFrameCtrl::EMode_LOOP, GRC, BTP_GRC_A, J3DFrameCtrl::EMode_LOOP, GRC, 1},
+    {BCK_GRC_FH_SAD_TALK, J3DFrameCtrl::EMode_LOOP, GRC, BTP_GRC_FH_SAD_TALK, J3DFrameCtrl::EMode_LOOP, GRC, 1},
+    {BCK_GRC_F_TALK_A, J3DFrameCtrl::EMode_NONE, GRC, BTP_GRC_A, J3DFrameCtrl::EMode_LOOP, GRC, 1},
+    {BCK_GRC_GRUMPY_T, J3DFrameCtrl::EMode_NONE, GRC, BTP_GRC_F_GRUMPY_T, J3DFrameCtrl::EMode_NONE, GRC, 1},
+    {BCK_GRC_F_CHEERFUL_T, J3DFrameCtrl::EMode_NONE, GRC, BTP_GRC_F_CHEERFUL_T, J3DFrameCtrl::EMode_NONE, GRC, 1},
+    {BCK_GRC_F_SAD_TALK, J3DFrameCtrl::EMode_NONE, GRC, BTP_GRC_F_SAD_TALK, J3DFrameCtrl::EMode_NONE, GRC, 1},
 };
 
 /* 809D9FD4-809DA0D0 000148 00FC+00 0/1 0/0 0/0 .data            l_motionAnmData */
 static daNpcT_motionAnmData_c l_motionAnmData[9] = {
-    {22, 2, 1, 25, 0, 1, 0, 0},
-    {19, 2, 1, 25, 0, 1, 0, 0},
-    {20, 2, 1, 25, 0, 1, 0, 0},
-    {15, 0, 1, 25, 0, 1, 0, 0},
-    {17, 2, 1, 25, 0, 1, 0, 0},
-    {21, 0, 1, 25, 0, 1, 0, 0},
-    {14, 0, 1, 25, 0, 1, 0, 0},
-    {16, 0, 1, 25, 0, 1, 0, 0},
-    {18, 0, 1, 25, 0, 1, 0, 0},
+    {BCK_GRC_WAIT_A, J3DFrameCtrl::EMode_LOOP, GRC, BTK_GRC_A, J3DFrameCtrl::EMode_NONE, GRC, 0, 0},
+    {BCK_GRC_TALK_A, J3DFrameCtrl::EMode_LOOP, GRC, BTK_GRC_A, J3DFrameCtrl::EMode_NONE, GRC, 0, 0},
+    {BCK_GRC_TALK_B, J3DFrameCtrl::EMode_LOOP, GRC, BTK_GRC_A, J3DFrameCtrl::EMode_NONE, GRC, 0, 0},
+    {BCK_GRC_SAD_TALK, J3DFrameCtrl::EMode_NONE, GRC, BTK_GRC_A, J3DFrameCtrl::EMode_NONE, GRC, 0, 0},
+    {BCK_GRC_SIT_A, J3DFrameCtrl::EMode_LOOP, GRC, BTK_GRC_A, J3DFrameCtrl::EMode_NONE, GRC, 0, 0},
+    {BCK_GRC_TOSIT_A, J3DFrameCtrl::EMode_NONE, GRC, BTK_GRC_A, J3DFrameCtrl::EMode_NONE, GRC, 0, 0},
+    {BCK_GRC_GET_UP, J3DFrameCtrl::EMode_NONE, GRC, BTK_GRC_A, J3DFrameCtrl::EMode_NONE, GRC, 0, 0},
+    {BCK_GRC_SAD_WAIT, J3DFrameCtrl::EMode_NONE, GRC, BTK_GRC_A, J3DFrameCtrl::EMode_NONE, GRC, 0, 0},
+    {BCK_GRC_STEP, J3DFrameCtrl::EMode_NONE, GRC, BTK_GRC_A, J3DFrameCtrl::EMode_NONE, GRC, 0, 0},
 };
 
 /* 809DA0D0-809DA1B0 000244 00E0+00 0/1 0/0 0/0 .data            l_faceMotionSequenceData */
@@ -239,8 +299,8 @@ int daNpc_grMC_c::CreateHeap() {
     mpMatAnm[0] = NULL;
 
     if (setFaceMotionAnm(5, false) && setMotionAnm(0, 0.0f, FALSE)) {
-        mFaceMotionSeqMngr.setNo(0xD, -1.0f, FALSE, 0);
-        mMotionSeqMngr.setNo(5, -1.0f, FALSE, 0);
+        mFaceMotionSeqMngr.setNo(FACE_WAIT_A, -1.0f, FALSE, 0);
+        mMotionSeqMngr.setNo(MOT_SIT_A, -1.0f, FALSE, 0);
         return 1;
     }
 
@@ -406,20 +466,20 @@ void daNpc_grMC_c::setAfterTalkMotion() {
     int i_index;
 
     switch (mFaceMotionSeqMngr.getNo()) {
-        case 1:
-            i_index = 0xA;
+        case FACE_GRUMPY_T:
+            i_index = FACE_GRUMPY;
             break;
 
-        case 2:
-            i_index = 0xB;
+        case FACE_CHEERFUL_T:
+            i_index = FACE_CHEERFUL;
             break;
 
-        case 9:
-            i_index = 0xC;
+        case FACE_SAD_TALK:
+            i_index = FACE_H_SAD_TALK;
             break;
 
         default:
-            i_index = 0xD;
+            i_index = FACE_WAIT_A;
             break;
     }
 
@@ -433,7 +493,6 @@ void daNpc_grMC_c::srchActors() {
 
 /* 809D7FD0-809D8174 000CB0 01A4+00 1/0 0/0 0/0 .text            evtTalk__12daNpc_grMC_cFv */
 BOOL daNpc_grMC_c::evtTalk() {
-    // NONMATCHING
     if (field_0x10dd != 0) {
         if (chkAction(&daNpc_grMC_c::shop)) {
             (this->*mAction)(NULL);
@@ -614,9 +673,9 @@ int daNpc_grMC_c::tend(void* param_1) {
     switch (mMode) {
         case 0:
         case 1:
-            if (mMotionSeqMngr.getNo() != 5) {
-                mFaceMotionSeqMngr.setNo(0xD, -1.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(4, -1.0f, FALSE, 0);
+            if (mMotionSeqMngr.getNo() != MOT_SIT_A) {
+                mFaceMotionSeqMngr.setNo(FACE_WAIT_A, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOT_TOSIT_A, -1.0f, FALSE, 0);
             }
 
             mMode = 2;
@@ -649,7 +708,6 @@ int daNpc_grMC_c::tend(void* param_1) {
 
 /* 809D8AE8-809D8C6C 0017C8 0184+00 2/0 0/0 0/0 .text            talk__12daNpc_grMC_cFPv */
 int daNpc_grMC_c::talk(void* param_1) {
-    // NONMATCHING
     BOOL bVar1 = FALSE;
 
     switch (mMode) {
