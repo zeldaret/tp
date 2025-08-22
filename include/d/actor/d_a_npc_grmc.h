@@ -12,8 +12,26 @@
  * @details
  *
 */
+
+struct daNpc_grMC_HIOParam {
+    /* 0x0 */ daNpcT_HIOParam common;
+};
+
+class daNpc_grMC_HIO_c : public mDoHIO_entry_c {
+public:
+    /* 0x8 */ daNpc_grMC_HIOParam param;
+};
+
+class daNpc_grMC_Param_c {
+public:
+    /* 809D9014 */ virtual ~daNpc_grMC_Param_c() {}
+
+    static daNpc_grMC_HIOParam const m;
+};
+
 class daNpc_grMC_c : public dShopSystem_c {
 public:
+    typedef int (daNpc_grMC_c::*cutFunc)(int);
     typedef int (daNpc_grMC_c::*actionFunc)(void*);
 
     /* 809D740C */ ~daNpc_grMC_c();
@@ -41,12 +59,15 @@ public:
     /* 809D8670 */ void setCollision();
     /* 809D87A0 */ int drawDbgInfo();
     /* 809D87A8 */ void drawOtherMdl();
-    /* 809D8808 */ void selectAction();
-    /* 809D8850 */ void chkAction(int (daNpc_grMC_c::*)(void*));
-    /* 809D887C */ void setAction(int (daNpc_grMC_c::*)(void*));
-    /* 809D8924 */ void tend(void*);
-    /* 809D8AE8 */ void talk(void*);
-    /* 809D8C6C */ void shop(void*);
+    /* 809D8808 */ BOOL selectAction();
+    /* 809D8850 */ BOOL chkAction(actionFunc);
+    /* 809D887C */ BOOL setAction(actionFunc);
+    /* 809D8924 */ int tend(void*);
+    /* 809D8AE8 */ int talk(void*);
+    /* 809D8C6C */ int shop(void*);
+    #ifdef DEBUG
+    int test(void*);
+    #endif
     /* 809D8E5C */ daNpc_grMC_c(
             daNpcT_faceMotionAnmData_c const* i_faceMotionAnmData,
             daNpcT_motionAnmData_c const* i_motionAnmData,
@@ -59,45 +80,32 @@ public:
         : dShopSystem_c(i_faceMotionAnmData, i_motionAnmData, i_faceMotionSequenceData,
         i_faceMotionStepNum, i_motionSequenceData, i_motionStepNum, i_evtData,
         i_arcNames) {}
-    /* 809D8FD4 */ s32 getHeadJointNo();
-    /* 809D8FDC */ s32 getNeckJointNo();
-    /* 809D8FE4 */ s32 getBackboneJointNo();
-    /* 809D8FEC */ BOOL checkChangeJoint(int);
-    /* 809D8FFC */ BOOL checkRemoveJoint(int);
-    /* 809D900C */ u16 getEyeballMaterialNo();
+    /* 809D8FD4 */ s32 getHeadJointNo() { return 4; }
+    /* 809D8FDC */ s32 getNeckJointNo() { return 3; }
+    /* 809D8FE4 */ s32 getBackboneJointNo() { return 1; }
+    /* 809D8FEC */ BOOL checkChangeJoint(int param_1) { return param_1 == 4; }
+    /* 809D8FFC */ BOOL checkRemoveJoint(int param_1) { return param_1 == 7; }
+    /* 809D900C */ u16 getEyeballMaterialNo() { return 1; };
 
-    static void* mCutNameList;
-    static u8 mCutList[12];
+    static char* mCutNameList;
+    static cutFunc mCutList[1];
 
 private:
+    #ifdef DEBUG
+    /* 0xFCC */ daNpc_grMC_HIO_c* mHIO;
+    #endif
     /* 0x0F7C */ u8 field_0xf7c[0xf80 - 0xf7c];
     /* 0x0F80 */ dCcD_Cyl mCyl;
     /* 0x10BC */ u8 mType;
-    /* 0x10BD */ u8 field_0x10bd[0x10c0 - 0x10bd];
     /* 0x10C0 */ actionFunc mNextAction;
     /* 0x10CC */ actionFunc mAction;
     /* 0x10D8 */ int field_0x10d8;
     /* 0x10DC */ u8 field_0x10dc;
     /* 0x10DD */ u8 field_0x10dd;
-    /* 0x10DE */ u8 field_0x10de[0x10e4 - 0x10de];
+    /* 0x10DE */ u8 field_0x10de[0x10e0 - 0x10de];
+    /* 0x10E0 */ u8 field_0x10e0;
 };
 
 STATIC_ASSERT(sizeof(daNpc_grMC_c) == 0x10e4);
-
-struct daNpc_grMC_HIOParam {
-    /* 0x0 */ daNpcT_HIOParam common;
-};
-
-class daNpc_grMC_HIO_c : public mDoHIO_entry_c {
-    /* 0x8 */ daNpc_grMC_HIOParam param;
-};
-
-class daNpc_grMC_Param_c {
-public:
-    /* 809D9014 */ virtual ~daNpc_grMC_Param_c() {}
-
-    static daNpc_grMC_HIOParam const m;
-};
-
 
 #endif /* D_A_NPC_GRMC_H */
