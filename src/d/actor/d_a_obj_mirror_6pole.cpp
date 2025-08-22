@@ -3,6 +3,8 @@
  * Mirror Chamber Sage Poles
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_mirror_6pole.h"
 #include "d/d_procname.h"
 
@@ -10,25 +12,6 @@
 void daObjMirror6Pole_c::initWait() {
     mpBck->setPlaySpeed(0.0f);
 }
-
-/* 80C9652C-80C96538 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80C96538-80C9654C 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-// unused data?
-#pragma push
-#pragma force_active on
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
 
 /* 80C9654C-80C96550 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "MR-6Pole";

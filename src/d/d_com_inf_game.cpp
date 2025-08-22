@@ -3,20 +3,22 @@
  * Game Information
  */
 
-#include "d/d_com_inf_game.h"
+#include "d/dolzel.h"
+
 #include "JSystem/JKernel/JKRAramArchive.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "d/actor/d_a_alink.h"
+#include "d/d_com_inf_game.h"
 #include "d/d_item.h"
-#include "d/d_simple_model.h"
-#include "d/d_timer.h"
 #include "d/d_map_path_dmap.h"
 #include "d/d_menu_fmap.h"
+#include "d/d_menu_window_HIO.h"
 #include "d/d_meter2_info.h"
 #include "d/d_meter_HIO.h"
-#include "d/d_menu_window_HIO.h"
-#include "f_op/f_op_scene_mng.h"
+#include "d/d_simple_model.h"
+#include "d/d_timer.h"
 #include "f_op/f_op_msg_mng.h"
+#include "f_op/f_op_scene_mng.h"
 #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"

@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_gob.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_com_inf_actor.h"
@@ -13,6 +15,23 @@
 #include "m_Do/m_Do_graphic.h"
 #include "c/c_damagereaction.h"
 #include "Z2AudioLib/Z2Instances.h"
+
+class daE_GOB_HIO_c : public JORReflexible {
+public:
+    /* 806D808C */ daE_GOB_HIO_c();
+
+    void genMessage(JORMContext*);
+    /* 806DECD0 */ virtual ~daE_GOB_HIO_c() {}
+
+    /* 0x04 */ s8 id;
+    /* 0x08 */ f32 size;
+    /* 0x0C */ f32 normal_walk_speed;
+    /* 0x10 */ f32 battle_walk_speed;
+    /* 0x14 */ f32 roll_speed;
+    /* 0x18 */ s16 rotation_speed;
+    /* 0x1A */ s16 swing_time_a;
+    /* 0x1C */ s16 swing_time_b;
+};
 
 enum E_gob_RES_file_ID {
     /* BCK */
@@ -260,8 +279,6 @@ static void damage_check(e_gob_class* i_this) {
         dComIfGp_setHitMark(hitmark, actor, &sp24, &actor->shape_angle, NULL, 0);
     }
 }
-
-UNK_REL_BSS
 
 /* 806DF2C4-806DF2C8 -00001 0004+00 2/2 0/0 0/0 .bss             None */
 /* 806DF2C5 0003+00 data_806DF2C5 None */

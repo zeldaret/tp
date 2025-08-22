@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_thdoor.h"
 #include "d/d_bg_w.h"
 #include "d/d_cc_d.h"
@@ -65,8 +67,6 @@ void daObjThDoor_c::setBaseMtx() {
     mModel->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
-
-UNK_REL_DATA
 
 /* 80D0E678-80D0E67C -00001 0004+00 3/4 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "V_CTDoor";

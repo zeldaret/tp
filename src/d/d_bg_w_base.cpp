@@ -3,6 +3,8 @@
  *
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_bg_w_base.h"
 
 /* 8007E5A8-8007E5F8 078EE8 0050+00 0/0 2/2 0/0 .text            __ct__9dBgW_BaseFv */

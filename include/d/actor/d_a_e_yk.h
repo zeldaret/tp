@@ -35,24 +35,6 @@ enum daE_YK_Action {
 };
 
 /**
- * @class daE_YK_HIO_c
- * @brief Shadow Keese Host Input Output class.
- * 
- */
-class daE_YK_HIO_c {
-public:
-    /* 8080482C */ daE_YK_HIO_c();
-    /* 808077E0 */ virtual ~daE_YK_HIO_c() {}
-
-    /* 0x04 */ s8 field_0x04;       ///< @brief Initialized to -1, appears unused.
-    /* 0x08 */ f32 mModelScale;     ///< @brief Base model scale factor (default: 1.0).
-    /* 0x0C */ f32 mFlySpeed;       ///< @brief Base flying speed (default: 15.0).
-    /* 0x10 */ f32 mAttackRange;    ///< @brief Distance threshold for entering attack state (default: 250.0).
-    /* 0x14 */ f32 mCruiseSpeed;    ///< @brief Speed when flying normally (default: 15.0).
-    /* 0x18 */ f32 mChargeSpeed;    ///< @brief Speed when charging at player (default: 40.0).
-};
-
-/**
  * @ingroup actors-enemies
  * @class e_yk_class
  * @brief Twilight Keese

@@ -651,7 +651,7 @@ public:
     /* vt[89] */ virtual void setMapPath(void* i_MapPath) { return; }
     /* vt[90] */ virtual void* getMapPath(void) { return NULL; }
     /* vt[91] */ virtual void setElst(dStage_Elst_c* i_Elst) { mElst = i_Elst; }
-    /* vt[92] */ virtual dStage_Elst_c* getElst(void) { return mElst; }
+    /* vt[92] */ virtual dStage_Elst_c* getElst(void);
 
     s16 getWorldRollAngleX() { return (s16)mWorldRollAngleX; }
     s16 getWorldRollDirAngleY() { return mWorldRollDirAngleY; }
@@ -1012,8 +1012,6 @@ public:
     /* 0x400 */ dBgW_base* mpBgW;
 
     int getZoneNo() const { return mZoneNo; }
-    ~dStage_roomStatus_c() {}
-    dStage_roomStatus_c() {}
 };  // Size: 0x404
 
 STATIC_ASSERT(sizeof(dStage_roomStatus_c) == 0x404);
@@ -1198,7 +1196,6 @@ struct dStage_objectNameInf {
 
 class dStage_KeepDoorInfo {
 public:
-    /* 80028418 */ ~dStage_KeepDoorInfo() {}
     /* 0x000 */ int mNum;
     /* 0x004 */ stage_tgsc_data_class mDrTgData[0x40];
 };  // Size = 0x904

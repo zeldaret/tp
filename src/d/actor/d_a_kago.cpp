@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_kago.h"
 #include "d/d_camera.h"
 #include "d/d_com_inf_game.h"

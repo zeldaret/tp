@@ -3,6 +3,8 @@
  * NPC - Telma
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_the.h"
 #include "SSystem/SComponent/c_math.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
@@ -240,21 +242,6 @@ extern "C" void __register_global_object();
 //
 // Declarations:
 //
-
-/* 80AFC1D0-80AFC1DC 000000 000C+00 5/5 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80AFC1DC-80AFC1F0 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 
 /* 80AFC67C-80AFC680 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daNpcThe_Param_c l_HIO;

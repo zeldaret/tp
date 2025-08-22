@@ -3,6 +3,8 @@
  * Menu - Insect List
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_menu_insect.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
@@ -18,11 +20,6 @@
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
 #include "stdio.h"
-
-/* 803BD780-803BD78C 01A8A0 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 typedef void (dMenu_Insect_c::*initFunc)();
 static initFunc map_init_process[] = {

@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_brakeeff.h"
 #include "dol2asm.h"
 #include "d/d_kankyo.h"

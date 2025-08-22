@@ -3,6 +3,8 @@
  * Game Boot Logo's Display
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_s_logo.h"
 #include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
@@ -34,11 +36,6 @@
 #define PROGRESSIVE_MODE_OFF OS_PROGRESSIVE_MODE_OFF
 #define PROGRESSIVE_MODE_ON  OS_PROGRESSIVE_MODE_ON
 #endif
-
-/* 803C2E38-803C2E44 01FF58 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 804510E8-804510F0 0005E8 0008+00 1/1 0/0 0/0 .sbss            g_LogHIO */
 static dLog_HIO_c g_LogHIO;

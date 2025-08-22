@@ -3,6 +3,8 @@
 // Translation Unit: d/d_pane_class_alpha
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_pane_class_alpha.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/JKernel/JKRExpHeap.h"

@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_pachi_maro.h"
 #include "dol2asm.h"
 
@@ -299,24 +301,6 @@ SECTION_DEAD static char const* const stringBase_80A9BA23 = "TUTRIAL_SELECT_GIVE
 SECTION_DEAD static char const* const stringBase_80A9BA39 = "TUTRIAL_GIVEUP";
 SECTION_DEAD static char const* const stringBase_80A9BA48 = "TUTRIAL_CONTINUE";
 SECTION_DEAD static char const* const stringBase_80A9BA59 = "TUTRIAL_CAUTION";
-#pragma pop
-
-/* 80A9BA78-80A9BA84 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80A9BA84-80A9BA98 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 #pragma pop
 
 /* 80A9BA98-80A9BAA8 000020 0010+00 1/1 0/0 0/0 .data            l_bmdData */

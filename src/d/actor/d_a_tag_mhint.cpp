@@ -3,6 +3,8 @@
  * Tag - Midna Hint
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tag_mhint.h"
 #include "d/actor/d_a_midna.h"
 #include "d/d_com_inf_game.h"

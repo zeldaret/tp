@@ -4,6 +4,8 @@
  * 
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_b_yo.h"
 #include "SSystem/SComponent/c_math.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
@@ -19,6 +21,30 @@
 #include "d/d_bg_w.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
+
+class daB_YO_HIO_c {
+public:
+    /* 8062F46C */ daB_YO_HIO_c();
+    /* 806395E4 */ virtual ~daB_YO_HIO_c() {}
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 mScale[8];
+    /* 0x28 */ f32 mFreezardNum;
+    /* 0x2C */ f32 mMaxFallSpeed;
+    /* 0x30 */ f32 mReboundSpeedRatio;
+    /* 0x34 */ f32 mChaseSpeed;
+    /* 0x38 */ f32 mReboundSpeedMax;
+    /* 0x3C */ bool field_0x3c;
+    /* 0x40 */ f32 mGatherTimer;
+    /* 0x44 */ f32 mAttackTimer;
+    /* 0x48 */ f32 mFreezardRadius;
+    /* 0x4C */ f32 field_0x4c;
+    /* 0x50 */ f32 field_0x50;
+    /* 0x54 */ bool field_0x54;
+    /* 0x58 */ f32 field_0x58;
+};
+
+STATIC_ASSERT(sizeof(daB_YO_HIO_c) == 0x5C);
 
 enum B_YO_RES_FILE_ID {
     /* BCK */
@@ -94,15 +120,11 @@ enum L5_R50_RES_FIL_ID {
     /* 0x0A */ DZB_R50_P2,
 };
 
-UNK_REL_BSS;
-
 /* 80639F74 0001+00 data_80639F74 @1009 */
 static bool hioInit;
 
 /* 80639F84-80639FE0 000054 005C+00 12/13 0/0 0/0 .bss             l_HIO */
 static daB_YO_HIO_c l_HIO;
-
-UNK_REL_DATA;
 
 namespace {
 

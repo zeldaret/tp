@@ -1,7 +1,9 @@
 /**
- * @file d_a_e_rdb.cpp
+* @file d_a_e_rdb.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_e_rdb.h"
 #include "Z2AudioLib/Z2Instances.h"
@@ -10,10 +12,17 @@
 #include "d/actor/d_a_e_wb.h"
 #include "d/d_msg_object.h"
 #include "m_Do/m_Do_graphic.h"
-
-UNK_REL_DATA;
-
 #include "f_op/f_op_actor_enemy.h"
+
+class daE_RDB_HIO_c : public JORReflexible {
+public:
+    /* 807650CC */ daE_RDB_HIO_c();
+    /* 8076AF64 */ virtual ~daE_RDB_HIO_c() {};
+
+    void genMessage(JORMContext*);
+    /* 0x04 */ s8 mID;
+    /* 0x08 */ f32 field_0x8;
+};
 
 enum Action {
     /* 0x00 */ ACTION_START,
@@ -887,8 +896,6 @@ static void* shot_s_sub(void* i_actor, void* i_data) {
 
     return NULL;
 }
-
-UNK_REL_BSS;
 
 /* 8076BA04-8076BA08 -00001 0004+00 2/2 0/0 0/0 .bss             None */
 static u8 s_HIOinit;
@@ -1933,6 +1940,8 @@ static int daE_RDB_Create(fopAc_ac_c* actor) {
 
     return phase;
 }
+
+static s32 unused_bss_29c = 0;
 
 AUDIO_INSTANCES
 

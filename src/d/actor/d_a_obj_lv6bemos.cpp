@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_lv6bemos.h"
 #include "SSystem/SComponent/c_lib.h"
 #include "d/actor/d_a_player.h"
@@ -109,8 +111,6 @@ void daObjL6Bm_c::setBaseMtx() {
     mBeamosModel->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
-
-UNK_REL_DATA;
 
 /* 80C7DF98-80C7DF9C -00001 0004+00 4/4 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "Obj_lv6bm";

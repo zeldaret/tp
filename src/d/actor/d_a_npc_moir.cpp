@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_moir.h"
 #include "d/actor/d_a_ni.h"
 #include "d/actor/d_a_npc_tk.h"
@@ -118,8 +120,6 @@ enum Joint {
     /* 0x18 */ JNT_LEGR2,
     /* 0x19 */ JNT_FOOTR
 };
-
-UNK_REL_DATA;
 
 /* 80A838D0-80A83AA4 000020 01D4+00 3/4 0/0 0/0 .data            l_bckGetParamList */
 static daNpc_GetParam2 l_bckGetParamList[39] = {

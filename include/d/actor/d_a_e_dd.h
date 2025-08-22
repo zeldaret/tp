@@ -80,24 +80,4 @@ public:
 
 STATIC_ASSERT(sizeof(e_dd_class) == 0xe94);
 
-class daE_DD_HIO_c : public JORReflexible {
-public:
-    /* 806A226C */ daE_DD_HIO_c();
-    /* 806A6D08 */ virtual ~daE_DD_HIO_c() {}
-
-    void genMessage(JORMContext*);
-
-    /* ドドンゴ - Dodongo */
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 basic_size;      // 基本サイズ - Basic Size
-    /* 0x0C */ f32 walk_speed;      // 歩速度 - Walk Speed
-    /* 0x10 */ f32 run_speed;       // 走速度 - Run Speed
-    /* 0x14 */ f32 search_area;     // サーチエリア - Search Area
-    /* 0x18 */ f32 flame_distance;  // 炎距離 - Flame Distance
-    /* 0x1C */ f32 horned_head;     // 首曲角 - Horned Head
-    /* 0x20 */ s16 flame_time;      // 炎時間 - Flame Time
-    /* 0x24 */ f32 flame_mot_speed; // 炎モーション速 - Flame Motion Speed
-};
-
-
 #endif /* D_A_E_DD_H */

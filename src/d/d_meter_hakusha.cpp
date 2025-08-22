@@ -3,6 +3,8 @@
  * UI Epona Dash Spurs
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_meter_hakusha.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J2DGraph/J2DScreen.h"

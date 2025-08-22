@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_gra2.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_tag_gra.h"
@@ -37,7 +39,6 @@ void daObj_GrA_c::rideCallBack(dBgW* param_1, fopAc_ac_c* aActor_p, fopAc_ac_c* 
 }
 
 #if VERSION != VERSION_SHIELD_DEBUG
-UNK_REL_DATA;
 #endif
 
 /* 80C0FE88-80C0FE98 -00001 0010+00 1/1 0/0 0/0 .data            l_resFileNameList */
@@ -584,10 +585,6 @@ void daObj_GrA_c::restart() {
     field_0x204c.entry(NULL);
     field_0x209c = 0;
 }
-
-#if VERSION != VERSION_SHIELD_DEBUG
-UNK_REL_BSS;
-#endif
 
 /* 80C108EC-80C108F8 000054 000C+00 0/2 0/0 0/0 .bss             l_centerOfst */
 static cXyz l_centerOfst(0.0f, 67.0f, 26.0f);

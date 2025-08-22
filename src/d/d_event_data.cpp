@@ -3,6 +3,8 @@
  * Event Data Processor
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_event_data.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_demo.h"

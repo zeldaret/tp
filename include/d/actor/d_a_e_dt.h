@@ -174,24 +174,6 @@ private:
 
 STATIC_ASSERT(sizeof(daE_DT_c) == 0x1174);
 
-class daE_DT_HIO_c {
-public:
-    /* 806AD90C */ daE_DT_HIO_c();
-    /* 806B5BDC */ virtual ~daE_DT_HIO_c() {}
-
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 mScale;
-    /* 0x0C */ f32 mWalkSpeed;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 mStunTimer;
-    /* 0x20 */ f32 mPressTimer;
-    /* 0x24 */ f32 mMaxFallSpeed;
-    /* 0x28 */ f32 field_0x28;
-    /* 0x2C */ f32 field_0x2c;
-};
-
 struct E_DT_n {
     static f32 eDt_ShakeFrame[10];
     static f32 eDt_ShakeFrameDemo[10];

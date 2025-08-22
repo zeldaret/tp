@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_flag3.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "d/actor/d_a_set_bgobj.h"

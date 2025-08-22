@@ -3,6 +3,8 @@
  * Object - Propeller
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_prop.h"
 #include "d/d_procname.h"
 

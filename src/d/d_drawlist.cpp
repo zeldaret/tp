@@ -3,7 +3,8 @@
 // Translation Unit: d/d_drawlist
 //
 
-#include "d/d_drawlist.h"
+#include "d/dolzel.h"
+
 #include "JSystem/J2DGraph/J2DAnimation.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
@@ -11,6 +12,7 @@
 #include "SSystem/SComponent/c_bg_s_shdw_draw.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_com_inf_game.h"
+#include "d/d_drawlist.h"
 #include "d/d_s_play.h"
 #include "dol2asm.h"
 #include "m_Do/m_Do_graphic.h"
@@ -547,11 +549,6 @@ void dDlst_2DT2_c::draw() {
     dComIfGp_getCurrentGrafPort()->setup2D();
 }
 
-/* 803A87A0-803A87C0 0058C0 000C+14 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
 /* 803A87C0-803A8800 0058E0 003C+04 0/0 0/0 0/0 .data            l_frontZMat */
 static u8 l_frontZMat[] ALIGN_DECL(32) = {
     0x61, 0x40, 0x00, 0x00, 0x07, 0x10, 0x00, 0x00, 0x10, 0x3F, 0x00, 0x00, 0x00, 0x00, 0x10,
@@ -941,13 +938,14 @@ void dDlst_blo_c::draw() {
 }
 
 // stand-in for a function that pulls in a bunch of inline functions but was presumably stripped
-void dummy_misc() {
+static void dummy_misc() {
     J2DScreen* screen;
     J2DPane* pane;
     J2DPicture* picture;
     J2DAnmBase* anmBase;
     J2DAnmColor* anmColor;
     delete anmBase;
+    delete anmColor;
     picture->setBlack(JUtility::TColor(0, 0, 0, 0));
     picture->setWhite(JUtility::TColor(0, 0, 0, 0));
     pane->getTypeID();

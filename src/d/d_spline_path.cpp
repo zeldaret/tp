@@ -3,6 +3,8 @@
  * dolzel2 - Spline Path Management
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_spline_path.h"
 #include "d/d_path.h"
 #include "d/d_stage.h"

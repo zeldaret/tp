@@ -3,6 +3,8 @@
 // Translation Unit: d/d_menu_fmap2D
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_menu_fmap2D.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"

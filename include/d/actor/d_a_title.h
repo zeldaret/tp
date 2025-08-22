@@ -73,21 +73,4 @@ typedef void (daTitle_c::*procFunc)();
 
 STATIC_ASSERT(sizeof(daTitle_c) == 0x608);
 
-class daTit_HIO_c {
-public:
-    /* 80D66B0C */ daTit_HIO_c();
-
-    /* 80D67A08 */ virtual ~daTit_HIO_c() {}
-
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 mPSScaleX;
-    /* 0x0C */ f32 mPSScaleY;
-    /* 0x10 */ f32 mPSPosX;
-    /* 0x14 */ f32 mPSPosY;
-    /* 0x18 */ u8 mAppear;
-    /* 0x19 */ u8 mArrow;
-    /* 0x1A */ u8 field_0x1a;
-};
-
-
 #endif /* D_A_TITLE_H */

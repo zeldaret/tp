@@ -1,3 +1,4 @@
+#include "d/dolzel.h"
 
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
 

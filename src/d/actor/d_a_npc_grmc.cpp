@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_grmc.h"
 
 enum grC_RES_File_ID {
@@ -70,8 +72,6 @@ enum Motion {
     /* 0x6 */ MOT_SAD_TALK,
     /* 0x8 */ MOT_SAD_WAIT = 0x8,
 };
-
-UNK_REL_DATA;
 
 /* 809D9EAC-809D9EB4 000020 0008+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[1][2] = {

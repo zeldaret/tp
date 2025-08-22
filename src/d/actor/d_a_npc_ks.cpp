@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_ks.h"
 #include "d/actor/d_a_obj_kago.h"
 #include "d/d_cc_d.h"
@@ -27,7 +29,27 @@
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/d_s_play.h"
 
-UNK_REL_DATA;
+class daNpc_Ks_HIO_c : public JORReflexible {
+public:
+    /* 80A48F8C */ daNpc_Ks_HIO_c();
+    /* 80A5DA90 */ virtual ~daNpc_Ks_HIO_c() {};
+
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 field_0x8;
+    /* 0x0C */ f32 field_0xc;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ f32 field_0x1c;
+    /* 0x20 */ f32 field_0x20;
+    /* 0x24 */ f32 field_0x24;
+    /* 0x28 */ u8 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
+    /* 0x30 */ f32 field_0x30;
+    /* 0x34 */ f32 field_0x34;
+};
 
 /* 80A5E478-80A5E498 000020 0020+00 13/13 0/0 0/0 .data            saru_p */
 static npc_ks_class* saru_p[8] = {
@@ -247,9 +269,7 @@ static void* s_resq_sub(void* i_actor, void* i_data) {
         ((npc_ks_class*)i_actor)->field_0x94c = cM_rndF(50.0f) + 220.0f;
     }
     return NULL;
-}
-
-UNK_REL_BSS;
+};
 
 /* 80A5FE94-80A5FEA0 000054 000C+00 1/5 0/0 0/0 .bss             obj_pos */
 static cXyz obj_pos;

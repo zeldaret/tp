@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_swpush.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_s_play.h"
@@ -59,8 +61,6 @@ s16 const daObjSwpush::Act_c::M_bmd[3] = {BMDR_KBOTA_00, BMDR_S_LV3BOTA, BMDR_S_
 
 /* 80484D18-80484D20 000008 0006+02 1/1 0/0 0/0 .rodata          M_dzb__Q211daObjSwpush5Act_c */
 s16 const daObjSwpush::Act_c::M_dzb[3] = {DZB_KBOTA_00, DZB_KBOTA2_00, DZB_KBOTA3_00};
-
-UNK_REL_DATA;
 
 /* 80484EA4-80484EB0 -00001 000C+00 3/3 0/0 0/0 .data            M_arcname__Q211daObjSwpush5Act_c */
 char* daObjSwpush::Act_c::M_arcname[3] = {
@@ -346,8 +346,6 @@ void daObjSwpush::Act_c::init_mtx() {
 void daObjSwpush::Act_c::set_btp_frame() {
     /* empty function */
 }
-
-UNK_REL_BSS;
 
 /* 80483574-80483910 000914 039C+00 1/1 0/0 0/0 .text            rideCB__Q211daObjSwpush5Act_cFP4dBgWP10fopAc_ac_cP10fopAc_ac_c */
 void daObjSwpush::Act_c::rideCB(dBgW* i_bgw, fopAc_ac_c* i_ac, fopAc_ac_c* i_pt) {

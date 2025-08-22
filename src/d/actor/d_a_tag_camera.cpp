@@ -3,6 +3,8 @@
 // Translation Unit: d_a_tag_camera
 //
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tag_camera.h"
 #include "cmath.h"
 #include "d/actor/d_a_alink.h"

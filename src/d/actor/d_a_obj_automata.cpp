@@ -3,28 +3,12 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_automata.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
-
-/* 80BA6CB0-80BA6CBC 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80BA6CBC-80BA6CD0 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
 
 /* 80BA6CD0-80BA6CD8 000020 0008+00 4/5 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[1][2] = {

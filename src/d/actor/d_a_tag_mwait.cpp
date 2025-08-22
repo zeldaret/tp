@@ -3,6 +3,8 @@
  * Midna Wait Trigger
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tag_mwait.h"
 #include "d/actor/d_a_midna.h"
 #include "d/d_procname.h"

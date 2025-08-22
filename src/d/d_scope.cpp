@@ -3,6 +3,8 @@
 // Translation Unit: d/d_scope
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_scope.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/JUtility/JUTTexture.h"
@@ -11,11 +13,6 @@
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "m_Do/m_Do_graphic.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
-
-/* 803BB618-803BB624 018738 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 803BB648-803BB66C 018768 0024+00 2/3 0/0 0/0 .data            init_process */
 typedef void (dScope_c::*initFunc)();

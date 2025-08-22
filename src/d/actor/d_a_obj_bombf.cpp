@@ -3,6 +3,8 @@
  * Bomb Flower
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_bombf.h"
 #include "d/d_procname.h"
 

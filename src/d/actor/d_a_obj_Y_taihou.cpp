@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_Y_taihou.h"
 #include "d/d_bg_w.h"
 #include "d/d_cc_d.h"
@@ -169,23 +171,6 @@ static u16 l_offsetAngle[4] = {
 void daObjYtaihou_c::setNextAngle() {
     current.angle.z = home.angle.y + l_offsetAngle[field_0x775];
 }
-
-UNK_BSS(1109);
-UNK_BSS(1107);
-UNK_BSS(1105);
-UNK_BSS(1104);
-UNK_BSS(1099);
-UNK_BSS(1097);
-UNK_BSS(1095);
-UNK_BSS(1094);
-UNK_BSS(1057);
-UNK_BSS(1055);
-UNK_BSS(1053);
-UNK_BSS(1052);
-UNK_BSS(1014);
-UNK_BSS(1012);
-UNK_BSS(1010);
-UNK_BSS(1009);
 
 /* 80BA1358-80BA135C 000048 0004+00 1/1 0/0 0/0 .bss             l_wheelMinR$3836 */
 static f32 l_wheelMinR;

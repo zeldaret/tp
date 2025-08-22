@@ -16,23 +16,6 @@
  *
  */
 
-class daB_MGN_HIO_c : public JORReflexible {
-public:
-    /* 8060572C */ daB_MGN_HIO_c();
-    /* 8060F8D0 */ virtual ~daB_MGN_HIO_c() {}
-
-    void genMessage(JORMContext*);
-
-    /* 0x04 */ s8 no;
-    /* 0x08 */ f32 base_size;
-    /* 0x0C */ f32 dash_speed;
-    /* 0x10 */ f32 turn_speed;
-    /* 0x14 */ f32 dash_anim;
-    /* 0x18 */ f32 jewel_R;
-    /* 0x1C */ f32 jewel_G;
-    /* 0x20 */ f32 jewel_B;
-};
-
 class daB_MGN_c : public fopEn_enemy_c {
 public:
     enum daB_MGN_ACTION {

@@ -99,25 +99,4 @@ private:
 
 STATIC_ASSERT(sizeof(daPoFire_c) == 0x618);
 
-class daPoFire_HIO_c : public mDoHIO_entry_c {
-public:
-    /* 80CB294C */ daPoFire_HIO_c();
-    /* 80CB3D24 */ virtual ~daPoFire_HIO_c() {}
-
-    void genMessage(JORMContext*);
-
-    /* 0x06 */ s8 unk6;
-    /* 0x08 */ f32 mWaitPeriod;       // Wait oscillation period
-    /* 0x0C */ f32 mWaitVertRange;    // Wait oscillation amplitude, vertical range
-    /* 0x10 */ f32 mWaitVertSpeed;    // Wait oscillation speed, vertical speed
-    /* 0x14 */ f32 mMovePeriod1;      // Move period
-    /* 0x18 */ f32 mMoveSwingSpeed1;  // Move oscillation speed
-    /* 0x1C */ f32 mMoveSpeed;        // Move speed
-    /* 0x20 */ f32 mMovePeriod2;      // Move period ??
-    /* 0x24 */ f32 mMoveSwingSpeed2;  // Move oscillation speed
-    /* 0x28 */ f32 mMoveSwingRange;   // Move oscillation range
-    /* 0x2C */ f32 mPickupRange;      // Horizontal dist ?
-    /* 0x30 */ u8 mFireWaitTime;      // Fire wait
-};
-
 #endif /* D_A_OBJ_POFIRE_H */

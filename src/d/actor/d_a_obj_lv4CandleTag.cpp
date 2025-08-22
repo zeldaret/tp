@@ -3,17 +3,10 @@
 // Translation Unit: d_a_obj_lv4CandleTag
 //
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_lv4CandleTag.h"
 #include "dol2asm.h"
-
-//
-// Types:
-//
-
-struct dSv_info_c {
-    /* 800352B0 */ void offSwitch(int, int);
-    /* 80035360 */ void isSwitch(int, int) const;
-};
 
 //
 // Forward References:
@@ -66,32 +59,12 @@ extern "C" void __ptmf_scall();
 extern "C" void _savegpr_28();
 extern "C" void _restgpr_28();
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
 //
 // Declarations:
 //
-
-/* ############################################################################################## */
-/* 80C5DB64-80C5DB70 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80C5DB70-80C5DB84 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
 
 /* 80C5DB84-80C5DB90 -00001 000C+00 0/1 0/0 0/0 .data            @3686 */
 #pragma push

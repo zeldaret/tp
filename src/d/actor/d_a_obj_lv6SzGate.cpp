@@ -1,13 +1,13 @@
 /**
- * @file d_a_obj_lv6SzGate.cpp
+* @file d_a_obj_lv6SzGate.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_obj_lv6SzGate.h"
 #include "d/d_bg_w.h"
 #include "d/d_com_inf_game.h"
-
-UNK_REL_DATA
 
 /* 80C76688-80C766A0 000020 0018+00 1/1 0/0 0/0 .data            l_cull_box */
 static cull_box l_cull_box = {{-1200.0f, -300.0f, -100.0f}, {1200.0f, 300.0f, 100.0f}};

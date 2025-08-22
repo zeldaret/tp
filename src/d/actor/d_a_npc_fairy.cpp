@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_fairy.h"
 #include "dol2asm.h"
 
@@ -374,24 +376,6 @@ COMPILER_STRIP_GATE(0x809B9378, &lit_3916);
 #pragma force_active on
 SECTION_DEAD static char const* const stringBase_809B94CC = "";
 SECTION_DEAD static char const* const stringBase_809B94CD = "fairy";
-#pragma pop
-
-/* 809B95D8-809B95E4 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 809B95E4-809B95F8 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 #pragma pop
 
 /* 809B95F8-809B9600 -00001 0008+00 7/8 0/0 0/0 .data            l_resNameList */

@@ -2,6 +2,8 @@
 // Howl Screen
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_msg_scrn_howl.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
@@ -16,11 +18,6 @@
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "Z2AudioLib/Z2WolfHowlMgr.h"
-
-/* 803C0FD0-803C0FDC 01E0F0 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 typedef void (dMsgScrnHowl_c::*dMsgScrnHowl_cFunc)();
 

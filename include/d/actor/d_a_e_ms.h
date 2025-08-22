@@ -59,19 +59,4 @@ public:
 
 STATIC_ASSERT(sizeof(e_ms_class) == 0xbbc);
 
-class daE_MS_HIO_c : public JORReflexible {
-public:
-    /* 80725B8C */ daE_MS_HIO_c();
-    /* 8072900C */ virtual ~daE_MS_HIO_c() {};
-
-    void genMessage(JORMContext*);
-
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 mScale;
-    /* 0x0C */ f32 mTargetSpeed1;
-    /* 0x10 */ f32 mSpeedF;
-    /* 0x14 */ f32 mTargetSpeed2;
-    /* 0x18 */ f32 mPlayerDistanceLimit;
-};
-
 #endif /* D_A_E_MS_H */

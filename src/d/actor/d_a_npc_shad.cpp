@@ -3,11 +3,29 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_shad.h"
 #include "d/actor/d_a_cstaF.h"
 #include "d/actor/d_a_npc.h"
 #include "d/actor/d_a_tag_evtarea.h"
 #include "d/d_msg_object.h"
+
+struct daNpcShad_HIOParam {
+    /* 0x00 */ daNpcF_HIOParam common;
+    /* 0x6C */ f32 traveling_speed;     // 走行速度 (Traveling Speed)
+};
+
+class daNpcShad_Param_c: public JORReflexible {
+public:
+    /* 80AE1F70 */ virtual ~daNpcShad_Param_c() {}
+
+#ifdef DEBUG
+    void genMessage(JORMContext*);
+#endif
+
+    static const daNpcShad_HIOParam m;
+};
 
 enum Shad_RES_File_ID {
     /* BCK */
@@ -135,8 +153,6 @@ enum Joint {
     /* 0x1D */ JNT_LEGR2,
     /* 0x1E */ JNT_FOOTR,
 };
-
-UNK_REL_DATA
 
 /* 80AE2640-80AE27F0 000020 01B0+00 1/2 0/0 0/0 .data            l_bckGetParamList */
 static daNpc_GetParam2 l_bckGetParamList[36] = {

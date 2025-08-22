@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_canoe.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_meter2_info.h"
@@ -550,8 +552,6 @@ void daCanoe_c::frontBackBgCheck() {
         setFrontBackPos();
     }
 }
-
-UNK_REL_BSS
 
 /* 804DC330-804DC554 001ED0 0224+00 1/1 0/0 0/0 .text            setPaddleEffect__9daCanoe_cFv */
 void daCanoe_c::setPaddleEffect() {

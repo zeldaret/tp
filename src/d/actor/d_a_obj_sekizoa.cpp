@@ -3,6 +3,8 @@
 // Translation Unit: d_a_obj_sekizoa
 //
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_sekizoa.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_obj_sekidoor.h"
@@ -13,9 +15,6 @@
 #include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_msg.h"
 
-
-UNK_REL_DATA
-UNK_REL_BSS
 
 /* 80CD5EF8-80CD5F40 000020 0048+00 1/1 0/0 0/0 .data            l_bmdData */
 static daNpc_GetParam1 l_bmdData[9] = {
@@ -1000,12 +999,12 @@ bool daObj_Sekizoa_c::afterSetMotionAnm(int i_frame, int i_mode, f32 i_morf, int
     case 20:
         mpMorf[0]->setStartFrame(36.0f);
         break;
-    case 23:
+    case 6:
+    case 17:
         mpMorf[0]->setStartFrame(29.0f);
         mpMorf[0]->setEndFrame(41.0f);
         break;
-    case 6:
-    case 17:
+    case 23:
         mpMorf[0]->setStartFrame(0.0f);
         mpMorf[0]->setEndFrame(0.0f);
         mpMorf[0]->setPlaySpeed(0.0f);
@@ -2511,21 +2510,6 @@ static int daObj_Sekizoa_IsDelete(void* i_this) {
 
 /* 80CD695C-80CD6960 000084 0004+00 0/1 0/0 0/0 .bss             l_HIO */
 static daObj_Sekizoa_Param_c l_HIO;
-
-/* 80CD5B84-80CD5C30 007924 00AC+00 1/1 0/0 0/0 .text            chkGoal__15daObj_Sekizoa_cFv */
-BOOL daObj_Sekizoa_c::chkGoal() {
-    daTag_EvtArea_c* evt_area_A = (daTag_EvtArea_c*)mActorMngrs[5].getActorP();
-    if (evt_area_A->chkPointInArea(current.pos)) {
-        return true;
-    }
-
-    daTag_EvtArea_c* evt_area_B = (daTag_EvtArea_c*)mActorMngrs[6].getActorP();
-    if (evt_area_B->chkPointInArea(current.pos)) {
-        mReverseStatues = (mType == TYPE_0);
-        return true;
-    }
-    return false;
-}
 
 /* 80CD671C-80CD673C -00001 0020+00 1/0 0/0 0/0 .data            daObj_Sekizoa_MethodTable */
 static actor_method_class daObj_Sekizoa_MethodTable = {

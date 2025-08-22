@@ -1,7 +1,9 @@
 /**
- * @file d_a_obj_hakai_ftr.cpp
+* @file d_a_obj_hakai_ftr.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_obj_hakai_ftr.h"
 #include "d/d_bg_w.h"

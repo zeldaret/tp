@@ -3,6 +3,8 @@
  * BG Collision Ground Check
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_bg_s_gnd_chk.h"
 
 /* 8007757C-800775F0 071EBC 0074+00 3/3 15/15 289/289 .text            __ct__11dBgS_GndChkFv */

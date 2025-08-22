@@ -2,6 +2,8 @@
 // Door Shutter
 //
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_door_shutter.h"
 #include "d/actor/d_a_obj_Lv5Key.h"
 #include "d/actor/d_a_obj_keyhole.h"
@@ -33,24 +35,6 @@ J3DModelData* daDoor20_c::getStopModelData() {
 char* daDoor20_c::getAlwaysArcName() {
     return "static";
 }
-
-/* 80466E7C-80466E88 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80466E88-80466E9C 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
 
 /* 80460BA4-80460C40 0000E4 009C+00 9/8 0/0 0/0 .text            getArcName__10daDoor20_cFv */
 char* daDoor20_c::getArcName() {

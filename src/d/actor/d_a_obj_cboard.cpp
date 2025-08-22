@@ -3,6 +3,8 @@
  * Clear (Invisible) Wall
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_cboard.h"
 #include "d/d_bg_w.h"
 #include "d/d_procname.h"

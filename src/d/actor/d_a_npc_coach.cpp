@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_coach.h"
 #include "d/actor/d_a_coach_2D.h"
 #include "d/actor/d_a_coach_fire.h"

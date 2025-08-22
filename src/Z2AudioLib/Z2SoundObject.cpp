@@ -177,14 +177,10 @@ Z2SoundHandlePool* Z2SoundObjBase::startCollisionSE(u32 pId, u32 pUserData, Z2So
     return handle;
 }
 
-/* ############################################################################################## */
-/* 8039C230-8039C240 028890 000C+04 1/1 0/0 0/0 .rodata          cNullVec__6Z2Calc */
-static Vec const cNullVec__6Z2Calc = {0.0f, 0.0f, 0.0f};
-
 /* 802BE5A0-802BE5FC 2B8EE0 005C+00 1/1 0/0 0/0 .text            __ct__21Z2DopplerSoundObjBaseFv */
 Z2DopplerSoundObjBase::Z2DopplerSoundObjBase() : Z2SoundObjBase() {
-    field_0x20 = cNullVec__6Z2Calc;
-    field_0x2c = cNullVec__6Z2Calc;
+    field_0x20 = Z2Calc::cNullVec;
+    field_0x2c = Z2Calc::cNullVec;
 }
 
 /* 802BE5FC-802BE65C 2B8F3C 0060+00 0/0 0/0 1/1 .text            __dt__21Z2DopplerSoundObjBaseFv */

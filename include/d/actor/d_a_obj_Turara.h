@@ -84,23 +84,4 @@ private:
 
 STATIC_ASSERT(sizeof(daTurara_c) == 0x998);
 
-class daTurara_HIO_c : public fOpAcm_HIO_entry_c {
-public:
-    /* 80B9CB8C */ daTurara_HIO_c();
-    /* 80B9E5B4 */ virtual ~daTurara_HIO_c() {}
-
-    void genMessage(JORMContext*);
-
-    /* 0x04 */ f32 field_0x04;
-    /* 0x08 */ f32 mGravity;
-    /* 0x0c */ f32 mMaxGravity;
-    /* 0x10 */ u8 mWaitTime;
-    /* 0x11 */ u8 mShockStrength;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1c */ f32 field_0x1c;
-};
-
-STATIC_ASSERT(sizeof(daTurara_HIO_c) == 0x20);
-
 #endif /* D_A_OBJ_TURARA_H */

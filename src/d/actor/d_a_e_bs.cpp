@@ -3,10 +3,26 @@
  * 
 */
 
-#include "d/actor/d_a_e_bs.h"
+#include "d/dolzel_rel.h"
 
-UNK_REL_DATA;
+#include "d/actor/d_a_e_bs.h"
 #include "f_op/f_op_actor_enemy.h"
+
+class daE_BS_HIO_c : public JORReflexible {
+public:
+    /* 8068E12C */ daE_BS_HIO_c();
+    /* 8069091C */ virtual ~daE_BS_HIO_c() {}
+
+    void genMessage(JORMContext* ctx);
+
+    /* 0x04 */ s8 id;
+    /* 0x08 */ f32 base_size;
+    /* 0x0C */ f32 move_speed;
+    /* 0x10 */ f32 rush_speed;
+    /* 0x14 */ f32 pl_recognize_dist;
+    /* 0x18 */ f32 attack_start_range;
+    /* 0x1C */ f32 battle_start_range;
+};
 
 enum daE_BS_ACTION {
     ACTION_APPEAR,

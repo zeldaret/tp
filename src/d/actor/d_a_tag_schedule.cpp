@@ -3,6 +3,8 @@
  *
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tag_schedule.h"
 
 /* 80D60098-80D600E8 000078 0050+00 1/0 0/0 0/0 .text daTagSchedule_Create__FP10fopAc_ac_c */

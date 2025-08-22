@@ -93,24 +93,4 @@ private:
 
 STATIC_ASSERT(sizeof(daE_GI_c) == 0x107c);
 
-class daE_GI_HIO_c : public JORReflexible {
-public:
-    /* 806CD48C */ daE_GI_HIO_c();
-    /* 806D098C */ virtual ~daE_GI_HIO_c() {}
-
-    void genMessage(JORMContext*);
-
-    /* 0x04 */ s8 id;
-    /* 0x08 */ f32 model_size;
-    /* 0x0C */ f32 move_speed;
-    /* 0x10 */ f32 player_detect_range;
-    /* 0x14 */ f32 player_attack_range;
-    /* 0x18 */ f32 attack_angle;
-    /* 0x1C */ f32 link_stun_time;
-    /* 0x20 */ f32 wolf_stun_time;
-    /* 0x24 */ f32 scream_prevention_time;
-    /* 0x28 */ f32 lever_spin_time;
-};
-
-
 #endif /* D_A_E_GI_H */

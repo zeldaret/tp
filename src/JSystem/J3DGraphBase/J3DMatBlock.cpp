@@ -337,11 +337,6 @@ static u8 sdata_padding[4] = {};
 /* 804515D8-804515DC 000AD8 0004+00 2/2 0/0 0/0 .sbss            SizeOfJ3DColorBlockLightOffLoad */
 static u32 SizeOfJ3DColorBlockLightOffLoad = SizeOfLoadMatColors + SizeOfLoadColorChans;
 
-u8 J3DColorChan::getAttnFn() const {
-    u8 AttnArr[] = {2,0,2,1};
-    return AttnArr[(u32)(mColorChanID & (3 << 9)) >> 9];
-}
-
 /* 80317C0C-8031816C 31254C 0560+00 1/0 0/0 0/0 .text            load__21J3DColorBlockLightOffFv */
 void J3DColorBlockLightOff::load() {
     GDOverflowCheck(SizeOfJ3DColorBlockLightOffLoad);

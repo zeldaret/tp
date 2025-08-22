@@ -1,3 +1,5 @@
+#include "d/dolzel.h"
+
 #include "d/d_debug_viewer.h"
 #include "d/d_com_inf_game.h"
 #include "f_ap/f_ap_game.h"

@@ -3,6 +3,8 @@
  * Object - Golden Butterfly
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_cho.h"
 #include "SSystem/SComponent/c_math.h"
 #include "m_Do/m_Do_lib.h"

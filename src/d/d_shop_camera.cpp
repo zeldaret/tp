@@ -3,6 +3,8 @@
  * Shop Camera Handling
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_shop_camera.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_player.h"

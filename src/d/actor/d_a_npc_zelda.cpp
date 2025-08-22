@@ -3,13 +3,13 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_zelda.h"
 #include "JSystem/JHostIO/JORFile.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "d/actor/d_a_hozelda.h"
 #include "d/d_debug_viewer.h"
-
-UNK_REL_DATA
 
 #if DEBUG
 #define HIO_PARAM(i_this) (i_this->mHIO->param)

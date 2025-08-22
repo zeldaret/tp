@@ -56,7 +56,7 @@ STATIC_ASSERT(sizeof(daWtGate_c) == 0x5bc);
 
 struct daWtGate_HIO_c : public mDoHIO_entry_c {
     /* 80D2BB8C */ daWtGate_HIO_c();
-    /* 80D2C3C0 */ ~daWtGate_HIO_c() {};
+    /* 80D2C3C0 */ ~daWtGate_HIO_c() {}
 
     void genMessage(JORMContext*);
 

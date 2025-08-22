@@ -1,3 +1,5 @@
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc.h"
 
 static s32 daBaseNpc_chkPnt(cXyz param_0, dPnt* param_1, u16 param_2, u16 param_3, int param_4, int param_5);

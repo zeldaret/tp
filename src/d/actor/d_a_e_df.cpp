@@ -1,13 +1,26 @@
 /**
- * @file d_a_e_df.cpp
+* @file d_a_e_df.cpp
  *
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_df.h"
 #include "d/actor/d_a_obj_carry.h"
-
-UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
+
+class daE_DF_HIO_c : public JORReflexible {
+public:
+    /* 806A76EC */ daE_DF_HIO_c();
+    /* 806A9A84 */ virtual ~daE_DF_HIO_c() {};
+
+    void genMessage(JORMContext*);
+
+    /* 0x4 */ s8 mNo;
+    /* 0x8 */ f32 field_0x8;
+};
+
+STATIC_ASSERT(sizeof(daE_DF_HIO_c) == 0xC);
 
 #ifdef DEBUG
 inline void daE_DF_HIO_c::genMessage(JORMContext* i_ctx) {

@@ -3,6 +3,8 @@
  * Object - Goron Adult Wall (Deleted)
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_graWall.h"
 #include "d/d_procname.h"
 

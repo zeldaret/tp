@@ -3,6 +3,8 @@
  * Mirror of Twilight
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_mirror.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"

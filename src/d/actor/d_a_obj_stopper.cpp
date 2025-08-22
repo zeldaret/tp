@@ -1,14 +1,13 @@
 /**
- * @file d_a_obj_stopper.cpp
+* @file d_a_obj_stopper.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_obj_stopper.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/d_com_inf_game.h"
-
-UNK_REL_BSS
-UNK_REL_DATA
 
 /* 80CECF0C-80CECF34 0000EC 0028+00 1/1 0/0 0/0 .text            getStopModelData__Fv */
 static J3DModelData* getStopModelData() {

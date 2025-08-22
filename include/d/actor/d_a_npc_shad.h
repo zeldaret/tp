@@ -12,22 +12,6 @@
  *
  */
 
-struct daNpcShad_HIOParam {
-    /* 0x00 */ daNpcF_HIOParam common;
-    /* 0x6C */ f32 traveling_speed;     // 走行速度 (Traveling Speed)
-};
-
-class daNpcShad_Param_c: public JORReflexible {
-public:
-    /* 80AE1F70 */ virtual ~daNpcShad_Param_c() {}
-
-#ifdef DEBUG
-    void genMessage(JORMContext*);
-#endif
-
-    static const daNpcShad_HIOParam m;
-};
-
 class daNpcShad_c : public daNpcF_c {
 public:
     typedef bool (daNpcShad_c::*ActionFn)(void*);

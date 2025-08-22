@@ -14,9 +14,6 @@
  */
 class LaundJoint_c {
 public:
-    /* 80C51D2C */ ~LaundJoint_c();
-    /* 80C51EC0 */ LaundJoint_c();
-
     cXyz mPos1;
     cXyz mPos2;
     cXyz mPos3;

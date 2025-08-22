@@ -3,24 +3,26 @@
 // Translation Unit: d/d_stage
 //
 
-#include "d/d_stage.h"
+#include "d/dolzel.h"
+
 #include "JSystem/JKernel/JKRAramArchive.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
-#include "d/d_path.h"
-#include "stdio.h"
 #include "SSystem/SComponent/c_malloc.h"
-#include "d/d_com_inf_game.h"
 #include "d/actor/d_a_alink.h"
+#include "d/actor/d_a_suspend.h"
+#include "d/d_com_inf_game.h"
 #include "d/d_lib.h"
 #include "d/d_map_path_dmap.h"
 #include "d/d_map_path_fmap.h"
+#include "d/d_path.h"
 #include "d/d_save_HIO.h"
-#include "d/actor/d_a_suspend.h"
+#include "d/d_stage.h"
 #include "f_op/f_op_kankyo_mng.h"
 #include "f_op/f_op_msg_mng.h"
 #include "f_op/f_op_scene_mng.h"
 #include "global.h"
 #include "m_Do/m_Do_Reset.h"
+#include "stdio.h"
 
 void dStage_nextStage_c::set(const char* i_stage, s8 i_roomId, s16 i_point, s8 i_layer, s8 i_wipe,
                              u8 i_speed) {
@@ -1283,6 +1285,10 @@ void dStage_roomControl_c::zoneCountCheck(int i_roomNo) const {
     setStayNo(i_roomNo);
 }
 
+static void dummy1() {
+    ((dStage_stageDt_c*)dComIfGp_getStage())->getStagInfo();
+}
+
 JKRExpHeap* dStage_roomControl_c::createMemoryBlock(int i_blockIdx, u32 i_heapSize) {
     if (mMemoryBlock[i_blockIdx] == NULL) {
         mMemoryBlock[i_blockIdx] = JKRCreateExpHeap(i_heapSize, mDoExt_getArchiveHeap(), false);
@@ -1486,6 +1492,11 @@ static int dStage_roomInit(int i_roomNo) {
     return 1;
 }
 
+static void dummy0() {
+    dComIfGp_roomControl_setTimePass(0);
+    ((dStage_stageDt_c*)dComIfGp_getStage())->getRoom();
+}
+
 dStage_objectNameInf* dStage_searchName(char const* objName) {
     dStage_objectNameInf* obj = l_objectName;
 
@@ -1601,11 +1612,11 @@ static int dStage_cameraCreate(stage_camera2_data_class* i_cameraData, int i_cam
     return 1;
 }
 
-static void dummy() {
+static void dummy2() {
     // Needed to fix weak function order.
     // This is likely caused by the dStage_chkPlayerId function from TWW using these functions.
     // dStage_chkPlayerId isn't used in TP, so it gets stripped out, but the effect it has on weak order remains.
-    dComIfGp_getStage()->getPlayer();
+    ((dStage_stageDt_c*)dComIfGp_getStage())->getPlayer();
     dComIfGp_roomControl_getStatusRoomDt(0)->getPlayer();
 }
 
@@ -1728,6 +1739,10 @@ stage_map_info_class* dStage_roomDt_c::getMapInfo2(int param_0) const {
     return NULL;
 }
 
+static void dummy3() {
+    dComIfGp_roomControl_getStatusRoomDt(0)->getMapInfoBase();
+}
+
 /* 80025404-80025490 01FD44 008C+00 1/0 0/0 0/0 .text            getMapInfo2__16dStage_stageDt_cCFi
  */
 stage_map_info_class* dStage_stageDt_c::getMapInfo2(int param_0) const {
@@ -1748,6 +1763,10 @@ stage_map_info_class* dStage_stageDt_c::getMapInfo2(int param_0) const {
     }
 
     return NULL;
+}
+
+static void dummy4() {
+    ((dStage_stageDt_c*)dComIfGp_getStage())->getMapInfoBase();
 }
 
 /* 80025498-800254CC 01FDD8 0034+00 1/0 0/0 0/0 .text dStage_paletteInfoInit__FP11dStage_dt_cPviPv
@@ -2482,6 +2501,8 @@ static void layerTableLoader(void* i_data, dStage_dt_c* i_stage, int roomNo) {
     }
 }
 
+dStage_Elst_c* dStage_stageDt_c::getElst(void) { return mElst; }
+
 /* 80026AF0-80026B58 021430 0068+00 2/2 0/0 0/0 .text layerActorLoader__FPvP11dStage_dt_ci */
 static void layerActorLoader(void* i_data, dStage_dt_c* i_stage, int param_2) {
     static FuncTable l_layerFuncTable[] = {
@@ -2740,6 +2761,11 @@ int dStage_changeScene(int i_exitId, f32 speed, u32 mode, s8 room_no, s16 angle,
     dComIfGp_setNextStage(scls_info->mStage, scls_info->mStart, (s8)scls_info->mRoom, (s8)layer,
                           speed, mode, 1, wipe == 15 ? 0 : wipe, angle, 1, wipe_time);
     return 1;
+}
+
+static void dummy5() {
+    dComIfGp_roomControl_getStatusRoomDt(0)->getSclsInfo();
+    ((dStage_stageDt_c*)dComIfGp_getStage())->getSclsInfo();
 }
 
 /* 800272F0-800274B0 021C30 01C0+00 0/0 1/1 0/0 .text dStage_changeScene4Event__FiScibfUlsi */

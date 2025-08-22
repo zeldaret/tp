@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_b_dr.h"
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_player.h"
@@ -13,6 +15,53 @@
 #include "d/d_camera.h"
 #include "c/c_damagereaction.h"
 #include "Z2AudioLib/Z2Instances.h"
+
+
+class daB_DR_HIO_c : public JORReflexible {
+public:
+    /* 805BAE6C */ daB_DR_HIO_c();
+    /* 805C6B94 */ virtual ~daB_DR_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 model_size;
+    /* 0x0C */ f32 fall_accel;
+    /* 0x10 */ f32 fall_accel_max;
+    /* 0x14 */ f32 wind_large_attack_lockon_range;
+    /* 0x18 */ f32 unk_0x18;
+    /* 0x1C */ f32 wind_small_attack_power;
+    /* 0x20 */ f32 wind_attack_power;
+    /* 0x24 */ f32 glide_wind_power;
+    /* 0x28 */ f32 breath_attack_threshold;
+    /* 0x2C */ f32 unk_0x2c;
+    /* 0x30 */ f32 breath_move_speed_max;
+    /* 0x34 */ f32 breath_move_speed_min;
+    /* 0x38 */ s16 tail_hit_chance_time;
+    /* 0x3A */ s16 center_wind_time;
+    /* 0x3C */ s16 breath_continue_time;
+    /* 0x3E */ s16 breath_continue_no_armor_time;
+    /* 0x40 */ s16 breath_feint1_time;
+    /* 0x42 */ s16 breath_feint2_time;
+    /* 0x44 */ s16 breath_feint3_time;
+    /* 0x46 */ s16 no_attack_time;
+    /* 0x48 */ s16 unk_0x48;
+    /* 0x4A */ s16 no_attack_no_armor_time;
+    /* 0x4C */ s16 unk_0x4c;
+    /* 0x4E */ s16 back_hit_chance_time;
+    /* 0x50 */ s16 after_breath_chance_time;
+    /* 0x52 */ s16 neck_search_speed;
+    /* 0x54 */ s16 neck_search2_speed;
+    /* 0x56 */ s16 neck_search_speed_max;
+    /* 0x58 */ s16 body_search_speed;
+    /* 0x5A */ s16 body_search2_speed;
+    /* 0x5C */ s16 body_search_speed_max;
+    /* 0x5E */ s16 body_search_feint_speed_max;
+    /* 0x60 */ s16 feint_angle;
+    /* 0x62 */ s16 unk_0x62;
+    /* 0x64 */ u8 display_range;
+    /* 0x65 */ u8 breath_feint2_OFF;
+};
 
 #define ANM_DR_BOOT_A 0x10
 #define ANM_DR_BOOT_A_DEMO 0x11
@@ -85,8 +134,6 @@ enum daB_DR_Action {
     ACTION_MIDDLE_DEMO,
     ACTION_DEAD,
 };
-
-UNK_REL_DATA
 
 namespace {
 /* 805C7268-805C72AC 000020 0044+00 0/1 0/0 0/0 .data cc_dr_week_src__22@unnamed@d_a_b_dr_cpp@ */
@@ -244,8 +291,6 @@ daB_DR_HIO_c::daB_DR_HIO_c() {
     display_range = false;
     breath_feint2_OFF = true;
 }
-
-UNK_REL_BSS
 
 /* 805C78FD 0003+00 l_initHIO None */
 static u8 l_initHIO;
@@ -877,6 +922,10 @@ void daB_DR_c::mHabatakiAnmSet(int param_0) {
         }
         break;
     }
+}
+
+static u8 dummy(u8 param_0) {
+    return cLib_calcTimer<u8>(&param_0);
 }
 
 /* 805BC57C-805BC8B4 0017FC 0338+00 3/2 0/0 0/0 .text            mGlider_AniSet__8daB_DR_cFb */

@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_kwheel01.h"
 #include "JSystem/JHostIO/JORMContext.h"
 #include "SSystem/SComponent/c_math.h"

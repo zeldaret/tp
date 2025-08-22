@@ -3,6 +3,8 @@
  * Player (Link) Actor
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_alink.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
@@ -174,11 +176,6 @@ static char const l_wolfWorldChangeEventName[21] = "WOLF_WORLD_CHANGE_IN";
 
 /* 8038FA38-8038FA48 01C098 0010+00 0/1 0/0 0/0 .rodata          l_defaultGetEventName */
 static char const l_defaultGetEventName[16] = "DEFAULT_GETITEM";
-
-/* 803AF990-803AF99C 00CAB0 000C+00 4/4 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 803AF99C-803AF9A8 00CABC 000A+02 2/2 0/0 0/0 .data            l_peepEventName */
 static char l_peepEventName[10] = "PEEP_HOLE";

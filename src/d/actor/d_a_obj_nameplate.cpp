@@ -1,7 +1,9 @@
 /**
- * @file d_a_obj_nameplate.cpp
+* @file d_a_obj_nameplate.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_obj_nameplate.h"
 #include "d/actor/d_a_alink.h"

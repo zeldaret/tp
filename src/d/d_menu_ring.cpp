@@ -4,6 +4,8 @@
  * 
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_menu_ring.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
@@ -26,11 +28,6 @@
 #include "string.h"
 
 #include "stdio.h"
-
-/* 803BDE70-803BDE7C 01AF90 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 803BDEAC-803BDEDC 01AFCC 0030+00 3/4 0/0 0/0 .data            stick_init */
 typedef void (dMenu_Ring_c::*initFunc)();

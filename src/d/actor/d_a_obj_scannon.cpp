@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_scannon.h"
 #include "dol2asm.h"
 
@@ -162,7 +164,6 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
@@ -205,24 +206,6 @@ SECTION_DEAD static char const* const stringBase_80CC92E6 = "LINK_IN";
 SECTION_DEAD static char const* const stringBase_80CC92EE = "SET";
 SECTION_DEAD static char const* const stringBase_80CC92F2 = "FIRE";
 SECTION_DEAD static char const* const stringBase_80CC92F7 = "FINISH";
-#pragma pop
-
-/* 80CC9304-80CC9310 000000 000C+00 4/4 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80CC9310-80CC9324 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 #pragma pop
 
 /* 80CC9324-80CC9328 -00001 0004+00 0/3 0/0 0/0 .data            l_arcName_Comp */

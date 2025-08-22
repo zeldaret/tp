@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_dk.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
@@ -41,8 +43,6 @@ enum E_DK_RES_FILE_ID {
     /* 0x1B */ BTK_DK_WAIT,
 };
 
-
-UNK_REL_DATA;
 
 static dCcD_SrcSph cc_dk_src = {
     { // mObjInf

@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_mg_rod.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
@@ -22,12 +24,30 @@
 #include "Z2AudioLib/Z2Instances.h"
 #include <cmath.h>
 
+class dmg_rod_HIO_c : public JORReflexible {
+public:
+    /* 804A95EC */ dmg_rod_HIO_c();
+    /* 804BB070 */ virtual ~dmg_rod_HIO_c() {}
+
+#if DEBUG
+    void genMessage(JORMContext*);
+#endif
+
+    /* 0x04 */ s8 id;
+    /* 0x08 */ f32 field_0x8;
+    /* 0x0C */ f32 field_0xc;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ f32 field_0x1c;
+    /* 0x20 */ f32 field_0x20;
+    /* 0x24 */ u8 force_fish_msg_output;
+};
+
 /* 804BB534-804BB540 000000 000C+00 45/45 0/0 0/0 .rodata          @3879 */
 static u8 const lit_3879[12] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
-
-UNK_REL_DATA
 
 /* 804BB870-804BB878 000020 0008+00 1/2 0/0 0/0 .data            check_kind */
 static u16 check_kind[] = {
@@ -482,8 +502,6 @@ static void rod_control(dmg_rod_class* i_this) {
 static void rod_main(dmg_rod_class* i_this) {
     rod_control(i_this);
 }
-
-UNK_REL_BSS;
 
 /* 804BBBD0-804BBBD4 000048 0004+00 6/9 0/0 0/0 .bss             henna */
 static npc_henna_class* henna;

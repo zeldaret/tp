@@ -1,0 +1,6 @@
+#ifndef DOLZEL_REL_PCH
+#define DOLZEL_REL_PCH
+
+#include "d/dolzel_base.pch"
+
+#endif // DOLZEL_REL_PCH

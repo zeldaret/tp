@@ -3,6 +3,8 @@
 // Translation Unit: a/obj/d_a_obj_ss_base
 //
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_ss_base.h"
 #include "f_op/f_op_actor_mng.h"
 

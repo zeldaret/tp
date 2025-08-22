@@ -1,7 +1,9 @@
 /**
- * @file d_a_e_bug.cpp
+* @file d_a_e_bug.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_e_bug.h"
 #include "d/actor/d_a_player.h"
@@ -21,8 +23,6 @@ daE_Bug_HIO_c::daE_Bug_HIO_c() {
     field_0x8 = 1.5f;
     field_0xc = 1.0f;
 }
-
-UNK_REL_BSS;
 
 /* 80697E6C-80697E70 -00001 0004+00 1/2 0/0 0/0 .bss             None */
 /* 80697E6C 0001+00 data_80697E6C @1009 */

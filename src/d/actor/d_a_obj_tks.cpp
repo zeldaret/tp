@@ -3,10 +3,10 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_tks.h"
 #include "d/d_com_inf_game.h"
-
-UNK_REL_DATA
 
 /* 80D12910-80D12940 000020 0030+00 1/2 0/0 0/0 .data            l_bckGetParamList */
 static daNpc_GetParam1 l_bckGetParamList[] = {

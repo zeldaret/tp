@@ -3,15 +3,17 @@
  * Save File Manager
  */
 
-#include "d/d_save.h"
-#include "d/d_save_init.h"
+#include "d/dolzel.h"
+
+#include "JSystem/JHostIO/JORFile.h"
 #include "JSystem/JUtility/JUTGamePad.h"
-#include "stdio.h"
+#include "d/actor/d_a_obj_carry.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_meter2_info.h"
-#include "d/actor/d_a_obj_carry.h"
+#include "d/d_save.h"
+#include "d/d_save_init.h"
 #include "f_op/f_op_scene_mng.h"
-#include "JSystem/JHostIO/JORFile.h"
+#include "stdio.h"
 
 /* 80032918-80032958 02D258 0040+00 4/4 0/0 0/0 .text            dSv_item_rename__FUc */
 static u8 dSv_item_rename(u8 i_itemNo) {

@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_b_bh.h"
 #include "d/actor/d_a_b_bq.h"
 #include "d/d_bomb.h"
@@ -94,8 +96,6 @@ static int daB_BH_Draw(b_bh_class* i_this) {
 
     return 1;
 }
-
-UNK_REL_BSS;
 
 /* 805B33ED 0003+00 data_805B33ED None */
 static u8 l_initHIO;

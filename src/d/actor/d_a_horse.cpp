@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_horse.h"
 #include "d/actor/d_a_alink.h"
 #include "d/d_com_inf_game.h"
@@ -215,8 +217,6 @@ void daHorseRein_c::setReinPosPart(int param_0) {
         setReinPos(i);
     }
 }
-
-UNK_REL_DATA
 
 /* 808458F4-808458F8 000020 0004+00 1/2 0/0 0/0 .data            l_autoUpHeight */
 static f32 l_autoUpHeight = 50.0f;
@@ -2144,23 +2144,6 @@ void daHorse_c::setRoomInfo(int param_0) {
         fopAcM_SetRoomNo(this, room_no);
     }
 }
-
-UNK_BSS(1109)
-UNK_BSS(1107)
-UNK_BSS(1105)
-UNK_BSS(1104)
-UNK_BSS(1099)
-UNK_BSS(1097)
-UNK_BSS(1095)
-UNK_BSS(1094)
-UNK_BSS(1057)
-UNK_BSS(1055)
-UNK_BSS(1053)
-UNK_BSS(1052)
-UNK_BSS(1014)
-UNK_BSS(1012)
-UNK_BSS(1010)
-UNK_BSS(1009)
 
 /* 80845C04-80845C10 000054 000C+00 1/2 0/0 0/0 .bss             l_frontFootOffset */
 static cXyz l_frontFootOffset(23.5f, -20.0f, 0.0f);

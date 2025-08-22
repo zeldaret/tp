@@ -3,24 +3,11 @@
  * Mirror Chamber Statue
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_mirror_screw.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_procname.h"
-
-/* 80C997A0-80C997AC 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80C997AC-80C997C0 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 
 /* 80C997C0-80C997C4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static char const* l_arcName = "MR-Screw";

@@ -3,6 +3,8 @@
  * Sacred Grove Mist Tag
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_kytag01.h"
 #include "SSystem/SComponent/c_math.h"
 #include "Z2AudioLib/Z2EnvSeMgr.h"

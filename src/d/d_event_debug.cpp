@@ -1,4 +1,6 @@
 #ifdef DEBUG
+#include "d/dolzel.h"
+
 #include "d/d_event_debug.h"
 #include "JSystem/JHostIO/JORFile.h"
 #include "JSystem/JHostIO/JORMContext.h"

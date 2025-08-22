@@ -3,6 +3,8 @@
 // Translation Unit: d/d_msg_string
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_msg_string.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "d/d_msg_out_font.h"

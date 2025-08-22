@@ -3,12 +3,25 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_amiShutter.h"
 #include "d/actor/d_a_player.h"
 #include "c/c_damagereaction.h"
 #include "d/d_bg_w.h"
 
-UNK_REL_DATA
+struct daAmiShutter_HIO_c : public mDoHIO_entry_c {
+    /* 0x04 */ f32 mRange;
+    /* 0x08 */ f32 mMaxOpenSpeed;
+    /* 0x0c */ f32 mMaxCloseSpeed;
+    /* 0x10 */ u8 mWaitTime;
+    /* 0x11 */ u8 field_0x11;
+
+    /* 80BA14CC */ daAmiShutter_HIO_c();
+    /* 80BA21E0 */ ~daAmiShutter_HIO_c() {}
+
+    void genMessage(JORMContext*);
+};
 
 /* 80BA14CC-80BA1514 0000EC 0048+00 1/1 0/0 0/0 .text            __ct__18daAmiShutter_HIO_cFv */
 daAmiShutter_HIO_c::daAmiShutter_HIO_c() {

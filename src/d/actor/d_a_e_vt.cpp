@@ -3,6 +3,8 @@
  * Variant Enemy (Death Sword)
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_vt.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "SSystem/SComponent/c_math.h"
@@ -12,12 +14,33 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
 #include "d/d_camera.h"
-UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
 
 #define WL_CUT_TYPE_SMALL 1
 #define WL_CUT_TYPE_JUMP 2
 #define WL_CUT_TYPE_LARGE 3
+
+class daE_VA_HIO_c {
+public:
+    /* 807C25EC */ daE_VA_HIO_c();
+    /* 807CE2AC */ virtual ~daE_VA_HIO_c() {}
+
+    /* 0x04 */ s8 field_0x04;
+    /* 0x08 */ f32 mModelSize;
+    /* 0x0C */ f32 mAttackRange;
+    /* 0x10 */ f32 mBiteCount;
+    /* 0x14 */ f32 mCircleAttackRadius;
+    /* 0x18 */ f32 mFadeAwayTime;
+    /* 0x1C */ f32 mDownTime;
+    /* 0x20 */ f32 mDownHP;
+    /* 0x24 */ f32 field_0x24;
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
+    /* 0x30 */ f32 mKRegLightR;
+    /* 0x34 */ f32 mKRegLightG;
+    /* 0x38 */ f32 mKRegLightB;
+    /* 0x3C */ f32 mKRegLightA;
+};
 
 enum daE_VA_JOINT {
     JNT_ROOT,
@@ -189,103 +212,8 @@ daE_VA_HIO_c::daE_VA_HIO_c() {
     mKRegLightA = 210.0f;
 }
 
-
-/* ############################################################################################## */
-/* 807CF478-807CF47C 000008 0001+03 1/1 0/0 0/0 .bss             @1109 */
-static u8 lit_1109[1 + 3 /* padding */];
-
-/* 807CF47C-807CF480 00000C 0001+03 0/0 0/0 0/0 .bss             @1107 */
-#pragma push
-#pragma force_active on
-static u8 lit_1107[1 + 3 /* padding */];
-#pragma pop
-
-/* 807CF480-807CF484 000010 0001+03 0/0 0/0 0/0 .bss             @1105 */
-#pragma push
-#pragma force_active on
-static u8 lit_1105[1 + 3 /* padding */];
-#pragma pop
-
-/* 807CF484-807CF488 000014 0001+03 0/0 0/0 0/0 .bss             @1104 */
-#pragma push
-#pragma force_active on
-static u8 lit_1104[1 + 3 /* padding */];
-#pragma pop
-
-/* 807CF488-807CF48C 000018 0001+03 0/0 0/0 0/0 .bss             @1099 */
-#pragma push
-#pragma force_active on
-static u8 lit_1099[1 + 3 /* padding */];
-#pragma pop
-
-/* 807CF48C-807CF490 00001C 0001+03 0/0 0/0 0/0 .bss             @1097 */
-#pragma push
-#pragma force_active on
-static u8 lit_1097[1 + 3 /* padding */];
-#pragma pop
-
-/* 807CF490-807CF494 000020 0001+03 0/0 0/0 0/0 .bss             @1095 */
-#pragma push
-#pragma force_active on
-static u8 lit_1095[1 + 3 /* padding */];
-#pragma pop
-
-/* 807CF494-807CF498 000024 0001+03 0/0 0/0 0/0 .bss             @1094 */
-#pragma push
-#pragma force_active on
-static u8 lit_1094[1 + 3 /* padding */];
-#pragma pop
-
-/* 807CF498-807CF49C 000028 0001+03 0/0 0/0 0/0 .bss             @1057 */
-#pragma push
-#pragma force_active on
-static u8 lit_1057[1 + 3 /* padding */];
-#pragma pop
-
-/* 807CF49C-807CF4A0 00002C 0001+03 0/0 0/0 0/0 .bss             @1055 */
-#pragma push
-#pragma force_active on
-static u8 lit_1055[1 + 3 /* padding */];
-#pragma pop
-
-/* 807CF4A0-807CF4A4 000030 0001+03 0/0 0/0 0/0 .bss             @1053 */
-#pragma push
-#pragma force_active on
-static u8 lit_1053[1 + 3 /* padding */];
-#pragma pop
-
-/* 807CF4A4-807CF4A8 000034 0001+03 0/0 0/0 0/0 .bss             @1052 */
-#pragma push
-#pragma force_active on
-static u8 lit_1052[1 + 3 /* padding */];
-#pragma pop
-
-/* 807CF4A8-807CF4AC 000038 0001+03 0/0 0/0 0/0 .bss             @1014 */
-#pragma push
-#pragma force_active on
-static u8 lit_1014[1 + 3 /* padding */];
-#pragma pop
-
-/* 807CF4AC-807CF4B0 00003C 0001+03 0/0 0/0 0/0 .bss             @1012 */
-#pragma push
-#pragma force_active on
-static u8 lit_1012[1 + 3 /* padding */];
-#pragma pop
-
-/* 807CF4B0-807CF4B4 000040 0001+03 0/0 0/0 0/0 .bss             @1010 */
-#pragma push
-#pragma force_active on
-static u8 lit_1010[1 + 3 /* padding */];
-#pragma pop
-
 /* 807CF4B4-807CF4B8 -00001 0004+00 2/2 0/0 0/0 .bss             None */
-/* 807CF4B4 0001+00 data_807CF4B4 @1009 */
 /* 807CF4B5 0003+00 data_807CF4B5 None */
-#pragma push
-#pragma force_active on
-static u8 struct_807CF4B4;
-#pragma pop
-
 #pragma push
 #pragma force_active on
 static u8 init_hio;

@@ -3,6 +3,8 @@
  * dolzel2 - Common Information For Actor
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_com_inf_actor.h"
 #include "dolphin/types.h"
 

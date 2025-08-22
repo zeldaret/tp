@@ -7,7 +7,6 @@
 
 struct JASSimpleWaveBank : JASWaveBank, JASWaveArc {
     struct TWaveHandle : JASWaveHandle {
-        /* 80298D84 */ ~TWaveHandle() {}
         /* 80298F38 */ int getWavePtr() const;
         /* 80298F5C */ TWaveHandle();
         /* 80298F90 */ const JASWaveInfo* getWaveInfo() const;

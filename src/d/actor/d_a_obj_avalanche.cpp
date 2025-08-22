@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_avalanche.h"
 #include "d/d_bg_w.h"
 #include "d/d_com_inf_game.h"
@@ -38,24 +40,6 @@ void daObjAvalanche_c::setBaseMtx() {
     mDoMtx_stack_c::YrotM(0);
     MTXCopy(mDoMtx_stack_c::get(), mMtx2);
 }
-
-/* 80BA7D70-80BA7D7C 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80BA7D7C-80BA7D90 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
 
 /* 80BA7D90-80BA7D94 -00001 0004+00 3/4 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "V_Yuki";

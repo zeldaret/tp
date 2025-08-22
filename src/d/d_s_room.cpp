@@ -3,10 +3,12 @@
  * Gameplay Room Scene
  */
 
-#include "d/d_s_room.h"
+#include "d/dolzel.h"
+
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
+#include "d/d_s_room.h"
 #include "m_Do/m_Do_Reset.h"
 #include "stdio.h"
 

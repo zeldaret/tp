@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_kytag12.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_player.h"

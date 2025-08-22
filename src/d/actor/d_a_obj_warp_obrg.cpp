@@ -3,14 +3,14 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_warp_obrg.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_meter2_info.h"
 #include "d/actor/d_a_player.h"
 #include "d/actor/d_a_midna.h"
 #include "d/d_bg_w.h"
-
-UNK_REL_DATA
 
 /* 80D2B934-80D2B938 -00001 0004+00 6/6 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "Obj_obrg";

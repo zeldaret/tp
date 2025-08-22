@@ -6,6 +6,8 @@
  *
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_stone.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_lib.h"
@@ -134,8 +136,6 @@ const static s16 l_rot_angle[2] = {35, 18};
 
 /* 80CECB94-80CECB98 0000E0 0004+00 0/1 0/0 0/0 .rodata          l_walk_rot_angle */
 const static s16 l_walk_rot_angle[2] = {40, 40};
-
-UNK_REL_DATA
 
 /* 80CECC74-80CECC7C -00001 0008+00 3/3 0/0 0/0 .data            l_arcName */
 static char* l_arcName[2] = {

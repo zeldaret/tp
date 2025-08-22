@@ -3,6 +3,8 @@
  * Tag - Goron A
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tag_gra.h"
 
 /* 80D59658-80D596E8 000078 0090+00 1/0 0/0 0/0 .text            daTagGra_Create__FP10fopAc_ac_c */

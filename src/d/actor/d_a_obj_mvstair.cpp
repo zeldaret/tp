@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_mvstair.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
@@ -76,8 +78,6 @@ int daObjStair_c::Create() {
     mSoundPos.y = 600.0f + home.pos.y;
     return 1;
 }
-
-UNK_REL_DATA
 
 /* 80C9E940-80C9E948 -00001 0008+00 3/3 0/0 0/0 .data            l_arcName */
 static char* l_arcName[2] = {

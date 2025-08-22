@@ -3,6 +3,8 @@
  * Bulblin Gate
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_rgate.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_bg_w.h"
@@ -212,8 +214,6 @@ void daObjRgate_c::setBaseMtx() {
         }
     }
 }
-
-UNK_REL_DATA;
 
 /* 80CBC4C0-80CBC4C4 -00001 0004+00 4/4 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "M_RGate00";

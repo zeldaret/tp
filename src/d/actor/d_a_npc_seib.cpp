@@ -1,11 +1,11 @@
 /**
- * @file d_a_npc_seib.cpp
+* @file d_a_npc_seib.cpp
  *
  */
 
-#include "d/actor/d_a_npc_seib.h"
+#include "d/dolzel_rel.h"
 
-UNK_REL_DATA
+#include "d/actor/d_a_npc_seib.h"
 
 /* 80AC7118-80AC7120 000020 0008+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[2][1] = {12, 1};

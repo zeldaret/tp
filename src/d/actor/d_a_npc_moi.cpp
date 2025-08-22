@@ -1,16 +1,15 @@
 /**
- * @file d_a_npc_moi.cpp
+* @file d_a_npc_moi.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_npc_moi.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_ep.h"
 #include "d/actor/d_a_npc_uri.h"
-
-UNK_REL_DATA
-UNK_REL_BSS
 
 /* 80A7B17C-80A7B1BC 000020 0040+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[8][2] = {

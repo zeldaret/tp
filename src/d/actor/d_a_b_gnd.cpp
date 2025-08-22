@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_b_gnd.h"
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_alink.h"
@@ -175,9 +177,6 @@ enum daB_GND_ACTION {
     ACTION_DOWN = 21,
     ACTION_END = 22,
 };
-
-UNK_REL_DATA;
-UNK_REL_BSS;
 
 static u8 l_initHIO;
 

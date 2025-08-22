@@ -231,28 +231,4 @@ private:
 
 STATIC_ASSERT(sizeof(daB_YO_c) == 0x1B88);
 
-class daB_YO_HIO_c {
-public:
-    /* 8062F46C */ daB_YO_HIO_c();
-    /* 806395E4 */ virtual ~daB_YO_HIO_c() {}
-
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 mScale[8];
-    /* 0x28 */ f32 mFreezardNum;
-    /* 0x2C */ f32 mMaxFallSpeed;
-    /* 0x30 */ f32 mReboundSpeedRatio;
-    /* 0x34 */ f32 mChaseSpeed;
-    /* 0x38 */ f32 mReboundSpeedMax;
-    /* 0x3C */ bool field_0x3c;
-    /* 0x40 */ f32 mGatherTimer;
-    /* 0x44 */ f32 mAttackTimer;
-    /* 0x48 */ f32 mFreezardRadius;
-    /* 0x4C */ f32 field_0x4c;
-    /* 0x50 */ f32 field_0x50;
-    /* 0x54 */ bool field_0x54;
-    /* 0x58 */ f32 field_0x58;
-};
-
-STATIC_ASSERT(sizeof(daB_YO_HIO_c) == 0x5C);
-
 #endif /* D_A_B_YO_H */

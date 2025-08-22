@@ -1,7 +1,9 @@
 /**
- * @file d_a_obj_zraMark.cpp
+* @file d_a_obj_zraMark.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_obj_zraMark.h"
 #include "SSystem/SComponent/c_lib.h"
@@ -9,11 +11,6 @@
 #include "d/d_meter2_info.h"
 #include "d/actor/d_a_npc_hoz.h"
 #include "d/actor/d_a_npc_zra.h"
-
-_ZraMark_Hahen_c::_ZraMark_Hahen_c() {
-    mpModel = NULL;
-    setColor(0);
-}
 
 /* 80D42658-80D42678 000078 0020+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
 static int createSolidHeap(fopAc_ac_c* i_this) {

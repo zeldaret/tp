@@ -2,6 +2,8 @@
 // d_pane_class_ex
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_pane_class_ex.h"
 #include "JSystem/J2DGraph/J2DPane.h"
 #include "JSystem/J2DGraph/J2DPictureEx.h"

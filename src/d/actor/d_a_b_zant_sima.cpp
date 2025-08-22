@@ -3,6 +3,8 @@
  * Boss Zant Lava Island
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_b_zant_sima.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_obj_msima.h"

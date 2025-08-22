@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_len.h"
 #include "dol2asm.h"
 
@@ -294,24 +296,6 @@ SECTION_DEAD static char const* const stringBase_80A6903C = "Len_TW";
 SECTION_DEAD static char const* const stringBase_80A69043 = "Len1";
 SECTION_DEAD static char const* const stringBase_80A69048 = "CONVERSATION_IN_HOTEL";
 SECTION_DEAD static char const* const stringBase_80A6905E = "TAKE_WOODSTATUE";
-#pragma pop
-
-/* 80A69088-80A69094 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80A69094-80A690A8 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 #pragma pop
 
 /* 80A690A8-80A690B8 000020 0010+00 1/1 0/0 0/0 .data            l_bmdData */

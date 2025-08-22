@@ -1,7 +1,6 @@
 #ifndef STD_CMATH_H_
 #define STD_CMATH_H_
 
-
 namespace std {
 template<typename T>
 inline double fabs(T x) {

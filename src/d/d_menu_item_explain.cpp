@@ -3,6 +3,8 @@
  * Menu - Item Explain
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_menu_item_explain.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
@@ -21,11 +23,6 @@
 #include "m_Do/m_Do_graphic.h"
 #include "d/d_msg_scrn_3select.h"
 #include "d/d_msg_scrn_arrow.h"
-
-/* 803BD8C8-803BD8D4 01A9E8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 typedef void (dMenu_ItemExplain_c::*initFunc)();
 static initFunc init_process[] = {

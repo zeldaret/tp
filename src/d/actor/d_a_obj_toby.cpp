@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_toby.h"
 #include "d/actor/d_a_e_hz.h"
 #include "d/actor/d_a_player.h"
@@ -132,8 +134,6 @@ static void* shot_b_sub(void* param_1, void* param_2) {
     }
     return NULL;
 }
-
-UNK_REL_BSS
 
 /* 80D158F4-80D158F8 -00001 0004+00 2/2 0/0 0/0 .bss             None */
 /* 80D158F4 0001+00 data_80D158F4 @1009 */

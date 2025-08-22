@@ -1,7 +1,9 @@
 /**
  * @file d_a_obj_flag2.cpp
- * 
+ *
 */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_obj_flag2.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"

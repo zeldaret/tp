@@ -1,7 +1,9 @@
 /**
- * @file d_a_npc_henna.cpp
+* @file d_a_npc_henna.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_npc_henna.h"
 
@@ -24,13 +26,32 @@
 #include "m_Do/m_Do_graphic.h"
 
 class dmg_rod_class;
-UNK_REL_BSS
 
-//
-// Declarations:
-//
+class daNpc_Henna_HIO_c : public JORReflexible {
+public:
+    /* 80542F0C */ daNpc_Henna_HIO_c();
+    /* 80549E40 */ virtual ~daNpc_Henna_HIO_c() {}
+    void genMessage(JORMContext*);
 
-UNK_REL_DATA
+    s8 field_0x4;
+    f32 field_0x8;
+    s16 field_0xc;
+    s16 mSeasonDefColorR;
+    s16 mSeasonDefColorG;
+    s16 mSeasonDefColorB;
+    s16 mSeason2ColorR;
+    s16 mSeason2ColorG;
+    s16 mSeason2ColorB;
+    s16 mSeason3ColorR;
+    s16 mSeason3ColorG;
+    s16 mSeason3ColorB;
+    f32 mSeasonDefLightDist;
+    s16 mSeasonDefLightAngle;
+    f32 mSeason2LightDist;
+    s16 mSeason2LightAngle;
+    f32 mSeason3LightDist;
+    s16 mSeason3LightAngle;
+};
 
 /* 8054ACA8-8054ACB0 000020 0008+00 1/1 0/0 0/0 .data            check_kind */
 static u16 check_kind[4] = {

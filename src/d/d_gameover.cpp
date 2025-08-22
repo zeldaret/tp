@@ -3,6 +3,8 @@
 // Translation Unit: d/d_gameover
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_gameover.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "d/d_com_inf_game.h"
@@ -92,11 +94,6 @@ void dDlst_Gameover_CAPTURE_c::draw() {
 
     GXEnd();
 }
-
-/* 803BBB50-803BBB5C 018C70 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 803BBBC8-803BBC34 018CE8 006C+00 2/3 0/0 0/0 .data            init_process */
 typedef void (dGameover_c::*initFunc)();

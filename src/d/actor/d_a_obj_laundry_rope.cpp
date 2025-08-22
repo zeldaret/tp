@@ -1,7 +1,9 @@
 /**
- * @file d_a_obj_laundry_rope.cpp
+* @file d_a_obj_laundry_rope.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_obj_laundry_rope.h"
 #include "SSystem/SComponent/c_lib.h"

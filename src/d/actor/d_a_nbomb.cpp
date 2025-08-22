@@ -3,13 +3,14 @@
  * Bomb Actor
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_nbomb.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "SSystem/SComponent/c_math.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_alink.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
 #include "f_op/f_op_kankyo_mng.h"
 #include "d/actor/d_a_mirror.h"
 
@@ -39,13 +40,13 @@ static u8 const lit_3767[12] = {
 static Vec const l_localCenterOffset = {0.0f, 30.0f, 0.0f};
 
 /* 804CC358-804CC360 000018 0006+02 1/0 0/0 0/0 .rodata          l_arcNameBombF */
-SECTION_RODATA static char const l_arcNameBombF[] = "Bombf";
+static char const l_arcNameBombF[] = "Bombf";
 
 /* 804CC360-804CC368 000020 0005+03 1/1 0/0 0/0 .rodata          l_arcNameBombE */
-SECTION_RODATA static char const l_arcNameBombE[] = "E_BI";
+static char const l_arcNameBombE[] = "E_BI";
 
 /* 804CC368-804CC370 000028 0005+03 1/1 0/0 0/0 .rodata          l_arcNameBombEW */
-SECTION_RODATA static char const l_arcNameBombEW[] = "E_BG";
+static char const l_arcNameBombEW[] = "E_BG";
 
 /* 804C6E34-804C6F78 000154 0144+00 1/1 0/0 0/0 .text tgHitCallback__9daNbomb_cFP12dCcD_GObjInf */
 void daNbomb_c::tgHitCallback(dCcD_GObjInf* i_hitObj) {
@@ -384,11 +385,6 @@ int daNbomb_c::create() {
     return cPhs_COMPLEATE_e;
 }
 
-/* 804C7B44-804C7CC8 000E64 0184+00 1/1 0/0 0/0 .text            __ct__9daNbomb_cFv */
-daNbomb_c::daNbomb_c() {
-    /* empty function */
-}
-
 /* 804C7E94-804C7EB4 0011B4 0020+00 1/0 0/0 0/0 .text            daNbomb_Create__FP10fopAc_ac_c */
 static int daNbomb_Create(fopAc_ac_c* i_this) {
     return ((daNbomb_c*)i_this)->create();
@@ -508,23 +504,6 @@ void daNbomb_c::setSmokePos() {
 
     field_0xbe4 = (mEffectPosition - mEffectLastPosition) * 0.5f;
 }
-
-UNK_BSS(1109)
-UNK_BSS(1107)
-UNK_BSS(1105)
-UNK_BSS(1104)
-UNK_BSS(1099)
-UNK_BSS(1097)
-UNK_BSS(1095)
-UNK_BSS(1094)
-UNK_BSS(1057)
-UNK_BSS(1055)
-UNK_BSS(1053)
-UNK_BSS(1052)
-UNK_BSS(1014)
-UNK_BSS(1012)
-UNK_BSS(1010)
-UNK_BSS(1009)
 
 /* 804C8588-804C87F0 0018A8 0268+00 1/1 0/0 0/0 .text            setEffect__9daNbomb_cFv */
 void daNbomb_c::setEffect() {

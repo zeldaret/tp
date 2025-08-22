@@ -3,6 +3,8 @@
 // Translation Unit: d/d_simple_model
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_simple_model.h"
 #include "d/d_com_inf_game.h"
 

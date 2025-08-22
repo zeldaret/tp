@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_bemos.h"
 #include "d/d_cc_d.h"
 #include "dol2asm.h"
@@ -239,7 +241,6 @@ extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mLineCheck__11fopAcM_lc_c[112];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" f32 Zero__4cXyz[3];
 extern "C" u8 BaseY__4cXyz[12];
 extern "C" u8 sincosTable___5JMath[65536];
@@ -345,24 +346,6 @@ SECTION_DEAD static char const* const stringBase_80BB3A52 = "cogRed";
 SECTION_DEAD static char const* const stringBase_80BB3A59 = "cogBlue";
 SECTION_DEAD static char const* const stringBase_80BB3A61 = "cogGreen";
 SECTION_DEAD static char const* const stringBase_80BB3A6A = "cogYellow";
-#pragma pop
-
-/* 80BB3A74-80BB3A80 000000 000C+00 6/6 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80BB3A80-80BB3A94 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 #pragma pop
 
 /* 80BB3A94-80BB3A98 -00001 0004+00 8/9 0/0 0/0 .data            l_arcName */
@@ -833,101 +816,6 @@ COMPILER_STRIP_GATE(0x80BB383C, &lit_4293);
 int daObjBm_c::Execute(f32 (**param_0)[3][4]) {
     // NONMATCHING
 }
-
-/* ############################################################################################## */
-/* 80BB3EE8-80BB3EEC 000008 0001+03 2/2 0/0 0/0 .bss             @1109 */
-static u8 lit_1109[1 + 3 /* padding */];
-
-/* 80BB3EEC-80BB3EF0 00000C 0001+03 0/0 0/0 0/0 .bss             @1107 */
-#pragma push
-#pragma force_active on
-static u8 lit_1107[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BB3EF0-80BB3EF4 000010 0001+03 0/0 0/0 0/0 .bss             @1105 */
-#pragma push
-#pragma force_active on
-static u8 lit_1105[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BB3EF4-80BB3EF8 000014 0001+03 0/0 0/0 0/0 .bss             @1104 */
-#pragma push
-#pragma force_active on
-static u8 lit_1104[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BB3EF8-80BB3EFC 000018 0001+03 0/0 0/0 0/0 .bss             @1099 */
-#pragma push
-#pragma force_active on
-static u8 lit_1099[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BB3EFC-80BB3F00 00001C 0001+03 0/0 0/0 0/0 .bss             @1097 */
-#pragma push
-#pragma force_active on
-static u8 lit_1097[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BB3F00-80BB3F04 000020 0001+03 0/0 0/0 0/0 .bss             @1095 */
-#pragma push
-#pragma force_active on
-static u8 lit_1095[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BB3F04-80BB3F08 000024 0001+03 0/0 0/0 0/0 .bss             @1094 */
-#pragma push
-#pragma force_active on
-static u8 lit_1094[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BB3F08-80BB3F0C 000028 0001+03 0/0 0/0 0/0 .bss             @1057 */
-#pragma push
-#pragma force_active on
-static u8 lit_1057[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BB3F0C-80BB3F10 00002C 0001+03 0/0 0/0 0/0 .bss             @1055 */
-#pragma push
-#pragma force_active on
-static u8 lit_1055[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BB3F10-80BB3F14 000030 0001+03 0/0 0/0 0/0 .bss             @1053 */
-#pragma push
-#pragma force_active on
-static u8 lit_1053[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BB3F14-80BB3F18 000034 0001+03 0/0 0/0 0/0 .bss             @1052 */
-#pragma push
-#pragma force_active on
-static u8 lit_1052[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BB3F18-80BB3F1C 000038 0001+03 0/0 0/0 0/0 .bss             @1014 */
-#pragma push
-#pragma force_active on
-static u8 lit_1014[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BB3F1C-80BB3F20 00003C 0001+03 0/0 0/0 0/0 .bss             @1012 */
-#pragma push
-#pragma force_active on
-static u8 lit_1012[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BB3F20-80BB3F24 000040 0001+03 0/0 0/0 0/0 .bss             @1010 */
-#pragma push
-#pragma force_active on
-static u8 lit_1010[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BB3F24-80BB3F28 -00001 0004+00 3/3 0/0 0/0 .bss             None */
-/* 80BB3F24 0001+00 data_80BB3F24 @1009 */
-/* 80BB3F25 0001+00 data_80BB3F25 None */
-/* 80BB3F26 0001+00 data_80BB3F26 None */
-/* 80BB3F27 0001+00 data_80BB3F27 None */
-static u8 struct_80BB3F24[4];
 
 /* 80BAF29C-80BAF328 00101C 008C+00 1/1 0/0 0/0 .text            main_proc_call__9daObjBm_cFv */
 void daObjBm_c::main_proc_call() {
