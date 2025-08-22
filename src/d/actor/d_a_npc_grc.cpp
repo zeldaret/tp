@@ -885,7 +885,7 @@ u8 daNpc_grC_c::getTypeFromParam() {
 /* 809CCF38-809CCFBC 001B58 0084+00 1/1 0/0 0/0 .text            isDelete__11daNpc_grC_cFv */
 BOOL daNpc_grC_c::isDelete() {
     if (mType == TYPE_6 || mType == TYPE_0 || mType == TYPE_TWILIGHT || mType == TYPE_SPA &&
-        /*dSv_event_flag_c::M_031 - Goron Mines - Goron Mines clear */
+        /* dSv_event_flag_c::M_031 - Goron Mines - Goron Mines clear */
         daNpcF_chkEvtBit(64) ||
         mType == TYPE_3 || mType == TYPE_BUYER || mType == TYPE_5) {
         return FALSE;
@@ -1243,7 +1243,6 @@ void daNpc_grC_c::lookat() {
     mLookat.setParam(body_angleX_min, body_angleX_max, body_angleY_min, body_angleY_max, 0.0f, 0.0f, 0.0f, 0.0f, 
                      head_angleX_min, head_angleX_max, head_angleY_min, head_angleY_max, mCurAngle.y, lookatPos);
     mLookat.calc(this, model->getBaseTRMtx(), lookatAngle, i_snap, angle_delta, FALSE);
-    
 }
 
 /* 809CDFFC-809CE12C 002C1C 0130+00 3/3 0/0 0/0 .text            chkFindPlayer__11daNpc_grC_cFv */
