@@ -1786,7 +1786,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_npc_grc", extra_cflags=[DANPCF_C_HACK]), # weak func order
     ActorRel(NonMatching, "d_a_npc_grd"),
     ActorRel(NonMatching, "d_a_npc_grm"),
-    ActorRel(NonMatching, "d_a_npc_grmc"),
+    ActorRel(Equivalent, "d_a_npc_grmc"), # weak func order
     ActorRel(NonMatching, "d_a_npc_gro"),
     ActorRel(NonMatching, "d_a_npc_grr"),
     ActorRel(NonMatching, "d_a_npc_grs"),
