@@ -32,6 +32,8 @@ BOOL dMw_LEFT_TRIGGER();
 BOOL dMw_RIGHT_TRIGGER();
 void dMw_onPauseWindow();
 void dMw_offPauseWindow();
+void dMw_onMenuRing();
+void dMw_offMenuRing();
 
 class dDlst_MENU_CAPTURE_c;
 

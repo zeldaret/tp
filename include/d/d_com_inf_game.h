@@ -2009,6 +2009,14 @@ inline u8 dComIfGs_getFishSize(u8 param_0) {
     return g_dComIfG_gameInfo.info.getPlayer().getFishingInfo().getMaxSize(param_0);
 }
 
+inline void dComIfGs_addFishNum(u8 param_0) {
+    g_dComIfG_gameInfo.info.getPlayer().getFishingInfo().addFishCount(param_0);
+}
+
+inline void dComIfGs_setFishSize(u8 param_0, u8 param_1) {
+    g_dComIfG_gameInfo.info.getPlayer().getFishingInfo().setMaxSize(param_0, param_1);
+}
+
 inline u8 dComIfGs_getGetNumber(int i_no) {
     return g_dComIfG_gameInfo.info.getPlayer().getLetterInfo().getGetNumber(i_no);
 }
