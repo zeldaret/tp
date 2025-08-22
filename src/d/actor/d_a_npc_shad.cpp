@@ -2013,7 +2013,7 @@ BOOL daNpcShad_c::EvCut_ToChantSpell2(int i_cutIndex) {
                 }
             } else if (step(home.angle.y, MOT_STEP, 15.0f)) {
                 setMotion(MOT_WAIT_A, -1.0f, FALSE);
-                mTurnMode = MOT_WAIT_A;
+                mTurnMode = 0;
             }
 
             break;
