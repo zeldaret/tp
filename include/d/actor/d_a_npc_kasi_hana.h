@@ -113,6 +113,19 @@ public:
     /* 80A1BD6C */ void chgWeightHeavy();
     /* 80A1BDD8 */ void chgWeightLight();
     /* 80A2065C */ void getCenterPos();
+
+    /* 0x00 */ daNpcF_ActorMngr_c mHanaActorMngr;
+    /* 0x08 */ daNpcF_ActorMngr_c mKyuActorMngr;
+    /* 0x10 */ daNpcF_ActorMngr_c mMichActorMngr;
+    /* 0x18 */ daNpcF_ActorMngr_c mDanchoActorMngr;
+    /* 0x20 */ int mSygnal;
+    /* 0x24 */ cXyz mKyuPos;
+    /* 0x30 */ cXyz mMichPos;
+    /* 0x3C */ cXyz field_0x3c;
+    /* 0x48 */ u8 field_0x48[0x4c - 0x48];
+    /* 0x4C */ bool mIsPathInit;
+    /* 0x4D */ u8 field_0x4d[0x50 - 0x4d];
+    /* 0x50 */ daNpcF_Path_c mPath;
 };
 
 #endif /* D_A_NPC_KASI_HANA_H */
