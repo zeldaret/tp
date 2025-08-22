@@ -812,17 +812,17 @@ static int daNpc_grMC_Create(void* a_this) {
 
 /* 809D8DAC-809D8DCC 001A8C 0020+00 1/0 0/0 0/0 .text            daNpc_grMC_Delete__FPv */
 static int daNpc_grMC_Delete(void* a_this) {
-return static_cast<daNpc_grMC_c*>(a_this)->Delete();
+    return static_cast<daNpc_grMC_c*>(a_this)->Delete();
 }
 
 /* 809D8DCC-809D8DEC 001AAC 0020+00 1/0 0/0 0/0 .text            daNpc_grMC_Execute__FPv */
 static int daNpc_grMC_Execute(void* a_this) {
-return static_cast<daNpc_grMC_c*>(a_this)->Execute();
+    return static_cast<daNpc_grMC_c*>(a_this)->Execute();
 }
 
 /* 809D8DEC-809D8E0C 001ACC 0020+00 1/0 0/0 0/0 .text            daNpc_grMC_Draw__FPv */
 static int daNpc_grMC_Draw(void* a_this) {
-return static_cast<daNpc_grMC_c*>(a_this)->Draw();
+    return static_cast<daNpc_grMC_c*>(a_this)->Draw();
 }
 
 /* 809D8E0C-809D8E14 001AEC 0008+00 1/0 0/0 0/0 .text            daNpc_grMC_IsDelete__FPv */
