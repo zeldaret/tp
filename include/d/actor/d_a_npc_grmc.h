@@ -31,6 +31,33 @@ public:
 
 class daNpc_grMC_c : public dShopSystem_c {
 public:
+
+    enum Joint {
+        /* 0x00 */ JNT_CENTER,
+        /* 0x01 */ JNT_BACKBONE1,
+        /* 0x02 */ JNT_BACKBONE2,
+        /* 0x03 */ JNT_NECK,
+        /* 0x04 */ JNT_HEAD,
+        /* 0x05 */ JNT_CHIN,
+        /* 0x06 */ JNT_MAYU,
+        /* 0x07 */ JNT_MOUTH,
+        /* 0x08 */ JNT_SHOULDERL,
+        /* 0x09 */ JNT_ARML1,
+        /* 0x0A */ JNT_ARML2,
+        /* 0x0B */ JNT_HANDL,
+        /* 0x0C */ JNT_SHOULDERR,
+        /* 0x0D */ JNT_ARMR1,
+        /* 0x0E */ JNT_ARMR2,
+        /* 0x0F */ JNT_HANDR,
+        /* 0x10 */ JNT_WAIST,
+        /* 0x11 */ JNT_LEGL1,
+        /* 0x12 */ JNT_LEGL2,
+        /* 0x13 */ JNT_FOOTL,
+        /* 0x14 */ JNT_LEGR1,
+        /* 0x15 */ JNT_LEGR2,
+        /* 0x16 */ JNT_FOOTR,
+    };
+
     typedef int (daNpc_grMC_c::*cutFunc)(int);
     typedef int (daNpc_grMC_c::*actionFunc)(void*);
 
@@ -80,11 +107,11 @@ public:
         : dShopSystem_c(i_faceMotionAnmData, i_motionAnmData, i_faceMotionSequenceData,
         i_faceMotionStepNum, i_motionSequenceData, i_motionStepNum, i_evtData,
         i_arcNames) {}
-    /* 809D8FD4 */ s32 getHeadJointNo() { return 4; }
-    /* 809D8FDC */ s32 getNeckJointNo() { return 3; }
-    /* 809D8FE4 */ s32 getBackboneJointNo() { return 1; }
-    /* 809D8FEC */ BOOL checkChangeJoint(int param_1) { return param_1 == 4; }
-    /* 809D8FFC */ BOOL checkRemoveJoint(int param_1) { return param_1 == 7; }
+    /* 809D8FD4 */ s32 getHeadJointNo() { return JNT_HEAD; }
+    /* 809D8FDC */ s32 getNeckJointNo() { return JNT_NECK; }
+    /* 809D8FE4 */ s32 getBackboneJointNo() { return JNT_BACKBONE1; }
+    /* 809D8FEC */ BOOL checkChangeJoint(int param_1) { return param_1 == JNT_HEAD; }
+    /* 809D8FFC */ BOOL checkRemoveJoint(int param_1) { return param_1 == JNT_MOUTH; }
     /* 809D900C */ u16 getEyeballMaterialNo() { return 1; };
 
     static char* mCutNameList;
