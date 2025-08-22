@@ -111,13 +111,8 @@ inline s16 Cd2_HIO_atnOfs(int param_1) {
 }
 
 inline f32 Cd2_HIO_objScale(int param_1) {
-    f32 rv;
-    if (param_1 < 16) {
-        rv = l_Cd2_HIO.field_0x0004[param_1].mScale;
-    } else {
-        return l_Cd2_HIO.field_0x20c4[param_1 - 16].mScale;
-    }
-    return rv;
+    return (f32)(param_1 < 16 ? l_Cd2_HIO.field_0x0004[param_1].mScale : l_Cd2_HIO.field_0x20c4[param_1 - 16].mScale);
+
 }
 
 inline f32 Cd2_HIO_walkMaxSpeed(int param_1) {
@@ -151,53 +146,23 @@ inline f32 Cd2_HIO_maxSpeed(int param_1) {
 }
 
 inline f32 Cd2_HIO_anmPlaySpeed(int param_1) {
-    f32 rv;
-    if (param_1 < 16) {
-        rv = l_Cd2_HIO.field_0x0004[param_1].mAnmPlaySpeed;
-    } else {
-        return l_Cd2_HIO.field_0x20c4[param_1 - 16].mAnmPlaySpeed;
-    }
-    return rv;
+    return (f32)(param_1 < 16 ? l_Cd2_HIO.field_0x0004[param_1].mAnmPlaySpeed : l_Cd2_HIO.field_0x20c4[param_1 - 16].mAnmPlaySpeed);
 }
 
 inline f32 Cd2_HIO_chkWallH(int param_1) {
-    f32 rv;
-    if (param_1 < 16) {
-        rv = l_Cd2_HIO.field_0x0004[param_1].mChkWallH;
-    } else {
-        rv = l_Cd2_HIO.field_0x20c4[param_1 - 16].mChkWallH;
-    }
-    return rv;
+    return param_1 < 16 ? l_Cd2_HIO.field_0x0004[param_1].mChkWallH : l_Cd2_HIO.field_0x20c4[param_1 - 16].mChkWallH;
 }
 
 inline f32 Cd2_HIO_chkWallR(int param_1) {
-    f32 rv;
-    if (param_1 < 16) {
-        rv = l_Cd2_HIO.field_0x0004[param_1].mChkWallR;
-    } else {
-        rv = l_Cd2_HIO.field_0x20c4[param_1 - 16].mChkWallR;
-    }
-    return rv;
+    return param_1 < 16 ? l_Cd2_HIO.field_0x0004[param_1].mChkWallR : l_Cd2_HIO.field_0x20c4[param_1 - 16].mChkWallR;
 }
 
 inline f32 Cd2_HIO_cylR(int param_1) {
-    f32 rv;
-    if (param_1 < 16) {
-        rv = l_Cd2_HIO.field_0x0004[param_1].mCylR;
-    } else {
-        rv = l_Cd2_HIO.field_0x20c4[param_1 - 16].mCylR;
-    }
-    return rv;
+    return param_1 < 16 ? l_Cd2_HIO.field_0x0004[param_1].mCylR : l_Cd2_HIO.field_0x20c4[param_1 - 16].mCylR;
 }
 
 inline f32 Cd2_HIO_cylH(int param_1) {
-    f32 rv;
-    if (param_1 < 16) {
-        rv = l_Cd2_HIO.field_0x0004[param_1].mCylH;
-    } else {
-        rv = l_Cd2_HIO.field_0x20c4[param_1 - 16].mCylH;
-    }
-    return rv;
+    return param_1 < 16 ? l_Cd2_HIO.field_0x0004[param_1].mCylH : l_Cd2_HIO.field_0x20c4[param_1 - 16].mCylH;
 }
 
 inline int Cd2_HIO_maxLmtX_BACKBONE(int param_1) {
@@ -407,9 +372,7 @@ public:
     /* 0xAA4 */ int field_0xaa4;
     /* 0xAA8 */ int mHitodamaEmitters[2];
     /* 0xAB0 */ daTagEscape_c* mEscapeTag;
-    /* 0xAB4 */ f32 field_0xab4;
-    /* 0xAB8 */ f32 field_0xab8;
-    /* 0xABC */ f32 field_0xabc;
+    /* 0xAB4 */ cXyz field_0xab4;
     /* 0xAC0 */ s16 field_0xac0;
     /* 0xAC2 */ s16 field_0xac2;
     /* 0xAC4 */ s16 field_0xac4;
