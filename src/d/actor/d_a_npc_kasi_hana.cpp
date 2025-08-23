@@ -555,10 +555,10 @@ SECTION_DATA static u8 l_btpGetParamList[12] = {
 #pragma pop
 
 /* 80A214B4-80A214C0 -00001 000C+00 5/7 0/0 0/0 .data            l_arcNames */
-SECTION_DATA static void* l_arcNames[3] = {
-    (void*)&d_a_npc_kasi_hana__stringBase0,
-    (void*)(((char*)&d_a_npc_kasi_hana__stringBase0) + 0xA),
-    (void*)(((char*)&d_a_npc_kasi_hana__stringBase0) + 0x10),
+static char* l_arcNames[3] = {
+    "kasi_hana",
+    "girls",
+    "Wgeneral",
 };
 
 /* 80A214C0-80A214D8 -00001 0018+00 0/3 0/0 0/0 .data            l_evtNames */
@@ -1044,51 +1044,94 @@ daNpcKasiHana_c::~daNpcKasiHana_c() {
     // NONMATCHING
 }
 
-/* ############################################################################################## */
 /* 80A210C8-80A21144 000048 007C+00 5/12 0/0 0/0 .rodata          m__21daNpcKasiHana_Param_c */
-SECTION_RODATA u8 const daNpcKasiHana_Param_c::m[124] = {
-    0x42, 0x5C, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00,
-    0x43, 0x58, 0x00, 0x00, 0x43, 0x0C, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
-    0x41, 0xF0, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00, 0x42, 0x34, 0x00, 0x00, 0xC2, 0x34, 0x00, 0x00,
-    0x3F, 0x19, 0x99, 0x9A, 0x41, 0x40, 0x00, 0x00, 0x00, 0x02, 0x00, 0x06, 0x00, 0x03, 0x00, 0x06,
-    0x42, 0x70, 0x00, 0x00, 0x43, 0xFA, 0x00, 0x00, 0x43, 0x96, 0x00, 0x00, 0xC3, 0x96, 0x00, 0x00,
-    0x00, 0x3C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x44, 0x48, 0x00, 0x00,
-    0x43, 0xC8, 0x00, 0x00, 0x41, 0x60, 0x00, 0x00, 0x41, 0x80, 0x00, 0x00,
+daNpcKasiHana_HIOParam const daNpcKasiHana_Param_c::m = {
+    55.0f,
+    -3.0f,
+    1.0f,
+    500.0f,
+    216.0f,
+    140.0f,
+    35.0f,
+    30.0f,
+    0.0f,
+    0.0f,
+    10.0f,
+    -10.0f,
+    30.0f,
+    -10.0f,
+    45.0f,
+    -45.0f,
+    0.6f,
+    12.0f,
+    2,
+    6,
+    3,
+    6,
+    60.0f,
+    500.0f,
+    300.0f,
+    -300.0f,
+    60,
+    0,
+    0,
+    0,
+    0,
+    false,
+    false,
+    800.0f,
+    400.0f,
+    14.0f,
+    16.0f,
 };
-COMPILER_STRIP_GATE(0x80A210C8, &daNpcKasiHana_Param_c::m);
-
-/* 80A21144-80A21148 0000C4 0004+00 0/1 0/0 0/0 .rodata          @4768 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4768 = -60.0f;
-COMPILER_STRIP_GATE(0x80A21144, &lit_4768);
-#pragma pop
-
-/* 80A21148-80A2114C 0000C8 0004+00 0/1 0/0 0/0 .rodata          @4769 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4769 = -10.0f;
-COMPILER_STRIP_GATE(0x80A21148, &lit_4769);
-#pragma pop
-
-/* 80A2114C-80A21150 0000CC 0004+00 0/1 0/0 0/0 .rodata          @4770 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4770 = 60.0f;
-COMPILER_STRIP_GATE(0x80A2114C, &lit_4770);
-#pragma pop
-
-/* 80A21150-80A21154 0000D0 0004+00 0/1 0/0 0/0 .rodata          @4771 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4771 = 160.0f;
-COMPILER_STRIP_GATE(0x80A21150, &lit_4771);
-#pragma pop
 
 /* 80A1C334-80A1C5B0 001474 027C+00 1/1 0/0 0/0 .text            Create__15daNpcKasiHana_cFv */
-void daNpcKasiHana_c::Create() {
-    // NONMATCHING
+cPhs__Step daNpcKasiHana_c::Create() {
+    fopAcM_SetupActor(this, daNpcKasiHana_c);
+
+    mMessageNo = getMessageNo();
+    mType = getType();
+
+    cPhs__Step phase = cPhs_ERROR_e;
+    for (int i = 0; i < 3; i++) {
+        phase = (cPhs__Step)dComIfG_resLoad(&mPhases[i], l_arcNames[i]);
+
+        if (phase != cPhs_COMPLEATE_e) {
+            return phase;
+        }
+    }
+
+    if (phase == cPhs_COMPLEATE_e) {
+        if (!fopAcM_entrySolidHeap(this, createHeapCallBack, 0x1940)) {
+            return cPhs_ERROR_e;
+        }
+
+        J3DModel* model = mpMorf->getModel();
+        fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
+        fopAcM_setCullSizeBox(this, -60.0f, -10.0f, -60.0f, 60.0f, 160.0f, 60.0f);
+        mSound.init(&current.pos, &eyePos, 3, 1);
+
+        mAcchCir.SetWall(daNpcKasiHana_Param_c::m.common.width, daNpcKasiHana_Param_c::m.common.knee_length);
+        mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this),
+                  fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
+        mAcch.CrrPos(dComIfG_Bgsp());
+        mCcStts.Init(254, 0, this);
+        mCyl.Set(mCcDCyl);
+        mCyl.SetStts(&mCcStts);
+        mCyl.SetTgType(0);
+        mCyl.SetTgSPrm(0);
+        mCyl.SetH(daNpcKasiHana_Param_c::m.common.height);
+        mCyl.SetR(daNpcKasiHana_Param_c::m.common.width);
+        mGndChk = mAcch.m_gnd;
+        mGroundH = mAcch.GetGroundH();
+
+        setEnvTevColor();
+        setRoomNo();
+        reset();
+        Execute();
+    }
+
+    return phase;
 }
 
 /* ############################################################################################## */
@@ -1100,22 +1143,22 @@ COMPILER_STRIP_GATE(0x80A21154, &lit_4818);
 #pragma pop
 
 /* 80A1C5B0-80A1C734 0016F0 0184+00 1/1 0/0 0/0 .text            CreateHeap__15daNpcKasiHana_cFv */
-void daNpcKasiHana_c::CreateHeap() {
+int daNpcKasiHana_c::CreateHeap() {
     // NONMATCHING
 }
 
 /* 80A1C734-80A1C768 001874 0034+00 1/1 0/0 0/0 .text            Delete__15daNpcKasiHana_cFv */
-void daNpcKasiHana_c::Delete() {
+int daNpcKasiHana_c::Delete() {
     // NONMATCHING
 }
 
 /* 80A1C768-80A1C78C 0018A8 0024+00 2/2 0/0 0/0 .text            Execute__15daNpcKasiHana_cFv */
-void daNpcKasiHana_c::Execute() {
+int daNpcKasiHana_c::Execute() {
     // NONMATCHING
 }
 
 /* 80A1C78C-80A1C7D8 0018CC 004C+00 1/1 0/0 0/0 .text            Draw__15daNpcKasiHana_cFv */
-void daNpcKasiHana_c::Draw() {
+int daNpcKasiHana_c::Draw() {
     // NONMATCHING
 }
 
@@ -1128,19 +1171,19 @@ COMPILER_STRIP_GATE(0x80A21158, &lit_4839);
 
 /* 80A1C7D8-80A1C964 001918 018C+00 1/1 0/0 0/0 .text
  * ctrlJoint__15daNpcKasiHana_cFP8J3DJointP8J3DModel            */
-void daNpcKasiHana_c::ctrlJoint(J3DJoint* param_0, J3DModel* param_1) {
+int daNpcKasiHana_c::ctrlJoint(J3DJoint* param_0, J3DModel* param_1) {
     // NONMATCHING
 }
 
 /* 80A1C964-80A1C984 001AA4 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__15daNpcKasiHana_cFP10fopAc_ac_c          */
-void daNpcKasiHana_c::createHeapCallBack(fopAc_ac_c* param_0) {
+int daNpcKasiHana_c::createHeapCallBack(fopAc_ac_c* param_0) {
     // NONMATCHING
 }
 
 /* 80A1C984-80A1C9D0 001AC4 004C+00 1/1 0/0 0/0 .text
  * ctrlJointCallBack__15daNpcKasiHana_cFP8J3DJointi             */
-void daNpcKasiHana_c::ctrlJointCallBack(J3DJoint* param_0, int param_1) {
+int daNpcKasiHana_c::ctrlJointCallBack(J3DJoint* param_0, int param_1) {
     // NONMATCHING
 }
 
@@ -1150,7 +1193,7 @@ void daNpcKasiHana_c::setParam() {
 }
 
 /* 80A1CA60-80A1CD28 001BA0 02C8+00 1/0 0/0 0/0 .text            main__15daNpcKasiHana_cFv */
-void daNpcKasiHana_c::main() {
+BOOL daNpcKasiHana_c::main() {
     // NONMATCHING
 }
 
@@ -1173,7 +1216,7 @@ void daNpcKasiHana_c::setAttnPos() {
 
 /* 80A1CED0-80A1CFA0 002010 00D0+00 1/0 0/0 0/0 .text            setMotionAnm__15daNpcKasiHana_cFif
  */
-bool daNpcKasiHana_c::setMotionAnm(int param_0, f32 param_1) {
+void daNpcKasiHana_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 
@@ -1183,8 +1226,8 @@ void daNpcKasiHana_c::setMotion(int param_0, f32 param_1, int param_2) {
 }
 
 /* 80A1CFE8-80A1CFF0 002128 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__15daNpcKasiHana_cFv */
-bool daNpcKasiHana_c::drawDbgInfo() {
-    return false;
+int daNpcKasiHana_c::drawDbgInfo() {
+    return 0;
 }
 
 /* 80A1CFF0-80A1D238 002130 0248+00 1/1 0/0 0/0 .text            reset__15daNpcKasiHana_cFv */
@@ -1491,7 +1534,7 @@ void daNpcKasiHana_c::playMotionAnmLoop(daNpcF_c::daNpcF_anmPlayData*** param_0)
 
 /* 80A1D77C-80A1D824 0028BC 00A8+00 9/9 0/0 0/0 .text
  * setAction__15daNpcKasiHana_cFM15daNpcKasiHana_cFPCvPvi_i     */
-void daNpcKasiHana_c::setAction(int (daNpcKasiHana_c::*param_0)(int)) {
+BOOL daNpcKasiHana_c::setAction(int (daNpcKasiHana_c::*param_0)(int)) {
     // NONMATCHING
 }
 
@@ -1564,7 +1607,7 @@ void daNpcKasiHana_c::step(s16 param_0, int param_1) {
 
 /* 80A1DB1C-80A1DC00 002C5C 00E4+00 1/1 0/0 0/0 .text            chkFindPlayer__15daNpcKasiHana_cFv
  */
-void daNpcKasiHana_c::chkFindPlayer() {
+BOOL daNpcKasiHana_c::chkFindPlayer() {
     // NONMATCHING
 }
 
@@ -2076,11 +2119,6 @@ SECTION_DATA extern void* __vt__21daNpcKasiHana_Param_c[3] = {
     (void*)NULL,
     (void*)__dt__21daNpcKasiHana_Param_cFv,
 };
-
-/* 80A2067C-80A206C4 0057BC 0048+00 2/1 0/0 0/0 .text            __dt__21daNpcKasiHana_Param_cFv */
-daNpcKasiHana_Param_c::~daNpcKasiHana_Param_c() {
-    // NONMATCHING
-}
 
 /* 80A206C4-80A206CC 005804 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
 static void func_80A206C4() {
