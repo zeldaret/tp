@@ -241,8 +241,8 @@ static int daObj_Lp_Execute(obj_lp_class* i_this) {
         if (mCanoe) {
             tandem = mCanoe->checkTandem();
             dmg_rod_class* mDmgRod = (dmg_rod_class*)fopAcM_SearchByName(0x2e4);
-            if (((mDmgRod && mDmgRod->field_0x13b4 == 11) &&
-                mDmgRod->field_0x13b6 > 20) && mDmgRod->field_0x13b6 < 0x3c) {
+            if (((mDmgRod && mDmgRod->play_cam_mode == 11) &&
+                mDmgRod->play_cam_timer > 20) && mDmgRod->play_cam_timer < 0x3c) {
                     demo_f = 1;
             } else {
                 demo_f = 0;

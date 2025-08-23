@@ -930,6 +930,8 @@ public:
     bool checkMidnaAtnPos() const { return checkNoResetFlg1(FLG1_MIDNA_ATN_POS); }
     bool checkMidnaHairAtnPos() const { return checkNoResetFlg1(FLG1_MIDNA_HAIR_ATN_POS); }
     bool checkAttentionLock() const { return checkResetFlg0(RFLG0_UNK_10000); }
+    BOOL checkFishingRodUseStart() const { return checkResetFlg1(RFLG1_UNK_80); }
+    BOOL checkFishingRodUseAccept() const { return checkResetFlg1(RFLG1_UNK_200); }
 
     void onBossRoomWait() { onEndResetFlg0(ERFLG0_BOSS_ROOM_WAIT); }
     void onBeeFollow() { onEndResetFlg0(ERFLG0_BEE_FOLLOW); }
@@ -944,6 +946,9 @@ public:
     void onPortalWarpMidnaAtnKeep() { onEndResetFlg2(ERFLG2_PORTAL_WARP_MIDNA_ATN_KEEP); }
     void onFogFade() { onNoResetFlg2(FLG2_UNK_4000); }
     void onDkCaught2() { onNoResetFlg0(FLG0_DK_CAUGHT); }
+    void onFishingRodReelEnd() { onEndResetFlg0(ERFLG0_UNK_20000); }
+    void onFishingHit() { onEndResetFlg0(ERFLG0_UNK_10000); }
+    void onFishingKeep() { onEndResetFlg2(ERFLG2_UNK_1); }
 
     BOOL checkStickArrowReset() const { return checkResetFlg0(RFLG0_UNK_1); }
     u32 getCutAtFlg() const { return checkNoResetFlg0(FLG0_UNK_40); }
