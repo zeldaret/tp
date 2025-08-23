@@ -265,6 +265,11 @@ public:
 
 class dCcD_Stts : public cCcD_Stts, public dCcD_GStts {
 public:
+    enum Weight {
+        /* 0xD8 */ WEIGHT_LIGHT = 0xD8,
+        /* 0xFE */ WEIGHT_HEAVY = 0xFE,
+    };
+
     dCcD_Stts() {}
     /* 80083850 */ virtual cCcD_GStts* GetGStts();
     /* 80083860 */ void Init(int weight, int, fopAc_ac_c* pactor);

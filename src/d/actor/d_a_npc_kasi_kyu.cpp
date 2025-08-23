@@ -1022,7 +1022,7 @@ u8 daNpcKasiKyu_c::mTargetTagDist[4];
 static u8 struct_80A26068[4];
 
 /* 80A22534-80A227DC 000C54 02A8+00 1/0 0/0 0/0 .text            main__14daNpcKasiKyu_cFv */
-void daNpcKasiKyu_c::main() {
+BOOL daNpcKasiKyu_c::main() {
     // NONMATCHING
 }
 
@@ -1054,7 +1054,7 @@ void daNpcKasiKyu_c::setAttnPos() {
 
 /* 80A22984-80A22A54 0010A4 00D0+00 1/0 0/0 0/0 .text            setMotionAnm__14daNpcKasiKyu_cFif
  */
-bool daNpcKasiKyu_c::setMotionAnm(int param_0, f32 param_1) {
+void daNpcKasiKyu_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 
@@ -1064,8 +1064,8 @@ void daNpcKasiKyu_c::setMotion(int param_0, f32 param_1, int param_2) {
 }
 
 /* 80A22A9C-80A22AA4 0011BC 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__14daNpcKasiKyu_cFv */
-bool daNpcKasiKyu_c::drawDbgInfo() {
-    return false;
+BOOL daNpcKasiKyu_c::drawDbgInfo() {
+    return FALSE;
 }
 
 /* 80A22AA4-80A22CD8 0011C4 0234+00 1/1 0/0 0/0 .text            reset__14daNpcKasiKyu_cFv */

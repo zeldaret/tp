@@ -1080,7 +1080,7 @@ int daE_GI_c::create() {
         health = 240;
         field_0x560 = 240;
 
-        mCcStts.Init(254, 0, this);
+        mCcStts.Init(dCcD_Stts::WEIGHT_HEAVY, 0, this);
     
         mCcSph[0].Set(cc_gi_src);
         mCcSph[0].SetStts(&mCcStts);

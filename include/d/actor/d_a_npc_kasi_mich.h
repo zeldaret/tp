@@ -11,7 +11,7 @@
  * @details
  *
  */
-class daNpcKasiMich_c : public fopAc_ac_c {
+class daNpcKasiMich_c : public daNpcF_c {
 public:
     /* 80A261CC */ daNpcKasiMich_c();
     /* 80A26414 */ ~daNpcKasiMich_c();
@@ -24,11 +24,11 @@ public:
     /* 80A26C5C */ void createHeapCallBack(fopAc_ac_c*);
     /* 80A26C7C */ void ctrlJointCallBack(J3DJoint*, int);
     /* 80A26CC8 */ void setParam();
-    /* 80A26D34 */ void main();
+    /* 80A26D34 */ BOOL main();
     /* 80A26FDC */ void setAttnPos();
-    /* 80A27184 */ bool setMotionAnm(int, f32);
+    /* 80A27184 */ void setMotionAnm(int, f32);
     /* 80A27254 */ void setMotion(int, f32, int);
-    /* 80A2729C */ bool drawDbgInfo();
+    /* 80A2729C */ BOOL drawDbgInfo();
     /* 80A272A4 */ void reset();
     /* 80A274D8 */ void playMotion();
     /* 80A2790C */ void playMotionAnmLoop(daNpcF_c::daNpcF_anmPlayData***);
@@ -64,12 +64,32 @@ public:
     /* 80A295D8 */ void _getOffset(cXyz const&, cXyz&);
     /* 80A29FDC */ void adjustShapeAngle();
 
+    void setSygnal(int i_sygnal) { mSygnal = i_sygnal; }
+    void setChacePos(cXyz& i_chacePos) { mChacePos = i_chacePos; }
+    void setCenterPos(cXyz& i_centerPos) { mCenterPos = i_centerPos; }
+    void setPlPoint(int i_plPoint) { mPlPoint = i_plPoint; }
+    void off_talked() { mTalked = false; }
+    BOOL is_talked() { return mTalked; }
+    BOOL is_fear() { return mFear; }
+    BOOL is_escape() { return mEscape; }
+    void chgWeightHeavy() { mCcStts.SetWeight(dCcD_Stts::WEIGHT_HEAVY); }
+    void chgWeightLight() { mCcStts.SetWeight(dCcD_Stts::WEIGHT_LIGHT); }
+
     static u8 mEvtSeqList[12];
     static u8 mTargetTag[4];
     static u8 mTargetTagDist[4];
 
 private:
-    /* 0x568 */ u8 field_0x568[0x146c - 0x568];
+    /* 0x0B48 */ u8 field_0xb48[0x1444 - 0xb48];
+    /* 0x1444 */ int mSygnal;
+    /* 0x1448 */ cXyz mChacePos;
+    /* 0x1454 */ cXyz mCenterPos;
+    /* 0x1460 */ int mPlPoint;
+    /* 0x1464 */ u8 field_0x1464[0x1466 - 0x1464];
+    /* 0x1466 */ bool mTalked;
+    /* 0x1467 */ bool mFear;
+    /* 0x1468 */ bool mEscape;
+    /* 0x1469 */ u8 field_0x1469[0x146c - 0x1469];
 };
 
 STATIC_ASSERT(sizeof(daNpcKasiMich_c) == 0x146c);

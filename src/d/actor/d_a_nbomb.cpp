@@ -1124,7 +1124,7 @@ BOOL daNbomb_c::procFlowerWaitInit() {
     mCcSph.OffTgSetBit();
     cLib_offBit<u32>(attention_info.flags, 0x10);
     scale.set(0.1f, 0.1f, 0.1f);
-    mCcStts.SetWeight(0xFE);
+    mCcStts.SetWeight(dCcD_Stts::WEIGHT_HEAVY);
     mpModel->setBaseScale(scale);
     return true;
 }

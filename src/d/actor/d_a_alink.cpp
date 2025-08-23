@@ -15117,7 +15117,7 @@ void daAlink_c::commonProcInit(daAlink_c::daAlink_PROC i_procID) {
         if (checkWolf()) {
             field_0x814.SetWeight(0xFF);
         } else {
-            field_0x814.SetWeight(0xFE);
+            field_0x814.SetWeight(dCcD_Stts::WEIGHT_HEAVY);
         }
     } else {
         field_0x814.SetWeight(0x78);

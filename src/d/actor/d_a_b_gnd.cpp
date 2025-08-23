@@ -4854,7 +4854,7 @@ static int daB_GND_Create(fopAc_ac_c* a_this) {
         a_this->health = 24;
         i_this->field_0x560 = 24;
 
-        i_this->mGndCcStts.Init(254, 0, a_this);
+        i_this->mGndCcStts.Init(dCcD_Stts::WEIGHT_HEAVY, 0, a_this);
         i_this->mHorseCcStts.Init(150, 0, a_this);
 
         static dCcD_SrcSph h_cc_sph_src = {

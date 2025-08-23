@@ -1023,7 +1023,7 @@ u8 daNpcKasiMich_c::mTargetTagDist[4];
 static u8 struct_80A2A7F8[4];
 
 /* 80A26D34-80A26FDC 000C54 02A8+00 1/0 0/0 0/0 .text            main__15daNpcKasiMich_cFv */
-void daNpcKasiMich_c::main() {
+BOOL daNpcKasiMich_c::main() {
     // NONMATCHING
 }
 
@@ -1055,7 +1055,7 @@ void daNpcKasiMich_c::setAttnPos() {
 
 /* 80A27184-80A27254 0010A4 00D0+00 1/0 0/0 0/0 .text            setMotionAnm__15daNpcKasiMich_cFif
  */
-bool daNpcKasiMich_c::setMotionAnm(int param_0, f32 param_1) {
+void daNpcKasiMich_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 
@@ -1065,8 +1065,8 @@ void daNpcKasiMich_c::setMotion(int param_0, f32 param_1, int param_2) {
 }
 
 /* 80A2729C-80A272A4 0011BC 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__15daNpcKasiMich_cFv */
-bool daNpcKasiMich_c::drawDbgInfo() {
-    return false;
+BOOL daNpcKasiMich_c::drawDbgInfo() {
+    return FALSE;
 }
 
 /* 80A272A4-80A274D8 0011C4 0234+00 1/1 0/0 0/0 .text            reset__15daNpcKasiMich_cFv */

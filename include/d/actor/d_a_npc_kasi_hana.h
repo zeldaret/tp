@@ -38,27 +38,31 @@ public:
 class daNpcKasi_Mng_c {
 public:
     /* 80A1AFAC */ void calcEscapeForm();
-    /* 80A1B0D8 */ void calcCenterPos();
-    /* 80A1B1C8 */ void getDistFromCenter();
+    /* 80A1B0D8 */ BOOL calcCenterPos();
+    /* 80A1B1C8 */ f32 getDistFromCenter();
     /* 80A1B35C */ void getOffsetFromLeader(cXyz const&, cXyz&);
     /* 80A1B410 */ void initPath(u8, u16);
-    /* 80A1B48C */ void getPlNearPoint();
-    /* 80A1B5F0 */ void getSygnalInfo();
+    /* 80A1B48C */ int getPlNearPoint();
+    /* 80A1B5F0 */ int getSygnalInfo();
     /* 80A1B628 */ void sendInfo();
     /* 80A1B6F8 */ void offTalk();
-    /* 80A1B774 */ void chkTalk();
-    /* 80A1B810 */ void chkFear();
-    /* 80A1B884 */ void chkEscape();
-    /* 80A1B920 */ void createHearts();
+    /* 80A1B774 */ BOOL chkTalk();
+    /* 80A1B810 */ BOOL chkFear();
+    /* 80A1B884 */ BOOL chkEscape();
+    /* 80A1B920 */ BOOL createHearts();
     /* 80A1BAAC */ void allDemoMove();
     /* 80A1BB24 */ void allDemoNotMove();
-    /* 80A1BB9C */ void isMiniGamePlaying();
+    /* 80A1BB9C */ BOOL isMiniGamePlaying();
     /* 80A1BBE0 */ void schMemberActor();
     /* 80A1BC88 */ void schDanchoActor();
     /* 80A1BCF0 */ void deleteAllMember();
     /* 80A1BD6C */ void chgWeightHeavy();
     /* 80A1BDD8 */ void chgWeightLight();
     /* 80A2065C */ void getCenterPos();
+
+    void setKyuPos(const cXyz& i_pos) { mKyuPos = i_pos; }
+    void setMichPos(const cXyz& i_pos) { mMichPos = i_pos; }
+    BOOL chkSygnal(int param_1) { return mSygnal & param_1; }
 
     /* 0x00 */ daNpcF_ActorMngr_c mHanaActorMngr;
     /* 0x08 */ daNpcF_ActorMngr_c mKyuActorMngr;
@@ -67,8 +71,8 @@ public:
     /* 0x20 */ int mSygnal;
     /* 0x24 */ cXyz mKyuPos;
     /* 0x30 */ cXyz mMichPos;
-    /* 0x3C */ cXyz field_0x3c;
-    /* 0x48 */ u8 field_0x48[0x4c - 0x48];
+    /* 0x3C */ cXyz mCenterPos;
+    /* 0x48 */ int mPlPoint;
     /* 0x4C */ bool mIsPathInit;
     /* 0x4D */ u8 field_0x4d[0x50 - 0x4d];
     /* 0x50 */ daNpcF_Path_c mPath;
@@ -146,6 +150,11 @@ public:
 
         return rv;
     }
+    void off_talked() { mTalked = false; }
+    BOOL is_talked() { return mTalked; }
+    BOOL is_escape() { return mEscape; }
+    void chgWeightHeavy() { mCcStts.SetWeight(dCcD_Stts::WEIGHT_HEAVY); }
+    void chgWeightLight() { mCcStts.SetWeight(dCcD_Stts::WEIGHT_LIGHT); }
 
     static u8 mEvtSeqList[72];
     static u8 mTargetTag[4];
@@ -172,8 +181,8 @@ private:
     /* 0x143E */ u8 field_0x143e[0x1440 - 0x143e];
     /* 0x1440 */ u8 field_0x1440;
     /* 0x1441 */ u8 field_0x1441;
-    /* 0x1442 */ u8 field_0x1442;
-    /* 0x1443 */ u8 field_0x1443;
+    /* 0x1442 */ bool mTalked;
+    /* 0x1443 */ bool mEscape;
     /* 0x1444 */ u8 field_0x1444;
     /* 0x1445 */ u8 field_0x1445;
     // /* 0x1446 */ u8 field_0x1446[0x1448 - 0x1446];

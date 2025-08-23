@@ -227,7 +227,7 @@ void daB_GG_c::initCc() {
         } // mSphAttr
     };
 
-    mCcStts.Init(254, 0xFF, this);
+    mCcStts.Init(dCcD_Stts::WEIGHT_HEAVY, 0xFF, this);
     mCcCyl.Set(ccCylSrc);
     mCcCyl.SetStts(&mCcStts);
     mCcCyl.SetC(current.pos);
