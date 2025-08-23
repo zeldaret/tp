@@ -7,6 +7,7 @@
 #include "d/actor/d_a_npc_chin.h"
 #include "d/actor/d_a_npc_kasi_kyu.h"
 #include "d/actor/d_a_npc_kasi_mich.h"
+#include "Z2AudioLib/Z2Instances.h"
 #include "dol2asm.h"
 
 //
@@ -679,28 +680,28 @@ SECTION_DEAD static char const* const stringBase_80A213AD = "KASIMASI_CHEER2";
 UNK_REL_DATA;
 
 /* 80A213F4-80A214A8 000020 00B4+00 1/1 0/0 0/0 .data            l_bckGetParamList */
-SECTION_DATA static u8 l_bckGetParamList[180] = {
-    0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00,
-    0x04, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00,
-    0x00, 0x02, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x02, 0x00,
-    0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x1F, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x02,
-    0x00, 0x00, 0x00, 0x1A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00,
-    0x1E, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x22, 0x00, 0x00,
-    0x00, 0x02, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x00, 0x00, 0x02, 0x00,
-    0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x0D, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x02,
-    0x00, 0x00, 0x00, 0x18, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00,
-    0x1F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x19, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02,
+static daNpc_GetParam2 l_bckGetParamList[15] = {
+    {3, 2, 1}, 
+    {4, 2, 1},
+    {5, 2, 1},
+    {6, 2, 1},
+    {0x1F, 2, 2},
+    {0x1A, 0, 2},
+    {0x1E, 2, 2},
+    {0x22, 2, 2},
+    {0xB, 2, 2},
+    {0xD, 2, 2},
+    {0x18, 0, 2},
+    {0x1F, 0, 2},
+    {0x19, 0, 2},
+    {4, 0, 2},
+    {6, 0, 2},
 };
 
 /* 80A214A8-80A214B4 0000D4 000C+00 0/0 0/0 0/0 .data            l_btpGetParamList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_btpGetParamList[12] = {
-    0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
+static daNpc_GetParam2 l_btpGetParamList[1] = {
+    {8, 2, 0},
 };
-#pragma pop
 
 /* 80A214B4-80A214C0 -00001 000C+00 5/7 0/0 0/0 .data            l_arcNames */
 static char* l_arcNames[3] = {
@@ -1050,33 +1051,6 @@ SECTION_DATA static void* lit_5860[3] = {
 };
 #pragma pop
 
-/* 80A216C0-80A216E0 -00001 0020+00 1/0 0/0 0/0 .data            daNpcKasiHana_MethodTable */
-static actor_method_class daNpcKasiHana_MethodTable = {
-    (process_method_func)daNpcKasiHana_Create__FPv,
-    (process_method_func)daNpcKasiHana_Delete__FPv,
-    (process_method_func)daNpcKasiHana_Execute__FPv,
-    (process_method_func)daNpcKasiHana_IsDelete__FPv,
-    (process_method_func)daNpcKasiHana_Draw__FPv,
-};
-
-/* 80A216E0-80A21710 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_KASIHANA */
-extern actor_process_profile_definition g_profile_NPC_KASIHANA = {
-  fpcLy_CURRENT_e,            // mLayerID
-  7,                          // mListID
-  fpcPi_CURRENT_e,            // mListPrio
-  PROC_NPC_KASIHANA,          // mProcName
-  &g_fpcLf_Method.base,      // sub_method
-  sizeof(daNpcKasiHana_c),    // mSize
-  0,                          // mSizeOther
-  0,                          // mParameters
-  &g_fopAc_Method.base,       // sub_method
-  420,                        // mPriority
-  &daNpcKasiHana_MethodTable, // sub_method
-  0x00040108,                 // mStatus
-  fopAc_NPC_e,                // mActorType
-  fopAc_CULLBOX_CUSTOM_e,     // cullType
-};
-
 /* 80A21710-80A21758 00033C 0048+00 2/2 0/0 0/0 .data            __vt__15daNpcKasiHana_c */
 SECTION_DATA extern void* __vt__15daNpcKasiHana_c[18] = {
     (void*)NULL /* RTTI */,
@@ -1284,7 +1258,6 @@ cPhs__Step daNpcKasiHana_c::Create() {
 
 /* 80A1C5B0-80A1C734 0016F0 0184+00 1/1 0/0 0/0 .text            CreateHeap__15daNpcKasiHana_cFv */
 int daNpcKasiHana_c::CreateHeap() {
-    // NONMATCHING
     J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_arcNames[0], 5);
 
     JUT_ASSERT(950, 0 != mdlData_p);
@@ -1316,35 +1289,57 @@ int daNpcKasiHana_c::CreateHeap() {
 
 /* 80A1C734-80A1C768 001874 0034+00 1/1 0/0 0/0 .text            Delete__15daNpcKasiHana_cFv */
 int daNpcKasiHana_c::Delete() {
-    // NONMATCHING
+    this->~daNpcKasiHana_c();
+    return 1;
 }
 
 /* 80A1C768-80A1C78C 0018A8 0024+00 2/2 0/0 0/0 .text            Execute__15daNpcKasiHana_cFv */
 int daNpcKasiHana_c::Execute() {
-    // NONMATCHING
+    execute();
+    return 1;
 }
 
 /* 80A1C78C-80A1C7D8 0018CC 004C+00 1/1 0/0 0/0 .text            Draw__15daNpcKasiHana_cFv */
 int daNpcKasiHana_c::Draw() {
-    // NONMATCHING
+    if (!mEscape) {
+        draw(FALSE, FALSE, daNpcKasiHana_Param_c::m.common.real_shadow_size, NULL, FALSE);
+    }
+
+    return 1;
 }
 
-/* ############################################################################################## */
-/* 80A21158-80A21164 0000D8 000C+00 1/1 0/0 0/0 .rodata          @4839 */
-SECTION_RODATA static u8 const lit_4839[12] = {
-    0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x03,
-};
-COMPILER_STRIP_GATE(0x80A21158, &lit_4839);
+/* 80A1C7D8-80A1C964 001918 018C+00 1/1 0/0 0/0 .text            ctrlJoint__15daNpcKasiHana_cFP8J3DJointP8J3DModel */
+int daNpcKasiHana_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
+    int jntNo = i_joint->getJntNo();
+    int i_jointList[3] = {1, 2, 3};
 
-/* 80A1C7D8-80A1C964 001918 018C+00 1/1 0/0 0/0 .text
- * ctrlJoint__15daNpcKasiHana_cFP8J3DJointP8J3DModel            */
-int daNpcKasiHana_c::ctrlJoint(J3DJoint* param_0, J3DModel* param_1) {
-    // NONMATCHING
+    if (jntNo == 0) {
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
+        mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(2));
+        mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
+        mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
+    }
+
+    mDoMtx_stack_c::copy(i_model->getAnmMtx(jntNo));
+
+    switch (jntNo) {
+        case 1:
+        case 2:
+        case 3:
+            setLookatMtx(jntNo, i_jointList, daNpcKasiHana_Param_c::m.common.neck_rotation_ratio);
+            break;
+    }
+
+    i_model->setAnmMtx(jntNo, mDoMtx_stack_c::get());
+    MTXCopy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
+
+    return 1;
 }
 
-/* 80A1C964-80A1C984 001AA4 0020+00 1/1 0/0 0/0 .text
- * createHeapCallBack__15daNpcKasiHana_cFP10fopAc_ac_c          */
-int daNpcKasiHana_c::createHeapCallBack(fopAc_ac_c* param_0) {
+/* 80A1C964-80A1C984 001AA4 0020+00 1/1 0/0 0/0 .text            createHeapCallBack__15daNpcKasiHana_cFP10fopAc_ac_c */
+int daNpcKasiHana_c::createHeapCallBack(fopAc_ac_c* a_this) {
     // NONMATCHING
 }
 
@@ -2439,176 +2434,31 @@ void __sinit_d_a_npc_kasi_hana_cpp() {
 REGISTER_CTORS(0x80A20F80, __sinit_d_a_npc_kasi_hana_cpp);
 #pragma pop
 
-/* ############################################################################################## */
-/* 80A21864-80A21868 000064 0004+00 0/0 0/0 0/0 .bss
- * sInstance__40JASGlobalInstance<19JASDefaultBankTable>        */
-#pragma push
-#pragma force_active on
-static u8 data_80A21864[4];
-#pragma pop
+AUDIO_INSTANCES;
 
-/* 80A21868-80A2186C 000068 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14JASAudioThread>             */
-#pragma push
-#pragma force_active on
-static u8 data_80A21868[4];
-#pragma pop
+/* 80A216C0-80A216E0 -00001 0020+00 1/0 0/0 0/0 .data            daNpcKasiHana_MethodTable */
+static actor_method_class daNpcKasiHana_MethodTable = {
+    (process_method_func)daNpcKasiHana_Create,
+    (process_method_func)daNpcKasiHana_Delete,
+    (process_method_func)daNpcKasiHana_Execute,
+    (process_method_func)daNpcKasiHana_IsDelete,
+    (process_method_func)daNpcKasiHana_Draw,
+};
 
-/* 80A2186C-80A21870 00006C 0004+00 0/0 0/0 0/0 .bss sInstance__27JASGlobalInstance<7Z2SeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_80A2186C[4];
-#pragma pop
-
-/* 80A21870-80A21874 000070 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8Z2SeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_80A21870[4];
-#pragma pop
-
-/* 80A21874-80A21878 000074 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SceneMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80A21874[4];
-#pragma pop
-
-/* 80A21878-80A2187C 000078 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2StatusMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80A21878[4];
-#pragma pop
-
-/* 80A2187C-80A21880 00007C 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2DebugSys>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80A2187C[4];
-#pragma pop
-
-/* 80A21880-80A21884 000080 0004+00 0/0 0/0 0/0 .bss
- * sInstance__36JASGlobalInstance<15JAISoundStarter>            */
-#pragma push
-#pragma force_active on
-static u8 data_80A21880[4];
-#pragma pop
-
-/* 80A21884-80A21888 000084 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14Z2SoundStarter>             */
-#pragma push
-#pragma force_active on
-static u8 data_80A21884[4];
-#pragma pop
-
-/* 80A21888-80A2188C 000088 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12Z2SpeechMgr2>               */
-#pragma push
-#pragma force_active on
-static u8 data_80A21888[4];
-#pragma pop
-
-/* 80A2188C-80A21890 00008C 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8JAISeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_80A2188C[4];
-#pragma pop
-
-/* 80A21890-80A21894 000090 0004+00 0/0 0/0 0/0 .bss sInstance__29JASGlobalInstance<9JAISeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_80A21890[4];
-#pragma pop
-
-/* 80A21894-80A21898 000094 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAIStreamMgr>               */
-#pragma push
-#pragma force_active on
-static u8 data_80A21894[4];
-#pragma pop
-
-/* 80A21898-80A2189C 000098 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SoundMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80A21898[4];
-#pragma pop
-
-/* 80A2189C-80A218A0 00009C 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAISoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_80A2189C[4];
-#pragma pop
-
-/* 80A218A0-80A218A4 0000A0 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13JAUSoundTable>              */
-#pragma push
-#pragma force_active on
-static u8 data_80A218A0[4];
-#pragma pop
-
-/* 80A218A4-80A218A8 0000A4 0004+00 0/0 0/0 0/0 .bss
- * sInstance__38JASGlobalInstance<17JAUSoundNameTable>          */
-#pragma push
-#pragma force_active on
-static u8 data_80A218A4[4];
-#pragma pop
-
-/* 80A218A8-80A218AC 0000A8 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAUSoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_80A218A8[4];
-#pragma pop
-
-/* 80A218AC-80A218B0 0000AC 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SoundInfo>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80A218AC[4];
-#pragma pop
-
-/* 80A218B0-80A218B4 0000B0 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2SoundObjMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_80A218B0[4];
-#pragma pop
-
-/* 80A218B4-80A218B8 0000B4 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2Audience>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80A218B4[4];
-#pragma pop
-
-/* 80A218B8-80A218BC 0000B8 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2FxLineMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80A218B8[4];
-#pragma pop
-
-/* 80A218BC-80A218C0 0000BC 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2EnvSeMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80A218BC[4];
-#pragma pop
-
-/* 80A218C0-80A218C4 0000C0 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SpeechMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_80A218C0[4];
-#pragma pop
-
-/* 80A218C4-80A218C8 0000C4 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2WolfHowlMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_80A218C4[4];
-#pragma pop
-
-/* 80A21358-80A21358 0002D8 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+/* 80A216E0-80A21710 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_KASIHANA */
+extern actor_process_profile_definition g_profile_NPC_KASIHANA = {
+  fpcLy_CURRENT_e,            // mLayerID
+  7,                          // mListID
+  fpcPi_CURRENT_e,            // mListPrio
+  PROC_NPC_KASIHANA,          // mProcName
+  &g_fpcLf_Method.base,      // sub_method
+  sizeof(daNpcKasiHana_c),    // mSize
+  0,                          // mSizeOther
+  0,                          // mParameters
+  &g_fopAc_Method.base,       // sub_method
+  420,                        // mPriority
+  &daNpcKasiHana_MethodTable, // sub_method
+  0x00040108,                 // mStatus
+  fopAc_NPC_e,                // mActorType
+  fopAc_CULLBOX_CUSTOM_e,     // cullType
+};
