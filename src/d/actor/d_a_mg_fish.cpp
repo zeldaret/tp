@@ -260,7 +260,7 @@ static s32 search_lure(mg_fish_class* i_this, int param_2) {
             fpcM_Search(s_other_search_sub, i_this);
             if (s_fish_ct <= 1) {
                 f32 fVar1 = i_this->field_0x5ec;
-                if (rod->lure_type == 4) {
+                if (rod->lure_type == MG_LURE_SP) {
                     fVar1 = 1000.0f;
                 } else {
                     if (rod->field_0x1009 != 0) {
@@ -274,13 +274,13 @@ static s32 search_lure(mg_fish_class* i_this, int param_2) {
                     fVar1 *= 0.5f;
                 }
                 if (i_this->mGedouKind != GEDOU_KIND_CF_1 &&
-                    rod->lure_type != 4 &&
+                    rod->lure_type != MG_LURE_SP &&
                     (i_this->field_0x750 & learn_d[rod->lure_type]) != 0)
                 {
                     return -1;
                 }
                 cXyz diff = rod->actor.current.pos - i_this->actor.current.pos;
-                if (rod->lure_type == 2 && rod->field_0x100c >= 10) {
+                if (rod->lure_type == MG_LURE_PO && rod->field_0x100c >= 10) {
                     diff.y = -80.0f;
                 }
                 if (diff.abs() < fVar1) {
@@ -1412,7 +1412,7 @@ static void mf_lure_search(mg_fish_class* i_this) {
             i_this->mMovementPitch = -0x2000;
         }
         f32 rodDist = sqrtf(VECSquareMag(&rodSep));
-        if (rod->lure_type != 4 && rod->lure_type != 2 &&
+        if (rod->lure_type != MG_LURE_SP && rod->lure_type != MG_LURE_PO &&
             rodDist > 2.0f * i_this->field_0x5ec) {
             foundLure = true;
         } else {
@@ -1431,7 +1431,7 @@ static void mf_lure_search(mg_fish_class* i_this) {
                         fVar11 = 0.025f;
                     }
                     if (rodDist < 1.3f * i_this->field_0x5ec &&
-                        (rod->lure_type == 4 || rod->lure_type == 3) &&
+                        (rod->lure_type == MG_LURE_SP || rod->lure_type == MG_LURE_WS) &&
                         rod->reel_btn_flags != 0 &&
                         (i_this->mBobTimer & 0x1f) == 0 &&
                         cM_rndF(1.0f) < fVar11) {
@@ -1458,7 +1458,7 @@ static void mf_lure_search(mg_fish_class* i_this) {
                             limit1 *= 2.0f;
                             limit2 *= 2.0f;
                         } else if (i_this->mGedouKind == GEDOU_KIND_RI_1 &&
-                            rod->lure_type != 0 &&
+                            rod->lure_type != MG_LURE_FR &&
                             i_this->field_0x5f8 < 10) {
                             limit1 = limit2 = -1.0f;
                         }
@@ -1529,12 +1529,12 @@ static void mf_lure_search(mg_fish_class* i_this) {
 
         if (rodDist < i_this->mJointScale * 40.0f) {
             if (i_this->mGedouKind == GEDOU_KIND_CF_1) {
-                if (rod->lure_type == 4) {
+                if (rod->lure_type == MG_LURE_SP) {
                     i_this->mRemainingHookTime = cM_rndF(10.0f) + 20.0f;
                 } else {
                     i_this->mRemainingHookTime = cM_rndF(12.0f) + 30.0f;
                 }
-            } else if (rod->lure_type == 4) {
+            } else if (rod->lure_type == MG_LURE_SP) {
                 if (i_this->mJointScale >= 0.6f) {
                     if (sVar10 != 0) {
                         i_this->mActionPhase = 3;
@@ -1555,7 +1555,7 @@ static void mf_lure_search(mg_fish_class* i_this) {
             break;
         }
 
-        if (rod->lure_type == 0) {
+        if (rod->lure_type == MG_LURE_FR) {
             i_this->mRemainingHookTime = cM_rndF(10.0f) + 40.0f;
         }
 
@@ -1593,7 +1593,7 @@ static void mf_lure_search(mg_fish_class* i_this) {
         maxStep = 0.5f;
         i_this->mHookedState = 2;
         if (i_this->mRemainingHookTime == 0) {
-            if (rod->lure_type != 4) {
+            if (rod->lure_type != MG_LURE_SP) {
                 rod->field_0x10a6 = 30;
                 if (rod->field_0x10a7 != 4) {
                     rod->field_0x10a7 = 1;
@@ -1903,7 +1903,7 @@ static void mf_hit(mg_fish_class* i_this) {
         pvVar5->field_0x10b0 = 0;
         daPy_py_c* player = daPy_getLinkPlayerActorClass();
         player->onFishingRodGetFish();
-        if (pvVar5->lure_type == 4) {
+        if (pvVar5->lure_type == MG_LURE_SP) {
             u8 bVar7 = g_dComIfG_gameInfo.info.mSavedata.mEvent.getEventReg(0xf11f);
             if (bVar7 < 0x1f) {
                 bVar7++;
@@ -3586,7 +3586,7 @@ static int daMg_Fish_Execute(mg_fish_class* i_this) {
     MtxPosition(&commonXyz, &i_this->field_0x638);
     if (i_this->mHookedState != 0) {
         dmg_rod_class* rod = (dmg_rod_class*)fopAcM_SearchByID(i_this->mRodId);
-        if (rod->lure_type == 4 && i_this->mCurAction == ACTION_MG_FISH_MF_CATCH) {
+        if (rod->lure_type == MG_LURE_SP && i_this->mCurAction == ACTION_MG_FISH_MF_CATCH) {
             if (i_this->mKind2 == 0) {
                 f32 fVar3 = (i_this->mJointScale - 0.48f) * 100.0f;
                 if (fVar3 < 0.0f) {
@@ -3616,7 +3616,7 @@ static int daMg_Fish_Execute(mg_fish_class* i_this) {
             rod->field_0x114c = 0;
             rod->field_0x1004 = 0;
         } else {
-            if (rod->lure_type == 0 && i_this->mGedouKind == GEDOU_KIND_RI_1) {
+            if (rod->lure_type == MG_LURE_FR && i_this->mGedouKind == GEDOU_KIND_RI_1) {
                 commonXyz.y += 8.0f;
                 commonXyz.z += -3.0f;
                 MtxPosition(&commonXyz, &i_this->field_0x638);

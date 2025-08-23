@@ -82,8 +82,6 @@ struct wd_ss;
  */
 class dmg_rod_class {
 public:
-    /* 804BAC0C */ dmg_rod_class();
-
     f32 getRodStickX() { return rod_stick_x; }
     f32 getRodStickY() { return rod_stick_y; }
     bool checkRodEquipPermission() { return field_0x1514 == 0; }

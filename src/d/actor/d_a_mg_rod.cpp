@@ -1795,7 +1795,7 @@ static void ground_action(dmg_rod_class* i_this) {
             }
 
             i_this->field_0x10a8++;
-            if (actor->current.pos.y < (70.0f + i_this->field_0x590)) {
+            if (actor->current.pos.y < 70.0f + i_this->field_0x590) {
                 actor->speed.y = 20.0f + AREG_F(11);
                 lure_bound_se_set(i_this);
                 fopAcM_effSmokeSet1(&i_this->field_0x1178, &i_this->field_0x117c, &actor->current.pos, NULL, 0.2f, &actor->tevStr, 1);
@@ -2991,10 +2991,10 @@ static f32 hook_2_offz[] = {-16.0f, -19.0f, -16.0f, -23.0f, -43.5f};
 static f32 hook_2_offy[] = {0.0f, -1.0f, 0.0f, 0.0f, 0.0f};
 
 /* 804BB9A4-804BB9B8 000154 0014+00 0/1 0/0 0/0 .data            lure_nose_off */
-static f32 lure_nose_off[] = {-4.5999999f, -16.6f, -11.6f, -17.6f, -2.5999999f};
+static f32 lure_nose_off[] = {-4.6f, -16.6f, -11.6f, -17.6f, -2.6f};
 
 /* 804BB9B8-804BB9CC 000168 0014+00 0/1 0/0 0/0 .data            hiton_off */
-static f32 hiton_off[] = {4.3f, 16.299999f, 11.3f, 17.299999f, 2.3000002f};
+static f32 hiton_off[] = {4.3f, 16.3f, 11.3f, 17.3f, 2.3000002f};
 
 /* 804B16B8-804B1D14 0081B8 065C+00 1/1 0/0 0/0 .text            lure_disp__FP13dmg_rod_class */
 static void lure_disp(dmg_rod_class* i_this) {
@@ -3352,7 +3352,7 @@ static int uki_calc(dmg_rod_class* i_this) {
         i_this->field_0x100d = 0;
     }
 
-    if (i_this->hook_pos.y < (10.0f + i_this->field_0x590 + BREG_F(12)) && depth_check(i_this, &i_this->hook_pos) > 0.0f) {
+    if (i_this->hook_pos.y < 10.0f + i_this->field_0x590 + BREG_F(12) && depth_check(i_this, &i_this->hook_pos) > 0.0f) {
         if (i_this->field_0x100d == 0) {
             i_this->field_0x100d = 1;
             if (i_this->field_0x1165 == 0) {
@@ -4874,7 +4874,7 @@ static void play_camera(dmg_rod_class* i_this) {
     case 900:
         if (!actor->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(actor, 2, 0xFFFF, 0);
-            actor->eventInfo.onCondition(2);
+            actor->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
 
@@ -5083,7 +5083,7 @@ static void play_camera(dmg_rod_class* i_this) {
     case 1000:
         if (!actor->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(actor, 2, 0xFFFF, 0);
-            actor->eventInfo.onCondition(2);
+            actor->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
 
@@ -5130,7 +5130,7 @@ static void play_camera(dmg_rod_class* i_this) {
     case 1050:
         if (!actor->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(actor, 2, 0xFFFF, 0);
-            actor->eventInfo.onCondition(2);
+            actor->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
 
@@ -5463,7 +5463,7 @@ static void play_camera_u(dmg_rod_class* i_this) {
     case 21: {
         if (!actor->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(actor, 2, 0xFFFF, 0);
-            actor->eventInfo.onCondition(2);
+            actor->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
 
@@ -5621,7 +5621,7 @@ static void play_camera_u(dmg_rod_class* i_this) {
     case 1000:
         if (!actor->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(actor, 2, 0xFFFF, 0);
-            actor->eventInfo.onCondition(2);
+            actor->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
             return;
         }
 
@@ -5813,7 +5813,7 @@ static int dmg_rod_Execute(dmg_rod_class* i_this) {
             spA = 0;
         }
 
-        static f32 rodline_off[] = {0.5f, 0.4f, 0.34999999f, 0.3f, 0.25f, 0.2f};
+        static f32 rodline_off[] = {0.5f, 0.4f, 0.35f, 0.3f, 0.25f, 0.2f};
 
         for (int i = 0; i < 6; i++, line_posp++) {
             if (i == 0) {
@@ -6349,9 +6349,6 @@ static int dmg_rod_Create(fopAc_ac_c* i_this) {
 
     return phase_state;
 }
-
-/* 804BAC0C-804BADAC 01170C 01A0+00 1/1 0/0 0/0 .text            __ct__13dmg_rod_classFv */
-dmg_rod_class::dmg_rod_class() {}
 
 /* 804BBAAC-804BBACC -00001 0020+00 1/0 0/0 0/0 .data            l_dmg_rod_Method */
 static actor_method_class l_dmg_rod_Method = {
