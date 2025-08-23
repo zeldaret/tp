@@ -3564,6 +3564,36 @@ public:
         return var_r4;
     }
 
+    BOOL setCanoeCast() {
+        if (mProcVar2.field_0x300c == 0 && checkCanoeFishingWaitAnime()) {
+            mProcVar2.field_0x300c = 1;
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    bool checkFishingRodGrabLeft() const { return mItemVar0.field_0x3018 == 0; }
+
+    void setCanoeFishingWaitAngle(s16 i_angle) { field_0x311a = i_angle; }
+
+    void setFishingArnmAngle(s16 i_angle) { field_0x3160.set(0, 0, i_angle); }
+    void setFishingArm1Angle(const csXyz& i_angle) { mFishingArm1Angle = i_angle; }
+    void setFishingArm2Angle(const csXyz& i_angle) { field_0x3160 = i_angle; }
+
+    void onFishingRodCastingEnd() { onNoResetFlg1(FLG1_UNK_8000); }
+    void endFishingCastWait() { offNoResetFlg2(FLG2_UNK_20000000); }
+
+    void startFishingCastWait() {
+        if (checkFishingRodItem(mEquipItem)) {
+            onNoResetFlg2(FLG2_UNK_20000000);
+        }
+    }
+
+    f32 getFishingReelFrame() const { return mUpperFrameCtrl[2].getFrame(); }
+
+    void changeFishGetFace(u8 param_0) { field_0x2fc8 = param_0; }
+
     BOOL checkSlideMode() {
         return mProcID == PROC_SLIDE || mProcID == PROC_SLIDE_LAND ||
                mProcID == PROC_WOLF_SLIDE_READY || mProcID == PROC_WOLF_SLIDE_LAND ||
@@ -3576,6 +3606,22 @@ public:
 
     bool checkFisingRodJewl() const {
         return (mEquipItem == 0x5C || mEquipItem == 0x5F) || mEquipItem == 0x5E;
+    }
+
+    bool checkFisingRodWorm() const { return mItemMode == 0x74; }
+
+    bool checkFisingRodBee() const { return mItemMode == 0x76; }
+
+    void fishingCastWaitAnimeStart() {
+        if (mProcID == PROC_FISHING_CAST) {
+            mProcVar3.field_0x300e = 0;
+        }
+    }
+
+    void fishingCastWaitAnimeStop() {
+        if (mProcID == PROC_FISHING_CAST) {
+            mProcVar3.field_0x300e = 1;
+        }
     }
 
     MtxP getCopyRodMtx() {

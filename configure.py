@@ -1652,7 +1652,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_e_ba"), # weak func order
     ActorRel(NonMatching, "d_a_e_bee"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_bg"),
-    ActorRel(NonMatching, "d_a_e_bi"),
+    ActorRel(Equivalent, "d_a_e_bi"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_bi_leaf"),
     ActorRel(Equivalent, "d_a_e_bs"), # weak func order
     ActorRel(Equivalent, "d_a_e_bu"),
@@ -1733,7 +1733,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_e_ym"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_ym_tag"),
     ActorRel(Equivalent, "d_a_e_ymb"),  # weak func order
-    ActorRel(NonMatching, "d_a_e_yr"),
+    ActorRel(Equivalent, "d_a_e_yr"), # weak func order
     ActorRel(NonMatching, "d_a_e_zh"),
     ActorRel(NonMatching, "d_a_e_zm"),
     ActorRel(Equivalent, "d_a_e_zs"),
@@ -1780,15 +1780,15 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_drainSol"),
     ActorRel(NonMatching, "d_a_npc_du"),
     ActorRel(NonMatching, "d_a_npc_fairy"),
-    ActorRel(NonMatching, "d_a_npc_fguard"),
+    ActorRel(Equivalent, "d_a_npc_fguard"), # weak func order
     ActorRel(NonMatching, "d_a_npc_gnd"),
     ActorRel(NonMatching, "d_a_npc_gra"),
-    ActorRel(NonMatching, "d_a_npc_grc"),
+    ActorRel(Equivalent, "d_a_npc_grc", extra_cflags=[DANPCF_C_HACK]), # weak func order
     ActorRel(NonMatching, "d_a_npc_grd"),
     ActorRel(NonMatching, "d_a_npc_grm"),
-    ActorRel(NonMatching, "d_a_npc_grmc"),
+    ActorRel(Equivalent, "d_a_npc_grmc"), # weak func order
     ActorRel(NonMatching, "d_a_npc_gro"),
-    ActorRel(NonMatching, "d_a_npc_grr"),
+    ActorRel(Equivalent, "d_a_npc_grr", extra_cflags=[DANPCF_C_HACK]), # weak func order
     ActorRel(NonMatching, "d_a_npc_grs"),
     ActorRel(NonMatching, "d_a_npc_grz"),
     ActorRel(NonMatching, "d_a_npc_guard"),
@@ -1930,7 +1930,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_obj_flag2"), # weak function order
     ActorRel(NonMatching, "d_a_obj_flag3"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_food"),
-    ActorRel(NonMatching, "d_a_obj_fw"),
+    ActorRel(Equivalent, "d_a_obj_fw"), # weak function order
     ActorRel(NonMatching, "d_a_obj_gadget"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ganonwall"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ganonwall2"),
@@ -1995,7 +1995,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv1Candle00"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv1Candle01"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv3Candle"),
-    ActorRel(NonMatching, "d_a_obj_lv3Water"),
+    ActorRel(Equivalent, "d_a_obj_lv3Water"),
     ActorRel(Equivalent, "d_a_obj_lv3Water2"), # weak func order
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv3WaterB"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv3saka00"),
@@ -2054,7 +2054,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_mirror_sand"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_mirror_screw"),
     ActorRel(NonMatching, "d_a_obj_mirror_table"),
-    ActorRel(NonMatching, "d_a_obj_msima"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_msima"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_mvstair"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_myogan"),
     ActorRel(NonMatching, "d_a_obj_nagaisu"),

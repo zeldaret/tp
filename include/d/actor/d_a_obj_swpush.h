@@ -24,7 +24,7 @@ namespace daObjSwpush {
         FLAG_UNK20 = 0x20,
     };
     
-    class Hio_c {
+    class Hio_c : public JORReflexible {
     public:
         class Attr_c {
         public:
@@ -45,6 +45,21 @@ namespace daObjSwpush {
             /* 0x2A */ u8 field_0x2a;
             /* 0x2B */ u8 field_0x2b;
         };
+
+        #if DEBUG
+        void ct() {
+            if (mCount++ == 0) {
+                daObj::HioVarious_c::init(this, "踏みスイッチ"); // Foot Switch
+            }
+        }
+        
+        void default_set();
+        void genMessage(JORMContext*);
+        void dt();
+        #endif
+
+        /* 0x4 */ int mCount;
+        /* 0x8 */ Attr_c field_0x8[5];
     };
 
     class Act_c : public fopAc_ac_c {
@@ -173,30 +188,18 @@ namespace daObjSwpush {
         /* 0x5F8 */ cXyz field_0x5f8;
     };
 
-    #ifdef DEBUG
-    class Hio_c : public JORReflexible {
-    public:
-        void ct() {
-            if (mCount++ == 0) {
-                daObj::HioVarious_c::init(this, "踏みスイッチ"); // Foot Switch
-            }
+    #if DEBUG
+    void Hio_c::default_set() {
+        for (int i = 0; i < 5; i++) {
+            field_0x8[i] = Act_c::M_attr[i];
         }
+    }
 
-        void default_set() {
-            for (int i = 0; i < 5; i++) {
-                field_0x8[i] = Act_c::M_attr[i];
-            }
+    void Hio_c::dt() {
+        if (--mCount == 0) {
+            daObj::HioVarious_c::clean(this);
         }
-
-        void dt() {
-            if (--mCount == 0) {
-                daObj::HioVarious_c::clean(this);
-            }
-        }
-
-        /* 0x4 */ int mCount;
-        /* 0x8 */ Attr_c field_0x8[5];
-    };
+    }
     #endif
 };
 

@@ -501,7 +501,7 @@ static void henna_ride(npc_henna_class* i_this) {
 
     if (lrl != NULL) {
         fopAc_ac_c* fish;
-        if (lrl->field_0xf7e == 0) {
+        if (lrl->action == 0) {
             if (i_this->field_0x710 == 0) {
                 i_this->field_0x710 = cM_rndF(100.0f) + 90.0f;
                 cMtx_YrotS(*calc_mtx, actor->shape_angle.y);
@@ -519,25 +519,25 @@ static void henna_ride(npc_henna_class* i_this) {
                 i_this->field_0x720 = fish->current.pos;
                 i_this->field_0x70e = 0x600;
             }
-        } else if (lrl->field_0x13b4 == 10 || lrl->field_0x13b4 == 11) {
-            fish = fopAcM_SearchByID(lrl->mFishId);
+        } else if (lrl->play_cam_mode == 10 || lrl->play_cam_mode == 11) {
+            fish = fopAcM_SearchByID(lrl->mg_fish_id);
             if (fish != NULL) {
                 i_this->field_0x720 = fish->current.pos;
                 i_this->field_0x70e = 1000;
             }
-        } else if (lrl->field_0xf7e == 1) {
+        } else if (lrl->action == 1) {
             cMtx_YrotS(*calc_mtx, player->getFishingRodAngleY());
             unkXyz_48.x = 0.0f;
             unkXyz_48.y = 0.0f;
             unkXyz_48.z = 2000.0f;
             MtxPosition(&unkXyz_48, &i_this->field_0x720);
             i_this->field_0x720 += player->eyePos;
-        } else if (lrl->field_0xf7e == 3 || lrl->field_0xf7e == 4 || lrl->field_0xf7e == 5) {
-            i_this->field_0x720 = lrl->current.pos;
+        } else if (lrl->action == 3 || lrl->action == 4 || lrl->action == 5) {
+            i_this->field_0x720 = lrl->actor.current.pos;
             i_this->field_0x70e = 0x600;
         }
 
-        if (player->checkCanoeRide() != 0 && (lrl->field_0x13b4 == 0 || lrl->field_0x13b4 >= 0x50))
+        if (player->checkCanoeRide() != 0 && (lrl->play_cam_mode == 0 || lrl->play_cam_mode >= 0x50))
         {
             if (i_this->field_0x6a4 < 5) {
                 i_this->field_0x6a4 = 5;
@@ -704,7 +704,7 @@ static void action(npc_henna_class* i_this) {
 
     msg_class* msg = ((dMsgObject_c*)unkActor1)->getActor();
     if (msg != 0 && msg->mode == 6 && ((dMsgObject_c*)unkActor1)->isMouthCheck() != 0 &&
-        (lrl == 0 || lrl->field_0x13b4 != 30))
+        (lrl == 0 || lrl->play_cam_mode != 30))
     {
         i_this->field_0x6a6 = 15;
     }
@@ -2197,7 +2197,7 @@ static void message_guide(npc_henna_class* i_this) {
 
         actor->eventInfo.onCondition(dEvtCnd_CANTALK_e);
 
-        if (lrl != NULL && lrl->field_0x13b4 != 0) {
+        if (lrl != NULL && lrl->play_cam_mode != 0) {
             return;
         }
 

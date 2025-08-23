@@ -35,6 +35,10 @@ inline float ceil(float num) {
 inline float floor(float num) {
     return ::floorf(num);
 }
+
+inline float tan(float num) {
+    return ::i_tanf(num);
+}
 }  // namespace std
 
 #endif

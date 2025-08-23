@@ -1747,7 +1747,7 @@ static void demo_camera(e_gob_class* i_this) {
         }
     
         if (i_this->mDemoCamTimer == 47) {
-            ms->field_0x582 = 1;
+            ms->mAction = obj_msima_class::ACTION_DROP;
             ms->field_0x594 = ms->field_0x596 = 0;
             ms->field_0x59c = 700.0f;
             ms->field_0x586[0] = 40;
@@ -1766,8 +1766,8 @@ static void demo_camera(e_gob_class* i_this) {
         if (spC >= 0) {
             ms->mChains[spC].field_0x92 = 1;
             ms->mChains[spC].field_0x8c = 200.0f + TREG_F(12);
-            dComIfGp_particle_set(0x8455, &ms->mChains[spC].field_0x94, NULL, NULL);
-            mDoAud_seStart(Z2SE_OBJ_GOBFLOOR_CHAIN_BREAK, &ms->mChains[spC].field_0x94, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(actor)));
+            dComIfGp_particle_set(0x8455, &ms->mChains[spC].mPos, NULL, NULL);
+            mDoAud_seStart(Z2SE_OBJ_GOBFLOOR_CHAIN_BREAK, &ms->mChains[spC].mPos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(actor)));
         }
     
         if (i_this->mDemoCamTimer == 82) {
@@ -1798,7 +1798,7 @@ static void demo_camera(e_gob_class* i_this) {
             i_this->mDemoCamCenterSpd.z = fabsf(i_this->mDemoCamCenterTarget.z - i_this->mDemoCamCenter.z);
             i_this->field_0xd88 = 0.0f;
 
-            ms->field_0x582 = 2;
+            ms->mAction = obj_msima_class::ACTION_FLOAT_1;
             ms->field_0x584 = 0;
         }
         break;
@@ -1930,7 +1930,7 @@ static void demo_camera(e_gob_class* i_this) {
 
         i_this->mDemoCamMode = 15;
         i_this->mDemoCamTimer = 0;
-        ms->field_0x582 = 3;
+        ms->mAction = obj_msima_class::ACTION_FLOAT_2;
         my->mAction = 1;
         actor->current = player->current;
         actor->shape_angle = player->shape_angle;

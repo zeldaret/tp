@@ -2472,9 +2472,9 @@ static void action(npc_ne_class* i_this) {
     cXyz vec1, vec2;
     if (i_this->mWantsFish && i_this->mAction != npc_ne_class::ACT_SANBASI
                             && player->current.pos.z > -2800.0f) {
-        dmg_rod_class* rod = static_cast<dmg_rod_class*>(fopAcM_SearchByName(PROC_MG_ROD));
-        if (rod != NULL && rod->field_0xf7c == 1 && rod->field_0xf7e != 5
-                        && rod->field_0x13b4 != 0 && !i_this->mNoFollow) {
+        dmg_rod_class* rod = ((dmg_rod_class*)fopAcM_SearchByName(PROC_MG_ROD));
+        if (rod != NULL && rod->kind == 1 && rod->action != 5
+                        && rod->play_cam_mode != 0 && !i_this->mNoFollow) {
             if (i_this->mDistToTarget > 500.0f) {
                 _this->current.pos = ground_search(i_this);
                 _this->old = _this->current;

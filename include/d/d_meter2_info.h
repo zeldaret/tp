@@ -204,6 +204,8 @@ public:
     void setHorseLifeCount(s16 i_count) { mHorseLifeCount = i_count; }
     void resetTouchKeyCheck() { mTouchKeyCheck = 0; }
     void resetWindowAccept() { mWindowAccept = 0xFFFF; }
+    void onWindowAccept(int param_0) { mWindowAccept |= (u16)(1 << param_0); }
+    void offWindowAccept(int param_0) { mWindowAccept &= ~(u16)(1 << param_0); }
 
 public:
     /* 0x04 */ u8 unk_0x4[4];
@@ -840,6 +842,14 @@ inline void dMeter2Info_setFloatingMessage(u16 i_msgID, s16 i_msgTimer, bool i_w
 
 inline void dMeter2Info_setMiniGameCount(s8 i_count) {
     g_meter2_info.setMiniGameCount(i_count);
+}
+
+inline void dMeter2Info_onWindowAccept(int param_0) {
+    g_meter2_info.onWindowAccept(param_0);
+}
+
+inline void dMeter2Info_offWindowAccept(int param_0) {
+    g_meter2_info.offWindowAccept(param_0);
 }
 
 #endif /* D_METER_D_METER2_INFO_H */

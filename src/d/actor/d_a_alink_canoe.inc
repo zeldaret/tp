@@ -340,7 +340,7 @@ int daAlink_c::canoeCommon() {
 /* 800F4924-800F4A50 0EF264 012C+00 10/10 0/0 0/0 .text checkNextActionCanoe__9daAlink_cFv */
 int daAlink_c::checkNextActionCanoe() {
     if ((!checkFishingRodAndLureItem() || mItemAcKeep.getActor() == NULL ||
-         static_cast<dmg_rod_class*>(mItemAcKeep.getActor())->checkRodEquipPermission()) &&
+        ((dmg_rod_class*)mItemAcKeep.getActor())->checkRodEquipPermission()) &&
         checkNextActionFromButton()) {
         return 1;
     }
