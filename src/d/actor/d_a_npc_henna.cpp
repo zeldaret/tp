@@ -170,7 +170,12 @@ static int daNpc_Henna_Draw(npc_henna_class* i_this) {
     return 1;
 }
 
-// needed for matching .rodata, maybe from a stripped method?
+// needed for matching .rodata + weak func order, probably from a stripped method?
+
+static f32 dummy_dt_cxyz() {
+    cXyz xyz(0.0f, 0.0f, 0.0f);
+    return xyz.x;
+}
 
 static f32 dummy_100() {
     return 100.0f;
@@ -180,11 +185,11 @@ static f32 dummy_30() {
     return 30.0f;
 }
 
-static f32 dummy__30() {
+static f32 dummy_m30() {
     return -30.0f;
 }
 
-static f32 dummy__100() {
+static f32 dummy_m100() {
     return -100.0f;
 }
 
@@ -192,7 +197,7 @@ static f32 dummy_300() {
     return 300.0f;
 }
 
-static f32 dummy__450() {
+static f32 dummy_m450() {
     return -450.0f;
 }
 
@@ -200,12 +205,12 @@ static f32 dummy_0_8() {
     return 0.8f;
 }
 
-static f32 dummy__300() {
+static f32 dummy_m300() {
     return -300.0f;
 }
 
-static cM3dGPla dummy_cM3dGPla() {
-    return cM3dGPla();
+static void dummy_dt_cm3dgpla() {
+    delete (cM3dGPla*)NULL;
 }
 
 /* 80543544-805436CC 000724 0188+00 1/1 0/0 0/0 .text            s_npc_sub__FPvPv */

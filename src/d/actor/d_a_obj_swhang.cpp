@@ -528,6 +528,11 @@ static int daObjSwHang_MoveBGDraw(daObjSwHang_c* i_this) {
     return i_this->Draw();
 }
 
+static void dummy() {
+    ((dEvLib_callback_c*)NULL)->eventStart();
+    delete (cCcD_GStts*)NULL;
+}
+
 /* 80CFD3EC-80CFD40C -00001 0020+00 1/0 0/0 0/0 .data            daObjSwHang_METHODS */
 static actor_method_class daObjSwHang_METHODS = {
     (process_method_func)daObjSwHang_create1st,
