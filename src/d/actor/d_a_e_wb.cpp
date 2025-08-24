@@ -11,14 +11,6 @@
 #include "dol2asm.h"
 #include "m_Do/m_Do_graphic.h"
 
-namespace std {
-/* 807E2350 */ void fabsf(f32);
-};
-
-
-
-
-
 //
 // Forward References:
 //

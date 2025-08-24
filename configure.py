@@ -1579,7 +1579,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_besu"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_fairy_seirei"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_fish"),
-    ActorRel(Equivalent, "d_a_npc_henna"), # weak func order
+    ActorRel(MatchingFor("GZ2E01"), "d_a_npc_henna"),
     ActorRel(NonMatching, "d_a_npc_kakashi"),
     ActorRel(NonMatching, "d_a_npc_kkri"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_kolin"),
@@ -1785,7 +1785,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_ashB", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(NonMatching, "d_a_npc_bans"),
     ActorRel(NonMatching, "d_a_npc_blue_ns"),
-    ActorRel(Equivalent, "d_a_npc_bou"), # weak func order
+    ActorRel(MatchingFor("GZ2E01"), "d_a_npc_bou"),
     ActorRel(NonMatching, "d_a_npc_bouS"),
     ActorRel(NonMatching, "d_a_npc_cdn3"),
     ActorRel(NonMatching, "d_a_npc_chat"),
@@ -1886,7 +1886,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_zant"),
     ActorRel(NonMatching, "d_a_npc_zelR"),
     ActorRel(NonMatching, "d_a_npc_zelRo"),
-    ActorRel(Equivalent, "d_a_npc_zelda"), # weak function order
+    ActorRel(MatchingFor("GZ2E01"), "d_a_npc_zelda"),
     ActorRel(NonMatching, "d_a_npc_zra", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(NonMatching, "d_a_npc_zrc", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(NonMatching, "d_a_npc_zrz", extra_cflags=[DANPCF_C_HACK]),
@@ -1904,7 +1904,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_bbox"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_bed"),
     ActorRel(NonMatching, "d_a_obj_bemos"),
-    ActorRel(Equivalent, "d_a_obj_bhbridge"), # vtable order
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_bhbridge"), # vtable order
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_bk_leaf"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_bky_rock"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_bmWindow"),
@@ -1916,7 +1916,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_bubblePilar"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_catdoor"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_cb"),
-    ActorRel(Equivalent, "d_a_obj_cblock"), # unsure why this doesn't match, .rel files seem to be identical
+    ActorRel(Equivalent, "d_a_obj_cblock"), # weird weak data issue
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_cdoor"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_chandelier"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_chest"),
@@ -2117,7 +2117,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_sekizo"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_sekizoa"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_shield"),
-    ActorRel(Equivalent, "d_a_obj_sm_door"), # vtable order
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_sm_door"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_smallkey"),
     ActorRel(NonMatching, "d_a_obj_smgdoor"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_smoke"),
@@ -2140,7 +2140,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_swBallC"),
     ActorRel(NonMatching, "d_a_obj_swLight"),
     ActorRel(NonMatching, "d_a_obj_swchain"),
-    ActorRel(Equivalent, "d_a_obj_swhang"), # weak func + vtable order
+    ActorRel(Equivalent, "d_a_obj_swhang"), # vtable order
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_sword"),
     ActorRel(NonMatching, "d_a_obj_swpush2"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_swspinner"),

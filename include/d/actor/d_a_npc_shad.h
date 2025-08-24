@@ -10,7 +10,23 @@
  *
  * @details
  *
- */
+*/
+
+struct daNpcShad_HIOParam {
+    /* 0x00 */ daNpcF_HIOParam common;
+    /* 0x6C */ f32 traveling_speed;     // 走行速度 (Traveling Speed)
+};
+
+class daNpcShad_Param_c: public JORReflexible {
+public:
+    /* 80AE1F70 */ virtual ~daNpcShad_Param_c() {}
+
+#ifdef DEBUG
+    void genMessage(JORMContext*);
+#endif
+
+    static const daNpcShad_HIOParam m;
+};
 
 class daNpcShad_c : public daNpcF_c {
 public:
@@ -113,7 +129,7 @@ public:
     };
 
     /* 80AD820C */ daNpcShad_c();
-    /* 80AD8420 */ ~daNpcShad_c();
+    /* 80AD8420 */ virtual ~daNpcShad_c();
     /* 80AD8620 */ cPhs__Step Create();
     /* 80AD8B60 */ int CreateHeap();
     /* 80AD90E0 */ int Delete();
@@ -163,7 +179,7 @@ public:
     u8 getPathID() { return (fopAcM_GetParam(this) >> 8) & 0xFF; }
     s16 getMessageNo() { return shape_angle.x; }
 
-    inline void setAction(ActionFn action) {
+    void setAction(ActionFn action) {
         field_0xe1a = 3;
 
         if (mActionFn) {
@@ -178,14 +194,14 @@ public:
         }
     }
 
-    inline csXyz* unk_inline();
-    inline BOOL chkFindPlayer();
-    inline void setLookMode(int, fopAc_ac_c*, cXyz*);
-    inline BOOL step(s16, int, f32);
-    inline void setExpressionTalkAfter();
-    inline void setLookObliquenessUp();
+    csXyz* unk_inline();
+    BOOL chkFindPlayer();
+    void setLookMode(int, fopAc_ac_c*, cXyz*);
+    BOOL step(s16, int, f32);
+    void setExpressionTalkAfter();
+    void setLookObliquenessUp();
 
-    inline void searchActors() {
+    void searchActors() {
         if (mMode == 0) {
             if (mActorMngr[1].getActorP() == NULL) {
                 mActorMngr[1].entry(fopAcM_SearchByName(PROC_NPC_ASH));

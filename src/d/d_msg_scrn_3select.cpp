@@ -227,29 +227,29 @@ bool dMsgScrn3Select_c::isSelect() {
 void dMsgScrn3Select_c::setString(char* mpText0, char* mpText1, char* mpText2) {
     if (mpTmSel_c[0] != NULL) {
         JUT_ASSERT(0, ((J2DTextBox*)(mpTmSel_c[0]->getPanePtr()))->getStringAllocByte() >
-                   std::strlen(mpText0));
+                   strlen(mpText0));
     }
 
     if (mpTmSel_c[1] != NULL) {
         JUT_ASSERT(0, ((J2DTextBox*)(mpTmSel_c[1]->getPanePtr()))->getStringAllocByte() >
-                   std::strlen(mpText1));
+                   strlen(mpText1));
     }
 
     if (mpTmSel_c[2] != NULL) {
         JUT_ASSERT(0, ((J2DTextBox*)(mpTmSel_c[2]->getPanePtr()))->getStringAllocByte() >
-                   std::strlen(mpText2));
+                   strlen(mpText2));
     }
 
     if (mpTmSel_c[0] != NULL) {
-        std::strcpy(((J2DTextBox*)(mpTmSel_c[0]->getPanePtr()))->getStringPtr(), mpText0);
+        strcpy(((J2DTextBox*)(mpTmSel_c[0]->getPanePtr()))->getStringPtr(), mpText0);
     }
 
     if (mpTmSel_c[1] != NULL) {
-        std::strcpy(((J2DTextBox*)(mpTmSel_c[1]->getPanePtr()))->getStringPtr(), mpText1);
+        strcpy(((J2DTextBox*)(mpTmSel_c[1]->getPanePtr()))->getStringPtr(), mpText1);
     }
 
     if (mpTmSel_c[2] != NULL) {
-        std::strcpy(((J2DTextBox*)(mpTmSel_c[2]->getPanePtr()))->getStringPtr(), mpText2);
+        strcpy(((J2DTextBox*)(mpTmSel_c[2]->getPanePtr()))->getStringPtr(), mpText2);
     }
 }
 
@@ -257,29 +257,29 @@ void dMsgScrn3Select_c::setString(char* mpText0, char* mpText1, char* mpText2) {
 void dMsgScrn3Select_c::setRubyString(char* pText0, char* pText1, char* pText2) {
     if (mpTmrSel_c[0] != NULL) {
         JUT_ASSERT(0, ((J2DTextBox*)(mpTmrSel_c[0]->getPanePtr()))->getStringAllocByte() >
-                   std::strlen(pText0));
+                   strlen(pText0));
     }
 
     if (mpTmrSel_c[1] != NULL) {
         JUT_ASSERT(0, ((J2DTextBox*)(mpTmrSel_c[1]->getPanePtr()))->getStringAllocByte() >
-                   std::strlen(pText1));
+                   strlen(pText1));
     }
 
     if (mpTmrSel_c[2] != NULL) {
         JUT_ASSERT(0, ((J2DTextBox*)(mpTmrSel_c[2]->getPanePtr()))->getStringAllocByte() >
-                   std::strlen(pText2));
+                   strlen(pText2));
     }
 
     if (mpTmrSel_c[0] != NULL) {
-        std::strcpy(((J2DTextBox*)(mpTmrSel_c[0]->getPanePtr()))->getStringPtr(), pText0);
+        strcpy(((J2DTextBox*)(mpTmrSel_c[0]->getPanePtr()))->getStringPtr(), pText0);
     }
 
     if (mpTmrSel_c[1] != NULL) {
-        std::strcpy(((J2DTextBox*)(mpTmrSel_c[1]->getPanePtr()))->getStringPtr(), pText1);
+        strcpy(((J2DTextBox*)(mpTmrSel_c[1]->getPanePtr()))->getStringPtr(), pText1);
     }
 
     if (mpTmrSel_c[2] != NULL) {
-        std::strcpy(((J2DTextBox*)(mpTmrSel_c[2]->getPanePtr()))->getStringPtr(), pText2);
+        strcpy(((J2DTextBox*)(mpTmrSel_c[2]->getPanePtr()))->getStringPtr(), pText2);
     }
 }
 
