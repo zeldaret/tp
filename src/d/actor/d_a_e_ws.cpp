@@ -3,11 +3,11 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_ws.h"
 #include "d/actor/d_a_obj_carry.h"
 #include <cmath.h>
-
-UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
 
 namespace {

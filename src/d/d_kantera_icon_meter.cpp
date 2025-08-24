@@ -3,6 +3,8 @@
 // Translation Unit: d/d_kantera_icon_meter
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_kantera_icon_meter.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J2DGraph/J2DScreen.h"

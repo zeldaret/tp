@@ -3,10 +3,9 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_gb.h"
-
-UNK_REL_DATA;
-
 #include "d/d_cc_d.h"
 #include "d/d_camera.h"
 #include "d/d_bomb.h"

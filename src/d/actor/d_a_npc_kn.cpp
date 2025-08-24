@@ -3,15 +3,14 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_kn.h"
 #include "d/actor/d_a_npc.h"
 #include "d/actor/d_a_npc_gwolf.h"
 #include "d/actor/d_a_obj_knBullet.h"
 #include "JSystem//J3DGraphBase/J3DMaterial.h"
 #include "Z2AudioLib/Z2Instances.h"
-
-UNK_REL_DATA
-UNK_REL_BSS
 
 /* ############################################################################################## */
 /* 80A408C8-80A408F8 000000 0030+00 50/50 0/0 0/0 .rodata          mCcDObjData__10daNpc_Kn_c */

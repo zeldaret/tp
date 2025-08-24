@@ -3,6 +3,8 @@
  *
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tag_ret_room.h"
 #include "d/actor/d_a_player.h"
 

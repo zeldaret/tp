@@ -1,12 +1,12 @@
 /**
- * @file d_a_obj_goGate.cpp
+* @file d_a_obj_goGate.cpp
  *
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_goGate.h"
 #include "d/d_com_inf_game.h"
-
-UNK_REL_DATA
 
 /* 80BFD6AC-80BFD6DC 0000EC 0030+00 1/1 0/0 0/0 .text            __ct__14daGoGate_HIO_cFv */
 daGoGate_HIO_c::daGoGate_HIO_c() {

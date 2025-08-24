@@ -1,7 +1,9 @@
 /**
- * @file d_a_bd.cpp
+* @file d_a_bd.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_bd.h"
 #include "d/actor/d_a_cow.h"
@@ -10,7 +12,6 @@
 #include "d/d_cc_d.h"
 #include "d/d_s_play.h"
 #include "Z2AudioLib/Z2Instances.h"
-UNK_REL_BSS
 
 /* ############################################################################################## */
 

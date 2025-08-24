@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_tombo.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_menu_insect.h"

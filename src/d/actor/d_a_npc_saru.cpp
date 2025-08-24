@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_saru.h"
 #include "d/actor/d_a_npc_ks.h"
 #include "d/actor/d_a_obj_so.h"
@@ -56,8 +58,6 @@ enum Material {
     /* 0x1 */ MAT_SARU_BODY_M = 0x1,
     /* 0x2 */ MAT_SARU_FACE_M,
 };
-
-UNK_REL_DATA;
 
 /* 80AC46C4-80AC46E4 000020 0020+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[4][2] = {

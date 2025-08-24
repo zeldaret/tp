@@ -14,7 +14,7 @@
  class daNpc_Bou_Param_c {
     public:
         /* 809727F4 */ virtual ~daNpc_Bou_Param_c() {}
-    
+
         struct Data {
             /* 0x00 */ f32 field_0x00; // 255.0f
             /* 0x04 */ f32 field_0x04; // 3.0f
@@ -59,7 +59,7 @@
             /* 0x94 */ f32 field_0x94; // 500.0f
             /* 0x98 */ f32 field_0x98; // -500.0f
         };
-    
+
         static const Data m;
 };
 

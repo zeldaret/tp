@@ -3,11 +3,21 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_zs.h"
-UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
 #include "d/actor/d_a_b_ds.h"
 
+class daE_ZS_HIO_c {
+public:
+    /* 808330AC */ daE_ZS_HIO_c();
+    /* 80834DDC */ virtual ~daE_ZS_HIO_c() {}
+
+    /* 0x4 */ s8 field_0x4;
+    /* 0x8 */ f32 field_0x8;
+    /* 0xc */ f32 field_0xc;
+};
 
 //
 // Declarations:

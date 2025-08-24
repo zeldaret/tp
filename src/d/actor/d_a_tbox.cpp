@@ -3,6 +3,8 @@
 // Translation Unit: d_a_tbox
 //
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tbox.h"
 #include "d/d_tresure.h"
 #include "d/d_item_data.h"
@@ -12,25 +14,6 @@
 #include "SSystem/SComponent/c_math.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include <cmath.h>
-
-UNK_REL_DATA
-
-UNK_BSS(1109)
-UNK_BSS(1107)
-UNK_BSS(1105)
-UNK_BSS(1104)
-UNK_BSS(1099)
-UNK_BSS(1097)
-UNK_BSS(1095)
-UNK_BSS(1094)
-UNK_BSS(1057)
-UNK_BSS(1055)
-UNK_BSS(1053)
-UNK_BSS(1052)
-UNK_BSS(1014)
-UNK_BSS(1012)
-UNK_BSS(1010)
-UNK_BSS(1009)
 
 /* 804961D4-804961EC 000000 0018+00 16/16 0/0 0/0 .rodata          l_cull_size_box */
 static const f32 l_cull_size_box[6] = { -150.0f, -10.0f, -150.0f, 150.0f, 300.0f, 100.0f };

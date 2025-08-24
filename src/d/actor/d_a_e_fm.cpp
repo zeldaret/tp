@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_fm.h"
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_player.h"
@@ -12,6 +14,62 @@
 #include "c/c_damagereaction.h"
 #include "f_op/f_op_msg_mng.h"
 #include "Z2AudioLib/Z2Instances.h"
+
+class daE_FM_HIO_c : public JORReflexible {
+public:
+    /* 804EF0EC */ daE_FM_HIO_c();
+
+    void genMessage(JORMContext*);
+    /* 804FA3D8 */ virtual ~daE_FM_HIO_c() {}
+
+    /* 0x04 */ s8 no;
+    /* 0x08 */ f32 base_size;
+    /* 0x0C */ f32 field_0xc;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ f32 field_0x1c;
+    /* 0x20 */ f32 field_0x20;
+    /* 0x24 */ f32 field_0x24;
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
+    /* 0x30 */ f32 field_0x30;
+    /* 0x34 */ s16 field_0x34;
+    /* 0x36 */ s16 field_0x36;
+    /* 0x38 */ s16 field_0x38;
+    /* 0x3C */ f32 field_0x3c;
+    /* 0x40 */ f32 field_0x40;
+    /* 0x44 */ f32 field_0x44;
+    /* 0x48 */ f32 chain_size;
+    /* 0x4C */ f32 field_0x4c;
+    /* 0x50 */ f32 field_0x50;
+    /* 0x54 */ f32 field_0x54;
+    /* 0x58 */ f32 field_0x58;
+    /* 0x5C */ f32 field_0x5c;
+    /* 0x60 */ u8 field_0x60;
+    /* 0x61 */ u8 field_0x61;
+    /* 0x64 */ f32 field_0x64;
+    /* 0x68 */ f32 field_0x68;
+    /* 0x6C */ f32 field_0x6c;
+    /* 0x70 */ f32 field_0x70;
+    /* 0x74 */ f32 field_0x74;
+    /* 0x78 */ f32 field_0x78;
+    /* 0x7C */ f32 field_0x7c;
+    /* 0x80 */ f32 field_0x80;
+    /* 0x84 */ f32 field_0x84;
+    /* 0x88 */ f32 field_0x88;
+    /* 0x8C */ f32 field_0x8c;
+    /* 0x90 */ f32 field_0x90;
+    /* 0x94 */ s16 field_0x94;
+    /* 0x96 */ s16 field_0x96;
+    /* 0x98 */ s16 field_0x98;
+    /* 0x9A */ s16 field_0x9a;
+    /* 0x9C */ s16 field_0x9c;
+    /* 0xA0 */ f32 field_0xa0;
+    /* 0xA4 */ f32 field_0xa4;
+    /* 0xA8 */ f32 field_0xa8;
+    /* 0xAC */ u8 field_0xac;
+};
 
 enum E_FM_RES_FILE_ID {
     /* BCK */
@@ -112,8 +170,6 @@ enum daE_FM_TexAnm {
     TEXANM_DEMO_END02,
 };
 
-UNK_REL_DATA
-
 /* 804EF0EC-804EF250 0000EC 0164+00 1/1 0/0 0/0 .text            __ct__12daE_FM_HIO_cFv */
 daE_FM_HIO_c::daE_FM_HIO_c() {
     no = -1;
@@ -178,8 +234,6 @@ static void* s_fmobj_del(void* i_actor, void* i_data) {
 
     return NULL;
 }
-
-UNK_REL_BSS;
 
 /* 804FAE95 0003+00 data_804FAE95 None */
 static u8 l_initHIO;

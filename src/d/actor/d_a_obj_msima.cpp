@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_msima.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "c/c_damagereaction.h"
@@ -88,8 +90,6 @@ static void msima_start(obj_msima_class* i_this) {
     i_this->field_0x598 = 0x802;
     i_this->field_0x59a = 0x708;
 }
-
-UNK_REL_BSS
 
 /* 80C9CEA4-80C9CEA8 -00001 0004+00 2/2 0/0 0/0 .bss             None */
 /* 80C9CEA4 0001+00 data_80C9CEA4 @1009 */

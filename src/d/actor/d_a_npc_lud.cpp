@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_lud.h"
 #include "dol2asm.h"
 
@@ -298,24 +300,6 @@ SECTION_DEAD static char const* const stringBase_80A6FF2C = "CONVERSATION_IN_HOT
 SECTION_DEAD static char const* const stringBase_80A6FF42 = "CONVERSATION_ABOUT_DEATHMT";
 SECTION_DEAD static char const* const stringBase_80A6FF5D = "CLOTH_TRY";
 SECTION_DEAD static char const* const stringBase_80A6FF67 = "THANK_YOU";
-#pragma pop
-
-/* 80A6FFCC-80A6FFD8 000000 000C+00 3/3 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80A6FFD8-80A6FFEC 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 #pragma pop
 
 /* 80A6FFEC-80A70014 000020 0028+00 1/1 0/0 0/0 .data            l_bmdData */

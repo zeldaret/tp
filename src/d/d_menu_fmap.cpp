@@ -3,6 +3,8 @@
 // Translation Unit: d/d_menu_fmap
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_menu_fmap.h"
 #include "SSystem/SComponent/c_math.h"
 #include "JSystem/JKernel/JKRAramArchive.h"
@@ -24,11 +26,6 @@
 #include "d/d_stage.h"
 #include "d/actor/d_a_player.h"
 #include "d/actor/d_a_midna.h"
-
-/* 803BD090-803BD09C 01A1B0 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 8042E82C-8042E840 05B54C 0014+00 2/2 0/0 0/0 .bss             g_fmHIO */
 static dMf_HIO_c g_fmHIO;

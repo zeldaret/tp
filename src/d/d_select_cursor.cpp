@@ -3,18 +3,13 @@
 // Translation Unit: d/d_select_cursor
 //
 
-#define NO_INLINE_DLSTBASE_DRAW
+#include "d/dolzel.h"
 
 #include "d/d_select_cursor.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "d/d_com_inf_game.h"
 #include "JSystem/J2DGraph/J2DAnimation.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
-
-/* 803BB700-803BB70C 018820 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 801941E4-80194220 18EB24 003C+00 1/1 0/0 0/0 .text            __ct__19dSelect_cursorHIO_cFv */
 dSelect_cursorHIO_c::dSelect_cursorHIO_c() {
@@ -573,8 +568,10 @@ void dSelect_cursor_c::moveCenter(J2DPane* i_pane, f32 i_x, f32 i_y) {
 }
 
 // Need 0x30 bytes of padding with no symbol between btk2_name$3688 and dSelect_cursor_c::__vtable
-// This is likely caused by the vtables of abstract base classes getting put there and then stripped out.
-// Not sure which abstract base classes could go there though, so we simulate it with some dummy classes for now.
+// This is likely caused by the vtables of abstract base classes (likely from dolzel.pch) getting
+// put there and then stripped out.
+// Not sure which abstract base classes could go there though, so we simulate it with some dummy
+// classes for now.
 class dummy_abstract_class {
 public:
     virtual void virt_func_0() = 0;

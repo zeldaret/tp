@@ -1,8 +1,9 @@
 #ifndef D_A_OBJ_BHBRIDGE_H
 #define D_A_OBJ_BHBRIDGE_H
 
-#include "d/d_bg_s_movebg_actor.h"
+#include "d/d_a_obj.h"
 #include "d/d_bg_s_acch.h"
+#include "d/d_bg_s_movebg_actor.h"
 
 /**
  * @ingroup actors-objects
@@ -18,11 +19,11 @@ public:
     /* 80BB5380 */ int Check_RideOn();
     /* 80BB558C */ void initBaseMtx();
     /* 80BB55B8 */ void setBaseMtx();
-    /* 80BB5934 */ int CreateHeap();
-    /* 80BB59AC */ int Create();
-    /* 80BB5A14 */ int Execute(f32 (**)[3][4]);
-    /* 80BB5E10 */ int Draw();
-    /* 80BB5EB4 */ int Delete();
+    /* 80BB5934 */ virtual int CreateHeap();
+    /* 80BB59AC */ virtual int Create();
+    /* 80BB5A14 */ virtual int Execute(f32 (**)[3][4]);
+    /* 80BB5E10 */ virtual int Draw();
+    /* 80BB5EB4 */ virtual int Delete();
 
     inline int create();
 

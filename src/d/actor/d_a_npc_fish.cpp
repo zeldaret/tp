@@ -1,5 +1,7 @@
 // Translation Unit: d_a_npc_fish
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_fish.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_com_inf_game.h"
@@ -42,24 +44,6 @@ static void fish_set(fopAc_ac_c* i_this, fish_data_s* data) {
         fopAcM_create(PROC_MG_FISH, param, &pos, fopAcM_GetRoomNo(i_this), NULL, NULL, -1);
     }
 }
-
-/* 805424E4-805424F0 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 805424F0-80542504 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
 
 /* 80542504-805428D8 000020 03D4+00 0/1 0/0 0/0 .data            fish_d127_S */
 static fish_data_s fish_d127_S[49] = {

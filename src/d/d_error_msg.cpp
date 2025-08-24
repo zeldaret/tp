@@ -3,15 +3,17 @@
  * Disk Error Message screen handler
  */
 
+#include "d/dolzel.h"
+
 #include <cstring.h>
-#include "d/d_error_msg.h"
-#include "JSystem/J2DGraph/J2DTextBox.h"
-#include "JSystem/J2DGraph/J2DPicture.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
+#include "JSystem/J2DGraph/J2DPicture.h"
+#include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JUtility/JUTResFont.h"
-#include "m_Do/m_Do_graphic.h"
 #include "JSystem/JUtility/JUTTexture.h"
+#include "d/d_error_msg.h"
 #include "m_Do/m_Do_Reset.h"
+#include "m_Do/m_Do_graphic.h"
 
 #include "assets/black_tex.h"
 #include "assets/msg_data.h"

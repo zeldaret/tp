@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_swBallB.h"
 #include "d/actor/d_a_player.h"
 #include "d/actor/d_a_obj_carry.h"
@@ -168,8 +170,6 @@ int daObjSwBallB_c::Create() {
     execute();
     return 1;
 }
-
-UNK_REL_DATA
 
 /* 80CF5A40-80CF5A44 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "P_LBswBC";

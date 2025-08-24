@@ -3,6 +3,8 @@
 // Translation Unit: d/d_name
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_name.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "d/d_com_inf_game.h"
@@ -13,11 +15,6 @@
 #include "stdio.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "f_op/f_op_msg_mng.h"
-
-/* 803C1F50-803C1F5C 01F070 000C+00 5/5 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 803C1F5C-803C2060 -00001 0104+00 0/3 0/0 0/0 .data            l_mojiHira */
 static const char* l_mojiHira[65] = {

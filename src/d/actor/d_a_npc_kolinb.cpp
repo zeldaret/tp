@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_kolinb.h"
 
 enum Kolinb_RES_File_ID {
@@ -94,8 +96,6 @@ enum TYPE {
     /* 0x2 */ TYPE_ZRCB,
     /* 0x3 */ TYPE_3,
 };
-
-UNK_REL_DATA;
 
 /* 80A48874-80A48884 000020 0010+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[2][2] = {

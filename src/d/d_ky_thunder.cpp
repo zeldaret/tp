@@ -3,6 +3,8 @@
  * Environment - Thunder
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_ky_thunder.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "SSystem/SComponent/c_counter.h"

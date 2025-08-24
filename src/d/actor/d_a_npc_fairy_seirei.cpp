@@ -1,11 +1,11 @@
 /**
- * @file d_a_npc_fairy_seirei.cpp
+* @file d_a_npc_fairy_seirei.cpp
  *
  */
 
-#include "d/actor/d_a_npc_fairy_seirei.h"
+#include "d/dolzel_rel.h"
 
-UNK_REL_DATA
+#include "d/actor/d_a_npc_fairy_seirei.h"
 
 /* ############################################################################################## */
 

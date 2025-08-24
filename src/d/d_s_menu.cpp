@@ -3,6 +3,8 @@
  * Debug Level Select Menu
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_s_menu.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_com_static.h"

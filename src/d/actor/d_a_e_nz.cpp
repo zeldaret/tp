@@ -3,13 +3,30 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_nz.h"
-UNK_REL_DATA;
 #include "c/c_damagereaction.h"
 #include "d/d_cc_d.h"
 #include "dol2asm.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "f_op/f_op_actor_enemy.h"
+
+class daE_NZ_HIO_c : public JORReflexible {
+public:
+    /* 807299EC */ daE_NZ_HIO_c();
+    /* 8072BC88 */ virtual ~daE_NZ_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ s8 mId;
+    /* 0x08 */ f32 mBasicSize;
+    /* 0x0C */ f32 mSpeed;
+    /* 0x10 */ f32 mAttackSpeed;
+    /* 0x14 */ s16 mWaitTime;
+    /* 0x18 */ f32 mCurrentAlphaSpeed;
+    /* 0x1C */ f32 mVanishingAlphaSpeed;
+};
 
 enum Action {
     ACTION_NORMAL,
@@ -120,8 +137,6 @@ static int daE_NZ_Draw(e_nz_class* i_this) {
 
     return 1;
 }
-
-UNK_REL_BSS
 
 bool l_HIOInit;
 

@@ -17,9 +17,6 @@ class daGraveStone_c : public dBgS_MoveBgActor {
 public:
     class daObj_GrvStn_prtclMngr_c {
     public:
-        /* 80C12EF0 */ ~daObj_GrvStn_prtclMngr_c() {}
-        /* 80C12F2C */ daObj_GrvStn_prtclMngr_c() {}
-
         /* 0x00 */ bool field_0x00;
         /* 0x04 */ cXyz mPos;
         /* 0x10 */ csXyz mAngle;

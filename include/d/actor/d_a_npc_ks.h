@@ -206,27 +206,4 @@ public:
 
 STATIC_ASSERT(sizeof(npc_ks_class) == 0xc20);
 
-class daNpc_Ks_HIO_c : public JORReflexible {
-public:
-    /* 80A48F8C */ daNpc_Ks_HIO_c();
-    /* 80A5DA90 */ virtual ~daNpc_Ks_HIO_c() {};
-
-    void genMessage(JORMContext*);
-
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 field_0x8;
-    /* 0x0C */ f32 field_0xc;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1c;
-    /* 0x20 */ f32 field_0x20;
-    /* 0x24 */ f32 field_0x24;
-    /* 0x28 */ u8 field_0x28;
-    /* 0x2C */ f32 field_0x2c;
-    /* 0x30 */ f32 field_0x30;
-    /* 0x34 */ f32 field_0x34;
-};
-
-
 #endif /* D_A_NPC_KS_H */

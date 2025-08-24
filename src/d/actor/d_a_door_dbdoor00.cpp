@@ -2,6 +2,8 @@
 // d_a_door_dbdoor00
 //
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_door_dbdoor00.h"
 #include "printf.h"
 #include "SSystem/SComponent/c_math.h"
@@ -51,24 +53,6 @@ char* daDbDoor00_c::getDummyBmdName() {
 char* daDbDoor00_c::getBmdArcName() {
     return "DbDoor0";
 }
-
-/* 8045E664-8045E670 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 8045E670-8045E684 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
 
 /* 8045E684-8045E688 -00001 0004+00 1/1 0/0 0/0 .data            l_bmd_base_name */
 static char* l_bmd_base_name = "door-pushDouble_";

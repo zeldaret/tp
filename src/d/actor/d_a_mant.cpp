@@ -3,13 +3,13 @@
  *
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_mant.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "d/actor/d_a_b_gnd.h"
 #include "d/d_com_inf_game.h"
 #include "dol2asm.h"
-
-UNK_REL_DATA
 
 /* 80862D40-80866D40 000020 4000+00 2/1 0/0 0/0 .data            l_Egnd_mantTEX */
 #include "assets/l_Egnd_mantTEX.h"

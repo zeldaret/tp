@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_syRock.h"
 #include "d/actor/d_a_obj_eff.h"
 #include "d/d_bg_w.h"
@@ -10,10 +12,37 @@
 #include "f_op/f_op_kankyo_mng.h"
 #include "SSystem/SComponent/c_math.h"
 
-typedef void (daSyRock_c::*actionFunc)();
+class daSyRock_HIO_c : public mDoHIO_entry_c {
+public:
+    /* 80D022AC */ daSyRock_HIO_c();
+    /* 80D03C44 */ ~daSyRock_HIO_c() {}
 
-/* 80D0403C-80D04048 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-UNK_REL_DATA
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ f32 mShakeAmplitude;         // "揺れ強さ" "Shake strength" | Slider
+    /* 0x08 */ f32 mShakeXOscillationAngle; // "振幅Ｘ" "Amplitude X" | Slider
+    /* 0x0C */ f32 mShakeZOscillationAngle; // "振幅Ｚ" "Amplitude Z" | Slider
+    /* 0x10 */ f32 mShakeDamping;           // "揺れ減衰" "Shake damping" | Slider
+    /* 0x14 */ f32 mShakeMaxDecay;          // "最大減衰量" "Maximum decay" | Slider
+    /* 0x18 */ f32 mShakeMinDecay;          // "最小減衰量" "Minimum decay" | Slider
+    /* 0x1C */ f32 mFallAcceleration;       // "落下速度" "Fall speed" | Slider
+    /* 0x20 */ f32 mMaxFallSpeed;           // "最大落下速度" "Maximum falling speed" | Slider
+    /* 0x24 */ u8 mWaitFrames;              // "wait time" | Slider (unused)
+    /* 0x25 */ u8 mShockStrength;           // "振動" "Vibration" | Combo Box
+    /* "強さ１" "Strength 1"
+       "強さ２" "Strength 2"
+       "強さ３" "Strength 3"
+       "強さ４" "Strength 4"
+       "強さ５" "Strength 5"
+       "強さ６" "Strength 6"
+       "強さ７" "Strength 7"
+       "強さ８" "Strength 8" */
+    /* 0x28 */ f32 mEffectScale;            // "eff scale" | Slider
+    /* 0x2C */ f32 mFallWaterBouyancy;      // "sink speed" | Slider
+    /* 0x30 */ f32 mMaxWaterPillarRange;    // "renge" | "Range" | Slider
+};
+
+typedef void (daSyRock_c::*actionFunc)();
 
 /* 80D0426C-80D042A0 000014 0034+00 8/8 0/0 0/0 .bss             l_HIO */
 static daSyRock_HIO_c l_HIO;

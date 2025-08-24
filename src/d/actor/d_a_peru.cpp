@@ -3,11 +3,11 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_peru.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_obj_catdoor.h"
-
-UNK_REL_DATA
 
 /* 80D4C1FC-80D4C204 000020 0008+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[1][2] = {
@@ -954,8 +954,6 @@ int daPeru_c::cutAppear(int param_1) {
     }
     return _cutAppear_Main(*pCutId);
 }
-
-UNK_REL_BSS
 
 /* 80D4C83C-80D4C840 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daPeru_Param_c l_HIO;

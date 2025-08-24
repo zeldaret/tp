@@ -51,6 +51,10 @@ public:
     /* 80BF204C */ daObj_Fw_HIO_c();
     /* 80BF2AB0 */ virtual ~daObj_Fw_HIO_c() {}
 
+#if DEBUG
+    void genMessage(JORMContext*);
+#endif
+
     /* 流木 - Driftwood */
     /* 0x4 */ s8 field_0x4;
     /* 0x8 */ f32 size;     // 大きさ - Size

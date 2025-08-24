@@ -12,8 +12,8 @@ typedef struct _GXColorS10 GXColorS10;
  */
 class J3DMatColorAnm {
 public:
-    /* 8003B2B8 */ ~J3DMatColorAnm() {};
-    /* 8003B2F4 */ J3DMatColorAnm() : field_0x0(0), mAnmFlag(1), mAnmColor(NULL) {};
+    /* 8003B2B8 */ ~J3DMatColorAnm() {}
+    /* 8003B2F4 */ J3DMatColorAnm() : field_0x0(0), mAnmFlag(1), mAnmColor(NULL) {}
     J3DMatColorAnm(u16 param_1, J3DAnmColor* param_2) {
         field_0x0 = param_1;
         mAnmFlag = 1;
@@ -42,8 +42,8 @@ private:
  */
 class J3DTexNoAnm {
 public:
-    /* 8003B1F8 */ ~J3DTexNoAnm() {};
-    /* 8003B240 */ J3DTexNoAnm() : field_0x4(0), mAnmFlag(1), mAnmTexPattern(NULL) {};
+    /* 8003B1F8 */ ~J3DTexNoAnm() {}
+    /* 8003B240 */ J3DTexNoAnm() : field_0x4(0), mAnmFlag(1), mAnmTexPattern(NULL) {}
     J3DTexNoAnm(u16 param_1, J3DAnmTexPattern* param_2) {
         field_0x4 = param_1;
         mAnmFlag = 1;
@@ -73,8 +73,8 @@ private:
  */
 class J3DTexMtxAnm {
 public:
-    /* 8003B264 */ ~J3DTexMtxAnm() {};
-    /* 8003B2A0 */ J3DTexMtxAnm() : field_0x0(0), mAnmFlag(1), mAnmTransform(NULL) {};
+    /* 8003B264 */ ~J3DTexMtxAnm() {}
+    /* 8003B2A0 */ J3DTexMtxAnm() : field_0x0(0), mAnmFlag(1), mAnmTransform(NULL) {}
     J3DTexMtxAnm(u16 param_1, J3DAnmTextureSRTKey* param_2) {
         field_0x0 = param_1;
         mAnmFlag = 1;
@@ -174,7 +174,7 @@ public:
     /* 8032C664 */ void setTevColorAnm(int, J3DTevColorAnm*);
     /* 8032C6A4 */ void setTevKColorAnm(int, J3DTevKColorAnm*);
 
-    /* 800A4820 */ virtual ~J3DMaterialAnm() {};
+    /* 800A4820 */ virtual ~J3DMaterialAnm() {}
     /* 8032C3C4 */ virtual void calc(J3DMaterial*) const;
 
     const J3DTexMtxAnm& getTexMtxAnm(int i) const { return mTexMtxAnm[i]; }

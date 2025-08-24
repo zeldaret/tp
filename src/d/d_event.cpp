@@ -3,6 +3,8 @@
 // Translation Unit: d/d_event
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_event.h"
 #include "d/actor/d_a_alink.h"
 #include "d/d_demo.h"

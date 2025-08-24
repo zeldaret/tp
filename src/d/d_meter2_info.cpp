@@ -1,13 +1,15 @@
-#include "d/d_meter2_info.h"
+#include "d/dolzel.h"
+
 #include "JSystem/J2DGraph/J2DTextBox.h"
-#include "JSystem/JUtility/JUTFont.h"
 #include "JSystem/JMessage/JMessage.h"
+#include "JSystem/JUtility/JUTFont.h"
 #include "d/actor/d_a_npc.h"
-#include "d/d_meter2.h"
-#include "d/d_meter_map.h"
-#include "d/d_msg_object.h"
-#include "d/d_msg_class.h"
 #include "d/d_item_data.h"
+#include "d/d_meter2.h"
+#include "d/d_meter2_info.h"
+#include "d/d_meter_map.h"
+#include "d/d_msg_class.h"
+#include "d/d_msg_object.h"
 
 enum ITEMICON_RES_FILE_ID {
     ITEMICON_BTI_ARI_MESU_00=0x3,

@@ -1,7 +1,9 @@
 /**
- * @file d_a_obj_kiPot.cpp
+* @file d_a_obj_kiPot.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_obj_kiPot.h"
 #include "d/d_com_inf_game.h"

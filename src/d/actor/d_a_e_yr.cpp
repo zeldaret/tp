@@ -3,12 +3,92 @@
  *
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_yr.h"
 #include "d/actor/d_a_horse.h"
 #include "d/d_cc_d.h"
 #include "d/d_path.h"
-UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
+
+class e_yrHIO_c : public fOpAcm_HIO_entry_c {
+public:
+    e_yrHIO_c() {
+        mInvulnerable = 0;
+        mStationary = 0;
+        field_0x8 = 20.0f;
+        field_0xc = 2500.0f;
+        mModelScale = 1.0f;
+        mAttackAMinTime = 2000;
+        mAttackAMaxTime = 2500;
+        mAttackBMinTime = 2000;
+        mAttackBMaxTime = 2500;
+        mAttackMoveSpeed = 0.35f;
+        mAttackFrequency = 0.5f;
+        mFlyPlaybackSpeed = 1.0f;
+        mHoveringPlaybackSpeed = 1.0f;
+        mAttackPlaybackSpeed = 1.0f;
+        field_0x38 = 1.0f;
+        mChancePlaybackSpeed = 1.0f;
+        field_0x40 = 30;
+        field_0x44 = 1.0f;
+        field_0x48 = 1.0f;
+        field_0x4c = 1.5f;
+        mBrakeStartDist = 1100;
+        field_0x54 = 3.5f;
+        mChanceTime = 60;
+        mLargeDamage = 60.0f;
+        mSmallDamage = 40.0f;
+        mHitOccurrenceFrame = 1;
+        mDetectDistSky = 8000.0f;
+        mDetectHeightSky = 3000.0f;
+        mDetectAngleSky = 20000;
+        mDetectDistGround = 1500.0f;
+        mDetectHeightGround = 2000.0f;
+        mDetectAngleGround = 20000;
+    }
+
+    /* 808282CC */ virtual ~e_yrHIO_c() {}
+
+#if DEBUG
+    void genMessage(JORMContext*);
+#endif
+
+    /* 0x04 */ u8 mInvulnerable;
+    /* 0x05 */ u8 mStationary;
+    /* 0x06 */ u8 mSuddenAttack;
+    /* 0x08 */ f32 field_0x8;
+    /* 0x0C */ f32 field_0xc;
+    /* 0x10 */ f32 mTurningRadius;
+    /* 0x14 */ f32 mModelScale;
+    /* 0x18 */ s16 mAttackAMinTime;
+    /* 0x1A */ s16 mAttackAMaxTime;
+    /* 0x1C */ s16 mAttackBMinTime;
+    /* 0x1E */ s16 mAttackBMaxTime;
+    /* 0x20 */ f32 mAttackMoveSpeed;
+    /* 0x24 */ f32 mAttackFrequency;
+    /* 0x28 */ f32 mFlyPlaybackSpeed;
+    /* 0x2C */ f32 mHoveringPlaybackSpeed;
+    /* 0x30 */ f32 mAttackPlaybackSpeed;
+    /* 0x34 */ s16 mChanceTime;
+    /* 0x38 */ f32 field_0x38;
+    /* 0x3C */ f32 mChancePlaybackSpeed;
+    /* 0x40 */ s16 field_0x40;
+    /* 0x44 */ f32 field_0x44;
+    /* 0x48 */ f32 field_0x48;
+    /* 0x4C */ f32 field_0x4c;
+    /* 0x50 */ s16 mBrakeStartDist;
+    /* 0x54 */ f32 field_0x54;
+    /* 0x58 */ f32 mLargeDamage;
+    /* 0x5C */ f32 mSmallDamage;
+    /* 0x60 */ s16 mHitOccurrenceFrame;
+    /* 0x64 */ f32 mDetectDistSky;
+    /* 0x68 */ f32 mDetectDistGround;
+    /* 0x6C */ s16 mDetectAngleSky;
+    /* 0x6E */ s16 mDetectAngleGround;
+    /* 0x70 */ f32 mDetectHeightSky;
+    /* 0x74 */ f32 mDetectHeightGround;
+};
 
 #if DEBUG
 void e_yrHIO_c::genMessage(JORMContext* ctx) {

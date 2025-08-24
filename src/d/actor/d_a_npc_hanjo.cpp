@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_hanjo.h"
 #include "d/actor/d_a_npc_tk.h"
 #include "d/actor/d_a_player.h"
@@ -17,8 +19,6 @@
 //
 // Declarations:
 //
-
-UNK_REL_DATA;
 
 /* 80A00960-80A00980 000020 0020+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[4][2] = {
@@ -699,8 +699,6 @@ void daNpc_Hanjo_c::afterMoved() {
         }
     }
 }
-
-UNK_REL_BSS;
 
 /* 80A012D4-80A012D8 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daNpc_Hanjo_Param_c l_HIO;

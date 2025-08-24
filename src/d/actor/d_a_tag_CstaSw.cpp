@@ -3,6 +3,8 @@
  * Overworld Statue switch trigger
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tag_CstaSw.h"
 #include "d/d_procname.h"
 

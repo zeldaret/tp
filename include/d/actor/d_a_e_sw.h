@@ -148,21 +148,4 @@ private:
 
 STATIC_ASSERT(sizeof(daE_SW_c) == 0xb18);
 
-class daE_SW_HIO_c {
-public:
-    /* サンドワーム (Sandworm) */
-    /* 807A740C */ daE_SW_HIO_c();
-    /* 807AF870 */ virtual ~daE_SW_HIO_c() {}
-
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 basic_size;                  // 基本サイズ (Basic Size)
-    /* 0x0C */ f32 bomb_notice_dist;            // 爆弾認識距離 (Bomb Recognition Distance)
-    /* 0x10 */ f32 bomb_attack_start_range;     // 爆弾攻撃開始範囲 (Bomb Attack Start Range)
-    /* 0x14 */ f32 human_attack_init_range;     // 人用攻撃開始範囲 (Human Attack Initiation Range)
-    /* 0x18 */ f32 horse_attack_init_range;     // 馬用攻撃開始範囲 (Horse Attack Initiation Range)
-    /* 0x1C */ f32 character_notice_dist;       // 人認識距離(ダンジョン用) (Character Recognition Distance (For Dungeon))
-    /* 0x20 */ u8 movement_range_debug_display; // 移動範囲デバック表示 (Movement Range Debug Display)
-};
-
-
 #endif /* D_A_E_SW_H */

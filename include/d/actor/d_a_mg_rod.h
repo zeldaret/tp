@@ -302,20 +302,4 @@ public:
 
 STATIC_ASSERT(sizeof(dmg_rod_class) == 0x1690);
 
-class dmg_rod_HIO_c {
-public:
-    /* 804A95EC */ dmg_rod_HIO_c();
-    /* 804BB070 */ virtual ~dmg_rod_HIO_c() {}
-
-    /* 0x04 */ s8 id;
-    /* 0x08 */ f32 field_0x8;
-    /* 0x0C */ f32 field_0xc;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1c;
-    /* 0x20 */ f32 field_0x20;
-    /* 0x24 */ u8 force_fish_msg_output;
-};
-
 #endif /* D_A_MG_ROD_H */

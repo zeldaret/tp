@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_rstair.h"
 #include "d/d_bg_w.h"
 #include "d/d_com_inf_game.h"
@@ -73,8 +75,6 @@ int daObjRotStair_c::Create() {
     setAction(ACTION_WAIT);
     return 1;
 }
-
-UNK_REL_DATA
 
 /* 80CC275C-80CC2760 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "K_spkai00";

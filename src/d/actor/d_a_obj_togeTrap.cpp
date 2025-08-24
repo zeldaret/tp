@@ -3,12 +3,12 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_togeTrap.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_bg_w.h"
 #include "d/d_com_inf_game.h"
-
-UNK_REL_DATA
 
 /* 80D17B6C-80D17BD0 0000EC 0064+00 1/1 0/0 0/0 .text            __ct__16daTogeTrap_HIO_cFv */
 daTogeTrap_HIO_c::daTogeTrap_HIO_c() {

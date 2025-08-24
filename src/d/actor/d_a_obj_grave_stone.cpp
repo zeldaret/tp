@@ -3,6 +3,8 @@
  * Object - Zora Gravestone
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_grave_stone.h"
 #include "d/d_procname.h"
 #include "d/d_com_inf_game.h"

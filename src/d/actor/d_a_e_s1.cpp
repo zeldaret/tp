@@ -1,7 +1,9 @@
 /**
- * @file d_a_e_s1.cpp
+* @file d_a_e_s1.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_e_s1.h"
 #include "SSystem/SComponent/c_math.h"
@@ -10,10 +12,26 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_path.h"
 #include "d/d_s_play.h"
-
-UNK_REL_DATA
-
 #include "f_op/f_op_actor_enemy.h"
+
+class daE_S1_HIO_c {
+public:
+    /* 8077AB8C */ daE_S1_HIO_c();
+    /* 80780840 */ virtual ~daE_S1_HIO_c() {}
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 mBaseSize;
+    /* 0x0C */ f32 mMoveSpeed;
+    /* 0x10 */ u8 field_0x10[0x14 - 0x10];
+    /* 0x14 */ f32 mDashSpeed;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ s16 mFallSEWaitTime;
+    /* 0x1E */ s16 mAllDeadWaitTime;
+    /* 0x20 */ f32 mReactionDist;
+    /* 0x24 */ f32 mReactionAngle;
+    /* 0x28 */ s16 mReactionTime;
+    /* 0x2A */ u8 mInvincible;
+};
 
 #define ANM_ATTACK 5
 #define ANM_ATTACK_02 6
@@ -142,23 +160,6 @@ static BOOL pl_at_check(e_s1_class* i_this, f32 i_check_range) {
     return fopAcM_searchPlayerDistance(i_this) < i_check_range;
 }
 
-UNK_BSS(1109)
-UNK_BSS(1107)
-UNK_BSS(1105)
-UNK_BSS(1104)
-UNK_BSS(1099)
-UNK_BSS(1097)
-UNK_BSS(1095)
-UNK_BSS(1094)
-UNK_BSS(1057)
-UNK_BSS(1055)
-UNK_BSS(1053)
-UNK_BSS(1052)
-UNK_BSS(1014)
-UNK_BSS(1012)
-UNK_BSS(1010)
-
-static u8 data_8078137c;
 static u8 l_no_fail;  // when enabled, enemy will never revive after defeated
 static u8 l_initHIO;
 

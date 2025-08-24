@@ -3,14 +3,14 @@
  * NPC - Jaggle
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_jagar.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_npc_bou.h"
 #include "dol2asm.h"
 #include "d/d_meter2_info.h"
 #include "d/actor/d_a_tag_push.h"
-
-UNK_REL_DATA;
 
 enum Jagar_RES_File_ID {
     /* BCK */
@@ -774,8 +774,6 @@ void daNpc_Jagar_c::beforeMove() {
         attention_info.flags = 0;
     }
 }
-
-UNK_REL_BSS;
 
 /* 80A1AE2C-80A1AE30 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daNpc_Jagar_Param_c l_HIO;

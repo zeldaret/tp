@@ -1,7 +1,9 @@
 /**
- * @file d_a_obj_kamakiri.cpp
+* @file d_a_obj_kamakiri.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_obj_kamakiri.h"
 #include "d/actor/d_a_player.h"

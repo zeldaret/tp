@@ -1,11 +1,11 @@
 /**
- * @file d_a_npc_impal.cpp
+* @file d_a_npc_impal.cpp
  *
  */
 
-#include "d/actor/d_a_npc_impal.h"
+#include "d/dolzel_rel.h"
 
-UNK_REL_DATA
+#include "d/actor/d_a_npc_impal.h"
 
 static daNpcImpal_Param_c l_HIO;
 

@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_tkj2.h"
 #include "d/d_cc_d.h"
 #include "d/d_s_play.h"

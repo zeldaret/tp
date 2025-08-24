@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_spinner.h"
 #include "d/actor/d_a_tag_sppath.h"
 #include "dol2asm.h"
@@ -146,8 +148,6 @@ void daSpinner_c::setMatrix() {
     mBck.entry(mpModel->getModelData());
     mpModel->calc();
 }
-
-UNK_REL_BSS
 
 /* 804D2320-804D25F4 000A80 02D4+00 1/1 0/0 0/0 .text            setEffect__11daSpinner_cFv */
 void daSpinner_c::setEffect() {

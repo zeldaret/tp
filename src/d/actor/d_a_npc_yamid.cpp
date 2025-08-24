@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_yamid.h"
 
 enum yamiD_RES_File_ID {
@@ -38,8 +40,6 @@ enum Motion {
     /* 0x0 */ MOT_WAIT_A,
     /* 0x1 */ MOT_STEP,
 };
-
-UNK_REL_DATA
 
 /* 80B46164-80B4616C 000020 0008+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[1][2] = {

@@ -3,6 +3,8 @@
  * Squirrel
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_sq.h"
 #include "SSystem/SComponent/c_math.h"
 #include "JSystem/JKernel/JKRHeap.h"

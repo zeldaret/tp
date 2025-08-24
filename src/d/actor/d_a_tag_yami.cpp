@@ -3,6 +3,8 @@
  * Tag - Yami (Twili)
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tag_yami.h"
 #include "d/d_com_inf_game.h"
 
@@ -158,5 +160,3 @@ extern actor_process_profile_definition g_profile_TAG_YAMI = {
     fopAc_ACTOR_e,           // mActorType
     fopAc_CULLBOX_CUSTOM_e,  // cullType
 };
-
-#pragma nosyminline on

@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_lv9SwShutter.h"
 #include "dol2asm.h"
 
@@ -71,7 +73,6 @@ extern "C" void __ptmf_scall();
 extern "C" void _savegpr_29();
 extern "C" void _restgpr_29();
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
 
@@ -96,24 +97,6 @@ COMPILER_STRIP_GATE(0x80C8D7E0, &lit_3628);
 #pragma force_active on
 SECTION_RODATA static f32 const lit_3629 = 15.0f;
 COMPILER_STRIP_GATE(0x80C8D7E4, &lit_3629);
-#pragma pop
-
-/* 80C8D80C-80C8D818 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80C8D818-80C8D82C 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 #pragma pop
 
 /* 80C8D82C-80C8D838 -00001 000C+00 0/1 0/0 0/0 .data            @3722 */

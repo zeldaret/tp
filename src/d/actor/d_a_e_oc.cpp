@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_oc.h"
 #include "d/d_camera.h"
 #include "Z2AudioLib/Z2Instances.h"
@@ -10,9 +12,24 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_obj_rotBridge.h"
 #include "d/d_cc_uty.h"
-UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
 
+class daE_OC_HIO_c {
+public:
+    /* 8072C5CC */ daE_OC_HIO_c();
+    /* 80735630 */ virtual ~daE_OC_HIO_c() {}
+
+    /* 0x04 */ s8 field_0x04;
+    /* 0x05 */ u8 field_0x05;
+    /* 0x08 */ f32 field_0x08;
+    /* 0x0c */ f32 field_0x0c;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1c */ f32 field_0x1c;
+    /* 0x20 */ f32 field_0x20;
+    /* 0x24 */ f32 field_0x24;
+};
 
 //
 // Declarations:
@@ -131,23 +148,6 @@ int daE_OC_c::draw() {
 static void daE_OC_Draw(daE_OC_c* i_this) {
     i_this->draw();
 }
-
-UNK_BSS(1109);
-UNK_BSS(1107);
-UNK_BSS(1105);
-UNK_BSS(1104);
-UNK_BSS(1099);
-UNK_BSS(1097);
-UNK_BSS(1095);
-UNK_BSS(1094);
-UNK_BSS(1057);
-UNK_BSS(1055);
-UNK_BSS(1053);
-UNK_BSS(1052);
-UNK_BSS(1014);
-UNK_BSS(1012);
-UNK_BSS(1010);
-UNK_BSS(1009);
 
 /* 80736040-80736044 000048 0004+00 0/2 0/0 0/0 .bss             m_battle_oc__6E_OC_n */
 daE_OC_c* E_OC_n::m_battle_oc;

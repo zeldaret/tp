@@ -3,6 +3,8 @@
 // Translation Unit: d_a_tag_kago_fall
 //
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tag_kago_fall.h"
 
 #include "d/actor/d_a_player.h"

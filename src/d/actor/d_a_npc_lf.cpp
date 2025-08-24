@@ -6,6 +6,8 @@
  * @details Group of several small fish spawned in a group. Used in Fishing Pond.
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_lf.h"
 
 /* 80A6AA1C-80A6AA28 000000 000C+00 1/1 0/0 0/0 .data            wp$3976 */

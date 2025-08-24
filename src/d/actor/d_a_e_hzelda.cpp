@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_hzelda.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
@@ -94,8 +96,6 @@ enum hzelda_action {
 enum hzelda_timer {
     TIMER_ATTACK_WAIT = 0,
 };
-
-UNK_REL_DATA
 
 /* 806F0D4C-806F0D70 0000EC 0024+00 1/1 0/0 0/0 .text            __ct__16daE_HZELDA_HIO_cFv */
 daE_HZELDA_HIO_c::daE_HZELDA_HIO_c() {

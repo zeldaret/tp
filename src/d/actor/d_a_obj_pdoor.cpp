@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_pdoor.h"
 #include "d/actor/d_a_player.h"
 #include "SSystem/SComponent/c_lib.h"
@@ -53,8 +55,6 @@ void daObjPDoor_c::setBaseMtx() {
     mModel->setBaseTRMtx(mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
-
-UNK_REL_DATA
 
 /* 80CAAB6C-80CAAB70 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "V_OsuDoor";

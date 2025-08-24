@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_hfuta.h"
 #include "d/d_com_inf_game.h"
 #include "Z2AudioLib/Z2Instances.h"
@@ -41,8 +43,6 @@ int daObjFuta_c::Create() {
     return 1;
 }
 
-UNK_REL_DATA
-
 /* 80C1EEC4-80C1EEC8 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "Obj_hfuta";
 
@@ -65,12 +65,6 @@ int daObjFuta_c::create1st() {
     }
     return rv;
 }
-
-// Required padding
-#pragma push
-#pragma force_active on
-static u8 sbss_padding[0x40];
-#pragma pop
 
 /* 80C1E020-80C1EAFC 000380 0ADC+00 1/0 0/0 0/0 .text            Execute__11daObjFuta_cFPPA3_A4_f */
 int daObjFuta_c::Execute(f32 (**mtx)[3][4]) {

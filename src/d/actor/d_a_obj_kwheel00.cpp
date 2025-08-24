@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_kwheel00.h"
 #include "JSystem/JHostIO/JORMContext.h"
 #include "d/actor/d_a_obj_lv3Water.h"

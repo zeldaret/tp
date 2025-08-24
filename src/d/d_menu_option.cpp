@@ -2,30 +2,27 @@
 // Option Menu
 //
 
-#include "d/d_menu_option.h"
-#include "JSystem/JKernel/JKRMemArchive.h"
+#include "d/dolzel.h"
+
+#include <dolphin/os.h>
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
+#include "JSystem/JKernel/JKRMemArchive.h"
 #include "d/d_com_inf_game.h"
-#include "d/d_lib.h"
-#include "d/d_select_cursor.h"
 #include "d/d_file_sel_warning.h"
+#include "d/d_lib.h"
 #include "d/d_menu_calibration.h"
+#include "d/d_menu_option.h"
 #include "d/d_menu_window.h"
 #include "d/d_meter2_info.h"
 #include "d/d_meter_HIO.h"
 #include "d/d_meter_haihai.h"
 #include "d/d_msg_string.h"
-#include <dolphin/os.h>
+#include "d/d_select_cursor.h"
 #include "dolphin/types.h"
 #include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
 #include "string.h"
-
-/* 803BDBA8-803BDBB4 01ACC8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 typedef void (dMenu_Option_c::*initFunc)();
 static initFunc init[] = {

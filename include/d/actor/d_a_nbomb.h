@@ -49,7 +49,6 @@ public:
     /* 804C6FD8 */ int searchEnemy(fopAc_ac_c*);
     /* 804C7114 */ int createHeap();
     /* 804C7324 */ int create();
-    /* 804C7B44 */ daNbomb_c();
     /* 804C7EB4 */ ~daNbomb_c();
     /* 804C8294 */ bool checkTimerStop();
     /* 804C82D8 */ BOOL checkExplode();

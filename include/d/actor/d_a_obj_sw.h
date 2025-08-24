@@ -14,9 +14,6 @@
 
 struct obj_sc_s {
 public:
-    /* 80CF2F3C */ ~obj_sc_s() {};
-    /* 80CF2FA8 */ obj_sc_s() {};
-
     /* 0x00 */ s8 field_0x0;
     /* 0x01 */ u8 field_0x1[0x4 - 0x1];
     /* 0x04 */ cXyz field_0x4;

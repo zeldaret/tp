@@ -3,10 +3,10 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_prayer.h"
 #include "d/d_com_inf_game.h"
-
-UNK_REL_DATA
 
 /* 80AB5BB4-80AB5BB8 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daNpcPray_Param_c l_HIO;

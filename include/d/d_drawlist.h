@@ -377,7 +377,7 @@ public:
         m3DLineMatSortPacket[param_1->getMaterialID()].setMat(param_1);
     }
 
-    void set3DlineMatDark(mDoExt_3DlineMat_c *param_1) { 
+    void set3DlineMatDark(mDoExt_3DlineMat_c *param_1) {
         m3DLineMatSortPacket[param_1->getMaterialID()].setMatDark(param_1);
     }
 

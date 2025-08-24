@@ -181,29 +181,4 @@ public:
 
 STATIC_ASSERT(sizeof(daNPC_TK_c) == 0xB44);
 
-class daNPC_TK_HIO_c : public JORReflexible {
-public:
-    daNPC_TK_HIO_c();
-    virtual ~daNPC_TK_HIO_c() {}
-
-    void genMessage(JORMContext*) {}
-
-    s8 field_0x4;
-    f32 field_0x8;
-    f32 field_0xc;
-    f32 field_0x10;
-    f32 field_0x14;
-    f32 field_0x18;
-    f32 field_0x1c;
-    f32 field_0x20;
-    f32 field_0x24;
-    f32 field_0x28;
-    f32 mFlySpeed;
-    f32 field_0x30;
-    f32 field_0x34;
-    f32 field_0x38;
-    u8 field_0x3c;
-};
-
-
 #endif /* D_A_NPC_TK_H */

@@ -3,6 +3,8 @@
  * @brief Actor - Various carriable objects
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_carry.h"
 #include "d/actor/d_a_player.h"
 #include <cmath.h>
@@ -715,8 +717,6 @@ const static dCcD_SrcCyl l_tg_cyl = {
 
 /* 8047A350-8047A354 000A44 0004+00 0/0 0/0 0/0 .rodata          l_light_color */
 static const GXColor l_light_color = {0xFF, 0xFF, 0xFF, 0xFF};
-
-UNK_REL_DATA;
 
 /* 8047A670-8047A6A8 -00001 0038+00 1/1 0/0 0/0 .data            l_arcName */
 static char* l_arcName[] = {

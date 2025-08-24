@@ -3,6 +3,8 @@
  * Object - Hotspring Fire
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_onsenFire.h"
 #include "d/d_procname.h"
 

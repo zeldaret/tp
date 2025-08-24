@@ -3,6 +3,8 @@
  *
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tag_firewall.h"
 #include "cmath.h"
 #include "d/actor/d_a_player.h"

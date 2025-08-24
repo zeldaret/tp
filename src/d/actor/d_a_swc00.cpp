@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_swc00.h"
 #include "d/actor/d_a_player.h"
 #include "d/actor/d_a_horse.h"
@@ -85,10 +87,6 @@ int daSwc00_Draw(daSwc00_c* i_this) {
 static int daSwc00_Execute(daSwc00_c* i_this) {
     return i_this->execute();
 }
-
-#ifndef DEBUG
-UNK_REL_DATA
-#endif
 
 inline static int daSwc00_getType(daSwc00_c *i_this) {
     return (i_this->shape_angle.x & 0xf00) >> 8;

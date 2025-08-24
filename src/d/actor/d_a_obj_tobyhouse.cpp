@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_tobyhouse.h"
 #include "d/actor/d_a_obj_carry.h"
 #include "d/d_bg_w.h"
@@ -134,8 +136,6 @@ void daObjTobyHouse_c::setBaseMtx() {
     mDoMtx_stack_c::YrotM(field_0x5e0);
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
-
-UNK_REL_DATA
 
 /* 80D17878-80D17880 -00001 0008+00 4/4 0/0 0/0 .data            l_arcName */
 static char* l_arcName[2] = {
@@ -271,8 +271,6 @@ int daObjTobyHouse_c::Execute(Mtx** i_mtx) {
     shape_angle.y = home.angle.y + field_0x5e0;
     return 1;
 }
-
-UNK_REL_BSS
 
 /* 80D16560-80D1661C 000BA0 00BC+00 1/1 0/0 0/0 .text            action__16daObjTobyHouse_cFv */
 void daObjTobyHouse_c::action() {

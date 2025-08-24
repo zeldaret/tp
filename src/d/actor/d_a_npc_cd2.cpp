@@ -3,6 +3,8 @@
 // Translation Unit: a/npc/d_a_npc_cd2
 //
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_cd2.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_path.h"
@@ -337,12 +339,6 @@ bool daNpcCd2_c::isM_() {
     JUT_ASSERT(738, (a_jntNum == JntM_NUM_e) || (a_jntNum == JntW_NUM_e));
     return a_jntNum == JntM_NUM_e;
 }
-
-/* ############################################################################################## */
-/* 803B61C0-803B61CC 0132E0 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 803B61CC-803B6244 -00001 0078+00 2/2 0/0 0/0 .data            l_resNameTbl */
 static char* const* l_resNameTbl[30] = {

@@ -1,7 +1,9 @@
 /**
- * @file d_a_obj_ihasi.cpp
+* @file d_a_obj_ihasi.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_obj_ihasi.h"
 #include "d/d_com_inf_game.h"

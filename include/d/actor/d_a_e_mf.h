@@ -137,25 +137,4 @@ public:
 
 STATIC_ASSERT(sizeof(e_mf_class) == 0x10ec);
 
-class daE_MF_HIO_c : public JORReflexible {
-public:
-    /* 8070A70C */ daE_MF_HIO_c();
-    /* 80713464 */ virtual ~daE_MF_HIO_c() {}
-
-    void genMessage(JORMContext*);
-
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 model_size;           // 基本サイズ
-    /* 0x0C */ f32 movement_speed;      // 移動速度
-    /* 0x10 */ f32 dash_speed;          // 突進速度
-    /* 0x14 */ f32 battle_init_range;   // 戦闘開始範囲
-    /* 0x18 */ f32 attack_init_range;   // 攻撃開始範囲
-    /* 0x1C */ s16 field_0x1c;          // 防御静止間
-    /* 0x1E */ s16 field_0x1e;          // 魂抜間 弱
-    /* 0x20 */ s16 field_0x20;          // 魂抜間 強
-    /* 0x22 */ u8 field_0x22;
-    /* 0x23 */ u8 invulnerable;         // 不死身
-};
-
-
 #endif /* D_A_E_MF_H */

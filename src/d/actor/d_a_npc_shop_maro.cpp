@@ -3,8 +3,9 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_shop_maro.h"
-#include "dol2asm.h"
 
 /* 80AEBE58-80AEBE78 000078 0020+00 1/0 0/0 0/0 .text            daNpc_shopMaro_Create__FPv */
 static int daNpc_shopMaro_Create(void* i_this) {
@@ -50,24 +51,18 @@ static actor_method_class daNpc_shopMaro_MethodTable = {
 
 /* 80AEC958-80AEC988 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_SMARO */
 extern actor_process_profile_definition g_profile_NPC_SMARO = {
-  fpcLy_CURRENT_e,             // mLayerID
-  7,                           // mListID
-  fpcPi_CURRENT_e,             // mListPrio
-  PROC_NPC_SMARO,              // mProcName
-  &g_fpcLf_Method.base,       // sub_method
-  sizeof(daNpc_shopMaro_c),    // mSize
-  0,                           // mSizeOther
-  0,                           // mParameters
-  &g_fopAc_Method.base,        // sub_method
-  365,                         // mPriority
-  &daNpc_shopMaro_MethodTable, // sub_method
-  0x00040000,                  // mStatus
-  fopAc_ACTOR_e,               // mActorType
-  fopAc_CULLBOX_0_e,           // cullType
-};
-
-/* 80AEBF04-80AEBF64 000124 0060+00 1/1 0/0 0/0 .text            __ct__16daNpc_shopMaro_cFv */
-daNpc_shopMaro_c::daNpc_shopMaro_c() : dShopSystem_c(0,0,0,0,0,0,0,0) {}
-
-/* 80AEBF64-80AEBFC4 000184 0060+00 1/0 0/0 0/0 .text            __dt__16daNpc_shopMaro_cFv */
-daNpc_shopMaro_c::~daNpc_shopMaro_c() {}
+    fpcLy_CURRENT_e,             // mLayerID
+    7,                           // mListID
+    fpcPi_CURRENT_e,             // mListPrio
+    PROC_NPC_SMARO,              // mProcName
+    &g_fpcLf_Method.base,       // sub_method
+    sizeof(daNpc_shopMaro_c),    // mSize
+    0,                           // mSizeOther
+    0,                           // mParameters
+    &g_fopAc_Method.base,        // sub_method
+    365,                         // mPriority
+    &daNpc_shopMaro_MethodTable, // sub_method
+    0x00040000,                  // mStatus
+    fopAc_ACTOR_e,               // mActorType
+    fopAc_CULLBOX_0_e,           // cullType
+  };

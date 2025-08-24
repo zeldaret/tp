@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_master_sword.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
@@ -59,8 +61,6 @@ void daObjMasterSword_c::executeWait() {
 int daObjMasterSword_c::createHeapCallBack(fopAc_ac_c* i_this) {
     return static_cast<daObjMasterSword_c*>(i_this)->CreateHeap();
 }
-
-UNK_REL_DATA
 
 /* 80C9199C-80C919A0 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "MstrSword";

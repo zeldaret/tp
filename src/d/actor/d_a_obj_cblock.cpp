@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_cblock.h"
 #include "d/d_cc_d.h"
 #include "Z2AudioLib/Z2Instances.h"
@@ -31,8 +33,6 @@ static Vec const l_cull_box[2] = {
     {-250.0f, 0.0f, -450.0f},
     {250.0f, 250.0f, 400.0f},
 };
-
-UNK_REL_DATA
 
 /* 80BC6AF4-80BC6AF8 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "P_Cblock";
@@ -229,96 +229,6 @@ void daObjCBlk_c::modeWalk() {
     }
 }
 
-/* 80BC6C54-80BC6C58 00000C 0001+03 0/0 0/0 0/0 .bss             @1107 */
-#pragma push
-#pragma force_active on
-static u8 lit_1107[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BC6C58-80BC6C5C 000010 0001+03 0/0 0/0 0/0 .bss             @1105 */
-#pragma push
-#pragma force_active on
-static u8 lit_1105[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BC6C5C-80BC6C60 000014 0001+03 0/0 0/0 0/0 .bss             @1104 */
-#pragma push
-#pragma force_active on
-static u8 lit_1104[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BC6C60-80BC6C64 000018 0001+03 0/0 0/0 0/0 .bss             @1099 */
-#pragma push
-#pragma force_active on
-static u8 lit_1099[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BC6C64-80BC6C68 00001C 0001+03 0/0 0/0 0/0 .bss             @1097 */
-#pragma push
-#pragma force_active on
-static u8 lit_1097[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BC6C68-80BC6C6C 000020 0001+03 0/0 0/0 0/0 .bss             @1095 */
-#pragma push
-#pragma force_active on
-static u8 lit_1095[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BC6C6C-80BC6C70 000024 0001+03 0/0 0/0 0/0 .bss             @1094 */
-#pragma push
-#pragma force_active on
-static u8 lit_1094[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BC6C70-80BC6C74 000028 0001+03 0/0 0/0 0/0 .bss             @1057 */
-#pragma push
-#pragma force_active on
-static u8 lit_1057[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BC6C74-80BC6C78 00002C 0001+03 0/0 0/0 0/0 .bss             @1055 */
-#pragma push
-#pragma force_active on
-static u8 lit_1055[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BC6C78-80BC6C7C 000030 0001+03 0/0 0/0 0/0 .bss             @1053 */
-#pragma push
-#pragma force_active on
-static u8 lit_1053[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BC6C7C-80BC6C80 000034 0001+03 0/0 0/0 0/0 .bss             @1052 */
-#pragma push
-#pragma force_active on
-static u8 lit_1052[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BC6C80-80BC6C84 000038 0001+03 0/0 0/0 0/0 .bss             @1014 */
-#pragma push
-#pragma force_active on
-static u8 lit_1014[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BC6C84-80BC6C88 00003C 0001+03 0/0 0/0 0/0 .bss             @1012 */
-#pragma push
-#pragma force_active on
-static u8 lit_1012[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BC6C88-80BC6C8C 000040 0001+03 0/0 0/0 0/0 .bss             @1010 */
-#pragma push
-#pragma force_active on
-static u8 lit_1010[1 + 3 /* padding */];
-#pragma pop
-
-/* 80BC6C8C-80BC6C90 000044 0001+03 0/0 0/0 0/0 .bss             @1009 */
-#pragma push
-#pragma force_active on
-static u8 lit_1009[1 + 3 /* padding */];
-#pragma pop
-
 /* 80BC6C9C-80BC6CA8 000054 000C+00 1/2 0/0 0/0 .bss             l_chainOffset */
 static cXyz l_chainOffset(0.0f, 105.0f, 30.0f);
 
@@ -340,86 +250,19 @@ void daObjCBlk_c::setPower(f32 power) {
     player->setOutPower(power, angle, 0);
 }
 
-/* ############################################################################################## */
-/* 80BC6A78-80BC6A7C 000040 0004+00 0/0 0/0 0/0 .rodata          @4103 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4103 = -6.0f;
-COMPILER_STRIP_GATE(0x80BC6A78, &lit_4103);
-#pragma pop
-
-/* 80BC6A7C-80BC6A80 000044 0004+00 0/0 0/0 0/0 .rodata          @4104 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4104 = 3.0f / 40.0f;
-COMPILER_STRIP_GATE(0x80BC6A7C, &lit_4104);
-#pragma pop
-
-/* 80BC6A80-80BC6A84 000048 0004+00 0/0 0/0 0/0 .rodata          @4105 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4105 = 100.0f;
-COMPILER_STRIP_GATE(0x80BC6A80, &lit_4105);
-#pragma pop
-
-/* 80BC6A84-80BC6A88 00004C 0004+00 0/0 0/0 0/0 .rodata          @4106 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4106 = 15.0f;
-COMPILER_STRIP_GATE(0x80BC6A84, &lit_4106);
-#pragma pop
-
-/* 80BC6A88-80BC6A90 000050 0004+04 0/0 0/0 0/0 .rodata          @4107 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4107[1 + 1 /* padding */] = {
-    35.0f,
-    /* padding */
-    0.0f,
-};
-COMPILER_STRIP_GATE(0x80BC6A88, &lit_4107);
-#pragma pop
-
-/* 80BC6A90-80BC6A98 000058 0008+00 0/0 0/0 0/0 .rodata          @4310 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4310[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80BC6A90, &lit_4310);
-#pragma pop
-
-/* 80BC6A98-80BC6AA0 000060 0008+00 0/0 0/0 0/0 .rodata          @4311 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4311[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80BC6A98, &lit_4311);
-#pragma pop
-
-/* 80BC6AA0-80BC6AA8 000068 0008+00 0/0 0/0 0/0 .rodata          @4312 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4312[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80BC6AA0, &lit_4312);
-#pragma pop
-
-/* 80BC6AA8-80BC6AAC 000070 0004+00 0/0 0/0 0/0 .rodata          @4313 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4313 = 195.0f;
-COMPILER_STRIP_GATE(0x80BC6AA8, &lit_4313);
-#pragma pop
-
-/* 80BC6AAC-80BC6AB0 000074 0004+00 0/0 0/0 0/0 .rodata          @4314 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4314 = 210.0f;
-COMPILER_STRIP_GATE(0x80BC6AAC, &lit_4314);
-#pragma pop
+static f32 dummy() {
+    f32 f0 = -6.0f;
+    f32 f1 = 3.0f / 40.0f;
+    f32 f2 = 100.0f;
+    f32 f3 = 15.0f;
+    f32 f4 = 35.0f;
+    f64 f5 = 0.5;
+    f64 f6 = 3.0;
+    f64 f7 = 0.0;
+    f32 f8 = 195.0f;
+    f32 f9 = 210.0f;
+    return f0 + f1 * (f2 - f3 * (f4 - f5 * (f6 - f7 * f8 - (f7 - f9))));
+}
 
 /* 80BC66DC-80BC6868 000DBC 018C+00 1/1 0/0 0/0 .text            checkWall__11daObjCBlk_cFv */
 BOOL daObjCBlk_c::checkWall() {
@@ -478,6 +321,8 @@ static int daObjCBlk_Create(fopAc_ac_c* i_this) {
 
 /* 80BC6CB4-80BC6CC4 00006C 000C+04 0/1 0/0 0/0 .bss             l_smokeSetOffset */
 static cXyz l_smokeSetOffset(0.0f, 0.0f, -200.0f);
+
+static s32 unused_bss_70 = 0;
 
 AUDIO_INSTANCES;
 

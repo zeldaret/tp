@@ -3,6 +3,8 @@
 /* Owl Statue Event Tag -- Awarding Sky Characters
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tag_statue_evt.h"
 #include "d/d_com_inf_game.h"
 
@@ -48,19 +50,6 @@ void daTagStatue_c::setBaseMtx() {
 
     mpModel->setBaseTRMtx(mDoMtx_stack_c::now);
 }
-
-/* 805A81FC-805A8208 000000 000C+00 3/3 0/0 0/0 .data            cNullVec__6Z2Calc */
-static Vec cNullVec__6Z2Calc = {0.0f, 0.0f, 0.0f};
-
-/* 805A8208-805A821C 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 
 /* 805A821C-805A8220 -00001 0004+00 3/4 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "Obj_cs_f";

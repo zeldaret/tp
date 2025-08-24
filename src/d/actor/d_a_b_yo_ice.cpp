@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_b_yo_ice.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "SSystem/SComponent/c_math.h"
@@ -13,20 +15,17 @@
 #include "d/d_camera.h"
 #include "d/d_com_inf_game.h"
 
-/* 8063DDA4-8063DDB0 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+class daB_YOI_HIO_c {
+public:
+    /* 8063A14C */ daB_YOI_HIO_c();
+    /* 8063DBD0 */ virtual ~daB_YOI_HIO_c() {}
+
+    /* 0x4 */ s8 field_0x4;
+    /* 0x8 */ f32 mScaleY;
+    /* 0xC */ f32 mScaleXZ;
 };
 
-/* 8063DDB0-8063DDC4 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
+STATIC_ASSERT(sizeof(daB_YOI_HIO_c) == 0x10);
 
 /* 8063DFE8-8063DFEC 000008 0004+00 2/2 0/0 0/0 .bss             None */
 static bool hioInit;

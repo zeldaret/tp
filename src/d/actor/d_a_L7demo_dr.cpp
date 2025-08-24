@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_L7demo_dr.h"
 #include "d/actor/d_a_player.h"
 #include "d/actor/d_a_obj_lv7bridge.h"

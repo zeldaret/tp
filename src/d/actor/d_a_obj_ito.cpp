@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_ito.h"
 #include "d/actor/d_a_obj_gm.h"
 #include "d/d_cc_d.h"

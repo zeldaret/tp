@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 // This TU seems to disable inlining entirely, as there are several weak functions that get inlined
 // in other TUs, but not here.
 #pragma dont_inline on
@@ -181,23 +183,6 @@ static void __THPAudioInitialize(THPAudioDecodeInfo* info, u8* ptr) {
     info->scale = (u8)((*(info->encodeData) & 0xF));
     info->encodeData++;
 }
-
-UNK_BSS(1109);
-UNK_BSS(1107);
-UNK_BSS(1105);
-UNK_BSS(1104);
-UNK_BSS(1099);
-UNK_BSS(1097);
-UNK_BSS(1095);
-UNK_BSS(1094);
-UNK_BSS(1057);
-UNK_BSS(1055);
-UNK_BSS(1053);
-UNK_BSS(1052);
-UNK_BSS(1014);
-UNK_BSS(1012);
-UNK_BSS(1010);
-UNK_BSS(1009);
 
 /* 808795E0-80879A40 000040 0460+00 0/0 0/0 0/0 .bss             THPStatistics */
 static u8 THPStatistics[1120] ALIGN_DECL(32);

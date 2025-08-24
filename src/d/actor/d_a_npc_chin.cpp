@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_chin.h"
 #include "dol2asm.h"
 
@@ -342,24 +344,6 @@ SECTION_DEAD static char const* const stringBase_80991D4B = "chin_mdl";
 SECTION_DEAD static char const* const stringBase_80991D54 = "chin_tmdl";
 SECTION_DEAD static char const* const stringBase_80991D5E = "chin1_evt";
 SECTION_DEAD static char const* const stringBase_80991D68 = "SpotLight";
-#pragma pop
-
-/* 80991DDC-80991DE8 000000 000C+00 5/5 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80991DE8-80991DFC 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 #pragma pop
 
 /* 80991DFC-80991F88 000020 018C+00 1/2 0/0 0/0 .data            l_bckGetParamList */

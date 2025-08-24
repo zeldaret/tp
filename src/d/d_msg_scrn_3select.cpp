@@ -3,6 +3,8 @@
  * 3-way Select Message Screen
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_msg_scrn_3select.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
@@ -13,11 +15,6 @@
 #include "d/d_select_cursor.h"
 #include "d/d_msg_object.h"
 #include "d/d_pane_class.h"
-
-/* 803C0C00-803C0C0C 01DD20 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 803C0C54-803C0CA0 01DD74 0048+04 2/3 0/0 0/0 .data            process */
 typedef void (dMsgScrn3Select_c::*processFn)();

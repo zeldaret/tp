@@ -69,19 +69,4 @@ public:
 
 STATIC_ASSERT(sizeof(e_bi_class) == 0xc00);
 
-class daE_BI_HIO_c : public JORReflexible {
-public:
-    /* 8068A5EC */ daE_BI_HIO_c();
-    /* 8068D2DC */ virtual ~daE_BI_HIO_c() {}
-
-    /* 爆弾虫 - Bomb Bug */
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 basic_size;          // 基本サイズ - Basic Size
-    /* 0x0C */ f32 search_range;        // サーチ範囲 - Search Range
-    /* 0x10 */ f32 track_range;         // 追尾範囲 - Track Range
-    /* 0x14 */ s16 time_to_get_going;   // 動き出すまでの時間 - Time To Get Going
-    /* 0x18 */ f32 movement_spd;        // 移動速度 - Movement Speed
-};
-
-
 #endif /* D_A_E_BI_H */

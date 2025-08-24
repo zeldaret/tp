@@ -3,6 +3,8 @@
  * Enemy spawner
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_enemy_create.h"
 #include "d/actor/d_a_player.h"
 #include "f_op/f_op_actor_mng.h"

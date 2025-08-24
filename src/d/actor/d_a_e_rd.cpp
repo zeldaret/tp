@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_rd.h"
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
@@ -20,10 +22,46 @@
 #include "d/actor/d_a_e_arrow.h"
 #include "d/actor/d_a_npc_tk.h"
 #include "Z2AudioLib/Z2Instances.h"
-
-UNK_REL_DATA;
-
 #include "f_op/f_op_actor_enemy.h"
+
+class daE_RD_HIO_c : public JORReflexible {
+public:
+    /* 80504A6C */ daE_RD_HIO_c();
+    /* 8051801C */ virtual ~daE_RD_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x00 */ s8 field_0x4;
+
+    /* ライダー (Rider) */
+    /* 0x08 */ f32 model_size;              // 基本サイズ          (Basic size)
+    /* 0x0C */ f32 field_0xc;               // リーダーサイズ比     (Leader size ratio)
+    /* 0x10 */ f32 movement_speed;          // 移動速度            (Movement speed)
+
+    /*   こん棒兵の場合   (In the case of the club soldier) */
+    /* 0x14 */ f32 dash_speed;              // 突進速度            (Rush speed)
+    /* 0x18 */ f32 battle_init_range;       // 戦闘開始範囲         (Battle starting range)
+    /* 0x1C */ f32 attack_init_range;       // 攻撃開始範囲         (Attack starting range)
+    /* 0x20 */ f32 swing_speed;             // 振り速さ            (Swing speed)
+
+    /*   矢兵の場合   (In the case of arrow soldiers) */
+    /* 0x24 */ s16 field_0x24;              // 号令→構えの間        (Command → Preparation)
+    /* 0x26 */ u8 padding[2];
+    /* 0x28 */ f32 attack_range;            // 攻撃範囲            (Attack range)
+    /* 0x2C */ f32 mounted_launch_distance; // 騎乗発射距離         (Mounted launch distance)
+    /* 0x30 */ f32 wolf_falling_power_y;    // 狼倒れ力Y           (Wolf falling power Y)
+    /* 0x34 */ f32 wolf_falling_power_z;    // 狼倒れ力Z           (Wolf falling power Z)
+
+    /* 0x38 */ u8 field_0x38;
+    /* 0x39 */ u8 invulnerable;             // 不死身              (Invulnerability)
+    /* 0x3A */ u8 eye_polygon;              // 目ポリゴン          (Eye polygon)
+    /* 0x3B */ u8 one_hit_kill;             // 一撃必殺            (One hit kill)
+    /* 0x3C */ f32 field_0x3c;              // 一騎（ダ）サイズ     (One-man army (Da) size)
+    /* 0x40 */ f32 jump_g;                  // 飛びＧ              (Jump G)
+    /* 0x44 */ f32 jump_z;                  // 飛びＺ              (Jump Z)
+    /* 0x48 */ f32 field_0x48;              // 飛びＺ（騎乗停止）   (Jump Z (Stop riding))
+    /* 0x4C */ f32 jump_y;                  // 飛びＹ              (Jump Y)
+};
 
 enum E_RD_RES_FILE_ID {
     /* BCK */
@@ -550,8 +588,6 @@ static BOOL pl_pass_check(e_rd_class* i_this, f32 param_2) {
 
     return FALSE;
 }
-
-UNK_REL_BSS;
 
 /* 80519180-80519184 000048 0004+00 2/3 0/0 0/0 .bss             boss */
 static e_rd_class* boss;
@@ -5678,7 +5714,7 @@ static void demo_camera(e_rd_class* i_this) {
     s16 sVar1 = 0;
 
     switch (i_this->mDemoMode + 1) {
-        case 1:
+        case 2:
             if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
                 fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
                 a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
@@ -5696,7 +5732,7 @@ static void demo_camera(e_rd_class* i_this) {
             i_this->field_0x1300 = 2000.0f;
             a_this->current.angle.y = i_this->mPlayerAngleY;
             // fallthrough
-        case 2:
+        case 3:
             if (i_this->field_0x12a6 < 85) {
                 mDoMtx_stack_c::YrotS(a_this->current.angle.y);
                 mDoMtx_stack_c::XrotM(0x640);
@@ -5739,7 +5775,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 10:
+        case 11:
             if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
                 fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
                 a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
@@ -5759,7 +5795,7 @@ static void demo_camera(e_rd_class* i_this) {
             a_this->current.angle.y = i_this->mPlayerAngleY;
             i_this->field_0x1300 = 2000.0f;
             // fallthrough
-        case 11:
+        case 12:
             mDoMtx_stack_c::YrotS(a_this->current.angle.y);
             mDoMtx_stack_c::XrotM(0x640);
             sp38.x = 0.0f;
@@ -5788,14 +5824,14 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 19:
+        case 20:
             if (player->getClothesChangeWaitTimer() == 0) {
                 i_this->mDemoMode = 21;
                 i_this->field_0x12a6 = 0;
             }
             break;
 
-        case 20:
+        case 21:
             if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
                 fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
                 a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
@@ -5823,7 +5859,7 @@ static void demo_camera(e_rd_class* i_this) {
                 i_this->mDemoMode = 19;
             }
             // fallthrough
-        case 21:
+        case 22:
             daPy_getPlayerActorClass()->setPlayerPosAndAngle(&i_this->field_0x12f0, player->shape_angle.y, 0);
 
             if (i_this->mDemoMode != 19) {
@@ -5867,7 +5903,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 22:
+        case 23:
             cam_3d_morf(i_this, BREG_F(17) + 0.2f);
             cLib_addCalc2(&i_this->field_0x130c, BREG_F(16) + 0.15f, 1.0f, BREG_F(17) + 0.005f);
             cLib_addCalc2(&i_this->mDemoCamFovy, 55.0f, 0.1f, 0.5f);
@@ -5889,7 +5925,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 23:
+        case 24:
             i_this->field_0x9a4 = 1;
 
             if (i_this->field_0x12a6 == 20) {
@@ -5919,7 +5955,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 24:
+        case 25:
             i_this->field_0x9a4 = 1;
             i_this->field_0x980 = 0.0f;
 
@@ -5955,7 +5991,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 25:
+        case 26:
             if (i_this->field_0x12a6 == 40) {
                 mDoGph_gInf_c::fadeIn(0.5f, g_blackColor);
                 i_this->mDemoCamFovy = 55.0f;
@@ -5974,7 +6010,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 26:
+        case 27:
             cam_3d_morf(i_this, BREG_F(17) + 0.2f);
             cLib_addCalc2(&i_this->field_0x130c, BREG_F(16) + 0.5f, 1.0f, BREG_F(17) + 0.01f);
 
@@ -5989,7 +6025,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 27:
+        case 28:
             fpcM_Search(s_lv9rd_sub3, i_this);
 
             if (i_this->field_0x12a6 == 40) {
@@ -6033,7 +6069,7 @@ static void demo_camera(e_rd_class* i_this) {
             i_this->field_0x12c0.set(-5058.0f, 2181.0f, 5124.0f);
             cam_spd_set(i_this);
             // fallthrough
-        case 28:
+        case 29:
             if (i_this->field_0x12a6 == 1) {
                 player->changeDemoMode(20, 0, 0, 0);
             }
@@ -6077,7 +6113,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 29:
+        case 30:
             i_this->mDemoCamFovy = 55.0f;
             i_this->mDemoCamEye.set(-3963.0f, 147.0f, 8094.0f);
             sp5c = a_hwk->current.pos;
@@ -6099,7 +6135,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 30:
+        case 31:
             cam_3d_morf(i_this, BREG_F(17) + 0.1f);
             cLib_addCalc2(&i_this->field_0x130c, BREG_F(16) + 0.1f, 1.0f, BREG_F(17) + 0.002f);
 
@@ -6116,7 +6152,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 31:
+        case 32:
             cam_3d_morf(i_this, BREG_F(17) + 0.05f);
             cLib_addCalc2(&i_this->field_0x130c, BREG_F(16) + 0.05f, 1.0f, BREG_F(17) + 0.001f);
 
@@ -6129,7 +6165,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 32:
+        case 33:
             if (i_this->field_0x12a6 == 60) {
                 i_this->mDemoCamCenter.set(-3906.0f, 42.0f, 8198.0f);
                 i_this->mDemoCamEye.set(-4274.0f, 272.0f, 7969.0f);
@@ -6139,7 +6175,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 33:
+        case 34:
             if (i_this->field_0x12a6 == 65) {
                 daPy_getPlayerActorClass()->changeDemoMode(60, 1, 0, 0);
             }
@@ -6153,7 +6189,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 34:
+        case 35:
             cLib_addCalc2(&i_this->mDemoCamFovy, 40.0f, 0.05f, 0.02f);
             if (i_this->field_0x12a6 == 80) {
                 i_this->mDemoCamCenter.set(-4712.0f, 870.0f, 7432.0f);
@@ -6165,7 +6201,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 35:
+        case 36:
             if (i_this->field_0x12a6 == 120) {
                 bVar1 = true;
                 int swBit = (fopAcM_GetParam(a_this) & 0xFF000000) >> 24;
@@ -6173,9 +6209,6 @@ static void demo_camera(e_rd_class* i_this) {
                     dComIfGs_onSwitch(swBit, fopAcM_GetRoomNo(a_this));
                 }
             }
-            break;
-
-        case 36:
             break;
     }
 

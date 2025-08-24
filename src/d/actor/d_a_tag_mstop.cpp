@@ -3,6 +3,8 @@
  * Tag - Midna Stop
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tag_mstop.h"
 #include "d/actor/d_a_midna.h"
 #include "d/actor/d_a_player.h"

@@ -3,30 +3,11 @@
 // Translation Unit: d_a_obj_hata
 //
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_hata.h"
+#include "f_op/f_op_actor.h"
 #include "dol2asm.h"
-
-//
-// Types:
-//
-
-struct request_of_phase_process_class {};
-
-struct csXyz {
-    /* 80C18CCC */ ~csXyz();
-    /* 80C18D64 */ csXyz();
-};
-
-struct mDoMtx_stack_c {
-    /* 8000CF44 */ void ZXYrotM(csXyz const&);
-
-    static u8 now[48];
-};
-
-struct fopAc_ac_c {
-    /* 80018B64 */ fopAc_ac_c();
-    /* 80018C8C */ ~fopAc_ac_c();
-};
 
 struct daObjHata_c {
     /* 80C18D08 */ daObjHata_c();
@@ -40,31 +21,6 @@ struct daObjHata_c {
     /* 80C190FC */ void init();
     /* 80C1919C */ void moveSwing();
 };
-
-struct dKy_tevstr_c {};
-
-struct J3DModelData {};
-
-struct cXyz {};
-
-struct dScnKy_env_light_c {
-    /* 801A37C4 */ void settingTevStruct(int, cXyz*, dKy_tevstr_c*);
-    /* 801A4DA0 */ void setLightTevColorType_MAJI(J3DModelData*, dKy_tevstr_c*);
-};
-
-struct dRes_info_c {};
-
-struct dRes_control_c {
-    /* 8003C2EC */ void getRes(char const*, s32, dRes_info_c*, int);
-};
-
-struct J3DSys {
-    static u8 mCurrentMtx[48];
-};
-
-struct J3DModel {};
-
-struct J3DJoint {};
 
 //
 // Forward References:
@@ -111,20 +67,13 @@ extern "C" void cM_rndF__Ff();
 extern "C" void cM_rndFX__Ff();
 extern "C" void cLib_chaseF__FPfff();
 extern "C" void __dl__FPv();
-extern "C" void PSMTXCopy();
-extern "C" void PSMTXTrans();
 extern "C" void __destroy_arr();
 extern "C" void __construct_array();
 extern "C" void _savegpr_21();
 extern "C" void _savegpr_26();
 extern "C" void _restgpr_21();
 extern "C" void _restgpr_26();
-extern "C" extern void* g_fopAc_Method[8];
-extern "C" extern void* g_fpcLf_Method[5 + 1 /* padding */];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" extern u8 g_env_light[4880];
-extern "C" extern u8 j3dSys[284];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 
 //
@@ -138,11 +87,6 @@ static void daObjHata_c_createHeap(fopAc_ac_c* param_0) {
 
 /* 80C18BD8-80C18CCC 000098 00F4+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
 static void nodeCallBack(J3DJoint* param_0, int param_1) {
-    // NONMATCHING
-}
-
-/* 80C18CCC-80C18D08 00018C 003C+00 2/2 0/0 0/0 .text            __dt__5csXyzFv */
-csXyz::~csXyz() {
     // NONMATCHING
 }
 
@@ -188,11 +132,6 @@ SECTION_DATA extern void* __vt__11daObjHata_c[3] = {
 /* 80C18D08-80C18D64 0001C8 005C+00 2/2 0/0 0/0 .text            __ct__11daObjHata_cFv */
 daObjHata_c::daObjHata_c() {
     // NONMATCHING
-}
-
-/* 80C18D64-80C18D68 000224 0004+00 1/1 0/0 0/0 .text            __ct__5csXyzFv */
-csXyz::csXyz() {
-    /* empty function */
 }
 
 /* 80C18D68-80C18E00 000228 0098+00 1/0 0/0 0/0 .text            __dt__11daObjHata_cFv */
@@ -248,10 +187,14 @@ void daObjHata_c::init() {
 /* 80C19480-80C1948C 000008 000C+00 0/1 0/0 0/0 .rodata          SING$3793 */
 #pragma push
 #pragma force_active on
+#define SING_BAK SING
+#undef SING
 SECTION_RODATA static u8 const SING[12] = {
     0x00, 0x00, 0x00, 0x01, 0xFF, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0x01,
 };
 COMPILER_STRIP_GATE(0x80C19480, &SING);
+#define SING SING_BAK
+#undef SING_BAK
 #pragma pop
 
 /* 80C1948C-80C19498 000014 000C+00 0/1 0/0 0/0 .rodata          AIM_ANGLE_X$3794 */

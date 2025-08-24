@@ -3,10 +3,10 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_midp.h"
 #include "SSystem/SComponent/c_counter.h"
-
-UNK_REL_DATA
 
 /* 80A73AD4-80A73ADC 000020 0008+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[2][1] = {

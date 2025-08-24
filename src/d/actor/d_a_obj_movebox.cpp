@@ -1,7 +1,9 @@
 /**
- * @file d_a_obj_movebox.cpp
+* @file d_a_obj_movebox.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_obj_movebox.h"
 #include "SSystem/SComponent/c_math.h"
@@ -10,8 +12,6 @@
 #include "d/d_path.h"
 #include "d/actor/d_a_obj_burnbox.h"
 #include "d/actor/d_a_obj_eff.h"
-
-UNK_REL_DATA
 
 /* 80480F28-80480F78 000000 0050+00 14/14 0/0 0/0 .rodata          M_lin5__Q212daObjMovebox5Bgc_c */
 const daObjMovebox::BgcSrc_c daObjMovebox::Bgc_c::M_lin5[] = {
@@ -44,8 +44,6 @@ daObjMovebox::Bgc_c::Bgc_c() {
     field_0x60 = 0.0f;
     mState = STATE_0_e;
 }
-
-UNK_REL_BSS
 
 /* 804818D4-80482060 000054 078C+00 7/8 0/0 0/0 .bss             M_gnd_work__Q212daObjMovebox5Bgc_c
  */

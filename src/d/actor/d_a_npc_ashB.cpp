@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_ashB.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "dol2asm.h"
@@ -226,8 +228,6 @@ extern "C" void __register_global_object();
 //
 // Declarations:
 //
-
-UNK_REL_DATA;
 
 /* 80962438-80962534 000020 00FC+00 1/2 0/0 0/0 .data            l_bckGetParamList */
 static daNpc_GetParam2 l_bckGetParamList[21] = {

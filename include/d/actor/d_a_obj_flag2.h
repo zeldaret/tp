@@ -23,7 +23,7 @@ public:
     /* 80BECCE4 */ void setCcSphere();
     /* 80BECD98 */ void execute();
     /* 80BEE0B8 */ cXyz getTargetPos() { return mPositions[4]; }
-    
+
     /* 80BECF30 */ void draw();
     /* 80BED9C4 */ virtual ~FlagCloth_c() {}
 

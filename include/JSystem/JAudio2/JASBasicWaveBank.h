@@ -33,7 +33,6 @@ public:
  */
 struct JASBasicWaveBank : public JASWaveBank {
     struct TWaveHandle : public JASWaveHandle {
-        /* 802985E4 */ ~TWaveHandle() {}
         /* 80298B64 */ int getWavePtr() const;
         /* 80298C18 */ TWaveHandle() { mHeap = NULL; }
         /* 80298C64 */ const JASWaveInfo* getWaveInfo() const { return &field_0x4; }

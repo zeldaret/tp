@@ -3,6 +3,8 @@
  * Guard
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_guard_mng.h"
 #include "f_pc/f_pc_executor.h"
 

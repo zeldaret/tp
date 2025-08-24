@@ -3,6 +3,8 @@
  * Title Screen Scene
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_s_title.h"
 #include "f_op/f_op_scene.h"
 #include "f_pc/f_pc_leaf.h"

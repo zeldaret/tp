@@ -3,13 +3,15 @@
 // Translation Unit: f_op/f_op_msg_mng
 //
 
-#include "f_op/f_op_msg_mng.h"
+#include "d/dolzel.h"
+
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "SSystem/SComponent/c_malloc.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_meter2.h"
 #include "d/d_meter2_info.h"
 #include "d/d_msg_object.h"
+#include "f_op/f_op_msg_mng.h"
 #include "f_op/f_op_scene_mng.h"
 
 /* 8001F9B4-8001FA24 01A2F4 0070+00 0/0 3/3 0/0 .text            fopMsgM_setStageLayer__FPv */

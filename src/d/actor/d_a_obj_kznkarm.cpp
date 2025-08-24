@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_kznkarm.h"
 #include "dol2asm.h"
 
@@ -90,7 +92,6 @@ extern "C" void _savegpr_29();
 extern "C" void _restgpr_24();
 extern "C" void _restgpr_29();
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
@@ -105,24 +106,6 @@ extern "C" void getFirstVec__15daObjKazeNeko_cFP4cXyzi();
 #pragma push
 #pragma force_active on
 SECTION_DEAD static char const* const stringBase_80C50D90 = "J_Kazami";
-#pragma pop
-
-/* 80C50DA4-80C50DB0 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80C50DB0-80C50DC4 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 #pragma pop
 
 /* 80C50DC4-80C50DC8 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */

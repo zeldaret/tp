@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_boomerang.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "d/actor/d_a_alink.h"
@@ -819,9 +821,6 @@ JPABaseEmitter* daBoomerang_c::setEffectTraceMatrix(u32* i_emitterID, u16 i_name
 
     return emitter;
 }
-
-UNK_REL_DATA;
-UNK_REL_BSS;
 
 /* 804A2D10-804A2D14 000040 0001+03 0/0 0/0 0/0 .bss             l_HIO */
 static daBoomerang_HIO_c0 l_HIO;

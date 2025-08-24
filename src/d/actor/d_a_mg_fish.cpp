@@ -3,6 +3,8 @@
  *
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_mg_fish.h"
 
 #include "JSystem/JKernel/JKRSolidHeap.h"
@@ -62,8 +64,6 @@
 #define GEDOU_KIND_KN 25
 #define GEDOU_KIND_ED 26
 #define GEDOU_KIND_SY 27
-
-UNK_REL_DATA
 
 /* 805364C4-805364CC 000020 0008+00 0/1 0/0 0/0 .data            check_kind */
 static u16 check_kind[4] = {
@@ -224,8 +224,6 @@ static void* s_bait_sub(void* a, void* b) {
     }
     return NULL;
 }
-
-UNK_REL_BSS
 static u8 lit_1008;
 static u8 lit_1007;
 

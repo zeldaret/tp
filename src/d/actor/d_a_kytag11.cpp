@@ -3,6 +3,8 @@
  * Time Control Tag
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_kytag11.h"
 #include "d/d_procname.h"
 #include "d/d_kankyo_static.h"

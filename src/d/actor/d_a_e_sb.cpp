@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_sb.h"
 #include "d/actor/d_a_e_bg.h"
 #include "d/actor/d_a_player.h"
@@ -262,8 +264,6 @@ static void* s_bomb_sub(void* arg0, void* arg1) {
 
     return NULL;
 }
-
-UNK_REL_BSS;
 
 static u8 l_HIOInit;
 

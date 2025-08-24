@@ -3,6 +3,8 @@
 // Translation Unit: d/d_menu_save
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_menu_save.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
@@ -22,11 +24,6 @@
 #include "d/d_msg_scrn_explain.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "f_op/f_op_msg_mng.h"
-
-/* 803BDF78-803BDF84 01B098 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 803BDF84-803BDF90 01B0A4 000C+00 3/3 0/0 0/0 .data            SelStartFrameTbl */
 static int SelStartFrameTbl[3] = {
@@ -81,6 +78,33 @@ dMs_HIO_c::dMs_HIO_c() {
     field_0xd = 0;
     mErrorMsgCheck = false;
     field_0xf = 0;
+}
+
+// Need 0x24 bytes of padding with no symbol between dDlst_MenuSaveExplain_c::__vtable and dMs_HIO_c::__vtable
+// This is likely caused by the vtable of an abstract base class getting put there and then stripped out.
+// Not sure which abstract base class could go there though, so we simulate it with some dummy classes for now.
+class dummy_abstract_class {
+public:
+    virtual void virt_func_0() = 0;
+    virtual void virt_func_1() = 0;
+    virtual void virt_func_2() = 0;
+    virtual void virt_func_3() = 0;
+    virtual void virt_func_4() = 0;
+    virtual void virt_func_5() = 0;
+    virtual void virt_func_6() = 0;
+};
+class dummy_child_class : dummy_abstract_class {
+    virtual void virt_func_0();
+    virtual void virt_func_1();
+    virtual void virt_func_2();
+    virtual void virt_func_3();
+    virtual void virt_func_4();
+    virtual void virt_func_5();
+    virtual void virt_func_6();
+};
+static dummy_child_class dummy() {
+    dummy_child_class temp;
+    return temp;
 }
 
 /* 801EF6A0-801EF7AC 1E9FE0 010C+00 0/0 3/3 0/0 .text            __ct__12dMenu_save_cFv */

@@ -62,15 +62,4 @@ public:
 
 STATIC_ASSERT(sizeof(e_rb_class) == 0xa6c);
 
-class daE_RB_HIO_c {
-public:
-    /* 8076238C */ daE_RB_HIO_c();
-    /* 80764838 */ virtual ~daE_RB_HIO_c() {}
-
-    /* 0x4 */ s8 id;
-    /* 0x8 */ f32 base_size;
-    /* 0xC */ f32 ground_depth;
-};
-
-
 #endif /* D_A_E_RB_H */

@@ -85,12 +85,4 @@ private:
 
 STATIC_ASSERT(sizeof(daObjLv4Chan_c) == 0x24a4);
 
-#ifdef DEBUG
-class daObjLv4Chan_HIO_c : public mDoHIO_entry_c {
-public:
-    daObjLv4Chan_HIO_c();
-    void genMessage(JORMContext*);
-};
-#endif
-
 #endif /* D_A_OBJ_LV4CHANDELIER_H */

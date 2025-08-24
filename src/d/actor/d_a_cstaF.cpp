@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_cstaF.h"
 #include "d/actor/d_a_alink.h"
 #include "d/actor/d_a_crod.h"

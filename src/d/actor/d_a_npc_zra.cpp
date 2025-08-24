@@ -3,6 +3,8 @@
  * NPC - Zora
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_zra.h"
 #include "SSystem/SComponent/c_math.h"
 #include "JSystem/JKernel/JKRHeap.h"
@@ -19,99 +21,6 @@
 //
 // Declarations:
 //
-
-/* 80B8DA48-80B8DA4C 000008 0001+03 1/1 0/0 0/0 .bss             @1109 */
-static u8 lit_1109[1 + 3 /* padding */];
-
-/* 80B8DA4C-80B8DA50 00000C 0001+03 0/0 0/0 0/0 .bss             @1107 */
-#pragma push
-#pragma force_active on
-static u8 lit_1107[1 + 3 /* padding */];
-#pragma pop
-
-/* 80B8DA50-80B8DA54 000010 0001+03 0/0 0/0 0/0 .bss             @1105 */
-#pragma push
-#pragma force_active on
-static u8 lit_1105[1 + 3 /* padding */];
-#pragma pop
-
-/* 80B8DA54-80B8DA58 000014 0001+03 0/0 0/0 0/0 .bss             @1104 */
-#pragma push
-#pragma force_active on
-static u8 lit_1104[1 + 3 /* padding */];
-#pragma pop
-
-/* 80B8DA58-80B8DA5C 000018 0001+03 0/0 0/0 0/0 .bss             @1099 */
-#pragma push
-#pragma force_active on
-static u8 lit_1099[1 + 3 /* padding */];
-#pragma pop
-
-/* 80B8DA5C-80B8DA60 00001C 0001+03 0/0 0/0 0/0 .bss             @1097 */
-#pragma push
-#pragma force_active on
-static u8 lit_1097[1 + 3 /* padding */];
-#pragma pop
-
-/* 80B8DA60-80B8DA64 000020 0001+03 0/0 0/0 0/0 .bss             @1095 */
-#pragma push
-#pragma force_active on
-static u8 lit_1095[1 + 3 /* padding */];
-#pragma pop
-
-/* 80B8DA64-80B8DA68 000024 0001+03 0/0 0/0 0/0 .bss             @1094 */
-#pragma push
-#pragma force_active on
-static u8 lit_1094[1 + 3 /* padding */];
-#pragma pop
-
-/* 80B8DA68-80B8DA6C 000028 0001+03 0/0 0/0 0/0 .bss             @1057 */
-#pragma push
-#pragma force_active on
-static u8 lit_1057[1 + 3 /* padding */];
-#pragma pop
-
-/* 80B8DA6C-80B8DA70 00002C 0001+03 0/0 0/0 0/0 .bss             @1055 */
-#pragma push
-#pragma force_active on
-static u8 lit_1055[1 + 3 /* padding */];
-#pragma pop
-
-/* 80B8DA70-80B8DA74 000030 0001+03 0/0 0/0 0/0 .bss             @1053 */
-#pragma push
-#pragma force_active on
-static u8 lit_1053[1 + 3 /* padding */];
-#pragma pop
-
-/* 80B8DA74-80B8DA78 000034 0001+03 0/0 0/0 0/0 .bss             @1052 */
-#pragma push
-#pragma force_active on
-static u8 lit_1052[1 + 3 /* padding */];
-#pragma pop
-
-/* 80B8DA78-80B8DA7C 000038 0001+03 0/0 0/0 0/0 .bss             @1014 */
-#pragma push
-#pragma force_active on
-static u8 lit_1014[1 + 3 /* padding */];
-#pragma pop
-
-/* 80B8DA7C-80B8DA80 00003C 0001+03 0/0 0/0 0/0 .bss             @1012 */
-#pragma push
-#pragma force_active on
-static u8 lit_1012[1 + 3 /* padding */];
-#pragma pop
-
-/* 80B8DA80-80B8DA84 000040 0001+03 0/0 0/0 0/0 .bss             @1010 */
-#pragma push
-#pragma force_active on
-static u8 lit_1010[1 + 3 /* padding */];
-#pragma pop
-
-/* 80B8DA84-80B8DA88 000044 0001+03 0/0 0/0 0/0 .bss             @1009 */
-#pragma push
-#pragma force_active on
-static u8 lit_1009[1 + 3 /* padding */];
-#pragma pop
 
 /* 80B8DA94-80B8DA98 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daNpc_zrA_Param_c l_HIO;
@@ -331,22 +240,6 @@ f32 daNpc_zrA_Path_c::chkPassDst(u16 i_idx, cXyz i_pos) {
         return -1e9f;
     }
 }
-
-/* 80B8CE90-80B8CE9C 000000 000C+00 10/10 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80B8CE9C-80B8CEB4 00000C 0004+14 0/0 0/0 0/0 .data            @1787 */
-static u32 lit_1787[1 + 5 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-    0x00000000,
-};
 
 /* 80B8CEB4-80B8CEE4 000024 0030+00 0/1 0/0 0/0 .data            l_bmdGetParamList */
 static daNpc_GetParam1 l_bmdGetParamList[6] = {
@@ -2063,93 +1956,93 @@ bool daNpc_zrA_c::setAction(ActionFn i_action) {
 bool daNpc_zrA_c::selectAction() {
     mpNextActionFn = NULL;
     if (daNpc_zrA_Param_c::m.mTest) {
-        mpNextActionFn = &test;
+        mpNextActionFn = &daNpc_zrA_c::test;
     } else {
         switch (mType) {
         case TYPE_SWIM:
-            mpNextActionFn = &swim;
+            mpNextActionFn = &daNpc_zrA_c::swim;
             break;
         case TYPE_WATERFALL:
             switch (mActionSelect) {
             case 0:
-                mpNextActionFn = &waitWaterfall;
+                mpNextActionFn = &daNpc_zrA_c::waitWaterfall;
                 break;
             case 1:
-                mpNextActionFn = &swimWaterfall;
+                mpNextActionFn = &daNpc_zrA_c::swimWaterfall;
                 break;
             case 2:
                 break;
             case 3:
-                mpNextActionFn = &diveWaterfall;
+                mpNextActionFn = &daNpc_zrA_c::diveWaterfall;
                 break;
             }
             break;
         case TYPE_RIVER:
             switch (mActionSelect) {
             case 0:
-                mpNextActionFn = &waitRiverDescend;
+                mpNextActionFn = &daNpc_zrA_c::waitRiverDescend;
                 break;
             case 1:
-                mpNextActionFn = &swimRiverDescend;
+                mpNextActionFn = &daNpc_zrA_c::swimRiverDescend;
                 break;
             case 6:
-                mpNextActionFn = &returnRiverDescend;
+                mpNextActionFn = &daNpc_zrA_c::swimRiverDescend2;
                 break;
             case 3:
-                mpNextActionFn = &diveRiverDescend;
+                mpNextActionFn = &daNpc_zrA_c::diveRiverDescend;
                 break;
             case 4:
-                mpNextActionFn = &swimGoalRiverDescend;
+                mpNextActionFn = &daNpc_zrA_c::swimGoalRiverDescend;
                 break;
             default:
-                mpNextActionFn = &swimRiverDescend2;
+                mpNextActionFn = &daNpc_zrA_c::returnRiverDescend;
                 break;
             }
             break;
         case TYPE_TOBIKOMI:
             switch (mActionSelect) {
             case 0:
-                mpNextActionFn = &tobiSearch;
+                mpNextActionFn = &daNpc_zrA_c::tobiSearch;
                 break;
             case 1:
-                mpNextActionFn = &tobiWait;
+                mpNextActionFn = &daNpc_zrA_c::tobiWait;
                 break;
             case 2:
-                mpNextActionFn = &tobikomi1;
+                mpNextActionFn = &daNpc_zrA_c::tobikomi1;
                 break;
             case 3:
-                mpNextActionFn = &tobikomi2;
+                mpNextActionFn = &daNpc_zrA_c::tobikomi2;
                 break;
             case 4:
-                mpNextActionFn = &tobikomi3;
+                mpNextActionFn = &daNpc_zrA_c::tobikomi3;
                 break;
             case 5:
-                mpNextActionFn = &tobiJump;
+                mpNextActionFn = &daNpc_zrA_c::tobiJump;
                 break;
             case 6:
-                mpNextActionFn = &tobiEnd;
+                mpNextActionFn = &daNpc_zrA_c::tobiEnd;
                 break;
             }
             break;
         case TYPE_SEARCH:
             switch (mActionSelect) {
             case 0:
-                mpNextActionFn = &waitSearch;
+                mpNextActionFn = &daNpc_zrA_c::waitSearch;
                 break;
             }
             break;
         case TYPE_SPA:
-            mpNextActionFn = &waitSpa;
+            mpNextActionFn = &daNpc_zrA_c::waitSpa;
             break;
         case TYPE_WAIT:
             if (mActionType == ACT_TYPE_6) {
-                mpNextActionFn = &waitLake;
+                mpNextActionFn = &daNpc_zrA_c::waitLake;
             } else {
-                mpNextActionFn = &wait;
+                mpNextActionFn = &daNpc_zrA_c::wait;
             }
             break;
         default:
-            mpNextActionFn = &waitLake;
+            mpNextActionFn = &daNpc_zrA_c::wait;
             break;
         }
     }
