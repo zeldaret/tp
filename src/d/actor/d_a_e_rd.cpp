@@ -648,18 +648,18 @@ static void ride_off(e_rd_class* i_this) {
                     bullbo->mActionID = 0;
                 }
 
-                bullbo->field_0x5b4 = 0;
+                bullbo->mActionMode = 0;
             } else if (bullbo->mActionID == 21) {
-                bullbo->field_0x5b4 = 0;
+                bullbo->mActionMode = 0;
             } else if ((bullbo->field_0x6be & 1) == 0) {
-                if (bullbo->mActionID == 6 && (bullbo->field_0x5b4 == 2 || bullbo->field_0x5b4 == 3)) {
-                    bullbo->field_0x5b4 = 1;
+                if (bullbo->mActionID == 6 && (bullbo->mActionMode == 2 || bullbo->mActionMode == 3)) {
+                    bullbo->mActionMode = 1;
                 } else {
-                    bullbo->field_0x5b4 = 0;
+                    bullbo->mActionMode = 0;
                 }
 
                 bullbo->mActionID = 7;
-                bullbo->field_0x698[1] = cM_rndF(30.0f) + 80.0f;
+                bullbo->field_0x698 = cM_rndF(30.0f) + 80.0f;
             }
         }
 
@@ -1799,7 +1799,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
     } else {
         if (i_this->mMode >= 2 && bullbo->mActionID != 1) {
             bullbo->mActionID = 1;
-            bullbo->field_0x5b4 = 0;
+            bullbo->mActionMode = 0;
         }
 
         switch (i_this->mMode) {
@@ -1941,7 +1941,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
                     i_this->mAction = ACTION_WB_RIDE;
                     i_this->mMode = 0;
                     bullbo->mActionID = 4;
-                    bullbo->field_0x5b4 = 0;
+                    bullbo->mActionMode = 0;
                 }
         }
 
@@ -1977,14 +1977,14 @@ static void e_rd_wb_ride(e_rd_class* i_this) {
             case 1:
                 if (i_this->mpModelMorf->isStop() || i_this->mKingBulblinMode != 0) {
                     if (i_this->mKingBulblinMode != 0) {
-                        bullbo->field_0x5b4 = 0;
+                        bullbo->mActionMode = 0;
                         i_this->mMode = 0;
 
                         if (i_this->mKingBulblinMode == 3) {
                             bullbo->mActionID = 17;
                             // Hyrule Field
                             if (strcmp(dComIfGp_getStartStageName(), "F_SP121") == 0) {
-                                bullbo->field_0x5b4 = -100;
+                                bullbo->mActionMode = -100;
                                 i_this->mAction = ACTION_IKKI2_START;
                             } else {
                                 i_this->mAction = ACTION_WB_RUN;
@@ -2006,7 +2006,7 @@ static void e_rd_wb_ride(e_rd_class* i_this) {
                         }
                     } else {
                         bullbo->mActionID = 6;
-                        bullbo->field_0x5b4 = 0;
+                        bullbo->mActionMode = 0;
                         i_this->mAction = ACTION_WB_RUN;
                         i_this->mMode = 0;
                     }
@@ -3757,7 +3757,7 @@ static void e_rd_ikki_end(e_rd_class* i_this) {
                 bullbo->field_0x6be &= ~i_this->field_0x9be;
                 i_this->field_0x9be = 0;
                 bullbo->mActionID = 16;
-                bullbo->field_0x5b4 = 0;
+                bullbo->mActionMode = 0;
                 bullbo->field_0x169e = 10;
             }
 
@@ -3805,7 +3805,7 @@ static void e_rd_ikki2_end(e_rd_class* i_this) {
                 anm_init(i_this, BCK_RD_RRUN_BACK, 0.0f, 0, 1.0f);
                 i_this->mMode = 1;
                 bullbo->mActionID = 18;
-                bullbo->field_0x5b4 = 0;
+                bullbo->mActionMode = 0;
                 bullbo->field_0x169e = 90;
                 mDoAud_bgmStop(30);
             }
@@ -3889,7 +3889,7 @@ static void e_rd_lv9_end(e_rd_class* i_this) {
                 e_rdb_class* king_bulblin = (e_rdb_class*)fpcM_Search(s_rdb_sub, i_this);
                 if (king_bulblin != NULL && king_bulblin->mDemoMode == 14) {
                     anm_init(i_this, e_rdb_class::BCK_RB_RNEIGH, 3.0f, 0, 1.0f);
-                    bullbo->field_0x5b4++;
+                    bullbo->mActionMode++;
                     i_this->mMode = 4;
                 }
             }
@@ -4105,7 +4105,7 @@ static void damage_check(e_rd_class* i_this) {
                             }
 
                             uVar1 = 3;
-                            bullbo->field_0x698[3] = 100;
+                            bullbo->field_0x69e = 100;
                             dComIfGs_onSaveDunSwitch(7);
                         } else {
                             uVar1 = 2;
@@ -4282,7 +4282,7 @@ static void damage_check(e_rd_class* i_this) {
                                     i_this->mMode = 0;
                                     mDoAud_seStart(Z2SE_EN_RDB_V_FAINT, 0, 0, 0);
                                     bullbo->mActionID = 31;
-                                    bullbo->field_0x5b4 = 0;
+                                    bullbo->mActionMode = 0;
                                     mDoAud_bgmStop(30);
                                     return;
                                 }

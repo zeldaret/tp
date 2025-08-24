@@ -67,7 +67,7 @@ struct himo_s {
 /**
  * @ingroup actors-enemies
  * @class e_wb_class
- * @brief Bullbo
+ * @brief Bullbo (Wild Boar)
  * 
  * @details 
  * 
@@ -137,7 +137,7 @@ public:
     /* 0x06BE */ u16 field_0x6be;
     /* 0x06C0 */ s8 field_0x6c0;
     /* 0x06C4 */ f32 field_0x6c4;
-    /* 0x06C8 */ int mBPathIdx; // The b_path indexer
+    /* 0x06C8 */ int mBPathIdx;     // The b_path indexer
     /* 0x06CC */ int mBPathIdxIter; // The amount to change the b_path indexer by
     /* 0x06D0 */ s16 field_0x6d0;
     /* 0x06D2 */ s16 mTargetAngleStep;
@@ -191,7 +191,7 @@ public:
     /* 0x142F */ s8 field_0x142f;
     /* 0x1430 */ s8 field_0x1430;
     /* 0x1432 */ s16 field_0x1432;
-    /* 0x1434 */ fpc_ProcID field_0x1434;  // Some actor ID
+    /* 0x1434 */ fpc_ProcID field_0x1434;  // Rider actor ID?
     /* 0x1438 */ cXyz field_0x1438[2];
     /* 0x1450 */ himo_s field_0x1450[2];
     /* 0x15D0 */ mDoExt_3DlineMat1_c field_0x15d0[2];
@@ -265,6 +265,8 @@ public:
     /* 0x58 */ u8 field_0x58;
     /* 0x59 */ u8 mNoReins;
 };
+
+STATIC_ASSERT(sizeof(daE_WB_HIO_c) == 0x5C);
 
 
 #endif /* D_A_E_WB_H */
