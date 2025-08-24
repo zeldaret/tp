@@ -2068,7 +2068,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_obj_master_sword"), #weak function and vtable order
     ActorRel(NonMatching, "d_a_obj_mato"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_mhole"),
-    ActorRel(NonMatching, "d_a_obj_mie"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_mie"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_mirror_6pole"),
     ActorRel(NonMatching, "d_a_obj_mirror_chain"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_mirror_sand"),
