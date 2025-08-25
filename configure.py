@@ -264,11 +264,6 @@ if args.debug:
 else:
     cflags_base.append("-DNDEBUG=1")
 
-cflags_noopt = cflags_base[:]
-
-if config.version != "ShieldD":
-    cflags_noopt.remove("-O4,p")
-
 # Warning flags
 if args.warn == "all":
     cflags_base.append("-W all")
@@ -276,6 +271,11 @@ elif args.warn == "off":
     cflags_base.append("-W off")
 elif args.warn == "error":
     cflags_base.append("-W error")
+
+cflags_noopt = cflags_base[:]
+
+if config.version != "ShieldD":
+    cflags_noopt.remove("-O4,p")
 
 # Metrowerks library flags
 cflags_runtime = [
