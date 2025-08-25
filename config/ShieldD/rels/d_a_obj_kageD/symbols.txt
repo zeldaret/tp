@@ -39,4 +39,4 @@ lbl_477_rodata_44 = .rodata:0x00000044; // type:object size:0x18
 @118547 = .data:0x000000B8; // type:object size:0x21 scope:local data:string
 l_daObj_Kage_Method = .data:0x000000E0; // type:object size:0x20 scope:global
 g_profile_OBJ_KAGE = .data:0x00000100; // type:object size:0x30 scope:global
-lbl_477_data_130 = .data:0x00000130; // type:object size:0x4
+lbl_477_data_130 = .data:0x00000130; // type:object size:0x3 data:string

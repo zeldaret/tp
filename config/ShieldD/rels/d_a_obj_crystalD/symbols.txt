@@ -38,4 +38,4 @@ l_arcName = .data:0x0000000C; // type:object size:0x4 scope:global data:4byte
 @114319 = .data:0x000000D0; // type:object size:0x1D scope:local data:string
 l_daObjCrystal_Method = .data:0x000000F0; // type:object size:0x20 scope:global
 g_profile_Obj_Crystal = .data:0x00000110; // type:object size:0x30 scope:global
-lbl_420_data_140 = .data:0x00000140; // type:object size:0x4
+lbl_420_data_140 = .data:0x00000140; // type:object size:0x3 data:string

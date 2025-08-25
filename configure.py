@@ -128,6 +128,12 @@ parser.add_argument(
     help="path to sjiswrap.exe (optional)",
 )
 parser.add_argument(
+    "--ninja",
+    metavar="BINARY",
+    type=Path,
+    help="path to ninja binary (optional)"
+)
+parser.add_argument(
     "--verbose",
     action="store_true",
     help="print verbose output",
@@ -171,6 +177,7 @@ config.compilers_path = args.compilers
 config.generate_map = args.map
 config.non_matching = args.non_matching
 config.sjiswrap_path = args.sjiswrap
+config.ninja_path = args.ninja
 config.progress = args.progress
 if not is_windows():
     config.wrapper = args.wrapper
@@ -180,11 +187,11 @@ if not config.non_matching:
 
 # Tool versions
 config.binutils_tag = "2.42-1"
-config.compilers_tag = "20250520"
-config.dtk_tag = "v1.5.1"
-config.objdiff_tag = "v3.0.0-beta.8"
-config.sjiswrap_tag = "v1.2.1"
-config.wibo_tag = "0.6.16"
+config.compilers_tag = "20250812"
+config.dtk_tag = "v1.6.2"
+config.objdiff_tag = "v3.0.0-beta.14"
+config.sjiswrap_tag = "v1.2.2"
+config.wibo_tag = "0.7.0"
 
 # Project
 config.config_path = Path("config") / config.version / "config.yml"
@@ -256,17 +263,19 @@ if args.debug:
     cflags_base.extend(["-sym on", "-DDEBUG=1"])
 else:
     cflags_base.append("-DNDEBUG=1")
+
+cflags_noopt = cflags_base[:]
+
+if config.version != "ShieldD":
+    cflags_noopt.remove("-O4,p")
+
+# Warning flags
 if args.warn == "all":
     cflags_base.append("-W all")
 elif args.warn == "off":
     cflags_base.append("-W off")
 elif args.warn == "error":
     cflags_base.append("-W error")
-
-cflags_noopt = cflags_base[:]
-
-if config.version != "ShieldD":
-    cflags_noopt.remove("-O4,p")
 
 # Metrowerks library flags
 cflags_runtime = [
