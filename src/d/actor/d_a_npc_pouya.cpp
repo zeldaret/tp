@@ -1046,7 +1046,7 @@ void daNpc_Pouya_c::ctrlJointCallBack(J3DJoint* param_0, int param_1) {
 }
 
 /* 80AAE8E8-80AAE94C 000C28 0064+00 1/1 0/0 1/1 .text            getType__13daNpc_Pouya_cFv */
-void daNpc_Pouya_c::getType() {
+u8 daNpc_Pouya_c::getType() {
     // NONMATCHING
 }
 
