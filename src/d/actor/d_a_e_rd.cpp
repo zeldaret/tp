@@ -695,7 +695,7 @@ static void ride_off(e_rd_class* i_this) {
                 }
 
                 bullbo->mActionID = 7;
-                bullbo->field_0x698 = cM_rndF(30.0f) + 80.0f;
+                bullbo->field_0x69a = cM_rndF(30.0f) + 80.0f;
             }
         }
 

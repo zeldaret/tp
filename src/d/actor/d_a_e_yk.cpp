@@ -18,13 +18,14 @@
 /**
  * @class daE_YK_HIO_c
  * @brief Shadow Keese Host Input Output class.
- *
+ * 
  */
-class daE_YK_HIO_c {
+class daE_YK_HIO_c : public JORReflexible {
 public:
     /* 8080482C */ daE_YK_HIO_c();
     /* 808077E0 */ virtual ~daE_YK_HIO_c() {}
 
+    /* 0x00 */ // vtable
     /* 0x04 */ s8 field_0x04;       ///< @brief Initialized to -1, appears unused.
     /* 0x08 */ f32 mModelScale;     ///< @brief Base model scale factor (default: 1.0).
     /* 0x0C */ f32 mFlySpeed;       ///< @brief Base flying speed (default: 15.0).
