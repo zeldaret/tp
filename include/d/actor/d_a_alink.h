@@ -221,9 +221,9 @@ public:
     /* 0x0 */ u8 unk_0x0;
 };
 
-class daAlinkHIO_c 
+class daAlinkHIO_c
 #ifdef DEBUG
-: public mDoHIO_entry_c 
+: public mDoHIO_entry_c
 #endif
 {
 public:
@@ -3475,19 +3475,19 @@ public:
     u32 getStartEvent() { return fopAcM_GetParam(this) >> 0x18; }
     BOOL checkClimbFall() { return checkLadderFall(); }
 
-    bool checkMidnaWolfDashAnime() { return checkNoResetFlg1(FLG1_DASH_MODE); }
-    bool checkMidnaClingAnime() { return mMidnaAnm == 1; }
-    bool checkMidnaLowClingAnime() { return mMidnaAnm == 2; }
-    bool checkMidnaLookAroundAnime() { return mMidnaAnm == 3; }
-    bool checkMidnaPanicAnime() { return mMidnaAnm == 5; }
-    bool checkMidnaWolfDeadAnime() { return mMidnaAnm == 6; }
-    bool checkMidnaWolfSwimDeadAnime() { return mMidnaAnm == 7; }
-    bool checkMidnaRopeWaitStaggerAnime() { return mMidnaAnm == 8; }
-    bool checkMidnaRopeMoveStaggerAnime() { return mMidnaAnm == 9; }
-    bool checkMidnaGanonCatchAnm() { return mMidnaAnm == 10; }
-    bool checkMidnaGanonThrowLeftAnm() { return mMidnaAnm == 11; }
-    bool checkMidnaGanonThrowRightAnm() { return mMidnaAnm == 12; }
-    bool checkMidnaDigInAnime() { return mMidnaAnm == 13; }
+    bool checkMidnaWolfDashAnime() const { return checkNoResetFlg1(FLG1_DASH_MODE); }
+    bool checkMidnaClingAnime() const { return mMidnaAnm == 1; }
+    bool checkMidnaLowClingAnime() const { return mMidnaAnm == 2; }
+    bool checkMidnaLookAroundAnime() const { return mMidnaAnm == 3; }
+    bool checkMidnaPanicAnime() const { return mMidnaAnm == 5; }
+    bool checkMidnaWolfDeadAnime() const { return mMidnaAnm == 6; }
+    bool checkMidnaWolfSwimDeadAnime() const { return mMidnaAnm == 7; }
+    bool checkMidnaRopeWaitStaggerAnime() const { return mMidnaAnm == 8; }
+    bool checkMidnaRopeMoveStaggerAnime() const { return mMidnaAnm == 9; }
+    bool checkMidnaGanonCatchAnm() const { return mMidnaAnm == 10; }
+    bool checkMidnaGanonThrowLeftAnm() const { return mMidnaAnm == 11; }
+    bool checkMidnaGanonThrowRightAnm() const { return mMidnaAnm == 12; }
+    bool checkMidnaDigInAnime() const { return mMidnaAnm == 13; }
 
     void clearMidnaMsgNum() {
         mMidnaMsgNum = 0xffff;

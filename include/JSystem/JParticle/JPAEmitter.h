@@ -138,7 +138,7 @@ public:
     void getGlobalTranslation(JGeometry::TVec3<f32>* out) const { out->set(mGlobalTrs); }
     void setGlobalDynamicsScale(const JGeometry::TVec3<f32>& i_scale) { mGlobalScl.set(i_scale); }
     void setGlobalAlpha(u8 alpha) { mGlobalPrmClr.a = alpha; }
-    u8 getGlobalAlpha() { return mGlobalPrmClr.a; }
+    u8 getGlobalAlpha() const { return mGlobalPrmClr.a; }
     void getGlobalPrmColor(GXColor& color) { color = mGlobalPrmClr; }
     void setGlobalPrmColor(u8 r, u8 g, u8 b) { mGlobalPrmClr.r = r; mGlobalPrmClr.g = g; mGlobalPrmClr.b = b; }
     void setGlobalEnvColor(u8 r, u8 g, u8 b) { mGlobalEnvClr.r = r; mGlobalEnvClr.g = g; mGlobalEnvClr.b = b; }
@@ -198,10 +198,10 @@ public:
 
     u32 getUserWork() { return mpUserWork; }
     void setUserWork(u32 userWork) { mpUserWork = userWork; }
-    u32 getParticleNumber() {
+    u32 getParticleNumber() const {
         return mAlivePtclBase.getNum() + mAlivePtclChld.getNum();
     }
-    bool isEnableDeleteEmitter() {
+    bool isEnableDeleteEmitter() const {
         return checkStatus(JPAEmtrStts_EnableDeleteEmitter) && getParticleNumber() == 0;
     }
     void setDrawTimes(u8 drawTimes) { mDrawTimes = drawTimes; }

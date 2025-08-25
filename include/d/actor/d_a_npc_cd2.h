@@ -165,7 +165,7 @@ inline f32 Cd2_HIO_cylH(int param_1) {
     return param_1 < 16 ? l_Cd2_HIO.field_0x0004[param_1].mCylH : l_Cd2_HIO.field_0x20c4[param_1 - 16].mCylH;
 }
 
-inline int Cd2_HIO_maxLmtX_BACKBONE(int param_1) {
+inline s16 Cd2_HIO_maxLmtX_BACKBONE(int param_1) {
     s16 rv;
     if (param_1 < 16) {
         rv = l_Cd2_HIO.field_0x0004[param_1].mMaxLmtX_BACKBONE;
@@ -175,7 +175,7 @@ inline int Cd2_HIO_maxLmtX_BACKBONE(int param_1) {
     return rv;
 }
 
-inline int Cd2_HIO_maxLmtY_BACKBONE(int param_1) {
+inline s16 Cd2_HIO_maxLmtY_BACKBONE(int param_1) {
     s16 rv;
     if (param_1 < 16) {
         rv = l_Cd2_HIO.field_0x0004[param_1].mMaxLmtY_BACKBONE;
@@ -185,7 +185,7 @@ inline int Cd2_HIO_maxLmtY_BACKBONE(int param_1) {
     return rv;
 }
 
-inline int Cd2_HIO_maxLmtX_NECK(int param_1) {
+inline s16 Cd2_HIO_maxLmtX_NECK(int param_1) {
     s16 rv;
     if (param_1 < 16) {
         rv = l_Cd2_HIO.field_0x0004[param_1].mMaxLmtX_NECK;
@@ -195,7 +195,7 @@ inline int Cd2_HIO_maxLmtX_NECK(int param_1) {
     return rv;
 }
 
-inline int Cd2_HIO_maxLmtY_NECK(int param_1) {
+inline s16 Cd2_HIO_maxLmtY_NECK(int param_1) {
     s16 rv;
     if (param_1 < 16) {
         rv = l_Cd2_HIO.field_0x0004[param_1].mMaxLmtY_NECK;
@@ -205,7 +205,7 @@ inline int Cd2_HIO_maxLmtY_NECK(int param_1) {
     return rv;
 }
 
-inline int Cd2_HIO_maxLmtX_HEAD(int param_1) {
+inline s16 Cd2_HIO_maxLmtX_HEAD(int param_1) {
     s16 rv;
     if (param_1 < 16) {
         rv = l_Cd2_HIO.field_0x0004[param_1].mMaxLmtX_HEAD;
@@ -215,7 +215,7 @@ inline int Cd2_HIO_maxLmtX_HEAD(int param_1) {
     return rv;
 }
 
-inline int Cd2_HIO_maxLmtY_HEAD(int param_1) {
+inline s16 Cd2_HIO_maxLmtY_HEAD(int param_1) {
     s16 rv;
     if (param_1 < 16) {
         rv = l_Cd2_HIO.field_0x0004[param_1].mMaxLmtY_HEAD;
@@ -225,7 +225,7 @@ inline int Cd2_HIO_maxLmtY_HEAD(int param_1) {
     return rv;
 }
 
-inline int Cd2_HIO_minLmtX_BACKBONE(int param_1) {
+inline s16 Cd2_HIO_minLmtX_BACKBONE(int param_1) {
     s16 rv;
     if (param_1 < 16) {
         rv = l_Cd2_HIO.field_0x0004[param_1].mMinLmtX_BACKBONE;
@@ -235,7 +235,7 @@ inline int Cd2_HIO_minLmtX_BACKBONE(int param_1) {
     return rv;
 }
 
-inline int Cd2_HIO_minLmtY_BACKBONE(int param_1) {
+inline s16 Cd2_HIO_minLmtY_BACKBONE(int param_1) {
     s16 rv;
     if (param_1 < 16) {
         rv = l_Cd2_HIO.field_0x0004[param_1].mMinLmtY_BACKBONE;
@@ -245,7 +245,7 @@ inline int Cd2_HIO_minLmtY_BACKBONE(int param_1) {
     return rv;
 }
 
-inline int Cd2_HIO_minLmtX_NECK(int param_1) {
+inline s16 Cd2_HIO_minLmtX_NECK(int param_1) {
     s16 rv;
     if (param_1 < 16) {
         rv = l_Cd2_HIO.field_0x0004[param_1].mMinLmtX_NECK;
@@ -255,7 +255,7 @@ inline int Cd2_HIO_minLmtX_NECK(int param_1) {
     return rv;
 }
 
-inline int Cd2_HIO_minLmtY_NECK(int param_1) {
+inline s16 Cd2_HIO_minLmtY_NECK(int param_1) {
     s16 rv;
     if (param_1 < 16) {
         rv = l_Cd2_HIO.field_0x0004[param_1].mMinLmtY_NECK;
@@ -265,7 +265,7 @@ inline int Cd2_HIO_minLmtY_NECK(int param_1) {
     return rv;
 }
 
-inline int Cd2_HIO_minLmtX_HEAD(int param_1) {
+inline s16 Cd2_HIO_minLmtX_HEAD(int param_1) {
     s16 rv;
     if (param_1 < 16) {
         rv = l_Cd2_HIO.field_0x0004[param_1].mMinLmtX_HEAD;
@@ -275,7 +275,7 @@ inline int Cd2_HIO_minLmtX_HEAD(int param_1) {
     return rv;
 }
 
-inline int Cd2_HIO_minLmtY_HEAD(int param_1) {
+inline s16 Cd2_HIO_minLmtY_HEAD(int param_1) {
     s16 rv;
     if (param_1 < 16) {
         rv = l_Cd2_HIO.field_0x0004[param_1].mMinLmtY_HEAD;
@@ -304,16 +304,10 @@ public:
     bool isPath() { return mPath != NULL; }
     s8 getArg0() { return mPath->m_points[field_0x20].mArg0; }
     s8 getArg1() { return mPath->m_points[field_0x20].mArg1; }
-    Vec getPoint(int index) { return mPath->m_points[index].m_position; }
+    Vec getPoint(u16 index) { return mPath->m_points[(u16)index].m_position; }
     void setLastPointNum() { field_0x20 = mPath->m_num - 1; }
     u16 getLastPointNum() {
-        u32 rv;
-        if (field_0x24 == 1) {
-            rv = mPath->m_num - 1;
-        } else {
-            return 0;
-        }
-        return rv;
+        return field_0x24 == 1 ? mPath->m_num - 1 : 0;
     }
 
     /* 0x00 */ fopAc_ac_c* mMyself;
