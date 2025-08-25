@@ -1298,6 +1298,7 @@ public:
     void offReverse() { mIsReversed = false; }
     dPath* getPathInfo() { return mPathInfo; }
     void setRange(f32 i_range) { mRange = i_range; }
+    u16 getNumPnts() { return mPathInfo->m_num; }
 };  // Size: 0x630
 
 class daNpcF_Lookat_c {

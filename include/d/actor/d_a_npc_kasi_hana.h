@@ -2,6 +2,7 @@
 #define D_A_NPC_KASI_HANA_H
 
 #include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_tag_escape.h"
 
 /**
  * @ingroup actors-npcs
@@ -28,15 +29,13 @@ class daNpcKasiHana_HIO_c
     /* 0x8 */ daNpcKasiHana_HIOParam param;
 };
 
-class daNpcKasiHana_Param_c {
-public:
-    /* 80A2067C */ virtual ~daNpcKasiHana_Param_c() {}
-
-    static daNpcKasiHana_HIOParam const m;
-};
-
 class daNpcKasi_Mng_c {
 public:
+    daNpcKasi_Mng_c() {
+        mIsPathInit = false;
+        mCenterPos.set(0.0f, 0.0f, 0.0f);
+        mSygnal = 0;
+    }
     /* 80A1AFAC */ void calcEscapeForm();
     /* 80A1B0D8 */ BOOL calcCenterPos();
     /* 80A1B1C8 */ f32 getDistFromCenter();
@@ -58,11 +57,18 @@ public:
     /* 80A1BCF0 */ void deleteAllMember();
     /* 80A1BD6C */ void chgWeightHeavy();
     /* 80A1BDD8 */ void chgWeightLight();
-    /* 80A2065C */ void getCenterPos();
+    /* 80A2065C */ cXyz getCenterPos();
 
     void setKyuPos(const cXyz& i_pos) { mKyuPos = i_pos; }
     void setMichPos(const cXyz& i_pos) { mMichPos = i_pos; }
     BOOL chkSygnal(int param_1) { return mSygnal & param_1; }
+    void SygnalClear() { mSygnal = 0; }
+    void onSygnal(int param_1) { mSygnal |= param_1; }
+    void setHanaActor(fopAc_ac_c* a_this) { if (a_this != NULL) mHanaActorMngr.entry(a_this); }
+    BOOL isPathInit() { return mIsPathInit; }
+    fopAc_ac_c* getHanaActor() { return mHanaActorMngr.getActorP(); }
+    fopAc_ac_c* getKyuActor() { return mKyuActorMngr.getActorP(); }
+    fopAc_ac_c* getMichActor() { return mMichActorMngr.getActorP(); }
 
     /* 0x00 */ daNpcF_ActorMngr_c mHanaActorMngr;
     /* 0x08 */ daNpcF_ActorMngr_c mKyuActorMngr;
@@ -81,6 +87,8 @@ public:
 class daNpcKasiHana_c : public daNpcF_c {
 public:
     typedef int (daNpcKasiHana_c::*actionFunc)(int);
+    typedef BOOL (daNpcKasiHana_c::*cutFunc)(int);
+    typedef BOOL (daNpcKasiHana_c::*EventFn)(int);
 
     /* 80A1BE44 */ daNpcKasiHana_c();
     /* 80A1C0A4 */ ~daNpcKasiHana_c();
@@ -104,40 +112,40 @@ public:
     /* 80A1D77C */ BOOL setAction(actionFunc);
     /* 80A1D824 */ void setLookMode(int);
     /* 80A1D848 */ void lookat();
-    /* 80A1DA28 */ void step(s16, int);
+    /* 80A1DA28 */ BOOL step(s16, int);
     /* 80A1DB1C */ BOOL chkFindPlayer();
-    /* 80A1DC00 */ void wait(int);
-    /* 80A1E184 */ void chace_st(int);
-    /* 80A1E228 */ void chace(int);
-    /* 80A1E3AC */ void getChacePos();
-    /* 80A1E4AC */ void turn(int);
-    /* 80A1E578 */ void fear(int);
-    /* 80A1E78C */ void srchWolfTag();
-    /* 80A1E7F4 */ void _srch_escape_tag(void*, void*);
-    /* 80A1E8C4 */ void getWolfPathNearIdx();
-    /* 80A1E9F8 */ void talk(int);
-    /* 80A1EB5C */ void demo(int);
-    /* 80A1EE38 */ void escape(int);
-    /* 80A1EF90 */ void cheer(int);
-    /* 80A1F198 */ void _turn_to_link(s16);
-    /* 80A1F1E4 */ void _turn_pos(cXyz const&, s16);
-    /* 80A1F240 */ void actor_front_check(fopAc_ac_c*);
+    /* 80A1DC00 */ int wait(int);
+    /* 80A1E184 */ int chace_st(int);
+    /* 80A1E228 */ int chace(int);
+    /* 80A1E3AC */ cXyz getChacePos();
+    /* 80A1E4AC */ int turn(int);
+    /* 80A1E578 */ int fear(int);
+    /* 80A1E78C */ daTagEscape_c* srchWolfTag();
+    /* 80A1E7F4 */ static void* _srch_escape_tag(void*, void*);
+    /* 80A1E8C4 */ int getWolfPathNearIdx();
+    /* 80A1E9F8 */ int talk(int);
+    /* 80A1EB5C */ int demo(int);
+    /* 80A1EE38 */ int escape(int);
+    /* 80A1EF90 */ int cheer(int);
+    /* 80A1F198 */ BOOL _turn_to_link(s16);
+    /* 80A1F1E4 */ BOOL _turn_pos(cXyz const&, s16);
+    /* 80A1F240 */ BOOL actor_front_check(fopAc_ac_c*);
     /* 80A1F318 */ void _getOffset(cXyz const&, cXyz&);
-    /* 80A1F384 */ void _Evt_Kasi_Appear(int);
-    /* 80A1F42C */ void _Evt_Kasi_Appear_CutInit(int const&);
-    /* 80A1F50C */ void _Evt_Kasi_Appear_CutMain(int const&);
-    /* 80A1F638 */ void _Evt_Kasi_Talk(int);
-    /* 80A1F740 */ void _Evt_Kasi_Talk_CutInit(int const&);
-    /* 80A1F860 */ void _Evt_Kasi_Talk_CutMain(int const&, int);
-    /* 80A1F9F4 */ void _Evt_Kasi(int);
-    /* 80A1FA9C */ void _Evt_Kasi_CutInit(int const&);
-    /* 80A1FBC4 */ void _Evt_Kasi_CutMain(int const&);
-    /* 80A1FD64 */ void _Evt_Kasi_Cheer(int);
-    /* 80A1FE6C */ void _Evt_Kasi_Cheer_CutInit(int const&);
-    /* 80A1FF78 */ void _Evt_Kasi_Cheer_CutMain(int const&, int);
-    /* 80A2016C */ void _Evt_Kasi_Cheer2(int);
-    /* 80A20244 */ void _Evt_Kasi_Cheer2_CutInit(int const&);
-    /* 80A20350 */ void _Evt_Kasi_Cheer2_CutMain(int const&, int);
+    /* 80A1F384 */ BOOL _Evt_Kasi_Appear(int);
+    /* 80A1F42C */ BOOL _Evt_Kasi_Appear_CutInit(int const&);
+    /* 80A1F50C */ BOOL _Evt_Kasi_Appear_CutMain(int const&);
+    /* 80A1F638 */ BOOL _Evt_Kasi_Talk(int);
+    /* 80A1F740 */ BOOL _Evt_Kasi_Talk_CutInit(int const&);
+    /* 80A1F860 */ BOOL _Evt_Kasi_Talk_CutMain(int const&, int);
+    /* 80A1F9F4 */ BOOL _Evt_Kasi(int);
+    /* 80A1FA9C */ BOOL _Evt_Kasi_CutInit(int const&);
+    /* 80A1FBC4 */ BOOL _Evt_Kasi_CutMain(int const&);
+    /* 80A1FD64 */ BOOL _Evt_Kasi_Cheer(int);
+    /* 80A1FE6C */ BOOL _Evt_Kasi_Cheer_CutInit(int const&);
+    /* 80A1FF78 */ BOOL _Evt_Kasi_Cheer_CutMain(int const&, int);
+    /* 80A2016C */ BOOL _Evt_Kasi_Cheer2(int);
+    /* 80A20244 */ BOOL _Evt_Kasi_Cheer2_CutInit(int const&);
+    /* 80A20350 */ BOOL _Evt_Kasi_Cheer2_CutMain(int const&, int);
     /* 80A20678 */ void adjustShapeAngle();
 
     int getMessageNo() { return home.angle.x; }
@@ -155,11 +163,16 @@ public:
     BOOL is_escape() { return mEscape; }
     void chgWeightHeavy() { mCcStts.SetWeight(dCcD_Stts::WEIGHT_HEAVY); }
     void chgWeightLight() { mCcStts.SetWeight(dCcD_Stts::WEIGHT_LIGHT); }
+    u8 getRailNo() { return fopAcM_GetParam(this) >> 8; }
+    bool chkAction(actionFunc action) { return action == mAction; }
+    int getSwitchBitNo() { return (fopAcM_GetParam(this) >> 16) & 0xFF; }
+    BOOL pl_front_check() { return actor_front_check(daPy_getPlayerActorClass()); }
+    void setEscapePathDir() { if (pl_front_check()) mPath.reverse(); }
 
-    static u8 mEvtSeqList[72];
-    static u8 mTargetTag[4];
-    static u8 mTargetTagDist[4];
-    static u8 mWolfAngle[2 + 2 /* padding */];
+    static EventFn mEvtSeqList[6];
+    static daTagEscape_c* mTargetTag;
+    static f32 mTargetTagDist;
+    static s16 mWolfAngle;
 
 private:
     /* 0x0B48 */ Z2CreatureCitizen mSound;
@@ -169,22 +182,23 @@ private:
     /* 0x0C94 */ daNpcF_Path_c mPath;
     /* 0x12C4 */ daNpcKasiHana_HIO_c* mHIO;
     /* 0x12C8 */ dCcD_Cyl mCyl;
-    /* 0x1404 */ u8 mType;
+    /* 0x1404 */ s8 mType;
     /* 0x1405 */ u8 field_0x1405;
     /* 0x1406 */ s16 mMode;
     /* 0x1408 */ actionFunc mAction;
     /* 0x1414 */ request_of_phase_process_class mPhases[3];
     /* 0x142C */ fpc_ProcID field_0x142c;
-    /* 0x1430 */ u8 field_0x1430[0x1438 - 0x1430];
+    /* 0x1430 */ int field_0x1430;
+    /* 0x1434 */ int field_0x1434;
     /* 0x1438 */ int mMessageNo;
     /* 0x143C */ s16 mLookMode;
-    /* 0x143E */ u8 field_0x143e[0x1440 - 0x143e];
+    /* 0x143E */ s16 field_0x143e;
     /* 0x1440 */ u8 field_0x1440;
-    /* 0x1441 */ u8 field_0x1441;
+    /* 0x1441 */ s8 field_0x1441;
     /* 0x1442 */ bool mTalked;
     /* 0x1443 */ bool mEscape;
     /* 0x1444 */ u8 field_0x1444;
-    /* 0x1445 */ u8 field_0x1445;
+    /* 0x1445 */ bool field_0x1445;
     // /* 0x1446 */ u8 field_0x1446[0x1448 - 0x1446];
     /* 0x1448 */ daNpcKasi_Mng_c mKasiMng;
 };
