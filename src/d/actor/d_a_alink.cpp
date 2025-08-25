@@ -3,7 +3,7 @@
  * Player (Link) Actor
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel.h"
 
 #include "d/actor/d_a_alink.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
