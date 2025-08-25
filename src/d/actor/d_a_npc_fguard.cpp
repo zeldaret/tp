@@ -3,6 +3,8 @@
 // Translation Unit: d_a_npc_fguard
 //
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_fguard.h"
 
 int daNpcFgd_c::createHeap() {

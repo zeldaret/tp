@@ -14,3 +14,8 @@ Diagnostics:
     - "bound_member_function"
     - "typecheck_subscript_value"
     - "unknown_typename"
+---
+If:
+  PathMatch: .*\.pch
+CompileFlags:
+  Add: ["--language=c++", "--std=c++98"]

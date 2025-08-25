@@ -3,6 +3,8 @@
  * BG Collision Line Check
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_bg_s_lin_chk.h"
 #include "f_op/f_op_actor_mng.h"
 

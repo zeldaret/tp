@@ -46,7 +46,7 @@ public:
     /* 809ACE18 */ inline void lookat();
     /* 809ACFF8 */ void setMotionAnm(int, f32);
     /* 809AD0C8 */ BOOL drawDbgInfo();
-    /* 809AD938 */ void adjustShapeAngle();
+    /* 809AD938 */ void adjustShapeAngle() {}
 
     inline u16 getMessageNo() { return fopAcM_GetParam(this) >> 8; }
     inline void playMotion();

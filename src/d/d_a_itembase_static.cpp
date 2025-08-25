@@ -3,6 +3,8 @@
  *
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_a_itembase_static.h"
 #include "SSystem/SComponent/c_lib.h"
 #include "d/actor/d_a_itembase.h"

@@ -32,8 +32,15 @@ public:
 class fmpTresTypeGroupDataList_c {
 public:
     /* 8003D790 */ void addTypeGroupData(u8, dTres_c::data_s const*);
-    /* 8003EB10 */ ~fmpTresTypeGroupDataList_c();
-    /* 8003EC90 */ fmpTresTypeGroupDataList_c();
+    /* 8003EB10 */ ~fmpTresTypeGroupDataList_c() {
+        if (mpTypeGroupDataHead != NULL) {
+            delete mpTypeGroupDataHead;
+        }
+    }
+    /* 8003EC90 */ fmpTresTypeGroupDataList_c() {
+        mpTypeGroupDataHead = NULL;
+        mpNextData = NULL;
+    }
 
     fmpTresTypeGroupData_c* getTypeGroupDataHead() { return mpTypeGroupDataHead; }
 

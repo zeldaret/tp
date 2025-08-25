@@ -3,6 +3,8 @@
  * Non-static BG actor base
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_bg_s_movebg_actor.h"
 #include "d/d_bg_w.h"
 #include "d/d_com_inf_game.h"

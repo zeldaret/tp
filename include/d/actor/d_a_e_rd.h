@@ -196,46 +196,4 @@ public:
 
 STATIC_ASSERT(sizeof(e_rd_class) == 0x1368);
 
-class daE_RD_HIO_c : public JORReflexible {
-public:
-    /* 80504A6C */ daE_RD_HIO_c();
-    /* 8051801C */ virtual ~daE_RD_HIO_c() {}
-
-    void genMessage(JORMContext*);
-
-    /* 0x00 */ s8 field_0x4;
-    
-    /* ライダー (Rider) */
-    /* 0x08 */ f32 model_size;              // 基本サイズ          (Basic size)
-    /* 0x0C */ f32 field_0xc;               // リーダーサイズ比     (Leader size ratio)
-    /* 0x10 */ f32 movement_speed;          // 移動速度            (Movement speed)
-
-    /*   こん棒兵の場合   (In the case of the club soldier) */
-    /* 0x14 */ f32 dash_speed;              // 突進速度            (Rush speed)
-    /* 0x18 */ f32 battle_init_range;       // 戦闘開始範囲         (Battle starting range)
-    /* 0x1C */ f32 attack_init_range;       // 攻撃開始範囲         (Attack starting range)
-    /* 0x20 */ f32 swing_speed;             // 振り速さ            (Swing speed)
-
-    /*   矢兵の場合   (In the case of arrow soldiers) */
-    /* 0x24 */ s16 field_0x24;              // 号令→構えの間        (Command → Preparation)
-    /* 0x26 */ u8 padding[2];
-    /* 0x28 */ f32 attack_range;            // 攻撃範囲            (Attack range)
-    /* 0x2C */ f32 mounted_launch_distance; // 騎乗発射距離         (Mounted launch distance)
-    /* 0x30 */ f32 wolf_falling_power_y;    // 狼倒れ力Y           (Wolf falling power Y)
-    /* 0x34 */ f32 wolf_falling_power_z;    // 狼倒れ力Z           (Wolf falling power Z)
-
-    /* 0x38 */ u8 field_0x38;
-    /* 0x39 */ u8 invulnerable;             // 不死身              (Invulnerability)
-    /* 0x3A */ u8 eye_polygon;              // 目ポリゴン          (Eye polygon)
-    /* 0x3B */ u8 one_hit_kill;             // 一撃必殺            (One hit kill)
-    /* 0x3C */ f32 field_0x3c;              // 一騎（ダ）サイズ     (One-man army (Da) size)
-    /* 0x40 */ f32 jump_g;                  // 飛びＧ              (Jump G)
-    /* 0x44 */ f32 jump_z;                  // 飛びＺ              (Jump Z)
-    /* 0x48 */ f32 field_0x48;              // 飛びＺ（騎乗停止）   (Jump Z (Stop riding))
-    /* 0x4C */ f32 jump_y;                  // 飛びＹ              (Jump Y)
-
-
-};
-
-
 #endif /* D_A_E_RD_H */

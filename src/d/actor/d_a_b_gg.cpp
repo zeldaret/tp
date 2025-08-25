@@ -3,14 +3,30 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_b_gg.h"
 #include "d/d_com_inf_game.h"
 #include "c/c_damagereaction.h"
 #include "m_Do/m_Do_graphic.h"
 #include "Z2AudioLib/Z2Instances.h"
-
-UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
+
+class daB_GG_HIO_c : public JORReflexible {
+public:
+    /* 805DE40C */ daB_GG_HIO_c();
+    /* 805EC9C4 */ virtual ~daB_GG_HIO_c() {}
+    void genMessage(JORMContext*) {}
+
+    /* 0x04 */ s8 id;
+    /* 0x08 */ f32 base_size;
+    /* 0x0C */ s16 takeoff_time;
+    /* 0x0E */ s16 fly_attack_wait_time;
+    /* 0x10 */ f32 fly_attack_speed;
+    /* 0x14 */ s16 takeoff2_time;
+    /* 0x16 */ s16 max_hp;
+    /* 0x18 */ f32 field_0x18;
+};
 
 enum daE_GG_TYPE {
     TYPE_L7_MBOSS = 0,
@@ -255,8 +271,6 @@ void daB_GG_c::initCc() {
         mCcSph[i].OffTgSetBit();
     }
 }
-
-UNK_REL_BSS
 
 /* 805ED6FC-805ED700 -00001 0004+00 1/2 0/0 0/0 .bss             None */
 /* 805ED6FD 0003+00 l_HIOInit None */

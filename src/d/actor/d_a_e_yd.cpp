@@ -3,12 +3,13 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_yd.h"
 #include "d/actor/d_a_e_yd_leaf.h"
 #include "d/d_bg_w.h"
 #include "d/d_cc_d.h"
 #include "d/d_cc_uty.h"
-UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
 
 /* 807F2C2C-807F2C78 0000EC 004C+00 1/1 0/0 0/0 .text __ct__12daE_YD_HIO_cFv */

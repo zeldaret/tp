@@ -1,13 +1,13 @@
 /**
- * @file d_a_npc_uri.cpp
+* @file d_a_npc_uri.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_npc_uri.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "m_Do/m_Do_graphic.h"
-
-UNK_REL_DATA;
 
 /* 80B2D068-80B2D078 000020 0010+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[2][2] = {{12, 1}, {33, 2}};
@@ -712,8 +712,6 @@ void daNpc_Uri_c::beforeMove() {
         attention_info.flags = 0;
     }
 }
-
-UNK_REL_BSS;
 
 /* 80B2DD64-80B2DD68 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daNpc_Uri_Param_c l_HIO;

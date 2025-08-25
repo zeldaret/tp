@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_bg.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_e_df.h"
@@ -241,9 +243,9 @@ void daE_BG_c::setSparkEffect() {
 /* 80685F04-80685F88 0007E4 0084+00 2/2 0/0 0/0 .text            search_esa__8daE_BG_cFv */
 fopAc_ac_c* daE_BG_c::search_esa() {
     dmg_rod_class* rod = (dmg_rod_class*)fopAcM_SearchByName(PROC_MG_ROD);
-    if (rod != NULL && rod->field_0xf7c == 1 && rod->field_0xf7e != 5 && rod->field_0x100d != 0 &&
-        rod->current.pos.y < rod->field_0x590 - 20.0f) {
-        return rod;
+    if (rod != NULL && rod->kind == 1 && rod->action != 5 && rod->field_0x100d != 0 &&
+        rod->actor.current.pos.y < rod->field_0x590 - 20.0f) {
+        return &rod->actor;
     } else {
         return NULL;
     }

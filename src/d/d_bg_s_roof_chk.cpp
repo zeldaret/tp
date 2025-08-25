@@ -3,6 +3,8 @@
  * BG Collision Roof Check
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_bg_s_roof_chk.h"
 
 /* 80078FF4-80079090 073934 009C+00 0/0 10/10 1/1 .text            __ct__12dBgS_RoofChkFv */

@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_lv6bemos2.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_cc_d.h"
@@ -107,8 +109,6 @@ void daObjLv6Bm_c::setBaseMtx() {
     mDoMtx_stack_c::ZXYrotM(field_0x9f0);
     mBeamEffectModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
-
-UNK_REL_DATA;
 
 /* 80C81D24-80C81D28 -00001 0004+00 9/10 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "E_bm6";

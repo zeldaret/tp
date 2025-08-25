@@ -3,10 +3,14 @@
 // Translation Unit: d_a_ni
 //
 
+#include "d/dolzel_rel.h"
+
 /**
  * Basically entirely matching except for ONE float reg alloc in play_camera,
  * and some extra dtors being emitted that shouldnt be after daNi_Create
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/d_msg_flow.h"
 #include "d/d_s_play.h"
@@ -218,8 +222,6 @@ extern "C" void __register_global_object();
 // Declarations:
 //
 
-UNK_REL_DATA
-
 /* 8094BC2C-8094BCA8 0000EC 007C+00 1/1 0/0 0/0 .text            __ct__10daNi_HIO_cFv */
 daNi_HIO_c::daNi_HIO_c() {
     field_0x04 = -1;
@@ -402,8 +404,6 @@ static void damage_check(ni_class* i_this) {
         }
     }
 }
-
-UNK_REL_BSS;
 
 static u8 data_8095158d;
 

@@ -3,6 +3,8 @@
  * Wii Remote Calibration Option Menu
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_menu_calibration.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_select_cursor.h"
@@ -25,11 +27,6 @@ static dummy_child_class dummy() {
     dummy_child_class temp;
     return temp;
 }
-
-/* 803BC238-803BC244 019358 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 803BC28C-803BC2D4 0193AC 0048+00 1/2 0/0 0/0 .data            map_init_process */
 typedef void (dMenu_Calibration_c::*initFunc)();

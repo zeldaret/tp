@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_b_gnd.h"
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_alink.h"
@@ -175,9 +177,6 @@ enum daB_GND_ACTION {
     ACTION_DOWN = 21,
     ACTION_END = 22,
 };
-
-UNK_REL_DATA;
-UNK_REL_BSS;
 
 static u8 l_initHIO;
 
@@ -1246,7 +1245,7 @@ static void b_gnd_g_wait(b_gnd_class* i_this) {
     mant_class* mant_p = (mant_class*)fopAcM_SearchByID(i_this->mMantChildID);
     dmg_rod_class* mgrod_p = (dmg_rod_class*)fopAcM_SearchByName(PROC_MG_ROD);
 
-    if (mgrod_p != NULL && mgrod_p->field_0xf7e != 0) {
+    if (mgrod_p != NULL && mgrod_p->action != 0) {
         if (i_this->mMoveMode < 5 && i_this->mPlayerDistXZ < 600.0f) {
             i_this->mMoveMode = 5;
             i_this->field_0xc44[0] = 10;
@@ -1332,7 +1331,7 @@ static void b_gnd_g_wait(b_gnd_class* i_this) {
         }
 
         i_this->field_0xc7d = 2;
-        i_this->field_0xc80 = mgrod_p->mHookPosition;
+        i_this->field_0xc80 = mgrod_p->hook_pos;
         break;
     case 6:
         angle_step = 0;

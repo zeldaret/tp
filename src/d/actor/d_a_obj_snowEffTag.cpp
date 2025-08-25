@@ -3,6 +3,8 @@
  * Snow Effect Generator Tag
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_snowEffTag.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_player.h"

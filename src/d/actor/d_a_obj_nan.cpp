@@ -3,13 +3,23 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_nan.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "d/d_menu_insect.h"
 #include "d/d_cc_uty.h"
 #include "d/d_com_inf_game.h"
 
-UNK_REL_DATA
+class daObj_NanHIO_c {
+public:
+    /* 80CA05AC */ daObj_NanHIO_c();
+    /* 80CA30D0 */ virtual ~daObj_NanHIO_c() {}
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 field_0x8;
+    /* 0x0C */ f32 field_0xc;
+};
 
 /* 80CA32D0-80CA3310 000020 0040+00 0/1 0/0 0/0 .data cc_sph_src__25@unnamed@d_a_obj_nan_cpp@ */
 static dCcD_SrcSph cc_sph_src = {

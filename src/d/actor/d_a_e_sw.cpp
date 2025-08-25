@@ -3,12 +3,29 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_sw.h"
-UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
 #include "d/d_bomb.h"
 #include <cmath.h>
 #include "Z2AudioLib/Z2Instances.h"
+
+class daE_SW_HIO_c {
+public:
+    /* サンドワーム (Sandworm) */
+    /* 807A740C */ daE_SW_HIO_c();
+    /* 807AF870 */ virtual ~daE_SW_HIO_c() {}
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 basic_size;                  // 基本サイズ (Basic Size)
+    /* 0x0C */ f32 bomb_notice_dist;            // 爆弾認識距離 (Bomb Recognition Distance)
+    /* 0x10 */ f32 bomb_attack_start_range;     // 爆弾攻撃開始範囲 (Bomb Attack Start Range)
+    /* 0x14 */ f32 human_attack_init_range;     // 人用攻撃開始範囲 (Human Attack Initiation Range)
+    /* 0x18 */ f32 horse_attack_init_range;     // 馬用攻撃開始範囲 (Horse Attack Initiation Range)
+    /* 0x1C */ f32 character_notice_dist;       // 人認識距離(ダンジョン用) (Character Recognition Distance (For Dungeon))
+    /* 0x20 */ u8 movement_range_debug_display; // 移動範囲デバック表示 (Movement Range Debug Display)
+};
 
 enum E_SW_RES_File_ID {
     /* BCK */
@@ -174,8 +191,6 @@ void daE_SW_c::setHideEffect() {
         dComIfGp_particle_set(l_SW_HIDE_EFFECT_ID[i], &current.pos, &tevStr, &shape_angle, NULL);
     }
 }
-
-UNK_REL_BSS;
 
 namespace {
     /* 807B01F8-807B01FC 000048 0004+00 1/2 0/0 0/0 .bss target_info__22@unnamed@d_a_e_sw_cpp@ */

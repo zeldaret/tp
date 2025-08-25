@@ -3,6 +3,8 @@
  * Object - Frozen Zora
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_zra_freeze.h"
 #include "SSystem/SComponent/c_math.h"
 #include "m_Do/m_Do_lib.h"

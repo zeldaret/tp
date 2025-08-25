@@ -3,6 +3,8 @@
  *
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tag_arena.h"
 
 /* 80D55CD8-80D55D28 000078 0050+00 1/0 0/0 0/0 .text            daTagArena_Create__FP10fopAc_ac_c

@@ -3,6 +3,8 @@
  * Enemy - Puppet
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_fs.h"
 #include "SSystem/SComponent/c_math.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
@@ -12,9 +14,23 @@
 #include "d/actor/d_a_npc_ks.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_s_play.h"
-UNK_REL_DATA
 #include "f_op/f_op_actor_enemy.h"
 #include "Z2AudioLib/Z2Instances.h"
+
+class daE_Fs_HIO_c {
+public:
+    /* 806BBACC */ daE_Fs_HIO_c();
+    /* 806BDF94 */ virtual ~daE_Fs_HIO_c() {}
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 mScale;
+    /* 0x0C */ f32 mAttackRange;
+    /* 0x10 */ f32 mAttackDistance;
+    /* 0x14 */ f32 mMoveSpeedRatio;
+    /* 0x18 */ f32 mDeleteRange;
+};
+
+STATIC_ASSERT(sizeof(daE_Fs_HIO_c) == 0x1C);
 
 enum Animation {
     /* 0x4 */ ANM_APPEAR = 4,
@@ -48,8 +64,6 @@ enum Joint {
     /* 0x13 */ JNT_LEG_R2,
     /* 0x14 */ JNT_FOOT_R,
 };
-
-UNK_REL_BSS
 
 namespace {
 

@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_b_zant_mobile.h"
 #include "d/actor/d_a_b_zant.h"
 #include "d/d_com_inf_game.h"

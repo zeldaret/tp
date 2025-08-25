@@ -3,6 +3,8 @@
  * Encounter
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_econt.h"
 #include "d/d_timer.h"
 #include "d/d_meter2_info.h"

@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_wrestler.h"
 #include "d/d_timer.h"
 #include "dolphin/types.h"
@@ -13,8 +15,6 @@
 #include "d/d_camera.h"
 #include "m_Do/m_Do_graphic.h"
 #include "d/d_meter2_info.h"
-
-UNK_REL_DATA;
 
 enum Bou3_RES_File_ID {
     /* BCK */

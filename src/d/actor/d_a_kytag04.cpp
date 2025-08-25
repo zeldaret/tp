@@ -3,6 +3,8 @@
  *
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_kytag04.h"
 #include "d/actor/d_a_npc.h"
 #include "d/d_com_inf_game.h"

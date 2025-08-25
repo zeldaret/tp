@@ -282,26 +282,4 @@ private:
     /* 0x10FF8 */ u8 mInitHIO;
 };
 
-class daE_VA_HIO_c {
-public:
-    /* 807C25EC */ daE_VA_HIO_c();
-    /* 807CE2AC */ virtual ~daE_VA_HIO_c() {}
-
-    /* 0x04 */ s8 field_0x04;
-    /* 0x08 */ f32 mModelSize;
-    /* 0x0C */ f32 mAttackRange;
-    /* 0x10 */ f32 mBiteCount;
-    /* 0x14 */ f32 mCircleAttackRadius;
-    /* 0x18 */ f32 mFadeAwayTime;
-    /* 0x1C */ f32 mDownTime;
-    /* 0x20 */ f32 mDownHP;
-    /* 0x24 */ f32 field_0x24;
-    /* 0x28 */ f32 field_0x28;
-    /* 0x2C */ f32 field_0x2c;
-    /* 0x30 */ f32 mKRegLightR;
-    /* 0x34 */ f32 mKRegLightG;
-    /* 0x38 */ f32 mKRegLightB;
-    /* 0x3C */ f32 mKRegLightA;
-};
-
 #endif /* D_A_E_VT_H */

@@ -100,19 +100,4 @@ public:
 
 STATIC_ASSERT(sizeof(e_ba_class) == 0xAA4);
 
-class daE_BA_HIO_c {
-public:
-    /* 8067ECEC */ daE_BA_HIO_c();
-    /* 80681F00 */ virtual ~daE_BA_HIO_c() {}
-
-    /* 0x04 */ s8 field_0x04;
-    /* 0x08 */ f32 mScale;
-    /* 0x0C */ f32 mFlySpeed;
-    /* 0x10 */ f32 mFightDistance;
-    /* 0x14 */ f32 mFightSpeed;
-    /* 0x18 */ f32 mAttackSpeed;
-};
-
-STATIC_ASSERT(sizeof(daE_BA_HIO_c) == 0x1C);
-
 #endif /* D_A_E_BA_H */

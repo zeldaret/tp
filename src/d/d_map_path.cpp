@@ -3,10 +3,12 @@
  *
  */
 
-#include "d/d_map_path.h"
+#include "d/dolzel.h"
+
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "d/d_com_inf_game.h"
+#include "d/d_map_path.h"
 #include "m_Do/m_Do_lib.h"
 
 /* 8003C85C-8003C8F4 03719C 0098+00 0/0 1/1 0/0 .text create__Q28dMpath_n18dTexObjAggregate_cFv */

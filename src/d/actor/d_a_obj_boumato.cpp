@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_boumato.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "d/actor/d_a_arrow.h"

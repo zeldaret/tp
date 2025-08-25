@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_octhashi.h"
 #include "d/d_cc_d.h"
 #include "SSystem/SComponent/c_math.h"
@@ -359,6 +361,10 @@ int daObjOCTHASHI_c::create() {
  */
 static int daObjOCTHASHI_IsDelete(daObjOCTHASHI_c* param_0) {
     return 1;
+}
+
+static void dummy() {
+    delete (cCcD_GStts*)NULL;
 }
 
 /* 80CA62A4-80CA62F8 001764 0054+00 1/0 0/0 0/0 .text            Create__15daObjOCTHASHI_cFv */

@@ -77,37 +77,6 @@ void* __memcpy(void*, const void*, int);
 #define UNK_BSS(name) \
     static u8 lit_##name[1 + 3 /* padding */];
 
-#define UNK_REL_BSS \
-    static u8 lit_1109[1]; \
-    static u8 lit_1107[1]; \
-    static u8 lit_1105[1]; \
-    static u8 lit_1104[1]; \
-    static u8 lit_1099[1]; \
-    static u8 lit_1097[1]; \
-    static u8 lit_1095[1]; \
-    static u8 lit_1094[1]; \
-    static u8 lit_1057[1]; \
-    static u8 lit_1055[1]; \
-    static u8 lit_1053[1]; \
-    static u8 lit_1052[1]; \
-    static u8 lit_1014[1]; \
-    static u8 lit_1012[1]; \
-    static u8 lit_1010[1]; \
-    static u8 lit_1009[1];
-
-
-#define UNK_REL_DATA \
-    static u8 cNullVec__6Z2Calc[12] = { \
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, \
-    }; \
-    static u32 lit_1787[1 + 4 /* padding */] = { \
-        0x02000201, \
-        0x40080000, \
-        0x00000000, \
-        0x3FE00000, \
-        0x00000000, \
-    };
-
 #define READU32_BE(ptr, offset) \
     (((u32)ptr[offset] << 24) | ((u32)ptr[offset + 1] << 16) | ((u32)ptr[offset + 2] << 8) | (u32)ptr[offset + 3]);
 

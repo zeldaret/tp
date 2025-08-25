@@ -3,6 +3,8 @@
  *
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_stopper2.h"
 #include "dol2asm.h"
 
@@ -137,24 +139,6 @@ COMPILER_STRIP_GATE(0x80CEFE90, &lit_3722);
 /* 80CEFE94-80CEFE98 000004 0004+00 1/1 0/0 0/0 .rodata          @3723 */
 SECTION_RODATA static f32 const lit_3723 = 150.0f;
 COMPILER_STRIP_GATE(0x80CEFE94, &lit_3723);
-
-/* 80CEFF04-80CEFF10 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80CEFF10-80CEFF24 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
 
 /* 80CEFF24-80CEFF28 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 SECTION_DATA static void* l_arcName = (void*)&d_a_obj_stopper2__stringBase0;

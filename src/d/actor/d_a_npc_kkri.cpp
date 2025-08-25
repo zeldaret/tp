@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_kkri.h"
 #include "dol2asm.h"
 
@@ -279,24 +281,6 @@ SECTION_DEAD static char const* const stringBase_805535C1 = "CONVERSATION_ABOUT_
 SECTION_DEAD static char const* const stringBase_805535D9 = "YM_LOOK";
 SECTION_DEAD static char const* const stringBase_805535E1 = "Kkri";
 SECTION_DEAD static char const* const stringBase_805535E6 = "Kkri_TW";
-#pragma pop
-
-/* 805535F8-80553604 000000 000C+00 3/3 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80553604-80553618 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 #pragma pop
 
 /* 80553618-80553628 000020 0010+00 1/1 0/0 0/0 .data            l_bmdData */

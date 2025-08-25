@@ -3,6 +3,8 @@
  * Mirror Chamber Pedestal & Mirror
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_mirror_table.h"
 #include "d/actor/d_a_mirror.h"
 #include "d/d_com_inf_game.h"

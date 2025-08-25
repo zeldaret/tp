@@ -1,15 +1,15 @@
 /**
- * @file d_a_obj_lv6TogeRoll.cpp
+* @file d_a_obj_lv6TogeRoll.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_obj_lv6TogeRoll.h"
 #include "d/d_path.h"
 
 /* 80C79D44-80C79D58 000014 0014+00 4/4 0/0 0/0 .bss             l_HIO */
 static daTogeRoll_HIO_c l_HIO;
-
-UNK_REL_DATA;
 
 /* 80C79B0C-80C79B4C 000020 0040+00 2/2 0/0 0/0 .data            mCcDSph__12daTogeRoll_c */
 dCcD_SrcSph daTogeRoll_c::mCcDSph = {

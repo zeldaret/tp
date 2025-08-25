@@ -3,21 +3,26 @@
  * Actor Manager
  */
 
-#pragma nosyminline on
+#include "d/dolzel.h"
 
-#include "f_op/f_op_actor_mng.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "SSystem/SComponent/c_malloc.h"
 #include "SSystem/SComponent/c_math.h"
+#include "d/actor/d_a_obj_carry.h"
 #include "d/actor/d_a_player.h"
 #include "d/actor/d_a_tag_stream.h"
 #include "d/d_item.h"
 #include "d/d_path.h"
-#include "d/actor/d_a_obj_carry.h"
+#include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_scene_mng.h"
 #include "m_Do/m_Do_lib.h"
+
+class l_HIO {
+public:
+    /* 8001E098 */ ~l_HIO() {}
+};
 
 #define MAKE_ITEM_PARAMS(itemNo, itemBitNo, param_2, param_3)                                      \
     ((itemNo & 0xFF) << 0 | (itemBitNo & 0xFF) << 0x8 | param_2 << 0x10 | (param_3 & 0xF) << 0x18)

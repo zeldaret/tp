@@ -1,4 +1,5 @@
-#include "d/d_menu_window.h"
+#include "d/dolzel.h"
+
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_lib.h"
@@ -12,9 +13,10 @@
 #include "d/d_menu_ring.h"
 #include "d/d_menu_save.h"
 #include "d/d_menu_skill.h"
+#include "d/d_menu_window.h"
 #include "d/d_menu_window_HIO.h"
-#include "d/d_meter2_info.h"
 #include "d/d_meter2.h"
+#include "d/d_meter2_info.h"
 #include "d/d_meter_HIO.h"
 #include "d/d_meter_map.h"
 #include "d/d_msg_object.h"
@@ -178,11 +180,6 @@ static BOOL dMw_isMenuRing() {
 
     return false;
 }
-
-/* 803BE8F8-803BE904 01BA18 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 803BEAA8-803BEC4C 01BBC8 01A4+00 1/2 0/0 0/0 .data            init_proc */
 typedef void (dMw_c::*initFunc)(u8);

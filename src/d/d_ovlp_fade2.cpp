@@ -3,6 +3,8 @@
  *
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_ovlp_fade2.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "d/d_s_play.h"

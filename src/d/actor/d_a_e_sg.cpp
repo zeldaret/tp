@@ -1,7 +1,9 @@
 /**
- * @file d_a_e_sg.cpp
+* @file d_a_e_sg.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_e_sg.h"
 #include "Z2AudioLib/Z2Instances.h"
@@ -106,9 +108,6 @@ static int daE_SG_Draw(e_sg_class* i_this) {
 
     return 1;
 }
-
-/* 8078E0A0-8078E0DC 000008 0001+03 3/3 0/0 0/0 .bss             @1109 */
-UNK_REL_BSS;
 
 /* 8078E0DC-8078E0E0 -00001 0004+00 2/2 0/0 0/0 .bss             None */
 static bool hio_init;
@@ -233,8 +232,8 @@ static obj_kbox_class* search_box(e_sg_class* i_this) {
 static dmg_rod_class* search_esa(e_sg_class* i_this) {
     dmg_rod_class* rod = (dmg_rod_class*)fopAcM_SearchByName(PROC_MG_ROD);
 
-    if (rod != NULL && rod->field_0xf7c == 1 && rod->field_0xf7e != 5 && rod->field_0x100d != 0 &&
-        rod->current.pos.y < rod->field_0x590 - 20.0f)
+    if (rod != NULL && rod->kind == 1 && rod->action != 5 && rod->field_0x100d != 0 &&
+        rod->actor.current.pos.y < rod->field_0x590 - 20.0f)
     {
         return rod;
     }

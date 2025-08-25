@@ -10,7 +10,12 @@ class daNpc_Hoz_c;
 
 class _ZraMark_Hahen_c {
 public:
-    inline _ZraMark_Hahen_c();
+    ~_ZraMark_Hahen_c() {}
+
+    _ZraMark_Hahen_c() {
+        mpModel = NULL;
+        setColor(0);
+    }
 
     /* 80D4347C */ int create(cXyz const&, s8, s8, s8, s8);
     /* 80D434F8 */ BOOL loadModel();

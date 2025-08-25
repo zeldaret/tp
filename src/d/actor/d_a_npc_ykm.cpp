@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_ykm.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_obj_gadget.h"
@@ -166,8 +168,6 @@ enum RES_Name {
     /* 0x3 */ YKM2,
     /* 0x4 */ YKM3,
 };
-
-UNK_REL_DATA;
 
 /* 80B5DB08-80B5DB38 000020 0030+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[6][2] = {
@@ -3611,8 +3611,6 @@ static int daNpc_ykM_Draw(void* a_this) {
 static int daNpc_ykM_IsDelete(void* a_this) {
     return 1;
 }
-
-UNK_REL_BSS;
 
 /* 80B5ED74-80B5ED80 000054 000C+00 0/1 0/0 0/0 .bss             l_SBRaceStartPos */
 static cXyz l_SBRaceStartPos;

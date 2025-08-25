@@ -3,40 +3,8 @@
 
 #include "d/actor/d_a_npc.h"
 
-class daNpc_Zelda_HIOParam {
-public:
-    /* 0x00 */ daNpcT_HIOParam common;
-};
-
-STATIC_ASSERT(sizeof(daNpc_Zelda_HIOParam) == 0x8c);
-
-class daNpc_Zelda_Param_c {
-public:
-    /* 80B77F5C */ virtual ~daNpc_Zelda_Param_c();
-
-    static const daNpc_Zelda_HIOParam m;
-};
-
-class daNpc_Zelda_HIO_c
-#if DEBUG
-    : public mDoHIO_entry_c
-#endif
-{
-public:
-    daNpc_Zelda_HIO_c();
-
-    void genMessage(JORMContext* ctx);
-    void listenPropertyEvent(const JORPropertyEvent*);
-
-#if DEBUG
-    daNpc_Zelda_HIOParam param;
-#endif
-};
-
+class daNpc_Zelda_HIO_c;
 class daNpc_Zelda_c;
-
-typedef int (daNpc_Zelda_c::*cutFunc)(int);
-typedef int (daNpc_Zelda_c::*actionFunc)(void*);
 
 /**
  * @ingroup actors-npcs
@@ -48,6 +16,9 @@ typedef int (daNpc_Zelda_c::*actionFunc)(void*);
  */
 class daNpc_Zelda_c : public daNpcT_c {
 public:
+    typedef int (daNpc_Zelda_c::*cutFunc)(int);
+    typedef int (daNpc_Zelda_c::*actionFunc)(void*);
+
     /* 80B7512C */ virtual ~daNpc_Zelda_c();
     u8 getPathID() {
         return (fopAcM_GetParam(this) & 0xff00) >> 8;
@@ -84,17 +55,22 @@ public:
     /* 80B767F0 */ BOOL setAction(actionFunc);
     /* 80B76898 */ int wait(void*);
     /* 80B76B74 */ int talk(void*);
-    /* 80B77DD8 */ daNpc_Zelda_c(daNpcT_faceMotionAnmData_c const*, daNpcT_motionAnmData_c const*,
-                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
-                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
-                                 daNpcT_evtData_c const*, char**);
-    /* 80B77F14 */ u16 getEyeballRMaterialNo();
-    /* 80B77F1C */ u16 getEyeballLMaterialNo();
-    /* 80B77F24 */ s32 getHeadJointNo();
-    /* 80B77F2C */ s32 getNeckJointNo();
-    /* 80B77F34 */ s32 getBackboneJointNo();
-    /* 80B77F3C */ int checkChangeJoint(int);
-    /* 80B77F4C */ int checkRemoveJoint(int);
+    /* 80B77DD8 */ daNpc_Zelda_c(daNpcT_faceMotionAnmData_c const* param_0,
+                                 daNpcT_motionAnmData_c const* param_1,
+                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_2,
+                                 int param_3,
+                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_4,
+                                 int param_5, daNpcT_evtData_c const* param_6, char** param_7) :
+    daNpcT_c(param_0, param_1, param_2, param_3, param_4, param_5, param_6, param_7) {
+        OS_REPORT("|%06d:%x|daNpc_Zelda_c -> コンストラクト\n", g_Counter.mCounter0, this);
+    }
+    /* 80B77F14 */ u16 getEyeballRMaterialNo() { return 5; }
+    /* 80B77F1C */ u16 getEyeballLMaterialNo() { return 4; }
+    /* 80B77F24 */ s32 getHeadJointNo() { return 4; }
+    /* 80B77F2C */ s32 getNeckJointNo() { return 3; }
+    /* 80B77F34 */ s32 getBackboneJointNo() { return 1; }
+    /* 80B77F3C */ int checkChangeJoint(int param_0) { return param_0 == 4; }
+    /* 80B77F4C */ int checkRemoveJoint(int param_0) { return param_0 == 17; }
 
     static const char* mCutNameList;
     static cutFunc mCutList[1];
@@ -109,5 +85,35 @@ private:
 };
 
 STATIC_ASSERT(sizeof(daNpc_Zelda_c) == 0xfa0);
+
+class daNpc_Zelda_HIOParam {
+public:
+    /* 0x00 */ daNpcT_HIOParam common;
+};
+
+STATIC_ASSERT(sizeof(daNpc_Zelda_HIOParam) == 0x8c);
+
+class daNpc_Zelda_Param_c {
+public:
+    /* 80B77F5C */ virtual ~daNpc_Zelda_Param_c() {}
+
+    static const daNpc_Zelda_HIOParam m;
+};
+
+class daNpc_Zelda_HIO_c
+#if DEBUG
+    : public mDoHIO_entry_c
+#endif
+{
+public:
+    daNpc_Zelda_HIO_c();
+
+    void genMessage(JORMContext* ctx);
+    void listenPropertyEvent(const JORPropertyEvent*);
+
+#if DEBUG
+    daNpc_Zelda_HIOParam param;
+#endif
+};
 
 #endif /* D_A_NPC_ZELDA_H */

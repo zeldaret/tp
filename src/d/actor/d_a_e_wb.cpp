@@ -3,19 +3,13 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 
 #include "d/actor/d_a_e_wb.h"
 #include "d/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "m_Do/m_Do_graphic.h"
-
-namespace std {
-/* 807E2350 */ void fabsf(f32);
-};
-
-
-
-
 
 //
 // Forward References:
@@ -339,8 +333,7 @@ extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
 extern "C" u8 mCurrentMtx__6J3DSys[48];
 extern "C" u8 sincosTable___5JMath[65536];
-//extern "C" extern void* calc_mtx[1 + 1 /* padding */];
-extern "C" extern u8 struct_80450C98[4];
+//extern "C" extern u8 struct_80450C98[4];
 extern "C" f32 mGroundY__11fopAcM_gc_c;
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" void __register_global_object();
@@ -459,24 +452,6 @@ COMPILER_STRIP_GATE(0x807E29CC, &lit_4453);
 #pragma force_active on
 SECTION_RODATA static f32 const lit_4454 = 3500.0f;
 COMPILER_STRIP_GATE(0x807E29D0, &lit_4454);
-#pragma pop
-
-/* 807E2F58-807E2F64 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 807E2F64-807E2F78 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 #pragma pop
 
 /* 807E2F78-807E2F7C 000020 0004+00 1/1 0/0 0/0 .data            l_color$4786 */
@@ -1077,100 +1052,6 @@ COMPILER_STRIP_GATE(0x807E29E8, &lit_4641);
 /* 807E29EC-807E29F0 000060 0004+00 3/33 0/0 0/0 .rodata          @4642 */
 SECTION_RODATA static f32 const lit_4642 = 1.0f;
 COMPILER_STRIP_GATE(0x807E29EC, &lit_4642);
-
-/* 807E3578-807E357C 000008 0001+03 11/11 0/0 0/0 .bss             @1109 */
-static u8 lit_1109[1 + 3 /* padding */];
-
-/* 807E357C-807E3580 00000C 0001+03 0/0 0/0 0/0 .bss             @1107 */
-#pragma push
-#pragma force_active on
-static u8 lit_1107[1 + 3 /* padding */];
-#pragma pop
-
-/* 807E3580-807E3584 000010 0001+03 0/0 0/0 0/0 .bss             @1105 */
-#pragma push
-#pragma force_active on
-static u8 lit_1105[1 + 3 /* padding */];
-#pragma pop
-
-/* 807E3584-807E3588 000014 0001+03 0/0 0/0 0/0 .bss             @1104 */
-#pragma push
-#pragma force_active on
-static u8 lit_1104[1 + 3 /* padding */];
-#pragma pop
-
-/* 807E3588-807E358C 000018 0001+03 0/0 0/0 0/0 .bss             @1099 */
-#pragma push
-#pragma force_active on
-static u8 lit_1099[1 + 3 /* padding */];
-#pragma pop
-
-/* 807E358C-807E3590 00001C 0001+03 0/0 0/0 0/0 .bss             @1097 */
-#pragma push
-#pragma force_active on
-static u8 lit_1097[1 + 3 /* padding */];
-#pragma pop
-
-/* 807E3590-807E3594 000020 0001+03 0/0 0/0 0/0 .bss             @1095 */
-#pragma push
-#pragma force_active on
-static u8 lit_1095[1 + 3 /* padding */];
-#pragma pop
-
-/* 807E3594-807E3598 000024 0001+03 0/0 0/0 0/0 .bss             @1094 */
-#pragma push
-#pragma force_active on
-static u8 lit_1094[1 + 3 /* padding */];
-#pragma pop
-
-/* 807E3598-807E359C 000028 0001+03 0/0 0/0 0/0 .bss             @1057 */
-#pragma push
-#pragma force_active on
-static u8 lit_1057[1 + 3 /* padding */];
-#pragma pop
-
-/* 807E359C-807E35A0 00002C 0001+03 0/0 0/0 0/0 .bss             @1055 */
-#pragma push
-#pragma force_active on
-static u8 lit_1055[1 + 3 /* padding */];
-#pragma pop
-
-/* 807E35A0-807E35A4 000030 0001+03 0/0 0/0 0/0 .bss             @1053 */
-#pragma push
-#pragma force_active on
-static u8 lit_1053[1 + 3 /* padding */];
-#pragma pop
-
-/* 807E35A4-807E35A8 000034 0001+03 0/0 0/0 0/0 .bss             @1052 */
-#pragma push
-#pragma force_active on
-static u8 lit_1052[1 + 3 /* padding */];
-#pragma pop
-
-/* 807E35A8-807E35AC 000038 0001+03 0/0 0/0 0/0 .bss             @1014 */
-#pragma push
-#pragma force_active on
-static u8 lit_1014[1 + 3 /* padding */];
-#pragma pop
-
-/* 807E35AC-807E35B0 00003C 0001+03 0/0 0/0 0/0 .bss             @1012 */
-#pragma push
-#pragma force_active on
-static u8 lit_1012[1 + 3 /* padding */];
-#pragma pop
-
-/* 807E35B0-807E35B4 000040 0001+03 0/0 0/0 0/0 .bss             @1010 */
-#pragma push
-#pragma force_active on
-static u8 lit_1010[1 + 3 /* padding */];
-#pragma pop
-
-/* 807E35B4-807E35B8 -00001 0004+00 3/7 0/0 0/0 .bss             None */
-/* 807E35B4 0001+00 data_807E35B4 @1009 */
-/* 807E35B5 0001+00 data_807E35B5 None */
-/* 807E35B6 0001+00 data_807E35B6 None */
-/* 807E35B7 0001+00 data_807E35B7 None */
-static u8 struct_807E35B4[4];
 
 /* 807E35B8-807E35BC 000048 0004+00 1/2 0/0 0/0 .bss             None */
 static u8 data_807E35B8[4];

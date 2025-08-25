@@ -3,6 +3,8 @@
  * Cow Door
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_cowdoor.h"
 #include "d/d_procname.h"
 

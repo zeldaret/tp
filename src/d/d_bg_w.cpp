@@ -3,6 +3,8 @@
  * DZB Collision handling
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_bg_w.h"
 #include "SSystem/SComponent/c_bg_s_shdw_draw.h"
 #include "SSystem/SComponent/c_m2d.h"

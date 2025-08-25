@@ -1,3 +1,5 @@
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tag_allmato.h"
 #include "d/actor/d_a_obj_itamato.h"
 #include "d/actor/d_a_obj_boumato.h"

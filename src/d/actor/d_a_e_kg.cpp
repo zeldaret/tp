@@ -3,10 +3,22 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_kg.h"
 #include "d/d_cc_d.h"
-UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
+
+class daE_KG_HIO_c {
+public:
+    /* 806F7EEC */ daE_KG_HIO_c();
+    /* 806F9EE8 */ virtual ~daE_KG_HIO_c() {}
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 mSize;
+    /* 0x0c */ f32 field_0xc;
+    /* 0x10 */ f32 mCheckRange;
+};
 
 // NONMATCHING - weak function order
 

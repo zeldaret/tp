@@ -3,6 +3,8 @@
 // Translation Unit: d/d_k_wpillar
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_k_wpillar.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_procname.h"

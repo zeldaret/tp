@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_pz.h"
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_player.h"
@@ -10,9 +12,23 @@
 #include "d/d_s_play.h"
 #include "c/c_damagereaction.h"
 #include "Z2AudioLib/Z2Instances.h"
-
-UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
+
+class daE_PZ_HIO_c : public JORReflexible {
+public:
+    /* 8075856C */ daE_PZ_HIO_c();
+    /* 80760C60 */ virtual ~daE_PZ_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ s8 no;
+    /* 0x08 */ f32 body_model_size;
+    /* 0x0C */ f32 portal_model_size;
+    /* 0x10 */ f32 bullet_speed;
+    /* 0x14 */ f32 weapon_hit_warp_speed;
+    /* 0x18 */ s16 after_attack_wait_time;
+    /* 0x1A */ s16 blur_start_timing;
+};
 
 namespace {
 /* 807617F4-80761838 000038 0044+00 0/1 0/0 0/0 .data            cc_pz_src__22@unnamed@d_a_e_pz_cpp@
@@ -174,8 +190,6 @@ void daE_PZ_c::mEntrySUB(bool param_0) {
         attention_info.flags |= 4;
     }
 }
-
-UNK_REL_BSS;
 
 /* 80761DFD 0003+00 l_initHIO None */
 static u8 l_initHIO;

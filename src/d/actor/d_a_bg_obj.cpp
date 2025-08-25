@@ -3,199 +3,15 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_bg_obj.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "stdio.h"
-#include "dol2asm.h"
 #include "dolphin/os.h"
 #include "d/actor/d_a_set_bgobj.h"
 #include "d/d_s_play.h"
 #include "SSystem/SComponent/c_math.h"
-
-SECTION_DATA extern void* __vt__10cCcD_GStts[3];
-SECTION_DATA extern void* __vt__10dCcD_GStts[3];
-SECTION_DATA extern void* __vt__8cM3dGPla[3];
-SECTION_DATA extern void* __vt__8cM3dGTri[3];
-SECTION_DATA extern void* __vt__8cM3dGCyl[3];
-SECTION_DATA extern void* __vt__8cM3dGAab[3];
-SECTION_DATA extern void* __vt__9daBgObj_c[10];
-SECTION_DATA extern void* __vt__12J3DFrameCtrl[3];
-
-//
-// Forward References:
-//
-
-extern "C" static void getBmdName__Fii();
-extern "C" static void getBtkName__Fii();
-extern "C" static void getBrkName__Fii();
-extern "C" static void getDzbName__Fi();
-extern "C" void initParticleBlock__Q29daBgObj_c11spec_data_cFPUc();
-extern "C" void initSoundBlock__Q29daBgObj_c11spec_data_cFPUc();
-extern "C" void initTexShareBlock__Q29daBgObj_c11spec_data_cFPUc();
-extern "C" void initFarInfoBlock__Q29daBgObj_c11spec_data_cFPUc();
-extern "C" void Set__Q29daBgObj_c11spec_data_cFPv();
-extern "C" void release__9daBgObj_cFP4dBgW();
-extern "C" void regist__9daBgObj_cFP4dBgW();
-extern "C" void initAtt__9daBgObj_cFv();
-extern "C" void setAttentionInfo__9daBgObj_cFP10fopAc_ac_c();
-extern "C" void initBaseMtx__9daBgObj_cFv();
-extern "C" void setBaseMtx__9daBgObj_cFv();
-extern "C" void settingCullSizeBoxForCo__9daBgObj_cFi();
-extern "C" void settingCullSizeBoxForCull__9daBgObj_cFi();
-extern "C" void CreateInitType0__9daBgObj_cFv();
-extern "C" void CreateInitType1__9daBgObj_cFv();
-extern "C" void Create__9daBgObj_cFv();
-extern "C" void CreateHeapType0__9daBgObj_cFv();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" void CreateHeapType1__9daBgObj_cFv();
-extern "C" void doShareTexture__9daBgObj_cFv();
-extern "C" void CreateHeap__9daBgObj_cFv();
-extern "C" void create1st__9daBgObj_cFv();
-extern "C" void setColCommon__9daBgObj_cFv();
-extern "C" void set_tri_0__9daBgObj_cFv();
-extern "C" void set_tri_1__9daBgObj_cFv();
-extern "C" void set_cyl_0__9daBgObj_cFv();
-extern "C" void set_tri_2__9daBgObj_cFv();
-extern "C" void set_tri_3__9daBgObj_cFv();
-extern "C" void setParticle__9daBgObj_cFv();
-extern "C" void setSe__9daBgObj_cFv();
-extern "C" void checkDestroy__9daBgObj_cFv();
-extern "C" void checkHitAt__9daBgObj_cFP8cCcD_Obj();
-extern "C" void orderWait_tri__9daBgObj_cFv();
-extern "C" void orderWait_cyl__9daBgObj_cFv();
-extern "C" void orderWait_spec__9daBgObj_cFv();
-extern "C" void actionOrderWait__9daBgObj_cFv();
-extern "C" void actionOrder__9daBgObj_cFv();
-extern "C" void actionEvent__9daBgObj_cFv();
-extern "C" bool actionWait__9daBgObj_cFv();
-extern "C" void ExecuteType0__9daBgObj_cFv();
-extern "C" void ExecuteType1__9daBgObj_cFv();
-extern "C" void Execute__9daBgObj_cFPPA3_A4_f();
-extern "C" void Draw__9daBgObj_cFv();
-extern "C" void indirectProc__9daBgObj_cFP8J3DModel();
-extern "C" void Delete__9daBgObj_cFv();
-extern "C" static void daBgObj_create1st__FP9daBgObj_c();
-extern "C" void __dt__8cM3dGCylFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__8dCcD_TriFv();
-extern "C" void __ct__8dCcD_TriFv();
-extern "C" void __dt__8cM3dGTriFv();
-extern "C" void __dt__8cM3dGPlaFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" static void daBgObj_MoveBGDelete__FP9daBgObj_c();
-extern "C" static void daBgObj_MoveBGExecute__FP9daBgObj_c();
-extern "C" static void daBgObj_MoveBGDraw__FP9daBgObj_c();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void __sinit_d_a_bg_obj_cpp();
-extern "C" extern char const* const d_a_bg_obj__stringBase0;
-extern "C" u8 mCreateHeapFunc__9daBgObj_c[48];
-extern "C" u8 mCreateInitFunc__9daBgObj_c[48];
-extern "C" u8 mExecuteFunc__9daBgObj_c[48];
-extern "C" u8 mTgSetFunc__9daBgObj_c[60];
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_YrotS__FPA4_fs();
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void play__14mDoExt_baseAnmFv();
-extern "C" void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss();
-extern "C" void entry__13mDoExt_btkAnmFP16J3DMaterialTablef();
-extern "C" void init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss();
-extern "C" void entry__13mDoExt_brkAnmFP16J3DMaterialTablef();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_setupShareTexture__FP12J3DModelDataP12J3DModelData();
-extern "C" void mDoExt_setupStageTexture__FP12J3DModelData();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
-extern "C" void fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv();
-extern "C" void fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff();
-extern "C" void fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs();
-extern "C" void fpcM_Execute__FPv();
-extern "C" void fpcSch_JudgeByID__FPvPv();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGp_getReverb__Fi();
-extern "C" void getArcName__12daSetBgObj_cFP10fopAc_ac_c();
-extern "C" void onSwitch__10dSv_info_cFii();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void getRes__14dRes_control_cFPCcPCcP11dRes_info_ci();
-extern "C" void getObjectResName2Index__14dRes_control_cFPCcPCc();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cUc();
-extern "C" void endCheck__16dEvent_manager_cFs();
-extern "C" void
-setModel__18dPa_modelEcallBackFP14JPABaseEmitterP12J3DModelDataRC12dKy_tevstr_cUcPvUcUc();
-extern "C" void
-set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void StartShock__12dVibration_cFii4cXyz();
-extern "C" void Release__4cBgSFP9dBgW_Base();
-extern "C" void Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c();
-extern "C" void __ct__16dBgS_MoveBgActorFv();
-extern "C" bool IsDelete__16dBgS_MoveBgActorFv();
-extern "C" bool ToFore__16dBgS_MoveBgActorFv();
-extern "C" bool ToBack__16dBgS_MoveBgActorFv();
-extern "C" void
-MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f();
-extern "C" void MoveBGDelete__16dBgS_MoveBgActorFv();
-extern "C" void MoveBGExecute__16dBgS_MoveBgActorFv();
-extern "C" void Set__4cBgWFP6cBgD_tUlPA3_A4_f();
-extern "C" void __ct__4dBgWFv();
-extern "C" void Move__4dBgWFv();
-extern "C" void GetAc__22dCcD_GAtTgCoCommonBaseFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void __dt__12dCcD_GObjInfFv();
-extern "C" void ChkTgHit__12dCcD_GObjInfFv();
-extern "C" void GetTgHitObj__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_TriFRC11dCcD_SrcTri();
-extern "C" void Set__8dCcD_CylFRC11dCcD_SrcCyl();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void dKy_bg_MAxx_proc__FPv();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void cM_atan2s__Fff();
-extern "C" void ChkUsed__9cBgW_BgIdCFv();
-extern "C" void SetC__8cM3dGCylFRC4cXyz();
-extern "C" void SetH__8cM3dGCylFf();
-extern "C" void SetR__8cM3dGCylFf();
-extern "C" void setPos__8cM3dGTriFPC3VecPC3VecPC3Vec();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void J3DGetTranslateRotateMtx__FRC16J3DTransformInfoPA4_f();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void __construct_array();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_21();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_21();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__8dCcD_Tri[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__12cCcD_TriAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mStatus__20dStage_roomControl_c[65792];
-extern "C" u8 mEcallback__18dPa_modelEcallBack[4];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 
 //
 // Declarations:
@@ -256,6 +72,10 @@ static const char* getDzbName(int param_0) {
     return l_dzbName;
 }
 
+static const char* dummy() {
+    return "spec.dat";
+}
+
 /* 804597E8-80459814 000208 002C+00 1/1 0/0 0/0 .text
  * initParticleBlock__Q29daBgObj_c11spec_data_cFPUc             */
 u8* daBgObj_c::spec_data_c::initParticleBlock(u8* i_dataPtr) {
@@ -308,13 +128,6 @@ u8* daBgObj_c::spec_data_c::initFarInfoBlock(u8* i_dataPtr) {
     mpFarInfoBlock = *(f32*)(i_dataPtr + 4);
     return i_dataPtr + 8;
 }
-
-/* ############################################################################################## */
-/* 8045CA20-8045CA20 000068 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8045CA7D = "spec.dat";
-#pragma pop
 
 /* 80459904-80459B64 000324 0260+00 1/1 0/0 1/1 .text            Set__Q29daBgObj_c11spec_data_cFPv
  */
@@ -697,25 +510,6 @@ int daBgObj_c::CreateInitType1() {
     return 1;
 }
 
-/* ############################################################################################## */
-/* 8045CAC4-8045CAD0 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 8045CAD0-8045CAE4 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
-
 /* 8045CAE4-8045CB38 000020 0054+00 4/4 0/0 0/0 .data            l_tri_src */
 static dCcD_SrcTri l_tri_src = {
     {
@@ -734,10 +528,10 @@ static dCcD_SrcTri l_tri_src = {
 };
 
 /* 8045CB38-8045CB3C -00001 0004+00 1/1 0/0 0/0 .data            l_specName */
-SECTION_DATA static const char* const l_specName = "spec.dat";
+static char* l_specName = "spec.dat";
 
 /* 8045CB6C-8045CB9C 0000A8 0030+00 1/2 0/0 0/0 .data            mCreateHeapFunc__9daBgObj_c */
-SECTION_DATA createHeapFunc daBgObj_c::mCreateHeapFunc[] = {
+createHeapFunc daBgObj_c::mCreateHeapFunc[] = {
     &daBgObj_c::CreateHeapType0,
     &daBgObj_c::CreateHeapType1,
     &daBgObj_c::CreateHeapType1,
@@ -745,7 +539,7 @@ SECTION_DATA createHeapFunc daBgObj_c::mCreateHeapFunc[] = {
 };
 
 /* 8045CBCC-8045CBFC 000108 0030+00 1/2 0/0 0/0 .data            mCreateInitFunc__9daBgObj_c */
-SECTION_DATA createInitFunc daBgObj_c::mCreateInitFunc[] = {
+createInitFunc daBgObj_c::mCreateInitFunc[] = {
     &daBgObj_c::CreateInitType0,
     &daBgObj_c::CreateInitType1,
     &daBgObj_c::CreateInitType1,
@@ -758,7 +552,7 @@ int daBgObj_c::Create() {
 }
 
 /* 8045CC2C-8045CC5C 000168 0030+00 1/2 0/0 0/0 .data            mExecuteFunc__9daBgObj_c */
-SECTION_DATA executeFunc daBgObj_c::mExecuteFunc[] = {
+executeFunc daBgObj_c::mExecuteFunc[] = {
     &daBgObj_c::ExecuteType0,
     &daBgObj_c::ExecuteType1,
     &daBgObj_c::ExecuteType1,
@@ -766,7 +560,7 @@ SECTION_DATA executeFunc daBgObj_c::mExecuteFunc[] = {
 };
 
 /* 8045CC98-8045CCD4 0001D4 003C+00 1/2 0/0 0/0 .data            mTgSetFunc__9daBgObj_c */
-SECTION_DATA tgSetFunc daBgObj_c::mTgSetFunc[] = {
+tgSetFunc daBgObj_c::mTgSetFunc[] = {
     &daBgObj_c::set_tri_0, &daBgObj_c::set_tri_1, &daBgObj_c::set_cyl_0,
     &daBgObj_c::set_tri_2, &daBgObj_c::set_tri_3,
 };

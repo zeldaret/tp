@@ -3,6 +3,8 @@
  *
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_crystal.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_procname.h"

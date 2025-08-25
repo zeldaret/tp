@@ -3,6 +3,8 @@
  * Temple of Time Statue switch trigger
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tag_lv6CstaSw.h"
 #include "d/d_procname.h"
 

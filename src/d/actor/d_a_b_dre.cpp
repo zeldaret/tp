@@ -1,7 +1,9 @@
 /**
- * @file d_a_b_dre.cpp
+* @file d_a_b_dre.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_b_dre.h"
 #include "SSystem/SComponent/c_math.h"
@@ -179,23 +181,6 @@ void daB_DRE_c::SetReleaseCam() {
     camera->mCamera.SetTrimSize(0);
     dComIfGp_event_reset();
 }
-
-UNK_BSS(1109)
-UNK_BSS(1107)
-UNK_BSS(1105)
-UNK_BSS(1104)
-UNK_BSS(1099)
-UNK_BSS(1097)
-UNK_BSS(1095)
-UNK_BSS(1094)
-UNK_BSS(1057)
-UNK_BSS(1055)
-UNK_BSS(1053)
-UNK_BSS(1052)
-UNK_BSS(1014)
-UNK_BSS(1012)
-UNK_BSS(1010)
-UNK_BSS(1009)
 
 namespace {
 /* 805CB080-805CB084 000048 0004+00 0/1 0/0 0/0 .bss             s_dis__23@unnamed@d_a_b_dre_cpp@ */

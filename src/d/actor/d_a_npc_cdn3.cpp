@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_cdn3.h"
 #include "d/d_msg_object.h"
 #include "dol2asm.h"
@@ -306,8 +308,6 @@ static int createHeapCallBack(fopAc_ac_c* param_0) {
     }
     return rv;
 }
-
-UNK_REL_DATA
 
 /* 8097F788-8097F848 0000E0 00C0+00 1/2 0/0 0/0 .data            ActionTable__11daNpcCdn3_c */
 daNpcCdn3_c::actionFunc daNpcCdn3_c::ActionTable[8][2] = {

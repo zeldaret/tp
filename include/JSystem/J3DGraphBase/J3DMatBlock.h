@@ -137,8 +137,10 @@ struct J3DColorChan {
     u8 getAmbSrc() const { return (GXColorSrc)((u32)(mColorChanID & (1 << 6)) >> 6); }
     u8 getMatSrc() const { return (GXColorSrc)(mColorChanID & 1); }
     u8 getDiffuseFn() const { return ((u32)(mColorChanID & (3 << 7)) >> 7); }
-    // This function has to appear in J3DMatBlock.cpp because it generates extra data in .sdata2
-    inline u8 getAttnFn() const;
+    u8 getAttnFn() const {
+        u8 AttnArr[] = {2,0,2,1};
+        return AttnArr[(u32)(mColorChanID & (3 << 9)) >> 9];
+    }
 
     void load() const {
         J3DGDWrite_u32(setChanCtrlMacro(getEnable(), (GXColorSrc)getAmbSrc(), (GXColorSrc)getMatSrc(), getLightMask(),
@@ -1549,12 +1551,13 @@ struct J3DAlphaComp {
         mRef1 = info.mRef1;
     }
 
-    J3DAlphaComp& operator=(u16 id) { mID = id; }
+    J3DAlphaComp& operator=(u16 id) { mID = id; return *this; }
 
     J3DAlphaComp& operator=(const J3DAlphaComp& rhs) {
         mID = rhs.mID;
         mRef0 = rhs.mRef0;
         mRef1 = rhs.mRef1;
+        return *this;
     }
 
     void setAlphaCompInfo(const J3DAlphaCompInfo& info) {
@@ -1599,6 +1602,7 @@ struct J3DIndTexOrder : public J3DIndTexOrderInfo {
     /* 8000E128 */ J3DIndTexOrder() : J3DIndTexOrderInfo(j3dDefaultIndTexOrderNull) {}
     J3DIndTexOrder& operator=(J3DIndTexOrder const& other) {
         *(u32*)this = *(u32*)&other;
+        return *this;
     }
     J3DIndTexOrder(J3DIndTexOrderInfo const& info) : J3DIndTexOrderInfo(info) {}
     u8 getMap() const { return (GXTexMapID)mMap; }

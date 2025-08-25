@@ -2,21 +2,18 @@
 // Translation Unit: d/d_menu_dmap_map
 //
 
-#include "d/d_menu_dmap_map.h"
-#include "d/d_menu_dmap.h"
-#include "d/d_map_path_dmap.h"
-#include "d/d_com_inf_game.h"
-#include "m_Do/m_Do_graphic.h"
-#include "f_op/f_op_msg_mng.h"
+#include "d/dolzel.h"
+
 #include <cmath.h>
+#include "d/d_com_inf_game.h"
+#include "d/d_map_path_dmap.h"
+#include "d/d_menu_dmap.h"
+#include "d/d_menu_dmap_map.h"
+#include "f_op/f_op_msg_mng.h"
+#include "m_Do/m_Do_graphic.h"
 
 struct dMdm_HIO_prm_res_dst_s {
     static void* m_res;
-};
-
-/* 803BCB60-803BCB6C 019C80 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 801C084C-801C086C 1BB18C 0020+00 1/0 0/0 0/0 .text            hasMap__15renderingDmap_cCFv */

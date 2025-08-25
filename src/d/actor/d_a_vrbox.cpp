@@ -3,6 +3,8 @@
  *
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_vrbox.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "f_op/f_op_actor_mng.h"

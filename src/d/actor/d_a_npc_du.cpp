@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_du.h"
 #include "d/d_cc_d.h"
 #include "dol2asm.h"

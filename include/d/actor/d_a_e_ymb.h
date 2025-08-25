@@ -167,18 +167,4 @@ public:
 
 STATIC_ASSERT(sizeof(daE_YMB_c) == 0x1524);
 
-struct daE_YMB_HIO_c {
-public:
-    /* 8081610C */ daE_YMB_HIO_c();
-    /* 80821460 */ virtual ~daE_YMB_HIO_c() {}
-
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 model_size;                  // モデルサイズ (Model Size)
-    /* 0x0C */ f32 fly_movement_speed;          // 飛行移動速度 (Fly Movement Speed)
-    /* 0x10 */ f32 swim_attack_speed;           // 泳ぎ攻撃速度 (Swim Attack Speed)
-    /* 0x14 */ f32 fly_attack_speed;            // 飛行攻撃速度 (Fly Attack Speed)
-    /* 0x18 */ f32 rollover_time;               // ひっくり返り時間 (Rollover Time)
-    /* 0x1C */ f32 fly_height_adjust;           // 飛行高度-加減値 (Fly Height Adjust)
-};
-
 #endif /* D_A_E_YMB_H */

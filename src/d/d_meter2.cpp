@@ -3,6 +3,8 @@
  * Main UI handler
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_meter2.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "d/d_demo.h"

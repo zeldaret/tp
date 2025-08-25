@@ -3,6 +3,8 @@
  * Telma B
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_theB.h"
 #include "dol2asm.h"
 
@@ -260,24 +262,6 @@ SECTION_DEAD static char const* const stringBase_80B00FE4 = "THEB_HINT";
 SECTION_DEAD static char const* const stringBase_80B00FEE = "COACH_GUARD_GAMEOVER";
 SECTION_DEAD static char const* const stringBase_80B01003 = "Coach";
 SECTION_DEAD static char const* const stringBase_80B01009 = "TheB";
-#pragma pop
-
-/* 80B01028-80B01034 000000 000C+00 3/3 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80B01034-80B01048 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 #pragma pop
 
 /* 80B01048-80B0104C 000020 0004+00 0/0 0/0 0/0 .data            l_bmdGetParamList */

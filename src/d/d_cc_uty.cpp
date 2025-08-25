@@ -3,6 +3,8 @@
  * Collider Utilties
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_cc_uty.h"
 #include "SSystem/SComponent/c_math.h"
 #include "Z2AudioLib/Z2Creature.h"

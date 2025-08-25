@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_grc.h"
 #include "Z2AudioLib/Z2Instances.h"
 
@@ -145,10 +147,6 @@ enum Type {
     /* 0x5 */ TYPE_5,
     /* 0x6 */ TYPE_6,
 };
-
-UNK_REL_DATA;
-
-UNK_REL_BSS;
 
 /* 809CFBB4-809CFBB8 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daNpc_grC_Param_c l_HIO;
@@ -1138,7 +1136,7 @@ BOOL daNpc_grC_c::doEvent() {
                 mStaffID = staffId;
                 int evtCutNo = eventManager.getMyActIdx(staffId, &mEvtCutNameList, 1, 0, 0);
 
-                JUT_ASSERT(1774, (0 <= evtCutNo) && (evtCutNo < NUM_EVT_CUTS_e));
+                JUT_ASSERT(1774, (0 <= evtCutNo) && (evtCutNo < dEvent_manager_c::NUM_EVT_CUTS_e));
                 JUT_ASSERT(1775, 0 != mEvtCutList[evtCutNo]);
 
                 if ((this->*mEvtCutList[evtCutNo])(staffId)) {
@@ -1595,11 +1593,6 @@ static int daNpc_grC_Draw(void* a_this) {
 /* 809CEC5C-809CEC64 00387C 0008+00 1/0 0/0 0/0 .text            daNpc_grC_IsDelete__FPv */
 static int daNpc_grC_IsDelete(void* a_this) {
     return 1;
-}
-
-/* 809CF4AC-809CF4B0 0040CC 0004+00 1/0 0/0 0/0 .text            adjustShapeAngle__11daNpc_grC_cFv */
-void daNpc_grC_c::adjustShapeAngle() {
-    /* empty function */
 }
 
 AUDIO_INSTANCES;

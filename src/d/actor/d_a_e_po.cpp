@@ -1,19 +1,17 @@
 /**
- * @file d_a_e_po.cpp
+* @file d_a_e_po.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_e_po.h"
 #include "d/actor/d_a_obj_poFire.h"
 #include "d/d_cc_d.h"
 #include "d/d_cc_uty.h"
-
-UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
 
 /* ############################################################################################## */
-
-static u8 padding[0x3C];  // Padding to align .bss
 
 /* 80757ADA-80757ADC 000036 0002+00 6/7 0/0 0/0 .data            mAttackNo */
 static s16 mAttackNo = 3;

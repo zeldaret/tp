@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_seirei.h"
 #include "dol2asm.h"
 
@@ -227,24 +229,6 @@ SECTION_DEAD static char const* const stringBase_80AD7DAF = "NO_RESPONSE";
 SECTION_DEAD static char const* const stringBase_80AD7DBB = "Seirei";
 SECTION_DEAD static char const* const stringBase_80AD7DC2 = "Seirei1";
 SECTION_DEAD static char const* const stringBase_80AD7DCA = "CONVERSATION";
-#pragma pop
-
-/* 80AD7DE4-80AD7DF0 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80AD7DF0-80AD7E04 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 #pragma pop
 
 /* 80AD7E04-80AD7E0C 000020 0008+00 1/1 0/0 0/0 .data            l_bmdData */

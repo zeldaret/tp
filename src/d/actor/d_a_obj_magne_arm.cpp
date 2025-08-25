@@ -1,7 +1,9 @@
 /**
- * @file d_a_obj_magne_arm.cpp
+* @file d_a_obj_magne_arm.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_obj_magne_arm.h"
 #include "d/actor/d_a_obj_mhole.h"
@@ -31,9 +33,6 @@ static u8 const l_stop_timer[4] = {60, 60, 60, 60};
 
 /* 80592880-80592888 000038 0008+00 0/4 0/0 0/0 .rodata          l_rot_speedY */
 static s16 const l_rot_speedY[4] = {200, 200, 200, 200};
-
-UNK_REL_DATA
-UNK_REL_BSS
 
 /* 8058F358-8058F3D4 000078 007C+00 1/1 0/0 0/0 .text getBpartsOffset__11daObjMarm_cFP4cXyz */
 void daObjMarm_c::getBpartsOffset(cXyz* i_BPartOffset) {

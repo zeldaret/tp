@@ -1,7 +1,9 @@
 /**
- * @file d_a_b_tn.cpp
+* @file d_a_b_tn.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_b_tn.h"
 #include <cmath.h>
@@ -9,9 +11,27 @@
 #include "d/actor/d_a_boomerang.h"
 #include "d/actor/d_a_nbomb.h"
 
-UNK_REL_DATA;
-
 #include "f_op/f_op_actor_enemy.h"
+
+class daB_TN_HIO_c {
+public:
+    /* 8061EBEC */ daB_TN_HIO_c();
+    /* 8062D98C */ virtual ~daB_TN_HIO_c() {};
+
+    /* 0x04 */ s8 mUnk1;
+    /* 0x08 */ f32 mScale;
+    /* 0x0C */ f32 mKColorA;
+    /* 0x10 */ f32 mTimer3Wolf;
+    /* 0x14 */ f32 mTimer3HumanType0;
+    /* 0x18 */ f32 mTimer3HumanType1;
+    /* 0x1C */ f32 mTimer3NormalType0;
+    /* 0x20 */ f32 mTimer3NormalType1;
+    /* 0x24 */ f32 field_0x24;
+    /* 0x28 */ f32 mTimer1Action1;
+    /* 0x2C */ f32 mTimer1Action2;
+};
+
+STATIC_ASSERT(sizeof(daB_TN_HIO_c) == 0x30);
 
 enum B_TN_RES_FILE_ID {
     /* BCK */
@@ -338,9 +358,6 @@ void daB_TN_c::calcWaistAngle() {
 
     cLib_addCalcAngleS2(&mWaistAngle, sVar1, 4, 0x1000);
 }
-
-/* .bss     None */
-UNK_REL_BSS;
 
 /* 8062F01D 0003+00 data_8062F01D None */
 static u8 s_hioinit;
@@ -1123,45 +1140,45 @@ u32 daB_TN_c::getCutType() {
     }
 
     switch (daPy_getPlayerActorClass()->getCutType()) {
-    case 0x0:
+    case daPy_py_c::CUT_TYPE_TURN_LEFT:
+    case daPy_py_c::CUT_TYPE_TURN_RIGHT:
         if (mTimer13 == 0) {
-            return 32;
+            return 0x20;
         }
 
-        return rv | 32;
+        return rv | 0x20;
+
+    case daPy_py_c::CUT_TYPE_LARGE_TURN_LEFT:
+    case daPy_py_c::CUT_TYPE_LARGE_TURN_RIGHT:
+        return rv | 0x20;
+
+    case daPy_py_c::CUT_TYPE_JUMP:
+    case daPy_py_c::CUT_TYPE_LARGE_JUMP:
+        return rv | 0x10;
+
+    case daPy_py_c::CUT_TYPE_TWIRL:
+        return rv | 0x22;
 
     case daPy_py_c::CUT_TYPE_NM_VERTICAL:
     case daPy_py_c::CUT_TYPE_NM_RIGHT:
     case daPy_py_c::CUT_TYPE_FINISH_LEFT:
     case daPy_py_c::CUT_TYPE_FINISH_VERTICAL:
     case daPy_py_c::CUT_TYPE_DASH_UNK_26:
-        return rv | 32;
+        return rv | 0x12;
 
     case daPy_py_c::CUT_TYPE_NM_STAB:
     case daPy_py_c::CUT_TYPE_FINISH_STAB:
-        return rv | 16;
+        return rv | 0x02;
 
     case daPy_py_c::CUT_TYPE_NM_LEFT:
     case daPy_py_c::CUT_TYPE_DASH_UNK_25:
-        return rv | 34;
+        return rv | 0x21;
 
-    case daPy_py_c::CUT_TYPE_TURN_RIGHT:
-    case daPy_py_c::CUT_TYPE_TURN_LEFT:
-        return rv | 18;
-
-    case daPy_py_c::CUT_TYPE_JUMP:
-    case daPy_py_c::CUT_TYPE_LARGE_JUMP:
-        return rv | 2;
-
-    case daPy_py_c::CUT_TYPE_LARGE_TURN_LEFT:
-    case daPy_py_c::CUT_TYPE_LARGE_TURN_RIGHT:
-        return rv | 33;
-
-    case daPy_py_c::CUT_TYPE_TWIRL:
-        return rv | 1;
+    case daPy_py_c::CUT_TYPE_COMBO_STAB:
+        return rv | 0x01;
 
     default:
-        return rv | 3;
+        return rv | 0x03;
     }
 }
 

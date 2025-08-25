@@ -1,3 +1,5 @@
+#include "d/dolzel.h"
+
 #include "d/d_demo.h"
 #include "d/d_msg_class.h"
 #include "d/d_msg_object.h"

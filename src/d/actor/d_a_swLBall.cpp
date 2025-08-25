@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_swLBall.h"
 #include "SSystem/SComponent/c_phase.h"
 #include "d/actor/d_a_obj_carry.h"
@@ -120,25 +122,6 @@ int daSwLBall_c::create() {
     }
     return cPhs_COMPLEATE_e;
 }
-
-/* ############################################################################################## */
-/* 80D4F4E4-80D4F4F0 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80D4F4F0-80D4F504 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
 
 /* 80D4EF60-80D4F008 0004E0 00A8+00 2/2 0/0 0/0 .text            execute__11daSwLBall_cFv */
 int daSwLBall_c::execute() {

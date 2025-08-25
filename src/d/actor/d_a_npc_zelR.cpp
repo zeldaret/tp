@@ -3,10 +3,10 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_zelR.h"
 #include "SSystem/SComponent/c_counter.h"
-
-UNK_REL_DATA
 
 /* 80B71BF8-80B71C00 000020 0008+00 1/1 0/0 0/0 .data            l_bmdData */
 static daNpc_GetParam1 l_bmdData[1] = {

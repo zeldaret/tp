@@ -7,6 +7,8 @@
 // Translation Unit: d/file/d_file_sel_warning
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_file_sel_warning.h"
 #include "d/d_msg_string.h"
 #include "d/d_pane_class.h"
@@ -67,12 +69,6 @@ extern "C" extern void* __vt__12dDlst_base_c[3];
 //
 // Declarations:
 //
-
-/* ############################################################################################## */
-/* 803BB410-803BB41C 018530 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 803BB434-803BB44C 018554 0018+00 1/2 0/0 0/0 .data            fileWarningProc */
 typedef void (dFile_warning_c::*procFunc)();

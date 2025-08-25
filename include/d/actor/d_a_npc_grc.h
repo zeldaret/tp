@@ -60,7 +60,7 @@ public:
     /* 809CE7C4 */ BOOL talk(void*);
     /* 809CEA6C */ BOOL test(void*);
     /* 809CEB50 */ void setPrtcl();
-    /* 809CF4AC */ void adjustShapeAngle();
+    /* 809CF4AC */ void adjustShapeAngle() {}
 
     static char* mEvtCutNameList;
     static EventFn mEvtCutList[1];

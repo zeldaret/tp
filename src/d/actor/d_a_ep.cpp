@@ -2,13 +2,13 @@
 // Translation Unit: d_a_ep
 //
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_ep.h"
 #include "d/d_com_inf_game.h"
 #include "m_Do/m_Do_lib.h"
 #include "d/d_a_obj.h"
 #include "d/d_s_play.h"
-
-UNK_REL_DATA
 
 /* 804681F8-804682F8 000078 0100+00 1/1 0/0 0/0 .text            hahen_draw__FP8ep_class */
 static void hahen_draw(ep_class* i_this) {

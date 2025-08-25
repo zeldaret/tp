@@ -8,9 +8,6 @@
 
 class ep_hahen_s {
     public:
-        /* 8046ACC0 */ ~ep_hahen_s() {};
-        /* 8046AD44 */ ep_hahen_s() {};
-
         /* 0x00 */ J3DModel* mpModel;
         /* 0x04 */ cXyz field_0x4;
         /* 0x10 */ cXyz field_0x10;
@@ -39,8 +36,6 @@ STATIC_ASSERT(sizeof(ep_hahen_s) == 0xa8);
 
 class ep_class : public fopAc_ac_c {
     public:
-        /* 8046AB2C */ ep_class() {};
-
         /* 0x0568 */ request_of_phase_process_class mPhase;
         /* 0x0570 */ Mtx field_0x570;
         /* 0x05A0 */ J3DModel* mpModel;

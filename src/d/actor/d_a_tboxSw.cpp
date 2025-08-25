@@ -3,6 +3,8 @@
  * Turns on a switch when a treasure chest is opened
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tboxSw.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_procname.h"

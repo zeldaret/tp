@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_knj.h"
 #include "dol2asm.h"
 
@@ -204,24 +206,6 @@ extern "C" void __register_global_object();
 SECTION_DEAD static char const* const stringBase_80A455BC = "";
 SECTION_DEAD static char const* const stringBase_80A455BD = "NO_RESPONSE";
 SECTION_DEAD static char const* const stringBase_80A455C9 = "Knj";
-#pragma pop
-
-/* 80A455D0-80A455DC 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80A455DC-80A455F0 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 #pragma pop
 
 /* 80A455F0-80A455F8 000020 0008+00 1/1 0/0 0/0 .data            l_bmdData */

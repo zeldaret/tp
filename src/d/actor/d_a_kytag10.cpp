@@ -3,6 +3,8 @@
  * Sparks Particle Emitter on a Path
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_kytag10.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_com_inf_game.h"

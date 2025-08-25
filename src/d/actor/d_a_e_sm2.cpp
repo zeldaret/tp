@@ -3,15 +3,30 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_sm2.h"
 #include "d/d_item.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "f_op/f_op_kankyo_mng.h"
 #include "SSystem/SComponent/c_counter.h"
-#include "dol2asm.h"
-
-UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
+
+class daE_SM2_HIO_c : public fOpAcm_HIO_entry_c {
+public:
+    /* 80798B4C */ daE_SM2_HIO_c();
+    /* 8079CE94 */ virtual ~daE_SM2_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ s16 unk_0x4;
+    /* 0x06 */ u8 merge_OFF;
+    /* 0x07 */ u8 unk_0x7;
+    /* 0x08 */ u8 color_debug_ON;
+    /* 0x0A */ s16 color_debug_R;
+    /* 0x0C */ s16 color_debug_G;
+    /* 0x0E */ s16 color_debug_B;
+};
 
 /* 80798B4C-80798BA4 0000EC 0058+00 1/1 0/0 0/0 .text            __ct__13daE_SM2_HIO_cFv */
 daE_SM2_HIO_c::daE_SM2_HIO_c() {
@@ -195,8 +210,6 @@ static BOOL pl_check(e_sm2_class* i_this, f32 i_range) {
         return FALSE;
     }
 }
-
-UNK_REL_BSS
 
 /* 8079DBD4-8079DBE4 000054 0010+00 3/4 0/0 0/0 .bss             l_HIO */
 static daE_SM2_HIO_c l_HIO;

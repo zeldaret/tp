@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_fchain.h"
 #include "d/actor/d_a_player.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"

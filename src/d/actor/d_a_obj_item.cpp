@@ -3,6 +3,8 @@
  * Item (Rupee, Arrow, Heart, etc) Object Actor
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_item.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_a_itembase_static.h"
@@ -144,11 +146,6 @@ static void itemGetTgCallBack(fopAc_ac_c* i_tgActor, dCcD_GObjInf* i_tgObjInf,
         }
     }
 }
-
-/* 803B9DA0-803B9DAC 016EC0 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 8015B3D8-8015B7BC 155D18 03E4+00 1/1 0/0 0/0 .text            CreateInit__8daItem_cFv */
 void daItem_c::CreateInit() {

@@ -3,13 +3,13 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_yel_bag.h"
 #include "d/actor/d_a_npc.h"
 #include "d/d_com_inf_game.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "SSystem/SComponent/c_lib.h"
-
-UNK_REL_DATA
 
 /* 80D3DD94-80D3DD9C 000020 0008+00 1/1 0/0 0/0 .data            l_bmdGetParamList */
 static int l_bmdGetParamList[2] = {
@@ -493,23 +493,6 @@ void daObj_YBag_c::setSmokePrtcl() {
     dComIfGp_particle_levelEmitterOnEventMove(field_0xa10);
     dComIfGp_particle_levelEmitterOnEventMove(field_0xa14);
 }
-
-UNK_BSS(1109);
-UNK_BSS(1107);
-UNK_BSS(1105);
-UNK_BSS(1104);
-UNK_BSS(1099);
-UNK_BSS(1097);
-UNK_BSS(1095);
-UNK_BSS(1094);
-UNK_BSS(1057);
-UNK_BSS(1055);
-UNK_BSS(1053);
-UNK_BSS(1052);
-UNK_BSS(1014);
-UNK_BSS(1012);
-UNK_BSS(1010);
-UNK_BSS(1009);
 
 /* 80D3DF1C-80D3DF20 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daObj_YBag_Param_c l_HIO;

@@ -280,7 +280,7 @@ public:
 
     dMsgObject_c* getMsgObjectClass() { return mItemInfo.mMsgObjectClass; }
     dStage_roomControl_c* getRoomControl() { return &mRoomControl; }
-    dStage_stageDt_c& getStage() { return mStageData; }
+    dStage_dt_c& getStage() { return mStageData; }
     dEvt_control_c& getEvent() { return mEvent; }
     daHorse_c* getHorseActor() { return (daHorse_c*)mPlayerPtr[1]; }
     J2DGrafContext* getCurrentGrafPort() { return (J2DGrafContext*)mCurrentGrafPort; }
@@ -2009,6 +2009,14 @@ inline u8 dComIfGs_getFishSize(u8 param_0) {
     return g_dComIfG_gameInfo.info.getPlayer().getFishingInfo().getMaxSize(param_0);
 }
 
+inline void dComIfGs_addFishNum(u8 param_0) {
+    g_dComIfG_gameInfo.info.getPlayer().getFishingInfo().addFishCount(param_0);
+}
+
+inline void dComIfGs_setFishSize(u8 param_0, u8 param_1) {
+    g_dComIfG_gameInfo.info.getPlayer().getFishingInfo().setMaxSize(param_0, param_1);
+}
+
 inline u8 dComIfGs_getGetNumber(int i_no) {
     return g_dComIfG_gameInfo.info.getPlayer().getLetterInfo().getGetNumber(i_no);
 }
@@ -2750,6 +2758,10 @@ inline void dComIfGp_setItem(u8 slot, u8 i_no) {
     g_dComIfG_gameInfo.play.setItem(slot, i_no);
 }
 
+inline dStage_dt_c* dComIfGp_getStage() {
+    return &g_dComIfG_gameInfo.play.getStage();
+}
+
 inline roomRead_class* dComIfGp_getStageRoom() {
     return g_dComIfG_gameInfo.play.getStage().getRoom();
 }
@@ -2782,12 +2794,16 @@ inline int dComIfGp_getStagePlightNumInfo() {
     return g_dComIfG_gameInfo.play.getStage().getPlightNumInfo();
 }
 
+inline stage_scls_info_dummy_class* dComIfGp_getStageSclsInfo() {
+    return g_dComIfG_gameInfo.play.getStage().getSclsInfo();
+}
+
 inline s16 dComIfGp_getStageWorldRollAngleX() {
-    return g_dComIfG_gameInfo.play.getStage().getWorldRollAngleX();
+    return ((dStage_stageDt_c&)g_dComIfG_gameInfo.play.getStage()).getWorldRollAngleX();
 }
 
 inline s16 dComIfGp_getStageWorldRollDirAngleY() {
-    return g_dComIfG_gameInfo.play.getStage().getWorldRollDirAngleY();
+    return ((dStage_stageDt_c&)g_dComIfG_gameInfo.play.getStage()).getWorldRollDirAngleY();
 }
 
 inline u8 dComIfGp_isHeapLockFlag() {
@@ -2919,14 +2935,6 @@ inline void dComIfGp_clearPlayerStatus0(int param_0, u32 flag) {
 
 inline void dComIfGp_clearPlayerStatus1(int param_0, u32 flag) {
     g_dComIfG_gameInfo.play.clearPlayerStatus(param_0, 1, flag);
-}
-
-inline dStage_stageDt_c* dComIfGp_getStage() {
-    return &g_dComIfG_gameInfo.play.getStage();
-}
-
-inline stage_scls_info_dummy_class* dComIfGp_getStageSclsInfo() {
-    return g_dComIfG_gameInfo.play.getStage().getSclsInfo();
 }
 
 inline void dComIfGp_setItemNowLife(u16 life) {

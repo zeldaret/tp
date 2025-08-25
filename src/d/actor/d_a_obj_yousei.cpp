@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_yousei.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
@@ -82,8 +84,6 @@ void daObjYOUSEI_c::SpeedSet() {
     current.pos.x += ato.x;
     current.pos.z += ato.z;
 }
-
-UNK_REL_BSS
 
 /* 804D1828-804D182C 000040 0004+00 0/0 0/0 0/0 .bss             s_dis */
 static f32 s_dis;

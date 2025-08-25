@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_midna.h"
 #include "SSystem/SComponent/c_math.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
@@ -521,7 +523,7 @@ cPhs__Step daMidna_c::create() {
             return cPhs_ERROR_e;
         }
 
-        mpFunc = &checkMetamorphoseEnableBase;
+        mpFunc = &daMidna_c::checkMetamorphoseEnableBase;
         
         for (u16 i = 0; i < 3; i++) {
             mBckHeap[i].createHeap(daPy_anmHeap_c::HEAP_TYPE_3);

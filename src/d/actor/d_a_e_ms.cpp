@@ -1,18 +1,31 @@
 /**
- * @file d_a_e_ms.cpp
+* @file d_a_e_ms.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_e_ms.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_obj_carry.h"
 #include "f_op/f_op_kankyo_mng.h"
 #include "d/d_s_play.h"
-
-UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
 
-UNK_REL_BSS;
+class daE_MS_HIO_c : public JORReflexible {
+public:
+    /* 80725B8C */ daE_MS_HIO_c();
+    /* 8072900C */ virtual ~daE_MS_HIO_c() {};
+
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 mScale;
+    /* 0x0C */ f32 mTargetSpeed1;
+    /* 0x10 */ f32 mSpeedF;
+    /* 0x14 */ f32 mTargetSpeed2;
+    /* 0x18 */ f32 mPlayerDistanceLimit;
+};
 
 /* 80725B8C-80725BD4 0000EC 0048+00 1/1 0/0 0/0 .text            __ct__12daE_MS_HIO_cFv */
 daE_MS_HIO_c::daE_MS_HIO_c() {

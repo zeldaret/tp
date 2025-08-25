@@ -1,13 +1,13 @@
 /**
- * @file d_a_e_hp.cpp
+* @file d_a_e_hp.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_e_hp.h"
 #include "d/actor/d_a_alink.h"
 #include "d/d_debug_viewer.h"
-#include "dol2asm.h"
-UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
 
 namespace {

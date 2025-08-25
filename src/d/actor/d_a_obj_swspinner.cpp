@@ -3,6 +3,8 @@
  * Object - Spinner Switch
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_swspinner.h"
 #include "d/d_procname.h"
 

@@ -2,6 +2,8 @@
 // d_msg_string_base
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_msg_string_base.h"
 #include "d/d_msg_class.h"
 #include "d/d_com_inf_game.h"

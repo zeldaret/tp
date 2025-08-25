@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_volcbom.h"
 #include "d/actor/d_a_midna.h"
 #include "d/actor/d_a_player.h"
@@ -69,8 +71,6 @@ static u16 const l_start_eff[3] = {
 static u16 const l_bind_eff[4] = {
     0x8B47, 0x8B48, 0x8B49, 0x8B4A,
 };
-
-UNK_REL_DATA
 
 /* 80D26C74-80D26C78 -00001 0004+00 5/6 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "M_VolcBom";

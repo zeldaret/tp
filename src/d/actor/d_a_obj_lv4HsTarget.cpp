@@ -3,6 +3,8 @@
  * Arbiter's Grounds Clawshot Target
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_lv4HsTarget.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_procname.h"

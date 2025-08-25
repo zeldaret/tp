@@ -3,6 +3,8 @@
  * BG Collision Check Base
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_bg_s_chk.h"
 
 /* 8007749C-800774E8 071DDC 004C+00 0/0 6/6 0/0 .text            __ct__8dBgS_ChkFv */

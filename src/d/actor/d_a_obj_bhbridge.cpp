@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_bhbridge.h"
 #include "SSystem/SComponent/c_lib.h"
 #include "d/d_bg_w.h"
@@ -118,6 +120,14 @@ inline int daObjBhbridge_c::create() {
     return rv;
 }
 
+/* 80BB5934-80BB59AC 000694 0078+00 1/0 0/0 0/0 .text            CreateHeap__15daObjBhbridge_cFv */
+inline int daObjBhbridge_c::CreateHeap() {
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "M_BHbridge.bmd");
+    JUT_ASSERT(83, modelData != 0);
+    mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+    return mModel != NULL ? TRUE : FALSE;
+}
+
 /* 80BB56F0-80BB58C4 000450 01D4+00 1/0 0/0 0/0 .text daObjBhbridge_Create__FP10fopAc_ac_c */
 static int daObjBhbridge_Create(fopAc_ac_c* a_this) {
     daObjBhbridge_c* i_this = static_cast<daObjBhbridge_c*>(a_this);
@@ -125,16 +135,8 @@ static int daObjBhbridge_Create(fopAc_ac_c* a_this) {
     return i_this->create();
 }
 
-/* 80BB5934-80BB59AC 000694 0078+00 1/0 0/0 0/0 .text            CreateHeap__15daObjBhbridge_cFv */
-int daObjBhbridge_c::CreateHeap() {
-    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "M_BHbridge.bmd");
-    JUT_ASSERT(83, modelData != 0);
-    mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
-    return mModel != NULL ? TRUE : FALSE;
-}
-
 /* 80BB59AC-80BB5A14 00070C 0068+00 1/0 0/0 0/0 .text            Create__15daObjBhbridge_cFv */
-int daObjBhbridge_c::Create() {
+inline int daObjBhbridge_c::Create() {
     fopAcM_setCullSizeBox(this, -400.0f, -800.0f, -1000.0f, 400.0f, 300.0f, 1000.0f);
     initBaseMtx();
     mpBgW->SetRideCallback(rideCallBack);
@@ -142,7 +144,7 @@ int daObjBhbridge_c::Create() {
 }
 
 /* 80BB5A14-80BB5E10 000774 03FC+00 1/0 0/0 0/0 .text Execute__15daObjBhbridge_cFPPA3_A4_f */
-int daObjBhbridge_c::Execute(f32 (**i_mtxP)[3][4]) {
+inline int daObjBhbridge_c::Execute(f32 (**i_mtxP)[3][4]) {
     cXyz cStack_5c(current.pos.x, current.pos.y + HREG_F(0), current.pos.z);
     f32 dVar10 = current.pos.y;
     if (fopAcM_wt_c::waterCheck(&cStack_5c)) {
@@ -193,7 +195,7 @@ int daObjBhbridge_c::Execute(f32 (**i_mtxP)[3][4]) {
 }
 
 /* 80BB5E10-80BB5EB4 000B70 00A4+00 1/0 0/0 0/0 .text            Draw__15daObjBhbridge_cFv */
-int daObjBhbridge_c::Draw() {
+inline int daObjBhbridge_c::Draw() {
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mModel, &tevStr);
     dComIfGd_setListBG();
@@ -203,7 +205,7 @@ int daObjBhbridge_c::Draw() {
 }
 
 /* 80BB5EB4-80BB5EE8 000C14 0034+00 1/0 0/0 0/0 .text            Delete__15daObjBhbridge_cFv */
-int daObjBhbridge_c::Delete() {
+inline int daObjBhbridge_c::Delete() {
     dComIfG_resDelete(&mPhase, l_arcName);
     return 1;
 }

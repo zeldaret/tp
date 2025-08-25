@@ -3,6 +3,8 @@
  * Environment Tag 7
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_kytag07.h"
 #include "d/d_stage.h"
 #include "f_op/f_op_overlap_mng.h"

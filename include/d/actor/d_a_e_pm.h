@@ -151,36 +151,4 @@ private:
 
 STATIC_ASSERT(sizeof(daE_PM_c) == 0xB7C);
 
-class daE_PM_HIO_c {
-public:
-    /* 80741EEC */ daE_PM_HIO_c();
-    /* 8074BA68 */ virtual ~daE_PM_HIO_c() {}
-
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 mLampParticleScale;
-    /* 0x0C */ f32 mGlowEffectScale;
-    /* 0x10 */ f32 mEscapeRange;
-    /* 0x14 */ s16 mGlowColor1R;
-    /* 0x16 */ s16 mGlowColor1G;
-    /* 0x18 */ s16 mGlowColor1B;
-    /* 0x1A */ s16 mGlowColor2R;
-    /* 0x1C */ s16 mGlowColor2G;
-    /* 0x1E */ s16 mGlowColor2B;
-    /* 0x20 */ s16 mGlowColor1A;
-    /* 0x22 */ s16 mBossEscapeTimer;
-    /* 0x24 */ s16 field_0x24;
-    /* 0x26 */ s16 mAdditionalPuppetNum;
-    /* 0x28 */ f32 mCreateTimer;
-    /* 0x2C */ f32 field_0x2c;
-    /* 0x30 */ f32 field_0x30;
-    /* 0x34 */ f32 field_0x34;
-    /* 0x38 */ f32 mBossLightR;
-    /* 0x3C */ f32 mBossLightG;
-    /* 0x40 */ f32 mBossLightB;
-    /* 0x44 */ f32 field_0x44;
-    /* 0x48 */ f32 field_0x48;
-};
-
-STATIC_ASSERT(sizeof(daE_PM_HIO_c) == 0x4C);
-
 #endif /* D_A_E_PM_H */

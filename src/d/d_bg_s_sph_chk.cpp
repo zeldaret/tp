@@ -3,6 +3,8 @@
  * BG Collision Sphere Check
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_bg_s_sph_chk.h"
 
 /* 80078A14-80078AC0 073354 00AC+00 0/0 1/1 1/1 .text            __ct__11dBgS_SphChkFv */

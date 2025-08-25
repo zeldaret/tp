@@ -2,6 +2,7 @@
 #define D_A_OBJ_SEKIZOA_H
 
 #include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_tag_evtarea.h"
 
 /**
  * @ingroup actors-objects
@@ -97,7 +98,19 @@ public:
                                    daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_5,
                                    int param_6, daNpcT_evtData_c const* param_7, char** param_8)
         : daNpcT_c(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8) {}
-    /* 80CD5B84 */ BOOL chkGoal();
+    /* 80CD5B84 */ BOOL chkGoal() {
+        daTag_EvtArea_c* evt_area_A = (daTag_EvtArea_c*)mActorMngrs[5].getActorP();
+        if (evt_area_A->chkPointInArea(current.pos)) {
+            return true;
+        }
+
+        daTag_EvtArea_c* evt_area_B = (daTag_EvtArea_c*)mActorMngrs[6].getActorP();
+        if (evt_area_B->chkPointInArea(current.pos)) {
+            mReverseStatues = (mType == TYPE_0);
+            return true;
+        }
+        return false;
+    }
 
     /* 80CD5B7C */ s32 getBackboneJointNo() { return 1; }
     /* 80CD5B74 */ s32 getHeadJointNo() { return 3; }

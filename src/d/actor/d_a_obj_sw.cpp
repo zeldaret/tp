@@ -1,7 +1,9 @@
 /**
- * @file d_a_obj_sw.cpp
+* @file d_a_obj_sw.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 // #define VIRTUAL_3DLINEMAT
 #include "d/actor/d_a_obj_sw.h"

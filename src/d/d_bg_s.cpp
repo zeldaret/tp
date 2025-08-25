@@ -3,6 +3,8 @@
  * Background (Map) Collision main handler
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_bg_s.h"
 #include "d/d_bg_s_sph_chk.h"
 #include "d/d_bg_w.h"

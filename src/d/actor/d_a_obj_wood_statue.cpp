@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_wood_statue.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_cc_d.h"
@@ -50,8 +52,6 @@ const static dCcD_SrcCyl l_cyl_src = {
         40.0f // mHeight
     } // mCyl
 };
-
-UNK_REL_DATA
 
 /* 80D3B73C-80D3B740 -00001 0004+00 1/1 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "O_wood";

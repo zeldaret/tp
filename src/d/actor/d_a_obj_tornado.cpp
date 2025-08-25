@@ -3,6 +3,8 @@
  * Wind Column
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_tornado.h"
 #include "d/d_kankyo_rain.h"
 #include "d/d_s_play.h"

@@ -55,21 +55,4 @@ public:
 
 STATIC_ASSERT(sizeof(e_nz_class) == 0xa88);
 
-class daE_NZ_HIO_c : public JORReflexible {
-public:
-    /* 807299EC */ daE_NZ_HIO_c();
-    /* 8072BC88 */ virtual ~daE_NZ_HIO_c() {}
-
-    void genMessage(JORMContext*);
-
-    /* 0x04 */ s8 mId;
-    /* 0x08 */ f32 mBasicSize;
-    /* 0x0C */ f32 mSpeed;
-    /* 0x10 */ f32 mAttackSpeed;
-    /* 0x14 */ s16 mWaitTime;
-    /* 0x18 */ f32 mCurrentAlphaSpeed;
-    /* 0x1C */ f32 mVanishingAlphaSpeed;
-};
-
-
 #endif /* D_A_E_NZ_H */

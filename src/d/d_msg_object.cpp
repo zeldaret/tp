@@ -3,6 +3,8 @@
 // Translation Unit: d/d_msg_object
 //
 
+#include "d/dolzel.h"
+
 #define DISABLE_MSG_OBJECT_EXTERN
 
 #include "d/d_msg_object.h"

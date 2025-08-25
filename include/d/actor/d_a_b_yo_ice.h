@@ -102,16 +102,4 @@ private:
 
 STATIC_ASSERT(sizeof(daB_YOI_c) == 0xB3C);
 
-class daB_YOI_HIO_c {
-public:
-    /* 8063A14C */ daB_YOI_HIO_c();
-    /* 8063DBD0 */ virtual ~daB_YOI_HIO_c() {}
-
-    /* 0x4 */ s8 field_0x4;
-    /* 0x8 */ f32 mScaleY;
-    /* 0xC */ f32 mScaleXZ;
-};
-
-STATIC_ASSERT(sizeof(daB_YOI_HIO_c) == 0x10);
-
 #endif /* D_A_B_YO_ICE_H */

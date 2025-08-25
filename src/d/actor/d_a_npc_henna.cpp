@@ -1,7 +1,9 @@
 /**
- * @file d_a_npc_henna.cpp
+* @file d_a_npc_henna.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_npc_henna.h"
 
@@ -24,13 +26,32 @@
 #include "m_Do/m_Do_graphic.h"
 
 class dmg_rod_class;
-UNK_REL_BSS
 
-//
-// Declarations:
-//
+class daNpc_Henna_HIO_c : public JORReflexible {
+public:
+    /* 80542F0C */ daNpc_Henna_HIO_c();
+    /* 80549E40 */ virtual ~daNpc_Henna_HIO_c() {}
+    void genMessage(JORMContext*);
 
-UNK_REL_DATA
+    s8 field_0x4;
+    f32 field_0x8;
+    s16 field_0xc;
+    s16 mSeasonDefColorR;
+    s16 mSeasonDefColorG;
+    s16 mSeasonDefColorB;
+    s16 mSeason2ColorR;
+    s16 mSeason2ColorG;
+    s16 mSeason2ColorB;
+    s16 mSeason3ColorR;
+    s16 mSeason3ColorG;
+    s16 mSeason3ColorB;
+    f32 mSeasonDefLightDist;
+    s16 mSeasonDefLightAngle;
+    f32 mSeason2LightDist;
+    s16 mSeason2LightAngle;
+    f32 mSeason3LightDist;
+    s16 mSeason3LightAngle;
+};
 
 /* 8054ACA8-8054ACB0 000020 0008+00 1/1 0/0 0/0 .data            check_kind */
 static u16 check_kind[4] = {
@@ -149,7 +170,12 @@ static int daNpc_Henna_Draw(npc_henna_class* i_this) {
     return 1;
 }
 
-// needed for matching .rodata, maybe from a stripped method?
+// needed for matching .rodata + weak func order, probably from a stripped method?
+
+static f32 dummy_dt_cxyz() {
+    cXyz xyz(0.0f, 0.0f, 0.0f);
+    return xyz.x;
+}
 
 static f32 dummy_100() {
     return 100.0f;
@@ -159,11 +185,11 @@ static f32 dummy_30() {
     return 30.0f;
 }
 
-static f32 dummy__30() {
+static f32 dummy_m30() {
     return -30.0f;
 }
 
-static f32 dummy__100() {
+static f32 dummy_m100() {
     return -100.0f;
 }
 
@@ -171,7 +197,7 @@ static f32 dummy_300() {
     return 300.0f;
 }
 
-static f32 dummy__450() {
+static f32 dummy_m450() {
     return -450.0f;
 }
 
@@ -179,12 +205,12 @@ static f32 dummy_0_8() {
     return 0.8f;
 }
 
-static f32 dummy__300() {
+static f32 dummy_m300() {
     return -300.0f;
 }
 
-static cM3dGPla dummy_cM3dGPla() {
-    return cM3dGPla();
+static void dummy_dt_cm3dgpla() {
+    delete (cM3dGPla*)NULL;
 }
 
 /* 80543544-805436CC 000724 0188+00 1/1 0/0 0/0 .text            s_npc_sub__FPvPv */
@@ -501,7 +527,7 @@ static void henna_ride(npc_henna_class* i_this) {
 
     if (lrl != NULL) {
         fopAc_ac_c* fish;
-        if (lrl->field_0xf7e == 0) {
+        if (lrl->action == 0) {
             if (i_this->field_0x710 == 0) {
                 i_this->field_0x710 = cM_rndF(100.0f) + 90.0f;
                 cMtx_YrotS(*calc_mtx, actor->shape_angle.y);
@@ -519,25 +545,25 @@ static void henna_ride(npc_henna_class* i_this) {
                 i_this->field_0x720 = fish->current.pos;
                 i_this->field_0x70e = 0x600;
             }
-        } else if (lrl->field_0x13b4 == 10 || lrl->field_0x13b4 == 11) {
-            fish = fopAcM_SearchByID(lrl->mFishId);
+        } else if (lrl->play_cam_mode == 10 || lrl->play_cam_mode == 11) {
+            fish = fopAcM_SearchByID(lrl->mg_fish_id);
             if (fish != NULL) {
                 i_this->field_0x720 = fish->current.pos;
                 i_this->field_0x70e = 1000;
             }
-        } else if (lrl->field_0xf7e == 1) {
+        } else if (lrl->action == 1) {
             cMtx_YrotS(*calc_mtx, player->getFishingRodAngleY());
             unkXyz_48.x = 0.0f;
             unkXyz_48.y = 0.0f;
             unkXyz_48.z = 2000.0f;
             MtxPosition(&unkXyz_48, &i_this->field_0x720);
             i_this->field_0x720 += player->eyePos;
-        } else if (lrl->field_0xf7e == 3 || lrl->field_0xf7e == 4 || lrl->field_0xf7e == 5) {
-            i_this->field_0x720 = lrl->current.pos;
+        } else if (lrl->action == 3 || lrl->action == 4 || lrl->action == 5) {
+            i_this->field_0x720 = lrl->actor.current.pos;
             i_this->field_0x70e = 0x600;
         }
 
-        if (player->checkCanoeRide() != 0 && (lrl->field_0x13b4 == 0 || lrl->field_0x13b4 >= 0x50))
+        if (player->checkCanoeRide() != 0 && (lrl->play_cam_mode == 0 || lrl->play_cam_mode >= 0x50))
         {
             if (i_this->field_0x6a4 < 5) {
                 i_this->field_0x6a4 = 5;
@@ -704,7 +730,7 @@ static void action(npc_henna_class* i_this) {
 
     msg_class* msg = ((dMsgObject_c*)unkActor1)->getActor();
     if (msg != 0 && msg->mode == 6 && ((dMsgObject_c*)unkActor1)->isMouthCheck() != 0 &&
-        (lrl == 0 || lrl->field_0x13b4 != 30))
+        (lrl == 0 || lrl->play_cam_mode != 30))
     {
         i_this->field_0x6a6 = 15;
     }
@@ -2197,7 +2223,7 @@ static void message_guide(npc_henna_class* i_this) {
 
         actor->eventInfo.onCondition(dEvtCnd_CANTALK_e);
 
-        if (lrl != NULL && lrl->field_0x13b4 != 0) {
+        if (lrl != NULL && lrl->play_cam_mode != 0) {
             return;
         }
 

@@ -3,6 +3,8 @@
  * Base Player Actor functionality
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_player.h"
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"

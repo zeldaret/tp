@@ -3,9 +3,10 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_dn.h"
 #include "d/d_cc_d.h"
-UNK_REL_DATA;
 #include "d/d_bomb.h"
 #include "f_op/f_op_kankyo_mng.h"
 #include "d/actor/d_a_player.h"
@@ -13,6 +14,26 @@ UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
 #include "Z2AudioLib/Z2Instances.h"
 
+class daE_DN_HIO_c : public JORReflexible {
+public:
+    /* 804E51AC */ daE_DN_HIO_c();
+    /* 804EE39C */ virtual ~daE_DN_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 model_size;          // 基本サイズ
+    /* 0x0C */ f32 movement_speed;      // 移動速度
+    /* 0x10 */ f32 dash_speed;          // 突進速度
+    /* 0x14 */ f32 battle_init_range;   // 戦闘開始範囲
+    /* 0x18 */ f32 attack_init_range;   // 攻撃開始範囲
+    /* 0x1C */ s16 field_0x1c;          // 防御静止間
+    /* 0x1E */ s16 field_0x1e;          // 魂抜間 弱
+    /* 0x20 */ s16 field_0x20;          // 魂抜間 強
+    /* 0x22 */ u8 field_0x22;
+    /* 0x23 */ u8 invulnerable;         // 不死身
+    /* 0x24 */ u8 field_0x24;           // 学習なし
+};
 
 enum Action {
     /* 0x00 */ ACTION_NORMAL       = 0,
@@ -287,8 +308,6 @@ static BOOL other_bg_check2(e_dn_class* i_this, cXyz* param_2) {
 
     return FALSE;
 }
-
-UNK_REL_BSS;
 
 /* 804EEF2D 0003+00 data_804EEF2D None */
 u8 l_initHIO;

@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_lv4sand.h"
 #include "dol2asm.h"
 
@@ -83,7 +85,6 @@ extern "C" void _restgpr_28();
 extern "C" void _restgpr_29();
 extern "C" extern void* __vt__16dBgS_MoveBgActor[10];
 extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" extern u8 data_80C6A508[4];
 
@@ -129,24 +130,6 @@ COMPILER_STRIP_GATE(0x80C6A3C0, &lit_3710);
 #pragma push
 #pragma force_active on
 SECTION_DEAD static char const* const stringBase_80C6A3D4 = "P_L4Sand";
-#pragma pop
-
-/* 80C6A3E0-80C6A3EC 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80C6A3EC-80C6A400 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 #pragma pop
 
 /* 80C6A400-80C6A404 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */

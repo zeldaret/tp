@@ -3,6 +3,8 @@
  * Utility Functions
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_lib.h"
 #include "d/d_event.h"
 #include "d/d_stage.h"

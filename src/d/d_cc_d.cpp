@@ -3,9 +3,11 @@
 // Translation Unit: d/d_cc_d
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_cc_d.h"
-#include "f_pc/f_pc_searcher.h"
 #include "f_op/f_op_actor_mng.h"
+#include "f_pc/f_pc_searcher.h"
 
 /* 8008364C-80083660 07DF8C 0014+00 3/3 0/0 0/0 .text ClrActorInfo__22dCcD_GAtTgCoCommonBaseFv */
 void dCcD_GAtTgCoCommonBase::ClrActorInfo() {

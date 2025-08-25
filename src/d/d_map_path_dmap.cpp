@@ -3,6 +3,8 @@
  *
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_map_path_dmap.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"

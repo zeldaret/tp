@@ -1,7 +1,6 @@
 #ifndef STD_CMATH_H_
 #define STD_CMATH_H_
 
-
 namespace std {
 template<typename T>
 inline double fabs(T x) {
@@ -34,6 +33,10 @@ inline float ceil(float num) {
 
 inline float floor(float num) {
     return ::floorf(num);
+}
+
+inline float tan(float num) {
+    return ::i_tanf(num);
 }
 }  // namespace std
 

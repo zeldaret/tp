@@ -1,3 +1,5 @@
+#include "d/dolzel.h"
+
 #include "d/d_msg_out_font.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JUtility/JUTTexture.h"

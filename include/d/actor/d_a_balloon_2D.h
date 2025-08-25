@@ -13,75 +13,6 @@ class J2DPicture;
 class J2DPane;
 class J2DTextBox;
 
-class daBalloon2D_HIO_c : public mDoHIO_entry_c {
-public:
-    inline daBalloon2D_HIO_c();
-    /* 806553A8 */ virtual ~daBalloon2D_HIO_c();
-
-#if DEBUG
-    void genMessage(JORMContext*);
-
-#endif
-
-    void resetAddScoreSetFlag();
-
-    struct param {
-        /* 0x04 */ u8 mAdjustmentToggle;
-        /* 0x08 */ s32 mScore;
-        /* 0x0C */ u8 mComboCount;
-        /* 0x0D */ u8 mBalloonSize;
-        /* 0x0E */ u8 mOverheadScoreToggle;
-        /* 0x10 */ s32 mOverheadScore;
-        /* 0x14 */ s32 field_0x14;
-        /* 0x18 */ f32 field_0x1c;
-        /* 0x1C */ f32 field_0x20;
-        /* 0x20 */ f32 mScorePosX;
-        /* 0x24 */ f32 mScorePosY;
-        /* 0x28 */ f32 mScoreSize;
-        /* 0x2C */ f32 m5DNumberPosX;
-        /* 0x30 */ f32 m5DNumberPosY;
-        /* 0x34 */ f32 m5DNumberSizeX;
-        /* 0x38 */ f32 m5DNumberSizeY;
-        /* 0x3C */ f32 m5DNumberAlpha;
-        /* 0x40 */ f32 m5DNumber2PosX;
-        /* 0x44 */ f32 m5DNumber2PosY;
-        /* 0x48 */ f32 m5DNumber2Size;
-        /* 0x4C */ f32 mUnkPosX;
-        /* 0x50 */ f32 mUnkPosY;
-        /* 0x54 */ f32 mUnkSize;
-        /* 0x58 */ f32 mComboPosX;
-        /* 0x5C */ f32 mComboPosY;
-        /* 0x60 */ f32 mComboSize;
-        /* 0x64 */ f32 m2DNumberPosX;
-        /* 0x68 */ f32 m2DNumberPosY;
-        /* 0x6C */ f32 m2DNumberSizeX;
-        /* 0x70 */ f32 m2DNumberSizeY;
-        /* 0x74 */ f32 field_0x78;
-        /* 0x78 */ f32 m2DNumberComboPosX;
-        /* 0x7C */ f32 m2DNumberComboPosY;
-        /* 0x80 */ f32 m2DNumberComboSize;
-        /* 0x84 */ f32 m2DNumberComboAlpha;
-        /* 0x88 */ f32 mBalloonLargePosX;
-        /* 0x8C */ f32 mBalloonLargePosY;
-        /* 0x90 */ f32 mBalloonLargeSize;
-        /* 0x94 */ f32 mBalloonLargeAlpha;
-        /* 0x98 */ f32 mBalloonMedPosX;
-        /* 0x9C */ f32 mBalloonMedPosY;
-        /* 0xA0 */ f32 mBalloonMedSize;
-        /* 0xA4 */ f32 mBalloonMedAlpha;
-        /* 0xA8 */ f32 mBalloonSmallPosX;
-        /* 0xAC */ f32 mBalloonSmallPosY;
-        /* 0xB0 */ f32 mBalloonSmallSize;
-        /* 0xB4 */ f32 mBalloonSmallAlpha;
-        /* 0xB8 */ f32 m2DNumberCombo2PosX;
-        /* 0xBC */ f32 m2DNumberCombo2PosY;
-        /* 0xC0 */ f32 m2DNumberCombo2Size;
-        /* 0xC4 */ f32 m2DNumberCombo2PosX43;
-    };
-
-    param m;
-};
-
 /**
  * @ingroup actors-unsorted
  * @class daBalloon2D_c
@@ -127,7 +58,7 @@ public:
     /* 80654E8C */ void setHIO(bool);
     /* 80655494 */ 
     virtual
-    ~daBalloon2D_c();
+    ~daBalloon2D_c() {}
 
     void show() { mIsVisible = 1; }
     void hide() { mIsVisible = 0; }

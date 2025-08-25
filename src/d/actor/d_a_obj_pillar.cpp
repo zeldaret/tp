@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_pillar.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
@@ -59,8 +61,6 @@ static const daPillar_c::sdata_t l_shake_data[] = {
     /* WEAK        */ {255, 0, 400, 20, 5000, 200, 30},
     /* CRASH       */ {5, 0, 800, 120, 7000, 30, 15},
 };
-
-UNK_REL_DATA
 
 /* 80CB0B08-80CB0B10 -00001 0008+00 3/3 0/0 0/0 .data            l_arcName */
 static char* l_arcName[] = {

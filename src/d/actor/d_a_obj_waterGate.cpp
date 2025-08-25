@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_waterGate.h"
 #include "d/d_com_inf_game.h"
 
@@ -12,9 +14,6 @@ static int daWtGate_Draw(daWtGate_c*);
 static int daWtGate_Execute(daWtGate_c*);
 static int daWtGate_Delete(daWtGate_c*);
 static int daWtGate_Create(fopAc_ac_c*);
-
-/* 80D2C498-80D2C4A4 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-UNK_REL_DATA
 
 /* 80D2C5BC-80D2C5C8 000014 000C+00 3/3 0/0 0/0 .bss             l_HIO */
 static daWtGate_HIO_c l_HIO;

@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_talk.h"
 #include "d/d_msg_object.h"
 #include "f_op/f_op_msg_mng.h"

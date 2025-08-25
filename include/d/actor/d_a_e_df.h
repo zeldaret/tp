@@ -91,17 +91,4 @@ public:
 
 STATIC_ASSERT(sizeof(daE_DF_c) == 0x838);
 
-class daE_DF_HIO_c : public JORReflexible {
-public:
-    /* 806A76EC */ daE_DF_HIO_c();
-    /* 806A9A84 */ virtual ~daE_DF_HIO_c() {};
-
-    void genMessage(JORMContext*);
-
-    /* 0x4 */ s8 mNo;
-    /* 0x8 */ f32 field_0x8;
-};
-
-STATIC_ASSERT(sizeof(daE_DF_HIO_c) == 0xC);
-
 #endif /* D_A_E_DF_H */

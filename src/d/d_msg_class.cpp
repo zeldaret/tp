@@ -1,3 +1,5 @@
+#include "d/dolzel.h"
+
 #include "d/d_msg_class.h"
 #include <stdio.h>
 #include "d/d_meter2_info.h"

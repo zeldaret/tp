@@ -56,6 +56,10 @@ public:
     u8 getItemNo() { return fopAcM_GetParamBit(this, 0, 8); }
     int getSwNo() { return 0xFF; }
 
+    void startCtrl() {
+        actionInitWait2();
+    }
+
     void setPos(cXyz);
 
 private:

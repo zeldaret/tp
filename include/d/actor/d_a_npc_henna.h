@@ -125,33 +125,4 @@ public:
 
 STATIC_ASSERT(sizeof(npc_henna_class) == 0x7fc);
 
-class daNpc_Henna_HIO_c : public JORReflexible {
-public:
-    /* 80542F0C */ daNpc_Henna_HIO_c();
-    /* 80549E40 */ virtual ~daNpc_Henna_HIO_c() {}
-    void genMessage(JORMContext*);
-
-    s8 field_0x4;
-    f32 field_0x8;
-    s16 field_0xc;
-    s16 mSeasonDefColorR;
-    s16 mSeasonDefColorG;
-    s16 mSeasonDefColorB;
-    s16 mSeason2ColorR;
-    s16 mSeason2ColorG;
-    s16 mSeason2ColorB;
-    s16 mSeason3ColorR;
-    s16 mSeason3ColorG;
-    s16 mSeason3ColorB;
-    f32 mSeasonDefLightDist;
-    s16 mSeasonDefLightAngle;
-    f32 mSeason2LightDist;
-    s16 mSeason2LightAngle;
-    f32 mSeason3LightDist;
-    s16 mSeason3LightAngle;
-};
-
-
-
-
 #endif /* D_A_NPC_HENNA_H */

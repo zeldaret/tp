@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_warp_kbrg.h"
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_player.h"
@@ -88,8 +90,6 @@ void daObjWarpKBrg_c::setBaseMtx() {
         mpPortalModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
 }
-
-UNK_REL_DATA
 
 /* 80D29730-80D29738 -00001 0008+00 5/5 0/0 0/0 .data            l_arcName */
 static char* l_arcName[2] = {

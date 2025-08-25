@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_pdtile.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_player.h"
@@ -16,8 +18,6 @@
 static void rideCallBack(dBgW* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3) {
     static_cast<daObjPDtile_c*>(param_2)->rideActor(param_3);
 }
-
-UNK_REL_DATA
 
 /* 80CAC5BC-80CAC5C0 -00001 0004+00 0/1 0/0 0/0 .data            l_arcName4 */
 static char* l_arcName4 = "P_Dtile";

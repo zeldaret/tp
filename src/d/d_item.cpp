@@ -3,6 +3,8 @@
  * Item Get Handling
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_item.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_meter2_info.h"

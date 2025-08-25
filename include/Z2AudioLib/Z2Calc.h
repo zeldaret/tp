@@ -2,8 +2,12 @@
 #define Z2CALC_H
 
 #include "dolphin/types.h"
+#include "m_Do/m_Do_lib.h"
 
 namespace Z2Calc {
+// hack for f_op_actor, having this present breaks its weak func ordering
+static const Vec cNullVec = {0.0f, 0.0f, 0.0f};
+
 enum CurveSign {
     CURVE_SIGN_0 = 0,
     CURVE_SIGN_1 = 1,

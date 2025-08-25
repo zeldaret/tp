@@ -1,17 +1,95 @@
 /**
- * @file d_a_e_kr.cpp
+* @file d_a_e_kr.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_e_kr.h"
 #include "d/actor/d_a_horse.h"
 #include "d/d_bomb.h"
 #include "d/d_cc_d.h"
 #include "d/d_cc_uty.h"
-
-UNK_REL_DATA;
-
 #include "f_op/f_op_actor_enemy.h"
+
+class e_krHIO_c : public fOpAcm_HIO_entry_c {
+public:
+    e_krHIO_c() {
+        field_0x4 = 0;
+        field_0x5 = 0;
+        field_0x8 = 20.0f;
+        field_0xc = 2500.0f;
+        field_0x14 = 1.0f;
+        field_0x18 = 2000;
+        field_0x1a = 2500;
+        field_0x1c = 2000;
+        field_0x1e = 2500;
+        field_0x20 = 0.35f;
+        field_0x24 = 0.5f;
+        field_0x28 = 1.0f;
+        field_0x2c = 1.0f;
+        field_0x30 = 1.0f;
+        field_0x38 = 1.0f;
+        field_0x3c = 1.0f;
+        field_0x40 = 30;
+        field_0x44 = 1.0f;
+        field_0x48 = 1.0f;
+        field_0x4c = 1.5f;
+        field_0x50 = 1100;
+        field_0x54 = 3.5f;
+        field_0x34 = 60;
+        field_0x58 = 60.0f;
+        field_0x5c = 40.0f;
+        field_0x60 = 1;
+        field_0x64 = 8000.0f;
+        field_0x70 = 3000.0f;
+        field_0x6c = 20000;
+        field_0x68 = 1500.0f;
+        field_0x74 = 2000.0f;
+        field_0x6e = 20000;
+        field_0x78 = -40.0f;
+    }
+    /* 80705574 */ virtual ~e_krHIO_c() {}
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ u8 field_0x4;
+    /* 0x05 */ u8 field_0x5;
+    /* 0x06 */ u8 field_0x6;
+    /* 0x08 */ f32 field_0x8;
+    /* 0x0C */ f32 field_0xc;
+    /* 0x10 */ u8 field_0x10[0x14 - 0x10];
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ s16 field_0x18;
+    /* 0x1A */ s16 field_0x1a;
+    /* 0x1C */ s16 field_0x1c;
+    /* 0x1E */ s16 field_0x1e;
+    /* 0x20 */ f32 field_0x20;
+    /* 0x24 */ f32 field_0x24;
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
+    /* 0x30 */ f32 field_0x30;
+    /* 0x34 */ s16 field_0x34;
+    /* 0x38 */ f32 field_0x38;
+    /* 0x3C */ f32 field_0x3c;
+    /* 0x40 */ s16 field_0x40;
+    /* 0x44 */ f32 field_0x44;
+    /* 0x48 */ f32 field_0x48;
+    /* 0x4C */ f32 field_0x4c;
+    /* 0x50 */ s16 field_0x50;
+    /* 0x54 */ f32 field_0x54;
+    /* 0x58 */ f32 field_0x58;
+    /* 0x5C */ f32 field_0x5c;
+    /* 0x60 */ s16 field_0x60;
+    /* 0x64 */ f32 field_0x64;
+    /* 0x68 */ f32 field_0x68;
+    /* 0x6C */ s16 field_0x6c;
+    /* 0x6E */ s16 field_0x6e;
+    /* 0x70 */ f32 field_0x70;
+    /* 0x74 */ f32 field_0x74;
+    /* 0x78 */ f32 field_0x78;
+};
+
+STATIC_ASSERT(sizeof(e_krHIO_c) == 0x7c);
 
 /* 80705FF4-80706070 000014 007C+00 9/9 0/0 0/0 .bss             l_e_krHIO */
 static e_krHIO_c l_e_krHIO;

@@ -3,6 +3,8 @@
 // Translation Unit: d/d_tresure
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_tresure.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_map_path_dmap.h"
