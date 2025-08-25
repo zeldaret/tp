@@ -28,4 +28,4 @@ lbl_92_rodata_1C = .rodata:0x0000001C; // type:object size:0x18
 @116850 = .data:0x000000B8; // type:object size:0x22 scope:local data:string
 l_daObj_Fmobj_Method = .data:0x000000E0; // type:object size:0x20 scope:global
 g_profile_OBJ_FMOBJ = .data:0x00000100; // type:object size:0x30 scope:global
-lbl_92_data_130 = .data:0x00000130; // type:object size:0x4
+lbl_92_data_130 = .data:0x00000130; // type:object size:0x3 data:string

@@ -166,6 +166,6 @@ lbl_391_data_288 = .data:0x00000288; // type:object size:0x2C
 @STRING@CreateHeap__12daObjBATTA_cFv@1 = .data:0x000005B8; // type:object size:0xF scope:local data:string
 @STRING@CreateHeap__12daObjBATTA_cFv@0 = .data:0x000005C8; // type:object size:0x12 scope:local data:string
 @STRING@CreateHeap__12daObjBATTA_cFv = .data:0x000005DC; // type:object size:0x4 scope:local data:string
-lbl_391_data_5E0 = .data:0x000005E0; // type:object size:0x4
+lbl_391_data_5E0 = .data:0x000005E0; // type:object size:0x3 data:string
 lbl_391_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte
 l_HIO = .bss:0x00000008; // type:object size:0x10 scope:global align:4 data:float

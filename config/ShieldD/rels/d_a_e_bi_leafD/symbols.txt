@@ -23,4 +23,4 @@ _dtors = .dtors:0x00000000; // type:label scope:global
 @116877 = .data:0x000000C0; // type:object size:0x22 scope:local data:string
 l_daE_BI_LEAF_Method = .data:0x000000E8; // type:object size:0x20 scope:global
 g_profile_E_BI_LEAF = .data:0x00000108; // type:object size:0x30 scope:global
-lbl_167_data_138 = .data:0x00000138; // type:object size:0x4
+lbl_167_data_138 = .data:0x00000138; // type:object size:0x3 data:string

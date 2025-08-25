@@ -25,4 +25,4 @@ lbl_55_rodata_20 = .rodata:0x00000020; // type:object size:0x14
 @114241 = .data:0x0000004C; // type:object size:0xC scope:local data:string
 daSus_METHODS = .data:0x00000058; // type:object size:0x20 scope:global
 g_profile_SUSPEND = .data:0x00000078; // type:object size:0x30 scope:global
-lbl_55_data_A8 = .data:0x000000A8; // type:object size:0x4
+lbl_55_data_A8 = .data:0x000000A8; // type:object size:0x3 data:string

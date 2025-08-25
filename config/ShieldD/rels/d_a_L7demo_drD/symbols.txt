@@ -84,4 +84,4 @@ lbl_267_rodata_90 = .rodata:0x00000090; // type:object size:0x14
 @118817 = .data:0x000000FC; // type:object size:0x1B scope:local data:string
 l_daDr_Method = .data:0x00000118; // type:object size:0x20 scope:global
 g_profile_DR = .data:0x00000138; // type:object size:0x30 scope:global
-lbl_267_data_168 = .data:0x00000168; // type:object size:0x4
+lbl_267_data_168 = .data:0x00000168; // type:object size:0x3 data:string

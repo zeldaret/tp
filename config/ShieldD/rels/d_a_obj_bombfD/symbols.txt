@@ -33,4 +33,4 @@ lbl_400_rodata_34 = .rodata:0x00000034; // type:object size:0x18
 @116950 = .data:0x00000048; // type:object size:0x1C scope:local data:string
 l_daObjBombf_Method = .data:0x00000068; // type:object size:0x20 scope:global
 g_profile_Obj_Bombf = .data:0x00000088; // type:object size:0x30 scope:global
-lbl_400_data_B8 = .data:0x000000B8; // type:object size:0x4
+lbl_400_data_B8 = .data:0x000000B8; // type:object size:0x3 data:string

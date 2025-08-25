@@ -29,4 +29,4 @@ _dtors = .dtors:0x00000000; // type:label scope:global
 @116867 = .data:0x00000148; // type:object size:0x22 scope:local data:string
 l_daObj_Usaku_Method = .data:0x00000170; // type:object size:0x20 scope:global
 g_profile_OBJ_USAKU = .data:0x00000190; // type:object size:0x30 scope:global
-lbl_664_data_1C0 = .data:0x000001C0; // type:object size:0x4
+lbl_664_data_1C0 = .data:0x000001C0; // type:object size:0x3 data:string
