@@ -12,7 +12,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [GZ2E01]
+        version: [GZ2E01, ShieldD]
 
     steps:
     # Checkout the repository
