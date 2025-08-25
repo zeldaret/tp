@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_shad.h"
 #include "d/actor/d_a_cstaF.h"
 #include "d/actor/d_a_npc.h"
@@ -135,8 +137,6 @@ enum Joint {
     /* 0x1D */ JNT_LEGR2,
     /* 0x1E */ JNT_FOOTR,
 };
-
-UNK_REL_DATA
 
 /* 80AE2640-80AE27F0 000020 01B0+00 1/2 0/0 0/0 .data            l_bckGetParamList */
 static daNpc_GetParam2 l_bckGetParamList[36] = {
@@ -292,19 +292,6 @@ daNpcShad_c::EventFn daNpcShad_c::mEvtSeqList[14] = {
     &daNpcShad_c::EvCut_WiretapEntrant,
 };
 
-daNpcShad_c::daNpcShad_c() {}
-
-/* 80AD8420-80AD8620 000300 0200+00 1/0 0/0 0/0 .text            __dt__11daNpcShad_cFv */
-daNpcShad_c::~daNpcShad_c() {
-    for (int i = 0; l_loadRes_list[mMode][i] >= 0; i++) {
-        dComIfG_resDelete(&mPhases[i], l_arcNames[l_loadRes_list[mMode][i]]);
-    }
-
-    if (heap != NULL) {
-        mpMorf->stopZelAnime();
-    }
-}
-
 /* 80AE1FDC-80AE204C 000000 0070+00 19/19 0/0 0/0 .rodata          m__17daNpcShad_Param_c */
 const daNpcShad_HIOParam daNpcShad_Param_c::m = {
     35.0f,
@@ -342,6 +329,21 @@ const daNpcShad_HIOParam daNpcShad_Param_c::m = {
     false,
     12.0f,
 };
+
+daNpcShad_c::daNpcShad_c() {
+    // empty function
+}
+
+/* 80AD8420-80AD8620 000300 0200+00 1/0 0/0 0/0 .text            __dt__11daNpcShad_cFv */
+daNpcShad_c::~daNpcShad_c() {
+    for (int i = 0; l_loadRes_list[mMode][i] >= 0; i++) {
+        dComIfG_resDelete(&mPhases[i], l_arcNames[l_loadRes_list[mMode][i]]);
+    }
+
+    if (heap != NULL) {
+        mpMorf->stopZelAnime();
+    }
+}
 
 /* 80AD8620-80AD8B60 000500 0540+00 1/1 0/0 0/0 .text            Create__11daNpcShad_cFv */
 cPhs__Step daNpcShad_c::Create() {
@@ -895,7 +897,7 @@ inline bool daNpcShad_c::isSneaking() {
 }
 
 /* 80AE0B58-80AE0ED0 008A38 0378+00 1/1 0/0 0/0 .text            playExpression__11daNpcShad_cFv */
-void daNpcShad_c::playExpression() {
+inline void daNpcShad_c::playExpression() {
     daNpcF_anmPlayData dat0 = {ANM_F_TALK_A, daNpcShad_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat0[1] = {&dat0};
     daNpcF_anmPlayData dat1a = {ANM_F_HAPPY, daNpcShad_Param_c::m.common.morf_frame, 1};
@@ -933,11 +935,11 @@ void daNpcShad_c::playExpression() {
 
     if (mExpression >= 0 && mExpression < 0xD) {
         playExpressionAnm(ppDat);
-    } 
+    }
 }
 
 /* 80AE04D8-80AE0B58 0083B8 0680+00 1/1 0/0 0/0 .text            playMotion__11daNpcShad_cFv */
-void daNpcShad_c::playMotion() {
+inline void daNpcShad_c::playMotion() {
     daNpcF_anmPlayData dat0 = {ANM_WAIT_A, daNpcShad_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat0[1] = {&dat0};
     daNpcF_anmPlayData dat1a = {ANM_BOOK_TALK_A, daNpcShad_Param_c::m.common.morf_frame, 1};
@@ -2560,6 +2562,11 @@ static int daNpcShad_IsDelete(void* a_this) {
     return 1;
 }
 
+// force J3DTexNoAnm::calc to be emitted earlier than it otherwise would be
+static void dummy() {
+    ((J3DTexNoAnm*)NULL)->calc(NULL);
+}
+
 /* 80AE01BC-80AE0438 00809C 027C+00 1/0 0/0 0/0 .text            setParam__11daNpcShad_cFv */
 void daNpcShad_c::setParam() {
     searchActors();
@@ -2674,7 +2681,7 @@ inline void daNpcShad_c::setAttnPos() {
 }
 
 /* 80AE153C-80AE1544 00941C 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__11daNpcShad_cFv */
-BOOL daNpcShad_c::drawDbgInfo() {
+inline BOOL daNpcShad_c::drawDbgInfo() {
     return FALSE;
 }
 

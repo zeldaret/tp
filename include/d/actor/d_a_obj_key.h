@@ -47,17 +47,5 @@ public:
 
 STATIC_ASSERT(sizeof(obj_key_class) == 0x9b8);
 
-class daObj_Key_HIO_c : public JORReflexible{
-public:
-    /* 80C3F40C */ daObj_Key_HIO_c();
-    /* 80C40F28 */ virtual ~daObj_Key_HIO_c() {}
-
-    void genMessage(JORMContext*);
-
-    /* 0x4 */ s8 id;
-    /* 0x8 */ f32 size;
-    /* 0xC */ f32 chain_size;
-};
-
 
 #endif /* D_A_OBJ_KEY_H */

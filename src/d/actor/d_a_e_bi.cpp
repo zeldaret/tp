@@ -3,13 +3,32 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_bi.h"
 #include "d/d_cc_d.h"
 #include "d/d_bomb.h"
 #include "d/actor/d_a_obj_fw.h"
-UNK_REL_DATA;
 #include "Z2AudioLib/Z2Instances.h"
 #include "f_op/f_op_actor_enemy.h"
+
+class daE_BI_HIO_c : public JORReflexible {
+public:
+    /* 8068A5EC */ daE_BI_HIO_c();
+    /* 8068D2DC */ virtual ~daE_BI_HIO_c() {}
+
+#if DEBUG
+    void genMessage(JORMContext*);
+#endif
+
+    /* 爆弾虫 - Bomb Bug */
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 basic_size;          // 基本サイズ - Basic Size
+    /* 0x0C */ f32 search_range;        // サーチ範囲 - Search Range
+    /* 0x10 */ f32 track_range;         // 追尾範囲 - Track Range
+    /* 0x14 */ s16 time_to_get_going;   // 動き出すまでの時間 - Time To Get Going
+    /* 0x18 */ f32 movement_spd;        // 移動速度 - Movement Speed
+};
 
 enum E_bi_RES_File_ID {
     /* BCK */
@@ -166,8 +185,6 @@ static void damage_check(e_bi_class* i_this) {
         }
     }
 }
-
-UNK_REL_BSS;
 
 /* 8068DB1C-8068DB20 -00001 0004+00 2/2 0/0 0/0 .bss             None */
 /* 8068DB1C 0001+00 data_8068DB1C @1009 */

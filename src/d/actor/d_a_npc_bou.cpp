@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_bou.h"
 #include "d/actor/d_a_cow.h"
 #include "d/actor/d_a_horse.h"
@@ -14,8 +16,6 @@
 //
 // Declarations:
 //
-
-UNK_REL_DATA;
 
 /* 80972AB0-80972AB8 000020 0008+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[1][2] = {

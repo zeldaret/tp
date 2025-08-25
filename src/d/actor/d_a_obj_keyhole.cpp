@@ -3,13 +3,13 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_keyhole.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
 #include "d/actor/d_a_player.h"
 #include "Z2AudioLib/Z2Instances.h"
-
-UNK_REL_DATA
 
 /* 80C4124C-80C41270 0000EC 0024+00 1/1 0/0 0/0 .text            __ct__19daObj_Keyhole_HIO_cFv */
 daObj_Keyhole_HIO_c::daObj_Keyhole_HIO_c() {
@@ -263,8 +263,6 @@ static void chain_control3(obj_keyhole_class* i_this, kh_chain_s* i_chain_s, int
         *var_r28 -= sp30 * ((f32)((i_this->chain_num - 1) - i) / (f32)(i_this->chain_num - 1));
     }
 }
-
-UNK_REL_BSS
 
 /* 80C43CE5 0003+00 data_80C43CE5 None */
 static u8 l_HIOInit;

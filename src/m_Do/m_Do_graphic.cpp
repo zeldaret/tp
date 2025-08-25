@@ -3,29 +3,26 @@
  * Graphics Management Functions
  */
 
-#include "m_Do/m_Do_graphic.h"
-#include "dolphin/base/PPCArch.h"
+#include "d/dolzel.h"
+
+#include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "JSystem/J2DGraph/J2DPrint.h"
+#include "JSystem/JFramework/JFWSystem.h"
+#include "JSystem/JParticle/JPADrawInfo.h"
+#include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTDbPrint.h"
 #include "JSystem/JUtility/JUTProcBar.h"
 #include "JSystem/JUtility/JUTTexture.h"
+#include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_menu_collect.h"
+#include "dolphin/base/PPCArch.h"
 #include "f_ap/f_ap_game.h"
 #include "m_Do/m_Do_controller_pad.h"
+#include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_machine.h"
 #include "m_Do/m_Do_main.h"
-#include "SSystem/SComponent/c_math.h"
-// Possibly fakematch?
-// Using `sym off` for this header fixes J2DOrthoGraph::~J2DOrthoGraph being
-// incorrectly placed in a separate .text section.
-#pragma sym off
-#include "JSystem/J2DGraph/J2DOrthoGraph.h"
-#pragma sym on
-#include "JSystem/JParticle/JPADrawInfo.h"
-#include "JSystem/JUtility/JUTConsole.h"
-#include "JSystem/JFramework/JFWSystem.h"
 
 /* 80007D9C-80007E44 0026DC 00A8+00 1/1 0/0 0/0 .text            createTimg__FUsUsUl */
 static ResTIMG* createTimg(u16 width, u16 height, u32 format) {

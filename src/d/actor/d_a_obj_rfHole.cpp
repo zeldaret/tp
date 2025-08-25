@@ -3,11 +3,11 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_rfHole.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_bg_w.h"
-
-UNK_REL_DATA
 
 /* 80CB8E6C-80CB8EBC 0000EC 0050+00 1/1 0/0 0/0 .text            __ct__14daRfHole_HIO_cFv */
 daRfHole_HIO_c::daRfHole_HIO_c() {

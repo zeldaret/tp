@@ -3,11 +3,11 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_rope_bridge.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
-
-UNK_REL_DATA
 
 /* 80597E84-80597E8C -00001 0008+00 3/3 0/0 0/0 .data            l_arcName */
 static char* l_arcName[2] = {"L_RopeB_S", "L_RopeB_L"};

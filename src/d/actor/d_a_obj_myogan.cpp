@@ -3,6 +3,8 @@
  * Dangoro Arena Lava
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_myogan.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_bg_w.h"

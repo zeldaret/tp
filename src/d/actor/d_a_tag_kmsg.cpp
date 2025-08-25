@@ -3,6 +3,8 @@
 // Translation Unit: d_a_tag_kmsg
 //
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tag_kmsg.h"
 #include "d/actor/d_a_npc.h"
 #include "d/actor/d_a_player.h"

@@ -16,7 +16,7 @@
 class daSyRock_c : public dBgS_MoveBgActor, public request_of_phase_process_class, public dEvLib_callback_c {
 public:
     daSyRock_c() : dEvLib_callback_c(this) {}
-    /* 80D03DAC */ ~daSyRock_c() {};
+    /* 80D03DAC */ ~daSyRock_c() {}
 
     /* 80D0237C */ void setBaseMtx();
     /* 80D02454 */ int CreateHeap();
@@ -102,36 +102,6 @@ private:
 };
 
 STATIC_ASSERT(sizeof(daSyRock_c) == 0x9a0);
-
-class daSyRock_HIO_c : public mDoHIO_entry_c {
-public:
-    /* 80D022AC */ daSyRock_HIO_c();
-    /* 80D03C44 */ ~daSyRock_HIO_c() {};
-
-    void genMessage(JORMContext*);
-
-    /* 0x04 */ f32 mShakeAmplitude;         // "揺れ強さ" "Shake strength" | Slider
-    /* 0x08 */ f32 mShakeXOscillationAngle; // "振幅Ｘ" "Amplitude X" | Slider
-    /* 0x0C */ f32 mShakeZOscillationAngle; // "振幅Ｚ" "Amplitude Z" | Slider
-    /* 0x10 */ f32 mShakeDamping;           // "揺れ減衰" "Shake damping" | Slider
-    /* 0x14 */ f32 mShakeMaxDecay;          // "最大減衰量" "Maximum decay" | Slider
-    /* 0x18 */ f32 mShakeMinDecay;          // "最小減衰量" "Minimum decay" | Slider
-    /* 0x1C */ f32 mFallAcceleration;       // "落下速度" "Fall speed" | Slider
-    /* 0x20 */ f32 mMaxFallSpeed;           // "最大落下速度" "Maximum falling speed" | Slider
-    /* 0x24 */ u8 mWaitFrames;              // "wait time" | Slider (unused)
-    /* 0x25 */ u8 mShockStrength;           // "振動" "Vibration" | Combo Box
-                                                /* "強さ１" "Strength 1"
-                                                   "強さ２" "Strength 2"
-                                                   "強さ３" "Strength 3"
-                                                   "強さ４" "Strength 4"
-                                                   "強さ５" "Strength 5"
-                                                   "強さ６" "Strength 6"
-                                                   "強さ７" "Strength 7"
-                                                   "強さ８" "Strength 8" */
-    /* 0x28 */ f32 mEffectScale;            // "eff scale" | Slider
-    /* 0x2C */ f32 mFallWaterBouyancy;      // "sink speed" | Slider
-    /* 0x30 */ f32 mMaxWaterPillarRange;    // "renge" | "Range" | Slider
-};
 
 
 #endif /* D_A_OBJ_SYROCK_H */

@@ -87,14 +87,4 @@ private:
 
 STATIC_ASSERT(sizeof(daLv3Water2_c) == 0x610);
 
-struct daLv3Water2_HIO_c : public mDoHIO_entry_c {
-    /* 80C5A40C */ daLv3Water2_HIO_c();
-    /* 80C5B14C */ ~daLv3Water2_HIO_c() {}
-
-    void genMessage(JORMContext*);
-
-    /* 0x04 */ u8 mLevelControlWaitFrames;
-};
-
-
 #endif /* D_A_OBJ_LV3WATER2_H */

@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_zh.h"
 #include "d/actor/d_a_obj_carry.h"
 #include "d/d_com_inf_game.h"
@@ -68,8 +70,6 @@ enum Particle {
     /* 0x8A70 */ ZL2_SMOKE00_7,
 };
 
-UNK_REL_DATA;
-
 /* 8082F440-8082F480 000020 0040+00 0/1 0/0 0/0 .data cc_zhSph_src__22@unnamed@d_a_e_zh_cpp@ */
 namespace {
     static dCcD_SrcSph cc_zhSph_src = {
@@ -121,8 +121,6 @@ daE_ZH_HIO_c::daE_ZH_HIO_c() {
     piyori_time = 300;
     dungeon_bit_check = 0;
 }
-
-UNK_REL_BSS;
 
 /* 8082F725 0003+00 data_8082F725 None */
 static u8 l_initHIO;

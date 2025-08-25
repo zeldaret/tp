@@ -5,110 +5,24 @@
 
 // Every function matches, but a Z2SoundObjSimple dtor is generated that should not exist
 
-#include "d/actor/d_a_do.h"
+#include "d/dolzel_rel.h"
+
 #include "JSystem/JGeometry.h"
 #include "SSystem/SComponent/c_math.h"
-#include "m_Do/m_Do_controller_pad.h"
+#include "Z2AudioLib/Z2Instances.h"
 #include "c/c_damagereaction.h"
-#include "d/d_com_inf_game.h"
+#include "d/actor/d_a_canoe.h"
+#include "d/actor/d_a_do.h"
+#include "d/actor/d_a_obj_food.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_a_item_static.h"
+#include "d/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "f_op/f_op_actor_mng.h"
-#include "d/actor/d_a_canoe.h"
-#include "d/actor/d_a_obj_food.h"
-
-/* 8066F278-8066F27C 000008 0001+03 3/3 0/0 0/0 .bss             @1109 */
-static u8 lit_1109[1 + 3 /* padding */];
-
-/* 8066F27C-8066F280 00000C 0001+03 0/0 0/0 0/0 .bss             @1107 */
-#pragma push
-#pragma force_active on
-static u8 lit_1107[1 + 3 /* padding */];
-#pragma pop
-
-/* 8066F280-8066F284 000010 0001+03 0/0 0/0 0/0 .bss             @1105 */
-#pragma push
-#pragma force_active on
-static u8 lit_1105[1 + 3 /* padding */];
-#pragma pop
-
-/* 8066F284-8066F288 000014 0001+03 0/0 0/0 0/0 .bss             @1104 */
-#pragma push
-#pragma force_active on
-static u8 lit_1104[1 + 3 /* padding */];
-#pragma pop
-
-/* 8066F288-8066F28C 000018 0001+03 0/0 0/0 0/0 .bss             @1099 */
-#pragma push
-#pragma force_active on
-static u8 lit_1099[1 + 3 /* padding */];
-#pragma pop
-
-/* 8066F28C-8066F290 00001C 0001+03 0/0 0/0 0/0 .bss             @1097 */
-#pragma push
-#pragma force_active on
-static u8 lit_1097[1 + 3 /* padding */];
-#pragma pop
-
-/* 8066F290-8066F294 000020 0001+03 0/0 0/0 0/0 .bss             @1095 */
-#pragma push
-#pragma force_active on
-static u8 lit_1095[1 + 3 /* padding */];
-#pragma pop
-
-/* 8066F294-8066F298 000024 0001+03 0/0 0/0 0/0 .bss             @1094 */
-#pragma push
-#pragma force_active on
-static u8 lit_1094[1 + 3 /* padding */];
-#pragma pop
-
-/* 8066F298-8066F29C 000028 0001+03 0/0 0/0 0/0 .bss             @1057 */
-#pragma push
-#pragma force_active on
-static u8 lit_1057[1 + 3 /* padding */];
-#pragma pop
-
-/* 8066F29C-8066F2A0 00002C 0001+03 0/0 0/0 0/0 .bss             @1055 */
-#pragma push
-#pragma force_active on
-static u8 lit_1055[1 + 3 /* padding */];
-#pragma pop
-
-/* 8066F2A0-8066F2A4 000030 0001+03 0/0 0/0 0/0 .bss             @1053 */
-#pragma push
-#pragma force_active on
-static u8 lit_1053[1 + 3 /* padding */];
-#pragma pop
-
-/* 8066F2A4-8066F2A8 000034 0001+03 0/0 0/0 0/0 .bss             @1052 */
-#pragma push
-#pragma force_active on
-static u8 lit_1052[1 + 3 /* padding */];
-#pragma pop
-
-/* 8066F2A8-8066F2AC 000038 0001+03 0/0 0/0 0/0 .bss             @1014 */
-#pragma push
-#pragma force_active on
-static u8 lit_1014[1 + 3 /* padding */];
-#pragma pop
-
-/* 8066F2AC-8066F2B0 00003C 0001+03 0/0 0/0 0/0 .bss             @1012 */
-#pragma push
-#pragma force_active on
-static u8 lit_1012[1 + 3 /* padding */];
-#pragma pop
-
-/* 8066F2B0-8066F2B4 000040 0001+03 0/0 0/0 0/0 .bss             @1010 */
-#pragma push
-#pragma force_active on
-static u8 lit_1010[1 + 3 /* padding */];
-#pragma pop
+#include "m_Do/m_Do_controller_pad.h"
 
 /* 8066F2B4-8066F2B8 -00001 0004+00 1/2 0/0 0/0 .bss             None */
-/* 8066F2B4 0001+01 data_8066F2B4 @1009 */
 /* 8066F2B6 0002+00 data_8066F2B6 None */
-static u8 data_8066F2B4;
 static bool noFallCheck;
 static bool hioInit;
 
@@ -2628,176 +2542,7 @@ static cPhs__Step daDo_Create(fopAc_ac_c* i_this) {
     return step;
 }
 
-/* 8066F32C-8066F330 0000BC 0004+00 0/0 0/0 0/0 .bss
- * sInstance__40JASGlobalInstance<19JASDefaultBankTable>        */
-#pragma push
-#pragma force_active on
-static u8 data_8066F32C[4];
-#pragma pop
-
-/* 8066F330-8066F334 0000C0 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14JASAudioThread>             */
-#pragma push
-#pragma force_active on
-static u8 data_8066F330[4];
-#pragma pop
-
-/* 8066F334-8066F338 0000C4 0004+00 0/0 0/0 0/0 .bss sInstance__27JASGlobalInstance<7Z2SeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_8066F334[4];
-#pragma pop
-
-/* 8066F338-8066F33C 0000C8 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8Z2SeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_8066F338[4];
-#pragma pop
-
-/* 8066F33C-8066F340 0000CC 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SceneMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8066F33C[4];
-#pragma pop
-
-/* 8066F340-8066F344 0000D0 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2StatusMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8066F340[4];
-#pragma pop
-
-/* 8066F344-8066F348 0000D4 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2DebugSys>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8066F344[4];
-#pragma pop
-
-/* 8066F348-8066F34C 0000D8 0004+00 0/0 0/0 0/0 .bss
- * sInstance__36JASGlobalInstance<15JAISoundStarter>            */
-#pragma push
-#pragma force_active on
-static u8 data_8066F348[4];
-#pragma pop
-
-/* 8066F34C-8066F350 0000DC 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14Z2SoundStarter>             */
-#pragma push
-#pragma force_active on
-static u8 data_8066F34C[4];
-#pragma pop
-
-/* 8066F350-8066F354 0000E0 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12Z2SpeechMgr2>               */
-#pragma push
-#pragma force_active on
-static u8 data_8066F350[4];
-#pragma pop
-
-/* 8066F354-8066F358 0000E4 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8JAISeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_8066F354[4];
-#pragma pop
-
-/* 8066F358-8066F35C 0000E8 0004+00 0/0 0/0 0/0 .bss sInstance__29JASGlobalInstance<9JAISeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_8066F358[4];
-#pragma pop
-
-/* 8066F35C-8066F360 0000EC 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAIStreamMgr>               */
-#pragma push
-#pragma force_active on
-static u8 data_8066F35C[4];
-#pragma pop
-
-/* 8066F360-8066F364 0000F0 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SoundMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8066F360[4];
-#pragma pop
-
-/* 8066F364-8066F368 0000F4 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAISoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_8066F364[4];
-#pragma pop
-
-/* 8066F368-8066F36C 0000F8 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13JAUSoundTable>              */
-#pragma push
-#pragma force_active on
-static u8 data_8066F368[4];
-#pragma pop
-
-/* 8066F36C-8066F370 0000FC 0004+00 0/0 0/0 0/0 .bss
- * sInstance__38JASGlobalInstance<17JAUSoundNameTable>          */
-#pragma push
-#pragma force_active on
-static u8 data_8066F36C[4];
-#pragma pop
-
-/* 8066F370-8066F374 000100 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAUSoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_8066F370[4];
-#pragma pop
-
-/* 8066F374-8066F378 000104 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SoundInfo>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8066F374[4];
-#pragma pop
-
-/* 8066F378-8066F37C 000108 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2SoundObjMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_8066F378[4];
-#pragma pop
-
-/* 8066F37C-8066F380 00010C 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2Audience>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8066F37C[4];
-#pragma pop
-
-/* 8066F380-8066F384 000110 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2FxLineMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8066F380[4];
-#pragma pop
-
-/* 8066F384-8066F388 000114 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2EnvSeMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8066F384[4];
-#pragma pop
-
-/* 8066F388-8066F38C 000118 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SpeechMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8066F388[4];
-#pragma pop
-
-/* 8066F38C-8066F390 00011C 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2WolfHowlMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_8066F38C[4];
-#pragma pop
+AUDIO_INSTANCES;
 
 /* 8066F1CC-8066F1EC -00001 0020+00 1/0 0/0 0/0 .data            l_daDo_Method */
 static actor_method_class l_daDo_Method = {

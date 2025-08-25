@@ -3,6 +3,8 @@
  *
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_bg_w_sv.h"
 #include "SSystem/SComponent/c_bg_s_chk.h"
 

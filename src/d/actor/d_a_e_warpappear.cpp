@@ -1,7 +1,9 @@
 /**
- * @file d_a_e_warpappear.cpp
+* @file d_a_e_warpappear.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_e_warpappear.h"
 #include "d/actor/d_a_e_s1.h"

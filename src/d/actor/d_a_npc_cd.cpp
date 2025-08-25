@@ -3,6 +3,8 @@
 // Translation Unit: a/npc/d_a_npc_cd
 //
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_cd.h"
 #include "d/actor/d_a_player.h"
 
@@ -357,6 +359,14 @@ J3DAnmTransform* daNpcCd_c::getAnmP(int param_1, int param_2) {
     return (J3DAnmTransform*)dComIfG_getObjectRes(anmTbl.arc_name, anmTbl.resource_index);
 }
 
+/* 803B3B8C-803B3C04 -00001 0078+00 2/2 0/0 0/0 .data            l_resNameTbl */
+static char* const* l_resNameTbl[30] = {
+    l_resMANa,  l_resMADa,  l_resMCNa,  l_resMONa,  l_resMANb,  l_resMANc,  l_resMASa,  l_resMBNa,
+    l_resMANa2, l_resMADa2, l_resMCNa2, l_resMONa2, l_resMANb2, l_resMANc2, l_resMASa2, l_resMBNa2,
+    l_resWANa,  l_resWADa,  l_resMATa,  l_resWCNa,  l_resWONa,  l_resWGNa,  l_resWANb,  l_resWANa2,
+    l_resWADa2, l_resMATa2, l_resWCNa2, l_resWONa2, l_resWGNa2, l_resWANb2,
+};
+
 /* 803B3C04-803B3CF4 010D24 00F0+00 2/2 0/0 0/0 .data            l_bmdTbl */
 static anmTblPrm const l_bmdTbl[30] = {
     {l_resMANa[0], 3},  {l_resMADa[0], 3},  {l_resMCNa[0], 3},  {l_resMONa[0], 3},
@@ -405,19 +415,6 @@ int daNpcCd_c::setAttention(int i_idx) {
     attention_info.position.set(current.pos.x, current.pos.y + HIO_atnOfs(i_idx), current.pos.z);
     return 1;
 }
-
-/* 803B3B80-803B3B8C 010CA0 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc   UNK */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 803B3B8C-803B3C04 -00001 0078+00 2/2 0/0 0/0 .data            l_resNameTbl */
-static char* const* l_resNameTbl[30] = {
-    l_resMANa,  l_resMADa,  l_resMCNa,  l_resMONa,  l_resMANb,  l_resMANc,  l_resMASa,  l_resMBNa,
-    l_resMANa2, l_resMADa2, l_resMCNa2, l_resMONa2, l_resMANb2, l_resMANc2, l_resMASa2, l_resMBNa2,
-    l_resWANa,  l_resWADa,  l_resMATa,  l_resWCNa,  l_resWONa,  l_resWGNa,  l_resWANb,  l_resWANa2,
-    l_resWADa2, l_resMATa2, l_resWCNa2, l_resWONa2, l_resWGNa2, l_resWANb2,
-};
 
 /* 80156B4C-80156C50 15148C 0104+00 0/0 0/0 1/1 .text            loadResrc__9daNpcCd_cFii */
 int daNpcCd_c::loadResrc(int param_0, int param_1) {

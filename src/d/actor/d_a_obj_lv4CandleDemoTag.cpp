@@ -3,12 +3,22 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_lv4CandleDemoTag.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_path.h"
 #include "m_Do/m_Do_hostIO.h"
 
-UNK_REL_DATA
+class dalv4CandleDemoTag_HIO_c : public mDoHIO_entry_c {
+public:
+    /* 80C5C9EC */ dalv4CandleDemoTag_HIO_c();
+    /* 80C5D07C */ virtual ~dalv4CandleDemoTag_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x4 */ s16 mEnemyWaitTime;
+};
 
 /* 80C5C9EC-80C5CA10 0000EC 0024+00 1/1 0/0 0/0 .text            __ct__24dalv4CandleDemoTag_HIO_cFv
  */

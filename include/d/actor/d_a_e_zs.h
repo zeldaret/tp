@@ -68,15 +68,4 @@ private:
 
 STATIC_ASSERT(sizeof(daE_ZS_c) == 0xa3c);
 
-class daE_ZS_HIO_c {
-public:
-    /* 808330AC */ daE_ZS_HIO_c();
-    /* 80834DDC */ virtual ~daE_ZS_HIO_c() {}
-
-    /* 0x4 */ s8 field_0x4;
-    /* 0x8 */ f32 field_0x8;
-    /* 0xc */ f32 field_0xc;
-};
-
-
 #endif /* D_A_E_ZS_H */

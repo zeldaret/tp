@@ -69,16 +69,4 @@ private:
 
 STATIC_ASSERT(sizeof(daObjBATTA_c) == 0x9f8);
 
-class daObj_BattaHIO_c : public JORReflexible {
-public:
-    /* 80BA9E2C */ daObj_BattaHIO_c();
-    /* 80BAC874 */ virtual ~daObj_BattaHIO_c() {}
-
-    void genMessage(JORMContext* ctx);
-
-    /* 0x4 */ s8 mId;
-    /* 0x8 */ f32 mModelScaleFemale;
-    /* 0xC */ f32 mModelScaleMale;
-};
-
 #endif /* D_A_OBJ_BATTA_H */

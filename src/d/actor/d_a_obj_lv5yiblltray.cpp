@@ -3,6 +3,8 @@
  * Snowpeak Ruins Cannon Ball Tray
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_lv5yiblltray.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_player.h"

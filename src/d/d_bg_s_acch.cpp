@@ -3,9 +3,11 @@
  * BG collision Actor Check
  */
 
-#include "d/d_bg_s_acch.h"
+#include "d/dolzel.h"
+
 #include "d/actor/d_a_player.h"
 #include "d/d_bg_s.h"
+#include "d/d_bg_s_acch.h"
 #include "d/d_com_inf_game.h"
 #include "global.h"
 
@@ -660,5 +662,3 @@ bool dBgS_Acch::ChkWallSort() {
 bool dBgS_Acch::ChkLineDown() {
     return m_flags & LINE_DOWN;
 }
-
-#pragma nosyminline on

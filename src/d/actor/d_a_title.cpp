@@ -1,3 +1,5 @@
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_title.h"
 #include "d/d_demo.h"
 #include "d/d_pane_class_alpha.h"
@@ -14,6 +16,22 @@
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "m_Do/m_Do_graphic.h"
 
+class daTit_HIO_c {
+public:
+    /* 80D66B0C */ daTit_HIO_c();
+
+    /* 80D67A08 */ virtual ~daTit_HIO_c() {}
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 mPSScaleX;
+    /* 0x0C */ f32 mPSScaleY;
+    /* 0x10 */ f32 mPSPosX;
+    /* 0x14 */ f32 mPSPosY;
+    /* 0x18 */ u8 mAppear;
+    /* 0x19 */ u8 mArrow;
+    /* 0x1A */ u8 field_0x1a;
+};
+
 /* 80D67D8C-80D67DA8 000014 001C+00 4/4 0/0 0/0 .bss             g_daTitHIO */
 static daTit_HIO_c g_daTitHIO;
 
@@ -24,8 +42,6 @@ static u8 const lit_3772[12] = {
 
 /* 80D67BE0-80D67BE8 00000C 0006+02 3/3 0/0 0/0 .rodata          l_arcName */
 static char const l_arcName[6] = "Title";
-
-UNK_REL_DATA;
 
 static procFunc daTitleProc[6] = {
     &daTitle_c::loadWait_proc, &daTitle_c::logoDispWait, &daTitle_c::logoDispAnm,

@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_doorboy.h"
 
 enum DoorBoy_RES_File_ID {
@@ -89,8 +91,6 @@ enum Motion {
     /* 0xA */ MOT_TALK_C = 0xA,
     /* 0xB */ MOT_SIT_TO_WOLF_A,
 };
-
-UNK_REL_DATA;
 
 /* 809ADB48-809ADB90 000020 0048+00 1/1 0/0 0/0 .data            l_bckGetParamList */
 static daNpc_GetParam2 l_bckGetParamList[6] = {
@@ -890,11 +890,6 @@ void daNpcDoorBoy_c::setMotionAnm(int i_index, f32 i_morf) {
 /* 809AD0C8-809AD0D0 002528 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__14daNpcDoorBoy_cFv */
 BOOL daNpcDoorBoy_c::drawDbgInfo() {
     return FALSE;
-}
-
-/* 809AD938-809AD93C 002D98 0004+00 1/0 0/0 0/0 .text adjustShapeAngle__14daNpcDoorBoy_cFv */
-void daNpcDoorBoy_c::adjustShapeAngle() {
-    /* empty function */
 }
 
 /* 809ADC24-809ADC44 -00001 0020+00 1/0 0/0 0/0 .data            daNpcDoorBoy_MethodTable */

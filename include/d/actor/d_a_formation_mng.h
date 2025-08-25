@@ -93,17 +93,12 @@ struct daFmtMng_Path_c {
 };
 
 struct FmtPos_c : public daFmtMng_Path_c {
-    /* 80836C24 */ ~FmtPos_c() {}
-    /* 80836C60 */ FmtPos_c() {}
     /* 0x10 */ cXyz field_0x10;
     /* 0x1C */ s16 field_0x1c;
     /* 0x1E */ s16 field_0x1e;
 };
 
 struct FmtMember_c {
-    /* 80837458 */ ~FmtMember_c() {}
-    /* 80837798 */ FmtMember_c() {}
-
     /* 0x00 */ u32 mNpcId;
     /* 0x04 */ cXyz field_0x04;
     /* 0x10 */ cXyz field_0x10;
@@ -145,7 +140,7 @@ struct daFmtMng_c : public fopAc_ac_c {
     /* 80837078 */ void executeFight();
     /* 808374B4 */ int create();
     /* 8083750C */ void create_init();
-    
+
     ~daFmtMng_c() {
         FmtMember_c* member = mMember;
         for (int i = 0; i < mFormationLine * mFormationRow; i++, member++) {
@@ -158,14 +153,14 @@ struct daFmtMng_c : public fopAc_ac_c {
     int getTimeHour() {
         if (dKy_darkworld_check()) {
             return dKy_getDarktime_hour();
-        } 
+        }
         return dKy_getdaytime_hour();
     }
 
     int getTimeMinute() {
         if (dKy_darkworld_check()) {
             return dKy_getDarktime_minute();
-        } 
+        }
         return dKy_getdaytime_minute();
     }
 

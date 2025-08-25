@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_kantera.h"
 #include "d/actor/d_a_player.h"
 #include "SSystem/SComponent/c_math.h"
@@ -27,8 +29,6 @@ const static dCcD_SrcCyl l_cyl_src = {
         40.0f                // mHeight
     }                        // mCyl
 };
-
-UNK_REL_DATA
 
 /* 80C38678-80C38974 000078 02FC+00 1/1 0/0 0/0 .text            Reflect__FP4cXyzRC13cBgS_PolyInfof
  */

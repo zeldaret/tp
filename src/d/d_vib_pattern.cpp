@@ -1,3 +1,5 @@
+#include "d/dolzel.h"
+
 #include "d/d_vibration.h"
 
 // Motor Shock patterns

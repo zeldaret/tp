@@ -3,27 +3,11 @@
  * Snowpeak Ruins Destructable Floor
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_lv5FloorBoard.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
-
-/* 80C6B198-80C6B1A4 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80C6B1A4-80C6B1B8 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
 
 /* 80C6A60C-80C6A658 0000EC 004C+00 1/1 0/0 0/0 .text            __ct__16daFlorBoad_HIO_cFv */
 daFlorBoad_HIO_c::daFlorBoad_HIO_c() {

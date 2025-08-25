@@ -3,6 +3,8 @@
  * Object - River Circle
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_rcircle.h"
 #include "d/d_procname.h"
 

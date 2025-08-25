@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_batta.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_cc_d.h"
@@ -11,7 +13,17 @@
 #include "d/d_menu_insect.h"
 #include "f_pc/f_pc_name.h"
 
-UNK_REL_DATA
+class daObj_BattaHIO_c : public JORReflexible {
+public:
+    /* 80BA9E2C */ daObj_BattaHIO_c();
+    /* 80BAC874 */ virtual ~daObj_BattaHIO_c() {}
+
+    void genMessage(JORMContext* ctx);
+
+    /* 0x4 */ s8 mId;
+    /* 0x8 */ f32 mModelScaleFemale;
+    /* 0xC */ f32 mModelScaleMale;
+};
 
 /* 80BACA90-80BACAD0 000020 0040+00 0/1 0/0 0/0 .data cc_sph_src__27@unnamed@d_a_obj_batta_cpp@ */
 namespace {

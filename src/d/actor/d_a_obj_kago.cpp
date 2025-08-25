@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_kago.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "Z2AudioLib/Z2Instances.h"
@@ -11,8 +13,6 @@
 #include "d/d_com_inf_game.h"
 #include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
-
-UNK_REL_DATA;
 
 /* 80C33DC0-80C33DD0 000020 0010+00 2/3 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[2][2] = {
@@ -600,8 +600,6 @@ int daObj_Kago_c::getWallAngle(s16 param_1, s16* param_2) {
     *param_2 = cM_atan2s(sp5c.x, sp5c.z) + 0x4000;
     return 1;
 }
-
-UNK_REL_BSS;
 
 /* 80C33F4C-80C33F50 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daObj_Kago_Param_c l_HIO;

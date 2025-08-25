@@ -3,6 +3,8 @@
  * Morpheel Tentacle
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_b_oh2.h"
 #include "d/actor/d_a_b_ob.h"
 #include "SSystem/SComponent/c_math.h"

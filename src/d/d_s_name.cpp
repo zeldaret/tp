@@ -3,6 +3,8 @@
  * File Select Scene
 */
 
+#include "d/dolzel.h"
+
 #include "d/d_s_name.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "d/d_com_inf_game.h"
@@ -13,11 +15,6 @@
 #include "m_Do/m_Do_machine.h"
 #include "m_Do/m_Do_mtx.h"
 #include "f_op/f_op_overlap_mng.h"
-
-/* 803C3040-803C304C 020160 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 804510F0-804510F8 0005F0 0008+00 2/2 0/0 0/0 .sbss            g_snHIO */
 static dSn_HIO_c g_snHIO;

@@ -3,6 +3,8 @@
 // Translation Unit: d/d_attention
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_attention.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "d/actor/d_a_player.h"

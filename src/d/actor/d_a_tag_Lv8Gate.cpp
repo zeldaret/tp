@@ -3,6 +3,8 @@
 // Translation Unit: d_a_tag_Lv8Gate
 //
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tag_Lv8Gate.h"
 
 #include "JSystem/J3DGraphBase/J3DMaterial.h"

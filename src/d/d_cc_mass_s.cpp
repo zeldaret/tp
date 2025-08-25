@@ -3,6 +3,8 @@
  *
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_cc_mass_s.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_cc_d.h"

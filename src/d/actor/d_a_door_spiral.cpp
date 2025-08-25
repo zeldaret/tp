@@ -2,6 +2,8 @@
 // Door Spiral
 //
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_door_spiral.h"
 #include "f_op/f_op_actor.h"
 

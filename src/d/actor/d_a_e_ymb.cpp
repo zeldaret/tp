@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_ymb.h"
 #include "d/actor/d_a_midna.h"
 #include "d/actor/d_a_obj_drop.h"
@@ -10,6 +12,20 @@
 #include "d/d_com_inf_game.h"
 #include <cmath.h>
 #include "Z2AudioLib/Z2Instances.h"
+
+struct daE_YMB_HIO_c {
+public:
+    /* 8081610C */ daE_YMB_HIO_c();
+    /* 80821460 */ virtual ~daE_YMB_HIO_c() {}
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 model_size;                  // モデルサイズ (Model Size)
+    /* 0x0C */ f32 fly_movement_speed;          // 飛行移動速度 (Fly Movement Speed)
+    /* 0x10 */ f32 swim_attack_speed;           // 泳ぎ攻撃速度 (Swim Attack Speed)
+    /* 0x14 */ f32 fly_attack_speed;            // 飛行攻撃速度 (Fly Attack Speed)
+    /* 0x18 */ f32 rollover_time;               // ひっくり返り時間 (Rollover Time)
+    /* 0x1C */ f32 fly_height_adjust;           // 飛行高度-加減値 (Fly Height Adjust)
+};
 
 enum E_YB_RES_File_ID {
     /* BCK */
@@ -151,8 +167,6 @@ enum Particle {
     /* 0x8643 */ ZL2_LIQUIDANIM_2 = 0x8643,
     /* 0x8646 */ ZL2_LIQUIDANIM_3 = 0x8646,
 };
-
-UNK_REL_DATA;
 
 namespace {
     /* 80821B30-80821B70 000020 0040+00 0/1 0/0 0/0 .data cc_ymb_src__23@unnamed@d_a_e_ymb_cpp@ */
@@ -503,8 +517,6 @@ void daE_YMB_c::setCameraSwitch() {
         dComIfGs_offOneZoneSwitch(15, fopAcM_GetRoomNo(this));
     }
 }
-
-UNK_REL_BSS;
 
 /* 80821E54-80821E58 -00001 0004+00 2/2 0/0 0/0 .bss             None */
 static u8 l_initHIO;

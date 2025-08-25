@@ -2,6 +2,8 @@
 // d_a_obj_swBallC
 //
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_swBallC.h"
 #include "d/actor/d_a_obj_swBallB.h"
 #include "d/actor/d_a_obj_carry.h"
@@ -63,24 +65,6 @@ void daObjSwBallC_c::setBaseMtx() {
 /* ############################################################################################## */
 /* 80CF6CD4-80CF6CD8 000000 0004+00 3/3 0/0 0/0 .rodata          l_color */
 static GXColor const l_color = {0x03, 0x96, 0xFF, 0xFF};
-
-/* 80CF6D90-80CF6D9C 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80CF6D9C-80CF6DB0 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
 
 /* 80CF6DB0-80CF6DB4 -00001 0004+00 4/4 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "P_LBswBC";

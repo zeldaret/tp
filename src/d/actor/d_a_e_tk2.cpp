@@ -1,7 +1,9 @@
 /**
- * @file d_a_e_tk2.cpp
+* @file d_a_e_tk2.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_e_tk2.h"
 #include "d/actor/d_a_e_tk_ball.h"

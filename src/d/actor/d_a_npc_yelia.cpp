@@ -3,10 +3,10 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_yelia.h"
 #include "d/actor/d_a_demo_item.h"
-
-UNK_REL_DATA
 
 /* 80B524FC-80B52514 000020 0018+00 1/1 0/0 0/0 .data            l_bmdData */
 static daNpc_GetParam1 l_bmdData[3] = {

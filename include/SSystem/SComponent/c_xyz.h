@@ -100,7 +100,7 @@ struct cXyz : Vec {
     void zero() { set(0.0f, 0.0f, 0.0f); }
 
     f32 getSquareMag() const { return VECSquareMag(this); }
-    f32 getSquareDistance(const Vec& other) const { return VECSquareDistance(this, &other); }
+    f32 getSquareDistance(const Vec& other) const { return PSVECSquareDistance(this, &other); }
 
     static f32 getNearZeroValue() { return 8e-11f; }
 

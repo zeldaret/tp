@@ -108,21 +108,4 @@ public:
 
 STATIC_ASSERT(sizeof(e_sm2_class) == 0xff0);
 
-class daE_SM2_HIO_c : public fOpAcm_HIO_entry_c {
-public:
-    /* 80798B4C */ daE_SM2_HIO_c();
-    /* 8079CE94 */ virtual ~daE_SM2_HIO_c() {}
-
-    void genMessage(JORMContext*);
-
-    /* 0x04 */ s16 unk_0x4;
-    /* 0x06 */ u8 merge_OFF;
-    /* 0x07 */ u8 unk_0x7;
-    /* 0x08 */ u8 color_debug_ON;
-    /* 0x0A */ s16 color_debug_R;
-    /* 0x0C */ s16 color_debug_G;
-    /* 0x0E */ s16 color_debug_B;
-};
-
-
 #endif /* D_A_E_SM2_H */

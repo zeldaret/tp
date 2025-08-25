@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_mb.h"
 #include "d/actor/d_a_b_bq.h"
 #include "d/d_com_inf_game.h"
@@ -89,8 +91,6 @@ static int daE_MB_Draw(e_mb_class* i_this) {
     dComIfGd_set3DlineMat(&i_this->mRopeMat);
     return 1;
 }
-
-UNK_REL_BSS;
 
 /* 80708C2D 0003+00 data_80708C2D None */
 static u8 l_initHIO;

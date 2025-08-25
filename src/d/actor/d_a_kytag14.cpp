@@ -4,6 +4,8 @@
  * Sets savefile spawn location
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_kytag14.h"
 #include "d/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"

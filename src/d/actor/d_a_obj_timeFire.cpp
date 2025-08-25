@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_timeFire.h"
 #include "d/d_com_inf_game.h"
 #include "dol2asm.h"

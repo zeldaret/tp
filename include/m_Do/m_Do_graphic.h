@@ -4,12 +4,6 @@
 #include "JSystem/JFramework/JFWDisplay.h"
 #include "dolphin/mtx.h"
 #include "global.h"
-// Possibly fakematch?
-// Using `sym off` for this header fixes cXyz::~cXyz being incorrectly placed in
-// a separate .text section.
-#pragma sym off
-#include "SSystem/SComponent/c_xyz.h"
-#pragma sym on
 
 int mDoGph_Create();
 void mDoGph_drawFilterQuad(s8 param_0, s8 param_1);

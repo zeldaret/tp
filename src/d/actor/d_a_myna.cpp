@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_myna.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_kankyo.h"
@@ -11,7 +13,33 @@
 #include "d/actor/d_a_tag_myna_light.h"
 #include "SSystem/SComponent/c_math.h"
 
-UNK_REL_DATA
+class daMyna_HIO_c : public mDoHIO_entry_c {
+public:
+    /* 8094A960 */ virtual ~daMyna_HIO_c() {}
+
+    // Must be inlined but defined in .cpp for sinit to match
+    inline daMyna_HIO_c();
+
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ f32 field_0x04;  // DAT_8094ba40
+    /* 0x08 */ f32 field_0x08;  // DAT_8094ba44
+    /* 0x0C */ f32 field_0x0C;  // DAT_8094ba48
+    /* 0x10 */ f32 field_0x10;  // DAT_8094ba4c
+    /* 0x14 */ f32 field_0x14;  // DAT_8094ba50
+    /* 0x18 */ f32 field_0x18;  // DAT_8094ba54
+    /* 0x1C */ f32 field_0x1C;  // DAT_8094ba58
+    /* 0x20 */ f32 field_0x20;  // DAT_8094ba5c
+    /* 0x24 */ s16 field_0x24;  // DAT_8094ba60
+    /* 0x26 */ s16 field_0x26;  // DAT_8094ba62
+    /* 0x28 */ s16 field_0x28;  // DAT_8094ba64
+    /* 0x2A */ s16 field_0x2A;  // DAT_8094ba66
+    /* 0x2C */ s16 field_0x2C;  // DAT_8094ba68
+    /* 0x2E */ s16 field_0x2E;  // DAT_8094ba6a
+    /* 0x30 */ s16 field_0x30;  // DAT_8094ba6c
+};
+
+STATIC_ASSERT(sizeof(daMyna_HIO_c) == 0x34);
 
 /* 8094B488-8094B590 000128 0108+00 2/3 0/0 0/0 .data            init_proc */
 static daMyna_c::ProcFunc init_proc[] = {
@@ -80,8 +108,6 @@ static int jntNodeCallBack(J3DJoint* i_jnt, int param_1) {
     }
     return 1;
 }
-
-UNK_REL_BSS
 
 /* 8094BA3C-8094BA70 000054 0034+00 15/15 0/0 0/0 .bss             l_HOSTIO */
 static daMyna_HIO_c l_HOSTIO;
@@ -1265,6 +1291,7 @@ void daMyna_c::deleteItem(int i_itemIndex) {
     mShopItems[i_itemIndex].mItemStatus = 4;
 }
 
+// this seems to be missing in the final REL??
 /* 80949144-80949190 0035C4 004C+00 0/0 0/0 0/0 .text            deleteItem__8daMyna_cFUi */
 void daMyna_c::deleteItem(fpc_ProcID i_itemId) {
     for (int i = 0; i < mNumShopItems; i++) {

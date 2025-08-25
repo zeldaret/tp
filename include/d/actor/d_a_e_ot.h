@@ -87,19 +87,4 @@ private:
 
 STATIC_ASSERT(sizeof(daE_OT_c) == 0xb98);
 
-class daE_OT_HIO_c {
-public:
-    /* 8073A2CC */ daE_OT_HIO_c();
-    /* 8073C9B0 */ virtual ~daE_OT_HIO_c() {}
-
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 mAttackSpeed;
-    /* 0x0C */ f32 mHeartDropRate;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1c;
-};
-
-
 #endif /* D_A_E_OT_H */

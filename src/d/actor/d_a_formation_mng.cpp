@@ -2,6 +2,8 @@
 // Formation Manager
 //
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_formation_mng.h"
 #include "d/actor/d_a_npc_fguard.h"
 #include "d/d_save.h"
@@ -62,25 +64,6 @@ void daFmtMng_c::initMemberPos() {
         mDoMtx_stack_c::transM(0.0f, 0.0f, -attr().field_0x10);
     }
 }
-
-/* ############################################################################################## */
-/* 8083792C-80837938 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80837938-8083794C 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
 
 /* 808379C4-80837A3C 000098 0078+00 6/7 0/0 0/0 .data            ActionTable__10daFmtMng_c */
 daFmtMng_c::ActionFunc daFmtMng_c::ActionTable[10] = {

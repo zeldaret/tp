@@ -3,13 +3,13 @@
  * Object - Zora River Stalactite
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_zrTurara.h"
 #include "d/d_bg_w.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_procname.h"
 #include "SSystem/SComponent/c_math.h"
-
-UNK_REL_DATA
 
 /* 80D4056C-80D4059C 0000EC 0030+00 1/1 0/0 0/0 .text            __ct__16daZrTurara_HIO_cFv */
 daZrTurara_HIO_c::daZrTurara_HIO_c() {

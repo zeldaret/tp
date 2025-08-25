@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_lv4chandelier.h"
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_obj_swchain.h"
@@ -12,6 +14,12 @@
 #include "dol2asm.h"
 
 #ifdef DEBUG
+class daObjLv4Chan_HIO_c : public mDoHIO_entry_c {
+public:
+    daObjLv4Chan_HIO_c();
+    void genMessage(JORMContext*);
+};
+
 daObjLv4Chan_HIO_c::daObjLv4Chan_HIO_c() {
 }
 

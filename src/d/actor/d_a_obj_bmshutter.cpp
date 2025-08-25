@@ -1,7 +1,9 @@
 /**
- * @file d_a_obj_bmshutter.cpp
+* @file d_a_obj_bmshutter.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_obj_bmshutter.h"
 #include "d/actor/d_a_player.h"
@@ -11,8 +13,6 @@
 //
 // External References:
 //
-
-UNK_REL_DATA;
 
 static const char* l_arcName = "K_saku00";
 

@@ -1,7 +1,9 @@
 /**
- * @file d_a_cstatue.cpp
+* @file d_a_cstatue.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_cstatue.h"
 #include <Z2AudioLib/Z2Instances.h>
@@ -10,9 +12,6 @@
 #include "d/actor/d_a_player.h"
 #include "d/d_cc_d.h"
 #include "d/d_tresure.h"
-
-UNK_REL_BSS;
-UNK_REL_DATA;
 
 static u8 const unused[12] = {};
 

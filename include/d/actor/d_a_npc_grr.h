@@ -73,7 +73,7 @@ public:
     /* 809E29B8 */ int waitMaro(void*);
     /* 809E2B48 */ int talk(void*);
     /* 809E2E84 */ int test(void*);
-    /* 809E3868 */ void adjustShapeAngle();
+    /* 809E3868 */ void adjustShapeAngle() {}
 
     static char* mEvtCutNameList;
     static cutFunc mEvtCutList[1];

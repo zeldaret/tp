@@ -3,6 +3,8 @@
  * Object - Boss Warp
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_bosswarp.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_midna.h"
@@ -135,24 +137,6 @@ extern "C" extern u8 data_8057B8D0[4];
 //
 // Declarations:
 //
-
-/* 8057B658-8057B664 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 8057B664-8057B678 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
 
 /* 8057B678-8057B67C -00001 0004+00 3/4 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "ef_Portal";

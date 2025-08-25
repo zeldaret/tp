@@ -1,5 +1,5 @@
 /**
- * d_bg_s_poly_pass_chk.h
+ * d_bg_s_poly_pass_chk.cpp
  * BG Collision Poly Passthrough Check
 */
 

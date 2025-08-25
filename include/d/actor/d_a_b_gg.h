@@ -175,21 +175,4 @@ public:
 
 STATIC_ASSERT(sizeof(daB_GG_c) == 0x116c);
 
-class daB_GG_HIO_c : public JORReflexible {
-public:
-    /* 805DE40C */ daB_GG_HIO_c();
-    /* 805EC9C4 */ virtual ~daB_GG_HIO_c() {}
-    void genMessage(JORMContext*) {}
-
-    /* 0x04 */ s8 id;
-    /* 0x08 */ f32 base_size;
-    /* 0x0C */ s16 takeoff_time;
-    /* 0x0E */ s16 fly_attack_wait_time;
-    /* 0x10 */ f32 fly_attack_speed;
-    /* 0x14 */ s16 takeoff2_time;
-    /* 0x16 */ s16 max_hp;
-    /* 0x18 */ f32 field_0x18;
-};
-
-
 #endif /* D_A_B_GG_H */

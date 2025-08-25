@@ -51,18 +51,4 @@ public:
 
 STATIC_ASSERT(sizeof(e_cr_class) == 0xa60);
 
-class daE_CR_HIO_c : public JORReflexible {
-public:
-    /* 8069800C */ daE_CR_HIO_c();
-    /* 806997F4 */ virtual ~daE_CR_HIO_c() {}
-
-    void genMessage(JORMContext*);
-
-    /* 0x04 */ s8 id;
-    /* 0x08 */ f32 base_size;
-    /* 0x0C */ f32 move_speed;
-    /* 0x10 */ f32 pl_search_range;
-};
-
-
 #endif /* D_A_E_CR_H */

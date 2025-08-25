@@ -3,6 +3,8 @@
  * Collection Menu
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_menu_collect.h"
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
@@ -32,11 +34,6 @@
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "d/d_menu_window.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
-
-/* 803BC380-803BC38C 0194A0 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 typedef void (dMenu_Collect2D_c::*initFunc)();
 static initFunc init[] = {

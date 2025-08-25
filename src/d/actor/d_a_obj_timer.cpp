@@ -3,11 +3,11 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_timer.h"
 #include "d/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
-
-UNK_REL_DATA
 
 /* 80485198-8048526C 000078 00D4+00 1/1 0/0 0/0 .text            _create__Q210daObjTimer5Act_cFv */
 int daObjTimer::Act_c::_create() {

@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_besu.h"
 #include "d/actor/d_a_npc_len.h"
 #include "d/actor/d_a_tag_push.h"
@@ -278,7 +280,6 @@ enum Event {
 };
 
 #ifndef DEBUG
-UNK_REL_DATA;
 #endif
 
 

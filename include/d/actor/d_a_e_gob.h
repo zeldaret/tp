@@ -99,22 +99,4 @@ public:
 
 STATIC_ASSERT(sizeof(e_gob_class) == 0xde4);
 
-class daE_GOB_HIO_c : public JORReflexible {
-public:
-    /* 806D808C */ daE_GOB_HIO_c();
-
-    void genMessage(JORMContext*);
-    /* 806DECD0 */ virtual ~daE_GOB_HIO_c() {}
-
-    /* 0x04 */ s8 id;
-    /* 0x08 */ f32 size;
-    /* 0x0C */ f32 normal_walk_speed;
-    /* 0x10 */ f32 battle_walk_speed;
-    /* 0x14 */ f32 roll_speed;
-    /* 0x18 */ s16 rotation_speed;
-    /* 0x1A */ s16 swing_time_a;
-    /* 0x1C */ s16 swing_time_b;
-};
-
-
 #endif /* D_A_E_GOB_H */

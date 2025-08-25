@@ -3,6 +3,8 @@
  * Menu HostIO functionality
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_menu_window_HIO.h"
 #include "d/d_com_inf_game.h"
 

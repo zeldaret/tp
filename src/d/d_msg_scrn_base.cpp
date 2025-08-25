@@ -1,3 +1,5 @@
+#include "d/dolzel.h"
+
 #include "d/d_msg_scrn_base.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
@@ -89,7 +91,7 @@ void dMsgScrnBase_c::drawOutFont(f32 param_0, f32 param_1, f32 param_2) {
 void dMsgScrnBase_c::setString(char* mpText, char* i_stringB) {
     for (int i = 0; i < 7; i++) {
         if (mpTm_c[i] != NULL) {
-            JUT_ASSERT(262, ((J2DTextBox*)(mpTm_c[i]->getPanePtr()))->getStringAllocByte() > std::strlen(mpText));
+            JUT_ASSERT(262, ((J2DTextBox*)(mpTm_c[i]->getPanePtr()))->getStringAllocByte() > strlen(mpText));
             if (i == 0) {
                 strcpy(((J2DTextBox*)mpTm_c[i]->getPanePtr())->getStringPtr(), mpText);
             } else {
@@ -104,7 +106,7 @@ void dMsgScrnBase_c::setString(char* mpText, char* i_stringB) {
 void dMsgScrnBase_c::setRubyString(char* mpText) {
     for (int i = 0; i < 3; i++) {
         if (mpTmr_c[i] != NULL) {
-            JUT_ASSERT(288, ((J2DTextBox*)(mpTmr_c[i]->getPanePtr()))->getStringAllocByte() > std::strlen(mpText));
+            JUT_ASSERT(288, ((J2DTextBox*)(mpTmr_c[i]->getPanePtr()))->getStringAllocByte() > strlen(mpText));
             strcpy(((J2DTextBox*)mpTmr_c[i]->getPanePtr())->getStringPtr(), mpText);
         }
     }

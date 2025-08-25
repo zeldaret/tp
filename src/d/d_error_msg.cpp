@@ -3,15 +3,17 @@
  * Disk Error Message screen handler
  */
 
+#include "d/dolzel.h"
+
 #include <cstring.h>
-#include "d/d_error_msg.h"
-#include "JSystem/J2DGraph/J2DTextBox.h"
-#include "JSystem/J2DGraph/J2DPicture.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
+#include "JSystem/J2DGraph/J2DPicture.h"
+#include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JUtility/JUTResFont.h"
-#include "m_Do/m_Do_graphic.h"
 #include "JSystem/JUtility/JUTTexture.h"
+#include "d/d_error_msg.h"
 #include "m_Do/m_Do_Reset.h"
+#include "m_Do/m_Do_graphic.h"
 
 #include "assets/black_tex.h"
 #include "assets/msg_data.h"
@@ -45,7 +47,7 @@ static void messageSet(u32 status, bool i_drawBg) {
     BMG_INF1* inf1 = (BMG_INF1*)&msg_data[0x20];
     const char* msg_p = (const char*)((u8*)inf1->getNext() + sizeof(JUTDataBlockHeader) + inf1->entries[status]);
 
-    JUT_ASSERT(102, std::strlen(msg_p)-1 < 512);
+    JUT_ASSERT(102, strlen(msg_p)-1 < 512);
 
     J2DTextBox tpane('TEXT1', JGeometry::TBox2<f32>(0.0f, 0.0f, 608.0f, 200.0f), (ResFONT*)font_data, msg_p, 512, HBIND_CENTER, VBIND_CENTER);
     J2DTextBox spane('TEXT2', JGeometry::TBox2<f32>(0.0f, 0.0f, 608.0f, 200.0f), (ResFONT*)font_data, msg_p, 512, HBIND_CENTER, VBIND_CENTER);

@@ -3,6 +3,8 @@
 // Translation Unit: d/d_ev_camera
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_ev_camera.h"
 #include "d/d_debug_viewer.h"
 #include "d/d_demo.h"

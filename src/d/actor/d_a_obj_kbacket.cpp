@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_kbacket.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "d/actor/d_a_npc.h"
@@ -14,8 +16,6 @@
 //
 // Declarations:
 //
-
-UNK_REL_DATA
 
 static s32 l_bmdData[4] = { 8, 0, 9, 0 };
 

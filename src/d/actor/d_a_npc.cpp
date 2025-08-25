@@ -1,3 +1,5 @@
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc.h"
 #include "d/actor/d_a_npc_tk.h"
 #include "d/actor/d_a_tag_evtarea.h"
@@ -530,11 +532,6 @@ int daNpcT_Path_c::chkPassed1(cXyz i_pnt, int i_num) {
 
     return 0;
 }
-
-/* 803B36A8-803B36B4 0107C8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 801464D8-8014698C 140E18 04B4+00 1/1 0/0 0/0 .text chkPassed2__13daNpcT_Path_cF4cXyzP4cXyzii */
 int daNpcT_Path_c::chkPassed2(cXyz i_pnt, cXyz* param_2, int i_num, int param_4) {

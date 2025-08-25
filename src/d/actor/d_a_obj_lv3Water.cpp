@@ -1,7 +1,9 @@
 /**
- * @file d_a_obj_lv3Water.cpp
+* @file d_a_obj_lv3Water.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_obj_lv3Water.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
@@ -10,23 +12,19 @@
 #include "d/d_procname.h"
 #include "f_op/f_op_msg_mng.h"
 
+class daLv3Water_HIO_c : public mDoHIO_entry_c {
+public:
+    /* 80C587CC */ daLv3Water_HIO_c();
+    /* 80C59C34 */ virtual ~daLv3Water_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x00 */ /* vtable */
+    /* 0x04 */ u8 field_0x04;
+};
+
 /* 80C5A314-80C5A31C 000014 0008+00 2/2 0/0 0/0 .bss             l_HIO */
 static daLv3Water_HIO_c l_HIO;
-
-/* 80C5A13C-80C5A148 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80C5A148-80C5A15C 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 
 /* 80C5A15C-80C5A1B0 -00001 0054+00 3/3 0/0 0/0 .data            l_resNameIdx */
 static char* l_resNameIdx[] = {
@@ -429,11 +427,6 @@ static int daLv3Water_Create(fopAc_ac_c* i_this) {
 }
 
 /* 80C59C34-80C59C90 001554 005C+00 2/1 0/0 0/0 .text            __dt__16daLv3Water_HIO_cFv */
-daLv3Water_HIO_c::~daLv3Water_HIO_c() {}
-
-/* 80C59D80-80C59E5C 0016A0 00DC+00 2/1 0/0 0/0 .text            __dt__12daLv3Water_cFv */
-daLv3Water_c::~daLv3Water_c() {}
-
 /* 80C5A228-80C5A248 -00001 0020+00 1/0 0/0 0/0 .data            l_daLv3Water_Method */
 static actor_method_class l_daLv3Water_Method = {
     (process_method_func)daLv3Water_Create,  (process_method_func)daLv3Water_Delete,

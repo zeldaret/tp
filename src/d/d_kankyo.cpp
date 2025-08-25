@@ -1,3 +1,5 @@
+#include "d/dolzel.h"
+
 #include "d/d_kankyo.h"
 #include <dolphin.h>
 #include <dolphin/gf/GFPixel.h>
@@ -219,11 +221,6 @@ int dKy_sense_pat_get() {
 
     return pat;
 }
-
-/* 803BBDB8-803BBDC4 018ED8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 803BBDC4-803BBEAC 018EE4 00E8+00 1/1 0/0 0/0 .data            lightStatusBase */
 static LightStatus lightStatusBase = {

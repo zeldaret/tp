@@ -1,3 +1,5 @@
+#include "d/dolzel.h"
+
 #include "d/d_resorce.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"

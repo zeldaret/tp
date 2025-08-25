@@ -33,7 +33,7 @@ public:
     /* 80CB242C */ void Delete();
     /* 80CB2610 */ ~daPoCandle_c();
 
-    /* 80CB3E3C */ cXyz getFirePos(); // implemented in d_a_obj_poFire.cpp
+    /* 80CB3E3C */ cXyz getFirePos() { return static_cast<cXyz>(mFirePos); }
     u8 getIDNum() {return mIDNum;}
     void setFireFlag(u8 flag) { field_0x5D2 = flag; }
 

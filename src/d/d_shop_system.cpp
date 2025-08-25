@@ -3,6 +3,8 @@
  * Main Shop System
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_shop_system.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_a_shop_item_static.h"
@@ -16,10 +18,6 @@
 #include "m_Do/m_Do_lib.h"
 #include "d/actor/d_a_tag_shop_item.h"
 
-/* 803BB898-803BB8A4 0189B8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 803BB8A4-803BB8C0 0189C4 001C+00 6/6 0/0 0/0 .data            dShopSystem_itemActor */
 static daTag_ShopItem_c* dShopSystem_itemActor[7] = {

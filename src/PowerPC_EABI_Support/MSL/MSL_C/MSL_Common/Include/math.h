@@ -68,16 +68,14 @@ double sqrt(double);
 double tan(double);
 float tanf(float);
 
-inline double sqrt_step(double tmpd, float mag) {
-    return tmpd * 0.5 * (3.0 - mag * (tmpd * tmpd));
-}
-
 inline float sqrtf(float mag) {
+    static const double _half = 0.5;
+    static const double _three = 3.0;
     if (mag > 0.0f) {
         double tmpd = __frsqrte(mag);
-        tmpd = sqrt_step(tmpd, mag);
-        tmpd = sqrt_step(tmpd, mag);
-        tmpd = sqrt_step(tmpd, mag);
+        tmpd = tmpd * _half * (_three - mag * (tmpd * tmpd));
+        tmpd = tmpd * _half * (_three - mag * (tmpd * tmpd));
+        tmpd = tmpd * _half * (_three - mag * (tmpd * tmpd));
         return mag * tmpd;
     } else if (mag < 0.0) {
         return NAN;

@@ -21,7 +21,7 @@ public:
     /* 80AAE7DC */ void Draw();
     /* 80AAE870 */ void createHeapCallBack(fopAc_ac_c*);
     /* 80AAE890 */ void ctrlJointCallBack(J3DJoint*, int);
-    /* 80AAE8E8 */ void getType();
+    /* 80AAE8E8 */ u8 getType();
     /* 80AAE94C */ void isDelete();
     /* 80AAE9D8 */ void reset();
     /* 80AAEBCC */ void ctrlSubFaceMotion(int);
@@ -57,11 +57,15 @@ public:
     /* 80AB1F74 */ void checkChangeJoint(int);
     /* 80AB1F84 */ void checkRemoveJoint(int);
 
+    MtxP getHeadMtx() { return mpMorf->getModel()->getAnmMtx(4); }
+
     static void* mCutNameList[3];
     static u8 mCutList[36];
 
 private:
-    /* 0x568 */ u8 field_0x568[0xfd4 - 0x568];
+    /* 0x568 */ u8 field_0x568[0x578 - 0x568];
+    /* 0x578 */ mDoExt_McaMorfSO* mpMorf;
+    /* 0x57C */ u8 field_0x57c[0xfd4 - 0x57c];
 };
 
 STATIC_ASSERT(sizeof(daNpc_Pouya_c) == 0xfd4);

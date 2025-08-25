@@ -1,3 +1,5 @@
+#include "d/dolzel.h"
+
 #include "d/d_msg_flow.h"
 #include "d/actor/d_a_alink.h"
 #include "d/d_com_static.h"
@@ -11,11 +13,6 @@
 #include "d/actor/d_a_myna.h"
 #include "d/actor/d_a_obj_ss_base.h"
 #include "SSystem/SComponent/c_math.h"
-
-/* 803C14B8-803C14C4 01E5D8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 80249F00-80249F48 244840 0048+00 0/0 5/5 154/154 .text            __ct__10dMsgFlow_cFv */
 dMsgFlow_c::dMsgFlow_c() {

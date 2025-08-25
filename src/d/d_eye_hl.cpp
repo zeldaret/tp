@@ -3,6 +3,8 @@
  * dolzel2 - Eye Highlight Management
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_eye_hl.h"
 #include "JSystem/J3DGraphBase/J3DTexture.h"
 #include "d/d_com_inf_game.h"

@@ -3,6 +3,8 @@
  * Object - Golden Beetle
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_kabuto.h"
 #include "SSystem/SComponent/c_math.h"
 #include "m_Do/m_Do_lib.h"

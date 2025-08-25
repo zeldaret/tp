@@ -3,6 +3,8 @@
 // NPC - Trout
 //
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_tr.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_com_inf_game.h"

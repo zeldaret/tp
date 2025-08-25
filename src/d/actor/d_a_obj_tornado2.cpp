@@ -3,6 +3,8 @@
  * Strong Wind Column
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_tornado2.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_com_inf_game.h"

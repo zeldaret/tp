@@ -3,6 +3,8 @@
  * @brief Tag - Creates Plumm's actor.
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tag_myna2.h"
 #include "d/d_procname.h"
 

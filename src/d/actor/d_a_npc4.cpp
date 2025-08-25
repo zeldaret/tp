@@ -1,3 +1,5 @@
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc.h"
 #include "d/actor/d_a_npc_tk.h"
 #include "d/d_msg_object.h"

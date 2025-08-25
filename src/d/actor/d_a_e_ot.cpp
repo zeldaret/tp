@@ -3,10 +3,25 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_ot.h"
 #include "Z2AudioLib/Z2Instances.h"
-UNK_REL_DATA
 #include "f_op/f_op_actor_enemy.h"
+
+class daE_OT_HIO_c {
+public:
+    /* 8073A2CC */ daE_OT_HIO_c();
+    /* 8073C9B0 */ virtual ~daE_OT_HIO_c() {}
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 mAttackSpeed;
+    /* 0x0C */ f32 mHeartDropRate;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ f32 field_0x1c;
+};
 
 enum Animation {
     /* 0x6 */ ANM_BORN = 6,
@@ -79,26 +94,8 @@ static dCcD_SrcSph cc_ot_at_src = {
 
 }  // namespace
 
-UNK_BSS(1109)
-UNK_BSS(1107)
-UNK_BSS(1105)
-UNK_BSS(1104)
-UNK_BSS(1099)
-UNK_BSS(1097)
-UNK_BSS(1095)
-UNK_BSS(1094)
-UNK_BSS(1057)
-UNK_BSS(1055)
-UNK_BSS(1053)
-UNK_BSS(1052)
-UNK_BSS(1014)
-UNK_BSS(1012)
-UNK_BSS(1010)
-
 /* 8073D2AC-8073D2B0 -00001 0004+00 2/2 0/0 0/0 .bss             None */
-/* 8073D2AC 0001+00 data_8073D2AC @1009 */
 /* 8073D2AD 0003+00 data_8073D2AD None */
-static u8 data_8073D2AC;
 static bool hioInit;
 
 /* 8073D2BC-8073D2DC 000054 0020+00 4/4 0/0 0/0 .bss             l_HIO */

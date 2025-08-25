@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_kolin.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_npc_len.h"
@@ -163,8 +165,6 @@ enum Event {
     /* 0x7 */ EVENT_DEMO13_STB,
     /* 0x8 */ EVENT_CLOTH_TRY,
 };
-
-UNK_REL_DATA;
 
 /* 8055A8E8-8055A900 000020 0018+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[3][2] = {
@@ -991,8 +991,6 @@ void daNpc_Kolin_c::beforeMove() {
         attention_info.flags = 0;
     }
 }
-
-UNK_REL_BSS;
 
 /* 8055B41C-8055B420 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daNpc_Kolin_Param_c l_HIO;

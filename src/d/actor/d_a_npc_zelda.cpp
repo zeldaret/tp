@@ -3,13 +3,13 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_zelda.h"
 #include "JSystem/JHostIO/JORFile.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "d/actor/d_a_hozelda.h"
 #include "d/d_debug_viewer.h"
-
-UNK_REL_DATA
 
 #if DEBUG
 #define HIO_PARAM(i_this) (i_this->mHIO->param)
@@ -19,13 +19,10 @@ UNK_REL_DATA
 
 static u32 l_bmdData[2] = { 11, 1 };
 
-#pragma push
-#pragma force_active on
 static daNpcT_evtData_c l_evtList[2] = {
     {"", 0},
     {"NO_RESPONSE", 0},
 };
-#pragma pop
 
 static char* l_resNameList[2] = {
     "",
@@ -62,7 +59,7 @@ static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_motionSequenceData[8] = {
 };
 
 const char* daNpc_Zelda_c::mCutNameList = "";
-cutFunc daNpc_Zelda_c::mCutList[1] = { 0 };
+daNpc_Zelda_c::cutFunc daNpc_Zelda_c::mCutList[1] = { 0 };
 
 #if DEBUG
 static daNpc_Zelda_HIO_c l_HIO;
@@ -204,7 +201,7 @@ int daNpc_Zelda_c::create() {
         J3DModelData* unusedModelData = mpMorf[0]->getModel()->getModelData();
         fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -200.0f, -100.0f, -200.0f, 200.0f, 300.0f, 200.0f);
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_8000000);
+        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_80000000);
         mSound.init(&current.pos, &eyePos, 3, 1);
 
 #if DEBUG
@@ -245,15 +242,15 @@ int daNpc_Zelda_c::create() {
     return loadResult;
 }
 
-f32 dummy0() {
+static f32 dummy0() {
     return 0.0f;
 }
 
-f32 dummy1() {
+static f32 dummy1() {
     return 65536.0f;
 }
 
-f32 dummy2() {
+static f32 dummy2() {
     return 0.2f;
 }
 
@@ -829,62 +826,6 @@ static int daNpc_Zelda_Draw(void* param_0) {
 /* 80B76DE0-80B76DE8 001DA0 0008+00 1/0 0/0 0/0 .text            daNpc_Zelda_IsDelete__FPv */
 static int daNpc_Zelda_IsDelete(void* param_0) {
     return 1;
-}
-
-/* 80B77DD8-80B77E84 002D98 00AC+00 1/1 0/0 0/0 .text
- * __ct__13daNpc_Zelda_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc
- */
-daNpc_Zelda_c::daNpc_Zelda_c(daNpcT_faceMotionAnmData_c const* param_0,
-                                 daNpcT_motionAnmData_c const* param_1,
-                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_2,
-                                 int param_3,
-                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_4,
-                                 int param_5, daNpcT_evtData_c const* param_6, char** param_7) :
-    daNpcT_c(param_0, param_1, param_2, param_3, param_4, param_5, param_6, param_7) {
-    OS_REPORT("|%06d:%x|daNpc_Zelda_c -> コンストラクト\n", g_Counter.mCounter0, this);
-}
-
-/* 80B77F14-80B77F1C 002ED4 0008+00 1/0 0/0 0/0 .text getEyeballRMaterialNo__13daNpc_Zelda_cFv */
-u16 daNpc_Zelda_c::getEyeballRMaterialNo() {
-    return 5;
-}
-
-/* 80B77F1C-80B77F24 002EDC 0008+00 1/0 0/0 0/0 .text getEyeballLMaterialNo__13daNpc_Zelda_cFv */
-u16 daNpc_Zelda_c::getEyeballLMaterialNo() {
-    return 4;
-}
-
-/* 80B77F24-80B77F2C 002EE4 0008+00 1/0 0/0 0/0 .text            getHeadJointNo__13daNpc_Zelda_cFv
- */
-s32 daNpc_Zelda_c::getHeadJointNo() {
-    return 4;
-}
-
-/* 80B77F2C-80B77F34 002EEC 0008+00 1/0 0/0 0/0 .text            getNeckJointNo__13daNpc_Zelda_cFv
- */
-s32 daNpc_Zelda_c::getNeckJointNo() {
-    return 3;
-}
-
-/* 80B77F34-80B77F3C 002EF4 0008+00 1/0 0/0 0/0 .text getBackboneJointNo__13daNpc_Zelda_cFv */
-s32 daNpc_Zelda_c::getBackboneJointNo() {
-    return 1;
-}
-
-/* 80B77F3C-80B77F4C 002EFC 0010+00 1/0 0/0 0/0 .text            checkChangeJoint__13daNpc_Zelda_cFi
- */
-int daNpc_Zelda_c::checkChangeJoint(int param_0) {
-    return param_0 == 4;
-}
-
-/* 80B77F4C-80B77F5C 002F0C 0010+00 1/0 0/0 0/0 .text            checkRemoveJoint__13daNpc_Zelda_cFi
- */
-int daNpc_Zelda_c::checkRemoveJoint(int param_0) {
-    return param_0 == 17;
-}
-
-/* 80B77F5C-80B77FA4 002F1C 0048+00 2/1 0/0 0/0 .text            __dt__19daNpc_Zelda_Param_cFv */
-daNpc_Zelda_Param_c::~daNpc_Zelda_Param_c() {
 }
 
 /* 80B78240-80B78260 -00001 0020+00 1/0 0/0 0/0 .data            daNpc_Zelda_MethodTable */

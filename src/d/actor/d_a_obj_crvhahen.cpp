@@ -1,7 +1,9 @@
 /**
- * @file d_a_obj_crvhahen.cpp
+* @file d_a_obj_crvhahen.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_obj_crvhahen.h"
 

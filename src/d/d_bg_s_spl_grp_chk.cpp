@@ -3,6 +3,8 @@
  * BG Collision Special Group Check
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_bg_s_spl_grp_chk.h"
 
 /* 80078B90-80078BB0 0734D0 0020+00 0/0 2/2 3/3 .text            Set__14dBgS_SplGrpChkFR4cXyzf */

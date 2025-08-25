@@ -1,3 +1,5 @@
+#include "d/dolzel.h"
+
 #include "d/d_vibration.h"
 #include "d/d_com_inf_game.h"
 #include "m_Do/m_Do_controller_pad.h"

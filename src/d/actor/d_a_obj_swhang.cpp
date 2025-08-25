@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_swhang.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_player.h"
@@ -69,8 +71,6 @@ void daObjSwHang_c::setBaseMtx() {
     mDoMtx_stack_c::YrotM(shape_angle.y);
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
-
-UNK_REL_DATA
 
 /* 80CFD2D8-80CFD2EC -00001 0014+00 3/3 0/0 0/0 .data            l_arcName */
 static char* l_arcName[5] = {
@@ -526,6 +526,11 @@ static int daObjSwHang_MoveBGExecute(daObjSwHang_c* i_this) {
 /* 80CFCF60-80CFCF8C 0016A0 002C+00 1/0 0/0 0/0 .text daObjSwHang_MoveBGDraw__FP13daObjSwHang_c */
 static int daObjSwHang_MoveBGDraw(daObjSwHang_c* i_this) {
     return i_this->Draw();
+}
+
+static void dummy() {
+    ((dEvLib_callback_c*)NULL)->eventStart();
+    delete (cCcD_GStts*)NULL;
 }
 
 /* 80CFD3EC-80CFD40C -00001 0020+00 1/0 0/0 0/0 .data            daObjSwHang_METHODS */

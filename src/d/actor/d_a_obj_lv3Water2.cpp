@@ -3,10 +3,21 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_lv3Water2.h"
 #include "d/d_com_inf_game.h"
 #include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_graphic.h"
+
+struct daLv3Water2_HIO_c : public mDoHIO_entry_c {
+    /* 80C5A40C */ daLv3Water2_HIO_c();
+    /* 80C5B14C */ ~daLv3Water2_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ u8 mLevelControlWaitFrames;
+};
 
 typedef void (daLv3Water2_c::*actionFunc)(void);
 
@@ -27,9 +38,6 @@ void daLv3Water2_HIO_c::genMessage(JORMContext* ctx) {
     ctx->genSlider("wait time", &mLevelControlWaitFrames, 0, 255, 0, NULL, 0xffff, 0xffff, 0x200, 0x18);
 }
 #endif
-
-/* 80C5B3A4-80C5B3B0 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-UNK_REL_DATA;
 
 /* 80C5B3C4-80C5B3C8 -00001 0004+00 3/3 0/0 0/0 .data            l_resNameIdx */
 static char* l_resNameIdx[] = {"Kr03wat04"};

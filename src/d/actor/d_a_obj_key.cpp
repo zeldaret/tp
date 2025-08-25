@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_key.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
@@ -14,6 +16,18 @@
 #include "d/actor/d_a_e_oc.h"
 #include "d/actor/d_a_e_db.h"
 #include "SSystem/SComponent/c_counter.h"
+
+class daObj_Key_HIO_c : public JORReflexible{
+public:
+    /* 80C3F40C */ daObj_Key_HIO_c();
+    /* 80C40F28 */ virtual ~daObj_Key_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x4 */ s8 id;
+    /* 0x8 */ f32 size;
+    /* 0xC */ f32 chain_size;
+};
 
 /* 80C3F40C-80C3F43C 0000EC 0030+00 1/1 0/0 0/0 .text            __ct__15daObj_Key_HIO_cFv */
 daObj_Key_HIO_c::daObj_Key_HIO_c() {

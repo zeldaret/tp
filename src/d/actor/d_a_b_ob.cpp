@@ -3,6 +3,8 @@
 // Translation Unit: d_a_b_ob
 //
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_b_ob.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "SSystem/SComponent/c_math.h"
@@ -18,8 +20,6 @@
 #include "d/actor/d_a_obj_ystone.h"
 #include "Z2AudioLib/Z2Instances.h"
 
-
-UNK_REL_DATA;
 
 /* 8061056C-806105BC 0000EC 0050+00 1/1 0/0 0/0 .text            __ct__12daB_OB_HIO_cFv */
 daB_OB_HIO_c::daB_OB_HIO_c() {
@@ -101,8 +101,6 @@ static int TailCallBack(J3DJoint* i_joint, int param_1) {
 
     return 1;
 }
-
-UNK_REL_BSS;
 
 static u8 data_8061B4FD;
 

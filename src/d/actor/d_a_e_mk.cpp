@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_mk.h"
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
@@ -16,8 +18,6 @@
 #include "d/actor/d_a_e_mk_bo.h"
 #include "d/d_camera.h"
 #include "Z2AudioLib/Z2Instances.h"
-
-UNK_REL_BSS;
 
 /* 8071412C-8071417C 0000EC 0050+00 1/1 0/0 0/0 .text            __ct__12daE_MK_HIO_cFv */
 daE_MK_HIO_c::daE_MK_HIO_c() {

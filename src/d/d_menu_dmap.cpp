@@ -1,3 +1,5 @@
+#include "d/dolzel.h"
+
 #include "d/d_menu_dmap.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
@@ -27,11 +29,6 @@
 #else
 #define POINTER_OPT 0
 #endif
-
-/* 803BC7E0-803BC7EC 019900 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 typedef void (dMenu_Dmap_c::*ProcFunc)();
 

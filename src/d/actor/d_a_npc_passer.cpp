@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_passer.h"
 #include "dol2asm.h"
 
@@ -298,24 +300,6 @@ extern "C" u8 m_seq26_funcTbl__13daNpcPasser_c[36];
 
 /* 80AA7364-80AA7370 000960 000C+00 1/1 0/0 0/0 .data            m_seq27_funcTbl__13daNpcPasser_c */
 extern "C" u8 m_seq27_funcTbl__13daNpcPasser_c[12];
-
-/* 80AA6A04-80AA6A10 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80AA6A10-80AA6A24 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
 
 /* 80AA6A24-80AA6A30 -00001 000C+00 0/1 0/0 0/0 .data            @3829 */
 #pragma push

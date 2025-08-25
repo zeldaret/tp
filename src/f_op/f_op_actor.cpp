@@ -1,14 +1,16 @@
 /**
  * f_op_actor.cpp
  * Actor base process class
- */
+*/
 
-#include "f_op/f_op_actor.h"
+#include "d/dolzel.h"
+
 #include "d/actor/d_a_alink.h"
 #include "d/d_com_inf_actor.h"
 #include "d/d_com_static.h"
 #include "d/d_demo.h"
 #include "d/d_s_play.h"
+#include "f_op/f_op_actor.h"
 #include "f_op/f_op_actor_tag.h"
 #include "f_op/f_op_draw_tag.h"
 #include "f_pc/f_pc_manager.h"

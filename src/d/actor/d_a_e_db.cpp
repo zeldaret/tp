@@ -3,12 +3,27 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_db.h"
 #include "d/actor/d_a_e_db_leaf.h"
 #include "f_op/f_op_kankyo_mng.h"
-
-UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
+
+class daE_DB_HIO_c : public JORReflexible {
+public:
+    /* 8069AAEC */ daE_DB_HIO_c();
+    /* 806A13D8 */ virtual ~daE_DB_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ s8 id;
+    /* 0x08 */ f32 base_size;
+    /* 0x0C */ f32 flower_size;
+    /* 0x10 */ f32 appear_size;
+    /* 0x14 */ s16 roof_reappear_interval;
+    /* 0x16 */ s16 attack_freq;
+};
 
 enum daE_DB_ACTION {
     ACTION_STAY,

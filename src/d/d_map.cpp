@@ -3,6 +3,9 @@
  *
  */
 
+// not sure if this object is supposed to have a PCH -
+// including it completely messes up weak function ordering
+
 #define NO_INLINE_DLSTBASE_DRAW
 
 #include "d/d_map.h"

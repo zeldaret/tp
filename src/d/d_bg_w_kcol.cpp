@@ -1,3 +1,5 @@
+#include "d/dolzel.h"
+
 #include "d/d_bg_w_kcol.h"
 #include "d/d_com_inf_game.h"
 #include "dol2asm.h"

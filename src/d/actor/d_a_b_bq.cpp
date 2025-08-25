@@ -3,6 +3,8 @@
  * Boss Baba (Diababa)
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_b_bq.h"
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_player.h"
@@ -193,8 +195,6 @@ enum daB_BQ_JNT {
     JNT_SLEAF_UR1,
     JNT_SLEAF_UR2,
 };
-
-UNK_REL_DATA;
 
 /* 805B356C-805B35A0 0000EC 0034+00 1/1 0/0 0/0 .text            __ct__12daB_BQ_HIO_cFv */
 daB_BQ_HIO_c::daB_BQ_HIO_c() {

@@ -2,6 +2,8 @@
 // d/shop/d_shop_item_ctrl
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_shop_item_ctrl.h"
 #include "SSystem/SComponent/c_lib.h"
 #include "d/d_a_shop_item_static.h"

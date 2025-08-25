@@ -1,29 +1,13 @@
 /**
- * @file d_a_obj_sWallShutter.cpp
+* @file d_a_obj_sWallShutter.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_obj_sWallShutter.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_com_inf_game.h"
-
-/* 80598FC8-80598FD4 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80598FD4-80598FE8 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
 
 /* 80598FE8-80598FF0 -00001 0008+00 3/3 0/0 0/0 .data            l_resNameIdx */
 static char* l_resNameIdx[2] = {
