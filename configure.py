@@ -1640,7 +1640,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_mstop"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_spring"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_tag_statue_evt"),
-    ActorRel(NonMatching, "d_a_ykgr"),
+    ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_ykgr"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_L7demo_dr"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_L7low_dr"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_L7op_demo_dr"),

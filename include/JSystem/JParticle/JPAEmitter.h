@@ -120,6 +120,7 @@ public:
     u8 getResourceManagerID() const { return mResMgrID; }
     u8 getGroupID() const { return mGroupID; }
     u8 getDrawTimes() const { return mDrawTimes; }
+    f32 getRate() const { return mRate; }
     void setRate(f32 rate) { mRate = rate; }
     void setDirectionalSpeed(f32 i_speed) { mDirSpeed = i_speed; }
     void setRandomDirectionSpeed(f32 i_speed) { mRndmDirSpeed = i_speed; }

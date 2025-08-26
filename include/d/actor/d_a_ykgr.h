@@ -8,23 +8,6 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_particle.h"
 
-struct daYkgr_HIO_c : public mDoHIO_entry_c {
-    daYkgr_HIO_c();
-    /* 805A8D98 */ virtual ~daYkgr_HIO_c();
-
-    void genMessage(JORMContext*);
-
-    /* 0x04 */ u8 field_0x4;
-    /* 0x08 */ s32 field_0x8;
-    /* 0x0C */ s32 field_0xc;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1c;
-    /* 0x20 */ f32 field_0x20;
-    /* 0x24 */ f32 field_0x24;
-};
-
 struct dPa_YkgrPcallBack : public JPAParticleCallBack {
     dPa_YkgrPcallBack();
     /* 805A8E3C */ ~dPa_YkgrPcallBack() {}
@@ -67,22 +50,10 @@ public:
         }
     }
 
-    void set_mtx() {
-        camera_class* iVar1 = dComIfGp_getCamera(0);
-        cXyz local_28;
-        current.pos = *fopCamM_GetEye_p(iVar1);
-        dKyr_get_vectle_calc(&iVar1->lookat.eye, &iVar1->lookat.center, &local_28);
-        current.angle.y = cM_atan2s(local_28.x, local_28.z);
-        current.angle.x = -cM_atan2s(
-            local_28.y, JMAFastSqrt((local_28.x * local_28.x + local_28.z * local_28.z)));
-        mDoMtx_stack_c::transS(current.pos.x, current.pos.y,
-                               current.pos.z);
-        mDoMtx_stack_c::YrotM(current.angle.y);
-        mDoMtx_stack_c::XrotM(current.angle.x);
-        MTXCopy(mDoMtx_stack_c::get(), field_0x570);
-    }
+    inline void set_mtx();
 
     int _create();
+    int _delete();
     int _execute();
     int _draw();
 
