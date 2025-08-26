@@ -433,6 +433,68 @@ static daNpc_GetParam2 l_btpGetParamList[1] = {
     {8, 2, 0},
 };
 
+enum kasi_hana_RES_File_ID {
+    /* BMDR */
+    /* 0x5 */ BMDR_HANA = 0x5,
+
+    /* BTP */
+    /* 0x8 */ BTP_HANA = 0x8,
+
+    /* EVT */
+    /* 0xB */ EVT_EVENT_LIST = 0xB,
+};
+
+enum girls_RES_File_ID {
+    /* BCK */
+    /* 0x3 */ BCK_MICH_IYAN_WAIT = 0x3,
+    /* 0x4 */ BCK_MICH_KYA_TALK,
+    /* 0x5 */ BCK_MICH_OUEN_WAIT_A,
+    /* 0x6 */ BCK_MICH_OUEN_WAIT_B,
+};
+
+enum Wgeneral_RES_File_ID {
+    /* BCK */
+    /* 0x03 */ BCK_W_2LADYTALK_A = 0x3,
+    /* 0x04 */ BCK_W_2LADYTALK_B,
+    /* 0x05 */ BCK_W_2NORMALTALK_A,
+    /* 0x06 */ BCK_W_2NORMALTALK_B,
+    /* 0x07 */ BCK_W_BROWSE_A,
+    /* 0x08 */ BCK_W_BROWSE_B,
+    /* 0x09 */ BCK_W_CELLME,
+    /* 0x0A */ BCK_W_LOOK_A,
+    /* 0x0B */ BCK_W_LOOK_B,
+    /* 0x0C */ BCK_W_MARO_DANCE,
+    /* 0x0D */ BCK_W_RUN_A,
+    /* 0x0E */ BCK_W_RUN_B,
+    /* 0x0F */ BCK_W_SING,
+    /* 0x10 */ BCK_W_SIT_TO_WOLF_A,
+    /* 0x11 */ BCK_W_SIT_TO_WOLF_B,
+    /* 0x12 */ BCK_W_SITTALK_A,
+    /* 0x13 */ BCK_W_SITTALK_A_B,
+    /* 0x14 */ BCK_W_SITTALK_B,
+    /* 0x15 */ BCK_W_SITTALK_B_B,
+    /* 0x16 */ BCK_W_SITWAIT_A,
+    /* 0x17 */ BCK_W_SITWAIT_B,
+    /* 0x18 */ BCK_W_SURPRISE,
+    /* 0x19 */ BCK_W_TALK_A,
+    /* 0x1A */ BCK_W_TALK_B,
+    /* 0x1B */ BCK_W_TALK_B_WALL,
+    /* 0x1C */ BCK_W_TALK_C,
+    /* 0x1D */ BCK_W_TALK_WALL,
+    /* 0x1E */ BCK_W_TO_WOLF,
+    /* 0x1F */ BCK_W_WAIT_A,
+    /* 0x20 */ BCK_W_WAIT_B,
+    /* 0x21 */ BCK_W_WAIT_WALL,
+    /* 0x22 */ BCK_W_WALK_A,
+    /* 0x23 */ BCK_W_WALK_B,
+};
+
+enum RES_Name {
+    /* 0x0 */ KASI_HANA,
+    /* 0x1 */ GIRLS,
+    /* 0x2 */ WGENERAL,
+};
+
 /* 80A214B4-80A214C0 -00001 000C+00 5/7 0/0 0/0 .data            l_arcNames */
 static char* l_arcNames[3] = {
     "kasi_hana",
