@@ -1,6 +1,7 @@
 #ifndef MSL_MATH_H_
 #define MSL_MATH_H_
 
+#include "global.h"
 #include "float.h"
 
 #define NAN (*(float*) __float_nan)
@@ -68,6 +69,11 @@ double sqrt(double);
 double tan(double);
 float tanf(float);
 
+#if PLATFORM_SHIELD
+inline float sqrtf(float mag) {
+    return sqrt(mag);
+}
+#else
 inline float sqrtf(float mag) {
     static const double _half = 0.5;
     static const double _three = 3.0;
@@ -85,6 +91,7 @@ inline float sqrtf(float mag) {
         return mag;
     }
 }
+#endif
 
 inline float atan2f(float y, float x) {
     return (float)atan2(y, x);
