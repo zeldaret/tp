@@ -579,7 +579,7 @@ int dKy_WolfEyeLight_set(cXyz* pos_p, f32 angle_x, f32 angle_y, f32 cutoff, GXCo
 BOOL dKy_TeachWind_existence_chk();
 u8 dKy_darkworld_stage_check(char const* stageName, int roomNo);
 BOOL dKy_withwarp_capture_check();
-bool dKy_darkworld_check();
+u8 dKy_darkworld_check();
 void dKy_undwater_filter_draw();
 BOOL dKy_camera_water_in_status_check();
 int dKy_Outdoor_check();
