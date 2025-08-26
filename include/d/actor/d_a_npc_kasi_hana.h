@@ -199,7 +199,6 @@ private:
     /* 0x1443 */ bool mEscape;
     /* 0x1444 */ u8 field_0x1444;
     /* 0x1445 */ bool field_0x1445;
-    // /* 0x1446 */ u8 field_0x1446[0x1448 - 0x1446];
     /* 0x1448 */ daNpcKasi_Mng_c mKasiMng;
 };
 

@@ -12,6 +12,139 @@
 #include "d/d_timer.h"
 #include "Z2AudioLib/Z2Instances.h"
 
+enum kasi_hana_RES_File_ID {
+    /* BMDR */
+    /* 0x5 */ BMDR_HANA = 0x5,
+
+    /* BTP */
+    /* 0x8 */ BTP_HANA = 0x8,
+
+    /* EVT */
+    /* 0xB */ EVT_EVENT_LIST = 0xB,
+};
+
+enum girls_RES_File_ID {
+    /* BCK */
+    /* 0x3 */ BCK_MICH_IYAN_WAIT = 0x3,
+    /* 0x4 */ BCK_MICH_KYA_TALK,
+    /* 0x5 */ BCK_MICH_OUEN_WAIT_A,
+    /* 0x6 */ BCK_MICH_OUEN_WAIT_B,
+};
+
+enum Wgeneral_RES_File_ID {
+    /* BCK */
+    /* 0x03 */ BCK_W_2LADYTALK_A = 0x3,
+    /* 0x04 */ BCK_W_2LADYTALK_B,
+    /* 0x05 */ BCK_W_2NORMALTALK_A,
+    /* 0x06 */ BCK_W_2NORMALTALK_B,
+    /* 0x07 */ BCK_W_BROWSE_A,
+    /* 0x08 */ BCK_W_BROWSE_B,
+    /* 0x09 */ BCK_W_CELLME,
+    /* 0x0A */ BCK_W_LOOK_A,
+    /* 0x0B */ BCK_W_LOOK_B,
+    /* 0x0C */ BCK_W_MARO_DANCE,
+    /* 0x0D */ BCK_W_RUN_A,
+    /* 0x0E */ BCK_W_RUN_B,
+    /* 0x0F */ BCK_W_SING,
+    /* 0x10 */ BCK_W_SIT_TO_WOLF_A,
+    /* 0x11 */ BCK_W_SIT_TO_WOLF_B,
+    /* 0x12 */ BCK_W_SITTALK_A,
+    /* 0x13 */ BCK_W_SITTALK_A_B,
+    /* 0x14 */ BCK_W_SITTALK_B,
+    /* 0x15 */ BCK_W_SITTALK_B_B,
+    /* 0x16 */ BCK_W_SITWAIT_A,
+    /* 0x17 */ BCK_W_SITWAIT_B,
+    /* 0x18 */ BCK_W_SURPRISE,
+    /* 0x19 */ BCK_W_TALK_A,
+    /* 0x1A */ BCK_W_TALK_B,
+    /* 0x1B */ BCK_W_TALK_B_WALL,
+    /* 0x1C */ BCK_W_TALK_C,
+    /* 0x1D */ BCK_W_TALK_WALL,
+    /* 0x1E */ BCK_W_TO_WOLF,
+    /* 0x1F */ BCK_W_WAIT_A,
+    /* 0x20 */ BCK_W_WAIT_B,
+    /* 0x21 */ BCK_W_WAIT_WALL,
+    /* 0x22 */ BCK_W_WALK_A,
+    /* 0x23 */ BCK_W_WALK_B,
+};
+
+enum RES_Name {
+    /* 0x0 */ KASI_HANA,
+    /* 0x1 */ GIRLS,
+    /* 0x2 */ WGENERAL,
+};
+
+enum Animation {
+    /* 0x0 */ ANM_MICH_IYAN_WAIT,
+    /* 0x1 */ ANM_MICH_KYA_TALK,
+    /* 0x2 */ ANM_MICH_OUEN_WAIT_A,
+    /* 0x3 */ ANM_MICH_OUEN_WAIT_B,
+    /* 0x4 */ ANM_W_WAIT_A,
+    /* 0x5 */ ANM_W_TALK_B,
+    /* 0x6 */ ANM_W_TO_WOLF,
+    /* 0x7 */ ANM_W_WALK_A,
+    /* 0x8 */ ANM_W_LOOK_B,
+    /* 0x9 */ ANM_W_RUN_A,
+    /* 0xA */ ANM_W_SURPRISE,
+    /* 0xB */ ANM_W_WAIT_A_2,
+    /* 0xC */ ANM_W_TALK_A,
+    /* 0xD */ ANM_W_2LADYTALK_B,
+    /* 0xE */ ANM_W_2NORMALTALK_B,
+};
+
+enum Motion {
+    /* 0x0 */ MOT_MICH_KYA_TALK,
+    /* 0x1 */ MOT_MICH_IYAN_WAIT,
+    /* 0x2 */ MOT_MICH_OUEN_WAIT_A,
+    /* 0x3 */ MOT_MICH_OUEN_WAIT_B,
+    /* 0x4 */ MOT_W_WAIT_A,
+    /* 0x5 */ MOT_W_TALK_B,
+    /* 0x6 */ MOT_W_TO_WOLF,
+    /* 0x7 */ MOT_W_WALK_A,
+    /* 0x8 */ MOT_W_LOOK_B,
+    /* 0x9 */ MOT_W_RUN_A,
+    /* 0xA */ MOT_W_SURPRISE,
+    /* 0xB */ MOT_W_WAIT_A_LOOP,
+};
+
+enum Joint {
+    /* 0x00 */ JNT_CENTER,
+    /* 0x01 */ JNT_BACKBONE,
+    /* 0x02 */ JNT_NECK,
+    /* 0x03 */ JNT_HEAD,
+    /* 0x04 */ JNT_SHOULDERL,
+    /* 0x05 */ JNT_ARML1,
+    /* 0x06 */ JNT_ARML2,
+    /* 0x07 */ JNT_HANDL,
+    /* 0x08 */ JNT_SHOULDERR,
+    /* 0x09 */ JNT_ARMR1,
+    /* 0x0A */ JNT_ARMR2,
+    /* 0x0B */ JNT_HANDR,
+    /* 0x0C */ JNT_WAIST,
+    /* 0x0D */ JNT_LEGL1,
+    /* 0x0E */ JNT_LEGL2,
+    /* 0x0F */ JNT_FOOTL,
+    /* 0x10 */ JNT_SKIRTL,
+    /* 0x11 */ JNT_LEGR1,
+    /* 0x12 */ JNT_LEGR2,
+    /* 0x13 */ JNT_FOOTR,
+    /* 0x14 */ JNT_SKIRTR,
+};
+
+enum Event_Names {
+    /* 0x0 */ EVT_NONE,
+    /* 0x1 */ EVT_APPEAR,
+    /* 0x2 */ EVT_TALK,
+    /* 0x3 */ EVT_HEART,
+    /* 0x4 */ EVT_CHEER,
+    /* 0x5 */ EVT_CHEER2,
+};
+
+enum Type {
+    /* 0x0 */ TYPE_WAIT,
+    /* 0x1 */ TYPE_CHEER,
+};
+
 class daNpcKasiHana_Param_c {
 public:
     /* 80A2067C */ virtual ~daNpcKasiHana_Param_c() {}
@@ -411,88 +544,26 @@ void daNpcKasi_Mng_c::chgWeightLight() {
 
 /* 80A213F4-80A214A8 000020 00B4+00 1/1 0/0 0/0 .data            l_bckGetParamList */
 static daNpc_GetParam2 l_bckGetParamList[15] = {
-    {3, 2, 1}, 
-    {4, 2, 1},
-    {5, 2, 1},
-    {6, 2, 1},
-    {0x1F, 2, 2},
-    {0x1A, 0, 2},
-    {0x1E, 2, 2},
-    {0x22, 2, 2},
-    {0xB, 2, 2},
-    {0xD, 2, 2},
-    {0x18, 0, 2},
-    {0x1F, 0, 2},
-    {0x19, 0, 2},
-    {4, 0, 2},
-    {6, 0, 2},
+    {BCK_MICH_IYAN_WAIT, J3DFrameCtrl::EMode_LOOP, GIRLS}, 
+    {BCK_MICH_KYA_TALK, J3DFrameCtrl::EMode_LOOP, GIRLS},
+    {BCK_MICH_OUEN_WAIT_A, J3DFrameCtrl::EMode_LOOP, GIRLS},
+    {BCK_MICH_OUEN_WAIT_B, J3DFrameCtrl::EMode_LOOP, GIRLS},
+    {BCK_W_WAIT_A, J3DFrameCtrl::EMode_LOOP, WGENERAL},
+    {BCK_W_TALK_B, J3DFrameCtrl::EMode_NONE, WGENERAL},
+    {BCK_W_TO_WOLF, J3DFrameCtrl::EMode_LOOP, WGENERAL},
+    {BCK_W_WALK_A, J3DFrameCtrl::EMode_LOOP, WGENERAL},
+    {BCK_W_LOOK_B, J3DFrameCtrl::EMode_LOOP, WGENERAL},
+    {BCK_W_RUN_A, J3DFrameCtrl::EMode_LOOP, WGENERAL},
+    {BCK_W_SURPRISE, J3DFrameCtrl::EMode_NONE, WGENERAL},
+    {BCK_W_WAIT_A, J3DFrameCtrl::EMode_NONE, WGENERAL},
+    {BCK_W_TALK_A, J3DFrameCtrl::EMode_NONE, WGENERAL},
+    {BCK_W_2LADYTALK_B, J3DFrameCtrl::EMode_NONE, WGENERAL},
+    {BCK_W_2NORMALTALK_B, J3DFrameCtrl::EMode_NONE, WGENERAL},
 };
 
 /* 80A214A8-80A214B4 0000D4 000C+00 0/0 0/0 0/0 .data            l_btpGetParamList */
 static daNpc_GetParam2 l_btpGetParamList[1] = {
-    {8, 2, 0},
-};
-
-enum kasi_hana_RES_File_ID {
-    /* BMDR */
-    /* 0x5 */ BMDR_HANA = 0x5,
-
-    /* BTP */
-    /* 0x8 */ BTP_HANA = 0x8,
-
-    /* EVT */
-    /* 0xB */ EVT_EVENT_LIST = 0xB,
-};
-
-enum girls_RES_File_ID {
-    /* BCK */
-    /* 0x3 */ BCK_MICH_IYAN_WAIT = 0x3,
-    /* 0x4 */ BCK_MICH_KYA_TALK,
-    /* 0x5 */ BCK_MICH_OUEN_WAIT_A,
-    /* 0x6 */ BCK_MICH_OUEN_WAIT_B,
-};
-
-enum Wgeneral_RES_File_ID {
-    /* BCK */
-    /* 0x03 */ BCK_W_2LADYTALK_A = 0x3,
-    /* 0x04 */ BCK_W_2LADYTALK_B,
-    /* 0x05 */ BCK_W_2NORMALTALK_A,
-    /* 0x06 */ BCK_W_2NORMALTALK_B,
-    /* 0x07 */ BCK_W_BROWSE_A,
-    /* 0x08 */ BCK_W_BROWSE_B,
-    /* 0x09 */ BCK_W_CELLME,
-    /* 0x0A */ BCK_W_LOOK_A,
-    /* 0x0B */ BCK_W_LOOK_B,
-    /* 0x0C */ BCK_W_MARO_DANCE,
-    /* 0x0D */ BCK_W_RUN_A,
-    /* 0x0E */ BCK_W_RUN_B,
-    /* 0x0F */ BCK_W_SING,
-    /* 0x10 */ BCK_W_SIT_TO_WOLF_A,
-    /* 0x11 */ BCK_W_SIT_TO_WOLF_B,
-    /* 0x12 */ BCK_W_SITTALK_A,
-    /* 0x13 */ BCK_W_SITTALK_A_B,
-    /* 0x14 */ BCK_W_SITTALK_B,
-    /* 0x15 */ BCK_W_SITTALK_B_B,
-    /* 0x16 */ BCK_W_SITWAIT_A,
-    /* 0x17 */ BCK_W_SITWAIT_B,
-    /* 0x18 */ BCK_W_SURPRISE,
-    /* 0x19 */ BCK_W_TALK_A,
-    /* 0x1A */ BCK_W_TALK_B,
-    /* 0x1B */ BCK_W_TALK_B_WALL,
-    /* 0x1C */ BCK_W_TALK_C,
-    /* 0x1D */ BCK_W_TALK_WALL,
-    /* 0x1E */ BCK_W_TO_WOLF,
-    /* 0x1F */ BCK_W_WAIT_A,
-    /* 0x20 */ BCK_W_WAIT_B,
-    /* 0x21 */ BCK_W_WAIT_WALL,
-    /* 0x22 */ BCK_W_WALK_A,
-    /* 0x23 */ BCK_W_WALK_B,
-};
-
-enum RES_Name {
-    /* 0x0 */ KASI_HANA,
-    /* 0x1 */ GIRLS,
-    /* 0x2 */ WGENERAL,
+    {BTP_HANA, J3DFrameCtrl::EMode_LOOP, KASI_HANA},
 };
 
 /* 80A214B4-80A214C0 -00001 000C+00 5/7 0/0 0/0 .data            l_arcNames */
@@ -655,7 +726,7 @@ int daNpcKasiHana_c::CreateHeap() {
     }
     model->setUserArea((u32)this);
 
-    setMotion(4, -1.0f, 0);
+    setMotion(MOT_W_WAIT_A, -1.0f, 0);
 
     return 1;
 }
@@ -684,23 +755,23 @@ int daNpcKasiHana_c::Draw() {
 /* 80A1C7D8-80A1C964 001918 018C+00 1/1 0/0 0/0 .text            ctrlJoint__15daNpcKasiHana_cFP8J3DJointP8J3DModel */
 int daNpcKasiHana_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     int jntNo = i_joint->getJntNo();
-    int i_jointList[3] = {1, 2, 3};
+    int i_jointList[3] = {JNT_BACKBONE, JNT_NECK, JNT_HEAD};
 
-    if (jntNo == 0) {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(1));
+    if (jntNo == JNT_CENTER) {
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_BACKBONE));
         mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(2));
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_NECK));
         mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(3));
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_HEAD));
         mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
     }
 
     mDoMtx_stack_c::copy(i_model->getAnmMtx(jntNo));
 
     switch (jntNo) {
-        case 1:
-        case 2:
-        case 3:
+        case JNT_BACKBONE:
+        case JNT_NECK:
+        case JNT_HEAD:
             setLookatMtx(jntNo, i_jointList, daNpcKasiHana_Param_c::m.common.neck_rotation_ratio);
             break;
     }
@@ -733,7 +804,7 @@ int daNpcKasiHana_c::ctrlJointCallBack(J3DJoint* i_joint, int param_2) {
 
 /* 80A1C9D0-80A1CA60 001B10 0090+00 1/0 0/0 0/0 .text            setParam__15daNpcKasiHana_cFv */
 void daNpcKasiHana_c::setParam() {
-    if (mType == 0) {
+    if (mType == TYPE_WAIT) {
         mKasiMng.initPath(getRailNo(), 6);
     }
 
@@ -748,34 +819,34 @@ BOOL daNpcKasiHana_c::main() {
     mKasiMng.SygnalClear();
     mKasiMng.schMemberActor();
 
-    if (mType == 1) {
+    if (mType == TYPE_CHEER) {
         mKasiMng.schDanchoActor();
     }
 
     if (mKasiMng.chkTalk()) {
         mKasiMng.offTalk();
 
-        if (mType == 0) {
+        if (mType == TYPE_WAIT) {
             if (chkAction(&daNpcKasiHana_c::wait)) {
                 if (fopAcM_isSwitch(this, getSwitchBitNo())) {
                     mKasiMng.chgWeightHeavy();
-                    mOrderEvtNo = 3;
+                    mOrderEvtNo = EVT_HEART;
                     changeEvent("kasi_hana", l_evtNames[mOrderEvtNo], 2, 0xFFFF);
                     setAction(&daNpcKasiHana_c::demo);
                 } else {
                     mKasiMng.allDemoMove();
-                    mOrderEvtNo = 2;
+                    mOrderEvtNo = EVT_TALK;
                     changeEvent("kasi_hana", l_evtNames[mOrderEvtNo], 2, 0xFFFF);
                     setAction(&daNpcKasiHana_c::demo);
                 }
             }
-        } else if (mType == 1) {
+        } else if (mType == TYPE_CHEER) {
             if (chkAction(&daNpcKasiHana_c::cheer)) {
                 /* dSv_event_flag_c::F_0293 - Castle Town - Star Game 2 cleared */
                 if (daNpcF_chkEvtBit(293)) {
-                    mOrderEvtNo = 5;
+                    mOrderEvtNo = EVT_CHEER2;
                 } else {
-                    mOrderEvtNo = 4;
+                    mOrderEvtNo = EVT_CHEER;
                 }
 
                 dComIfG_TimerStop(6);
@@ -878,10 +949,10 @@ void daNpcKasiHana_c::reset() {
     mPath.initialize();
     mKasiMng.setHanaActor(this);
 
-    if (mType == 0) {
+    if (mType == TYPE_WAIT) {
         mPath.setPathInfo(getRailNo(), fopAcM_GetRoomNo(this), 0);
         mPath.setIdx(6);
-    } else if (mType == 1) {
+    } else if (mType == TYPE_CHEER) {
         fopAcM_OnStatus(this, fopAcM_STATUS_UNK_004000);
     }
 
@@ -901,7 +972,7 @@ void daNpcKasiHana_c::reset() {
     speedF = 0.0f;
     speed.setall(0.0f);
     field_0x142c = fpcM_ERROR_PROCESS_ID_e;
-    mOrderEvtNo = 0;
+    mOrderEvtNo = EVT_NONE;
 
     J3DAnmTexPattern* i_btp = getTexPtrnAnmP(l_arcNames[0], 8);
     mAnmFlags &= 0xFFFFF57F;
@@ -919,34 +990,34 @@ void daNpcKasiHana_c::reset() {
 
 /* 80A1D238-80A1D604 002378 03CC+00 1/1 0/0 0/0 .text            playMotion__15daNpcKasiHana_cFv */
 void daNpcKasiHana_c::playMotion() {
-    daNpcF_anmPlayData dat0 = {1, daNpcKasiHana_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat0 = {ANM_MICH_KYA_TALK, daNpcKasiHana_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat0[1] = {&dat0};
-    daNpcF_anmPlayData dat1 = {0, daNpcKasiHana_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat1 = {ANM_MICH_IYAN_WAIT, daNpcKasiHana_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat1[1] = {&dat1};;
-    daNpcF_anmPlayData dat2 = {2, daNpcKasiHana_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat2 = {ANM_MICH_OUEN_WAIT_A, daNpcKasiHana_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat2[1] = {&dat2};;
-    daNpcF_anmPlayData dat3 = {3, daNpcKasiHana_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat3 = {ANM_MICH_OUEN_WAIT_B, daNpcKasiHana_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat3[1] = {&dat3};;
-    daNpcF_anmPlayData dat4 = {4, daNpcKasiHana_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat4 = {ANM_W_WAIT_A, daNpcKasiHana_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat4[1] = {&dat4};;
-    daNpcF_anmPlayData dat5 = {5, daNpcKasiHana_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat5 = {ANM_W_TALK_B, daNpcKasiHana_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat5[1] = {&dat5};;
-    daNpcF_anmPlayData dat6 = {6, daNpcKasiHana_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat6 = {ANM_W_TO_WOLF, daNpcKasiHana_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat6[1] = {&dat6};;
-    daNpcF_anmPlayData dat7 = {7, daNpcKasiHana_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat7 = {ANM_W_WALK_A, daNpcKasiHana_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat7[1] = {&dat7};;
-    daNpcF_anmPlayData dat8 = {8, daNpcKasiHana_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat8 = {ANM_W_LOOK_B, daNpcKasiHana_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat8[1] = {&dat8};;
-    daNpcF_anmPlayData dat9 = {9, daNpcKasiHana_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat9 = {ANM_W_RUN_A, daNpcKasiHana_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat9[1] = {&dat9};;
-    daNpcF_anmPlayData dat10 = {0xA, daNpcKasiHana_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat10 = {ANM_W_SURPRISE, daNpcKasiHana_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat10[1] = {&dat10};;
-    daNpcF_anmPlayData dat11a = {0xB, daNpcKasiHana_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat11b = {0xD, daNpcKasiHana_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat11c = {0xC, daNpcKasiHana_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat11d = {0xB, daNpcKasiHana_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat11e = {5, daNpcKasiHana_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat11f = {0xE, daNpcKasiHana_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat11a = {ANM_W_WAIT_A_2, daNpcKasiHana_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat11b = {ANM_W_2LADYTALK_B, daNpcKasiHana_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat11c = {ANM_W_TALK_A, daNpcKasiHana_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat11d = {ANM_W_WAIT_A_2, daNpcKasiHana_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat11e = {ANM_W_TALK_B, daNpcKasiHana_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat11f = {ANM_W_2NORMALTALK_B, daNpcKasiHana_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat11[6] = {&dat11a, &dat11b, &dat11c, &dat11d, &dat11e, &dat11f};
 
     daNpcF_anmPlayData** ppDat[12] = {
@@ -967,7 +1038,7 @@ void daNpcKasiHana_c::playMotion() {
     if (mMotion >= 0 && mMotion < 0xC) {
         field_0x143e = mMotionPhase;
 
-        if (mMotion == 0xB) {
+        if (mMotion == MOT_W_WAIT_A_LOOP) {
             playMotionAnmLoop(ppDat);
         } else {
             playMotionAnm(ppDat);
@@ -999,7 +1070,7 @@ void daNpcKasiHana_c::playMotionAnmLoop(daNpcF_c::daNpcF_anmPlayData*** i_data) 
             f32 i_morf = playData->morf;
 
             if (mMotionPhase == 0) {
-                if (mMotion == 0xB) {
+                if (mMotion == MOT_W_WAIT_A_LOOP) {
                     i_morf = daNpcKasiHana_Param_c::m.common.morf_frame;
                 } else if (0.0f <= mMotionMorfOverride) {
                     i_morf = mMotionMorfOverride;
@@ -1153,10 +1224,10 @@ int daNpcKasiHana_c::wait(int param_1) {
             break;
 
         case 0:
-            if (mType == 0 && !field_0x1445) {
-                setMotion(0xB, 12.0f, 0);
+            if (mType == TYPE_WAIT && !field_0x1445) {
+                setMotion(MOT_W_WAIT_A_LOOP, 12.0f, 0);
             } else {
-                setMotion(4, -1.0f, 0);
+                setMotion(MOT_W_WAIT_A, -1.0f, 0);
             }
 
             speedF = 0.0f;
@@ -1173,24 +1244,24 @@ int daNpcKasiHana_c::wait(int param_1) {
             } else if (!fopAcM_isSwitch(this, getSwitchBitNo())) {
                 setLookMode(LOOK_NONE);
                 if (home.angle.y != mCurAngle.y && step(home.angle.y, 1)) {
-                    if (mType == 0 && !field_0x1445) {
-                        setMotion(0xB, 12.0f, 0);
+                    if (mType == TYPE_WAIT && !field_0x1445) {
+                        setMotion(MOT_W_WAIT_A_LOOP, 12.0f, 0);
                     } else {
-                        setMotion(4, -1.0f, 0);
+                        setMotion(MOT_W_WAIT_A, -1.0f, 0);
                     }
 
                     mTurnMode = 0;
                 }
             }
 
-            if (mType == 0) {
+            if (mType == TYPE_WAIT) {
                 /* dSv_event_flag_c::F_290 - Castle Town - Star Game 1 cleared */
                 if (daNpcF_chkEvtBit(290)) {
                     f32 actorDistance = fopAcM_searchActorDistanceXZ(this, daPy_getPlayerActorClass());
 
                     if (!fopAcM_isSwitch(this, getSwitchBitNo())) {
                         if (actorDistance < 350.0f) {
-                            mOrderEvtNo = 1;
+                            mOrderEvtNo = EVT_APPEAR;
                         }
                     } else if (!daPy_py_c::checkNowWolf()) {
                         if (field_0x1441 == 0) {
@@ -1219,7 +1290,7 @@ int daNpcKasiHana_c::wait(int param_1) {
                         }
                     }
                 }
-            } else if (mType == 1 && mKasiMng.isMiniGamePlaying()) {
+            } else if (mType == TYPE_CHEER && mKasiMng.isMiniGamePlaying()) {
                 setAction(&daNpcKasiHana_c::cheer);
                 return 1;
             }
@@ -1246,7 +1317,7 @@ int daNpcKasiHana_c::wait(int param_1) {
                     }
                 }
 
-                if (mOrderEvtNo != 0) {
+                if (mOrderEvtNo != EVT_NONE) {
                     eventInfo.setArchiveName(l_arcNames[0]);
                 }
 
@@ -1288,7 +1359,7 @@ int daNpcKasiHana_c::chace(int param_1) {
 
         case 0:
             field_0x1445 = true;
-            setMotion(9, -1.0f, 0);
+            setMotion(MOT_W_RUN_A, -1.0f, 0);
             setLookMode(LOOK_NONE);
             fopAcM_SetSpeed(this, 0.0f, 0.0f, 0.0f);
             fopAcM_SetSpeedF(this, daNpcKasiHana_Param_c::m.track_spd);
@@ -1348,7 +1419,7 @@ int daNpcKasiHana_c::turn(int param_1) {
             break;
 
         case 0:
-            setMotion(4, -1.0f, 0);
+            setMotion(MOT_W_WAIT_A, -1.0f, 0);
             speedF = 0.0f;
             mKasiMng.onSygnal(4);
             mMode = 1;
@@ -1389,14 +1460,14 @@ int daNpcKasiHana_c::fear(int param_1) {
 
         case 1:
             if (_turn_to_link(0x1000)) {
-                setMotion(0xA, -1.0f, 0);
+                setMotion(MOT_W_SURPRISE, -1.0f, 0);
                 mMode = 3;
             }
             break;
 
         case 3:
             if (mpMorf->isStop()) {
-                setMotion(9, -1.0f, 0);
+                setMotion(MOT_W_RUN_A, -1.0f, 0);
                 fopAcM_SetSpeedF(this, 15.0f);
                 mSound.startCreatureVoice(Z2SE_HANA_V_FEAR, -1);
                 mMode = 4;
@@ -1406,6 +1477,7 @@ int daNpcKasiHana_c::fear(int param_1) {
         case 4: {
             cXyz sp28;
             mpMorf->setPlaySpeed(1.5f);
+            
             if (mPath.getDstPos(current.pos, sp28)) {
                 mEscape = true;
                 mMode = 5;
@@ -1523,7 +1595,7 @@ int daNpcKasiHana_c::talk(int param_1) {
             if (talkProc(NULL, TRUE, NULL)) {
                 mActorMngr[0].entry(daPy_getPlayerActorClass());
 
-                if (mType == 0) {
+                if (mType == TYPE_WAIT) {
                     setAction(&daNpcKasiHana_c::wait);
                 }
 
@@ -1550,7 +1622,7 @@ int daNpcKasiHana_c::demo(int param_1) {
             break;
 
         case 0:
-            setMotion(4, -1.0f, 0);
+            setMotion(MOT_W_WAIT_A, -1.0f, 0);
             mMode = 1;
             break;
 
@@ -1570,43 +1642,43 @@ int daNpcKasiHana_c::demo(int param_1) {
 
                 if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1 && eventManager.endCheck(mEventIdx)) {
                     switch (mOrderEvtNo) {
-                        case 1:
+                        case EVT_APPEAR:
                             dComIfGp_event_reset();
-                            mOrderEvtNo = 0;
+                            mOrderEvtNo = EVT_NONE;
                             mEventIdx = -1;
                             fopAcM_onSwitch(this, getSwitchBitNo());
                             mKasiMng.onSygnal(1);
                             setAction(&daNpcKasiHana_c::wait);
                             break;
 
-                        case 3:
+                        case EVT_HEART:
                             setAction(&daNpcKasiHana_c::escape);
                             dComIfGp_event_reset();
-                            mOrderEvtNo = 0;
+                            mOrderEvtNo = EVT_NONE;
                             mEventIdx = -1;
                             break;
 
-                        case 2:
+                        case EVT_TALK:
                             mKasiMng.allDemoNotMove();
                             dComIfGp_event_reset();
-                            mOrderEvtNo = 0;
+                            mOrderEvtNo = EVT_NONE;
                             mEventIdx = -1;
                             setAction(&daNpcKasiHana_c::wait);
                             mKasiMng.onSygnal(1);
                             break;
 
-                        case 4:
-                        case 5:
+                        case EVT_CHEER:
+                        case EVT_CHEER2:
                             dTimer_show();
                             // fallthrough
                         default:
                             dComIfGp_event_reset();
-                            mOrderEvtNo = 0;
+                            mOrderEvtNo = EVT_NONE;
                             mEventIdx = -1;
 
-                            if (mType == 0) {
+                            if (mType == TYPE_WAIT) {
                                 setAction(&daNpcKasiHana_c::wait);
-                            } else if (mType == 1) {
+                            } else if (mType == TYPE_CHEER) {
                                 OS_REPORT("-----------demo return!!\n");
 
                                 dComIfG_TimerReStart(6);
@@ -1629,7 +1701,7 @@ int daNpcKasiHana_c::escape(int param_1) {
             break;
 
         case 0:
-            setMotion(9, -1.0f, 0);
+            setMotion(MOT_W_RUN_A, -1.0f, 0);
             fopAcM_SetSpeed(this, 0.0f, 0.0f, 0.0f);
             fopAcM_SetSpeedF(this, daNpcKasiHana_Param_c::m.escape_spd);
             setEscapePathDir();
@@ -1663,9 +1735,9 @@ int daNpcKasiHana_c::cheer(int param_1) {
         case 0:
             /* dSv_event_flag_c::F_290 - Castle Town - Star Game 1 cleared */
             if (daNpcF_chkEvtBit(290)) {
-                setMotion(3, -1.0f, 0);
+                setMotion(MOT_MICH_OUEN_WAIT_B, -1.0f, 0);
             } else {
-                setMotion(2, -1.0f, 0);
+                setMotion(MOT_MICH_OUEN_WAIT_A, -1.0f, 0);
             }
 
             setLookMode(LOOK_PLAYER);
@@ -1696,7 +1768,7 @@ int daNpcKasiHana_c::cheer(int param_1) {
                     }
                 }
             } else {
-                if (mOrderEvtNo != 0) {
+                if (mOrderEvtNo != EVT_NONE) {
                     eventInfo.setArchiveName(l_arcNames[0]);
                 }
 
@@ -1770,13 +1842,13 @@ BOOL daNpcKasiHana_c::_Evt_Kasi_Appear_CutInit(int const& i_cutIndex) {
     switch (i_cutIndex) {
         case 10:
             mKasiMng.onSygnal(4);
-            setMotion(4, -1.0f, 0);
+            setMotion(MOT_W_WAIT_A, -1.0f, 0);
             field_0x1430 = 20;
             break;
         
         case 20:
             mKasiMng.onSygnal(0x400);
-            setMotion(0, -1.0f, 0);
+            setMotion(MOT_MICH_KYA_TALK, -1.0f, 0);
             initTalk(mMessageNo, NULL);
             break;
 
@@ -1811,8 +1883,8 @@ BOOL daNpcKasiHana_c::_Evt_Kasi_Appear_CutMain(int const& i_cutIndex) {
             break;
         
         case 21:
-            if (mMotion == 0 && (mpMorf->getFrame() == 19.0f || mpMorf->getFrame() == 1.0f)) {
-                setMotion(4, -1.0f, 0);
+            if (mMotion == MOT_MICH_KYA_TALK && (mpMorf->getFrame() == 19.0f || mpMorf->getFrame() == 1.0f)) {
+                setMotion(MOT_W_WAIT_A, -1.0f, 0);
             }
 
             field_0x1430--;
@@ -1868,7 +1940,7 @@ BOOL daNpcKasiHana_c::_Evt_Kasi_Talk_CutInit(int const& i_cutIndex) {
     switch (i_cutIndex) {
         case 10:
             setLookMode(LOOK_NONE);
-            setMotion(0, -1.0f, 0);
+            setMotion(MOT_MICH_KYA_TALK, -1.0f, 0);
             initTalk(mMessageNo, actors);
             break;
         
@@ -1904,8 +1976,8 @@ BOOL daNpcKasiHana_c::_Evt_Kasi_Talk_CutMain(int const& i_cutIndex, int param_2)
             break;
         
         case 20:
-            if (mMotion == 0 && (mpMorf->getFrame() == 19.0f || mpMorf->getFrame() == 1.0f)) {
-                setMotion(4, -1.0f, 0);
+            if (mMotion == MOT_MICH_KYA_TALK && (mpMorf->getFrame() == 19.0f || mpMorf->getFrame() == 1.0f)) {
+                setMotion(MOT_W_WAIT_A, -1.0f, 0);
             }
 
             iVar1[0] = param_2;
@@ -1960,7 +2032,7 @@ BOOL daNpcKasiHana_c::_Evt_Kasi_CutInit(int const& i_cutIndex) {
             break;
 
         case 20:
-            setMotion(0, -1.0f, 0);
+            setMotion(MOT_MICH_KYA_TALK, -1.0f, 0);
             mKasiMng.onSygnal(0x400);
             initTalk(mMessageNo, NULL);
             break;
@@ -1979,7 +2051,7 @@ BOOL daNpcKasiHana_c::_Evt_Kasi_CutInit(int const& i_cutIndex) {
         case 40:
             field_0x1430 = 86;
             mKasiMng.onSygnal(0x800);
-            setMotion(1, -1.0f, 0);
+            setMotion(MOT_MICH_IYAN_WAIT, -1.0f, 0);
             break;
     }
 
@@ -2004,8 +2076,8 @@ BOOL daNpcKasiHana_c::_Evt_Kasi_CutMain(int const& i_cutIndex) {
             break;
 
         case 21:
-            if (mMotion == 0 && (mpMorf->getFrame() == 19.0f || mpMorf->getFrame() == 1.0f)) {
-                setMotion(4, -1.0f, 0);
+            if (mMotion == MOT_MICH_KYA_TALK && (mpMorf->getFrame() == 19.0f || mpMorf->getFrame() == 1.0f)) {
+                setMotion(MOT_W_WAIT_A, -1.0f, 0);
             }
 
             field_0x1430--;
@@ -2080,7 +2152,7 @@ BOOL daNpcKasiHana_c::_Evt_Kasi_Cheer_CutInit(int const& i_cutIndex) {
 
     switch (i_cutIndex) {
         case 10:
-            setMotion(1, -1.0f, 0);
+            setMotion(MOT_MICH_IYAN_WAIT, -1.0f, 0);
             setLookMode(LOOK_NONE);
             field_0x1430 = 86;
             initTalk(mMessageNo, actors);
@@ -2109,7 +2181,7 @@ BOOL daNpcKasiHana_c::_Evt_Kasi_Cheer_CutMain(int const& i_cutIndex, int param_2
             if (field_0x1430 > 0) {
                 field_0x1430--;
                 if (field_0x1430 == 0) {
-                    setMotion(4, -1.0f, 0);
+                    setMotion(MOT_W_WAIT_A, -1.0f, 0);
                 }
             }
 
@@ -2124,7 +2196,7 @@ BOOL daNpcKasiHana_c::_Evt_Kasi_Cheer_CutMain(int const& i_cutIndex, int param_2
             if (field_0x1430 > 0) {
                 field_0x1430--;
                 if (field_0x1430 == 0) {
-                    setMotion(4, -1.0f, 0);
+                    setMotion(MOT_W_WAIT_A, -1.0f, 0);
                 }
             }
 
@@ -2139,7 +2211,7 @@ BOOL daNpcKasiHana_c::_Evt_Kasi_Cheer_CutMain(int const& i_cutIndex, int param_2
             if (field_0x1430 > 0) {
                 field_0x1430--;
                 if (field_0x1430 == 0) {
-                    setMotion(4, -1.0f, 0);
+                    setMotion(MOT_W_WAIT_A, -1.0f, 0);
                 }
             }
 
@@ -2188,7 +2260,7 @@ BOOL daNpcKasiHana_c::_Evt_Kasi_Cheer2_CutInit(int const& i_cutIndex) {
 
     switch (i_cutIndex) {
         case 10:
-            setMotion(1, -1.0f, 0);
+            setMotion(MOT_MICH_IYAN_WAIT, -1.0f, 0);
             setLookMode(LOOK_NONE);
             field_0x1430 = 86;
             initTalk(mMessageNo, actors);
@@ -2217,7 +2289,7 @@ BOOL daNpcKasiHana_c::_Evt_Kasi_Cheer2_CutMain(int const& i_cutIndex, int param_
             if (field_0x1430 > 0) {
                 field_0x1430--;
                 if (field_0x1430 == 0) {
-                    setMotion(4, -1.0f, 0);
+                    setMotion(MOT_W_WAIT_A, -1.0f, 0);
                 }
             }
 
@@ -2232,7 +2304,7 @@ BOOL daNpcKasiHana_c::_Evt_Kasi_Cheer2_CutMain(int const& i_cutIndex, int param_
             if (field_0x1430 > 0) {
                 field_0x1430--;
                 if (field_0x1430 == 0) {
-                    setMotion(4, -1.0f, 0);
+                    setMotion(MOT_W_WAIT_A, -1.0f, 0);
                 }
             }
 
@@ -2247,7 +2319,7 @@ BOOL daNpcKasiHana_c::_Evt_Kasi_Cheer2_CutMain(int const& i_cutIndex, int param_
             if (field_0x1430 > 0) {
                 field_0x1430--;
                 if (field_0x1430 == 0) {
-                    setMotion(4, -1.0f, 0);
+                    setMotion(MOT_W_WAIT_A, -1.0f, 0);
                 }
             }
 
