@@ -87,7 +87,7 @@ JUTConsoleManager* JFWSystem::systemConsoleManager;
 JUTConsole* JFWSystem::systemConsole;
 
 /* 804511BC-804511C0 0006BC 0004+00 1/1 0/0 0/0 .sbss            None */
-static u8 sInitCalled;
+bool JFWSystem::sInitCalled = false;
 
 /* 80271D18-80272040 26C658 0328+00 0/0 1/1 0/0 .text            init__9JFWSystemFv */
 // NONMATCHING - regalloc, equivalent

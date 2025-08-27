@@ -52,6 +52,7 @@ struct JFWSystem {
     static JUTResFont* systemFont;
     static JUTConsoleManager* systemConsoleManager;
     static JUTConsole* systemConsole;
+    static bool sInitCalled;
 };
 
 #endif /* JFWSYSTEM_H */
