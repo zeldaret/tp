@@ -2,6 +2,7 @@
 #define D_A_NPC_KASI_MICH_H
 
 #include "d/actor/d_a_npc.h"
+#include "d/actor/d_a_tag_escape.h"
 
 /**
  * @ingroup actors-npcs
@@ -57,12 +58,12 @@ public:
     /* 80A27E24 */ BOOL chkFindPlayer();
     /* 80A27F08 */ int wait(int);
     /* 80A282B4 */ int fear(int);
-    /* 80A28490 */ void srchWolfTag();
-    /* 80A284F8 */ void _srch_escape_tag(void*, void*);
-    /* 80A285C8 */ void getWolfPathNearIdx();
+    /* 80A28490 */ daTagEscape_c* srchWolfTag();
+    /* 80A284F8 */ static void* _srch_escape_tag(void*, void*);
+    /* 80A285C8 */ int getWolfPathNearIdx();
     /* 80A286FC */ int chace_st(int);
     /* 80A287A0 */ int chace(int);
-    /* 80A28910 */ void getChacePos();
+    /* 80A28910 */ cXyz getChacePos();
     /* 80A289CC */ int turn_link(int);
     /* 80A28A8C */ int turn_home(int);
     /* 80A28B70 */ int turn_center(int);
@@ -76,8 +77,8 @@ public:
     /* 80A29164 */ int turn_hana(int);
     /* 80A291E8 */ int wait_dummy(int);
     /* 80A2926C */ int cheer(int);
-    /* 80A29458 */ void _turn_to_link(s16);
-    /* 80A294A4 */ void _turn_pos(cXyz const&, s16);
+    /* 80A29458 */ BOOL _turn_to_link(s16);
+    /* 80A294A4 */ BOOL _turn_pos(cXyz const&, s16);
     /* 80A29500 */ BOOL actor_front_check(fopAc_ac_c*);
     /* 80A295D8 */ void _getOffset(cXyz const&, cXyz&);
     /* 80A29FDC */ void adjustShapeAngle();
@@ -106,8 +107,9 @@ public:
     BOOL pl_front_check() { return actor_front_check(daPy_getPlayerActorClass()); }
 
     static EventFn mEvtSeqList[1];
-    static u8 mTargetTag[4];
-    static u8 mTargetTagDist[4];
+    static daTagEscape_c* mTargetTag;
+    static f32 mTargetTagDist;
+    static s16 mWolfAngle;
 
 private:
     /* 0x0B48 */ Z2CreatureCitizen mSound;
@@ -143,13 +145,5 @@ private:
 };
 
 STATIC_ASSERT(sizeof(daNpcKasiMich_c) == 0x146c);
-
-class daNpcKasiMich_Param_c {
-public:
-    /* 80A29FE0 */ ~daNpcKasiMich_Param_c();
-
-    static daNpcKasiMich_HIOParam const m;
-};
-
 
 #endif /* D_A_NPC_KASI_MICH_H */
