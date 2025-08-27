@@ -10,7 +10,7 @@
 #include "d/d_path.h"
 
 #ifdef DEBUG
-#include "d\d_a_obj.h"
+#include "d/d_a_obj.h"
 
 class daObjItaRope_Hio_c : public JORReflexible {
 public:
