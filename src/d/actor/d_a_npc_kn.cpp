@@ -5313,7 +5313,7 @@ daNpc_Kn_c::daNpc_Kn_c(daNpcT_faceMotionAnmData_c const* param_0,
     : mpFaceMotionAnmData(param_0), mpMotionAnmData(param_1), mFaceMotionSeqMngr(param_2, param_3),
       mMotionSeqMngr(param_4, param_5), mpEventData(param_6), mpArcNames(param_7)
 {
-    OS_REPORT("|%06d:%x|daNpc_Kn_c -> コンストラクト\n", g_Counter.mCounter, this);
+    OS_REPORT("|%06d:%x|daNpc_Kn_c -> コンストラクト\n", g_Counter.mCounter0, this);
     initialize();
 }
 
