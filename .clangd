@@ -22,6 +22,11 @@ Diagnostics:
     - "unknown_typename"
 ---
 If:
+  PathMatch: src/PowerPC_EABI_Support/MSL/MSL_C\+\+/.*\.h
+CompileFlags:
+  Add: ["--language=c++", "--std=c++98"]
+---
+If:
   PathMatch: .*\.pch
 CompileFlags:
   Add: ["--language=c++", "--std=c++98"]
