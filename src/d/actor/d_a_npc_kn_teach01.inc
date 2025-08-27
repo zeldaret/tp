@@ -376,7 +376,7 @@ int daNpc_Kn_c::ctrlWarp() {
         static Vec l_WarpOutScaleTable[] = {
             {0.0f, 1.0f, 0.0f},
             {0.0f, 1.32f, 0.0f},
-            {0.59399998f, 1.5f, 1.0f},
+            {0.594f, 1.5f, 1.0f},
             {1.0f, 1.0f, 1.0f},
         };
 

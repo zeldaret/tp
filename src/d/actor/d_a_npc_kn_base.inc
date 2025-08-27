@@ -80,6 +80,7 @@ BOOL daNpc_Kn_c::setBtkAnm(J3DAnmTextureSRTKey* i_btk, J3DModelData* i_modelData
 
 /* 80A387FC-80A388B0 00DEDC 00B4+00 1/1 0/0 0/0 .text            loadRes__10daNpc_Kn_cFPCScPPCc */
 int daNpc_Kn_c::loadRes(const s8* i_ptrn_list, const char** i_arcname_list) {
+    int phase;
     int resLoad_cnt = 0;
 
     for (int i = 0; i < 8; ++i) {
@@ -91,7 +92,7 @@ int daNpc_Kn_c::loadRes(const s8* i_ptrn_list, const char** i_arcname_list) {
             return cPhs_COMPLEATE_e;
         }
 
-        int phase = dComIfG_resLoad(&mPhase[i], i_arcname_list[i_ptrn_list[i]]);
+        phase = dComIfG_resLoad(&mPhase[i], i_arcname_list[i_ptrn_list[i]]);
         if (phase == cPhs_COMPLEATE_e) {
             ++resLoad_cnt;
         }
@@ -491,11 +492,10 @@ void daNpc_Kn_c::ctrlFaceMotion() {
 /* 80A39684-80A39738 00ED64 00B4+00 1/1 0/0 0/0 .text            ctrlMotion__10daNpc_Kn_cFv */
 void daNpc_Kn_c::ctrlMotion() {
     int motionNo;
-    BOOL restart;
     f32 morfFrm;
 
     if (mMotionSeqMngr.play(mMorfLoops, &motionNo, &morfFrm)) {
-        restart = FALSE;
+        BOOL restart = FALSE;
         if (morfFrm < -1.0f) {
             restart = TRUE;
         }
@@ -966,7 +966,7 @@ BOOL daNpc_Kn_c::chkActorInSight(fopAc_ac_c* actor, f32 i_fovY, s16 i_angleY) {
             angle_diff_s = -angle_diff_s;
         }
 
-        return angle_diff_s <= fov_s;
+        return (angle_diff_s > fov_s) == FALSE;
     }
 
     return TRUE;

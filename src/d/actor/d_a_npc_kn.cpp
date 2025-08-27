@@ -2574,10 +2574,10 @@ int daNpc_Kn_c::teach06_superJumpWaitDivide(void* param_0) {
 
         int cut_type = daPy_getPlayerActorClass()->getCutType();
         if (cut_type == daPy_py_c::CUT_TYPE_LARGE_JUMP_INIT || cut_type == daPy_py_c::CUT_TYPE_LARGE_JUMP || cut_type == daPy_py_c::CUT_TYPE_LARGE_JUMP_FINISH) {
-            mCylCc.SetTgHitMark((CcG_Tg_HitMark)1);
+            mCylCc.SetTgHitMark(CcG_Tg_UNK_MARK_1);
             mCylCc.OffTgShield();
         } else {
-            mCylCc.SetTgHitMark((CcG_Tg_HitMark)2);
+            mCylCc.SetTgHitMark(CcG_Tg_UNK_MARK_2);
             mCylCc.OnTgShield();
         }
 
@@ -2787,10 +2787,10 @@ int daNpc_Kn_c::teach07_superTurnAttackWait(void* param_0) {
 
         int cut_type = daPy_getPlayerActorClass()->getCutType();
         if (cut_type == daPy_py_c::CUT_TYPE_LARGE_TURN_LEFT || cut_type == daPy_py_c::CUT_TYPE_LARGE_TURN_RIGHT) {
-            mCylCc.SetTgHitMark((CcG_Tg_HitMark)1);
+            mCylCc.SetTgHitMark(CcG_Tg_UNK_MARK_1);
             mCylCc.OffTgShield();
         } else {
-            mCylCc.SetTgHitMark((CcG_Tg_HitMark)2);
+            mCylCc.SetTgHitMark(CcG_Tg_UNK_MARK_2);
             mCylCc.OnTgShield();
         }
 
@@ -2973,10 +2973,10 @@ int daNpc_Kn_c::teach07_superTurnAttackWaitDivide(void* param_0) {
 
         int cut_type = daPy_getPlayerActorClass()->getCutType();
         if (cut_type == daPy_py_c::CUT_TYPE_LARGE_TURN_LEFT || cut_type == daPy_py_c::CUT_TYPE_LARGE_TURN_RIGHT) {
-            mCylCc.SetTgHitMark((CcG_Tg_HitMark)1);
+            mCylCc.SetTgHitMark(CcG_Tg_UNK_MARK_1);
             mCylCc.OffTgShield();
         } else {
-            mCylCc.SetTgHitMark((CcG_Tg_HitMark)2);
+            mCylCc.SetTgHitMark(CcG_Tg_UNK_MARK_2);
             mCylCc.OnTgShield();
         }
 
@@ -5319,17 +5319,17 @@ daNpc_Kn_c::daNpc_Kn_c(daNpcT_faceMotionAnmData_c const* param_0,
 
 /* 80A3BD14-80A3BD1C 0113F4 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__10daNpc_Kn_cFv */
 u16 daNpc_Kn_c::getEyeballMaterialNo() {
-    return false;
+    return 0;
 }
 
 /* 80A3BD1C-80A3BD24 0113FC 0008+00 1/0 0/0 0/0 .text getEyeballLMaterialNo__10daNpc_Kn_cFv */
 u16 daNpc_Kn_c::getEyeballLMaterialNo() {
-    return false;
+    return 0;
 }
 
 /* 80A3BD24-80A3BD2C 011404 0008+00 1/0 0/0 0/0 .text getEyeballRMaterialNo__10daNpc_Kn_cFv */
 u16 daNpc_Kn_c::getEyeballRMaterialNo() {
-    return false;
+    return 0;
 }
 
 #include "d/actor/d_a_npc_kn_teach01.inc"
