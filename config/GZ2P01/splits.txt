@@ -1383,7 +1383,7 @@ SSystem/SComponent/c_API.cpp:
 
 SSystem/SComponent/c_malloc.cpp:
 	.text       start:0x80264020 end:0x8026408C
-	.sbss       start:0x80453118 end:0x80453128
+	.sbss       start:0x80453118 end:0x80453120
 
 SSystem/SComponent/c_API_controller_pad.cpp:
 	.text       start:0x8026408C end:0x802640C8
@@ -1403,6 +1403,7 @@ SSystem/SComponent/c_cc_s.cpp:
 	.text       start:0x8026586C end:0x80266C1C
 	.data       start:0x803C5700 end:0x803C5730
 	.bss        start:0x80432C80 end:0x80432C98
+	.sbss       start:0x80453120 end:0x80453128
 	.sdata2     start:0x80457010 end:0x80457048
 
 SSystem/SComponent/c_counter.cpp:
