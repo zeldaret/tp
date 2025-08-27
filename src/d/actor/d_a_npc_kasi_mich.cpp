@@ -262,7 +262,7 @@ cPhs__Step daNpcKasiMich_c::Create() {
 
 /* 80A268A0-80A26A24 0007C0 0184+00 1/1 0/0 0/0 .text            CreateHeap__15daNpcKasiMich_cFv */
 int daNpcKasiMich_c::CreateHeap() {
-    J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_arcNames[0], 4);
+    J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_arcNames[0], BMDR_MICH);
 
     JUT_ASSERT(314, 0 != mdlData_p);
 
@@ -384,7 +384,6 @@ s16 daNpcKasiMich_c::mWolfAngle;
 
 /* 80A26D34-80A26FDC 000C54 02A8+00 1/0 0/0 0/0 .text            main__15daNpcKasiMich_cFv */
 BOOL daNpcKasiMich_c::main() {
-    // NONMATCHING
     if (mSygnal >= 0) {
         static daNpcKasiMich_c::actionFunc sSygnalAct[20] = {
             &daNpcKasiMich_c::wait,
@@ -973,6 +972,7 @@ int daNpcKasiMich_c::getWolfPathNearIdx() {
 
 /* 80A286FC-80A287A0 00261C 00A4+00 2/0 0/0 0/0 .text            chace_st__15daNpcKasiMich_cFi */
 int daNpcKasiMich_c::chace_st(int param_1) {
+    // NONMATCHING
     switch (mMode) {
         case -1:
             break;

@@ -120,7 +120,6 @@ private:
     /* 0x12C4 */ daNpcKasiMich_HIO_c* mHIO;
     /* 0x12C8 */ dCcD_Cyl mCyl;
     /* 0x1404 */ s16 mMode;
-    /* 0x1406 */ u8 field_0x1406[0x1408 - 0x1406];
     /* 0x1408 */ actionFunc mAction;
     /* 0x1414 */ request_of_phase_process_class mPhases[3];
     /* 0x142C */ fpc_ProcID field_0x142c;
@@ -130,7 +129,6 @@ private:
     /* 0x143C */ s16 mLookMode;
     /* 0x143E */ s16 field_0x143e;
     /* 0x1440 */ s16 field_0x1440;
-    /* 0x1442 */ u8 field_0x1442[0x1444 - 0x1442];
     /* 0x1444 */ int mSygnal;
     /* 0x1448 */ cXyz mChacePos;
     /* 0x1454 */ cXyz mCenterPos;
@@ -141,7 +139,6 @@ private:
     /* 0x1467 */ bool mFear;
     /* 0x1468 */ bool mEscape;
     /* 0x1469 */ u8 field_0x1469;
-    /* 0x146A */ u8 field_0x146a[0x146c - 0x146a];
 };
 
 STATIC_ASSERT(sizeof(daNpcKasiMich_c) == 0x146c);
