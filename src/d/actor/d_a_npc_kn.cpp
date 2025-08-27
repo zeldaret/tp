@@ -5265,71 +5265,8 @@ static int daNpc_Kn_Draw(void* i_this) {
 }
 
 /* 80A384D0-80A384D8 00DBB0 0008+00 1/0 0/0 0/0 .text            daNpc_Kn_IsDelete__FPv */
-static int daNpc_Kn_IsDelete(void* param_0) {
+static int daNpc_Kn_IsDelete(void* i_this) {
     return 1;
-}
-
-/* 80A3B720-80A3B724 010E00 0004+00 1/0 0/0 0/0 .text            afterJntAnm__10daNpc_Kn_cFi */
-void daNpc_Kn_c::afterJntAnm(int param_0) {}
-
-/* 80A3B79C-80A3B7A4 010E7C 0008+00 1/0 0/0 0/0 .text            evtEndProc__10daNpc_Kn_cFv */
-BOOL daNpc_Kn_c::evtEndProc() {
-    return TRUE;
-}
-
-/* 80A3B7A4-80A3B7AC 010E84 0008+00 1/0 0/0 0/0 .text            checkChangeEvt__10daNpc_Kn_cFv */
-BOOL daNpc_Kn_c::checkChangeEvt() {
-    return FALSE;
-}
-
-/* 80A3B7AC-80A3B7B4 010E8C 0008+00 1/0 0/0 0/0 .text            getFootRJointNo__10daNpc_Kn_cFv */
-int daNpc_Kn_c::getFootRJointNo() {
-    return -1;
-}
-
-/* 80A3B7B4-80A3B7BC 010E94 0008+00 1/0 0/0 0/0 .text            getFootLJointNo__10daNpc_Kn_cFv */
-int daNpc_Kn_c::getFootLJointNo() {
-    return -1;
-}
-
-/* 80A3B7BC-80A3B7C4 010E9C 0008+00 1/0 0/0 0/0 .text            chkXYItems__10daNpc_Kn_cFv */
-BOOL daNpc_Kn_c::chkXYItems() {
-    return false;
-}
-
-/* 80A3B7C4-80A3B7CC 010EA4 0008+00 1/0 0/0 0/0 .text afterSetFaceMotionAnm__10daNpc_Kn_cFiifi */
-bool daNpc_Kn_c::afterSetFaceMotionAnm(int param_0, int param_1, f32 param_2, int param_3) {
-    return true;
-}
-
-/* 80A3B82C-80A3BD14 010F0C 04E8+00 1/1 0/0 0/0 .text
- * __ct__10daNpc_Kn_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc
- */
-daNpc_Kn_c::daNpc_Kn_c(daNpcT_faceMotionAnmData_c const* param_0,
-                       daNpcT_motionAnmData_c const* param_1,
-                       daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_2, int param_3,
-                       daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_4, int param_5,
-                       daNpcT_evtData_c const* param_6, char** param_7)
-    : mpFaceMotionAnmData(param_0), mpMotionAnmData(param_1), mFaceMotionSeqMngr(param_2, param_3),
-      mMotionSeqMngr(param_4, param_5), mpEventData(param_6), mpArcNames(param_7)
-{
-    OS_REPORT("|%06d:%x|daNpc_Kn_c -> コンストラクト\n", g_Counter.mCounter0, this);
-    initialize();
-}
-
-/* 80A3BD14-80A3BD1C 0113F4 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__10daNpc_Kn_cFv */
-u16 daNpc_Kn_c::getEyeballMaterialNo() {
-    return 0;
-}
-
-/* 80A3BD1C-80A3BD24 0113FC 0008+00 1/0 0/0 0/0 .text getEyeballLMaterialNo__10daNpc_Kn_cFv */
-u16 daNpc_Kn_c::getEyeballLMaterialNo() {
-    return 0;
-}
-
-/* 80A3BD24-80A3BD2C 011404 0008+00 1/0 0/0 0/0 .text getEyeballRMaterialNo__10daNpc_Kn_cFv */
-u16 daNpc_Kn_c::getEyeballRMaterialNo() {
-    return 0;
 }
 
 #include "d/actor/d_a_npc_kn_teach01.inc"

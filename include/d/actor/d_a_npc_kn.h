@@ -311,10 +311,17 @@ public:
     /* 80A3B3E8 */ int initTalk(int, fopAc_ac_c**);
     /* 80A3B448 */ BOOL talkProc(int*, int, fopAc_ac_c**, int);
     /* 80A3B5EC */ void setHitodamaPrtcl();
-    /* 80A3B82C */ daNpc_Kn_c(daNpcT_faceMotionAnmData_c const*, daNpcT_motionAnmData_c const*,
-                              daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
-                              daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
-                              daNpcT_evtData_c const*, char**);
+    /* 80A3B82C */ daNpc_Kn_c(daNpcT_faceMotionAnmData_c const* param_0,
+                              daNpcT_motionAnmData_c const* param_1,
+                              daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_2, int param_3,
+                              daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_4, int param_5,
+                              daNpcT_evtData_c const* param_6, char** param_7)
+                        : mpFaceMotionAnmData(param_0), mpMotionAnmData(param_1), mFaceMotionSeqMngr(param_2, param_3),
+                          mMotionSeqMngr(param_4, param_5), mpEventData(param_6), mpArcNames(param_7)
+                    {
+                        OS_REPORT("|%06d:%x|daNpc_Kn_c -> コンストラクト\n", g_Counter.mCounter0, this);
+                        initialize();
+                    }
     /* 80A3C998 */ u32 setParamTeach01();
     /* 80A3CB14 */ void setCollisionTeach01();
     /* 80A3CBFC */ void teach01_selectAction();
@@ -337,25 +344,25 @@ public:
     /* 80A403B8 */ int ECut_secondSkillGet(int);
 
     /* 80A3949C */ virtual int ctrlBtk();
-    /* 80A3B7B4 */ virtual int getFootLJointNo();
-    /* 80A3B7AC */ virtual int getFootRJointNo();
-    /* 80A3BD1C */ virtual u16 getEyeballLMaterialNo();
-    /* 80A3BD24 */ virtual u16 getEyeballRMaterialNo();
-    /* 80A3BD14 */ virtual u16 getEyeballMaterialNo();
+    /* 80A3B7B4 */ virtual int getFootLJointNo() { return -1; }
+    /* 80A3B7AC */ virtual int getFootRJointNo() { return -1; }
+    /* 80A3BD1C */ virtual u16 getEyeballLMaterialNo() { return 0; }
+    /* 80A3BD24 */ virtual u16 getEyeballRMaterialNo() { return 0; }
+    /* 80A3BD14 */ virtual u16 getEyeballMaterialNo() { return 0; }
     /* 80A3989C */ virtual int ctrlJoint(J3DJoint*, J3DModel*);
-    /* 80A3B720 */ virtual void afterJntAnm(int);
-    /* 80A3B7A4 */ virtual BOOL checkChangeEvt();
-    /* 80A3B79C */ virtual BOOL evtEndProc();
+    /* 80A3B720 */ virtual void afterJntAnm(int) {}
+    /* 80A3B7A4 */ virtual BOOL checkChangeEvt() { return FALSE; }
+    /* 80A3B79C */ virtual BOOL evtEndProc() { return TRUE; }
     /* 80A39BBC */ virtual int evtProc();
     /* 80A39DBC */ virtual void setFootPos();
     /* 80A39F84 */ virtual void setFootPrtcl(cXyz*, f32);
     /* 80A3A254 */ virtual bool checkCullDraw();
     /* 80A3A25C */ virtual void twilight();
-    /* 80A3B7BC */ virtual BOOL chkXYItems();
+    /* 80A3B7BC */ virtual BOOL chkXYItems() { return FALSE; }
     /* 80A3A2A8 */ virtual void evtOrder();
     /* 80A3B708 */ virtual void decTmr();
     /* 80A3A504 */ virtual void clrParam();
-    /* 80A3B7C4 */ virtual bool afterSetFaceMotionAnm(int, int, f32, int);
+    /* 80A3B7C4 */ virtual bool afterSetFaceMotionAnm(int, int, f32, int) { return true; }
     /* 80A3B7CC */ virtual daNpcT_faceMotionAnmData_c getFaceMotionAnm(daNpcT_faceMotionAnmData_c);
     /* 80A3B7FC */ virtual daNpcT_motionAnmData_c getMotionAnm(daNpcT_motionAnmData_c);
     /* 80A2AA0C */ virtual ~daNpc_Kn_c();
