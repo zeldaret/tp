@@ -41,5 +41,5 @@ __vt__11daObjHFtr_c = .data:0x00000070; // type:object size:0xC scope:global
 lbl_471_data_7C = .data:0x0000007C; // type:object size:0xC data:string
 @89138 = .data:0x00000088; // type:object size:0x14 scope:local
 __RTTI__11daObjHFtr_c = .data:0x0000009C; // type:object size:0x8 scope:global
-lbl_471_data_A4 = .data:0x000000A4; // type:object size:0x20
+lbl_471_data_A4 = .data:0x000000A4; // type:object size:0x1F data:string
 __RTTI__30request_of_phase_process_class = .data:0x000000C4; // type:object size:0x8 scope:global

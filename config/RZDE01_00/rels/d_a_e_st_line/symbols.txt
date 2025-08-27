@@ -16,6 +16,6 @@ _dtors = .dtors:0x00000000; // type:label scope:global
 @92661 = .rodata:0x00000010; // type:object size:0x4 scope:local
 @92662 = .rodata:0x00000014; // type:object size:0x4 scope:local
 @92663 = .rodata:0x00000018; // type:object size:0x4 scope:local
-lbl_234_data_0 = .data:0x00000000; // type:object size:0x8
+lbl_234_data_0 = .data:0x00000000; // type:object size:0x5 data:string
 l_daE_ST_LINE_Method = .data:0x00000008; // type:object size:0x20 scope:global
 g_profile_E_ST_LINE = .data:0x00000028; // type:object size:0x30 scope:global
