@@ -41,8 +41,12 @@ public:
     /* 0x004 */ dKy_tevstr_c mTevStr;
     /* 0x38C */ Z2Creature mSound;
     /* 0x41C */ dCcD_Cyl mCyl;
-    /* 0x558 */ u8 field_0x558[0x574 - 0x558];
-    /* 0x574 */ actor_place current;
+    /* 0x558 */ u8 field_0x558[0x570 - 0x558];
+    /* 0x570 */ u32 mAnmFlags;
+    /* 0x574 */ cXyz mPos;
+    /* 0x580 */ csXyz mAngle;
+    /* 0x586 */ u8 field_0x586;
+    /* 0x587 */ u8 mTsuboType;
 };
 
 class daNpcTks_c : public daNpcF_c {
@@ -64,7 +68,7 @@ public:
     /* 80B1590C */ bool setExpressionBtp(int);
     /* 80B159E0 */ void setMotion(int, f32, int);
     /* 80B15A24 */ void reset();
-    /* 80B160A8 */ BOOL setAction(actionFunc);
+    /* 80B160A8 */ inline BOOL setAction(actionFunc);
     /* 80B16148 */ void wait();
     /* 80B16344 */ void setMotionAnm(int, f32);
     /* 80B16634 */ void waitNude();
@@ -101,6 +105,12 @@ public:
     u8 getSwitchNo() { return (fopAcM_GetParam(this) >> 8) & 0xFF; }
     u8 getTsuboType() { return 1 - (fopAcM_GetParam(this) >> 24) == 0; }
     int getMessageNo() { return shape_angle.x; }
+    inline BOOL checkFindPlayer();
+    inline void setLookMode(int, fopAc_ac_c*);
+    inline void setTsuboMotionAnm(int, f32);
+    u8 getTBoxNo() { return (fopAcM_GetParam(this) >> 16) & 0xFF; }
+    inline void setExpressionTalkAfter();
+    inline BOOL step(s16, int);
 
 private:
     /* 0x0B48 */ Z2Creature mSound;
@@ -108,15 +118,22 @@ private:
     /* 0x1160 */ daNpcF_MatAnm_c* mpMatAnm;
     /* 0x1164 */ daNpcF_Lookat_c mLookat;
     /* 0x1200 */ daNpcF_ActorMngr_c mActorMngr[1];
-    /* 0x1208 */ u8 field_0x1208[0x120c - 0x1208];
+    /* 0x1208 */ fopAc_ac_c* field_0x1208;
     /* 0x120C */ daNpcTks_HIO_c* mHIO;
     /* 0x1210 */ dCcD_Cyl mCyl;
     /* 0x134C */ actionFunc mAction;
     /* 0x1358 */ request_of_phase_process_class mPhases[2];
     /* 0x1368 */ fpc_ProcID mItemID;
-    /* 0x136C */ u8 field_0x136c[0x1384 - 0x136c];
+    /* 0x136C */ f32 field_0x136c;
+    /* 0x1370 */ int field_0x1370;
+    /* 0x1374 */ int field_0x1374;
+    /* 0x1378 */ int field_0x1378;
+    /* 0x137C */ u32 field_0x137c[2];
     /* 0x1384 */ s16 mMessageNo;
-    /* 0x1386 */ u8 field_0x1386[0x138c - 0x1386];
+    /* 0x1386 */ s16 mLookMode;
+    /* 0x1388 */ u16 mMode;
+    /* 0x138A */ u8 field_0x138a;
+    /* 0x138B */ u8 field_0x138b;
 };
 
 STATIC_ASSERT(sizeof(daNpcTks_c) == 0x138c);
