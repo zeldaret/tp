@@ -48,7 +48,7 @@ static f64 dummyDouble(int _) {
 }
 
 static f32 dummyFloat2() {
-    return 0.0099999998f;
+    return 0.01f;
 }
 
 /* 806B938C-806B93CC 0000EC 0040+00 1/1 0/0 0/0 .text            __ct__12daE_FK_HIO_cFv */
