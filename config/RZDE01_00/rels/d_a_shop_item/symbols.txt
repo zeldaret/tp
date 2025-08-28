@@ -35,6 +35,6 @@ lbl_118_data_8 = .data:0x00000008; // type:object size:0x8 data:string
 daShopItemMethodTable = .data:0x00000010; // type:object size:0x20 scope:global
 g_profile_ShopItem = .data:0x00000030; // type:object size:0x30 scope:global
 __vt__12daShopItem_c = .data:0x00000060; // type:object size:0x44 scope:global
-lbl_118_data_A4 = .data:0x000000A4; // type:object size:0x10
+lbl_118_data_A4 = .data:0x000000A4; // type:object size:0xD data:string
 @89403 = .data:0x000000B4; // type:object size:0x14 scope:local
 __RTTI__12daShopItem_c = .data:0x000000C8; // type:object size:0x8 scope:global

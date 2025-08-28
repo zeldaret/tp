@@ -13,9 +13,15 @@ public:
     const static cSAngle _90;
     const static cSAngle _180;
     const static cSAngle _270;
+#ifdef __MWERKS__
     cSAngle() {}
     ~cSAngle() {}
     cSAngle(const cSAngle&);
+#else
+    cSAngle() = default;
+    ~cSAngle() = default;
+    cSAngle(const cSAngle&) = default;
+#endif
     cSAngle(s16);
     cSAngle(float);
     s16 Val() const { return this->mAngle; }
@@ -132,17 +138,23 @@ public:
     cSAngle mInclination;  // original: V
     cSAngle mAzimuth;      // original: U
 
+#ifdef __MWERKS__
     cSGlobe() {}
+    ~cSGlobe() {}
+    cSGlobe(const cSGlobe&);
+#else
+    cSGlobe() = default;
+    ~cSGlobe() = default;
+    cSGlobe(const cSGlobe&) = default;
+#endif
 
     void R(f32 i_radius) { mRadius = i_radius; }
     void U(cSAngle const& i_azimuth) { mAzimuth = i_azimuth.Val(); }
     void V(cSAngle const& i_inclination) { mInclination = i_inclination.Val(); }
 
-    cSGlobe(const cSGlobe&);
     cSGlobe(float, short, short);
     cSGlobe(float, const cSAngle&, const cSAngle&);
     cSGlobe(const cXyz&);
-    ~cSGlobe() {}
     cSGlobe& Formal(void);
     void Val(const cSGlobe&);
     void Val(float, short, short);

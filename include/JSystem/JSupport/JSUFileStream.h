@@ -11,8 +11,6 @@ class JKRFile;
 */
 class JSUFileInputStream : public JSURandomInputStream {
 public:
-    virtual ~JSUFileInputStream() {}
-
     // TODO: fix return values
     /* 802DC638 */ JSUFileInputStream(JKRFile*);
     /* 802DC67C */ u32 readData(void*, s32);

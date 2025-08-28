@@ -32,6 +32,6 @@ lbl_701_data_8 = .data:0x00000008; // type:object size:0xD data:string
 lbl_701_data_15 = .data:0x00000015; // type:object size:0x10 data:string
 lbl_701_data_25 = .data:0x00000025; // type:object size:0xF data:string
 l_bmdName$92119 = .data:0x00000034; // type:object size:0xC scope:local
-lbl_701_data_40 = .data:0x00000040; // type:object size:0xC
+lbl_701_data_40 = .data:0x00000040; // type:object size:0xB data:string
 l_daZraFreeze_Method = .data:0x0000004C; // type:object size:0x20 scope:global
 g_profile_OBJ_ZRAFREEZE = .data:0x0000006C; // type:object size:0x30 scope:global

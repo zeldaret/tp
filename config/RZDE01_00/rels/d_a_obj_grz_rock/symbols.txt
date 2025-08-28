@@ -29,6 +29,6 @@ lbl_468_data_C = .data:0x0000000C; // type:object size:0xC data:string
 l_daObjGrzRock_Method = .data:0x00000018; // type:object size:0x20 scope:global
 g_profile_Obj_GrzRock = .data:0x00000038; // type:object size:0x30 scope:global
 __vt__14daObjGrzRock_c = .data:0x00000068; // type:object size:0x28 scope:global
-lbl_468_data_90 = .data:0x00000090; // type:object size:0x10
+lbl_468_data_90 = .data:0x00000090; // type:object size:0xF data:string
 @95076 = .data:0x000000A0; // type:object size:0x14 scope:local
 __RTTI__14daObjGrzRock_c = .data:0x000000B4; // type:object size:0x8 scope:global

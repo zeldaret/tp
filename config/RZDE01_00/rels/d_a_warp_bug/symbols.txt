@@ -16,4 +16,4 @@ l_daWarpBug_Method = .data:0x0000000C; // type:object size:0x20 scope:global
 g_profile_WarpBug = .data:0x0000002C; // type:object size:0x30 scope:global
 lbl_758_data_5C = .data:0x0000005C; // type:object size:0xA data:string
 lbl_758_data_66 = .data:0x00000066; // type:object size:0xA data:string
-lbl_758_data_70 = .data:0x00000070; // type:object size:0xC
+lbl_758_data_70 = .data:0x00000070; // type:object size:0xA data:string

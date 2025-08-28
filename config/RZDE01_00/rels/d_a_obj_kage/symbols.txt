@@ -23,6 +23,6 @@ _dtors = .dtors:0x00000000; // type:label scope:global
 @94076 = .rodata:0x00000028; // type:object size:0x4 scope:local
 @94125 = .rodata:0x0000002C; // type:object size:0x4 scope:local
 @94126 = .rodata:0x00000030; // type:object size:0x4 scope:local
-lbl_490_data_0 = .data:0x00000000; // type:object size:0xC
+lbl_490_data_0 = .data:0x00000000; // type:object size:0x9 data:string
 l_daObj_Kage_Method = .data:0x0000000C; // type:object size:0x20 scope:global
 g_profile_OBJ_KAGE = .data:0x0000002C; // type:object size:0x30 scope:global

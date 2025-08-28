@@ -27,6 +27,6 @@ _dtors = .dtors:0x00000000; // type:label scope:global
 l_daTagHjump_Method = .data:0x00000000; // type:object size:0x20 scope:global
 g_profile_Tag_Hjump = .data:0x00000020; // type:object size:0x30 scope:global
 __vt__12daTagHjump_c = .data:0x00000050; // type:object size:0x28 scope:global
-lbl_126_data_78 = .data:0x00000078; // type:object size:0x10
+lbl_126_data_78 = .data:0x00000078; // type:object size:0xD data:string
 @93034 = .data:0x00000088; // type:object size:0x14 scope:local
 __RTTI__12daTagHjump_c = .data:0x0000009C; // type:object size:0x8 scope:global

@@ -101,7 +101,6 @@ class Z2CreatureRide;
 struct Z2RideSoundStarter : public Z2SoundStarter {
     /* 802C5234 */ Z2RideSoundStarter(Z2CreatureRide*);
 
-    /* 802C5078 */ virtual ~Z2RideSoundStarter() {}
     /* 802C5284 */ virtual bool startSound(JAISoundID, JAISoundHandle*,
                                            JGeometry::TVec3<f32> const*, u32, f32, f32, f32, f32,
                                            f32, u32);
