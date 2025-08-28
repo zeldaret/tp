@@ -309,6 +309,7 @@ u8 dMeter2Info_getNewLetterNum();
 int dMeter2Info_setNewLetterSender();
 bool dMeter2Info_isItemOpenCheck();
 bool dMeter2Info_isMapOpenCheck();
+s16 dMeter2Info_getNowLifeGauge();
 
 inline void dMeter2Info_Initialize() {
     g_meter2_info.init();
