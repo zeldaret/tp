@@ -2704,7 +2704,7 @@ void daB_YO_c::executeDeath() {
 
     case 15:
         if (strcmp(dComIfGp_getEventManager().getRunEventName(), "BOSSCLEAR05")) {
-            unk_FD2 = true;
+            mIsEnemyDemoEnd = true;
             mMode = 16;
         }
         return;
