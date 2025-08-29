@@ -41,7 +41,9 @@ public:
     /* 0x004 */ dKy_tevstr_c mTevStr;
     /* 0x38C */ Z2Creature mSound;
     /* 0x41C */ dCcD_Cyl mCyl;
-    /* 0x558 */ u8 field_0x558[0x570 - 0x558];
+    /* 0x558 */ cBgS_PolyInfo polyBase;
+    /* 0x568 */ f32 mGroundH;
+    /* 0x56C */ u32 mShadowKey;
     /* 0x570 */ u32 mAnmFlags;
     /* 0x574 */ cXyz mPos;
     /* 0x580 */ csXyz mAngle;
@@ -93,24 +95,28 @@ public:
     /* 80B1A888 */ void demo_Lv7Start();
     /* 80B1B6A0 */ void demo_Lv3PickUp();
     /* 80B1BD64 */ void demo_Lv6PickUp();
-    /* 80B1C480 */ void setParam();
-    /* 80B1C4F8 */ BOOL main();
-    /* 80B1CB54 */ BOOL ctrlBtk();
-    /* 80B1CC28 */ void setAttnPos();
-    /* 80B1CFD0 */ void lookat();
-    /* 80B1D1FC */ BOOL drawDbgInfo();
-    /* 80B1D204 */ void drawOtherMdls();
+    /* 80B1C480 */ inline void setParam();
+    /* 80B1C4F8 */ inline BOOL main();
+    /* 80B1CB54 */ inline BOOL ctrlBtk();
+    /* 80B1CC28 */ inline void setAttnPos();
+    /* 80B1CFD0 */ inline void lookat();
+    /* 80B1D1FC */ inline BOOL drawDbgInfo();
+    /* 80B1D204 */ inline void drawOtherMdls();
 
     u8 getType() { return fopAcM_GetParam(this) & 0xFF; }
     u8 getSwitchNo() { return (fopAcM_GetParam(this) >> 8) & 0xFF; }
     u8 getTsuboType() { return 1 - (fopAcM_GetParam(this) >> 24) == 0; }
     int getMessageNo() { return shape_angle.x; }
+    u8 getTBoxNo() { return (fopAcM_GetParam(this) >> 16) & 0xFF; }
     inline BOOL checkFindPlayer();
     inline void setLookMode(int, fopAc_ac_c*);
     inline void setTsuboMotionAnm(int, f32);
-    u8 getTBoxNo() { return (fopAcM_GetParam(this) >> 16) & 0xFF; }
     inline void setExpressionTalkAfter();
     inline BOOL step(s16, int);
+    inline void playExpression();
+    inline void playMotion();
+    inline void playTsuboAnm();
+    inline int getPlayerArea();
 
 private:
     /* 0x0B48 */ Z2Creature mSound;
@@ -127,7 +133,7 @@ private:
     /* 0x136C */ f32 field_0x136c;
     /* 0x1370 */ int field_0x1370;
     /* 0x1374 */ int field_0x1374;
-    /* 0x1378 */ int field_0x1378;
+    /* 0x1378 */ int mPlayerArea;
     /* 0x137C */ u32 field_0x137c[2];
     /* 0x1384 */ s16 mMessageNo;
     /* 0x1386 */ s16 mLookMode;
@@ -140,7 +146,7 @@ STATIC_ASSERT(sizeof(daNpcTks_c) == 0x138c);
 
 class daNpcTks_Param_c {
 public:
-    /* 80B1DCEC */ ~daNpcTks_Param_c();
+    /* 80B1DCEC */ virtual ~daNpcTks_Param_c() {}
 
     static daNpcTks_HIOParam const m;
 };
