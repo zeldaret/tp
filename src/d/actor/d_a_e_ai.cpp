@@ -145,9 +145,9 @@ BOOL e_ai_class::player_way_check() {
 
     if ((u16)angle_diff < 0x4000) {
         return FALSE;
-    } else {
-        return TRUE;
     }
+
+    return TRUE;
 }
 
 /* 80679538-80679610 0004B8 00D8+00 1/1 0/0 0/0 .text other_bg_check__10e_ai_classFP10fopAc_ac_c
@@ -167,9 +167,9 @@ BOOL e_ai_class::other_bg_check(fopAc_ac_c* i_other) {
     linchk.Set(&start, &end, this);
     if (dComIfG_Bgsp().LineCross(&linchk)) {
         return TRUE;
-    } else {
-        return FALSE;
     }
+
+    return FALSE;
 }
 
 /* 80679610-8067968C 000590 007C+00 2/2 0/0 0/0 .text            pl_check__10e_ai_classFfs */
