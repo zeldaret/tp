@@ -502,7 +502,7 @@ public:
     /* 0xA80 */ f32 mExpressionMorfFrame;
     /* 0xA84 */ f32 mMorfFrames;
     /* 0xA88 */ bool mCreating;
-    /* 0xA89 */ bool mTwilight;
+    /* 0xA89 */ u8 mTwilight;
     /* 0xA8C */ dBgS_GndChk field_0xa8c;
     /* 0xAE0 */ dBgS_LinChk mLinChk;
     /* 0xB50 */ daNpcT_MotionSeqMngr_c mFaceMotionSeqMngr;
@@ -1053,7 +1053,7 @@ protected:
     /* 0x9F1 */ u8 field_0x9f1;
     /* 0x9F2 */ bool mHide;
     /* 0x9F3 */ u8 field_0x9f3;
-    /* 0x9F4 */ bool mTwilight;
+    /* 0x9F4 */ u8 mTwilight;
     /* 0x9F5 */ u8 field_0x9f5;
     /* 0x9F6 */ u8 field_0x9f6;
     /* 0x9F8 */ dMsgFlow_c mFlow;

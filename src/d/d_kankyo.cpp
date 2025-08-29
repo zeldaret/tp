@@ -6566,10 +6566,10 @@ void dKy_depth_dist_set(void* process_p) {
 }
 
 /* 801AC57C-801AC5BC 1A6EBC 0040+00 13/13 21/21 134/134 .text            dKy_darkworld_check__Fv */
-bool dKy_darkworld_check() {
-    bool check = false;
+u8 dKy_darkworld_check() {
+    BOOL check = FALSE;
     if (dComIfGp_world_dark_get() == TRUE) {
-        check = true;
+        check = TRUE;
     }
 
     return check;
