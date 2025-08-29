@@ -80,7 +80,6 @@ public:
     /* 0x3C */ cXyz mCenterPos;
     /* 0x48 */ int mPlPoint;
     /* 0x4C */ bool mIsPathInit;
-    /* 0x4D */ u8 field_0x4d[0x50 - 0x4d];
     /* 0x50 */ daNpcF_Path_c mPath;
 };
 
@@ -161,8 +160,8 @@ public:
     void off_talked() { mTalked = false; }
     BOOL is_talked() { return mTalked; }
     BOOL is_escape() { return mEscape; }
-    void chgWeightHeavy() { mCcStts.SetWeight(dCcD_Stts::WEIGHT_HEAVY); }
-    void chgWeightLight() { mCcStts.SetWeight(dCcD_Stts::WEIGHT_LIGHT); }
+    void chgWeightHeavy() { mCcStts.SetWeight(0xFE); }
+    void chgWeightLight() { mCcStts.SetWeight(0xD8); }
     u8 getRailNo() { return fopAcM_GetParam(this) >> 8; }
     bool chkAction(actionFunc action) { return action == mAction; }
     int getSwitchBitNo() { return (fopAcM_GetParam(this) >> 16) & 0xFF; }

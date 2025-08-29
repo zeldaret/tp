@@ -681,7 +681,7 @@ cPhs__Step daNpcKasiHana_c::Create() {
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this),
                   fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
         mAcch.CrrPos(dComIfG_Bgsp());
-        mCcStts.Init(dCcD_Stts::WEIGHT_HEAVY, 0, this);
+        mCcStts.Init(0xFE, 0, this);
         mCyl.Set(mCcDCyl);
         mCyl.SetStts(&mCcStts);
         mCyl.SetTgType(0);

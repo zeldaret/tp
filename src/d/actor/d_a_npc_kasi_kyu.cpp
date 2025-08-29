@@ -102,13 +102,6 @@ enum Motion {
     /* 0xC */ MOT_W_2NORMALTALK_A,
 };
 
-class daNpcKasiKyu_Param_c {
-public:
-    /* 80A2584C */ virtual ~daNpcKasiKyu_Param_c() {}
-
-    static daNpcKasiKyu_HIOParam const m;
-};
-
 /* 80A2605C-80A26060 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daNpcKasiKyu_Param_c l_HIO;
 
@@ -240,7 +233,7 @@ cPhs__Step daNpcKasiKyu_c::Create() {
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this),
                   fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
         mAcch.CrrPos(dComIfG_Bgsp());
-        mCcStts.Init(dCcD_Stts::WEIGHT_HEAVY, 0, this);
+        mCcStts.Init(0xFE, 0, this);
         mCyl.Set(mCcDCyl);
         mCyl.SetStts(&mCcStts);
         mCyl.SetTgType(0);
@@ -398,12 +391,12 @@ BOOL daNpcKasiKyu_c::main() {
             &daNpcKasiKyu_c::kya,
             &daNpcKasiKyu_c::iyan,
             &daNpcKasiKyu_c::kya_stop,
-            &daNpcKasiKyu_c::wait_dummy,
             &daNpcKasiKyu_c::iyan_look,
+            &daNpcKasiKyu_c::wait_dummy,
             &daNpcKasiKyu_c::turn_hana,
             NULL,
-            &daNpcKasiKyu_c::wait_dummy,
             &daNpcKasiKyu_c::kya2,
+            &daNpcKasiKyu_c::kya_stop,
             &daNpcKasiKyu_c::fear,
         };
         setAction(sSygnalAct[mSygnal]);
@@ -1457,9 +1450,6 @@ static int daNpcKasiKyu_Draw(void* a_this) {
 static int daNpcKasiKyu_IsDelete(void* a_this) {
     return 1;
 }
-
-/* 80A25848-80A2584C 003F68 0004+00 1/0 0/0 0/0 .text adjustShapeAngle__14daNpcKasiKyu_cFv */
-void daNpcKasiKyu_c::adjustShapeAngle() {}
 
 AUDIO_INSTANCES;
 

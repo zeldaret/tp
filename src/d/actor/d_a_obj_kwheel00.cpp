@@ -169,7 +169,7 @@ int daObjKWheel00_c::Create() {
     if(m_type == TYPE_SMALL_PLATINUM)
         fopAcM_SetStatus(this, 0);
 
-    mStts.Init(dCcD_Stts::WEIGHT_HEAVY, 0, this);
+    mStts.Init(0xFE, 0, this);
 
     for(int i = 0; i < 4; i++) {
         mLargeGearTeethSphereColliders[i].SetStts(&mStts);

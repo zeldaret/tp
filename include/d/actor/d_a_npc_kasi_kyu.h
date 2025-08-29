@@ -81,7 +81,7 @@ public:
     /* 80A24D10 */ BOOL _turn_pos(cXyz const&, s16);
     /* 80A24D6C */ BOOL actor_front_check(fopAc_ac_c*);
     /* 80A24E44 */ void _getOffset(cXyz const&, cXyz&);
-    /* 80A25848 */ void adjustShapeAngle();
+    /* 80A25848 */ void adjustShapeAngle() {}
 
     s8 getType() {
         s8 rv = fopAcM_GetParam(this) & 0xFF;
@@ -102,8 +102,8 @@ public:
     BOOL is_talked() { return mTalked; }
     BOOL is_fear() { return mFear; }
     BOOL is_escape() { return mEscape; }
-    void chgWeightHeavy() { mCcStts.SetWeight(dCcD_Stts::WEIGHT_HEAVY); }
-    void chgWeightLight() { mCcStts.SetWeight(dCcD_Stts::WEIGHT_LIGHT); }
+    void chgWeightHeavy() { mCcStts.SetWeight(0xFE); }
+    void chgWeightLight() { mCcStts.SetWeight(0xD8); }
     BOOL pl_front_check() { return actor_front_check(daPy_getPlayerActorClass()); }
 
     static EventFn mEvtSeqList[1];
@@ -142,5 +142,12 @@ private:
 };
 
 STATIC_ASSERT(sizeof(daNpcKasiKyu_c) == 0x146c);
+
+class daNpcKasiKyu_Param_c {
+public:
+    /* 80A2584C */ virtual ~daNpcKasiKyu_Param_c() {}
+
+    static daNpcKasiKyu_HIOParam const m;
+};
 
 #endif /* D_A_NPC_KASI_KYU_H */
