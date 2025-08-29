@@ -1676,7 +1676,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_door_bossL5"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_door_mbossL1"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_door_push"),
-    ActorRel(NonMatching, "d_a_e_ai"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_e_ai"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_arrow"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_ba"),
     ActorRel(NonMatching, "d_a_e_bee"),

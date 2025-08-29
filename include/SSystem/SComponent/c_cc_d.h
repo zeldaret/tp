@@ -31,7 +31,7 @@ class cCcD_SphAttr;
 
 enum cCcD_ObjAtType {
     /* 0x00000000 */ AT_TYPE_0 = 0,
-    /* 0x00000001*/  AT_TYPE_1 = (1 << 0),
+    /* 0x00000001 */ AT_TYPE_1 = (1 << 0),
     /* 0x00000002 */ AT_TYPE_NORMAL_SWORD = (1 << 1),  // wooden or ordon
     /* 0x00000004 */ AT_TYPE_HORSE = (1 << 2),
     /* 0x00000008 */ AT_TYPE_THROW_OBJ = (1 << 3),
@@ -56,6 +56,7 @@ enum cCcD_ObjAtType {
     /* 0x00400000 */ AT_TYPE_IRON_BALL = (1 << 22),
     /* 0x00800000 */ AT_TYPE_COPY_ROD = (1 << 23),
     /* 0x01000000 */ AT_TYPE_1000000 = (1 << 24),
+    /* 0x02000000 */ AT_TYPE_2000000 = (1 << 25),
     /* 0x04000000 */ AT_TYPE_MASTER_SWORD = (1 << 26),
     /* 0x08000000 */ AT_TYPE_MIDNA_LOCK = (1 << 27),
     /* 0x10000000 */ AT_TYPE_10000000 = (1 << 28),
