@@ -10,7 +10,7 @@
 #include "d/d_bg_w.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_bomb.h"
-#include "Z2AudioLib\Z2Instances.h"
+#include "Z2AudioLib/Z2Instances.h"
 
 #ifdef DEBUG
 daObjTobyHouse_HIO_c l_HIO;

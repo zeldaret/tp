@@ -3,7 +3,7 @@
  * Item Actor base
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel.h"
 
 #include "d/actor/d_a_itembase.h"
 #include "d/d_com_inf_game.h"

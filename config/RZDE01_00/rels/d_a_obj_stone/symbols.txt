@@ -100,6 +100,6 @@ eff_num$92632 = .rodata:0x000001C4; // type:object size:0x4 scope:local
 lbl_634_data_0 = .data:0x00000000; // type:object size:0x8 data:string
 lbl_634_data_8 = .data:0x00000008; // type:object size:0x8 data:string
 l_arcName = .data:0x00000010; // type:object size:0x8 scope:global
-lbl_634_data_18 = .data:0x00000018; // type:object size:0x8
+lbl_634_data_18 = .data:0x00000018; // type:object size:0x7 data:string
 l_daObjStone_Method = .data:0x00000020; // type:object size:0x20 scope:global
 g_profile_Obj_Stone = .data:0x00000040; // type:object size:0x30 scope:global

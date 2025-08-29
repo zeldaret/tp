@@ -48,4 +48,4 @@ lbl_570_data_D0 = .data:0x000000D0; // type:object size:0x7 data:string
 lbl_570_data_D7 = .data:0x000000D7; // type:object size:0x7 data:string
 lbl_570_data_DE = .data:0x000000DE; // type:object size:0x7 data:string
 lbl_570_data_E5 = .data:0x000000E5; // type:object size:0x7 data:string
-lbl_570_data_EC = .data:0x000000EC; // type:object size:0x8
+lbl_570_data_EC = .data:0x000000EC; // type:object size:0x7 data:string

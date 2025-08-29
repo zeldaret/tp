@@ -59,25 +59,5 @@ public:
 
 STATIC_ASSERT(sizeof(fr_class) == 0x9e8);
 
-class daFr_HIO_c : public JORReflexible {
-public:
-    /* 805198EC */ daFr_HIO_c();
-    /* 8051B920 */ virtual ~daFr_HIO_c() {};
-
-    void genMessage(JORMContext*);
-    
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 field_0x8;
-    /* 0x0C */ f32 field_0xc;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1c;
-    /* 0x20 */ f32 field_0x20;
-    /* 0x24 */ f32 field_0x24;
-    /* 0x28 */ f32 field_0x28;
-    /* 0x2C */ f32 field_0x2c;
-};
-
 
 #endif /* D_A_FR_H */

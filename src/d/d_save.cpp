@@ -1117,6 +1117,28 @@ u32 dSv_player_config_c::checkVibration() const {
 #endif
 }
 
+/* 80034684-8003468C 02EFC4 0008+00 1/1 2/2 0/0 .text            getSound__19dSv_player_config_cFv
+ */
+u8 dSv_player_config_c::getSound() {
+    return mSoundMode;
+}
+
+/* 8003468C-80034694 -00001 0008+00 0/0 0/0 0/0 .text            setSound__19dSv_player_config_cFUc
+ */
+void dSv_player_config_c::setSound(u8 i_mode) {
+    mSoundMode = i_mode;
+}
+
+/* 80034694-8003469C 02EFD4 0008+00 1/1 1/1 0/0 .text getVibration__19dSv_player_config_cFv */
+u8 dSv_player_config_c::getVibration() {
+    return mVibration;
+}
+
+/* 8003469C-800346A4 -00001 0008+00 0/0 0/0 0/0 .text setVibration__19dSv_player_config_cFUc */
+void dSv_player_config_c::setVibration(u8 i_status) {
+    mVibration = i_status;
+}
+
 u8 dSv_player_config_c::getPalLanguage() const {
 #if VERSION == VERSION_GCN_PAL
     switch (OSGetLanguage()) {
@@ -1143,28 +1165,6 @@ u8 dSv_player_config_c::getPalLanguage() const {
 #endif
 
     return 0;
-}
-
-/* 80034684-8003468C 02EFC4 0008+00 1/1 2/2 0/0 .text            getSound__19dSv_player_config_cFv
- */
-u8 dSv_player_config_c::getSound() {
-    return mSoundMode;
-}
-
-/* 8003468C-80034694 -00001 0008+00 0/0 0/0 0/0 .text            setSound__19dSv_player_config_cFUc
- */
-void dSv_player_config_c::setSound(u8 i_mode) {
-    mSoundMode = i_mode;
-}
-
-/* 80034694-8003469C 02EFD4 0008+00 1/1 1/1 0/0 .text getVibration__19dSv_player_config_cFv */
-u8 dSv_player_config_c::getVibration() {
-    return mVibration;
-}
-
-/* 8003469C-800346A4 -00001 0008+00 0/0 0/0 0/0 .text setVibration__19dSv_player_config_cFUc */
-void dSv_player_config_c::setVibration(u8 i_status) {
-    mVibration = i_status;
 }
 
 /* 800346A4-80034750 02EFE4 00AC+00 1/1 0/0 0/0 .text            init__12dSv_player_cFv */

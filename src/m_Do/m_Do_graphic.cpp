@@ -87,7 +87,7 @@ u8 mDoGph_gInf_c::mBlureRate;
 
 u8 mDoGph_gInf_c::mFade;
 
-bool data_80450BE7;
+bool mDoGph_gInf_c::mAutoForcus;
 
 /* 80007E44-80007F90 002784 014C+00 1/1 0/0 0/0 .text            create__13mDoGph_gInf_cFv */
 void mDoGph_gInf_c::create() {

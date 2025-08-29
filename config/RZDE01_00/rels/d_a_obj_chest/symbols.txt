@@ -45,6 +45,6 @@ l_func$91907 = .data:0x0000000C; // type:object size:0x24 scope:local
 l_daObjChest_Method = .data:0x00000030; // type:object size:0x20 scope:global
 g_profile_Obj_Chest = .data:0x00000050; // type:object size:0x30 scope:global
 __vt__12daObjChest_c = .data:0x00000080; // type:object size:0x28 scope:global
-lbl_422_data_A8 = .data:0x000000A8; // type:object size:0x10
+lbl_422_data_A8 = .data:0x000000A8; // type:object size:0xD data:string
 @92043 = .data:0x000000B8; // type:object size:0x14 scope:local
 __RTTI__12daObjChest_c = .data:0x000000CC; // type:object size:0x8 scope:global

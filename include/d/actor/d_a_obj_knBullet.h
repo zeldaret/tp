@@ -23,6 +23,7 @@ public:
     /* 80C477B4 */ void hitPrtclSet();
 
     u8 getActionMode() { return mActionMode; }
+    void setActionMode(u8 i_action) { mActionMode = i_action; }
 
 private:
     /* 0x568 */ u8 field_0x568[0x70c - 0x568];

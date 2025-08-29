@@ -46,4 +46,4 @@ __RTTI__15daObjSnowSoup_c = .data:0x000000D0; // type:object size:0x8 scope:glob
 @114384 = .data:0x000000D8; // type:object size:0xB scope:local data:string
 @114385 = .data:0x000000F0; // type:object size:0x1F scope:local data:string
 __RTTI__30request_of_phase_process_class = .data:0x00000110; // type:object size:0x8 scope:global
-lbl_615_data_118 = .data:0x00000118; // type:object size:0x4
+lbl_615_data_118 = .data:0x00000118; // type:object size:0x3 data:string

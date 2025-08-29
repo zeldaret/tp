@@ -360,7 +360,7 @@ f_pc/f_pc_priority.cpp:
 
 f_pc/f_pc_profile.cpp:
 	.text       start:0x800476C0 end:0x800476F0
-	.sbss       start:0x8074C560 end:0x8074C570
+	.sbss       start:0x8074C560 end:0x8074C568
 
 f_pc/f_pc_searcher.cpp:
 	.text       start:0x800476F0 end:0x80047730
@@ -402,7 +402,7 @@ d/d_stage.cpp:
 	.ctors      start:0x8062F7F4 end:0x8062F7F8
 	.data       start:0x8066D6A8 end:0x80671F60
 	.sdata      start:0x80740298 end:0x80740598
-	.sbss       start:0x8074C570 end:0x8074C5A0
+	.sbss       start:0x8074C568 end:0x8074C5A0
 	.sdata2     start:0x8074DA28 end:0x8074DA38
 	.bss        start:0x80782228 end:0x807938E0
 
@@ -1676,7 +1676,7 @@ SSystem/SComponent/c_API.cpp:
 
 SSystem/SComponent/c_malloc.cpp:
 	.text       start:0x803FFF10 end:0x803FFFC0
-	.sbss       start:0x8074CB18 end:0x8074CB28
+	.sbss       start:0x8074CB18 end:0x8074CB20
 
 SSystem/SComponent/c_API_controller_pad.cpp:
 	.text       start:0x803FFFC0 end:0x80400010
@@ -1697,6 +1697,7 @@ SSystem/SComponent/c_cc_s.cpp:
 	.text       start:0x80402AF0 end:0x80405100
 	.data       start:0x806EC248 end:0x806ECFE0
 	.sdata      start:0x80747608 end:0x80747618
+	.sbss       start:0x8074CB20 end:0x8074CB28
 	.sdata2     start:0x807515D0 end:0x807515F0
 	.bss        start:0x807C7B40 end:0x807C7B50
 

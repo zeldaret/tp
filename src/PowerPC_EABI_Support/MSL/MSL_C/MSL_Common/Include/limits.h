@@ -1,6 +1,8 @@
 #ifndef _STD_LIMITS_H
 #define _STD_LIMITS_H
 
+#include "float.h"
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -95,6 +97,13 @@ class numeric_limits<unsigned long> {
 public:
 	inline static unsigned long min() { return 0x0; }
 	inline static unsigned long max() { return 0xFFFFFFFF; }
+};
+
+template <>
+class numeric_limits<float> {
+public:
+	inline static float min();
+	inline static float max() { return FLT_MAX; }
 };
 
 } // namespace std
