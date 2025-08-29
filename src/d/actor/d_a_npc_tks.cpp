@@ -11,6 +11,127 @@
 #include "d/d_meter2_info.h"
 #include "f_op/f_op_kankyo_mng.h"
 
+enum TKS_RES_File_ID {
+    /* BCK */
+    /* 0x07 */ BCK_TKS_F_TALK_A = 0x7,
+    /* 0x08 */ BCK_TKS_FALL,
+    /* 0x09 */ BCK_TKS_FLY,
+    /* 0x0A */ BCK_TKS_HIDE,
+    /* 0x0B */ BCK_TKS_IN,
+    /* 0x0C */ BCK_TKS_JUMP_E,
+    /* 0x0D */ BCK_TKS_JUMP_S,
+    /* 0x0E */ BCK_TKS_LAND,
+    /* 0x0F */ BCK_TKS_LOOKAROUND_A,
+    /* 0x10 */ BCK_TKS_LOOKAROUND_B,
+    /* 0x11 */ BCK_TKS_RUN,
+    /* 0x12 */ BCK_TKS_SHAKE,
+    /* 0x13 */ BCK_TKS_SHOW_UP,
+    /* 0x14 */ BCK_TKS_SHOW_UP_WAIT,
+    /* 0x15 */ BCK_TKS_SWIM,
+    /* 0x16 */ BCK_TKS_TUBO_HIDE,
+    /* 0x17 */ BCK_TKS_TUBO_IN,
+    /* 0x18 */ BCK_TKS_TUBO_SHAKE,
+    /* 0x19 */ BCK_TKS_TUBO_SHOW_UP,
+    /* 0x1A */ BCK_TKS_WAIT_A,
+    /* 0x1B */ BCK_TKS_WALK_A,
+
+    /* BMDR */
+    /* 0x1E */ BMDR_TKS = 0x1E,
+
+    /* BTK */
+    /* 0x21 */ BTK_TKS = 0x21,
+
+    /* BTP */
+    /* 0x24 */ BTP_TKS = 0x24,
+
+    /* EVT */
+    /* 0x27 */ EVT_TKS_EVENT_LIST = 0x27,
+};
+
+enum J_tubo_00_RES_File_ID {
+    /* BMDR */
+    /* 0x3 */ BMDR_J_TUBO_00 = 0x3,
+};
+
+enum K_tubo02_RES_File_ID {
+    /* BMDR */
+    /* 0x3 */ BMDR_K_TUBO02 = 0x3,
+};
+
+enum Animation {
+    /* 0x00 */ ANM_NONE,
+    /* 0x01 */ ANM_F_TALK_A,
+    /* 0x02 */ ANM_WAIT_A,
+    /* 0x03 */ ANM_WALK_A,
+    /* 0x04 */ ANM_HIDE,
+    /* 0x05 */ ANM_SHOW_UP,
+    /* 0x06 */ ANM_SHOW_UP_WAIT,
+    /* 0x07 */ ANM_LOOKAROUND_A,
+    /* 0x08 */ ANM_LOOKAROUND_B,
+    /* 0x09 */ ANM_IN,
+    /* 0x0A */ ANM_SHAKE,
+    /* 0x0B */ ANM_FALL,
+    /* 0x0C */ ANM_LAND,
+    /* 0x0D */ ANM_TUBO_HIDE,
+    /* 0x0E */ ANM_TUBO_SHOW_UP,
+    /* 0x0F */ ANM_TUBO_IN,
+    /* 0x10 */ ANM_TUBO_SHAKE,
+    /* 0x11 */ ANM_JUMP_S,
+    /* 0x12 */ ANM_FLY,
+    /* 0x13 */ ANM_JUMP_E,
+    /* 0x14 */ ANM_RUN,
+    /* 0x15 */ ANM_SWIM,
+};
+
+enum Motion {
+    /* 0x0 */ MOT_WAIT_A,
+    /* 0x1 */ MOT_SWIM,
+    /* 0x2 */ MOT_RUN,
+    /* 0x3 */ MOT_WALK_A,
+    /* 0x4 */ MOT_JUMP_S,
+    /* 0x5 */ MOT_JUMP_E,
+    /* 0x6 */ MOT_LAND,
+    /* 0x7 */ MOT_WALK_A_LOOP,
+};
+
+enum Expression {
+    /* 0x0 */ EXPR_TALK_A,
+    /* 0x1 */ EXPR_NONE,
+};
+
+enum Expression_BTP {
+    /* 0x0 */ EXPR_BTP_TKS,
+};
+
+enum Joint {
+    /* 0x00 */ JNT_CENTER,
+    /* 0x01 */ JNT_ARML1,
+    /* 0x02 */ JNT_ARML2,
+    /* 0x03 */ JNT_HANDL,
+    /* 0x04 */ JNT_TUBASAL,
+    /* 0x05 */ JNT_ARMR1,
+    /* 0x06 */ JNT_ARMR2,
+    /* 0x07 */ JNT_HANDR,
+    /* 0x08 */ JNT_TUBASAR,
+    /* 0x09 */ JNT_LEGL,
+    /* 0x0A */ JNT_FOOTL1,
+    /* 0x0B */ JNT_FOOTL2,
+    /* 0x0C */ JNT_LEGR,
+    /* 0x0D */ JNT_FOOTR1,
+    /* 0x0E */ JNT_FOOTR2,
+    /* 0x0F */ JNT_NECK1,
+    /* 0x10 */ JNT_NECK2,
+    /* 0x11 */ JNT_HEAD,
+    /* 0x12 */ JNT_CHIN,
+    /* 0x13 */ JNT_MOUTH,
+};
+
+enum RES_Name {
+    /* 0x0 */ TKS,
+    /* 0x1 */ J_TUBO_00,
+    /* 0x2 */ K_TUBO02,
+};
+
 /* 80B1E554-80B1E558 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daNpcTks_Param_c l_HIO;
 
@@ -19,28 +140,28 @@ static struct {
     /* 0x0 */ int fileIdx;
     /* 0x4 */ int attr;
 } l_bckGetParamList[22] = {
-    {-1, 2},
-    {7, 0},
-    {0x1A, 2},
-    {0x1B, 2},
-    {0x0A, 2},
-    {0x13, 0},
-    {0x14, 2},
-    {0x0F, 0},
-    {0x10, 0},
-    {0x0B, 0},
-    {0x12, 0},
-    {0x08, 2},
-    {0x0E, 0},
-    {0x16, 2},
-    {0x19, 0},
-    {0x17, 0},
-    {0x18, 0},
-    {0x0D, 0},
-    {0x09, 2},
-    {0x0C, 0},
-    {0x11, 2},
-    {0x15, 2},
+    {-1, J3DFrameCtrl::EMode_LOOP},
+    {BCK_TKS_F_TALK_A, J3DFrameCtrl::EMode_NONE},
+    {BCK_TKS_WAIT_A, J3DFrameCtrl::EMode_LOOP},
+    {BCK_TKS_WALK_A, J3DFrameCtrl::EMode_LOOP},
+    {BCK_TKS_HIDE, J3DFrameCtrl::EMode_LOOP},
+    {BCK_TKS_SHOW_UP, J3DFrameCtrl::EMode_NONE},
+    {BCK_TKS_SHOW_UP_WAIT, J3DFrameCtrl::EMode_LOOP},
+    {BCK_TKS_LOOKAROUND_A, J3DFrameCtrl::EMode_NONE},
+    {BCK_TKS_LOOKAROUND_B, J3DFrameCtrl::EMode_NONE},
+    {BCK_TKS_IN, J3DFrameCtrl::EMode_NONE},
+    {BCK_TKS_SHAKE, J3DFrameCtrl::EMode_NONE},
+    {BCK_TKS_FALL, J3DFrameCtrl::EMode_LOOP},
+    {BCK_TKS_LAND, J3DFrameCtrl::EMode_NONE},
+    {BCK_TKS_TUBO_HIDE, J3DFrameCtrl::EMode_LOOP},
+    {BCK_TKS_TUBO_SHOW_UP, J3DFrameCtrl::EMode_NONE},
+    {BCK_TKS_TUBO_IN, J3DFrameCtrl::EMode_NONE},
+    {BCK_TKS_TUBO_SHAKE, J3DFrameCtrl::EMode_NONE},
+    {BCK_TKS_JUMP_S, J3DFrameCtrl::EMode_NONE},
+    {BCK_TKS_FLY, J3DFrameCtrl::EMode_LOOP},
+    {BCK_TKS_JUMP_E, J3DFrameCtrl::EMode_NONE},
+    {BCK_TKS_RUN, J3DFrameCtrl::EMode_LOOP},
+    {BCK_TKS_SWIM, J3DFrameCtrl::EMode_LOOP},
 };
 
 /* 80B1E1B4-80B1E1BC 0000D0 0008+00 1/1 0/0 0/0 .data            l_btpGetParamList */
@@ -48,7 +169,7 @@ static struct {
     /* 0x0 */ int fileIdx;
     /* 0x4 */ int attr;
 } l_btpGetParamList[1] = {
-    {0x24, 2},
+    {BTP_TKS, J3DFrameCtrl::EMode_LOOP},
 };
 
 /* 80B1E1BC-80B1E1C4 0000D8 0008+00 1/2 0/0 0/0 .data            l_btkGetParamList */
@@ -56,22 +177,22 @@ static struct {
     /* 0x0 */ int fileIdx;
     /* 0x4 */ int attr;
 } l_btkGetParamList[1] = {
-    {0x21, 2},
+    {BTK_TKS, J3DFrameCtrl::EMode_LOOP},
 };
 
 /* 80B1E1C4-80B1E1D0 0000E0 000C+00 1/0 0/0 0/0 .data            l_loadRes_TKS0 */
 static int l_loadRes_TKS0[3] = {
-    0, 1, -1,
+    TKS, J_TUBO_00, -1,
 };
 
 /* 80B1E1D0-80B1E1DC 0000EC 000C+00 1/0 0/0 0/0 .data            l_loadRes_TKS1 */
 static int l_loadRes_TKS1[3] = {
-    0, 2, -1,
+    TKS, K_TUBO02, -1,
 };
 
 /* 80B1E1DC-80B1E1E8 0000F8 000C+00 1/0 0/0 0/0 .data            l_loadRes_TKS2 */
 static int l_loadRes_TKS2[3] = {
-    0, -1, -1,
+    TKS, -1, -1,
 };
 
 /* 80B1E1E8-80B1E1F4 -00001 000C+00 2/2 0/0 0/0 .data            l_loadRes_list */
@@ -105,7 +226,6 @@ daNpcTks_c::daNpcTks_c() {}
 
 /* 80B14844-80B14AF8 000304 02B4+00 1/0 0/0 0/0 .text            __dt__10daNpcTks_cFv */
 daNpcTks_c::~daNpcTks_c() {
-    // NONMATCHING
     for (int i = 0; l_loadRes_list[mTksTsubo.mTsuboType][i] >= 0; i++) {
         dComIfG_resDelete(&mPhases[i], l_arcNames[l_loadRes_list[mTksTsubo.mTsuboType][i]]);
     }
@@ -119,7 +239,6 @@ daNpcTks_c::~daNpcTks_c() {
     }
 }
 
-/* ############################################################################################## */
 /* 80B1DD58-80B1DDF0 000000 0098+00 25/25 0/0 0/0 .rodata          m__16daNpcTks_Param_c */
 daNpcTks_HIOParam const daNpcTks_Param_c::m = {
     90.0f,
@@ -248,7 +367,7 @@ cPhs__Step daNpcTks_c::Create() {
 /* 80B14ED0-80B1521C 000990 034C+00 1/1 0/0 0/0 .text            CreateHeap__10daNpcTks_cFv */
 int daNpcTks_c::CreateHeap() {
     // NONMATCHING
-    J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 30);
+    J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_arcName, BMDR_TKS);
 
     JUT_ASSERT(410, 0 != mdlData_p);
 
@@ -273,18 +392,18 @@ int daNpcTks_c::CreateHeap() {
         return 0;
     }
 
-    if (!setExpressionAnm(1, false)) {
+    if (!setExpressionAnm(ANM_F_TALK_A, false)) {
         return 0;
     }
 
-    setMotion(0, -1.0f, 0);
+    setMotion(MOT_WAIT_A, -1.0f, 0);
 
     if (mTksTsubo.mTsuboType < 2) {
         mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(mTksTsubo.mTsuboType != 0 ? l_arcNames[2] : l_arcNames[1], 3));
 
         JUT_ASSERT(453, 0 != mdlData_p);
         
-        mTksTsubo.mpModelMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, getTrnsfrmKeyAnmP(l_arcName, 0x16), -1, 1.0f, 0, -1, &mTksTsubo.mSound, 0x80000, 0x11000084);
+        mTksTsubo.mpModelMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, getTrnsfrmKeyAnmP(l_arcName, BCK_TKS_TUBO_HIDE), -1, 1.0f, 0, -1, &mTksTsubo.mSound, 0x80000, 0x11000084);
         if (mTksTsubo.mpModelMorf == NULL) {
             return 0;
         }
@@ -315,23 +434,23 @@ int daNpcTks_c::Draw() {
 /* 80B1548C-80B15650 000F4C 01C4+00 1/1 0/0 0/0 .text            ctrlJoint__10daNpcTks_cFP8J3DJointP8J3DModel */
 int daNpcTks_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     int jntNo = i_joint->getJntNo();
-    int i_jointList[3] = {0xF, 0x10, 0x11};
+    int i_jointList[3] = {JNT_NECK1, JNT_NECK2, JNT_HEAD};
 
     if (jntNo == 0) {
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(0xF));
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_NECK1));
         mDoMtx_stack_c::multVecZero(&mLookatPos[0]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(0x10));
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_NECK2));
         mDoMtx_stack_c::multVecZero(&mLookatPos[1]);
-        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(0x11));
+        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_HEAD));
         mDoMtx_stack_c::multVecZero(&mLookatPos[2]);
     }
 
     mDoMtx_stack_c::copy(i_model->getAnmMtx(jntNo));
 
     switch (jntNo) {
-        case 0xF:
-        case 0x10:
-        case 0x11:
+        case JNT_NECK1:
+        case JNT_NECK2:
+        case JNT_HEAD:
             setLookatMtx(jntNo, i_jointList, daNpcTks_Param_c::m.common.neck_rotation_ratio);
             break;
     }
@@ -339,7 +458,7 @@ int daNpcTks_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
     i_model->setAnmMtx(jntNo, mDoMtx_stack_c::get());
     MTXCopy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
 
-    if ((jntNo == 0x11 || jntNo == 0x13) && (mAnmFlags & ANM_PLAY_BCK) != 0) {
+    if ((jntNo == JNT_HEAD || jntNo == JNT_MOUTH) && (mAnmFlags & ANM_PLAY_BCK) != 0) {
         J3DAnmTransform* anm = mBckAnm.getBckAnm();
         mBckAnm.changeBckOnly(mpMorf->getAnm());
         mpMorf->changeAnm(anm);
@@ -378,7 +497,7 @@ void daNpcTks_c::setMtx() {
     model->setUserArea((u32)this);
 
     if (mTksTsubo.field_0x586 != 0) {
-        if (field_0x138a != 0) {
+        if (field_0x138a) {
             mTksTsubo.mPos = current.pos;
         } else {
             mDoMtx_stack_c::transS(mTksTsubo.mPos);
@@ -407,12 +526,12 @@ bool daNpcTks_c::setExpressionAnm(int i_index, bool i_modify) {
     bool bVar1 = FALSE;
     
     switch (i_index) {
-        case 0:
-            bVar1 = setExpressionBtp(0);
+        case ANM_NONE:
+            bVar1 = setExpressionBtp(EXPR_BTP_TKS);
             break;
         
-        case 1:
-            bVar1 = setExpressionBtp(0);
+        case ANM_F_TALK_A:
+            bVar1 = setExpressionBtp(EXPR_BTP_TKS);
             break;
 
         default:
@@ -477,9 +596,41 @@ void daNpcTks_c::setMotion(int i_motion, f32 i_morf, int param_3) {
     }
 }
 
+/* 80B1C4F8-80B1CB4C 007FB8 0654+00 1/0 0/0 0/0 .text            main__10daNpcTks_cFv */
+BOOL daNpcTks_c::main() {
+    // NONMATCHING
+    if (field_0x138a && mTksTsubo.mCyl.ChkTgHit()) {
+        if (mTksTsubo.mCyl.GetTgHitObj()->ChkAtType(AT_TYPE_BOOMERANG)) {
+            setAction(&daNpcTks_c::damage);
+        } else {
+            setAction(&daNpcTks_c::broken);
+        }
+    }
+
+    if (cLib_checkBit<u32>(attention_info.flags, 0x10) && fopAcM_checkCarryNow(this)) {
+        setAction(&daNpcTks_c::demo_appear);
+    }
+
+    if (dComIfGp_event_runCheck() != FALSE && !eventInfo.checkCommandTalk() && mItemID != fpcM_ERROR_PROCESS_ID_e) {
+        dComIfGp_event_setItemPartnerId(mItemID);
+        mItemID = fpcM_ERROR_PROCESS_ID_e;
+        fopAcM_delete(this);
+    }
+
+    if (mAction) {
+        (this->*mAction)();
+    }
+
+    playExpression();
+    playMotion();
+    playTsuboAnm();
+    mPlayerArea = getPlayerArea();
+
+    return TRUE;
+}
+
 /* 80B15A24-80B160A8 0014E4 0684+00 1/1 0/0 0/0 .text            reset__10daNpcTks_cFv */
 void daNpcTks_c::reset() {
-    // NONMATCHING
     initialize();
     mpMatAnm->initialize();
     mLookat.initialize();
@@ -495,7 +646,7 @@ void daNpcTks_c::reset() {
     mAction = NULL;
     mLookMode = -1;
     mMode = 0;
-    field_0x138a = 1;
+    field_0x138a = true;
     mPlayerArea = -1;
     scale.setall(daNpcTks_Param_c::m.common.scale);
 
@@ -514,7 +665,7 @@ void daNpcTks_c::reset() {
         case 255:
             if (fopAcM_isSwitch(this, getSwitchNo())) {
                 cLib_offBit<u32>(attention_info.flags, 0x10);
-                field_0x138a = 0;
+                field_0x138a = false;
                 mTksTsubo.field_0x586 = 0;
                 setAction(&daNpcTks_c::waitNude);
             } else {
@@ -525,7 +676,7 @@ void daNpcTks_c::reset() {
 
         case 1: {
             mTksTsubo.field_0x586 = 0;
-            field_0x138a = 0;
+            field_0x138a = false;
             setAction(&daNpcTks_c::demo_scannon);
             cXyz i_pos(current.pos);
             i_pos.y += 60.0f;
@@ -536,7 +687,7 @@ void daNpcTks_c::reset() {
 
         case 2: {
             mTksTsubo.field_0x586 = 0;
-            field_0x138a = 0;
+            field_0x138a = false;
             setAction(&daNpcTks_c::demo_Lv6Gate);
             cXyz i_pos(current.pos);
             i_pos.y += 60.0f;
@@ -547,7 +698,7 @@ void daNpcTks_c::reset() {
 
         case 3: {
             mTksTsubo.field_0x586 = 0;
-            field_0x138a = 0;
+            field_0x138a = false;
             field_0x1370 = 10;
             setAction(&daNpcTks_c::demo_farewell);
             cXyz i_pos(current.pos);
@@ -560,13 +711,13 @@ void daNpcTks_c::reset() {
 
         case 4:
             mTksTsubo.field_0x586 = 0;
-            field_0x138a = 0;
+            field_0x138a = false;
             setAction(&daNpcTks_c::demo_warpBack);
             break;
 
         case 5:
             mTksTsubo.field_0x586 = 0;
-            field_0x138a = 0;
+            field_0x138a = false;
 
             if (strcmp(dComIfGp_getStartStageName(), "D_MN11") == 0) {
                 field_0x1370 = 5;
@@ -587,7 +738,7 @@ void daNpcTks_c::reset() {
 
         case 6: {
             mTksTsubo.field_0x586 = 0;
-            field_0x138a = 0;
+            field_0x138a = false;
             setAction(&daNpcTks_c::waitLv6);
             cXyz i_pos(current.pos);
             i_pos.y += 60.0f;
@@ -598,20 +749,20 @@ void daNpcTks_c::reset() {
 
         case 7:
             mTksTsubo.field_0x586 = 0;
-            field_0x138a = 0;
+            field_0x138a = false;
             gravity = 0.0f;
             setAction(&daNpcTks_c::demo_Lv7Start);
             break;
 
         case 8:
             mTksTsubo.field_0x586 = 0;
-            field_0x138a = 0;
+            field_0x138a = false;
             setAction(&daNpcTks_c::demo_Lv3PickUp);
             break;
 
         case 9:
             mTksTsubo.field_0x586 = 0;
-            field_0x138a = 0;
+            field_0x138a = false;
             setAction(&daNpcTks_c::demo_Lv6PickUp);
             break;
 
@@ -640,9 +791,10 @@ BOOL daNpcTks_c::setAction(actionFunc action) {
 }
 
 int daNpcTks_c::getPlayerArea() {
-    f32 fVar1 = pow(daNpcTks_Param_c::m.area_a_dist, 2.0);
-    f32 fVar2 = pow(daNpcTks_Param_c::m.area_b_dist, 2.0);
-    f32 fVar3 = fopAcM_searchPlayerDistanceXZ2(this);
+    f32 fVar3, fVar2, fVar1;
+    fVar1 = pow(daNpcTks_Param_c::m.area_a_dist, 2.0);
+    fVar2 = pow(daNpcTks_Param_c::m.area_b_dist, 2.0);
+    fVar3 = fopAcM_searchPlayerDistanceXZ2(this);
 
     if (fVar3 > 0.0f && fVar3 <= fVar2) {
         return 1;
@@ -656,9 +808,9 @@ int daNpcTks_c::getPlayerArea() {
 };
 
 void daNpcTks_c::playExpression() {
-    daNpcF_anmPlayData dat0 = {0x1, daNpcTks_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat0 = {ANM_F_TALK_A, daNpcTks_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat0[1] = {&dat0};
-    daNpcF_anmPlayData dat1 = {0, daNpcTks_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat1 = {ANM_NONE, daNpcTks_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat1[1] = {&dat1};
 
     daNpcF_anmPlayData** ppDat[2] = {
@@ -672,23 +824,23 @@ void daNpcTks_c::playExpression() {
 };
 
 void daNpcTks_c::playMotion() {
-    daNpcF_anmPlayData dat0 = {0x2, daNpcTks_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat0 = {ANM_WAIT_A, daNpcTks_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat0[1] = {&dat0};
-    daNpcF_anmPlayData dat1 = {0x15, daNpcTks_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat1 = {ANM_SWIM, daNpcTks_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat1[1] = {&dat1};
-    daNpcF_anmPlayData dat2 = {0x14, daNpcTks_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat2 = {ANM_RUN, daNpcTks_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat2[1] = {&dat2};
-    daNpcF_anmPlayData dat3 = {0x3, daNpcTks_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat3 = {ANM_WALK_A, daNpcTks_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat3[1] = {&dat3};
-    daNpcF_anmPlayData dat4a = {0x11, 4.0f, 1};
-    daNpcF_anmPlayData dat4b = {0x12, 0.0f, 0};
+    daNpcF_anmPlayData dat4a = {ANM_JUMP_S, 4.0f, 1};
+    daNpcF_anmPlayData dat4b = {ANM_FLY, 0.0f, 0};
     daNpcF_anmPlayData* pDat4[2] = {&dat4a, &dat4b};
-    daNpcF_anmPlayData dat5 = {0x13, 0.0f, 1};
+    daNpcF_anmPlayData dat5 = {ANM_JUMP_E, 0.0f, 1};
     daNpcF_anmPlayData* pDat5[1] = {&dat5};
-    daNpcF_anmPlayData dat6a = {0xC, 0.0f, 1};
-    daNpcF_anmPlayData dat6b = {0x2, 4.0f, 0};
+    daNpcF_anmPlayData dat6a = {ANM_LAND, 0.0f, 1};
+    daNpcF_anmPlayData dat6b = {ANM_WAIT_A, 4.0f, 0};
     daNpcF_anmPlayData* pDat6[2] = {&dat6a, &dat6b};
-    daNpcF_anmPlayData dat7 = {0x3, 4.0f, 1};
+    daNpcF_anmPlayData dat7 = {ANM_WALK_A, 4.0f, 1};
     daNpcF_anmPlayData* pDat7[1] = {&dat7};
 
     daNpcF_anmPlayData** ppDat[8] = {
@@ -709,7 +861,6 @@ void daNpcTks_c::playMotion() {
 
 /* 80B1CFD0-80B1D1FC 008A90 022C+00 1/1 0/0 0/0 .text            lookat__10daNpcTks_cFv */
 void daNpcTks_c::lookat() {
-    // NONMATCHING
     daPy_py_c* player = NULL;
     J3DModel* model = mpMorf->getModel();
     BOOL i_snap = FALSE;
@@ -717,8 +868,8 @@ void daNpcTks_c::lookat() {
     f32 body_angleX_max = daNpcTks_Param_c::m.common.body_angleX_max;
     f32 body_angleY_min = daNpcTks_Param_c::m.common.body_angleY_min;
     f32 body_angleY_max = daNpcTks_Param_c::m.common.body_angleY_max;
-    f32 head_angleX_min = field_0x138a != 0 ? 0.0f : daNpcTks_Param_c::m.common.head_angleX_min;
-    f32 head_angleX_max = field_0x138a != 0 ? 0.0f : daNpcTks_Param_c::m.common.head_angleX_max;
+    f32 head_angleX_min = field_0x138a ? 0.0f : daNpcTks_Param_c::m.common.head_angleX_min;
+    f32 head_angleX_max = field_0x138a ? 0.0f : daNpcTks_Param_c::m.common.head_angleX_max;
     f32 head_angleY_min = daNpcTks_Param_c::m.common.head_angleY_min;
     f32 head_angleY_max = daNpcTks_Param_c::m.common.head_angleY_max;
     s16 angle_delta = mCurAngle.y - mOldAngle.y;
@@ -730,7 +881,7 @@ void daNpcTks_c::lookat() {
         case LOOK_RESET:
             i_snap = TRUE;
             break;
-
+            
         case LOOK_PLAYER:
         case LOOK_PLAYER_TALK:
             player = daPy_getPlayerActorClass();
@@ -745,6 +896,9 @@ void daNpcTks_c::lookat() {
 
         case LOOK_ACTOR:
             player = (daPy_py_c*)field_0x1208;
+            break;
+
+        case LOOK_ATTN:
             break;
     }
 
@@ -810,8 +964,8 @@ void daNpcTks_c::wait() {
     switch (mMode) {
         case 0:
             cLib_offBit<u32>(attention_info.flags, 0x10);
-            setMotionAnm(2, 0.0f);
-            field_0x138a = 0;
+            setMotionAnm(ANM_WAIT_A, 0.0f);
+            field_0x138a = false;
             speedF = 0.0f;
             mMode = 2;
             break;
@@ -855,7 +1009,6 @@ void daNpcTks_c::setTsuboMotionAnm(int i_index, f32 i_morf) {
 
 /* 80B16344-80B16634 001E04 02F0+00 1/0 0/0 0/0 .text            setMotionAnm__10daNpcTks_cFif */
 void daNpcTks_c::setMotionAnm(int i_index, f32 i_morf) {
-    // NONMATCHING
     if (i_index < 2 || i_index >= 0x16) {
         return;
     }
@@ -869,28 +1022,28 @@ void daNpcTks_c::setMotionAnm(int i_index, f32 i_morf) {
         mAnmFlags |= ANM_PLAY_MORF | ANM_PAUSE_MORF;
         mMotionLoops = 0;
 
-        if (i_index == 0x14) {
+        if (i_index == ANM_RUN) {
             mpMorf->setPlaySpeed(speedF / daNpcTks_Param_c::m.walk_spd);
         } else {
             mpMorf->setPlaySpeed(1.0f);
         }
 
-        if (field_0x138a != 0) {
+        if (field_0x138a) {
             switch (i_index) {
-                case 5:
-                    setTsuboMotionAnm(0x10, i_morf);
+                case ANM_SHOW_UP:
+                    setTsuboMotionAnm(ANM_TUBO_SHOW_UP, i_morf);
                     break;
                 
-                case 9:
-                    setTsuboMotionAnm(0xF, i_morf);
+                case ANM_IN:
+                    setTsuboMotionAnm(ANM_TUBO_IN, i_morf);
                     break;
 
-                case 0xA:
-                    setTsuboMotionAnm(0x10, i_morf);
+                case ANM_SHAKE:
+                    setTsuboMotionAnm(ANM_TUBO_SHAKE, i_morf);
                     break;
 
                 default:
-                    setTsuboMotionAnm(0xD, i_morf);
+                    setTsuboMotionAnm(ANM_TUBO_HIDE, i_morf);
                     break;
             }
         }
@@ -908,12 +1061,11 @@ void daNpcTks_c::setMotionAnm(int i_index, f32 i_morf) {
 
 /* 80B16634-80B1682C 0020F4 01F8+00 2/0 0/0 0/0 .text            waitNude__10daNpcTks_cFv */
 void daNpcTks_c::waitNude() {
-    // NONMATCHING
     switch (mMode) {
         case 0:
             cLib_offBit<u32>(attention_info.flags, 0x10);
-            setMotionAnm(2, 0.0f);
-            field_0x138a = 0;
+            setMotionAnm(ANM_WAIT_A, 0.0f);
+            field_0x138a = false;
             speedF = 0.0f;
             mMode = 2;
             break;
@@ -952,12 +1104,11 @@ void daNpcTks_c::waitNude() {
 
 /* 80B1682C-80B16B74 0022EC 0348+00 1/0 0/0 0/0 .text            waitLv6__10daNpcTks_cFv */
 void daNpcTks_c::waitLv6() {
-    // NONMATCHING
     switch (mMode) {
         case 0:
             cLib_offBit<u32>(attention_info.flags, 0x10);
-            setMotionAnm(2, 0.0f);
-            field_0x138a = 0;
+            setMotionAnm(ANM_WAIT_A, 0.0f);
+            field_0x138a = false;
             speedF = 0.0f;
             mMode = 2;
             break;
@@ -978,7 +1129,7 @@ void daNpcTks_c::waitLv6() {
             }
 
             if (current.pos.y - fopAcM_GetPosition_p(daPy_getPlayerActorClass())->y < 100.0f && fopAcM_searchPlayerDistanceXZ(this) <= 400.0f) {
-                attention_info.flags = 0x42;
+                attention_info.flags = 10;
                 eventInfo.onCondition(dEvtCmd_INTALK_e);
                 fopAcM_orderSpeakEvent(this, 0, 0);
             }
@@ -1005,15 +1156,15 @@ void daNpcTks_c::waitLv6() {
 }
 
 void daNpcTks_c::setExpressionTalkAfter() {
-    setExpression(1, -1.0f);
+    setExpression(EXPR_NONE, -1.0f);
 }
 
 BOOL daNpcTks_c::step(s16 i_turnTargetAngle, int param_2) {
     if (mTurnMode == 0) {
         if (param_2 != 0) {
             if ((int)fabsf(cM_sht2d((s16)(i_turnTargetAngle - mCurAngle.y))) > 40) {
-                setExpression(1, -1.0f);
-                setMotion(7, -1.0f, 0);
+                setExpression(EXPR_NONE, -1.0f);
+                setMotion(MOT_WALK_A_LOOP, -1.0f, 0);
             }
         }
 
@@ -1044,10 +1195,9 @@ BOOL daNpcTks_c::step(s16 i_turnTargetAngle, int param_2) {
 
 /* 80B16B74-80B16FDC 002634 0468+00 2/0 0/0 0/0 .text            talk__10daNpcTks_cFv */
 void daNpcTks_c::talk() {
-    // NONMATCHING
     switch (mMode) {
         case 0:
-            setMotion(0, -1.0f, 0);
+            setMotion(MOT_WAIT_A, -1.0f, 0);
             initTalk(mMessageNo, NULL);
             mMsgTimer = 0;
             mTurnMode = 0;
@@ -1087,7 +1237,7 @@ void daNpcTks_c::talk() {
                     }
                 }
             } else if (step(fopAcM_searchPlayerAngleY(this), 1)) {
-                setMotion(0, -1.0f, 0);
+                setMotion(MOT_WAIT_A, -1.0f, 0);
                 mTurnMode = 0;
             }
             break;
@@ -1114,11 +1264,10 @@ void daNpcTks_c::setExpression(int i_expression, f32 i_morf) {
 
 /* 80B17008-80B17420 002AC8 0418+00 4/0 0/0 0/0 .text            hide__10daNpcTks_cFv */
 void daNpcTks_c::hide() {
-    // NONMATCHING
     switch (mMode) {
         case 0:
-            setMotionAnm(4, 0.0f);
-            field_0x138a = 1;
+            setMotionAnm(ANM_HIDE, 0.0f);
+            field_0x138a = true;
             field_0x1370 = cLib_getRndValue<int>(daNpcTks_Param_c::m.hide_time_1, daNpcTks_Param_c::m.hide_time_2 - daNpcTks_Param_c::m.hide_time_1);
             speedF = 0.0f;
             mMode = 2;
@@ -1161,11 +1310,10 @@ void daNpcTks_c::hide() {
 
 /* 80B17420-80B175F4 002EE0 01D4+00 3/0 0/0 0/0 .text            shake__10daNpcTks_cFv */
 void daNpcTks_c::shake() {
-    // NONMATCHING
     switch (mMode) {
         case 0:
-            setMotionAnm(0xA, 0.0f);
-            field_0x138a = 1;
+            setMotionAnm(ANM_SHAKE, 0.0f);
+            field_0x138a = true;
             speedF = 0.0f;
             mMode = 2;
             break;
@@ -1191,11 +1339,10 @@ void daNpcTks_c::shake() {
 
 /* 80B175F4-80B17734 0030B4 0140+00 4/0 0/0 0/0 .text            showUp__10daNpcTks_cFv */
 void daNpcTks_c::showUp() {
-    // NONMATCHING
     switch (mMode) {
         case 0:
-            setMotionAnm(5, 0.0f);
-            field_0x138a = 1;
+            setMotionAnm(ANM_SHOW_UP, 0.0f);
+            field_0x138a = true;
             speedF = 0.0f;
             mMode = 2;
             break;
@@ -1217,11 +1364,10 @@ void daNpcTks_c::showUp() {
 
 /* 80B17734-80B17B70 0031F4 043C+00 3/0 0/0 0/0 .text            showUpWait__10daNpcTks_cFv */
 void daNpcTks_c::showUpWait() {
-    // NONMATCHING
     switch (mMode) {
         case 0:
-            setMotionAnm(6, 0.0f);
-            field_0x138a = 1;
+            setMotionAnm(ANM_SHOW_UP_WAIT, 0.0f);
+            field_0x138a = true;
             field_0x1370 = cLib_getRndValue<int>(daNpcTks_Param_c::m.show_up_wait_time_1, daNpcTks_Param_c::m.show_up_wait_time_2 - daNpcTks_Param_c::m.show_up_wait_time_1);
             speedF = 0.0f;
             mMode = 2;
@@ -1275,11 +1421,10 @@ void daNpcTks_c::showUpWait() {
 
 /* 80B17B70-80B17D44 003630 01D4+00 2/0 0/0 0/0 .text            lookAroundA__10daNpcTks_cFv */
 void daNpcTks_c::lookAroundA() {
-    // NONMATCHING
     switch (mMode) {
         case 0:
-            setMotionAnm(7, 0.0f);
-            field_0x138a = 1;
+            setMotionAnm(ANM_LOOKAROUND_A, 0.0f);
+            field_0x138a = true;
             speedF = 0.0f;
             mMode = 2;
             break;
@@ -1305,11 +1450,10 @@ void daNpcTks_c::lookAroundA() {
 
 /* 80B17D44-80B17F18 003804 01D4+00 2/0 0/0 0/0 .text            lookAroundB__10daNpcTks_cFv */
 void daNpcTks_c::lookAroundB() {
-    // NONMATCHING
     switch (mMode) {
         case 0:
-            setMotionAnm(8, 0.0f);
-            field_0x138a = 1;
+            setMotionAnm(ANM_LOOKAROUND_B, 0.0f);
+            field_0x138a = true;
             speedF = 0.0f;
             mMode = 2;
             break;
@@ -1335,12 +1479,11 @@ void daNpcTks_c::lookAroundB() {
 
 /* 80B17F18-80B18070 0039D8 0158+00 4/0 0/0 0/0 .text            in__10daNpcTks_cFv */
 void daNpcTks_c::in() {
-    // NONMATCHING
     switch (mMode) {
         case 0:
-            setMotionAnm(9, 0.0f);
+            setMotionAnm(ANM_IN, 0.0f);
             setLookMode(LOOK_NONE, NULL);
-            field_0x138a = 1;
+            field_0x138a = true;
             mMode = 2;
             break;
         
@@ -1361,12 +1504,11 @@ void daNpcTks_c::in() {
 
 /* 80B18070-80B181EC 003B30 017C+00 1/0 0/0 0/0 .text            damage__10daNpcTks_cFv */
 void daNpcTks_c::damage() {
-    // NONMATCHING
     switch (mMode) {
         case 0:
-            setMotionAnm(0xA, 0.0f);
+            setMotionAnm(ANM_SHAKE, 0.0f);
             cLib_offBit<u32>(attention_info.flags, 0x10);
-            field_0x138a = 1;
+            field_0x138a = true;
             speedF = 0.0f;
             mMode = 2;
             break;
@@ -1393,20 +1535,19 @@ void daNpcTks_c::damage() {
 
 /* 80B181EC-80B183E8 003CAC 01FC+00 1/0 0/0 0/0 .text            broken__10daNpcTks_cFv */
 void daNpcTks_c::broken() {
-    // NONMATCHING
     switch (mMode) {
         case 0:
-            setMotionAnm(0xB, 0);
+            setMotionAnm(ANM_FALL, 0);
 
-            if (mTksTsubo.mTsuboType == 0) {
-                daObj::make_eff_break_kotubo(this);
-            } else {
+            if (mTksTsubo.mTsuboType != 0) {
                 daObj::make_eff_break_kotubo2(this);
+            } else {
+                daObj::make_eff_break_kotubo(this);
             }
 
             mTksTsubo.mSound.startCreatureSound(Z2SE_TKS_V_OUT_OF_POT, 0, -1);
             cLib_offBit<u32>(attention_info.flags, 0x10);
-            field_0x138a = 0;
+            field_0x138a = false;
             mTksTsubo.field_0x586 = 0;
             fopAcM_onSwitch(this, getSwitchNo());
             speedF = 0.0f;
@@ -1416,7 +1557,7 @@ void daNpcTks_c::broken() {
         
         case 2:
             if (mAcch.ChkGroundLanding()) {
-                setMotion(6, -1.0f, 0);
+                setMotion(MOT_LAND, -1.0f, 0);
             } else if (mAcch.ChkGroundHit() && mpMorf->isStop()) {
                 setAction(&daNpcTks_c::waitNude);
             }
@@ -1432,15 +1573,14 @@ void daNpcTks_c::broken() {
 
 /* 80B183E8-80B18D44 003EA8 095C+00 1/0 0/0 0/0 .text            demo_appear__10daNpcTks_cFv */
 void daNpcTks_c::demo_appear() {
-    // NONMATCHING
     switch (mMode) {
         case 0:
             eventInfo.setArchiveName(l_arcName);
             mEventIdx = dComIfGp_getEventManager().getEventIdx(this, "TKS_ENCOUNTER", 0xFF);
             fopAcM_orderOtherEventId(this, mEventIdx, 0xFF, 0xFFFF, 4, 1);
             cLib_offBit<u32>(attention_info.flags, 0x10);
-            setExpression(1, -1.0f);
-            setMotionAnm(4, 0.0f);
+            setExpression(EXPR_NONE, -1.0f);
+            setMotionAnm(ANM_HIDE, 0.0f);
             mMode = 2;
             // fallthrough
         case 2:
@@ -1466,11 +1606,11 @@ void daNpcTks_c::demo_appear() {
                                 break;
 
                             case '0002':
-                                setMotionAnm(0xA, 0.0f);
+                                setMotionAnm(ANM_SHAKE, 0.0f);
                                 break;
 
                             case '0003':
-                                setMotionAnm(0xB, 0.0f);
+                                setMotionAnm(ANM_FALL, 0.0f);
                                 setLookMode(LOOK_NONE, NULL);
 
                                 if (mTksTsubo.mTsuboType != 0) {
@@ -1483,7 +1623,7 @@ void daNpcTks_c::demo_appear() {
                                 mTksTsubo.mSound.startCreatureSound(Z2SE_TKS_V_OUT_OF_POT, 0, -1);
                                 fopAcM_cancelCarryNow(this);
                                 cLib_offBit<u32>(attention_info.flags, 0x10);
-                                field_0x138a = 0;
+                                field_0x138a = false;
                                 mTksTsubo.field_0x586 = 0;
                                 speedF = daNpcTks_Param_c::m.movement_spd;
                                 speed.y = daNpcTks_Param_c::m.launch_spd;
@@ -1535,16 +1675,16 @@ void daNpcTks_c::demo_appear() {
 
                             if (mAcch.ChkGroundLanding()) {
                                 speedF = 0.0f;
-                                setMotion(6, -1.0f, 0);
+                                setMotion(MOT_LAND, -1.0f, 0);
                             } else if (mAcch.ChkGroundHit() && mMotionPhase > 0) {
-                                setMotionAnm(2, 0.0f);
+                                setMotionAnm(ANM_WAIT_A, 0.0f);
                                 eventManager.cutEnd(staffId);
                             }
                             break;
 
                         case '0004':
                             if (step(fopAcM_searchPlayerAngleY(this), 1)) {
-                                setMotionAnm(2, 0.0f);
+                                setMotionAnm(ANM_WAIT_A, 0.0f);
                                 eventManager.cutEnd(staffId);
                             }
                             break;
@@ -1602,9 +1742,9 @@ void daNpcTks_c::demo_scannon() {
     switch (mMode) {
         case 0:
             cLib_offBit<u32>(attention_info.flags, 0x10);
-            setExpression(1, -1.0f);
-            setMotion(0, -1.0f, 0);
-            field_0x138a = 0;
+            setExpression(EXPR_NONE, -1.0f);
+            setMotion(MOT_WAIT_A, -1.0f, 0);
+            field_0x138a = false;
             mMode = 2;
             // fallthrough
         case 2:
@@ -1625,11 +1765,11 @@ void daNpcTks_c::demo_scannon() {
                                 current.pos = old.pos;
                                 setAngle(-0x2CA2);
                                 speedF = 25.0f;
-                                setMotion(2, -1.0f, 0);
+                                setMotion(MOT_RUN, -1.0f, 0);
                                 break;
 
                             case '0003':
-                                setMotion(4, 0.0f, 0);
+                                setMotion(MOT_JUMP_S, 0.0f, 0);
                                 mpMorf->setPlaySpeed(1.0f);
                                 setAngle(0);
                                 speedF = 0.0f;
@@ -1709,9 +1849,9 @@ void daNpcTks_c::demo_Lv6Gate() {
     switch (mMode) {
         case 0:
             cLib_offBit<u32>(attention_info.flags, 0x10);
-            setExpression(1, -1.0f);
-            setMotion(0, -1.0f, 0);
-            field_0x138a = 0;
+            setExpression(EXPR_NONE, -1.0f);
+            setMotion(MOT_WAIT_A, -1.0f, 0);
+            field_0x138a = false;
             mMode = 2;
             // fallthrough
         case 2:
@@ -1730,7 +1870,7 @@ void daNpcTks_c::demo_Lv6Gate() {
                             case '0002':
                                 field_0x1370 = 320;
                                 speedF = 13.0f;
-                                setMotion(2, -1.0f, 0);
+                                setMotion(MOT_RUN, -1.0f, 0);
                                 dComIfGp_event_setTalkPartner(this);
                                 break;
 
@@ -1782,8 +1922,8 @@ void daNpcTks_c::demo_farewell() {
             mEventIdx = dComIfGp_getEventManager().getEventIdx(this, "TKS_FAREWELL", 0xFF);
             fopAcM_orderOtherEventId(this, mEventIdx, 0xFF, 0xFFFF, 4, 1);
             cLib_offBit<u32>(attention_info.flags, 0x10);
-            setExpression(1, -1.0f);
-            setMotionAnm(2, 0.0f);
+            setExpression(EXPR_NONE, -1.0f);
+            setMotionAnm(ANM_WAIT_A, 0.0f);
 
             /* dSv_event_flag_c::F_0545 - Sacred Grove - Watched cutscene of Ooccoo Sr. parting (after Temple of Time) */
             daNpcF_onEvtBit(545);
@@ -1824,13 +1964,13 @@ void daNpcTks_c::demo_farewell() {
                                     actor_p->setActionFollow();
                                 }
 
-                                setMotion(2, -1.0f, 0);
+                                setMotion(MOT_RUN, -1.0f, 0);
                                 speedF = 10.0f;
                                 break;
                             }
 
                             case '0004':
-                                setMotion(4, -1.0f, 0);
+                                setMotion(MOT_JUMP_S, -1.0f, 0);
                                 setAngle(0x16EA);
                                 break;
                             
@@ -1886,7 +2026,7 @@ void daNpcTks_c::demo_farewell() {
                         case '0003': {
                             cXyz* pos = dComIfGp_evmng_getMyXyzP(staffId, "pos");
                             if (pos != NULL && current.pos.abs(*pos) <= speedF) {
-                                setMotion(0, -1.0f, 0);
+                                setMotion(MOT_WAIT_A, -1.0f, 0);
                                 current.pos = *pos;
                                 speedF = 0.0f;
                                 eventManager.cutEnd(staffId);
@@ -1905,7 +2045,7 @@ void daNpcTks_c::demo_farewell() {
                                     speed.y = 60.0f;
                                     mSound.startCreatureSound(Z2SE_TKS_V_JUMP_UP, 0, -1);
                                 } else if (speedF > 0.0f && mAcch.ChkGroundLanding()) {
-                                    setMotion(5, -1.0f, 0);
+                                    setMotion(MOT_JUMP_E, -1.0f, 0);
                                     speedF = 0.0f;
                                     speed.y = 0.0f;
                                 }
@@ -1954,8 +2094,8 @@ void daNpcTks_c::demo_warpBack() {
             mEventIdx = dComIfGp_getEventManager().getEventIdx(this, "TKS_WARPBACK", 0xFF);
             fopAcM_orderOtherEventId(this, mEventIdx, 0xFF, 0xFFFF, 4, 1);
             cLib_offBit<u32>(attention_info.flags, 0x10);
-            setExpression(1, -1.0f);
-            setMotionAnm(2, 0.0f);
+            setExpression(EXPR_NONE, -1.0f);
+            setMotionAnm(ANM_WAIT_A, 0.0f);
             setLookMode(LOOK_PLAYER_TALK, NULL);
 
             if (strcmp(dComIfGp_getStartStageName(), "D_MN11") == 0 && dComIfGp_getStartStageRoomNo() == 3) {
@@ -1997,7 +2137,7 @@ void daNpcTks_c::demo_warpBack() {
 
                             case '0003':
                                 mCyl.OffCoSetBit();
-                                setMotion(4, -1.0f, 0);
+                                setMotion(MOT_JUMP_S, -1.0f, 0);
                                 speedF = 0.0f;
                                 speed.y = 0.0f;
                                 scale.setall(1.0f);
@@ -2076,8 +2216,8 @@ void daNpcTks_c::demo_walkBack() {
     switch (mMode){
         case 0:
             cLib_offBit<u32>(attention_info.flags, 0x10);
-            setExpression(1, -1.0f);
-            setMotionAnm(2, 0.0f);
+            setExpression(EXPR_NONE, -1.0f);
+            setMotionAnm(ANM_WAIT_A, 0.0f);
             setLookMode(LOOK_PLAYER_TALK, NULL);
 
             if (strcmp(dComIfGp_getStartStageName(), "D_MN11") == 0) {
@@ -2126,7 +2266,7 @@ void daNpcTks_c::demo_walkBack() {
 
                             case '0003':
                                 mCyl.OffCoSetBit();
-                                setMotion(4, -1.0f, 0);
+                                setMotion(MOT_JUMP_S, -1.0f, 0);
                                 speedF = 0.0f;
                                 speed.y = 0.0f;
                                 scale.setall(1.0f);
@@ -2206,8 +2346,8 @@ void daNpcTks_c::demo_Lv7Start() {
     switch (mMode) {
         case 0:
             cLib_offBit<u32>(attention_info.flags, 0x10);
-            setExpression(1, -1.0f);
-            setMotion(4, -1.0f, 0);
+            setExpression(EXPR_NONE, -1.0f);
+            setMotion(MOT_JUMP_S, -1.0f, 0);
             mMode = 2;
             // fallthrough
         case 2:
@@ -2230,7 +2370,7 @@ void daNpcTks_c::demo_Lv7Start() {
                                 parentActorID = fopAcM_createChild(PROC_NPC_TKC, fopAcM_GetID(this), 3, &current.pos, fopAcM_GetRoomNo(this),
                                                                    &mCurAngle, NULL, -1, NULL);
                                 dComIfGp_event_setTalkPartner(this);
-                                field_0x138b = 0;
+                                field_0x138b = false;
                                 field_0x1370 = 143;
                                 break;
 
@@ -2242,7 +2382,7 @@ void daNpcTks_c::demo_Lv7Start() {
                                     actor_p->setActionWait();
                                 }
 
-                                setMotion(1, -1.0f, 0);
+                                setMotion(MOT_SWIM, -1.0f, 0);
                                 field_0x1370 = 60;
                                 break;
                             }
@@ -2279,12 +2419,12 @@ void daNpcTks_c::demo_Lv7Start() {
                                     actor_p->setActionFollow();
                                 }
 
-                                setMotion(4, -1.0f, 0);
+                                setMotion(MOT_JUMP_S, -1.0f, 0);
                                 break;
                             }
 
                             case '0011':
-                                setMotion(2, -1.0f, 0);
+                                setMotion(MOT_RUN, -1.0f, 0);
                                 speedF = 10.0f;
                                 break;
 
@@ -2325,7 +2465,7 @@ void daNpcTks_c::demo_Lv7Start() {
                                 if (current.pos.y < fVar3) {
                                     cXyz i_pos(current.pos.x, fVar3, current.pos.z);
 
-                                    if (field_0x138b == 0) {
+                                    if (!field_0x138b) {
                                         fopKyM_createWpillar(&i_pos, 1.0f, 0);
                                         Z2GetAudioMgr()->seStart(Z2SE_CM_BODYFALL_WATER_S, &i_pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
                                     }
@@ -2335,15 +2475,15 @@ void daNpcTks_c::demo_Lv7Start() {
                                     }
 
                                     speed.y -= gravity - 1.0f;
-                                    setMotion(1, -1.0f, 0);
+                                    setMotion(MOT_SWIM, -1.0f, 0);
                                     fopAcM_effHamonSet(&field_0x137c[0], &i_pos, 0.7f, 0.08f);
-                                    field_0x138b = 1;
+                                    field_0x138b = true;
                                 } else {
-                                    field_0x138b = 0;
+                                    field_0x138b = false;
                                 }
                             }
 
-                            if (field_0x138b == 0) {
+                            if (!field_0x138b) {
                                 mSound.startCreatureVoiceLevel(Z2SE_TKS_V_FALLING_LOOP, -1);
                             }
                             break;
@@ -2359,9 +2499,9 @@ void daNpcTks_c::demo_Lv7Start() {
                                     current.pos.y = fVar2;
                                     speed.y = 0.0f;
                                     fopAcM_effHamonSet(&field_0x137c[0], &current.pos, 0.7f, 0.08f);
-                                    field_0x138b = 1;
+                                    field_0x138b = true;
                                 } else {
-                                    field_0x138b = 0;
+                                    field_0x138b = false;
                                 }
                             }
                             break;
@@ -2383,9 +2523,9 @@ void daNpcTks_c::demo_Lv7Start() {
                                     current.pos.y = fVar1;
                                     speed.y = 0.0f;
                                     fopAcM_effHamonSet(&field_0x137c[0], &current.pos, 0.7f, 0.08f);
-                                    field_0x138b = 1;
+                                    field_0x138b = true;
                                 } else {
-                                    field_0x138b = 0;
+                                    field_0x138b = false;
                                 }
                             }
                             break;
@@ -2410,9 +2550,9 @@ void daNpcTks_c::demo_Lv7Start() {
                                     current.pos.y = fVar1;
                                     speed.y = 0.0f;
                                     fopAcM_effHamonSet(&field_0x137c[0], &current.pos, 0.7f, 0.08f);
-                                    field_0x138b = 1;
+                                    field_0x138b = true;
                                 } else {
-                                    field_0x138b = 0;
+                                    field_0x138b = false;
                                 }
                             }
                             break;
@@ -2430,8 +2570,8 @@ void daNpcTks_c::demo_Lv7Start() {
                                     current.pos.set(1627.059f, -250.0f, 5621.671f);
                                     old.pos = current.pos;
                                     setAngle(0x6024);
-                                    setExpression(1, -1.0f);
-                                    setMotion(0, -1.0f, 0);
+                                    setExpression(EXPR_NONE, -1.0f);
+                                    setMotion(MOT_WAIT_A, -1.0f, 0);
                                     setLookMode(LOOK_NONE, NULL);
 
                                     daNpcTkc_c* actor_p = NULL;
@@ -2449,9 +2589,9 @@ void daNpcTks_c::demo_Lv7Start() {
                                     current.pos.y = fVar2;
                                     speed.y = 0.0f;
                                     fopAcM_effHamonSet(&field_0x137c[0], &current.pos, 0.7f, 0.08f);
-                                    field_0x138b = 1;
+                                    field_0x138b = true;
                                 } else {
-                                    field_0x138b = 0;
+                                    field_0x138b = false;
                                 }
                             }
                             break;
@@ -2475,7 +2615,7 @@ void daNpcTks_c::demo_Lv7Start() {
                                 }
 
                                 if (speedF > 0.0f && mAcch.ChkGroundLanding()) {
-                                    setMotion(5, -1.0f, 0);
+                                    setMotion(MOT_JUMP_E, -1.0f, 0);
                                     speedF = 0.0f;
                                     speed.y = 0.0f;
                                 }
@@ -2516,8 +2656,8 @@ void daNpcTks_c::demo_Lv3PickUp() {
     switch (mMode) {
         case 0:
             cLib_offBit<u32>(attention_info.flags, 0x10);
-            setExpression(1, -1.0f);
-            setMotion(0, -1.0f, 0);
+            setExpression(EXPR_NONE, -1.0f);
+            setMotion(MOT_WAIT_A, -1.0f, 0);
             setLookMode(LOOK_PLAYER, NULL);
 
             if (strcmp(dComIfGp_getStartStageName(), "D_MN01") == 0) {
@@ -2569,7 +2709,7 @@ void daNpcTks_c::demo_Lv3PickUp() {
 
                             case '0003':
                                 mCyl.OffCoSetBit();
-                                setMotion(4, -1.0f, 0);
+                                setMotion(MOT_JUMP_S, -1.0f, 0);
                                 speedF = 0.0f;
                                 speed.y = 0.0f;
                                 scale.setall(1.0f);
@@ -2672,8 +2812,8 @@ void daNpcTks_c::demo_Lv6PickUp() {
                 mMode = 2;
             } else {
                 cLib_offBit<u32>(attention_info.flags, 0x10);
-                setExpression(1, -1.0f);
-                setMotion(0, -1.0f, 0);
+                setExpression(EXPR_NONE, -1.0f);
+                setMotion(MOT_WAIT_A, -1.0f, 0);
                 setLookMode(LOOK_PLAYER, NULL);
                 break;
             }
@@ -2701,7 +2841,7 @@ void daNpcTks_c::demo_Lv6PickUp() {
 
                             case '0003':
                                 mCyl.OffCoSetBit();
-                                setMotion(4, -1.0f, 0);
+                                setMotion(MOT_JUMP_S, -1.0f, 0);
                                 speedF = 0.0f;
                                 speed.y = 0.0f;
                                 scale.setall(1.0f);
@@ -2815,39 +2955,6 @@ void daNpcTks_c::setParam() {
     maxFallSpeed = -50.0f;
 }
 
-/* 80B1C4F8-80B1CB4C 007FB8 0654+00 1/0 0/0 0/0 .text            main__10daNpcTks_cFv */
-BOOL daNpcTks_c::main() {
-    // NONMATCHING
-    if (field_0x138a != 0 && mTksTsubo.mCyl.ChkTgHit()) {
-        if (mTksTsubo.mCyl.GetTgHitObj()->ChkAtType(AT_TYPE_BOOMERANG)) {
-            setAction(&daNpcTks_c::damage);
-        } else {
-            setAction(&daNpcTks_c::broken);
-        }
-    }
-
-    if (cLib_checkBit<u32>(attention_info.flags, 0x10) && fopAcM_checkCarryNow(this)) {
-        setAction(&daNpcTks_c::demo_appear);
-    }
-
-    if (dComIfGp_event_runCheck() != FALSE && !eventInfo.checkCommandTalk() && mItemID != fpcM_ERROR_PROCESS_ID_e) {
-        dComIfGp_event_setItemPartnerId(mItemID);
-        mItemID = fpcM_ERROR_PROCESS_ID_e;
-        fopAcM_delete(this);
-    }
-
-    if (mAction) {
-        (this->*mAction)();
-    }
-
-    playExpression();
-    playMotion();
-    playTsuboAnm();
-    mPlayerArea = getPlayerArea();
-
-    return TRUE;
-}
-
 /* 80B1CB54-80B1CC28 008614 00D4+00 1/0 0/0 0/0 .text            ctrlBtk__10daNpcTks_cFv */
 BOOL daNpcTks_c::ctrlBtk() {
     if (mpMatAnm != NULL) {
@@ -2868,7 +2975,6 @@ BOOL daNpcTks_c::ctrlBtk() {
 
 /* 80B1CC28-80B1CFD0 0086E8 03A8+00 1/0 0/0 0/0 .text            setAttnPos__10daNpcTks_cFv */
 void daNpcTks_c::setAttnPos() {
-    // NONMATCHING
     if(mLookMode == 1) {
         for (int i = 0; i < 3; i++) {
             mLookatAngle[i].setall(0);
@@ -2883,7 +2989,7 @@ void daNpcTks_c::setAttnPos() {
     setMtx();
     lookat();
 
-    if (field_0x138a != 0) {
+    if (field_0x138a) {
         eyePos = current.pos;
         eyePos.y += 80.0f;
     } else {
@@ -2911,7 +3017,7 @@ void daNpcTks_c::setAttnPos() {
     attention_info.position.set(current.pos.x, current.pos.y + daNpcTks_Param_c::m.common.attention_offset, current.pos.z);
 
     if (!fopAcM_checkCarryNow(this)) {
-        if (field_0x138a == 0) {
+        if (!field_0x138a) {
             mCyl.SetC(current.pos);
             #ifdef DEBUG
             mCyl.SetH(daNpcTks_Param_c::m.common.height);
@@ -2934,7 +3040,6 @@ BOOL daNpcTks_c::drawDbgInfo() {
 
 /* 80B1D204-80B1D35C 008CC4 0158+00 1/0 0/0 0/0 .text            drawOtherMdls__10daNpcTks_cFv */
 void daNpcTks_c::drawOtherMdls() {
-    // NONMATCHING
     if (mTksTsubo.field_0x586 != 0) {
         J3DModel* model = mTksTsubo.mpModelMorf->getModel();
 
@@ -2950,21 +3055,21 @@ void daNpcTks_c::drawOtherMdls() {
         dComIfGd_setList();
 
         cXyz* pcVar1;
-        if (field_0x138a != 0) {
+        if (field_0x138a) {
             pcVar1 = &current.pos;
         } else {
             pcVar1 = &mTksTsubo.mPos;
         }
 
         f32 fVar1;
-        if (field_0x138a != 0) {
+        if (field_0x138a) {
             fVar1 = mGroundH;
         } else {
             fVar1 = mTksTsubo.mGroundH;
         }
 
         cBgS_PolyInfo* polyBase;
-        if (field_0x138a != 0) {
+        if (field_0x138a) {
             polyBase = &mGndChk;
         } else {
             polyBase = &mTksTsubo.polyBase;
@@ -2972,7 +3077,7 @@ void daNpcTks_c::drawOtherMdls() {
 
         mTksTsubo.mShadowKey = dComIfGd_setShadow(mTksTsubo.mShadowKey, 1, model,
                                                   pcVar1, daNpcTks_Param_c::m.common.real_shadow_size,
-                                                  30.0f, pcVar1->y, fVar1, *polyBase, &mTksTsubo.mTevStr, 0, -1.0f,
+                                                  30.0f, pcVar1->y, fVar1, *polyBase, &mTksTsubo.mTevStr, 0, 1.0f,
                                                   dDlst_shadowControl_c::getSimpleTex());
     }
 }

@@ -35,6 +35,13 @@ class daNpcTks_HIO_c
     /* 0x8 */ daNpcTks_HIOParam param;
 };
 
+class daNpcTks_Param_c {
+public:
+    /* 80B1DCEC */ virtual ~daNpcTks_Param_c() {}
+
+    static daNpcTks_HIOParam const m;
+};
+
 class daNpcTksTsubo_c {
 public:
     /* 0x000 */ mDoExt_McaMorfSO* mpModelMorf;
@@ -138,17 +145,10 @@ private:
     /* 0x1384 */ s16 mMessageNo;
     /* 0x1386 */ s16 mLookMode;
     /* 0x1388 */ u16 mMode;
-    /* 0x138A */ u8 field_0x138a;
-    /* 0x138B */ u8 field_0x138b;
+    /* 0x138A */ bool field_0x138a;
+    /* 0x138B */ bool field_0x138b;
 };
 
 STATIC_ASSERT(sizeof(daNpcTks_c) == 0x138c);
-
-class daNpcTks_Param_c {
-public:
-    /* 80B1DCEC */ virtual ~daNpcTks_Param_c() {}
-
-    static daNpcTks_HIOParam const m;
-};
 
 #endif /* D_A_NPC_TKS_H */
