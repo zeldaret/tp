@@ -26,43 +26,34 @@ public:
     u8 getDetailLevel() { return subtype; }
     u8 getPathID() { return fopAcM_GetParam(this); }
     u8 getIntervalTime() { return fopAcM_GetParam(this) >> 24; }
-    u8 getStartTime() { return (fopAcM_GetParam(this) >> 8) & 0xff; }
+    int getStartTime() { return (fopAcM_GetParam(this) >> 8) & 0xff; }
     u8 getEndTime() { return (fopAcM_GetParam(this) >> 16) & 0xff; }
     u8 getMaxNum() { return shape_angle.x; }
     u8 getGroupNo() { return (shape_angle.x >> 8) & 0xff; }
 
     int getTimeHour() {
-        int hour;
         if (dKy_darkworld_check()) {
-            hour = dKy_getDarktime_hour();
-        } else {
-            hour = dKy_getdaytime_hour();
-        }
-        return hour;
+            return dKy_getDarktime_hour();
+        } 
+        return dKy_getdaytime_hour();
     }
 
     int getTimeMinute() {
-        int minute;
         if (dKy_darkworld_check()) {
-            minute = dKy_getDarktime_minute();
-        } else {
-            minute = dKy_getdaytime_minute();
-        }
-        return minute;
+            return dKy_getDarktime_minute();
+        } 
+        return dKy_getdaytime_minute();
     }
 
-    int getTime() { 
+    int getTime() {
         return getTimeHour() * 60 + getTimeMinute();
     }
 
     int getDayOfWeek() {
-        int dayOfWeek;
         if (dKy_darkworld_check()) {
-            dayOfWeek = dKy_getDarktime_week();
-        } else {
-            dayOfWeek = dKy_get_dayofweek();
+            return dKy_getDarktime_week();
         }
-        return dayOfWeek;
+        return dKy_get_dayofweek();
     }
 
     int getChildNum() {

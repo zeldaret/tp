@@ -82,7 +82,7 @@ int daPasserMng_c::getPasserParam() {
     u8 groupNo = getGroupNo();
     if (groupNo == 0xff || groupNo >= 4) {
         // The passerby group specification is invalid.
-        OS_REPORT_ERROR("\n通行人のグループ指定が不正です！ GroupNo=%d\n\n", groupNo);
+        OS_REPORT("\n通行人のグループ指定が不正です！ GroupNo=%d\n\n", groupNo);
     }
     bool groupOK = false;
     if (groupNo != 0xff && groupNo < 4) {
