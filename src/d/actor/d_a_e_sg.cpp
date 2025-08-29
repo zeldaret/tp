@@ -343,7 +343,7 @@ static void e_sg_move(e_sg_class* i_this) {
 
     BOOL bg_check = fopAcM_otherBgCheck(actor, player);
     if ((i_this->mRandomSeed & 0x7) == (fopAcM_GetID(actor) & 0x7)) {
-        target = search_box(i_this);
+        target = (fopAc_ac_c*)search_box(i_this);
 
         if (target != NULL) {
             i_this->mTargetActorID = fopAcM_GetID(target);
@@ -536,7 +536,7 @@ static void e_sg_b_search(e_sg_class* i_this) {
                 i_this->mTimers[1] = cM_rndF(30.0f) + 10.0f;
                 kbox_ac->field_0x598 = (s16)(cM_rndF(700.0f) + 300.0f);
             }
-            cLib_addCalc2(&kbox_ac->field_0x5a8.y, -100.0f, 1.0f, 0.05f);
+            cLib_addCalc2(&kbox_ac->field_0x5ac, -100.0f, 1.0f, 0.05f);
             if ((i_this->mRandomSeed & 0xf) == 0) {
                 i_this->mSound.startCreatureSound(Z2SE_EN_SG_BITE, 0, -1);
             }
