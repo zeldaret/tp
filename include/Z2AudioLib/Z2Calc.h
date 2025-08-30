@@ -5,8 +5,13 @@
 #include "m_Do/m_Do_lib.h"
 
 namespace Z2Calc {
-// hack for f_op_actor, having this present breaks its weak func ordering
+#ifdef DECOMPCTX
+// Hack to mitigate fake mismatches when building from decompctx output -
+// see comment in sqrtf in math.h
+static Vec cNullVec = {0.0f, 0.0f, 0.0f};
+#else
 static const Vec cNullVec = {0.0f, 0.0f, 0.0f};
+#endif
 
 enum CurveSign {
     CURVE_SIGN_0 = 0,
