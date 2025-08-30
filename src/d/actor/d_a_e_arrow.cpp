@@ -154,7 +154,7 @@ static void hit_check(e_arrow_class* i_this) {
 
         cXyz sp114(0.3f, 0.3f, 0.3f);
         i_this->mStickSmokeEMKey = dComIfGp_particle_set(
-            i_this->mStickSmokeEMKey, dPa_name::ZI_J_dashSmoke_a_e, &i_this->current.pos,
+            i_this->mStickSmokeEMKey, ID_ZI_J_DASHSMOKE_A, &i_this->current.pos,
             &i_this->tevStr, &i_this->shape_angle, &sp114, 0xFF, NULL, -1, NULL, NULL, NULL);
     } else {
         cXyz sp120 = i_this->current.pos + (i_this->speed * 0.5f);
