@@ -463,9 +463,8 @@ static int daE_WB_Draw(e_wb_class* i_this) {
     g_env_light.setLightTevColorType_MAJI(model,&i_this->tevStr);
     i_this->mpModelMorf->entryDL();
 
-
     cXyz cStack_54;
-    cStack_54.set(i_this->current.pos.x,i_this->current.pos.y + 100.0f + BREG_F(0x12),i_this->current.pos.z);
+    cStack_54.set(i_this->current.pos.x, i_this->current.pos.y + 100.0f + BREG_F(0x12), i_this->current.pos.z);
 
     if (i_this->field_0x79d != 0) {
         fVar9 = i_this->scale.z * 800.0f;
@@ -482,7 +481,7 @@ static int daE_WB_Draw(e_wb_class* i_this) {
         1.0f, dDlst_shadowControl_c::getSimpleTex());
 
     if (l_HIO.mNoReins == 0) {
-        MTXCopy(model->getAnmMtx((i_this->field_0x688 + 0xb) + YREG_S(3)),*calc_mtx);
+        MTXCopy(model->getAnmMtx((i_this->field_0x688 + 0xb) + YREG_S(3)), *calc_mtx);
         MtxPush();
 
         s8 cVar7 = 0;
@@ -513,17 +512,17 @@ static int daE_WB_Draw(e_wb_class* i_this) {
         }
         
         MtxPosition(&local_3c,&local_48);
-        himo_control1(i_this,&local_48,0,cVar7);
+        himo_control1(i_this,&local_48, 0,cVar7);
         local_3c.z *= -1.0f;
         MtxPull();
         MtxPosition(&local_3c,&local_48);
-        himo_control1(i_this,&local_48,1,cVar7);
+        himo_control1(i_this,&local_48, 1,cVar7);
 
         if (cVar7 != 0) {
             cXyz local_60;
 
             if (daAlink_getAlinkActorClass()->checkBoarRideOwn(i_this)) {
-                daAlink_getAlinkActorClass()->getHorseReinHandPos(&local_60,&local_48);
+                daAlink_getAlinkActorClass()->getHorseReinHandPos(&local_60, &local_48);
                 i_this->field_0x1438[0] = local_48;
                 i_this->field_0x1438[1] = local_60;
             } else {
@@ -535,13 +534,13 @@ static int daE_WB_Draw(e_wb_class* i_this) {
                     local_74 = 0x18;
                 }
                 
-                MTXCopy(model->getAnmMtx(local_74),*calc_mtx);
+                MTXCopy(model->getAnmMtx(local_74), *calc_mtx);
                 local_3c.x = PREG_F(0xd) + 15.0f;
                 local_3c.y = PREG_F(0xe);
                 local_3c.z = PREG_F(0xf);
                 MtxPosition(&local_3c,&local_48);
 
-                MTXCopy(model->getAnmMtx(local_78),*calc_mtx);
+                MTXCopy(model->getAnmMtx(local_78), *calc_mtx);
                 local_3c.x = PREG_F(0x10) + 15.0f;
                 local_3c.y = PREG_F(0x11);
                 local_3c.z = PREG_F(0x12);
@@ -553,13 +552,13 @@ static int daE_WB_Draw(e_wb_class* i_this) {
                 i_this->field_0x1438[1] = local_60;
                 
             } else {
-                cLib_addCalc2(&i_this->field_0x1438[0].x,local_48.x,1.0f, i_this->field_0x168c);
-                cLib_addCalc2(&i_this->field_0x1438[0].y,local_48.y,1.0f, i_this->field_0x168c);
-                cLib_addCalc2(&i_this->field_0x1438[0].z,local_48.z,1.0f,i_this->field_0x168c);
-                cLib_addCalc2(&i_this->field_0x1438[1].x,local_60.x,1.0f,i_this->field_0x168c);
-                cLib_addCalc2(&i_this->field_0x1438[1].y,local_60.y,1.0f,i_this->field_0x168c);
-                cLib_addCalc2(&i_this->field_0x1438[1].z,local_60.z,1.0f,i_this->field_0x168c);
-                cLib_addCalc2(&i_this->field_0x168c,1000.0f,1.0f,10.0f);
+                cLib_addCalc2(&i_this->field_0x1438[0].x, local_48.x,1.0f, i_this->field_0x168c);
+                cLib_addCalc2(&i_this->field_0x1438[0].y, local_48.y,1.0f, i_this->field_0x168c);
+                cLib_addCalc2(&i_this->field_0x1438[0].z, local_48.z,1.0f, i_this->field_0x168c);
+                cLib_addCalc2(&i_this->field_0x1438[1].x, local_60.x,1.0f, i_this->field_0x168c);
+                cLib_addCalc2(&i_this->field_0x1438[1].y, local_60.y,1.0f, i_this->field_0x168c);
+                cLib_addCalc2(&i_this->field_0x1438[1].z, local_60.z,1.0f, i_this->field_0x168c);
+                cLib_addCalc2(&i_this->field_0x168c, 1000.0f, 1.0f, 10.0f);
                 local_3c = i_this->field_0x1438[0] - local_48;
                 
                 if (local_3c.abs() > 500.0f) {
@@ -578,13 +577,13 @@ static int daE_WB_Draw(e_wb_class* i_this) {
             
         }
         
-        himo_control2(i_this,&i_this->field_0x1438[0],0,cVar7);
-        himo_control2(i_this,&i_this->field_0x1438[1],1,cVar7);
-        i_this->field_0x15d0[0].update(0x10,l_color,&i_this->tevStr);
+        himo_control2(i_this, &i_this->field_0x1438[0], 0, cVar7);
+        himo_control2(i_this, &i_this->field_0x1438[1], 1, cVar7);
+        i_this->field_0x15d0[0].update(0x10, l_color, &i_this->tevStr);
         dComIfGd_set3DlineMat(&i_this->field_0x15d0[0]);
-        i_this->field_0x15d0[1].update(0x10,l_color,&i_this->tevStr);
+        i_this->field_0x15d0[1].update(0x10,l_color, &i_this->tevStr);
         dComIfGd_set3DlineMat(&i_this->field_0x15d0[1]);
-        i_this->field_0x1648.update(2,l_color,&i_this->tevStr);
+        i_this->field_0x1648.update(2,l_color, &i_this->tevStr);
         dComIfGd_set3DlineMat(&i_this->field_0x1648);
     }
 
@@ -600,17 +599,17 @@ static int e_wb_wall_check(e_wb_class* i_this) {
     cXyz pos2;
     cXyz pos3;
 
-    cMtx_YrotS(*calc_mtx,a_this->shape_angle.y);
+    cMtx_YrotS(*calc_mtx, a_this->shape_angle.y);
     pos1.x = 10.0f;
     pos1.y = 120.0f;
     pos1.z = BREG_F(8) + 250.0f;
 
-    MtxPosition(&pos1,&pos3);
+    MtxPosition(&pos1, &pos3);
     pos3 += a_this->current.pos;
     pos2 = a_this->current.pos;
     pos2.y += 200.0f;
 
-    linChk.Set(&pos2,&pos3,a_this);
+    linChk.Set(&pos2, &pos3, a_this);
     if (dComIfG_Bgsp().LineCross(&linChk)) {
         if (fopAcM_GetName(dComIfG_Bgsp().GetActorPointer(linChk)) != PROC_BG) {
             return 0;
@@ -619,14 +618,14 @@ static int e_wb_wall_check(e_wb_class* i_this) {
             pos1.x *= -1.0f;
             MtxPosition(&pos4,&pos3);
             pos3 += a_this->current.pos;
-            linChk.Set(&pos2,&pos3,a_this);
+            linChk.Set(&pos2, &pos3, a_this);
 
             if (dComIfG_Bgsp().LineCross(&linChk)) {
                 pos4 = linChk.GetCross();
                 return 0;
             } else {
                 pos4 = pos4 - pos3;
-                int tmp = cM_atan2s(pos1.x,pos1.z) + 0x4000 - a_this->shape_angle.y;
+                int tmp = cM_atan2s(pos1.x, pos1.z) + 0x4000 - a_this->shape_angle.y;
                 return tmp;
             }
         }
