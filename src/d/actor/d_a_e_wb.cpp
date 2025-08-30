@@ -3,6 +3,7 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
 #include "c/c_damagereaction.h"
 #include "d/actor/d_a_e_wb.h"
 #include "d/actor/d_a_e_rd.h"
@@ -786,8 +787,8 @@ static int e_wb_saku_check_sub(e_wb_class* i_this, s16 param_1) {
 /* 807D3F2C-807D3FB0 001B8C 0084+00 1/1 0/0 0/0 .text            e_wb_saku_check__FP10e_wb_class */
 static int e_wb_saku_check(e_wb_class* i_this) {
     int uVar2 = false;
-    static s16 yaa[3] = {0x0000, 0xF000, 0x1000};
-    static u32 saku_bit[12] = {1, 2, 4};
+    static s16 yaa[3] = {0, -4096, 4096};
+    static u32 saku_bit[3] = {1, 2, 4};
 
     for (int i = 0; i < 3; i++) {
         if (e_wb_saku_check_sub(i_this,yaa[i])) {
