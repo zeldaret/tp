@@ -149,7 +149,7 @@ static const Vec l_scale[] = {
 
 /* 80BF7288-80BF744C 0003E8 01C4+00 1/0 0/0 0/0 .text            Execute__13daObjGeyser_cFPPA3_A4_f
  */
-int daObjGeyser_c::Execute(f32 (**param_0)[3][4]) {
+int daObjGeyser_c::Execute(Mtx** param_0) {
     if (dComIfGp_event_runCheck() == 0) {
         f32 range = 5000.0f;
         if (fopAcM_searchPlayerDistance(this) > range) {
