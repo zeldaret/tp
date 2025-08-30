@@ -272,13 +272,7 @@ void daObjBm_c::PPCallBack(fopAc_ac_c* param_0, fopAc_ac_c* i_actorP, s16 param_
         
         angle -= home.angle.y;
 
-#if DEBUG
-        if (iVar1 == 3) {
-            uVar3 = JUTAssertion::getSDevice();
-            JUTAssertion::showAssert(uVar3,d_a_obj_bemos::@118558,0x201,d_a_obj_bemos::@118559);
-            m_Do_printf::OSPanic(d_a_obj_bemos::@118558,0x201,&d_a_obj_bemos::@118560);
-        }
-#endif
+        JUT_PANIC(513,"0");
         
         field_0x10c0 = param_2;
         
@@ -434,8 +428,8 @@ void daObjBm_c::setBaseMtx() {
     PSMTXCopy(mDoMtx_stack_c::get(),mBgMtx);
     
 #if DEBUG
-    *(undefined4 *)(this + 0x10e0) = DAT_810291f0;
-    *(undefined4 *)(this + 0x10e4) = DAT_810291f4;
+    field_0x10e8 = 0.0f; // change to l_HIO
+    field_0x10ec = 0.0f; // change to l_HIO
 #endif
 
     mpModel2->setBaseScale(field_0x10a0);
@@ -621,8 +615,8 @@ int daObjBm_c::Create() {
     }
     
 #if DEBUG
-    if (*(int *)(this + 0xfd4) == 0) {
-        m_Do_printf::OSReport_Error(&d_a_obj_bemos::@118683);
+    if (field_0xfcc == 0) {
+        OSReport_Error("ブ［モス]。苔のマテリアルがありません");
         return 0;
     }
 #endif

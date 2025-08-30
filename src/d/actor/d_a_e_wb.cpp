@@ -646,7 +646,7 @@ static s8 gake_check(e_wb_class* a_this) {
     
     if (lbl_244_bss_46 != 0) {
         if (!daAlink_getAlinkActorClass()->checkBoarRideOwn(i_this) && i_this->current.pos.y < -5000.0f) {
-            OS_REPORT(" WB NARAKU DOWN  2\n")
+            OS_REPORT(" WB NARAKU DOWN  2\n");
             fopAcM_delete(i_this);
             return 0;
         }
@@ -2060,7 +2060,7 @@ static void action(e_wb_class* i_this) {
             dComIfGp_getPlayer(0); // unusued?
 
             if (i_this->home.pos.y - i_this->current.pos.y > 4500.0f) {
-                OS_REPORT(" WB NARAKU DOWN  \n")
+                OS_REPORT(" WB NARAKU DOWN  \n");
                 fopAcM_delete(i_this);
             }
         } else {
@@ -2493,7 +2493,7 @@ static int daE_WB_Create(fopAc_ac_c* a_this) {
                 i_this->current.pos.y = fopAcM_gc_c::getGroundY();
             }
         
-            OS_REPORT(" C_RD RESET  00\n")
+            OS_REPORT(" C_RD RESET  00\n");
         } else if (i_this->mParam == 9) {
             i_this->field_0x79d = 4;
             i_this->mActionID = ACT_B_LV9_END;
@@ -2543,7 +2543,7 @@ static int daE_WB_Create(fopAc_ac_c* a_this) {
         }
 
         if (!fopAcM_entrySolidHeap(i_this,useHeapInit,local_50)) {
-            OS_REPORT("//////////////E_WB SET NON !!\n")
+            OS_REPORT("//////////////E_WB SET NON !!\n");
             return cPhs_ERROR_e;
         } else {
             if (lbl_244_bss_48 == 0) {

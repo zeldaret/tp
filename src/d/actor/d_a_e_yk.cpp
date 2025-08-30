@@ -24,6 +24,7 @@ class daE_YK_HIO_c : public JORReflexible {
 public:
     /* 8080482C */ daE_YK_HIO_c();
     /* 808077E0 */ virtual ~daE_YK_HIO_c() {}
+    void genMessage(JORMContext*);
 
     /* 0x00 */ // vtable
     /* 0x04 */ s8 field_0x04;       ///< @brief Initialized to -1, appears unused.
@@ -33,12 +34,6 @@ public:
     /* 0x14 */ f32 mCruiseSpeed;    ///< @brief Speed when flying normally (default: 15.0).
     /* 0x18 */ f32 mChargeSpeed;    ///< @brief Speed when charging at player (default: 40.0).
 };
-
-/* 80807EF8-80807EFC 000008 0004+00 2/2 0/0 0/0 .bss             None */
-static u8 data_80807EF8;
-
-/* 80807F08-80807F24 000018 001C+00 9/9 0/0 0/0 .bss             l_HIO */
-static daE_YK_HIO_c l_HIO;
 
 /**
  * @brief Constructor for Shadow Keese HIO (Host Input Output) configuration class
@@ -59,8 +54,14 @@ daE_YK_HIO_c::daE_YK_HIO_c() {
     mChargeSpeed = 40.0f;   
 }
 
+/* 80807EF8-80807EFC 000008 0004+00 2/2 0/0 0/0 .bss             None */
+static u8 data_80807EF8;
+
+/* 80807F08-80807F24 000018 001C+00 9/9 0/0 0/0 .bss             l_HIO */
+static daE_YK_HIO_c l_HIO;
+
 #ifdef DEBUG
-daE_YK_HIO_c::genMessage(JORMContext* ctx) {
+void daE_YK_HIO_c::genMessage(JORMContext* ctx) {
   ctx->genLabel("闇キース", 0x80000001, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
   ctx->genSlider("基本サイズ", &mModelScale, 0.0f, 3.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x512, 24);
   ctx->genSlider("飛行速度", &mFlySpeed, 0.0f, 50.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
