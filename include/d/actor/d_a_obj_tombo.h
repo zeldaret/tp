@@ -9,7 +9,7 @@
 /**
  * @ingroup actors-objects
  * @class daObjTOMBO_c
- * @brief Insect - Dragonfly
+ * @brief Insect - Dragonfly (Tonbo)
  *
  * @details
  *

@@ -9,7 +9,7 @@
 /**
  * @ingroup actors-enemies
  * @class daB_GG_c
- * @brief Aeralfos
+ * @brief Aeralfos (Gargoyle)
  *
  * @details City in the Sky dungeon mini-boss.
  *

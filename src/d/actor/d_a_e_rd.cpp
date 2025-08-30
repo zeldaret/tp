@@ -253,7 +253,7 @@ static fopAc_ac_c* get_pla(fopAc_ac_c* a_this) {
 /* 80504BD4-80504D28 000254 0154+00 36/36 0/0 0/0 .text            anm_init__FP10e_rd_classifUcf */
 static void anm_init(e_rd_class* i_this, int i_anmID, f32 i_morf, u8 i_mode, f32 i_speed) {
     if (i_this->field_0x680 == 0) {
-        if (i_this->field_0x129a != 0) {
+        if (i_this->mBossMode != 0) {
             if (i_anmID < 73) {
                 i_this->mpModelMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_rdb", i_anmID),
                                             i_mode, i_morf, i_speed, 0.0f, -1.0f);
@@ -425,7 +425,7 @@ static int daE_RD_Draw(e_rd_class* i_this) {
     g_env_light.settingTevStruct(0, &a_this->current.pos, &a_this->tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &a_this->tevStr);
 
-    if (i_this->field_0x129a == 0 && i_this->field_0x968 != 0) {
+    if (i_this->mBossMode == 0 && i_this->field_0x968 != 0) {
         modelData = model->getModelData();
         for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
             matNode_p = modelData->getMaterialNodePointer(i);
@@ -435,7 +435,7 @@ static int daE_RD_Draw(e_rd_class* i_this) {
         }
     }
 
-    if (i_this->field_0x129a == 3) {
+    if (i_this->mBossMode == 3) {
         modelData = model->getModelData();
         matNode_p = modelData->getMaterialNodePointer(3);
         J3DShape* shape = matNode_p->getShape();
@@ -446,7 +446,7 @@ static int daE_RD_Draw(e_rd_class* i_this) {
 
     i_this->mpModelMorf->entryDL();
 
-    if (i_this->field_0x129a == 0 && i_this->field_0x968 != 0) {
+    if (i_this->mBossMode == 0 && i_this->field_0x968 != 0) {
         modelData = model->getModelData();
         for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
             matNode_p = modelData->getMaterialNodePointer(i);
@@ -469,7 +469,7 @@ static int daE_RD_Draw(e_rd_class* i_this) {
         }
     }
 
-    if (i_this->field_0x129a != 0) {
+    if (i_this->mBossMode != 0) {
         for (int i = 0; i < 14; i++) {
             if (i_this->mpBossArmorParts[i] != NULL) {
                 g_env_light.setLightTevColorType_MAJI(i_this->mpBossArmorParts[i], &a_this->tevStr);
@@ -684,18 +684,18 @@ static void ride_off(e_rd_class* i_this) {
                     bullbo->mActionID = 0;
                 }
 
-                bullbo->field_0x5b4 = 0;
+                bullbo->mActionMode = 0;
             } else if (bullbo->mActionID == 21) {
-                bullbo->field_0x5b4 = 0;
+                bullbo->mActionMode = 0;
             } else if ((bullbo->field_0x6be & 1) == 0) {
-                if (bullbo->mActionID == 6 && (bullbo->field_0x5b4 == 2 || bullbo->field_0x5b4 == 3)) {
-                    bullbo->field_0x5b4 = 1;
+                if (bullbo->mActionID == 6 && (bullbo->mActionMode == 2 || bullbo->mActionMode == 3)) {
+                    bullbo->mActionMode = 1;
                 } else {
-                    bullbo->field_0x5b4 = 0;
+                    bullbo->mActionMode = 0;
                 }
 
                 bullbo->mActionID = 7;
-                bullbo->field_0x698[1] = cM_rndF(30.0f) + 80.0f;
+                bullbo->field_0x69a = cM_rndF(30.0f) + 80.0f;
             }
         }
 
@@ -718,7 +718,7 @@ static void* s_wb_sub(void* i_actor, void* i_data) {
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_WB && ((e_wb_class*)i_actor)->mActionID != ACTION_DROP &&
         ((e_wb_class*)i_actor)->mActionID != ACTION_DAMAGE && ((e_wb_class*)i_actor)->mActionID != ACTION_A_DAMAGE && ((e_wb_class*)i_actor)->mActionID != ACTION_STAND) {
         e_rd_class* i_this = (e_rd_class*)i_data;
-        if (i_this->field_0x129a == ((e_wb_class*)i_actor)->field_0x79d &&
+        if (i_this->mBossMode == ((e_wb_class*)i_actor)->field_0x79d &&
             (data_80519230 != 0 || (((e_wb_class*)i_actor)->field_0x6be & 3) != 3) && target_info_count < 10) {
             target_info[target_info_count] = (fopAc_ac_c*)i_actor;
             target_info_count++;
@@ -1835,7 +1835,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
     } else {
         if (i_this->mMode >= 2 && bullbo->mActionID != 1) {
             bullbo->mActionID = 1;
-            bullbo->field_0x5b4 = 0;
+            bullbo->mActionMode = 0;
         }
 
         switch (i_this->mMode) {
@@ -1977,7 +1977,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
                     i_this->mAction = ACTION_WB_RIDE;
                     i_this->mMode = 0;
                     bullbo->mActionID = 4;
-                    bullbo->field_0x5b4 = 0;
+                    bullbo->mActionMode = 0;
                 }
         }
 
@@ -2006,29 +2006,29 @@ static void e_rd_wb_ride(e_rd_class* i_this) {
         switch (i_this->mMode) {
             case 0:
                 i_this->mMode = 1;
-                if (i_this->field_0x129a == 0) {
+                if (i_this->mBossMode == 0) {
                     anm_init(i_this, BCK_RD_JUMP_C, 1.0f, 0, 1.0f);
                 }
                 // fallthrough
             case 1:
-                if (i_this->mpModelMorf->isStop() || i_this->field_0x129a != 0) {
-                    if (i_this->field_0x129a != 0) {
-                        bullbo->field_0x5b4 = 0;
+                if (i_this->mpModelMorf->isStop() || i_this->mBossMode != 0) {
+                    if (i_this->mBossMode != 0) {
+                        bullbo->mActionMode = 0;
                         i_this->mMode = 0;
 
-                        if (i_this->field_0x129a == 3) {
+                        if (i_this->mBossMode == 3) {
                             bullbo->mActionID = 17;
                             // Hyrule Field
                             if (strcmp(dComIfGp_getStartStageName(), "F_SP121") == 0) {
-                                bullbo->field_0x5b4 = -100;
+                                bullbo->mActionMode = -100;
                                 i_this->mAction = ACTION_IKKI2_START;
                             } else {
                                 i_this->mAction = ACTION_WB_RUN;
                             }
-                        } else if (i_this->field_0x129a == 2) {
+                        } else if (i_this->mBossMode == 2) {
                             bullbo->mActionID = 15;
                             i_this->mAction = ACTION_WB_RUN;
-                        } else if (i_this->field_0x129a == 4) {
+                        } else if (i_this->mBossMode == 4) {
                             bullbo->mActionID = 19;
                             i_this->mAction = ACTION_LV9_END;
                         } else if (cDmr_SkipInfo == 0) {
@@ -2042,7 +2042,7 @@ static void e_rd_wb_ride(e_rd_class* i_this) {
                         }
                     } else {
                         bullbo->mActionID = 6;
-                        bullbo->field_0x5b4 = 0;
+                        bullbo->mActionMode = 0;
                         i_this->mAction = ACTION_WB_RUN;
                         i_this->mMode = 0;
                     }
@@ -2324,7 +2324,7 @@ static void e_rd_wb_run_B(e_rd_class* i_this) {
     dAttention_c* attention;
 
     if (bullbo != NULL) {
-        if (i_this->field_0x129a == 2 || i_this->field_0x129a == 3) {
+        if (i_this->mBossMode == 2 || i_this->mBossMode == 3) {
             fopAcM_OffStatus(a_this, 0);
             a_this->attention_info.flags = 0;
         }
@@ -2385,11 +2385,13 @@ static void e_rd_wb_run_B(e_rd_class* i_this) {
             }
         }
 
+        
         if (fpcM_Search(s_wbrun_sub, i_this) != NULL && i_this->field_0x990[3] == 0) {
             i_this->field_0x6c2 = 1;
             i_this->field_0x990[3] = cM_rndF(100.0f) + 200.0f;
         }
 
+        // check if we need to jump a fence
         if ((bullbo->field_0x6be & 0x100) != 0) {
             i_this->mAction = ACTION_WB_BJUMP;
             i_this->mMode = 0;
@@ -3791,7 +3793,7 @@ static void e_rd_ikki_end(e_rd_class* i_this) {
                 bullbo->field_0x6be &= ~i_this->field_0x9be;
                 i_this->field_0x9be = 0;
                 bullbo->mActionID = 16;
-                bullbo->field_0x5b4 = 0;
+                bullbo->mActionMode = 0;
                 bullbo->field_0x169e = 10;
             }
 
@@ -3839,7 +3841,7 @@ static void e_rd_ikki2_end(e_rd_class* i_this) {
                 anm_init(i_this, BCK_RD_RRUN_BACK, 0.0f, 0, 1.0f);
                 i_this->mMode = 1;
                 bullbo->mActionID = 18;
-                bullbo->field_0x5b4 = 0;
+                bullbo->mActionMode = 0;
                 bullbo->field_0x169e = 90;
                 mDoAud_bgmStop(30);
             }
@@ -3923,7 +3925,7 @@ static void e_rd_lv9_end(e_rd_class* i_this) {
                 e_rdb_class* king_bulblin = (e_rdb_class*)fpcM_Search(s_rdb_sub, i_this);
                 if (king_bulblin != NULL && king_bulblin->mDemoMode == 14) {
                     anm_init(i_this, e_rdb_class::BCK_RB_RNEIGH, 3.0f, 0, 1.0f);
-                    bullbo->field_0x5b4++;
+                    bullbo->mActionMode++;
                     i_this->mMode = 4;
                 }
             }
@@ -4110,7 +4112,7 @@ static void damage_check(e_rd_class* i_this) {
     i_this->mStts.Move();
 
     if (i_this->field_0x998 == 0) {
-        if (i_this->field_0x129a != 0) {
+        if (i_this->mBossMode != 0) {
             a_this->health = 100;
         }
 
@@ -4118,7 +4120,7 @@ static void damage_check(e_rd_class* i_this) {
             if (i_this->field_0xd58[i].ChkTgHit() != 0) {
                 i_this->field_0x998 = 6;
                 i_this->mAtInfo.mpCollider = i_this->field_0xd58[i].GetTgHitObj();
-                if (i_this->field_0x129a == 3) {
+                if (i_this->mBossMode == 3) {
                     s16 sVar1 = a_this->shape_angle.y - i_this->mPlayerAngleY;
                     at_power_check(&i_this->mAtInfo);
                     if (i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_ARROW) || i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_BOMB)) {
@@ -4139,7 +4141,7 @@ static void damage_check(e_rd_class* i_this) {
                             }
 
                             uVar1 = 3;
-                            bullbo->field_0x698[3] = 100;
+                            bullbo->field_0x69e = 100;
                             dComIfGs_onSaveDunSwitch(7);
                         } else {
                             uVar1 = 2;
@@ -4255,9 +4257,9 @@ static void damage_check(e_rd_class* i_this) {
                             small_damage(i_this, i);
                             i_this->field_0x998 = 3;
                         } else {
-                            if (i_this->field_0x129a != 0 && bullbo != NULL) {
+                            if (i_this->mBossMode != 0 && bullbo != NULL) {
                                 i_this->field_0x998 = 20;
-                                if (i_this->field_0x129a == 2) {
+                                if (i_this->mBossMode == 2) {
                                     bullbo->field_0x79e++;
                                     if (bullbo->field_0x79e == 1) {
                                         a_this->health = 0;
@@ -4316,7 +4318,7 @@ static void damage_check(e_rd_class* i_this) {
                                     i_this->mMode = 0;
                                     mDoAud_seStart(Z2SE_EN_RDB_V_FAINT, 0, 0, 0);
                                     bullbo->mActionID = 31;
-                                    bullbo->field_0x5b4 = 0;
+                                    bullbo->mActionMode = 0;
                                     mDoAud_bgmStop(30);
                                     return;
                                 }
@@ -4958,7 +4960,7 @@ static void action(e_rd_class* i_this) {
             break;
 
         case ACTION_WB_RUN:
-            if (i_this->field_0x129a != 0) {
+            if (i_this->mBossMode != 0) {
                 e_rd_wb_run_B(i_this);
             } else {
                 e_rd_wb_run(i_this);
@@ -5192,7 +5194,7 @@ static void action(e_rd_class* i_this) {
             MTXCopy(bullbo->mpModelMorf->getModel()->getAnmMtx(bullbo->field_0x688 + 16), *calc_mtx);
         }
 
-        if (i_this->field_0x129a != 0) {
+        if (i_this->mBossMode != 0) {
             sp25c.set(0.0f, BREG_F(4) + -65.0f, 0.0f);
         } else {
             sp25c.set(0.0f, BREG_F(4) + -45.0f, 0.0f);
@@ -6258,7 +6260,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
 
     i_this->field_0x970++;
 
-    if (i_this->field_0x129a == 0) {
+    if (i_this->mBossMode == 0) {
         i_this->field_0x1297 = i_this->field_0x1298;
     } else {
         fopAc_ac_c* player = dComIfGp_getPlayer(0);
@@ -6341,7 +6343,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         if (!i_this->mObjAcch.ChkGroundHit()) {
             if (a_this->speed.y < -10.0f) {
                 i_this->field_0xaf2++;
-                if (i_this->field_0xaf2 == 20 && i_this->field_0x129a == 0) {
+                if (i_this->field_0xaf2 == 20 && i_this->mBossMode == 0) {
                     i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_DEATH, -1);
                 }
             }
@@ -6378,7 +6380,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         mDoMtx_stack_c::ZrotM(a_this->shape_angle.z);
 
         f32 fVar1 = l_HIO.model_size * a_this->scale.x;
-        if (i_this->field_0x129a != 0) {
+        if (i_this->mBossMode != 0) {
             fVar1 *= l_HIO.field_0xc;
         }
         mDoMtx_stack_c::scaleM(fVar1, fVar1, fVar1);
@@ -6409,7 +6411,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             }
         }
 
-        if (i_this->field_0x129a != 0) {
+        if (i_this->mBossMode != 0) {
             if (i_this->mAnmID == e_rdb_class::BCK_RB_RCOMEON) {
                 if (i_this->mpModelMorf->checkFrame(30.0f)) {
                     i_this->mSound.startCreatureVoice(Z2SE_EN_RDB_V_LAUGH, -1);
@@ -6508,7 +6510,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             spbc.set(-20000.0f, 200000.0f, 30000.0f);
         }
 
-        if (i_this->field_0x129a != 0) {
+        if (i_this->mBossMode != 0) {
             MTXCopy(model->getAnmMtx(AREG_S(9) + 6), *calc_mtx);
         } else {
             MTXCopy(model->getAnmMtx(13), *calc_mtx);
@@ -6530,7 +6532,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             a_this->attention_info.position = a_this->current.pos;
             a_this->attention_info.position.y += 190.0f;
 
-            if (i_this->field_0x129a != 0) {
+            if (i_this->mBossMode != 0) {
                 a_this->attention_info.position.y += 120.0f;
             }
         } else {
@@ -6538,10 +6540,10 @@ static int daE_RD_Execute(e_rd_class* i_this) {
             a_this->attention_info.position.y += 30.0f;
         }
 
-        if (i_this->field_0x129a != 0) {
+        if (i_this->mBossMode != 0) {
             f32 fVar2 = 60.0f;
             f32 fVar1 = 0.0f;
-            if (i_this->field_0x129a == 2) {
+            if (i_this->mBossMode == 2) {
                 fVar2 = 90.0f;
                 fVar1 = l_HIO.field_0x3c;
             }
@@ -6580,13 +6582,13 @@ static int daE_RD_Execute(e_rd_class* i_this) {
 
             dComIfG_Ccsp()->Set(&i_this->field_0xd58[i]);
 
-            if (i_this->field_0x129a == 1 && i_this->field_0x9bc == 2) {
+            if (i_this->mBossMode == 1 && i_this->field_0x9bc == 2) {
                 i_this->field_0xd58[i].OnTgNoHitMark();
             } else {
                 i_this->field_0xd58[i].OffTgNoHitMark();
             }
 
-            if (i_this->field_0x129a == 3) {
+            if (i_this->mBossMode == 3) {
                 for (int j = 0; j < 3; j++) {
                     i_this->field_0xd58[j].SetTgType(0x2022);
                     i_this->field_0xd58[j].OnTgNoHitMark();
@@ -6774,11 +6776,11 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         0x828E,
     };
 
-    if (i_this->field_0x129a != 0) {
+    if (i_this->mBossMode != 0) {
         for (int i = 0; i < 14; i++) {
             if (i_this->mpBossArmorParts[i] != NULL) {
                 if (i_this->field_0x70c[i] == 0) {
-                    if (i_this->field_0x129a == 3) {
+                    if (i_this->mBossMode == 3) {
                         MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(ikki2_boss_part_idx[i]), *calc_mtx);
                     } else {
                         MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(boss_part_idx[i]), *calc_mtx);
@@ -6864,7 +6866,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
         }
     }
 
-    if (i_this->field_0x129a == 0 && i_this->field_0x9bc == 0) {
+    if (i_this->mBossMode == 0 && i_this->field_0x9bc == 0) {
         fopAc_ac_c* player = dComIfGp_getPlayer(0);
         MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(11), mDoMtx_stack_c::get());
         mDoMtx_stack_c::multVecZero(&spa4);
@@ -6921,7 +6923,7 @@ static void ride_game_actor_set(e_rd_class* i_this) {
     cXyz sp70, i_pos;
     csXyz i_angle;
 
-    OS_REPORT("E3 2005 ACTOR SET %d\n", i_this->field_0x129a);
+    OS_REPORT("E3 2005 ACTOR SET %d\n", i_this->mBossMode);
     static cXyz set_pos[6] = {
         cXyz(0.0f, 1500.0f, 2500.0f),
         cXyz(800.0f, 1500.0f, -4800.0f),
@@ -6933,13 +6935,13 @@ static void ride_game_actor_set(e_rd_class* i_this) {
 
     dBgS_GndChk gnd_chk;
     int iVar1 = 6;
-    if (i_this->field_0x129a >= 2) {
+    if (i_this->mBossMode >= 2) {
         iVar1 = 1;
     }
 
     for (int i = 0; i < iVar1; i++) {
         u32 i_parameters;
-        if (i_this->field_0x129a == 1) {
+        if (i_this->mBossMode == 1) {
             cMtx_YrotS(*calc_mtx, player->shape_angle.y);
             sp70 = set_pos[i];
 
@@ -6954,15 +6956,15 @@ static void ride_game_actor_set(e_rd_class* i_this) {
             i_angle = player->shape_angle;
             i_angle.y += 0x4000;
             i_parameters = 0x80000005;
-        } else if (i_this->field_0x129a == 2) {
+        } else if (i_this->mBossMode == 2) {
             i_pos.set(34789.0f, -290.0f, -36177.0f);
             i_angle.set(0, 0, 0);
             i_parameters = 0x80000007;
-        } else if (i_this->field_0x129a == 3) {
+        } else if (i_this->mBossMode == 3) {
             i_pos.set(-93620.0f, -5750.0f, 49650.0f);
             i_angle.set(0, -0x8000, 0);
             i_parameters = 0x80000008;
-        } else if (i_this->field_0x129a == 4) {
+        } else if (i_this->mBossMode == 4) {
             i_pos = a_this->home.pos;
             i_angle = a_this->home.angle;
             i_parameters = 0x80000009;
@@ -7012,7 +7014,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
     J3DModel* model;
     J3DModelData* modelData;
 
-    if (i_this->field_0x129a != 0) {
+    if (i_this->mBossMode != 0) {
         i_this->mpModelMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_rdb", e_rdb_class::BMDR_RB), NULL, NULL,
                                                    (J3DAnmTransform*)dComIfG_getObjectRes("E_rdb", e_rdb_class::BCK_RB_RWAIT), 2, 1.0f,
                                                    0, -1, &i_this->mSound, 0x80000, 0x11000084);
@@ -7027,7 +7029,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
             model->getModelData()->getJointNodePointer(i)->setCallBack(nodeCallBack_B);
         }
 
-        if (i_this->field_0x129a == 1) {
+        if (i_this->mBossMode == 1) {
             i_this->mpMorfHornAnm = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("E_rdb", e_rdb_class::BMDR_RB_HORN), 
                                                        NULL, NULL, NULL, 2, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000084);
             if (i_this->mpMorfHornAnm == NULL || i_this->mpMorfHornAnm->getModel() == NULL) {
@@ -7051,7 +7053,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
         };
 
         for (int i = 0; i < 14; i++) {
-            if (i_this->field_0x129a == 3) {
+            if (i_this->mBossMode == 3) {
                 if (i < 2) {
                     modelData = (J3DModelData*)dComIfG_getObjectRes("E_rdb", ikki2_boss_part_bmd[i]);
                     JUT_ASSERT(10672, modelData != 0);
@@ -7062,7 +7064,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
                 } else {
                     i_this->field_0x70c[i] = 1;
                 }
-            } else if (i_this->field_0x129a == 1 || i == 13) {
+            } else if (i_this->mBossMode == 1 || i == 13) {
                 modelData = (J3DModelData*)dComIfG_getObjectRes("E_rdb", boss_part_bmd[i]);
                 JUT_ASSERT(10687, modelData != 0);
                 i_this->mpBossArmorParts[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
@@ -7169,13 +7171,13 @@ static cPhs__Step daE_RD_Create(fopAc_ac_c* a_this) {
 
     if (((i_this->field_0x5b6 == 4 || i_this->field_0x5b6 == 5) || i_this->field_0x5b6 == 11) || i_this->field_0x5b6 == 12) {
         if (i_this->field_0x5b6 == 4) {
-            i_this->field_0x129a = 1;
+            i_this->mBossMode = 1;
         } else if (i_this->field_0x5b6 == 5) {
-            i_this->field_0x129a = 2;
+            i_this->mBossMode = 2;
         } else if (i_this->field_0x5b6 == 11) {
-            i_this->field_0x129a = 3;
+            i_this->mBossMode = 3;
         } else if (i_this->field_0x5b6 == 12) {
-            i_this->field_0x129a = 4;
+            i_this->mBossMode = 4;
         }
 
         i_this->mResName = "E_rdb";
@@ -7209,7 +7211,7 @@ static cPhs__Step daE_RD_Create(fopAc_ac_c* a_this) {
             return cPhs_ERROR_e;
         }
 
-        if (i_this->field_0x129a != 0) {
+        if (i_this->mBossMode != 0) {
             boss = i_this;
             i_this->field_0x5b6 = 1;
         }
@@ -7341,11 +7343,11 @@ static cPhs__Step daE_RD_Create(fopAc_ac_c* a_this) {
         a_this->home.angle.z = 0;
 
         u32 i_size;
-        if (i_this->field_0x129a == 1) {
+        if (i_this->mBossMode == 1) {
             i_size = 0xAD60;
-        } else if (i_this->field_0x129a == 2) {
+        } else if (i_this->mBossMode == 2) {
             i_size = 0x3C00;
-        } else if (i_this->field_0x129a == 3) {
+        } else if (i_this->mBossMode == 3) {
             i_size = 0x4400;
         } else {
             i_size = 0x4FF0;
@@ -7356,7 +7358,7 @@ static cPhs__Step daE_RD_Create(fopAc_ac_c* a_this) {
             return cPhs_ERROR_e;
         }
 
-        if (i_this->field_0x129a != 0) {
+        if (i_this->mBossMode != 0) {
             ride_game_actor_set(i_this);
         }
 
@@ -7393,7 +7395,7 @@ static cPhs__Step daE_RD_Create(fopAc_ac_c* a_this) {
             i_this->field_0xd58[i].Set(cc_sph_src);
             i_this->field_0xd58[i].SetStts(&i_this->mStts);
 
-            if (i_this->field_0x129a != 0) {
+            if (i_this->mBossMode != 0) {
                 i_this->field_0xd58[i].SetTgType(0xD8FAFD3F);
             }
         }
@@ -7417,7 +7419,7 @@ static cPhs__Step daE_RD_Create(fopAc_ac_c* a_this) {
 
         i_this->mSound.init(&a_this->current.pos, &a_this->eyePos, 3, 1);
 
-        if (i_this->field_0x129a != 0) {
+        if (i_this->mBossMode != 0) {
             i_this->mSound.setEnemyName("E_rdb");
         } else {
             i_this->mSound.setEnemyName("E_rd");
@@ -7440,7 +7442,7 @@ static cPhs__Step daE_RD_Create(fopAc_ac_c* a_this) {
                 // Lake Hylia or Hyrule Field
                 fopAcM_OffStatus(a_this, fopAcM_STATUS_UNK_004000);
             }
-        } else if (i_this->field_0x129a != 4) {
+        } else if (i_this->mBossMode != 4) {
             fopAcM_OffStatus(a_this, fopAcM_STATUS_UNK_004000);
         }
 

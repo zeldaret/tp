@@ -14,7 +14,7 @@ class J3DModel;
 /**
  * @ingroup actors-npcs
  * @class daNPC_TK_c
- * @brief Hawk
+ * @brief Hawk (Taka)
  *
  * @details
  *

@@ -9,7 +9,7 @@
 /**
  * @ingroup actors-enemies
  * @class e_rb_class
- * @brief Leever
+ * @brief Leever (Riiba)
  * 
  * @details 
  * 

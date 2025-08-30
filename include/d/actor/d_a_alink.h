@@ -3639,6 +3639,9 @@ public:
     BOOL checkCanoeRideOwn(const fopAc_ac_c* param_0) const {
         return checkCanoeRide() && mRideAcKeep.getActorConst() == param_0;
     }
+    BOOL checkBoarRideOwn(const fopAc_ac_c* i_actorP) const { 
+        return checkBoarRide() && mRideAcKeep.getActorConst() == i_actorP;
+    }
     bool checkWolfDashMode() const { return checkNoResetFlg1(FLG1_DASH_MODE); }
     bool checkWolfLieWaterIn() const { return mWaterY > current.pos.y + 20.5f; }
 

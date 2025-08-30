@@ -9,7 +9,7 @@
 /**
  * @ingroup actors-objects
  * @class obj_so_class
- * @brief Monkey Cage
+ * @brief Monkey Cage (Saru Ori)
  *
  * @details
  *

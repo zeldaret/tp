@@ -8,7 +8,7 @@
 /**
  * @ingroup actors-enemies
  * @class e_mb_class
- * @brief Ook (Diababa Fight)
+ * @brief Ook - Diababa Fight (Monkey Boomerang)
  * 
  * @details 
  * 

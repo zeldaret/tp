@@ -9,9 +9,10 @@
 /**
  * @ingroup actors-enemies
  * @class e_is_class
- * @brief Armos Titan
+ * @brief Armos Titan (Idelia Statue)
  * 
- * @details Armos Titans are enemies from early, unreleased versions of the game.
+ * @details Armos Titans are enemies from early, unreleased versions of the game. 
+ * The name Idelia Statue seems like it might be a reference to the anime Powered Armor Dorvack.
  * 
  */
 class e_is_class {

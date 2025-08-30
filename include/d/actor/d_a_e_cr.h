@@ -9,7 +9,7 @@
 /**
  * @ingroup actors-enemies
  * @class e_cr_class
- * @brief Bombskit
+ * @brief Bombskit (Crazy Runner)
  * 
  * @details 
  * 

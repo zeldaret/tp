@@ -10,7 +10,7 @@
 /**
  * @ingroup actors-objects
  * @class daObjKAM_c
- * @brief Insect - Mantis
+ * @brief Insect - Mantis (Kamakiri)
  *
  * @details
  *

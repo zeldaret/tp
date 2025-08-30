@@ -10,7 +10,7 @@
 
 #include "SSystem/SComponent/c_phase.h"
 #include "Z2AudioLib/Z2Creature.h"
-#include "f_op/f_op_actor.h"
+#include "f_op/f_op_actor_mng.h"
 #include "d/d_bg_s_acch.h"
 #include "d/d_cc_d.h"
 #include "d/d_cc_uty.h"
@@ -37,7 +37,7 @@ enum daE_YK_Action {
 /**
  * @ingroup actors-enemies
  * @class e_yk_class
- * @brief Twilight Keese
+ * @brief Twilight Keese (Yami Keese)
  * 
  * @details 
  * 

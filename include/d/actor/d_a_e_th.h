@@ -17,7 +17,7 @@ struct th_ke_s {
 /**
  * @ingroup actors-enemies
  * @class e_th_class
- * @brief Darkhammer
+ * @brief Darkhammer (Tekkyuuhei)
  * 
  * @details 
  * 
