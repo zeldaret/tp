@@ -2,14 +2,14 @@
  * @file d_a_e_wb.cpp
  *
  */
-
+ 
+#include "d/dolzel_rel.h"
 #include "d/actor/d_a_e_wb.h"
 #include "c/c_damagereaction.h"
 #include "d/actor/d_a_alink.h"
 #include "d/actor/d_a_e_rd.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
-#include "d/dolzel_rel.h"
 #include "dol2asm.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
