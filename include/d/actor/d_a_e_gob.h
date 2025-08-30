@@ -10,7 +10,7 @@
 /**
  * @ingroup actors-enemies
  * @class e_gob_class
- * @brief Dangoro
+ * @brief Dangoro (Goron Boss)
  * 
  * @details 
  * 

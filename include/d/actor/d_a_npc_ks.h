@@ -9,7 +9,7 @@
 /**
  * @ingroup actors-npcs
  * @class npc_ks_class
- * @brief Monkey NPC
+ * @brief Monkey NPC (Kozaru)
  *
  * @details
  *
