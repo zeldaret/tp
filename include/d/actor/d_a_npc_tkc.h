@@ -51,11 +51,14 @@ public:
     /* 80B0FFD4 */ bool drawDbgInfo();
 
     void setStart() { field_0xd7a = 1; }
+    void callOdorokiSound() { mSound.startCreatureVoiceLevel(Z2SE_TKC_V_ODOROKI_LOOP, -1); }
 
     static u8 mEvtSeqList[48];
 
 private:
-    /* 0x568 */ u8 field_0x568[0xd7a - 0x568];
+    /* 0x568 */ u8 field_0x568[0xb48 - 0x568];
+    /* 0xB48 */ Z2Creature mSound;
+    /* 0xBD8 */ u8 field_0xbd8[0xd7a - 0xbd8];
     /* 0xD7A */ u8 field_0xd7a;
     /* 0xD7B */ u8 field_0xd7b[0xd7c - 0xd7b];
 };
