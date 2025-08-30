@@ -21,4 +21,4 @@ l_specName = .rodata:0x00000000; // type:object size:0x9 scope:global data:strin
 @114404 = .data:0x000000C0; // type:object size:0x1B scope:local data:string
 l_daSetBgObj_Method = .data:0x000000E0; // type:object size:0x20 scope:global
 g_profile_SET_BG_OBJ = .data:0x00000100; // type:object size:0x30 scope:global
-lbl_26_data_130 = .data:0x00000130; // type:object size:0x4
+lbl_26_data_130 = .data:0x00000130; // type:object size:0x3 data:string

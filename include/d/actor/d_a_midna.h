@@ -319,7 +319,7 @@ public:
 
     MtxP getMtxHairTop() { return mpShadowModel->getAnmMtx(10); }
 
-    bool checkSetAnime(int param_0, daMidna_ANM i_anm) {
+    bool checkSetAnime(int param_0, daMidna_ANM i_anm) const {
         return mBckHeap[param_0].getIdx() == m_anmDataTable[i_anm].mResID;
     }
 

@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel.h"
 
 #include "d/actor/d_a_no_chg_room.h"
 #include "d/d_s_room.h"

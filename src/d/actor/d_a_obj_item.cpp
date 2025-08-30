@@ -3,7 +3,7 @@
  * Item (Rupee, Arrow, Heart, etc) Object Actor
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel.h"
 
 #include "d/actor/d_a_obj_item.h"
 #include "SSystem/SComponent/c_math.h"

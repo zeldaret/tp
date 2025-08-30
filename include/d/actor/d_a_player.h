@@ -949,6 +949,12 @@ public:
     void onFishingRodReelEnd() { onEndResetFlg0(ERFLG0_UNK_20000); }
     void onFishingHit() { onEndResetFlg0(ERFLG0_UNK_10000); }
     void onFishingKeep() { onEndResetFlg2(ERFLG2_UNK_1); }
+    void onTraningCutHead() { onNoResetFlg3(FLG3_UNK_40); }
+    void onTraningCutFast() { onNoResetFlg3(FLG3_UNK_80); }
+    void onTraningCutLargeJump() { onNoResetFlg3(FLG3_UNK_200); }
+    void onTraningCutLargeTurn() { onNoResetFlg3(FLG3_UNK_100); }
+    void onTraningCutDown() { onNoResetFlg3(FLG3_UNK_10); }
+    void onTraningShieldAttack() { onNoResetFlg3(FLG3_UNK_8); }
 
     BOOL checkStickArrowReset() const { return checkResetFlg0(RFLG0_UNK_1); }
     u32 getCutAtFlg() const { return checkNoResetFlg0(FLG0_UNK_40); }

@@ -18,6 +18,17 @@
 #include "d/actor/d_a_npc_hoz.h"
 #include "d/actor/d_a_obj_zraMark.h"
 
+class daNpc_zrA_HIO_c {
+public:
+    daNpc_zrA_Param_c::param m;
+};
+
+#if DEBUG
+#define HIO_PARAM(i_this) (i_this->mpHIO->m)
+#else
+#define HIO_PARAM(_) (daNpc_zrA_Param_c::m)
+#endif
+
 //
 // Declarations:
 //
@@ -459,16 +470,16 @@ char* daNpc_zrA_c::mEvtCutNameList[11] = {
 
 daNpc_zrA_c::EventFn daNpc_zrA_c::mEvtCutList[11] = {
     NULL,
-    &ECut_talkSwim,
-    &ECut_beforeBlastzrR,
-    &ECut_afterBlastzrR,
-    &ECut_thanksBlast,
-    &ECut_resultAnnounce,
-    &ECut_carryWaterfall,
-    &ECut_carryWaterfallSkip,
-    &ECut_searchPrince1,
-    &ECut_searchPrince2,
-    &ECut_talkMulti,
+    &daNpc_zrA_c::ECut_talkSwim,
+    &daNpc_zrA_c::ECut_beforeBlastzrR,
+    &daNpc_zrA_c::ECut_afterBlastzrR,
+    &daNpc_zrA_c::ECut_thanksBlast,
+    &daNpc_zrA_c::ECut_resultAnnounce,
+    &daNpc_zrA_c::ECut_carryWaterfall,
+    &daNpc_zrA_c::ECut_carryWaterfallSkip,
+    &daNpc_zrA_c::ECut_searchPrince1,
+    &daNpc_zrA_c::ECut_searchPrince2,
+    &daNpc_zrA_c::ECut_talkMulti,
 };
 
 /* 80B7956C-80B79798 00114C 022C+00 1/1 0/0 0/0 .text            __ct__11daNpc_zrA_cFv */
@@ -2052,10 +2063,11 @@ bool daNpc_zrA_c::selectAction() {
 /* 80B7DF40-80B7E668 005B20 0728+00 1/1 0/0 0/0 .text            doEvent__11daNpc_zrA_cFv */
 // NONMATCHING regalloc
 BOOL daNpc_zrA_c::doEvent() {
+    dEvent_manager_c* event_manager = NULL;
     BOOL ret = false;
 
-    if (dComIfGp_event_runCheck() != false) {
-        dEvent_manager_c& event_manager = dComIfGp_getEventManager();
+    if (dComIfGp_event_runCheck() != FALSE) {
+        event_manager = &dComIfGp_getEventManager();
         if (eventInfo.checkCommandTalk() || eventInfo.checkCommandDemoAccrpt()) {
             mOrderNewEvt = false;
         }
@@ -2067,10 +2079,10 @@ BOOL daNpc_zrA_c::doEvent() {
                             l_evtNames[l_evtGetParamList[mOrderEvtNo].fileIdx], 1, 0xffff);
                 mStaffName = l_myName[1];
             } else if (mType == TYPE_WATERFALL) {
-                if (chkAction(&talkSwim)) {
+                if (chkAction(&daNpc_zrA_c::talkSwim)) {
                     (this->*mpActionFn)(NULL);
                 } else if (dComIfGp_event_chkTalkXY() == false || dComIfGp_evmng_ChkPresentEnd()) {
-                    setAction(&talkSwim);
+                    setAction(&daNpc_zrA_c::talkSwim);
                 }
             } else if (mType == TYPE_SEARCH) {
                 mOrderEvtNo = EVT_SEARCH_PRINCE;
@@ -2085,7 +2097,7 @@ BOOL daNpc_zrA_c::doEvent() {
                 changeEvent(l_resNames[l_evtGetParamList[mOrderEvtNo].arcIdx],
                             l_evtNames[l_evtGetParamList[mOrderEvtNo].fileIdx], 1, 0xffff);
             } else {
-                if (chkAction(&talk)) {
+                if (chkAction(&daNpc_zrA_c::talk)) {
                     (this->*mpActionFn)(NULL);
                 } else if (dComIfGp_event_chkTalkXY()) {
                     if (dComIfGp_evmng_ChkPresentEnd()) {
@@ -2099,7 +2111,7 @@ BOOL daNpc_zrA_c::doEvent() {
                             } else {
                                 mFlowID = 6;
                             }
-                            setAction(&talk);
+                            setAction(&daNpc_zrA_c::talk);
                         } else {
                             s16 event_idx =
                                 dComIfGp_getEventManager().getEventIdx(this, "NO_RESPONSE", 0xff);
@@ -2109,7 +2121,7 @@ BOOL daNpc_zrA_c::doEvent() {
                         }
                     }
                 } else {
-                    setAction(&talk);
+                    setAction(&daNpc_zrA_c::talk);
                 }
             }
             ret = true;
@@ -2119,23 +2131,25 @@ BOOL daNpc_zrA_c::doEvent() {
                 mItemID = -1;
             }
 
-            int staff_id = event_manager.getMyStaffId(mStaffName, this, 0);
+            int staff_id = event_manager->getMyStaffId(mStaffName, this, 0);
             if (staff_id != -1) {
                 mStaffID = staff_id;
-                int act_idx = event_manager.getMyActIdx(staff_id, mEvtCutNameList,
+                int act_idx = event_manager->getMyActIdx(staff_id, mEvtCutNameList,
                                                         ARRAY_SIZE(mEvtCutNameList), 0, 0);
+                JUT_ASSERT(0xf0e, act_idx >= 0 && act_idx < 11);
+                JUT_ASSERT(0xf0f, mEvtCutList[act_idx] != 0);
                 if ((this->*mEvtCutList[act_idx])(staff_id)) {
-                    event_manager.cutEnd(staff_id);
+                    event_manager->cutEnd(staff_id);
                 }
                 ret = true;
             }
 
             if (eventInfo.checkCommandDemoAccrpt()) {
-                if (mEventIdx != -1 && event_manager.endCheck(mEventIdx)) {
+                if (mEventIdx != -1 && event_manager->endCheck(mEventIdx)) {
                     switch (mOrderEvtNo) {
                     case EVT_TALK_SWIM:
                         dComIfGp_event_reset();
-                        setAction(&swim);
+                        setAction(&daNpc_zrA_c::swim);
                         mOrderEvtNo = 0;
                         mEventIdx = -1;
                         mStaffName = l_myName[0];
@@ -2144,7 +2158,7 @@ BOOL daNpc_zrA_c::doEvent() {
                     case EVT_RESULT_ANNOUNCE:
                         dComIfGp_event_reset();
                         mActionSelect = 5;
-                        setAction(&returnRiverDescend);
+                        setAction(&daNpc_zrA_c::returnRiverDescend);
                         mOrderEvtNo = 0;
                         mEventIdx = -1;
                         dComIfGs_offSwitch(mSwitch1, fopAcM_GetRoomNo(this));
@@ -2154,7 +2168,7 @@ BOOL daNpc_zrA_c::doEvent() {
                     case EVT_CARRY_WATERFALL_NIGHT:
                         dComIfGp_event_reset();
                         mActionSelect = 3;
-                        setAction(&diveWaterfall);
+                        setAction(&daNpc_zrA_c::diveWaterfall);
                         mOrderEvtNo = 0;
                         mEventIdx = -1;
                         break;
@@ -2177,8 +2191,8 @@ BOOL daNpc_zrA_c::doEvent() {
             }
         }
 
-        int prev_msg_timer = mMsgTimer;
         int expression, motion;
+        int prev_msg_timer = mMsgTimer;
         if (ctrlMsgAnm(expression, motion, this, false)) {
             if (!field_0x9eb) {
                 setExpression(expression, -1.0f);

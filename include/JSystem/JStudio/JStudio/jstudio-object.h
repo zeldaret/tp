@@ -254,7 +254,6 @@ struct TObject_actor : public TObject {
     /* 80286910 */ TObject_actor(JStudio::stb::data::TParse_TBlock_object const&,
                                  JStudio::TAdaptor_actor*);
     
-    /* 802881A4 */ virtual ~TObject_actor() {}
     /* 8028694C */ virtual void do_paragraph(u32, void const*, u32);
 };
 
@@ -272,7 +271,6 @@ struct TObject_ambientLight : public TObject {
     /* 80286CFC */ TObject_ambientLight(JStudio::stb::data::TParse_TBlock_object const&,
                                         JStudio::TAdaptor_ambientLight*);
     
-    /* 80288144 */ virtual ~TObject_ambientLight() {}
     /* 80286D38 */ virtual void do_paragraph(u32, void const*, u32);
 };
 
@@ -306,7 +304,6 @@ struct TObject_camera : public TObject {
     /* 80286E7C */ TObject_camera(JStudio::stb::data::TParse_TBlock_object const&,
                                   JStudio::TAdaptor_camera*);
     
-    /* 802880E4 */ virtual ~TObject_camera() {}
     /* 80286EB8 */ virtual void do_paragraph(u32, void const*, u32);
 };
 
@@ -330,7 +327,6 @@ struct TObject_fog : public TObject {
     /* 802871DC */ TObject_fog(JStudio::stb::data::TParse_TBlock_object const&,
                                JStudio::TAdaptor_fog*);
     
-    /* 80288084 */ virtual ~TObject_fog() {}
     /* 80287218 */ virtual void do_paragraph(u32, void const*, u32);
 };
 
@@ -362,7 +358,6 @@ struct TObject_light : public TObject {
     /* 80287368 */ TObject_light(JStudio::stb::data::TParse_TBlock_object const&,
                                  JStudio::TAdaptor_light*);
     
-    /* 80288024 */ virtual ~TObject_light() {}
     /* 802873A4 */ virtual void do_paragraph(u32, void const*, u32);
 };
 
@@ -376,7 +371,6 @@ struct TObject_message : public TObject {
     /* 80287640 */ TObject_message(JStudio::stb::data::TParse_TBlock_object const&,
                                    JStudio::TAdaptor_message*);
     
-    /* 80287FC4 */ virtual ~TObject_message() {}
     /* 8028767C */ virtual void do_paragraph(u32, void const*, u32);
 };
 
@@ -411,7 +405,6 @@ struct TObject_particle : public TObject {
     /* 8028776C */ TObject_particle(JStudio::stb::data::TParse_TBlock_object const&,
                                     JStudio::TAdaptor_particle*);
     
-    /* 80287F64 */ virtual ~TObject_particle() {}
     /* 802877A8 */ virtual void do_paragraph(u32, void const*, u32);
 };
 
@@ -450,7 +443,6 @@ struct TObject_sound : public TObject {
     /* 80287B9C */ TObject_sound(JStudio::stb::data::TParse_TBlock_object const&,
                                  JStudio::TAdaptor_sound*);
     
-    /* 80287F04 */ virtual ~TObject_sound() {}
     /* 80287BD8 */ virtual void do_paragraph(u32, void const*, u32);
 };
 

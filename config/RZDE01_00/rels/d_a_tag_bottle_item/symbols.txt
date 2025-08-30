@@ -31,6 +31,6 @@ _dtors = .dtors:0x00000000; // type:label scope:global
 daTag_BottleItem_MethodTable = .data:0x0000000C; // type:object size:0x20 scope:global
 g_profile_TAG_BTLITM = .data:0x0000002C; // type:object size:0x30 scope:global
 __vt__18daTag_BottleItem_c = .data:0x0000005C; // type:object size:0xC scope:global
-lbl_717_data_68 = .data:0x00000068; // type:object size:0x14
+lbl_717_data_68 = .data:0x00000068; // type:object size:0x13 data:string
 @91941 = .data:0x0000007C; // type:object size:0xC scope:local
 __RTTI__18daTag_BottleItem_c = .data:0x00000088; // type:object size:0x8 scope:global

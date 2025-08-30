@@ -871,11 +871,13 @@ int dComIfG_resDelete(request_of_phase_process_class* i_phase, char const* i_res
 int dComIfG_changeOpeningScene(scene_class* scene, s16 procName);
 int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* i_arcName);
 int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* i_resName, JKRHeap* heap);
+int dComIfG_TimerStop(int);
 int dComIfG_TimerDeleteRequest(int i_mode);
 int dComIfG_TimerStart(int i_mode, s16 i_time);
 u32 dComIfG_getTrigA(u32 i_padNo);
 
 bool dComIfGp_isLightDropMapVisible();
+int dComIfG_TimerReStart(int);
 int dComIfG_TimerEnd(int i_mode, int param_1);
 void dComIfGs_onStageBossEnemy(int i_stageNo);
 
@@ -1749,6 +1751,10 @@ inline char* dComIfGs_getHorseName() {
 
 inline int dComIfGs_getRaceGameTime() {
     return g_dComIfG_gameInfo.info.getMiniGame().getRaceGameTime();
+}
+
+inline void dComIfGs_setRaceGameTime(int i_time) {
+    g_dComIfG_gameInfo.info.getMiniGame().setRaceGameTime(i_time);
 }
 
 inline u32 dComIfGs_getBalloonScore() {

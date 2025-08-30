@@ -23,6 +23,6 @@ lbl_645_data_18 = .data:0x00000018; // type:object size:0x10 data:string
 l_daObjSword_Method = .data:0x00000028; // type:object size:0x20 scope:global
 g_profile_Obj_Sword = .data:0x00000048; // type:object size:0x30 scope:global
 __vt__12daObjSword_c = .data:0x00000078; // type:object size:0x44 scope:global
-lbl_645_data_BC = .data:0x000000BC; // type:object size:0x10
+lbl_645_data_BC = .data:0x000000BC; // type:object size:0xD data:string
 @91909 = .data:0x000000CC; // type:object size:0x14 scope:local
 __RTTI__12daObjSword_c = .data:0x000000E0; // type:object size:0x8 scope:global

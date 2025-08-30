@@ -47,5 +47,5 @@ lbl_3_data_1D9 = .data:0x000001D9; // type:object size:0x9 data:string
 lbl_3_data_1E2 = .data:0x000001E2; // type:object size:0x3 data:string
 lbl_3_data_1E5 = .data:0x000001E5; // type:object size:0x3 data:string
 lbl_3_data_1E8 = .data:0x000001E8; // type:object size:0x3 data:string
-lbl_3_data_1EB = .data:0x000001EB; // type:object size:0x5
+lbl_3_data_1EB = .data:0x000001EB; // type:object size:0x3 data:string
 lbl_3_bss_0 = .bss:0x00000000; // type:object size:0x20

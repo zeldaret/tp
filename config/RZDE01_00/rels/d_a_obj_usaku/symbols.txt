@@ -14,6 +14,6 @@ _dtors = .dtors:0x00000000; // type:label scope:global
 @92365 = .rodata:0x00000004; // type:object size:0x4 scope:local
 @92366 = .rodata:0x00000008; // type:object size:0x4 scope:local
 @92367 = .rodata:0x0000000C; // type:object size:0x4 scope:local
-lbl_674_data_0 = .data:0x00000000; // type:object size:0xC
+lbl_674_data_0 = .data:0x00000000; // type:object size:0xA data:string
 l_daObj_Usaku_Method = .data:0x0000000C; // type:object size:0x20 scope:global
 g_profile_OBJ_USAKU = .data:0x0000002C; // type:object size:0x30 scope:global

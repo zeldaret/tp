@@ -3,7 +3,7 @@
 // Translation Unit: a/npc/d_a_npc_cd2
 //
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel.h"
 
 #include "d/actor/d_a_npc_cd2.h"
 #include "d/actor/d_a_player.h"

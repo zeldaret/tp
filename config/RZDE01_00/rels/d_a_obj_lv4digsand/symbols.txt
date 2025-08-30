@@ -32,6 +32,6 @@ l_func$91845 = .data:0x0000000C; // type:object size:0x24 scope:local
 daObjL4DigSand_METHODS = .data:0x00000030; // type:object size:0x20 scope:global
 g_profile_Obj_Lv4DigSand = .data:0x00000050; // type:object size:0x30 scope:global
 __vt__16daObjL4DigSand_c = .data:0x00000080; // type:object size:0x28 scope:global
-lbl_534_data_A8 = .data:0x000000A8; // type:object size:0x14
+lbl_534_data_A8 = .data:0x000000A8; // type:object size:0x11 data:string
 @91952 = .data:0x000000BC; // type:object size:0x14 scope:local
 __RTTI__16daObjL4DigSand_c = .data:0x000000D0; // type:object size:0x8 scope:global

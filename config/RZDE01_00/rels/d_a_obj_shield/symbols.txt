@@ -53,6 +53,6 @@ l_func$93550 = .data:0x00000010; // type:object size:0x30 scope:local
 l_daItemShield_Method = .data:0x00000040; // type:object size:0x20 scope:global
 g_profile_Obj_Shield = .data:0x00000060; // type:object size:0x30 scope:global
 __vt__14daItemShield_c = .data:0x00000090; // type:object size:0x44 scope:global
-lbl_620_data_D4 = .data:0x000000D4; // type:object size:0x10
+lbl_620_data_D4 = .data:0x000000D4; // type:object size:0xF data:string
 @93645 = .data:0x000000E4; // type:object size:0x14 scope:local
 __RTTI__14daItemShield_c = .data:0x000000F8; // type:object size:0x8 scope:global

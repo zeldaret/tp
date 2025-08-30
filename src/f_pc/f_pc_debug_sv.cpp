@@ -849,7 +849,6 @@ char* fpcDbSv_getNameString(s16 i_name) {
         "METER2",
         "GAMEOVER",
         "DUMMY",
-        NULL,
     };
 
     return namelist[i_name];

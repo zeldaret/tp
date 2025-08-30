@@ -431,10 +431,16 @@ public:
     /* 80145D2C */ int setNextPathInfo(s8, u8);
     /* 80145DA0 */ void reverse();
     /* 80145DD0 */ int setNextIdx(int);
+    int getDstPos(cXyz i_pnt, cXyz* o_pos_p) {
+        return getDstPos(i_pnt, o_pos_p, getNumPnts());
+    }
     /* 80145E38 */ int getDstPos(cXyz, cXyz*, int);
     /* 80145FB4 */ int getDstPosH(cXyz, cXyz*, int, int);
     /* 80146188 */ int chkPassed1(cXyz, int);
     /* 801464D8 */ int chkPassed2(cXyz, cXyz*, int, int);
+#if DEBUG
+    int drawDbgInfo(f32, int);
+#endif
 
     daNpcT_Path_c() {
         initialize();
@@ -498,7 +504,7 @@ public:
     /* 0x974 */ dMsgFlow_c mFlow;
     /* 0x9C0 */ dPaPoT_c field_0x9c0;
     /* 0xA40 */ dCcD_Stts field_0xa40;
-    /* 0xA7C */ u32 mFlowNodeNo;
+    /* 0xA7C */ s32 mFlowNodeNo;
     /* 0xA80 */ f32 mExpressionMorfFrame;
     /* 0xA84 */ f32 mMorfFrames;
     /* 0xA88 */ bool mCreating;
@@ -537,9 +543,9 @@ public:
     /* 0xDC4 */ int mEventTimer;
     /* 0xDC8 */ s16 mPlayerAngle;
     /* 0xDCA */ s16 mGroundAngle;
-    /* 0xDCC */ u8 field_0xdcc[2];
+    /* 0xDCC */ s16 field_0xdcc;
     /* 0xDCE */ s16 mFootLPolyAngle;
-    /* 0xDD0 */ u8 field_0xdd0[2];
+    /* 0xDD0 */ s16 field_0xdd0;
     /* 0xDD2 */ s16 mFootRPolyAngle;
     /* 0xDD4 */ s16 mStartAngle;
     /* 0xDD6 */ s16 mTargetAngle;
@@ -596,6 +602,7 @@ public:
         mpArcNames(i_arcNames),
         mFaceMotionSeqMngr(i_faceMotionSequenceData, i_faceMotionStepNum),
         mMotionSeqMngr(i_motionSequenceData, i_motionStepNum) {
+        // "daNpcT_c -> construct"
         OS_REPORT("|%06d:%x|daNpcT_c -> コンストラクト\n", g_Counter.mCounter0, this);
         initialize();
     }
@@ -1298,6 +1305,7 @@ public:
     void offReverse() { mIsReversed = false; }
     dPath* getPathInfo() { return mPathInfo; }
     void setRange(f32 i_range) { mRange = i_range; }
+    u16 getNumPnts() { return mPathInfo->m_num; }
 };  // Size: 0x630
 
 class daNpcF_Lookat_c {

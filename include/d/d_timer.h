@@ -14,6 +14,8 @@ s32 dTimer_createTimer(s32 i_mode, u32 i_limitMs, u8 i_type, u8 param_3, f32 par
 u32 dTimer_createGetIn2D(s32 param_0, cXyz i_pos);
 int dTimer_getRestTimeMs();
 u8 dTimer_isStart();
+void dTimer_show();
+void dTimer_hide();
 u8 dTimer_isReadyFlag();
 
 class dDlst_TimerScrnDraw_c : public dDlst_base_c {

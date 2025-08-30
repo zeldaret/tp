@@ -11,7 +11,7 @@
  * @details
  *
  */
-class daNpc_GWolf_c : public fopAc_ac_c {
+class daNpc_GWolf_c : public daNpcF_c {
 public:
     /* 809F30AC */ daNpc_GWolf_c();
     /* 809F34C0 */ void create();
@@ -47,18 +47,18 @@ public:
     /* 809F797C */ void test(void*);
     /* 809F7A30 */ void getGroundSlope(dBgS_ObjAcch&, s16);
 
-    /* 809F32C0 */ ~daNpc_GWolf_c();
-    /* 809F4258 */ void setParam();
-    /* 809F4390 */ BOOL main();
-    /* 809F4558 */ BOOL ctrlBtk();
-    /* 809F4638 */ void adjustShapeAngle();
-    /* 809F4698 */ void setAttnPos();
-    /* 809F4BB0 */ bool setExpressionAnm(int, bool);
-    /* 809F4BB8 */ void setExpression(int, f32);
-    /* 809F4BBC */ bool setMotionAnm(int, f32);
-    /* 809F4DE8 */ void setMotion(int, f32, int);
-    /* 809F4E2C */ BOOL drawDbgInfo();
-    /* 809F4E34 */ void drawOtherMdls();
+    /* 809F32C0 */ virtual ~daNpc_GWolf_c();
+    /* 809F4258 */ virtual void setParam();
+    /* 809F4390 */ virtual BOOL main();
+    /* 809F4558 */ virtual BOOL ctrlBtk();
+    /* 809F4638 */ virtual void adjustShapeAngle();
+    /* 809F4698 */ virtual void setAttnPos();
+    /* 809F4BB0 */ virtual bool setExpressionAnm(int, bool);
+    /* 809F4BB8 */ virtual void setExpression(int, f32);
+    /* 809F4BBC */ virtual void setMotionAnm(int, f32);
+    /* 809F4DE8 */ virtual void setMotion(int, f32, int);
+    /* 809F4E2C */ virtual BOOL drawDbgInfo();
+    /* 809F4E34 */ virtual void drawOtherMdls();
 
     void setHowlingEndFlag() { field_0xe1c = 2; }
     void setHowlingFlag() { field_0xe1c = 1; }
@@ -67,14 +67,17 @@ public:
     static u8 mEvtCutList[60];
 
 private:
-    // /* 0xB48 */ Z2Creature mCreature;
-    // /* 0xBD8 */ daNpcF_MatAnm_c* mpMatAnm;
-    // /* 0xBDC */ daNpcF_Lookat_c mLookAt;
-    // /* 0xC78 */ daNpcF_ActorMngr_c mActorMng[2];
-    // /* 0xC88 */ u8 field_0xc88[4];
-    // /* 0xC8C */ dCcD_Cyl mCyl;
-    // /* 0xDC8 */ u8 field_0xdc8[0xE1C - 0xdc8];
-    /* 0x568 */ u8 field_0xb48[0xE1C - 0x568];
+    /* 0xB48 */ Z2Creature mSound;
+    /* 0xBD8 */ daNpcF_MatAnm_c* mpMatAnm;
+    /* 0xBDC */ daNpcF_Lookat_c mLookAt;
+    /* 0xC78 */ daNpcF_ActorMngr_c mActorMng[2];
+    /* 0xC88 */ u8 field_0xC88[0xC8C - 0xC88];
+    /* 0xC8C */ dCcD_Cyl mCcCyl;
+    /* 0xDC8 */ u8 field_0xDC8[0xE08 - 0xDC8];
+    /* 0xE08 */ int field_0xe08;
+    /* 0xE0C */ u8 field_0xE0C[0xE14 - 0xE0C];
+    /* 0xE14 */ u32 field_0xe14;
+    /* 0xE18 */ u8 field_0xe18[0xE1C - 0xE18];
     /* 0xE1C */ u8 field_0xe1c;
 };
 
