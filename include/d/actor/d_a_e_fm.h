@@ -38,7 +38,7 @@ struct chain_s {
 /**
  * @ingroup actors-enemies
  * @class e_fm_class
- * @brief Fyrus (Fire Mage)
+ * @brief Fyrus (Fire Man)
  * 
  * @details 
  * 

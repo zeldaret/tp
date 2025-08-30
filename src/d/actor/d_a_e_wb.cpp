@@ -526,7 +526,7 @@ static int daE_WB_Draw(e_wb_class* i_this) {
                 i_this->field_0x1438[0] = local_48;
                 i_this->field_0x1438[1] = local_60;
             } else {
-                if (pfVar4->mKingBulblinMode != 0) {
+                if (pfVar4->mBossMode != 0) {
                     local_78 = 0xf;
                     local_74 = 0x14;
                 } else {
