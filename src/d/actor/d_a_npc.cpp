@@ -699,6 +699,12 @@ static BOOL daNpcT_chkPassed(cXyz i_pos, dPnt* i_points, u16 i_idx, u16 i_num, B
     return (u16)abs(angle_diff) > 0x4000;
 }
 
+#if DEBUG
+int daNpcT_Path_c::drawDbgInfo(f32 param_0, int param_1) {
+    return 0;
+}
+#endif
+
 static f32 dummy_literal() {
     cXyz vec;
     return vec.abs();

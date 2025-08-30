@@ -1753,6 +1753,10 @@ inline int dComIfGs_getRaceGameTime() {
     return g_dComIfG_gameInfo.info.getMiniGame().getRaceGameTime();
 }
 
+inline void dComIfGs_setRaceGameTime(int i_time) {
+    g_dComIfG_gameInfo.info.getMiniGame().setRaceGameTime(i_time);
+}
+
 inline u32 dComIfGs_getBalloonScore() {
     return g_dComIfG_gameInfo.info.getMiniGame().getBalloonScore();
 }

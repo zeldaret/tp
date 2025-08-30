@@ -77,6 +77,8 @@ public:
     f32 getPlayerXBuf(int param_0) { return mPlayerXBuf[param_0]; }
     f32 getPlayerZBuf(int param_0) { return mPlayerZBuf[param_0]; }
     void onIceStatus(u16 i_no) { mIceStatus |= (1 << i_no); }
+    void setDrawOff() { mIsInactive = 1; }
+    bool isEnemyDemoEnd() { return (u8)mIsEnemyDemoEnd != 0; }
 
 private:
     /* 0x05AC */ request_of_phase_process_class mPhase1;
@@ -169,7 +171,7 @@ private:
     /* 0x0FCF */ u8 mIsInactive2;
     /* 0x0FD0 */ bool mReverted;
     /* 0x0FD1 */ bool field_0xfd1;
-    /* 0x0FD2 */ bool unk_FD2;
+    /* 0x0FD2 */ bool mIsEnemyDemoEnd;
     /* 0x0FD4 */ s32 mWarpHoleID;
     /* 0x0FD8 */ int mMsgIdx;
     /* 0x0FDC */ u32 mMsgPcID;
