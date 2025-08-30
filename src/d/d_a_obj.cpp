@@ -20,12 +20,12 @@ void eff_break_tsubo(fopAc_ac_c* i_actor, cXyz i_scale, int i_type) {
     J3DAnmTexPattern* tubo_btp = (J3DAnmTexPattern*)dComIfG_getObjectRes("Always", 0x42);
 
     JPABaseEmitter* emitter = dComIfGp_particle_set(
-        dPa_name::ZI_J_M_tuboHahen_e, &i_actor->current.pos, NULL, NULL, 0xFF,
+        ID_ZI_J_M_TUBOHAHEN, &i_actor->current.pos, NULL, NULL, 0xFF,
         &dPa_modelEcallBack::mEcallback, fopAcM_GetRoomNo(i_actor), NULL, NULL, &i_scale);
 
     dPa_modelEcallBack::setModel(emitter, tubo_bmd, i_actor->tevStr, 3, tubo_btp, 0, i_type);
 
-    dComIfGp_particle_set(dPa_name::ZI_J_tuboHahen_e, &i_actor->current.pos, NULL, NULL, 0xFF,
+    dComIfGp_particle_set(ID_ZI_J_TUBOHAHEN, &i_actor->current.pos, NULL, NULL, 0xFF,
                           dPa_control_c::getTsuboSelectTexEcallBack(i_type),
                           fopAcM_GetRoomNo(i_actor), NULL, NULL, &i_scale);
 }
