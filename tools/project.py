@@ -198,6 +198,12 @@ class ProjectConfig:
         self.link_order_callback: Optional[Callable[[int, List[str]], List[str]]] = (
             None  # Callback to add/remove/reorder units within a module
         )
+        self.context_exclude_globs: List[str] = (
+            []  # Globs to exclude from context files
+        )
+        self.context_defines: List[str] = (
+            []  # Macros to define at the top of context files
+        )
 
         # Progress output and report.json config
         self.progress = True  # Enable report.json generation and CLI progress output
@@ -492,7 +498,7 @@ def generate_build_ninja(
     decompctx = config.tools_dir / "decompctx.py"
     n.rule(
         name="decompctx",
-        command=f"$python {decompctx} $in -o $out -d $out.d $includes",
+        command=f"$python {decompctx} $in -o $out -d $out.d $includes $excludes $defines",
         description="CTX $in",
         depfile="$out.d",
         deps="gcc",
@@ -1048,12 +1054,19 @@ def generate_build_ninja(
                     ):
                         include_dirs.append(flag[3:])
                 includes = " ".join([f"-I {d}" for d in include_dirs])
+                excludes = " ".join([f"-x {d}" for d in config.context_exclude_globs])
+                defines = " ".join([f"-D {d}" for d in config.context_defines])
+
                 n.build(
                     outputs=obj.ctx_path,
                     rule="decompctx",
                     inputs=src_path,
                     implicit=decompctx,
-                    variables={"includes": includes},
+                    variables={
+                        "includes": includes,
+                        "excludes": excludes,
+                        "defines": defines,
+                    },
                 )
             n.newline()
 

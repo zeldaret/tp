@@ -103,6 +103,12 @@ inline u16 calcColorChanID(u16 enable, u8 matSrc, u8 lightMask, u8 diffuseFn, u8
     return reg;
 }
 
+#ifdef DECOMPCTX
+// Hack to mitigate fake mismatches when building from decompctx output -
+// see comment in sqrtf in math.h
+static u8 AttnArr[] = {2, 0, 2, 1};
+#endif
+
 /**
  * @ingroup jsystem-j3d
  *
@@ -138,7 +144,9 @@ struct J3DColorChan {
     u8 getMatSrc() const { return (GXColorSrc)(mColorChanID & 1); }
     u8 getDiffuseFn() const { return ((u32)(mColorChanID & (3 << 7)) >> 7); }
     u8 getAttnFn() const {
+#ifndef DECOMPCTX
         u8 AttnArr[] = {2,0,2,1};
+#endif
         return AttnArr[(u32)(mColorChanID & (3 << 9)) >> 9];
     }
 
