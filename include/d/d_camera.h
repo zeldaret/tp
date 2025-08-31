@@ -18,34 +18,34 @@ struct dCamMapToolData {
     /* 8015FEB8 */ int Set(s32, s32, fopAc_ac_c*, u16, u8);
 
     dCamMapToolData& operator=(dCamMapToolData const& other) {
-        __memcpy(&field_0x0, &other.field_0x0, sizeof(stage_camera2_data_class));
-        __memcpy(&field_0x18, &other.field_0x18, sizeof(stage_arrow_data_class));
-        field_0x2c = other.field_0x2c;
-        field_0x30 = other.field_0x30;
-        field_0x34 = other.field_0x34;
-        field_0x38 = other.field_0x38;
-        field_0x3a = other.field_0x3a;
-        field_0x3b = other.field_0x3b;
+        __memcpy(&mCamData, &other.mCamData, sizeof(stage_camera2_data_class));
+        __memcpy(&mArrowData, &other.mArrowData, sizeof(stage_arrow_data_class));
+        mArrowIndex = other.mArrowIndex;
+        mCameraIndex = other.mCameraIndex;
+        mpActor = other.mpActor;
+        mPriority = other.mPriority;
+        mFlags = other.mFlags;
+        mPathId = other.mPathId;
         return *this;
     }
 
     void Clr() {
-        field_0x2c = 0xFF;
-        field_0x30 = 0xFF;
-        field_0x3a = 0;
-        field_0x34 = NULL;
-        field_0x3b = 0xFF;
-        field_0x38 = 0xFF;
+        mArrowIndex = 0xFF;
+        mCameraIndex = 0xFF;
+        mFlags = 0;
+        mpActor = NULL;
+        mPathId = 0xFF;
+        mPriority = 0xFF;
     }
 
-    /* 0x00 */ stage_camera2_data_class field_0x0;
-    /* 0x18 */ stage_arrow_data_class field_0x18;
-    /* 0x2C */ int field_0x2c;
-    /* 0x30 */ s32 field_0x30;
-    /* 0x34 */ fopAc_ac_c* field_0x34;
-    /* 0x38 */ u16 field_0x38;
-    /* 0x3A */ u8 field_0x3a;
-    /* 0x3B */ u8 field_0x3b;
+    /* 0x00 */ stage_camera2_data_class mCamData;
+    /* 0x18 */ stage_arrow_data_class mArrowData;
+    /* 0x2C */ int mArrowIndex;
+    /* 0x30 */ s32 mCameraIndex;
+    /* 0x34 */ fopAc_ac_c* mpActor;
+    /* 0x38 */ u16 mPriority;
+    /* 0x3A */ u8 mFlags;
+    /* 0x3B */ u8 mPathId;
 };
 
 struct dCamForcusLine {
@@ -394,13 +394,13 @@ public:
 
     void debugDraw();
 
-    bool Active() { return field_0x24 == 0; }
+    bool Active() { return mCurState == 0; }
     f32 TrimHeight() { return mTrimHeight; }
     int Type() { return mCurType; }
     int Mode() { return mCurMode; }
     f32 Fovy() { return mFovy + mShake.field_0x3c; }
-    bool isModeOK() { return field_0x158.field_0x0; }
-    bool push_any_key() { return field_0x224; }
+    bool isModeOK() { return mStyleSettle.mFinished; }
+    bool push_any_key() { return mCameraInputActive; }
 
     bool chkFlag(u32 i_flag) { return (mEventFlags & i_flag) != 0; }
     u32 setFlag(u32 i_flag) { return mEventFlags |= i_flag; }
@@ -425,20 +425,20 @@ public:
     }
 
     void SetWindow(f32 param_0, f32 param_1) {
-        field_0x914 = param_0;
-        field_0x918 = param_1;
-        field_0x92c = param_0 / param_1;
+        mWindowWidth = param_0;
+        mWindowHeight = param_1;
+        mWindowAspect = param_0 / param_1;
     }
 
     s16 U2() {
         if (chkFlag(0x10)) {
-            return field_0x5c.mDirection.U();
+            return mViewCache.mDirection.U();
         } else {
-            return field_0x8c;
+            return mControlledYaw;
         }
     }
 
-    void U2(s16 i_val) { field_0x8c = i_val; }
+    void U2(s16 i_val) { mControlledYaw = i_val; }
 
     void CorrectCenter() { setFlag(0x40000000); }
 
@@ -454,11 +454,11 @@ public:
         /* 0x04 */ cXyz field_0x04;
         /* 0x10 */ cXyz field_0x10;
     }
-    /* 0x004 */ field_0x004;
+    /* 0x004 */ mRoomCtx;
     /* 0x020 */ u8 field_0x20;
     /* 0x021 */ u8 field_0x21;
     /* 0x022 */ u8 field_0x22[2];
-    /* 0x024 */ int field_0x24;
+    /* 0x024 */ int mCurState;
     /* 0x028 */ cSGlobe mDirection;
     /* 0x030 */ cXyz mCenter;
     /* 0x03C */ cXyz mEye;
@@ -473,16 +473,16 @@ public:
         /* 0x20 */ cSAngle mBank;
         /* 0x24 */ f32 mFovy;
     }
-    /* 0x05C */ field_0x5c;
+    /* 0x05C */ mViewCache;
     /* 0x084 */ f32 field_0x84;
-    /* 0x088 */ u32 field_0x88;
-    /* 0x08C */ cSAngle field_0x8c;
-    /* 0x090 */ cXyz field_0x90;
-    /* 0x09C */ cXyz field_0x9c;
-    /* 0x0A8 */ u32 field_0xa8;
-    /* 0x0AC */ u32 field_0xac;
-    /* 0x0B0 */ dCamInfo_c field_0xb0;
-    /* 0x0D0 */ dCamInfo_c field_0xd0[2];
+    /* 0x088 */ u32 mBumpCheckFlags;
+    /* 0x08C */ cSAngle mControlledYaw;
+    /* 0x090 */ cXyz mLastHitPos;
+    /* 0x09C */ cXyz mCornerNormalSum;
+    /* 0x0A8 */ u32 mFrameCounter;
+    /* 0x0AC */ u32 mTicks;
+    /* 0x0B0 */ dCamInfo_c mSavedView;
+    /* 0x0D0 */ dCamInfo_c mSavedViewStack[2];
     class {
     public:
         /* 0x00 */ int field_0x0;
@@ -490,7 +490,7 @@ public:
         /* 0x08 */ dCamInfo_c field_0x8;
         /* 0x28 */ cXyz field_0x28;
     }
-    /* 0x110 */ field_0x110;
+    /* 0x110 */ mRecovery;
     class {
     public:
         /* 0x0 */ cXyz field_0x0;
@@ -499,50 +499,50 @@ public:
     /* 0x144 */ field_0x144;
     class {
     public:
-        /* 0x0 */ bool field_0x0;
+        /* 0x0 */ bool mFinished;
         /* 0x2 */ cSAngle field_0x2;
         /* 0x4 */ cSAngle field_0x4;
     }
-    /* 0x158 */ field_0x158;
+    /* 0x158 */ mStyleSettle;
     /* 0x160 */ u32 field_0x160;
     /* 0x164 */ int field_0x164;
     /* 0x168 */ u8 field_0x168;
-    /* 0x169 */ int field_0x16c;
+    /* 0x16C */ int field_0x16c;
     /* 0x170 */ int field_0x170;
     /* 0x174 */ u32 mCurCamStyleTimer;
     /* 0x178 */ u32 mCameraID;
     /* 0x17C */ u32 mPadID;
     /* 0x180 */ fopAc_ac_c* mpPlayerActor;
     /* 0x184 */ fopAc_ac_c* mpLockonTarget;
-    /* 0x188 */ fopAc_ac_c* field_0x188;
-    /* 0x18C */ fopAc_ac_c* field_0x18c;
+    /* 0x188 */ fopAc_ac_c* mpAuxTargetActor1;
+    /* 0x18C */ fopAc_ac_c* mpAuxTargetActor2;
     /* 0x190 */ int mIsWolf;
-    /* 0x194 */ bool field_0x194;
+    /* 0x194 */ bool mMidnaRidingAndVisible;
     /* 0x198 */ fpc_ProcID mLockOnActorID;
     /* 0x19C */ fopAc_ac_c* mpLockOnActor;
     /* 0x1A0 */ int mForceLockTimer;
     /* 0x1A4 */ int mCurMode;
     /* 0x1A8 */ int mNextMode;
-    /* 0x1AC */ int field_0x1ac;
-    /* 0x1B0 */ cSAngle field_0x1b0;
-    /* 0x1B4 */ f32 field_0x1b4;
+    /* 0x1AC */ int mForcedMode;
+    /* 0x1B0 */ cSAngle mForwardTiltOffset;
+    /* 0x1B4 */ f32 mSightFitRadius;
     /* 0x1B8 */ u8 field_0x1b8[4];
     /* 0x1BC */ dCamera_pad_info mPadInfo;
-    /* 0x1F4 */ int field_0x1f4;
-    /* 0x1F8 */ int field_0x1f8;
-    /* 0x1FC */ int field_0x1fc;
+    /* 0x1F4 */ int mCStickYState;
+    /* 0x1F8 */ int mCStickYHoldCount;
+    /* 0x1FC */ int mCStickUpLatch;
     /* 0x200 */ f32 mTriggerLeftLast;
     /* 0x204 */ f32 mTriggerLeftDelta;
-    /* 0x208 */ u8 field_0x208;
-    /* 0x209 */ u8 field_0x209;
-    /* 0x20A */ u8 field_0x20a;
-    /* 0x20B */ u8 field_0x20b;
+    /* 0x208 */ u8 mHoldLockL;
+    /* 0x209 */ u8 mTrigLockL;
+    /* 0x20A */ u8 mLockLActive;
+    /* 0x20B */ u8 mLockLJustActivated;
     /* 0x20C */ f32 mTriggerRightLast;
     /* 0x210 */ f32 mTriggerRightDelta;
-    /* 0x214 */ u8 field_0x214;
-    /* 0x215 */ u8 field_0x215;
-    /* 0x216 */ u8 field_0x216;
-    /* 0x217 */ u8 field_0x217;
+    /* 0x214 */ u8 mHoldLockR;
+    /* 0x215 */ u8 mTrigLockR;
+    /* 0x216 */ u8 mLockRActive;
+    /* 0x217 */ u8 mLockRJustActivated;
     /* 0x218 */ bool mHoldX;
     /* 0x219 */ bool mTrigX;
     /* 0x21A */ bool mHoldY;
@@ -555,15 +555,15 @@ public:
     /* 0x221 */ bool mTrigB;
     /* 0x222 */ u8 field_0x222;
     /* 0x223 */ u8 field_0x223;
-    /* 0x224 */ bool field_0x224;
+    /* 0x224 */ bool mCameraInputActive;
     /* 0x228 */ dCamForcusLine mFocusLine;
     /* 0x298 */ dCamera_FakeAngle_system mFakeAngleSys;
     /* 0x2A0 */ dCamera_monitoring_things mMonitor;
     /* 0x2C0 */ f32 field_0x2c0;
-    /* 0x2C4 */ int field_0x2c4;
+    /* 0x2C4 */ int mIdleFrameCount;
     /* 0x2C8 */ f32 field_0x2c8;
     /* 0x2CC */ BG mBG;
-    /* 0x3E8 */ union mWork {
+    /* 0x3E8 */ union Work {
         struct {
             /* 0x00 */ int field_0x0;
             /* 0x04 */ int field_0x4;
@@ -691,7 +691,7 @@ public:
             /* 0x1C */ bool field_0x1c;
             /* 0x1D */ bool field_0x1d;
             /* 0x20 */ f32 field_0x20;
-            /* 0x24 */ f32 field_0x24;
+            /* 0x24 */ f32 mZoomRatio;
             /* 0x28 */ cSAngle field_0x28;
             /* 0x2A */ cSAngle field_0x2a;
             /* 0x2C */ cSAngle field_0x2c;
@@ -1086,7 +1086,7 @@ public:
             /* 0xB9 */ char field_0xb9;
             /* 0xBC */ f32 mCushion;
             /* 0xC0 */ u32 field_0xc0[6];
-            
+
 
         } bspTrans;
         struct {
@@ -1095,7 +1095,7 @@ public:
     } mWork;
     /* 0x4E8 */ dCamera_event_data mEventData;
     /* 0x60C */ u32 mEventFlags;
-    /* 0x610 */ u8 field_0x610;
+    /* 0x610 */ u8 mFastShotState;
     /* 0x611 */ u8 field_0x611;
     /* 0x612 */ u8 field_0x612[2];
     class {
@@ -1112,7 +1112,7 @@ public:
     /* 0x674 */ int field_0x674;
     /* 0x678 */ u8 field_0x678;
     /* 0x67C */ int mCamStyle;
-    /* 0x680 */ int field_0x680;
+    /* 0x680 */ int mEngineHoldState;
     /* 0x684 */ dCamera_type_data* mCamTypeData;
     /* 0x688 */ int mCamTypeNum;
     /* 0x68C */ int mCurType;
@@ -1137,7 +1137,7 @@ public:
     /* 0x700 */ mBlure;
     /* 0x734 */ f32 field_0x734;
     /* 0x738 */ f32 field_0x738;
-    /* 0x73C */ f32 field_0x73c;
+    /* 0x73C */ f32 mZoomRatio;
     class {
     public:
         /* 0x00 */ cXyz field_0x0;
@@ -1145,7 +1145,7 @@ public:
         /* 0x18 */ cXyz field_0x18;
         /* 0x24 */ cSGlobe field_0x24;
     }
-    /* 0x740 */ field_0x740;
+    /* 0x740 */ mUpOverride;
     /* 0x76C */ u8 field_0x76c[0x79c - 0x76c];
     class {
     public:
@@ -1153,30 +1153,30 @@ public:
         /* 0x4 */ cXyz field_0x4;
     }
     /* 0x79C */ field_0x79c;
-    /* 0x7AC */ dCamMapToolData field_0x7ac;
-    /* 0x7E8 */ dCamMapToolData field_0x7e8;
-    /* 0x824 */ dCamMapToolData field_0x824;
-    /* 0x860 */ dCamMapToolData field_0x860;
+    /* 0x7AC */ dCamMapToolData mRoomMapTool;
+    /* 0x7E8 */ dCamMapToolData mStageCamTool;
+    /* 0x824 */ dCamMapToolData mDefRoomCamTool;
+    /* 0x860 */ dCamMapToolData mTagCamTool;
     /* 0x89C */ dCamMapToolData field_0x89c;
     /* 0x8D8 */ dCamMapToolData field_0x8d8;
-    /* 0x914 */ f32 field_0x914;
-    /* 0x918 */ f32 field_0x918;
+    /* 0x914 */ f32 mWindowWidth;
+    /* 0x918 */ f32 mWindowHeight;
     /* 0x91C */ f32 field_0x91c;
     /* 0x920 */ f32 mTrimHeight;
     /* 0x924 */ int mTrimSize;
     /* 0x928 */ int mTrimTypeForce;
-    /* 0x92C */ f32 field_0x92c;
+    /* 0x92C */ f32 mWindowAspect;
     /* 0x930 */ u8 field_0x930[0x930 - 0x92c];
-    /* 0x934 */ f32 field_0x934;
-    /* 0x938 */ int field_0x938;
+    /* 0x934 */ f32 mWallUpDist;
+    /* 0x938 */ int mWallRecoverStepCount;
     /* 0x93C */ int field_0x93c;
-    /* 0x940 */ int field_0x940;
+    /* 0x940 */ int mGear;
     /* 0x944 */ u8 field_0x944;
     /* 0x948 */ int mThrowTimer;
-    /* 0x94C */ cSAngle field_0x94c;
+    /* 0x94C */ cSAngle mBankOverride;
     /* 0x950 */ int field_0x950;
     /* 0x954 */ u8 field_0x954[0x958 - 0x954];
-    /* 0x958 */ int field_0x958;
+    /* 0x958 */ int mLastBumpCase;
     /* 0x95C */ cXyz field_0x95c;
     /* 0x968 */ f32 field_0x968;
     /* 0x96C */ f32 field_0x96c;

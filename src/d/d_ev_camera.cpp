@@ -499,7 +499,7 @@ bool dCamera_c::pauseEvCamera() {
     struct mWork::event* event = &mWork.event;
     if (mCurCamStyleTimer == 0) {
         Reset();
-        field_0x158.field_0x0 = 1;
+        mStyleSettle.mFinished = 1;
         event->field_0x0 = getEvIntData(&event->field_0x8, "Timer", -1);
         getEvIntData(&event->field_0x4, "Stay", 0);
     }
@@ -597,7 +597,7 @@ bool dCamera_c::fixedFrameEvCamera() {
 
             fframe_p->field_0x4 = relationalPos(fframe_p->mpRelActor, &sp44);
         } else if (fframe_p->mpRelActor && fframe_p->mRelUseMask[1] == 'r') {
-            if ((field_0xac & 1) != 0) {
+            if ((mTicks & 1) != 0) {
                 sp44.x = -sp44.x;
             }
 
@@ -635,16 +635,16 @@ bool dCamera_c::fixedFrameEvCamera() {
             fframe_p->field_0x4 = sp44;
         }
 
-        field_0x158.field_0x0 = true;
+        mStyleSettle.mFinished = true;
     }
 
-    field_0x5c.mCenter = fframe_p->field_0x10;
-    field_0x5c.mEye = fframe_p->field_0x4;
-    field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
-    field_0x5c.mFovy = fframe_p->field_0x1c;
+    mViewCache.mCenter = fframe_p->field_0x10;
+    mViewCache.mEye = fframe_p->field_0x4;
+    mViewCache.mDirection.Val(mViewCache.mEye - mViewCache.mCenter);
+    mViewCache.mFovy = fframe_p->field_0x1c;
 
     if (fframe_p->field_0x30) {
-        field_0x5c.mBank = cAngle::d2s(fframe_p->field_0x20);
+        mViewCache.mBank = cAngle::d2s(fframe_p->field_0x20);
         setFlag(0x400);
     }
 
@@ -678,7 +678,7 @@ bool dCamera_c::stokerEvCamera() {
 
         stoker_p->field_0x34 = fopAcM_GetID(stoker_p->field_0x2c);
         stoker_p->field_0x38 = fopAcM_GetID(stoker_p->field_0x30);
-        field_0x158.field_0x0 = true;
+        mStyleSettle.mFinished = true;
     }
 
     cSGlobe cStack_d0;
@@ -693,7 +693,7 @@ bool dCamera_c::stokerEvCamera() {
         cStack_d0.U(cStack_d0.U() + stoker_p->field_0x30->shape_angle.y);
 
         cXyz cStack_38 = attentionPos(stoker_p->field_0x30) + cStack_d0.Xyz();
-        field_0x5c.mCenter += (cStack_38 - field_0x5c.mCenter) * stoker_p->field_0x1c;
+        mViewCache.mCenter += (cStack_38 - mViewCache.mCenter) * stoker_p->field_0x1c;
     }
 
     if (stoker_p->field_0x2c) {
@@ -706,15 +706,15 @@ bool dCamera_c::stokerEvCamera() {
         cStack_d0.V(cStack_d0.V() + stoker_p->field_0x2c->shape_angle.x);
         cStack_d0.U(cStack_d0.U() + stoker_p->field_0x2c->shape_angle.y);
         cXyz tmp_vec = attentionPos(stoker_p->field_0x2c) + cStack_d0.Xyz();
-        field_0x5c.mEye += (tmp_vec - field_0x5c.mEye) * stoker_p->field_0x20;
+        mViewCache.mEye += (tmp_vec - mViewCache.mEye) * stoker_p->field_0x20;
     }
 
-    field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
-    field_0x5c.mFovy = stoker_p->field_0x24;
+    mViewCache.mDirection.Val(mViewCache.mEye - mViewCache.mCenter);
+    mViewCache.mFovy = stoker_p->field_0x24;
 
     if (stoker_p->field_0x1) {
         cAngle this_00;
-        field_0x5c.mBank = this_00.d2s(stoker_p->field_0x28);
+        mViewCache.mBank = this_00.d2s(stoker_p->field_0x28);
         setFlag(0x400);
     }
 
@@ -775,7 +775,7 @@ bool dCamera_c::rollingEvCamera() {
             rolling_p->field_0x4 = relationalPos(rolling_p->mpRelActor, &rolling_p->mEye);
 
         } else if (rolling_p->mpRelActor && rolling_p->mRelActor[1] == 'r') {
-            if ((field_0xac & 1) != 0) {
+            if ((mTicks & 1) != 0) {
                 rolling_p->mEye.x = -rolling_p->mEye.x;
             }
             rolling_p->field_0x4 = relationalPos(rolling_p->mpRelActor, &rolling_p->mEye);
@@ -807,7 +807,7 @@ bool dCamera_c::rollingEvCamera() {
             rolling_p->field_0x4 = rolling_p->mEye;
         }
 
-        field_0x158.field_0x0 = true;
+        mStyleSettle.mFinished = true;
     }
 
     if ((rolling_p->mTransType == 1 || rolling_p->mTransType == 2) && rolling_p->mpRelActor) {
@@ -836,22 +836,22 @@ bool dCamera_c::rollingEvCamera() {
         }
     }
 
-    field_0x5c.mCenter += (rolling_p->field_0x10 - field_0x5c.mCenter) * rolling_p->mCtrCus;
-    field_0x5c.mDirection.Val(rolling_p->field_0x4 - rolling_p->field_0x10);
+    mViewCache.mCenter += (rolling_p->field_0x10 - mViewCache.mCenter) * rolling_p->mCtrCus;
+    mViewCache.mDirection.Val(rolling_p->field_0x4 - rolling_p->field_0x10);
 
     if (rolling_p->mTransType == 2) {
-        field_0x5c.mDirection.V(rolling_p->mLatitude);
+        mViewCache.mDirection.V(rolling_p->mLatitude);
     }
 
-    field_0x5c.mDirection.U(field_0x5c.mDirection.U() + (cSAngle)(mCurCamStyleTimer * rolling_p->mRoll));
-    field_0x5c.mDirection.R(mCurCamStyleTimer * rolling_p->mRadiusAdd + field_0x5c.mDirection.R());
+    mViewCache.mDirection.U(mViewCache.mDirection.U() + (cSAngle)(mCurCamStyleTimer * rolling_p->mRoll));
+    mViewCache.mDirection.R(mCurCamStyleTimer * rolling_p->mRadiusAdd + mViewCache.mDirection.R());
 
-    field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
-    field_0x5c.mFovy = rolling_p->mFovy;
+    mViewCache.mEye = mViewCache.mCenter + mViewCache.mDirection.Xyz();
+    mViewCache.mFovy = rolling_p->mFovy;
 
     if (rolling_p->field_0x1) {
         cAngle this_00;
-        field_0x5c.mBank = this_00.d2s(rolling_p->mBank);
+        mViewCache.mBank = this_00.d2s(rolling_p->mBank);
         setFlag(0x400);
     }
 
@@ -905,7 +905,7 @@ bool dCamera_c::fixedPositionEvCamera() {
         }
 
         fpos_p->field_0x1c = mCenter;
-        field_0x158.field_0x0 = true;
+        mStyleSettle.mFinished = true;
     }
 
     if (fopAcM_SearchByID(fpos_p->field_0x44) == NULL) {
@@ -914,9 +914,9 @@ bool dCamera_c::fixedPositionEvCamera() {
     }
 
     fpos_p->field_0x1c = relationalPos(fpos_p->field_0x40, &mWork.talk.field_0x10);
-    field_0x5c.mCenter += (fpos_p->field_0x1c - field_0x5c.mCenter) * mWork.chase.field_0x30;
-    field_0x5c.mEye = mWork.talk.field_0x4;
-    field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
+    mViewCache.mCenter += (fpos_p->field_0x1c - mViewCache.mCenter) * mWork.chase.field_0x30;
+    mViewCache.mEye = mWork.talk.field_0x4;
+    mViewCache.mDirection.Val(mViewCache.mEye - mViewCache.mCenter);
 
     f32 fVar1 = fpos_p->field_0x38;
     if (fpos_p->field_0x0 && mCurCamStyleTimer < fpos_p->field_0x4c) {
@@ -925,20 +925,20 @@ bool dCamera_c::fixedPositionEvCamera() {
         rv = false;
     }
 
-    if (field_0x5c.mDirection.R() > fVar1) {
-        field_0x5c.mDirection.R(fVar1);
-        field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
+    if (mViewCache.mDirection.R() > fVar1) {
+        mViewCache.mDirection.R(fVar1);
+        mViewCache.mEye = mViewCache.mCenter + mViewCache.mDirection.Xyz();
     }
 
-    field_0x5c.mFovy = mWork.chase.field_0x28;
+    mViewCache.mFovy = mWork.chase.field_0x28;
     if (fpos_p->field_0x1) {
         cAngle this_00;
-        field_0x5c.mBank = this_00.d2s(mWork.chase.field_0x2c);
+        mViewCache.mBank = this_00.d2s(mWork.chase.field_0x2c);
         setFlag(0x400);
     }
 
     if (rv != 0) {
-        field_0x158.field_0x0 = true;
+        mStyleSettle.mFinished = true;
     }
 
     return rv;
@@ -1018,7 +1018,7 @@ bool dCamera_c::transEvCamera(int param_1) {
             getEvFloatData(&trans->mFovy, "Fovy", mFovy);
             trans->field_0x68 = getEvFloatData(&trans->field_0x3c, "Bank", mBank.Degree());
         } else {
-            dCamInfo_c* ptr1 = &field_0xd0[slot];
+            dCamInfo_c* ptr1 = &mSavedViewStack[slot];
             trans->mCenter = (*ptr1).mCenter;
             trans->mEye = (*ptr1).mEye;
             trans->mFovy = (*ptr1).mFovy;
@@ -1034,7 +1034,7 @@ bool dCamera_c::transEvCamera(int param_1) {
             getEvFloatData(&trans->mStartFovy, "StartFovy", mFovy);
             trans->field_0x68 |= getEvFloatData(&trans->field_0x1c, "StartBank", mBank.Degree());
         } else {
-            dCamInfo_c* ptr2 = &field_0xd0[slot];
+            dCamInfo_c* ptr2 = &mSavedViewStack[slot];
             trans->mStartCenter = (*ptr2).mCenter;
             trans->mStartEye = (*ptr2).mEye;
             trans->mStartFovy = (*ptr2).mFovy;
@@ -1090,7 +1090,7 @@ bool dCamera_c::transEvCamera(int param_1) {
 
             if (trans->field_0x49 == 114) {
                 my_vec_0 = relationalPos(trans->mRelActor, &trans->mStartCenter);
-                if ((field_0xac & 1) != 0) {
+                if ((mTicks & 1) != 0) {
                     trans->mStartEye.x = -trans->mStartEye.x;
                 }
 
@@ -1222,7 +1222,7 @@ bool dCamera_c::transEvCamera(int param_1) {
                 }
             } else if (trans->field_0x4b == 114) {
                 my_vec_0 = relationalPos(trans->mRelActor, &trans->mCenter);
-                if ((field_0xac & 1) != 0) {
+                if ((mTicks & 1) != 0) {
                     trans->mEye.x = -trans->mEye.x;
                 }
 
@@ -1238,18 +1238,18 @@ bool dCamera_c::transEvCamera(int param_1) {
             }
         } else {
             if (trans->field_0x4a == 97) {
-                cXyz cStack_320 = dCamMath::xyzRotateY(trans->mCenter, cSAngle(field_0x5c.mDirection.U().Inv()));
-                trans->mCenter = field_0x5c.mCenter + cStack_320;
+                cXyz cStack_320 = dCamMath::xyzRotateY(trans->mCenter, cSAngle(mViewCache.mDirection.U().Inv()));
+                trans->mCenter = mViewCache.mCenter + cStack_320;
             }
 
             if (trans->field_0x4b == 97) {
-                cXyz cStack_32c = dCamMath::xyzRotateY(trans->mEye, cSAngle(field_0x5c.mDirection.U().Inv()));
-                trans->mEye = field_0x5c.mEye + cStack_32c;
+                cXyz cStack_32c = dCamMath::xyzRotateY(trans->mEye, cSAngle(mViewCache.mDirection.U().Inv()));
+                trans->mEye = mViewCache.mEye + cStack_32c;
             }
         }
 
         trans->field_0x60 = mDirection.Invert();
-        field_0x158.field_0x0 = true;
+        mStyleSettle.mFinished = true;
     }
 
     if (trans->mRelActor && fopAcM_SearchByID(trans->mRelActorID) == NULL) {
@@ -1347,7 +1347,7 @@ bool dCamera_c::transEvCamera(int param_1) {
         cXyz sp168;
         if (trans->mTransType == 1) {
             sp15c = pos.mXyz_1 + ((pos2.mXyz_1 - pos.mXyz_1) * my_main_f32);
-            field_0x5c.mCenter += (sp15c - field_0x5c.mCenter) * trans->mCushion;
+            mViewCache.mCenter += (sp15c - mViewCache.mCenter) * trans->mCushion;
 
             cSGlobe cStack_818(pos.mXyz_0 - pos.mXyz_1);
             cSGlobe cStack_820(pos2.mXyz_0 - pos2.mXyz_1);
@@ -1356,13 +1356,13 @@ bool dCamera_c::transEvCamera(int param_1) {
                                cStack_818.V() + ((cStack_820.V() - cStack_818.V()) * my_main_f32), 
                                cStack_818.U() + ((cStack_820.U() - cStack_818.U()) * my_main_f32));
 
-            sp168 = field_0x5c.mCenter + cStack_828.Xyz();
+            sp168 = mViewCache.mCenter + cStack_828.Xyz();
 
-            field_0x5c.mEye += (sp168 - field_0x5c.mEye) * trans->mCushion;
+            mViewCache.mEye += (sp168 - mViewCache.mEye) * trans->mCushion;
 
         } else if (trans->mTransType == 3) {
             sp15c = pos.mXyz_1 + ((pos2.mXyz_1 - pos.mXyz_1) * my_main_f32);
-            field_0x5c.mCenter += (sp15c - field_0x5c.mCenter) * trans->mCushion;
+            mViewCache.mCenter += (sp15c - mViewCache.mCenter) * trans->mCushion;
 
             cSGlobe cStack_830(pos.mXyz_0 - pos.mXyz_1);
             cSGlobe cStack_838(pos2.mXyz_0 - pos2.mXyz_1);
@@ -1382,13 +1382,13 @@ bool dCamera_c::transEvCamera(int param_1) {
                               (cStack_830.V() + (cStack_838.V() - cStack_830.V()) * my_main_f32), 
                               (cStack_830.U() + acStack_8a8));
 
-            sp168 = field_0x5c.mCenter + cStack_840.Xyz();
+            sp168 = mViewCache.mCenter + cStack_840.Xyz();
 
-            field_0x5c.mEye += (sp168 - field_0x5c.mEye) * trans->mCushion;
+            mViewCache.mEye += (sp168 - mViewCache.mEye) * trans->mCushion;
 
         } else if (trans->mTransType == 4) {
             sp15c = pos.mXyz_1 + ((pos2.mXyz_1 - pos.mXyz_1) * my_main_f32);
-            field_0x5c.mCenter += (sp15c - field_0x5c.mCenter) * trans->mCushion;
+            mViewCache.mCenter += (sp15c - mViewCache.mCenter) * trans->mCushion;
 
             cSGlobe cStack_848(pos.mXyz_0 - pos.mXyz_1);
             cSGlobe cStack_850(pos2.mXyz_0 - pos2.mXyz_1);
@@ -1406,33 +1406,33 @@ bool dCamera_c::transEvCamera(int param_1) {
                                cStack_848.V() + (cStack_850.V() - cStack_848.V()) * my_main_f32, 
                                cStack_848.U() + acStack_8ac);
 
-            sp168 = field_0x5c.mCenter + cStack_858.Xyz();
+            sp168 = mViewCache.mCenter + cStack_858.Xyz();
 
-            field_0x5c.mEye += (sp168 - field_0x5c.mEye) * trans->mCushion;
+            mViewCache.mEye += (sp168 - mViewCache.mEye) * trans->mCushion;
 
         } else if (trans->mTransType == 2) {
             sp15c = pos.mXyz_1 + (pos2.mXyz_1 * my_main_f32);
-            field_0x5c.mCenter += (sp15c - field_0x5c.mCenter) * trans->mCushion;
+            mViewCache.mCenter += (sp15c - mViewCache.mCenter) * trans->mCushion;
             sp168 = pos.mXyz_0 + (pos2.mXyz_0 * my_main_f32);
-            field_0x5c.mEye += (sp168 - field_0x5c.mEye) * trans->mCushion;
+            mViewCache.mEye += (sp168 - mViewCache.mEye) * trans->mCushion;
             
         } else {
             sp15c = pos.mXyz_1 + ((pos2.mXyz_1 - pos.mXyz_1) * my_main_f32);
-            field_0x5c.mCenter += (sp15c - field_0x5c.mCenter) * trans->mCushion;
+            mViewCache.mCenter += (sp15c - mViewCache.mCenter) * trans->mCushion;
             sp168 = pos.mXyz_0 + ((pos2.mXyz_0 - pos.mXyz_0) * my_main_f32);
-            field_0x5c.mEye += (sp168 - field_0x5c.mEye) * trans->mCushion;
+            mViewCache.mEye += (sp168 - mViewCache.mEye) * trans->mCushion;
         }
 
         f32 o_float = trans->mStartFovy + (my_main_f32 * (trans->mFovy - trans->mStartFovy));
-        field_0x5c.mFovy += trans->mCushion * (o_float - field_0x5c.mFovy);
+        mViewCache.mFovy += trans->mCushion * (o_float - mViewCache.mFovy);
 
         if (trans->field_0x68) {
             mid_val = trans->field_0x1c + my_main_f32 * (trans->field_0x3c - trans->field_0x1c);
-            field_0x5c.mBank += (cSAngle(mid_val) - field_0x5c.mBank) * trans->mCushion;
+            mViewCache.mBank += (cSAngle(mid_val) - mViewCache.mBank) * trans->mCushion;
             setFlag(0x400);
         }
 
-        field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
+        mViewCache.mDirection.Val(mViewCache.mEye - mViewCache.mCenter);
     }
 
     return rv;
@@ -1464,7 +1464,7 @@ bool dCamera_c::watchActorEvCamera() {
 
         actor->mTargetActorID = fopAcM_GetID(actor->mTargetActor);
         actor->field_0xc = relationalPos(actor->mTargetActor, &actor->mCtrGap);
-        actor->field_0x3c.Val(field_0x5c.mEye - actor->field_0xc);
+        actor->field_0x3c.Val(mViewCache.mEye - actor->field_0xc);
         if (actor->field_0x3c.R() < actor->mNearDist) {
             if (pointInSight(&actor->field_0xc)) {
                 actor->field_0x54 = 0;
@@ -1477,7 +1477,7 @@ bool dCamera_c::watchActorEvCamera() {
             actor->field_0x54 = 3;
         }
 
-        field_0x158.field_0x0 = true;
+        mStyleSettle.mFinished = true;
     }
 
     if (fopAcM_SearchByID(actor->mTargetActorID) == NULL) {
@@ -1493,8 +1493,8 @@ bool dCamera_c::watchActorEvCamera() {
 
     switch (actor->field_0x54) {
         case 0:
-            field_0x5c.mEye = mEye;
-            field_0x5c.mDirection = mDirection;
+            mViewCache.mEye = mEye;
+            mViewCache.mDirection = mDirection;
             break;
 
         case 1:
@@ -1502,7 +1502,7 @@ bool dCamera_c::watchActorEvCamera() {
                 cXyz cStack_dc = attentionPos(mpPlayerActor);
                 cStack_dc.y += 10.0f;
                 cSGlobe cStack_288(cStack_dc - actor->field_0xc);
-                cSGlobe cStack_290(field_0x5c.mEye - positionOf(actor->mTargetActor));
+                cSGlobe cStack_290(mViewCache.mEye - positionOf(actor->mTargetActor));
 
                 cSAngle acStack_2e8 = cStack_290.U() - directionOf(actor->mTargetActor);
 
@@ -1571,14 +1571,14 @@ bool dCamera_c::watchActorEvCamera() {
 
             if (mCurCamStyleTimer < actor->mNearTimer) {
                 f32 fVar6 = mCurCamStyleTimer / f32(actor->mNearTimer);
-                field_0x5c.mCenter += (actor->field_0xc - field_0x5c.mCenter) * fVar6;
+                mViewCache.mCenter += (actor->field_0xc - mViewCache.mCenter) * fVar6;
 
-                cSGlobe* dir_p = &field_0x5c.mDirection;
+                cSGlobe* dir_p = &mViewCache.mDirection;
                 dir_p->R(dir_p->R() + (actor->field_0x4c.R() - dir_p->R()) * fVar6);
                 dir_p->U(dir_p->U() + (actor->field_0x4c.U() - dir_p->U()) * fVar6);
                 dir_p->V(dir_p->V() + (actor->field_0x4c.V() - dir_p->V()) * fVar6);
-                field_0x5c.mEye = field_0x5c.mCenter + dir_p->Xyz();
-                field_0x5c.mFovy += fVar6 * (actor->mFovy - mFovy);
+                mViewCache.mEye = mViewCache.mCenter + dir_p->Xyz();
+                mViewCache.mFovy += fVar6 * (actor->mFovy - mFovy);
 
                 return 0;
             }
@@ -1654,14 +1654,14 @@ bool dCamera_c::watchActorEvCamera() {
 
             if (mCurCamStyleTimer < actor->mFarTimer) {
                 f32 fVar6 = mCurCamStyleTimer / f32(actor->mFarTimer);
-                field_0x5c.mCenter += (actor->field_0xc - field_0x5c.mCenter) * fVar6;
+                mViewCache.mCenter += (actor->field_0xc - mViewCache.mCenter) * fVar6;
 
-                cSGlobe* dir_p = &field_0x5c.mDirection;
+                cSGlobe* dir_p = &mViewCache.mDirection;
                 dir_p->R(dir_p->R() + (actor->field_0x4c.R() - dir_p->R()) * fVar6);
                 dir_p->U(dir_p->U() + (actor->field_0x4c.U() - dir_p->U()) * fVar6);
                 dir_p->V(dir_p->V() + (actor->field_0x4c.V() - dir_p->V()) * fVar6);
-                field_0x5c.mEye = field_0x5c.mCenter + dir_p->Xyz();
-                field_0x5c.mFovy += fVar6 * (actor->mFovy - mFovy);
+                mViewCache.mEye = mViewCache.mCenter + dir_p->Xyz();
+                mViewCache.mFovy += fVar6 * (actor->mFovy - mFovy);
 
                 return 0;
             }
@@ -1669,7 +1669,7 @@ bool dCamera_c::watchActorEvCamera() {
 
         case 3:
             if (mCurCamStyleTimer == 0) {
-                field_0x5c.mCenter = actor->field_0xc;
+                mViewCache.mCenter = actor->field_0xc;
 
                 cSGlobe cStack_2b0(attentionPos(mpPlayerActor) - actor->field_0xc);
                 cStack_2b0.R(actor->mZoomDist);
@@ -1733,12 +1733,12 @@ bool dCamera_c::watchActorEvCamera() {
                 }
             }
 
-            field_0x5c.mDirection = actor->field_0x4c;
-            field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
-            field_0x5c.mFovy = actor->mFovy;
+            mViewCache.mDirection = actor->field_0x4c;
+            mViewCache.mEye = mViewCache.mCenter + mViewCache.mDirection.Xyz();
+            mViewCache.mFovy = actor->mFovy;
     }
 
-    field_0x158.field_0x0 = true;
+    mStyleSettle.mFinished = true;
 
     return 1;
 }
@@ -1760,11 +1760,11 @@ bool dCamera_c::restorePosEvCamera() {
 
         switch (restorePos->field_0x44) {
             case 0:
-                restorePos->field_0x48 = field_0xd0[0];
+                restorePos->field_0x48 = mSavedViewStack[0];
                 break;
 
             case 1:
-                restorePos->field_0x48 = field_0xd0[1];
+                restorePos->field_0x48 = mSavedViewStack[1];
                 break;
 
             case 9: {
@@ -1775,7 +1775,7 @@ bool dCamera_c::restorePosEvCamera() {
             }
 
             default: {
-                restorePos->field_0x48 = field_0xb0;
+                restorePos->field_0x48 = mSavedView;
                 break;
             }
         }
@@ -1787,7 +1787,7 @@ bool dCamera_c::restorePosEvCamera() {
 
         restorePos->field_0xc = relationalPos(restorePos->field_0x34, &restorePos->field_0x0);
 
-        cSGlobe cStack_e8(restorePos->field_0x48.mEye - field_0x5c.mCenter);
+        cSGlobe cStack_e8(restorePos->field_0x48.mEye - mViewCache.mCenter);
         if (cStack_e8.R() < restorePos->field_0x20) {
             if (pointInSight(&restorePos->field_0xc)) {
                 restorePos->field_0x40 = 0;
@@ -1804,7 +1804,7 @@ bool dCamera_c::restorePosEvCamera() {
             restorePos->field_0x40 = 3;
         }
 
-        field_0x158.field_0x0 = true;
+        mStyleSettle.mFinished = true;
     }
 
     switch (restorePos->field_0x40) {
@@ -1821,18 +1821,18 @@ bool dCamera_c::restorePosEvCamera() {
             if (mCurCamStyleTimer < restorePos->field_0x24) {
                 f32 fVar1 = mCurCamStyleTimer / f32(restorePos->field_0x24);
                 if (restorePos->field_0x68 == 1) {
-                    field_0x5c.mCenter += (restorePos->field_0x48.mCenter - field_0x5c.mCenter) * fVar1;
+                    mViewCache.mCenter += (restorePos->field_0x48.mCenter - mViewCache.mCenter) * fVar1;
                 } else {
-                    field_0x5c.mCenter += (restorePos->field_0xc - field_0x5c.mCenter) * fVar1;
+                    mViewCache.mCenter += (restorePos->field_0xc - mViewCache.mCenter) * fVar1;
                 }
 
-                field_0x5c.mDirection.R(field_0x5c.mDirection.R() + (fVar1 * (restorePos->field_0x38.R() - field_0x5c.mDirection.R())));
-                field_0x5c.mDirection.U(field_0x5c.mDirection.U() + ((restorePos->field_0x38.U() - field_0x5c.mDirection.U()) * fVar1));
-                field_0x5c.mDirection.V((field_0x5c.mDirection.V() + ((restorePos->field_0x38.V() - field_0x5c.mDirection.V()) * fVar1)));
+                mViewCache.mDirection.R(mViewCache.mDirection.R() + (fVar1 * (restorePos->field_0x38.R() - mViewCache.mDirection.R())));
+                mViewCache.mDirection.U(mViewCache.mDirection.U() + ((restorePos->field_0x38.U() - mViewCache.mDirection.U()) * fVar1));
+                mViewCache.mDirection.V((mViewCache.mDirection.V() + ((restorePos->field_0x38.V() - mViewCache.mDirection.V()) * fVar1)));
 
-                field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
+                mViewCache.mEye = mViewCache.mCenter + mViewCache.mDirection.Xyz();
                 
-                field_0x5c.mFovy += fVar1 * (restorePos->field_0x48.mFovy - field_0x5c.mFovy);
+                mViewCache.mFovy += fVar1 * (restorePos->field_0x48.mFovy - mViewCache.mFovy);
                 return 0;
             }
             break;
@@ -1840,18 +1840,18 @@ bool dCamera_c::restorePosEvCamera() {
         case 3:
             if (mCurCamStyleTimer == 0) {
                 if (restorePos->field_0x68 == 1) {
-                    field_0x5c.mCenter = restorePos->field_0x48.mCenter;
+                    mViewCache.mCenter = restorePos->field_0x48.mCenter;
                 } else {
-                    field_0x5c.mCenter = restorePos->field_0xc;
+                    mViewCache.mCenter = restorePos->field_0xc;
                 }
 
-                field_0x5c.mDirection.Val(restorePos->field_0x48.mEye - restorePos->field_0x48.mCenter);
-                field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
-                field_0x5c.mFovy = restorePos->field_0x48.mFovy;
+                mViewCache.mDirection.Val(restorePos->field_0x48.mEye - restorePos->field_0x48.mCenter);
+                mViewCache.mEye = mViewCache.mCenter + mViewCache.mDirection.Xyz();
+                mViewCache.mFovy = restorePos->field_0x48.mFovy;
             }
     }
 
-    field_0x158.field_0x0 = true;
+    mStyleSettle.mFinished = true;
     return 1;
 }
 
@@ -1888,7 +1888,7 @@ bool dCamera_c::maptoolIdEvCamera() {
         field_0x160 = 0;
         mCurCamStyleTimer = 0;
         mEventData.field_0xec = dEvt_control_c::searchMapEventData(id);
-        OS_REPORT("%06d: %s: %d: map data ID %d  %x\n", field_0xa8, __FILE__, 2792, id,
+        OS_REPORT("%06d: %s: %d: map data ID %d  %x\n", mFrameCounter, __FILE__, 2792, id,
                  mEventData.field_0xec);
 
         int var_r6 = 0xFF;
@@ -1901,7 +1901,7 @@ bool dCamera_c::maptoolIdEvCamera() {
 
     int temp_r31 = mEventData.field_0x24;
     if (mEventData.field_0xec == NULL || temp_r31 == 0xFF) {
-        OS_REPORT("%d: %s: %d: ERROR!! no map data!!!\n", field_0xa8, __FILE__, 2805);
+        OS_REPORT("%d: %s: %d: ERROR!! no map data!!!\n", mFrameCounter, __FILE__, 2805);
         return true;
     }
 
@@ -1916,7 +1916,7 @@ bool dCamera_c::maptoolIdEvCamera() {
         }
 
         if (mEventData.field_0xec->field_0xC & 2) {
-            field_0x88 = 0;
+            mBumpCheckFlags = 0;
         }
     }
 
@@ -2072,7 +2072,7 @@ bool dCamera_c::gameOverEvCamera() {
     if (mCurCamStyleTimer == 0) {
         gover_p->field_0x0 = 0;
         gover_p->field_0x4 = 0;
-        if ((field_0xa8 & 2) != 0) {
+        if ((mFrameCounter & 2) != 0) {
             gover_p->field_0x8 = 0;
         } else {
             gover_p->field_0x8 = 1;
@@ -2082,8 +2082,8 @@ bool dCamera_c::gameOverEvCamera() {
             gover_p->field_0x0 = 50;
         }
 
-        field_0x158.field_0x0 = true;
-        cXyz sp284 = field_0x5c.mEye - attentionPos(mpPlayerActor);
+        mStyleSettle.mFinished = true;
+        cXyz sp284 = mViewCache.mEye - attentionPos(mpPlayerActor);
         sp284 = dCamMath::xyzRotateY(sp284, -cSAngle(mpPlayerActor->shape_angle.y));
         spa8[w_5c] = pos[w_54] = pos2[w_50] = sp284;
     }
@@ -2142,8 +2142,8 @@ bool dCamera_c::gameOverEvCamera() {
                 gover_p->field_0x8 ^= 1;
             }
 
-            field_0x5c.mCenter = sp224;
-            field_0x5c.mEye = sp230;
+            mViewCache.mCenter = sp224;
+            mViewCache.mEye = sp230;
             gover_p->field_0x0++;
             bVar9 = true;
         }
@@ -2159,13 +2159,13 @@ bool dCamera_c::gameOverEvCamera() {
 
             gover_p->field_0x0++;
             gover_p->field_0x4 = 0.0f;
-            field_0x5c.mFovy = 60.0f;
+            mViewCache.mFovy = 60.0f;
         }
         // fallthrough
         case 3: {
             sp224 = relationalPos(mpPlayerActor, &sp218);
             if (lineBGCheck(&sp291, &sp224, &my_cross, 0x40b7)) {
-                sp224 = my_cross + field_0x5c.mDirection.Norm();
+                sp224 = my_cross + mViewCache.mDirection.Norm();
             }
 
             for (i = 0; i < w_54; i++) {
@@ -2194,10 +2194,10 @@ bool dCamera_c::gameOverEvCamera() {
                 gover_p->field_0x8 ^= 1;
             }
 
-            field_0x5c.mCenter = sp224;
-            field_0x5c.mEye = sp230;
+            mViewCache.mCenter = sp224;
+            mViewCache.mEye = sp230;
             gover_p->field_0x0++;
-            field_0x5c.mFovy = 75.0f;
+            mViewCache.mFovy = 75.0f;
             bVar9 = 75.0f;
         }
         // fallthrough intentional.
@@ -2221,7 +2221,7 @@ bool dCamera_c::gameOverEvCamera() {
         case 51: {
             sp224 = relationalPos(mpPlayerActor, &sp278);
             if (lineBGCheck(&sp291, &sp224, &my_cross, 0x40b7)) {
-                sp224 = my_cross + field_0x5c.mDirection.Norm();
+                sp224 = my_cross + mViewCache.mDirection.Norm();
             }
 
             for (i = 0; i < w_50; i++) {
@@ -2245,10 +2245,10 @@ bool dCamera_c::gameOverEvCamera() {
                 gover_p->field_0x8 ^= 1;
             }
 
-            field_0x5c.mCenter = sp224;
-            field_0x5c.mEye = sp230;
+            mViewCache.mCenter = sp224;
+            mViewCache.mEye = sp230;
             bVar9 = true;
-            field_0x5c.mFovy = 60.0f;
+            mViewCache.mFovy = 60.0f;
             ++gover_p->field_0x0;
         }
         // fallthrough
@@ -2275,7 +2275,7 @@ bool dCamera_c::gameOverEvCamera() {
             }
 
             gover_p->field_0x10.y += (fVar1 + attentionPos(mpPlayerActor).y - gover_p->field_0x10.y) * 0.005f;
-            field_0x5c.mCenter = gover_p->field_0x10;
+            mViewCache.mCenter = gover_p->field_0x10;
 
             cSAngle acStack_43c(gover_p->field_0x1c.V());
             f32 next_f_var;
@@ -2291,21 +2291,21 @@ bool dCamera_c::gameOverEvCamera() {
             f32 mRad = gover_p->field_0x1c.R();
             mRad += (350.0f - mRad) * 0.02f;
             gover_p->field_0x1c.R(mRad);
-            field_0x5c.mFovy += (40.0f - field_0x5c.mFovy) * 0.005f;
-            field_0x5c.mEye = field_0x5c.mCenter + gover_p->field_0x1c.Xyz();
+            mViewCache.mFovy += (40.0f - mViewCache.mFovy) * 0.005f;
+            mViewCache.mEye = mViewCache.mCenter + gover_p->field_0x1c.Xyz();
 
             break;
         }
     }
 
     if (!bVar9 && bVar3) {
-        field_0x5c.mCenter += mMonitor.field_0x14;
-        field_0x5c.mEye += (mMonitor.field_0x14 * 0.98f);
+        mViewCache.mCenter += mMonitor.field_0x14;
+        mViewCache.mEye += (mMonitor.field_0x14 * 0.98f);
     }
 
-    field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
+    mViewCache.mDirection.Val(mViewCache.mEye - mViewCache.mCenter);
     ++gover_p->field_0x4;
-    field_0x158.field_0x0 = true;
+    mStyleSettle.mFinished = true;
     return 1;
 }
 
@@ -2368,14 +2368,14 @@ bool dCamera_c::tactEvCamera() {
         tact_p->field_0x4 = 0;
         tact_p->field_0x14 = 0;
         tact_p->field_0x0 = 0;
-        tact_p->field_0xc = this->field_0xa8;
-        if ((this->field_0xa8 & 2) != 0) {
+        tact_p->field_0xc = this->mFrameCounter;
+        if ((this->mFrameCounter & 2) != 0) {
             tact_p->field_0x8 = 0;
         } else {
             tact_p->field_0x8 = 1;
         }
 
-        field_0x158.field_0x0 = true;
+        mStyleSettle.mFinished = true;
         mEventData.field_0x20 = 0;
         mEventData.field_0x24 = 0;
         tact_p->field_0x1c = sp178;
@@ -2383,7 +2383,7 @@ bool dCamera_c::tactEvCamera() {
         tact_p->field_0x24 = const_4_val;
         tact_p->field_0x2c = 55.0f;
 
-        dComIfGp_saveCameraPosition(0, &field_0x5c.mCenter, &field_0x5c.mEye, field_0x5c.mFovy, field_0x5c.mBank);
+        dComIfGp_saveCameraPosition(0, &mViewCache.mCenter, &mViewCache.mEye, mViewCache.mFovy, mViewCache.mBank);
     }
 
     cXyz sp1e8;
@@ -2469,15 +2469,15 @@ bool dCamera_c::tactEvCamera() {
         case 20: {
             if (mHorseActor) {
                 for (i = 0; i < tact_p->field_0x24; i++) {
-                    field_0x5c.mCenter = relationalPos(mHorseActor, &tact_p->field_0x1c[i]);
-                    field_0x5c.mEye = relationalPos(mHorseActor, &tact_p->field_0x20[i]);
-                    if (!lineBGCheck(&field_0x5c.mCenter, &field_0x5c.mEye, 0x4007)
-                        && !lineCollisionCheck(field_0x5c.mCenter, field_0x5c.mEye, mHorseActor, NULL, NULL)) {
+                    mViewCache.mCenter = relationalPos(mHorseActor, &tact_p->field_0x1c[i]);
+                    mViewCache.mEye = relationalPos(mHorseActor, &tact_p->field_0x20[i]);
+                    if (!lineBGCheck(&mViewCache.mCenter, &mViewCache.mEye, 0x4007)
+                        && !lineCollisionCheck(mViewCache.mCenter, mViewCache.mEye, mHorseActor, NULL, NULL)) {
                         break;
                     }
                 }
 
-                field_0x5c.mFovy = tact_p->field_0x2c;
+                mViewCache.mFovy = tact_p->field_0x2c;
                 tact_p->field_0x0 = 21;
                 tact_p->field_0x14 = i;
             }
@@ -2489,8 +2489,8 @@ bool dCamera_c::tactEvCamera() {
                 cXyz sp208 = relationalPos(mHorseActor, &tact_p->field_0x1c[tact_p->field_0x14]);
                 cXyz sp214 = relationalPos(mHorseActor, &tact_p->field_0x20[tact_p->field_0x14]);
                 if (!lineBGCheck(&sp208, &sp214, 0x4007) &&!lineCollisionCheck(sp208, sp214, mHorseActor, NULL, NULL)) {
-                    field_0x5c.mCenter += (sp208 - field_0x5c.mCenter) * local_1d0[tact_p->field_0x14];
-                    field_0x5c.mEye += (sp214 - field_0x5c.mEye) * local_1d0[tact_p->field_0x14];
+                    mViewCache.mCenter += (sp208 - mViewCache.mCenter) * local_1d0[tact_p->field_0x14];
+                    mViewCache.mEye += (sp214 - mViewCache.mEye) * local_1d0[tact_p->field_0x14];
                 } else {
                     tact_p->field_0x0 = 22;
                 }
@@ -2523,11 +2523,11 @@ bool dCamera_c::tactEvCamera() {
                 }
 
                 if (!lineBGCheck(&cStack_220, &cStack_22c, 0x4007) && !lineBGCheck(&cStack_238, &cStack_22c, 0x4007)) {
-                    field_0x5c.mCenter = cStack_220;
-                    field_0x5c.mEye = cStack_22c;
+                    mViewCache.mCenter = cStack_220;
+                    mViewCache.mEye = cStack_22c;
                 } else {
-                    field_0x5c.mCenter = attentionPos(mpPlayerActor) + tact_p->field_0x30;
-                    field_0x5c.mEye = attentionPos(mpPlayerActor) + tact_p->field_0x3c;
+                    mViewCache.mCenter = attentionPos(mpPlayerActor) + tact_p->field_0x30;
+                    mViewCache.mEye = attentionPos(mpPlayerActor) + tact_p->field_0x3c;
                 }
 
                 tact_p->field_0x0 = 23;
@@ -2540,35 +2540,35 @@ bool dCamera_c::tactEvCamera() {
             cXyz sp254;
             cXyz sp260 = attentionPos(mpPlayerActor);
             for (i = 0; i < tact_p->field_0x24; i++) {
-                field_0x5c.mCenter = relationalPos(mpPlayerActor, &tact_p->field_0x1c[i]);
-                sp260.y = field_0x5c.mCenter.y;
-                if (lineBGCheck(&sp260, &field_0x5c.mCenter, &sp254, 0x4007)) {
-                    field_0x5c.mCenter = sp254 - (cXyz(sp254 - sp260).norm() * 5.0f);
+                mViewCache.mCenter = relationalPos(mpPlayerActor, &tact_p->field_0x1c[i]);
+                sp260.y = mViewCache.mCenter.y;
+                if (lineBGCheck(&sp260, &mViewCache.mCenter, &sp254, 0x4007)) {
+                    mViewCache.mCenter = sp254 - (cXyz(sp254 - sp260).norm() * 5.0f);
                 }
 
-                field_0x5c.mEye = relationalPos(mpPlayerActor, &tact_p->field_0x20[i]);
-                sp254 = field_0x5c.mEye + (cXyz(field_0x5c.mEye - sp260).norm() * 5.0f);
+                mViewCache.mEye = relationalPos(mpPlayerActor, &tact_p->field_0x20[i]);
+                sp254 = mViewCache.mEye + (cXyz(mViewCache.mEye - sp260).norm() * 5.0f);
 
                 if (!lineBGCheck(&sp260, &sp254, 0x4007)
-                    && !lineCollisionCheck(field_0x5c.mCenter, field_0x5c.mEye, mpPlayerActor, NULL, NULL)) {
+                    && !lineCollisionCheck(mViewCache.mCenter, mViewCache.mEye, mpPlayerActor, NULL, NULL)) {
                     break;
                 }
             }
 
             if (tact_p->field_0x0 == 0) {
-                tact_p->field_0x30 = field_0x5c.mCenter - sp260;
-                tact_p->field_0x3c = field_0x5c.mEye - sp260;
+                tact_p->field_0x30 = mViewCache.mCenter - sp260;
+                tact_p->field_0x3c = mViewCache.mEye - sp260;
             }
 
             tact_p->field_0x0 = 9;
-            field_0x5c.mFovy = tact_p->field_0x2c;
+            mViewCache.mFovy = tact_p->field_0x2c;
             break;
         }
 
         case 9:
         case 29: {
-            field_0x5c.mCenter = attentionPos(mpPlayerActor) + tact_p->field_0x30;
-            field_0x5c.mEye = attentionPos(mpPlayerActor) + tact_p->field_0x3c;
+            mViewCache.mCenter = attentionPos(mpPlayerActor) + tact_p->field_0x30;
+            mViewCache.mEye = attentionPos(mpPlayerActor) + tact_p->field_0x3c;
             break;
         }
 
@@ -2583,7 +2583,7 @@ bool dCamera_c::tactEvCamera() {
     }
 #endif
 
-    field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
+    mViewCache.mDirection.Val(mViewCache.mEye - mViewCache.mCenter);
     tact_p->field_0x4++;
     return 1;
 }
@@ -2602,21 +2602,21 @@ bool dCamera_c::stbWaitEvCamera() {
 
     if (demo_cam != NULL) {
         if (demo_cam->checkEnable(0x40)) {
-            field_0x5c.mCenter = demo_cam->getTarget();
+            mViewCache.mCenter = demo_cam->getTarget();
 #if DEBUG
             enabled_report[0] = 'C';
 #endif
         }
 
         if (demo_cam->checkEnable(0x10)) {
-            field_0x5c.mEye = demo_cam->getTrans();
+            mViewCache.mEye = demo_cam->getTrans();
 #if DEBUG
             enabled_report[1] = 'E';
 #endif
         }
 
         if (demo_cam->checkEnable(0x4)) {
-            field_0x5c.mFovy = demo_cam->getFovy();
+            mViewCache.mFovy = demo_cam->getFovy();
 #if DEBUG
             enabled_report[2] = 'F';
 #endif
@@ -2630,7 +2630,7 @@ bool dCamera_c::stbWaitEvCamera() {
         }
 
         if (demo_cam->checkEnable(0x80)) {
-            field_0x5c.mBank = cAngle::d2s(-demo_cam->getRoll());
+            mViewCache.mBank = cAngle::d2s(-demo_cam->getRoll());
 #if DEBUG
             enabled_report[4] = 'B';
 #endif
@@ -2642,7 +2642,7 @@ bool dCamera_c::stbWaitEvCamera() {
         }
 #endif
 
-        field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
+        mViewCache.mDirection.Val(mViewCache.mEye - mViewCache.mCenter);
     }
 
     return true;
@@ -2654,12 +2654,12 @@ bool dCamera_c::saveEvCamera() {
     getEvIntData(&slot, "Slot", 0);
 
     if (slot == 9) {
-        dComIfGp_saveCameraPosition(0, &field_0x5c.mCenter, &field_0x5c.mEye, field_0x5c.mFovy, field_0x5c.mBank.Val());
+        dComIfGp_saveCameraPosition(0, &mViewCache.mCenter, &mViewCache.mEye, mViewCache.mFovy, mViewCache.mBank.Val());
     } else {
-        pushInfo(&field_0xd0[slot], 1);
+        pushInfo(&mSavedViewStack[slot], 1);
     }
 
-    field_0x158.field_0x0 = 1;
+    mStyleSettle.mFinished = 1;
     return true;
 }
 
@@ -2688,22 +2688,22 @@ bool dCamera_c::loadEvCamera() {
             load->field_0x42 = cSAngle(local_b0);
         } else {
 #ifdef DEBUG
-            if (field_0xd0[load->mSlot].field_0x1e == 0 || load->mSlot >= 2) {
+            if (mSavedViewStack[load->mSlot].field_0x1e == 0 || load->mSlot >= 2) {
                 OS_REPORT("camera: event: LOAD: warning!! slot %d not saved\n", load->mSlot);
             }
 #endif
 
-            dCamInfo_c* pdVar3 = &field_0xd0[load->mSlot];
+            dCamInfo_c* pdVar3 = &mSavedViewStack[load->mSlot];
             load->field_0x28 = pdVar3->mCenter;
             load->field_0x34 = pdVar3->mEye;
             load->field_0x48 = pdVar3->mFovy;
             load->field_0x42 = pdVar3->mBank;
         }
-        load->field_0x1c = field_0x5c.mCenter;
-        load->field_0xc = field_0x5c.mDirection;
+        load->field_0x1c = mViewCache.mCenter;
+        load->field_0xc = mViewCache.mDirection;
         load->field_0x14.Val(load->field_0x34 - load->field_0x28);
-        load->field_0x44 = field_0x5c.mFovy;
-        load->field_0x40 = field_0x5c.mBank;
+        load->field_0x44 = mViewCache.mFovy;
+        load->field_0x40 = mViewCache.mBank;
     }
 
     if (mCurCamStyleTimer < load->mTimer) {
@@ -2715,16 +2715,16 @@ bool dCamera_c::loadEvCamera() {
             fVar5 = (mCurCamStyleTimer + 1) / f32(load->mTimer);
         }
 
-        field_0x5c.mCenter = load->field_0x1c + ((load->field_0x28 - load->field_0x1c) * fVar5);
-        field_0x5c.mDirection.R(load->field_0xc.R() + (fVar5 * (load->field_0x14.R() - load->field_0xc.R())));
-        field_0x5c.mDirection.V(load->field_0xc.V() + ((load->field_0x14.V() - load->field_0xc.V()) * fVar5));
-        field_0x5c.mDirection.U(load->field_0xc.U() + ((load->field_0x14.U() - load->field_0xc.U()) * fVar5));
-        field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
-        field_0x5c.mFovy = load->field_0x44 + (fVar5 * (load->field_0x48 - load->field_0x44));
-        field_0x5c.mBank = load->field_0x40 + ((load->field_0x42 - load->field_0x40) * fVar5);
+        mViewCache.mCenter = load->field_0x1c + ((load->field_0x28 - load->field_0x1c) * fVar5);
+        mViewCache.mDirection.R(load->field_0xc.R() + (fVar5 * (load->field_0x14.R() - load->field_0xc.R())));
+        mViewCache.mDirection.V(load->field_0xc.V() + ((load->field_0x14.V() - load->field_0xc.V()) * fVar5));
+        mViewCache.mDirection.U(load->field_0xc.U() + ((load->field_0x14.U() - load->field_0xc.U()) * fVar5));
+        mViewCache.mEye = mViewCache.mCenter + mViewCache.mDirection.Xyz();
+        mViewCache.mFovy = load->field_0x44 + (fVar5 * (load->field_0x48 - load->field_0x44));
+        mViewCache.mBank = load->field_0x40 + ((load->field_0x42 - load->field_0x40) * fVar5);
         return 0;
     } else {
-        field_0x158.field_0x0 = true;
+        mStyleSettle.mFinished = true;
         return 1;
     }
 }
@@ -2884,7 +2884,7 @@ bool dCamera_c::useItem0EvCamera() {
             item_p->field_0x0 = 10;
             if (++item_p->field_0x20 >= data_list[item_p->mType].field_0x14) {
                 item_p->field_0x20 = 0;
-                if ((field_0xa8 & data_list[item_p->mType].field_0x18) == 0) {
+                if ((mFrameCounter & data_list[item_p->mType].field_0x18) == 0) {
                     cXyz temp_vec(data_list[item_p->mType].field_0x04[0]);
                     data_list[item_p->mType].field_0x04[0] = data_list[item_p->mType].field_0x04[1];
                     data_list[item_p->mType].field_0x04[1] = temp_vec;
@@ -2895,7 +2895,7 @@ bool dCamera_c::useItem0EvCamera() {
                 item_p->field_0x4 = data_list[item_p->mType].field_0x10;
 
                 if (lineBGCheck(&att_pos, &item_p->field_0xc, &sp424, 0x40b7)) {
-                    item_p->field_0xc = sp424 + field_0x5c.mDirection.Norm();
+                    item_p->field_0xc = sp424 + mViewCache.mDirection.Norm();
                 }
 
                 for (idx = 0; idx < data_list[item_p->mType].field_0x08; idx++) {
@@ -2936,18 +2936,18 @@ bool dCamera_c::useItem0EvCamera() {
 
         case 1: {
             f32 fVar1 = item_p->field_0x20 / f32(item_p->field_0x4);
-            field_0x5c.mFovy += fVar1 * (item_p->field_0x18 - field_0x5c.mFovy);
-            field_0x5c.mCenter += (item_p->field_0xc - field_0x5c.mCenter) * fVar1;
+            mViewCache.mFovy += fVar1 * (item_p->field_0x18 - mViewCache.mFovy);
+            mViewCache.mCenter += (item_p->field_0xc - mViewCache.mCenter) * fVar1;
 
-            f32 fVar2 = field_0x5c.mDirection.R();
-            acStack_540 = field_0x5c.mDirection.V();
-            acStack_53c = field_0x5c.mDirection.U();
+            f32 fVar2 = mViewCache.mDirection.R();
+            acStack_540 = mViewCache.mDirection.V();
+            acStack_53c = mViewCache.mDirection.U();
             fVar2 = fVar2 + (fVar1 * (item_p->field_0x24.R() - fVar2));
             acStack_540 += (item_p->field_0x24.V() - acStack_540) * fVar1;
             acStack_53c += (item_p->field_0x24.U() - acStack_53c) * fVar1;
 
-            field_0x5c.mDirection.Val(fVar2, acStack_540, acStack_53c);
-            field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
+            mViewCache.mDirection.Val(fVar2, acStack_540, acStack_53c);
+            mViewCache.mEye = mViewCache.mCenter + mViewCache.mDirection.Xyz();
 
             if (item_p->field_0x20 < item_p->field_0x4) {
                 break;
@@ -2957,8 +2957,8 @@ bool dCamera_c::useItem0EvCamera() {
         }
         // fallthrough
         case 2: {
-            field_0x5c.mCenter = item_p->field_0xc;
-            field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
+            mViewCache.mCenter = item_p->field_0xc;
+            mViewCache.mEye = mViewCache.mCenter + mViewCache.mDirection.Xyz();
 
             item_p->field_0x1c++;
             if (item_p->field_0x1c == 1) {
@@ -2984,9 +2984,9 @@ bool dCamera_c::useItem0EvCamera() {
         }
         // fallthrough
         case 99: {
-            field_0x158.field_0x0 = true;
-            field_0x5c.mCenter = item_p->field_0xc;
-            field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
+            mStyleSettle.mFinished = true;
+            mViewCache.mCenter = item_p->field_0xc;
+            mViewCache.mEye = mViewCache.mCenter + mViewCache.mDirection.Xyz();
         }
 
         case 999: {
@@ -3004,8 +3004,8 @@ bool dCamera_c::useItem1EvCamera() {
     if (mCurCamStyleTimer == 0) {
         getEvIntData(&item_p->mType, "Type", 0);
         if (item_p->mType == 0) {
-            item_p->field_0x2c = field_0x5c.mCenter - attentionPos(mpPlayerActor);
-            item_p->field_0x38 = field_0x5c.mEye - attentionPos(mpPlayerActor);
+            item_p->field_0x2c = mViewCache.mCenter - attentionPos(mpPlayerActor);
+            item_p->field_0x38 = mViewCache.mEye - attentionPos(mpPlayerActor);
         }
     }
 
@@ -3015,21 +3015,21 @@ bool dCamera_c::useItem1EvCamera() {
         item_p->field_0x2c.x += -item_p->field_0x2c.x * mult_val;
         item_p->field_0x2c.z += -item_p->field_0x2c.z * mult_val;
 
-        f32 r_val = field_0x5c.mDirection.R();
-        field_0x5c.mCenter = attentionPos(mpPlayerActor) + item_p->field_0x2c;
-        field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
-        field_0x5c.mDirection.R(r_val);
+        f32 r_val = mViewCache.mDirection.R();
+        mViewCache.mCenter = attentionPos(mpPlayerActor) + item_p->field_0x2c;
+        mViewCache.mDirection.Val(mViewCache.mEye - mViewCache.mCenter);
+        mViewCache.mDirection.R(r_val);
 
-        if (field_0x5c.mDirection.V() > cSAngle(70.0f)) {
-            field_0x5c.mDirection.V(cSAngle(70.0f));
+        if (mViewCache.mDirection.V() > cSAngle(70.0f)) {
+            mViewCache.mDirection.V(cSAngle(70.0f));
         }
 
-        if (field_0x5c.mDirection.V() < cSAngle(0.0f)) {
-            field_0x5c.mDirection.V(cSAngle(0.0f));
+        if (mViewCache.mDirection.V() < cSAngle(0.0f)) {
+            mViewCache.mDirection.V(cSAngle(0.0f));
         }
 
-        field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
-        field_0x5c.mFovy += (20.0f - field_0x5c.mFovy) * mult_val;
+        mViewCache.mEye = mViewCache.mCenter + mViewCache.mDirection.Xyz();
+        mViewCache.mFovy += (20.0f - mViewCache.mFovy) * mult_val;
         return 1;
     }
 
@@ -3099,12 +3099,12 @@ bool dCamera_c::useItem1EvCamera() {
         // fallthrough
         case 1: {
             item_p->field_0x18 = data_list[item_p->mType][item_p->field_0x1c].field_0x0c;
-            item_p->field_0xc = field_0x5c.mCenter;
+            item_p->field_0xc = mViewCache.mCenter;
             if (data_list[item_p->mType][item_p->field_0x1c].field_0x00 != NULL) {
                 vec_1b0 = data_list[item_p->mType][item_p->field_0x1c].field_0x00[0] + *sp264;
                 item_p->field_0xc = relationalPos(mpPlayerActor, &vec_1b0);
 
-                if ((field_0xa8 & data_list[item_p->mType][item_p->field_0x1c].field_0x18) == 0) {
+                if ((mFrameCounter & data_list[item_p->mType][item_p->field_0x1c].field_0x18) == 0) {
                     cXyz cStack_14c = data_list[item_p->mType][item_p->field_0x1c].field_0x04[0];
                     data_list[item_p->mType][item_p->field_0x1c].field_0x04[0]
                         = data_list[item_p->mType][item_p->field_0x1c].field_0x04[1];
@@ -3112,11 +3112,11 @@ bool dCamera_c::useItem1EvCamera() {
                 }
 
                 if (lineBGCheck(&sp134, &item_p->field_0xc, &sp140, 0x40b7)) {
-                    item_p->field_0xc = sp140 + field_0x5c.mDirection.Norm();
+                    item_p->field_0xc = sp140 + mViewCache.mDirection.Norm();
                 }
             }
 
-            vec_198 = field_0x5c.mEye;
+            vec_198 = mViewCache.mEye;
             if (data_list[item_p->mType][item_p->field_0x1c].field_0x04 != NULL) {
                 int i;
                 for (i = 0; i < data_list[item_p->mType][item_p->field_0x1c].field_0x08; i++) {
@@ -3129,7 +3129,7 @@ bool dCamera_c::useItem1EvCamera() {
                 }
 
                 if (i >= data_list[item_p->mType][item_p->field_0x1c].field_0x08) {
-                    vec_198 = field_0x5c.mEye;
+                    vec_198 = mViewCache.mEye;
                 }
             }
 
@@ -3144,17 +3144,17 @@ bool dCamera_c::useItem1EvCamera() {
         case 2: {
             if (item_p->field_0x4 > 1) {
                 f32 fVar1 = item_p->field_0x20 / f32(item_p->field_0x4);
-                field_0x5c.mFovy += fVar1 * (item_p->field_0x18 - field_0x5c.mFovy);
-                field_0x5c.mCenter += (item_p->field_0xc - field_0x5c.mCenter) * fVar1;
+                mViewCache.mFovy += fVar1 * (item_p->field_0x18 - mViewCache.mFovy);
+                mViewCache.mCenter += (item_p->field_0xc - mViewCache.mCenter) * fVar1;
 
-                f32 fVar2 = field_0x5c.mDirection.R();
-                acStack_28c = field_0x5c.mDirection.V();
-                acStack_288 = field_0x5c.mDirection.U();
+                f32 fVar2 = mViewCache.mDirection.R();
+                acStack_28c = mViewCache.mDirection.V();
+                acStack_288 = mViewCache.mDirection.U();
                 fVar2 = fVar2 + (fVar1 * (item_p->field_0x24.R() - fVar2));
                 acStack_28c += (item_p->field_0x24.V() - acStack_28c) * fVar1;
                 acStack_288 += (item_p->field_0x24.U() - acStack_288) * fVar1;
-                field_0x5c.mDirection.Val(fVar2, acStack_28c, acStack_288);
-                field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
+                mViewCache.mDirection.Val(fVar2, acStack_28c, acStack_288);
+                mViewCache.mEye = mViewCache.mCenter + mViewCache.mDirection.Xyz();
 
                 if (item_p->field_0x20 < item_p->field_0x4) break;
             }
@@ -3165,10 +3165,10 @@ bool dCamera_c::useItem1EvCamera() {
         }
         // fallthrough
         case 3: {
-            field_0x5c.mCenter = item_p->field_0xc;
-            field_0x5c.mEye = field_0x5c.mCenter + item_p->field_0x24.Xyz();
-            field_0x5c.mDirection = item_p->field_0x24;
-            field_0x5c.mFovy = item_p->field_0x18;
+            mViewCache.mCenter = item_p->field_0xc;
+            mViewCache.mEye = mViewCache.mCenter + item_p->field_0x24.Xyz();
+            mViewCache.mDirection = item_p->field_0x24;
+            mViewCache.mFovy = item_p->field_0x18;
 
             if (item_p->field_0x20 < item_p->field_0x4) break;
 
@@ -3183,7 +3183,7 @@ bool dCamera_c::useItem1EvCamera() {
         // fallthrough
         case 99:
         default: {
-            field_0x158.field_0x0 = true;
+            mStyleSettle.mFinished = true;
             rv = true;
         }
     }
@@ -3295,12 +3295,12 @@ bool dCamera_c::getItemEvCamera() {
         mEventData.field_0xf0.Step();
         f32 fVar1 = mEventData.field_0xf0.Calc(gitem_p->mCurvePoints);
 
-        field_0x5c.mCenter = gitem_p->mStartCenter + ((gitem_p->field_0x44 - gitem_p->mStartCenter) * fVar1);
-        field_0x5c.mDirection.R(gitem_p->field_0x3c.R() + (fVar1 * (gitem_p->field_0x64.R() - gitem_p->field_0x3c.R())));
-        field_0x5c.mDirection.V(gitem_p->field_0x3c.V() + ((gitem_p->field_0x64.V() - gitem_p->field_0x3c.V()) * fVar1));
-        field_0x5c.mDirection.U(gitem_p->field_0x3c.U() + ((gitem_p->field_0x64.U() - gitem_p->field_0x3c.U()) * fVar1));
-        field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
-        field_0x5c.mFovy += fVar1 * (data_list[gitem_p->field_0x8].field_0x08 - field_0x5c.mFovy);
+        mViewCache.mCenter = gitem_p->mStartCenter + ((gitem_p->field_0x44 - gitem_p->mStartCenter) * fVar1);
+        mViewCache.mDirection.R(gitem_p->field_0x3c.R() + (fVar1 * (gitem_p->field_0x64.R() - gitem_p->field_0x3c.R())));
+        mViewCache.mDirection.V(gitem_p->field_0x3c.V() + ((gitem_p->field_0x64.V() - gitem_p->field_0x3c.V()) * fVar1));
+        mViewCache.mDirection.U(gitem_p->field_0x3c.U() + ((gitem_p->field_0x64.U() - gitem_p->field_0x3c.U()) * fVar1));
+        mViewCache.mEye = mViewCache.mCenter + mViewCache.mDirection.Xyz();
+        mViewCache.mFovy += fVar1 * (data_list[gitem_p->field_0x8].field_0x08 - mViewCache.mFovy);
 
         return 0;
     }
@@ -3351,14 +3351,14 @@ bool dCamera_c::possessedEvCamera() {
 
             if (possessed->mType == 0) {
                 possessed->field_0x28.Val(possessed->mRadius, possessed->mLatitude, possessed->mLongitude + directionOf(possessed->mTargetActor));
-                pushInfo(&field_0xd0[1], 2);
-                field_0xd0[1].field_0x1e = 2;
+                pushInfo(&mSavedViewStack[1], 2);
+                mSavedViewStack[1].field_0x1e = 2;
             } else {
-                field_0x5c.mCenter = eyePos(possessed->mTargetActor);
-                possessed->field_0x28.Val(field_0xd0[1].mEye - field_0xd0[1].mCenter);
-                field_0x5c.mDirection.Val(possessed->mRadius, possessed->mLatitude, possessed->mLongitude + directionOf(possessed->mTargetActor));
-                field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
-                field_0x5c.mFovy = possessed->mFovy;
+                mViewCache.mCenter = eyePos(possessed->mTargetActor);
+                possessed->field_0x28.Val(mSavedViewStack[1].mEye - mSavedViewStack[1].mCenter);
+                mViewCache.mDirection.Val(possessed->mRadius, possessed->mLatitude, possessed->mLongitude + directionOf(possessed->mTargetActor));
+                mViewCache.mEye = mViewCache.mCenter + mViewCache.mDirection.Xyz();
+                mViewCache.mFovy = possessed->mFovy;
             }
 
             possessed->field_0x0 = 1;
@@ -3377,13 +3377,13 @@ bool dCamera_c::possessedEvCamera() {
 
         case 1: {
             f32 fVar1 = 1.0f / possessed->field_0xc;
-            field_0x5c.mCenter += ((eyePos(possessed->mTargetActor) - field_0x5c.mCenter) * fVar1);
-            field_0x5c.mDirection.R(field_0x5c.mDirection.R() + (fVar1 * (possessed->field_0x28.R() - field_0x5c.mDirection.R())));
-            field_0x5c.mDirection.V(field_0x5c.mDirection.V() + ((possessed->field_0x28.V() - field_0x5c.mDirection.V()) * fVar1));
-            field_0x5c.mDirection.U(field_0x5c.mDirection.U() + ((possessed->field_0x28.U() - field_0x5c.mDirection.U()) * fVar1));
-            vec_d8 = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
-            field_0x5c.mEye += (vec_d8 - field_0x5c.mEye) * possessed->mCushion;
-            field_0x5c.mFovy += fVar1 * (possessed->mFovy - field_0x5c.mFovy);
+            mViewCache.mCenter += ((eyePos(possessed->mTargetActor) - mViewCache.mCenter) * fVar1);
+            mViewCache.mDirection.R(mViewCache.mDirection.R() + (fVar1 * (possessed->field_0x28.R() - mViewCache.mDirection.R())));
+            mViewCache.mDirection.V(mViewCache.mDirection.V() + ((possessed->field_0x28.V() - mViewCache.mDirection.V()) * fVar1));
+            mViewCache.mDirection.U(mViewCache.mDirection.U() + ((possessed->field_0x28.U() - mViewCache.mDirection.U()) * fVar1));
+            vec_d8 = mViewCache.mCenter + mViewCache.mDirection.Xyz();
+            mViewCache.mEye += (vec_d8 - mViewCache.mEye) * possessed->mCushion;
+            mViewCache.mFovy += fVar1 * (possessed->mFovy - mViewCache.mFovy);
 
             switch (possessed->mBlure) {
                 default: {
@@ -3410,7 +3410,7 @@ bool dCamera_c::possessedEvCamera() {
 
         case 99: {
             rv = 1;
-            field_0x158.field_0x0 = true;
+            mStyleSettle.mFinished = true;
         }
     }
 
@@ -3510,13 +3510,13 @@ bool dCamera_c::fixedFramesEvCamera() {
             }
         }
 
-        field_0x158.field_0x0 = true;
+        mStyleSettle.mFinished = true;
     }
 
-    field_0x5c.mCenter = fframes_p->field_0x4;
-    field_0x5c.mEye = fframes_p->field_0x10;
-    field_0x5c.mFovy = fframes_p->field_0x28;
-    field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
+    mViewCache.mCenter = fframes_p->field_0x4;
+    mViewCache.mEye = fframes_p->field_0x10;
+    mViewCache.mFovy = fframes_p->field_0x28;
+    mViewCache.mDirection.Val(mViewCache.mEye - mViewCache.mCenter);
     if (fframes_p->field_0x0 && mCurCamStyleTimer < fframes_p->mTimer) {
         return 0;
     }
@@ -3567,7 +3567,7 @@ bool dCamera_c::bSplineEvCamera() {
 
         bSpline->mRelActor = getEvActor("RelActor");
         mEventData.field_0xf0.Init(bSpline->field_0x10, bSpline->mTimer);
-        field_0x158.field_0x0 = true;
+        mStyleSettle.mFinished = true;
     }
 
     if (bSpline->field_0x1c == 0 && mEventData.field_0xf0.Step()) {
@@ -3575,15 +3575,15 @@ bool dCamera_c::bSplineEvCamera() {
         cXyz tmpeyes = mEventData.field_0xf0.Calc(bSpline->mEyes);
 
         if (bSpline->mRelActor != NULL) {
-            field_0x5c.mCenter = relationalPos(bSpline->mRelActor, &tmpcenters);
-            field_0x5c.mEye = relationalPos(bSpline->mRelActor, &tmpeyes);
+            mViewCache.mCenter = relationalPos(bSpline->mRelActor, &tmpcenters);
+            mViewCache.mEye = relationalPos(bSpline->mRelActor, &tmpeyes);
         } else {
-            field_0x5c.mCenter = tmpcenters;
-            field_0x5c.mEye = tmpeyes;
+            mViewCache.mCenter = tmpcenters;
+            mViewCache.mEye = tmpeyes;
         }
 
-        field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
-        field_0x5c.mFovy = mEventData.field_0xf0.Calc(bSpline->mFovys);
+        mViewCache.mDirection.Val(mViewCache.mEye - mViewCache.mCenter);
+        mViewCache.mFovy = mEventData.field_0xf0.Calc(bSpline->mFovys);
         if (mEventData.field_0xf0.Last()) {
             bSpline->field_0x1c = 1;
         }
@@ -3622,9 +3622,9 @@ bool dCamera_c::twoActor0EvCamera() {
 
         getEvIntData(&twoact0_p->mLongitudeType, "LongitudeType", -1);
         getEvFloatData(&twoact0_p->mFovy, "Fovy", 60.0f);
-        twoact0_p->field_0x4c = field_0x5c.mDirection.R();
-        twoact0_p->field_0x54 = cSAngle(field_0x5c.mDirection.V().Degree());
-        twoact0_p->field_0x56 = cSAngle(field_0x5c.mDirection.U().Degree());
+        twoact0_p->field_0x4c = mViewCache.mDirection.R();
+        twoact0_p->field_0x54 = cSAngle(mViewCache.mDirection.V().Degree());
+        twoact0_p->field_0x56 = cSAngle(mViewCache.mDirection.U().Degree());
     }
 
     cSGlobe cStack_d8(attentionPos(twoact0_p->mActor1) - attentionPos(twoact0_p->mActor2));
@@ -3646,7 +3646,7 @@ bool dCamera_c::twoActor0EvCamera() {
                     attentionPos(twoact0_p->mActor2)) * twoact0_p->mCtrRatio;
     }
 
-    field_0x5c.mCenter += (cStack_34 - field_0x5c.mCenter) * twoact0_p->mCtrCus;
+    mViewCache.mCenter += (cStack_34 - mViewCache.mCenter) * twoact0_p->mCtrCus;
 
     if (mCurCamStyleTimer == 0) {
         cSAngle acStack_e0;
@@ -3660,7 +3660,7 @@ bool dCamera_c::twoActor0EvCamera() {
                 break;
 
             default:
-                acStack_e0 = field_0x5c.mDirection.U();
+                acStack_e0 = mViewCache.mDirection.U();
         }
 
         cSAngle acStack_e4 = cStack_d8.U() - acStack_e0;
@@ -3680,33 +3680,33 @@ bool dCamera_c::twoActor0EvCamera() {
             twoact0_p->field_0x5a = acStack_e0;
         }
 
-        cSAngle acStack_e8(field_0x5c.mDirection.V());
+        cSAngle acStack_e8(mViewCache.mDirection.V());
         if (acStack_e8 < cSAngle(twoact0_p->mLatitudeMin)) {
             twoact0_p->field_0x58 = cSAngle(twoact0_p->mLatitudeMin);
         } else {
             if (acStack_e8 > cSAngle(twoact0_p->mLatitudeMax)) {
                 twoact0_p->field_0x58 = cSAngle(twoact0_p->mLatitudeMax);
             } else {
-                twoact0_p->field_0x58 = field_0x5c.mDirection.V();
+                twoact0_p->field_0x58 = mViewCache.mDirection.V();
             }
         }
 
-        f32 fVar1 = field_0x5c.mDirection.R();
+        f32 fVar1 = mViewCache.mDirection.R();
         if (fVar1 < twoact0_p->mRadiusMin) {
             twoact0_p->field_0x50 = twoact0_p->mRadiusMin;
         } else if (fVar1 > twoact0_p->mRadiusMax) {
             twoact0_p->field_0x50 = twoact0_p->mRadiusMax;
         } else {
-            twoact0_p->field_0x50 = field_0x5c.mDirection.R();
+            twoact0_p->field_0x50 = mViewCache.mDirection.R();
         }
     }
 
     twoact0_p->field_0x56 += (twoact0_p->field_0x5a - twoact0_p->field_0x56) * twoact0_p->mEyeCus;
     twoact0_p->field_0x54 += (twoact0_p->field_0x58 - twoact0_p->field_0x54) * twoact0_p->mEyeCus;
     twoact0_p->field_0x4c += twoact0_p->mEyeCus * (twoact0_p->field_0x50 - twoact0_p->field_0x4c);
-    field_0x5c.mDirection.Val(twoact0_p->field_0x4c, twoact0_p->field_0x54, twoact0_p->field_0x56);
-    field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
-    field_0x5c.mFovy += twoact0_p->mCtrCus * (twoact0_p->mFovy - field_0x5c.mFovy);
+    mViewCache.mDirection.Val(twoact0_p->field_0x4c, twoact0_p->field_0x54, twoact0_p->field_0x56);
+    mViewCache.mEye = mViewCache.mCenter + mViewCache.mDirection.Xyz();
+    mViewCache.mFovy += twoact0_p->mCtrCus * (twoact0_p->mFovy - mViewCache.mFovy);
 
     return 1;
 }
@@ -3750,7 +3750,7 @@ bool dCamera_c::digHoleEvCamera() {
         digHole->field_0xc = 0.05f;
         digHole->field_0x10 = 1;
         if ((digHole->mType & 1) != 0) {
-            cSAngle acStack_158(field_0x5c.mDirection.U() - directionOf(mpPlayerActor));
+            cSAngle acStack_158(mViewCache.mDirection.U() - directionOf(mpPlayerActor));
             if (acStack_158.Abs() < s16(cSAngle::_90)) {
                 cXyz sp70, sp7c;
                 cSGlobe cStack_138;
@@ -3765,10 +3765,10 @@ bool dCamera_c::digHoleEvCamera() {
                 sp7c = sp70 + cStack_138.Xyz();
 
                 if (!lineBGCheck(&sp70, &sp7c, 0x4007)) {
-                    field_0x5c.mFovy = 60.0f;
-                    field_0x5c.mCenter = sp70;
-                    field_0x5c.mDirection = cStack_138;
-                    field_0x5c.mEye = sp7c;
+                    mViewCache.mFovy = 60.0f;
+                    mViewCache.mCenter = sp70;
+                    mViewCache.mDirection = cStack_138;
+                    mViewCache.mEye = sp7c;
                 } else {
                     digHole->field_0x10 = 0;
                 }
@@ -3799,7 +3799,7 @@ bool dCamera_c::digHoleEvCamera() {
         }
 
         cXyz spac = attentionPos(mpPlayerActor);
-        if (dCamMath::xyzHorizontalDistance(field_0x5c.mCenter, spac) > 120.0f) {
+        if (dCamMath::xyzHorizontalDistance(mViewCache.mCenter, spac) > 120.0f) {
             digHole->field_0x10 = 0;
         }
     }
@@ -3810,14 +3810,14 @@ bool dCamera_c::digHoleEvCamera() {
         default:
         case 1: {
             if (digHole->field_0x10) {
-                f32 fVar2 = field_0x5c.mDirection.R();
-                f32 fVar3 = field_0x5c.mDirection.V().Degree();
-                field_0x5c.mDirection.R(fVar2 + (350.0f - fVar2) * digHole->field_0xc);
-                field_0x5c.mDirection.V(fVar3 + (40.0f - fVar3) * digHole->field_0xc);
-                field_0x5c.mFovy += (60.0f - field_0x5c.mFovy) * digHole->field_0xc;
-                field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
+                f32 fVar2 = mViewCache.mDirection.R();
+                f32 fVar3 = mViewCache.mDirection.V().Degree();
+                mViewCache.mDirection.R(fVar2 + (350.0f - fVar2) * digHole->field_0xc);
+                mViewCache.mDirection.V(fVar3 + (40.0f - fVar3) * digHole->field_0xc);
+                mViewCache.mFovy += (60.0f - mViewCache.mFovy) * digHole->field_0xc;
+                mViewCache.mEye = mViewCache.mCenter + mViewCache.mDirection.Xyz();
             } else if (!strcmp(dComIfGp_getStartStageName(), "R_SP01")) {
-                field_0x88 = 0;
+                mBumpCheckFlags = 0;
             }
 
             if (digHole->field_0x0 >= digHole->field_0x8  && digHole->mType != 1) {
@@ -3830,10 +3830,10 @@ bool dCamera_c::digHoleEvCamera() {
 
         case 2: {
             if (digHole->field_0x0 == 1) {
-                field_0x5c.mCenter = digHole->field_0x14;
-                field_0x5c.mEye = digHole->field_0x20;
-                field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
-                field_0x5c.mFovy = 60.0f;
+                mViewCache.mCenter = digHole->field_0x14;
+                mViewCache.mEye = digHole->field_0x20;
+                mViewCache.mDirection.Val(mViewCache.mEye - mViewCache.mCenter);
+                mViewCache.mFovy = 60.0f;
             }
         }
     }
@@ -3879,7 +3879,7 @@ bool dCamera_c::hintTalkEvCamera() {
 
         cXyz spe4;
         hintTalk->field_0x40 = vec_190;
-        hintTalk->mDirection = field_0x5c.mDirection;
+        hintTalk->mDirection = mViewCache.mDirection;
         cXyz spf0 = vec_184 - vec_190;
         hintTalk->field_0x28.Val(spf0);
 
@@ -3893,17 +3893,17 @@ bool dCamera_c::hintTalkEvCamera() {
 
         f32 local_b0[10] = { 40.0f, 60.0f, 25.0f, 50.0f, 75.0f, 35.0f, 15.0f, 90.0f, 110.0f, 140.0f };
         f32 fVar1;
-        if ((field_0xa8 & 16) != 0) {
+        if ((mFrameCounter & 16) != 0) {
             fVar1 = local_b0[0];
             local_b0[0] = local_b0[3];
             local_b0[3] = fVar1;
         }
-        if ((field_0xa8 & 4) != 0) {
+        if ((mFrameCounter & 4) != 0) {
             fVar1 = local_b0[2];
             local_b0[2] = local_b0[1];
             local_b0[1] = fVar1;
         }
-        if ((field_0xa8 & 2) != 0) {
+        if ((mFrameCounter & 2) != 0) {
             fVar1 = local_b0[0];
             local_b0[0] = local_b0[1];
             local_b0[1] = fVar1;
@@ -3958,18 +3958,18 @@ bool dCamera_c::hintTalkEvCamera() {
         }
     }
 
-    if (!field_0x158.field_0x0) {
+    if (!mStyleSettle.mFinished) {
         f32 div_val = f32(mCurCamStyleTimer + 1) / hintTalk->mTimer;
         f32 fVar22 = dCamMath::rationalBezierRatio(div_val, 0.4f);
-        field_0x5c.mCenter += (hintTalk->field_0x8 - field_0x5c.mCenter) * fVar22;
-        field_0x5c.mDirection.R(field_0x5c.mDirection.R() + ((hintTalk->mDirection.R() - field_0x5c.mDirection.R()) * fVar22));
-        field_0x5c.mDirection.V(field_0x5c.mDirection.V() + ((hintTalk->mDirection.V() - field_0x5c.mDirection.V()) * fVar22));
-        field_0x5c.mDirection.U(field_0x5c.mDirection.U() + ((hintTalk->mDirection.U() - field_0x5c.mDirection.U()) * fVar22));
-        field_0x5c.mEye = field_0x5c.mCenter + field_0x5c.mDirection.Xyz();
-        field_0x5c.mFovy += fVar22 * (hintTalk->mFovy - field_0x5c.mFovy);
+        mViewCache.mCenter += (hintTalk->field_0x8 - mViewCache.mCenter) * fVar22;
+        mViewCache.mDirection.R(mViewCache.mDirection.R() + ((hintTalk->mDirection.R() - mViewCache.mDirection.R()) * fVar22));
+        mViewCache.mDirection.V(mViewCache.mDirection.V() + ((hintTalk->mDirection.V() - mViewCache.mDirection.V()) * fVar22));
+        mViewCache.mDirection.U(mViewCache.mDirection.U() + ((hintTalk->mDirection.U() - mViewCache.mDirection.U()) * fVar22));
+        mViewCache.mEye = mViewCache.mCenter + mViewCache.mDirection.Xyz();
+        mViewCache.mFovy += fVar22 * (hintTalk->mFovy - mViewCache.mFovy);
 
         if (mCurCamStyleTimer == (hintTalk->mTimer - 1)) {
-            field_0x158.field_0x0 = true;
+            mStyleSettle.mFinished = true;
         }
 
         return 0;
@@ -3984,7 +3984,7 @@ bool dCamera_c::bspTransEvCamera() {
     f32 local_7c[4] = { 0.0f, 0.0f, 1.0f, 1.0f };
 
     if (mCurCamStyleTimer == 0) {
-        field_0x158.field_0x0 = true;
+        mStyleSettle.mFinished = true;
         if (!getEvIntData(&bspTrans->mTimer, "Timer")) {
             OS_REPORT("camera: event: error: BSPTRANS no Timer\n");
             return 1;
@@ -4117,7 +4117,7 @@ bool dCamera_c::bspTransEvCamera() {
         sp60.y = bspTrans->field_0x78.y + (pos.sp48.y - bspTrans->field_0x78.y) * vals_f4[bspTrans->field_0xc0[0]];
         sp60.z = bspTrans->field_0x78.z + (pos.sp48.z - bspTrans->field_0x78.z) * vals_f4[bspTrans->field_0xc0[1]];
 
-        field_0x5c.mCenter += (sp60 - field_0x5c.mCenter) * bspTrans->mCushion;
+        mViewCache.mCenter += (sp60 - mViewCache.mCenter) * bspTrans->mCushion;
 
         cSGlobe cStack_130(bspTrans->field_0x84 - bspTrans->field_0x78);
         cSGlobe cStack_138(pos.sp3c - pos.sp48);
@@ -4127,11 +4127,11 @@ bool dCamera_c::bspTransEvCamera() {
         cStack_140.V(cStack_130.V() + ((cStack_138.V() - cStack_130.V()) * vals_f4[bspTrans->field_0xc0[3]]));
         cStack_140.U(cStack_130.U() + ((cStack_138.U() - cStack_130.U()) * vals_f4[bspTrans->field_0xc0[4]]));
 
-        sp70 = field_0x5c.mCenter + cStack_140.Xyz();
-        field_0x5c.mEye += (sp70 - field_0x5c.mEye) * bspTrans->mCushion;
+        sp70 = mViewCache.mCenter + cStack_140.Xyz();
+        mViewCache.mEye += (sp70 - mViewCache.mEye) * bspTrans->mCushion;
         f32 add_val = (bspTrans->field_0x90 + (bspTrans->field_0xac - bspTrans->field_0x90) * vals_f4[bspTrans->field_0xc0[5]]);
-        field_0x5c.mFovy += bspTrans->mCushion * (add_val - field_0x5c.mFovy);
-        field_0x5c.mDirection.Val(field_0x5c.mEye - field_0x5c.mCenter);
+        mViewCache.mFovy += bspTrans->mCushion * (add_val - mViewCache.mFovy);
+        mViewCache.mDirection.Val(mViewCache.mEye - mViewCache.mCenter);
         return 0;
     }
 
