@@ -496,7 +496,8 @@ fopAc_ac_c* dCamera_c::getEvActor(char* i_event, char* param_1) {
 
 /* 80089730-800897E8 084070 00B8+00 0/0 3/0 0/0 .text            pauseEvCamera__9dCamera_cFv */
 bool dCamera_c::pauseEvCamera() {
-    struct mWork::event* event = &mWork.event;
+    EventData* event = (EventData*)mWork;
+
     if (mCurCamStyleTimer == 0) {
         Reset();
         mStyleSettle.mFinished = 1;
@@ -522,7 +523,7 @@ namespace {
 
 /* 800897E8-8008A510 084128 0D28+00 0/0 1/0 0/0 .text            fixedFrameEvCamera__9dCamera_cFv */
 bool dCamera_c::fixedFrameEvCamera() {
-    struct mWork::fixedFrame* fframe_p = &mWork.fixedFrame;
+    FixedFrameData* fframe_p = (FixedFrameData*)mWork;
     if (mCurCamStyleTimer == 0) {
         cXyz sp38, sp44;
         getEvXyzData(&sp44, "Eye", mEye);
@@ -657,7 +658,7 @@ bool dCamera_c::fixedFrameEvCamera() {
 
 /* 8008A510-8008A974 084E50 0464+00 0/0 1/0 0/0 .text            stokerEvCamera__9dCamera_cFv */
 bool dCamera_c::stokerEvCamera() {
-    struct mWork::stoker* stoker_p = &mWork.stoker;
+    StokerData* stoker_p = (StokerData*)mWork;
     if (mCurCamStyleTimer == 0) {
         cXyz unused_0, unused_1;
         getEvXyzData(&stoker_p->field_0x4, "EyeGap", cXyz::Zero);
@@ -727,7 +728,7 @@ bool dCamera_c::stokerEvCamera() {
 
 /* 8008A974-8008B9B0 0852B4 103C+00 0/0 1/0 0/0 .text            rollingEvCamera__9dCamera_cFv */
 bool dCamera_c::rollingEvCamera() {
-    struct mWork::rolling* rolling_p = &mWork.rolling;
+    struct RollingData* rolling_p = (RollingData*)mWork;
     if (mCurCamStyleTimer == 0) {
         getEvXyzData(&rolling_p->mEye, "Eye", mEye);
         getEvXyzData(&rolling_p->mCenter, "Center", mCenter);
@@ -875,8 +876,12 @@ namespace {
 /* 8008B9B0-8008BE2C 0862F0 047C+00 0/0 1/0 0/0 .text            fixedPositionEvCamera__9dCamera_cFv */
 bool dCamera_c::fixedPositionEvCamera() {
     static cXyz DefaultGap(cXyz::Zero);
-    struct mWork::fixedPos* fpos_p = &mWork.fixedPos;
+    FixedPosData* fpos_p = (FixedPosData*)mWork;
     bool rv = true;
+
+    ChaseData* chase = (ChaseData*)mWork;
+    TalkData* talk = (TalkData*)mWork;
+    EventData* event = (EventData*)mWork;
 
     if (mCurCamStyleTimer == 0) {
         cXyz unused_xyz, sp24;
@@ -887,8 +892,8 @@ bool dCamera_c::fixedPositionEvCamera() {
         getEvFloatData(&fpos_p->field_0x38, "Radius", 100000.0f);
         getEvFloatData(&fpos_p->field_0x34, "StartRadius", fpos_p->field_0x38);
         fpos_p->field_0x1 = getEvFloatData(&fpos_p->field_0x2c, "Bank", 0.0f);
-        getEvStringData(&mWork.event.field_0x48, "RelUseMask", "o");
-        fpos_p->field_0x0 = getEvIntData(&mWork.event.field_0x4c, "Timer", -1);
+        getEvStringData(&event->field_0x48, "RelUseMask", "o");
+        fpos_p->field_0x0 = getEvIntData(&event->field_0x4c, "Timer", -1);
 
         if ((fpos_p->field_0x40 = getEvActor("Target", "@PLAYER")) == NULL) {
             OS_REPORT("camera: event: error: target actor missing\n");
@@ -898,7 +903,7 @@ bool dCamera_c::fixedPositionEvCamera() {
         fpos_p->field_0x44 = fopAcM_GetID(fpos_p->field_0x40);
         fpos_p->field_0x3c = getEvActor("RelActor");
 
-        if (fpos_p->field_0x3c && isRelChar(mWork.event.field_0x48)) {
+        if (fpos_p->field_0x3c && isRelChar(event->field_0x48)) {
             fpos_p->field_0x4 = relationalPos(fpos_p->field_0x3c, &sp24);
         } else {
             fpos_p->field_0x4 = sp24;        
@@ -913,15 +918,15 @@ bool dCamera_c::fixedPositionEvCamera() {
         return 1;
     }
 
-    fpos_p->field_0x1c = relationalPos(fpos_p->field_0x40, &mWork.talk.field_0x10);
-    mViewCache.mCenter += (fpos_p->field_0x1c - mViewCache.mCenter) * mWork.chase.field_0x30;
-    mViewCache.mEye = mWork.talk.field_0x4;
+    fpos_p->field_0x1c = relationalPos(fpos_p->field_0x40, &talk->field_0x10);
+    mViewCache.mCenter += (fpos_p->field_0x1c - mViewCache.mCenter) * chase->field_0x30;
+    mViewCache.mEye = talk->field_0x4;
     mViewCache.mDirection.Val(mViewCache.mEye - mViewCache.mCenter);
 
     f32 fVar1 = fpos_p->field_0x38;
     if (fpos_p->field_0x0 && mCurCamStyleTimer < fpos_p->field_0x4c) {
         fVar1 = fpos_p->field_0x34 + (fpos_p->field_0x38 - fpos_p->field_0x34)
-                                    * (mCurCamStyleTimer / f32(mWork.event.field_0x4c));
+                                    * (mCurCamStyleTimer / f32(event->field_0x4c));
         rv = false;
     }
 
@@ -930,10 +935,10 @@ bool dCamera_c::fixedPositionEvCamera() {
         mViewCache.mEye = mViewCache.mCenter + mViewCache.mDirection.Xyz();
     }
 
-    mViewCache.mFovy = mWork.chase.field_0x28;
+    mViewCache.mFovy = chase->field_0x28;
     if (fpos_p->field_0x1) {
         cAngle this_00;
-        mViewCache.mBank = this_00.d2s(mWork.chase.field_0x2c);
+        mViewCache.mBank = this_00.d2s(chase->field_0x2c);
         setFlag(0x400);
     }
 
@@ -973,7 +978,7 @@ f32 dummy_lit_3871(int val) {
 
 /* 8008BE98-8008E750 0867D8 28B8+00 3/3 0/0 0/0 .text            transEvCamera__9dCamera_cFi */
 bool dCamera_c::transEvCamera(int param_1) {
-    struct mWork::trans* trans = &mWork.trans;
+    TransData* trans = (TransData*)mWork;
     f32 mid_val;
 
     struct {
@@ -1440,10 +1445,9 @@ bool dCamera_c::transEvCamera(int param_1) {
 
 /* 8008E938-8008FA58 089278 1120+00 0/0 1/0 0/0 .text            watchActorEvCamera__9dCamera_cFv */
 bool dCamera_c::watchActorEvCamera() {
-    bool bVar15;
     static cXyz DefaultGap(cXyz::Zero);
 
-    struct mWork::actor* actor = &mWork.actor;
+    ActorData* actor = (ActorData*)mWork;
     if (mCurCamStyleTimer == 0) {
         getEvXyzData(&actor->mCtrGap, "CtrGap", DefaultGap);
         getEvFloatData(&actor->mCushion, "Cushion", 1.0f);
@@ -1746,7 +1750,7 @@ bool dCamera_c::watchActorEvCamera() {
 /* 8008FAE8-80090174 08A428 068C+00 0/0 1/0 0/0 .text            restorePosEvCamera__9dCamera_cFv */
 bool dCamera_c::restorePosEvCamera() {
     static cXyz DefaultGap(cXyz::Zero);
-    struct mWork::restorePos* restorePos = &mWork.restorePos;
+    RestorePosData* restorePos = (RestorePosData*)mWork;
 
     if (mCurCamStyleTimer == 0) {
         getEvXyzData(&restorePos->field_0x0, "CtrGap", DefaultGap);
@@ -1972,7 +1976,7 @@ bool dCamera_c::styleEvCamera() {
 bool dCamera_c::gameOverEvCamera() {
     int i;
 
-    struct mWork::gameOver* gover_p = &mWork.gameOver;
+    GameOverData* gover_p = (GameOverData*)mWork;
     daPy_py_c* mPlayer = (daPy_py_c*)mpPlayerActor;
     daMidna_c* mMidna = daPy_py_c::getMidnaActor();
 
@@ -2311,7 +2315,7 @@ bool dCamera_c::gameOverEvCamera() {
 
 /* 80091468-8009236C 08BDA8 0F04+00 1/0 1/0 0/0 .text            tactEvCamera__9dCamera_cFv */
 bool dCamera_c::tactEvCamera() {
-    struct mWork::tact* tact_p = &mWork.tact;
+    TactData* tact_p = (TactData*)mWork;
     cXyz sp58[6] = {
         cXyz(0.0f, 5.0f, 190.0f),
         cXyz(0.0f, 0.0f, 215.0f),
@@ -2665,7 +2669,7 @@ bool dCamera_c::saveEvCamera() {
 
 /* 8009258C-800929AC 08CECC 0420+00 0/0 1/0 0/0 .text            loadEvCamera__9dCamera_cFv */
 bool dCamera_c::loadEvCamera() {
-    struct mWork::load* load = &mWork.load;
+    LoadData* load = (LoadData*)mWork;
     f32 local_58[6] = { 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f };
     if (mCurCamStyleTimer == 0) {
         getEvIntData(&load->mSlot, "Slot", 0);
@@ -2731,7 +2735,7 @@ bool dCamera_c::loadEvCamera() {
 
 /* 800929AC-800937AC 08D2EC 0E00+00 0/0 1/0 0/0 .text            useItem0EvCamera__9dCamera_cFv */
 bool dCamera_c::useItem0EvCamera() {
-    struct mWork::item* item_p = &mWork.item;
+    ItemData* item_p = (ItemData*)mWork;
     cXyz vec_1dc(10.0f, -15.0f, 20.0f);
     cXyz vecs_338[4] = {
         cXyz(30.0f, 115.0f, 70.0f),
@@ -3000,7 +3004,7 @@ bool dCamera_c::useItem0EvCamera() {
 
 /* 800937AC-80094240 08E0EC 0A94+00 0/0 1/0 0/0 .text            useItem1EvCamera__9dCamera_cFv */
 bool dCamera_c::useItem1EvCamera() {
-    struct mWork::item* item_p = &mWork.item;
+    ItemData* item_p = (ItemData*)mWork;
     if (mCurCamStyleTimer == 0) {
         getEvIntData(&item_p->mType, "Type", 0);
         if (item_p->mType == 0) {
@@ -3194,7 +3198,7 @@ bool dCamera_c::useItem1EvCamera() {
 
 /* 80094240-80094A70 08EB80 0830+00 0/0 1/0 0/0 .text            getItemEvCamera__9dCamera_cFv */
 bool dCamera_c::getItemEvCamera() {
-    struct mWork::getItem* gitem_p = &mWork.getItem;
+    GetItemData* gitem_p = (GetItemData*)mWork;
     cXyz cStack_90[8] = {
         cXyz(0.0f, -27.0f, 32.0f),
         cXyz(84.0f, -18.0f, 134.0f),
@@ -3320,7 +3324,7 @@ namespace {
 
 /* 80094A70-80095010 08F3B0 05A0+00 0/0 1/0 0/0 .text            possessedEvCamera__9dCamera_cFv */
 bool dCamera_c::possessedEvCamera() {
-    struct mWork::possessed* possessed = &mWork.possessed;
+    PossessedData* possessed = (PossessedData*)mWork;
     cXyz vec_d8;
 
     bool rv = 0;
@@ -3420,7 +3424,7 @@ bool dCamera_c::possessedEvCamera() {
 /* 80095010-8009544C 08F950 043C+00 0/0 1/0 0/0 .text            fixedFramesEvCamera__9dCamera_cFv */
 bool dCamera_c::fixedFramesEvCamera() {
     int const_1_val = 1;
-    struct mWork::fixedFrames* fframes_p = &mWork.fixedFrames;
+    FixedFramesData* fframes_p = (FixedFramesData*)mWork;
     if (mCurCamStyleTimer == 0) {
         cXyz sp30, sp3c;
         fframes_p->field_0x38 = 9999;
@@ -3526,7 +3530,7 @@ bool dCamera_c::fixedFramesEvCamera() {
 
 /* 8009544C-800956E4 08FD8C 0298+00 0/0 1/0 0/0 .text            bSplineEvCamera__9dCamera_cFv */
 bool dCamera_c::bSplineEvCamera() {
-    struct mWork::bSpline* bSpline = &mWork.bSpline;
+    BSplineData* bSpline = (BSplineData*)mWork;
     if (mCurCamStyleTimer == 0) {
         bSpline->field_0x1c = 0;
         bSpline->field_0x10 = 9999;
@@ -3595,7 +3599,7 @@ bool dCamera_c::bSplineEvCamera() {
 /* 800956E4-80095E7C 090024 0798+00 0/0 1/0 0/0 .text            twoActor0EvCamera__9dCamera_cFv */
 bool dCamera_c::twoActor0EvCamera() {
     static cXyz DefaultGap(0.0f, 0.0f, 0.0f);
-    struct mWork::twoActor0* twoact0_p = &mWork.twoActor0;
+    TwoActor0Data* twoact0_p = (TwoActor0Data*)mWork;
 
     if (mCurCamStyleTimer == 0) {
         twoact0_p->mActor1 = getEvActor("Actor1", "@PLAYER");
@@ -3738,7 +3742,7 @@ bool dCamera_c::peepHoleEvCamera() {
 
 /* 80095FD0-800965AC 090910 05DC+00 0/0 1/0 0/0 .text            digHoleEvCamera__9dCamera_cFv */
 bool dCamera_c::digHoleEvCamera() {
-    struct mWork::digHole* digHole = &mWork.digHole;
+    DigHoleData* digHole = (DigHoleData*)mWork;
     if (mCurCamStyleTimer == 0) {
         digHole->field_0x0 = 0;
         getEvIntData(&digHole->mType, "Type", 3);
@@ -3843,7 +3847,7 @@ bool dCamera_c::digHoleEvCamera() {
 
 /* 800965AC-80096EDC 090EEC 0930+00 0/0 1/0 0/0 .text            hintTalkEvCamera__9dCamera_cFv */
 bool dCamera_c::hintTalkEvCamera() {
-    struct mWork::hintTalk* hintTalk = &mWork.hintTalk;
+    HintTalkData* hintTalk = (HintTalkData*)mWork;
     daAlink_c* link_p = (daAlink_c*)mpPlayerActor;
     fopAc_ac_c* ride_actor_p;
     int i, j;
@@ -3980,7 +3984,7 @@ bool dCamera_c::hintTalkEvCamera() {
 
 /* 80096EDC-80097694 09181C 07B8+00 0/0 1/0 0/0 .text            bspTransEvCamera__9dCamera_cFv */
 bool dCamera_c::bspTransEvCamera() {
-    struct mWork::bspTrans* bspTrans = &mWork.bspTrans;
+    BspTransData* bspTrans = (BspTransData*)mWork;
     f32 local_7c[4] = { 0.0f, 0.0f, 1.0f, 1.0f };
 
     if (mCurCamStyleTimer == 0) {
