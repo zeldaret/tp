@@ -523,7 +523,7 @@ namespace {
 
 /* 800897E8-8008A510 084128 0D28+00 0/0 1/0 0/0 .text            fixedFrameEvCamera__9dCamera_cFv */
 bool dCamera_c::fixedFrameEvCamera() {
-    FixedFrameData* fframe_p = (FixedFrameData*)mWork;
+    FixedFrameEvData* fframe_p = (FixedFrameEvData*)mWork;
     if (mCurCamStyleTimer == 0) {
         cXyz sp38, sp44;
         getEvXyzData(&sp44, "Eye", mEye);

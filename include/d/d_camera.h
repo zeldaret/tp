@@ -445,7 +445,7 @@ public:
         /* 0x6C */ int field_0x6c;
     };
 
-    struct FixedFrameData {
+    struct FixedFrameEvData {
         /* 0x00 */ bool field_0x0;
         /* 0x04 */ cXyz field_0x4;
         /* 0x10 */ cXyz field_0x10;
@@ -769,6 +769,50 @@ public:
         /* 0xC0 */ u32 field_0xc0[6];
     };
 
+    struct RailData {
+        /* 0x00 */ int field_0x00;
+        /* 0x04 */ fopAc_ac_c* field_0x04;
+        /* 0x08 */ fopAc_ac_c* field_0x08;
+        /* 0x0C */ u8 field_0x0c;
+        /* 0x0D */ u8 field_0x0d;
+        /* 0x0E */ u8 field_0xe[0x10 - 0x0e];
+        /* 0x10 */ f32 field_0x10;
+        /* 0x14 */ cXyz field_0x14;
+        /* 0x20 */ cXyz field_0x20;
+    };
+
+    struct OneSideData {
+        /* 0x00 */ int field_0x00;
+        /* 0x04 */ u8 field_0x04[0x1c - 0x04];
+        /* 0x1C */ cXyz field_0x1c;
+        /* 0x28 */ u8 field_0x28;
+        /* 0x2C */ int field_0x2c;
+        /* 0x30 */ s16 field_0x30;
+        /* 0x30 */ cSAngle field_0x32;
+        /* 0x34 */ int field_0x34;
+    };
+
+    struct ObserveData {
+        /* 0x00 */ int field_0x00;
+        /* 0x04 */ cXyz field_0x04;
+        /* 0x10 */ cSGlobe field_0x10;
+        /* 0x18 */ u8 field_0x24[0x28 - 0x18];
+        /* 0x28 */ cXyz field_0x28;
+    };
+
+    struct FixedFrameData {
+        /* 0x00 */ int field_0x00;
+        /* 0x04 */ cXyz field_0x04;
+        /* 0x10 */ cSGlobe field_0x10;
+        /* 0x18 */ int field_0x18;
+        /* 0x1C */ f32 field_0x1c;
+        /* 0x20 */ f32 field_0x20;
+        /* 0x24 */ f32 field_0x24;
+        /* 0x28 */ int mArrowIndex;
+        /* 0x2C */ cXyz field_0x2c;
+        /* 0x38 */ cXyz field_0x38;
+    };
+
     /* 80088A7C */ int StartEventCamera(int, int, ...);
     /* 80088BBC */ int EndEventCamera(int);
     /* 80088C24 */ int searchEventArgData(char*);
@@ -1059,7 +1103,7 @@ public:
     /* 0x168 */ u8 field_0x168;
     /* 0x16C */ int field_0x16c;
     /* 0x170 */ int field_0x170;
-    /* 0x174 */ u32 mCurCamStyleTimer;
+    /* 0x174 */ u32 mCurCamStyleTimer; // this might be a signed int in ShieldD
     /* 0x178 */ u32 mCameraID;
     /* 0x17C */ u32 mPadID;
     /* 0x180 */ fopAc_ac_c* mpPlayerActor;
