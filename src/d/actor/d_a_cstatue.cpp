@@ -165,7 +165,7 @@ int daCstatue_c::createHeap() {
     mpMorf = new mDoExt_McaMorfSO(
         static_cast<J3DModelData*>(dComIfG_getObjectRes(mResName, (u16)resource_index)), NULL, NULL,
         animation, 0, 0.0f, animation->getFrameMax(), -1, &mSound,
-        mType == daCstatueType_Normal2 ? J3DMdlFlag_None : J3DMdlFlag_Unk80000, data->morfIndex);
+        mType == daCstatueType_Normal2 ? J3DMdlFlag_None : J3DMdlFlag_DifferedDLBuffer, data->morfIndex);
 
     if (mpMorf == NULL || mpMorf->mpModel == NULL) {
         return cPhs_INIT_e;

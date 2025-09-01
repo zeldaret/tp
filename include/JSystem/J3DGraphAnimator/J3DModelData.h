@@ -68,7 +68,7 @@ public:
     bool checkFlag(u32 flag) const { return (mFlags & flag) ? true : false; }
     u32 getFlag() const { return mFlags; }
     void const* getRawData() const { return mpRawData; }
-    u16 checkBumpFlag() const { return mbHasBumpArray; }
+    bool checkBumpFlag() const { return mbHasBumpArray == 1; }
     void setBumpFlag(u32 flag) { mbHasBumpArray = flag; }
     bool checkBBoardFlag() const { return mbHasBillboard == 1; }
     bool isLocked() { return mMaterialTable.isLocked(); }

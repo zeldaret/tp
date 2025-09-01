@@ -65,6 +65,50 @@ public:
     }
 };
 
+typedef void (J3DShapeMtx::*J3DShapeMtx_LoadFunc)(int, u16) const;
+
+/**
+ * @ingroup jsystem-j3d
+ * 
+ */
+class J3DShapeMtx {
+public:
+    J3DShapeMtx(u16 useMtxIndex)
+        : mUseMtxIndex(useMtxIndex)
+    {}
+
+    /* 803130E4 */ void loadMtxIndx_PNGP(int, u16) const;
+    /* 80313128 */ void loadMtxIndx_PCPU(int, u16) const;
+    /* 80313188 */ void loadMtxIndx_NCPU(int, u16) const;
+    /* 803131D4 */ void loadMtxIndx_PNCPU(int, u16) const;
+
+    /* 80314798 */ virtual ~J3DShapeMtx() {}
+    /* 803147E0 */ virtual u32 getType() const { return 'SMTX'; }
+    /* 80273E08 */ virtual u16 getUseMtxNum() const { return 1; }
+    /* 8031459C */ virtual u16 getUseMtxIndex(u16) const { return mUseMtxIndex; }
+    /* 80313B94 */ virtual void load() const;
+    /* 80313BF0 */ virtual void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
+
+    static J3DShapeMtx_LoadFunc sMtxLoadPipeline[4];
+    static u16 sMtxLoadCache[10];
+    static u32 sCurrentPipeline;
+    static u8* sCurrentScaleFlag;
+    static u8 sNBTFlag;
+    static bool sLODFlag;
+    static u32 sTexMtxLoadType;
+
+    static void setCurrentPipeline(u32 pipeline) {
+        J3D_ASSERT(91, pipeline < 4, "Error : range over.");
+        sCurrentPipeline = pipeline;
+    }
+    static void setLODFlag(bool flag) { sLODFlag = flag; }
+    static u32 getLODFlag() { return sLODFlag; }
+    static void resetMtxLoadCache();
+
+protected:
+    /* 0x04 */ u16 mUseMtxIndex;
+};
+
 class J3DMaterial;
 class J3DVertexData;
 class J3DDrawMtxData;
@@ -118,9 +162,19 @@ public:
     void setVcdVatCmd(void* pVatCmd) { mVcdVatCmd = (u8*)pVatCmd; }
     void show() { offFlag(J3DShpFlag_Visible); }
     void hide() { onFlag(J3DShpFlag_Visible); }
-    void setCurrentViewNoPtr(u32* pViewNoPtr) { mCurrentViewNo = pViewNoPtr; }
+
+    void setCurrentViewNoPtr(u32* pViewNoPtr) {
+        J3D_ASSERT(584, pViewNoPtr != NULL, "Error : null pointer.");
+        mCurrentViewNo = pViewNoPtr;
+    }
+
     void setCurrentMtx(J3DCurrentMtx& mtx) { mCurrentMtx = mtx; }
-    void setScaleFlagArray(u8* pScaleFlagArray) { mScaleFlagArray = pScaleFlagArray; }
+
+    void setScaleFlagArray(u8* pScaleFlagArray) {
+        J3D_ASSERT(595, pScaleFlagArray != NULL, "Error : null pointer.");
+        mScaleFlagArray = pScaleFlagArray;
+    }
+
     void setDrawMtx(Mtx** pDrawMtx) { mDrawMtx = pDrawMtx; }
     void setNrmMtx(Mtx33** pNrmMtx) { mNrmMtx = pNrmMtx; }
     void setTexMtxLoadType(u32 type) { mFlags = (mFlags & 0xFFFF0FFF) | type; }
@@ -167,50 +221,6 @@ private:
     /* 0x5C */ Mtx33** mNrmMtx;
     /* 0x60 */ u32* mCurrentViewNo;
     /* 0x64 */ u32 mBumpMtxOffset;
-};
-
-typedef void (J3DShapeMtx::*J3DShapeMtx_LoadFunc)(int, u16) const;
-
-/**
- * @ingroup jsystem-j3d
- * 
- */
-class J3DShapeMtx {
-public:
-    J3DShapeMtx(u16 useMtxIndex)
-        : mUseMtxIndex(useMtxIndex)
-    {}
-
-    /* 803130E4 */ void loadMtxIndx_PNGP(int, u16) const;
-    /* 80313128 */ void loadMtxIndx_PCPU(int, u16) const;
-    /* 80313188 */ void loadMtxIndx_NCPU(int, u16) const;
-    /* 803131D4 */ void loadMtxIndx_PNCPU(int, u16) const;
-
-    /* 80314798 */ virtual ~J3DShapeMtx() {}
-    /* 803147E0 */ virtual u32 getType() const { return 'SMTX'; }
-    /* 80273E08 */ virtual u16 getUseMtxNum() const { return 1; }
-    /* 8031459C */ virtual u16 getUseMtxIndex(u16) const { return mUseMtxIndex; }
-    /* 80313B94 */ virtual void load() const;
-    /* 80313BF0 */ virtual void calcNBTScale(Vec const&, f32 (*)[3][3], f32 (*)[3][3]);
-
-    static J3DShapeMtx_LoadFunc sMtxLoadPipeline[4];
-    static u16 sMtxLoadCache[10];
-    static u32 sCurrentPipeline;
-    static u8* sCurrentScaleFlag;
-    static u8 sNBTFlag;
-    static u8 sLODFlag;
-    static u32 sTexMtxLoadType;
-
-    static void setCurrentPipeline(u32 pipeline) {
-        J3D_ASSERT(91, pipeline < 4, "Error : range over.");
-        sCurrentPipeline = pipeline;
-    }
-    static void setLODFlag(u8 flag) { sLODFlag = flag; }
-    static u32 getLODFlag() { return sLODFlag; }
-    static void resetMtxLoadCache();
-
-protected:
-    /* 0x04 */ u16 mUseMtxIndex;
 };
 
 #endif /* J3DSHAPE_H */

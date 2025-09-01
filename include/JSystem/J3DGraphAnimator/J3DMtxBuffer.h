@@ -27,22 +27,22 @@ public:
 
     MtxP getAnmMtx(int idx) const { return mpAnmMtx[idx]; }
     void setAnmMtx(int i, Mtx m) { MTXCopy(m, (MtxP)mpAnmMtx[i]); }
-    MtxP getWeightAnmMtx(int idx) const { return mpWeightEvlpMtx[idx]; }
-    MtxP getUserAnmMtx(int idx) const { return mpUserAnmMtx[idx]; }
+    MtxP getWeightAnmMtx(int idx) { return mpWeightEvlpMtx[idx]; }
+    MtxP getUserAnmMtx(int idx) { return mpUserAnmMtx[idx]; }
 
     void setScaleFlag(int idx, u8 flag) { mpScaleFlagArr[idx] = flag; }
     u32* getCurrentViewNoPtr() { return &mCurrentViewNo; }
     u8* getScaleFlagArray() const { return mpScaleFlagArr; }
     u8 getScaleFlag(int idx) const { return mpScaleFlagArr[idx]; }
     u8 getEnvScaleFlag(int idx) const { return mpEvlpScaleFlagArr[idx]; }
-    Mtx** getDrawMtxPtrPtr() const { return mpDrawMtxArr[1]; }
-    Mtx* getDrawMtxPtr() const { return mpDrawMtxArr[1][mCurrentViewNo]; }
+    Mtx** getDrawMtxPtrPtr() { return mpDrawMtxArr[1]; }
+    Mtx* getDrawMtxPtr() { return mpDrawMtxArr[1][mCurrentViewNo]; }
     Mtx* getDrawMtx(int idx) const { return &mpDrawMtxArr[1][mCurrentViewNo][idx]; }
-    Mtx33** getNrmMtxPtrPtr() const { return mpNrmMtxArr[1]; }
-    Mtx33* getNrmMtxPtr() const { return mpNrmMtxArr[1][mCurrentViewNo]; }
+    Mtx33** getNrmMtxPtrPtr() { return mpNrmMtxArr[1]; }
+    Mtx33* getNrmMtxPtr() { return mpNrmMtxArr[1][mCurrentViewNo]; }
     Mtx33* getNrmMtx(u16 idx) const { return &mpNrmMtxArr[1][mCurrentViewNo][idx]; }
     Mtx33*** getBumpMtxPtrPtr() const { return mpBumpMtxArr[1]; }
-    Mtx33* getBumpMtxPtr(int idx) const { return mpBumpMtxArr[1][idx][mCurrentViewNo]; }
+    Mtx33* getBumpMtxPtr(int idx) { return mpBumpMtxArr[1][idx][mCurrentViewNo]; }
     J3DJointTree* getJointTree() const { return mJointTree; }
 
     void setNrmMtx(int idx, Mtx* mtx) {
@@ -66,7 +66,6 @@ public:
     static Mtx* sNoUseDrawMtxPtr;
     static Mtx33* sNoUseNrmMtxPtr;
 
-private:
     /* 0x00 */ J3DJointTree* mJointTree;
     /* 0x04 */ u8* mpScaleFlagArr;
     /* 0x08 */ u8* mpEvlpScaleFlagArr;

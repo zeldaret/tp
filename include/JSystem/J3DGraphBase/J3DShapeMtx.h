@@ -14,15 +14,21 @@ class J3DTexGenBlock;
 class J3DTexMtxObj {
 public:
     Mtx& getMtx(u16 idx) {
-        J3D_ASSERT(0x113, idx <= mTexMtxNum, "Error : range over");
+        J3D_ASSERT(275, idx < mTexMtxNum, "Error : range over");
         return mpTexMtx[idx];
     }
+
+    void setMtx(u16 idx, const Mtx mtx) {
+        J3D_ASSERT(288, idx < mTexMtxNum, "Error : range over");
+        MTXCopy(mtx, mpTexMtx[idx]);
+    }
+
     Mtx44& getEffectMtx(u16 idx) {
-        J3D_ASSERT(0x125, idx <= mTexMtxNum, "Error : range over");
+        J3D_ASSERT(293, idx < mTexMtxNum, "Error : range over");
         return mpEffectMtx[idx];
     }
+
     u16 getNumTexMtx() const { return mTexMtxNum; }
-    void setMtx(u16 idx, Mtx const* mtx) { MTXCopy(*mtx, mpTexMtx[idx]); }
 
     /* 0x00 */ Mtx* mpTexMtx;
     /* 0x04 */ Mtx44* mpEffectMtx;
@@ -37,7 +43,7 @@ class J3DDifferedTexMtx {
 public:
     /* 8031322C */ static void loadExecute(f32 const (*)[4]);
 
-    static inline void load(Mtx m) {
+    static inline void load(const Mtx m) {
         if (sTexGenBlock != NULL)
             loadExecute(m);
     }

@@ -3064,18 +3064,18 @@ J3DModel* mDoExt_J3DModel__create(J3DModelData* i_modelData, u32 i_modelFlag, u3
             // Update the modelFlag if the model data passed in has a shared dlist object
             if (i_modelData->getMaterialNodePointer(0)->getSharedDisplayListObj() != NULL) {
                 if (i_modelData->isLocked()) {
-                    i_modelFlag = J3DMdlFlag_Unk20000;
-                } else if (i_modelFlag == J3DMdlFlag_Unk20000) {
-                    i_modelFlag |= J3DMdlFlag_Unk40000;
+                    i_modelFlag = J3DMdlFlag_UseSharedDL;
+                } else if (i_modelFlag == J3DMdlFlag_UseSharedDL) {
+                    i_modelFlag |= J3DMdlFlag_UseSingleDL;
                 } else {
-                    i_modelFlag = J3DMdlFlag_Unk80000;
+                    i_modelFlag = J3DMdlFlag_DifferedDLBuffer;
                 }
             }
 
             // Set up the model
-            if (!model->entryModelData(i_modelData, i_modelFlag, 1)) {
-                if (i_modelFlag == J3DMdlFlag_Unk80000 &&
-                    model->newDifferedDisplayList(i_differedDlistFlag))
+            if (model->entryModelData(i_modelData, i_modelFlag, 1) == kJ3DError_Success) {
+                if (i_modelFlag == J3DMdlFlag_DifferedDLBuffer &&
+                    model->newDifferedDisplayList(i_differedDlistFlag) != kJ3DError_Success)
                 {
                     return NULL;
                 }

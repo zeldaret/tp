@@ -264,7 +264,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     lf_s* fish = a_this->mFish;
 
     for (int i = 0; i < a_this->mIter; i++, fish++) {        
-        fish->mpModel = mDoExt_J3DModel__create(modelData, J3DMdlFlag_Unk80000,0x11000084);
+        fish->mpModel = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer,0x11000084);
 
         if (!fish->mpModel) {
             return 0;

@@ -104,7 +104,7 @@ int daObjBurnBox_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes(l_arcName[type], l_bmd[type]);
     JUT_ASSERT(0x106, modelData != 0);
 
-    mpBoxModel = mDoExt_J3DModel__create(modelData, J3DMdlFlag_Unk80000, 0x11000084);
+    mpBoxModel = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, 0x11000084);
     if (mpBoxModel == NULL) {
         return 0;
     }

@@ -73,6 +73,7 @@ public:
     void drawTail() const;
 
     u32 getEntryTableSize() { return mBufSize; }
+    int getSortMode() { return mSortType; }
 
     inline void calcZRatio();
     void setNonSort() { mSortType = 5; }

@@ -6,15 +6,15 @@
 #include "dolphin/types.h"
 
 enum J3DMdlFlag {
-    J3DMdlFlag_None = 0x0,
-    /* 0x00001 */ J3DMdlFlag_Unk00001 = 0x1,
-    /* 0x00002 */ J3DMdlFlag_Unk00002 = 0x2,
-    /* 0x00004 */ J3DMdlFlag_SkinPosCpu = 0x4,
-    /* 0x00008 */ J3DMdlFlag_SkinNrmCpu = 0x8,
-    /* 0x00010 */ J3DMdlFlag_Unk00010 = 0x10, 
-    /* 0x20000 */ J3DMdlFlag_Unk20000 = 0x20000,
-    /* 0x40000 */ J3DMdlFlag_Unk40000 = 0x40000,
-    /* 0x80000 */ J3DMdlFlag_Unk80000 = 0x80000,
+    J3DMdlFlag_None                           = 0x0,
+    /* 0x00001 */ J3DMdlFlag_Unk1             = 0x1,
+    /* 0x00002 */ J3DMdlFlag_UseDefaultJ3D    = 0x2,
+    /* 0x00004 */ J3DMdlFlag_SkinPosCpu       = 0x4,
+    /* 0x00008 */ J3DMdlFlag_SkinNrmCpu       = 0x8,
+    /* 0x00010 */ J3DMdlFlag_EnableLOD        = 0x10, 
+    /* 0x20000 */ J3DMdlFlag_UseSharedDL      = 0x20000,
+    /* 0x40000 */ J3DMdlFlag_UseSingleDL      = 0x40000,
+    /* 0x80000 */ J3DMdlFlag_DifferedDLBuffer = 0x80000,
 };
 
 /**
@@ -45,9 +45,10 @@ public:
     J3DModel() {
         initialize();
     }
-    J3DModel(J3DModelData* param_0, u32 param_1, u32 param_2) {
+
+    J3DModel(J3DModelData* pModelData, u32 mdlFlags, u32 mtxBufferFlag) {
         initialize();
-        entryModelData(param_0, param_1, param_2);
+        entryModelData(pModelData, mdlFlags, mtxBufferFlag);
     }
 
     /* 80327100 */ void initialize();
@@ -66,6 +67,8 @@ public:
     /* 803281B4 */ void calcBumpMtx();
     /* 803282B8 */ void calcBBoardMtx();
     /* 803282EC */ void prepareShapePackets();
+    void ptrToIndex();
+    void makeDL();
 
     /* 80327CA4 */ virtual void update();
     /* 80327E4C */ virtual void entry();
@@ -85,21 +88,22 @@ public:
 
     Mtx& getBaseTRMtx() { return mBaseTransformMtx; }
     void setBaseTRMtx(Mtx m) { MTXCopy(m, mBaseTransformMtx); }
-    u32 getMtxCalcMode() const { return mFlags & 0x03; }
+    u32 getMtxCalcMode() { return mFlags & (J3DMdlFlag_Unk1 | J3DMdlFlag_UseDefaultJ3D); }
     J3DVertexBuffer* getVertexBuffer() { return (J3DVertexBuffer*)&mVertexBuffer; }
     J3DMatPacket* getMatPacket(u16 idx) const { return &mMatPacket[idx]; }
     J3DShapePacket* getShapePacket(u16 idx) const { return &mShapePacket[idx]; }
-    J3DMtxBuffer* getMtxBuffer() const { return mMtxBuffer; }
+    J3DMtxBuffer* getMtxBuffer() { return mMtxBuffer; }
     void setScaleFlag(int idx, u8 flag) { mMtxBuffer->setScaleFlag(idx, flag); }
-    Mtx33* getBumpMtxPtr(int idx) const { return mMtxBuffer->getBumpMtxPtr(idx); }
-    Mtx33* getNrmMtxPtr() const { return mMtxBuffer->getNrmMtxPtr(); }
-    Mtx* getDrawMtxPtr() const { return mMtxBuffer->getDrawMtxPtr(); }
+    Mtx33* getBumpMtxPtr(int idx) { return mMtxBuffer->getBumpMtxPtr(idx); }
+    Mtx33* getNrmMtxPtr() { return mMtxBuffer->getNrmMtxPtr(); }
+    Mtx* getDrawMtxPtr() { return mMtxBuffer->getDrawMtxPtr(); }
     void setBaseScale(const Vec& scale) { mBaseScale = scale; }
     void setUserArea(u32 area) { mUserArea = area; }
     u32 getUserArea() const { return mUserArea; }
     Vec* getBaseScale() { return &mBaseScale; }
     void setAnmMtx(int jointNo, Mtx m) { mMtxBuffer->setAnmMtx(jointNo, m); }
     MtxP getAnmMtx(int jointNo) { return mMtxBuffer->getAnmMtx(jointNo); }
+    MtxP getWeightAnmMtx(int i) { return mMtxBuffer->getWeightAnmMtx(i); }
     J3DSkinDeform* getSkinDeform() { return mSkinDeform; }
 
     /* 0x04 */ J3DModelData* mModelData;

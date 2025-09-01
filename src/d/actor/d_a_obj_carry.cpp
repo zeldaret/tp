@@ -1332,7 +1332,7 @@ int daObjCarry_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(getArcName(), getBmdName());
     JUT_ASSERT(2813, modelData != 0);
 
-    u32 mdl_flags = prm_chk_type_ironball() ? J3DMdlFlag_None : J3DMdlFlag_Unk80000;
+    u32 mdl_flags = prm_chk_type_ironball() ? J3DMdlFlag_None : J3DMdlFlag_DifferedDLBuffer;
     mpModel = mDoExt_J3DModel__create(modelData, mdl_flags, 0x11000084);
     if (mpModel == 0) {
         return 0;

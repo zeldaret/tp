@@ -24,11 +24,11 @@ inline u32 getDiffFlag_TexGenNum(u32 param_1) {
     return (param_1 & 0xf00) >> 8;
 }
 
-inline int calcDifferedBufferSize_TexMtxSize(int param_1) {
+inline int calcDifferedBufferSize_TexMtxSize(u32 param_1) {
   return param_1 * 0x35;
 }
 
-inline int calcDifferedBufferSize_TexGenSize(int param_1) {
+inline int calcDifferedBufferSize_TexGenSize(u32 param_1) {
     return param_1 * 0x3d + 10;
 }
 
@@ -36,7 +36,7 @@ inline u32 getDiffFlag_TexNoNum(u32 param_1) {
     return (param_1 & 0xf0000) >> 0x10;
 }
 
-inline int calcDifferedBufferSize_TexNoSize(int param_1) {
+inline int calcDifferedBufferSize_TexNoSize(u32 param_1) {
     return param_1 * 0x37;
 }
 
@@ -50,11 +50,11 @@ inline u32 getDiffFlag_TevStageNum(u32 param_1) {
     return (param_1 & 0xf00000) >> 0x14;
 }
 
-inline int calcDifferedBufferSize_TevStageSize(int param_1) {
+inline int calcDifferedBufferSize_TevStageSize(u32 param_1) {
     return param_1 * 10;
 }
 
-inline int calcDifferedBufferSize_TevStageDirectSize(int param_1) {
+inline int calcDifferedBufferSize_TevStageDirectSize(u32 param_1) {
     return param_1 * 5;
 }
 
@@ -140,24 +140,29 @@ public:
     J3DError newSingleDisplayList(u32);
     virtual void draw();
 
-    J3DDisplayListObj* getDisplayListObj() const { return mpDisplayListObj; }
+    J3DDisplayListObj* getDisplayListObj() { return mpDisplayListObj; }
     void setDisplayListObj(J3DDisplayListObj* pObj) { mpDisplayListObj = pObj; }
 
     void beginPatch() { mpDisplayListObj->beginPatch(); }
     void endPatch() { mpDisplayListObj->endPatch(); }
 
-    void callDL() const { getDisplayListObj()->callDL(); }
+    void callDL() const { mpDisplayListObj->callDL(); }
+    void beginDL() { mpDisplayListObj->beginDL(); }
+    void endDL() { mpDisplayListObj->endDL(); }
+
+    void* getDisplayList(int i) { return mpDisplayListObj->mpData[i]; }
+    u32 getDisplayListSize() const { return mpDisplayListObj->mSize; } 
 
     enum {
         LOCKED = 0x01,
     };
 
-    bool checkFlag(u32 flag) const { return (mFlags & flag) != 0; }
+    bool checkFlag(u32 flag) const { return (mFlags & flag) ? true : false; }
     void onFlag(u32 flag) { mFlags |= flag; }
     void offFlag(u32 flag) { mFlags &= ~flag; }
     void lock() { onFlag(LOCKED); }
     void unlock() { offFlag(LOCKED); }
-    J3DTexMtxObj* getTexMtxObj() const { return mpTexMtxObj; }
+    J3DTexMtxObj* getTexMtxObj() { return mpTexMtxObj; }
     bool isLocked() const { return checkFlag(1); }
 
 public:
@@ -182,8 +187,16 @@ public:
     virtual ~J3DShapePacket();
     virtual void draw();
 
-    void setShape(J3DShape* pShape) { mpShape = pShape; }
-    void setModel(J3DModel* pModel) { mpModel = pModel; }
+    void setShape(J3DShape* pShape) {
+        J3D_ASSERT(523, pShape != NULL, "Error : null pointer.");
+        mpShape = pShape;
+    }
+
+    void setModel(J3DModel* pModel) {
+        J3D_ASSERT(533, pModel != NULL, "Error : null pointer.");
+        mpModel = pModel;
+    }
+
     void setMtxBuffer(J3DMtxBuffer* pMtxBuffer) { mpMtxBuffer = pMtxBuffer; }
     void setBaseMtxPtr(Mtx* pMtx) { mpBaseMtxPtr = pMtx; }
 
@@ -214,8 +227,17 @@ public:
     J3DMaterial* getMaterial() const { return mpMaterial; }
     J3DShapePacket* getShapePacket() const { return mpShapePacket; }
     void setShapePacket(J3DShapePacket* packet) { mpShapePacket = packet; }
-    void setMaterial(J3DMaterial* pMaterial) { mpMaterial = pMaterial; }
-    void setTexture(J3DTexture* pTexture) { mpTexture = pTexture; }
+
+    void setMaterial(J3DMaterial* pMaterial) {
+        J3D_ASSERT(646, pMaterial != NULL, "Error : null pointer.");
+        mpMaterial = pMaterial;
+    }
+
+    void setTexture(J3DTexture* pTexture) {
+        J3D_ASSERT(651, pTexture != NULL, "Error : null pointer.");
+        mpTexture = pTexture;
+    }
+
     void setInitShapePacket(J3DShapePacket* packet) { mpInitShapePacket = packet; }
     void setMaterialID(u32 id) { mDiffFlag = id; }
     void setMaterialAnmID(J3DMaterialAnm* materialAnm) { mpMaterialAnm = materialAnm; }

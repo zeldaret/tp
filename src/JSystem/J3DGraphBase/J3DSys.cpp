@@ -84,12 +84,13 @@ J3DSys::J3DSys() {
 
 /* 8030FEC0-8030FEE4 30A800 0024+00 0/0 1/1 0/0 .text            loadPosMtxIndx__6J3DSysCFiUs */
 void J3DSys::loadPosMtxIndx(int addr, u16 indx) const {
+    // J3DFifoLoadPosMtxIndx(indx, addr * 3);
     J3DFifoLoadIndx(GX_LOAD_INDX_A, indx, 0xB000 | ((u16)(addr * 0x0C)));
 }
 
 /* 8030FEE4-8030FF0C 30A824 0028+00 0/0 1/1 0/0 .text            loadNrmMtxIndx__6J3DSysCFiUs */
 void J3DSys::loadNrmMtxIndx(int addr, u16 indx) const {
-    J3DFifoLoadIndx(GX_LOAD_INDX_B, indx, 0x8000 | ((u16)((addr * 0x09) + 0x400)));
+    J3DFifoLoadNrmMtxIndx3x3(indx, addr * 3);
 }
 
 /* 8030FF0C-803100BC 30A84C 01B0+00 1/1 0/0 0/0 .text setTexCacheRegion__6J3DSysF15_GXTexCacheSize
