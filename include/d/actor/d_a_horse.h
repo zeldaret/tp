@@ -221,11 +221,11 @@ public:
     /* 80844590 */ int draw();
     /* 8084478C */ ~daHorse_c();
     
-    /* 80182D04 */ bool getLashDashStart() const { return checkResetStateFlg0(RFLG0_LASH_DASH_START); }
+    /* 80182D04 */ BOOL getLashDashStart() const { return checkResetStateFlg0(RFLG0_LASH_DASH_START); }
     
 
     bool checkNoBombProc() const { return m_procID == PROC_WAIT_e || m_procID == PROC_MOVE_e; }
-    bool checkResetStateFlg0(daHorse_RFLG0 flag) const { return m_resetStateFlg0 & flag; }
+    BOOL checkResetStateFlg0(daHorse_RFLG0 flag) const { return m_resetStateFlg0 & flag; }
     bool checkEndResetStateFlg0(daHorse_ERFLG0 flag) const { return m_endResetStateFlg0 & flag; }
     u32 checkStateFlg0(daHorse_FLG0 flag) const { return m_stateFlg0 & flag; }
     f32 getNormalMaxSpeedF() { return m_normalMaxSpeedF; }
@@ -258,7 +258,7 @@ public:
     void setZeldaActor(fopAc_ac_c* i_actor) { m_zeldaActorKeep.setData(i_actor); }
 
     bool checkTurnStandCamera() const { return checkResetStateFlg0(RFLG0_TURN_STAND_CAMERA); }
-    bool checkTurnStand() const { return checkResetStateFlg0(RFLG0_TURN_STAND); }
+    BOOL checkTurnStand() const { return checkResetStateFlg0(RFLG0_TURN_STAND); }
     u32 checkRodeoMode() const { return checkStateFlg0(FLG0_RODEO_MODE); }
     bool checkCutTurnCancel() const { return checkEndResetStateFlg0(ERFLG0_CUT_TURN_CANCEL); }
     bool checkTurnCancelKeep() const { return checkStateFlg0(FLG0_TURN_CANCEL_KEEP); }
@@ -270,7 +270,7 @@ public:
     bool checkWait() const { return m_procID == PROC_WAIT_e; }
     bool checkLand() const { return m_procID == PROC_LAND_e && field_0x171a == 0; }
     bool checkGetOff() const { return fabsf(speedF) < 3.0f; }
-    bool checkEnemySearch() { return checkResetStateFlg0(RFLG0_ENEMY_SEARCH); }
+    BOOL checkEnemySearch() { return checkResetStateFlg0(RFLG0_ENEMY_SEARCH); }
     bool checkOriginalDemo() const { return field_0x16b8 == 3; }
     bool checkHorseDemoMode() { return field_0x16b8 != 0; }
     s16 checkCowHit() const { return m_cowHit; }

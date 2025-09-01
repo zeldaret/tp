@@ -509,8 +509,8 @@ public:
         /* 0x3C */ fopAc_ac_c* field_0x3c;
         /* 0x40 */ fopAc_ac_c* field_0x40;
         /* 0x44 */ fpc_ProcID field_0x44;
-        /* 0x48 */ u8 field_0x48[0x4c - 0x48];
-        /* 0x4C */ u32 field_0x4c;
+        /* 0x48 */ char field_0x48;
+        /* 0x4C */ int field_0x4c;
     };
 
     struct TransData {
@@ -941,6 +941,8 @@ public:
     /* 80174E34 */ cXyz talkEyePos(fopAc_ac_c* i_actor) { return i_actor->eyePos; }
 
     void debugDraw();
+
+    int CameraID() { return mCameraID; }
 
     bool Active() { return mCurState == 0; }
     f32 TrimHeight() { return mTrimHeight; }

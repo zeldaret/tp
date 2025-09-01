@@ -18,6 +18,7 @@
 #include "d/d_camera.h"
 #include "d/d_com_inf_actor.h"
 #include "d/d_com_inf_game.h"
+#include "d/d_debug_viewer.h"
 #include "d/d_demo.h"
 #include "dol2asm.h"
 #include "f_op/f_op_camera.h"
@@ -39,7 +40,7 @@ static f32 limitf(f32 value, f32 min, f32 max) {
     return value;
 }
 
-inline static f32 rangef(f32 value1, f32 value2, f32 ratio) {
+static f32 rangef(f32 value1, f32 value2, f32 ratio) {
     return value1 + (value2 - value1) * ratio;
 }
 
@@ -250,7 +251,6 @@ dCamera_c::dCamera_c(camera_class* i_camera) : mCamParam(0) {
 }
 
 /* 80160304-80160470 15AC44 016C+00 1/1 0/0 0/0 .text            __dt__9dCamera_cFv */
-// NONMATCHING extra mWork destructor
 dCamera_c::~dCamera_c() {
     if (!daPy_py_c::checkPeepEndSceneChange()) {
         dComIfGs_getTurnRestart().setCameraCtr(mCenter);
@@ -684,7 +684,6 @@ bool dCamera_c::ChangeModeOK(s32 param_0) {
 }
 
 /* 80161550-801617B0 15BE90 0260+00 1/1 0/0 0/0 .text            initPad__9dCamera_cFv */
-// NONMATCHING - Why does getHoldZ behave differently in retail?
 void dCamera_c::initPad() {
     if (chkFlag(0x1000000)) {
         mPadInfo.mMainStick.mLastPosX = 0.0f;
@@ -741,6 +740,7 @@ void dCamera_c::initPad() {
     mHoldY = mDoCPd_c::getHoldY(mPadID) ? true : false;
     mTrigY = mDoCPd_c::getTrigY(mPadID) ? true : false;
 
+    // fakematch (doesn't match in debug)
     mHoldZ = (u8)mDoCPd_c::getHoldZ(mPadID) ? true : false;
     mTrigZ = mDoCPd_c::getTrigZ(mPadID) ? true : false;
     field_0x21f = 0;
@@ -1371,14 +1371,13 @@ int dCamera_c::Draw() {
 
 /* 8016317C-80163340 15DABC 01C4+00 1/1 0/0 0/0 .text            setStageMapToolData__9dCamera_cFv
  */
-// NONMATCHING regswap, equivalent
 void dCamera_c::setStageMapToolData() {
-    int var_r27 = 0xFF;
     int cameraIndex = 0xFF;
+    int var_r27 = 0xFF;
 
     mStageCamTool.Clr();
 
-    dStage_dt_c* stage_dt = dComIfGp_getStage();
+    dStage_dt_c* stage_dt = (dStage_dt_c*)dComIfGp_getStage();
     if (stage_dt != NULL) {
         stage_camera_class* camera = stage_dt->getCamera();
         stage_arrow_class* arrow = stage_dt->getArrow();
@@ -1626,7 +1625,6 @@ int dCamera_c::ModeFix(s32 param_0) {
 }
 
 /* 80163D5C-8016444C 15E69C 06F0+00 1/1 0/0 0/0 .text            nextType__9dCamera_cFl */
-// NONMATCHING missing clrlwi in daMidna_c::checkFlyWaitAnime
 s32 dCamera_c::nextType(s32 i_curType) {
     s32 next_type = i_curType;
 
@@ -1653,7 +1651,8 @@ s32 dCamera_c::nextType(s32 i_curType) {
         }
 
         bool copy_rod = false;
-        if (link->getCopyRodCameraActor() != NULL) {
+        fopAc_ac_c* copyRodCameraActor = link->getCopyRodCameraActor();
+        if (copyRodCameraActor != NULL) {
             copy_rod = true;
         }
 
@@ -2309,7 +2308,6 @@ bool dCamera_c::lineBGCheck(cXyz* i_start, cXyz* i_end, u32 i_flags) {
 
 /* 80165B60-80165C08 1604A0 00A8+00 1/1 0/0 0/0 .text
  * lineCollisionCheckBush__9dCamera_cFP4cXyzP4cXyz              */
-// NONMATCHING loads g_dComIfG_gameInfo.play.mCcS.mMass_Mng twice
 u32 dCamera_c::lineCollisionCheckBush(cXyz* i_start, cXyz* i_end) {
     u32 ret = 0;
     u32 result = dComIfG_Ccsp()->GetMassResultCam();
@@ -4113,12 +4111,12 @@ bool dCamera_c::chaseCamera(s32 param_0) {
 }
 
 /* 8016C384-8016E410 166CC4 208C+00 1/0 0/0 0/0 .text            lockonCamera__9dCamera_cFl */
-// NONMATCHING this is an absolute mess because too many things are being inlined
 bool dCamera_c::lockonCamera(s32 param_0) {
     f32 lockon_change_cushion = mCamSetup.LockonChangeCushion();
     cSAngle charge_latitude = cSAngle(mCamSetup.ChargeLatitude());
     f32 charge_b_ratio = mCamSetup.ChargeBRatio();
     int lockon_change_timer = mCamSetup.LockonChangeTimer();
+    f32 unkFloatConst1 = 0.15f;
     f32 val1 = mCamParam.Val(param_0, 1);
     f32 val5 = mCamParam.Val(param_0, 5);
     f32 val6 = mCamParam.Val(param_0, 6);
@@ -4276,8 +4274,8 @@ bool dCamera_c::lockonCamera(s32 param_0) {
 
     if (mpLockonTarget != NULL) {
         if (fopAcM_GetName(mpLockonTarget) == PROC_COW) {
-            val22 = 0.8f;
             val27 = 0.8f;
+            val22 = 0.8f;
             val23 = 5.0f;
             val24 = 10.0f;
         } else if (fopAcM_GetName(mpLockonTarget) == PROC_Obj_Cdoor) {
@@ -4301,13 +4299,14 @@ bool dCamera_c::lockonCamera(s32 param_0) {
     }
 
     if (dComIfGp_getAttention()->LockEdge()) {
-        mCurCamStyleTimer = 0;
-        field_0x160 = 0;
+        field_0x160 = mCurCamStyleTimer = 0;
         lockon->field_0x2a = false;
     }
 
     cSGlobe globe;
+    f32 curveWeight = mCamSetup.CurveWeight();
     f32 lockon_release_distance = attention->LockonReleaseDistanse();
+    f32 sp19C = 10000.0f;
     f32 fVar42;
 
     if (mpLockonTarget != NULL) {
@@ -4317,6 +4316,16 @@ bool dCamera_c::lockonCamera(s32 param_0) {
         if (mCurMode == 6) {
             target_attention_pos.x = positionOf(mpLockonTarget).x;
             target_attention_pos.z = positionOf(mpLockonTarget).z;
+        }
+
+        // this should probably be an ifdef, but we force it to be compiled
+        // to make the function large enough to stop doing inlining
+        if (!NDEBUG) {
+            if (mCamSetup.CheckFlag(0x8000)) {
+                //char name[28];
+                fopAcM_getNameString(mpPlayerActor, NULL);
+                dDbVw_Report(0x1e0, 0x109, "%s", NULL);
+            }
         }
 
         if (check_owner_action(mPadID, 0x2000008)) {
@@ -4331,9 +4340,9 @@ bool dCamera_c::lockonCamera(s32 param_0) {
             fVar42 = 1.0f;
         }
 
-        dCamMath::xyzHorizontalDistance(target_attention_pos, player_attention_pos);
-
+        sp19C = dCamMath::xyzHorizontalDistance(target_attention_pos, player_attention_pos);
     } else {
+        OS_REPORT("NULL TARGET&&&&&&&&&&&&& \n");
         globe.Val(mCamSetup.ParallelDist(), cSAngle::_0, directionOf(mpPlayerActor));
         fVar42 = 1.0f;
     }
@@ -4345,13 +4354,21 @@ bool dCamera_c::lockonCamera(s32 param_0) {
         ang1.Val(directionOf(mpPlayerActor));
     }
 
-    bool bVar2 = false;
-    check_owner_action(mPadID, 0x100);
-    if (check_owner_action(mPadID, 0x2000008)) {
-        bVar2 = true;
+    bool sp0F = false;
+    bool sp0E = false;
+    bool sp0D = false;
+    if (check_owner_action(mPadID, 0x100)) {
+        sp0F = true;
     }
-    if (player->checkMagneBootsOn() && cBgW_CheckBWall(player->getMagneBootsTopVec()->y)) {
-        bVar2 = true;
+    if (check_owner_action(mPadID, 0x2000008)) {
+        sp0E = true;
+    }
+    if (player->checkMagneBootsOn()) {
+        sp0D = true;
+        Vec* magneBootsTopVec = player->getMagneBootsTopVec();
+        if ((u8)cBgW_CheckBWall(magneBootsTopVec->y)) {
+            sp0E = true;
+        }
     }
 
     f32 fVar14;
@@ -4383,6 +4400,11 @@ bool dCamera_c::lockonCamera(s32 param_0) {
 
     cXyz attention_pos = attentionPos(mpPlayerActor);
     bool bVar4 = false;
+    if (bVar4) {
+        f32 sp31c = positionOf(mpPlayerActor).x;
+        f32 sp324 = positionOf(mpPlayerActor).x;
+    }
+    u8 unusedByte1 = 0;
     if (chkFlag(0x80080)) {
         cXyz attention_pos = attentionPos(mpPlayerActor);
         if (!pointInSight(&attention_pos)) {
@@ -4402,7 +4424,7 @@ bool dCamera_c::lockonCamera(s32 param_0) {
         bVar4 = true;
     }
 
-    f32 fVar43 = 1.0f - std::fabsf(mPadInfo.mCStick.mLastPosY);
+    f32 fVar43 = 1.0f - fabsf(mPadInfo.mCStick.mLastPosY);
     f32 fVar44;
 
     if (bVar1) {
@@ -4434,6 +4456,7 @@ bool dCamera_c::lockonCamera(s32 param_0) {
         lockon->field_0x34.Val(mViewCache.mCenter - vec);
         if (mViewCache.mCenter.x == vec.x && mViewCache.mCenter.z == vec.z) {
             lockon->field_0x34.U(directionOf(mpPlayerActor));
+            f32 sp180 = globe.R() * 0.05f;
         }
     }
 
@@ -4445,8 +4468,8 @@ bool dCamera_c::lockonCamera(s32 param_0) {
             dVar37 = -dVar37;
         }
         f32 tmp = std::fabs(dVar28) < std::fabs(dVar37) ? dVar28 : dVar37;
-        f32 tmp2 = val4 < 0.5f ? val4 : 1.0f - val4;
-        fVar44a = val4 * globe.R() - val1 * (tmp * tmp2) * globe.R();
+        tmp *= val4 < 0.5f ? val4 : 1.0f - val4;
+        fVar44a = val4 * globe.R() - tmp * globe.R() * val1;
     } else {
         fVar44a = globe.R() * 0.5f;
         fVar44a += fVar44a * ang3.Cos();
@@ -4461,12 +4484,12 @@ bool dCamera_c::lockonCamera(s32 param_0) {
     f32 r;
     if (bVar4) {
         r = lockon->field_0x34.R();
-        r *= std::fabsf(ang5.Cos()) * 0.75f;
+        r = r * 0.75f * fabsf(ang5.Cos());
         u.Val(lockon->field_0x34.U() + (ang4 - lockon->field_0x34.U()) * lockon->field_0x58);
         v.Val(lockon->field_0x34.V() + ang5 * 0.05f);
     } else {
         r = lockon->field_0x34.R();
-        r += (fVar44a - r) * lockon->field_0x54 * std::fabsf(ang5.Cos());
+        r = r + ((fVar44a - r) * lockon->field_0x54 * fabsf(ang5.Cos()));
         u.Val(lockon->field_0x34.U() + (ang4 - lockon->field_0x34.U()) * lockon->field_0x58);
         v.Val(lockon->field_0x34.V() + ang5 * lockon->field_0x58);
     }
@@ -4555,39 +4578,40 @@ bool dCamera_c::lockonCamera(s32 param_0) {
     } else if (check_owner_action1(mPadID, 0x1200000)) {
         u2 = globe2.U();
     } else {
-        f32 fVar45;
-
         if (mpLockonTarget == NULL) {
-            fVar45 = fVar14 * 0.15f;
+            fVar31 = fVar14 * 0.15f;
         } else if (ang3 < ang2) {
             f32 ratio = dCamMath::rationalBezierRatio(-((f32)ang6.Val() / ang2.Val()), curve_weight);
-            fVar45 = val27 * ratio;
+            fVar31 = val27 * ratio;
         } else {
             cSAngle ang = ang2 + (cSAngle::_180 - ang2) * 0.5f;
             if (ang6 > ang) {
                 ang6 = cSAngle::_180 - ang6;
                 ang = cSAngle::_180 - ang;
             }
-            f32 ratio = dCamMath::rationalBezierRatio((f32)ang6.Val() / ang.Val(), curve_weight);
-            fVar45 = val27 + (val22 - val27) * ratio;
+            fVar31 = val27 + (val22 - val27) * dCamMath::rationalBezierRatio((f32)ang6.Val() / ang.Val(), curve_weight);
         }
 
         if (!lockon->field_0x2a) {
             int iVar27 = lockon_change_timer >> 1;
             if (mCurCamStyleTimer < iVar27) {
-                fVar45 = lockon_change_cushion * ((f32)mCurCamStyleTimer / iVar27);
+                fVar31 = lockon_change_cushion * ((f32)mCurCamStyleTimer / iVar27);
             } else {
-                fVar45 = fVar45 * ((f32)(mCurCamStyleTimer - iVar27) / iVar27)
+                fVar31 = fVar31 * ((f32)(mCurCamStyleTimer - iVar27) / iVar27)
                     + lockon_change_cushion * (1.0f - (f32)(mCurCamStyleTimer - iVar27) / iVar27);
             }
         }
 
         ang6 = ang1.Inv() - mViewCache.mDirection.U();
-        std::fabsf(ang6.Degree());
-        u2 += ang6 * fVar45 * lockon->field_0x4c;
+        fabsf(ang6.Degree()) < 2.0f;
+        bool temp2 = false;
+        if (temp2) {
+            lockon->field_0x2a = true;
+        }
+        u2 += ang6 * fVar31 * lockon->field_0x4c;
     }
 
-    if (bVar2) {
+    if (sp0E) {
         cSAngle ang7 = ang1.Inv();
         cSAngle ang8 = ang7 - u2;
         if (ang8 < cSAngle::_270) {
@@ -4609,7 +4633,7 @@ bool dCamera_c::lockonCamera(s32 param_0) {
     } else {
         lockon->field_0xc = 0;
         if (!mBG.field_0xc0.field_0x44 && !bVar1) {
-            v2 += (globe2.V() - v2) * fVar43 * std::fabsf(mViewCache.mDirection.V().Cos());
+            v2 += (globe2.V() - v2) * fVar43 * fabsf(mViewCache.mDirection.V().Cos());
         } else {
             cSAngle ang7 = lockon->field_0x34.V();
             ang7 *= cSAngle(lockon->field_0x34.U() - mViewCache.mDirection.U()).Cos();
@@ -4629,7 +4653,9 @@ bool dCamera_c::lockonCamera(s32 param_0) {
     } else {
         f32 radius = globe2.R();
         if (defaultRadius(val10, val11, &radius)) {
-            r2 = radius + (rangef(val10, val11, fVar42) - radius) * 0.02f;
+            f32 radius2 = radius;
+            f32 range = rangef(val10, val11, fVar42) - radius2;
+            r2 = radius2 + (range) * 0.02f;
         } else {
             r2 += (radius - r2) * 0.4f * fVar14;
         }
@@ -6129,6 +6155,12 @@ bool dCamera_c::talktoCamera(s32 param_0) {
     return uVar18;
 }
 
+
+#pragma push
+#pragma force_active on
+SECTION_DEAD static char const* const stringBase_8039417F = "E_RD";
+#pragma force_active off
+
 /* 80174EA4-80174EAC 16F7E4 0008+00 0/0 1/1 0/0 .text            CalcSubjectAngle__9dCamera_cFPsPs
  */
 bool dCamera_c::CalcSubjectAngle(s16* param_0, s16* param_1) {
@@ -6608,25 +6640,33 @@ bool dCamera_c::magneCamera(s32 param_0) {
 }
 
 /* 801767F8-80176DF0 171138 05F8+00 1/0 0/0 0/0 .text            colosseumCamera__9dCamera_cFl */
-// NONMATCHING instruction order
 bool dCamera_c::colosseumCamera(s32 param_0) {
     f32 val0 = mCamParam.Val(param_0, 0);
     f32 val2 = mCamParam.Val(param_0, 2);
     f32 val1 = mCamParam.Val(param_0, 1);
     f32 val3 = mCamParam.Val(param_0, 3);
+    f32 unusedFloat1 = 0.0f;
+    f32 unusedFloat2 = 0.0f;
+    f32 unusedFloat3 = 0.0f;
     f32 val7 = mCamParam.Val(param_0, 7);
     f32 val8 = mCamParam.Val(param_0, 8);
+    f32 unusedFloat4 = 0.0f;
     f32 val11 = mCamParam.Val(param_0, 11);
     f32 val10 = mCamParam.Val(param_0, 10);
     f32 val12 = mCamParam.Val(param_0, 12);
     f32 val13 = mCamParam.Val(param_0, 13);
+    f32 unusedFloat5 = 0.0f;
+    f32 unusedFloat6 = 0.0f;
     f32 val17 = mCamParam.Val(param_0, 17);
     f32 val18 = mCamParam.Val(param_0, 18);
+    f32 unusedFloat7 = 0.0f;
+    f32 unusedFloat8 = 0.0f;
 
     ColosseumData* colosseum = (ColosseumData*)mWork;
 
     if (Stage == 0x6b && positionOf(mpPlayerActor).y < -1.0f) {
-        return chaseCamera(mCamTypeData[specialType[CAM_TYPE_FIELD_S]].field_0x18[mIsWolf][0]);
+        param_0 = mCamTypeData[specialType[CAM_TYPE_FIELD_S]].field_0x18[mIsWolf][0];
+        return chaseCamera(param_0);
     }
 
     if (mCurCamStyleTimer == 0) {
@@ -6720,12 +6760,12 @@ bool dCamera_c::test2Camera(s32 param_0) {
 }
 
 /* 80176E00-80178E50 171740 2050+00 1/0 0/0 0/0 .text            towerCamera__9dCamera_cFl */
-// NONMATCHING way too much getting inlined
 bool dCamera_c::towerCamera(s32 param_0) {
     cSAngle stack_444 = cSAngle(mCamSetup.ChargeLatitude());
     cSAngle stack_448 = 80.0f;
     cSAngle stack_44c = -60.0f;
     cSAngle stack_450 = 60.0f;
+    f32 unkFloatConst1 = 0.9f;
     f32 val0 = mCamParam.Val(param_0, 0);
     f32 val2 = mCamParam.Val(param_0, 2);
     f32 val1 = mCamParam.Val(param_0, 1);
@@ -6775,7 +6815,12 @@ bool dCamera_c::towerCamera(s32 param_0) {
     }
 
     if (mRoomMapTool.mArrowIndex == 0xff) {
-        return chaseCamera(mCamTypeData[specialType[CAM_TYPE_FIELD_S]].field_0x18[mIsWolf][mCurMode]);
+        if (mCurCamStyleTimer == 0) {
+            OS_REPORT("%s: %d: no mapdata use towerCamera() engine !!\n", __FILE__, 0x25ff);
+        }
+
+        param_0 = mCamTypeData[specialType[CAM_TYPE_FIELD_S]].field_0x18[mIsWolf][mCurMode];
+        return chaseCamera(param_0);
     }
 
     if (check_owner_action(mPadID, 0x8100000)) {
@@ -6800,14 +6845,16 @@ bool dCamera_c::towerCamera(s32 param_0) {
         tower->field_0x10 = tower->field_0x14 = 0;
         tower->field_0x24 = tower->field_0x40 = mDirection.V().Degree();
         tower->field_0x48 = mViewCache.mCenter;
-        tower->field_0x7c = tower->field_0x74 = tower->field_0x78 = 0.01f;
+        tower->field_0x74 = tower->field_0x78 = 0.01f;
+        tower->field_0x7c = 0.01f;
         tower->field_0x70 = 0.75f;
         tower->field_0x80 = val6;
         tower->field_0x84 = val5;
         tower->field_0x38 = 0;
         tower->field_0x6b = true;
         tower->field_0x2c = mFovy;
-        tower->field_0x44 = tower->field_0x3c = 0.0f;
+        tower->field_0x3c = 0.0f;
+        tower->field_0x44 = 0.0f;
         tower->field_0x6a = false;
 
         cSAngle stack_460;
@@ -6843,8 +6890,7 @@ bool dCamera_c::towerCamera(s32 param_0) {
         if (mPadInfo.mMainStick.mLastPosX > 0.2f) {
             tower->field_0x6c = false;
         }
-        f32 tmp = tower->field_0x6c ? -45.0f : 45.0f;
-        tower->field_0x30 += (tmp - tower->field_0x30) * 0.04f;
+        tower->field_0x30 += ((tower->field_0x6c ? -45.0f : 45.0f) - tower->field_0x30) * 0.04f;
     } else {
         tower->field_0x30 += (val0 - tower->field_0x30) * 0.06f;
     }
@@ -6870,8 +6916,8 @@ bool dCamera_c::towerCamera(s32 param_0) {
         } else if (dComIfGp_evmng_cameraPlay()) {
             int timer;
             getEvIntData(&timer, "Timer", 20);
-            tower->field_0x4 = timer == 0 ? 1 : timer;
-        } else if (chkFlag(0x8000) && mCurMode == 1) {
+            tower->field_0x4 = timer != 0 ? timer : 1;
+        } else if (chkFlag(0x8000) || mCurMode == 1) {
             mStyleSettle.mFinished = true;
             tower->field_0x4 = 1;
         } else {
@@ -6880,8 +6926,8 @@ bool dCamera_c::towerCamera(s32 param_0) {
             f32 fVar18 = cXyz(mCenter - stack_21c).abs() - val7;
             f32 fVar17 = fabsf(fVar19 > fVar18 ? fVar19 : fVar18);
             f32 player_height = heightOf(mpPlayerActor);
-            f32 tmp = player_height < 10.0f ? 10.0f : player_height;
-            tower->field_0x4 = (int)(JMAFastSqrt(fVar17 / tmp) * 8.0f) + 1;
+            f32 tmp = fVar17 / (player_height < 10.0f ? 10.0f : player_height);
+            tower->field_0x4 = (int)(JMAFastSqrt(tmp) * 8.0f) + 1;
         }
 
         tower->field_0x8 = tower->field_0x4 * (tower->field_0x4 + 1) >> 1;
@@ -6915,6 +6961,7 @@ bool dCamera_c::towerCamera(s32 param_0) {
         }
 
         tower->field_0xc = tower->field_0x4 - (int)mCurCamStyleTimer;
+        f32 fVar18;
         f32 ratio = tower->field_0xc / tower->field_0x8;
         tower->field_0x48 += (stack_228 - tower->field_0x48) * ratio;
         mViewCache.mCenter += (tower->field_0x48 - mViewCache.mCenter) * val6;
@@ -6929,8 +6976,9 @@ bool dCamera_c::towerCamera(s32 param_0) {
             mViewCache.mCenter += *plane.GetNP();
         }
 
-        f32 fVar18 = limitf(mViewCache.mDirection.R(), val8, val7);
-        cSAngle stack_468 = mViewCache.mDirection.V();
+        fVar18 = limitf(mViewCache.mDirection.R(), val8, val7);
+        cSAngle stack_468;
+        stack_468 = mViewCache.mDirection.V();
         if (bVar5) {
             stack_468 = cSAngle(val12);
         }
@@ -6961,13 +7009,13 @@ bool dCamera_c::towerCamera(s32 param_0) {
 
     cXyz stack_240 = positionOf(mpPlayerActor);
     stack_240.y += 10.0f;
-    groundHeight(&stack_240);
+    f32 heightOffGround = footHeightOf(mpPlayerActor) - groundHeight(&stack_240);
     if (mBG.field_0xc0.field_0x44) {
         tower->field_0x18 = 0.0f;
         tower->field_0x10 = 0;
     } else if (tower->field_0x10 < 80) {
         tower->field_0x10++;
-        tower->field_0x18 += (0.9f - tower->field_0x18)
+        tower->field_0x18 += (unkFloatConst1 - tower->field_0x18)
                             * dCamMath::rationalBezierRatio(tower->field_0x10 / 80.0f, 1.25f);
     }
 
@@ -6989,16 +7037,18 @@ bool dCamera_c::towerCamera(s32 param_0) {
         }
     }
 
-    bool spinner_path_move = player->checkSpinnerPathMove();
-    f32 fVar19 = mPadInfo.mCStick.mLastPosX;
-    f32 fVar20 = spinner_path_move ? 1.0f : mPadInfo.mMainStick.mLastValue;
+    bool spinner_path_move_temp = player->checkSpinnerPathMove();
+    bool spinner_path_move = spinner_path_move_temp;
+    val6 = mPadInfo.mCStick.mLastPosX;
+    val3 = spinner_path_move ? 1.0f : mPadInfo.mMainStick.mLastValue;
+    f32 unkFloatConst2 = 0.05f;
+    f32 unkFloatConst3 = 8.0f;
     cSAngle stack_470;
-    cSAngle stack_474 = stack_454 + (stack_454 - stack_458) * fVar20;
+    cSAngle stack_474 = stack_454 + (stack_454 - stack_458) * val3;
 
-    if (!mCamParam.Flag(param_0, 0x40) && std::fabsf(fVar19) > 0.05f) {
-        f32 tmp = dCamMath::rationalBezierRatio(fVar19, 0.5f) * 8.0f;
-        cSAngle stack_478 = mViewCache.mDirection.U() + cSAngle(tmp);
-        f32 tmp2 = std::fabsf(fVar19) - 0.05f;
+    if (!mCamParam.Flag(param_0, 0x40) && fabsf(val6) > unkFloatConst2) {
+        cSAngle stack_478 = mViewCache.mDirection.U() + cSAngle(dCamMath::rationalBezierRatio(val6, 0.5f) * unkFloatConst3);
+        f32 tmp2 = fabsf(val6) - unkFloatConst2;
         stack_470.Val(mViewCache.mDirection.U() + (stack_478 - mViewCache.mDirection.U()) * tmp2);
         tower->field_0x6a = true;
         tower->field_0x78 += (0.8f - tower->field_0x78) * 0.05f;
@@ -7057,16 +7107,18 @@ bool dCamera_c::towerCamera(s32 param_0) {
 
             tower->field_0x28 += (stack_470 - tower->field_0x28) * 0.33f;
 
+            f32 var_f15 = val3;
             if (check_owner_action(mPadID, 0x2000108)) {
-                val3 = 0.0f;
+                var_f15 = 0.0f;
             }
-            tower->field_0x78 = val27 + val22 * val3;
+            tower->field_0x78 = val27 + val22 * var_f15;
 
         } else {
             if (uVar1) {
                 stack_470.Val(stack_434.U() + ((stack_41c.U() + stack_474) - stack_434.U()) * 1.0f);
             } else {
-                stack_470.Val(stack_434.U() + ((stack_41c.U() - stack_474) - stack_434.U()) * 1.0f);
+                f32 oneF = 1.0f;
+                stack_470.Val(stack_434.U() + ((stack_41c.U() - stack_474) - stack_434.U()) * oneF);
             }
 
             tower->field_0x28 += (stack_470 - tower->field_0x28) * 0.33f;
@@ -7082,7 +7134,8 @@ bool dCamera_c::towerCamera(s32 param_0) {
     tower->field_0x69 = uVar1;
     mViewCache.mDirection.U(mViewCache.mDirection.U()
                 + (tower->field_0x28 - mViewCache.mDirection.U()) * tower->field_0x78);
-    tower->field_0x24 += ((val13 + (val12 - val13) * fVar18) - tower->field_0x24) * val11;
+    f32 temp = (val13 + (val12 - val13) * fVar18);
+    tower->field_0x24 += (temp - tower->field_0x24) * val11;
 
     if (!mCamParam.Flag(param_0, 0x4000)) {
         mForwardTiltOffset = cSAngle::_0;
@@ -7642,9 +7695,9 @@ f32 dCamera_c::shakeCamera() {
         int var_r28 = 1 << (15 - var_r27);
         f32 var_f30 = 1.0f;
 
-        for (int i = 0; i < 4; i++) {
+        for (var_r29 = 0; var_r29 < 4; var_r29++) {
             if (var_r28 & var_r26) {
-                var_f31 += var_f30 * wave[i];
+                var_f31 += var_f30 * wave[var_r29];
             } else {
                 var_f30 *= 0.43f;
             }
@@ -7667,13 +7720,11 @@ f32 dCamera_c::shakeCamera() {
         sp64 = sp64 * var_f31;
 
         if (field_0x6fc & 2) {
-            mShake.mEyeShake = sp64 * 1.0f;
-            mShake.field_0x24 = mShake.mEyeShake;
+            mShake.field_0x24 = mShake.mEyeShake = sp64 * 1.0f;
         }
 
         if (field_0x6fc & 0x40) {
-            mShake.mEyeShake = sp64 * 10.0f;
-            mShake.field_0x24 = mShake.mEyeShake;
+            mShake.field_0x24 = mShake.mEyeShake = sp64 * 10.0f;
         }
 
         if (field_0x6fc & 4) {
@@ -8037,7 +8088,7 @@ static void store(camera_process_class* i_camera) {
         fopCamM_SetFovy(a_camera, fovy);
     }
 
-    dStage_dt_c* stage = dComIfGp_getStage();
+    dStage_dt_c* stage = (dStage_dt_c*)dComIfGp_getStage();
 
     if (a_camera->mCamera.mCamSetup.CheckFlag(0x400)) {
         //TODO
@@ -8250,9 +8301,13 @@ static int camera_create(camera_class* i_this) {
 }
 
 /* 80182484-801824C0 17CDC4 003C+00 1/0 0/0 0/0 .text camera_delete__FP20camera_process_class */
-// NONMATCHING - equivalent, instructions swapped
 static int camera_delete(camera_process_class* i_this) {
     dCamera_c* camera = &((camera_class*)i_this)->mCamera;
+
+    if (camera->CameraID() == 0) {
+        // not implemented
+        //dDbgCamera.Finish();
+    }
 
     camera->~dCamera_c();
     dComIfGp_setCamera(0, NULL);

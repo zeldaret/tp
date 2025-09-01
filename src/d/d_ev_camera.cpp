@@ -879,10 +879,6 @@ bool dCamera_c::fixedPositionEvCamera() {
     FixedPosData* fpos_p = (FixedPosData*)mWork;
     bool rv = true;
 
-    ChaseData* chase = (ChaseData*)mWork;
-    TalkData* talk = (TalkData*)mWork;
-    EventData* event = (EventData*)mWork;
-
     if (mCurCamStyleTimer == 0) {
         cXyz unused_xyz, sp24;
         getEvXyzData(&fpos_p->field_0x10, "CtrGap", DefaultGap);
@@ -892,8 +888,8 @@ bool dCamera_c::fixedPositionEvCamera() {
         getEvFloatData(&fpos_p->field_0x38, "Radius", 100000.0f);
         getEvFloatData(&fpos_p->field_0x34, "StartRadius", fpos_p->field_0x38);
         fpos_p->field_0x1 = getEvFloatData(&fpos_p->field_0x2c, "Bank", 0.0f);
-        getEvStringData(&event->field_0x48, "RelUseMask", "o");
-        fpos_p->field_0x0 = getEvIntData(&event->field_0x4c, "Timer", -1);
+        getEvStringData(&fpos_p->field_0x48, "RelUseMask", "o");
+        fpos_p->field_0x0 = getEvIntData(&fpos_p->field_0x4c, "Timer", -1);
 
         if ((fpos_p->field_0x40 = getEvActor("Target", "@PLAYER")) == NULL) {
             OS_REPORT("camera: event: error: target actor missing\n");
@@ -903,7 +899,7 @@ bool dCamera_c::fixedPositionEvCamera() {
         fpos_p->field_0x44 = fopAcM_GetID(fpos_p->field_0x40);
         fpos_p->field_0x3c = getEvActor("RelActor");
 
-        if (fpos_p->field_0x3c && isRelChar(event->field_0x48)) {
+        if (fpos_p->field_0x3c && isRelChar(fpos_p->field_0x48)) {
             fpos_p->field_0x4 = relationalPos(fpos_p->field_0x3c, &sp24);
         } else {
             fpos_p->field_0x4 = sp24;        
@@ -918,15 +914,15 @@ bool dCamera_c::fixedPositionEvCamera() {
         return 1;
     }
 
-    fpos_p->field_0x1c = relationalPos(fpos_p->field_0x40, &talk->field_0x10);
-    mViewCache.mCenter += (fpos_p->field_0x1c - mViewCache.mCenter) * chase->field_0x30;
-    mViewCache.mEye = talk->field_0x4;
+    fpos_p->field_0x1c = relationalPos(fpos_p->field_0x40, &fpos_p->field_0x10);
+    mViewCache.mCenter += (fpos_p->field_0x1c - mViewCache.mCenter) * fpos_p->field_0x30;
+    mViewCache.mEye = fpos_p->field_0x4;
     mViewCache.mDirection.Val(mViewCache.mEye - mViewCache.mCenter);
 
     f32 fVar1 = fpos_p->field_0x38;
     if (fpos_p->field_0x0 && mCurCamStyleTimer < fpos_p->field_0x4c) {
         fVar1 = fpos_p->field_0x34 + (fpos_p->field_0x38 - fpos_p->field_0x34)
-                                    * (mCurCamStyleTimer / f32(event->field_0x4c));
+                                    * (mCurCamStyleTimer / f32(fpos_p->field_0x4c));
         rv = false;
     }
 
@@ -935,10 +931,10 @@ bool dCamera_c::fixedPositionEvCamera() {
         mViewCache.mEye = mViewCache.mCenter + mViewCache.mDirection.Xyz();
     }
 
-    mViewCache.mFovy = chase->field_0x28;
+    mViewCache.mFovy = fpos_p->field_0x28;
     if (fpos_p->field_0x1) {
         cAngle this_00;
-        mViewCache.mBank = this_00.d2s(chase->field_0x2c);
+        mViewCache.mBank = this_00.d2s(fpos_p->field_0x2c);
         setFlag(0x400);
     }
 
