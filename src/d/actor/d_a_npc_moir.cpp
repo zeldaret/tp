@@ -392,7 +392,7 @@ int daNpcMoiR_c::CreateHeap() {
     for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
-    mdl_p->setUserArea((u32)this);
+    mdl_p->setUserArea((uintptr_t)this);
 
     mpMatAnm = new daNpcF_MatAnm_c();
     if (mpMatAnm == NULL) {

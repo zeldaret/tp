@@ -87,7 +87,7 @@ int daCoachFire_c::draw() {
         speed.y = 0.0f;
         speed *= 0.9f;
         emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
-        emitter->setUserWork((u32)(&speed));
+        emitter->setUserWork((uintptr_t)(&speed));
     }
     return 1;
 }

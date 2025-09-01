@@ -210,7 +210,7 @@ int daObjLv6Bm_c::Create() {
         }
     }
 
-    mBeamosModel->setUserArea((u32)this);
+    mBeamosModel->setUserArea((uintptr_t)this);
     name = mBeamosModel->getModelData()->getMaterialTable().getMaterialName();
     for (u16 i = 0; i < mBeamosModel->getModelData()->getMaterialNum(); i++) {
         if (strcmp(name->getName(i), l_eye_matName) == 0) {

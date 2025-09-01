@@ -1182,7 +1182,7 @@ static int createRoomScene(int param_0) {
     }
     *ptr = param_0;
 
-    if (!fopScnM_CreateReq(PROC_ROOM_SCENE, 0x7FFF, 0, (u32)ptr)) {
+    if (!fopScnM_CreateReq(PROC_ROOM_SCENE, 0x7FFF, 0, (uintptr_t)ptr)) {
         JKRHeap::free(ptr, NULL);
         return 0;
     }
@@ -2088,8 +2088,8 @@ static int dStage_pathInfoInit(dStage_dt_c* i_stage, void* i_data, int entryNum,
     i_stage->setPathInfo(path_c);
 
     for (int i = 0; i < path_c->m_num; i++) {
-        if ((u32)path->m_points < 0x80000000) {
-            path->m_points = (dPnt*)((u32)path->m_points + i_stage->getPntInf()->m_pnt_offset);
+        if ((uintptr_t)path->m_points < 0x80000000) {
+            path->m_points = (dPnt*)((uintptr_t)path->m_points + i_stage->getPntInf()->m_pnt_offset);
         }
         path++;
     }
@@ -2112,10 +2112,10 @@ static int dStage_rpatInfoInit(dStage_dt_c* i_stage, void* i_data, int i_num, vo
 
     i_stage->setPath2Info(pStagePath);
     for (s32 i = 0; i < pStagePath->m_num; pPath++, i++, (void)0) {
-        if ((u32)pPath->m_points >= 0x80000000) {
+        if ((uintptr_t)pPath->m_points >= 0x80000000) {
             continue;
         }
-        pPath->m_points = (dPnt*)((u32)pPath->m_points + i_stage->getPnt2Inf()->m_pnt_offset);
+        pPath->m_points = (dPnt*)((uintptr_t)pPath->m_points + i_stage->getPnt2Inf()->m_pnt_offset);
     }
     return 1;
 }
@@ -2266,7 +2266,7 @@ static void dStage_dt_c_offsetToPtr(void* i_data) {
     for (int i = 0; i < file->m_chunkCount; i++) {
         JUT_ASSERT(3381, p_tno->m_offset != 0);
         if (p_tno->m_offset != 0 && p_tno->m_offset < 0x80000000) {
-            p_tno->m_offset += (u32)i_data;
+            p_tno->m_offset += (uintptr_t)i_data;
         }
         p_tno++;
     }

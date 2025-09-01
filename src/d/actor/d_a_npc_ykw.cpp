@@ -436,7 +436,7 @@ int daNpc_ykW_c::CreateHeap() {
     for (u16 i = 0; i < modelData->getJointNum(); i++) {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
 
     mpMatAnm[0] = new daNpcT_MatAnm_c();
     if (mpMatAnm[0] == NULL) {
@@ -640,7 +640,7 @@ void daNpc_ykW_c::reset() {
     cXyz unkXyz1;
     csXyz unkSxyz1;
 
-    u32 memsetSize = (u32)field_0x1074 - (u32)&field_0xfd8;
+    u32 memsetSize = (uintptr_t)field_0x1074 - (uintptr_t)&field_0xfd8;
 
     if (mpMatAnm[0] != NULL) {
         mpMatAnm[0]->initialize();

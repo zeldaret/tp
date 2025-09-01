@@ -6,6 +6,7 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTException.h"
+#include <stdint.h>
 
 bool data_804508B0 = 1;
 
@@ -109,8 +110,8 @@ bool JKRHeap::initArena(char** memory, u32* size, int maxHeaps) {
         return false;
 
     arenaStart = OSInitAlloc(arenaLo, arenaHi, maxHeaps);
-    ram_start = (void*)ALIGN_NEXT((u32)arenaStart, 0x20);
-    ram_end = (void*)ALIGN_PREV((u32)arenaHi, 0x20);
+    ram_start = (void*)ALIGN_NEXT((uintptr_t)arenaStart, 0x20);
+    ram_end = (void*)ALIGN_PREV((uintptr_t)arenaHi, 0x20);
 
     OSBootInfo* codeStart = (OSBootInfo*)OSPhysicalToCached(0);
     mCodeStart = codeStart;
@@ -124,7 +125,7 @@ bool JKRHeap::initArena(char** memory, u32* size, int maxHeaps) {
     OSSetArenaHi(ram_end);
 
     *memory = (char*)ram_start;
-    *size = (u32)ram_end - (u32)ram_start;
+    *size = (uintptr_t)ram_end - (uintptr_t)ram_start;
     return true;
 }
 
@@ -273,7 +274,7 @@ s32 JKRHeap::changeGroupID(u8 groupID) {
 /* 802CE7DC-802CE83C 2C911C 0060+00 0/0 2/2 0/0 .text            getMaxAllocatableSize__7JKRHeapFi
  */
 u32 JKRHeap::getMaxAllocatableSize(int alignment) {
-    u32 maxFreeBlock = (u32)getMaxFreeBlock();
+    u32 maxFreeBlock = (uintptr_t)getMaxFreeBlock();
     u32 ptrOffset = (alignment - 1) & alignment - (maxFreeBlock & 0xf);
     return ~(alignment - 1) & (getFreeSize() - ptrOffset);
 }
@@ -363,13 +364,13 @@ void JKRHeap::dispose_subroutine(u32 begin, u32 end) {
 
 /* 802CEA78-802CEAA0 2C93B8 0028+00 0/0 1/1 0/0 .text            dispose__7JKRHeapFPvUl */
 bool JKRHeap::dispose(void* ptr, u32 size) {
-    dispose_subroutine((u32)ptr, (u32)ptr + size);
+    dispose_subroutine((uintptr_t)ptr, (uintptr_t)ptr + size);
     return false;
 }
 
 /* 802CEAA0-802CEAC0 2C93E0 0020+00 0/0 1/1 0/0 .text            dispose__7JKRHeapFPvPv */
 void JKRHeap::dispose(void* begin, void* end) {
-    dispose_subroutine((u32)begin, (u32)end);
+    dispose_subroutine((uintptr_t)begin, (uintptr_t)end);
 }
 
 /* 802CEAC0-802CEB18 2C9400 0058+00 0/0 3/3 0/0 .text            dispose__7JKRHeapFv */

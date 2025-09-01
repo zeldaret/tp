@@ -268,7 +268,7 @@ void TObject::process_paragraph_reserved_(u32 arg1, const void* pContent, u32 uS
         data::TParse_TParagraph_dataID dataID(pContent);
         const void* temp = dataID.getContent();
         on_data(dataID.get_ID(), dataID.get_IDSize(), temp,
-                uSize - ((u32)temp - (u32)dataID.getRaw()));
+                uSize - ((uintptr_t)temp - (uintptr_t)dataID.getRaw()));
         break;
     case 0x82:
         ASSERT(pContent != 0);

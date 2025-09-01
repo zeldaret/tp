@@ -115,7 +115,7 @@ int daObjSwPr_c::Create() {
 
     J3DJoint* jnt = mpModel->getModelData()->getJointNodePointer(mKaitenJntID);
     jnt->setCallBack(nodeCallBack);
-    mpModel->setUserArea((u32)this);
+    mpModel->setUserArea((uintptr_t)this);
 
     eyePos.y += 100.0f;
 

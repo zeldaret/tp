@@ -285,7 +285,7 @@ static void action(e_tk_ball_class* i_this) {
                 particle_emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
                 i_this->mParticleDirection = particle_position - i_this->mPreviousPosition;
                 i_this->mParticleDirection *= 0.8f;
-                particle_emitter->setUserWork((u32)&i_this->mParticleDirection);
+                particle_emitter->setUserWork((uintptr_t)&i_this->mParticleDirection);
                 i_this->mPreviousPosition = particle_position;
                 break;
             }

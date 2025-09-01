@@ -4,6 +4,7 @@
 #include "JSystem/JGadget/std-memory.h"
 #include <algorithm.h>
 #include <msl_memory.h>
+#include <stdint.h>
 
 namespace JGadget {
 namespace vector {
@@ -105,7 +106,7 @@ struct TVector {
     }
 
     T* insert(T* pos, const T& val) {
-        u32 diff = (int)((u32)pos - (u32)begin()) / 4;
+        u32 diff = (int)((uintptr_t)pos - (uintptr_t)begin()) / 4;
         insert(pos, 1, val);
         return pBegin_ + diff;
     }
@@ -118,7 +119,7 @@ struct TVector {
         if (pBegin_ == 0) {
             return 0;
         }
-        return (int)((u32)pEnd_ - (u32)pBegin_) / 4;
+        return (int)((uintptr_t)pEnd_ - (uintptr_t)pBegin_) / 4;
     }
 
     u32 capacity() { return mCapacity; }

@@ -317,7 +317,7 @@ int daObj_GrA_c::CreateHeap() {
     for (u16 i = 0; i < aMdlData_p->getJointNum(); i++) {
         aMdlData_p->getJointNodePointer(i)->setCallBack(jointCtrlCallBack);
     }
-    aMdl_p->setUserArea((u32)this);
+    aMdl_p->setUserArea((uintptr_t)this);
 
     field_0x83c = l_entryJntNoList;
     setFaceAnm(22, false, 0.0f);
@@ -1053,7 +1053,7 @@ void daObj_GrA_c::setMtx(int param_1) {
     model->setBaseTRMtx(mDoMtx_stack_c::get());
 
     if (param_1 != 0) {
-        model->setUserArea((u32)this);
+        model->setUserArea((uintptr_t)this);
     } else {
         model->setUserArea(0);
     }

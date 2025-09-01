@@ -815,7 +815,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         return 0;
     }
 
-    this_->mpMorf->getModel()->setUserArea((u32)this_);
+    this_->mpMorf->getModel()->setUserArea((uintptr_t)this_);
 
     for (u16 i = 0; i < this_->mpMorf->getModel()->getModelData()->getJointNum(); i++) {
         this_->mpMorf->getModel()->getModelData()->getJointNodePointer(i)->setCallBack(

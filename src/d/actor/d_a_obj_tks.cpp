@@ -174,7 +174,7 @@ int daObjTks_c::CreateHeap() {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
 
-    mdl_p->setUserArea((u32)this);
+    mdl_p->setUserArea((uintptr_t)this);
 
 
     mpMatAnm = new daNpcF_MatAnm_c();
@@ -294,7 +294,7 @@ void daObjTks_c::setMtx() {
     mDoMtx_stack_c::scaleM(scale);
 
     mdl_p->setBaseTRMtx(mDoMtx_stack_c::get());
-    mdl_p->setUserArea((u32)this);
+    mdl_p->setUserArea((uintptr_t)this);
 
     if (mAnmFlags & ANM_PLAY_BCK) {
         mBckAnm.getBckAnm()->setFrame(mBckAnm.getFrame());

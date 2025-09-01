@@ -750,7 +750,7 @@ void daObj_Sekizoa_c::setAttnPos() {
         mDoMtx_stack_c::scaleM(scale);
 
         mp_model->setBaseTRMtx(mDoMtx_stack_c::get());
-        mp_model->setUserArea((u32)this);
+        mp_model->setUserArea((uintptr_t)this);
         mpMorf[1]->modelCalc();
     }
     if (mpMcaMorf != NULL) {

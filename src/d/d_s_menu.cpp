@@ -1577,11 +1577,11 @@ int phase_2(dScnMenu_c* i_this) {
     JUT_ASSERT(3237, i_this->info != 0);
 
     menu_info_class* menu_info = i_this->info;
-    menu_info->stage_data = (menu_stage_class*)((u32)menu_info->stage_data + (u32)menu_info);
+    menu_info->stage_data = (menu_stage_class*)((uintptr_t)menu_info->stage_data + (uintptr_t)menu_info);
 
     for (int i = 0; i < menu_info->num; i++) {
         menu_info->stage_data[i].data =
-            (menu_data_class*)((u32)menu_info->stage_data[i].data + (u32)menu_info);
+            (menu_data_class*)((uintptr_t)menu_info->stage_data[i].data + (uintptr_t)menu_info);
     }
 
     if (l_groupPoint == NULL) {
@@ -1606,11 +1606,11 @@ int phase_2(dScnMenu_c* i_this) {
         category_offset += menu_info->stage_data[i].field_0x41 * sizeof(menu_data_class);
     }
 
-    i_this->category_info = (menu_category_class*)((u32)i_this->command->getMemAddress() + category_offset);
+    i_this->category_info = (menu_category_class*)((uintptr_t)i_this->command->getMemAddress() + category_offset);
     JUT_ASSERT(3282, i_this->category_info != 0);
 
     category_info = i_this->category_info;
-    category_info->data = (menu_category_data_class*)((u32)category_info->data + (u32)menu_info);
+    category_info->data = (menu_category_data_class*)((uintptr_t)category_info->data + (uintptr_t)menu_info);
     i_this->current_category = menu_info->stage_data[l_cursolID].field_0x43;
 
     delete i_this->command;

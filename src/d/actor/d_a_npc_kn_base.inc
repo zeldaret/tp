@@ -458,7 +458,7 @@ void daNpc_Kn_c::setMtx() {
     mDoMtx_stack_c::ZXYrotM(mCurAngle);
     mDoMtx_stack_c::scaleM(scale);
     model_p->setBaseTRMtx(mDoMtx_stack_c::get());
-    model_p->setUserArea((u32)this);
+    model_p->setUserArea((uintptr_t)this);
 
     if (mAnmFlags & ANM_PLAY_BCK) {
         mBckAnm.getBckAnm()->setFrame(mBckAnm.getFrame());

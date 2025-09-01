@@ -638,7 +638,7 @@ void daBaseNpc_c::setMtx(int param_0) {
     model->setBaseTRMtx(mDoMtx_stack_c::get());
 
     if (param_0) {
-        model->setUserArea((u32)this);
+        model->setUserArea((uintptr_t)this);
     } else {
         model->setUserArea(0);
     }

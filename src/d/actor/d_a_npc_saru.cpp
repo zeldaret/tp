@@ -376,7 +376,7 @@ int daNpc_Saru_c::CreateHeap() {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
 
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
 
     for (int i = 0; i < 2; i++) {
         if (l_bmdData[bmdTypeList[i]][0] >= 0) {

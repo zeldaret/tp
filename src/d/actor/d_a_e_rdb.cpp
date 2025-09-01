@@ -1793,7 +1793,7 @@ static int useHeapInit(fopAc_ac_c* actor) {
     }
 
     J3DModel* model = i_this->mpModelMorf->getModel();
-    model->setUserArea((u32)i_this);
+    model->setUserArea((uintptr_t)i_this);
     for (u16 i_idx = 0; i_idx < model->getModelData()->getJointNum(); i_idx++) {
         model->getModelData()->getJointNodePointer(i_idx)->setCallBack(nodeCallBack);
     }

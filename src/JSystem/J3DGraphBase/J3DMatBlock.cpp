@@ -399,7 +399,7 @@ void J3DColorBlockLightOff::patchMatColor() {
     GDOverflowCheck(SizeOfLoadMatColors);
     loadMatColors(mMatColor);
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 /* 803190AC-803194E8 3139EC 043C+00 2/0 0/0 0/0 .text patchLight__21J3DColorBlockLightOffFv */
@@ -413,7 +413,7 @@ void J3DColorBlockLightOff::patchLight() {
     mColorChan[1].load();
     mColorChan[3].load();
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 /* 803194E8-80319534 313E28 004C+00 1/0 0/0 0/0 .text            patch__20J3DColorBlockLightOnFv */
@@ -429,7 +429,7 @@ void J3DColorBlockLightOn::patchMatColor() {
     GDOverflowCheck(SizeOfLoadMatColors);
     loadMatColors(mMatColor);
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 /* 803196E0-80319B4C 314020 046C+00 1/0 0/0 0/0 .text patchLight__20J3DColorBlockLightOnFv */
@@ -448,7 +448,7 @@ void J3DColorBlockLightOn::patchLight() {
         }
     }
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 /* 80319B4C-80319BB4 31448C 0068+00 2/0 0/0 0/0 .text            diff__21J3DColorBlockLightOffFUl */
@@ -558,7 +558,7 @@ void J3DTexGenBlockPatched::patch() {
         }
     }
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 /* 8031AB18-8031ABC0 315458 00A8+00 1/0 0/0 0/0 .text            patch__15J3DTexGenBlock4Fv */
@@ -571,7 +571,7 @@ void J3DTexGenBlock4::patch() {
         }
     }
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 /* 8031ABC0-8031AC68 315500 00A8+00 1/0 0/0 0/0 .text            patch__19J3DTexGenBlockBasicFv */
@@ -584,7 +584,7 @@ void J3DTexGenBlockBasic::patch() {
         }
     }
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 /* 8031AC68-8031ACD0 3155A8 0068+00 3/0 0/0 0/0 .text            diff__21J3DTexGenBlockPatchedFUl */
@@ -832,7 +832,7 @@ void J3DTevBlockPatched::patchTexNo() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 /* 8031BFE0-8031C0AC 316920 00CC+00 1/0 0/0 0/0 .text            patchTevReg__18J3DTevBlockPatchedFv
@@ -849,7 +849,7 @@ void J3DTevBlockPatched::patchTevReg() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 /* 8031C0AC-8031C228 3169EC 017C+00 1/0 0/0 0/0 .text
@@ -886,7 +886,7 @@ void J3DTevBlockPatched::patchTexNoAndTexCoordScale() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 /* 8031C228-8031C274 316B68 004C+00 1/0 0/0 0/0 .text            patch__18J3DTevBlockPatchedFv */
@@ -905,7 +905,7 @@ void J3DTevBlock1::patchTexNo() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 /* 8031C2E4-8031C2E8 316C24 0004+00 1/0 0/0 0/0 .text            patchTevReg__12J3DTevBlock1Fv */
@@ -937,7 +937,7 @@ void J3DTevBlock1::patchTexNoAndTexCoordScale() {
     );
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 /* 8031C3CC-8031C3F8 316D0C 002C+00 1/0 0/0 0/0 .text            patch__12J3DTevBlock1Fv */
@@ -957,7 +957,7 @@ void J3DTevBlock2::patchTexNo() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 /* 8031C48C-8031C558 316DCC 00CC+00 1/0 0/0 0/0 .text            patchTevReg__12J3DTevBlock2Fv */
@@ -973,7 +973,7 @@ void J3DTevBlock2::patchTevReg() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 /* 8031C558-8031C6A8 316E98 0150+00 1/0 0/0 0/0 .text patchTexNoAndTexCoordScale__12J3DTevBlock2Fv
@@ -1007,7 +1007,7 @@ void J3DTevBlock2::patchTexNoAndTexCoordScale() {
     );
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 /* 8031C6A8-8031C6F4 316FE8 004C+00 1/0 0/0 0/0 .text            patch__12J3DTevBlock2Fv */
@@ -1028,7 +1028,7 @@ void J3DTevBlock4::patchTexNo() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 /* 8031C788-8031C854 3170C8 00CC+00 1/0 0/0 0/0 .text            patchTevReg__12J3DTevBlock4Fv */
@@ -1044,7 +1044,7 @@ void J3DTevBlock4::patchTevReg() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 /* 8031C854-8031C9D0 317194 017C+00 1/0 0/0 0/0 .text patchTexNoAndTexCoordScale__12J3DTevBlock4Fv
@@ -1081,7 +1081,7 @@ void J3DTevBlock4::patchTexNoAndTexCoordScale() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 /* 8031C9D0-8031CA1C 317310 004C+00 1/0 0/0 0/0 .text            patch__12J3DTevBlock4Fv */
 void J3DTevBlock4::patch() {
@@ -1101,7 +1101,7 @@ void J3DTevBlock16::patchTexNo() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 /* 8031CAB0-8031CB7C 3173F0 00CC+00 1/0 0/0 0/0 .text            patchTevReg__13J3DTevBlock16Fv */
@@ -1117,7 +1117,7 @@ void J3DTevBlock16::patchTevReg() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 /* 8031CB7C-8031CCF8 3174BC 017C+00 1/0 0/0 0/0 .text
@@ -1154,7 +1154,7 @@ void J3DTevBlock16::patchTexNoAndTexCoordScale() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 /* 8031CCF8-8031CD44 317638 004C+00 1/0 0/0 0/0 .text            patch__13J3DTevBlock16Fv */
@@ -1432,7 +1432,7 @@ void J3DTevBlock16::ptrToIndex() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 /* 8031DFB4-8031E098 3188F4 00E4+00 1/0 0/0 0/0 .text            ptrToIndex__18J3DTevBlockPatchedFv
@@ -1456,7 +1456,7 @@ void J3DTevBlockPatched::ptrToIndex() {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 /* 8031E098-8031E12C 3189D8 0094+00 5/5 1/1 0/0 .text indexToPtr_private__11J3DTevBlockFUl */
@@ -1475,7 +1475,7 @@ void J3DTevBlock::indexToPtr_private(u32 offs) {
     }
 
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 /* 8031E12C-8031E328 318A6C 01FC+00 1/0 0/0 0/0 .text            load__15J3DIndBlockFullFv */
@@ -1604,7 +1604,7 @@ void J3DPEBlockFull::patch() {
     void* start = GDGetCurrPointer();
     mFog.load();
     void* end = GDGetCurrPointer();
-    DCStoreRange(start, (u32)end - (u32)start);
+    DCStoreRange(start, (uintptr_t)end - (uintptr_t)start);
 }
 
 /* 8031F940-8031F9B8 31A280 0078+00 1/0 0/0 0/0 .text            diffFog__14J3DPEBlockFullFv */

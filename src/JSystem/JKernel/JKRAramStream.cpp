@@ -2,6 +2,7 @@
 #include "JSystem/JKernel/JKRAramPiece.h"
 #include "JSystem/JSupport/JSUFileStream.h"
 #include "JSystem/JUtility/JUTException.h"
+#include <stdint.h>
 
 /* ############################################################################################## */
 /* 80451408-8045140C 000908 0004+00 1/1 0/0 0/0 .sbss            sAramStreamObject__13JKRAramStream
@@ -115,7 +116,7 @@ s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command) {
                 break;
             }
 
-            JKRAramPcs(0, (u32)buffer, destination, length, NULL);
+            JKRAramPcs(0, (uintptr_t)buffer, destination, length, NULL);
             dstSize -= length;
             writtenLength += length;
             destination += length;
@@ -205,7 +206,7 @@ void JKRAramStream::setTransBuffer(u8* buffer, u32 bufferSize, JKRHeap* heap) {
     transHeap = NULL;
 
     if (buffer) {
-        transBuffer = (u8*)ALIGN_NEXT((u32)buffer, 0x20);
+        transBuffer = (u8*)ALIGN_NEXT((uintptr_t)buffer, 0x20);
     }
 
     if (bufferSize) {

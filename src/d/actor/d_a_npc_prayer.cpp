@@ -184,7 +184,7 @@ int daNpcPray_c::CreateHeap() {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
 
-    model_p->setUserArea((u32)this);
+    model_p->setUserArea((uintptr_t)this);
     setMotion(MOTION_WAIT_e, -1.0f, 0);
     return 1;
 }

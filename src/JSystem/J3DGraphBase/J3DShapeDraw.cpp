@@ -1,13 +1,14 @@
 #include "JSystem/J3DGraphBase/J3DShapeDraw.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include <string.h>
+#include <stdint.h>
 #include <dolphin/gx.h>
 
 /* 80314924-80314974 30F264 0050+00 1/1 0/0 0/0 .text            countVertex__12J3DShapeDrawFUl */
 u32 J3DShapeDraw::countVertex(u32 stride) {
     u32 count = 0;
-    u32 dlStart = (u32)getDisplayList();
-    for (u8* dl = (u8*)dlStart; ((u32)dl - dlStart) < getDisplayListSize();) {
+    uintptr_t dlStart = (uintptr_t)getDisplayList();
+    for (u8* dl = (u8*)dlStart; ((uintptr_t)dl - dlStart) < getDisplayListSize();) {
         if (*dl != GX_TRIANGLEFAN && *dl != GX_TRIANGLESTRIP)
             break;
         u16 vtxNum = *((u16*)(dl + 1));
@@ -55,7 +56,7 @@ void J3DShapeDraw::addTexMtxIndexInDL(u32 stride, u32 attrOffs, u32 valueBase) {
         oldDL += 3;
     }
 
-    u32 realSize = ALIGN_NEXT((u32)newDL - (u32)newDLStart, 0x20);
+    u32 realSize = ALIGN_NEXT((uintptr_t)newDL - (uintptr_t)newDLStart, 0x20);
     for (; (newDL - newDLStart) < newSize; newDL++)
         *newDL = 0;
     mDisplayListSize = realSize;

@@ -3356,7 +3356,7 @@ int daB_MGN_c::CreateHeap() {
     }
 
     J3DModel* model = mpMgnModelMorf->getModel();
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
 
     for (u16 i = 1; i < model->getModelData()->getJointNum(); i++) {
         if (i == 1 || i == 25) {

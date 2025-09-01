@@ -1371,7 +1371,7 @@ int daE_KK_c::CreateHeap() {
             return 0;
         }
         model = mpMorfSO->getModel();
-        model->setUserArea((u32)this);
+        model->setUserArea((uintptr_t)this);
         for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
             if (i != 0) {
                 model->getModelData()->getJointNodePointer(i)->setCallBack(JointCallBack);

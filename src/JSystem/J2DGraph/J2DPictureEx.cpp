@@ -1217,7 +1217,7 @@ void J2DPictureEx::setAnimation(J2DAnmVtxColor* anm) {
             if (field_0x158[i] != 0xffff) {
                 for (u16 j = 0; j < anm_table_num; j++) {
                     J3DAnmVtxColorIndexData* data = anm->getAnmVtxColorIndexData(0, j);
-                    u16* index = anm->getVtxColorIndexPointer(0) + (u32)data->mpData;
+                    u16* index = anm->getVtxColorIndexPointer(0) + (uintptr_t)data->mpData;
                     for (u16 k = 0; k < data->mNum; k++) {
                         if (index[k] == field_0x158[i]) {
                             field_0x198 = anm;
@@ -1255,7 +1255,7 @@ const J2DAnmTransform* J2DPictureEx::animationPane(J2DAnmTransform const* anm) {
             if (field_0x19c & (1 << i)) {
                 for (u16 j = 0; j < anm_table_num; j++) {
                     J3DAnmVtxColorIndexData* data = field_0x198->getAnmVtxColorIndexData(0, j);
-                    u16* index = field_0x198->getVtxColorIndexPointer(0) + (u32)data->mpData;
+                    u16* index = field_0x198->getVtxColorIndexPointer(0) + (uintptr_t)data->mpData;
                     for (u16 k = 0; k < data->mNum; k++) {
                         if (index[k] == field_0x158[i]) {
                             field_0x198->getColor(0, j, &mCornerColor[i]);

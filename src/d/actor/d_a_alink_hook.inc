@@ -430,7 +430,7 @@ void daAlink_c::setHookshotModel() {
     mDoExt_setCurrentHeap(heap);
 
     resetHookshotMode();
-    mpHookChain->setUserArea((u32)this);
+    mpHookChain->setUserArea((uintptr_t)this);
     field_0x2f94 = 1;
     if (mEquipItem == fpcNm_ITEM_W_HOOKSHOT) {
         field_0x2f95 = 6;

@@ -282,7 +282,7 @@ int daNpc_Zelda_c::CreateHeap() {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
 
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
 
     for (s32 i = 0; i < 2; i++) {
         mpMatAnm[i] = new daNpcT_MatAnm_c();
@@ -367,7 +367,7 @@ int daNpc_Zelda_c::isDelete() {
 /* 80B75B30-80B75C9C 000AF0 016C+00 1/1 0/0 0/0 .text            reset__13daNpc_Zelda_cFv */
 void daNpc_Zelda_c::reset() {
     csXyz acStack_20;
-    u32 clearSize = (u32)&field_0xf9c - (u32)&mAction1;
+    u32 clearSize = (uintptr_t)&field_0xf9c - (uintptr_t)&mAction1;
 
     for (s32 i = 0; i < 2; i++) {
         if (mpMatAnm[i] != NULL) {

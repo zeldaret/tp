@@ -1197,7 +1197,7 @@ void daE_BG_c::mtx_set() {
     J3DModel* model = mpMorfSO->getModel();
 
     model->setBaseTRMtx(mDoMtx_stack_c::get());
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
 
     for (u16 i = 1; i < model->getModelData()->getJointNum(); i++) {
         model->getModelData()->getJointNodePointer(i)->setCallBack(JointCallBack);
@@ -1345,7 +1345,7 @@ int daE_BG_c::CreateHeap() {
 
     J3DModel* model = mpMorfSO->getModel();
 
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
 
     for (u16 i = 1; i < model->getModelData()->getJointNum(); i++) {
         model->getModelData()->getJointNodePointer(i)->setCallBack(JointCallBack);

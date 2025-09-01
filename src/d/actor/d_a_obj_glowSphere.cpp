@@ -226,7 +226,7 @@ void daGlwSph_c::effectSet() {
         JPABaseEmitter* emitterp = dComIfGp_particle_getEmitter(mEmitterIDs[i]);
         if (emitterp != NULL) {
             emitterp->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
-            emitterp->setUserWork((u32)&field_0x974);
+            emitterp->setUserWork((uintptr_t)&field_0x974);
         }
     }
 

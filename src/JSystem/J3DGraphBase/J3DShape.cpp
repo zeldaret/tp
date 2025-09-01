@@ -127,7 +127,7 @@ void J3DLoadCPCmd(u8 cmd, u32 param) {
 /* 80314EB0-80314EEC 30F7F0 003C+00 1/1 0/0 0/0 .text            J3DLoadArrayBasePtr__F7_GXAttrPv */
 static void J3DLoadArrayBasePtr(_GXAttr attr, void* data) {
     u32 idx = (attr == GX_VA_NBT) ? 1 : (attr - GX_VA_POS);
-    J3DLoadCPCmd(0xA0 + idx, ((u32)data & 0x7FFFFFFF));
+    J3DLoadCPCmd(0xA0 + idx, ((uintptr_t)data & 0x7FFFFFFF));
 }
 
 /* 80314EEC-80314F5C 30F82C 0070+00 3/3 0/0 0/0 .text            loadVtxArray__8J3DShapeCFv */

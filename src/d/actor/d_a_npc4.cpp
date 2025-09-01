@@ -740,7 +740,7 @@ void daNpcF_c::setMtx() {
     mDoMtx_stack_c::ZXYrotM(mCurAngle);
     mDoMtx_stack_c::scaleM(scale);
     model->setBaseTRMtx(mDoMtx_stack_c::get());
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
 
     if (mAnmFlags & 0x100) {
         mBckAnm.getBckAnm()->setFrame(mBckAnm.getFrame());
@@ -757,7 +757,7 @@ void daNpcF_c::setMtx2() {
     mDoMtx_stack_c::ZXYrotM(mCurAngle);
     mDoMtx_stack_c::scaleM(scale);
     model->setBaseTRMtx(mDoMtx_stack_c::get());
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
 
     if (cM3d_IsZero_inverted(mExpressionMorf)) {
         mpMorf->onMorfNone();

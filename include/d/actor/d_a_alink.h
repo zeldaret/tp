@@ -4331,7 +4331,7 @@ public:
     /* 0x032C0 */ s16 field_0x32c0[2];
     /* 0x032C4 */ u16 field_0x32c4[2];
     /* 0x032C8 */ u32 field_0x32c8;
-    /* 0x032CC */ u32 field_0x32cc;
+    /* 0x032CC */ uintptr_t field_0x32cc;
     /* 0x032D0 */ u32 field_0x32d0;
     /* 0x032D4 */ u32 field_0x32d4;
     /* 0x032D8 */ firePointEff_c field_0x32d8[4];

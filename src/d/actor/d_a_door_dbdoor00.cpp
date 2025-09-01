@@ -101,7 +101,7 @@ int daDbDoor00_c::CreateHeap() {
     J3DJoint* nodePointerR = modelData->getJointNodePointer(field_0x5c1);
     nodePointerL->setCallBack(nodeCallBack);
     nodePointerR->setCallBack(nodeCallBack);
-    mpModel2->setUserArea((u32)this);
+    mpModel2->setUserArea((uintptr_t)this);
 
     mpBgW = new dBgW();
     cBgD_t* dzb = (cBgD_t*)dComIfG_getObjectRes(getAlwaysArcName(), getDzb());

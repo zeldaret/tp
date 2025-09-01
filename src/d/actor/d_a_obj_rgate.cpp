@@ -259,7 +259,7 @@ int daObjRgate_c::Create() {
                 JUT_ASSERT(448, jnt != 0);
 
                 jnt->setCallBack(nodeCallBack);
-                mpGateModel->setUserArea((u32)this);
+                mpGateModel->setUserArea((uintptr_t)this);
             }
         }
     }

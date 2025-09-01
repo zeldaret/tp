@@ -89,7 +89,7 @@ static void fire_eff_set(e_arrow_class* i_this) {
             if (emitter_p != NULL) {
                 if (i_this->field_0x5d8.abs() > 1.0f) {
                     emitter_p->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
-                    emitter_p->setUserWork((u32)&i_this->field_0x5d8);
+                    emitter_p->setUserWork((uintptr_t)&i_this->field_0x5d8);
                 } else {
                     emitter_p->setParticleCallBackPtr(NULL);
                 }

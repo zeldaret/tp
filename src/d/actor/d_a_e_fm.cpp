@@ -3530,7 +3530,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     J3DModel* fm_model = a_this->mpFmModelMorf->getModel();
-    fm_model->setUserArea((u32)a_this);
+    fm_model->setUserArea((uintptr_t)a_this);
 
     for (u16 i = 0; i < fm_model->getModelData()->getJointNum(); i++) {
         if (i == 1 || i == 2) {

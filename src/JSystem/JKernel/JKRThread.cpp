@@ -4,6 +4,7 @@
 #include "stdio.h"
 #include "dol2asm.h"
 #include "global.h"
+#include <stdint.h>
 
 /* 8043428C-80434298 060FAC 000C+00 5/6 0/0 0/0 .bss             sThreadList__9JKRThread */
 JSUList<JKRThread> JKRThread::sThreadList(0);
@@ -53,7 +54,7 @@ JKRThread::JKRThread(JKRHeap* heap, u32 stack_size, int message_count, int param
 JKRThread::JKRThread(OSThread* thread, int message_count) : mThreadListLink(this) {
     mHeap = NULL;
     mThreadRecord = thread;
-    mStackSize = (u32)thread->stackEnd - (u32)thread->stackBase;
+    mStackSize = (uintptr_t)thread->stackEnd - (uintptr_t)thread->stackBase;
     mStackMemory = thread->stackBase;
 
     setCommon_mesgQueue(JKRHeap::getSystemHeap(), message_count);

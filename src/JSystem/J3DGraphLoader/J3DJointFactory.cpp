@@ -10,8 +10,8 @@
 
 /* 80337178-803371D0 331AB8 0058+00 0/0 1/1 0/0 .text __ct__15J3DJointFactoryFRC13J3DJointBlock */
 J3DJointFactory::J3DJointFactory(J3DJointBlock const& block) {
-    mJointInitData = JSUConvertOffsetToPtr<J3DJointInitData>(&block, (u32)block.mpJointInitData);
-    mIndexTable = JSUConvertOffsetToPtr<u16>(&block, (u32)block.mpIndexTable);
+    mJointInitData = JSUConvertOffsetToPtr<J3DJointInitData>(&block, (uintptr_t)block.mpJointInitData);
+    mIndexTable = JSUConvertOffsetToPtr<u16>(&block, (uintptr_t)block.mpIndexTable);
 }
 
 /* 803371D0-80337338 331B10 0168+00 0/0 1/1 0/0 .text            create__15J3DJointFactoryFi */

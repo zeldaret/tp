@@ -2,6 +2,7 @@
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JUtility/JUTVideo.h"
+#include <stdint.h>
 
 /* 802E5888-802E599C 2E01C8 0114+00 1/1 0/0 0/0 .text            __ct__10JUTProcBarFv */
 JUTProcBar::JUTProcBar() {
@@ -263,7 +264,7 @@ void JUTProcBar::drawProcessBar() {
 
 /* 802E6D3C-802E6DA4 2E167C 0068+00 2/2 0/0 0/0 .text            addrToXPos__FPvi */
 static int addrToXPos(void* param_0, int param_1) {
-    return param_1 * (((u32)param_0 - 0x80000000) / (float)JKRHeap::mMemorySize);
+    return param_1 * (((uintptr_t)param_0 - 0x80000000) / (float)JKRHeap::mMemorySize);
 }
 
 /* 802E6DA4-802E6E0C 2E16E4 0068+00 2/2 0/0 0/0 .text            byteToXLen__Fii */

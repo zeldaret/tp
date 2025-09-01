@@ -1095,7 +1095,7 @@ static void e_po_dead(e_po_class* i_this) {
                 JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->mParticleKey5[i]);
                 if (emitter != NULL) {
                     emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
-                    emitter->setUserWork((u32)&i_this->field_0x814);
+                    emitter->setUserWork((uintptr_t)&i_this->field_0x814);
                 }
             }
             bool var_r0 = FALSE;
@@ -2863,7 +2863,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         return 0;
     }
 
-    a_this->mpMorf->getModel()->setUserArea((u32)i_this);
+    a_this->mpMorf->getModel()->setUserArea((uintptr_t)i_this);
     for (u16 i = 0; i < a_this->mpMorf->getModel()->getModelData()->getJointNum(); i++) {
         if (i == 2 || (i >= 17 && i <= 22)) {
             a_this->mpMorf->getModel()->getModelData()->getJointNodePointer(i)->setCallBack(

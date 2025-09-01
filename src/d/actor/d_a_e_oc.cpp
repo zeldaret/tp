@@ -2486,7 +2486,7 @@ int daE_OC_c::CreateHeap() {
         return 0;
     }
     J3DModel* my_model = mpMorf->getModel();
-    my_model->setUserArea((u32)this);
+    my_model->setUserArea((uintptr_t)this);
     for (u16 idx = 1; idx < my_model->getModelData()->getJointNum(); ++idx) {
         if (idx == 0x11 || idx == 0xc) {
             my_model->getModelData()->getJointNodePointer(idx)->setCallBack(&daE_OC_c::JointCallBack);

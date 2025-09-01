@@ -4,7 +4,7 @@
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
 #include "JSystem/J3DGraphBase/J3DPacket.h"
 #include "JSystem/J3DGraphBase/J3DShape.h"
-#include "dolphin/types.h"
+#include <stdint.h>
 
 class J3DJoint;
 class J3DMaterialAnm;
@@ -56,7 +56,7 @@ public:
     J3DIndBlock* getIndBlock() { return mIndBlock; }
     J3DJoint* getJoint() { return mJoint; }
     J3DMaterialAnm* getMaterialAnm() {
-        if ((u32)mMaterialAnm < 0xC0000000) {
+        if ((uintptr_t)mMaterialAnm < 0xC0000000) {
             return mMaterialAnm;
         } else {
             return NULL;

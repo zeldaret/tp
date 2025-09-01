@@ -566,7 +566,7 @@ int daNpcCoach_c::createHeap() {
     for (u16 i = 0; i < modelData->getJointNum(); i++) {
         modelData->getJointNodePointer(i)->setCallBack(jointHorseCallBack);
     }
-    mChHorse.mpModelMorf->getModel()->setUserArea((u32)this);
+    mChHorse.mpModelMorf->getModel()->setUserArea((uintptr_t)this);
 
     mChHorse.mpBtpAnm = new mDoExt_btpAnm();
     J3DAnmTexPattern* i_btk = (J3DAnmTexPattern*)dComIfG_getObjectRes(l_arcName, BTP_HU_EYE);
@@ -607,7 +607,7 @@ int daNpcCoach_c::createHeap() {
             modelData->getJointNodePointer(i)->setCallBack(jointFrontWheelCallBack);
         }
     }
-    mChHarness.mHarnessModel->setUserArea((u32)this);
+    mChHarness.mHarnessModel->setUserArea((uintptr_t)this);
 
     mChHarness.field_0x6a0 = new dBgW();
     if (mChHarness.field_0x6a0 == NULL) {
@@ -637,7 +637,7 @@ int daNpcCoach_c::createHeap() {
             modelData->getJointNodePointer(i)->setCallBack(jointCoachCallBack);
         }
     }
-    mChCoach.mCoachModel->setUserArea((u32)this);
+    mChCoach.mCoachModel->setUserArea((uintptr_t)this);
 
     mChCoach.field_0x564 = new dBgW();
     if (mChCoach.field_0x564 == NULL) {
@@ -917,10 +917,10 @@ void daNpcCoach_c::setCoachBlazing(u8 param_1) {
     mChCoach.field_0x5d4 = mChCoach.field_0x5c8 * 0.8f;
     mChCoach.field_0x5f8[0]->setGlobalAlpha(param_1);
     mChCoach.field_0x5f8[0]->setRate(fVar1);
-    mChCoach.field_0x5f8[0]->setUserWork((u32)&mChCoach.field_0x5d4);
+    mChCoach.field_0x5f8[0]->setUserWork((uintptr_t)&mChCoach.field_0x5d4);
     mChCoach.field_0x5f8[1]->setGlobalAlpha(uVar2);
     mChCoach.field_0x5f8[1]->setRate(fVar2);
-    mChCoach.field_0x5f8[1]->setUserWork((u32)&mChCoach.field_0x5d4);
+    mChCoach.field_0x5f8[1]->setUserWork((uintptr_t)&mChCoach.field_0x5d4);
 }
 
 /* 8099F4BC-8099F988 001E5C 04CC+00 1/1 0/0 0/0 .text            reinsExecute__12daNpcCoach_cFv */

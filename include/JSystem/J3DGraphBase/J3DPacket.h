@@ -3,6 +3,7 @@
 
 #include "JSystem/J3DGraphBase/J3DSys.h"
 #include "dolphin/gd/GDBase.h"
+#include <stdint.h>
 
 class J3DMatPacket;
 
@@ -115,8 +116,8 @@ public:
         mpFirstChild = NULL;
     }
 
-    void* getUserArea() { return mpUserData; }
-    void setUserArea(u32 area) { mpUserData = (void*)area; }
+    void* getUserArea() const { return mpUserData; }
+    void setUserArea(uintptr_t area) { mpUserData = (void*)area; }
 
     virtual int entry(J3DDrawBuffer*);
     virtual void draw();

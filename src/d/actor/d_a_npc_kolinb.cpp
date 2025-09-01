@@ -353,7 +353,7 @@ int daNpc_Kolinb_c::CreateHeap() {
     for (u16 i = 0; i < modelData->getJointNum(); i++) {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
 
     mpBgW = new dBgW();
     if (mpBgW == NULL) {

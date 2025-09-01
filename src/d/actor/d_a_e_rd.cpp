@@ -5576,7 +5576,7 @@ static void fire_eff_set(e_rd_class* i_this) {
             JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->field_0x1274[i]);
             if (emitter != NULL) {
                 emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
-                emitter->setUserWork((u32)&i_this->field_0x1288);
+                emitter->setUserWork((uintptr_t)&i_this->field_0x1288);
             }
         }
     }
@@ -7023,7 +7023,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
         }
 
         model = i_this->mpModelMorf->getModel();
-        model->setUserArea((u32)i_this);
+        model->setUserArea((uintptr_t)i_this);
 
         for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
             model->getModelData()->getJointNodePointer(i)->setCallBack(nodeCallBack_B);
@@ -7084,7 +7084,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
         }
 
         model = i_this->mpModelMorf->getModel();
-        model->setUserArea((u32)i_this);
+        model->setUserArea((uintptr_t)i_this);
         mDoMtx_stack_c::scaleS(0.0f, 0.0f, 0.0f);
         model->setBaseTRMtx(mDoMtx_stack_c::get());
 
@@ -7116,7 +7116,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
             }
 
             model = i_this->mpMorfBowAnm->getModel();
-            model->setUserArea((u32)i_this);
+            model->setUserArea((uintptr_t)i_this);
             model->setBaseTRMtx(mDoMtx_stack_c::get());
 
             for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {

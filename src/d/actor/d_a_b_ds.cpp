@@ -4280,7 +4280,7 @@ void daB_DS_c::executeBullet() {
             if (emitter != NULL) {
                 emitter->setGlobalTranslation(JGeometry::TVec3<f32>(current.pos));
                 emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
-                emitter->setUserWork((u32)&field_0x724);
+                emitter->setUserWork((uintptr_t)&field_0x724);
             }
         }
     }
@@ -5401,7 +5401,7 @@ int daB_DS_c::CreateHeap() {
     }
 
     model = mpMorf->getModel();
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
     for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
         if (i != 0) {
             model->getModelData()->getJointNodePointer(i)->setCallBack(JointCallBack);

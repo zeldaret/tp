@@ -535,7 +535,7 @@ void daNbomb_c::setEffect() {
         JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(mEffectEmitterIDs[0]);
         if (emitter != NULL) {
             emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
-            emitter->setUserWork((u32)&field_0xbe4);
+            emitter->setUserWork((uintptr_t)&field_0xbe4);
         }
 
         mEffectEmitterIDs[1] =

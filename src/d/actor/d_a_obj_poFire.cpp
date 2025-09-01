@@ -161,7 +161,7 @@ void daPoFire_c::setFire() {
         JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(mParticleKeys[i]);
         if (emitter != NULL) {
             emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
-            emitter->setUserWork((u32)&unk5A0);
+            emitter->setUserWork((uintptr_t)&unk5A0);
         }
     }
     unk5AC = temp_r2;

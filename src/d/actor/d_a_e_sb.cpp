@@ -1196,7 +1196,7 @@ cPhs__Step daE_SB_c::Create() {
         mCyl.OffAtSetBit();
         mSound.setEnemyName("E_SB");
         J3DModel* model = mpMorf->getModel();
-        model->setUserArea((u32) this);
+        model->setUserArea((uintptr_t) this);
         for (u16 idx = 0; idx < model->getModelData()->getJointNum(); ++idx) {
             if (idx != 0) {
                 model->getModelData()->getJointNodePointer(idx)->setCallBack(JointCallBack);

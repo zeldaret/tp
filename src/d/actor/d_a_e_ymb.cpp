@@ -3200,7 +3200,7 @@ int daE_YMB_c::CreateHeap() {
     }
 
     J3DModel* model = mpModelMorf->getModel();
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
     for (u16 i = 1; i < model->getModelData()->getJointNum(); i++) {
         model->getModelData()->getJointNodePointer(i)->setCallBack(JointCallBack);
     }

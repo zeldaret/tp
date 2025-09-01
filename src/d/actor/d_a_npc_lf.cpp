@@ -270,7 +270,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
             return 0;
         }
 
-        fish->mpModel->setUserArea((u32)fish);
+        fish->mpModel->setUserArea((uintptr_t)fish);
     }
 
     return 1;

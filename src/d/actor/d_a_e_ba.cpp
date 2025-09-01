@@ -962,7 +962,7 @@ static int daE_BA_Execute(e_ba_class* i_this) {
                     if (emitter != NULL) {
                         emitter->setGlobalSRTMatrix(i_this->mpMorf->getModel()->getAnmMtx(18));
                         emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
-                        emitter->setUserWork((u32)&i_this->field_0x6b0);
+                        emitter->setUserWork((uintptr_t)&i_this->field_0x6b0);
                     }
                 }
                 i_this->mCreatureSound.startCreatureSoundLevel(Z2SE_EN_BA_FIRE, 0, -1);
@@ -977,7 +977,7 @@ static int daE_BA_Execute(e_ba_class* i_this) {
                 if (emitter != NULL) {
                     emitter->setGlobalSRTMatrix(i_this->mpMorf->getModel()->getAnmMtx(18));
                     emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
-                    emitter->setUserWork((u32)&i_this->field_0x6b0);
+                    emitter->setUserWork((uintptr_t)&i_this->field_0x6b0);
                 }
             }
         }

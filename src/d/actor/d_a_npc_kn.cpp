@@ -525,7 +525,7 @@ int daNpc_Kn_c::CreateHeap() {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
 
-    model_p->setUserArea((u32)this);
+    model_p->setUserArea((uintptr_t)this);
 
     if (!mInvisModel.create(mpModelMorf[0]->getModel(), 1)) {
         return 0;
@@ -557,7 +557,7 @@ int daNpc_Kn_c::CreateHeap() {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
 
-    model_p->setUserArea((u32)this);
+    model_p->setUserArea((uintptr_t)this);
 
     if (mType == 4) {
         J3DModelData* modelData = NULL;
@@ -1075,7 +1075,7 @@ void daNpc_Kn_c::setAttnPos() {
     mDoMtx_stack_c::ZXYrotM(mCurAngle);
     mDoMtx_stack_c::scaleM(scale);
     model->setBaseTRMtx(mDoMtx_stack_c::get());
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
     mpModelMorf[1]->modelCalc();
 
     mDoMtx_stack_c::copy(mpModelMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));

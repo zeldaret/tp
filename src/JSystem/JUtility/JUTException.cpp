@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <dolphin.h>
+#include <stdint.h>
 
 /* 803CC620-803CC640 029740 0020+00 3/3 0/0 0/0 .data            sMessageQueue__12JUTException */
 OSMessageQueue JUTException::sMessageQueue = {0};
@@ -191,7 +192,7 @@ void JUTException::panic_f_va(char const* file, int line, char const* format, va
 
     OSContext* current_context = OSGetCurrentContext();
     memcpy(&context, current_context, sizeof(OSContext));
-    sErrorManager->mStackPointer = (u32)OSGetStackPointer();
+    sErrorManager->mStackPointer = (uintptr_t)OSGetStackPointer();
 
     exCallbackObject.callback = sPreUserCallback;
     exCallbackObject.error = 0xFF;
@@ -826,7 +827,7 @@ void JUTException::createFB() {
     u32 pixel_count = width * height;
     u32 size = pixel_count * 2;
 
-    void* begin = (void*)ALIGN_PREV((u32)end - size, 32);
+    void* begin = (void*)ALIGN_PREV((uintptr_t)end - size, 32);
     void* object = (void*)ALIGN_PREV((s32)begin - sizeof(JUTExternalFB), 32);
     new (object) JUTExternalFB(renderMode, GX_GM_1_7, begin, size);
 

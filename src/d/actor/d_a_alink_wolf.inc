@@ -150,7 +150,7 @@ void daAlink_c::changeWolf() {
     mDoExt_setCurrentHeap(current_heap);
 
     dComIfGs_setTransformStatus(1);
-    mpLinkModel->setUserArea((u32)this);
+    mpLinkModel->setUserArea((uintptr_t)this);
     changeModelDataDirectWolf(0);
     mEyeHL1.entry(field_0x064C, "wl_eye_Hilight");
     mEyeHL2.entry(mpWlMidnaModel->getModelData(), "midona_eye_Hlight");
@@ -326,8 +326,8 @@ void daAlink_c::changeLink(int param_0) {
     mDoExt_setCurrentHeap(current_heap);
 
     dComIfGs_setTransformStatus(0);
-    mpLinkModel->setUserArea((u32)this);
-    mpLinkHatModel->setUserArea((u32)this);
+    mpLinkModel->setUserArea((uintptr_t)this);
+    mpLinkHatModel->setUserArea((uintptr_t)this);
     changeModelDataDirect(param_0);
     field_0x06e4 = NULL;
 
@@ -407,7 +407,7 @@ void daAlink_c::changeLink(int param_0) {
     face_modeldata->getMaterialNodePointer(3)->setMaterialAnm(field_0x2180[1]);
     mEyeHL1.entry(face_modeldata, "highlight02");
 
-    mpKanteraModel->setUserArea((u32)this);
+    mpKanteraModel->setUserArea((uintptr_t)this);
     mpKanteraModel->getModelData()->getJointNodePointer(1)->setCallBack(
         daAlink_kandelaarModelCallBack);
     mZ2Link.setLinkState(var_r27);

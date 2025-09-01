@@ -83,7 +83,7 @@ void daB_ZANTM_c::setMagicEffect() {
         if (emitter != NULL) {
             emitter->setGlobalScale(size);
             emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
-            emitter->setUserWork((u32)&field_0x5dc);
+            emitter->setUserWork((uintptr_t)&field_0x5dc);
         }
     }
 }

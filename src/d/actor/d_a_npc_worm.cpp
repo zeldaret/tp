@@ -37,7 +37,7 @@ static int daNPC_WORM_Draw(npc_worm_class* i_this) {
         return 1;
     }
     g_env_light.setLightTevColorType_MAJI(i_this->mModel1, &i_this->tevStr);
-    i_this->mModel1->setUserArea((u32)i_this);
+    i_this->mModel1->setUserArea((uintptr_t)i_this);
     for (u16 i = 0; i < i_this->mModel1->getModelData()->getJointNum(); i++) {
         if (i >= 1) {
             i_this->mModel1->getModelData()->getJointNodePointer(i)->setCallBack(nodeCallBack);

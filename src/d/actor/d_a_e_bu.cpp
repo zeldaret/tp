@@ -985,7 +985,7 @@ static int daE_BU_Execute(e_bu_class* i_this) {
                 if (emitter != NULL) {
                     emitter->setGlobalSRTMatrix(i_this->modelMorf->getModel()->getAnmMtx(0));
                     emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
-                    emitter->setUserWork((u32)&i_this->field_0x6c0);
+                    emitter->setUserWork((uintptr_t)&i_this->field_0x6c0);
                 }
             }
         } else {
@@ -997,7 +997,7 @@ static int daE_BU_Execute(e_bu_class* i_this) {
                 if (emitter != NULL) {
                     emitter->setGlobalSRTMatrix(i_this->modelMorf->getModel()->getAnmMtx(0));
                     emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
-                    emitter->setUserWork((u32)&i_this->field_0x6c0);
+                    emitter->setUserWork((uintptr_t)&i_this->field_0x6c0);
                 }
             }
         }
@@ -1039,7 +1039,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     J3DModel* model = a_this->modelMorf->getModel();
-    model->setUserArea((u32)a_this);
+    model->setUserArea((uintptr_t)a_this);
 
     for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
         model->getModelData()->getJointNodePointer(i)->setCallBack(nodeCallBack);

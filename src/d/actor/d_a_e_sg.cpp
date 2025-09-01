@@ -1176,7 +1176,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         return 0;
     }
 
-    a_this->mpModel->setUserArea((u32)i_this);
+    a_this->mpModel->setUserArea((uintptr_t)i_this);
     if (a_this->mJoint.init(a_this, &jc_data, a_this->mpModel, 1) == 0) {
         return 0;
     }

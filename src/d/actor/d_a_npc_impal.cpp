@@ -187,7 +187,7 @@ BOOL daNpcImpal_c::CreateHeap() {
     for (u16 jointNo = 0; jointNo < modelData->getJointNum(); jointNo++) {
         modelData->getJointNodePointer(jointNo)->setCallBack(ctrlJointCallBack);
     }
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
 
     mpMatAnm = new daNpcF_MatAnm_c();
     if (mpMatAnm == NULL) {

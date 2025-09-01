@@ -2,17 +2,18 @@
 #define JSUPPORT_H
 
 #include <dolphin.h>
+#include <stdint.h>
 
 /**
 * @ingroup jsystem-jsupport
 * 
 */
 template <typename T>
-T* JSUConvertOffsetToPtr(const void* ptr, u32 offset) {
+T* JSUConvertOffsetToPtr(const void* ptr, uintptr_t offset) {
     if (offset == 0) {
         return NULL;
     } else {
-        return (T*)((s32)ptr + (s32)offset);
+        return (T*)((intptr_t)ptr + (intptr_t)offset);
     }
 }
 
@@ -25,7 +26,7 @@ T* JSUConvertOffsetToPtr(const void* ptr, const void* offset) {
     if (offset == NULL) {
         return NULL;
     } else {
-        return (T*)((s32)ptr + (s32)offset);
+        return (T*)((intptr_t)ptr + (intptr_t)offset);
     }
 }
 

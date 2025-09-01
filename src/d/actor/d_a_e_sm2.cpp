@@ -1429,7 +1429,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         return 0;
     }
 
-    a_this->modelMorf->getModel()->setUserArea((u32)a_this);
+    a_this->modelMorf->getModel()->setUserArea((uintptr_t)a_this);
 
     for (u16 i = 0; i < a_this->modelMorf->getModel()->getModelData()->getJointNum(); i++) {
         if (i >= 1) {

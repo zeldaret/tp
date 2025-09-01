@@ -4,7 +4,7 @@
 #include "JSystem/J3DGraphBase/J3DStruct.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTTexture.h"
-#include "dolphin/types.h"
+#include <stdint.h>
 
 /**
  * @ingroup jsystem-j3d
@@ -30,8 +30,8 @@ public:
     }
     void setResTIMG(u16 entry, const ResTIMG& timg) {
         mpRes[entry] = timg;
-        mpRes[entry].imageOffset = ((mpRes[entry].imageOffset + (u32)&timg - (u32)(mpRes + entry)));
-        mpRes[entry].paletteOffset = ((mpRes[entry].paletteOffset + (u32)&timg - (u32)(mpRes + entry)));
+        mpRes[entry].imageOffset = ((mpRes[entry].imageOffset + (uintptr_t)&timg - (uintptr_t)(mpRes + entry)));
+        mpRes[entry].paletteOffset = ((mpRes[entry].paletteOffset + (uintptr_t)&timg - (uintptr_t)(mpRes + entry)));
     }
 };
 
@@ -103,7 +103,7 @@ struct J3DTexCoord : public J3DTexCoordInfo {
     void setTexMtxReg(u16 reg) { mTexMtxReg = reg; }
     J3DTexCoord& operator=(const J3DTexCoord& other) {
         // Fake match (__memcpy or = doesn't match)
-        *(u32*)this = *(u32*)&other;
+        *(uintptr_t*)this = *(uintptr_t*)&other;
         return *this;
     }
 
