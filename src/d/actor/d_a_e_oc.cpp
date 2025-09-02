@@ -13,6 +13,7 @@
 #include "d/actor/d_a_obj_rotBridge.h"
 #include "d/d_cc_uty.h"
 #include "f_op/f_op_actor_enemy.h"
+#include "f_op/f_op_camera_mng.h"
 
 class daE_OC_HIO_c {
 public:

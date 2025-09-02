@@ -11,6 +11,7 @@
 #include "d/d_bomb.h"
 #include "d/actor/d_a_obj_smallkey.h"
 #include "f_op/f_op_actor_enemy.h"
+#include "f_op/f_op_camera_mng.h"
 
 
 /* 806C1CEC-806C1D3C 0000EC 0050+00 1/1 0/0 0/0 .text            __ct__12daE_GB_HIO_cFv */

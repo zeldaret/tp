@@ -8,6 +8,7 @@
 #include "d/d_msg_scrn_place.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
+#include "d/d_camera.h"
 #include "d/d_msg_object.h"
 #include "d/d_pane_class.h"
 

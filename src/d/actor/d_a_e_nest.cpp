@@ -12,6 +12,7 @@
 #include "d/actor/d_a_player.h"
 #include "d/d_bomb.h"
 #include "d/d_procname.h"
+#include "f_op/f_op_camera_mng.h"
 
 /* 80504950-80504954 000008 0004+00 2/2 0/0 0/0 .bss             None */
 static bool l_hioInit;

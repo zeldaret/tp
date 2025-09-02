@@ -11,6 +11,7 @@
 #include "d/actor/d_a_player.h"
 #include "d/d_procname.h"
 #include "d/d_s_play.h"
+#include "f_op/f_op_camera_mng.h"
 #include "SSystem/SComponent/c_math.h"
 
 /* 80685674-80685678 -00001 0004+00 2/2 0/0 0/0 .bss             None */

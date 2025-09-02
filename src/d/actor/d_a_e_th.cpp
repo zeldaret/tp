@@ -11,6 +11,7 @@
 #include "d/d_item.h"
 #include "c/c_damagereaction.h"
 #include "f_op/f_op_actor_enemy.h"
+#include "f_op/f_op_camera_mng.h"
 
 class daE_TH_HIO_c : public JORReflexible {
 public:

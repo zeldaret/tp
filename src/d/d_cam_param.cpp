@@ -6,8 +6,10 @@
 #include "d/dolzel.h"
 
 #include "d/d_cam_param.h"
+
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_player.h"
+#include "d/d_camera.h"
 #include "d/d_com_inf_game.h"
 
 /* 8008813C-80088284 082A7C 0148+00 0/0 12/12 0/0 .text            rationalBezierRatio__8dCamMathFff

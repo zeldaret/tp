@@ -13,6 +13,7 @@
 #include "d/d_path.h"
 #include "d/d_s_play.h"
 #include "f_op/f_op_actor_enemy.h"
+#include "f_op/f_op_camera_mng.h"
 
 class daE_S1_HIO_c {
 public:

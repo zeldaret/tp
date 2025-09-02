@@ -6,12 +6,14 @@
 #include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_npc_maro.h"
+
 #include "d/actor/d_a_horse.h"
 #include "d/actor/d_a_npc_len.h"
 #include "d/actor/d_a_obj_itamato.h"
 #include "d/actor/d_a_tag_evtarea.h"
 #include "d/actor/d_a_tag_push.h"
 #include "d/actor/d_a_tag_shop_item.h"
+#include "d/d_camera.h"
 #include "d/d_com_static.h"
 #include "d/d_item.h"
 #include "d/d_timer.h"

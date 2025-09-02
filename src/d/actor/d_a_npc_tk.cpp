@@ -15,6 +15,7 @@
 #include "d/d_camera.h"
 #include "d/d_cc_d.h"
 #include "d/d_s_play.h"
+#include "f_op/f_op_camera_mng.h"
 
 class daNPC_TK_HIO_c : public JORReflexible {
 public:

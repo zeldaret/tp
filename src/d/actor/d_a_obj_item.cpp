@@ -13,7 +13,7 @@
 #include "d/d_item.h"
 #include "d/d_item_data.h"
 #include "d/d_s_play.h"
-#include "dol2asm.h"
+#include "f_op/f_op_camera_mng.h"
 #include "m_Do/m_Do_mtx.h"
 
 //
