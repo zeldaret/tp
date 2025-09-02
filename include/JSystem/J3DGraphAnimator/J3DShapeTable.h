@@ -27,7 +27,7 @@ public:
 
     u16 getShapeNum() const { return mShapeNum; }
     J3DShape* getShapeNodePointer(u16 idx) const {
-        J3D_ASSERT(85, idx < mShapeNum, "Error : range over.");
+        J3D_ASSERT_RANGE(85, idx < mShapeNum);
         return mShapeNodePointer[idx];
     }
 

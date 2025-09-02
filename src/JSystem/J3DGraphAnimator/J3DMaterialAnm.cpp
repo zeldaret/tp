@@ -19,29 +19,29 @@ extern "C" void __dt__14J3DMaterialAnmFv();
 //
 
 void J3DMaterialAnm::initialize() {
-    for (int i = 0; i < ARRAY_SIZE(mMatColorAnm); i++) {
+    for (int i = 0; i < ARRAY_SIZEU(mMatColorAnm); i++) {
         mMatColorAnm[i].setAnmFlag(false);
     }
 
-    for (int i = 0; i < ARRAY_SIZE(mTexNoAnm); i++) {
+    for (int i = 0; i < ARRAY_SIZEU(mTexNoAnm); i++) {
         mTexNoAnm[i].setAnmFlag(false);
     }
 
-    for (int i = 0; i < ARRAY_SIZE(mTevColorAnm); i++) {
+    for (int i = 0; i < ARRAY_SIZEU(mTevColorAnm); i++) {
         mTevColorAnm[i].setAnmFlag(false);
     }
 
-    for (int i = 0; i < ARRAY_SIZE(mTevKColorAnm); i++) {
+    for (int i = 0; i < ARRAY_SIZEU(mTevKColorAnm); i++) {
         mTevKColorAnm[i].setAnmFlag(false);
     }
 
-    for (int i = 0; i < ARRAY_SIZE(mTexMtxAnm); i++) {
+    for (int i = 0; i < ARRAY_SIZEU(mTexMtxAnm); i++) {
         mTexMtxAnm[i].setAnmFlag(false);
     }
 }
 
 void J3DMaterialAnm::calc(J3DMaterial* pMat) const {
-    for (u32 i = 0; i < ARRAY_SIZE(mMatColorAnm); i++) {
+    for (u32 i = 0; i < ARRAY_SIZEU(mMatColorAnm); i++) {
         if (mMatColorAnm[i].getAnmFlag()) {
             _GXColor* color = pMat->getColorBlock()->getMatColor(i);
             mMatColorAnm[i].calc(color);
@@ -49,7 +49,7 @@ void J3DMaterialAnm::calc(J3DMaterial* pMat) const {
     }
 
     u16 tmp;
-    for (u32 i = 0; i < ARRAY_SIZE(mTexNoAnm); i++) {
+    for (u32 i = 0; i < ARRAY_SIZEU(mTexNoAnm); i++) {
         if (mTexNoAnm[i].getAnmFlag()) {
             mTexNoAnm[i].calc(&tmp);
             pMat->getTevBlock()->setTexNo(i, tmp);
@@ -63,14 +63,14 @@ void J3DMaterialAnm::calc(J3DMaterial* pMat) const {
         }
     }
 
-    for (u32 i = 0; i < ARRAY_SIZE(mTevKColorAnm); i++) {
+    for (u32 i = 0; i < ARRAY_SIZEU(mTevKColorAnm); i++) {
         if (mTevKColorAnm[i].getAnmFlag()) {
             _GXColor* color = pMat->getTevBlock()->getTevKColor(i);
             mTevKColorAnm[i].calc(color);
         }
     }
 
-    for (u32 i = 0; i < ARRAY_SIZE(mTexMtxAnm); i++) {
+    for (u32 i = 0; i < ARRAY_SIZEU(mTexMtxAnm); i++) {
         if (mTexMtxAnm[i].getAnmFlag()) {
             J3DTexMtx* texMtx = pMat->getTexGenBlock()->getTexMtx(i);
             mTexMtxAnm[i].calc(&texMtx->getTexMtxInfo().mSRT);

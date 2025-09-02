@@ -16,22 +16,22 @@ cCcS::cCcS() {}
 
 /* 80264A94-80264B60 25F3D4 00CC+00 1/1 1/1 0/0 .text            Ct__4cCcSFv */
 void cCcS::Ct() {
-    for (cCcD_Obj** obj = mpObjAt; obj < mpObjAt + ARRAY_SIZE(mpObjAt); ++obj) {
+    for (cCcD_Obj** obj = mpObjAt; obj < mpObjAt + ARRAY_SIZEU(mpObjAt); ++obj) {
         *obj = NULL;
     }
     mObjAtCount = 0;
 
-    for (cCcD_Obj** obj = mpObjTg; obj < mpObjTg + ARRAY_SIZE(mpObjTg); ++obj) {
+    for (cCcD_Obj** obj = mpObjTg; obj < mpObjTg + ARRAY_SIZEU(mpObjTg); ++obj) {
         *obj = NULL;
     }
     mObjTgCount = 0;
 
-    for (cCcD_Obj** obj = mpObjCo; obj < mpObjCo + ARRAY_SIZE(mpObjCo); ++obj) {
+    for (cCcD_Obj** obj = mpObjCo; obj < mpObjCo + ARRAY_SIZEU(mpObjCo); ++obj) {
         *obj = NULL;
     }
     mObjCoCount = 0;
 
-    for (cCcD_Obj** obj = mpObj; obj < mpObj + ARRAY_SIZE(mpObj); ++obj) {
+    for (cCcD_Obj** obj = mpObj; obj < mpObj + ARRAY_SIZEU(mpObj); ++obj) {
         *obj = NULL;
     }
     mObjCount = 0;
@@ -56,9 +56,9 @@ WeightType cCcS::GetWt(u8 param_0) const {
 /* 80264BA8-80264C5C 25F4E8 00B4+00 0/0 7/7 454/454 .text            Set__4cCcSFP8cCcD_Obj */
 void cCcS::Set(cCcD_Obj* obj) {
     if (obj->ChkAtSet()) {
-        if (mObjAtCount >= ARRAY_SIZE(mpObjAt)) {
+        if (mObjAtCount >= ARRAY_SIZEU(mpObjAt)) {
             OS_REPORT("\x1b[43;30m");
-            OS_REPORT("cCcS::Set AT Overflow.Now Max is %d.\n", ARRAY_SIZE(mpObjAt));
+            OS_REPORT("cCcS::Set AT Overflow.Now Max is %d.\n", ARRAY_SIZEU(mpObjAt));
             OS_REPORT("\x1b[m");
         } else {
             mpObjAt[mObjAtCount] = obj;
@@ -67,9 +67,9 @@ void cCcS::Set(cCcD_Obj* obj) {
     }
 
     if (obj->ChkTgSet()) {
-        if (mObjTgCount >= ARRAY_SIZE(mpObjTg)) {
+        if (mObjTgCount >= ARRAY_SIZEU(mpObjTg)) {
             OS_REPORT("\x1b[43;30m");
-            OS_REPORT("cCcS::Set TG Overflow.Now Max is %d.\n", ARRAY_SIZE(mpObjTg));
+            OS_REPORT("cCcS::Set TG Overflow.Now Max is %d.\n", ARRAY_SIZEU(mpObjTg));
             OS_REPORT("\x1b[m");
         } else {
             mpObjTg[mObjTgCount] = obj;
@@ -78,9 +78,9 @@ void cCcS::Set(cCcD_Obj* obj) {
     }
 
     if (obj->ChkCoSet()) {
-        if (mObjCoCount >= ARRAY_SIZE(mpObjCo)) {
+        if (mObjCoCount >= ARRAY_SIZEU(mpObjCo)) {
             OS_REPORT("\x1b[43;30m");
-            OS_REPORT("cCcS::Set CO Overflow.Now Max is %d.\n", ARRAY_SIZE(mpObjCo));
+            OS_REPORT("cCcS::Set CO Overflow.Now Max is %d.\n", ARRAY_SIZEU(mpObjCo));
             OS_REPORT("\x1b[m");
         } else {
             mpObjCo[mObjCoCount] = obj;
@@ -88,9 +88,9 @@ void cCcS::Set(cCcD_Obj* obj) {
         }
     }
 
-    if (mObjCount >= ARRAY_SIZE(mpObj)) {
+    if (mObjCount >= ARRAY_SIZEU(mpObj)) {
         OS_REPORT("\x1b[43;30m");
-        OS_REPORT("cCcS::Set SET Overflow.Now Max is %d.\n", ARRAY_SIZE(mpObj));
+        OS_REPORT("cCcS::Set SET Overflow.Now Max is %d.\n", ARRAY_SIZEU(mpObj));
         OS_REPORT("\x1b[m");
     } else {
         mpObj[mObjCount] = obj;

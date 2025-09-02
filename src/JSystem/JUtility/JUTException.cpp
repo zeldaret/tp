@@ -469,10 +469,10 @@ bool JUTException::showMapInfo_subroutine(u32 address, bool begin_with_newline) 
         if (result == true) {
             result =
                 queryMapAddress((char*)name_part, section_offset, section_id, &out_addr, &out_size,
-                                out_line, ARRAY_SIZE(out_line), true, begin_with_newline);
+                                out_line, ARRAY_SIZEU(out_line), true, begin_with_newline);
         } else {
             result = queryMapAddress(NULL, address, -1, &out_addr, &out_size, out_line,
-                                     ARRAY_SIZE(out_line), true, begin_with_newline);
+                                     ARRAY_SIZEU(out_line), true, begin_with_newline);
         }
 
         if (result == true) {
@@ -935,7 +935,7 @@ bool JUTException::queryMapAddress_single(char* mapPath, u32 address, s32 sectio
 			char* src;
 			char* dst;
 
-			if (file.fgets(buffer, ARRAY_SIZE(buffer)) < 0)
+			if (file.fgets(buffer, ARRAY_SIZEU(buffer)) < 0)
 				break;
 			if (buffer[0] != '.')
 				continue;
@@ -969,7 +969,7 @@ bool JUTException::queryMapAddress_single(char* mapPath, u32 address, s32 sectio
 		int length;
 
 		while (true) {
-			if ((length = file.fgets(buffer, ARRAY_SIZE(buffer))) <= 4)
+			if ((length = file.fgets(buffer, ARRAY_SIZEU(buffer))) <= 4)
 				break;
 			if ((length < 28))
 				continue;

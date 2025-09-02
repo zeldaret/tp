@@ -29,7 +29,7 @@ public:
 
     static J3DMtxBuffer* getMtxBuffer() { return mMtxBuffer; }
     static J3DJoint* getJoint() {
-        J3D_ASSERT(185, mJoint != NULL, "Error : null pointer.")
+        J3D_ASSERT_NULLPTR(185, mJoint != NULL)
         return mJoint;
     }
     static void setJoint(J3DJoint* joint) { mJoint = joint; }

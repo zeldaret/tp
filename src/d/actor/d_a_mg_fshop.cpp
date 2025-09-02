@@ -238,7 +238,7 @@ static void koro2_draw(fshop_class* param_1) {
     }
     g_env_light.setLightTevColorType_MAJI(ArcIX_A_crwaku_model[0], &param_1->tevStr);
     mDoExt_modelUpdateDL(ArcIX_A_crwaku_model[0]);
-    for (s32 iVar1 = 0; iVar1 < (s32)ARRAY_SIZE(param_1->mKoro2); iVar1++) {
+    for (s32 iVar1 = 0; iVar1 < ARRAY_SIZE(param_1->mKoro2); iVar1++) {
         if (param_1->mKoro2[iVar1].mpModel != NULL) {
             g_env_light.setLightTevColorType_MAJI(param_1->mKoro2[iVar1].mpModel, &param_1->tevStr);
             mDoExt_modelUpdateDL(param_1->mKoro2[iVar1].mpModel);

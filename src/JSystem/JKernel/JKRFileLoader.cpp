@@ -110,7 +110,7 @@ JKRFileLoader* JKRFileLoader::findVolume(const char** volumeName) {
     }
 
     char volumeNameBuffer[0x101];
-    *volumeName = fetchVolumeName(volumeNameBuffer, ARRAY_SIZE(volumeNameBuffer), *volumeName);
+    *volumeName = fetchVolumeName(volumeNameBuffer, ARRAY_SIZEU(volumeNameBuffer), *volumeName);
 
     JSUList<JKRFileLoader>& volumeList = getVolumeList();
     JSUListIterator<JKRFileLoader> iterator;

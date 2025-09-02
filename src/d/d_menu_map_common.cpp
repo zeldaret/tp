@@ -622,7 +622,7 @@ void dMenuMapCommon_c::moveLightDropAnime() {
 /* 801C4738-801C4778 1BF078 0040+00 1/1 0/0 0/0 .text            getIconSizeX__16dMenuMapCommon_cFUc
  */
 f32 dMenuMapCommon_c::getIconSizeX(u8 i_iconNo) {
-    for (int i = 0; i < ARRAY_SIZE(map_icon_size); i++) {
+    for (int i = 0; i < ARRAY_SIZEU(map_icon_size); i++) {
         if (map_icon_size[i].icon_no == i_iconNo) {
             return map_icon_size[i].size_x;
         }
@@ -634,7 +634,7 @@ f32 dMenuMapCommon_c::getIconSizeX(u8 i_iconNo) {
 /* 801C4778-801C47C4 1BF0B8 004C+00 1/1 0/0 0/0 .text            getIconSizeY__16dMenuMapCommon_cFUc
  */
 f32 dMenuMapCommon_c::getIconSizeY(u8 i_iconNo) {
-    for (int i = 0; i < ARRAY_SIZE(map_icon_size); i++) {
+    for (int i = 0; i < ARRAY_SIZEU(map_icon_size); i++) {
         if (map_icon_size[i].icon_no == i_iconNo) {
             return map_icon_size[i].size_y;
         }

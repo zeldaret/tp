@@ -1,6 +1,6 @@
 #include "JSystem/J3DGraphBase/J3DShapeMtx.h"
 #include "JSystem/J3DGraphAnimator/J3DModel.h"
-#include "JSystem/J3DGraphBase/J3DGD.h"
+#include "JSystem/J3DGraphBase/J3DFifo.h"
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"
 #include "JSystem/J3DGraphBase/J3DTexture.h"
 
@@ -79,12 +79,10 @@ u32 J3DShapeMtx::sCurrentPipeline;
 u8* J3DShapeMtx::sCurrentScaleFlag;
 
 // This below is technically part of J3DScaleFlag.
-
-/* 804515B0-804515B4 -00001 0004+00 5/5 3/3 0/0 .sbss            None */
 /* 804515B0 0001+00 data_804515B0 None */
+bool J3DShapeMtx::sNBTFlag;
+
 /* 804515B1 0003+00 data_804515B1 None */
-extern u8 struct_804515B0; // temporary
-u8 J3DShapeMtx::sNBTFlag;
 bool J3DShapeMtx::sLODFlag;
 
 /* 804515B4-804515B8 000AB4 0004+00 4/4 1/1 0/0 .sbss            sTexMtxLoadType__11J3DShapeMtx */
@@ -120,10 +118,10 @@ void J3DDifferedTexMtx::loadExecute(f32 const (*param_0)[4]) {
     Mtx44 sp_a8, sp_68;
 
     J3DTexGenBlock* tex_gen_block = sTexGenBlock; // sp_60
-    J3D_ASSERT(195, tex_gen_block != NULL, "Error : null pointer");
+    J3D_ASSERT_NULLPTR(195, tex_gen_block != NULL);
 
     J3DTexMtxObj* tex_mtx_obj = sTexMtxObj; // sp_5c
-    J3D_ASSERT(198, tex_mtx_obj != NULL, "Error : null pointer");
+    J3D_ASSERT_NULLPTR(198, tex_mtx_obj != NULL);
 
     J3DTexMtxInfo* tex_mtx_info_1; // sp_58
     int tex_gen_type; // sp_54
@@ -136,7 +134,7 @@ void J3DDifferedTexMtx::loadExecute(f32 const (*param_0)[4]) {
             tex_gen_type = tex_gen_block->getTexCoord(i)->getTexGenType();
             if (tex_gen_type == 1 || tex_gen_type == 0) {
                 tex_mtx_2 = tex_gen_block->getTexMtx(i);
-                JUT_ASSERT_MSG(215, tex_mtx_2 != NULL, "Error : null pointer");
+                J3D_ASSERT_NULLPTR(215, tex_mtx_2 != NULL);
                 tex_mtx_info_1 = &tex_mtx_2->getTexMtxInfo();
 
                 u32 sp_4c = tex_mtx_info_1->mInfo & 0x3f;
@@ -222,7 +220,7 @@ void J3DDifferedTexMtx::loadExecute(f32 const (*param_0)[4]) {
             int tex_gen_type = tex_gen_block->getTexCoord(i)->getTexGenType();
             if (tex_gen_type == 1 || tex_gen_type == 0) {
                 J3DTexMtx* tex_mtx = tex_gen_block->getTexMtx(i); // sp_2c
-                JUT_ASSERT_MSG(325, tex_mtx != NULL, "Error : null pointer");
+                J3D_ASSERT_NULLPTR(325, tex_mtx != NULL);
                 tex_mtx_info_1 = &tex_mtx->getTexMtxInfo();
 
                 u32 tex_gen_src = tex_mtx_info_1->mInfo & 0x3f; // sp_28

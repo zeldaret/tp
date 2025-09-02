@@ -863,7 +863,7 @@ void daTbox_c::demoProcAppear() {
 /* 80493518-80493838 0028D8 0320+00 7/7 0/0 0/0 .text            demoProc__8daTbox_cFv */
 int daTbox_c::demoProc() {
     static char* action_table[] = {"WAIT", "OPEN", "APPEAR", "OPEN_SHORT", "DROP"};
-    int act_idx = dComIfGp_evmng_getMyActIdx(mStaffId, action_table, ARRAY_SIZE(action_table), 0, 0);
+    int act_idx = dComIfGp_evmng_getMyActIdx(mStaffId, action_table, ARRAY_SIZEU(action_table), 0, 0);
     int tbox_no;
 
     if (dComIfGp_evmng_getIsAddvance(mStaffId)) {

@@ -291,7 +291,7 @@ static s16 l_statue_ang[6] = {
 
 /* 805A784C-805A7A68 00096C 021C+00 2/2 0/0 0/0 .text            demoProc__13daTagStatue_cFv */
 int daTagStatue_c::demoProc() {
-    int act_id = dComIfGp_evmng_getMyActIdx(mStaffId, action_table, ARRAY_SIZE(action_table), 0, 0);
+    int act_id = dComIfGp_evmng_getMyActIdx(mStaffId, action_table, ARRAY_SIZEU(action_table), 0, 0);
 
     if(dComIfGp_evmng_getIsAddvance(mStaffId)) {
         switch(act_id) {

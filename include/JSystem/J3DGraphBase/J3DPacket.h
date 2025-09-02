@@ -17,12 +17,27 @@ class J3DTexMtx;
 class J3DTexMtxObj;
 class J3DTexture;
 
-inline u32 getDiffFlag_LightObjNum(u32 param_1) {
-    return (param_1 & 0xf0) >> 4;
+enum J3DDiffFlag {
+    J3DDiffFlag_MatColor         = 0x1,
+    J3DDiffFlag_ColorChan        = 0x2,
+    J3DDiffFlag_AmbColor         = 0x4,
+    J3DDiffFlag_TexGen           = 0x1000,
+    J3DDiffFlag_TevReg           = 0x1000000,
+    J3DDiffFlag_KonstColor       = 0x2000000,  // is this right?
+    J3DDiffFlag_TexCoordScale    = 0x4000000,
+    J3DDiffFlag_TevStageIndirect = 0x8000000,
+    J3DDiffFlag_Fog              = 0x10000000,
+    J3DDiffFlag_Blend            = 0x20000000,
+    J3DDiffFlag_Unk40000000      = 0x40000000,
+    J3DDiffFlag_Changed          = 0x80000000,
+};
+
+inline u32 getDiffFlag_LightObjNum(u32 diffFlags) {
+    return (diffFlags & 0xf0) >> 4;
 }
 
-inline u32 getDiffFlag_TexGenNum(u32 param_1) {
-    return (param_1 & 0xf00) >> 8;
+inline u32 getDiffFlag_TexGenNum(u32 diffFlags) {
+    return (diffFlags & 0xf00) >> 8;
 }
 
 inline int calcDifferedBufferSize_TexMtxSize(u32 param_1) {
@@ -33,8 +48,8 @@ inline int calcDifferedBufferSize_TexGenSize(u32 param_1) {
     return param_1 * 0x3d + 10;
 }
 
-inline u32 getDiffFlag_TexNoNum(u32 param_1) {
-    return (param_1 & 0xf0000) >> 0x10;
+inline u32 getDiffFlag_TexNoNum(u32 diffFlags) {
+    return (diffFlags & 0xf0000) >> 0x10;
 }
 
 inline int calcDifferedBufferSize_TexNoSize(u32 param_1) {
@@ -47,8 +62,8 @@ inline u32 calcDifferedBufferSize_TexNoAndTexCoordScaleSize(u32 param_1) {
     return res;
 }
 
-inline u32 getDiffFlag_TevStageNum(u32 param_1) {
-    return (param_1 & 0xf00000) >> 0x14;
+inline u32 getDiffFlag_TevStageNum(u32 diffFlags) {
+    return (diffFlags & 0xf00000) >> 0x14;
 }
 
 inline int calcDifferedBufferSize_TevStageSize(u32 param_1) {
@@ -66,15 +81,15 @@ inline int calcDifferedBufferSize_TevStageDirectSize(u32 param_1) {
 class J3DDisplayListObj {
 public:
     J3DDisplayListObj() {
-        mpData[0] = NULL;
-        mpData[1] = NULL;
+        mpDisplayList[0] = NULL;
+        mpDisplayList[1] = NULL;
         mSize = 0;
-        mCapacity = 0;
+        mMaxSize = 0;
     }
 
     J3DError newDisplayList(u32);
     J3DError newSingleDisplayList(u32);
-    J3DError single_To_Double();
+    int single_To_Double();
     void setSingleDisplayList(void*, u32);
     void swapBuffer();
     void callDL() const;
@@ -83,15 +98,15 @@ public:
     void beginPatch();
     u32 endPatch();
 
-    u8* getDisplayList(int idx) const { return (u8*)mpData[idx]; }
+    u8* getDisplayList(int idx) const { return (u8*)mpDisplayList[idx]; }
     u32 getDisplayListSize() const { return mSize; }
 
     static GDLObj sGDLObj;
     static s32 sInterruptFlag;
 
-    /* 0x0 */ void* mpData[2];
+    /* 0x0 */ void* mpDisplayList[2];
     /* 0x8 */ u32 mSize;
-    /* 0xC */ u32 mCapacity;
+    /* 0xC */ u32 mMaxSize;
 };  // Size: 0x10
 
 /**
@@ -103,7 +118,7 @@ public:
     J3DPacket() {
         mpNextPacket = NULL;
         mpFirstChild = NULL;
-        mpUserData = NULL;
+        mpUserArea = NULL;
     }
 
     void addChildPacket(J3DPacket*);
@@ -116,8 +131,8 @@ public:
         mpFirstChild = NULL;
     }
 
-    void* getUserArea() const { return mpUserData; }
-    void setUserArea(uintptr_t area) { mpUserData = (void*)area; }
+    void* getUserArea() const { return mpUserArea; }
+    void setUserArea(uintptr_t area) { mpUserArea = (void*)area; }
 
     virtual int entry(J3DDrawBuffer*);
     virtual void draw();
@@ -126,7 +141,7 @@ public:
 public:
     /* 0x04 */ J3DPacket* mpNextPacket;
     /* 0x08 */ J3DPacket* mpFirstChild;
-    /* 0x0C */ void* mpUserData;
+    /* 0x0C */ void* mpUserArea;
 };  // Size: 0x10
 
 /**
@@ -151,7 +166,7 @@ public:
     void beginDL() { mpDisplayListObj->beginDL(); }
     void endDL() { mpDisplayListObj->endDL(); }
 
-    void* getDisplayList(int i) { return mpDisplayListObj->mpData[i]; }
+    void* getDisplayList(int i) { return mpDisplayListObj->mpDisplayList[i]; }
     u32 getDisplayListSize() const { return mpDisplayListObj->mSize; } 
 
     enum {
@@ -168,7 +183,7 @@ public:
 
 public:
     /* 0x10 */ u32 mFlags;
-    /* 0x14 */ char mPad0[0x0C];  // unk
+    /* 0x14 */ char unk_0x14[0x20 - 0x14];
     /* 0x20 */ J3DDisplayListObj* mpDisplayListObj;
     /* 0x24 */ J3DTexMtxObj* mpTexMtxObj;
 };  // Size: 0x28
@@ -181,7 +196,7 @@ class J3DShapePacket : public J3DDrawPacket {
 public:
     J3DShapePacket();
     u32 calcDifferedBufferSize(u32);
-    J3DError newDifferedDisplayList(u32);
+    int newDifferedDisplayList(u32);
     void prepareDraw() const;
     void drawFast();
 
@@ -189,12 +204,12 @@ public:
     virtual void draw();
 
     void setShape(J3DShape* pShape) {
-        J3D_ASSERT(523, pShape != NULL, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(523, pShape != NULL);
         mpShape = pShape;
     }
 
     void setModel(J3DModel* pModel) {
-        J3D_ASSERT(533, pModel != NULL, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(533, pModel != NULL);
         mpModel = pModel;
     }
 
@@ -230,20 +245,20 @@ public:
     void setShapePacket(J3DShapePacket* packet) { mpShapePacket = packet; }
 
     void setMaterial(J3DMaterial* pMaterial) {
-        J3D_ASSERT(646, pMaterial != NULL, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(646, pMaterial != NULL);
         mpMaterial = pMaterial;
     }
 
     void setTexture(J3DTexture* pTexture) {
-        J3D_ASSERT(651, pTexture != NULL, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(651, pTexture != NULL);
         mpTexture = pTexture;
     }
 
     void setInitShapePacket(J3DShapePacket* packet) { mpInitShapePacket = packet; }
     void setMaterialID(u32 id) { mDiffFlag = id; }
     void setMaterialAnmID(J3DMaterialAnm* materialAnm) { mpMaterialAnm = materialAnm; }
-    bool isChanged() const { return mDiffFlag & 0x80000000; }
-    bool isEnabled_Diff() const { return mpInitShapePacket->getDisplayListObj() != NULL; }
+    BOOL isChanged() { return mDiffFlag & J3DDiffFlag_Changed; }
+    bool isEnabled_Diff() { return mpInitShapePacket->getDisplayListObj() != NULL; }
 
     virtual ~J3DMatPacket();
     virtual int entry(J3DDrawBuffer*);

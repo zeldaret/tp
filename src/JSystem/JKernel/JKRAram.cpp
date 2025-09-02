@@ -47,7 +47,7 @@ OSMessageQueue JKRAram::sMessageQueue = {0};
 /* 802D2040-802D214C 2CC980 010C+00 1/1 0/0 0/0 .text            __ct__7JKRAramFUlUll */
 JKRAram::JKRAram(u32 audio_buffer_size, u32 audio_graph_size, s32 priority)
     : JKRThread(0xC00, 0x10, priority) {
-    u32 aramBase = ARInit(mStackArray, ARRAY_SIZE(mStackArray));
+    u32 aramBase = ARInit(mStackArray, ARRAY_SIZEU(mStackArray));
     ARQInit();
 
     u32 aramSize = ARGetSize();

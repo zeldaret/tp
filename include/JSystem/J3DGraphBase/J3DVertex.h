@@ -148,8 +148,4 @@ private:
     /* 0x34 */ GXColor* mCurrentVtxCol;
 };  // Size: 0x38
 
-struct VertexNormal {
-    Vec data;
-};
-
 #endif /* J3DVERTEX_H */

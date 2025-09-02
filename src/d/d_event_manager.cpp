@@ -538,7 +538,7 @@ s16 dEvent_manager_c::getEventIdx(char const* eventName, u8 mapToolID, s32 roomN
     dEvDtBase_c* event;
     int j;
     int i;
-    for (i = ARRAY_SIZE(mEventList) - 1; i >= 1; i--) {
+    for (i = ARRAY_SIZEU(mEventList) - 1; i >= 1; i--) {
         if (i < 4 || 9 < i || roomNo == mEventList[i].roomNo()) {
             event = &mEventList[i];
             if (event->getHeaderP() != NULL) {
@@ -598,7 +598,7 @@ s16 dEvent_manager_c::getEventIdx(fopAc_ac_c* pActor, char const* eventName, u8 
     dEvDtBase_c* event;
     int j;
     int type;
-    for (type = ARRAY_SIZE(mEventList) - 1; type >= 1; type--) {
+    for (type = ARRAY_SIZEU(mEventList) - 1; type >= 1; type--) {
         dEvDtBase_c* eventP = &mEventList[type];
         dEvDtBase_c event;
         if (type < 4 || 9 < type || actorRoomNo == mEventList[type].roomNo()) {
@@ -1082,7 +1082,7 @@ static int dEv_talkman_get_action(int param_0) {
             "TALK1",
         };
         int actIdx = dComIfGp_getEventManager().getMyActIdx(staffId, action_table,
-                                                              ARRAY_SIZE(action_table), 0, 0);
+                                                              ARRAY_SIZEU(action_table), 0, 0);
         if (actIdx == param_0) {
             dComIfGp_getEventManager().cutEnd(staffId);
         }

@@ -31,5 +31,5 @@ bool fopDwTg_Init(create_tag_class* i_createTag, void* i_process) {
 void fopDwTg_CreateQueue() {
     static node_list_class lists[1000];
 
-    cTr_Create(&g_fopDwTg_Queue, lists, ARRAY_SIZE(lists));
+    cTr_Create(&g_fopDwTg_Queue, lists, ARRAY_SIZEU(lists));
 }

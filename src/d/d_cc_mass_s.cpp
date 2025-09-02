@@ -230,11 +230,11 @@ void dCcMassS_Mng::Clear() {
     mMassObjCount = 0;
     mMassAreaCount = 0;
 
-    for (int i = 0; i < (s32)ARRAY_SIZE(mMassObjs); ++i) {
+    for (int i = 0; i < ARRAY_SIZE(mMassObjs); ++i) {
         mMassObjs[i].Clear();
     }
 
-    for (int i = 0; i < (s32)ARRAY_SIZE(mMassAreas); ++i) {
+    for (int i = 0; i < ARRAY_SIZE(mMassAreas); ++i) {
         mMassAreas[i].Clear();
     }
 
@@ -246,8 +246,8 @@ void dCcMassS_Mng::Clear() {
 
 /* 80085D98-80085E6C 0806D8 00D4+00 0/0 4/4 7/7 .text            Set__12dCcMassS_MngFP8cCcD_ObjUc */
 void dCcMassS_Mng::Set(cCcD_Obj* p_obj, u8 priority) {
-    if (mMassObjCount >= (s32)ARRAY_SIZE(mMassObjs)) {
-        for (int i = 0; i < (s32)ARRAY_SIZE(mMassObjs); ++i) {
+    if (mMassObjCount >= ARRAY_SIZE(mMassObjs)) {
+        for (int i = 0; i < ARRAY_SIZE(mMassObjs); ++i) {
             int prevPrio = mMassObjs[i].GetPriority();
             if (prevPrio > priority || (prevPrio == priority && cM_rndF(1.0f) < 0.5f)) {
                 mMassObjs[i].Set(p_obj, priority, NULL);

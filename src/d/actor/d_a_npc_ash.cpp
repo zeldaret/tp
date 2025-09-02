@@ -1201,7 +1201,7 @@ bool daNpcAsh_c::demo(void* param_0) {
             if (staff_id != -1) {
                 mStaffID = staff_id;
                 s32 eventIdx = eventManager.getMyActIdx(staff_id, l_evtNames,
-                                                        ARRAY_SIZE(l_evtNames), 0, 0);
+                                                        ARRAY_SIZEU(l_evtNames), 0, 0);
                 if (eventIdx >= 1 && eventIdx < 6) {
                     mOrderEvtNo = eventIdx;
                 }

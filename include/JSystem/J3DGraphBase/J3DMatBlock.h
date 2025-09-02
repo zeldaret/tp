@@ -4,8 +4,7 @@
 #include "JSystem/J3DGraphBase/J3DGD.h"
 #include "JSystem/J3DGraphBase/J3DTevs.h"
 #include "JSystem/J3DGraphBase/J3DTexture.h"
-#include "JSystem/JUtility/JUTAssert.h"
-#include "dolphin/types.h"
+#include "JSystem/J3DAssert.h"
 #include "global.h"
 
 /**
@@ -46,20 +45,27 @@ struct J3DGXColor : public GXColor {
     }
 };
 
+extern const J3DNBTScaleInfo j3dDefaultNBTScaleInfo;
+
 /**
  * @ingroup jsystem-j3d
  *
  */
 struct J3DNBTScale : public J3DNBTScaleInfo {
-    J3DNBTScale() {}
+    J3DNBTScale() {
+        mbHasScale = j3dDefaultNBTScaleInfo.mbHasScale;
+        mScale.x = j3dDefaultNBTScaleInfo.mScale.x;
+        mScale.y = j3dDefaultNBTScaleInfo.mScale.y;
+        mScale.z = j3dDefaultNBTScaleInfo.mScale.z;
+    }
+
     J3DNBTScale(J3DNBTScaleInfo const& info) {
         mbHasScale = info.mbHasScale;
         mScale = info.mScale;
     }
+
     Vec* getScale() { return &mScale; }
 };
-
-extern const J3DNBTScaleInfo j3dDefaultNBTScaleInfo;
 
 /**
  * @ingroup jsystem-j3d
@@ -222,39 +228,39 @@ public:
     /* 80319D30 */ virtual void diffColorChan();
     /* 80323560 */ virtual u32 getType() { return 'CLOF'; }
     /* 80323184 */ virtual void setMatColor(u32 idx, J3DGXColor const* color) {
-        J3D_ASSERT(0x121, idx >= 0 && idx < ARRAY_SIZE(mMatColor), "Error : range over.");
-        J3D_ASSERT(0x122, color != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x121, idx >= 0 && idx < ARRAY_SIZEU(mMatColor));
+        J3D_ASSERT_NULLPTR(0x122, color != 0);
         mMatColor[idx] = *color;
     }
     /* 80323158 */ virtual void setMatColor(u32 idx, J3DGXColor color) {
-        J3D_ASSERT(0x128, idx >= 0 && idx < ARRAY_SIZE(mMatColor), "Error : range over.");
+        J3D_ASSERT_RANGE(0x128, idx >= 0 && idx < ARRAY_SIZEU(mMatColor));
         mMatColor[idx] = color;
     }
     /* 803231B0 */ virtual J3DGXColor* getMatColor(u32 idx) {
-        J3D_ASSERT(0x12d, idx >= 0 && idx < ARRAY_SIZE(mMatColor), "Error : range over.");
+        J3D_ASSERT_RANGE(0x12d, idx >= 0 && idx < ARRAY_SIZEU(mMatColor));
         return &mMatColor[idx];
     }
     /* 803231D0 */ virtual void setColorChanNum(u8 num) { mColorChanNum = num; }
     /* 803231C4 */ virtual void setColorChanNum(u8 const* num) {
-        J3D_ASSERT(0x137, num != 0, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(0x137, num != 0);
         mColorChanNum = *num;
     }
     /* 803231D8 */ virtual u8 getColorChanNum() const { return mColorChanNum; }
     /* 803231F4 */ virtual void setColorChan(u32 idx, J3DColorChan const& chan) {
-        J3D_ASSERT(0x142, idx >= 0 && idx < ARRAY_SIZE(mColorChan), "Error : range over.");
+        J3D_ASSERT_RANGE(0x142, idx >= 0 && idx < ARRAY_SIZEU(mColorChan));
         mColorChan[idx] = chan;
     }
     /* 803231E0 */ virtual void setColorChan(u32 idx, J3DColorChan const* chan) {
-        J3D_ASSERT(0x148, idx >= 0 && idx < ARRAY_SIZE(mColorChan), "Error : range over.");
-        J3D_ASSERT(0x149, chan != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x148, idx >= 0 && idx < ARRAY_SIZEU(mColorChan));
+        J3D_ASSERT_NULLPTR(0x149, chan != 0);
         mColorChan[idx] = *chan;
     }
     /* 80323208 */ virtual J3DColorChan* getColorChan(u32 idx) {
-        J3D_ASSERT(0x14e, idx >= 0 && idx < ARRAY_SIZE(mColorChan), "Error : range over.");
+        J3D_ASSERT_RANGE(0x14e, idx >= 0 && idx < ARRAY_SIZEU(mColorChan));
         return &mColorChan[idx];
     }
     /* 80323224 */ virtual void setCullMode(u8 const* mode) {
-        J3D_ASSERT(0x154, mode != 0, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(0x154, mode != 0);
         mCullMode = *mode;
     }
     /* 8032321C */ virtual void setCullMode(u8 mode) { mCullMode = mode; }
@@ -289,16 +295,16 @@ public:
     /* 80317B8C */ virtual s32 countDLSize();
     /* 80323074 */ virtual u32 getType() { return 'CLAB'; }
     /* 803230AC */ virtual void setAmbColor(u32 idx, J3DGXColor const* color) {
-        J3D_ASSERT(0x1a3, idx >= 0 && idx < ARRAY_SIZE(mAmbColor), "Error : range over.");
-        J3D_ASSERT(0x1a4, color != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x1a3, idx >= 0 && idx < ARRAY_SIZEU(mAmbColor));
+        J3D_ASSERT_NULLPTR(0x1a4, color != 0);
         mAmbColor[idx] = *color;
     }
     /* 80323080 */ virtual void setAmbColor(u32 idx, J3DGXColor color) {
-        J3D_ASSERT(0x1aa, idx >= 0 && idx < ARRAY_SIZE(mAmbColor), "Error : range over.");
+        J3D_ASSERT_RANGE(0x1aa, idx >= 0 && idx < ARRAY_SIZEU(mAmbColor));
         mAmbColor[idx] = color;
     }
     /* 803230D8 */ virtual J3DGXColor* getAmbColor(u32 idx) {
-        J3D_ASSERT(0x1af, idx >= 0 && idx < ARRAY_SIZE(mAmbColor), "Error : range over.");
+        J3D_ASSERT_RANGE(0x1af, idx >= 0 && idx < ARRAY_SIZEU(mAmbColor));
         return &mAmbColor[idx];
     }
     /* 803230EC */ virtual ~J3DColorBlockAmbientOn() {}
@@ -330,60 +336,60 @@ public:
     /* 80317B94 */ virtual s32 countDLSize();
     /* 80322E80 */ virtual u32 getType() { return 'CLON'; }
     /* 80322EB8 */ virtual void setMatColor(u32 idx, J3DGXColor const* color) {
-        J3D_ASSERT(0x1e9, idx >= 0 && idx < ARRAY_SIZE(mMatColor), "Error : range over.");
-        J3D_ASSERT(0x1ea, color != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x1e9, idx >= 0 && idx < ARRAY_SIZEU(mMatColor));
+        J3D_ASSERT_NULLPTR(0x1ea, color != 0);
         mMatColor[idx] = *color;
     }
     /* 80322E8C */ virtual void setMatColor(u32 idx, J3DGXColor color) {
-        J3D_ASSERT(0x1f0, idx >= 0 && idx < ARRAY_SIZE(mMatColor), "Error : range over.");
+        J3D_ASSERT_RANGE(0x1f0, idx >= 0 && idx < ARRAY_SIZEU(mMatColor));
         mMatColor[idx] = color;
     }
     /* 80322EE4 */ virtual J3DGXColor* getMatColor(u32 idx) {
-        J3D_ASSERT(0x1f5, idx >= 0 && idx < ARRAY_SIZE(mMatColor), "Error : range over.");
+        J3D_ASSERT_RANGE(0x1f5, idx >= 0 && idx < ARRAY_SIZEU(mMatColor));
         return &mMatColor[idx];
     }
     /* 80322F24 */ virtual void setAmbColor(u32 idx, J3DGXColor const* color) {
-        J3D_ASSERT(0x1fc, idx >= 0 && idx < ARRAY_SIZE(mAmbColor), "Error : range over.");
-        J3D_ASSERT(0x1fd, color != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x1fc, idx >= 0 && idx < ARRAY_SIZEU(mAmbColor));
+        J3D_ASSERT_NULLPTR(0x1fd, color != 0);
         mAmbColor[idx] = *color;
     }
     /* 80322EF8 */ virtual void setAmbColor(u32 idx, J3DGXColor color) {
-        J3D_ASSERT(0x203, idx >= 0 && idx < ARRAY_SIZE(mAmbColor), "Error : range over.");
+        J3D_ASSERT_RANGE(0x203, idx >= 0 && idx < ARRAY_SIZEU(mAmbColor));
         mAmbColor[idx] = color;
     }
     /* 80322F50 */ virtual J3DGXColor* getAmbColor(u32 idx) {
-        J3D_ASSERT(0x208, idx >= 0 && idx < ARRAY_SIZE(mAmbColor), "Error : range over.");
+        J3D_ASSERT_RANGE(0x208, idx >= 0 && idx < ARRAY_SIZEU(mAmbColor));
         return &mAmbColor[idx];
     }
     /* 80322F70 */ virtual void setColorChanNum(u8 num) { mColorChanNum = num; }
     /* 80322F64 */ virtual void setColorChanNum(u8 const* num) {
-        J3D_ASSERT(0x212, num != 0, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(0x212, num != 0);
         mColorChanNum = *num;
     }
     /* 80322F78 */ virtual u8 getColorChanNum() const { return mColorChanNum; }
     /* 80322F94 */ virtual void setColorChan(u32 idx, J3DColorChan const& chan) {
-        J3D_ASSERT(0x21d, idx >= 0 && idx < ARRAY_SIZE(mColorChan), "Error : range over.");
+        J3D_ASSERT_RANGE(0x21d, idx >= 0 && idx < ARRAY_SIZEU(mColorChan));
         mColorChan[idx] = chan;
     }
     /* 80322F80 */ virtual void setColorChan(u32 idx, J3DColorChan const* chan) {
-        J3D_ASSERT(0x223, idx >= 0 && idx < ARRAY_SIZE(mColorChan), "Error : range over.");
-        J3D_ASSERT(0x224, chan != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x223, idx >= 0 && idx < ARRAY_SIZEU(mColorChan));
+        J3D_ASSERT_NULLPTR(0x224, chan != 0);
         mColorChan[idx] = *chan;
     }
     /* 80322FA8 */ virtual J3DColorChan* getColorChan(u32 idx) {
-        J3D_ASSERT(0x229, idx >= 0 && idx < ARRAY_SIZE(mColorChan), "Error : range over.");
+        J3D_ASSERT_RANGE(0x229, idx >= 0 && idx < ARRAY_SIZEU(mColorChan));
         return &mColorChan[idx];
     }
     /* 80322FBC */ virtual void setLight(u32 idx, J3DLightObj* light) {
-        J3D_ASSERT(0x230, idx >= 0 && idx < ARRAY_SIZE(mLight), "Error : range over.");
+        J3D_ASSERT_RANGE(0x230, idx >= 0 && idx < ARRAY_SIZEU(mLight));
         mLight[idx] = light;
     }
     /* 80322FCC */ virtual J3DLightObj* getLight(u32 idx) {
-        J3D_ASSERT(0x235, idx >= 0 && idx < ARRAY_SIZE(mLight), "Error : range over.");
+        J3D_ASSERT_RANGE(0x235, idx >= 0 && idx < ARRAY_SIZEU(mLight));
         return mLight[idx];
     }
     /* 80322FE4 */ virtual void setCullMode(u8 const* mode) {
-        J3D_ASSERT(0x23b, mode != 0, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(0x23b, mode != 0);
         mCullMode = *mode;
     }
     /* 80322FDC */ virtual void setCullMode(u8 mode) {
@@ -479,26 +485,26 @@ public:
     /* 80317B9C */ virtual s32 countDLSize();
     /* 80322E74 */ virtual u32 getType() { return 'TGPT'; }
     /* 80322D3C */ virtual void setTexGenNum(u32 const* num) {
-        J3D_ASSERT(0x335, num != 0, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(0x335, num != 0);
         mTexGenNum = *num;
     }
     /* 80322D34 */ virtual void setTexGenNum(u32 num) { mTexGenNum = num; }
     /* 80322D48 */ virtual u32 getTexGenNum() const { return mTexGenNum; }
     /* 80322D50 */ virtual void setTexCoord(u32 idx, J3DTexCoord const* coord) {
-        J3D_ASSERT(0x344, idx >= 0 && idx < ARRAY_SIZE(mTexCoord), "Error : range over.");
-        J3D_ASSERT(0x345, coord != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x344, idx >= 0 && idx < ARRAY_SIZEU(mTexCoord));
+        J3D_ASSERT_NULLPTR(0x345, coord != 0);
         mTexCoord[idx] = *coord;
     }
     /* 80322D64 */ virtual J3DTexCoord* getTexCoord(u32 idx) {
-        J3D_ASSERT(0x34a, idx >= 0 && idx < ARRAY_SIZE(mTexCoord), "Error : range over.");
+        J3D_ASSERT_RANGE(0x34a, idx >= 0 && idx < ARRAY_SIZEU(mTexCoord));
         return &mTexCoord[idx];
     }
     /* 80322D78 */ virtual void setTexMtx(u32 idx, J3DTexMtx* mtx) {
-        J3D_ASSERT(0x351, idx >= 0 && idx < ARRAY_SIZE(mTexMtx), "Error : range over.");
+        J3D_ASSERT_RANGE(0x351, idx >= 0 && idx < ARRAY_SIZEU(mTexMtx));
         mTexMtx[idx] = mtx;
     }
     /* 80322D88 */ virtual J3DTexMtx* getTexMtx(u32 idx) {
-        J3D_ASSERT(0x356, idx >= 0 && idx < ARRAY_SIZE(mTexMtx), "Error : range over.");
+        J3D_ASSERT_RANGE(0x356, idx >= 0 && idx < ARRAY_SIZEU(mTexMtx));
         return mTexMtx[idx];
     }
     /* 80322D98 */ virtual u32 getTexMtxOffset() const { return mTexMtxOffset; }
@@ -517,7 +523,7 @@ public:
  */
 class J3DTexGenBlock4 : public J3DTexGenBlockPatched {
 public:
-    J3DTexGenBlock4() : mNBTScale(j3dDefaultNBTScaleInfo) {
+    J3DTexGenBlock4() : mNBTScale() {
         initialize();
     }
     /* 80317674 */ void initialize();
@@ -528,7 +534,7 @@ public:
     /* 80317BA4 */ virtual s32 countDLSize();
     /* 80322DA8 */ virtual u32 getType() { return 'TGB4'; }
     /* 80322DD8 */ virtual void setNBTScale(J3DNBTScale const* scale) {
-        J3D_ASSERT(0x393, scale != 0, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(0x393, scale != 0);
         mNBTScale = *scale;
     }
     /* 80322DB4 */ virtual void setNBTScale(J3DNBTScale scale) { mNBTScale = scale; }
@@ -544,7 +550,7 @@ public:
  */
 class J3DTexGenBlockBasic : public J3DTexGenBlockPatched {
 public:
-    J3DTexGenBlockBasic() : mNBTScale(j3dDefaultNBTScaleInfo) {
+    J3DTexGenBlockBasic() : mNBTScale() {
         initialize();
     }
     /* 803176A4 */ void initialize();
@@ -555,7 +561,7 @@ public:
     /* 80317BAC */ virtual s32 countDLSize();
     /* 80322C6C */ virtual u32 getType() { return 'TGBC'; }
     /* 80322C9C */ virtual void setNBTScale(J3DNBTScale const* scale) {
-        J3D_ASSERT(0x3ca, scale != 0, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(0x3ca, scale != 0);
         mNBTScale = *scale;
     }
     /* 80322C78 */ virtual void setNBTScale(J3DNBTScale scale) { mNBTScale = scale; }
@@ -672,107 +678,107 @@ public:
     /* 80322974 */ virtual void indexToPtr() { indexToPtr_private(mTexNoOffset); }
     /* 80322998 */ virtual u32 getType() { return 'TVPT'; }
     /* 803229AC */ virtual void setTevStageNum(u8 const* num) {
-        J3D_ASSERT(0x52c, num != 0, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(0x52c, num != 0);
         mTevStageNum = *num;
     }
     /* 803229A4 */ virtual void setTevStageNum(u8 num) { mTevStageNum = num; }
     /* 803229B8 */ virtual u8 getTevStageNum() const { return mTevStageNum; }
     /* 80317BB4 */ virtual s32 countDLSize();
     /* 803229D0 */ virtual void setTexNo(u32 idx, u16 const* texNo) {
-        J3D_ASSERT(0x53b, idx >= 0 && idx < ARRAY_SIZE(mTexNo), "Error : range over.");
-        J3D_ASSERT(0x53c, texNo != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x53b, idx >= 0 && idx < ARRAY_SIZEU(mTexNo));
+        J3D_ASSERT_NULLPTR(0x53c, texNo != 0);
         mTexNo[idx] = *texNo;
     }
     /* 803229C0 */ virtual void setTexNo(u32 idx, u16 texNo) {
-        J3D_ASSERT(0x542, idx >= 0 && idx < ARRAY_SIZE(mTexNo), "Error : range over.");
+        J3D_ASSERT_RANGE(0x542, idx >= 0 && idx < ARRAY_SIZEU(mTexNo));
         mTexNo[idx] = texNo;
     }
     /* 803229E4 */ virtual u16 getTexNo(u32 idx) const {
-        J3D_ASSERT(1353, idx >= 0 && idx < 8, "Error : range over.");
+        J3D_ASSERT_RANGE(1353, idx >= 0 && idx < 8);
         return mTexNo[idx];
     }
     /* 80322A08 */ virtual void setTevOrder(u32 idx, J3DTevOrder const* order) {
-        J3D_ASSERT(0x550, idx >= 0 && idx < ARRAY_SIZE(mTevOrder), "Error : range over.");
-        J3D_ASSERT(0x551, order != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x550, idx >= 0 && idx < ARRAY_SIZEU(mTevOrder));
+        J3D_ASSERT_NULLPTR(0x551, order != 0);
         mTevOrder[idx] = *order;
     }
     /* 803229F4 */ virtual void setTevOrder(u32 idx, J3DTevOrder order) {
-        J3D_ASSERT(0x557, idx >= 0 && idx < ARRAY_SIZE(mTevOrder), "Error : range over.");
+        J3D_ASSERT_RANGE(0x557, idx >= 0 && idx < ARRAY_SIZEU(mTevOrder));
         mTevOrder[idx] = order;
     }
     /* 80322A1C */ virtual J3DTevOrder* getTevOrder(u32 idx) {
-        J3D_ASSERT(0x55c, idx >= 0 && idx < ARRAY_SIZE(mTevOrder), "Error : range over.");
+        J3D_ASSERT_RANGE(0x55c, idx >= 0 && idx < ARRAY_SIZEU(mTevOrder));
         return &mTevOrder[idx];
     }
     /* 80322A6C */ virtual void setTevStage(u32 idx, J3DTevStage const* stage) {
-        J3D_ASSERT(0x563, idx >= 0 && idx < ARRAY_SIZE(mTevStage), "Error : range over.");
-        J3D_ASSERT(0x564, stage != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x563, idx >= 0 && idx < ARRAY_SIZEU(mTevStage));
+        J3D_ASSERT_NULLPTR(0x564, stage != 0);
         mTevStage[idx] = *stage;
     }
     /* 80322A30 */ virtual void setTevStage(u32 idx, J3DTevStage stage) {
-        J3D_ASSERT(0x56a, idx >= 0 && idx < ARRAY_SIZE(mTevStage), "Error : range over.");
+        J3D_ASSERT_RANGE(0x56a, idx >= 0 && idx < ARRAY_SIZEU(mTevStage));
         mTevStage[idx] = stage;
     }
     /* 80322AA8 */ virtual J3DTevStage* getTevStage(u32 idx) {
-        J3D_ASSERT(0x56f, idx >= 0 && idx < ARRAY_SIZE(mTevStage), "Error : range over.");
+        J3D_ASSERT_RANGE(0x56f, idx >= 0 && idx < ARRAY_SIZEU(mTevStage));
         return &mTevStage[idx];
     }
     /* 80322AD0 */ virtual void setIndTevStage(u32 idx, J3DIndTevStage const* stage) {
-        J3D_ASSERT(0x576, idx >= 0 && idx < ARRAY_SIZE(mIndTevStage), "Error : range over.");
-        J3D_ASSERT(0x577, stage != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x576, idx >= 0 && idx < ARRAY_SIZEU(mIndTevStage));
+        J3D_ASSERT_NULLPTR(0x577, stage != 0);
         mIndTevStage[idx] = *stage;
     }
     /* 80322ABC */ virtual void setIndTevStage(u32 idx, J3DIndTevStage stage) {
-        J3D_ASSERT(0x57d, idx >= 0 && idx < ARRAY_SIZE(mIndTevStage), "Error : range over.");
+        J3D_ASSERT_RANGE(0x57d, idx >= 0 && idx < ARRAY_SIZEU(mIndTevStage));
         mIndTevStage[idx] = stage;
     }
     /* 80322AE4 */ virtual J3DIndTevStage* getIndTevStage(u32 idx) {
-        J3D_ASSERT(0x582, idx >= 0 && idx < ARRAY_SIZE(mIndTevStage), "Error : range over.");
+        J3D_ASSERT_RANGE(0x582, idx >= 0 && idx < ARRAY_SIZEU(mIndTevStage));
         return &mIndTevStage[idx];
     }
     /* 80322B24 */ virtual void setTevColor(u32 idx, J3DGXColorS10 const* color) {
-        J3D_ASSERT(0x589, idx >= 0 && idx < ARRAY_SIZE(mTevColor), "Error : range over.");
-        J3D_ASSERT(0x58a, color != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x589, idx >= 0 && idx < ARRAY_SIZEU(mTevColor));
+        J3D_ASSERT_NULLPTR(0x58a, color != 0);
         mTevColor[idx] = *color;
     }
     /* 80322AF8 */ virtual void setTevColor(u32 idx, J3DGXColorS10 color) {
-        J3D_ASSERT(0x590, idx >= 0 && idx < ARRAY_SIZE(mTevColor), "Error : range over.");
+        J3D_ASSERT_RANGE(0x590, idx >= 0 && idx < ARRAY_SIZEU(mTevColor));
         mTevColor[idx] = color;
     }
     /* 80322B50 */ virtual J3DGXColorS10* getTevColor(u32 idx) {
-        J3D_ASSERT(0x595, idx >= 0 && idx < ARRAY_SIZE(mTevColor), "Error : range over.");
+        J3D_ASSERT_RANGE(0x595, idx >= 0 && idx < ARRAY_SIZEU(mTevColor));
         return &mTevColor[idx];
     }
     /* 80322B90 */ virtual void setTevKColor(u32 idx, J3DGXColor const* color) {
-        J3D_ASSERT(0x59c, idx >= 0 && idx < ARRAY_SIZE(mTevKColor), "Error : range over.");
-        J3D_ASSERT(0x59d, color != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x59c, idx >= 0 && idx < ARRAY_SIZEU(mTevKColor));
+        J3D_ASSERT_NULLPTR(0x59d, color != 0);
         mTevKColor[idx] = *color;
     }
     /* 80322B64 */ virtual void setTevKColor(u32 idx, J3DGXColor color) {
-        J3D_ASSERT(0x5a3, idx >= 0 && idx < ARRAY_SIZE(mTevKColor), "Error : range over.");
+        J3D_ASSERT_RANGE(0x5a3, idx >= 0 && idx < ARRAY_SIZEU(mTevKColor));
         mTevKColor[idx] = color;
     }
     /* 80322BBC */ virtual J3DGXColor* getTevKColor(u32 idx) {
-        J3D_ASSERT(0x5a8, idx >= 0 && idx < ARRAY_SIZE(mTevKColor), "Error : range over.");
+        J3D_ASSERT_RANGE(0x5a8, idx >= 0 && idx < ARRAY_SIZEU(mTevKColor));
         return &mTevKColor[idx];
     }
     /* 80322BDC */ virtual void setTevKColorSel(u32 idx, u8 const* sel) {
-        J3D_ASSERT(0x5af, idx >= 0 && idx < ARRAY_SIZE(mTevKColorSel), "Error : range over.");
-        J3D_ASSERT(0x5b0, sel != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x5af, idx >= 0 && idx < ARRAY_SIZEU(mTevKColorSel));
+        J3D_ASSERT_NULLPTR(0x5b0, sel != 0);
         mTevKColorSel[idx] = *sel;
     }
     /* 80322BD0 */ virtual void setTevKColorSel(u32 idx, u8 sel) {
-        J3D_ASSERT(0x5b6, idx >= 0 && idx < ARRAY_SIZE(mTevKColorSel), "Error : range over.");
+        J3D_ASSERT_RANGE(0x5b6, idx >= 0 && idx < ARRAY_SIZEU(mTevKColorSel));
         mTevKColorSel[idx] = sel;
     }
     /* 80322BEC */ virtual u8 getTevKColorSel(u32 idx) {
-        J3D_ASSERT(0x5bb, idx >= 0 && idx < ARRAY_SIZE(mTevKColorSel), "Error : range over.");
+        J3D_ASSERT_RANGE(0x5bb, idx >= 0 && idx < ARRAY_SIZEU(mTevKColorSel));
         return mTevKColorSel[idx];
     }
     /* 80322BF8 */ virtual u32 getTexNoOffset() const { return mTexNoOffset; }
     /* 80322C00 */ virtual u32 getTevRegOffset() const { return mTevRegOffset; }
     /* 80322C08 */ virtual void setTevRegOffset(u32 offset) {
-        J3D_ASSERT(0x53b, offset >= 0, "Error : range over.");
+        J3D_ASSERT_RANGE(0x53b, offset >= 0);
         mTevRegOffset = offset;
     }
     /* 80322C10 */ virtual ~J3DTevBlockPatched() {}
@@ -815,58 +821,58 @@ public:
     /* 80322798 */ virtual u32 getType() { return 'TVB1'; }
     /* 80317BBC */ virtual s32 countDLSize();
     /* 803227B4 */ virtual void setTexNo(u32 idx, u16 const* no) {
-        J3D_ASSERT(0x618, idx >= 0 && idx < ARRAY_SIZE(mTexNo), "Error : range over.");
-        J3D_ASSERT(0x619, no != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x618, idx >= 0 && idx < ARRAY_SIZEU(mTexNo));
+        J3D_ASSERT_NULLPTR(0x619, no != 0);
         mTexNo[idx] = *no;
     }
     /* 803227A4 */ virtual void setTexNo(u32 idx, u16 no) {
-        J3D_ASSERT(0x61f, idx >= 0 && idx < ARRAY_SIZE(mTexNo), "Error : range over.");
+        J3D_ASSERT_RANGE(0x61f, idx >= 0 && idx < ARRAY_SIZEU(mTexNo));
         mTexNo[idx] = no;
     }
     /* 803227C8 */ virtual u16 getTexNo(u32 idx) const {
-        J3D_ASSERT(1574, idx >= 0 && idx < 1, "Error : range over.");
+        J3D_ASSERT_RANGE(1574, idx >= 0 && idx < 1);
         return mTexNo[idx];
     }
     /* 803227EC */ virtual void setTevOrder(u32 idx, J3DTevOrder const* order) {
-        J3D_ASSERT(0x62d, idx >= 0 && idx < ARRAY_SIZE(mTevOrder), "Error : range over.");
-        J3D_ASSERT(0x62e, order != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x62d, idx >= 0 && idx < ARRAY_SIZEU(mTevOrder));
+        J3D_ASSERT_NULLPTR(0x62e, order != 0);
         mTevOrder[idx] = *order;
     }
     /* 803227D8 */ virtual void setTevOrder(u32 idx, J3DTevOrder order) {
-        J3D_ASSERT(0x634, idx >= 0 && idx < ARRAY_SIZE(mTevOrder), "Error : range over.");
+        J3D_ASSERT_RANGE(0x634, idx >= 0 && idx < ARRAY_SIZEU(mTevOrder));
         mTevOrder[idx] = order;
     }
     /* 80322800 */ virtual J3DTevOrder* getTevOrder(u32 idx) {
-        J3D_ASSERT(0x639, idx >= 0 && idx < ARRAY_SIZE(mTevOrder), "Error : range over.");
+        J3D_ASSERT_RANGE(0x639, idx >= 0 && idx < ARRAY_SIZEU(mTevOrder));
         return &mTevOrder[idx];
     }
     /* 80322818 */ virtual void setTevStageNum(u8 const* num) {}
     /* 80322814 */ virtual void setTevStageNum(u8 num) {}
     /* 8032281C */ virtual u8 getTevStageNum() const { return 1; }
     /* 80322860 */ virtual void setTevStage(u32 idx, J3DTevStage const* stage) {
-        J3D_ASSERT(0x64b, idx >= 0 && idx < ARRAY_SIZE(mTevStage), "Error : range over.");
-        J3D_ASSERT(0x64c, stage != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x64b, idx >= 0 && idx < ARRAY_SIZEU(mTevStage));
+        J3D_ASSERT_NULLPTR(0x64c, stage != 0);
         mTevStage[idx] = *stage;
     }
     /* 80322824 */ virtual void setTevStage(u32 idx, J3DTevStage stage) {
-        J3D_ASSERT(0x652, idx >= 0 && idx < ARRAY_SIZE(mTevStage), "Error : range over.");
+        J3D_ASSERT_RANGE(0x652, idx >= 0 && idx < ARRAY_SIZEU(mTevStage));
         mTevStage[idx] = stage;
     }
     /* 8032289C */ virtual J3DTevStage* getTevStage(u32 idx) {
-        J3D_ASSERT(0x657, idx >= 0 && idx < ARRAY_SIZE(mTevStage), "Error : range over.");
+        J3D_ASSERT_RANGE(0x657, idx >= 0 && idx < ARRAY_SIZEU(mTevStage));
         return &mTevStage[idx];
     }
     /* 803228C4 */ virtual void setIndTevStage(u32 idx, J3DIndTevStage const* stage) {
-        J3D_ASSERT(0x65e, idx >= 0 && idx < ARRAY_SIZE(mIndTevStage), "Error : range over.");
-        J3D_ASSERT(0x65f, stage != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x65e, idx >= 0 && idx < ARRAY_SIZEU(mIndTevStage));
+        J3D_ASSERT_NULLPTR(0x65f, stage != 0);
         mIndTevStage[idx] = *stage;
     }
     /* 803228B0 */ virtual void setIndTevStage(u32 idx, J3DIndTevStage stage) {
-        J3D_ASSERT(0x665, idx >= 0 && idx < ARRAY_SIZE(mIndTevStage), "Error : range over.");
+        J3D_ASSERT_RANGE(0x665, idx >= 0 && idx < ARRAY_SIZEU(mIndTevStage));
         mIndTevStage[idx] = stage;
     }
     /* 803228D8 */ virtual J3DIndTevStage* getIndTevStage(u32 idx) {
-        J3D_ASSERT(0x66a, idx >= 0 && idx < ARRAY_SIZE(mIndTevStage), "Error : range over.");
+        J3D_ASSERT_RANGE(0x66a, idx >= 0 && idx < ARRAY_SIZEU(mIndTevStage));
         return &mIndTevStage[idx];
     }
     /* 803228EC */ virtual u32 getTexNoOffset() const { return mTexNoOffset; }
@@ -905,135 +911,135 @@ public:
     /* 803223D4 */ virtual u32 getType() { return 'TVB2'; }
     /* 80317BC4 */ virtual s32 countDLSize();
     /* 803223F0 */ virtual void setTexNo(u32 idx, u16 const* texNo) {
-        J3D_ASSERT(0x6b4, idx >= 0 && idx < ARRAY_SIZE(mTexNo), "Error : range over.");
-        J3D_ASSERT(0x6b5, texNo != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x6b4, idx >= 0 && idx < ARRAY_SIZEU(mTexNo));
+        J3D_ASSERT_NULLPTR(0x6b5, texNo != 0);
         mTexNo[idx] = *texNo;
     }
     /* 803223E0 */ virtual void setTexNo(u32 idx, u16 texNo) {
-        J3D_ASSERT(0x6bb, idx >= 0 && idx < ARRAY_SIZE(mTexNo), "Error : range over.");
+        J3D_ASSERT_RANGE(0x6bb, idx >= 0 && idx < ARRAY_SIZEU(mTexNo));
         mTexNo[idx] = texNo;
     }
     /* 80322404 */ virtual u16 getTexNo(u32 idx) const {
-        J3D_ASSERT(0x6c2, idx >= 0 && idx < ARRAY_SIZE(mTexNo), "Error : range over.");
+        J3D_ASSERT_RANGE(0x6c2, idx >= 0 && idx < ARRAY_SIZEU(mTexNo));
         return mTexNo[idx];
     }
     /* 80322428 */ virtual void setTevOrder(u32 idx, J3DTevOrder const* order) {
-        J3D_ASSERT(0x6c9, idx >= 0 && idx < ARRAY_SIZE(mTevOrder), "Error : range over.");
-        J3D_ASSERT(0x6ca, order != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x6c9, idx >= 0 && idx < ARRAY_SIZEU(mTevOrder));
+        J3D_ASSERT_NULLPTR(0x6ca, order != 0);
         mTevOrder[idx] = *order;
     }
     /* 80322414 */ virtual void setTevOrder(u32 idx, J3DTevOrder order) {
-        J3D_ASSERT(0x6d0, idx >= 0 && idx < ARRAY_SIZE(mTevOrder), "Error : range over.");
+        J3D_ASSERT_RANGE(0x6d0, idx >= 0 && idx < ARRAY_SIZEU(mTevOrder));
         mTevOrder[idx] = order;
     }
     /* 8032243C */ virtual J3DTevOrder* getTevOrder(u32 idx) {
-        J3D_ASSERT(0x6d5, idx >= 0 && idx < ARRAY_SIZE(mTevOrder), "Error : range over.");
+        J3D_ASSERT_RANGE(0x6d5, idx >= 0 && idx < ARRAY_SIZEU(mTevOrder));
         return &mTevOrder[idx];
     }
     /* 8032247C */ virtual void setTevColor(u32 idx, J3DGXColorS10 const* color) {
-        J3D_ASSERT(0x6dc, idx >= 0 && idx < ARRAY_SIZE(mTevColor), "Error : range over.");
-        J3D_ASSERT(0x6dd, color != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x6dc, idx >= 0 && idx < ARRAY_SIZEU(mTevColor));
+        J3D_ASSERT_NULLPTR(0x6dd, color != 0);
         mTevColor[idx] = *color;
     }
     /* 80322450 */ virtual void setTevColor(u32 idx, J3DGXColorS10 color) {
-        J3D_ASSERT(0x6e3, idx >= 0 && idx < ARRAY_SIZE(mTevColor), "Error : range over.");
+        J3D_ASSERT_RANGE(0x6e3, idx >= 0 && idx < ARRAY_SIZEU(mTevColor));
         mTevColor[idx] = color;
     }
     /* 803224A8 */ virtual J3DGXColorS10* getTevColor(u32 idx) {
-        J3D_ASSERT(0x6e8, idx >= 0 && idx < ARRAY_SIZE(mTevColor), "Error : range over.");
+        J3D_ASSERT_RANGE(0x6e8, idx >= 0 && idx < ARRAY_SIZEU(mTevColor));
         return &mTevColor[idx];
     }
     /* 803224E8 */ virtual void setTevKColor(u32 idx, J3DGXColor const* color) {
-        J3D_ASSERT(0x6ef, idx >= 0 && idx < ARRAY_SIZE(mTevKColor), "Error : range over.");
-        J3D_ASSERT(0x6f0, color != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x6ef, idx >= 0 && idx < ARRAY_SIZEU(mTevKColor));
+        J3D_ASSERT_NULLPTR(0x6f0, color != 0);
         mTevKColor[idx] = *color;
     }
     /* 803224BC */ virtual void setTevKColor(u32 idx, J3DGXColor color) {
-        J3D_ASSERT(0x6f6, idx >= 0 && idx < ARRAY_SIZE(mTevKColor), "Error : range over.");
+        J3D_ASSERT_RANGE(0x6f6, idx >= 0 && idx < ARRAY_SIZEU(mTevKColor));
         mTevKColor[idx] = color;
     }
     /* 80322514 */ virtual J3DGXColor* getTevKColor(u32 idx) {
-        J3D_ASSERT(0x6fb, idx >= 0 && idx < ARRAY_SIZE(mTevKColor), "Error : range over.");
+        J3D_ASSERT_RANGE(0x6fb, idx >= 0 && idx < ARRAY_SIZEU(mTevKColor));
         return &mTevKColor[idx];
     }
     /* 80322534 */ virtual void setTevKColorSel(u32 idx, u8 const* sel) {
-        J3D_ASSERT(0x702, idx >= 0 && idx < ARRAY_SIZE(mTevKColorSel), "Error : range over.");
-        J3D_ASSERT(0x703, sel != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x702, idx >= 0 && idx < ARRAY_SIZEU(mTevKColorSel));
+        J3D_ASSERT_NULLPTR(0x703, sel != 0);
         mTevKColorSel[idx] = *sel;
     }
     /* 80322528 */ virtual void setTevKColorSel(u32 idx, u8 sel) {
-        J3D_ASSERT(0x709, idx >= 0 && idx < ARRAY_SIZE(mTevKColorSel), "Error : range over.");
+        J3D_ASSERT_RANGE(0x709, idx >= 0 && idx < ARRAY_SIZEU(mTevKColorSel));
         mTevKColorSel[idx] = sel;
     }
     /* 80322544 */ virtual u8 getTevKColorSel(u32 idx) {
-        J3D_ASSERT(0x70e, idx >= 0 && idx < ARRAY_SIZE(mTevKColorSel), "Error : range over.");
+        J3D_ASSERT_RANGE(0x70e, idx >= 0 && idx < ARRAY_SIZEU(mTevKColorSel));
         return mTevKColorSel[idx];
     }
     /* 8032255C */ virtual void setTevKAlphaSel(u32 idx, u8 const* sel) {
-        J3D_ASSERT(0x715, idx >= 0 && idx < ARRAY_SIZE(mTevKAlphaSel), "Error : range over.");
-        J3D_ASSERT(0x716, sel != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x715, idx >= 0 && idx < ARRAY_SIZEU(mTevKAlphaSel));
+        J3D_ASSERT_NULLPTR(0x716, sel != 0);
         mTevKAlphaSel[idx] = *sel;
     }
     /* 80322550 */ virtual void setTevKAlphaSel(u32 idx, u8 sel) {
-        J3D_ASSERT(0x71c, idx >= 0 && idx < ARRAY_SIZE(mTevKAlphaSel), "Error : range over.");
+        J3D_ASSERT_RANGE(0x71c, idx >= 0 && idx < ARRAY_SIZEU(mTevKAlphaSel));
         mTevKAlphaSel[idx] = sel;
     }
     /* 8032256C */ virtual u8 getTevKAlphaSel(u32 idx) {
-        J3D_ASSERT(0x721, idx >= 0 && idx < ARRAY_SIZE(mTevKAlphaSel), "Error : range over.");
+        J3D_ASSERT_RANGE(0x721, idx >= 0 && idx < ARRAY_SIZEU(mTevKAlphaSel));
         return mTevKAlphaSel[idx];
     }
     /* 80322580 */ virtual void setTevStageNum(u8 const* num) {
-        J3D_ASSERT(0x727, num != 0, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(0x727, num != 0);
         mTevStageNum = *num;
     }
     /* 80322578 */ virtual void setTevStageNum(u8 num) { mTevStageNum = num; }
     /* 8032258C */ virtual u8 getTevStageNum() const { return mTevStageNum; }
     /* 803225D0 */ virtual void setTevStage(u32 idx, J3DTevStage const* stage) {
-        J3D_ASSERT(0x736, idx >= 0 && idx < ARRAY_SIZE(mTevStage), "Error : range over.");
-        J3D_ASSERT(0x737, stage != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x736, idx >= 0 && idx < ARRAY_SIZEU(mTevStage));
+        J3D_ASSERT_NULLPTR(0x737, stage != 0);
         mTevStage[idx] = *stage;
     }
     /* 80322594 */ virtual void setTevStage(u32 idx, J3DTevStage stage) {
-        J3D_ASSERT(0x73d, idx >= 0 && idx < ARRAY_SIZE(mTevStage), "Error : range over.");
+        J3D_ASSERT_RANGE(0x73d, idx >= 0 && idx < ARRAY_SIZEU(mTevStage));
         mTevStage[idx] = stage;
     }
     /* 8032260C */ virtual J3DTevStage* getTevStage(u32 idx) {
-        J3D_ASSERT(0x742, idx >= 0 && idx < ARRAY_SIZE(mTevStage), "Error : range over.");
+        J3D_ASSERT_RANGE(0x742, idx >= 0 && idx < ARRAY_SIZEU(mTevStage));
         return &mTevStage[idx];
     }
     /* 80322658 */ virtual void setTevSwapModeInfo(u32 idx, J3DTevSwapModeInfo const* info) {
-        J3D_ASSERT(0x749, idx >= 0 && idx < ARRAY_SIZE(mTevStage), "Error : range over.");
-        J3D_ASSERT(0x74a, info != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x749, idx >= 0 && idx < ARRAY_SIZEU(mTevStage));
+        J3D_ASSERT_NULLPTR(0x74a, info != 0);
         mTevStage[idx].setTevSwapModeInfo(*info);
     }
     /* 80322620 */ virtual void setTevSwapModeInfo(u32 idx, J3DTevSwapModeInfo info) {
-        J3D_ASSERT(0x750, idx >= 0 && idx < ARRAY_SIZE(mTevStage), "Error : range over.");
+        J3D_ASSERT_RANGE(0x750, idx >= 0 && idx < ARRAY_SIZEU(mTevStage));
         mTevStage[idx].setTevSwapModeInfo(info);
     }
     /* 803226A0 */ virtual void setTevSwapModeTable(u32 idx, J3DTevSwapModeTable const* table) {
-        J3D_ASSERT(0x757, idx >= 0 && idx < ARRAY_SIZE(mTevSwapModeTable), "Error : range over.");
-        J3D_ASSERT(0x758, table != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x757, idx >= 0 && idx < ARRAY_SIZEU(mTevSwapModeTable));
+        J3D_ASSERT_NULLPTR(0x758, table != 0);
         mTevSwapModeTable[idx] = *table;
     }
     /* 80322690 */ virtual void setTevSwapModeTable(u32 idx, J3DTevSwapModeTable table) {
-        J3D_ASSERT(0x75e, idx >= 0 && idx < ARRAY_SIZE(mTevSwapModeTable), "Error : range over.");
+        J3D_ASSERT_RANGE(0x75e, idx >= 0 && idx < ARRAY_SIZEU(mTevSwapModeTable));
         mTevSwapModeTable[idx] = table;
     }
     /* 803226B0 */ virtual J3DTevSwapModeTable* getTevSwapModeTable(u32 idx) {
-        J3D_ASSERT(0x763, idx >= 0 && idx < ARRAY_SIZE(mTevSwapModeTable), "Error : range over.");
+        J3D_ASSERT_RANGE(0x763, idx >= 0 && idx < ARRAY_SIZEU(mTevSwapModeTable));
         return &mTevSwapModeTable[idx];
     }
     /* 803226D4 */ virtual void setIndTevStage(u32 idx, J3DIndTevStage const* stage) {
-        J3D_ASSERT(0x76a, idx >= 0 && idx < ARRAY_SIZE(mIndTevStage), "Error : range over.");
-        J3D_ASSERT(0x76b, stage != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x76a, idx >= 0 && idx < ARRAY_SIZEU(mIndTevStage));
+        J3D_ASSERT_NULLPTR(0x76b, stage != 0);
         mIndTevStage[idx] = *stage;
     }
     /* 803226C0 */ virtual void setIndTevStage(u32 idx, J3DIndTevStage stage) {
-        J3D_ASSERT(0x771, idx >= 0 && idx < ARRAY_SIZE(mIndTevStage), "Error : range over.");
+        J3D_ASSERT_RANGE(0x771, idx >= 0 && idx < ARRAY_SIZEU(mIndTevStage));
         mIndTevStage[idx] = stage;
     }
     /* 803226E8 */ virtual J3DIndTevStage* getIndTevStage(u32 idx) {
-        J3D_ASSERT(0x776, idx >= 0 && idx < ARRAY_SIZE(mIndTevStage), "Error : range over.");
+        J3D_ASSERT_RANGE(0x776, idx >= 0 && idx < ARRAY_SIZEU(mIndTevStage));
         return &mIndTevStage[idx];
     }
     /* 803226FC */ virtual u32 getTexNoOffset() const { return mTexNoOffset; }
@@ -1081,135 +1087,135 @@ public:
     /* 80322010 */ virtual u32 getType() { return 'TVB4'; }
     /* 80317BCC */ virtual s32 countDLSize();
     /* 8032202C */ virtual void setTexNo(u32 idx, u16 const* texNo) {
-        J3D_ASSERT(0x7d5, idx >= 0 && idx < ARRAY_SIZE(mTexNo), "Error : range over.");
-        J3D_ASSERT(0x7d6, texNo != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x7d5, idx >= 0 && idx < ARRAY_SIZEU(mTexNo));
+        J3D_ASSERT_NULLPTR(0x7d6, texNo != 0);
         mTexNo[idx] = *texNo;
     }
     /* 8032201C */ virtual void setTexNo(u32 idx, u16 texNo) {
-        J3D_ASSERT(0x7dc, idx >= 0 && idx < ARRAY_SIZE(mTexNo), "Error : range over.");
+        J3D_ASSERT_RANGE(0x7dc, idx >= 0 && idx < ARRAY_SIZEU(mTexNo));
         mTexNo[idx] = texNo;
     }
     /* 80322040 */ virtual u16 getTexNo(u32 idx) const {
-        J3D_ASSERT(2019, idx >= 0 && idx < 4, "Error : range over.");
+        J3D_ASSERT_RANGE(2019, idx >= 0 && idx < 4);
         return mTexNo[idx];
     }
     /* 80322064 */ virtual void setTevOrder(u32 idx, J3DTevOrder const* order) {
-        J3D_ASSERT(0x7ea, idx >= 0 && idx < ARRAY_SIZE(mTevOrder), "Error : range over.");
-        J3D_ASSERT(0x7eb, order != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x7ea, idx >= 0 && idx < ARRAY_SIZEU(mTevOrder));
+        J3D_ASSERT_NULLPTR(0x7eb, order != 0);
         mTevOrder[idx] = *order;
     }
     /* 80322050 */ virtual void setTevOrder(u32 idx, J3DTevOrder order) {
-        J3D_ASSERT(0x7f1, idx >= 0 && idx < ARRAY_SIZE(mTevOrder), "Error : range over.");
+        J3D_ASSERT_RANGE(0x7f1, idx >= 0 && idx < ARRAY_SIZEU(mTevOrder));
         mTevOrder[idx] = order;
     }
     /* 80322078 */ virtual J3DTevOrder* getTevOrder(u32 idx) {
-        J3D_ASSERT(0x7f6, idx >= 0 && idx < ARRAY_SIZE(mTevOrder), "Error : range over.");
+        J3D_ASSERT_RANGE(0x7f6, idx >= 0 && idx < ARRAY_SIZEU(mTevOrder));
         return &mTevOrder[idx];
     }
     /* 803220B8 */ virtual void setTevColor(u32 idx, J3DGXColorS10 const* color) {
-        J3D_ASSERT(0x7fd, idx >= 0 && idx < ARRAY_SIZE(mTevColor), "Error : range over.");
-        J3D_ASSERT(0x7fe, color != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x7fd, idx >= 0 && idx < ARRAY_SIZEU(mTevColor));
+        J3D_ASSERT_NULLPTR(0x7fe, color != 0);
         mTevColor[idx] = *color;
     }
     /* 8032208C */ virtual void setTevColor(u32 idx, J3DGXColorS10 color) {
-        J3D_ASSERT(0x804, idx >= 0 && idx < ARRAY_SIZE(mTevColor), "Error : range over.");
+        J3D_ASSERT_RANGE(0x804, idx >= 0 && idx < ARRAY_SIZEU(mTevColor));
         mTevColor[idx] = color;
     }
     /* 803220E4 */ virtual J3DGXColorS10* getTevColor(u32 idx) {
-        J3D_ASSERT(0x809, idx >= 0 && idx < ARRAY_SIZE(mTevColor), "Error : range over.");
+        J3D_ASSERT_RANGE(0x809, idx >= 0 && idx < ARRAY_SIZEU(mTevColor));
         return &mTevColor[idx];
     }
     /* 80322124 */ virtual void setTevKColor(u32 idx, J3DGXColor const* color) {
-        J3D_ASSERT(0x810, idx >= 0 && idx < ARRAY_SIZE(mTevKColor), "Error : range over.");
-        J3D_ASSERT(0x811, color != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x810, idx >= 0 && idx < ARRAY_SIZEU(mTevKColor));
+        J3D_ASSERT_NULLPTR(0x811, color != 0);
         mTevKColor[idx] = *color;
     }
     /* 803220F8 */ virtual void setTevKColor(u32 idx, J3DGXColor color) {
-        J3D_ASSERT(0x817, idx >= 0 && idx < ARRAY_SIZE(mTevKColor), "Error : range over.");
+        J3D_ASSERT_RANGE(0x817, idx >= 0 && idx < ARRAY_SIZEU(mTevKColor));
         mTevKColor[idx] = color;
     }
     /* 80322150 */ virtual J3DGXColor* getTevKColor(u32 idx) {
-        J3D_ASSERT(0x81c, idx >= 0 && idx < ARRAY_SIZE(mTevKColor), "Error : range over.");
+        J3D_ASSERT_RANGE(0x81c, idx >= 0 && idx < ARRAY_SIZEU(mTevKColor));
         return &mTevKColor[idx];
     }
     /* 80322170 */ virtual void setTevKColorSel(u32 idx, u8 const* sel) {
-        J3D_ASSERT(0x823, idx >= 0 && idx < ARRAY_SIZE(mTevKColorSel), "Error : range over.");
-        J3D_ASSERT(0x824, sel != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x823, idx >= 0 && idx < ARRAY_SIZEU(mTevKColorSel));
+        J3D_ASSERT_NULLPTR(0x824, sel != 0);
         mTevKColorSel[idx] = *sel;
     }
     /* 80322164 */ virtual void setTevKColorSel(u32 idx, u8 sel) {
-        J3D_ASSERT(0x82a, idx >= 0 && idx < ARRAY_SIZE(mTevKColorSel), "Error : range over.");
+        J3D_ASSERT_RANGE(0x82a, idx >= 0 && idx < ARRAY_SIZEU(mTevKColorSel));
         mTevKColorSel[idx] = sel;
     }
     /* 80322180 */ virtual u8 getTevKColorSel(u32 idx) {
-        J3D_ASSERT(0x82f, idx >= 0 && idx < ARRAY_SIZE(mTevKColorSel), "Error : range over.");
+        J3D_ASSERT_RANGE(0x82f, idx >= 0 && idx < ARRAY_SIZEU(mTevKColorSel));
         return mTevKColorSel[idx];
     }
     /* 80322198 */ virtual void setTevKAlphaSel(u32 idx, u8 const* sel) {
-        J3D_ASSERT(0x836, idx >= 0 && idx < ARRAY_SIZE(mTevKAlphaSel), "Error : range over.");
-        J3D_ASSERT(0x837, sel != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x836, idx >= 0 && idx < ARRAY_SIZEU(mTevKAlphaSel));
+        J3D_ASSERT_NULLPTR(0x837, sel != 0);
         mTevKAlphaSel[idx] = *sel;
     }
     /* 8032218C */ virtual void setTevKAlphaSel(u32 idx, u8 sel) {
-        J3D_ASSERT(0x83d, idx >= 0 && idx < ARRAY_SIZE(mTevKAlphaSel), "Error : range over.");
+        J3D_ASSERT_RANGE(0x83d, idx >= 0 && idx < ARRAY_SIZEU(mTevKAlphaSel));
         mTevKAlphaSel[idx] = sel;
     }
     /* 803221A8 */ virtual u8 getTevKAlphaSel(u32 idx) {
-        J3D_ASSERT(0x842, idx >= 0 && idx < ARRAY_SIZE(mTevKAlphaSel), "Error : range over.");
+        J3D_ASSERT_RANGE(0x842, idx >= 0 && idx < ARRAY_SIZEU(mTevKAlphaSel));
         return mTevKAlphaSel[idx];
     }
     /* 803221BC */ virtual void setTevStageNum(u8 const* num) {
-        J3D_ASSERT(0x848, num != 0, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(0x848, num != 0);
         mTevStageNum = *num;
     }
     /* 803221B4 */ virtual void setTevStageNum(u8 num) { mTevStageNum = num; }
     /* 803221C8 */ virtual u8 getTevStageNum() const { return mTevStageNum; }
     /* 8032220C */ virtual void setTevStage(u32 idx, J3DTevStage const* stage) {
-        J3D_ASSERT(0x857, idx >= 0 && idx < ARRAY_SIZE(mTevStage), "Error : range over.");
-        J3D_ASSERT(0x858, stage != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x857, idx >= 0 && idx < ARRAY_SIZEU(mTevStage));
+        J3D_ASSERT_NULLPTR(0x858, stage != 0);
         mTevStage[idx] = *stage;
     }
     /* 803221D0 */ virtual void setTevStage(u32 idx, J3DTevStage stage) {
-        J3D_ASSERT(0x85e, idx >= 0 && idx < ARRAY_SIZE(mTevStage), "Error : range over.");
+        J3D_ASSERT_RANGE(0x85e, idx >= 0 && idx < ARRAY_SIZEU(mTevStage));
         mTevStage[idx] = stage;
     }
     /* 80322248 */ virtual J3DTevStage* getTevStage(u32 idx) {
-        J3D_ASSERT(0x863, idx >= 0 && idx < ARRAY_SIZE(mTevStage), "Error : range over.");
+        J3D_ASSERT_RANGE(0x863, idx >= 0 && idx < ARRAY_SIZEU(mTevStage));
         return &mTevStage[idx];
     }
     /* 80322294 */ virtual void setTevSwapModeInfo(u32 idx, J3DTevSwapModeInfo const* info) {
-        J3D_ASSERT(0x86a, idx >= 0 && idx < ARRAY_SIZE(mTevStage), "Error : range over.");
-        J3D_ASSERT(0x86b, info != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x86a, idx >= 0 && idx < ARRAY_SIZEU(mTevStage));
+        J3D_ASSERT_NULLPTR(0x86b, info != 0);
         mTevStage[idx].setTevSwapModeInfo(*info);
     }
     /* 8032225C */ virtual void setTevSwapModeInfo(u32 idx, J3DTevSwapModeInfo info) {
-        J3D_ASSERT(0x871, idx >= 0 && idx < ARRAY_SIZE(mTevStage), "Error : range over.");
+        J3D_ASSERT_RANGE(0x871, idx >= 0 && idx < ARRAY_SIZEU(mTevStage));
         mTevStage[idx].setTevSwapModeInfo(info);
     }
     /* 803222DC */ virtual void setTevSwapModeTable(u32 idx, J3DTevSwapModeTable const* table) {
-        J3D_ASSERT(0x878, idx >= 0 && idx < ARRAY_SIZE(mTevSwapModeTable), "Error : range over.");
-        J3D_ASSERT(0x879, table != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x878, idx >= 0 && idx < ARRAY_SIZEU(mTevSwapModeTable));
+        J3D_ASSERT_NULLPTR(0x879, table != 0);
         mTevSwapModeTable[idx] = *table;
     }
     /* 803222CC */ virtual void setTevSwapModeTable(u32 idx, J3DTevSwapModeTable table) {
-        J3D_ASSERT(0x87f, idx >= 0 && idx < ARRAY_SIZE(mTevSwapModeTable), "Error : range over.");
+        J3D_ASSERT_RANGE(0x87f, idx >= 0 && idx < ARRAY_SIZEU(mTevSwapModeTable));
         mTevSwapModeTable[idx] = table;
     }
     /* 803222EC */ virtual J3DTevSwapModeTable* getTevSwapModeTable(u32 idx) {
-        J3D_ASSERT(0x884, idx >= 0 && idx < ARRAY_SIZE(mTevSwapModeTable), "Error : range over.");
+        J3D_ASSERT_RANGE(0x884, idx >= 0 && idx < ARRAY_SIZEU(mTevSwapModeTable));
         return &mTevSwapModeTable[idx];
     }
     /* 80322310 */ virtual void setIndTevStage(u32 idx, J3DIndTevStage const* stage) {
-        J3D_ASSERT(0x88b, idx >= 0 && idx < ARRAY_SIZE(mIndTevStage), "Error : range over.");
-        J3D_ASSERT(0x88c, stage != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x88b, idx >= 0 && idx < ARRAY_SIZEU(mIndTevStage));
+        J3D_ASSERT_NULLPTR(0x88c, stage != 0);
         mIndTevStage[idx] = *stage;
     }
     /* 803222FC */ virtual void setIndTevStage(u32 idx, J3DIndTevStage stage) {
-        J3D_ASSERT(0x892, idx >= 0 && idx < ARRAY_SIZE(mIndTevStage), "Error : range over.");
+        J3D_ASSERT_RANGE(0x892, idx >= 0 && idx < ARRAY_SIZEU(mIndTevStage));
         mIndTevStage[idx] = stage;
     }
     /* 80322324 */ virtual J3DIndTevStage* getIndTevStage(u32 idx) {
-        J3D_ASSERT(0x897, idx >= 0 && idx < ARRAY_SIZE(mIndTevStage), "Error : range over.");
+        J3D_ASSERT_RANGE(0x897, idx >= 0 && idx < ARRAY_SIZEU(mIndTevStage));
         return &mIndTevStage[idx];
     }
     /* 80322338 */ virtual u32 getTexNoOffset() const { return mTexNoOffset; }
@@ -1257,135 +1263,135 @@ public:
     /* 80321C44 */ virtual u32 getType() { return 'TV16'; }
     /* 80317BD4 */ virtual s32 countDLSize();
     /* 80321C60 */ virtual void setTexNo(u32 idx, u16 const* texNo) {
-        J3D_ASSERT(0x8f6, idx >= 0 && idx < ARRAY_SIZE(mTexNo), "Error : range over.");
-        J3D_ASSERT(0x8f7, texNo != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x8f6, idx >= 0 && idx < ARRAY_SIZEU(mTexNo));
+        J3D_ASSERT_NULLPTR(0x8f7, texNo != 0);
         mTexNo[idx] = *texNo;
     }
     /* 80321C50 */ virtual void setTexNo(u32 idx, u16 texNo) {
-        J3D_ASSERT(0x8fd, idx >= 0 && idx < 8, "Error : range over.");
+        J3D_ASSERT_RANGE(0x8fd, idx >= 0 && idx < 8);
         mTexNo[idx] = texNo;
     }
     /* 80321C74 */ virtual u16 getTexNo(u32 idx) const {
-        J3D_ASSERT(2308, idx >= 0 && idx < 8, "Error : range over.");
+        J3D_ASSERT_RANGE(2308, idx >= 0 && idx < 8);
         return mTexNo[idx];
     }
     /* 80321C98 */ virtual void setTevOrder(u32 idx, J3DTevOrder const* order) {
-        J3D_ASSERT(0x90b, idx >= 0 && idx < ARRAY_SIZE(mTevOrder), "Error : range over.");
-        J3D_ASSERT(0x90c, order != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x90b, idx >= 0 && idx < ARRAY_SIZEU(mTevOrder));
+        J3D_ASSERT_NULLPTR(0x90c, order != 0);
         mTevOrder[idx] = *order;
     }
     /* 80321C84 */ virtual void setTevOrder(u32 idx, J3DTevOrder order) {
-        J3D_ASSERT(0x912, idx >= 0 && idx < ARRAY_SIZE(mTevOrder), "Error : range over.");
+        J3D_ASSERT_RANGE(0x912, idx >= 0 && idx < ARRAY_SIZEU(mTevOrder));
         mTevOrder[idx] = order;
     }
     /* 80321CAC */ virtual J3DTevOrder* getTevOrder(u32 idx) {
-        J3D_ASSERT(0x917, idx >= 0 && idx < ARRAY_SIZE(mTevOrder), "Error : range over.");
+        J3D_ASSERT_RANGE(0x917, idx >= 0 && idx < ARRAY_SIZEU(mTevOrder));
         return &mTevOrder[idx];
     }
     /* 80321CEC */ virtual void setTevColor(u32 idx, J3DGXColorS10 const* color) {
-        J3D_ASSERT(0x91e, idx >= 0 && idx < ARRAY_SIZE(mTevColor), "Error : range over.");
-        J3D_ASSERT(0x91f, color != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x91e, idx >= 0 && idx < ARRAY_SIZEU(mTevColor));
+        J3D_ASSERT_NULLPTR(0x91f, color != 0);
         mTevColor[idx] = *color;
     }
     /* 80321CC0 */ virtual void setTevColor(u32 idx, J3DGXColorS10 color) {
-        J3D_ASSERT(0x925, idx >= 0 && idx < ARRAY_SIZE(mTevColor), "Error : range over.");
+        J3D_ASSERT_RANGE(0x925, idx >= 0 && idx < ARRAY_SIZEU(mTevColor));
         mTevColor[idx] = color;
     }
     /* 80321D18 */ virtual J3DGXColorS10* getTevColor(u32 idx) {
-        J3D_ASSERT(0x92a, idx >= 0 && idx < ARRAY_SIZE(mTevColor), "Error : range over.");
+        J3D_ASSERT_RANGE(0x92a, idx >= 0 && idx < ARRAY_SIZEU(mTevColor));
         return &mTevColor[idx];
     }
     /* 80321D58 */ virtual void setTevKColor(u32 idx, J3DGXColor const* color) {
-        J3D_ASSERT(0x931, idx >= 0 && idx < ARRAY_SIZE(mTevKColor), "Error : range over.");
-        J3D_ASSERT(0x932, color != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x931, idx >= 0 && idx < ARRAY_SIZEU(mTevKColor));
+        J3D_ASSERT_NULLPTR(0x932, color != 0);
         mTevKColor[idx] = *color;
     }
     /* 80321D2C */ virtual void setTevKColor(u32 idx, J3DGXColor color) {
-        J3D_ASSERT(0x938, idx >= 0 && idx < ARRAY_SIZE(mTevKColor), "Error : range over.");
+        J3D_ASSERT_RANGE(0x938, idx >= 0 && idx < ARRAY_SIZEU(mTevKColor));
         mTevKColor[idx] = color;
     }
     /* 80321D84 */ virtual J3DGXColor* getTevKColor(u32 idx) {
-        J3D_ASSERT(0x93d, idx >= 0 && idx < ARRAY_SIZE(mTevKColor), "Error : range over.");
+        J3D_ASSERT_RANGE(0x93d, idx >= 0 && idx < ARRAY_SIZEU(mTevKColor));
         return &mTevKColor[idx];
     }
     /* 80321DA4 */ virtual void setTevKColorSel(u32 idx, u8 const* sel) {
-        J3D_ASSERT(0x944, idx >= 0 && idx < ARRAY_SIZE(mTevKColorSel), "Error : range over.");
-        J3D_ASSERT(0x945, sel != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x944, idx >= 0 && idx < ARRAY_SIZEU(mTevKColorSel));
+        J3D_ASSERT_NULLPTR(0x945, sel != 0);
         mTevKColorSel[idx] = *sel;
     }
     /* 80321D98 */ virtual void setTevKColorSel(u32 idx, u8 sel) {
-        J3D_ASSERT(0x94b, idx >= 0 && idx < ARRAY_SIZE(mTevKColorSel), "Error : range over.");
+        J3D_ASSERT_RANGE(0x94b, idx >= 0 && idx < ARRAY_SIZEU(mTevKColorSel));
         mTevKColorSel[idx] = sel;
     }
     /* 80321DB4 */ virtual u8 getTevKColorSel(u32 idx) {
-        J3D_ASSERT(0x950, idx >= 0 && idx < ARRAY_SIZE(mTevKColorSel), "Error : range over.");
+        J3D_ASSERT_RANGE(0x950, idx >= 0 && idx < ARRAY_SIZEU(mTevKColorSel));
         return mTevKColorSel[idx];
     }
     /* 80321DCC */ virtual void setTevKAlphaSel(u32 idx, u8 const* sel) {
-        J3D_ASSERT(0x957, idx >= 0 && idx < ARRAY_SIZE(mTevKAlphaSel), "Error : range over.");
-        J3D_ASSERT(0x958, sel != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x957, idx >= 0 && idx < ARRAY_SIZEU(mTevKAlphaSel));
+        J3D_ASSERT_NULLPTR(0x958, sel != 0);
         mTevKAlphaSel[idx] = *sel;
     }
     /* 80321DC0 */ virtual void setTevKAlphaSel(u32 idx, u8 sel) {
-        J3D_ASSERT(0x95e, idx >= 0 && idx < ARRAY_SIZE(mTevKAlphaSel), "Error : range over.");
+        J3D_ASSERT_RANGE(0x95e, idx >= 0 && idx < ARRAY_SIZEU(mTevKAlphaSel));
         mTevKAlphaSel[idx] = sel;
     }
     /* 80321DDC */ virtual u8 getTevKAlphaSel(u32 idx) {
-        J3D_ASSERT(0x963, idx >= 0 && idx < ARRAY_SIZE(mTevKAlphaSel), "Error : range over.");
+        J3D_ASSERT_RANGE(0x963, idx >= 0 && idx < ARRAY_SIZEU(mTevKAlphaSel));
         return mTevKAlphaSel[idx];
     }
     /* 80321DF0 */ virtual void setTevStageNum(u8 const* num) {
-        J3D_ASSERT(0x969, num != 0, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(0x969, num != 0);
         mTevStageNum = *num;
     }
     /* 80321DE8 */ virtual void setTevStageNum(u8 num) { mTevStageNum = num; }
     /* 80321DFC */ virtual u8 getTevStageNum() const { return mTevStageNum; }
     /* 80321E40 */ virtual void setTevStage(u32 idx, J3DTevStage const* stage) {
-        J3D_ASSERT(0x978, idx >= 0 && idx < ARRAY_SIZE(mTevStage), "Error : range over.");
-        J3D_ASSERT(0x979, stage != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x978, idx >= 0 && idx < ARRAY_SIZEU(mTevStage));
+        J3D_ASSERT_NULLPTR(0x979, stage != 0);
         mTevStage[idx] = *stage;
     }
     /* 80321E04 */ virtual void setTevStage(u32 idx, J3DTevStage stage) {
-        J3D_ASSERT(0x97f, idx >= 0 && idx < ARRAY_SIZE(mTevStage), "Error : range over.");
+        J3D_ASSERT_RANGE(0x97f, idx >= 0 && idx < ARRAY_SIZEU(mTevStage));
         mTevStage[idx] = stage;
     }
     /* 80321E7C */ virtual J3DTevStage* getTevStage(u32 idx) {
-        J3D_ASSERT(0x984, idx >= 0 && idx < ARRAY_SIZE(mTevStage), "Error : range over.");
+        J3D_ASSERT_RANGE(0x984, idx >= 0 && idx < ARRAY_SIZEU(mTevStage));
         return &mTevStage[idx];
     }
     /* 80321EC8 */ virtual void setTevSwapModeInfo(u32 idx, J3DTevSwapModeInfo const* info) {
-        J3D_ASSERT(0x98b, idx >= 0 && idx < ARRAY_SIZE(mTevStage), "Error : range over.");
-        J3D_ASSERT(0x98c, info != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x98b, idx >= 0 && idx < ARRAY_SIZEU(mTevStage));
+        J3D_ASSERT_NULLPTR(0x98c, info != 0);
         mTevStage[idx].setTevSwapModeInfo(*info);
     }
     /* 80321E90 */ virtual void setTevSwapModeInfo(u32 idx, J3DTevSwapModeInfo info) {
-        J3D_ASSERT(0x992, idx >= 0 && idx < ARRAY_SIZE(mTevStage), "Error : range over.");
+        J3D_ASSERT_RANGE(0x992, idx >= 0 && idx < ARRAY_SIZEU(mTevStage));
         mTevStage[idx].setTevSwapModeInfo(info);
     }
     /* 80321F10 */ virtual void setTevSwapModeTable(u32 idx, J3DTevSwapModeTable const* table) {
-        J3D_ASSERT(0x999, idx >= 0 && idx < ARRAY_SIZE(mTevSwapModeTable), "Error : range over.");
-        J3D_ASSERT(0x99a, table != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x999, idx >= 0 && idx < ARRAY_SIZEU(mTevSwapModeTable));
+        J3D_ASSERT_NULLPTR(0x99a, table != 0);
         mTevSwapModeTable[idx] = *table;
     }
     /* 80321F00 */ virtual void setTevSwapModeTable(u32 idx, J3DTevSwapModeTable table) {
-        J3D_ASSERT(0x9a0, idx >= 0 && idx < ARRAY_SIZE(mTevSwapModeTable), "Error : range over.");
+        J3D_ASSERT_RANGE(0x9a0, idx >= 0 && idx < ARRAY_SIZEU(mTevSwapModeTable));
         mTevSwapModeTable[idx] = table;
     }
     /* 80321F20 */ virtual J3DTevSwapModeTable* getTevSwapModeTable(u32 idx) {
-        J3D_ASSERT(0x9a5, idx >= 0 && idx < ARRAY_SIZE(mTevSwapModeTable), "Error : range over.");
+        J3D_ASSERT_RANGE(0x9a5, idx >= 0 && idx < ARRAY_SIZEU(mTevSwapModeTable));
         return &mTevSwapModeTable[idx];
     }
     /* 80321F44 */ virtual void setIndTevStage(u32 idx, J3DIndTevStage const* stage) {
-        J3D_ASSERT(0x9ac, idx >= 0 && idx < ARRAY_SIZE(mIndTevStage), "Error : range over.");
-        J3D_ASSERT(0x9ad, stage != 0, "Error : null pointer.");
+        J3D_ASSERT_RANGE(0x9ac, idx >= 0 && idx < ARRAY_SIZEU(mIndTevStage));
+        J3D_ASSERT_NULLPTR(0x9ad, stage != 0);
         mIndTevStage[idx] = *stage;
     }
     /* 80321F30 */ virtual void setIndTevStage(u32 idx, J3DIndTevStage stage) {
-        J3D_ASSERT(0x9b3, idx >= 0 && idx < ARRAY_SIZE(mIndTevStage), "Error : range over.");
+        J3D_ASSERT_RANGE(0x9b3, idx >= 0 && idx < ARRAY_SIZEU(mIndTevStage));
         mIndTevStage[idx] = stage;
     }
     /* 80321F58 */ virtual J3DIndTevStage* getIndTevStage(u32 idx) {
-        J3D_ASSERT(0x9b8, idx >= 0 && idx < ARRAY_SIZE(mIndTevStage), "Error : range over.");
+        J3D_ASSERT_RANGE(0x9b8, idx >= 0 && idx < ARRAY_SIZEU(mIndTevStage));
         return &mIndTevStage[idx];
     }
     /* 80321F6C */ virtual u32 getTexNoOffset() const { return mTexNoOffset; }
@@ -1568,20 +1574,27 @@ struct J3DAlphaComp {
         return *this;
     }
 
+    J3DAlphaComp& operator=(J3DAlphaComp& rhs) {
+        mID = rhs.mID;
+        mRef0 = rhs.mRef0;
+        mRef1 = rhs.mRef1;
+        return *this;
+    }
+
     void setAlphaCompInfo(const J3DAlphaCompInfo& info) {
         mRef0 = info.mRef0;
         mRef1 = info.mRef1;
         mID = calcAlphaCmpID(info.mComp0, info.mOp, info.mComp1);
     }
 
-    GXCompare getComp0() const { return GXCompare(*(&j3dAlphaCmpTable[mID * 3] + 0)); }
-    GXAlphaOp getOp() const { return GXAlphaOp(*(&j3dAlphaCmpTable[mID * 3] + 1)); }
-    GXCompare getComp1() const { return GXCompare(*(&j3dAlphaCmpTable[mID * 3] + 2)); }
+    u8 getComp0() const { return *(&j3dAlphaCmpTable[mID * 3] + 0); }
+    u8 getOp() const { return *(&j3dAlphaCmpTable[mID * 3] + 1); }
+    u8 getComp1() const { return *(&j3dAlphaCmpTable[mID * 3] + 2); }
     u8 getRef0() const { return mRef0; }
     u8 getRef1() const { return mRef1; }
 
     void load() const {
-        J3DGDSetAlphaCompare(getComp0(), mRef0, getOp(), getComp1(), mRef1);
+        J3DGDSetAlphaCompare((GXCompare)getComp0(), mRef0, (GXAlphaOp)getOp(), (GXCompare)getComp1(), mRef1);
     }
 
     /* 0x00 */ u16 mID;
@@ -1720,42 +1733,42 @@ public:
     /* 8032339C */ virtual void setIndTexStageNum(u8 num) { mIndTexStageNum = num; }
     /* 803233A4 */ virtual u8 getIndTexStageNum() const { return mIndTexStageNum; }
     /* 803233C0 */ virtual void setIndTexOrder(u32 idx, J3DIndTexOrder const* order) {
-        J3D_ASSERT(0xa94, order != 0, "Error : null pointer.");
-        J3D_ASSERT(0xa95, idx >= 0 && idx < ARRAY_SIZE(mIndTexOrder), "Error : range over.");
+        J3D_ASSERT_NULLPTR(0xa94, order != 0);
+        J3D_ASSERT_RANGE(0xa95, idx >= 0 && idx < ARRAY_SIZEU(mIndTexOrder));
         mIndTexOrder[idx] = *order;
     }
     /* 803233AC */ virtual void setIndTexOrder(u32 idx, J3DIndTexOrder order) {
-        J3D_ASSERT(0xa9b, idx >= 0 && idx < ARRAY_SIZE(mIndTexOrder), "Error : range over.");
+        J3D_ASSERT_RANGE(0xa9b, idx >= 0 && idx < ARRAY_SIZEU(mIndTexOrder));
         mIndTexOrder[idx] = order;
     }
     /* 803233D4 */ virtual J3DIndTexOrder* getIndTexOrder(u32 idx) {
-        J3D_ASSERT(0xaa0, idx >= 0 && idx < ARRAY_SIZE(mIndTexOrder), "Error : range over.");
+        J3D_ASSERT_RANGE(0xaa0, idx >= 0 && idx < ARRAY_SIZEU(mIndTexOrder));
         return &mIndTexOrder[idx];
     }
     /* 8032341C */ virtual void setIndTexMtx(u32 idx, J3DIndTexMtx const* mtx) {
-        J3D_ASSERT(0xaa7, mtx != 0, "Error : null pointer.");
-        J3D_ASSERT(0xaa8, idx >= 0 && idx < ARRAY_SIZE(mIndTexMtx), "Error : range over.");
+        J3D_ASSERT_NULLPTR(0xaa7, mtx != 0);
+        J3D_ASSERT_RANGE(0xaa8, idx >= 0 && idx < ARRAY_SIZEU(mIndTexMtx));
         mIndTexMtx[idx] = *mtx;
     }
     /* 803233E8 */ virtual void setIndTexMtx(u32 idx, J3DIndTexMtx mtx) {
-        J3D_ASSERT(0xaae, idx >= 0 && idx < ARRAY_SIZE(mIndTexMtx), "Error : range over.");
+        J3D_ASSERT_RANGE(0xaae, idx >= 0 && idx < ARRAY_SIZEU(mIndTexMtx));
         mIndTexMtx[idx] = mtx;
     }
     /* 80323450 */ virtual J3DIndTexMtx* getIndTexMtx(u32 idx) {
-        J3D_ASSERT(0xab3, idx >= 0 && idx < ARRAY_SIZE(mIndTexMtx), "Error : range over.");
+        J3D_ASSERT_RANGE(0xab3, idx >= 0 && idx < ARRAY_SIZEU(mIndTexMtx));
         return &mIndTexMtx[idx];
     }
     /* 80323478 */ virtual void setIndTexCoordScale(u32 idx, J3DIndTexCoordScale const* scale) {
-        J3D_ASSERT(0xaba, scale != 0, "Error : null pointer.");
-        J3D_ASSERT(0xabb, idx >= 0 && idx < ARRAY_SIZE(mIndTexCoordScale), "Error : range over.");
+        J3D_ASSERT_NULLPTR(0xaba, scale != 0);
+        J3D_ASSERT_RANGE(0xabb, idx >= 0 && idx < ARRAY_SIZEU(mIndTexCoordScale));
         mIndTexCoordScale[idx] = *scale;
     }
     /* 80323464 */ virtual void setIndTexCoordScale(u32 idx, J3DIndTexCoordScale scale) {
-        J3D_ASSERT(0xac1, idx >= 0 && idx < ARRAY_SIZE(mIndTexCoordScale), "Error : range over.");
+        J3D_ASSERT_RANGE(0xac1, idx >= 0 && idx < ARRAY_SIZEU(mIndTexCoordScale));
         mIndTexCoordScale[idx] = scale;
     }
     /* 8032348C */ virtual J3DIndTexCoordScale* getIndTexCoordScale(u32 idx) {
-        J3D_ASSERT(0xac6, idx >= 0 && idx < ARRAY_SIZE(mIndTexCoordScale), "Error : range over.");
+        J3D_ASSERT_RANGE(0xac6, idx >= 0 && idx < ARRAY_SIZEU(mIndTexCoordScale));
         return &mIndTexCoordScale[idx];
     }
     /* 803234A0 */ virtual ~J3DIndBlockFull() {}
@@ -1867,31 +1880,31 @@ public:
     /* 80317BFC */ virtual s32 countDLSize();
     /* 80321B00 */ virtual u32 getType() { return 'PEFG'; }
     /* 80321B28 */ virtual void setAlphaComp(J3DAlphaComp const* alphaComp) {
-        J3D_ASSERT(0xbf9, alphaComp != 0, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(0xbf9, alphaComp != 0);
         mAlphaComp = *alphaComp;
     }
     /* 80321B0C */ virtual void setAlphaComp(J3DAlphaComp const& alphaComp) { mAlphaComp = alphaComp; }
     /* 80321B44 */ virtual J3DAlphaComp* getAlphaComp() { return &mAlphaComp; }
     /* 80321B58 */ virtual void setBlend(J3DBlend const* blend) {
-        J3D_ASSERT(0xc07, blend != 0, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(0xc07, blend != 0);
         mBlend = *blend;
     }
     /* 80321B4C */ virtual void setBlend(J3DBlend const& blend) { mBlend = blend; }
     /* 80321B64 */ virtual J3DBlend* getBlend() { return &mBlend; }
     /* 80321B78 */ virtual void setZMode(J3DZMode const* zMode) {
-        J3D_ASSERT(0xc15, zMode != 0, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(0xc15, zMode != 0);
         mZMode = *zMode;
     }
     /* 80321B6C */ virtual void setZMode(J3DZMode zMode) { mZMode = zMode; }
     /* 80321B84 */ virtual J3DZMode* getZMode() { return &mZMode; }
     /* 80321B94 */ virtual void setZCompLoc(u8 const* zCompLoc) {
-        J3D_ASSERT(0xc23, zCompLoc != 0, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(0xc23, zCompLoc != 0);
         mZCompLoc = *zCompLoc;
     }
     /* 80321B8C */ virtual void setZCompLoc(u8 zCompLoc) { mZCompLoc = zCompLoc; }
     /* 80321BA0 */ virtual u8 getZCompLoc() const { return mZCompLoc; }
     /* 80321BB0 */ virtual void setDither(u8 const* dither) {
-        J3D_ASSERT(0xc31, dither != 0, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(0xc31, dither != 0);
         mDither = *dither;
     }
     /* 80321BA8 */ virtual void setDither(u8 dither) { mDither = dither; }
@@ -1928,31 +1941,31 @@ public:
     /* 80321958 */ virtual void setFog(J3DFog* pFog) { mFog.setFogInfo(pFog->getFogInfo()); }
     /* 803219A0 */ virtual J3DFog* getFog() { return &mFog; }
     /* 803219C4 */ virtual void setAlphaComp(J3DAlphaComp const* alphaComp) {
-        J3D_ASSERT(0xc7d, alphaComp != 0, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(0xc7d, alphaComp != 0);
         mAlphaComp = *alphaComp;
     }
     /* 803219A8 */ virtual void setAlphaComp(J3DAlphaComp const& alphaComp) { mAlphaComp = alphaComp; }
     /* 803219E0 */ virtual J3DAlphaComp* getAlphaComp() { return &mAlphaComp; }
     /* 803219F4 */ virtual void setBlend(J3DBlend const* blend) {
-        J3D_ASSERT(0xc8b, blend != 0, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(0xc8b, blend != 0);
         mBlend = *blend;
     }
     /* 803219E8 */ virtual void setBlend(J3DBlend const& blend) { mBlend = blend; }
     /* 80321A00 */ virtual J3DBlend* getBlend() { return &mBlend; }
     /* 80321A14 */ virtual void setZMode(J3DZMode const* zMode) {
-        J3D_ASSERT(0xc99, zMode != 0, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(0xc99, zMode != 0);
         mZMode = *zMode;
     }
     /* 80321A08 */ virtual void setZMode(J3DZMode zMode) { mZMode = zMode; }
     /* 80321A20 */ virtual J3DZMode* getZMode() { return &mZMode; }
     /* 80321A30 */ virtual void setZCompLoc(u8 const* zCompLoc) {
-        J3D_ASSERT(0xca7, zCompLoc != 0, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(0xca7, zCompLoc != 0);
         mZCompLoc = *zCompLoc;
     }
     /* 80321A28 */ virtual void setZCompLoc(u8 zCompLoc) { mZCompLoc = zCompLoc; }
     /* 80321A3C */ virtual u8 getZCompLoc() const { return mZCompLoc; }
     /* 80321A4C */ virtual void setDither(u8 const* dither) {
-        J3D_ASSERT(0xcb5, dither != 0, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(0xcb5, dither != 0);
         mDither = *dither;
     }
     /* 80321A44 */ virtual void setDither(u8 dither) { mDither = dither; }

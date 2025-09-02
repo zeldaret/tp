@@ -2,7 +2,7 @@
 #define J3DTEXTURE_H
 
 #include "JSystem/J3DGraphBase/J3DStruct.h"
-#include "JSystem/JUtility/JUTAssert.h"
+#include "JSystem/J3DAssert.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include <stdint.h>
 
@@ -13,25 +13,28 @@
 class J3DTexture {
 private:
     /* 0x0 */ u16 mNum;
-    /* 0x2 */ u16 field_0x2;
+    /* 0x2 */ u16 unk_0x2;
     /* 0x4 */ ResTIMG* mpRes;
 
 public:
-    J3DTexture(u16 num, ResTIMG* res) : mNum(num), field_0x2(0), mpRes(res) {}
-    /* 8031204C */ void loadGX(u16, _GXTexMapID) const;
+    J3DTexture(u16 num, ResTIMG* res) : mNum(num), unk_0x2(0), mpRes(res) {}
+
+    /* 8031204C */ void loadGX(u16, GXTexMapID) const;
     /* 803121A4 */ void entryNum(u16);
     /* 8031221C */ void addResTIMG(u16, ResTIMG const*);
     /* 803366A4 */ virtual ~J3DTexture() {}
 
     u16 getNum() const { return mNum; }
-    ResTIMG* getResTIMG(u16 entry) const {
-        J3D_ASSERT(72, entry < mNum, "Error : range over.");
-        return &mpRes[entry];   
+
+    ResTIMG* getResTIMG(u16 index) const {
+        J3D_ASSERT_RANGE(72, index < mNum);
+        return &mpRes[index];   
     }
-    void setResTIMG(u16 entry, const ResTIMG& timg) {
-        mpRes[entry] = timg;
-        mpRes[entry].imageOffset = ((mpRes[entry].imageOffset + (uintptr_t)&timg - (uintptr_t)(mpRes + entry)));
-        mpRes[entry].paletteOffset = ((mpRes[entry].paletteOffset + (uintptr_t)&timg - (uintptr_t)(mpRes + entry)));
+
+    void setResTIMG(u16 index, const ResTIMG& timg) {
+        mpRes[index] = timg;
+        mpRes[index].imageOffset = ((mpRes[index].imageOffset + (uintptr_t)&timg - (uintptr_t)(mpRes + index)));
+        mpRes[index].paletteOffset = ((mpRes[index].paletteOffset + (uintptr_t)&timg - (uintptr_t)(mpRes + index)));
     }
 };
 
@@ -46,9 +49,11 @@ public:
     J3DTexMtx() {
         mTexMtxInfo = j3dDefaultTexMtxInfo;
     }
+
     J3DTexMtx(const J3DTexMtxInfo& info) {
         mTexMtxInfo = info;
     }
+
     /* 803238C4 */ void load(u32) const;
     /* 80323900 */ void calc(const Mtx);
     /* 80323920 */ void calcTexMtx(const Mtx);

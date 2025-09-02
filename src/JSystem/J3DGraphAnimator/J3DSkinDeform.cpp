@@ -104,7 +104,7 @@ f32* J3DSkinDeform::sWorkArea_WEvlpMixWeight[1024];
 /* 8032C9B0-8032CF44 3272F0 0594+00 0/0 1/1 0/0 .text
  * initSkinInfo__13J3DSkinDeformFP12J3DModelData                */
 void J3DSkinDeform::initSkinInfo(J3DModelData* param_0) {
-    J3D_ASSERT(322, param_0, "Error : null pointer.");
+    J3D_ASSERT_NULLPTR(322, param_0);
     int vtxNum = param_0->getVtxNum();
     int wevlpMtxNum = param_0->getWEvlpMtxNum();
     u16* wevlpMtxIndex = param_0->getWEvlpMixMtxIndex();
@@ -216,7 +216,7 @@ u16 J3DSkinDeform::sWorkArea_MtxReg[1024 + 4 /* padding */];
  * initMtxIndexArray__13J3DSkinDeformFP12J3DModelData           */
 // NONMATCHING - local_58 issue
 int J3DSkinDeform::initMtxIndexArray(J3DModelData* param_0) {
-    J3D_ASSERT(507, param_0, "Error : null pointer.");
+    J3D_ASSERT_NULLPTR(507, param_0);
     if (mPosData != NULL && mNrmData != NULL) {
         return 0;
     }
@@ -315,11 +315,11 @@ int J3DSkinDeform::initMtxIndexArray(J3DModelData* param_0) {
                     } else if (r26 != -1) {
                         sWorkArea_MtxReg[bVar3] = local_76;
                     }
-                    J3D_ASSERT(673, local_76 < param_0->getDrawMtxNum(), "Error : range over.");
-                    J3D_ASSERT(674, uVar1 < param_0->getVtxNum(), "Error : range over.");
+                    J3D_ASSERT_RANGE(673, local_76 < param_0->getDrawMtxNum());
+                    J3D_ASSERT_RANGE(674, uVar1 < param_0->getVtxNum());
                     mPosData[uVar1] = local_76;
                     if (r24 != -1) {
-                        J3D_ASSERT(680, uVar2 < param_0->getNrmNum(), "Error : range over.");
+                        J3D_ASSERT_RANGE(680, uVar2 < param_0->getNrmNum());
                         mNrmData[uVar2] = local_76;
                     }
                 }
@@ -347,7 +347,7 @@ int J3DSkinDeform::initMtxIndexArray(J3DModelData* param_0) {
  * changeFastSkinDL__13J3DSkinDeformFP12J3DModelData            */
 // NONMATCHING - regalloc, display list access issues
 void J3DSkinDeform::changeFastSkinDL(J3DModelData* param_0) {
-    J3D_ASSERT(740, param_0, "Error : null pointer.");
+    J3D_ASSERT_NULLPTR(740, param_0);
     for (u16 i = 0; i < param_0->getShapeNum(); i++) {
         u32 local_28[4] = {0,1,1,2};
         int local_30 = -1;

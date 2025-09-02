@@ -127,7 +127,7 @@ static char* action_table[] = {"WAIT", "SCENE_CHG"};
 
 /* 80D5F710-80D5F88C 000490 017C+00 2/2 0/0 0/0 .text            demoProc__16daTagRiverBack_cFv */
 int daTagRiverBack_c::demoProc() {
-    int act_id = dComIfGp_evmng_getMyActIdx(mStaffID, action_table, ARRAY_SIZE(action_table), 0, 0);
+    int act_id = dComIfGp_evmng_getMyActIdx(mStaffID, action_table, ARRAY_SIZEU(action_table), 0, 0);
 
     if (dComIfGp_evmng_getIsAddvance(mStaffID)) {
         switch (act_id) {

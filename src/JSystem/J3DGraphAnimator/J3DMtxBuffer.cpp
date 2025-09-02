@@ -55,8 +55,8 @@ enum {
 };
 
 s32 J3DMtxBuffer::create(J3DModelData* p_modelData, u32 flag) {
-    J3D_ASSERT(76, p_modelData, "Error : null pointer.");
-    J3D_ASSERT(77, flag, "Error : non-zero argument is specified 0.");
+    J3D_ASSERT_NULLPTR(76, p_modelData);
+    J3D_ASSERT_NONZEROARG(77, flag);
     
     s32 ret = 0;
     mFlags = flag;
@@ -102,7 +102,7 @@ s32 J3DMtxBuffer::create(J3DModelData* p_modelData, u32 flag) {
 
 /* 80326364-803263F0 320CA4 008C+00 1/1 0/0 0/0 .text createAnmMtx__12J3DMtxBufferFP12J3DModelData
  */
- J3DError J3DMtxBuffer::createAnmMtx(J3DModelData* p_modelData) {
+J3DError J3DMtxBuffer::createAnmMtx(J3DModelData* p_modelData) {
     if (p_modelData->getJointNum() != 0) {
         mpScaleFlagArr = new u8[p_modelData->getJointNum()];
         mpAnmMtx = new Mtx[p_modelData->getJointNum()];
@@ -189,7 +189,7 @@ s32 J3DMtxBuffer::createDoubleDrawMtx(J3DModelData* p_modelData, u32 num) {
 /* 80326664-803268D4 320FA4 0270+00 1/1 0/0 0/0 .text
  * createBumpMtxArray__12J3DMtxBufferFP12J3DModelDataUl         */
 s32 J3DMtxBuffer::createBumpMtxArray(J3DModelData* i_modelData, u32 param_1) {
-    J3D_ASSERT(295, i_modelData, "Error : null pointer.");
+    J3D_ASSERT_NULLPTR(295, i_modelData);
     if (i_modelData->getModelDataType() == 0) {
         u16 bumpMtxNum = 0;
         u16 materialCount = 0;

@@ -2,64 +2,62 @@
 #define J3DGD_H
 
 #include <dolphin/gx.h>
-#include "dolphin/gd/GDBase.h"
+#include <dolphin/gd.h>
 
-inline void J3DGDWrite_u8(u8 param) {
-    __GDWrite(param);
+inline void J3DGDWrite_u8(u8 data) {
+    __GDWrite(data);
 }
 
-inline void J3DGDWrite_u16(u16 param) {
-    __GDWrite((param & 0xffff) >> 8);
-    __GDWrite(param & 0xff);
+inline void J3DGDWrite_u16(u16 data) {
+    __GDWrite((u8)((data >> 8)));
+    __GDWrite((u8)((data >> 0) & 0xFF));
 }
 
-inline void J3DGDWrite_u32(u32 param) {
-    __GDWrite((param >> 24) & 0xff);
-    __GDWrite((param >> 16) & 0xff);
-    __GDWrite((param >> 8) & 0xff);
-    __GDWrite(param & 0xff);
+inline void J3DGDWrite_u32(u32 data) {
+    __GDWrite((u8)((data >> 24) & 0xFF));
+    __GDWrite((u8)((data >> 16) & 0xFF));
+    __GDWrite((u8)((data >> 8) & 0xFF));
+    __GDWrite((u8)((data >> 0) & 0xFF));
 }
 
-inline void J3DGDWrite_f32(f32 param) {
-    u32 tmp = *(u32*)&param;
-    J3DGDWrite_u32(tmp);
+inline void J3DGDWrite_f32(f32 data) {
+    union {
+        f32 f;
+        u32 u;
+    } fid;
+    fid.f = data;
+    J3DGDWrite_u32(fid.u);
 }
 
-inline void J3DGDWriteBPCmd(u32 cmd) {
-    J3DGDWrite_u8(0x61);
-    J3DGDWrite_u32(cmd);
+inline void J3DGDWriteBPCmd(u32 regval) {
+    J3DGDWrite_u8(GX_LOAD_BP_REG);
+    J3DGDWrite_u32(regval);
 }
 
-inline void J3DFifoLoadBPCmd(u32 cmd) {
-    GXWGFifo.u8 = 0x61;
-    GXWGFifo.u32 = cmd;
-}
-
-inline void J3DGDWriteXFCmd(u16 addr, u32 cmd) {
-    J3DGDWrite_u8(0x10);
+inline void J3DGDWriteXFCmd(u16 addr, u32 val) {
+    J3DGDWrite_u8(GX_LOAD_XF_REG);
     J3DGDWrite_u16(0);
     J3DGDWrite_u16(addr);
-    J3DGDWrite_u32(cmd);
+    J3DGDWrite_u32(val);
 }
 
 inline void J3DGDWriteXFCmdHdr(u16 addr, u8 len) {
-    J3DGDWrite_u8(0x10);
+    J3DGDWrite_u8(GX_LOAD_XF_REG);
     J3DGDWrite_u16(len - 1);
     J3DGDWrite_u16(addr);
 }
 
-inline void J3DFifoWriteXFCmdHdr(u16 addr, u8 len) {
-    GXWGFifo.u8 = 0x10;
-    GXWGFifo.u16 = len - 1;
-    GXWGFifo.u16 = addr;
+inline void J3DGXCmd1f32ptr(f32* data) {
+    GXCmd1u32(*(u32*)data);
 }
 
-inline void J3DGXCmd1f32ptr(f32* value) {
-    GXWGFifo.u32 = *(u32*)value;
-}
-
-inline void J3DGXCmd1f32(f32 value) {
-    GXWGFifo.u32 = *(u32*)&value;
+inline void J3DGXCmd1f32(f32 data) {
+    union {
+        f32 f;
+        u32 u;
+    } fid;
+    fid.f = data;
+    GXCmd1u32(fid.u);
 }
 
 inline void J3DGDWriteCPCmd(u8 reg, u32 value) {
@@ -96,18 +94,6 @@ void J3DGDSetTevKColor(GXTevKColorID, GXColor);
 void J3DGDSetTevColorS10(GXTevRegID, GXColorS10);
 void J3DGDSetFog(GXFogType, f32, f32, f32, f32, GXColor);
 void J3DGDSetFogRangeAdj(u8, u16, _GXFogAdjTable*);
-void J3DFifoLoadPosMtxImm(f32 (*)[4], u32);
-void J3DFifoLoadNrmMtxImm(f32 (*)[4], u32);
-void J3DFifoLoadNrmMtxImm3x3(f32 (*)[3], u32);
-void J3DFifoLoadNrmMtxToTexMtx(f32 (*)[4], u32);
-void J3DFifoLoadNrmMtxToTexMtx3x3(f32 (*)[3], u32);
-void J3DFifoLoadTexCached(GXTexMapID, u32, GXTexCacheSize, u32, GXTexCacheSize);
-
-static inline void J3DFifoLoadIndx(u8 cmd, u16 indx, u16 addr) {
-    GXWGFifo.u8 = cmd;
-    GXWGFifo.u16 = indx;
-    GXWGFifo.u16 = addr;
-}
 
 inline void J3DGDSetNumChans(u8 numChans) {
     J3DGDWriteXFCmd(0x1009, numChans);

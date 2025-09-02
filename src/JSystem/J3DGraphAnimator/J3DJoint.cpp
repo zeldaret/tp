@@ -180,7 +180,7 @@ void J3DJoint::entryIn() {
     j3dSys.getDrawBuffer(0)->setZMtx(anmMtx);
     j3dSys.getDrawBuffer(1)->setZMtx(anmMtx);
     for (J3DMaterial* mesh = mMesh; mesh != NULL;) {
-        if (mesh->getShape()->checkFlag(1)) {
+        if (mesh->getShape()->checkFlag(J3DShpFlag_Visible)) {
             mesh = mesh->getNext();
         } else {
             J3DMatPacket* matPacket = j3dSys.getModel()->getMatPacket(mesh->getIndex());

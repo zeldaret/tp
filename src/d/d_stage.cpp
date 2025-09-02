@@ -78,7 +78,7 @@ static void dStage_KeepDoorInfoProc(dStage_dt_c* i_stage, stage_tgsc_class* i_dr
         DoorInfo.mNum = 0;
         return;
     }
-    if (i_drtg->num >= (int)ARRAY_SIZE(DoorInfo.mDrTgData) || i_drtg->num < 0) {
+    if (i_drtg->num >= ARRAY_SIZE(DoorInfo.mDrTgData) || i_drtg->num < 0) {
         DoorInfo.mNum = 0;
         return;
     }
@@ -1205,14 +1205,14 @@ int dStage_roomControl_c::loadRoom(int roomCount, u8* rooms, bool param_2) {
         return 0;
     }
 
-    for (int roomNo = 0; roomNo < ARRAY_SIZE(mStatus); roomNo++) {
+    for (int roomNo = 0; roomNo < ARRAY_SIZEU(mStatus); roomNo++) {
         if (checkStatusFlag(roomNo, 0x02 | 0x04)) {
             return 0;
         }
     }
     
     BOOL r26 = TRUE;
-    for (int roomNo = 0; roomNo < (int)ARRAY_SIZE(mStatus); roomNo++) {
+    for (int roomNo = 0; roomNo < ARRAY_SIZE(mStatus); roomNo++) {
         if (dStage_roomControl_c::checkStatusFlag(roomNo, 0x01)) {
             if (!stayRoomCheck(roomCount, rooms, roomNo)) {
                 onStatusFlag(roomNo, 0xc);
@@ -1500,7 +1500,7 @@ static void dummy0() {
 dStage_objectNameInf* dStage_searchName(char const* objName) {
     dStage_objectNameInf* obj = l_objectName;
 
-    for (u32 i = 0; i < ARRAY_SIZE(l_objectName); i++) {
+    for (u32 i = 0; i < ARRAY_SIZEU(l_objectName); i++) {
         if (!strcmp(obj->mName, objName)) {
             return obj;
         }
@@ -1517,7 +1517,7 @@ static const char* dStage_getName(s16 procName, s8 subtype) {
     dStage_objectNameInf* obj = l_objectName;
     char* tmp = NULL;
 
-    for (int i = 0; i < ARRAY_SIZE(l_objectName); i++) {
+    for (int i = 0; i < ARRAY_SIZEU(l_objectName); i++) {
         if (obj->mProcName == procName) {
             if (obj->mSubtype == subtype) {
                 return obj->mName;
@@ -2351,10 +2351,10 @@ static void readMult(dStage_dt_c* i_stage, dStage_Multi_c* multi, bool useOldRes
             if (dzs != NULL) {
                 dStage_dt_c_offsetToPtr(dzs);
                 i_stage->setRoomNo(info->mRoomNo);
-                dStage_dt_c_decode(dzs, i_stage, l_roomFuncTable, ARRAY_SIZE(l_roomFuncTable));
-                dStage_setLayerTagName(l_layerFuncTable, ARRAY_SIZE(l_layerFuncTable),
+                dStage_dt_c_decode(dzs, i_stage, l_roomFuncTable, ARRAY_SIZEU(l_roomFuncTable));
+                dStage_setLayerTagName(l_layerFuncTable, ARRAY_SIZEU(l_layerFuncTable),
                                        dComIfG_play_c::getLayerNo(0));
-                dStage_dt_c_decode(dzs, i_stage, l_layerFuncTable, ARRAY_SIZE(l_layerFuncTable));
+                dStage_dt_c_decode(dzs, i_stage, l_layerFuncTable, ARRAY_SIZEU(l_layerFuncTable));
             }
 
             info++;
@@ -2453,7 +2453,7 @@ static void layerMemoryInfoLoader(void* i_data, dStage_dt_c* i_stage, int param_
         {"MEC0", dStage_mecoInfoInit},
     };
 
-    dStage_dt_c_decode(i_data, i_stage, l_layerFuncTable, ARRAY_SIZE(l_layerFuncTable));
+    dStage_dt_c_decode(i_data, i_stage, l_layerFuncTable, ARRAY_SIZEU(l_layerFuncTable));
 }
 
 /* 80026940-800269B4 021280 0074+00 1/1 0/0 0/0 .text
@@ -2463,7 +2463,7 @@ static void dStage_dt_c_stageInitLoader(void* i_data, dStage_dt_c* i_stage) {
 
     dStage_dt_c_offsetToPtr(i_data);
     i_stage->init();
-    dStage_dt_c_decode(i_data, i_stage, l_funcTable, ARRAY_SIZE(l_funcTable));
+    dStage_dt_c_decode(i_data, i_stage, l_funcTable, ARRAY_SIZEU(l_funcTable));
     layerMemoryInfoLoader(i_data, i_stage, -1);
 }
 
@@ -2484,20 +2484,20 @@ static void layerTableLoader(void* i_data, dStage_dt_c* i_stage, int roomNo) {
         newRoomNo = dComIfGp_getStartStageRoomNo();
     }
 
-    dStage_setLayerTagName(l_layerFuncTableA, ARRAY_SIZE(l_layerFuncTableA),
+    dStage_setLayerTagName(l_layerFuncTableA, ARRAY_SIZEU(l_layerFuncTableA),
                            dComIfG_play_c::getLayerNo(0));
-    dStage_dt_c_decode(i_data, i_stage, l_layerFuncTableA, ARRAY_SIZE(l_layerFuncTableA));
+    dStage_dt_c_decode(i_data, i_stage, l_layerFuncTableA, ARRAY_SIZEU(l_layerFuncTableA));
 
     dStage_Elst_c* elst = dComIfGp_getStage()->getElst();
     if (elst != NULL && newRoomNo >= 0 && elst->m_entryNum > newRoomNo) {
         dStage_Elst_dt_c* d = elst->m_entries;
         int layer = dComIfG_play_c::getLayerNo(0);
-        dStage_setLayerTagName(l_envLayerFuncTable, ARRAY_SIZE(l_envLayerFuncTable),
+        dStage_setLayerTagName(l_envLayerFuncTable, ARRAY_SIZEU(l_envLayerFuncTable),
                                d[newRoomNo].m_layerTable[layer]);
-        dStage_dt_c_decode(i_data, i_stage, l_envLayerFuncTable, ARRAY_SIZE(l_envLayerFuncTable));
+        dStage_dt_c_decode(i_data, i_stage, l_envLayerFuncTable, ARRAY_SIZEU(l_envLayerFuncTable));
     } else {
-        dStage_setLayerTagName(l_envLayerFuncTable, ARRAY_SIZE(l_envLayerFuncTable), 0);
-        dStage_dt_c_decode(i_data, i_stage, l_envLayerFuncTable, ARRAY_SIZE(l_envLayerFuncTable));
+        dStage_setLayerTagName(l_envLayerFuncTable, ARRAY_SIZEU(l_envLayerFuncTable), 0);
+        dStage_dt_c_decode(i_data, i_stage, l_envLayerFuncTable, ARRAY_SIZEU(l_envLayerFuncTable));
     }
 }
 
@@ -2513,7 +2513,7 @@ static void layerActorLoader(void* i_data, dStage_dt_c* i_stage, int param_2) {
     };
 
     dStage_setLayerTagName(l_layerFuncTable, 4, dComIfG_play_c::getLayerNo(0));
-    dStage_dt_c_decode(i_data, i_stage, l_layerFuncTable, ARRAY_SIZE(l_layerFuncTable));
+    dStage_dt_c_decode(i_data, i_stage, l_layerFuncTable, ARRAY_SIZEU(l_layerFuncTable));
 }
 
 /* 80026B58-80026BBC 021498 0064+00 1/1 0/0 0/0 .text dStage_dt_c_stageLoader__FPvP11dStage_dt_c
@@ -2535,7 +2535,7 @@ static void dStage_dt_c_stageLoader(void* i_data, dStage_dt_c* i_stage) {
         {"REVT", dStage_stEventInfoInit},   {"SOND", dStage_soundInfoInitCL},
     };
 
-    dStage_dt_c_decode(i_data, i_stage, l_funcTable, ARRAY_SIZE(l_funcTable));
+    dStage_dt_c_decode(i_data, i_stage, l_funcTable, ARRAY_SIZEU(l_funcTable));
     layerTableLoader(i_data, i_stage, -1);
     layerActorLoader(i_data, i_stage, -1);
 }
@@ -2555,7 +2555,7 @@ void dStage_dt_c_roomLoader(void* i_data, dStage_dt_c* i_stage, int param_2) {
 
     dStage_dt_c_offsetToPtr(i_data);
     i_stage->init();
-    dStage_dt_c_decode(i_data, i_stage, l_funcTable, ARRAY_SIZE(l_funcTable));
+    dStage_dt_c_decode(i_data, i_stage, l_funcTable, ARRAY_SIZEU(l_funcTable));
     layerTableLoader(i_data, i_stage, param_2);
 }
 
@@ -2569,7 +2569,7 @@ void dStage_dt_c_roomReLoader(void* i_data, dStage_dt_c* i_stage, int param_2) {
         {"TGDR", dStage_tgscInfoInit},         {"REVT", dStage_mapEventInfoInit},
     };
 
-    dStage_dt_c_decode(i_data, i_stage, l_funcTable, ARRAY_SIZE(l_funcTable));
+    dStage_dt_c_decode(i_data, i_stage, l_funcTable, ARRAY_SIZEU(l_funcTable));
     layerActorLoader(i_data, i_stage, param_2);
 }
 
@@ -2585,7 +2585,7 @@ void dStage_dt_c_fieldMapLoader(void* i_data, dStage_dt_c* i_stage) {
     JUT_ASSERT(4428, i_data != 0);
 
     dStage_dt_c_offsetToPtr(i_data);
-    dStage_dt_c_decode(i_data, i_stage, l_funcTable, ARRAY_SIZE(l_funcTable));
+    dStage_dt_c_decode(i_data, i_stage, l_funcTable, ARRAY_SIZEU(l_funcTable));
 }
 
 /* ############################################################################################## */

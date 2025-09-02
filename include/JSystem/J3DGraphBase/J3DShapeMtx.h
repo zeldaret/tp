@@ -2,6 +2,7 @@
 #define J3DSHAPEMTX_H
 
 #include "JSystem/J3DGraphBase/J3DShape.h"
+#include "JSystem/J3DAssert.h"
 #include "dolphin/mtx.h"
 
 class J3DTexMtx;
@@ -14,17 +15,17 @@ class J3DTexGenBlock;
 class J3DTexMtxObj {
 public:
     Mtx& getMtx(u16 idx) {
-        J3D_ASSERT(275, idx < mTexMtxNum, "Error : range over");
+        J3D_ASSERT_RANGE(275, idx < mTexMtxNum);
         return mpTexMtx[idx];
     }
 
     void setMtx(u16 idx, const Mtx mtx) {
-        J3D_ASSERT(288, idx < mTexMtxNum, "Error : range over");
+        J3D_ASSERT_RANGE(288, idx < mTexMtxNum);
         MTXCopy(mtx, mpTexMtx[idx]);
     }
 
     Mtx44& getEffectMtx(u16 idx) {
-        J3D_ASSERT(293, idx < mTexMtxNum, "Error : range over");
+        J3D_ASSERT_RANGE(293, idx < mTexMtxNum);
         return mpEffectMtx[idx];
     }
 

@@ -41,7 +41,7 @@ JKRAramStream::~JKRAramStream() {}
 
 /* 802D3C68-802D3CD8 2CE5A8 0070+00 1/0 0/0 0/0 .text            run__13JKRAramStreamFv */
 void* JKRAramStream::run() {
-    OSInitMessageQueue(&sMessageQueue, sMessageBuffer, ARRAY_SIZE(sMessageBuffer));
+    OSInitMessageQueue(&sMessageQueue, sMessageBuffer, ARRAY_SIZEU(sMessageBuffer));
 
     for (;;) {
         OSMessage message;

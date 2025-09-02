@@ -168,7 +168,7 @@ int daTbox2_c::create1st() {
 int daTbox2_c::demoProc() {
     static char* action_table[] = {"WAIT", "OPEN", "APPEAR", "OPEN_SHORT"};
     int act_idx =
-        dComIfGp_evmng_getMyActIdx(mStaffIdx, action_table, ARRAY_SIZE(action_table), 0, 0);
+        dComIfGp_evmng_getMyActIdx(mStaffIdx, action_table, ARRAY_SIZEU(action_table), 0, 0);
 
     if (dComIfGp_evmng_getIsAddvance(mStaffIdx)) {
         switch (act_idx) {

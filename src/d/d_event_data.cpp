@@ -51,7 +51,7 @@ static TelopDataStruct TelopData[] = {
     {'F127', 1140, -1, 1},    {'R127', 1140, -1, 0},   {'F126', 1141, -1, 1}};
 
 /* 80450640-80450648 0000C0 0004+04 2/2 0/0 0/0 .sdata           numTelopData */
-static s32 numTelopData = ARRAY_SIZE(TelopData);
+static s32 numTelopData = ARRAY_SIZEU(TelopData);
 
 /* 8004372C-800437C4 03E06C 0098+00 2/2 0/0 0/0 .text            getTelopNo__FPCc */
 static u16 getTelopNo(char const* pName) {

@@ -8,6 +8,7 @@
 u32 J3DShapeDraw::countVertex(u32 stride) {
     u32 count = 0;
     uintptr_t dlStart = (uintptr_t)getDisplayList();
+
     for (u8* dl = (u8*)dlStart; ((uintptr_t)dl - dlStart) < getDisplayListSize();) {
         if (*dl != GX_TRIANGLEFAN && *dl != GX_TRIANGLESTRIP)
             break;
@@ -16,6 +17,7 @@ u32 J3DShapeDraw::countVertex(u32 stride) {
         dl += stride * vtxNum;
         dl += 3;
     }
+
     return count;
 }
 
@@ -28,6 +30,7 @@ void J3DShapeDraw::addTexMtxIndexInDL(u32 stride, u32 attrOffs, u32 valueBase) {
     u8* oldDLStart = getDisplayList();
     u8* oldDL = oldDLStart;
     u8* newDL = newDLStart;
+
     for (; (oldDL - oldDLStart) < mDisplayListSize;) {
         // Copy command
         u8 h = *oldDL;
@@ -59,13 +62,14 @@ void J3DShapeDraw::addTexMtxIndexInDL(u32 stride, u32 attrOffs, u32 valueBase) {
     u32 realSize = ALIGN_NEXT((uintptr_t)newDL - (uintptr_t)newDLStart, 0x20);
     for (; (newDL - newDLStart) < newSize; newDL++)
         *newDL = 0;
+
     mDisplayListSize = realSize;
     mDisplayList = newDLStart;
     DCStoreRange(newDLStart, mDisplayListSize);
 }
 
 /* 80314ABC-80314AD4 30F3FC 0018+00 0/0 1/1 0/0 .text            __ct__12J3DShapeDrawFPCUcUl */
-J3DShapeDraw::J3DShapeDraw(u8 const* displayList, u32 displayListSize) {
+J3DShapeDraw::J3DShapeDraw(const u8* displayList, u32 displayListSize) {
     mDisplayList = (void*)displayList;
     mDisplayListSize = displayListSize;
 }

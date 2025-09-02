@@ -832,7 +832,7 @@ void daObjRgate_c::demoProc() {
 int daObjRgate_c::getDemoAction() {
     static char* action_table[] = {"WAIT", "ADJUSTMENT", "UNLOCK", "OPEN"};
 
-    return dComIfGp_evmng_getMyActIdx(mStaffID, action_table, ARRAY_SIZE(action_table), 0, 0);
+    return dComIfGp_evmng_getMyActIdx(mStaffID, action_table, ARRAY_SIZEU(action_table), 0, 0);
 }
 
 /* 80CBBDB0-80CBBE18 002190 0068+00 1/0 0/0 0/0 .text            Execute__12daObjRgate_cFPPA3_A4_f

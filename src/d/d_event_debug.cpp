@@ -204,7 +204,7 @@ bool dEvM_HIO_c::setDebugCameraData(void* buffer) {
 
 void dEvM_root_bit_HIO_c::genMessage(JORMContext* ctx) {
     u8 i = 0;
-    for(; i < ARRAY_SIZE(mBit) && i < mFlagTables->mNumRootBits; i++) {
+    for(; i < ARRAY_SIZEU(mBit) && i < mFlagTables->mNumRootBits; i++) {
         mBit[i].mFlagTables = mFlagTables;
         mBit[i].mRootBitIdx = i;
 
@@ -215,7 +215,7 @@ void dEvM_root_bit_HIO_c::genMessage(JORMContext* ctx) {
 
 void dEvM_root_reg_HIO_c::genMessage(JORMContext* ctx) {
     u8 i = 0;
-    for(; i < ARRAY_SIZE(mReg) && i < mFlagTables->mNumRootRegs; i++) {
+    for(; i < ARRAY_SIZEU(mReg) && i < mFlagTables->mNumRootRegs; i++) {
         mReg[i].mFlagTables = mFlagTables;
         mReg[i].mRootRegIdx = i;
 

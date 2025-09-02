@@ -1117,7 +1117,7 @@ BOOL daNpc_zrZ_c::doEvent() {
             if (staff_id != -1) {
                 mStaffID = staff_id;
                 int act_idx = event_manager.getMyActIdx(staff_id, mEvtCutNameList,
-                                                        ARRAY_SIZE(mEvtCutNameList), 0, 0);
+                                                        ARRAY_SIZEU(mEvtCutNameList), 0, 0);
                 if ((this->*mEvtCutList[act_idx])(staff_id)) {
                     event_manager.cutEnd(staff_id);
                 }

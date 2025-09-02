@@ -216,12 +216,12 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
     }
 
     if (spotName != NULL) {
-        for (spot = 0; spot < (int)ARRAY_SIZE(sSpotName); spot++) {
+        for (spot = 0; spot < ARRAY_SIZE(sSpotName); spot++) {
             if (!strcmp(spotName, sSpotName[spot])) {
                 break;
             }
         }
-        if (spot == (int)ARRAY_SIZE(sSpotName)) {
+        if (spot == ARRAY_SIZE(sSpotName)) {
             spot = SPOT_NONE;
         }
     }

@@ -188,7 +188,7 @@ int daDbDoor00_c::getDemoAction() {
         "WAIT",      "SET_START", "SET_ANGLE", "END",        "OPEN",
         "STOP_OPEN", "SET_GOAL",  "SET_GOAL2", "ADJUSTMENT",
     };
-    return dComIfGp_evmng_getMyActIdx(field_0x598, action_table, ARRAY_SIZE(action_table), 0, 0);
+    return dComIfGp_evmng_getMyActIdx(field_0x598, action_table, ARRAY_SIZEU(action_table), 0, 0);
 }
 
 /* 8045DAB0-8045DE44 0007B0 0394+00 5/4 0/0 0/0 .text            demoProc__12daDbDoor00_cFv */
