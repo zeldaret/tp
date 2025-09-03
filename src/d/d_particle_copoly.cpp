@@ -3,6 +3,8 @@
  *
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_particle_copoly.h"
 #include "f_op/f_op_kankyo_mng.h"
 
@@ -226,12 +228,6 @@ void dPaPoF_c::clearFourAllID() {
     clearBRightID();
     clearTwoAllID();
 }
-
-/* ############################################################################################## */
-/* 803A85F8-803A8604 005718 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 803A8628-803A864C 005748 0024+00 0/1 0/0 0/0 .data            m_typeTwoData__8dPaPoT_c */
 dPaPoT_c::effTypeFunc dPaPoT_c::m_typeTwoData[] = {

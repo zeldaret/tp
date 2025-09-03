@@ -40,4 +40,4 @@ l_arcName = .data:0x00000008; // type:object size:0x4 scope:global data:4byte
 l_daTagLv6Gate_Method = .data:0x0000000C; // type:object size:0x20 scope:global
 g_profile_Tag_Lv6Gate = .data:0x0000002C; // type:object size:0x30 scope:global
 lbl_711_data_5C = .data:0x0000005C; // type:object size:0x10 data:string
-lbl_711_data_6C = .data:0x0000006C; // type:object size:0x18
+lbl_711_data_6C = .data:0x0000006C; // type:object size:0x15 data:string

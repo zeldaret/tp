@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_grass.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "SSystem/SComponent/c_math.h"
@@ -12,9 +14,6 @@
 #include "Z2AudioLib/Z2Instances.h"
 #include <string.h>
 #include <dolphin/gd.h>
-
-UNK_REL_DATA
-UNK_REL_BSS;
 
 #include "d/actor/d_grass.inc"
 #include "d/actor/d_flower.inc"

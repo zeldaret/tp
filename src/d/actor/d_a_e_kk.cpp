@@ -1,15 +1,31 @@
 /**
- * @file d_a_e_kk.cpp
+* @file d_a_e_kk.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_e_kk.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_item.h"
-
-UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
+
+class daE_KK_HIO_c : public JORReflexible {
+public:
+    /* 806FA70C */ daE_KK_HIO_c();
+    /* 806FF0F0 */ virtual ~daE_KK_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 model_size;
+    /* 0x0C */ f32 spear_throw_range;
+    /* 0x10 */ f32 direct_attack_range;
+    /* 0x14 */ f32 default_moving_range;
+    /* 0x18 */ s16 escape_time;
+    /* 0x1A */ u8 range_display;
+};
 
 enum daE_KK_Action {
     ACTION_WAIT,

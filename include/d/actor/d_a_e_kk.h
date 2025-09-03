@@ -11,7 +11,7 @@
 /**
  * @ingroup actors-enemies
  * @class daE_KK_c
- * @brief Chilfos
+ * @brief Chilfos (Koori no Kenshi)
  *
  * @details Enemy - Ice Knight
  *
@@ -96,21 +96,5 @@ private:
 };
 
 STATIC_ASSERT(sizeof(daE_KK_c) == 0x13d4);
-
-class daE_KK_HIO_c : public JORReflexible {
-public:
-    /* 806FA70C */ daE_KK_HIO_c();
-    /* 806FF0F0 */ virtual ~daE_KK_HIO_c() {}
-
-    void genMessage(JORMContext*);
-
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 model_size;
-    /* 0x0C */ f32 spear_throw_range;
-    /* 0x10 */ f32 direct_attack_range;
-    /* 0x14 */ f32 default_moving_range;
-    /* 0x18 */ s16 escape_time;
-    /* 0x1A */ u8 range_display;
-};
 
 #endif /* D_A_E_KK_H */

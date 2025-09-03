@@ -1,7 +1,9 @@
 /**
- * @file d_a_cstatue.cpp
+* @file d_a_cstatue.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_cstatue.h"
 #include <Z2AudioLib/Z2Instances.h>
@@ -10,9 +12,6 @@
 #include "d/actor/d_a_player.h"
 #include "d/d_cc_d.h"
 #include "d/d_tresure.h"
-
-UNK_REL_BSS;
-UNK_REL_DATA;
 
 static u8 const unused[12] = {};
 
@@ -1122,6 +1121,7 @@ int daCstatue_c::execute() {
                 !fopAcM_CheckCondition(this, 4))
             {
                 if (!fopAcM_lc_c::lineCheck(&eyePos, &link->eyePos, this)) {
+                    /* dSv_event_flag_c::F_0684 - Temple of Time - Look at R00 statue using sense */
                     dComIfGs_onEventBit(0x5440);
                 }
             }

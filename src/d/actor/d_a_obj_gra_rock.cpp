@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_gra_rock.h"
 #include "d/actor/d_a_npc.h"
 #include "d/d_bg_w.h"

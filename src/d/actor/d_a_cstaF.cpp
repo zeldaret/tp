@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_cstaF.h"
 #include "d/actor/d_a_alink.h"
 #include "d/actor/d_a_crod.h"
@@ -86,7 +88,9 @@ int daCstaF_c::CreateHeap() {
 
 /* 804DDB48-804DDBB4 000268 006C+00 2/2 0/0 0/0 .text            checkCoverModel__9daCstaF_cFv */
 BOOL daCstaF_c::checkCoverModel() {
-    return !dComIfGs_isEventBit(0x2540) && strcmp(dComIfGp_getStartStageName(), l_spStageName) == 0;
+            /* dSv_event_flag_c::F_0303 - Kakariko Village - Saw Shad's spell 2 */
+    return !dComIfGs_isEventBit(0x2540)
+           && strcmp(dComIfGp_getStartStageName(), l_spStageName) == 0;
 }
 
 /* 804DF9A0-804DF9E4 000000 0044+00 1/1 0/0 0/0 .data            l_cylSrc */
@@ -508,7 +512,9 @@ int daCstaF_c::Execute(f32 (**param_0)[3][4]) {
             fopAcM_seStartCurrentLevel(this, Z2SE_CSTATUE_SEAL_VANISH, 0);
         }
 
-        if (hide_cover || dComIfGs_isEventBit(0x2540)) {
+        if (hide_cover
+               /* dSv_event_flag_c::F_0303 - Kakariko Village - Saw Shad's spell 2 */
+            || dComIfGs_isEventBit(0x2540)) {
             mp_coverModel = NULL;
             m_coverVanishFlg = FALSE;
         }

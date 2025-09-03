@@ -3,6 +3,8 @@
  * NPC - Cat
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_ne.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "d/d_com_inf_game.h"
@@ -309,97 +311,8 @@ static s16 climb_angle_get(npc_ne_class* i_this) {
     return 0;
 }
 
-/* 80A92A88-80A92A8C 000008 0001+03 1/1 0/0 0/0 .bss             @1109 */
-static u8 lit_1109[1 + 3 /* padding */];
-
-/* 80A92A8C-80A92A90 00000C 0001+03 0/0 0/0 0/0 .bss             @1107 */
-#pragma push
-#pragma force_active on
-static u8 lit_1107[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A92A90-80A92A94 000010 0001+03 0/0 0/0 0/0 .bss             @1105 */
-#pragma push
-#pragma force_active on
-static u8 lit_1105[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A92A94-80A92A98 000014 0001+03 0/0 0/0 0/0 .bss             @1104 */
-#pragma push
-#pragma force_active on
-static u8 lit_1104[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A92A98-80A92A9C 000018 0001+03 0/0 0/0 0/0 .bss             @1099 */
-#pragma push
-#pragma force_active on
-static u8 lit_1099[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A92A9C-80A92AA0 00001C 0001+03 0/0 0/0 0/0 .bss             @1097 */
-#pragma push
-#pragma force_active on
-static u8 lit_1097[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A92AA0-80A92AA4 000020 0001+03 0/0 0/0 0/0 .bss             @1095 */
-#pragma push
-#pragma force_active on
-static u8 lit_1095[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A92AA4-80A92AA8 000024 0001+03 0/0 0/0 0/0 .bss             @1094 */
-#pragma push
-#pragma force_active on
-static u8 lit_1094[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A92AA8-80A92AAC 000028 0001+03 0/0 0/0 0/0 .bss             @1057 */
-#pragma push
-#pragma force_active on
-static u8 lit_1057[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A92AAC-80A92AB0 00002C 0001+03 0/0 0/0 0/0 .bss             @1055 */
-#pragma push
-#pragma force_active on
-static u8 lit_1055[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A92AB0-80A92AB4 000030 0001+03 0/0 0/0 0/0 .bss             @1053 */
-#pragma push
-#pragma force_active on
-static u8 lit_1053[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A92AB4-80A92AB8 000034 0001+03 0/0 0/0 0/0 .bss             @1052 */
-#pragma push
-#pragma force_active on
-static u8 lit_1052[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A92AB8-80A92ABC 000038 0001+03 0/0 0/0 0/0 .bss             @1014 */
-#pragma push
-#pragma force_active on
-static u8 lit_1014[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A92ABC-80A92AC0 00003C 0001+03 0/0 0/0 0/0 .bss             @1012 */
-#pragma push
-#pragma force_active on
-static u8 lit_1012[1 + 3 /* padding */];
-#pragma pop
-
-/* 80A92AC0-80A92AC4 000040 0001+03 0/0 0/0 0/0 .bss             @1010 */
-#pragma push
-#pragma force_active on
-static u8 lit_1010[1 + 3 /* padding */];
-#pragma pop
-
 /* 80A92AC4-80A92AC8 -00001 0004+00 2/2 0/0 0/0 .bss             None */
-/* 80A92AC4 0001+00 data_80A92AC4 @1009 */
 /* 80A92AC5 0003+00 data_80A92AC5 None */
-static u8 struct_80A92AC4;
 static bool l_hioInit;
 
 /* 80A92AD4-80A92AF0 000054 001C+00 11/11 0/0 0/0 .bss             l_HIO */
@@ -1055,6 +968,7 @@ static void npc_ne_tame(npc_ne_class* i_this) {
 
         i_this->mpMorf->setPlaySpeed(i_this->mAnmSpeed);
 
+            /* dSv_event_flag_c::F_0470 - Fishing Pond - Reserved for fishing */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[470])) {
             if (fpcEx_Search(s_fish_sub, _this) != NULL) {
                 i_this->mAction = npc_ne_class::ACT_HOME;
@@ -1715,6 +1629,7 @@ static BOOL npc_ne_home(npc_ne_class* i_this) {
                 i_this->current.pos.set(236.0f, 93.3f, -777.5f);
                 i_this->current.angle.y = 0x5f94;
                 i_this->mAngleYStep = 5000.0f;
+                /* dSv_event_flag_c::F_0038 - Ordon Village - Opening (2nd day) cat returns home */
                 dComIfGs_onEventBit(0x1001);
             } else {
                 i_this->mMode = 13;
@@ -2269,6 +2184,7 @@ static void npc_ne_dish(npc_ne_class* i_this) {
 
     case 1:
     default:
+             /* dSv_event_flag_c::F_0038 - Ordon Village - Opening (2nd day) cat returns home */
         if (!dComIfGs_isEventBit(0x1001)) {
             i_this->current.pos.y = 20000.0f;
             i_this->speed.y = 0.0f;
@@ -2469,9 +2385,9 @@ static void action(npc_ne_class* i_this) {
     cXyz vec1, vec2;
     if (i_this->mWantsFish && i_this->mAction != npc_ne_class::ACT_SANBASI
                             && player->current.pos.z > -2800.0f) {
-        dmg_rod_class* rod = static_cast<dmg_rod_class*>(fopAcM_SearchByName(PROC_MG_ROD));
-        if (rod != NULL && rod->field_0xf7c == 1 && rod->field_0xf7e != 5
-                        && rod->field_0x13b4 != 0 && !i_this->mNoFollow) {
+        dmg_rod_class* rod = ((dmg_rod_class*)fopAcM_SearchByName(PROC_MG_ROD));
+        if (rod != NULL && rod->kind == 1 && rod->action != 5
+                        && rod->play_cam_mode != 0 && !i_this->mNoFollow) {
             if (i_this->mDistToTarget > 500.0f) {
                 _this->current.pos = ground_search(i_this);
                 _this->old = _this->current;
@@ -3032,6 +2948,7 @@ static int daNpc_Ne_Execute(npc_ne_class* i_this) {
     i_this->mCounter++;
 
     if (i_this->mWantsFish && (i_this->mCounter & 0xf) == 0) {
+            /* dSv_event_flag_c::F_0470 - Fishing Pond - Reserved for fishing */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[470])
                                     && i_this->mDistToTarget < 1500.0f) {
             if (fopAcM_SearchByName(PROC_MG_ROD) != NULL) {
@@ -3221,6 +3138,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     
     if (_this->mBehavior == npc_ne_class::BHV_DISH) {
         static int dish_bck[2] = {npc_ne_class::ANM_EMPTY_DISH, npc_ne_class::ANM_DRINK_DISH};
+                        /* dSv_event_flag_c::F_0038 - Ordon Village - Opening (2nd day) cat returns home */
         s32 dish_flag = dComIfGs_isEventBit(0x1001) ? 1 : 0;
         _this->mpDishMorf = new mDoExt_McaMorf(
             static_cast<J3DModelData*>(dComIfG_getObjectRes(_this->mResName, 29)), NULL, NULL,
@@ -3254,8 +3172,9 @@ static cPhs__Step daNpc_Ne_Create(fopAc_ac_c* i_this) {
         _this->mPathIndex = (u8)(fopAcM_GetParam(_this) >> 0x10);
         _this->mIsGengle = (u8)(fopAcM_GetParam(_this) >> 0x18);
 
-        if (_this->mIsGengle == 1 &&
-                        !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[457])) {
+        if (_this->mIsGengle == 1 
+                /* dSv_event_flag_c::F_0457 - Castle Town - Revived cat */
+            && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[457])) {
             return cPhs_ERROR_e;
         }
 
@@ -3279,6 +3198,7 @@ static cPhs__Step daNpc_Ne_Create(fopAc_ac_c* i_this) {
             if (_this->mBehavior == npc_ne_class::BHV_TAME) {
                 _this->mAction = npc_ne_class::ACT_TAME;
             } else if (_this->mBehavior == npc_ne_class::BHV_PIER) {
+                    /* dSv_event_flag_c::F_0038 - Ordon Village - Opening (2nd day) cat returns home */
                 if (dComIfGs_isEventBit(0x1001)) {
                     _this->mAction = npc_ne_class::ACT_ROOF;
                     i_this->current.pos.set(1005.0f, 766.0f, -1423.0f);

@@ -18,8 +18,6 @@
  */
 class e_mk_class {
 public:
-    /* 8071C190 */ e_mk_class() {}
-
     enum e_mk_ACTION {
         ACT_WAIT,
         ACT_MOVE,
@@ -127,21 +125,5 @@ public:
 };
 
 STATIC_ASSERT(sizeof(e_mk_class) == 0xcf8);
-
-class daE_MK_HIO_c : public JORReflexible {
-public:
-    /* 8071412C */ daE_MK_HIO_c();
-    /* 8071C3EC */ virtual ~daE_MK_HIO_c() {};
-
-    void genMessage(JORMContext*);
-
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 mSize;
-    /* 0x0C */ f32 mBoomerangRatio;
-    /* 0x10 */ f32 mPlayerThrowDistMax;
-    /* 0x14 */ u8 mHaltAction;
-    /* 0x18 */ cXyz mCrownPosAdjust;
-};
-
 
 #endif /* D_A_E_MK_H */

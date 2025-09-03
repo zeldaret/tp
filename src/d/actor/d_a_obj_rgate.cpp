@@ -3,6 +3,8 @@
  * Bulblin Gate
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_rgate.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_bg_w.h"
@@ -213,24 +215,6 @@ void daObjRgate_c::setBaseMtx() {
     }
 }
 
-/* 80CBC4A0-80CBC4AC 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80CBC4AC-80CBC4C0 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
-
 /* 80CBC4C0-80CBC4C4 -00001 0004+00 4/4 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "M_RGate00";
 
@@ -240,8 +224,9 @@ int daObjRgate_c::Create() {
 
     u8 sw_no = getSwNo();
     if (sw_no != 0xFF && !fopAcM_isSwitch(this, sw_no) &&
+         /* dSv_event_flag_c::M_035 - Cutscene - [cutscene: 35] after carriage guarding event */
         !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[68]))
-    {
+    {\
         eventInfo.setArchiveName(l_arcName);
 
         mEventID = dComIfGp_getEventManager().getEventIdx(this, l_evName, 0xFF);
@@ -567,6 +552,7 @@ void daObjRgate_c::setCrkSE() {
 
 /* 80CBB308-80CBB370 0016E8 0068+00 1/1 0/0 0/0 .text            action__12daObjRgate_cFv */
 void daObjRgate_c::action() {
+        /* dSv_event_flag_c::M_035 - Cutscene - [cutscene: 35] after carriage guarding event */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[68])) {
         mGateLAngle = 0x4000;
         mGateRAngle = -0x4000;

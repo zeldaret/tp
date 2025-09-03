@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_cr_egg.h"
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"

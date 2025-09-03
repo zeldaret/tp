@@ -122,5 +122,5 @@ __vt__8cM3dGAab = .data:0x000001F0; // type:object size:0xC scope:global
 __vt__12dBgS_ObjAcch = .data:0x000001FC; // type:object size:0x24 scope:global
 __vt__12J3DFrameCtrl = .data:0x00000220; // type:object size:0xC scope:global
 __vt__14daObjVolcBom_c = .data:0x0000022C; // type:object size:0x28 scope:global
-init$1712 = .bss:0x00000000; // type:object size:0x1 data:byte scope:local
-init$2146 = .bss:0x00000001; // type:object size:0x1 data:byte scope:local
+init$1712 = .bss:0x00000000; // type:object size:0x1 scope:local data:byte
+init$2146 = .bss:0x00000001; // type:object size:0x1 scope:local data:byte

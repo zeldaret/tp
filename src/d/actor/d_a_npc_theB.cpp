@@ -3,6 +3,8 @@
  * Telma B
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_theB.h"
 #include "dol2asm.h"
 
@@ -260,24 +262,6 @@ SECTION_DEAD static char const* const stringBase_80B00FE4 = "THEB_HINT";
 SECTION_DEAD static char const* const stringBase_80B00FEE = "COACH_GUARD_GAMEOVER";
 SECTION_DEAD static char const* const stringBase_80B01003 = "Coach";
 SECTION_DEAD static char const* const stringBase_80B01009 = "TheB";
-#pragma pop
-
-/* 80B01028-80B01034 000000 000C+00 3/3 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80B01034-80B01048 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 #pragma pop
 
 /* 80B01048-80B0104C 000020 0004+00 0/0 0/0 0/0 .data            l_bmdGetParamList */
@@ -767,7 +751,7 @@ SECTION_RODATA static u8 const lit_4396[24] = {
 COMPILER_STRIP_GATE(0x80B00E00, &lit_4396);
 
 /* 80AFD508-80AFD5F0 000E88 00E8+00 0/0 0/0 2/2 .text            getHandPos1__11daNpcTheB_cFi */
-void daNpcTheB_c::getHandPos1(int param_0) {
+cXyz daNpcTheB_c::getHandPos1(int param_1) {
     // NONMATCHING
 }
 
@@ -780,7 +764,7 @@ SECTION_RODATA static u8 const lit_4424[24] = {
 COMPILER_STRIP_GATE(0x80B00E18, &lit_4424);
 
 /* 80AFD5F0-80AFD6D8 000F70 00E8+00 0/0 0/0 2/2 .text            getHandPos2__11daNpcTheB_cFi */
-void daNpcTheB_c::getHandPos2(int param_0) {
+cXyz daNpcTheB_c::getHandPos2(int param_1) {
     // NONMATCHING
 }
 
@@ -801,7 +785,7 @@ SECTION_DEAD static char const* const stringBase_80B0100E = "F_SP121";
 #pragma pop
 
 /* 80AFD6F0-80AFD938 001070 0248+00 2/1 0/0 0/0 .text            main__11daNpcTheB_cFv */
-void daNpcTheB_c::main() {
+BOOL daNpcTheB_c::main() {
     // NONMATCHING
 }
 
@@ -816,7 +800,7 @@ SECTION_RODATA static f32 const lit_4581 = 1.0f / 5.0f;
 COMPILER_STRIP_GATE(0x80B00E34, &lit_4581);
 
 /* 80AFDAA4-80AFDB70 001424 00CC+00 1/0 0/0 0/0 .text            ctrlBtk__11daNpcTheB_cFv */
-void daNpcTheB_c::ctrlBtk() {
+BOOL daNpcTheB_c::ctrlBtk() {
     // NONMATCHING
 }
 
@@ -873,23 +857,23 @@ void daNpcTheB_c::setAttnPos() {
 
 /* 80AFDEC0-80AFE0BC 001840 01FC+00 2/0 0/0 0/0 .text            setExpressionAnm__11daNpcTheB_cFib
  */
-void daNpcTheB_c::setExpressionAnm(int param_0, bool param_1) {
+bool daNpcTheB_c::setExpressionAnm(int param_0, bool param_1) {
     // NONMATCHING
 }
 
 /* 80AFE0BC-80AFE1BC 001A3C 0100+00 1/0 0/0 0/0 .text            setExpressionBtp__11daNpcTheB_cFi
  */
-void daNpcTheB_c::setExpressionBtp(int param_0) {
+bool daNpcTheB_c::setExpressionBtp(int param_0) {
     // NONMATCHING
 }
 
 /* 80AFE1BC-80AFE398 001B3C 01DC+00 1/0 0/0 0/0 .text            setMotionAnm__11daNpcTheB_cFif */
-bool daNpcTheB_c::setMotionAnm(int param_0, f32 param_1) {
+void daNpcTheB_c::setMotionAnm(int param_0, f32 param_1) {
     // NONMATCHING
 }
 
 /* 80AFE398-80AFE3A0 001D18 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__11daNpcTheB_cFv */
-bool daNpcTheB_c::drawDbgInfo() {
+BOOL daNpcTheB_c::drawDbgInfo() {
     return false;
 }
 

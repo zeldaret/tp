@@ -3,6 +3,8 @@
  * Tag - Guard
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tag_guard.h"
 #include "d/d_stage.h"
 

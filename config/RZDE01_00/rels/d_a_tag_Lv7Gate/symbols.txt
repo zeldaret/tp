@@ -27,4 +27,4 @@ g_profile_Tag_Lv7Gate = .data:0x0000002C; // type:object size:0x30 scope:global
 lbl_712_data_5C = .data:0x0000005C; // type:object size:0x10 data:string
 lbl_712_data_6C = .data:0x0000006C; // type:object size:0x11 data:string
 lbl_712_data_7D = .data:0x0000007D; // type:object size:0x10 data:string
-lbl_712_data_8D = .data:0x0000008D; // type:object size:0x13
+lbl_712_data_8D = .data:0x0000008D; // type:object size:0x11 data:string

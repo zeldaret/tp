@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_rdy.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_e_arrow.h"
@@ -14,11 +16,41 @@
 #include "d/d_msg_object.h"
 #include "d/d_camera.h"
 #include "f_op/f_op_kankyo_mng.h"
-#if VERSION != VERSION_SHIELD_DEBUG
-UNK_REL_DATA;
-#endif
 #include "f_op/f_op_actor_enemy.h"
 #include "m_Do/m_Do_graphic.h"
+
+class daE_RDY_HIO_c : public JORReflexible {
+public:
+    /* 8076BDCC */ daE_RDY_HIO_c();
+    /* 80779880 */ virtual ~daE_RDY_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 mScale;
+    /* 0x0C */ f32 field_0xc;
+    /* 0x10 */ f32 mWalkSpeed;
+    /* 0x14 */ f32 mRunSpeed;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ f32 field_0x1c;
+    /* 0x20 */ f32 mAttackAnmSpeed;
+    /* 0x24 */ s16 field_0x24;
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
+    /* 0x30 */ f32 field_0x30;
+    /* 0x34 */ f32 field_0x34;
+    /* 0x38 */ u8 field_0x38;
+    /* 0x39 */ u8 field_0x39;
+    /* 0x3A */ u8 mDrawEyeModel;
+    /* 0x3B */ u8 field_0x3b;
+    /* 0x3C */ f32 field_0x3c;
+    /* 0x40 */ f32 field_0x40;
+    /* 0x44 */ f32 field_0x44;
+    /* 0x48 */ f32 field_0x48;
+    /* 0x4C */ f32 field_0x4c;
+};
+
+STATIC_ASSERT(sizeof(daE_RDY_HIO_c) == 0x50);
 
 enum Action {
     /* 0x00 */ ACT_NORMAL,
@@ -157,25 +189,6 @@ enum Joint {
     /* 3 */ WEAPON_BOW_FIRE,
     /* 4 */ WEAPON_BOW_BOMB,
  };
-
-#if VERSION != VERSION_SHIELD_DEBUG
-UNK_BSS(1109)
-UNK_BSS(1107)
-UNK_BSS(1105)
-UNK_BSS(1104)
-UNK_BSS(1099)
-UNK_BSS(1097)
-UNK_BSS(1095)
-UNK_BSS(1094)
-UNK_BSS(1057)
-UNK_BSS(1055)
-UNK_BSS(1053)
-UNK_BSS(1052)
-UNK_BSS(1014)
-UNK_BSS(1012)
-UNK_BSS(1010)
-UNK_BSS(1009)
-#endif
 
 /* 8077A870-8077A874 000048 0004+00 1/1 0/0 0/0 .bss             boss */
 static e_rdy_class* boss;
@@ -348,7 +361,9 @@ static int nodeCallBack_bow(J3DJoint* i_joint, int param_1) {
 /* 8076C54C-8076C9D0 00086C 0484+00 1/0 0/0 0/0 .text            daE_RDY_Draw__FP11e_rdy_class */
 static int daE_RDY_Draw(e_rdy_class* i_this) {
     fopAc_ac_c* a_this = &i_this->actor;
-    if (i_this->field_0x5b8 == 12 && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[239])) {
+    if (i_this->field_0x5b8 == 12
+            /* dSv_event_flag_c::T_0239 - Lake Hylia - Spoke with Fyer (start dark carge) */
+        && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[239])) {
         return 1;
     }
     
@@ -4911,6 +4926,8 @@ static cPhs__Step daE_RDY_Create(fopAc_ac_c* i_this) {
         } else if (_this->field_0x5b8 == 11) {
             _this->mAction = ACT_BOW_IKKI2;
         } else if (_this->field_0x5b8 == 12) {
+                /* dSv_event_flag_c::M_051 - Main Event - Shadow Kargorok (?) (Large) event complete 
+                                             (Horse grass appears in various places) */
             if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[84])) {
                 return cPhs_ERROR_e;
             }

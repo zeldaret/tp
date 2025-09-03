@@ -3,6 +3,8 @@
 // Translation Unit: d/d_menu_fmap2D
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_menu_fmap2D.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
@@ -2734,7 +2736,9 @@ bool dMenu_Fmap2DTop_c::checkWarpAcceptRegion4() {
         return false;
     }
 
+        /* dSv_event_flag_c::M_071 - Cutscene - [cutscene: 20] Zant appears (during Midna's desperate hour) */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[104])
+            /* dSv_event_flag_c::F_0250 - Cutscene - [cutscene: 21] reunion with Zelda / Midna revived (Hyrule Castle barrier appears) */
         && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[250]))
     {
         return false;
@@ -2743,10 +2747,11 @@ bool dMenu_Fmap2DTop_c::checkWarpAcceptRegion4() {
     return true;
 }
 
-/* 801D7B58-801D7BCC 1D2498 0074+00 1/1 3/3 0/0 .text checkWarpAcceptCannon__17dMenu_Fmap2DTop_cFv
- */
+/* 801D7B58-801D7BCC 1D2498 0074+00 1/1 3/3 0/0 .text            checkWarpAcceptCannon__17dMenu_Fmap2DTop_cFv */
 bool dMenu_Fmap2DTop_c::checkWarpAcceptCannon() {
+        /* dSv_event_flag_c::F_0786 - Kakariko Village - Forced conversation with Shad when he sees the sky cannon */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[786])
+            /* dSv_event_flag_c::F_0785 - Kakariko Village - Shad leaves after attempting to warp sky cannon */
         && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[785]))
     {
         return false;
@@ -2834,9 +2839,9 @@ void dMenu_Fmap2DTop_c::setHIO(bool param_0) {
     }
 }
 
-/* 801D8088-801D810C 1D29C8 0084+00 1/1 3/3 0/0 .text            isWarpAccept__17dMenu_Fmap2DTop_cFv
- */
+/* 801D8088-801D810C 1D29C8 0084+00 1/1 3/3 0/0 .text            isWarpAccept__17dMenu_Fmap2DTop_cFv */
 bool dMenu_Fmap2DTop_c::isWarpAccept() {
+         /* dSv_event_flag_c::M_021 - Main Event - First portal warp */
     if ((dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[54])
         && dMeter2Info_getMapStatus() != 9 && dMeter2Info_getMapStatus() != 7
         && dMeter2Info_getMapStatus() != 8) || g_fmapHIO.mPortalWarpON)

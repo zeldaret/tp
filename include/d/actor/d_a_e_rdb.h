@@ -110,8 +110,6 @@ public:
         /* 0x5B */ BMDR_SHOULDERR_ARMOR,
     };
 
-    /* 8076AA0C */ e_rdb_class() {};
-
     /* 0x0000 */ fopEn_enemy_c enemy;
     /* 0x05ac */ request_of_phase_process_class mPhase;
     /* 0x05B4 */ s16 mMode;
@@ -193,21 +191,11 @@ public:
     /* 0x10F4 */ f32 mDemoCamFovy;
     /* 0x10F8 */ f32 field_0x10f8;
     /* 0x10FC */ u8 field_0x10fc[0x1104 - 0x10fc];
-    /* 0x1104 */ s8 field_0x1104;
+    /* 0x1104 */ u8 field_0x1104;
     /* 0x1105 */ u8 field_0x1105[0x1108 - 0x1105];
     /* 0x1108 */ dMsgFlow_c mMsgFlow;
 };
 
 STATIC_ASSERT(sizeof(e_rdb_class) == 0x1154);
-
-class daE_RDB_HIO_c : public JORReflexible {
-public:
-    /* 807650CC */ daE_RDB_HIO_c();
-    /* 8076AF64 */ virtual ~daE_RDB_HIO_c() {};
-
-    void genMessage(JORMContext*);
-    /* 0x04 */ s8 mID;
-    /* 0x08 */ f32 field_0x8;
-};
 
 #endif /* D_A_E_RDB_H */

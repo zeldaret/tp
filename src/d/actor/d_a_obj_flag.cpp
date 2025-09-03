@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_flag.h"
 
 daObjFlag_c::M_attrs const daObjFlag_c::M_attr = {

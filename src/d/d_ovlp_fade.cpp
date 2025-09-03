@@ -3,6 +3,8 @@
  *
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_ovlp_fade.h"
 #include "d/d_com_inf_game.h"
 #include "f_op/f_op_overlap_mng.h"

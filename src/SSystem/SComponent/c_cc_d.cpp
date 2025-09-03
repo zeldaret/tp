@@ -299,6 +299,22 @@ void cCcD_ShapeAttr::getShapeAccess(cCcD_ShapeAttr::Shape* pshape) const {
     pshape->_4.x = 0.0f;
 }
 
+bool cCcD_PntAttr::GetNVec(cXyz const& param_0, cXyz* param_1) const {
+    param_1->x = param_0.x - vtx.x;
+    param_1->y = param_0.y - vtx.y;
+    param_1->z = param_0.z - vtx.z;
+    if (cM3d_IsZero(PSVECMag(param_1))) {
+        param_1->x = 0.0f;
+        param_1->y = 0.0f;
+        param_1->z = 0.0f;
+        return false;
+    } else {
+        PSVECNormalize(param_1, param_1);
+        return true;
+    }
+}
+
+
 /* 80263A88-80263B58 25E3C8 00D0+00 1/0 1/0 0/0 .text
  * CrossAtTg__12cCcD_TriAttrCFRC12cCcD_CpsAttrP4cXyz            */
 bool cCcD_TriAttr::CrossAtTg(const cCcD_CpsAttr& cpsAttr, cXyz* pxyz) const {

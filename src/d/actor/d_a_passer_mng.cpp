@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_passer_mng.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_path.h"
@@ -136,6 +138,7 @@ int daPasserMng_c::getLuggageParamHigh(u32 param_1) {
     case 9:
     case 10:
     case 0xf:
+        /* dSv_event_flag_c::F_0281 - Shop - Malo Mart opens in Castle Town */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x119])) {
             switch(cLib_getRndValue(0, 4)) {
             case 0:
@@ -167,6 +170,7 @@ int daPasserMng_c::getLuggageParamHigh(u32 param_1) {
         break;
     case 3:
     case 0xb:
+            /* dSv_event_flag_c::F_0281 - Shop - Malo Mart opens in Castle Town */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x119])) {
             switch(cLib_getRndValue(0, 3)) {
             case 0:
@@ -194,6 +198,7 @@ int daPasserMng_c::getLuggageParamHigh(u32 param_1) {
     case 5:
     case 0xc:
     case 0xd:
+            /* dSv_event_flag_c::F_0281 - Shop - Malo Mart opens in Castle Town */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x119])) {
             switch(cLib_getRndValue(0, 4)) {
             case 0:
@@ -228,6 +233,7 @@ int daPasserMng_c::getLuggageParamHigh(u32 param_1) {
         break;
     case 6:
     case 0xe:
+            /* dSv_event_flag_c::F_0281 - Shop - Malo Mart opens in Castle Town */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x119])) {
             switch(cLib_getRndValue(0, 3)) {
             case 0:
@@ -252,6 +258,7 @@ int daPasserMng_c::getLuggageParamHigh(u32 param_1) {
         }
         break;
     case 7:
+            /* dSv_event_flag_c::F_0281 - Shop - Malo Mart opens in Castle Town */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x119])) {
             switch(cLib_getRndValue(0, 3)) {
             case 0:
@@ -277,6 +284,7 @@ int daPasserMng_c::getLuggageParamHigh(u32 param_1) {
         break;
     case 0x10:
     case 0x17:
+        /* dSv_event_flag_c::F_0281 - Shop - Malo Mart opens in Castle Town */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x119])) {
         switch(cLib_getRndValue(0, 4)) {
             case 0:
@@ -311,6 +319,7 @@ int daPasserMng_c::getLuggageParamHigh(u32 param_1) {
         break;
     case 0x11:
     case 0x18:
+            /* dSv_event_flag_c::F_0281 - Shop - Malo Mart opens in Castle Town */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x119])) {
             switch(cLib_getRndValue(0, 4)) {
             case 0:
@@ -342,6 +351,7 @@ int daPasserMng_c::getLuggageParamHigh(u32 param_1) {
         break;
     case 0x12:
     case 0x19:
+            /* dSv_event_flag_c::F_0281 - Shop - Malo Mart opens in Castle Town */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x119])) {
             switch(cLib_getRndValue(0, 5)) {
             case 0:
@@ -379,6 +389,7 @@ int daPasserMng_c::getLuggageParamHigh(u32 param_1) {
         break;
     case 0x13:
     case 0x1a:
+            /* dSv_event_flag_c::F_0281 - Shop - Malo Mart opens in Castle Town */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x119])) {
             switch(cLib_getRndValue(0, 3)) {
             case 0:
@@ -404,6 +415,7 @@ int daPasserMng_c::getLuggageParamHigh(u32 param_1) {
         break;
     case 0x14:
     case 0x1b:
+            /* dSv_event_flag_c::F_0281 - Shop - Malo Mart opens in Castle Town */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x119])) {
             switch(cLib_getRndValue(0, 3)) {
             case 0:
@@ -429,6 +441,7 @@ int daPasserMng_c::getLuggageParamHigh(u32 param_1) {
         break;
     case 0x15:
     case 0x1c:
+            /* dSv_event_flag_c::F_0281 - Shop - Malo Mart opens in Castle Town */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x119])) {
             switch(cLib_getRndValue(0, 3)) {
             case 0:
@@ -457,6 +470,7 @@ int daPasserMng_c::getLuggageParamHigh(u32 param_1) {
         break;
     case 0x16:
     case 0x1d:
+            /* dSv_event_flag_c::F_0281 - Shop - Malo Mart opens in Castle Town */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x119])) {
             switch(cLib_getRndValue(0, 4)) {
             case 0:

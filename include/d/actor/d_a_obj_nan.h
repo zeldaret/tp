@@ -71,15 +71,4 @@ private:
 
 STATIC_ASSERT(sizeof(daObjNAN_c) == 0x800);
 
-class daObj_NanHIO_c {
-public:
-    /* 80CA05AC */ daObj_NanHIO_c();
-    /* 80CA30D0 */ virtual ~daObj_NanHIO_c() {}
-
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 field_0x8;
-    /* 0x0C */ f32 field_0xc;
-};
-
-
 #endif /* D_A_OBJ_NAN_H */

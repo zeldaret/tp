@@ -3,13 +3,23 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_nan.h"
 #include "SSystem/SComponent/c_xyz.h"
 #include "d/d_menu_insect.h"
 #include "d/d_cc_uty.h"
 #include "d/d_com_inf_game.h"
 
-UNK_REL_DATA
+class daObj_NanHIO_c {
+public:
+    /* 80CA05AC */ daObj_NanHIO_c();
+    /* 80CA30D0 */ virtual ~daObj_NanHIO_c() {}
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 field_0x8;
+    /* 0x0C */ f32 field_0xc;
+};
 
 /* 80CA32D0-80CA3310 000020 0040+00 0/1 0/0 0/0 .data cc_sph_src__25@unnamed@d_a_obj_nan_cpp@ */
 static dCcD_SrcSph cc_sph_src = {
@@ -655,7 +665,10 @@ static int daObjNAN_Execute(daObjNAN_c* i_this) {
 
 /* ############################################################################################## */
 /* 80CA3294-80CA3298 0000D8 0004+00 0/1 0/0 0/0 .rodata          l_musiya_num */
-static u16 const l_musiya_num[2] = {0x0199, 0x019A};
+static u16 const l_musiya_num[2] = {
+    0x0199, /* dSv_event_flag_c::F_0409 - Misc. - Phasmid (M) */
+    0x019A, /* dSv_event_flag_c::F_0410 - Misc. - Phasmid (F) */
+};
 
 /* 80CA3298-80CA329C 0000DC 0004+00 0/1 0/0 0/0 .rodata          l_heapsize */
 static u16 const l_heapsize[2] = {0x0EE0, 0x0EC0};

@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_demo00.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "SSystem/SComponent/c_counter.h"
@@ -61,8 +63,6 @@ demo_s1_ke_s::~demo_s1_ke_s() {}
 
 /* 804A8998-804A8998 000138 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 static char const* const stringBase_804A8998 = "V_24_tri_joint";
-
-UNK_REL_DATA;
 
 /* 804A4520-804A45A0 000300 0080+00 1/1 0/0 0/0 .text            get_foward_angle__FP4cXyzP4cXyzPsPs */
 static void get_foward_angle(cXyz* param_1, cXyz* param_2, s16* param_3, s16* param_4) {
@@ -773,8 +773,6 @@ static void teduna_calc(cXyz* param_1, cXyz* param_2, cXyz* param_3, s16 param_4
         param_3++;
     }
 }
-
-UNK_REL_BSS;
 
 /* 804A8C64-804A8D24 000054 00C0+00 1/3 0/0 0/0 .bss             teduna_posL */
 static cXyz teduna_posL[16];

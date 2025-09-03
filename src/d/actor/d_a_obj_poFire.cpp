@@ -1,11 +1,32 @@
 /**
- * @file d_a_obj_poFire.cpp
+* @file d_a_obj_poFire.cpp
  *
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_poFire.h"
 
-UNK_REL_DATA
+class daPoFire_HIO_c : public mDoHIO_entry_c {
+public:
+    /* 80CB294C */ daPoFire_HIO_c();
+    /* 80CB3D24 */ virtual ~daPoFire_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x06 */ s8 unk6;
+    /* 0x08 */ f32 mWaitPeriod;       // Wait oscillation period
+    /* 0x0C */ f32 mWaitVertRange;    // Wait oscillation amplitude, vertical range
+    /* 0x10 */ f32 mWaitVertSpeed;    // Wait oscillation speed, vertical speed
+    /* 0x14 */ f32 mMovePeriod1;      // Move period
+    /* 0x18 */ f32 mMoveSwingSpeed1;  // Move oscillation speed
+    /* 0x1C */ f32 mMoveSpeed;        // Move speed
+    /* 0x20 */ f32 mMovePeriod2;      // Move period ??
+    /* 0x24 */ f32 mMoveSwingSpeed2;  // Move oscillation speed
+    /* 0x28 */ f32 mMoveSwingRange;   // Move oscillation range
+    /* 0x2C */ f32 mPickupRange;      // Horizontal dist ?
+    /* 0x30 */ u8 mFireWaitTime;      // Fire wait
+};
 
 /* ############################################################################################## */
 
@@ -457,27 +478,6 @@ static int daPoFire_Create(fopAc_ac_c* i_this) {
     fopAcM_RegisterCreateID(daPoFire_c, i_this, "daPoFire");
     return a_this->create();
 }
-
-/* 80CB3E3C-80CB3E58 0015DC 001C+00 1/1 0/0 0/0 .text            getFirePos__12daPoCandle_cFv */
-cXyz daPoCandle_c::getFirePos() {
-    return static_cast<cXyz>(mFirePos);
-}
-
-// Used to match data on debug, instead of UNK_REL_DATA
-// #ifdef DEBUG
-// const u8 cNullVec__6Z2Calc[12] = { \
-//     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, \
-// };
-// const u32 lit_1787[1 + 6 /* padding */] = { \
-//     0x02000201, \
-//     0x00000000, \
-//     0x7FF7FFFF, \
-//     0xFFFFFFFF, \
-//     0x7FF7FFFF, \
-//     0xFFFFFFFF, \
-//     0x7FBFFFFF, \
-// };
-// #endif
 
 /* 80CB4050-80CB4070 -00001 0020+00 1/0 0/0 0/0 .data            l_daPoFire_Method */
 static actor_method_class l_daPoFire_Method = {

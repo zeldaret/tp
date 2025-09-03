@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel.h"
+
 #include "d/d_meter_map.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "d/actor/d_a_player.h"
@@ -258,6 +260,7 @@ void dMeterMap_c::_create(J2DScreen* unused) {
     field_0x2e = 0;
     field_0x28 = 0;
     field_0x30 = 0;
+                 /* dSv_event_flag_c::M_085 - Twilight Hyrule Field - Midna dialogue right before Boss Bug's Tear of Light appears */
     field_0x2b = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[118]);
 }
 
@@ -282,10 +285,13 @@ void dMeterMap_c::_delete() {
 
 /* 8020DCE4-8020DF1C 208624 0238+00 0/0 1/1 0/0 .text            _move__11dMeterMap_cFUl */
 void dMeterMap_c::_move(u32 param_0) {
+                       /* dSv_event_flag_c::M_085 - Twilight Hyrule Field - Midna dialogue right before Boss Bug's Tear of Light appears */
     if (!field_0x2b && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[118])) {
         if (strcmp(dComIfGp_getStartStageName(), "F_SP115") == 0) {
+            /* dSv_event_flag_c::M_086 - Twilight Hyrule Field - Show Boss Bug's Tear of Light on the map */
             dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[119]);
         } else {
+                         /* dSv_event_flag_c::M_085 - Twilight Hyrule Field - Midna dialogue right before Boss Bug's Tear of Light appears */
             field_0x2b = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[118]);
             dMeter2Info_setPauseStatus(2);
         }

@@ -3,9 +3,39 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_waterPillar.h"
 #include "d/d_com_inf_game.h"
 #include "SSystem/SComponent/c_math.h"
+
+struct daWtPillar_HIO_c : public mDoHIO_entry_c {
+    /* 80D2C6CC */ daWtPillar_HIO_c();
+    /* 80D2DF34 */ ~daWtPillar_HIO_c();
+
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ cXyz field_0x04;
+    /* 0x10 */ csXyz field_0x10;
+    /* 0x16 */ s8 mForTesting;                      // "----------- テスト用 ----------" "----------- For Testing ----------" | Checkbox
+    /* 0x17 */ s8 mDisableDrawing;                  // "モデル描画ＯＦＦ" "Model Drawing OFF" | Checkbox
+    /* 0x18 */ s8 mStopTime;                        // "停止時間" "Stop time" | Slider
+    /* 0x19 */ u8 mUpFirstWaitFrames;               // "待ち時間" "Waiting time" | Slider
+    /* 0x1A */ u8 field_0x1A[6];
+    /* 0x20 */ f32 field_0x20;                      // "速度" "Velocity" | Slider
+    /* 0x24 */ u8 field_0x24[4];
+    /* 0x28 */ f32 field_0x28;                      // mColliderUpdateScaleFactor?
+    /* 0x2C */ u8 mUpWaitFrames;                    // "待ち時間" "Waiting time" | Slider
+    /* 0x2D */ u8 field_0x2D[4];
+    /* 0x34 */ f32 field_0x34;                      // "速度" "Velocity" | Slider
+    /* 0x38 */ u8 field_0x38[8];
+    /* 0x40 */ f32 mDownwardSpeedUnitsPerSecond;    // "速度" "Velocity" | Slider
+    /* 0x44 */ f32 mEffectOscillationAngle;         // "振幅Ｙ" "Y Amplitude" | Slider
+    /* 0x48 */ f32 mEffectOscillationAmplitude;     // "移動強さ" "Moving strength" | Slider
+    /* 0x4C */ f32 mEffectOscillationDampingScale;  // "揺れ減衰" "Sway damping" | Slider
+    /* 0x50 */ f32 mEffectOscillationMaxDecay;      // "最大減衰量" "Maximum decay" | Slider
+    /* 0x54 */ f32 mEffectOscillationMinDecay;      // "最小減衰量" "Minimum decay" | Slider
+};
 
 typedef void (daWtPillar_c::*actionFunc)();
 
@@ -66,9 +96,6 @@ int daWtPillar_c::CreateHeap() {
 
     return 1;
 }
-
-/* 80D2E84C-80D2E858 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-UNK_REL_DATA
 
 /* 80D2E86C-80D2E884 000020 0018+00 0/1 0/0 0/0 .data            l_cull_box */
 Vec l_cull_box[2] = {
@@ -579,10 +606,16 @@ int daWtPillar_Create(fopAc_ac_c* i_this) {
     return static_cast<daWtPillar_c*>(i_this)->create();
 }
 
+daWtPillar_HIO_c::~daWtPillar_HIO_c() {
+}
+
 /* 80D2E054-80D2E21C 001A74 01C8+00 1/1 0/0 0/0 .text            __ct__12daWtPillar_cFv */
 daWtPillar_c::daWtPillar_c() : dEvLib_callback_c(this) {
     // Empty
     // Having this in the header file results in inlining...
+}
+
+daWtPillar_c::~daWtPillar_c() {
 }
 
 /* 80D2EA14-80D2EA34 -00001 0020+00 1/0 0/0 0/0 .data            l_daWtPillar_Method */

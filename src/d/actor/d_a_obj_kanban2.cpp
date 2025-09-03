@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_kanban2.h"
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_player.h"
@@ -723,8 +725,6 @@ void daObj_Kanban2_c::setCullMtx() {
 void daObj_Kanban2_c::setSmokeEffect(cXyz i_pos) {
     fopAcM_effSmokeSet1(&field_0x9e0, &field_0x9e4, &i_pos, NULL, 0.02 * field_0x600, &tevStr, 1);
 }
-
-UNK_REL_BSS
 
 /* 80585CB4-80585CB8 -00001 0004+00 2/2 0/0 0/0 .bss             None */
 /* 80585CB5 0003+00 l_initHIO None */

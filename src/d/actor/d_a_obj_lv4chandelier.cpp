@@ -3,370 +3,270 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_lv4chandelier.h"
+#include "d/d_com_inf_game.h"
+#include "d/actor/d_a_obj_swchain.h"
+#include "d/d_bg_w.h"
 #include "d/d_cc_d.h"
+#include "d/d_cc_uty.h"
 #include "dol2asm.h"
 
+#ifdef DEBUG
+class daObjLv4Chan_HIO_c : public mDoHIO_entry_c {
+public:
+    daObjLv4Chan_HIO_c();
+    void genMessage(JORMContext*);
+};
 
-//
-// Forward References:
-//
+daObjLv4Chan_HIO_c::daObjLv4Chan_HIO_c() {
+}
 
-extern "C" static void rideCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c();
-extern "C" void create1st__14daObjLv4Chan_cFv();
-extern "C" void setMtxChain__14daObjLv4Chan_cFPQ214daObjLv4Chan_c8ChainPosP10dMdl_obj_ci();
-extern "C" void setMtx__14daObjLv4Chan_cFv();
-extern "C" void rideActor__14daObjLv4Chan_cFP10fopAc_ac_c();
-extern "C" void CreateHeap__14daObjLv4Chan_cFv();
-extern "C" static void searchSwChain__FPvPv();
-extern "C" void Create__14daObjLv4Chan_cFv();
-extern "C" void constraintChain__14daObjLv4Chan_cFPQ214daObjLv4Chan_c8ChainPosi();
-extern "C" void constraintBase__14daObjLv4Chan_cFv();
-extern "C" void calcVec__14daObjLv4Chan_cFPQ214daObjLv4Chan_c8ChainPosi();
-extern "C" void chkGnd__14daObjLv4Chan_cFv();
-extern "C" void Execute__14daObjLv4Chan_cFPPA3_A4_f();
-extern "C" void Draw__14daObjLv4Chan_cFv();
-extern "C" void Delete__14daObjLv4Chan_cFv();
-extern "C" static void daObjLv4Chan_create1st__FP14daObjLv4Chan_c();
-extern "C" void __dt__14dBgS_ObjGndChkFv();
-extern "C" void __dt__8dCcD_SphFv();
-extern "C" void __ct__8dCcD_SphFv();
-extern "C" void __dt__8cM3dGSphFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" static void daObjLv4Chan_MoveBGDelete__FP14daObjLv4Chan_c();
-extern "C" static void daObjLv4Chan_MoveBGExecute__FP14daObjLv4Chan_c();
-extern "C" static void daObjLv4Chan_MoveBGDraw__FP14daObjLv4Chan_c();
-extern "C" static void func_80C66540();
-extern "C" static void func_80C66548();
-extern "C" static void func_80C66550();
-extern "C" void __ct__10dMdl_obj_cFv();
-extern "C" void __dt__Q214daObjLv4Chan_c8ChainPosFv();
-extern "C" void __ct__Q214daObjLv4Chan_c8ChainPosFv();
-extern "C" void checkTight__14daObjSwChain_cFv();
-extern "C" extern char const* const d_a_obj_lv4chandelier__stringBase0;
+void daObjLv4Chan_HIO_c::genMessage(JORMContext* ctx) {
+}
 
-//
-// External References:
-//
-
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void mDoMtx_ZrotM__FPA4_fs();
-extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void scaleM__14mDoMtx_stack_cFfff();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void fopAc_IsActor__FPv();
-extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
-extern "C" void fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGp_getReverb__Fi();
-extern "C" void
-dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj();
-extern "C" void onSwitch__10dSv_info_cFii();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void dKyw_get_wind_vecpow__Fv();
-extern "C" void StartShock__12dVibration_cFii4cXyz();
-extern "C" void GroundCross__4cBgSFP11cBgS_GndChk();
-extern "C" void dBgS_MoveBGProc_TypicalRotY__FP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz();
-extern "C" void __ct__11dBgS_GndChkFv();
-extern "C" void __dt__11dBgS_GndChkFv();
-extern "C" void __ct__16dBgS_MoveBgActorFv();
-extern "C" bool IsDelete__16dBgS_MoveBgActorFv();
-extern "C" bool ToFore__16dBgS_MoveBgActorFv();
-extern "C" bool ToBack__16dBgS_MoveBgActorFv();
-extern "C" void
-MoveBGCreate__16dBgS_MoveBgActorFPCciPFP4dBgWPvRC13cBgS_PolyInfobP4cXyzP5csXyzP5csXyz_vUlPA3_A4_f();
-extern "C" void MoveBGDelete__16dBgS_MoveBgActorFv();
-extern "C" void MoveBGExecute__16dBgS_MoveBgActorFv();
-extern "C" void SetObj__16dBgS_PolyPassChkFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Move__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void __dt__12dCcD_GObjInfFv();
-extern "C" void ChkTgHit__12dCcD_GObjInfFv();
-extern "C" void GetTgHitObj__12dCcD_GObjInfFv();
-extern "C" void getHitSeID__12dCcD_GObjInfFUci();
-extern "C" void Set__8dCcD_SphFRC11dCcD_SrcSph();
-extern "C" void entryObj__6dMdl_cFP10dMdl_obj_c();
-extern "C" void entry__10dMdl_mng_cFP12J3DModelDataUsi();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void GetAc__8cCcD_ObjFv();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void __pl__4cXyzCFRC3Vec();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void __ml__4cXyzCFf();
-extern "C" void normalize__4cXyzFv();
-extern "C" void cM_rndF__Ff();
-extern "C" void cM_rndFX__Ff();
-extern "C" void SetPos__11cBgS_GndChkFPC4cXyz();
-extern "C" void cM3d_VectorProduct__FPC4cXyzPC4cXyzPC4cXyzP4cXyz();
-extern "C" void SetC__8cM3dGSphFRC4cXyz();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void* __nwa__FUl();
-extern "C" void __dl__FPv();
-extern "C" void __construct_array();
-extern "C" void __construct_new_array();
-extern "C" void _savegpr_18();
-extern "C" void _savegpr_21();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_18();
-extern "C" void _restgpr_21();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
-extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" f32 Zero__4cXyz[3];
-extern "C" u8 BaseY__4cXyz[12];
-extern "C" u8 BaseZ__4cXyz[12];
-extern "C" u8 sincosTable___5JMath[65536];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-
-//
-// Declarations:
-//
+static daObjLv4Chan_HIO_c l_HIO;
+#endif
 
 /* 80C63338-80C63360 000078 0028+00 1/1 0/0 0/0 .text
  * rideCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c              */
-static void rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2) {
-    // NONMATCHING
+static void rideCallBack(dBgW* i_bgw, fopAc_ac_c* param_2, fopAc_ac_c* param_3) {
+    ((daObjLv4Chan_c*)param_2)->rideActor(param_3);
 }
-
-/* ############################################################################################## */
-/* 80C66984-80C66984 000124 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80C66984 = "P_Lv4Chan";
-#pragma pop
 
 /* 80C66990-80C66994 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&d_a_obj_lv4chandelier__stringBase0;
+static char* l_arcName = "P_Lv4Chan";
 
 /* 80C63360-80C634CC 0000A0 016C+00 1/1 0/0 0/0 .text            create1st__14daObjLv4Chan_cFv */
-void daObjLv4Chan_c::create1st() {
-    // NONMATCHING
+int daObjLv4Chan_c::create1st() {
+    int rv = dComIfG_resLoad(this, l_arcName);
+    if (rv == cPhs_COMPLEATE_e) {
+        for (int i = 0; i < 3; i++) {
+            if (getArg0() == 0xf) {
+                mMdlLengths[i] = 18;
+            } else {
+                mMdlLengths[i] = 35;
+            }
+        }
+
+        if (getAddChain0() != 0xf) {
+            mAddChain0 = getAddChain0();
+            mMdlLengths[0] += mAddChain0;
+        } else {
+            mAddChain0 = 0;
+        }
+
+        field_0x2484 = (mMdlLengths[0] - mAddChain0) - 17;
+        if (getAddChain1() != 0xf) {
+            mMdlLengths[1] += getAddChain1();
+        }
+
+        if (getAddChain2() != 0xf) {
+            mMdlLengths[2] += getAddChain2();
+        }
+
+        for (int i = 0; i < 3; i++) {
+            mChainLengths[i] = mMdlLengths[i] + 1;
+        }
+
+        rv = MoveBGCreate(l_arcName, 8, dBgS_MoveBGProc_TypicalRotY, 0xf500, NULL);
+        if (rv == cPhs_ERROR_e) {
+            return rv;
+        }
+
+        #ifdef DEBUG
+        // “Chandelier (Lv4)”
+        l_HIO.entryHIO("シャンデリア(Lv4)");
+        #endif
+    }
+    return rv;
 }
 
-/* ############################################################################################## */
 /* 80C66860-80C66868 000000 0008+00 10/10 0/0 0/0 .rodata          l_bmdidx */
-SECTION_RODATA static u8 const l_bmdidx[8] = {
-    0x00, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00, 0x05,
+static u32 const l_bmdidx[2] = {
+    4, 5,
 };
-COMPILER_STRIP_GATE(0x80C66860, &l_bmdidx);
-
-/* 80C66868-80C6686C 000008 0004+00 0/4 0/0 0/0 .rodata          @3767 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3767 = -1.0f;
-COMPILER_STRIP_GATE(0x80C66868, &lit_3767);
-#pragma pop
-
-/* 80C6686C-80C66870 00000C 0004+00 0/6 0/0 0/0 .rodata          @3768 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3768 = 1.0f;
-COMPILER_STRIP_GATE(0x80C6686C, &lit_3768);
-#pragma pop
-
-/* 80C66870-80C66874 000010 0004+00 0/1 0/0 0/0 .rodata          @3769 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_3769 = 0x3FC90FDB;
-COMPILER_STRIP_GATE(0x80C66870, &lit_3769);
-#pragma pop
 
 /* 80C634CC-80C636B4 00020C 01E8+00 1/1 0/0 0/0 .text
  * setMtxChain__14daObjLv4Chan_cFPQ214daObjLv4Chan_c8ChainPosP10dMdl_obj_ci */
-void daObjLv4Chan_c::setMtxChain(daObjLv4Chan_c::ChainPos* param_0, dMdl_obj_c* param_1,
-                                     int param_2) {
-    // NONMATCHING
+void daObjLv4Chan_c::setMtxChain(daObjLv4Chan_c::ChainPos* i_chains, dMdl_obj_c* i_mdls,
+                                     int param_3) {
+    s16 sVar8 = 0;
+    for (int i = 0; i < param_3; i++) {
+        Mtx afStack_70;
+        cXyz cStack_7c = i_chains[i + 1].field_0xc - i_chains[i].field_0xc;
+        cXyz cStack_88;
+        VECCrossProduct(&::cXyz::BaseZ, &cStack_7c, &cStack_88);
+        if (!cM3d_IsZero(cStack_7c.getSquareMag())) {
+            cStack_7c.normalize();
+            f32 dVar10 = VECDotProduct(&cStack_7c, &::cXyz::BaseZ);
+            if (!cM3d_IsZero(cStack_88.getSquareMag()) && -1.0f <= dVar10 && dVar10 <= 1.0f) {
+                cStack_88.normalize();
+                f32 fVar11 = i_acosf(dVar10);
+                i_chains[i].field_0x24 = fVar11 - M_PI / 2;
+                MTXRotAxisRad(afStack_70, &cStack_88, fVar11);
+            } else {
+                MTXIdentity(afStack_70);
+            }
+        } else {
+            MTXIdentity(afStack_70);
+        }
+        sVar8 += 0x4000;
+        mDoMtx_stack_c::transS(i_chains[i].field_0xc);
+        mDoMtx_stack_c::concat(afStack_70);
+        mDoMtx_stack_c::ZrotM(sVar8);
+        i_mdls[i].setMtx(mDoMtx_stack_c::get());
+    }
 }
-
-/* ############################################################################################## */
-/* 80C66874-80C66878 000014 0004+00 0/1 0/0 0/0 .rodata          @3834 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3834 = -150.0f;
-COMPILER_STRIP_GATE(0x80C66874, &lit_3834);
-#pragma pop
-
-/* 80C66878-80C6687C 000018 0004+00 0/6 0/0 0/0 .rodata          @3835 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3835[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80C66878, &lit_3835);
-#pragma pop
-
-/* 80C6687C-80C66880 00001C 0004+00 0/2 0/0 0/0 .rodata          @3836 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3836 = 1.0f / 3.0f;
-COMPILER_STRIP_GATE(0x80C6687C, &lit_3836);
-#pragma pop
 
 /* 80C636B4-80C639B4 0003F4 0300+00 2/2 0/0 0/0 .text            setMtx__14daObjLv4Chan_cFv */
 void daObjLv4Chan_c::setMtx() {
-    // NONMATCHING
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::YrotM(shape_angle.y);
+    MTXCopy(mDoMtx_stack_c::get(), field_0x5d8);
+    setMtxChain(mChains[0], mMdls[0],
+                mMdlLengths[0]);
+    setMtxChain(mChains[1], mMdls[1],
+                mMdlLengths[1]);
+    setMtxChain(mChains[2], mMdls[2],
+                mMdlLengths[2]);
+    Mtx afStack_68;
+    cXyz local_78;
+    cM3d_VectorProduct(&mChains[0][mMdlLengths[0]].field_0xc, &mChains[1][mMdlLengths[1]].field_0xc,
+                       &mChains[2][mMdlLengths[2]].field_0xc, &local_78);
+    if (!cM3d_IsZero(local_78.getSquareMag())) {
+        local_78.normalize();
+        cXyz cStack_84;
+        VECCrossProduct(&::cXyz::BaseY, &local_78, &cStack_84);
+        f32 dVar9 = VECDotProduct(&local_78, &::cXyz::BaseY);
+        if (!cM3d_IsZero(cStack_84.getSquareMag()) && -1.0f <= dVar9 && dVar9 <= 1.0f) {
+            cStack_84.normalize();
+            MTXRotAxisRad(afStack_68, &cStack_84, i_acosf(dVar9));
+            local_78 *= -150.0f;
+        } else {
+            MTXIdentity(afStack_68);
+            local_78.x = 0.0f;
+            local_78.y = -150.0f;
+            local_78.z = 0.0f;
+        }
+    } else {
+        MTXIdentity(afStack_68);
+        local_78.x = 0.0f;
+        local_78.y = -150.0f;
+        local_78.z = 0.0f;
+    }
+
+    field_0x23bc = mChains[0][mMdlLengths[0]].field_0xc * (1 / 3.0f) +
+                   mChains[1][mMdlLengths[1]].field_0xc * (1 / 3.0f) +
+                   mChains[2][mMdlLengths[2]].field_0xc * (1 / 3.0f);
+    field_0x23bc += local_78;
+    mDoMtx_stack_c::transS(field_0x23bc);
+    mDoMtx_stack_c::concat(afStack_68);
+    mModel->setBaseTRMtx(mDoMtx_stack_c::get());
+    mDoMtx_stack_c::scaleM(scale.x, scale.y, scale.z);
+    MTXCopy(mDoMtx_stack_c::get(), field_0x5a8);
 }
 
-/* ############################################################################################## */
-/* 80C66880-80C66884 000020 0004+00 0/1 0/0 0/0 .rodata          @3888 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3888 = 1.0f / 100.0f;
-COMPILER_STRIP_GATE(0x80C66880, &lit_3888);
-#pragma pop
-
-/* 80C66884-80C66888 000024 0004+00 0/1 0/0 0/0 .rodata          @3889 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3889 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80C66884, &lit_3889);
-#pragma pop
-
-/* 80C66888-80C6688C 000028 0004+00 0/1 0/0 0/0 .rodata          @3890 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_3890 = 0x3BF5C28F;
-COMPILER_STRIP_GATE(0x80C66888, &lit_3890);
-#pragma pop
-
-/* 80C6688C-80C66890 00002C 0004+00 0/1 0/0 0/0 .rodata          @3891 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3891 = 1.0f / 40.0f;
-COMPILER_STRIP_GATE(0x80C6688C, &lit_3891);
-#pragma pop
-
 /* 80C639B4-80C63CFC 0006F4 0348+00 1/1 0/0 0/0 .text rideActor__14daObjLv4Chan_cFP10fopAc_ac_c */
-void daObjLv4Chan_c::rideActor(fopAc_ac_c* param_0) {
-    // NONMATCHING
+void daObjLv4Chan_c::rideActor(fopAc_ac_c* param_1) {
+    field_0x2498 = 1;
+    f32 dVar8 = 1.0f;
+    if (field_0x23d4 >= 8) {
+        if (cM_rndF(1.0f) > 0.01f) {
+            return;
+        }
+        dVar8 = cM_rndF(0.1f);
+    }
+
+    field_0x23d8[field_0x23d4] = param_1;
+    field_0x23d4++;
+    bool bVar3 = false;
+    for (int i = 0; i < 8; i++) {
+        if (param_1 == field_0x23f8[i]) {
+            bVar3 = true;
+        }
+    }
+
+    if (bVar3) {
+        if (cM_rndF(1.0f) > 0.01f) {
+            if (cM3d_IsZero(param_1->speed.getSquareMag())) {
+                return;
+            }
+        }
+        dVar8 = cM_rndF(0.1f);
+    }
+
+    cXyz local_3c;
+    local_3c = param_1->current.pos - mChains[0][mChainLengths[0] - 1].field_0xc;
+    mChains[0][mChainLengths[0] - 1].field_0x0.x -= dVar8 * (local_3c.x * 0.0075f * (cM_rndFX(0.025f) + 1.0f));
+    mChains[0][mChainLengths[0] - 1].field_0x0.z -= dVar8 * (local_3c.z * 0.0075f * (cM_rndFX(0.025f) + 1.0f));
+    cXyz local_48;
+    local_48 = param_1->current.pos - mChains[1][mChainLengths[1] - 1].field_0xc;
+    mChains[1][mChainLengths[1] - 1].field_0x0.x -= dVar8 * (local_48.x * 0.0075f * (cM_rndFX(0.025f) + 1.0f));
+    mChains[1][mChainLengths[1] - 1].field_0x0.z -= dVar8 * (local_48.z * 0.0075f * (cM_rndFX(0.025f) + 1.0f));
+    cXyz local_54;
+    local_54 = param_1->current.pos - mChains[2][mChainLengths[2] - 1].field_0xc;
+    mChains[2][mChainLengths[2] - 1].field_0x0.x -= dVar8 * (local_54.x * 0.0075f * (cM_rndFX(0.025f) + 1.0f));
+    mChains[2][mChainLengths[2] - 1].field_0x0.z -= dVar8 * (local_54.z * 0.0075f * (cM_rndFX(0.025f) + 1.0f));
 }
 
 /* 80C63CFC-80C63F34 000A3C 0238+00 1/0 0/0 0/0 .text            CreateHeap__14daObjLv4Chan_cFv */
-void daObjLv4Chan_c::CreateHeap() {
-    // NONMATCHING
+int daObjLv4Chan_c::CreateHeap() {
+    J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmdidx[0]);
+    JUT_ASSERT(478, model_data != 0);
+    mModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
+    if (mModel == NULL) {
+        return 0;
+    }
+
+    mChains[0] = new ChainPos[mChainLengths[0]];
+    if (mChains[0] == NULL) {
+        return 0;
+    }
+
+    mChains[1] = new ChainPos[mChainLengths[1]];
+    if (mChains[1] == NULL) {
+        return 0;
+    }
+
+    mChains[2] = new ChainPos[mChainLengths[2]];
+    if (mChains[2] == NULL) {
+        return 0;
+    }
+   
+    mChainModelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmdidx[1]);
+    JUT_ASSERT(500, mChainModelData != 0);
+
+    mMdls[0] = new dMdl_obj_c[mMdlLengths[0]];
+    if (mMdls[0] == NULL) {
+        return 0;
+    }
+
+    mMdls[1] = new dMdl_obj_c[mMdlLengths[1]];
+    if (mMdls[1] == NULL) {
+        return 0;
+    }
+
+    mMdls[2] = new dMdl_obj_c[mMdlLengths[2]];
+    if (mMdls[2] == NULL) {
+        return 0;
+    }
+
+    return 1;
 }
 
 /* 80C63F34-80C63FA8 000C74 0074+00 1/1 0/0 0/0 .text            searchSwChain__FPvPv */
-static void searchSwChain(void* param_0, void* param_1) {
-    // NONMATCHING
+static void* searchSwChain(void* i_actor, void* i_this) {
+    if (i_actor != NULL && fopAcM_IsActor(i_actor) &&
+        fopAcM_GetProfName(i_actor) == PROC_Obj_SwChain)
+    {
+        if (((daObjSwChain_c*)i_actor)->getChainID() == ((daObjLv4Chan_c*)i_this)->getArg0()) {
+            return i_actor;
+        }
+    }
+    return NULL;
 }
-
-/* ############################################################################################## */
-/* 80C66890-80C66894 000030 0004+00 0/2 0/0 0/0 .rodata          @4080 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4080 = 0xC3231EB8;
-COMPILER_STRIP_GATE(0x80C66890, &lit_4080);
-#pragma pop
-
-/* 80C66894-80C66898 000034 0004+00 0/2 0/0 0/0 .rodata          @4081 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4081 = 0xC38D451F;
-COMPILER_STRIP_GATE(0x80C66894, &lit_4081);
-#pragma pop
-
-/* 80C66898-80C6689C 000038 0004+00 0/2 0/0 0/0 .rodata          @4082 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4082 = 0x438D451F;
-COMPILER_STRIP_GATE(0x80C66898, &lit_4082);
-#pragma pop
-
-/* 80C6689C-80C668A0 00003C 0004+00 0/2 0/0 0/0 .rodata          @4083 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4083 = 326.25f;
-COMPILER_STRIP_GATE(0x80C6689C, &lit_4083);
-#pragma pop
-
-/* 80C668A0-80C668A4 000040 0004+00 0/4 0/0 0/0 .rodata          @4084 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4084 = 35.0f;
-COMPILER_STRIP_GATE(0x80C668A0, &lit_4084);
-#pragma pop
-
-/* 80C668A4-80C668A8 000044 0004+00 0/1 0/0 0/0 .rodata          @4085 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4085 = -800.0f;
-COMPILER_STRIP_GATE(0x80C668A4, &lit_4085);
-#pragma pop
-
-/* 80C668A8-80C668AC 000048 0004+00 0/1 0/0 0/0 .rodata          @4086 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4086 = 40.0f;
-COMPILER_STRIP_GATE(0x80C668A8, &lit_4086);
-#pragma pop
-
-/* 80C668AC-80C668B0 00004C 0004+00 0/1 0/0 0/0 .rodata          @4087 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4087 = 1700.0f;
-COMPILER_STRIP_GATE(0x80C668AC, &lit_4087);
-#pragma pop
-
-/* 80C668B0-80C668B4 000050 0004+00 0/1 0/0 0/0 .rodata          @4088 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4088 = -600.0f;
-COMPILER_STRIP_GATE(0x80C668B0, &lit_4088);
-#pragma pop
-
-/* 80C668B4-80C668B8 000054 0004+00 0/1 0/0 0/0 .rodata          @4089 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4089 = 800.0f;
-COMPILER_STRIP_GATE(0x80C668B4, &lit_4089);
-#pragma pop
-
-/* 80C668B8-80C668BC 000058 0004+00 0/2 0/0 0/0 .rodata          @4090 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4090 = 10.0f;
-COMPILER_STRIP_GATE(0x80C668B8, &lit_4090);
-#pragma pop
-
-/* 80C668BC-80C668C0 00005C 0004+00 0/1 0/0 0/0 .rodata          @4091 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4091 = 600.0f;
-COMPILER_STRIP_GATE(0x80C668BC, &lit_4091);
-#pragma pop
-
-/* 80C668C0-80C668C8 000060 0008+00 0/3 0/0 0/0 .rodata          @4093 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4093[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C668C0, &lit_4093);
-#pragma pop
 
 /* 80C66994-80C669D4 000004 0040+00 1/1 0/0 0/0 .data            cc_sph_src */
 static dCcD_SrcSph cc_sph_src = {
@@ -382,275 +282,633 @@ static dCcD_SrcSph cc_sph_src = {
 };
 
 /* 80C63FA8-80C6449C 000CE8 04F4+00 1/0 0/0 0/0 .text            Create__14daObjLv4Chan_cFv */
-void daObjLv4Chan_c::Create() {
-    // NONMATCHING
+int daObjLv4Chan_c::Create() {
+    mModel->setBaseScale(scale);
+    field_0x23d4 = 0;
+    for (int i = 0; i < 8; i++) {
+        field_0x23d8[i] = NULL;
+        field_0x23f8[i] = NULL;
+    }
+
+    field_0x2418 = 1;
+    field_0x241c = 0;
+
+    for (int i = 0; i < field_0x2418; i = i + 1) {
+        mChains[0][i].field_0xc = current.pos;
+        mChains[0][i].field_0xc.x += -163.12f;
+        mChains[0][i].field_0xc.z += -282.54f;
+        mChains[0][i].field_0x0 = cXyz::Zero;
+        mChains[0][i].field_0x24 = 0;
+        mChains[1][i].field_0xc = current.pos;
+        mChains[1][i].field_0xc.x += -163.12f;
+        mChains[1][i].field_0xc.z += 282.54f;
+        mChains[1][i].field_0x0 = cXyz::Zero;
+        mChains[1][i].field_0x24 = 0;
+        mChains[2][i].field_0xc = current.pos;
+        mChains[2][i].field_0xc.x += 326.25f;
+        mChains[2][i].field_0x0 = cXyz::Zero;
+        mChains[2][i].field_0x24 = 0;
+    }
+
+    for (int i = field_0x2418; i < mChainLengths[0]; i++) {
+        mChains[0][i].field_0x0 = cXyz::Zero;
+        mChains[0][i].field_0xc.x = mChains[0][0].field_0xc.x;
+        mChains[0][i].field_0xc.y = mChains[0][i - 1].field_0xc.y - 35.0f;
+        mChains[0][i].field_0xc.z = mChains[0][0].field_0xc.z;
+        mChains[0][i].field_0x24 = 0;
+    }
+    
+    for (int i = field_0x2418; i < mChainLengths[1]; i++) {
+        mChains[1][i].field_0x0 = cXyz::Zero;
+        mChains[1][i].field_0xc.x = mChains[1][0].field_0xc.x;
+        mChains[1][i].field_0xc.y = mChains[1][i - 1].field_0xc.y - 35.0f;
+        mChains[1][i].field_0xc.z = mChains[1][0].field_0xc.z;
+        mChains[1][i].field_0x24 = 0;
+    }
+
+    for (int i = field_0x2418; i < mChainLengths[2]; i++) {
+        mChains[2][i].field_0x0 = cXyz::Zero;
+        mChains[2][i].field_0xc.x = mChains[2][0].field_0xc.x;
+        mChains[2][i].field_0xc.y = mChains[2][i - 1].field_0xc.y - 35.0f;
+        mChains[2][i].field_0xc.z = mChains[2][0].field_0xc.z;
+        mChains[2][i].field_0x24 = 0;
+    }
+
+    setMtx();
+    field_0x23c8 = field_0x23bc;
+    fopAcM_SetMtx(this, field_0x5d8);
+    chkGnd();
+    fopAcM_setCullSizeBox(this, -800.0f, (-mMdlLengths[0] * 40.0f) - 1700.0f, -600.0f, 800.0f, 10.0f,
+                          600.0f);
+    mpBgW->SetRideCallback(rideCallBack);
+    mStts.Init(0xff, 0, this);
+    for (int i = 0; i < 8; i = i + 1) {
+        mSphs1[i].Set(cc_sph_src);
+        mSphs1[i].SetStts(&mStts);
+        mSphs2[i].Set(cc_sph_src);
+        mSphs2[i].SetStts(&mStts);
+        mSphs3[i].Set(cc_sph_src);
+        mSphs3[i].SetStts(&mStts);
+    }
+
+    field_0x2488 = 0;
+    field_0x2489 = 1;
+    field_0x248a = 0;
+    field_0x248b = 0;
+    field_0x248c = 0;
+    field_0x248d = 0;
+    field_0x2490 = 1.0f;
+    field_0x2494 = 0.0f;
+    field_0x249c = 1.0f;
+    field_0x24a0 = 0.0f;
+    field_0x2498 = 0;
+    field_0x2499 = 0;
+    return 1;
 }
-
-/* ############################################################################################## */
-/* 80C668C8-80C668CC 000068 0004+00 0/1 0/0 0/0 .rodata          @4154 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4154 = 0xBF350481;
-COMPILER_STRIP_GATE(0x80C668C8, &lit_4154);
-#pragma pop
-
-/* 80C668CC-80C668D0 00006C 0004+00 0/1 0/0 0/0 .rodata          @4155 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4155 = 1225.0f;
-COMPILER_STRIP_GATE(0x80C668CC, &lit_4155);
-#pragma pop
 
 /* 80C6449C-80C64668 0011DC 01CC+00 1/1 0/0 0/0 .text
  * constraintChain__14daObjLv4Chan_cFPQ214daObjLv4Chan_c8ChainPosi */
-void daObjLv4Chan_c::constraintChain(daObjLv4Chan_c::ChainPos* param_0, int param_1) {
-    // NONMATCHING
+void daObjLv4Chan_c::constraintChain(daObjLv4Chan_c::ChainPos* i_chains, int param_2) {
+    bool iVar4 = field_0x2418 == field_0x2484;
+    for (int i = field_0x2418; i < param_2; i++) {
+        cXyz local_3c = i_chains[i].field_0xc - i_chains[i - 1].field_0xc;
+        if (local_3c.y >= -0.7071f) {
+            local_3c.y = -0.7071f;
+        }
+
+        if (!iVar4) {
+            local_3c.z = 0.0f;
+            local_3c.x = 0.0f;
+        }
+
+        f32 uVar6 = local_3c.getSquareMag();
+        if (i == field_0x2418) {
+            if (!cM3d_IsZero(uVar6)) {
+                if (uVar6 >= 1225.0f) {
+                    local_3c.normalize();
+                    local_3c *= 35.0f;
+                }
+            } else {
+                local_3c.x = 0.0f;
+                local_3c.y = -1.0f;
+                local_3c.z = 0.0f;
+            }
+        } else {
+            if (!cM3d_IsZero(uVar6)) {
+                local_3c.normalize();
+            } else {
+                local_3c.x = 0.0f;
+                local_3c.y = -1.0f;
+                local_3c.z = 0.0f;
+            }
+            local_3c *= 35.0f;
+        }
+
+        i_chains[i].field_0xc = local_3c + i_chains[i - 1].field_0xc;
+    }
 }
 
-/* ############################################################################################## */
 /* 80C668D0-80C668DC 000070 000C+00 0/1 0/0 0/0 .rodata          l_pos0 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const l_pos0[12] = {
-    0xC3, 0x23, 0x1E, 0xB8, 0x43, 0x16, 0x00, 0x00, 0xC3, 0x8D, 0x45, 0x1F,
+static Vec const l_pos0 = {
+    -163.12f, 150.0f, -282.54f,
 };
-COMPILER_STRIP_GATE(0x80C668D0, &l_pos0);
-#pragma pop
 
 /* 80C668DC-80C668E8 00007C 000C+00 0/1 0/0 0/0 .rodata          l_pos1 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const l_pos1[12] = {
-    0xC3, 0x23, 0x1E, 0xB8, 0x43, 0x16, 0x00, 0x00, 0x43, 0x8D, 0x45, 0x1F,
+static Vec const l_pos1 = {
+    -163.12f, 150.0f, 282.54f,
 };
-COMPILER_STRIP_GATE(0x80C668DC, &l_pos1);
-#pragma pop
 
 /* 80C668E8-80C668F4 000088 000C+00 0/1 0/0 0/0 .rodata          l_pos2 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const l_pos2[12] = {
-    0x43, 0xA3, 0x20, 0x00, 0x43, 0x16, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static Vec const l_pos2 = {
+    326.25f, 150.0f, 0.0f,
 };
-COMPILER_STRIP_GATE(0x80C668E8, &l_pos2);
-#pragma pop
-
-/* 80C668F4-80C668F8 000094 0004+00 0/2 0/0 0/0 .rodata          @4190 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4190 = 0.5f;
-COMPILER_STRIP_GATE(0x80C668F4, &lit_4190);
-#pragma pop
 
 /* 80C64668-80C647FC 0013A8 0194+00 1/1 0/0 0/0 .text            constraintBase__14daObjLv4Chan_cFv
  */
 void daObjLv4Chan_c::constraintBase() {
-    // NONMATCHING
+    cXyz acStack_20;
+    MTXMultVec(field_0x5a8, &l_pos0, &acStack_20);
+    mChains[0][mChainLengths[0] - 1].field_0xc = (acStack_20 + mChains[0][mChainLengths[0] - 1].field_0xc) * 0.5f;
+    MTXMultVec(field_0x5a8, &l_pos1, &acStack_20);
+    mChains[1][mChainLengths[1] - 1].field_0xc = (acStack_20 + mChains[1][mChainLengths[1] - 1].field_0xc) * 0.5f;
+    MTXMultVec(field_0x5a8, &l_pos2, &acStack_20);
+    mChains[2][mChainLengths[2] - 1].field_0xc = (acStack_20 + mChains[2][mChainLengths[2] - 1].field_0xc) * 0.5f;
 }
 
 /* 80C647FC-80C64878 00153C 007C+00 1/1 0/0 0/0 .text
  * calcVec__14daObjLv4Chan_cFPQ214daObjLv4Chan_c8ChainPosi      */
-void daObjLv4Chan_c::calcVec(daObjLv4Chan_c::ChainPos* param_0, int param_1) {
-    // NONMATCHING
+void daObjLv4Chan_c::calcVec(daObjLv4Chan_c::ChainPos* i_chains, int param_2) {
+    for (int i = 0; i < param_2; i++) {
+        i_chains[i].field_0x0 = i_chains[i].field_0xc - i_chains[i].field_0x18;
+    }
 }
-
-/* ############################################################################################## */
-/* 80C668F8-80C668FC 000098 0004+00 1/1 0/0 0/0 .rodata          @4220 */
-SECTION_RODATA static f32 const lit_4220 = 300.0f;
-COMPILER_STRIP_GATE(0x80C668F8, &lit_4220);
 
 /* 80C64878-80C648F4 0015B8 007C+00 2/2 0/0 0/0 .text            chkGnd__14daObjLv4Chan_cFv */
 void daObjLv4Chan_c::chkGnd() {
-    // NONMATCHING
+    cXyz cStack_18;
+    cStack_18 = field_0x23bc;
+    cStack_18.y += 300.0f;
+    mGndChk.SetPos(&cStack_18);
+    mGndChk.SetActorPid(base.id);
+    field_0x247c = dComIfG_Bgsp().GroundCross(&mGndChk);
 }
 
-/* ############################################################################################## */
 /* 80C668FC-80C66924 00009C 0028+00 0/1 0/0 0/0 .rodata          l_curve */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const l_curve[40] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x01,
-    0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x04,
+static int const l_curve[10] = {
+    0, 0, 0, 0, 0, 1, 1,
+    2, 2, 4,
 };
-COMPILER_STRIP_GATE(0x80C668FC, &l_curve);
-#pragma pop
-
-/* 80C66924-80C66928 0000C4 0004+00 0/1 0/0 0/0 .rodata          @4843 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4843 = 0.125f;
-COMPILER_STRIP_GATE(0x80C66924, &lit_4843);
-#pragma pop
-
-/* 80C66928-80C6692C 0000C8 0004+00 0/1 0/0 0/0 .rodata          @4844 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4844 = 7.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80C66928, &lit_4844);
-#pragma pop
-
-/* 80C6692C-80C66930 0000CC 0004+00 0/1 0/0 0/0 .rodata          @4845 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4845 = 3.0f;
-COMPILER_STRIP_GATE(0x80C6692C, &lit_4845);
-#pragma pop
-
-/* 80C66930-80C66934 0000D0 0004+00 0/1 0/0 0/0 .rodata          @4846 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4846 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(0x80C66930, &lit_4846);
-#pragma pop
-
-/* 80C66934-80C66938 0000D4 0004+00 0/2 0/0 0/0 .rodata          @4847 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4847 = 2.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80C66934, &lit_4847);
-#pragma pop
-
-/* 80C66938-80C6693C 0000D8 0004+00 0/1 0/0 0/0 .rodata          @4848 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4848 = 6.0f;
-COMPILER_STRIP_GATE(0x80C66938, &lit_4848);
-#pragma pop
-
-/* 80C6693C-80C66940 0000DC 0004+00 0/1 0/0 0/0 .rodata          @4849 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4849 = 15.0f;
-COMPILER_STRIP_GATE(0x80C6693C, &lit_4849);
-#pragma pop
-
-/* 80C66940-80C66944 0000E0 0004+00 0/1 0/0 0/0 .rodata          @4850 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4850 = -4.0f;
-COMPILER_STRIP_GATE(0x80C66940, &lit_4850);
-#pragma pop
-
-/* 80C66944-80C66948 0000E4 0004+00 0/1 0/0 0/0 .rodata          @4851 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4851 = 0xBF5DB22D;
-COMPILER_STRIP_GATE(0x80C66944, &lit_4851);
-#pragma pop
-
-/* 80C66948-80C66950 0000E8 0004+04 0/1 0/0 0/0 .rodata          @4852 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4852[1 + 1 /* padding */] = {
-    0x3B449BA6,
-    /* padding */
-    0x00000000,
-};
-COMPILER_STRIP_GATE(0x80C66948, &lit_4852);
-#pragma pop
 
 /* 80C648F4-80C65F04 001634 1610+00 1/0 0/0 0/0 .text            Execute__14daObjLv4Chan_cFPPA3_A4_f
  */
-void daObjLv4Chan_c::Execute(f32 (**param_0)[3][4]) {
-    // NONMATCHING
+int daObjLv4Chan_c::Execute(Mtx** i_mtx) {
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    int local_1f0 = 0;
+    field_0x2420 = 0;
+    if (getArg0() != 0xf) {
+        daObjSwChain_c* swChain = (daObjSwChain_c*)fopAcM_Search(
+                                searchSwChain, this);
+        if ((swChain != NULL)) {
+            local_1f0 = swChain->checkTight();
+            if (local_1f0) {
+                field_0x248b = 0;
+                if (field_0x2418 < field_0x2484) {
+                    if (player->getBaseAnimeFrame() < 10.0f) {
+                        int local_1f8 = player->getBaseAnimeFrame();
+                        if (local_1f8 < 0) {
+                            local_1f8 = 0;
+                        }
+
+                        if (9 < local_1f8) {
+                            local_1f8 = 9;
+                        }
+
+                        field_0x241c += l_curve[local_1f8];
+                        if (field_0x241c >= 10) {
+                            field_0x241c = field_0x241c - 10;
+                            if (field_0x2418 == 1 && getSw() != 0xff) {
+                                fopAcM_onSwitch(this, getSw());
+                            }
+                            field_0x2418 = field_0x2418 + 1;
+                            Z2GetAudioMgr()->seStart(Z2SE_OBJ_CHANDELIER_UP, &field_0x23bc, 0, 0,
+                                                     1.0f, 1.0f, -1.0f, -1.0f, 0);
+                        }
+                    }
+                } else {
+                    if (field_0x2489 != 0) {
+                        ;
+                        dComIfGp_getVibration().StartShock(3, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
+                        mDoAud_seStart(Z2SE_OBJ_CHAND_TOP, &field_0x23bc, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+                        field_0x2489 = 0;
+                    }
+                    field_0x241c = 0;
+                }
+                
+                if (field_0x241c > 10) {
+                    field_0x241c = 10 - 1;
+                }
+
+                field_0x2420 = (f32)(field_0x241c - 2) / (f32)(10 - 2);
+                if (field_0x2420 < 0.0f) {
+                    field_0x2420 = 0.0f;
+                }
+
+                if (field_0x2418 > 0.7f * field_0x2484) {
+                    field_0x2488 = 1;
+                }
+
+                if (field_0x2488 == 1) {
+                    field_0x248a = 0;
+                } else {
+                    field_0x248a = 1;
+                }
+            } else {
+                if (!swChain->checkCarry()) {
+                    if (field_0x2418 == field_0x2484) {
+                        if (field_0x248b == 0) {
+                            field_0x248b = 1;
+                            Z2GetAudioMgr()->seStart(Z2SE_OBJ_CHANDELIER_DW_TRG, &field_0x23bc, 0,
+                                                     0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                        }
+                        field_0x241c++;
+                        if (field_0x241c < 120) {
+                            field_0x2420 = 0;
+                        } else {
+                            field_0x2420 = (f32)(field_0x241c - 120) / (f32)3;
+                            if (field_0x241c - 120 > 3) {
+                                field_0x241c = 0;
+                                field_0x2418--;
+                                field_0x2420 = 0;
+                            }
+
+                            Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_CHANDELIER_DW_LV, &field_0x23bc,
+                                                          0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                        }
+                    } else if (field_0x2418 > 1) {
+                        field_0x241c++;
+                        if (field_0x241c >= 3) {
+                            field_0x241c = 0;
+                            field_0x2418--;
+                        }
+
+                        field_0x2420 = (f32)field_0x241c / (f32)3;
+                        Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_CHANDELIER_DW_LV, &field_0x23bc, 0,
+                                                      0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                    }
+                    if (field_0x2418 == 1 && field_0x248a != 0) {
+                        field_0x248a = 0;
+                        dComIfGp_getVibration().StartShock(4, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
+                        mDoAud_seStart(Z2SE_OBJ_CHAND_FALLDOWN_S, &field_0x23bc, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+                    }
+                }
+            }
+
+            if (field_0x2418 == 1 && field_0x2488 != 0) {
+                field_0x2488 = 0;
+                dComIfGp_getVibration().StartShock(8, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
+                mDoAud_seStart(Z2SE_OBJ_CHAND_FALLDOWN, &field_0x23bc, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
+            }
+
+            if (field_0x2418 <= 1) {
+                field_0x2418 = 1;
+                field_0x2489 = 1;
+            }
+
+            if (field_0x2418 > field_0x2484) {
+                field_0x2418 = field_0x2484;
+            }
+            swChain->setRatioForChandelier((f32)(field_0x2484 - field_0x2418) / (f32)field_0x2484);
+        }
+    }
+
+    if (field_0x2420 > 1.0f) {
+        field_0x2420 = 1.0f;
+    }
+
+    f32 dVar19 = field_0x2420 * 35.0f;
+    if (local_1f0 == 0) {
+        dVar19 *= -1.0f;
+    }
+    for (int i = 0; i < 8; i++) {
+        field_0x23f8[i] = field_0x23d8[i];
+        field_0x23d8[i] = NULL;
+    }
+    field_0x23d4 = 0;
+    if (cM_rndF(1.0f) < 0.05f) {
+        cXyz cStack_8c = dKyw_get_wind_vecpow();
+        cStack_8c *= cM_rndF(0.4f);
+        for (int i = field_0x2418; i < mChainLengths[0]; i++) {
+            mChains[0][i].field_0x0 += cStack_8c;
+        }
+        for (int i = field_0x2418; i < mChainLengths[1]; i++) {
+            mChains[1][i].field_0x0 += cStack_8c;
+        }
+        for (int i = field_0x2418; i < mChainLengths[2]; i++) {
+            mChains[2][i].field_0x0 += cStack_8c;
+        }
+
+        cStack_8c *= cM_rndF(6.0f);
+        mChains[0][mChainLengths[0] - 1].field_0x0 += cStack_8c;
+        mChains[1][mChainLengths[1] - 1].field_0x0 += cStack_8c;
+        mChains[2][mChainLengths[2] - 1].field_0x0 += cStack_8c;
+    }
+    
+    bool bVar5 = false;
+    for (int i = 0; i < 8; i++) {
+        int local_210 = mChainLengths[0] - 1 - 2 * i;
+        if (local_210 >= 0 && mSphs1[i].ChkTgHit()) {
+            cCcD_Obj* hitObj = mSphs1[i].GetTgHitObj();
+            fopAc_ac_c* hitActor = dCc_GetAc(hitObj->GetAc());
+            cXyz cStack_98;
+            cStack_98 = mChains[0][local_210].field_0xc - hitActor->current.pos;
+            if (!cM3d_IsZero(cStack_98.getSquareMag())) {
+                cStack_98.normalize();
+                cStack_98 *= 15.0f;
+                mChains[0][local_210].field_0x0 += cStack_98;
+            }
+
+            if (!bVar5) {
+                bVar5 = true;
+                u8 atSe = ((dCcD_GObjInf*)hitObj)->GetAtSe();
+                Z2GetAudioMgr()->seStart(dCcD_GObjInf::getHitSeID(atSe, 0), mSphs1[i].GetCP(), 0x35, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            }
+        }
+
+        int local_224 = mChainLengths[1] - 1 - 2 * i;
+        if (local_224 >= 0 && mSphs2[i].ChkTgHit()) {
+            cCcD_Obj* hitObj = mSphs2[i].GetTgHitObj();
+            fopAc_ac_c* hitActor = dCc_GetAc(hitObj->GetAc());
+            cXyz cStack_a4;
+            cStack_a4 = mChains[1][local_224].field_0xc - hitActor->current.pos;
+            if (!cM3d_IsZero(cStack_a4.getSquareMag())) {
+                cStack_a4.normalize();
+                cStack_a4 *= 15.0f;
+                mChains[1][local_224].field_0x0 += cStack_a4;
+            }
+
+            if (!bVar5) {
+                bVar5 = true;
+                u8 atSe = ((dCcD_GObjInf*)hitObj)->GetAtSe();
+                Z2GetAudioMgr()->seStart(dCcD_GObjInf::getHitSeID(atSe, 0), mSphs2[i].GetCP(), 0x35, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            }
+        }
+
+        int local_238 = mChainLengths[2] - 1 - 2 * i;
+        if (local_238 >= 0 && mSphs3[i].ChkTgHit()) {
+            cCcD_Obj* hitObj = mSphs3[i].GetTgHitObj();
+            fopAc_ac_c* hitActor = dCc_GetAc(hitObj->GetAc());
+            cXyz cStack_b0;
+            cStack_b0 = mChains[2][local_238].field_0xc - hitActor->current.pos;
+            if (!cM3d_IsZero(cStack_b0.getSquareMag())) {
+                cStack_b0.normalize();
+                cStack_b0 *= 15.0f;
+                mChains[2][local_238].field_0x0 += cStack_b0;
+            }
+
+            if (!bVar5) {
+                bVar5 = true;
+                u8 atSe = ((dCcD_GObjInf*)hitObj)->GetAtSe();
+                Z2GetAudioMgr()->seStart(dCcD_GObjInf::getHitSeID(atSe, 0), mSphs3[i].GetCP(), 0x35, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            }
+        }
+    }
+
+    for (int i = field_0x2418; i < mChainLengths[0]; i++) {
+        mChains[0][i].field_0x18 = mChains[0][i].field_0xc;
+        mChains[0][i].field_0x0.y += -4.0f;
+        mChains[0][i].field_0xc += mChains[0][i].field_0x0;
+    }
+
+    for (int i = field_0x2418; i < mChainLengths[1]; i++) {
+        mChains[1][i].field_0x18 = mChains[1][i].field_0xc;
+        mChains[1][i].field_0x0.y += -4.0f;
+        mChains[1][i].field_0xc += mChains[1][i].field_0x0;
+    }
+
+    for (int i = field_0x2418; i < mChainLengths[2]; i++) {
+        mChains[2][i].field_0x18 = mChains[2][i].field_0xc;
+        mChains[2][i].field_0x0.y += -4.0f;
+        mChains[2][i].field_0xc += mChains[2][i].field_0x0;
+    }
+
+    for (int i = 0; i < 2; i++) {
+        for (int j = field_0x2418; j < mChainLengths[0] - 1; j++) {
+            if (j != mChainLengths[0] - 1) {
+                mChains[0][j].field_0xc = (mChains[0][j - 1].field_0xc + mChains[0][j].field_0xc + mChains[0][j + 1].field_0xc) * (1.0f / 3.0f);
+            } else {
+                mChains[0][j].field_0xc = (mChains[0][j - 1].field_0xc + mChains[0][j].field_0xc) * 0.5f;
+            }
+        }
+
+        for (int j = field_0x2418; j < mChainLengths[1] - 1; j++) {
+            if (j != mChainLengths[1] - 1) {
+                mChains[1][j].field_0xc = (mChains[1][j - 1].field_0xc + mChains[1][j].field_0xc + mChains[1][j + 1].field_0xc) * (1.0f / 3.0f);
+            } else {
+                mChains[1][j].field_0xc = (mChains[1][j - 1].field_0xc + mChains[1][j].field_0xc) * 0.5f;
+            }
+        }
+
+        for (int j = field_0x2418; j < mChainLengths[2] - 1; j++) {
+            if (j != mChainLengths[2] - 1) {
+                mChains[2][j].field_0xc = (mChains[2][j - 1].field_0xc + mChains[2][j].field_0xc + mChains[2][j + 1].field_0xc) * (1.0f / 3.0f);
+            } else {
+                mChains[2][j].field_0xc = (mChains[2][j - 1].field_0xc + mChains[2][j].field_0xc) * 0.5f;
+            }
+        }
+
+        setMtx();
+        constraintBase();
+
+        for (int j = 0; j < field_0x2418; j++) {
+            mChains[0][j].field_0xc = current.pos;
+            mChains[0][j].field_0xc.x += -163.12f;
+            mChains[0][j].field_0xc.y += dVar19;
+            mChains[0][j].field_0xc.z += -282.54f;
+            mChains[0][j].field_0x0 = ::cXyz::Zero;
+
+            mChains[1][j].field_0xc = current.pos;
+            mChains[1][j].field_0xc.x += -163.12f;
+            mChains[1][j].field_0xc.y += dVar19;
+            mChains[1][j].field_0xc.z += 282.54f;
+            mChains[1][j].field_0x0 = ::cXyz::Zero;
+
+            mChains[2][j].field_0xc = current.pos;
+            mChains[2][j].field_0xc.x += 326.25f;
+            mChains[2][j].field_0xc.y += dVar19;
+            mChains[2][j].field_0x0 = ::cXyz::Zero;
+        }
+        constraintChain(mChains[0], mChainLengths[0]);
+        constraintChain(mChains[1], mChainLengths[1]);
+        constraintChain(mChains[2], mChainLengths[2]);
+    }
+
+    calcVec(mChains[0], mChainLengths[0]);
+    calcVec(mChains[1], mChainLengths[1]);
+    calcVec(mChains[2], mChainLengths[2]);
+    setMtx();
+
+    u8 local_2a8 = 0;
+    for (int i = 0; i < mChainLengths[0]; i++) {
+        if (!cM3d_IsZero(mChains[0][i].field_0x24)) {
+            local_2a8 = 1;
+        }
+    }
+
+    for (int i = 0; i < mChainLengths[1]; i++) {
+        if (!cM3d_IsZero(mChains[1][i].field_0x24)) {
+            local_2a8 = 1;
+        }
+    }
+
+    for (int i = 0; i < mChainLengths[2]; i++) {
+        if (!cM3d_IsZero(mChains[2][i].field_0x24)) {
+            local_2a8 = 1;
+        }
+    }
+
+    field_0x23c8.abs2XZ(field_0x23bc);
+    cXyz local_bc = field_0x23bc - field_0x23c8;
+    local_bc.y = 0.0f;
+    if (!cM3d_IsZero(local_bc.getSquareMag())) {
+        local_bc.normalize();
+        f32 dVar20 = local_bc.x * field_0x2490 + local_bc.z * field_0x2494;
+        f32 dVar19 = local_bc.x * field_0x249c + local_bc.z * field_0x24a0;
+        if (field_0x248c == 0 && ((local_2a8 == 1 && field_0x248d == 0) ||
+                                  ((local_2a8 == 1 &&
+                                    (dVar20 < -0.866f || cM_rndF(1.0f) < 0.003f || dVar19 <= 0.0f ||
+                                     (field_0x2499 == 0 && field_0x2498 != 0)) &&
+                                    cM_rndF(1.0f) < 0.5f))))
+        {
+            Z2GetAudioMgr()->seStart(Z2SE_OBJ_CHANDELIER_SWING, &field_0x23bc, 0, 0, 1.0f, 1.0f,
+                                     -1.0f, -1.0f, 0);
+            field_0x2490 = local_bc.x;
+            field_0x2494 = local_bc.z;
+            field_0x248c = 1;
+        } else {
+            field_0x248c = 0;
+        }
+
+        field_0x249c = local_bc.x;
+        field_0x24a0 = local_bc.z;
+    } else {
+        field_0x248c = 0;
+    }
+    field_0x23c8 = field_0x23bc;
+    field_0x248d = local_2a8;
+    field_0x2499 = field_0x2498;
+    field_0x2498 = 0;
+    for (int i = 0; i < 8; i++) {
+        int local_27c = mChainLengths[0] - 1 - 2 * i;
+        if (local_27c >= 0) {
+            mSphs1[i].SetC(mChains[0][local_27c].field_0xc);
+            dComIfG_Ccsp()->Set(&mSphs1[i]);
+        }
+
+        int local_280 = mChainLengths[1] - 1 - 2 * i;
+        if (local_280 >= 0) {
+            mSphs2[i].SetC(mChains[1][local_280].field_0xc);
+            dComIfG_Ccsp()->Set(&mSphs2[i]);
+        }
+
+        int local_284 = mChainLengths[2] - 1 - 2 * i;
+        if (local_284 >= 0) {
+            mSphs3[i].SetC(mChains[2][local_284].field_0xc);
+            dComIfG_Ccsp()->Set(&mSphs3[i]);
+        }
+    }
+    mStts.Move();
+    *i_mtx = &field_0x5a8;
+    chkGnd();
+    return 1;
 }
 
-/* ############################################################################################## */
-/* 80C66950-80C66958 0000F0 0008+00 0/1 0/0 0/0 .rodata          @4926 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4926[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C66950, &lit_4926);
-#pragma pop
-
-/* 80C66958-80C66960 0000F8 0008+00 0/1 0/0 0/0 .rodata          @4927 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4927[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C66958, &lit_4927);
-#pragma pop
-
-/* 80C66960-80C66968 000100 0008+00 0/1 0/0 0/0 .rodata          @4928 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_4928[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C66960, &lit_4928);
-#pragma pop
-
-/* 80C66968-80C6696C 000108 0004+00 0/1 0/0 0/0 .rodata          @4982 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4982 = -1000000000.0f;
-COMPILER_STRIP_GATE(0x80C66968, &lit_4982);
-#pragma pop
-
-/* 80C6696C-80C66970 00010C 0004+00 0/1 0/0 0/0 .rodata          @4983 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4983 = -1.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80C6696C, &lit_4983);
-#pragma pop
-
-/* 80C66970-80C66974 000110 0004+00 0/1 0/0 0/0 .rodata          @4984 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4984 = 500.0f;
-COMPILER_STRIP_GATE(0x80C66970, &lit_4984);
-#pragma pop
-
-/* 80C66974-80C66978 000114 0004+00 0/1 0/0 0/0 .rodata          @4985 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4985 = 1.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80C66974, &lit_4985);
-#pragma pop
-
-/* 80C66978-80C6697C 000118 0004+00 0/1 0/0 0/0 .rodata          @4986 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4986 = 2000.0f;
-COMPILER_STRIP_GATE(0x80C66978, &lit_4986);
-#pragma pop
-
-/* 80C6697C-80C66980 00011C 0004+00 0/1 0/0 0/0 .rodata          @4987 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4987 = 1600.0f;
-COMPILER_STRIP_GATE(0x80C6697C, &lit_4987);
-#pragma pop
-
-/* 80C66980-80C66984 000120 0004+00 0/1 0/0 0/0 .rodata          @4988 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4988 = 160.0f;
-COMPILER_STRIP_GATE(0x80C66980, &lit_4988);
-#pragma pop
-
 /* 80C65F04-80C66114 002C44 0210+00 1/0 0/0 0/0 .text            Draw__14daObjLv4Chan_cFv */
-void daObjLv4Chan_c::Draw() {
-    // NONMATCHING
+int daObjLv4Chan_c::Draw() {
+    g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mModel,
+                                          &tevStr);
+    dComIfGd_setListBG();
+    mDoExt_modelUpdateDL(mModel);
+    dMdl_c* mdl = dMdl_mng_c::entry(mChainModelData, 0, current.roomNo);
+    if (mdl != NULL) {
+        for (int i = 0; i < mMdlLengths[0]; i++) {
+            mdl->entryObj(&mMdls[0][i]);
+        }
+
+        for (int i = 0; i < mMdlLengths[1]; i++) {
+            mdl->entryObj(&mMdls[1][i]);
+        }
+
+        for (int i = 0; i < mMdlLengths[2]; i++) {
+            mdl->entryObj(&mMdls[2][i]);
+        }
+    }
+    dComIfGd_setList();
+    if (field_0x247c != -1e9f) {
+        f32 fVar4 = 0.4f + ((field_0x23bc.y - field_0x247c) * -0.2f) / 500.0f;
+        if (fVar4 > 0.4f) {
+            fVar4 = 0.4f;
+        }
+
+        if (fVar4 < 0.2f) {
+            fVar4 = 0.2f;
+        }
+
+        tevStr.mLightPosWorld.x = field_0x23bc.x;
+        tevStr.mLightPosWorld.y = field_0x247c + 2000.0f;
+        tevStr.mLightPosWorld.z = field_0x23bc.z;
+        tevStr.field_0x344 = fVar4;
+        mShadowId = dComIfGd_setShadow(
+            mShadowId, 0, mModel, &field_0x23bc,
+            1600.0f, 0.0f, field_0x23bc.y, field_0x247c + 160.0f,
+            mGndChk, &tevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
+    }
+    return 1;
 }
 
 /* 80C66114-80C66150 002E54 003C+00 1/0 0/0 0/0 .text            Delete__14daObjLv4Chan_cFv */
-void daObjLv4Chan_c::Delete() {
-    // NONMATCHING
+int daObjLv4Chan_c::Delete() {
+    dComIfG_resDelete(this, l_arcName);
+
+    #if DEBUG
+    l_HIO.removeHIO();
+    #endif
+
+    return 1;
 }
 
-/* ############################################################################################## */
+/* 80C66150-80C6627C 002E90 012C+00 1/0 0/0 0/0 .text daObjLv4Chan_create1st__FP14daObjLv4Chan_c
+ */
+static int daObjLv4Chan_create1st(daObjLv4Chan_c* i_this) {
+    fopAcM_SetupActor(i_this, daObjLv4Chan_c);
+    return i_this->create1st();
+}
+
+/* 80C664D4-80C664F4 003214 0020+00 1/0 0/0 0/0 .text
+ * daObjLv4Chan_MoveBGDelete__FP14daObjLv4Chan_c                */
+static int daObjLv4Chan_MoveBGDelete(daObjLv4Chan_c* i_this) {
+    return i_this->MoveBGDelete();
+}
+
+/* 80C664F4-80C66514 003234 0020+00 1/0 0/0 0/0 .text
+ * daObjLv4Chan_MoveBGExecute__FP14daObjLv4Chan_c               */
+static int daObjLv4Chan_MoveBGExecute(daObjLv4Chan_c* i_this) {
+    return i_this->MoveBGExecute();
+}
+
+/* 80C66514-80C66540 003254 002C+00 1/0 0/0 0/0 .text daObjLv4Chan_MoveBGDraw__FP14daObjLv4Chan_c
+ */
+static int daObjLv4Chan_MoveBGDraw(daObjLv4Chan_c* i_this) {
+    return i_this->MoveBGDraw();
+}
+
 /* 80C669D4-80C669F4 -00001 0020+00 1/0 0/0 0/0 .data            daObjLv4Chan_METHODS */
 static actor_method_class daObjLv4Chan_METHODS = {
-    (process_method_func)daObjLv4Chan_create1st__FP14daObjLv4Chan_c,
-    (process_method_func)daObjLv4Chan_MoveBGDelete__FP14daObjLv4Chan_c,
-    (process_method_func)daObjLv4Chan_MoveBGExecute__FP14daObjLv4Chan_c,
-    0,
-    (process_method_func)daObjLv4Chan_MoveBGDraw__FP14daObjLv4Chan_c,
+    (process_method_func)daObjLv4Chan_create1st,
+    (process_method_func)daObjLv4Chan_MoveBGDelete,
+    (process_method_func)daObjLv4Chan_MoveBGExecute,
+    NULL,
+    (process_method_func)daObjLv4Chan_MoveBGDraw,
 };
 
 /* 80C669F4-80C66A24 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Lv4Chan */
@@ -670,141 +928,5 @@ extern actor_process_profile_definition g_profile_Obj_Lv4Chan = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80C66A24-80C66A30 000094 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGAab */
-SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGAabFv,
-};
-
-/* 80C66A30-80C66A3C 0000A0 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGSph */
-SECTION_DATA extern void* __vt__8cM3dGSph[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGSphFv,
-};
-
-/* 80C66A3C-80C66A6C 0000AC 0030+00 2/2 0/0 0/0 .data            __vt__14dBgS_ObjGndChk */
-SECTION_DATA extern void* __vt__14dBgS_ObjGndChk[12] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14dBgS_ObjGndChkFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80C66540,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80C66550,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80C66548,
-};
-
-/* 80C66A6C-80C66A94 0000DC 0028+00 1/1 0/0 0/0 .data            __vt__14daObjLv4Chan_c */
-SECTION_DATA extern void* __vt__14daObjLv4Chan_c[10] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)CreateHeap__14daObjLv4Chan_cFv,
-    (void*)Create__14daObjLv4Chan_cFv,
-    (void*)Execute__14daObjLv4Chan_cFPPA3_A4_f,
-    (void*)Draw__14daObjLv4Chan_cFv,
-    (void*)Delete__14daObjLv4Chan_cFv,
-    (void*)IsDelete__16dBgS_MoveBgActorFv,
-    (void*)ToFore__16dBgS_MoveBgActorFv,
-    (void*)ToBack__16dBgS_MoveBgActorFv,
-};
-
-/* 80C66150-80C6627C 002E90 012C+00 1/0 0/0 0/0 .text daObjLv4Chan_create1st__FP14daObjLv4Chan_c
- */
-static void daObjLv4Chan_create1st(daObjLv4Chan_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80C6627C-80C662F4 002FBC 0078+00 4/3 0/0 0/0 .text            __dt__14dBgS_ObjGndChkFv */
-// dBgS_ObjGndChk::~dBgS_ObjGndChk() {
-extern "C" void __dt__14dBgS_ObjGndChkFv() {
-    // NONMATCHING
-}
-
-/* 80C662F4-80C663C0 003034 00CC+00 1/1 0/0 0/0 .text            __dt__8dCcD_SphFv */
-// dCcD_Sph::~dCcD_Sph() {
-extern "C" void __dt__8dCcD_SphFv() {
-    // NONMATCHING
-}
-
-/* 80C663C0-80C66444 003100 0084+00 1/1 0/0 0/0 .text            __ct__8dCcD_SphFv */
-// dCcD_Sph::dCcD_Sph() {
-extern "C" void __ct__8dCcD_SphFv() {
-    // NONMATCHING
-}
-
-/* 80C66444-80C6648C 003184 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
-// cM3dGSph::~cM3dGSph() {
-extern "C" void __dt__8cM3dGSphFv() {
-    // NONMATCHING
-}
-
-/* 80C6648C-80C664D4 0031CC 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
-// cM3dGAab::~cM3dGAab() {
-extern "C" void __dt__8cM3dGAabFv() {
-    // NONMATCHING
-}
-
-/* 80C664D4-80C664F4 003214 0020+00 1/0 0/0 0/0 .text
- * daObjLv4Chan_MoveBGDelete__FP14daObjLv4Chan_c                */
-static void daObjLv4Chan_MoveBGDelete(daObjLv4Chan_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80C664F4-80C66514 003234 0020+00 1/0 0/0 0/0 .text
- * daObjLv4Chan_MoveBGExecute__FP14daObjLv4Chan_c               */
-static void daObjLv4Chan_MoveBGExecute(daObjLv4Chan_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80C66514-80C66540 003254 002C+00 1/0 0/0 0/0 .text daObjLv4Chan_MoveBGDraw__FP14daObjLv4Chan_c
- */
-static void daObjLv4Chan_MoveBGDraw(daObjLv4Chan_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80C66540-80C66548 003280 0008+00 1/0 0/0 0/0 .text            @20@__dt__14dBgS_ObjGndChkFv */
-static void func_80C66540() {
-    // NONMATCHING
-}
-
-/* 80C66548-80C66550 003288 0008+00 1/0 0/0 0/0 .text            @76@__dt__14dBgS_ObjGndChkFv */
-static void func_80C66548() {
-    // NONMATCHING
-}
-
-/* 80C66550-80C66558 003290 0008+00 1/0 0/0 0/0 .text            @60@__dt__14dBgS_ObjGndChkFv */
-static void func_80C66550() {
-    // NONMATCHING
-}
-
-/* 80C66558-80C66564 003298 000C+00 1/1 0/0 0/0 .text            __ct__10dMdl_obj_cFv */
-// dMdl_obj_c::dMdl_obj_c() {
-extern "C" void __ct__10dMdl_obj_cFv() {
-    // NONMATCHING
-}
-
-/* 80C66564-80C665A0 0032A4 003C+00 1/1 0/0 0/0 .text            __dt__Q214daObjLv4Chan_c8ChainPosFv
- */
-daObjLv4Chan_c::ChainPos::~ChainPos() {
-    // NONMATCHING
-}
-
-/* 80C665A0-80C665A4 0032E0 0004+00 1/1 0/0 0/0 .text            __ct__Q214daObjLv4Chan_c8ChainPosFv
- */
-daObjLv4Chan_c::ChainPos::ChainPos() {
-    /* empty function */
-}
-
-/* 80C665A4-80C66858 0032E4 02B4+00 1/1 0/0 0/0 .text            checkTight__14daObjSwChain_cFv */
-void daObjSwChain_c::checkTight() {
-    // NONMATCHING
-}
 
 /* 80C66984-80C66984 000124 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

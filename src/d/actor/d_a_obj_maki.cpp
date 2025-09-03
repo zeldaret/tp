@@ -1,7 +1,9 @@
 /**
- * @file d_a_obj_maki.cpp
+* @file d_a_obj_maki.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_obj_maki.h"
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"

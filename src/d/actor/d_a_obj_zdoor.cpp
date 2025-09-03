@@ -3,6 +3,8 @@
  *
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_zdoor.h"
 #include "dol2asm.h"
 #include "d/actor/d_a_player.h"

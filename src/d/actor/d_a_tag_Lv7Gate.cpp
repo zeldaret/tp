@@ -3,6 +3,8 @@
 // City in the Sky Gate
 //
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tag_Lv7Gate.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_path.h"

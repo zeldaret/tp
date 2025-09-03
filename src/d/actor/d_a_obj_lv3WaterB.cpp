@@ -3,6 +3,8 @@
  * Morpheel Arena Water
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_lv3WaterB.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "d/d_bg_w.h"

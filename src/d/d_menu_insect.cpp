@@ -3,6 +3,8 @@
  * Menu - Insect List
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_menu_insect.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
@@ -18,11 +20,6 @@
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
 #include "stdio.h"
-
-/* 803BD780-803BD78C 01A8A0 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 typedef void (dMenu_Insect_c::*initFunc)();
 static initFunc map_init_process[] = {
@@ -600,20 +597,39 @@ bool dMenu_Insect_c::isGetInsect(int param_0, int param_1) {
     return dComIfGs_isItemFirstBit(getInsectItemID(param_0, param_1)) != 0;
 }
 
-/* 801D9E20-801D9E7C 1D4760 005C+00 4/4 0/0 0/0 .text            isGiveInsect__14dMenu_Insect_cFii
- */
+/* 801D9E20-801D9E7C 1D4760 005C+00 4/4 0/0 0/0 .text            isGiveInsect__14dMenu_Insect_cFii */
 bool dMenu_Insect_c::isGiveInsect(int param_0, int param_1) {
     static const u32 i_evtID[MAX_INSECT_NUM] = {
-        0x1A5, 0x1A6, 0x1A7, 0x1A8, 0x191, 0x192, 0x19D, 0x19E, 0x195, 0x196, 0x19B, 0x19C,
-        0x193, 0x194, 0x19F, 0x1A0, 0x1A1, 0x1A2, 0x199, 0x19A, 0x197, 0x198, 0x1A3, 0x1A4,
+        0x1A5, /* dSv_event_flag_c::F_0421 - Misc. - Ant (M) */
+        0x1A6, /* dSv_event_flag_c::F_0422 - Misc. - Ant (F) */
+        0x1A7, /* dSv_event_flag_c::F_0423 - Misc. - Dayfly (M) */
+        0x1A8, /* dSv_event_flag_c::F_0424 - Misc. - Dayfly (F) */
+        0x191, /* dSv_event_flag_c::F_0401 - Misc. - Beetle (M) */
+        0x192, /* dSv_event_flag_c::F_0402 - Misc. - Beetle (F) */
+        0x19D, /* dSv_event_flag_c::F_0413 - Misc. - Mantis (M) */
+        0x19E, /* dSv_event_flag_c::F_0414 - Misc. - Mantis (F) */
+        0x195, /* dSv_event_flag_c::F_0405 - Misc. - Stag beetle (M) */
+        0x196, /* dSv_event_flag_c::F_0406 - Misc. - Stag beetle (F) */
+        0x19B, /* dSv_event_flag_c::F_0411 - Misc. - Pill bug (M) */
+        0x19C, /* dSv_event_flag_c::F_0412 - Misc. - Pill bug (F) */
+        0x193, /* dSv_event_flag_c::F_0403 - Misc. - Butterfly (M) */
+        0x194, /* dSv_event_flag_c::F_0404 - Misc. - Butterfly (F) */
+        0x19F, /* dSv_event_flag_c::F_0415 - Misc. - Ladybug (M) */
+        0x1A0, /* dSv_event_flag_c::F_0416 - Misc. - Ladybug (F) */
+        0x1A1, /* dSv_event_flag_c::F_0417 - Misc. - Snail (M) */
+        0x1A2, /* dSv_event_flag_c::F_0418 - Misc. - Snail (F) */
+        0x199, /* dSv_event_flag_c::F_0409 - Misc. - Phasmid (M) */
+        0x19A, /* dSv_event_flag_c::F_0410 - Misc. - Phasmid (F) */
+        0x197, /* dSv_event_flag_c::F_0407 - Misc. - Grasshopper (M) */
+        0x198, /* dSv_event_flag_c::F_0408 - Misc. - Grasshopper (F) */
+        0x1A3, /* dSv_event_flag_c::F_0419 - Misc. - Dragonfly (M) */
+        0x1A4, /*dSv_event_flag_c::F_0420 - Misc. - Dragonfly (F) */
     };
 
-    return dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[i_evtID[param_0 + param_1 * 6]]) !=
-           0;
+    return dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[i_evtID[param_0 + param_1 * 6]]) != 0;
 }
 
-/* 801D9E7C-801D9ED4 1D47BC 0058+00 1/1 0/0 0/0 .text            isCatchInsect__14dMenu_Insect_cFUc
- */
+/* 801D9E7C-801D9ED4 1D47BC 0058+00 1/1 0/0 0/0 .text            isCatchInsect__14dMenu_Insect_cFUc */
 bool dMenu_Insect_c::isCatchInsect(u8 i_insectID) {
     if (i_insectID >= fpcNm_ITEM_M_BEETLE && i_insectID <= fpcNm_ITEM_F_MAYFLY) {
         return dComIfGs_isItemFirstBit(i_insectID);
@@ -621,8 +637,7 @@ bool dMenu_Insect_c::isCatchInsect(u8 i_insectID) {
     return false;
 }
 
-/* 801D9ED4-801D9F3C 1D4814 0068+00 1/1 0/0 0/0 .text            isGiveInsect__14dMenu_Insect_cFUc
- */
+/* 801D9ED4-801D9F3C 1D4814 0068+00 1/1 0/0 0/0 .text            isGiveInsect__14dMenu_Insect_cFUc */
 bool dMenu_Insect_c::isGiveInsect(u8 i_insectID) {
     if (i_insectID >= fpcNm_ITEM_M_BEETLE && i_insectID <= fpcNm_ITEM_F_MAYFLY) {
         int label = i_insectID + 0xd1;

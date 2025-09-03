@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_toby.h"
 #include "d/actor/d_a_e_hz.h"
 #include "d/actor/d_a_player.h"
@@ -14,8 +16,6 @@
 #ifdef DEBUG
 #include "d/d_debug_viewer.h"
 #endif
-
-#include "dol2asm.h"
 
 /* 80D156D4-80D15794 000000 00C0+00 1/1 0/0 0/0 .data            r05yuka_image */
 static s8 r05yuka_image[192] = {
@@ -132,8 +132,6 @@ static void* shot_b_sub(void* param_1, void* param_2) {
     }
     return NULL;
 }
-
-UNK_REL_BSS
 
 /* 80D158F4-80D158F8 -00001 0004+00 2/2 0/0 0/0 .bss             None */
 /* 80D158F4 0001+00 data_80D158F4 @1009 */

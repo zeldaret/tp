@@ -3,6 +3,7 @@
 
 #include "d/actor/d_a_npc.h"
 
+class daNpc_zrA_HIO_c;
 /**
  * @ingroup actors-npcs
  * @class daNpc_zrA_Path_c
@@ -332,7 +333,7 @@ public:
     /* 0x1248 */ daNpcF_Lookat_c mLookat;
     /* 0x12E4 */ dPaPo_c mPaPo;
     /* 0x131C */ daNpcF_ActorMngr_c mActorMngr[3];
-    /* 0x1334 */ u8 field_0x1334[4];
+    /* 0x1334 */ daNpc_zrA_HIO_c* mpHIO;
     /* 0x1338 */ dCcD_Cyl mCcCyl;
     /* 0x1474 */ ActionFn mpNextActionFn;
     /* 0x1480 */ ActionFn mpActionFn;

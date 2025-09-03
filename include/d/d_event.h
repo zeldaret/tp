@@ -105,7 +105,13 @@ public:
     void setGtItm(u8 itemNo);
 
     u16 chkFlag2(u16 flag) { return flag & mFlag2; }
-    BOOL runCheck() { return mEventStatus != 0; }
+    BOOL runCheck() {
+#if DEBUG
+        return mEventStatus != 0 || mDebugStb != 0;
+#else
+        return mEventStatus != 0;
+#endif
+    }
     f32 getCullRate() { return mCullRate; }
     u16 chkEventFlag(u16 flag) { return flag & mEventFlag; }
     void onEventFlag(u16 flag) { mEventFlag |= flag; }

@@ -169,37 +169,4 @@ public:
 
 STATIC_ASSERT(sizeof(e_rdy_class) == 0x142C);
 
-class daE_RDY_HIO_c : public JORReflexible {
-public:
-    /* 8076BDCC */ daE_RDY_HIO_c();
-    /* 80779880 */ virtual ~daE_RDY_HIO_c() {}
-
-    void genMessage(JORMContext*);
-
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 mScale;
-    /* 0x0C */ f32 field_0xc;
-    /* 0x10 */ f32 mWalkSpeed;
-    /* 0x14 */ f32 mRunSpeed;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1c;
-    /* 0x20 */ f32 mAttackAnmSpeed;
-    /* 0x24 */ s16 field_0x24;
-    /* 0x28 */ f32 field_0x28;
-    /* 0x2C */ f32 field_0x2c;
-    /* 0x30 */ f32 field_0x30;
-    /* 0x34 */ f32 field_0x34;
-    /* 0x38 */ u8 field_0x38;
-    /* 0x39 */ u8 field_0x39;
-    /* 0x3A */ u8 mDrawEyeModel;
-    /* 0x3B */ u8 field_0x3b;
-    /* 0x3C */ f32 field_0x3c;
-    /* 0x40 */ f32 field_0x40;
-    /* 0x44 */ f32 field_0x44;
-    /* 0x48 */ f32 field_0x48;
-    /* 0x4C */ f32 field_0x4c;
-};
-
-STATIC_ASSERT(sizeof(daE_RDY_HIO_c) == 0x50);
-
 #endif /* D_A_E_RDY_H */

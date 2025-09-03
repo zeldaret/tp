@@ -26,6 +26,6 @@ _dtors = .dtors:0x00000000; // type:label scope:global
 @94772 = .rodata:0x0000002C; // type:object size:0x4 scope:local align:4 data:float
 @94798 = .rodata:0x00000030; // type:object size:0x4 scope:local align:4 data:float
 pd$93451 = .data:0x00000000; // type:object size:0x4C scope:local
-lbl_688_data_4C = .data:0x0000004C; // type:object size:0xC
+lbl_688_data_4C = .data:0x0000004C; // type:object size:0xA data:string
 l_daObj_Wflag_Method = .data:0x00000058; // type:object size:0x20 scope:global
 g_profile_OBJ_WFLAG = .data:0x00000078; // type:object size:0x30 scope:global

@@ -67,29 +67,6 @@ class daNpc_Jagar_Param_c {
 
 class daNpc_Jagar_c : public daNpcT_c {
 public:
-    enum JAGAR2_RES_FILE_ID {
-        /* BCK */
-        /* 0x05 */ BCK_JAGA_F_SURPRISE = 5,
-        /* 0x06 */ BCK_JAGA_F_SURPRISE_WAIT,
-        /* 0x07 */ BCK_JAGA_F_WORRY_TALK,
-        /* 0x08 */ BCK_JAGA_RUN_A,
-        /* 0x09 */ BCK_JAGA_SURPRISE,
-        /* 0x0A */ BCK_JAGA_SURPRISE_WAIT,
-        /* 0x0B */ BCK_JAGA_UNADUKI,
-        /* 0x0C */ BCK_JAGA_WORRY_TALK,
-        /* 0x0D */ BCK_JAGA_WORRY_WAIT,
-        /* 0x0E */ BCK_JAGA_WORRY_WALK,
-
-        /* BTP */
-        /* 0x11 */ BTP_JAGA_BLINK = 0x11,
-        /* 0x12 */ BTP_JAGA_F_SURPRISE,
-        /* 0x13 */ BTP_JAGA_F_SURPRISE_WAIT,
-        /* 0x14 */ BTP_JAGA_F_WORRY_TALK,
-
-        /* EVT */
-        /* 0x17 */ EVT_EVENT_LIST = 0x17,
-    };
-
     typedef int (daNpc_Jagar_c::*cutFunc)(int);
     typedef int (daNpc_Jagar_c::*actionFunc)(void*);
 
@@ -98,6 +75,45 @@ public:
         TYPE_1,
         TYPE_2,
         TYPE_3,
+    };
+
+    enum Joint {
+        /* 0x00 */ JNT_CENTER,
+        /* 0x01 */ JNT_BACKBONE1,
+        /* 0x02 */ JNT_BACKBONE2,
+        /* 0x03 */ JNT_NECK,
+        /* 0x04 */ JNT_HEAD,
+        /* 0x05 */ JNT_CHIN,
+        /* 0x06 */ JNT_MAYU_L,
+        /* 0x07 */ JNT_MAYU_R,
+        /* 0x08 */ JNT_MOUTH,
+        /* 0x09 */ JNT_SHOULDERL,
+        /* 0x0A */ JNT_ARML1,
+        /* 0x0B */ JNT_ARML2_1,
+        /* 0x0C */ JNT_HANDL_1,
+        /* 0x0D */ JNT_FINGERL,
+        /* 0x0E */ JNT_SHOULDERR,
+        /* 0x0F */ JNT_ARMR1,
+        /* 0x10 */ JNT_ARMR2_1,
+        /* 0x11 */ JNT_HANDR_1,
+        /* 0x12 */ JNT_FINGERR,
+        /* 0x13 */ JNT_WAIST,
+        /* 0x14 */ JNT_LEGL1,
+        /* 0x15 */ JNT_LEGL2,
+        /* 0x16 */ JNT_FOOTL,
+        /* 0x17 */ JNT_SKIRTL,
+        /* 0x18 */ JNT_LEGR1,
+        /* 0x19 */ JNT_LEGR2,
+        /* 0x1A */ JNT_FOOTR,
+        /* 0x1B */ JNT_SKIRTR,
+        /* 0x1C */ JNT_SKIRT1,
+        /* 0x1D */ JNT_SKIRT2,
+    };
+    
+    enum Material {
+        /* 0x1 */ MAT_JAGA_EYEBALL = 0x1,
+        /* 0x2 */ MAT_JAGA_FACE_M,
+        /* 0x3 */ MAT_JAGA_M,
     };
 
     /* 80A1470C */ ~daNpc_Jagar_c();
@@ -146,14 +162,14 @@ public:
                                 daNpcT_evtData_c const* param_7, char** param_8) :
                                 daNpcT_c(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8)
                                  {}
-    /* 80A1A274 */ u16 getEyeballMaterialNo() { return 1; }
-    /* 80A1A27C */ s32 getHeadJointNo() { return 4; }
-    /* 80A1A284 */ s32 getNeckJointNo() { return 3; }
-    /* 80A1A28C */ s32 getBackboneJointNo() { return 1; }
-    /* 80A1A294 */ BOOL checkChangeJoint(int param_1) { return param_1 == 4; }
-    /* 80A1A2A4 */ BOOL checkRemoveJoint(int param_1) { return param_1 == 8; }
-    /* 80A1A2B4 */ s32 getFootLJointNo() { return 22; }
-    /* 80A1A2BC */ s32 getFootRJointNo() { return 26; }
+    /* 80A1A274 */ u16 getEyeballMaterialNo() { return MAT_JAGA_EYEBALL; }
+    /* 80A1A27C */ s32 getHeadJointNo() { return JNT_HEAD; }
+    /* 80A1A284 */ s32 getNeckJointNo() { return JNT_NECK; }
+    /* 80A1A28C */ s32 getBackboneJointNo() { return JNT_BACKBONE1; }
+    /* 80A1A294 */ BOOL checkChangeJoint(int param_1) { return param_1 == JNT_HEAD; }
+    /* 80A1A2A4 */ BOOL checkRemoveJoint(int param_1) { return param_1 == JNT_MOUTH; }
+    /* 80A1A2B4 */ s32 getFootLJointNo() { return JNT_FOOTL; }
+    /* 80A1A2BC */ s32 getFootRJointNo() { return JNT_FOOTR; }
 
     int getFlowNodeNo() {
         u16 nodeNo = home.angle.x;

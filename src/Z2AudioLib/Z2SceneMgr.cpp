@@ -316,10 +316,13 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
                 }
                 // fallthrough
             case 4:
+                /* dSv_event_flag_c::F_0014 - Ordon Village - sword tutorial ends */
                 if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[18])
+                        /* dSv_event_flag_c::F_0625 - Faron Woods - Saved Talo and a monkey */
                     && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[625]))
                 {
                     bgm_wave1 = 0x55;
+                    /* dSv_event_flag_c::F_0094 - Ordon Village - Talo went after the monkey */
                     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[194])) {
                         bgm_id = Z2BGM_EVENT05;
                     }
@@ -346,6 +349,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
             break;
         case 1:
             if (layer == 0) {
+                /* dSv_event_flag_c::F_0038 - Ordon Village - Opening (2nd day) cat returns home */
                 if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[136])) {
                     bgm_id = Z2BGM_SHOP01;
                 } else {
@@ -353,6 +357,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
                 }
                 bgm_wave1 = 7;
             } else if (layer == 2) {
+                /* dSv_event_flag_c::M_020 - Cutscene - [cutscene: ] Colin kidnapped : ON once watched */
                 if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[53])) {
                     bgm_id = Z2BGM_SHOP01;
                     bgm_wave1 = 7;
@@ -372,6 +377,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
                 bgm_wave1 = 6;
                 Z2GetSeqMgr()->changeBgmStatus(1);
             } else if (layer == 2) {
+                /* dSv_event_flag_c::M_020 - Cutscene - [cutscene: ] Colin kidnapped : ON once watched */
                 if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[53])) {
                     bgm_id = Z2BGM_INDOOR;
                     bgm_wave1 = 8;
@@ -399,6 +405,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
                     bgm_wave1 = 8;
                 }
             } else {
+                /* dSv_event_flag_c::M_020 - Cutscene - [cutscene: ] Colin kidnapped : ON once watched */
                 if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[53])) {
                     bgm_id = Z2BGM_INDOOR;
                     bgm_wave1 = 8;
@@ -448,7 +455,9 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
             demo_wave = 0x5c;
             break;
         case 3:
+            /* dSv_event_flag_c::F_0014 - Ordon Village - sword tutorial ends */
             if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[18])
+                    /* dSv_event_flag_c::F_0625 - Faron Woods - Saved Talo and a monkey */
                 && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[625]))
             {
                 bgm_id = Z2BGM_EVENT05;
@@ -472,6 +481,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
                 } else if (layer == 7 || layer == 10) {
                     demo_wave = 0x67;
                 } else {
+                    /* dSv_event_flag_c::M_009 - Cutscene - [cutscene: 6B] Prison escape - Midna rides on back */
                     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[42])) {
                         bgm_id = Z2BGM_TWILIGHT;
                         bgm_wave1 = 0xe;
@@ -562,7 +572,9 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
                 demo_wave = 0x5c;
                 break;
             case 1:
+                /* dSv_event_flag_c::F_0014 - Ordon Village - sword tutorial ends */
                 if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[18])
+                        /* dSv_event_flag_c::F_0625 - Faron Woods - Saved Talo and a monkey */
                     && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[625]))
                 {
                     bgm_id = Z2BGM_EVENT05;
@@ -662,6 +674,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         } else {
             switch (room) {
             case 1:
+                /* dSv_event_flag_c::M_031 - Goron Mines - Goron Mines clear */
                 if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[64])) {
                     bgm_id = Z2BGM_SHOP01;
                 } else {
@@ -673,6 +686,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
                 if (layer == 13) {
                     demo_wave = 0x83;
                 } else {
+                    /* dSv_event_flag_c::M_031 - Goron Mines - Goron Mines clear */
                     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[64])) {
                         bgm_id = Z2BGM_INDOOR;
                         bgm_wave1 = 8;
@@ -680,9 +694,11 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
                 }
                 break;
             case 3:
+                /* dSv_event_flag_c::M_076 - Misc. - First conversation with Castle Town Malo Mart shop clerk */
                 if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[109])) {
                     bgm_id = Z2BGM_SHOP_MARO;
                     bgm_wave1 = 0x33;
+                           /* dSv_event_flag_c::M_052 - Main Event - Horseback battle clear */
                 } else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[85])) {
                     bgm_id = Z2BGM_SHOP01;
                     bgm_wave1 = 7;
@@ -937,6 +953,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
                 se_wave2 = 0;
                 demo_wave = 0x7f;
             } else if (!(layer == 1 && room == 1
+                   /* dSv_event_flag_c::F_0542 - Cutscene - [Cutscene] Hyrule Castle barrier disappears (Midna goes crazy) */
                 && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[542])))
             {
                 bgm_id = Z2BGM_CASTLE_TOWN;
@@ -1015,6 +1032,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
     case SPOT_STAR_TENT:
         se_wave1 = 0x42;
         se_wave2 = 0x87;
+            /* dSv_event_flag_c::F_289 - Castle Town - Heard conversation about entering Star Game 1 */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[289])) {
             bgm_id = Z2BGM_MINIGAME_ROOM;
         }
@@ -1317,6 +1335,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         if (dComIfGs_isStageSwitch(2, 1)) {
             bgm_id = Z2BGM_DUNGEON_FOREST;
             bgm_wave1 = 0xa;
+                   /* dSv_event_flag_c::M_022 - Forest Temple - Forest Temple clear (Midna creates warp hole) */
         } else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[55])) {
             bgm_id = 0x200005b;
         } else {
@@ -1352,6 +1371,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         if (dComIfGs_isStageSwitch(3, 0x7c)) {
             bgm_id = Z2BGM_DUNGEON_LV2;
             bgm_wave1 = 0x13;
+                   /* dSv_event_flag_c::M_031 - Goron Mines - Goron Mines clear */
         } else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[64])) {
             bgm_id = 0x200005b;
         } else {
@@ -1385,6 +1405,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         if (dComIfGs_isStageSwitch(4, 0xe)) {
             bgm_id = Z2BGM_DUNGEON_LV3;
             bgm_wave1 = 0x15;
+                   /* dSv_event_flag_c::M_045 - Lakebed Temple - Lakebed Temple clear */
         } else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[78])) {
             bgm_id = 0x200005b;
         } else {
@@ -1421,6 +1442,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         if (dComIfGs_isStageSwitch(0xa, 0xa)) {
             bgm_id = Z2BGM_DUNGEON_LV4;
             bgm_wave1 = 0x1a;
+                   /* dSv_event_flag_c::F_0265 - Arbiter's Grounds - Arbiter's Grounds clear */
         } else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[265])) {
             bgm_id = 0x200005b;
         } else {
@@ -1457,6 +1479,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         if (dComIfGs_isStageSwitch(8, 0x19)) {
             bgm_id = Z2BGM_DUNGEON_LV5;
             bgm_wave1 = 0x1d;
+                   /* dSv_event_flag_c::F_0266 - Snowpeak Ruins - Snowpeak Ruins clear */
         } else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[266])) {
             bgm_id = 0x200005b;
         } else {
@@ -1490,6 +1513,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         if (dComIfGs_isStageSwitch(7, 0x18)) {
             bgm_id = Z2BGM_DUNGEON_LV6;
             bgm_wave1 = 0x26;
+                   /* dSv_event_flag_c::F_0267 - Temple of Time - Temple of Time clear */
         } else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[267])) {
             bgm_id = 0x200005b;
         } else {
@@ -1527,6 +1551,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         if (dComIfGs_isStageSwitch(0x16, 0x25)) {
             bgm_id = Z2BGM_DUNGEON_LV7;
             bgm_wave1 = 0x27;
+                   /* dSv_event_flag_c::F_0268 - City in the Sky - City in the Sky clear */
         } else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[268])) {
             bgm_id = 0x200005b;
         } else {
@@ -1575,6 +1600,7 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         } else if (dComIfGs_isStageSwitch(0x17, 0x16)) {
             bgm_id = Z2BGM_DUNGEON_LV8;
             bgm_wave1 = 0x28;
+                   /* dSv_event_flag_c::F_0570 - Palace of Twilight - Cleared Palace of Twilight */
         } else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[570])) {
             bgm_id = 0x200005b;
             JSUList<JAIStream>* stream_list = Z2GetSoundMgr()->getStreamMgr()->getStreamList();
@@ -1714,7 +1740,9 @@ void Z2SceneMgr::setSceneName(char* spotName, s32 room, s32 layer) {
         break;
     }
 
+        /*dSv_event_flag_c::M_071 - Cutscene - [cutscene: 20] Zant appears (during Midna's desperate hour) */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[104])
+            /* dSv_event_flag_c::F_0250 - Cutscene - [cutscene: 21] reunion with Zelda / Midna revived (Hyrule Castle barrier appears) */
         && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[250])
         && demo_wave == 0 && spot != SPOT_ELDIN_BRIDGE_BATTLE)
     {
@@ -1835,11 +1863,11 @@ void Z2SceneMgr::load1stDynamicWave() {
     }
 }
 
-/* 802B9D98-802B9FC8 2B46D8 0230+00 2/2 0/0 0/0 .text            _load1stWaveInner_1__10Z2SceneMgrFv
- */
+/* 802B9D98-802B9FC8 2B46D8 0230+00 2/2 0/0 0/0 .text            _load1stWaveInner_1__10Z2SceneMgrFv */
 void Z2SceneMgr::_load1stWaveInner_1() {
     Z2GetSeMgr()->seStopAll(0);
     Z2GetEnvSeMgr()->resetSceneInner();
+                 /* dSv_event_flag_c::M_071 - Cutscene - [cutscene: 20] Zant appears (during Midna's desperate hour) */
     field_0x18 = dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[104]) ? 0x59 : 0x58;
 
     if (loadedSeWave_2 != 0 && requestSeWave_2 != loadedSeWave_2) {

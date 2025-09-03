@@ -3,28 +3,11 @@
  * Arbiter's Grounds Generic Gate
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_lv4Gate.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_procname.h"
-
-/* 80C5F41C-80C5F428 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80C5F428-80C5F43C 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-// unused data?
-#pragma push
-#pragma force_active on
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
 
 /* 80C5F52C-80C5F538 000014 000C+00 3/3 0/0 0/0 .bss             l_HIO */
 static daLv4Gate_HIO_c l_HIO;

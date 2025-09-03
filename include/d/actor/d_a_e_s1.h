@@ -85,23 +85,4 @@ public:
 
 STATIC_ASSERT(sizeof(e_s1_class) == 0x3084);
 
-class daE_S1_HIO_c {
-public:
-    /* 8077AB8C */ daE_S1_HIO_c();
-    /* 80780840 */ virtual ~daE_S1_HIO_c() {}
-
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 mBaseSize;
-    /* 0x0C */ f32 mMoveSpeed;
-    /* 0x10 */ u8 field_0x10[0x14 - 0x10];
-    /* 0x14 */ f32 mDashSpeed;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ s16 mFallSEWaitTime;
-    /* 0x1E */ s16 mAllDeadWaitTime;
-    /* 0x20 */ f32 mReactionDist;
-    /* 0x24 */ f32 mReactionAngle;
-    /* 0x28 */ s16 mReactionTime;
-    /* 0x2A */ u8 mInvincible;
-};
-
 #endif /* D_A_E_S1_H */

@@ -1,7 +1,9 @@
 /**
- * @file d_a_cow.cpp
+* @file d_a_cow.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_cow.h"
 #include "SSystem/SComponent/c_lib.h"
@@ -34,10 +36,7 @@
         (val) = (min);                                                                             \
     }
 
-#define CLAMP_COW_BODY_ANGLE(angle) CLAMP((angle), -0x2000, 0x2000)
-
-UNK_REL_DATA;
-UNK_REL_BSS;
+#define CLAMP_COW_BODY_ANGLE(angle) CLAMP((angle), -0x2000, 0x2000);
 
 namespace {
 static dCcD_SrcSph cc_sph_src = {{{0, {{0, 0, {0}}, {0xfbfdfb, {0x11}}, {{0x79}}}},

@@ -3,6 +3,8 @@
 // Translation Unit: d/d_menu_fmap
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_menu_fmap.h"
 #include "SSystem/SComponent/c_math.h"
 #include "JSystem/JKernel/JKRAramArchive.h"
@@ -24,11 +26,6 @@
 #include "d/d_stage.h"
 #include "d/actor/d_a_player.h"
 #include "d/actor/d_a_midna.h"
-
-/* 803BD090-803BD09C 01A1B0 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 8042E82C-8042E840 05B54C 0014+00 2/2 0/0 0/0 .bss             g_fmHIO */
 static dMf_HIO_c g_fmHIO;
@@ -720,7 +717,9 @@ void dMenu_Fmap_c::all_map_proc() {
             mErrorSound = false;
         }
     } else if (dMw_Z_TRIGGER() && mpDraw2DTop->isWarpAccept()) {
+            /* dSv_event_flag_c::F_0265 - Arbiter's Grounds - Arbiter's Grounds clear */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x109])
+                /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
             && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x169]))
         {
             mpDraw2DTop->createExplain(mpTalkHeap, mpStick);
@@ -741,12 +740,15 @@ void dMenu_Fmap_c::all_map_proc() {
             }
         } else {
             mpDraw2DTop->createExplain(mpTalkHeap, mpStick);
+                /* dSv_event_flag_c::M_071 - Cutscene - [cutscene: 20] Zant appears (during Midna's desperate hour) */
             if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x68])
-                && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0xfa]))
+                    /* dSv_event_flag_c::F_0250 - Cutscene - [cutscene: 21] reunion with Zelda / Midna revived (Hyrule Castle barrier appears) */
+                && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0xFA]))
             {
                 mpDraw2DTop->getScrnExplainPtr()->openExplain(0x85d, 0, 0, 0xff, true);
             } else if (!mpDraw2DTop->checkWarpAcceptCannon()) {
                 mpDraw2DTop->getScrnExplainPtr()->openExplain(0x7de, 0, 0, 0xff, true);
+                /* dSv_event_flag_c::F_0787 - Kakariko Village - Stopped by Midna when trying to warp the sky cannon */
                 dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x313]);
             } else if (!mpDraw2DTop->checkWarpAcceptRegion4()) {
                 mpDraw2DTop->getScrnExplainPtr()->openExplain(0x7dd, 0, 0, 0xff, true);
@@ -885,7 +887,9 @@ void dMenu_Fmap_c::region_map_proc() {
             mErrorSound = true;
         }
     } else if (dMw_Z_TRIGGER() && mpDraw2DTop->isWarpAccept()) {
+            /* dSv_event_flag_c::F_0265 - Arbiter's Grounds - Arbiter's Grounds clear */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x109])
+                /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
             && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x169]))
         {
             mpDraw2DTop->createExplain(mpTalkHeap, mpStick);
@@ -901,12 +905,15 @@ void dMenu_Fmap_c::region_map_proc() {
             Z2GetAudioMgr()->seStart(Z2SE_WARP_MAP_ON, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         } else {
             mpDraw2DTop->createExplain(mpTalkHeap, mpStick);
+                /* dSv_event_flag_c::M_071 - Cutscene - [cutscene: 20] Zant appears (during Midna's desperate hour) */
             if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x68])
-                && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0xfa]))
+                    /* dSv_event_flag_c::F_0250 - Cutscene - [cutscene: 21] reunion with Zelda / Midna revived (Hyrule Castle barrier appears) */
+                && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0xFA]))
             {
                 mpDraw2DTop->getScrnExplainPtr()->openExplain(0x85d, 0, 0, 0xff, true);
             } else if (!mpDraw2DTop->checkWarpAcceptCannon()) {
                 mpDraw2DTop->getScrnExplainPtr()->openExplain(0x7de, 0, 0, 0xff, true);
+                /* dSv_event_flag_c::F_0787 - Kakariko Village - Stopped by Midna when trying to warp the sky cannon */
                 dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x313]);
             } else if (!mpDraw2DTop->checkWarpAcceptRegion4()) {
                 mpDraw2DTop->getScrnExplainPtr()->openExplain(0x7dd, 0, 0, 0xff, true);
@@ -1005,19 +1012,25 @@ void dMenu_Fmap_c::portal_warp_map_proc() {
             mpDraw2DTop->createExplain(mpTalkHeap, mpStick);
             dMsgObject_setPortalMessageID(portals[mPortalNo].mMessageID);
 
+                /* dSv_event_flag_c::M_071 - Cutscene - [cutscene: 20] Zant appears (during Midna's desperate hour) */
             if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x68])
-                && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0xfa]))
+                    /* dSv_event_flag_c::F_0250 - Cutscene - [cutscene: 21] reunion with Zelda / Midna revived (Hyrule Castle barrier appears) */
+                && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0xFA]))
             {
                 mpDraw2DTop->getScrnExplainPtr()->openExplain(0x85d, 0, 0, 0xff, true);
+                       /* dSv_event_flag_c::F_0786 - Kakariko Village - Forced conversation with Shad when he sees the sky cannon */
             } else if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x312])
+                    /* dSv_event_flag_c::F_0785 - Kakariko Village - Shad leaves after attempting to warp sky cannon */
                 && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x311]))
             {
                 mpDraw2DTop->getScrnExplainPtr()->openExplain(0x7de, 0, 0, 0xff, true);
+                /* dSv_event_flag_c::F_0787 - Kakariko Village - Stopped by Midna when trying to warp the sky cannon */
                 dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x313]);
             } else if (mPortalNo == 6) {
                 if ((!strcmp(dComIfGp_getStartStageName(), "F_SP124")
                                 && ((daMidna_c*)daPy_py_c::getMidnaActor())->checkPortalObjRide())
-                    || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x7d]))
+                       /* dSv_event_flag_c::M_092 - Hyrule Field - Warped Eldin Bridge */
+                    || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x7D]))
                 {
                     mpDraw2DTop->getScrnExplainPtr()->openExplain(0x51e, 2, 0, 0xff, true);
                 } else {
@@ -1027,6 +1040,7 @@ void dMenu_Fmap_c::portal_warp_map_proc() {
                 if ((dMeter2Info_getMapStatus() == 3
                                 && dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == 2
                                 && dComIfGs_isOneZoneSwitch(0xf, -1))
+                       /* dSv_event_flag_c::M_018 - Main Event - Brought Kakariko bridge back to original location */
                     || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x33]))
                 {
                     mpDraw2DTop->getScrnExplainPtr()->openExplain(0x51e, 2, 0, 0xff, true);
@@ -1229,12 +1243,15 @@ void dMenu_Fmap_c::spot_map_proc() {
         } else {
             mpDraw2DTop->createExplain(mpTalkHeap, mpStick);
 
+                /* dSv_event_flag_c::M_071 - Cutscene - [cutscene: 20] Zant appears (during Midna's desperate hour) */
             if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x68])
-                && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0xfa]))
+                    /* dSv_event_flag_c::F_0250 - Cutscene - [cutscene: 21] reunion with Zelda / Midna revived (Hyrule Castle barrier appears) */
+                && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0xFA]))
             {
                 mpDraw2DTop->getScrnExplainPtr()->openExplain(0x85d, 0, 0, 0xff, true);
             } else if (!mpDraw2DTop->checkWarpAcceptCannon()) {
                 mpDraw2DTop->getScrnExplainPtr()->openExplain(0x7de, 0, 0, 0xff, true);
+                /* dSv_event_flag_c::F_0787 - Kakariko Village - Stopped by Midna when trying to warp the sky cannon */
                 dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x313]);
             } else if (!mpDraw2DTop->checkWarpAcceptRegion4()) {
                 mpDraw2DTop->getScrnExplainPtr()->openExplain(0x7dd, 0, 0, 0xff, true);
@@ -1503,6 +1520,7 @@ void dMenu_Fmap_c::yamiboss_demo2_init() {
 void dMenu_Fmap_c::yamiboss_demo2_move() {
     if (dMsgObject_getMsgObjectClass()->getStatus() == 0xe) {
         mZoomLevel++;
+            /* dSv_event_flag_c::M_086 - Twilight Hyrule Field - Show Boss Bug's Tear of Light on the map */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x77])) {
             if (mZoomLevel > 90) {
                 setProcess(PROC_YAMIBOSS_DEMO3);
@@ -1510,6 +1528,7 @@ void dMenu_Fmap_c::yamiboss_demo2_move() {
         } else {
             if (mZoomLevel > 30) {
                 field_0x30b = true;
+                /* dSv_event_flag_c::M_086 - Twilight Hyrule Field - Show Boss Bug's Tear of Light on the map */
                 dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x77]);
             }
         }
@@ -2918,10 +2937,13 @@ void dMenu_Fmap_c::tableArrowPosInit(bool param_0) {
     int swbit;
     switch (dMeter2Info_getTableMapRegionNo()) {
     case dMeter_fmapHIO_c::REGION_LANAYRU:
+             /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
         if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x169])
+                /* dSv_event_flag_c::M_070 - Cutscene - [cutscene: 18] Lanayru spirit restored */
             || !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x67]))
         {
             iVar5 = 0;
+                 /* dSv_event_flag_c::F_0264 - Cutscene - Get master sword */
             if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x108])) {
                 swbit = 0x4f;
             } else {

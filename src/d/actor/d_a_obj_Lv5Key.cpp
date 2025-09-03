@@ -3,6 +3,8 @@
  * Snowpeak Ruins Key Lock
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_Lv5Key.h"
 #include "d/d_com_inf_game.h"
 

@@ -130,7 +130,6 @@ public:
     /* 8062C7C8 */ int _delete();
     /* 8062C868 */ int CreateHeap();
     /* 8062CD78 */ int create();
-    /* 8062D2F0 */ daB_TN_c() {};
 
 private:
     /* 0x05AC */ request_of_phase_process_class mPhaseReq1;
@@ -226,25 +225,5 @@ private:
 };
 
 STATIC_ASSERT(sizeof(daB_TN_c) == 0x5630);
-
-class daB_TN_HIO_c {
-public:
-    /* 8061EBEC */ daB_TN_HIO_c();
-    /* 8062D98C */ virtual ~daB_TN_HIO_c() {};
-
-    /* 0x04 */ s8 mUnk1;
-    /* 0x08 */ f32 mScale;
-    /* 0x0C */ f32 mKColorA;
-    /* 0x10 */ f32 mTimer3Wolf;
-    /* 0x14 */ f32 mTimer3HumanType0;
-    /* 0x18 */ f32 mTimer3HumanType1;
-    /* 0x1C */ f32 mTimer3NormalType0;
-    /* 0x20 */ f32 mTimer3NormalType1;
-    /* 0x24 */ f32 field_0x24;
-    /* 0x28 */ f32 mTimer1Action1;
-    /* 0x2C */ f32 mTimer1Action2;
-};
-
-STATIC_ASSERT(sizeof(daB_TN_HIO_c) == 0x30);
 
 #endif /* D_A_B_TN_H */

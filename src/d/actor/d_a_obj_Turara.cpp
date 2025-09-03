@@ -3,32 +3,34 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_Turara.h"
 #include "dol2asm.h"
 #include "SSystem/SComponent/c_math.h"
 
+class daTurara_HIO_c : public fOpAcm_HIO_entry_c {
+public:
+    /* 80B9CB8C */ daTurara_HIO_c();
+    /* 80B9E5B4 */ virtual ~daTurara_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ f32 field_0x04;
+    /* 0x08 */ f32 mGravity;
+    /* 0x0c */ f32 mMaxGravity;
+    /* 0x10 */ u8 mWaitTime;
+    /* 0x11 */ u8 mShockStrength;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1c */ f32 field_0x1c;
+};
+
+STATIC_ASSERT(sizeof(daTurara_HIO_c) == 0x20);
 
 //
 // Declarations:
 //
-
-/* 80B9E97C-80B9E988 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80B9E988-80B9E99C 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
 
 /* 80B9CB8C-80B9CBF8 0000EC 006C+00 1/1 0/0 0/0 .text            __ct__14daTurara_HIO_cFv */
 daTurara_HIO_c::daTurara_HIO_c() {
@@ -461,11 +463,11 @@ static int daTurara_Create(fopAc_ac_c* i_this) {
 
 /* 80B9EA58-80B9EA78 -00001 0020+00 1/0 0/0 0/0 .data            l_daTurara_Method */
 static actor_method_class l_daTurara_Method = {
-    (process_method_func)daTurara_Draw,
-    (process_method_func)daTurara_Execute,
-    (process_method_func)daTurara_Delete,
-    0,
     (process_method_func)daTurara_Create,
+    (process_method_func)daTurara_Delete,
+    (process_method_func)daTurara_Execute,
+    0,
+    (process_method_func)daTurara_Draw,
 };
 
 /* 80B9EA78-80B9EAA8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Turara */

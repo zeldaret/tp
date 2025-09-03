@@ -15,6 +15,6 @@ _dtors = .dtors:0x00000000; // type:label scope:global
 l_daObjZCloth_Method = .data:0x00000000; // type:object size:0x20 scope:global
 g_profile_Obj_ZoraCloth = .data:0x00000020; // type:object size:0x30 scope:global
 __vt__13daObjZCloth_c = .data:0x00000050; // type:object size:0x44 scope:global
-lbl_696_data_94 = .data:0x00000094; // type:object size:0x10
+lbl_696_data_94 = .data:0x00000094; // type:object size:0xE data:string
 @89067 = .data:0x000000A4; // type:object size:0x14 scope:local
 __RTTI__13daObjZCloth_c = .data:0x000000B8; // type:object size:0x8 scope:global

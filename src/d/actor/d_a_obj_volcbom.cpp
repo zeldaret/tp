@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_volcbom.h"
 #include "d/actor/d_a_midna.h"
 #include "d/actor/d_a_player.h"
@@ -69,8 +71,6 @@ static u16 const l_start_eff[3] = {
 static u16 const l_bind_eff[4] = {
     0x8B47, 0x8B48, 0x8B49, 0x8B4A,
 };
-
-UNK_REL_DATA
 
 /* 80D26C74-80D26C78 -00001 0004+00 5/6 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "M_VolcBom";
@@ -206,6 +206,7 @@ int daObjVolcBom_c::CreateHeap() {
 
 /* 80D248F4-80D249D0 0007D4 00DC+00 1/1 0/0 0/0 .text            create1st__14daObjVolcBom_cFv */
 int daObjVolcBom_c::create1st() {
+        /* dSv_event_flag_c::M_032 - Main Event - Melted Zora river ice with magma rock */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[65])) {
         return cPhs_ERROR_e;
     }
@@ -640,7 +641,10 @@ void daObjVolcBom_c::orderZHintEvent() {
 
 /* 80D25A08-80D25B04 0018E8 00FC+00 1/0 0/0 0/0 .text            actionWait__14daObjVolcBom_cFv */
 void daObjVolcBom_c::actionWait() {
-    if (checkTalkDistance() && dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[84])) {
+    if (checkTalkDistance()
+           /* dSv_event_flag_c::M_051 - Main Event - Shadow Kargorok (?) (Large) event complete 
+                                                     (Horse grass appears in various places) */
+        && dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[84])) {
         setAction(ACTION_ORDER_EVENT);
         actionOrderEvent();
     }

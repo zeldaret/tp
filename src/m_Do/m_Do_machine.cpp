@@ -418,6 +418,7 @@ void my_SysPrintHeap(char const* message, void* start, u32 size) {
                     (u32)start + size, size / 1024);
 }
 
+#if VERSION != VERSION_GCN_PAL
 /* 803A2F60-803A2F9C 000080 003C+00 1/0 0/0 0/0 .data            g_ntscZeldaIntDf */
 extern GXRenderModeObj g_ntscZeldaIntDf = {
     VI_TVMODE_NTSC_INT,
@@ -473,6 +474,63 @@ extern GXRenderModeObj g_ntscZeldaProg = {
      {6, 6}},
     {0, 0, 21, 22, 21, 0, 0},
 };
+#else
+/* 803A2F60-803A2F9C 000080 003C+00 1/0 0/0 0/0 .data            g_ntscZeldaIntDf */
+extern GXRenderModeObj g_ntscZeldaIntDf = {
+    VI_TVMODE_PAL_INT,
+    608,
+    448,
+    538,
+    25,
+    18,
+    670,
+    538,
+    VI_XFBMODE_DF,
+    0,
+    0,
+    {{6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6}},
+    {8, 8, 10, 12, 10, 8, 8},
+};
+
+/* 803A2F9C-803A2FD8 0000BC 003C+00 1/1 1/1 0/0 .data            g_ntscZeldaProg */
+extern GXRenderModeObj g_ntscZeldaProg = {
+    VI_TVMODE_EURGB60_INT,
+    608,
+    448,
+    448,
+    27,
+    16,
+    666,
+    448,
+    VI_XFBMODE_DF,
+    0,
+    0,
+    {{6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6},
+     {6, 6}},
+    {8, 8, 10, 12, 10, 8, 8},
+};
+#endif
 
 /* 804505A0-804505A8 -00001 0004+04 1/1 3/3 0/0 .sdata           mRenderModeObj__15mDoMch_render_c
  */
@@ -533,7 +591,8 @@ int mDoMch_Create() {
     JFWSystem::setAramAudioBufSize(0xA00000);
     JFWSystem::setAramGraphBufSize(-1);
 
-    if (!(OSGetResetCode() >> 0x1F)) {
+    #if VERSION != VERSION_GCN_PAL
+    if ((OSGetResetCode() >> 31) == 0) {
         if (VIGetDTVStatus() == 0) {
             OSSetProgressiveMode(0);
         }
@@ -542,6 +601,15 @@ int mDoMch_Create() {
             mDoMch_render_c::setProgressiveMode();
         }
     }
+    #else
+    if ((int)(OSGetResetCode() >> 31) == 1) {
+        if (mDoRst::getProgSeqFlag() != 0) {
+            if (OSGetEuRgb60Mode() == OS_EURGB60_ON) {
+                mDoMch_render_c::setProgressiveMode();
+            }
+        }
+    }
+    #endif
 
     JFWSystem::setRenderMode(mDoMch_render_c::getRenderModeObj());
     JFWSystem::firstInit();

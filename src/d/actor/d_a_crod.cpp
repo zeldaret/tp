@@ -3,6 +3,8 @@
  * Dominion Rod Object
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_crod.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_alink.h"

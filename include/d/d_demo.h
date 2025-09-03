@@ -94,19 +94,8 @@ public:
         cMtx_copy(mModel->getAnmMtx((u16)param_0), param_1);
         return true;
     }
-    /* 8003A0D8 */ virtual void JSGGetTranslation(Vec* o_trans) const {
-        *o_trans = mTrans;
-    }
     /* 80038920 */ virtual void JSGSetTranslation(Vec const&);
-    /* 8003A0F4 */ virtual void JSGGetScaling(Vec* o_scale) const {
-        *o_scale = mScale;
-    }
     /* 80038980 */ virtual void JSGSetScaling(Vec const&);
-    /* 8003A110 */ virtual void JSGGetRotation(Vec* param_0) const {
-        param_0->x = mRotate.x * 0.005493164f;
-        param_0->y = mRotate.y * 0.005493164f;
-        param_0->z = mRotate.z * 0.005493164f;
-    }
     /* 800389A8 */ virtual void JSGSetRotation(Vec const&);
     /* 80038A0C */ virtual void JSGSetShape(u32);
     /* 80038A20 */ virtual void JSGSetAnimation(u32);
@@ -119,6 +108,17 @@ public:
     /* 80038A7C */ virtual void JSGSetTextureAnimationFrame(f32);
     /* 8003A0D0 */ virtual f32 JSGGetTextureAnimationFrameMax() const {
         return mTexAnmFrameMax;
+    }
+    /* 8003A0D8 */ virtual void JSGGetTranslation(Vec* o_trans) const {
+        *o_trans = mTrans;
+    }
+    /* 8003A0F4 */ virtual void JSGGetScaling(Vec* o_scale) const {
+        *o_scale = mScale;
+    }
+    /* 8003A110 */ virtual void JSGGetRotation(Vec* param_0) const {
+        param_0->x = mRotate.x * 0.005493164f;
+        param_0->y = mRotate.y * 0.005493164f;
+        param_0->z = mRotate.z * 0.005493164f;
     }
 
     void setModel(J3DModel* p_model) { mModel = p_model; }
@@ -164,10 +164,10 @@ class dDemo_system_c : public JStage::TSystem {
 public:
     dDemo_system_c() { mpObject = NULL; }
 
-    /* 80039AAC */ virtual ~dDemo_system_c();
     /* 80039528 */ virtual int JSGFindObject(JStage::TObject**, char const*,
                                               JStage::TEObject) const;
-    
+    /* 80039AAC */ virtual ~dDemo_system_c();
+
     void setObject(dDemo_object_c* i_object) { mpObject = i_object; }
 
 private:
@@ -198,13 +198,13 @@ public:
         mFlags = 0;
     }
 
-    /* 80039468 */ virtual ~dDemo_light_c();
     /* 80038E20 */ virtual void JSGSetLightType(JStage::TELight);
     /* 80038E34 */ virtual void JSGSetPosition(Vec const&);
     /* 80038E5C */ virtual void JSGSetColor(GXColor);
     /* 80038E8C */ virtual void JSGSetDistanceAttenuation(f32, f32, GXDistAttnFn);
     /* 80038EA8 */ virtual void JSGSetAngleAttenuation(f32, GXSpotFn);
     /* 80038EC0 */ virtual void JSGSetDirection(Vec const&);
+    /* 80039468 */ virtual ~dDemo_light_c();
 
     void onEnable(u8 flag) { mFlags |= flag; }
 
@@ -234,11 +234,11 @@ public:
         mFlags = 0;
     }
 
-    /* 80039408 */ virtual ~dDemo_fog_c();
     /* 80038EE8 */ virtual void JSGSetFogFunction(GXFogType);
     /* 80038EFC */ virtual void JSGSetStartZ(f32);
     /* 80038F10 */ virtual void JSGSetEndZ(f32);
     /* 80038F24 */ virtual void JSGSetColor(GXColor);
+    /* 80039408 */ virtual ~dDemo_fog_c();
 
     void onEnable(u8 flag) { mFlags |= flag; }
 
@@ -267,7 +267,6 @@ public:
         mFlags = 0;
     }
 
-    /* 80039FFC */ virtual ~dDemo_camera_c();
     /* 80038AC4 */ virtual f32 JSGGetProjectionNear() const;
     /* 80038AF8 */ virtual void JSGSetProjectionNear(f32);
     /* 80038B0C */ virtual f32 JSGGetProjectionFar() const;
@@ -284,6 +283,7 @@ public:
     /* 80038D5C */ virtual void JSGSetViewTargetPosition(Vec const&);
     /* 80038D84 */ virtual f32 JSGGetViewRoll() const;
     /* 80038DDC */ virtual void JSGSetViewRoll(f32);
+    /* 80039FFC */ virtual ~dDemo_camera_c();
 
     void onEnable(u8 flag) { mFlags |= flag; }
     bool checkEnable(u8 flag) { return mFlags & flag; }
@@ -316,8 +316,8 @@ public:
         mFlags = 0;
     }
 
-    /* 800394C8 */ virtual ~dDemo_ambient_c();
     /* 80038DF0 */ virtual void JSGSetColor(GXColor);
+    /* 800394C8 */ virtual ~dDemo_ambient_c();
 
     void onEnable(u8 flag) { mFlags |= flag; }
 

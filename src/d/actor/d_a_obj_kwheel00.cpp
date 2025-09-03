@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_kwheel00.h"
 #include "JSystem/JHostIO/JORMContext.h"
 #include "d/actor/d_a_obj_lv3Water.h"
@@ -167,7 +169,7 @@ int daObjKWheel00_c::Create() {
     if(m_type == TYPE_SMALL_PLATINUM)
         fopAcM_SetStatus(this, 0);
 
-    mStts.Init(254, 0, this);
+    mStts.Init(0xFE, 0, this);
 
     for(int i = 0; i < 4; i++) {
         mLargeGearTeethSphereColliders[i].SetStts(&mStts);

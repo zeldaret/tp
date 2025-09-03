@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_ppolamp.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/d_com_inf_game.h"
@@ -54,8 +56,6 @@ int daPPolamp_c::execute() {
     mBck.play();
     return 1;
 }
-
-UNK_REL_BSS
 
 /* 80D4CB84-80D4CCF0 0002C4 016C+00 1/1 0/0 0/0 .text            draw__11daPPolamp_cFv */
 int daPPolamp_c::draw() {

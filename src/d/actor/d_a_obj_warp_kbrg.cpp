@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_warp_kbrg.h"
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_player.h"
@@ -51,6 +53,7 @@ static int eventCallBack(void* i_proc, int param_1) {
     if (i_proc != NULL) {
         player_p->skipPortalObjWarp();
         if (dComIfGp_TransportWarp_check()) {
+            /* dSv_event_flag_c::M_018 - Main Event - Brought Kakariko bridge back to original location */
             dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[51]);
             // "Kakariko Bridge: Warp destination is correct"
             OS_REPORT("\x1B[43;30mカカリコ橋：ワープ先正解です\n\x1B[m");
@@ -87,8 +90,6 @@ void daObjWarpKBrg_c::setBaseMtx() {
         mpPortalModel->setBaseTRMtx(mDoMtx_stack_c::get());
     }
 }
-
-UNK_REL_DATA
 
 /* 80D29730-80D29738 -00001 0008+00 5/5 0/0 0/0 .data            l_arcName */
 static char* l_arcName[2] = {
@@ -242,6 +243,7 @@ int daObjWarpKBrg_c::create1st() {
 
     switch (getNameArg()) {
     case 0:
+            /* dSv_event_flag_c::M_018 - Main Event - Brought Kakariko bridge back to original location */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[51])) {
             // "Kakariko Bridge: already warped so creation cancelled!"
             OS_REPORT("\x1B[43;30mカカリコ橋：ワープさせたので発生取り消し！\n\x1B[m");
@@ -249,6 +251,7 @@ int daObjWarpKBrg_c::create1st() {
         }
         break;
     case 1:
+             /* dSv_event_flag_c::M_018 - Main Event - Brought Kakariko bridge back to original location */
         if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[51])) {
             // "Kakariko Bridge: not warped so creation cancelled!"
             OS_REPORT("\x1B[43;30mカカリコ橋：ワープさせてないので発生取り消し！\n\x1B[m");
@@ -345,7 +348,9 @@ void daObjWarpKBrg_c::actionWait() {
     daMidna_c* midna_p = (daMidna_c*)daPy_py_c::getMidnaActor();
     daPy_py_c* player_p = daPy_getPlayerActorClass();
 
-    if (fopAcM_isSwitch(this, getSwbit2()) && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[54])) {
+    if (fopAcM_isSwitch(this, getSwbit2())
+           /* dSv_event_flag_c::M_021 - Main Event - First portal warp */
+        && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[54])) {
         setAction(ACTION_ORDER_EVENT_e);
         actionOrderEvent();
     }
@@ -509,6 +514,7 @@ void daObjWarpKBrg_c::demoProc() {
             }
 
             if (dComIfGp_TransportWarp_check()) {
+                /* dSv_event_flag_c::M_018 - Main Event - Brought Kakariko bridge back to original location */
                 dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[51]);
                 // "Kakariko Bridge: Warp destination is correct"
                 OS_REPORT("\x1B[43;30mカカリコ橋：ワープ先正解です\n\x1B[m");

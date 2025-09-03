@@ -84,6 +84,7 @@ public:
     f32 getPlayerRange() const { return mPlayerRange; }
     int getActionMode() const { return mActionMode; }
     daE_OC_c* getTalkOc() const { return mpTalk; }
+    J3DModel* getOcModel() { return mpMorf->getModel(); }
 
 private:
     /* 0x5a0 */ request_of_phase_process_class mPhaseReqs[2];
@@ -166,23 +167,6 @@ private:
 
 STATIC_ASSERT(sizeof(daE_OC_c) == 0xe88);
 
-class daE_OC_HIO_c {
-public:
-    /* 8072C5CC */ daE_OC_HIO_c();
-    /* 80735630 */ virtual ~daE_OC_HIO_c() {}
-
-    /* 0x04 */ s8 field_0x04;
-    /* 0x05 */ u8 field_0x05;
-    /* 0x08 */ f32 field_0x08;
-    /* 0x0c */ f32 field_0x0c;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1c */ f32 field_0x1c;
-    /* 0x20 */ f32 field_0x20;
-    /* 0x24 */ f32 field_0x24;
-};
-
 struct E_OC_n {
     static f32 const oc_attackb_trans[10];
     static f32 const oc_attackc_trans[10];
@@ -193,6 +177,5 @@ struct E_OC_n {
     static daE_OC_c* m_death_oc;
     static daE_OC_c* m_talk_oc;
 };
-
 
 #endif /* D_A_E_OC_H */

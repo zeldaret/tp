@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_maro.h"
 #include "d/actor/d_a_horse.h"
 #include "d/actor/d_a_npc_len.h"
@@ -17,8 +19,6 @@
 //
 // Declarations:
 //
-
-UNK_REL_DATA;
 
 daNpc_Maro_c::actionFunc dummy_lit_4085() {
     return &daNpc_Maro_c::choccai;
@@ -3476,26 +3476,6 @@ static int daNpc_Maro_IsDelete(void* i_this) {
 
 /* 80565D94-80565D98 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daNpc_Maro_Param_c l_HIO;
-
-/* 80564970-80564978 0094D0 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__12daNpc_Maro_cFv */
-u16 daNpc_Maro_c::getEyeballMaterialNo() {
-    return 1;
-}
-
-/* 80564978-80564980 0094D8 0008+00 1/0 0/0 0/0 .text            getHeadJointNo__12daNpc_Maro_cFv */
-s32 daNpc_Maro_c::getHeadJointNo() {
-    return 4;
-}
-
-/* 80564980-80564988 0094E0 0008+00 1/0 0/0 0/0 .text            getNeckJointNo__12daNpc_Maro_cFv */
-s32 daNpc_Maro_c::getNeckJointNo() {
-    return 3;
-}
-
-/* 80564988-80564990 0094E8 0008+00 1/0 0/0 0/0 .text getBackboneJointNo__12daNpc_Maro_cFv */
-s32 daNpc_Maro_c::getBackboneJointNo() {
-    return 1;
-}
 
 /* 80565BB8-80565BD8 -00001 0020+00 1/0 0/0 0/0 .data            daNpc_Maro_MethodTable */
 static actor_method_class daNpc_Maro_MethodTable = {

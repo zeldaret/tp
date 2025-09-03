@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_ten.h"
 #include "d/actor/d_a_player.h"
 #include "SSystem/SComponent/c_math.h"
@@ -686,7 +688,10 @@ static int daObjTEN_Execute(daObjTEN_c* i_this) {
 
 /* ############################################################################################## */
 /* 80D0B9D0-80D0B9D4 0000E0 0004+00 1/2 0/0 0/0 .rodata          l_musiya_num */
-static u16 const l_musiya_num[2] = { 0x19F, 0x1A0};
+static u16 const l_musiya_num[2] = {
+    0x19F, /* dSv_event_flag_c::F_0415 - Misc. - Ladybug (M) */
+    0x1A0, /* dSv_event_flag_c::F_0416 - Misc. - Ladybug (F) */
+};
 
 /* 80D0AD9C-80D0AF48 0026BC 01AC+00 1/1 0/0 0/0 .text            CreateChk__10daObjTEN_cFv */
 bool daObjTEN_c::CreateChk() {

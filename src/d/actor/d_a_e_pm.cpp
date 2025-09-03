@@ -3,6 +3,8 @@
  * Enemy - Skull Kid
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_pm.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "SSystem/SComponent/c_math.h"
@@ -14,8 +16,39 @@
 #include "d/actor/d_a_e_fs.h"
 #include "d/actor/d_a_player.h"
 #include "d/actor/d_a_obj_smw_stone.h"
-UNK_REL_DATA
 #include "f_op/f_op_actor_enemy.h"
+
+class daE_PM_HIO_c {
+public:
+    /* 80741EEC */ daE_PM_HIO_c();
+    /* 8074BA68 */ virtual ~daE_PM_HIO_c() {}
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 mLampParticleScale;
+    /* 0x0C */ f32 mGlowEffectScale;
+    /* 0x10 */ f32 mEscapeRange;
+    /* 0x14 */ s16 mGlowColor1R;
+    /* 0x16 */ s16 mGlowColor1G;
+    /* 0x18 */ s16 mGlowColor1B;
+    /* 0x1A */ s16 mGlowColor2R;
+    /* 0x1C */ s16 mGlowColor2G;
+    /* 0x1E */ s16 mGlowColor2B;
+    /* 0x20 */ s16 mGlowColor1A;
+    /* 0x22 */ s16 mBossEscapeTimer;
+    /* 0x24 */ s16 field_0x24;
+    /* 0x26 */ s16 mAdditionalPuppetNum;
+    /* 0x28 */ f32 mCreateTimer;
+    /* 0x2C */ f32 field_0x2c;
+    /* 0x30 */ f32 field_0x30;
+    /* 0x34 */ f32 field_0x34;
+    /* 0x38 */ f32 mBossLightR;
+    /* 0x3C */ f32 mBossLightG;
+    /* 0x40 */ f32 mBossLightB;
+    /* 0x44 */ f32 field_0x44;
+    /* 0x48 */ f32 field_0x48;
+};
+
+STATIC_ASSERT(sizeof(daE_PM_HIO_c) == 0x4C);
 
 enum Action {
     /* 0x0 */ ACT_START,
@@ -78,27 +111,9 @@ enum Joint {
     /* 0x19 */ JNT_FOOT_R,
     /* 0x1A */ JNT_SKIRT,
 };
- 
-UNK_BSS(1109)
-UNK_BSS(1107)
-UNK_BSS(1105)
-UNK_BSS(1104)
-UNK_BSS(1099)
-UNK_BSS(1097)
-UNK_BSS(1095)
-UNK_BSS(1094)
-UNK_BSS(1057)
-UNK_BSS(1055)
-UNK_BSS(1053)
-UNK_BSS(1052)
-UNK_BSS(1014)
-UNK_BSS(1012)
-UNK_BSS(1010)
 
 /* 8074C384-8074C388 -00001 0004+00 2/2 0/0 0/0 .bss             None */
-/* 8074C384 0001+00 data_8074C384 @1009 */
 /* 8074C385 0003+00 data_8074C385 None */
-static u8 struct_8074C384;
 static bool hioInit;
 
 /* 8074C394-8074C3E0 000054 004C+00 11/13 0/0 0/0 .bss             l_HIO */
@@ -274,6 +289,10 @@ void daE_PM_c::SetAnm(int i_anm, int i_attr, f32 i_morf, f32 i_rate) {
     mAnm = i_anm;
 }
 
+static void dummy() {
+    delete (cM3dGPla*)NULL;
+}
+
 /* 80742768-80742810 000968 00A8+00 2/2 0/0 0/0 .text way_bg_check2__FP8daE_PM_c4cXyz4cXyz */
 static BOOL way_bg_check2(daE_PM_c* i_this, cXyz i_start, cXyz i_end) {
     dBgS_LinChk lin_chk;
@@ -326,10 +345,13 @@ void daE_PM_c::SearchFarP() {
     f32 best_distance;
     int best_index;
     dPnt* pnt = dPath_GetPnt(mpPath, 0);
-    cXyz point(pnt->m_position.x, pnt->m_position.y, pnt->m_position.z);
+    Vec pos;
+    pos = pnt->m_position;
+    cXyz point(pos.x, pos.y, pos.z);
     for (int i = 0; i < mpPath->m_num; i++) {
         pnt = dPath_GetPnt(mpPath, i);
-        point.set(pnt->m_position.x, pnt->m_position.y, pnt->m_position.z);
+        pos = pnt->m_position;
+        point.set(pos.x, pos.y, pos.z);
         if (s_LinkPos->absXZ(point) > best_distance && mPointIndex != i) {
             best_index = i;
             best_distance = s_LinkPos->absXZ(point);
@@ -2386,6 +2408,7 @@ void daE_PM_c::DamageAction() {
 /* 8074A210-8074A3DC 008410 01CC+00 1/1 0/0 0/0 .text            At_Check__8daE_PM_cFv */
 // NONMATCHING regalloc
 void daE_PM_c::At_Check() {
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
     mAtInfo.mpCollider = mCcCyl.GetTgHitObj();
     mAtInfo.mpActor = at_power_check(&mAtInfo);
 
@@ -2394,12 +2417,11 @@ void daE_PM_c::At_Check() {
             mAtInfo.mAttackPower = 0;
         }
 
-        s16 attack_power = mAtInfo.mAttackPower;
-        if (attack_power > 0) {
-            health -= attack_power;
+        if ((s16)mAtInfo.mAttackPower > 0) {
+            health -= (s16)mAtInfo.mAttackPower;
         }
 
-        u32 pause_timer;
+        u32 pause_timer = 0;
         if (mAtInfo.mAttackPower != 0 && health <= l_HIO.field_0x34) {
             mAtInfo.mHitStatus = 2;
             pause_timer = 5;
@@ -2413,7 +2435,8 @@ void daE_PM_c::At_Check() {
             pause_timer = 0;
         }
 
-        u8 sound = ((dCcD_GObjInf*)mAtInfo.mpCollider)->GetAtSe();
+        dCcD_GObjInf* collider = (dCcD_GObjInf*)mAtInfo.mpCollider;
+        u32 sound = collider->GetAtSe();
         u32 var1 = 30;
         if (mAtInfo.mHitStatus == 1) {
             var1 = 31;
@@ -2423,7 +2446,7 @@ void daE_PM_c::At_Check() {
 
         if (mAtInfo.mpSound != NULL) {
             if (mAtInfo.field_0x18 != 0) {
-                mAtInfo.mpSound->startCollisionSE(dCcD_GObjInf::getHitSeID(sound, FALSE), var1);
+                mAtInfo.mpSound->startCollisionSE(dCcD_GObjInf::getHitSeID(sound, FALSE), mAtInfo.field_0x18);
             } else {
                 mAtInfo.mpSound->startCollisionSE(dCcD_GObjInf::getHitSeID(sound, FALSE), var1);
             }

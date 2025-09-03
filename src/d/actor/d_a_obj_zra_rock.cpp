@@ -3,6 +3,8 @@
  * Zora Rock (Graveyard)
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_zra_rock.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_bg_w.h"

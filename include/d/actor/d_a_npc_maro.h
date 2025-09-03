@@ -108,10 +108,10 @@ public:
                    i_arcNames) {
         OS_REPORT("|%06d:%x|daNpc_Maro_c -> コンストラクト\n", g_Counter.mCounter0, this);
     }
-    /* 80564970 */ u16 getEyeballMaterialNo();
-    /* 80564978 */ s32 getHeadJointNo();
-    /* 80564980 */ s32 getNeckJointNo();
-    /* 80564988 */ s32 getBackboneJointNo();
+    /* 80564970 */ u16 getEyeballMaterialNo() { return 1; }
+    /* 80564978 */ s32 getHeadJointNo() { return 4; }
+    /* 80564980 */ s32 getNeckJointNo() { return 3; }
+    /* 80564988 */ s32 getBackboneJointNo() { return 1; }
     /* 80564990 */ BOOL checkChangeJoint(int arg0) { return arg0 == 4; };
     /* 805649A0 */ BOOL checkRemoveJoint(int arg0) { return arg0 == 6; };
 

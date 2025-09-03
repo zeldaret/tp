@@ -3,6 +3,8 @@
 // Translation Unit: d_a_tag_Lv8Gate
 //
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tag_Lv8Gate.h"
 
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
@@ -51,6 +53,7 @@ inline int daTagLv8Gate_c::create() {
     fopAcM_SetupActor(this, daTagLv8Gate_c);
 
     cPhs__Step step;
+         /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
     if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
         step = cPhs_ERROR_e;
     } else {

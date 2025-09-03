@@ -3,6 +3,8 @@
 // Translation Unit: d/d_save_HIO
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_save_HIO.h"
 #include "d/d_com_inf_game.h"
 
@@ -224,6 +226,7 @@ void dSvBit_HIO_c::init() {
     mDarkness.init();
     mTransform.init();
     mOther.init();
+                                   /* Main Event - Get shadow crystal (can now transform) */
     mTransformFlag = field_0x49d = dComIfGs_isEventBit(dSv_event_flag_c::M_077);
 }
 

@@ -3,10 +3,25 @@
  * 
 */
 
-#include "d/actor/d_a_e_bu.h"
+#include "d/dolzel_rel.h"
 
-UNK_REL_DATA;
+#include "d/actor/d_a_e_bu.h"
 #include "f_op/f_op_actor_enemy.h"
+
+class daE_BU_HIO_c : public JORReflexible {
+public:
+    /* 806911AC */ daE_BU_HIO_c();
+    /* 806941D4 */ virtual ~daE_BU_HIO_c() {}
+
+    void genMessage(JORMContext* ctx);
+
+    /* 0x04 */ s8 id;
+    /* 0x08 */ f32 base_size;
+    /* 0x0C */ f32 fly_speed;
+    /* 0x10 */ f32 attack_range;
+    /* 0x14 */ f32 attack_speed;
+    /* 0x18 */ f32 dash_speed;
+};
 
 enum daE_BU_TYPE {
     TYPE_NORMAL,

@@ -3,11 +3,11 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_sekidoor.h"
 
 /* ############################################################################################## */   
-
-UNK_REL_DATA;
 
 /* 80CCDA5C-80CCDA64 000020 0008+00 2/3 0/0 0/0 .data            l_bmdData */
 static struct {

@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_grm.h"
 #include "dol2asm.h"
 
@@ -257,24 +259,6 @@ SECTION_DEAD static char const* const stringBase_809D6E61 = "DEFAULT_GETITEM";
 SECTION_DEAD static char const* const stringBase_809D6E71 = "grA_base";
 SECTION_DEAD static char const* const stringBase_809D6E7A = "grA_mdl";
 SECTION_DEAD static char const* const stringBase_809D6E82 = "TALK_SPA";
-#pragma pop
-
-/* 809D6E94-809D6EA0 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 809D6EA0-809D6EB4 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 #pragma pop
 
 /* 809D6EB4-809D6EBC 000020 0008+00 1/1 0/0 0/0 .data            l_bmdData */

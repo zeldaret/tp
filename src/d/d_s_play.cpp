@@ -3,6 +3,8 @@
  * Main Gameplay Scene
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_s_play.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTGamePad.h"

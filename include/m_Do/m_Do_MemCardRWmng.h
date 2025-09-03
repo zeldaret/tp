@@ -1,9 +1,7 @@
 #ifndef M_DO_M_DO_MEMCARDRWMNG_H
 #define M_DO_M_DO_MEMCARDRWMNG_H
 
-#include "dolphin/types.h"
-
-typedef struct CARDFileInfo CARDFileInfo;
+#include <dolphin/card.h>
 
 struct mDoMemCdRWm_HeaderData {
     /* 0x0000 */ u8 mBannerTexData[0xC00];

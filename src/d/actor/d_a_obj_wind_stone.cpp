@@ -3,6 +3,8 @@
  * Object - Wind Stone
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_wind_stone.h"
 #include "d/actor/d_a_alink.h"
 #include "d/d_meter2_info.h"

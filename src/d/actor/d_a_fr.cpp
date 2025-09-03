@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_fr.h"
 #include "SSystem/SComponent/c_lib.h"
 #include "c/c_damagereaction.h"
@@ -13,6 +15,27 @@
 #include "d/d_s_play.h"
 #include "dol2asm.h"
 #include "f_op/f_op_kankyo_mng.h"
+
+class daFr_HIO_c : public JORReflexible {
+public:
+    /* 805198EC */ daFr_HIO_c();
+    /* 8051B920 */ virtual ~daFr_HIO_c() {}
+
+#if DEBUG
+    void genMessage(JORMContext*);
+#endif
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 field_0x8;
+    /* 0x0C */ f32 field_0xc;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ f32 field_0x1c;
+    /* 0x20 */ f32 field_0x20;
+    /* 0x24 */ f32 field_0x24;
+    /* 0x28 */ f32 field_0x28;
+};
 
 /* 805198EC-8051994C 0000EC 0060+00 1/1 0/0 0/0 .text            __ct__10daFr_HIO_cFv */
 daFr_HIO_c::daFr_HIO_c() {
@@ -95,15 +118,15 @@ static wd_ss* wd_check(fr_class* i_this) {
 
 /* 80519D28-80519E24 000528 00FC+00 4/4 0/0 0/0 .text            way_bg_check__FP8fr_class */
 static BOOL way_bg_check(fr_class* i_this) {
-    // NONMATCHING
+    fopAc_ac_c* actor = (fopAc_ac_c*)i_this;
     cXyz sp24;
     cXyz sp18;
     cXyz sp0c;
 
-    sp24 = i_this->current.pos;
+    sp24 = actor->current.pos;
     sp24.y += 20.0f;
 
-    cMtx_YrotS(*calc_mtx, i_this->shape_angle.y);
+    cMtx_YrotS(*calc_mtx, actor->shape_angle.y);
 
     sp0c.x = 0.0f;
     sp0c.y = 0.0f;
@@ -112,7 +135,7 @@ static BOOL way_bg_check(fr_class* i_this) {
     sp18 += sp24;
 
     dBgS_LinChk dStack_84;
-    dStack_84.Set(&sp24, &sp18, i_this);
+    dStack_84.Set(&sp24, &sp18, actor);
 
     if (dComIfG_Bgsp().LineCross(&dStack_84)) {
         return TRUE;
@@ -129,8 +152,7 @@ static daFr_HIO_c l_HIO;
 
 /* 80519E24-8051A0D8 000624 02B4+00 1/2 0/0 0/0 .text            fr_normal__FP8fr_class */
 static void fr_normal(fr_class* i_this) {
-    // NONMATCHING
-    fopAc_ac_c* actor = i_this;
+    fopAc_ac_c* actor = (fopAc_ac_c*)i_this;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
 
     cXyz sp18;
@@ -159,9 +181,9 @@ static void fr_normal(fr_class* i_this) {
                     i_this->current.angle.y += 0x8000;
                 } else {
                     i_this->field_0x5e8 = l_HIO.field_0x14;
-                    f32 x = i_this->home.pos.x + cM_rndFX(i_this->field_0x5e8) - i_this->current.pos.x;
-                    f32 z = i_this->home.pos.z + cM_rndFX(i_this->field_0x5e8) - i_this->current.pos.z;
-                    cLib_addCalcAngleS2(&i_this->current.angle.y, cM_atan2s(x, z), 1, 0x2000 + TREG_S(2));
+                    sp18.x = i_this->home.pos.x + cM_rndFX(i_this->field_0x5e8) - i_this->current.pos.x;
+                    sp18.z = i_this->home.pos.z + cM_rndFX(i_this->field_0x5e8) - i_this->current.pos.z;
+                    cLib_addCalcAngleS2(&i_this->current.angle.y, cM_atan2s(sp18.x, sp18.z), 1, 0x2000 + TREG_S(2));
                 }
 
                 i_this->field_0x5d4++;
@@ -306,7 +328,6 @@ static void fr_s_wait(fr_class* i_this) {
 
 /* 8051A620-8051A820 000E20 0200+00 1/1 0/0 0/0 .text            fr_s_away__FP8fr_class */
 static void fr_s_away(fr_class* i_this) {
-    // NONMATCHING
     fopAc_ac_c* actor = i_this;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
 
@@ -320,7 +341,7 @@ static void fr_s_away(fr_class* i_this) {
             break;
         case 1:
             if ((int)i_this->mMorf->getFrame() >= 10) {
-                if ((int)i_this->mMorf->getFrame() >= 25) {
+                if ((int)i_this->mMorf->getFrame() <= 25) {
                     cLib_addCalc2(&i_this->speedF, l_HIO.field_0x28, 1.0f, l_HIO.field_0x28 * 0.2f);
                     if ((int)i_this->mMorf->getFrame() >= 10) {
                         if ((int)i_this->mMorf->getFrame() <= 15 && (s8)i_this->field_0x5cc == 0) {
@@ -328,7 +349,7 @@ static void fr_s_away(fr_class* i_this) {
                                 i_this->current.angle.y += 0x8000;
                             } else {
                                 cLib_addCalcAngleS2(&i_this->current.angle.y,
-                                    (s16)(fopAcM_searchPlayerAngleY(i_this) + (s16)cM_rndFX(8000.0f)) + 0x8000,
+                                    fopAcM_searchPlayerAngleY(i_this) + 0x8000 + (s16)cM_rndFX(8000.0f),
                                     1, 0x2000 + TREG_S(2));
                             }
 
@@ -468,8 +489,7 @@ static void fr_message(fr_class* i_this) {
 
 /* 8051AD04-8051B04C 001504 0348+00 2/1 0/0 0/0 .text            action__FP8fr_class */
 static void action(fr_class* i_this) {
-    // NONMATCHING
-    fopAc_ac_c* this_actor = i_this;
+    fopAc_ac_c* this_actor = (fopAc_ac_c*)i_this;
 
     cXyz sp30;
     cXyz sp24;
@@ -519,12 +539,12 @@ static void action(fr_class* i_this) {
     if (cVar4 != -2) {
         cLib_addCalcAngleS2(&i_this->shape_angle.y, i_this->current.angle.y, 2, 0x4000);
         cMtx_YrotS(*calc_mtx, i_this->current.angle.y);
-        sp24.x = 0.0f;
-        sp24.y = 0.0f;
-        sp24.z = i_this->speedF;
-        MtxPosition(&sp24, &sp30);
-        i_this->speed.x = sp30.x;
-        i_this->speed.z = sp30.z;
+        sp30.x = 0.0f;
+        sp30.y = 0.0f;
+        sp30.z = i_this->speedF;
+        MtxPosition(&sp30, &sp24);
+        i_this->speed.x = sp24.x;
+        i_this->speed.z = sp24.z;
         i_this->speed.y += i_this->gravity;
 
         i_this->current.pos += (i_this->speed * i_this->scale.x) * 1.33f;
@@ -532,18 +552,18 @@ static void action(fr_class* i_this) {
         if (i_this->speed.y < -80.0f) {
             i_this->speed.y = -80.0f;
         }
-        
-        sp24 = i_this->current.pos;
-        sp24.y += 200.0f;
+
+        sp30 = i_this->current.pos;
+        sp30.y += 200.0f;
         f32 fVar6 = i_this->mAcch.GetGroundH();
         dBgS_ObjGndChk_Spl(cStack_78);
         i_this->field_0x5ec = 0;
-        bool bVar2 = false;
+        BOOL bVar2 = FALSE;
 
         if (wd_check(i_this)) {
-            bVar2 = true;
+            bVar2 = TRUE;
         } else {
-            cStack_78.SetPos(&sp24);
+            cStack_78.SetPos(&sp30);
             i_this->field_0x5f0 = dComIfG_Bgsp().GroundCross(&cStack_78);
 
             if (fVar6 < i_this->field_0x5f0 && i_this->current.pos.y <= i_this->field_0x5f0 + YREG_F(0)) {
@@ -664,8 +684,7 @@ static int daFr_Delete(fr_class* i_this) {
 }
 
 /* 8051B3B0-8051B550 001BB0 01A0+00 1/1 0/0 0/0 .text            useHeapIfrt__FP10fopAc_ac_c */
-static int useHeapIfrt(fopAc_ac_c* a_this) {
-    // NONMATCHING
+static BOOL useHeapIfrt(fopAc_ac_c* a_this) {
     fr_class* i_this = (fr_class*)a_this;
 
     i_this->mMorf = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("Fr", 14), NULL, NULL,
@@ -677,65 +696,63 @@ static int useHeapIfrt(fopAc_ac_c* a_this) {
     }
 
     i_this->mBtkAnm = new mDoExt_btkAnm();
-    if (!i_this->mBtkAnm) {
-        return 0;
-    } else if (i_this->mBtkAnm->init(i_this->mMorf->getModel()->getModelData(), (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Fr", 17),
-            1, 0, 1.0f, 0, -1)) {
+    if (i_this->mBtkAnm == 0) {
         return 0;
     }
 
-    return 1;
+    return i_this->mBtkAnm->init(i_this->mMorf->getModel()->getModelData(),
+                              (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Fr", 17), 1, 0, 1.0f, 0,
+                              -1) != 0 ? 1 : 0;
 }
 
 /* 8051B598-8051B820 001D98 0288+00 1/0 0/0 0/0 .text            daFr_Create__FP10fopAc_ac_c */
 static int daFr_Create(fopAc_ac_c* a_this) {
-    // NONMATCHING
-    fr_class* i_this = (fr_class*)a_this;
+    fopAc_ac_c* actor = a_this;
+    fr_class* i_this = (fr_class*)actor;
     fopAcM_SetupActor(i_this, fr_class);
-    
+
     int phase_state = dComIfG_resLoad(&i_this->mPhase, "Fr");
     if (phase_state == cPhs_COMPLEATE_e) {
-        OS_REPORT("FR PARAM %x\n", fopAcM_GetParam(i_this));
+        OS_REPORT("FR PARAM %x\n", fopAcM_GetParam(actor));
 
-        i_this->field_0x5b4 = fopAcM_GetParam(i_this);
-        i_this->current.angle.x = 0;
-        i_this->field_0x994 = i_this->current.angle.z;
-        i_this->shape_angle.z = 0;
-        i_this->current.angle.z = 0;
+        i_this->field_0x5b4 = fopAcM_GetParam(actor);
+        actor->current.angle.x = 0;
+        i_this->field_0x994 = actor->current.angle.z;
+        actor->current.angle.z = actor->shape_angle.z = 0;
         OS_REPORT("FR MSGFLOWNO %d\n", i_this->field_0x994);
         OS_REPORT("FR//////////////FR SET 1 !!\n");
 
-        if (!fopAcM_entrySolidHeap(i_this, useHeapIfrt, 0x14e0)) {
+        if (!fopAcM_entrySolidHeap(actor, useHeapIfrt, 0x14e0)) {
             OS_REPORT("//////////////FR SET NON !!\n");
             return cPhs_ERROR_e;
         }
-            
+
         OS_REPORT("//////////////FR SET 2 !!\n");
 
         if (!l_initHIO) {
             i_this->field_0x9e4 = 1;
             l_initHIO = true;
-            l_HIO.field_0x4 = -1;
+            l_HIO.field_0x4 = mDoHIO_CREATE_CHILD("カエル", &l_HIO);
         }
 
         i_this->field_0x5d2 = 0;
-        i_this->scale.x = 0.75f;
+        actor->scale.x = 0.75f;
 
         if (!strcmp(dComIfGp_getStartStageName(), "F_SP127")) {
-            i_this->scale.x = 0.4f;
+            actor->scale.x = 0.4f + KREG_F(11);
         }
 
-        fopAcM_SetMtx(i_this, i_this->mMorf->getModel()->getBaseTRMtx());
+        fopAcM_SetMtx(actor, i_this->mMorf->getModel()->getBaseTRMtx());
 
-        i_this->mAcch.Set(fopAcM_GetPosition_p(i_this), fopAcM_GetOldPosition_p(i_this),
-            i_this, 1, &i_this->mAcchCir, fopAcM_GetSpeed_p(i_this), NULL, NULL);
+        i_this->mAcch.Set(fopAcM_GetPosition_p(actor), fopAcM_GetOldPosition_p(actor),
+            actor, 1, &i_this->mAcchCir, fopAcM_GetSpeed_p(actor), NULL, NULL);
         i_this->mAcchCir.SetWall(20.0f, 20.0f);
 
         i_this->field_0x5cd = i_this->field_0x5b4;
         if (i_this->field_0x5cd > 3) {
             i_this->field_0x5cd = 0;
         }
-        i_this->field_0x5e8 = 500.0f;
+        i_this->field_0x5e8 = 500.0f + TREG_F(3);
         i_this->field_0x5d0 = cM_rndF(65536.0f);
 
         daFr_Execute(i_this);

@@ -3,6 +3,8 @@
  * Minigame HUD Timer / Counter
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_timer.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"

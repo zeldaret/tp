@@ -3,6 +3,8 @@
  * Menu - Hidden Skills
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_menu_skill.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JKernel/JKRMemArchive.h"
@@ -14,11 +16,6 @@
 #include "d/d_msg_string.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
-
-/* 803BE7D8-803BE7E4 01B8F8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 typedef void (dMenu_Skill_c::*initFunc)();
 static initFunc map_init_process[] = {
@@ -646,7 +643,13 @@ void dMenu_Skill_c::setNameString(u16 i_stringID) {
 /* 801F9470-801F9500 1F3DB0 0090+00 1/1 0/0 0/0 .text            getSkillNum__13dMenu_Skill_cFv */
 u8 dMenu_Skill_c::getSkillNum() {
     static u32 evt_id[7] = {
-        339, 338, 340, 341, 342, 343, 344,
+        339, /* dSv_event_flag_c::F_0339 - Secret techniques - Obtained 2 secret techinques */
+        338, /* dSv_event_flag_c::F_0338 - Secret techniques - Obtained 1 secret techinques - Shield attack */
+        340, /* dSv_event_flag_c::F_0340 - Secret techniques - Obtained 3 secret techinques */
+        341, /* dSv_event_flag_c::F_0341 - Secret techniques - Obtained 4 secret techinques */
+        342, /* dSv_event_flag_c::F_0342 - Secret techniques - Obtained 5 secret techinques */
+        343, /* dSv_event_flag_c::F_0343 - Secret techniques - Obtained 6 secret techinques */
+        344, /* dSv_event_flag_c::F_0344 - Secret techniques - Obtained 7 secret techinques */
     };
 
     u8 skillNum = 0;

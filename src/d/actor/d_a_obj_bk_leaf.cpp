@@ -3,6 +3,8 @@
  *
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_bk_leaf.h"
 #include "d/actor/d_a_obj_carry.h"
 #include "d/d_com_inf_game.h"
@@ -13,10 +15,10 @@ static int CheckCreateHeap(fopAc_ac_c* i_this) {
 }
 
 /* 80BB60F8-80BB618C 000098 0094+00 2/2 0/0 0/0 .text            setBokkuri__10daBkLeaf_cFv */
-// fake match?
 void daBkLeaf_c::setBokkuri() {
-    csXyz currentAngle = current.angle;
-    daObjCarry_c::make_prm(&currentAngle, 6, getItem(), getItemBit(), 1, 2);
+    u32 sp10 = 0;
+    csXyz currentAngle(current.angle);
+    daObjCarry_c::make_prm(&sp10, &currentAngle, 6, getItem(), getItemBit(), 1, 2);
     field_0x578 = fopAcM_createChild(PROC_Obj_Carry, fopAcM_GetID(this), 0, &current.pos,
                                      fopAcM_GetRoomNo(this), &currentAngle, &scale, -1, 0);
 }
@@ -49,20 +51,6 @@ int daBkLeaf_c::Create() {
     }
     return 1;
 }
-
-/* 80BB6738-80BB6744 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static Vec cNullVec__6Z2Calc = {0.0f, 0.0f, 0.0f};
-
-/* 80BB6744-80BB6758 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-// Unused
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 
 /* 80BB6758-80BB675C -00001 0004+00 2/3 0/0 0/0 .data            l_arcName */
 static const char* l_arcName = "Obj_bkl";

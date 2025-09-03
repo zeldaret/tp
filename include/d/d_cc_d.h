@@ -109,55 +109,12 @@ struct dCcD_SrcCps {
     /* 0x30 */ cCcD_SrcCpsAttr mCpsAttr;
 };  // Size: 0x4C
 
-class dCcD_GStts : public cCcD_GStts {
-public:
-    /* 80083760 */ dCcD_GStts();
-    /* 800837F8 */ void Ct();
-    /* 80083830 */ void Move();
-    /* 8008523C */ virtual ~dCcD_GStts() {}
-    void ClrAt() { mAt = 0; }
-    void ClrTg() { mTg = 0; }
-    void SetAtApid(fpc_ProcID id) { mAtApid = id; }
-    void SetTgApid(fpc_ProcID id) { mTgApid = id; }
-    u8 GetRoomId() { return mRoomId; }
-    void SetRoomId(int id) { mRoomId = id; }
-    fpc_ProcID GetAtOldApid() { return mAtOldApid; }
-    fpc_ProcID GetTgOldApid() { return mTgOldApid; }
-    bool ChkNoActor() { return field_0x1C & 1;}
-    bool ChkNoneActorPerfTblId() { return field_0x08 == 0xFFFF; }
-    dCcG_At_Spl GetAtSpl() { return (dCcG_At_Spl)mAt; }
-    void SetAtSpl(dCcG_At_Spl spl) { mAt = spl; }
-    dCcG_Tg_Spl GetTgSpl() { return (dCcG_Tg_Spl)mTg; }
-    void SetTgSpl(dCcG_Tg_Spl spl) { mTg = spl; }
-    void OnNoActor() { field_0x1C |= 1; }
-
-    // private:
-    /* 0x04 */ u8 mAt;
-    /* 0x05 */ u8 mTg;
-    /* 0x06 */ u8 mRoomId;
-    /* 0x08 */ u16 field_0x08;
-    /* 0x0C */ int mAtApid;
-    /* 0x10 */ int mAtOldApid;
-    /* 0x14 */ int mTgApid;
-    /* 0x18 */ int mTgOldApid;
-    /* 0x1C */ int field_0x1C;
-};  // Size = 0x20
-
-class dCcD_Stts : public cCcD_Stts, public dCcD_GStts {
-public:
-    dCcD_Stts() {}
-    /* 80083850 */ virtual cCcD_GStts* GetGStts();
-    /* 80083860 */ void Init(int weight, int, fopAc_ac_c* pactor);
-    /* 800838F4 */ virtual void Ct();
-    /* 80083928 */ virtual void ClrAt();
-    /* 80083934 */ virtual void ClrTg();
-    /* 800851AC */ virtual ~dCcD_Stts() {}
-
-};  // Size = 0x3C
+// unused, existence is inferred
+struct dCcD_SrcPnt {
+};
 
 class dCcD_GObjInf;
 typedef void (*dCcD_HitCallback)(fopAc_ac_c* i_actorA, dCcD_GObjInf* i_objInfA, fopAc_ac_c* i_actorB, dCcD_GObjInf* i_objInfB);
-
 
 // Attack/Defense/Correction Collider Common Base
 class dCcD_GAtTgCoCommonBase {
@@ -271,6 +228,52 @@ public:
     /* 80083B8C */ virtual ~dCcD_GObjCo() {}
     void Set(dCcD_SrcGObjCo const& pSrc) { dCcD_GAtTgCoCommonBase::Set(pSrc.mBase); }
 };  // Size = 0x1C ?
+
+class dCcD_GStts : public cCcD_GStts {
+public:
+    /* 80083760 */ dCcD_GStts();
+    /* 800837F8 */ void Ct();
+    /* 80083830 */ void Move();
+    /* 8008523C */ virtual ~dCcD_GStts() {}
+    void ClrAt() { mAt = 0; }
+    void ClrTg() { mTg = 0; }
+    void SetAtApid(fpc_ProcID id) { mAtApid = id; }
+    void SetTgApid(fpc_ProcID id) { mTgApid = id; }
+    u8 GetRoomId() { return mRoomId; }
+    void SetRoomId(int id) { mRoomId = id; }
+    fpc_ProcID GetAtOldApid() { return mAtOldApid; }
+    fpc_ProcID GetTgOldApid() { return mTgOldApid; }
+    bool ChkNoActor() { return field_0x1C & 1;}
+    bool ChkNoneActorPerfTblId() { return field_0x08 == 0xFFFF; }
+    dCcG_At_Spl GetAtSpl() { return (dCcG_At_Spl)mAt; }
+    void SetAtSpl(dCcG_At_Spl spl) { mAt = spl; }
+    dCcG_Tg_Spl GetTgSpl() { return (dCcG_Tg_Spl)mTg; }
+    void SetTgSpl(dCcG_Tg_Spl spl) { mTg = spl; }
+    void OnNoActor() { field_0x1C |= 1; }
+
+    // private:
+    /* 0x04 */ u8 mAt;
+    /* 0x05 */ u8 mTg;
+    /* 0x06 */ u8 mRoomId;
+    /* 0x08 */ u16 field_0x08;
+    /* 0x0C */ int mAtApid;
+    /* 0x10 */ int mAtOldApid;
+    /* 0x14 */ int mTgApid;
+    /* 0x18 */ int mTgOldApid;
+    /* 0x1C */ int field_0x1C;
+};  // Size = 0x20
+
+class dCcD_Stts : public cCcD_Stts, public dCcD_GStts {
+public:
+    dCcD_Stts() {}
+    /* 80083850 */ virtual cCcD_GStts* GetGStts();
+    /* 80083860 */ void Init(int weight, int, fopAc_ac_c* pactor);
+    /* 800838F4 */ virtual void Ct();
+    /* 80083928 */ virtual void ClrAt();
+    /* 80083934 */ virtual void ClrTg();
+    /* 800851AC */ virtual ~dCcD_Stts() {}
+
+};  // Size = 0x3C
 
 // Object Info
 class dCcD_GObjInf : public cCcD_GObjInf {
@@ -420,6 +423,36 @@ protected:
     /* 0x0E8 */ dCcD_GObjCo mGObjCo;
 };  // Size = 0x104
 
+// Point (unused, existence is inferred)
+// Including this definition (and its GetShapeAttr impl) causes functions
+// from cCcD_PntAttr to be emitted in debug, matching what's seen in ShieldD.
+class dCcD_Pnt : public dCcD_GObjInf, public cCcD_PntAttr {
+public:
+    /* 80084814 */ cCcD_ShapeAttr* GetShapeAttr();
+    /* 8008506C */ virtual ~dCcD_Pnt() {}
+    dCcD_Pnt() {}
+};  // Size = 0x144
+
+// Capsule
+class dCcD_Cps : public dCcD_GObjInf, public cCcD_CpsAttr {
+public:
+    /* 800847D0 */ void Set(dCcD_SrcCps const&);
+    /* 80084814 */ cCcD_ShapeAttr* GetShapeAttr();
+    /* 80084824 */ void CalcAtVec();
+    /* 80084854 */ void CalcTgVec();
+    /* 8008506C */ virtual ~dCcD_Cps() {}
+    dCcD_Cps() {}
+};  // Size = 0x144
+
+// Triangle
+class dCcD_Tri : public dCcD_GObjInf, public cCcD_TriAttr {
+public:
+    /* 80084884 */ void Set(dCcD_SrcTri const&);
+    /* 800848A4 */ cCcD_ShapeAttr* GetShapeAttr();
+    /* 80084EF4 */ virtual ~dCcD_Tri() {}
+    dCcD_Tri() {}
+};
+
 // Cylinder
 class dCcD_Cyl : public dCcD_GObjInf, public cCcD_CylAttr {
 public:
@@ -442,27 +475,6 @@ public:
     /* 80084B34 */ virtual cCcD_ShapeAttr* GetShapeAttr();
     /* 80084BF4 */ virtual ~dCcD_Sph() {}
 };  // Size = 0x138
-
-
-// Capsule
-class dCcD_Cps : public dCcD_GObjInf, public cCcD_CpsAttr {
-public:
-    /* 800847D0 */ void Set(dCcD_SrcCps const&);
-    /* 80084814 */ cCcD_ShapeAttr* GetShapeAttr();
-    /* 80084824 */ void CalcAtVec();
-    /* 80084854 */ void CalcTgVec();
-    /* 8008506C */ virtual ~dCcD_Cps() {}
-    dCcD_Cps() {}
-};  // Size = 0x144
-
-// Triangle
-class dCcD_Tri : public dCcD_GObjInf, public cCcD_TriAttr {
-public:
-    /* 80084884 */ void Set(dCcD_SrcTri const&);
-    /* 800848A4 */ cCcD_ShapeAttr* GetShapeAttr();
-    /* 80084EF4 */ virtual ~dCcD_Tri() {}
-    dCcD_Tri() {}
-};
 
 dCcD_GObjInf* dCcD_GetGObjInf(cCcD_Obj* param_0);
 

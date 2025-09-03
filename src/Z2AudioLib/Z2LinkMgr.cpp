@@ -4,7 +4,7 @@
 //
 
 #include "Z2AudioLib/Z2LinkMgr.h"
-#include "Z2AudioLib\Z2AudioCS.h"
+#include "Z2AudioLib/Z2AudioCS.h"
 #include "d/d_com_inf_game.h"
 
 /* 802C321C-802C3220 2BDB5C 0004+00 0/0 1/1 0/0 .text setLinkGroupInfo__14Z2CreatureLinkFUc */
@@ -333,7 +333,9 @@ JAISoundHandle* Z2CreatureLink::startLinkSoundLevel(JAISoundID i_soundID, u32 pa
             break;
         case Z2SE_AL_SNOBO_RIDE:
         case Z2SE_AL_SNOBO_BREAK:
-            if (dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[266]) && Z2GetSeqMgr()->getSubBgmID() != Z2BGM_SNOW_BOARD) {
+                /* dSv_event_flag_c::F_0266 - Snowpeak Ruins - Snowpeak Ruins clear */
+            if (dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[266])
+                && Z2GetSeqMgr()->getSubBgmID() != Z2BGM_SNOW_BOARD) {
                 var_f31 = 0.0f;
                 var_r30 = 0;
             } else if (mMoveSpeed == 0) {

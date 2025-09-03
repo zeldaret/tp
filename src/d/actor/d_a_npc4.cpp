@@ -1886,8 +1886,7 @@ void daNpcF_offTmpBit(u32 i_no) {
     dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[i_no]);
 }
 
-/* 80155774-80155854 1500B4 00E0+00 0/0 2/2 5/5 .text
- * daNpcF_getPlayerInfoFromPlayerList__FiiR4cXyzR5csXyz         */
+/* 80155774-80155854 1500B4 00E0+00 0/0 2/2 5/5 .text            daNpcF_getPlayerInfoFromPlayerList__FiiR4cXyzR5csXyz */
 int daNpcF_getPlayerInfoFromPlayerList(int param_0, int i_roomNo, cXyz& param_2, csXyz& param_3) {
     int rv = 0;
 

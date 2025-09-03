@@ -1,3 +1,5 @@
+#include "d/dolzel.h"
+
 #include "d/d_home_button.h"
 #include "JSystem/JFramework/JFWDisplay.h"
 #include "Z2AudioLib/Z2AudioCS.h"

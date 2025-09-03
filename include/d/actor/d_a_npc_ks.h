@@ -9,13 +9,78 @@
 /**
  * @ingroup actors-npcs
  * @class npc_ks_class
- * @brief Monkey NPC
+ * @brief Monkey NPC (Kozaru)
  *
  * @details
  *
  */
 class npc_ks_class {
 public:
+    enum Npc_ks_RES_File_ID {
+        /* BCK */
+        /* 0x05 */ BCK_SARU_BAKUCHU = 0x5,
+        /* 0x06 */ BCK_SARU_BIKKURI,
+        /* 0x07 */ BCK_SARU_CALL,
+        /* 0x08 */ BCK_SARU_CALLBACK,
+        /* 0x09 */ BCK_SARU_CALLBACK_K,
+        /* 0x0A */ BCK_SARU_CALL_K,
+        /* 0x0B */ BCK_SARU_CLAP_WAIT,
+        /* 0x0C */ BCK_SARU_CLIMB,
+        /* 0x0D */ BCK_SARU_FALL,
+        /* 0x0E */ BCK_SARU_FIRE_K,
+        /* 0x0F */ BCK_SARU_GODOWN,
+        /* 0x10 */ BCK_SARU_HANGCALL,
+        /* 0x11 */ BCK_SARU_HANGWAIT_A,
+        /* 0x12 */ BCK_SARU_HANGWAIT_B,
+        /* 0x13 */ BCK_SARU_HANGWAIT_C,
+        /* 0x14 */ BCK_SARU_HELP,
+        /* 0x15 */ BCK_SARU_HELP_B,
+        /* 0x16 */ BCK_SARU_HELP_C,
+        /* 0x17 */ BCK_SARU_HOLDING,
+        /* 0x18 */ BCK_SARU_HUNGING,
+        /* 0x19 */ BCK_SARU_INDICATE,
+        /* 0x1A */ BCK_SARU_JUMPRUN,
+        /* 0x1B */ BCK_SARU_JUMPRUN_K,
+        /* 0x1C */ BCK_SARU_JUMPWALK,
+        /* 0x1D */ BCK_SARU_JUMPWALK_K,
+        /* 0x1E */ BCK_SARU_JUMP_ATTN,
+        /* 0x1F */ BCK_SARU_JUMP_L,
+        /* 0x20 */ BCK_SARU_JUMP_S,
+        /* 0x21 */ BCK_SARU_JUMP_T,
+        /* 0x22 */ BCK_SARU_KAGO_JUMP,
+        /* 0x23 */ BCK_SARU_LAND,
+        /* 0x24 */ BCK_SARU_RECOVER,
+        /* 0x25 */ BCK_SARU_RELIEF,
+        /* 0x26 */ BCK_SARU_ROTATE,
+        /* 0x27 */ BCK_SARU_SCARED,
+        /* 0x28 */ BCK_SARU_SCAREDLOOK_K,
+        /* 0x29 */ BCK_SARU_SCARED_B,
+        /* 0x2A */ BCK_SARU_SCARED_K,
+        /* 0x2B */ BCK_SARU_SCARED_LOOK,
+        /* 0x2C */ BCK_SARU_SHAKE_K,
+        /* 0x2D */ BCK_SARU_STOPCALL,
+        /* 0x2E */ BCK_SARU_SURPRISE_K,
+        /* 0x2F */ BCK_SARU_SWIM,
+        /* 0x30 */ BCK_SARU_SWINGPOSE,
+        /* 0x31 */ BCK_SARU_TO_ROTATE,
+        /* 0x32 */ BCK_SARU_WAITSTAND,
+        /* 0x33 */ BCK_SARU_WAIT_A,
+        /* 0x34 */ BCK_SARU_WAIT_A_K,
+        /* 0x35 */ BCK_SARU_WAIT_B,
+        /* 0x36 */ BCK_SARU_WAIT_C,
+        /* 0x37 */ BCK_SARU_WALKCLAP,
+        /* 0x38 */ BCK_SARU_YOROKOBI,
+
+        /* BMDR */
+        /* 0x3B */ BMDR_SARU = 0x3B,
+        /* 0x3C */ BMDR_SARU_BARA,
+        /* 0x3D */ BMDR_SARU_STICK,
+
+        /* BTP */
+        /* 0x40 */ BTP_SARU = 0x40,
+        /* 0x41 */ BTP_SARU_RELIEF,
+    };
+
     /* 0x000 */ fopEn_enemy_c actor;
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ u8 mRoomMonkeyID;
@@ -124,8 +189,8 @@ public:
     /* 0xBE4 */ u32 field_0xbe4[4];
     /* 0xBF4 */ u32 field_0xbf4;
     /* 0xBF8 */ u8 field_0xbf8[0xbfc - 0xbf8];
-    /* 0xBFC */ J3DModel* field_0xbfc;
-    /* 0xC00 */ J3DModel* field_0xc00;
+    /* 0xBFC */ J3DModel* mpRoseModel;
+    /* 0xC00 */ J3DModel* mpStickModel;
     /* 0xC04 */ cXyz field_0xc04;
     /* 0xC10 */ f32 field_0xc10;
     /* 0xC14 */ s16 field_0xc14;
@@ -140,28 +205,5 @@ public:
 };
 
 STATIC_ASSERT(sizeof(npc_ks_class) == 0xc20);
-
-class daNpc_Ks_HIO_c : public JORReflexible {
-public:
-    /* 80A48F8C */ daNpc_Ks_HIO_c();
-    /* 80A5DA90 */ virtual ~daNpc_Ks_HIO_c() {};
-
-    void genMessage(JORMContext*);
-
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 field_0x8;
-    /* 0x0C */ f32 field_0xc;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1c;
-    /* 0x20 */ f32 field_0x20;
-    /* 0x24 */ f32 field_0x24;
-    /* 0x28 */ u8 field_0x28;
-    /* 0x2C */ f32 field_0x2c;
-    /* 0x30 */ f32 field_0x30;
-    /* 0x34 */ f32 field_0x34;
-};
-
 
 #endif /* D_A_NPC_KS_H */

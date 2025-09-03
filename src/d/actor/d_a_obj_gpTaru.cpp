@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_gpTaru.h"
 #include "dol2asm.h"
 
@@ -152,7 +154,6 @@ extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
 extern "C" extern void* __vt__9cCcD_Stts[8];
 extern "C" u8 now__14mDoMtx_stack_c[48];
 extern "C" u8 mGndCheck__11fopAcM_gc_c[84];
-extern "C" extern u8 g_dComIfG_gameInfo[122384];
 extern "C" u8 sincosTable___5JMath[65536];
 extern "C" u8 mEcallback__18dPa_modelEcallBack[4];
 extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
@@ -191,24 +192,6 @@ COMPILER_STRIP_GATE(0x8057F57C, &lit_3659);
 /* 8057F580-8057F584 000010 0004+00 2/10 0/0 0/0 .rodata          @3660 */
 SECTION_RODATA static f32 const lit_3660 = 1.0f;
 COMPILER_STRIP_GATE(0x8057F580, &lit_3660);
-
-/* 8057F688-8057F694 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 8057F694-8057F6A8 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
 
 /* 8057F6A8-8057F6EC 000020 0044+00 2/2 0/0 0/0 .data            mCcDCyl__10daGpTaru_c */
 SECTION_DATA u8 daGpTaru_c::mCcDCyl[68] = {

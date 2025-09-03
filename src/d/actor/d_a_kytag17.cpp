@@ -3,6 +3,8 @@
  * Light Mask Tag
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_kytag17.h"
 #include "d/d_procname.h"
 

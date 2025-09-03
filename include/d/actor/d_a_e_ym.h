@@ -11,22 +11,6 @@
 
 class daKago_c;
 
-class daE_YM_HIO_c {
-public:
-    /* 8080812C */ daE_YM_HIO_c();
-
-    /* 80815458 */ virtual ~daE_YM_HIO_c() {}
-
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 mModelSize;
-    /* 0x0C */ f32 mElectricInvincibilityTimeExtension;
-    /* 0x10 */ f32 mMoveSpeed;
-    /* 0x14 */ f32 mFlyMoveSpeed;
-    /* 0x18 */ f32 mFlyAttackSpeed;
-    /* 0x1C */ f32 mSurpriseDistance;
-    /* 0x20 */ f32 mMoveRange;
-};
-
 /**
  * @ingroup actors-enemies
  * @class daE_YM_c

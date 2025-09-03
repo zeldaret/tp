@@ -3,6 +3,8 @@
  * Object - Boss Warp
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_bosswarp.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_midna.h"
@@ -135,24 +137,6 @@ extern "C" extern u8 data_8057B8D0[4];
 //
 // Declarations:
 //
-
-/* 8057B658-8057B664 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 8057B664-8057B678 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
 
 /* 8057B678-8057B67C -00001 0004+00 3/4 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "ef_Portal";
@@ -699,7 +683,15 @@ int daObjBossWarp_c::demoProc() {
     };
 
     static int const l_dangeon_clr_bitNo[9] = {
-        0x37, 0x40, 0x4E, 0x109, 0x10A, 0x10B, 0x10C, -1, -1
+        0x37, /* dSv_event_flag_c::M_022 - Forest Temple - Forest Temple clear (Midna creates warp hole) */
+        0x40, /* dSv_event_flag_c::M_031 - Goron Mines - Goron Mines clear */
+        0x4E, /* dSv_event_flag_c::M_045 - Lakebed Temple - Lakebed Temple clear */
+        0x109, /* dSv_event_flag_c::F_0265 - Arbiter's Grounds - Arbiter's Grounds clear */
+        0x10A, /* dSv_event_flag_c::F_0266 - Snowpeak Ruins - Snowpeak Ruins clear */
+        0x10B, /* dSv_event_flag_c::F_0267 - Temple of Time - Temple of Time clear */
+        0x10C,
+        -1,
+        -1
     };
 
     daPy_py_c* player = (daPy_py_c*)daPy_getPlayerActorClass();

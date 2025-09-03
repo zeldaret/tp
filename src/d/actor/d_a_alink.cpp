@@ -3,6 +3,8 @@
  * Player (Link) Actor
  */
 
+#include "d/dolzel.h"
+
 #include "d/actor/d_a_alink.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
@@ -174,11 +176,6 @@ static char const l_wolfWorldChangeEventName[21] = "WOLF_WORLD_CHANGE_IN";
 
 /* 8038FA38-8038FA48 01C098 0010+00 0/1 0/0 0/0 .rodata          l_defaultGetEventName */
 static char const l_defaultGetEventName[16] = "DEFAULT_GETITEM";
-
-/* 803AF990-803AF99C 00CAB0 000C+00 4/4 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 803AF99C-803AF9A8 00CABC 000A+02 2/2 0/0 0/0 .data            l_peepEventName */
 static char l_peepEventName[10] = "PEEP_HOLE";
@@ -11238,7 +11235,16 @@ static void* daAlink_searchKolin(fopAc_ac_c* i_actor, void* i_data) {
 
 /* 800B80C4-800B8374 0B2A04 02B0+00 2/2 0/0 0/0 .text            orderZTalk__9daAlink_cFv */
 int daAlink_c::orderZTalk() {
-    if ((!checkReinRide() && !checkModeFlg(0x40000) && !checkMagneBootsOn() && (!mLinkAcch.ChkGroundHit() || checkModeFlg(0x70C52))) || mThrowBoomerangAcKeep.getActor() != NULL || dComIfGp_checkPlayerStatus0(0, 0x8000000) || mProcID == PROC_CRAWL_END || checkHorseZelda() || checkCloudSea() || checkStageName("D_MN08A") || (checkStageName("D_MN09A") && ((fopAcM_GetRoomNo(this) == 50 && dComIfG_play_c::getLayerNo(0) == 0) || fopAcM_GetRoomNo(this) == 51)) || (checkMagneBootsOn() && (!checkStageName("D_MN04B") || !cBgW_CheckBGround(mMagneBootsTopVec.y))) || dComIfGs_isEventBit(0x6140)) {
+    if ((!checkReinRide() && !checkModeFlg(0x40000) && !checkMagneBootsOn()
+         && (!mLinkAcch.ChkGroundHit() || checkModeFlg(0x70C52))) || mThrowBoomerangAcKeep.getActor() != NULL
+        || dComIfGp_checkPlayerStatus0(0, 0x8000000) || mProcID == PROC_CRAWL_END || checkHorseZelda()
+        || checkCloudSea() || checkStageName("D_MN08A") || (checkStageName("D_MN09A")
+        && ((fopAcM_GetRoomNo(this) == 50 && dComIfG_play_c::getLayerNo(0) == 0)
+        || fopAcM_GetRoomNo(this) == 51)) || (checkMagneBootsOn() && (!checkStageName("D_MN04B")
+        || !cBgW_CheckBGround(mMagneBootsTopVec.y)))
+           /* dSv_event_flag_c::F_0800 - Cutscene - After returning to Ordon Woods, until Midna comes out of the shadows 
+                                                    (If 800 is ON, Midna can't be called) */
+        || dComIfGs_isEventBit(0x6140)) {
         return 0;
     }
 
@@ -11608,7 +11614,11 @@ BOOL daAlink_c::checkItemAction() {
             }
         }
 
-        if (((dComIfGs_isEventBit(0x2908) || checkNoResetFlg3(FLG3_UNK_8)) && checkGuardActionChange() && !checkUpperReadyThrowAnime() && !checkModeFlg(0x70C52) && checkShieldGet() && !checkNotBattleStage()) && ((mLinkAcch.ChkGroundHit() || checkMagneBootsOn()) && dComIfGp_getRStatus() == 0)) {
+              /* dSv_event_flag_c::F_0338 - Secret techniques - Obtained 1 secret techinques - Shield attack */
+        if (((dComIfGs_isEventBit(0x2908)
+            || checkNoResetFlg3(FLG3_UNK_8)) && checkGuardActionChange() && !checkUpperReadyThrowAnime()
+            && !checkModeFlg(0x70C52) && checkShieldGet() && !checkNotBattleStage())
+            && ((mLinkAcch.ChkGroundHit() || checkMagneBootsOn()) && dComIfGp_getRStatus() == 0)) {
             setRStatus(0x3A);
 
             if (spActionTrigger()) {
@@ -17361,6 +17371,7 @@ int daAlink_c::procCoMetamorphose() {
         mProcVar0.field_0x3008 = 1;
 
         if (mProcVar4.field_0x3010 != 0) {
+            /* dSv_event_flag_c::F_0776 - Palace of Twilight - Link first turned to wolf due to fog in Palace of Twilight */
             dComIfGs_onEventBit(0x5E40);
         }
     }
@@ -18673,14 +18684,18 @@ void daAlink_c::setDrawHand() {
 bool daAlink_c::checkSwordDraw() {
     return ((checkSwordGet() && mSwordChangeWaitTimer == 0) &&
             !checkNoResetFlg2(FLG2_UNK_2080000)) &&
-           (!checkWolf() || !dComIfGs_isEventBit(0x0C08));
+           (!checkWolf()
+                /* dSv_event_flag_c::M_068 - Main Event - when OFF, wolf carries sword and shield on back */
+            || !dComIfGs_isEventBit(0x0C08));
 }
 
 /* 800CB53C-800CB5F8 0C5E7C 00BC+00 3/3 0/0 0/0 .text            checkShieldDraw__9daAlink_cFv */
 bool daAlink_c::checkShieldDraw() {
     return ((checkShieldGet() && mShieldChangeWaitTimer == 0) &&
             !checkNoResetFlg2(FLG2_UNK_4080000)) &&
-           (!checkWolf() || !dComIfGs_isEventBit(0x0C08));
+           (!checkWolf()
+                /* dSv_event_flag_c::M_068 - Main Event - when OFF, wolf carries sword and shield on back */
+            || !dComIfGs_isEventBit(0x0C08));
 }
 
 /* 800CB5F8-800CB694 0C5F38 009C+00 2/2 0/0 0/0 .text            checkItemDraw__9daAlink_cFv */
@@ -19198,6 +19213,7 @@ int daAlink_c::draw() {
         dComIfGd_setListDark();
         modelDraw(mpLinkModel, temp_r30);
 
+            /* dSv_event_flag_c::M_011 - Inside Hyrule Castle - Midna removes wolf's chains in prison */
         if (dComIfGs_isEventBit(0x510)) {
             for (int i = 0; i < 4; i++) {
                 modelDraw(mpWlChainModels[i], temp_r30);

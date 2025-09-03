@@ -3,6 +3,8 @@
  * Environment Sound Effects handler
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_envse.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_path.h"

@@ -85,9 +85,6 @@ bool Z2EnvSeBase::startEnvSeLevel(JAISoundID param_1, f32 param_2, f32 param_3, 
     return rv;
 }
 
-/* 8039C250-8039C260 0288B0 000C+04 2/2 0/0 0/0 .rodata          cNullVec__6Z2Calc */
-static Vec const cNullVec__6Z2Calc = {0.0f, 0.0f, 0.0f};
-
 /* 802C5C9C-802C5D1C 2C05DC 0080+00 1/1 0/0 0/0 .text            __ct__10Z2EnvSeDirFP3Vec */
 Z2EnvSeDir::Z2EnvSeDir(Vec* param_0) {
     field_0x8 = 0.5f;
@@ -95,7 +92,7 @@ Z2EnvSeDir::Z2EnvSeDir(Vec* param_0) {
     if (param_0) {
         setPanDir(param_0);
     } else {
-        mPanDir = cNullVec__6Z2Calc;
+        mPanDir = Z2Calc::cNullVec;
     }
 }
 
@@ -240,7 +237,10 @@ void Z2EnvSeMgr::framework() {
     int sceneNum = Z2GetSceneMgr()->getCurrentSceneNum();
     if (field_0x64.getPosCount() >= 0) {
         if (field_0x214 == 0x12 ||
-            (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[104]) && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[250])))
+             /* dSv_event_flag_c::M_071 - Cutscene - [cutscene: 20] Zant appears (during Midna's desperate hour) */
+            (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[104])
+                /* dSv_event_flag_c::F_0250 - Cutscene - [cutscene: 21] reunion with Zelda / Midna revived (Hyrule Castle barrier appears) */
+            && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[250])))
         {
             int lVar12 = 0;
             if (sceneNum == 0x17 || sceneNum == 0x18 || (sceneNum == 0x19)) {
@@ -892,7 +892,7 @@ void Z2EnvSeMgr::initStrongWindSe() {
 /* 802C7FC8-802C800C 2C2908 0044+00 0/0 1/1 1/1 .text setWindDirection__10Z2EnvSeMgrFP3Vec */
 void Z2EnvSeMgr::setWindDirection(Vec* param_0) {
     if (mWindType == WIND_TYPE_3) {
-        field_0x144.setPanDir((Vec*)&cNullVec__6Z2Calc);
+        field_0x144.setPanDir(const_cast<Vec*>(&Z2Calc::cNullVec));
     } else {
         field_0x144.setPanDir(param_0);
     }

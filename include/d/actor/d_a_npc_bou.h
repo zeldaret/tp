@@ -14,7 +14,7 @@
  class daNpc_Bou_Param_c {
     public:
         /* 809727F4 */ virtual ~daNpc_Bou_Param_c() {}
-    
+
         struct Data {
             /* 0x00 */ f32 field_0x00; // 255.0f
             /* 0x04 */ f32 field_0x04; // 3.0f
@@ -59,7 +59,7 @@
             /* 0x94 */ f32 field_0x94; // 500.0f
             /* 0x98 */ f32 field_0x98; // -500.0f
         };
-    
+
         static const Data m;
 };
 
@@ -112,12 +112,12 @@ public:
                                daNpcT_c(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8)
                                 {}
 
-    /* 809727D4 */ virtual int checkChangeJoint(int);
-    /* 809727E4 */ virtual int checkRemoveJoint(int);
-    /* 809727CC */ virtual s32 getBackboneJointNo();
-    /* 809727C4 */ virtual s32 getNeckJointNo();
-    /* 809727BC */ virtual s32 getHeadJointNo();
-    /* 809727B4 */ virtual u16 getEyeballMaterialNo();
+    /* 809727D4 */ virtual int checkChangeJoint(int param_0) { return param_0 == 4; }
+    /* 809727E4 */ virtual int checkRemoveJoint(int param_0) { return param_0 == 8; }
+    /* 809727CC */ virtual s32 getBackboneJointNo() { return 1; }
+    /* 809727C4 */ virtual s32 getNeckJointNo() { return 3; }
+    /* 809727BC */ virtual s32 getHeadJointNo() { return 4; }
+    /* 809727B4 */ virtual u16 getEyeballMaterialNo() { return 1; }
     /* 8096DD44 */ virtual void afterJntAnm(int);
     /* 8096DDC8 */ virtual void setParam();
     /* 8096DF9C */ virtual BOOL checkChangeEvt();
@@ -204,39 +204,6 @@ private:
 };
 
 STATIC_ASSERT(sizeof(daNpc_Bou_c) == 0xffc);
-
-/* 809727B4-809727BC 005914 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__11daNpc_Bou_cFv */
-u16 daNpc_Bou_c::getEyeballMaterialNo() {
-    return 1;
-}
-
-/* 809727BC-809727C4 00591C 0008+00 1/0 0/0 0/0 .text            getHeadJointNo__11daNpc_Bou_cFv */
-s32 daNpc_Bou_c::getHeadJointNo() {
-    return 4;
-}
-
-/* 809727C4-809727CC 005924 0008+00 1/0 0/0 0/0 .text            getNeckJointNo__11daNpc_Bou_cFv */
-s32 daNpc_Bou_c::getNeckJointNo() {
-    return 3;
-}
-
-/* 809727CC-809727D4 00592C 0008+00 1/0 0/0 0/0 .text            getBackboneJointNo__11daNpc_Bou_cFv
- */
-s32 daNpc_Bou_c::getBackboneJointNo() {
-    return 1;
-}
-
-/* 809727D4-809727E4 005934 0010+00 1/0 0/0 0/0 .text            checkChangeJoint__11daNpc_Bou_cFi
- */
-int daNpc_Bou_c::checkChangeJoint(int param_0) {
-    return param_0 == 4;
-}
-
-/* 809727E4-809727F4 005944 0010+00 1/0 0/0 0/0 .text            checkRemoveJoint__11daNpc_Bou_cFi
- */
-int daNpc_Bou_c::checkRemoveJoint(int param_0) {
-    return param_0 == 8;
-}
 
 
 #endif /* D_A_NPC_BOU_H */

@@ -3,24 +3,26 @@
  * Graphics Management Functions
  */
 
-#include "m_Do/m_Do_graphic.h"
-#include "dolphin/base/PPCArch.h"
+#include "d/dolzel.h"
+
+#include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "JSystem/J2DGraph/J2DPrint.h"
+#include "JSystem/JFramework/JFWSystem.h"
+#include "JSystem/JParticle/JPADrawInfo.h"
+#include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTDbPrint.h"
 #include "JSystem/JUtility/JUTProcBar.h"
 #include "JSystem/JUtility/JUTTexture.h"
+#include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_menu_collect.h"
+#include "dolphin/base/PPCArch.h"
 #include "f_ap/f_ap_game.h"
 #include "m_Do/m_Do_controller_pad.h"
+#include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_machine.h"
 #include "m_Do/m_Do_main.h"
-#include "SSystem/SComponent/c_math.h"
-#include "JSystem/J2DGraph/J2DOrthoGraph.h"
-#include "JSystem/JParticle/JPADrawInfo.h"
-#include "JSystem/JUtility/JUTConsole.h"
-#include "JSystem/JFramework/JFWSystem.h"
 
 /* 80007D9C-80007E44 0026DC 00A8+00 1/1 0/0 0/0 .text            createTimg__FUsUsUl */
 static ResTIMG* createTimg(u16 width, u16 height, u32 format) {
@@ -85,7 +87,7 @@ u8 mDoGph_gInf_c::mBlureRate;
 
 u8 mDoGph_gInf_c::mFade;
 
-bool data_80450BE7;
+bool mDoGph_gInf_c::mAutoForcus;
 
 /* 80007E44-80007F90 002784 014C+00 1/1 0/0 0/0 .text            create__13mDoGph_gInf_cFv */
 void mDoGph_gInf_c::create() {
@@ -510,7 +512,7 @@ static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_
             GXBegin(GX_QUADS, GX_VTXFMT0, 4);
             GXPosition3s16(x_orig, y_orig_pos, -5);
             GXTexCoord2s8(0, 0);
-            GXPosition3s16(width, y_orig_pos, -5); 
+            GXPosition3s16(width, y_orig_pos, -5);
             GXTexCoord2s8(1, 0);
             GXPosition3s16(width, height, -5);
             GXTexCoord2s8(1, 1);

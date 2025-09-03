@@ -1,3 +1,5 @@
+#include "d/dolzel.h"
+
 #include "d/d_item_data.h"
 
 /* 803AC5A0-803ADD88 -00001 17E8+00 0/0 10/10 2/2 .data            item_resource__10dItem_data */

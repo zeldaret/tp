@@ -3,11 +3,25 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_rb.h"
 #include "d/d_com_inf_game.h"
-
-UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
+
+class daE_RB_HIO_c : public JORReflexible {
+public:
+    /* 8076238C */ daE_RB_HIO_c();
+    /* 80764838 */ virtual ~daE_RB_HIO_c() {}
+
+#if DEBUG
+    void genMessage(JORMContext*);
+#endif
+
+    /* 0x4 */ s8 id;
+    /* 0x8 */ f32 base_size;
+    /* 0xC */ f32 ground_depth;
+};
 
 enum daE_RB_ACTION {
     ACTION_STAY,
@@ -829,9 +843,9 @@ static int daE_RB_Create(fopAc_ac_c* i_this) {
         if (!l_HIOInit) {
             a_this->HIOInit = TRUE;
             l_HIOInit = TRUE;
-            //l_HIO.id = mDoHIO_CREATE_CHILD("リーバ", &l_HIO);
+            l_HIO.id = mDoHIO_CREATE_CHILD("リーバ", &l_HIO);
         }
-    
+
         i_this->attention_info.flags = 4;
         fopAcM_SetMtx(i_this, a_this->modelMorf->getModel()->getBaseTRMtx());
         i_this->health = 1;

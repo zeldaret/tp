@@ -3,27 +3,24 @@
  * dolzel2 - Quest Log Management (File Select Menu)
  */
 
-#include "d/d_file_select.h"
-#include "d/d_file_sel_info.h"
+#include "d/dolzel.h"
+
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
-#include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
+#include "JSystem/JKernel/JKRSolidHeap.h"
+#include "d/d_file_sel_info.h"
+#include "d/d_file_select.h"
+#include "d/d_lib.h"
 #include "d/d_meter2_info.h"
+#include "d/d_msg_string.h"
 #include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_MemCard.h"
+#include "m_Do/m_Do_MemCardRWmng.h"
+#include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
-#include "m_Do/m_Do_Reset.h"
-#include "m_Do/m_Do_MemCardRWmng.h"
-#include "JSystem/J2DGraph/J2DTextBox.h"
-#include "d/d_lib.h"
-#include "d/d_msg_string.h"
-#include "JSystem/JKernel/JKRSolidHeap.h"
-
-/* 803BA848-803BA854 017968 000C+00 6/6 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 803BA854-803BA860 017974 000C+00 3/3 0/0 0/0 .data            SelStartFrameTbl */
 static s32 SelStartFrameTbl[3] = {

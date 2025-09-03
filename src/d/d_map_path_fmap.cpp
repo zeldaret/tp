@@ -3,8 +3,10 @@
 // Translation Unit: d/d_map_path_fmap
 //
 
-#include "d/d_map_path_fmap.h"
+#include "d/dolzel.h"
+
 #include "d/d_com_inf_game.h"
+#include "d/d_map_path_fmap.h"
 
 /* 8003D790-8003D818 0380D0 0088+00 1/1 0/0 0/0 .text
  * addTypeGroupData__26fmpTresTypeGroupDataList_cFUcPCQ27dTres_c6data_s */
@@ -599,6 +601,7 @@ bool dMenuFmapIconDisp_c::isDrawDisp() {
             if (dComIfGp_getStartStageDarkArea() == 2) {
                 int tres_no = mpTresData->mNo;
                 if (tres_no == 0x33 || tres_no == 0x34 || tres_no == 0x35) {
+                        /* dSv_event_flag_c::M_086 - Twilight Hyrule Field - Show Boss Bug's Tear of Light on the map */
                     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[119])) {
                         bVar1 = true;
                     }
@@ -654,17 +657,4 @@ bool dMenuFmapIconDisp_c::isDrawDisp() {
     }
 
     return ret;
-}
-
-/* 8003EB10-8003EB70 039450 0060+00 1/1 1/1 0/0 .text __dt__26fmpTresTypeGroupDataList_cFv */
-fmpTresTypeGroupDataList_c::~fmpTresTypeGroupDataList_c() {
-    if (mpTypeGroupDataHead != NULL) {
-        delete mpTypeGroupDataHead;
-    }
-}
-
-/* 8003EC90-8003ECA0 0395D0 0010+00 1/1 0/0 0/0 .text __ct__26fmpTresTypeGroupDataList_cFv */
-fmpTresTypeGroupDataList_c::fmpTresTypeGroupDataList_c() {
-    mpTypeGroupDataHead = NULL;
-    mpNextData = NULL;
 }

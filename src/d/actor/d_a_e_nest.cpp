@@ -3,6 +3,8 @@
  * Enemy - Beehive
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_nest.h"
 #include "d/actor/d_a_npc_tk.h"
 #include "SSystem/SComponent/c_math.h"
@@ -309,6 +311,7 @@ static void e_nest_normal(e_nest_class* i_this) {
                             i_this->mHitActorID = fopAcM_GetID(daPy_getPlayerActorClass());
                             if (!strcmp(dComIfGp_getStartStageName(), "F_SP103")) {
                                 i_this->mDemoStage = 1;
+                                /* dSv_event_flag_c::F_0084 - Ordon Village - Opening days 2&3: knocked down a beehive with slingshot */
                                 dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[183]);
                             }
                         }
@@ -318,12 +321,14 @@ static void e_nest_normal(e_nest_class* i_this) {
                             || i_this->mAtInfo.mHitType == HIT_TYPE_BOOMERANG
                             || i_this->mAtInfo.mHitType == HIT_TYPE_STUN) {
                         i_this->mHitActorID = fopAcM_GetID(daPy_getPlayerActorClass());
+                        /* dSv_event_flag_c::F_0073 - Ordon Village - Attacked after charging at large beehive */
                         dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[172]);
                     } else if (fopAcM_GetName(actor) == PROC_NPC_TK) {
                         daNPC_TK_c* hawk = static_cast<daNPC_TK_c*>(actor);
                         hawk->setBump();
                         i_this->mHitActorID = fopAcM_GetID(hawk);
                         i_this->mKnockDown = 1;
+                        /* dSv_event_flag_c::F_0072 - Ordon Village - Knocked down large beehive with hawk */
                         dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[171]);
                         i_this->mHitTimer = 20;
                         i_this->mHawkHit = true;

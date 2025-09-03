@@ -3,12 +3,14 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_tobyhouse.h"
 #include "d/actor/d_a_obj_carry.h"
 #include "d/d_bg_w.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_bomb.h"
-#include "Z2AudioLib\Z2Instances.h"
+#include "Z2AudioLib/Z2Instances.h"
 
 #ifdef DEBUG
 daObjTobyHouse_HIO_c l_HIO;
@@ -134,8 +136,6 @@ void daObjTobyHouse_c::setBaseMtx() {
     mDoMtx_stack_c::YrotM(field_0x5e0);
     MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
-
-UNK_REL_DATA
 
 /* 80D17878-80D17880 -00001 0008+00 4/4 0/0 0/0 .data            l_arcName */
 static char* l_arcName[2] = {
@@ -272,8 +272,6 @@ int daObjTobyHouse_c::Execute(Mtx** i_mtx) {
     return 1;
 }
 
-UNK_REL_BSS
-
 /* 80D16560-80D1661C 000BA0 00BC+00 1/1 0/0 0/0 .text            action__16daObjTobyHouse_cFv */
 void daObjTobyHouse_c::action() {
     static daObjTobyHouse_c::actionFunc l_func[4] = {
@@ -378,6 +376,7 @@ void daObjTobyHouse_c::demoProc() {
             mActiveBck->setPlaySpeed(1.0f);
             mActiveBck->setFrame(0.0f);
             fopAcM_seStart(this, Z2SE_OBJ_THOUSE_CLOSE, 0);
+            /* dSv_event_flag_c::F_0063 - Lake Hylia - Used Fyer's cannon for first time */
             dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[161]);
             break;
         case 2:

@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_door_mbossL1.h"
 #include "d/actor/d_a_obj_stopper.h"
 #include "d/actor/d_a_obj_keyhole.h"
@@ -60,21 +62,6 @@ static u16 const l_door_heap_size[12] = {
 static u16 const l_stop_heap_size[12] = {
     0x0000, 0x0000, 0x0800, 0x0000, 0x1540, 0x1BD0,
     0x0EA0, 0x0800, 0x0EB0, 0x0800, 0x0800, 0x1BD0,
-};
-
-/* 80677970-8067797C 000000 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 8067797C-80677990 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
 };
 
 /* 80677990-806779BC -00001 002C+00 0/1 0/0 0/0 .data            l_door_open_demo */

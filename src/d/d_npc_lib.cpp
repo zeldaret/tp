@@ -1,3 +1,5 @@
+#include "d/dolzel.h"
+
 #include "d/d_npc_lib.h"
 #include "SSystem/SComponent/c_math.h"
 

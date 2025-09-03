@@ -3,6 +3,8 @@
  * Tag - Spinner Path
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tag_sppath.h"
 #include "d/actor/d_a_player.h"
 #include "math.h"

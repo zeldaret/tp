@@ -2,6 +2,8 @@
 // Item Message Screen
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_msg_scrn_item.h"
 #include "d/d_msg_scrn_light.h"
 #include "d/d_msg_scrn_arrow.h"

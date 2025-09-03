@@ -3,6 +3,8 @@
 // Translation Unit: d/d_gameover
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_gameover.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "d/d_com_inf_game.h"
@@ -93,14 +95,9 @@ void dDlst_Gameover_CAPTURE_c::draw() {
     GXEnd();
 }
 
-/* 803BBB50-803BBB5C 018C70 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
 /* 803BBBC8-803BBC34 018CE8 006C+00 2/3 0/0 0/0 .data            init_process */
 typedef void (dGameover_c::*initFunc)();
-initFunc init_process[] = {
+static initFunc init_process[] = {
     &dGameover_c::playerAnmWait_init, &dGameover_c::dispFadeOut_init, &dGameover_c::dispWait_init,
     &dGameover_c::demoFadeIn_init,    &dGameover_c::demoFadeOut_init, &dGameover_c::saveOpen_init,
     &dGameover_c::saveMove_init,      &dGameover_c::saveClose_init,   &dGameover_c::deleteWait_init,
@@ -108,7 +105,7 @@ initFunc init_process[] = {
 
 /* 803BBCA0-803BBD0C 018DC0 006C+00 1/2 0/0 0/0 .data            move_process */
 typedef void (dGameover_c::*moveFunc)();
-moveFunc move_process[] = {
+static moveFunc move_process[] = {
     &dGameover_c::playerAnmWait_proc, &dGameover_c::dispFadeOut_proc, &dGameover_c::dispWait_proc,
     &dGameover_c::demoFadeIn_proc,    &dGameover_c::demoFadeOut_proc, &dGameover_c::saveOpen_proc,
     &dGameover_c::saveMove_proc,      &dGameover_c::saveClose_proc,   &dGameover_c::deleteWait_proc,

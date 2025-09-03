@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_hhashi.h"
 #include "d/actor/d_a_e_fm.h"
 #include "d/d_cc_d.h"

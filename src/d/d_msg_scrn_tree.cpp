@@ -1,3 +1,5 @@
+#include "d/dolzel.h"
+
 #include "d/d_msg_scrn_tree.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"

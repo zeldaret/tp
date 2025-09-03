@@ -3,14 +3,11 @@
  * Event Callback Library
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_event_lib.h"
 #include "d/d_com_inf_game.h"
 #include "f_op/f_op_actor.h"
-
-/* 803A82B8-803A82C4 0053D8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 8004886C-800488A4 0431AC 0038+00 0/0 0/0 23/23 .text eventUpdate__17dEvLib_callback_cFv */
 bool dEvLib_callback_c::eventUpdate() {

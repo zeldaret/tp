@@ -1,7 +1,9 @@
 /**
- * @file d_a_coach_fire.cpp
+* @file d_a_coach_fire.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_coach_fire.h"
 

@@ -225,6 +225,9 @@ public:
     bool ChkRoofRegist() { return field_0x91 & 4;}
     cBgD_Vtx_t* GetVtxTbl() const { return pm_vtx_tbl; }
     int GetVtxNum() const { return pm_bgd->m_v_num; }
+    void ClrNoCalcVtx() { mFlags &= ~NO_CALC_VTX_e; }
+    void SetBaseMtxP(MtxP mtx) { pm_base = mtx; }
+    void SetNoCalcVtx() { mFlags |= NO_CALC_VTX_e; }
 
 public:
     /* 0x18 */ MtxP pm_base;  // Model Matrix
@@ -328,6 +331,7 @@ public:
 
     void SetCrrFunc(dBgW_CrrFunc func) { m_crr_func = func; }
     void SetRideCallback(dBgW_RideCallback func) { m_ride_callback = func; }
+    void SetArrowStickCallback(dBgW_ArrowStickCallback func) { m_arrow_stick_callback = func; }
     void OnMoveFlag() { m_flags |= 1; }
 
 private:

@@ -1,16 +1,15 @@
 /**
- * @file d_a_npc_moi.cpp
+* @file d_a_npc_moi.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_npc_moi.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_ep.h"
 #include "d/actor/d_a_npc_uri.h"
-
-UNK_REL_DATA
-UNK_REL_BSS
 
 /* 80A7B17C-80A7B1BC 000020 0040+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[8][2] = {
@@ -811,6 +810,8 @@ void daNpc_Moi_c::action() {
     }
 
     if (mSph.ChkAtHit() && fopAcM_GetProfName(mSph.GetAtHitAc()) == PROC_ALINK) {
+        /* dSv_event_tmp_flag_c::T_0047 - Ordon Village - Right after wrestling with Bo 
+                                          (Used to connect with conversation after wearing clothes) */
         daNpcF_onTmpBit(0x47);
     }
 }
@@ -1108,6 +1109,7 @@ BOOL daNpc_Moi_c::chkPlayerGetWoodShield() {
 /* 80A766DC-80A76888 00287C 01AC+00 2/2 0/0 0/0 .text            setSSlash__11daNpc_Moi_cFi */
 void daNpc_Moi_c::setSSlash(int param_1) {
     mMotionSeqMngr.setNo(43, 0.0f, 1, 0);
+        /* dSv_event_tmp_flag_c::GUARD_URI - Ordon Village - Rusl is guarding Uli, Ordon village night */
     if (dComIfGs_isTmpBit(0x1308)) {
         mSound.startCreatureVoice(JAISoundID(Z2SE_MOI_V_GUARD_SWING), -1);
     } else {
@@ -1125,6 +1127,8 @@ void daNpc_Moi_c::setSSlash(int param_1) {
     field_0x1658 = 0;
     field_0x166b = 1;
     field_0x166c = 1;
+    /* dSv_event_tmp_flag_c::T_0047 - Ordon Village - Right after wrestling with Bo 
+                                      (Used to connect with conversation after wearing clothes) */
     daNpcT_onTmpBit(0x47);
 }
 
@@ -1282,6 +1286,7 @@ int daNpc_Moi_c::injuryTurn(cXyz param_1) {
 
 /* 80A76F3C-80A770FC 0030DC 01C0+00 1/1 0/0 0/0 .text            injuryWalk__11daNpc_Moi_cFv */
 int daNpc_Moi_c::injuryWalk() {
+    /* dSv_event_tmp_flag_c::GUARD_URI - Ordon Village - Rusl is guarding Uli, Ordon village night */
     dComIfGs_offTmpBit(0x1308);
 
     cXyz cStack_40;
@@ -1367,6 +1372,7 @@ int daNpc_Moi_c::poise() {
                             field_0x1648 = cLib_getRndValue(iVar13 * 0.5f, iVar13 * 1.5f);
                         } else if (!cLib_calcTimer(&field_0x1648)) {
                             mMotionSeqMngr.setNo(43, 0.0f, 1, 0);
+                                /* dSv_event_tmp_flag_c::GUARD_URI - Ordon Village - Rusl is guarding Uli, Ordon village night */
                             if (dComIfGs_isTmpBit(0x1308)) {
                                 mSound.startCreatureVoice(JAISoundID(Z2SE_MOI_V_GUARD_SWING), -1);
                             } else {

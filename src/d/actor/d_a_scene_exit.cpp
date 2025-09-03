@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_scene_exit.h"
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_player.h"

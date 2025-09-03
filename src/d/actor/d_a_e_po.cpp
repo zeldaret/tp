@@ -1,19 +1,17 @@
 /**
- * @file d_a_e_po.cpp
+* @file d_a_e_po.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_e_po.h"
 #include "d/actor/d_a_obj_poFire.h"
 #include "d/d_cc_d.h"
 #include "d/d_cc_uty.h"
-
-UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
 
 /* ############################################################################################## */
-
-static u8 padding[0x3C];  // Padding to align .bss
 
 /* 80757ADA-80757ADC 000036 0002+00 6/7 0/0 0/0 .data            mAttackNo */
 static s16 mAttackNo = 3;
@@ -840,11 +838,13 @@ static void e_po_dead(e_po_class* i_this) {
     camera_class* camera = static_cast<camera_class*>(dComIfGp_getCamera(0));
     dBgS_LinChk lin_chk;
     cXyz scale(1.0f, 1.0f, 1.0f);
+    csXyz local_1a4;  // Angle for particles
     dBgS_GndChk gnd_chk;
     i_this->field_0x754 = 10;
     daPy_py_c* player_actor = daPy_getPlayerActorClass();
     player_actor->setWolfEnemyHangBiteAngle(fopAcM_searchPlayerAngleY(a_this) + 0x8000);
 
+    int i;
     switch (i_this->mType) {
     case 30:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
@@ -972,7 +972,7 @@ static void e_po_dead(e_po_class* i_this) {
 
     case 4:
         J3DModel* model_p = i_this->mpMorf3->getModel();
-        for (int i = 0; i < 4; i++) {
+        for (i = 0; i < 4; i++) {
             i_this->mParticleKey[i] =
                 dComIfGp_particle_set(i_this->mParticleKey[i], dead_eff_Dt1[i],
                                       &a_this->current.pos, &a_this->shape_angle, &scale);
@@ -981,27 +981,27 @@ static void e_po_dead(e_po_class* i_this) {
                 emitter->setGlobalRTMatrix(model_p->getAnmMtx(0x10));
             }
 
-            i_this->mParticleKey2[i] =
-                dComIfGp_particle_set(i_this->mParticleKey2[i], dead_eff_Dt1[i],
+            i_this->mParticleKey2[i + 4] =
+                dComIfGp_particle_set(i_this->mParticleKey2[i + 4], dead_eff_Dt1[i],
                                       &a_this->current.pos, &a_this->shape_angle, &scale);
-            emitter = dComIfGp_particle_getEmitter(i_this->mParticleKey2[i]);
+            emitter = dComIfGp_particle_getEmitter(i_this->mParticleKey2[i + 4]);
             if (emitter != NULL) {
                 emitter->setGlobalRTMatrix(model_p->getAnmMtx(0x15));
             }
         }
 
-        for (int i = 0; i < 2; i++) {
-            i_this->mParticleKey3[i] =
-                dComIfGp_particle_set(i_this->mParticleKey3[i], dead_eff_Dt2[i],
+        for (i = 0; i < 2; i++) {
+            i_this->mParticleKey3[i + 8] =
+                dComIfGp_particle_set(i_this->mParticleKey3[i + 8], dead_eff_Dt2[i],
                                       &a_this->current.pos, &a_this->shape_angle, &scale);
-            JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->mParticleKey3[i]);
+            JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->mParticleKey3[i + 8]);
             if (emitter != NULL) {
                 emitter->setGlobalRTMatrix(model_p->getAnmMtx(0xA));
             }
-            i_this->mParticleKey4[i] =
-                dComIfGp_particle_set(i_this->mParticleKey4[i], dead_eff_Dt3[i],
+            i_this->mParticleKey4[i + 10] =
+                dComIfGp_particle_set(i_this->mParticleKey4[i + 10], dead_eff_Dt3[i],
                                       &a_this->current.pos, &a_this->shape_angle, &scale);
-            emitter = dComIfGp_particle_getEmitter(i_this->mParticleKey4[i]);
+            emitter = dComIfGp_particle_getEmitter(i_this->mParticleKey4[i + 10]);
             if (emitter != NULL) {
                 emitter->setGlobalRTMatrix(model_p->getAnmMtx(0x7));
             }
@@ -1042,13 +1042,12 @@ static void e_po_dead(e_po_class* i_this) {
         break;
 
     case 5:
-        csXyz local_1a4;  // Angle for particles
-
         cLib_addCalc0(&i_this->field_0x800, 0.8f, 10.0f);
         if (i_this->field_0x74A[1] != 0) {
             if (i_this->field_0x74A[1] == 1) {
                 if (!i_this->field_0x788.x && !i_this->field_0x788.z) {
-                    PSMTXCopy(i_this->mpMorf3->getModel()->getAnmMtx(0x15), *calc_mtx);
+                    J3DModel* model = i_this->mpMorf3->getModel();
+                    PSMTXCopy(model->getAnmMtx(0x15), *calc_mtx);
                     local_100.set(50.0f, 0.0f, 0.0f);
                     MtxPosition(&local_100, &i_this->field_0x788);
                     if (i_this->mAcch.GetGroundH() != -1e9f) {
@@ -1056,10 +1055,9 @@ static void e_po_dead(e_po_class* i_this) {
                     }
                 }
                 local_1a4 = i_this->field_0x764;
-                local_1a4.z = 0;
-                local_1a4.x = 0;
+                local_1a4.x = local_1a4.z = 0;
                 local_100.set(i_this->field_0x788);
-                for (int i = 0; i < 7; i++) {
+                for (i = 0; i < 7; i++) {
                     dComIfGp_particle_set(particleNmaeDt[i], &local_100, &local_1a4, &scale);
                 }
                 i_this->field_0x74A[2] = 50;
@@ -1076,9 +1074,7 @@ static void e_po_dead(e_po_class* i_this) {
             Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_FIRE_FLY, &i_this->field_0x788, 0, 0, 1.0f, 1.0f,
                                           -1.0f, -1.0f, 0);
         } else {
-            local_1a4.z = 0;
-            local_1a4.y = 0;
-            local_1a4.x = 0;
+            local_1a4.x = local_1a4.y = local_1a4.z = 0;
             if (i_this->field_0x758 == 0) {
                 Z2GetAudioMgr()->seStart(Z2SE_OBJ_KNTR_BREAK, &i_this->field_0x788, 0, 0, 1.0f,
                                          1.0f, -1.0f, -1.0f, 0);
@@ -1092,7 +1088,7 @@ static void e_po_dead(e_po_class* i_this) {
                 i_this->field_0x788.y - (i_this->field_0x788.y + i_this->field_0x7C4);
             i_this->field_0x814.z = i_this->field_0x788.z - i_this->field_0x788.z;
             i_this->field_0x814 *= 0.8f;
-            for (int i = 0; i < 2; i++) {
+            for (i = 0; i < 2; i++) {
                 i_this->mParticleKey5[i] =
                     dComIfGp_particle_set(i_this->mParticleKey5[i], dead_eff_Dt4[i],
                                           &i_this->field_0x788, &local_1a4, &scale);
@@ -1111,7 +1107,8 @@ static void e_po_dead(e_po_class* i_this) {
                 var_r0 = TRUE;
             }
             if (var_r0) {
-                u32 param = i_this->mArg0 | 0xFFFFF000;
+                u32 param = 0xFFFFF000;
+                param |= i_this->mArg0;
                 i_this->field_0x5B8 = fopAcM_create(PROC_Obj_poFire, param, &i_this->field_0x788,
                                                     fopAcM_GetRoomNo(a_this), NULL, NULL, -1);
                 i_this->mType = 7;
@@ -1130,9 +1127,12 @@ static void e_po_dead(e_po_class* i_this) {
             camera_player->mCamera.SetTrimSize(0);
             dComIfGp_event_reset();
             dComIfGs_addPohSpiritNum();
-            if (g_dComIfG_gameInfo.info.getPlayer().getCollect().getPohNum() == 0x14) {
+#if !PLATFORM_SHIELD
+            if (dComIfGs_getPohSpiritNum() == 0x14) {
+                /* dSv_event_flag_c::F_0457 - Castle Town - Revived cat */
                 dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[457]);
             }
+#endif
             daPy_getPlayerActorClass()->cancelOriginalDemo();
         } else if (mArg0Check(i_this, 0) != 0) {
             if (!fopAcM_isSwitch(a_this, 0x22)) {
@@ -1226,7 +1226,7 @@ static void e_po_dead(e_po_class* i_this) {
         i_this->mType += 1;
 
     case 51:
-        if (dComIfGp_event_runCheck() != FALSE) {
+        if (dComIfGp_event_runCheck()) {
             if (a_this->eventInfo.checkCommandDemoAccrpt()) {
                 if (dComIfGp_getEventManager().endCheck(i_this->field_0x762) != 0) {
                     dComIfGp_event_reset();

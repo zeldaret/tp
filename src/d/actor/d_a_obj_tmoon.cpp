@@ -3,6 +3,8 @@
  * Moon in Hidden Skill Scene
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_tmoon.h"
 #include "f_op/f_op_draw_tag.h"
 

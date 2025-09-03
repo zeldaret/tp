@@ -3,6 +3,8 @@
  * Object - Golden Butterfly
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_cho.h"
 #include "SSystem/SComponent/c_math.h"
 #include "m_Do/m_Do_lib.h"
@@ -515,7 +517,10 @@ static int daObjCHO_Execute(daObjCHO_c* i_this) {
 }
 
 /* 80BCC670-80BCC674 0000F8 0004+00 1/2 0/0 0/0 .rodata          l_musiya_num */
-static u16 const l_musiya_num[2] = {0x0193, 0x0194};
+static u16 const l_musiya_num[2] = {
+    0x0193, /* dSv_event_flag_c::F_0403 - Misc. - Butterfly (M) */
+    0x0194, /* dSv_event_flag_c::F_0404 - Misc. - Butterfly (F) */
+};
 
 /* 80BCBE70-80BCC01C 001C50 01AC+00 1/1 0/0 0/0 .text            CreateChk__10daObjCHO_cFv */
 bool daObjCHO_c::CreateChk() {

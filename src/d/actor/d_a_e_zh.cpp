@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_zh.h"
 #include "d/actor/d_a_obj_carry.h"
 #include "d/d_com_inf_game.h"
@@ -68,8 +70,6 @@ enum Particle {
     /* 0x8A70 */ ZL2_SMOKE00_7,
 };
 
-UNK_REL_DATA;
-
 /* 8082F440-8082F480 000020 0040+00 0/1 0/0 0/0 .data cc_zhSph_src__22@unnamed@d_a_e_zh_cpp@ */
 namespace {
     static dCcD_SrcSph cc_zhSph_src = {
@@ -121,8 +121,6 @@ daE_ZH_HIO_c::daE_ZH_HIO_c() {
     piyori_time = 300;
     dungeon_bit_check = 0;
 }
-
-UNK_REL_BSS;
 
 /* 8082F725 0003+00 data_8082F725 None */
 static u8 l_initHIO;
@@ -859,7 +857,7 @@ void daE_ZH_c::executeBallWait() {
             spa4.z = WREG_F(1) + 2000.0f;
             MtxPosition(&spa4, &spb0);
             field_0x680 = spb0 + current.pos;
-            lin_chk.onBackFlag();
+            lin_chk.OnBackFlag();
             lin_chk.Set(&current.pos, &field_0x680, this);
 
             if (dComIfG_Bgsp().LineCross(&lin_chk)) {
@@ -1529,16 +1527,26 @@ void daE_ZH_c::executeCatchFlyMove() {
             dComIfGs_offOneZoneSwitch(5, fopAcM_GetRoomNo(this));
 
             if (bitSw == 16) {
+                /* dSv_event_flag_c::F_0311 - Palace of Twilight - Palace of Twilight use 1 */
                 dComIfGs_offEventBit(0x2640);
+                /* dSv_event_flag_c::F_0313 - Palace of Twilight - Palace of Twilight use 3 */
                 dComIfGs_offEventBit(0x2610);
+                /* dSv_event_flag_c::F_0315 - Palace of Twilight - Palace of Twilight use 5 */
                 dComIfGs_offEventBit(0x2604);
+                /* dSv_event_flag_c::F_0317 - Palace of Twilight - Palace of Twilight use 7 */
                 dComIfGs_offEventBit(0x2601);
+                /* dSv_event_flag_c::F_0319 - Palace of Twilight - Palace of Twilight use 9 */
                 dComIfGs_offEventBit(0x2740);
             } else {
+                /* dSv_event_flag_c::F_0312 - Palace of Twilight - Palace of Twilight use 2 */
                 dComIfGs_offEventBit(0x2620);
+                /* dSv_event_flag_c::F_0314 - Palace of Twilight - Palace of Twilight use 4 */
                 dComIfGs_offEventBit(0x2608);
+                /* dSv_event_flag_c::F_0316 - Palace of Twilight - Palace of Twilight use 6 */
                 dComIfGs_offEventBit(0x2602);
+                /* dSv_event_flag_c::F_0318 - Palace of Twilight - Palace of Twilight use 8 */
                 dComIfGs_offEventBit(0x2780);
+                /* dSv_event_flag_c::F_0320 - Palace of Twilight - Palace of Twilight use 10 */
                 dComIfGs_offEventBit(0x2720);
             }
 

@@ -3,9 +3,11 @@
 // Translation Unit: d/d_cc_d
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_cc_d.h"
-#include "f_pc/f_pc_searcher.h"
 #include "f_op/f_op_actor_mng.h"
+#include "f_pc/f_pc_searcher.h"
 
 /* 8008364C-80083660 07DF8C 0014+00 3/3 0/0 0/0 .text ClrActorInfo__22dCcD_GAtTgCoCommonBaseFv */
 void dCcD_GAtTgCoCommonBase::ClrActorInfo() {
@@ -362,6 +364,10 @@ void dCcD_GObjInf::Set(dCcD_SrcGObjInf const& src) {
 /* 8008479C-800847C8 07F0DC 002C+00 2/2 1/1 3/3 .text            dCcD_GetGObjInf__FP8cCcD_Obj */
 dCcD_GObjInf* dCcD_GetGObjInf(cCcD_Obj* p_obj) {
     return (dCcD_GObjInf*)p_obj->GetGObjInf();
+}
+
+cCcD_ShapeAttr* dCcD_Pnt::GetShapeAttr() {
+    return this;
 }
 
 /* 800847D0-80084814 07F110 0044+00 0/0 1/1 20/20 .text            Set__8dCcD_CpsFRC11dCcD_SrcCps */

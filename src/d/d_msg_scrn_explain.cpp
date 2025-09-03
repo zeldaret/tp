@@ -1,3 +1,5 @@
+#include "d/dolzel.h"
+
 #include "d/d_msg_scrn_explain.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "d/d_lib.h"
@@ -12,11 +14,6 @@
 #include "stdio.h"
 
 extern dMsgObject_HIO_c g_MsgObject_HIO_c;
-
-/* 803C0E40-803C0E4C 01DF60 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 static dMsgScrnExplain_c::ProcFunc init_process[] = {
     &dMsgScrnExplain_c::wait_init,        &dMsgScrnExplain_c::open_request_init,

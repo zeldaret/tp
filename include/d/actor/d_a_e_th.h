@@ -17,7 +17,7 @@ struct th_ke_s {
 /**
  * @ingroup actors-enemies
  * @class e_th_class
- * @brief Darkhammer
+ * @brief Darkhammer (Tekkyuuhei)
  * 
  * @details 
  * 
@@ -92,19 +92,5 @@ public:
 };
 
 STATIC_ASSERT(sizeof(e_th_class) == 0x123c);
-
-class daE_TH_HIO_c : public JORReflexible {
-public:
-    /* 807B038C */ daE_TH_HIO_c();
-    /* 807B3FA4 */ virtual ~daE_TH_HIO_c() {}
-
-    void genMessage(JORMContext*);
-
-    /* 0x04 */ s8 no;
-    /* 0x08 */ f32 base_size;
-    /* 0x0C */ u8 unk_0xC[0x10 - 0xC];
-    /* 0x10 */ f32 move_range;
-    /* 0x14 */ f32 middle_move_range;
-};
 
 #endif /* D_A_E_TH_H */

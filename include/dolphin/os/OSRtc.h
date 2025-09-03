@@ -21,6 +21,13 @@ extern "C" {
 #define OS_EURGB60_OFF 0
 #define OS_EURGB60_ON  1
 
+#define OS_LANGUAGE_ENGLISH 0
+#define OS_LANGUAGE_GERMAN  1
+#define OS_LANGUAGE_FRENCH  2
+#define OS_LANGUAGE_SPANISH 3
+#define OS_LANGUAGE_ITALIAN 4
+#define OS_LANGUAGE_DUTCH   5
+
 typedef struct OSSram {
     u16 checkSum;
     u16 checkSumInv;

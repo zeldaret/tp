@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_L7low_dr.h"
 #include "d/d_com_inf_game.h"
 
@@ -183,6 +185,7 @@ static int daL7lowDr_Create(daL7lowDr_c* i_this) {
 
 /* 805AAEA8-805AAF44 000928 009C+00 1/1 0/0 0/0 .text            draw__11daL7lowDr_cFv */
 int daL7lowDr_c::draw() {
+         /* dSv_event_flag_c::F_0510 - City in the Sky - Watched City in the Sky start cutscene */
     if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[510])) {
         return 1;
     }

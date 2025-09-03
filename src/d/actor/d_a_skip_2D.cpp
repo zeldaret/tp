@@ -3,6 +3,8 @@
  *
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_skip_2D.h"
 #include "d/d_meter_button.h"
 #include "f_op/f_op_actor_mng.h"

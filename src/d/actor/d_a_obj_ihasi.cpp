@@ -1,7 +1,9 @@
 /**
- * @file d_a_obj_ihasi.cpp
+* @file d_a_obj_ihasi.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_obj_ihasi.h"
 #include "d/d_com_inf_game.h"
@@ -75,6 +77,7 @@ static int daObj_Ihasi_Execute(obj_ihasi_class* i_this) {
 
         dComIfG_Bgsp().Release(i_this->mpBgW);
         i_this->mpBgW = NULL;
+        /* dSv_event_flag_c::M_050 - Main Event - Eldin Bridge disappears */
         dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x53]);
     }
 
@@ -153,7 +156,8 @@ static int daObj_Ihasi_Create(fopAc_ac_c* i_actor) {
         csXyz angle;
         cXyz pos;
 
-        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x53]) != 0) {
+            /* dSv_event_flag_c::M_050 - Main Event - Eldin Bridge disappears */
+        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x53])) {
             angle.set(0x0, -0x8000, 0x0);
             pos.set(34750.0f, -300.0f, -44000.0f);
 

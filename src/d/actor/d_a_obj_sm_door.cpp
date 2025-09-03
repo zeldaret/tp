@@ -3,6 +3,8 @@
  * Object - Sacred Meadow Door
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_sm_door.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "f_op/f_op_actor_mng.h"
@@ -158,6 +160,35 @@ static int daObjSM_DOOR_Execute(daObjSM_DOOR_c* i_this) {
     return i_this->MoveBGExecute();
 }
 
+/* 80CD90A4-80CD9258 000B64 01B4+00 1/0 0/0 0/0 .text            CreateHeap__14daObjSM_DOOR_cFv */
+inline int daObjSM_DOOR_c::CreateHeap() {
+    J3DModelData* model_data;
+    J3DModelData* alpha_model_data;
+
+    if (mType == 0) {
+        model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "A_SM_DoorA.bmd");
+        alpha_model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "A_SM_DoorA_Alpha.bmd");
+    } else if (mType == 1) {
+        model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "A_SM_DoorBl.bmd");
+        alpha_model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "A_SM_DoorBl_Alpha.bmd");
+    } else if (mType == 2) {
+        model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "A_SM_DoorWo.bmd");
+        alpha_model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "A_SM_DoorWo_Alpha.bmd");
+    }
+
+    mpAlphaModel = mDoExt_J3DModel__create(alpha_model_data, 0x80000, 0x11000084);
+    if (mpAlphaModel == NULL) {
+        return 0;
+    }
+
+    mpModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
+    if (mpModel == NULL) {
+        return 0;
+    }
+
+    return 1;
+}
+
 /* 80CD8D4C-80CD902C 00080C 02E0+00 1/1 0/0 0/0 .text            create__14daObjSM_DOOR_cFv */
 cPhs__Step daObjSM_DOOR_c::create() {
     fopAcM_SetupActor(this, daObjSM_DOOR_c);
@@ -213,44 +244,15 @@ static int daObjSM_DOOR_IsDelete(daObjSM_DOOR_c* i_this) {
     return 1;
 }
 
-/* 80CD90A4-80CD9258 000B64 01B4+00 1/0 0/0 0/0 .text            CreateHeap__14daObjSM_DOOR_cFv */
-int daObjSM_DOOR_c::CreateHeap() {
-    J3DModelData* model_data;
-    J3DModelData* alpha_model_data;
-
-    if (mType == 0) {
-        model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "A_SM_DoorA.bmd");
-        alpha_model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "A_SM_DoorA_Alpha.bmd");
-    } else if (mType == 1) {
-        model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "A_SM_DoorBl.bmd");
-        alpha_model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "A_SM_DoorBl_Alpha.bmd");
-    } else if (mType == 2) {
-        model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "A_SM_DoorWo.bmd");
-        alpha_model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "A_SM_DoorWo_Alpha.bmd");
-    }
-
-    mpAlphaModel = mDoExt_J3DModel__create(alpha_model_data, 0x80000, 0x11000084);
-    if (mpAlphaModel == NULL) {
-        return 0;
-    }
-
-    mpModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
-    if (mpModel == NULL) {
-        return 0;
-    }
-
-    return 1;
-}
-
 /* 80CD9258-80CD929C 000D18 0044+00 1/0 0/0 0/0 .text            Create__14daObjSM_DOOR_cFv */
-int daObjSM_DOOR_c::Create() {
+inline int daObjSM_DOOR_c::Create() {
     fopAcM_setCullSizeBox(this, -1000.0f, -500.0f, -1000.0f, 1000.0f, 500.0f, 1000.0f);
     return cPhs_COMPLEATE_e;
 }
 
 /* 80CD929C-80CD930C 000D5C 0070+00 1/0 0/0 0/0 .text            Execute__14daObjSM_DOOR_cFPPA3_A4_f
  */
-int daObjSM_DOOR_c::Execute(Mtx** i_mtxP) {
+inline int daObjSM_DOOR_c::Execute(Mtx** i_mtxP) {
     if (mSwType == 0xF) {
         DrawChk1();
     } else if (mSwType == 0) {
@@ -264,7 +266,7 @@ int daObjSM_DOOR_c::Execute(Mtx** i_mtxP) {
 }
 
 /* 80CD930C-80CD9544 000DCC 0238+00 1/0 0/0 0/0 .text            Draw__14daObjSM_DOOR_cFv */
-int daObjSM_DOOR_c::Draw() {
+inline int daObjSM_DOOR_c::Draw() {
     if (mActive) {
         g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);
 
@@ -299,7 +301,7 @@ int daObjSM_DOOR_c::Draw() {
 }
 
 /* 80CD9544-80CD9578 001004 0034+00 1/0 0/0 0/0 .text            Delete__14daObjSM_DOOR_cFv */
-int daObjSM_DOOR_c::Delete() {
+inline int daObjSM_DOOR_c::Delete() {
     dComIfG_resDelete(&mPhase, l_arcName);
     return 1;
 }

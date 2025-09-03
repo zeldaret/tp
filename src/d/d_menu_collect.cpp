@@ -3,6 +3,8 @@
  * Collection Menu
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_menu_collect.h"
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
@@ -32,11 +34,6 @@
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "d/d_menu_window.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
-
-/* 803BC380-803BC38C 0194A0 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 typedef void (dMenu_Collect2D_c::*initFunc)();
 static initFunc init[] = {
@@ -237,12 +234,19 @@ bool dMenu_Collect2D_c::isFishIconVisible() {
 
 /* 801B061C-801B071C 1AAF5C 0100+00 2/2 0/0 0/0 .text isSkillIconVisible__17dMenu_Collect2D_cFv */
 bool dMenu_Collect2D_c::isSkillIconVisible() {
+        /* dSv_event_flag_c::F_0338 - Secret techniques - Obtained 1 secret techinques - Shield attack */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[338]) ||
+        /* dSv_event_flag_c::F_0339 - Secret techniques - Obtained 2 secret techinques */
         dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[339]) ||
+        /* dSv_event_flag_c::F_0340 - Secret techniques - Obtained 3 secret techinques */
         dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[340]) ||
+        /* dSv_event_flag_c::F_0341 - Secret techniques - Obtained 4 secret techinques */
         dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[341]) ||
+        /* dSv_event_flag_c::F_0342 - Secret techniques - Obtained 5 secret techinques */
         dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[342]) ||
+        /* dSv_event_flag_c::F_0343 - Secret techniques - Obtained 6 secret techinques */
         dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[343]) ||
+        /* dSv_event_flag_c::F_0344 - Secret techniques - Obtained 7 secret techinques */
         dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[344]))
     {
         return true;
@@ -321,7 +325,9 @@ void dMenu_Collect2D_c::screenSet() {
     field_0x22d[1][0] = 0;
     field_0x22d[2][0] = 0;
     field_0x22d[3][0] = dComIfGs_isItemFirstBit(0x28) ||
-                                (dComIfGs_isItemFirstBit(0x3F) && !dComIfGs_isEventBit(0x302)) ?
+                        (dComIfGs_isItemFirstBit(0x3F)
+                            /* dSv_event_flag_c::F_0026 - Ordon Village - gave wooden sword to talo on 3rd day */
+                        && !dComIfGs_isEventBit(0x302)) ?
                             true :
                             false;
 
@@ -329,7 +335,9 @@ void dMenu_Collect2D_c::screenSet() {
         if (dComIfGs_isItemFirstBit(0x28)) {
             mpScreen->search('ken_00')->hide();
             mpScreen->search('ken_01')->show();
-        } else if (dComIfGs_isItemFirstBit(0x3F) && !dComIfGs_isEventBit(0x302)) {
+        } else if (dComIfGs_isItemFirstBit(0x3F)
+                       /* dSv_event_flag_c::F_0026 - Ordon Village - gave wooden sword to talo on 3rd day */
+                   && !dComIfGs_isEventBit(0x302)) {
             mpScreen->search('ken_00')->show();
             mpScreen->search('ken_01')->hide();
         }
@@ -546,6 +554,7 @@ void dMenu_Collect2D_c::screenSet() {
     field_0x1d8[5][3] = 0;
     field_0x1d8[6][3] = 0;
     field_0x1d8[0][4] = dMsgObject_getSmellTypeMessageID() + 0x100;
+        /* dSv_event_flag_c::F_0456 - Castle Town - First time meeting with Jovani */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[456])) {
         field_0x1d8[1][4] = 0x12d8;
     } else {
@@ -2556,7 +2565,9 @@ u8 dMenu_Collect3D_c::getMirrorNum() {
 /* 801B7504-801B75E8 1B1E44 00E4+00 4/4 0/0 0/0 .text getMaskMdlVisible__17dMenu_Collect3D_cFv */
 u8 dMenu_Collect3D_c::getMaskMdlVisible() {
     if ((getCrystalNum() == 0 && getMirrorNum() == 0) ||
+         /* dSv_event_flag_c::M_071 - Cutscene - [cutscene: 20] Zant appears (during Midna's desperate hour) */
         (dComIfGs_isEventBit(0xC01) && !dComIfGs_isCollectMirror(0)) ||
+         /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
         (dComIfGs_isEventBit(0x2B08) && !dComIfGs_isCollectCrystal(3)))
     {
         return 0;

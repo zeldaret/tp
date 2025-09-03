@@ -3,6 +3,8 @@
  * Tag - Yami (Twili)
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tag_yami.h"
 #include "d/d_com_inf_game.h"
 
@@ -26,6 +28,7 @@ const static dCcD_SrcCyl l_sph_src = {
 int daTagYami_c::create() {
     fopAcM_SetupActor(this, daTagYami_c);
 
+        /* dSv_event_flag_c::F_0570 - Palace of Twilight - Cleared Palace of Twilight */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[570])) {
         return cPhs_ERROR_e;
     }
@@ -157,5 +160,3 @@ extern actor_process_profile_definition g_profile_TAG_YAMI = {
     fopAc_ACTOR_e,           // mActorType
     fopAc_CULLBOX_CUSTOM_e,  // cullType
 };
-
-#pragma nosyminline on

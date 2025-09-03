@@ -2,6 +2,8 @@
  * @file d_a_obj_waterfall.cpp
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_waterfall.h"
 #include "d/actor/d_a_arrow.h"
 #include "d/d_com_inf_game.h"

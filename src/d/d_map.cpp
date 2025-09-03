@@ -3,6 +3,9 @@
  *
  */
 
+// not sure if this object is supposed to have a PCH -
+// including it completely messes up weak function ordering
+
 #define NO_INLINE_DLSTBASE_DRAW
 
 #include "d/d_map.h"
@@ -480,6 +483,7 @@ bool renderingAmap_c::isDrawIconSingle2(dTres_c::data_s const* i_data, bool para
                 if (dComIfGp_getStartStageDarkArea() == 2) {
                     int temp_r3 = i_data->mNo;
                     if (temp_r3 == 0x33 || temp_r3 == 0x34 || temp_r3 == 0x35) {
+                            /* dSv_event_flag_c::M_086 - Twilight Hyrule Field - Show Boss Bug's Tear of Light on the map */
                         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[119])) {
                             temp_r23_2 = true;
                         }

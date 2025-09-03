@@ -68,19 +68,4 @@ private:
 
 STATIC_ASSERT(sizeof(daObjKLift00_c) == 0x1160);
 
-struct daObjKLift00_HIO_c : public mDoHIO_entry_c {
-    daObjKLift00_HIO_c();
-    ~daObjKLift00_HIO_c() {};
-
-    void genMessage(JORMContext*);
-
-    /* 0x04 */ f32 mChainGravity;
-    /* 0x08 */ f32 mRideParameters;
-    /* 0x0C */ f32 mWindSwayOccuranceFactor;
-    /* 0x10 */ f32 mWindMagnitudeChain;
-    /* 0x14 */ f32 mWindMagnitudeFoundation;
-    /* 0x18 */ f32 mChainHitSpeed;
-    /* 0x1C */ f32 field_0x1C;
-};
-
 #endif /* D_A_OBJ_KLIFT00_H */

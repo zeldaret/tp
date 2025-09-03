@@ -13,6 +13,6 @@ _dtors = .dtors:0x00000000; // type:label scope:global
 @92361 = .rodata:0x00000000; // type:object size:0x4 scope:local
 @92362 = .rodata:0x00000004; // type:object size:0x4 scope:local
 @92363 = .rodata:0x00000008; // type:object size:0x4 scope:local
-lbl_96_data_0 = .data:0x00000000; // type:object size:0xC
+lbl_96_data_0 = .data:0x00000000; // type:object size:0xA data:string
 l_daObj_Fmobj_Method = .data:0x0000000C; // type:object size:0x20 scope:global
 g_profile_OBJ_FMOBJ = .data:0x0000002C; // type:object size:0x30 scope:global

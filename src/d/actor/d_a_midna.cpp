@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_midna.h"
 #include "SSystem/SComponent/c_math.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
@@ -521,7 +523,7 @@ cPhs__Step daMidna_c::create() {
             return cPhs_ERROR_e;
         }
 
-        mpFunc = &checkMetamorphoseEnableBase;
+        mpFunc = &daMidna_c::checkMetamorphoseEnableBase;
         
         for (u16 i = 0; i < 3; i++) {
             mBckHeap[i].createHeap(daPy_anmHeap_c::HEAP_TYPE_3);
@@ -1779,6 +1781,8 @@ void daMidna_c::setBckAnime(J3DAnmTransform* i_bck, int i_attr, f32 i_morf) {
 /* 804C103C-804C287C 004E9C 1840+00 2/2 0/0 0/0 .text            setAnm__9daMidna_cFv */
 // NONMATCHING regalloc
 void daMidna_c::setAnm() {
+    BOOL bVar1, bVar2, bVar3;
+
     offStateFlg0((daMidna_FLG0)(FLG0_NO_HAIR_SCALE | FLG0_UNK_200000));
 
     if (setDemoAnm()) {
@@ -1787,14 +1791,13 @@ void daMidna_c::setAnm() {
 
     daAlink_c* link = daAlink_getAlinkActorClass();
 
-    BOOL bVar1;
     if (dComIfGp_event_runCheck() || checkEndResetStateFlg0(ERFLG0_NO_SERVICE_WAIT)) {
         bVar1 = TRUE;
     } else {
         bVar1 = FALSE;
     }
-    BOOL bVar2 = FALSE;
-    BOOL bVar3 = TRUE;
+    bVar2 = FALSE;
+    bVar3 = TRUE;
     bool tired = checkMidnaTired();
     daMidna_ANM anm;
 
@@ -2071,7 +2074,7 @@ void daMidna_c::setAnm() {
         } else if (anm == ANM_S_RETURN) {
             current.pos.x += 90.0f * cM_ssin(shape_angle.y);
             current.pos.z += 90.0f * cM_scos(shape_angle.y);
-            shape_angle.y += 0x8000;
+            shape_angle.y += (s16)0x8000;
             field_0x85a = shape_angle.y;
             current.angle.y = shape_angle.y;
             mpMorf->getOldTransInfo()[JNT_BACKBONE1].mTranslate.z += 90.0f;
@@ -2132,8 +2135,7 @@ void daMidna_c::setAnm() {
                 || (checkSetAnime(0, ANM_SWAITC) && fabsf(speedF) > 0.1f))
             {
                 offStateFlg0(FLG0_UNK_1);
-                u16 res_id = m_anmDataTable[anm].mResID;
-                J3DAnmTransform* bck = (J3DAnmTransform*)mBckHeap[0].loadDataIdx(res_id);
+                J3DAnmTransform* bck = (J3DAnmTransform*)mBckHeap[0].loadDataIdx(m_anmDataTable[anm].mResID);
                 setBckAnime(bck, J3DFrameCtrl::EMode_LOOP, 5.0f);
                 setUpperAnime(mBckHeap[0].getIdx(), 0xffff);
             } else if (checkSetAnime(0, ANM_SWAITB) && mUpperBck.checkFrame(95.0f)
@@ -2141,8 +2143,7 @@ void daMidna_c::setAnm() {
             {
                 anm = ANM_SWAITC;
                 setUpperAnimeAndSe(ANM_SWAITC);
-                u16 res_id = m_anmDataTable[anm].mResID;
-                J3DAnmTransform* bck = (J3DAnmTransform*)mBckHeap[0].loadDataIdx(res_id);
+                J3DAnmTransform* bck = (J3DAnmTransform*)mBckHeap[0].loadDataIdx(m_anmDataTable[anm].mResID);
                 setBckAnime(bck, J3DFrameCtrl::EMode_NONE, 0.0f);
             }
         } else if (daPy_py_c::checkNowWolf() && !bVar1
@@ -2949,7 +2950,9 @@ void daMidna_c::setMidnaNoDrawFlg() {
 BOOL daMidna_c::checkMetamorphoseEnableBase() {
     BOOL tmp;
     if (!daAlink_getAlinkActorClass()->checkMidnaRide() || (g_env_light.mEvilInitialized & 0x80)
-        || !dComIfGs_isEventBit(0xd04) || fopAcIt_Judge((fopAcIt_JudgeFunc)daMidna_searchNpc, &tmp))
+            /* dSv_event_flag_c::M_077 - Main Event - Get shadow crystal (can now transform) */
+        || !dComIfGs_isEventBit(0xD04)
+        || fopAcIt_Judge((fopAcIt_JudgeFunc)daMidna_searchNpc, &tmp))
     {
         return FALSE;
     }

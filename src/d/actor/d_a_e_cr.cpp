@@ -3,11 +3,24 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_cr.h"
 #include "d/d_cc_d.h"
-
-UNK_REL_DATA;
 #include "f_op/f_op_actor_enemy.h"
+
+class daE_CR_HIO_c : public JORReflexible {
+public:
+    /* 8069800C */ daE_CR_HIO_c();
+    /* 806997F4 */ virtual ~daE_CR_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ s8 id;
+    /* 0x08 */ f32 base_size;
+    /* 0x0C */ f32 move_speed;
+    /* 0x10 */ f32 pl_search_range;
+};
 
 enum daE_CR_ACTION {
     ACTION_MOVE,

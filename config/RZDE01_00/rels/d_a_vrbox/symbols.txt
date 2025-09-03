@@ -11,6 +11,6 @@ _ctors = .ctors:0x00000000; // type:label scope:global
 _dtors = .dtors:0x00000000; // type:label scope:global
 @89857 = .rodata:0x00000000; // type:object size:0x4 scope:local
 @89858 = .rodata:0x00000004; // type:object size:0x4 scope:local align:4 data:float
-lbl_44_data_0 = .data:0x00000000; // type:object size:0x10
+lbl_44_data_0 = .data:0x00000000; // type:object size:0xF data:string
 l_daVrbox_Method = .data:0x00000010; // type:object size:0x20 scope:global
 g_profile_VRBOX = .data:0x00000030; // type:object size:0x30 scope:global

@@ -3,14 +3,14 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_lp.h"
 #include "d/actor/d_a_canoe.h"
 #include "d/actor/d_a_mg_rod.h"
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_player.h"
 #include "Z2AudioLib/Z2Instances.h"
-
-UNK_REL_BSS
 
 /* 80C54198-80C542FC 000078 0164+00 1/0 0/0 0/0 .text            daObj_Lp_Draw__FP12obj_lp_class */
 static int daObj_Lp_Draw(obj_lp_class* i_this) {
@@ -241,8 +241,8 @@ static int daObj_Lp_Execute(obj_lp_class* i_this) {
         if (mCanoe) {
             tandem = mCanoe->checkTandem();
             dmg_rod_class* mDmgRod = (dmg_rod_class*)fopAcM_SearchByName(0x2e4);
-            if (((mDmgRod && mDmgRod->field_0x13b4 == 11) &&
-                mDmgRod->field_0x13b6 > 20) && mDmgRod->field_0x13b6 < 0x3c) {
+            if (((mDmgRod && mDmgRod->play_cam_mode == 11) &&
+                mDmgRod->play_cam_timer > 20) && mDmgRod->play_cam_timer < 0x3c) {
                     demo_f = 1;
             } else {
                 demo_f = 0;

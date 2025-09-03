@@ -29,7 +29,7 @@ public:
     };
 
     daAmiShutter_c(): dEvLib_callback_c(this) {}
-    /* 80BA22E8 */ ~daAmiShutter_c() {};
+    /* 80BA22E8 */ ~daAmiShutter_c() {}
 
     /* 80BA155C */ void setBaseMtx();
     /* 80BA15E4 */ int CreateHeap();
@@ -76,19 +76,5 @@ private:
 };
 
 STATIC_ASSERT(sizeof(daAmiShutter_c) == 0x5dc);
-
-struct daAmiShutter_HIO_c : public mDoHIO_entry_c {
-    /* 0x04 */ f32 mRange;
-    /* 0x08 */ f32 mMaxOpenSpeed;
-    /* 0x0c */ f32 mMaxCloseSpeed;
-    /* 0x10 */ u8 mWaitTime;
-    /* 0x11 */ u8 field_0x11;
-
-    /* 80BA14CC */ daAmiShutter_HIO_c();
-    /* 80BA21E0 */ ~daAmiShutter_HIO_c() {};
-
-    void genMessage(JORMContext*);
-};
-
 
 #endif /* D_A_OBJ_AMISHUTTER_H */

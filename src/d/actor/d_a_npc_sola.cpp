@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_sola.h"
 #include "dol2asm.h"
 
@@ -222,24 +224,6 @@ extern "C" void __register_global_object();
 SECTION_DEAD static char const* const stringBase_80AEF1E0 = "";
 SECTION_DEAD static char const* const stringBase_80AEF1E1 = "NO_RESPONSE";
 SECTION_DEAD static char const* const stringBase_80AEF1ED = "solA";
-#pragma pop
-
-/* 80AEF1F4-80AEF200 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80AEF200-80AEF214 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 #pragma pop
 
 /* 80AEF214-80AEF21C 000020 0008+00 1/1 0/0 0/0 .data            l_bmdData */

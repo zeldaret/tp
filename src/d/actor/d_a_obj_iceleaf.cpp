@@ -1,7 +1,9 @@
 /**
- * @file d_a_obj_iceleaf.cpp
+* @file d_a_obj_iceleaf.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_obj_iceleaf.h"
 #include "SSystem/SComponent/c_math.h"
@@ -19,8 +21,6 @@ void daObjIceLeaf_c::initBaseMtx() {
     mpModel->setBaseScale(scale);
     setBaseMtx();
 }
-
-UNK_REL_DATA
 
 /* 80C25DD0-80C25DD4 -00001 0004+00 7/7 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "V_IceLeaf";
@@ -242,6 +242,7 @@ void daObjIceLeaf_c::action() {
 void daObjIceLeaf_c::modeDropWait() {
     daPy_py_c* player = daPy_getPlayerActorClass();
 
+        /* dSv_event_flag_c::F_0308 - Snowpeak mountain - Watched first meeting event with Yeto at top of mountain (human) */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x134])) {
         bool start_drop = false;
         if (player->current.pos.abs(current.pos) < 250.0f &&

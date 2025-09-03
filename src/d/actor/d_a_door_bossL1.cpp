@@ -2,6 +2,8 @@
 // Translation Unit: Boss Door L1
 //
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_door_bossL1.h"
 #include "d/actor/d_a_obj_keyhole.h"
 #include "d/d_door_param2.h"
@@ -11,24 +13,6 @@
 #include "d/d_meter2_info.h"
 #include "SSystem/SComponent/c_math.h"
 #include "f_op/f_op_actor_mng.h"
-
-/* 804E4DF8-804E4E04 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 804E4E04-804E4E18 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
 
 /* 804E4E18-804E4E68 -00001 0050+00 1/1 0/0 0/0 .data            l_stageName$3673 */
 static char* l_stageName[20] = {
@@ -756,7 +740,7 @@ int daBdoorL1_c::unlockInit() {
     obj_keyhole_class* keyhole = (obj_keyhole_class*)fopAcM_SearchByID(mKeyHoleId);
     if (keyhole != NULL) {
         keyhole->setOpen();
-        mDoAud_seStart(Z2SE_OBJ_BOSS_LOCK_OPEN, &keyhole->current.pos, 0, 0);
+        mDoAud_seStart(Z2SE_OBJ_BOSS_LOCK_OPEN, &keyhole->actor.current.pos, 0, 0);
     }
     field_0x59b = 1;
     return 1;

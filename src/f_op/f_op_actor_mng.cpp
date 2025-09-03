@@ -3,20 +3,26 @@
  * Actor Manager
  */
 
-#pragma nosyminline on
+#include "d/dolzel.h"
 
-#include "f_op/f_op_actor_mng.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "SSystem/SComponent/c_malloc.h"
 #include "SSystem/SComponent/c_math.h"
+#include "d/actor/d_a_obj_carry.h"
 #include "d/actor/d_a_player.h"
 #include "d/actor/d_a_tag_stream.h"
 #include "d/d_item.h"
 #include "d/d_path.h"
+#include "f_op/f_op_actor_mng.h"
 #include "f_op/f_op_scene_mng.h"
 #include "m_Do/m_Do_lib.h"
+
+class l_HIO {
+public:
+    /* 8001E098 */ ~l_HIO() {}
+};
 
 #define MAKE_ITEM_PARAMS(itemNo, itemBitNo, param_2, param_3)                                      \
     ((itemNo & 0xFF) << 0 | (itemBitNo & 0xFF) << 0x8 | param_2 << 0x10 | (param_3 & 0xF) << 0x18)
@@ -135,10 +141,10 @@ void fopAcM_Log(fopAc_ac_c const* i_actor, char const* i_message) {}
 
 /* 80019C7C-80019CB8 0145BC 003C+00 0/0 10/10 483/483 .text            fopAcM_delete__FP10fopAc_ac_c
  */
-void fopAcM_delete(fopAc_ac_c* i_actor) {
+s32 fopAcM_delete(fopAc_ac_c* i_actor) {
     // "Deleting Actor"
     fopAcM_Log(i_actor, "アクターの削除");
-    fpcM_Delete(i_actor);
+    return fpcM_Delete(i_actor);
 }
 
 /* 80019CB8-80019D18 0145F8 0060+00 0/0 3/3 12/12 .text            fopAcM_delete__FUi */
@@ -1571,18 +1577,18 @@ fopAc_ac_c* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo,
 
 /* 8001C870-8001C95C 0171B0 00EC+00 0/0 0/0 1/1 .text fopAcM_createBokkuri__FUsPC4cXyziiiPC4cXyzii
  */
-fpc_ProcID fopAcM_createBokkuri(u16 i_setId, const cXyz* i_pos, int param_3, int param_4,
-                                int i_roomNo, const cXyz* param_6, int param_7, int param_8) {
-    csXyz angle(0, 0, 0);
+fpc_ProcID fopAcM_createBokkuri(u16 i_setId, const cXyz* i_pos, int i_itemNo, int i_itemBit,
+                                int i_roomNo, const cXyz* param_6, int i_itemType, int param_8) {
+    csXyz params_ex(0, 0, 0);
     if (param_6 != NULL) {
-        angle.y = param_6->atan2sX_Z();
-        angle.y += (s16)(2048.0f * cM_rndFX(1.0f));
+        params_ex.y = param_6->atan2sX_Z();
+        params_ex.y += (s16)(2048.0f * cM_rndFX(1.0f));
         param_8 = 1;
     }
-    u32 actorParams = 0;
-    make_prm_bokkuri(&actorParams, &angle, 6, param_3, param_4, param_7, param_8);
-    return fopAcM_create(PROC_Obj_Carry, i_setId, actorParams, i_pos, i_roomNo, &angle, NULL, -1,
-                         NULL);
+
+    u32 params = 0;
+    daObjCarry_c::make_prm_bokkuri(&params, &params_ex, i_itemNo, i_itemBit, i_itemType, param_8);
+    return fopAcM_create(PROC_Obj_Carry, i_setId, params, i_pos, i_roomNo, &params_ex, NULL, -1, NULL);
 }
 
 /* 8001C95C-8001C9CC 01729C 0070+00 0/0 0/0 12/12 .text

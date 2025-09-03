@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_b_zant_magic.h"
 #include "d/actor/d_a_b_zant.h"
 #include "d/d_com_inf_game.h"
@@ -20,8 +22,6 @@ int daB_ZANTM_c::draw() {
 static int daB_ZANTM_Draw(daB_ZANTM_c* i_this) {
     return i_this->draw();
 }
-
-UNK_REL_DATA
 
 namespace {
 /* 80650508-80650554 000020 004C+00 0/1 0/0 0/0 .data            cc_zant_src__30@unnamed@d_a_b_zant_magic_cpp@ */

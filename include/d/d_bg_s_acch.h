@@ -174,6 +174,7 @@ public:
     void OnLineCheckHit() { m_flags |= LINE_CHECK_HIT; }
     bool ChkGroundAway() const { return (m_flags & GROUND_AWAY) != 0; }
     void ClrGroundHit() { m_flags &= ~GROUND_HIT; }
+    void SetGroundCheckOffset(f32 offset) { m_gnd_chk_offset = offset; }
 
     cM3dGCyl* GetWallBmdCylP() { return &m_wall_cyl; }
     fopAc_ac_c* getMyAc() { return m_my_ac; }
@@ -215,7 +216,7 @@ public:
     /* 0x090 */ f32 field_0x90;
     /* 0x094 */ f32 field_0x94;
     /* 0x098 */ f32 m_ground_h;
-    /* 0x09C */ f32 field_0x9c;
+    /* 0x09C */ f32 m_gnd_chk_offset;
     /* 0x0A0 */ cM3dGPla field_0xa0;
     /* 0x0B4 */ bool field_0xb4;
     /* 0x0B8 */ f32 field_0xb8;
@@ -250,7 +251,9 @@ public:
     }
 
     /* 80BB336C */ virtual ~dBgS_ObjAcch() {}
-};
+}; // Size: 0x1D8
+
+STATIC_ASSERT(sizeof(dBgS_ObjAcch) == 0x1D8);
 
 class dBgS_StatueAcch : public dBgS_Acch {
 public:

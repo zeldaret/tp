@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_horse.h"
 #include "d/actor/d_a_alink.h"
 #include "d/d_com_inf_game.h"
@@ -215,8 +217,6 @@ void daHorseRein_c::setReinPosPart(int param_0) {
         setReinPos(i);
     }
 }
-
-UNK_REL_DATA
 
 /* 808458F4-808458F8 000020 0004+00 1/2 0/0 0/0 .data            l_autoUpHeight */
 static f32 l_autoUpHeight = 50.0f;
@@ -593,9 +593,15 @@ int daHorse_c::create() {
     }
 
     if (!checkStateFlg0(FLG0_UNK_8000) &&
-        (((dComIfGs_isEventBit(dSv_event_flag_c::M_008) && !dComIfGs_isEventBit(dSv_event_flag_c::M_023)) &&
-        (!daAlink_c::checkStageName("F_SP109") || !dComIfGs_isEventBit(dSv_event_flag_c::F_0066))) ||
-        dComIfGs_isTmpBit(dSv_event_tmp_flag_c::NO_TELOP)))
+           /* Cutscene - Cutscene - attacked by monsters at Ordon spring */
+        (((dComIfGs_isEventBit(dSv_event_flag_c::M_008)
+            /* Main Event - Epona rescued flag */
+        && !dComIfGs_isEventBit(dSv_event_flag_c::M_023))
+        && (!daAlink_c::checkStageName("F_SP109")
+            /* Death Mountain - First saw Goron cutscene on mountain path */
+        || !dComIfGs_isEventBit(dSv_event_flag_c::F_0066)))
+           /* General use - When on (while changing scenes) stage name is not shown */
+        || dComIfGs_isTmpBit(dSv_event_tmp_flag_c::NO_TELOP)))
     {
         return cPhs_ERROR_e;
     }
@@ -626,7 +632,11 @@ int daHorse_c::create() {
         m_offRideFlg = &daHorse_c::offRideFlgSubstance;
 
         if (!daAlink_getAlinkActorClass()->checkHorseStart() && !checkStateFlg0(FLG0_UNK_8000)) {
-            if (strcmp(dComIfGs_getHorseRestartStageName(), "") != 0 && (!dComIfGs_isEventBit(0x1580) || dComIfGs_isEventBit(0x601))) {
+            if (strcmp(dComIfGs_getHorseRestartStageName(), "") != 0
+                     /* dSv_event_flag_c::M_002 - Cutscene - [cutscene: 2] Met with Ilia (brings horse to spring) */
+                && (!dComIfGs_isEventBit(0x1580)
+                   /* dSv_event_flag_c::M_023 - Main Event - Epona rescued flag */
+                || dComIfGs_isEventBit(0x601))) {
                 if (daAlink_c::checkStageName(dComIfGs_getHorseRestartStageName()) && (room_no == -1 || fopAcM_GetRoomNo(this) == dComIfGs_getHorseRestartRoomNo())) {
                     current.pos = dComIfGs_getHorseRestartPos();
                     old.pos = current.pos;
@@ -2134,23 +2144,6 @@ void daHorse_c::setRoomInfo(int param_0) {
         fopAcM_SetRoomNo(this, room_no);
     }
 }
-
-UNK_BSS(1109)
-UNK_BSS(1107)
-UNK_BSS(1105)
-UNK_BSS(1104)
-UNK_BSS(1099)
-UNK_BSS(1097)
-UNK_BSS(1095)
-UNK_BSS(1094)
-UNK_BSS(1057)
-UNK_BSS(1055)
-UNK_BSS(1053)
-UNK_BSS(1052)
-UNK_BSS(1014)
-UNK_BSS(1012)
-UNK_BSS(1010)
-UNK_BSS(1009)
 
 /* 80845C04-80845C10 000054 000C+00 1/2 0/0 0/0 .bss             l_frontFootOffset */
 static cXyz l_frontFootOffset(23.5f, -20.0f, 0.0f);

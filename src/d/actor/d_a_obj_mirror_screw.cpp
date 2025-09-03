@@ -3,24 +3,11 @@
  * Mirror Chamber Statue
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_mirror_screw.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_procname.h"
-
-/* 80C997A0-80C997AC 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80C997AC-80C997C0 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 
 /* 80C997C0-80C997C4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static char const* l_arcName = "MR-Screw";
@@ -76,6 +63,7 @@ void daObjMirrorScrew_c::initDown() {
     speedF = 0.0f;
     mSpinCount = M_attr.mResetSpinCount;
 
+    /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
     dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[361]);
 
     dComIfGp_getVibration().StartShock(8, 0xf, cXyz(0.0f, 1.0f, 0.0f));
@@ -177,8 +165,10 @@ static int daObjMirrorScrew_Delete(daObjMirrorScrew_c* i_this) {
 cPhs__Step daObjMirrorScrew_c::create() {
     fopAcM_SetupActor(this, daObjMirrorScrew_c);
     if (fopAcM_isSwitch(this, getSwitchNo()) ||
-        dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361]) ||
-        dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]))
+        /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
+        dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[361])
+           /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
+        || dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354]))
     {
         return cPhs_ERROR_e;
     }

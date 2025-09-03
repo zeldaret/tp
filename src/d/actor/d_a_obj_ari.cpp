@@ -3,6 +3,8 @@
  * Object - Golden Ant
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_ari.h"
 #include "SSystem/SComponent/c_math.h"
 #include "m_Do/m_Do_lib.h"
@@ -592,7 +594,11 @@ static int daObjARI_Execute(daObjARI_c* i_this) {
 }
 
 /* 80BA54F8-80BA54FC 0000F0 0004+00 1/2 0/0 0/0 .rodata          l_musiya_num */
-static u16 const l_musiya_num[2] = {0x01A5, 0x01A6};
+static u16 const l_musiya_num[2] = {
+    0x01A5, /* dSv_event_flag_c::F_0421 - Misc. - Ant (M) */
+    0x01A6, /* dSv_event_flag_c::F_0422 - Misc. - Ant (F) */
+};
+
 
 /* 80BA483C-80BA49E8 00229C 01AC+00 1/1 0/0 0/0 .text            CreateChk__10daObjARI_cFv */
 bool daObjARI_c::CreateChk() {

@@ -52,6 +52,6 @@ _dtors = .dtors:0x00000000; // type:label scope:global
 @95099 = .rodata:0x000000A4; // type:object size:0x4 scope:local data:string
 @95169 = .rodata:0x000000A8; // type:object size:0x4 scope:local align:4 data:float
 @95172 = .rodata:0x000000B0; // type:object size:0x8 scope:local align:8 data:double
-lbl_274_data_0 = .data:0x00000000; // type:object size:0x8
+lbl_274_data_0 = .data:0x00000000; // type:object size:0x7 data:string
 l_daKytag13_Method = .data:0x00000008; // type:object size:0x20 scope:global
 g_profile_KYTAG13 = .data:0x00000028; // type:object size:0x30 scope:global

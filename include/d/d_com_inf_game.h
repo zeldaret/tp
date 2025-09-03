@@ -280,7 +280,7 @@ public:
 
     dMsgObject_c* getMsgObjectClass() { return mItemInfo.mMsgObjectClass; }
     dStage_roomControl_c* getRoomControl() { return &mRoomControl; }
-    dStage_stageDt_c& getStage() { return mStageData; }
+    dStage_dt_c& getStage() { return mStageData; }
     dEvt_control_c& getEvent() { return mEvent; }
     daHorse_c* getHorseActor() { return (daHorse_c*)mPlayerPtr[1]; }
     J2DGrafContext* getCurrentGrafPort() { return (J2DGrafContext*)mCurrentGrafPort; }
@@ -604,6 +604,7 @@ public:
     JKRArchive* getRubyArchive() { return mRubyArchive; }
     JKRArchive* getMeterButtonArchive() { return mMeterButtonArchive; }
     JKRArchive* getAllMapArchive() { return mAllMapArchive; }
+    JKRArchive* getCardIconResArchive() { return mCardIconResArchive; }
 
     void setFieldMapArchive2(JKRArchive* arc) { mFieldMapArchive2 = arc; }
     void setAnmArchive(JKRArchive* arc) { mAnmArchive = arc; }
@@ -870,11 +871,13 @@ int dComIfG_resDelete(request_of_phase_process_class* i_phase, char const* i_res
 int dComIfG_changeOpeningScene(scene_class* scene, s16 procName);
 int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* i_arcName);
 int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* i_resName, JKRHeap* heap);
+int dComIfG_TimerStop(int);
 int dComIfG_TimerDeleteRequest(int i_mode);
 int dComIfG_TimerStart(int i_mode, s16 i_time);
 u32 dComIfG_getTrigA(u32 i_padNo);
 
 bool dComIfGp_isLightDropMapVisible();
+int dComIfG_TimerReStart(int);
 int dComIfG_TimerEnd(int i_mode, int param_1);
 void dComIfGs_onStageBossEnemy(int i_stageNo);
 
@@ -1746,8 +1749,12 @@ inline char* dComIfGs_getHorseName() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerInfo().getHorseName();
 }
 
-inline u32 dComIfGs_getRaceGameTime() {
+inline int dComIfGs_getRaceGameTime() {
     return g_dComIfG_gameInfo.info.getMiniGame().getRaceGameTime();
+}
+
+inline void dComIfGs_setRaceGameTime(int i_time) {
+    g_dComIfG_gameInfo.info.getMiniGame().setRaceGameTime(i_time);
 }
 
 inline u32 dComIfGs_getBalloonScore() {
@@ -2008,6 +2015,14 @@ inline u8 dComIfGs_getFishSize(u8 param_0) {
     return g_dComIfG_gameInfo.info.getPlayer().getFishingInfo().getMaxSize(param_0);
 }
 
+inline void dComIfGs_addFishNum(u8 param_0) {
+    g_dComIfG_gameInfo.info.getPlayer().getFishingInfo().addFishCount(param_0);
+}
+
+inline void dComIfGs_setFishSize(u8 param_0, u8 param_1) {
+    g_dComIfG_gameInfo.info.getPlayer().getFishingInfo().setMaxSize(param_0, param_1);
+}
+
 inline u8 dComIfGs_getGetNumber(int i_no) {
     return g_dComIfG_gameInfo.info.getPlayer().getLetterInfo().getGetNumber(i_no);
 }
@@ -2102,6 +2117,10 @@ inline void dComIfGs_offDarkClearLV(int i_no) {
 
 inline void dComIfGs_offTransformLV(int i_no) {
     g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusB().offTransformLV(i_no);
+}
+
+inline void dComIfGs_revSwitch(int i_no, int i_roomNo) {
+    g_dComIfG_gameInfo.info.revSwitch(i_no, i_roomNo);
 }
 
 void dComIfGp_setSelectItem(int index);
@@ -2291,6 +2310,10 @@ inline JKRArchive* dComIfGp_getMsgArchive(int idx) {
 
 inline JKRArchive* dComIfGp_getMsgCommonArchive() {
     return g_dComIfG_gameInfo.play.getMsgCommonArchive();
+}
+
+inline JKRArchive* dComIfGp_getCardIconResArchive() {
+    return g_dComIfG_gameInfo.play.getCardIconResArchive();
 }
 
 inline void dComIfGp_setFieldMapArchive2(JKRArchive* arc) {
@@ -2741,6 +2764,10 @@ inline void dComIfGp_setItem(u8 slot, u8 i_no) {
     g_dComIfG_gameInfo.play.setItem(slot, i_no);
 }
 
+inline dStage_dt_c* dComIfGp_getStage() {
+    return &g_dComIfG_gameInfo.play.getStage();
+}
+
 inline roomRead_class* dComIfGp_getStageRoom() {
     return g_dComIfG_gameInfo.play.getStage().getRoom();
 }
@@ -2773,12 +2800,16 @@ inline int dComIfGp_getStagePlightNumInfo() {
     return g_dComIfG_gameInfo.play.getStage().getPlightNumInfo();
 }
 
+inline stage_scls_info_dummy_class* dComIfGp_getStageSclsInfo() {
+    return g_dComIfG_gameInfo.play.getStage().getSclsInfo();
+}
+
 inline s16 dComIfGp_getStageWorldRollAngleX() {
-    return g_dComIfG_gameInfo.play.getStage().getWorldRollAngleX();
+    return ((dStage_stageDt_c&)g_dComIfG_gameInfo.play.getStage()).getWorldRollAngleX();
 }
 
 inline s16 dComIfGp_getStageWorldRollDirAngleY() {
-    return g_dComIfG_gameInfo.play.getStage().getWorldRollDirAngleY();
+    return ((dStage_stageDt_c&)g_dComIfG_gameInfo.play.getStage()).getWorldRollDirAngleY();
 }
 
 inline u8 dComIfGp_isHeapLockFlag() {
@@ -2910,14 +2941,6 @@ inline void dComIfGp_clearPlayerStatus0(int param_0, u32 flag) {
 
 inline void dComIfGp_clearPlayerStatus1(int param_0, u32 flag) {
     g_dComIfG_gameInfo.play.clearPlayerStatus(param_0, 1, flag);
-}
-
-inline dStage_stageDt_c* dComIfGp_getStage() {
-    return &g_dComIfG_gameInfo.play.getStage();
-}
-
-inline stage_scls_info_dummy_class* dComIfGp_getStageSclsInfo() {
-    return g_dComIfG_gameInfo.play.getStage().getSclsInfo();
 }
 
 inline void dComIfGp_setItemNowLife(u16 life) {
@@ -3553,7 +3576,7 @@ inline int dComIfGp_evmng_startDemo(int param_0) {
     return dComIfGp_getPEvtManager()->setStartDemo(param_0);
 }
 
-inline void dComIfGp_event_setTalkPartner(fopAc_ac_c* i_actor) {
+inline void dComIfGp_event_setTalkPartner(void* i_actor) {
     g_dComIfG_gameInfo.play.getEvent().setPtT(i_actor);
 }
 

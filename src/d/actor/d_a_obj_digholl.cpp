@@ -3,6 +3,8 @@
  * Object - Dig Hole
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_digholl.h"
 #include "d/actor/d_a_player.h"
 #include "f_op/f_op_actor_mng.h"

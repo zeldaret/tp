@@ -125,21 +125,4 @@ public:
 
 STATIC_ASSERT(sizeof(daE_PZ_c) == 0xEF8);
 
-class daE_PZ_HIO_c : public JORReflexible {
-public:
-    /* 8075856C */ daE_PZ_HIO_c();
-    /* 80760C60 */ virtual ~daE_PZ_HIO_c() {}
-
-    void genMessage(JORMContext*);
-
-    /* 0x04 */ s8 no;
-    /* 0x08 */ f32 body_model_size;
-    /* 0x0C */ f32 portal_model_size;
-    /* 0x10 */ f32 bullet_speed;
-    /* 0x14 */ f32 weapon_hit_warp_speed;
-    /* 0x18 */ s16 after_attack_wait_time;
-    /* 0x1A */ s16 blur_start_timing;
-};
-
-
 #endif /* D_A_E_PZ_H */

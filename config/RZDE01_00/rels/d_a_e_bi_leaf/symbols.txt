@@ -9,6 +9,6 @@ daE_BI_LEAF_Create__FP10fopAc_ac_c = .text:0x000002C8; // type:function size:0xB
 daE_BI_LEAF_Delete__FP15e_bi_leaf_class = .text:0x0000037C; // type:function size:0x30 scope:global
 _ctors = .ctors:0x00000000; // type:label scope:global
 _dtors = .dtors:0x00000000; // type:label scope:global
-lbl_176_data_0 = .data:0x00000000; // type:object size:0x8
+lbl_176_data_0 = .data:0x00000000; // type:object size:0x5 data:string
 l_daE_BI_LEAF_Method = .data:0x00000008; // type:object size:0x20 scope:global
 g_profile_E_BI_LEAF = .data:0x00000028; // type:object size:0x30 scope:global

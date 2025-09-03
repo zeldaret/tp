@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_katatsumuri.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_cc_d.h"
@@ -676,7 +678,10 @@ static int daObjKAT_Execute(daObjKAT_c* i_this) {
     return i_this->Execute();
 }
 
-static u16 const l_musiya_num[2] = { 0x01A1, 0x01A2 };
+static u16 const l_musiya_num[2] = {
+    0x01A1, /* dSv_event_flag_c::F_0417 - Misc. - Snail (M) */
+    0x01A2, /* dSv_event_flag_c::F_0418 - Misc. - Snail (F) */
+};
 
 /* 80C3BAAC-80C3BC58 00222C 01AC+00 1/1 0/0 0/0 .text            CreateChk__10daObjKAT_cFv */
 bool daObjKAT_c::CreateChk() {

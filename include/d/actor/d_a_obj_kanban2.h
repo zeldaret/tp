@@ -10,7 +10,7 @@
 /**
  * @ingroup actors-objects
  * @class daObj_Kanban2_c
- * @brief Sign 2
+ * @brief Sign 2 (Shredded Sign)
  *
  * @details
  *

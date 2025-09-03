@@ -3,6 +3,8 @@
 // Translation Unit: a/npc/d_a_npc_cd2
 //
 
+#include "d/dolzel.h"
+
 #include "d/actor/d_a_npc_cd2.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_path.h"
@@ -337,12 +339,6 @@ bool daNpcCd2_c::isM_() {
     JUT_ASSERT(738, (a_jntNum == JntM_NUM_e) || (a_jntNum == JntW_NUM_e));
     return a_jntNum == JntM_NUM_e;
 }
-
-/* ############################################################################################## */
-/* 803B61C0-803B61CC 0132E0 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 803B61CC-803B6244 -00001 0078+00 2/2 0/0 0/0 .data            l_resNameTbl */
 static char* const* l_resNameTbl[30] = {
@@ -1824,12 +1820,12 @@ void daNpcCd2_c::setHitodamaParticle() {
     };
     
     field_0xac0 = (u16)(field_0xac2 * 2);
-    field_0xab4 = 8.0f * cM_ssin(field_0xac2);
-    field_0xab8 = 4.0f * cM_ssin(field_0xac0);
-    field_0xabc = field_0xab4 * -cM_ssin(shape_angle.y);
-    field_0xab4 = field_0xab4 * cM_scos(shape_angle.y);
+    field_0xab4.x = 8.0f * cM_ssin(field_0xac2);
+    field_0xab4.y = 4.0f * cM_ssin(field_0xac0);
+    field_0xab4.z = field_0xab4.x * -cM_ssin(shape_angle.y);
+    field_0xab4.x = field_0xab4.x * cM_scos(shape_angle.y);
     field_0xac2 += 0x400;
-    cXyz local_28(eyePos.x + field_0xab4, eyePos.y + field_0xab8, eyePos.z + field_0xabc);
+    cXyz local_28(eyePos.x + field_0xab4.x, eyePos.y + field_0xab4.y, eyePos.z + field_0xab4.z);
     for (int i = 0; i < 2; i++) {
         mHitodamaEmitters[i] =
             dComIfGp_particle_set(mHitodamaEmitters[i], id[i], &local_28, &shape_angle, 0);

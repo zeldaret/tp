@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_kago.h"
 #include "d/d_camera.h"
 #include "d/d_com_inf_game.h"
@@ -503,6 +505,7 @@ void daKago_c::demo_skip(int param_0) {
         setMidnaRideOn();
         setPlayerRideOn();
         field_0x718 = field_0x71a = 0;
+        /* dSv_event_flag_c::M_051 - Main Event - Shadow Kargorok (?) (Large) event complete (Horse grass appears in various places) */
         dComIfGs_onEventBit((u16)dSv_event_flag_c::saveBitLabels[84]);
         field_0x748 = 7;
         field_0x74c = NULL;

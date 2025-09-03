@@ -3,35 +3,13 @@
  *
  */
 
-#define NO_INLINE_DLSTBASE_DRAW
+#include "d/dolzel.h"
 
 #include "d/d_bright_check.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "d/d_msg_string.h"
 #include "m_Do/m_Do_controller_pad.h"
-
-// Need 0x10 bytes of padding with no symbol between dBrightCheck_c::__vtable and the end of .data
-// This is likely caused by the vtable of an abstract base class getting put there and then stripped out.
-// Not sure which abstract base class could go there though, so we simulate it with some dummy classes for now.
-class dummy_abstract_class {
-public:
-    virtual void virt_func_0() = 0;
-    virtual void virt_func_1() = 0;
-};
-class dummy_child_class : dummy_abstract_class {
-    virtual void virt_func_0();
-    virtual void virt_func_1();
-};
-static dummy_child_class dummy() {
-    dummy_child_class temp;
-    return temp;
-}
-
-/* 803BB5B0-803BB5BC 0186D0 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 /* 80192F10-80192F98 18D850 0088+00 0/0 1/1 0/0 .text __ct__14dBrightCheck_cFP10JKRArchive */
 dBrightCheck_c::dBrightCheck_c(JKRArchive* i_archive) {

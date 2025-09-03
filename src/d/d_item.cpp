@@ -3,6 +3,8 @@
  * Item Get Handling
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_item.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_meter2_info.h"
@@ -1030,6 +1032,7 @@ void item_func_BILL() {
 }
 
 void item_func_WOOD_STATUE() {
+    /* dSv_event_flag_c::F_283 - Hyrule Field - Get wood carving */
     dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[283]);
     dComIfGs_setItem(SLOT_21, fpcNm_ITEM_WOOD_STATUE);
 }

@@ -2,6 +2,8 @@
 // Boss Door Level 5
 //
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_door_bossL5.h"
 #include "d/actor/d_a_obj_keyhole.h"
 #include "d/d_com_inf_game.h"
@@ -64,24 +66,6 @@ static char const l_door_open_demo_1st[26] = "DEFAULT_BS_SHUTTER_L5_1ST";
 
 /* 806724FC-8067250C 000034 000D+03 3/3 0/0 0/0 .rodata          l_staff_name */
 static char const l_staff_name[13] = "SHUTTER_DOOR";
-
-/* 806725F4-80672600 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80672600-80672614 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-#pragma pop
 
 /* 80672614-8067264C -00001 0038+00 1/1 0/0 0/0 .data            action_table$3861 */
 static char* action_table[14] = {
@@ -330,7 +314,7 @@ int daBdoorL5_c::unlockInit() {
     obj_keyhole_class* keyHole = (obj_keyhole_class*)fopAcM_SearchByID(mKeyHoleId);
     if (keyHole != NULL) {
         keyHole->setOpen();
-        mDoAud_seStart(Z2SE_OBJ_BOSS_LOCK_OPEN_LV5, &keyHole->current.pos, 0, 0);
+        mDoAud_seStart(Z2SE_OBJ_BOSS_LOCK_OPEN_LV5, &keyHole->actor.current.pos, 0, 0);
     }
     dComIfGs_onSwitch(door_param2_c::getSwbit(this), fopAcM_GetRoomNo(this));
     return 1;

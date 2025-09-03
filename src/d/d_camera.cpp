@@ -3,12 +3,19 @@
 // Translation Unit: d/d_camera
 //
 
-#include "d/d_camera.h"
+#include "d/dolzel.h"
+
 #include "SSystem/SComponent/c_math.h"
-#include "math.h"
 #include "cmath.h"
 #include "d/actor/d_a_alink.h"
+#include "d/actor/d_a_boomerang.h"
+#include "d/actor/d_a_horse.h"
+#include "d/actor/d_a_midna.h"
+#include "d/actor/d_a_tag_mhint.h"
+#include "d/actor/d_a_tag_mstop.h"
+#include "d/actor/d_a_tag_mwait.h"
 #include "d/d_bg_s_sph_chk.h"
+#include "d/d_camera.h"
 #include "d/d_com_inf_actor.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_demo.h"
@@ -17,12 +24,7 @@
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_lib.h"
-#include "d/actor/d_a_boomerang.h"
-#include "d/actor/d_a_horse.h"
-#include "d/actor/d_a_midna.h"
-#include "d/actor/d_a_tag_mhint.h"
-#include "d/actor/d_a_tag_mstop.h"
-#include "d/actor/d_a_tag_mwait.h"
+#include "math.h"
 
 //
 // Forward References:
@@ -695,11 +697,6 @@ SECTION_DEAD static char const* const stringBase_8039428E = "BSPTRANS";
 SECTION_DEAD static char const* const stringBase_80394297 = "MAPTOOL";
 #pragma pop
 
-/* 803BA160-803BA16C 017280 000C+00 2/2 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
 /* 803BA25C-803BA34C 01737C 00F0+00 2/3 3/3 0/0 .data            engine_tbl__9dCamera_c */
 engine_fn dCamera_c::engine_tbl[] = {
     &dCamera_c::letCamera,        &dCamera_c::chaseCamera,    &dCamera_c::lockonCamera,
@@ -997,7 +994,7 @@ void dCamera_c::initialize(camera_class* i_camera, fopAc_ac_c* i_player, u32 i_c
         mMapToolType = GetCameraTypeFromToolData(&field_0x7e8.field_0x0);
     }
 
-    dStage_stageDt_c* stage_dt = dComIfGp_getStage();
+    dStage_dt_c* stage_dt = dComIfGp_getStage();
     stage_stag_info_class* stag_info;
     if (stage_dt != NULL) {
         stag_info = stage_dt->getStagInfo();
@@ -1888,7 +1885,7 @@ void dCamera_c::setStageMapToolData() {
 
     field_0x7e8.Clr();
 
-    dStage_stageDt_c* stage_dt = dComIfGp_getStage();
+    dStage_dt_c* stage_dt = dComIfGp_getStage();
     if (stage_dt != NULL) {
         stage_camera_class* camera = stage_dt->getCamera();
         stage_arrow_class* arrow = stage_dt->getArrow();
@@ -2420,7 +2417,7 @@ fopAc_ac_c* dCamera_c::getParamTargetActor(s32 param_0) {
 
 /* 80164944-80164B64 15F284 0220+00 0/0 1/1 0/0 .text GetCameraTypeFromMapToolID__9dCamera_cFll */
 int dCamera_c::GetCameraTypeFromMapToolID(s32 param_0, s32 i_roomNo) {
-    dStage_stageDt_c& stage_dt = g_dComIfG_gameInfo.play.getStage();
+    dStage_dt_c& stage_dt = g_dComIfG_gameInfo.play.getStage();
 
     int i;
     stage_camera_class* camera;
@@ -3396,8 +3393,8 @@ bool dCamera_c::bumpCheck(u32 i_flags) {
  * lineBGCheckBoth__9dCamera_cFP4cXyzP4cXyzP11dBgS_LinChkUl     */
 bool dCamera_c::lineBGCheckBoth(cXyz* i_start, cXyz* i_end, dBgS_LinChk* i_linchk,
                                 u32 i_flags) {
-    i_linchk->onBackFlag();
-    i_linchk->onFrontFlag();
+    i_linchk->OnBackFlag();
+    i_linchk->OnFrontFlag();
     return lineBGCheck(i_start, i_end, i_linchk, i_flags);
 }
 
@@ -8540,7 +8537,7 @@ static void store(camera_process_class* i_camera) {
         fopCamM_SetFovy(a_camera, fovy);
     }
 
-    dStage_stageDt_c* stage = dComIfGp_getStage();
+    dStage_dt_c* stage = dComIfGp_getStage();
     if (dComIfGp_getCameraAttentionStatus(camera_id) & 8) {
         fopCamM_SetNear(a_camera, 30.0f);
     } else {
@@ -8712,7 +8709,7 @@ static int init_phase2(camera_class* i_this) {
     f32 var_f30 = 160000.0f;
 
     if (dComIfGp_getStage()->getStagInfo() != NULL) {
-        dStage_stageDt_c* stage_dt = dComIfGp_getStage();
+        dStage_dt_c* stage_dt = dComIfGp_getStage();
         stage_dt->getStagInfo();
 
         var_f30 = stage_dt->getStagInfo()->mFar;

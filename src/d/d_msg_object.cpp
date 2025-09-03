@@ -3,6 +3,8 @@
 // Translation Unit: d/d_msg_object
 //
 
+#include "d/dolzel.h"
+
 #define DISABLE_MSG_OBJECT_EXTERN
 
 #include "d/d_msg_object.h"
@@ -1166,10 +1168,13 @@ void dMsgObject_c::inputProc() {
     if (isSend()) {
         field_0x199 = 0;
         if (mDoCPd_c::getTrigA(0)) {
+                         /* dSv_event_tmp_flag_c::T_0080 - Kakariko Village - Put money in fundraiser box */
             BOOL iVar2 = dComIfGs_isTmpBit(dSv_event_tmp_flag_c::tempBitLabels[80]);
+                                        /* dSv_event_flag_c::F_0802 - Faron Woods - Trill attacks when stealing */
             if (getInputValue() > 0 && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[802])) {
                 onPaymentFlagLocal();
             }
+
             dComIfGp_setItemRupeeCount(-getInputValue());
             if (iVar2) {
                 if (getInputValue() > 0) {
@@ -1177,17 +1182,21 @@ void dMsgObject_c::inputProc() {
                     getFundRaisingValue();
                     dMsgObject_getFundRaising();
                     if (dMsgObject_getFundRaising() >= getFundRaisingValue() &&
+                         /* dSv_event_flag_c::M_091 - Kakariko Village - Buy out fundraiser amount (Malo becomes nice) */
                         !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[124]))
                     {
+                             /* dSv_event_flag_c::F_0376 - Kakariko Village - Gathered funds for bridge repair! (set by program after raising funds) */
                         if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[376])) {
                             dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[376]);
                             dMsgObject_setFundRaising(0);
                         } else {
+                            /* dSv_event_flag_c::M_091 - Kakariko Village - Buy out fundraiser amount (Malo becomes nice) */
                             dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[124]);
                             dMsgObject_setFundRaising(0);
                         }
                     }
                 } else {
+                    /* dSv_event_tmp_flag_c::T_0080 - Kakariko Village - Put money in fundraiser box */
                     dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[80]);
                 }
             } else {
@@ -1197,6 +1206,7 @@ void dMsgObject_c::inputProc() {
             dMeter2Info_offShopTalkFlag();
             setStatusLocal(14);
         } else if (mDoCPd_c::getTrigB(0)) {
+            /* dSv_event_tmp_flag_c::T_0080 - Kakariko Village - Put money in fundraiser box */
             dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[80]);
             dMeter2Info_offShopTalkFlag();
             setStatusLocal(14);

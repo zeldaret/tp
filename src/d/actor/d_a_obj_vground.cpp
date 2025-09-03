@@ -3,6 +3,8 @@
  * Object - Volcano Ground
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_vground.h"
 #include "d/d_procname.h"
 
@@ -77,6 +79,7 @@ int daObjVGnd_c::create() {
 
 /* 80D217A8-80D21878 000448 00D0+00 2/2 0/0 0/0 .text            execute__11daObjVGnd_cFv */
 int daObjVGnd_c::execute() {
+        /* dSv_event_flag_c::M_032 - Main Event - Melted Zora river ice with magma rock */
     if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[65])) {
         mpBrk->setFrame(2.0f);
         mpBtk->setFrame(2.0f);

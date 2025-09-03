@@ -2,21 +2,18 @@
 // Translation Unit: d/d_menu_dmap_map
 //
 
-#include "d/d_menu_dmap_map.h"
-#include "d/d_menu_dmap.h"
-#include "d/d_map_path_dmap.h"
-#include "d/d_com_inf_game.h"
-#include "m_Do/m_Do_graphic.h"
-#include "f_op/f_op_msg_mng.h"
+#include "d/dolzel.h"
+
 #include <cmath.h>
+#include "d/d_com_inf_game.h"
+#include "d/d_map_path_dmap.h"
+#include "d/d_menu_dmap.h"
+#include "d/d_menu_dmap_map.h"
+#include "f_op/f_op_msg_mng.h"
+#include "m_Do/m_Do_graphic.h"
 
 struct dMdm_HIO_prm_res_dst_s {
     static void* m_res;
-};
-
-/* 803BCB60-803BCB6C 019C80 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
 /* 801C084C-801C086C 1BB18C 0020+00 1/0 0/0 0/0 .text            hasMap__15renderingDmap_cCFv */
@@ -404,7 +401,7 @@ bool dMenu_StageMapCtrl_c::getTreasureList(f32* o_posX, f32* o_posY, s8* param_2
         Vec sp10;
         sp10 = *field_0x8c->getPos();
 
-        if (getRendPointer(0)->isDrawIconSingle(field_0x8c->getDataPointer(), (s8)dComIfGp_roomControl_getStayNo(), field_0xf7, true, true, &sp10)) {
+        if (getRendPointer(0)->isDrawIconSingle(field_0x8c->getDataPointer(), (s8)dComIfGp_roomControl_getStayNo(), field_0xf7, 1, true, &sp10)) {
             cnvPosTo2Dpos(sp10.x, sp10.z, o_posX, o_posY);
 
             if (param_2 != NULL) {

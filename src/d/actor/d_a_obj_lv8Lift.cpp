@@ -3,12 +3,12 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_lv8Lift.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_path.h"
 #include "d/d_bg_w.h"
-
-UNK_REL_DATA
 
 /* 80C8872C-80C88790 0000EC 0064+00 1/1 0/0 0/0 .text            __ct__14daL8Lift_HIO_cFv */
 daL8Lift_HIO_c::daL8Lift_HIO_c() {

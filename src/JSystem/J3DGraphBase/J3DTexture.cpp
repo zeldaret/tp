@@ -4,10 +4,14 @@
 //
 
 #include "JSystem/J3DGraphBase/J3DTexture.h"
+
 #include "dolphin/gx.h"
+#include "global.h"
 
 /* 8031204C-803121A4 30C98C 0158+00 0/0 1/1 0/0 .text loadGX__10J3DTextureCFUs11_GXTexMapID */
 void J3DTexture::loadGX(u16 idx, GXTexMapID texMapID) const {
+    J3D_ASSERT(0, idx < mNum, "Error : range over.");
+
     ResTIMG* timg = getResTIMG(idx);
     GXTexObj texObj;
 
@@ -37,8 +41,11 @@ void J3DTexture::loadGX(u16 idx, GXTexMapID texMapID) const {
 
 /* 803121A4-8031221C 30CAE4 0078+00 1/1 0/0 0/0 .text            entryNum__10J3DTextureFUs */
 void J3DTexture::entryNum(u16 num) {
+    J3D_ASSERT(79, num != 0, "Error : non-zero argument is specified 0.");
+
     mNum = num;
     mpRes = new ResTIMG[num]();
+    J3D_ASSERT(83, mpRes != 0, "Error : allocate memory.");
 
     for (s32 i = 0; i < mNum; i++) {
         mpRes[i].paletteOffset = 0;
@@ -51,20 +58,18 @@ void J3DTexture::addResTIMG(u16 newNum, ResTIMG const* newRes) {
     if (newNum == 0)
         return;
 
+    J3D_ASSERT(105, newRes != 0, "Error : null pointer.");
+
     u16 oldNum = mNum;
     ResTIMG* oldRes = mpRes;
 
     entryNum(mNum + newNum);
 
     for (u16 i = 0; i < oldNum; i++) {
-        mpRes[i] = oldRes[i];
-        mpRes[i].imageOffset = (u32)(&oldRes[i]) + mpRes[i].imageOffset - (u32)(&mpRes[i]);
-        mpRes[i].paletteOffset = (u32)(&oldRes[i]) + mpRes[i].paletteOffset - (u32)(&mpRes[i]);
+        setResTIMG(i, oldRes[i]);
     }
 
     for (u16 i = oldNum; i < mNum; i++) {
-        mpRes[i] = newRes[i];
-        mpRes[i].imageOffset = (u32)(&newRes[i]) + mpRes[i].imageOffset - (u32)(&mpRes[i]);
-        mpRes[i].paletteOffset = (u32)(&newRes[i]) + mpRes[i].paletteOffset - (u32)(&mpRes[i]);
+        setResTIMG(i, newRes[i]);
     }
 }

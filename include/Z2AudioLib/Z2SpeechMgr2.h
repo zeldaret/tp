@@ -8,7 +8,6 @@
 struct Z2SpeechStarter : public Z2SoundStarter {
     /* 802CCFB8 */ Z2SpeechStarter();
 
-    /* 802CBCEC */ virtual ~Z2SpeechStarter() {}
     /* 802CCFF8 */ virtual bool startSound(JAISoundID, JAISoundHandle*,
                                            JGeometry::TVec3<f32> const*, u32, f32, f32, f32, f32,
                                            f32, u32);

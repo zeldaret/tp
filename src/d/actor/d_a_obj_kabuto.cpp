@@ -3,6 +3,8 @@
  * Object - Golden Beetle
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_kabuto.h"
 #include "SSystem/SComponent/c_math.h"
 #include "m_Do/m_Do_lib.h"
@@ -712,7 +714,10 @@ static int daObjKABUTO_Execute(daObjKABUTO_c* i_this) {
 }
 
 /* 80C2E200-80C2E204 0000F0 0004+00 1/2 0/0 0/0 .rodata          l_musiya_num */
-static u16 const l_musiya_num[2] = {0x0191, 0x0192};
+static u16 const l_musiya_num[2] = {
+    0x0191, /* dSv_event_flag_c::F_0401 - Misc. - Beetle (M) */
+    0x0192, /* dSv_event_flag_c::F_0402 - Misc. - Beetle (F) */
+};
 
 /* 80C2D578-80C2D724 0027F8 01AC+00 1/1 0/0 0/0 .text            CreateChk__13daObjKABUTO_cFv */
 bool daObjKABUTO_c::CreateChk() {

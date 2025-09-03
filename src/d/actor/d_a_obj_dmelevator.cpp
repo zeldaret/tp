@@ -3,17 +3,13 @@
  *
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_dmelevator.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_bg_w.h"
 #include "d/d_path.h"
-
-/* 80BDFB38-80BDFB70 000008 0001+03 1/1 0/0 0/0 .bss             @1109 */
-UNK_REL_BSS;
-
-/* 80BDF950-80BDF964 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-UNK_REL_DATA;
 
 /* 80BDF870-80BDF87C 000000 000C+00 11/11 0/0 0/0 .rodata          l_swOffset */
 static const Vec l_swOffset = {

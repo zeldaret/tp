@@ -247,14 +247,17 @@ u8 daNpcKakashi_getSwdTutorialStep() {
 
 /* 80031718-80031754 02C058 003C+00 0/0 1/1 0/0 .text daNpcKakashi_getSwdTutorialResult__Fv */
 bool daNpcKakashi_getSwdTutorialResult() {
+           /* dSv_event_tmp_flag_c::T_0004 - Ordon Village - sword tutorial - outcome */
     return dComIfGs_isTmpBit(0x40);
 }
 
 /* 80031754-800317A4 02C094 0050+00 0/0 0/0 1/1 .text daNpcKakashi_setSwdTutorialResult__Fb */
 void daNpcKakashi_setSwdTutorialResult(bool param_0) {
     if (param_0) {
+        /* dSv_event_tmp_flag_c::T_0004 - Ordon Village - sword tutorial - outcome */
         dComIfGs_onTmpBit(0x40);
     } else {
+        /* dSv_event_tmp_flag_c::T_0004 - Ordon Village - sword tutorial - outcome */
         dComIfGs_offTmpBit(0x40);
     }
 }

@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_tkj.h"
 #include "dol2asm.h"
 
@@ -251,24 +253,6 @@ SECTION_DEAD static char const* const stringBase_8057668C = "";
 SECTION_DEAD static char const* const stringBase_8057668D = "DEFAULT_GETITEM";
 SECTION_DEAD static char const* const stringBase_8057669D = "Tkj";
 SECTION_DEAD static char const* const stringBase_805766A1 = "LV7_FIRST_START";
-#pragma pop
-
-/* 805766B4-805766C0 000000 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 805766C0-805766D4 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 #pragma pop
 
 /* 805766D4-805766DC 000020 0008+00 1/1 0/0 0/0 .data            l_bmdData */

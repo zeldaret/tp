@@ -3,6 +3,8 @@
  * NPC - Ashei
  */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_ash.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "SSystem/SComponent/c_math.h"
@@ -322,21 +324,6 @@ bool daNpcAsh_c::step(s16 i_angY, bool i_animate) {
     return mTurnMode > 1;
 }
 
-/* 8095D990-8095D99C 000000 000C+00 4/4 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 8095D99C-8095D9B0 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
-
 /* 8095D9B0-8095DA88 000020 00D8+00 1/2 0/0 0/0 .data            l_bckGetParamList */
 static daNpc_GetParam2 l_bckGetParamList[18] = {
     {-1, 2, 0}, // <none>
@@ -473,7 +460,10 @@ cPhs__Step daNpcAsh_c::Create() {
     fopAcM_SetupActor(this, daNpcAsh_c);
 
     if (!strcmp(dComIfGp_getStartStageName(), "R_SP116") && dComIfG_play_c::getLayerNo(0) == 4) {
-        if (daNpcF_chkEvtBit(0x169) && !daNpcF_chkEvtBit(0x10a)) {
+            /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
+        if (daNpcF_chkEvtBit(0x169)
+                /* dSv_event_flag_c::F_0266 - Snowpeak Ruins - Snowpeak Ruins clear */
+            && !daNpcF_chkEvtBit(0x10A)) {
             return cPhs_ERROR_e;
         }
         if (dComIfGs_isStageSwitch(0x18, 0x4b)) {
@@ -1563,8 +1553,14 @@ void daNpcAsh_c::setAttnPos() {
     mCcCyl[0].SetR(daNpcAsh_Param_c::m.mWallR);
     dComIfG_Ccsp()->Set(&mCcCyl[0]);
 
-    if (mType == TYPE_BAR && (!daNpcF_chkEvtBit(0x169) || !daNpcF_chkEvtBit(0x10a)
-                            || !daNpcF_chkEvtBit(0x10b) || daNpcF_chkEvtBit(0x10c))) {
+                               /* dSv_event_flag_c::F_0361 - Arbiter's Grounds - Spun the spinning pillars */
+    if (mType == TYPE_BAR && (!daNpcF_chkEvtBit(0x169)
+                                  /* dSv_event_flag_c::F_0266 - Snowpeak Ruins - Snowpeak Ruins clear */
+                              || !daNpcF_chkEvtBit(0x10A)
+                                  /* dSv_event_flag_c::F_0267 - Temple of Time - Temple of Time clear */
+                              || !daNpcF_chkEvtBit(0x10B)
+                                 /* dSv_event_flag_c::F_0268 - City in the Sky - City in the Sky clear */
+                              || daNpcF_chkEvtBit(0x10C))) {
         center.set(3070.0f, -1150.0f, 2446.0f);
         mCcCyl[1].SetC(center);
         mCcCyl[1].SetH(170.0f);

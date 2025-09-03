@@ -3,6 +3,8 @@
  *
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_cam_param.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_player.h"

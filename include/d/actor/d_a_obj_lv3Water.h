@@ -37,7 +37,7 @@ public:
     /* 80C598BC */ virtual int Draw();
     /* 80C59AA0 */ virtual int Delete();
 
-    /* 80C59D80 */ virtual ~daLv3Water_c();
+    /* 80C59D80 */ virtual ~daLv3Water_c() {}
     /* 80C59AE0 */ virtual bool eventStart();
 
     int getParam() { return fpcM_GetParam(this) >> 0xC & 0x0FFF; }
@@ -65,16 +65,5 @@ private:
 };
 
 STATIC_ASSERT(sizeof(daLv3Water_c) == 0x628);
-
-class daLv3Water_HIO_c : public mDoHIO_entry_c {
-public:
-    /* 80C587CC */ daLv3Water_HIO_c();
-    /* 80C59C34 */ virtual ~daLv3Water_HIO_c();
-
-    void genMessage(JORMContext*);
-
-    /* 0x00 */ /* vtable */
-    /* 0x04 */ u8 field_0x04;
-};
 
 #endif /* D_A_OBJ_LV3WATER_H */

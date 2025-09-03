@@ -3,6 +3,8 @@
 // Translation Unit: d/d_event
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_event.h"
 #include "d/actor/d_a_alink.h"
 #include "d/d_demo.h"
@@ -14,15 +16,13 @@
 #include "d/actor/d_a_tag_mstop.h"
 #include "d/d_event_debug.h"
 
-/* 80041480-80041488 03BDC0 0008+00 1/1 0/0 0/0 .text event_debug_evnt__21@unnamed@d_event_cpp@Fv
- */
+/* 80041480-80041488 03BDC0 0008+00 1/1 0/0 0/0 .text            event_debug_evnt__21@unnamed@d_event_cpp@Fv */
 namespace {
 static bool event_debug_evnt() {
     return false;
 }
 
-/* 80041488-80041580 03BDC8 00F8+00 1/1 0/0 0/0 .text
- * clear_tmpflag_for_message__21@unnamed@d_event_cpp@Fv         */
+/* 80041488-80041580 03BDC8 00F8+00 1/1 0/0 0/0 .text            clear_tmpflag_for_message__21@unnamed@d_event_cpp@Fv */
 static void clear_tmpflag_for_message() {
     dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[11]);
     dComIfGs_offTmpBit(dSv_event_tmp_flag_c::tempBitLabels[12]);
@@ -43,15 +43,14 @@ dEvt_control_c::dEvt_control_c() {
 
 dEvt_order_c::dEvt_order_c() {}
 
-/* 800415D8-80041668 03BF18 0090+00 1/1 0/0 0/0 .text orderOld__14dEvt_control_cFUsUsUsUsPvPvPCv
- */
+/* 800415D8-80041668 03BF18 0090+00 1/1 0/0 0/0 .text            orderOld__14dEvt_control_cFUsUsUsUsPvPvPCv */
 s32 dEvt_control_c::orderOld(u16 eventType, u16 priority, u16 flag, u16 hind, void* param_4,
                              void* param_5, void const* eventName) {
     int eventIdx = dComIfGp_getEventManager().getEventIdx((char*)eventName, -1, -1);
     return order(eventType, priority, flag, hind, param_4, param_5, eventIdx, -1);
 }
 
-/* 80041668-80041804 03BFA8 019C+00 3/3 13/13 0/0 .text order__14dEvt_control_cFUsUsUsUsPvPvsUc */
+/* 80041668-80041804 03BFA8 019C+00 3/3 13/13 0/0 .text          order__14dEvt_control_cFUsUsUsUsPvPvsUc */
 s32 dEvt_control_c::order(u16 eventType, u16 priority, u16 flag, u16 hind, void* param_4,
                           void* param_5, s16 eventID, u8 infoIdx) {
     if (!(flag & 0x400) && infoIdx != 0xFF) {
@@ -561,10 +560,10 @@ int dEvt_control_c::entry() {
 void dEvt_control_c::reset() {
     if (field_0xec != 0xFF) {
         fopAc_ac_c* pt1 = getPt1();
+        fopAc_ac_c* pt1_2 = pt1;
         s16 eventIdx = dComIfGp_getEventManager().getEventIdx(NULL, field_0xec, -1);
-        fopAc_ac_c* pt2 = getPt2();
 
-        order(EVT_TYPE_OTHER, 3, 0x201, mHindFlag, pt1, pt2, eventIdx, field_0xec);
+        order(EVT_TYPE_OTHER, 3, 0x201, mHindFlag, pt1, getPt2(), eventIdx, field_0xec);
         mChangeOK = pt1;
     }
 

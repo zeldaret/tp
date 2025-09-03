@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_e_dt.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "SSystem/SComponent/c_math.h"
@@ -17,6 +19,24 @@
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_lib.h"
+
+class daE_DT_HIO_c {
+public:
+    /* 806AD90C */ daE_DT_HIO_c();
+    /* 806B5BDC */ virtual ~daE_DT_HIO_c() {}
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 mScale;
+    /* 0x0C */ f32 mWalkSpeed;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ f32 mStunTimer;
+    /* 0x20 */ f32 mPressTimer;
+    /* 0x24 */ f32 mMaxFallSpeed;
+    /* 0x28 */ f32 field_0x28;
+    /* 0x2C */ f32 field_0x2c;
+};
 
 enum Action {
     /* 0x0 */ ACT_WAIT,
@@ -139,26 +159,8 @@ dCcD_SrcSph E_DT_n::cc_dt_tongue_src = {
     } // mSphAttr
 };
 
-UNK_BSS(1109)
-UNK_BSS(1107)
-UNK_BSS(1105)
-UNK_BSS(1104)
-UNK_BSS(1099)
-UNK_BSS(1097)
-UNK_BSS(1095)
-UNK_BSS(1094)
-UNK_BSS(1057)
-UNK_BSS(1055)
-UNK_BSS(1053)
-UNK_BSS(1052)
-UNK_BSS(1014)
-UNK_BSS(1012)
-UNK_BSS(1010)
-
 /* 806B629C-806B62A0 -00001 0004+00 2/2 0/0 0/0 .bss             None */
-/* 806B629C 0001+00 data_806B629C @1009 */
 /* 806B629D 0003+00 data_806B629D None */
-static u8 struct_806B629C;
 static bool hioInit;
 
 /* 806B62AC-806B62DC 000054 0030+00 7/8 0/0 0/0 .bss             l_HIO */

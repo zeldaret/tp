@@ -3,18 +3,12 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_zant.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "f_op/f_op_actor_mng.h"
 #include "SSystem/SComponent/c_counter.h"
-
-/* 80B6ED28-80B6ED34 000008 000C+00 1/1 0/0 0/0 .bss             @3811 */
-static u8 lit_3811[12];
-
-/* 80B6ED34-80B6ED38 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[4];
-
-UNK_REL_DATA
 
 /* 80B6EAB4-80B6EABC 000020 0008+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[2] = {
@@ -72,6 +66,9 @@ char* daNpc_Zant_c::mCutNameList = "";
 daNpc_Zant_c::cutFunc daNpc_Zant_c::mCutList[1] = {
     NULL
 };
+
+/* 80B6ED34-80B6ED38 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
+static daNpc_Zant_Param_c l_HIO;
 
 /* 80B6C1AC-80B6C2D0 0000EC 0124+00 1/0 0/0 0/0 .text            __dt__12daNpc_Zant_cFv */
 daNpc_Zant_c::~daNpc_Zant_c() {
@@ -444,7 +441,7 @@ void daNpc_Zant_c::drawGhost() {
 /* 80B6D21C-80B6D264 00115C 0048+00 1/1 0/0 0/0 .text            selectAction__12daNpc_Zant_cFv */
 int daNpc_Zant_c::selectAction() {
     field_0xf84 = NULL;
-    field_0xf84 = &daNpc_Zant_c::talk;
+    field_0xf84 = &daNpc_Zant_c::wait;
     return 1;
 }
 
@@ -487,7 +484,7 @@ int daNpc_Zant_c::wait(void* param_1) {
                     if (chkActorInSight(mPlayerActorMngr.getActorP(), mAttnFovY, mCurAngle.y)) {
                         mJntAnm.lookPlayer(0);
                     }
-                
+
                     if (!srchPlayerActor() && home.angle.y == mCurAngle.y) {
                         mMode = 1;
                     }
@@ -534,7 +531,7 @@ int daNpc_Zant_c::talk(void* param_1) {
                         dComIfGp_event_reset();
                         mMode = 3;
                     }
-                
+
                     mJntAnm.lookPlayer(0);
                     if (mTwilight) {
                         mJntAnm.lookNone(0);

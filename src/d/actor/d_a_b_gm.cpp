@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_b_gm.h"
 #include "d/actor/d_a_e_gm.h"
 #include "d/actor/d_a_player.h"
@@ -38,8 +40,6 @@
 #define ANM_GOMA_UP             28
 #define ANM_GOMA_UP_02          29
 #define ANM_GOMA_WAIT           30
-
-UNK_REL_DATA;
 
 enum daB_GM_ACTION {
     ACTION_WAIT,
@@ -135,23 +135,6 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
     return 1;
 }
 
-UNK_BSS(1109)
-UNK_BSS(1107)
-UNK_BSS(1105)
-UNK_BSS(1104)
-UNK_BSS(1099)
-UNK_BSS(1097)
-UNK_BSS(1095)
-UNK_BSS(1094)
-UNK_BSS(1057)
-UNK_BSS(1055)
-UNK_BSS(1053)
-UNK_BSS(1052)
-UNK_BSS(1014)
-UNK_BSS(1012)
-UNK_BSS(1010)
-
-static u8 lit_1009[1];
 static u8 l_initHIO;
 
 /* 805F47DC-805F4828 000054 004C+00 11/12 0/0 0/0 .bss             l_HIO */

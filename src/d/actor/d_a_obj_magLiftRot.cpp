@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_magLiftRot.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_procname.h"
@@ -11,8 +13,6 @@
 #endif
 #include "d/d_bg_w.h"
 #include "SSystem/SComponent/c_math.h"
-
-UNK_REL_DATA;
 
 /* 80C8FBB0-80C8FBBC -00001 000C+00 3/3 0/0 0/0 .data            l_arcName */
 static char* l_arcName[3] = {"MagLiftS", "MagLiftM", "MagLiftL"};

@@ -81,10 +81,14 @@ public:
     /* 80990DDC */ void _Evt_SpotLight_Off_CutMain(int const&);
     /* 80991858 */ void setMtx();
 
+    BOOL isMiniGamePlaying() { return mIsMiniGamePlaying; }
+
     static u8 mEvtSeqList[96];
 
 private:
-    /* 0x568 */ u8 field_0x568[0xe78 - 0x568];
+    /* 0x568 */ u8 field_0x568[0xe08 - 0x568];
+    /* 0xE08 */ s8 mIsMiniGamePlaying;
+    /* 0xE09 */ u8 field_0xe09[0xe78 - 0xe09];
 };
 
 STATIC_ASSERT(sizeof(daNpcChin_c) == 0xe78);

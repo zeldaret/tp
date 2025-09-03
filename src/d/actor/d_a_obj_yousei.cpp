@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_yousei.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
@@ -82,8 +84,6 @@ void daObjYOUSEI_c::SpeedSet() {
     current.pos.x += ato.x;
     current.pos.z += ato.z;
 }
-
-UNK_REL_BSS
 
 /* 804D1828-804D182C 000040 0004+00 0/0 0/0 0/0 .bss             s_dis */
 static f32 s_dis;
@@ -816,6 +816,7 @@ int daObjYOUSEI_c::create() {
         mPrm = 0;
         break;
     case 1:
+             /* dSv_event_flag_c::F_0501 - sub-dungeon - Cave of Ordeals - B10 first arrival */
         if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[501])) {
             return cPhs_ERROR_e;
         }
@@ -823,18 +824,21 @@ int daObjYOUSEI_c::create() {
         break;
     case 2:
         mPrm = 2;
+             /* dSv_event_flag_c::F_0502 - sub-dungeon - Cave of Ordeals - B20 first arrival */
         if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[502])) {
             return cPhs_ERROR_e;
         }
         break;
     case 3:
         mPrm = 3;
+             /* dSv_event_flag_c::F_0503 - sub-dungeon - Cave of Ordeals - B30 first arrival */
         if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[503])) {
             return cPhs_ERROR_e;
         }
         break;
     case 4:
         mPrm = 4;
+             /* dSv_event_flag_c::F_0504 - sub-dungeon - Cave of Ordeals - B40 first arrival */
         if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[504])) {
             return cPhs_ERROR_e;
         }

@@ -1,7 +1,9 @@
 /**
- * @file d_a_obj_laundry.cpp
+* @file d_a_obj_laundry.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_obj_laundry.h"
 #include "SSystem/SComponent/c_math.h"
@@ -278,9 +280,6 @@ static int daObjLdy_Delete(daObjLdy_c* i_this) {
     return 1;
 }
 
-/* 80C51D2C-80C51D68 000E0C 003C+00 2/2 0/0 0/0 .text            __dt__12LaundJoint_cFv */
-LaundJoint_c::~LaundJoint_c() {}
-
 int daObjLdy_c::create() {
     fopAcM_SetupActor(this, daObjLdy_c);
     int phase = dComIfG_resLoad(&mPhase, l_arcName);
@@ -299,11 +298,6 @@ int daObjLdy_c::create() {
 /* 80C51D68-80C51EC0 000E48 0158+00 1/0 0/0 0/0 .text            daObjLdy_Create__FP10fopAc_ac_c */
 static int daObjLdy_Create(fopAc_ac_c* i_this) {
     return ((daObjLdy_c*)i_this)->create();
-}
-
-/* 80C51EC0-80C51EC4 000FA0 0004+00 1/1 0/0 0/0 .text            __ct__12LaundJoint_cFv */
-LaundJoint_c::LaundJoint_c() {
-    /* empty function */
 }
 
 /* 80C520F4-80C52114 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjLdy_Method */

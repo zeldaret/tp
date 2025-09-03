@@ -125,7 +125,10 @@ public:
     /* 8095CC8C */ BOOL drawDbgInfo();
 
     s16 getMessageNo() { return shape_angle.x; }
-    bool isMap() { return !(daNpcF_chkEvtBit(0x10c) || !daNpcF_chkEvtBit(0x108)); }
+                            /* dSv_event_flag_c::F_0268 - City in the Sky - City in the Sky clear */
+    bool isMap() { return !(daNpcF_chkEvtBit(0x10c)
+                                /* dSv_event_flag_c::F_0264 - Cutscene - Get master sword */
+                            || !daNpcF_chkEvtBit(0x108)); }
     inline void setExpressionTalkAfter() { setExpression(7, -1.0f); }
     inline void setLookMode(int i_lookMode, fopAc_ac_c* i_talkPartner);
     inline void searchActors();

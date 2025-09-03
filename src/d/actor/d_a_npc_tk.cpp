@@ -1,7 +1,9 @@
 /**
- * @file d_a_npc_tk.cpp
+* @file d_a_npc_tk.cpp
  *
  */
+
+#include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_npc_tk.h"
 #include "Z2AudioLib/Z2Instances.h"
@@ -13,7 +15,30 @@
 #include "d/d_camera.h"
 #include "d/d_cc_d.h"
 #include "d/d_s_play.h"
-#include "dol2asm.h"
+
+class daNPC_TK_HIO_c : public JORReflexible {
+public:
+    daNPC_TK_HIO_c();
+    virtual ~daNPC_TK_HIO_c() {}
+
+    void genMessage(JORMContext*) {}
+
+    s8 field_0x4;
+    f32 field_0x8;
+    f32 field_0xc;
+    f32 field_0x10;
+    f32 field_0x14;
+    f32 field_0x18;
+    f32 field_0x1c;
+    f32 field_0x20;
+    f32 field_0x24;
+    f32 field_0x28;
+    f32 mFlySpeed;
+    f32 field_0x30;
+    f32 field_0x34;
+    f32 field_0x38;
+    u8 field_0x3c;
+};
 
 //
 // Declarations:
@@ -235,8 +260,6 @@ void daNPC_TK_c::setFlySE() {
     }
 }
 
-UNK_REL_BSS
-
 static s16 m_near_angle;
 
 static fopAc_ac_c* m_near_actor;
@@ -352,7 +375,10 @@ void daNPC_TK_c::executeFly() {
                 mpMaster = NULL;
             }
         }
-        if (mpMaster != NULL && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0xcf]) != 0) {
+
+        if (mpMaster != NULL
+               /* dSv_event_flag_c::F_0207 - Ordon Village - Viewed Hanch, the Hawker cutscene */
+            && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0xCF])) {
             setActionMode(6);
             mSphere.OffCoSetBit();
         }
@@ -1271,6 +1297,7 @@ void daNPC_TK_c::executeBack() {
                     }
 
                     if (fopAcM_GetName(field_0x634) == PROC_OBJ_KAGO &&
+                         /* dSv_event_flag_c::F_0577 - Ordon Village - 2nd Day - Retrieved basket from monkey (hit hawk) */
                         !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x241]))
                     {
                         Z2GetAudioMgr()->changeBgmStatus(1);
@@ -1375,10 +1402,12 @@ void daNPC_TK_c::executeBack() {
                 if (current.pos.absXZ(playerPos) < 200.0f) {
                     field_0x6b4 = 0;
                     if (fopAcM_GetName(field_0x634) == PROC_OBJ_KAGO &&
+                         /* dSv_event_flag_c::F_0577 - Ordon Village - 2nd Day - Retrieved basket from monkey (hit hawk) */
                         !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[0x241]))
                     {
                         Z2GetAudioMgr()->changeBgmStatus(0);
 
+                        /* dSv_event_flag_c::F_0577 - Ordon Village - 2nd Day - Retrieved basket from monkey (hit hawk) */
                         dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x241]);
 
                         field_0x6b8 = 0x46;

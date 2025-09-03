@@ -1,9 +1,10 @@
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_tag_wljump.h"
 #include "d/d_path.h"
 #include "d/d_procname.h"
 #include "d/actor/d_a_player.h"
 #include "d/actor/d_a_midna.h"
-
 
 /* 80D64EB8-80D64FE4 000078 012C+00 1/1 0/0 0/0 .text            create__13daTagWljump_cFv */
 int daTagWljump_c::create() {
@@ -182,7 +183,7 @@ int daTagWljump_c::execute() {
 
             mLandArea = point_p->mArg0 * 10.0f;
 
-            if (point_p->field_0x1 == 1) {
+            if (point_p->mArg2 == 1) {
                 shape_angle.z = 1;
             } else {
                 shape_angle.z = 0;

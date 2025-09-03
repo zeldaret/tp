@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_taro.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "d/actor/d_a_npc_len.h"
@@ -24,10 +26,6 @@ enum TaroEvent {
     /* 0x17 */ EVENT_17 = 0x17,
     /* 0x18 */ EVENT_18 = 0x18,
 };
-
-UNK_REL_DATA
-
-UNK_REL_BSS
 
 /* 805735AC-805735B0 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daNpc_Taro_HIO_c l_HIO;

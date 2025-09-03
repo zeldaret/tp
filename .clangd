@@ -1,5 +1,11 @@
 CompileFlags:
-  Add: [-Wno-c++11-compat-deprecated-writable-strings, -Wno-extern-initializer, -Wno-multichar, "-fdeclspec"]
+  Add: [
+    "-Wno-c++11-compat-deprecated-writable-strings",
+    "-Wno-extern-initializer",
+    "-Wno-multichar",
+    "-fdeclspec",
+    "-Wno-c++11-extensions",
+  ]
 Diagnostics:
   Suppress:
     - "warn_char_constant_too_large"
@@ -14,3 +20,13 @@ Diagnostics:
     - "bound_member_function"
     - "typecheck_subscript_value"
     - "unknown_typename"
+---
+If:
+  PathMatch: src/PowerPC_EABI_Support/MSL/MSL_C\+\+/.*\.h
+CompileFlags:
+  Add: ["--language=c++", "--std=c++98"]
+---
+If:
+  PathMatch: .*\.pch
+CompileFlags:
+  Add: ["--language=c++", "--std=c++98"]

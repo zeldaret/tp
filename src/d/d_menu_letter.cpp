@@ -3,6 +3,8 @@
 // Translation Unit: d/d_menu_letter
 //
 
+#include "d/dolzel.h"
+
 #include "d/d_menu_letter.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
@@ -19,11 +21,6 @@
 #include "m_Do/m_Do_graphic.h"
 #include "d/d_msg_scrn_arrow.h"
 #include "d/d_lib.h"
-
-/* 803BDA00-803BDA0C 01AB20 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
 
 typedef void (dMenu_Letter_c::*initFunc)();
 static initFunc map_init_process[] = {

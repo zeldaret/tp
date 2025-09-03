@@ -709,6 +709,7 @@ public:
     const cXyz getLeftHandPos() const { return mLeftHandPos; }
     const cXyz getItemPos() const { return mItemPos; }
     bool getDkCaught() const { return checkNoResetFlg1(FLG1_DK_CAUGHT); }
+    bool getDkCaught2() const { return checkNoResetFlg0(FLG0_DK_CAUGHT); }
     bool getStCaught() const { return checkNoResetFlg1(FLG1_UNK_80000000); }
 
     /* vt 0X008 */ virtual cXyz* getMidnaAtnPos() const { return NULL; }
@@ -929,6 +930,8 @@ public:
     bool checkMidnaAtnPos() const { return checkNoResetFlg1(FLG1_MIDNA_ATN_POS); }
     bool checkMidnaHairAtnPos() const { return checkNoResetFlg1(FLG1_MIDNA_HAIR_ATN_POS); }
     bool checkAttentionLock() const { return checkResetFlg0(RFLG0_UNK_10000); }
+    BOOL checkFishingRodUseStart() const { return checkResetFlg1(RFLG1_UNK_80); }
+    BOOL checkFishingRodUseAccept() const { return checkResetFlg1(RFLG1_UNK_200); }
 
     void onBossRoomWait() { onEndResetFlg0(ERFLG0_BOSS_ROOM_WAIT); }
     void onBeeFollow() { onEndResetFlg0(ERFLG0_BEE_FOLLOW); }
@@ -942,6 +945,17 @@ public:
     void onWolfEyeKeep() { onEndResetFlg1(ERFLG1_WOLF_EYE_KEEP); }
     void onPortalWarpMidnaAtnKeep() { onEndResetFlg2(ERFLG2_PORTAL_WARP_MIDNA_ATN_KEEP); }
     void onFogFade() { onNoResetFlg2(FLG2_UNK_4000); }
+    void onDkCaught2() { onNoResetFlg0(FLG0_DK_CAUGHT); }
+    void onFishingRodReelEnd() { onEndResetFlg0(ERFLG0_UNK_20000); }
+    void onFishingHit() { onEndResetFlg0(ERFLG0_UNK_10000); }
+    void onFishingKeep() { onEndResetFlg2(ERFLG2_UNK_1); }
+    void onTraningCutHead() { onNoResetFlg3(FLG3_UNK_40); }
+    void onTraningCutFast() { onNoResetFlg3(FLG3_UNK_80); }
+    void onTraningCutLargeJump() { onNoResetFlg3(FLG3_UNK_200); }
+    void onTraningCutLargeTurn() { onNoResetFlg3(FLG3_UNK_100); }
+    void onTraningCutDown() { onNoResetFlg3(FLG3_UNK_10); }
+    void onTraningShieldAttack() { onNoResetFlg3(FLG3_UNK_8); }
+
     BOOL checkStickArrowReset() const { return checkResetFlg0(RFLG0_UNK_1); }
     u32 getCutAtFlg() const { return checkNoResetFlg0(FLG0_UNK_40); }
     u32 checkBoarSingleBattleFirst() const { return checkNoResetFlg2(FLG2_BOAR_SINGLE_BATTLE); }
@@ -1138,6 +1152,7 @@ public:
         return dComIfGs_getSelectEquipClothes() == fpcNm_ITEM_ARMOR;
     }
 
+                                               /* dSv_event_flag_c::M_067 - Main Event - Midna riding / not riding (ON == riding) */
     static BOOL checkFirstMidnaDemo() { return dComIfGs_isEventBit(0xc10); }
     static int checkNowWolfPowerUp() { return checkNowWolfEyeUp(); }
 

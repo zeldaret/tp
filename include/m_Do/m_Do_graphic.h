@@ -8,8 +8,6 @@
 int mDoGph_Create();
 void mDoGph_drawFilterQuad(s8 param_0, s8 param_1);
 
-extern bool data_80450BE7;  // AutoForcus
-
 struct ResTIMG;
 class mDoGph_gInf_c {
 public:
@@ -71,8 +69,8 @@ public:
     static void setBlureRate(u8 i_rate) { mBlureRate = i_rate; }
     static u8 getBlureRate() { return mBlureRate; }
     static MtxP getBlureMtx() { return mBlureMtx; }
-    static void offAutoForcus() { data_80450BE7 = 0; }
-    static BOOL isAutoForcus() { return data_80450BE7; }
+    static void offAutoForcus() { mAutoForcus = 0; }
+    static BOOL isAutoForcus() { return mAutoForcus; }
     static void setTickRate(u32 rate) { JFWDisplay::getManager()->setTickRate(rate); }
     static void waitBlanking(int wait) { JFWDisplay::getManager()->waitBlanking(wait); }
 
@@ -174,8 +172,12 @@ public:
     static bool mBlureFlag;
     static u8 mBlureRate;
     static u8 mFade;
+    static bool mAutoForcus;
 
     #if PLATFORM_WII || PLATFORM_SHIELD
+    static cXyz m_nowEffPos;
+    static cXyz m_oldEffPos;
+    static cXyz m_oldOldEffPos;
     static u8 mWide;
     static ResTIMG* m_fullFrameBufferTimg;
     static void* m_fullFrameBufferTex;

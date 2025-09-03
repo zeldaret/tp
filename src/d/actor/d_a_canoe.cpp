@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_canoe.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_meter2_info.h"
@@ -100,10 +102,12 @@ int daCanoe_c::create() {
     fopAcM_SetupActor(this, daCanoe_c);
 
     if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0) {
+             /* dSv_event_flag_c::F_0463 - Fishing Pond - Reserved for fishing */
         if (!dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[463])) {
             return cPhs_ERROR_e;
         }
 
+            /* dSv_event_flag_c::F_0464 - Fishing Pond - Reserved for fishing */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[464])) {
             fopAcM_SetParam(this, 2);
         } else {
@@ -548,8 +552,6 @@ void daCanoe_c::frontBackBgCheck() {
         setFrontBackPos();
     }
 }
-
-UNK_REL_BSS
 
 /* 804DC330-804DC554 001ED0 0224+00 1/1 0/0 0/0 .text            setPaddleEffect__9daCanoe_cFv */
 void daCanoe_c::setPaddleEffect() {

@@ -3,6 +3,8 @@
  *
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_map_path_dmap.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
@@ -1112,22 +1114,19 @@ void renderingPlusDoorAndCursor_c::drawTreasure() {
         int group_num = getIconGroupNumber(tmp);
 
         if (group_num != 0) {
+            JUT_ASSERT(0xaf9, typeGroupData_p != 0);
+
             f32 icon_size = getIconSize(tmp) * mCmPerTexel;
+            f32 icon_size_2 = icon_size;
 
             GXInvalidateTexAll();
-            GXTexObj* texObj_p =
-                dMpath_n::m_texObjAgg.getTexObjPointer(l_treasureDispList[i].field_0x4);
-            GXLoadTexObj(texObj_p, GX_TEXMAP0);
+            GXLoadTexObj(dMpath_n::m_texObjAgg.getTexObjPointer(l_treasureDispList[i].field_0x4), GX_TEXMAP0);
             GXColor sp18;
-            const GXColor* temp_r3_2 = l_treasureDispList[i].field_0x8;
-            sp18.r = temp_r3_2->r;
-            sp18.g = temp_r3_2->g;
-            sp18.b = temp_r3_2->b;
-            sp18.a = temp_r3_2->a;
+            sp18 = *l_treasureDispList[i].field_0x8;
 
             GXSetTevColor(GX_TEVREG1, sp18);
 
-            sp18.r += 4;
+            sp18.r += (u8)4;
             GXSetTevColor(GX_TEVREG2, sp18);
 
             for (int j = 0; j < group_num && typeGroupData_p != NULL; j++) {
@@ -1142,7 +1141,7 @@ void renderingPlusDoorAndCursor_c::drawTreasure() {
 
                     GXSetTevColor(GX_TEVREG1, sp18);
 
-                    sp18.r += 4;
+                    sp18.r += (u8)4;
                     GXSetTevColor(GX_TEVREG2, sp18);
                 }
 
@@ -1150,7 +1149,7 @@ void renderingPlusDoorAndCursor_c::drawTreasure() {
                     isDrawIconSingle(typeGroupData_p->getConstDataPointer(), mRoomNoSingle,
                                      mRenderedFloor, rend_all_room, true, icon_pos))
                 {
-                    drawIconSingle(*icon_pos, icon_size, icon_size);
+                    drawIconSingle(*icon_pos, icon_size, icon_size_2);
                 }
 
                 typeGroupData_p = getNextData(typeGroupData_p);
@@ -1191,22 +1190,19 @@ void renderingPlusDoorAndCursor_c::drawTreasureAfterPlayer() {
         int group_num = getIconGroupNumber(tmp);
 
         if (group_num != 0) {
+            JUT_ASSERT(0xb7e, typeGroupData_p != 0);
+
             f32 icon_size = getIconSize(tmp) * mCmPerTexel;
+            f32 icon_size_2 = icon_size;
 
             GXInvalidateTexAll();
-            GXTexObj* texObj_p =
-                dMpath_n::m_texObjAgg.getTexObjPointer(l_treasureDispList[i].field_0x4);
-            GXLoadTexObj(texObj_p, GX_TEXMAP0);
+            GXLoadTexObj(dMpath_n::m_texObjAgg.getTexObjPointer(l_treasureDispList[i].field_0x4), GX_TEXMAP0);
             GXColor sp18;
-            const GXColor* temp_r3_2 = l_treasureDispList[i].field_0x8;
-            sp18.r = temp_r3_2->r;
-            sp18.g = temp_r3_2->g;
-            sp18.b = temp_r3_2->b;
-            sp18.a = temp_r3_2->a;
+            sp18 = *l_treasureDispList[i].field_0x8;
 
             GXSetTevColor(GX_TEVREG1, sp18);
 
-            sp18.r += 4;
+            sp18.r += (u8)4;
             GXSetTevColor(GX_TEVREG2, sp18);
 
             for (int j = 0; j < group_num && typeGroupData_p != NULL; j++) {
@@ -1221,7 +1217,7 @@ void renderingPlusDoorAndCursor_c::drawTreasureAfterPlayer() {
 
                     GXSetTevColor(GX_TEVREG1, sp18);
 
-                    sp18.r += 4;
+                    sp18.r += (u8)4;
                     GXSetTevColor(GX_TEVREG2, sp18);
                 }
 
@@ -1229,7 +1225,7 @@ void renderingPlusDoorAndCursor_c::drawTreasureAfterPlayer() {
                     isDrawIconSingle(typeGroupData_p->getConstDataPointer(), mRoomNoSingle,
                                      mRenderedFloor, rend_all_room, true, icon_pos))
                 {
-                    drawIconSingle(*icon_pos, icon_size, icon_size);
+                    drawIconSingle(*icon_pos, icon_size, icon_size_2);
                 }
 
                 typeGroupData_p = getNextData(typeGroupData_p);

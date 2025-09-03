@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_brg.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
@@ -353,8 +355,6 @@ static int daObj_Brg_Draw(obj_brg_class* i_this) {
 
     return 1;
 }
-
-UNK_REL_BSS;
 
 /* 80BC2526 0002+00 data_80BC2526 wy */
 static s16 wy;

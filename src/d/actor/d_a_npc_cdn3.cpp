@@ -3,274 +3,11 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_cdn3.h"
 #include "d/d_msg_object.h"
 #include "dol2asm.h"
-
-
-//
-// Forward References:
-//
-
-extern "C" static void createHeapCallBack__FP10fopAc_ac_c();
-extern "C" void setAction__11daNpcCdn3_cFQ211daNpcCdn3_c6Mode_e();
-extern "C" void callInit__11daNpcCdn3_cFv();
-extern "C" void callExecute__11daNpcCdn3_cFv();
-extern "C" void initWait__11daNpcCdn3_cFv();
-extern "C" void executeWait__11daNpcCdn3_cFv();
-extern "C" void initPath__11daNpcCdn3_cFv();
-extern "C" void executePath__11daNpcCdn3_cFv();
-extern "C" void __dt__8cM3dGPlaFv();
-extern "C" void __dt__4cXyzFv();
-extern "C" void initTalk__11daNpcCdn3_cFv();
-extern "C" void executeTalk__11daNpcCdn3_cFv();
-extern "C" void initEscape__11daNpcCdn3_cFv();
-extern "C" void executeEscape__11daNpcCdn3_cFv();
-extern "C" void initFear__11daNpcCdn3_cFv();
-extern "C" void executeFear__11daNpcCdn3_cFv();
-extern "C" void initFear2__11daNpcCdn3_cFv();
-extern "C" void executeFear2__11daNpcCdn3_cFv();
-extern "C" void initFight__11daNpcCdn3_cFv();
-extern "C" void executeFight__11daNpcCdn3_cFv();
-extern "C" void initRelief__11daNpcCdn3_cFv();
-extern "C" void executeRelief__11daNpcCdn3_cFv();
-extern "C" void setAngle__11daNpcCdn3_cFv();
-extern "C" void pathMoveF__11daNpcCdn3_cFv();
-extern "C" void ctrlMsgAnm__11daNpcCdn3_cFv();
-extern "C" static void s_sub1__FPvPv();
-extern "C" void searchNextScheduleTagSub__11daNpcCdn3_cFP10fopAc_ac_c();
-extern "C" static void s_sub2__FPvPv();
-extern "C" void searchFirstScheduleTagSub__11daNpcCdn3_cFP10fopAc_ac_c();
-extern "C" void checkSchedule__11daNpcCdn3_cFv();
-extern "C" void setSchedule__11daNpcCdn3_cFP15daTagSchedule_c();
-extern "C" void isInShop__11daNpcCdn3_cFv();
-extern "C" void isChairStyle__11daNpcCdn3_cFv();
-extern "C" void isNoTurnTalk__11daNpcCdn3_cFv();
-extern "C" void waita__11daNpcCdn3_cFPv();
-extern "C" void talka__11daNpcCdn3_cFPv();
-extern "C" void waitwall__11daNpcCdn3_cFPv();
-extern "C" void talkwall__11daNpcCdn3_cFPv();
-extern "C" void talkbwall__11daNpcCdn3_cFPv();
-extern "C" void talkb__11daNpcCdn3_cFPv();
-extern "C" void talkc__11daNpcCdn3_cFPv();
-extern "C" void waitb__11daNpcCdn3_cFPv();
-extern "C" void sitwaita__11daNpcCdn3_cFPv();
-extern "C" void sittalka__11daNpcCdn3_cFPv();
-extern "C" void sittalkab__11daNpcCdn3_cFPv();
-extern "C" void sitwaitb__11daNpcCdn3_cFPv();
-extern "C" void sittalkb__11daNpcCdn3_cFPv();
-extern "C" void sittalkbb__11daNpcCdn3_cFPv();
-extern "C" void looka__11daNpcCdn3_cFPv();
-extern "C" void lookb__11daNpcCdn3_cFPv();
-extern "C" void playm__11daNpcCdn3_cFPv();
-extern "C" void turnr__11daNpcCdn3_cFPv();
-extern "C" void turnl__11daNpcCdn3_cFPv();
-extern "C" void walka__11daNpcCdn3_cFPv();
-extern "C" void walkb__11daNpcCdn3_cFPv();
-extern "C" void runa__11daNpcCdn3_cFPv();
-extern "C" void runb__11daNpcCdn3_cFPv();
-extern "C" void browsea__11daNpcCdn3_cFPv();
-extern "C" void browseb__11daNpcCdn3_cFPv();
-extern "C" void dance__11daNpcCdn3_cFPv();
-extern "C" void ladytalka__11daNpcCdn3_cFPv();
-extern "C" void ladytalkb__11daNpcCdn3_cFPv();
-extern "C" void normtalka__11daNpcCdn3_cFPv();
-extern "C" void normtalkb__11daNpcCdn3_cFPv();
-extern "C" void sellme__11daNpcCdn3_cFPv();
-extern "C" void sing__11daNpcCdn3_cFPv();
-extern "C" static void daNpcCdn3_Create__FPv();
-extern "C" void create__11daNpcCdn3_cFv();
-extern "C" void create_init__11daNpcCdn3_cFv();
-extern "C" void setMtx__11daNpcCdn3_cFv();
-extern "C" void lookat__11daNpcCdn3_cFv();
-extern "C" void __dt__5csXyzFv();
-extern "C" static void daNpcCdn3_Delete__FPv();
-extern "C" void __dt__11daNpcCdn3_cFv();
-extern "C" static void daNpcCdn3_Execute__FPv();
-extern "C" void execute__11daNpcCdn3_cFv();
-extern "C" void checkTimeSchedule__11daNpcCdn3_cFv();
-extern "C" static void daNpcCdn3_Draw__FPv();
-extern "C" static bool daNpcCdn3_IsDelete__FPv();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void __sinit_d_a_npc_cdn3_cpp();
-extern "C" static void func_8097EFD8();
-extern "C" static void func_8097EFE0();
-extern "C" void __dt__18daNpcT_ActorMngr_cFv();
-extern "C" void __dt__10daNpcCd2_cFv();
-extern "C" void __dt__16dNpcLib_lookat_cFv();
-extern "C" void __dt__8cM3dGCylFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" void __dt__12dBgS_AcchCirFv();
-extern "C" void __dt__12dBgS_ObjAcchFv();
-extern "C" extern char const* const d_a_npc_cdn3__stringBase0;
-extern "C" u8 ActionTable__11daNpcCdn3_c[192];
-extern "C" void* m_funcTbl__11daNpcCdn3_c[44];
-extern "C" u8 m_seq00_funcTbl__11daNpcCdn3_c[24];
-extern "C" u8 m_seq01_funcTbl__11daNpcCdn3_c[24];
-extern "C" u8 m_seq02_funcTbl__11daNpcCdn3_c[24];
-extern "C" u8 m_seq03_funcTbl__11daNpcCdn3_c[24];
-extern "C" u8 m_seq04_funcTbl__11daNpcCdn3_c[24];
-extern "C" u8 m_seq05_funcTbl__11daNpcCdn3_c[48];
-extern "C" u8 m_seq06_funcTbl__11daNpcCdn3_c[48];
-extern "C" u8 m_seq07_funcTbl__11daNpcCdn3_c[24];
-extern "C" u8 m_seq08_funcTbl__11daNpcCdn3_c[84];
-extern "C" u8 m_seq09_funcTbl__11daNpcCdn3_c[24];
-extern "C" u8 m_seq10_funcTbl__11daNpcCdn3_c[24];
-extern "C" u8 m_seq11_funcTbl__11daNpcCdn3_c[72];
-extern "C" u8 m_seq12_funcTbl__11daNpcCdn3_c[24];
-extern "C" u8 m_seq13_funcTbl__11daNpcCdn3_c[72];
-extern "C" u8 m_seq14_funcTbl__11daNpcCdn3_c[24];
-extern "C" u8 m_seq15_funcTbl__11daNpcCdn3_c[24];
-extern "C" u8 m_seq16_funcTbl__11daNpcCdn3_c[84];
-extern "C" u8 m_seq17_funcTbl__11daNpcCdn3_c[24];
-extern "C" u8 m_seq18_funcTbl__11daNpcCdn3_c[24];
-extern "C" u8 m_seq19_funcTbl__11daNpcCdn3_c[84];
-extern "C" u8 m_seq20_funcTbl__11daNpcCdn3_c[24];
-extern "C" u8 m_seq21_funcTbl__11daNpcCdn3_c[24];
-extern "C" u8 m_seq22_funcTbl__11daNpcCdn3_c[48];
-extern "C" u8 m_seq23_funcTbl__11daNpcCdn3_c[84];
-extern "C" u8 m_seq24_funcTbl__11daNpcCdn3_c[60];
-extern "C" u8 m_seq25_funcTbl__11daNpcCdn3_c[84];
-extern "C" u8 m_seq26_funcTbl__11daNpcCdn3_c[36];
-extern "C" u8 m_seq27_funcTbl__11daNpcCdn3_c[24];
-extern "C" u8 m_seq28_funcTbl__11daNpcCdn3_c[36];
-extern "C" u8 m_seq29_funcTbl__11daNpcCdn3_c[36];
-extern "C" u8 m_seq30_funcTbl__11daNpcCdn3_c[72];
-extern "C" u8 m_seq31_funcTbl__11daNpcCdn3_c[72];
-extern "C" u8 m_seq32_funcTbl__11daNpcCdn3_c[84];
-extern "C" u8 m_seq33_funcTbl__11daNpcCdn3_c[84];
-extern "C" u8 m_seq34_funcTbl__11daNpcCdn3_c[108];
-extern "C" u8 m_seq35_funcTbl__11daNpcCdn3_c[24];
-extern "C" u8 m_seq36_funcTbl__11daNpcCdn3_c[48];
-extern "C" u8 m_seq37_funcTbl__11daNpcCdn3_c[24];
-extern "C" u8 m_seq38_funcTbl__11daNpcCdn3_c[24];
-extern "C" u8 m_seq39_funcTbl__11daNpcCdn3_c[24];
-extern "C" u8 m_seq40_funcTbl__11daNpcCdn3_c[36];
-extern "C" u8 m_seq41_funcTbl__11daNpcCdn3_c[24];
-extern "C" u8 m_seq42_funcTbl__11daNpcCdn3_c[24];
-extern "C" u8 m_seq43_funcTbl__11daNpcCdn3_c[36];
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void setMorf__13mDoExt_morf_cFf();
-extern "C" void modelCalc__16mDoExt_McaMorfSOFv();
-extern "C" void stopZelAnime__16mDoExt_McaMorfSOFv();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAc_IsActor__FPv();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff();
-extern "C" void fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz();
-extern "C" void fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_getPolygonAngle__FPC8cM3dGPlas();
-extern "C" void fpcEx_Search__FPFPvPv_PvPv();
-extern "C" void getLayerNo__14dComIfG_play_cFi();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" void onSwitch__12dSv_danBit_cFi();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void convPId__14dEvt_control_cFUi();
-extern "C" void ChkPresentEnd__16dEvent_manager_cFv();
-extern "C" void GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla();
-extern "C" void __ct__12dBgS_AcchCirFv();
-extern "C" void SetWallR__12dBgS_AcchCirFf();
-extern "C" void SetWall__12dBgS_AcchCirFff();
-extern "C" void __dt__9dBgS_AcchFv();
-extern "C" void __ct__9dBgS_AcchFv();
-extern "C" void Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz();
-extern "C" void CrrPos__9dBgS_AcchFR4dBgS();
-extern "C" void SetObj__16dBgS_PolyPassChkFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void __dt__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_CylFRC11dCcD_SrcCyl();
-extern "C" void initialize__18daNpcT_ActorMngr_cFv();
-extern "C" void entry__18daNpcT_ActorMngr_cFP10fopAc_ac_c();
-extern "C" void remove__18daNpcT_ActorMngr_cFv();
-extern "C" void getActorP__18daNpcT_ActorMngr_cFv();
-extern "C" void NpcCreate__10daNpcCd2_cFi();
-extern "C" void ObjCreate__10daNpcCd2_cFi();
-extern "C" void ChairCreate__10daNpcCd2_cFf();
-extern "C" void isM___10daNpcCd2_cFv();
-extern "C" void getAnmP__10daNpcCd2_cFii();
-extern "C" void setAttention__10daNpcCd2_cFi();
-extern "C" void loadResrc__10daNpcCd2_cFii();
-extern "C" void removeResrc__10daNpcCd2_cFii();
-extern "C" void setEnvTevCol__10daNpcCd2_cFv();
-extern "C" void setRoomNo__10daNpcCd2_cFv();
-extern "C" void animation__10daNpcCd2_cFi();
-extern "C" void setAnm__10daNpcCd2_cFP18J3DAnmTransformKeyffiii();
-extern "C" void drawShadow__10daNpcCd2_cFf();
-extern "C" void drawObj__10daNpcCd2_cFiP8J3DModelf();
-extern "C" void drawNpc__10daNpcCd2_cFv();
-extern "C" void getEscapeTag__10daNpcCd2_cFv();
-extern "C" void checkFearSituation__10daNpcCd2_cFv();
-extern "C" void setPath__11PathTrace_cFiiiP4cXyzb();
-extern "C" void checkPoint__11PathTrace_cF4cXyzf();
-extern "C" void checkPathEnd__11PathTrace_cF4cXyzf();
-extern "C" void getTargetPoint__11PathTrace_cFP3Vec();
-extern "C" void setNextPoint__11PathTrace_cFR4cXyz();
-extern "C" void checkObstacle__11PathTrace_cFP10fopAc_ac_c();
-extern "C" void checkNowWolfEyeUp__9daPy_py_cFv();
-extern "C" void dKy_getdaytime_hour__Fv();
-extern "C" void dKy_getdaytime_minute__Fv();
-extern "C" void dKy_getDarktime_hour__Fv();
-extern "C" void dKy_getDarktime_minute__Fv();
-extern "C" void dKy_getDarktime_week__Fv();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void dKy_get_dayofweek__Fv();
-extern "C" void dKy_darkworld_check__Fv();
-extern "C" void getActor__12dMsgObject_cFv();
-extern "C" void __ct__10dMsgFlow_cFv();
-extern "C" void __dt__10dMsgFlow_cFv();
-extern "C" void init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c();
-extern "C" void doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci();
-extern "C" void __ct__16dNpcLib_lookat_cFv();
-extern "C" void init__16dNpcLib_lookat_cFP8J3DModelPiP5csXyzP5csXyz();
-extern "C" void action__16dNpcLib_lookat_cF4cXyz4cXyzP10fopAc_ac_cPA4_fi();
-extern "C" void dbView__16dNpcLib_lookat_cFv();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void __ct__5csXyzFsss();
-extern "C" void __dt__13cBgS_PolyInfoFv();
-extern "C" void __dt__8cM3dGCirFv();
-extern "C" void SetC__8cM3dGCylFRC4cXyz();
-extern "C" void SetH__8cM3dGCylFf();
-extern "C" void SetR__8cM3dGCylFf();
-extern "C" void cLib_addCalc2__FPffff();
-extern "C" void cLib_addCalcAngleS__FPsssss();
-extern "C" void cLib_addCalcAngleS2__FPssss();
-extern "C" void cLib_chaseF__FPfff();
-extern "C" void cLib_targetAngleY__FPC3VecPC3Vec();
-extern "C" void cLib_targetAngleY__FRC3VecRC3Vec();
-extern "C" void cLib_distanceAngleS__Fss();
-extern "C" void __ct__17Z2CreatureCitizenFv();
-extern "C" void __dt__17Z2CreatureCitizenFv();
-extern "C" void playVoice__17Z2CreatureCitizenFi();
-extern "C" void __dl__FPv();
-extern "C" void checkPass__12J3DFrameCtrlFf();
-extern "C" void __destroy_arr();
-extern "C" void __ptmf_test();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 const m_cylDat__10daNpcCd2_c[68];
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" f32 Zero__4cXyz[3];
 
 //
 // Declarations:
@@ -306,8 +43,6 @@ static int createHeapCallBack(fopAc_ac_c* param_0) {
     }
     return rv;
 }
-
-UNK_REL_DATA
 
 /* 8097F788-8097F848 0000E0 00C0+00 1/2 0/0 0/0 .data            ActionTable__11daNpcCdn3_c */
 daNpcCdn3_c::actionFunc daNpcCdn3_c::ActionTable[8][2] = {
@@ -1360,7 +1095,7 @@ void daNpcCdn3_c::setSchedule(daTagSchedule_c* param_1) {
 
 /* 8097B5A8-8097B60C 002948 0064+00 2/2 0/0 0/0 .text            isInShop__11daNpcCdn3_cFv */
 inline bool daNpcCdn3_c::isInShop() {
-    BOOL rv = FALSE;
+    u8 rv = FALSE;
     if (strcmp(dComIfGp_getStartStageName(), "R_SP160") == 0 && dComIfG_play_c::getLayerNo(0) <= 1) {
         rv = TRUE;
     }
@@ -1853,7 +1588,6 @@ int daNpcCdn3_c::create() {
 }
 
 /* 8097CC58-8097D078 003FF8 0420+00 1/1 0/0 0/0 .text            create_init__11daNpcCdn3_cFv */
-// NONMATCHING - issues with initParamTime division and mod interaction with u16
 void daNpcCdn3_c::create_init() {
     gravity = -3.0f;
     initTimeSchedule();
@@ -1913,15 +1647,19 @@ void daNpcCdn3_c::setMtx() {
 }
 
 /* 8097D120-8097D614 0044C0 04F4+00 1/1 0/0 0/0 .text            lookat__11daNpcCdn3_cFv */
-// NONMATCHING - stack + r3 init order
+// NONMATCHING - r3 init order + regalloc
 void daNpcCdn3_c::lookat() {
+    csXyz vecs1[3] = {
+        csXyz((s32)Cd2_HIO_maxLmtX_BACKBONE(m_type), (s32)Cd2_HIO_maxLmtY_BACKBONE(m_type), 0),
+        csXyz((s32)Cd2_HIO_maxLmtX_NECK(m_type), (s32)Cd2_HIO_maxLmtY_NECK(m_type), 0),
+        csXyz((s32)Cd2_HIO_maxLmtX_HEAD(m_type), (s32)Cd2_HIO_maxLmtY_HEAD(m_type), 0),
+    };
+    csXyz vecs2[3] = {
+        csXyz((s32)Cd2_HIO_minLmtX_BACKBONE(m_type), (s32)Cd2_HIO_minLmtY_BACKBONE(m_type), 0),
+        csXyz((s32)Cd2_HIO_minLmtX_NECK(m_type), (s32)Cd2_HIO_minLmtY_NECK(m_type), 0),
+        csXyz((s32)Cd2_HIO_minLmtX_HEAD(m_type), (s32)Cd2_HIO_minLmtY_HEAD(m_type), 0),
+    };
     int local_68[4];
-    csXyz cStack_4c = csXyz(Cd2_HIO_maxLmtX_BACKBONE(m_type), Cd2_HIO_maxLmtY_BACKBONE(m_type), 0);
-    csXyz cStack_46 = csXyz(Cd2_HIO_maxLmtX_NECK(m_type), Cd2_HIO_maxLmtY_NECK(m_type), 0);
-    csXyz cStack_40 = csXyz(Cd2_HIO_maxLmtX_HEAD(m_type), Cd2_HIO_maxLmtY_HEAD(m_type), 0);
-    csXyz cStack_60 = csXyz(Cd2_HIO_minLmtX_BACKBONE(m_type), Cd2_HIO_minLmtY_BACKBONE(m_type), 0);
-    csXyz cStack_5a = csXyz(Cd2_HIO_minLmtX_NECK(m_type), Cd2_HIO_minLmtY_NECK(m_type), 0);
-    csXyz cStack_54 = csXyz(Cd2_HIO_minLmtX_HEAD(m_type), Cd2_HIO_minLmtY_HEAD(m_type), 0);
     cXyz cStack_80(cXyz::Zero);
     if (isM_()) {
         local_68[0] = 1;
@@ -1934,7 +1672,7 @@ void daNpcCdn3_c::lookat() {
         local_68[2] = 3;
         local_68[3] = -1;
     }
-    mLookat.init(mpMorf->getModel(), local_68, &cStack_4c,&cStack_60);
+    mLookat.init(mpMorf->getModel(), local_68, &vecs1[0], &vecs2[0]);
     Mtx afStack_38;
     if (m_targetAct.getActorP() != NULL) {
         cMtx_copy(mpMorf->getModel()->getBaseTRMtx(), afStack_38);
@@ -1966,7 +1704,6 @@ static int daNpcCdn3_Execute(void* i_this) {
 }
 
 /* 8097D748-8097DABC 004AE8 0374+00 1/1 0/0 0/0 .text            execute__11daNpcCdn3_cFv */
-// NONMATCHING - isInShop bool issue
 int daNpcCdn3_c::execute() {
     mAcchCir.SetWallH(Cd2_HIO_chkWallH(m_type));
     mAcchCir.SetWallR(Cd2_HIO_chkWallR(m_type));
@@ -1999,7 +1736,7 @@ int daNpcCdn3_c::execute() {
     return 1;
 }
 
-inline bool daNpcCdn3_c::searchFirstScheduleTag(fopAc_ac_c* param_1) {
+inline bool daNpcCdn3_c::searchFirstScheduleTag() {
     field_0xb88 = NULL;
     fpcM_Search(s_sub2, this);
     if (mTagSched != NULL) {
@@ -2028,7 +1765,6 @@ inline bool daNpcCdn3_c::searchNextScheduleTag() {
 
 /* 8097DABC-8097DEF4 004E5C 0438+00 1/1 0/0 0/0 .text            checkTimeSchedule__11daNpcCdn3_cFv
  */
-// NONMATCHING - getLastPointNum issues
 void daNpcCdn3_c::checkTimeSchedule() {
     int iVar2 = getTime();
     if (getGroupID() == 0xff) {
@@ -2041,7 +1777,7 @@ void daNpcCdn3_c::checkTimeSchedule() {
         }
     } else {
         if (mTagSched == NULL) {
-            if (searchFirstScheduleTag(this)) {
+            if (searchFirstScheduleTag()) {
                 setSchedule(mTagSched);
                 if (mTagSched->getStartEnd() == 1) {
                     if (field_0xb88 == 0) {
@@ -2055,8 +1791,8 @@ void daNpcCdn3_c::checkTimeSchedule() {
                     home.pos.set(current.pos);
                     old.pos.set(current.pos);
                     current.angle.y =
-                        cLib_targetAngleY(m_path.getPoint(m_path.getLastPointNum()),
-                                          m_path.getPoint(m_path.getLastPointNum() - 1));
+                        (s16)cLib_targetAngleY(m_path.getPoint(m_path.getLastPointNum() - 1),
+                                          m_path.getPoint(m_path.getLastPointNum()));
                     shape_angle.y = current.angle.y;
                     home.angle.y = current.angle.y;
                     old.angle.y = current.angle.y;
@@ -2065,8 +1801,8 @@ void daNpcCdn3_c::checkTimeSchedule() {
             }
         } else if (field_0xb95 != 0 && mTagSched->getStartEnd() != 1) {
             int day = getDayOfWeek();
-            int schedDay = mTagSched->getWeekNum();
-            if (schedDay == day && field_0xb8c <= iVar2) {
+            int weekNum = mTagSched->getWeekNum();
+            if (weekNum == day && field_0xb8c <= iVar2) {
                 field_0xb95 = 0;
             }
         }

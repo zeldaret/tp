@@ -3,6 +3,8 @@
  * Insect - Pillbug
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_dan.h"
 #include "SSystem/SComponent/c_math.h"
 #include "m_Do/m_Do_lib.h"
@@ -490,7 +492,10 @@ static int daObjDAN_Execute(daObjDAN_c* i_this) {
 }
 
 /* 80BDC460-80BDC464 0000B0 0004+00 1/2 0/0 0/0 .rodata          l_musiya_num */
-static u16 const l_musiya_num[2] = {0x019B, 0x019C};
+static u16 const l_musiya_num[2] = {
+    0x019B, /* dSv_event_flag_c::F_0411 - Misc. - Pill bug (M) */
+    0x019C, /* dSv_event_flag_c::F_0412 - Misc. - Pill bug (F) */
+};
 
 /* 80BDBB0C-80BDBCB8 00166C 01AC+00 1/1 0/0 0/0 .text            CreateChk__10daObjDAN_cFv */
 bool daObjDAN_c::CreateChk() {

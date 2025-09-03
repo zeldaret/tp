@@ -41,6 +41,6 @@ l_cyl_src = .data:0x0000000C; // type:object size:0x44 scope:global
 daObjWindow_METHODS = .data:0x00000050; // type:object size:0x20 scope:global
 g_profile_Obj_Window = .data:0x00000070; // type:object size:0x30 scope:global
 __vt__13daObjWindow_c = .data:0x000000A0; // type:object size:0x28 scope:global
-lbl_690_data_C8 = .data:0x000000C8; // type:object size:0x10
+lbl_690_data_C8 = .data:0x000000C8; // type:object size:0xE data:string
 @89118 = .data:0x000000D8; // type:object size:0x14 scope:local
 __RTTI__13daObjWindow_c = .data:0x000000EC; // type:object size:0x8 scope:global

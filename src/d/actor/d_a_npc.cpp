@@ -1,3 +1,5 @@
+#include "d/dolzel.h"
+
 #include "d/actor/d_a_npc.h"
 #include "d/actor/d_a_npc_tk.h"
 #include "d/actor/d_a_tag_evtarea.h"
@@ -531,11 +533,6 @@ int daNpcT_Path_c::chkPassed1(cXyz i_pnt, int i_num) {
     return 0;
 }
 
-/* 803B36A8-803B36B4 0107C8 000C+00 1/1 0/0 0/0 .data            cNullVec__6Z2Calc */
-static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
 /* 801464D8-8014698C 140E18 04B4+00 1/1 0/0 0/0 .text chkPassed2__13daNpcT_Path_cF4cXyzP4cXyzii */
 int daNpcT_Path_c::chkPassed2(cXyz i_pnt, cXyz* param_2, int i_num, int param_4) {
     cXyz cStack_80;
@@ -701,6 +698,12 @@ static BOOL daNpcT_chkPassed(cXyz i_pos, dPnt* i_points, u16 i_idx, u16 i_num, B
 
     return (u16)abs(angle_diff) > 0x4000;
 }
+
+#if DEBUG
+int daNpcT_Path_c::drawDbgInfo(f32 param_0, int param_1) {
+    return 0;
+}
+#endif
 
 static f32 dummy_literal() {
     cXyz vec;

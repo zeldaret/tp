@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_obj_tombo.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_menu_insect.h"
@@ -607,7 +609,10 @@ static int daObjTOMBO_Execute(daObjTOMBO_c* i_this) {
 }
 
 /* 80D1B7E0-80D1B7E4 000108 0004+00 1/2 0/0 0/0 .rodata          l_musiya_num */
-static u16 const l_musiya_num[2] = {0x01A3, 0x01A4};
+static u16 const l_musiya_num[2] = {
+    0x01A3, /* dSv_event_flag_c::F_0419 - Misc. - Dragonfly (M) */
+    0x01A4, /* dSv_event_flag_c::F_0420 - Misc. - Dragonfly (F) */
+};
 
 /* 80D1AFC8-80D1B174 001EE8 01AC+00 1/1 0/0 0/0 .text            CreateChk__12daObjTOMBO_cFv */
 bool daObjTOMBO_c::CreateChk() {

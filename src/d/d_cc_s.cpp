@@ -3,6 +3,8 @@
  *
  */
 
+#include "d/dolzel.h"
+
 #include "d/d_cc_s.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_jnt_col.h"

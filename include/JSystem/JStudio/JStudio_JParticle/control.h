@@ -44,7 +44,6 @@ struct TAdaptor_particle : public JStudio::TAdaptor_particle {
             pOld = NULL;
             JUT_ASSERT(113, pThis_!=0);
         }
-        /* 8028E700 */ virtual ~TJPACallback_emitter_() {}
         /* 8028ECC0 */ virtual void execute(JPABaseEmitter*);
         /* 8028F060 */ virtual void executeAfter(JPABaseEmitter*);
         /* 8028F098 */ virtual void draw(JPABaseEmitter*);

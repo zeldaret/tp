@@ -3,6 +3,8 @@
  * 
 */
 
+#include "d/dolzel_rel.h"
+
 #include "d/actor/d_a_npc_rafrel.h"
 #include "dol2asm.h"
 
@@ -263,24 +265,6 @@ SECTION_DEAD static char const* const stringBase_80ABFDFC = "RAFREL_APPEAR";
 SECTION_DEAD static char const* const stringBase_80ABFE0A = "RESIST_WIRETAP_ASH";
 SECTION_DEAD static char const* const stringBase_80ABFE1D = "RESIST_WIRETAP_SHAD";
 SECTION_DEAD static char const* const stringBase_80ABFE31 = "RESIST_WIRETAP_RAFREL";
-#pragma pop
-
-/* 80ABFE80-80ABFE8C 000000 000C+00 6/6 0/0 0/0 .data            cNullVec__6Z2Calc */
-SECTION_DATA static u8 cNullVec__6Z2Calc[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80ABFE8C-80ABFEA0 00000C 0004+10 0/0 0/0 0/0 .data            @1787 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u32 lit_1787[1 + 4 /* padding */] = {
-    0x02000201,
-    /* padding */
-    0x40080000,
-    0x00000000,
-    0x3FE00000,
-    0x00000000,
-};
 #pragma pop
 
 /* 80ABFEA0-80ABFFFC 000020 015C+00 1/2 0/0 0/0 .data            l_bckGetParamList */
