@@ -6,6 +6,7 @@
 #include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_e_ww.h"
+#include "f_op/f_op_camera_mng.h"
 #include "dol2asm.h"
 #include "f_op/f_op_actor_enemy.h"
 #include "Z2AudioLib/Z2Instances.h"
