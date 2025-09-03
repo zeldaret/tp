@@ -136,10 +136,7 @@ enum RES_Name {
 static daNpcTks_Param_c l_HIO;
 
 /* 80B1E104-80B1E1B4 000020 00B0+00 1/2 0/0 0/0 .data            l_bckGetParamList */
-static struct {
-    /* 0x0 */ int fileIdx;
-    /* 0x4 */ int attr;
-} l_bckGetParamList[22] = {
+static daNpc_GetParam3 l_bckGetParamList[22] = {
     {-1, J3DFrameCtrl::EMode_LOOP},
     {BCK_TKS_F_TALK_A, J3DFrameCtrl::EMode_NONE},
     {BCK_TKS_WAIT_A, J3DFrameCtrl::EMode_LOOP},
@@ -165,18 +162,12 @@ static struct {
 };
 
 /* 80B1E1B4-80B1E1BC 0000D0 0008+00 1/1 0/0 0/0 .data            l_btpGetParamList */
-static struct {
-    /* 0x0 */ int fileIdx;
-    /* 0x4 */ int attr;
-} l_btpGetParamList[1] = {
+static daNpc_GetParam3 l_btpGetParamList[1] = {
     {BTP_TKS, J3DFrameCtrl::EMode_LOOP},
 };
 
 /* 80B1E1BC-80B1E1C4 0000D8 0008+00 1/2 0/0 0/0 .data            l_btkGetParamList */
-static struct {
-    /* 0x0 */ int fileIdx;
-    /* 0x4 */ int attr;
-} l_btkGetParamList[1] = {
+static daNpc_GetParam3 l_btkGetParamList[1] = {
     {BTK_TKS, J3DFrameCtrl::EMode_LOOP},
 };
 

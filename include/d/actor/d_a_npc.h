@@ -23,6 +23,11 @@ struct daNpc_GetParam2 {  // name unknown
     /* 0x8 */ int arcIdx;
 };
 
+struct daNpc_GetParam3 {  // name unknown
+    /* 0x0 */ int fileIdx;
+    /* 0x4 */ int attr;
+};
+
 class daNpcT_ActorMngr_c {
 private:
     /* 0x0 */ fpc_ProcID mActorID;
