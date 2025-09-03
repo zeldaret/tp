@@ -8,7 +8,6 @@
 #include "JSystem/J3DGraphBase/J3DSys.h"
 #include "JSystem/J3DGraphBase/J3DVertex.h"
 
-typedef struct _GXColor GXColor;
 class JUTNameTab;
 
 /**

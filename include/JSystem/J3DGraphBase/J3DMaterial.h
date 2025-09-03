@@ -89,6 +89,21 @@ public:
     void setZCompLoc(u8 i_comploc) { mPEBlock->setZCompLoc(i_comploc); }
     void setMaterialMode(u32 i_mode) { mMaterialMode = i_mode; }
 
+    void addShape(J3DShape* pShape) {
+        J3D_ASSERT_NULLPTR(618, pShape != NULL);
+        mShape = pShape;
+    }
+
+    void setNext(J3DMaterial* pMaterial) {
+        J3D_ASSERT_NULLPTR(623, pMaterial != NULL);
+        mNext = pMaterial;
+    }
+
+    void setJoint(J3DJoint* pJoint) {
+        J3D_ASSERT_NULLPTR(628, pJoint != NULL);
+        mJoint = pJoint;
+    }
+
 public:
     /* 0x04 */ J3DMaterial* mNext;
     /* 0x08 */ J3DShape* mShape;

@@ -33,9 +33,9 @@ void J3DModel::initialize() {
 
 /* 80327184-80327300 321AC4 017C+00 0/0 3/3 0/0 .text
  * entryModelData__8J3DModelFP12J3DModelDataUlUl                */
-s32 J3DModel::entryModelData(J3DModelData* pModelData, u32 mdlFlags, u32 mtxBufferFlag) {
+s32 J3DModel::entryModelData(J3DModelData* pModelData, u32 mdlFlags, u32 mtxNum) {
     J3D_ASSERTMSG(83, pModelData != NULL, "Error : null pointer.");
-    J3D_ASSERTMSG(84, mtxBufferFlag != 0, "Error : non-zero argument is specified 0.");
+    J3D_ASSERTMSG(84, mtxNum != 0, "Error : non-zero argument is specified 0.");
     int ret = kJ3DError_Success;
 
     mModelData = pModelData;
@@ -45,7 +45,7 @@ s32 J3DModel::entryModelData(J3DModelData* pModelData, u32 mdlFlags, u32 mtxBuff
         return kJ3DError_Alloc;
     }
 
-    ret = mMtxBuffer->create(pModelData, mtxBufferFlag);
+    ret = mMtxBuffer->create(pModelData, mtxNum);
     if (ret != kJ3DError_Success) {
         return ret;
     }

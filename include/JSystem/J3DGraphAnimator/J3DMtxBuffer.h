@@ -25,7 +25,7 @@ public:
     /* 80326D3C */ void calcNrmMtx();
     /* 80326EF0 */ void calcBBoardMtx();
 
-    MtxP getAnmMtx(int idx) const { return mpAnmMtx[idx]; }
+    MtxP getAnmMtx(int idx) { return mpAnmMtx[idx]; }
     void setAnmMtx(int i, Mtx m) { MTXCopy(m, (MtxP)mpAnmMtx[i]); }
     MtxP getWeightAnmMtx(int idx) { return mpWeightEvlpMtx[idx]; }
     MtxP getUserAnmMtx(int idx) { return mpUserAnmMtx[idx]; }
@@ -37,16 +37,16 @@ public:
     u8 getEnvScaleFlag(int idx) const { return mpEvlpScaleFlagArr[idx]; }
     Mtx** getDrawMtxPtrPtr() { return mpDrawMtxArr[1]; }
     Mtx* getDrawMtxPtr() { return mpDrawMtxArr[1][mCurrentViewNo]; }
-    Mtx* getDrawMtx(int idx) const { return &mpDrawMtxArr[1][mCurrentViewNo][idx]; }
+    Mtx* getDrawMtx(int idx) { return &mpDrawMtxArr[1][mCurrentViewNo][idx]; }
     Mtx33** getNrmMtxPtrPtr() { return mpNrmMtxArr[1]; }
     Mtx33* getNrmMtxPtr() { return mpNrmMtxArr[1][mCurrentViewNo]; }
-    Mtx33* getNrmMtx(u16 idx) const { return &mpNrmMtxArr[1][mCurrentViewNo][idx]; }
+    Mtx33* getNrmMtx(int idx) { return &mpNrmMtxArr[1][mCurrentViewNo][idx]; }
     Mtx33*** getBumpMtxPtrPtr() const { return mpBumpMtxArr[1]; }
     Mtx33* getBumpMtxPtr(int idx) { return mpBumpMtxArr[1][idx][mCurrentViewNo]; }
     J3DJointTree* getJointTree() const { return mJointTree; }
 
-    void setNrmMtx(int idx, Mtx* mtx) {
-        J3DPSMtx33CopyFrom34(*mtx, mpNrmMtxArr[1][mCurrentViewNo][idx]);
+    void setNrmMtx(int idx, Mtx mtx) {
+        J3DPSMtx33CopyFrom34(mtx, mpNrmMtxArr[1][mCurrentViewNo][idx]);
     }
 
     void swapDrawMtx() {
@@ -74,7 +74,7 @@ public:
     /* 0x14 */ Mtx** mpDrawMtxArr[2];
     /* 0x1C */ Mtx33** mpNrmMtxArr[2];
     /* 0x24 */ Mtx33*** mpBumpMtxArr[2];
-    /* 0x2C */ u32 mFlags;
+    /* 0x2C */ u32 mMtxNum;
     /* 0x30 */ u32 mCurrentViewNo;
     /* 0x34 */ Mtx* mpUserAnmMtx;
 

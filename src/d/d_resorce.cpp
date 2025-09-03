@@ -306,7 +306,7 @@ J3DModelData* dRes_info_c::loaderBasicBmd(u32 i_tag, void* i_data) {
     }
 
     if (i_tag == 'BMDR' || i_tag == 'BMWR') {
-        if (modelData->newSharedDisplayList(0x40000) != 0) {
+        if (modelData->newSharedDisplayList(J3DMdlFlag_UseSingleDL) != kJ3DError_Success) {
             return NULL;
         } else {
             modelData->simpleCalcMaterial(0, (MtxP)j3dDefaultMtx);
@@ -398,7 +398,7 @@ int dRes_info_c::loadResource() {
                     }
 
                     setAlpha(modelData);
-                    if (modelData->newSharedDisplayList(0x40000) != 0) {
+                    if (modelData->newSharedDisplayList(J3DMdlFlag_UseSingleDL) != kJ3DError_Success) {
                         return -1;
                     }
 
@@ -426,7 +426,7 @@ int dRes_info_c::loadResource() {
                         return -1;
                     }
 #endif
-                    if (modelData->newSharedDisplayList(0x40000) != 0) {
+                    if (modelData->newSharedDisplayList(J3DMdlFlag_UseSingleDL) != kJ3DError_Success) {
                         return -1;
                     }
 
@@ -439,7 +439,7 @@ int dRes_info_c::loadResource() {
                     }
 
                     modelData = (J3DModelData*)result;
-                    if (modelData->newSharedDisplayList(0x40000) != 0) {
+                    if (modelData->newSharedDisplayList(J3DMdlFlag_UseSingleDL) != kJ3DError_Success) {
                         return -1;
                     }
 

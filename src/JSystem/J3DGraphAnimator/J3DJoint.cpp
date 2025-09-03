@@ -24,7 +24,6 @@ void J3DMtxCalcJ3DSysInitMaya::init(Vec const& scale, Mtx const& mtx) {
                      J3DSys::mCurrentS.z);
 }
 
-/* ############################################################################################## */
 /* 804515F0-804515F4 000AF0 0004+00 3/3 1/1 0/0 .sbss            mMtxBuffer__10J3DMtxCalc */
 J3DMtxBuffer* J3DMtxCalc::mMtxBuffer;
 
@@ -207,7 +206,6 @@ void J3DJoint::entryIn() {
     }
 }
 
-/* ############################################################################################## */
 /* 804515F8-80451600 000AF8 0004+04 1/1 1/1 0/0 .sbss            mCurrentMtxCalc__8J3DJoint */
 J3DMtxCalc* J3DJoint::mCurrentMtxCalc;
 

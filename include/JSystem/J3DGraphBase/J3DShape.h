@@ -145,8 +145,22 @@ public:
     void onFlag(u32 flag) { mFlags |= flag; }
     void offFlag(u32 flag) { mFlags &= ~flag; }
     bool checkFlag(u32 flag) const { return (mFlags & flag) != 0; }
-    void setDrawMtxDataPointer(J3DDrawMtxData* pMtxData) { mDrawMtxData = pMtxData; }
-    void setVertexDataPointer(J3DVertexData* pVtxData) { mVertexData = pVtxData; }
+
+    void setMaterial(J3DMaterial* pMaterial) {
+        J3D_ASSERT_NULLPTR(509, pMaterial != NULL);
+        mMaterial = pMaterial;
+    }
+
+    void setDrawMtxDataPointer(J3DDrawMtxData* pMtxData) {
+        J3D_ASSERT_NULLPTR(554, pMtxData != NULL);
+        mDrawMtxData = pMtxData;
+    }
+
+    void setVertexDataPointer(J3DVertexData* pVtxData) {
+        J3D_ASSERT_NULLPTR(657, pVtxData != NULL);
+        mVertexData = pVtxData;
+    }
+
     void* getVcdVatCmd() { return mVcdVatCmd; }
     void setVcdVatCmd(void* pVatCmd) { mVcdVatCmd = (u8*)pVatCmd; }
     void show() { offFlag(J3DShpFlag_Visible); }
