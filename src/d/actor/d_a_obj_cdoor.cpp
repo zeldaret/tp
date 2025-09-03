@@ -7,6 +7,7 @@
 
 #include "d/actor/d_a_obj_cdoor.h"
 #include "d/actor/d_a_obj_wchain.h"
+#include "d/d_camera.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_procname.h"
 

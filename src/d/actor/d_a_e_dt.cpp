@@ -17,6 +17,7 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_bomb.h"
 #include "f_op/f_op_actor_mng.h"
+#include "f_op/f_op_camera_mng.h"
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_lib.h"
 

@@ -8,6 +8,7 @@
 #include "d/actor/d_a_e_gi.h"
 #include "d/d_com_inf_game.h"
 #include "f_op/f_op_actor_enemy.h"
+#include "f_op/f_op_camera_mng.h"
 
 class daE_GI_HIO_c : public JORReflexible {
 public:

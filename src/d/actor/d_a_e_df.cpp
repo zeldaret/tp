@@ -8,6 +8,7 @@
 #include "d/actor/d_a_e_df.h"
 #include "d/actor/d_a_obj_carry.h"
 #include "f_op/f_op_actor_enemy.h"
+#include "f_op/f_op_camera_mng.h"
 
 class daE_DF_HIO_c : public JORReflexible {
 public:

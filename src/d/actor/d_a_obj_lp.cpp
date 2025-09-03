@@ -10,6 +10,7 @@
 #include "d/actor/d_a_mg_rod.h"
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_player.h"
+#include "f_op/f_op_camera_mng.h"
 #include "Z2AudioLib/Z2Instances.h"
 
 /* 80C54198-80C542FC 000078 0164+00 1/0 0/0 0/0 .text            daObj_Lp_Draw__FP12obj_lp_class */

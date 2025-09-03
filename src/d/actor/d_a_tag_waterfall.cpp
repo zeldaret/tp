@@ -8,6 +8,7 @@
 #include "d/actor/d_a_tag_waterfall.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_procname.h"
+#include "f_op/f_op_camera_mng.h"
 
 /* 80D64D94-80D64D98 000000 0004+00 2/2 0/0 0/0 .data            m_master_id */
 static u32 m_master_id = static_cast<u32>(0xFFFFFFFF);

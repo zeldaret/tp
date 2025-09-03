@@ -11,6 +11,7 @@
 #include "d/actor/d_a_npc_kkri.h"
 #include "d/d_cc_d.h"
 #include "d/d_s_play.h"
+#include "f_op/f_op_camera_mng.h"
 #include "Z2AudioLib/Z2Instances.h"
 
 /* ############################################################################################## */

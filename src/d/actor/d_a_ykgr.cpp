@@ -8,6 +8,7 @@
 #include "d/actor/d_a_ykgr.h"
 #include "f_op/f_op_actor.h"
 #include "f_op/f_op_actor_mng.h"
+#include "f_op/f_op_camera_mng.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "Z2AudioLib/Z2Instances.h"
 

@@ -371,8 +371,9 @@ public:
     void resetRatBody() {}
 
     bool checkFlyWaitAnime() const {
-        return mBckHeap[0].getIdx() == 0x1CB || mBckHeap[0].getIdx() == 0x1C7
-            || mBckHeap[0].getIdx() == 0x1C8 || mBckHeap[0].getIdx() == 0x1C9;
+        // fakematch (doesn't match in debug)
+        return (u16)mBckHeap[0].getIdx() == 0x1CB || ((u16)mBckHeap[0].getIdx() == 0x1C7
+            || (u16)mBckHeap[0].getIdx() == 0x1C8 || (u16)mBckHeap[0].getIdx() == 0x1C9);
     }
 
     void onForceMorfCancel() { onEndResetStateFlg0(ERFLG0_FORCE_MORF_CANCEL); }

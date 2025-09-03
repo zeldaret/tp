@@ -8,6 +8,7 @@
 #include "d/d_envse.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_path.h"
+#include "f_op/f_op_camera_mng.h"
 #include "string.h"
 
 /* 80182DD4-80182DDC 17D714 0008+00 1/0 0/0 0/0 .text            dEnvSe_Draw__FP8dEnvSe_c */

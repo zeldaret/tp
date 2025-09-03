@@ -1362,7 +1362,7 @@ inline u16 dStage_stagInfo_GetStageTitleNo(stage_stag_info_class* pstag) {
     return pstag->mStageTitleNo;
 }
 
-inline u8 dStage_stagInfo_DefaultCameraType(stage_stag_info_class* pstag) {
+inline int dStage_stagInfo_DefaultCameraType(stage_stag_info_class* pstag) {
     return pstag->mCameraType;
 }
 

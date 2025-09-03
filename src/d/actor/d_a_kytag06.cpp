@@ -10,6 +10,7 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_procname.h"
+#include "f_op/f_op_camera_mng.h"
 
 /* 8085786C-80857918 0000EC 00AC+00 1/1 0/0 0/0 .text            dice_wether_init__FUcff */
 static void dice_wether_init(u8 i_weatherMode, f32 i_weatherTime, f32 i_currentTime) {

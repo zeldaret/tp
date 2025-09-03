@@ -12,6 +12,7 @@
 #include "d/d_camera.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/d_debug_viewer.h"
+#include "f_op/f_op_camera_mng.h"
 
 enum E_ZH_RES_File_ID {
     /* BCK */

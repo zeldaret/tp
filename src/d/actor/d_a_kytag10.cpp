@@ -10,6 +10,7 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_path.h"
 #include "d/d_kankyo_rain.h"
+#include "f_op/f_op_camera_mng.h"
 
 /* 80528BF8-80528D0C 000078 0114+00 1/1 0/0 0/0 .text            get_rail_ratio_pos__FP5dPathifPsPs
  */

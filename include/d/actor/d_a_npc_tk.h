@@ -4,6 +4,7 @@
 #include "d/actor/d_a_npc.h"
 #include "d/d_cc_uty.h"
 #include "d/d_path.h"
+#include "d/d_spline_path.h"
 
 struct cXyz;
 class daNpc_Hanjo_c;

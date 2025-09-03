@@ -14,6 +14,7 @@
 #include "d/actor/d_a_player.h"
 #include "d/d_cc_uty.h"
 #include "d/d_s_play.h"
+#include "f_op/f_op_camera_mng.h"
 
 /* 80CE03CC-80CE03F0 0000EC 0024+00 1/1 0/0 0/0 .text            __ct__14daObj_So_HIO_cFv */
 daObj_So_HIO_c::daObj_So_HIO_c() {

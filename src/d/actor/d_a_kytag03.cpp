@@ -12,6 +12,7 @@
 #include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_kankyo_rain.h"
+#include "f_op/f_op_camera_mng.h"
 
 /* 80855ED8-808560DC 000078 0204+00 1/1 0/0 0/0 .text dEnvSe_getNearPathPos__FP4cXyzP4cXyzP5dPath
  */

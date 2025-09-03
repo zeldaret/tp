@@ -9,6 +9,7 @@
 #include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
 #include "SSystem/SComponent/c_math.h"
+#include "f_op/f_op_camera_mng.h"
 #include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_graphic.h"
 #include "d/d_s_play.h"

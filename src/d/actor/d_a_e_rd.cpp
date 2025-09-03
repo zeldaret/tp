@@ -16,6 +16,7 @@
 #include "c/c_damagereaction.h"
 #include "d/d_attention.h"
 #include "d/actor/d_a_obj_h_saku.h"
+#include "f_op/f_op_camera_mng.h"
 #include "f_op/f_op_kankyo_mng.h"
 #include "d/actor/d_a_e_rdb.h"
 #include "d/actor/d_a_e_dn.h"

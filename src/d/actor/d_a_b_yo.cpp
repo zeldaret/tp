@@ -10,6 +10,7 @@
 #include "SSystem/SComponent/c_math.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "m_Do/m_Do_graphic.h"
+#include "f_op/f_op_camera_mng.h"
 #include "f_op/f_op_msg.h"
 #include "f_op/f_op_msg_mng.h"
 #include "c/c_damagereaction.h"

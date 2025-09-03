@@ -12,6 +12,7 @@
 #include "d/actor/d_a_obj_msima.h"
 #include "d/actor/d_a_obj_myogan.h"
 #include "d/d_s_play.h"
+#include "f_op/f_op_camera_mng.h"
 #include "m_Do/m_Do_graphic.h"
 #include "c/c_damagereaction.h"
 #include "Z2AudioLib/Z2Instances.h"

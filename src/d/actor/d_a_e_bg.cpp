@@ -14,6 +14,7 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_drawlist.h"
 #include "d/d_s_play.h"
+#include "f_op/f_op_camera_mng.h"
 
 /* 8068580C-8068585C 0000EC 0050+00 1/1 0/0 0/0 .text            __ct__12daE_BG_HIO_cFv */
 daE_BG_HIO_c::daE_BG_HIO_c() {

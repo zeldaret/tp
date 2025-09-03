@@ -9,7 +9,9 @@
 #include "d/d_resorce.h"
 #include "d/d_save.h"
 #include "d/d_vibration.h"
-#include "f_op/f_op_camera_mng.h"
+#include "d/d_drawlist.h"
+#include "d/d_stage.h"
+#include "f_op/f_op_actor.h"
 #include "global.h"
 #include "m_Do/m_Do_controller_pad.h"
 
@@ -45,6 +47,7 @@ public:
     /* 0x4 */ JKRHeap* mpHeap;
 };
 
+class camera_class;
 class dComIfG_camera_info_class {
 public:
     dComIfG_camera_info_class() {}
@@ -4106,10 +4109,10 @@ inline view_port_class* dComIfGd_getViewport() {
 }
 
 inline MtxP dComIfGd_getViewRotMtx() {
-    return ((camera_process_class*)g_dComIfG_gameInfo.drawlist.getView())->viewMtxNoTrans;
+    return g_dComIfG_gameInfo.drawlist.getView()->viewMtxNoTrans;
 }
 inline MtxP dComIfGd_getViewMtx() {
-    return ((camera_process_class*)g_dComIfG_gameInfo.drawlist.getView())->viewMtx;
+    return g_dComIfG_gameInfo.drawlist.getView()->viewMtx;
 }
 
 inline J3DDrawBuffer* dComIfGd_getListFilter() {

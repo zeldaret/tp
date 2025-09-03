@@ -12,6 +12,7 @@
 #include "d/d_particle_copoly.h"
 #include "d/d_save.h"
 #include "f_op/f_op_actor_mng.h"
+#include "f_op/f_op_camera_mng.h"
 
 class J2DAnmColorKey;
 class J2DAnmTransformKey;

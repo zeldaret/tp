@@ -12,6 +12,7 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_path.h"
 #include "d/d_s_play.h"
+#include "f_op/f_op_camera_mng.h"
 #include "m_Do/m_Do_ext.h"
 
 /* 80CF0638-80CF0774 000078 013C+00 1/0 0/0 0/0 .text            daObj_Sw_Draw__FP12obj_sw_class */

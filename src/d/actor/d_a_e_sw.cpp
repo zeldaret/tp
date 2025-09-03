@@ -7,6 +7,7 @@
 
 #include "d/actor/d_a_e_sw.h"
 #include "f_op/f_op_actor_enemy.h"
+#include "f_op/f_op_camera_mng.h"
 #include "d/d_bomb.h"
 #include <cmath.h>
 #include "Z2AudioLib/Z2Instances.h"
