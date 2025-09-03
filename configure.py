@@ -1886,7 +1886,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_npc_tk"),
     ActorRel(NonMatching, "d_a_npc_tkc"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_tkj2"),
-    ActorRel(NonMatching, "d_a_npc_tks"),
+    ActorRel(NonMatching, "d_a_npc_tks", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(NonMatching, "d_a_npc_toby"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_tr"),
     ActorRel(NonMatching, "d_a_npc_uri"),
