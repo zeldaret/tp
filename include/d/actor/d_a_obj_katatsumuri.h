@@ -10,7 +10,7 @@
 /**
  * @ingroup actors-objects
  * @class daObjKAT_c
- * @brief Insect - Snail
+ * @brief Insect - Snail (Katatsumuri)
  *
  * @details
  *

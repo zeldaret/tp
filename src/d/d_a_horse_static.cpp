@@ -10,18 +10,18 @@
 #include "d/actor/d_a_tag_hstop.h"
 
 BOOL e_wb_class::checkWait() {
-    return field_0x5b4 == 0x2A;
+    return mActionMode == 0x2A;
 }
 
 void e_wb_class::setPlayerRideNow() {
     mActionID = ACT_PL_RIDE_NOW;
-    field_0x5b4 = 0;
+    mActionMode = 0;
     field_0x6be |= 3;
 }
 
 void e_wb_class::setPlayerRide() {
     mActionID = ACT_PL_RIDE;
-    field_0x5b4 = 0;
+    mActionMode = 0;
     field_0x6be |= 3;
 
     mZ2Ride.setLinkRiding(true);
@@ -34,7 +34,7 @@ void e_wb_class::getOff() {
         field_0x692 = 0;
     }
 
-    field_0x5b4 = 0;
+    mActionMode = 0;
     field_0x6be &= ~3;
     mZ2Ride.setLinkRiding(false);
 }
@@ -44,12 +44,12 @@ BOOL e_wb_class::checkDownDamage() {
 }
 
 BOOL e_wb_class::checkNormalRideMode() const {
-    return mActionID != 0x66 || field_0x5b4 < 1;
+    return mActionID != 0x66 || mActionMode < 1;
 }
 
 void e_wb_class::setRunRideMode() {
     if (mActionID == ACT_PL_RIDE) {
-        field_0x5b4 = 0;
+        mActionMode = 0;
         mActionID = ACT_S_DAMAGE;
         field_0x692 = 0x65;
     }

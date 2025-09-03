@@ -172,7 +172,7 @@ public:
     /* 0x1297 */ s8 field_0x1297;
     /* 0x1298 */ s8 field_0x1298;
     /* 0x1299 */ u8 field_0x1299;
-    /* 0x129A */ s8 field_0x129a;
+    /* 0x129A */ s8 mBossMode; // 1: Eldin Field, 2 Eldin Bridge, 3 Lake Hylia Bridge, 4 ???
     /* 0x129B */ u8 field_0x129b;
     /* 0x129C */ s8 field_0x129c;
     /* 0x12A0 */ int field_0x12a0;

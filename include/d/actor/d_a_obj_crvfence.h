@@ -30,32 +30,27 @@ public:
     /* 80BCF9E4 */ int CreateHeap();
     /* 80BCFAE4 */ cPhs__Step create();
     /* 80BCFFC8 */ int Create();
-    /* 80BD000C */ int Execute(f32 (**)[3][4]);
+    /* 80BD000C */ int Execute(Mtx**);
     /* 80BD0058 */ int Draw();
     /* 80BD013C */ int Delete();
 
 private:
     /* 0x05A0 */ int field_0x5a0;
-    /* 0x05A4 */ int field_0x5a4;
+    /* 0x05A4 */ int mAction;
     /* 0x05A8 */ u8 field_0x5a8;
-    // /* 0x05A9 */ u8 field_0x5a9;
     /* 0x05AA */ s16 field_0x5aa;
     /* 0x05AC */ cXyz field_0x5ac;
     /* 0x05B8 */ cXyz field_0x5b8;
     /* 0x05C4 */ csXyz field_0x5c4;
     /* 0x05CA */ u8 field_0x5ca;
-    // /* 0x05CB */ u8 field_0x5cb;
     /* 0x05CC */ s16 field_0x5cc;
-    // /* 0x05CE */ u8 field_0x5ce[0x5d0 - 0x5ce];
     /* 0x05D0 */ cXyz field_0x5d0;
     /* 0x05DC */ cXyz field_0x5dc;
     /* 0x05E8 */ csXyz field_0x5e8;
     /* 0x05EE */ u8 field_0x5ee;
-    // /* 0x05EF */ u8 field_0x5ef;
     /* 0x05F0 */ s16 field_0x5f0;
     /* 0x05F2 */ s16 field_0x5f2;
-    /* 0x05F4 */ u8 field_0x5f4;
-    /* 0x05F5 */ u8 field_0x5f5[0x5f8 - 0x5f5];
+    /* 0x05F4 */ bool field_0x5f4;
     /* 0x05F8 */ cXyz field_0x5f8[6];
     /* 0x0640 */ f32 field_0x640;
     /* 0x0644 */ int field_0x644;
@@ -65,8 +60,8 @@ private:
     /* 0x0664 */ J3DModel* field_0x664;
     /* 0x0668 */ request_of_phase_process_class mPhase;
     /* 0x0670 */ dBgS_AcchCir mAcchCir;
-    /* 0x06B0 */ dBgS_ObjAcch mObjAcch;
-    /* 0x0888 */ u8 field_0x888[0x8c4 - 0x888];
+    /* 0x06B0 */ dBgS_ObjAcch mBgc;
+    /* 0x0888 */ dCcD_Stts mStts;
     /* 0x08C4 */ dCcD_Sph mSphs[6];
     /* 0x1014 */ u8 field_0x1014[0x103c - 0x1014];
 };

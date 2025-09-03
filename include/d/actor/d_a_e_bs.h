@@ -9,7 +9,7 @@
 /**
  * @ingroup actors-enemies
  * @class e_bs_class
- * @brief Stalkin
+ * @brief Stalkin (Baby Stal)
  * 
  * @details 
  * 

@@ -220,6 +220,13 @@ config.reconfig_deps = []
 # Can be overridden in libraries or objects
 config.scratch_preset_id = 69 # Twilight Princess (DOL)
 
+# Globs to exclude from context files
+# *.mch excludes precompiled header output (which cannot be parsed)
+config.context_exclude_globs = ["*.mch"]
+
+# Macro definitions to inject into context files
+config.context_defines = ["DECOMPCTX"]
+
 # Base flags, common to most GC/Wii games.
 # Generally leave untouched, with overrides added below.
 cflags_base = [
@@ -1608,7 +1615,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_kbacket"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_kgate"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_klift00"),
-    ActorRel(NonMatching, "d_a_obj_ktOnFire"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ktOnFire"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ladder"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv2Candle"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_magne_arm"),
@@ -1676,7 +1683,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_door_bossL5"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_door_mbossL1"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_door_push"),
-    ActorRel(NonMatching, "d_a_e_ai"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_e_ai"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_arrow"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_ba"),
     ActorRel(NonMatching, "d_a_e_bee"),
@@ -1964,7 +1971,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ganonwall"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_ganonwall2"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_gb"),
-    ActorRel(NonMatching, "d_a_obj_geyser"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_geyser"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_glowSphere"),
     ActorRel(NonMatching, "d_a_obj_gm"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_goGate"),
