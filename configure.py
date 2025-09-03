@@ -1744,7 +1744,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_e_sf"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_sg"),
     ActorRel(NonMatching, "d_a_e_sh"),
-    ActorRel(NonMatching, "d_a_e_sm"),
+    ActorRel(Equivalent, "d_a_e_sm"), # weak func order (setMidnaBindEffect)
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_sm2"),
     ActorRel(NonMatching, "d_a_e_st"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_st_line"),
