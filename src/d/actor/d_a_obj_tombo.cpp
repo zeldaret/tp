@@ -10,6 +10,7 @@
 #include "d/d_menu_insect.h"
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
+#include "f_op/f_op_camera_mng.h"
 #include "f_pc/f_pc_name.h"
 #include "m_Do/m_Do_lib.h"
 

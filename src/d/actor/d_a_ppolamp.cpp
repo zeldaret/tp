@@ -8,6 +8,7 @@
 #include "d/actor/d_a_ppolamp.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/d_com_inf_game.h"
+#include "f_op/f_op_camera_mng.h"
 
 /* 80D4C938-80D4C958 000078 0020+00 1/1 0/0 0/0 .text daPPolamp_c_createHeap__FP10fopAc_ac_c */
 static int daPPolamp_c_createHeap(fopAc_ac_c* i_this) {

@@ -37,30 +37,23 @@ static dMsgScrnHowl_cFunc process[5] = {
     &dMsgScrnHowl_c::guide_off_test_proc,
 };
 
-/* 803C10D0-803C10E8 01E1F0 0018+00 0/1 0/0 0/0 .data            ylinen_tag$4210 */
-static u64 ylinen_tag[3] = {
-    'ylinen00',
-    'ylinen02',
-    'ylinen04',
-};
-
-/* 803C10E8-803C1120 01E208 0038+00 0/1 0/0 0/0 .data            tlinen_tag$4211 */
-static u64 tlinen_tag[7] = {
-    'tlinen00', 'tlinen01', 'tlinen02', 'tlinen03', 'tlinen04', 'tlinen05', 'tlinen06',
-};
-
-/* 803C1120-803C1158 01E240 0038+00 0/0 0/0 0/0 .data            tline_tag$4212 */
-static u64 tline_tag[7] = {
-    'tline00', 'tline01', 'tline02', 'tline03', 'tlinen04', 'tline05', 'tline06',
-};
-
-/* 803C1158-803C1190 01E278 0038+00 0/0 0/0 0/0 .data            tlines_tag$4213 */
-static u64 tlines_tag[7] = {
-    'tlines00', 'tlines01', 'tlines02', 'tlines03', 'tlines04', 'tlines05', 'tlines06',
-};
-
 /* 8024096C-80241784 23B2AC 0E18+00 0/0 1/1 0/0 .text            __ct__14dMsgScrnHowl_cFv */
 dMsgScrnHowl_c::dMsgScrnHowl_c() {
+    static u64 ylinen_tag[3] = {
+        'ylinen00',
+        'ylinen02',
+        'ylinen04',
+    };
+    static u64 tlinen_tag[7] = {
+        'tlinen00', 'tlinen01', 'tlinen02', 'tlinen03', 'tlinen04', 'tlinen05', 'tlinen06',
+    };
+    static u64 tline_tag[7] = {
+        'tline00', 'tline01', 'tline02', 'tline03', 'tlinen04', 'tline05', 'tline06',
+    };
+    static u64 tlines_tag[7] = {
+        'tlines00', 'tlines01', 'tlines02', 'tlines03', 'tlines04', 'tlines05', 'tlines06',
+    };
+
     init();
     mpScreen = new J2DScreen();
     JUT_ASSERT(61, mpScreen != 0);
@@ -82,10 +75,17 @@ dMsgScrnHowl_c::dMsgScrnHowl_c() {
     JUT_ASSERT(96, mpButtonIcon[1] != 0);
     mpButtonText[1] = new CPaneMgr(mpScreen, 'gr_txt_n', 2, NULL);
     JUT_ASSERT(98, mpButtonText[1] != 0);
+#if VERSION == VERSION_GCN_JPN
+    J2DTextBox* piStack_19c = (J2DTextBox*)mpScreen->search('g_l_info');
+    J2DTextBox* piStack_1a0 = (J2DTextBox*)mpScreen->search('g_r_info');
+    mpScreen->search('fgr_info')->hide();
+    mpScreen->search('fgl_info')->hide();
+#else
     J2DTextBox* piStack_19c = (J2DTextBox*)mpScreen->search('fgl_info');
     J2DTextBox* piStack_1a0 = (J2DTextBox*)mpScreen->search('fgr_info');
     mpScreen->search('g_l_info')->hide();
     mpScreen->search('g_r_info')->hide();
+#endif
     piStack_19c->setString(0x40, "");
     piStack_19c->setFont(mDoExt_getMesgFont());
     dMeter2Info_getStringKanji(0x4d4, piStack_19c->getStringPtr(), NULL);

@@ -8,6 +8,7 @@
 #include "d/d_msg_scrn_place.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
+#include "d/d_camera.h"
 #include "d/d_msg_object.h"
 #include "d/d_pane_class.h"
 
@@ -30,7 +31,11 @@ dMsgScrnPlace_c::dMsgScrnPlace_c() {
     }
 
     mpScreen = new J2DScreen();
+#if VERSION == VERSION_GCN_JPN
+    mpScreen->setPriority("zelda_stage_title.blo", 0x20000, dComIfGp_getMsgArchive(4));
+#else
     mpScreen->setPriority("zelda_stage_title_foreign.blo", 0x20000, dComIfGp_getMsgArchive(4));
+#endif
     dPaneClass_showNullPane(mpScreen);
 
     mpPmP_c = new CPaneMgr(mpScreen, 'n_all', 2, NULL);
@@ -52,7 +57,9 @@ dMsgScrnPlace_c::dMsgScrnPlace_c() {
         mpTm_c[i] = new CPaneMgr(mpScreen, t_tag[i], 0, NULL);
         ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setFont(mDoExt_getRubyFont());
         ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setString(0x80, "");
+#if VERSION != VERSION_GCN_JPN
         ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setCharSpace(1.0f);
+#endif
     }
 
     ((J2DTextBox*)mpTm_c[0]->getPanePtr())->getFontSize(mFontSize);

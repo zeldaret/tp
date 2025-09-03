@@ -28,6 +28,7 @@
 #include "d/d_stage.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/d_s_play.h"
+#include "f_op/f_op_camera_mng.h"
 
 class daNpc_Ks_HIO_c : public JORReflexible {
 public:

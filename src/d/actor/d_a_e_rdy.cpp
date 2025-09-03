@@ -15,6 +15,7 @@
 #include "d/d_cc_d.h"
 #include "d/d_msg_object.h"
 #include "d/d_camera.h"
+#include "f_op/f_op_camera_mng.h"
 #include "f_op/f_op_kankyo_mng.h"
 #include "f_op/f_op_actor_enemy.h"
 #include "m_Do/m_Do_graphic.h"

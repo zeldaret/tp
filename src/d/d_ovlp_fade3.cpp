@@ -7,6 +7,7 @@
 
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "d/d_ovlp_fade3.h"
+#include "d/d_camera.h"
 #include "d/d_s_play.h"
 #include "m_Do/m_Do_audio.h"
 #include "m_Do/m_Do_graphic.h"

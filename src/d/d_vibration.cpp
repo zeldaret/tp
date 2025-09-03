@@ -2,6 +2,7 @@
 
 #include "d/d_vibration.h"
 #include "d/d_com_inf_game.h"
+#include "f_op/f_op_camera_mng.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "SSystem/SComponent/c_math.h"
 #include <limits.h>

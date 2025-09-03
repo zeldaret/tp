@@ -17,6 +17,7 @@
 #include "d/actor/d_a_player.h"
 #include "d/actor/d_a_obj_smw_stone.h"
 #include "f_op/f_op_actor_enemy.h"
+#include "f_op/f_op_camera_mng.h"
 
 class daE_PM_HIO_c {
 public:

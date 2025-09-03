@@ -3,6 +3,7 @@
 #include "d/d_demo.h"
 #include "d/d_msg_class.h"
 #include "d/d_msg_object.h"
+#include "f_op/f_op_camera_mng.h"
 #include "m_Do/m_Do_graphic.h"
 #include "d/actor/d_a_movie_player.h"
 #include "JSystem/JGadget/pointer.h"

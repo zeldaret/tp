@@ -8,6 +8,7 @@
 #include "d/actor/d_a_b_mgn.h"
 #include "d/actor/d_a_obj_bhashi.h"
 #include "d/d_camera.h"
+#include "f_op/f_op_camera_mng.h"
 #include "f_op/f_op_msg_mng.h"
 #include "m_Do/m_Do_graphic.h"
 #include "f_op/f_op_actor_enemy.h"

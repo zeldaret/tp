@@ -10,6 +10,7 @@
 #include "Z2AudioLib/Z2EnvSeMgr.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_kankyo_rain.h"
+#include "f_op/f_op_camera_mng.h"
 
 /* 80855058-80855320 000078 02C8+00 1/1 0/0 0/0 .text            get_check_pos__FP13kytag01_class */
 static cXyz get_check_pos(kytag01_class* i_this) {

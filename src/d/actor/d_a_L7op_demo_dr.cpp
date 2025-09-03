@@ -10,6 +10,7 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
 #include "d/actor/d_a_npc.h"
+#include "f_op/f_op_camera_mng.h"
 #include "f_op/f_op_msg_mng.h"
 
 /* 805AB098-805AB13C 000078 00A4+00 2/2 0/0 0/0 .text setAction__9daL7ODR_cFM9daL7ODR_cFPCvPv_v */

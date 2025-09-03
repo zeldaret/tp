@@ -19,6 +19,7 @@
 #include "d/actor/d_a_obj_riverrock.h"
 #include "d/actor/d_a_player.h"
 #include "d/actor/d_a_tag_waterfall.h"
+#include "f_op/f_op_camera_mng.h"
 #include "f_op/f_op_overlap_mng.h"
 
 /* 80854D4C-80854D8C 000000 0040+00 1/1 0/0 0/0 .data cc_sph_src__22@unnamed@d_a_kago_cpp@ */
