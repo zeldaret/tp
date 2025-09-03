@@ -3292,6 +3292,10 @@ static int daMg_Fish_Execute(mg_fish_class* i_this) {
 
     daPy_py_c* player = daPy_getPlayerActorClass();
 
+#if VERSION == VERSION_GCN_JPN
+    lit_1008 = 0;
+#endif
+
     if (i_this->mSurfaceY != 0.0f) {
         if ((g_Counter.mTimer + fopAcM_GetID(i_this) & 0xf) == 0) {
             get_surface_y(i_this, &i_this->actor.current.pos);

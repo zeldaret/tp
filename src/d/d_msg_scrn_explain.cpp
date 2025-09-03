@@ -13,6 +13,12 @@
 #include "m_Do/m_Do_controller_pad.h"
 #include "stdio.h"
 
+#if VERSION == VERSION_GCN_JPN
+#define STR_BUF_LEN 528
+#else
+#define STR_BUF_LEN 512
+#endif
+
 extern dMsgObject_HIO_c g_MsgObject_HIO_c;
 
 static dMsgScrnExplain_c::ProcFunc init_process[] = {
@@ -241,11 +247,15 @@ void dMsgScrnExplain_c::draw(J2DOrthoGraph* i_graf) {
         mpScreen->draw(0.0f, 0.0f, (J2DGrafContext*)i_graf);
     }
 
-    char string_buf[512];
+    char string_buf[STR_BUF_LEN];
     strcpy(string_buf, ((J2DTextBox*)mpTm_c[0]->getPanePtr())->getStringPtr());
 
     mpTxScreen->draw(0.0f, 0.0f, (J2DGrafContext*)i_graf);
+#if VERSION == VERSION_GCN_JPN
+    mpString_c->getString(field_0x54, (J2DTextBox*)mpTm_c[0]->getPanePtr(), NULL, NULL, NULL, 12);
+#else
     mpString_c->getString(field_0x54, (J2DTextBox*)mpTm_c[0]->getPanePtr(), NULL, NULL, NULL, 8);
+#endif
     mpString_c->drawOutFont((J2DTextBox*)mpTm_c[0]->getPanePtr(), -1.0f);
 
     strcpy(((J2DTextBox*)mpTm_c[0]->getPanePtr())->getStringPtr(), string_buf);
@@ -285,9 +295,9 @@ void dMsgScrnExplain_c::open_request_proc() {
         uVar6 = (J2DTextBox*)field_0x10[0]->getPanePtr();
     }
 
-    char acStack_220[512];
-    char acStack_420[512];
-    char acStack_620[512];
+    char acStack_220[STR_BUF_LEN];
+    char acStack_420[STR_BUF_LEN];
+    char acStack_620[STR_BUF_LEN];
 
     if (dMsgObject_getString(field_0x54, uVar1, uVar6, mDoExt_getMesgFont(), mpOutFont, acStack_220,
                              acStack_420, acStack_620, &field_0x5c) != 0)

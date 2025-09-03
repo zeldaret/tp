@@ -127,6 +127,7 @@ dMeter2Draw_c::dMeter2Draw_c(JKRExpHeap* mp_heap) {
     }
 
     J2DTextBox::TFontSize font_size;
+#if VERSION != VERSION_GCN_JPN
     font_size.mSizeX = 17.0f;
     font_size.mSizeY = 20.0f;
     for (int i = 0; i < 5; i++) {
@@ -136,6 +137,7 @@ dMeter2Draw_c::dMeter2Draw_c(JKRExpHeap* mp_heap) {
         static_cast<J2DTextBox*>(mpXYText[i][1]->getPanePtr())->setFontSize(font_size);
         static_cast<J2DTextBox*>(mpXYText[i][2]->getPanePtr())->setFontSize(font_size);
     }
+#endif
 
     init();
     field_0xa8 = 0;
