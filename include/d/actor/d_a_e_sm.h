@@ -60,7 +60,7 @@ public:
 
     /* 0x05AC */ request_of_phase_process_class mPhase;
     /* 0x05B4 */ mDoExt_McaMorfSO* mpModelMorf;
-    /* 0x05B8 */ J3DModel* mBubbleModel;
+    /* 0x05B8 */ J3DModel* mpBubbleModel;
     /* 0x05BC */ Z2CreatureEnemy mSound;
     /* 0x0660 */ Z2SoundObjSimple mSoundSimple;
     /* 0x0680 */ u8 mSwBit;

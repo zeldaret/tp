@@ -111,10 +111,10 @@ int daE_SM_c::Draw() {
     }
 
     if (!field_0x684) {
-        g_env_light.setLightTevColorType_MAJI(mBubbleModel, &tevStr);
-        fopAcM_setEffectMtx(this, mBubbleModel->getModelData());
-        mBubbleModel->getModelData()->getMaterialNodePointer(0)->getTevKColor(1)->a = field_0x694 * 167.0f;
-        mDoExt_modelUpdateDL(mBubbleModel);
+        g_env_light.setLightTevColorType_MAJI(mpBubbleModel, &tevStr);
+        fopAcM_setEffectMtx(this, mpBubbleModel->getModelData());
+        mpBubbleModel->getModelData()->getMaterialNodePointer(0)->getTevKColor(1)->a = field_0x694 * 167.0f;
+        mDoExt_modelUpdateDL(mpBubbleModel);
         dComIfGd_setSimpleShadow(&field_0x990, field_0xc78.GetGroundH(), (TREG_F(10) + 195.0f) * (field_0x6f0 / field_0x6e0),
                                  field_0xc78.m_gnd, 0, -field_0x6b8, dDlst_shadowControl_c::getSimpleTex());
     }
@@ -897,7 +897,6 @@ void daE_SM_c::E_SM_C_Far_Escape() {
 
 /* 807949CC-807951EC 00288C 0820+00 2/1 0/0 0/0 .text            E_SM_C_Home_Escape__8daE_SM_cFv */
 void daE_SM_c::E_SM_C_Home_Escape() {
-    // NONMATCHING
     switch (field_0x6b6) {
         case 4:
             speedF = 0.0f;
@@ -1770,7 +1769,7 @@ void daE_SM_c::setSmBaseMtx() {
     mDoMtx_stack_c::scaleM(1.0f - field_0x6dc, field_0x6dc + 1.0f, 1.0f - field_0x6dc);
     mDoMtx_stack_c::XrotM(-field_0x9b0.z);
     mDoMtx_stack_c::transM(20.0f, -0.0f, 20.0f);
-    mBubbleModel->setBaseTRMtx(mDoMtx_stack_c::get());
+    mpBubbleModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80797274-8079730C 005134 0098+00 1/1 0/0 0/0 .text            setBaseMtx__8daE_SM_cFv */
@@ -1881,8 +1880,8 @@ int daE_SM_c::CreateHeap() {
 
     JUT_ASSERT(3246, modelData != 0);
 
-    mBubbleModel = mDoExt_J3DModel__create(modelData, 0, 0x11020203);
-    if (mBubbleModel == NULL) {
+    mpBubbleModel = mDoExt_J3DModel__create(modelData, 0, 0x11020203);
+    if (mpBubbleModel == NULL) {
         return 0;
     }
 
@@ -2001,7 +2000,7 @@ cPhs__Step daE_SM_c::Create() {
         initCoSph();
         field_0x6be = 0;
         field_0xa10 = false;
-        fopAcM_SetMtx(this, mBubbleModel->getBaseTRMtx());
+        fopAcM_SetMtx(this, mpBubbleModel->getBaseTRMtx());
         fopAcM_SetMtx(this, mpModelMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -800.0f, -200.0f, -800.0f);
         fopAcM_SetMax(this, 800.0f, 500.0f, 800.0f);
