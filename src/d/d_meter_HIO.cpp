@@ -126,51 +126,39 @@ dMeter_drawLetterHIO_c::dMeter_drawLetterHIO_c() {
     mLetterTextFront.set(65, 55, 30, 255);
 }
 
-static f32 const fipaScale[6] = {0.98f, 1.0f, 1.0f, 1.0f, 0.95f, 1.1f};
-
-static f32 const fipaPosX[6] = {1.3f, 6.6f, 0.0f, 3.96f, 4.0f, 27.5f};
-
-static f32 const fipaPosY[6] = {-9.2f, -27.5f, -11.7f, -9.2f, -30.1f, -17.9f};
-
-static f32 const finaScale[6] = {0.9f, 0.9f, 0.9f, 0.9f, 0.9f, 0.9f};
-
-static f32 const finaPosX[6] = {-25.0f, -4.0f, 0.0f, 0.0f, 0.0f, -4.0f};
-
-static f32 const finaPosY[6] = {-16.0f, -40.6, -24.0f, -11.7f, -37.9f, -13.0f};
-
-static f32 const filiScale[6] = {0.65f, 0.65f, 0.65f, 0.65f, 0.65f, 0.65f};
-
-static f32 const filiPosX[6] = {-28.0f, -8.0f, 9.2f, 9.2f, 9.2f, -8.0f};
-
-static f32 const filiPosY[6] = {-6.6f, -14.0f, -14.4f, 24.9f, -11.7f, 24.9f};
-
-static f32 const bboxScale[6] = {1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f};
-
-static f32 const bboxPosX[6] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
-
-static f32 const bboxPosY[6] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
-
-static f32 const rboxScale[6] = {1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f};
-
-static f32 const rboxPosX[6] = {1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
-
-static f32 const rboxPosY[6] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
-
-static f32 const finfoScale[6] = {0.87f, 0.87f, 0.88f, 0.87f, 0.87f, 0.87f};
-
-static f32 const finfoPosX[6] = {-17.0f, 0.0f, -14.0f, 0.0f, -12.0f, -32.8f};
-
-static f32 const finfoPosY[6] = {6.6f, 0.0f, 0.0f, 0.0f, 1.3f, 0.0f};
-
-static f32 const fishnScale[6] = {1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f};
-
-static f32 const fishnPosX[6] = {4.0f, -20.0f, 1.3f, 6.6f, 1.3f, 9.2f};
-
-static f32 const fishnPosY[6] = {-72.1f, 129.6f, 0.0f, 6.6f, 32.8f, 11.7f};
-
 /* 801FE730-801FE8DC 1F9070 01AC+00 1/1 0/0 0/0 .text            __ct__23dMeter_drawFishingHIO_cFv
  */
 dMeter_drawFishingHIO_c::dMeter_drawFishingHIO_c() {
+    static f32 const fipaScale[6] = {0.98f, 1.0f, 1.0f, 1.0f, 0.95f, 1.1f};
+    static f32 const fipaPosX[6] = {1.3f, 6.6f, 0.0f, 3.96f, 4.0f, 27.5f};
+    static f32 const fipaPosY[6] = {-9.2f, -27.5f, -11.7f, -9.2f, -30.1f, -17.9f};
+    static f32 const finaScale[6] = {0.9f, 0.9f, 0.9f, 0.9f, 0.9f, 0.9f};
+    static f32 const finaPosX[6] = {-25.0f, -4.0f, 0.0f, 0.0f, 0.0f, -4.0f};
+    static f32 const finaPosY[6] = {-16.0f, -40.6, -24.0f, -11.7f, -37.9f, -13.0f};
+    static f32 const filiScale[6] = {0.65f, 0.65f, 0.65f, 0.65f, 0.65f, 0.65f};
+    static f32 const filiPosX[6] = {-28.0f, -8.0f, 9.2f, 9.2f, 9.2f, -8.0f};
+    static f32 const filiPosY[6] = {-6.6f, -14.0f, -14.4f, 24.9f, -11.7f, 24.9f};
+    static f32 const bboxScale[6] = {1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f};
+    static f32 const bboxPosX[6] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
+    static f32 const bboxPosY[6] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
+    static f32 const rboxScale[6] = {1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f};
+    static f32 const rboxPosX[6] = {1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
+    static f32 const rboxPosY[6] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f};
+    static f32 const finfoScale[6] = {0.87f, 0.87f, 0.88f, 0.87f, 0.87f, 0.87f};
+#if VERSION == VERSION_GCN_JPN
+    static f32 const finfoPosX[6] = {-27.0f, 0.0f, -12.0f, 0.0f, -12.0f, -32.8f};
+#else
+    static f32 const finfoPosX[6] = {-17.0f, 0.0f, -14.0f, 0.0f, -12.0f, -32.8f};
+#endif
+    static f32 const finfoPosY[6] = {6.6f, 0.0f, 0.0f, 0.0f, 1.3f, 0.0f};
+    static f32 const fishnScale[6] = {1.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f};
+#if VERSION == VERSION_GCN_JPN
+    static f32 const fishnPosX[6] = {12.0f, -20.0f, 1.3f, 6.6f, 14.0f, -6.6f};
+#else
+    static f32 const fishnPosX[6] = {4.0f, -20.0f, 1.3f, 6.6f, 1.3f, 9.2f};
+#endif
+    static f32 const fishnPosY[6] = {-72.1f, 129.6f, 0.0f, 6.6f, 32.8f, 11.7f};
+
     mOpenFrames = 10;
     mCloseFrames = 10;
     mDebug = false;
@@ -884,7 +872,11 @@ dMeter_drawHIO_c::dMeter_drawHIO_c() {
     field_0x2cc = 1001;
     mButtonATextDebug = false;
 
+#if VERSION == VERSION_GCN_JPN
+    mButtonATextSpacing = -2.0f;
+#else
     mButtonATextSpacing = 1.0f;
+#endif
     mButtonATextScale = 1.0f;
     mButtonATextPosX = 0.0f;
     mButtonATextPosY = 0.0f;

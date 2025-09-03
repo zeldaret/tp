@@ -303,7 +303,9 @@ void COutFont_c::initialize() {
  * drawFont__10COutFont_cFP10J2DTextBoxUcffffUlUc               */
 void COutFont_c::drawFont(J2DTextBox* i_textbox, u8 i_type, f32 i_posX, f32 i_posY, f32 i_sizeX,
                           f32 i_sizeY, u32 i_color, u8 i_alpha) {
+#if VERSION != VERSION_GCN_JPN
     i_posY += 1.0f;
+#endif
     for (int i = 0; i < 35; i++) {
         if (mpOfs[i]->getType() == 0x47) {
             mpOfs[i]->drawFont(i_textbox, i_type, i_posX, i_posY, i_sizeX, i_sizeY, i_color,
@@ -386,8 +388,13 @@ void COutFont_c::draw(J2DTextBox* i_textbox, f32 param_1, f32 param_2, f32 param
                     break;
                 case 5:
                 case 6: {
+#if VERSION == VERSION_GCN_JPN
+                    posY -= 2.0f;
+                    sizeY -= 2.0f;
+#else
                     posY += 1.0f;
                     sizeY -= 3.0f;
+#endif
                     JUtility::TColor black = mpPane[type]->getBlack();
                     JUtility::TColor white = mpPane[type]->getWhite();
 
