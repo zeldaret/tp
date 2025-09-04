@@ -1759,7 +1759,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_warpappear"),
     ActorRel(NonMatching, "d_a_e_wb"),
     ActorRel(NonMatching, "d_a_e_ws"),
-    ActorRel(NonMatching, "d_a_e_ww"),
+    ActorRel(Equivalent, "d_a_e_ww"), # weak func order
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_yc"),
     ActorRel(NonMatching, "d_a_e_yd"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_yd_leaf"),
