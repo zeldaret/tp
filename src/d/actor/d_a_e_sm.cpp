@@ -10,6 +10,7 @@
 #include "d/d_camera.h"
 #include "d/actor/d_a_arrow.h"
 #include "Z2AudioLib/Z2Instances.h"
+#include "f_op/f_op_camera_mng.h"
 
 enum E_SM_RES_File_ID {
     /* BCK */
