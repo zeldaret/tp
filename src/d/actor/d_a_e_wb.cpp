@@ -126,17 +126,17 @@ static dCcD_SrcSph at_sph_src = {
 /* 807D248C-807D2548 0000EC 00BC+00 1/1 0/0 0/0 .text            __ct__12daE_WB_HIO_cFv */
 daE_WB_HIO_c::daE_WB_HIO_c() {
     field_0x04 = -1;
-    mBaseSize = 1.2f;
-    mLeaderSizeRatio = 1.2f;
-    mMovementSpeed = 3.5f;
-    mPlayerRecognitionDistance = 600.0f;
-    mMaxSpeed = 37.0f;
-    mCalvaryBattleMaxSpeed = 50.0f;
-    mLeaderWalkingSpeed = 10.0f;
-    mLeaderMaxSpeed = 40.0f;
-    mLeaderCalvaryBattleMaxSpeed = 54.0f;
-    mNormalSpeedVi = 25.0f;
-    mMediumSpeedVi = 45.0f;
+    base_size = 1.2f;
+    leader_size_ratio = 1.2f;
+    movement_speed = 3.5f;
+    player_recognition_dist = 600.0f;
+    max_speed = 37.0f;
+    cavalry_battle_max_speed = 50.0f;
+    leader_walking_speed = 10.0f;
+    leader_max_speed = 40.0f;
+    leader_cavalry_battle_max_speed = 54.0f;
+    normal_speed_vi = 25.0f;
+    medium_speed_vi = 45.0f;
     mMaxSpeedVi = 55.0f;
     mSingleRiderSpeed = 50.0f;
     mPlayerMountedMaxSpeed = 30.0f;
@@ -153,23 +153,23 @@ daE_WB_HIO_c::daE_WB_HIO_c() {
 #ifdef DEBUG
 void daE_WB_HIO_c::genMessage(JORMContext* ctx) {
     ctx->genLabel("  イノシシ", 0x80000001, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
-    ctx->genSlider("基本サイズ", &mBaseSize, 0.0f, 5.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
-    ctx->genSlider("リーダーサイズ比", &mLeaderSizeRatio, 0.0f, 5.0, 0, NULL, 0xFFFF, 0xFFFF, 512,
+    ctx->genSlider("基本サイズ", &base_size, 0.0f, 5.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
+    ctx->genSlider("リーダーサイズ比", &leader_size_ratio, 0.0f, 5.0, 0, NULL, 0xFFFF, 0xFFFF, 512,
                    24);
-    ctx->genSlider("移動速度", &mMovementSpeed, 0.0f, 20.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
-    ctx->genSlider("PL認識距離", &mPlayerRecognitionDistance, 0.0f, 2000.0f, 0, NULL, 0xFFFF,
+    ctx->genSlider("移動速度", &movement_speed, 0.0f, 20.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
+    ctx->genSlider("PL認識距離", &player_recognition_dist, 0.0f, 2000.0f, 0, NULL, 0xFFFF,
                    0xFFFF, 512, 24);
-    ctx->genSlider("最速度", &mMaxSpeed, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
-    ctx->genSlider("騎馬戦最速", &mCalvaryBattleMaxSpeed, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF,
+    ctx->genSlider("最速度", &max_speed, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
+    ctx->genSlider("騎馬戦最速", &cavalry_battle_max_speed, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF,
                    512, 24);
-    ctx->genSlider("歩き速（リ）", &mLeaderWalkingSpeed, 0.0f, 30.0f, 0, NULL, 0xFFFF, 0xFFFF, 512,
+    ctx->genSlider("歩き速（リ）", &leader_walking_speed, 0.0f, 30.0f, 0, NULL, 0xFFFF, 0xFFFF, 512,
                    24);
-    ctx->genSlider("最速度（リ）", &mLeaderMaxSpeed, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 512,
+    ctx->genSlider("最速度（リ）", &leader_max_speed, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 512,
                    24);
-    ctx->genSlider("騎馬戦最（リ）", &mLeaderCalvaryBattleMaxSpeed, 0.0f, 100.0f, 0, NULL, 0xFFFF,
+    ctx->genSlider("騎馬戦最（リ）", &leader_cavalry_battle_max_speed, 0.0f, 100.0f, 0, NULL, 0xFFFF,
                    0xFFFF, 512, 24);
-    ctx->genSlider("通常速（車）", &mNormalSpeedVi, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
-    ctx->genSlider("中速度（車）", &mMediumSpeedVi, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
+    ctx->genSlider("通常速（車）", &normal_speed_vi, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
+    ctx->genSlider("中速度（車）", &medium_speed_vi, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
     ctx->genSlider("最速度（車）", &mMaxSpeedVi, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
     ctx->genSlider("一騎速", &mSingleRiderSpeed, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
     ctx->genCheckBox("手綱ナシ", &mNoReins, 1, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
@@ -319,10 +319,10 @@ static void himo_control1(e_wb_class* i_this, cXyz* i_pos, int i_idx, s8 param_3
     }
 
     if (i_this->field_0x79d != 0) {
-        sp60.z *= l_HIO.mLeaderSizeRatio;
-        sp48 *= l_HIO.mLeaderSizeRatio;
-        sp30 *= l_HIO.mLeaderSizeRatio;
-        sp24 *= l_HIO.mLeaderSizeRatio;
+        sp60.z *= l_HIO.leader_size_ratio;
+        sp48 *= l_HIO.leader_size_ratio;
+        sp30 *= l_HIO.leader_size_ratio;
+        sp24 *= l_HIO.leader_size_ratio;
     }
 
     i = 1;
@@ -846,7 +846,7 @@ static void e_wb_pl_ride_now(e_wb_class* i_this) {
 
 /* 807D4154-807D48C0 001DB4 076C+00 1/1 0/0 0/0 .text            e_wb_pl_ride__FP10e_wb_class */
 static void e_wb_pl_ride(e_wb_class* i_this) {
-    f32 fVar11 = l_HIO.mCalvaryBattleMaxSpeed;
+    f32 fVar11 = l_HIO.cavalry_battle_max_speed;
     f32 fVar2;
 
     if (i_this->field_0x1432 != 0) {
@@ -952,8 +952,8 @@ static void e_wb_pl_ride(e_wb_class* i_this) {
                 i_this->mActionID = ACT_PL_RIDE;
                 i_this->field_0x1432 = 0;
 
-                if (l_HIO.mNormalSpeedVi < i_this->speedF) {
-                    i_this->speedF = l_HIO.mNormalSpeedVi;
+                if (l_HIO.normal_speed_vi < i_this->speedF) {
+                    i_this->speedF = l_HIO.normal_speed_vi;
                 }
             }
         } else if (i_this->field_0x142f && iVar4 == 1) {
@@ -993,7 +993,7 @@ static void e_wb_pl_ride(e_wb_class* i_this) {
 
             i_this->mWaitRollAngle = i_this->current.angle.y - curr_angle_y;
             f32 fVar10 =
-                i_this->mWaitRollAngle * TREG_S(7) - 8 * i_this->speedF / l_HIO.mBaseSize + 1.0f;
+                i_this->mWaitRollAngle * TREG_S(7) - 8 * i_this->speedF / l_HIO.base_size + 1.0f;
 
             if (fVar10 <= NREG_F(0x11) + 4500.0f) {
                 if (fVar10 < -NREG_F(0x11) + 4500.0f)
@@ -1281,7 +1281,7 @@ static void e_wb_b_run2(e_wb_class* i_this) {
         cLib_addCalcAngleS2(&i_this->mTargetAngleStep, 0x400, 1, 0x10);
 
         fVar1 = 3.0f;
-        fVar10 = l_HIO.mLeaderMaxSpeed;
+        fVar10 = l_HIO.leader_max_speed;
         i_this->field_0x142c = 1;
 
         if (i_this->field_0x698 == 0 && dist < 5000.0f) {
@@ -1348,7 +1348,7 @@ static void e_wb_b_run(e_wb_class* i_this) {
         i_this->mActionMode = 0;
     } else {
         s8 bVar11 = false;
-        f32 fVar14 = l_HIO.mLeaderCalvaryBattleMaxSpeed;
+        f32 fVar14 = l_HIO.leader_cavalry_battle_max_speed;
         if (daPy_getPlayerActorClass()->checkHorseRide() &&
             dComIfGp_getHorseActor()->speedF >= 30.0f)
         {
@@ -1447,20 +1447,20 @@ static void e_wb_b_run(e_wb_class* i_this) {
             if (bVar11) {
                 // float regalloc
                 horse_speed = dComIfGp_getHorseActor()->speedF;
-                speed_target = l_HIO.mLeaderCalvaryBattleMaxSpeed;
+                speed_target = l_HIO.leader_cavalry_battle_max_speed;
 
                 if (speed_target > horse_speed) {
                     speed_target = horse_speed;
                 } else {
-                    if (speed_target < l_HIO.mLeaderMaxSpeed) {
-                        speed_target = l_HIO.mLeaderMaxSpeed;
+                    if (speed_target < l_HIO.leader_max_speed) {
+                        speed_target = l_HIO.leader_max_speed;
                     }
                 }
 
                 if (fopAcM_searchPlayerDistanceXZ(i_this) < 2000.0f) {
                     speed_target *= 1.2f;
 
-                    if (i_this->speedF < l_HIO.mMaxSpeed) {
+                    if (i_this->speedF < l_HIO.max_speed) {
                         speed_step = 0.5f;
                     } else {
                         speed_step = 1.5f;
@@ -1476,7 +1476,7 @@ static void e_wb_b_run(e_wb_class* i_this) {
                     horse_speed = 1.2f;
             } else {
                 speed_step = 3.0;
-                speed_target = l_HIO.mLeaderMaxSpeed;
+                speed_target = l_HIO.leader_max_speed;
             }
 
             if (dist > 6000.0f) {
@@ -1488,7 +1488,7 @@ static void e_wb_b_run(e_wb_class* i_this) {
             break;
         case 3:
             i_this->field_0x6bd = 1;
-            speed_target = l_HIO.mMaxSpeed;
+            speed_target = l_HIO.max_speed;
             speed_step = 3.0f;
 
             if (i_this->field_0x698 == 10) {
@@ -1514,7 +1514,7 @@ static void e_wb_b_run(e_wb_class* i_this) {
 
             break;
         case 10:  // jumping a fence / hit wall
-            speed_target = l_HIO.mMaxSpeed;
+            speed_target = l_HIO.max_speed;
             speed_step = 3.0f;
             int anm_id = i_this->mAnmID;
 
@@ -1683,7 +1683,7 @@ static void e_wb_a_run(e_wb_class* i_this) {
         }
     default:
         cLib_addCalcAngleS2(&i_this->current.angle.y, i_this->mAngleTarget, 8, 0x800);
-        cLib_addCalc2(&i_this->speedF, l_HIO.mMaxSpeed * 1.2f, 1.0f, 2.0f);
+        cLib_addCalc2(&i_this->speedF, l_HIO.max_speed * 1.2f, 1.0f, 2.0f);
         cLib_addCalcAngleS2(&i_this->field_0x79a, (i_this->current.angle.y - curr_angle_y) * -8, 8,
                             0x200);
     }
@@ -1957,14 +1957,14 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
             local_10c = diff;
 
             dist = JMAFastSqrt(local_10c.x * local_10c.x + local_10c.z * local_10c.z);
-            target_speed = l_HIO.mMaxSpeed;
+            target_speed = l_HIO.max_speed;
 
             if (dist >= 500.0f) {
-                target_speed = l_HIO.mMaxSpeed;
+                target_speed = l_HIO.max_speed;
             }
 
             if (dist > 3000.0f) {
-                target_speed = l_HIO.mMaxSpeed;
+                target_speed = l_HIO.max_speed;
             }
 
             return_value = (i_this->field_0x6be & 2) == 0;

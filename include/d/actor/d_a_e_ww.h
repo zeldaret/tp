@@ -77,7 +77,7 @@ private:
     /* 0x6B5 */ u8 field_0x6b5;
     /* 0x6B6 */ u8 field_0x6b6;
     /* 0x6B7 */ u8 field_0x6b7;
-    /* 0x6B8 */ s32 mActionID;
+    /* 0x6B8 */ s32 mAction;
     /* 0x6BC */ s32 mActionMode; // Which wolf does action ? 1 jump ? 0 init ?, 26 Hide ? check sound action just before, check execute chase for cases in switch
     /* 0x6C0 */ int field_0x6c0; // Side step ? 0-> step left, 1 step right
     /* 0x6C4 */ s32 field_0x6c4; // Active index for the int arrays later ? Change to int ?
@@ -122,7 +122,7 @@ STATIC_ASSERT(sizeof(daE_WW_c) == 0xec8);
 class daE_WW_HIO_c : public JORReflexible {
 public:
     /* 807E76EC */ daE_WW_HIO_c();
-    /* 807EEEBC */ virtual ~daE_WW_HIO_c() {};
+    /* 807EEEBC */ virtual ~daE_WW_HIO_c() {}
 
     void genMessage(JORMContext*);
 
