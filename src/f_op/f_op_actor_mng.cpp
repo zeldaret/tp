@@ -16,6 +16,7 @@
 #include "d/d_item.h"
 #include "d/d_path.h"
 #include "f_op/f_op_actor_mng.h"
+#include "f_op/f_op_camera_mng.h"
 #include "f_op/f_op_scene_mng.h"
 #include "m_Do/m_Do_lib.h"
 

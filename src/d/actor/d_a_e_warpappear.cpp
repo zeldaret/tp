@@ -9,6 +9,7 @@
 #include "d/actor/d_a_e_s1.h"
 #include "d/actor/d_a_horse.h"
 #include "d/actor/d_a_obj_ihasi.h"
+#include "f_op/f_op_camera_mng.h"
 
 /* 807CF7D8-807CF8BC 000078 00E4+00 1/0 0/0 0/0 .text daE_Warpappear_Draw__FP18e_warpappear_class */
 static int daE_Warpappear_Draw(e_warpappear_class* i_this) {

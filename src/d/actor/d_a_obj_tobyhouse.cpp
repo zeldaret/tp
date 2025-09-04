@@ -10,6 +10,7 @@
 #include "d/d_bg_w.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_bomb.h"
+#include "f_op/f_op_camera_mng.h"
 #include "Z2AudioLib/Z2Instances.h"
 
 #ifdef DEBUG

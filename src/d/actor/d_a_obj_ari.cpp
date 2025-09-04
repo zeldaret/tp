@@ -11,6 +11,7 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_menu_insect.h"
 #include "d/d_procname.h"
+#include "f_op/f_op_camera_mng.h"
 
 /* 80BA55E0-80BA55E4 000008 0004+00 2/2 0/0 0/0 .bss             None */
 static bool hioInit;

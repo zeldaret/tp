@@ -4,6 +4,7 @@
 #include "d/actor/d_a_obj_itamato.h"
 #include "d/actor/d_a_obj_boumato.h"
 #include "d/actor/d_a_arrow.h"
+#include "f_op/f_op_camera_mng.h"
 
 /* 804897BC-804897FC -00001 0040+00 2/2 0/0 0/0 .data            l_evtList */
 static daNpcT_evtData_c l_evtList[8] = {

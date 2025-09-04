@@ -12,6 +12,7 @@
 #include "d/actor/d_a_nbomb.h"
 
 #include "f_op/f_op_actor_enemy.h"
+#include "f_op/f_op_camera_mng.h"
 
 class daB_TN_HIO_c {
 public:

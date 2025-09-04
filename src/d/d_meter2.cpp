@@ -7,6 +7,7 @@
 
 #include "d/d_meter2.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
+#include "d/d_camera.h"
 #include "d/d_demo.h"
 #include "d/d_scope.h"
 #include "d/d_timer.h"

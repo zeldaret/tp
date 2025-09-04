@@ -12,6 +12,7 @@
 #include "d/d_bg_w.h"
 #include "d/d_kankyo.h"
 #include "f_op/f_op_actor_mng.h"
+#include "f_op/f_op_camera_mng.h"
 #include "d/d_timer.h"
 #include "dol2asm.h"
 #include "m_Do/m_Do_controller_pad.h"

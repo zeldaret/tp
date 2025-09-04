@@ -11,6 +11,7 @@
 #include "d/actor/d_a_midna.h"
 #include "d/d_path.h"
 #include "d/d_bg_w.h"
+#include "f_op/f_op_camera_mng.h"
 #include "SSystem/SComponent/c_math.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include <cmath.h>

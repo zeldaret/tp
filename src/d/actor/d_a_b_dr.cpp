@@ -14,6 +14,7 @@
 #include "d/actor/d_a_npc.h"
 #include "d/d_camera.h"
 #include "c/c_damagereaction.h"
+#include "f_op/f_op_camera_mng.h"
 #include "Z2AudioLib/Z2Instances.h"
 
 

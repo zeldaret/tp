@@ -14,6 +14,8 @@
 #include "d/d_menu_save.h"
 #include "d/d_menu_skill.h"
 #include "d/d_menu_window.h"
+
+#include "d/d_camera.h"
 #include "d/d_menu_window_HIO.h"
 #include "d/d_meter2.h"
 #include "d/d_meter2_info.h"

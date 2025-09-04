@@ -7,6 +7,7 @@
 
 #include "d/d_event_data.h"
 #include "d/actor/d_a_player.h"
+#include "d/d_camera.h"
 #include "d/d_demo.h"
 #include "d/d_gameover.h"
 #include "d/d_msg_object.h"

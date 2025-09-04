@@ -3,8 +3,6 @@
 // Translation Unit: d_a_ni
 //
 
-#include "d/dolzel_rel.h"
-
 /**
  * Basically entirely matching except for ONE float reg alloc in play_camera,
  * and some extra dtors being emitted that shouldnt be after daNi_Create
@@ -24,6 +22,7 @@
 #include "SSystem/SComponent/c_math.h"
 #include "c/c_damagereaction.h"
 #include "Z2AudioLib/Z2Instances.h"
+#include "f_op/f_op_camera_mng.h"
 
 enum Joint {
     /* 0x0 */ JNT_WAIST,

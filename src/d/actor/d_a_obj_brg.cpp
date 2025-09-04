@@ -13,6 +13,7 @@
 #include "d/actor/d_a_player.h"
 #include "d/d_path.h"
 #include "Z2AudioLib/Z2Instances.h"
+#include "f_op/f_op_camera_mng.h"
 
 /* 80BBC90C-80BBCCFC 0000EC 03F0+00 1/1 0/0 0/0 .text
  * ride_call_back__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c            */

@@ -12,6 +12,7 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "d/d_bg_w_kcol.h"
 #include "d/d_com_inf_game.h"
+#include "f_op/f_op_camera_mng.h"
 #include "m_Do/m_Do_graphic.h"
 #include <stdio.h>
 

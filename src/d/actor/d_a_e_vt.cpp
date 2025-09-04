@@ -15,6 +15,7 @@
 #include "d/d_s_play.h"
 #include "d/d_camera.h"
 #include "f_op/f_op_actor_enemy.h"
+#include "f_op/f_op_camera_mng.h"
 
 #define WL_CUT_TYPE_SMALL 1
 #define WL_CUT_TYPE_JUMP 2

@@ -96,6 +96,9 @@ public:
     /* 80182CD0 */ f32 Val(s32 param_0, int param_1) {
         return mCamStyleData[param_0].field_0x8[param_1];
     }
+    void SetVal(s32 param_0, int param_1, f32 i_value) {
+        mCamStyleData[param_0].field_0x8[param_1] = i_value;
+    }
 
     /* 0x00 */ u8 mMapToolFovy;
     /* 0x01 */ u8 mMapToolArg0;

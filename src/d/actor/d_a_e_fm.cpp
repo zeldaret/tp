@@ -12,6 +12,7 @@
 #include "d/actor/d_a_obj_hhashi.h"
 #include "d/actor/d_a_obj_ystone.h"
 #include "c/c_damagereaction.h"
+#include "f_op/f_op_camera_mng.h"
 #include "f_op/f_op_msg_mng.h"
 #include "Z2AudioLib/Z2Instances.h"
 

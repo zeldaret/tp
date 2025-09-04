@@ -17,6 +17,12 @@
 #include "d/d_msg_string.h"
 #include "d/d_pane_class.h"
 
+#if VERSION == VERSION_GCN_JPN
+#define STR_BUF_LEN 528
+#else
+#define STR_BUF_LEN 512
+#endif
+
 extern "C" extern dMsgObject_HIO_c g_MsgObject_HIO_c;
 
 /* 80201328-80201370 1FBC68 0048+00 0/0 1/1 1/1 .text            __ct__14dMeterButton_cFv */
@@ -256,12 +262,17 @@ void dMeterButton_c::draw() {
     }
 
     if (mMsgID != 0xFFFF) {
-        char tmp_buf[512];
+        char tmp_buf[STR_BUF_LEN];
         strcpy(tmp_buf, static_cast<J2DTextBox*>(mpTm_c[0]->getPanePtr())->getStringPtr());
         mpTextScreen->draw(0.0f, 0.0f, graf_ctx);
 
+#if VERSION == VERSION_GCN_JPN
+        mpString_c->getString(mMsgID, static_cast<J2DTextBox*>(mpTm_c[0]->getPanePtr()), NULL, NULL,
+                              NULL, 12);
+#else
         mpString_c->getString(mMsgID, static_cast<J2DTextBox*>(mpTm_c[0]->getPanePtr()), NULL, NULL,
                               NULL, 8);
+#endif
         mpString_c->drawOutFont(static_cast<J2DTextBox*>(mpTm_c[0]->getPanePtr()), -1.0f);
         strcpy(static_cast<J2DTextBox*>(mpTm_c[0]->getPanePtr())->getStringPtr(), tmp_buf);
     }
@@ -1194,8 +1205,13 @@ void dMeterButton_c::screenInitButton() {
     field_0x4d9 = 0xFF;
 
     for (int i = 0; i < 10; i++) {
+#if VERSION == VERSION_GCN_JPN
+        mpTextBox[i] = (J2DTextBox*)mpButtonScreen->search(text_tag[i]);
+        mpButtonScreen->search(ftext_tag[i])->hide();
+#else
         mpTextBox[i] = (J2DTextBox*)mpButtonScreen->search(ftext_tag[i]);
         mpButtonScreen->search(text_tag[i])->hide();
+#endif
 
         mpTextBox[i]->setFont(mDoExt_getMesgFont());
         mpTextBox[i]->setString(32, "");
@@ -1468,9 +1484,15 @@ void dMeterButton_c::screenInitText() {
     field_0x0ec[1] = NULL;
     OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
 
+#if VERSION == VERSION_GCN_JPN
+    mpTextScreen->search('n_3line')->show();
+    mpTextScreen->search('n_3fline')->hide();
+    mpTextScreen->search('n_e4line')->hide();
+#else
     mpTextScreen->search('n_3line')->hide();
     mpTextScreen->search('n_3fline')->hide();
     mpTextScreen->search('n_e4line')->show();
+#endif
     OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
 
     f32 line_space = static_cast<J2DTextBox*>(mpTm_c[0]->getPanePtr())->getLineSpace();
@@ -1848,9 +1870,9 @@ void dMeterButton_c::updateText(u32 i_flags) {
                 tbox = static_cast<J2DTextBox*>(field_0x0ec[0]->getPanePtr());
             }
 
-            char buf1[512];
-            char buf2[512];
-            char buf3[512];
+            char buf1[STR_BUF_LEN];
+            char buf2[STR_BUF_LEN];
+            char buf3[STR_BUF_LEN];
 
             if (dMsgObject_getString(dMeter2Info_getFloatingMessageID(),
                                      static_cast<J2DTextBox*>(mpTm_c[0]->getPanePtr()), tbox,

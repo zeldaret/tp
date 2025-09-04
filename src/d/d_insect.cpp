@@ -8,6 +8,7 @@
 #include "d/d_insect.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_menu_insect.h"
+#include "f_op/f_op_camera_mng.h"
 #include "m_Do/m_Do_lib.h"
 #include "dol2asm.h"
 

@@ -17,6 +17,7 @@
 #include "m_Do/m_Do_graphic.h"
 #include "d/actor/d_a_e_ym.h"
 #include "d/actor/d_a_e_ymb.h"
+#include "f_op/f_op_camera_mng.h"
 
 #ifdef DEBUG
 daObjDrop_HIO_c l_HIO;

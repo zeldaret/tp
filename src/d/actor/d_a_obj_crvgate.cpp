@@ -7,8 +7,10 @@
 
 #include "d/actor/d_a_obj_crvgate.h"
 
+#include "d/d_camera.h"
 #include "d/actor/d_a_obj_eff.h"
 #include "d/actor/d_a_player.h"
+#include "f_op/f_op_camera_mng.h"
 
 /* 80BD30C0-80BD3100 000000 0040+00 12/12 0/0 0/0 .rodata          ccCylSrc$3774 */
 const static dCcD_SrcSph ccSphSrc = {

@@ -19,6 +19,7 @@
 #include "d/d_menu_collect.h"
 #include "dolphin/base/PPCArch.h"
 #include "f_ap/f_ap_game.h"
+#include "f_op/f_op_camera_mng.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
 #include "m_Do/m_Do_machine.h"

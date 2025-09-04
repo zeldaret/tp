@@ -7,6 +7,7 @@
 
 #include "d/actor/d_a_kytag00.h"
 #include "d/d_com_inf_game.h"
+#include "f_op/f_op_camera_mng.h"
 
 /* 8046B718-8046B9DC 000078 02C4+00 2/2 0/0 0/0 .text            get_check_pos__FP13kytag00_class */
 static cXyz get_check_pos(kytag00_class* i_this) {

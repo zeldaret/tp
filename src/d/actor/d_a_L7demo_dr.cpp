@@ -10,6 +10,7 @@
 #include "d/actor/d_a_obj_lv7bridge.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
+#include "f_op/f_op_camera_mng.h"
 #include "f_op/f_op_overlap_mng.h"
 
 /* 805A9238-805A92DC 000078 00A4+00 5/5 0/0 0/0 .text            setAction__6daDr_cFM6daDr_cFPCvPv_v

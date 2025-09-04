@@ -36,7 +36,9 @@ dMsgScrnBoss_c::dMsgScrnBoss_c() {
     for (int i = 0; i < 7; i++) {
         mpTm_c[i] = new CPaneMgr(mpScreen, t_tag[i], 0, NULL);
         ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setFont(mDoExt_getRubyFont());
+#if VERSION != VERSION_GCN_JPN
         ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setCharSpace(1.0f);
+#endif
         ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setString(0x100, "");
     }
 

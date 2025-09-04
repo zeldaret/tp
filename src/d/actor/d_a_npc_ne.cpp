@@ -14,6 +14,7 @@
 #include "d/actor/d_a_mg_fish.h"
 #include "SSystem/SComponent/c_math.h"
 #include "JSystem/JUtility/JUTReport.h"
+#include "f_op/f_op_camera_mng.h"
 #include "f_op/f_op_kankyo_mng.h"
 #include "c/c_damagereaction.h"
 

@@ -10,6 +10,7 @@
 #include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_bomb.h"
+#include "d/d_camera.h"
 
 struct Tag_FWall_n {
     static dCcD_SrcSph cc_sph_src;

@@ -12,6 +12,7 @@
 #include "d/d_com_inf_game.h"
 #include "c/c_damagereaction.h"
 #include "SSystem/SComponent/c_math.h"
+#include "f_op/f_op_camera_mng.h"
 #include "f_op/f_op_msg_mng.h"
 #include "Z2AudioLib/Z2Instances.h"
 

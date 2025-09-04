@@ -18,6 +18,7 @@
 #include "dol2asm.h"
 #include "d/d_msg_object.h"
 #include "d/d_attention.h"
+#include "f_op/f_op_camera_mng.h"
 #include <cmath.h>
 
 /* 80BFFF0C-80BFFF58 0000EC 004C+00 2/2 0/0 0/0 .text            jointCtrlCallBack__FP8J3DJointi */
