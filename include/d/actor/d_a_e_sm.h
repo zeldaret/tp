@@ -152,6 +152,8 @@ public:
     /* 8079222C */ daE_Sm_HIO_c();
     /* 807980E8 */ virtual ~daE_Sm_HIO_c() {}
 
+    void genMessage(JORMContext*);
+
     /* スライム - Slime */
     /* 0x04 */ s8 field_0x4;
     /* 0x08 */ f32 basic_size;      // 基本大きさ - Basic Size
