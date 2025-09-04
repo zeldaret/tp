@@ -10,6 +10,7 @@
 #include "JSystem/JKernel/JKRDvdAramRipper.h"
 #include "cstring.h"
 #include "dolphin/os.h"
+#include <stdint.h>
 
 /* 80451290-80451298 000790 0004+04 1/1 0/0 0/0 .sbss            sAramHeap__16JASWaveArcLoader */
 JASHeap* JASWaveArcLoader::sAramHeap;
@@ -113,7 +114,7 @@ bool JASWaveArc::sendLoadCmd() {
     loadToAramCallbackParams commandInfo;
     commandInfo.mWavArc = this;
     commandInfo.mEntryNum = mEntryNum;
-    commandInfo.mBase = (u32)mHeap.mBase;
+    commandInfo.mBase = (uintptr_t)mHeap.mBase;
     commandInfo._c = ++_58;
 
     _5a++;

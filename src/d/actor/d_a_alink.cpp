@@ -3925,7 +3925,7 @@ J3DModel* daAlink_c::initModel(J3DModelData* i_modelData, u32 mdlFlags, u32 diff
     if (texNo >= 0) {
         ResTIMG* timg = tex->getResTIMG(texNo);
 
-        if (mpWarpTexData == (void*)((u32)timg + timg->imageOffset)) {
+        if (mpWarpTexData == (void*)((uintptr_t)timg + timg->imageOffset)) {
             warpMaterial = true;
         }
     }
@@ -4002,7 +4002,7 @@ static int daAlink_Draw(daAlink_c* i_this);
 /* 800A4068-800A4820 09E9A8 07B8+00 1/1 0/0 0/0 .text            createHeap__9daAlink_cFv */
 int daAlink_c::createHeap() {
     ResTIMG* sp14 = (ResTIMG*)dComIfG_getObjectRes("Always", 0x5D);
-    mpWarpTexData = (void*)((u32)sp14 + sp14->imageOffset);
+    mpWarpTexData = (void*)((uintptr_t)sp14 + sp14->imageOffset);
 
     if (*dStage_roomControl_c::getDemoArcName() != 0) {
         if (!initDemoModel(&mpDemoHLTmpModel, "demo00_Link_cut00_HL_tmp.bmd", 0x1000000)) {
@@ -14680,7 +14680,7 @@ void daAlink_c::setLight() {
         spC4.z = light_m->field_0x18;
 
         f32 var_f26;
-        if ((u32)light_m == (u32)&daAlinkHIO_wlLight_c0::m) {
+        if ((uintptr_t)light_m == (uintptr_t)&daAlinkHIO_wlLight_c0::m) {
             cXyz spD0 = eyePos - field_0x34e0;
             s16 sp104 = spD0.atan2sY_XZ();
             s16 sp106 = spD0.atan2sX_Z();

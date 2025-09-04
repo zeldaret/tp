@@ -260,7 +260,7 @@ int daNpcCd_c::NpcCreate(int param_1) {
         a_mdlData_p->getJointNodePointer(i)->setCallBack(jntNodeCallBack);
     }
 
-    mpMorf->getModel()->setUserArea((u32)this);
+    mpMorf->getModel()->setUserArea((uintptr_t)this);
 
     OS_REPORT("   [ |   X   l     Type=%d  ", param_1);
 

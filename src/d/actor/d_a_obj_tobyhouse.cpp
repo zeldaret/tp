@@ -189,7 +189,7 @@ int daObjTobyHouse_c::Create() {
         J3DJoint* jnt = mModel->getModelData()->getJointNodePointer(mBirlPJnt);
         JUT_ASSERT(398, jnt != 0);
         jnt->setCallBack(nodeCallBack);
-        mModel->setUserArea((u32)this);
+        mModel->setUserArea((uintptr_t)this);
 
         jnt = mModel->getModelData()->getJointNodePointer(mBirlCannonJnt);
         JUT_ASSERT(406, jnt != 0);

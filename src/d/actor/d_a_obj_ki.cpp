@@ -134,7 +134,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
     
     J3DModel* model = _this->mpMorf->getModel();
-    model->setUserArea((u32)_this);
+    model->setUserArea((uintptr_t)_this);
     for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
         model->getModelData()->getJointNodePointer(i)->setCallBack(nodeCallBack);
     }

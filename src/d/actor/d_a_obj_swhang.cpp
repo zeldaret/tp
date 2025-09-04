@@ -162,7 +162,7 @@ int daObjSwHang_c::Create() {
             mpModel->getModelData()->getJointNodePointer(i)->setCallBack(nodeCallBack);
         }
     }
-    mpModel->setUserArea((u32)this);
+    mpModel->setUserArea((uintptr_t)this);
     return 1;
 }
 

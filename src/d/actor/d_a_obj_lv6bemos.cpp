@@ -156,7 +156,7 @@ int daObjL6Bm_c::Create() {
         eyeJnt->setCallBack(nodeCallBack);
     }
 
-    mBeamosModel->setUserArea((u32)this);
+    mBeamosModel->setUserArea((uintptr_t)this);
 
     if (neckJnt == NULL) {
         OS_REPORT_ERROR("表ビーモス：首ジョイントが見つかりませんでした！\n"); // Table Beamos : Neck joint not found!

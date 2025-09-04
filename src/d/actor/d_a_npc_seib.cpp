@@ -173,7 +173,7 @@ int daNpc_seiB_c::CreateHeap() {
         return 0;
     }
 
-    mpMorf[0]->getModel()->setUserArea((u32)this);
+    mpMorf[0]->getModel()->setUserArea((uintptr_t)this);
     if (setFaceMotionAnm(0, false) && setMotionAnm(0, 0.0f, FALSE)) {
         return 1;
     }

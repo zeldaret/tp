@@ -30,8 +30,7 @@ void J3DShapeTable::sortVcdVatCmd() {
     for (u16 next = 0; next < shapeNum; next++) {
         for (u16 prev = 0; prev < next; prev++) {
             if (mShapeNodePointer[next]->isSameVcdVatCmd(mShapeNodePointer[prev])) {
-                void* nodeVatCmd = mShapeNodePointer[prev]->getVcdVatCmd();
-                mShapeNodePointer[next]->setVcdVatCmd(nodeVatCmd);
+                mShapeNodePointer[next]->setVcdVatCmd(mShapeNodePointer[prev]->getVcdVatCmd());
             }
         }
     }

@@ -2,6 +2,7 @@
 #define JKREXPHEAP_H
 
 #include "JSystem/JKernel/JKRHeap.h"
+#include <stdint.h>
 
 /**
  * @ingroup jsystem-jkernel
@@ -34,7 +35,7 @@ public:
         CMemBlock* getNextBlock() const { return mNext; }
         u32 getSize() const { return size; }
         u8 getGroupId() const { return mGroupId; }
-        static CMemBlock* getBlock(void* data) { return (CMemBlock*)((u32)data + -0x10); }
+        static CMemBlock* getBlock(void* data) { return (CMemBlock*)((uintptr_t)data + -0x10); }
 
     private:
         /* 0x0 */ u16 mMagic;

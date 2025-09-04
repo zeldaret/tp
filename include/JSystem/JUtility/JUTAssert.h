@@ -13,7 +13,6 @@
 #define JUT_ASSERT_MSG_F(LINE, COND, MSG, ...) \
     (COND) ? (void)0 : (JUTAssertion::showAssert_f(JUTAssertion::getSDevice(), __FILE__, LINE, MSG, __VA_ARGS__), OSPanic(__FILE__, LINE, "Halt"));
 
-#define J3D_ASSERT(LINE, COND, MSG) JUT_ASSERT_MSG(LINE, (COND) != 0, MSG)
 #define J3D_PANIC(LINE, COND, MSG) ((COND) != 0 || (OSPanic(__FILE__, LINE, MSG), 0));
 
 #define JUT_PANIC(LINE, TEXT)                                                                      \
@@ -36,7 +35,6 @@
 #define JUT_ASSERT(...) (void)0;
 #define JUT_ASSERT_MSG(...) (void)0;
 #define JUT_ASSERT_MSG_F(...) (void)0;
-#define J3D_ASSERT(...) (void)0;
 #define J3D_PANIC(...) (void)0;
 #define JUT_PANIC(...)
 #define JUT_WARN(...)

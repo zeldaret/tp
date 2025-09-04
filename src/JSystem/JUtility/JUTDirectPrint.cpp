@@ -190,7 +190,7 @@ void JUTDirectPrint::printSub(u16 position_x, u16 position_y, char const* format
         return;
     }
 
-    int buffer_length = vsnprintf(buffer, ARRAY_SIZE(buffer), format, args);
+    int buffer_length = vsnprintf(buffer, ARRAY_SIZEU(buffer), format, args);
     u16 x = position_x;
     if (buffer_length > 0) {
         if (clear) {

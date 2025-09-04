@@ -176,11 +176,11 @@ int daObjDmElevator_c::Create() {
         
         mpElevatorModel->mModelData->getJointTree().getJointNodePointer(2)->setCallBack(
             nodeCallBack);
-        mpElevatorModel->setUserArea((u32)this);
+        mpElevatorModel->setUserArea((uintptr_t)this);
         
         mpSwitchModel->mModelData->getJointTree().getJointNodePointer(1)->setCallBack(
             nodeCallBackForSw);
-        mpSwitchModel->setUserArea((u32)this);
+        mpSwitchModel->setUserArea((uintptr_t)this);
         
         mpBgW->SetRideCallback(rideCallBack);
         mpBgW->Move();

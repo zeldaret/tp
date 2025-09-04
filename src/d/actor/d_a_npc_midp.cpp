@@ -190,7 +190,7 @@ int daNpc_midP_c::CreateHeap() {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
 
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
     for (int i = 0; i < 2; i++) {
         mpMatAnm[i] = new daNpcT_MatAnm_c();
 

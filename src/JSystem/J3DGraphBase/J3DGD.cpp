@@ -3,29 +3,28 @@
 //
 
 #include "JSystem/J3DGraphBase/J3DGD.h"
-#include "dolphin/gd.h"
-#include "dolphin/os.h"
+#include "JSystem/J3DGraphBase/J3DFifo.h"
 
 /* 8030D098-8030D210 3079D8 0178+00 0/0 1/1 0/0 .text J3DGDSetGenMode__FUcUcUcUc11_GXCullMode */
-void J3DGDSetGenMode(u8 texGenNum, u8 colorChanNum, u8 tevStageNum, u8 indTexStageNum,
-                     GXCullMode cullMode) {
-    GDOverflowCheck(0xa);
-    J3DGDWriteBPCmd(0xfe07fc3f);
+void J3DGDSetGenMode(u8 nTexGens, u8 nChans, u8 nTevs, u8 nInds,
+                     GXCullMode cm) {
     static u8 cm2hw[4] = {0, 2, 1, 3};
-    J3DGDWriteBPCmd(texGenNum | colorChanNum << 4 | (tevStageNum - 1) << 0xa |
-                    cm2hw[cullMode] << 0xe | indTexStageNum << 0x10);
+
+    GDOverflowCheck(10);
+    J3DGDWriteBPCmd(0xFE07FC3F);
+    J3DGDWriteBPCmd(BP_GEN_MODE(nTexGens, nChans, nTevs - 1, cm2hw[cm], nInds));
 }
 
 /* 8030D210-8030D364 307B50 0154+00 0/0 1/1 0/0 .text            J3DGDSetGenMode_3Param__FUcUcUc */
-void J3DGDSetGenMode_3Param(u8 texGenNum, u8 tevStageNum, u8 indTexStageNum) {
-    GDOverflowCheck(0xa);
-    J3DGDWriteBPCmd(0xfe073c0f);
-    J3DGDWriteBPCmd(texGenNum | (tevStageNum - 1) << 0xa | indTexStageNum << 0x10);
+void J3DGDSetGenMode_3Param(u8 nTexGens, u8 nTevs, u8 nInds) {
+    GDOverflowCheck(10);
+    J3DGDWriteBPCmd(0xFE073C0F);
+    J3DGDWriteBPCmd(BP_GEN_MODE(nTexGens, 0, nTevs - 1, 0, nInds));
 }
 
 /* 8030D364-8030D65C 307CA4 02F8+00 0/0 1/1 0/0 .text J3DGDSetLightAttn__F10_GXLightIDffffff */
-void J3DGDSetLightAttn(GXLightID id, f32 a0, f32 a1, f32 a2, f32 k0, f32 k1, f32 k2) {
-    J3DGDWriteXFCmdHdr(0x0604 + __GDLightID2Offset(id), 6);
+void J3DGDSetLightAttn(GXLightID light, f32 a0, f32 a1, f32 a2, f32 k0, f32 k1, f32 k2) {
+    J3DGDWriteXFCmdHdr(XF_LIGHT_ATTN_ID + __GDLightID2Offset(light), 6);
     J3DGDWrite_f32(a0);
     J3DGDWrite_f32(a1);
     J3DGDWrite_f32(a2);
@@ -36,15 +35,15 @@ void J3DGDSetLightAttn(GXLightID id, f32 a0, f32 a1, f32 a2, f32 k0, f32 k1, f32
 
 /* 8030D65C-8030D76C 307F9C 0110+00 0/0 1/1 0/0 .text J3DGDSetLightColor__F10_GXLightID8_GXColor
  */
-void J3DGDSetLightColor(GXLightID id, GXColor color) {
-    J3DGDWriteXFCmd(0x0603 + __GDLightID2Offset(id),
+void J3DGDSetLightColor(GXLightID light, GXColor color) {
+    J3DGDWriteXFCmd(XF_LIGHT_COLOR_ID + __GDLightID2Offset(light),
                     (color.r << 24) | (color.g << 16) | (color.b << 8) | (color.a << 0));
 }
 
 /* 8030D76C-8030D938 3080AC 01CC+00 0/0 1/1 0/0 .text            J3DGDSetLightPos__F10_GXLightIDfff
  */
-void J3DGDSetLightPos(GXLightID id, f32 x, f32 y, f32 z) {
-    J3DGDWriteXFCmdHdr(0x060A + __GDLightID2Offset(id), 3);
+void J3DGDSetLightPos(GXLightID light, f32 x, f32 y, f32 z) {
+    J3DGDWriteXFCmdHdr(XF_LIGHT_POS_ID + __GDLightID2Offset(light), 3);
     J3DGDWrite_f32(x);
     J3DGDWrite_f32(y);
     J3DGDWrite_f32(z);
@@ -52,223 +51,241 @@ void J3DGDSetLightPos(GXLightID id, f32 x, f32 y, f32 z) {
 
 /* 8030D938-8030DB04 308278 01CC+00 0/0 1/1 0/0 .text            J3DGDSetLightDir__F10_GXLightIDfff
  */
-void J3DGDSetLightDir(GXLightID id, f32 x, f32 y, f32 z) {
-    J3DGDWriteXFCmdHdr(0x060D + __GDLightID2Offset(id), 3);
-    J3DGDWrite_f32(x);
-    J3DGDWrite_f32(y);
-    J3DGDWrite_f32(z);
+void J3DGDSetLightDir(GXLightID light, f32 nx, f32 ny, f32 nz) {
+    J3DGDWriteXFCmdHdr(XF_LIGHT_DIR_ID + __GDLightID2Offset(light), 3);
+    J3DGDWrite_f32(nx);
+    J3DGDWrite_f32(ny);
+    J3DGDWrite_f32(nz);
 }
 
 /* 8030DB04-8030E064 308444 0560+00 1/0 1/1 0/0 .text
  * J3DGDSetVtxAttrFmtv__F9_GXVtxFmtPC17_GXVtxAttrFmtListb       */
-void J3DGDSetVtxAttrFmtv(GXVtxFmt fmt, GXVtxAttrFmtList const* fmtList, bool param_2) {
-    u32 pos_cnt = GX_POS_XYZ;
-    u32 pos_type = GX_F32;
-    u32 pos_shift = 0;
-    u32 nrm_cnt = GX_NRM_XYZ;
-    u32 nrm_type = GX_F32;
-    u32 local_34 = 0;
-    u32 clr0_cnt = GX_CLR_RGBA;
-    u32 clr0_type = GX_RGBA8;
-    u32 clr1_cnt = GX_CLR_RGBA;
-    u32 clr1_type = GX_RGBA8;
-    u32 tex0_cnt = GX_TEX_ST;
-    u32 tex0_type = GX_F32;
-    u32 tex0_shift = 0;
-    u32 tex1_cnt = GX_TEX_ST;
-    u32 tex1_type = GX_F32;
-    u32 tex1_shift = 0;
-    u32 tex2_cnt = GX_TEX_ST;
-    u32 tex2_type = GX_F32;
-    u32 tex2_shift = 0;
-    u32 tex3_cnt = GX_TEX_ST;
-    u32 tex3_type = GX_F32;
-    u32 tex3_shift = 0;
-    u32 tex4_cnt = GX_TEX_ST;
-    u32 tex4_type = GX_F32;
-    u32 tex4_shift = 0;
-    u32 tex5_cnt = GX_TEX_ST;
-    u32 tex5_type = GX_F32;
-    u32 tex5_shift = 0;
-    u32 tex6_cnt = GX_TEX_ST;
-    u32 tex6_type = GX_F32;
-    u32 tex6_shift = 0;
-    u32 tex7_cnt = GX_TEX_ST;
-    u32 tex7_type = GX_F32;
-    u32 tex7_shift = 0;
-    for (; fmtList->attr != GX_VA_NULL; fmtList++) {
-        switch (fmtList->attr) {
+void J3DGDSetVtxAttrFmtv(GXVtxFmt vtxfmt, const GXVtxAttrFmtList* list, bool param_2) {
+    u32 posCnt = GX_POS_XYZ;
+    u32 posType = GX_F32;
+    u32 posFrac = 0;
+
+    u32 nrmCnt = GX_NRM_XYZ;
+    u32 nrmType = GX_F32;
+    u32 nrmIdx3 = 0;
+
+    u32 c0Cnt = GX_CLR_RGBA;
+    u32 c0Type = GX_RGBA8;
+
+    u32 c1Cnt = GX_CLR_RGBA;
+    u32 c1Type = GX_RGBA8;
+
+    u32 tx0Cnt = GX_TEX_ST;
+    u32 tx0Type = GX_F32;
+    u32 tx0Frac = 0;
+
+    u32 tx1Cnt = GX_TEX_ST;
+    u32 tx1Type = GX_F32;
+    u32 tx1Frac = 0;
+
+    u32 tx2Cnt = GX_TEX_ST;
+    u32 tx2Type = GX_F32;
+    u32 tx2Frac = 0;
+
+    u32 tx3Cnt = GX_TEX_ST;
+    u32 tx3Type = GX_F32;
+    u32 tx3Frac = 0;
+
+    u32 tx4Cnt = GX_TEX_ST;
+    u32 tx4Type = GX_F32;
+    u32 tx4Frac = 0;
+
+    u32 tx5Cnt = GX_TEX_ST;
+    u32 tx5Type = GX_F32;
+    u32 tx5Frac = 0;
+
+    u32 tx6Cnt = GX_TEX_ST;
+    u32 tx6Type = GX_F32;
+    u32 tx6Frac = 0;
+
+    u32 tx7Cnt = GX_TEX_ST;
+    u32 tx7Type = GX_F32;
+    u32 tx7Frac = 0;
+
+    ASSERTMSGLINE(240, vtxfmt < GX_MAX_VTXFMT, "GDSetVtxAttrFmtv: invalid vtx fmt");
+
+    for (; list->attr != GX_VA_NULL; ++list) {
+        ASSERTMSGLINE(245, list->attr >= GX_VA_POS && list->attr <= GX_VA_TEX7, "GDSetVtxAttrFmtv: invalid attribute");
+        ASSERTMSGLINE(246, list->frac < 32, "GDSetVtxAttrFmtv: invalid frac value");
+
+        switch (list->attr) {
         case GX_VA_POS:
-            pos_cnt = fmtList->cnt;
-            pos_type = fmtList->type;
-            pos_shift = fmtList->frac;
+            posCnt = list->cnt;
+            posType = list->type;
+            posFrac = list->frac;
             break;
         case GX_VA_NRM:
         case GX_VA_NBT:
-            nrm_type = fmtList->type;
-            if (fmtList->cnt == GX_NRM_NBT3) {
-                nrm_cnt = GX_NRM_NBT;
-                local_34 = 1;
+            nrmType = list->type;
+            if (list->cnt == GX_NRM_NBT3) {
+                nrmCnt = GX_NRM_NBT;
+                nrmIdx3 = 1;
             } else {
                 if (param_2) {
-                    nrm_cnt = GX_NRM_NBT;
+                    nrmCnt = GX_NRM_NBT;
                 } else {
-                    nrm_cnt = fmtList->cnt;
+                    nrmCnt = list->cnt;
                 }
-                local_34 = 0;
+                nrmIdx3 = 0;
             }
             break;
         case GX_VA_CLR0:
-            clr0_cnt = fmtList->cnt;
-            clr0_type = fmtList->type;
+            c0Cnt = list->cnt;
+            c0Type = list->type;
             break;
         case GX_VA_CLR1:
-            clr1_cnt = fmtList->cnt;
-            clr1_type = fmtList->type;
+            c1Cnt = list->cnt;
+            c1Type = list->type;
             break;
         case GX_VA_TEX0:
-            tex0_cnt = fmtList->cnt;
-            tex0_type = fmtList->type;
-            tex0_shift = fmtList->frac;
+            tx0Cnt = list->cnt;
+            tx0Type = list->type;
+            tx0Frac = list->frac;
             break;
         case GX_VA_TEX1:
-            tex1_cnt = fmtList->cnt;
-            tex1_type = fmtList->type;
-            tex1_shift = fmtList->frac;
+            tx1Cnt = list->cnt;
+            tx1Type = list->type;
+            tx1Frac = list->frac;
             break;
         case GX_VA_TEX2:
-            tex2_cnt = fmtList->cnt;
-            tex2_type = fmtList->type;
-            tex2_shift = fmtList->frac;
+            tx2Cnt = list->cnt;
+            tx2Type = list->type;
+            tx2Frac = list->frac;
             break;
         case GX_VA_TEX3:
-            tex3_cnt = fmtList->cnt;
-            tex3_type = fmtList->type;
-            tex3_shift = fmtList->frac;
+            tx3Cnt = list->cnt;
+            tx3Type = list->type;
+            tx3Frac = list->frac;
             break;
         case GX_VA_TEX4:
-            tex4_cnt = fmtList->cnt;
-            tex4_type = fmtList->type;
-            tex4_shift = fmtList->frac;
+            tx4Cnt = list->cnt;
+            tx4Type = list->type;
+            tx4Frac = list->frac;
             break;
         case GX_VA_TEX5:
-            tex5_cnt = fmtList->cnt;
-            tex5_type = fmtList->type;
-            tex5_shift = fmtList->frac;
+            tx5Cnt = list->cnt;
+            tx5Type = list->type;
+            tx5Frac = list->frac;
             break;
         case GX_VA_TEX6:
-            tex6_cnt = fmtList->cnt;
-            tex6_type = fmtList->type;
-            tex6_shift = fmtList->frac;
+            tx6Cnt = list->cnt;
+            tx6Type = list->type;
+            tx6Frac = list->frac;
             break;
         case GX_VA_TEX7:
-            tex7_cnt = fmtList->cnt;
-            tex7_type = fmtList->type;
-            tex7_shift = fmtList->frac;
-            break;
+            tx7Cnt = list->cnt;
+            tx7Type = list->type;
+            tx7Frac = list->frac;
         }
     }
-    GDOverflowCheck(0x12);
-    J3DGDWriteCPCmd(CP_REG_VAT_GRP0_ID + fmt,
-                    pos_cnt | pos_type << 1 | pos_shift << 4 | nrm_cnt << 9 | nrm_type << 0xa |
-                        clr0_cnt << 0xd | clr0_type << 0xe | clr1_cnt << 0x11 | clr1_type << 0x12 |
-                        tex0_cnt << 0x15 | tex0_type << 0x16 | tex0_shift << 0x19 | 0x40000000 |
-                        local_34 << 0x1f);
-    J3DGDWriteCPCmd(CP_REG_VAT_GRP1_ID + fmt,
-                    tex1_cnt | tex1_type << 1 | tex1_shift << 4 | tex2_cnt << 9 | tex2_type << 0xa |
-                        tex2_shift << 0xd | tex3_cnt << 0x12 | tex3_type << 0x13 |
-                        tex3_shift << 0x16 | tex4_cnt << 0x1b | tex4_type << 0x1c | 0x80000000);
-    J3DGDWriteCPCmd(CP_REG_VAT_GRP2_ID + fmt,
-                    tex4_shift | tex5_cnt << 5 | tex5_type << 6 | tex5_shift << 9 |
-                        tex6_cnt << 0xe | tex6_type << 0xf | tex6_shift << 0x12 | tex7_cnt << 0x17 |
-                        tex7_type << 0x18 | tex7_shift << 0x1b);
+
+    GDOverflowCheck(18);
+    J3DGDWriteCPCmd(vtxfmt + CP_REG_VAT_GRP0_ID, CP_REG_VAT_GRP0(posCnt, posType, posFrac, nrmCnt, nrmType, c0Cnt, c0Type, c1Cnt, c1Type, tx0Cnt, tx0Type, tx0Frac, 1, nrmIdx3));
+    J3DGDWriteCPCmd(vtxfmt + CP_REG_VAT_GRP1_ID, CP_REG_VAT_GRP1(tx1Cnt, tx1Type, tx1Frac, tx2Cnt, tx2Type, tx2Frac, tx3Cnt, tx3Type, tx3Frac, tx4Cnt, tx4Type, 1));
+    J3DGDWriteCPCmd(vtxfmt + CP_REG_VAT_GRP2_ID, CP_REG_VAT_GRP2(tx4Frac, tx5Cnt, tx5Type, tx5Frac, tx6Cnt, tx6Type, tx6Frac, tx7Cnt, tx7Type, tx7Frac));
 }
 
 /* 8030E064-8030E234 3089A4 01D0+00 1/0 1/1 0/0 .text
  * J3DGDSetTexCoordGen__F13_GXTexGenType12_GXTexGenSrc          */
-void J3DGDSetTexCoordGen(GXTexGenType texGenType, GXTexGenSrc texGenSrc) {
-    u32 input_form = 0;
-    u32 proj_type = 0;
-    u32 src_row = 5;
-    u32 bump_src_tex = 5;
-    u32 bump_src_light = 0;
-    u32 texgen_type;
-    switch (texGenSrc) {
+void J3DGDSetTexCoordGen(GXTexGenType func, GXTexGenSrc src_param) {
+    u32 tgType;
+    u32 form;
+    u32 proj;
+    u32 row;
+    u32 embossRow;
+    u32 embossLit;
+    
+    form = 0;
+    proj = 0;
+    row = 5;
+    embossRow = 5;
+    embossLit = 0;
+
+    switch(src_param) {
     case GX_TG_POS:
-        src_row = 0;
-        input_form = 1;
+        row = 0;
+        form = 1;
         break;
     case GX_TG_NRM:
-        src_row = 1;
-        input_form = 1;
+        row = 1;
+        form = 1;
         break;
     case GX_TG_BINRM:
-        src_row = 3;
-        input_form = 1;
+        row = 3;
+        form = 1;
         break;
     case GX_TG_TANGENT:
-        src_row = 4;
-        input_form = 1;
+        row = 4;
+        form = 1;
         break;
     case GX_TG_COLOR0:
-        src_row = 2;
+        row = 2;
         break;
     case GX_TG_COLOR1:
-        src_row = 2;
+        row = 2;
         break;
     case GX_TG_TEX0:
-        src_row = 5;
+        row = 5;
         break;
     case GX_TG_TEX1:
-        src_row = 6;
+        row = 6;
         break;
     case GX_TG_TEX2:
-        src_row = 7;
+        row = 7;
         break;
     case GX_TG_TEX3:
-        src_row = 8;
+        row = 8;
         break;
     case GX_TG_TEX4:
-        src_row = 9;
+        row = 9;
         break;
     case GX_TG_TEX5:
-        src_row = 10;
+        row = 10;
         break;
     case GX_TG_TEX6:
-        src_row = 11;
+        row = 11;
         break;
     case GX_TG_TEX7:
-        src_row = 12;
+        row = 12;
         break;
     case GX_TG_TEXCOORD0:
-        bump_src_tex = 0;
+        embossRow = 0;
         break;
     case GX_TG_TEXCOORD1:
-        bump_src_tex = 1;
+        embossRow = 1;
         break;
     case GX_TG_TEXCOORD2:
-        bump_src_tex = 2;
+        embossRow = 2;
         break;
     case GX_TG_TEXCOORD3:
-        bump_src_tex = 3;
+        embossRow = 3;
         break;
     case GX_TG_TEXCOORD4:
-        bump_src_tex = 4;
+        embossRow = 4;
         break;
     case GX_TG_TEXCOORD5:
-        bump_src_tex = 5;
+        embossRow = 5;
         break;
     case GX_TG_TEXCOORD6:
-        bump_src_tex = 6;
+        embossRow = 6;
+        break;
+    default:
+        ASSERTMSGLINE(433, 0, "GDSetTexCoordGen: invalid texgen source");
         break;
     }
-    switch (texGenType) {
+
+    switch (func) {
     case GX_TG_MTX2x4:
-        texgen_type = 0;
+        tgType = 0;
         break;
     case GX_TG_MTX3x4:
-        texgen_type = 0;
-        proj_type = 1;
+        tgType = 0;
+        proj = 1;
         break;
     case GX_TG_BUMP0:
     case GX_TG_BUMP1:
@@ -278,34 +295,33 @@ void J3DGDSetTexCoordGen(GXTexGenType texGenType, GXTexGenSrc texGenSrc) {
     case GX_TG_BUMP5:
     case GX_TG_BUMP6:
     case GX_TG_BUMP7:
-        texgen_type = 1;
-        bump_src_light = texGenType - 2;
+        ASSERTMSGLINE(457, src_param >= GX_TG_TEXCOORD0 && src_param <= GX_TG_TEXCOORD6, "GDSetTexCoordGen: invalid emboss source");
+        tgType = 1;
+        embossLit = func - GX_TG_BUMP0;
         break;
     case GX_TG_SRTG:
-        if (texGenSrc == GX_TG_COLOR0) {
-            texgen_type = 2;
+        if (src_param == GX_TG_COLOR0) {
+            tgType = 2;
         } else {
-            texgen_type = 3;
+            tgType = 3;
         }
         break;
+    default:
+        ASSERTMSGLINE(473, 0, "GDSetTexCoordGen: invalid texgen function");
+        break;
     }
-    J3DGDWrite_u32(
-        proj_type << (31 - GX_XF_TEX_PROJTYPE_END) | input_form << (31 - GX_XF_TEX_INPUTFORM_END) |
-        texgen_type << (31 - GX_XF_TEX_TEXGENTYPE_END) | src_row << (31 - GX_XF_TEX_SRCROW_END) |
-        bump_src_tex << (31 - GX_XF_TEX_BUMPSRCTEX_END) |
-        bump_src_light << (31 - GX_XF_TEX_BUMPSRCLIGHT_END));
+
+    J3DGDWrite_u32(XF_REG_TEX(proj, form, tgType, row, embossRow, embossLit));
 }
 
 /* 8030E234-8030E438 308B74 0204+00 0/0 16/16 0/0 .text
  * J3DGDSetTexCoordScale2__F13_GXTexCoordIDUsUcUcUsUcUc         */
-void J3DGDSetTexCoordScale2(GXTexCoordID param_0, u16 param_1, u8 param_2, u8 param_3, u16 param_4,
-                            u8 param_5, u8 param_6) {
-    GDOverflowCheck(0xf);
-    J3DGDWriteBPCmd(0xfe03ffff);
-    J3DGDWriteBPCmd((param_1 - 1) | param_2 << 0x10 | param_3 << 0x11 |
-                    (param_0 * 2 + 0x30) << 0x18);
-    J3DGDWriteBPCmd((param_4 - 1) | param_5 << 0x10 | param_6 << 0x11 |
-                    (param_0 * 2 + 0x31) << 0x18);
+void J3DGDSetTexCoordScale2(GXTexCoordID coord, u16 s_scale, u8 s_bias,
+                            u8 s_wrap, u16 t_scale, u8 t_bias, u8 t_wrap) {
+    GDOverflowCheck(15);
+    J3DGDWriteBPCmd(0xFE03FFFF);
+    J3DGDWriteBPCmd(BP_TEXCOORD_S_SCALE(s_scale - 1, s_bias, s_wrap, 0, 0, coord * 2 + 0x30));
+    J3DGDWriteBPCmd(BP_TEXCOORD_T_SCALE(t_scale - 1, t_bias, t_wrap, coord * 2 + 0x31));
 }
 
 /* 8045090C-80450914 00038C 0008+00 1/1 0/0 0/0 .sdata           J3DGDTexMode0Ids */
@@ -341,228 +357,308 @@ static u8 GX2HWFiltConv[6] = {
 /* 8030E438-8030E5D4 308D78 019C+00 0/0 1/1 0/0 .text
  * J3DGDSetTexLookupMode__F11_GXTexMapID14_GXTexWrapMode14_GXTexWrapMode12_GXTexFilter12_GXTexFilterfffUcUc13_GXAnisotropy
  */
-void J3DGDSetTexLookupMode(GXTexMapID param_0, GXTexWrapMode param_1, GXTexWrapMode param_2,
-                           GXTexFilter param_3, GXTexFilter param_4, f32 param_5, f32 param_6,
-                           f32 param_7, u8 param_8, u8 param_9, GXAnisotropy param_10) {
-    J3DGDWriteBPCmd(param_1 | param_2 << 2 | (param_4 == GX_LINEAR) << 4 |
-                    GX2HWFiltConv[param_3] << 5 | (param_9 == 0) << 8 |
-                    ((int)(param_7 * 32.0f) & 0xff) << 9 | param_10 << 0x13 | param_8 << 0x15 |
-                    J3DGDTexMode0Ids[param_0] << 0x18);
-    J3DGDWriteBPCmd(((int)(param_5 * 16.0f) & 0xff) | ((int)(param_6 * 16.0f) & 0xff) << 8 |
-                    J3DGDTexMode1Ids[param_0] << 0x18);
+void J3DGDSetTexLookupMode(GXTexMapID id, GXTexWrapMode wrap_s,
+                           GXTexWrapMode wrap_t, GXTexFilter min_filt,
+                           GXTexFilter mag_filt, f32 min_lod, f32 max_lod,
+                           f32 lod_bias, u8 bias_clamp, u8 do_edge_lod,
+                           GXAnisotropy max_aniso) {
+    J3DGDWriteBPCmd(BP_TEX_MODE0(wrap_s, wrap_t, mag_filt == TRUE, GX2HWFiltConv[min_filt], !do_edge_lod, (u8)(32.0f * lod_bias), max_aniso, bias_clamp, J3DGDTexMode0Ids[id]));
+    J3DGDWriteBPCmd(BP_TEX_MODE1((u8)(16.0f * min_lod), (u8)(16.0f * max_lod), J3DGDTexMode1Ids[id]));
 }
 
 /* 8030E5D4-8030E67C 308F14 00A8+00 0/0 1/1 0/0 .text
  * J3DGDSetTexImgAttr__F11_GXTexMapIDUsUs9_GXTexFmt             */
-void J3DGDSetTexImgAttr(GXTexMapID param_0, u16 param_1, u16 param_2, GXTexFmt param_3) {
-    J3DGDWriteBPCmd((param_1 - 1) | (param_2 - 1) << 0xa | param_3 << 0x14 |
-                    J3DGDTexImage0Ids[param_0] << 0x18);
+void J3DGDSetTexImgAttr(GXTexMapID id, u16 width, u16 height, GXTexFmt format) {
+    J3DGDWriteBPCmd(BP_IMAGE_ATTR(width - 1, height - 1, format, J3DGDTexImage0Ids[id]));
 }
 
 /* 8030E67C-8030E70C 308FBC 0090+00 0/0 1/1 0/0 .text            J3DGDSetTexImgPtr__F11_GXTexMapIDPv
  */
-void J3DGDSetTexImgPtr(GXTexMapID param_0, void* param_1) {
-    J3DGDWriteBPCmd(OSCachedToPhysical(param_1) >> 5 | J3DGDTexImage3Ids[param_0] << 0x18);
+void J3DGDSetTexImgPtr(GXTexMapID id, void* image_ptr) {
+    J3DGDWriteBPCmd(BP_IMAGE_PTR(OSCachedToPhysical(image_ptr) >> 5, J3DGDTexImage3Ids[id]));
 }
 
 /* 8030E70C-8030E7E0 30904C 00D4+00 0/0 1/1 0/0 .text J3DGDSetTexImgPtrRaw__F11_GXTexMapIDUl */
-void J3DGDSetTexImgPtrRaw(GXTexMapID param_0, u32 param_1) {
+void J3DGDSetTexImgPtrRaw(GXTexMapID id, u32 image_ptr_raw) {
     GDOverflowCheck(5);
-    J3DGDWriteBPCmd(param_1 | J3DGDTexImage3Ids[param_0] << 0x18);
+    J3DGDWriteBPCmd(BP_IMAGE_PTR(image_ptr_raw, J3DGDTexImage3Ids[id]));
 }
 
 /* 8030E7E0-8030E878 309120 0098+00 0/0 1/1 0/0 .text
  * J3DGDSetTexTlut__F11_GXTexMapIDUl10_GXTlutFmt                */
-void J3DGDSetTexTlut(GXTexMapID param_0, u32 param_1, GXTlutFmt param_2) {
-    J3DGDWriteBPCmd((param_1 - 0x80000) >> 9 | param_2 << 0xa | J3DGDTexTlutIds[param_0] << 0x18);
+void J3DGDSetTexTlut(GXTexMapID id, u32 tmem_addr, GXTlutFmt format) {
+    J3DGDWriteBPCmd(BP_TEX_TLUT((tmem_addr - 0x80000) >> 9, format, J3DGDTexTlutIds[id]));
 }
 
 /* 8030E878-8030EB30 3091B8 02B8+00 0/0 1/1 0/0 .text            J3DGDLoadTlut__FPvUl11_GXTlutSize
  */
-void J3DGDLoadTlut(void* param_0, u32 param_1, GXTlutSize param_2) {
-    J3DGDWriteBPCmd(0xfeffff00);
-    J3DGDWriteBPCmd(0x0f000000);
-    J3DGDWriteBPCmd(OSCachedToPhysical(param_0) >> 5 | 0x64000000);
-    J3DGDWriteBPCmd((param_1 - 0x80000) >> 9 | param_2 << 0xa | 0x65000000);
-    J3DGDWriteBPCmd(0xfeffff00);
-    J3DGDWriteBPCmd(0x0f000000);
+void J3DGDLoadTlut(void* tlut_ptr, u32 tmem_addr, GXTlutSize size) {
+    ASSERTMSGLINE(735, !(tmem_addr & 0x1ff), "GDLoadTlut: invalid TMEM pointer");
+    ASSERTMSGLINE(736, size <= 0x400, "GDLoadTlut: invalid TLUT size");
+
+    J3DGDWriteBPCmd(0xFEFFFF00);
+    J3DGDWriteBPCmd(0xF000000);
+    J3DGDWriteBPCmd(BP_LOAD_TLUT0(OSCachedToPhysical(tlut_ptr) >> 5, 0x64));
+    J3DGDWriteBPCmd(BP_LOAD_TLUT1((tmem_addr - 0x80000) >> 9, size, 0x65));
+    J3DGDWriteBPCmd(0xFEFFFF00);
+    J3DGDWriteBPCmd(0xF000000);
 }
 
 /* 8030EB30-8030EE10 309470 02E0+00 0/0 2/2 0/0 .text J3DGDSetIndTexMtx__F14_GXIndTexMtxIDPA3_fSc
  */
-void J3DGDSetIndTexMtx(GXIndTexMtxID id, Mtx3P mtx, s8 exp) {
-    s32 mtx32[6];
-    u32 idx;
+void J3DGDSetIndTexMtx(GXIndTexMtxID mtx_id, f32 offset[2][3], s8 scale_exp) {
+    s32 offsetS32[6];
+    u32 id_offset;
 
-    switch (id) {
+    switch (mtx_id) {
     case GX_ITM_0:
     case GX_ITM_1:
     case GX_ITM_2:
-        idx = (u32)(id - GX_ITM_0);
+        id_offset = (u32)(mtx_id - GX_ITM_0);
         break;
     case GX_ITM_S0:
     case GX_ITM_S1:
     case GX_ITM_S2:
-        idx = (u32)(id - GX_ITM_S0);
+        id_offset = (u32)(mtx_id - GX_ITM_S0);
         break;
     case GX_ITM_T0:
     case GX_ITM_T1:
     case GX_ITM_T2:
-        idx = (u32)(id - GX_ITM_T0);
+        id_offset = (u32)(mtx_id - GX_ITM_T0);
         break;
     default:
-        idx = 0;
+        id_offset = 0;
         break;
     }
 
-    exp += 17;
+    offsetS32[0] = (s32)(offset[0][0] * 0x400) & 0x7FF;
+    offsetS32[1] = (s32)(offset[1][0] * 0x400) & 0x7FF;
 
-    mtx32[0] = (s32)(mtx[0][0] * 1024.0f) & 0x7FF;
-    mtx32[1] = (s32)(mtx[1][0] * 1024.0f) & 0x7FF;
+    offsetS32[2] = (s32)(offset[0][1] * 0x400) & 0x7FF;
+    offsetS32[3] = (s32)(offset[1][1] * 0x400) & 0x7FF;
 
-    mtx32[2] = (s32)(mtx[0][1] * 1024.0f) & 0x7FF;
-    mtx32[3] = (s32)(mtx[1][1] * 1024.0f) & 0x7FF;
+    offsetS32[4] = (s32)(offset[0][2] * 0x400) & 0x7FF;
+    offsetS32[5] = (s32)(offset[1][2] * 0x400) & 0x7FF;
 
-    mtx32[4] = (s32)(mtx[0][2] * 1024.0f) & 0x7FF;
-    mtx32[5] = (s32)(mtx[1][2] * 1024.0f) & 0x7FF;
-
+    scale_exp += (s8)17;
     GDOverflowCheck(15);
 
-    J3DGDWriteBPCmd((mtx32[0] << 0) | (mtx32[1] << 11) | (((exp >> 0) & 0x03) << 22) |
-                    (0x06 + idx * 3) << 24);
-    J3DGDWriteBPCmd((mtx32[2] << 0) | (mtx32[3] << 11) | (((exp >> 2) & 0x03) << 22) |
-                    (0x07 + idx * 3) << 24);
-    J3DGDWriteBPCmd((mtx32[4] << 0) | (mtx32[5] << 11) | (((exp >> 4) & 0x03) << 22) |
-                    (0x08 + idx * 3) << 24);
+    J3DGDWriteBPCmd(BP_IND_MTX(
+        offsetS32[0],
+        offsetS32[1],
+        scale_exp & 3,
+        6 + id_offset * 3
+    ));
+
+    J3DGDWriteBPCmd(BP_IND_MTX(
+        offsetS32[2],
+        offsetS32[3],
+        (scale_exp >> 2) & 3,
+        7 + id_offset * 3
+    ));
+
+    J3DGDWriteBPCmd(BP_IND_MTX(
+        offsetS32[4],
+        offsetS32[5],
+        (scale_exp >> 4) & 3,
+        8 + id_offset * 3
+    ));
 }
 
 /* 8030EE10-8030EF08 309750 00F8+00 0/0 2/2 0/0 .text
  * J3DGDSetIndTexCoordScale__F16_GXIndTexStageID14_GXIndTexScale14_GXIndTexScale14_GXIndTexScale14_GXIndTexScale
  */
-void J3DGDSetIndTexCoordScale(GXIndTexStageID stage, GXIndTexScale scale0, GXIndTexScale scale1,
-                              GXIndTexScale scale2, GXIndTexScale scale3) {
+void J3DGDSetIndTexCoordScale(GXIndTexStageID indStageEven, GXIndTexScale scaleS0,
+                              GXIndTexScale scaleT0, GXIndTexScale scaleS1,
+                              GXIndTexScale scaleT1) {
     GDOverflowCheck(5);
-    J3DGDWriteBPCmd(scale0 | scale1 << 4 | scale2 << 8 | scale3 << 0xc |
-                    ((stage >> 1) + GX_BP_REG_RAS1_SS0) << 0x18);
+    J3DGDWriteBPCmd(BP_IND_TEXCOORD_SCALE(
+        scaleS0,
+        scaleT0,
+        scaleS1,
+        scaleT1,
+        0x25 + (indStageEven >> 1)
+    ));
 }
 
 /* 8030EF08-8030F108 309848 0200+00 0/0 2/2 0/0 .text
  * J3DGDSetIndTexOrder__FUl13_GXTexCoordID11_GXTexMapID13_GXTexCoordID11_GXTexMapID13_GXTexCoordID11_GXTexMapID13_GXTexCoordID11_GXTexMapID
  */
-void J3DGDSetIndTexOrder(u32 count, GXTexCoordID coord0, GXTexMapID map0, GXTexCoordID coord1,
-                         GXTexMapID map1, GXTexCoordID coord2, GXTexMapID map2, GXTexCoordID coord3,
-                         GXTexMapID map3) {
-    GDOverflowCheck(0xa);
-    J3DGDWriteBPCmd(map0 & 7 | (coord0 & 7) << 3 | (map1 & 7) << 6 | (coord1 & 7) << 9 |
-                    (map2 & 7) << 0xc | (coord2 & 7) << 0xf | (map3 & 7) << 0x12 |
-                    (coord3 & 7) << 0x15 | GX_BP_REG_RAS1_IREF << 0x18);
-    u32 imask = 0;
+void J3DGDSetIndTexOrder(u32 count, GXTexCoordID texCoord0, GXTexMapID texMap0,
+                         GXTexCoordID texCoord1, GXTexMapID texMap1,
+                         GXTexCoordID texCoord2, GXTexMapID texMap2,
+                         GXTexCoordID texCoord3, GXTexMapID texMap3) {
+    GDOverflowCheck(10);
+    J3DGDWriteBPCmd(BP_IND_TEX_ORDER(
+        texMap0 & 7,
+        texCoord0 & 7,
+        texMap1 & 7,
+        texCoord1 & 7,
+        texMap2 & 7,
+        texCoord2 & 7,
+        texMap3 & 7,
+        texCoord3 & 7,
+        0x27
+    ));
+
+    u32 mask = 0;
     for (u32 i = 0; i < count; i++) {
         switch (i) {
         case 0:
-            imask |= 1 << (map0 & 7);
+            mask |= 1 << (texMap0 & 7);
             break;
         case 1:
-            imask |= 1 << (map1 & 7);
+            mask |= 1 << (texMap1 & 7);
             break;
         case 2:
-            imask |= 1 << (map2 & 7);
+            mask |= 1 << (texMap2 & 7);
             break;
         case 3:
-            imask |= 1 << (map3 & 7);
+            mask |= 1 << (texMap3 & 7);
             break;
         }
     }
-    J3DGDWriteBPCmd(imask | GX_BP_REG_INDIMASK << 0x18);
+
+    J3DGDWriteBPCmd(BP_IND_MASK(mask, 0xF));
 }
 
 /* 8030F108-8030F294 309A48 018C+00 0/0 9/9 0/0 .text
  * J3DGDSetTevOrder__F13_GXTevStageID13_GXTexCoordID11_GXTexMapID12_GXChannelID13_GXTexCoordID11_GXTexMapID12_GXChannelID
  */
-void J3DGDSetTevOrder(GXTevStageID stage, GXTexCoordID coord0, GXTexMapID map0,
-                      GXChannelID channel0, GXTexCoordID coord1, GXTexMapID map1,
-                      GXChannelID channel1) {
-    coord0 = coord0 >= GX_MAX_TEXCOORD ? GX_TEXCOORD0 : coord0;
-    coord1 = coord1 >= GX_MAX_TEXCOORD ? GX_TEXCOORD0 : coord1;
-    GDOverflowCheck(5);
+void J3DGDSetTevOrder(GXTevStageID evenStage, GXTexCoordID coord0, GXTexMapID map0,
+                      GXChannelID color0, GXTexCoordID coord1, GXTexMapID map1,
+                      GXChannelID color1) {
     static u8 c2r[] = {0, 1, 0, 1, 0, 1, 7, 5, 6, 0, 0, 0, 0, 0, 0, 7};
-    J3DGDWriteBPCmd((map0 & 7) | coord0 << 3 |
-                    (map0 != GX_TEXMAP_NULL && !(map0 & GX_TEX_DISABLE)) << 6 |
-                    c2r[channel0 & 0xf] << 7 | (map1 & 7) << 0xc | coord1 << 0xf |
-                    (map1 != GX_TEXMAP_NULL && !(map1 & GX_TEX_DISABLE)) << 0x12 |
-                    c2r[channel1 & 0xf] << 0x13 | (stage / 2 + GX_BP_REG_RAS1_TREF0) << 0x18);
+
+    GXTexCoordID coord0_ = coord0 >= GX_MAX_TEXCOORD ? GX_TEXCOORD0 : coord0;
+    GXTexCoordID coord1_ = coord1 >= GX_MAX_TEXCOORD ? GX_TEXCOORD0 : coord1;
+    GDOverflowCheck(5);
+    J3DGDWriteBPCmd(BP_TEV_ORDER(
+        map0 & 7,
+        coord0_,
+        map0 != GX_TEXMAP_NULL && !(map0 & GX_TEX_DISABLE),
+        c2r[color0 & 0xF],
+        map1 & 7,
+        coord1_,
+        map1 != GX_TEXMAP_NULL && !(map1 & GX_TEX_DISABLE),
+        c2r[color1 & 0xF],
+        evenStage / 2 + 0x28
+    ));
 }
 
 /* 8030F294-8030F3FC 309BD4 0168+00 0/0 11/11 0/0 .text
  * J3DGDSetTevKColor__F14_GXTevKColorID8_GXColor                */
-void J3DGDSetTevKColor(GXTevKColorID id, GXColor color) {
-    u32 cmd0 = color.r | color.a << 0xc | 0x800000 | (id * 2 + GX_BP_REG_TEVREG0LO) << 0x18;
-    u32 cmd1 = color.b | color.g << 0xc | 0x800000 | (id * 2 + GX_BP_REG_TEVREG0HI) << 0x18;
+void J3DGDSetTevKColor(GXTevKColorID reg, GXColor color) {
+    u32 regRA;
+    u32 regBG;
+
+    regRA = BP_TEV_COLOR_REG_RA(color.r, color.a, 1, 0xE0 + reg * 2);
+    regBG = BP_TEV_COLOR_REG_BG(color.b, color.g, 1, 0xE1 + reg * 2);
+
     GDOverflowCheck(0xa);
-    J3DGDWriteBPCmd(cmd0);
-    J3DGDWriteBPCmd(cmd1);
+    J3DGDWriteBPCmd(regRA);
+    J3DGDWriteBPCmd(regBG);
 }
 
 /* 8030F3FC-8030F630 309D3C 0234+00 0/0 11/11 0/0 .text
  * J3DGDSetTevColorS10__F11_GXTevRegID11_GXColorS10             */
-void J3DGDSetTevColorS10(GXTevRegID id, GXColorS10 color) {
-    u32 cmd0 =
-        (color.r & 0x7ff) | (color.a & 0x7ff) << 0xc | (id * 2 + GX_BP_REG_TEVREG0LO) << 0x18;
-    u32 cmd1 =
-        (color.b & 0x7ff) | (color.g & 0x7ff) << 0xc | (id * 2 + GX_BP_REG_TEVREG0HI) << 0x18;
+void J3DGDSetTevColorS10(GXTevRegID reg, GXColorS10 color) {
+    u32 regRA;
+    u32 regBG;
+
+    regRA = BP_TEV_COLOR_REG_RA(color.r & 0x7FF, color.a & 0x7FF, 0, 0xE0 + reg * 2);
+    regBG = BP_TEV_COLOR_REG_BG(color.b & 0x7FF, color.g & 0x7FF, 0, 0xE1 + reg * 2);
+
     GDOverflowCheck(0x14);
-    J3DGDWriteBPCmd(cmd0);
-    J3DGDWriteBPCmd(cmd1);
-    J3DGDWriteBPCmd(cmd1);
-    J3DGDWriteBPCmd(cmd1);
+    J3DGDWriteBPCmd(regRA);
+    J3DGDWriteBPCmd(regBG);
+    J3DGDWriteBPCmd(regBG);
+    J3DGDWriteBPCmd(regBG);
 }
 
 /* 8030F630-8030F994 309F70 0364+00 0/0 3/3 0/0 .text J3DGDSetFog__F10_GXFogTypeffff8_GXColor */
-void J3DGDSetFog(GXFogType fogType, f32 param_1, f32 param_2, f32 nearZ, f32 farZ, GXColor color) {
-    f32 fvar1, fvar2, fvar3;
-    if (farZ == nearZ || param_2 == param_1) {
-        fvar1 = 0.0f;
-        fvar2 = 0.5f;
-        fvar3 = 0.0f;
+void J3DGDSetFog(GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXColor color) {
+    f32 A;
+    f32 B;
+    f32 B_mant;
+    f32 C;
+    f32 A_f;
+    u32 b_expn;
+    u32 b_m;
+    u32 a_hex;
+    u32 c_hex;
+
+    ASSERTMSGLINE(1036, farz >= 0.0f, "GDSetFog: The farz should be positive value");
+    ASSERTMSGLINE(1037, farz >= nearz, "GDSetFog: The farz should be larger than nearz");
+
+
+    if (farz == nearz || endz == startz) {
+        A = 0.0f;
+        B = 0.5f;
+        C = 0.0f;
     } else {
-        fvar1 = (farZ * nearZ) / ((farZ - nearZ) * (param_2 - param_1));
-        fvar2 = farZ / (farZ - nearZ);
-        fvar3 = param_1 / (param_2 - param_1);
+        A = (farz * nearz) / ((farz - nearz) * (endz - startz));
+        B = farz / (farz - nearz);
+        C = startz / (endz - startz);
     }
-    u32 shift = 1;
-    for (; fvar2 > 1.0; fvar2 *= 0.5f) {
-        shift++;
+
+    B_mant = B;
+    b_expn = 1;
+
+    while (B_mant > 1.0) {
+        B_mant *= 0.5f;
+        b_expn++;
     }
-    for (; fvar2 > 0.0f && fvar2 < 0.5; fvar2 *= 2.0f) {
-        shift--;
+
+    while (B_mant > 0.0f && B_mant < 0.5) {
+        B_mant *= 2.0f;
+        b_expn--;
     }
-    f32 fvar4 = (fvar1 / (1 << shift));
-    u32 param1 = fvar2 * 8388638.0f;
-    u32 param0 = *(u32*)&fvar4;
-    u32 param3 = *(u32*)&fvar3;
-    J3DGDWriteBPCmd(param0 >> 0xc | GX_BP_REG_FOGPARAM0 << 0x18);
-    J3DGDWriteBPCmd(param1 | GX_BP_REG_FOGPARAM1 << 0x18);
-    J3DGDWriteBPCmd(shift | GX_BP_REG_FOGPARAM2 << 0x18);
-    J3DGDWriteBPCmd(param3 >> 0xc | fogType << 0x15 | GX_BP_REG_FOGPARAM3 << 0x18);
-    J3DGDWriteBPCmd(color.b | color.g << 8 | color.r << 0x10 | GX_BP_REG_FOGCOLOR << 0x18);
+
+    A_f = A / (1 << b_expn);
+    b_m = (u32) (8388638.0f * B_mant);
+
+    a_hex = *(u32*)&A_f;
+    c_hex = *(u32*)&C;
+
+    J3DGDWriteBPCmd(BP_FOG_UNK0(a_hex >> 12, 0xEE));
+    J3DGDWriteBPCmd(BP_FOG_UNK1(b_m, 0xEF));
+    J3DGDWriteBPCmd(BP_FOG_UNK2(b_expn, 0xF0));
+    J3DGDWriteBPCmd(BP_FOG_UNK3(c_hex >> 12, 0, type, 0xF1));
+    J3DGDWriteBPCmd(BP_FOG_COLOR(color.r, color.g, color.b, 0xF2));
 }
+
+#define BP_FOG_RANGE_ADJ_K0(arg0, arg1, arg2) \
+    ( \
+        (u32)(arg2) << 24 | \
+        (u32)(arg1) << 12 | \
+        (u32)(arg0) << 0 \
+    )
+
+#define BP_FOG_RANGE_ADJ(arg0, arg1, arg2) \
+    ( \
+        (u32)(arg2) << 24 | \
+        (u32)(arg0) << 0 | \
+        (u32)(arg1) << 10 \
+    )
 
 /* 8030F994-8030FAE0 30A2D4 014C+00 0/0 3/3 0/0 .text J3DGDSetFogRangeAdj__FUcUsP14_GXFogAdjTable
  */
-void J3DGDSetFogRangeAdj(u8 param_0, u16 param_1, GXFogAdjTable* table) {
-    if (param_0 != 0) {
-        for (int i = 0; i < 0xa; i += 2) {
-            J3DGDWriteBPCmd((i / 2 + GX_BP_REG_FOGRANGEK0) << 0x18 | table->r[i + 1] << 0xc |
-                            table->r[i]);
+void J3DGDSetFogRangeAdj(GXBool enable, u16 center, GXFogAdjTable* table) {
+    if (enable) {
+        for (int i = 0; i < 10; i += 2) {
+            u32 range_adj = BP_FOG_RANGE_ADJ_K0(table->r[i], table->r[i + 1], i / 2 + 0xE9);
+            J3DGDWriteBPCmd(range_adj);
         }
     }
-    u32 cmd = GX_BP_REG_FOGRANGE << 0x18 | (param_1 + 0x156) | param_0 << 0xa;
-    J3DGDWriteBPCmd(cmd);
+
+    u32 range_c = BP_FOG_RANGE_ADJ(center + 342, enable, GX_BP_REG_FOGRANGE);
+    J3DGDWriteBPCmd(range_c);
 }
 
 /* 8030FAE0-8030FB60 30A420 0080+00 0/0 10/10 0/0 .text            J3DFifoLoadPosMtxImm__FPA4_fUl */
-void J3DFifoLoadPosMtxImm(MtxP mtx, u32 addr) {
-    J3DFifoWriteXFCmdHdr((addr & 0x3fff) << 2, 0xc);
+void J3DFifoLoadPosMtxImm(MtxP mtx, u32 id) {
+    J3DFifoWriteXFCmdHdr(4 * id, 12);
     J3DGXCmd1f32ptr(&mtx[0][0]);
     J3DGXCmd1f32ptr(&mtx[0][1]);
     J3DGXCmd1f32ptr(&mtx[0][2]);
@@ -578,8 +674,8 @@ void J3DFifoLoadPosMtxImm(MtxP mtx, u32 addr) {
 }
 
 /* 8030FB60-8030FBCC 30A4A0 006C+00 0/0 9/9 0/0 .text            J3DFifoLoadNrmMtxImm__FPA4_fUl */
-void J3DFifoLoadNrmMtxImm(MtxP mtx, u32 addr) {
-    J3DFifoWriteXFCmdHdr(addr * 3 + 0x400, 9);
+void J3DFifoLoadNrmMtxImm(MtxP mtx, u32 id) {
+    J3DFifoWriteXFCmdHdr(id * 3 + 0x400, 9);
     J3DGXCmd1f32ptr(&mtx[0][0]);
     J3DGXCmd1f32ptr(&mtx[0][1]);
     J3DGXCmd1f32ptr(&mtx[0][2]);
@@ -593,8 +689,8 @@ void J3DFifoLoadNrmMtxImm(MtxP mtx, u32 addr) {
 
 /* 8030FBCC-8030FC38 30A50C 006C+00 0/0 3/3 0/0 .text            J3DFifoLoadNrmMtxImm3x3__FPA3_fUl
  */
-void J3DFifoLoadNrmMtxImm3x3(Mtx3P mtx, u32 addr) {
-    J3DFifoWriteXFCmdHdr(addr * 3 + 0x400, 9);
+void J3DFifoLoadNrmMtxImm3x3(Mtx3P mtx, u32 id) {
+    J3DFifoWriteXFCmdHdr(id * 3 + 0x400, 9);
     J3DGXCmd1f32ptr(&mtx[0][0]);
     J3DGXCmd1f32ptr(&mtx[0][1]);
     J3DGXCmd1f32ptr(&mtx[0][2]);
@@ -608,8 +704,8 @@ void J3DFifoLoadNrmMtxImm3x3(Mtx3P mtx, u32 addr) {
 
 /* 8030FC38-8030FCD0 30A578 0098+00 0/0 4/4 0/0 .text            J3DFifoLoadNrmMtxToTexMtx__FPA4_fUl
  */
-void J3DFifoLoadNrmMtxToTexMtx(MtxP mtx, u32 addr) {
-    J3DFifoWriteXFCmdHdr((addr & 0x3fff) << 2, 0xc);
+void J3DFifoLoadNrmMtxToTexMtx(MtxP mtx, u32 id) {
+    J3DFifoWriteXFCmdHdr(4 * id, 12);
     J3DGXCmd1f32ptr(&mtx[0][0]);
     J3DGXCmd1f32ptr(&mtx[0][1]);
     J3DGXCmd1f32ptr(&mtx[0][2]);
@@ -625,8 +721,8 @@ void J3DFifoLoadNrmMtxToTexMtx(MtxP mtx, u32 addr) {
 }
 
 /* 8030FCD0-8030FD68 30A610 0098+00 0/0 2/2 0/0 .text J3DFifoLoadNrmMtxToTexMtx3x3__FPA3_fUl */
-void J3DFifoLoadNrmMtxToTexMtx3x3(Mtx3P mtx, u32 addr) {
-    J3DFifoWriteXFCmdHdr((addr & 0x3fff) << 2, 0xc);
+void J3DFifoLoadNrmMtxToTexMtx3x3(Mtx3P mtx, u32 id) {
+    J3DFifoWriteXFCmdHdr(4 * id, 0xc);
     J3DGXCmd1f32ptr(&mtx[0][0]);
     J3DGXCmd1f32ptr(&mtx[0][1]);
     J3DGXCmd1f32ptr(&mtx[0][2]);
@@ -653,12 +749,11 @@ static u8 J3DTexImage2Ids[8] = {
 
 /* 8030FD68-8030FDE8 30A6A8 0080+00 0/0 1/1 0/0 .text
  * J3DFifoLoadTexCached__F11_GXTexMapIDUl15_GXTexCacheSizeUl15_GXTexCacheSize */
-void J3DFifoLoadTexCached(GXTexMapID id, u32 param_1, GXTexCacheSize param_2, u32 param_3,
-                          GXTexCacheSize param_4) {
-    J3DFifoLoadBPCmd(param_1 >> 5 | (param_2 + 3) << 0xf | (param_2 + 3) << 0x12 |
-                     J3DTexImage1Ids[id] << 0x18);
-    if (param_4 != GX_TEXCACHE_NONE && param_3 < 0x100000) {
-        J3DFifoLoadBPCmd(param_3 >> 5 | (param_4 + 3) << 0xf | (param_4 + 3) << 0x12 |
-                         J3DTexImage2Ids[id] << 0x18);
+void J3DFifoLoadTexCached(GXTexMapID id, u32 tmem_even, GXTexCacheSize size_even,
+                          u32 tmem_odd, GXTexCacheSize size_odd) {
+    J3DFifoLoadBPCmd(BP_TEX_CACHE_EVEN(tmem_even >> 5, size_even + 3, size_even + 3, 0, J3DTexImage1Ids[id]));
+
+    if (size_odd != 3 && tmem_odd < 0x100000) {
+        J3DFifoLoadBPCmd(BP_TEX_CACHE_ODD(tmem_odd >> 5, size_odd + 3, size_odd + 3, J3DTexImage2Ids[id]));
     }
 }

@@ -1311,7 +1311,7 @@ dMeter_mapIconHIO_c::dMeter_mapIconHIO_c() {
     mLV5DungeonItem = fpcNm_ITEM_NONE;
     mIconDebug = false;
 
-    for (int i = 0; i < ARRAY_SIZE(mIconDisplay); i++) {
+    for (int i = 0; i < ARRAY_SIZEU(mIconDisplay); i++) {
         mIconDisplay[i] = true;
     }
 
@@ -1500,7 +1500,7 @@ dMeter_fmapHIO_c::dMeter_fmapHIO_c() {
     mMapBlink[ZOOM_VIEW].field_0x20.set(0, 0, 0, 0);
     mMapBlink[ZOOM_VIEW].field_0x24.set(0, 0, 0, 255);
 
-    for (int i = 0; i < ARRAY_SIZE(mDebugRegionBits); i++) {
+    for (int i = 0; i < ARRAY_SIZEU(mDebugRegionBits); i++) {
         mDebugRegionBits[i] = 0;
     }
 }

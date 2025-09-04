@@ -156,7 +156,7 @@ int daNpc_Zant_c::CreateHeap() {
         modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
 
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
 
     if (setFaceMotionAnm(0, false) && setMotionAnm(0, 0.0f, 0))
     {

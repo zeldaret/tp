@@ -445,7 +445,7 @@ int daNpcThe_c::CreateHeap() {
     for (u16 i = 0; i < model_data->getJointTree().getJointNum(); i++) {
         model_data->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
 
     mpMatAnm = new daNpcF_MatAnm_c();
     if (mpMatAnm == NULL) {
@@ -1472,7 +1472,7 @@ BOOL daNpcThe_c::doEvent() {
             if (staff_id != -1) {
                 mStaffID = staff_id;
                 int act_idx = event_manager.getMyActIdx(staff_id, mEvtCutNameList,
-                                                        ARRAY_SIZE(mEvtCutNameList), 0, 0);
+                                                        ARRAY_SIZEU(mEvtCutNameList), 0, 0);
                 if (act_idx > 0 && act_idx < 4) {
                     if ((this->*mEvtCutList[act_idx])(staff_id)) {
                         event_manager.cutEnd(staff_id);

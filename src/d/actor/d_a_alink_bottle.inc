@@ -94,7 +94,7 @@ void daAlink_c::setBottleModel(u16 i_itemNo) {
         field_0x2f95 = 9;
     } else {
         item_model_data->getJointNodePointer(1)->setCallBack(daAlink_bottleModelCallBack);
-        mHeldItemModel->setUserArea((u32)this);
+        mHeldItemModel->setUserArea((uintptr_t)this);
         field_0x2f94 = 3;
         mItemMode = 0;
     }

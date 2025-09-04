@@ -260,7 +260,7 @@ int daDoorPush_c::demoProc() {
     field_0x644 = dComIfGp_evmng_getMyStaffId("pdoor", NULL, 0);
 
     s32 actIdx =
-        dComIfGp_evmng_getMyActIdx(field_0x644, action_table, ARRAY_SIZE(action_table), 0, 0);
+        dComIfGp_evmng_getMyActIdx(field_0x644, action_table, ARRAY_SIZEU(action_table), 0, 0);
     if (dComIfGp_evmng_getIsAddvance(field_0x644) != 0) {
         switch (actIdx) {
         case WAIT_e:

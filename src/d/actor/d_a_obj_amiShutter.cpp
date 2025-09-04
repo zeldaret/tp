@@ -64,7 +64,7 @@ int daAmiShutter_c::CreateHeap() {
     JUT_ASSERT(167, modelData != 0); 
     
     mpModel = mDoExt_J3DModel__create(modelData, 
-        J3DMdlFlag_Unk80000, 0x11000084);
+        J3DMdlFlag_DifferedDLBuffer, 0x11000084);
     if (mpModel == NULL) {
         return 0;
     }

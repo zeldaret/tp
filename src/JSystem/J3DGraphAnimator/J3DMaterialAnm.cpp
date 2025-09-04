@@ -1,22 +1,5 @@
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
-#include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" void calc__14J3DMaterialAnmCFP11J3DMaterial();
-
-//
-// External References:
-//
-
-extern "C" void __dt__14J3DMaterialAnmFv();
-
-//
-// Declarations:
-//
 
 void J3DMaterialAnm::initialize() {
     for (int i = 0; i < ARRAY_SIZE(mMatColorAnm); i++) {
@@ -40,10 +23,12 @@ void J3DMaterialAnm::initialize() {
     }
 }
 
-void J3DMaterialAnm::calc(J3DMaterial* pMat) const {
+void J3DMaterialAnm::calc(J3DMaterial* pMaterial) const {
+    J3D_ASSERT_NULLPTR(54, pMaterial != NULL);
+
     for (u32 i = 0; i < ARRAY_SIZE(mMatColorAnm); i++) {
         if (mMatColorAnm[i].getAnmFlag()) {
-            _GXColor* color = pMat->getColorBlock()->getMatColor(i);
+            GXColor* color = pMaterial->mColorBlock->getMatColor(i);
             mMatColorAnm[i].calc(color);
         }
     }
@@ -52,77 +37,78 @@ void J3DMaterialAnm::calc(J3DMaterial* pMat) const {
     for (u32 i = 0; i < ARRAY_SIZE(mTexNoAnm); i++) {
         if (mTexNoAnm[i].getAnmFlag()) {
             mTexNoAnm[i].calc(&tmp);
-            pMat->getTevBlock()->setTexNo(i, tmp);
+            pMaterial->mTevBlock->setTexNo(i, tmp);
         }
     }
 
     for (u32 i = 0; i < 3; i++) {
         if (mTevColorAnm[i].getAnmFlag()) {
-            _GXColorS10* color = pMat->getTevBlock()->getTevColor(i);
+            GXColorS10* color = pMaterial->mTevBlock->getTevColor(i);
             mTevColorAnm[i].calc(color);
         }
     }
 
     for (u32 i = 0; i < ARRAY_SIZE(mTevKColorAnm); i++) {
         if (mTevKColorAnm[i].getAnmFlag()) {
-            _GXColor* color = pMat->getTevBlock()->getTevKColor(i);
+            GXColor* color = pMaterial->mTevBlock->getTevKColor(i);
             mTevKColorAnm[i].calc(color);
         }
     }
 
     for (u32 i = 0; i < ARRAY_SIZE(mTexMtxAnm); i++) {
         if (mTexMtxAnm[i].getAnmFlag()) {
-            J3DTexMtx* texMtx = pMat->getTexGenBlock()->getTexMtx(i);
-            mTexMtxAnm[i].calc(&texMtx->getTexMtxInfo().mSRT);
+            J3DTextureSRTInfo* pSRT = &pMaterial->mTexGenBlock->getTexMtx(i)->getTexMtxInfo().mSRT;
+            mTexMtxAnm[i].calc(pSRT);
         }
     }
 }
 
-void J3DMaterialAnm::setMatColorAnm(int idx, J3DMatColorAnm* p_matColorAnm) {
-    if (p_matColorAnm == NULL) {
+void J3DMaterialAnm::setMatColorAnm(int idx, J3DMatColorAnm* pMatColorAnm) {
+    J3D_ASSERT_RANGE(106, idx >= 0 && idx < 2);
+
+    if (pMatColorAnm == NULL) {
         mMatColorAnm[idx].setAnmFlag(false);
     } else {
-        mMatColorAnm[idx] = *p_matColorAnm;
+        mMatColorAnm[idx] = *pMatColorAnm;
     }
 }
 
-void J3DMaterialAnm::setTexMtxAnm(int idx, J3DTexMtxAnm* p_texMtxAnm) {
-    if (p_texMtxAnm == NULL) {
+void J3DMaterialAnm::setTexMtxAnm(int idx, J3DTexMtxAnm* pTexMtxAnm) {
+    J3D_ASSERT_RANGE(117, idx >= 0 && idx < 8);
+
+    if (pTexMtxAnm == NULL) {
         mTexMtxAnm[idx].setAnmFlag(false);
     } else {
-        mTexMtxAnm[idx] = *p_texMtxAnm;
+        mTexMtxAnm[idx] = *pTexMtxAnm;
     }
 }
 
-void J3DMaterialAnm::setTexNoAnm(int idx, J3DTexNoAnm* p_texNoAnm) {
-    if (p_texNoAnm == NULL) {
+void J3DMaterialAnm::setTexNoAnm(int idx, J3DTexNoAnm* pTexNoAnm) {
+    J3D_ASSERT_RANGE(128, idx >= 0 && idx < 8);
+
+    if (pTexNoAnm == NULL) {
         mTexNoAnm[idx].setAnmFlag(false);
     } else {
-        mTexNoAnm[idx] = *p_texNoAnm;
+        mTexNoAnm[idx] = *pTexNoAnm;
     }
 }
 
-void J3DMaterialAnm::setTevColorAnm(int idx, J3DTevColorAnm* p_tevColorAnm) {
-    if (p_tevColorAnm == NULL) {
+void J3DMaterialAnm::setTevColorAnm(int idx, J3DTevColorAnm* pTevColorAnm) {
+    J3D_ASSERT_RANGE(139, idx >= 0 && idx < 4);
+
+    if (pTevColorAnm == NULL) {
         mTevColorAnm[idx].setAnmFlag(false);
     } else {
-        mTevColorAnm[idx] = *p_tevColorAnm;
+        mTevColorAnm[idx] = *pTevColorAnm;
     }
 }
 
-void J3DMaterialAnm::setTevKColorAnm(int idx, J3DTevKColorAnm* p_tevKColorAnm) {
-    if (p_tevKColorAnm == NULL) {
+void J3DMaterialAnm::setTevKColorAnm(int idx, J3DTevKColorAnm* pTevKColorAnm) {
+    J3D_ASSERT_RANGE(150, idx >= 0 && idx < 4);
+
+    if (pTevKColorAnm == NULL) {
         mTevKColorAnm[idx].setAnmFlag(false);
     } else {
-        mTevKColorAnm[idx] = *p_tevKColorAnm;
+        mTevKColorAnm[idx] = *pTevKColorAnm;
     }
 }
-
-/* ############################################################################################## */
-/* 803CEE60-803CEE70 02BF80 0010+00 0/0 10/10 74/74 .data            __vt__14J3DMaterialAnm */
-SECTION_DATA extern void* __vt__14J3DMaterialAnm[4] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__14J3DMaterialAnmFv,
-    (void*)calc__14J3DMaterialAnmCFP11J3DMaterial,
-};

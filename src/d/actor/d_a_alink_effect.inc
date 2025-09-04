@@ -1796,13 +1796,13 @@ void daAlink_c::setFirePointDamageEffect() {
                 } else {
                     if (var_r26 && temp_r28 != NULL) {
                         temp_r28->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
-                        temp_r28->setUserWork((u32)&var_r30->field_0x24);
+                        temp_r28->setUserWork((uintptr_t)&var_r30->field_0x24);
                     }
 
                     JPABaseEmitter* temp_r28_2 = setEmitter(&var_r30->field_0x8, 0x743, &sp24, NULL);
                     if (var_r26 && temp_r28_2 != NULL) {
                         temp_r28_2->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
-                        temp_r28_2->setUserWork((u32)&var_r30->field_0x24);
+                        temp_r28_2->setUserWork((uintptr_t)&var_r30->field_0x24);
                     }
 
                     var_r30->field_0xc = sp24;
@@ -2019,7 +2019,7 @@ void daAlink_blur_c::draw() {
     GXSetNumIndStages(0);
     nColor0.a = field_0x20;
 
-    GXInitTexObj(&texObj, (void*)((u32)m_blurTex + m_blurTex->imageOffset), 0x10, 4, GX_TF_I4,
+    GXInitTexObj(&texObj, (void*)((uintptr_t)m_blurTex + m_blurTex->imageOffset), 0x10, 4, GX_TF_I4,
                  GX_CLAMP, GX_CLAMP, GX_FALSE);
     GXInitTexObjLOD(&texObj, GX_LINEAR, GX_LINEAR, 0.0f, 0.0f, 0.0f, GX_FALSE, GX_FALSE,
                     GX_ANISO_1);

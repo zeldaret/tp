@@ -2,6 +2,7 @@
 #define JAISEQDATAMGR_H
 
 #include "JSystem/JAudio2/JAISound.h"
+#include <stdint.h>
 
 /**
  * @ingroup jsystem-jaudio
@@ -28,10 +29,10 @@ struct JAISeqData {
  */
 struct JAISeqDataRegion {
     bool intersects(JAISeqData& seqData) const {
-        if ((u32)addr + size < (u32)seqData.field_0x0) {
+        if ((uintptr_t)addr + size < (uintptr_t)seqData.field_0x0) {
             return false;
         }
-        if ((u32)seqData.field_0x0 + seqData.field_0x4 < (u32)addr) {
+        if ((uintptr_t)seqData.field_0x0 + seqData.field_0x4 < (uintptr_t)addr) {
             return false;
         }
         return true;

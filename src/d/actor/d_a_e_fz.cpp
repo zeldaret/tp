@@ -892,7 +892,7 @@ s32 daE_FZ_c::execute() {
             mDoMtx_stack_c::transM(0.0f, 40.0f, 0.0f);
             emitter->setGlobalSRTMatrix(mDoMtx_stack_c::get());
             emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
-            emitter->setUserWork((u32)(&mUserWork));
+            emitter->setUserWork((uintptr_t)(&mUserWork));
         }
     }
 

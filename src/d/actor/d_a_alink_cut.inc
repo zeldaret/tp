@@ -777,14 +777,14 @@ void daAlink_c::initCutAtnActorSearch() {
         mProcVar4.field_0x3010 = 0;
     }
 
-    field_0x32cc = (u32)mTargetedActor;
+    field_0x32cc = (uintptr_t)mTargetedActor;
 }
 
 /* 800D2C54-800D2C78 0CD594 0024+00 3/3 0/0 0/0 .text checkCutAtnActorChange__9daAlink_cFv */
 void daAlink_c::checkCutAtnActorChange() {
-    if (field_0x32cc != (u32)mTargetedActor) {
+    if (field_0x32cc != (uintptr_t)mTargetedActor) {
         mProcVar4.field_0x3010 = 0;
-        field_0x32cc = (u32)mTargetedActor;
+        field_0x32cc = (uintptr_t)mTargetedActor;
     }
 }
 

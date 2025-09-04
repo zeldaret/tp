@@ -539,7 +539,7 @@ void JORMContext::genControl(u32 type, u32 kind, const char* label, u32 style, u
     mOutputStream << type << kind << label << style << id;
 
     if (kind & JORPropertyEvent::EKind_HasListener) {
-        mOutputStream << (u32)pListener;
+        mOutputStream << (uintptr_t)pListener;
     }
 
     if ((kind & JORPropertyEvent::EKind_ValueID) && type != 'EDBX') {
@@ -741,7 +741,7 @@ void JORMContext::openFile(JORFile* pFile, u32 flags, const char* path, const ch
         flags |= JORFile::EFlags_HAS_SUFFIX;
     }
 
-    mOutputStream << (u32)JORFile::ECommand_OPEN << (u32)pFile << flags << path;
+    mOutputStream << (u32)JORFile::ECommand_OPEN << (uintptr_t)pFile << flags << path;
     mOutputStream << (u16)maskSize;
     mOutputStream.write(extMask, maskSize);
 
@@ -759,13 +759,13 @@ void JORMContext::openFile(JORFile* pFile, u32 flags, const char* path, const ch
 }
 
 void JORMContext::closeFile(JORFile* pFile) {
-    mOutputStream << (u32)JORFile::ECommand_CLOSE << (u32)pFile << pFile->getHandle();
+    mOutputStream << (u32)JORFile::ECommand_CLOSE << (uintptr_t)pFile << pFile->getHandle();
 }
 
 void JORMContext::readBegin(JORFile* pFile, s32 size) {
     mOutputStream << (u32)JORFile::ECommand_READ
                   << (u32)JORFile::EStatus_READ_BEGIN
-                  << (u32)pFile
+                  << (uintptr_t)pFile
                   << pFile->getHandle()
                   << (u32)size;
 }
@@ -773,14 +773,14 @@ void JORMContext::readBegin(JORFile* pFile, s32 size) {
 void JORMContext::readData(JORFile* pFile) {
     mOutputStream << (u32)JORFile::ECommand_READ
                   << (u32)JORFile::EStatus_READ_DATA
-                  << (u32)pFile
+                  << (uintptr_t)pFile
                   << pFile->getHandle();
 }
 
 void JORMContext::writeBegin(JORFile* pFile, u16 flags, u32 size) {
     mOutputStream << (u32)JORFile::ECommand_WRITE
                   << (u32)JORFile::EStatus_WRITE_BEGIN
-                  << (u32)pFile
+                  << (uintptr_t)pFile
                   << pFile->getHandle()
                   << (u32)size
                   << (u32)flags;
@@ -789,7 +789,7 @@ void JORMContext::writeBegin(JORFile* pFile, u16 flags, u32 size) {
 void JORMContext::writeData(JORFile* pFile, const void* pBuffer, s32 size, u32 position) {
     mOutputStream << (u32)JORFile::ECommand_WRITE
                   << (u32)JORFile::EStatus_WRITE_DATA
-                  << (u32)pFile
+                  << (uintptr_t)pFile
                   << pFile->getHandle()
                   << (u32)position;
 
@@ -800,21 +800,21 @@ void JORMContext::writeData(JORFile* pFile, const void* pBuffer, s32 size, u32 p
 void JORMContext::writeDone(JORFile* pFile, u32 size) {
     mOutputStream << (u32)JORFile::ECommand_WRITE
                   << (u32)JORFile::EStatus_WRITE_END
-                  << (u32)pFile
+                  << (uintptr_t)pFile
                   << pFile->getHandle()
                   << (u32)size;
 }
 
 void JORMContext::openMessageBox(void* param_0, u32 style, const char* message, const char* title) {
-    mOutputStream << (u32)param_0 << (u32)style << message << title;
+    mOutputStream << (uintptr_t)param_0 << (u32)style << message << title;
 }
 
 void JORMContext::sendHostInfoRequest(u32 requestType, JORHostInfo* pHostInfo) {
-    mOutputStream << requestType << (u32)pHostInfo;
+    mOutputStream << requestType << (uintptr_t)pHostInfo;
 }
 
 void JORMContext::sendShellExecuteRequest(void* param_0, const char* param_1, const char* param_2,
                                           const char* param_3, const char* param_4, int param_5)
 {
-    mOutputStream << (u32)param_0 << param_1 << param_2 << param_3 << param_4 << (u32)param_5;
+    mOutputStream << (uintptr_t)param_0 << param_1 << param_2 << param_3 << param_4 << (u32)param_5;
 }

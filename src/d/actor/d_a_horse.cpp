@@ -747,7 +747,7 @@ int daHorse_c::create() {
 
         procWaitInit();
 
-        m_model->setUserArea((u32)this);
+        m_model->setUserArea((uintptr_t)this);
         for (u16 i = 0; i < 38; i++) {
             m_modelData->getJointNodePointer(i)->setCallBack(daHorse_modelCallBack);
         }

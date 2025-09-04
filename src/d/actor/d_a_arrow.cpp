@@ -536,7 +536,7 @@ int daArrow_c::procWait() {
         JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(field_0x964);
         if (emitter != NULL) {
             emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
-            emitter->setUserWork((u32)&mSmokePos);
+            emitter->setUserWork((uintptr_t)&mSmokePos);
 
             if (field_0x942 != 0) {
                 emitter->stopDrawParticle();

@@ -225,7 +225,7 @@ int daHoZelda_c::create() {
         J3DModelData* modelData = mpZeldaModel->getModelData();
 
         modelData->getJointNodePointer(0)->setMtxCalc(field_0x5a8);
-        mpZeldaModel->setUserArea((u32)this);
+        mpZeldaModel->setUserArea((uintptr_t)this);
 
         modelData->getJointNodePointer(0)->setCallBack(daHoZelda_modelCallBack);
         modelData->getJointNodePointer(1)->setCallBack(daHoZelda_modelCallBack);

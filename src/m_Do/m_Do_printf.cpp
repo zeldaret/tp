@@ -126,8 +126,8 @@ void mDoPrintf_vprintf_Interrupt(char const* fmt, va_list args) {
     s32 interruptStatus = OSDisableInterrupts();
     if (!data_80450BB5) {
         data_80450BB5 = true;
-        OSSwitchFiberEx((u32)fmt, (u32)args, 0, 0, (u32)vprintf,
-                        (u32)&mDoPrintf_FiberStack + sizeof(mDoPrintf_FiberStack));
+        OSSwitchFiberEx((uintptr_t)fmt, (uintptr_t)args, 0, 0, (uintptr_t)vprintf,
+                        (uintptr_t)&mDoPrintf_FiberStack + sizeof(mDoPrintf_FiberStack));
         data_80450BB5 = false;
     }
     OSRestoreInterrupts(interruptStatus);
@@ -257,7 +257,7 @@ void OSPanic(const char* file, int line, const char* fmt, ...) {
     OSAttention(" in \"%s\" on line %d.\n", file, line);
 
     OSAttention("\nAddress:      Back Chain    LR Save\n");
-    for (i = 0, p = (u32*)OSGetStackPointer(); p && (u32)p != 0xFFFFFFFF && i++ < 16; p = (u32*)*p) {
+    for (i = 0, p = (u32*)OSGetStackPointer(); p && (uintptr_t)p != 0xFFFFFFFF && i++ < 16; p = (u32*)*p) {
         OSAttention("0x%08x:   0x%08x    0x%08x\n", p, p[0], p[1]);
     }
 

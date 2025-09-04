@@ -33,8 +33,23 @@ class J3DDrawPacket;
 class J3DMatPacket;
 class J3DShapePacket;
 
-typedef int (J3DDrawBuffer::*sortFunc)(J3DMatPacket*);
-typedef void (J3DDrawBuffer::*drawFunc)() const;
+enum J3DDrawBufDrawMode {
+    J3DDrawBufDrawMode_Head,
+    J3DDrawBufDrawMode_Tail,
+
+    J3DDrawBufDrawMode_MAX,
+};
+
+enum J3DDrawBufSortMode {
+    J3DDrawBufSortMode_Mat,
+    J3DDrawBufSortMode_MatAnm,
+    J3DDrawBufSortMode_Z,
+    J3DDrawBufSortMode_Model,
+    J3DDrawBufSortMode_Invalid,
+    J3DDrawBufSortMode_Non,
+
+    J3DDrawBufSortMode_MAX,
+};
 
 /**
  * @ingroup jsystem-j3d
@@ -42,24 +57,13 @@ typedef void (J3DDrawBuffer::*drawFunc)() const;
  */
 class J3DDrawBuffer {
 public:
-    enum EDrawType {
-        DRAW_HEAD,
-        DRAW_TAIL,
-    };
-
-    enum ESortType {
-        SORT_MAT,
-        SORT_MAT_ANM,
-        SORT_Z,
-        SORT_MODEL,
-        SORT_INVALID,
-        SORT_NON,
-    };
+    typedef int (J3DDrawBuffer::*sortFunc)(J3DMatPacket*);
+    typedef void (J3DDrawBuffer::*drawFunc)() const;
 
     J3DDrawBuffer() { initialize(); }
     ~J3DDrawBuffer();
     void initialize();
-    J3DError allocBuffer(u32);
+    int allocBuffer(u32);
     void frameInit();
     int entryMatSort(J3DMatPacket*);
     int entryMatAnmSort(J3DMatPacket*);
@@ -72,18 +76,19 @@ public:
     void drawHead() const;
     void drawTail() const;
 
-    u32 getEntryTableSize() { return mBufSize; }
+    u32 getEntryTableSize() { return mEntryTableSize; }
+    int getSortMode() { return mSortMode; }
 
     inline void calcZRatio();
-    void setNonSort() { mSortType = 5; }
-    void setZSort() { mSortType = 2; }
+    void setNonSort() { mSortMode = J3DDrawBufSortMode_Non; }
+    void setZSort() { mSortMode = J3DDrawBufSortMode_Z; }
     void setZMtx(MtxP mtx) { mpZMtx = mtx; }
 
 public:
-    /* 0x00 */ J3DPacket** mpBuf;
-    /* 0x04 */ u32 mBufSize;
-    /* 0x08 */ u32 mDrawType;
-    /* 0x0C */ u32 mSortType;
+    /* 0x00 */ J3DPacket** mpBuffer;
+    /* 0x04 */ u32 mEntryTableSize;
+    /* 0x08 */ u32 mDrawMode;
+    /* 0x0C */ u32 mSortMode;
     /* 0x10 */ f32 mZNear;
     /* 0x14 */ f32 mZFar;
     /* 0x18 */ f32 mZRatio;

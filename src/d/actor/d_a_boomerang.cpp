@@ -1520,7 +1520,7 @@ int daBoomerang_c::create() {
     m_windBtk->searchUpdateMaterialID(mp_shippuModel->getModelData());
     mp_shippuModel->getModelData()->entryTexMtxAnimator(m_windBtk);
     mp_shippuModel->getModelData()->getJointNodePointer(4)->setCallBack(daBoomeang_windModelCallBack);
-    mp_shippuModel->setUserArea((u32)this);
+    mp_shippuModel->setUserArea((uintptr_t)this);
 
     m_waitEffBtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(daAlink_c::getAlinkArcName(), 0x47);
     JUT_ASSERT(3011, m_waitEffBtk);

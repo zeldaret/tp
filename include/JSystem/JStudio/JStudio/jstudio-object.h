@@ -225,7 +225,7 @@ struct TAdaptor_actor : public TAdaptor {
     };
 
     TAdaptor_actor()
-        : TAdaptor(mValue, ARRAY_SIZE(mValue))
+        : TAdaptor(mValue, ARRAY_SIZEU(mValue))
         , mValue()
     {
     }

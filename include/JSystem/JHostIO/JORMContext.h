@@ -4,6 +4,7 @@
 #include <dolphin.h>
 #include "JSystem/JSupport/JSUMemoryStream.h"
 #include "JSystem/JHostIO/JORReflexible.h"
+#include <stdint.h>
 
 #define MCTX_MSG_RESET 0
 #define MCTX_MSG_GET_ROOT_OBJ 2
@@ -29,7 +30,7 @@
 #define DEFINE_GEN_CHECKBOX(T, kind)                                                               \
     void genCheckBox(const char* label, T* pSrc, T mask, u32 style, JOREventListener* pListener,   \
                      u16 posX, u16 posY, u16 width, u16 height) {                                  \
-        genCheckBoxSub(kind, label, (u32)pSrc, style, *pSrc, mask, pListener, posX, posY, width,   \
+        genCheckBoxSub(kind, label, (uintptr_t)pSrc, style, *pSrc, mask, pListener, posX, posY, width,   \
                        height);                                                                    \
     }
 
@@ -43,7 +44,7 @@
 #define DEFINE_GEN_SLIDER(T, kind)                                                                 \
     void genSlider(const char* label, T* pSrc, T rangeMin, T rangeMax, u32 style,                  \
                    JOREventListener* pListener, u16 posX, u16 posY, u16 width, u16 height) {       \
-        genSliderSub(kind, label, (u32)pSrc, style, *pSrc, rangeMin, rangeMax, pListener, posX,    \
+        genSliderSub(kind, label, (uintptr_t)pSrc, style, *pSrc, rangeMin, rangeMax, pListener, posX,    \
                      posY, width, height);                                                         \
     }
 
@@ -57,7 +58,7 @@
 #define DEFINE_START_COMBO_BOX(T, kind)                                                                 \
     void startComboBox(const char* label, T* pSrc, u32 style,                  \
                    JOREventListener* pListener, u16 posX, u16 posY, u16 width, u16 height) {       \
-        startSelectorSub('CMBX', kind, label, (u32)pSrc, style, *pSrc, pListener, posX,    \
+        startSelectorSub('CMBX', kind, label, (uintptr_t)pSrc, style, *pSrc, pListener, posX,    \
                          posY, width, height);                                                         \
     }
 
@@ -70,7 +71,7 @@
 
 #define DEFINE_UPDATE_SLIDER(T)                                                              \
     void updateSlider(u32 mode, T* pSrc, T rangeMin, T rangeMax, u32 param_5) {     \
-        updateSliderSub(mode, (u32) pSrc, *pSrc, rangeMin, rangeMax, param_5);                                                               \
+        updateSliderSub(mode, (uintptr_t)pSrc, *pSrc, rangeMin, rangeMax, param_5);                                                               \
     }
 
 #define DEFINE_UPDATE_SLIDER_ID(T)                                                              \
@@ -252,7 +253,7 @@ public:
     void updateEditBoxID(u32 mode, u32 id, const char* string, u32 param_3, u16 length);
 
     void updateCheckBox(u32 mode, u8* pSrc, u8 mask, u32 param_4) {
-        updateCheckBoxSub(mode, (u32) pSrc, *pSrc, mask, param_4);
+        updateCheckBoxSub(mode, (uintptr_t)pSrc, *pSrc, mask, param_4);
     }
 
     void updateCheckBoxID(u32 mode, u32 id, u8 value, u8 mask, u32 param_4) {

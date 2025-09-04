@@ -81,7 +81,7 @@ int daWtPillar_c::createHeapCallBack(fopAc_ac_c* i_this) {
 int daWtPillar_c::CreateHeap() {
     J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("efWater", 8));
     JUT_ASSERT(369, modelData != 0);
-    mpModel = mDoExt_J3DModel__create(modelData, J3DMdlFlag_Unk80000, 0x11000284);
+    mpModel = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, 0x11000284);
 
     if(!mpModel)
         return 0;

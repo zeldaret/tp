@@ -533,7 +533,7 @@ cPhs__Step daMidna_c::create() {
         
         mSound.init(&current.pos, &eyePos, 3, 1);
         mpShadowModel = mpMorf->getModel();
-        mpShadowModel->setUserArea((u32)this);
+        mpShadowModel->setUserArea((uintptr_t)this);
         J3DModelData* model_data = mpShadowModel->getModelData();
 
         model_data->getJointNodePointer(JNT_WORLD_ROOT)->setCallBack(&daMidna_modelCallBack);

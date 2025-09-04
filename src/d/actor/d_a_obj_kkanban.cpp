@@ -68,7 +68,7 @@ int daObjKKanban_c::Create() {
         }
     }
     mpModel->getModelData()->getJointNodePointer(mJointIdx)->setCallBack(nodeCallBack);
-    mpModel->setUserArea((u32)this);
+    mpModel->setUserArea((uintptr_t)this);
     fopAcM_setCullSizeBox(this, -950.0f, -2150.0f, -2000.0f, 100.0f, 50.0f, 800.0f);
     mStts.Init(0xff, 0xff, this);
     mTri.Set(l_tri_src);

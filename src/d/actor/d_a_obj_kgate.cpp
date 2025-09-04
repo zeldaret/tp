@@ -944,7 +944,7 @@ void daObjKGate_c::demoProc() {
 int daObjKGate_c::getDemoAction() {
     static char* action_table[] = {"WAIT", "ADJUSTMENT", "UNLOCK", "OPEN"};
 
-    return dComIfGp_evmng_getMyActIdx(mStaffID, action_table, ARRAY_SIZE(action_table), 0, 0);
+    return dComIfGp_evmng_getMyActIdx(mStaffID, action_table, ARRAY_SIZEU(action_table), 0, 0);
 }
 
 /* 8058A550-8058A5B8 002550 0068+00 1/0 0/0 0/0 .text            Execute__12daObjKGate_cFPPA3_A4_f

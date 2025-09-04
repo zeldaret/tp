@@ -137,7 +137,7 @@ void daWdStick_c::setFire() {
             JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(field_0xae4[i]);
             if (emitter != NULL) {
                 emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
-                emitter->setUserWork((u32)&field_0xa94);
+                emitter->setUserWork((uintptr_t)&field_0xa94);
             }
         }
     }
@@ -150,7 +150,7 @@ void daWdStick_c::setFire() {
             JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(field_0xaec[i]);
             if (emitter != NULL) {
                 emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
-                emitter->setUserWork((u32)&field_0xaa0);
+                emitter->setUserWork((uintptr_t)&field_0xaa0);
             }
         }
     }

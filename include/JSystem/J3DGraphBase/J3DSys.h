@@ -3,7 +3,7 @@
 
 #include <dolphin/gx.h>
 #include <dolphin/mtx.h>
-#include "JSystem/JUtility/JUTAssert.h"
+#include "JSystem/J3DAssert.h"
 
 // Perhaps move to a new J3DEnum.h?
 enum J3DError {
@@ -11,9 +11,11 @@ enum J3DError {
     kJ3DError_Alloc = 4,
 };
 
-enum J3DSysDrawBuffer {
-    /* 0x0 */ J3DSys_OPA_BUFFER_e,
-    /* 0x1 */ J3DSys_XLU_BUFFER_e
+enum J3DSysDrawBuf {
+    /* 0x0 */ J3DSysDrawBuf_Opa,
+    /* 0x1 */ J3DSysDrawBuf_Xlu,
+
+    /* 0x2 */ J3DSysDrawBuf_MAX
 };
 
 class J3DMtxCalc;
@@ -53,25 +55,25 @@ struct J3DSys {
     /* 0x03C */ J3DMatPacket* mMatPacket;
     /* 0x040 */ J3DShapePacket* mShapePacket;
     /* 0x044 */ J3DShape* mShape;
-    /* 0x048 */ J3DDrawBuffer* mDrawBuffer[2];
+    /* 0x048 */ J3DDrawBuffer* mDrawBuffer[J3DSysDrawBuf_MAX];
     /* 0x050 */ u32 mDrawMode;
     /* 0x054 */ u32 mMaterialMode;
     /* 0x058 */ J3DTexture* mTexture;
-    /* 0x05C */ u8 field_0x5c[0x04];
+    /* 0x05C */ u8 unk_0x5c[0x60 - 0x5C];
     /* 0x060 */ u32 mTexCacheRegionNum;
     /* 0x064 */ GXTexRegion mTexCacheRegion[8];
-    /* 0x0E4 */ u8 field_0xe4[0x20];
+    /* 0x0E4 */ u8 unk_0xe4[0x104 - 0xE4];
     /* 0x104 */ Mtx* mModelDrawMtx;
     /* 0x108 */ Mtx33* mModelNrmMtx;
     /* 0x10C */ void* mVtxPos;
     /* 0x110 */ void* mVtxNrm;
-    /* 0x114 */ _GXColor* mVtxCol;
+    /* 0x114 */ GXColor* mVtxCol;
     /* 0x118 */ Vec* mNBTScale;
 
     /* 8030FDE8 */ J3DSys();
     /* 8030FEC0 */ void loadPosMtxIndx(int, u16) const;
     /* 8030FEE4 */ void loadNrmMtxIndx(int, u16) const;
-    /* 8030FF0C */ void setTexCacheRegion(_GXTexCacheSize);
+    /* 8030FF0C */ void setTexCacheRegion(GXTexCacheSize);
     /* 803100BC */ void drawInit();
     /* 8031073C */ void reinitGX();
     /* 8031079C */ void reinitGenMode();
@@ -82,16 +84,15 @@ struct J3DSys {
     /* 80310D44 */ void reinitIndStages();
     /* 80310E3C */ void reinitPixelProc();
 
-    enum DrawMode {
-        /* 0x3 */ OPA_TEX_EDGE = 3,
-        /* 0x4 */ XLU,
+    enum J3DSysDrawMode {
+        J3DSysDrawMode_OpaTexEdge = 3,
+        J3DSysDrawMode_Xlu
     };
 
     MtxP getViewMtx() { return mViewMtx; }
 
-    void setDrawModeOpaTexEdge() { mDrawMode = OPA_TEX_EDGE; }
-
-    void setDrawModeXlu() { mDrawMode = XLU; }
+    void setDrawModeOpaTexEdge() { mDrawMode = J3DSysDrawMode_OpaTexEdge; }
+    void setDrawModeXlu() { mDrawMode = J3DSysDrawMode_Xlu; }
 
     void* getVtxPos() { return mVtxPos; }
     void setVtxPos(void* pVtxPos) { mVtxPos = pVtxPos; }
@@ -99,15 +100,35 @@ struct J3DSys {
     void* getVtxNrm() { return mVtxNrm; }
     void setVtxNrm(void* pVtxNrm) { mVtxNrm = pVtxNrm; }
 
-    void* getVtxCol() const { return mVtxCol; }
-    void setVtxCol(_GXColor* pVtxCol) { mVtxCol = pVtxCol; }
+    void* getVtxCol() { return mVtxCol; }
+    void setVtxCol(GXColor* pVtxCol) { mVtxCol = pVtxCol; }
+
+    void setDrawBuffer(J3DDrawBuffer* buffer, int type) {
+        J3D_ASSERT_RANGE(114, type >= 0 && type < J3DSysDrawBuf_MAX);
+        J3D_ASSERT_NULLPTR(115, buffer);
+        mDrawBuffer[type] = buffer;
+    }
+
+    J3DDrawBuffer* getDrawBuffer(int type) {
+        J3D_ASSERT_RANGE(121, type >= 0 && type < J3DSysDrawBuf_MAX);
+        return mDrawBuffer[type];
+    }
+
+    void setMatPacket(J3DMatPacket* pPacket) {
+        J3D_ASSERT_NULLPTR(162, pPacket != NULL);
+        mMatPacket = pPacket;
+    }
+
+    void setShapePacket(J3DShapePacket* pPacket) {
+        J3D_ASSERT_NULLPTR(172, pPacket != NULL);
+        mShapePacket = pPacket;
+    }
 
     void setModel(J3DModel* pModel) {
-        J3D_ASSERT(200, pModel, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(200, pModel != NULL);
         mModel = pModel;
     }
-    void setShapePacket(J3DShapePacket* pPacket) { mShapePacket = pPacket; }
-    void setMatPacket(J3DMatPacket* pPacket) { mMatPacket = pPacket; }
+
     J3DMatPacket* getMatPacket() { return mMatPacket; }
     void setMaterialMode(u32 mode) { mMaterialMode = mode; }
 
@@ -124,32 +145,18 @@ struct J3DSys {
 
     void offFlag(u32 flag) { mFlags &= ~flag; }
 
-    bool checkFlag(u32 flag) { return mFlags & flag; }
+    bool checkFlag(u32 flag) { return mFlags & flag ? true : false; }
 
     void setModelDrawMtx(Mtx* pMtxArr) {
+        J3D_ASSERT_NULLPTR(230, pMtxArr);
         mModelDrawMtx = pMtxArr;
         GXSetArray(GX_POS_MTX_ARRAY, mModelDrawMtx, sizeof(*mModelDrawMtx));
     }
 
     void setModelNrmMtx(Mtx33* pMtxArr) {
-        JUT_ASSERT_MSG(241, pMtxArr, "Error : null pointer.");
+        J3D_ASSERT_NULLPTR(241, pMtxArr);
         mModelNrmMtx = pMtxArr;
         GXSetArray(GX_NRM_MTX_ARRAY, mModelNrmMtx, sizeof(*mModelNrmMtx));
-    }
-
-    // Type 0: Opa Buffer
-    // Type 1: Xlu Buffer
-    void setDrawBuffer(J3DDrawBuffer* buffer, int type) {
-        J3D_ASSERT(114, type >= 0 && type < 2, "Error : range over.");
-        J3D_ASSERT(115, buffer, "Error : null pointer.");
-        mDrawBuffer[type] = buffer;
-    }
-
-    // Type 0: Opa Buffer
-    // Type 1: Xlu Buffer
-    J3DDrawBuffer* getDrawBuffer(int type) {
-        J3D_ASSERT(121, type >= 0 && type < 2, "Error : range over.");
-        return mDrawBuffer[type];
     }
 
     Mtx& getModelDrawMtx(u16 no) { return mModelDrawMtx[no]; }

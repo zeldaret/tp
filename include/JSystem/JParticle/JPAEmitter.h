@@ -2,6 +2,7 @@
 #define JPAEMITTER_H
 
 #include <dolphin/gx.h>
+#include <stdint.h>
 #include "JSystem/JParticle/JPAResource.h"
 #include "JSystem/JParticle/JPAList.h"
 #include "JSystem/JParticle/JPARandom.h"
@@ -197,8 +198,8 @@ public:
     void stopDrawParticle() { setStatus(JPAEmtrStts_StopDraw); }
     void playDrawParticle() { clearStatus(JPAEmtrStts_StopDraw); }
 
-    u32 getUserWork() { return mpUserWork; }
-    void setUserWork(u32 userWork) { mpUserWork = userWork; }
+    uintptr_t getUserWork() { return mpUserWork; }
+    void setUserWork(uintptr_t userWork) { mpUserWork = userWork; }
     u32 getParticleNumber() const {
         return mAlivePtclBase.getNum() + mAlivePtclChld.getNum();
     }

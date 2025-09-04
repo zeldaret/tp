@@ -1,5 +1,6 @@
 #include "TRK_MINNOW_DOLPHIN/ppc/Generic/targimpl.h"
 #include "TRK_MINNOW_DOLPHIN/utils/common/MWTrace.h"
+#include <stdint.h>
 
 typedef struct memRange {
     u8* start;
@@ -136,7 +137,7 @@ DSError TRKValidMemory32(const void* addr, size_t length, ValidMemoryOptions rea
                 */
 
                 if (start < (const u8*)gTRKMemMap[i].start)
-                    err = TRKValidMemory32(start, (u32)((const u8*)gTRKMemMap[i].start - start),
+                    err = TRKValidMemory32(start, (uintptr_t)((const u8*)gTRKMemMap[i].start - start),
                                            readWriteable);
 
                 /*
@@ -150,7 +151,7 @@ DSError TRKValidMemory32(const void* addr, size_t length, ValidMemoryOptions rea
                 if ((err == DS_NoError) && (end > (const u8*)gTRKMemMap[i].end))
                     err =
                         TRKValidMemory32((const u8*)gTRKMemMap[i].end,
-                                         (u32)(end - (const u8*)gTRKMemMap[i].end), readWriteable);
+                                         (uintptr_t)(end - (const u8*)gTRKMemMap[i].end), readWriteable);
             }
 
             break;
@@ -183,7 +184,7 @@ DSError TRKTargetAccessMemory(void* data, u32 start, size_t* length,
             TRK_ppc_memcpy(data, addr, *length, uVar5, param4);
         } else {
             TRK_ppc_memcpy(addr, data, *length, param4, uVar5);
-            TRK_flush_cache((u32)addr, *length);
+            TRK_flush_cache((uintptr_t)addr, *length);
             if ((void*)start != addr) {
                 TRK_flush_cache(start, *length);
             }

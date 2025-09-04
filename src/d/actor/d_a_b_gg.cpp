@@ -4510,7 +4510,7 @@ int daB_GG_c::Create() {
         fopAcM_setCullSizeFar(this, 3.0f);
     
         J3DModel* model = mpModelMorf->getModel();
-        model->setUserArea((u32)this);
+        model->setUserArea((uintptr_t)this);
 
         for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
             if (i != 0) {
@@ -4521,7 +4521,7 @@ int daB_GG_c::Create() {
         field_0x5ac = 150.0f;
 
         if (mType == TYPE_L7_MBOSS) {
-            mpHelmetModel->setUserArea((u32)this);
+            mpHelmetModel->setUserArea((uintptr_t)this);
             mpHelmetModel->getModelData()->getJointNodePointer(1)->setCallBack(HeadJointCallBack);
             mpHelmetModel->getModelData()->getJointNodePointer(2)->setCallBack(HeadJointCallBack);
         }

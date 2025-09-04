@@ -848,7 +848,7 @@ int daE_FK_c::Create() {
         mSize = 0.0f;
 
         J3DModel* model_p = mpModelMorf->getModel();
-        model_p->setUserArea((u32)this);
+        model_p->setUserArea((uintptr_t)this);
 
         for (u16 i = 0; i < model_p->getModelData()->getJointNum(); i++) {
             if (i != 0) {

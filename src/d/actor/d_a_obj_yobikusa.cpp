@@ -327,7 +327,7 @@ int daObjYobikusa_c::createHeap() {
             J3DJoint* joint = mpModelTypeA->getModelData()->getJointNodePointer(i);
             if (joint != NULL) {
                 joint->setCallBack(nodeCallBack);
-                mpModelTypeA->setUserArea((u32)this);
+                mpModelTypeA->setUserArea((uintptr_t)this);
             }
         }
 

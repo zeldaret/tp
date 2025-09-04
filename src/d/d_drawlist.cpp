@@ -1099,7 +1099,7 @@ static J3DDrawBuffer* J3DDrawBuffer__create(u32 size) {
     J3DDrawBuffer* buffer = new J3DDrawBuffer();
 
     if (buffer) {
-        J3DError error = buffer->allocBuffer(size);
+        int error = buffer->allocBuffer(size);
         if (error == kJ3DError_Success) {
             return buffer;
         }

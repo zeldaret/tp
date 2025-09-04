@@ -53,14 +53,14 @@ public:
     Mtx3P getNrmMtx(int i) { return mNrmMtx[i]; }
     void onFlag(u32 flag) { mFlags |= flag; }
     void offFlag(u32 flag) { mFlags &= ~flag; }
-    bool checkFlag(u32 flag) { return mFlags & flag; }
+    bool checkFlag(u32 flag) { return mFlags & flag ? true : false; }
 
     /* 8032E064 */ virtual void deform(J3DVertexBuffer*, J3DMtxBuffer*);
     /* 8032E1B0 */ virtual ~J3DSkinDeform();
 
     static u16* sWorkArea_WEvlpMixMtx[1024];
     static f32* sWorkArea_WEvlpMixWeight[1024];
-    static u16 sWorkArea_MtxReg[1024 + 4 /* padding */];
+    static u16 sWorkArea_MtxReg[1024];
 
 private:
     /* 0x04 */ u16* mPosData;
@@ -89,7 +89,7 @@ public:
     /* 8032EBCC */ void normalizeWeight(int, f32*);
 
     void offFlag(u32 i_flag) { mFlags &= ~i_flag; }
-    bool checkFlag(u32 i_flag) { return mFlags & i_flag; }
+    bool checkFlag(u32 i_flag) { return mFlags & i_flag ? true : false; }
     void setAnmCluster(J3DAnmCluster* anm) { mAnmCluster = anm; }
     void normalize(f32* i_vec) { VECNormalize((Vec*)i_vec, (Vec*)i_vec); }
 

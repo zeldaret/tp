@@ -340,7 +340,7 @@ void Z2SoundObjMgr::setGhostEnemyState(u8 p1) {
  * getEnemyID__13Z2SoundObjMgrFPCcP26JSULink<15Z2CreatureEnemy> */
 u8 Z2SoundObjMgr::getEnemyID(char const* param_0, JSULink<Z2CreatureEnemy>* param_1) {
     if (param_0 != NULL) {
-        for (u8 uVar2 = 0; uVar2 < ARRAY_SIZE(mEnemyInfo); uVar2++) {
+        for (u8 uVar2 = 0; uVar2 < ARRAY_SIZEU(mEnemyInfo); uVar2++) {
             if (strcmp(param_0, mEnemyInfo[(u32)uVar2].mName) == 0) {
                 append(param_1);
                 return uVar2;

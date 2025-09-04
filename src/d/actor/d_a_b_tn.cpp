@@ -5047,7 +5047,7 @@ int daB_TN_c::CreateHeap() {
     }
 
     J3DModel* model = mpModelMorf2->getModel();
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
     model->getModelData()->getJointNodePointer(5)->setCallBack(JointCallBack);
     model->getModelData()->getJointNodePointer(1)->setCallBack(JointCallBack);
 

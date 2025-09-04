@@ -24,10 +24,10 @@ dBgWKCol::~dBgWKCol() {}
 
 /* 8007E7D0-8007E804 079110 0034+00 0/0 1/1 0/0 .text            initKCollision__8dBgWKColFPv */
 void* dBgWKCol::initKCollision(void* i_kclData) {
-    ((KC_Header*)i_kclData)->m_pos_data = (Vec*)((u32)((KC_Header*)i_kclData) + (u32)((KC_Header*)i_kclData)->m_pos_data);
-    ((KC_Header*)i_kclData)->m_nrm_data = (Vec*)((u32)((KC_Header*)i_kclData) + (u32)((KC_Header*)i_kclData)->m_nrm_data);
-    ((KC_Header*)i_kclData)->m_prism_data = (KC_PrismData*)((u32)((KC_Header*)i_kclData) + (u32)((KC_Header*)i_kclData)->m_prism_data);
-    ((KC_Header*)i_kclData)->m_block_data = (KC_PrismData*)((u32)((KC_Header*)i_kclData) + (u32)((KC_Header*)i_kclData)->m_block_data);
+    ((KC_Header*)i_kclData)->m_pos_data = (Vec*)((uintptr_t)((KC_Header*)i_kclData) + (uintptr_t)((KC_Header*)i_kclData)->m_pos_data);
+    ((KC_Header*)i_kclData)->m_nrm_data = (Vec*)((uintptr_t)((KC_Header*)i_kclData) + (uintptr_t)((KC_Header*)i_kclData)->m_nrm_data);
+    ((KC_Header*)i_kclData)->m_prism_data = (KC_PrismData*)((uintptr_t)((KC_Header*)i_kclData) + (uintptr_t)((KC_Header*)i_kclData)->m_prism_data);
+    ((KC_Header*)i_kclData)->m_block_data = (KC_PrismData*)((uintptr_t)((KC_Header*)i_kclData) + (uintptr_t)((KC_Header*)i_kclData)->m_block_data);
 
     return i_kclData;
 }
@@ -40,7 +40,7 @@ void dBgWKCol::create(void* pprism, void* plc) {
     ClrDBgWBase();
     m_pkc_head = (KC_Header*)pprism;
 
-    u32 poly_num = ((u32)m_pkc_head->m_block_data - (u32)m_pkc_head->m_prism_data) / 0xC;
+    u32 poly_num = ((uintptr_t)m_pkc_head->m_block_data - (uintptr_t)m_pkc_head->m_prism_data) / 0xC;
     poly_num++;
     JUT_ASSERT(0x50, poly_num <= 0x4000);
 
@@ -595,7 +595,7 @@ bool dBgWKCol::GroundCross(cBgS_GndChk* i_chk) {
     cXyz sp4C;
     int sp2C = 0;
     do {
-        u32 block = (u32)m_pkc_head->m_block_data;
+        uintptr_t block = (uintptr_t)m_pkc_head->m_block_data;
         u32 shift = m_pkc_head->m_block_width_shift;
         int sp20 = 4 * (((u32)sp34 >> shift) << m_pkc_head->m_area_xy_blocks_shift |
                        ((u32)sp30 >> shift) << m_pkc_head->m_area_x_blocks_shift |
@@ -821,8 +821,8 @@ void dBgWKCol::ShdwDraw(cBgS_ShdwDraw* param_0) {
                                     }
 
                                     unk_sp24 = drawBits_sp140 + (prism_sp34[0] >> 5);
-                                    if ((*(u32*)((u32)unk_sp24 + 0) & bitMask_sp28) == 0) {
-                                        *(u32*)((u32)unk_sp24 + 0) |= bitMask_sp28;
+                                    if ((*(u32*)((uintptr_t)unk_sp24 + 0) & bitMask_sp28) == 0) {
+                                        *(u32*)((uintptr_t)unk_sp24 + 0) |= bitMask_sp28;
 
                                         getPolyCode(prism_sp34[0], &polyCode_sp108);
 
@@ -1589,7 +1589,7 @@ bool dBgWKCol::RoofChk(dBgS_RoofChk* param_0) {
     bool sp0A = false;
     u32 sp30 = ~m_pkc_head->m_area_y_width_mask;
     do {
-        u32 sp2C = (u32)m_pkc_head->m_block_data;
+        uintptr_t sp2C = (uintptr_t)m_pkc_head->m_block_data;
         u32 sp28 = m_pkc_head->m_block_width_shift;
         s32 sp24 = 4 * (((u32)sp38 >> sp28) << m_pkc_head->m_area_xy_blocks_shift |
                        ((u32)sp34 >> sp28) << m_pkc_head->m_area_x_blocks_shift |

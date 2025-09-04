@@ -3289,7 +3289,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
             return 0;
         }
 
-        a_this->mBodyParts[i].mpMorf->getModel()->setUserArea((u32)i_this);
+        a_this->mBodyParts[i].mpMorf->getModel()->setUserArea((uintptr_t)i_this);
 
         for (u16 j = 0; j < a_this->mBodyParts[i].mpMorf->getModel()->getModelData()->getJointNum();
              j++)
@@ -3320,7 +3320,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
                 return 0;
             }
 
-            a_this->mBodyParts[i].mpFinMorf->getModel()->setUserArea((u32)i_this);
+            a_this->mBodyParts[i].mpFinMorf->getModel()->setUserArea((uintptr_t)i_this);
 
             for (u16 j = 0;
                  j < a_this->mBodyParts[i].mpFinMorf->getModel()->getModelData()->getJointNum();
@@ -3351,7 +3351,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
                 return 0;
             }
 
-            a_this->mBodyParts[i].mpFinUnkMorf->getModel()->setUserArea((u32)i_this);
+            a_this->mBodyParts[i].mpFinUnkMorf->getModel()->setUserArea((uintptr_t)i_this);
 
             for (u16 j = 0;
                  j < a_this->mBodyParts[i].mpFinUnkMorf->getModel()->getModelData()->getJointNum();
@@ -3376,7 +3376,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
                 return 0;
             }
 
-            a_this->mBodyParts[i].mpFinBMorf->getModel()->setUserArea((u32)i_this);
+            a_this->mBodyParts[i].mpFinBMorf->getModel()->setUserArea((uintptr_t)i_this);
 
             for (u16 j = 0;
                  j < a_this->mBodyParts[i].mpFinBMorf->getModel()->getModelData()->getJointNum();
@@ -3401,7 +3401,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
                 return 0;
             }
 
-            a_this->mBodyParts[i].mpFinCMorf->getModel()->setUserArea((u32)i_this);
+            a_this->mBodyParts[i].mpFinCMorf->getModel()->setUserArea((uintptr_t)i_this);
 
             for (u16 j = 0;
                  j < a_this->mBodyParts[i].mpFinCMorf->getModel()->getModelData()->getJointNum();
@@ -3424,7 +3424,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         return 0;
     }
 
-    a_this->mpSuiModel->setUserArea((u32)i_this);
+    a_this->mpSuiModel->setUserArea((uintptr_t)i_this);
 
     for (u16 j = 0; j < modelData->getJointNum(); j++) {
         modelData->getJointNodePointer(j)->setCallBack(sui_nodeCallBack);

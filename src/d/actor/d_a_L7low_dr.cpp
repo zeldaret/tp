@@ -143,7 +143,7 @@ int daL7lowDr_c::CreateHeap() {
     }
 
     J3DModel* model = mpModelMorf->getModel();
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
     return 1;
 }
 

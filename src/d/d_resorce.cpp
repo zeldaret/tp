@@ -307,7 +307,7 @@ J3DModelData* dRes_info_c::loaderBasicBmd(u32 i_tag, void* i_data) {
     }
 
     if (i_tag == 'BMDR' || i_tag == 'BMWR') {
-        if (modelData->newSharedDisplayList(0x40000) != 0) {
+        if (modelData->newSharedDisplayList(J3DMdlFlag_UseSingleDL) != kJ3DError_Success) {
             return NULL;
         } else {
             modelData->simpleCalcMaterial(0, (MtxP)j3dDefaultMtx);
@@ -399,7 +399,7 @@ int dRes_info_c::loadResource() {
                     }
 
                     setAlpha(modelData);
-                    if (modelData->newSharedDisplayList(0x40000) != 0) {
+                    if (modelData->newSharedDisplayList(J3DMdlFlag_UseSingleDL) != kJ3DError_Success) {
                         return -1;
                     }
 
@@ -427,7 +427,7 @@ int dRes_info_c::loadResource() {
                         return -1;
                     }
 #endif
-                    if (modelData->newSharedDisplayList(0x40000) != 0) {
+                    if (modelData->newSharedDisplayList(J3DMdlFlag_UseSingleDL) != kJ3DError_Success) {
                         return -1;
                     }
 
@@ -440,7 +440,7 @@ int dRes_info_c::loadResource() {
                     }
 
                     modelData = (J3DModelData*)result;
-                    if (modelData->newSharedDisplayList(0x40000) != 0) {
+                    if (modelData->newSharedDisplayList(J3DMdlFlag_UseSingleDL) != kJ3DError_Success) {
                         return -1;
                     }
 
@@ -724,11 +724,11 @@ void dRes_info_c::dump(dRes_info_c* i_resInfo, int i_infoNum) {
 
 /* 8003BFB0-8003C078 0368F0 00C8+00 0/0 1/1 0/0 .text            __dt__14dRes_control_cFv */
 dRes_control_c::~dRes_control_c() {
-    for (int i = 0; i < (int)ARRAY_SIZE(mObjectInfo); i++) {
+    for (int i = 0; i < ARRAY_SIZE(mObjectInfo); i++) {
         mObjectInfo[i].~dRes_info_c();
     }
 
-    for (int i = 0; i < (int)ARRAY_SIZE(mStageInfo); i++) {
+    for (int i = 0; i < ARRAY_SIZE(mStageInfo); i++) {
         mStageInfo[i].~dRes_info_c();
     }
 }
@@ -932,11 +932,11 @@ int dRes_control_c::setObjectRes(char const* i_arcName, void* i_archiveRes, u32 
     JUT_ASSERT(0x7A3, i_archiveRes != 0);
 
 #ifdef DEBUG
-    dRes_info_c* nowInfo = getResInfo(i_arcName, mObjectInfo, ARRAY_SIZE(mObjectInfo));
+    dRes_info_c* nowInfo = getResInfo(i_arcName, mObjectInfo, ARRAY_SIZEU(mObjectInfo));
     JUT_ASSERT(0x7A6, nowInfo == 0);
 #endif
 
-    if (!setRes(i_arcName, mObjectInfo, ARRAY_SIZE(mObjectInfo), "", mDoDvd_MOUNT_DIRECTION_HEAD, NULL)) {
+    if (!setRes(i_arcName, mObjectInfo, ARRAY_SIZEU(mObjectInfo), "", mDoDvd_MOUNT_DIRECTION_HEAD, NULL)) {
         return 0;
     }
 
@@ -945,7 +945,7 @@ int dRes_control_c::setObjectRes(char const* i_arcName, void* i_archiveRes, u32 
         return 0;
     }
 
-    dRes_info_c* info = getResInfo(i_arcName, mObjectInfo, ARRAY_SIZE(mObjectInfo));
+    dRes_info_c* info = getResInfo(i_arcName, mObjectInfo, ARRAY_SIZEU(mObjectInfo));
     JUT_ASSERT(0x7B7, info != 0);
 
     int rt = info->setRes(memArchive, i_heap);
@@ -962,24 +962,24 @@ int dRes_control_c::setStageRes(char const* i_arcName, JKRHeap* i_heap) {
     char path[20];
 
     snprintf(path, sizeof(path), "/res/Stage/%s/", dComIfGp_getStartStageName());
-    return setRes(i_arcName, mStageInfo, ARRAY_SIZE(mStageInfo), path, mDoDvd_MOUNT_DIRECTION_TAIL, i_heap);
+    return setRes(i_arcName, mStageInfo, ARRAY_SIZEU(mStageInfo), path, mDoDvd_MOUNT_DIRECTION_TAIL, i_heap);
 }
 
 /* 8003C638-8003C6B8 036F78 0080+00 0/0 2/2 0/0 .text            dump__14dRes_control_cFv */
 void dRes_control_c::dump() {
     JUTReportConsole_f("\ndRes_control_c::dump mObjectInfo\n");
-    dRes_info_c::dump(mObjectInfo, ARRAY_SIZE(mObjectInfo));
-    dRes_info_c::dump_long(mObjectInfo, ARRAY_SIZE(mObjectInfo));
+    dRes_info_c::dump(mObjectInfo, ARRAY_SIZEU(mObjectInfo));
+    dRes_info_c::dump_long(mObjectInfo, ARRAY_SIZEU(mObjectInfo));
 
     JUTReportConsole_f("\ndRes_control_c::dump mStageInfo\n");
-    dRes_info_c::dump(mStageInfo, ARRAY_SIZE(mStageInfo));
-    dRes_info_c::dump_long(mStageInfo, ARRAY_SIZE(mStageInfo));
+    dRes_info_c::dump(mStageInfo, ARRAY_SIZEU(mStageInfo));
+    dRes_info_c::dump_long(mStageInfo, ARRAY_SIZEU(mStageInfo));
 }
 
 /* 8003C6B8-8003C734 036FF8 007C+00 0/0 0/0 32/32 .text
  * getObjectResName2Index__14dRes_control_cFPCcPCc              */
 int dRes_control_c::getObjectResName2Index(char const* i_arcName, char const* i_resName) {
-    dRes_info_c* info = getResInfoLoaded(i_arcName, mObjectInfo, ARRAY_SIZE(mObjectInfo));
+    dRes_info_c* info = getResInfoLoaded(i_arcName, mObjectInfo, ARRAY_SIZEU(mObjectInfo));
 
     if (info == NULL) {
         return -1;

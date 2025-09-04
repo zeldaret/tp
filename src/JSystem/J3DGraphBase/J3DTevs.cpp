@@ -9,7 +9,7 @@
 #include "JSystem/J3DGraphBase/J3DTransform.h"
 #include "global.h"
 
-static void J3DGDLoadTexMtxImm(f32 (*)[4], u32, _GXTexMtxType);
+static void J3DGDLoadTexMtxImm(f32 (*)[4], u32, GXTexMtxType);
 static void J3DGDLoadPostTexMtxImm(f32 (*)[4], u32);
 
 /* 80323590-80323644 31DED0 00B4+00 0/0 3/3 0/0 .text            load__11J3DLightObjCFUl */
@@ -23,23 +23,33 @@ void J3DLightObj::load(u32 lightIdx) const {
 
 /* 80323644-803238C4 31DF84 0280+00 0/0 3/3 0/0 .text            loadTexCoordGens__FUlP11J3DTexCoord
  */
-void loadTexCoordGens(u32 param_0, J3DTexCoord* param_1) {
-    GDOverflowCheck(param_0 * 8 + 10);
-    J3DGDWriteXFCmdHdr(0x1040, param_0);
-    for (int i = 0; i < param_0; i++) {
+void loadTexCoordGens(u32 texGenNum, J3DTexCoord* texCoords) {
+    u32 var_r28;
+    GDOverflowCheck(texGenNum * 4 * 2 + 10);
+    J3DGDWriteXFCmdHdr(GX_XF_REG_TEX0, texGenNum);
+
+    for (int i = 0; i < texGenNum; i++) {
         J3DGDSetTexCoordGen(
-            GXTexGenType(param_1[i].getTexGenType()),
-            GXTexGenSrc(param_1[i].getTexGenSrc())
+            GXTexGenType(texCoords[i].getTexGenType()),
+            GXTexGenSrc(texCoords[i].getTexGenSrc())
         );
     }
-    J3DGDWriteXFCmdHdr(0x1050, param_0);
+
+    var_r28 = 61;
+    J3DGDWriteXFCmdHdr(GX_XF_REG_DUALTEX0, texGenNum);
+
     if (j3dSys.checkFlag(0x40000000)) {
-        for (int i = 0; i < param_0; i++) {
-            J3DGDWrite_u32(param_1[i].getTexGenMtx() == 60 ? 61 : i * 3);
+        for (int i = 0; i < texGenNum; i++) {
+            if (texCoords[i].getTexGenMtx() != 60) {
+                var_r28 = i * 3;
+            } else {
+                var_r28 = 61;
+            }
+            J3DGDWrite_u32(var_r28);
         }
     } else {
-        for (int i = 0; i < param_0; i++) {
-            J3DGDWrite_u32(61);
+        for (int i = 0; i < texGenNum; i++) {
+            J3DGDWrite_u32(var_r28);
         }
     }
 }
@@ -74,7 +84,7 @@ void J3DTexMtx::calcTexMtx(const Mtx param_0) {
         0.0f, 0.0f, 1.0f, 0.0f,
     };
 
-    u8 r28 = mTexMtxInfo.mInfo & 0x3f;
+    u32 r28 = mTexMtxInfo.mInfo & 0x3f;
     u32 r30 = (mTexMtxInfo.mInfo >> 7) & 1;
     switch (r28) {
     case 8:
@@ -171,7 +181,7 @@ void J3DTexMtx::calcPostTexMtx(const Mtx param_0) {
         0.0f, 0.0f, 1.0f, 0.0f,
     };
 
-    u8 r29 = mTexMtxInfo.mInfo & 0x3f;
+    u32 r29 = mTexMtxInfo.mInfo & 0x3f;
     u32 r30 = (mTexMtxInfo.mInfo >> 7) & 1;
     switch (r29) {
     case 8:
@@ -264,8 +274,8 @@ void J3DTexMtx::calcPostTexMtx(const Mtx param_0) {
 }
 
 /* 80323F64-80323F88 31E8A4 0024+00 0/0 1/1 0/0 .text            isTexNoReg__FPv */
-bool isTexNoReg(void* param_0) {
-    u8 r31 = ((u8*)param_0)[1];
+bool isTexNoReg(void* pDL) {
+    u8 r31 = ((u8*)pDL)[1];
     if (r31 >= 0x80 && r31 <= 0xbb) {
         return true;
     }
@@ -273,19 +283,24 @@ bool isTexNoReg(void* param_0) {
 }
 
 /* 80323F88-80323F94 31E8C8 000C+00 0/0 1/1 0/0 .text            getTexNoReg__FPv */
-u16 getTexNoReg(void* param_0) {
-    return *(u32*)((u8*)param_0 + 1);
+u16 getTexNoReg(void* pDL) {
+    u32 var_r31 = *(u32*)((u8*)pDL + 1);
+    return var_r31 & 0xFFFFFF;
 }
 
 /* 80323F94-8032413C 31E8D4 01A8+00 0/0 20/20 0/0 .text            loadTexNo__FUlRCUs */
-void loadTexNo(u32 param_0, u16 const& param_1) {
-    ResTIMG* resTIMG = j3dSys.getTexture()->getResTIMG(param_1);
-    J3DSys::sTexCoordScaleTable[param_0].field_0x00 = resTIMG->width;
-    J3DSys::sTexCoordScaleTable[param_0].field_0x02 = resTIMG->height;
+void loadTexNo(u32 param_0, const u16& texNo) {
+    ResTIMG* resTIMG = j3dSys.getTexture()->getResTIMG(texNo);
+    J3D_ASSERT_NULLPTR(462, resTIMG != NULL);
+
+    J3DSys::sTexCoordScaleTable[param_0].field_0x00 = (u16)resTIMG->width;
+    J3DSys::sTexCoordScaleTable[param_0].field_0x02 = (u16)resTIMG->height;
+
     GDOverflowCheck(0x14);
     J3DGDSetTexImgPtr(GXTexMapID(param_0), (u8*)resTIMG + resTIMG->imageOffset);
     J3DGDSetTexImgAttr(GXTexMapID(param_0), resTIMG->width, resTIMG->height, GXTexFmt(resTIMG->format & 0x0f));
     J3DGDSetTexLookupMode(GXTexMapID(param_0), GXTexWrapMode(resTIMG->wrapS), GXTexWrapMode(resTIMG->wrapT), GXTexFilter(resTIMG->minFilter), GXTexFilter(resTIMG->magFilter), resTIMG->minLOD * 0.125f, resTIMG->maxLOD * 0.125f, resTIMG->LODBias * 0.01f, resTIMG->biasClamp, resTIMG->doEdgeLOD, GXAnisotropy(resTIMG->maxAnisotropy));
+
     if (resTIMG->indexTexture == true) {
         GXTlutSize tlutSize = resTIMG->numColors > 16 ? GX_TLUT_256 : GX_TLUT_16;
         GDOverflowCheck(0x14);
@@ -295,20 +310,22 @@ void loadTexNo(u32 param_0, u16 const& param_1) {
 }
 
 /* 8032413C-80324160 31EA7C 0024+00 0/0 2/2 0/0 .text            patchTexNo_PtrToIdx__FUlRCUs */
-void patchTexNo_PtrToIdx(u32 texID, u16 const& idx) {
+void patchTexNo_PtrToIdx(u32 texID, const u16& idx) {
+    ResTIMG* timg = j3dSys.getTexture()->getResTIMG(idx);
+    J3D_ASSERT_NULLPTR(523, timg != NULL);
+
     J3DGDSetTexImgPtrRaw(GXTexMapID(texID), idx);
 }
 
 /* 80324160-80324194 31EAA0 0034+00 0/0 2/2 0/0 .text            loadNBTScale__FR11J3DNBTScale */
-void loadNBTScale(J3DNBTScale& param_0) {
-    if (param_0.mbHasScale == true) {
-        j3dSys.setNBTScale(&param_0.mScale);
+void loadNBTScale(J3DNBTScale& NBTScale) {
+    if (NBTScale.mbHasScale == true) {
+        j3dSys.setNBTScale(&NBTScale.mScale);
     } else {
         j3dSys.setNBTScale(NULL);
     }
 }
 
-/* ############################################################################################## */
 /* 803A1EC8-803A1EFC 02E528 0034+00 0/0 9/9 24/24 .rodata          j3dDefaultLightInfo */
 extern const J3DLightInfo j3dDefaultLightInfo = {
     0.0f, 0.0f, 0.0f,
@@ -399,7 +416,6 @@ void makeTexCoordTable() {
     }
 }
 
-/* ############################################################################################## */
 /* 80436A60-80436E60 063780 0400+00 1/1 3/3 0/0 .bss             j3dTevSwapTableTable */
 u8 j3dTevSwapTableTable[1024];
 
@@ -421,7 +437,6 @@ void makeAlphaCmpTable() {
     }
 }
 
-/* ############################################################################################## */
 /* 80437160-804371C0 063E80 0060+00 1/1 4/4 5/5 .bss             j3dZModeTable */
 extern u8 j3dZModeTable[96];
 u8 j3dZModeTable[96];
@@ -472,7 +487,7 @@ void J3DTexMtx::loadPostTexMtx(u32 param_0) const {
 static void J3DGDLoadTexMtxImm(f32 (*param_1)[4], u32 param_2, _GXTexMtxType param_3) {
     u16 addr = param_2 << 2;
     u8 len = param_3 == GX_MTX2x4 ? 8 : 12;
-    J3DGDWriteXFCmdHdr(addr & 0xffff, len);
+    J3DGDWriteXFCmdHdr(addr, len);
     J3DGDWrite_f32(param_1[0][0]);
     J3DGDWrite_f32(param_1[0][1]);
     J3DGDWrite_f32(param_1[0][2]);
@@ -492,7 +507,9 @@ static void J3DGDLoadTexMtxImm(f32 (*param_1)[4], u32 param_2, _GXTexMtxType par
 /* 8032499C-80324F08 31F2DC 056C+00 1/1 0/0 0/0 .text            J3DGDLoadPostTexMtxImm__FPA4_fUl */
 static void J3DGDLoadPostTexMtxImm(f32 (*param_1)[4], u32 param_2) {
     u16 addr = (param_2 - 0x40) * 4 + 0x500;
-    J3DGDWriteXFCmdHdr(addr, 12);
+    int stride = 12;
+
+    J3DGDWriteXFCmdHdr(addr, stride);
     J3DGDWrite_f32(param_1[0][0]);
     J3DGDWrite_f32(param_1[0][1]);
     J3DGDWrite_f32(param_1[0][2]);
@@ -507,7 +524,6 @@ static void J3DGDLoadPostTexMtxImm(f32 (*param_1)[4], u32 param_2) {
     J3DGDWrite_f32(param_1[2][3]);
 }
 
-/* ############################################################################################## */
 /* 804563C0-804563C4 0049C0 0004+00 0/0 4/4 0/0 .sdata2          j3dDefaultColInfo */
 extern const GXColor j3dDefaultColInfo = {0xFF, 0xFF, 0xFF, 0xFF};
 
@@ -515,7 +531,7 @@ extern const GXColor j3dDefaultColInfo = {0xFF, 0xFF, 0xFF, 0xFF};
 extern const GXColor j3dDefaultAmbInfo = {0x32, 0x32, 0x32, 0x32};
 
 /* 804563C8-804563CC 0049C8 0004+00 0/0 1/1 0/0 .sdata2          None */
-extern const u8 data_804563C8 = 0x01;
+extern const u8 j3dDefaultNumChans = 1;
 
 /* 804563CC-804563D0 0049CC 0004+00 0/0 3/3 0/0 .sdata2          j3dDefaultTevOrderInfoNull */
 extern const J3DTevOrderInfo j3dDefaultTevOrderInfoNull = {0xFF, 0xFF, 0xFF, 0x00};

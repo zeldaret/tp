@@ -2815,7 +2815,7 @@ cPhs__Step daE_PM_c::Create() {
         mCreatureSound.setEnemyName("E_PM");
 
         J3DModel* model = mpMorf->getModel();
-        model->setUserArea((u32)this);
+        model->setUserArea((uintptr_t)this);
         model->getModelData()->getJointNodePointer(JNT_HEAD)->setCallBack(JointCallBack);
 
         if (dComIfG_play_c::getLayerNo(0) == 2 || dComIfG_play_c::getLayerNo(0) == 5) {

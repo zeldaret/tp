@@ -230,7 +230,7 @@ static int dmg_rod_Draw(dmg_rod_class* i_this) {
                 g_env_light.setLightTevColorType_MAJI(i_this->esa_model[i_this->esa_kind - 1], &actor->tevStr);
 
                 if (i_this->esa_kind == 2) {
-                    i_this->esa_model[i_this->esa_kind - 1]->setUserArea((u32)i_this);
+                    i_this->esa_model[i_this->esa_kind - 1]->setUserArea((uintptr_t)i_this);
                     for (u16 i = 0; i < i_this->esa_model[i_this->esa_kind - 1]->getModelData()->getJointNum(); i++) {
                         if (i >= 1) {
                             i_this->esa_model[i_this->esa_kind - 1]->getModelData()->getJointNodePointer(i)->setCallBack(Worm_nodeCallBack);
@@ -6086,7 +6086,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
             }
 
             if (i == 0) {
-                a_this->lure_model[i]->setUserArea((u32)a_this);
+                a_this->lure_model[i]->setUserArea((uintptr_t)a_this);
                 for (u16 j = 0; j < a_this->lure_model[i]->getModelData()->getJointNum(); j++) {
                     if (j == 1) {
                         a_this->lure_model[i]->getModelData()->getJointNodePointer(j)->setCallBack(frog_nodeCallBack);
@@ -6094,7 +6094,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
                 }
             } else {
                 if (i == 3) {
-                    a_this->lure_model[i]->setUserArea((u32)a_this);
+                    a_this->lure_model[i]->setUserArea((uintptr_t)a_this);
                     for (u16 j = 0; j < a_this->lure_model[i]->getModelData()->getJointNum(); j++) {
                         if (j == 1 || j == 2) {
                             a_this->lure_model[i]->getModelData()->getJointNodePointer(j)->setCallBack(ws_nodeCallBack);
@@ -6131,7 +6131,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         }
     
         J3DModel* model = a_this->rod_modelMorf->getModel();
-        model->setUserArea((u32)a_this);
+        model->setUserArea((uintptr_t)a_this);
         for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
             if (i == 1 || i == 3) {
                 model->getModelData()->getJointNodePointer(i)->setCallBack(Reel_CallBack);

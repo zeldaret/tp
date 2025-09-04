@@ -3759,7 +3759,7 @@ static void fire_eff_set(e_rdy_class* i_this) {
             JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->mFireParticleKey[i]);
             if (emitter != NULL) {
                 emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
-                emitter->setUserWork((u32)&i_this->field_0x1358);
+                emitter->setUserWork((uintptr_t)&i_this->field_0x1358);
             }
         }
     }
@@ -4809,7 +4809,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     J3DModel* model = _this->mpMorf->getModel();
-    model->setUserArea((u32)_this);
+    model->setUserArea((uintptr_t)_this);
     for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
         model->getModelData()->getJointNodePointer(i)->setCallBack(nodeCallBack);
     }
@@ -4833,7 +4833,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         }
 
         J3DModel* bow_model = _this->mpBowMorf->getModel();
-        bow_model->setUserArea((u32)_this);
+        bow_model->setUserArea((uintptr_t)_this);
         for (u16 i = 0; i < bow_model->getModelData()->getJointNum(); i++) {
             if (i == 2 || i == 3) {
                 bow_model->getModelData()->getJointNodePointer(i)->setCallBack(nodeCallBack_bow);

@@ -4084,7 +4084,7 @@ int daB_DR_c::CreateHeap() {
     }
 
     this->model = mpModelMorf->getModel();
-    this->model->setUserArea((u32)this);
+    this->model->setUserArea((uintptr_t)this);
 
     for (u16 i = 0; i < this->model->getModelData()->getJointNum(); i++) {
         if (i != 0) {

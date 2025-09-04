@@ -87,7 +87,7 @@ bool daObjSwpush::Act_c::create_heap() {
 
             if (bVar1) {
                 model_data->getJointNodePointer(i)->setCallBack(jnodeCB);
-                mpModel->setUserArea((u32)this);
+                mpModel->setUserArea((uintptr_t)this);
                 break;
             }
         }

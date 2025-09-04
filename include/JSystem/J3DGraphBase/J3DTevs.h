@@ -153,6 +153,16 @@ struct J3DTevStage {
         return *this;
     }
 
+    J3DTevStage& operator=(J3DTevStage& other) {
+        mTevColorOp = other.mTevColorOp;
+        mTevColorAB = other.mTevColorAB;
+        mTevColorCD = other.mTevColorCD;
+        mTevAlphaOp = other.mTevAlphaOp;
+        mTevAlphaAB = other.mTevAlphaAB;
+        mTevSwapModeInfo = other.mTevSwapModeInfo;
+        return *this;
+    }
+
     /* 0x0 */ u8 field_0x0;
     /* 0x1 */ u8 mTevColorOp;
     /* 0x2 */ u8 mTevColorAB;
@@ -214,6 +224,16 @@ struct J3DIndTevStage {
         J3DGDWriteBPCmd(mInfo | (param_1 + 0x10) * 0x1000000);
     }
 
+    J3DIndTevStage& operator=(const J3DIndTevStage& other) {
+        mInfo = other.mInfo;
+        return *this;
+    }
+
+    J3DIndTevStage& operator=(J3DIndTevStage& other) {
+        mInfo = other.mInfo;
+        return *this;
+    }
+
     /* 0x0 */ u32 mInfo;
 };
 
@@ -264,6 +284,11 @@ struct J3DTevSwapModeTable {
         return *this;
     }
 
+    J3DTevSwapModeTable& operator=(J3DTevSwapModeTable& other) {
+        mIdx = other.mIdx;
+        return *this;
+    }
+
     u8 calcTevSwapTableID(u8 param_0, u8 param_1, u8 param_2, u8 param_3) {
         return 0x40 * param_0 + 0x10 * param_1 + 4 * param_2 + param_3;
     }
@@ -281,6 +306,7 @@ extern const GXColor j3dDefaultAmbInfo;
 extern const GXColorS10 j3dDefaultTevColor;
 extern const GXColor j3dDefaultTevKColor;
 extern u8 j3dAlphaCmpTable[768];
+extern const u8 j3dDefaultNumChans;
 
 struct J3DNBTScale;
 struct J3DTexCoord;
@@ -290,5 +316,9 @@ void loadTexNo(u32 param_0, u16 const& param_1);
 void patchTexNo_PtrToIdx(u32 texID, u16 const& idx);
 bool isTexNoReg(void* param_0);
 u16 getTexNoReg(void* param_0);
+void makeTexCoordTable();
+void makeAlphaCmpTable();
+void makeZModeTable();
+void makeTevSwapTable();
 
 #endif /* J3DTEVS_H */

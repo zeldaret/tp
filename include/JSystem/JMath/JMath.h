@@ -80,6 +80,11 @@ inline f32 JMAHermiteInterpolation(register f32 p1, register f32 p2, register f3
 
 namespace JMath {
 
+template <typename T>
+inline T fastSqrt(T value) {
+    return JMAFastSqrt(value);
+}
+
 inline f32 fastReciprocal(f32 value) {
     return JMAFastReciprocal(value);
 }

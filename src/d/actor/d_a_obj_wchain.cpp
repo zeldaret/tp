@@ -24,7 +24,7 @@ int daObjWchain_c::createHeap() {
         return 0;
     }
     mpChainModelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 3);
-    mShape.setUserArea((u32)this);
+    mShape.setUserArea((uintptr_t)this);
     return 1;
 }
 

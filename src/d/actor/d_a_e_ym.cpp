@@ -293,7 +293,7 @@ void daE_YM_c::setFireEffect() {
             if (emitter != NULL) {
                 if (speed.abs() > 1.0f) {
                     emitter->setParticleCallBackPtr((JPAParticleCallBack*)&JPTracePCB4);
-                    emitter->setUserWork((u32)field_0x6d0);
+                    emitter->setUserWork((uintptr_t)field_0x6d0);
                 } else {
                     emitter->setParticleCallBackPtr(NULL);
                 }

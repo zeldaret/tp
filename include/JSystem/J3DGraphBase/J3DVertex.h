@@ -29,6 +29,7 @@ struct J3DVtxColorCalc {
 class J3DVertexData {
 public:
     J3DVertexData();
+    ~J3DVertexData() {}
 
     void* getVtxPosArray() const { return mVtxPosArray; }
     void* getVtxNrmArray() const { return mVtxNrmArray; }
@@ -38,10 +39,10 @@ public:
     u32 getNrmNum() const { return mNrmNum; }
     u32 getVtxNum() const { return mVtxNum; }
     GXVtxAttrFmtList* getVtxAttrFmtList() const { return mVtxAttrFmtList; }
-    u8 getVtxPosFrac() { return mVtxPosFrac; }
-    u8 getVtxNrmFrac() { return mVtxNrmFrac; }
-    int getVtxPosType() { return mVtxPosType; }
-    int getVtxNrmType() { return mVtxNrmType; }
+    u8 getVtxPosFrac() const { return mVtxPosFrac; }
+    u8 getVtxNrmFrac() const { return mVtxNrmFrac; }
+    int getVtxPosType() const { return mVtxPosType; }
+    int getVtxNrmType() const { return mVtxNrmType; }
 
     void setVtxPosFrac(u8 frac) { mVtxPosFrac = frac; }
     void setVtxPosType(GXCompType type) { mVtxPosType = type; }
@@ -147,9 +148,5 @@ private:
     /* 0x30 */ void* mCurrentVtxNrm;
     /* 0x34 */ GXColor* mCurrentVtxCol;
 };  // Size: 0x38
-
-struct VertexNormal {
-    Vec data;
-};
 
 #endif /* J3DVERTEX_H */

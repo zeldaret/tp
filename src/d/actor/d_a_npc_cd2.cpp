@@ -293,7 +293,7 @@ int daNpcCd2_c::NpcCreate(int param_1) {
     for (u16 i = 0; i < a_mdlData_p->getJointNum(); i++) {
         a_mdlData_p->getJointNodePointer(i)->setCallBack(jntNodeCallBack);
     }
-    mpMorf->getModel()->setUserArea((u32)this);
+    mpMorf->getModel()->setUserArea((uintptr_t)this);
     return 1;
 }
 

@@ -206,7 +206,7 @@ BOOL daNpcShoe_c::CreateHeap() {
     for (u16 jointNo = 0; jointNo < mdlData_p->getJointNum(); jointNo++) {
         mdlData_p->getJointNodePointer(jointNo)->setCallBack(ctrlJointCallBack);
     }
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
 
     mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], 9));
 

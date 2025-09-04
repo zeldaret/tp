@@ -449,7 +449,7 @@ int daNpc_Yelia_c::CreateHeap() {
     for (u16 i = 0; i < model_data->getJointNum(); i++) {
         model_data->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
 
     mpMatAnm[0] = new daNpcT_MatAnm_c();
     if (mpMatAnm[0] == NULL) {
@@ -564,7 +564,7 @@ BOOL daNpc_Yelia_c::isDelete() {
 
 /* 80B4DF10-80B4E068 000CF0 0158+00 1/1 0/0 0/0 .text            reset__13daNpc_Yelia_cFv */
 void daNpc_Yelia_c::reset() {
-    u32 size = (u32)&field_0xfec - (u32)&mpNextAction;
+    u32 size = (uintptr_t)&field_0xfec - (uintptr_t)&mpNextAction;
     if (mpMatAnm[0] != NULL) {
         mpMatAnm[0]->initialize();
     }

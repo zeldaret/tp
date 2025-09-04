@@ -1698,7 +1698,7 @@ u8 dComIfGs_checkGetInsectNum() {
     u8 insectCount = 0;
     u8* insectList = l_itemno;
 
-    for (int i = 0; i < ARRAY_SIZE(l_itemno); i++) {
+    for (int i = 0; i < ARRAY_SIZEU(l_itemno); i++) {
         u8 insectId = *insectList;
         insectList++;
         if (dComIfGs_isItemFirstBit(insectId) &&

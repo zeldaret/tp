@@ -64,14 +64,14 @@ public:
     JUTNameTab* getJointName() const { return mJointName; }
     J3DJoint* getRootNode() { return mRootNode; }
     J3DJoint* getJointNodePointer(u16 idx) const {
-        J3D_ASSERT(139, idx < mJointNum, "Error : range over.");
+        J3D_ASSERT_RANGE(139, idx < mJointNum);
         return mJointNodePointer[idx];
     }
-    J3DMtxCalc* getBasicMtxCalc() const { return mBasicMtxCalc; }
+    J3DMtxCalc* getBasicMtxCalc() { return mBasicMtxCalc; }
     Mtx& getInvJointMtx(int idx) { return mInvJointMtx[idx]; }
     u32 getModelDataType() const { return mModelDataType; }
     void setModelDataType(u32 type) { mModelDataType = type; }
-    bool checkFlag(u32 flag) { return mFlags & flag; }
+    bool checkFlag(u32 flag) const { return mFlags & flag ? true : false; }
     void setFlag(u32 flag) { mFlags = flag; }
 
 private:

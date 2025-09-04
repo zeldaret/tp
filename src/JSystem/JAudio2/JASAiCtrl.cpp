@@ -19,6 +19,7 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "dolphin/ai.h"
 #include <dolphin/os.h>
+#include <stdint.h>
 
 /* 80431C58-80431C68 05E978 000C+04 2/2 0/0 0/0 .bss             sDmaDacBuffer__9JASDriver */
 s16* JASDriver::sDmaDacBuffer[3];
@@ -87,7 +88,7 @@ void JASDriver::initAI(void (*param_0)(void)) {
     sDspStatus = 0;
     JASChannel::initBankDisposeMsgQueue();
     AIInit(NULL);
-    AIInitDMA((u32)sDmaDacBuffer[2], size);
+    AIInitDMA((uintptr_t)sDmaDacBuffer[2], size);
     BOOL isOutputRate;
     if (sOutputRate == 0) {
         isOutputRate = FALSE;
@@ -139,7 +140,7 @@ void JASDriver::updateDac() {
     s16* r30 = lastRspMadep;
     lastRspMadep = NULL;
     if (r30) {
-        AIInitDMA((u32)r30, getDacSize() * 2);
+        AIInitDMA((uintptr_t)r30, getDacSize() * 2);
     }
     s32 frameSamples = getFrameSamples();
     readDspBuffer(sDmaDacBuffer[dacp], frameSamples);

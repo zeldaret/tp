@@ -16,7 +16,7 @@ J3DMaterialFactory::J3DMaterialFactory(J3DMaterialBlock const& i_block) {
     mMaterialNum = i_block.mMaterialNum;
     mpMaterialInitData = JSUConvertOffsetToPtr<J3DMaterialInitData>(&i_block, i_block.mpMaterialInitData);
     mpMaterialID = JSUConvertOffsetToPtr<u16>(&i_block, i_block.mpMaterialID);
-    if (i_block.mpIndInitData != NULL && (u32)i_block.mpIndInitData - (u32)i_block.mpNameTable > 4) {
+    if (i_block.mpIndInitData != NULL && (uintptr_t)i_block.mpIndInitData - (uintptr_t)i_block.mpNameTable > 4) {
         mpIndInitData = JSUConvertOffsetToPtr<J3DIndInitData>(&i_block, i_block.mpIndInitData);
     } else {
         mpIndInitData = NULL;
@@ -384,7 +384,7 @@ J3DMaterial* J3DMaterialFactory::createLockedMaterial(J3DMaterial* i_material, i
     if (i_material->mSharedDLObj == NULL) {
         i_material->mSharedDLObj = new J3DDisplayListObj();
         i_material->mSharedDLObj->setSingleDisplayList((void*)(
-            mpDisplayListInit[i_idx].mOffset + (u32)&mpDisplayListInit[i_idx]),
+            mpDisplayListInit[i_idx].mOffset + (uintptr_t)&mpDisplayListInit[i_idx]),
             mpDisplayListInit[i_idx].field_0x4
         );
     }

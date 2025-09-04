@@ -1166,7 +1166,7 @@ int daE_HP_c::CreateHeap() {
     }
 
     model = mpMorfSO->getModel();
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
 
     for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
         if (i != 0) {
@@ -1182,7 +1182,7 @@ int daE_HP_c::CreateHeap() {
         return 0;
     }
 
-    mpModel->setUserArea((u32)this);
+    mpModel->setUserArea((uintptr_t)this);
     for (u16 i = 0; i < mpModel->getModelData()->getJointNum(); i++) {
         if (i != 0) {
             mpModel->getModelData()->getJointNodePointer(i)->setCallBack(LampJointCallBack);

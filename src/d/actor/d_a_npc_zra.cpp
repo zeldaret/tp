@@ -656,7 +656,7 @@ int daNpc_zrA_c::CreateHeap() {
             model_data->getJointNodePointer(i)->setCallBack(NULL);
         }
     }
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
 
     mpMatAnm = new daNpcF_MatAnm_c();
     if (mpMatAnm == NULL) {
@@ -1188,7 +1188,7 @@ void daNpc_zrA_c::setMtx() {
     mDoMtx_stack_c::ZXYrotM(mCurAngle);
     mDoMtx_stack_c::scaleM(scale);
     model->setBaseTRMtx(mDoMtx_stack_c::get());
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
 
     if (mAnmFlags & ANM_PLAY_BCK) {
         mBckAnm.getBckAnm()->setFrame(mBckAnm.getFrame());
@@ -2135,7 +2135,7 @@ BOOL daNpc_zrA_c::doEvent() {
             if (staff_id != -1) {
                 mStaffID = staff_id;
                 int act_idx = event_manager->getMyActIdx(staff_id, mEvtCutNameList,
-                                                        ARRAY_SIZE(mEvtCutNameList), 0, 0);
+                                                        ARRAY_SIZEU(mEvtCutNameList), 0, 0);
                 JUT_ASSERT(0xf0e, act_idx >= 0 && act_idx < 11);
                 JUT_ASSERT(0xf0f, mEvtCutList[act_idx] != 0);
                 if ((this->*mEvtCutList[act_idx])(staff_id)) {

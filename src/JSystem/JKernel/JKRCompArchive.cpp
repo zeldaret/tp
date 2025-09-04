@@ -10,6 +10,7 @@
 #include "JSystem/JUtility/JUTException.h"
 #include "math.h"
 #include "string.h"
+#include <stdint.h>
 
 /* 802D87D4-802D887C 2D3114 00A8+00 0/0 1/1 0/0 .text
  * __ct__14JKRCompArchiveFlQ210JKRArchive15EMountDirection      */
@@ -104,10 +105,10 @@ bool JKRCompArchive::open(s32 entryNum) {
             }
             else
             {
-                JKRDvdToMainRam(entryNum, (u8 *)mArcInfoBlock, EXPAND_SWITCH_UNKNOWN1, (u32)arcHeader->file_data_offset + mSizeOfMemPart,
+                JKRDvdToMainRam(entryNum, (u8 *)mArcInfoBlock, EXPAND_SWITCH_UNKNOWN1, (uintptr_t)arcHeader->file_data_offset + mSizeOfMemPart,
                                 NULL, JKRDvdRipper::ALLOC_DIRECTION_FORWARD, 0x20, NULL, NULL);
-                DCInvalidateRange(mArcInfoBlock, (u32)arcHeader->file_data_offset + mSizeOfMemPart);
-                field_0x64 = (u32)mArcInfoBlock + arcHeader->file_data_offset;
+                DCInvalidateRange(mArcInfoBlock, (uintptr_t)arcHeader->file_data_offset + mSizeOfMemPart);
+                field_0x64 = (uintptr_t)mArcInfoBlock + arcHeader->file_data_offset;
 
                 if (mSizeOfAramPart != 0) {
                     mAramPart = (JKRAramBlock*)JKRAllocFromAram(mSizeOfAramPart, JKRAramHeap::HEAD);
@@ -119,9 +120,9 @@ bool JKRCompArchive::open(s32 entryNum) {
                     JKRDvdToAram(entryNum, mAramPart->getAddress(), EXPAND_SWITCH_UNKNOWN1, arcHeader->header_length + arcHeader->file_data_offset + mSizeOfMemPart, 0, NULL);
                 }
 
-                mNodes = (SDIDirEntry*)((u32)mArcInfoBlock + mArcInfoBlock->node_offset);
-                mFiles = (SDIFileEntry *)((u32)mArcInfoBlock + mArcInfoBlock->file_entry_offset);
-                mStringTable = (char*)((u32)mArcInfoBlock + mArcInfoBlock->string_table_offset);
+                mNodes = (SDIDirEntry*)((uintptr_t)mArcInfoBlock + mArcInfoBlock->node_offset);
+                mFiles = (SDIFileEntry *)((uintptr_t)mArcInfoBlock + mArcInfoBlock->file_entry_offset);
+                mStringTable = (char*)((uintptr_t)mArcInfoBlock + mArcInfoBlock->string_table_offset);
                 field_0x6c = arcHeader->header_length + arcHeader->file_data_offset;
             }
             break;
@@ -155,7 +156,7 @@ bool JKRCompArchive::open(s32 entryNum) {
                     else {
                         // arcHeader + 1 should lead to 0x20, which is the data after the header
                         JKRHeap::copyMemory((u8 *)mArcInfoBlock, arcHeader + 1, (arcHeader->file_data_offset + mSizeOfMemPart));
-                        field_0x64 = (u32)mArcInfoBlock + arcHeader->file_data_offset;
+                        field_0x64 = (uintptr_t)mArcInfoBlock + arcHeader->file_data_offset;
                         if (mSizeOfAramPart != 0) {
                             mAramPart = (JKRAramBlock*)JKRAllocFromAram(mSizeOfAramPart, JKRAramHeap::HEAD);
                             if(mAramPart == NULL) {
@@ -169,9 +170,9 @@ bool JKRCompArchive::open(s32 entryNum) {
                     }
                 }
             }
-            mNodes = (SDIDirEntry *)((u32)mArcInfoBlock + mArcInfoBlock->node_offset);
-            mFiles = (SDIFileEntry *)((u32)mArcInfoBlock + mArcInfoBlock->file_entry_offset);
-            mStringTable = (char *)((u32)mArcInfoBlock + mArcInfoBlock->string_table_offset);
+            mNodes = (SDIDirEntry *)((uintptr_t)mArcInfoBlock + mArcInfoBlock->node_offset);
+            mFiles = (SDIFileEntry *)((uintptr_t)mArcInfoBlock + mArcInfoBlock->file_entry_offset);
+            mStringTable = (char *)((uintptr_t)mArcInfoBlock + mArcInfoBlock->string_table_offset);
             field_0x6c = arcHeader->header_length + arcHeader->file_data_offset;
             break;
         }
@@ -374,7 +375,7 @@ u32 JKRCompArchive::getExpandedResSize(const void *resource) const
     }
 
     u8 buf[64];
-    u8 *bufPtr = (u8 *)ALIGN_NEXT((u32)buf, 32);
+    u8 *bufPtr = (u8 *)ALIGN_NEXT((uintptr_t)buf, 32);
     if ((flags & 0x20) != 0) {
         u32 addr = mAramPart->mAddress;
         addr = fileEntry->data_offset + addr;

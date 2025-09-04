@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <dolphin.h>
+#include <stdint.h>
 
 /* 803CC620-803CC640 029740 0020+00 3/3 0/0 0/0 .data            sMessageQueue__12JUTException */
 OSMessageQueue JUTException::sMessageQueue = {0};
@@ -191,7 +192,7 @@ void JUTException::panic_f_va(char const* file, int line, char const* format, va
 
     OSContext* current_context = OSGetCurrentContext();
     memcpy(&context, current_context, sizeof(OSContext));
-    sErrorManager->mStackPointer = (u32)OSGetStackPointer();
+    sErrorManager->mStackPointer = (uintptr_t)OSGetStackPointer();
 
     exCallbackObject.callback = sPreUserCallback;
     exCallbackObject.error = 0xFF;
@@ -468,10 +469,10 @@ bool JUTException::showMapInfo_subroutine(u32 address, bool begin_with_newline) 
         if (result == true) {
             result =
                 queryMapAddress((char*)name_part, section_offset, section_id, &out_addr, &out_size,
-                                out_line, ARRAY_SIZE(out_line), true, begin_with_newline);
+                                out_line, ARRAY_SIZEU(out_line), true, begin_with_newline);
         } else {
             result = queryMapAddress(NULL, address, -1, &out_addr, &out_size, out_line,
-                                     ARRAY_SIZE(out_line), true, begin_with_newline);
+                                     ARRAY_SIZEU(out_line), true, begin_with_newline);
         }
 
         if (result == true) {
@@ -826,7 +827,7 @@ void JUTException::createFB() {
     u32 pixel_count = width * height;
     u32 size = pixel_count * 2;
 
-    void* begin = (void*)ALIGN_PREV((u32)end - size, 32);
+    void* begin = (void*)ALIGN_PREV((uintptr_t)end - size, 32);
     void* object = (void*)ALIGN_PREV((s32)begin - sizeof(JUTExternalFB), 32);
     new (object) JUTExternalFB(renderMode, GX_GM_1_7, begin, size);
 
@@ -934,7 +935,7 @@ bool JUTException::queryMapAddress_single(char* mapPath, u32 address, s32 sectio
 			char* src;
 			char* dst;
 
-			if (file.fgets(buffer, ARRAY_SIZE(buffer)) < 0)
+			if (file.fgets(buffer, ARRAY_SIZEU(buffer)) < 0)
 				break;
 			if (buffer[0] != '.')
 				continue;
@@ -968,7 +969,7 @@ bool JUTException::queryMapAddress_single(char* mapPath, u32 address, s32 sectio
 		int length;
 
 		while (true) {
-			if ((length = file.fgets(buffer, ARRAY_SIZE(buffer))) <= 4)
+			if ((length = file.fgets(buffer, ARRAY_SIZEU(buffer))) <= 4)
 				break;
 			if ((length < 28))
 				continue;

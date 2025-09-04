@@ -127,7 +127,7 @@ void daAlink_c::setIronBallModel() {
 
     mDoExt_setCurrentHeap(prev_heap);
 
-    mpHookChain->setUserArea((u32)this);
+    mpHookChain->setUserArea((uintptr_t)this);
 
     field_0xFB8.SetAtType(AT_TYPE_IRON_BALL);
     field_0xFB8.SetAtHitMark(3);

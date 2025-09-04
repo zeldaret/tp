@@ -194,18 +194,18 @@ void* cBgS::ConvDzb(void* p_dzb) {
     }
 
     if (pbgd->m_v_tbl != 0) {
-        pbgd->m_v_tbl += (u32)p_dzb;
+        pbgd->m_v_tbl += (uintptr_t)p_dzb;
     }
 
-    pbgd->m_t_tbl += (u32)p_dzb;
-    pbgd->m_b_tbl += (u32)p_dzb;
-    pbgd->m_tree_tbl += (u32)p_dzb;
-    pbgd->m_g_tbl += (u32)p_dzb;
-    pbgd->m_ti_tbl += (u32)p_dzb;
+    pbgd->m_t_tbl += (uintptr_t)p_dzb;
+    pbgd->m_b_tbl += (uintptr_t)p_dzb;
+    pbgd->m_tree_tbl += (uintptr_t)p_dzb;
+    pbgd->m_g_tbl += (uintptr_t)p_dzb;
+    pbgd->m_ti_tbl += (uintptr_t)p_dzb;
 
     for (int i = 0; i < pbgd->m_g_num; i++) {
         ((cBgD_Grp_t_*)pbgd->m_g_tbl)[i].strOffset =
-            (u32)p_dzb + ((cBgD_Grp_t_*)pbgd->m_g_tbl)[i].strOffset;
+            (uintptr_t)p_dzb + ((cBgD_Grp_t_*)pbgd->m_g_tbl)[i].strOffset;
     }
 
     return p_dzb;

@@ -7,6 +7,7 @@
 #include "math.h"
 #include "string.h"
 #include "global.h"
+#include <stdint.h>
 
 /* 802D7BF0-802D7C98 2D2530 00A8+00 0/0 1/1 0/0 .text
  * __ct__13JKRDvdArchiveFlQ210JKRArchive15EMountDirection       */
@@ -233,7 +234,7 @@ u32 JKRDvdArchive::fetchResource_subroutine(s32 entryNum, u32 offset, u32 size, 
             // The dst pointer to JKRDvdToMainRam should be aligned to 32 bytes. This will align
             // arcHeader to 32 bytes on the stack.
             char arcHeaderBuffer[64];
-            u8* arcHeader = (u8*)ALIGN_NEXT((u32)arcHeaderBuffer, 0x20);
+            u8* arcHeader = (u8*)ALIGN_NEXT((uintptr_t)arcHeaderBuffer, 0x20);
             JKRDvdToMainRam(entryNum, arcHeader, EXPAND_SWITCH_UNKNOWN2, sizeof(SArcHeader),
                             NULL, JKRDvdRipper::ALLOC_DIRECTION_FORWARD, offset, NULL, NULL);
             DCInvalidateRange(arcHeader, sizeof(SArcHeader));
@@ -300,7 +301,7 @@ u32 JKRDvdArchive::fetchResource_subroutine(s32 entryNum, u32 offset, u32 size, 
             // The dst pointer to JKRDvdToMainRam should be aligned to 32 bytes. This will align
             // arcHeader to 32 bytes on the stack.
             char arcHeaderBuffer[64];
-            u8* arcHeader = (u8*)ALIGN_NEXT((u32)arcHeaderBuffer, 0x20);
+            u8* arcHeader = (u8*)ALIGN_NEXT((uintptr_t)arcHeaderBuffer, 0x20);
             JKRDvdToMainRam(entryNum, arcHeader, EXPAND_SWITCH_UNKNOWN2, sizeof(SArcHeader),
                             NULL, JKRDvdRipper::ALLOC_DIRECTION_FORWARD, offset, NULL, NULL);
             DCInvalidateRange(arcHeader, sizeof(SArcHeader));
@@ -364,7 +365,7 @@ u32 JKRDvdArchive::getExpandedResSize(const void* resource) const {
     // The dst pointer to JKRDvdToMainRam should be aligned to 32 bytes. This will align arcHeader
     // to 32 bytes on the stack.
     char buffer[64];
-    u8* arcHeader = (u8*)ALIGN_NEXT((u32)buffer, 0x20);
+    u8* arcHeader = (u8*)ALIGN_NEXT((uintptr_t)buffer, 0x20);
     JKRDvdToMainRam(mEntryNum, arcHeader, EXPAND_SWITCH_UNKNOWN2, sizeof(SArcHeader), NULL,
                     JKRDvdRipper::ALLOC_DIRECTION_FORWARD,
                     mDataOffset + fileEntry->data_offset, NULL, NULL);

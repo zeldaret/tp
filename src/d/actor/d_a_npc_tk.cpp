@@ -3245,7 +3245,7 @@ int daNPC_TK_c::CreateHeap() {
     }
 
     J3DModel* model = mpMorf->getModel();
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
 
     for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
         if (i != 0) {

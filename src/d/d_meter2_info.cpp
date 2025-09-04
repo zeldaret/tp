@@ -1473,11 +1473,11 @@ bool dMeter2Info_getPixel(f32 i_posX, f32 i_posY, f32 param_2, f32 param_3, f32 
     JUT_ASSERT(3065, s < i_resTimg->width && t < i_resTimg->height);
 
     u32 sp1C = (t & ~3) * ((timg_width + 7) & ~7) + ((s & ~7) * 4 + (s & 7)) + (t & 3) * 8;
-    u8* pixel = (u8*)((u32)i_resTimg + (i_resTimg->imageOffset + sp1C));
+    u8* pixel = (u8*)((uintptr_t)i_resTimg + (i_resTimg->imageOffset + sp1C));
 
     JUT_ASSERT(3074, *pixel < i_resTimg->numColors);
 
-    u16* palette_p = (u16*)((u32)i_resTimg + i_resTimg->paletteOffset);
+    u16* palette_p = (u16*)((uintptr_t)i_resTimg + i_resTimg->paletteOffset);
     u16 var_r24 = (u16)palette_p[*pixel];
     if (var_r24 & 0x8000) {
         return 1;

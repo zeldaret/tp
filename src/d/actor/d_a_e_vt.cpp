@@ -3747,7 +3747,7 @@ int daE_VA_c::CreateHeap() {
     }
 
     J3DModel* model = mpMorf->getModel();
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
 
     for (u16 i = 1; i < model->getModelData()->getJointNum(); i++) {
         if (i == 11 || i == 12 || i == 13 || i == 14 || i == 27 || i == 33 || i == 34) {
@@ -3786,7 +3786,7 @@ int daE_VA_c::CreateHeap() {
     }
 
     model = mpEndEfMorf->getModel();
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
 
     for (u16 i = 1; i < model->getModelData()->getJointNum(); i++) {
         if (i == 11 || i == 12 || i == 13 || i == 14 || i == 27 || i == 33 || i == 34) {

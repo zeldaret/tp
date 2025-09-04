@@ -2502,7 +2502,7 @@ int daE_DT_c::CreateHeap() {
         return 0;
     }
     J3DModel* model = mpMorf->getModel();
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
     for (u16 i = 1; i < model->getModelData()->getJointNum(); i++) {
         model->getModelData()->getJointNodePointer(i)->setCallBack(JointCallBack);
     }
@@ -2518,7 +2518,7 @@ int daE_DT_c::CreateHeap() {
     if (mpSpitModel == NULL) {
         return 0;
     }
-    mpSpitModel->setUserArea((u32)this);
+    mpSpitModel->setUserArea((uintptr_t)this);
     for (u16 i = 1; i < mpSpitModel->getModelData()->getJointNum(); i++) {
         mpSpitModel->getModelData()->getJointNodePointer(i)->setCallBack(JointCallBackTuba);
     }

@@ -415,7 +415,7 @@ static void my_PrintHeap(char const* heapName, u32 heapSize) {
 /* 8000BCF8-8000BD44 006638 004C+00 1/1 0/0 0/0 .text            my_SysPrintHeap__FPCcPvUl */
 void my_SysPrintHeap(char const* message, void* start, u32 size) {
     OSReport_System("\x1b[32m%-24s = %08x-%08x size=%d KB\n\x1b[m", message, start,
-                    (u32)start + size, size / 1024);
+                    (uintptr_t)start + size, size / 1024);
 }
 
 #if VERSION != VERSION_GCN_PAL
@@ -552,15 +552,15 @@ int mDoMch_Create() {
     JFWSystem::setMaxStdHeap(1);
 
     #ifndef DEBUG
-    u32 arenaHi = (u32)OSGetArenaHi();
-    u32 arenaLo =(u32)OSGetArenaLo();
+    uintptr_t arenaHi = (uintptr_t)OSGetArenaHi();
+    uintptr_t arenaLo = (uintptr_t)OSGetArenaLo();
 
     if (arenaHi > 0x81800000 && arenaHi - 0x1800000 > arenaLo) {
         OSSetArenaHi((void*)(arenaHi - 0x1800000));
     }
     #endif
 
-    u32 arenaSize = ((u32)OSGetArenaHi() - (u32)OSGetArenaLo()) - 0xF0;
+    u32 arenaSize = ((uintptr_t)OSGetArenaHi() - (uintptr_t)OSGetArenaLo()) - 0xF0;
     my_PrintHeap("アリーナ", arenaSize);
 
     if (mDoMain::memMargin != -1) {

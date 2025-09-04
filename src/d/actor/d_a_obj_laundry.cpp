@@ -221,7 +221,7 @@ int daObjLdy_c::createHeap() {
         J3DJoint* joint = mpModel->getModelData()->getJointNodePointer(i);
         if (joint != NULL) {
             joint->setCallBack(nodeCallBack);
-            mpModel->setUserArea((u32)this);
+            mpModel->setUserArea((uintptr_t)this);
         }
     }
 

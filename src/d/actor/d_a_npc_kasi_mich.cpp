@@ -276,7 +276,7 @@ int daNpcKasiMich_c::CreateHeap() {
     for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
 
     setMotion(MOT_W_WAIT_A, -1.0f, 0);
 

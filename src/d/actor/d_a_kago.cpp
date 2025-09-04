@@ -3804,7 +3804,7 @@ int daKago_c::CreateHeap() {
     }
 
     J3DModel* model = mpMorf->getModel();
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
 
     for (u16 i = 1; i < model->getModelData()->getJointNum(); i++) {
         if (i == 3 || i == 5 || i == 6) {

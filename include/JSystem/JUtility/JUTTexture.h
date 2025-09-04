@@ -2,6 +2,7 @@
 #define JUTTEXTURE_H
 
 #include <dolphin/gx.h>
+#include <stdint.h>
 
 class JUTPalette;
 
@@ -24,7 +25,7 @@ struct ResTIMG {
     /* 0x08 */ u8 indexTexture;
     /* 0x09 */ u8 colorFormat;
     /* 0x0A */ u16 numColors;
-    /* 0x0C */ u32 paletteOffset;
+    /* 0x0C */ uintptr_t paletteOffset;
     /* 0x10 */ u8 mipmapEnabled;
     /* 0x11 */ u8 doEdgeLOD;
     /* 0x12 */ u8 biasClamp;
@@ -36,7 +37,7 @@ struct ResTIMG {
     /* 0x18 */ u8 mipmapCount;
     /* 0x19 */ u8 unknown;
     /* 0x1A */ s16 LODBias;
-    /* 0x1C */ u32 imageOffset;
+    /* 0x1C */ uintptr_t imageOffset;
 };  // Size: 0x20
 
 /**

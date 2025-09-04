@@ -715,7 +715,7 @@ static f32 dummy_literal() {
  */
 void daNpcT_JntAnm_c::initialize() {
     mActrMngr.initialize();
-    memset(&mAttnPos, 0, (u32)&field_0x158 - (u32)&mAttnPos);
+    memset(&mAttnPos, 0, (uintptr_t)&field_0x158 - (uintptr_t)&mAttnPos);
 }
 
 /* 80146CD8-80147858 141618 0B80+00 1/0 0/0 52/52 .text
@@ -1610,7 +1610,7 @@ void daNpcT_c::setMtx() {
     mDoMtx_stack_c::scaleM(scale);
 
     model->setBaseTRMtx(mDoMtx_stack_c::get());
-    model->setUserArea((u32)this);
+    model->setUserArea((uintptr_t)this);
 
     mpMorf[0]->onMorfNone();
     if (cM3d_IsZero(field_0xdfc) != FALSE) {
@@ -1986,7 +1986,7 @@ void daNpcT_c::evtChange() {
 void daNpcT_c::clrParam() {
     field_0xd7e = mCurAngle;
     mCutType = 0;
-    memset(&mEvtNo, 0, (u32)&field_0xe38 - (u32)&mEvtNo);
+    memset(&mEvtNo, 0, (uintptr_t)&field_0xe38 - (uintptr_t)&mEvtNo);
     mJntAnm.clrDirectFlag();
 }
 

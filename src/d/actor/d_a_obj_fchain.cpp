@@ -42,7 +42,7 @@ int daObjFchain_c::create() {
             return cPhs_ERROR_e;
         }
         tevStr.room_no = dComIfGp_roomControl_getStayNo();
-        mShape.setUserArea((u32)this);
+        mShape.setUserArea((uintptr_t)this);
         current.pos.y += 3.0f;
         s16 local_58 = shape_angle.y;
         cXyz* local_44 = &current.pos;

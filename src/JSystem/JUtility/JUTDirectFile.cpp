@@ -6,6 +6,7 @@
 #include "JSystem/JUtility/JUTDirectFile.h"
 #include <dolphin/os.h>
 #include "global.h"
+#include <stdint.h>
 
 //
 // Forward References:
@@ -47,7 +48,7 @@ JUTDirectFile::JUTDirectFile() {
 	mLength      = 0;
 	mPos         = 0;
 	mToRead      = 0;
-	mSectorStart = (u8*)ALIGN_NEXT((u32)mBuffer, DVD_MIN_TRANSFER_SIZE);
+	mSectorStart = (u8*)ALIGN_NEXT((uintptr_t)mBuffer, DVD_MIN_TRANSFER_SIZE);
 	mIsOpen      = false;
 }
 

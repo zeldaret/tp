@@ -784,11 +784,11 @@ static int cCc_Init() {
     JKRHeap* prev = heap->becomeCurrentHeap();
 
     memset(&DMC, 0, sizeof(DMC));
-    for (int i = 0; i < ARRAY_SIZE(DynamicNameTable); i++) {
+    for (int i = 0; i < ARRAY_SIZEU(DynamicNameTable); i++) {
         const DynamicNameTableEntry* d = &DynamicNameTable[i];
 
         if (d->name != NULL) {
-            for (int j = 0; j < ARRAY_SIZE(DMC); j++) {
+            for (int j = 0; j < ARRAY_SIZEU(DMC); j++) {
                 if (DMC[j] != NULL) {
                     if (!strcmp(d->name, DMC[j]->getModuleName())) {
                         DMC[d->mKey] = DMC[j];
@@ -834,7 +834,7 @@ int cDyl_LinkASync(s16 i_ProfName) {
         return cPhs_INIT_e;
     }
 
-    if (i_ProfName >= ARRAY_SIZE(DMC)) {
+    if (i_ProfName >= ARRAY_SIZEU(DMC)) {
         OSReport_Error("cDyl_Link i_ProfName=%d\n", i_ProfName);
         return cPhs_ERROR_e;
     }

@@ -216,7 +216,7 @@ inline int daObjFlag_c::createHeap() {
             J3DJoint* nodePtr = (J3DJoint*)(mpModel1->getModelData()->getJointNodePointer(i));
             if (nodePtr != NULL) {
                 nodePtr->setCallBack(nodeCallBack);
-                mpModel1->setUserArea((u32)this);
+                mpModel1->setUserArea((uintptr_t)this);
             }
         }
     }

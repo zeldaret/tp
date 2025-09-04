@@ -3,6 +3,7 @@
 
 #include "JSystem/J3DGraphBase/J3DTransform.h"
 #include "JSystem/J3DGraphBase/J3DSys.h"
+#include "JSystem/J3DGraphBase/J3DMaterial.h"
 
 class J3DAnmTransform;
 class J3DJoint;
@@ -29,7 +30,7 @@ public:
 
     static J3DMtxBuffer* getMtxBuffer() { return mMtxBuffer; }
     static J3DJoint* getJoint() {
-        J3D_ASSERT(185, mJoint != NULL, "Error : null pointer.")
+        J3D_ASSERT_NULLPTR(185, mJoint != NULL)
         return mJoint;
     }
     static void setJoint(J3DJoint* joint) { mJoint = joint; }
@@ -51,7 +52,17 @@ public:
     /* 8032F254 */ void entryIn();
     /* 8032F3F8 */ void recursiveCalc();
 
+    u32 getType() const { return 'NJNT'; }
+
     J3DMaterial* getMesh() { return mMesh; }
+    void addMesh(J3DMaterial* pMesh) {
+        if (mMesh != NULL) {
+            pMesh->setNext(mMesh);
+        }
+
+        mMesh = pMesh;
+    }
+
     u16 getJntNo() const { return mJntNo; }
     u8 getScaleCompensate() const { return mScaleCompensate; }
     J3DJoint* getYounger() { return mYounger; }
@@ -67,13 +78,13 @@ public:
     J3DMtxCalc* getMtxCalc() { return mMtxCalc; }
     J3DMtxCalc* getCurrentMtxCalc() { return mCurrentMtxCalc; };
     J3DJoint* getChild() { return mChild; }
-    u8 getMtxType() { return (mKind & 0xf0) >> 4; }
+    u8 getMtxType() const { return (mKind & 0xf0) >> 4; }
     void setMtxType(u8 type) { mKind = (mKind & ~0xf0) | (type << 4); }
     f32 getRadius() const { return mBoundingSphereRadius; }
 
     static J3DMtxCalc* mCurrentMtxCalc;
 
-    inline u8 getKind() { return mKind & 15; }
+    u8 getKind() { return mKind & 15; }
 
 private:
     friend struct J3DJointFactory;

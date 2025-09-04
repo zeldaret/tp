@@ -82,7 +82,7 @@ int daTreeSh_c::Create() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 4);
     modelData->getJointNodePointer(1)->setCallBack(nodeCallBack);
     modelData->getJointNodePointer(2)->setCallBack(nodeCallBack);
-    mpModel->setUserArea((u32)this);
+    mpModel->setUserArea((uintptr_t)this);
     return 1;
 }
 

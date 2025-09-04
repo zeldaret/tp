@@ -3074,7 +3074,7 @@ int daCow_c::CreateHeap() {
         return cPhs_INIT_e;
     }
 
-    mpMorf->getModel()->setUserArea((u32)this);
+    mpMorf->getModel()->setUserArea((uintptr_t)this);
 
     for (u16 iJoint = 0; iJoint < modelData->getJointNum(); iJoint++) {
         if (iJoint == 1 || iJoint == 8 || iJoint == 0) {

@@ -442,7 +442,7 @@ void dMpath_c::createWork() {
  * setPointer__8dMpath_cFPQ211dDrawPath_c10room_classPScPSc     */
 int dMpath_c::setPointer(dDrawPath_c::room_class* i_room, s8* param_1, s8* param_2) {
     int var_r6 = 0;
-    if ((u32)i_room->mpFloor >= 0x80000000) {
+    if ((uintptr_t)i_room->mpFloor >= 0x80000000) {
         dDrawPath_c::floor_class* floor_p = i_room->mpFloor;
         for (int i = 0; i < i_room->mFloorNum; i++) {
             if (floor_p->mFloorNo < *param_1) {
@@ -461,39 +461,39 @@ int dMpath_c::setPointer(dDrawPath_c::room_class* i_room, s8* param_1, s8* param
 
         if (group_e->mPolyNum != 0) {
             dDrawPath_c::poly_class* poly_e = &group_e->mpPoly[group_e->mPolyNum - 1];
-            return (u32)(poly_e->mpData + poly_e->mDataNum) - (u32)i_room;
+            return (uintptr_t)(poly_e->mpData + poly_e->mDataNum) - (uintptr_t)i_room;
         }
 
         dDrawPath_c::line_class* line_e = &group_e->mpLine[group_e->mLineNum - 1];
-        return (u32)(line_e->mpData + line_e->mDataNum) - (u32)i_room;
+        return (uintptr_t)(line_e->mpData + line_e->mDataNum) - (uintptr_t)i_room;
     }
     
-    i_room->mpFloor = (dDrawPath_c::floor_class*)((u32)i_room + (u32)i_room->mpFloor);
-    i_room->mpFloatData = (f32*)((u32)i_room + (u32)i_room->mpFloatData);
+    i_room->mpFloor = (dDrawPath_c::floor_class*)((uintptr_t)i_room + (uintptr_t)i_room->mpFloor);
+    i_room->mpFloatData = (f32*)((uintptr_t)i_room + (uintptr_t)i_room->mpFloatData);
 
     dDrawPath_c::floor_class* floor_p = i_room->mpFloor;
     int room = (int)i_room;
     for (int i = 0; i < i_room->mFloorNum; i++) {
-        floor_p->mpGroup = (dDrawPath_c::group_class*)(room + (u32)floor_p->mpGroup);
+        floor_p->mpGroup = (dDrawPath_c::group_class*)(room + (uintptr_t)floor_p->mpGroup);
 
         dDrawPath_c::group_class* group_p = floor_p->mpGroup;
         for (int j = 0; j < floor_p->mGroupNum; j++) {
-            var_r6 = (u32)group_p->mpPoly;
-            group_p->mpLine = (dDrawPath_c::line_class*)(room + (u32)group_p->mpLine);
+            var_r6 = (uintptr_t)group_p->mpPoly;
+            group_p->mpLine = (dDrawPath_c::line_class*)(room + (uintptr_t)group_p->mpLine);
 
             dDrawPath_c::line_class* line_p = group_p->mpLine;
             for (int k = 0; k < group_p->mLineNum; k++) {
-                var_r6 = (u32)(line_p->mpData + line_p->mDataNum);
-                line_p->mpData = (u16*)(room + (u32)line_p->mpData);
+                var_r6 = (uintptr_t)(line_p->mpData + line_p->mDataNum);
+                line_p->mpData = (u16*)(room + (uintptr_t)line_p->mpData);
                 line_p++;
             }
 
-            group_p->mpPoly = (dDrawPath_c::poly_class*)(room + (u32)group_p->mpPoly);
+            group_p->mpPoly = (dDrawPath_c::poly_class*)(room + (uintptr_t)group_p->mpPoly);
             
             dDrawPath_c::poly_class* poly_p = group_p->mpPoly;
             for (int l = 0; l < group_p->mPolyNum; l++) {
-                var_r6 = (u32)(poly_p->mpData + poly_p->mDataNum);
-                poly_p->mpData = (u16*)(room + (u32)poly_p->mpData);
+                var_r6 = (uintptr_t)(poly_p->mpData + poly_p->mDataNum);
+                poly_p->mpData = (u16*)(room + (uintptr_t)poly_p->mpData);
                 poly_p++;
             }
 

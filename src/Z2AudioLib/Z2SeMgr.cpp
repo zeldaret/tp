@@ -694,7 +694,7 @@ bool Z2SeMgr::seStartLevel(JAISoundID i_soundID, Vec const* i_pos, u32 param_2, 
             Z2GetAudience()->calcOffMicSound(i_volume);
         }
 
-        (*handle)->setUserData((u32)i_pos);
+        (*handle)->setUserData((uintptr_t)i_pos);
 
         if (ret) {
             (*handle)->setLifeTime(1, false);

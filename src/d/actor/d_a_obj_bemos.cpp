@@ -602,7 +602,7 @@ int daObjBm_c::Create() {
         }
     }
 
-    mpModel->setUserArea((u32)this);
+    mpModel->setUserArea((uintptr_t)this);
     JUTNameTab* material_name = mpModel->getModelData()->getMaterialTable().getMaterialName();
 
     u32 uVar12 = 0;

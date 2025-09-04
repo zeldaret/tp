@@ -180,7 +180,7 @@ static void dKyw_drawSun(int i_type) {
 
 /* 8005710C-80057130 051A4C 0024+00 1/1 0/0 0/0 .text            dKyw_Sun_Draw__Fv */
 static void dKyw_Sun_Draw() {
-    dKyw_drawSun(J3DSys_XLU_BUFFER_e);
+    dKyw_drawSun(J3DSysDrawBuf_Xlu);
 }
 
 /* 80057130-80057174 051A70 0044+00 1/1 0/0 0/0 .text            dKyw_drawSunlenz__Fi */
@@ -194,7 +194,7 @@ static void dKyw_drawSunlenz(int i_type) {
 
 /* 80057174-80057198 051AB4 0024+00 1/1 0/0 0/0 .text            dKyw_Sunlenz_Draw__Fv */
 static void dKyw_Sunlenz_Draw() {
-    dKyw_drawSunlenz(J3DSys_XLU_BUFFER_e);
+    dKyw_drawSunlenz(J3DSysDrawBuf_Xlu);
 }
 
 /* 80057198-800571C8 051AD8 0030+00 1/1 0/0 0/0 .text            dKyw_drawRain__Fi */
@@ -204,7 +204,7 @@ static void dKyw_drawRain(int i_type) {
 
 /* 800571C8-800571EC 051B08 0024+00 1/1 0/0 0/0 .text            dKyw_Rain_Draw__Fv */
 static void dKyw_Rain_Draw() {
-    dKyw_drawRain(J3DSys_XLU_BUFFER_e);
+    dKyw_drawRain(J3DSysDrawBuf_Xlu);
 }
 
 /* 800571EC-8005721C 051B2C 0030+00 1/1 0/0 0/0 .text            dKyw_drawSnow__Fi */
@@ -214,7 +214,7 @@ static void dKyw_drawSnow(int i_type) {
 
 /* 8005721C-80057240 051B5C 0024+00 1/1 0/0 0/0 .text            dKyw_Snow_Draw__Fv */
 static void dKyw_Snow_Draw() {
-    dKyw_drawSnow(J3DSys_XLU_BUFFER_e);
+    dKyw_drawSnow(J3DSysDrawBuf_Xlu);
 }
 
 /* 80057240-80057270 051B80 0030+00 1/1 0/0 0/0 .text            dKyw_drawStar__Fi */
@@ -224,7 +224,7 @@ static void dKyw_drawStar(int i_type) {
 
 /* 80057270-80057294 051BB0 0024+00 1/1 0/0 0/0 .text            dKyw_Star_Draw__Fv */
 static void dKyw_Star_Draw() {
-    dKyw_drawStar(J3DSys_XLU_BUFFER_e);
+    dKyw_drawStar(J3DSysDrawBuf_Xlu);
 }
 
 /* 80057294-800572C4 051BD4 0030+00 1/1 0/0 0/0 .text            dKyw_drawHousi__Fi */
@@ -234,7 +234,7 @@ static void dKyw_drawHousi(int i_type) {
 
 /* 800572C4-800572E8 051C04 0024+00 1/1 0/0 0/0 .text            dKyw_Housi_Draw__Fv */
 static void dKyw_Housi_Draw() {
-    dKyw_drawHousi(J3DSys_XLU_BUFFER_e);
+    dKyw_drawHousi(J3DSysDrawBuf_Xlu);
 }
 
 /* 800572E8-80057318 051C28 0030+00 1/1 0/0 0/0 .text            dKyw_drawCloud__Fi */
@@ -244,7 +244,7 @@ static void dKyw_drawCloud(int i_type) {
 
 /* 80057318-8005733C 051C58 0024+00 1/1 0/0 0/0 .text            dKyw_Cloud_Draw__Fv */
 static void dKyw_Cloud_Draw() {
-    dKyw_drawCloud(J3DSys_XLU_BUFFER_e);
+    dKyw_drawCloud(J3DSysDrawBuf_Xlu);
 }
 
 /* 8005733C-8005736C 051C7C 0030+00 1/1 0/0 0/0 .text            dKyw_drawVrkumo__Fi */
@@ -254,7 +254,7 @@ static void dKyw_drawVrkumo(int i_type) {
 
 /* 8005736C-80057390 051CAC 0024+00 1/1 0/0 0/0 .text            dKyw_Vrkumo_Draw__Fv */
 static void dKyw_Vrkumo_Draw() {
-    dKyw_drawVrkumo(J3DSys_XLU_BUFFER_e);
+    dKyw_drawVrkumo(J3DSysDrawBuf_Xlu);
 }
 
 /* 80057390-800573C0 051CD0 0030+00 1/1 0/0 0/0 .text            dKyw_shstar_packet__Fi */
@@ -264,7 +264,7 @@ static void dKyw_shstar_packet(int i_type) {
 
 /* 800573C0-800573E4 051D00 0024+00 1/1 0/0 0/0 .text            dKyw_shstar_Draw__Fv */
 static void dKyw_shstar_Draw() {
-    dKyw_shstar_packet(J3DSys_XLU_BUFFER_e);
+    dKyw_shstar_packet(J3DSysDrawBuf_Xlu);
 }
 
 /* 800573E4-80057414 051D24 0030+00 1/1 0/0 0/0 .text            dKyw_odour_packet__Fi */
@@ -274,7 +274,7 @@ static void dKyw_odour_packet(int i_type) {
 
 /* 80057414-80057438 051D54 0024+00 1/1 0/0 0/0 .text            dKyw_Odour_Draw__Fv */
 static void dKyw_Odour_Draw() {
-    dKyw_odour_packet(J3DSys_XLU_BUFFER_e);
+    dKyw_odour_packet(J3DSysDrawBuf_Xlu);
 }
 
 /* 80057438-80057468 051D78 0030+00 1/1 0/0 0/0 .text            dKyw_mud_packet__Fi */
@@ -284,7 +284,7 @@ static void dKyw_mud_packet(int i_type) {
 
 /* 80057468-8005748C 051DA8 0024+00 1/1 0/0 0/0 .text            dKyw_mud_Draw__Fv */
 static void dKyw_mud_Draw() {
-    dKyw_mud_packet(J3DSys_XLU_BUFFER_e);
+    dKyw_mud_packet(J3DSysDrawBuf_Xlu);
 }
 
 /* 8005748C-800574BC 051DCC 0030+00 1/1 0/0 0/0 .text            dKyw_evil_packet__Fi */
@@ -294,7 +294,7 @@ static void dKyw_evil_packet(int i_type) {
 
 /* 800574BC-800574E0 051DFC 0024+00 1/1 0/0 0/0 .text            dKyw_evil_Draw__Fv */
 static void dKyw_evil_Draw() {
-    dKyw_evil_packet(J3DSys_XLU_BUFFER_e);
+    dKyw_evil_packet(J3DSysDrawBuf_Xlu);
 }
 
 /* 800574E0-800579EC 051E20 050C+00 0/0 1/1 0/0 .text            dKyw_wether_init__Fv */
@@ -1515,7 +1515,7 @@ static void pntwind_get_info(cXyz* param_0, cXyz* i_dir, f32* i_power, u8 param_
     *i_power = 0.0f;
 
     WIND_INFLUENCE* influence;
-    s32 influence_count = ARRAY_SIZE(g_env_light.pntwind);
+    s32 influence_count = ARRAY_SIZEU(g_env_light.pntwind);
     for (int i = 0; i < influence_count; i++) {
         influence = g_env_light.pntwind[i];
         if (influence != NULL && influence->field_0x29 == param_3) {
