@@ -97,6 +97,19 @@ public:
                                               NULL);
     }
 
+    BOOL changeActorControll() {
+        if (fopAcM_GetParam(this) == 2 || fopAcM_GetParam(this) == 1) {
+            fopAcM_SetParam(this, 6);
+            field_0x94e = -1;
+
+            return TRUE;
+        }
+
+        return FALSE;
+    }
+
+    void setModelMatrix(MtxP mtx) { mpModel->setBaseTRMtx(mtx); }
+
 private:
     /* 0x568 */ J3DModel* mpModel;
     /* 0x56C */ dBgS_ArrowLinChk field_0x56c;
