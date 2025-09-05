@@ -6,6 +6,7 @@
 #include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_obj_kshutter.h"
+#include "d/actor/d_a_player.h"
 #include "dol2asm.h"
 
 
@@ -133,148 +134,158 @@ extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
 extern "C" extern u8 struct_80C4A0E8[4];
 extern "C" extern u8 data_80C4A0EC[4];
 
-//
-// Declarations:
-//
-
 /* 80C47AB8-80C47B2C 000078 0074+00 1/1 0/0 0/0 .text            initBaseMtx__12daObjKshtr_cFv */
 void daObjKshtr_c::initBaseMtx() {
-    // NONMATCHING
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::YrotM(shape_angle.y);
+    MTXCopy(mDoMtx_stack_c::get(), mMtx);
+    mpModel->setBaseScale(scale);
+    setBaseMtx();
 }
 
 /* 80C47B2C-80C47C14 0000EC 00E8+00 2/2 0/0 0/0 .text            setBaseMtx__12daObjKshtr_cFv */
 void daObjKshtr_c::setBaseMtx() {
-    // NONMATCHING
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y + field_0x5fc, current.pos.z);
+
+    if (mType == 4) {
+        mDoMtx_stack_c::YrotM(shape_angle.y);
+    } else {
+        mDoMtx_stack_c::YrotM(shape_angle.y + 0x7FFF);
+    }
+
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
+    MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
+
+    if (mpBckAnm != NULL) {
+        mDoMtx_stack_c::copy(mpModel->getAnmMtx(0));
+        mDoMtx_stack_c::multVecZero(&field_0x608);
+    }
 }
 
-/* ############################################################################################## */
 /* 80C49CA8-80C49CBC 000000 0014+00 8/8 0/0 0/0 .rodata          l_bmd */
-SECTION_RODATA static u8 const l_bmd[20] = {
-    0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00,
-    0x00, 0x05, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x08,
+static int const l_bmd[5] = {
+    0x05, 0x05, 0x05, 0x05, 0x08,
 };
-COMPILER_STRIP_GATE(0x80C49CA8, &l_bmd);
 
 /* 80C49CBC-80C49CD0 000014 0014+00 1/1 0/0 0/0 .rodata          l_dzb */
-SECTION_RODATA static u8 const l_dzb[20] = {
-    0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00,
-    0x00, 0x08, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 0x00, 0x0B,
+static int const l_dzb[5] = {
+    0x08, 0x08, 0x08, 0x08, 0x0B,
 };
-COMPILER_STRIP_GATE(0x80C49CBC, &l_dzb);
 
 /* 80C49CD0-80C49CE4 000028 0014+00 1/1 0/0 0/0 .rodata          l_heap_size */
-SECTION_RODATA static u8 const l_heap_size[20] = {
-    0x00, 0x00, 0x13, 0x00, 0x00, 0x00, 0x13, 0x00, 0x00, 0x00,
-    0x13, 0x00, 0x00, 0x00, 0x13, 0x00, 0x00, 0x00, 0x20, 0xD0,
+static u32 const l_heap_size[5] = {
+    0x1300, 0x1300, 0x1300, 0x1300, 0x20D0,
 };
-COMPILER_STRIP_GATE(0x80C49CD0, &l_heap_size);
 
 /* 80C49CE4-80C49CFC 00003C 0018+00 0/1 0/0 0/0 .rodata          l_cull_box */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const l_cull_box[24] = {
-    0xC3, 0xE1, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC2, 0x48, 0x00, 0x00,
-    0x43, 0xE1, 0x00, 0x00, 0x44, 0x2F, 0x00, 0x00, 0x43, 0x16, 0x00, 0x00,
+static f32 const l_cull_box[6] = {
+    -450.0f, 0.0f, -50.0f, 450.0f, 700.0f, 150.0f,
 };
-COMPILER_STRIP_GATE(0x80C49CE4, &l_cull_box);
-#pragma pop
-
-/* 80C49CFC-80C49D00 000054 0004+00 2/8 0/0 0/0 .rodata          @3779 */
-SECTION_RODATA static u8 const lit_3779[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80C49CFC, &lit_3779);
-
-/* 80C49D00-80C49D04 000058 0004+00 0/1 0/0 0/0 .rodata          @3780 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3780 = 150.0f;
-COMPILER_STRIP_GATE(0x80C49D00, &lit_3780);
-#pragma pop
-
-/* 80C49D04-80C49D08 00005C 0004+00 0/2 0/0 0/0 .rodata          @3781 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3781 = -450.0f;
-COMPILER_STRIP_GATE(0x80C49D04, &lit_3781);
-#pragma pop
-
-/* 80C49D08-80C49D10 000060 0008+00 0/1 0/0 0/0 .rodata          @3783 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3783[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80C49D08, &lit_3783);
-#pragma pop
-
-/* 80C49D44-80C49D44 00009C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80C49D44 = "S_shut00";
-SECTION_DEAD static char const* const stringBase_80C49D4D = "Lv3shut00";
-SECTION_DEAD static char const* const stringBase_80C49D57 = "K_l3bdoor";
-SECTION_DEAD static char const* const stringBase_80C49D61 = "V_Shutter";
-SECTION_DEAD static char const* const stringBase_80C49D6B = "oj_DoorOpC.bck";
-SECTION_DEAD static char const* const stringBase_80C49D7A = "md_oj_DoorOpC.bck";
-SECTION_DEAD static char const* const stringBase_80C49D8C = "oj_DoorOpD.bck";
-SECTION_DEAD static char const* const stringBase_80C49D9B = "md_oj_DoorOpD.bck";
-SECTION_DEAD static char const* const stringBase_80C49DAD = "V_Shutter.bck";
-SECTION_DEAD static char const* const stringBase_80C49DBB = "KEY_JAIL_00";
-SECTION_DEAD static char const* const stringBase_80C49DC7 = "KEY_JAIL_WOLF_00";
-SECTION_DEAD static char const* const stringBase_80C49DD8 = "KEY_JAIL_01";
-SECTION_DEAD static char const* const stringBase_80C49DE4 = "KEY_JAIL_WOLF_01";
-SECTION_DEAD static char const* const stringBase_80C49DF5 = "DEFAULT_BS_SHUTTER_L3_F";
-#pragma pop
 
 /* 80C49E80-80C49E94 -00001 0014+00 3/4 0/0 0/0 .data            l_arcName */
-SECTION_DATA static void* l_arcName[5] = {
-    (void*)&d_a_obj_kshutter__stringBase0,
-    (void*)&d_a_obj_kshutter__stringBase0,
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0x9),
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0x13),
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0x1D),
+static char* l_arcName[5] = {
+    "S_shut00",
+    "S_shut00",
+    "Lv3shut00",
+    "K_l3bdoor",
+    "V_Shutter",
 };
 
 /* 80C49E94-80C49EBC -00001 0028+00 1/2 0/0 0/0 .data            l_anmName */
-SECTION_DATA static void* l_anmName[10] = {
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0x27),
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0x36),
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0x27),
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0x36),
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0x48),
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0x57),
-    (void*)NULL,
-    (void*)NULL,
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0x69),
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0x69),
+static char* l_anmName[10] = {
+    "oj_DoorOpC.bck",
+    "md_oj_DoorOpC.bck",
+    "oj_DoorOpC.bck",
+    "md_oj_DoorOpC.bck",
+    "oj_DoorOpD.bck",
+    "md_oj_DoorOpD.bck",
+    NULL,
+    NULL,
+    "V_Shutter.bck",
+    "V_Shutter.bck",
 };
 
 /* 80C49EBC-80C49EE4 -00001 0028+00 1/1 0/0 0/0 .data            l_eventName */
-SECTION_DATA static void* l_eventName[10] = {
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0x77),
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0x83),
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0x77),
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0x83),
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0x94),
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0xA0),
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0xB1),
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0xB1),
-    (void*)NULL,
-    (void*)NULL,
+static char* l_eventName[10] = {
+    "KEY_JAIL_00",
+    "KEY_JAIL_WOLF_00",
+    "KEY_JAIL_00",
+    "KEY_JAIL_WOLF_00",
+    "KEY_JAIL_01",
+    "KEY_JAIL_WOLF_01",
+    "DEFAULT_BS_SHUTTER_L3_F",
+    "DEFAULT_BS_SHUTTER_L3_F",
+    NULL,
+    NULL,
 };
 
 /* 80C47C14-80C47E54 0001D4 0240+00 1/0 0/0 0/0 .text            Create__12daObjKshtr_cFv */
-void daObjKshtr_c::Create() {
-    // NONMATCHING
+int daObjKshtr_c::Create() {
+    if (!fopAcM_isSwitch(this, mSwNo)) {
+        field_0x5ec = 0;
+        field_0x5fc = 0.0f;
+        attention_info.position.y += 150.0f;
+        eyePos.y += 150.0f;
+        attention_info.flags = 0x20;
+
+        if (field_0x5ed != 0) {
+            mAction = 0;
+        } else {
+            mAction = 0;
+        }
+
+        if (mpBckAnm != NULL) {
+            mpBckAnm->setFrame(0.0f);
+            mpBckAnm->setPlaySpeed(0.0f);
+        }
+    } else {
+        field_0x5ec = 1;
+
+        if ((s8)mType != 3) {
+            mpBckAnm->setFrame(mpBckAnm->getEndFrame());
+        } else {
+            field_0x5fc = -450.0f;
+        }
+
+        offDzb();
+
+        if (field_0x5ed != 0) {
+            mAction = 2;
+        } else {
+            mAction = 2;
+        }
+    }
+
+    if (mType == 4) {
+        fopAcM_OffStatus(this, fopAcM_STATUS_UNK_000100);
+    }
+
+    initBaseMtx();
+    fopAcM_SetMtx(this, mMtx);
+    fopAcM_setCullSizeBox(this, l_cull_box[0], l_cull_box[1], l_cull_box[2], l_cull_box[3], l_cull_box[4], l_cull_box[5]);
+
+    if (checkKey() == 1) {
+        eventInfo.setArchiveName(l_arcName[mType]);
+
+        for (int i = 0; i < 2; i++) {
+            field_0x5f0[i] = dComIfGp_getEventManager().getEventIdx(this, l_eventName[i + mType * 2], 0xFF);
+        }
+
+        mEvId = getEvId();
+    } else {
+        mEvId = getEvId();
+        field_0x5f0[0] = dComIfGp_getEventManager().getEventIdx(this, mEvId);
+        field_0x5f0[1] = -1;
+    }
+
+    return 1;
 }
 
 /* 80C47E54-80C47EA8 000414 0054+00 4/4 0/0 0/0 .text            offDzb__12daObjKshtr_cFv */
 void daObjKshtr_c::offDzb() {
-    // NONMATCHING
+    if (mpBgW != NULL && mpBgW->ChkUsed()) {
+        dComIfG_Bgsp().Release(mpBgW);
+    }
 }
 
 /* ############################################################################################## */
@@ -282,294 +293,181 @@ void daObjKshtr_c::offDzb() {
 SECTION_RODATA static f32 const lit_3842 = 1.0f;
 COMPILER_STRIP_GATE(0x80C49D10, &lit_3842);
 
-/* 80C49D44-80C49D44 00009C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80C49E0D = "DoorY00";
-SECTION_DEAD static char const* const stringBase_80C49E15 = "DoorT00";
-SECTION_DEAD static char const* const stringBase_80C49E1D = "WAIT";
-SECTION_DEAD static char const* const stringBase_80C49E22 = "ADJUSTMENT";
-SECTION_DEAD static char const* const stringBase_80C49E2D = "UNLOCK";
-SECTION_DEAD static char const* const stringBase_80C49E34 = "OPEN";
-SECTION_DEAD static char const* const stringBase_80C49E39 = "PLY_NODISP";
-SECTION_DEAD static char const* const stringBase_80C49E44 = "PLY_DISP";
-#pragma pop
-
 /* 80C49EE4-80C49EF8 -00001 0014+00 3/4 0/0 0/0 .data            l_anmArcName */
-SECTION_DATA static void* l_anmArcName[5] = {
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0xC9),
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0xC9),
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0xD1),
-    (void*)NULL,
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0x1D),
+static char* l_anmArcName[5] = {
+    "DoorY00",
+    "DoorY00",
+    "DoorT00",
+    NULL,
+    "V_Shutter",
 };
-
-/* 80C49EF8-80C49F04 -00001 000C+00 0/1 0/0 0/0 .data            @3932 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3932[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)phase_0__12daObjKshtr_cFv,
-};
-#pragma pop
-
-/* 80C49F04-80C49F10 -00001 000C+00 0/1 0/0 0/0 .data            @3933 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3933[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)phase_1__12daObjKshtr_cFv,
-};
-#pragma pop
-
-/* 80C49F10-80C49F1C -00001 000C+00 0/1 0/0 0/0 .data            @3934 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3934[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)phase_2__12daObjKshtr_cFv,
-};
-#pragma pop
 
 /* 80C49F1C-80C49F40 0000BC 0024+00 0/1 0/0 0/0 .data            l_ct_func$3931 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_ct_func[36] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static daObjKshtr_c::PhaseFunc l_ct_func[3] = {
+    &daObjKshtr_c::phase_0,
+    &daObjKshtr_c::phase_1,
+    &daObjKshtr_c::phase_2,
 };
-#pragma pop
-
-/* 80C49F40-80C49F4C -00001 000C+00 0/1 0/0 0/0 .data            @3942 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3942[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionWaitEvent__12daObjKshtr_cFv,
-};
-#pragma pop
-
-/* 80C49F4C-80C49F58 -00001 000C+00 0/1 0/0 0/0 .data            @3943 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3943[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionEvent__12daObjKshtr_cFv,
-};
-#pragma pop
-
-/* 80C49F58-80C49F64 -00001 000C+00 0/1 0/0 0/0 .data            @3944 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3944[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionDead__12daObjKshtr_cFv,
-};
-#pragma pop
 
 /* 80C49F64-80C49F88 000104 0024+00 0/1 0/0 0/0 .data            l_func$3941 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_func_3941[36] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static daObjKshtr_c::ActionFunc l_func_3941[3] = {
+    &daObjKshtr_c::actionWaitEvent,
+    &daObjKshtr_c::actionEvent,
+    &daObjKshtr_c::actionDead,
 };
-#pragma pop
-
-/* 80C49F88-80C49F94 -00001 000C+00 0/1 0/0 0/0 .data            @3952 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3952[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionWaitEvent2__12daObjKshtr_cFv,
-};
-#pragma pop
-
-/* 80C49F94-80C49FA0 -00001 000C+00 0/1 0/0 0/0 .data            @3953 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3953[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionEvent2__12daObjKshtr_cFv,
-};
-#pragma pop
-
-/* 80C49FA0-80C49FAC -00001 000C+00 0/1 0/0 0/0 .data            @3954 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3954[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionDead2__12daObjKshtr_cFv,
-};
-#pragma pop
-
-/* 80C49FAC-80C49FB8 -00001 000C+00 0/1 0/0 0/0 .data            @3955 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_3955[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)actionOpen__12daObjKshtr_cFv,
-};
-#pragma pop
 
 /* 80C49FB8-80C49FE8 000158 0030+00 0/1 0/0 0/0 .data            l_func$3951 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_func_3951[48] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static daObjKshtr_c::ActionFunc l_func_3951[4] = {
+    &daObjKshtr_c::actionWaitEvent2,
+    &daObjKshtr_c::actionEvent2,
+    &daObjKshtr_c::actionDead2,
+    &daObjKshtr_c::actionOpen,
 };
-#pragma pop
 
 /* 80C49FE8-80C4A000 -00001 0018+00 1/1 0/0 0/0 .data            action_table$4080 */
-SECTION_DATA static void* action_table[6] = {
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0xD9),
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0xDE),
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0xE9),
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0xF0),
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0xF5),
-    (void*)(((char*)&d_a_obj_kshutter__stringBase0) + 0x100),
+SECTION_DATA static char* action_table[6] = {
+    "WAIT",
+    "ADJUSTMENT",
+    "UNLOCK",
+    "OPEN",
+    "PLY_NODISP",
+    "PLY_DISP",
 };
-
-/* 80C4A000-80C4A00C -00001 000C+00 0/1 0/0 0/0 .data            @4363 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4363[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)demoJail1__12daObjKshtr_cFv,
-};
-#pragma pop
-
-/* 80C4A00C-80C4A018 -00001 000C+00 0/1 0/0 0/0 .data            @4364 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4364[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)demoJail2__12daObjKshtr_cFv,
-};
-#pragma pop
 
 /* 80C4A018-80C4A030 0001B8 0018+00 0/1 0/0 0/0 .data            l_demoProc$4362 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_demoProc[24] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+static daObjKshtr_c::DemoFunc l_demoProc[24] = {
+    &daObjKshtr_c::demoJail1,
+    &daObjKshtr_c::demoJail2,
 };
-#pragma pop
-
-/* 80C4A030-80C4A03C -00001 000C+00 0/1 0/0 0/0 .data            @4368 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4368[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)demoJail11__12daObjKshtr_cFv,
-};
-#pragma pop
-
-/* 80C4A03C-80C4A048 -00001 000C+00 0/1 0/0 0/0 .data            @4369 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4369[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)demoJail21__12daObjKshtr_cFv,
-};
-#pragma pop
 
 /* 80C4A048-80C4A060 0001E8 0018+00 0/1 0/0 0/0 .data            l_demoProc2$4367 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_demoProc2[24] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#pragma pop
-
-/* 80C4A060-80C4A080 -00001 0020+00 1/0 0/0 0/0 .data            daObjKshtr_METHODS */
-static actor_method_class daObjKshtr_METHODS = {
-    (process_method_func)daObjKshtr_create1st__FP12daObjKshtr_c,
-    (process_method_func)daObjKshtr_MoveBGDelete__FP12daObjKshtr_c,
-    (process_method_func)daObjKshtr_MoveBGExecute__FP12daObjKshtr_c,
-    0,
-    (process_method_func)daObjKshtr_MoveBGDraw__FP12daObjKshtr_c,
-};
-
-/* 80C4A080-80C4A0B0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Kshutter */
-extern actor_process_profile_definition g_profile_Obj_Kshutter = {
-  fpcLy_CURRENT_e,        // mLayerID
-  3,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_Obj_Kshutter,      // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(daObjKshtr_c),   // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  443,                    // mPriority
-  &daObjKshtr_METHODS,    // sub_method
-  0x00040100,             // mStatus
-  fopAc_ACTOR_e,          // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
-};
-
-/* 80C4A0B0-80C4A0BC 000250 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
-SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12J3DFrameCtrlFv,
+static daObjKshtr_c::DemoFunc l_demoProc2[2] = {
+    &daObjKshtr_c::demoJail11,
+    &daObjKshtr_c::demoJail21,
 };
 
 /* 80C47EA8-80C48008 000468 0160+00 1/0 0/0 0/0 .text            CreateHeap__12daObjKshtr_cFv */
-void daObjKshtr_c::CreateHeap() {
-    // NONMATCHING
-}
+int daObjKshtr_c::CreateHeap() {
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName[mType], l_bmd[mType]);
 
-/* 80C48008-80C48050 0005C8 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
-// J3DFrameCtrl::~J3DFrameCtrl() {
-extern "C" void __dt__12J3DFrameCtrlFv() {
-    // NONMATCHING
-}
+    JUT_ASSERT(429, modelData != 0);
 
-/* ############################################################################################## */
-/* 80C49D14-80C49D18 00006C 0004+00 1/1 0/0 0/0 .rodata          @3877 */
-SECTION_RODATA static f32 const lit_3877 = 35.0f;
-COMPILER_STRIP_GATE(0x80C49D14, &lit_3877);
+    mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+    if (mpModel == NULL) {
+        return 0;
+    }
+
+    if (l_anmArcName[mType] != NULL) {
+        int index;
+        if (daPy_py_c::checkNowWolf()) {
+            index = mType * 2 + 1;
+        } else {
+            index = mType << 1;
+        }
+
+        J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes(l_anmArcName[mType], l_anmName[index]);
+
+        JUT_ASSERT(446, anm != 0);
+
+        mpBckAnm = new mDoExt_bckAnm();
+        if (mpBckAnm == NULL || mpBckAnm->init(anm, 1, 0, 1.0f, 0, -1, false) == 0) {
+            return 0;
+        }
+    }
+
+    #ifdef DEBUG
+    if (checkKey() != 0) {
+        field_0x5ed = 1;
+    }
+    #endif
+
+    return 1;
+}
 
 /* 80C48050-80C48148 000610 00F8+00 1/1 0/0 0/0 .text            initKey__12daObjKshtr_cFv */
 void daObjKshtr_c::initKey() {
-    // NONMATCHING
+    if (field_0x61e == 0) {
+        if ((int)checkKey() != 0) {
+            field_0x5ed = 1;
+        }
+
+        field_0x61e = 1;
+        field_0x614 = fpcM_ERROR_PROCESS_ID_e;
+
+        if (!fopAcM_isSwitch(this, mSwNo) && field_0x5ed != 0) {
+            cXyz sp20(0.0f, 0.0f, 35.0f);
+
+            u32 uVar1 = 0xFFFFFFFF;
+
+            if (mType == 3) {
+                uVar1 = 0xFFFFFF03;
+            } else {
+                uVar1 = 0xFFFFFFFF;
+            }
+
+            field_0x614 = fopAcM_createChildFromOffset(PROC_OBJ_KEYHOLE, fopAcM_GetID(this), uVar1, &sp20, fopAcM_GetRoomNo(this), NULL, &scale, -1, NULL);
+        }
+    }
 }
 
 /* 80C48148-80C4827C 000708 0134+00 1/0 0/0 0/0 .text            phase_0__12daObjKshtr_cFv */
-void daObjKshtr_c::phase_0() {
+cPhs__Step daObjKshtr_c::phase_0() {
     // NONMATCHING
+    if (field_0x619 == 0) {
+        field_0x61a = home.angle.z;
+        field_0x61c = home.angle.x;
+        shape_angle.x = 0;
+        current.angle.x = 0;
+        home.angle.x = 0;
+        shape_angle.z = 0;
+        current.angle.z = 0;
+        home.angle.z = 0;
+        field_0x619 = 1;
+    }
+
+    mType = getType() + 1;
+    mSwNo = getSwNo();
+
+    #ifdef DEBUG
+    if (mSwNo == 0xFF) {
+        OS_REPORT_ERROR("鍵付き壁ドア：スイッチ指定がありません\n"); // Locked wall door: No switch specification
+        return cPhs_ERROR_e;
+    }
+    #else
+    initKey();
+    #endif
+
+    #ifdef DEBUG
+    if (mType >= 6) {
+        OS_REPORT_ERROR("鍵付き壁ドア：引数０のタイプ指定が不正値です\n") // Locked wall door: The type specification for argument 0 is invalid
+
+        return cPhs_ERROR_e;
+    }
+    #endif
+
+    cPhs__Step phase;
+    if (l_anmArcName[mType] == NULL || (cPhs__Step)dComIfG_resLoad(&mPhase2, l_anmArcName[mType]) != cPhs_COMPLEATE_e) {
+        if (dComIfG_resLoad(&mPhase1, l_arcName[mType]) == cPhs_COMPLEATE_e) {
+            phase = (cPhs__Step)MoveBGCreate(l_arcName[mType], l_dzb[mType], NULL, l_heap_size[mType], NULL);
+            if (phase == cPhs_ERROR_e) {
+                return phase;
+            } else {
+                field_0x618++;
+                OS_REPORT("KSHTR PARAM:0x%x\n", fopAcM_GetParam(this));
+                return cPhs_INIT_e;
+            }
+        }
+    }
 }
 
 /* 80C4827C-80C48320 00083C 00A4+00 1/0 0/0 0/0 .text            phase_1__12daObjKshtr_cFv */
-void daObjKshtr_c::phase_1() {
+cPhs__Step daObjKshtr_c::phase_1() {
     // NONMATCHING
 }
 
 /* 80C48320-80C48328 0008E0 0008+00 1/0 0/0 0/0 .text            phase_2__12daObjKshtr_cFv */
-s32 daObjKshtr_c::phase_2() {
-    return 4;
+cPhs__Step daObjKshtr_c::phase_2() {
+    return cPhs_COMPLEATE_e;
 }
 
 /* 80C48328-80C483CC 0008E8 00A4+00 1/1 0/0 0/0 .text            create1st__12daObjKshtr_cFv */
@@ -589,9 +487,8 @@ void daObjKshtr_c::event_proc_call2() {
     // NONMATCHING
 }
 
-/* 80C4852C-80C48590 000AEC 0064+00 1/0 0/0 0/0 .text            Execute__12daObjKshtr_cFPPA3_A4_f
- */
-void daObjKshtr_c::Execute(f32 (**param_0)[3][4]) {
+/* 80C4852C-80C48590 000AEC 0064+00 1/0 0/0 0/0 .text            Execute__12daObjKshtr_cFPPA3_A4_f */
+int daObjKshtr_c::Execute(f32 (**param_0)[3][4]) {
     // NONMATCHING
 }
 
@@ -748,23 +645,23 @@ void daObjKshtr_c::demoProc() {
 }
 
 /* 80C4925C-80C494A8 00181C 024C+00 1/0 0/0 0/0 .text            demoJail1__12daObjKshtr_cFv */
-void daObjKshtr_c::demoJail1() {
+BOOL daObjKshtr_c::demoJail1() {
     // NONMATCHING
 }
 
 /* 80C494A8-80C495A4 001A68 00FC+00 1/0 0/0 0/0 .text            demoJail2__12daObjKshtr_cFv */
-void daObjKshtr_c::demoJail2() {
+BOOL daObjKshtr_c::demoJail2() {
     // NONMATCHING
 }
 
 /* 80C495A4-80C496C8 001B64 0124+00 1/0 0/0 0/0 .text            demoJail11__12daObjKshtr_cFv */
-void daObjKshtr_c::demoJail11() {
+BOOL daObjKshtr_c::demoJail11() {
     // NONMATCHING
 }
 
 /* 80C496C8-80C496D0 001C88 0008+00 1/0 0/0 0/0 .text            demoJail21__12daObjKshtr_cFv */
-bool daObjKshtr_c::demoJail21() {
-    return true;
+BOOL daObjKshtr_c::demoJail21() {
+    return TRUE;
 }
 
 /* 80C496D0-80C497A0 001C90 00D0+00 4/4 0/0 0/0 .text            anmInit__12daObjKshtr_cFv */
@@ -810,12 +707,12 @@ void daObjKshtr_c::actionDead2() {
 }
 
 /* 80C49A74-80C49B4C 002034 00D8+00 1/0 0/0 0/0 .text            Draw__12daObjKshtr_cFv */
-void daObjKshtr_c::Draw() {
+int daObjKshtr_c::Draw() {
     // NONMATCHING
 }
 
 /* 80C49B4C-80C49BB8 00210C 006C+00 1/0 0/0 0/0 .text            Delete__12daObjKshtr_cFv */
-void daObjKshtr_c::Delete() {
+int daObjKshtr_c::Delete() {
     // NONMATCHING
 }
 
@@ -860,4 +757,29 @@ extern "C" void func_80C49C84(void* _this, u8* param_0) {
     // NONMATCHING
 }
 
-/* 80C49D44-80C49D44 00009C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+/* 80C4A060-80C4A080 -00001 0020+00 1/0 0/0 0/0 .data            daObjKshtr_METHODS */
+static actor_method_class daObjKshtr_METHODS = {
+    (process_method_func)daObjKshtr_create1st,
+    (process_method_func)daObjKshtr_MoveBGDelete,
+    (process_method_func)daObjKshtr_MoveBGExecute,
+    0,
+    (process_method_func)daObjKshtr_MoveBGDraw,
+};
+
+/* 80C4A080-80C4A0B0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_Kshutter */
+extern actor_process_profile_definition g_profile_Obj_Kshutter = {
+  fpcLy_CURRENT_e,        // mLayerID
+  3,                      // mListID
+  fpcPi_CURRENT_e,        // mListPrio
+  PROC_Obj_Kshutter,      // mProcName
+  &g_fpcLf_Method.base,  // sub_method
+  sizeof(daObjKshtr_c),   // mSize
+  0,                      // mSizeOther
+  0,                      // mParameters
+  &g_fopAc_Method.base,   // sub_method
+  443,                    // mPriority
+  &daObjKshtr_METHODS,    // sub_method
+  0x00040100,             // mStatus
+  fopAc_ACTOR_e,          // mActorType
+  fopAc_CULLBOX_CUSTOM_e, // cullType
+};
