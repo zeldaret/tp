@@ -71,7 +71,8 @@ struct himo_s {
  * 
  * @details 
  * 
- */
+*/
+
 class e_wb_class : public fopEn_enemy_c {
 public:
     BOOL checkWait();
@@ -241,21 +242,22 @@ public:
     /* 807E20DC */ virtual ~daE_WB_HIO_c() {};
     void genMessage(JORMContext*);
 
+    /* イノシシ - Wild Boar */
     /* 0x00 */ // vtable
     /* 0x04 */ s8 field_0x04;
-    /* 0x08 */ f32 mBaseSize;
-    /* 0x0C */ f32 mLeaderSizeRatio;
-    /* 0x10 */ f32 mMovementSpeed;
-    /* 0x14 */ f32 mMaxSpeed;
-    /* 0x18 */ f32 mCalvaryBattleMaxSpeed;
-    /* 0x1C */ f32 mNormalSpeedVi;
-    /* 0x20 */ f32 mMediumSpeedVi;
+    /* 0x08 */ f32 base_size;                           // 基本サイズ - Base Size
+    /* 0x0C */ f32 leader_size_ratio;                   // リーダーサイズ比 - Leader Size Ratio
+    /* 0x10 */ f32 movement_speed;                      // 移動速度 - Movement Speed
+    /* 0x14 */ f32 max_speed;                           // 最速度 - Max Speed
+    /* 0x18 */ f32 cavalry_battle_max_speed;            // 騎馬戦最速 - Cavalry Battle Max Speed
+    /* 0x1C */ f32 normal_speed_vi;
+    /* 0x20 */ f32 medium_speed_vi;
     /* 0x24 */ f32 mMaxSpeedVi;
-    /* 0x28 */ f32 mLeaderWalkingSpeed;
-    /* 0x2C */ f32 mLeaderMaxSpeed;
-    /* 0x30 */ f32 mLeaderCalvaryBattleMaxSpeed;
+    /* 0x28 */ f32 leader_walking_speed;                // 歩き速（リ）- Leader Walking Speed
+    /* 0x2C */ f32 leader_max_speed;                    // 最速度（リ）- Leader Max Speed
+    /* 0x30 */ f32 leader_cavalry_battle_max_speed;     // 騎馬戦最（リ）- Leader Cavalry Battle Max Speed
     /* 0x34 */ f32 mSingleRiderSpeed;
-    /* 0x38 */ f32 mPlayerRecognitionDistance;
+    /* 0x38 */ f32 player_recognition_dist;             // PL認識距離 - Player Recognition Distance
     /* 0x3C */ f32 mPlayerMountedMaxSpeed;
     /* 0x40 */ f32 mPlayerMountedMotionPlaybackSpeed;
     /* 0x44 */ s16 mPlayerMountedDashTime;
