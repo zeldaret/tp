@@ -11,15 +11,22 @@
  * @details
  *
  */
-class daObjSCannonTen_c : public fopAc_ac_c {
+class daObjSCannonTen_c : public fopAc_ac_c, public request_of_phase_process_class {
 public:
+    enum daSCannonTen_exeMode {
+        MODE_WAIT,
+        MODE_ORDER_EVT,
+        MODE_ACTION_EVT,
+        MODE_END,
+    };
+
     /* 80CCB364 */ daObjSCannonTen_c();
-    /* 80CCB43C */ ~daObjSCannonTen_c();
-    /* 80CCB4EC */ void createHeap();
-    /* 80CCB66C */ void create();
-    /* 80CCB9E0 */ void Delete();
-    /* 80CCBA58 */ void draw();
-    /* 80CCBB6C */ void execute();
+    /* 80CCB43C */ virtual ~daObjSCannonTen_c();
+    /* 80CCB4EC */ int createHeap();
+    /* 80CCB66C */ int create();
+    /* 80CCB9E0 */ int Delete();
+    /* 80CCBA58 */ int draw();
+    /* 80CCBB6C */ int execute();
     /* 80CCBB90 */ void middleExe();
     /* 80CCBC08 */ void exeModeWait();
     /* 80CCBCB0 */ void exeModeOrderEvt();
@@ -48,11 +55,25 @@ public:
     /* 80CCC8B8 */ void exeEmtLine();
     /* 80CCC97C */ void delEmtAll();
 
-    static u8 s_exeProc[48];
-    static u8 s_demoExeProc[144];
+    static void (daObjSCannonTen_c::*s_exeProc[])();
+    static void (daObjSCannonTen_c::*s_demoExeProc[][2])();
 
 private:
-    /* 0x568 */ u8 field_0x568[0x604 - 0x568];
+    /* 0x574 */ J3DModel* mpModel;
+    /* 0x578 */ mDoExt_bckAnm mBck;
+    /* 0x594 */ dBgW* mpBgW;
+    /* 0x598 */ cBgS_PolyInfo mGroundPoly;
+    /* 0x5A8 */ Mtx mBgMtx;
+    /* 0x5D8 */ f32 mGroundY;
+    /* 0x5DC */ u32 mShadowKey;
+    /* 0x5E0 */ int mTimer;
+    /* 0x5E4 */ int mStaffId;
+    /* 0x5E8 */ u8 field_0x5E8[0x5EC - 0x5E8];
+    /* 0x5EC */ s16 mEvtIdx;
+    /* 0x5EE */ u16 mHeadJointNo;
+    /* 0x5F0 */ u8 mMode;
+    /* 0x5F4 */ JPABaseEmitter* mpEmtSmk[3];
+    /* 0x600 */ JPABaseEmitter* mpEmtLine;
 };
 
 STATIC_ASSERT(sizeof(daObjSCannonTen_c) == 0x604);

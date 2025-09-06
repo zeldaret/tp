@@ -655,7 +655,7 @@ void daSCannon_c::demoInitFinish() {
     if (dComIfG_play_c::getLayerNo(0) == 3 || dComIfG_play_c::getLayerNo(0) == 10) {
         J3DJoint* joint_p = mpModels[mIsRepaired]->getModelData()->getJointNodePointer(mHeadJointNo);
         if (joint_p == NULL) {
-            // "××××××City in the Sky Cannon—The head joint is missing!!!! ××××××"
+            // "××××××Sky Cannon—The head joint is missing!!!! ××××××"
             OS_REPORT("______________________××××××天空砲台　頭部分のジョイントがありません！！！！ ××××××____________\n");
             JUT_ASSERT(1351, 0);
         }
@@ -800,16 +800,16 @@ void daSCannon_c::init() {
 /* 80CC8A30-80CC8B60 002010 0130+00 2/2 0/0 0/0 .text
  * initEmtRt__11daSCannon_cFUsiPCUsPP14JPABaseEmitter           */
 void daSCannon_c::initEmtRt(u16 i_jointNo, int i_emtNum, const u16* i_name_list, JPABaseEmitter** i_emt_list) {
-    MtxP head_mtx = mpModels[mIsRepaired]->getAnmMtx(i_jointNo);
-    if (head_mtx != NULL) {
-        cXyz pos(head_mtx[0][3], head_mtx[1][3], head_mtx[2][3]);
+    MtxP mtx = mpModels[mIsRepaired]->getAnmMtx(i_jointNo);
+    if (mtx != NULL) {
+        cXyz pos(mtx[0][3], mtx[1][3], mtx[2][3]);
         csXyz rot(shape_angle);
         cXyz size(1.0f, 1.0f, 1.0f);
 
         for (int i = 0; i < i_emtNum; i++) {
             i_emt_list[i] = dComIfGp_particle_set(i_name_list[i], &pos, &rot, &size);
             if (i_emt_list[i] != NULL) {
-                i_emt_list[i]->setGlobalRTMatrix(head_mtx);
+                i_emt_list[i]->setGlobalRTMatrix(mtx);
             }
         }
     }
@@ -818,11 +818,11 @@ void daSCannon_c::initEmtRt(u16 i_jointNo, int i_emtNum, const u16* i_name_list,
 /* 80CC8B60-80CC8BF4 002140 0094+00 6/6 0/0 0/0 .text
  * exeEmtRt__11daSCannon_cFUsiPP14JPABaseEmitter                */
 void daSCannon_c::exeEmtRt(u16 i_jointNo, int i_emtNum, JPABaseEmitter** i_emt_list) {
-    MtxP head_mtx = mpModels[mIsRepaired]->getAnmMtx(i_jointNo);
-    if (head_mtx != NULL) {
+    MtxP mtx = mpModels[mIsRepaired]->getAnmMtx(i_jointNo);
+    if (mtx != NULL) {
         for (int i = 0; i < i_emtNum; i++) {
             if (i_emt_list[i] != NULL) {
-                i_emt_list[i]->setGlobalRTMatrix(head_mtx);
+                i_emt_list[i]->setGlobalRTMatrix(mtx);
             }
         }
     }

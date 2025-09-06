@@ -2128,7 +2128,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_sakuita_rope"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_scannon"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_scannon_crs"),
-    ActorRel(NonMatching, "d_a_obj_scannon_ten"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_scannon_ten"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_sekidoor"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_sekizo"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_sekizoa"),
