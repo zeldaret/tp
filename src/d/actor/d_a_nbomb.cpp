@@ -56,7 +56,7 @@ void daNbomb_c::tgHitCallback(dCcD_GObjInf* i_hitObj) {
         {
             procBoomerangMoveInit(i_hitObj);
         }
-    } else if (i_hitObj->ChkAtType(AT_TYPE_HOOKSHOT) && fopAcM_checkStatus(this, 0x80000)) {
+    } else if (i_hitObj->ChkAtType(AT_TYPE_HOOKSHOT) && fopAcM_CheckStatus(this, 0x80000)) {
         if (fopAcM_checkCarryNow(this)) {
             fopAcM_cancelCarryNow(this);
         }

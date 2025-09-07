@@ -39,9 +39,9 @@ static int fopAc_Draw(void* i_this) {
     int ret = 1;
     if (!dComIfGp_isPauseFlag()) {
         if ((dComIfGp_event_moveApproval(a_this) == 2 ||
-             (!fopAcM_checkStatus(a_this, fopAc_ac_c::stopStatus) &&
-              (!fopAcM_checkStatus(a_this, fopAcStts_CULL_e) || !fopAcM_cullingCheck(a_this)))) &&
-            !fopAcM_checkStatus(a_this, 0x21000000))
+             (!fopAcM_CheckStatus(a_this, fopAc_ac_c::stopStatus) &&
+              (!fopAcM_CheckStatus(a_this, fopAcStts_CULL_e) || !fopAcM_cullingCheck(a_this)))) &&
+            !fopAcM_CheckStatus(a_this, 0x21000000))
         {
             fopAcM_OffCondition(a_this, fopAcCnd_NODRAW_e);
             ret = fpcLf_DrawMethod((leafdraw_method_class*)a_this->sub_method, a_this);
@@ -67,10 +67,10 @@ static int fopAc_Execute(void* i_this) {
             s32 move = dComIfGp_event_moveApproval(i_this);
             fopAcM_OffStatus(a_this, 0x40000000);
 
-            if (!fopAcM_checkStatus(a_this, 0x20000000) &&
+            if (!fopAcM_CheckStatus(a_this, 0x20000000) &&
                 (move == 2 ||
-                 (move != 0 && !fopAcM_checkStatus(a_this, fopAc_ac_c::stopStatus) &&
-                  (!fopAcM_checkStatus(a_this, fopAcStts_NOEXEC_e) || !fopAcM_CheckCondition(a_this, fopAcCnd_NODRAW_e)))))
+                 (move != 0 && !fopAcM_CheckStatus(a_this, fopAc_ac_c::stopStatus) &&
+                  (!fopAcM_CheckStatus(a_this, fopAcStts_NOEXEC_e) || !fopAcM_CheckCondition(a_this, fopAcCnd_NODRAW_e)))))
             {
                 fopAcM_OffCondition(a_this, fopAcCnd_NOEXEC_e);
                 a_this->old = a_this->current;
@@ -80,7 +80,7 @@ static int fopAc_Execute(void* i_this) {
                 fopAcM_OnCondition(a_this, fopAcCnd_NOEXEC_e);
             }
 
-            if (fopAcM_checkStatus(a_this, 0x20) &&
+            if (fopAcM_CheckStatus(a_this, 0x20) &&
                 a_this->home.pos.y - a_this->current.pos.y > 5000.0f)
             {
                 fopAcM_delete(a_this);

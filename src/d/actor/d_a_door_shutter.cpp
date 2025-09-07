@@ -1547,7 +1547,7 @@ int daDoor20_c::drawCheck(int param_1) {
 /* 80464E18-80464EC4 004358 00AC+00 1/1 0/0 0/0 .text            checkExecute__10daDoor20_cFv */
 int daDoor20_c::checkExecute() {
     field_0x68c = frontCheck();
-    if (fopAcM_checkStatus(this, 0x1000)) {
+    if (fopAcM_CheckStatus(this, 0x1000)) {
         return 1;
     }
     if (eventInfo.checkCommandDemoAccrpt() || eventInfo.checkCommandDoor()) {

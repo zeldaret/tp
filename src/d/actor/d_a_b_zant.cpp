@@ -396,7 +396,7 @@ void daB_ZANT_c::setDamageSe(dCcD_Sph* i_hitSph, int i_dmgAmount) {
     BOOL var_r29;
     u8 at_se = ((dCcD_GObjInf*)mAtInfo.mpCollider)->GetAtSe();
 
-    if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_HOOKSHOT) && !fopAcM_checkStatus(this, 0x280000)) {
+    if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_HOOKSHOT) && !fopAcM_CheckStatus(this, 0x280000)) {
         var_r29 = 1;
     } else {
         var_r29 = 0;
@@ -1942,7 +1942,7 @@ void daB_ZANT_c::executeHook() {
             setBck(BCK_ZAN_HOOK_WAIT, J3DFrameCtrl::EMode_LOOP, 3.0f, 1.0f);
         }
     case 3:
-        if (!fopAcM_checkStatus(this, 0x100000)) {
+        if (!fopAcM_CheckStatus(this, 0x100000)) {
             setTgHitBit(TRUE);
             setCoHitBit(TRUE);
             setActionMode(ACT_SWIM, 10);

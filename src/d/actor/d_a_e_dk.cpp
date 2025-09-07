@@ -719,7 +719,7 @@ void daE_DK_c::executeDeath() {
 
         BodyDeathMove();
 
-        if (fopAcM_checkStatus(this, 0x100000) == 0) {
+        if (fopAcM_CheckStatus(this, 0x100000) == 0) {
             mMoveMode = 3;
 
             mpMorfSO->setPlaySpeed(1.0f);

@@ -362,7 +362,7 @@ int daBdoor_c::execute() {
         &actionOpen,
         &actionEnd,
     };
-    if (fopAcM_checkStatus(this, 0x1000)) {
+    if (fopAcM_CheckStatus(this, 0x1000)) {
         mStaffID = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
         demoProc();
     } else {

@@ -939,7 +939,7 @@ static void core_action(b_ob_class* i_this) {
 static void core_damage_check(b_ob_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
 
-    if (fopAcM_checkStatus(a_this, 0x100000)) {
+    if (fopAcM_CheckStatus(a_this, 0x100000)) {
         i_this->field_0x5d38 =
             dComIfGp_particle_set(i_this->field_0x5d38, 0x8802, &a_this->current.pos, NULL, NULL);
     }

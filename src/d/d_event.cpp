@@ -920,7 +920,7 @@ int dEvt_control_c::Step() {
  */
 int dEvt_control_c::moveApproval(void* param_0) {
     fopAc_ac_c* actor = (fopAc_ac_c*)param_0;
-    if (fopAcM_checkStatus(actor, 0x20000)) {
+    if (fopAcM_CheckStatus(actor, 0x20000)) {
         return 2;
     }
 
@@ -950,11 +950,11 @@ int dEvt_control_c::moveApproval(void* param_0) {
         break;
     }
 
-    if (fopAcM_checkStatus(actor, 0x8000)) {
+    if (fopAcM_CheckStatus(actor, 0x8000)) {
         return 2;
     }
 
-    if (fopAcM_checkStatus(actor, 0x800)) {
+    if (fopAcM_CheckStatus(actor, 0x800)) {
         return 1;
     }
 
@@ -963,7 +963,7 @@ int dEvt_control_c::moveApproval(void* param_0) {
         return 0;
     }
 
-    if (mMode == EVT_MODE_TALK && fopAcM_checkStatus(actor, 0x40)) {
+    if (mMode == EVT_MODE_TALK && fopAcM_CheckStatus(actor, 0x40)) {
         return 1;
     }
 
@@ -971,15 +971,15 @@ int dEvt_control_c::moveApproval(void* param_0) {
         return 1;
     }
 
-    if ((getMode() == 3 || getMode() == EVT_MODE_TALK) && fopAcM_checkStatus(actor, 0x4000000)) {
+    if ((getMode() == 3 || getMode() == EVT_MODE_TALK) && fopAcM_CheckStatus(actor, 0x4000000)) {
         return 0;
     }
 
-    if (fopAcM_checkStatus(actor, 0x4000)) {
+    if (fopAcM_CheckStatus(actor, 0x4000)) {
         return 1;
     }
 
-    if (fopAcM_checkStatus(actor, 0x2000)) {
+    if (fopAcM_CheckStatus(actor, 0x2000)) {
         return 1;
     }
 

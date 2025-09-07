@@ -691,7 +691,7 @@ int daKnob20_c::execute() {
 
     setActionFromFlow();
     field_0x60f = frontCheck();
-    if (fopAcM_checkStatus(this, 0x1000)) {
+    if (fopAcM_CheckStatus(this, 0x1000)) {
         startDemoProc();
         demoProc();
         dMeter2Info_onGameStatus(2);

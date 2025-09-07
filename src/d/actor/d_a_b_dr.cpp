@@ -1012,7 +1012,7 @@ void daB_DR_c::tail_hit_check() {
     if (health > 0) {
         daPy_getPlayerActorClass()->onBossRoomWait();
 
-        if (fopAcM_checkStatus(this, 0x200000) && cLib_calcTimer<u8>(&field_0x7d0) == 0 && mActionMode != ACTION_TAIL_HIT && field_0x7d1 != 2) {
+        if (fopAcM_CheckStatus(this, 0x200000) && cLib_calcTimer<u8>(&field_0x7d0) == 0 && mActionMode != ACTION_TAIL_HIT && field_0x7d1 != 2) {
             if (mTailCc.ChkTgHit()) {
                 speedF = 0.0f;
                 dComIfGs_onZoneSwitch(21, fopAcM_GetRoomNo(this));
@@ -1029,7 +1029,7 @@ void daB_DR_c::week_hit_check() {
     if (mWeekCc.ChkTgSet()) {
         daPy_getPlayerActorClass()->onBossRoomWait();
 
-        if (health > 0 && fopAcM_checkStatus(this, 0x200000) && cLib_calcTimer<u8>(&field_0x7d0) == 0 && mActionMode != ACTION_WEEK_HIT && field_0x7d1 == 2) {
+        if (health > 0 && fopAcM_CheckStatus(this, 0x200000) && cLib_calcTimer<u8>(&field_0x7d0) == 0 && mActionMode != ACTION_WEEK_HIT && field_0x7d1 == 2) {
             if (mWeekCc.ChkTgHit() && mWeekCc.GetTgHitObj()->ChkAtType(AT_TYPE_HOOKSHOT)) {
                 speedF = 0.0f;
                 Z2GetAudioMgr()->changeBgmStatus(2);

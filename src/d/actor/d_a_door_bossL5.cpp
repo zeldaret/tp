@@ -480,7 +480,7 @@ int daBdoorL5_c::actionEnd() {
 int daBdoorL5_c::execute() {
     static actionFunc l_action[4] = {&daBdoorL5_c::actionWait, &daBdoorL5_c::actionCloseWait, &daBdoorL5_c::actionOpen, &daBdoorL5_c::actionEnd};
     field_0x59c = -1;
-    if (fopAcM_checkStatus(this, 0x1000)) {
+    if (fopAcM_CheckStatus(this, 0x1000)) {
         field_0x59c = dComIfGp_evmng_getMyStaffId(l_staff_name, 0, 0);
         dMeter2Info_onGameStatus(2);
         demoProc();

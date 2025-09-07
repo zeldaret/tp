@@ -4,7 +4,7 @@
 #include "SSystem/SComponent/c_angle.h"
 #include "m_Do/m_Do_ext.h"
 #include "f_pc/f_pc_base.h"
-#include "JSystem/JHostIO/JORReflexible.h"
+#include "m_Do/m_Do_hostIO.h"
 
 class fopAc_ac_c;
 
@@ -46,7 +46,7 @@ private:
 class dAttParam_c : public JORReflexible {
 public:
 #ifdef DEBUG
-    /* 0x04 */ u8 unk_0x4;
+    /* 0x04 */ s8 mHIOChildNo;
 #endif
 
     /* 0x00 */ u16 mFlags;
@@ -67,8 +67,8 @@ public:
     /* 0x38 */ f32 field_0x38;
     /* 0x3C */ f32 field_0x3c;
 #ifdef DEBUG
-    /* 0x44 */ int unk_0x44;
-    /* 0x48 */ int unk_0x48;
+    /* 0x44 */ s32 mDebugDispPosX;
+    /* 0x48 */ s32 mDebugDispPosY;
 #endif
 
 public:
@@ -76,6 +76,14 @@ public:
     /* 80070038 */ dAttParam_c(s32);
 
 #ifdef DEBUG
+    void connectHIO(char* i_name) {
+        mHIOChildNo = mDoHIO_CREATE_CHILD(i_name, this);
+    }
+
+    void releaseHIO() {
+        mDoHIO_DELETE_CHILD(mHIOChildNo);
+    }
+
     virtual void genMessage(JORMContext*);
 #endif
     /* 80070110 */ virtual ~dAttParam_c();
@@ -90,7 +98,15 @@ public:
         EFlag_MARGIN_DEBUG = (1 << 15),
     };
 
-    bool CheckFlag(u16 flag) { return mFlags & flag; }
+    bool CheckFlag(u16 flag) { return flag & mFlags ? true : false; }
+
+    f32 FreeStick() {
+#if DEBUG
+        return mSWModeDisable;
+#else
+        return -0.9f;
+#endif
+    }
 
     /* 0x40 vtable */
 };  // Size: 0x44
@@ -228,6 +244,10 @@ public:
     /* 80182994 */ int GetCheckObjectCount() { return mCheckObjectCount; }
     /* 80182AD0 */ void keepLock(int timer) { mAttnBlockTimer = timer; }
     /* 8014B010 */ static dist_entry& getDistTable(int i_no) { return dist_table[i_no]; }
+
+#if DEBUG
+    void runDebugDisp0();
+#endif
 
     fopAc_ac_c* getCatghTarget() { return mCatghTarget.getCatghTarget(); }
     fopAc_ac_c* getZHintTarget() { return mZHintTarget.getZHintTarget(); }

@@ -424,7 +424,7 @@ void daObjNAN_c::hook() {
         if (mDraw) {
             nan_setParticle();
         }
-        if (!fopAcM_checkStatus(this, 0x100000)) {
+        if (!fopAcM_CheckStatus(this, 0x100000)) {
             setAction(&daObjNAN_c::drop);
         }
         dBgS_LinChk linkChk;

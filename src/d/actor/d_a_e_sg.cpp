@@ -703,7 +703,7 @@ static void e_sg_drop(e_sg_class* i_this) {
     cXyz local_3c;
     cXyz local_48;
 
-    if (fopAcM_checkStatus(i_this, 0x100000) == 0) {
+    if (fopAcM_CheckStatus(i_this, 0x100000) == 0) {
         i_this->mStepSpeed = 1.2f;
         if (i_this->mAcch.ChkGroundHit()) {
             local_3c = i_this->home.pos - i_this->current.pos;
