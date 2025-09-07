@@ -2,12 +2,13 @@
 #define D_D_CAMERA_H
 
 #include "d/d_attention.h"
-#include "d/d_bg_s_lin_chk.h"
 #include "d/d_bg_s_gnd_chk.h"
+#include "d/d_bg_s_lin_chk.h"
 #include "d/d_cam_param.h"
 #include "d/d_drawlist.h"
 #include "d/d_spline_path.h"
 #include "d/d_stage.h"
+#include "d/actor/d_a_player.h"
 #include "f_op/f_op_actor.h"
 
 dAttention_c* dComIfGp_getAttention();
@@ -92,7 +93,7 @@ struct dCamera_event_param {
 
 struct dCamera_event_data {
     /* 0x000 */ u8 field_0x0;
-    /* 0x004 */ int field_0x4;
+    /* 0x004 */ int mStaffIdx;
     /* 0x008 */ int field_0x8;
     /* 0x00C */ int field_0xc;
     /* 0x010 */ u8 field_0x10;
@@ -144,6 +145,8 @@ class dCamera_c {
 public:
     class dCamInfo_c {
     public:
+        dCamInfo_c() {}
+        ~dCamInfo_c() {}
         /* 0x00 */ cXyz mCenter;
         /* 0x0C */ cXyz mEye;
         /* 0x18 */ f32 mFovy;
@@ -781,6 +784,16 @@ public:
         /* 0x20 */ cXyz field_0x20;
     };
 
+    struct ParaRailData {
+        /* 0x00 */ int field_0x00;
+        /* 0x04 */ fopAc_ac_c* field_0x04;
+        /* 0x08 */ fopAc_ac_c* field_0x08;
+        /* 0x0C */ u8 field_0x0c;
+        /* 0x0D */ u8 field_0x0d;
+        /* 0x0E */ cXyz field_0x10;
+        /* 0x1C */ f32 field_0x1c;
+    };
+
     struct OneSideData {
         /* 0x00 */ int field_0x00;
         /* 0x04 */ u8 field_0x04[0x1c - 0x04];
@@ -811,6 +824,54 @@ public:
         /* 0x28 */ int mArrowIndex;
         /* 0x2C */ cXyz field_0x2c;
         /* 0x38 */ cXyz field_0x38;
+    };
+
+    struct FixedPositionData {
+        /* 0x00 */ int field_0x00;
+        /* 0x04 */ s32 field_0x04;
+        /* 0x08 */ f32 field_0x08;
+        /* 0x08 */ f32 field_0x0c;
+        /* 0x10 */ cXyz field_0x10;
+        /* 0x1C */ cXyz field_0x1c;
+        /* 0x28 */ u8 field_0x28;
+        /* 0x2C */ int field_0x2c;
+        /* 0x30 */ int field_0x30;
+    };
+
+    struct RideData {
+        /* 0x00 */ int field_0x00;
+        /* 0x04 */ int prove;
+        /* 0x08 */ int field_0x08;
+        /* 0x0C */ u32 field_0x0c;
+        /* 0x10 */ int field_0x10;
+        /* 0x14 */ int field_0x14;
+        /* 0x18 */ int field_0x18;
+        /* 0x1C */ u8 field_0x1c;
+        /* 0x1D */ u8 field_0x1d;
+        /* 0x20 */ int field_0x20;
+        /* 0x24 */ cXyz field_0x24;
+        /* 0x30 */ cXyz field_0x30;
+        /* 0x3C */ cXyz field_0x3c;
+        /* 0x48 */ cSAngle field_0x48;
+        /* 0x4C */ f32 field_0x4c;
+        /* 0x50 */ f32 field_0x50;
+        /* 0x54 */ f32 field_0x54;
+        /* 0x58 */ f32 field_0x58;
+        /* 0x5C */ cXyz field_0x5c;
+        /* 0x68 */ cXyz field_0x68;
+        /* 0x74 */ f32 field_0x74;
+        /* 0x78 */ f32 field_0x78;
+        /* 0x7C */ f32 field_0x7c;
+        /* 0x80 */ f32 field_0x80;
+        /* 0x84 */ cXyz field_0x84;
+        /* 0x90 */ u8 field_0x90;
+        /* 0x91 */ u8 field_0x91;
+        /* 0x92 */ u8 field_0x92;
+        /* 0x93 */ bool field_0x93;
+        /* 0x94 */ fopAc_ac_c* field_0x94;
+        /* 0x98 */ daHorse_c* field_0x98;
+        /* 0x9C */ fopAc_ac_c* field_0x9c;
+        /* 0xA0 */ fopAc_ac_c* field_0xa0;
     };
 
     /* 80088A7C */ int StartEventCamera(int, int, ...);
@@ -1102,7 +1163,7 @@ public:
     /* 0x164 */ int field_0x164;
     /* 0x168 */ u8 field_0x168;
     /* 0x16C */ int field_0x16c;
-    /* 0x170 */ int field_0x170;
+    /* 0x170 */ u32 field_0x170;
     /* 0x174 */ u32 mCurCamStyleTimer; // this might be a signed int in ShieldD
     /* 0x178 */ u32 mCameraID;
     /* 0x17C */ u32 mPadID;
@@ -1246,6 +1307,9 @@ public:
     /* 0x968 */ f32 field_0x968;
     /* 0x96C */ f32 field_0x96c;
     /* 0x970 */ dCamSetup_c mCamSetup;
+#if DEBUG
+    u8 unk_debug_0xbc4[0x10];
+#endif
     /* 0xAEC */ dCamParam_c mCamParam;
     /* 0xB0C */ u8 field_0xb0c;
     /* 0xB0D */ u8 field_0xb0d[0xd58 - 0xb0d];
