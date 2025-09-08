@@ -635,7 +635,7 @@ static cPhs__Step daObj_Ito_Create(fopAc_ac_c* a_this) {
         fopAcM_SetMtx(a_this, i_this->field_0x574[0]->getBaseTRMtx());
         fopAcM_SetMin(a_this, -3000.0f, -3000.0f, -3000.0f);
         fopAcM_SetMax(a_this, 3000.0f, 3000.0f, 3000.0f);
-        a_this->attention_info.flags = 4;
+        a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         a_this->attention_info.distances[fopAc_attn_BATTLE_e] = 22;
         i_this->field_0x60c = cM_rndF(65535.0f);
         

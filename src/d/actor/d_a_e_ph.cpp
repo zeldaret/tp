@@ -1037,7 +1037,7 @@ void daE_PH_c::AttentionSet() {
             attention_info.distances[fopAc_attn_BATTLE_e] = 0x53;
         }
 
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     } else if (current.pos.absXZ(fopAcM_GetPosition(player_p)) > 1000.0f) {
         if (strcmp(dComIfGp_getStartStageName(), "D_MN07A") == 0) {
             attention_info.distances[fopAc_attn_BATTLE_e] = 0x52;
@@ -1257,7 +1257,7 @@ int daE_PH_c::create() {
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
                   fopAcM_GetSpeed_p(this), NULL, NULL);
 
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         attention_info.distances[fopAc_attn_BATTLE_e] = 0x22;
 
         cXyz sp3C(current.pos.x, current.pos.y + 200.0f, current.pos.z);

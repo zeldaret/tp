@@ -223,7 +223,7 @@ void daKey_c::bg_check() {
 
 /* 80CDA7E8-80CDA81C 0010A8 0034+00 1/1 0/0 0/0 .text            actionInitInit__7daKey_cFv */
 int daKey_c::actionInitInit() {
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     mCcCyl.OffTgSPrmBit(1);
     mCcCyl.OffCoSPrmBit(1);
     setStatus(STATUS_INIT_e);
@@ -252,7 +252,7 @@ int daKey_c::actionInit() {
 
 /* 80CDA8C8-80CDA8FC 001188 0034+00 1/1 0/0 0/0 .text            actionParentWaitInit__7daKey_cFv */
 int daKey_c::actionParentWaitInit() {
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     mCcCyl.OffTgSPrmBit(1);
     mCcCyl.OffCoSPrmBit(1);
     setStatus(STATUS_PARENT_WAIT_e);
@@ -279,7 +279,7 @@ int daKey_c::actionParentWait() {
 int daKey_c::actionWaitInit() {
     mCcCyl.OnTgSPrmBit(1);
     mCcCyl.OffCoSPrmBit(1);
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     attention_info.distances[fopAc_attn_CARRY_e] = 16;
     attention_info.position = current.pos;
 
@@ -295,25 +295,25 @@ int daKey_c::actionWait() {
     bg_check();
 
     if (mAcch.ChkGroundHit()) {
-        cLib_onBit<u32>(attention_info.flags, 0x10);
+        cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
 
         speedF *= 0.9f;
         if (speedF < 1.0f) {
             speedF = 0.0f;
         }
     } else {
-        cLib_offBit<u32>(attention_info.flags, 0x10);
+        cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     }
 
     daPy_py_c* player = daPy_getPlayerActorClass();
     if (fopAcM_checkCarryNow(this)) {
-        cLib_offBit<u32>(attention_info.flags, 0x10);
+        cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
         if (player->getGrabUpStart()) {
             fopAcM_cancelCarryNow(this);
             initActionOrderGetDemo();
         }
     } else {
-        cLib_onBit<u32>(attention_info.flags, 0x10);
+        cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     }
 
     if (field_0x936 == 0) {
@@ -330,7 +330,7 @@ int daKey_c::actionWait() {
 /* 80CDAB74-80CDAC18 001434 00A4+00 2/2 0/0 0/0 .text            initActionOrderGetDemo__7daKey_cFv
  */
 int daKey_c::initActionOrderGetDemo() {
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     mCcCyl.OffTgSPrmBit(1);
     mCcCyl.OffCoSPrmBit(1);
     hide();
@@ -375,7 +375,7 @@ int daKey_c::actionGetDemo() {
 
 /* 80CDAD28-80CDADD4 0015E8 00AC+00 1/1 0/0 0/0 .text            actionInitSwOnWait__7daKey_cFv */
 int daKey_c::actionInitSwOnWait() {
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     mCcCyl.OffTgSPrmBit(1);
     mCcCyl.OffCoSPrmBit(1);
     hide();
@@ -407,7 +407,7 @@ int daKey_c::actionSwOnWait() {
 
 /* 80CDAE54-80CDAF40 001714 00EC+00 1/1 0/0 0/0 .text actionInitBoomerangCarry__7daKey_cFv */
 int daKey_c::actionInitBoomerangCarry() {
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     mCcCyl.OnTgSPrmBit(1);
     mCcCyl.OnCoSPrmBit(1);
 
@@ -501,7 +501,7 @@ void daKey_c::seStartTwinkle_private(u32 i_soundId) {
 
 /* 80CDB36C-80CDB3D8 001C2C 006C+00 1/1 0/0 0/0 .text            actionInitE_GB__7daKey_cFv */
 int daKey_c::actionInitE_GB() {
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     mCcCyl.OffTgSPrmBit(1);
     mCcCyl.OffCoSPrmBit(1);
     effectSet();

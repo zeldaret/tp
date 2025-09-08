@@ -581,7 +581,7 @@ static void action(e_bi_class* i_this) {
 
     if (bVar1 != 0) {
         fopAcM_OnStatus(a_this, 0);
-        cLib_onBit<u32>(a_this->attention_info.flags, 4);
+        cLib_onBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_BATTLE_e);
     } else {
         fopAcM_OffStatus(a_this, 0);
         a_this->attention_info.flags = 0;
@@ -608,10 +608,10 @@ static void action(e_bi_class* i_this) {
     }
 
     if (bVar3 != 0) {
-        cLib_onBit<u32>(a_this->attention_info.flags, 0x10);
+        cLib_onBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
 
         if (fopAcM_checkCarryNow(a_this)) {
-            cLib_offBit<u32>(a_this->attention_info.flags, 0x10);
+            cLib_offBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
             fopAc_ac_c* bomb_p = dBomb_c::createEnemyBomb(&a_this->current.pos, &a_this->current.angle, fopAcM_GetRoomNo(a_this));
 
             if (bomb_p == NULL) {
@@ -630,10 +630,10 @@ static void action(e_bi_class* i_this) {
             }
         }
 
-        cLib_offBit<u32>(a_this->attention_info.flags, 4);
+        cLib_offBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_BATTLE_e);
     } else {
-        cLib_offBit<u32>(a_this->attention_info.flags, 0x10);
-        cLib_onBit<u32>(a_this->attention_info.flags, 4);
+        cLib_offBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
+        cLib_onBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_BATTLE_e);
     }
 
     if (bVar4 != 0 && water_check(i_this)) {
@@ -923,7 +923,7 @@ static cPhs__Step daE_BI_Create(fopAc_ac_c* a_this) {
             l_HIO.field_0x4 = -1;
         }
 
-        a_this->attention_info.flags = 4;
+        a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         fopAcM_SetMtx(a_this, i_this->mpModelMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(a_this, -200.0f, -200.0f, -200.0f);
         fopAcM_SetMax(a_this, 200.0f, 200.0f, 200.0f);
@@ -995,7 +995,7 @@ static cPhs__Step daE_BI_Create(fopAc_ac_c* a_this) {
         }
 
         if (fopAcM_GetRoomNo(a_this) == 50) {
-            a_this->attention_info.flags = 4;
+            a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
             a_this->attention_info.distances[fopAc_attn_BATTLE_e] = 22;
         }
 

@@ -464,7 +464,7 @@ void daObjKAG_c::hook() {
             kag_setParticle();
         }
 
-        if (!fopAcM_checkStatus(this, fopAcM_STATUS_HOOK_CARRY_NOW)) {
+        if (!fopAcM_CheckStatus(this, fopAcM_STATUS_HOOK_CARRY_NOW)) {
             setAction(&daObjKAG_c::fly);
         }
 

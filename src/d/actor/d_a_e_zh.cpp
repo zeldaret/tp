@@ -660,7 +660,7 @@ void daE_ZH_c::mStartParticleSet() {
     }
 
     fopAcM_OnStatus(this, 0);
-    attention_info.flags |= 4;
+    attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
     mSound.startCreatureSound(Z2SE_EN_ZH_START, 0, -1);
     setBck(BCK_ZH_START, 0, 3.0f, 1.0f);
 }
@@ -831,7 +831,7 @@ void daE_ZH_c::executeWait() {
         case 0:
             attention_info.distances[2] = 3;
             fopAcM_OnStatus(this, 0);
-            attention_info.flags |= 4;
+            attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
             setBck(BCK_ZH_WAIT01, 0, 3.0f, 1.0f);
             field_0x78c = 0;
             mMoveMode = 1;
@@ -886,7 +886,7 @@ void daE_ZH_c::executeBallWait() {
         case 1:
             if (bitSw != 0xFF && fopAcM_isSwitch(this, bitSw) && mStartFlag != 0) {
                 fopAcM_OnStatus(this, 0);
-                attention_info.flags |= 4;
+                attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
                 attention_info.distances[2] = 3;
                 mMoveMode = 10;
             }
@@ -1518,7 +1518,7 @@ void daE_ZH_c::executeCatchFlyMove() {
             // fallthrough
         case 12:
             fopAcM_OffStatus(this, 0);
-            attention_info.flags &= 0xFFFFFFFB;
+            attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
             attention_info.distances[2] = 0;
 
             for (int i = 0; i < 3; i++) {
@@ -1661,7 +1661,7 @@ void daE_ZH_c::executeFlyDelete() {
     switch (mMoveMode) {
         case 0:
             fopAcM_OffStatus(this, 0);
-            attention_info.flags &= 0xFFFFFFFB;
+            attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
             attention_info.distances[2] = 0;
 
             if (bitSw != 0xFF && fopAcM_isSwitch(this, bitSw)) {
@@ -1684,7 +1684,7 @@ void daE_ZH_c::executeFlyDelete() {
 
                 if (fabsf(current.pos.y - (fopAcM_rc_c::getRoofY() + 200.0f)) < 20.0f) {
                     fopAcM_OffStatus(this, 0);
-                    attention_info.flags &= 0xFFFFFFFB;
+                    attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
                     attention_info.distances[2] = 0;
 
                     if (arg0 == 0) {
@@ -2228,7 +2228,7 @@ cPhs__Step daE_ZH_c::create() {
 
         if (arg0 == 2) {
             fopAcM_OffStatus(this, 0);
-            attention_info.flags &= 0xFFFFFFFB;
+            attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
             attention_info.distances[2] = 0;
             fopAcM_SetGroup(this, 0);
             fopAcM_SetMin(this, -2000.0f, -2000.0f, -2000.0f);
@@ -2262,7 +2262,7 @@ cPhs__Step daE_ZH_c::create() {
                 l_HIO.field_0x4 = -1;
             }
 
-            attention_info.flags = 4;
+            attention_info.flags = fopAc_AttnFlag_BATTLE_e;
             fopAcM_SetMtx(this, mpModelMorf->getModel()->getBaseTRMtx());
             fopAcM_SetMin(this, -20000.0f, -20000.0f, -20000.0f);
             fopAcM_SetMax(this, 20000.0f, 20000.0f, 20000.0f);
@@ -2295,7 +2295,7 @@ cPhs__Step daE_ZH_c::create() {
             shape_angle.x = 0;
             attention_info.distances[2] = 3;
             fopAcM_OffStatus(this, 0);
-            attention_info.flags &= 0xFFFFFFFB;
+            attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
 
             for (int i = 0; i < 8; i++) {
                 field_0x758[i] = 0xFF;
@@ -2323,7 +2323,7 @@ cPhs__Step daE_ZH_c::create() {
                         field_0x78c = 0;
                         attention_info.distances[2] = 3;
                         fopAcM_OffStatus(this, 0);
-                        attention_info.flags &= 0xFFFFFFFB;
+                        attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
 
                         if (fopAcM_GetRoomNo(this) == 0x33 && !fopAcM_isSwitch(this, 18)) {
                             fopAcM_OnStatus(this, fopAcM_STATUS_UNK_004000);

@@ -641,7 +641,7 @@ void daNpc_Maro_c::setParam() {
     }
 
     srchActors();
-    u32 uVar7 = 10;
+    u32 uVar7 = (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
     s16 sVar10 = daNpc_Maro_Param_c::m.common.talk_distance;
     s16 sVar9 = daNpc_Maro_Param_c::m.common.talk_angle;
     s16 sVar8 = daNpc_Maro_Param_c::m.common.attention_distance;

@@ -90,7 +90,7 @@ public:
 
     void setDebugFill(bool debugFill) { mDebugFill = debugFill; }
     bool getDebugFill() const { return mDebugFill; }
-    void* getStartAddr() const { return (void*)mStart; }
+    void* getStartAddr() { return (void*)mStart; }
     void* getEndAddr() const { return (void*)mEnd; }
     u32 getSize() const { return mSize; }
     bool getErrorFlag() const { return mErrorFlag; }

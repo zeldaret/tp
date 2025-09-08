@@ -1830,7 +1830,7 @@ static int daNpcMoiR_IsDelete(void* a_this) {
 void daNpcMoiR_c::setParam() {
     searchActors();
 
-    attention_info.flags = 10;
+    attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
 
     if (mMode == MODE_SIT) {
         attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(3, 5);

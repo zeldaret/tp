@@ -143,7 +143,7 @@ static void e_tk_ball_move(e_tk_ball_class* i_this) {
         dAttention_c* attention = dComIfGp_getAttention();
         if (attention->Lockon() && parent_actor == attention->LockonTarget(0)) {
             actor_lockon = true;
-            parent_actor->attention_info.flags |= 0x200000;
+            parent_actor->attention_info.flags |= fopAc_AttnFlag_UNK_0x200000;
         }
     }
     if (i_this->mTgSph.ChkTgHit() || i_this->mAtSph.ChkAtShieldHit()) {

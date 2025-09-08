@@ -1199,7 +1199,7 @@ static void action(e_dd_class* i_this) {
 
     if (bVar1 != 0) {
         fopAcM_OnStatus(a_this, 0);
-        a_this->attention_info.flags = 4;
+        a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     } else {
         fopAcM_OffStatus(a_this, 0);
         a_this->attention_info.flags = 0;
@@ -1737,7 +1737,7 @@ static cPhs__Step daE_DD_Create(fopAc_ac_c* a_this) {
             l_HIO.field_0x4 = -1;
         }
 
-        a_this->attention_info.flags = 4;
+        a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         fopAcM_SetMtx(a_this, i_this->mpModelMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(a_this, -500.0f, -200.0f, -500.0f);
         fopAcM_SetMax(a_this, 500.0f, 200.0f, 500.0f);

@@ -38,7 +38,7 @@ int daTagWrHowl_c::execute() {
     attention_info.flags = 0;
 
     if (chkWlfInTag()) {
-        attention_info.flags |= 0x80;
+        attention_info.flags |= fopAc_AttnFlag_ETC_e;
         attention_info.distances[fopAc_attn_ETC_e] = 65;
     }
 

@@ -1922,9 +1922,9 @@ void daE_WW_c::action() {
         lin_chk.Set(&dComIfGp_getCamera(0)->lookat.eye, &attention_info.position, this);
 
         if (dComIfG_Bgsp().LineCross(&lin_chk)) {
-            attention_info.flags &= 0xFFFFFFFB;
+            attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
         } else {
-            attention_info.flags |= 4;
+            attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
         }
     }
 
@@ -2309,7 +2309,7 @@ int daE_WW_c::create() {
             
             mCcStts.Init(0xFE, 0, this);
             field_0x75d = 1;
-            attention_info.flags = 4;
+            attention_info.flags = fopAc_AttnFlag_BATTLE_e;
             mSph1[0].Set(cc_ww_src);
             mSph1[0].SetStts(&mCcStts);
             mSph1[1].Set(cc_ww_src);

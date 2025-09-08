@@ -704,7 +704,7 @@ int daE_DF_c::Create() {
             mHIOInit = TRUE;
             l_HIO.mNo = mDoHIO_CREATE_CHILD("デクレシア", &l_HIO);
         }
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         fopAcM_SetMtx(this, mpMorfSO->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, -200.0f, -200.0f);

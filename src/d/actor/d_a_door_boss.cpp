@@ -100,7 +100,7 @@ int daBdoor_c::CreateInit() {
     setAction(ACT_CLOSE_WAIT);
     attention_info.position.y += 250.0f;
     eyePos.y += 250.0f;
-    attention_info.flags = 0x20;
+    attention_info.flags = fopAc_AttnFlag_DOOR_e;
     calcMtx();
     mpBgW->Move();
     u32 swbit = door_param2_c::getSwbit(this);
@@ -362,7 +362,7 @@ int daBdoor_c::execute() {
         &actionOpen,
         &actionEnd,
     };
-    if (fopAcM_checkStatus(this, 0x1000)) {
+    if (fopAcM_CheckStatus(this, 0x1000)) {
         mStaffID = dComIfGp_evmng_getMyStaffId(l_staff_name, NULL, 0);
         demoProc();
     } else {

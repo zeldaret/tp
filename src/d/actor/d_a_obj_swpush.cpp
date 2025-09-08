@@ -350,7 +350,7 @@ void daObjSwpush::Act_c::set_btp_frame() {
 /* 80483574-80483910 000914 039C+00 1/1 0/0 0/0 .text            rideCB__Q211daObjSwpush5Act_cFP4dBgWP10fopAc_ac_cP10fopAc_ac_c */
 void daObjSwpush::Act_c::rideCB(dBgW* i_bgw, fopAc_ac_c* i_ac, fopAc_ac_c* i_pt) {
     Act_c* i_this = (Act_c*)i_ac;
-    if (fopAcM_checkStatus(i_pt, fopAcStts_FREEZE_e)) {
+    if (fopAcM_CheckStatus(i_pt, fopAcStts_FREEZE_e)) {
         static cXyz no_push_vec[4] = {
             cXyz(-1.0f, 0.0f, -1.0f),
             cXyz(-1.0f, 0.0f, 1.0f),

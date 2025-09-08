@@ -2257,7 +2257,7 @@ void daE_YMB_c::demo_skip(int param_1) {
             dComIfGp_getVibration().StopQuake(31);
             // fallthrough
         case 2:
-            attention_info.flags &= 0xFFBFFFFF;
+            attention_info.flags &= ~fopAc_AttnFlag_UNK_0x400000;
             setActionMode(1, 1);
             field_0x764 = 1;
             speedF = 0.0f;
@@ -2668,7 +2668,7 @@ void daE_YMB_c::executeBattleDemo() {
     switch (mMode) {
         case 0:
             mMode = 1;
-            attention_info.flags |= 0x400000;
+            attention_info.flags |= fopAc_AttnFlag_UNK_0x400000;
             // fallthrough
         case 1:
             if (!eventInfo.checkCommandDemoAccrpt()) {
@@ -2771,7 +2771,7 @@ void daE_YMB_c::executeBattleDemo() {
                     camera->mCamera.Start();
                     camera->mCamera.SetTrimSize(0);
                     dComIfGp_event_reset();
-                    attention_info.flags &= 0xFFBFFFFF;
+                    attention_info.flags &= ~fopAc_AttnFlag_UNK_0x400000;
                     setActionMode(1, 1);
                     field_0x764 = 1;
                 }
@@ -3140,9 +3140,9 @@ int daE_YMB_c::execute() {
     }
 
     if (field_0x764 == 0 || !field_0x6d8 || mAction == 9) {
-        attention_info.flags &= 0xfffffffb;
+        attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
     } else {
-        attention_info.flags |= 4;
+        attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
     }
 
     action();
@@ -3269,7 +3269,7 @@ cPhs__Step daE_YMB_c::create() {
             l_HIO.field_0x4 = -1;
         }
 
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         attention_info.field_0xa = 0x50;
         fopAcM_SetMtx(this, mpModelMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -400.0f, -400.0f, -400.0f);

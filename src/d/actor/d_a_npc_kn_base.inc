@@ -769,9 +769,9 @@ bool daNpc_Kn_c::checkCullDraw() {
 /* 80A3A25C-80A3A2A8 00F93C 004C+00 1/0 0/0 0/0 .text            twilight__10daNpc_Kn_cFv */
 void daNpc_Kn_c::twilight() {
     if (mTwilight) {
-        attention_info.flags |= 0x400000;
+        attention_info.flags |= fopAc_AttnFlag_UNK_0x400000;
         mNoDraw = FALSE;
-        attention_info.flags |= 0x800000;
+        attention_info.flags |= fopAc_AttnFlag_UNK_0x800000;
         setHitodamaPrtcl();
     }
 }
@@ -789,7 +789,7 @@ void daNpc_Kn_c::evtOrder() {
 
     } else {
         u32 flag_check = attention_info.flags;
-        if (flag_check & 8 || flag_check & 2) {
+        if (flag_check & fopAc_AttnFlag_SPEAK_e || flag_check & fopAc_AttnFlag_TALK_e) {
             eventInfo.onCondition(dEvtCnd_CANTALK_e);
 
             if (chkXYItems()) {

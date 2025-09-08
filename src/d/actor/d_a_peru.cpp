@@ -339,7 +339,7 @@ void daPeru_c::reset() {
     attention_info.distances[fopAc_attn_LOCK_e] = daNpcT_getDistTableIdx(daPeru_Param_c::m.field_0x48[2], daPeru_Param_c::m.field_0x48[3]);
     attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[0];
     attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(daPeru_Param_c::m.field_0x48[0], daPeru_Param_c::m.field_0x48[1]);
-    attention_info.flags = 0xa;
+    attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
     scale.setall(daPeru_Param_c::m.field_0x00[2]);
     mCcStts.SetWeight(daPeru_Param_c::m.field_0x00[4]);
     mCylH = daPeru_Param_c::m.field_0x00[5];
@@ -365,9 +365,9 @@ void daPeru_c::reset() {
 /* 80D47B20-80D47C4C 000D20 012C+00 1/0 0/0 0/0 .text            setParam__8daPeru_cFv */
 void daPeru_c::setParam() {
     srchActors();
-    attention_info.flags = 0xa;
+    attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
     if (!daPy_py_c::checkNowWolf()) {
-        attention_info.flags = 0x2000000a;
+        attention_info.flags = (fopAc_AttnFlag_TALKCHECK_e | fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
     }
     if (mType == 0 && !daNpcT_chkEvtBit(0x127)) {
         attention_info.flags = 0;

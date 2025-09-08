@@ -823,7 +823,7 @@ void daNpcDoorBoy_c::setParam() {
     attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
     attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(daNpcDoorBoy_Param_c::m.common.talk_distance,
                                                                    daNpcDoorBoy_Param_c::m.common.talk_angle);
-    attention_info.flags = daPy_py_c::checkNowWolf() ? 0 : 10;
+    attention_info.flags = daPy_py_c::checkNowWolf() ? 0 : (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
     scale.setall(daNpcDoorBoy_Param_c::m.common.scale);
     mAcchCir.SetWallR(daNpcDoorBoy_Param_c::m.common.width);
     mAcchCir.SetWallH(daNpcDoorBoy_Param_c::m.common.knee_length);

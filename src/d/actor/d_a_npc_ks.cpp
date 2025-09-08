@@ -1259,7 +1259,7 @@ static int npc_ks_demo_02(npc_ks_class* i_this) {
 
             if (i_this->mTimers[2] == 0 && cage_p->field_0xdc4 == 0) {
                 fopAcM_OnStatus(a_this, 0);
-                cLib_onBit<u32>(a_this->attention_info.flags, 0x2000000A);
+                cLib_onBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_TALKCHECK_e | fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
                 a_this->eventInfo.onCondition(dEvtCnd_CANTALK_e);
                 a_this->attention_info.distances[1] = 2;
                 a_this->attention_info.distances[3] = 2;
@@ -5969,15 +5969,9 @@ static int npc_ks_fsdemo(npc_ks_class* i_this) {
 
     cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->field_0x8fc.y, 2, sVar1);
 
-#if VERSION == VERSION_SHIELD_DEBUG
-    #define KS_FSDEMO_BIT 0x42UL
-#else
-    #define KS_FSDEMO_BIT 0xAUL
-#endif
-
     if (iVar1 != 0) {
         fopAcM_OnStatus(a_this, 0);
-        cLib_onBit(a_this->attention_info.flags, KS_FSDEMO_BIT);
+        cLib_onBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
         a_this->eventInfo.onCondition(dEvtCnd_CANTALK_e);
         // TODO: fake match to force reuse of pointer
         dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
@@ -5998,7 +5992,7 @@ static int npc_ks_fsdemo(npc_ks_class* i_this) {
         }
     } else {
         fopAcM_OffStatus(a_this, 0);
-        cLib_offBit(a_this->attention_info.flags, KS_FSDEMO_BIT);
+        cLib_offBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
         i_this->field_0xaee = 0;
     }
 
@@ -6188,12 +6182,7 @@ static void action(npc_ks_class* i_this) {
     cXyz sp44, sp50;
 
     fopAcM_OffStatus(a_this, 0);
-#if VERSION == VERSION_SHIELD_DEBUG
-    #define KS_ACTION_BIT 0x20000042UL
-#else
-    #define KS_ACTION_BIT 0x2000000AUL
-#endif
-    cLib_offBit(a_this->attention_info.flags, KS_ACTION_BIT);
+    cLib_offBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_TALKCHECK_e | fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
 
     if (i_this->field_0x5b5 != 0) {
         sp44 = player->eyePos - i_this->field_0x614;
@@ -6598,12 +6587,6 @@ static void kantera_sub(npc_ks_class* i_this) {
     MTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(14), mDoMtx_stack_c::get());
     i_this->mpStickModel->setBaseTRMtx(mDoMtx_stack_c::get());
 
-#if VERSION == VERSION_SHIELD_DEBUG
-    #define KANTERA_SUB_BIT 0x80UL
-#else
-    #define KANTERA_SUB_BIT 0x10UL
-#endif
-
     if (i_this->field_0xc17 == 2) {
         mDoMtx_stack_c::transM(44.0f + KREG_F(7), 144.5f + KREG_F(8), 11.0f + KREG_F(9));
         mDoMtx_multVecZero(mDoMtx_stack_c::get(), &i_this->field_0xc04);
@@ -6614,7 +6597,7 @@ static void kantera_sub(npc_ks_class* i_this) {
         daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
         if (fopAcM_checkCarryNow(a_this) != 0 && player->getGrabUpStart()) {
             fopAcM_cancelCarryNow(a_this);
-            cLib_offBit(a_this->attention_info.flags, KANTERA_SUB_BIT);
+            cLib_offBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
             i_this->field_0xc17 = 0;
             dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0xE2] & 0xFFFF);
         } else {
@@ -6644,7 +6627,7 @@ static void kantera_sub(npc_ks_class* i_this) {
             mDoMtx_stack_c::YrotM(5000);
             daPy_getPlayerActorClass()->setKandelaarMtx(mDoMtx_stack_c::get(), 0, 0);
             fopAcM_OnCarryType(a_this, fopAcM_CARRY_ITEM);
-            cLib_onBit(a_this->attention_info.flags, KANTERA_SUB_BIT);
+            cLib_onBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
             a_this->attention_info.distances[4] = 6;
             a_this->attention_info.position.x = i_this->field_0xc04.x;
             a_this->attention_info.position.y = i_this->field_0xc04.y + 30.0f;

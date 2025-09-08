@@ -183,7 +183,7 @@ void daWindStone_c::exeModeHowl() {
         daAlink_getAlinkActorClass()->startWindStoneSound(tuneId, &current.pos);
         attention_info.flags = 0;
         if (chkWlfInRange()) {
-            attention_info.flags |= 0x80;
+            attention_info.flags |= fopAc_AttnFlag_ETC_e;
             attention_info.distances[fopAc_attn_ETC_e] = 65;
         }
     }

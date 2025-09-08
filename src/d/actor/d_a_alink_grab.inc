@@ -531,7 +531,7 @@ BOOL daAlink_c::checkNextActionGrab() {
 
     setCarryArmAngle(0.0f, 1.0f);
 
-    if (mTargetedActor == NULL && mAttList != NULL && mAttList->mType == 5 && fopAcM_checkStatus(temp_r3, 0x2000000)) {
+    if (mTargetedActor == NULL && mAttList != NULL && mAttList->mType == 5 && fopAcM_CheckStatus(temp_r3, 0x2000000)) {
         setDoStatus(6);
     } else if ((field_0x27f4 == NULL) || !checkGrabTalkActor(field_0x27f4) || !setTalkStatus()) {
         if (checkModeFlg(0x400)) {

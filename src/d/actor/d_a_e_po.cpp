@@ -362,7 +362,7 @@ static void e_po_avoid(e_po_class* i_this) {
         anm_init(i_this, ANM_SWAY_BACK, 0.0f, 0, 1.0f);
         i_this->mSound1.startCreatureVoice(Z2SE_EN_PO_V_LAUGH, -1);
         i_this->enemy.current.angle.y = fopAcM_searchPlayerAngleY(a_this);
-        i_this->enemy.attention_info.flags &= ~0x4;
+        i_this->enemy.attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
         if (cM_rndF(1.0f) < 0.5f) {
             i_this->enemy.current.angle.y += 0x4000;
         } else {
@@ -375,7 +375,7 @@ static void e_po_avoid(e_po_class* i_this) {
         if (i_this->mpMorf->isStop()) {
             i_this->mSound1.startCreatureVoice(Z2SE_EN_PO_V_FIND, -1);
             i_this->enemy.current.angle.y = i_this->enemy.shape_angle.y;
-            i_this->enemy.attention_info.flags |= 0x4;
+            i_this->enemy.attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
             i_this->mActionID = ACT_SEARCH;
             anm_init(i_this, ANM_RUN_AFTER2, 10.0f, 2, 1.0f);
             i_this->mType = 2;
@@ -856,7 +856,7 @@ static void e_po_dead(e_po_class* i_this) {
         } else {
             camera_player->mCamera.Stop();
             camera_player->mCamera.SetTrimSize(3);
-            a_this->attention_info.flags &= 0xFFBFFFFF;
+            a_this->attention_info.flags &= ~fopAc_AttnFlag_UNK_0x400000;
             i_this->mType = 3;
         }
 
@@ -949,7 +949,7 @@ static void e_po_dead(e_po_class* i_this) {
             i_this->mSound1.startCreatureSound(Z2SE_EN_PO_SOUL_PULLOUT, 0, -1);
             anm_init(i_this, ANM_DOWN_DEAD, 10.0f, 0, 1.0f);
             fopAcM_OffStatus(a_this, 0);
-            a_this->attention_info.flags &= ~0x4;
+            a_this->attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
             i_this->mCyl.SetTgHitMark(CcG_Tg_UNK_MARK_3);
             dScnPly_c::setPauseTimer(5);
             fopAcM_OnStatus(a_this, 0x4000);
@@ -961,7 +961,7 @@ static void e_po_dead(e_po_class* i_this) {
         if (i_this->mpMorf->isStop()) {
             i_this->field_0x75A = 1;
             fopAcM_OffStatus(a_this, 0);
-            a_this->attention_info.flags &= ~0x4;
+            a_this->attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
             a_this->attention_info.distances[fopAc_attn_BATTLE_e] = 0;
             fopAcM_SetGroup(a_this, 0);
             i_this->mpMorf3->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("E_PO", 0x17), 0, 0.0f,
@@ -1190,7 +1190,7 @@ static void e_po_dead(e_po_class* i_this) {
         i_this->mSound1.setEnemyName(NULL);
         fopAcM_SetGroup(a_this, 0);
         fopAcM_OffStatus(a_this, 0);
-        a_this->attention_info.flags &= ~0x4;
+        a_this->attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
         break;
 
     case 20:
@@ -1254,7 +1254,7 @@ static void e_po_dead(e_po_class* i_this) {
                 } else {
                     camera_player->mCamera.Stop();
                     camera_player->mCamera.SetTrimSize(3);
-                    a_this->attention_info.flags &= ~0x400000;
+                    a_this->attention_info.flags &= ~fopAc_AttnFlag_UNK_0x400000;
                     i_this->mType = 3;
                 }
             }
@@ -2202,7 +2202,7 @@ static void e_po_holl_demo(e_po_class* i_this) {
                 a_this->field_0x560 = 90;
                 i_this->mSph2.OnCoSetBit();
                 i_this->field_0x5C1 = 1;
-                a_this->attention_info.flags = 0x400000;
+                a_this->attention_info.flags = fopAc_AttnFlag_UNK_0x400000;
                 a_this->attention_info.distances[fopAc_attn_BATTLE_e] = 3;
                 fopAcM_SetGroup(a_this, 2);
                 a_this->home.pos.set(a_this->current.pos);
@@ -2478,9 +2478,9 @@ static void action(e_po_class* i_this) {
                 var_f31 = 230.0f;
                 var_f30 = 60.0f;
                 fopAcM_OnStatus(a_this, 0);
-                a_this->attention_info.flags |= 4;
+                a_this->attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
                 if (i_this->field_0x5C1) {
-                    a_this->attention_info.flags = 0x400004;
+                    a_this->attention_info.flags = fopAc_AttnFlag_UNK_0x400000 | fopAc_AttnFlag_BATTLE_e;
                 }
                 if (i_this->mActionID == ACT_OPENING || i_this->mActionID == ACT_DAMAGE ||
                     i_this->mActionID == ACT_WOLF_BITE || i_this->mActionID == ACT_DEAD ||
@@ -2504,9 +2504,9 @@ static void action(e_po_class* i_this) {
             i_this->field_0x74A[3] = 5;
             i_this->field_0x754 = 10;
             fopAcM_OffStatus(a_this, 0);
-            a_this->attention_info.flags &= ~0x4;
+            a_this->attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
             if (i_this->field_0x5C1) {
-                a_this->attention_info.flags = 0x400000;
+                a_this->attention_info.flags = fopAc_AttnFlag_UNK_0x400000;
             }
         }
     }
@@ -3020,7 +3020,7 @@ static int daE_PO_Create(fopAc_ac_c* i_act_this) {
             i_act_this->attention_info.distances[fopAc_attn_BATTLE_e] = 25;
         }
         fopAcM_OffStatus(i_act_this, 0);
-        i_act_this->attention_info.flags &= ~0x4;
+        i_act_this->attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
 
         if (mArg0Check(i_this, 0xFF) == 3 || mArg0Check(i_this, 0xFF) == 4) {
             i_this->BitSW = 0xFF;
@@ -3151,7 +3151,7 @@ static int daE_PO_Create(fopAc_ac_c* i_act_this) {
                 i_this->field_0x5C1 = TRUE;
             }
             if (i_this->field_0x5C1) {
-                i_act_this->attention_info.flags = 0x400000;
+                i_act_this->attention_info.flags = fopAc_AttnFlag_UNK_0x400000;
             }
             if (mArg0Check(i_this, 0) != 0) {
                 if (!fopAcM_isSwitch(i_act_this, 0x43)) {

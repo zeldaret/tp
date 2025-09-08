@@ -93,7 +93,7 @@ int daOnsTaru_c::create() {
         mCcCyl.OffAtSetBit();
 
         fopAcM_OnCarryType(this, fopAcM_CARRY_TYPE_1);
-        cLib_onBit<u32>(attention_info.flags, 0x10);
+        cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
         attention_info.distances[fopAc_attn_CARRY_e] = 42;
         mIsCarryNow = fopAcM_checkCarryNow(this);
 
@@ -253,7 +253,7 @@ void daOnsTaru_c::mode_proc_call() {
 
 /* 80CA929C-80CA92CC 000DBC 0030+00 2/2 0/0 0/0 .text            mode_init_wait__11daOnsTaru_cFv */
 void daOnsTaru_c::mode_init_wait() {
-    cLib_onBit<u32>(attention_info.flags, 0x10);
+    cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     speedF = 0.0f;
     gravity = -7.0f;
     mMode = MODE_WAIT_e;
@@ -267,7 +267,7 @@ void daOnsTaru_c::mode_proc_wait() {
 /* 80CA92F0-80CA9320 000E10 0030+00 1/1 0/0 0/0 .text            mode_init_carry__11daOnsTaru_cFv */
 void daOnsTaru_c::mode_init_carry() {
     mCcCyl.OffCoSetBit();
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     speedF = 0.0f;
     mMode = MODE_CARRY_e;
 }
@@ -291,7 +291,7 @@ void daOnsTaru_c::mode_proc_carry() {
 void daOnsTaru_c::mode_init_drop() {
     mCcCyl.OnAtSetBit();
     mCollisionRadius = l_HIO.mCollisionRadius;
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     gravity = -7.0f;
     mMode = MODE_DROP_e;
 }
@@ -318,7 +318,7 @@ void daOnsTaru_c::mode_proc_break() {}
 
 /* 80CA9518-80CA9530 001038 0018+00 2/2 0/0 0/0 .text            mode_init_sink__11daOnsTaru_cFv */
 void daOnsTaru_c::mode_init_sink() {
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     mMode = MODE_SINK_e;
 }
 
@@ -340,9 +340,9 @@ void daOnsTaru_c::mode_proc_sink() {
     fopAcM_posMoveF(this, mCcStts.GetCCMoveP());
 
     if (mAcch.ChkGroundHit()) {
-        cLib_onBit<u32>(attention_info.flags, 0x10);
+        cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     } else {
-        cLib_offBit<u32>(attention_info.flags, 0x10);
+        cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     }
 }
 

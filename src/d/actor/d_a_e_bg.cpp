@@ -754,11 +754,7 @@ bool daE_BG_c::setBombCarry(int param_0) {
     fopAc_ac_c* bomb = NULL;
 
     if (param_0 == 0) {
-#if VERSION == VERSION_SHIELD_DEBUG
-        cLib_onBit<u32>(attention_info.flags, 0x80);
-#else
-        cLib_onBit<u32>(attention_info.flags, 0x10);
-#endif
+        cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
 
         if (fopAcM_checkCarryNow(this)) {
             shape_angle.x = 0;
@@ -867,11 +863,7 @@ void daE_BG_c::executeBirth() {
         field_0x6a0 = 0x3000;
         shape_angle.x = 0x2000;
 
-#if VERSION == VERSION_SHIELD_DEBUG
-        cLib_onBit<u32>(attention_info.flags, 0x80);
-#else
-        cLib_onBit<u32>(attention_info.flags, 0x10);
-#endif
+        cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
 
         mCreatureSound.startCreatureSound(Z2SE_EN_BG_SANDSMOKE, 0, -1);
 
@@ -904,11 +896,7 @@ void daE_BG_c::executeBirth() {
             field_0x688 = 0.0f;
             speed.y = 10.0f;
 
-#if VERSION == VERSION_SHIELD_DEBUG
-            cLib_offBit<u32>(attention_info.flags, 0x80);
-#else
-            cLib_offBit<u32>(attention_info.flags, 0x10);
-#endif
+            cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
 
             mAtSphere.OnAtSetBit();
         }
@@ -1142,9 +1130,9 @@ void daE_BG_c::action() {
         dBgS_LinChk linChk;
         linChk.Set(&dComIfGp_getCamera(0)->lookat.eye, &attention_info.position, this);
         if (dComIfG_Bgsp().LineCross(&linChk)) {
-            attention_info.flags &= ~0x4;
+            attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
         } else {
-            attention_info.flags |= 0x4;
+            attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
         }
     }
 
@@ -1403,7 +1391,7 @@ int daE_BG_c::create() {
             l_HIO.field_0x4 = mDoHIO_CREATE_CHILD("爆弾魚", &l_HIO);
         }
 
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         fopAcM_SetMtx(this, mpMorfSO->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -50.0f, -50.0f, -50.0f);

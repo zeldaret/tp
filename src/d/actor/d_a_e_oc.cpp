@@ -2552,7 +2552,7 @@ cPhs__Step daE_OC_c::create() {
                 lbl_216_bss_58 = 1;
                 l_HIO.field_0x04 = 0xFF;
             }
-            attention_info.flags = 4;
+            attention_info.flags = fopAc_AttnFlag_BATTLE_e;
             fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
             fopAcM_SetMin(this, -200.0f, -200.0f, -200.0f);
             fopAcM_SetMax(this, 200.0f, 200.0f, 200.0f);

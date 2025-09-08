@@ -664,7 +664,7 @@ void daE_SB_c::Search() {
     attention_info.flags = 0;
     if (temp_f31 < l_HIO.search_area) {
         if (!other_bg_check(this, player)) {
-            attention_info.flags = 4;
+            attention_info.flags = fopAc_AttnFlag_BATTLE_e;
             mSound.setLinkSearch(1);
             field_0x5b0 = 4;
             if (temp_f31 < l_HIO.atk_start_range && (s16) (shape_angle.y - s_TargetAngle) > -0x3000
@@ -677,7 +677,7 @@ void daE_SB_c::Search() {
         }
     } else if (temp_f31 < (400.0f + l_HIO.search_area)) {
         if (!other_bg_check(this, player)) {
-            attention_info.flags = 4;
+            attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         }
     } else if (temp_f30 > l_HIO.distance_home) {
         field_0x5b0 = 4;
@@ -1168,7 +1168,7 @@ cPhs__Step daE_SB_c::Create() {
             l_HIO.field_0x04 = -1;
         }
 
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         attention_info.distances[2] = 0x24;
         fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, 0.0f, -200.0f);

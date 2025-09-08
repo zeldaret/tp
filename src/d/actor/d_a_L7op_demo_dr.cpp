@@ -833,7 +833,7 @@ int daL7ODR_c::create() {
         scale.setall(1.0f);
 
         attention_info.distances[fopAc_attn_BATTLE_e] = 0;
-        attention_info.flags &= ~0x4;
+        attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
     
         fopAcM_SetGroup(this, 0);
         fopAcM_OffStatus(this, 0);

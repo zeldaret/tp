@@ -56,7 +56,7 @@ void daNbomb_c::tgHitCallback(dCcD_GObjInf* i_hitObj) {
         {
             procBoomerangMoveInit(i_hitObj);
         }
-    } else if (i_hitObj->ChkAtType(AT_TYPE_HOOKSHOT) && fopAcM_checkStatus(this, 0x80000)) {
+    } else if (i_hitObj->ChkAtType(AT_TYPE_HOOKSHOT) && fopAcM_CheckStatus(this, 0x80000)) {
         if (fopAcM_checkCarryNow(this)) {
             fopAcM_cancelCarryNow(this);
         }
@@ -91,7 +91,7 @@ static void daNbomb_tgHitCallback(fopAc_ac_c* i_tgActor, dCcD_GObjInf* i_tgObjIn
 int daNbomb_c::searchEnemy(fopAc_ac_c* i_enemy) {
     mDoMtx_multVec(field_0xa70, &i_enemy->current.pos, &field_0xc14);
 
-    if (i_enemy->attention_info.flags & 5 && field_0xc14.abs2XZ() < 250000.0f &&
+    if (i_enemy->attention_info.flags & (fopAc_AttnFlag_BATTLE_e | fopAc_AttnFlag_LOCK_e) && field_0xc14.abs2XZ() < 250000.0f &&
         fabsf(field_0xc14.y) < 100.0f)
     {
         if (abs(field_0xc14.atan2sX_Z()) < 0x4000) {
@@ -268,7 +268,7 @@ int daNbomb_c::create() {
         mExTime *= 0.75f;
     }
 
-    cLib_onBit<u32>(attention_info.flags, 0x10);
+    cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     fopAcM_OnCarryType(this, fopAcM_CARRY(fopAcM_CARRY_LIGHT | fopAcM_CARRY_SIDE));
     field_0xb5c = shape_angle.y;
 
@@ -710,7 +710,7 @@ BOOL daNbomb_c::procExplodeInit() {
     speed = cXyz::Zero;
     gravity = 0.0f;
     fopAcM_SetParam(this, PRM_NORMAL_BOMB_EXPLODE);
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
 
     mCcSph.OffTgSetBit();
     mCcSph.OffCoSetBit();
@@ -813,7 +813,7 @@ BOOL daNbomb_c::procCarryInit() {
 
     speedF = 0.0f;
     speed = cXyz::Zero;
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     mCcSph.OffCoSetBit();
     return true;
 }
@@ -1081,14 +1081,14 @@ BOOL daNbomb_c::procWait() {
                 if (field_0xc20.abs2() < 1.0f && field_0xc2c.abs2() < 1.0f &&
                     !checkStateFlg0(FLG0_FROZEN))
                 {
-                    cLib_onBit<u32>(attention_info.flags, 0x10);
+                    cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
                 } else {
-                    cLib_offBit<u32>(attention_info.flags, 0x10);
+                    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
                 }
             }
         }
     } else {
-        cLib_offBit<u32>(attention_info.flags, 0x10);
+        cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     }
 
     offStateFlg0(FLG0_UNK_20000);
@@ -1101,7 +1101,7 @@ BOOL daNbomb_c::procFlowerWaitInit() {
 
     mCcSph.OnCoSetBit();
     mCcSph.OffTgSetBit();
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     scale.set(0.1f, 0.1f, 0.1f);
     mCcStts.SetWeight(0xFE);
     mpModel->setBaseScale(scale);
@@ -1116,7 +1116,7 @@ BOOL daNbomb_c::procFlowerWait() {
         scale.z = scale.x;
         mpModel->setBaseScale(scale);
     } else {
-        cLib_onBit<u32>(attention_info.flags, 0x10);
+        cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
         mCcSph.OnTgSetBit();
 
         if (checkExplode()) {
@@ -1149,7 +1149,7 @@ BOOL daNbomb_c::procBoomerangMoveInit(dCcD_GObjInf* unused) {
         fopAcM_SetParam(this, PRM_BOMB_BOOMERANG_MOVE);
     }
 
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     mCcStts.SetWeight(30);
     mCcSph.OnCoSetBit();
     mCcSph.SetCoHitCallback(daNbomb_coHitCallback);
@@ -1220,7 +1220,7 @@ BOOL daNbomb_c::procInsectMoveInit() {
     setHitPolygon(0);
     mCcSph.OnCoSetBit();
     mCcSph.SetCoHitCallback(daNbomb_coHitCallback);
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
 
     speedF = 20.0f;
     old.pos = current.pos;

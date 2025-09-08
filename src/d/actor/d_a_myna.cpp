@@ -1274,9 +1274,9 @@ int daMyna_c::orderEvent() {
         case 13:
         case 14:
         case 15:
-            attention_info.flags = 10;
+            attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
         }
-        if (attention_info.flags == 10) {
+        if (attention_info.flags == (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e)) {
             attention_info.distances[fopAc_attn_TALK_e] = 0x8B;
             attention_info.distances[fopAc_attn_SPEAK_e] = 0x8B;
             eventInfo.onCondition(1);

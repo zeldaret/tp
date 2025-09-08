@@ -62,13 +62,13 @@ cPhs__Step daObjSword_c::create() {
 int daObjSword_c::actionWait() {
     daPy_py_c* player = daPy_getPlayerActorClass();
     if (fopAcM_checkCarryNow(this)) {
-        cLib_offBit<u32>(attention_info.flags, 0x10);
+        cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
         if (player->getGrabUpStart()) {
             fopAcM_cancelCarryNow(this);
             initActionOrderGetDemo();
         }
     } else {
-        cLib_onBit<u32>(attention_info.flags, 0x10);
+        cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     }
     return 1;
 }

@@ -2019,7 +2019,7 @@ cPhs__Step daE_SM_c::Create() {
         fopAcM_SetMtx(this, mpModelMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -800.0f, -200.0f, -800.0f);
         fopAcM_SetMax(this, 800.0f, 500.0f, 800.0f);
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         attention_info.distances[fopAc_attn_BATTLE_e] = 58;
 
         mSound.init(&current.pos, NULL, 3, 1);

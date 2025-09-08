@@ -74,7 +74,7 @@ int daObjDigSnow_c::create1st() {
  */
 int daObjDigSnow_c::Execute(Mtx** i_mtx) {
     if (daPy_py_c::checkNowWolf()) {
-        attention_info.flags = 0x80;
+        attention_info.flags = fopAc_AttnFlag_ETC_e;
     } else {
         attention_info.flags = 0;
     }

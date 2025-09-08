@@ -74,7 +74,7 @@ int daTag_KMsg_c::Execute() {
         }
         if (getType() == KMSG_TYPE_3) {
             if (field_0x5c3 == 0) {
-                attention_info.flags = 0x80;
+                attention_info.flags = fopAc_AttnFlag_ETC_e;
                 attention_info.distances[fopAc_attn_ETC_e] = 0x4a;
             } else {
                 attention_info.flags = 0;
@@ -87,9 +87,9 @@ int daTag_KMsg_c::Execute() {
 #endif
             attention_info.distances[fopAc_attn_SPEAK_e] = attention_info.distances[fopAc_attn_TALK_e];
             if (getAttnPosOffset() != 1000000000.0f) {
-                attention_info.flags = 0xa;
+                attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
             } else {
-                attention_info.flags = 0x8;
+                attention_info.flags = fopAc_AttnFlag_SPEAK_e;
             }
         }
         if ((getType() == KMSG_TYPE_1 || getType() == KMSG_TYPE_4 || getType() == KMSG_TYPE_5) &&
@@ -142,7 +142,7 @@ int daTag_KMsg_c::Execute() {
             }
         } else if (getType() == KMSG_TYPE_3) {
             if (field_0x5c2 != 0x0) {
-                attention_info.flags &= ~0x10;
+                attention_info.flags &= ~fopAc_AttnFlag_CARRY_e;
                 fopAcM_cancelCarryNow(this);
                 if (strlen(l_evtList[1].mEventName) != 0) {
                     if (strlen(l_resNameList[l_evtList[1].field_0x4]) != 0) {

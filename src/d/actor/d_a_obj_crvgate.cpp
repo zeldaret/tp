@@ -723,7 +723,7 @@ void daObjCRVGATE_c::SetDoor() {
 
     if (mKeyParam == 0xff) {
         attention_info.position = mPos;
-        attention_info.flags = 0x20;
+        attention_info.flags = fopAc_AttnFlag_DOOR_e;
         attention_info.distances[5] = 0x0F;
 
         mKeyParam = 0x01;

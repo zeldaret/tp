@@ -170,7 +170,7 @@ void daNpc_FairySeirei_c::setParam() {
     attention_info.distances[fopAc_attn_LOCK_e] = 0x27;
     attention_info.distances[fopAc_attn_TALK_e] = 0x27;
     attention_info.distances[fopAc_attn_SPEAK_e] = 0x27;
-    attention_info.flags = 8;
+    attention_info.flags = fopAc_AttnFlag_SPEAK_e;
     mCcStts.SetWeight(daNpc_FairySeirei_Param_c::m[4]);
     mCylH = daNpc_FairySeirei_Param_c::m[5];
     mWallR = daNpc_FairySeirei_Param_c::m[7];

@@ -648,7 +648,7 @@ void daNpcShoe_c::setParam() {
     attention_info.distances[1] = attention_info.distances[0];
     attention_info.distances[3] = getDistTableIdx(daNpcShoe_Param_c::m.mSpeakDistIdx, daNpcShoe_Param_c::m.mSpeakAngleIdx);
 
-    attention_info.flags = (field_0xe1b != 0) ? 10 : 0;
+    attention_info.flags = (field_0xe1b != 0) ? (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e) : 0;
 
     scale.setall(daNpcShoe_Param_c::m.mScale);
     mAcchCir.SetWallR(daNpcShoe_Param_c::m.mWallR);

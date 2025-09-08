@@ -408,7 +408,7 @@ void daObjBATTA_c::hook() {
             batta_setParticle();
         }
 
-        if (!fopAcM_checkStatus(this, fopAcM_STATUS_HOOK_CARRY_NOW)) {
+        if (!fopAcM_CheckStatus(this, fopAcM_STATUS_HOOK_CARRY_NOW)) {
             setAction(&daObjBATTA_c::wait);
         }
     }

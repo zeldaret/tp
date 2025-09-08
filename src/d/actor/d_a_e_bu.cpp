@@ -891,7 +891,7 @@ static s8 action(e_bu_class* i_this) {
             actor->attention_info.flags = 0;
         } else {
             fopAcM_OnStatus(actor, 0);
-            actor->attention_info.flags = 4;
+            actor->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         }
     } else {
         fopAcM_OffStatus(actor, 0);
@@ -1108,7 +1108,7 @@ static int daE_BU_Create(fopAc_ac_c* i_this) {
             l_HIO.id = mDoHIO_CREATE_CHILD("バブル", &l_HIO);
         }
 
-        i_this->attention_info.flags = 4;
+        i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         fopAcM_SetMtx(i_this, a_this->modelMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(i_this, -200.0f, -200.0f, -200.0f);
         fopAcM_SetMax(i_this, 200.0f, 200.0f, 200.0f);

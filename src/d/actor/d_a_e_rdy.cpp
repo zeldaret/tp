@@ -3229,7 +3229,7 @@ static void action(e_rdy_class* i_this) {
 
     if (i_this->mRideState == 0) {
         fopAcM_OnStatus(a_this, 0);
-        a_this->attention_info.flags = 4;
+        a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     } else {
         fopAcM_OffStatus(a_this, 0);
         a_this->attention_info.flags = 0;
@@ -4953,7 +4953,7 @@ static cPhs__Step daE_RDY_Create(fopAc_ac_c* i_this) {
         }
 
         fopAcM_OnStatus(i_this, fopAcStts_CULL_e);
-        i_this->attention_info.flags = 4;
+        i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         u8 path_id = i_this->home.angle.x & 0xff;
         if (path_id != 0xff) {

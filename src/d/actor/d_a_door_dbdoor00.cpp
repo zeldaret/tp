@@ -157,7 +157,7 @@ int daDbDoor00_c::CreateInit() {
     field_0x594 = 0x1e;
     attention_info.position.y += 250.0f;
     eyePos.y += 250.0f;
-    attention_info.flags = 0x20;
+    attention_info.flags = fopAc_AttnFlag_DOOR_e;
     calcMtx();
     mpBgW->Move();
     return 1;

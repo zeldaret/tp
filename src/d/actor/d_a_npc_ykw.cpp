@@ -745,13 +745,7 @@ void daNpc_ykW_c::setParam() {
     srchActors();
 
     if (field_0xf80 != 5 && field_0xf80 != 6) {
-        u32 newAttnFlags;
-#if DEBUG
-        newAttnFlags = 0x42;
-#else
-        newAttnFlags = 0x0a;
-#endif
-
+        u32 newAttnFlags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
         s16 talkDist = HIO_PARAM(this)->common.talk_distance;
         s16 talkAngle = HIO_PARAM(this)->common.talk_angle;
         s16 attnDist = HIO_PARAM(this)->common.attention_distance;
@@ -774,12 +768,12 @@ void daNpc_ykW_c::setParam() {
 #endif
 
         if (daPy_py_c::checkNowWolf()) {
-            newAttnFlags |= 0x800000;
+            newAttnFlags |= fopAc_AttnFlag_UNK_0x800000;
         }
 
         attention_info.flags = newAttnFlags;
     } else {
-        attention_info.flags = 0x0;
+        attention_info.flags = 0;
     }
 
     scale.set(HIO_PARAM(this)->common.scale,

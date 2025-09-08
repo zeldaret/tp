@@ -37,7 +37,7 @@ void daObjGraRock_c::setAttnPos() {
     mDoMtx_stack_c::multVec(&cStack_50, &attention_info.position);
     attention_info.position += current.pos;
     attention_info.distances[0] = daNpcF_getDistTableIdx(8, 5);
-    attention_info.flags = 1;
+    attention_info.flags = fopAc_AttnFlag_LOCK_e;
     dAttention_c* attention = dComIfGp_getAttention();
     if (attention->LockonTruth()) {
         if (attention->LockonTarget(0) == this && field_0x9bc == 0 && field_0x9b6 == 0) {

@@ -153,7 +153,7 @@ static void food_normal(obj_food_class* i_this) {
     if (i_this->mAcch.ChkGroundHit()) {
         fopAcM_SetFoodStatus(i_this, fopAcM_FOOD_0);
         if (i_this->mBounces >= 3) {
-            cLib_onBit<u32>(i_this->attention_info.flags, 0x10);
+            cLib_onBit<u32>(i_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
             i_this->speedF = 0.0f;
 
             if (fopAcM_checkCarryNow(i_this)) {
@@ -265,14 +265,14 @@ static void action(obj_food_class* i_this) {
         break;
     case fopAcM_FOOD_1:
         food_normal(i_this);
-        cLib_offBit<u32>(i_this->attention_info.flags, 0x10);
+        cLib_offBit<u32>(i_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
         break;
     case fopAcM_FOOD_2:
         food_carry(i_this);
-        cLib_offBit<u32>(i_this->attention_info.flags, 0x10);
+        cLib_offBit<u32>(i_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
         break;
     case fopAcM_FOOD_3:
-        cLib_offBit<u32>(i_this->attention_info.flags, 0x10);
+        cLib_offBit<u32>(i_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
         break;
     case fopAcM_FOOD_4:
         fopAcM_SetFoodStatus(i_this, fopAcM_FOOD_0);

@@ -178,7 +178,7 @@ void daE_PZ_c::mEntrySUB(bool param_0) {
 
         attention_info.distances[fopAc_attn_BATTLE_e] = 0;
         fopAcM_OffStatus(this, 0);
-        attention_info.flags &= ~4;
+        attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
     } else {
         if ((arg0 == 0 || arg0 == 1) && field_0x844 != 0) {
             dComIfGp_particle_set(0x8897, &eff_pos, &shape_angle, NULL);
@@ -188,7 +188,7 @@ void daE_PZ_c::mEntrySUB(bool param_0) {
     
         attention_info.distances[fopAc_attn_BATTLE_e] = 3;
         fopAcM_OnStatus(this, 0);
-        attention_info.flags |= 4;
+        attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
     }
 }
 
@@ -1606,7 +1606,7 @@ void daE_PZ_c::executeDead() {
             field_0x843 = 0;
             fopAcM_OffStatus(this, 0);
             fopAcM_SetGroup(this, 0);
-            attention_info.flags &= ~4;
+            attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
             break;
         }
 
@@ -2568,7 +2568,7 @@ int daE_PZ_c::create() {
                 l_HIO.no = mDoHIO_CREATE_CHILD("ファントムザント", &l_HIO);
             }
 
-            attention_info.flags = 4;
+            attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
             mColliderStts.Init(0xFE, 0, this);
 
@@ -2642,7 +2642,7 @@ int daE_PZ_c::create() {
 
                     attention_info.distances[fopAc_attn_BATTLE_e] = 0;
                     fopAcM_OffStatus(this, 0);
-                    attention_info.flags &= ~4;
+                    attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
 
                     if (arg0 == 0) {
                         field_0x7bc = 20.0f;

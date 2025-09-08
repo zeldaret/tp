@@ -811,7 +811,7 @@ void daNpcKasiHana_c::setParam() {
     attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(daNpcKasiHana_Param_c::m.common.attention_distance, daNpcKasiHana_Param_c::m.common.attention_angle);
     attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
     attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(daNpcKasiHana_Param_c::m.common.talk_distance, daNpcKasiHana_Param_c::m.common.talk_angle);
-    attention_info.flags = 10;
+    attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
 }
 
 /* 80A1CA60-80A1CD28 001BA0 02C8+00 1/0 0/0 0/0 .text            main__15daNpcKasiHana_cFv */

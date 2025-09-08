@@ -573,7 +573,7 @@ static int daE_MB_Execute(e_mb_class* i_this) {
             i_this->attention_info.position += i_this->eyePos;
 
             fopAcM_OnStatus(i_this, 0);
-            i_this->attention_info.flags = 4;
+            i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         } else {
             i_this->mpBombModel2Morf->play(NULL, 0, 0);
 
@@ -749,7 +749,7 @@ static int daE_MB_Create(fopAc_ac_c* i_this) {
         a_this->mCcSph.Set(cc_sph_src);
         a_this->mCcSph.SetStts(&a_this->mColliderStts);
 
-        i_this->attention_info.flags = 4;
+        i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         i_this->attention_info.distances[fopAc_attn_BATTLE_e] = 22;
         a_this->field_0x6b0 = 1;
         daE_MB_Execute(a_this);
