@@ -114,8 +114,8 @@ bool dCamera_c::getEvIntData(int* i_data, char* i_event) {
         } else {
             *i_data = *(int*)mEventData.mEventParams[index].value;
         }
-    } else if (dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event) != 0) {
-        *i_data = *dComIfGp_evmng_getMyIntegerP(mEventData.field_0x4, i_event);
+    } else if (dComIfGp_evmng_getMySubstanceNum(mEventData.mStaffIdx, i_event) != 0) {
+        *i_data = *dComIfGp_evmng_getMyIntegerP(mEventData.mStaffIdx, i_event);
     } else {
 #if DEBUG
         if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
@@ -144,8 +144,8 @@ bool dCamera_c::getEvFloatData(f32* i_data, char* i_event) {
         }
 
         *i_data = *(f32*)mEventData.mEventParams[index].value;
-    } else if (dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event) != 0) {
-        *i_data = *dComIfGp_evmng_getMyFloatP(mEventData.field_0x4, i_event);
+    } else if (dComIfGp_evmng_getMySubstanceNum(mEventData.mStaffIdx, i_event) != 0) {
+        *i_data = *dComIfGp_evmng_getMyFloatP(mEventData.mStaffIdx, i_event);
     } else {
 #if DEBUG
         if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
@@ -177,8 +177,8 @@ int dCamera_c::getEvFloatListData(f32** i_data, char* i_event) {
 
         *i_data = (f32*)mEventData.mEventParams[index].value;
         num = mEventData.mEventParams[index].field_0x10;
-    } else if ((num = dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event))) {
-        *i_data = dComIfGp_evmng_getMyFloatP(mEventData.field_0x4, i_event);
+    } else if ((num = dComIfGp_evmng_getMySubstanceNum(mEventData.mStaffIdx, i_event))) {
+        *i_data = dComIfGp_evmng_getMyFloatP(mEventData.mStaffIdx, i_event);
     } else {
 #if DEBUG
         if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
@@ -210,8 +210,8 @@ int dCamera_c::getEvXyzListData(cXyz** i_data, char* i_event) {
 
         *i_data = (cXyz*)mEventData.mEventParams[index].value;
         return mEventData.mEventParams[index].field_0x10;
-    } else if ((num = dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event))) {
-        *i_data = dComIfGp_evmng_getMyXyzP(mEventData.field_0x4, i_event);
+    } else if ((num = dComIfGp_evmng_getMySubstanceNum(mEventData.mStaffIdx, i_event))) {
+        *i_data = dComIfGp_evmng_getMyXyzP(mEventData.mStaffIdx, i_event);
     } else {
 #if DEBUG
         if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
@@ -242,8 +242,8 @@ char* dCamera_c::getEvStringPntData(char* i_event) {
         }
 
         string = (char*)mEventData.mEventParams[index].value;
-    } else if (dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event)) {
-        string = dComIfGp_evmng_getMyStringP(mEventData.field_0x4, i_event);
+    } else if (dComIfGp_evmng_getMySubstanceNum(mEventData.mStaffIdx, i_event)) {
+        string = dComIfGp_evmng_getMyStringP(mEventData.mStaffIdx, i_event);
     } else {
 #if DEBUG
         if (mCurCamStyleTimer == 0 && mCamSetup.CheckFlag(0x40)) {
@@ -272,8 +272,8 @@ bool dCamera_c::getEvIntData(int* i_data, char* i_event, int param_2) {
         } else {
             *i_data = *(int*)mEventData.mEventParams[index].value;
         }
-    } else if (dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event) != 0) {
-        *i_data = *dComIfGp_evmng_getMyIntegerP(mEventData.field_0x4, i_event);
+    } else if (dComIfGp_evmng_getMySubstanceNum(mEventData.mStaffIdx, i_event) != 0) {
+        *i_data = *dComIfGp_evmng_getMyIntegerP(mEventData.mStaffIdx, i_event);
     } else {
         *i_data = param_2;
 #if DEBUG
@@ -302,8 +302,8 @@ bool dCamera_c::getEvFloatData(f32* i_data, char* i_event, f32 param_2) {
         } else {
             *i_data = *(f32*)mEventData.mEventParams[index].value;
         }
-    } else if (dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event) != 0) {
-        *i_data = *dComIfGp_evmng_getMyFloatP(mEventData.field_0x4, i_event);
+    } else if (dComIfGp_evmng_getMySubstanceNum(mEventData.mStaffIdx, i_event) != 0) {
+        *i_data = *dComIfGp_evmng_getMyFloatP(mEventData.mStaffIdx, i_event);
     } else {
         *i_data = param_2;
 #if DEBUG
@@ -331,8 +331,8 @@ bool dCamera_c::getEvXyzData(cXyz* i_data, char* i_event, cXyz param_2) {
         } else {
             *i_data = *(cXyz*)mEventData.mEventParams[index].value;
         }
-    } else if (dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event) != 0) {
-        *i_data = *dComIfGp_evmng_getMyXyzP(mEventData.field_0x4, i_event);
+    } else if (dComIfGp_evmng_getMySubstanceNum(mEventData.mStaffIdx, i_event) != 0) {
+        *i_data = *dComIfGp_evmng_getMyXyzP(mEventData.mStaffIdx, i_event);
     } else {
         *i_data = param_2;
 #if DEBUG
@@ -360,8 +360,8 @@ bool dCamera_c::getEvStringData(char* i_data, char* i_event, char* param_2) {
         } else {
             strcpy(i_data, (char*)mEventData.mEventParams[index].value);
         }
-    } else if (dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event) != 0) {
-        strcpy(i_data, dComIfGp_evmng_getMyStringP(mEventData.field_0x4, i_event));
+    } else if (dComIfGp_evmng_getMySubstanceNum(mEventData.mStaffIdx, i_event) != 0) {
+        strcpy(i_data, dComIfGp_evmng_getMyStringP(mEventData.mStaffIdx, i_event));
     } else {
         strcpy(i_data, param_2);
 #if DEBUG
@@ -391,8 +391,8 @@ char* dCamera_c::getEvStringPntData(char* i_event, char* param_1) {
         } else {
             string = (char*)mEventData.mEventParams[index].value;
         }
-    } else if (dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, i_event)) {
-        string = dComIfGp_evmng_getMyStringP(mEventData.field_0x4, i_event);
+    } else if (dComIfGp_evmng_getMySubstanceNum(mEventData.mStaffIdx, i_event)) {
+        string = dComIfGp_evmng_getMyStringP(mEventData.mStaffIdx, i_event);
     } else {
         string = param_1;
 #if DEBUG
@@ -3427,8 +3427,8 @@ bool dCamera_c::fixedFramesEvCamera() {
 
         int substanceNum;
         char* key = "Centers";
-        if ((substanceNum = dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, key)) != 0) {
-            fframes_p->field_0x1c[1] = dComIfGp_evmng_getMyXyzP(mEventData.field_0x4, key);
+        if ((substanceNum = dComIfGp_evmng_getMySubstanceNum(mEventData.mStaffIdx, key)) != 0) {
+            fframes_p->field_0x1c[1] = dComIfGp_evmng_getMyXyzP(mEventData.mStaffIdx, key);
             if (fframes_p->field_0x38 > substanceNum) {
                 fframes_p->field_0x38 = substanceNum;
             }
@@ -3438,8 +3438,8 @@ bool dCamera_c::fixedFramesEvCamera() {
         }
 
         key = "Eyes";
-        if ((substanceNum = dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, key)) != 0) {
-            fframes_p->field_0x1c[0] = dComIfGp_evmng_getMyXyzP(mEventData.field_0x4, key);
+        if ((substanceNum = dComIfGp_evmng_getMySubstanceNum(mEventData.mStaffIdx, key)) != 0) {
+            fframes_p->field_0x1c[0] = dComIfGp_evmng_getMyXyzP(mEventData.mStaffIdx, key);
             if (fframes_p->field_0x38 > substanceNum) {
                 fframes_p->field_0x38 = substanceNum;
             }
@@ -3449,8 +3449,8 @@ bool dCamera_c::fixedFramesEvCamera() {
         }
 
         key = "Fovys";
-        if ((substanceNum = dComIfGp_evmng_getMySubstanceNum(mEventData.field_0x4, key)) != 0) {
-            fframes_p->field_0x24 = dComIfGp_evmng_getMyFloatP(mEventData.field_0x4, key);
+        if ((substanceNum = dComIfGp_evmng_getMySubstanceNum(mEventData.mStaffIdx, key)) != 0) {
+            fframes_p->field_0x24 = dComIfGp_evmng_getMyFloatP(mEventData.mStaffIdx, key);
             if (fframes_p->field_0x38 > substanceNum) {
                 fframes_p->field_0x38 = substanceNum;
             }

@@ -221,7 +221,7 @@ public:
     /* 80844590 */ int draw();
     /* 8084478C */ ~daHorse_c();
     
-    /* 80182D04 */ BOOL getLashDashStart() const { return checkResetStateFlg0(RFLG0_LASH_DASH_START); }
+    /* 80182D04 */ u32 getLashDashStart() const { return checkResetStateFlg0(RFLG0_LASH_DASH_START); }
     
 
     bool checkNoBombProc() const { return m_procID == PROC_WAIT_e || m_procID == PROC_MOVE_e; }
@@ -257,7 +257,7 @@ public:
     daHoZelda_c* getZeldaActor() { return (daHoZelda_c*)m_zeldaActorKeep.getActor(); }
     void setZeldaActor(fopAc_ac_c* i_actor) { m_zeldaActorKeep.setData(i_actor); }
 
-    bool checkTurnStandCamera() const { return checkResetStateFlg0(RFLG0_TURN_STAND_CAMERA); }
+    u32 checkTurnStandCamera() const { return checkResetStateFlg0(RFLG0_TURN_STAND_CAMERA); }
     BOOL checkTurnStand() const { return checkResetStateFlg0(RFLG0_TURN_STAND); }
     u32 checkRodeoMode() const { return checkStateFlg0(FLG0_RODEO_MODE); }
     bool checkCutTurnCancel() const { return checkEndResetStateFlg0(ERFLG0_CUT_TURN_CANCEL); }
@@ -266,7 +266,7 @@ public:
     BOOL checkHorseCallWait() const { return checkStateFlg0(FLG0_NO_DRAW_WAIT); }
     BOOL checkTurn() const { return m_procID == PROC_TURN_e && field_0x1720 == 0; }
     BOOL checkStop() const { return m_procID == PROC_STOP_e; }
-    bool checkJump() const { return m_procID == PROC_JUMP_e; }
+    BOOL checkJump() const { return m_procID == PROC_JUMP_e; }
     bool checkWait() const { return m_procID == PROC_WAIT_e; }
     bool checkLand() const { return m_procID == PROC_LAND_e && field_0x171a == 0; }
     bool checkGetOff() const { return fabsf(speedF) < 3.0f; }
