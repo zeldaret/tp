@@ -1744,7 +1744,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_e_sf"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_sg"),
     ActorRel(NonMatching, "d_a_e_sh"),
-    ActorRel(Equivalent, "d_a_e_sm"), # weak func order (setMidnaBindEffect)
+    ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_sm"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_sm2"),
     ActorRel(NonMatching, "d_a_e_st"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_st_line"),
@@ -1759,7 +1759,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_warpappear"),
     ActorRel(NonMatching, "d_a_e_wb"),
     ActorRel(NonMatching, "d_a_e_ws"),
-    ActorRel(Equivalent, "d_a_e_ww"), # weak func order
+    ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_ww"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_yc"),
     ActorRel(NonMatching, "d_a_e_yd"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_yd_leaf"),
@@ -2002,7 +2002,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_ita"),
     ActorRel(NonMatching, "d_a_obj_itamato"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_kabuto"),
-    ActorRel(NonMatching, "d_a_obj_kag"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_kag"),
     ActorRel(NonMatching, "d_a_obj_kage"),
     ActorRel(NonMatching, "d_a_obj_kago"),
     ActorRel(NonMatching, "d_a_obj_kaisou"),

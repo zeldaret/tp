@@ -66,6 +66,20 @@ enum Core_Action {
     /* 0x7 */ CORE_ACTION_DEMO = 0x7,
 };
 
+class daE_Sm_HIO_c : public JORReflexible {
+public:
+    /* 8079222C */ daE_Sm_HIO_c();
+    /* 807980E8 */ virtual ~daE_Sm_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* スライム - Slime */
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 basic_size;      // 基本大きさ - Basic Size
+    /* 0x0C */ f32 pl_notice_dist;  // PL認識距離 - PL Notice Distance   
+    /* 0x10 */ f32 core_size;       // コア大きさ - Core Size
+};
+
 /* 8079222C-80792260 0000EC 0034+00 1/1 0/0 0/0 .text            __ct__12daE_Sm_HIO_cFv */
 daE_Sm_HIO_c::daE_Sm_HIO_c() {
     field_0x4 = -1;

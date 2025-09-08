@@ -98,6 +98,25 @@ enum Action_Mode {
     /* 0xC8 */ ACTION_MODE_200 = 0xC8,
 };
 
+class daE_WW_HIO_c : public JORReflexible {
+public:
+    /* 807E76EC */ daE_WW_HIO_c();
+    /* 807EEEBC */ virtual ~daE_WW_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* ホワイトウルフォス - White Werewolf */
+    /* 0x04 */ s8 field_0x04;
+    /* 0x08 */ f32 model_size;              // モデルサイズ - Model Size      
+    /* 0x0C */ f32 attack_interval;         // 攻撃間隔 - Attack Interval
+    /* 0x10 */ f32 run_anm;                 // 走りアニメーション - Run Animation
+    /* 0x14 */ f32 walk_anm;                // 歩きアニメーション - Walk Animation
+    /* 0x18 */ f32 run_speed;               // 走る速度 - Run Speed
+    /* 0x1C */ f32 wolf_escape_speed;       // 狼から逃亡速度 - Wolf Escape Speed
+    /* 0x20 */ f32 link_escape_speed;       // リンクから逃亡速度 - Link Escape Speed
+    /* 0x24 */ u8 move_range_debug_display; // 移動範囲デバック表示 - Move Range Debug Display
+};
+
 namespace {
     /* 807EF904-807EF944 000038 0040+00 1/1 0/0 0/0 .data            cc_ww_src__22@unnamed@d_a_e_ww_cpp@ */
     dCcD_SrcSph cc_ww_src = {
