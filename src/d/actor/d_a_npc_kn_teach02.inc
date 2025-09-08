@@ -30,9 +30,9 @@ u32 daNpc_Kn_c::setParamTeach02() {
         f32 absxz = (daPy_getPlayerActorClass()->current.pos - pos).absXZ();
 
         if (absxz < 255.0f) {
-            return 0x200004;
+            return fopAc_AttnFlag_UNK_0x200000 | fopAc_AttnFlag_BATTLE_e;
         } else {
-            return 4;
+            return fopAc_AttnFlag_BATTLE_e;
         }
     }
     case 4:
@@ -45,7 +45,7 @@ u32 daNpc_Kn_c::setParamTeach02() {
         return 0;
     }
 
-    return 10;
+    return (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
 }
 
 /* 80A3EE38-80A3EF1C 014518 00E4+00 1/1 0/0 0/0 .text            setCollisionTeach02__10daNpc_Kn_cFv

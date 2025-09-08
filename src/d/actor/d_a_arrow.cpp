@@ -1010,7 +1010,7 @@ int daArrow_c::procSlingHitInit(cXyz* param_0, dCcD_GObjInf* param_1) {
 
     if (!daAlink_c::notSwordHitVibActor(hit_ac)) {
         u16 hitmark;
-        if (hit_ac != NULL && fopAcM_checkStatus(hit_ac, 0x10000) != 0) {
+        if (hit_ac != NULL && fopAcM_CheckStatus(hit_ac, 0x10000) != 0) {
             hitmark = 1;
         } else {
             hitmark = 9;

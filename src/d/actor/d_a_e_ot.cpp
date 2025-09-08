@@ -339,7 +339,7 @@ void daE_OT_c::executeEgg() {
                 if (mWaterSurface >= current.pos.y) {
                     setWaterEffect();
                 }
-                attention_info.flags = 4;
+                attention_info.flags = fopAc_AttnFlag_BATTLE_e;
                 if (mMode == 5) {
                     setActionMode(ACT_BORN, 0);
                 } else {
@@ -798,7 +798,7 @@ cPhs__Step daE_OT_c::create() {
             l_HIO.field_0x4 = -1;
         }
 
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, -200.0f, -200.0f);
         fopAcM_SetMax(this, 200.0f, 200.0f, 200.0f);

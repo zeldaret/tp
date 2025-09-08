@@ -598,7 +598,7 @@ BOOL daNpcTks_c::main() {
         }
     }
 
-    if (cLib_checkBit<u32>(attention_info.flags, 0x10) && fopAcM_checkCarryNow(this)) {
+    if (cLib_checkBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e) && fopAcM_checkCarryNow(this)) {
         setAction(&daNpcTks_c::demo_appear);
     }
 
@@ -631,7 +631,7 @@ void daNpcTks_c::reset() {
     }
 
     attention_info.distances[fopAc_attn_CARRY_e] = 43;
-    attention_info.flags = 0x10;
+    attention_info.flags = fopAc_AttnFlag_CARRY_e;
     field_0x1370 = 0;
     field_0x1374 = 0;
     mAction = NULL;
@@ -655,7 +655,7 @@ void daNpcTks_c::reset() {
         case 0:
         case 255:
             if (fopAcM_isSwitch(this, getSwitchNo())) {
-                cLib_offBit<u32>(attention_info.flags, 0x10);
+                cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
                 field_0x138a = false;
                 mTksTsubo.field_0x586 = 0;
                 setAction(&daNpcTks_c::waitNude);
@@ -954,7 +954,7 @@ void daNpcTks_c::setLookMode(int i_lookMode, fopAc_ac_c* actor_p) {
 void daNpcTks_c::wait() {
     switch (mMode) {
         case 0:
-            cLib_offBit<u32>(attention_info.flags, 0x10);
+            cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
             setMotionAnm(ANM_WAIT_A, 0.0f);
             field_0x138a = false;
             speedF = 0.0f;
@@ -1054,7 +1054,7 @@ void daNpcTks_c::setMotionAnm(int i_index, f32 i_morf) {
 void daNpcTks_c::waitNude() {
     switch (mMode) {
         case 0:
-            cLib_offBit<u32>(attention_info.flags, 0x10);
+            cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
             setMotionAnm(ANM_WAIT_A, 0.0f);
             field_0x138a = false;
             speedF = 0.0f;
@@ -1097,7 +1097,7 @@ void daNpcTks_c::waitNude() {
 void daNpcTks_c::waitLv6() {
     switch (mMode) {
         case 0:
-            cLib_offBit<u32>(attention_info.flags, 0x10);
+            cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
             setMotionAnm(ANM_WAIT_A, 0.0f);
             field_0x138a = false;
             speedF = 0.0f;
@@ -1120,7 +1120,7 @@ void daNpcTks_c::waitLv6() {
             }
 
             if (current.pos.y - fopAcM_GetPosition_p(daPy_getPlayerActorClass())->y < 100.0f && fopAcM_searchPlayerDistanceXZ(this) <= 400.0f) {
-                attention_info.flags = 10;
+                attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
                 eventInfo.onCondition(dEvtCmd_INTALK_e);
                 fopAcM_orderSpeakEvent(this, 0, 0);
             }
@@ -1498,7 +1498,7 @@ void daNpcTks_c::damage() {
     switch (mMode) {
         case 0:
             setMotionAnm(ANM_SHAKE, 0.0f);
-            cLib_offBit<u32>(attention_info.flags, 0x10);
+            cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
             field_0x138a = true;
             speedF = 0.0f;
             mMode = 2;
@@ -1515,7 +1515,7 @@ void daNpcTks_c::damage() {
             break;
 
         case 3:
-            cLib_onBit<u32>(attention_info.flags, 0x10);
+            cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
             break;
 
         default:
@@ -1537,7 +1537,7 @@ void daNpcTks_c::broken() {
             }
 
             mTksTsubo.mSound.startCreatureSound(Z2SE_TKS_V_OUT_OF_POT, 0, -1);
-            cLib_offBit<u32>(attention_info.flags, 0x10);
+            cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
             field_0x138a = false;
             mTksTsubo.field_0x586 = 0;
             fopAcM_onSwitch(this, getSwitchNo());
@@ -1569,7 +1569,7 @@ void daNpcTks_c::demo_appear() {
             eventInfo.setArchiveName(l_arcName);
             mEventIdx = dComIfGp_getEventManager().getEventIdx(this, "TKS_ENCOUNTER", 0xFF);
             fopAcM_orderOtherEventId(this, mEventIdx, 0xFF, 0xFFFF, 4, 1);
-            cLib_offBit<u32>(attention_info.flags, 0x10);
+            cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
             setExpression(EXPR_NONE, -1.0f);
             setMotionAnm(ANM_HIDE, 0.0f);
             mMode = 2;
@@ -1613,7 +1613,7 @@ void daNpcTks_c::demo_appear() {
                                 dComIfGp_getVibration().StartShock(2, 15, cXyz(0.0f, 1.0f, 0.0f));
                                 mTksTsubo.mSound.startCreatureSound(Z2SE_TKS_V_OUT_OF_POT, 0, -1);
                                 fopAcM_cancelCarryNow(this);
-                                cLib_offBit<u32>(attention_info.flags, 0x10);
+                                cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
                                 field_0x138a = false;
                                 mTksTsubo.field_0x586 = 0;
                                 speedF = daNpcTks_Param_c::m.movement_spd;
@@ -1732,7 +1732,7 @@ void daNpcTks_c::demo_appear() {
 void daNpcTks_c::demo_scannon() {
     switch (mMode) {
         case 0:
-            cLib_offBit<u32>(attention_info.flags, 0x10);
+            cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
             setExpression(EXPR_NONE, -1.0f);
             setMotion(MOT_WAIT_A, -1.0f, 0);
             field_0x138a = false;
@@ -1839,7 +1839,7 @@ void daNpcTks_c::demo_scannon() {
 void daNpcTks_c::demo_Lv6Gate() {
     switch (mMode) {
         case 0:
-            cLib_offBit<u32>(attention_info.flags, 0x10);
+            cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
             setExpression(EXPR_NONE, -1.0f);
             setMotion(MOT_WAIT_A, -1.0f, 0);
             field_0x138a = false;
@@ -1912,7 +1912,7 @@ void daNpcTks_c::demo_farewell() {
             eventInfo.setArchiveName(l_arcName);
             mEventIdx = dComIfGp_getEventManager().getEventIdx(this, "TKS_FAREWELL", 0xFF);
             fopAcM_orderOtherEventId(this, mEventIdx, 0xFF, 0xFFFF, 4, 1);
-            cLib_offBit<u32>(attention_info.flags, 0x10);
+            cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
             setExpression(EXPR_NONE, -1.0f);
             setMotionAnm(ANM_WAIT_A, 0.0f);
 
@@ -2084,7 +2084,7 @@ void daNpcTks_c::demo_warpBack() {
             eventInfo.setArchiveName(l_arcName);
             mEventIdx = dComIfGp_getEventManager().getEventIdx(this, "TKS_WARPBACK", 0xFF);
             fopAcM_orderOtherEventId(this, mEventIdx, 0xFF, 0xFFFF, 4, 1);
-            cLib_offBit<u32>(attention_info.flags, 0x10);
+            cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
             setExpression(EXPR_NONE, -1.0f);
             setMotionAnm(ANM_WAIT_A, 0.0f);
             setLookMode(LOOK_PLAYER_TALK, NULL);
@@ -2206,7 +2206,7 @@ void daNpcTks_c::demo_warpBack() {
 void daNpcTks_c::demo_walkBack() {
     switch (mMode){
         case 0:
-            cLib_offBit<u32>(attention_info.flags, 0x10);
+            cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
             setExpression(EXPR_NONE, -1.0f);
             setMotionAnm(ANM_WAIT_A, 0.0f);
             setLookMode(LOOK_PLAYER_TALK, NULL);
@@ -2336,7 +2336,7 @@ void daNpcTks_c::demo_walkBack() {
 void daNpcTks_c::demo_Lv7Start() {
     switch (mMode) {
         case 0:
-            cLib_offBit<u32>(attention_info.flags, 0x10);
+            cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
             setExpression(EXPR_NONE, -1.0f);
             setMotion(MOT_JUMP_S, -1.0f, 0);
             mMode = 2;
@@ -2646,7 +2646,7 @@ void daNpcTks_c::demo_Lv7Start() {
 void daNpcTks_c::demo_Lv3PickUp() {
     switch (mMode) {
         case 0:
-            cLib_offBit<u32>(attention_info.flags, 0x10);
+            cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
             setExpression(EXPR_NONE, -1.0f);
             setMotion(MOT_WAIT_A, -1.0f, 0);
             setLookMode(LOOK_PLAYER, NULL);
@@ -2802,7 +2802,7 @@ void daNpcTks_c::demo_Lv6PickUp() {
                 fopAcM_orderOtherEventId(this, mEventIdx, 0xFF, 0xFFFF, 4, 1);
                 mMode = 2;
             } else {
-                cLib_offBit<u32>(attention_info.flags, 0x10);
+                cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
                 setExpression(EXPR_NONE, -1.0f);
                 setMotion(MOT_WAIT_A, -1.0f, 0);
                 setLookMode(LOOK_PLAYER, NULL);

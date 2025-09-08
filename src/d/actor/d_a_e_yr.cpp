@@ -2080,7 +2080,7 @@ static int daE_Yr_Execute(e_yr_class* i_this) {
         }
     }
 
-    actor->attention_info.flags = 0x4;
+    actor->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
     fopAcM_OnStatus(actor, 0);
 

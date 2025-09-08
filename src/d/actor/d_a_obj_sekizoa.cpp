@@ -2408,7 +2408,7 @@ int daObj_Sekizoa_c::puzzle(void* param_0) {
         if (mStagger.checkStagger() == 0) {
             if (daNpcT_chkTmpBit(0x31)) {
                 if (mType == TYPE_0) {
-                    attention_info.flags = 10;
+                    attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
                 }
                 if (daPy_getPlayerActorClass()->checkPlayerFly() != 0) {
                     if (mType == TYPE_0) {

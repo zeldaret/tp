@@ -4942,7 +4942,7 @@ static void play_camera(dmg_rod_class* i_this) {
         i_this->play_cam_center.y += (2.0f + TREG_F(17)) * cM_ssin(i_this->play_cam_timer * 1200);
 
         fopAcM_OnStatus(actor, 0);
-        cLib_onBit<u32>(actor->attention_info.flags, 0xA);
+        cLib_onBit<u32>(actor->attention_info.flags, fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
 
         cMtx_YrotS(*calc_mtx, player->shape_angle.y);
         if (i_this->field_0x1402 < 0) {

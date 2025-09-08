@@ -92,13 +92,53 @@ enum fopAc_attention_type {
     fopAc_attn_LOCK_e,
     fopAc_attn_TALK_e,
     fopAc_attn_BATTLE_e,
+
+#if !PLATFORM_GCN
+    fopAc_attn_UNK_3,
+    fopAc_attn_UNK_4,
+    fopAc_attn_UNK_5,
+#endif
+
     fopAc_attn_SPEAK_e,
     fopAc_attn_CARRY_e,
     fopAc_attn_DOOR_e,
     fopAc_attn_JUEL_e,
+
+#if !PLATFORM_GCN
+    fopAc_attn_UNK_10,
+#endif
+
     fopAc_attn_ETC_e,
     fopAc_attn_CHECK_e,
+
+    fopAc_attn_MAX_e,
 };
+
+enum fopAc_AttentionFlag_e {
+    fopAc_AttnFlag_LOCK_e   = (1 << fopAc_attn_LOCK_e),
+    fopAc_AttnFlag_TALK_e   = (1 << fopAc_attn_TALK_e),
+    fopAc_AttnFlag_BATTLE_e = (1 << fopAc_attn_BATTLE_e),
+
+    fopAc_AttnFlag_SPEAK_e  = (1 << fopAc_attn_SPEAK_e),
+    fopAc_AttnFlag_CARRY_e  = (1 << fopAc_attn_CARRY_e),
+    fopAc_AttnFlag_DOOR_e   = (1 << fopAc_attn_DOOR_e),
+    fopAc_AttnFlag_JUEL_e   = (1 << fopAc_attn_JUEL_e),
+    fopAc_AttnFlag_ETC_e    = (1 << fopAc_attn_ETC_e),
+
+    fopAc_AttnFlag_CHECK_e  = (1 << fopAc_attn_CHECK_e),
+
+    fopAc_AttnFlag_UNK_0x200000   = 0x200000,
+    fopAc_AttnFlag_UNK_0x400000   = 0x400000,
+    fopAc_AttnFlag_UNK_0x800000   = 0x800000,
+    fopAc_AttnFlag_NOTALK_e       = 0x2000000,
+    fopAc_AttnFlag_ENEMY_NOLOCK_e = 0x4000000,
+    fopAc_AttnFlag_UNK_0x8000000  = 0x8000000,
+    fopAc_AttnFlag_TALKCHECK_e    = 0x20000000,
+    fopAc_AttnFlag_TALKREAD_e     = 0x40000000,
+};
+
+#define fopAc_AttnFlags_LOCK   (fopAc_AttnFlag_LOCK_e | fopAc_AttnFlag_TALK_e | fopAc_AttnFlag_BATTLE_e)
+#define fopAc_AttnFlags_ACTION (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_CARRY_e | fopAc_AttnFlag_DOOR_e | fopAc_AttnFlag_JUEL_e | fopAc_AttnFlag_ETC_e)
 
 class JKRSolidHeap;
 
@@ -175,12 +215,7 @@ struct actor_place {
 };
 
 struct actor_attention_types {
-    /* 0x00 */ u8 distances[9];
-
-#if VERSION > VERSION_GCN_JPN
-    u8 unk_0x9[4];
-#endif
-
+    /* 0x00 */ u8 distances[fopAc_attn_MAX_e];
     /* 0x0A */ s16 field_0xa;
     /* 0x0C */ cXyz position;
     /* 0x18 */ u32 flags;

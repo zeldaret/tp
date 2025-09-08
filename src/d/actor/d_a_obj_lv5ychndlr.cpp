@@ -281,10 +281,10 @@ int daObjYchndlr_c::Execute(Mtx** param_0) {
 
     if (field_0xc8c) {
         fopAcM_OffStatus(this, 0);
-        attention_info.flags &= ~0x4;
+        attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
     } else {
         fopAcM_OnStatus(this, 0);
-        attention_info.flags = 0x4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         Vec attn_pos, spA0, offset;
         f32 var_f31, var_f30;

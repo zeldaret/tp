@@ -2902,7 +2902,7 @@ static void* daMidna_searchNpc(fopAc_ac_c* i_actor, void* o_far) {
     daAlink_c* link = daAlink_getAlinkActorClass();
     cXyz link_pos = link->current.pos;
     link_pos.y += 100.0f;
-    if (fopAcM_GetGroup(i_actor) == fopAc_NPC_e && !fopAcM_checkStatus(i_actor, 0x8000000)
+    if (fopAcM_GetGroup(i_actor) == fopAc_NPC_e && !fopAcM_CheckStatus(i_actor, 0x8000000)
         && fabsf(link_pos.y - i_actor->eyePos.y) <= 700.0f)
     {
         f32 dist = i_actor->eyePos.absXZ(link_pos);

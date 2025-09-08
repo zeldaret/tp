@@ -41,7 +41,7 @@ inline void daTagLv8Gate_c::create_init() {
     fopAcM_setCullSizeBox(this, -100.0f, -50.0f, -100.0f, 100.0f, 220.0f, 100.0f);
     fopAcM_OnCarryType(this, fopAcM_CARRY_LIGHT);
 
-    attention_info.flags = 0x10;
+    attention_info.flags = fopAc_AttnFlag_CARRY_e;
     attention_info.distances[fopAc_attn_CARRY_e] = 90;
 
     mEventID = -1;
@@ -189,7 +189,7 @@ int daTagLv8Gate_c::execute() {
 
         if (fopAcM_checkCarryNow(this)) {
             fopAcM_cancelCarryNow(this);
-            attention_info.flags &= ~0x10;
+            attention_info.flags &= ~fopAc_AttnFlag_CARRY_e;
             eventInfo.setArchiveName(l_arcName);
             dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
             mEventID = dComIfGp_getEventManager().getEventIdx(this, "LV8_GATE_ENTRY", -1);

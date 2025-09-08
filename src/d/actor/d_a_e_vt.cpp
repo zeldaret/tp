@@ -1796,7 +1796,7 @@ void daE_VA_c::executeClearWait() {
         /* fallthrough */
     case 0:
         setBck(ANM_INVI_WAIT_e, J3DFrameCtrl::EMode_LOOP, 20.0f, 1.0f);
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         mMode = 2;
         /* fallthrough */
     case 2:
@@ -1902,7 +1902,7 @@ void daE_VA_c::executeTransWait() {
     case 0:
         Z2GetAudioMgr()->changeSubBgmStatus(2);
         mAlphaType = 1;
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         speedF = 0.0f;
         mMode = 1;
         setBck(ANM_TRANS_WAIT_e, J3DFrameCtrl::EMode_LOOP, 10.0f, 1.0f);
@@ -2259,7 +2259,7 @@ void daE_VA_c::executeOpaciWait() {
             mKankyoColBlend = 1.0f;
             mKankyoColType = 1;
             field_0x1354 = 10;
-            attention_info.flags = 4;
+            attention_info.flags = fopAc_AttnFlag_BATTLE_e;
             mFadeAwayTimer = l_HIO.mFadeAwayTime;
 
             speedF = 0.0f;
@@ -2344,7 +2344,7 @@ void daE_VA_c::executeOpaciWait() {
             dComIfGp_event_reset();
 
             mFadeAwayTimer = l_HIO.mFadeAwayTime;
-            attention_info.flags = 4;
+            attention_info.flags = fopAc_AttnFlag_BATTLE_e;
             setBck(ANM_SUBS_WAIT_e, J3DFrameCtrl::EMode_LOOP, 3.0f, 1.0f);
             mMode = 15;
             mDemoModeTimer = 30;
@@ -2653,7 +2653,7 @@ void daE_VA_c::executeOpaciChase() {
             } else {
                 if (abs((s16)(field_0x1334 - field_0x1330)) <= abs(field_0x1336)) {
                     mMode = 12;
-                    attention_info.flags = 4;
+                    attention_info.flags = fopAc_AttnFlag_BATTLE_e;
                 }
             }
         }
@@ -2776,7 +2776,7 @@ void daE_VA_c::executeOpaciDown() {
         mMode = 2;
         speedF = 0.0f;
         field_0x1383 = 0;
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         mSound.startCreatureVoice(Z2SE_EN_VA_V_DMG_L, -1);
         dComIfGs_onOneZoneSwitch(6, fopAcM_GetRoomNo(this));
         /* fallthrough */

@@ -1450,7 +1450,7 @@ void daB_MGN_c::executeDash() {
     case 1:
         attention_info.flags = 0;
         if (player->checkNowWolf()) {
-            attention_info.flags = 4;
+            attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         }
 
         if (mpMgnModelMorf->isStop()) {
@@ -1500,7 +1500,7 @@ void daB_MGN_c::executeDash() {
         attention_info.flags = 0;
 
         if (player->checkNowWolf()) {
-            attention_info.flags |= 4;
+            attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
 
             cXyz sp48;
             mDoMtx_stack_c::YrotS(-shape_angle.y);
@@ -1508,7 +1508,7 @@ void daB_MGN_c::executeDash() {
             mDoMtx_stack_c::multVec(&daPy_getPlayerActorClass()->current.pos, &sp48);
 
             if (fabsf(sp48.x) < 200.0f && sp48.z > 100.0f && sp48.z < 1500.0f) {
-                attention_info.flags |= 0x10;
+                attention_info.flags |= fopAc_AttnFlag_CARRY_e;
             }
         }
 
@@ -1832,7 +1832,7 @@ void daB_MGN_c::executeThrown() {
 
             field_0xaa0 = 150;
             field_0xb08 = 0;
-            attention_info.flags = 4;
+            attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         }
         break;
     case 10:
@@ -1849,7 +1849,7 @@ void daB_MGN_c::executeThrown() {
         mMoveMode = 11;
 
         dCam_getBody()->ForceLockOn(this);
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     case 11:
         if (mpMgnModelMorf->isStop()) {
             attention_info.flags = 0;
@@ -1887,7 +1887,7 @@ void daB_MGN_c::executeDown() {
     switch (mMoveMode) {
     case 0:
     case 1:
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         field_0x20f4[0].OffTgSetBit();
         mAtSph.OffAtSetBit();
         field_0xafd = 1;
@@ -1958,7 +1958,7 @@ void daB_MGN_c::executeDown() {
             }
 
             field_0xb08 = 0;
-            attention_info.flags = 4;
+            attention_info.flags = fopAc_AttnFlag_BATTLE_e;
             field_0x20f4[0].OnTgSetBit();
             field_0x20f4[1].OnTgSetBit();
 
@@ -2453,7 +2453,7 @@ void daB_MGN_c::executeFall() {
         attention_info.flags = 0;
 
         if (daPy_py_c::checkNowWolf()) {
-            attention_info.flags |= 4;
+            attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
         }
 
         cLib_addCalcAngleS(&shape_angle.y, fopAcM_searchPlayerAngleY(this), 0x10, 0x400, 0x80);

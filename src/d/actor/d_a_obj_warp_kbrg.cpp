@@ -412,7 +412,7 @@ void daObjWarpKBrg_c::actionOrderATalkEvent() {
         midna_p->onTagWaitPosPortalObj(&mMidnaWaitPos);
         dComIfGp_TargetWarpPt_set(3);
         eventInfo.onCondition(dEvtCnd_CANTALK_e);
-        attention_info.flags = 0xA;
+        attention_info.flags = (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
     } else {
         midna_p->offTagWaitPos();
         setAction(ACTION_WAIT_e);

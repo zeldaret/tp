@@ -473,7 +473,7 @@ static void ni_carry_check(ni_class* i_this) {
     dComIfGp_getPlayer(0);
 
     if (fopAcM_checkCarryNow(i_this)) {
-        cLib_offBit<u32>(i_this->attention_info.flags, 0x10);
+        cLib_offBit<u32>(i_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
         i_this->mAction = ACTION_CARRY_e;
         i_this->mMode = 0;
         i_this->speed.y = 0.0f;
@@ -1713,10 +1713,10 @@ static void action(ni_class* i_this) {
         }
 
         if (var_r25) {
-            cLib_onBit<u32>(a_this->attention_info.flags, 0x10);
+            cLib_onBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
             ni_carry_check(i_this);
         } else {
-            cLib_offBit<u32>(a_this->attention_info.flags, 0x10);
+            cLib_offBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
         }
     }
 
@@ -1945,11 +1945,11 @@ static int message(ni_class* i_this) {
 
     if (i_this->field_0xa50 == 2 && i_this->mFlowNo != -1 && daPy_py_c::checkNowWolf()) {
         fopAcM_OnStatus(i_this, 0);
-        cLib_onBit<u32>(i_this->attention_info.flags, 10);
+        cLib_onBit<u32>(i_this->attention_info.flags, fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
         i_this->eventInfo.onCondition(1);
     } else {
         fopAcM_OffStatus(i_this, 0);
-        cLib_offBit<u32>(i_this->attention_info.flags, 10);
+        cLib_offBit<u32>(i_this->attention_info.flags, fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
     }
 
     return 0;

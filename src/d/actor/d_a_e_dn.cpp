@@ -2400,7 +2400,7 @@ static void action(e_dn_class* i_this) {
         a_this->attention_info.flags = 0;
     } else {
         fopAcM_OnStatus(a_this, 0);
-        a_this->attention_info.flags = 4;
+        a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     }
 
     switch (i_this->mAction) {
@@ -3218,7 +3218,7 @@ static int daE_DN_Execute(e_dn_class* i_this) {
     sp80.y += 180.0f;
     ((fopEn_enemy_c*) i_this)->setHeadLockPos(&sp80);
 
-    a_this->attention_info.flags |= 0x200000;
+    a_this->attention_info.flags |= fopAc_AttnFlag_UNK_0x200000;
 
     if ((a_this->current.pos.y - a_this->home.pos.y) < -5000.0f) {
         fopAcM_delete(a_this);
@@ -3373,7 +3373,7 @@ static cPhs__Step daE_DN_Create(fopAc_ac_c* a_this) {
         }
 
         fopAcM_OnStatus(a_this, fopAcM_STATUS_UNK_000100);
-        a_this->attention_info.flags = 4;
+        a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         fopAcM_SetMtx(a_this, i_this->mpModelMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(a_this, -200.0f, -200.0f, -200.0f);
         fopAcM_SetMax(a_this, 200.0f, 200.0f, 200.0f);

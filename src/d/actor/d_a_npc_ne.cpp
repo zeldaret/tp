@@ -2375,12 +2375,12 @@ static void action(npc_ne_class* i_this) {
     }
 
     if (carry_check && !i_this->mWantsFish) {
-        cLib_onBit<u32>(_this->attention_info.flags, 0x10);
+        cLib_onBit<u32>(_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
         if (ne_carry_check(i_this)) {
             return;
         }
     } else {
-        cLib_offBit<u32>(_this->attention_info.flags, 0x10);
+        cLib_offBit<u32>(_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
     }
 
     cXyz vec1, vec2;
@@ -2924,14 +2924,14 @@ static int message(npc_ne_class* i_this) {
         if (i_this->mMessageState == 2 && i_this->mFlowID != -1 && daPy_py_c::checkNowWolf() &&
                                 !fopAcM_otherBgCheck(daPy_getLinkPlayerActorClass(), i_this)) {
             fopAcM_OnStatus(i_this, 0);
-            cLib_onBit<u32>(i_this->attention_info.flags, 0xa);
+            cLib_onBit<u32>(i_this->attention_info.flags, fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
             if (i_this->mResName == "Npc_net") {
-                cLib_onBit<u32>(i_this->attention_info.flags, 0xc00000);
+                cLib_onBit<u32>(i_this->attention_info.flags, fopAc_AttnFlag_UNK_0x800000 | fopAc_AttnFlag_UNK_0x400000);
             }
             i_this->eventInfo.onCondition(dEvtCnd_CANTALK_e);
         } else {
             fopAcM_OffStatus(i_this, 0);
-            cLib_offBit<u32>(i_this->attention_info.flags, 0xc0000a);
+            cLib_offBit<u32>(i_this->attention_info.flags, fopAc_AttnFlag_UNK_0x800000 | fopAc_AttnFlag_UNK_0x400000 | fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
         }
 
         return 0;

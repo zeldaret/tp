@@ -47,7 +47,7 @@ void dInsect_c::Insect_GetDemoMain() {
     switch (m_mode) {
     case 0:
         if (fopAcM_checkCarryNow(this)) {
-            cLib_offBit<u32>(attention_info.flags, 0x10);
+            cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
             fopAcM_cancelCarryNow(this);
             fopAcM_orderItemEvent(this, 0, 0);
             eventInfo.onCondition(dEvtCnd_CANGETITEM_e);
@@ -60,7 +60,7 @@ void dInsect_c::Insect_GetDemoMain() {
                 field_0x585 = 1;
             }
         } else {
-            cLib_onBit<u32>(attention_info.flags, 0x10);
+            cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
         }
         break;
     case 1:

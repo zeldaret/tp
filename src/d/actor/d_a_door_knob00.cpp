@@ -141,7 +141,7 @@ int daKnob20_c::CreateInit() {
     setAction(ACTION_INIT);
     attention_info.position.y += 150.0f;
     eyePos.y += 150.0f;
-    attention_info.flags = 0x20;
+    attention_info.flags = fopAc_AttnFlag_DOOR_e;
     calcMtx();
     fopAcM_SetMtx(this, mModel1->getBaseTRMtx());
     fopAcM_setCullSizeFar(this, 2.0f);
@@ -691,7 +691,7 @@ int daKnob20_c::execute() {
 
     setActionFromFlow();
     field_0x60f = frontCheck();
-    if (fopAcM_checkStatus(this, 0x1000)) {
+    if (fopAcM_CheckStatus(this, 0x1000)) {
         startDemoProc();
         demoProc();
         dMeter2Info_onGameStatus(2);

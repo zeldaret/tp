@@ -387,7 +387,7 @@ void dCcS::ProcAtTgHitmark(bool i_setAt, bool i_setTg, cCcD_Obj* param_2, cCcD_O
                            cXyz* i_hitPos, bool i_chkShield) {
     if (!i_atObjInf->ChkAtNoHitMark() && !i_tgObjInf->ChkTgNoHitMark() &&
         (i_atObjInf->GetAtType() != AT_TYPE_10000000 || i_tgObjInf->GetAc() == NULL ||
-         fopAcM_checkStatus(i_tgObjInf->GetAc(), AT_TYPE_10000000)))
+         fopAcM_CheckStatus(i_tgObjInf->GetAc(), AT_TYPE_10000000)))
     {
         if ((i_atObjInf->GetAtType() &
              (AT_TYPE_WOLF_ATTACK | AT_TYPE_WOLF_CUT_TURN | AT_TYPE_10000000 | AT_TYPE_MIDNA_LOCK |

@@ -272,7 +272,7 @@ int daObj_Mie_c::Execute() {
                 field_0xa47 == 0)
             {
                 fopAcM_OnCarryType(this, fopAcM_CARRY_SIDE);
-                cLib_onBit(attention_info.flags, 0x10UL);
+                cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
             }
         }
     }

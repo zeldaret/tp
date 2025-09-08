@@ -1392,7 +1392,7 @@ void dPa_control_c::setHitMark(u16 param_1, fopAc_ac_c* param_2, cXyz const* par
     cXyz const* pPos = param_3;
     csXyz const* pAngle = param_4;
     if (param_2 != NULL) {
-        if (fopAcM_checkStatus(param_2, 0x40000000)) {
+        if (fopAcM_CheckStatus(param_2, 0x40000000)) {
             return;
         }
         fopAcM_OnStatus(param_2, 0x40000000);

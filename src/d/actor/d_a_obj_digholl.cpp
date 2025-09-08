@@ -51,7 +51,7 @@ int daObjDigholl_c::execute() {
         (field_0x56a == 0xff || fopAcM_isSwitch(this, field_0x56a)) &&
         (f32)fabsf(current.pos.y - player->current.pos.y) < 40.0f)
     {
-        attention_info.flags = 0x80;
+        attention_info.flags = fopAc_AttnFlag_ETC_e;
     } else {
         attention_info.flags = 0;
     }

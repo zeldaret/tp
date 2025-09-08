@@ -1403,7 +1403,7 @@ void daHorse_c::acceptPlayerRide() {
     if (!checkStateFlg0(FLG0_UNK_1) && !daPy_py_c::checkNowWolf()) {
         int angle = fopAcM_seenPlayerAngleY(this);
         if (angle > 0x2800 && (!daAlink_getAlinkActorClass()->checkHorseZelda() || angle < 0x5800)) {
-            attention_info.flags |= 0x80;
+            attention_info.flags |= fopAc_AttnFlag_ETC_e;
         }
     }
 }
@@ -3575,7 +3575,7 @@ int daHorse_c::procWait() {
 
     if (!checkStateFlg0(FLG0_UNK_1)) {
         if (daPy_py_c::checkNowWolf()) {
-            attention_info.flags |= 0x8;
+            attention_info.flags |= fopAc_AttnFlag_SPEAK_e;
             eventInfo.onCondition(1);
         } else if (m_procID == PROC_WAIT_e) {
             acceptPlayerRide();
@@ -4289,7 +4289,7 @@ int daHorse_c::execute() {
     }
 
     m_resetStateFlg0 = 0;
-    attention_info.flags &= ~0x88;
+    attention_info.flags &= ~(fopAc_AttnFlag_ETC_e | fopAc_AttnFlag_SPEAK_e);
     field_0x16b6 = 0;
     field_0x16e8 = shape_angle.y;
     field_0x1710 = field_0x170e;

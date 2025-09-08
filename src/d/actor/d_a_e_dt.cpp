@@ -1993,7 +1993,7 @@ void daE_DT_c::executeOpening() {
             camera->Start();
             camera->SetTrimSize(0);
             dComIfGp_event_reset();
-            attention_info.flags = 4;
+            attention_info.flags = fopAc_AttnFlag_BATTLE_e;
             Z2GetAudioMgr()->subBgmStart(Z2BGM_DEKUTOAD);
             fpcM_Search(s_demo_otama, this);
             return;
@@ -2572,7 +2572,7 @@ cPhs__Step daE_DT_c::create() {
         l_HIO.field_0x4 = -1;
     }
 
-    attention_info.flags = 4;
+    attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
     fopAcM_SetMin(this, -700.0f, -200.0f, -700.0f);
     fopAcM_SetMax(this, 700.0f, 500.0f, 700.0f);
@@ -2616,7 +2616,7 @@ cPhs__Step daE_DT_c::create() {
         gravity = -5.0f;
         setActionMode(ACT_WAIT, 0);
         maxFallSpeed = l_HIO.mMaxFallSpeed;
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         current.pos.set(0.0f, 0.0f, -500.0f);
         shape_angle.y = cLib_targetAngleY(&current.pos, &daPy_getPlayerActorClass()->current.pos);
         Z2GetAudioMgr()->subBgmStart(Z2BGM_DEKUTOAD);

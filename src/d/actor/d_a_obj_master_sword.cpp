@@ -29,7 +29,7 @@ void daObjMasterSword_c::initBaseMtx() {
 
 /* 80C90AF8-80C90B50 000078 0058+00 1/0 0/0 0/0 .text            initWait__18daObjMasterSword_cFv */
 void daObjMasterSword_c::initWait() {
-    cLib_onBit<u32>(attention_info.flags, 0x10);
+    cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     current.pos = home.pos;
     current.angle = home.angle;
     shape_angle = home.angle;
@@ -154,7 +154,7 @@ void daObjMasterSword_c::create_init() {
     initBaseMtx();
 
     fopAcM_OnCarryType(this, fopAcM_CARRY_UNK_30);
-    cLib_onBit<u32>(attention_info.flags, 0x10);
+    cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     attention_info.distances[fopAc_attn_CARRY_e] = 74;
     attention_info.position = current.pos;
     attention_info.position.y += 100.0f;

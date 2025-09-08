@@ -221,7 +221,7 @@ void daAlink_c::hookshotAtHitCallBack(dCcD_GObjInf* i_atObjInf, fopAc_ac_c* i_tg
             mSearchBallScale = dist_to_hitpos;
 
             if (checkHookshotWait()) {
-                if (fopAcM_checkStatus(i_tgActor, 0x280000)) {
+                if (fopAcM_CheckStatus(i_tgActor, 0x280000)) {
                     mHookTargetAcKeep.setData(i_tgActor);
                 } else {
                     field_0x3494 = 1.0f;

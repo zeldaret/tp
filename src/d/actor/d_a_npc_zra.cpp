@@ -886,10 +886,10 @@ int daNpc_zrA_c::ctrlJointCallBack(J3DJoint* i_joint, int param_1) {
 
 /* 80B7AC08-80B7ADF0 0027E8 01E8+00 1/0 0/0 0/0 .text            setParam__11daNpc_zrA_cFv */
 void daNpc_zrA_c::setParam() {
-    u32 attn_flags = 0xa;
+    u32 attn_flags = (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
     BOOL in_water = mAcch.ChkWaterIn();
     if (mTwilight) {
-        attn_flags = 0x80000a;
+        attn_flags = (fopAc_AttnFlag_UNK_0x800000 | fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
     }
 
     selectAction();
@@ -902,7 +902,7 @@ void daNpc_zrA_c::setParam() {
         field_0x14d0 = 0;
         field_0x14d4 = 0;
 
-        attn_flags = 2;
+        attn_flags = fopAc_AttnFlag_TALK_e;
         if (daPy_getPlayerActorClass()->checkSwimUp()) {
             attn_flags = 0;
         }

@@ -894,7 +894,7 @@ void daObj_GrA_c::setParam() {
             || checkProcess(&daObj_GrA_c::toStone)) {
                 attnSttsOn(0, 0);
         } else {
-            attention_info.flags = 0x200004;
+            attention_info.flags = (fopAc_AttnFlag_UNK_0x200000 | fopAc_AttnFlag_BATTLE_e);
         }
     } else if (mMode == 1) {
         if (checkProcess(&daObj_GrA_c::standWaitJump)) {
@@ -910,10 +910,10 @@ void daObj_GrA_c::setParam() {
             attention_info.flags = 0;
         }
     } else if (mMode == 2) {
-        attention_info.flags &= ~0x10;
-        attention_info.flags = 0x200000;
+        attention_info.flags &= ~fopAc_AttnFlag_CARRY_e;
+        attention_info.flags = fopAc_AttnFlag_UNK_0x200000;
     } else {
-        attention_info.flags &= ~0x10;
+        attention_info.flags &= ~fopAc_AttnFlag_CARRY_e;
         if (field_0x1508 == 0) {
             attnSttsOn(0, 0);
         }

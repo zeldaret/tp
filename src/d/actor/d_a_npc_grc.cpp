@@ -483,7 +483,7 @@ int daNpc_grC_c::ctrlJointCallBack(J3DJoint* i_joint, int param_2) {
 /* 809CC12C-809CC26C 000D4C 0140+00 1/0 0/0 0/0 .text            setParam__11daNpc_grC_cFv */
 void daNpc_grC_c::setParam() {
     ActionFn action = mNextAction;
-    u32 uVar1 = 10;
+    u32 uVar1 = (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
     selectAction();
 
     if (!mTwilight && daPy_py_c::checkNowWolf()) {

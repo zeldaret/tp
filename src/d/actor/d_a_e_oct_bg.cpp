@@ -288,7 +288,7 @@ void daE_OctBg_c::born_swim() {
         field_0xb70++;
     } else if (field_0xb70 == -1) {
         field_0x8c0.SetTgType(0xd8fbfdff);
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     } else if (field_0xbae == 0) {
         cLib_addCalcAngleS(&current.angle.x, 0, 0x10, 0xc00, 0x200);
         cLib_chaseF(&speedF, 0.0f, 0.05f);
@@ -379,7 +379,7 @@ bool daE_OctBg_c::checkCoreFishAttack() {
     if (fopAcM_SearchByID(fopAcM_GetLinkId(this), &actor) == 0 || actor == NULL) {
         return false;
     } 
-    if (fopAcM_checkStatus(actor, 0x100000) == 0) {
+    if (fopAcM_CheckStatus(actor, 0x100000) == 0) {
         return false;
     } 
     return true;
@@ -594,7 +594,7 @@ void daE_OctBg_c::back_swim() {
 bool daE_OctBg_c::setBombCarry(int param_1) {
     fopAc_ac_c* actor = NULL;
     if (param_1 == 0) {
-        cLib_onBit(attention_info.flags, 0x10UL);
+        cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
         if (fopAcM_checkCarryNow(this) != 0) {
             current.angle.x = 0;
             actor =
@@ -846,7 +846,7 @@ int daE_OctBg_c::create() {
             field_0xbb3 = 1;
             struct_8073A14C.field_0x04 = -1;
         }
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         onWolfNoLock();
         fopAcM_SetMtx(this, field_0x5b4->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -50.0f, -50.0f, -50.0f);

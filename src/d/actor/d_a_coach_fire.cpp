@@ -22,7 +22,7 @@ CoachFireAttr const daCoachFire_c::M_attr = {
 void daCoachFire_c::create_init() {
     fopAcM_setStageLayer(this);
     fopAcM_setCullSizeBox(this, -100.0, -10.0, -100.0, 100.0, 200.0, 100.0);
-    attention_info.flags = 0x101;
+    attention_info.flags = fopAc_AttnFlag_CHECK_e | fopAc_AttnFlag_LOCK_e;
     attention_info.distances[fopAc_attn_LOCK_e] = 0x24;
     attention_info.distances[fopAc_attn_CHECK_e] = 0x22;
     mLightInfluence.mPosition = current.pos;

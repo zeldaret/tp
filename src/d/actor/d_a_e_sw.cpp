@@ -920,7 +920,7 @@ void daE_SW_c::executeHook() {
             cLib_addCalcAngleS(&shape_angle.y, (s16)(field_0x6cc + field_0x6a4), 4, 0x1000, 0x100);
             current.angle.y = shape_angle.y;
 
-            if (!fopAcM_checkStatus(this, 0x100000)) {
+            if (!fopAcM_CheckStatus(this, 0x100000)) {
                 setActionMode(7, 10);
             }
             break;
@@ -1754,7 +1754,7 @@ cPhs__Step daE_SW_c::create() {
             l_HIO.field_0x4 = -1;
         }
 
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         if (mpModelMorf != NULL) {
             fopAcM_SetMtx(this, mpModelMorf->getModel()->getBaseTRMtx());
@@ -2673,7 +2673,7 @@ void daE_SW_c::d_hook() {
             cLib_addCalcAngleS(&shape_angle.y, (s16)(field_0x6cc + field_0x6a4), 4, 0x1000, 0x100);
             current.angle.y = shape_angle.y;
             
-            if (!fopAcM_checkStatus(this, 0x100000)) {
+            if (!fopAcM_CheckStatus(this, 0x100000)) {
                 speed.y = 20.0f;
                 speedF = -10.0f;
                 gravity = -5.0f;

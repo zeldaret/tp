@@ -1858,8 +1858,8 @@ cPhs__Step daTbox_c::create1st() {
     }
 
     CreateInit();
-    attention_info.flags = 0x40;
-    attention_info.flags |= 0x400000;
+    attention_info.flags = fopAc_AttnFlag_JUEL_e;
+    attention_info.flags |= fopAc_AttnFlag_UNK_0x400000;
     return step;
 }
 

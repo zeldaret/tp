@@ -1083,7 +1083,7 @@ int daObjCarry_c::Create() {
     fopAcM_SetCullSize(this, fopAc_CULLSPHERE_8_e);
     fopAcM_setCullSizeSphere(this, data().m_cullsph_min_x, data().m_cullsph_min_y, data().m_cullsph_min_z, mpModel->getModelData()->getJointNodePointer(0)->getRadius() * data().scale);
 
-    cLib_onBit<u32>(attention_info.flags, 0x10);
+    cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     attention_info.distances[fopAc_attn_CARRY_e] = data().m_carry_attn_dist;
 
     if (checkFlag(4)) {
@@ -1792,7 +1792,7 @@ int daObjCarry_c::execute() {
     }
 
     if (mType == TYPE_DOKURO && getSwbit() != 0xFF && !fopAcM_isSwitch(this, getSwbit())) {
-        cLib_offBit<u32>(attention_info.flags, 0x10);
+        cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
         return 1;
     }
 
@@ -1808,7 +1808,7 @@ int daObjCarry_c::execute() {
             mode_init_wait();
         }
 
-        cLib_offBit<u32>(attention_info.flags, 0x10);
+        cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
         calc_rot_call();
         setBaseMtx();
         field_0xdb9 = mCtrl;
@@ -2397,7 +2397,7 @@ void daObjCarry_c::mode_init_wait() {
     mCyl.OnTgSPrmBit(1);
     mCyl.OnCoSPrmBit(0x10);
 
-    cLib_onBit<u32>(attention_info.flags, 0x10);
+    cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     field_0xda8 = 0;
 
     speedF = 0.0f;
@@ -2490,7 +2490,7 @@ int daObjCarry_c::mode_proc_walk() {
 
     if (gnd_hit) {
         field_0xcec = current.pos.y;
-        cLib_onBit<u32>(attention_info.flags, 0x10);
+        cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
 
         if (0.0f == speedF && 0.0f == speed.y) {
             mode_init_wait();
@@ -2498,13 +2498,13 @@ int daObjCarry_c::mode_proc_walk() {
 
         if (mType == TYPE_IRON_BALL) {
             if (speedF > 25.0f) {
-                cLib_offBit<u32>(attention_info.flags, 0x10);
+                cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
             } else {
-                cLib_onBit<u32>(attention_info.flags, 0x10);
+                cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
             }
         }
     } else {
-        cLib_offBit<u32>(attention_info.flags, 0x10);
+        cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     }
 
     f32 var_f29 = data().m_rollAngle;
@@ -2620,7 +2620,7 @@ void daObjCarry_c::mode_init_carry() {
     }
 
     if (prm_chk_type_lightball()) {
-        cLib_offBit<u32>(attention_info.flags, 0x10);
+        cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
 
         daPy_py_c* player = daPy_getPlayerActorClass();
         if (player->getGrabActorID() == fopAcM_GetID(this)) {
@@ -2740,7 +2740,7 @@ void daObjCarry_c::mode_init_drop(u8 param_0) {
     mCyl.OnCoSPrmBit(0x10);
     mCyl.OffAtSPrmBit(0xC);
 
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
 
     mStts.SetWeight(data().m_colliderWeight);
     field_0xda8 = 0;
@@ -2792,7 +2792,7 @@ void daObjCarry_c::mode_init_float() {
     mCyl.OnTgSPrmBit(1);
     mCyl.OnCoSPrmBit(0x10);
 
-    cLib_onBit<u32>(attention_info.flags, 0x10);
+    cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
 
     field_0xda8 = 0;
     field_0xdc4 = 0;
@@ -2888,7 +2888,7 @@ void daObjCarry_c::mode_init_sink() {
     mCyl.OnTgSPrmBit(1);
     mCyl.OnCoSPrmBit(0x10);
 
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
 
     field_0xda8 = 0;
     mStts.SetWeight(data().m_colliderWeight);
@@ -2946,9 +2946,9 @@ int daObjCarry_c::mode_proc_sink() {
     fopAcM_posMoveF(this, mStts.GetCCMoveP());
 
     if (mAcch.ChkGroundHit()) {
-        cLib_onBit<u32>(attention_info.flags, 0x10);
+        cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     } else {
-        cLib_offBit<u32>(attention_info.flags, 0x10);
+        cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     }
 
     field_0xcec = current.pos.y;
@@ -2963,7 +2963,7 @@ void daObjCarry_c::mode_init_yogan() {
     mCyl.OffAtSPrmBit(1);
     mCyl.OnCoSPrmBit(0x10);
 
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
 
     mStts.SetWeight(data().m_colliderWeight);
 
@@ -3014,7 +3014,7 @@ void daObjCarry_c::mode_init_boomCarry() {
     mCyl.OnCoSPrmBit(1);
     mCyl.OnCoSPrmBit(0x10);
 
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     mCanCrashRoll = false;
 
     gravity = calc_gravity();
@@ -3060,7 +3060,7 @@ void daObjCarry_c::mode_init_growth() {
     mCyl.OnCoSPrmBit(1);
     mCyl.OnCoSPrmBit(0x10);
 
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     field_0xdb0 = 1;
 
     scale.setall(0.0f);
@@ -3099,7 +3099,7 @@ void daObjCarry_c::mode_init_dbDrop(u8 param_0) {
     mCyl.OnCoSPrmBit(0x10);
     mCyl.OffTgSPrmBit(1);
 
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
 
     fopAcM_SetMaxFallSpeed(this, -100.0f);
     mStts.SetWeight(data().m_colliderWeight);
@@ -3126,7 +3126,7 @@ void daObjCarry_c::mode_init_hookCarry() {
     mCyl.OnCoSPrmBit(1);
     mCyl.OnCoSPrmBit(0x10);
 
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     mCanCrashRoll = false;
 
     gravity = calc_gravity();
@@ -3163,7 +3163,7 @@ void daObjCarry_c::mode_init_fit() {
     mCyl.OnTgSPrmBit(1);
     mCyl.OnCoSPrmBit(0x10);
 
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     fopAcM_OffStatus(this, 0x80000);
     field_0xda8 = 0;
 
@@ -3203,7 +3203,7 @@ void daObjCarry_c::mode_init_resetLightBall() {
     mCyl.OffTgSPrmBit(1);
     mCyl.OnCoSPrmBit(0x10);
 
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     field_0xda8 = 0;
 
     speedF = 0.0f;

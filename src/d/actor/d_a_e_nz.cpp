@@ -647,7 +647,7 @@ static int daE_NZ_Execute(e_nz_class* i_this) {
         } else {
             i_this->mSph.SetTgType(0xd8fbfdff);
             fopAcM_OnStatus(a_this, 0);
-            a_this->attention_info.flags = 4;
+            a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         }
     }
     

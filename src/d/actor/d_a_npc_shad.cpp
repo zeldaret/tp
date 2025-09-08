@@ -819,7 +819,7 @@ void daNpcShad_c::reset() {
         attention_info.distances[fopAc_attn_LOCK_e] = 78;
         attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
         attention_info.distances[fopAc_attn_SPEAK_e] = 77;
-        attention_info.flags |= 0x800000;
+        attention_info.flags |= fopAc_AttnFlag_UNK_0x800000;
     } else if (mMode == 0) {
         attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(3, 3);
         attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
@@ -2570,13 +2570,13 @@ static void dummy() {
 /* 80AE01BC-80AE0438 00809C 027C+00 1/0 0/0 0/0 .text            setParam__11daNpcShad_cFv */
 void daNpcShad_c::setParam() {
     searchActors();
-    attention_info.flags = 10;
+    attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
 
     if (isSneaking()) {
         attention_info.distances[fopAc_attn_LOCK_e] = 78;
         attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
         attention_info.distances[fopAc_attn_SPEAK_e] = 77;
-        attention_info.flags |= 0x800000;
+        attention_info.flags |= fopAc_AttnFlag_UNK_0x800000;
     } else if (mMode == 0) {
         attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(3, 5);
         attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];

@@ -10040,21 +10040,21 @@ BOOL daAlink_c::setTalkStatus() {
         if (notTalk()) {
             setDoStatus(0x90);
         } else {
-            if (field_0x27f4->attention_info.flags & 0x2000000) {
+            if (field_0x27f4->attention_info.flags & fopAc_AttnFlag_NOTALK_e) {
                 return 0;
             }
 
-            if (field_0x27f4->attention_info.flags & 0x800000) {
+            if (field_0x27f4->attention_info.flags & fopAc_AttnFlag_UNK_0x800000) {
                 setDoStatus(0x3B);
-            } else if (field_0x27f4->attention_info.flags & 0x20000000) {
+            } else if (field_0x27f4->attention_info.flags & fopAc_AttnFlag_TALKCHECK_e) {
                 if (fopAcM_GetName(field_0x27f4) == PROC_OBJ_SSDRINK) {
                     setDoStatus(0x3C);
                 } else {
                     setDoStatus(8);
                 }
-            } else if (field_0x27f4->attention_info.flags & 0x40000000) {
+            } else if (field_0x27f4->attention_info.flags & fopAc_AttnFlag_TALKREAD_e) {
                 setDoStatus(0x80);
-            } else if (field_0x27f4->attention_info.flags & 0x8000000) {
+            } else if (field_0x27f4->attention_info.flags & fopAc_AttnFlag_UNK_0x8000000) {
                 setDoStatus(0x1B);
             } else {
                 setDoStatus(0x1C);
@@ -17849,7 +17849,7 @@ int daAlink_c::execute() {
             mProcID == PROC_WOLF_GET_SMELL || mProcID == PROC_WOLF_DIG ||
             mProcID == PROC_WOLF_DIG_THROUGH || checkNoResetFlg0(FLG0_UNK_4000) ||
             dComIfGp_checkPlayerStatus1(0, 0x1000000) ||
-            (checkEventRun() && partner != NULL && (partner->attention_info.flags & 0x400000)) ||
+            (checkEventRun() && partner != NULL && (partner->attention_info.flags & fopAc_AttnFlag_UNK_0x400000)) ||
             !strcmp(dComIfGp_getEventManager().getRunEventName(), l_defaultGetEventName))
         {
             mWolfEyeUp = daAlinkHIO_wolf_c0::m.mSensesLingerTime;

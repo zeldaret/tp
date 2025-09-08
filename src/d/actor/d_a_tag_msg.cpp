@@ -36,7 +36,7 @@ int daTag_Msg_c::create() {
 
     int phase_state = dComIfG_resLoad(&mPhase, getResName());
     if (phase_state == cPhs_COMPLEATE_e) {
-        attention_info.flags = 0x20000008;
+        attention_info.flags = (fopAc_AttnFlag_TALKCHECK_e | fopAc_AttnFlag_SPEAK_e);
         getParam();
 
         eventInfo.setArchiveName(getResName());

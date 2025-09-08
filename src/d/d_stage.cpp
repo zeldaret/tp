@@ -1511,7 +1511,7 @@ dStage_objectNameInf* dStage_searchName(char const* objName) {
     return NULL;
 }
 
-static const char* dStage_getName(s16 procName, s8 subtype) {
+const char* dStage_getName(s16 procName, s8 subtype) {
     static char tmp_name[8];
 
     dStage_objectNameInf* obj = l_objectName;

@@ -1516,7 +1516,7 @@ static void action(e_s1_class* i_this) {
 
     if (on_attention) {
         fopAcM_OnStatus(a_this, 0);
-        i_this->attention_info.flags = 4;
+        i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     } else {
         fopAcM_OffStatus(a_this, 0);
         i_this->attention_info.flags = 0;
@@ -2064,7 +2064,7 @@ static int daE_S1_Execute(e_s1_class* i_this) {
     cXyz lockpos(a_this->eyePos);
     lockpos.y += NREG_F(7) + 130.0f;
     i_this->setHeadLockPos(&lockpos);
-    a_this->attention_info.flags |= 0x200000;
+    a_this->attention_info.flags |= fopAc_AttnFlag_UNK_0x200000;
     return 1;
 }
 
@@ -2214,7 +2214,7 @@ static int daE_S1_Create(fopAc_ac_c* i_this) {
         }
 
         fopAcM_OnStatus(i_this, 0x100);
-        i_this->attention_info.flags = 4;
+        i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         if (!a_this->mRoofSpawn) {
             a_this->mAction = ACT_WAIT;

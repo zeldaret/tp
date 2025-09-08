@@ -282,7 +282,7 @@ inline int daTagLv6Gate_c::execute() {
 void daTagLv6Gate_c::create_init() {
     fopAcM_setCullSizeBox(this, -50.0f, 0.0f, -50.0f, 50.0f, 100.0f, 50.0f);
     attention_info.position = current.pos;
-    attention_info.flags = (fopAcM_isSwitch(this, getSwitchNo1()) != 0) ? 0 : 0x80;
+    attention_info.flags = (fopAcM_isSwitch(this, getSwitchNo1()) != 0) ? 0 : fopAc_AttnFlag_ETC_e;
     attention_info.distances[fopAc_attn_ETC_e] = 89;
     mEvtId = -1;
     mIsMasterSwordStabbed = 0;

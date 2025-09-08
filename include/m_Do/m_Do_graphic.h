@@ -156,6 +156,14 @@ public:
         #endif
     }
 
+    static void onWideZoom() {
+        //TODO
+    }
+
+    static void offWideZoom() {
+        //TODO
+    }
+
     static GXTexObj mFrameBufferTexObj;
     static GXTexObj mZbufferTexObj;
     static bloom_c m_bloom;

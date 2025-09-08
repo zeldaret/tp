@@ -291,7 +291,7 @@ void daObjWarpOBrg_c::actionOrderEvent() {
     } else {
         eventInfo.onCondition(1);
         if (checkTalkDistance()) {
-            attention_info.flags = 10;
+            attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
         } else {
             midna_p->offTagWaitPos();
             setAction(ACTION_WAIT_e);

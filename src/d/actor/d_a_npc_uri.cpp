@@ -527,7 +527,7 @@ void daNpc_Uri_c::setParam() {
     attention_info.distances[fopAc_attn_LOCK_e] = daNpcT_getDistTableIdx(sVar5, sVar4);
     attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
     attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(sVar7, sVar6);
-    attention_info.flags = 0xA;
+    attention_info.flags = (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
     scale.set(daNpc_Uri_Param_c::m.field_0x08, daNpc_Uri_Param_c::m.field_0x08,
               daNpc_Uri_Param_c::m.field_0x08);
     mCcStts.SetWeight(daNpc_Uri_Param_c::m.field_0x10);

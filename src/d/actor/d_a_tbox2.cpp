@@ -77,8 +77,8 @@ int daTbox2_c::Create() {
     fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
     fopAcM_setCullSizeBox2(this, mpModel->getModelData());
 
-    attention_info.flags = 0x40;
-    attention_info.flags |= 0x400000;
+    attention_info.flags = fopAc_AttnFlag_JUEL_e;
+    attention_info.flags |= fopAc_AttnFlag_UNK_0x400000;
 
     mAcchCir.SetWall(50.0f, 0.0f);
     mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,

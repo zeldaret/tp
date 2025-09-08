@@ -1060,10 +1060,10 @@ static void action(e_yd_class* i_this) {
 
     if (unkFlag1) {
         fopAcM_OnStatus(enemy, 0);
-        enemy->attention_info.flags = 0x4;
+        enemy->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     } else {
         fopAcM_OffStatus(enemy, 0);
-        enemy->attention_info.flags = 0x0;
+        enemy->attention_info.flags = 0;
     }
 
     if (!unusedFlag) {
@@ -1443,7 +1443,7 @@ static int daE_YD_Create(fopAc_ac_c* i_this) {
             l_HIO.field_0x4 = -1;
         }
 
-        i_this->attention_info.flags = 0x4;
+        i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         fopAcM_SetMtx(i_this, ((e_yd_class*)i_this)->mpMorf->getModel()->getBaseTRMtx());
 
         fopAcM_SetMin(i_this, -300.0f, -400.0f, -300.0f);

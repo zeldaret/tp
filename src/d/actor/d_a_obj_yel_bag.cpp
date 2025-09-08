@@ -263,7 +263,7 @@ int daObj_YBag_c::Execute() {
                 }
             }
             if (field_0xa33 == 0) {
-                cLib_onBit(attention_info.flags, 0x10UL);
+                cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
                 fopAcM_OnCarryType(this, fopAcM_CARRY_ITEM);
             }
             

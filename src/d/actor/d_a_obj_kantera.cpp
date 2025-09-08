@@ -150,7 +150,7 @@ int daItemKantera_c::actionInit() {
 int daItemKantera_c::actionWaitInit() {
     mCcCyl.OffTgSPrmBit(1);
     mCcCyl.OffCoSPrmBit(1);
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     attention_info.distances[fopAc_attn_CARRY_e] = 16;
     attention_info.position = current.pos;
     show();
@@ -164,23 +164,23 @@ int daItemKantera_c::actionWait() {
     mAcch.CrrPos(dComIfG_Bgsp());
     bg_check();
     if (mAcch.ChkGroundHit()) {
-        cLib_onBit(attention_info.flags, 0x10UL);
+        cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
         speedF *= 0.9f;
         if (speedF < 1.0f) {
             speedF = 0.0f;
         }
     } else {
-        cLib_offBit(attention_info.flags, 0x10UL);
+        cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     }
     daPy_py_c* player = daPy_getPlayerActorClass();
     if (fopAcM_checkCarryNow(this)) {
-        cLib_offBit(attention_info.flags, 0x10UL);
+        cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
         if (player->getGrabUpStart()) {
             fopAcM_cancelCarryNow(this);
             initActionOrderGetDemo();
         }
     } else {
-        cLib_onBit(attention_info.flags, 0x10UL);
+        cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     }
     attention_info.position = current.pos;
     return 1;
@@ -189,7 +189,7 @@ int daItemKantera_c::actionWait() {
 /* 80C39234-80C392D0 000C34 009C+00 1/1 0/0 0/0 .text initActionOrderGetDemo__15daItemKantera_cFv
  */
 int daItemKantera_c::initActionOrderGetDemo() {
-    cLib_offBit<u32>(attention_info.flags, 0x10);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     mCcCyl.OffTgSPrmBit(1);
     mCcCyl.OffCoSPrmBit(1);
     hide();

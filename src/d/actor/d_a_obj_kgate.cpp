@@ -254,7 +254,7 @@ int daObjKGate_c::Create() {
 
     attention_info.position.y += 150.0f;
     eyePos.y += 150.0f;
-    attention_info.flags = 0x20;
+    attention_info.flags = fopAc_AttnFlag_DOOR_e;
 
     initBaseMtx();
     fopAcM_SetMtx(this, field_0xb18);

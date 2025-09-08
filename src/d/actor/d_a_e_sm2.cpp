@@ -1040,7 +1040,7 @@ static void action(e_sm2_class* i_this) {
 
     if (attn_ON) {
         fopAcM_OnStatus(actor, 0);
-        actor->attention_info.flags = 4;
+        actor->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     } else {
         fopAcM_OffStatus(actor, 0);
         actor->attention_info.flags = 0;

@@ -545,7 +545,7 @@ BOOL daNpc_Saru_c::checkChangeEvt() {
 void daNpc_Saru_c::setParam() {
     selectAction();
     srchActors();
-    u32 uVar1 = 10;
+    u32 uVar1 = (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
 
     s16 sVar1 = daNpc_Saru_Param_c::m.common.talk_distance;
     s16 sVar2 = daNpc_Saru_Param_c::m.common.talk_angle;

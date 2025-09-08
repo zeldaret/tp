@@ -266,9 +266,9 @@ int daObjWchain_c::execute() {
     setChainPos();
     
     if (daPy_py_c::checkNowWolf() && !mRide && mPullLength < 0.1f) {
-        attention_info.flags |= 1;
+        attention_info.flags |= fopAc_AttnFlag_LOCK_e;
     } else {
-        attention_info.flags &= ~1;
+        attention_info.flags &= ~fopAc_AttnFlag_LOCK_e;
     }
     attention_info.position = current.pos;
     attention_info.position.y += 150.0f;

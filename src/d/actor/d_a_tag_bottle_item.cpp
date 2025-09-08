@@ -133,12 +133,12 @@ s32 daTag_BottleItem_c::orderEvent() {
     makeSoup();
 
     if (!daPy_py_c::checkNowWolf() && mBottleItemType != fpcNm_ITEM_EMPTY_BOTTLE) {
-        attention_info.flags = 0x20000008;
+        attention_info.flags = (fopAc_AttnFlag_TALKCHECK_e | fopAc_AttnFlag_SPEAK_e);
     } else {
         attention_info.flags = 0;
     }
 
-    if (attention_info.flags == 0x20000008) {
+    if (attention_info.flags == (fopAc_AttnFlag_TALKCHECK_e | fopAc_AttnFlag_SPEAK_e)) {
         attention_info.distances[fopAc_attn_TALK_e] = fpcNm_ITEM_EMPTY_BOTTLE;
         attention_info.distances[fopAc_attn_SPEAK_e] = fpcNm_ITEM_EMPTY_BOTTLE;
         eventInfo.onCondition(dEvtCnd_CANTALK_e);

@@ -166,10 +166,10 @@ int daObjFallObj_c::Execute(Mtx** i_mtx) {
 
     if (bVar1) {
         attention_info.distances[fopAc_attn_BATTLE_e] = 0x22;
-        attention_info.flags |= 4;
+        attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
     } else {
         attention_info.distances[fopAc_attn_BATTLE_e] = 0x0;
-        attention_info.flags &= ~4;
+        attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
     }
     
     field_0x5e0 += 1;

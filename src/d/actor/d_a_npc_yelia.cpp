@@ -619,7 +619,7 @@ void daNpc_Yelia_c::setParam() {
     attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
     attention_info.distances[fopAc_attn_SPEAK_e] =
         daNpcT_getDistTableIdx(speak_dist_idx, speak_angle_idx);
-    attention_info.flags = 0xa;
+    attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
 
     scale.set(l_HIO.m.mScale, l_HIO.m.mScale, l_HIO.m.mScale);
     mCcStts.SetWeight(l_HIO.m.mCcWeight);

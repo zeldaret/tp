@@ -24,7 +24,7 @@ static void rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2
     daObjDmElevator_c* pthis = (daObjDmElevator_c*)param_1;
 
     daPy_py_c* pdVar1 = daPy_getPlayerActorClass();
-    if (fopAcM_checkStatus(param_2, 0x400) != 0 && fopAcM_GetName(param_2) == 0xfd) {
+    if (fopAcM_CheckStatus(param_2, 0x400) != 0 && fopAcM_GetName(param_2) == 0xfd) {
         static cXyz l_push_check_pos0[4] = {
             cXyz(-50.0f, 0.0f, -50.0f),
             cXyz(50.0f, 0.0f, -50.0f),
@@ -557,7 +557,7 @@ void daObjDmElevator_c::actionEvent() {
 
 /* 80BDF068-80BDF0A0 0017E8 0038+00 1/0 0/0 0/0 .text actionStartEvent__17daObjDmElevator_cFv */
 void daObjDmElevator_c::actionStartEvent() {
-    if ( fopAcM_checkStatus(this, 0x1000) != 0) {
+    if ( fopAcM_CheckStatus(this, 0x1000) != 0) {
         demoProc();
     } else {
         mAction = 0;

@@ -6184,7 +6184,7 @@ BOOL daAlink_c::checkMidnaDisappearMode() const {
     return mProcID == PROC_WOLF_DIG_THROUGH ||
            (checkWolf() && dComIfGp_checkPlayerStatus0(0, 0x8000000) &&
             !dComIfGp_checkPlayerStatus0(0, 0x10) &&
-            (mTargetedActor == NULL || !(mTargetedActor->attention_info.flags & 0x800000)));
+            (mTargetedActor == NULL || !(mTargetedActor->attention_info.flags & fopAc_AttnFlag_UNK_0x800000)));
 }
 
 /* 801371FC-801372B4 131B3C 00B8+00 3/3 0/0 0/0 .text            checkWolfLieContinue__9daAlink_cFi
@@ -6193,7 +6193,7 @@ BOOL daAlink_c::checkWolfLieContinue(int param_0) {
     cM3dGPla slide_poly;
 
     if ((param_0 ||
-         ((mTargetedActor != NULL && (mTargetedActor->attention_info.flags & 0x800000)) &&
+         ((mTargetedActor != NULL && (mTargetedActor->attention_info.flags & fopAc_AttnFlag_UNK_0x800000)) &&
           (fopAcM_GetName(mTargetedActor) == PROC_NPC_JAGAR ||
            fopAcM_GetName(mTargetedActor) == PROC_NPC_BOU))) &&
         !getSlidePolygon(&slide_poly) && !checkWolfLieWaterIn())
@@ -7087,7 +7087,7 @@ void daAlink_c::searchWolfLockEnemy(fopAc_ac_c* i_actor, void* i_data) {
     }
 
     fopEn_enemy_c* enemy_p = static_cast<fopEn_enemy_c*>(i_actor);
-    if (fopAcM_GetGroup(enemy_p) == 2 && enemy_p->attention_info.flags & 5 &&
+    if (fopAcM_GetGroup(enemy_p) == 2 && enemy_p->attention_info.flags & (fopAc_AttnFlag_BATTLE_e | fopAc_AttnFlag_LOCK_e) &&
         !enemy_p->checkWolfNoLock())
     {
         f32 dist_to_enemy = current.pos.abs2(enemy_p->eyePos);

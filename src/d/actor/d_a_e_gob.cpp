@@ -722,7 +722,7 @@ static u8 ball(e_gob_class* i_this) {
         mDoMtx_stack_c::multVec(&daPy_getPlayerActorClass()->current.pos, &sp2C);
     
         if (fabsf(sp2C.x) < var_f28 && sp2C.z > temp_f27 && sp2C.z < var_f29) {
-            actor->attention_info.flags |= 0x10;
+            actor->attention_info.flags |= fopAc_AttnFlag_CARRY_e;
         }
 
         if (enemy->checkThrowMode(2)) {
@@ -1256,7 +1256,7 @@ static void message(e_gob_class* i_this) {
     }
 
     if (i_this->mPlayerDist < 600.0f) {
-        cLib_onBit<u32>(actor->attention_info.flags, 0xA);
+        cLib_onBit<u32>(actor->attention_info.flags, fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
         i_this->eventInfo.onCondition(1);
 
         if (dComIfGp_event_runCheck()) {
@@ -1318,7 +1318,7 @@ static void action(e_gob_class* i_this) {
     u8 stop_subbgm = TRUE;
     int sp2C = 4;
 
-    cLib_offBit<u32>(actor->attention_info.flags, 0x1A);
+    cLib_offBit<u32>(actor->attention_info.flags, fopAc_AttnFlag_CARRY_e | fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
     int sp28 = 1;
 
     switch (i_this->mAction) {
@@ -1420,10 +1420,10 @@ static void action(e_gob_class* i_this) {
 
     if (on_attention) {
         fopAcM_OnStatus(i_this, 0);
-        actor->attention_info.flags |= 4;
+        actor->attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
     } else {
         fopAcM_OffStatus(i_this, 0);
-        actor->attention_info.flags &= ~4;
+        actor->attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
     }
 
     if (spD && i_this->mPlayerDist < 400.0f && daPy_getPlayerActorClass()->getCutType() != 0x29 && daPy_getPlayerActorClass()->getCutAtFlg() != 0 && i_this->field_0x6aa == 0) {
@@ -2328,7 +2328,7 @@ static int daE_GOB_Create(fopAc_ac_c* i_this) {
             l_HIO.id = mDoHIO_CREATE_CHILD("マグネゴロン", &l_HIO);
         }
     
-        i_this->attention_info.flags = 4;
+        i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         fopAcM_SetMtx(i_this, a_this->mpModelMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(i_this, -400.0f, -500.0f, -400.0f);

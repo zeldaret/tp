@@ -432,7 +432,7 @@ void daNpc_Bou_c::afterJntAnm(int param_1) {
 void daNpc_Bou_c::setParam() {
     selectAction();
     srchActors();
-    u32 uVar7 = 10;
+    u32 uVar7 = (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
     s16 sVar10 = daNpc_Bou_Param_c::m.field_0x48;
     s16 sVar9 = daNpc_Bou_Param_c::m.field_0x4a;
     s16 sVar8 = daNpc_Bou_Param_c::m.field_0x4c;
@@ -460,7 +460,7 @@ void daNpc_Bou_c::setParam() {
     attention_info.distances[1] = attention_info.distances[0];
     attention_info.distances[3] = daNpcT_getDistTableIdx(sVar10, sVar9);
     if (mType == TYPE_1) {
-        uVar7 |= (0x80 << 16);
+        uVar7 |= fopAc_AttnFlag_UNK_0x800000;
         field_0xfdc = getActorDistance(daPy_getPlayerActorClass(), 
                     daNpcT_getDistTableIdx(field_0xfe0, field_0xfe4), 
                     attention_info.distances[1]);
