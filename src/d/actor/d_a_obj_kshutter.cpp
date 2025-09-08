@@ -346,7 +346,7 @@ cPhs__Step daObjKshtr_c::phase_0() {
 
     #ifdef DEBUG
     if (mType >= 6) {
-        OS_REPORT_ERROR("鍵付き壁ドア：引数０のタイプ指定が不正値です\n") // Locked wall door: The type specification for argument 0 is invalid
+        OS_REPORT_ERROR("鍵付き壁ドア：引数０のタイプ指定が不正値です\n"); // Locked wall door: The type specification for argument 0 is invalid
 
         return cPhs_ERROR_e;
     }
