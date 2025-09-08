@@ -7,6 +7,7 @@
 
 #include "d/actor/d_a_obj_kshutter.h"
 #include "d/actor/d_a_player.h"
+#include "d/actor/d_a_obj_keyhole.h"
 #include "dol2asm.h"
 
 
@@ -288,11 +289,6 @@ void daObjKshtr_c::offDzb() {
     }
 }
 
-/* ############################################################################################## */
-/* 80C49D10-80C49D14 000068 0004+00 4/8 0/0 0/0 .rodata          @3842 */
-SECTION_RODATA static f32 const lit_3842 = 1.0f;
-COMPILER_STRIP_GATE(0x80C49D10, &lit_3842);
-
 /* 80C49EE4-80C49EF8 -00001 0014+00 3/4 0/0 0/0 .data            l_anmArcName */
 static char* l_anmArcName[5] = {
     "DoorY00",
@@ -300,28 +296,6 @@ static char* l_anmArcName[5] = {
     "DoorT00",
     NULL,
     "V_Shutter",
-};
-
-/* 80C49F1C-80C49F40 0000BC 0024+00 0/1 0/0 0/0 .data            l_ct_func$3931 */
-static daObjKshtr_c::PhaseFunc l_ct_func[3] = {
-    &daObjKshtr_c::phase_0,
-    &daObjKshtr_c::phase_1,
-    &daObjKshtr_c::phase_2,
-};
-
-/* 80C49F64-80C49F88 000104 0024+00 0/1 0/0 0/0 .data            l_func$3941 */
-static daObjKshtr_c::ActionFunc l_func_3941[3] = {
-    &daObjKshtr_c::actionWaitEvent,
-    &daObjKshtr_c::actionEvent,
-    &daObjKshtr_c::actionDead,
-};
-
-/* 80C49FB8-80C49FE8 000158 0030+00 0/1 0/0 0/0 .data            l_func$3951 */
-static daObjKshtr_c::ActionFunc l_func_3951[4] = {
-    &daObjKshtr_c::actionWaitEvent2,
-    &daObjKshtr_c::actionEvent2,
-    &daObjKshtr_c::actionDead2,
-    &daObjKshtr_c::actionOpen,
 };
 
 /* 80C49FE8-80C4A000 -00001 0018+00 1/1 0/0 0/0 .data            action_table$4080 */
@@ -462,7 +436,23 @@ cPhs__Step daObjKshtr_c::phase_0() {
 
 /* 80C4827C-80C48320 00083C 00A4+00 1/0 0/0 0/0 .text            phase_1__12daObjKshtr_cFv */
 cPhs__Step daObjKshtr_c::phase_1() {
-    // NONMATCHING
+    if (field_0x614 != fpcM_ERROR_PROCESS_ID_e) {
+        obj_keyhole_class* keyhole_p = (obj_keyhole_class*)fopAcM_SearchByID(field_0x614);
+
+        if (keyhole_p != NULL) {
+            if (fopAcM_isSwitch(this, mSwNo)) {
+                keyhole_p->setOpenEnd();
+
+                OS_REPORT("鍵檻：鍵開いてる状態セット！\n"); // Locked cage: unlocked!\n
+            }
+
+            field_0x618++;
+        }
+    } else {
+        field_0x618++;
+    }
+
+    return cPhs_INIT_e;
 }
 
 /* 80C48320-80C48328 0008E0 0008+00 1/0 0/0 0/0 .text            phase_2__12daObjKshtr_cFv */
@@ -473,53 +463,109 @@ cPhs__Step daObjKshtr_c::phase_2() {
 /* 80C48328-80C483CC 0008E8 00A4+00 1/1 0/0 0/0 .text            create1st__12daObjKshtr_cFv */
 void daObjKshtr_c::create1st() {
     // NONMATCHING
+    static daObjKshtr_c::PhaseFunc l_ct_func[3] = {
+        &daObjKshtr_c::phase_0,
+        &daObjKshtr_c::phase_1,
+        &daObjKshtr_c::phase_2,
+    };
+
+    (this->*l_ct_func[field_0x618])();
 }
 
-/* 80C483CC-80C48470 00098C 00A4+00 1/1 0/0 0/0 .text            event_proc_call__12daObjKshtr_cFv
- */
+/* 80C483CC-80C48470 00098C 00A4+00 1/1 0/0 0/0 .text            event_proc_call__12daObjKshtr_cFv */
 void daObjKshtr_c::event_proc_call() {
     // NONMATCHING
+    static daObjKshtr_c::ActionFunc l_func[3] = {
+        &daObjKshtr_c::actionWaitEvent,
+        &daObjKshtr_c::actionEvent,
+        &daObjKshtr_c::actionDead,
+    };
+
+    (this->*l_func[mAction])();
 }
 
-/* 80C48470-80C4852C 000A30 00BC+00 1/1 0/0 0/0 .text            event_proc_call2__12daObjKshtr_cFv
- */
+/* 80C48470-80C4852C 000A30 00BC+00 1/1 0/0 0/0 .text            event_proc_call2__12daObjKshtr_cFv */
 void daObjKshtr_c::event_proc_call2() {
     // NONMATCHING
+    static daObjKshtr_c::ActionFunc l_func[4] = {
+        &daObjKshtr_c::actionWaitEvent2,
+        &daObjKshtr_c::actionEvent2,
+        &daObjKshtr_c::actionDead2,
+        &daObjKshtr_c::actionOpen,
+    };
+
+    (this->*l_func[mAction])();
 }
 
 /* 80C4852C-80C48590 000AEC 0064+00 1/0 0/0 0/0 .text            Execute__12daObjKshtr_cFPPA3_A4_f */
-int daObjKshtr_c::Execute(f32 (**param_0)[3][4]) {
-    // NONMATCHING
+int daObjKshtr_c::Execute(Mtx** param_1) {
+    if (checkKey() == 1) {
+        event_proc_call();
+    } else {
+        event_proc_call2();
+    }
+
+    *param_1 = &mBgMtx;
+    setBaseMtx();
+
+    return 1;
 }
 
-/* ############################################################################################## */
-/* 80C49D18-80C49D1C 000070 0004+00 0/1 0/0 0/0 .rodata          @4060 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4060 = 62500.0f;
-COMPILER_STRIP_GATE(0x80C49D18, &lit_4060);
-#pragma pop
-
-/* 80C49D1C-80C49D20 000074 0004+00 0/1 0/0 0/0 .rodata          @4061 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4061 = 12100.0f;
-COMPILER_STRIP_GATE(0x80C49D1C, &lit_4061);
-#pragma pop
-
 /* 80C48590-80C48708 000B50 0178+00 1/1 0/0 0/0 .text            checkArea__12daObjKshtr_cFv */
-void daObjKshtr_c::checkArea() {
-    // NONMATCHING
+BOOL daObjKshtr_c::checkArea() {
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    cXyz sp78;
+    cXyz sp84(player->attention_info.position);
+    sp84.y = player->current.pos.y;
+    sp78 = sp84 - current.pos;
+    f32 fVar1 = sp78.abs2XZ();
+    cXyz sp90;
+    sp90.set(cM_ssin(home.angle.y), 0.0f, cM_scos(home.angle.y));
+
+    if (fVar1 > 62500.0f) {
+        return FALSE;
+    }
+
+    sp78.normalize();
+
+    f32 fVar2 = sp78.inprodXZ(sp90);
+    fVar2 *= fVar1 * fVar2;
+    if (fVar2 > 12100.0f) {
+        return FALSE;
+    }
+
+    if (fVar1 - fVar2 > 12100.0f) {
+        return FALSE;
+    }
+
+    if (abs((s16)(current.angle.y - player->current.angle.y)) >= 0x5000) {
+        return TRUE;
+    }
+
+    return FALSE;
 }
 
 /* 80C48708-80C48798 000CC8 0090+00 1/1 0/0 0/0 .text            checkOpen__12daObjKshtr_cFv */
-void daObjKshtr_c::checkOpen() {
-    // NONMATCHING
+BOOL daObjKshtr_c::checkOpen() {
+    if (mType == 3) {
+        if (!dComIfGs_isDungeonItemBossKey()) {
+            return false;
+        }
+    } else if (dComIfGs_getKeyNum() == 0) {
+        return false;
+    }
+
+    if (!checkArea()) {
+        return false;
+    }
+
+    return true;
 }
 
 /* 80C48798-80C487E0 000D58 0048+00 1/1 0/0 0/0 .text            getDemoAction__12daObjKshtr_cFv */
-void daObjKshtr_c::getDemoAction() {
+int daObjKshtr_c::getDemoAction() {
     // NONMATCHING
+    return dComIfGp_evmng_getMyActIdx(field_0x600, action_table, 6, 0, 0);
 }
 
 /* ############################################################################################## */

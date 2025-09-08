@@ -31,10 +31,10 @@ public:
     /* 80C48328 */ void create1st();
     /* 80C483CC */ void event_proc_call();
     /* 80C48470 */ void event_proc_call2();
-    /* 80C4852C */ int Execute(f32 (**)[3][4]);
-    /* 80C48590 */ void checkArea();
-    /* 80C48708 */ void checkOpen();
-    /* 80C48798 */ void getDemoAction();
+    /* 80C4852C */ int Execute(Mtx**);
+    /* 80C48590 */ BOOL checkArea();
+    /* 80C48708 */ BOOL checkOpen();
+    /* 80C48798 */ int getDemoAction();
     /* 80C487E0 */ void demoProc2();
     /* 80C489E0 */ void adjustmentProc();
     /* 80C48AC8 */ void keyUnlockInit();
