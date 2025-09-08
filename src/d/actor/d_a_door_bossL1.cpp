@@ -326,7 +326,7 @@ int daBdoorL1_c::CreateInit() {
     setAction(ACTION_CLOSE_WAIT);
     attention_info.position.y += 250.0f;
     eyePos.y += 250.0f;
-    attention_info.flags = 0x20;
+    attention_info.flags = fopAc_AttnFlag_DOOR_e;
     if (checkFront()) {
         field_0x5a8 = -60.0f;
     } else {

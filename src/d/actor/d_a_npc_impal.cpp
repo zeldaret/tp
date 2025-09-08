@@ -1117,7 +1117,7 @@ void daNpcImpal_c::setParam() {
         getDistTableIdx(daNpcImpal_Param_c::m.mSpeakDistIdx, daNpcImpal_Param_c::m.mSpeakAngleIdx);
 
     if (field_0xde9) {
-        attention_info.flags = 10;
+        attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
     } else {
         attention_info.flags = 0;
     }

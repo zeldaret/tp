@@ -812,7 +812,7 @@ void daObj_Kanban2_c::setCenterPos() {
 /* 80582E68-80582EF0 0017E8 0088+00 2/2 0/0 0/0 .text            checkCarryOn__15daObj_Kanban2_cFv
  */
 BOOL daObj_Kanban2_c::checkCarryOn() {
-    cLib_onBit<u32>(attention_info.flags, 0x10);
+    cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     if (fopAcM_checkCarryNow(this)) {
         setActionMode(ACTION_CARRY_e, 0);
 
@@ -986,12 +986,12 @@ void daObj_Kanban2_c::executeNormal() {
     switch (field_0x9fe) {
     case 0:
         if (mFlowID != -1 && cLib_distanceAngleS(shape_angle.y, fopAcM_searchPlayerAngleY(this)) < 0x3000) {
-            cLib_onBit<u32>(attention_info.flags, 0x4000000A);
+            cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_TALKREAD_e | fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
             attention_info.distances[fopAc_attn_TALK_e] = 21;
             attention_info.distances[fopAc_attn_SPEAK_e] = 21;
             eventInfo.onCondition(1);
         } else {
-            cLib_offBit<u32>(attention_info.flags, 0x4000000A);
+            cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_TALKREAD_e | fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
         }
 
         if (dComIfGp_event_runCheck() && eventInfo.checkCommandTalk()) {

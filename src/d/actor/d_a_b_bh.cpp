@@ -1157,7 +1157,7 @@ static void action(b_bh_class* i_this) {
 
     if (spC != 0) {
         fopAcM_OnStatus(a_this, 0);
-        a_this->attention_info.flags = 4;
+        a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     } else {
         fopAcM_OffStatus(a_this, 0);
         a_this->attention_info.flags = 0;
@@ -1524,7 +1524,7 @@ static int daB_BH_Create(fopAc_ac_c* i_this) {
             l_HIO.no = mDoHIO_CREATE_CHILD("ボスババ触手", &l_HIO);
         }
 
-        i_this->attention_info.flags = 4;
+        i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         i_this->health = 1;
         i_this->field_0x560 = 1;
 

@@ -886,7 +886,7 @@ static void core_action(b_ob_class* i_this) {
 
     if (attn_ON && i_this->field_0x479c > -1.0f && a_this->eyePos.y >= a_this->home.pos.y) {
         fopAcM_OnStatus(a_this, 0);
-        a_this->attention_info.flags = 4;
+        a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     } else {
         fopAcM_OffStatus(a_this, 0);
         a_this->attention_info.flags = 0;
@@ -1655,7 +1655,7 @@ static void fish_move(b_ob_class* i_this) {
 
         if (attn_ON && i_this->mAttnOffTimer == 0) {
             fopAcM_OnStatus(a_this, 0);
-            a_this->attention_info.flags = 4;
+            a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         } else {
             fopAcM_OffStatus(a_this, 0);
             a_this->attention_info.flags = 0;

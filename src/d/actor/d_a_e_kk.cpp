@@ -901,7 +901,7 @@ void daE_KK_c::executeDead() {
     switch (mMoveMode) {
     case 0:
         fopAcM_OffStatus(this, 0);
-        attention_info.flags &= 0xFFFFFFFB;
+        attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
         attention_info.distances[2] = 0;
         offHeadLockFlg();
         health = 0;
@@ -1300,7 +1300,7 @@ int daE_KK_c::execute() {
             attention_info.distances[2] = 0x45;
             fopAcM_SetGroup(this, 2);
             fopAcM_OnStatus(this, 0);
-            attention_info.flags |= 4;
+            attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
         }
     }
 
@@ -1479,7 +1479,7 @@ int daE_KK_c::create() {
 
             field_0x760 = current.pos.y;
 
-            attention_info.flags = 4;
+            attention_info.flags = fopAc_AttnFlag_BATTLE_e;
             attention_info.distances[2] = 0x4C;
 
             if (field_0x679 != 3) {
@@ -1501,7 +1501,7 @@ int daE_KK_c::create() {
             attention_info.distances[2] = 0;
             fopAcM_SetGroup(this, 0);
             fopAcM_OffStatus(this, 0);
-            attention_info.flags &= 0xFFFFFFFB;
+            attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
         }
 
         if (field_0x67a == 0xFF || field_0x67a == 0) {

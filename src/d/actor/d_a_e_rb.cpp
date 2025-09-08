@@ -482,7 +482,7 @@ static void action(e_rb_class* i_this) {
 
     if (attention_ON) {
         fopAcM_OnStatus(enemy, 0);
-        enemy->attention_info.flags = 4;
+        enemy->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     } else {
         fopAcM_OffStatus(enemy, 0);
         enemy->attention_info.flags = 0;
@@ -846,7 +846,7 @@ static int daE_RB_Create(fopAc_ac_c* i_this) {
             l_HIO.id = mDoHIO_CREATE_CHILD("リーバ", &l_HIO);
         }
 
-        i_this->attention_info.flags = 4;
+        i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         fopAcM_SetMtx(i_this, a_this->modelMorf->getModel()->getBaseTRMtx());
         i_this->health = 1;
         i_this->field_0x560 = 1;

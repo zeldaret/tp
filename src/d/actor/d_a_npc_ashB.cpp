@@ -1192,7 +1192,7 @@ static bool daNpcAshB_IsDelete(void* param_0) {
 
 /* 80960A60-80960AE8 002D00 0088+00 1/0 0/0 0/0 .text            setParam__11daNpcAshB_cFv */
 void daNpcAshB_c::setParam() {
-    attention_info.flags = daPy_py_c::checkNowWolf() ? 0 : 10;
+    attention_info.flags = daPy_py_c::checkNowWolf() ? 0 : (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
     attention_info.distances[0] = getDistTableIdx(daNpcAshB_Param_c::m.mTalkDistIdx,daNpcAshB_Param_c::m.mTalkAngleIdx);
     attention_info.distances[1] = attention_info.distances[0];
     attention_info.distances[3] = getDistTableIdx(daNpcAshB_Param_c::m.mSpeakDistIdx,daNpcAshB_Param_c::m.mSpeakAngleIdx);

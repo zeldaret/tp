@@ -267,7 +267,7 @@ void daNpc_Zant_c::setParam() {
     attention_info.distances[1] = attention_info.distances[0];
     attention_info.distances[3] = daNpcT_getDistTableIdx(sVar1, sVar2);
 
-    attention_info.flags = 10;
+    attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
 
     scale.setall(daNpc_Zant_Param_c::m.field_0x8);
 

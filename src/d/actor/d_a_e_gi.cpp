@@ -813,7 +813,7 @@ void daE_GI_c::action() {
     damage_check();
 
     u8 is_battle_on = FALSE;
-    attention_info.flags = 4;
+    attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
     switch (mActionMode) {
     case ACTION_SLEEP_e:
@@ -844,11 +844,11 @@ void daE_GI_c::action() {
     mIsBattleOn = is_battle_on;
     mSound.setLinkSearch(is_battle_on);
 
-    if (attention_info.flags & 4) {
+    if (attention_info.flags & fopAc_AttnFlag_BATTLE_e) {
         dBgS_LinChk linecheck;
         linecheck.Set(&dComIfGp_getCamera(0)->lookat.eye, &attention_info.position, this);
         if (dComIfG_Bgsp().LineCross(&linecheck)) {
-            attention_info.flags &= ~0x4;
+            attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
         }
     }
 
@@ -1088,7 +1088,7 @@ int daE_GI_c::create() {
             l_HIO.id = mDoHIO_CREATE_CHILD("ギブド", &l_HIO);
         }
 
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         fopAcM_SetMtx(this, mpModelMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, -200.0f, -200.0f);
         fopAcM_SetMax(this, 200.0f, 200.0f, 200.0f);

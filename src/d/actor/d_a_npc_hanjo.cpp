@@ -477,7 +477,7 @@ void daNpc_Hanjo_c::setParam() {
     attention_info.distances[0] = daNpcT_getDistTableIdx(sVar4, sVar1);
     attention_info.distances[1] = attention_info.distances[0];
     attention_info.distances[3] = daNpcT_getDistTableIdx(sVar6, sVar5);
-    attention_info.flags = 0xa;
+    attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
     scale.set(daNpc_Hanjo_Param_c::m.field_0x08, daNpc_Hanjo_Param_c::m.field_0x08,
               daNpc_Hanjo_Param_c::m.field_0x08);
     mCcStts.SetWeight(daNpc_Hanjo_Param_c::m.field_0x10);

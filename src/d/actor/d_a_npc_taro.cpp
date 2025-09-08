@@ -726,7 +726,7 @@ void daNpc_Taro_c::afterJntAnm(int param_1) {
 void daNpc_Taro_c::setParam() {
     selectAction();
     srchActors();
-    int attentionFlags = 0xa;
+    int attentionFlags = (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
     s16 sVar7 = daNpc_Taro_Param_c::m.field_0x48;
     s16 sVar5 = daNpc_Taro_Param_c::m.field_0x4a;
     s16 sVar6 = daNpc_Taro_Param_c::m.field_0x4c;

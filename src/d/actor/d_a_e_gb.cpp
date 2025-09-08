@@ -795,7 +795,7 @@ static void action(e_gb_class* i_this) {
 
     if (bVar1 != 0) {
         fopAcM_OnStatus(a_this, 0);
-        a_this->attention_info.flags = 4;
+        a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     } else {
         fopAcM_OffStatus(a_this, 0);
         a_this->attention_info.flags = 0;
@@ -1622,7 +1622,7 @@ static cPhs__Step daE_GB_Create(fopAc_ac_c* a_this) {
             l_HIO.field_0x4 = -1;
         }
 
-        a_this->attention_info.flags = 4;
+        a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         a_this->health = 90;
         a_this->field_0x560 = 90;
 

@@ -878,7 +878,7 @@ void daNpcCoach_c::setCoachBlazing(u8 param_1) {
         uVar1 = 5;
         mCoachBlazing = true;
         uVar2 = 0;
-        attention_info.flags = 0x101;
+        attention_info.flags = fopAc_AttnFlag_CHECK_e | fopAc_AttnFlag_LOCK_e;
     } else {
         uVar1 = 2;
         param_1 = 0;

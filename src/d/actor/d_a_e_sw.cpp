@@ -1754,7 +1754,7 @@ cPhs__Step daE_SW_c::create() {
             l_HIO.field_0x4 = -1;
         }
 
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         if (mpModelMorf != NULL) {
             fopAcM_SetMtx(this, mpModelMorf->getModel()->getBaseTRMtx());

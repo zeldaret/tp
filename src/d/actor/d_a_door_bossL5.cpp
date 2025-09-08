@@ -127,7 +127,7 @@ int daBdoorL5_c::CreateInit() {
     setAction(ACTION_CLOSE_WAIT);
     attention_info.position.y += 250.0f;
     eyePos.y += 250.0f;
-    attention_info.flags = 0x20;
+    attention_info.flags = fopAc_AttnFlag_DOOR_e;
     calcMtx();
     field_0x588->Move();
     door_param2_c::getSwbit(this);

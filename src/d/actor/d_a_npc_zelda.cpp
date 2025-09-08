@@ -447,14 +447,7 @@ void daNpc_Zelda_c::setParam() {
     selectAction();
     srchActors();
 
-#if DEBUG
-    s32 attnFlag = 0x2 | 0x40;
-#define NPC_ZELDA_SETPARAM_DIST_IDX fopAc_attn_JUEL_e
-#else
-    s32 attnFlag = 0x2 | 0x8;
-#define NPC_ZELDA_SETPARAM_DIST_IDX fopAc_attn_SPEAK_e
-#endif
-
+    s32 attnFlag = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
     s16 talkDist = HIO_PARAM(this).common.talk_distance;
     s16 talkAngle = HIO_PARAM(this).common.talk_angle;
     s16 attnDist = HIO_PARAM(this).common.attention_distance;
@@ -462,7 +455,7 @@ void daNpc_Zelda_c::setParam() {
     attention_info.distances[fopAc_attn_LOCK_e] =
         daNpcT_getDistTableIdx(attnDist, attnAngle);
     attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
-    attention_info.distances[NPC_ZELDA_SETPARAM_DIST_IDX] = daNpcT_getDistTableIdx(talkDist, talkAngle);
+    attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(talkDist, talkAngle);
     attention_info.flags = attnFlag;
     scale.set(HIO_PARAM(this).common.scale, HIO_PARAM(this).common.scale, HIO_PARAM(this).common.scale);
     mCcStts.SetWeight(HIO_PARAM(this).common.weight);

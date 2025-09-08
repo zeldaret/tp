@@ -908,10 +908,10 @@ static void action(e_sg_class* i_this) {
 
     if (att_flag) {
         fopAcM_OnStatus(i_this, 0);
-        i_this->attention_info.flags = 0x4;
+        i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     } else {
         fopAcM_OffStatus(i_this, 0);
-        i_this->attention_info.flags = 0x0;
+        i_this->attention_info.flags = 0;
     }
 
     if (link_search_flag) {
@@ -1215,7 +1215,7 @@ static int daE_SG_Create(fopAc_ac_c* i_this) {
             l_HIO.mUnk0 = -1;
         }
 
-        a_this->attention_info.flags = 4;
+        a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         fopAcM_SetMtx(a_this, a_this->mpModel->getBaseTRMtx());
 

@@ -159,7 +159,7 @@ void daObjYobikusa_c::create_init() {
 
     fopAcM_OnCarryType(this, fopAcM_CARRY_LIGHT);
 
-    attention_info.flags |= 0x10;
+    attention_info.flags |= fopAc_AttnFlag_CARRY_e;
     attention_info.distances[fopAc_attn_CARRY_e] = 42;
 
     initCcCylinder();
@@ -271,7 +271,7 @@ bool daObjYobikusa_c::toPickLeaf() {
         mPlayerDeltaAngle = fopAcM_searchActorAngleY(this, dComIfGp_getPlayer(0));
         mPlayerDeltaAngle -= 0x2000;
 
-        cLib_offBit<u32>(attention_info.flags, 0x10);
+        cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
         return true;
     }
     return false;
@@ -287,7 +287,7 @@ bool daObjYobikusa_c::setNewLeaf() {
     mNewLeafTick += attr()->mNewLeafTickSpeed;
 
     if (mJointScale == 1.0f && mNewLeafAmplitude == 0.0f) {
-        cLib_onBit<u32>(attention_info.flags, 0x10);
+        cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
         return true;
     }
     return false;
@@ -381,7 +381,7 @@ int daObjYobikusa_c::execute() {
         mpActiveModel = mpModelTypeB;
 
         fopAcM_OffStatus(this, 0x80);
-        cLib_offBit<u32>(attention_info.flags, 0x10);
+        cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
 
         if (getType() == CALL_TYPE_FLY) {
             dComIfGp_particle_set(0x8347, &current.pos, NULL, NULL);

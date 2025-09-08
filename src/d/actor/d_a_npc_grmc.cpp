@@ -420,7 +420,7 @@ void daNpc_grMC_c::afterJntAnm(int param_1) {
 
 /* 809D7DD4-809D7F28 000AB4 0154+00 1/0 0/0 0/0 .text            setParam__12daNpc_grMC_cFv */
 void daNpc_grMC_c::setParam() {
-    u32 uVar1 = 10;
+    u32 uVar1 = (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
 
     if (field_0x10dc != 0) {
         if (field_0x10d8 == 2) {

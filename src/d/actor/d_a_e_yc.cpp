@@ -836,7 +836,7 @@ static cPhs__Step daE_YC_Create(fopAc_ac_c* i_this) {
         _this->mCounter = cM_rndF(0xffff);
         _this->mAction = e_yc_class::ACT_FLY;
         
-        _this->attention_info.flags = 4;
+        _this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         _this->attention_info.distances[fopAc_attn_BATTLE_e] = 26;
 
         daE_YC_Execute(_this);

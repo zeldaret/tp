@@ -114,9 +114,9 @@ int daAttp_c::execute() {
     }
 
     if (bVar1) {
-        attention_info.flags = attention_info.flags | 1;
+        attention_info.flags |= fopAc_AttnFlag_LOCK_e;
     } else {
-        attention_info.flags = attention_info.flags & 0xfffffffe;
+        attention_info.flags &= ~fopAc_AttnFlag_LOCK_e;
     }
 
     return 1;

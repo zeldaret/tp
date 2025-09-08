@@ -2177,11 +2177,11 @@ void daB_GG_c::AttentionChk() {
     daPy_getPlayerActorClass();
 
     if (s_dis < 3000.0f) {
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         if (field_0x5b0 != 0 && mSubAction == SUBACT_ATTACK) {
             s16 temp_r0 = fopAcM_toPlayerShapeAngleY(this) + 0x8000;
             if (temp_r0 < 0x3000 && temp_r0 > -0x3000) {
-                attention_info.flags = 4;
+                attention_info.flags = fopAc_AttnFlag_BATTLE_e;
             } else {
                 attention_info.flags = 0;
             }
@@ -3421,7 +3421,7 @@ void daB_GG_c::GroundAction() {
 /* 805E8EE8-805E92A0 00ABC8 03B8+00 1/1 0/0 0/0 .text            StopAction__8daB_GG_cFv */
 void daB_GG_c::StopAction() {
     if (!other_bg_check(this, daPy_getPlayerActorClass())) {
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     } else {
         attention_info.flags = 0;
     }
@@ -4384,7 +4384,7 @@ int daB_GG_c::Create() {
 
         gravity = 0.0f;
 
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         attention_info.distances[fopAc_attn_BATTLE_e] = 82;
 
         fopAcM_SetMtx(this, mpModelMorf->getModel()->getBaseTRMtx());

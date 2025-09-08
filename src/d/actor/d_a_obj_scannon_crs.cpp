@@ -246,7 +246,7 @@ void daSCannonCrs_c::exeModeOrderEvt(daMidna_c* i_midna_p) {
             daPy_py_c* player_p = daPy_getLinkPlayerActorClass();
             if (player_p != NULL && !player_p->checkPlayerFly()) {
                 if (field_0x652 != 0) {
-                    attention_info.flags = 0xA;
+                    attention_info.flags = (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
                 } else {
                     dComIfGp_att_ZHintRequest(this, 0x1FF);
                 }

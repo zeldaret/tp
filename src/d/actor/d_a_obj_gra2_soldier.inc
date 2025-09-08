@@ -1816,7 +1816,7 @@ void daObj_GrA_c::setCarryStatus() {
     mDoMtx_stack_c::transM(-current.pos.x, -current.pos.y, -current.pos.z);
     mDoMtx_stack_c::multVec(&daPy_getPlayerActorClass()->current.pos, &sp38);
     if (fabsf(sp38.x) < 100.0f && sp38.z > 0.0f && sp38.z < 800.0f) {
-        attention_info.flags |= 0x10;
+        attention_info.flags |= fopAc_AttnFlag_CARRY_e;
     }
 }
 

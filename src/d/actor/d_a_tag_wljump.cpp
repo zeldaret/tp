@@ -208,11 +208,7 @@ int daTagWljump_c::execute() {
                 field_0x570 = field_0x568;
                 field_0x568 = -1;
             } else {
-#if DEBUG
-                attention_info.flags |= 0x801;
-#else
-                attention_info.flags |= 0x81;
-#endif
+                attention_info.flags |= fopAc_AttnFlag_ETC_e | fopAc_AttnFlag_LOCK_e;
             }
         } else {
             field_0x572 = 0;

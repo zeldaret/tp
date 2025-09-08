@@ -1957,13 +1957,13 @@ static void action(do_class* i_this) {
     }
 
     if (carry_check && player->speedF < 2.0f) {
-        cLib_onBit<u32>(_this->attention_info.flags, 0x10);
+        cLib_onBit<u32>(_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
 
         if (do_carry_check(i_this)) {
             return;
         }
     } else {
-        cLib_offBit<u32>(_this->attention_info.flags, 0x10);
+        cLib_offBit<u32>(_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
     }
 
     cLib_addCalcAngleS2(&_this->current.angle.x, 0, 1, 0x400);
@@ -2244,11 +2244,11 @@ static void message(do_class* i_this) {
 
         if (i_this->mMessageState == 2 && i_this->mFlowID != -1 && daPy_py_c::checkNowWolf()) {
             fopAcM_OnStatus(i_this, 0);
-            cLib_onBit<u32>(i_this->attention_info.flags, 0xa);
+            cLib_onBit<u32>(i_this->attention_info.flags, fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
             i_this->eventInfo.onCondition(dEvtCnd_CANTALK_e);
         } else {
             fopAcM_OffStatus(i_this, 0);
-            cLib_offBit<u32>(i_this->attention_info.flags, 0xa);
+            cLib_offBit<u32>(i_this->attention_info.flags, fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
         }
     }
 }

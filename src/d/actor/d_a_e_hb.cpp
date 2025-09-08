@@ -1103,7 +1103,7 @@ static void action(e_hb_class* i_this) {
 
     if (attn_ON) {
         fopAcM_OnStatus(actor, 0);
-        actor->attention_info.flags = 4;
+        actor->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     } else {
         fopAcM_OffStatus(actor, 0);
         actor->attention_info.flags = 0;
@@ -1445,7 +1445,7 @@ static int daE_HB_Create(fopAc_ac_c* i_this) {
             l_HIO.id = mDoHIO_CREATE_CHILD("デグババ（ボックリ）", &l_HIO);
         }
 
-        i_this->attention_info.flags = 4;
+        i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         fopAcM_SetMtx(i_this, a_this->modelMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(i_this, -300.0f, -400.0f, -300.0f);

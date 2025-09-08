@@ -248,7 +248,7 @@ int daItemShield_c::actionWait() {
 /* 80CD7C68-80CD7D04 001288 009C+00 1/1 0/0 0/0 .text initActionOrderGetDemo__14daItemShield_cFv
  */
 int daItemShield_c::initActionOrderGetDemo() {
-    cLib_offBit(attention_info.flags, 0x10UL);
+    cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     mCcCyl.OffTgSPrmBit(1);
     mCcCyl.OffCoSPrmBit(1);
     daItemBase_c::hide();
@@ -346,7 +346,7 @@ int daItemShield_c::execute() {
     setBaseMtx();
     if (fopAcM_searchPlayerDistance(this) < 500.0f) {
         daPy_getPlayerActorClass()->setLookPos(&attention_info.position);
-        attention_info.flags = 0x100;
+        attention_info.flags = fopAc_AttnFlag_CHECK_e;
     } else {
         attention_info.flags = 0;
     }

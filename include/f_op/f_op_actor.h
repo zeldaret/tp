@@ -132,6 +132,7 @@ enum fopAc_AttentionFlag_e {
     fopAc_AttnFlag_UNK_0x800000   = 0x800000,
     fopAc_AttnFlag_NOTALK_e       = 0x2000000,
     fopAc_AttnFlag_ENEMY_NOLOCK_e = 0x4000000,
+    fopAc_AttnFlag_UNK_0x8000000  = 0x8000000,
     fopAc_AttnFlag_TALKCHECK_e    = 0x20000000,
     fopAc_AttnFlag_TALKREAD_e     = 0x40000000,
 };

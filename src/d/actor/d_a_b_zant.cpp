@@ -1035,7 +1035,7 @@ void daB_ZANT_c::executeSmallAttack() {
     switch (mMode) {
     case 0:
         setTgHitBit(TRUE);
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         mMode = 2;
         field_0x6fd = 0;
 
@@ -1115,7 +1115,7 @@ void daB_ZANT_c::executeSmallAttack() {
         break;
     case 4:
         if (mpModelMorf->isStop()) {
-            attention_info.flags = 4;
+            attention_info.flags = fopAc_AttnFlag_BATTLE_e;
             
             if (mFightPhase == PHASE_BB) {
                 field_0x711 = 1;
@@ -1274,7 +1274,7 @@ void daB_ZANT_c::executeWarp() {
         break;
     case 6:
         if (calcScale(1)) {
-            attention_info.flags = 4;
+            attention_info.flags = fopAc_AttnFlag_BATTLE_e;
             setCoHitBit(TRUE);
             setBaseActionMode(0);
         }
@@ -1288,7 +1288,7 @@ void daB_ZANT_c::executeDamage() {
     case 0:
     case 1:
     case 2:
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         if (setNextDamageMode(FALSE)) {
             setTgHitBit(FALSE);
@@ -1344,7 +1344,7 @@ void daB_ZANT_c::executeDamage() {
 void daB_ZANT_c::executeConfuse() {
     switch (mMode) {
     case 0:
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         speedF = 0.0f;
         speed.y = 0.0f;
         mMode = 1;
@@ -1966,7 +1966,7 @@ void daB_ZANT_c::executeWater() {
                 mMode = 0x19;
                 field_0x6f0 = 0x78;
                 field_0x705 = 1;
-                attention_info.flags = 4;
+                attention_info.flags = fopAc_AttnFlag_BATTLE_e;
                 setBck(BCK_ZAN_FLOAT_WAIT, J3DFrameCtrl::EMode_LOOP, 3.0f, 1.0f);
             } else if (field_0x705 != 0) {
                 if (((daB_ZANTZ_c*)pmobile)->getAppearMode() == 3) {
@@ -2123,7 +2123,7 @@ void daB_ZANT_c::executeWater() {
         case 24:
             cLib_addCalcAngleS(&shape_angle.y, fopAcM_searchPlayerAngleY(this), 8, 0x400, 0x80);
             if (((daB_ZANTZ_c*)pmobile)->getMouthMode() == 1) {
-                attention_info.flags = 4;
+                attention_info.flags = fopAc_AttnFlag_BATTLE_e;
                 field_0x703 = 8;
                 field_0x6ff = 0;
                 field_0x711 = 1;
@@ -2223,7 +2223,7 @@ void daB_ZANT_c::executeSwim() {
             setBck(BCK_ZAN_SWIM, J3DFrameCtrl::EMode_LOOP, 5.0f, 1.0f);
             mpModelMorf->setFrame(10.0f);
             field_0x6cc = 0.0f;
-            attention_info.flags = 4;
+            attention_info.flags = fopAc_AttnFlag_BATTLE_e;
             mMode = 1;
             field_0x702 = 0;
         case 1:
@@ -2397,7 +2397,7 @@ void daB_ZANT_c::executeSimaJump() {
                 field_0x6f0 = 105;
             }
 
-            attention_info.flags = 4;
+            attention_info.flags = fopAc_AttnFlag_BATTLE_e;
             setBck(BCK_ZAN_LV1_FATIGUE, J3DFrameCtrl::EMode_LOOP, 10.0f, 1.0f);
             mSound.startCreatureVoice(Z2SE_EN_ZAN_MG_V_ZEIZEI, -1);
             return;
@@ -2408,7 +2408,7 @@ void daB_ZANT_c::executeSimaJump() {
             return;
         }
 
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         field_0x6ec = 0;
         mMode = 1;
         gravity = -5.0f;
@@ -2695,7 +2695,7 @@ void daB_ZANT_c::executeIceJump() {
 
                 mpModelMorf->setPlaySpeed(1.0f);
                 mMode = 7;
-                attention_info.flags = 4;
+                attention_info.flags = fopAc_AttnFlag_BATTLE_e;
             }
         }
         break;
@@ -3822,7 +3822,7 @@ void daB_ZANT_c::executeLastStartDemo() {
             field_0x713 = 0;
             setActionMode(ACT_LAST_ATTACK, 0);
             field_0x70b = 0;
-            attention_info.flags = 4;
+            attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
             mDemoCamEye.set(0.0f, 300.0f, 200.0f);
             camera->Reset(mDemoCamCenter, mDemoCamEye);
@@ -4287,7 +4287,7 @@ void daB_ZANT_c::executeLastDamage() {
         mSwordCc[1].OffAtSetBit();
 
         speedF = 0.0f;
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         if (mTakenBigDmg) {
             if (mFightCycle == 0) {
@@ -4386,7 +4386,7 @@ void daB_ZANT_c::executeLastDamage() {
         break;
     }
     case 10:
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         setBck(BCK_ZAN_GROUND_REACTION, J3DFrameCtrl::EMode_NONE, 3.0f, 1.0f);
         mSound.startCreatureVoice(Z2SE_EN_ZAN_V_NO_DMG, -1);
         mMode = 11;
@@ -5598,7 +5598,7 @@ int daB_ZANT_c::create() {
             l_HIO.field_0x4 = -1;
         }
 
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         attention_info.distances[fopAc_attn_BATTLE_e] = 24;
 
         fopAcM_SetMtx(this, mpModelMorf->getModel()->getBaseTRMtx());

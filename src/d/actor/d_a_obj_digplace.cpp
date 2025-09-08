@@ -99,7 +99,7 @@ int daObjDigpl_c::execute() {
         }
     }
 
-    attention_info.flags &= ~0x80;
+    attention_info.flags &= ~fopAc_AttnFlag_ETC_e;
 
     if (mpDigPoints != NULL) {
         current.pos.y = player_p->current.pos.y + 100000.0f;
@@ -147,7 +147,7 @@ int daObjDigpl_c::execute() {
             f32 dist_to_player = fopAcM_searchPlayerDistanceXZ2(this);
 
             if (seen_angle <= 0x2800 || dist_to_player < 1600.0f) {
-                attention_info.flags |= 0x80;
+                attention_info.flags |= fopAc_AttnFlag_ETC_e;
             }
 
             if (dist_to_player < 250000.0f &&

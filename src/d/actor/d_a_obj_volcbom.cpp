@@ -701,7 +701,7 @@ void daObjVolcBom_c::actionOrderATalkEvent() {
                 midna->onTagWaitPosPortalObj(mMidnaWaitPos);
                 dComIfGp_TargetWarpPt_set(9);
                 eventInfo.onCondition(dEvtCnd_CANTALK_e);
-                attention_info.flags = 0xa;
+                attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
             } else {
                 midna->offTagWaitPos();
                 setAction(ACTION_WAIT);

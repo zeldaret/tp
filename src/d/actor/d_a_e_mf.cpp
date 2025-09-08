@@ -2289,7 +2289,7 @@ static void action(e_mf_class* i_this) {
         a_this->attention_info.flags = 0;
     } else {
         fopAcM_OnStatus(a_this, 0);
-        a_this->attention_info.flags = 4;
+        a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     }
 
     switch (i_this->mAction) {
@@ -3235,7 +3235,7 @@ static cPhs__Step daE_MF_Create(fopAc_ac_c* a_this) {
         }
 
         fopAcM_OnStatus(a_this, fopAcM_STATUS_UNK_000100);
-        a_this->attention_info.flags = 4;
+        a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         fopAcM_SetMtx(a_this, i_this->mpModelMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(a_this, -200.0f, -200.0f, -200.0f);
         fopAcM_SetMax(a_this, 200.0f, 200.0f, 200.0f);

@@ -778,7 +778,7 @@ int daDoor20_c::CreateInit() {
     setAction(ACTION_INIT);
     attention_info.position.y += 150.0f;
     eyePos.y += 150.0f;
-    attention_info.flags = 0x20;
+    attention_info.flags = fopAc_AttnFlag_DOOR_e;
     fopAcM_SetMtx(this, field_0x5f4);
     if (door_param2_c::getKind(this) == 10) {
         fopAcM_setCullSizeBox(this, -300.0f, 0, -50.0f, 300.0f, 700.0f, 50.0f);

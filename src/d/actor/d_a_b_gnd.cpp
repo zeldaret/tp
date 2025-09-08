@@ -2595,7 +2595,7 @@ static void action(b_gnd_class* i_this) {
 
     if (attn_on) {
         fopAcM_OnStatus(i_this, 0);
-        i_this->attention_info.flags = 4;
+        i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     } else {
         fopAcM_OffStatus(i_this, 0);
         i_this->attention_info.flags = 0;
