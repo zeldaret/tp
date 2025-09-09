@@ -736,7 +736,7 @@ static int daE_KG_Create(fopAc_ac_c* i_this) {
             l_HIO.field_0x4 = -1;
         }
 
-        i_this->attention_info.flags = 4;
+        i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         fopAcM_SetMtx(i_this, a_this->mpMorf->getModel()->getBaseTRMtx());
         i_this->health = 0x50;
         i_this->field_0x560 = 0x50;

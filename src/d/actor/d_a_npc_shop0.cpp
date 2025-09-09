@@ -187,7 +187,7 @@ int daNpc_Shop0_c::init() {
     mCyl.SetStts(&mStts);
     mCyl.Set(mCylDat);
     
-    attention_info.flags = 0xa;
+    attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
     eventInfo.setArchiveName(getResName());
     field_0x9e8 = -1;
 
@@ -247,7 +247,7 @@ int daNpc_Shop0_c::checkEvent() {
 
 /* 80AEB5E8-80AEB634 000E88 004C+00 1/1 0/0 0/0 .text            orderEvent__13daNpc_Shop0_cFv */
 void daNpc_Shop0_c::orderEvent() {
-    if (getFlowNodeNum() >= 0 && attention_info.flags == 0xa) {
+    if (getFlowNodeNum() >= 0 && attention_info.flags == (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e)) {
         eventInfo.onCondition(1);
     }
 }

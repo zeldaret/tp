@@ -153,6 +153,8 @@ public:
     f32 CusCus() { return mCusCus; }
     f32 ParallelDist() { return mParallelDist; }
     f32 CurveWeight() { return mCurveWeight; }
+    s16 MapToolCameraLongTimer() { return mMapToolCamLongTimer; }
+    s16 MapToolCameraShortTimer() { return mMapToolCamShortTimer; }
 
     /* 0x000 */ f32 mDrawNear;
     /* 0x004 */ f32 mDrawFar;
@@ -210,8 +212,8 @@ public:
     /* 0x0D0 */ f32 mLockonChangeCushion;
     /* 0x0D4 */ f32 field_0xd4;
     /* 0x0D8 */ f32 field_0xd8;
-    /* 0x0DC */ u16 mMapToolCamShortTimer;
-    /* 0x0DE */ u16 mMapToolCamLongTimer;
+    /* 0x0DC */ s16 mMapToolCamShortTimer;
+    /* 0x0DE */ s16 mMapToolCamLongTimer;
     /* 0x0E0 */ f32 field_0xe0;
     /* 0x0E4 */ f32 field_0xe4;
     /* 0x0E8 */ f32 field_0xe8;

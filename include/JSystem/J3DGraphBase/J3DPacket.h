@@ -32,6 +32,29 @@ enum J3DDiffFlag {
     J3DDiffFlag_Changed          = 0x80000000,
 };
 
+#define J3D_DIFF_LIGHTOBJNUM(n) ((n & 0xF) << 4)
+#define J3D_DIFF_TEXGENNUM(n)   ((n & 0xF) << 8)
+#define J3D_DIFF_TEXNONUM(n)    ((n & 0xF) << 16)
+#define J3D_DIFF_TEVSTAGENUM(n) ((n & 0xF) << 20)
+
+#define J3D_DIFF_FLAG(MatColor, ColorChan, AmbColor, LightNum, TexGenNum, TexGen, TexCoordNum, TevStageNum, TevReg, KColor, TexCoordScale, TevStageInd, Fog, Blend) \
+    ( \
+        (MatColor << 0) | \
+        (ColorChan << 1) | \
+        (AmbColor << 2) | \
+        ((LightNum & 0xF) << 4) | \
+        ((TexGenNum & 0xF) << 8) | \
+        (TexGen << 12) | \
+        ((TexCoordNum & 0xF) << 16) | \
+        ((TevStageNum & 0xF) << 20) | \
+        (TevReg << 24) | \
+        (KColor << 25) | \
+        (TexCoordScale << 26) | \
+        (TevStageInd << 27) | \
+        (Fog << 28) | \
+        (Blend << 29) \
+    )
+
 inline u32 getDiffFlag_LightObjNum(u32 diffFlags) {
     return (diffFlags & 0xf0) >> 4;
 }

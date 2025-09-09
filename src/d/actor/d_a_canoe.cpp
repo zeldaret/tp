@@ -873,9 +873,9 @@ int daCanoe_c::execute() {
     setCanoeSliderEffect();
 
     if (!player->checkCanoeRideOwn(this) && speedF < 0.1f && mWaterSpeed.abs2XZ() < 0.1f && !player->checkFishingRodEquip()) {
-        attention_info.flags |= 0x80;
+        attention_info.flags |= fopAc_AttnFlag_ETC_e;
     } else {
-        attention_info.flags &= ~0x80;
+        attention_info.flags &= ~fopAc_AttnFlag_ETC_e;
     }
 
     u32 sp1C = 127.0f * (fabsf(speedF) / player->getCanoeMaxSpeed());

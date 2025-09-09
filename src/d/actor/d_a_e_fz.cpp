@@ -161,7 +161,7 @@ void daE_FZ_c::deadnextSet(bool param_0) {
 
     mTgCoSph.ClrTgHit();
     fopAcM_OffStatus(this,0);
-    attention_info.flags &= 0xfffffffb;
+    attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
 
     mAtSph.OffAtSetBit();
     mTgCoSph.OffTgSetBit();
@@ -696,10 +696,10 @@ void daE_FZ_c::action() {
 
     if (!fopAcM_otherBgCheck(this, dComIfGp_getPlayer(0))) {
         fopAcM_OnStatus(this, 0);
-        attention_info.flags |= 4;
+        attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
     } else {
         fopAcM_OffStatus(this, 0);
-        attention_info.flags &= 0xfffffffb;
+        attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
     }
 
     linkSearch = false;
@@ -860,7 +860,7 @@ s32 daE_FZ_c::execute() {
             #if DEBUG
             fopAcM_OnStatus(this,0);
             #endif
-            attention_info.flags |= 4;
+            attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
         }
     }
 
@@ -970,7 +970,7 @@ s32 daE_FZ_c::create() {
       l_HIO.field_0x04 = -1;
     }
 
-    attention_info.flags = 4;
+    attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     attention_info.distances[fopAc_attn_BATTLE_e] = 69;
     
     fopAcM_SetMtx(this,mpModel->getBaseTRMtx());
@@ -1039,12 +1039,12 @@ s32 daE_FZ_c::create() {
       attention_info.distances[fopAc_attn_BATTLE_e] = 0;
       fopAcM_SetGroup(this,0);
       fopAcM_OffStatus(this,0);
-      attention_info.flags &= 0xfffffffb;
+      attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
     }
 
     if (field_0x714 == 3) {
       mRadiusBase = 0.0f;
-      attention_info.flags &= 0xfffffffb;
+      attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
       mAtSph.SetAtType(AT_TYPE_CSTATUE_SWING);
       mAtSph.SetAtSpl(dCcG_At_Spl_UNK_1);
       setActionMode(ACT_ROLLMOVE,0);

@@ -678,7 +678,7 @@ void daE_DK_c::executeDeath() {
 
         field_0x68e = 0;
 
-        attention_info.flags = 0x0;
+        attention_info.flags = 0;
 
         mCreatureSound.startCreatureSound(Z2SE_EN_DK_PULLOUT, 0, -1);
 
@@ -719,7 +719,7 @@ void daE_DK_c::executeDeath() {
 
         BodyDeathMove();
 
-        if (fopAcM_checkStatus(this, 0x100000) == 0) {
+        if (fopAcM_CheckStatus(this, 0x100000) == 0) {
             mMoveMode = 3;
 
             mpMorfSO->setPlaySpeed(1.0f);
@@ -1059,7 +1059,7 @@ int daE_DK_c::create() {
             l_HIO.field_0x4 = mDoHIO_CREATE_CHILD("", &l_HIO);
         }
 
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         fopAcM_SetMtx(this, mpMorfSO->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0, -200.0, -200.0);

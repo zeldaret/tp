@@ -710,7 +710,7 @@ static void action(e_ms_class* i_this) {
 
     if (sVar1 && i_this->health > 0) {
         fopAcM_OnStatus(i_this, 0);
-        actor->attention_info.flags = 4;
+        actor->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     } else {
         fopAcM_OffStatus(i_this, 0);
         actor->attention_info.flags = 0;

@@ -1461,12 +1461,12 @@ static int daNpcAsh_IsDelete(void* i_this) {
 /* 8095BCF0-8095BF6C 003AF0 027C+00 1/0 0/0 0/0 .text            setParam__10daNpcAsh_cFv */
 void daNpcAsh_c::setParam() {
     searchActors();
-    attention_info.flags = 0xa;
+    attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
     if (isSneaking()) {
         attention_info.distances[fopAc_attn_LOCK_e] = 0x4e;
         attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
         attention_info.distances[fopAc_attn_SPEAK_e] = 0x4d;
-        attention_info.flags |= 0x800000;
+        attention_info.flags |= fopAc_AttnFlag_UNK_0x800000;
     } else {
         if (!strcmp(dComIfGp_getStartStageName(), "R_SP116")) {
             attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(3, 6);

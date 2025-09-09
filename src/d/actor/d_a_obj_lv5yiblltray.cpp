@@ -255,13 +255,13 @@ static fopAc_ac_c* searchNearBackTrayIronball(void* i_ball, void* i_tray) {
 /* 80C6F440-80C6F450 0008C0 0010+00 1/1 0/0 0/0 .text            onAttention__16daObjYIblltray_cFv
  */
 void daObjYIblltray_c::onAttention() {
-    attention_info.flags |= 0x80;
+    attention_info.flags |= fopAc_AttnFlag_ETC_e;
 }
 
 /* 80C6F450-80C6F460 0008D0 0010+00 1/1 0/0 0/0 .text            offAttention__16daObjYIblltray_cFv
  */
 void daObjYIblltray_c::offAttention() {
-    attention_info.flags &= ~0x80;
+    attention_info.flags &= ~fopAc_AttnFlag_ETC_e;
 }
 
 /* 80C6F460-80C702E0 0008E0 0E80+00 1/0 0/0 0/0 .text Execute__16daObjYIblltray_cFPPA3_A4_f */

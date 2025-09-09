@@ -360,7 +360,7 @@ void daNpcKasiKyu_c::setParam() {
     attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(daNpcKasiKyu_Param_c::m.common.attention_distance, daNpcKasiKyu_Param_c::m.common.attention_angle);
     attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
     attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(daNpcKasiKyu_Param_c::m.common.talk_distance, daNpcKasiKyu_Param_c::m.common.talk_angle);
-    attention_info.flags = 10;
+    attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
 }
 
 /* 80A26060-80A26064 000058 0004+00 1/2 0/0 0/0 .bss             mTargetTag__14daNpcKasiKyu_c */

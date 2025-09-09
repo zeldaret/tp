@@ -145,7 +145,7 @@ static u32 getHitId(cCcD_Obj* i_ccObj, int i_useReboundSe) {
 void def_se_set(Z2Creature* i_sound, cCcD_Obj* i_ccObj, u32 i_mapInfo, fopAc_ac_c* i_actor) {
     if (i_sound != NULL) {
         int useReboundSe;
-        if (i_actor != NULL && fopAcM_checkStatus(i_actor, 0x280000)) {
+        if (i_actor != NULL && fopAcM_CheckStatus(i_actor, 0x280000)) {
             useReboundSe = false;
         } else {
             useReboundSe = true;
@@ -408,7 +408,7 @@ fopAc_ac_c* cc_at_check(fopAc_ac_c* i_enemy, dCcU_AtInfo* i_AtInfo) {
         }
 
         if (i_AtInfo->mpCollider->ChkAtType(AT_TYPE_HOOKSHOT) &&
-            fopAcM_checkStatus(i_enemy, 0x380000))
+            fopAcM_CheckStatus(i_enemy, 0x380000))
         {
             i_AtInfo->mAttackPower = 0;
         }
@@ -450,7 +450,7 @@ fopAc_ac_c* cc_at_check(fopAc_ac_c* i_enemy, dCcU_AtInfo* i_AtInfo) {
 
         int uvar8;
         if (i_AtInfo->mpCollider->ChkAtType(AT_TYPE_HOOKSHOT) &&
-            !fopAcM_checkStatus(i_enemy, 0x280000))
+            !fopAcM_CheckStatus(i_enemy, 0x280000))
         {
             uvar8 = 1;
         } else {

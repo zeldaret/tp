@@ -379,13 +379,13 @@ static int daKytag03_Execute(kytag03_class* i_this) {
                     daPy_py_c::checkNowWolf() && !var_r28)
                 {
                     i_this->attention_info.distances[fopAc_attn_ETC_e] = 0x3D;
-                    a_this->attention_info.flags |= 0x80;
+                    a_this->attention_info.flags |= fopAc_AttnFlag_ETC_e;
                 } else {
-                    a_this->attention_info.flags &= ~0x80;
+                    a_this->attention_info.flags &= ~fopAc_AttnFlag_ETC_e;
                 }
 
                 if (i_this->field_0x588 == 1) {
-                    a_this->attention_info.flags &= ~0x80;
+                    a_this->attention_info.flags &= ~fopAc_AttnFlag_ETC_e;
                     i_this->field_0x587 = 1;
                     i_this->field_0x58a = 30;
                 }
@@ -400,7 +400,7 @@ static int daKytag03_Execute(kytag03_class* i_this) {
                 i_this->field_0x587 = 0;
             }
         } else {
-            a_this->attention_info.flags &= ~0x80;
+            a_this->attention_info.flags &= ~fopAc_AttnFlag_ETC_e;
         }
     }
 

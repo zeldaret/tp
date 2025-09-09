@@ -326,7 +326,7 @@ void daObjIceLeaf_c::modeDrop() {
 /* 80C258F8-80C25904 001258 000C+00 1/0 0/0 0/0 .text            modePlayerWait__14daObjIceLeaf_cFv
  */
 void daObjIceLeaf_c::modePlayerWait() {
-    attention_info.flags = 0x80;
+    attention_info.flags = fopAc_AttnFlag_ETC_e;
 }
 
 /* 80C25904-80C25908 001264 0004+00 1/0 0/0 0/0 .text            modeRide__14daObjIceLeaf_cFv */

@@ -130,7 +130,7 @@ int daObjTable_c::Create() {
         mpModel->getModelData()->getMaterialNodePointer(4)->getShape()->hide();
         attention_info.flags = 0;
     } else {
-        attention_info.flags = 0x2000000a;
+        attention_info.flags = (fopAc_AttnFlag_TALKCHECK_e | fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
 
         attention_info.distances[fopAc_attn_LOCK_e] = dKy_darkworld_check() ? 218 : 98;
         attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];

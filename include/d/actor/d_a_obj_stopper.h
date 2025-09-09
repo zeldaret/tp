@@ -34,7 +34,7 @@ public:
     /* 80CED0B8 */ int Create();
     /* 80CED20C */ int CreateHeap();
     /* 80CED258 */ int create();
-    /* 80CED6BC */ int Execute(f32 (**)[3][4]);
+    /* 80CED6BC */ int Execute(Mtx**);
     /* 80CED708 */ void action();
     /* 80CED824 */ void actionWait();
     /* 80CEDA24 */ void actionWaitOrderEvent();

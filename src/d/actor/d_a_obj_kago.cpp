@@ -197,7 +197,7 @@ int daObj_Kago_c::Execute() {
             if (basket_p == this) {
                 daNpcT_onTmpBit(23);
             } else {
-                cLib_onBit(attention_info.flags, 0x10UL);
+                cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
                 fopAcM_OnCarryType(this, fopAcM_CARRY_CHICKEN);
             }
         }
@@ -366,7 +366,7 @@ int daObj_Kago_c::Execute() {
         }
 
         if (mType == 0 && field_0xb9f == 0 && field_0xb9e == 0 && field_0xba1 == 0) {
-            cLib_onBit(attention_info.flags, 0x10UL);
+            cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
             fopAcM_OnCarryType(this, fopAcM_CARRY_CHICKEN);
         }
 

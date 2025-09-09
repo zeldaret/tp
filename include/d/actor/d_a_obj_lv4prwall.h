@@ -17,7 +17,7 @@ public:
     /* 80C68DD8 */ void setMtx();
     /* 80C68F20 */ void CreateHeap();
     /* 80C68FA0 */ void Create();
-    /* 80C690D8 */ void Execute(f32 (**)[3][4]);
+    /* 80C690D8 */ void Execute(Mtx**);
     /* 80C696BC */ void Draw();
     /* 80C69760 */ void Delete();
     /* 80C69870 */ ~daObjLv4PRwall_c();

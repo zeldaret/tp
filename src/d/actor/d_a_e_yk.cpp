@@ -1313,7 +1313,7 @@ static int daE_YK_Execute(e_yk_class* i_this) {
             mDoMtx_stack_c::multVecZero(&_this->current.pos);
         } else {
             if (_this->health > 0 && i_this->mDeathFlag == 0 && player->current.pos.y < _this->current.pos.y) {
-                _this->attention_info.flags = 4;
+                _this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
             } else {
                 fopAcM_OffStatus(i_this,0);
                 _this->attention_info.flags = 0;
@@ -1510,7 +1510,7 @@ static int daE_YK_Create(fopAc_ac_c* i_this) {
         } else {
             if (yk->mPathIdx != 0xff) {
                 yk->mpPath = dPath_GetRoomPath(yk->mPathIdx,fopAcM_GetRoomNo(yk));
-                
+
                 if (!yk->mpPath) {
                     return cPhs_ERROR_e;
                 }
@@ -1531,7 +1531,7 @@ static int daE_YK_Create(fopAc_ac_c* i_this) {
                 l_HIO.field_0x04 = -1;
             }
 
-            yk->attention_info.flags = 4;
+            yk->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
             fopAcM_SetMtx(yk,yk->mpMorfSO->getModel()->getBaseTRMtx());
             fopAcM_SetMin(yk,-200.0f,-200.0f,-200.0f);

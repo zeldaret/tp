@@ -891,7 +891,7 @@ void daNpc_Kn_c::setParam() {
         attention_info.distances[fopAc_attn_BATTLE_e] = daNpcT_getDistTableIdx(attention_distance, attention_angle);
         attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
         attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(talk_distance, talk_angle);
-        attention_info.flags = 10;
+        attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
 
         mAcchCir.SetWallR(daNpc_Kn_Param_c::m.common.width);
         mAcchCir.SetWallH(daNpc_Kn_Param_c::m.common.knee_length);
@@ -923,7 +923,7 @@ u32 daNpc_Kn_c::setParamTeach03() {
 
     mAcchCir.SetWallR(135.0f);
     mAcchCir.SetWallH(daNpc_Kn_Param_c::m.common.knee_length);
-    return 4;
+    return fopAc_AttnFlag_BATTLE_e;
 }
 
 /* 80A2C044-80A2C0FC 001724 00B8+00 1/1 0/0 0/0 .text            setParamTeach04__10daNpc_Kn_cFv */
@@ -941,10 +941,10 @@ u32 daNpc_Kn_c::setParamTeach04() {
     if (mActionMode == 10 || mActionMode == 11) {
         mAcchCir.SetWallR(135.0f);
         mAcchCir.SetWallH(daNpc_Kn_Param_c::m.common.knee_length);
-        return 4;
+        return fopAc_AttnFlag_BATTLE_e;
     }
 
-    return 0x200004;
+    return (fopAc_AttnFlag_UNK_0x200000 | fopAc_AttnFlag_BATTLE_e);
 }
 
 /* 80A2C0FC-80A2C190 0017DC 0094+00 3/3 0/0 0/0 .text            setParamTeach05__10daNpc_Kn_cFv */
@@ -961,7 +961,7 @@ u32 daNpc_Kn_c::setParamTeach05() {
 
     mAcchCir.SetWallR(135.0f);
     mAcchCir.SetWallH(daNpc_Kn_Param_c::m.common.knee_length);
-    return 4;
+    return fopAc_AttnFlag_BATTLE_e;
 }
 
 /* 80A2C190-80A2C1B0 001870 0020+00 1/1 0/0 0/0 .text            setParamTeach06__10daNpc_Kn_cFv */

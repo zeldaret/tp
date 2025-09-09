@@ -879,8 +879,12 @@ public:
 
     dSv_player_c& getPlayer() { return mPlayer; }
     dSv_event_c& getEvent() { return mEvent; }
-    dSv_memory_c& getSave(int i_stageNo) { return mSave[i_stageNo]; }
     dSv_MiniGame_c& getMiniGame() { return mMiniGame; }
+
+    dSv_memory_c& getSave(int i_stageNo) {
+        JUT_ASSERT(1412, 0 <= i_stageNo && i_stageNo < STAGE_MAX);
+        return mSave[i_stageNo];
+    }
 
     void putSave(int i_stageNo, dSv_memory_c mem) {
         JUT_ASSERT(1417, 0 <= i_stageNo && i_stageNo < dSv_save_c::STAGE_MAX);

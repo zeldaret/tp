@@ -917,7 +917,7 @@ static int daE_BA_Execute(e_ba_class* i_this) {
         if (a_this->health > 0 && !i_this->mIsDying
                     && player->current.pos.y < a_this->current.pos.y) {
             fopAcM_OnStatus(a_this, 0);
-            a_this->attention_info.flags = 4;
+            a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         } else {
             fopAcM_OffStatus(a_this, 0);
             a_this->attention_info.flags = 0;
@@ -983,7 +983,7 @@ static int daE_BA_Execute(e_ba_class* i_this) {
         }
     }
 
-    a_this->attention_info.flags |= 0x200000;
+    a_this->attention_info.flags |= fopAc_AttnFlag_UNK_0x200000;
     return 1;
 }
 
@@ -1094,7 +1094,7 @@ static cPhs__Step daE_BA_Create(fopAc_ac_c* i_this) {
             l_HIO.field_0x04 = -1;
         }
 
-        i_this->attention_info.flags = 4;
+        i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         fopAcM_SetMtx(i_this, _this->mpMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(i_this, -200.0f, -200.0f, -200.0f);
         fopAcM_SetMax(i_this, 200.0f, 200.0f, 200.0f);

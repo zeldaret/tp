@@ -451,7 +451,7 @@ static s8 e_nest_carry(e_nest_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        cLib_offBit<u32>(i_this->attention_info.flags, 0x10);
+        cLib_offBit<u32>(i_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
         i_this->mMode = 1;
         s16 angle_delta_y = i_this->mRotation.y - player->shape_angle.y;
         if (angle_delta_y > 0x4000 || angle_delta_y < -0x4000) {
@@ -720,7 +720,7 @@ static void bee_nest_action(e_nest_class* i_this) {
         break;
     case e_nest_class::ACT_DEBRIS:
         e_nest_hahen(i_this);
-        cLib_offBit<u32>(i_this->attention_info.flags, 0x10);
+        cLib_offBit<u32>(i_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
         return;
     }
 
@@ -731,7 +731,7 @@ static void bee_nest_action(e_nest_class* i_this) {
     }
 
     if (carry_check) {
-        cLib_onBit<u32>(i_this->attention_info.flags, 0x10);
+        cLib_onBit<u32>(i_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
         i_this->attention_info.distances[fopAc_attn_CARRY_e] = 0x2c;
         if (fopAcM_checkCarryNow(i_this)) {
             i_this->mAction = e_nest_class::ACT_CARRY;
@@ -739,7 +739,7 @@ static void bee_nest_action(e_nest_class* i_this) {
             i_this->mCcSph.OffCoSetBit();
         }
     } else {
-        cLib_offBit<u32>(i_this->attention_info.flags, 0x10);
+        cLib_offBit<u32>(i_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
     }
 
     if (float_check && water_check(i_this)) {

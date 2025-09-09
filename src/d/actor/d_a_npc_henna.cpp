@@ -280,10 +280,10 @@ static void message_shop(npc_henna_class* i_this) {
     }
     if (i_this->field_0x750 != 0) {
         fopAcM_OffStatus(&i_this->actor, NULL);
-        cLib_offBit(i_this->actor.attention_info.flags, (u32)0xa);
+        cLib_offBit<u32>(i_this->actor.attention_info.flags, fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
     } else {
         fopAcM_OnStatus(&i_this->actor, 0);
-        cLib_onBit(i_this->actor.attention_info.flags, (u32)0xa);
+        cLib_onBit<u32>(i_this->actor.attention_info.flags, fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
         i_this->actor.attention_info.distances[1] = 4;
         i_this->actor.attention_info.distances[3] = 4;
         i_this->actor.eventInfo.onCondition(1);
@@ -2196,14 +2196,6 @@ static void demo_camera_shop(npc_henna_class* i_this) {
 
 static u8 lbl_82_bss_289;
 
-#ifdef DEBUG
-#define ATTN_FLAGS ((u32)0x42)
-#define ATTN_DIST_INDEX 6
-#else
-#define ATTN_FLAGS ((u32)0xa)
-#define ATTN_DIST_INDEX 3
-#endif
-
 /* 805483F4-80548640 0055D4 024C+00 1/1 0/0 0/0 .text            message_guide__FP15npc_henna_class
  */
 static void message_guide(npc_henna_class* i_this) {
@@ -2217,9 +2209,9 @@ static void message_guide(npc_henna_class* i_this) {
     if (i_this->field_0x5b5 == 2 && i_this->field_0x5ba != -1) {
         fopAcM_OnStatus(actor, 0);
 
-        cLib_onBit(actor->attention_info.flags, ATTN_FLAGS);
+        cLib_onBit<u32>(actor->attention_info.flags, (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e));
         actor->attention_info.distances[1] = 2;
-        actor->attention_info.distances[ATTN_DIST_INDEX] = 2;
+        actor->attention_info.distances[fopAc_attn_SPEAK_e] = 2;
 
         actor->eventInfo.onCondition(dEvtCnd_CANTALK_e);
 
@@ -2267,7 +2259,7 @@ static void message_guide(npc_henna_class* i_this) {
         }
     } else {
         fopAcM_OffStatus(actor, 0);
-        cLib_offBit(actor->attention_info.flags, ATTN_FLAGS);
+        cLib_offBit<u32>(actor->attention_info.flags, (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e));
 
         if (i_this->field_0x7e1 == 0) {
             i_this->mIsTalking = 0;
@@ -2729,7 +2721,7 @@ static int daNpc_Henna_Create(fopAc_ac_c* i_this) {
             // "Henna"
             l_HIO.field_0x4 = mDoHIO_CREATE_CHILD("ヘナさま", &l_HIO);
         }
-        i_this->attention_info.flags = ATTN_FLAGS;
+        i_this->attention_info.flags = (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
         a_this->field_0x6a2 = 0;
         fopAcM_SetMtx(i_this, a_this->mpMorf->getModel()->getBaseTRMtx());
         lbl_82_bss_90 = 0;

@@ -945,7 +945,7 @@ void daNpc_ykM_c::setParam() {
     srchActors();
 
     if (mType != TYPE_5 && mType != TYPE_6) {
-        u32 uVar1 = 10;
+        u32 uVar1 = (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
         dComIfGp_getAttention()->getDistTable(71).mDistMax = daNpc_ykM_Param_c::m.attention_dist;
         dComIfGp_getAttention()->getDistTable(71).mDistMaxRelease = daNpc_ykM_Param_c::m.attention_dist;
         dComIfGp_getAttention()->getDistTable(70).mDistMax = daNpc_ykM_Param_c::m.conversation_dist;
@@ -975,7 +975,7 @@ void daNpc_ykM_c::setParam() {
         attention_info.distances[fopAc_attn_SPEAK_e] = 70;
 
         if (daPy_py_c::checkNowWolf()) {
-            uVar1 |= 0x800000;
+            uVar1 |= fopAc_AttnFlag_UNK_0x800000;
         }
 
         attention_info.flags = uVar1;

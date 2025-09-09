@@ -277,7 +277,7 @@ int daObjWarpKBrg_c::create1st() {
 }
 
 /* 80D2781C-80D27890 00095C 0074+00 1/0 0/0 0/0 .text Execute__15daObjWarpKBrg_cFPPA3_A4_f */
-int daObjWarpKBrg_c::Execute(f32 (**param_0)[3][4]) {
+int daObjWarpKBrg_c::Execute(Mtx** param_0) {
     #if VERSION == VERSION_SHIELD_DEBUG
     calcMidnaWaitPos();
     #endif
@@ -412,7 +412,7 @@ void daObjWarpKBrg_c::actionOrderATalkEvent() {
         midna_p->onTagWaitPosPortalObj(&mMidnaWaitPos);
         dComIfGp_TargetWarpPt_set(3);
         eventInfo.onCondition(dEvtCnd_CANTALK_e);
-        attention_info.flags = 0xA;
+        attention_info.flags = (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
     } else {
         midna_p->offTagWaitPos();
         setAction(ACTION_WAIT_e);

@@ -136,7 +136,7 @@ void daObjLv6SwTurn_c::create1st() {
 }
 
 /* 80C83D04-80C83D94 0003E4 0090+00 1/0 0/0 0/0 .text Execute__16daObjLv6SwTurn_cFPPA3_A4_f */
-void daObjLv6SwTurn_c::Execute(f32 (**param_0)[3][4]) {
+void daObjLv6SwTurn_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

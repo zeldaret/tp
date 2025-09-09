@@ -295,7 +295,7 @@ static void hahen_move(ep_class* i_this) {
             for (int j = 0; j < 6; j++, epHahenS++) {
                 local_d8 = player->current.pos - epHahenS->field_0x4;
                 if (local_d8.abs() < fVar1) {
-                    cLib_onBit<u32>(a_this->attention_info.flags, 0x80);
+                    cLib_onBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_ETC_e);
                     a_this->current.pos = epHahenS->field_0x4;
                     a_this->attention_info.position = a_this->eyePos = a_this->current.pos;
                     a_this->current.angle = a_this->shape_angle = epHahenS->field_0x28;
@@ -313,7 +313,7 @@ static void hahen_move(ep_class* i_this) {
             fVar1 += 20.0f;
         }
     } else {
-        cLib_offBit<u32>(a_this->attention_info.flags, 0x80);
+        cLib_offBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_ETC_e);
         i_this->mHahen[i_this->field_0xa78].field_0x97 =  3;
         i_this->mHahen[i_this->field_0xa78].field_0x4 = a_this->current.pos;
         i_this->mHahen[i_this->field_0xa78].field_0x28 = a_this->shape_angle;
@@ -747,7 +747,7 @@ static int daEp_Execute(ep_class* i_this) {
 
     fopAcM_OffStatus(a_this, 0);
     a_this->attention_info.flags = 0;
-    cLib_offBit<u32>(a_this->attention_info.flags, 4);
+    cLib_offBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_BATTLE_e);
 
     if (i_this->field_0xa79 == 1) {
         i_this->field_0xa79 = 2;

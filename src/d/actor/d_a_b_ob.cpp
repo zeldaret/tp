@@ -886,7 +886,7 @@ static void core_action(b_ob_class* i_this) {
 
     if (attn_ON && i_this->field_0x479c > -1.0f && a_this->eyePos.y >= a_this->home.pos.y) {
         fopAcM_OnStatus(a_this, 0);
-        a_this->attention_info.flags = 4;
+        a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     } else {
         fopAcM_OffStatus(a_this, 0);
         a_this->attention_info.flags = 0;
@@ -939,7 +939,7 @@ static void core_action(b_ob_class* i_this) {
 static void core_damage_check(b_ob_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
 
-    if (fopAcM_checkStatus(a_this, 0x100000)) {
+    if (fopAcM_CheckStatus(a_this, 0x100000)) {
         i_this->field_0x5d38 =
             dComIfGp_particle_set(i_this->field_0x5d38, 0x8802, &a_this->current.pos, NULL, NULL);
     }
@@ -1655,7 +1655,7 @@ static void fish_move(b_ob_class* i_this) {
 
         if (attn_ON && i_this->mAttnOffTimer == 0) {
             fopAcM_OnStatus(a_this, 0);
-            a_this->attention_info.flags = 4;
+            a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         } else {
             fopAcM_OffStatus(a_this, 0);
             a_this->attention_info.flags = 0;

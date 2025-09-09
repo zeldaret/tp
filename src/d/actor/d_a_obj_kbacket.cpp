@@ -402,7 +402,7 @@ int daObj_KBacket_c::Execute() {
         }
 
         if (field_0xa48 == 0x0 && field_0xa47 == 0x0 && field_0xa4a == 0x0) {
-            cLib_onBit(attention_info.flags, (u32)0x10);
+            cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
         }
 
         field_0x9d4 = speed;

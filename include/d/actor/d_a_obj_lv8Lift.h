@@ -33,7 +33,7 @@ public:
     /* 80C88928 */ int create();
     /* 80C88D6C */ void lightSet();
     /* 80C88DBC */ static void rideCallBack(dBgW*, fopAc_ac_c*, fopAc_ac_c*);
-    /* 80C88DD4 */ int Execute(f32 (**)[3][4]);
+    /* 80C88DD4 */ int Execute(Mtx**);
     /* 80C88E34 */ void moveLift();
     /* 80C890B8 */ void modeAcc();
     /* 80C89198 */ void init_modeMove();

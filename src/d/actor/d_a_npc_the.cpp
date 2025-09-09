@@ -1317,12 +1317,12 @@ void daNpcThe_c::setParam() {
 
     int speak_angle_idx = mType == TYPE_KAKARIKO ? (s16)1 : daNpcThe_Param_c::m.mSpeakAngleIdx;
     int talk_angle_idx = mType == TYPE_KAKARIKO ? (s16)1 : daNpcThe_Param_c::m.mTalkAngleIdx;
-    attention_info.flags = 0xa;
+    attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
     if (isSneaking()) {
         attention_info.distances[fopAc_attn_LOCK_e] = 0x4e;
         attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
         attention_info.distances[fopAc_attn_SPEAK_e] = 0x4d;
-        attention_info.flags |= 0x800000;
+        attention_info.flags |= fopAc_AttnFlag_UNK_0x800000;
     } else {
         if (!strcmp(dComIfGp_getStartStageName(), "R_SP116")) {
             attention_info.distances[fopAc_attn_LOCK_e]

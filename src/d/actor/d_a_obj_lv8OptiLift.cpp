@@ -140,7 +140,7 @@ void daOptiLift_c::rideCallBack(dBgW* i_bgw, fopAc_ac_c* i_this, fopAc_ac_c* i_r
 
 /* 80C8A7E8-80C8A848 0005C8 0060+00 1/0 0/0 0/0 .text            Execute__12daOptiLift_cFPPA3_A4_f
  */
-int daOptiLift_c::Execute(f32 (**param_0)[3][4]) {
+int daOptiLift_c::Execute(Mtx** param_0) {
     moveLift();
     lightSet();
 

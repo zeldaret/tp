@@ -572,6 +572,10 @@ static void e_mk_shoot(e_mk_class* i_this) {
 
                 i_this->mSound.startCreatureVoice(Z2SE_EN_MK_V_CATCH_BOOM, -1);
                 i_this->mSound.startCreatureSound(Z2SE_EN_MK_CATCH_BOOM, 0, -1);
+
+#if VERSION == VERSION_GCN_JPN
+                return;
+#endif
             }
         }
 
@@ -2378,7 +2382,7 @@ static void action(e_mk_class* i_this) {
 
     if (sVar2) {
         fopAcM_OnStatus(a_this, 0);
-        a_this->attention_info.flags = 4;
+        a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     } else {
         fopAcM_OffStatus(a_this, 0);
         a_this->attention_info.flags = 0;
@@ -2827,7 +2831,7 @@ static int daE_MK_Create(fopAc_ac_c* i_actor) {
             l_HIO.field_0x4 = mDoHIO_CREATE_CHILD("ブーメラン猿", &l_HIO);
         }
 
-        i_actor->attention_info.flags = 4;
+        i_actor->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         fopAcM_SetMtx(i_actor, mk->mpModelMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(i_actor, -500.0f, -500.0f, -500.0f);

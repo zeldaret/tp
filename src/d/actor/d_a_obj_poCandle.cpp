@@ -368,7 +368,7 @@ static u8 data_80CB2858[4];
 
 /* 80CB1F10-80CB2140 000590 0230+00 1/0 0/0 0/0 .text            Execute__12daPoCandle_cFPPA3_A4_f
  */
-void daPoCandle_c::Execute(f32 (**param_0)[3][4]) {
+void daPoCandle_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

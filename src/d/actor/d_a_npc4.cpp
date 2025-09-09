@@ -573,8 +573,8 @@ BOOL daNpcF_c::execute() {
     setCollisions();
 
     if (mTwilight) {
-        attention_info.flags |= 0x400000;
-        attention_info.flags |= 0x800000;
+        attention_info.flags |= fopAc_AttnFlag_UNK_0x400000;
+        attention_info.flags |= fopAc_AttnFlag_UNK_0x800000;
         setHitodamaPrtcl();
     }
 
@@ -1281,7 +1281,7 @@ void daNpcF_c::orderEvent(int i_speak, char* i_evtName, u16 param_2, u16 i_prior
         mEventIdx = dComIfGp_getEventManager().getEventIdx(this, i_evtName, 0xff);
         fopAcM_orderOtherEventId(this, mEventIdx, i_mapToolID, param_2, i_priority, i_flag);
     } else if (!mTwilight || daPy_py_c::checkNowWolfEyeUp()) {
-        if ((attention_info.flags & 8) || (attention_info.flags & 2)) {
+        if ((attention_info.flags & fopAc_AttnFlag_SPEAK_e) || (attention_info.flags & fopAc_AttnFlag_TALK_e)) {
             eventInfo.onCondition(dEvtCnd_CANTALK_e);
             if (i_speak) {
                 fopAcM_orderSpeakEvent(this, 0, 0);

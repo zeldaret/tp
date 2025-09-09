@@ -1025,7 +1025,7 @@ void daNpc_Besu_c::setParam() {
     selectAction();
     srchActors();
 
-    u32 att_flags = 10;
+    u32 att_flags = (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
     s16 talk_dist = daNpc_Besu_Param_c::m.common.talk_distance;
     s16 talk_ang = daNpc_Besu_Param_c::m.common.talk_angle;
     s16 att_dist = daNpc_Besu_Param_c::m.common.attention_distance;

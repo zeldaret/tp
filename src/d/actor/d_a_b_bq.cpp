@@ -2523,7 +2523,7 @@ static int daB_BQ_Create(fopAc_ac_c* i_this) {
             l_HIO.field_0x4 = -1;
         }
 
-        a_this->attention_info.flags = 4;
+        a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         a_this->attention_info.distances[fopAc_attn_BATTLE_e] = 0x16;
 
         static dCcD_SrcSph cc_sph_src = {

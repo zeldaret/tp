@@ -605,7 +605,7 @@ void daNpc_Moi_c::setParam() {
     selectAction();
     srchActors();
 
-    int uVar5 = 0xa;
+    int uVar5 = (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
     s16 sVar7 = daNpc_Moi_Param_c::m.field_0x48;
     s16 sVar6 = daNpc_Moi_Param_c::m.field_0x4a;
     s16 sVar5 = daNpc_Moi_Param_c::m.field_0x4c;
@@ -617,13 +617,13 @@ void daNpc_Moi_c::setParam() {
             sVar6 = 6;
             sVar5 = 1;
             sVar4 = 6;
-            uVar5 = 0x800008;
+            uVar5 = fopAc_AttnFlag_UNK_0x800000 | fopAc_AttnFlag_SPEAK_e;
         } else {
             sVar7 = 6;
             sVar6 = 6;
             sVar5 = 19;
             sVar4 = 6;
-            uVar5 = 1;
+            uVar5 = fopAc_AttnFlag_LOCK_e;
         }
     } else if (mType == TYPE_1) {
         sVar7 = 5;
@@ -1406,7 +1406,7 @@ int daNpc_Moi_c::poise() {
 
     if (field_0x1660 == 0) {
         if (field_0x165c != 0) {
-            attention_info.flags = 2;
+            attention_info.flags = fopAc_AttnFlag_TALK_e;
             mSpeakEvent = true;
         }
     } else {

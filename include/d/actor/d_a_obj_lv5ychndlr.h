@@ -21,7 +21,7 @@ public:
 
     /* 80C6DA5C */ virtual int CreateHeap();
     /* 80C6DB5C */ virtual int Create();
-    /* 80C6DC64 */ virtual int Execute(f32 (**)[3][4]);
+    /* 80C6DC64 */ virtual int Execute(Mtx**);
     /* 80C6E300 */ virtual int Draw();
     /* 80C6E3C8 */ virtual int Delete();
     /* 80C6E808 */ virtual ~daObjYchndlr_c() {}

@@ -535,7 +535,7 @@ void daNpc_Jagar_c::afterJntAnm(int param_1) {
 void daNpc_Jagar_c::setParam() {
     selectAction();
     srchActors();
-    u32 uVar7 = 10;
+    u32 uVar7 = (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
     s16 sVar10 = daNpc_Jagar_Param_c::m.field_0x48;
     s16 sVar9 = daNpc_Jagar_Param_c::m.field_0x4a;
     s16 sVar8 = daNpc_Jagar_Param_c::m.field_0x4c;
@@ -571,7 +571,7 @@ void daNpc_Jagar_c::setParam() {
     attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(sVar10, sVar9);
 
     if (mType == TYPE_1) {
-        uVar7 |= (0x80 << 16);
+        uVar7 |= fopAc_AttnFlag_UNK_0x800000;
         field_0xfec = getActorDistance(daPy_getPlayerActorClass(), 
                     daNpcT_getDistTableIdx(field_0xff0, field_0xff4), 
                     attention_info.distances[1]);
@@ -582,7 +582,7 @@ void daNpc_Jagar_c::setParam() {
         attention_info.distances[fopAc_attn_LOCK_e] = 20;
         attention_info.distances[fopAc_attn_TALK_e] = 20;
         attention_info.distances[fopAc_attn_SPEAK_e] = 20;
-        uVar7 = 2;
+        uVar7 = fopAc_AttnFlag_TALK_e;
     }
 
     attention_info.flags = uVar7;

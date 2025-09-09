@@ -1646,7 +1646,7 @@ void daE_PM_c::BossEscapeAction() {
 
     case 3:
         if (mpMorf->isStop()) {
-            attention_info.flags = 4;
+            attention_info.flags = fopAc_AttnFlag_BATTLE_e;
             mAction = ACT_WAIT;
             mMode = 0;
             if (mBossHealth < 3) {
@@ -2794,7 +2794,7 @@ cPhs__Step daE_PM_c::Create() {
         mpPath = dPath_GetRoomPath(mPathIndex, fopAcM_GetRoomNo(this));
         mSwBit = (fopAcM_GetParam(this) >> 0x18) & 0xFF;
 
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         attention_info.distances[fopAc_attn_BATTLE_e] = 86;
         fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, 0.0f, -200.0f);

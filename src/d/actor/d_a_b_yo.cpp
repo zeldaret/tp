@@ -2803,7 +2803,7 @@ void daB_YO_c::action() {
 
     attention_info.flags = 0;
     if (mAttentionTimer != 0) {
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     }
 
     BOOL bVar1 = TRUE;

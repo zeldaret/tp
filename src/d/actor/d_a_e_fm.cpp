@@ -2777,7 +2777,7 @@ static void action(e_fm_class* i_this) {
 
     if (attn_on) {
         fopAcM_OnStatus(actor, 0);
-        actor->attention_info.flags = 4;
+        actor->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     } else {
         fopAcM_OffStatus(actor, 0);
         actor->attention_info.flags = 0;
@@ -3815,7 +3815,7 @@ static int daE_FM_Create(fopAc_ac_c* i_this) {
             l_HIO.no = mDoHIO_CREATE_CHILD("火魔人", &l_HIO);
         }
 
-        i_this->attention_info.flags = 4;
+        i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         fopAcM_SetMtx(i_this, a_this->mpFmModelMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(i_this, -200.0f, -200.0f, -200.0f);

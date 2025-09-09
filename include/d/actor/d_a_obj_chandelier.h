@@ -29,7 +29,7 @@ public:
     /* 80BC8008 */ int CreateHeap();
     /* 80BC8160 */ int Delete();
     /* 80BC8194 */ int Draw();
-    /* 80BC8238 */ int Execute(f32 (**)[3][4]);
+    /* 80BC8238 */ int Execute(Mtx**);
     /* 80BC82C0 */ void exeModeWait();
     /* 80BC834C */ void exeModeStartSwg();
     /* 80BC83E4 */ void exeModeDown();

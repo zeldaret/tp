@@ -647,7 +647,7 @@ static int daE_TK_Execute(e_tk_class* i_this) {
         i_this->attention_info.flags = 0;
     } else {
         fopAcM_OnStatus(i_this, 0);
-        i_this->attention_info.flags = 4;
+        i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     }
 
     MTXCopy(model->getAnmMtx(2), *calc_mtx);
@@ -738,7 +738,7 @@ static int daE_TK_Create(fopAc_ac_c* i_this) {
             hioInit = true;
             l_HIO.field_0x04 = -1;
         }
-        a_this->attention_info.flags = 4;
+        a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         fopAcM_SetMtx(a_this, a_this->mpMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(a_this, -100.0f, -100.0f, -100.0f);

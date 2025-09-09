@@ -2185,7 +2185,7 @@ static void action(e_wb_class* i_this) {
         i_this->field_0x9c4.Init(0xdc, 0, i_this);
     }
 
-    i_this->attention_info.flags &= 0xffffff7f;
+    i_this->attention_info.flags &= ~fopAc_AttnFlag_ETC_e;
 
     if (lbl_244_bss_45 != 0) {
         if (i_this->field_0x7a7 == 0) {
@@ -2269,14 +2269,14 @@ static void action(e_wb_class* i_this) {
                     int target_angle = abs(ang);
 
                     if (target_angle < 0x6000 && target_angle > 0x3000) {
-                        i_this->attention_info.flags |= 0x80;
+                        i_this->attention_info.flags |= fopAc_AttnFlag_ETC_e;
                     } else {
-                        i_this->attention_info.flags &= 0xffffff7f;
+                        i_this->attention_info.flags &= ~fopAc_AttnFlag_ETC_e;
                     }
                 }
             }
         } else {
-            i_this->attention_info.flags &= 0xffffff7f;
+            i_this->attention_info.flags &= ~fopAc_AttnFlag_ETC_e;
         }
     }
 
@@ -2603,7 +2603,7 @@ static int daE_WB_Create(fopAc_ac_c* a_this) {
 
             fopAcM_OnStatus(i_this, 0);
 
-            i_this->attention_info.flags = 4;
+            i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
             i_this->attention_info.distances[7] = 0xe;
 
             fopAcM_SetMtx(i_this, i_this->mpModelMorf->getModel()->getBaseTRMtx());

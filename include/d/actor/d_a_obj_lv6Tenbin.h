@@ -18,7 +18,7 @@ public:
     /* 80C76D10 */ void create();
     /* 80C76EE0 */ void rideCallBackRight(dBgW*, fopAc_ac_c*, fopAc_ac_c*);
     /* 80C77078 */ void rideCallBackLeft(dBgW*, fopAc_ac_c*, fopAc_ac_c*);
-    /* 80C77200 */ void Execute(f32 (**)[3][4]);
+    /* 80C77200 */ void Execute(Mtx**);
     /* 80C772BC */ void procMain();
     /* 80C77464 */ void init_modeWait();
     /* 80C77470 */ void modeWait();

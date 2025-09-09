@@ -265,7 +265,7 @@ void daNpcPray_c::setParam() {
     attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(daNpcPray_Param_c::m.common.attention_distance, daNpcPray_Param_c::m.common.attention_angle);
     attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
     attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(daNpcPray_Param_c::m.common.talk_distance, daNpcPray_Param_c::m.common.talk_angle);
-    attention_info.flags = 0xA;
+    attention_info.flags = (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
 
 #if VERSION == VERSION_SHIELD_DEBUG
     scale.set(daNpcPray_Param_c::m.common.scale, daNpcPray_Param_c::m.common.scale, daNpcPray_Param_c::m.common.scale);

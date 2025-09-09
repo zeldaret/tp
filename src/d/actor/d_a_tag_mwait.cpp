@@ -138,7 +138,7 @@ int daTagMwait_c::execute() {
                            player_p->current.pos.y >= current.pos.y &&
                            player_p->current.pos.y <= current.pos.y + scale.y)
                 {
-                    attention_info.flags = 2;
+                    attention_info.flags = fopAc_AttnFlag_TALK_e;
                     eventInfo.onCondition(dEvtCnd_CANTALK_e);
                 }
             }

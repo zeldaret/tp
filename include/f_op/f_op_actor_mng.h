@@ -161,7 +161,7 @@ inline MtxP fopAcM_GetMtx(const fopAc_ac_c* i_actor) {
     return i_actor->cullMtx;
 }
 
-inline u32 fopAcM_checkStatus(fopAc_ac_c* i_actor, u32 actor_status) {
+inline u32 fopAcM_CheckStatus(fopAc_ac_c* i_actor, u32 actor_status) {
     return i_actor->actor_status & actor_status;
 }
 
@@ -186,7 +186,7 @@ inline u32 fopAcM_CheckCarryType(const fopAc_ac_c* actor, fopAcM_CARRY type) {
 }
 
 inline u32 fopAcM_checkHookCarryNow(fopAc_ac_c* i_actor) {
-    return fopAcM_checkStatus(i_actor, fopAcM_STATUS_HOOK_CARRY_NOW);
+    return fopAcM_CheckStatus(i_actor, fopAcM_STATUS_HOOK_CARRY_NOW);
 }
 
 inline u32 fopAcM_GetParam(const void* i_actor) {
@@ -818,7 +818,7 @@ inline void fopAcM_setWarningMessage_f(const fopAc_ac_c* i_actor, const char* i_
 #define fopAcM_setWarningMessage(...)
 #endif
 
-void fopAcM_getNameString(fopAc_ac_c*, char*);
+void fopAcM_getNameString(const fopAc_ac_c*, char*);
 
 class fopAcM_lc_c {
 public:

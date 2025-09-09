@@ -72,7 +72,7 @@ public:
     }
 
     u32 fopAcM_checkHawkCarryNow(fopAc_ac_c* actor) {
-        return fopAcM_checkStatus(actor, 0x80000000);
+        return fopAcM_CheckStatus(actor, 0x80000000);
     }
 
     void popup(f32 param_1, f32 param_2, cXyz* param_3) {

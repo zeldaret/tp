@@ -179,7 +179,7 @@ static void e_fs_appear(e_fs_class* i_this) {
             anm_init(i_this, ANM_APPEAR, 10.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mMode++;
             a_this->current.angle.y = i_this->mPlayerAngleY;
-            a_this->attention_info.flags = 4;
+            a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
             i_this->mCreatureSound.startCreatureSound(Z2SE_EN_FS_APPEAR, 0, -1);
         }
         break;
@@ -536,7 +536,7 @@ static void e_fs_demowait(e_fs_class* i_this) {
         if (i_this->mTimer[0] == 0) {
             i_this->mAction = e_fs_class::ACT_MOVE;
             i_this->mMode = 0;
-            a_this->attention_info.flags = 4;
+            a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         }
         break;
     }
@@ -850,7 +850,7 @@ static cPhs__Step daE_Fs_Create(fopAc_ac_c* i_this) {
 
         i_this->field_0x560 = 30;
         i_this->health = 30;
-        i_this->attention_info.flags = 4;
+        i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         if (_this->field_0x5b5 >= 1) {
             _this->mMode = -1;

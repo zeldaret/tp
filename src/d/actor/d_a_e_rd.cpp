@@ -3659,7 +3659,7 @@ static void e_rd_kiba_start(e_rd_class* i_this) {
             if (i_this->mpModelMorf->isStop()) {
                 i_this->mAction = ACTION_WB_RUN;
                 i_this->mMode = 0;
-                a_this->attention_info.flags = 4;
+                a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
             }
     }
 }
@@ -6887,7 +6887,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
     a_this->setHeadLockPos(&spd4);
     demo_camera(i_this);
     i_this->field_0x5bb = 1;
-    a_this->attention_info.flags |= 0x200000;
+    a_this->attention_info.flags |= fopAc_AttnFlag_UNK_0x200000;
 
     return 1;
 }
@@ -7282,7 +7282,7 @@ static cPhs__Step daE_RD_Create(fopAc_ac_c* a_this) {
         }
 
         fopAcM_OnStatus(a_this, fopAcM_STATUS_UNK_000100);
-        a_this->attention_info.flags = 4;
+        a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         if (i_this->field_0x5b6 == 6) {
             i_this->mAction = ACTION_YAGURA;

@@ -383,7 +383,7 @@ int daCstatue_c::create() {
             mSph->SetTgType(0xd97afddf);
             mControlDistanceOffset = JMAFastSqrt(650000.0f);
             attention_info.distances[0] = 92;
-            cLib_onBit<u32>(attention_info.flags, 1);
+            cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_LOCK_e);
             mTargetFrame = 35.0f;
         }
         mControlDistanceOffset += 100.0f;
@@ -1160,9 +1160,9 @@ int daCstatue_c::execute() {
     setCollision();
     if (mType == daCstatueType_Small) {
         if (mStatueAcch.ChkGroundHit() && !fopAcM_checkCarryNow(this)) {
-            cLib_onBit<u32>(attention_info.flags, 0x10);  // this is 0x80 in the debug rom
+            cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
         } else {
-            cLib_offBit<u32>(attention_info.flags, 0x10);  // this is 0x80 in the debug rom
+            cLib_offBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
         }
     }
 

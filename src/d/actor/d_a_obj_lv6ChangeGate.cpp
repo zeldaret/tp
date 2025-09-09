@@ -436,7 +436,7 @@ COMPILER_STRIP_GATE(0x80C72194, &lit_3869);
 #pragma pop
 
 /* 80C712F4-80C71494 000794 01A0+00 1/0 0/0 0/0 .text Execute__17daLv6ChangeGate_cFPPA3_A4_f */
-void daLv6ChangeGate_c::Execute(f32 (**param_0)[3][4]) {
+void daLv6ChangeGate_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

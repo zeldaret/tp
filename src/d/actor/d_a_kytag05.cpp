@@ -41,7 +41,7 @@ static int daKytag05_Create(fopAc_ac_c* i_this) {
 
     if (!a_this->field_0x56c) {
         a_this->attention_info.distances[fopAc_attn_ETC_e] = 0x21;
-        a_this->attention_info.flags |= 0x80;
+        a_this->attention_info.flags |= fopAc_AttnFlag_ETC_e;
     }
 
     return cPhs_COMPLEATE_e;

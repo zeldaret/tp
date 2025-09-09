@@ -542,13 +542,13 @@ void daB_DR_c::mStatusONOFF(int i_status) {
     switch (i_status) {
     case 0:
         attention_info.distances[fopAc_attn_BATTLE_e] = 0;
-        attention_info.flags &= ~4;
+        attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
         fopAcM_OffStatus(this, 0);
         fopAcM_OffStatus(this, 0x200000);
         return;
     case 1:
         attention_info.distances[fopAc_attn_BATTLE_e] = 85;
-        attention_info.flags |= 4;
+        attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
         fopAcM_OnStatus(this, 0);
         fopAcM_OnStatus(this, 0x200000);
         return;
@@ -556,7 +556,7 @@ void daB_DR_c::mStatusONOFF(int i_status) {
         attention_info.distances[fopAc_attn_BATTLE_e] = 60;
         fopAcM_OnStatus(this, 0);
         fopAcM_OffStatus(this, 0x200000);
-        attention_info.flags |= 4;
+        attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
         return;
     }    
 }
@@ -1012,7 +1012,7 @@ void daB_DR_c::tail_hit_check() {
     if (health > 0) {
         daPy_getPlayerActorClass()->onBossRoomWait();
 
-        if (fopAcM_checkStatus(this, 0x200000) && cLib_calcTimer<u8>(&field_0x7d0) == 0 && mActionMode != ACTION_TAIL_HIT && field_0x7d1 != 2) {
+        if (fopAcM_CheckStatus(this, 0x200000) && cLib_calcTimer<u8>(&field_0x7d0) == 0 && mActionMode != ACTION_TAIL_HIT && field_0x7d1 != 2) {
             if (mTailCc.ChkTgHit()) {
                 speedF = 0.0f;
                 dComIfGs_onZoneSwitch(21, fopAcM_GetRoomNo(this));
@@ -1029,7 +1029,7 @@ void daB_DR_c::week_hit_check() {
     if (mWeekCc.ChkTgSet()) {
         daPy_getPlayerActorClass()->onBossRoomWait();
 
-        if (health > 0 && fopAcM_checkStatus(this, 0x200000) && cLib_calcTimer<u8>(&field_0x7d0) == 0 && mActionMode != ACTION_WEEK_HIT && field_0x7d1 == 2) {
+        if (health > 0 && fopAcM_CheckStatus(this, 0x200000) && cLib_calcTimer<u8>(&field_0x7d0) == 0 && mActionMode != ACTION_WEEK_HIT && field_0x7d1 == 2) {
             if (mWeekCc.ChkTgHit() && mWeekCc.GetTgHitObj()->ChkAtType(AT_TYPE_HOOKSHOT)) {
                 speedF = 0.0f;
                 Z2GetAudioMgr()->changeBgmStatus(2);
@@ -2370,18 +2370,18 @@ void daB_DR_c::executeBreathAttack() {
             mTimer[3] = 1000;
         }
 
-        attention_info.flags |= 4;
+        attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
 
         if (cLib_calcTimer<int>(&mTimer[3]) != 0 && mTargetHeight - 300.0f < player->current.pos.y) {
             if (abs((s16)(fopAcM_searchPlayerAngleY(this) - shape_angle.y)) < ZREG_S(0) + 0x5000) {
                 mWeekCc.OffTgSetBit();
-                attention_info.flags &= ~0x4;
+                attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
             } else {
                 mWeekCc.OnTgSetBit();
                 if (mTarget != 0 || (dComIfGp_getAttention()->GetLockonList(0) != NULL && dComIfGp_getAttention()->LockonTruth() && dComIfGp_getAttention()->GetLockonList(0)->getActor() == this)) {
                     mTarget = 0;
                 } else {
-                    attention_info.flags &= ~0x4;
+                    attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
                     mTarget = 0;
                 }
             }
@@ -2798,7 +2798,7 @@ void daB_DR_c::executeGliderAttack() {
         if (mGliderMoveSub(field_0x748) != 0) {
             mStatusONOFF(0);
             attention_info.distances[fopAc_attn_BATTLE_e] = 0;
-            attention_info.flags &= ~0x4;
+            attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
             fopAcM_OffStatus(this, 0);
 
             mCount[2] = 0;
@@ -4128,7 +4128,7 @@ int daB_DR_c::create() {
             OS_REPORT("パーツ %d\n", mPartNo);
         case 10:
             attention_info.distances[fopAc_attn_BATTLE_e] = 0;
-            attention_info.flags &= ~0x4;
+            attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
 
             fopAcM_SetGroup(this, 0);
             fopAcM_OffStatus(this, 0);
@@ -4224,7 +4224,7 @@ int daB_DR_c::create() {
             shape_angle.y = current.angle.y;
 
             attention_info.distances[fopAc_attn_BATTLE_e] = 85;
-            attention_info.flags = 4;
+            attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
             fopAcM_SetMtx(this, mpModelMorf->getModel()->getBaseTRMtx());
             fopAcM_SetMin(this, -20000.0f, -20000.0f, -20000.0f);

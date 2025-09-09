@@ -1940,9 +1940,9 @@ bool daNpcT_c::checkCullDraw() {
 /* 8014A064-8014A0B0 1449A4 004C+00 1/0 1/0 60/0 .text            twilight__8daNpcT_cFv */
 void daNpcT_c::twilight() {
     if (mTwilight) {
-        attention_info.flags |= 0x400000;
+        attention_info.flags |= fopAc_AttnFlag_UNK_0x400000;
         mNoDraw = false;
-        attention_info.flags |= 0x800000;
+        attention_info.flags |= fopAc_AttnFlag_UNK_0x800000;
         setHitodamaPrtcl();
     }
 }
@@ -1957,7 +1957,7 @@ void daNpcT_c::evtOrder() {
 
         mEvtId = dComIfGp_getEventManager().getEventIdx(this, mpEvtData[mEvtNo].eventName, 0xFF);
         fopAcM_orderOtherEventId(this, mEvtId, 0xFF, 0xFFFF, 40, 1);
-    } else if ((!mTwilight || daPy_py_c::checkNowWolfEyeUp()) && ((attention_info.flags & 8) || (attention_info.flags & 2))) {
+    } else if ((!mTwilight || daPy_py_c::checkNowWolfEyeUp()) && ((attention_info.flags & fopAc_AttnFlag_SPEAK_e) || (attention_info.flags & fopAc_AttnFlag_TALK_e))) {
         eventInfo.onCondition(dEvtCnd_CANTALK_e);
         if (chkXYItems()) {
             eventInfo.onCondition(dEvtCnd_CANTALKITEM_e);

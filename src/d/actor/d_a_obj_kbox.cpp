@@ -99,9 +99,9 @@ static void kbox_ground(obj_kbox_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)&i_this->mActor;
     i_this->mSph.OnCoSetBit();
     cLib_addCalc0(&a_this->speedF, 1.0f, 2.0f);
-    cLib_onBit(a_this->attention_info.flags, 0x10UL);
+    cLib_onBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
     if (fopAcM_checkCarryNow(a_this)) {
-        cLib_offBit(a_this->attention_info.flags, 0x10UL);
+        cLib_offBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
         i_this->field_0x57a = 1;
         i_this->field_0x57c = 0;
         a_this->speedF = 0.0f;

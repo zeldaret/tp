@@ -292,11 +292,11 @@ public:
     int chkEvent() {
         attention_info.flags = 0;
         if (mFlowNodeNum > 0) {
-            attention_info.flags = 0xa;
+            attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
         }
         if (mIsDarkWorld) {
             if (daPy_py_c::checkNowWolfEyeUp()) {
-                attention_info.flags |= 0xc00000;
+                attention_info.flags |= (fopAc_AttnFlag_UNK_0x800000 | fopAc_AttnFlag_UNK_0x400000);
             } else {
                 attention_info.flags = 0;
             }
@@ -314,7 +314,7 @@ public:
     }
 
     int orderEvent() {
-        if ((!mIsDarkWorld || daPy_py_c::checkNowWolfEyeUp()) && mFlowNodeNum > 0 && ((attention_info.flags & 8) || (attention_info.flags & 2))) {
+        if ((!mIsDarkWorld || daPy_py_c::checkNowWolfEyeUp()) && mFlowNodeNum > 0 && ((attention_info.flags & fopAc_AttnFlag_SPEAK_e) || (attention_info.flags & fopAc_AttnFlag_TALK_e))) {
             eventInfo.onCondition(dEvtCnd_CANTALK_e);
         }
         return 1;

@@ -25,7 +25,7 @@ u32 daNpc_Kn_c::setParamTeach01() {
         attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(talk_distance, talk_angle);
         mAcchCir.SetWallR(daNpc_Kn_Param_c::m.common.width);
         mAcchCir.SetWallH(daNpc_Kn_Param_c::m.common.knee_length);
-        return 4;
+        return fopAc_AttnFlag_BATTLE_e;
     case 3:
         attention_info.distances[fopAc_attn_LOCK_e] = daNpcT_getDistTableIdx(attention_distance, attention_angle);
         attention_info.distances[fopAc_attn_BATTLE_e] = 0xe4;
@@ -33,10 +33,10 @@ u32 daNpc_Kn_c::setParamTeach01() {
         attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(talk_distance, talk_angle);
         mAcchCir.SetWallR(135.0f);
         mAcchCir.SetWallH(daNpc_Kn_Param_c::m.common.knee_length);
-        return 4;
+        return fopAc_AttnFlag_BATTLE_e;
     }
 
-    return 10;
+    return (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
 }
 
 /* 80A3CB14-80A3CBFC 0121F4 00E8+00 1/1 0/0 0/0 .text            setCollisionTeach01__10daNpc_Kn_cFv

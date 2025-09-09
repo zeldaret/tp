@@ -1273,6 +1273,7 @@ void dStage_dt_c_roomLoader(void* i_data, dStage_dt_c* stageDt, int param_2);
 dStage_KeepDoorInfo* dStage_GetKeepDoorInfo();
 dStage_KeepDoorInfo* dStage_GetRoomKeepDoorInfo();
 void dStage_dt_c_fieldMapLoader(void* i_data, dStage_dt_c* i_stage);
+const char* dStage_getName(s16 procName, s8 subtype);
 
 #if VERSION == VERSION_WII_USA_R0
 void dStage_escapeRestart();

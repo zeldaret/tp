@@ -938,7 +938,7 @@ int e_ai_class::Create() {
             l_HIO.id = mDoHIO_CREATE_CHILD("アモス", &l_HIO);
         }
 
-        attention_info.flags = 4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         fopAcM_SetMtx(this, m_modelMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, -300.0f, -200.0f);

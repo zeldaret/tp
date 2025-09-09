@@ -183,7 +183,7 @@ int daE_HP_c::draw() {
         attention_info.distances[fopAc_attn_BATTLE_e] = 0x04;
         fopAcM_SetGroup(this, 2);
         fopAcM_OnStatus(this, 0);
-        attention_info.flags = attention_info.flags | 4;
+        attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
     }
 
     J3DModel* model = mpMorfSO->getModel();
@@ -929,7 +929,7 @@ void daE_HP_c::action() {
     if (field_0x790 > 250.0f) {
         unkXyz1 = home.pos - player->current.pos;
         fopAcM_OnStatus(this, 0);
-        attention_info.flags |= 0x4;
+        attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
 
         if (unkXyz1.abs() < mDisHani) {
             if (abs((s16)(current.angle.y - fopAcM_searchPlayerAngleY(this))) < 0x4000 &&
@@ -945,7 +945,7 @@ void daE_HP_c::action() {
         }
     } else {
         fopAcM_OffStatus(this, 0);
-        attention_info.flags = attention_info.flags & 0xfffffffb;
+        attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
     }
 
     cLib_addCalcAngleS2(&field_0x7aa, angleDiff, 8, 0x400);
@@ -1063,7 +1063,7 @@ int daE_HP_c::execute() {
         fopAcM_SetGroup(this, 0);
         fopAcM_OffStatus(this, 0);
 
-        attention_info.flags &= ~0x4;
+        attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
 
         if (field_0x78b == 0) {
             field_0x790 = 0.0f;
@@ -1081,7 +1081,7 @@ int daE_HP_c::execute() {
         fopAcM_SetGroup(this, 0);
         fopAcM_OffStatus(this, 0);
 
-        attention_info.flags &= ~0x4;
+        attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
 
         if (field_0x78b == 0) {
             field_0x790 = 0.0f;
@@ -1099,7 +1099,7 @@ int daE_HP_c::execute() {
         fopAcM_SetGroup(this, 2);
         fopAcM_OnStatus(this, 0);
 
-        attention_info.flags = attention_info.flags | 4;
+        attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
     }
 
     if (field_0x71c != 0) {
@@ -1262,7 +1262,7 @@ int daE_HP_c::create() {
             home.pos.y = current.pos.y + 100.0f;
             arg0 = 0x02;
         }
-        attention_info.flags = 0x4;
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         fopAcM_SetMtx(this, mpMorfSO->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, -200.0f, -200.0f);
@@ -1309,12 +1309,12 @@ int daE_HP_c::create() {
         if (BREG_S(0) != 0 || mNight == 0 || dKy_daynight_check()) {
             attention_info.distances[fopAc_attn_BATTLE_e] = 0x04;
             fopAcM_OffStatus(this, 0);
-            attention_info.flags &= ~0x4;
+            attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
         } else {
             attention_info.distances[fopAc_attn_BATTLE_e] = 0;
             fopAcM_SetGroup(this, 0);
             fopAcM_OffStatus(this, 0);
-            attention_info.flags &= ~0x4;
+            attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
         }
 
         mtx_set();

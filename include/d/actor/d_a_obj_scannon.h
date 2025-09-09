@@ -11,17 +11,37 @@
  * @details
  *
  */
-class daSCannon_c : public fopAc_ac_c {
+class daSCannon_c : public fopAc_ac_c, public request_of_phase_process_class {
 public:
+    struct demoTable_s {
+        /* 0x0 */ void (daSCannon_c::*(*demo_proc_table)[2])();
+        /* 0x4 */ char** cut_table;
+        /* 0x8 */ int cut_num;
+    };
+
+    enum daSCannon_exeMode {
+        MODE_WAIT,
+        MODE_ORDER_EVT,
+        MODE_ACTION_EVT,
+        MODE_END,
+    };
+
+    enum daSCannon_demoType {
+        DEMOTYPE_WARP_END,
+        DEMOTYPE_FIRE_FIRST,
+        DEMOTYPE_FIRE_TKS,
+        DEMOTYPE_FIRE_SECOND,  
+    };
+
     /* 80CC6B0C */ daSCannon_c();
-    /* 80CC6C10 */ ~daSCannon_c();
-    /* 80CC6D10 */ void create();
-    /* 80CC7204 */ void execute();
-    /* 80CC7228 */ void draw();
-    /* 80CC747C */ void Delete();
+    /* 80CC6C10 */ virtual ~daSCannon_c();
+    /* 80CC6D10 */ int create();
+    /* 80CC7204 */ int execute();
+    /* 80CC7228 */ int draw();
+    /* 80CC747C */ int Delete();
     /* 80CC7508 */ void setModelMtx();
     /* 80CC7578 */ void setPtlModelMtx();
-    /* 80CC7608 */ void createHeap();
+    /* 80CC7608 */ int createHeap();
     /* 80CC7970 */ void middleExe();
     /* 80CC7A10 */ void orderEvtInit();
     /* 80CC7AB8 */ void exeModeWait();
@@ -53,15 +73,45 @@ public:
     /* 80CC8DA0 */ void delEmtAll();
     /* 80CC8DDC */ void setCannonRepair();
 
-    static void* const s_demoTable[12];
-    static u8 s_exeProc[48];
-    static u8 s_demoExeProc_WarpEnd[48];
-    static u8 s_demoExeProc_FireTks[72];
-    static u8 s_demoExeProc_FireFirst[24];
-    static u8 s_demoExeProc_FireSecond[96];
+    int getSw1() { return fopAcM_GetParamBit(this, 0, 8); }
+    int getSw2() { return fopAcM_GetParamBit(this, 8, 8); }
+
+    static const demoTable_s s_demoTable[];
+    static void (daSCannon_c::*s_exeProc[])();
+    static void (daSCannon_c::*s_demoExeProc_WarpEnd[][2])();
+    static void (daSCannon_c::*s_demoExeProc_FireTks[][2])();
+    static void (daSCannon_c::*s_demoExeProc_FireFirst[][2])();
+    static void (daSCannon_c::*s_demoExeProc_FireSecond[][2])();
 
 private:
-    /* 0x568 */ u8 field_0x568[0x638 - 0x568];
+    /* 0x574 */ request_of_phase_process_class mZevPhase;
+    /* 0x57C */ request_of_phase_process_class mPtlPhase;
+    /* 0x584 */ mDoExt_bckAnm mBck;
+    /* 0x5A0 */ cBgS_PolyInfo mGroundPoly;
+    /* 0x5B0 */ Mtx mBgMtx;
+    /* 0x5E0 */ dBgW* mpBgW;
+    /* 0x5E4 */ J3DModel* mpModels[2];
+    /* 0x5EC */ J3DModel* mpPtlModel;
+    /* 0x5F0 */ mDoExt_btkAnm* mpCrashBtk;
+    /* 0x5F4 */ mDoExt_btkAnm* mpPtlBtk;
+    /* 0x5F8 */ f32 mGroundY;
+    /* 0x5FC */ u32 mShadowKey;
+    /* 0x600 */ int mTimer;
+    /* 0x604 */ int mStaffId;
+    /* 0x608 */ int mDemoFinishTimer;
+    /* 0x60C */ int mLayerNo;
+    /* 0x610 */ s16 mEvtIdx;
+    /* 0x612 */ u16 mHeadJointNo;
+    /* 0x614 */ u16 mCrashJointNo;
+    /* 0x616 */ u8 mMode;
+    /* 0x617 */ u8 mIsRepaired;
+    /* 0x618 */ u8 mDemoType;
+    /* 0x619 */ u8 field_0x619;
+    /* 0x61A */ u8 mIsPortal;
+    /* 0x61B */ u8 mDrawShadow;
+    /* 0x61C */ JPABaseEmitter* mpEmtApp[3];
+    /* 0x628 */ JPABaseEmitter* mpEmtSmk[3];
+    /* 0x634 */ JPABaseEmitter* mpEmtLine;
 };
 
 STATIC_ASSERT(sizeof(daSCannon_c) == 0x638);

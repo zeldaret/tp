@@ -18,7 +18,7 @@ public:
     /* 80C62994 */ void Create();
     /* 80C62A2C */ void CreateHeap();
     /* 80C62A9C */ void create1st();
-    /* 80C62B20 */ void Execute(f32 (**)[3][4]);
+    /* 80C62B20 */ void Execute(Mtx**);
     /* 80C62B6C */ void action();
     /* 80C62C28 */ void mode_init_wait();
     /* 80C62C34 */ void mode_wait();

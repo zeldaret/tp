@@ -30,7 +30,7 @@ public:
     /* 80580DA4 */ int CreateHeap();
     /* 80580EA0 */ int create();
     /* 805811CC */ int Create();
-    /* 80581210 */ int Execute(f32 (**)[3][4]);
+    /* 80581210 */ int Execute(Mtx**);
     /* 805812BC */ int Draw();
     /* 8058140C */ int Delete();
 

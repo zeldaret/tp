@@ -1996,7 +1996,7 @@ static void action(e_kr_class* i_this) {
 
     if (unkByte2) {
         fopAcM_OnStatus(enemy, 0);
-        enemy->attention_info.flags = 4;
+        enemy->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
     } else {
         fopAcM_OffStatus(enemy, 0);
         enemy->attention_info.flags = 0;

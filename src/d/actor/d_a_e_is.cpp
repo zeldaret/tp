@@ -192,7 +192,7 @@ static void e_is_wait(e_is_class* a_this) {
             a_this->mode = 3;
             a_this->model_morf->setPlaySpeed(1.0f);
             fopAcM_OnStatus(actor, 0);
-            actor->attention_info.flags = 4;
+            actor->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         }
         break;
     case 3:
@@ -683,7 +683,7 @@ static int daE_IS_Create(fopAc_ac_c* i_this) {
             l_HIO.id = mDoHIO_CREATE_CHILD("動くイデリア石像", &l_HIO);
         }
 
-        i_this->attention_info.flags = 4;
+        i_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         fopAcM_SetMtx(i_this, a_this->model_morf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(i_this, -500.0f, -200.0f, -500.0f);

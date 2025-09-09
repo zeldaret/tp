@@ -200,7 +200,7 @@ public:
     /* 0xC1C */ u8 field_0xc1c;
 
     u32 fopAcM_checkHawkCarryNow(fopAc_ac_c* param_1) {
-        return fopAcM_checkStatus(param_1, 0x80000000);
+        return fopAcM_CheckStatus(param_1, 0x80000000);
     }
 };
 

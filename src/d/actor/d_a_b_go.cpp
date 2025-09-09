@@ -261,7 +261,7 @@ static int daB_GO_Create(fopAc_ac_c* i_this) {
             l_HIO.field_0x4 = -1;
         }
 
-        a_this->attention_info.flags = 4;
+        a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         fopAcM_SetMtx(a_this, a_this->mpMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(a_this, -500.0f, -2000.0f, -500.0f);
         fopAcM_SetMax(a_this, 500.0f, 2000.0f, 500.0f);

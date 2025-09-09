@@ -778,7 +778,7 @@ int daDoor20_c::CreateInit() {
     setAction(ACTION_INIT);
     attention_info.position.y += 150.0f;
     eyePos.y += 150.0f;
-    attention_info.flags = 0x20;
+    attention_info.flags = fopAc_AttnFlag_DOOR_e;
     fopAcM_SetMtx(this, field_0x5f4);
     if (door_param2_c::getKind(this) == 10) {
         fopAcM_setCullSizeBox(this, -300.0f, 0, -50.0f, 300.0f, 700.0f, 50.0f);
@@ -1547,7 +1547,7 @@ int daDoor20_c::drawCheck(int param_1) {
 /* 80464E18-80464EC4 004358 00AC+00 1/1 0/0 0/0 .text            checkExecute__10daDoor20_cFv */
 int daDoor20_c::checkExecute() {
     field_0x68c = frontCheck();
-    if (fopAcM_checkStatus(this, 0x1000)) {
+    if (fopAcM_CheckStatus(this, 0x1000)) {
         return 1;
     }
     if (eventInfo.checkCommandDemoAccrpt() || eventInfo.checkCommandDoor()) {

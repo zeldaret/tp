@@ -17,7 +17,7 @@ public:
     /* 80C79FE8 */ void CreateHeap();
     /* 80C7A068 */ void create();
     /* 80C7A6B0 */ void searchSekizoAct(void*, void*);
-    /* 80C7A700 */ void Execute(f32 (**)[3][4]);
+    /* 80C7A700 */ void Execute(Mtx**);
     /* 80C7A97C */ void moveLift();
     /* 80C7ABC8 */ void executeType1();
     /* 80C7ACA0 */ void init_modeBound();
