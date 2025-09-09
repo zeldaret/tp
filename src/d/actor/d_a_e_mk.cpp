@@ -572,6 +572,10 @@ static void e_mk_shoot(e_mk_class* i_this) {
 
                 i_this->mSound.startCreatureVoice(Z2SE_EN_MK_V_CATCH_BOOM, -1);
                 i_this->mSound.startCreatureSound(Z2SE_EN_MK_CATCH_BOOM, 0, -1);
+
+#if VERSION == VERSION_GCN_JPN
+                return;
+#endif
             }
         }
 
