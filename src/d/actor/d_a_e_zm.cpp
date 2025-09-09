@@ -366,14 +366,14 @@ void daE_ZM_c::executeWait() {
 
             attention_info.distances[fopAc_attn_BATTLE_e] = 3;
             fopAcM_OnStatus(this, 0);
-            attention_info.flags |= 4;
+            attention_info.flags |= fopAc_AttnFlag_BATTLE_e;
             mCyl.OnTgSetBit();
             mCyl.OnCoSetBit();
             field_0x6f4.set(0.0f, l_HIO.model_size * 5.0f, 0.0f);
             sp44.set(current.pos);
             sp44.y += field_0x71c;
             mSound.startCreatureSound(Z2SE_EN_ZM_EMERGE, 0, -1);
-            dComIfGp_particle_set(0x8861, &sp44, &shape_angle, &i_scale);
+            dComIfGp_particle_set(dPa_RM(ID_ZI_S_ZM_APP_A), &sp44, &shape_angle, &i_scale);
             
             s16 sVar1 = fopAcM_searchPlayerAngleY(this);
             current.angle.y = sVar1;
@@ -408,8 +408,8 @@ void daE_ZM_c::executeWait() {
             sp44.y += field_0x71c;
 
             static u16 eff_delete_id[2] = {
-                0x8869,
-                0x886A,
+                dPa_RM(ID_ZI_S_ZM_DISAPP_A),
+                dPa_RM(ID_ZI_S_ZM_DISAPP_B),
             };
 
             for (int i = 0; i < 2; i++) {
@@ -488,12 +488,12 @@ void daE_ZM_c::executeAttack() {
                     angle.x = sp50.atan2sY_XZ();
 
                     parentActorID = fopAcM_createChild(PROC_E_ZM, fopAcM_GetID(this), 20, &sp44, fopAcM_GetRoomNo(this), &angle, NULL, -1, NULL);
-                    dComIfGp_particle_set(0x886B, &sp44, &shape_angle, &i_scale);
+                    dComIfGp_particle_set(dPa_RM(ID_ZI_S_ZM_HASSYA_A), &sp44, &shape_angle, &i_scale);
                     mSound.startCreatureSound(Z2SE_EN_ZM_BALL_OUT, 0, -1);
                     setBck(BCK_ZM_MOUTHOPEN, J3DFrameCtrl::EMode_NONE, 3.0f, -1.0f);
                     mMode = MODE_2;
                 } else {
-                    field_0x730[0] = dComIfGp_particle_set(field_0x730[0], 0x886C, &sp44, &shape_angle, &i_scale);
+                    field_0x730[0] = dComIfGp_particle_set(field_0x730[0], dPa_RM(ID_ZI_S_ZM_TAME_A), &sp44, &shape_angle, &i_scale);
                 }
                 break;
 
@@ -582,7 +582,7 @@ void daE_ZM_c::executeDead() {
             speedF = JREG_F(3) + 40.0f;
             attention_info.distances[fopAc_attn_BATTLE_e] = 0;
             fopAcM_OffStatus(this, 0);
-            attention_info.flags &= 0xFFFFFFFB;
+            attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
             
             mCyl.OffTgSetBit();
             mCyl.OffCoSetBit();
@@ -713,10 +713,10 @@ void daE_ZM_c::executeBullet() {
     }
 
     static u16 eff_bullet_id[3] = {
-        0x8866, 0x8867, 0x8868,
+        dPa_RM(ID_ZI_S_ZM_BALL_A), dPa_RM(ID_ZI_S_ZM_BALL_B), dPa_RM(ID_ZI_S_ZM_BALL_C),
     };
     static u16 eff_bullet_delete_id[4] = {
-        0x8862, 0x8863, 0x8864, 0x8865,
+        dPa_RM(ID_ZI_S_ZM_BALLHIT_A), dPa_RM(ID_ZI_S_ZM_BALLHIT_B), dPa_RM(ID_ZI_S_ZM_BALLHIT_C), dPa_RM(ID_ZI_S_ZM_BALLHIT_D),
     };
 
     if (mBgc.ChkWallHit() || mBgc.ChkGroundHit() || (!mSph.ChkAtShieldHit() && mSph.ChkAtHit()) || field_0x722 == 0 || health <= 1 || mSph.ChkTgHit()) {
@@ -973,7 +973,7 @@ cPhs__Step daE_ZM_c::create() {
 
         if (arg0 == 10) {
             fopAcM_OffStatus(this, 0);
-            attention_info.flags &= 0xFFFFFFFB;
+            attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
             attention_info.distances[fopAc_attn_BATTLE_e] = 0;
             fopAcM_SetGroup(this, 0);
 
@@ -1011,7 +1011,7 @@ cPhs__Step daE_ZM_c::create() {
 
             attention_info.distances[fopAc_attn_BATTLE_e] = 0;
             fopAcM_OffStatus(this, 0);
-            attention_info.flags &= 0xFFFFFFFB;
+            attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
 
             switch (arg0) {
                 case 20:
