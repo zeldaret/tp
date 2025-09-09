@@ -1352,7 +1352,7 @@ int daDemo00_c::execute() {
 
     if (actor == NULL) {
         fopAcM_delete(this);
-        OS_REPORT("汎用くん<dactor%d>削除！！\n", subtype);
+        OS_REPORT("汎用くん<dactor%d>削除！！\n", argument);
     } else {
         if (actor->checkEnable(dDemo_actor_c::ENABLE_SHAPE_e)) {
             mModel.field_0x0.mShapeID = actor->getShapeId();
