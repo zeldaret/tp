@@ -6,86 +6,15 @@
 #include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_obj_ornament_cloth.h"
-#include "dol2asm.h"
-
-
-
-//
-// Forward References:
-//
-
-extern "C" void create_init__14daObjOnCloth_cFv();
-extern "C" void initBaseMtx__14daObjOnCloth_cFv();
-extern "C" void setBaseMtx__14daObjOnCloth_cFv();
-extern "C" void setNormalClothPos__14daObjOnCloth_cFv();
-extern "C" void calcJointAngle__14daObjOnCloth_cFv();
-extern "C" void checkPlayerMove__14daObjOnCloth_cFv();
-extern "C" static void nodeCallBack__FP8J3DJointi();
-extern "C" static void createSolidHeap__FP10fopAc_ac_c();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" static void daObjOnCloth_Draw__FP14daObjOnCloth_c();
-extern "C" static void daObjOnCloth_Execute__FP14daObjOnCloth_c();
-extern "C" static bool daObjOnCloth_IsDelete__FP14daObjOnCloth_c();
-extern "C" static void daObjOnCloth_Delete__FP14daObjOnCloth_c();
-extern "C" void __dt__12ClothJoint_cFv();
-extern "C" static void daObjOnCloth_Create__FP10fopAc_ac_c();
-extern "C" void __ct__12ClothJoint_cFv();
-extern "C" u8 const M_attr__14daObjOnCloth_c[48];
-extern "C" extern char const* const d_a_obj_ornament_cloth__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_XrotM__FPA4_fs();
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void push__14mDoMtx_stack_cFv();
-extern "C" void pop__14mDoMtx_stack_cFv();
-extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void transM__14mDoMtx_stack_cFfff();
-extern "C" void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss();
-extern "C" void entry__13mDoExt_btkAnmFP16J3DMaterialTablef();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff();
-extern "C" void fopAcM_searchActorDistanceXZ2__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void getRes__14dRes_control_cFPCcPCcP11dRes_info_ci();
-extern "C" void dKyw_get_AllWind_vecpow__FP4cXyz();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void __pl__4cXyzCFRC3Vec();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void __ml__4cXyzCFf();
-extern "C" void normalizeZP__4cXyzFv();
-extern "C" void cM_atan2s__Fff();
-extern "C" void cM_rnd__Fv();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void __destroy_arr();
-extern "C" void __construct_array();
-extern "C" void _savegpr_22();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_22();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mCurrentMtx__6J3DSys[48];
-extern "C" u8 sincosTable___5JMath[65536];
-
-//
-// Declarations:
-//
-
 #include "d/d_a_obj.h"
+
+enum J_Necktie_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_J_NECKTIE = 0x4,
+
+    /* BTK */
+    /* 0x7 */ BTK_J_NECKTIE = 0x7,
+};
 
 #ifdef DEBUG
 class daObjOnCloth_Hio_c : public JORReflexible {
@@ -249,8 +178,7 @@ void daObjOnCloth_c::calcJointAngle() {
 
 /* 80595638-80595784 000678 014C+00 1/1 0/0 0/0 .text            checkPlayerMove__14daObjOnCloth_cFv */
 void daObjOnCloth_c::checkPlayerMove() {
-    // NONMATCHING
-    f32 fVar1 = field_0x650;
+    f32 fVar1 = field_0x650[0];
     ClothJoint_c* clothJoints_p = mClothJoints + 1;
 
     for (int i = 2; i > 0; i--, clothJoints_p--) {
@@ -258,8 +186,8 @@ void daObjOnCloth_c::checkPlayerMove() {
         fVar1 = fVar1 * attr().reflectReducePowCoeff;
     }
 
-    f32* pfVar1 = &field_0x650;
-    f32* pfVar2 = &field_0x654;
+    f32* pfVar1 = &field_0x650[0];
+    f32* pfVar2 = &field_0x650[1];
 
     for (int i = 0; i < attr().delayedVibrationFrame - 1; i++) {
         *pfVar1 = *pfVar2;
@@ -268,44 +196,158 @@ void daObjOnCloth_c::checkPlayerMove() {
     }
 
     fVar1 = 0.0f;
-    pfVar1[attr().delayedVibrationFrame] = fVar1;
+    field_0x650[attr().delayedVibrationFrame - 1] = 0.0f;
 
     if (!(fopAcM_searchPlayerDistanceXZ2(this) > attr().playerReactionDist * attr().playerReactionDist)) {
         f32 fVar2 = fopAcM_GetSpeedF((fopAc_ac_c*)daPy_getPlayerActorClass());
         if (fVar2 > attr().playerReactionSpeed) {
-            pfVar2[attr().delayedVibrationFrame] = fVar2;
+            field_0x650[attr().delayedVibrationFrame - 1] = fVar2;
         }
     }
 }
 
 /* 80595784-80595850 0007C4 00CC+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
-static void nodeCallBack(J3DJoint* param_0, int param_1) {
-    // NONMATCHING
+static int nodeCallBack(J3DJoint* i_joint, int param_2) {
+    if (param_2 != 0) {
+        return 1;
+    }
+
+    int jntNo = i_joint->getJntNo();
+    J3DModel* model = j3dSys.getModel();
+    daObjOnCloth_c* i_this = (daObjOnCloth_c*)model->getUserArea();
+    csXyz angle;
+    i_this->getJointAngle(angle, jntNo);
+
+    MTXCopy(model->getAnmMtx(jntNo), mDoMtx_stack_c::get());
+    mDoMtx_stack_c::XrotM(angle.x);
+    model->setAnmMtx(jntNo, mDoMtx_stack_c::get());
+    mDoMtx_copy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
+
+    return 1;
 }
 
-/* ############################################################################################## */
-/* 80595D34-80595D38 000080 0004+00 1/1 0/0 0/0 .rodata          @3973 */
-SECTION_RODATA static f32 const lit_3973 = 1.0f;
-COMPILER_STRIP_GATE(0x80595D34, &lit_3973);
-
-/* 80595D38-80595D38 000084 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80595D38 = "J_Necktie";
-SECTION_DEAD static char const* const stringBase_80595D42 = "J_Necktie.bmd";
-SECTION_DEAD static char const* const stringBase_80595D50 = "J_Necktie.btk";
-#pragma pop
-
 /* 80595D60-80595D64 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
-SECTION_DATA static void* l_arcName = (void*)&d_a_obj_ornament_cloth__stringBase0;
+static char* l_arcName = "J_Necktie";
+
+int daObjOnCloth_c::createHeap() {
+    J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcName, "J_Necktie.bmd"));
+
+    JUT_ASSERT(413, modelData != 0);
+
+    mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
+
+    J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, "J_Necktie.btk");
+
+    JUT_ASSERT(420, pbtk != 0);
+
+    mBtkAnm = new mDoExt_btkAnm();
+
+    JUT_ASSERT(424, mBtkAnm);
+
+    if (mBtkAnm->init(modelData, pbtk, 1, 2, 1.0f, 0, -1) == 0) {
+        return 0;
+    }
+    
+    mBtkAnm->setFrame(getColorType());
+
+    for (u16 i = 0; i < 3; i++) {
+        J3DJoint* jointNode_p = mpModel->getModelData()->getJointNodePointer(i);
+        if (jointNode_p != NULL) {
+            jointNode_p->setCallBack(nodeCallBack);
+            mpModel->setUserArea((u32)this);
+        }
+    }
+
+    if (mpModel == NULL) {
+        return 0;
+    }
+
+    return 1;
+}
+
+/* 80595850-805959E8 000890 0198+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
+static int createSolidHeap(fopAc_ac_c* a_this) {
+    return static_cast<daObjOnCloth_c*>(a_this)->createHeap();
+}
+
+int daObjOnCloth_c::draw() {
+    g_env_light.settingTevStruct(16, &current.pos, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
+    dComIfGd_setListBG();
+    mBtkAnm->entry(mpModel->getModelData());
+    mDoExt_modelUpdateDL(mpModel);
+    dComIfGd_setList();
+    return 1;
+}
+
+/* 80595A30-80595AEC 000A70 00BC+00 1/0 0/0 0/0 .text daObjOnCloth_Draw__FP14daObjOnCloth_c */
+static int daObjOnCloth_Draw(daObjOnCloth_c* i_this) {
+    return i_this->draw();
+}
+
+int daObjOnCloth_c::execute() {
+    checkPlayerMove();
+    setNormalClothPos();
+    calcJointAngle();
+    return 1;
+}
+
+/* 80595AEC-80595B2C 000B2C 0040+00 1/0 0/0 0/0 .text daObjOnCloth_Execute__FP14daObjOnCloth_c */
+static int daObjOnCloth_Execute(daObjOnCloth_c* i_this) {
+    return i_this->execute();
+}
+
+/* 80595B2C-80595B34 000B6C 0008+00 1/0 0/0 0/0 .text daObjOnCloth_IsDelete__FP14daObjOnCloth_c */
+static int daObjOnCloth_IsDelete(daObjOnCloth_c* i_this) {
+    return 1;
+}
+
+daObjOnCloth_c::~daObjOnCloth_c() {
+    dComIfG_resDelete(&mPhase, l_arcName);
+}
+
+/* 80595B34-80595B9C 000B74 0068+00 1/0 0/0 0/0 .text daObjOnCloth_Delete__FP14daObjOnCloth_c */
+static int daObjOnCloth_Delete(daObjOnCloth_c* i_this) {
+    i_this->~daObjOnCloth_c();
+    return 1;
+}
+
+/* 80595B9C-80595BD8 000BDC 003C+00 2/2 0/0 0/0 .text            __dt__12ClothJoint_cFv */
+ClothJoint_c::~ClothJoint_c() {}
+
+cPhs__Step daObjOnCloth_c::create() {
+    fopAcM_SetupActor(this, daObjOnCloth_c);
+
+    cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&mPhase, l_arcName);
+    if (phase == cPhs_COMPLEATE_e) {
+        if (!fopAcM_entrySolidHeap(this, createSolidHeap, 0x9A0)) {
+            return cPhs_ERROR_e;
+        }
+
+        create_init();
+        fopAcM_SetMtx(this, mMtx);
+    }
+
+    return phase;
+}
+
+/* 80595BD8-80595CA8 000C18 00D0+00 1/0 0/0 0/0 .text            daObjOnCloth_Create__FP10fopAc_ac_c */
+static cPhs__Step daObjOnCloth_Create(fopAc_ac_c* a_this) {
+    return static_cast<daObjOnCloth_c*>(a_this)->create();
+}
+
+/* 80595CA8-80595CAC 000CE8 0004+00 1/1 0/0 0/0 .text            __ct__12ClothJoint_cFv */
+ClothJoint_c::ClothJoint_c() {
+    /* empty function */
+}
 
 /* 80595D64-80595D84 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjOnCloth_Method */
 static actor_method_class l_daObjOnCloth_Method = {
-    (process_method_func)daObjOnCloth_Create__FP10fopAc_ac_c,
-    (process_method_func)daObjOnCloth_Delete__FP14daObjOnCloth_c,
-    (process_method_func)daObjOnCloth_Execute__FP14daObjOnCloth_c,
-    (process_method_func)daObjOnCloth_IsDelete__FP14daObjOnCloth_c,
-    (process_method_func)daObjOnCloth_Draw__FP14daObjOnCloth_c,
+    (process_method_func)daObjOnCloth_Create,
+    (process_method_func)daObjOnCloth_Delete,
+    (process_method_func)daObjOnCloth_Execute,
+    (process_method_func)daObjOnCloth_IsDelete,
+    (process_method_func)daObjOnCloth_Draw,
 };
 
 /* 80595D84-80595DB4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_Obj_OnCloth */
@@ -325,59 +367,3 @@ extern actor_process_profile_definition g_profile_Obj_OnCloth = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80595DB4-80595DC0 000054 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
-SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12J3DFrameCtrlFv,
-};
-
-/* 80595850-805959E8 000890 0198+00 1/1 0/0 0/0 .text            createSolidHeap__FP10fopAc_ac_c */
-static void createSolidHeap(fopAc_ac_c* param_0) {
-    // NONMATCHING
-}
-
-/* 805959E8-80595A30 000A28 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
-// J3DFrameCtrl::~J3DFrameCtrl() {
-extern "C" void __dt__12J3DFrameCtrlFv() {
-    // NONMATCHING
-}
-
-/* 80595A30-80595AEC 000A70 00BC+00 1/0 0/0 0/0 .text daObjOnCloth_Draw__FP14daObjOnCloth_c */
-static void daObjOnCloth_Draw(daObjOnCloth_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80595AEC-80595B2C 000B2C 0040+00 1/0 0/0 0/0 .text daObjOnCloth_Execute__FP14daObjOnCloth_c */
-static void daObjOnCloth_Execute(daObjOnCloth_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80595B2C-80595B34 000B6C 0008+00 1/0 0/0 0/0 .text daObjOnCloth_IsDelete__FP14daObjOnCloth_c */
-static bool daObjOnCloth_IsDelete(daObjOnCloth_c* param_0) {
-    return true;
-}
-
-/* 80595B34-80595B9C 000B74 0068+00 1/0 0/0 0/0 .text daObjOnCloth_Delete__FP14daObjOnCloth_c */
-static void daObjOnCloth_Delete(daObjOnCloth_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80595B9C-80595BD8 000BDC 003C+00 2/2 0/0 0/0 .text            __dt__12ClothJoint_cFv */
-ClothJoint_c::~ClothJoint_c() {
-    // NONMATCHING
-}
-
-/* 80595BD8-80595CA8 000C18 00D0+00 1/0 0/0 0/0 .text            daObjOnCloth_Create__FP10fopAc_ac_c
- */
-static void daObjOnCloth_Create(fopAc_ac_c* param_0) {
-    // NONMATCHING
-}
-
-/* 80595CA8-80595CAC 000CE8 0004+00 1/1 0/0 0/0 .text            __ct__12ClothJoint_cFv */
-ClothJoint_c::ClothJoint_c() {
-    /* empty function */
-}
-
-/* 80595D38-80595D38 000084 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */

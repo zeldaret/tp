@@ -52,18 +52,23 @@ public:
     /* 80595638 */ void checkPlayerMove();
 
     f32 getColorType() { return fopAcM_GetParam(this) & 0xFF; }
+    inline void getJointAngle(csXyz& jointAngle, int param_2) { jointAngle = mClothJoints[param_2].field_0x30; }
+    inline int createHeap();
+    inline int draw();
+    inline int execute();
+    inline ~daObjOnCloth_c();
+    inline cPhs__Step create();
 
     const daObjOnCloth_Attr_c& attr() const { return M_attr; }
 
     static daObjOnCloth_Attr_c const M_attr;
-private:
+
     /* 0x568 */ J3DModel* mpModel;
-    /* 0x56C */ mDoExt_btkAnm* mpBtkAnm;
+    /* 0x56C */ mDoExt_btkAnm* mBtkAnm;
     /* 0x570 */ request_of_phase_process_class mPhase;
     /* 0x578 */ Mtx mMtx;
     /* 0x5A8 */ ClothJoint_c mClothJoints[3];
-    /* 0x650 */ f32 field_0x650;
-    /* 0x654 */ f32 field_0x654;
+    /* 0x650 */ f32 field_0x650[2];
     /* 0x658 */ u8 field_0x658[0x688 - 0x658];
     /* 0x688 */ f32 field_0x688;
     /* 0x68C */ u8 field_0x68c[0x6c8 - 0x68c];
