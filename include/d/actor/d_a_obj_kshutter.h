@@ -28,7 +28,7 @@ public:
     /* 80C48148 */ cPhs__Step phase_0();
     /* 80C4827C */ cPhs__Step phase_1();
     /* 80C48320 */ cPhs__Step phase_2();
-    /* 80C48328 */ void create1st();
+    /* 80C48328 */ cPhs__Step create1st();
     /* 80C483CC */ void event_proc_call();
     /* 80C48470 */ void event_proc_call2();
     /* 80C4852C */ int Execute(Mtx**);

@@ -399,14 +399,14 @@ cPhs__Step daObjKshtr_c::phase_2() {
 }
 
 /* 80C48328-80C483CC 0008E8 00A4+00 1/1 0/0 0/0 .text            create1st__12daObjKshtr_cFv */
-void daObjKshtr_c::create1st() {
+cPhs__Step daObjKshtr_c::create1st() {
     static daObjKshtr_c::PhaseFunc l_ct_func[3] = {
         &daObjKshtr_c::phase_0,
         &daObjKshtr_c::phase_1,
         &daObjKshtr_c::phase_2,
     };
 
-    (this->*l_ct_func[mPhase])();
+    return (this->*l_ct_func[mPhase])();
 }
 
 /* 80C483CC-80C48470 00098C 00A4+00 1/1 0/0 0/0 .text            event_proc_call__12daObjKshtr_cFv */
@@ -996,9 +996,9 @@ int daObjKshtr_c::Delete() {
 }
 
 /* 80C49BB8-80C49C18 002178 0060+00 1/0 0/0 0/0 .text            daObjKshtr_create1st__FP12daObjKshtr_c */
-static void daObjKshtr_create1st(daObjKshtr_c* i_this) {
+static int daObjKshtr_create1st(daObjKshtr_c* i_this) {
     fopAcM_SetupActor(i_this, daObjKshtr_c);
-    i_this->create1st();
+    return i_this->create1st();
 }
 
 /* 80C49C18-80C49C38 0021D8 0020+00 1/0 0/0 0/0 .text            daObjKshtr_MoveBGDelete__FP12daObjKshtr_c */
