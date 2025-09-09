@@ -186,7 +186,7 @@ void daObjCRVFENCE_c::NormalAction() {
         if (wb_p != NULL && wb_p->mActionID == ACT_PL_RIDE2) {
             fopAcM_OffStatus(this, fopAcM_STATUS_UNK_000100);
             fopAcM_seStartCurrent(this, Z2SE_OBJ_SAKU_BREAK, 0);
-            cXyz sp5c(fopAcM_GetPosition(wb_p));
+            cXyz sp5c(fopAcM_GetPosition(&wb_p->mEnemy));
             Mtx mtx;
             mDoMtx_inverse(field_0x65c->getBaseTRMtx(), mtx);
             mDoMtx_stack_c::copy(mtx);

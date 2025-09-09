@@ -172,17 +172,19 @@ void daAlink_c::commonInitForceRideRein() {
 /* 800ECAAC-800ECB58 0E73EC 00AC+00 1/1 0/0 0/0 .text            initForceRideBoar__9daAlink_cFv */
 int daAlink_c::initForceRideBoar() {
     e_wb_class* e_wb = (e_wb_class*)fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchBoar, NULL);
+    fopAc_ac_c* e_wb_actor = (fopAc_ac_c*)e_wb;
+
     if (e_wb == NULL) {
         return 0;
     }
 
     commonInitForceRideRein();
-    e_wb->current.pos = current.pos;
-    e_wb->shape_angle.y = shape_angle.y;
-    e_wb->current.angle.y = shape_angle.y;
+    e_wb_actor->current.pos = current.pos;
+    e_wb_actor->shape_angle.y = shape_angle.y;
+    e_wb_actor->current.angle.y = shape_angle.y;
     mRideStatus = 2;
 
-    mRideAcKeep.setData(e_wb);
+    mRideAcKeep.setData(e_wb_actor);
     field_0x384c = (cXyz*)&l_boarBaseAnime;
     e_wb->setPlayerRide();
     return 1;
@@ -390,7 +392,7 @@ void daAlink_c::setHorseStirrup() {
 
 /* 800ED4B8-800ED4DC 0E7DF8 0024+00 1/1 0/0 0/0 .text            changeBoarRunRide__9daAlink_cFv */
 void daAlink_c::changeBoarRunRide() {
-    static_cast<e_wb_class*>(mRideAcKeep.getActor())->setRunRideMode();
+    ((e_wb_class*)mRideAcKeep.getActor())->setRunRideMode();
 }
 
 /* 800ED4DC-800ED78C 0E7E1C 02B0+00 7/7 0/0 0/0 .text            setSyncHorsePos__9daAlink_cFv */
@@ -462,7 +464,7 @@ int daAlink_c::setSyncHorsePos() {
 
 /* 800ED78C-800ED90C 0E80CC 0180+00 4/4 0/0 0/0 .text            setSyncBoarPos__9daAlink_cFv */
 int daAlink_c::setSyncBoarPos() {
-    e_wb_class* e_wb_p = static_cast<e_wb_class*>(mRideAcKeep.getActor());
+    e_wb_class* e_wb_p = (e_wb_class*)mRideAcKeep.getActor();
     if (e_wb_p == NULL) {
         if (mProcID == PROC_DEAD || mProcID == PROC_GET_ITEM) {
             return 1;
@@ -509,7 +511,7 @@ int daAlink_c::setSyncBoarPos() {
 
 /* 800ED90C-800EDA24 0E824C 0118+00 1/1 0/0 0/0 .text            setSyncBoarRunPos__9daAlink_cFv */
 int daAlink_c::setSyncBoarRunPos() {
-    e_wb_class* e_wb_p = static_cast<e_wb_class*>(mRideAcKeep.getActor());
+    e_wb_class* e_wb_p = (e_wb_class*)mRideAcKeep.getActor();
     if (e_wb_p == NULL || e_wb_p->checkDownDamage()) {
         boarForceGetOff();
         return 0;
@@ -864,14 +866,15 @@ int daAlink_c::setSyncHorse(int param_0) {
 
 /* 800EE64C-800EE918 0E8F8C 02CC+00 1/1 0/0 0/0 .text            setSyncBoar__9daAlink_cFi */
 int daAlink_c::setSyncBoar(int param_0) {
-    e_wb_class* e_wb_p = static_cast<e_wb_class*>(mRideAcKeep.getActor());
+    e_wb_class* e_wb_p = (e_wb_class*)mRideAcKeep.getActor();
+    fopAc_ac_c* e_wb_actor = (fopAc_ac_c*)e_wb_p;
     BOOL mode_1 = checkModeFlg(1);
 
     if (!setSyncBoarPos()) {
         return 0;
     }
 
-    if (fabsf(e_wb_p->speedF) < 0.001f && mode_1 && checkInputOnR() && e_wb_p->checkWait() &&
+    if (fabsf(e_wb_actor->speedF) < 0.001f && mode_1 && checkInputOnR() && e_wb_p->checkWait() &&
         mProcID != PROC_HORSE_SUBJECTIVITY && field_0x3004 == 0)
     {
         int direction = getDirectionFromShapeAngle();
@@ -1242,8 +1245,8 @@ int daAlink_c::checkNextActionHorse() {
 BOOL daAlink_c::checkHorseGetOff() {
     return (checkHorseRide() && dComIfGp_getHorseActor() != NULL &&
             dComIfGp_getHorseActor()->checkGetOff()) ||
-           (checkBoarRide() && static_cast<e_wb_class*>(mRideAcKeep.getActor()) != NULL &&
-            static_cast<e_wb_class*>(mRideAcKeep.getActor())->checkGetOff());
+           (checkBoarRide() && ((e_wb_class*)mRideAcKeep.getActor()) != NULL &&
+            ((e_wb_class*)mRideAcKeep.getActor())->checkGetOff());
 }
 
 /* 800EF6B0-800EF884 0E9FF0 01D4+00 3/3 0/0 0/0 .text checkHorseGetOffAndSetDoStatus__9daAlink_cFv
@@ -1760,7 +1763,7 @@ int daAlink_c::procHorseWait() {
 
                 if (temp_r28 > 0x800 && temp_r28 < 0x5000 && temp_f31 < 360000.0f) {
                     setBStatus(0x2E);
-                } else if (checkEndResetFlg0(ERFLG0_UNK_80000)) {
+                } else if (checkEndResetFlg0(ERFLG0_SINGLE_BOAR_AVOID)) {
                     set3DStatus(0x2D, 5);
                     setBStatus(0x2E);
                 }

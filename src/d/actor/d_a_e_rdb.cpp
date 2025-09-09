@@ -598,7 +598,7 @@ static void e_rdb_end(e_rdb_class* i_this) {
         break;
 
     case 10:
-        if ((((actor->mActionID == 102 && actor->speedF > 40.0f) &&
+        if ((((actor->mActionID == 102 && actor->mEnemy.speedF > 40.0f) &&
               player->current.pos.x > 1470.0f && player->current.pos.x < 2130.0f)) &&
             ((player->current.pos.z < 200.0f) &&
              (player->shape_angle.y > 0x7000 || player->shape_angle.y < -0x7000)))

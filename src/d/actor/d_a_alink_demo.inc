@@ -459,7 +459,7 @@ int daAlink_c::checkDemoAction() {
                     static_cast<daHorse_c*>(rideAc_p)->onRideFlg();
                     mZ2Link.setRiding(true);
                 } else {
-                    static_cast<e_wb_class*>(rideAc_p)->setPlayerRide();
+                    ((e_wb_class*)rideAc_p)->setPlayerRide();
                 }
             }
 

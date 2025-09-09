@@ -476,7 +476,7 @@ public:
         ERFLG0_BEE_FOLLOW = 0x400000,
         ERFLG0_UNK_200000 = 0x200000,
         ERFLG0_UNK_100000 = 0x100000,
-        ERFLG0_UNK_80000 = 0x80000,
+        ERFLG0_SINGLE_BOAR_AVOID = 0x80000,
         ERFLG0_FISHING_ROD_GET_FISH = 0x40000,
         ERFLG0_UNK_20000 = 0x20000,
         ERFLG0_UNK_10000 = 0x10000,
@@ -941,6 +941,7 @@ public:
     void onLeafSe() { onEndResetFlg0(ERFLG0_UNK_200000); }
     void onWolfFchainPull() { onEndResetFlg0(ERFLG0_WOLF_FCHAIN_PULL); }
     void onFishingRodGetFish() { onEndResetFlg0(ERFLG0_FISHING_ROD_GET_FISH); }
+    void onSingleBoarAvoid() { onEndResetFlg0(ERFLG0_SINGLE_BOAR_AVOID); }
     void onShieldBackBone() { onEndResetFlg1(ERFLG1_GANON_FINISH); }
     void onWolfEyeKeep() { onEndResetFlg1(ERFLG1_WOLF_EYE_KEEP); }
     void onPortalWarpMidnaAtnKeep() { onEndResetFlg2(ERFLG2_PORTAL_WARP_MIDNA_ATN_KEEP); }

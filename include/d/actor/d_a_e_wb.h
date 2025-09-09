@@ -57,9 +57,6 @@ enum daE_WB_ACT {
 };
 
 struct himo_s {
-    /* 807E1CCC */ ~himo_s();
-    /* 807E1D2C */ himo_s();
-
     /* 0x0 */ cXyz field_0x0[16];
 };
 
@@ -71,9 +68,8 @@ struct himo_s {
  * 
  * @details 
  * 
-*/
-
-class e_wb_class : public fopEn_enemy_c {
+ */
+class e_wb_class {
 public:
     BOOL checkWait();
     void setPlayerRideNow();
@@ -86,8 +82,8 @@ public:
     MtxP getRideMtx() { return mpModelMorf->getModel()->getAnmMtx(15); }
     f32 nowAnimeFrame() const { return mpModelMorf->getFrame(); }
     s16 getWaitRollAngle() const { return mWaitRollAngle; }
-    bool checkGetOff() const { return speedF < 3.0f; }
-    f32 rideSpeedRate() const { return speedF / mSpeedRate; }
+    bool checkGetOff() const { return mEnemy.speedF < 3.0f; }
+    f32 rideSpeedRate() const { return mEnemy.speedF / mSpeedRate; }
     f32 getAnimeFrameRate() { return mpModelMorf->getFrame() / mpModelMorf->getEndFrame(); }
     BOOL checkAnmLoopFrame() { return mpModelMorf->checkFrame(0.0f); }
 
@@ -100,6 +96,7 @@ public:
     }
 
 public:
+    /* 0x0000 */ fopEn_enemy_c mEnemy;
     /* 0x05AC */ request_of_phase_process_class mPhase;
     /* 0x05B4 */ s16 mActionMode;
     /* 0x05B8 */ char* mResName;
@@ -244,7 +241,7 @@ public:
 
     /* イノシシ - Wild Boar */
     /* 0x00 */ // vtable
-    /* 0x04 */ s8 field_0x04;
+    /* 0x04 */ s8 mId;
     /* 0x08 */ f32 base_size;                           // 基本サイズ - Base Size
     /* 0x0C */ f32 leader_size_ratio;                   // リーダーサイズ比 - Leader Size Ratio
     /* 0x10 */ f32 movement_speed;                      // 移動速度 - Movement Speed
