@@ -211,7 +211,7 @@ public:
 
     s16 getMessageNo() { return (fopAcM_GetParam(this) >> 8) & 0xFFFF; }
     int getWrestlerAction() { return mWrestlerAction; }
-    u8 getType() { return subtype & 0x7F; }
+    u8 getType() { return argument & 0x7F; }
     u8 getWrestlerType() { return getType(); }
     bool chkAction(actionFunc i_action) { return i_action == field_0xdcc; }
     bool selectAction();

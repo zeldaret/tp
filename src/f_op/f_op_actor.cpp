@@ -153,7 +153,7 @@ static int fopAc_Create(void* i_this) {
             a_this->home.angle = append->base.angle;
             a_this->shape_angle = append->base.angle;
             a_this->parentActorID = append->parent_id;
-            a_this->subtype = append->subtype;
+            a_this->argument = append->subtype;
             a_this->scale.set(append->scale.x * 0.1f, append->scale.y * 0.1f,
                               append->scale.z * 0.1f);
             a_this->setID = append->base.setID;

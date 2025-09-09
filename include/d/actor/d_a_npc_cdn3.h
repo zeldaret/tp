@@ -139,7 +139,7 @@ public:
     int getGroupID() { return fopAcM_GetParam(this) & 0xff; }
     u8 getPathID() { return fopAcM_GetParam(this) >> 24; }
     int isStop() { return TRUE; }
-    int getType() { return subtype & 0x7f; }
+    int getType() { return argument & 0x7f; }
     int getSeqNum() { return shape_angle.x & 0x3f; }
     int getFlowNodeNum() { return shape_angle.z; }
     u16 getStartTime() { return (fopAcM_GetParam(this) >> 8) & 0xff; }

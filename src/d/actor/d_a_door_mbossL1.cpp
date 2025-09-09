@@ -17,7 +17,7 @@
 
 /* 80672838-80672844 000078 000C+00 15/15 0/0 0/0 .text            getNowLevel__FP10fopAc_ac_c */
 static int getNowLevel(fopAc_ac_c* i_this) {
-    return static_cast<daMBdoorL1_c*>(i_this)->subtype;
+    return static_cast<daMBdoorL1_c*>(i_this)->argument;
 }
 
 /* 80672844-80672894 000084 0050+00 1/1 0/0 0/0 .text            searchStop__FPvPv */

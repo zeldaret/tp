@@ -246,7 +246,7 @@ public:
     /* 0x496 */ u8 group;
     /* 0x497 */ u8 cullType;
     /* 0x498 */ u8 demoActorID;
-    /* 0x499 */ s8 subtype;
+    /* 0x499 */ s8 argument;
     /* 0x49A */ u8 carryType;
     /* 0x49C */ u32 actor_status;
     /* 0x4A0 */ u32 actor_condition;

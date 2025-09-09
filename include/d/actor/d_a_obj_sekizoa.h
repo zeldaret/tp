@@ -159,7 +159,7 @@ public:
         int prm = fopAcM_GetParam(this) >> 0x1C;
 
         u8 type;
-        switch (subtype) {
+        switch (argument) {
         case 0:
             switch (prm) {
             case 1:

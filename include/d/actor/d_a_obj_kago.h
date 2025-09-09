@@ -37,7 +37,7 @@ public:
         int iVar1 = fopAcM_GetParam(this) & 0xFF;
         u8 rv;
 
-        switch ((subtype & 127)) {
+        switch ((argument & 127)) {
             case 0:
                 switch (iVar1) {
                     case 0:

@@ -23,7 +23,7 @@ public:
     /* 80D467C0 */ void create_init();
     ~daPasserMng_c() { delete [] childProcIds; }
 
-    u8 getDetailLevel() { return subtype; }
+    u8 getDetailLevel() { return argument; }
     u8 getPathID() { return fopAcM_GetParam(this); }
     u8 getIntervalTime() { return fopAcM_GetParam(this) >> 24; }
     int getStartTime() { return (fopAcM_GetParam(this) >> 8) & 0xff; }

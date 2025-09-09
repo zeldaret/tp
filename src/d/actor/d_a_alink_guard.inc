@@ -311,7 +311,7 @@ int daAlink_c::procGuardSlipInit(int param_0, dCcD_GObjInf* param_1) {
     mProcVar4.field_0x3010 = 0;
     mProcVar5.field_0x3012 = 0;
 
-    if (param_1 != NULL && param_1->GetTgHitAc() != NULL && fopAcM_GetName(param_1->GetTgHitAc()) == PROC_E_MM_MT && param_1->GetTgHitAc()->subtype == 1) {
+    if (param_1 != NULL && param_1->GetTgHitAc() != NULL && fopAcM_GetName(param_1->GetTgHitAc()) == PROC_E_MM_MT && param_1->GetTgHitAc()->argument == 1) {
         if (checkBootsOrArmorHeavy()) {
             mNormalSpeed = daAlinkHIO_guard_c0::m.mMagneHvyGuardSpeed;
             mProcVar5.field_0x3012 = 1;
