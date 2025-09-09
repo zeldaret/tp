@@ -2337,6 +2337,101 @@ static void e_wb_b_lv9_end(e_wb_class* i_this) {
                         (NREG_S(0) + -8) * (a_this->current.angle.y - curr_angle), 8, 0x200);
 }
 
+
+/* 807E3000-807E3008 0000A8 0008+00 0/1 0/0 0/0 .data            footd$7448 */
+static int footd[2] = {
+    6,
+    10,
+};
+
+/* 807E3008-807E3010 0000B0 0008+00 0/1 0/0 0/0 .data            footd_B$7449 */
+static int footd_B[2] = {
+    6,
+    10,
+};
+
+/* 807E3010-807E3018 0000B8 0006+02 0/1 0/0 0/0 .data            w_eff_name$7501 */
+static u16 w_eff_name[3] = {
+    dPa_RM(ID_ZI_S_ENEMY_RUNWTRA_A),
+    dPa_RM(ID_ZI_S_ENEMY_RUNWTRA_B),
+    dPa_RM(ID_ZI_S_ENEMY_RUNWTRA_C),
+};
+
+/* 807E3018-807E3020 0000C0 0006+02 0/1 0/0 0/0 .data            w_eff_name2$7502 */
+static u16 w_eff_name2[3] = {
+    dPa_RM(ID_ZI_S_ENEMY_DOWNWTRA_A),
+    dPa_RM(ID_ZI_S_ENEMY_DOWNWTRA_B),
+    dPa_RM(ID_ZI_S_ENEMY_DOWNWTRA_C),
+};
+
+/* 807E3020-807E3028 0000C8 0008+00 0/1 0/0 0/0 .data            w_eff_id$7518 */
+static u16 w_eff_id[4] = {
+    ID_ZI_J_DOWNWTRA_A,
+    ID_ZI_J_DOWNWTRA_B,
+    ID_ZI_J_DOWNWTRA_C,
+    ID_ZI_J_DOWNWTRA_D,
+};
+
+/* 807E323C-807E3240 0002E4 0004+00 1/1 0/0 0/0 .data            key_eno$8737 */
+static u16 key_eno_8737[2] = {
+    dPa_RM(ID_ZM_S_KEYLIGHT00),
+    dPa_RM(ID_ZM_S_KEYLIGHT01),
+};
+
+/* 807E3240-807E3244 0002E8 0004+00 1/1 0/0 0/0 .data            key_eno$8748 */
+static u16 key_eno_8748[2] = {
+    dPa_RM(ID_ZM_S_KEYLIGHT00),
+    dPa_RM(ID_ZM_S_KEYLIGHT01),
+};
+
+/* 807E33CC-807E33DC 000474 0010+00 1/1 0/0 0/0 .data            foot_no$9903 */
+static int foot_no[4] = {
+    5,
+    24,
+    9,
+    20,
+};
+
+/* 807E33DC-807E33EC 000484 0010+00 1/1 0/0 0/0 .data            foot_no_B$9904 */
+static int foot_no_B[4] = {5, 28, 9, 23};
+
+/* 807E33EC-807E3404 000494 0018+00 0/1 0/0 0/0 .data            pass_r$10268 */
+static f32 pass_r[6] = {
+    0.0f, 3000.0f, 3000.0f, -100.0f, -150.0f, -100.0f,
+};
+
+/* 807E3404-807E341C 0004AC 0018+00 0/1 0/0 0/0 .data            x_check_off$10269 */
+static f32 x_check_off[6] = {
+    2300.0f, -3000.0f, 3000.0f, -300.0f, 0.0f, 300.0f,
+};
+
+/* 807E341C-807E345C 0004C4 0040+00 0/1 0/0 0/0 .data            cc_sph_src$10277 */
+static dCcD_SrcSph cc_sph_src = {
+    {
+        {0x0, {{0x0, 0x0, 0x0}, {0x486022, 0x3}, 0x75}},  // mObj
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},               // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2},               // mGObjTg
+        {0x0},                                            // mGObjCo
+    },                                                    // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 40.0f}  // mSph
+    }  // mSphAttr
+};
+
+/* 807E345C-807E349C 000504 0040+00 0/1 0/0 0/0 .data            at_sph_src$10278 */
+static dCcD_SrcSph at_sph_src = {
+    {
+        {0x0, {{AT_TYPE_1000, 0x2, 0x1f}, {0x0, 0x0}, 0x0}},  // mObj
+        {dCcD_SE_HARD_BODY, 0x0, 0x0, 0x0, 0x0},              // mGObjAt
+        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x2},                   // mGObjTg
+        {0x0},                                                // mGObjCo
+    },                                                        // mObjInf
+    {
+        {{0.0f, 0.0f, 0.0f}, 35.0f}  // mSph
+    }  // mSphAttr
+};
+
+
 /* 807D88D8-807D8A78 006538 01A0+00 1/1 0/0 0/0 .text            e_wb_a_run__FP10e_wb_class */
 static void e_wb_a_run(e_wb_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
