@@ -85,158 +85,197 @@ extern "C" u8 sincosTable___5JMath[65536];
 // Declarations:
 //
 
-/* ############################################################################################## */
+#include "d/d_a_obj.h"
+
+#ifdef DEBUG
+class daObjOnCloth_Hio_c : public JORReflexible {
+public:
+
+    void default_set() { mAttr = daObjOnCloth_c::M_attr; }
+
+    void genMessage(JORMContext* ctx) {
+        ctx->genLabel("§ 飾り布パラメータ設定  §\n", 0, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18); // § Ornamental Fabric Parameter Strings §
+        ctx->genSlider("重力", &mAttr.gravity, 0.0f, 30.0f, 0,
+                       NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+        ctx->genSlider("オフセット", &mAttr.offset, -100.0f, 100.0f, 0,
+                       NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+        ctx->genSlider("windRate", &mAttr.windRate, 0.0f, 5.0f, 0,
+                       NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+        ctx->genSlider("speedRate", &mAttr.speedRate, 0.0f, 5.0f, 0,
+                       NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+        ctx->genSlider("revPowRate", &mAttr.revPowRate, 0.0f, 1.0f, 0,
+                       NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+        ctx->genSlider("回転限界[0]", &mAttr.rotationLimit[0], -0x4000, 0x3FFF, 0,
+                       NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+        ctx->genSlider("回転限界[1]", &mAttr.rotationLimit[1], -0x4000, 0x3FFF, 0, 
+                       NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+        ctx->genSlider("回転限界[2]", &mAttr.rotationLimit[2], -0x4000, 0x3FFF, 0,
+                       NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+        ctx->genSlider("プレイヤ反応距離", &mAttr.playerReactionDist, 0.0f, 500.0f, 0,
+                       NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+        ctx->genSlider("プレイヤ反応速度", &mAttr.playerReactionSpeed, 0.0f, 50.0f, 0,
+                       NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+        ctx->genSlider("プレイヤ反応係数", &mAttr.playerReactionCoeff, 0.0f, 5.0f, 0,
+                       NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+        ctx->genSlider("反射還元力係数", &mAttr.reflectReducePowCoeff, 0.0f, 1.0f, 0,
+                       NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+        ctx->genSlider("揺れ遅延フレーム", &mAttr.delayedVibrationFrame, 1, 30, 0,
+                       NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+        ctx->genCheckBox("ジョイント表示", &mAttr.jointDisplay, 1, 0,
+                         NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    }
+
+    void ct() {
+        if (mCount++ == 0) {
+            daObj::HioVarious_c::init(this, "飾り布"); // Ornamental Cloth
+        }
+    }
+
+    void dt() {
+        if (--mCount == 0) {
+            daObj::HioVarious_c::clean(this);
+        }
+    }
+
+    /* 0x4 */ int mCount;
+    /* 0x8 */ daObjOnCloth_Attr_c mAttr;
+};
+#endif
+
 /* 80595CB4-80595CE4 000000 0030+00 4/4 0/0 0/0 .rodata          M_attr__14daObjOnCloth_c */
-SECTION_RODATA u8 const daObjOnCloth_c::M_attr[48] = {
-    0x41, 0x00, 0x00, 0x00, 0xC2, 0x20, 0x00, 0x00, 0x3E, 0x99, 0x99, 0x9A, 0x3E, 0xF0, 0xA3, 0xD7,
-    0x3E, 0x99, 0x99, 0x9A, 0x43, 0x16, 0x00, 0x00, 0x41, 0x60, 0x00, 0x00, 0x3D, 0xA3, 0xD7, 0x0A,
-    0x3F, 0x4C, 0xCC, 0xCD, 0x00, 0x40, 0x04, 0x31, 0x04, 0x31, 0x00, 0x0F, 0x00, 0x00, 0x00, 0x00,
+daObjOnCloth_Attr_c const daObjOnCloth_c::M_attr = {
+    8.0f,
+    -40.0f,
+    0.3f,
+    0.47f,
+    0.3f,
+    150.0f,
+    14.0f,
+    0.08f,
+    0.8f,
+    0x040,
+    0x431,
+    0x431,
+    15,
+    0
 };
-COMPILER_STRIP_GATE(0x80595CB4, &daObjOnCloth_c::M_attr);
-
-/* 80595CE4-80595CE8 000030 0004+00 0/1 0/0 0/0 .rodata          @3671 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3671 = -50.0f;
-COMPILER_STRIP_GATE(0x80595CE4, &lit_3671);
-#pragma pop
-
-/* 80595CE8-80595CEC 000034 0004+00 0/1 0/0 0/0 .rodata          @3672 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3672 = -170.0f;
-COMPILER_STRIP_GATE(0x80595CE8, &lit_3672);
-#pragma pop
-
-/* 80595CEC-80595CF0 000038 0004+00 0/1 0/0 0/0 .rodata          @3673 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3673 = 50.0f;
-COMPILER_STRIP_GATE(0x80595CEC, &lit_3673);
-#pragma pop
-
-/* 80595CF0-80595CF4 00003C 0004+00 0/1 0/0 0/0 .rodata          @3674 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3674 = 20.0f;
-COMPILER_STRIP_GATE(0x80595CF0, &lit_3674);
-#pragma pop
-
-/* 80595CF4-80595CF8 000040 0004+00 0/2 0/0 0/0 .rodata          @3675 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3675 = -1.0f;
-COMPILER_STRIP_GATE(0x80595CF4, &lit_3675);
-#pragma pop
-
-/* 80595CF8-80595CFC 000044 0004+00 1/4 0/0 0/0 .rodata          @3676 */
-SECTION_RODATA static u8 const lit_3676[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80595CF8, &lit_3676);
-
-/* 80595CFC-80595D04 000048 0008+00 0/1 0/0 0/0 .rodata          @3678 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3678[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x80, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80595CFC, &lit_3678);
-#pragma pop
 
 /* 80595038-80595158 000078 0120+00 1/1 0/0 0/0 .text            create_init__14daObjOnCloth_cFv */
 void daObjOnCloth_c::create_init() {
-    // NONMATCHING
+    fopAcM_setCullSizeBox(this, -50.0f, -170.0f, -50.0f, 50.0f, 20.0f, 50.0f);
+    ClothJoint_c* clothJoints_p = mClothJoints;
+
+    for (int i = 0; i < 3; i++, clothJoints_p++) {
+        clothJoints_p->field_0x0 = current.pos;
+        clothJoints_p->field_0x0.y += (i + 1) * attr().offset;
+        clothJoints_p[0].field_0xc = clothJoints_p[0].field_0x0;
+        clothJoints_p->field_0x24.set(cM_ssin(shape_angle.y) * -1.0f, 0.0f, cM_scos(shape_angle.y) * -1.0f);
+    }
+
+    gravity = attr().gravity;
+    initBaseMtx();
 }
 
 /* 80595158-80595178 000198 0020+00 1/1 0/0 0/0 .text            initBaseMtx__14daObjOnCloth_cFv */
 void daObjOnCloth_c::initBaseMtx() {
-    // NONMATCHING
+    setBaseMtx();
 }
 
 /* 80595178-805951DC 0001B8 0064+00 1/1 0/0 0/0 .text            setBaseMtx__14daObjOnCloth_cFv */
 void daObjOnCloth_c::setBaseMtx() {
-    // NONMATCHING
+    mDoMtx_stack_c::transS(current.pos);
+    mDoMtx_stack_c::YrotM(shape_angle.y);
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
+    MTXCopy(mDoMtx_stack_c::get(), mMtx);
 }
-
-/* ############################################################################################## */
-/* 80595D04-80595D0C 000050 0008+00 0/1 0/0 0/0 .rodata          @3785 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3785[8] = {
-    0x3F, 0xE0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80595D04, &lit_3785);
-#pragma pop
-
-/* 80595D0C-80595D14 000058 0008+00 0/1 0/0 0/0 .rodata          @3786 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3786[8] = {
-    0x40, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80595D0C, &lit_3786);
-#pragma pop
-
-/* 80595D14-80595D1C 000060 0008+00 0/1 0/0 0/0 .rodata          @3787 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_3787[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80595D14, &lit_3787);
-#pragma pop
-
-/* 80595D1C-80595D20 000068 0004+00 0/1 0/0 0/0 .rodata          @3788 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3788 = 3.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80595D1C, &lit_3788);
-#pragma pop
-
-/* 80595D20-80595D24 00006C 0004+00 0/1 0/0 0/0 .rodata          @3789 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3789 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80595D20, &lit_3789);
-#pragma pop
 
 /* 805951DC-805954B0 00021C 02D4+00 1/1 0/0 0/0 .text setNormalClothPos__14daObjOnCloth_cFv */
 void daObjOnCloth_c::setNormalClothPos() {
-    // NONMATCHING
+    cXyz sp4c = dKyw_get_AllWind_vecpow(&current.pos);
+    sp4c *= attr().offset * attr().windRate;
+    f32 fVar1 = sp4c.abs();
+    cXyz sp58;
+    ClothJoint_c* clothJoints_p = mClothJoints;
+    cXyz* pos = &current.pos;
+
+    for (int i = 0; i < 3; i++, clothJoints_p++) {
+        sp58 = *pos - clothJoints_p->field_0x0;
+        sp58.y += gravity;
+
+        if (cM_rnd() < 0.6f && cM_rnd() < 0.1f) {
+            clothJoints_p->field_0x18 += clothJoints_p->field_0x24 * fVar1;
+        }
+
+        sp58 += clothJoints_p->field_0x18;
+        sp58.normalizeZP();
+        clothJoints_p->field_0x0 = *pos + (sp58 * attr().offset);
+        clothJoints_p->field_0x18 = (clothJoints_p->field_0x18 + (clothJoints_p->field_0xc - clothJoints_p->field_0x0)) * attr().speedRate;
+        clothJoints_p->field_0xc = clothJoints_p->field_0x0;
+        pos = &clothJoints_p->field_0x0;
+    }
 }
 
-/* ############################################################################################## */
-/* 80595D24-80595D2C 000070 0004+04 0/1 0/0 0/0 .rodata          @3832 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3832[1 + 1 /* padding */] = {
-    4.0f,
-    /* padding */
-    0.0f,
-};
-COMPILER_STRIP_GATE(0x80595D24, &lit_3832);
-#pragma pop
-
-/* 80595D2C-80595D34 000078 0008+00 1/2 0/0 0/0 .rodata          @3834 */
-SECTION_RODATA static u8 const lit_3834[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80595D2C, &lit_3834);
-
-/* 805954B0-80595638 0004F0 0188+00 1/1 0/0 0/0 .text            calcJointAngle__14daObjOnCloth_cFv
- */
+/* 805954B0-80595638 0004F0 0188+00 1/1 0/0 0/0 .text            calcJointAngle__14daObjOnCloth_cFv */
 void daObjOnCloth_c::calcJointAngle() {
-    // NONMATCHING
+    cXyz sp24;
+    ClothJoint_c* clothJoints_p = mClothJoints;
+    
+    mDoMtx_stack_c::copy(mMtx);
+
+    for (int i = 0; i < 3; i++, clothJoints_p++) {
+        mDoMtx_stack_c::push();
+        mDoMtx_stack_c::inverse();
+        mDoMtx_stack_c::multVec(&clothJoints_p->field_0x0, &sp24);
+        mDoMtx_stack_c::pop();
+        sp24 *= -1.0f;
+        clothJoints_p->field_0x30.x = cM_atan2s(sp24.z, sp24.y);
+
+        if (getColorType() != 4.0f) {
+            if (attr().rotationLimit[i] > 0) {
+                if (clothJoints_p->field_0x30.x > attr().rotationLimit[i]) {
+                    clothJoints_p->field_0x30.x = attr().rotationLimit[i];
+                    clothJoints_p->field_0x18.zero();
+                }
+            } else if (attr().rotationLimit[i] < 0 && clothJoints_p->field_0x30.x < attr().rotationLimit[i]) {
+                clothJoints_p->field_0x30.x = attr().rotationLimit[i];
+                clothJoints_p->field_0x18.zero();
+            }
+        }
+
+        mDoMtx_stack_c::XrotM(clothJoints_p->field_0x30.x);
+        mDoMtx_stack_c::transM(0.0f, attr().offset, 0.0f);
+    }
 }
 
-/* 80595638-80595784 000678 014C+00 1/1 0/0 0/0 .text            checkPlayerMove__14daObjOnCloth_cFv
- */
+/* 80595638-80595784 000678 014C+00 1/1 0/0 0/0 .text            checkPlayerMove__14daObjOnCloth_cFv */
 void daObjOnCloth_c::checkPlayerMove() {
     // NONMATCHING
+    f32 fVar1 = field_0x650;
+    ClothJoint_c* clothJoints_p = mClothJoints + 1;
+
+    for (int i = 2; i > 0; i--, clothJoints_p--) {
+        clothJoints_p->field_0x18 += clothJoints_p->field_0x24 * (-fVar1 * attr().playerReactionCoeff);
+        fVar1 = fVar1 * attr().reflectReducePowCoeff;
+    }
+
+    f32* pfVar1 = &field_0x650;
+    f32* pfVar2 = &field_0x654;
+
+    for (int i = 0; i < attr().delayedVibrationFrame - 1; i++) {
+        *pfVar1 = *pfVar2;
+        pfVar1++;
+        pfVar2++;
+    }
+
+    fVar1 = 0.0f;
+    pfVar1[attr().delayedVibrationFrame] = fVar1;
+
+    if (!(fopAcM_searchPlayerDistanceXZ2(this) > attr().playerReactionDist * attr().playerReactionDist)) {
+        f32 fVar2 = fopAcM_GetSpeedF((fopAc_ac_c*)daPy_getPlayerActorClass());
+        if (fVar2 > attr().playerReactionSpeed) {
+            pfVar2[attr().delayedVibrationFrame] = fVar2;
+        }
+    }
 }
 
 /* 80595784-80595850 0007C4 00CC+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
