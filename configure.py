@@ -2027,7 +2027,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_kjgjs"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_kkanban"),
     ActorRel(NonMatching, "d_a_obj_knBullet"),
-    ActorRel(NonMatching, "d_a_obj_kshutter"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_kshutter"),
     ActorRel(NonMatching, "d_a_obj_kuwagata"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_kwheel00"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_kwheel01"),
