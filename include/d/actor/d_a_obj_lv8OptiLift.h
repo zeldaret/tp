@@ -53,7 +53,7 @@ public:
     /* 80C8B53C */ void setNextPoint();
 
     /* 80C8A438 */ virtual int CreateHeap();
-    /* 80C8A7E8 */ virtual int Execute(f32 (**)[3][4]);
+    /* 80C8A7E8 */ virtual int Execute(Mtx**);
     /* 80C8B66C */ virtual int Draw();
     /* 80C8B824 */ virtual int Delete();
 

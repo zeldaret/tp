@@ -44,7 +44,7 @@ public:
     /* 80BD2758 */ void SetDoor();
     /* 80BD28C0 */ int create();
     /* 80BD2E88 */ int Create();
-    /* 80BD2ECC */ int Execute(f32 (**)[3][4]);
+    /* 80BD2ECC */ int Execute(Mtx**);
     /* 80BD2FB8 */ int Draw();
     /* 80BD3074 */ int Delete();
 

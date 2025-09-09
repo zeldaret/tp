@@ -313,7 +313,7 @@ SECTION_RODATA static f32 const lit_3908 = 0.5f;
 COMPILER_STRIP_GATE(0x80C779E8, &lit_3908);
 
 /* 80C77200-80C772BC 000A00 00BC+00 1/0 0/0 0/0 .text            Execute__10daTenbin_cFPPA3_A4_f */
-void daTenbin_c::Execute(f32 (**param_0)[3][4]) {
+void daTenbin_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

@@ -491,7 +491,7 @@ void daCstaF_c::initStartBrkBtk() {
 }
 
 /* 804DF37C-804DF6C4 001A9C 0348+00 1/0 0/0 0/0 .text            Execute__9daCstaF_cFPPA3_A4_f */
-int daCstaF_c::Execute(f32 (**param_0)[3][4]) {
+int daCstaF_c::Execute(Mtx** param_0) {
     daAlink_c* player = daAlink_getAlinkActorClass();
 
     setAnime();

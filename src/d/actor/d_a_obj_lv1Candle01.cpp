@@ -134,7 +134,7 @@ void daLv1Cdl01_c::pointLightProc() {
 
 /* 80C57274-80C575F4 0006B4 0380+00 1/0 0/0 0/0 .text            Execute__12daLv1Cdl01_cFPPA3_A4_f
  */
-int daLv1Cdl01_c::Execute(f32 (**param_0)[3][4]) {
+int daLv1Cdl01_c::Execute(Mtx** param_0) {
     *param_0 = &mpModel->getBaseTRMtx();
     if (mTimer != 0) {
         mTimer--;

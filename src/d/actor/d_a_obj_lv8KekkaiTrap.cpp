@@ -228,7 +228,7 @@ void daKekaiTrap_c::create() {
 
 /* 80C87FB0-80C88000 0003F0 0050+00 1/0 0/0 0/0 .text            Execute__13daKekaiTrap_cFPPA3_A4_f
  */
-void daKekaiTrap_c::Execute(f32 (**param_0)[3][4]) {
+void daKekaiTrap_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

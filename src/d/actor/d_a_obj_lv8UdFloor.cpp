@@ -304,7 +304,7 @@ void daUdFloor_c::create() {
 }
 
 /* 80C8C0DC-80C8C12C 0004BC 0050+00 1/0 0/0 0/0 .text            Execute__11daUdFloor_cFPPA3_A4_f */
-void daUdFloor_c::Execute(f32 (**param_0)[3][4]) {
+void daUdFloor_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

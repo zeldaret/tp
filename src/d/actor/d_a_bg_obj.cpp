@@ -1318,7 +1318,7 @@ int daBgObj_c::ExecuteType1() {
 }
 
 /* 8045BFBC-8045C078 0029DC 00BC+00 1/0 0/0 0/0 .text            Execute__9daBgObj_cFPPA3_A4_f */
-int daBgObj_c::Execute(f32 (**param_0)[3][4]) {
+int daBgObj_c::Execute(Mtx** param_0) {
     (this->*mExecuteFunc[mSpecData.mSpecType])();
 
     for (int i = 0; i < 2; i++) {

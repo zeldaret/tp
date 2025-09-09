@@ -17,7 +17,7 @@ public:
     /* 80CAC8DC */ void setMtx();
     /* 80CACA44 */ void CreateHeap();
     /* 80CACBA8 */ void Create();
-    /* 80CACCE0 */ void Execute(f32 (**)[3][4]);
+    /* 80CACCE0 */ void Execute(Mtx**);
     /* 80CACF14 */ void Draw();
     /* 80CACFD4 */ void Delete();
     /* 80CAD140 */ ~daObjPDwall_c();

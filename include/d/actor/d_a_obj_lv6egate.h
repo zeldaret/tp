@@ -19,7 +19,7 @@ public:
     /* 80C82180 */ void Create();
     /* 80C822DC */ void offDisp();
     /* 80C82330 */ void onDisp();
-    /* 80C82388 */ void Execute(f32 (**)[3][4]);
+    /* 80C82388 */ void Execute(Mtx**);
     /* 80C82690 */ void Draw();
     /* 80C826A0 */ void Delete();
     /* 80C82A80 */ ~daObjLv6EGate_c();

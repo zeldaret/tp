@@ -235,7 +235,7 @@ void daObjSwLight_c::create1st() {
 
 /* 80CF7320-80CF73E0 000400 00C0+00 1/0 0/0 0/0 .text            Execute__14daObjSwLight_cFPPA3_A4_f
  */
-void daObjSwLight_c::Execute(f32 (**param_0)[3][4]) {
+void daObjSwLight_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

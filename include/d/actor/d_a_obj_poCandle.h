@@ -20,7 +20,7 @@ public:
     /* 80CB1E00 */ void setLight();
     /* 80CB1E30 */ void cutLight();
     /* 80CB1E60 */ void pointLightProc();
-    /* 80CB1F10 */ void Execute(f32 (**)[3][4]);
+    /* 80CB1F10 */ void Execute(Mtx**);
     /* 80CB2140 */ void init_modeWait();
     /* 80CB214C */ void modeWait();
     /* 80CB21D8 */ void init_modeOnFire();

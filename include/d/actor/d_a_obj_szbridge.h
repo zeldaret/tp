@@ -19,7 +19,7 @@ public:
     /* 80D04528 */ void CreateHeap();
     /* 80D04598 */ void chkBg();
     /* 80D048C4 */ void Create();
-    /* 80D04974 */ void Execute(f32 (**)[3][4]);
+    /* 80D04974 */ void Execute(Mtx**);
     /* 80D049E4 */ void Draw();
     /* 80D04A88 */ void Delete();
     /* 80D04B90 */ ~daObjSZbridge_c();

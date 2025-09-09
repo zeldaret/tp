@@ -19,7 +19,7 @@ public:
     /* 80BB9B84 */ int Create();
     /* 80BB9C50 */ int CreateHeap();
     /* 80BB9CC0 */ int create();
-    /* 80BB9DB4 */ int Execute(f32 (**)[3][4]);
+    /* 80BB9DB4 */ int Execute(Mtx**);
     /* 80BB9F34 */ int checkSw();
     /* 80BB9FBC */ int checkAnySw();
     /* 80BBA044 */ int checkMySw();

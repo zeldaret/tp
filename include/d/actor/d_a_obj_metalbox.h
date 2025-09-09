@@ -29,7 +29,7 @@ public:
     /* 80592F48 */ int Create();
     /* 80592FD4 */ int CreateHeap();
     /* 80593044 */ int create();
-    /* 805932C4 */ int Execute(f32 (**)[3][4]);
+    /* 805932C4 */ int Execute(Mtx**);
     /* 805932F0 */ int Draw();
     /* 80593394 */ int Delete();
 };

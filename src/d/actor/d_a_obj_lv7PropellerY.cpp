@@ -295,7 +295,7 @@ void daPropY_c::create() {
 }
 
 /* 80C85810-80C85860 000490 0050+00 1/0 0/0 0/0 .text            Execute__9daPropY_cFPPA3_A4_f */
-void daPropY_c::Execute(f32 (**param_0)[3][4]) {
+void daPropY_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

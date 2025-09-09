@@ -712,7 +712,7 @@ COMPILER_STRIP_GATE(0x80578BA4, &lit_4627);
 
 /* 805787CC-805788EC 001DEC 0120+00 1/0 0/0 0/0 .text            Execute__13daObjBHASHI_cFPPA3_A4_f
  */
-void daObjBHASHI_c::Execute(f32 (**param_0)[3][4]) {
+void daObjBHASHI_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

@@ -18600,6 +18600,7 @@ m_hitSeID__12dCcD_GObjInf = .rodata:0x803D0E30; // type:object size:0x60 scope:g
 @112851 = .rodata:0x803D1164; // type:object size:0x10 scope:local align:4 data:4byte
 lbl_803D1178 = .rodata:0x803D1178; // type:object size:0x28
 ...rodata.0 = .rodata:0x803D11A0; // type:label scope:local align:4
+black_tex = .rodata:0x803D11A0; // type:object size:0x40 scope:global align:32
 msg_data = .rodata:0x803D11E0; // type:object size:0x3C0 scope:global align:4
 font_data = .rodata:0x803D15A0; // type:object size:0x12260 scope:global align:4
 ...rodata.0 = .rodata:0x803E3800; // type:label scope:local align:4

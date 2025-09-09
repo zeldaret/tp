@@ -17,7 +17,7 @@ public:
     /* 80C1F490 */ void setBaseMtx();
     /* 80C1F518 */ int CreateHeap();
     /* 80C1F598 */ int create();
-    /* 80C1F6B0 */ int Execute(f32 (**)[3][4]);
+    /* 80C1F6B0 */ int Execute(Mtx**);
     /* 80C1F6C4 */ int Draw();
     /* 80C1F728 */ int Delete();
 

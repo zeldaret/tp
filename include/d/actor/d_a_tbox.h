@@ -120,7 +120,7 @@ public:
     /* 804956EC */ void mode_exec_wait();
     /* 80495818 */ void mode_exec();
     /* 80495910 */ cPhs__Step create1st();
-    /* 804959EC */ int Execute(f32 (**)[3][4]);
+    /* 804959EC */ int Execute(Mtx**);
     /* 80495AF0 */ int Draw();
     /* 80495C9C */ int Delete();
     /* 804961B0 */ int Create();

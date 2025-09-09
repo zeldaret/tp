@@ -849,10 +849,16 @@ JKRSolidHeap* mDoExt_createSolidHeapFromSystem(u32 i_size, u32 i_alignment);
 u32 mDoExt_adjustSolidHeapToSystem(JKRSolidHeap* i_heap);
 JKRHeap* mDoExt_getCurrentHeap();
 void mDoExt_removeMesgFont();
+
+// TODO: make a better name. this flag setup is used for a majority of models which makes it seem like it was a macro
+// maybe a macro for the mDoExt_J3DModel__create call itself?
+#define BMD_DEFAULT_DIFF_FLAGS J3D_DIFF_FLAG(FALSE, FALSE, TRUE, 8, 0, FALSE, 0, 0, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE)
+
 void mDoExt_modelUpdate(J3DModel* i_model);
 void mDoExt_modelUpdateDL(J3DModel* i_model);
 J3DModel* mDoExt_J3DModel__create(J3DModelData* i_modelData, u32 i_modelFlag,
                                   u32 i_differedDlistFlag);
+
 void mDoExt_setAraCacheSize(u32 size);
 int mDoExt_resIDToIndex(JKRArchive* p_archive, u16 id);
 void mDoExt_modelEntryDL(J3DModel* i_model);

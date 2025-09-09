@@ -27,7 +27,7 @@ public:
     /* 80C1DE94 */ int Create();
     /* 80C1DF2C */ int CreateHeap();
     /* 80C1DF9C */ int create1st();
-    /* 80C1E020 */ int Execute(f32 (**)[3][4]);
+    /* 80C1E020 */ int Execute(Mtx**);
     /* 80C1EB38 */ void mode_proc_call();
     /* 80C1EBDC */ void mode_wait();
     /* 80C1EC44 */ void mode_move();

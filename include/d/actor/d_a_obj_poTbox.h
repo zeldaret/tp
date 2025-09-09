@@ -16,7 +16,7 @@ public:
     /* 80CB42C8 */ void setBaseMtx();
     /* 80CB43D0 */ void CreateHeap();
     /* 80CB46C4 */ void create();
-    /* 80CB499C */ void Execute(f32 (**)[3][4]);
+    /* 80CB499C */ void Execute(Mtx**);
     /* 80CB4AA8 */ void init_modeWait();
     /* 80CB4AB4 */ void modeWait();
     /* 80CB4B10 */ void init_modeOpen();

@@ -1006,7 +1006,7 @@ COMPILER_STRIP_GATE(0x80BB383C, &lit_4293);
 #pragma pop
 
 /* 80BAF09C-80BAF29C 000E1C 0200+00 1/0 0/0 0/0 .text            Execute__9daObjBm_cFPPA3_A4_f */
-int daObjBm_c::Execute(f32 (**param_0)[3][4]) {
+int daObjBm_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

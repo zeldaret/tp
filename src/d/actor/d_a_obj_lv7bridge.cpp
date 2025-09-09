@@ -419,7 +419,7 @@ COMPILER_STRIP_GATE(0x80C879F0, &lit_3936);
 
 /* 80C86B40-80C86E68 000840 0328+00 1/0 0/0 0/0 .text            Execute__13daObjLv7Brg_cFPPA3_A4_f
  */
-void daObjLv7Brg_c::Execute(f32 (**param_0)[3][4]) {
+void daObjLv7Brg_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

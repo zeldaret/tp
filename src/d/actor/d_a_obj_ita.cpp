@@ -586,7 +586,7 @@ COMPILER_STRIP_GATE(0x80C292E4, &lit_4023);
 #pragma pop
 
 /* 80C28C70-80C290AC 0009F0 043C+00 1/0 0/0 0/0 .text            Execute__10daObjIta_cFPPA3_A4_f */
-void daObjIta_c::Execute(f32 (**param_0)[3][4]) {
+void daObjIta_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

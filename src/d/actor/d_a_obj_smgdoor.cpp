@@ -206,7 +206,7 @@ void daObjSmgDoor_c::create1st() {
 
 /* 80CDBFA4-80CDBFF0 0004E4 004C+00 1/0 0/0 0/0 .text            Execute__14daObjSmgDoor_cFPPA3_A4_f
  */
-void daObjSmgDoor_c::Execute(f32 (**param_0)[3][4]) {
+void daObjSmgDoor_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

@@ -23,7 +23,7 @@ public:
     /* 80C57164 */ void setLight();
     /* 80C57194 */ void cutLight();
     /* 80C571C4 */ void pointLightProc();
-    /* 80C57274 */ int Execute(f32 (**)[3][4]);
+    /* 80C57274 */ int Execute(Mtx**);
     /* 80C575F4 */ int Draw();
     /* 80C57698 */ int Delete();
 

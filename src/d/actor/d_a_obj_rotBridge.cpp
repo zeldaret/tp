@@ -253,7 +253,7 @@ COMPILER_STRIP_GATE(0x80CBF6A0, &lit_3833);
 
 /* 80CBEF34-80CBF050 000694 011C+00 1/0 0/0 0/0 .text            Execute__13daRotBridge_cFPPA3_A4_f
  */
-void daRotBridge_c::Execute(f32 (**param_0)[3][4]) {
+void daRotBridge_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 
