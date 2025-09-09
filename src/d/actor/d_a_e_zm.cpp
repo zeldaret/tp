@@ -652,20 +652,72 @@ void daE_ZM_c::executeWait() {
 
 /* 808309DC-80830AB8 00117C 00DC+00 1/1 0/0 0/0 .text            executeMove__8daE_ZM_cFv */
 void daE_ZM_c::executeMove() {
-    // NONMATCHING
-}
+    switch (mActionMode) {
+        case 0:
+            mCyl.SetCoVsGrp(16);
+            setBck(6, J3DFrameCtrl::EMode_NONE, 3.0f, 0.0f);
+            mpModelMorf->setFrame(0.0f);
+            mActionMode = 1;
+            // fallthrough
+        case 1:
+            cLib_addCalcAngleS2(&current.angle.y, fopAcM_searchPlayerAngleY(this), 2, 0x600);
 
-/* ############################################################################################## */
-/* 80832D60-80832D64 000068 0004+00 0/2 0/0 0/0 .rodata          @4389 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4389 = 60.0f;
-COMPILER_STRIP_GATE(0x80832D60, &lit_4389);
-#pragma pop
+            if (field_0x722 == 0) {
+                field_0x725 = l_HIO.wait_time_before_attack;
+                setActionMode(3, 0);
+            }
+    }
+}
 
 /* 80830AB8-80830E28 001258 0370+00 1/1 0/0 0/0 .text            executeAttack__8daE_ZM_cFv */
 void daE_ZM_c::executeAttack() {
-    // NONMATCHING
+    cXyz i_scale(l_HIO.model_size, l_HIO.model_size, l_HIO.model_size);
+    J3DModel* model = mpModelMorf->getModel();
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    cXyz sp44, sp50;
+    csXyz angle;
+    cLib_addCalcAngleS2(&current.angle.y, fopAcM_searchPlayerAngleY(this), 2, 0x600);
+
+    if (field_0x725 == 0) {
+        switch (mActionMode) {
+            case 0:
+                setBck(6, J3DFrameCtrl::EMode_NONE, 3.0f, 1.0f);
+                mActionMode = 1;
+                break;
+            
+            case 1:
+                if ((int)mpModelMorf->getFrame() == 2) {
+                    mSound.startCreatureSound(Z2SE_EN_ZM_PRE_ATK, 0, -1);
+                }
+
+                mDoMtx_stack_c::copy(model->getAnmMtx(0));
+                mDoMtx_stack_c::multVecZero(&sp44);
+
+                if (mpModelMorf->isStop()) {
+                    angle = shape_angle;
+                    sp50.set(player->current.pos);
+                    sp50.y += BREG_F(17) + 60.0f;
+                    sp50 -= sp44;
+                    angle.x = sp50.atan2sY_XZ();
+
+                    parentActorID = fopAcM_createChild(PROC_E_ZM, fopAcM_GetID(this), 20, &sp44, fopAcM_GetRoomNo(this), &angle, NULL, -1, NULL);
+                    dComIfGp_particle_set(0x886B, &sp44, &shape_angle, &i_scale);
+                    mSound.startCreatureSound(Z2SE_EN_ZM_BALL_OUT, 0, -1);
+                    setBck(6, J3DFrameCtrl::EMode_NONE, 3.0f, -1.0f);
+                    mActionMode = 2;
+                } else {
+                    field_0x730[0] = dComIfGp_particle_set(field_0x730[0], 0x886C, &sp44, &shape_angle, &i_scale);
+                }
+                break;
+
+            case 2:
+                if (mpModelMorf->isStop()) {
+                    field_0x725 = l_HIO.wait_time_after_attack;
+                    setActionMode(1, 2);
+                }
+                break;
+        }
+    }
 }
 
 /* ############################################################################################## */
@@ -700,6 +752,19 @@ COMPILER_STRIP_GATE(0x80832D70, &lit_4451);
 /* 80830E28-808310C4 0015C8 029C+00 1/1 0/0 0/0 .text            executeDamage__8daE_ZM_cFv */
 void daE_ZM_c::executeDamage() {
     // NONMATCHING
+    switch (mActionMode) {
+        case 1:
+            field_0x714 = 12000.0f;
+            break;
+        
+        case 12:
+            if (field_0x725 == 0) {
+                setBck(6, J3DFrameCtrl::EMode_NONE, 3.0f, 0.0f);
+                field_0x725 = l_HIO.wait_time_after_attack;
+                setActionMode(1, 2);
+            }
+            break;
+    }
 }
 
 /* ############################################################################################## */
