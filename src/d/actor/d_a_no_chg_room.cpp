@@ -67,7 +67,7 @@ int daNocrm_c::execute() {
 
     if (sp14.y < 0.0f || sp14.y > scale.y || fabsf(sp14.x) > scale.x || fabsf(sp14.z) > scale.z)
     {
-        if (subtype == 0 || !mRoomLoading ||
+        if (argument == 0 || !mRoomLoading ||
             dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) != 0)
         {
             return 1;
@@ -87,7 +87,7 @@ int daNocrm_c::execute() {
                                                              player_p->shape_angle.y, 1);
     }
 
-    if (subtype == 0) {
+    if (argument == 0) {
         dStage_roomControl_c::setRoomReadId(getReadRoomId());
     } else {
         dStage_roomControl_c::onNoChangeRoom();
@@ -119,7 +119,7 @@ int daNocrm_c::getRoomNo(int param_0) {
 }
 
 int daNocrm_c::create() {
-    if (subtype == 0 && getReadRoomId() < 0) {
+    if (argument == 0 && getReadRoomId() < 0) {
         // "Room Load Rectangle: Load ID is -1, so destroy self!\n"
         OSReport_Warning("部屋読み込み矩形：読み込みＩＤが−１ですので、自滅します！\n");
         return cPhs_ERROR_e;

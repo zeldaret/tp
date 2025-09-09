@@ -80,7 +80,7 @@ public:
     static actionFuncEntry ActionTable[3];
 
     const attributes* attr() const { return &M_attr; }
-    int getType() { return subtype & 0x7F; }
+    int getType() { return argument & 0x7F; }
     u8 getPathID() { return fopAcM_GetParam(this); }
     bool isPlayerCorrect() { return (s8)(u8)(fopAcM_GetParam(this) >> 8) > 0; }
 

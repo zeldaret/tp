@@ -1911,7 +1911,7 @@ void fopAcM_setEffectMtx(const fopAc_ac_c* i_actor, const J3DModelData* modelDat
 
 /* 8001D5A4-8001D5EC 017EE4 0048+00 1/1 0/0 0/0 .text fopAcM_getProcNameString__FPC10fopAc_ac_c */
 static const char* fopAcM_getProcNameString(const fopAc_ac_c* i_actor) {
-    const char* name = dStage_getName2(i_actor->base.profname, i_actor->subtype);
+    const char* name = dStage_getName2(i_actor->base.profname, i_actor->argument);
     return name != NULL ? name : "UNKOWN";
 }
 
@@ -1923,7 +1923,7 @@ static const fopAc_ac_c* fopAcM_findObjectCB(fopAc_ac_c const* i_actor, void* i_
         return NULL;
     }
 
-    if (prm->procname == fopAcM_GetProfName(i_actor) && prm->subtype == i_actor->subtype) {
+    if (prm->procname == fopAcM_GetProfName(i_actor) && prm->subtype == i_actor->argument) {
         if (prm->prm0 == 0 || prm->prm1 == (prm->prm0 & fopAcM_GetParam(i_actor))) {
             return i_actor;
         }
@@ -1957,7 +1957,7 @@ fopAc_ac_c* fopAcM_findObject4EventCB(fopAc_ac_c* i_actor, void* i_data) {
         return NULL;
     }
 
-    if (prm->procname == fopAcM_GetProfName(i_actor) && prm->subtype == i_actor->subtype) {
+    if (prm->procname == fopAcM_GetProfName(i_actor) && prm->subtype == i_actor->argument) {
         if (prm->event_id < 0 || prm->event_id == i_actor->eventInfo.getIdx()) {
             return i_actor;
         }

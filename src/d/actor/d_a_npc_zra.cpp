@@ -1570,7 +1570,7 @@ void daNpc_zrA_c::drawOtherMdls() {
 
 /* 80B7C44C-80B7C4B4 00402C 0068+00 2/1 0/0 0/0 .text getTypeFromArgument__11daNpc_zrA_cFv */
 daNpc_zrA_c::Type daNpc_zrA_c::getTypeFromArgument() {
-    switch (subtype) {
+    switch (argument) {
     case 0:
         return TYPE_WAIT;
     case 1:

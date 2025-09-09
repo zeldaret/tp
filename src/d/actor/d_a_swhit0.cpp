@@ -138,7 +138,7 @@ static int CheckCreateHeap(fopAc_ac_c* i_this) {
 int daSwhit0_c::create() {
     fopAcM_SetupActor(this, daSwhit0_c);
 
-    if (subtype != 0) {
+    if (argument != 0) {
         setDrawMtx();
         cMtx_copy(mDoMtx_stack_c::get(), field_0x5a8);
         fopAcM_SetMtx(this, field_0x5a8);
@@ -438,7 +438,7 @@ int daSwhit0_c::draw() {
 
 /* 80487138-80487228 0011B8 00F0+00 1/0 0/0 0/0 .text            daSwhit0_Draw__FP10daSwhit0_c */
 static int daSwhit0_Draw(daSwhit0_c* i_this) {
-    if (i_this->subtype != 0) {
+    if (i_this->argument != 0) {
         return 1;
     }
 
@@ -487,7 +487,7 @@ static int daSwhit0_Execute(daSwhit0_c* i_this) {
 
 /* 804872E4-8048732C 001364 0048+00 1/0 0/0 0/0 .text            daSwhit0_Delete__FP10daSwhit0_c */
 static int daSwhit0_Delete(daSwhit0_c* i_this) {
-    if (i_this->subtype == 0) {
+    if (i_this->argument == 0) {
         dComIfG_resDelete(i_this, l_arcName);
     }
 

@@ -336,7 +336,7 @@ void daB_DRE_c::DrAction2() {
         break;
     case 2:
         if (mpModelMorf->checkFrame(110.0f)) {
-            subtype = 1;
+            argument = 1;
             mBlurRate = 150.0f;
             mTimers[0] = 100;
             mHideParts = true;

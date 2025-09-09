@@ -46,7 +46,7 @@ public:
     /* 80D2B5C8 */ virtual int Draw();
     /* 80D2B6C0 */ virtual int Delete();
 
-    u8 getNameArg() { return subtype; }
+    u8 getNameArg() { return argument; }
     u8 getSwNo() { return fopAcM_GetParamBit(this, 0, 8); }
     u8 getSwNo2() { return fopAcM_GetParamBit(this, 8, 8); }
     u8 getArg0() { return fopAcM_GetParamBit(this, 16, 8); }

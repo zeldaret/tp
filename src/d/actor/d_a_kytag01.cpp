@@ -119,12 +119,12 @@ static int daKytag01_Execute(kytag01_class* i_this) {
     camera_class* camera = dComIfGp_getCamera(0);
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
 
-    if ((a_this->subtype & 0xFF) == 2) {
+    if ((a_this->argument & 0xFF) == 2) {
         if (i_this->mStartPoint == dComIfGs_getStartPoint()) {
             i_this->mStartPoint = 0xFF;
             dKy_change_colpat(i_this->field_0x59e);
         }
-    } else if ((a_this->subtype & 0xFF) == 0) {
+    } else if ((a_this->argument & 0xFF) == 0) {
         if (a_this->home.roomNo == dComIfGp_roomControl_getStayNo()) {
             if (i_this->mSwNo1 != 0xFF) {
                 if (dComIfGs_isSwitch(i_this->mSwNo1, a_this->home.roomNo)) {
@@ -178,7 +178,7 @@ static int daKytag01_Create(fopAc_ac_c* i_this) {
     kytag01_class* a_this = (kytag01_class*)i_this;
     fopAcM_SetupActor(i_this, kytag01_class);
 
-    if ((a_this->subtype & 0xFF) == 2) {
+    if ((a_this->argument & 0xFF) == 2) {
         a_this->mNamiInnerRange = i_this->scale.x * 100.0f;
         a_this->field_0x59d = fopAcM_GetParam(i_this);
         a_this->mStartPoint = fopAcM_GetParam(i_this) >> 8;
@@ -197,7 +197,7 @@ static int daKytag01_Create(fopAc_ac_c* i_this) {
         a_this->mSwNo2 = (i_this->current.angle.x >> 8) & 0xFF;
         a_this->field_0x594 = 0.0f;
 
-        if ((a_this->subtype & 0xFF) == 0) {
+        if ((a_this->argument & 0xFF) == 0) {
             if (a_this->mNamiSize == 255.0f) {
                 a_this->mNamiSize = 10.0f;
             }

@@ -3927,7 +3927,7 @@ int daB_DR_c::execute() {
     if (arg0 == 0xFF) {
         if (parentActorID != 0 && health > 1 && cLib_calcTimer<int>(&mTimer[0]) == 0) {
             fopAc_ac_c* parent;
-            if (fopAcM_SearchByID(parentActorID, &parent) != 0 && parent != NULL && parent->subtype != 1) {
+            if (fopAcM_SearchByID(parentActorID, &parent) != 0 && parent != NULL && parent->argument != 1) {
                 if (dComIfGs_isZoneSwitch(20, fopAcM_GetRoomNo(this))) {
                     dComIfGp_getEvent().setSkipProc(this, DemoSkipCallBack, 0);
                 }
@@ -3965,7 +3965,7 @@ int daB_DR_c::execute() {
                 current.angle = parent->current.angle;
                 shape_angle = parent->shape_angle;
 
-                if (parent->subtype == 1 && field_0x7e0 < 54) {
+                if (parent->argument == 1 && field_0x7e0 < 54) {
                     if (mAnm != ANM_DR_BURU) {
                         setBck(ANM_DR_BURU, 0, 0.0f, 1.0f);
                         mpModelMorf->setStartFrame(111.0f);

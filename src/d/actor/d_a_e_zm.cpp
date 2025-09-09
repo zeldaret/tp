@@ -964,7 +964,7 @@ cPhs__Step daE_ZM_c::create() {
             bitSw2 = 0xFF;
         }
 
-        OS_REPORT("argument %d\n", subtype);
+        OS_REPORT("argument %d\n", argument);
         OS_REPORT("arg0 %d\n", arg0);
         OS_REPORT("arg1 %d\n", arg1);
         OS_REPORT("arg2 %d\n", arg2);

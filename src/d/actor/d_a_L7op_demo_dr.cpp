@@ -707,7 +707,7 @@ void daL7ODR_c::dr_fly() {
             if (7.0f == mpModelMorf->getFrame() || 37.0f == mpModelMorf->getFrame()) {
                 mSound.startCreatureSound(Z2SE_EN_DR_WING, 0, -1);
             } else if (62.0f == mpModelMorf->getFrame()) {
-                subtype = 1;
+                argument = 1;
             }
 
             if (mpModelMorf->isStop()) {

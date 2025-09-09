@@ -93,7 +93,7 @@ int daZraFreeze_c::CreateHeap() {
         "zrA_pain_TW.bmd",
         "zrA_sol_TW.bmd",
     };
-    J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmdName[subtype]);
+    J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmdName[argument]);
     mpModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
     if (mpModel == NULL) {
         return 0;
