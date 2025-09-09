@@ -6,7 +6,6 @@
 #include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_obj_lv4SlideWall.h"
-#include "dol2asm.h"
 
 /* 80C61E2C-80C61E68 0000EC 003C+00 1/1 0/0 0/0 .text            __ct__15daSldWall_HIO_cFv */
 daSldWall_HIO_c::daSldWall_HIO_c() {
