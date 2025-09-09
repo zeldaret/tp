@@ -402,7 +402,7 @@ void daObjH_Saku_c::Create() {
 
 /* 80C162F4-80C16340 000EB4 004C+00 1/0 0/0 0/0 .text            Execute__13daObjH_Saku_cFPPA3_A4_f
  */
-void daObjH_Saku_c::Execute(f32 (**param_0)[3][4]) {
+void daObjH_Saku_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

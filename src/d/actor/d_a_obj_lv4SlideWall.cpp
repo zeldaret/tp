@@ -72,7 +72,7 @@ int daSldWall_c::create() {
 }
 
 /* 80C620E4-80C62134 0003A4 0050+00 1/0 0/0 0/0 .text            Execute__11daSldWall_cFPPA3_A4_f */
-int daSldWall_c::Execute(f32 (**param_0)[3][4]) {
+int daSldWall_c::Execute(Mtx** param_0) {
     moveWall();
     *param_0 = &mpModel->getBaseTRMtx();
     setBaseMtx();

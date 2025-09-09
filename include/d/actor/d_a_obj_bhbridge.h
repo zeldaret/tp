@@ -21,7 +21,7 @@ public:
     /* 80BB55B8 */ void setBaseMtx();
     /* 80BB5934 */ virtual int CreateHeap();
     /* 80BB59AC */ virtual int Create();
-    /* 80BB5A14 */ virtual int Execute(f32 (**)[3][4]);
+    /* 80BB5A14 */ virtual int Execute(Mtx**);
     /* 80BB5E10 */ virtual int Draw();
     /* 80BB5EB4 */ virtual int Delete();
 

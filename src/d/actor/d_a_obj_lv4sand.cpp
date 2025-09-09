@@ -77,7 +77,7 @@ int daObjLv4Sand_c::create1st() {
 
 /* 80C69E10-80C69F18 0003F0 0108+00 1/0 0/0 0/0 .text            Execute__14daObjLv4Sand_cFPPA3_A4_f
  */
-int daObjLv4Sand_c::Execute(f32 (**param_0)[3][4]) {
+int daObjLv4Sand_c::Execute(Mtx** param_0) {
     action();
     *param_0 = &mBgMtx;
 

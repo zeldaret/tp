@@ -591,7 +591,7 @@ void daObjKshtr_c::event_proc_call2() {
 
 /* 80C4852C-80C48590 000AEC 0064+00 1/0 0/0 0/0 .text            Execute__12daObjKshtr_cFPPA3_A4_f
  */
-void daObjKshtr_c::Execute(f32 (**param_0)[3][4]) {
+void daObjKshtr_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

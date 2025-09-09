@@ -57,7 +57,7 @@ int daCowdoor_c::create() {
 }
 
 /* 80BCCA1C-80BCCA48 00029C 002C+00 1/0 0/0 0/0 .text            Execute__11daCowdoor_cFPPA3_A4_f */
-int daCowdoor_c::Execute(f32 (**param_0)[3][4]) {
+int daCowdoor_c::Execute(Mtx** param_0) {
     *param_0 = &mBgMtx;
     setBaseMtx();
     return 1;

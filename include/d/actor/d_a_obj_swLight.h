@@ -18,7 +18,7 @@ public:
     /* 80CF7038 */ void Create();
     /* 80CF71F0 */ void CreateHeap();
     /* 80CF7260 */ void create1st();
-    /* 80CF7320 */ void Execute(f32 (**)[3][4]);
+    /* 80CF7320 */ void Execute(Mtx**);
     /* 80CF73E0 */ void action();
     /* 80CF761C */ void init_modeSwOnWait();
     /* 80CF766C */ void modeSwOnWait();

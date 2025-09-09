@@ -18,7 +18,7 @@ public:
     /* 80D0C654 */ void CreateHeap();
     /* 80D0C8B4 */ void create();
     /* 80D0CE70 */ void Create();
-    /* 80D0CEB4 */ void Execute(f32 (**)[3][4]);
+    /* 80D0CEB4 */ void Execute(Mtx**);
     /* 80D0CEE0 */ void Draw();
     /* 80D0D140 */ void Delete();
 

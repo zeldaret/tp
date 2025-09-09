@@ -155,7 +155,7 @@ void daObjLv4Brg_c::create1st() {
 
 /* 80C62B20-80C62B6C 000320 004C+00 1/0 0/0 0/0 .text            Execute__13daObjLv4Brg_cFPPA3_A4_f
  */
-void daObjLv4Brg_c::Execute(f32 (**param_0)[3][4]) {
+void daObjLv4Brg_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

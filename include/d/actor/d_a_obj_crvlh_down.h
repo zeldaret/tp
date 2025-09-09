@@ -22,7 +22,7 @@ public:
     /* 80BD46EC */ void CreateHeap();
     /* 80BD4764 */ void create();
     /* 80BD4A84 */ void Create();
-    /* 80BD4AC8 */ void Execute(f32 (**)[3][4]);
+    /* 80BD4AC8 */ void Execute(Mtx**);
     /* 80BD4C44 */ void Draw();
     /* 80BD4CC8 */ void Delete();
 

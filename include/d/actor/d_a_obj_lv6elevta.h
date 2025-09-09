@@ -19,7 +19,7 @@ public:
     /* 80C82EA8 */ void Create();
     /* 80C83028 */ void eventStart();
     /* 80C830BC */ void moveAngle(void*);
-    /* 80C8321C */ void Execute(f32 (**)[3][4]);
+    /* 80C8321C */ void Execute(Mtx**);
     /* 80C83538 */ void Draw();
     /* 80C835DC */ void Delete();
     /* 80C83764 */ ~daObjLv6ElevtA_c();

@@ -692,7 +692,7 @@ static u8 lit_3625[12];
 static u8 l_HIO[40];
 
 /* 80C7A700-80C7A97C 0009A0 027C+00 1/0 0/0 0/0 .text Execute__15daLv6TogeTrap_cFPPA3_A4_f */
-void daLv6TogeTrap_c::Execute(f32 (**param_0)[3][4]) {
+void daLv6TogeTrap_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

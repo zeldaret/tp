@@ -28,7 +28,7 @@ public:
     /* 804DF1A4 */ void initStartBrkBtk();
 
     /* 804DD978 */ virtual int CreateHeap();
-    /* 804DF37C */ virtual int Execute(f32 (**)[3][4]);
+    /* 804DF37C */ virtual int Execute(Mtx**);
     /* 804DF6E4 */ virtual int Draw();
 
     cXyz& getBallPos() { return m_ballPos; }

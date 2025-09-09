@@ -20,7 +20,7 @@ public:
     /* 80C28928 */ void create();
     /* 80C28BB0 */ void CreateHeap();
     /* 80C28C28 */ void Create();
-    /* 80C28C70 */ void Execute(f32 (**)[3][4]);
+    /* 80C28C70 */ void Execute(Mtx**);
     /* 80C290AC */ void Draw();
     /* 80C29150 */ void Delete();
 

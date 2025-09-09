@@ -229,7 +229,7 @@ extern "C" void __dt__12dBgS_ObjAcchFv() {
 
 /* 80C1514C-80C151A4 0005EC 0058+00 1/0 0/0 0/0 .text            Execute__14daObjGrzRock_cFPPA3_A4_f
  */
-void daObjGrzRock_c::Execute(f32 (**param_0)[3][4]) {
+void daObjGrzRock_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

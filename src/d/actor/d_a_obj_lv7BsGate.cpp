@@ -249,7 +249,7 @@ void daLv7BsGate_c::create() {
 
 /* 80C84BCC-80C84C1C 00040C 0050+00 1/0 0/0 0/0 .text            Execute__13daLv7BsGate_cFPPA3_A4_f
  */
-void daLv7BsGate_c::Execute(f32 (**param_0)[3][4]) {
+void daLv7BsGate_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

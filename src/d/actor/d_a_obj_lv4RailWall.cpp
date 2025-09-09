@@ -86,7 +86,7 @@ int daObjLv4Wall_c::create1st() {
 
 /* 80C60DC4-80C60E90 0003C4 00CC+00 1/0 0/0 0/0 .text            Execute__14daObjLv4Wall_cFPPA3_A4_f
  */
-int daObjLv4Wall_c::Execute(f32 (**param_0)[3][4]) {
+int daObjLv4Wall_c::Execute(Mtx** param_0) {
     if (mpSwSpinner == NULL) {
         mpSwSpinner = (daObjSwSpinner_c*)fopAcM_SearchByName(PROC_Obj_SwSpinner);
     }

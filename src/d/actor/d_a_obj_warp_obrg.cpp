@@ -193,7 +193,7 @@ int daObjWarpOBrg_c::create1st() {
 }
 
 /* 80D2A008-80D2A04C 0006C8 0044+00 1/0 0/0 0/0 .text Execute__15daObjWarpOBrg_cFPPA3_A4_f */
-int daObjWarpOBrg_c::Execute(f32 (**param_0)[3][4]) {
+int daObjWarpOBrg_c::Execute(Mtx** param_0) {
     #if VERSION == VERSION_SHIELD_DEBUG
     calcMidnaWaitPos();
     #endif

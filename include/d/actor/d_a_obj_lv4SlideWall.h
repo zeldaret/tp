@@ -26,7 +26,7 @@ public:
     /* 80C623E0 */ void setSe();
 
     /* 80C61F4C */ virtual int CreateHeap();
-    /* 80C620E4 */ virtual int Execute(f32 (**)[3][4]);
+    /* 80C620E4 */ virtual int Execute(Mtx**);
     /* 80C6249C */ virtual int Draw();
     /* 80C62540 */ virtual int Delete();
 

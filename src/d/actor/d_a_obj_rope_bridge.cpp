@@ -450,7 +450,7 @@ int daObjRBridge_c::create1st() {
 
 /* 80596EBC-80596FA8 0010FC 00EC+00 1/0 0/0 0/0 .text            Execute__14daObjRBridge_cFPPA3_A4_f
  */
-int daObjRBridge_c::Execute(f32 (**param_0)[3][4]) {
+int daObjRBridge_c::Execute(Mtx** param_0) {
     action();
     setLinePos();
 

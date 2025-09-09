@@ -434,7 +434,7 @@ COMPILER_STRIP_GATE(0x80C75574, &lit_3943);
 
 /* 80C7476C-80C74A3C 00094C 02D0+00 1/0 0/0 0/0 .text            Execute__13daLv6SwGate_cFPPA3_A4_f
  */
-void daLv6SwGate_c::Execute(f32 (**param_0)[3][4]) {
+void daLv6SwGate_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

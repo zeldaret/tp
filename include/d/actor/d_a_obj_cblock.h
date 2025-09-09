@@ -33,7 +33,7 @@ public:
     /* 80BC5ABC */ int Create();
     /* 80BC5CF8 */ int CreateHeap();
     /* 80BC5E98 */ int create();
-    /* 80BC6260 */ int Execute(f32 (**)[3][4]);
+    /* 80BC6260 */ int Execute(Mtx**);
     /* 80BC6270 */ void initWait();
     /* 80BC627C */ void modeWait();
     /* 80BC6414 */ void initWalk();

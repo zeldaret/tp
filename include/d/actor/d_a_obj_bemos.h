@@ -48,7 +48,7 @@ public:
     /* 80BAE778 */ int Create();
     /* 80BAEADC */ int CreateHeap();
     /* 80BAEFD8 */ void create1st();
-    /* 80BAF09C */ int Execute(f32 (**)[3][4]);
+    /* 80BAF09C */ int Execute(Mtx**);
     /* 80BAF29C */ void main_proc_call();
     /* 80BAF328 */ void initActionEnBemos();
     /* 80BAF37C */ void initActionObjBemos();

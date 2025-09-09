@@ -19,7 +19,7 @@ public:
     /* 80BF5878 */ int Create();
     /* 80BF5950 */ int CreateHeap();
     /* 80BF5AB4 */ int create1st();
-    /* 80BF5B74 */ int Execute(f32 (**)[3][4]);
+    /* 80BF5B74 */ int Execute(Mtx**);
     /* 80BF5C0C */ int Draw();
     /* 80BF6004 */ int Delete();
 

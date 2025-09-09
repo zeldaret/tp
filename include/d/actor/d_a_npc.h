@@ -1349,7 +1349,7 @@ public:
     /* 80155B54 */ ~daNpcF_MoveBgActor_c() {}
     /* 80155E88 */ virtual bool CreateHeap() { return true; }
     /* 80155E90 */ virtual bool Create() { return true; }
-    /* 80155EA0 */ virtual bool Execute(f32 (**)[3][4]) { return true; }
+    /* 80155EA0 */ virtual bool Execute(Mtx**) { return true; }
     /* 80155EA8 */ virtual bool Draw() { return true; }
     /* 80155E98 */ virtual bool Delete() { return true; }
     /* 80155EB0 */ virtual bool IsDelete() { return true; }

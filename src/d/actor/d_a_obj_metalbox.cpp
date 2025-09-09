@@ -65,7 +65,7 @@ int daObjMBox_c::create() {
 }
 
 /* 805932C4-805932F0 0004A4 002C+00 1/0 0/0 0/0 .text            Execute__11daObjMBox_cFPPA3_A4_f */
-int daObjMBox_c::Execute(f32 (**param_0)[3][4]) {
+int daObjMBox_c::Execute(Mtx** param_0) {
     *param_0 = &mBgMtx;
     setBaseMtx();
 
