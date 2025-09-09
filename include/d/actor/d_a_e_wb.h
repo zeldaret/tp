@@ -117,7 +117,7 @@ public:
     /* 0x068C */ s8 field_0x68c;
     /* 0x068E */ s16 field_0x68e;
     /* 0x0690 */ s16 mActionID;
-    /* 0x0692 */ u16 field_0x692;
+    /* 0x0692 */ s16 field_0x692;
     /* 0x0694 */ int mShadowKey;
     /* 0x0698 */ s16 field_0x698;
     /* 0x069A */ s16 field_0x69a;

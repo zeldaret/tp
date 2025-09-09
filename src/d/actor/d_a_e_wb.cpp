@@ -2225,13 +2225,150 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
 }
 
 /* 807D8490-807D8648 0060F0 01B8+00 1/1 0/0 0/0 .text            e_wb_b_ikki2_end__FP10e_wb_class */
-static void e_wb_b_ikki2_end(e_wb_class* param_0) {
-    // NONMATCHING
+static void e_wb_b_ikki2_end(e_wb_class* i_this) {
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
+    
+    switch (i_this->mActionMode) {
+    case 0:
+        a_this->current.pos.x = -93620.0f;
+        anm_init(i_this, 0x20, 1.0f, 2, 1.0f);
+        i_this->mActionMode = 1;
+        i_this->field_0x68e = 0;
+        // fallthrough        
+    case 1:
+        if (i_this->field_0x68e > 170 && i_this->mAcch.ChkWallHit()) {
+            i_this->mActionID = ACT_BG_DAMAGE;
+            i_this->mActionMode = 0;
+            i_this->field_0x1684 = 50.0f;
+            i_this->mZ2Ride.startCreatureVoice(Z2SE_EN_WB_V_DAMAGE, -1);
+            dComIfGp_getVibration().StartShock(8, 0x4f, cXyz(0.0f, 1.0f, 0.0f));
+            i_this->field_0x142e = 1;
+        }
+        break;
+    }
+    
+    a_this->speedF = l_HIO.mSingleRiderSpeed;
+    
+    if (i_this->field_0x68e == 180) {
+        i_this->field_0x7ac.SetWall(100.0f, 300.0f + BREG_F(11));
+    }
+    
+    s16 angle_offset;
+    if (i_this->field_0x68e > 170) {
+        angle_offset = -15000;
+    } else {
+        angle_offset = (s16)(3000.0f * cM_ssin(i_this->field_0x68e * 1000));
+    }
+    
+    s16 curr_angle = a_this->current.angle.y;
+    cLib_addCalcAngleS2(&a_this->current.angle.y, angle_offset + 0x8000, 2, 0x800);
+    cLib_addCalcAngleS2(&i_this->field_0x79a, 
+                        -13 * (a_this->current.angle.y - curr_angle), 8, 0x800);
 }
 
 /* 807D8648-807D88D8 0062A8 0290+00 2/1 0/0 0/0 .text            e_wb_b_lv9_end__FP10e_wb_class */
-static void e_wb_b_lv9_end(e_wb_class* param_0) {
-    // NONMATCHING
+static void e_wb_b_lv9_end(e_wb_class* i_this) {
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
+    cXyz local_44;
+    f32 target_speed = 0.0f;
+    f32 speed_step = 0.5f;
+    s16 curr_angle = a_this->current.angle.y;
+    
+    switch (i_this->mActionMode) {
+    case 0:
+        i_this->field_0x698 = 30;
+        i_this->mActionMode = 1;
+        anm_init(i_this, 0x2b, 0.0f, 2, 1.0f);
+        a_this->current.pos.set(-7080.0f, 50.0f, -6634.0f);
+        local_44.x = -10008.0f - a_this->current.pos.x;
+        local_44.z = -2729.0f - a_this->current.pos.z;
+        a_this->current.angle.y = cM_atan2s(local_44.x, local_44.z);
+        a_this->shape_angle.y = a_this->current.angle.y;
+        i_this->mAngleTarget = a_this->current.angle.y;
+        // fallthrough
+    case 1:
+        if (i_this->field_0x698 == 0) {
+            i_this->mActionMode = 2;
+            i_this->field_0x698 = NREG_S(0) + 65;
+        }
+        break;
+    case 2:
+        target_speed = NREG_F(12) + 15.0f;
+        if (i_this->field_0x698 == 0) {
+            anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
+            i_this->mActionMode = 3;
+            i_this->field_0x6be |= 8;
+            i_this->field_0x698 = 40;
+        }
+        break;
+    case 3:
+        if (i_this->field_0x698 == 1) {
+            i_this->field_0x6be |= 8;
+        }
+        break;
+    case 4:
+        anm_init(i_this, 0x1b, 3.0f, 0, 1.0f);
+        i_this->mActionMode = 5;
+        break;
+    case 5:
+        if (i_this->mpModelMorf->isStop()) {
+            anm_init(i_this, 0x20, 2.0f, 2, 1.0f);
+            i_this->mActionMode = 6;
+            i_this->field_0x698 = 80;
+        }
+        break;
+    case 6:
+        target_speed = NREG_F(13) + 40.0f;
+        speed_step = 5.0f;
+        if (i_this->field_0x698 < 30) {
+            i_this->field_0x142c = 1;
+        }
+        if (i_this->field_0x698 == 0) {
+            local_44.x = -12682.0f - a_this->current.pos.x;
+            local_44.z = -2701.0f - a_this->current.pos.z;
+            i_this->mAngleTarget = cM_atan2s(local_44.x, local_44.z);
+        }
+        break;
+    }
+    
+    cLib_addCalc2(&a_this->speedF, target_speed, 1.0f, speed_step);
+    cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mAngleTarget, 4, 0x100);
+    cLib_addCalcAngleS2(&i_this->field_0x79a, 
+                        (NREG_S(0) + -8) * (a_this->current.angle.y - curr_angle), 8, 0x200);
+}
+
+/* 807D88D8-807D8A78 006538 01A0+00 1/1 0/0 0/0 .text            e_wb_a_run__FP10e_wb_class */
+static void e_wb_a_run(e_wb_class* i_this) {
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
+    s16 curr_angle_y = a_this->current.angle.y;
+    s16 f5b4 = i_this->mActionMode;
+
+    switch (f5b4) {
+    case 0:
+        anm_init(i_this, 0x20, 5.0f, 2, 1.399999976158142f);
+        i_this->mActionMode = 1;
+        i_this->mAngleTarget = a_this->current.angle.y;
+        i_this->field_0x69a = cM_rndF(30.0f) + 80.0f;
+    case 1:
+        i_this->field_0x6bd = 1;
+        i_this->field_0x142c = 1;
+
+        if (i_this->field_0x698 == 0) {
+            i_this->field_0x698 = cM_rndF(30.0f) + 10.0f;
+            i_this->mAngleTarget += (s16)cM_rndFX(10000.0f);
+        }
+
+        if (i_this->field_0x69a == 1 || i_this->field_0x142f == 2) {
+            i_this->mActionID = ACT_LR_DAMAGE;
+            i_this->mZ2Ride.startCreatureVoice(Z2SE_EN_WB_V_DAMAGE, -1);
+            i_this->mActionMode = 0;
+        }
+    default:
+        cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mAngleTarget, 8, 0x800);
+        cLib_addCalc2(&a_this->speedF, l_HIO.max_speed * 1.2f, 1.0f, 2.0f);
+        cLib_addCalcAngleS2(&i_this->field_0x79a, (a_this->current.angle.y - curr_angle_y) * -8, 8,
+                            0x200);
+    }
 }
 
 
@@ -2328,44 +2465,57 @@ static dCcD_SrcSph at_sph_src = {
     }  // mSphAttr
 };
 
-
-/* 807D88D8-807D8A78 006538 01A0+00 1/1 0/0 0/0 .text            e_wb_a_run__FP10e_wb_class */
-static void e_wb_a_run(e_wb_class* i_this) {
-    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
-    s16 curr_angle_y = a_this->current.angle.y;
-    s16 f5b4 = i_this->mActionMode;
-
-    switch (f5b4) {
-    case 0:
-        anm_init(i_this, 0x20, 5.0f, 2, 1.399999976158142f);
-        i_this->mActionMode = 1;
-        i_this->mAngleTarget = a_this->current.angle.y;
-        i_this->field_0x69a = cM_rndF(30.0f) + 80.0f;
-    case 1:
-        i_this->field_0x6bd = 1;
-        i_this->field_0x142c = 1;
-
-        if (i_this->field_0x698 == 0) {
-            i_this->field_0x698 = cM_rndF(30.0f) + 10.0f;
-            i_this->mAngleTarget += (s16)cM_rndFX(10000.0f);
-        }
-
-        if (i_this->field_0x69a == 1 || i_this->field_0x142f == 2) {
-            i_this->mActionID = ACT_LR_DAMAGE;
-            i_this->mZ2Ride.startCreatureVoice(Z2SE_EN_WB_V_DAMAGE, -1);
-            i_this->mActionMode = 0;
-        }
-    default:
-        cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mAngleTarget, 8, 0x800);
-        cLib_addCalc2(&a_this->speedF, l_HIO.max_speed * 1.2f, 1.0f, 2.0f);
-        cLib_addCalcAngleS2(&i_this->field_0x79a, (a_this->current.angle.y - curr_angle_y) * -8, 8,
-                            0x200);
-    }
-}
-
 /* 807D8A78-807D8C3C 0066D8 01C4+00 1/1 0/0 0/0 .text            e_wb_s_damage__FP10e_wb_class */
-static void e_wb_s_damage(e_wb_class* param_0) {
-    // NONMATCHING
+static void e_wb_s_damage(e_wb_class* i_this) {
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
+    cXyz cStack_1c;
+    cXyz cStack_28;
+
+    i_this->field_0x6a0 = 10;
+    switch (i_this->mActionMode) {
+    case 0:
+        if (a_this->speedF <= 5.0f) {
+            if ((i_this->field_0x6be & 3) != 0) {
+                anm_init(i_this, 9, 2.0f, 0, 1.0f);
+            } else {
+                anm_init(i_this, 8, 2.0f, 0, 1.0f);
+                i_this->field_0x1684 = 50.0f;
+                i_this->field_0x168a = 5000;
+            }
+        } else {
+            anm_init(i_this, 0x22, 2.0f, 0, 1.0f);
+        }
+        i_this->mActionMode = 1;
+        break;
+    case 1:
+        if (i_this->mpModelMorf->isStop()) {
+            if ((i_this->field_0x6be & 3) != 0) {
+                i_this->mActionID = i_this->field_0x692;
+                if (i_this->mActionID == ACT_WAIT2) {
+                    i_this->mActionID = ACT_C_F_RUN;
+                } else if (i_this->mActionID == ACT_C_F_RUN) {
+                    i_this->mActionMode = 1;
+                } else {
+                    if (i_this->mActionID == ACT_PL_RIDE) {
+                        i_this->mActionID = ACT_PL_RIDE2;
+                        i_this->field_0x1432 = l_HIO.mPlayerMountedDashTime;
+                        a_this->speedF = 0.0f;
+                        anm_init(i_this, 0x1b, 3.0f, 0, 1.0f);
+                        i_this->field_0x1684 = 40.0f;
+                        OS_REPORT(" RIDE RUN START \n");
+                        return;
+                    }
+                    i_this->mActionMode = 0;
+                }
+            } else {
+                i_this->mActionID = ACT_A_RUN;
+                i_this->mActionMode = 0;
+            }
+        }
+        break;
+    }
+
+    cLib_addCalc0(&a_this->speedF, 1.0f, 1.0f);
 }
 
 /* 807D8C3C-807D901C 00689C 03E0+00 1/1 0/0 0/0 .text            e_wb_damage__FP10e_wb_class */
