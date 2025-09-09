@@ -62,7 +62,7 @@ int daHsTarget_c::create() {
 
 /* 80C1F6B0-80C1F6C4 000370 0014+00 1/0 0/0 0/0 .text            Execute__12daHsTarget_cFPPA3_A4_f
  */
-int daHsTarget_c::Execute(f32 (**param_0)[3][4]) {
+int daHsTarget_c::Execute(Mtx** param_0) {
     *param_0 = &mpModel->getBaseTRMtx();
     return 1;
 }

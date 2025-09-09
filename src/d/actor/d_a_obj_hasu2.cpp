@@ -204,7 +204,7 @@ void nObjMHasu::daObjMHasu_c::Create() {
 
 /* 80C185A4-80C18600 000384 005C+00 1/0 0/0 0/0 .text
  * Execute__Q29nObjMHasu12daObjMHasu_cFPPA3_A4_f                */
-void nObjMHasu::daObjMHasu_c::Execute(f32 (**param_0)[3][4]) {
+void nObjMHasu::daObjMHasu_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

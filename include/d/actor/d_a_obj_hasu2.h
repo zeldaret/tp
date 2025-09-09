@@ -19,7 +19,7 @@ public:
         /* 80C183D0 */ void setMtx();
         /* 80C18440 */ void CreateHeap();
         /* 80C184B0 */ void Create();
-        /* 80C185A4 */ void Execute(f32 (**)[3][4]);
+        /* 80C185A4 */ void Execute(Mtx**);
         /* 80C18600 */ void Draw();
         /* 80C186A4 */ void Delete();
         /* 80C186E0 */ void upDownHasu();

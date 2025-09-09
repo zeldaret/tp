@@ -16,7 +16,7 @@ public:
     /* 80CE3E2C */ void setBaseMtx();
     /* 80CE3E9C */ void CreateHeap();
     /* 80CE3F1C */ void create();
-    /* 80CE40FC */ void Execute(f32 (**)[3][4]);
+    /* 80CE40FC */ void Execute(Mtx**);
     /* 80CE414C */ void moveLift();
     /* 80CE4290 */ void init_modeWait();
     /* 80CE429C */ void modeWait();

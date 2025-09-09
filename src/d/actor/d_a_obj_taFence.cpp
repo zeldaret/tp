@@ -414,7 +414,7 @@ extern "C" void __dt__10dCcD_GSttsFv() {
 }
 
 /* 80D05550-80D055A0 0007D0 0050+00 1/0 0/0 0/0 .text            Execute__11daTaFence_cFPPA3_A4_f */
-void daTaFence_c::Execute(f32 (**param_0)[3][4]) {
+void daTaFence_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

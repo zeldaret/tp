@@ -333,7 +333,7 @@ COMPILER_STRIP_GATE(0x80C73180, &lit_3878);
 #pragma pop
 
 /* 80C729B4-80C72CA8 000614 02F4+00 1/0 0/0 0/0 .text Execute__17daLv6FurikoTrap_cFPPA3_A4_f */
-void daLv6FurikoTrap_c::Execute(f32 (**param_0)[3][4]) {
+void daLv6FurikoTrap_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

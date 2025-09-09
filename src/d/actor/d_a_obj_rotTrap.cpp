@@ -343,7 +343,7 @@ extern "C" void __dt__10dCcD_GSttsFv() {
 }
 
 /* 80CBFEC4-80CBFF1C 000704 0058+00 1/0 0/0 0/0 .text            Execute__11daRotTrap_cFPPA3_A4_f */
-void daRotTrap_c::Execute(f32 (**param_0)[3][4]) {
+void daRotTrap_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

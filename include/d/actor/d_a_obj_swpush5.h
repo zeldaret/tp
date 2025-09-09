@@ -18,7 +18,7 @@ public:
     /* 8059B920 */ void Create();
     /* 8059BA1C */ void CreateHeap();
     /* 8059BB1C */ void create();
-    /* 8059BBD4 */ void Execute(f32 (**)[3][4]);
+    /* 8059BBD4 */ void Execute(Mtx**);
     /* 8059BC70 */ void setting_ride_flag();
     /* 8059BD24 */ bool checkPushable();
     /* 8059BD2C */ void event_proc_call();

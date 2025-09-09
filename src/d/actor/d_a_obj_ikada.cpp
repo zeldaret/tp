@@ -409,7 +409,7 @@ COMPILER_STRIP_GATE(0x80C27560, &lit_3918);
 
 /* 80C270E0-80C27400 0007A0 0320+00 1/0 0/0 0/0 .text            Execute__12daObjIkada_cFPPA3_A4_f
  */
-void daObjIkada_c::Execute(f32 (**param_0)[3][4]) {
+void daObjIkada_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

@@ -19,7 +19,7 @@ public:
     /* 80C26C7C */ void setBaseMtx();
     /* 80C27028 */ void CreateHeap();
     /* 80C270A0 */ void Create();
-    /* 80C270E0 */ void Execute(f32 (**)[3][4]);
+    /* 80C270E0 */ void Execute(Mtx**);
     /* 80C27400 */ void Draw();
     /* 80C274A4 */ void Delete();
 

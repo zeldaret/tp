@@ -174,7 +174,7 @@ COMPILER_STRIP_GATE(0x80CAD1F0, &lit_3790);
 
 /* 80CACCE0-80CACF14 000560 0234+00 1/0 0/0 0/0 .text            Execute__13daObjPDwall_cFPPA3_A4_f
  */
-void daObjPDwall_c::Execute(f32 (**param_0)[3][4]) {
+void daObjPDwall_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

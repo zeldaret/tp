@@ -295,7 +295,7 @@ static u8 l_HIO[12];
 static u8 data_80CB5140[4];
 
 /* 80CB499C-80CB4AA8 00083C 010C+00 1/0 0/0 0/0 .text            Execute__10daPoTbox_cFPPA3_A4_f */
-void daPoTbox_c::Execute(f32 (**param_0)[3][4]) {
+void daPoTbox_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

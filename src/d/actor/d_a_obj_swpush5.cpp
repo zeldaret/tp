@@ -385,7 +385,7 @@ void daObjSw5_c::create() {
 }
 
 /* 8059BBD4-8059BC70 0007D4 009C+00 1/0 0/0 0/0 .text            Execute__10daObjSw5_cFPPA3_A4_f */
-void daObjSw5_c::Execute(f32 (**param_0)[3][4]) {
+void daObjSw5_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

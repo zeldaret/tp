@@ -435,7 +435,7 @@ COMPILER_STRIP_GATE(0x80BD5A60, &lit_4002);
 #pragma pop
 
 /* 80BD5730-80BD593C 0008D0 020C+00 1/0 0/0 0/0 .text Execute__15daObjCRVLH_UP_cFPPA3_A4_f */
-void daObjCRVLH_UP_c::Execute(f32 (**param_0)[3][4]) {
+void daObjCRVLH_UP_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

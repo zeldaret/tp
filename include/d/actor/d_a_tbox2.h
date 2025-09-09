@@ -59,7 +59,7 @@ public:
 
     /* 80496C20 */ virtual int CreateHeap();
     /* 80496AB8 */ virtual int Create();
-    /* 80497500 */ virtual int Execute(f32 (**)[3][4]);
+    /* 80497500 */ virtual int Execute(Mtx**);
     /* 80497DA0 */ virtual int Draw();
     /* 80497E6C */ virtual int Delete();
     /* 80498140 */ virtual BOOL checkSmallTbox() { return true; }

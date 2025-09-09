@@ -17,7 +17,7 @@ public:
     /* 80C734EC */ void CreateHeap();
     /* 80C73558 */ void create();
     /* 80C736C0 */ void isSwitch();
-    /* 80C7370C */ void Execute(f32 (**)[3][4]);
+    /* 80C7370C */ void Execute(Mtx**);
     /* 80C7375C */ void moveBlock();
     /* 80C73850 */ void init_modeWait();
     /* 80C7385C */ void modeWait();

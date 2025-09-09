@@ -17,7 +17,7 @@ public:
     /* 80CBEB38 */ void CreateHeap();
     /* 80CBECBC */ void create();
     /* 80CBEF1C */ void rideCallBack(dBgW*, fopAc_ac_c*, fopAc_ac_c*);
-    /* 80CBEF34 */ void Execute(f32 (**)[3][4]);
+    /* 80CBEF34 */ void Execute(Mtx**);
     /* 80CBF050 */ void playerAreaCheck();
     /* 80CBF1EC */ void moveBridge();
     /* 80CBF404 */ void Draw();

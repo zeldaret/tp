@@ -22,7 +22,7 @@ public:
     /* 80C7CED4 */ int Create();
     /* 80C7CFD0 */ int CreateHeap();
     /* 80C7D2F8 */ cPhs__Step create1st();
-    /* 80C7D3A4 */ int Execute(f32 (**)[3][4]);
+    /* 80C7D3A4 */ int Execute(Mtx**);
     /* 80C7D4F4 */ void action();
     /* 80C7D598 */ void actionWait();
     /* 80C7D6CC */ void actionFindPlayer();

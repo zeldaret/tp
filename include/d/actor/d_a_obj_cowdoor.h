@@ -18,7 +18,7 @@ public:
     /* 80BCC86C */ int Create();
     /* 80BCC8C4 */ int CreateHeap();
     /* 80BCC93C */ int create();
-    /* 80BCCA1C */ int Execute(f32 (**)[3][4]);
+    /* 80BCCA1C */ int Execute(Mtx**);
     /* 80BCCA48 */ int Draw();
     /* 80BCCAEC */ int Delete();
 

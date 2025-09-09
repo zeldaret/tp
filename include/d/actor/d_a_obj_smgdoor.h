@@ -18,7 +18,7 @@ public:
     /* 80CDBD38 */ void Create();
     /* 80CDBE1C */ void CreateHeap();
     /* 80CDBED4 */ void create1st();
-    /* 80CDBFA4 */ void Execute(f32 (**)[3][4]);
+    /* 80CDBFA4 */ void Execute(Mtx**);
     /* 80CDBFF0 */ void getDemoAction();
     /* 80CDC038 */ void demoProc();
     /* 80CDC248 */ void openInit();

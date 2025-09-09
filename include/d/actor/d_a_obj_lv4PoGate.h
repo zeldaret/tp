@@ -46,7 +46,7 @@ public:
     /* 80C60534 */ void setEffect(int);
 
     /* 80C5FD40 */ virtual int CreateHeap();
-    /* 80C5FEDC */ virtual int Execute(f32 (**)[3][4]);
+    /* 80C5FEDC */ virtual int Execute(Mtx**);
     /* 80C605F8 */ virtual int Draw();
     /* 80C6069C */ virtual int Delete();
 

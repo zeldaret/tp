@@ -115,7 +115,7 @@ int daObjBmSh_c::create() {
 }
 
 /* 80BB9DB4-80BB9F34 0003D4 0180+00 1/0 0/0 0/0 .text            Execute__11daObjBmSh_cFPPA3_A4_f */
-int daObjBmSh_c::Execute(f32 (**param_0)[3][4]) {
+int daObjBmSh_c::Execute(Mtx** param_0) {
     daPy_py_c* player = dComIfGp_getLinkPlayer();
     if (player->checkFrontRollCrash()) {
         cXyz min = l_check_area[0];

@@ -76,7 +76,7 @@ int daObjChandelier_c::Draw() {
 }
 
 /* 80BC8238-80BC82C0 000378 0088+00 1/0 0/0 0/0 .text Execute__17daObjChandelier_cFPPA3_A4_f */
-int daObjChandelier_c::Execute(f32 (**param_0)[3][4]) {
+int daObjChandelier_c::Execute(Mtx** param_0) {
     if (s_exeProc[mMode] != NULL) {
         (this->*s_exeProc[mMode])();
     }

@@ -23,7 +23,7 @@ public:
     /* 80C212CC */ int create();
     /* 80C2157C */ int CreateHeap();
     /* 80C215F4 */ int Create();
-    /* 80C21634 */ int Execute(f32 (**)[3][4]);
+    /* 80C21634 */ int Execute(Mtx**);
     /* 80C21964 */ int Draw();
     /* 80C21A08 */ int Delete();
 

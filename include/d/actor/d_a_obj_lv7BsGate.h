@@ -16,7 +16,7 @@ public:
     /* 80C84930 */ void setBaseMtx();
     /* 80C849CC */ void CreateHeap();
     /* 80C84A4C */ void create();
-    /* 80C84BCC */ void Execute(f32 (**)[3][4]);
+    /* 80C84BCC */ void Execute(Mtx**);
     /* 80C84C1C */ void moveGate();
     /* 80C84D24 */ void init_modeWait();
     /* 80C84D30 */ void modeWait();

@@ -804,7 +804,7 @@ int daObjCRVGATE_c::Create() {
 
 /* 80BD2ECC-80BD2FB8 002BAC 00EC+00 1/0 0/0 0/0 .text Execute__14daObjCRVGATE_cFPPA3_A4_f
  */
-int daObjCRVGATE_c::Execute(f32 (**param_0)[3][4]) {
+int daObjCRVGATE_c::Execute(Mtx** param_0) {
     s_CoCount = 0;
 
     if (mKeyParam == 0x01) {

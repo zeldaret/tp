@@ -848,7 +848,7 @@ asm u32 __TRK_get_MSR() {
 }
 
 /* 8036F640-8036F648 -00001 0008+00 0/0 0/0 0/0 .text            __TRK_set_MSR */
-asm void __TRK_set_MSR() {
+asm void __TRK_set_MSR(register u32) {
     // clang-format off
 	nofralloc
 	mtmsr r3

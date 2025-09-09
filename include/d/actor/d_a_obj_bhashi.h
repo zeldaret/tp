@@ -24,7 +24,7 @@ public:
     /* 80578330 */ void CreateHeap();
     /* 8057842C */ void create();
     /* 80578788 */ void Create();
-    /* 805787CC */ void Execute(f32 (**)[3][4]);
+    /* 805787CC */ void Execute(Mtx**);
     /* 805788EC */ void Draw();
     /* 805789E8 */ void Delete();
 

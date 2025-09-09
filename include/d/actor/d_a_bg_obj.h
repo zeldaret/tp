@@ -83,7 +83,7 @@ public:
 
     /* 8045A940 */ virtual int CreateHeap();
     /* 8045A2B8 */ virtual int Create();
-    /* 8045BFBC */ virtual int Execute(f32 (**)[3][4]);
+    /* 8045BFBC */ virtual int Execute(Mtx**);
     /* 8045C078 */ virtual int Draw();
     /* 8045C2E8 */ virtual int Delete();
 

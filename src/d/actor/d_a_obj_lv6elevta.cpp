@@ -174,7 +174,7 @@ void daObjLv6ElevtA_c::moveAngle(void* param_0) {
 }
 
 /* 80C8321C-80C83538 00055C 031C+00 1/0 0/0 0/0 .text Execute__16daObjLv6ElevtA_cFPPA3_A4_f */
-void daObjLv6ElevtA_c::Execute(f32 (**param_0)[3][4]) {
+void daObjLv6ElevtA_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

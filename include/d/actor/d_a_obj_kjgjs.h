@@ -18,7 +18,7 @@ public:
     /* 80C4616C */ void setMtx();
     /* 80C461E4 */ int CreateHeap();
     /* 80C46264 */ int Create();
-    /* 80C46310 */ int Execute(f32 (**)[3][4]);
+    /* 80C46310 */ int Execute(Mtx**);
     /* 80C46320 */ int Draw();
     /* 80C463C4 */ int Delete();
     /* 80C464CC */ virtual ~daObjKJgjs_c();
