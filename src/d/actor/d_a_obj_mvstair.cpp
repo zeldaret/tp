@@ -147,7 +147,7 @@ void daObjStair_c::mode_proc_call() {
 
 /* 80C9D594-80C9D710 000574 017C+00 1/0 0/0 0/0 .text            Execute__12daObjStair_cFPPA3_A4_f
  */
-int daObjStair_c::Execute(f32 (**param_0)[3][4]) {
+int daObjStair_c::Execute(Mtx** param_0) {
     event_proc_call();
     mode_proc_call();
 

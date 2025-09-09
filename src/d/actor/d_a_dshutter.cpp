@@ -50,7 +50,7 @@ int daDsh_c::Draw() {
 }
 
 /* 80467640-80467694 000220 0054+00 1/0 0/0 0/0 .text            Execute__7daDsh_cFPPA3_A4_f */
-int daDsh_c::Execute(f32 (**param_0)[3][4]) {
+int daDsh_c::Execute(Mtx** param_0) {
     callExecute();
     setMtx();
     *param_0 = &mBgMtx;

@@ -1510,7 +1510,7 @@ static int daE_YK_Create(fopAc_ac_c* i_this) {
         } else {
             if (yk->mPathIdx != 0xff) {
                 yk->mpPath = dPath_GetRoomPath(yk->mPathIdx,fopAcM_GetRoomNo(yk));
-                
+
                 if (!yk->mpPath) {
                     return cPhs_ERROR_e;
                 }

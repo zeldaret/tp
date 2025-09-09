@@ -287,7 +287,7 @@ void daSpinLift_c::create() {
 
 /* 80CE40FC-80CE414C 00043C 0050+00 1/0 0/0 0/0 .text            Execute__12daSpinLift_cFPPA3_A4_f
  */
-void daSpinLift_c::Execute(f32 (**param_0)[3][4]) {
+void daSpinLift_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

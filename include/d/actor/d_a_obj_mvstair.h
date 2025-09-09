@@ -51,7 +51,7 @@ public:
 
     /* 80C9D2B8 */ virtual int CreateHeap();
     /* 80C9D148 */ virtual int Create();
-    /* 80C9D594 */ virtual int Execute(f32 (**)[3][4]);
+    /* 80C9D594 */ virtual int Execute(Mtx**);
     /* 80C9D710 */ virtual int Draw();
     /* 80C9D7B4 */ virtual int Delete();
 

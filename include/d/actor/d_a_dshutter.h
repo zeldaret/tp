@@ -45,7 +45,7 @@ public:
     /* 80467B04 */ int executeClose();
 
     /* 8046751C */ virtual int CreateHeap();
-    /* 80467640 */ virtual int Execute(f32 (**)[3][4]);
+    /* 80467640 */ virtual int Execute(Mtx**);
     /* 8046759C */ virtual int Draw();
 
     inline int create();

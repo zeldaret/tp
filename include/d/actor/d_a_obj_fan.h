@@ -21,7 +21,7 @@ public:
     /* 80BE4F08 */ int Create();
     /* 80BE4FD4 */ int CreateHeap();
     /* 80BE50EC */ int create1st();
-    /* 80BE519C */ int Execute(f32 (**)[3][4]);
+    /* 80BE519C */ int Execute(Mtx**);
     /* 80BE538C */ void action();
     /* 80BE583C */ void setCollision();
     /* 80BE5960 */ int Draw();

@@ -207,7 +207,7 @@ COMPILER_STRIP_GATE(0x80C82BA0, &lit_3804);
 #pragma pop
 
 /* 80C82388-80C82690 000388 0308+00 1/0 0/0 0/0 .text Execute__15daObjLv6EGate_cFPPA3_A4_f */
-void daObjLv6EGate_c::Execute(f32 (**param_0)[3][4]) {
+void daObjLv6EGate_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

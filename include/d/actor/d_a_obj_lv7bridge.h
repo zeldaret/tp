@@ -19,7 +19,7 @@ public:
     /* 80C865B8 */ void Create();
     /* 80C867CC */ void CreateHeap();
     /* 80C86A44 */ void create1st();
-    /* 80C86B40 */ void Execute(f32 (**)[3][4]);
+    /* 80C86B40 */ void Execute(Mtx**);
     /* 80C86E68 */ void action();
     /* 80C86F44 */ void mode_action();
     /* 80C87210 */ void mode_end();

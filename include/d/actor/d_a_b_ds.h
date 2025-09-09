@@ -186,6 +186,8 @@ public:
     bool isAppearG() { return mIsAppearG; }
     bool isDead() { return mDead; }
     bool isArg0() { return arg0; }
+    void onDemo() { mIsDemo = true; }
+    void offDemo() { mIsDemo = false; }
 
 private:
     /* 0x05AC */ request_of_phase_process_class mPhase;

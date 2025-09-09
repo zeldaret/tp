@@ -259,7 +259,7 @@ void daLv4EdShutter_c::create() {
 }
 
 /* 80C5E0A4-80C5E0F4 0003E4 0050+00 1/0 0/0 0/0 .text Execute__16daLv4EdShutter_cFPPA3_A4_f */
-void daLv4EdShutter_c::Execute(f32 (**param_0)[3][4]) {
+void daLv4EdShutter_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

@@ -16,7 +16,7 @@ public:
     /* 80C8BDC8 */ void setBaseMtx();
     /* 80C8BE64 */ void CreateHeap();
     /* 80C8BEE4 */ void create();
-    /* 80C8C0DC */ void Execute(f32 (**)[3][4]);
+    /* 80C8C0DC */ void Execute(Mtx**);
     /* 80C8C12C */ void moveLift();
     /* 80C8C264 */ void init_modeWait();
     /* 80C8C270 */ void modeWait();

@@ -32,7 +32,7 @@ public:
 
     /* 80C678D4 */ virtual int CreateHeap();
     /* 80C678B0 */ virtual int Create();
-    /* 80C679E4 */ virtual int Execute(f32 (**)[3][4]);
+    /* 80C679E4 */ virtual int Execute(Mtx**);
     /* 80C67BD4 */ virtual int Draw();
     /* 80C67C78 */ virtual int Delete();
 

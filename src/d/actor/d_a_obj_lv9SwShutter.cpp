@@ -243,7 +243,7 @@ void daLv9SwShutter_c::create() {
 }
 
 /* 80C8D168-80C8D1B8 0003A8 0050+00 1/0 0/0 0/0 .text Execute__16daLv9SwShutter_cFPPA3_A4_f */
-void daLv9SwShutter_c::Execute(f32 (**param_0)[3][4]) {
+void daLv9SwShutter_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

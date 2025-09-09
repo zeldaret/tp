@@ -228,7 +228,7 @@ void daLv6Lblock_c::isSwitch() {
 
 /* 80C7370C-80C7375C 00040C 0050+00 1/0 0/0 0/0 .text            Execute__13daLv6Lblock_cFPPA3_A4_f
  */
-void daLv6Lblock_c::Execute(f32 (**param_0)[3][4]) {
+void daLv6Lblock_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

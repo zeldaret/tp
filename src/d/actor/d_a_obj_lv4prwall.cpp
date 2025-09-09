@@ -206,7 +206,7 @@ COMPILER_STRIP_GATE(0x80C69970, &lit_3964);
 #pragma pop
 
 /* 80C690D8-80C696BC 0004B8 05E4+00 1/0 0/0 0/0 .text Execute__16daObjLv4PRwall_cFPPA3_A4_f */
-void daObjLv4PRwall_c::Execute(f32 (**param_0)[3][4]) {
+void daObjLv4PRwall_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

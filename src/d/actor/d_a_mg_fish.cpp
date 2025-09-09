@@ -3904,7 +3904,11 @@ static int daMg_Fish_Create(fopAc_ac_c* i_this) {
         a_this->mResName = "O_gD_bott";
     }
 
+#if VERSION == VERSION_GCN_JPN
+    lit_1008 = 0;
+#else
     lit_1008 = 1;
+#endif
 
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&a_this->mPhaseReq, a_this->mResName);
     cPhs__Step retval = phase;

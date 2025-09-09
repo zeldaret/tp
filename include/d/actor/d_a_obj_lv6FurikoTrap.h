@@ -16,7 +16,7 @@ public:
     /* 80C72510 */ void setBaseMtx();
     /* 80C72598 */ void CreateHeap();
     /* 80C72604 */ void create();
-    /* 80C729B4 */ void Execute(f32 (**)[3][4]);
+    /* 80C729B4 */ void Execute(Mtx**);
     /* 80C72CA8 */ void move();
     /* 80C72D24 */ void init_modeMove();
     /* 80C72D38 */ void modeMove();

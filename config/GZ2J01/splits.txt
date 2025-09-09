@@ -439,7 +439,7 @@ d/d_demo.cpp:
 	.data       start:0x803A1A70 end:0x803A1D78
 	.bss        start:0x8041E788 end:0x8041E7B8
 	.sdata      start:0x8044A760 end:0x8044A768
-	.sbss       start:0x8044AF40 end:0x8044AF9C
+	.sbss       start:0x8044AF40 end:0x8044AF98
 	.sdata2     start:0x8044BEF0 end:0x8044BF30
 
 d/d_door_param2.cpp:
@@ -471,7 +471,7 @@ d/d_map_path_dmap.cpp:
 	.rodata     start:0x8037C100 end:0x8037C228
 	.data       start:0x803A1EE0 end:0x803A20D8
 	.sdata      start:0x8044A770 end:0x8044A780
-	.sbss       start:0x8044AF9C end:0x8044AFD0
+	.sbss       start:0x8044AF98 end:0x8044AFD0
 	.sdata2     start:0x8044BF68 end:0x8044C000
 
 d/d_event.cpp:
@@ -511,7 +511,7 @@ d/d_particle.cpp:
 	.rodata     start:0x8037C5B0 end:0x8037C620
 	.data       start:0x803A2468 end:0x803A2730
 	.bss        start:0x8041E850 end:0x8041EA10
-	.sbss       start:0x8044AFD0 end:0x8044B014
+	.sbss       start:0x8044AFD0 end:0x8044B010
 	.sdata2     start:0x8044C080 end:0x8044C138
 
 d/d_particle_name.cpp:
@@ -534,7 +534,7 @@ d/d_drawlist.cpp:
 	.data       start:0x803A2900 end:0x803A2FF8
 	.bss        start:0x8041EA10 end:0x8041EA78
 	.sdata      start:0x8044A788 end:0x8044A7A0
-	.sbss       start:0x8044B014 end:0x8044B020
+	.sbss       start:0x8044B010 end:0x8044B020
 	.sdata2     start:0x8044C148 end:0x8044C220
 	.sbss2      start:0x80450C88 end:0x80450C90
 
@@ -765,7 +765,7 @@ d/actor/d_a_npc.cpp:
 	.rodata     start:0x8038C700 end:0x8038CA98
 	.data       start:0x803AD808 end:0x803ADCE0
 	.bss        start:0x8041F848 end:0x8041FAB8
-	.sbss       start:0x8044B118 end:0x8044B144
+	.sbss       start:0x8044B118 end:0x8044B138
 	.sdata2     start:0x8044D520 end:0x8044D600
 
 d/actor/d_a_npc_cd.cpp:
@@ -774,6 +774,7 @@ d/actor/d_a_npc_cd.cpp:
 	.rodata     start:0x8038CA98 end:0x8038D2D0
 	.data       start:0x803ADCE0 end:0x803B0320
 	.bss        start:0x8041FAB8 end:0x80422750
+	.sbss       start:0x8044B138 end:0x8044B140
 	.sdata2     start:0x8044D600 end:0x8044D628
 
 d/actor/d_a_npc_cd2.cpp:
@@ -782,7 +783,7 @@ d/actor/d_a_npc_cd2.cpp:
 	.rodata     start:0x8038D2D0 end:0x8038DE08
 	.data       start:0x803B0320 end:0x803B3F00
 	.bss        start:0x80422750 end:0x80426A38
-	.sbss       start:0x8044B144 end:0x8044B158
+	.sbss       start:0x8044B140 end:0x8044B150
 	.sdata2     start:0x8044D628 end:0x8044D698
 
 d/actor/d_a_obj_item.cpp:
@@ -791,6 +792,7 @@ d/actor/d_a_obj_item.cpp:
 	.rodata     start:0x8038DE08 end:0x8038DE18
 	.data       start:0x803B3F00 end:0x803B41D8
 	.sdata      start:0x8044A7E8 end:0x8044A7F0
+	.sbss       start:0x8044B150 end:0x8044B158
 	.sdata2     start:0x8044D698 end:0x8044D728
 
 d/d_insect.cpp:
@@ -873,7 +875,7 @@ d/d_select_icon.cpp:
 	.ctors      start:0x80375CE4 end:0x80375CE8
 	.data       start:0x803B5918 end:0x803B5928
 	.bss        start:0x80426B50 end:0x80426B60
-	.sbss       start:0x8044B190 end:0x8044B19C
+	.sbss       start:0x8044B190 end:0x8044B198
 	.sdata2     start:0x8044DBA8 end:0x8044DBC0
 
 d/d_shop_camera.cpp:
@@ -892,7 +894,7 @@ d/d_shop_system.cpp:
 	.rodata     start:0x8038EC90 end:0x8038ECA8
 	.data       start:0x803B59F8 end:0x803B5CB0
 	.sdata      start:0x8044A828 end:0x8044A840
-	.sbss       start:0x8044B19C end:0x8044B1A8
+	.sbss       start:0x8044B198 end:0x8044B1A8
 	.sdata2     start:0x8044DC38 end:0x8044DCB8
 
 d/d_gameover.cpp:
@@ -1818,7 +1820,7 @@ JSystem/JAudio2/JASProbe.cpp:
 JSystem/JAudio2/JASReport.cpp:
 	.text       start:0x80293394 end:0x80293490
 	.bss        start:0x8042B7A0 end:0x8042B7B8
-	.sbss       start:0x8044B360 end:0x8044B378
+	.sbss       start:0x8044B360 end:0x8044B370
 
 JSystem/JAudio2/JASCmdStack.cpp:
 	.text       start:0x80293490 end:0x80293658
@@ -1989,7 +1991,7 @@ JSystem/JAudio2/dsptask.cpp:
 	.text       start:0x802A0B20 end:0x802A0E40
 	.data       start:0x803C1A60 end:0x803C3960
 	.bss        start:0x8042C0C0 end:0x8042E1A0
-	.sbss       start:0x8044B440 end:0x8044B44C
+	.sbss       start:0x8044B440 end:0x8044B448
 
 JSystem/JAudio2/osdsp.cpp:
 	.text       start:0x802A0E40 end:0x802A0F60
@@ -1998,7 +2000,7 @@ JSystem/JAudio2/osdsp.cpp:
 JSystem/JAudio2/osdsp_task.cpp:
 	.text       start:0x802A0F60 end:0x802A13EC
 	.bss        start:0x8042E1A0 end:0x8042E1B8
-	.sbss       start:0x8044B44C end:0x8044B474
+	.sbss       start:0x8044B448 end:0x8044B450
 
 JSystem/JAudio2/JAIAudible.cpp:
 	.text       start:0x802A13EC end:0x802A1434
@@ -2141,7 +2143,7 @@ JSystem/JMessage/locale.cpp:
 
 Z2AudioLib/Z2Calc.cpp:
 	.text       start:0x802ABACC end:0x802ABE74
-	.sbss       start:0x8044B474 end:0x8044B478
+	.sbss       start:0x8044B470 end:0x8044B478
 	.sdata2     start:0x8044F940 end:0x8044F958
 
 Z2AudioLib/Z2Param.cpp:

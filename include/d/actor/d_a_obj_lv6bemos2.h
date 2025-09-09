@@ -23,7 +23,7 @@ public:
     /* 80C7E448 */ int Create();
     /* 80C7E764 */ int CreateHeap();
     /* 80C7EB7C */ cPhs__Step create1st();
-    /* 80C7EC6C */ int Execute(f32 (**)[3][4]);
+    /* 80C7EC6C */ int Execute(Mtx**);
     /* 80C7EE50 */ void action();
     /* 80C7F2A4 */ void calcBeam();
     /* 80C7F904 */ int checkFindPlayer();

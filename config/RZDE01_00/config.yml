@@ -4641,13 +4641,13 @@ modules:
   splits: config/RZDE01_00/rels/d_a_warp_bug/splits.txt
 # map: orig/RZDE01_00/fixed_maps/d_a_warp_bug.map
 
-# extract:
-# - symbol: black_tex
-#   binary: assets/black_tex.bin
-#   header: assets/black_tex.h
-# - symbol: msg_data
-#   binary: assets/msg_data.bin
-#   header: assets/msg_data.h
-# - symbol: font_data
-#   binary: assets/font_data.bin
-#   header: assets/font_data.h
+extract:
+- symbol: black_tex
+  binary: assets/black_tex.bin
+  header: assets/black_tex.h
+- symbol: msg_data
+  binary: assets/msg_data.bin
+  header: assets/msg_data.h
+- symbol: font_data
+  binary: assets/font_data.bin
+  header: assets/font_data.h

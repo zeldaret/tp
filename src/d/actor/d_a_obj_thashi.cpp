@@ -676,7 +676,7 @@ void daObjTHASHI_c::Create() {
 
 /* 80D0CEB4-80D0CEE0 000CF4 002C+00 1/0 0/0 0/0 .text            Execute__13daObjTHASHI_cFPPA3_A4_f
  */
-void daObjTHASHI_c::Execute(f32 (**param_0)[3][4]) {
+void daObjTHASHI_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 

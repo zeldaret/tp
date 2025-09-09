@@ -16,7 +16,7 @@ public:
     /* 80D04F8C */ void setBaseMtx();
     /* 80D0503C */ void CreateHeap();
     /* 80D050A8 */ void create();
-    /* 80D05550 */ void Execute(f32 (**)[3][4]);
+    /* 80D05550 */ void Execute(Mtx**);
     /* 80D055A0 */ void fenceProc();
     /* 80D057C4 */ void init_modeWait();
     /* 80D057D0 */ void modeWait();

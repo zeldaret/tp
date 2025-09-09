@@ -59,7 +59,7 @@ namespace daObjLadder {
         /* 8058D9CC */ void mode_fell();
         /* 8058D9D0 */ void set_mtx();
         /* 8058DA64 */ void init_mtx();
-        /* 8058DAA0 */ int Execute(f32 (**)[3][4]);
+        /* 8058DAA0 */ int Execute(Mtx**);
         /* 8058DBB8 */ int Draw();
 
         u8 prm_get_evId() {

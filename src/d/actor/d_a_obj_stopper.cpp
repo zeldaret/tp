@@ -92,7 +92,7 @@ int daObjStopper_c::create() {
 
 /* 80CED6BC-80CED708 00089C 004C+00 1/0 0/0 0/0 .text            Execute__14daObjStopper_cFPPA3_A4_f
  */
-int daObjStopper_c::Execute(f32 (**param_0)[3][4]) {
+int daObjStopper_c::Execute(Mtx** param_0) {
     action();
     *param_0 = &mBgMtx;
     setBaseMtx();

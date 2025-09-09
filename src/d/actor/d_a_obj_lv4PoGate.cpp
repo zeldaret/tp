@@ -78,7 +78,7 @@ int daLv4PoGate_c::create() {
 
 /* 80C5FEDC-80C5FF2C 0003DC 0050+00 1/0 0/0 0/0 .text            Execute__13daLv4PoGate_cFPPA3_A4_f
  */
-int daLv4PoGate_c::Execute(f32 (**param_0)[3][4]) {
+int daLv4PoGate_c::Execute(Mtx** param_0) {
     moveGate();
     *param_0 = &mpModel->getBaseTRMtx();
     setBaseMtx();

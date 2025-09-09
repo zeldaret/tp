@@ -297,7 +297,7 @@ void daObjSZbridge_c::Create() {
 }
 
 /* 80D04974-80D049E4 0006B4 0070+00 1/0 0/0 0/0 .text Execute__15daObjSZbridge_cFPPA3_A4_f */
-void daObjSZbridge_c::Execute(f32 (**param_0)[3][4]) {
+void daObjSZbridge_c::Execute(Mtx** param_0) {
     // NONMATCHING
 }
 
