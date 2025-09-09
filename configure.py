@@ -380,7 +380,7 @@ def MWVersion(cfg_version: str | None) -> str:
         case "GZ2J01":
             return "GC/2.7"
         case "RZDE01_00":
-            return "GC/3.0a5.2t"
+            return "Wii/1.0" # TODO: GC/3.0a5.2 codegen seems better but it has compiler bugs on multiple TUs?
         case "ShieldD":
             return "Wii/1.0"
         case _:
@@ -2042,8 +2042,8 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_lv4Gate"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_lv4HsTarget"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_lv4PoGate"),
-    ActorRel(NonMatching, "d_a_obj_lv4RailWall"),
-    ActorRel(NonMatching, "d_a_obj_lv4SlideWall"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv4RailWall"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv4SlideWall"),
     ActorRel(NonMatching, "d_a_obj_lv4bridge"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_lv4chandelier"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv4digsand"),
@@ -2051,7 +2051,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_lv4gear"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_lv4prelvtr"),
     ActorRel(NonMatching, "d_a_obj_lv4prwall"),
-    ActorRel(NonMatching, "d_a_obj_lv4sand"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_lv4sand"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_lv5FloorBoard"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_lv5IceWall"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_lv5SwIce"),
