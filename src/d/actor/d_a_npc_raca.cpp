@@ -605,20 +605,50 @@ daNpc_Raca_c::~daNpc_Raca_c() {
     // NONMATCHING
 }
 
-/* ############################################################################################## */
 /* 80AB8EC8-80AB8F54 000000 008C+00 6/6 0/0 0/0 .rodata          m__18daNpc_Raca_Param_c */
-SECTION_RODATA u8 const daNpc_Raca_Param_c::m[140] = {
-    0x43, 0x66, 0x00, 0x00, 0xC0, 0x40, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0x43, 0xC8, 0x00, 0x00,
-    0x43, 0x7F, 0x00, 0x00, 0x43, 0x48, 0x00, 0x00, 0x42, 0x0C, 0x00, 0x00, 0x42, 0x20, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0x20, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00,
-    0x41, 0xF0, 0x00, 0x00, 0xC1, 0x20, 0x00, 0x00, 0x42, 0x34, 0x00, 0x00, 0xC2, 0x34, 0x00, 0x00,
-    0x3F, 0x19, 0x99, 0x9A, 0x41, 0x40, 0x00, 0x00, 0x00, 0x03, 0x00, 0x06, 0x00, 0x05, 0x00, 0x06,
-    0x42, 0xDC, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x3C, 0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x40, 0x80, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+daNpc_Raca_HIOParam const daNpc_Raca_Param_c::m = {
+    230.0f,
+    -3.0f,
+    1.0f,
+    400.0f,
+    255.0f,
+    200.0f,
+    35.0f,
+    40.0f,
+    0.0f,
+    0.0f,
+    10.0f,
+    -10.0f,
+    30.0f,
+    -10.0f,
+    45.0f,
+    -45.0f,
+    0.6f,
+    12.0f,
+    3,
+    6,
+    5,
+    6,
+    110.0f,
+    0.0f,
+    0.0f,
+    0.0f,
+    60,
+    8,
+    0,
+    0,
+    0,
+    false,
+    false,
+    4.0f,
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
+    0.0f,
 };
-COMPILER_STRIP_GATE(0x80AB8EC8, &daNpc_Raca_Param_c::m);
 
 /* 80AB8F54-80AB8F58 00008C 0004+00 0/1 0/0 0/0 .rodata          @4036 */
 #pragma push
@@ -836,12 +866,12 @@ void daNpc_Raca_c::srchActors() {
 }
 
 /* 80AB6C14-80AB6D14 001054 0100+00 1/0 0/0 0/0 .text            evtTalk__12daNpc_Raca_cFv */
-void daNpc_Raca_c::evtTalk() {
+BOOL daNpc_Raca_c::evtTalk() {
     // NONMATCHING
 }
 
 /* 80AB6D14-80AB6DDC 001154 00C8+00 1/0 0/0 0/0 .text            evtCutProc__12daNpc_Raca_cFv */
-void daNpc_Raca_c::evtCutProc() {
+BOOL daNpc_Raca_c::evtCutProc() {
     // NONMATCHING
 }
 
@@ -887,8 +917,8 @@ void daNpc_Raca_c::setCollision() {
 }
 
 /* 80AB72B4-80AB72BC 0016F4 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__12daNpc_Raca_cFv */
-bool daNpc_Raca_c::drawDbgInfo() {
-    return false;
+int daNpc_Raca_c::drawDbgInfo() {
+    return 0;
 }
 
 /* 80AB72BC-80AB73B0 0016FC 00F4+00 1/1 0/0 0/0 .text            selectAction__12daNpc_Raca_cFv */
@@ -1234,17 +1264,17 @@ void __sinit_d_a_npc_raca_cpp() {
 REGISTER_CTORS(0x80AB8C64, __sinit_d_a_npc_raca_cpp);
 #pragma pop
 
-/* 80AB8CCC-80AB8DAC 00310C 00E0+00 1/1 0/0 0/0 .text
- * __ct__12daNpc_Raca_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc
- */
-daNpc_Raca_c::daNpc_Raca_c(daNpcT_faceMotionAnmData_c const* param_0,
-                               daNpcT_motionAnmData_c const* param_1,
-                               daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_2,
-                               int param_3,
-                               daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_4,
-                               int param_5, daNpcT_evtData_c const* param_6, char** param_7) {
-    // NONMATCHING
-}
+// /* 80AB8CCC-80AB8DAC 00310C 00E0+00 1/1 0/0 0/0 .text
+//  * __ct__12daNpc_Raca_cFPC26daNpcT_faceMotionAnmData_cPC22daNpcT_motionAnmData_cPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPCQ222daNpcT_MotionSeqMngr_c18sequenceStepData_ciPC16daNpcT_evtData_cPPc
+//  */
+// daNpc_Raca_c::daNpc_Raca_c(daNpcT_faceMotionAnmData_c const* param_0,
+//                                daNpcT_motionAnmData_c const* param_1,
+//                                daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_2,
+//                                int param_3,
+//                                daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_4,
+//                                int param_5, daNpcT_evtData_c const* param_6, char** param_7) {
+//     // NONMATCHING
+// }
 
 /* 80AB8DAC-80AB8DB4 0031EC 0008+00 1/0 0/0 0/0 .text getEyeballMaterialNo__12daNpc_Raca_cFv */
 u16 daNpc_Raca_c::getEyeballMaterialNo() {
@@ -1262,30 +1292,26 @@ s32 daNpc_Raca_c::getNeckJointNo() {
 }
 
 /* 80AB8DC4-80AB8DCC 003204 0008+00 1/0 0/0 0/0 .text getBackboneJointNo__12daNpc_Raca_cFv */
-bool daNpc_Raca_c::getBackboneJointNo() {
-    return true;
+s32 daNpc_Raca_c::getBackboneJointNo() {
+    return 1;
 }
 
-/* 80AB8DCC-80AB8DDC 00320C 0010+00 1/0 0/0 0/0 .text            checkChangeJoint__12daNpc_Raca_cFi
- */
-void daNpc_Raca_c::checkChangeJoint(int param_0) {
+/* 80AB8DCC-80AB8DDC 00320C 0010+00 1/0 0/0 0/0 .text            checkChangeJoint__12daNpc_Raca_cFi */
+BOOL daNpc_Raca_c::checkChangeJoint(int param_0) {
     // NONMATCHING
 }
 
-/* 80AB8DDC-80AB8DEC 00321C 0010+00 1/0 0/0 0/0 .text            checkRemoveJoint__12daNpc_Raca_cFi
- */
-void daNpc_Raca_c::checkRemoveJoint(int param_0) {
+/* 80AB8DDC-80AB8DEC 00321C 0010+00 1/0 0/0 0/0 .text            checkRemoveJoint__12daNpc_Raca_cFi */
+BOOL daNpc_Raca_c::checkRemoveJoint(int param_0) {
     // NONMATCHING
 }
 
-/* 80AB8DEC-80AB8DF4 00322C 0008+00 1/0 0/0 0/0 .text            getFootLJointNo__12daNpc_Raca_cFv
- */
+/* 80AB8DEC-80AB8DF4 00322C 0008+00 1/0 0/0 0/0 .text            getFootLJointNo__12daNpc_Raca_cFv */
 s32 daNpc_Raca_c::getFootLJointNo() {
     return 24;
 }
 
-/* 80AB8DF4-80AB8DFC 003234 0008+00 1/0 0/0 0/0 .text            getFootRJointNo__12daNpc_Raca_cFv
- */
+/* 80AB8DF4-80AB8DFC 003234 0008+00 1/0 0/0 0/0 .text            getFootRJointNo__12daNpc_Raca_cFv */
 s32 daNpc_Raca_c::getFootRJointNo() {
     return 27;
 }
