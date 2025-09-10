@@ -29,20 +29,21 @@ public:
 
 class daNpc_Raca_c : public daNpcT_c {
 public:
+    typedef int (daNpc_Raca_c::*actionFunc)(void*);
     typedef int (daNpc_Raca_c::*cutFunc)(int);
 
     /* 80AB5CAC */ ~daNpc_Raca_c();
-    /* 80AB5DFC */ void create();
-    /* 80AB60B8 */ void CreateHeap();
-    /* 80AB6514 */ void Delete();
-    /* 80AB6548 */ void Execute();
-    /* 80AB6568 */ void Draw();
-    /* 80AB65FC */ void createHeapCallBack(fopAc_ac_c*);
-    /* 80AB661C */ void ctrlJointCallBack(J3DJoint*, int);
-    /* 80AB6674 */ void srchNi(void*, void*);
-    /* 80AB6700 */ void getNiP();
-    /* 80AB67CC */ void getType();
-    /* 80AB67EC */ void isDelete();
+    /* 80AB5DFC */ cPhs__Step create();
+    /* 80AB60B8 */ int CreateHeap();
+    /* 80AB6514 */ int Delete();
+    /* 80AB6548 */ int Execute();
+    /* 80AB6568 */ int Draw();
+    /* 80AB65FC */ static int createHeapCallBack(fopAc_ac_c*);
+    /* 80AB661C */ static int ctrlJointCallBack(J3DJoint*, int);
+    /* 80AB6674 */ static void* srchNi(void*, void*);
+    /* 80AB6700 */ fopAc_ac_c* getNiP();
+    /* 80AB67CC */ u8 getType();
+    /* 80AB67EC */ BOOL isDelete();
     /* 80AB681C */ void reset();
     /* 80AB6984 */ void afterJntAnm(int);
     /* 80AB6A10 */ void setParam();
@@ -55,12 +56,12 @@ public:
     /* 80AB6F40 */ void setAttnPos();
     /* 80AB7180 */ void setCollision();
     /* 80AB72B4 */ int drawDbgInfo();
-    /* 80AB72BC */ void selectAction();
-    /* 80AB73B0 */ void chkAction(int (daNpc_Raca_c::*)(void*));
-    /* 80AB73DC */ void setAction(int (daNpc_Raca_c::*)(void*));
-    /* 80AB7484 */ void wait(void*);
-    /* 80AB7710 */ void walk(void*);
-    /* 80AB7918 */ void talk(void*);
+    /* 80AB72BC */ BOOL selectAction();
+    /* 80AB73B0 */ BOOL chkAction(actionFunc);
+    /* 80AB73DC */ BOOL setAction(actionFunc);
+    /* 80AB7484 */ int wait(void*);
+    /* 80AB7710 */ int walk(void*);
+    /* 80AB7918 */ int talk(void*);
     /* 80AB8CCC */ daNpc_Raca_c(
             daNpcT_faceMotionAnmData_c const* i_faceMotionAnmData,
             daNpcT_motionAnmData_c const* i_motionAnmData,
@@ -82,8 +83,18 @@ public:
     /* 80AB8DEC */ s32 getFootLJointNo();
     /* 80AB8DF4 */ s32 getFootRJointNo();
 
-    static void* mCutNameList;
-    static u8 mCutList[12];
+    int getFlowNodeNo() {
+        u16 nodeNo = home.angle.x;
+        if (nodeNo == 0xffff) {
+            return -1;
+        }
+        return nodeNo;
+    }
+    u8 getPathID() { return (fopAcM_GetParam(this) & 0xFF00) >> 8; }
+    u8 getBitSW() { return (fopAcM_GetParam(this) & 0xFF0000) >> 16; }
+
+    static char* mCutNameList;
+    static cutFunc mCutList[1];
 
 private:
     /* 0xE40 */ daNpc_Raca_HIO_c* mHIO;
@@ -91,9 +102,12 @@ private:
     /* 0xF80 */ u8 mType;
     /* 0xF81 */ u8 field_0xf81[0xf84 - 0xf81];
     /* 0xF84 */ daNpcT_ActorMngr_c mActorMngr[1];
-    /* 0xF8C */ u8 field_0xf8c[0xFa4 - 0xf8c];
+    /* 0xF8C */ actionFunc mPrevAction;
+    /* 0xF98 */ actionFunc mAction;
     /* 0xFA4 */ daNpcT_Path_c mPath;
-    /* 0xFCC */ u8 field_0xfcc[0xfd4 - 0xfcc];
+    /* 0xFCC */ u8 field_0xfcc;
+    /* 0xFCD */ u8 field_0xfcd[0xfd0 - 0xfcd];
+    /* 0xFD0 */ u8 field_0xfd0;
 };
 
 STATIC_ASSERT(sizeof(daNpc_Raca_c) == 0xfd4);
