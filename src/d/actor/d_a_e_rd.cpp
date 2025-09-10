@@ -755,10 +755,10 @@ static fpc_ProcID search_wb(e_rd_class* i_this, s16 param_2) {
 
     if (target_info_count != 0) {
         cXyz sp54, sp60;
-        e_wb_class* bullbo;
+        fopAc_ac_c* bullbo;
         int i = 0;
         while (i < target_info_count) {
-            bullbo = (e_wb_class*)target_info[i];
+            bullbo = (fopAc_ac_c*)target_info[i];
             sp54.x = bullbo->current.pos.x - a_this->eyePos.x;
             sp54.y = (bullbo->current.pos.y + 50.0f) - a_this->eyePos.y;
             sp54.z = bullbo->current.pos.z - a_this->eyePos.z;
@@ -1807,7 +1807,8 @@ static void e_rd_wb_search(e_rd_class* i_this) {
     cXyz sp54, sp60;
     f32 fVar1 = 0.0f;
     s8 bVar1 = 0;
-    e_wb_class* bullbo = (e_wb_class*)fopAcM_SearchByID(i_this->mWbActorID);
+    fopAc_ac_c* bullbo_actor = fopAcM_SearchByID(i_this->mWbActorID);
+    e_wb_class* bullbo = (e_wb_class*)bullbo_actor;
     if (bullbo == NULL) {
         bVar1 = 1;
     } else {
@@ -1849,7 +1850,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
                 i_this->field_0x9c8 = 11;
                 if (i_this->field_0x990[0] == 0) {
                     i_this->mMode = 2;
-                    if (bullbo->speedF > 5.0f) {
+                    if (bullbo_actor->speedF > 5.0f) {
                         anm_init(i_this, BCK_RD_SIGN, 3.0f, 2, 1.0f);
                         i_this->mSound.startCreatureVoice(Z2SE_EN_RD_V_CALLING, -1);
                         i_this->field_0x990[0] = cM_rndF(20.0f) + 30.0f;
@@ -1860,13 +1861,13 @@ static void e_rd_wb_search(e_rd_class* i_this) {
                 break;
 
             case 2:
-                sp54 = bullbo->current.pos - a_this->current.pos;
+                sp54 = bullbo_actor->current.pos - a_this->current.pos;
                 cLib_addCalcAngleS2(&a_this->current.angle.y, cM_atan2s(sp54.x, sp54.z), 4, 0x800);
                 i_this->field_0x9c8 = 11;
 
-                if (i_this->field_0x990[0] == 0 && bullbo->speedF < 1.0f) {
+                if (i_this->field_0x990[0] == 0 && bullbo_actor->speedF < 1.0f) {
                     cXyz sp6c, sp78;
-                    cMtx_YrotS(*calc_mtx, bullbo->shape_angle.y);
+                    cMtx_YrotS(*calc_mtx, bullbo_actor->shape_angle.y);
                     sp54.x = 100.0f;
                     sp54.y = 0.0f;
                     if (i_this->field_0x9be == 1) {
@@ -1876,11 +1877,11 @@ static void e_rd_wb_search(e_rd_class* i_this) {
                     }
                     MtxPosition(&sp54, &sp60);
 
-                    sp6c = (bullbo->current.pos + sp60) - a_this->current.pos;
+                    sp6c = (bullbo_actor->current.pos + sp60) - a_this->current.pos;
                     sp54.x = -100.0f;
                     MtxPosition(&sp54, &sp60);
 
-                    sp78 = (bullbo->current.pos + sp60) - a_this->current.pos;
+                    sp78 = (bullbo_actor->current.pos + sp60) - a_this->current.pos;
                     if (sp6c.abs() < sp78.abs()) {
                         i_this->field_0x9bd = 0;
                         sp60 = sp6c + a_this->current.pos;
@@ -1898,7 +1899,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
 
             case 3:
                 fVar1 = l_HIO.dash_speed * 1.5f;
-                cMtx_YrotS(*calc_mtx, bullbo->shape_angle.y);
+                cMtx_YrotS(*calc_mtx, bullbo_actor->shape_angle.y);
 
                 if (i_this->field_0x9bd == 0) {
                     sp54.x = 100.0f;
@@ -1913,7 +1914,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
                 }
                 MtxPosition(&sp54, &sp60);
 
-                sp60 += bullbo->current.pos;
+                sp60 += bullbo_actor->current.pos;
                 sp54 = sp60 - a_this->current.pos;
                 i_this->field_0x5cc = cM_atan2s(sp54.x, sp54.z);
                 cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->field_0x5cc, 2, 0x400);
@@ -1932,7 +1933,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
                 break;
 
             case 4:
-                cMtx_YrotS(*calc_mtx, bullbo->shape_angle.y);
+                cMtx_YrotS(*calc_mtx, bullbo_actor->shape_angle.y);
                 sp54.x = 0.0f;
                 sp54.y = 0.0f;
                 if (i_this->field_0x9be == 1) {
@@ -1942,7 +1943,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
                 }
                 MtxPosition(&sp54, &i_this->field_0x5c0);
 
-                i_this->field_0x5c0 += bullbo->current.pos;
+                i_this->field_0x5c0 += bullbo_actor->current.pos;
                 sp54 = i_this->field_0x5c0 - a_this->current.pos;
                 cLib_addCalcAngleS2(&a_this->current.angle.y, (s16)cM_atan2s(sp54.x, sp54.z), 2, 0x1000);
 
@@ -1983,7 +1984,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
         }
 
         cLib_addCalc2(&a_this->speedF, fVar1, 1.0f, 3.0f);
-        i_this->field_0x9d4 = bullbo->eyePos;
+        i_this->field_0x9d4 = bullbo_actor->eyePos;
     }
 }
 
@@ -2307,11 +2308,13 @@ static void e_rd_wb_run(e_rd_class* i_this) {
 
 /* 8050A3EC-8050A578 005A6C 018C+00 1/1 0/0 0/0 .text            s_wbrun_sub__FPvPv */
 static void* s_wbrun_sub(void* i_actor, void* i_data) {
-    e_wb_class* bullbo = (e_wb_class*)i_actor;
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_WB && bullbo->field_0x79d == 0) {
-        cXyz sp24(bullbo->current.pos - ((fopAc_ac_c*)i_data)->current.pos);
-        if (sp24.abs() > KREG_F(11) + 7000.0f) {
-            return i_actor;
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_WB) {
+        e_wb_class* bullbo = (e_wb_class*)i_actor;
+        if (bullbo->field_0x79d == 0) {
+            cXyz sp24(bullbo->mEnemy.current.pos - ((fopAc_ac_c*)i_data)->current.pos);
+            if (sp24.abs() > KREG_F(11) + 7000.0f) {
+                return i_actor;
+            }
         }
     }
 
@@ -3977,7 +3980,7 @@ static void big_damage(e_rd_class* i_this) {
     a_this->speed.y = l_HIO.jump_y + 2.0f;
 
     if (i_this->field_0x9bc == 2) {
-        e_wb_class* bullbo = (e_wb_class*)fopAcM_SearchByID(i_this->mWbActorID);
+        fopAc_ac_c* bullbo = fopAcM_SearchByID(i_this->mWbActorID);
         if (bullbo != NULL && bullbo->speedF >= 20.0f) {
             i_this->field_0x9ec = bullbo->speedF;
             if (i_this->field_0x9ec > 40.0f) {
@@ -4083,11 +4086,11 @@ static void part_break(e_rd_class* i_this) {
 static void damage_check(e_rd_class* i_this) {
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
-    e_wb_class* bullbo = (e_wb_class*)fopAcM_SearchByID(i_this->mWbActorID);
-    e_wb_class* bullbo_p = bullbo;
+    fopAc_ac_c* bullbo = fopAcM_SearchByID(i_this->mWbActorID);
+    e_wb_class* bullbo_p = (e_wb_class*)bullbo;
     int iVar1;
 
-    if (i_this->field_0x9bc == 2 && bullbo != NULL && (bullbo->field_0x6be & 0xC0) != 0) {
+    if (i_this->field_0x9bc == 2 && bullbo != NULL && (bullbo_p->field_0x6be & 0xC0) != 0) {
         if (i_this->mAction == ACTION_IKKI2_END) {
             i_this->mMode = 10;
             return;
@@ -4097,7 +4100,7 @@ static void damage_check(e_rd_class* i_this) {
         i_this->mMode = 0;
         i_this->field_0x998 = 1000;
 
-        if ((bullbo->field_0x6be & 0x80) != 0) {
+        if ((bullbo_p->field_0x6be & 0x80) != 0) {
             i_this->field_0xa0e = a_this->shape_angle.y + 0x8000 + (s16)cM_rndFX(3000.0f);
             i_this->field_0x9f6 = (s16)cM_rndFX(1000.0f);
         } else {
@@ -4129,20 +4132,20 @@ static void damage_check(e_rd_class* i_this) {
                         if (dComIfGp_getHorseActor()->speedF > 20.0f || sVar1 > 0x7800 || sVar1 < -0x7800) {
                             cc_at_check(a_this, &i_this->mAtInfo);
                             dScnPly_c::setPauseTimer(0);
-                            bullbo->field_0x79e++;
-                            if (bullbo->field_0x79e >= 3) {
+                            bullbo_p->field_0x79e++;
+                            if (bullbo_p->field_0x79e >= 3) {
                                 mDoAud_bgmStop(30);
                                 i_this->mAction = ACTION_IKKI2_END;
                                 i_this->mMode = 0;
                                 i_this->mSound.startCreatureVoice(Z2SE_EN_RDB_V_DAMAGE_L, -1);
                             } else {
-                                bullbo->field_0x169e = 25;
+                                bullbo_p->field_0x169e = 25;
                                 anm_init(i_this, e_rdb_class::BCK_RB_RDAMAGEB, 2.0f, 0, 1.0f);
                                 i_this->mSound.startCreatureVoice(Z2SE_EN_RDB_V_DAMAGE, -1);
                             }
 
                             uVar1 = 3;
-                            bullbo->field_0x69e = 100;
+                            bullbo_p->field_0x69e = 100;
                             dComIfGs_onSaveDunSwitch(7);
                         } else {
                             uVar1 = 2;
@@ -4150,7 +4153,7 @@ static void damage_check(e_rd_class* i_this) {
                         }
 
                         cXyz sp34, sp40;
-                        cMtx_YrotS(*calc_mtx, bullbo_p->shape_angle.y);
+                        cMtx_YrotS(*calc_mtx, bullbo->shape_angle.y);
                         sp34.set(0.0f, nREG_F(9) + 150.0f, nREG_F(10) + 200.0f);
                         MtxPosition(&sp34, &sp40);
 
@@ -4164,11 +4167,11 @@ static void damage_check(e_rd_class* i_this) {
                         }
 
                         anm_init(i_this, e_rdb_class::BCK_RB_RGUARD_F, 2.0f, 0, 1.0f);
-                        bullbo->field_0x169e = 25;
+                        bullbo_p->field_0x169e = 25;
                         dScnPly_c::setPauseTimer(0);
 
                         cXyz sp58, sp64;
-                        cMtx_YrotS(*calc_mtx, bullbo_p->shape_angle.y);
+                        cMtx_YrotS(*calc_mtx, bullbo->shape_angle.y);
 
                         if ((s16)(a_this->shape_angle.y - i_this->mPlayerAngleY) < 0) {
                             sp58.set(100.0f, nREG_F(9) + 150.0f, nREG_F(10) + 400.0f);
@@ -4261,17 +4264,17 @@ static void damage_check(e_rd_class* i_this) {
                             if (i_this->mBossMode != 0 && bullbo != NULL) {
                                 i_this->field_0x998 = 20;
                                 if (i_this->mBossMode == 2) {
-                                    bullbo->field_0x79e++;
-                                    if (bullbo->field_0x79e == 1) {
+                                    bullbo_p->field_0x79e++;
+                                    if (bullbo_p->field_0x79e == 1) {
                                         a_this->health = 0;
                                         /* dSv_event_flag_c::M_055 - Main Event - Did damage at least once during joust/one-on-one battle */
                                         dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[0x58]);
                                         part_break(i_this);
-                                        bullbo->field_0x169e = 20;
+                                        bullbo_p->field_0x169e = 20;
                                         dScnPly_c::setPauseTimer(0);
                                     }
 
-                                    if (l_HIO.one_hit_kill != 0 || bullbo->field_0x79e >= 2) {
+                                    if (l_HIO.one_hit_kill != 0 || bullbo_p->field_0x79e >= 2) {
                                         mDoAud_bgmStop(30);
                                         i_this->mAction = ACTION_IKKI_END;
                                         i_this->mMode = 0;
@@ -4296,30 +4299,30 @@ static void damage_check(e_rd_class* i_this) {
                                     }
                                 }
 
-                                bullbo->field_0x79e++;
-                                bullbo->field_0x79f++;
+                                bullbo_p->field_0x79e++;
+                                bullbo_p->field_0x79f++;
                                 part_break(i_this);
-                                if (bullbo->field_0x79e == 1 || bullbo->field_0x79e == 2 || bullbo->field_0x79e == 3 ||
-                                    bullbo->field_0x79e == 4 || bullbo->field_0x79e == 6) {
+                                if (bullbo_p->field_0x79e == 1 || bullbo_p->field_0x79e == 2 || bullbo_p->field_0x79e == 3 ||
+                                    bullbo_p->field_0x79e == 4 || bullbo_p->field_0x79e == 6) {
                                     part_break(i_this);
                                 }
 
-                                s8 sVar2 = 8 - bullbo->field_0x79e;
+                                s8 sVar2 = 8 - bullbo_p->field_0x79e;
                                 if (sVar2 > 8) {
                                     sVar2 = 8;
                                 }
                                 dComIfGs_BossLife_public_Set(sVar2);
 
-                                if (bullbo->field_0x79e == 5) {
+                                if (bullbo_p->field_0x79e == 5) {
                                     Z2GetAudioMgr()->changeSubBgmStatus(2);
                                 }
 
-                                if (bullbo->field_0x79e >= 8) {
+                                if (bullbo_p->field_0x79e >= 8) {
                                     i_this->mAction = ACTION_KIBA_END;
                                     i_this->mMode = 0;
                                     mDoAud_seStart(Z2SE_EN_RDB_V_FAINT, 0, 0, 0);
-                                    bullbo->mActionID = 31;
-                                    bullbo->mActionMode = 0;
+                                    bullbo_p->mActionID = 31;
+                                    bullbo_p->mActionMode = 0;
                                     mDoAud_bgmStop(30);
                                     return;
                                 }
@@ -5173,17 +5176,18 @@ static void action(e_rd_class* i_this) {
             cLib_addCalc0(&i_this->field_0x9f0, 1.0f, 7.0f);
         }
     } else {
-        a_this->attention_info.distances[2] = 34;
-        e_wb_class* bullbo = (e_wb_class*)fopAcM_SearchByID(i_this->mWbActorID);
+        a_this->attention_info.distances[fopAc_attn_BATTLE_e] = 34;
+        fopAc_ac_c* bullboActor = fopAcM_SearchByID(i_this->mWbActorID);
+        e_wb_class* bullbo = (e_wb_class*)bullboActor;
         if (bullbo == NULL) {
             i_this->mAction = ACTION_NORMAL;
             i_this->mMode = 0;
             return;
         }
 
-        a_this->speedF = bullbo->speedF;
+        a_this->speedF = bullboActor->speedF;
         if (daPy_getPlayerActorClass()->checkHorseRide() && dComIfGp_getHorseActor()->speedF >= 30.0f) {
-            a_this->speed = bullbo->speed;
+            a_this->speed = bullboActor->speed;
             a_this->speed.y = 0.0f;
         } else {
             a_this->speed.set(0.0f, 0.0f, 0.0f);
@@ -5204,7 +5208,7 @@ static void action(e_rd_class* i_this) {
 
         if (i_this->field_0x9bc == 2) {
             a_this->current.pos = i_this->field_0x9b0;
-            a_this->current.angle = bullbo->shape_angle;
+            a_this->current.angle = bullboActor->shape_angle;
             a_this->shape_angle = a_this->current.angle;
 
             sp25c.x = 10.0f;
@@ -5231,7 +5235,7 @@ static void action(e_rd_class* i_this) {
                 i_this->field_0x9bc = 2;
             }
 
-            cLib_addCalcAngleS2(&a_this->current.angle.y, bullbo->shape_angle.y, 4, 0x800);
+            cLib_addCalcAngleS2(&a_this->current.angle.y, bullboActor->shape_angle.y, 4, 0x800);
         }
 
         i_this->field_0x9c0 += i_this->field_0x9c4;
