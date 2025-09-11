@@ -330,11 +330,10 @@ void daAlink_c::statusWindowExecute(const cXyz* i_pos, s16 i_angle) {
     }
 }
 
-/* 804531E8-804531F0 0017E8 0008+00 1/1 0/0 0/0 .sdata2          waterColor$53845 */
-static const GXColorS10 waterColor = {0, 0, 0, 0};
-
 /* 80140984-80140AC8 13B2C4 0144+00 0/0 1/1 0/0 .text            statusWindowDraw__9daAlink_cFv */
 void daAlink_c::statusWindowDraw() {
+    static const GXColorS10 waterColor = {0, 0, 0, 0};
+
     if (mClothesChangeWaitTimer == 0) {
         g_env_light.settingTevStruct(12, &current.pos, &tevStr);
         initTevCustomColor();

@@ -177,7 +177,6 @@ f32 daAlink_c::damageMagnification(int i_checkZoraMag, int param_1) {
 }
 
 /* 800D72BC-800D7478 0D1BFC 01BC+00 6/6 1/1 0/0 .text            setDamagePoint__9daAlink_cFiiii */
-// NONMATCHING - regalloc
 int daAlink_c::setDamagePoint(int i_dmgAmount, int i_checkZoraMag, int i_setDmgTimer, int param_3) {
     if (i_dmgAmount <= 0) {
         dComIfGp_setItemLifeCount(-i_dmgAmount, 0);
@@ -185,9 +184,9 @@ int daAlink_c::setDamagePoint(int i_dmgAmount, int i_checkZoraMag, int i_setDmgT
     }
 
     f32 magnified_dmgF = (f32)i_dmgAmount * damageMagnification(i_checkZoraMag, param_3);
-    int magnified_dmg = magnified_dmgF;
+    i_dmgAmount = magnified_dmgF;
     if ((int)(magnified_dmgF * 10.0f) % 10 != 0) {
-        magnified_dmg++;
+        i_dmgAmount++;
     }
 
     if (checkWolf()) {
@@ -195,9 +194,9 @@ int daAlink_c::setDamagePoint(int i_dmgAmount, int i_checkZoraMag, int i_setDmgT
     }
 
     if (checkMagicArmorNoDamage()) {
-        dComIfGp_setItemRupeeCount(-magnified_dmg * 10);
+        dComIfGp_setItemRupeeCount(-i_dmgAmount * 10);
     } else {
-        dComIfGp_setItemLifeCount(-magnified_dmg, 0);
+        dComIfGp_setItemLifeCount(-i_dmgAmount, 0);
     }
 
     onResetFlg1(RFLG1_DAMAGE_IMPACT);

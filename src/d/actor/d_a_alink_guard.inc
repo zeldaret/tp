@@ -280,7 +280,7 @@ int daAlink_c::procGuardSlipInit(int param_0, dCcD_GObjInf* param_1) {
         mProcVar2.field_0x300c = 0;
         mProcVar3.field_0x300e = 0;
     } else {
-        const daAlinkHIO_guard_c1* var_r27 = &daAlinkHIO_guard_c0::m;
+        const daAlinkHIO_anm_c* var_r27 = &daAlinkHIO_guard_c0::m.mGuardHitAnm;
         daAlink_ANM var_r28;
         if (field_0x2f98 == 2) {
             var_r28 = ANM_GUARD_LEFT;
@@ -288,7 +288,7 @@ int daAlink_c::procGuardSlipInit(int param_0, dCcD_GObjInf* param_1) {
             var_r28 = ANM_GUARD_RIGHT;
         }
 
-        setSingleAnimeParam(var_r28, &var_r27->mGuardHitAnm);
+        setSingleAnimeParam(var_r28, var_r27);
         setUpperGuardAnime(-1.0f);
 
         mProcVar2.field_0x300c = (current.angle.y + 0x8000) - shape_angle.y;

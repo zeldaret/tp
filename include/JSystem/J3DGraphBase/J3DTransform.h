@@ -33,8 +33,8 @@ struct J3DTransformInfo {
         asm {
             psq_l var_f31, 0x0(var_r31), 0, 0
             psq_st var_f31, 0x0(var_r30), 0, 0
-            lfs var_f0, 0x8(var_r31)
-            stfs var_f0, 0x8(var_r30)
+            lfs var_f31, 0x8(var_r31)
+            stfs var_f31, 0x8(var_r30)
             lwz var_r0, 0xc(var_r31)
             stw var_r0, 0xc(var_r30)
             lha var_r0, 0x10(var_r31)

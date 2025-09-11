@@ -4466,12 +4466,11 @@ BOOL daAlink_c::checkHorseStart(u32 pLastMode, int pStartMode) {
 }
 
 /* 800A551C-800A5CC8 09FE5C 07AC+00 1/1 0/0 0/0 .text            setStartProcInit__9daAlink_cFv */
-// small regalloc, equivalent
 int daAlink_c::setStartProcInit() {
     BOOL sp10 = 0;
     int start_mode = getStartMode();
     u32 last_mode = getLastSceneMode();
-    daHorse_c* horsep = dComIfGp_getHorseActor();
+    daHorse_c* horsep = (daHorse_c*)dComIfGp_getHorseActor();
     BOOL horse_start = checkHorseStart(last_mode, start_mode);
 
     setDamagePoint(getLastSceneDamage(), last_mode == 4, 0, 1);
@@ -6616,15 +6615,14 @@ void daAlink_c::setFrameCtrl(daPy_frameCtrl_c* i_ctrl, u8 i_attr, s16 i_start, s
     i_ctrl->setFrameCtrl(i_attr, i_start, i_end, i_rate, i_frame);
 }
 
-/* 80453278-80453280 001878 0008+00 1/1 0/0 0/0 .sdata2          kandelaarAnm$62207 */
-static const daAlink_BckData kandelaarAnm[2] = {
-    {0x026A, 0x0268},  // waits, waitk
-    {0x0266, 0x0264},  // waiths, waithk
-};
-
 /* 800AC450-800AC558 0A6D90 0108+00 23/23 0/0 0/0 .text
  * getMainBckData__9daAlink_cCFQ29daAlink_c11daAlink_ANM        */
 const daAlink_BckData* daAlink_c::getMainBckData(daAlink_c::daAlink_ANM i_anmID) const {
+    static const daAlink_BckData kandelaarAnm[2] = {
+        {0x026A, 0x0268},  // waits, waitk
+        {0x0266, 0x0264},  // waiths, waithk
+    };
+
     if (mEquipItem == fpcNm_ITEM_KANTERA) {
         if (i_anmID == ANM_WAIT) {
             return &kandelaarAnm[0];
@@ -11178,11 +11176,10 @@ void daAlink_c::orderPeep() {
     }
 }
 
-/* 804532B0-804532B4 0018B0 0004+00 1/1 0/0 0/0 .sdata2          itemTalkType$67468 */
-static const u16 itemTalkType[2] = {6, 7};
-
 /* 800B7BF8-800B7D4C 0B2538 0154+00 13/13 0/0 0/0 .text            orderTalk__9daAlink_cFi */
 int daAlink_c::orderTalk(int i_checkZTalk) {
+    static const u16 itemTalkType[2] = {6, 7};
+
     if (notTalk()) {
         return 0;
     }
@@ -18712,7 +18709,6 @@ bool daAlink_c::checkItemDraw() {
 
 /* 800CB694-800CBA38 0C5FD4 03A4+00 0/0 0/0 1/1 .text            initShadowScaleLight__9daAlink_cFv
  */
-// NONMATCHING - float stuff
 int daAlink_c::initShadowScaleLight() {
     dKy_shadow_mode_set(4);
 
@@ -18770,8 +18766,10 @@ int daAlink_c::initShadowScaleLight() {
         field_0x375c.x = current.pos.x - (var_f31 * temp_f29);
         field_0x375c.z = current.pos.z - (var_f31 * temp_f28);
     } else {
-        field_0x375c.x = current.pos.x - (-30.0f * temp_f29) - (65.0f * temp_f28);
-        field_0x375c.z = current.pos.z - (-30.0f * temp_f28) + (65.0f * temp_f29);
+        field_0x375c.x = current.pos.x - (temp_f29 * -30.0f) - (temp_f28 * 65.0f);
+        // likely fakematch - debug indicates there probably isn't a temp
+        f32 temp = current.pos.z - (temp_f28 * -30.0f);
+        field_0x375c.z = temp + (temp_f29 * 65.0f);
     }
 
     if (checkReinRide()) {

@@ -29,10 +29,13 @@ public:
     void onOutFlg() { mOutFlg = true; }
     void setFrontJoint(int i_jointNo) { mFrontJoint = i_jointNo; }
     void setBackJoint(int i_jointNo) { mBackJoint = i_jointNo; }
-    
+
     f32 getStartRate(const cXyz* param_0) {
-        return field_0x714 ? field_0x724 * (param_0->x - getRopeStartPos()->x) :
-                             field_0x724 * (param_0->z - getRopeStartPos()->z);
+        if (field_0x714) {
+            return field_0x724 * (param_0->x - getRopeStartPos()->x);
+        } else {
+             return field_0x724 * (param_0->z - getRopeStartPos()->z);
+         }
     }
 
     void rideKeep() {
