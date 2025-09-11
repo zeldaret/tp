@@ -168,7 +168,7 @@ cPhs__Step daNpc_ZelRo_c::create() {
         }
 
         OS_REPORT("\t(%s:%d) flowNo:%d, PathID:%02x, BitSW:%02x<%08x> ", fopAcM_getProcNameString(this), mType, mFlowNodeNo,
-                  (getPathID() >> 32) & 0xFF, getBitSW() & 0xFF, fopAcM_GetParam(this));
+                  (getPath() >> 32) & 0xFF, getBitSW() & 0xFF, fopAcM_GetParam(this));
         
         if (isDelete()) {
             OS_REPORT("===>isDelete:TRUE\n");
