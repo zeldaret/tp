@@ -25,7 +25,8 @@ enum saru_RES_File_ID {
 };
 
 enum RES_Name {
-    /* 0x1 */ NPC_KS = 0x1,
+    /* 0x0 */ NONE,
+    /* 0x1 */ NPC_KS,
     /* 0x2 */ SARU_TW,
     /* 0x3 */ SARU,
 };
@@ -246,7 +247,6 @@ daNpc_Saru_c::~daNpc_Saru_c() {
     deleteRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
 }
 
-/* ############################################################################################## */
 /* 80AC44F8-80AC4588 000000 0090+00 9/9 0/0 0/0 .rodata          m__18daNpc_Saru_Param_c */
 daNpc_Saru_HIOParam const daNpc_Saru_Param_c::m = {
     140.0f,
@@ -355,13 +355,12 @@ int daNpc_Saru_c::create() {
 
 /* 80AC082C-80AC0A54 0004EC 0228+00 1/1 0/0 0/0 .text            CreateHeap__12daNpc_Saru_cFv */
 int daNpc_Saru_c::CreateHeap() {
-    // NONMATCHING
     static int const bmdTypeList[2] = {
         2, 3,
     };
 
-    u32 uVar1 = mTwilight == true;
-    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[uVar1][1]], l_bmdData[uVar1][0]);
+    int bmdIdx = mTwilight == true ? TRUE : FALSE;
+    J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_resNameList[l_bmdData[bmdIdx][1]], l_bmdData[bmdIdx][0]));
     if (modelData == NULL) {
         return 0;
     }
@@ -486,7 +485,6 @@ int daNpc_Saru_c::isDelete() {
 
 /* 80AC0CE8-80AC0EA4 0009A8 01BC+00 1/1 0/0 0/0 .text            reset__12daNpc_Saru_cFv */
 void daNpc_Saru_c::reset() {
-    // NONMATCHING
     csXyz acStack_20;
     int iVar1 = (u8*)&field_0xfdc - (u8*)&field_0xfbc;
     initialize();
@@ -499,7 +497,7 @@ void daNpc_Saru_c::reset() {
         mPath.setPathInfo(getPathID(), fopAcM_GetRoomNo(this), 0);
     }
 
-    memset(&field_0xfbc, 0, 32);
+    memset(&field_0xfbc, 0, iVar1);
 
     acStack_20.setall(0);
     acStack_20.y = home.angle.y;
@@ -773,7 +771,7 @@ void daNpc_Saru_c::drawOtherMdl() {
 /* 80AC1B30-80AC1B78 0017F0 0048+00 1/1 0/0 0/0 .text            selectAction__12daNpc_Saru_cFv */
 int daNpc_Saru_c::selectAction() {
     field_0xfbc = NULL;
-    field_0xfbc = &daNpc_Saru_c::talk;
+    field_0xfbc = &daNpc_Saru_c::wait;
     return 1;
 }
 
@@ -1059,9 +1057,9 @@ int daNpc_Saru_c::cutYmLook(int param_1) {
 
 /* 80AC28A4-80AC2FD8 002564 0734+00 1/0 0/0 0/0 .text            wait__12daNpc_Saru_cFPv */
 int daNpc_Saru_c::wait(void* param_1) {
-    // NONMATCHING
     obj_so_class* cage_p;
     switch (mMode) {
+        case 0:
         case 1:
             if (mStagger.checkStagger() == 0) {
                 switch (mType) {
@@ -1166,7 +1164,7 @@ int daNpc_Saru_c::wait(void* param_1) {
                             }
                         }
 
-                        if (mFindCount != 0 && iVar1 == 0) {
+                        if (mFindCount && iVar1 == 0) {
                             mEvtNo = EVENT_YM_LOOK;
                             field_0xfd8 = 1;
                         }
@@ -1186,7 +1184,6 @@ int daNpc_Saru_c::wait(void* param_1) {
 
 /* 80AC2FD8-80AC31B4 002C98 01DC+00 3/0 0/0 0/0 .text            talk__12daNpc_Saru_cFPv */
 int daNpc_Saru_c::talk(void* param_1) {
-    // NONMATCHING
     switch (mMode) {
         case 0:
         case 1:
@@ -1213,6 +1210,10 @@ int daNpc_Saru_c::talk(void* param_1) {
                     step(fopAcM_searchPlayerAngleY(this), -1, -1, 15, 0);
                 }
             }
+            break;
+
+        case 3:
+            break;
     }
 
     return 0;
