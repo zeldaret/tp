@@ -2634,17 +2634,16 @@ void daAlink_c::setRoofHangHandOnSE(cBgS_PolyInfo* unused) {
     }
 }
 
-/* 80452FA8-80452FB0 0015A8 0008+00 1/1 0/0 0/0 .sdata2          offsetAngle$25945 */
-static const s16 offsetAngle[] = {
-    0x0000,
-    0x8000,
-    0x4000,
-    0xC000,
-};
-
 /* 80100668-80100770 0FAFA8 0108+00 3/3 0/0 0/0 .text            checkRoofHangMovePos__9daAlink_cFv
  */
 int daAlink_c::checkRoofHangMovePos() {
+    static const s16 offsetAngle[] = {
+        0x0000,
+        0x8000,
+        0x4000,
+        0xC000,
+    };
+
     if (field_0x2f98 >= 4) {
         field_0x2f98 = 0;
     }

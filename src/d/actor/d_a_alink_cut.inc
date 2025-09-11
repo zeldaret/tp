@@ -1696,9 +1696,8 @@ int daAlink_c::procCutTurnInit(int param_0, int param_1) {
 
     setSingleAnime(anmID, anm_data->mSpeed, var_f31, anm_data->mEndFrame, morf);
 
-    int var_r29_3;
     if (checkCutLargeTurnState()) {
-        var_r29_3 = 4;
+        param_1 = 4;
         field_0x32cc = Z2SE_AL_KAITEN_L_SLASH;
         setSwordVoiceSe(Z2SE_AL_V_KAITENGIRI_L);
         field_0x3478 = cutData->mLargeAttackRadius;
@@ -1710,7 +1709,7 @@ int daAlink_c::procCutTurnInit(int param_0, int param_1) {
             setCutType(CUT_TYPE_LARGE_TURN_LEFT);
         }
     } else {
-        var_r29_3 = 3;
+        param_1 = 3;
         field_0x32cc = Z2SE_AL_KAITENGIRI;
         setSwordVoiceSe(Z2SE_AL_V_KAITEN);
 
@@ -1738,7 +1737,7 @@ int daAlink_c::procCutTurnInit(int param_0, int param_1) {
     mNormalSpeed = 0.0f;
     mProcVar5.field_0x3012 = 0;
     setCutWaterDropEffect();
-    initCutTurnAt(field_0x347c, var_r29_3);
+    initCutTurnAt(field_0x347c, param_1);
     return 1;
 }
 
