@@ -270,7 +270,7 @@ int daNpc_ZelRo_c::Draw() {
 
     return draw(
 #ifdef DEBUG
-        chkAction(&daNpc_grMC_c::test),
+        chkAction(&daNpc_ZelRo_c::test),
 #else
         FALSE,
 #endif
