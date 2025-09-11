@@ -115,6 +115,9 @@ public:
     /* 80B735D8 */ BOOL setAction(actionFunc);
     /* 80B73680 */ int wait(void*);
     /* 80B7382C */ int talk(void*);
+    #ifdef DEBUG
+    int test(void*);
+    #endif
     /* 80B74AE8 */ daNpc_ZelRo_c(
         daNpcT_faceMotionAnmData_c const* i_faceMotionAnmData,
         daNpcT_motionAnmData_c const* i_motionAnmData,
