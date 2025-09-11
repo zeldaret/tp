@@ -3,6 +3,8 @@
 // Translation Unit: jstudio-math
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JStudio/JStudio/jstudio-math.h"
 #include "JSystem/JGeometry.h"
 #include "JSystem/TPosition3.h"

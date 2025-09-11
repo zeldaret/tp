@@ -3,6 +3,8 @@
 // Translation Unit: JASHeapCtrl
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JASHeapCtrl.h"
 #include "JSystem/JAudio2/JASMutex.h"
 #include "JSystem/JAudio2/JASWaveArcLoader.h"

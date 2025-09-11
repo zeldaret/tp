@@ -3,6 +3,8 @@
  * JMessage Controller
  */
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JMessage/control.h"
 
 /* 802A7548-802A758C 2A1E88 0044+00 0/0 2/2 0/0 .text            __ct__Q28JMessage8TControlFv */

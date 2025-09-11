@@ -3,6 +3,8 @@
 // Translation Unit: JASAramStream
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JASAramStream.h"
 #include "JSystem/JAudio2/JASAiCtrl.h"
 #include "JSystem/JAudio2/JASChannel.h"

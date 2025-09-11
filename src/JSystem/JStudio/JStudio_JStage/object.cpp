@@ -2,6 +2,8 @@
 // object
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JStudio/JStudio_JStage/object.h"
 
 /* 8028A1F8-8028A290 284B38 0098+00 0/0 2/2 0/0 .text

@@ -1,3 +1,5 @@
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/J3DGraphBase/J3DTexture.h"
 #include "JSystem/J3DAssert.h"
 

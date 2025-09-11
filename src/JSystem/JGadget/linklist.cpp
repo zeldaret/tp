@@ -3,6 +3,8 @@
 // Translation Unit: linklist
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JGadget/linklist.h"
 
 template <typename T>

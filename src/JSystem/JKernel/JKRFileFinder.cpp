@@ -1,3 +1,5 @@
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JKernel/JKRFileFinder.h"
 #include "JSystem/JKernel/JKRArchive.h"
 

@@ -1,3 +1,5 @@
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/J2DGraph/J2DPane.h"
 #include "JSystem/J2DGraph/J2DAnimation.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"

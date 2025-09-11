@@ -2,6 +2,8 @@
 // Translation Unit: JAUSoundAnimator
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JAUSoundAnimator.h"
 
 /* 802A6F70-802A7044 2A18B0 00D4+00 0/0 1/1 0/0 .text getStartSoundIndex__17JAUSoundAnimationCFf

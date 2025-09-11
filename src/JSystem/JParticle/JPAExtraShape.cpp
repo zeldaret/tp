@@ -3,6 +3,8 @@
 // Translation Unit: JPAExtraShape
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JParticle/JPAExtraShape.h"
 #include "JSystem/JMath/JMATrigonometric.h"
 #include "JSystem/JParticle/JPAParticle.h"

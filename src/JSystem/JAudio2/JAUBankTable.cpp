@@ -3,6 +3,8 @@
 // Translation Unit: JAUBankTable
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JAUBankTable.h"
 
 /* 802A4A80-802A4AA0 29F3C0 0020+00 0/0 1/1 0/0 .text

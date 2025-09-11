@@ -3,6 +3,8 @@
 // Translation Unit: JASAiCtrl
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JASAiCtrl.h"
 #include "JSystem/JAudio2/JASAudioThread.h"
 #include "JSystem/JAudio2/JASCalc.h"

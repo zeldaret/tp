@@ -1,3 +1,5 @@
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JKernel/JKRFileLoader.h"
 #include "string.h"
 #include "ctype.h"

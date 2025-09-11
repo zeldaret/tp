@@ -1,3 +1,5 @@
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "dolphin/gx.h"
 

@@ -1,3 +1,5 @@
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JKernel/JKRAramPiece.h"
 #include "global.h"

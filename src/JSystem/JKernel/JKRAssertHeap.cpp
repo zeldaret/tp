@@ -1,3 +1,5 @@
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JKernel/JKRAssertHeap.h"
 
 /* 802D12C4-802D1300 2CBC04 003C+00 1/1 0/0 0/0 .text __ct__13JKRAssertHeapFPvUlP7JKRHeapb */

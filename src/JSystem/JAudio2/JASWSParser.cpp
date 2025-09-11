@@ -3,6 +3,8 @@
 // Translation Unit: JASWSParser
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JASWSParser.h"
 #include "JSystem/JAudio2/JASBasicWaveBank.h"
 #include "JSystem/JAudio2/JASSimpleWaveBank.h"

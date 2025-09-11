@@ -3,6 +3,8 @@
 // Translation Unit: JUTException
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"

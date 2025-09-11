@@ -2,6 +2,8 @@
 // control
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JStudio/JStudio_JAudio2/control.h"
 #include "JSystem/JGadget/pointer.h"
 

@@ -1,3 +1,5 @@
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/J3DGraphBase/J3DShapeDraw.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include <string.h>

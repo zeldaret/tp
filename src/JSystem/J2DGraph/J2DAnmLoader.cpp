@@ -2,6 +2,8 @@
 // J2DAnmLoader
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/JSupport/JSupport.h"
 

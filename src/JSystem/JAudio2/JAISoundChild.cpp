@@ -1,3 +1,5 @@
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JAISoundChild.h"
 #include "JSystem/JAudio2/JASTrack.h"
 

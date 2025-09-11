@@ -2,6 +2,8 @@
 // JASCalc
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JASCalc.h"
 #include <dolphin/os.h>
 #include "math.h"

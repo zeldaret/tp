@@ -3,6 +3,8 @@
 // Translation Unit: functionvalue
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JStudio/JStudio/functionvalue.h"
 #include "JSystem/JGadget/search.h"
 #include "JSystem/JUtility/JUTException.h"

@@ -3,6 +3,8 @@
 // Translation Unit: JUTDirectPrint
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "stdio.h"
 #include <dolphin/os.h>

@@ -2,6 +2,8 @@
 // JKRExpHeap
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JSupport/JSupport.h"
 #include "JSystem/JUtility/JUTConsole.h"

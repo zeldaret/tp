@@ -2,6 +2,8 @@
 // object-particle
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JStudio/JStudio_JParticle/object-particle.h"
 #include "JSystem/JStudio/JStudio_JStage/control.h"
 

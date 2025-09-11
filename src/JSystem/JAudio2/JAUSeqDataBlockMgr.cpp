@@ -2,6 +2,8 @@
 // JAUSeqDataBlockMgr
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JAUSeqDataBlockMgr.h"
 #include "JSystem/JAudio2/JAUSoundInfo.h"
 #include "JSystem/JAudio2/JASResArcLoader.h"

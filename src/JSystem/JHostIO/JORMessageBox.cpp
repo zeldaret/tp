@@ -1,3 +1,5 @@
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JHostIO/JORServer.h"
 
 u32 JORMessageBox(const char* message, const char* title, u32 style) {

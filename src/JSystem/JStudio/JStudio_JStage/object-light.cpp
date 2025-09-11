@@ -3,6 +3,8 @@
 // Translation Unit: object-light
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JStudio/JStudio_JStage/object-light.h"
 
 /* 8028CB50-8028CBF4 287490 00A4+00 0/0 1/1 0/0 .text

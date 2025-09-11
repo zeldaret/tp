@@ -3,6 +3,8 @@
 // Translation Unit: J2DMaterialFactory
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/J2DGraph/J2DMaterialFactory.h"
 #include "JSystem/J2DGraph/J2DMaterial.h"
 #include "JSystem/J2DGraph/J2DScreen.h"

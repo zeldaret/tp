@@ -3,6 +3,8 @@
 // Translation Unit: JUTDbPrint
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JUtility/JUTDbPrint.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
 #include "JSystem/JKernel/JKRHeap.h"

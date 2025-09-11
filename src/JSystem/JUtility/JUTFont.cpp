@@ -3,6 +3,8 @@
  * JUtility - Font Management
  */
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JUtility/JUTFont.h"
 
 /* 802DECF8-802DED24 2D9638 002C+00 0/0 2/2 0/0 .text            __ct__7JUTFontFv */

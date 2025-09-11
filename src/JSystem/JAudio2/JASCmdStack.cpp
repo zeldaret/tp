@@ -2,6 +2,8 @@
 // JASCmdStack
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JASCmdStack.h"
 #include "dolphin/os.h"
 

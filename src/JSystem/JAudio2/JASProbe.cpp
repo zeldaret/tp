@@ -3,6 +3,8 @@
 // Translation Unit: JASProbe
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JASProbe.h"
 #include "dolphin/os.h"
 

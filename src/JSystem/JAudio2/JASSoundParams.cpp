@@ -3,6 +3,8 @@
 // Translation Unit: JASSoundParams
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JASSoundParams.h"
 
 /* 8029E3B0-8029E47C 298CF0 00CC+00 0/0 2/2 0/0 .text            clamp__14JASSoundParamsFv */

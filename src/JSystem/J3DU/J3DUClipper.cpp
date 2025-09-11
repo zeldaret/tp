@@ -3,6 +3,8 @@
 // Translation Unit: J3DUClipper
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/J3DU/J3DUClipper.h"
 #include "math.h"
 

@@ -3,6 +3,8 @@
 // Translation Unit: JPAKeyBlock
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JParticle/JPAKeyBlock.h"
 #include "JSystem/JParticle/JPAMath.h"
 

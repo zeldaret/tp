@@ -3,6 +3,8 @@
  * JAS - Resource Archive Loader
  */
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JASResArcLoader.h"
 #include "JSystem/JAudio2/JASDvdThread.h"
 #include "JSystem/JAudio2/JASTaskThread.h"

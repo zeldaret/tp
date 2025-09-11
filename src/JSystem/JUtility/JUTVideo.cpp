@@ -3,6 +3,8 @@
 // Translation Unit: JUTVideo
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JUtility/JUTVideo.h"
 #include "JSystem/JUtility/JUTDirectPrint.h"
 #include "JSystem/JUtility/JUTXfb.h"

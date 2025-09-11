@@ -2,6 +2,8 @@
 // JAUSoundTable
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JAUSoundTable.h"
 
 /* 802A7114-802A7160 2A1A54 004C+00 0/0 1/1 0/0 .text            init__13JAUSoundTableFPCv */

@@ -3,6 +3,8 @@
 // Translation Unit: JAIStreamMgr
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JAIStreamMgr.h"
 #include "JSystem/JAudio2/JAISoundHandles.h"
 #include "JSystem/JAudio2/JAIStreamDataMgr.h"

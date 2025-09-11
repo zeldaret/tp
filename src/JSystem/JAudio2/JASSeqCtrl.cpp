@@ -3,6 +3,8 @@
 // Translation Unit: JASSeqCtrl
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JASSeqCtrl.h"
 #include "JSystem/JAudio2/JASSeqParser.h"
 #include "JSystem/JAudio2/JASTrack.h"

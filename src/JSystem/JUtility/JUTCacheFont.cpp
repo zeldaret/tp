@@ -3,6 +3,8 @@
 // Translation Unit: JUTCacheFont
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JUtility/JUTCacheFont.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "JSystem/JUtility/JUTAssert.h"

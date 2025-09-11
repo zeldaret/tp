@@ -1,3 +1,5 @@
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JHostIO/JHIComm.h"
 
 static int min(int a, int b);

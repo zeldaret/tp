@@ -3,6 +3,8 @@
 // Translation Unit: JPAResourceManager
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JParticle/JPAResourceManager.h"
 #include "JSystem/JParticle/JPADynamicsBlock.h"
 #include "JSystem/JParticle/JPAResource.h"

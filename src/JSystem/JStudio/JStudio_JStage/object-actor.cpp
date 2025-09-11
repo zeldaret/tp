@@ -3,6 +3,8 @@
 // Translation Unit: object-actor
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JStudio/JStudio_JStage/object-actor.h"
 
 /* 8028A5F0-8028A6B4 284F30 00C4+00 0/0 1/1 0/0 .text

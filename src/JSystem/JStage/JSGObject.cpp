@@ -1,3 +1,5 @@
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JStage/JSGObject.h"
 
 /* 80280DD4-80280E1C 27B714 0048+00 0/0 6/6 0/0 .text            __dt__Q26JStage7TObjectFv */

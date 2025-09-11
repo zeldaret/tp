@@ -2,6 +2,8 @@
 // J3DModelData
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
 #include "JSystem/J3DGraphAnimator/J3DMaterialAnm.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"

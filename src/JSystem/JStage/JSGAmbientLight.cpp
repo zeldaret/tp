@@ -1,3 +1,5 @@
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JStage/JSGAmbientLight.h"
 
 /* 80280B20-80280B80 27B460 0060+00 0/0 1/1 0/0 .text            __dt__Q26JStage13TAmbientLightFv */

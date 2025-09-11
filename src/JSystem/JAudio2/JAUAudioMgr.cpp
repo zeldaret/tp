@@ -2,6 +2,8 @@
 // JAUAudioMgr
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JAUAudioMgr.h"
 #include "JSystem/JAudio2/JASHeapCtrl.h"
 

@@ -3,6 +3,8 @@
 // Translation Unit: JAUSectionHeap
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JAUSectionHeap.h"
 #include "JSystem/JAudio2/JASBNKParser.h"
 #include "JSystem/JAudio2/JASBankTable.h"
@@ -17,7 +19,6 @@
 #include "JSystem/JAudio2/JAUSoundTable.h"
 #include "JSystem/JAudio2/JAUStreamFileTable.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
-#include "stdlib.h"
 #include "dolphin/dvd.h"
 
 namespace {

@@ -3,6 +3,8 @@
 // Translation Unit: std-vector
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JGadget/std-vector.h"
 
 /* 802DCCC8-802DCCD0 2D7608 0008+00 1/1 0/0 0/0 .text extend_default__Q27JGadget6vectorFUlUlUl */

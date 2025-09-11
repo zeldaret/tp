@@ -3,6 +3,8 @@
 // Translation Unit: JASTrackPort
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JASTrackPort.h"
 
 /* 8029354C-8029357C 28DE8C 0030+00 0/0 1/1 0/0 .text            init__12JASTrackPortFv */

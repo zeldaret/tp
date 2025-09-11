@@ -3,6 +3,8 @@
 // Translation Unit: fvb
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JStudio/JStudio/fvb.h"
 #include "JSystem/JUtility/JUTException.h"
 #include <string.h>

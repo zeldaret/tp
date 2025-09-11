@@ -3,6 +3,8 @@
 // Translation Unit: JASSimpleWaveBank
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JASSimpleWaveBank.h"
 
 /* 80298C94-80298CF4 2935D4 0060+00 0/0 1/1 0/0 .text            __ct__17JASSimpleWaveBankFv */

@@ -3,6 +3,8 @@
 // Translation Unit: JPAChildShape
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JParticle/JPAChildShape.h"
 #include "JSystem/JParticle/JPAParticle.h"
 #include "JSystem/JParticle/JPAEmitter.h"
