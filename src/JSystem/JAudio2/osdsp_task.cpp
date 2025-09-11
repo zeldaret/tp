@@ -3,6 +3,8 @@
 // Translation Unit: osdsp_task
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/osdsp_task.h"
 #include "JSystem/JAudio2/dspproc.h"
 #include <dolphin/dsp.h>

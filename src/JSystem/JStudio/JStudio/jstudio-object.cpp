@@ -3,6 +3,8 @@
 // Translation Unit: jstudio-object
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JStudio/JStudio/jstudio-object.h"
 
 namespace JStudio {

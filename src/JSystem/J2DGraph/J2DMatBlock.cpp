@@ -3,6 +3,8 @@
 // Translation Unit: J2DMatBlock
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/J2DGraph/J2DMatBlock.h"
 #include "JSystem/JUtility/JUTPalette.h"
 #include "JSystem/JUtility/JUTResFont.h"

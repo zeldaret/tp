@@ -462,6 +462,11 @@ config.precompiled_headers = [
         "mw_version": MWVersion(config.version),
         "cflags": ["-lang=c++", *cflags_dolzel_rel],
     },
+    {
+        "source": "JSystem/JSystem.pch",
+        "mw_version": MWVersion(config.version),
+        "cflags": ["-lang=c++", *cflags_framework],
+    },
 ]
 config.libs = [
     {
@@ -832,7 +837,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JParticle/JPAKeyBlock.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01", "ShieldD"), "JSystem/JParticle/JPATexture.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JParticle/JPAResourceLoader.cpp"),
-            Object(Equivalent, "JSystem/JParticle/JPAEmitterManager.cpp"), # weak func order
+            Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/JParticle/JPAEmitterManager.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JParticle/JPAEmitter.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JParticle/JPAParticle.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JParticle/JPAMath.cpp"),
@@ -941,7 +946,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01", "ShieldD"), "JSystem/JAudio2/JAIAudible.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JAudio2/JAIAudience.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JAudio2/JAISe.cpp"),
-            Object(Equivalent, "JSystem/JAudio2/JAISeMgr.cpp"), # weak function order
+            Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/JAudio2/JAISeMgr.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/JAudio2/JAISeq.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JAudio2/JAISeqDataMgr.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/JAudio2/JAISeqMgr.cpp"),
@@ -1080,7 +1085,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JUtility/JUTFont.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JUtility/JUTResFont.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JUtility/JUTDbPrint.cpp"),
-            Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JUtility/JUTGamePad.cpp", extra_cflags=['-pragma "nosyminline on"']),
+            Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JUtility/JUTGamePad.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JUtility/JUTException.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JUtility/JUTDirectPrint.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/JUtility/JUTAssert.cpp"),
@@ -1125,7 +1130,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/J3DGraphBase/J3DTransform.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/J3DGraphBase/J3DTexture.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/J3DGraphBase/J3DPacket.cpp"),
-            Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphBase/J3DShapeMtx.cpp", extra_cflags=['-pragma "nosyminline on"']),
+            Object(MatchingFor("GZ2E01", "GZ2J01"), "JSystem/J3DGraphBase/J3DShapeMtx.cpp"),
             Object(NonMatching, "JSystem/J3DGraphBase/J3DShapeDraw.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/J3DGraphBase/J3DShape.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "JSystem/J3DGraphBase/J3DMaterial.cpp"),

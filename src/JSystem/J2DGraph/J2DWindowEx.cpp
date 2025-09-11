@@ -3,6 +3,8 @@
 // Translation Unit: J2DWindowEx
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/J2DGraph/J2DWindowEx.h"
 #include "JSystem/JUtility/JUTTexture.h"
 #include "JSystem/JSupport/JSURandomInputStream.h"

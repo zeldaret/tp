@@ -3,11 +3,12 @@
 // Translation Unit: J2DTextBox
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/J2DGraph/J2DPrint.h"
 #include "JSystem/JSupport/JSURandomInputStream.h"
 #include "JSystem/JUtility/JUTResFont.h"
-#include "dol2asm.h"
 
 /* 802FF660-802FF6D8 2F9FA0 0078+00 0/0 1/1 0/0 .text            __ct__10J2DTextBoxFv */
 J2DTextBox::J2DTextBox()

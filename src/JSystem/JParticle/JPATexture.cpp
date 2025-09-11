@@ -3,6 +3,8 @@
 // Translation Unit: JPATexture
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JParticle/JPATexture.h"
 
 /* 8027D7D4-8027D83C 278114 0068+00 0/0 1/1 0/0 .text            __ct__10JPATextureFPCUc */

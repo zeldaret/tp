@@ -3,6 +3,8 @@
 // Translation Unit: JASTaskThread
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JASTaskThread.h"
 #include "JSystem/JAudio2/JASCalc.h"
 #include "JSystem/JAudio2/JASCriticalSection.h"

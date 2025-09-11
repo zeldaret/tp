@@ -3,6 +3,8 @@
 // Translation Unit: stb-data-parse
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JStudio/JStudio/stb-data-parse.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "dolphin/os.h"

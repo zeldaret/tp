@@ -2,12 +2,13 @@
 // JKRDvdRipper
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JKernel/JKRDvdRipper.h"
 #include "JSystem/JKernel/JKRDvdFile.h"
 #include "JSystem/JKernel/JKRDecomp.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "string.h"
-#include <dolphin/os.h>
 #include <dolphin/os.h>
 #include "dolphin/vi.h"
 #include <stdint.h>

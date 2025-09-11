@@ -3,6 +3,8 @@
 // Translation Unit: JASAudioReseter
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JASAudioReseter.h"
 #include "JSystem/JAudio2/JASAudioThread.h"
 #include "JSystem/JAudio2/JASCriticalSection.h"

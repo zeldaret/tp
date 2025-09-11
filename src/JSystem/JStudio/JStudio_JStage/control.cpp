@@ -3,6 +3,8 @@
 // Translation Unit: control
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JStudio/JStudio_JStage/control.h"
 #include "JSystem/JStage/JSGActor.h"
 #include "JSystem/JStage/JSGLight.h"

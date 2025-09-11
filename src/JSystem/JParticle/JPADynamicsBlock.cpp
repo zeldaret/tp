@@ -3,6 +3,8 @@
 // Translation Unit: JPADynamicsBlock
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JParticle/JPADynamicsBlock.h"
 #include "JSystem/JMath/JMATrigonometric.h"
 #include "JSystem/JParticle/JPAEmitter.h"

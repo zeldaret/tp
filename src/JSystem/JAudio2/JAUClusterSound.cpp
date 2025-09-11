@@ -2,6 +2,8 @@
 // JAUClusterSound
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JAUClusterSound.h"
 #include "JSystem/JAudio2/JAISoundHandles.h"
 

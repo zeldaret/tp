@@ -3,6 +3,8 @@
  * JUtility - Color Fader
  */
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JUtility/JUTFader.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"
 

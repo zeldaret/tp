@@ -3,6 +3,8 @@
 // Translation Unit: JSUFileStream
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JSupport/JSUFileStream.h"
 #include "JSystem/JKernel/JKRFile.h"
 

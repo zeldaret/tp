@@ -1,3 +1,5 @@
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JKernel/JKRAram.h"
 #include "JSystem/JKernel/JKRAramPiece.h"
 #include "JSystem/JKernel/JKRAramStream.h"
@@ -5,7 +7,6 @@
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JUtility/JUTException.h"
 #include "dolphin/ar.h"
-#include <dolphin/os.h>
 #include <dolphin/os.h>
 #include "string.h"
 

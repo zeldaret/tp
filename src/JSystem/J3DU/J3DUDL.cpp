@@ -3,6 +3,8 @@
 // Translation Unit: J3DUDL
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/J3DU/J3DUDL.h"
 #include "JSystem/J3DGraphBase/J3DShapeMtx.h"
 

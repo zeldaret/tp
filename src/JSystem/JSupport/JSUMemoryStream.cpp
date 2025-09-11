@@ -3,6 +3,8 @@
 // Translation Unit: JSUMemoryStream
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JSupport/JSUMemoryStream.h"
 #include "string.h"
 

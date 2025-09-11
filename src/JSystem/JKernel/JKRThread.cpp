@@ -1,8 +1,9 @@
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JKernel/JKRThread.h"
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JUtility/JUTConsole.h"
 #include "stdio.h"
-#include "dol2asm.h"
 #include "global.h"
 #include <stdint.h>
 

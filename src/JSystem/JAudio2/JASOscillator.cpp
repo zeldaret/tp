@@ -3,6 +3,8 @@
 // Translation Unit: JASOscillator
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JASOscillator.h"
 
 //

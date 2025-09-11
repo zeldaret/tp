@@ -1,3 +1,5 @@
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JHostIO/JORServer.h"
 #include "JSystem/JHostIO/JOREntry.h"
 #include "JSystem/JHostIO/JHIhioASync.h"

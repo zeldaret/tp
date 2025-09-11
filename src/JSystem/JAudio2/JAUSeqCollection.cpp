@@ -3,6 +3,8 @@
 // Translation Unit: JAUSeqCollection
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JAUSeqCollection.h"
 #include "JSystem/JUtility/JUTAssert.h"
 

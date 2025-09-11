@@ -3,6 +3,8 @@
 // Translation Unit: JSUInputStream
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JSupport/JSUInputStream.h"
 #include "JSystem/JSupport/JSURandomInputStream.h"
 #include <dolphin.h>

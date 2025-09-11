@@ -1,3 +1,5 @@
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JMessage/processor.h"
 #include "JSystem/JMessage/control.h"
 #include "JSystem/JUtility/JUTAssert.h"

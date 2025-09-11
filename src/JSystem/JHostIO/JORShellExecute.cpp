@@ -1,3 +1,5 @@
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JHostIO/JORServer.h"
 
 int JORShellExecute(const char* param_0, const char* param_1, const char* param_2, const char* param_3, int param_4) {

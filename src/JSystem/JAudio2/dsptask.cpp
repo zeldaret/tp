@@ -3,6 +3,8 @@
 // Translation Unit: dsptask
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/dsptask.h"
 #include "JSystem/JAudio2/osdsp.h"
 #include "global.h"

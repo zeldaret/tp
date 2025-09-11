@@ -3,6 +3,8 @@
 // Translation Unit: JAUInitializer
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JAUInitializer.h"
 #include "JSystem/JAudio2/JAISe.h"
 #include "JSystem/JAudio2/JAISeq.h"
