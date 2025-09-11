@@ -167,8 +167,8 @@ cPhs__Step daNpc_ZelRo_c::create() {
             return cPhs_ERROR_e;
         }
 
-        OS_REPORT("\t(%s:%d) flowNo:%d, PathID:%02x, BitSW:%02x<%08x> ", fopAcM_getProcNameString(this), mType, mFlowNodeNo,
-                  (getPath() >> 32) & 0xFF, getBitSW() & 0xFF, fopAcM_GetParam(this));
+        OS_REPORT("\t(%s:%d) flowNo:%d, PathNo:%02x<%08x> ", fopAcM_getProcNameString(this), mType, mFlowNodeNo,
+                  (getPath() >> 32) & 0xFF, fopAcM_GetParam(this));
         
         if (isDelete()) {
             OS_REPORT("===>isDelete:TRUE\n");
