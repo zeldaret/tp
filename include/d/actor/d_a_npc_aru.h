@@ -23,7 +23,15 @@ struct daNpc_Aru_HIOParam {
 };
 
 class daNpc_Aru_HIO_c : public mDoHIO_entry_c {
+public:
     /* 0x8 */ daNpc_Aru_HIOParam param;
+};
+
+class daNpc_Aru_Param_c {
+public:
+    /* 80957604 */ virtual ~daNpc_Aru_Param_c() {}
+
+    static daNpc_Aru_HIOParam const m;
 };
 
 class daNpc_Aru_c : public daNpcT_c {
@@ -39,14 +47,14 @@ public:
     /* 80952030 */ int Draw();
     /* 809520C4 */ static int createHeapCallBack(fopAc_ac_c*);
     /* 809520E4 */ static int ctrlJointCallBack(J3DJoint*, int);
-    /* 8095213C */ void* srchCow(void*, void*);
-    /* 809521E4 */ void* srchUDoor(void*, void*);
-    /* 80952280 */ void chkThrust(fopAc_ac_c*);
-    /* 80952400 */ void getCowP(int);
-    /* 8095253C */ void getUDoor_l_P();
-    /* 8095260C */ void getUDoor_r_P();
+    /* 8095213C */ static void* srchCow(void*, void*);
+    /* 809521E4 */ static void* srchUDoor(void*, void*);
+    /* 80952280 */ BOOL chkThrust(fopAc_ac_c*);
+    /* 80952400 */ fopAc_ac_c* getCowP(int);
+    /* 8095253C */ fopAc_ac_c* getUDoor_l_P();
+    /* 8095260C */ fopAc_ac_c* getUDoor_r_P();
     /* 809526DC */ u8 getType();
-    /* 80952740 */ void isDelete();
+    /* 80952740 */ BOOL isDelete();
     /* 809527CC */ void reset();
     /* 80952B00 */ void afterJntAnm(int);
     /* 80952B84 */ void setParam();
@@ -60,12 +68,12 @@ public:
     /* 8095349C */ void setAttnPos();
     /* 80953798 */ void setCollision();
     /* 809538F0 */ int drawDbgInfo();
-    /* 809538F8 */ void selectAction();
+    /* 809538F8 */ BOOL selectAction();
     /* 80953AB8 */ BOOL chkAction(actionFunc);
     /* 80953AE4 */ BOOL setAction(actionFunc);
-    /* 80953B8C */ void chkBullRunningStage();
-    /* 80953C08 */ void chkSkipFenceStage();
-    /* 80953C84 */ void srchActorDirection(fopAc_ac_c*);
+    /* 80953B8C */ BOOL chkBullRunningStage();
+    /* 80953C08 */ BOOL chkSkipFenceStage();
+    /* 80953C84 */ s16 srchActorDirection(fopAc_ac_c*);
     /* 80953D58 */ void adjustMoveDir();
     /* 809543F8 */ int duck(int);
     /* 80954744 */ int lookround(s16);
@@ -76,9 +84,12 @@ public:
     /* 80955080 */ int cutSpeakTo(int);
     /* 8095533C */ int cutNoEntrance(int);
     /* 80955608 */ int wait(void*);
-    /* 80955B48 */ void bullRunning(void*);
-    /* 80955DE8 */ void skipFence(void*);
+    /* 80955B48 */ int bullRunning(void*);
+    /* 80955DE8 */ int skipFence(void*);
     /* 80955F98 */ int talk(void*);
+    #ifdef DEBUG
+    int test(void*);
+    #endif
     /* 809574E8 */ daNpc_Aru_c(
             daNpcT_faceMotionAnmData_c const* i_faceMotionAnmData,
             daNpcT_motionAnmData_c const* i_motionAnmData,
@@ -100,6 +111,16 @@ public:
     /* 809575F4 */ s32 getFootLJointNo();
     /* 809575FC */ s32 getFootRJointNo();
 
+    int getFlowNodeNo() {
+        u16 nodeNo = home.angle.x;
+        if (nodeNo == 0xffff) {
+            return -1;
+        }
+
+        return nodeNo;
+    }
+    int getPathID() { return (fopAcM_GetParam(this) & 0xFF00) >> 8; }
+
     void setLastIn() { mLastGoatIn = true; }
 
     static char* mCutNameList[7];
@@ -108,15 +129,16 @@ public:
 private:
     /* 0xE40 */ daNpc_Aru_HIO_c* mHIO;
     /* 0xE44 */ dCcD_Cyl mCyl;
-    /* 0xF80 */ u8 field_0xf80;
-    /* 0xF84 */ daNpcT_ActorMngr_c mActorMngr[4];
+    /* 0xF80 */ u8 mType;
+    /* 0xF84 */ daNpcT_ActorMngr_c mActorMngrs[4];
     /* 0xFA4 */ actionFunc mNextAction;
     /* 0xFB0 */ actionFunc mAction;
     /* 0xFBC */ fpc_ProcID field_0xfbc;
-    /* 0xFC0 */ u8 field_0xfc0[0xfc4 - 0xfc0];
+    /* 0xFC0 */ int field_0xfc0;
     /* 0xFC4 */ int field_0xfc4;
     /* 0xFC8 */ s16 field_0xfc8;
-    /* 0xFCA */ u8 field_0xfca[0xfce - 0xfca];
+    /* 0xFCA */ s16 field_0xfca;
+    /* 0xFCC */ u8 field_0xfcc[0xfce - 0xfcc];
     /* 0xFCE */ bool mLastGoatIn;
     /* 0xFCF */ u8 field_0xfcf[0xfd1 - 0xfcf];
     /* 0xFD1 */ u8 field_0xfd1;
@@ -126,12 +148,5 @@ private:
 };
 
 STATIC_ASSERT(sizeof(daNpc_Aru_c) == 0xfd8);
-
-class daNpc_Aru_Param_c {
-public:
-    /* 80957604 */ virtual ~daNpc_Aru_Param_c() {}
-
-    static daNpc_Aru_HIOParam const m;
-};
 
 #endif /* D_A_NPC_ARU_H */
