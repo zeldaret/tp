@@ -491,7 +491,7 @@ void daNpcKasiKyu_c::reset() {
         mPath.setPathInfo(getRailNo(), fopAcM_GetRoomNo(this), 0);
         mPath.setIdx(6);
     } else if (mType == 1) {
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_004000);
+        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
     }
 
     field_0x1430 = 0;

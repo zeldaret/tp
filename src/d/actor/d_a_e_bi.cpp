@@ -805,7 +805,7 @@ static int daE_BI_Execute(e_bi_class* i_this) {
     a_this->attention_info.position.y += KREG_F(3) + 45.0f;
 
     f32 fVar1 = 0.0f;
-    if (dComIfGp_checkPlayerStatus0(0, fopAcM_STATUS_UNK_800000)) {
+    if (dComIfGp_checkPlayerStatus0(0, fopAcM_STATUS_UNK_0x80000)) {
         fVar1 = 100.0f;
     }
 

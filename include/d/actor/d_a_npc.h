@@ -790,6 +790,8 @@ BOOL daNpcT_chkTmpBit(u32 i_idx);
 BOOL daNpcT_getPlayerInfoFromPlayerList(int param_0, int i_roomNo, cXyz* o_spawnPos,
                                         csXyz* o_angle);
 int daNpcT_judgeRace(dPath* i_path, fopAc_ac_c** param_1, daNpcT_pntData_c* i_pntData, int param_3, int* param_4);
+BOOL daNpcT_chkActorInScreen(fopAc_ac_c* i_ActorP, f32 param_1, f32 param_2, f32 param_3,
+                             f32 param_4, f32 param_5, f32 param_6, f32 param_7, int param_8);
 
 class daBaseNpc_matAnm_c : public J3DMaterialAnm {
 public:

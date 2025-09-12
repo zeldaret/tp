@@ -230,8 +230,8 @@ int daNpcMsg_setEvtNum(u8 iEvtNum) {
 }
 
 /* 80031648-800316A8 02BF88 0060+00 0/0 0/0 6/6 .text daNpcKakashi_chkSwdTutorialStage__Fv */
-BOOL daNpcKakashi_chkSwdTutorialStage() {
-    return !strcmp(dComIfGp_getStartStageName(), "F_SP103") && dComIfG_play_c::getLayerNo(0) == 8;
+u8 daNpcKakashi_chkSwdTutorialStage() {
+    return strcmp(dComIfGp_getStartStageName(), "F_SP103") == 0 && dComIfG_play_c::getLayerNo(0) == 8;
 }
 
 /* 800316A8-800316E0 02BFE8 0038+00 0/0 0/0 3/3 .text daNpcKakashi_setSwdTutorialStep__FUc */
