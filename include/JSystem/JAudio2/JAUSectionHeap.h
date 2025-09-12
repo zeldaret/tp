@@ -21,7 +21,7 @@ class JKRSolidHeap;
 
 /**
  * @ingroup jsystem-jaudio
- * 
+ *
  */
 class JAUSection : public JKRDisposer, protected JSULink<JAUSection> {
 public:
@@ -102,7 +102,6 @@ public:
     /* 802A60AC */ bool newDynamicSeqBlock(u32);
     /* 802A61D0 */ SeqDataReturnValue getSeqData(JAISoundID, JAISeqData*);
     /* 802A6270 */ int releaseSeqData();
-    /* 802A6278 */ ~JAUSectionHeap() {}
 
     JAISeqDataMgr* getSeqSeqDataMgr() { return this; }
     JAISeqDataMgr* getSeSeqDataMgr() { return sectionHeapData_.seSeqDataMgr_; }
