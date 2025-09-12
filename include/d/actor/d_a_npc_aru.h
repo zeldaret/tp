@@ -10,88 +10,128 @@
  *
  * @details
  *
- */
-class daNpc_Aru_c : public fopAc_ac_c {
+*/
+
+struct daNpc_Aru_HIOParam {
+    /* 0x00 */ daNpcT_HIOParam common;
+    /* 0x8C */ f32 warning_range;       // 警戒範囲 - Warning Range
+    /* 0x90 */ f32 run_speed;           // 走る速度 - Run Speed        
+    /* 0x94 */ f32 walk_speed;          // 歩く速度 - Walk Speed        
+    /* 0x98 */ s16 no_turn_time;        // 旋回禁止時間 - No Turn Time    
+    /* 0x9A */ s16 avoid_time;          // 避け時間 - Avoid Time        
+    /* 0x9C */ f32 forward_visibility;  // 前方視界 - Forward Visibility        
+};
+
+class daNpc_Aru_HIO_c : public mDoHIO_entry_c {
+    /* 0x8 */ daNpc_Aru_HIOParam param;
+};
+
+class daNpc_Aru_c : public daNpcT_c {
 public:
+    typedef int (daNpc_Aru_c::*actionFunc)(void*);
+    typedef int (daNpc_Aru_c::*cutFunc)(int);
+
     /* 8095178C */ ~daNpc_Aru_c();
-    /* 809518C4 */ void create();
-    /* 80951BB0 */ void CreateHeap();
-    /* 80951FDC */ void Delete();
-    /* 80952010 */ void Execute();
-    /* 80952030 */ void Draw();
-    /* 809520C4 */ void createHeapCallBack(fopAc_ac_c*);
-    /* 809520E4 */ void ctrlJointCallBack(J3DJoint*, int);
-    /* 8095213C */ void srchCow(void*, void*);
-    /* 809521E4 */ void srchUDoor(void*, void*);
+    /* 809518C4 */ cPhs__Step create();
+    /* 80951BB0 */ int CreateHeap();
+    /* 80951FDC */ int Delete();
+    /* 80952010 */ int Execute();
+    /* 80952030 */ int Draw();
+    /* 809520C4 */ static int createHeapCallBack(fopAc_ac_c*);
+    /* 809520E4 */ static int ctrlJointCallBack(J3DJoint*, int);
+    /* 8095213C */ void* srchCow(void*, void*);
+    /* 809521E4 */ void* srchUDoor(void*, void*);
     /* 80952280 */ void chkThrust(fopAc_ac_c*);
     /* 80952400 */ void getCowP(int);
     /* 8095253C */ void getUDoor_l_P();
     /* 8095260C */ void getUDoor_r_P();
-    /* 809526DC */ void getType();
+    /* 809526DC */ u8 getType();
     /* 80952740 */ void isDelete();
     /* 809527CC */ void reset();
     /* 80952B00 */ void afterJntAnm(int);
     /* 80952B84 */ void setParam();
-    /* 80952CE8 */ void checkChangeEvt();
+    /* 80952CE8 */ BOOL checkChangeEvt();
     /* 80952D9C */ void setAfterTalkMotion();
     /* 80952E64 */ void srchActors();
-    /* 809530DC */ void evtTalk();
-    /* 8095317C */ void evtCutProc();
+    /* 809530DC */ BOOL evtTalk();
+    /* 8095317C */ BOOL evtCutProc();
     /* 80953244 */ void action();
     /* 809533D8 */ void beforeMove();
     /* 8095349C */ void setAttnPos();
     /* 80953798 */ void setCollision();
-    /* 809538F0 */ bool drawDbgInfo();
+    /* 809538F0 */ int drawDbgInfo();
     /* 809538F8 */ void selectAction();
-    /* 80953AB8 */ void chkAction(int (daNpc_Aru_c::*)(void*));
-    /* 80953AE4 */ void setAction(int (daNpc_Aru_c::*)(void*));
+    /* 80953AB8 */ BOOL chkAction(actionFunc);
+    /* 80953AE4 */ BOOL setAction(actionFunc);
     /* 80953B8C */ void chkBullRunningStage();
     /* 80953C08 */ void chkSkipFenceStage();
     /* 80953C84 */ void srchActorDirection(fopAc_ac_c*);
     /* 80953D58 */ void adjustMoveDir();
-    /* 809543F8 */ void duck(int);
-    /* 80954744 */ void lookround(s16);
-    /* 80954894 */ void cutRideOnHorse(int);
-    /* 80954A5C */ void cutGotoBullRunningStage(int);
-    /* 80954C0C */ void cutEndBullRunning(int);
-    /* 80954F4C */ void cutGotoSkipFenceStage(int);
-    /* 80955080 */ void cutSpeakTo(int);
-    /* 8095533C */ void cutNoEntrance(int);
-    /* 80955608 */ void wait(void*);
+    /* 809543F8 */ int duck(int);
+    /* 80954744 */ int lookround(s16);
+    /* 80954894 */ int cutRideOnHorse(int);
+    /* 80954A5C */ int cutGotoBullRunningStage(int);
+    /* 80954C0C */ int cutEndBullRunning(int);
+    /* 80954F4C */ int cutGotoSkipFenceStage(int);
+    /* 80955080 */ int cutSpeakTo(int);
+    /* 8095533C */ int cutNoEntrance(int);
+    /* 80955608 */ int wait(void*);
     /* 80955B48 */ void bullRunning(void*);
     /* 80955DE8 */ void skipFence(void*);
-    /* 80955F98 */ void talk(void*);
-    /* 809574E8 */ daNpc_Aru_c(daNpcT_faceMotionAnmData_c const*, daNpcT_motionAnmData_c const*,
-                               daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
-                               daNpcT_MotionSeqMngr_c::sequenceStepData_c const*, int,
-                               daNpcT_evtData_c const*, char**);
+    /* 80955F98 */ int talk(void*);
+    /* 809574E8 */ daNpc_Aru_c(
+            daNpcT_faceMotionAnmData_c const* i_faceMotionAnmData,
+            daNpcT_motionAnmData_c const* i_motionAnmData,
+            daNpcT_MotionSeqMngr_c::sequenceStepData_c const* i_faceMotionSequenceData,
+            int i_faceMotionStepNum,
+            daNpcT_MotionSeqMngr_c::sequenceStepData_c const* i_motionSequenceData,
+            int i_motionStepNum,
+            daNpcT_evtData_c const* i_evtData,
+            char** i_arcNames)
+        : daNpcT_c(i_faceMotionAnmData, i_motionAnmData, i_faceMotionSequenceData,
+        i_faceMotionStepNum, i_motionSequenceData, i_motionStepNum, i_evtData,
+        i_arcNames) {}
     /* 809575B4 */ u16 getEyeballMaterialNo();
     /* 809575BC */ s32 getHeadJointNo();
     /* 809575C4 */ s32 getNeckJointNo();
-    /* 809575CC */ bool getBackboneJointNo();
-    /* 809575D4 */ void checkChangeJoint(int);
-    /* 809575E4 */ void checkRemoveJoint(int);
+    /* 809575CC */ s32 getBackboneJointNo();
+    /* 809575D4 */ BOOL checkChangeJoint(int);
+    /* 809575E4 */ BOOL checkRemoveJoint(int);
     /* 809575F4 */ s32 getFootLJointNo();
     /* 809575FC */ s32 getFootRJointNo();
 
     void setLastIn() { mLastGoatIn = true; }
 
-    static void* mCutNameList[7];
-    static u8 mCutList[84];
+    static char* mCutNameList[7];
+    static cutFunc mCutList[7];
 
 private:
-    /* 0x568 */ u8 field_0x568[0xfce - 0x568];
-    /* 0xfce */ bool mLastGoatIn;
-    /* 0xfcf */ u8 field_0xfce[0xfd8 - 0xfcf];
+    /* 0xE40 */ daNpc_Aru_HIO_c* mHIO;
+    /* 0xE44 */ dCcD_Cyl mCyl;
+    /* 0xF80 */ u8 field_0xf80;
+    /* 0xF84 */ daNpcT_ActorMngr_c mActorMngr[4];
+    /* 0xFA4 */ actionFunc mNextAction;
+    /* 0xFB0 */ actionFunc mAction;
+    /* 0xFBC */ fpc_ProcID field_0xfbc;
+    /* 0xFC0 */ u8 field_0xfc0[0xfc4 - 0xfc0];
+    /* 0xFC4 */ int field_0xfc4;
+    /* 0xFC8 */ s16 field_0xfc8;
+    /* 0xFCA */ u8 field_0xfca[0xfce - 0xfca];
+    /* 0xFCE */ bool mLastGoatIn;
+    /* 0xFCF */ u8 field_0xfcf[0xfd1 - 0xfcf];
+    /* 0xFD1 */ u8 field_0xfd1;
+    /* 0xFD2 */ u8 field_0xfd2;
+    /* 0xFD3 */ u8 field_0xfd3;
+    /* 0xFD4 */ u8 field_0xfd4[0xfd8 - 0xfd4];
 };
 
 STATIC_ASSERT(sizeof(daNpc_Aru_c) == 0xfd8);
 
 class daNpc_Aru_Param_c {
 public:
-    /* 80957604 */ ~daNpc_Aru_Param_c();
+    /* 80957604 */ virtual ~daNpc_Aru_Param_c() {}
 
-    static u8 const m[160];
+    static daNpc_Aru_HIOParam const m;
 };
 
 #endif /* D_A_NPC_ARU_H */
