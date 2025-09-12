@@ -469,7 +469,7 @@ int daNpc_Kn_c::create() {
         J3DModelData* model_data = mpModelMorf[0]->getModel()->getModelData();
         fopAcM_SetMtx(this, mpModelMorf[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -300.0f, -50.0f, -300.0f, 300.0f, 450.0f, 300.0f);
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_80000000);
+        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
 
         mSound.init(&current.pos, &eyePos, 3, 1);
         dKy_tevstr_init(&mTevStr, fopAcM_GetRoomNo(this), 0xFF);

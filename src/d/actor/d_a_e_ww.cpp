@@ -682,7 +682,7 @@ void daE_WW_c::executeMaster() {
     f32 temp_f30 = sp48.absXZ(current.pos);
     cXyz sp3C;
     cXyz sp30;
-    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_004000);
+    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x4000);
     field_0x724 = 10;
     switch (mActionMode) {
     case ACTION_MODE_0:
@@ -814,7 +814,7 @@ void daE_WW_c::executeMaster() {
 void daE_WW_c::executeWait() {
     switch (mActionMode) {
     case ACTION_MODE_0:
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_004000);
+        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
         setBck(BCK_WW_APPEAR, J3DFrameCtrl::EMode_NONE, 0.0f, 1.0f);
         mActionMode = ACTION_MODE_1;
         break;
@@ -854,7 +854,7 @@ void daE_WW_c::executeWait() {
             }
         }
 
-        fopAcM_OffStatus(this, fopAcM_STATUS_UNK_004000);
+        fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x4000);
         if (var_r28) {
             setActionMode(ACTION_ATTACK, ACTION_MODE_0);
             field_0x756 = 1;
@@ -1511,7 +1511,7 @@ void daE_WW_c::executeMoveOut() {
                         mActionMode = ACTION_MODE_11;
                     }
                 } else if (fVar1 > nREG_F(18) + 3000.0f + mDistCheckModifier) {
-                    if (fopAcM_CheckCondition(this, fopAcM_STATUS_UNK_000004)) {
+                    if (fopAcM_CheckCondition(this, fopAcM_STATUS_UNK_0x4)) {
                         fopAcM_delete(this);
                         break;
                     }

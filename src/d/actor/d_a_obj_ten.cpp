@@ -737,7 +737,7 @@ int daObjTEN_c::create() {
         if (field_0x624 == 2) {
             field_0x56c = 0;
             shape_angle.x -= 0x2000;
-            fopAcM_OnStatus(this, fopAcM_STATUS_UNK_004000);
+            fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
         } else {
             mDraw = true;
         }

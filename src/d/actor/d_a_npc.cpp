@@ -2605,7 +2605,7 @@ void daNpcT_c::setHitodamaPrtcl() {
 
 /* 8014C200-8014C384 146B40 0184+00 0/0 0/0 2/2 .text
  * daNpcT_chkActorInScreen__FP10fopAc_ac_cfffffffi              */
-bool daNpcT_chkActorInScreen(fopAc_ac_c* i_ActorP, f32 param_1, f32 param_2, f32 param_3,
+BOOL daNpcT_chkActorInScreen(fopAc_ac_c* i_ActorP, f32 param_1, f32 param_2, f32 param_3,
                              f32 param_4, f32 param_5, f32 param_6, f32 param_7, int param_8) {
     cXyz proj;
     cXyz pos_array[8];

@@ -3234,7 +3234,7 @@ static cPhs__Step daE_MF_Create(fopAc_ac_c* a_this) {
             l_HIO.field_0x4 = -1;
         }
 
-        fopAcM_OnStatus(a_this, fopAcM_STATUS_UNK_000100);
+        fopAcM_OnStatus(a_this, fopAcM_STATUS_UNK_0x100);
         a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         fopAcM_SetMtx(a_this, i_this->mpModelMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(a_this, -200.0f, -200.0f, -200.0f);
@@ -3302,7 +3302,7 @@ static cPhs__Step daE_MF_Create(fopAc_ac_c* a_this) {
         i_this->mAtInfo.mpSound = &i_this->mSound;
 
         if (strcmp(dComIfGp_getStartStageName(), "D_MN09") == 0) {
-            fopAcM_OnStatus(a_this, fopAcM_STATUS_UNK_004000);
+            fopAcM_OnStatus(a_this, fopAcM_STATUS_UNK_0x4000);
         }
 
         c_start = 1;

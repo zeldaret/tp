@@ -576,10 +576,10 @@ void daNpc_Kolinb_c::action() {
 
 /* 80A46824-80A468E8 000F84 00C4+00 1/0 0/0 0/0 .text            beforeMove__14daNpc_Kolinb_cFv */
 void daNpc_Kolinb_c::beforeMove() {
-    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_80000000);
+    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x8000000);
 
     if (checkHide()) {
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_80000000);
+        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
     }
 
     if (checkHide() || mNoDraw) {

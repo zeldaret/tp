@@ -3372,7 +3372,7 @@ static cPhs__Step daE_DN_Create(fopAc_ac_c* a_this) {
             l_HIO.field_0x4 = -1;
         }
 
-        fopAcM_OnStatus(a_this, fopAcM_STATUS_UNK_000100);
+        fopAcM_OnStatus(a_this, fopAcM_STATUS_UNK_0x100);
         a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         fopAcM_SetMtx(a_this, i_this->mpModelMorf->getModel()->getBaseTRMtx());
         fopAcM_SetMin(a_this, -200.0f, -200.0f, -200.0f);
@@ -3444,7 +3444,7 @@ static cPhs__Step daE_DN_Create(fopAc_ac_c* a_this) {
         if ((i_this->field_0x5b6 == 13 || i_this->field_0x5b6 == 14) || (i_this->field_0x5b6 == 15 || i_this->field_0x5b6 == 16)) {
             i_this->field_0x10d8 = 1;
             i_this->mAction = ACTION_REG;
-            fopAcM_OnStatus(a_this, fopAcM_STATUS_UNK_004000);
+            fopAcM_OnStatus(a_this, fopAcM_STATUS_UNK_0x4000);
             i_this->mAcchCir.SetWall(80.0f, 2.0f);
         }
 

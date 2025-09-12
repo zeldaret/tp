@@ -214,7 +214,7 @@ int daObjKshtr_c::Create() {
     }
 
     if (mType == TYPE_V_SHUTTER) {
-        fopAcM_OffStatus(this, fopAcM_STATUS_UNK_000100);
+        fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x100);
     }
 
     initBaseMtx();

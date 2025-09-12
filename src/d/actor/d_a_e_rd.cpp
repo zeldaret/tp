@@ -7285,7 +7285,7 @@ static cPhs__Step daE_RD_Create(fopAc_ac_c* a_this) {
             i_this->field_0x12a0 = 0;
         }
 
-        fopAcM_OnStatus(a_this, fopAcM_STATUS_UNK_000100);
+        fopAcM_OnStatus(a_this, fopAcM_STATUS_UNK_0x100);
         a_this->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
 
         if (i_this->field_0x5b6 == 6) {
@@ -7333,7 +7333,7 @@ static cPhs__Step daE_RD_Create(fopAc_ac_c* a_this) {
             i_this->mAction = ACTION_REG;
             i_this->mMode = 0;
             i_this->field_0xafb = 1;
-            fopAcM_OffStatus(a_this, fopAcM_STATUS_UNK_000100);
+            fopAcM_OffStatus(a_this, fopAcM_STATUS_UNK_0x100);
         }
 
         if (i_this->field_0x5b6 > 2) {
@@ -7445,10 +7445,10 @@ static cPhs__Step daE_RD_Create(fopAc_ac_c* a_this) {
             if (data_80519200 != 0 || strcmp(dComIfGp_getStartStageName(), "F_SP115") == 0 ||
                 (strcmp(dComIfGp_getStartStageName(), "F_SP121") == 0 && fopAcM_GetRoomNo(a_this) == 0)) {
                 // Lake Hylia or Hyrule Field
-                fopAcM_OffStatus(a_this, fopAcM_STATUS_UNK_004000);
+                fopAcM_OffStatus(a_this, fopAcM_STATUS_UNK_0x4000);
             }
         } else if (i_this->mBossMode != 4) {
-            fopAcM_OffStatus(a_this, fopAcM_STATUS_UNK_004000);
+            fopAcM_OffStatus(a_this, fopAcM_STATUS_UNK_0x4000);
         }
 
         if (strcmp(dComIfGp_getStartStageName(), "F_SP121") == 0 && fopAcM_GetRoomNo(a_this) == 0) {

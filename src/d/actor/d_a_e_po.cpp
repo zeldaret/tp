@@ -1513,7 +1513,7 @@ static void e_po_limbering(e_po_class* i_this) {
             dComIfGp_event_reset();
             daPy_getPlayerActorClass()->cancelOriginalDemo();
             mRollDemoFlag = 2;
-            fopAcM_OffStatus(a_this, fopAcM_STATUS_UNK_004000);
+            fopAcM_OffStatus(a_this, fopAcM_STATUS_UNK_0x4000);
             i_this->field_0x74A[2] = 0;
             i_this->mActionID = ACT_ROLL_MOVE;
             i_this->mType = 0;
@@ -1571,7 +1571,7 @@ static void e_po_roll_move(e_po_class* i_this) {
         if (mRollDemoFlag != 0) {
             anm_init(i_this, ANM_WAIT02, 10.0f, 2, 1.0f);
             i_this->field_0x74A[1] = 2;
-            fopAcM_OffStatus(a_this, fopAcM_STATUS_UNK_004000);
+            fopAcM_OffStatus(a_this, fopAcM_STATUS_UNK_0x4000);
         } else {
             anm_init(i_this, ANM_RUN_AFTER2, 10.0f, 2, 1.0f);
             i_this->field_0x74A[1] = 20;
@@ -1602,7 +1602,7 @@ static void e_po_roll_move(e_po_class* i_this) {
             if (mRollPlus != 0) {
                 if (i_this->mAnmID == ANM_AWAKE) {
                     anm_init(i_this, ANM_WAIT02, 10.0f, 2, 1.0f);
-                    fopAcM_OffStatus(a_this, fopAcM_STATUS_UNK_004000);
+                    fopAcM_OffStatus(a_this, fopAcM_STATUS_UNK_0x4000);
                 }
                 i_this->field_0x7D4 = 0.0f;
                 i_this->mType = 2;
