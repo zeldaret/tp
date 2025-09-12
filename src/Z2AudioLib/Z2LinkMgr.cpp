@@ -636,10 +636,7 @@ bool Z2LinkSoundStarter::startSound(JAISoundID i_soundID, JAISoundHandle* param_
     case Z2SE_OBJ_ARROW_SHOT_GAIN:
     case Z2SE_OBJ_ARROWBOMB_SHOT:
     case Z2SE_OBJ_ARROWBOMB_SHOTGAIN:
-        Z2SoundHandlePool* handle = Z2GetLink()->mSoundObjAnime.getHandleSoundID(Z2SE_AL_DRAW_BOW);
-        if (handle != NULL) {
-            (*handle)->stop(0);
-        }
+        Z2GetLink()->mSoundObjAnime.stopSound(Z2SE_AL_DRAW_BOW, 0);
         break;
     }
 
@@ -668,7 +665,7 @@ bool Z2LinkSoundStarter::startSound(JAISoundID i_soundID, JAISoundHandle* param_
 
     bool ret = Z2SoundStarter::startSound(i_soundID, param_1, param_2, param_3, param_4, param_5,
                                           param_6, param_7, param_8, param_9);
-    
+
     if (bVar2 && Z2GetSceneMgr()->getDemoSeWaveNum() != 114) {
         if (Z2GetLink()->mFlag5) {
             Z2GetLink()->startLinkSound(Z2SE_AL_SWORD_SHIELD_ADD, 0, param_4 * 127.0f);
