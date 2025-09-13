@@ -103,4 +103,4 @@ action_table$4273 = .data:0x00000158; // type:object size:0x3C scope:local
 l_daObjBossWarp_Method = .data:0x00000218; // type:object size:0x20 scope:local
 g_profile_Obj_BossWarp = .data:0x00000238; // type:object size:0x30 scope:global
 __vt__12J3DFrameCtrl = .data:0x00000268; // type:object size:0xC scope:global
-lbl_91_bss_0 = .bss:0x00000000; // type:object size:0x1 data:byte scope:local
+lbl_91_bss_0 = .bss:0x00000000; // type:object size:0x1 scope:local data:byte
