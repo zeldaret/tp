@@ -7,6 +7,9 @@
 #include "f_op/f_op_overlap_mng.h"
 #include <dolphin/gf.h>
 
+#include "d/d_camera.h"
+#include "f_op/f_op_camera_mng.h"
+
 /* 805231F8-805239F8 000020 0800+00 0/1 0/0 0/0 .data            l_M_kusa05_RGBATEX */
 const u16 l_M_Hijiki00TEX__width = 31;
 const u16 l_M_Hijiki00TEX__height = 31;
@@ -18,9 +21,7 @@ const u16 l_M_kusa05_RGBATEX__height = 31;
 #include "assets/l_M_Hijiki00TEX.h"  // ALIGN 32
 
 /* 805241F8-805245B8 001020 03C0+00 0/1 0/0 0/0 .data            l_pos */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_pos[960] = {
+static u8 l_pos[960] = {
     0x3F, 0x4A, 0x56, 0xEF, 0xC2, 0x20, 0x00, 0x00, 0x41, 0xFB, 0x17, 0xE4, 0x41, 0xAA, 0xBB, 0xEA,
     0xC2, 0x20, 0x00, 0x00, 0xC1, 0xB7, 0x03, 0x7A, 0x42, 0x55, 0x8D, 0x6F, 0x43, 0x13, 0x16, 0x3F,
     0xC0, 0xC7, 0x24, 0x07, 0x41, 0xE3, 0xC5, 0x31, 0x43, 0x13, 0x16, 0x3F, 0x42, 0x3A, 0x76, 0x90,
@@ -82,27 +83,18 @@ SECTION_DATA static u8 l_pos[960] = {
     0x43, 0x72, 0x8F, 0x21, 0x42, 0x23, 0xF4, 0x30, 0xC1, 0xE5, 0xEB, 0x07, 0x42, 0x80, 0xF7, 0x9F,
     0x40, 0xD8, 0x8F, 0xF3, 0xC1, 0xDC, 0xC3, 0xBB, 0x42, 0x96, 0x89, 0xEC, 0xC1, 0xAA, 0x6C, 0x09,
 };
-#pragma pop
 
 /* 805245B8-805245C4 0013E0 000C+00 0/1 0/0 0/0 .data            l_normal */
-#pragma push
-#pragma force_active on
-SECTION_DATA static Vec l_normal = {0.0f, 1.0f, 0.0f};
-#pragma pop
+static Vec l_normal = {0.0f, 1.0f, 0.0f};
 
 /* 805245C4-805245D8 0013EC 0014+00 0/1 0/0 0/0 .data            l_color */
-#pragma push
-#pragma force_active on
-SECTION_DATA static GXColor l_color[] = {
+static GXColor l_color[] = {
     {0xFF, 0xFF, 0xFF, 0x00}, {0xFF, 0xFF, 0xFF, 0x80}, {0xFF, 0xFF, 0xFF, 0x79},
     {0xFF, 0xFF, 0xFF, 0x73}, {0xFF, 0xFF, 0xFF, 0xFF},
 };
-#pragma pop
 
 /* 805245D8-80524678 001400 00A0+00 0/1 0/0 0/0 .data            l_texCoord */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_texCoord[160] = {
+static u8 l_texCoord[160] = {
     0x3F, 0x86, 0xF6, 0x27, 0x3F, 0x9C, 0x00, 0x00, 0x40, 0x03, 0x7B, 0x14, 0x3F, 0x9C, 0x00, 0x00,
     0x40, 0x03, 0x7B, 0x14, 0x3D, 0x00, 0x00, 0x00, 0x3F, 0x86, 0xF6, 0x27, 0x3D, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x3D, 0x00, 0x00, 0x00, 0xBF, 0x80, 0x00, 0x00, 0x3D, 0x00, 0x00, 0x00,
@@ -114,7 +106,6 @@ SECTION_DATA static u8 l_texCoord[160] = {
     0x3F, 0x94, 0x00, 0x00, 0x3F, 0x9C, 0x00, 0x00, 0xBD, 0xC0, 0x00, 0x00, 0x3F, 0x9C, 0x00, 0x00,
     0x3F, 0x94, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00, 0xBD, 0xC0, 0x00, 0x00, 0x3F, 0x80, 0x00, 0x00,
 };
-#pragma pop
 
 /* 80524678-80524758 0014A0 00CB+15 0/1 0/0 0/0 .data            l_M_Kusa_9qDL */
 #include "assets/l_M_Kusa_9qDL.h"
@@ -127,6 +118,7 @@ SECTION_DATA static u8 l_texCoord[160] = {
 
 /* 80524918-805249D8 001740 00A8+18 0/2 0/0 0/0 .data            l_Tengusa_matDL */
 #include "assets/l_Tengusa_matDL.h"
+
 l_Tengusa_matDL(l_M_Hijiki00TEX)
 
 /* 805249D8-80524A98 001800 00A8+18 0/2 0/0 0/0 .data            l_kusa9q_matDL */
@@ -493,7 +485,6 @@ dGrass_packet_c::dGrass_packet_c() {
 }
 
 /* 8051F03C-8051FABC 0033DC 0A80+00 1/0 0/0 0/0 .text            draw__15dGrass_packet_cFv */
-// NONMATCHING
 void dGrass_packet_c::draw() {
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
     cXyz spB4;
@@ -570,6 +561,12 @@ void dGrass_packet_c::draw() {
         var_f29 = 100.0f;
     }
 
+#if DEBUG
+    if (g_kankyoHIO.field_0x69c != 0.0f) {
+        var_f29 = g_kankyoHIO.field_0x69c;
+    }
+#endif
+
     for (int i = 0; i < 64; i++) {
         dGrass_data_c* var_r29 = sp54->getData();
         if (var_r29 != NULL && dComIfGp_roomControl_checkStatusFlag(i, 0x10)) {
@@ -600,6 +597,12 @@ void dGrass_packet_c::draw() {
                 sp48 = dComIfGp_roomControl_getStatusRoomDt(i)->getLightVecInfoNum();
             }
 
+#if DEBUG
+            if (g_kankyoHIO.field_0x06d != 0) {
+                sp48 = g_kankyoHIO.field_0x79b;
+            }
+#endif
+
             if (dKy_SunMoon_Light_Check() == TRUE && sp48 < 2) {
                 sp48 = 2;
             }
@@ -626,6 +629,20 @@ void dGrass_packet_c::draw() {
             dKy_GfFog_tevstr_set(sp44);
             dKy_setLight_nowroom_grass(sp44->room_no, 0.0f);
 
+            f32 temp1 = 0.001953125f; // fakematch
+
+#if DEBUG
+            camera_class* sp34 = dComIfGp_getCamera(0);
+            int sp30 = 0;
+            if (dCam_getBody() != NULL &&
+                (dCam_getBody()->Mode() == 7 || dCam_getBody()->Mode() == 8) &&
+                sp34 != NULL &&
+                dCam_getBody()->V() < -750.0f &&
+                var_r29->m_pos.abs(sp34->lookat.eye) < 200.0f) {
+                sp30 = 1;
+            }
+#endif
+
             while (var_r29 != NULL) {
                 if (var_r29->field_0x05 <= 3 || var_r29->field_0x05 >= 10) {
                     if (sp48 <= 2) {
@@ -646,47 +663,61 @@ void dGrass_packet_c::draw() {
                 GFSetTevColorS10(GX_TEVREG1, sp98);
 
                 GXColor sp38;
-                sp38.r = (var_r29->m_addCol & 0x1F) * 2;
-                sp38.g = ((var_r29->m_addCol >> 5) & 0x1F) * 2;
-                sp38.b = ((var_r29->m_addCol >> 0xA) & 0x1F) * 2;
 
-                if (daPy_py_c::checkNowWolfPowerUp()) {
-                    f32 var_f26 = g_env_light.bg_amb_col[0].r / 255.0f;
-                    sp38.r = (((var_r29->m_addCol & 0x1F) * 2) + 0x10) * (4.0f * var_f26);
-
-                    var_f26 = g_env_light.bg_amb_col[0].g / 255.0f;
-                    sp38.g = ((((var_r29->m_addCol >> 5) & 0x1F) * 2) + 0x10) * (4.0f * var_f26);
-
-                    var_f26 = g_env_light.bg_amb_col[0].b / 255.0f;
-                    sp38.b = ((((var_r29->m_addCol >> 0xA) & 0x1F) * 2) + 0x10) * (4.0f * var_f26);
-                }
-
-                f32 sp2C = 1.0f - ((int)var_r29->m_pos.x * 0.001953125f);
-
-                f32 var_f28 = 1.1f - ((int)var_r29->m_pos.x / 2000.0f);
-                var_f28 -= (int)var_r29->m_pos.z / 2000.0f;
-
-                if (var_f28 > 1.0f) {
-                    var_f28 = 1.0f;
-                }
-
-                if (sp38.r == 0x3E) {
-                    sp38.r = sp44->AmbCol.r * sp2C;
+#if DEBUG
+                if (g_kankyoHIO.field_0x698) {
+                    sp38.r = g_kankyoHIO.field_0x694 * 2;
+                    sp38.g = g_kankyoHIO.field_0x695 * 2;
+                    sp38.b = g_kankyoHIO.field_0x696 * 2;
                 } else {
-                    sp38.r = sp38.r * var_f28;
-                }
+#endif
+                    sp38.r = (var_r29->m_addCol & 0x1F) * 2;
+                    sp38.g = ((var_r29->m_addCol >> 5) & 0x1F) * 2;
+                    sp38.b = ((var_r29->m_addCol >> 0xA) & 0x1F) * 2;
 
-                if (sp38.g == 0x3E) {
-                    sp38.g = sp44->AmbCol.g * sp2C;
-                } else {
-                    sp38.g = sp38.g * var_f28;
-                }
+                    if (daPy_py_c::checkNowWolfPowerUp()) {
+                        f32 var_f26 = g_env_light.bg_amb_col[0].r / 255.0f;
+                        f32 var_f1 = (((var_r29->m_addCol & 0x1F) * 2 + 0x10));
+                        sp38.r = var_f1 * (var_f26 * 4.0f);
 
-                if (sp38.b == 0x3E) {
-                    sp38.b = sp44->AmbCol.b * sp2C;
-                } else {
-                    sp38.b = sp38.b * var_f28;
+                        var_f26 = g_env_light.bg_amb_col[0].g / 255.0f;
+                        f32 var_f1_2 = (((var_r29->m_addCol >> 5) & 0x1F) * 2 + 0x10);
+                        sp38.g = var_f1_2 * (4.0f * var_f26);
+
+                        var_f26 = g_env_light.bg_amb_col[0].b / 255.0f;
+                        f32 var_f1_3 = (((var_r29->m_addCol >> 10) & 0x1F) * 2 + 0x10);
+                        sp38.b = var_f1_3 * (4.0f * var_f26);
+                    }
+
+                    f32 sp2C = 1.0f - (((int)var_r29->m_pos.x & 0xFF) * temp1);
+
+                    f32 var_f28 = 1.1f - (((u8)(int)var_r29->m_pos.x & 0xFF) / 2000.0f);
+                    var_f28 -= ((int)var_r29->m_pos.z & 0xFF) / 2000.0f;
+
+                    if (var_f28 > 1.0f) {
+                        var_f28 = 1.0f;
+                    }
+
+                    if (sp38.r == 0x3E) {
+                        sp38.r = sp44->AmbCol.r * sp2C;
+                    } else {
+                        sp38.r = sp38.r * var_f28;
+                    }
+
+                    if (sp38.g == 0x3E) {
+                        sp38.g = sp44->AmbCol.g * sp2C;
+                    } else {
+                        sp38.g = sp38.g * var_f28;
+                    }
+
+                    if (sp38.b == 0x3E) {
+                        sp38.b = sp44->AmbCol.b * sp2C;
+                    } else {
+                        sp38.b = sp38.b * var_f28;
+                    }
+#ifdef DEBUG
                 }
+#endif
 
                 GXSetChanAmbColor(GX_COLOR0A0, sp38);
 
@@ -740,7 +771,6 @@ void dGrass_packet_c::draw() {
 }
 
 /* 8051FABC-8051FF88 003E5C 04CC+00 1/1 0/0 0/0 .text            calc__15dGrass_packet_cFv */
-// NONMATCHING
 void dGrass_packet_c::calc() {
     cXyz* temp_r29 = dKyw_get_wind_vec();
     f32 var_f31 = dKyw_get_wind_pow() * dKyw_get_wind_pow();
@@ -766,26 +796,28 @@ void dGrass_packet_c::calc() {
         var_f31 = 0.01f;
     }
 
+    int sp18;
     dGrass_anm_c* sp14 = getAnm();
     f32 temp_f30 = cM_scos(field_0x1d714);
     field_0x1d714 += (int)(40.0f + cM_rndF(290.0f));
 
-    int sp18 = 1.0f + ((1.0f - var_f31) * (2.0f + NREG_F(3)));
+    sp18 = 1.0f + ((1.0f - var_f31) * (2.0f + NREG_F(3)));
 
-    for (int i = 0; i < 16; i++) {
-        f32 temp_f28 = i * 0.0625f;
-        f32 temp_f29 = cLib_maxLimit<f32>(500.0f + (500.0f * (i / 16)), 2000.0f);
+    f32 temp1 = 0.0625f;
+    for (int i = 0; i < 16; sp14++, i++) {
+        f32 temp_f28 = i * temp1;
+        f32 temp2 = 500.0f + (500.0f * (i / 16));
+        f32 temp_f29 = cLib_maxLimit<f32>(temp2, 2000.0f);
         f32 temp_f27_2 = 1.6f + (0.69999999f * cM_ssin(exec_count_dammy2));
 
-        s16 sp8 = 0.69999999f * var_f31 * (temp_f29 + ((1.0f + (-0.2f * temp_f28)) * (10.0f * temp_f29 * (cM_ssin(exec_count_dammy + (i * 3050)) + temp_f27_2))));
+        f32 temp3 = cM_ssin(exec_count_dammy + i * 3050);
+        s16 sp8 = 0.69999999f * var_f31 * (temp_f29 + ((1.0f + (-0.2f * temp_f28)) * (10.0f * temp_f29 * (temp3 + temp_f27_2))));
 
-        exec_count_dammy += (int)(525.0f * var_f31);
-        exec_count_dammy2 += (int)(325.0f * var_f31);
+        exec_count_dammy += (int)(s16)(525.0f * var_f31);
+        exec_count_dammy2 += (int)(s16)(325.0f * var_f31);
 
         cLib_addCalcAngleS(&sp14->m_angX, (s16)sp8, sp18, 4000, 1);
         cLib_addCalcAngleS(&sp14->m_angY, (s16)cM_atan2s(temp_r29->x, temp_r29->z), 20, 4000, 1);
-
-        sp14++;
     }
 
     int sp10 = dComIfGp_roomControl_getStayNo();
@@ -808,7 +840,7 @@ void dGrass_packet_c::calc() {
                 if (var_r30->field_0x02 >= 0) {
                     var_r30->hitCheck(sp10, spA);
                 } else if (var_r30->field_0x02 < -2) {
-                    var_r30->field_0x02 += 1;
+                    var_r30->field_0x02++;
                 }
             } else if (var_r30->field_0x02 >= 16) {
                 daGrass_c::getGrass()->deleteAnm(var_r30->field_0x02);
@@ -1036,22 +1068,4 @@ void dGrass_packet_c::setAnm(int i_idx, s16) {
     anm_p->m_state = 1;
     anm_p->m_angY = 0;
     anm_p->m_angX = 0;
-}
-
-/* 80520928-80520934 004CC8 000C+00 1/1 0/0 0/0 .text            __ct__13dGrass_room_cFv */
-dGrass_room_c::dGrass_room_c() {
-    mp_data = NULL;
-}
-
-/* 80520934-80520940 004CD4 000C+00 1/1 0/0 0/0 .text            __ct__12dGrass_anm_cFv */
-dGrass_anm_c::dGrass_anm_c() {
-    m_state = 0;
-}
-
-/* 80520940-8052097C 004CE0 003C+00 2/2 0/0 0/0 .text            __dt__13dGrass_data_cFv */
-dGrass_data_c::~dGrass_data_c() {}
-
-/* 8052097C-80520988 004D1C 000C+00 1/1 0/0 0/0 .text            __ct__13dGrass_data_cFv */
-dGrass_data_c::dGrass_data_c() {
-    m_state = 0;
 }

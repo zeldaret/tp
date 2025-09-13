@@ -20,7 +20,6 @@ public:
         TYPE_0,
         TYPE_1,
     };
-
     /* 80A70C6C */ ~daNpc_midP_c();
     /* 80A70D90 */ int create();
     /* 80A71074 */ int CreateHeap();
@@ -55,13 +54,13 @@ public:
                                 daNpcT_MotionSeqMngr_c::sequenceStepData_c const* param_5, int param_6,
                                 daNpcT_evtData_c const* param_7, char** param_8) :
                                 daNpcT_c(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8) {}
-    /* 80A7390C */ u16 getEyeballRMaterialNo();
-    /* 80A73914 */ u16 getEyeballLMaterialNo();
-    /* 80A7391C */ s32 getHeadJointNo();
-    /* 80A73924 */ s32 getNeckJointNo();
-    /* 80A7392C */ s32 getBackboneJointNo();
-    /* 80A73934 */ BOOL checkChangeJoint(int);
-    /* 80A73944 */ BOOL checkRemoveJoint(int);
+    /* 80A7390C */ u16 getEyeballRMaterialNo() { return 3; }
+    /* 80A73914 */ u16 getEyeballLMaterialNo() { return 2; }
+    /* 80A7391C */ s32 getHeadJointNo() { return 4; }
+    /* 80A73924 */ s32 getNeckJointNo() { return 3; }
+    /* 80A7392C */ s32 getBackboneJointNo() { return 2; }
+    /* 80A73934 */ BOOL checkChangeJoint(int param_0) { return param_0 == 4; }
+    /* 80A73944 */ BOOL checkRemoveJoint(int param_0) { return param_0 == 8; }
 
     int getFlowNodeNo() {
         u16 nodeNo = home.angle.x;
@@ -88,7 +87,7 @@ STATIC_ASSERT(sizeof(daNpc_midP_c) == 0xfa0);
 
 class daNpc_midP_Param_c {
 public:
-    /* 80A73954 */ ~daNpc_midP_Param_c();
+    /* 80A73954 */ virtual ~daNpc_midP_Param_c() {}
 
     struct Data {
         /* 0x00 */ f32 field_0x00;
@@ -133,6 +132,5 @@ public:
 
     static const Data m;
 };
-
 
 #endif /* D_A_NPC_MIDP_H */
