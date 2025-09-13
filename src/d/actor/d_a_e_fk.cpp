@@ -10,6 +10,7 @@
 #include "d/actor/d_a_player.h"
 #include "d/actor/d_a_horse.h"
 #include "Z2AudioLib/Z2Instances.h"
+#include "f_op/f_op_actor_enemy.h"
 
 class daE_FK_HIO_c : public JORReflexible {
 public:
@@ -24,32 +25,6 @@ public:
     /* 0x10 */ s16 effect_alpha; // "Effectα"
     /* 0x12 */ s16 generation_time;
 };
-
-static f32 dummyFloat(int _) {
-    switch (_) {
-    case 0:
-        return 100.0f;
-    case 1:
-        return 0.0f;
-    case 2:
-        return 1.0f;
-    }
-}
-
-static f64 dummyDouble(int _) {
-    switch (_) {
-    case 0:
-        return 0.5;
-    case 1:
-        return 3.0;
-    case 2:
-        return 0.0;
-    }
-}
-
-static f32 dummyFloat2() {
-    return 0.01f;
-}
 
 /* 806B938C-806B93CC 0000EC 0040+00 1/1 0/0 0/0 .text            __ct__12daE_FK_HIO_cFv */
 daE_FK_HIO_c::daE_FK_HIO_c() {

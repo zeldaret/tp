@@ -1713,9 +1713,9 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_dd"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_df"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_dk"),
-    ActorRel(Equivalent, "d_a_e_dt"), # weak func order
+    ActorRel(MatchingFor("GZ2E01"), "d_a_e_dt"),
     ActorRel(NonMatching, "d_a_e_fb"),
-    ActorRel(Equivalent, "d_a_e_fk"), # weak func order
+    ActorRel(MatchingFor("GZ2E01"), "d_a_e_fk"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_fs"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_fz"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_gb"),
