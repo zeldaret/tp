@@ -101,10 +101,10 @@ static int daVrbox2_Draw(vrbox2_class* i_this) {
     }
 
 #ifdef DEBUG
-    if (g_kankyoHIO.field_0xB4 != 0) {
-        var_f31 = g_kankyoHIO.field_0xB8;
+    if (g_kankyoHIO.field_0x0b4 != 0) {
+        var_f31 = g_kankyoHIO.field_0x0b8;
     } else {
-        g_kankyoHIO.field_0xB8 = var_f31;
+        g_kankyoHIO.field_0x0b8 = var_f31;
     }
 #endif
 

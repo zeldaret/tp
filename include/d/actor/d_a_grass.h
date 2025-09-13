@@ -13,8 +13,10 @@ public:
     /* 8051DF54 */ void Direction_Set(fopAc_ac_c*, u32, int, dCcMassS_HitInf*, cCcD_Obj*, csXyz*);
     /* 8051E1C8 */ void WorkAt(fopAc_ac_c*, u32, int, dCcMassS_HitInf*, u16);
     /* 8051EB88 */ void hitCheck(int, u16);
-    /* 80520940 */ ~dGrass_data_c();
-    /* 8052097C */ dGrass_data_c();
+    /* 80520940 */ ~dGrass_data_c() {}
+    /* 8052097C */ dGrass_data_c() {
+        m_state = 0;
+    }
 
     /* 0x00 */ u8 m_state;
     /* 0x01 */ u8 field_0x01;
@@ -33,7 +35,9 @@ class dGrass_room_c {
 public:
     /* 8051EDE0 */ void newData(dGrass_data_c*);
     /* 8051EDF0 */ void deleteData();
-    /* 80520928 */ dGrass_room_c();
+    /* 80520928 */ dGrass_room_c() {
+        mp_data = NULL;
+    }
 
     dGrass_data_c* getData() { return mp_data; }
 
@@ -42,7 +46,9 @@ public:
 
 class dGrass_anm_c {
 public:
-    /* 80520934 */ dGrass_anm_c();
+    /* 80520934 */ dGrass_anm_c() {
+        m_state = 0;
+    }
 
     /* 0x00 */ u8 m_state;
     /* 0x02 */ s16 m_angY;
@@ -62,7 +68,7 @@ public:
     /* 805208E4 */ void setAnm(int, s16);
 
     /* 8051F03C */ virtual void draw();
-    /* 8051BFBC */ virtual ~dGrass_packet_c() {}
+    /* 8051BFBC */ virtual ~dGrass_packet_c();
 
     typedef void (dGrass_packet_c::*deleteFunc)(int);
     static deleteFunc m_deleteRoom;

@@ -1890,10 +1890,10 @@ void vrkumo_move() {
         if (filelist != NULL) {
             sp2C = dStage_FileList_dt_SeaLevel(filelist);
             #ifdef DEBUG
-            if (g_kankyoHIO.field_0xB4) {
-                sp2C = g_kankyoHIO.field_0xB8;
+            if (g_kankyoHIO.field_0x0b4) {
+                sp2C = g_kankyoHIO.field_0x0b8;
             } else {
-                g_kankyoHIO.field_0xB8 = sp2C;
+                g_kankyoHIO.field_0x0b8 = sp2C;
             }
             #endif
         }
@@ -4615,10 +4615,10 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
             sp70 = dStage_FileList_dt_SeaLevel(filelist);
 
             #ifdef DEBUG
-            if (g_kankyoHIO.field_0xB4) {
-                sp70 = g_kankyoHIO.field_0xB8;
+            if (g_kankyoHIO.field_0x0b4) {
+                sp70 = g_kankyoHIO.field_0x0b8;
             } else {
-                g_kankyoHIO.field_0xB8 = sp70;
+                g_kankyoHIO.field_0x0b8 = sp70;
             }
             #endif
         }

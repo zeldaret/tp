@@ -442,7 +442,7 @@ void daNpc_midP_c::setAttnPos() {
         daNpc_midP_Param_c::m.field_0x2c, daNpc_midP_Param_c::m.field_0x28,
         daNpc_midP_Param_c::m.field_0x34, daNpc_midP_Param_c::m.field_0x30,
         daNpc_midP_Param_c::m.field_0x3c, daNpc_midP_Param_c::m.field_0x38,
-        daNpc_midP_Param_c::m.field_0x40, dVar5, NULL);
+        daNpc_midP_Param_c::m.field_0x40, dVar5, &sp48);
     mJntAnm.calcJntRad(0.2f, 1.0f, dVar5);
     setMtx();
 
@@ -505,7 +505,7 @@ void daNpc_midP_c::drawGhost() {
 /* 80A721E0-80A72228 001660 0048+00 1/1 0/0 0/0 .text            selectAction__12daNpc_midP_cFv */
 int daNpc_midP_c::selectAction() {
     field_0xf84 = NULL;
-    field_0xf84 = &daNpc_midP_c::talk;
+    field_0xf84 = &daNpc_midP_c::wait;
     return 1;
 }
 
@@ -644,50 +644,7 @@ static int daNpc_midP_IsDelete(void* i_this) {
 static u8 lit_3811[12];
 
 /* 80A73D5C-80A73D60 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[4];
-
-/* 80A7390C-80A73914 002D8C 0008+00 1/0 0/0 0/0 .text getEyeballRMaterialNo__12daNpc_midP_cFv */
-u16 daNpc_midP_c::getEyeballRMaterialNo() {
-    return 3;
-}
-
-/* 80A73914-80A7391C 002D94 0008+00 1/0 0/0 0/0 .text getEyeballLMaterialNo__12daNpc_midP_cFv */
-u16 daNpc_midP_c::getEyeballLMaterialNo() {
-    return 2;
-}
-
-/* 80A7391C-80A73924 002D9C 0008+00 1/0 0/0 0/0 .text            getHeadJointNo__12daNpc_midP_cFv */
-s32 daNpc_midP_c::getHeadJointNo() {
-    return 4;
-}
-
-/* 80A73924-80A7392C 002DA4 0008+00 1/0 0/0 0/0 .text            getNeckJointNo__12daNpc_midP_cFv */
-s32 daNpc_midP_c::getNeckJointNo() {
-    return 3;
-}
-
-/* 80A7392C-80A73934 002DAC 0008+00 1/0 0/0 0/0 .text getBackboneJointNo__12daNpc_midP_cFv */
-s32 daNpc_midP_c::getBackboneJointNo() {
-    return 2;
-}
-
-/* 80A73934-80A73944 002DB4 0010+00 1/0 0/0 0/0 .text            checkChangeJoint__12daNpc_midP_cFi */
-BOOL daNpc_midP_c::checkChangeJoint(int param_1) {
-    // NONMATCHING
-    return (4 - param_1) >> 5 & 0xff;
-}
-
-/* 80A73944-80A73954 002DC4 0010+00 1/0 0/0 0/0 .text            checkRemoveJoint__12daNpc_midP_cFi */
-BOOL daNpc_midP_c::checkRemoveJoint(int param_1) {
-    // NONMATCHING
-    return (8 - param_1) >> 5 & 0xff;
-}
-
-/* 80A73954-80A7399C 002DD4 0048+00 2/1 0/0 0/0 .text            __dt__18daNpc_midP_Param_cFv */
-daNpc_midP_Param_c::~daNpc_midP_Param_c() {
-    // NONMATCHING
-
-}
+static daNpc_midP_Param_c l_HIO;
 
 /* 80A73B8C-80A73BAC -00001 0020+00 1/0 0/0 0/0 .data            daNpc_midP_MethodTable */
 static actor_method_class daNpc_midP_MethodTable = {

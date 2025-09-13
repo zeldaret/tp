@@ -1043,7 +1043,7 @@ public:
     cXyz* getRightHandPosP() { return &mRightHandPos; }
     cXyz* getHeadTopPosP() { return &mHeadTopPos; }
 
-    const cXyz& getSwordTopPos() const { return mSwordTopPos; }
+    const cXyz getSwordTopPos() const { return mSwordTopPos; }
 
     u32 checkWolf() const { return checkNoResetFlg1(FLG1_IS_WOLF); }
     u32 checkEquipHeavyBoots() const { return checkNoResetFlg0(FLG0_EQUIP_HVY_BOOTS); }
