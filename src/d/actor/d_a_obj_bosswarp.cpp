@@ -14,126 +14,6 @@
 #include "d/actor/d_a_obj_ystone.h"
 #include "dol2asm.h"
 
-
-//
-// Forward References:
-//
-
-extern "C" static void CheckCreateHeap__FP10fopAc_ac_c();
-extern "C" static void getNowLevel__Fv();
-extern "C" void initBaseMtx__15daObjBossWarp_cFv();
-extern "C" void setBaseMtx__15daObjBossWarp_cFv();
-extern "C" void Create__15daObjBossWarp_cFv();
-extern "C" void CreateHeap__15daObjBossWarp_cFv();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" void create__15daObjBossWarp_cFv();
-extern "C" void appear__15daObjBossWarp_cFi();
-extern "C" void set_appear__15daObjBossWarp_cFv();
-extern "C" void disappear__15daObjBossWarp_cFi();
-extern "C" void checkDistance__15daObjBossWarp_cFv();
-extern "C" void execute__15daObjBossWarp_cFv();
-extern "C" void event_proc_call__15daObjBossWarp_cFv();
-extern "C" void actionWait__15daObjBossWarp_cFv();
-extern "C" void actionOrderEvent__15daObjBossWarp_cFv();
-extern "C" void actionEvent__15daObjBossWarp_cFv();
-extern "C" void actionWaitWarp__15daObjBossWarp_cFv();
-extern "C" void actionOrderWarpEvent__15daObjBossWarp_cFv();
-extern "C" void actionWarpEvent__15daObjBossWarp_cFv();
-extern "C" void actionDead__15daObjBossWarp_cFv();
-extern "C" void actionOrderChkEvent__15daObjBossWarp_cFv();
-extern "C" void actionChkEvent__15daObjBossWarp_cFv();
-extern "C" void actionOrderCancelEvent__15daObjBossWarp_cFv();
-extern "C" void actionCancelEvent__15daObjBossWarp_cFv();
-extern "C" void demoProc__15daObjBossWarp_cFv();
-extern "C" void setGoal__15daObjBossWarp_cFv();
-extern "C" void draw__15daObjBossWarp_cFv();
-extern "C" void _delete__15daObjBossWarp_cFv();
-extern "C" static void daObjBossWarp_Draw__FP15daObjBossWarp_c();
-extern "C" static void daObjBossWarp_Execute__FP15daObjBossWarp_c();
-extern "C" static void daObjBossWarp_Delete__FP15daObjBossWarp_c();
-extern "C" static void daObjBossWarp_Create__FP10fopAc_ac_c();
-extern "C" void func_8057B304(void* _this, int*);
-extern "C" void setPos__11daObjLife_cF4cXyz();
-extern "C" void setCurrentPos__16obj_ystone_classF4cXyz();
-extern "C" extern char const* const d_a_obj_bosswarp__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void transM__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void scaleM__14mDoMtx_stack_cFfff();
-extern "C" void play__14mDoExt_baseAnmFv();
-extern "C" void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss();
-extern "C" void entry__13mDoExt_btkAnmFP16J3DMaterialTablef();
-extern "C" void init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss();
-extern "C" void entry__13mDoExt_brkAnmFP16J3DMaterialTablef();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
-extern "C" void fopAcM_delete__FUi();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_orderOtherEventId__FP10fopAc_ac_csUcUsUsUs();
-extern "C" void fpcSch_JudgeForPName__FPvPv();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void onCollectCrystal__20dSv_player_collect_cFUc();
-extern "C" void onCollectMirror__20dSv_player_collect_cFUc();
-extern "C" void onEventBit__11dSv_event_cFUs();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void setPtT__14dEvt_control_cFPv();
-extern "C" void getEventIdx__16dEvent_manager_cFP10fopAc_ac_cPCcUc();
-extern "C" void endCheck__16dEvent_manager_cFs();
-extern "C" void getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci();
-extern "C" void getIsAddvance__16dEvent_manager_cFi();
-extern "C" void getMyActIdx__16dEvent_manager_cFiPCPCciii();
-extern "C" void getMySubstanceP__16dEvent_manager_cFiPCci();
-extern "C" void cutEnd__16dEvent_manager_cFi();
-extern "C" void setGoal__16dEvent_manager_cFP4cXyz();
-extern "C" void checkStartDemo__16dEvent_manager_cFv();
-extern "C" void
-set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void __ct__10dMsgFlow_cFv();
-extern "C" void init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c();
-extern "C" void doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci();
-extern "C" void query005__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci();
-extern "C" void __pl__4cXyzCFRC3Vec();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void __ml__4cXyzCFf();
-extern "C" void normalizeZP__4cXyzFv();
-extern "C" void cLib_addCalc__FPfffff();
-extern "C" void cLib_chaseF__FPfff();
-extern "C" void seStartLevel__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_20();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_20();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 m_midnaActor__9daPy_py_c[4];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" extern u8 data_8057B8D0[4];
-
 //
 // Declarations:
 //
@@ -572,95 +452,6 @@ void daObjBossWarp_c::actionCancelEvent() {
     }
 }
 
-/* 8057B490-8057B4B4 000130 0024+00 0/0 0/0 0/0 .rodata          l_dangeon_clr_bitNo$4282 */
-static int const l_dangeon_clr_bitNo[9] = {
-    0x37, 0x40, 0x4E, 0x109, 0x10A, 0x10B, 0x10C, -1, -1
-};
-
-/* 8057B7B0-8057B7EC -00001 003C+00 1/1 0/0 0/0 .data            action_table$4273 */
-static char* action_table[15] = {
-    "WAIT",
-    "APPEAR",
-    "DISAPPEAR",
-    "SCENE_CHG",
-    "STONE_FALL",
-    "STONE_MIDNA",
-    "WALK_TARGET1",
-    "APPEAR_END",
-    "STONE_DELETE",
-    "STONE_PUTAWAY",
-    "WCHECK",
-    "SETPOS",
-    "SCALING",
-    "STONE_SCALE",
-    "HEART_MOVE",
-};
-
-/* 8057B7EC-8057B818 -00001 002C+00 1/1 0/0 0/0 .data            @4504 */
-SECTION_DATA static void* lit_4504[11] = {
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x444),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x464),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x474),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x628),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x484),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x51C),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x61C),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x598),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x61C),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x54C),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x5C8),
-};
-
-/* 8057B818-8057B834 -00001 001C+00 1/1 0/0 0/0 .data            @4503 */
-SECTION_DATA static void* lit_4503[7] = {
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x304),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x31C),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x334),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x390),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x34C),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x364),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x37C),
-};
-
-/* 8057B834-8057B870 -00001 003C+00 1/1 0/0 0/0 .data            @4502 */
-SECTION_DATA static void* lit_4502[15] = {
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0xF8),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x134),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x18C),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x19C),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x1C8),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x39C),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x3B4),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x424),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x424),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x3A8),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x3C4),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x3E0),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x3EC),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x424),
-    (void*)(((char*)demoProc__15daObjBossWarp_cFv) + 0x3F8),
-};
-
-/* 8057B4B4-8057B4B8 000154 0004+00 0/1 0/0 0/0 .rodata          @4489 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4489 = 100000.0f;
-COMPILER_STRIP_GATE(0x8057B4B4, &lit_4489);
-#pragma pop
-
-/* 8057B4B8-8057B4BC 000158 0004+00 0/1 0/0 0/0 .rodata          @4490 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4490 = 900.0f;
-COMPILER_STRIP_GATE(0x8057B4B8, &lit_4490);
-#pragma pop
-
-/* 8057B4EC-8057B4EC 00018C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_8057B64F = "Timer";
-#pragma pop
-
 /* 8057AA94-8057B0D8 0014D4 0644+00 11/8 0/0 0/0 .text            demoProc__15daObjBossWarp_cFv */
 // NONMATCHING - regalloc
 int daObjBossWarp_c::demoProc() {
@@ -694,7 +485,7 @@ int daObjBossWarp_c::demoProc() {
         -1
     };
 
-    daPy_py_c* player = (daPy_py_c*)daPy_getPlayerActorClass();
+    daPy_py_c* player = daPy_getPlayerActorClass();
     obj_ystone_class* ystone = (obj_ystone_class*)fopAcM_SearchByName(PROC_OBJ_YSTONE);
     cXyz unused(100000.0f, 0.0f, 0.0f);
     daMidna_c* midna = (daMidna_c*)daPy_py_c::getMidnaActor();
@@ -870,84 +661,6 @@ int daObjBossWarp_c::demoProc() {
     return 1;
 }
 
-/* ############################################################################################## */
-/* 8057B4BC-8057B4C0 00015C 0004+00 0/0 0/0 0/0 .rodata          @4491 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4491 = 50.0f;
-COMPILER_STRIP_GATE(0x8057B4BC, &lit_4491);
-#pragma pop
-
-/* 8057B4C0-8057B4C4 000160 0004+00 0/0 0/0 0/0 .rodata          @4492 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4492 = 120.0f;
-COMPILER_STRIP_GATE(0x8057B4C0, &lit_4492);
-#pragma pop
-
-/* 8057B4C4-8057B4C8 000164 0004+00 0/0 0/0 0/0 .rodata          @4493 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4493 = 270.0f;
-COMPILER_STRIP_GATE(0x8057B4C4, &lit_4493);
-#pragma pop
-
-/* 8057B4C8-8057B4CC 000168 0004+00 0/0 0/0 0/0 .rodata          @4494 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4494 = 145.0f;
-COMPILER_STRIP_GATE(0x8057B4C8, &lit_4494);
-#pragma pop
-
-/* 8057B4CC-8057B4D0 00016C 0004+00 0/0 0/0 0/0 .rodata          @4495 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4495 = 74.0f;
-COMPILER_STRIP_GATE(0x8057B4CC, &lit_4495);
-#pragma pop
-
-/* 8057B4D0-8057B4D4 000170 0004+00 0/0 0/0 0/0 .rodata          @4496 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4496 = 175.0f;
-COMPILER_STRIP_GATE(0x8057B4D0, &lit_4496);
-#pragma pop
-
-/* 8057B4D4-8057B4D8 000174 0004+00 0/0 0/0 0/0 .rodata          @4497 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4497 = 54.0f;
-COMPILER_STRIP_GATE(0x8057B4D4, &lit_4497);
-#pragma pop
-
-/* 8057B4D8-8057B4DC 000178 0004+00 0/0 0/0 0/0 .rodata          @4498 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4498 = 1.0f / 20.0f;
-COMPILER_STRIP_GATE(0x8057B4D8, &lit_4498);
-#pragma pop
-
-/* 8057B4DC-8057B4E0 00017C 0004+00 0/0 0/0 0/0 .rodata          @4499 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4499 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(0x8057B4DC, &lit_4499);
-#pragma pop
-
-/* 8057B4E0-8057B4E4 000180 0004+00 0/0 0/0 0/0 .rodata          @4500 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4500 = 40.0f;
-COMPILER_STRIP_GATE(0x8057B4E0, &lit_4500);
-#pragma pop
-
-/* 8057B4E4-8057B4E8 000184 0004+00 0/0 0/0 0/0 .rodata          @4501 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const lit_4501 = 0x3D072B02;
-COMPILER_STRIP_GATE(0x8057B4E4, &lit_4501);
-#pragma pop
-
 /* 8057B0D8-8057B190 001B18 00B8+00 1/1 0/0 0/0 .text            setGoal__15daObjBossWarp_cFv */
 void daObjBossWarp_c::setGoal() {
     daPy_py_c* player = daPy_getPlayerActorClass();
@@ -993,23 +706,6 @@ static int daObjBossWarp_Delete(daObjBossWarp_c* i_this) {
 /* 8057B2E4-8057B304 001D24 0020+00 1/0 0/0 0/0 .text daObjBossWarp_Create__FP10fopAc_ac_c */
 static cPhs__Step daObjBossWarp_Create(fopAc_ac_c* i_this) {
     return static_cast<daObjBossWarp_c*>(i_this)->create();
-}
-
-/* 8057B304-8057B320 001D44 001C+00 1/1 0/0 0/0 .text            cLib_calcTimer<i>__FPi */
-extern "C" void func_8057B304(void* _this, int* param_0) {
-    // NONMATCHING
-}
-
-/* 8057B320-8057B33C 001D60 001C+00 1/1 0/0 0/0 .text            setPos__11daObjLife_cF4cXyz */
-// void daObjLife_c::setPos(cXyz param_0) {
-extern "C" void setPos__11daObjLife_cF4cXyz() {
-    // NONMATCHING
-}
-
-/* 8057B33C-8057B358 001D7C 001C+00 1/1 0/0 0/0 .text setCurrentPos__16obj_ystone_classF4cXyz */
-// void obj_ystone_class::setCurrentPos(cXyz param_0) {
-extern "C" void setCurrentPos__16obj_ystone_classF4cXyz() {
-    // NONMATCHING
 }
 
 /* 8057B870-8057B890 -00001 0020+00 1/0 0/0 0/0 .data            l_daObjBossWarp_Method */
