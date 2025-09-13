@@ -10,11 +10,9 @@
  *
  * @details
  *
- */
+*/
 
-struct daNpc_Saru_HIOParam
-{
-
+struct daNpc_Saru_HIOParam {
     /* 0x00 */ daNpcT_HIOParam common;
     /* 0x8C */ s16 scared_time;          // 怯える時間       - Scared Time
     /* 0x8E */ s16 field_0x8e;
