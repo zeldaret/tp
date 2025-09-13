@@ -453,7 +453,6 @@ void daObjBossWarp_c::actionCancelEvent() {
 }
 
 /* 8057AA94-8057B0D8 0014D4 0644+00 11/8 0/0 0/0 .text            demoProc__15daObjBossWarp_cFv */
-// NONMATCHING - regalloc
 int daObjBossWarp_c::demoProc() {
     static char* action_table[15] = {
         "WAIT",
