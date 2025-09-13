@@ -1617,7 +1617,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01"), "d_a_npc_tkj"),
     ActorRel(NonMatching, "d_a_obj_bhashi"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_bkdoor"),
-    ActorRel(NonMatching, "d_a_obj_bosswarp"),
+    ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_bosswarp"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_cboard"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_digplace"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_eff"),
@@ -1718,7 +1718,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_e_fk"), # weak func order
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_fs"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_fz"),
-    ActorRel(NonMatching, "d_a_e_gb"),
+    ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_gb"),
     ActorRel(NonMatching, "d_a_e_ge"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_gi"),
     ActorRel(NonMatching, "d_a_e_gm"),
