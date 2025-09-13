@@ -1610,7 +1610,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_npc_fish"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_npc_henna"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_npc_kakashi"),
-    ActorRel(NonMatching, "d_a_npc_kkri"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_npc_kkri"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_npc_kolin"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_npc_maro"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_npc_taro"),

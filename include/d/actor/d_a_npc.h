@@ -746,7 +746,7 @@ public:
     static dCcD_SrcSph mCcDSph;
     static fopAc_ac_c* mFindActorPtrs[50];
     static s16 mSrchName;
-    static s32 mFindCount;
+    static int mFindCount;
 
     enum Mode {
         /*  0 */ MODE_ENTER,
