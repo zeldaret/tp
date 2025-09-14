@@ -2158,7 +2158,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_spinLift"),
     ActorRel(NonMatching, "d_a_obj_ss_drink"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_ss_item"),
-    ActorRel(NonMatching, "d_a_obj_stairBlock"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_stairBlock"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_stone"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_stopper"),
     ActorRel(NonMatching, "d_a_obj_stopper2"),
