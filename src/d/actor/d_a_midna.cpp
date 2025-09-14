@@ -6,22 +6,21 @@
 #include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_midna.h"
-#include "SSystem/SComponent/c_math.h"
-#include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 #include "d/d_meter2_info.h"
-#include "f_op/f_op_actor_mng.h"
 #include "d/actor/d_a_alink.h"
 #include "d/actor/d_a_kago.h"
 #include "d/d_demo.h"
 #include "d/d_msg_object.h"
-#include "d/d_procname.h"
-#include "d/d_stage.h"
 
-/* 804C64C8-804C64D4 000000 000C+00 15/15 0/0 0/0 .rodata          @3777 */
-static u8 const lit_3777[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
+static f32 dummy_lit_3777(int idx, u8 foo) {
+    Vec dummy_vec = {0.0f, 0.0f, 0.0f};
+    switch (idx) {
+        case 0: return dummy_vec.x;
+        case 1: return dummy_vec.y;
+        default: return dummy_vec.z;
+    }
+}
 
 /* 804C64D4-804C64DC 00000C 0006+02 5/6 0/0 0/0 .rodata          l_arcName */
 static char const l_arcName[6] = "Midna";
@@ -741,7 +740,6 @@ void daMidna_c::allAnimePlay() {
 }
 
 /* 804BDE04-804BE470 001C64 066C+00 2/2 0/0 0/0 .text            setMatrix__9daMidna_cFv */
-// NONMATCHING regalloc / instruction ordering
 void daMidna_c::setMatrix() {
     Vec vec1 = {0.0f, daMidna_hio_c0::m.field_0x18, daMidna_hio_c0::m.field_0x1c};
     Vec scale = {daMidna_hio_c0::m.mScale, daMidna_hio_c0::m.mScale, daMidna_hio_c0::m.mScale};
@@ -777,8 +775,10 @@ void daMidna_c::setMatrix() {
                 current.pos = link->current.pos;
                 shape_angle.y = link->shape_angle.y;
             } else if (checkStateFlg0(FLG0_UNK_80000)) {
+                // FIXME: x-val is a fakematch. Subtraction + negation fixes instruction order,
+                //  but debug no longer matches.
                 current.pos.set(
-                    link->current.pos.x + -30.0f * sin_link_y + 65.0f * cos_link_y,
+                    link->current.pos.x + -30.0f * sin_link_y - -(65.0f * cos_link_y),
                     link->current.pos.y,
                     link->current.pos.z + -30.0f * cos_link_y - 65.0f * sin_link_y
                 );
@@ -1096,7 +1096,6 @@ BOOL daMidna_c::checkAppear() {
 }
 
 /* 804BF070-804BFF80 002ED0 0F10+00 1/1 0/0 0/0 .text            checkMidnaPosState__9daMidna_cFv */
-// NONMATCHING needs to load g_dComIfG_gameInfo twice for two calls to dComIfGp_event_getPt2
 void daMidna_c::checkMidnaPosState() {
     daAlink_c* link = daAlink_getAlinkActorClass();
 
@@ -1286,7 +1285,7 @@ void daMidna_c::checkMidnaPosState() {
                 dComIfGp_evmng_cutEnd(mStaffID);
             }
         } else if (mDemoMode == 19 || mDemoMode == 21 || mDemoMode == 20) {
-            if (dComIfGp_event_getPt2() != NULL) {
+            if (dComIfGp_event_getPt2()) {
                 s16 angle = fopAcM_searchActorAngleY(this, dComIfGp_event_getPt2());
                 cLib_addCalcAngleS(&shape_angle.y, angle, 2, 0x2000, 0x800);
                 current.angle.y = shape_angle.y;
@@ -1779,10 +1778,8 @@ void daMidna_c::setBckAnime(J3DAnmTransform* i_bck, int i_attr, f32 i_morf) {
 }
 
 /* 804C103C-804C287C 004E9C 1840+00 2/2 0/0 0/0 .text            setAnm__9daMidna_cFv */
-// NONMATCHING regalloc
 void daMidna_c::setAnm() {
-    BOOL bVar1, bVar2, bVar3;
-
+    u16 sVar4, res_id;
     offStateFlg0((daMidna_FLG0)(FLG0_NO_HAIR_SCALE | FLG0_UNK_200000));
 
     if (setDemoAnm()) {
@@ -1790,14 +1787,15 @@ void daMidna_c::setAnm() {
     }
 
     daAlink_c* link = daAlink_getAlinkActorClass();
+    BOOL bVar1;
 
     if (dComIfGp_event_runCheck() || checkEndResetStateFlg0(ERFLG0_NO_SERVICE_WAIT)) {
         bVar1 = TRUE;
     } else {
         bVar1 = FALSE;
     }
-    bVar2 = FALSE;
-    bVar3 = TRUE;
+    BOOL bVar2 = FALSE;
+    BOOL bVar3 = TRUE;
     bool tired = checkMidnaTired();
     daMidna_ANM anm;
 
@@ -2011,8 +2009,9 @@ void daMidna_c::setAnm() {
         offStateFlg0(FLG0_UNK_4);
     }
 
-    u16 sVar4 = mBckHeap[1].getIdx();
-    u16 res_id = m_anmDataTable[anm].mResID;
+    sVar4 = mBckHeap[1].getIdx();
+    res_id = m_anmDataTable[anm].mResID;
+    J3DAnmTransform* bck;
 
     if (!mBckHeap[0].checkNoSetArcNo() || (!checkSetAnime(0, anm) &&
         (mMotionNum != 0 || !checkStateFlg0(FLG0_UNK_1)
@@ -2041,7 +2040,7 @@ void daMidna_c::setAnm() {
         } else {
             morf = 5.0f;
         }
-        J3DAnmTransform* bck = (J3DAnmTransform*)mBckHeap[0].loadDataIdx(res_id);
+        bck = (J3DAnmTransform*)mBckHeap[0].loadDataIdx(res_id);
         setBckAnime(bck, -1, morf);
 
         offStateFlg0(FLG0_UNK_1);
@@ -2074,7 +2073,7 @@ void daMidna_c::setAnm() {
         } else if (anm == ANM_S_RETURN) {
             current.pos.x += 90.0f * cM_ssin(shape_angle.y);
             current.pos.z += 90.0f * cM_scos(shape_angle.y);
-            shape_angle.y += (s16)0x8000;
+            shape_angle.y += 0x8000;
             field_0x85a = shape_angle.y;
             current.angle.y = shape_angle.y;
             mpMorf->getOldTransInfo()[JNT_BACKBONE1].mTranslate.z += 90.0f;
@@ -2084,9 +2083,9 @@ void daMidna_c::setAnm() {
             JMAEulerToQuat(0, 0x8000, 0, &quat1);
             quat2 = *quat_backbone_ptr;
             mDoMtx_QuatConcat(&quat1, &quat2, quat_backbone_ptr);
-            Quaternion* quat_waist_ptr = &mpMorf->getOldQuaternion()[JNT_WAIST];
-            quat2 = *quat_waist_ptr;
-            mDoMtx_QuatConcat(&quat1, &quat2, quat_waist_ptr);
+            quat_backbone_ptr = &mpMorf->getOldQuaternion()[JNT_WAIST];
+            quat2 = *quat_backbone_ptr;
+            mDoMtx_QuatConcat(&quat1, &quat2, quat_backbone_ptr);
         } else if (anm == ANM_WLSWIMDIE) {
             J3DTransformInfo* trans_backbone = &mpMorf->getOldTransInfo()[JNT_BACKBONE1];
             J3DTransformInfo* trans_waist = &mpMorf->getOldTransInfo()[JNT_WAIST];
@@ -2135,7 +2134,7 @@ void daMidna_c::setAnm() {
                 || (checkSetAnime(0, ANM_SWAITC) && fabsf(speedF) > 0.1f))
             {
                 offStateFlg0(FLG0_UNK_1);
-                J3DAnmTransform* bck = (J3DAnmTransform*)mBckHeap[0].loadDataIdx(m_anmDataTable[anm].mResID);
+                bck = (J3DAnmTransform*)mBckHeap[0].loadDataIdx(m_anmDataTable[anm].mResID);
                 setBckAnime(bck, J3DFrameCtrl::EMode_LOOP, 5.0f);
                 setUpperAnime(mBckHeap[0].getIdx(), 0xffff);
             } else if (checkSetAnime(0, ANM_SWAITB) && mUpperBck.checkFrame(95.0f)
@@ -2143,7 +2142,7 @@ void daMidna_c::setAnm() {
             {
                 anm = ANM_SWAITC;
                 setUpperAnimeAndSe(ANM_SWAITC);
-                J3DAnmTransform* bck = (J3DAnmTransform*)mBckHeap[0].loadDataIdx(m_anmDataTable[anm].mResID);
+                bck = (J3DAnmTransform*)mBckHeap[0].loadDataIdx(m_anmDataTable[anm].mResID);
                 setBckAnime(bck, J3DFrameCtrl::EMode_NONE, 0.0f);
             }
         } else if (daPy_py_c::checkNowWolf() && !bVar1
@@ -2172,9 +2171,9 @@ void daMidna_c::setAnm() {
                     anm = ANM_HIT;
                 }
             }
-            u16 res_id = m_anmDataTable[anm].mResID;
+            res_id = m_anmDataTable[anm].mResID;
             setUpperAnimeAndSe(anm);
-            J3DAnmTransform* bck = (J3DAnmTransform*)mBckHeap[0].loadDataIdx(res_id);
+            bck = (J3DAnmTransform*)mBckHeap[0].loadDataIdx(res_id);
             setBckAnime(bck, J3DFrameCtrl::EMode_NONE, 5.0f);
         }
 
@@ -2514,7 +2513,6 @@ void daMidna_c::initHairAngle() {
 }
 
 /* 804C3298-804C3F04 0070F8 0C6C+00 2/2 0/0 0/0 .text            setHairAngle__9daMidna_cFv */
-// NONMATCHING regalloc
 void daMidna_c::setHairAngle() {
     if (!checkStateFlg0(FLG0_UNK_8)) {
         initHairAngle();
@@ -2526,6 +2524,7 @@ void daMidna_c::setHairAngle() {
     mDoMtx_multVecZero(mpShadowModel->getAnmMtx(JNT_HAIR_1), &prev_pos);
     s16 head_angle = head_dir.atan2sX_Z();
     s16 inv_head_angle = head_angle + 0x8000;
+    cXyz vec, old_pos;
 
     int i;
     cXyz* pos = mHairPos;
@@ -2536,12 +2535,14 @@ void daMidna_c::setHairAngle() {
 
     f32 fVar4 = 0.75f;
     f32 fVar1 = 0.05f;
+    s16 target_angle_y;
     BOOL bVar5 = false;
     f32 fVar2 = fabsf(speedF) * 0.04f;
     if (fVar2 > 1.0f) {
         fVar2 = 1.0f;
     }
-    s16 iVar16 = field_0x872;
+    s16 target_angle_z, iVar16;
+    iVar16 = field_0x872;
     BOOL bVar4 = false;
     field_0x872 += fVar2 * 0x1000 + 0x800;
 
@@ -2556,14 +2557,11 @@ void daMidna_c::setHairAngle() {
     }
 
     for (i = 0; i < 5; i++, pos++, dir++, angle_z++, angle_y++, scale++) {
-        cXyz vec, old_pos;
 
         if (checkStateFlg0(FLG0_UNK_10000000)) {
-            cXyz target = l_hairScale[4];
-            cLib_chasePos(scale, target, 0.1f);
+            cLib_chasePos(scale, l_hairScale[4], 0.1f);
         } else {
-            cXyz target = l_hairScale[i];
-            cLib_chasePos(scale, target, 0.1f);
+            cLib_chasePos(scale, l_hairScale[i], 0.1f);
         }
 
         old_pos = *pos;
@@ -2583,11 +2581,11 @@ void daMidna_c::setHairAngle() {
             vec = *atn_pos - prev_pos;
             mDoMtx_stack_c::YrotS(-shape_angle.y);
             mDoMtx_stack_c::multVec(&vec, &vec);
-            s16 target_angle_y = fVar1 * cM_atan2s(vec.x, JMAFastSqrt(vec.y * vec.y + vec.z * vec.z));
+            target_angle_y = fVar1 * cM_atan2s(vec.x, JMAFastSqrt(vec.y * vec.y + vec.z * vec.z));
             if (i == 0 && (vec.z < 0.0f || vec.y >= 0.0f)) {
                 bVar4 = true;
             }
-            s16 target_angle_z;
+
             if (bVar4) {
                 if (vec.y < 1.0f && i < 4) {
                     vec.y = 1.0f;
