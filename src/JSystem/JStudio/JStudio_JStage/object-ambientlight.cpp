@@ -2,6 +2,8 @@
 // object-ambientlight
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JStudio/JStudio_JStage/object-ambientlight.h"
 
 /* 8028B610-8028B6AC 285F50 009C+00 0/0 1/1 0/0 .text

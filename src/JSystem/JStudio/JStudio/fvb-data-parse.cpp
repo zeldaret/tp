@@ -3,6 +3,8 @@
 // Translation Unit: fvb-data-parse
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JStudio/JStudio/fvb-data-parse.h"
 
 //

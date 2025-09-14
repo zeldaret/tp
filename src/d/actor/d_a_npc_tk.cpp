@@ -147,7 +147,7 @@ void daNPC_TK_c::setActionMode(int param_0) {
         field_0x694 = 0;
         field_0x6c5 = 0;
         current.angle.y = shape_angle.y;
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_004000);
+        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
     }
 }
 
@@ -1547,7 +1547,7 @@ void daNPC_TK_c::executeAttackLink() {
         field_0x694 = 1;
         setBck(8, 2, 10.0f, 1.0f);
         mSound.startCreatureVoice(Z2SE_HAWK_V_TAKE_OFF, -1);
-        fopAcM_OffStatus(this, fopAcM_STATUS_UNK_004000);
+        fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x4000);
         field_0x6b4 = 0x1e;
         break;
     }
@@ -1653,7 +1653,7 @@ void daNPC_TK_c::executeAttackLink() {
         cLib_chaseF(&speedF, 30.0f, 3.0f);
         if (field_0x6b0 == 0) {
             if (dComIfGp_checkPlayerStatus0(0, fopAcM_STATUS_HOOK_CARRY_NOW) ||
-                dComIfGp_checkPlayerStatus0(0, fopAcM_STATUS_UNK_000100) ||
+                dComIfGp_checkPlayerStatus0(0, fopAcM_STATUS_UNK_0x100) ||
                 daPy_getPlayerActorClass()->checkWolfTagLockJumpReady())
             {
                 field_0x6b0 = 10;

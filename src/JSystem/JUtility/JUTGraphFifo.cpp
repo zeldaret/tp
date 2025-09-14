@@ -3,6 +3,8 @@
 // Translation Unit: JUTGraphFifo
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JUtility/JUTGraphFifo.h"
 #include "JSystem/JKernel/JKRHeap.h"
 

@@ -3,6 +3,8 @@
 // Translation Unit: JPAExTexShape
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JParticle/JPAExTexShape.h"
 #include "JSystem/JParticle/JPAResourceManager.h"
 #include "JSystem/JParticle/JPAEmitter.h"

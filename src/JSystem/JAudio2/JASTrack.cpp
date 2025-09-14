@@ -3,6 +3,8 @@
 // Translation Unit: JASTrack
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JASTrack.h"
 #include "JSystem/JAudio2/JASCriticalSection.h"
 #include "JSystem/JAudio2/JASDriverIF.h"
@@ -802,8 +804,9 @@ void JASTrack::TList::seqMain() {
     iterator it, it2;
     for (it = begin(); it != end(); it = it2) {
         it2 = it;
-        it2++;
-        if (it->seqMain() < 0) {
+        ++it2;
+        int seqMainRes = it->seqMain();
+        if (seqMainRes < 0) {
             Remove(&*it);
             if (it->mFlags.autoDelete) {
                 delete &*it;

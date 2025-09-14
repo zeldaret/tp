@@ -3,6 +3,8 @@
 // Translation Unit: J2DMaterialFactory
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/J2DGraph/J2DMaterialFactory.h"
 #include "JSystem/J2DGraph/J2DMaterial.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
@@ -69,7 +71,6 @@ u32 J2DMaterialFactory::countStages(int param_0) const {
 /* 802F2D1C-802F362C 2ED65C 0910+00 0/0 1/1 0/0 .text
  * create__18J2DMaterialFactoryCFP11J2DMaterialiUlP15J2DResReferenceP15J2DResReferenceP10JKRArchive
  */
-// NONMATCHING - Stack issues
 J2DMaterial* J2DMaterialFactory::create(J2DMaterial* param_0, int index, u32 param_2,
                                     J2DResReference* param_3, J2DResReference* param_4,
                                     JKRArchive* param_5) const {
@@ -82,8 +83,7 @@ J2DMaterial* J2DMaterialFactory::create(J2DMaterial* param_0, int index, u32 par
     s32 local_3bc = ((param_2 & 0x1000000) != 0);
     s32 local_3c0 = (param_2 & 0x1f0000) ? local_3bc : 0;
     bool temp = (param_2 & 0x1f0000);
-    u16 tevBlockNum = r28;
-    param_0->mTevBlock = J2DMaterial::createTevBlock(tevBlockNum, temp);
+    param_0->mTevBlock = J2DMaterial::createTevBlock((u16)r28, temp);
     param_0->mIndBlock = J2DMaterial::createIndBlock(local_3c0, temp);
     param_0->mIndex = index;
     param_0->field_0x8 = getMaterialMode(index);
@@ -126,9 +126,8 @@ J2DMaterial* J2DMaterialFactory::create(J2DMaterial* param_0, int index, u32 par
             local_388 = aJStack_12c.getResource(local_384, 'FONT', NULL);
         }
         if (local_388 == NULL && J2DScreen::getDataManage() != NULL) {
-            char* pcVar9 = param_4->getName(param_0->getTevBlock()->getFontNo());
             char acStack_334[257];
-            strcpy(acStack_334, pcVar9);
+            strcpy(acStack_334, param_4->getName(param_0->getTevBlock()->getFontNo()));
             local_388 = J2DScreen::getDataManage()->get(acStack_334);
         }
     }
@@ -149,8 +148,7 @@ J2DMaterial* J2DMaterialFactory::create(J2DMaterial* param_0, int index, u32 par
         param_0->getTevBlock()->setTevKColor(i, newTevKColor(index, i));
     }
     for (u8 i = 0; i < 4; i++) {
-        J2DTevBlock* block = param_0->getTevBlock();
-        block->setTevColor(i, newTevColor(index, i));
+        param_0->getTevBlock()->setTevColor(i, newTevColor(index, i));
     }
     for (u8 i = 0; i < 4; i++) {
         param_0->getTevBlock()->setTevSwapModeTable(i, newTevSwapModeTable(index, i));
@@ -159,10 +157,12 @@ J2DMaterial* J2DMaterialFactory::create(J2DMaterial* param_0, int index, u32 par
         param_0->getColorBlock()->setMatColor(i, newMatColor(index, i));
     }
     for (u8 i = 0; i < 4; i++) {
-        param_0->getColorBlock()->setColorChan(i, newColorChan(index, i));
+        J2DColorChan colorChan = newColorChan(index, i);
+        param_0->getColorBlock()->setColorChan(i, colorChan);
     }
     for (u8 i = 0; i < 8; i++) {
-        param_0->getTexGenBlock()->setTexCoord(i, newTexCoord(index, i));
+        J2DTexCoord texCoord = newTexCoord(index, i);
+        param_0->getTexGenBlock()->setTexCoord(i, &texCoord);
     }
     for (u8 i = 0; i < 8; i++) {
         param_0->getTexGenBlock()->setTexMtx(i, newTexMtx(index, i));

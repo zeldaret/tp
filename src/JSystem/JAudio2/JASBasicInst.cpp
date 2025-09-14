@@ -2,6 +2,8 @@
 // JASBasicInst
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JASBasicInst.h"
 #include "JSystem/JAudio2/JASCalc.h"
 #include "JSystem/JKernel/JKRHeap.h"

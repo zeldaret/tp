@@ -1,3 +1,5 @@
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JMessage/processor.h"
 #include "JSystem/JMessage/control.h"
 #include "JSystem/JUtility/JUTAssert.h"
@@ -53,9 +55,8 @@ const JMessage::TResource* JMessage::TProcessor::getResource_groupID(u16 u16Grou
 
 /* 802A7CD4-802A7E38 2A2614 0164+00 0/0 1/1 0/0 .text
  * toMessageCode_messageID__Q28JMessage10TProcessorCFUlUlPb     */
-// NONMATCHING - regalloc, likely due to wrong enumerator implementation
 u32 JMessage::TProcessor::toMessageCode_messageID(u32 uMsgID, u32 param_1, bool* pbValid) const {
-    const TResource* pResourceCache = getResourceCache();
+    const TResource* pResourceCache = (const TResource*)getResourceCache();
     if (pResourceCache != NULL) {
         u16 u16Index = pResourceCache->toMessageIndex_messageID(uMsgID, param_1, pbValid);
         if (u16Index != 0xFFFF) {

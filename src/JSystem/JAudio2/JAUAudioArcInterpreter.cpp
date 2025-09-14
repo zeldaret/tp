@@ -3,6 +3,8 @@
 // Translation Unit: JAUAudioArcInterpreter
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JAUAudioArcInterpreter.h"
 #include "JSystem/JUtility/JUTAssert.h"
 

@@ -2,6 +2,8 @@
 // object-fog
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JStudio/JStudio_JStage/object-fog.h"
 
 /* 8028C574-8028C610 286EB4 009C+00 0/0 1/1 0/0 .text

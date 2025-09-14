@@ -1,3 +1,5 @@
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JStage/JSGActor.h"
 
 /* 80280A48-80280AA8 27B388 0060+00 0/0 1/1 0/0 .text            __dt__Q26JStage6TActorFv */

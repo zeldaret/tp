@@ -3,7 +3,10 @@
 // Translation Unit: J2DMatBlock
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/J2DGraph/J2DMatBlock.h"
+#include "JSystem/J2DGraph/J2DTevs.h"
 #include "JSystem/JUtility/JUTPalette.h"
 #include "JSystem/JUtility/JUTResFont.h"
 #include "JSystem/JUtility/JUTTexture.h"
@@ -1355,8 +1358,40 @@ J2DTevBlock8::~J2DTevBlock8() {
 }
 
 /* 802EEF6C-802EF1E0 2E98AC 0274+00 1/0 0/0 0/0 .text            initialize__12J2DTevBlock8Fv */
+// NONMATCHING - inlines
 void J2DTevBlock8::initialize() {
-    // NONMATCHING
+    for (int i = 0; i < 8; i++) {
+        mTexNo[i] = 0xffff;
+    }
+    mFontNo = 0xffff;
+    for (int i = 0; i < 8; i++) {
+        mTevOrder[i].setTevOrderInfo(j2dDefaultTevOrderInfoNull);
+    }
+    for (int i = 0; i < 4; i++) {
+        mTevColor[i] = j2dDefaultTevColor;
+    }
+    mTevStageNum = 1;
+    for (int i = 0; i < 8; i++) {
+        mTevStage[i].setStageNo(i);
+    }
+    for (int i = 0; i < 4; i++) {
+        mTevKColor[i] = j2dDefaultTevKColor;
+    }
+    for (int i = 0; i < 8; i++) {
+        mTevKColorSel[i] = 0xff;
+        mTevKAlphaSel[i] = 0xff;
+    }
+    for (int i = 0; i < 4; i++) {
+        mTevSwapModeTable[i].setTevSwapModeTableInfo(j2dDefaultTevSwapModeTable);
+    }
+    for (int i = 0; i < 8; i++) {
+        mIndTevStage[i].setIndTevStageInfo(j2dDefaultIndTevStageInfo);
+    }
+    for (int i = 0; i < 8; i++) {
+        mPalette[i] = 0;
+    }
+    mFont = NULL;
+    mFontUndeleteFlag = 0;
 }
 
 /* 802EF1E0-802EF2B0 2E9B20 00D0+00 1/0 0/0 0/0 .text            prepareTexture__12J2DTevBlock8FUc
@@ -1786,8 +1821,41 @@ J2DTevBlock16::~J2DTevBlock16() {
 }
 
 /* 802F03EC-802F0660 2EAD2C 0274+00 1/0 0/0 0/0 .text            initialize__13J2DTevBlock16Fv */
+// NONMATCHING - inlines
 void J2DTevBlock16::initialize() {
-    // NONMATCHING
+
+    for (int i = 0; i < 8; i++) {
+        mTexNo[i] = 0xffff;
+    }
+    mFontNo = 0xffff;
+    for (int i = 0; i < 16; i++) {
+        mTevOrder[i].setTevOrderInfo(j2dDefaultTevOrderInfoNull);
+    }
+    for (int i = 0; i < 4; i++) {
+        mTevColor[i] = j2dDefaultTevColor;
+    }
+    mTevStageNum = 1;
+    for (int i = 0; i < 16; i++) {
+        mTevStage[i].setStageNo(i);
+    }
+    for (int i = 0; i < 4; i++) {
+        mTevKColor[i] = j2dDefaultTevKColor;
+    }
+    for (int i = 0; i < 16; i++) {
+        mTevKColorSel[i] = 0xff;
+        mTevKAlphaSel[i] = 0xff;
+    }
+    for (int i = 0; i < 4; i++) {
+        mTevSwapModeTable[i].setTevSwapModeTableInfo(j2dDefaultTevSwapModeTable);
+    }
+    for (int i = 0; i < 16; i++) {
+        mIndTevStage[i].setIndTevStageInfo(j2dDefaultIndTevStageInfo);
+    }
+    for (int i = 0; i < 8; i++) {
+        mPalette[i] = 0;
+    }
+    mFont = NULL;
+    mFontUndeleteFlag = 0;
 }
 
 /* 802F0660-802F0730 2EAFA0 00D0+00 1/0 0/0 0/0 .text            prepareTexture__13J2DTevBlock16FUc

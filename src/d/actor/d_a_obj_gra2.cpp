@@ -639,7 +639,7 @@ int daObj_GrA_c::init() {
     setRoomNo();
 
     if (mMode == 2) {
-        fopAcM_OffStatus(this, fopAcM_STATUS_UNK_004000);
+        fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x4000);
     }
 
     field_0x1528.setPathInfo(getPathNo(), fopAcM_GetRoomNo(this), 1);

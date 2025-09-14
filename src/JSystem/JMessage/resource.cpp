@@ -1,3 +1,5 @@
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JMessage/resource.h"
 #include "JSystem/JGadget/search.h"
 #include "JSystem/JGadget/define.h"

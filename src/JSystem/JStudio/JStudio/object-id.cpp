@@ -2,6 +2,8 @@
 // object-id
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JStudio/JStudio/object-id.h"
 #include "JSystem/JUtility/JUTAssert.h"
 

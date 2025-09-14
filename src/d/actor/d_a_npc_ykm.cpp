@@ -902,7 +902,7 @@ void daNpc_ykM_c::reset() {
 
         case TYPE_3:
             mHide = true;
-            fopAcM_OnStatus(this, fopAcM_STATUS_UNK_80000000);
+            fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
             break;
 
         case TYPE_4:
@@ -911,13 +911,13 @@ void daNpc_ykM_c::reset() {
 
         case TYPE_5:
             mHide = true;
-            fopAcM_OnStatus(this, fopAcM_STATUS_UNK_80000000);
+            fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
             eventInfo.setIdx(1);
             break;
 
         case TYPE_6:
             mHide = true;
-            fopAcM_OnStatus(this, fopAcM_STATUS_UNK_80000000);
+            fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
             eventInfo.setIdx(2);
             break;
     }
@@ -991,15 +991,15 @@ void daNpc_ykM_c::setParam() {
     mAcchCir.SetWallR(mWallR);
     mAcchCir.SetWallH(daNpc_ykM_Param_c::m.common.knee_length);
 
-    fopAcM_OnStatus(this, fopAcM_STATUS_UNK_000100);
+    fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x100);
     mRealShadowSize = daNpc_ykM_Param_c::m.common.real_shadow_size;
 
     if (field_0x157b != 0) {
-        fopAcM_OffStatus(this, fopAcM_STATUS_UNK_000100);
+        fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x100);
     }
 
     if (mType == TYPE_3) {
-        fopAcM_OffStatus(this, fopAcM_STATUS_UNK_000100);
+        fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x100);
         mRealShadowSize = 1800.0f;
     }
 
@@ -1221,10 +1221,10 @@ void daNpc_ykM_c::action() {
 
 /* 80B55658-80B5571C 002258 00C4+00 1/0 0/0 0/0 .text            beforeMove__11daNpc_ykM_cFv */
 void daNpc_ykM_c::beforeMove() {
-    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_80000000);
+    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x8000000);
 
     if (checkHide()) {
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_80000000);
+        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
     }
 
     if (checkHide() || mNoDraw) {
@@ -2422,7 +2422,7 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
                 mMotionSeqMngr.setNo(MOTION_WAIT_X, 0.0f, FALSE, 0);
                 mJntAnm.lookNone(1);
                 mHide = false;
-                fopAcM_OffStatus(this, fopAcM_STATUS_UNK_80000000);
+                fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x8000000);
                 break;
 
             case 1:

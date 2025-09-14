@@ -1,3 +1,5 @@
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/J2DGraph/J2DManage.h"
 #include "JSystem/JSupport/JSUInputStream.h"
 #include "string.h"

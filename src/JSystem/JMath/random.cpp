@@ -3,6 +3,8 @@
 // Translation Unit: random
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JMath/random.h"
 
 /* 80339AE4-80339AEC -00001 0008+00 0/0 0/0 0/0 .text            __ct__Q25JMath13TRandom_fast_FUl */

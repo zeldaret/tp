@@ -3,6 +3,8 @@
 // Translation Unit: JAISoundHandles
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JAISoundHandles.h"
 
 //

@@ -993,7 +993,7 @@ s32 daE_FZ_c::create() {
       speedF = rng + 4.0f;
       field_0x6fc = rng + 4.0f;
       if (field_0x714 == 1) {
-        fopAcM_OnStatus(this,fopAcM_STATUS_UNK_004000);
+        fopAcM_OnStatus(this,fopAcM_STATUS_UNK_0x4000);
       }
     }
 

@@ -3,12 +3,13 @@
 // Translation Unit: J2DPictureEx
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/J2DGraph/J2DPictureEx.h"
 #include "JSystem/J2DGraph/J2DMaterial.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "JSystem/JSupport/JSURandomInputStream.h"
 #include "JSystem/JUtility/JUTTexture.h"
-#include "dol2asm.h"
 #include "dolphin/types.h"
 
 /* 80303640-803036EC 2FDF80 00AC+00 1/0 0/0 0/0 .text

@@ -3,6 +3,8 @@
 // Translation Unit: J3DModelLoaderCalcSize
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/J3DGraphLoader/J3DModelLoaderCalcSize.h"
 #include "JSystem/J3DGraphLoader/J3DModelLoader.h"
 #include "JSystem/J3DGraphLoader/J3DShapeFactory.h"

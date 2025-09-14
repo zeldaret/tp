@@ -2,6 +2,8 @@
 // object-camera
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JStudio/JStudio_JStage/object-camera.h"
 
 /* 8028B8A0-8028B960 2861E0 00C0+00 0/0 1/1 0/0 .text

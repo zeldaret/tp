@@ -1,3 +1,5 @@
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JMessage/locale.h"
 
 /* 802A9528-802A958C 2A3E68 0064+00 0/0 1/0 0/0 .text

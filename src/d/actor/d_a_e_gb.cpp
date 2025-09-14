@@ -13,6 +13,23 @@
 #include "f_op/f_op_actor_enemy.h"
 #include "f_op/f_op_camera_mng.h"
 
+class daE_GB_HIO_c : public JORReflexible{
+public:
+    /* 806C1CEC */ daE_GB_HIO_c();
+    /* 806C6F98 */ virtual ~daE_GB_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 field_0x8;
+    /* 0x0C */ f32 field_0xc;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ s16 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+    /* 0x1C */ s16 field_0x1c;
+    /* 0x1E */ s16 field_0x1e;
+};
+
 
 /* 806C1CEC-806C1D3C 0000EC 0050+00 1/1 0/0 0/0 .text            __ct__12daE_GB_HIO_cFv */
 daE_GB_HIO_c::daE_GB_HIO_c() {
@@ -1509,18 +1526,17 @@ static int daE_GB_Delete(e_gb_class* i_this) {
 
 /* 806C651C-806C6894 00491C 0378+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 static int useHeapInit(fopAc_ac_c* a_this) {
-    // NONMATCHING - r30 is used instead of r27 in dComIfG_getObjectRes
     e_gb_class* i_this = (e_gb_class*)a_this;
-    
-    i_this->mpModelMorf1 = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("E_gb", 29), NULL, NULL,
-                                              (J3DAnmTransform*)dComIfG_getObjectRes("E_gb", 17), 2, 1.0f, 
+
+    i_this->mpModelMorf1 = new mDoExt_McaMorf(static_cast<J3DModelData*>(dComIfG_getObjectRes("E_gb", 29)), NULL, NULL,
+                                              static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("E_gb", 17)), 2, 1.0f, 
                                               0, -1, 1, NULL, 0x80000, 0x11000084);
     if (i_this->mpModelMorf1 == NULL || i_this->mpModelMorf1->getModel() == NULL) {
         return 0;
     }
 
-    i_this->mpModelMorf2 = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("E_gb", 31), NULL, NULL,
-                                              (J3DAnmTransform*)dComIfG_getObjectRes("E_gb", 26), 2, 1.0f,
+    i_this->mpModelMorf2 = new mDoExt_McaMorf(static_cast<J3DModelData*>(dComIfG_getObjectRes("E_gb", 31)), NULL, NULL,
+                                              static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("E_gb", 26)), 2, 1.0f,
                                               0, -1, 1, NULL, 0x80000, 0x11000084);
     i_this->field_0x68c = 26;
     if (i_this->mpModelMorf2 == NULL || i_this->mpModelMorf2->getModel() == NULL) {
@@ -1532,13 +1548,14 @@ static int useHeapInit(fopAc_ac_c* a_this) {
         return 0;
     }
 
-    if (i_this->mBrkAnm->init(i_this->mpModelMorf2->getModel()->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes("E_gb", 35), 
+    if (i_this->mBrkAnm->init(i_this->mpModelMorf2->getModel()->getModelData(),
+                              static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes("E_gb", 35)), 
                                1, 0, 1.0f, 0, -1) == 0) {
         return 0;
     }
     i_this->mBrkAnm->setPlaySpeed(0.0f);
 
-    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_gb", 32);
+    J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("E_gb", 32));
     JUT_ASSERT(3378, modelData != 0);
 
     for (int i = 0; i < 18; i++) {
@@ -1551,7 +1568,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
     }
 
     if (strcmp(dComIfGp_getStartStageName(), "D_MN05") == 0) {
-        modelData = (J3DModelData*)dComIfG_getObjectRes("E_gb", 30);
+        modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("E_gb", 30));
         JUT_ASSERT(3395, modelData != 0);
         i_this->field_0x66c = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
         if (i_this->field_0x66c == NULL) {

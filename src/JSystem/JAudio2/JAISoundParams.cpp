@@ -1,3 +1,5 @@
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JAISoundParams.h"
 
 void JAISoundParamsMove::moveVolume(f32 newValue, u32 count) {

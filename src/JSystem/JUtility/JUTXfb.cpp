@@ -3,6 +3,8 @@
 // Translation Unit: JUTXfb
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JUtility/JUTXfb.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "dolphin/gx.h"

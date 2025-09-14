@@ -2,6 +2,8 @@
 // control
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JStudio/JStudio_JParticle/control.h"
 #include "JSystem/JParticle/JPAEmitterManager.h"
 #include "JSystem/JGadget/pointer.h"

@@ -395,7 +395,7 @@ void daObjKAG_c::walk() {
 void daObjKAG_c::bin_wait() {
     if (field_0x83c == 0) {
         mpModelMorf->setAnm((J3DAnmTransform*)dComIfG_getObjectRes("I_Kag", BCK_KAG_FLY), J3DFrameCtrl::EMode_LOOP, 5.0f, 0.0f, 0.0f, -1.0f);
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_004000);
+        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
         mDraw = false;
         gravity = 0.0f;
         maxFallSpeed = 0.0f;

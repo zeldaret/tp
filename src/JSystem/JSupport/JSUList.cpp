@@ -3,6 +3,8 @@
 // Translation Unit: JSUList
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JSupport/JSUList.h"
 
 JSUPtrLink::JSUPtrLink(void* object) {

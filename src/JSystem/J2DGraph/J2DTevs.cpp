@@ -2,6 +2,8 @@
 // J2DTevs
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/J2DGraph/J2DTevs.h"
 #include "JSystem/J2DGraph/J2DMatBlock.h"
 #include "math.h"

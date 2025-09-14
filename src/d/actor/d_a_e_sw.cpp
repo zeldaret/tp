@@ -1198,7 +1198,7 @@ static void* s_child_sub(void* i_actor, void* i_data) {
 void daE_SW_c::executeMaster() {
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
 
-    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_000100);
+    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x100);
     attention_info.flags = 0;
     field_0x98c.OffTgSetBit();
     field_0x98c.OffCoSetBit();

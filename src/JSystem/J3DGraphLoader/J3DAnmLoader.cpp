@@ -2,6 +2,8 @@
 // J3DAnmLoader
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.h"
 #include "JSystem/JSupport/JSupport.h"
 #include "dolphin/os.h"

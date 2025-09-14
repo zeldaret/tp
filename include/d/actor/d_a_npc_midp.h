@@ -85,7 +85,6 @@ public:
         TYPE_0,
         TYPE_1,
     };
-
     /* 80A70C6C */ ~daNpc_midP_c();
     /* 80A70D90 */ int create();
     /* 80A71074 */ int CreateHeap();

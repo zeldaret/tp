@@ -3,6 +3,8 @@
 // Translation Unit: JPABaseShape
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JParticle/JPABaseShape.h"
 #include "JSystem/JKernel/JKRHeap.h"
 #include "JSystem/JParticle/JPAParticle.h"

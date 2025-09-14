@@ -1957,7 +1957,7 @@ void daCow_c::executeCrazyWait() {
 
         mAcchCir.SetWall(100.0f, 110.0f);
         mTimer1 = 30;
-        fopAcM_OffStatus(this, fopAcM_STATUS_UNK_000100);
+        fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x100);
     }
 }
 
@@ -2471,7 +2471,7 @@ void daCow_c::executeCrazyBack() {
         }
         break;
     case daCow_c::Action_4:
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_000100);
+        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x100);
         if (fopAcM_CheckCondition(this, fopAcCnd_NODRAW_e)) {
             fopAcM_delete(this);
         }
@@ -2547,19 +2547,19 @@ void daCow_c::action_crazy() {
 
         dComIfGoat_SetThrow(this);
         mMode = daCow_c::Mode_1;
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_000100);
+        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x100);
         break;
     case daCow_c::Mode_1:
         TICK_TIMER(mForgetCowPTimer);
         TICK_TIMER(mTimer1);
 
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_004000);
+        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
         if (dComIfGp_event_runCheck() &&
             strcmp(dComIfGp_getEventManager().getRunEventName(), "WILDGOAT") &&
             strcmp(dComIfGp_getEventManager().getRunEventName(), "WILDGOAT_SUCCESS") &&
             strcmp(dComIfGp_getEventManager().getRunEventName(), "WILDGOAT_FAILURE"))
         {
-            fopAcM_OffStatus(this, fopAcM_STATUS_UNK_004000);
+            fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x4000);
         }
 
         switch (mCrazy) {

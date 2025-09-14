@@ -3,6 +3,8 @@
 // Translation Unit: binary
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JGadget/binary.h"
 
 /* 802DC864-802DC8C8 2D71A4 0064+00 0/0 2/2 0/0 .text

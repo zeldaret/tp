@@ -390,7 +390,7 @@ cPhs__Step daNpcShad_c::Create() {
                     return cPhs_ERROR_e;
                 }
 
-                fopAcM_OnStatus(this, fopAcM_STATUS_UNK_004000);
+                fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
                 mMode = 2;
             }
         }
@@ -845,7 +845,7 @@ void daNpcShad_c::reset() {
     mMotionMorfOverride = 0.0f;
 
     if (isSneaking()) {
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_004000);
+        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
     }
 
     setWaitAction();
@@ -1886,7 +1886,7 @@ BOOL daNpcShad_c::EvCut_ToChantSpell2(int i_cutIndex) {
                 actor = NULL;
                 fopAcM_SearchByName(PROC_CSTAF, (fopAc_ac_c**)&actor);
                 if (actor != NULL) {
-                    fopAcM_OnStatus(actor, fopAcM_STATUS_UNK_000800);
+                    fopAcM_OnStatus(actor, fopAcM_STATUS_UNK_0x800);
                 }
 
                 dComIfGp_getEvent().startCheckSkipEdge(this);

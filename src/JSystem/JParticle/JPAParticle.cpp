@@ -3,6 +3,8 @@
 // Translation Unit: JPAParticle
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JParticle/JPAParticle.h"
 #include "JSystem/JParticle/JPABaseShape.h"
 #include "JSystem/JParticle/JPAChildShape.h"

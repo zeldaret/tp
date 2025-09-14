@@ -3,6 +3,8 @@
 // Translation Unit: JAUSectionHeap
 //
 
+#include "JSystem/JSystem.h" // IWYU pragma: keep
+
 #include "JSystem/JAudio2/JAUSectionHeap.h"
 #include "JSystem/JAudio2/JASBNKParser.h"
 #include "JSystem/JAudio2/JASBankTable.h"
@@ -17,7 +19,6 @@
 #include "JSystem/JAudio2/JAUSoundTable.h"
 #include "JSystem/JAudio2/JAUStreamFileTable.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
-#include "stdlib.h"
 #include "dolphin/dvd.h"
 
 namespace {
@@ -369,7 +370,8 @@ JASVoiceBank* JAUSection::newVoiceBank(u32 bank_no, u32 param_1) {
         JASWaveBank* waveBank = sectionHeap_->getWaveBankTable().getWaveBank(param_1);
         JUT_ASSERT(688, waveBank != 0);
         TPushCurrentHeap push(getHeap_()); 
-        JASVoiceBank* voiceBank = new JASVoiceBank();
+        JASBank* voiceBank = new JASVoiceBank();
+        JASVoiceBank* voiceBank2 = (JASVoiceBank*)voiceBank;
         if (voiceBank) {
             if (buildingBankTable_) {
                 JUT_ASSERT(696, buildingBankTable_->getBank( bank_no ) == 0);
@@ -379,8 +381,8 @@ JASVoiceBank* JAUSection::newVoiceBank(u32 bank_no, u32 param_1) {
                 JASDefaultBankTable::getInstance()->registBank(bank_no, voiceBank);
                 data_.registeredBankTables.set(bank_no, true);
             }
-            voiceBank->assignWaveBank(waveBank);
-            return voiceBank;
+            voiceBank2->assignWaveBank(waveBank);
+            return voiceBank2;
         }
     }
     return NULL;
