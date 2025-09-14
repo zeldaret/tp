@@ -102,14 +102,14 @@ public:
         : daNpcT_c(i_faceMotionAnmData, i_motionAnmData, i_faceMotionSequenceData,
         i_faceMotionStepNum, i_motionSequenceData, i_motionStepNum, i_evtData,
         i_arcNames) {}
-    /* 809575B4 */ u16 getEyeballMaterialNo();
-    /* 809575BC */ s32 getHeadJointNo();
-    /* 809575C4 */ s32 getNeckJointNo();
-    /* 809575CC */ s32 getBackboneJointNo();
-    /* 809575D4 */ BOOL checkChangeJoint(int);
-    /* 809575E4 */ BOOL checkRemoveJoint(int);
-    /* 809575F4 */ s32 getFootLJointNo();
-    /* 809575FC */ s32 getFootRJointNo();
+    /* 809575B4 */ u16 getEyeballMaterialNo() { return 2; }
+    /* 809575BC */ s32 getHeadJointNo() { return 4; }
+    /* 809575C4 */ s32 getNeckJointNo() { return 3; }
+    /* 809575CC */ s32 getBackboneJointNo() { return 1; }
+    /* 809575D4 */ BOOL checkChangeJoint(int i_joint) { return i_joint == 4; }
+    /* 809575E4 */ BOOL checkRemoveJoint(int i_joint) { return i_joint == 8; }
+    /* 809575F4 */ s32 getFootLJointNo() { return 0x1A; }
+    /* 809575FC */ s32 getFootRJointNo() { return 0x1E; }
 
     int getFlowNodeNo() {
         u16 nodeNo = home.angle.x;
@@ -133,17 +133,19 @@ private:
     /* 0xF84 */ daNpcT_ActorMngr_c mActorMngrs[4];
     /* 0xFA4 */ actionFunc mNextAction;
     /* 0xFB0 */ actionFunc mAction;
-    /* 0xFBC */ fpc_ProcID field_0xfbc;
-    /* 0xFC0 */ int field_0xfc0;
+    /* 0xFBC */ fpc_ProcID mTimerID;
+    /* 0xFC0 */ int mTimer;
     /* 0xFC4 */ int field_0xfc4;
-    /* 0xFC8 */ s16 field_0xfc8;
+    /* 0xFC8 */ s16 mActorDirection;
     /* 0xFCA */ s16 field_0xfca;
-    /* 0xFCC */ u8 field_0xfcc[0xfce - 0xfcc];
+    /* 0xFCC */ u8 field_0xfcc;
+    /* 0xFCD */ bool field_0xfcd;
     /* 0xFCE */ bool mLastGoatIn;
-    /* 0xFCF */ u8 field_0xfcf[0xfd1 - 0xfcf];
-    /* 0xFD1 */ u8 field_0xfd1;
-    /* 0xFD2 */ u8 field_0xfd2;
-    /* 0xFD3 */ u8 field_0xfd3;
+    /* 0xFCF */ bool field_0xfcf;
+    /* 0xFD0 */ bool field_0xfd0;
+    /* 0xFD1 */ bool field_0xfd1;
+    /* 0xFD2 */ bool field_0xfd2;
+    /* 0xFD3 */ bool field_0xfd3;
     /* 0xFD4 */ u8 field_0xfd4[0xfd8 - 0xfd4];
 };
 
