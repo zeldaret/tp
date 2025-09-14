@@ -389,7 +389,7 @@ void dEvDtStaff_c::specialProcLight() {
             f32* hourP;
 
             switch (*(int*)nowCutName) {
-            case 'CHAN':
+            case 'CHAN': {
                 hourP = dComIfGp_evmng_getMyFloatP(staffId, "Hour");
                 if (hourP != NULL) {
                     dKy_instant_timechg(*hourP * 15.0f);
@@ -403,6 +403,7 @@ void dEvDtStaff_c::specialProcLight() {
                     }
                 }
                 break;
+            }
             case 'ADD_':
                 hourP = dComIfGp_evmng_getMyFloatP(staffId, "Hour");
                 if (hourP != NULL) {
@@ -452,7 +453,7 @@ void dEvDtStaff_c::specialProcMessage() {
         case 'FINI':
             work->mLMsg->mode = 0x10;
             break;
-        case 'CONT':
+        case 'CONT': {
             work->mLMsg->mode = 0xF;
             int* ptr = dComIfGp_evmng_getMyIntegerP(staffId, "msgNo");
             if (ptr == NULL) {
@@ -461,7 +462,8 @@ void dEvDtStaff_c::specialProcMessage() {
             work->mMsgNo = *ptr;
             fopMsgM_messageSet(work->mMsgNo, 1000);
             break;
-        case 'SAVE':
+        }
+        case 'SAVE': {
             work->mMsgNo = 1;
             int* typeP = dComIfGp_evmng_getMyIntegerP(staffId, "Type");
             if (typeP != NULL && *typeP == 1) {
@@ -469,7 +471,8 @@ void dEvDtStaff_c::specialProcMessage() {
             }
             work->_0 = d_GameOver_Create(work->mMsgNo);
             break;
-        case 'TELO':
+        }
+        case 'TELO': {
             int* forStartP = dComIfGp_evmng_getMyIntegerP(staffId, "ForStart");
 
             if (forStartP != NULL && *forStartP != 0) {
@@ -490,6 +493,7 @@ void dEvDtStaff_c::specialProcMessage() {
             if (work->mMsgNo != 0xFFFF) {
                 work->_0 = fopMsgM_messageSetDemo(work->mMsgNo);
             }
+        }
         }
     }
 
@@ -624,7 +628,7 @@ void dEvDtStaff_c::specialProcSound() {
         case 'NOMS':
             specialProc_WaitStart(staffId);
             break;
-        case 'RIDD':
+        case 'RIDD': {
             int* typeP = dComIfGp_evmng_getMyIntegerP(staffId, "Type");
             if (typeP != NULL && *typeP == 1) {
                 mDoAud_seStart(Z2SE_READ_RIDDLE_A, NULL, 0, 0);
@@ -632,11 +636,13 @@ void dEvDtStaff_c::specialProcSound() {
                 mDoAud_seStart(Z2SE_READ_RIDDLE_B, NULL, 0, 0);
             }
             break;
-        case 'BGMS':
+        }
+        case 'BGMS': {
             int* timerP = dComIfGp_evmng_getMyIntegerP(staffId, "Timer");
             if (timerP != NULL) {
                 mDoAud_bgmStop(*timerP);
             }
+        }
         }
     }
 
@@ -707,8 +713,8 @@ void dEvDtStaff_c::specialProcCreate() {
                 scale = *scaleP;
             }
 
-            fopAcM_create(objNameInf->mProcName, arg, &pos, dComIfGp_roomControl_getStayNo(),
-                          &angle, &scale, objNameInf->mSubtype);
+            fopAcM_create(objNameInf->procname, arg, &pos, dComIfGp_roomControl_getStayNo(),
+                          &angle, &scale, objNameInf->argument);
             break;
         }
     }
@@ -779,7 +785,7 @@ void dEvDtStaff_c::specialProcDirector() {
         case 'NEXT':
             dEvDt_Next_Stage(staffId, 0xD);
             break;
-        case 'SKIP':
+        case 'SKIP': {
             char* zev = dComIfGp_evmng_getMyStringP(staffId, "Zev");
             // cast needed to match
             void* pt = (void*)evtControl.getPt1();
@@ -793,7 +799,8 @@ void dEvDtStaff_c::specialProcDirector() {
                 evtControl.setSkipProc(pt, dEv_defaultSkipProc, 0);
             }
             break;
-        case 'FADE':
+        }
+        case 'FADE': {
             f32* rateP = dComIfGp_evmng_getMyFloatP(staffId, "Rate");
             int* colorP = dComIfGp_evmng_getMyIntegerP(staffId, "Color");
 
@@ -811,13 +818,15 @@ void dEvDtStaff_c::specialProcDirector() {
                 mDoGph_gInf_c::fadeOut(*rateP);
             }
             break;
-        case 'VIBR':
+        }
+        case 'VIBR': {
             specialProc_WaitStart(staffId);
             int* patternP = dComIfGp_evmng_getMyIntegerP(staffId, "Pattern");
             int* typeP = dComIfGp_evmng_getMyIntegerP(staffId, "Type");
             dComIfGp_getVibration().StartQuake((u8*)patternP, 0, *typeP, cXyz(0, 1, 0));
             break;
-        case 'WIPE':
+        }
+        case 'WIPE': {
             f32* wipeRateP = dComIfGp_evmng_getMyFloatP(staffId, "Rate");
             dDlst_list_c::wipeIn(-*wipeRateP);
             if (*wipeRateP > 0) {
@@ -834,7 +843,8 @@ void dEvDtStaff_c::specialProcDirector() {
                 }
             }
             break;
-        case 'MAPT':
+        }
+        case 'MAPT': {
             int* idP = dComIfGp_evmng_getMyIntegerP(staffId, "ID");
             data->unk = *idP;
             dStage_MapEvent_dt_c* mapEvent = dEvt_control_c::searchMapEventData(data->unk);
@@ -848,7 +858,8 @@ void dEvDtStaff_c::specialProcDirector() {
                 data->unk2 = 0;
             }
             break;
-        case 'CAST':
+        }
+        case 'CAST': {
             char* pt2Name = dComIfGp_evmng_getMyStringP(staffId, "Pt2");
             if (pt2Name != NULL) {
                 fopAc_ac_c* pt2 = fopAcM_searchFromName4Event(pt2Name, -1);
@@ -881,6 +892,7 @@ void dEvDtStaff_c::specialProcDirector() {
                 }
             }
             break;
+        }
         case 'SPEC':
             int* specTypeP = dComIfGp_evmng_getMyIntegerP(staffId, "Type");
             if (specTypeP != NULL) {
@@ -1002,7 +1014,7 @@ void dEvDtStaff_c::specialProcPackage() {
     case 'WAIT':
         specialProc_WaitProc(staffId);
         break;
-    case 'PLAY':
+    case 'PLAY': {
         dEvt_control_c& evtControl = dComIfGp_getEvent();
         if (dDemo_c::getMode() == 2) {
             dStage_MapEvent_dt_c* event = evtControl.getStageEventDt();
@@ -1018,6 +1030,7 @@ void dEvDtStaff_c::specialProcPackage() {
             dComIfGp_evmng_cutEnd(staffId);
         }
         break;
+    }
     default:
         dComIfGp_evmng_cutEnd(staffId);
         break;

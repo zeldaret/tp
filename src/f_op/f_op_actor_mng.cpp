@@ -89,7 +89,7 @@ fopAcM_prm_class* fopAcM_CreateAppend() {
         append->scale.y = 10;
         append->scale.z = 10;
         append->parent_id = fpcM_ERROR_PROCESS_ID_e;
-        append->subtype = -1;
+        append->argument = -1;
     }
     return append;
 }
@@ -97,7 +97,7 @@ fopAcM_prm_class* fopAcM_CreateAppend() {
 /* 80019B1C-80019C78 01445C 015C+00 4/4 0/0 0/0 .text
  * createAppend__FUsUlPC4cXyziPC5csXyzPC4cXyzScUi               */
 fopAcM_prm_class* createAppend(u16 i_setId, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
-                               const csXyz* i_angle, const cXyz* i_scale, s8 i_subtype,
+                               const csXyz* i_angle, const cXyz* i_scale, s8 i_argument,
                                fpc_ProcID i_parentId) {
     fopAcM_prm_class* append = fopAcM_CreateAppend();
     if (append == NULL) {
@@ -132,7 +132,7 @@ fopAcM_prm_class* createAppend(u16 i_setId, u32 i_parameters, const cXyz* i_pos,
 
     append->base.parameters = i_parameters;
     append->parent_id = i_parentId;
-    append->subtype = i_subtype;
+    append->argument = i_argument;
 
     return append;
 }
@@ -164,10 +164,10 @@ s32 fopAcM_delete(fpc_ProcID i_actorID) {
 /* 80019D18-80019D98 014658 0080+00 2/2 0/0 0/0 .text
  * fopAcM_create__FsUsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i         */
 fpc_ProcID fopAcM_create(s16 i_procName, u16 i_setId, u32 i_parameters, const cXyz* i_pos,
-                         int i_roomNo, const csXyz* i_angle, const cXyz* i_scale, s8 i_subtype,
+                         int i_roomNo, const csXyz* i_angle, const cXyz* i_scale, s8 i_argument,
                          createFunc i_createFunc) {
     fopAcM_prm_class* append = createAppend(i_setId, i_parameters, i_pos, i_roomNo, i_angle,
-                                            i_scale, i_subtype, fpcM_ERROR_PROCESS_ID_e);
+                                            i_scale, i_argument, fpcM_ERROR_PROCESS_ID_e);
     if (append == NULL) {
         return fpcM_ERROR_PROCESS_ID_e;
     }
@@ -178,18 +178,18 @@ fpc_ProcID fopAcM_create(s16 i_procName, u16 i_setId, u32 i_parameters, const cX
 /* 80019D98-80019E04 0146D8 006C+00 3/3 11/11 70/70 .text
  * fopAcM_create__FsUlPC4cXyziPC5csXyzPC4cXyzSc                 */
 fpc_ProcID fopAcM_create(s16 i_procName, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
-                         const csXyz* i_angle, const cXyz* i_scale, s8 i_subtype) {
+                         const csXyz* i_angle, const cXyz* i_scale, s8 i_argument) {
     return fopAcM_create(i_procName, 0xFFFF, i_parameters, i_pos, i_roomNo, i_angle, i_scale,
-                         i_subtype, NULL);
+                         i_argument, NULL);
 }
 
 /* 80019E04-80019E6C 014744 0068+00 5/5 6/6 18/18 .text
  * fopAcM_fastCreate__FsUlPC4cXyziPC5csXyzPC4cXyzScPFPv_iPv     */
 fopAc_ac_c* fopAcM_fastCreate(s16 i_procName, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
-                              const csXyz* i_angle, const cXyz* i_scale, s8 i_subtype,
+                              const csXyz* i_angle, const cXyz* i_scale, s8 i_argument,
                               createFunc i_createFunc, void* i_createFuncData) {
     fopAcM_prm_class* append = createAppend(0xFFFF, i_parameters, i_pos, i_roomNo, i_angle, i_scale,
-                                            i_subtype, fpcM_ERROR_PROCESS_ID_e);
+                                            i_argument, fpcM_ERROR_PROCESS_ID_e);
     if (append == NULL) {
         return NULL;
     }
@@ -207,17 +207,17 @@ fopAc_ac_c* fopAcM_fastCreate(const char* i_actorname, u32 i_parameters, const c
         return NULL;
     }
 
-    return fopAcM_fastCreate(nameInfo->mProcName, i_parameters, i_pos, i_roomNo, i_angle, i_scale,
-                             nameInfo->mSubtype, i_createFunc, i_createFuncData);
+    return fopAcM_fastCreate(nameInfo->procname, i_parameters, i_pos, i_roomNo, i_angle, i_scale,
+                             nameInfo->argument, i_createFunc, i_createFuncData);
 }
 
 /* 80019EF0-80019F78 014830 0088+00 0/0 1/1 105/105 .text
  * fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i    */
 fpc_ProcID fopAcM_createChild(s16 i_procName, fpc_ProcID i_parentID, u32 i_parameters,
                               const cXyz* i_pos, int i_roomNo, const csXyz* i_angle,
-                              const cXyz* i_scale, s8 i_subtype, createFunc i_createFunc) {
+                              const cXyz* i_scale, s8 i_argument, createFunc i_createFunc) {
     fopAcM_prm_class* append = createAppend(0xFFFF, i_parameters, i_pos, i_roomNo, i_angle, i_scale,
-                                            i_subtype, i_parentID);
+                                            i_argument, i_parentID);
     if (append == NULL) {
         return fpcM_ERROR_PROCESS_ID_e;
     }
@@ -229,7 +229,7 @@ fpc_ProcID fopAcM_createChild(s16 i_procName, fpc_ProcID i_parentID, u32 i_param
  * fopAcM_createChildFromOffset__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i */
 fpc_ProcID fopAcM_createChildFromOffset(s16 i_procName, fpc_ProcID i_parentID, u32 i_parameters,
                                         const cXyz* i_pos, int i_roomNo, const csXyz* i_angle,
-                                        const cXyz* i_scale, s8 i_subtype,
+                                        const cXyz* i_scale, s8 i_argument,
                                         createFunc i_createFunc) {
     fopAc_ac_c* parent_actor = fopAcM_SearchByID(i_parentID);
     s16 parent_angleY = parent_actor->current.angle.y;
@@ -256,7 +256,7 @@ fpc_ProcID fopAcM_createChildFromOffset(s16 i_procName, fpc_ProcID i_parentID, u
     pos.z += offset_pos.z * cM_scos(parent_angleY) - offset_pos.x * cM_ssin(parent_angleY);
 
     fopAcM_prm_class* append =
-        createAppend(0xFFFF, i_parameters, &pos, i_roomNo, &angle, i_scale, i_subtype, i_parentID);
+        createAppend(0xFFFF, i_parameters, &pos, i_roomNo, &angle, i_scale, i_argument, i_parentID);
     if (append == NULL) {
         return fpcM_ERROR_PROCESS_ID_e;
     }
@@ -1923,7 +1923,7 @@ static const fopAc_ac_c* fopAcM_findObjectCB(fopAc_ac_c const* i_actor, void* i_
         return NULL;
     }
 
-    if (prm->procname == fopAcM_GetProfName(i_actor) && prm->subtype == i_actor->argument) {
+    if (prm->procname == fopAcM_GetProfName(i_actor) && prm->argument == i_actor->argument) {
         if (prm->prm0 == 0 || prm->prm1 == (prm->prm0 & fopAcM_GetParam(i_actor))) {
             return i_actor;
         }
@@ -1943,8 +1943,8 @@ fopAc_ac_c* fopAcM_searchFromName(char const* name, u32 param0, u32 param1) {
         return NULL;
     }
 
-    prm.procname = objInf->mProcName;
-    prm.subtype = objInf->mSubtype;
+    prm.procname = objInf->procname;
+    prm.argument = objInf->argument;
     return fopAcM_Search((fopAcIt_JudgeFunc)fopAcM_findObjectCB, &prm);
 }
 
@@ -1957,7 +1957,7 @@ fopAc_ac_c* fopAcM_findObject4EventCB(fopAc_ac_c* i_actor, void* i_data) {
         return NULL;
     }
 
-    if (prm->procname == fopAcM_GetProfName(i_actor) && prm->subtype == i_actor->argument) {
+    if (prm->procname == fopAcM_GetProfName(i_actor) && prm->argument == i_actor->argument) {
         if (prm->event_id < 0 || prm->event_id == i_actor->eventInfo.getIdx()) {
             return i_actor;
         }
@@ -1993,8 +1993,8 @@ fopAc_ac_c* fopAcM_searchFromName4Event(char const* i_name, s16 i_eventID) {
         return 0;
     }
 
-    prm.procname = objInf->mProcName;
-    prm.subtype = objInf->mSubtype;
+    prm.procname = objInf->procname;
+    prm.argument = objInf->argument;
     return fopAcM_Search((fopAcIt_JudgeFunc)fopAcM_findObject4EventCB, &prm);
 }
 
