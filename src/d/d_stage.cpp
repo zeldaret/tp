@@ -1501,7 +1501,7 @@ dStage_objectNameInf* dStage_searchName(char const* objName) {
     dStage_objectNameInf* obj = l_objectName;
 
     for (u32 i = 0; i < ARRAY_SIZEU(l_objectName); i++) {
-        if (!strcmp(obj->mName, objName)) {
+        if (!strcmp(obj->name, objName)) {
             return obj;
         }
         obj++;
@@ -1511,33 +1511,33 @@ dStage_objectNameInf* dStage_searchName(char const* objName) {
     return NULL;
 }
 
-const char* dStage_getName(s16 procName, s8 subtype) {
+const char* dStage_getName(s16 procName, s8 argument) {
     static char tmp_name[8];
 
     dStage_objectNameInf* obj = l_objectName;
     char* tmp = NULL;
 
     for (int i = 0; i < ARRAY_SIZEU(l_objectName); i++) {
-        if (obj->mProcName == procName) {
-            if (obj->mSubtype == subtype) {
-                return obj->mName;
+        if (obj->procname == procName) {
+            if (obj->argument == argument) {
+                return obj->name;
             }
             if (tmp == NULL) {
-                tmp = obj->mName;
+                tmp = obj->name;
             }
         }
         obj++;
     }
 
     if (tmp == NULL) {
-        snprintf(tmp_name, 8, "%d%+0d", procName, subtype);
+        snprintf(tmp_name, 8, "%d%+0d", procName, argument);
         tmp = tmp_name;
     }
     return tmp;
 }
 
-const char* dStage_getName2(s16 procName, s8 subtype) {
-    return dStage_getName(procName, subtype);
+const char* dStage_getName2(s16 procName, s8 argument) {
+    return dStage_getName(procName, argument);
 }
 
 /* 80450D60-80450D64 000260 0004+00 1/1 3/3 1/1 .sbss            mProcID__20dStage_roomControl_c */
@@ -1577,9 +1577,9 @@ static void dStage_actorCreate(stage_actor_data_class* i_actorData, fopAcM_prm_c
         OS_REPORT("\x1B""[43;30mStage Actor Name Nothing !! <%s>\n\x1B[m", i_actorData->name);
         JKRFree(i_actorPrm);
     } else {
-        i_actorPrm->subtype = actorInf->mSubtype;
-        if (actorInf->mProcName == PROC_SUSPEND) {
-            fopAc_ac_c* actor = (fopAc_ac_c*)fopAcM_FastCreate(actorInf->mProcName, NULL, NULL, i_actorPrm);
+        i_actorPrm->argument = actorInf->argument;
+        if (actorInf->procname == PROC_SUSPEND) {
+            fopAc_ac_c* actor = (fopAc_ac_c*)fopAcM_FastCreate(actorInf->procname, NULL, NULL, i_actorPrm);
 
             if (actor != NULL) {
                 fopAcM_delete(actor);
@@ -1587,7 +1587,7 @@ static void dStage_actorCreate(stage_actor_data_class* i_actorData, fopAcM_prm_c
             return;
         }
 
-        fopAcM_create(actorInf->mProcName, NULL, i_actorPrm);
+        fopAcM_create(actorInf->procname, NULL, i_actorPrm);
     }
 }
 

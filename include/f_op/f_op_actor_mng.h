@@ -60,7 +60,7 @@ struct fopAcM_prm_class {
     /* 0x00 */ fopAcM_prmBase_class base;
     /* 0x18 */ fopAcM_prmScale_class scale;
     /* 0x1C */ fpc_ProcID parent_id;
-    /* 0x20 */ s8 subtype;
+    /* 0x20 */ s8 argument;
     /* 0x21 */ s8 room_no;
 };
 
@@ -70,20 +70,20 @@ struct fopAcM_search4ev_prm {
         name[0] = 0;
         event_id = -1;
         procname = PROC_PLAY_SCENE;
-        subtype = 0;
+        argument = 0;
     }
 
     /* 0x00 */ char name[30];
     /* 0x1E */ s16 event_id;
     /* 0x20 */ s16 procname;
-    /* 0x22 */ s8 subtype;
+    /* 0x22 */ s8 argument;
 };
 
 struct fopAcM_search_prm {
     /* 0x00 */ u32 prm0;
     /* 0x04 */ u32 prm1;
     /* 0x08 */ s16 procname;
-    /* 0x0A */ s8 subtype;
+    /* 0x0A */ s8 argument;
 };
 
 struct fOpAcm_HIO_entry_c : public mDoHIO_entry_c {
@@ -502,7 +502,7 @@ s32 fopAcM_SearchByName(s16 i_procName, fopAc_ac_c** i_outActor);
 fopAcM_prm_class* fopAcM_CreateAppend();
 
 fopAcM_prm_class* createAppend(u16 i_setId, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
-                               const csXyz* i_angle, const cXyz* i_scale, s8 i_subtype,
+                               const csXyz* i_angle, const cXyz* i_scale, s8 i_argument,
                                fpc_ProcID i_parentId);
 
 void fopAcM_Log(fopAc_ac_c const* i_actor, char const* i_message);
@@ -512,11 +512,11 @@ s32 fopAcM_delete(fopAc_ac_c* i_actor);
 s32 fopAcM_delete(fpc_ProcID i_actorID);
 
 fpc_ProcID fopAcM_create(s16 i_procName, u16 i_setId, u32 i_parameters, const cXyz* i_pos,
-                         int i_roomNo, const csXyz* i_angle, const cXyz* i_scale, s8 i_subtype,
+                         int i_roomNo, const csXyz* i_angle, const cXyz* i_scale, s8 i_argument,
                          createFunc i_createFunc);
 
 fpc_ProcID fopAcM_create(s16 i_procName, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
-                         const csXyz* i_angle, const cXyz* i_scale, s8 i_subtype);
+                         const csXyz* i_angle, const cXyz* i_scale, s8 i_argument);
 
 inline fpc_ProcID fopAcM_create(s16 i_procName, createFunc i_createFunc, void* params) {
     return fpcM_Create(i_procName, i_createFunc, params);
@@ -527,7 +527,7 @@ inline fpc_ProcID fopAcM_Create(s16 i_procName, createFunc i_createFunc, void* p
 }
 
 fopAc_ac_c* fopAcM_fastCreate(s16 i_procName, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
-                              const csXyz* i_angle, const cXyz* i_scale, s8 i_subtype,
+                              const csXyz* i_angle, const cXyz* i_scale, s8 i_argument,
                               createFunc i_createFunc, void* i_createFuncData);
 
 fopAc_ac_c* fopAcM_fastCreate(const char* i_actorname, u32 i_parameters, const cXyz* i_pos,
@@ -536,11 +536,11 @@ fopAc_ac_c* fopAcM_fastCreate(const char* i_actorname, u32 i_parameters, const c
 
 fpc_ProcID fopAcM_createChild(s16 i_procName, fpc_ProcID i_parentID, u32 i_parameters,
                               const cXyz* i_pos, int i_roomNo, const csXyz* i_angle,
-                              const cXyz* i_scale, s8 i_subtype, createFunc i_createFunc);
+                              const cXyz* i_scale, s8 i_argument, createFunc i_createFunc);
 
 fpc_ProcID fopAcM_createChildFromOffset(s16 i_procName, fpc_ProcID i_parentID, u32 i_parameters,
                                         const cXyz* i_pos, int i_roomNo, const csXyz* i_angle,
-                                        const cXyz* i_scale, s8 i_subtype, createFunc i_createFunc);
+                                        const cXyz* i_scale, s8 i_argument, createFunc i_createFunc);
 
 void fopAcM_DeleteHeap(fopAc_ac_c* i_actor);
 
@@ -805,7 +805,7 @@ inline void fopAcM_setWarningMessage_f(const fopAc_ac_c* i_actor, const char* i_
 
     char buf[64];
     snprintf(buf, sizeof(buf), "<%s> %s", dStage_getName(fopAcM_GetProfName(i_actor),
-    i_actor->subtype), i_msg); setWarningMessage_f_va(JUTAssertion::getSDevice(), i_filename,
+    i_actor->argument), i_msg); setWarningMessage_f_va(JUTAssertion::getSDevice(), i_filename,
     i_line, buf, args);
 
     va_end(args); */
