@@ -1641,7 +1641,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_stick"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_stoneMark"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_swpropeller"),
-    ActorRel(NonMatching, "d_a_obj_swpush5"),
+    ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_swpush5"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_yobikusa"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_scene_exit2"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_shop_item"),

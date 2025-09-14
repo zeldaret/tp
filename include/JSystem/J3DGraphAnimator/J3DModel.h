@@ -98,8 +98,8 @@ public:
     Mtx33* getNrmMtxPtr() { return mMtxBuffer->getNrmMtxPtr(); }
     Mtx* getDrawMtxPtr() { return mMtxBuffer->getDrawMtxPtr(); }
     void setBaseScale(const Vec& scale) { mBaseScale = scale; }
-    void setUserArea(u32 area) { mUserArea = area; }
-    u32 getUserArea() const { return mUserArea; }
+    void setUserArea(uintptr_t area) { mUserArea = area; }
+    uintptr_t getUserArea() const { return mUserArea; }
     Vec* getBaseScale() { return &mBaseScale; }
     void setAnmMtx(int jointNo, Mtx m) { mMtxBuffer->setAnmMtx(jointNo, m); }
     MtxP getAnmMtx(int jointNo) { return mMtxBuffer->getAnmMtx(jointNo); }
@@ -110,7 +110,7 @@ public:
     /* 0x08 */ u32 mFlags;
     /* 0x0C */ u32 mDiffFlag;
     /* 0x10 */ J3DCalcCallBack mCalcCallBack;
-    /* 0x14 */ u32 mUserArea;
+    /* 0x14 */ uintptr_t mUserArea;
     /* 0x18 */ Vec mBaseScale;
     /* 0x24 */ Mtx mBaseTransformMtx;
     /* 0x54 */ Mtx mInternalView;
