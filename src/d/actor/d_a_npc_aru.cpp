@@ -936,10 +936,10 @@ void daNpc_Aru_c::action() {
 
 /* 809533D8-8095349C 001D38 00C4+00 1/0 0/0 0/0 .text            beforeMove__11daNpc_Aru_cFv */
 void daNpc_Aru_c::beforeMove() {
-    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_80000000);
+    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x8000000);
 
     if (checkHide()) {
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_80000000);
+        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
     }
 
     if (checkHide() || mNoDraw) {
