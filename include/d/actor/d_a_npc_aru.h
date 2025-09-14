@@ -36,6 +36,50 @@ public:
 
 class daNpc_Aru_c : public daNpcT_c {
 public:
+    enum Joint {
+        /* 0x00  */ JNT_CENTER,
+        /* 0x01 */ JNT_BACKBONE1,
+        /* 0x02 */ JNT_BACKBONE2,
+        /* 0x03 */ JNT_NECK,
+        /* 0x04 */ JNT_HEAD,
+        /* 0x05 */ JNT_CHIN,
+        /* 0x06 */ JNT_MAYU_L,
+        /* 0x07 */ JNT_MAYU_R,
+        /* 0x08 */ JNT_MOUTH,
+        /* 0x09 */ JNT_SHOULDERL,
+        /* 0x0A */ JNT_ARML1,
+        /* 0x0B */ JNT_ARML2,
+        /* 0x0C */ JNT_HANDL,
+        /* 0x0D */ JNT_FINGERL1,
+        /* 0x0E */ JNT_FINGERL2,
+        /* 0x0F */ JNT_THAMBL,
+        /* 0x10 */ JNT_SHOULDERR,
+        /* 0x11 */ JNT_ARMR1,
+        /* 0x12 */ JNT_ARMR2,
+        /* 0x13 */ JNT_HANDR,
+        /* 0x14 */ JNT_FINGERR1,
+        /* 0x15 */ JNT_FINGERR2,
+        /* 0x16 */ JNT_THAMBR,
+        /* 0x17 */ JNT_WAIST,
+        /* 0x18 */ JNT_LEGL1,
+        /* 0x19 */ JNT_LEGL2,
+        /* 0x1A */ JNT_FOOTL,
+        /* 0x1B */ JNT_SKIRTL,
+        /* 0x1C */ JNT_LEGR1,
+        /* 0x1D */ JNT_LEGR2,
+        /* 0x1E */ JNT_FOOTR,
+        /* 0x1F */ JNT_SKIRTR,
+        /* 0x20 */ JNT_SKIRT1,
+        /* 0x21 */ JNT_SKIRT2,
+    };
+
+    enum Material {
+        /* 0x0 */ SC_EYE,
+        /* 0x1 */ ARU_BODY_M,
+        /* 0x2 */ ARU_EYEBALL_M,
+        /* 0x3 */ ARU_FACE_M,
+    };
+
     typedef int (daNpc_Aru_c::*actionFunc)(void*);
     typedef int (daNpc_Aru_c::*cutFunc)(int);
 
@@ -102,14 +146,14 @@ public:
         : daNpcT_c(i_faceMotionAnmData, i_motionAnmData, i_faceMotionSequenceData,
         i_faceMotionStepNum, i_motionSequenceData, i_motionStepNum, i_evtData,
         i_arcNames) {}
-    /* 809575B4 */ u16 getEyeballMaterialNo() { return 2; }
-    /* 809575BC */ s32 getHeadJointNo() { return 4; }
-    /* 809575C4 */ s32 getNeckJointNo() { return 3; }
-    /* 809575CC */ s32 getBackboneJointNo() { return 1; }
-    /* 809575D4 */ BOOL checkChangeJoint(int i_joint) { return i_joint == 4; }
-    /* 809575E4 */ BOOL checkRemoveJoint(int i_joint) { return i_joint == 8; }
-    /* 809575F4 */ s32 getFootLJointNo() { return 0x1A; }
-    /* 809575FC */ s32 getFootRJointNo() { return 0x1E; }
+    /* 809575B4 */ u16 getEyeballMaterialNo() { return ARU_EYEBALL_M; }
+    /* 809575BC */ s32 getHeadJointNo() { return JNT_HEAD; }
+    /* 809575C4 */ s32 getNeckJointNo() { return JNT_NECK; }
+    /* 809575CC */ s32 getBackboneJointNo() { return JNT_BACKBONE1; }
+    /* 809575D4 */ BOOL checkChangeJoint(int i_joint) { return i_joint == JNT_HEAD; }
+    /* 809575E4 */ BOOL checkRemoveJoint(int i_joint) { return i_joint == JNT_MOUTH; }
+    /* 809575F4 */ s32 getFootLJointNo() { return JNT_FOOTL; }
+    /* 809575FC */ s32 getFootRJointNo() { return JNT_FOOTR; }
 
     int getFlowNodeNo() {
         u16 nodeNo = home.angle.x;
@@ -120,7 +164,6 @@ public:
         return nodeNo;
     }
     int getPathID() { return (fopAcM_GetParam(this) & 0xFF00) >> 8; }
-
     void setLastIn() { mLastGoatIn = true; }
 
     static char* mCutNameList[7];
