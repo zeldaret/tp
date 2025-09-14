@@ -71,10 +71,6 @@ public:
         field_0x574->setBaseTRMtx(param_1);
     }
 
-    u32 fopAcM_checkHawkCarryNow(fopAc_ac_c* actor) {
-        return fopAcM_CheckStatus(actor, 0x80000000);
-    }
-
     void popup(f32 param_1, f32 param_2, cXyz* param_3) {
         if (param_3 != NULL) {
             current.pos = *param_3;
