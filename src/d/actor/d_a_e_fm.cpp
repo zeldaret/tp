@@ -3520,7 +3520,6 @@ static int daE_FM_Delete(e_fm_class* i_this) {
 
 /* 804F8CE8-804F95CC 009CE8 08E4+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 static int useHeapInit(fopAc_ac_c* i_this) {
-    // NONMATCHING - REGALLOC
     J3DModelData* modelData;
     e_fm_class* a_this = (e_fm_class*)i_this;
 
@@ -3556,7 +3555,9 @@ static int useHeapInit(fopAc_ac_c* i_this) {
             BRK_FM, BRK_FM_ATTACK, BRK_FM_PUTOUT, BRK_FM_PUTOUTWAIT, BRK_FM_ANIMAL02, 
             BRK_FM_OPDEMO, BRK_FM_HANGWAIT, BRK_FM_DEMOEND01, BRK_FM_DEMOEND02
         };
-        if (!a_this->mpFmBrk[i]->init(a_this->mpFmModelMorf->getModel()->getModelData(), static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes("E_fm", brk[i])), 1, anm_mode, 1.0f, 0, -1)) {
+        if (a_this->mpFmBrk[i]->init(a_this->mpFmModelMorf->getModel()->getModelData(),
+                                     static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes("E_fm", brk[i])),
+                                     1, anm_mode, 1.0f, 0, -1) == FALSE) {
             return 0;
         }
 
@@ -3569,7 +3570,9 @@ static int useHeapInit(fopAc_ac_c* i_this) {
             BTK_FM, BTK_FM_ATTACK, BTK_FM_PUTOUT, BTK_FM_PUTOUTWAIT, BTK_FM_ANIMAL02, 
             BTK_FM_OPDEMO, BTK_FM_HANGWAIT, BTK_FM_DEMOEND01, BTK_FM_DEMOEND02
         };
-        if (!a_this->mpFmBtk[i]->init(a_this->mpFmModelMorf->getModel()->getModelData(), static_cast<J3DAnmTextureSRTKey*>(dComIfG_getObjectRes("E_fm", btk[i])), 1, anm_mode, 1.0f, 0, -1)) {
+        if (a_this->mpFmBtk[i]->init(a_this->mpFmModelMorf->getModel()->getModelData(),
+                                     static_cast<J3DAnmTextureSRTKey*>(dComIfG_getObjectRes("E_fm", btk[i])),
+                                     1, anm_mode, 1.0f, 0, -1) == FALSE) {
             return 0;
         }
     }
@@ -3585,7 +3588,9 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         return 0;
     }
 
-    if (!a_this->mpDemoFmBrk->init(a_this->mpFmModelMorf->getModel()->getModelData(), static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes("E_fm", BRK_FM_DEMOEND03)), 1, 0, 1.0f, 0, -1)) {
+    if (a_this->mpDemoFmBrk->init(a_this->mpFmModelMorf->getModel()->getModelData(),
+                                  static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes("E_fm", BRK_FM_DEMOEND03)),
+                                  1, 0, 1.0f, 0, -1) == FALSE) {
         return 0;
     }
 
@@ -3601,7 +3606,9 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         return 0;
     }
 
-    if (!a_this->mpCoreBrk->init(a_this->mpCoreModel->getModelData(), static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes("E_fm", BRK_CORE_LIGHTON)), 1, 2, 1.0f, 0, -1)) {
+    if (a_this->mpCoreBrk->init(a_this->mpCoreModel->getModelData(),
+                                static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes("E_fm", BRK_CORE_LIGHTON)),
+                                1, 2, 1.0f, 0, -1) == FALSE) {
         return 0;
     }
 
@@ -3610,7 +3617,9 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         return 0;
     }
 
-    if (!a_this->mpCoreBtk->init(a_this->mpCoreModel->getModelData(), static_cast<J3DAnmTextureSRTKey*>(dComIfG_getObjectRes("E_fm", BTK_CORE_BEAT)), 1, 0, 1.0f, 0, -1)) {
+    if (a_this->mpCoreBtk->init(a_this->mpCoreModel->getModelData(),
+                                static_cast<J3DAnmTextureSRTKey*>(dComIfG_getObjectRes("E_fm", BTK_CORE_BEAT)),
+                                1, 0, 1.0f, 0, -1) == FALSE) {
         return 0;
     }
 
@@ -3629,7 +3638,9 @@ static int useHeapInit(fopAc_ac_c* i_this) {
                 return 0;
             }
 
-            if (!a_this->mpAttackEfBrk->init(a_this->mpAttackEfModelMorf[i]->getModel()->getModelData(), static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes("E_fm", BRK_EF_FMATTACK_B)), 1, 2, 1.0f, 0, -1)) {
+            if (a_this->mpAttackEfBrk->init(a_this->mpAttackEfModelMorf[i]->getModel()->getModelData(),
+                                            static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes("E_fm", BRK_EF_FMATTACK_B)),
+                                            1, 2, 1.0f, 0, -1) == FALSE) {
                 return 0;
             }
         }
@@ -3640,12 +3651,14 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         }
 
         static int eff_btk[] = {BTK_EF_FMATTACK_A, BTK_EF_FMATTACK_B};
-        if (!a_this->mpAttackEfBtk[i]->init(a_this->mpAttackEfModelMorf[i]->getModel()->getModelData(), static_cast<J3DAnmTextureSRTKey*>(dComIfG_getObjectRes("E_fm", eff_btk[i])), 1, 2, 1.0f, 0, -1)) {
+        if (a_this->mpAttackEfBtk[i]->init(a_this->mpAttackEfModelMorf[i]->getModel()->getModelData(),
+                                           static_cast<J3DAnmTextureSRTKey*>(dComIfG_getObjectRes("E_fm", eff_btk[i])),
+                                           1, 2, 1.0f, 0, -1) == FALSE) {
             return 0;
         }
     }
 
-    modelData = (J3DModelData*)dComIfG_getObjectRes("E_fm", BMDR_KUSARI);
+    modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("E_fm", BMDR_KUSARI));
     JUT_ASSERT(7404, modelData != 0);
     
     J3DModelData* modelData2 = static_cast<J3DModelData*>(dComIfG_getObjectRes("E_fm", BMDR_HANDLE));
@@ -3663,7 +3676,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
                 return 0;
             }
 
-            dKy_tevstr_init(&a_this->mChain[i].tevstr[j], fopAcM_GetRoomNo(i_this), 0xFF);
+            dKy_tevstr_init(&a_this->mChain[i].tevstr[j], (int) fopAcM_GetRoomNo(i_this), 0xFF);
         }
 
         a_this->mChain[i].field_0x61d0 = 26;
