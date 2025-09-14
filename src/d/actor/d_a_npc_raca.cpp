@@ -385,7 +385,7 @@ fopAc_ac_c* daNpc_Raca_c::getNiP() {
 
 /* 80AB67CC-80AB67EC 000C0C 0020+00 1/1 0/0 0/0 .text            getType__12daNpc_Raca_cFv */
 u8 daNpc_Raca_c::getType() {
-    switch ((u8)fopAcM_GetParam(this)) {
+    switch (fopAcM_GetParam(this) & 0xFF) {
         case 0:
             return 0;
 
@@ -453,7 +453,7 @@ void daNpc_Raca_c::setParam() {
     attention_info.distances[fopAc_attn_LOCK_e] = daNpcT_getDistTableIdx(daNpc_Raca_Param_c::m.common.attention_distance, daNpc_Raca_Param_c::m.common.attention_angle);
     attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
     attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(talk_distance, talk_angle);
-    attention_info.flags = 10;
+    attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
 
     scale.set(daNpc_Raca_Param_c::m.common.scale, daNpc_Raca_Param_c::m.common.scale, daNpc_Raca_Param_c::m.common.scale);
     mCcStts.SetWeight(daNpc_Raca_Param_c::m.common.weight);
