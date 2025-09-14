@@ -1592,7 +1592,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_demo_item"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_door_bossL1"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_dn"),
-    ActorRel(Equivalent, "d_a_e_fm"), # regalloc
+    ActorRel(MatchingFor("GZ2E01"), "d_a_e_fm"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_ga"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_hb"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_nest"),
@@ -1728,7 +1728,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_e_hm"),
     ActorRel(NonMatching, "d_a_e_hp"),
     ActorRel(NonMatching, "d_a_e_hz"),
-    ActorRel(NonMatching, "d_a_e_hzelda"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_e_hzelda"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_is"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_kg"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_kk"),
