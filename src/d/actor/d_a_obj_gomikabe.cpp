@@ -133,7 +133,7 @@ void daObjGOMIKABE_c::BreakSet() {
     field_0x5a2++;
     mAction++;
     Z2GetAudioMgr()->seStart(Z2SE_OBJ_G_KABE_BRK, &current.pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_000100);
+    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x100);
     if (mpBgW != NULL && mpBgW->ChkUsed()) {
         dComIfG_Bgsp().Release(mpBgW);
     }

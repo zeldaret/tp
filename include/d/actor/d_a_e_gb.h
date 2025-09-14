@@ -113,22 +113,5 @@ public:
 
 STATIC_ASSERT(sizeof(e_gb_class) == 0xef8);
 
-class daE_GB_HIO_c : public JORReflexible{
-public:
-    /* 806C1CEC */ daE_GB_HIO_c();
-    /* 806C6F98 */ virtual ~daE_GB_HIO_c() {}
-
-    void genMessage(JORMContext*);
-
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 field_0x8;
-    /* 0x0C */ f32 field_0xc;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ s16 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ s16 field_0x1c;
-    /* 0x1E */ s16 field_0x1e;
-};
-
 
 #endif /* D_A_E_GB_H */

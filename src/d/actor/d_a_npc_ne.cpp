@@ -3107,7 +3107,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
     J3DModel* model = _this->mpMorf->getModel();
     i_this->model = model;
-    model->setUserArea((uintptr_t)i_this);
+    model->setUserArea((uintptr_t)_this);
 
     for (u16 i = 0; i < model->getModelData()->getJointNum(); i++) {
         if (i == 1 || i == 2 || i == 3 || i == 4 || i == 20 || i == 21) {
@@ -3119,9 +3119,8 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     if (_this->mpBtkAnm == NULL) {
         return 0;
     }
-    J3DAnmTextureSRTKey* btk =
-        static_cast<J3DAnmTextureSRTKey*>(dComIfG_getObjectRes(_this->mResName, 32));
-    if (!_this->mpBtkAnm->init(_this->mpMorf->getModel()->getModelData(), btk, 1, 0, 1.0f, 0, -1)) {
+    if (!_this->mpBtkAnm->init(_this->mpMorf->getModel()->getModelData(),
+        static_cast<J3DAnmTextureSRTKey*>(dComIfG_getObjectRes(_this->mResName, 32)), 1, 0, 1.0f, 0, -1)) {
         return 0;
     }
 
@@ -3129,18 +3128,22 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     if (_this->mpBtpAnm == NULL) {
         return 0;
     }
-    J3DAnmTexPattern* btp =
-        static_cast<J3DAnmTexPattern*>(dComIfG_getObjectRes(_this->mResName, 35));
-    if (!_this->mpBtpAnm->init(_this->mpMorf->getModel()->getModelData(), btp, 1, 0, 1.0f, 0, -1)) {
+    if (!_this->mpBtpAnm->init(_this->mpMorf->getModel()->getModelData(),
+        static_cast<J3DAnmTexPattern*>(dComIfG_getObjectRes(_this->mResName, 35)), 1, 0, 1.0f, 0, -1)) {
         return 0;
     }
 
     _this->mSound.init(&i_this->current.pos, 1);
-    
+
     if (_this->mBehavior == npc_ne_class::BHV_DISH) {
         static int dish_bck[2] = {npc_ne_class::ANM_EMPTY_DISH, npc_ne_class::ANM_DRINK_DISH};
                         /* dSv_event_flag_c::F_0038 - Ordon Village - Opening (2nd day) cat returns home */
-        s32 dish_flag = dComIfGs_isEventBit(0x1001) ? 1 : 0;
+        s32 dish_flag;
+        if (dComIfGs_isEventBit(0x1001)) {
+            dish_flag = 1;
+        } else {
+            dish_flag = 0;
+        }
         _this->mpDishMorf = new mDoExt_McaMorf(
             static_cast<J3DModelData*>(dComIfG_getObjectRes(_this->mResName, 29)), NULL, NULL,
             static_cast<J3DAnmTransform*>(dComIfG_getObjectRes(_this->mResName,

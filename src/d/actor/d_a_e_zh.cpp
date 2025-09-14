@@ -803,7 +803,7 @@ void daE_ZH_c::executeStartDemo() {
                 camera->mCamera.SetTrimSize(0);
                 dComIfGp_event_reset();
                 fopAcM_onSwitch(this, 0x12);
-                fopAcM_OffStatus(this , fopAcM_STATUS_UNK_004000);
+                fopAcM_OffStatus(this , fopAcM_STATUS_UNK_0x4000);
                 setActionMode(ACTION_EXECUTE_WAIT, 1);
             }
             break;
@@ -2326,7 +2326,7 @@ cPhs__Step daE_ZH_c::create() {
                         attention_info.flags &= ~fopAc_AttnFlag_BATTLE_e;
 
                         if (fopAcM_GetRoomNo(this) == 0x33 && !fopAcM_isSwitch(this, 18)) {
-                            fopAcM_OnStatus(this, fopAcM_STATUS_UNK_004000);
+                            fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
                             setActionMode(ACTION_EXECUTE_START_DEMO, 0);
                         } else {
                             setActionMode(ACTION_EXECUTE_WAIT, 1);

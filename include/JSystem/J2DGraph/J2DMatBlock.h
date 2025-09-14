@@ -773,6 +773,7 @@ public:
     u32 getTexGenNum() const { return mTexGenNum; }
     void setTexGenNum(u32 num) { mTexGenNum = num; }
     void setTexCoord(u32 i, J2DTexCoord coord) { mTexGenCoord[i] = coord; }
+    void setTexCoord(u32 i, const J2DTexCoord* coord) { mTexGenCoord[i] = *coord; }
     void setTexMtx(u32 i, J2DTexMtx* mtx) { mTexMtx[i] = mtx; }
     J2DTexMtx& getTexMtx(u32 i) { return *mTexMtx[i]; }
     J2DTexCoord& getTexCoord(u32 i) { return mTexGenCoord[i]; }

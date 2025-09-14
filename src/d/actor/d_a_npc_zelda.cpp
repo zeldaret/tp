@@ -201,7 +201,7 @@ int daNpc_Zelda_c::create() {
         J3DModelData* unusedModelData = mpMorf[0]->getModel()->getModelData();
         fopAcM_SetMtx(this, mpMorf[0]->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -200.0f, -100.0f, -200.0f, 200.0f, 300.0f, 200.0f);
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_80000000);
+        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
         mSound.init(&current.pos, &eyePos, 3, 1);
 
 #if DEBUG

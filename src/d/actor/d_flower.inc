@@ -11,9 +11,7 @@ const u16 l_J_Ohana00_64TEX__height = 63;
 #include "assets/l_J_Ohana00_64TEX.h"
 
 /* 805253D8-8052569C 002200 02C4+00 0/1 0/0 0/0 .data            l_flowerPos */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_flowerPos[708] = {
+static u8 l_flowerPos[708] = {
     0xC0, 0x8C, 0x2C, 0xF7, 0x42, 0x05, 0xBC, 0xDF, 0xC1, 0xA1, 0x00, 0x70, 0xBF, 0x50, 0x51, 0xB9,
     0x42, 0x12, 0x58, 0xAD, 0xC0, 0xDE, 0xCE, 0x40, 0xC1, 0x04, 0x67, 0x23, 0x41, 0xE5, 0x87, 0x25,
     0xC1, 0x1B, 0xF3, 0xF8, 0xC1, 0x8F, 0x17, 0x3E, 0x42, 0x05, 0x7F, 0xC6, 0xC1, 0x83, 0x9B, 0xFC,
@@ -60,12 +58,9 @@ SECTION_DATA static u8 l_flowerPos[708] = {
     0x41, 0x98, 0xE3, 0x73, 0xC0, 0xD3, 0xBD, 0x8E, 0xC0, 0xCB, 0xC6, 0x04, 0x41, 0x98, 0xC3, 0x84,
     0xC0, 0xE9, 0x27, 0x8D,
 };
-#pragma pop
 
 /* 8052569C-80525750 0024C4 00B4+00 0/1 0/0 0/0 .data            l_flowerNormal */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_flowerNormal[180] = {
+static u8 l_flowerNormal[180] = {
     0x3C, 0x8D, 0x2C, 0x38, 0x3F, 0x7F, 0xF5, 0xF9, 0x3B, 0x46, 0xF7, 0xA1, 0x3C, 0x76, 0x83,
     0x7F, 0x3F, 0x7F, 0xF5, 0xF9, 0x3C, 0x12, 0x5F, 0xE9, 0xBB, 0xE5, 0xA3, 0x5D, 0x3F, 0x7F,
     0xF5, 0xF9, 0x3C, 0x83, 0x57, 0xA3, 0x3B, 0xF9, 0xB1, 0x31, 0x3F, 0x7F, 0xF5, 0xF9, 0x3C,
@@ -79,20 +74,14 @@ SECTION_DATA static u8 l_flowerNormal[180] = {
     0xF5, 0xF9, 0xBC, 0x4A, 0x31, 0xE8, 0x3C, 0x4F, 0x07, 0x3A, 0x3F, 0x7F, 0xF5, 0xF9, 0xBC,
     0x46, 0x54, 0x0D, 0x3C, 0x4B, 0xEE, 0x80, 0x3F, 0x7F, 0xF5, 0xF9, 0x3C, 0x49, 0x81, 0xBF,
 };
-#pragma pop
 
 /* 80525750-80525758 002578 0008+00 0/1 0/0 0/0 .data            l_flowerColor */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_flowerColor[8] = {
+static u8 l_flowerColor[8] = {
     0xFF, 0xFF, 0xFF, 0xFF, 0xB2, 0xB2, 0xB2, 0xFF,
 };
-#pragma pop
 
 /* 80525758-80525898 002580 0138+08 0/1 0/0 0/0 .data            l_flowerTexCoord */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_flowerTexCoord[] = {
+static u8 l_flowerTexCoord[] = {
     0x40, 0x40, 0xD0, 0xEA, 0x3D, 0x69, 0x70, 0x72, 0x40, 0x7D, 0xD8, 0x30, 0x3F, 0x81, 0x3D, 0xC9,
     0x40, 0x40, 0xCE, 0x85, 0x3F, 0x81, 0x3D, 0xC9, 0x40, 0x01, 0xDD, 0x33, 0x3F, 0x81, 0x3D, 0xC9,
     0x40, 0x40, 0xD0, 0xEA, 0x3F, 0xF9, 0x46, 0xD4, 0x40, 0x00, 0xCD, 0xB8, 0xBF, 0x7F, 0xD4, 0x39,
@@ -113,7 +102,6 @@ SECTION_DATA static u8 l_flowerTexCoord[] = {
     0x3F, 0x59, 0x4B, 0x6A, 0xBC, 0xAD, 0x94, 0x8E, 0x3E, 0xA7, 0x7F, 0x28, 0x3D, 0x28, 0x87, 0xA9,
     0x3E, 0xA7, 0x67, 0x4D, 0x3C, 0x14, 0x46, 0x74, 0x3E, 0xA7, 0x73, 0xE2, 0xBC, 0x2F, 0x46, 0xAA,
     0x3E, 0xA7, 0x72, 0xD6, 0xBD, 0x2F, 0x46, 0xAA};
-#pragma pop
 
 /* 80525898-805259F8 0026C0 0150+10 0/1 0/0 0/0 .data            l_J_hana00DL */
 #include "assets/l_J_hana00DL.h"
@@ -135,9 +123,7 @@ const u16 l_J_Ohana01_64128_0419TEX__height = 127;
 #include "assets/l_J_Ohana01_64128_0419TEX.h"
 
 /* 80526C18-805270E0 003A40 04C8+00 0/1 0/0 0/0 .data            l_flowerPos2 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_flowerPos2[1224] = {
+static u8 l_flowerPos2[1224] = {
     0x40, 0x25, 0x9F, 0x34, 0x42, 0xC2, 0x95, 0x72, 0xC1, 0x22, 0x34, 0x78, 0x41, 0x4D, 0xF9, 0x63,
     0x43, 0x09, 0x35, 0x0D, 0x40, 0x97, 0xD7, 0x54, 0x41, 0x76, 0x80, 0x55, 0x42, 0xBA, 0x1C, 0xB4,
     0x41, 0x91, 0x3E, 0x0D, 0xC0, 0x99, 0x8D, 0x47, 0x42, 0xC2, 0x8D, 0xF5, 0x41, 0x12, 0xA1, 0x12,
@@ -216,12 +202,9 @@ SECTION_DATA static u8 l_flowerPos2[1224] = {
     0x3E, 0xBC, 0xD0, 0x9A, 0xC1, 0x1E, 0x5D, 0x2E, 0x3F, 0xCC, 0x0D, 0x13, 0x3E, 0xBC, 0xC7, 0x2A,
     0xC1, 0x1E, 0x5D, 0x2D, 0xBF, 0xA4, 0x4D, 0x4D,
 };
-#pragma pop
 
 /* 805270E0-80527200 003F08 0120+00 0/1 0/0 0/0 .data            l_flowerNormal2 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_flowerNormal2[288] = {
+static u8 l_flowerNormal2[288] = {
     0xBB, 0xC4, 0x93, 0x42, 0x3F, 0x7F, 0xF6, 0x6F, 0xBC, 0x83, 0x0E, 0x3D, 0x3C, 0x83, 0x0C, 0x24,
     0x3F, 0x7F, 0xF5, 0x84, 0x3C, 0x03, 0x0E, 0x3D, 0xB8, 0x51, 0xB7, 0x17, 0x3F, 0x7F, 0xF5, 0xF9,
     0x3C, 0x8F, 0x57, 0xF7, 0xBC, 0x8F, 0x57, 0xF7, 0x3F, 0x7F, 0xF5, 0xF9, 0x38, 0x1F, 0x62, 0x30,
@@ -241,20 +224,14 @@ SECTION_DATA static u8 l_flowerNormal2[288] = {
     0x3F, 0x7F, 0xF5, 0xF9, 0xBC, 0x8A, 0x28, 0x78, 0x3C, 0x8B, 0xFE, 0x3B, 0x3F, 0x7F, 0xF5, 0xF9,
     0x3B, 0x76, 0x7B, 0x1C, 0x3B, 0x99, 0x6B, 0x76, 0x3F, 0x7F, 0xF5, 0xF9, 0xBC, 0x8A, 0x1D, 0xFC,
 };
-#pragma pop
 
 /* 80527200-80527208 004028 0008+00 0/1 0/0 0/0 .data            l_flowerColor2 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_flowerColor2[8] = {
+static u8 l_flowerColor2[8] = {
     0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xB2, 0xFF,
 };
-#pragma pop
 
 /* 80527208-80527338 004030 0120+10 0/1 0/0 0/0 .data            l_flowerTexCoord2 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 l_flowerTexCoord2[] = {
+static u8 l_flowerTexCoord2[] = {
     0x3F, 0xF3, 0x6D, 0x11, 0x3F, 0x72, 0x0B, 0xA2, 0x3F, 0x80, 0x00, 0x00, 0x3C, 0xAB, 0xDC, 0x27,
     0x3D, 0xC9, 0x2E, 0xE8, 0x3F, 0x72, 0x0B, 0xA2, 0x40, 0x2B, 0x93, 0x9A, 0x3F, 0x81, 0x7B, 0x96,
     0x40, 0x2B, 0x93, 0x9A, 0x3F, 0x7B, 0xB5, 0x18, 0x40, 0x06, 0x1F, 0xCD, 0x3F, 0x7B, 0xB5, 0x18,
@@ -273,7 +250,6 @@ SECTION_DATA static u8 l_flowerTexCoord2[] = {
     0x40, 0x66, 0xBD, 0x6A, 0x3F, 0x97, 0xF6, 0xBA, 0x40, 0x7C, 0x19, 0xB1, 0x3F, 0x80, 0x5E, 0x57,
     0x40, 0x1B, 0x7D, 0x52, 0x3F, 0x97, 0xF6, 0xBA, 0x40, 0x04, 0x26, 0x74, 0x3F, 0x80, 0x3F, 0x79,
     0x40, 0x1B, 0x7D, 0x52, 0x3F, 0x80, 0x3F, 0x79, 0x40, 0x1B, 0x7D, 0x52, 0x3F, 0x51, 0x10, 0x6F};
-#pragma pop
 
 /* 80527338-80527478 004160 0138+08 0/1 0/0 0/0 .data            l_J_hana01DL */
 #include "assets/l_J_hana01DL.h"
@@ -568,7 +544,6 @@ dFlower_packet_c::dFlower_packet_c() {
 }
 
 /* 80521DAC-80522774 00614C 09C8+00 2/0 0/0 0/0 .text            draw__16dFlower_packet_cFv */
-// NONMATCHING
 void dFlower_packet_c::draw() {
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
     j3dSys.reinitGX();
@@ -589,6 +564,7 @@ void dFlower_packet_c::draw() {
     GXSetArray(GX_VA_CLR0, &l_flowerColor, 4);
     GXSetArray(GX_VA_TEX0, &l_flowerTexCoord, 8);
 
+    GXColor sp64;
     dFlower_room_c* sp5C = m_room;
 
     for (int i = 0; i < 64; i++) {
@@ -602,7 +578,7 @@ void dFlower_packet_c::draw() {
             if (dComIfGp_roomControl_getStatusRoomDt(i) != NULL) {
                 sp4C = dComIfGp_roomControl_getStatusRoomDt(i)->getLightVecInfoNum();
             }
-        
+
             if (dKy_SunMoon_Light_Check() == TRUE && sp4C < 2) {
                 sp4C = 2;
             }
@@ -625,20 +601,32 @@ void dFlower_packet_c::draw() {
             dKy_setLight_nowroom_grass(sp50->room_no, 1.0f);
 
             for (dFlower_data_c* sp44 = sp5C->getData(); sp44 != NULL; sp44 = sp44->mp_next) {
-                GXColor sp64;
-                sp64.r = (sp44->field_0x04 & 0x1F) * 2;
-                sp64.g = ((sp44->field_0x04 >> 5) & 0x1F) * 2;
-                sp64.b = ((sp44->field_0x04 >> 0xA) & 0x1F) * 2;
+#if DEBUG
+                if (g_kankyoHIO.field_0x698 != 0) {
+                    sp64.r = g_kankyoHIO.field_0x694 * 2;
+                    sp64.g = g_kankyoHIO.field_0x695 * 2;
+                    sp64.b = g_kankyoHIO.field_0x696 * 2;
+                } else {
+#endif
+                    sp64.r = (sp44->field_0x04 & 0x1F) * 2;
+                    sp64.g = ((sp44->field_0x04 >> 5) & 0x1F) * 2;
+                    sp64.b = ((sp44->field_0x04 >> 0xA) & 0x1F) * 2;
+#if DEBUG
+                }
+#endif
 
                 if (daPy_py_c::checkNowWolfPowerUp()) {
                     f32 var_f31 = g_env_light.bg_amb_col[0].r / 255.0f;
-                    sp64.r = (((sp44->field_0x04 & 0x1F) * 2) + 0x10) * (4.0f * var_f31);
+                    f32 var_f1 = (((sp44->field_0x04 & 0x1F) * 2 + 0x10));
+                    sp64.r = var_f1 * (var_f31 * 4.0f);
 
                     var_f31 = g_env_light.bg_amb_col[0].g / 255.0f;
-                    sp64.g = ((((sp44->field_0x04 >> 5) & 0x1F) * 2) + 0x10) * (4.0f * var_f31);
+                    f32 var_f1_2 = (((sp44->field_0x04 >> 5) & 0x1F) * 2 + 0x10);
+                    sp64.g = var_f1_2 * (4.0f * var_f31);
 
                     var_f31 = g_env_light.bg_amb_col[0].b / 255.0f;
-                    sp64.b = ((((sp44->field_0x04 >> 0xA) & 0x1F) * 2) + 0x10) * (4.0f * var_f31);
+                    f32 var_f1_3 = (((sp44->field_0x04 >> 10) & 0x1F) * 2 + 0x10);
+                    sp64.b = var_f1_3 * (4.0f * var_f31);
                 }
 
                 if (sp64.r == 0x3E) {
@@ -652,7 +640,7 @@ void dFlower_packet_c::draw() {
                 if (sp64.b == 0x3E) {
                     sp64.b = sp50->AmbCol.b;
                 }
-                
+
                 GXSetChanAmbColor(GX_COLOR0A0, sp64);
 
                 if (!cLib_checkBit<u8>(sp44->m_state, 4) && !cLib_checkBit<u8>(sp44->m_state, 0x40)) {
@@ -686,11 +674,16 @@ void dFlower_packet_c::draw() {
             int sp2C = 6;
             dKy_tevstr_c* temp_r29 = dComIfGp_roomControl_getTevStr(i);
             GXColorS10 sp78 = {0, 0, 0, 0};
-            int sp7C = 0;
 
             if (dComIfGp_roomControl_getStatusRoomDt(i) != NULL) {
                 sp2C = dComIfGp_roomControl_getStatusRoomDt(i)->getLightVecInfoNum();
             }
+
+#if DEBUG
+            if (g_kankyoHIO.field_0x06d != 0) {
+                sp2C = g_kankyoHIO.field_0x79b;
+            }
+#endif
 
             if (dKy_SunMoon_Light_Check() == TRUE && sp2C < 2) {
                 sp2C = 2;
@@ -707,64 +700,71 @@ void dFlower_packet_c::draw() {
             dKy_GxFog_tevstr_set(temp_r29);
             dKy_setLight_nowroom_grass(temp_r29->room_no, 1.0f);
 
+            f32 var_f29;
+            f32 var_f28;
+            f32 var_f27;
+
+            f32 temp1 = 0.03125f;
             while (sp34 != NULL) {
-                f32 var_f29 = temp_r29->AmbCol.r * 0.03125f;
+                f32 var_f29 = temp_r29->AmbCol.r * temp1;
                 if (var_f29 > 1.0f) {
                     var_f29 = 1.0f;
                 }
 
-                f32 var_f28 = temp_r29->AmbCol.g * 0.03125f;
+                f32 var_f28 = temp_r29->AmbCol.g * temp1;
                 if (var_f28 > 1.0f) {
                     var_f28 = 1.0f;
                 }
 
-                f32 var_f27 = temp_r29->AmbCol.b * 0.03125f;
+                f32 var_f27 = temp_r29->AmbCol.b * temp1;
                 if (var_f27 > 1.0f) {
                     var_f27 = 1.0f;
                 }
 
                 GXColor sp28;
 
-                u8 sp24 = -0.4f * temp_r29->AmbCol.r * var_f29;
-                u8 sp25 = -0.4f * temp_r29->AmbCol.g * var_f28;
-                u8 sp26 = -0.4f * temp_r29->AmbCol.b * var_f27;
+                //u8 sp26, sp25, sp24;
+                GXColor sp24;
+                sp24.r = -0.4f * temp_r29->AmbCol.r * var_f29;
+                sp24.g = -0.4f * temp_r29->AmbCol.g * var_f28;
+                sp24.b = -0.4f * temp_r29->AmbCol.b * var_f27;
 
                 u8 sp8 = sp30 & 7;
                 switch (sp8) {
                 case 0:
-                    sp28.r = temp_r29->AmbCol.r + sp24;
+                    sp28.r = temp_r29->AmbCol.r + sp24.r;
                     sp28.g = temp_r29->AmbCol.g;
                     sp28.b = temp_r29->AmbCol.b;
                     break;
                 case 1:
                     sp28.r = temp_r29->AmbCol.r;
-                    sp28.g = temp_r29->AmbCol.g + sp25;
+                    sp28.g = temp_r29->AmbCol.g + sp24.g;
                     sp28.b = temp_r29->AmbCol.b;
                     break;
                 case 2:
                     sp28.r = temp_r29->AmbCol.r;
                     sp28.g = temp_r29->AmbCol.g;
-                    sp28.b = temp_r29->AmbCol.b + sp26;
+                    sp28.b = temp_r29->AmbCol.b + sp24.b;
                     break;
                 case 3:
-                    sp28.r = temp_r29->AmbCol.r + sp24;
-                    sp28.g = temp_r29->AmbCol.g + sp25;
+                    sp28.r = temp_r29->AmbCol.r + sp24.r;
+                    sp28.g = temp_r29->AmbCol.g + sp24.g;
                     sp28.b = temp_r29->AmbCol.b;
                     break;
                 case 4:
                     sp28.r = temp_r29->AmbCol.r;
-                    sp28.g = temp_r29->AmbCol.g + sp25;
-                    sp28.b = temp_r29->AmbCol.b + sp26;
+                    sp28.g = temp_r29->AmbCol.g + sp24.g;
+                    sp28.b = temp_r29->AmbCol.b + sp24.b;
                     break;
                 case 5:
-                    sp28.r = temp_r29->AmbCol.r + sp24;
+                    sp28.r = temp_r29->AmbCol.r + sp24.r;
                     sp28.g = temp_r29->AmbCol.g;
-                    sp28.b = temp_r29->AmbCol.b + sp26;
+                    sp28.b = temp_r29->AmbCol.b + sp24.b;
                     break;
                 case 6:
-                    sp28.r = temp_r29->AmbCol.r + sp24;
-                    sp28.g = temp_r29->AmbCol.g + sp25;
-                    sp28.b = temp_r29->AmbCol.b + sp26;
+                    sp28.r = temp_r29->AmbCol.r + sp24.r;
+                    sp28.g = temp_r29->AmbCol.g + sp24.g;
+                    sp28.b = temp_r29->AmbCol.b + sp24.b;
                     break;
                 case 7:
                     break;

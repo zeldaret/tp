@@ -7,4 +7,4 @@
 #include "JSystem/JSystem.pch" // IWYU pragma: export
 #endif
 
-#endif // DOLZEL_PCH
+#endif // JSYSTEM_H

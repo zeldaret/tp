@@ -336,7 +336,7 @@ void daObjBATTA_c::bin_wait() {
     if (field_0x9e8 == 0) {
         J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes("Bat", 8);
         mpMorf->setAnm(anm, 2, 4.0f, 1.0f, 0.0f, -1.0f);
-        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_004000);
+        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
         mDraw = false;
         gravity = 0.0f;
         maxFallSpeed = 0.0f;

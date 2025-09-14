@@ -268,20 +268,12 @@ void daObjVolcBall_c::actionEruption() {
         startQuake();
     }
 
-    daPy_py_c* player_p = daPy_getPlayerActorClass();
+    daPy_py_c* player_p = (daPy_py_c*)daPy_getPlayerActorClass();
     u32 timer = cLib_calcTimer(&mTime);
-    bool disable_ball_create = true;
+    bool disable_ball_create = timer == 0 ||
+        (getSwBit() != 0xFF && !fopAcM_isSwitch(this, getSwBit()));
 
-    if (timer != 0) {
-        bool bvar2 = false;
-        if (getSwBit() != 0xFF && !fopAcM_isSwitch(this, getSwBit())) {
-            bvar2 = true;
-        }
-
-        if (!bvar2) {
-            disable_ball_create = false;
-        }
-    }
+    vball_s* var_r29 = &mBall[8];
 
     if (!disable_ball_create) {
         if (cLib_calcTimer(&mSearchBallCreateTimer) == 0) {
@@ -293,30 +285,31 @@ void daObjVolcBall_c::actionEruption() {
         }
     }
 
-    if (mBall[8].field_0x376 != 0) {
+    if (var_r29->field_0x376 != 0) {
         field_0x603++;
 
         u8 search_time = getData()->mPlayerSearchTime;
         f32 shadow_intensity = getData()->mSearchBallShadowIntensity;
 
         if (field_0x603 < search_time) {
-            mBall[8].field_0x4.x = player_p->current.pos.x;
-            mBall[8].field_0x4.z = player_p->current.pos.z;
-            mBall[8].field_0x364 = player_p->current.pos;
+            var_r29->field_0x4.x = player_p->current.pos.x;
+            var_r29->field_0x4.z = player_p->current.pos.z;
+            var_r29->field_0x364 = player_p->current.pos;
         }
 
-        cLib_chaseF(&mBall[8].field_0x1c.x, field_0x291c, field_0x291c / (f32)search_time);
-        cLib_chaseF(&mBall[8].field_0x1c.y, field_0x291c, field_0x291c / (f32)search_time);
-        cLib_chaseF(&mBall[8].field_0x1c.z, field_0x291c, field_0x291c / (f32)search_time);
-        cLib_chaseF(&mBall[8].field_0x50, shadow_intensity, shadow_intensity / (f32)search_time);
+        cLib_chaseF(&var_r29->field_0x1c.x, field_0x291c, field_0x291c / (f32)search_time);
+        cLib_chaseF(&var_r29->field_0x1c.y, field_0x291c, field_0x291c / (f32)search_time);
+        cLib_chaseF(&var_r29->field_0x1c.z, field_0x291c, field_0x291c / (f32)search_time);
+        cLib_chaseF(&var_r29->field_0x50, shadow_intensity, shadow_intensity / (f32)search_time);
 
-        mBall[8].field_0x28 = mBall[8].field_0x1c;
-        mBall[8].mSphCc.SetR(field_0x291c * 100.0f);
-        mBall[8].mSphCc.SetC(mBall[8].field_0x4);
-        dComIfG_Ccsp()->Set(&mBall[8].mSphCc);
+        var_r29->field_0x28 = var_r29->field_0x1c;
+        var_r29->mSphCc.SetR(field_0x291c * 100.0f);
+        var_r29->mSphCc.SetC(var_r29->field_0x4);
+        dComIfG_Ccsp()->Set(&var_r29->mSphCc);
     }
 
-    if (!executeBall() && disable_ball_create) {
+    int executeResult = executeBall();
+    if (!executeResult && disable_ball_create) {
         if (mIsBigVolc == 0) {
             setAction(MODE_STOP);
             mTime = getData()->mNormalWaitTime * 30.0f + cM_rndFX(getData()->mRandWaitTime * 30.0f);

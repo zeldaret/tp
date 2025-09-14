@@ -60,7 +60,9 @@ public:
         actionInitWait2();
     }
 
-    void setPos(cXyz);
+    void setPos(cXyz new_pos) {
+        current.pos = new_pos;
+    }
 
 private:
     /* 0x92C */ fpc_ProcID mItemId;

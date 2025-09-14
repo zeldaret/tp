@@ -1189,9 +1189,9 @@ private:
 
 // unknown name
 struct dStage_objectNameInf {
-    char mName[8];
-    s16 mProcName;
-    s8 mSubtype;
+    /* 0x00 */ char name[8];
+    /* 0x08 */ s16 procname;
+    /* 0x0A */ s8 argument;
 };  // Size: 0xC
 
 class dStage_KeepDoorInfo {
@@ -1273,7 +1273,7 @@ void dStage_dt_c_roomLoader(void* i_data, dStage_dt_c* stageDt, int param_2);
 dStage_KeepDoorInfo* dStage_GetKeepDoorInfo();
 dStage_KeepDoorInfo* dStage_GetRoomKeepDoorInfo();
 void dStage_dt_c_fieldMapLoader(void* i_data, dStage_dt_c* i_stage);
-const char* dStage_getName(s16 procName, s8 subtype);
+const char* dStage_getName(s16 procName, s8 argument);
 
 #if VERSION == VERSION_WII_USA_R0
 void dStage_escapeRestart();

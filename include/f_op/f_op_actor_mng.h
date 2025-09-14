@@ -60,7 +60,7 @@ struct fopAcM_prm_class {
     /* 0x00 */ fopAcM_prmBase_class base;
     /* 0x18 */ fopAcM_prmScale_class scale;
     /* 0x1C */ fpc_ProcID parent_id;
-    /* 0x20 */ s8 subtype;
+    /* 0x20 */ s8 argument;
     /* 0x21 */ s8 room_no;
 };
 
@@ -70,20 +70,20 @@ struct fopAcM_search4ev_prm {
         name[0] = 0;
         event_id = -1;
         procname = PROC_PLAY_SCENE;
-        subtype = 0;
+        argument = 0;
     }
 
     /* 0x00 */ char name[30];
     /* 0x1E */ s16 event_id;
     /* 0x20 */ s16 procname;
-    /* 0x22 */ s8 subtype;
+    /* 0x22 */ s8 argument;
 };
 
 struct fopAcM_search_prm {
     /* 0x00 */ u32 prm0;
     /* 0x04 */ u32 prm1;
     /* 0x08 */ s16 procname;
-    /* 0x0A */ s8 subtype;
+    /* 0x0A */ s8 argument;
 };
 
 struct fOpAcm_HIO_entry_c : public mDoHIO_entry_c {
@@ -114,35 +114,36 @@ struct DOUBLE_POS {
 };
 
 enum fopAcM_STATUS {
-    /* 0x0000001 */ fopAcM_STATUS_UNK_000001 = 1 << 0,
-    /* 0x0000002 */ fopAcM_STATUS_UNK_000002 = 1 << 1,
-    /* 0x0000004 */ fopAcM_STATUS_UNK_000004 = 1 << 2,
-    /* 0x0000008 */ fopAcM_STATUS_UNK_000008 = 1 << 3,
-    /* 0x0000010 */ fopAcM_STATUS_UNK_000010 = 1 << 4,
-    /* 0x0000020 */ fopAcM_STATUS_UNK_000020 = 1 << 5,
-    /* 0x0000040 */ fopAcM_STATUS_UNK_000040 = 1 << 6,
-    /* 0x0000080 */ fopAcM_STATUS_UNK_000080 = 1 << 7,
-    /* 0x0000100 */ fopAcM_STATUS_UNK_000100 = 1 << 8,
-    /* 0x0000200 */ fopAcM_STATUS_UNK_000200 = 1 << 9,
-    /* 0x0000400 */ fopAcM_STATUS_UNK_000400 = 1 << 10,
-    /* 0x0000800 */ fopAcM_STATUS_UNK_000800 = 1 << 11,
-    /* 0x0001000 */ fopAcM_STATUS_UNK_001000 = 1 << 12,
-    /* 0x0002000 */ fopAcM_STATUS_CARRY_NOW = 1 << 13,
-    /* 0x0004000 */ fopAcM_STATUS_UNK_004000 = 1 << 14,
-    /* 0x0008000 */ fopAcM_STATUS_UNK_008000 = 1 << 15,
-    /* 0x0010000 */ fopAcM_STATUS_UNK_010000 = 1 << 16,
-    /* 0x0020000 */ fopAcM_STATUS_UNK_200000 = 1 << 17,
-    /* 0x0040000 */ fopAcM_STATUS_UNK_400000 = 1 << 18,
-    /* 0x0080000 */ fopAcM_STATUS_UNK_800000 = 1 << 19,
-    /* 0x0100000 */ fopAcM_STATUS_HOOK_CARRY_NOW = 1 << 20,
-    /* 0x0200000 */ fopAcM_STATUS_UNK_2000000 = 1 << 21,
-    /* 0x0400000 */ fopAcM_STATUS_UNK_4000000 = 1 << 22,
-    /* 0x0800000 */ fopAcM_STATUS_UNK_8000000 = 1 << 23,
-    /* 0x1000000 */ fopAcM_STATUS_UNK_10000000 = 1 << 24,
-    /* 0x2000000 */ fopAcM_STATUS_UNK_20000000 = 1 << 25,
-    /* 0x4000000 */ fopAcM_STATUS_UNK_40000000 = 1 << 26,
-    /* 0x8000000 */ fopAcM_STATUS_UNK_80000000 = 1 << 27,
-    /* 0x8000000 */ fopAcM_STATUS_HAWK_CARRY_NOW = 1 << 31,
+    /* 0x00000001 */ fopAcM_STATUS_UNK_0x1          = 1 << 0,
+    /* 0x00000002 */ fopAcM_STATUS_UNK_0x2          = 1 << 1,
+    /* 0x00000004 */ fopAcM_STATUS_UNK_0x4          = 1 << 2,
+    /* 0x00000008 */ fopAcM_STATUS_UNK_0x8          = 1 << 3,
+    /* 0x00000010 */ fopAcM_STATUS_UNK_0x10         = 1 << 4,
+    /* 0x00000020 */ fopAcM_STATUS_UNK_0x20         = 1 << 5,
+    /* 0x00000040 */ fopAcM_STATUS_UNK_0x40         = 1 << 6,
+    /* 0x00000080 */ fopAcM_STATUS_UNK_0x80         = 1 << 7,
+    /* 0x00000100 */ fopAcM_STATUS_UNK_0x100        = 1 << 8,
+    /* 0x00000200 */ fopAcM_STATUS_UNK_0x200        = 1 << 9,
+    /* 0x00000400 */ fopAcM_STATUS_UNK_0x400        = 1 << 10,
+    /* 0x00000800 */ fopAcM_STATUS_UNK_0x800        = 1 << 11,
+    /* 0x00001000 */ fopAcM_STATUS_UNK_0x1000       = 1 << 12,
+    /* 0x00002000 */ fopAcM_STATUS_CARRY_NOW        = 1 << 13,
+    /* 0x00004000 */ fopAcM_STATUS_UNK_0x4000       = 1 << 14,
+    /* 0x00008000 */ fopAcM_STATUS_UNK_0x8000       = 1 << 15,
+    /* 0x00010000 */ fopAcM_STATUS_UNK_0x10000      = 1 << 16,
+    /* 0x00020000 */ fopAcM_STATUS_UNK_0x20000      = 1 << 17,
+    /* 0x00040000 */ fopAcM_STATUS_UNK_0x40000      = 1 << 18,
+    /* 0x00080000 */ fopAcM_STATUS_UNK_0x80000      = 1 << 19,
+    /* 0x00100000 */ fopAcM_STATUS_HOOK_CARRY_NOW   = 1 << 20,
+    /* 0x00200000 */ fopAcM_STATUS_UNK_0x200000     = 1 << 21,
+    /* 0x00400000 */ fopAcM_STATUS_UNK_0x400000     = 1 << 22,
+    /* 0x00800000 */ fopAcM_STATUS_UNK_0x800000     = 1 << 23,
+    /* 0x01000000 */ fopAcM_STATUS_UNK_0x1000000    = 1 << 24,
+    /* 0x02000000 */ fopAcM_STATUS_UNK_0x2000000    = 1 << 25,
+    /* 0x04000000 */ fopAcM_STATUS_UNK_0x4000000    = 1 << 26,
+    /* 0x08000000 */ fopAcM_STATUS_UNK_0x8000000    = 1 << 27,
+
+    /* 0x80000000 */ fopAcM_STATUS_HAWK_CARRY_NOW   = 1 << 31,
 };
 
 inline s8 fopAcM_GetRoomNo(const fopAc_ac_c* i_actor) {
@@ -501,7 +502,7 @@ s32 fopAcM_SearchByName(s16 i_procName, fopAc_ac_c** i_outActor);
 fopAcM_prm_class* fopAcM_CreateAppend();
 
 fopAcM_prm_class* createAppend(u16 i_setId, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
-                               const csXyz* i_angle, const cXyz* i_scale, s8 i_subtype,
+                               const csXyz* i_angle, const cXyz* i_scale, s8 i_argument,
                                fpc_ProcID i_parentId);
 
 void fopAcM_Log(fopAc_ac_c const* i_actor, char const* i_message);
@@ -511,11 +512,11 @@ s32 fopAcM_delete(fopAc_ac_c* i_actor);
 s32 fopAcM_delete(fpc_ProcID i_actorID);
 
 fpc_ProcID fopAcM_create(s16 i_procName, u16 i_setId, u32 i_parameters, const cXyz* i_pos,
-                         int i_roomNo, const csXyz* i_angle, const cXyz* i_scale, s8 i_subtype,
+                         int i_roomNo, const csXyz* i_angle, const cXyz* i_scale, s8 i_argument,
                          createFunc i_createFunc);
 
 fpc_ProcID fopAcM_create(s16 i_procName, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
-                         const csXyz* i_angle, const cXyz* i_scale, s8 i_subtype);
+                         const csXyz* i_angle, const cXyz* i_scale, s8 i_argument);
 
 inline fpc_ProcID fopAcM_create(s16 i_procName, createFunc i_createFunc, void* params) {
     return fpcM_Create(i_procName, i_createFunc, params);
@@ -526,7 +527,7 @@ inline fpc_ProcID fopAcM_Create(s16 i_procName, createFunc i_createFunc, void* p
 }
 
 fopAc_ac_c* fopAcM_fastCreate(s16 i_procName, u32 i_parameters, const cXyz* i_pos, int i_roomNo,
-                              const csXyz* i_angle, const cXyz* i_scale, s8 i_subtype,
+                              const csXyz* i_angle, const cXyz* i_scale, s8 i_argument,
                               createFunc i_createFunc, void* i_createFuncData);
 
 fopAc_ac_c* fopAcM_fastCreate(const char* i_actorname, u32 i_parameters, const cXyz* i_pos,
@@ -535,11 +536,11 @@ fopAc_ac_c* fopAcM_fastCreate(const char* i_actorname, u32 i_parameters, const c
 
 fpc_ProcID fopAcM_createChild(s16 i_procName, fpc_ProcID i_parentID, u32 i_parameters,
                               const cXyz* i_pos, int i_roomNo, const csXyz* i_angle,
-                              const cXyz* i_scale, s8 i_subtype, createFunc i_createFunc);
+                              const cXyz* i_scale, s8 i_argument, createFunc i_createFunc);
 
 fpc_ProcID fopAcM_createChildFromOffset(s16 i_procName, fpc_ProcID i_parentID, u32 i_parameters,
                                         const cXyz* i_pos, int i_roomNo, const csXyz* i_angle,
-                                        const cXyz* i_scale, s8 i_subtype, createFunc i_createFunc);
+                                        const cXyz* i_scale, s8 i_argument, createFunc i_createFunc);
 
 void fopAcM_DeleteHeap(fopAc_ac_c* i_actor);
 
@@ -804,7 +805,7 @@ inline void fopAcM_setWarningMessage_f(const fopAc_ac_c* i_actor, const char* i_
 
     char buf[64];
     snprintf(buf, sizeof(buf), "<%s> %s", dStage_getName(fopAcM_GetProfName(i_actor),
-    i_actor->subtype), i_msg); setWarningMessage_f_va(JUTAssertion::getSDevice(), i_filename,
+    i_actor->argument), i_msg); setWarningMessage_f_va(JUTAssertion::getSDevice(), i_filename,
     i_line, buf, args);
 
     va_end(args); */
