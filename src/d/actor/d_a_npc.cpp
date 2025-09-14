@@ -1140,7 +1140,7 @@ fopAc_ac_c* daNpcT_c::mFindActorPtrs[50];
 s16 daNpcT_c::mSrchName;
 
 /* 80450FDC-80450FE0 0004DC 0004+00 4/4 0/0 42/42 .sbss            mFindCount__8daNpcT_c */
-s32 daNpcT_c::mFindCount;
+int daNpcT_c::mFindCount;
 
 /* 80147FD4-80148058 142914 0084+00 3/3 0/0 2/2 .text            srchActor__8daNpcT_cFPvPv */
 void* daNpcT_c::srchActor(void* actor, void* param_1) {
