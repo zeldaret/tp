@@ -408,7 +408,7 @@ void daNpc_ZelRo_c::setParam() {
     attention_info.distances[fopAc_attn_LOCK_e] = daNpcT_getDistTableIdx(daNpc_ZelRo_Param_c::m.common.attention_distance, daNpc_ZelRo_Param_c::m.common.attention_angle);
     attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
     attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(talk_distance, talk_angle);
-    attention_info.flags = 10;
+    attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
 
     scale.set(daNpc_ZelRo_Param_c::m.common.scale, daNpc_ZelRo_Param_c::m.common.scale, daNpc_ZelRo_Param_c::m.common.scale);
     mCcStts.SetWeight(daNpc_ZelRo_Param_c::m.common.weight);
