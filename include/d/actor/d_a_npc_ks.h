@@ -198,10 +198,6 @@ public:
     /* 0xC17 */ s8 field_0xc17;
     /* 0xC18 */ dPath* field_0xc18;
     /* 0xC1C */ u8 field_0xc1c;
-
-    u32 fopAcM_checkHawkCarryNow(fopAc_ac_c* param_1) {
-        return fopAcM_CheckStatus(param_1, 0x80000000);
-    }
 };
 
 STATIC_ASSERT(sizeof(npc_ks_class) == 0xc20);
