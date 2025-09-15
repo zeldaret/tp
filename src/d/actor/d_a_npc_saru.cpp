@@ -25,7 +25,8 @@ enum saru_RES_File_ID {
 };
 
 enum RES_Name {
-    /* 0x1 */ NPC_KS = 0x1,
+    /* 0x0 */ NONE,
+    /* 0x1 */ NPC_KS,
     /* 0x2 */ SARU_TW,
     /* 0x3 */ SARU,
 };
@@ -246,7 +247,6 @@ daNpc_Saru_c::~daNpc_Saru_c() {
     deleteRes(l_loadResPtrnList[mType], (const char**)l_resNameList);
 }
 
-/* ############################################################################################## */
 /* 80AC44F8-80AC4588 000000 0090+00 9/9 0/0 0/0 .rodata          m__18daNpc_Saru_Param_c */
 daNpc_Saru_HIOParam const daNpc_Saru_Param_c::m = {
     140.0f,
@@ -359,26 +359,20 @@ int daNpc_Saru_c::CreateHeap() {
         2, 3,
     };
 
-    void* modelData = NULL;
-    J3DModel* model = NULL;
-    BOOL uVar1 = mTwilight == true ? TRUE : FALSE;
-    int arcNameIdx = l_bmdData[uVar1][1];
-    int resName = l_bmdData[uVar1][0];
-    modelData = dComIfG_getObjectRes(l_resNameList[arcNameIdx], resName);
+    int bmdIdx = mTwilight == true ? TRUE : FALSE;
+    J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_resNameList[l_bmdData[bmdIdx][1]], l_bmdData[bmdIdx][0]));
     if (modelData == NULL) {
         return 0;
     }
-    u32 temp1 = 0x11020084;
-    mpMorf[0] = new mDoExt_McaMorfSO((J3DModelData*)modelData, NULL,
-                                  NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, temp1);
+    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL,
+                                  NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020084);
     if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
         return 0;
     }
 
-    model = mpMorf[0]->getModel();
-    model = mpMorf[0]->getModel();
-    for (u16 i = 0; i < ((J3DModelData*)modelData)->getJointNum(); i++) {
-        ((J3DModelData*)modelData)->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
+    J3DModel* model = mpMorf[0]->getModel();
+    for (u16 i = 0; i < modelData->getJointNum(); i++) {
+        modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
 
     model->setUserArea((uintptr_t)this);
@@ -391,7 +385,7 @@ int daNpc_Saru_c::CreateHeap() {
         }
 
         if (modelData != NULL) {
-            mpRoseModels[i] = mDoExt_J3DModel__create((J3DModelData*)modelData,  0x80000, 0x11000084);
+            mpRoseModels[i] = mDoExt_J3DModel__create(modelData,  0x80000, 0x11000084);
         } else {
             mpRoseModels[i] = NULL;
         }
@@ -1194,33 +1188,35 @@ int daNpc_Saru_c::wait(void* param_1) {
 /* 80AC2FD8-80AC31B4 002C98 01DC+00 3/0 0/0 0/0 .text            talk__12daNpc_Saru_cFPv */
 int daNpc_Saru_c::talk(void* param_1) {
     switch (mMode) {
-    case 0:
-    case 1:
-        if (mStagger.checkStagger() == 0) {
-            initTalk(mFlowNodeNo, NULL);
-            mMode = 2;
-        }
-
-    case 2:
-        if (mStagger.checkStagger() == 0) {
-            if (mTwilight != false || mPlayerAngle == mCurAngle.y) {
-                if (talkProc(NULL, FALSE, NULL, FALSE) && mFlow.checkEndFlow()) {
-                    mPlayerActorMngr.entry(daPy_getPlayerActorClass());
-                    dComIfGp_event_reset();
-                    mMode = 3;
-                }
-
-                mJntAnm.lookPlayer(0);
-                if (mTwilight != false) {
-                    mJntAnm.lookNone(0);
-                }
-            } else {
-                mJntAnm.lookPlayer(0);
-                step(fopAcM_searchPlayerAngleY(this), -1, -1, 15, 0);
+        case 0:
+        case 1:
+            if (mStagger.checkStagger() == 0) {
+                initTalk(mFlowNodeNo, NULL);
+                mMode = 2;
             }
+
+        case 2:
+            if (mStagger.checkStagger() == 0) {
+                if (mTwilight != false || mPlayerAngle == mCurAngle.y) {
+                    if (talkProc(NULL, FALSE, NULL, FALSE) && mFlow.checkEndFlow()) {
+                        mPlayerActorMngr.entry(daPy_getPlayerActorClass());
+                        dComIfGp_event_reset();
+                        mMode = 3;
+                    }
+
+                    mJntAnm.lookPlayer(0);
+                    if (mTwilight != false) {
+                        mJntAnm.lookNone(0);
+                    }
+                } else {
+                    mJntAnm.lookPlayer(0);
+                    step(fopAcM_searchPlayerAngleY(this), -1, -1, 15, 0);
+                }
+                break;
+
+            case 3:
+                break;
         }
-    case 3:
-        break;
     }
 
     return 0;

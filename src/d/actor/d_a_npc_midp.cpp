@@ -6,11 +6,24 @@
 #include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_npc_midp.h"
-#include "SSystem/SComponent/c_counter.h"
+
+enum midP_RES_File_ID {
+    /* BCK */
+    /* 0x6 */ BCK_MIDP_WAIT_A = 0x6,
+
+    /* BMDR */
+    /* 0x9 */ BMDR_MIDP = 0x9,
+
+    /* BTK */
+    /* 0xC */ BTK_MIDP = 0xC,
+
+    /* BTP */
+    /* 0xF */ BTP_MIDP = 0xF,
+};
 
 /* 80A73AD4-80A73ADC 000020 0008+00 1/1 0/0 0/0 .data            l_bmdData */
-static int l_bmdData[2][1] = {
-    {9}, {1}
+static int l_bmdData[1][2] = {
+    {BMDR_MIDP, 1},
 };
 
 /* 80A73ADC-80A73AEC -00001 0010+00 0/1 0/0 0/0 .data            l_evtList */
@@ -73,15 +86,15 @@ daNpc_midP_c::~daNpc_midP_c() {
 }
 
 /* 80A739C0-80A73A4C 000000 008C+00 6/6 0/0 0/0 .rodata          m__18daNpc_midP_Param_c */
-daNpc_midP_Param_c::Data const daNpc_midP_Param_c::m = {
+daNpc_midP_HIOParam const daNpc_midP_Param_c::m = {
     210.0f, 
-    -3.0f,     // mGravity
-    1.0f,        // mScale
+    -3.0f,
+    1.0f,
     500.0f, 
-    255.0f,     // mWeight
-    190.0f,       // mCylH
-    35.0f,       // mWallH
-    30.0f,       // mWallR
+    255.0f,
+    190.0f,
+    35.0f,
+    30.0f,
     0.0f, 
     0.0f, 
     10.0f, 
@@ -91,12 +104,12 @@ daNpc_midP_Param_c::Data const daNpc_midP_Param_c::m = {
     45.0f, 
     -45.0f, 
     0.6f, 
-    12.0f,  // mMorfFrames
+    12.0f,
     3,
     6, 
     5, 
     6, 
-    110.0f,   // mAttnFovY
+    110.0f,
     0.0f, 
     0.0f, 
     0.0f, 
@@ -104,13 +117,16 @@ daNpc_midP_Param_c::Data const daNpc_midP_Param_c::m = {
     8, 
     0, 
     0, 
+    0, 
+    false, 
+    false,
     4.0f, 
     0.0f, 
     0.0f, 
     0.0f, 
     0.0f, 
-    0.0f, 
-    0.0f, 
+    0.0f,
+    0.0f,
     0.0f,
 };
 
@@ -147,7 +163,7 @@ int daNpc_midP_c::create() {
 
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
             fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
-        mCcStts.Init(daNpc_midP_Param_c::m.mWeight, 0, this);
+        mCcStts.Init(daNpc_midP_Param_c::m.common.weight, 0, this);
         mCyl.Set(mCcDCyl);
         mCyl.SetStts(&mCcStts);
         mCyl.SetTgHitCallback(tgHitCallBack);
@@ -335,27 +351,27 @@ void daNpc_midP_c::setParam() {
     selectAction();
     srchActors();
 
-    s16 sVar1 = daNpc_midP_Param_c::m.field_0x48;
-    s16 sVar2 = daNpc_midP_Param_c::m.field_0x4a;
-    s16 sVar3 = daNpc_midP_Param_c::m.field_0x4c;
-    s16 sVar4 = daNpc_midP_Param_c::m.field_0x4e;
+    s16 sVar1 = daNpc_midP_Param_c::m.common.talk_distance;
+    s16 sVar2 = daNpc_midP_Param_c::m.common.talk_angle;
+    s16 sVar3 = daNpc_midP_Param_c::m.common.attention_distance;
+    s16 sVar4 = daNpc_midP_Param_c::m.common.attention_angle;
 
     attention_info.distances[0] = daNpcT_getDistTableIdx(sVar3, sVar4);
     attention_info.distances[1] = attention_info.distances[0];
     attention_info.distances[3] = daNpcT_getDistTableIdx(sVar1, sVar2);
     attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
 
-    scale.setall(daNpc_midP_Param_c::m.mScale);
-    mCcStts.SetWeight(daNpc_midP_Param_c::m.mWeight);
-    mCylH = daNpc_midP_Param_c::m.mCylH;
-    mWallR = daNpc_midP_Param_c::m.mWallR;
-    mAttnFovY = daNpc_midP_Param_c::m.mAttnFovY;
+    scale.setall(daNpc_midP_Param_c::m.common.scale);
+    mCcStts.SetWeight(daNpc_midP_Param_c::m.common.weight);
+    mCylH = daNpc_midP_Param_c::m.common.height;
+    mWallR = daNpc_midP_Param_c::m.common.width;
+    mAttnFovY = daNpc_midP_Param_c::m.common.fov;
     mAcchCir.SetWallR(mWallR);
-    mAcchCir.SetWallH(daNpc_midP_Param_c::m.mWallH);
-    mRealShadowSize = daNpc_midP_Param_c::m.field_0x0c;
-    mExpressionMorfFrame = daNpc_midP_Param_c::m.field_0x6c;
-    mMorfFrames = daNpc_midP_Param_c::m.mMorfFrames;
-    gravity = daNpc_midP_Param_c::m.mGravity;
+    mAcchCir.SetWallH(daNpc_midP_Param_c::m.common.knee_length);
+    mRealShadowSize = daNpc_midP_Param_c::m.common.real_shadow_size;
+    mExpressionMorfFrame = daNpc_midP_Param_c::m.common.expression_morf_frame;
+    mMorfFrames = daNpc_midP_Param_c::m.common.morf_frame;
+    gravity = daNpc_midP_Param_c::m.common.gravity;
 }
 
 /* 80A71A98-80A71AF8 000F18 0060+00 1/0 0/0 0/0 .text setAfterTalkMotion__12daNpc_midP_cFv */
@@ -430,7 +446,6 @@ void daNpc_midP_c::beforeMove() {
 
 /* 80A71E28-80A72064 0012A8 023C+00 1/0 0/0 0/0 .text            setAttnPos__12daNpc_midP_cFv */
 void daNpc_midP_c::setAttnPos() {
-    // NONMATCHING
     cXyz sp3c(10.0f, -30.0f, 0.0f);
     cXyz sp48(10.0f, 0.0f, 0.0f);
 
@@ -438,11 +453,11 @@ void daNpc_midP_c::setAttnPos() {
     f32 dVar5 = cM_s2rad(mCurAngle.y - field_0xd7e.y);
     J3DModel* model = mpMorf[0]->getModel();
     mJntAnm.setParam(this, model, &sp3c, getBackboneJointNo(), getNeckJointNo(),
-        getHeadJointNo(), daNpc_midP_Param_c::m.field_0x24, daNpc_midP_Param_c::m.field_0x20,
-        daNpc_midP_Param_c::m.field_0x2c, daNpc_midP_Param_c::m.field_0x28,
-        daNpc_midP_Param_c::m.field_0x34, daNpc_midP_Param_c::m.field_0x30,
-        daNpc_midP_Param_c::m.field_0x3c, daNpc_midP_Param_c::m.field_0x38,
-        daNpc_midP_Param_c::m.field_0x40, dVar5, &sp48);
+        getHeadJointNo(), daNpc_midP_Param_c::m.common.body_angleX_min, daNpc_midP_Param_c::m.common.body_angleX_max,
+        daNpc_midP_Param_c::m.common.body_angleY_min, daNpc_midP_Param_c::m.common.body_angleY_max,
+        daNpc_midP_Param_c::m.common.head_angleX_min, daNpc_midP_Param_c::m.common.head_angleX_max,
+        daNpc_midP_Param_c::m.common.head_angleY_min, daNpc_midP_Param_c::m.common.head_angleY_max,
+        daNpc_midP_Param_c::m.common.neck_rotation_ratio, dVar5, &sp48);
     mJntAnm.calcJntRad(0.2f, 1.0f, dVar5);
     setMtx();
 
@@ -452,7 +467,7 @@ void daNpc_midP_c::setAttnPos() {
     mJntAnm.setEyeAngleY(eyePos, mCurAngle.y, 0, 1.0f, 0);
 
     attention_info.position = current.pos;
-    attention_info.position.y += daNpc_midP_Param_c::m.field_0x00;
+    attention_info.position.y += daNpc_midP_Param_c::m.common.attention_offset;
 }
 
 /* 80A72064-80A7216C 0014E4 0108+00 1/0 0/0 0/0 .text            setCollision__12daNpc_midP_cFv */
@@ -639,9 +654,6 @@ static int daNpc_midP_Draw(void* i_this) {
 static int daNpc_midP_IsDelete(void* i_this) {
     return 1;
 }
-
-/* 80A73D50-80A73D5C 000008 000C+00 1/1 0/0 0/0 .bss             @3811 */
-static u8 lit_3811[12];
 
 /* 80A73D5C-80A73D60 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daNpc_midP_Param_c l_HIO;

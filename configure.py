@@ -1913,8 +1913,8 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_ykw"),
     ActorRel(NonMatching, "d_a_npc_zanb"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_npc_zant"),
-    ActorRel(NonMatching, "d_a_npc_zelR"),
-    ActorRel(NonMatching, "d_a_npc_zelRo"),
+    ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_npc_zelR"),
+    ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_npc_zelRo"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_npc_zelda"),
     ActorRel(Equivalent, "d_a_npc_zra", extra_cflags=[DANPCF_C_HACK]), # regalloc
     ActorRel(NonMatching, "d_a_npc_zrc", extra_cflags=[DANPCF_C_HACK]),
