@@ -34,7 +34,7 @@ public:
 class dEvent_manager_c {
 public:
     enum Event_Cut_Nums {
-        /* 0x1 */ NUM_EVT_CUTS_e = 0x1,
+        /* 0x7 */ NUM_EVT_CUTS_e = 0x7,
     };
 
     void* getSubstance(dEvDtData_c* p_data, int type);

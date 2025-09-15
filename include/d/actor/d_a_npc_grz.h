@@ -81,12 +81,12 @@ public:
     /* 809EB154 */ void resetCol();
     /* 809EB234 */ void playExpression();
     /* 809EB5C0 */ void playMotion();
-    /* 809EBA3C */ void chkAction(actionFunc);
-    /* 809EBA68 */ void setAction(actionFunc);
-    /* 809EBB10 */ void selectAction();
+    /* 809EBA3C */ BOOL chkAction(actionFunc);
+    /* 809EBA68 */ BOOL setAction(actionFunc);
+    /* 809EBB10 */ BOOL selectAction();
     /* 809EBC04 */ void doNormalAction(int);
-    /* 809EBD18 */ void doEvent();
-    /* 809EC0CC */ void setSkipZev(int, int);
+    /* 809EBD18 */ BOOL doEvent();
+    /* 809EC0CC */ bool setSkipZev(int, int);
     /* 809EC164 */ void setLookMode(int);
     /* 809EC188 */ void lookat();
     /* 809EC424 */ void setExpressionTalkAfter();
@@ -104,6 +104,8 @@ public:
     /* 809EDBA4 */ int doStoneSmashCut(int);
     /* 809EE5F0 */ int doStoneSmashSkipCut(int);
     /* 809EF184 */ void adjustShapeAngle();
+
+    u8 getPathNoFromParam() { return (fopAcM_GetParam(this) & 0xFF00) >> 8; }
 
     static char* mEvtCutNameList[7];
     static cutFunc mEvtCutList[7];
@@ -127,11 +129,18 @@ private:
     /* 0x1A70 */ int field_0x1a70;
     /* 0x1A74 */ int field_0x1a74;
     /* 0x1A78 */ s16 mLookMode;
-    /* 0x1A7A */ s16 field_0x1a7a;
+    /* 0x1A7A */ s16 mMode;
     /* 0x1A7C */ u8 mType;
-    /* 0x1A7D */ u8 field_0x1a7d[0x1a98 - 0x1a7d];
-    /* 0x1A98 */ u8 field_0x1a98;
-    /* 0x1A99 */ u8 field_0x1a99[0x1aac - 0x1a99];
+    /* 0x1A7D */ u8 field_0x1a7d[0x1a80 - 0x1a7d];
+    /* 0x1A80 */ int field_0x1a80;
+    /* 0x1A84 */ int field_0x1a84;
+    /* 0x1A88 */ int field_0x1a88;
+    /* 0x1A8C */ int field_0x1a8c;
+    /* 0x1A90 */ J3DGXColorS10 mColor;
+    /* 0x1A98 */ u8 mSwNo;
+    /* 0x1A99 */ u8 field_0x1a99[0x1a9c - 0x1a99];
+    /* 0x1A9C */ int field_0x1a9c;
+    /* 0x1AA0 */ fpc_ProcID field_0x1aa0[3];
     /* 0x1AAC */ daNpc_GrZ_prtclMngr_c mPrtclMngr[1];
 };
 
