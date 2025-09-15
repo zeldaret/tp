@@ -1281,7 +1281,7 @@ BOOL daNpcMoiR_c::multiTalk(void* param_1) {
     fopAc_ac_c* speakers[4] = {this, mActorMngr[1].getActorP(), mActorMngr[2].getActorP(), mActorMngr[3].getActorP()};
 
     dComIfGp_setMesgCameraInfoActor(speakers[0], speakers[1], speakers[2], speakers[3], NULL, NULL, NULL, NULL, NULL, NULL);
-    
+
     switch (field_0xe08) {
         case 0:
             initTalk(mMsgNo, NULL);

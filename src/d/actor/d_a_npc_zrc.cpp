@@ -190,7 +190,11 @@ char* daNpc_zrC_c::mEvtCutNameList[2] = {
 /* 80B9397C-80B93994 000294 0018+00 1/2 0/0 0/0 .data            mEvtCutList__11daNpc_zrC_c */
 daNpc_zrC_c::EventFn daNpc_zrC_c::mEvtCutList[2] = {
     NULL,
-    &ECut_earringGet,
+    &daNpc_zrC_c::ECut_earringGet,
+};
+
+enum Event_Cut_Nums {
+    /* 0x2 */ NUM_EVT_CUTS_e = 0x2,
 };
 
 /* 80B8DC0C-80B8DD90 0000EC 0184+00 1/1 0/0 0/0 .text            __ct__11daNpc_zrC_cFv */
@@ -346,7 +350,7 @@ int daNpc_zrC_c::Execute() {
 /* 80B8E884-80B8E914 000D64 0090+00 1/1 0/0 0/0 .text            Draw__11daNpc_zrC_cFv */
 int daNpc_zrC_c::Draw() {
     mpMorf->getModel()->getModelData()->getMaterialNodePointer(1)->setMaterialAnm(mpMatAnm);
-    BOOL is_test = chkAction(&test);
+    BOOL is_test = chkAction(&daNpc_zrC_c::test);
     return draw(is_test, true, daNpc_zrC_Param_c::m.mShadowDepth, NULL, false);
 }
 
@@ -1098,20 +1102,20 @@ BOOL daNpc_zrC_c::setAction(ActionFn i_action) {
 BOOL daNpc_zrC_c::selectAction() {
     mpNextActionFn = NULL;
     if (daNpc_zrC_Param_c::m.mTest) {
-        mpNextActionFn = &test;
+        mpNextActionFn = &daNpc_zrC_c::test;
     } else {
         switch (mType) {
         case 1:
-            mpNextActionFn = &waitSick;
+            mpNextActionFn = &daNpc_zrC_c::waitSick;
             break;
         case 2:
-            mpNextActionFn = &waitPray;
+            mpNextActionFn = &daNpc_zrC_c::waitPray;
             break;
         case 3:
-            mpNextActionFn = &waitThrone;
+            mpNextActionFn = &daNpc_zrC_c::waitThrone;
             break;
         default:
-            mpNextActionFn = &wait;
+            mpNextActionFn = &daNpc_zrC_c::wait;
             break;
         }
     }
@@ -1147,17 +1151,18 @@ void daNpc_zrC_c::doNormalAction(BOOL param_0) {
 /* 80B90D48-80B9113C 003228 03F4+00 1/1 0/0 0/0 .text            doEvent__11daNpc_zrC_cFv */
 // NONMATCHING minor regalloc
 BOOL daNpc_zrC_c::doEvent() {
+    dEvent_manager_c* event_mgr = NULL;
     BOOL ret = 0;
 
     if (dComIfGp_event_runCheck() != FALSE) {
-        dEvent_manager_c& event_mgr = dComIfGp_getEventManager();
+        event_mgr = &dComIfGp_getEventManager();
         if ((eventInfo.checkCommandTalk() || eventInfo.checkCommandDemoAccrpt()) && !mSpeakEvent)
         {
             mOrderNewEvt = false;
         }
 
         if (eventInfo.checkCommandTalk()) {
-            if (chkAction(&talk)) {
+            if (chkAction(&daNpc_zrC_c::talk)) {
                 (this->*mpActionFn)(NULL);
             } else if (dComIfGp_event_chkTalkXY()) {
                 if (dComIfGp_evmng_ChkPresentEnd()) {
@@ -1174,7 +1179,7 @@ BOOL daNpc_zrC_c::doEvent() {
                     }
                 }
             } else {
-                setAction(&talk);
+                setAction(&daNpc_zrC_c::talk);
             }
             ret = TRUE;
 
@@ -1184,18 +1189,20 @@ BOOL daNpc_zrC_c::doEvent() {
                 mItemID = -1;
             }
 
-            int staff_id = event_mgr.getMyStaffId(l_myName, NULL, 0);
+            int staff_id = event_mgr->getMyStaffId(l_myName, NULL, 0);
             if (staff_id != -1) {
                 mStaffID = staff_id;
-                int act_idx = event_mgr.getMyActIdx(staff_id, mEvtCutNameList, 2, 0, 0);
-                if ((this->*mEvtCutList[act_idx])(staff_id)) {
-                    event_mgr.cutEnd(staff_id);
+                int evtCutNo = event_mgr->getMyActIdx(staff_id, mEvtCutNameList, 2, 0, 0);
+                JUT_ASSERT(0x8ca, (0 <= evtCutNo) && (evtCutNo < NUM_EVT_CUTS_e));
+                JUT_ASSERT(0x8cb, 0 != mEvtCutList[evtCutNo]);
+                if ((this->*mEvtCutList[evtCutNo])(staff_id)) {
+                    event_mgr->cutEnd(staff_id);
                 }
                 ret = TRUE;
             }
 
             if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1
-                                                     && event_mgr.endCheck(mEventIdx)) {
+                                                     && event_mgr->endCheck(mEventIdx)) {
                 dComIfGp_event_reset();
                 mOrderEvtNo = EVT_NONE;
                 mEventIdx = -1;
@@ -1203,8 +1210,8 @@ BOOL daNpc_zrC_c::doEvent() {
             }
         }
 
-        int msg_timer = mMsgTimer;
         int expression, motion;
+        int msg_timer = mMsgTimer;
         if (ctrlMsgAnm(expression, motion, this, FALSE)) {
             if (!field_0x9eb) {
                 setExpression(expression, -1.0f);

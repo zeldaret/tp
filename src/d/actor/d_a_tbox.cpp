@@ -601,7 +601,7 @@ void daTbox_c::lightColorProc() {
             }
         }
 
-        int num_frames = var_r25 - var_r24;
+        int num_frames = var_r24 - var_r25;
         s16 step_r = std::fabs<int>(key_color[var_r30 + 1].r - key_color[var_r30].r) / num_frames;
         s16 step_g = std::fabs<int>(key_color[var_r30 + 1].g - key_color[var_r30].g) / num_frames;
         s16 step_b = std::fabs<int>(key_color[var_r30 + 1].b - key_color[var_r30].b) / num_frames;

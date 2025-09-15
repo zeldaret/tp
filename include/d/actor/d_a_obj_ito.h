@@ -15,7 +15,7 @@
 
 struct ito_s {
     /* 0x000 */ mDoExt_3DlineMat0_c mLineMat;
-    /* 0x01C */ f32 field_0x1c[120];
+    /* 0x01C */ f32 field_0x1c[6][20];
     /* 0x1FC */ cXyz field_0x1fc[6];
     /* 0x244 */ s16 field_0x244[6];
     /* 0x250 */ f32 field_0x250;
