@@ -154,6 +154,32 @@ daNpc_Moi_c::cutFunc daNpc_Moi_c::mCutList[5] = {
     &daNpc_Moi_c::cutFindWolf,
 };
 
+enum Motion {
+    /* 0x00 */ MOT_UNK_0 = 0,
+    /* 0x01 */ MOT_UNK_1 = 1,
+    /* 0x02 */ MOT_UNK_2 = 2,
+    /* 0x03 */ MOT_UNK_3 = 3,
+    /* 0x04 */ MOT_UNK_4 = 4,
+    /* 0x05 */ MOT_UNK_5 = 5,
+    /* 0x08 */ MOT_UNK_8 = 8,
+    /* 0x09 */ MOT_UNK_9 = 9,
+    /* 0x0A */ MOT_UNK_10 = 10,
+    /* 0x0B */ MOT_UNK_11 = 11,
+    /* 0x0E */ MOT_UNK_14 = 14,
+    /* 0x0F */ MOT_UNK_15 = 15,
+    /* 0x10 */ MOT_UNK_16 = 16,
+    /* 0x12 */ MOT_UNK_18 = 18,
+    /* 0x13 */ MOT_UNK_19 = 19,
+    /* 0x15 */ MOT_UNK_21 = 21,
+    /* 0x25 */ MOT_UNK_37 = 37,
+    /* 0x26 */ MOT_UNK_38 = 38,
+    /* 0x27 */ MOT_UNK_39 = 39,
+    /* 0x28 */ MOT_UNK_40 = 40,
+    /* 0x2B */ MOT_UNK_43 = 43,
+    /* 0x2D */ MOT_UNK_45 = 45,
+    /* 0x2F */ MOT_UNK_47 = 47,
+};
+
 /* 80A73F4C-80A74150 0000EC 0204+00 1/0 0/0 0/0 .text            __dt__11daNpc_Moi_cFv */
 daNpc_Moi_c::~daNpc_Moi_c() {
     if (mpMorf[0] != 0) {
@@ -706,22 +732,22 @@ BOOL daNpc_Moi_c::checkChangeEvt() {
 void daNpc_Moi_c::setAfterTalkMotion() {
     int iVar2 = 21;
     switch (mFaceMotionSeqMngr.getNo()) {
-    case 1:
-        iVar2 = 18;
+    case MOT_UNK_1:
+        iVar2 = MOT_UNK_18;
         break;
-    case 2:
-        iVar2 = 19;
+    case MOT_UNK_2:
+        iVar2 = MOT_UNK_19;
         break;
-    case 3:
-        iVar2 = 16;
+    case MOT_UNK_3:
+        iVar2 = MOT_UNK_16;
         break;
-    case 4:
-        iVar2 = 14;
+    case MOT_UNK_4:
+        iVar2 = MOT_UNK_14;
         break;
-    case 5:
-        iVar2 = 15;
+    case MOT_UNK_5:
+        iVar2 = MOT_UNK_15;
         break;
-    case 9:
+    case MOT_UNK_9:
         return;
     }
     mFaceMotionSeqMngr.setNo(iVar2, -1.0f, 0, 0);
@@ -1108,7 +1134,7 @@ BOOL daNpc_Moi_c::chkPlayerGetWoodShield() {
 
 /* 80A766DC-80A76888 00287C 01AC+00 2/2 0/0 0/0 .text            setSSlash__11daNpc_Moi_cFi */
 void daNpc_Moi_c::setSSlash(int param_1) {
-    mMotionSeqMngr.setNo(43, 0.0f, 1, 0);
+    mMotionSeqMngr.setNo(MOT_UNK_43, 0.0f, 1, 0);
         /* dSv_event_tmp_flag_c::GUARD_URI - Ordon Village - Rusl is guarding Uli, Ordon village night */
     if (dComIfGs_isTmpBit(0x1308)) {
         mSound.startCreatureVoice(JAISoundID(Z2SE_MOI_V_GUARD_SWING), -1);
@@ -1212,7 +1238,7 @@ int daNpc_Moi_c::injuryCheck() {
     BOOL bVar1 = TRUE;
     int timer = field_0x1658;
 
-    if (mMotionSeqMngr.getNo() == 37 || mMotionSeqMngr.getNo() == 38) {
+    if (mMotionSeqMngr.getNo() == MOT_UNK_37 || mMotionSeqMngr.getNo() == MOT_UNK_38) {
         if (mMotionSeqMngr.checkEndSequence()) {
             cLib_calcTimer(&timer);
         } else {
@@ -1223,23 +1249,23 @@ int daNpc_Moi_c::injuryCheck() {
     if (bVar1 && timer != 0) {
         if (field_0x1667 != 0) {
             if (timer & 1 != 0) {
-                mMotionSeqMngr.setNo(38, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(MOT_UNK_38, -1.0f, 0, 0);
             } else {
-                mMotionSeqMngr.setNo(37, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(MOT_UNK_37, -1.0f, 0, 0);
             }
         } else {
             f32 fVar3 = cM_rnd();
             fVar3 -= 0.5f;
-            if (mMotionSeqMngr.getNo() == 38) {
+            if (mMotionSeqMngr.getNo() == MOT_UNK_38) {
                 fVar3 += 0.25f;
             }
-            if (mMotionSeqMngr.getNo() == 37) {
+            if (mMotionSeqMngr.getNo() == MOT_UNK_37) {
                 fVar3 -= 0.25f;
             }
             if (0.0f < fVar3) {
-                mMotionSeqMngr.setNo(38, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(MOT_UNK_38, -1.0f, 0, 0);
             } else {
-                mMotionSeqMngr.setNo(37, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(MOT_UNK_37, -1.0f, 0, 0);
             }
         }
     }
@@ -1257,7 +1283,7 @@ int daNpc_Moi_c::injuryTurn(cXyz param_1) {
         if (abs(iVar1) < 0x2000) {
             bVar1 = TRUE;
         } else {
-            mMotionSeqMngr.setNo(40, 4.0f, 1, 0);
+            mMotionSeqMngr.setNo(MOT_UNK_40, 4.0f, 1, 0);
             field_0x1664 = mCurAngle.y + 0x4000;
             mTurnAmount = 0;
             mStartAngle = current.angle.y;
@@ -1330,22 +1356,22 @@ int daNpc_Moi_c::poise() {
     if (field_0x1669 != 0) {
         if (field_0x166c != 0) {
             if (field_0x1664 == mCurAngle.y) {
-                if (mMotionSeqMngr.getNo() == 43) {
+                if (mMotionSeqMngr.getNo() == MOT_UNK_43) {
                     if (mMotionSeqMngr.checkEndSequence()) {
-                        mMotionSeqMngr.setNo(10, -1.0f, 0, 0);
+                        mMotionSeqMngr.setNo(MOT_UNK_10, -1.0f, 0, 0);
                         field_0x166c = 0;
                     }
-                } else if (mMotionSeqMngr.getNo() == 10) {
-                    mMotionSeqMngr.setNo(10, -1.0f, 0, 0);
+                } else if (mMotionSeqMngr.getNo() == MOT_UNK_10) {
+                    mMotionSeqMngr.setNo(MOT_UNK_10, -1.0f, 0, 0);
                     field_0x166c = 0;
                 }
             } else {
                 step(field_0x1664, -1, -1, 10, 0);
             }
         } else {
-            if (mMotionSeqMngr.getNo() == 43) {
+            if (mMotionSeqMngr.getNo() == MOT_UNK_43) {
                 if (mMotionSeqMngr.checkEndSequence()) {
-                    mMotionSeqMngr.setNo(10, -1.0f, 0, 0);
+                    mMotionSeqMngr.setNo(MOT_UNK_10, -1.0f, 0, 0);
                     field_0x166c = 0;
                 }
             } else {
@@ -1355,7 +1381,7 @@ int daNpc_Moi_c::poise() {
                     setSSlash(0);
                 } else if (field_0x166e) {
                     if (step(field_0x1664, -1, -1, 10, 0)) {
-                        mMotionSeqMngr.setNo(10, -1.0f, 0, 0);
+                        mMotionSeqMngr.setNo(MOT_UNK_10, -1.0f, 0, 0);
                         field_0x166e = 0;
                     }
                 } else if ((s16)abs((s16)(fopAcM_searchPlayerAngleY(this) - mCurAngle.y)) <
@@ -1371,7 +1397,7 @@ int daNpc_Moi_c::poise() {
                         if (field_0x1648 == 0) {
                             field_0x1648 = cLib_getRndValue(iVar13 * 0.5f, iVar13 * 1.5f);
                         } else if (!cLib_calcTimer(&field_0x1648)) {
-                            mMotionSeqMngr.setNo(43, 0.0f, 1, 0);
+                            mMotionSeqMngr.setNo(MOT_UNK_43, 0.0f, 1, 0);
                                 /* dSv_event_tmp_flag_c::GUARD_URI - Ordon Village - Rusl is guarding Uli, Ordon village night */
                             if (dComIfGs_isTmpBit(0x1308)) {
                                 mSound.startCreatureVoice(JAISoundID(Z2SE_MOI_V_GUARD_SWING), -1);
@@ -1385,9 +1411,9 @@ int daNpc_Moi_c::poise() {
                 } else {
                     field_0x1664 = fopAcM_searchPlayerAngleY(this);
                     if (field_0x166b != 0) {
-                        mMotionSeqMngr.setNo(10, -1.0f, 0, 0);
+                        mMotionSeqMngr.setNo(MOT_UNK_10, -1.0f, 0, 0);
                     } else {
-                        mMotionSeqMngr.setNo(11, -1.0f, 0, 0);
+                        mMotionSeqMngr.setNo(MOT_UNK_11, -1.0f, 0, 0);
                     }
                     field_0x1648 = 0;
                     field_0x166e = 1;
@@ -1435,26 +1461,26 @@ int daNpc_Moi_c::cutDeliveredSw(int param_1) {
     if (dComIfGp_getEventManager().getIsAddvance(param_1)) {
         switch (iVar6) {
         case 0:
-            mFaceMotionSeqMngr.setNo(21, 0.0f, 0, 0);
+            mFaceMotionSeqMngr.setNo(MOT_UNK_21, 0.0f, 0, 0);
             mMotionSeqMngr.setNo(45, 0.0f, 1, 0);
             mEventTimer = uVar5;
             break;
         case 1:
-            mFaceMotionSeqMngr.setNo(21, -1.0f, 0, 0);
+            mFaceMotionSeqMngr.setNo(MOT_UNK_21, -1.0f, 0, 0);
             mMotionSeqMngr.setNo(45, -1.0f, 0, 0);
             mEventTimer = uVar5;
             break;
         case 2:
-            mFaceMotionSeqMngr.setNo(21, -1.0f, 0, 0);
-            mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+            mFaceMotionSeqMngr.setNo(MOT_UNK_21, -1.0f, 0, 0);
+            mMotionSeqMngr.setNo(MOT_UNK_0, -1.0f, 0, 0);
             mEventTimer = uVar5;
             break;
         case 3:
             initTalk(mFlowNodeNo, NULL);
             break;
         case 4:
-            mFaceMotionSeqMngr.setNo(21, -1.0f, 0, 0);
-            mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+            mFaceMotionSeqMngr.setNo(MOT_UNK_21, -1.0f, 0, 0);
+            mMotionSeqMngr.setNo(MOT_UNK_0, -1.0f, 0, 0);
         }
     }
 
@@ -1542,8 +1568,8 @@ int daNpc_Moi_c::cutAppearanceMoi(int param_1) {
             setAngle(home.angle.y);
             break;
         case 2:
-            mFaceMotionSeqMngr.setNo(21, -1.0f, 0, 0);
-            mMotionSeqMngr.setNo(45, -1.0f, 0, 0);
+            mFaceMotionSeqMngr.setNo(MOT_UNK_21, -1.0f, 0, 0);
+            mMotionSeqMngr.setNo(MOT_UNK_45, -1.0f, 0, 0);
             dComIfGp_getEvent().setPt2(this);
             mEventTimer = local_78;
             break;
@@ -1555,8 +1581,8 @@ int daNpc_Moi_c::cutAppearanceMoi(int param_1) {
             setPos(cStack_30);
             break;
         case 4:
-            mFaceMotionSeqMngr.setNo(21, -1.0f, 0, 0);
-            mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+            mFaceMotionSeqMngr.setNo(MOT_UNK_21, -1.0f, 0, 0);
+            mMotionSeqMngr.setNo(MOT_UNK_0, -1.0f, 0, 0);
             initTalk(120, &local_68[0]);
             break;
         case 6:
@@ -1686,13 +1712,13 @@ int daNpc_Moi_c::cutFindWolf(int param_1) {
     if (dComIfGp_getEventManager().getIsAddvance(param_1)) {
         switch (iVar9) {
         case 0:
-            mMotionSeqMngr.setNo(10, 0.0f, 0, 0);
+            mMotionSeqMngr.setNo(MOT_UNK_10, 0.0f, 0, 0);
             speedF = 0.0f;
             speed.setall(0.0f);
             break;
         case 1:
-            mFaceMotionSeqMngr.setNo(8, 0.0f, 0, 0);
-            mMotionSeqMngr.setNo(16, 0.0f, 0, 0);
+            mFaceMotionSeqMngr.setNo(MOT_UNK_8, 0.0f, 0, 0);
+            mMotionSeqMngr.setNo(MOT_UNK_16, 0.0f, 0, 0);
             mSound.startCreatureVoice(JAISoundID(Z2SE_MOI_V_KUTT), -1);
             field_0x166b = 1;
             cStack_30 = mPath.getPntPos(0);
@@ -1749,8 +1775,8 @@ int daNpc_Moi_c::wait(void* param_1) {
     case MODE_ENTER:
     case MODE_INIT:
         if (!mStagger.checkStagger()) {
-            mFaceMotionSeqMngr.setNo(21, -1.0f, 0, 0);
-            mMotionSeqMngr.setNo(0, -1.0f, 0, 0);
+            mFaceMotionSeqMngr.setNo(MOT_UNK_21, -1.0f, 0, 0);
+            mMotionSeqMngr.setNo(MOT_UNK_0, -1.0f, 0, 0);
             field_0x1648 = cLib_getRndValue(iVar4 * 0.5f, iVar4 * 1.5f);
             mMode = MODE_RUN;
         }
@@ -1783,8 +1809,8 @@ int daNpc_Moi_c::wait(void* param_1) {
                     if (mType == 1) {
                         if (field_0x1648) {
                             if (!cLib_calcTimer(&field_0x1648)) {
-                                mFaceMotionSeqMngr.setNo(21, -1.0f, 0, 0);
-                                mMotionSeqMngr.setNo(47, -1.0f, 0, 0);
+                                mFaceMotionSeqMngr.setNo(MOT_UNK_21, -1.0f, 0, 0);
+                                mMotionSeqMngr.setNo(MOT_UNK_47, -1.0f, 0, 0);
                             }
                         } else {
                             if (mMotionSeqMngr.checkEndSequence() || srchPlayerActor()) {
@@ -1822,8 +1848,8 @@ int daNpc_Moi_c::walk(void* param_1) {
     case MODE_ENTER:
     case MODE_INIT:
         if (!mStagger.checkStagger()) {
-            mFaceMotionSeqMngr.setNo(21, -1.0f, 0, 0);
-            mMotionSeqMngr.setNo(45, -1.0f, 0, 0);
+            mFaceMotionSeqMngr.setNo(MOT_UNK_21, -1.0f, 0, 0);
+            mMotionSeqMngr.setNo(MOT_UNK_45, -1.0f, 0, 0);
             mMode = MODE_RUN;
         }
     case MODE_RUN:
@@ -1864,17 +1890,17 @@ int daNpc_Moi_c::walkOnEggshell(void* param_1) {
     case MODE_INIT:
         if (!mStagger.checkStagger()) {
             if (field_0x1669) {
-                mFaceMotionSeqMngr.setNo(21, -1.0f, 0, 0);
-                int motion_no;
+                mFaceMotionSeqMngr.setNo(MOT_UNK_21, -1.0f, 0, 0);
+                Motion motion_no;
                 if (field_0x166b) {
-                    motion_no = 10;
+                    motion_no = MOT_UNK_10;
                 } else {
-                    motion_no = 11;
+                    motion_no = MOT_UNK_11;
                 }
                 mMotionSeqMngr.setNo(motion_no, -1.0f, 0, 0);
             } else {
-                mFaceMotionSeqMngr.setNo(21, -1.0f, 0, 0);
-                mMotionSeqMngr.setNo(40, -1.0f, 0, 0);
+                mFaceMotionSeqMngr.setNo(MOT_UNK_21, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(MOT_UNK_40, -1.0f, 0, 0);
                 mJntAnm.lookNone(0);
                 field_0x164c = cLib_getRndValue(sVar1 * 0.5f, sVar1 * 1.5f);
             }
@@ -1916,11 +1942,11 @@ int daNpc_Moi_c::walkOnEggshell(void* param_1) {
                         poise();
                     } else {
                         if (field_0x1669) {
-                            mMotionSeqMngr.setNo(39, -1.0f, 0, 0);
+                            mMotionSeqMngr.setNo(MOT_UNK_39, -1.0f, 0, 0);
                             field_0x1669 = 0;
                             field_0x165c = 0;
                         } else {
-                            if (mMotionSeqMngr.getNo() == 39) {
+                            if (mMotionSeqMngr.getNo() == MOT_UNK_39) {
                                 if (mMotionSeqMngr.checkEndSequence()) {
                                     mMode = MODE_INIT;
                                 }
@@ -1948,8 +1974,8 @@ int daNpc_Moi_c::rest(void* param_1) {
     case MODE_ENTER:
     case MODE_INIT:
         if (!mStagger.checkStagger()) {
-            mFaceMotionSeqMngr.setNo(9, -1.0f, 0, 0);
-            mMotionSeqMngr.setNo(19, -1.0f, 0, 0);
+            mFaceMotionSeqMngr.setNo(MOT_UNK_9, -1.0f, 0, 0);
+            mMotionSeqMngr.setNo(MOT_UNK_19, -1.0f, 0, 0);
             mMode = MODE_RUN;
         }
     case MODE_RUN:
@@ -1975,12 +2001,12 @@ int daNpc_Moi_c::talk(void* param_1) {
         if (!mStagger.checkStagger()) {
             if (field_0x165c) {
                 if (field_0x1669) {
-                    mFaceMotionSeqMngr.setNo(21, -1.0f, 0, 0);
-                    int motion_no;
+                    mFaceMotionSeqMngr.setNo(MOT_UNK_21, -1.0f, 0, 0);
+                    Motion motion_no;
                     if (field_0x166b) {
-                        motion_no = 10;
+                        motion_no = MOT_UNK_10;
                     } else {
-                        motion_no = 11;
+                        motion_no = MOT_UNK_11;
                     }
                     mMotionSeqMngr.setNo(motion_no, -1.0f, 0, 0);
                 }

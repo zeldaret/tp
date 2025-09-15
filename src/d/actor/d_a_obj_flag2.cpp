@@ -12,7 +12,6 @@
 #include "d/d_a_obj.h"
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
 
 #ifdef DEBUG
 class daObjFlag2_Hio_c : public JORReflexible {
@@ -428,13 +427,6 @@ static int createSolidHeap(fopAc_ac_c* i_this) {
     return static_cast<daObjFlag2_c*>(i_this)->createHeap();
 }
 
-/* ############################################################################################## */
-/* 80BEE1E8-80BEE1E8 00010C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80BEE212 = "FlagObj%02d";
-#pragma pop
-
 /* 80BED6A0-80BED7A4 0010C0 0104+00 1/1 0/0 0/0 .text            create__12daObjFlag2_cFv */
 int daObjFlag2_c::create() {
     fopAcM_SetupActor(this, daObjFlag2_c);
@@ -460,9 +452,6 @@ int daObjFlag2_c::create() {
     }
     return rv;
 }
-
-/* 80BED7A4-80BED9C4 0011C4 0220+00 1/1 0/0 0/0 .text            __ct__12daObjFlag2_cFv */
-daObjFlag2_c::daObjFlag2_c() {}
 
 /* 80BEDCE0-80BEDDA0 001700 00C0+00 1/1 0/0 0/0 .text            draw__12daObjFlag2_cFv */
 int daObjFlag2_c::draw() {

@@ -977,7 +977,7 @@ int daNpcKasiMich_c::chace_st(int param_1) {
 
         case 1:
             if (_turn_to_link(0xC00)) {
-                setAction(&daNpcKasiMich_c::chace);
+                setAction(&daNpcKasiMich_c::wait);
             }
             break;
     }
@@ -1010,7 +1010,7 @@ int daNpcKasiMich_c::chace(int param_1) {
                     setAction(&daNpcKasiMich_c::wait);
                 }
             } else {
-                setAction(&daNpcKasiMich_c::chace_st);
+                setAction(&daNpcKasiMich_c::wait);
             }
             break;
     }
@@ -1054,7 +1054,7 @@ int daNpcKasiMich_c::turn_link(int param_1) {
 
         case 1:
             if (_turn_to_link(0x1000)) {
-                setAction(&daNpcKasiMich_c::wait);
+                setAction(&daNpcKasiMich_c::chace);
                 break;
             }
     }
@@ -1082,7 +1082,7 @@ int daNpcKasiMich_c::turn_home(int param_1) {
             shape_angle.y = current.angle.y;
 
             if (bVar1) {
-                setAction(&daNpcKasiMich_c::wait_dummy);
+                setAction(&daNpcKasiMich_c::wait);
             }
             break;
     }
@@ -1106,7 +1106,7 @@ int daNpcKasiMich_c::turn_center(int param_1) {
 
         case 1:
             if (_turn_pos(mCenterPos, 0x1000)) {
-                setAction(&daNpcKasiMich_c::wait_dummy);
+                setAction(&daNpcKasiMich_c::chace_st);
             }
             break;
     }
@@ -1193,7 +1193,7 @@ int daNpcKasiMich_c::kya_stop(int param_1) {
         
         case 0:
             if (mMotion != MOT_MICH_KYA_TALK) {
-                setAction(&daNpcKasiMich_c::wait);
+                setAction(&daNpcKasiMich_c::chace);
             } else {
                 mMode = 1;
             }
@@ -1201,7 +1201,7 @@ int daNpcKasiMich_c::kya_stop(int param_1) {
 
         case 1:
             if (mpMorf->getFrame() == 19.0f || mpMorf->getFrame() == 1.0f) {
-                setAction(&daNpcKasiMich_c::wait_dummy);
+                setAction(&daNpcKasiMich_c::wait);
             }
             break;
     }
@@ -1283,6 +1283,13 @@ int daNpcKasiMich_c::iyan_look(int param_1) {
     }
 
     return 1;
+}
+
+void daNpcKasiMich_c::dummy() {
+    setAction(&daNpcKasiMich_c::wait_dummy);
+    setAction(&daNpcKasiMich_c::wait);
+    setAction(&daNpcKasiMich_c::wait_dummy);
+    setAction(&daNpcKasiMich_c::wait_dummy);
 }
 
 /* 80A29164-80A291E8 003084 0084+00 1/0 0/0 0/0 .text            turn_hana__15daNpcKasiMich_cFi */
