@@ -10,9 +10,74 @@
  *
  * @details
  *
- */
+*/
+
+struct daNpc_midP_HIOParam {
+    /* 0x0 */ daNpcT_HIOParam common;
+};
+
+class daNpc_midP_HIO_c : public mDoHIO_entry_c {
+    /* 0x8 */ daNpc_midP_HIOParam param;
+};
+
+class daNpc_midP_Param_c {
+public:
+    /* 80A73954 */ virtual ~daNpc_midP_Param_c() {}
+
+    static const daNpc_midP_HIOParam m;
+};
+
 class daNpc_midP_c : public daNpcT_c {
 public:
+    enum Joint {
+        /* 0x00 */ JNT_CENTER,
+        /* 0x01 */ JNT_BACKBONE1,
+        /* 0x02 */ JNT_BACKBONE2,
+        /* 0x03 */ JNT_NECK,
+        /* 0x04 */ JNT_HEAD,
+        /* 0x05 */ JNT_CHIN,
+        /* 0x06 */ JNT_MAYUL,
+        /* 0x07 */ JNT_MAYUR,
+        /* 0x08 */ JNT_MOUTH,
+        /* 0x09 */ JNT_SHOULDERL,
+        /* 0x0A */ JNT_ARML1,
+        /* 0x0B */ JNT_ARML2,
+        /* 0x0C */ JNT_HANDL,
+        /* 0x0D */ JNT_FINGERL1,
+        /* 0x0E */ JNT_FINGERL2,
+        /* 0x0F */ JNT_THAMBL,
+        /* 0x10 */ JNT_MANTL1,
+        /* 0x11 */ JNT_MANTL2,
+        /* 0x12 */ JNT_MANT_ANIMEL1,
+        /* 0x13 */ JNT_SHOULDERR,
+        /* 0x14 */ JNT_ARMR1,
+        /* 0x15 */ JNT_ARMR2,
+        /* 0x16 */ JNT_HANDR,
+        /* 0x17 */ JNT_FINGERR1,
+        /* 0x18 */ JNT_FINGERR2,
+        /* 0x19 */ JNT_THAMBR,
+        /* 0x1A */ JNT_MANTR1,
+        /* 0x1B */ JNT_MANTR2,
+        /* 0x1C */ JNT_MANT_ANIMER1,
+        /* 0x1D */ JNT_WAIST,
+        /* 0x1E */ JNT_LEGL1,
+        /* 0x1F */ JNT_LEGL2,
+        /* 0x20 */ JNT_FOOTL,
+        /* 0x21 */ JNT_TOEL,
+        /* 0x22 */ JNT_LEGR1,
+        /* 0x23 */ JNT_LEGR2,
+        /* 0x24 */ JNT_FOOTR,
+        /* 0x25 */ JNT_TOER,
+        /* 0x26 */ JNT_MANTC1,
+        /* 0x27 */ JNT_MANTC2,
+        /* 0x28 */ JNT_MANT_ANIMEL2,
+        /* 0x29 */ JNT_MANT_ANIMER2,
+        /* 0x2A */ JNT_SKIRTB1,
+        /* 0x2B */ JNT_SKIRTB2,
+        /* 0x2C */ JNT_SKIRTF1,
+        /* 0x2D */ JNT_SKIRTF2,
+    };
+
     typedef int (daNpc_midP_c::*cutFunc)(int);
     typedef int (daNpc_midP_c::*actionFunc)(void*);
 
@@ -56,11 +121,11 @@ public:
                                 daNpcT_c(param_1, param_2, param_3, param_4, param_5, param_6, param_7, param_8) {}
     /* 80A7390C */ u16 getEyeballRMaterialNo() { return 3; }
     /* 80A73914 */ u16 getEyeballLMaterialNo() { return 2; }
-    /* 80A7391C */ s32 getHeadJointNo() { return 4; }
-    /* 80A73924 */ s32 getNeckJointNo() { return 3; }
-    /* 80A7392C */ s32 getBackboneJointNo() { return 2; }
-    /* 80A73934 */ BOOL checkChangeJoint(int param_0) { return param_0 == 4; }
-    /* 80A73944 */ BOOL checkRemoveJoint(int param_0) { return param_0 == 8; }
+    /* 80A7391C */ s32 getHeadJointNo() { return JNT_HEAD; }
+    /* 80A73924 */ s32 getNeckJointNo() { return JNT_NECK; }
+    /* 80A7392C */ s32 getBackboneJointNo() { return JNT_BACKBONE2; }
+    /* 80A73934 */ BOOL checkChangeJoint(int i_joint) { return i_joint == JNT_HEAD; }
+    /* 80A73944 */ BOOL checkRemoveJoint(int i_joint) { return i_joint == JNT_MOUTH; }
 
     int getFlowNodeNo() {
         u16 nodeNo = home.angle.x;
@@ -84,53 +149,5 @@ private:
 };
 
 STATIC_ASSERT(sizeof(daNpc_midP_c) == 0xfa0);
-
-class daNpc_midP_Param_c {
-public:
-    /* 80A73954 */ virtual ~daNpc_midP_Param_c() {}
-
-    struct Data {
-        /* 0x00 */ f32 field_0x00;
-        /* 0x04 */ f32 mGravity;
-        /* 0x08 */ f32 mScale;
-        /* 0x0C */ f32 field_0x0c;
-        /* 0x10 */ f32 mWeight;
-        /* 0x14 */ f32 mCylH;
-        /* 0x18 */ f32 mWallH;
-        /* 0x1C */ f32 mWallR;
-        /* 0x20 */ f32 field_0x20;
-        /* 0x24 */ f32 field_0x24;
-        /* 0x28 */ f32 field_0x28;
-        /* 0x2C */ f32 field_0x2c;
-        /* 0x30 */ f32 field_0x30;
-        /* 0x34 */ f32 field_0x34;
-        /* 0x38 */ f32 field_0x38;
-        /* 0x3C */ f32 field_0x3c;
-        /* 0x40 */ f32 field_0x40;
-        /* 0x44 */ f32 mMorfFrames;
-        /* 0x48 */ s16 field_0x48;
-        /* 0x4A */ s16 field_0x4a;
-        /* 0x4C */ s16 field_0x4c;
-        /* 0x4E */ s16 field_0x4e;
-        /* 0x50 */ f32 mAttnFovY;
-        /* 0x54 */ f32 field_0x54;
-        /* 0x58 */ f32 field_0x58;
-        /* 0x5C */ f32 field_0x5c;
-        /* 0x60 */ s16 field_0x60;
-        /* 0x62 */ s16 field_0x62;
-        /* 0x64 */ int field_0x64;
-        /* 0x68 */ int field_0x68;
-        /* 0x6C */ f32 field_0x6c;
-        /* 0x70 */ f32 field_0x70;
-        /* 0x74 */ f32 field_0x74;
-        /* 0x78 */ f32 field_0x78;
-        /* 0x7C */ f32 field_0x7c;
-        /* 0x80 */ f32 field_0x80;
-        /* 0x84 */ f32 field_0x84;
-        /* 0x88 */ f32 field_0x88;
-    };
-
-    static const Data m;
-};
 
 #endif /* D_A_NPC_MIDP_H */

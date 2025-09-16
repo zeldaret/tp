@@ -25,7 +25,6 @@ public:
     /* 80BEE0B8 */ cXyz getTargetPos() { return mPositions[4]; }
 
     /* 80BECF30 */ void draw();
-    /* 80BED9C4 */ virtual ~FlagCloth_c() {}
 
     cXyz* getPos() { return mPositions; }
     cXyz* getNormal() { return mNormals; }
@@ -76,7 +75,6 @@ public:
     /* 80BED44C */ void setCollision();
     /* 80BED480 */ int createHeap();
     /* 80BED6A0 */ int create();
-    /* 80BED7A4 */ daObjFlag2_c();
     /* 80BEDCE0 */ int draw();
     /* 80BEDEE0 */ ~daObjFlag2_c();
     inline int execute();

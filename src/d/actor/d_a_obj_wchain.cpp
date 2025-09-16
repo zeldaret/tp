@@ -130,9 +130,10 @@ s16 daObjWchain_c::getChainAngleZ(cXyz* param_0, int param_1) {
 }
 
 /* 80D3080C-80D310AC 00098C 08A0+00 1/1 0/0 0/0 .text            setChainPos__13daObjWchain_cFv */
-// NONMATCHING regalloc, instruction ordering
+// NONMATCHING instruction ordering
 void daObjWchain_c::setChainPos() {
     cXyz prev_pos, vec1;
+
     if (mRide) {
         shape_angle.y = daPy_getLinkPlayerActorClass()->shape_angle.y;
         shape_angle.z = 0;
@@ -149,13 +150,19 @@ void daObjWchain_c::setChainPos() {
         mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
         static Vec const currentOffset = {0.0f, 0.0f, -53.75f};
         mDoMtx_stack_c::multVec(&currentOffset, &current.pos);
-        cXyz* chain_pos = &mChainPos[0xf];
-        csXyz* chain_angle = &mChainAngle[0xf];
-        cXyz* chain_speed = &mChainSpeed[0xf];
-        s16* chain_rotation = &mChainRotation[0xf];
+
+        csXyz* chain_angle;
+        cXyz* chain_speed;
+        cXyz* chain_pos;
+        int i;
+        s16* chain_rotation;
+        chain_pos = &mChainPos[0xf];
+        chain_angle = &mChainAngle[0xf];
+        chain_speed = &mChainSpeed[0xf];
+        chain_rotation = &mChainRotation[0xf];
         prev_pos = current.pos;
         int svar7 = shape_angle.z;
-        for (int i = 0xf; i >= 0; i--, chain_pos--, chain_angle--, chain_speed--, chain_rotation--) {
+        for (i = 0xf; i >= 0; i--, chain_pos--, chain_angle--, chain_speed--, chain_rotation--) {
             chain_angle->z += getChainAngleZ(chain_speed, abs((s16)(chain_angle->z - svar7)));
             *chain_speed = (prev_pos - *chain_pos) * 0.75;
             *chain_pos = prev_pos;
@@ -187,9 +194,15 @@ void daObjWchain_c::setChainPos() {
         int local_68 = fvar2 * (1.0f / 17.5f);
         int ivar5 = local_68 <= 0xf ? local_68 + 1 : 0x10;
         int chain_no = 0x10 - ivar5;
-        cXyz* chain_pos = &mChainPos[chain_no];
-        csXyz* chain_angle = &mChainAngle[chain_no];
-        s16* chain_rotation = &mChainRotation[chain_no];
+
+        s16* chain_rotation;
+        cXyz* chain_speed;
+        cXyz* chain_pos;
+        csXyz* chain_angle;
+
+        chain_pos = &mChainPos[chain_no];
+        chain_angle = &mChainAngle[chain_no];
+        chain_rotation = &mChainRotation[chain_no];
         chain_pos->set(
             mRoofPos.x,
             field_0x7a8 + (mRoofPos.y - (17.5f - (ivar5 * 17.5f - fvar2))),
@@ -199,7 +212,7 @@ void daObjWchain_c::setChainPos() {
         *chain_rotation = 0;
         chain_pos = mChainPos + 1 + chain_no;
         chain_angle++;
-        cXyz* chain_speed = mChainSpeed + 1 + chain_no;
+        chain_speed = mChainSpeed + 1 + chain_no;
         chain_rotation++;
         mDoMtx_stack_c::YrotS(-shape_angle.y);
         f32 prob = 0.2f;

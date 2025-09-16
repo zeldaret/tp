@@ -14,43 +14,6 @@
 #include "dol2asm.h"
 #include "f_op/f_op_actor_mng.h"
 
-/* 80C33DC0-80C33DD0 000020 0010+00 2/3 0/0 0/0 .data            l_bmdData */
-static int l_bmdData[2][2] = {
-    { 3, 1 }, { 4, 1 },
-};
-
-/* 80C33DD0-80C33DD8 -00001 0008+00 2/4 0/0 0/0 .data            l_resNameList */
-static char* l_resNameList[2] = {
-    "",
-    "uri_kago"
-};
-
-/* 80C33DD8-80C33E1C 000038 0044+00 1/2 0/0 0/0 .data            l_ccDCyl */
-static dCcD_SrcCyl l_ccDCyl = {
-    {
-        {0x0, {{0x0, 0x0, 0x0}, {0x0, 0x0}, 0x0}}, // mObj
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0}, // mGObjTg
-        {0x0}, // mGObjCo
-    }, // mObjInf
-    {
-        {0.0f, 0.0f, 0.0f}, // mCenter
-        0.0f, // mRadius
-        0.0f // mHeight
-    } // mCyl
-};
-
-/* 80C31AEC-80C31C90 0000EC 01A4+00 1/0 0/0 0/0 .text            __dt__12daObj_Kago_cFv */
-daObj_Kago_c::~daObj_Kago_c() {
-    // NONMATCHING
-    OS_REPORT("|%06d:%x|daObj_Kago_c -> デストラクト\n", g_Counter.mCounter0, this);
-    if (mType == 0 && daNpcT_chkTmpBit(7)) {
-        daNpcT_onEvtBit(0x92);
-    }
-
-    dComIfG_resDelete(&mPhase, l_resNameList[l_bmdData[0][1]]);
-}
-
 /* ############################################################################################## */
 /* 80C33C80-80C33CAC 000000 002C+00 5/5 0/0 0/0 .rodata          m__18daObj_Kago_Param_c */
 daObj_Kago_Param_c::Data const daObj_Kago_Param_c::m = {
@@ -67,16 +30,53 @@ daObj_Kago_Param_c::Data const daObj_Kago_Param_c::m = {
     10.0f,
 };
 
-/* 80C33CAC-80C33CDC 00002C 0030+00 0/0 0/0 0/0 .rodata          l_ccDObjData */
-SECTION_RODATA static u8 const l_ccDObjData[48] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+// /* 80C33CAC-80C33CDC 00002C 0030+00 0/0 0/0 0/0 .rodata          l_ccDObjData */
+const dCcD_SrcGObjInf l_ccDObjData = {
+    {0, // mFlags
+        {
+            {0, 0, 0},  // mObjAt
+            {0, 0}, // mObjTg
+            {0x79}              // mObjCo
+        } // mSrcObjHitInf
+    }, // mObj
+    {0, 0, 0, 0, 0}, // mGObjAt
+    {0, 0, 0, 0, 0}, // mGObjTg
+    {0} // mGObjCo
 };
+
+/* 80C33DC0-80C33DD0 000020 0010+00 2/3 0/0 0/0 .data            l_bmdData */
+static int l_bmdData[2][2] = {
+    { 3, 1 }, { 4, 1 },
+};
+
+/* 80C33DD0-80C33DD8 -00001 0008+00 2/4 0/0 0/0 .data            l_resNameList */
+static char* l_resNameList[2] = {
+    "",
+    "uri_kago"
+};
+
+/* 80C33DD8-80C33E1C 000038 0044+00 1/2 0/0 0/0 .data            l_ccDCyl */
+static dCcD_SrcCyl l_ccDCyl = {
+    daNpcT_c::mCcDObjData, // mObjInf
+    {
+        {0.0f, 0.0f, 0.0f}, // mCenter
+        0.0f, // mRadius
+        0.0f // mHeight
+    } // mCyl
+};
+
+/* 80C31AEC-80C31C90 0000EC 01A4+00 1/0 0/0 0/0 .text            __dt__12daObj_Kago_cFv */
+daObj_Kago_c::~daObj_Kago_c() {
+    OS_REPORT("|%06d:%x|daObj_Kago_c -> デストラクト\n", g_Counter.mCounter0, this);
+    if (mType == 0 && daNpcT_chkTmpBit(7)) {
+        daNpcT_onEvtBit(0x92);
+    }
+
+    dComIfG_resDelete(&mPhase, l_resNameList[l_bmdData[0][1]]);
+}
 
 /* 80C31D5C-80C320FC 00035C 03A0+00 1/1 0/0 0/0 .text            create__12daObj_Kago_cFv */
 cPhs__Step daObj_Kago_c::create() {
-    // NONMATCHING
     static int const heapSize[5] = {
         0x0820, 0x0820, 0, 0x0820, 0,
     };
@@ -154,7 +154,6 @@ int daObj_Kago_c::CreateHeap() {
 
 /* 80C324B0-80C324E4 000AB0 0034+00 1/1 0/0 0/0 .text            Delete__12daObj_Kago_cFv */
 int daObj_Kago_c::Delete() {
-    // NONMATCHING
     fopAcM_GetID(this);
     this->~daObj_Kago_c();
     return 1;
@@ -162,12 +161,13 @@ int daObj_Kago_c::Delete() {
 
 /* 80C324E4-80C332D0 000AE4 0DEC+00 2/2 0/0 0/0 .text            Execute__12daObj_Kago_cFv */
 int daObj_Kago_c::Execute() {
-    // NONMATCHING
-    int iVar4;
     int iVar1 = 0;
-    f32 fVar1 = daObj_Kago_Param_c::m.field_0x28;
-    s16 sVar1 = 0;
+    f32 fVar1;
+    f32 reg_f30 = daObj_Kago_Param_c::m.field_0x28;
+    s16 sp_0xc = 0;
     s16 sVar2 = 0;
+    int iVar3;
+    s16 sp_0x8;
 
     scale.set(daObj_Kago_Param_c::m.field_0x08 * field_0xb0c, daObj_Kago_Param_c::m.field_0x08 * field_0xb0c, daObj_Kago_Param_c::m.field_0x08 * field_0xb0c);
     attention_info.flags = 0;
@@ -193,7 +193,7 @@ int daObj_Kago_c::Execute() {
     if (iVar1 != 0) {
         if (mType == 0) {
             daObj_Kago_c* basket_p = NULL;
-            fopAcM_SearchByID(daPy_getPlayerActorClass()->getGrabActorID(), (fopAc_ac_c**)basket_p);
+            fopAcM_SearchByID(daPy_getPlayerActorClass()->getGrabActorID(), (fopAc_ac_c**)&basket_p);
             if (basket_p == this) {
                 daNpcT_onTmpBit(23);
             } else {
@@ -232,10 +232,11 @@ int daObj_Kago_c::Execute() {
                 speed.setall(0.0f);
             }
         } else {
-            int iVar3 = 0;
+            iVar3 = 0;
             cXyz sp80;
+            sp_0x8 = 0x80;
             fopAcM_getWaterY(&current.pos, &mWaterY);
-            if (mWaterY != -1000000000.0f && fVar1 < (mWaterY - mGroundH) && current.pos.y <= mWaterY) {
+            if (mWaterY != -1000000000.0f && reg_f30 < (mWaterY - mGroundH) && current.pos.y <= mWaterY) {
                 if (field_0xb9d == 0) {
                     speedF *= 0.3f;
                     speed.y *= 0.5f;
@@ -255,6 +256,7 @@ int daObj_Kago_c::Execute() {
                     field_0xba1 = 0;
                 }
 
+                int iVar4;
                 if (fopAcM_getWaterStream(&current.pos, field_0x7cc, &sp80, &iVar4, 0) != 0) {
                     sp80.normalizeZP();
                     cLib_addCalcAngleS2(&current.angle.y, cM_atan2s(sp80.x, sp80.z), 4, 0x200);
@@ -262,26 +264,20 @@ int daObj_Kago_c::Execute() {
                         current.angle.y = cM_atan2s(sp80.x, sp80.z);
                     }
 
-                    int iVar5;
-                    s16 sVar3 = iVar4 * 0x80;
-                    if (field_0xb2c.y < 0) {
-                        iVar5 = -sVar3;
-                    } else {
-                        iVar5 = sVar3;
-                    }
-                    cLib_chaseAngleS(&field_0xb2c.y, iVar5, 16);
+                    sp_0x8 *= iVar4;
+                    cLib_chaseAngleS(&field_0xb2c.y, (field_0xb2c.y < 0) ? -1*sp_0x8 : sp_0x8, 16);
 
                     if (field_0xb9c != 0) {
-                        cLib_addCalc2(&speedF, iVar4 * 0.75f, 0.15f, 1.0f);
-                    } else {
                         cLib_addCalc2(&speedF, iVar4 * 1.55f, 0.15f, 1.0f);
+                    } else {
+                        cLib_addCalc2(&speedF, iVar4 * 0.75f, 0.15f, 1.0f);
                     }
                 } else {
                     cLib_chaseF(&speedF, 0.0f, 0.3f);
                 }
 
                 if (field_0xb48 == 0 && mObjAcch.ChkWallHit() != 0) {
-                    if (getWallAngle(current.angle.y, &sVar2) == 0) {
+                    if (getWallAngle(current.angle.y, &sVar2)) {
                         current.angle.y = sVar2;
                         current.angle.y += (s16)cM_rndFX(2000.0f);
                     } else {
@@ -294,11 +290,11 @@ int daObj_Kago_c::Execute() {
                 }
 
                 if (field_0xb9c != 0) {
-                    cLib_addCalc2(&current.pos.y, mWaterY - fVar1, 0.5f, 2.0f);
+                    cLib_addCalc2(&current.pos.y, mWaterY - reg_f30, 0.5f, 2.0f);
                     speed.y = 0.0f;
                     setHamonPrtcl();
                 } else {
-                    if ((current.pos.y + fVar1) < mWaterY) {
+                    if ((current.pos.y + reg_f30) < mWaterY) {
                         if (speed.y < 0.0f) {
                             cLib_addCalc(&speed.y, 2.0f, 0.8f, 11.0f, 0.1f);
                         } else {
@@ -327,15 +323,15 @@ int daObj_Kago_c::Execute() {
             if (field_0xb9e != 0) {
                 if (mObjAcch.ChkWallHit() != 0) {
                     if (getWallAngle(current.angle.y, &sVar2) != 0) {
-                        sVar1 = current.angle.y - sVar2;
+                        sp_0xc = current.angle.y - sVar2;
                     } else {
-                        sVar1 = current.angle.y;
+                        sp_0xc = current.angle.y;
                     }
 
-                    current.angle.y += (0x8000 - (sVar1 << 1) + (s16)cM_rndFX(1000.0f));
+                    current.angle.y += s16(0x8000 - (sp_0xc << 1) + (s16)cM_rndFX(1000.0f));
                     speedF *= 0.5f;
                     field_0xb9e = 0;
-                    field_0xba1 = 0;
+                    field_0xba1 = 1;
                 } else if (mObjAcch.ChkGroundHit()) {
                     if (field_0xb14.y < -30.0f) {
                         speedF *= 0.7f;
@@ -373,13 +369,7 @@ int daObj_Kago_c::Execute() {
         field_0xb14 = speed;
 
         if (field_0xb9d != 0) {
-            f32 fVar2;
-            if (mStts.GetCCMoveP() != NULL) {
-                fVar2 = 900.0f;
-            } else {
-                fVar2 = 1200.0f;
-            }
-            cLib_addCalc2(&field_0xb64, fVar2, 0.05f, 100.0f);
+            cLib_addCalc2(&field_0xb64, (mStts.GetCCMoveP() != NULL) ? 1200.0f : 900.0f, 0.05f, 100.0f);
         } else {
             cLib_addCalc2(&field_0xb64, 0.0f, 0.25f, 100.0f);
         }
@@ -409,7 +399,7 @@ int daObj_Kago_c::Execute() {
                 }
 
                 if (actor_p != NULL || field_0xb4c == 0) {
-                    if (fVar1 < 30.0f) {
+                    if (30.0f < fVar1) {
                         fVar1 = 30.0f;
                     } else if (fVar1 < 0.0f) {
                         fVar1 = 0.0f;
@@ -468,7 +458,7 @@ int daObj_Kago_c::Execute() {
             sp8c.set(24.0f, 0.0f, 0.0f);
             mDoMtx_stack_c::multVec(&sp8c, &sp98);
             field_0x808[1].SetR(30.0f);
-            field_0x808[1].SetH(30.0f);
+            field_0x808[1].SetH(50.0f);
             field_0x808[1].SetC(sp98);
             dComIfG_Ccsp()->Set(&field_0x808[1]);
         } else {
@@ -482,7 +472,7 @@ int daObj_Kago_c::Execute() {
 
     field_0x808[0].ClrCoHit();
     field_0x808[1].ClrCoHit();
-    field_0xba0 = ((-iVar1 >> 24) | (iVar1 >> 24)) >> 7;
+    field_0xba0 = iVar1 != 0;
     cLib_calcTimer(&field_0xb48);
     cLib_calcTimer(&field_0xb4c);
     field_0xba2 = 0;
@@ -492,8 +482,10 @@ int daObj_Kago_c::Execute() {
 
 /* 80C332D0-80C333F0 0018D0 0120+00 1/1 0/0 0/0 .text            Draw__12daObj_Kago_cFv */
 int daObj_Kago_c::Draw() {
-    // NONMATCHING
     if(field_0xb9f == 0 && health != 3) {
+#if VERSION == VERSION_SHIELD_DEBUG
+        mObjAcch.DrawWall(dComIfG_Bgsp());
+#endif
         g_env_light.settingTevStruct(0, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(field_0x574, &tevStr);
         mDoExt_modelUpdateDL(field_0x574);
@@ -503,8 +495,10 @@ int daObj_Kago_c::Draw() {
         if (this == basket_p) {
             model = field_0x574;
         } else if (mGroundH != -1000000000.0f) {
-            field_0xb78 = dComIfGd_setShadow(field_0xb78, 1, field_0x574, &current.pos, daObj_Kago_Param_c::m.field_0x0c, mGroundH,
-                                             20.0f, current.pos.y, field_0x7cc, &tevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
+            field_0xb78 = dComIfGd_setShadow(field_0xb78, 1, field_0x574, &current.pos,
+                                             daObj_Kago_Param_c::m.field_0x0c, 20.0f,
+                                             current.pos.y, mGroundH, field_0x7cc, &tevStr,
+                                             0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
         }
     }
 
@@ -628,7 +622,6 @@ void daObj_Kago_c::setSmokePrtcl() {
 
 /* 80C33958-80C33A58 001F58 0100+00 1/1 0/0 0/0 .text            setWaterPrtcl__12daObj_Kago_cFv */
 void daObj_Kago_c::setWaterPrtcl() {
-    // NONMATCHING
     static u16 emttrId[4] = {
         0x01B8, 0x01B9, 0x01BA, 0x01BB,
     };

@@ -9,10 +9,8 @@
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "d/actor/d_a_set_bgobj.h"
 #include "d/d_com_inf_game.h"
-#include "dol2asm.h"
 #include "d/d_a_obj.h"
 
-#ifdef DEBUG
 class daObjFlag3_Hio_c : public JORReflexible {
 public:
     daObjFlag3_Hio_c() {
@@ -51,7 +49,6 @@ public:
 };
 
 daObjFlag3_Hio_c M_hio;
-#endif
 
 /* 80BF0458-80BF046C 000000 0014+00 3/3 0/0 0/0 .rodata          M_attr__12daObjFlag3_c */
 daObjFlag3_Attr_c const daObjFlag3_c::M_attr = {
@@ -123,13 +120,22 @@ inline cXyz FlagCloth2_c::calcFlagFactor(cXyz* param_1, cXyz* param_2, cXyz* par
         }
         f32 fVar1;
         if (abs(*pRelPosIdx - param_4) == 1 || abs(*pRelPosIdx - param_4) == 6) {
-            fVar1 = 84.85281;
-        } else {
             fVar1 = 60.0f;
+        } else {
+            fVar1 = 84.85281f;
         }
         calcFlagFactorSub(param_1 + param_4, param_1 + *pRelPosIdx, &flagFactor, fVar1);
     }
     return flagFactor;
+}
+
+inline void FlagCloth2_c::calcFlagFactorSub(cXyz* param_1, cXyz* param_2, cXyz* param_3, f32 param_4) {
+    cXyz acStack_2c = *param_2 - *param_1;
+    param_4 = acStack_2c.abs() - param_4;
+    cXyz cStack_38 = acStack_2c.normZC();
+    param_4 *= mSpringRate;
+    cStack_38 *= param_4;
+    *param_3 += cStack_38;
 }
 
 /* 80BEEF74-80BEF278 000574 0304+00 2/2 0/0 0/0 .text calcFlagNormal__12FlagCloth2_cFP4cXyzi */
@@ -204,7 +210,7 @@ inline void FlagCloth2_c::calcFlagNormal(cXyz* param_1, int param_2) {
     param_1->set(cStack_74);
 }
 
-static void initCcSphereDummy() {
+void FlagCloth2_c::initCcSphere(fopAc_ac_c*) {
     const static dCcD_SrcSph ccSphSrc = {
         {
             {0x0, {{0x0, 0x0, 0x0}, {0x10000, 0x11}, 0x0}},  // mObj
@@ -216,6 +222,83 @@ static void initCcSphereDummy() {
             {{0.0f, 0.0f, 0.0f}, 100.0f}  // mSph
         }  // mSphAttr
     };
+}
+
+/* 80BF00A0-80BF0434 0016A0 0394+00 1/0 0/0 0/0 .text            draw__12FlagCloth2_cFv */
+inline void FlagCloth2_c::draw() {
+    j3dSys.reinitGX();
+    GXSetNumIndStages(0);
+    dKy_setLight_again();
+    dKy_GxFog_tevstr_set(&mTevStr);
+    dKy_setLight_mine(&mTevStr);
+    g_env_light.settingTevStruct(0x10, mpFlagPosition, &mTevStr);
+    GXClearVtxDesc();
+    GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
+    GXSetVtxDesc(GX_VA_NRM, GX_INDEX8);
+    GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_NRM, GX_CLR_RGB, GX_F32, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_F32, 0);
+    GXSetArray(GX_VA_POS, getPos(), sizeof(cXyz));
+    GXSetArray(GX_VA_NRM, getNormal(), sizeof(cXyz));
+    GXSetArray(GX_VA_TEX0, mTexCoord, 8);
+    GXSetZCompLoc(GX_FALSE);
+    GXSetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
+    GXLoadTexObj(&mTexObj, GX_TEXMAP0);
+    GXSetNumChans(1);
+    GXSetChanCtrl(GX_COLOR0, GX_TRUE, GX_SRC_REG, GX_SRC_REG, 0xff, GX_DF_CLAMP, GX_AF_SPOT);
+    GXSetNumTexGens(1);
+    GXSetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 0x3c);
+    GXSetNumTevStages(1);
+    GXSetTevSwapMode(GX_TEVSTAGE0, GX_TEV_SWAP0, GX_TEV_SWAP0);
+    dKy_Global_amb_set(&mTevStr);
+    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
+    GXSetTevColor(GX_TEVREG0, (GXColor){0, 0, 0, 0xff});
+    GXSetTevKColor(GX_KCOLOR0, (GXColor){0, 0, 0, 0xff});
+    GXSetTevKColorSel(GX_TEVSTAGE0, GX_TEV_KCSEL_K0);
+    GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_KONST, GX_CC_TEXC, GX_CC_RASC, GX_CC_C0);
+    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_4, GX_TRUE, GX_TEVPREV);
+    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_KONST, GX_CA_TEXA, GX_CA_ZERO);
+    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+    GXSetTevKAlphaSel(GX_TEVSTAGE0, GX_TEV_KASEL_K3_A);
+    GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_OR, GX_GREATER, 0);
+    Mtx viewModelMtx;
+    cMtx_concat(j3dSys.getViewMtx(), mModelMtx, viewModelMtx);
+    GXLoadPosMtxImm(viewModelMtx, 0);
+    GXLoadNrmMtxImm(viewModelMtx, 0);
+    GXSetClipMode(GX_CLIP_ENABLE);
+    GXSetCullMode(GX_CULL_BACK);
+
+    for (int i = 0; i < 5; i++) {
+        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 12);
+        for (int j = 0; j < 6; j++) {
+            GXPosition1x8(i + j * 6);
+            GXPosition1x8(i + j * 6);
+            GXTexCoord1x8(i + j * 6);
+            GXPosition1x8(i + j * 6 + 1);
+            GXPosition1x8(i + j * 6 + 1);
+            GXTexCoord1x8(i + j * 6 + 1);
+        }
+        GXEnd();
+    }
+
+    GXSetArray(GX_VA_NRM, getNormalBack(), sizeof(cXyz));
+    GXSetCullMode(GX_CULL_FRONT);
+
+    for (int i = 0; i < 5; i++) {
+        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 12);
+        for (int j = 0; j < 6; j++) {
+            GXPosition1x8(i + j * 6);
+            GXPosition1x8(i + j * 6);
+            GXTexCoord1x8(i + j * 6);
+            GXPosition1x8(i + j * 6 + 1);
+            GXPosition1x8(i + j * 6 + 1);
+            GXTexCoord1x8(i + j * 6 + 1);
+        }
+        GXEnd();
+    }
+
+    J3DShape::resetVcdVatCache();
 }
 
 /* 80BEEA78-80BEEC3C 000078 01C4+00 1/1 0/0 0/0 .text            createHeap__12daObjFlag3_cFv */
@@ -287,17 +370,10 @@ int daObjFlag3_c::execute() {
     #endif
 
     mFlagCloth.execute();
-    eyePos = mFlagCloth.getTargetPos();
+    eyePos.set(mFlagCloth.getTargetPos());
     return 1;
 }
 
-inline void FlagCloth2_c::calcFlagNormalBack() {
-    cXyz* pNormal = getNormal();
-    cXyz* pNormalBack = getNormalBack();
-    for (int i = 0; i < 36; pNormal++, pNormalBack++, i++) {
-        pNormalBack->set(-pNormal->x, -pNormal->y, -pNormal->z);
-    }
-}
 
 /* 80BEEDE4-80BEEF74 0003E4 0190+00 1/1 0/0 0/0 .text            execute__12FlagCloth2_cFv */
 void FlagCloth2_c::execute() {
@@ -391,7 +467,7 @@ int daObjFlag3_c::create() {
     return rv;
 }
 
-void daObjFlag3_c::initBaseMtx() {
+inline void daObjFlag3_c::initBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mModel->setBaseTRMtx(mDoMtx_stack_c::get());
     fopAcM_SetMtx(this, mModel->getBaseTRMtx());
@@ -411,7 +487,7 @@ void daObjFlag3_c::create_init() {
     mFlagCloth.setGravity(attr().mGravity);
     mFlagCloth.setTornado(attr().mTornado);
     initBaseMtx();
-    
+
     #ifdef DEBUG
     M_hio.ct();
     #endif
@@ -442,90 +518,13 @@ void FlagCloth2_c::initFlagPos(cXyz* param_0, fopAc_ac_c* param_1) {
         dVar7 += 60.0f;
         dVar8 = 0.0f;
     }
-    
+
     cXyz* pNormal = getNormal();
     for (int i = 0; i < 36; i++, pNormal++) {
         calcFlagNormal(pNormal, i);
     }
     calcFlagNormalBack();
     initTexCoord();
-}
-
-/* 80BF00A0-80BF0434 0016A0 0394+00 1/0 0/0 0/0 .text            draw__12FlagCloth2_cFv */
-void FlagCloth2_c::draw() {
-    j3dSys.reinitGX();
-    GXSetNumIndStages(0);
-    dKy_setLight_again();
-    dKy_GxFog_tevstr_set(&mTevStr);
-    dKy_setLight_mine(&mTevStr);
-    g_env_light.settingTevStruct(0x10, mpFlagPosition, &mTevStr);
-    GXClearVtxDesc();
-    GXSetVtxDesc(GX_VA_POS, GX_INDEX8);
-    GXSetVtxDesc(GX_VA_NRM, GX_INDEX8);
-    GXSetVtxDesc(GX_VA_TEX0, GX_INDEX8);
-    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
-    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_NRM, GX_CLR_RGB, GX_F32, 0);
-    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_F32, 0);
-    GXSetArray(GX_VA_POS, getPos(), sizeof(cXyz));
-    GXSetArray(GX_VA_NRM, getNormal(), sizeof(cXyz));
-    GXSetArray(GX_VA_TEX0, mTexCoord, 8);
-    GXSetZCompLoc(GX_FALSE);
-    GXSetZMode(GX_TRUE, GX_LEQUAL, GX_TRUE);
-    GXLoadTexObj(&mTexObj, GX_TEXMAP0);
-    GXSetNumChans(1);
-    GXSetChanCtrl(GX_COLOR0, GX_TRUE, GX_SRC_REG, GX_SRC_REG, 0xff, GX_DF_CLAMP, GX_AF_SPOT);
-    GXSetNumTexGens(1);
-    GXSetTexCoordGen(GX_TEXCOORD0, GX_TG_MTX2x4, GX_TG_TEX0, 0x3c);
-    GXSetNumTevStages(1);
-    GXSetTevSwapMode(GX_TEVSTAGE0, GX_TEV_SWAP0, GX_TEV_SWAP0);
-    dKy_Global_amb_set(&mTevStr);
-    GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
-    GXSetTevColor(GX_TEVREG0, (GXColor){0, 0, 0, 0xff});
-    GXSetTevKColor(GX_KCOLOR0, (GXColor){0, 0, 0, 0xff});
-    GXSetTevKColorSel(GX_TEVSTAGE0, GX_TEV_KCSEL_K0);
-    GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_KONST, GX_CC_TEXC, GX_CC_RASC, GX_CC_C0);
-    GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_4, GX_TRUE, GX_TEVPREV);
-    GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_KONST, GX_CA_TEXA, GX_CA_ZERO);
-    GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
-    GXSetTevKAlphaSel(GX_TEVSTAGE0, GX_TEV_KASEL_K3_A);
-    GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_OR, GX_GREATER, 0);
-    Mtx viewModelMtx;
-    cMtx_concat(j3dSys.getViewMtx(), mModelMtx, viewModelMtx);
-    GXLoadPosMtxImm(viewModelMtx, 0);
-    GXLoadNrmMtxImm(viewModelMtx, 0);
-    GXSetClipMode(GX_CLIP_ENABLE);
-    GXSetCullMode(GX_CULL_BACK);
-
-    for (int i = 0; i < 5; i++) {
-        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 12);
-        for (int j = 0; j < 6; j++) {
-            GXPosition1x8(i + j * 6);
-            GXPosition1x8(i + j * 6);
-            GXTexCoord1x8(i + j * 6);
-            GXPosition1x8(i + j * 6 + 1);
-            GXPosition1x8(i + j * 6 + 1);
-            GXTexCoord1x8(i + j * 6 + 1);
-        }
-        GXEnd();
-    }
-
-    GXSetArray(GX_VA_NRM, getNormalBack(), sizeof(cXyz));
-    GXSetCullMode(GX_CULL_FRONT);
-
-    for (int i = 0; i < 5; i++) {
-        GXBegin(GX_TRIANGLESTRIP, GX_VTXFMT0, 12);
-        for (int j = 0; j < 6; j++) {
-            GXPosition1x8(i + j * 6);
-            GXPosition1x8(i + j * 6);
-            GXTexCoord1x8(i + j * 6);
-            GXPosition1x8(i + j * 6 + 1);
-            GXPosition1x8(i + j * 6 + 1);
-            GXTexCoord1x8(i + j * 6 + 1);
-        }
-        GXEnd();
-    }
-
-    J3DShape::resetVcdVatCache();
 }
 
 /* 80BF058C-80BF05AC -00001 0020+00 1/0 0/0 0/0 .data            l_daObjFlag3_Method */

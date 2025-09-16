@@ -60,13 +60,14 @@ static int daObj_Ito_Draw(obj_ito_class* i_this) {
 
 /* 8047B504-8047B9A4 000304 04A0+00 1/1 0/0 0/0 .text cut_line_calc__FP13obj_ito_classP5ito_si */
 static void cut_line_calc(obj_ito_class* i_this, ito_s* param_2, int param_3) {
-    // NONMATCHING
+    int i;
     fopAc_ac_c* a_this = &i_this->actor;
     obj_gm_class* actor_p = (obj_gm_class*)fopAcM_SearchByID(a_this->parentActorID);
     dBgS_GndChk gnd_chk;
+    Vec i_pos;
     cXyz sp104, sp110;
     cXyz* pos = param_2->mLineMat.getPos(param_3);
-    f32* pfVar1 = &param_2->field_0x1c[param_3 * 20] + 1;
+    f32* pfVar1 = &param_2->field_0x1c[param_3][0] + 1;
     f32 fVar1 = param_2->field_0x254 - 30.0f;
     cXyz sp11c(0.0f, 0.0f, 0.0f);
     cXyz sp128;
@@ -81,16 +82,16 @@ static void cut_line_calc(obj_ito_class* i_this, ito_s* param_2, int param_3) {
     param_2->field_0x244[param_3]++;
     cLib_addCalc0(&param_2->field_0x258, 0.1f, XREG_F(1) + 0.5f);
 
+    pos++;
     f32 fVar2 = 0.0f;
     f32 fVar3 = 0.0f;
     BOOL bVar1 = false;
     cXyz sp140;
-    sp104.z = 0.0f;
-    sp104.y = 0.0f;
-    
+    sp104.y = sp104.z = 0.0f;
+
     if (actor_p != NULL && actor_p->field_0x60a == 1) {
         bVar1 = true;
-        cMtx_YrotS(*calc_mtx, actor_p->field_0x64c[param_3 * (hREG_S(3) + 18000)]);
+        cMtx_YrotS(*calc_mtx, actor_p->field_0x64c[0] + param_3 * (hREG_S(3) + 18000));
         sp104.x = hREG_F(8) + 2.0f;
         MtxPosition(&sp104, &sp140);
     }
@@ -98,8 +99,7 @@ static void cut_line_calc(obj_ito_class* i_this, ito_s* param_2, int param_3) {
     sp104.x = 0.0f;
     sp104.z = param_2->field_0x250 * (1.0f - param_3 * 0.03f);
 
-    cXyz* pcVar1;
-    for (int i = 1; pcVar1 = pos + 1, i < 20; i++, pfVar1++, pos = pcVar1) {
+    for (i = 1; i < 20; i++, pos++, pfVar1++) {
         sp134.x = param_2->field_0x258 * cM_ssin((XREG_S(0) + 2500) * param_2->field_0x244[param_3] + i * (XREG_S(1) + 8000));
         sp134.z = param_2->field_0x258 * cM_ssin((XREG_S(2) + 2000) * param_2->field_0x244[param_3] + i * (XREG_S(3) + 7000));
 
@@ -108,32 +108,33 @@ static void cut_line_calc(obj_ito_class* i_this, ito_s* param_2, int param_3) {
             fVar2 = sp140.z * cM_ssin(i * (hREG_S(2) + 4000));
         }
 
-        sp128 = sp11c * (16 - i);
-        f32 fVar4 = fVar3 + sp128.x + sp134.x + (pcVar1->x - pos->x);
-        f32 fVar5 = fVar2 + sp128.z + sp134.z + (pos[1].z - pos->z);
-        f32 fVar6 = sp128.y + pos[1].y + fVar1;
+        sp128 = sp11c * (21 - i);
+        f32 var_f26;
+        f32 var_f31 = pos[0].x - pos[-1].x + sp134.x + sp128.x + fVar3;
+        f32 var_f30 = pos[0].z - pos[-1].z + sp134.z + sp128.z + fVar2;
+        f32 var_f29 = pos[0].y + fVar1 + sp128.y;
 
-        if (fVar6 < *pfVar1) {
-            fVar6 = *pfVar1;
+        if (var_f29 < *pfVar1) {
+            var_f29 = *pfVar1;
         }
 
-        f32 fVar7 = pos->y;
+        var_f26 = var_f29 - pos[-1].y;
 
-        cMtx_YrotS(*calc_mtx, cM_atan2s(fVar4, fVar5));
-        cMtx_XrotM(*calc_mtx, -cM_atan2s(fVar6 * fVar7, JMAFastSqrt(fVar4 * fVar4 + fVar5 * fVar5)));
+        cMtx_YrotS(*calc_mtx, cM_atan2s(var_f31, var_f30));
+        cMtx_XrotM(*calc_mtx, -cM_atan2s(var_f26, JMAFastSqrt(var_f31 * var_f31 + var_f30 * var_f30)));
         MtxPosition(&sp104, &sp110);
-        pcVar1->x = pos->x + sp110.x;
-        pos[1].y = pos->y + sp110.y;
-        pos[1].z = pos->z + sp110.z;
+        pos[0].x = pos[-1].x + sp110.x;
+        pos[0].y = pos[-1].y + sp110.y;
+        pos[0].z = pos[-1].z + sp110.z;
 
         if ((i_this->field_0x60c + i & 15) == 0) {
-            Vec* i_pos = pcVar1;
-            i_pos->y += 200.0f;
-            gnd_chk.SetPos(i_pos);
+            i_pos = pos[0];
+            i_pos.y += 200.0f;
+            gnd_chk.SetPos(&i_pos);
             *pfVar1 = dComIfG_Bgsp().GroundCross(&gnd_chk) + 5.0f;
 
-            if (*pfVar1 - pos[1].y > 200.0f) {
-                *pfVar1 = pos[1].y;
+            if (pfVar1[0] - pos[0].y > 200.0f) {
+                pfVar1[0] = pos[0].y;
             }
         }
     }
@@ -141,7 +142,6 @@ static void cut_line_calc(obj_ito_class* i_this, ito_s* param_2, int param_3) {
 
 /* 8047B9E0-8047BAF8 0007E0 0118+00 1/1 0/0 0/0 .text            cut_line__FP13obj_ito_class */
 static void cut_line(obj_ito_class* i_this) {
-    // NONMATCHING
     fopAc_ac_c* a_this = &i_this->actor;
 
     obj_gm_class* actor_p = (obj_gm_class*)fopAcM_SearchByID(a_this->parentActorID);
@@ -215,12 +215,11 @@ static void cut_set(obj_ito_class* i_this, int param_2) {
 
 /* 8047BF8C-8047C034 000D8C 00A8+00 1/1 0/0 0/0 .text            ito_end__FP5ito_s */
 static void ito_end(ito_s* i_this) {
-    // NONMATCHING
     cLib_addCalc0(&i_this->field_0x250, 1.0f, 1.0f);
 
     for (int i = 0; i < 6; i++) {
         cXyz* pcVar1 = i_this->mLineMat.getPos(i);
-        f32* pfVar1 = &i_this->field_0x1c[i * 20];
+        f32* pfVar1 = &i_this->field_0x1c[i][0];
 
         for (int j = 0; j < 20; j++, pcVar1++, pfVar1++) {
             pcVar1->y -= 10.0f;
@@ -234,7 +233,6 @@ static void ito_end(ito_s* i_this) {
 
 /* 8047C034-8047CEE4 000E34 0EB0+00 1/1 0/0 0/0 .text            action__FP13obj_ito_class */
 static void action(obj_ito_class* i_this) {
-    // NONMATCHING
     fopAc_ac_c* a_this = (fopAc_ac_c*)&i_this->actor;
     obj_gm_class* actor_p = (obj_gm_class*)fopAcM_SearchByID(a_this->parentActorID);
     if (actor_p == NULL) {
@@ -271,7 +269,7 @@ static void action(obj_ito_class* i_this) {
         }
 
         s16 sVar1 = -cM_atan2s(spe8.y, spe8.z);
-        s16 sVar2 = cM_atan2s(spe8.x, JMAFastSqrt(spe8.y * spe8.y + spe8.z * spe8.z));
+        s32 sVar2 = cM_atan2s(spe8.x, JMAFastSqrt(spe8.y * spe8.y + spe8.z * spe8.z));
         mDoMtx_stack_c::transS(a_this->current.pos.x, a_this->current.pos.y, a_this->current.pos.z);
         mDoMtx_stack_c::XrotM(sVar1);
         mDoMtx_stack_c::YrotM(sVar2);
@@ -300,6 +298,7 @@ static void action(obj_ito_class* i_this) {
         i_this->field_0x574[1]->setBaseTRMtx(mDoMtx_stack_c::get());
 
         if (i_this->field_0x1509 != 0) {
+            cXyz sp17c = i_this->field_0x14f8;
             i_this->field_0x14f8 = a_this->current.pos + ((i_this->field_0x618 - a_this->current.pos) * i_this->field_0x1504);
 
             if (i_this->field_0x1508 == 0) {
@@ -342,8 +341,9 @@ static void action(obj_ito_class* i_this) {
         dComIfG_Ccsp()->Set(&i_this->field_0x678[i]);
 
         if (i_this->field_0x678[i].ChkCoHit()) {
-            if (actor_p != NULL && i_this->field_0x678[i].GetCoHitObj()->GetAc() != actor_p) {
-                actor_p->field_0xae4 |= 4;
+            fopAc_ac_c* var_r25 = i_this->field_0x678[i].GetCoHitObj()->GetAc();
+            if (actor_p != NULL && var_r25 != actor_p) {
+                actor_p->field_0xae4 |= 0x4;
             }
         }
     }
@@ -362,18 +362,19 @@ static void action(obj_ito_class* i_this) {
                 atInfo.mpCollider = i_this->field_0x678[i].GetTgHitObj();
                 at_power_check(&atInfo);
 
-                if (atInfo.mAttackPower == 0 && !atInfo.mpCollider->ChkAtType(AT_TYPE_BOOMERANG) && !atInfo.mpCollider->ChkAtType(AT_TYPE_HOOKSHOT)) {
+                if (atInfo.mAttackPower != 0 ||
+                    atInfo.mpCollider->ChkAtType(AT_TYPE_BOOMERANG) ||
+                    atInfo.mpCollider->ChkAtType(AT_TYPE_HOOKSHOT) ||
+                    i_this->field_0x678[i].GetTgHitGObj()->GetAtMtrl() == 1) {
                     if (i_this->field_0x678[i].GetTgHitGObj()->GetAtMtrl() == 1) {
-                        if (i_this->field_0x678[i].GetTgHitGObj()->GetAtMtrl() == 1) {
-                            i_this->field_0x1509 = 1;
-                            i_this->field_0x150a = i + 1;
-                        } else {
-                            iVar1 = i + 1;
-                        }
+                        i_this->field_0x1509 = 1;
+                        i_this->field_0x150a = i + 1;
                     } else {
-                        if (actor_p != NULL) {
-                            actor_p->field_0xae4 |= 4;
-                        }
+                        iVar1 = i + 1;
+                    }
+                } else {
+                    if (actor_p != NULL) {
+                        actor_p->field_0xae4 |= 4;
                     }
                 }
                 break;
@@ -433,19 +434,21 @@ static void action(obj_ito_class* i_this) {
                 cMtx_YrotS(*calc_mtx, a_this->current.angle.y);
                 cMtx_XrotM(*calc_mtx, a_this->current.angle.x);
 
+                cXyz* pcVar1;
+                s16 sVar5;
                 s16 sVar3 = 0;
                 s16 sVar4 = 0;
+                cXyz* pcVar2;
                 for (int i = 0; i < 6; i++) {
-                    cXyz* pcVar1 = i_this->field_0x103c.mLineMat.getPos(i);
+                    pcVar1 = i_this->field_0x103c.mLineMat.getPos(i);
 
-                    cXyz* pcVar2;
                     if (i_this->field_0x570 == 0) {
-                        pcVar2 = actor_p->field_0x684;
+                        pcVar2 = &actor_p->field_0x684[i];
                     } else {
-                        pcVar2 = actor_p->field_0x6cc;
+                        pcVar2 = &actor_p->field_0x6cc[i];
                     }
-                    pcVar2 += i;
 
+                    cXyz sp10c;
                     if (i_this->field_0x610 == 0) {
                         cXyz sp118, sp124;
 
@@ -469,10 +472,10 @@ static void action(obj_ito_class* i_this) {
                         }
                     }
 
-                    cXyz sp10c = (i_this->field_0x103c.field_0x1fc[i] - *pcVar2) * 0.05263158f;
+                    sp10c = (i_this->field_0x103c.field_0x1fc[i] - *pcVar2) * 0.05263158f;
                     f32 fVar1 = (TREG_F(9) + 20.0f) * a_this->scale.x;
                     f32 fVar2 = fVar1 * ((TREG_F(14) + 1.0f + 1.0f) / 19.0f);
-                    s16 sVar5 = TREG_S(7) + i * 0x2AAA + 22000;
+                    sVar5 = TREG_S(7) + i * 0x2AAA + 22000;
 
                     if (actor_p != NULL) {
                         sVar3 = actor_p->field_0x64c[0];
@@ -481,7 +484,7 @@ static void action(obj_ito_class* i_this) {
                     spe8.x = 0.0f;
                     spe8.y = 0.0f;
 
-                    for (int j = 0; j < 20; j++) {
+                    for (int j = 0; j < 20; j++, pcVar1++) {
                         spe8.z = fVar1;
                         MtxPush();
                         cMtx_YrotM(*calc_mtx, sVar5 + sVar3);
@@ -499,8 +502,6 @@ static void action(obj_ito_class* i_this) {
                                 *i_this->field_0x1298.mLineMat.getPos(i) = *pcVar1;
                             }
                         }
-
-                        pcVar1++;
                     }
                 }
 
@@ -562,7 +563,6 @@ static int daObj_Ito_Delete(obj_ito_class* i_this) {
 
 /* 8047D024-8047D1D8 001E24 01B4+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 static int useHeapInit(fopAc_ac_c* a_this) {
-    // NONMATCHING
     obj_ito_class* i_this = (obj_ito_class*)a_this;
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("OBJ_ITO", 3);
@@ -584,8 +584,9 @@ static int useHeapInit(fopAc_ac_c* a_this) {
         return 0;
     }
 
+    f32* pfVar1;
     for (int i = 0; i < 6; i++) {
-        f32* pfVar1 = i_this->field_0x103c.mLineMat.getSize(i);
+        pfVar1 = i_this->field_0x103c.mLineMat.getSize(i);
         f32 fVar1 = cM_rndF(0.3f) + 0.4f;
         for (int j = 0; j < 20; j++, pfVar1++) {
             *pfVar1 = fVar1;
@@ -666,7 +667,7 @@ static cPhs__Step daObj_Ito_Create(fopAc_ac_c* a_this) {
         a_this->scale.x = obj_size[i_this->field_0x571];
 
         if (fopAcM_GetRoomNo(a_this) == 4) {
-            i_this->field_0x618.set(-5347.0f, hREG_F(1) + 4520.0f + 400.0f, -2342.0f);
+            i_this->field_0x618.set(-5374.0f, hREG_F(1) + 4520.0f + 400.0f, -2342.0f);
         } else {
             cXyz sp9c, spa8;
             cMtx_YrotS(*calc_mtx, a_this->current.angle.y);

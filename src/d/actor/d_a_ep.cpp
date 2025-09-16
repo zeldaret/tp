@@ -5,10 +5,11 @@
 #include "d/dolzel_rel.h"
 
 #include "d/actor/d_a_ep.h"
-#include "d/d_com_inf_game.h"
-#include "m_Do/m_Do_lib.h"
+#include "d/actor/d_a_player.h"
 #include "d/d_a_obj.h"
+#include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
+#include "m_Do/m_Do_lib.h"
 
 /* 804681F8-804682F8 000078 0100+00 1/1 0/0 0/0 .text            hahen_draw__FP8ep_class */
 static void hahen_draw(ep_class* i_this) {
@@ -280,22 +281,21 @@ static void hahen_cast(ep_class* i_this, ep_hahen_s* hahen_s) {
 
 /* 804690F8-80469568 000F78 0470+00 1/1 0/0 0/0 .text            hahen_move__FP8ep_class */
 static void hahen_move(ep_class* i_this) {
-    // NONMATCHING - equivalent in debug....
     fopAc_ac_c* a_this = i_this;
-    fopAc_ac_c* player = dComIfGp_getPlayer(0);
-    dBgS_LinChk dStack_cc;
     ep_hahen_s* epHahenS;
+    daPy_py_c* player = static_cast<daPy_py_c*>(dComIfGp_getPlayer(0));
+    dBgS_LinChk dStack_cc;
 
     if (!fopAcM_checkCarryNow(a_this)) {
         f32 fVar1 = 50.0f;
         s8 bVar2 = false;
         cXyz local_d8;
         for (int iters = 0; iters < 10; iters++) {
-            epHahenS = i_this->mHahen;
+            epHahenS = static_cast<ep_hahen_s*>(i_this->mHahen);
             for (int j = 0; j < 6; j++, epHahenS++) {
                 local_d8 = player->current.pos - epHahenS->field_0x4;
                 if (local_d8.abs() < fVar1) {
-                    cLib_onBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_ETC_e);
+                    cLib_onBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
                     a_this->current.pos = epHahenS->field_0x4;
                     a_this->attention_info.position = a_this->eyePos = a_this->current.pos;
                     a_this->current.angle = a_this->shape_angle = epHahenS->field_0x28;
@@ -313,7 +313,7 @@ static void hahen_move(ep_class* i_this) {
             fVar1 += 20.0f;
         }
     } else {
-        cLib_offBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_ETC_e);
+        cLib_offBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_CARRY_e);
         i_this->mHahen[i_this->field_0xa78].field_0x97 =  3;
         i_this->mHahen[i_this->field_0xa78].field_0x4 = a_this->current.pos;
         i_this->mHahen[i_this->field_0xa78].field_0x28 = a_this->shape_angle;
@@ -325,7 +325,7 @@ static void hahen_move(ep_class* i_this) {
             if (epHahenS->field_0x98) {
                 --epHahenS->field_0x98;
             }
-        
+
             if (i_this->field_0xa79 == 3) {
                 if (epHahenS->field_0x97 == 1) {
                     hahen_normal(i_this, epHahenS);
@@ -819,10 +819,10 @@ static int daEp_CreateHeap(fopAc_ac_c* a_this) {
     // NONMATCHING - equiv in debug
     ep_class* i_this = (ep_class*)a_this;
 
-    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Ep", model_d[i_this->field_0xa5a]);
+    void* modelData = dComIfG_getObjectRes("Ep", model_d[i_this->field_0xa5a]);
     JUT_ASSERT(0x855, modelData != 0);
 
-    i_this->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+    i_this->mpModel = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
     if (i_this->mpModel == NULL) {
         return 0;
     }
@@ -830,11 +830,11 @@ static int daEp_CreateHeap(fopAc_ac_c* a_this) {
     MtxScale(0.0f, 0.0f, 0.0f, 0);
     i_this->mpModel->setBaseTRMtx(*calc_mtx);
 
-    modelData = (J3DModelData*)dComIfG_getObjectRes("Ep", 7);
+    modelData = dComIfG_getObjectRes("Ep", 7);
     JUT_ASSERT(0x884, modelData != 0);
 
     for (int i = 0; i < 6; i++) {
-        i_this->mHahen[i].mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+        i_this->mHahen[i].mpModel = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
         if (i_this->mHahen[i].mpModel == NULL) {
             return 0;
         }

@@ -7,25 +7,17 @@
 
 #include "d/actor/d_a_npc_ks.h"
 #include "d/actor/d_a_obj_kago.h"
-#include "d/d_cc_d.h"
 #include "d/d_camera.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_bomb.h"
-#include "d/actor/d_a_obj_so.h"
 #include "d/actor/d_a_boomerang.h"
-#include "d/d_stage.h"
-#include "d/actor/d_a_obj_sw.h"
 #include "d/actor/d_a_obj_pillar.h"
-#include "m_Do/m_Do_controller_pad.h"
 #include "c/c_damagereaction.h"
 #include "d/actor/d_a_e_fs.h"
 #include "d/actor/d_a_obj_brg.h"
 #include "d/actor/d_a_midna.h"
-#include "JSystem/JUtility/JUTReport.h"
 #include "d/d_meter2_info.h"
-#include "cmath.h"
 #include "d/actor/d_a_e_oc.h"
-#include "d/d_stage.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/d_s_play.h"
 #include "f_op/f_op_camera_mng.h"
@@ -3343,7 +3335,7 @@ static void demo_camera(npc_ks_class* i_this) {
             // fallthrough
         case 361:
             sp44.set(-36540.0f, 335.0f, -20870.0f);
-            daPy_getPlayerActorClass()->setPlayerPosAndAngle(&sp44, 0xffff8000, 0);
+            daPy_getPlayerActorClass()->setPlayerPosAndAngle(&sp44, -32768, 0);
             if (i_this->field_0xb44 >= 105) {
                 if (i_this->field_0xb44 == 105) {
                     i_this->mMsgFlow.init(a_this, 116, 0, NULL);
@@ -6734,7 +6726,7 @@ static int daNpc_Ks_Execute(npc_ks_class* i_this) {
             mDoMtx_stack_c::ZrotM(0);
             
             basket_p->setMtx(mDoMtx_stack_c::get());
-            if (i_this->fopAcM_checkHawkCarryNow(basket_p) != 0) {
+            if (fopAcM_checkHawkCarryNow(basket_p) != 0) {
                 anm_init(i_this, 39, 5.0f, 2, 1.0f);
                 i_this->mSound.startCreatureVoice(Z2SE_KOSARU_V_JUMP_SURPRISE, -1);
             }
@@ -7262,7 +7254,7 @@ static BOOL start_check(npc_ks_class* i_this) {
         fopAcM_setStageLayer(a_this);
         if (fopAcM_GetRoomNo(a_this) == 1) {
             f32 x_pos = 6836.0f - player->current.pos.x;
-            f32 y_pos = 2585.0f - player->current.pos.z;
+            f32 y_pos = 3585.0f - player->current.pos.z;
             if (JMAFastSqrt(x_pos * x_pos + y_pos * y_pos) < 500.0f) {
                 a_this->home.pos.set(7025.0f, 3355.0f, 4500.0f);
                 a_this->home.angle.y = -0x7343;

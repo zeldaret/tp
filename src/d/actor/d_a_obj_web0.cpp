@@ -9,7 +9,7 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_bg_w.h"
-#include "dol2asm.h"
+#include "d/d_s_play.h"
 #include "f_op/f_op_actor_mng.h"
 #include "global.h"
 
@@ -74,6 +74,8 @@ static void damage_check(obj_web0_class* i_this) {
 /* 80D34794-80D34B24 000354 0390+00 2/1 0/0 0/0 .text daObj_Web0_Execute__FP14obj_web0_class */
 // NONMATCHING - reg alloc
 static int daObj_Web0_Execute(obj_web0_class* i_this) {
+    u32 sp0C;
+    s16 sp08;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
 
     i_this->field_0x57c++;
@@ -90,10 +92,10 @@ static int daObj_Web0_Execute(obj_web0_class* i_this) {
 
     if (i_this->mDeleteTimer != 0) {
         if (i_this->mDeleteTimer == 1) {
-            cXyz sp30(i_this->scale);
-            sp30.z = 1.0f;
+            cXyz sp20(i_this->scale);
+            sp20.z = 1.0f;
 
-            dComIfGp_particle_set(0x840C, &i_this->current.pos, &i_this->shape_angle, &sp30);
+            dComIfGp_particle_set(0x840C, &i_this->current.pos, &i_this->shape_angle, &sp20);
             i_this->mpBrk->setPlaySpeed(1.0f);
         } else if (i_this->mDeleteTimer == 41) {
             i_this->mpBrk->setPlaySpeed(1.0f);
@@ -102,7 +104,8 @@ static int daObj_Web0_Execute(obj_web0_class* i_this) {
         fopAcM_seStartLevel(i_this, Z2SE_OBJ_WEB_BURN, 0);
 
         if (i_this->mDeleteTimer == 40 || i_this->mDeleteTimer == 80) {
-            dComIfGs_onSwitch(fopAcM_GetParam(i_this) >> 0x18, fopAcM_GetRoomNo(i_this));
+            sp0C = (fopAcM_GetParam(i_this) & 0xff000000) >> 24;
+            dComIfGs_onSwitch(sp0C, fopAcM_GetRoomNo(i_this));
             fopAcM_delete(i_this);
         }
 
@@ -112,8 +115,8 @@ static int daObj_Web0_Execute(obj_web0_class* i_this) {
     }
 
     mDoMtx_stack_c::transS(i_this->current.pos.x, i_this->current.pos.y, i_this->current.pos.z);
-    mDoMtx_stack_c::YrotM(i_this->shape_angle.y);
-    mDoMtx_stack_c::ZrotM(i_this->shape_angle.z);
+    mDoMtx_stack_c::YrotM((s16)i_this->shape_angle.y);
+    mDoMtx_stack_c::ZrotM((s16)i_this->shape_angle.z);
     mDoMtx_stack_c::scaleM(i_this->scale.x, i_this->scale.y, i_this->scale.z);
 
     i_this->mpBrk->play();
@@ -123,33 +126,35 @@ static int daObj_Web0_Execute(obj_web0_class* i_this) {
         i_this->mReboundTimer--;
     }
 
-    i_this->scale.z = i_this->mReboundTimer * cM_ssin(i_this->mReboundTimer * 0x1900) * 0.075f;
+    i_this->scale.z =
+        i_this->mReboundTimer * cM_ssin(i_this->mReboundTimer * 0x1900) * (0.075f + TREG_F(0));
 
-    s16 tmp = (fopAcM_searchPlayerAngleY(i_this) + 0x4000) - i_this->shape_angle.y;
-    if (tmp < 0) {
+    s16 playerAngle = fopAcM_searchPlayerAngleY(i_this);
+    sp08 = (playerAngle + 0x4000) - i_this->shape_angle.y;
+    if (sp08 < 0) {
         mDoMtx_stack_c::YrotM(-0x8000);
     }
     MTXCopy(mDoMtx_stack_c::get(), i_this->mMtx);
 
     i_this->mpBgW->Move();
 
-    cXyz sp3C(i_this->current.pos);
+    cXyz sp14(i_this->current.pos);
     if (i_this->field_0x57c & 1) {
-        sp3C.y -= i_this->scale.x * 70.0f;
+        sp14.y -= i_this->scale.x * 70.0f;
     }
 
-    s16 svar9 = i_this->shape_angle.y;
-    if (tmp < 0) {
-        svar9 += -0x8000;
+    s16 var_r28 = i_this->shape_angle.y;
+    if (sp08 < 0) {
+        var_r28 += -0x8000;
     }
 
-    svar9 -= player->shape_angle.y;
-    if ((svar9 < 20000 && svar9 > -20000) || i_this->mHitTimer != 0) {
-        sp3C.x += 20000.0f;
+    var_r28 -= player->shape_angle.y;
+    if ((var_r28 < 20000 && var_r28 > -20000) || i_this->mHitTimer != 0) {
+        sp14.x += 20000.0f;
     }
 
-    i_this->mSphCc.SetC(sp3C);
-    i_this->mSphCc.SetR(i_this->scale.x * 150.0f);
+    i_this->mSphCc.SetC(sp14);
+    i_this->mSphCc.SetR((150.0f + TREG_F(2)) * i_this->scale.x);
 
     dComIfG_Ccsp()->Set(&i_this->mSphCc);
     return 1;

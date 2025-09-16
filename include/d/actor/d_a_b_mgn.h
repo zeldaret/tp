@@ -90,6 +90,7 @@ public:
     /* 8060F0D0 */ int create();
 
     bool isDown() { return field_0xb01 != 0; }
+    bool isAppear() { return field_0xb05 != 0; }
 
 private:
     /* 0x05AC */ request_of_phase_process_class mMgnPhase;

@@ -1025,6 +1025,10 @@ void daObjMovebox::Act_c::mode_afl() {
     daObj::posMoveF_stream(this, NULL, &cXyz::Zero, viscosity_resistance, inertia_resistance);
 }
 
+static void dummy() {
+    delete (dBgS_ObjGndChk*)NULL;
+}
+
 void daObjMovebox::Act_c::mode_proc_call() {
     typedef void (daObjMovebox::Act_c::*modeFunc)();
     static modeFunc mode_proc[] = {

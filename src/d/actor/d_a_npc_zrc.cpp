@@ -1147,10 +1147,11 @@ void daNpc_zrC_c::doNormalAction(BOOL param_0) {
 /* 80B90D48-80B9113C 003228 03F4+00 1/1 0/0 0/0 .text            doEvent__11daNpc_zrC_cFv */
 // NONMATCHING minor regalloc
 BOOL daNpc_zrC_c::doEvent() {
+    dEvent_manager_c* event_mgr = NULL;
     BOOL ret = 0;
 
     if (dComIfGp_event_runCheck() != FALSE) {
-        dEvent_manager_c& event_mgr = dComIfGp_getEventManager();
+        event_mgr = &dComIfGp_getEventManager();
         if ((eventInfo.checkCommandTalk() || eventInfo.checkCommandDemoAccrpt()) && !mSpeakEvent)
         {
             mOrderNewEvt = false;
@@ -1184,18 +1185,20 @@ BOOL daNpc_zrC_c::doEvent() {
                 mItemID = -1;
             }
 
-            int staff_id = event_mgr.getMyStaffId(l_myName, NULL, 0);
+            int staff_id = event_mgr->getMyStaffId(l_myName, NULL, 0);
             if (staff_id != -1) {
                 mStaffID = staff_id;
-                int act_idx = event_mgr.getMyActIdx(staff_id, mEvtCutNameList, 2, 0, 0);
-                if ((this->*mEvtCutList[act_idx])(staff_id)) {
-                    event_mgr.cutEnd(staff_id);
+                int evtCutNo = event_mgr->getMyActIdx(staff_id, mEvtCutNameList, 2, 0, 0);
+                JUT_ASSERT(0x8ca, (0 <= evtCutNo) && (evtCutNo < NUM_EVT_CUTS_e));
+                JUT_ASSERT(0x8cb, 0 != mEvtCutList[evtCutNo]);
+                if ((this->*mEvtCutList[evtCutNo])(staff_id)) {
+                    event_mgr->cutEnd(staff_id);
                 }
                 ret = TRUE;
             }
 
             if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1
-                                                     && event_mgr.endCheck(mEventIdx)) {
+                                                     && event_mgr->endCheck(mEventIdx)) {
                 dComIfGp_event_reset();
                 mOrderEvtNo = EVT_NONE;
                 mEventIdx = -1;
@@ -1203,8 +1206,8 @@ BOOL daNpc_zrC_c::doEvent() {
             }
         }
 
-        int msg_timer = mMsgTimer;
         int expression, motion;
+        int msg_timer = mMsgTimer;
         if (ctrlMsgAnm(expression, motion, this, FALSE)) {
             if (!field_0x9eb) {
                 setExpression(expression, -1.0f);

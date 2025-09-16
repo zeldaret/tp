@@ -1354,7 +1354,7 @@ int daNpcKasiKyu_c::cheer(int param_1) {
             fopAcM_SetSpeedF(this, 0.0f);
             mpMorf->setPlaySpeed(0.0f);
             mTalked = false;
-            field_0x1460 = 20;
+            field_0x1460 = 12;
             mMode = 1;
             break;
 
