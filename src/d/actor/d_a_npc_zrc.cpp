@@ -190,7 +190,7 @@ char* daNpc_zrC_c::mEvtCutNameList[2] = {
 /* 80B9397C-80B93994 000294 0018+00 1/2 0/0 0/0 .data            mEvtCutList__11daNpc_zrC_c */
 daNpc_zrC_c::EventFn daNpc_zrC_c::mEvtCutList[2] = {
     NULL,
-    &ECut_earringGet,
+    &daNpc_zrC_c::ECut_earringGet,
 };
 
 /* 80B8DC0C-80B8DD90 0000EC 0184+00 1/1 0/0 0/0 .text            __ct__11daNpc_zrC_cFv */
@@ -346,7 +346,7 @@ int daNpc_zrC_c::Execute() {
 /* 80B8E884-80B8E914 000D64 0090+00 1/1 0/0 0/0 .text            Draw__11daNpc_zrC_cFv */
 int daNpc_zrC_c::Draw() {
     mpMorf->getModel()->getModelData()->getMaterialNodePointer(1)->setMaterialAnm(mpMatAnm);
-    BOOL is_test = chkAction(&test);
+    BOOL is_test = chkAction(&daNpc_zrC_c::test);
     return draw(is_test, true, daNpc_zrC_Param_c::m.mShadowDepth, NULL, false);
 }
 
@@ -1098,20 +1098,20 @@ BOOL daNpc_zrC_c::setAction(ActionFn i_action) {
 BOOL daNpc_zrC_c::selectAction() {
     mpNextActionFn = NULL;
     if (daNpc_zrC_Param_c::m.mTest) {
-        mpNextActionFn = &test;
+        mpNextActionFn = &daNpc_zrC_c::test;
     } else {
         switch (mType) {
         case 1:
-            mpNextActionFn = &waitSick;
+            mpNextActionFn = &daNpc_zrC_c::waitSick;
             break;
         case 2:
-            mpNextActionFn = &waitPray;
+            mpNextActionFn = &daNpc_zrC_c::waitPray;
             break;
         case 3:
-            mpNextActionFn = &waitThrone;
+            mpNextActionFn = &daNpc_zrC_c::waitThrone;
             break;
         default:
-            mpNextActionFn = &wait;
+            mpNextActionFn = &daNpc_zrC_c::wait;
             break;
         }
     }
@@ -1157,7 +1157,7 @@ BOOL daNpc_zrC_c::doEvent() {
         }
 
         if (eventInfo.checkCommandTalk()) {
-            if (chkAction(&talk)) {
+            if (chkAction(&daNpc_zrC_c::talk)) {
                 (this->*mpActionFn)(NULL);
             } else if (dComIfGp_event_chkTalkXY()) {
                 if (dComIfGp_evmng_ChkPresentEnd()) {
@@ -1174,7 +1174,7 @@ BOOL daNpc_zrC_c::doEvent() {
                     }
                 }
             } else {
-                setAction(&talk);
+                setAction(&daNpc_zrC_c::talk);
             }
             ret = TRUE;
 
