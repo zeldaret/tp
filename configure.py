@@ -1839,7 +1839,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_gro"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_npc_grr", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(NonMatching, "d_a_npc_grs"),
-    ActorRel(NonMatching, "d_a_npc_grz", extra_cflags=[DANPCF_C_HACK]),
+    ActorRel(Equivalent, "d_a_npc_grz", extra_cflags=[DANPCF_C_HACK]), # weak func order
     ActorRel(NonMatching, "d_a_npc_guard"),
     ActorRel(NonMatching, "d_a_npc_gwolf"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_npc_hanjo"),

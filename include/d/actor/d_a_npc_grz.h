@@ -27,13 +27,6 @@ class daNpc_Grz_HIO_c : public mDoHIO_entry_c {
     /* 0x8 */ daNpc_Grz_HIOParam param;
 };
 
-class daNpc_Grz_Param_c {
-public:
-    /* 809EF188 */ virtual ~daNpc_Grz_Param_c() {}
-
-    static daNpc_Grz_HIOParam const m;
-};
-
 class daNpc_Grz_c : public daNpcF_c {
 public:
     typedef int (daNpc_Grz_c::*actionFunc)(void*);
@@ -44,12 +37,10 @@ public:
         /* 809E8658 */ ~daNpc_GrZ_prtclMngr_c();
         /* 809E8694 */ daNpc_GrZ_prtclMngr_c();
 
-        /* 0x00 */ s8 field_0x0;
-        /* 0x01 */ u8 field_0x1[0x4 - 0x1];
-        /* 0x04 */ cXyz field_0x4;
-        /* 0x10 */ csXyz field_0x10;
-        /* 0x16 */ u8 field_0x16[0x18 - 0x16];
-        /* 0x18 */ cXyz field_0x18;
+        /* 0x00 */ u8 field_0x0;
+        /* 0x04 */ cXyz mPos;
+        /* 0x10 */ csXyz mAngle;
+        /* 0x18 */ cXyz mScale;
         /* 0x24 */ dPaPo_c mPaPo;
     };
 
@@ -96,14 +87,14 @@ public:
     /* 809ECCA0 */ int waitWeak(void*);
     /* 809ECD50 */ int talk(void*);
     /* 809ECF88 */ int test(void*);
-    /* 809ED06C */ void setPrtcl();
+    /* 809ED06C */ int setPrtcl();
     /* 809ED18C */ int doWaitCut(int);
     /* 809ED228 */ int doRebirthCut(int);
     /* 809ED3D4 */ int doTalkStandCut(int);
     /* 809ED5EC */ int doGoOutCut(int);
     /* 809EDBA4 */ int doStoneSmashCut(int);
     /* 809EE5F0 */ int doStoneSmashSkipCut(int);
-    /* 809EF184 */ void adjustShapeAngle();
+    /* 809EF184 */ void adjustShapeAngle() {}
 
     u8 getPathNoFromParam() { return (fopAcM_GetParam(this) & 0xFF00) >> 8; }
 
@@ -127,23 +118,28 @@ private:
     /* 0x1A68 */ int field_0x1a68;
     /* 0x1A6C */ int field_0x1a6c;
     /* 0x1A70 */ int field_0x1a70;
-    /* 0x1A74 */ int field_0x1a74;
+    /* 0x1A74 */ int mMsgNo;
     /* 0x1A78 */ s16 mLookMode;
-    /* 0x1A7A */ s16 mMode;
+    /* 0x1A7A */ u16 mMode;
     /* 0x1A7C */ u8 mType;
-    /* 0x1A7D */ u8 field_0x1a7d[0x1a80 - 0x1a7d];
-    /* 0x1A80 */ int field_0x1a80;
+    /* 0x1A80 */ int mAnm;
     /* 0x1A84 */ int field_0x1a84;
     /* 0x1A88 */ int field_0x1a88;
-    /* 0x1A8C */ int field_0x1a8c;
+    /* 0x1A8C */ int mTimer;
     /* 0x1A90 */ J3DGXColorS10 mColor;
     /* 0x1A98 */ u8 mSwNo;
-    /* 0x1A99 */ u8 field_0x1a99[0x1a9c - 0x1a99];
     /* 0x1A9C */ int field_0x1a9c;
-    /* 0x1AA0 */ fpc_ProcID field_0x1aa0[3];
+    /* 0x1AA0 */ u32 field_0x1aa0[3];
     /* 0x1AAC */ daNpc_GrZ_prtclMngr_c mPrtclMngr[1];
 };
 
 STATIC_ASSERT(sizeof(daNpc_Grz_c) == 0x1b08);
+
+class daNpc_Grz_Param_c {
+public:
+    /* 809EF188 */ virtual ~daNpc_Grz_Param_c() {}
+
+    static daNpc_Grz_HIOParam const m;
+};
 
 #endif /* D_A_NPC_GRZ_H */

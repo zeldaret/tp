@@ -31,12 +31,12 @@ public:
 #define EVENT_LIST_NUM 11
 #endif
 
+enum Event_Cut_Nums {
+    /* 0x7 */ NUM_EVT_CUTS_e = 0x7,
+};
+
 class dEvent_manager_c {
 public:
-    enum Event_Cut_Nums {
-        /* 0x7 */ NUM_EVT_CUTS_e = 0x7,
-    };
-
     void* getSubstance(dEvDtData_c* p_data, int type);
     void setDbgData(const char*);
     dEvent_manager_c();

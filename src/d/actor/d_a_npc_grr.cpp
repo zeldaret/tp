@@ -1117,7 +1117,7 @@ BOOL daNpc_grR_c::doEvent() {
                 mStaffID = staffId;
                 int evtCutNo = eventManager.getMyActIdx(staffId, &mEvtCutNameList, 1, 0, 0);
 
-                JUT_ASSERT(1771, (0 <= evtCutNo) && (evtCutNo < dEvent_manager_c::NUM_EVT_CUTS_e));
+                JUT_ASSERT(1771, (0 <= evtCutNo) && (evtCutNo < NUM_EVT_CUTS_e));
                 JUT_ASSERT(1772, 0 != mEvtCutList[evtCutNo]);
 
                 if ((this->*mEvtCutList[evtCutNo])(staffId)) {

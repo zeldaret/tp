@@ -24,8 +24,12 @@ public:
     /* 80C151A4 */ void Draw();
     /* 80C15248 */ void Delete();
 
+    void setSmashFlag(u8 i_smashFlag) { mSmashFlag = i_smashFlag; }
+
 private:
-    /* 0x568 */ u8 field_0x568[0x804 - 0x568];
+    /* 0x568 */ u8 field_0x568[0x801 - 0x568];
+    /* 0x801 */ u8 mSmashFlag;
+    /* 0x802 */ u8 field_0x802[0x804 - 0x802];
 };
 
 STATIC_ASSERT(sizeof(daObjGrzRock_c) == 0x804);
