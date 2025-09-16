@@ -2111,11 +2111,6 @@ static int daNpc_Aru_IsDelete(void* a_this) {
     return 1;
 }
 
-// /* 80957604-8095764C 005F64 0048+00 2/1 0/0 0/0 .text            __dt__17daNpc_Aru_Param_cFv */
-// daNpc_Aru_Param_c::~daNpc_Aru_Param_c() {
-//     // NONMATCHING
-// }
-
 AUDIO_INSTANCES;
 
 /* 80957F4C-80957F6C -00001 0020+00 1/0 0/0 0/0 .data            daNpc_Aru_MethodTable */
