@@ -40,12 +40,12 @@ public:
     /* 806D4288 */ void dead_wait();
     /* 806D4468 */ void core_wait();
     /* 806D462C */ void core_escape();
-    /* 806D4D1C */ void chaseCheck();
+    /* 806D4D1C */ BOOL chaseCheck();
     /* 806D4EF4 */ void normal_wait();
     /* 806D545C */ void normal_chase();
     /* 806D578C */ void mtx_set();
     /* 806D59D0 */ void cc_set();
-    /* 806D5D54 */ void draw();
+    /* 806D5D54 */ int draw();
     /* 806D631C */ void damage_check();
     /* 806D6708 */ void execute();
     /* 806D6980 */ void _delete();
@@ -54,11 +54,12 @@ public:
 
     void InstantKill() { field_0xa76 = 1; }
     u8 CheckDeath() { return field_0xa68; }
-    
     void MoveStart(u8 param_1) {
         field_0xa71 = 1;
         field_0xa5e = param_1;
     }
+    BOOL checkAction(actionFunc action) { return mAction == action; }
+    BOOL checkOldAction(actionFunc action) { return mOldAction == action; }
 
 private:
     /* 0x5AC */ request_of_phase_process_class mPhase;
