@@ -225,22 +225,26 @@ SECTION_RODATA static f32 const lit_4060 = 300.0f;
 COMPILER_STRIP_GATE(0x806D79E0, &lit_4060);
 #pragma pop
 
-/* 806D7B34-806D7B38 000038 0004+00 2/3 0/0 0/0 .data l_hitActorID__22@unnamed@d_a_e_gm_cpp@ */
-SECTION_DATA static u32 data_806D7B34 = 0xFFFFFFFF;
+namespace {
+    /* 806D7B34-806D7B38 000038 0004+00 2/3 0/0 0/0 .data l_hitActorID__22@unnamed@d_a_e_gm_cpp@ */
+    static fpc_ProcID l_hitActorID = fpcM_ERROR_PROCESS_ID_e;
 
-/* 806D7B38-806D7B3C 00003C 0004+00 2/4 0/0 0/0 .data l_coreActorID__22@unnamed@d_a_e_gm_cpp@ */
-SECTION_DATA static u32 data_806D7B38 = 0xFFFFFFFF;
+    /* 806D7B38-806D7B3C 00003C 0004+00 2/4 0/0 0/0 .data l_coreActorID__22@unnamed@d_a_e_gm_cpp@ */
+    static fpc_ProcID l_coreActorID = fpcM_ERROR_PROCESS_ID_e;
 
-/* 806D7B3C-806D7B7C 000040 0040+00 0/1 0/0 0/0 .data cc_sph_src__22@unnamed@d_a_e_gm_cpp@ */
-#pragma push
-#pragma force_active on
-SECTION_DATA static u8 data_806D7B3C[64] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0D,
-    0xDA, 0xFB, 0xFD, 0xFF, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x75, 0x0B, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x41, 0xF0, 0x00, 0x00,
-};
-#pragma pop
+    /* 806D7B3C-806D7B7C 000040 0040+00 0/1 0/0 0/0 .data cc_sph_src__22@unnamed@d_a_e_gm_cpp@ */
+    static dCcD_SrcSph cc_sph_src = {
+        {
+            {0x0, {{AT_TYPE_CSTATUE_SWING, 0x1, 0xD}, {0xDAFBFDFF, 0x3}, 0x75}},
+            {dCcD_SE_HARD_BODY, 0, 0, 0, 0},
+            {dCcD_SE_NONE, 0, 0, 0, 2},
+            {0x0},
+        },
+        {
+            {{0.0f, 0.0f, 0.0f}, 30.0f},
+        }
+    };
+} // namespace
 
 /* 806D7B7C-806D7B88 -00001 000C+00 1/1 0/0 0/0 .data            @4075 */
 SECTION_DATA static void* lit_4075[3] = {
@@ -764,7 +768,7 @@ daE_GM_HIO_c::daE_GM_HIO_c() {
 }
 
 /* 806D12C8-806D136C 000148 00A4+00 16/16 0/0 0/0 .text setAction__8daE_GM_cFM8daE_GM_cFPCvPv_v */
-void daE_GM_c::setAction(void (daE_GM_c::*param_0)()) {
+void daE_GM_c::setAction(actionFunc action) {
     // NONMATCHING
 }
 
@@ -773,51 +777,46 @@ void daE_GM_c::setAction(void (daE_GM_c::*param_0)()) {
 SECTION_RODATA static f32 const lit_4100 = -1.0f;
 COMPILER_STRIP_GATE(0x806D79E4, &lit_4100);
 
-/* 806D7EB8-806D7EC4 000048 000C+00 0/1 0/0 0/0 .bss             @4050 */
-#pragma push
-#pragma force_active on
-static u8 lit_4050[12];
-#pragma pop
+// /* 806D7EB8-806D7EC4 000048 000C+00 0/1 0/0 0/0 .bss             @4050 */
+// #pragma push
+// #pragma force_active on
+// static u8 lit_4050[12];
+// #pragma pop
+static u8 l_initHIO;
 
 /* 806D7EC4-806D7EEC 000054 0028+00 5/8 0/0 0/0 .bss             l_HIO */
-static u8 l_HIO[40];
+static daE_GM_HIO_c l_HIO;
 
-/* 806D7EEC-806D7EF8 00007C 000C+00 0/1 0/0 0/0 .bss             @4061 */
-#pragma push
-#pragma force_active on
-static u8 lit_4061[12];
-#pragma pop
+// /* 806D7EEC-806D7EF8 00007C 000C+00 0/1 0/0 0/0 .bss             @4061 */
+// #pragma push
+// #pragma force_active on
+// static u8 lit_4061[12];
+// #pragma pop
 
-/* 806D7EF8-806D7F04 000088 000C+00 0/3 0/0 0/0 .bss             l_corePos__22@unnamed@d_a_e_gm_cpp@
- */
-#pragma push
-#pragma force_active on
-static u8 data_806D7EF8[12];
-#pragma pop
+namespace {
+    /* 806D7EF8-806D7F04 000088 000C+00 0/3 0/0 0/0 .bss             l_corePos__22@unnamed@d_a_e_gm_cpp@ */
+    static cXyz l_corePos(0.0f, 0.0f, 0.0f);
 
-/* 806D7F04-806D7F10 000094 000C+00 0/1 0/0 0/0 .bss             @4062 */
-#pragma push
-#pragma force_active on
-static u8 lit_4062[12];
-#pragma pop
+    // /* 806D7F04-806D7F10 000094 000C+00 0/1 0/0 0/0 .bss             @4062 */
+    // #pragma push
+    // #pragma force_active on
+    // static u8 lit_4062[12];
+    // #pragma pop
 
-/* 806D7F10-806D7F18 0000A0 0006+02 0/3 0/0 0/0 .bss l_coreAngle__22@unnamed@d_a_e_gm_cpp@ */
-#pragma push
-#pragma force_active on
-static u8 data_806D7F10[6 + 2 /* padding */];
-#pragma pop
+    /* 806D7F10-806D7F18 0000A0 0006+02 0/3 0/0 0/0 .bss             l_coreAngle__22@unnamed@d_a_e_gm_cpp@ */
+    static csXyz l_coreAngle;
 
-/* 806D7F18-806D7F1C 0000A8 0004+00 0/2 0/0 0/0 .bss l_coreSpeedF__22@unnamed@d_a_e_gm_cpp@ */
-#pragma push
-#pragma force_active on
-static u8 data_806D7F18[4];
-#pragma pop
+    /* 806D7F18-806D7F1C 0000A8 0004+00 0/2 0/0 0/0 .bss             l_coreSpeedF__22@unnamed@d_a_e_gm_cpp@ */
+    static f32 l_coreSpeedF;
+} // namespace
 
 /* 806D7F1C-806D7F20 -00001 0004+00 11/14 0/0 0/0 .bss             None */
 /* 806D7F1C 0002+00 data_806D7F1C None */
 /* 806D7F1E 0001+00 data_806D7F1E None */
 /* 806D7F1F 0001+00 data_806D7F1F None */
-static u8 struct_806D7F1C[4];
+static u8 struct_806D7F1C;
+
+static u8 lbl_186_bss_49;
 
 /* 806D136C-806D14E0 0001EC 0174+00 1/1 0/0 0/0 .text            action__8daE_GM_cFv */
 void daE_GM_c::action() {
@@ -1401,39 +1400,129 @@ void daE_GM_c::CreateHeap() {
 }
 
 /* 806D6CD0-806D6CF0 005B50 0020+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
-static void useHeapInit(fopAc_ac_c* param_0) {
+static int useHeapInit(fopAc_ac_c* a_this) {
     // NONMATCHING
 }
 
 /* ############################################################################################## */
 /* 806D7ADC-806D7AE0 00013C 0004+00 0/1 0/0 0/0 .rodata          l_damage_count */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u32 const l_damage_count = 0x01010103;
-COMPILER_STRIP_GATE(0x806D7ADC, &l_damage_count);
-#pragma pop
+static u8 const l_damage_count[4] = {1, 1, 1, 3};
 
 /* 806D7AE0-806D7AE8 000140 0008+00 0/1 0/0 0/0 .rodata          l_heapsize */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const l_heapsize[8] = {
-    0x31, 0x20, 0x31, 0x20, 0x21, 0xE0, 0x2D, 0xE0,
+static u32 const l_heapsize[4] = {
+    0x3120, 0x3120, 0x21E0, 0x2DE0,
 };
-COMPILER_STRIP_GATE(0x806D7AE0, &l_heapsize);
-#pragma pop
-
-/* 806D7AE8-806D7AF0 000148 0008+00 0/1 0/0 0/0 .rodata          @6321 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_6321[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x806D7AE8, &lit_6321);
-#pragma pop
 
 /* 806D6CF0-806D71F4 005B70 0504+00 1/1 0/0 0/0 .text            create__8daE_GM_cFv */
-void daE_GM_c::create() {
+cPhs__Step daE_GM_c::create() {
     // NONMATCHING
+    fopAcM_SetupActor(this, daE_GM_c);
+
+    arg0 = fopAcM_GetParam(this);
+    if (arg0 == 0xFF) {
+        arg0 = 0;
+    }
+
+    field_0xa73 = lbl_186_bss_49;
+    lbl_186_bss_49++;
+
+    if (arg0 == 2) {
+        mSwBit = (fopAcM_GetParam(this) & 0xFF00) >> 8;
+        if (mSwBit != 0xFF) {
+            if (dComIfGs_isSwitch(mSwBit, fopAcM_GetRoomNo(this))) {
+                OS_REPORT("E_gm やられ後なので再セットしません\n");
+                return cPhs_ERROR_e;
+            }
+        }
+
+        u8 uVar1 = (fopAcM_GetParam(this) & 0xFF0000) >> 16;
+        if (uVar1 == 0xFF) {
+            uVar1 = 10;
+        }
+
+        field_0xa54 = uVar1 * 100.0f;
+    }
+
+    cPhs__Step phase;
+    if (arg0 == 3) {
+        phase = (cPhs__Step)dComIfG_resLoad(&mPhase, "E_mg");
+    } else {
+        phase = (cPhs__Step)dComIfG_resLoad(&mPhase, "E_gm");
+    }
+
+    if (phase == cPhs_COMPLEATE_e) {
+        OS_REPORT("e_gm PARAM %x\n", fopAcM_GetParam(this));
+        OS_REPORT("e_gm or e_mg//////////////E_GM SET 1 !!\n");
+
+        if (!fopAcM_entrySolidHeap(this, useHeapInit, l_heapsize[arg0])) {
+            OS_REPORT("//////////////E_GM SET NON !!\n");
+            return cPhs_ERROR_e;
+        }
+
+        OS_REPORT("//////////////E_GM SET 2 !!\n");
+
+        if (l_initHIO == 0) {
+            l_initHIO = 1;
+            field_0xa77 = 1;
+            l_HIO.id = -1;
+        }
+
+        field_0xa10.setall(1.0f);
+        mSph.Set(cc_sph_src);
+        mSph.SetStts(&mStts);
+        mObjAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this), NULL, NULL);
+        mObjAcch.OnLineCheck();
+        mAcchCir.SetWall(scale.y * 30.0f, scale.x * 30.0f);
+
+        if (arg0 == 3) {
+            mStts.Init(0xFF, 0, this);
+            mSound.setEnemyName("E_mg");
+        } else {
+            mStts.Init(0x32, 0, this);
+            mSound.setEnemyName("E_gm");
+        }
+
+        mAtInfo.mpSound = &mSound;
+        health = 1;
+        field_0x560 = 1;
+        field_0xa74 = l_damage_count[arg0];
+        field_0xa48 = 255.0f;
+        field_0xa76 = 0;
+        fopAcM_OnStatus(this, 0);
+        attention_info.flags = fopAc_AttnFlag_BATTLE_e;
+
+        if (arg0 == 2) {
+            mSound.init(&current.pos, NULL, 2, 1);
+            fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x10000);
+            fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x4000);
+            setAction(&daE_GM_c::normal_wait);
+        } else if (arg0 == 3) {
+            mSound.init(&current.pos, &eyePos, 3, 1);
+
+            if (l_coreActorID == fpcM_ERROR_PROCESS_ID_e) {
+                l_coreActorID = fopAcM_GetID(this);
+            }
+
+            field_0xa68 = 0;
+            attention_info.flags = 0;
+            health = 100;
+            field_0x560 = 100;
+            setAction(&daE_GM_c::core_wait);
+        } else {
+            mSound.init(&current.pos, NULL, 2, 1);
+            fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x10000);
+            field_0xa50 = hREG_F(7) + 0.1f;
+            field_0xa66 = cM_rndFX(100.0f) + 1000.0f;
+            field_0xa64 = field_0xa66;
+            setAction(&daE_GM_c::egg_wait);
+        }
+
+        field_0xa75 = 1;
+        field_0x564 = 44;
+        daE_GM_Execute(this);
+    }
+
+    return phase;
 }
 
 /* 806D71F4-806D723C 006074 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGSphFv */
@@ -1477,10 +1566,10 @@ extern "C" void __dt__10cCcD_GSttsFv() {
     // NONMATCHING
 }
 
-/* 806D7428-806D7470 0062A8 0048+00 2/1 0/0 0/0 .text            __dt__12daE_GM_HIO_cFv */
-daE_GM_HIO_c::~daE_GM_HIO_c() {
-    // NONMATCHING
-}
+// /* 806D7428-806D7470 0062A8 0048+00 2/1 0/0 0/0 .text            __dt__12daE_GM_HIO_cFv */
+// daE_GM_HIO_c::~daE_GM_HIO_c() {
+//     // NONMATCHING
+// }
 
 /* 806D7470-806D74F0 0062F0 0080+00 0/0 1/0 0/0 .text            __sinit_d_a_e_gm_cpp */
 void __sinit_d_a_e_gm_cpp() {
