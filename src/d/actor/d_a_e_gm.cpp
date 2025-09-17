@@ -2178,35 +2178,32 @@ void daE_GM_c::damage_check() {
                 } else {
                     setAction(&daE_GM_c::core_damage);
                 }
-            } else if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_SHIELD_ATTACK) || mAtInfo.mpCollider->ChkAtType(AT_TYPE_40) || mAtInfo.mpCollider->ChkAtType(AT_TYPE_BOOMERANG)) {
+            } else if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_SHIELD_ATTACK) || mAtInfo.mpCollider->ChkAtType(AT_TYPE_40) ||
+                       mAtInfo.mpCollider->ChkAtType(AT_TYPE_BOOMERANG)) {
                 field_0xa1c.y = cLib_targetAngleY(&daPy_getPlayerActorClass()->current.pos, &current.pos);
                 speedF = cM_rndFX(5.0f) + 15.0f;
                 setAction(&daE_GM_c::rebound);
             } else if (mSph.GetTgHitObj()->ChkAtType(AT_TYPE_CSTATUE_BOSS_SWING)) {
                 setAction(&daE_GM_c::pechanko_damage);
-            } else {
-                if (field_0xa69 == 0) {
-                    setAction(&daE_GM_c::egg_damage);
-                } else if (field_0xa69 == 1) {
-                    if (mSph.GetTgHitObj()->ChkAtType(AT_TYPE_2000000)) {
-                        if (mAtInfo.mpActor != NULL) {
-                            field_0xa1c.y = cLib_targetAngleY(&mAtInfo.mpActor->current.pos, &current.pos);
-                        } else {
-                            field_0xa1c.y = mAtInfo.mHitDirection.y;
-                        }
+            } else if (field_0xa69 == 0) {
+                setAction(&daE_GM_c::egg_damage);
+            } else if (field_0xa69 == 1) {
+                if (mSph.GetTgHitObj()->ChkAtType(AT_TYPE_2000000)) {
+                    if (mAtInfo.mpActor != NULL) {
+                        field_0xa1c.y = cLib_targetAngleY(&mAtInfo.mpActor->current.pos, &current.pos);
                     } else {
-                        field_0xa1c.y = cLib_targetAngleY(&daPy_getPlayerActorClass()->current.pos, &current.pos);
+                        field_0xa1c.y = mAtInfo.mHitDirection.y;
                     }
-
-                    setAction(&daE_GM_c::damage);
+                } else {
+                    field_0xa1c.y = cLib_targetAngleY(&daPy_getPlayerActorClass()->current.pos, &current.pos);
                 }
+
+                setAction(&daE_GM_c::damage);
             }
-        } else {
-            if (checkAction(&daE_GM_c::walk) && mSph.ChkAtHit() && l_hitActorID == fpcM_ERROR_PROCESS_ID_e) {
-                l_hitActorID = fopAcM_GetID(this);
-                struct_806D7F1C = 10;
-                field_0xa72 = 10;
-            }
+        } else if (checkAction(&daE_GM_c::walk) && mSph.ChkAtHit() && l_hitActorID == fpcM_ERROR_PROCESS_ID_e) {
+            l_hitActorID = fopAcM_GetID(this);
+            struct_806D7F1C = 10;
+            field_0xa72 = 10;
         }
     }
 }
