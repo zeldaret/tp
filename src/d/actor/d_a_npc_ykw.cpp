@@ -408,21 +408,20 @@ f32 dummy_1f() {
 }
 
 /* 80B5F34C-80B5F5C8 00052C 027C+00 1/1 0/0 0/0 .text            CreateHeap__11daNpc_ykW_cFv */
-// NONMATCHING - regalloc
 int daNpc_ykW_c::CreateHeap() {
-    J3DModelData* modelData = NULL;
+    void* mdlData_p = NULL;
     J3DModel* model = NULL;
 
     int bmdDataIdx = 0;
     int arcNameIdx = l_bmdData[bmdDataIdx][1];
     int resIndex = l_bmdData[bmdDataIdx][0];
-    modelData = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[arcNameIdx], resIndex);
-    if (modelData == NULL) {
+    mdlData_p = dComIfG_getObjectRes(l_resNameList[arcNameIdx], resIndex);
+    if (mdlData_p == NULL) {
         return 0;
     }
 
     int temp1 = 0x11020284;
-    mpMorf[0] = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound,
+    mpMorf[0] = new mDoExt_McaMorfSO((J3DModelData*)mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound,
                                      0x80000, temp1);
 
     if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
@@ -434,8 +433,8 @@ int daNpc_ykW_c::CreateHeap() {
     }
 
     model = mpMorf[0]->getModel();
-    for (u16 i = 0; i < modelData->getJointNum(); i++) {
-        modelData->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
+    for (u16 i = 0; i < ((J3DModelData*)mdlData_p)->getJointNum(); i++) {
+        ((J3DModelData*)mdlData_p)->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
     model->setUserArea((uintptr_t)this);
 
@@ -992,7 +991,7 @@ void daNpc_ykW_c::afterMoved() {
 }
 
 /* 80B60F08-80B614D0 0020E8 05C8+00 1/0 0/0 0/0 .text            setAttnPos__11daNpc_ykW_cFv */
-// NONMATCHING - HIO load issue
+// NONMATCHING - HIO load issue, regalloc
 void daNpc_ykW_c::setAttnPos() {
     cXyz unkXyz1(0.0f, 50.0f, 0.0f);
     if (field_0x106a != 0) {
@@ -2790,7 +2789,6 @@ int daNpc_ykW_c::walk(void* param_0) {
 }
 
 /* 80B6591C-80B6640C 006AFC 0AF0+00 2/0 0/0 0/0 .text            race__11daNpc_ykW_cFPv */
-// NONMATCHING - multiple issues
 int daNpc_ykW_c::race(void* param_0) {
     int unkInt1;
     s16 targetAngleY;
@@ -2878,8 +2876,8 @@ int daNpc_ykW_c::race(void* param_0) {
                 field_0x106e = 0;
             }
 
-            do {
-                if (field_0x106e == 0) {
+            if (field_0x106e == 0) {
+                while (true) {
                     if (mPath.chkPassed1(current.pos, mPath.getNumPnts())) {
                         if (mPath.getArg0() == 0) {
                             mSound.startCreatureSound(Z2SE_YW_SNOBO_JUMP, 0, -1);
@@ -2890,7 +2888,11 @@ int daNpc_ykW_c::race(void* param_0) {
                             field_0x1064 = 1;
                             field_0x1065 = 1;
                             mMotionSeqMngr.setNo(32, -1.0f, 0, 0);
-                        } else if (field_0x106e != 0) {
+                        } else {
+                            if (field_0x106e == 0) {
+                                continue;
+                            }
+
                             if (!mStagger.checkStagger()) {
                                 mMotionSeqMngr.setNo(25, -1.0f, 0, 0);
                             }
@@ -2908,10 +2910,11 @@ int daNpc_ykW_c::race(void* param_0) {
                         idx = mPath.getIdx();
                         unkXyz1 = mPath.getPntPos(idx);
                     }
+                    break;
                 }
-            } while (field_0x1064 == 0);
+            }
 
-            if (field_0x106e == 0) {
+            if (field_0x1064 == 0 && field_0x106e == 0) {
                 targetAngleY = cLib_targetAngleY(&current.pos, &unkXyz1);
                 current.angle.y = targetAngleY;
                 cLib_addCalcAngleS2(&shape_angle.y, current.angle.y, 4, 0x200);
@@ -2935,20 +2938,20 @@ int daNpc_ykW_c::race(void* param_0) {
                 targetAngleY = -fopAcM_getPolygonAngle(mGndChk, (s16)(current.angle.y + 0x4000));
                 cLib_addCalcAngleS2(&mCurAngle.x, mGroundAngle, 6, 0x200);
                 cLib_addCalcAngleS2(&mCurAngle.z, targetAngleY, 6, 0x200);
-                unkInt1 = field_0x104c - field_0x1044.field_0x0;
+                int unkInt2 = field_0x104c - field_0x1044.field_0x0;
                 unkFloat1 = HIO_PARAM(this)->mSlidingSpeed * cM_scos(mGroundAngle);
                 if (mStagger.checkStagger()) {
                     unkFloat1 *= 0.0f;
                 } else {
-                    unkInt1 += HIO_PARAM(this)->mCompetParamA;
-                    unkInt1 = cLib_minMaxLimit<int>(unkInt1, 0, HIO_PARAM(this)->mCompetParamB);
-                    if (unkInt1 > 0) {
-                        unkFloat1 *= (f32)abs(unkInt1) * 0.1f * HIO_PARAM(this)->mCompetParamC + 1.0f;
+                    unkInt2 += HIO_PARAM(this)->mCompetParamA;
+                    unkInt2 = cLib_minMaxLimit<int>(unkInt2, 0, HIO_PARAM(this)->mCompetParamB);
+                    if (unkInt2 > 0) {
+                        unkFloat1 *= (f32)abs(unkInt2) * 0.1f * HIO_PARAM(this)->mCompetParamC + 1.0f;
                     }
                 }
                 cLib_chaseF(&speedF, unkFloat1, HIO_PARAM(this)->mSlidingAccel);
-                mSound.startCreatureSound(Z2SE_YW_SNOBO_RIDE, speedF, -1);
-                mSound.startCreatureVoice(Z2SE_YW_V_SNOBO_RIDING, -1);
+                mSound.startCreatureSoundLevel(Z2SE_YW_SNOBO_RIDE, speedF, -1);
+                mSound.startCreatureVoiceLevel(Z2SE_YW_V_SNOBO_RIDING, -1);
             }
         }
         attention_info.flags = 0;

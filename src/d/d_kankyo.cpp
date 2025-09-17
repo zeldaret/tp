@@ -3,10 +3,12 @@
 #include "d/d_kankyo.h"
 #include <dolphin.h>
 #include <dolphin/gf/GFPixel.h>
+
 #include "SSystem/SComponent/c_counter.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_kytag08.h"
 #include "d/actor/d_a_player.h"
+#include "d/d_debug_viewer.h"
 #include "d/d_kankyo_rain.h"
 #include "d/d_kankyo_static.h"
 #include "d/d_meter2_info.h"
@@ -3526,6 +3528,7 @@ void dScnKy_env_light_c::setLightTevColorType(J3DModelData*, dKy_tevstr_c*) {}
 // NONMATCHING - some minor issues with dKyd_maple_col_getp
 static void setLightTevColorType_MAJI_sub(J3DMaterial* material_p, dKy_tevstr_c* tevstr_p,
                                           int lightType) {
+    int i;
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
     MtxP view_mtx = j3dSys.getViewMtx();
     camera_class* camera = (camera_class*)dComIfGp_getCamera(0);
@@ -3597,7 +3600,7 @@ static void setLightTevColorType_MAJI_sub(J3DMaterial* material_p, dKy_tevstr_c*
 
         if (view_mtx != NULL) {
             if (lightType != 2) {
-                for (int i = 0; i < 6; i++) {
+                for (i = 0; i < 6; i++) {
                     material_p->setLight(i + 2, &tevstr_p->mLights[i]);
                 }
             } else if (g_env_light.fishing_hole_season >= 1 && g_env_light.fishing_hole_season <= 4)
@@ -3635,7 +3638,7 @@ static void setLightTevColorType_MAJI_sub(J3DMaterial* material_p, dKy_tevstr_c*
 
                 material_p->setAmbColor(0, &amb_col);
 
-                for (int i = 0; i < 6; i++) {
+                for (i = 0; i < 6; i++) {
                     if (i <= 1) {
                         J3DLightInfo* var_r28;
                         if (i == 0) {
@@ -3649,13 +3652,12 @@ static void setLightTevColorType_MAJI_sub(J3DMaterial* material_p, dKy_tevstr_c*
                             var_r28 = &kankyo->global_maple_col_change[i].light_obj.getLightInfo();
                         }
 
-                        color_RGB_class maple_color;
                         maple_color.r =
-                            dKyd_maple_col_getp()[(g_env_light.fishing_hole_season + (i * 4))].r;
+                            dKyd_maple_col_getp()[(g_env_light.fishing_hole_season - 1 + (i * 4))].r;
                         maple_color.g =
-                            dKyd_maple_col_getp()[(g_env_light.fishing_hole_season + (i * 4))].g;
+                            dKyd_maple_col_getp()[(g_env_light.fishing_hole_season - 1 + (i * 4))].g;
                         maple_color.b =
-                            dKyd_maple_col_getp()[(g_env_light.fishing_hole_season + (i * 4))].b;
+                            dKyd_maple_col_getp()[(g_env_light.fishing_hole_season - 1 + (i * 4))].b;
 
                         var_f31 = var_r28->mColor.r / 95.0f;
                         var_f31 *= var_f31;
@@ -4285,7 +4287,6 @@ BOOL dKy_lightswitch_check(stage_pure_lightvec_info_class* stage_light_info_p, c
 }
 
 /* 801A6278-801A6C20 1A0BB8 09A8+00 2/2 0/0 0/0 .text            dKy_setLight_nowroom_common__Fcf */
-// NONMATCHING - some issues with lightStatusPt loads
 void dKy_setLight_nowroom_common(char room_no, f32 light_ratio) {
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
     camera_class* camera = (camera_class*)dComIfGp_getCamera(0);
@@ -4386,7 +4387,7 @@ void dKy_setLight_nowroom_common(char room_no, f32 light_ratio) {
                     lightStatusPt[i + 2].mDistFn = (GXDistAttnFn)room_light_info[i].dist_atten_type;
                     lightStatusPt[i + 2].mCutoff = room_light_info[i].spotCutoff;
                     dKy_lightdir_set(room_light_info[i].directionX, room_light_info[i].directionY,
-                                     &lightStatusPt[i + 2].mLightDir);
+                                     &((&lightStatusPt[i] + 2))->mLightDir);
                 } else {
                     lightStatusPt[i + 2].mRefDist = 0.0f;
                     lightStatusPt[i + 2].mRefBrightness = 0.99999f;
@@ -4402,11 +4403,11 @@ void dKy_setLight_nowroom_common(char room_no, f32 light_ratio) {
                 lightMask |= lightMaskData[3];
 
                 if (i == 0) {
-                    lightStatusPt[i + 2].position = kankyo->sun_pos;
+                    ((&lightStatusPt[i] + 2))->position = kankyo->sun_pos;
                 } else if (camera != 0) {
-                    lightStatusPt[i + 2].position = camera->lookat.eye + kankyo->moon_pos;
+                    ((&lightStatusPt[i] + 2))->position = camera->lookat.eye + kankyo->moon_pos;
                 } else {
-                    lightStatusPt[i + 2].position = kankyo->moon_pos;
+                    ((&lightStatusPt[i] + 2))->position = kankyo->moon_pos;
                 }
 
                 lightStatusPt[i + 2].mRefDist = 10000.0f;
@@ -4423,17 +4424,17 @@ void dKy_setLight_nowroom_common(char room_no, f32 light_ratio) {
 
                 J3DLightInfo* room_light = &room_tevstr->mLights[i].getLightInfo();
                 if (room_light != NULL) {
-                    lightStatusPt[i + 2].color =
+                    ((&lightStatusPt[i] + 2))->color =
                         dKy_light_influence_col(&room_light->mColor, light_ratio);
                 } else {
-                    lightStatusPt[i + 2].color =
+                    ((&lightStatusPt[i] + 2))->color =
                         dKy_light_influence_col(&g_env_light.dungeonlight[i].mColor, light_ratio);
                 }
 
                 if (room_no == dComIfGp_roomControl_getStayNo() && room_light_info != NULL &&
                     i < room_light_info_num)
                 {
-                    g_env_light.dungeonlight[i].mPosition = lightStatusPt[i + 2].position;
+                    g_env_light.dungeonlight[i].mPosition = ((&lightStatusPt[i] + 2))->position;
                     g_env_light.dungeonlight[i].mRefDistance = lightStatusPt[i + 2].mRefDist;
                     g_env_light.dungeonlight[i].mCutoffAngle = lightStatusPt[i + 2].mCutoff;
                     g_env_light.dungeonlight[i].mAngleAttenuation = lightStatusPt[i + 2].mSpotFn;
@@ -4476,7 +4477,7 @@ void dKy_setLight_nowroom_common(char room_no, f32 light_ratio) {
                             lightStatusPt[j + 2].position.z = kankyo->field_0x0c18[i].mPos.z;
                         }
 
-                        lightStatusPt[j + 2].color = dKy_light_influence_col(&kankyo->field_0x0c18[i].mColor, light_ratio);
+                        ((&lightStatusPt[j] + 2))->color = dKy_light_influence_col(&kankyo->field_0x0c18[i].mColor, light_ratio);
                         lightStatusPt[j + 2].mRefDist = kankyo->field_0x0c18[i].mRefDistance;
                         lightStatusPt[j + 2].mRefBrightness = 0.99999f;
                         lightStatusPt[j + 2].field_0x1c = 1;
@@ -4486,7 +4487,7 @@ void dKy_setLight_nowroom_common(char room_no, f32 light_ratio) {
 
                         dKy_lightdir_set(kankyo->field_0x0c18[i].mAngleX,
                                          kankyo->field_0x0c18[i].mAngleY,
-                                         &lightStatusPt[j + 2].mLightDir);
+                                         &((&lightStatusPt[j] + 2))->mLightDir);
                         break;
                     }
                 }
@@ -4505,33 +4506,35 @@ void dKy_setLight_nowroom(char room_no) {
 }
 
 /* 801A6C58-801A6D4C 1A1598 00F4+00 0/0 1/1 2/2 .text            dKy_setLight_nowroom_grass__Fcf */
-// NONMATCHING - weird branching
 void dKy_setLight_nowroom_grass(char room_no, f32 light_ratio) {
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
     camera_class* camera = (camera_class*)dComIfGp_getCamera(0);
     fopAc_ac_c* player = (fopAc_ac_c*)dComIfGp_getPlayer(0);
     MtxP view_mtx = j3dSys.getViewMtx();
 
+    dStage_FileList_dt_c* filelist = NULL;
     if (dComIfGp_roomControl_getStatusRoomDt(room_no) != NULL) {
-        dStage_FileList_dt_c* filelist = dComIfGp_roomControl_getStatusRoomDt(room_no)->getFileListInfo();
+        filelist = dComIfGp_roomControl_getStatusRoomDt(room_no)->getFileListInfo();
         if (filelist == NULL) {
             return;
         }
+    } else {
+        return;
+    }
 
-        int grass_light = dStage_FileList_dt_GRASSLIGHT(filelist);
+    int grass_light = dStage_FileList_dt_GRASSLIGHT(filelist);
 
-        f32 grass_light_ratio;
-        if (grass_light >= 0xFF) {
-            grass_light_ratio = 1.0f;
-        } else {
-            grass_light_ratio = grass_light / 100.0f;
-        }
+    f32 grass_light_ratio;
+    if (grass_light >= 0xFF) {
+        grass_light_ratio = 1.0f;
+    } else {
+        grass_light_ratio = grass_light / 100.0f;
+    }
 
-        if (light_ratio == 0.0f) {
-            dKy_setLight_nowroom_common(room_no, grass_light_ratio);
-        } else {
-            dKy_setLight_nowroom_common(room_no, light_ratio);
-        }
+    if (light_ratio == 0.0f) {
+        dKy_setLight_nowroom_common(room_no, grass_light_ratio);
+    } else {
+        dKy_setLight_nowroom_common(room_no, light_ratio);
     }
 }
 
@@ -5948,7 +5951,6 @@ void dKy_twilight_camelight_set() {
 }
 
 /* 801AB01C-801AB270 1A595C 0254+00 1/1 0/0 0/0 .text            dKy_WaterIn_Light_set__Fv */
-// NONMATCHING - some weirdness with temp stores
 void dKy_WaterIn_Light_set() {
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
     fopAc_ac_c* player_p = dComIfGp_getPlayer(0);
@@ -5956,6 +5958,9 @@ void dKy_WaterIn_Light_set() {
 
     int sp10 = 0;
     int spC = 0;
+    f32 var_f31, var_f30, var_f29, var_f28, var_f27, var_f26;
+    f32 var_f25 = -100000000.0f;
+    var_f29 = 200.0f;
 
     int sp8 = 1;
     if (strcmp(dComIfGp_getStartStageName(), "F_SP109") == 0 ||
@@ -5965,7 +5970,12 @@ void dKy_WaterIn_Light_set() {
         sp8 = 3;
     }
 
-    for (int i = 0; i < 6; i++) {
+#if PLATFORM_SHIELD
+    for (int i = 0; i < 6; i++)
+#else
+    int i = 0;
+#endif
+    {
         if (kankyo->field_0x0c18[i].field_0x26 != 1) {
             dKy_twi_wolflight_set(i);
             kankyo->field_0x0c18[i].mColor.r = 0x8A;
@@ -5973,9 +5983,9 @@ void dKy_WaterIn_Light_set() {
             kankyo->field_0x0c18[i].mColor.b = 0xBC;
             kankyo->field_0x0c18[i].mColor.a = 0xFD;
 
-            f32 var_f26 = 0.0f;
+            var_f26 = 0.0f;
             if (player_p != NULL) {
-                f32 var_f31 = camera->lookat.eye.y - player_p->current.pos.y;
+                var_f31 = camera->lookat.eye.y - player_p->current.pos.y;
                 if (var_f31 < 0.0f) {
                     var_f31 = 0.0f;
                 }
@@ -5990,30 +6000,48 @@ void dKy_WaterIn_Light_set() {
             kankyo->field_0x0c18[i].mAngleAttenuation = 2;
             kankyo->field_0x0c18[i].mDistAttenuation = 3;
 
-            f32* var_r30 = &kankyo->field_0x0c18[i].mRefDistance;
-            f32* var_r29 = &kankyo->field_0x0c18[i].mCutoffAngle;
-
             if (strcmp(dComIfGp_getStartStageName(), "D_MN01A") == 0) {
                 dBgS_CamGndChk_Wtr sp28;
                 cXyz sp1C;
                 sp8 = 1;
-                *var_r29 = 60.0f;
+                kankyo->field_0x0c18[i].mCutoffAngle = 60.0f;
 
                 sp1C = camera->lookat.eye;
                 sp1C.y += 100000.0f;
                 sp28.SetPos(&sp1C);
 
-                f32 var_f30 = (dComIfG_Bgsp().GroundCross(&sp28) - camera->lookat.eye.y) / 3000.0f;
+                var_f25 = dComIfG_Bgsp().GroundCross(&sp28);
+                var_f30 = (var_f25 - camera->lookat.eye.y) / 3000.0f;
                 if (var_f30 < 0.0f) {
                     var_f30 = 0.0f;
                 }
                 if (var_f30 > 1.0f) {
                     var_f30 = 1.0f;
                 }
-                *var_r30 *= var_f30;
+                kankyo->field_0x0c18[i].mRefDistance *= var_f30;
             }
 
-            f32 var_f29, var_f28, var_f27;
+#if DEBUG
+            if (g_kankyoHIO.field_0x686 != 0) {
+                sp8 = g_kankyoHIO.field_0x686 - 1;
+            }
+
+            switch (sp8) {
+            case 0:
+                dDbVw_Report(0x176, 0x1c, "W-LS[S]");
+                break;
+            case 1:
+                dDbVw_Report(0x176, 0x1c, "W-LS[M]");
+                break;
+            case 2:
+                dDbVw_Report(0x176, 0x1c, "W-LS[L]");
+                break;
+            case 3:
+                dDbVw_Report(0x176, 0x1c, "W-LS[LL]");
+                break;
+            }
+#endif
+
             switch (sp8) {
             case 0:
             case 1:
@@ -6023,7 +6051,6 @@ void dKy_WaterIn_Light_set() {
                 break;
             case 2:
             case 3:
-            case 4:
             default:
                 var_f29 = 200.0f;
                 var_f28 = 2.0f;
@@ -6031,13 +6058,39 @@ void dKy_WaterIn_Light_set() {
                 break;
             }
 
-            kankyo->field_0x127c = var_f29;
-            *var_r30 *= var_f28;
-            *var_r29 *= var_f27;
+#if DEBUG
+            if (g_kankyoHIO.field_0x6d9 == 0) {
+#endif
+                kankyo->field_0x127c = var_f29;
+                kankyo->field_0x0c18[i].mRefDistance *= var_f28;
+                kankyo->field_0x0c18[i].mCutoffAngle *= var_f27;
+#if DEBUG
+            }
+
+            static int S_mLighSize_pat_old = 0x63;
+            if (S_mLighSize_pat_old != g_kankyoHIO.field_0x686) {
+                S_mLighSize_pat_old = g_kankyoHIO.field_0x686;
+
+                g_kankyoHIO.field_0x6e0 = var_f29;
+                g_kankyoHIO.field_0x6e4 = var_f28;
+                g_kankyoHIO.field_0x6e8 = var_f27;
+                g_kankyoHIO.field_0x01c.dKankyo_lightHIOInfoUpDateF();
+            }
+
+            if (g_kankyoHIO.field_0x6d9 != 0) {
+                kankyo->field_0x127c = g_kankyoHIO.field_0x6e0;
+                kankyo->field_0x0c18[i].mRefDistance *= g_kankyoHIO.field_0x6e4;
+                kankyo->field_0x0c18[i].mCutoffAngle *= g_kankyoHIO.field_0x6e8;
+            }
+#endif
+
             kankyo->field_0x0c18[i].field_0x26 = 1;
             sp10 = 1;
+
+#if PLATFORM_SHIELD
+            break;
+#endif
         }
-        break;
     }
 }
 

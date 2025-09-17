@@ -768,7 +768,7 @@ void daE_HP_c::executeDead() {
                                                               -1, 0, 0);
             }
 
-            if (fopAcM_IsExecuting(field_0x784)) {
+            if (fopAcM_IsExecuting(field_0x784) != FALSE) {
                 fopAc_ac_c* player = dComIfGp_getPlayer(0);
                 if (player->eventInfo.chkCondition(8)) {
                     field_0x778 =
