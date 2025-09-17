@@ -2104,7 +2104,7 @@ bool fopAcM_lc_c::lineCheck(cXyz const* i_start, cXyz const* i_end, fopAc_ac_c c
 /* 8001DCBC-8001DD1C 0185FC 0060+00 1/1 10/10 108/108 .text gndCheck__11fopAcM_gc_cFPC4cXyz */
 bool fopAcM_gc_c::gndCheck(cXyz const* i_pos) {
     mGndCheck.SetPos(i_pos);
-    mGroundY = dComIfG_Bgsp().GroundCross(&mGndCheck);
+    mGroundY = (f32)dComIfG_Bgsp().GroundCross(&mGndCheck);
     return -1000000000.0f != mGroundY;
 }
 

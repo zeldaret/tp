@@ -179,6 +179,15 @@ static int l_bmdData[6][2] = {
     {BMDR_LEAF, YKM3},
 };
 
+enum BmdIndex {
+    BMD_INDEX_YKM,
+    BMD_INDEX_YKM_TOMATO,
+    BMD_INDEX_YKM_LEAF,
+    BMD_INDEX_YKM_CHEESE,
+    BMD_INDEX_FISH,
+    BMD_INDEX_LEAF,
+};
+
 /* 80B5DB38-80B5DB88 -00001 0050+00 0/1 0/0 0/0 .data            l_evtList */
 static daNpcT_evtData_c l_evtList[10] = {
     {"", 0},
@@ -547,21 +556,26 @@ cPhs__Step daNpc_ykM_c::create() {
 
 /* 80B53990-80B53F00 000590 0570+00 1/1 0/0 0/0 .text            CreateHeap__11daNpc_ykM_cFv */
 int daNpc_ykM_c::CreateHeap() {
-    // NONMATCHING
-    J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[mTwilight ? 0 : 1][1]], 
-                                                                  l_bmdData[mTwilight ? 0 : 1][0]);
+    void* mdlData_p = NULL;
+    J3DModel* model = NULL;
+
+    int sp40 = mTwilight == 1 ? BMD_INDEX_YKM : BMD_INDEX_YKM;
+    int arcNameIdx = l_bmdData[sp40][1];
+    int resIndex = l_bmdData[sp40][0];
+    mdlData_p = dComIfG_getObjectRes(l_resNameList[arcNameIdx], resIndex);
     if (mdlData_p == NULL) {
         return 1;
     }
 
-    mpMorf[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
+    int sp34 = 0x11020284;
+    mpMorf[0] = new mDoExt_McaMorfSO((J3DModelData*)mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, sp34);
     if (mpMorf[0] == NULL || mpMorf[0]->getModel() == NULL) {
         return 0;
     }
 
-    J3DModel* model = mpMorf[0]->getModel();
-    for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
-        mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
+    model = mpMorf[0]->getModel();
+    for (u16 i = 0; i < ((J3DModelData*)mdlData_p)->getJointNum(); i++) {
+        ((J3DModelData*)mdlData_p)->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
     model->setUserArea((uintptr_t)this);
 
@@ -570,66 +584,74 @@ int daNpc_ykM_c::CreateHeap() {
         return 0;
     }
 
-    static int const bmdTypeList[3] = {1, 2, 3};
+    static BmdIndex const bmdTypeList[3] = {BMD_INDEX_YKM_TOMATO, BMD_INDEX_YKM_LEAF, BMD_INDEX_YKM_CHEESE};
     switch (mType) {
-        case TYPE_COOK:
-            for (int i = 0; i < 3; i++) {
-                if (l_bmdData[bmdTypeList[i]][0] >= 0) {
-                    mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[bmdTypeList[i]][1]], l_bmdData[bmdTypeList[i]][0]);
-                } else {
-                    mdlData_p = NULL;
-                }
-
-                // field_0xe4c holds a Pumpkin, Leaf, and Cheese model (in that order)
-                if (mdlData_p != NULL) {
-                    field_0xe4c[i] = mDoExt_J3DModel__create(mdlData_p, 0x80000, 0x11000084);
-                } else {
-                    field_0xe4c[i] = NULL;
-                }
-            }
-            break;
-
-        case TYPE_2:
-            mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[4][1]], l_bmdData[4][0]);
-
-            JUT_ASSERT(1595, 0 != mdlData_p);
-
-            mFishModelMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1,
-                                               NULL, 0x80000, 0x11000084);
-            if (mFishModelMorf == NULL || mFishModelMorf->getModel() == NULL) {
-                return 0;
-            }
-
-            mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[5][1]], l_bmdData[5][0]);
-
-            JUT_ASSERT(1622, 0 != mdlData_p);
-
-            mLeafModelMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1,
-                                               NULL, 0x80000, 0x11000084);
-            if (mLeafModelMorf == NULL || mLeafModelMorf->getModel() == NULL) {
-                return 0;
-            }
-            setLeafAnm(ANM_LEAF_WAIT_A, 0.0f);
-
-            mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[bmdTypeList[1]][1]], l_bmdData[bmdTypeList[1]][0]);
-            if (mdlData_p != NULL) {
-                field_0xe4c[1] = mDoExt_J3DModel__create(mdlData_p, 0x80000, 0x11000084);
+    case TYPE_COOK:
+        for (int i = 0; i < 3; i++) {
+            if (l_bmdData[bmdTypeList[i]][0] >= 0) {
+                mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[bmdTypeList[i]][1]], l_bmdData[bmdTypeList[i]][0]);
             } else {
-                field_0xe4c[1] = NULL;
+                mdlData_p = NULL;
             }
-            break;
 
-        case TYPE_3:
-            break;
-
-        case TYPE_4:
-            mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[bmdTypeList[1]][1]], l_bmdData[bmdTypeList[1]][0]);
+            // field_0xe4c holds a Pumpkin, Leaf, and Cheese model (in that order)
             if (mdlData_p != NULL) {
-                field_0xe4c[1] = mDoExt_J3DModel__create(mdlData_p, 0x80000, 0x11000084);
+                field_0xe4c[i] = mDoExt_J3DModel__create((J3DModelData*)mdlData_p, 0x80000, 0x11000084);
             } else {
-                field_0xe4c[1] = NULL;
+                field_0xe4c[i] = NULL;
             }
-            break;
+        }
+        break;
+
+    case TYPE_2:
+        sp40 = BMD_INDEX_FISH;
+        arcNameIdx = l_bmdData[sp40][1];
+        resIndex = l_bmdData[sp40][0];
+        mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[arcNameIdx], resIndex);
+
+        JUT_ASSERT(1595, 0 != mdlData_p);
+
+        sp34 = 0x11000084;
+        mFishModelMorf = new mDoExt_McaMorfSO((J3DModelData*)mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1,
+                                           NULL, 0x80000, sp34);
+        if (mFishModelMorf == NULL || mFishModelMorf->getModel() == NULL) {
+            return 0;
+        }
+
+        sp40 = BMD_INDEX_LEAF;
+        arcNameIdx = l_bmdData[BMD_INDEX_LEAF][1];
+        resIndex = l_bmdData[BMD_INDEX_LEAF][0];
+        mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[arcNameIdx], resIndex);
+
+        JUT_ASSERT(1622, 0 != mdlData_p);
+
+        sp34 = 0x11000084;
+        mLeafModelMorf = new mDoExt_McaMorfSO((J3DModelData*)mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1,
+                                           NULL, 0x80000, sp34);
+        if (mLeafModelMorf == NULL || mLeafModelMorf->getModel() == NULL) {
+            return 0;
+        }
+        setLeafAnm(ANM_LEAF_WAIT_A, 0.0f);
+
+        mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[bmdTypeList[1]][1]], l_bmdData[bmdTypeList[1]][0]);
+        if (mdlData_p != NULL) {
+            field_0xe4c[1] = mDoExt_J3DModel__create((J3DModelData*)mdlData_p, 0x80000, 0x11000084);
+        } else {
+            field_0xe4c[1] = NULL;
+        }
+        break;
+
+    case TYPE_3:
+        break;
+
+    case TYPE_4:
+        mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[bmdTypeList[1]][1]], l_bmdData[bmdTypeList[1]][0]);
+        if (mdlData_p != NULL) {
+            field_0xe4c[1] = mDoExt_J3DModel__create((J3DModelData*)mdlData_p, 0x80000, 0x11000084);
+        } else {
+            field_0xe4c[1] = NULL;
+        }
+        break;
     }
 
     if (setFaceMotionAnm(1, false) && setMotionAnm(0, 0.0f, FALSE)) {
@@ -864,8 +886,8 @@ BOOL daNpc_ykM_c::isDelete() {
 }
 
 /* 80B548A8-80B54B44 0014A8 029C+00 1/1 0/0 0/0 .text            reset__11daNpc_ykM_cFv */
+// NONMATCHING - m_nextID load issue, regalloc
 void daNpc_ykM_c::reset() {
-    // NONMATCHING
     csXyz angle;
     int iVar1 = (u8*)&field_0x1588 - (u8*)&mpNextAction;
 
@@ -878,7 +900,7 @@ void daNpc_ykM_c::reset() {
     }
 
     memset(&mpNextAction, 0, iVar1);
-    
+
     if (getPathID() != 0xFF) {
         mPath.initialize();
         mPath.setPathInfo(getPathID(), fopAcM_GetRoomNo(this), 0);
@@ -894,6 +916,8 @@ void daNpc_ykM_c::reset() {
     angle.y = home.angle.y;
 
     switch (mType) {
+        case TYPE_COOK:
+            break;
         case TYPE_2:
             field_0x1568 = -20.0f;
             field_0x1579 = 1;
@@ -1277,8 +1301,9 @@ void daNpc_ykM_c::afterMoved() {
 }
 
 /* 80B55A64-80B560B4 002664 0650+00 1/0 0/0 0/0 .text            setAttnPos__11daNpc_ykM_cFv */
+// NONMATCHING - HIO load issue
 void daNpc_ykM_c::setAttnPos() {
-    // NONMATCHING
+    fopAc_ac_c* otherYkmP = NULL;
     cXyz sp104(80.0f, 30.0f, 0.0f);
     cXyz sp110(80.0f, 0.0f, 0.0f);
 
@@ -1291,25 +1316,26 @@ void daNpc_ykM_c::setAttnPos() {
     }
 
     f32 fVar1 = cM_s2rad((s16)(mCurAngle.y - field_0xd7e.y));
-    f32 fVar2 = field_0x1574 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.head_angleY_max;
-    f32 fVar3 = field_0x1574 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.head_angleY_min;
-    f32 fVar4 = field_0x1574 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.head_angleX_max;
-    f32 fVar5 = field_0x1574 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.head_angleX_min;
-    f32 fVar6 = field_0x1575 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.body_angleY_max;
-    f32 fVar7 = field_0x1575 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.body_angleY_min;
-    f32 fVar8 = field_0x1575 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.body_angleX_max;
-    f32 fVar9 = field_0x1575 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.body_angleX_min;
-    J3DModel* model = mpMorf[0]->getModel();
-    mJntAnm.setParam(this, model, &sp104, getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(), fVar9, fVar8, fVar7, fVar6, fVar5, fVar4, fVar3, 
-                     fVar2, daNpc_ykM_Param_c::m.common.neck_rotation_ratio, fVar1, &sp110);
-    
+    mJntAnm.setParam(this, mpMorf[0]->getModel(), &sp104,
+        getBackboneJointNo(), getNeckJointNo(), getHeadJointNo(),
+        field_0x1575 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.body_angleX_min,
+        field_0x1575 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.body_angleX_max,
+        field_0x1575 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.body_angleY_min,
+        field_0x1575 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.body_angleY_max,
+        field_0x1574 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.head_angleX_min,
+        field_0x1574 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.head_angleX_max,
+        field_0x1574 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.head_angleY_min,
+        field_0x1574 != 0 ? 0.0f : daNpc_ykM_Param_c::m.common.head_angleY_max,
+        daNpc_ykM_Param_c::m.common.neck_rotation_ratio, fVar1, &sp110);
+
     if (mJntAnm.getMode() == daNpcT_JntAnm_c::LOOK_MODE_8) {
         mJntAnm.calcJntRad(0.1f, 1.0f, fVar1);
     } else {
         mJntAnm.calcJntRad(0.2f, 1.0f, fVar1);
     }
 
-    model = mpMorf[0]->getModel();
+    J3DModel* model = mpMorf[0]->getModel();
+    J3DModelData* modelData = model->getModelData();
     cXyz sp11c(current.pos);
     sp11c.y += field_0x1568;
     mDoMtx_stack_c::transS(sp11c);
@@ -1336,7 +1362,7 @@ void daNpc_ykM_c::setAttnPos() {
         mDoMtx_stack_c::multVecZero(&sp128);
 
         Mtx mtx;
-        MTXCopy(mDoMtx_stack_c::get(), mtx);
+        cMtx_copy(mDoMtx_stack_c::get(), mtx);
         mFishModelMorf->getModel()->setBaseTRMtx(mtx);
         mFishModelMorf->modelCalc();
 
@@ -1348,7 +1374,7 @@ void daNpc_ykM_c::setAttnPos() {
     if (mLeafModelMorf != NULL) {
         mLeafModelMorf->play(0, 0);
 
-        fopAc_ac_c* otherYkmP = getOtherYkmP(5);
+        otherYkmP = getOtherYkmP(5);
         if (otherYkmP != NULL) {
             mDoMtx_stack_c::transS(otherYkmP->current.pos);
             mDoMtx_stack_c::ZXYrotM(otherYkmP->shape_angle);
@@ -2042,7 +2068,7 @@ int daNpc_ykM_c::cutGetTomatoPuree(int i_cutIndex) {
         }
     }
 
-    int iVar2[2] = {0, -1};
+    int iVar2[2] = {-1, -1};
     daObj_Gadget_c* actor_p;
     f32 fVar1;
     int iVar1;
@@ -2260,7 +2286,7 @@ int daNpc_ykM_c::cutGetTaste(int i_cutIndex) {
                 break;
         }
     }
-    int iVar2[2] = {0, -1};
+    int iVar2[2] = {-1, -1};
     daObj_Gadget_c* actor_p;
     f32 fVar1;
     int iVar1;
@@ -2397,8 +2423,7 @@ int daNpc_ykM_c::cutGetTaste(int i_cutIndex) {
 
 /* 80B58A38-80B59500 005638 0AC8+00 1/0 0/0 0/0 .text            cutLv5DungeonClear__11daNpc_ykM_cFi */
 int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
-    // NONMATCHING
-    daPy_py_c* player = daPy_getPlayerActorClass();
+    daPy_py_c* player = (daPy_py_c*)daPy_getPlayerActorClass();
     cXyz work;
     int rv = 0;
     int prm = -1;
@@ -2415,6 +2440,8 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
     }
 
     fopAc_ac_c* actor_p;
+    s16 sVar1;
+    s16 angleY;
     if (dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
         switch (prm) {
             case 0:
@@ -2429,7 +2456,8 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
                 mMotionSeqMngr.setNo(MOTION_RUN, -1.0f, FALSE, 0);
                 mSound.startCreatureVoice(Z2SE_YKM_V_DASH, -1);
                 mEventTimer = timer;
-                daPy_getPlayerActorClass()->setPlayerPosAndAngle(&player->current.pos, fopAcM_searchActorAngleY(player, this), 0);
+                angleY = fopAcM_searchActorAngleY(player, this);
+                ((daPy_py_c*)daPy_getPlayerActorClass())->setPlayerPosAndAngle(&player->current.pos, angleY, 0);
                 dComIfGp_getEvent().setPt2(this);
                 break;
 
@@ -2525,7 +2553,6 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
     }
 
     int iVar2[2] = {-1, -1};
-    s16 sVar1;
     switch (prm) {
         case 0:
             rv = 1;
@@ -2967,8 +2994,8 @@ static u8 const lit_7385[8] = {
 
 /* 80B5A128-80B5A224 006D28 00FC+00 1/1 0/0 0/0 .text            setDialogueMotion__11daNpc_ykM_cFv */
 void daNpc_ykM_c::setDialogueMotion() {
-    // NONMATCHING
-    u32 uVar1 = field_0x154c >> 1;
+    int uVar1 = field_0x154c;
+    uVar1 >>= 1;
     
     if (0.5f < cM_rnd()) {
         if (cM_rnd() - 0.5f < 0.0f) {
@@ -3319,7 +3346,6 @@ BOOL daNpc_ykM_c::cook(void* param_1) {
 
 /* 80B5B260-80B5BE08 007E60 0BA8+00 2/0 0/0 0/0 .text            race__11daNpc_ykM_cFPv */
 BOOL daNpc_ykM_c::race(void* param_1) {
-    // NONMATCHING
     cXyz work;
     fopAc_ac_c* actors[2] = {this, daPy_getPlayerActorClass()};
     s16 sVar1;
@@ -3397,7 +3423,8 @@ BOOL daNpc_ykM_c::race(void* param_1) {
                 }
 
                 if (field_0x157e == 0) {
-                    do {
+                    int idx;
+                    while (true) {
                         if (mPath.chkPassed1(current.pos, mPath.getNumPnts())) {
                             if (mPath.getArg0() == 0) {
                                 mSound.startCreatureSound(Z2SE_YM_SNOBO_JUMP, 0, -1);
@@ -3408,46 +3435,47 @@ BOOL daNpc_ykM_c::race(void* param_1) {
                             if (mPath.setNextIdx(mPath.getNumPnts()) != 0) {
                                 field_0x1585 = 1;
                                 mMotionSeqMngr.setNo(MOTION_SB_GOAL, -1.0f, FALSE, 0);
-                                break;
-                            }
-                        }
+                            } else {
+                                if (field_0x157e == 0) {
+                                    continue;
+                                }
 
-                        int idx;
-                        if (field_0x157e != 0) {
-                            if (!mStagger.checkStagger()) {
-                                mMotionSeqMngr.setNo(MOTION_SB_JUMP_A, -1.0f, FALSE, 0);
-                            }
+                                if (!mStagger.checkStagger()) {
+                                    mMotionSeqMngr.setNo(MOTION_SB_JUMP_A, -1.0f, FALSE, 0);
+                                }
 
-                            field_0x1514 = current.pos;
+                                field_0x1514 = current.pos;
+                                idx = mPath.getIdx();
+                                field_0x1520 = mPath.getPntPos(idx);
+                                current.angle.y = cLib_targetAngleY(&field_0x1514, &field_0x1520);
+                                int iVar3 = (int)((field_0x1520 - field_0x1514).absXZ() / speedF) + 1;
+                                speed.y = (field_0x1520.y - field_0x1514.y) + fabsf(gravity) * iVar3 * iVar3 * 0.5f;
+                                speed.y /= iVar3;
+                            }
+                        } else {
                             idx = mPath.getIdx();
-                            field_0x1520 = mPath.getPntPos(idx);
-                            current.angle.y = cLib_targetAngleY(&field_0x1514, &field_0x1520);
-                            int iVar3 = (int)((field_0x1520 - field_0x1514).absXZ() / speedF) + 1;
-                            speed.y = (field_0x1520.y - field_0x1514.y) + iVar3 * iVar3 * fabsf(gravity) * 0.5f;
-                            speed.y /= iVar3;
+                            work = mPath.getPntPos(idx);
                         }
-
-                        idx = mPath.getIdx();
-                        work = mPath.getPntPos(idx);
                         break;
-                    } while (field_0x157e == 0);
+                    }
                 }
 
                 if (field_0x1585 == 0 && field_0x157e == 0) {
-                    current.angle.y = cLib_targetAngleY(&current.pos, &work);
+                    s16 angleY = cLib_targetAngleY(&current.pos, &work);
+                    current.angle.y = angleY;
                     cLib_addCalcAngleS2(&shape_angle.y, current.angle.y, 8, 0x100);
                     mCurAngle.y = shape_angle.y;
 
                     if (!mStagger.checkStagger() && (mMotionSeqMngr.getNo() != MOTION_SB_JUMP_C || mMotionSeqMngr.checkEndSequence())) {
-                        int sVar2 = sVar1 - mCurAngle.y;
-                        if (0.0f < cM_sht2d(sVar2)) {
-                            if (4.0f < cM_sht2d(sVar2)) {
+                        angleY -= mCurAngle.y;
+                        if (0.0f < cM_sht2d(angleY)) {
+                            if (4.0f < cM_sht2d(angleY)) {
                                 mMotionSeqMngr.setNo(MOTION_SB_TURNL, 24.0f, FALSE, 0);
                             } else {
                                 mMotionSeqMngr.setNo(MOTION_SB_WAIT, 24.0f, FALSE, 0);
                             }
                         } else {
-                            if (cM_sht2d(sVar2) < -4.0f) {
+                            if (cM_sht2d(angleY) < -4.0f) {
                                 mMotionSeqMngr.setNo(MOTION_SB_TURNR, 24.0f, FALSE, 0);
                             } else {
                                 mMotionSeqMngr.setNo(MOTION_SB_WAIT, 24.0f, FALSE, 0);
@@ -3455,9 +3483,9 @@ BOOL daNpc_ykM_c::race(void* param_1) {
                         }
                     }
 
-                    s16 sVar3 = -fopAcM_getPolygonAngle(mGndChk, current.angle.y + 0x4000);
+                    angleY = -fopAcM_getPolygonAngle(mGndChk, current.angle.y + 0x4000);
                     cLib_addCalcAngleS2(&mCurAngle.x, mGroundAngle, 6, 0x200);
-                    cLib_addCalcAngleS2(&mCurAngle.z, sVar3, 6, 0x200);
+                    cLib_addCalcAngleS2(&mCurAngle.z, angleY, 6, 0x200);
                     int iVar1 = field_0x1560 - field_0x1558.field_0x0;
                     f32 fVar2 = daNpc_ykM_Param_c::m.slide_speed * cM_scos(mGroundAngle);
 
@@ -3472,9 +3500,10 @@ BOOL daNpc_ykM_c::race(void* param_1) {
                             field_0x1540 = 8;
                         }
 
-                        int iVar2 = cLib_minMaxLimit<int>(iVar1 + daNpc_ykM_Param_c::m.competition_prm_a, 0, daNpc_ykM_Param_c::m.competition_prm_b);
+                        iVar1 += daNpc_ykM_Param_c::m.competition_prm_a;
+                        int iVar2 = cLib_minMaxLimit<int>(iVar1, 0, daNpc_ykM_Param_c::m.competition_prm_b);
                         if (iVar2 > 0) {
-                            fVar2 *= daNpc_ykM_Param_c::m.competition_prm_c * 0.1f * abs(iVar2) + 1.0f;
+                            fVar2 *= abs(iVar2) * 0.1f * daNpc_ykM_Param_c::m.competition_prm_c + 1.0f;
                         }
                     }
 
@@ -3561,7 +3590,6 @@ BOOL daNpc_ykM_c::talk(void* param_1) {
 
 #ifdef DEBUG
 BOOL daNpc_ykM_c::test(void* param_1) {
-    // NONMATCHING
     switch (mMode) {
         case 1:
             speedF = 0.0f;

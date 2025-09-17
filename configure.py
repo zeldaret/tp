@@ -616,7 +616,7 @@ config.libs = [
             Object(Equivalent, "d/d_drawlist.cpp"), # missing vtable
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_kankyo_data.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_kankyo_wether.cpp"),
-            Object(NonMatching, "d/d_kankyo_rain.cpp"),
+            Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_kankyo_rain.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_vibration.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_vib_pattern.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_attention.cpp"),
@@ -645,7 +645,7 @@ config.libs = [
             Object(NonMatching, "d/d_cc_s.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_cc_uty.cpp"),
             Object(Equivalent, "d/d_cam_param.cpp"), # weak func order
-            Object(NonMatching, "d/d_ev_camera.cpp"),
+            Object(MatchingFor("GZ2E01"), "d/d_ev_camera.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_spline_path.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_item_data.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_item.cpp"),
@@ -1748,7 +1748,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_ph"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_pm"),
     ActorRel(NonMatching, "d_a_e_po"),
-    ActorRel(Equivalent, "d_a_e_pz"), # inline issue
+    ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_pz"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_rb"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_rdb"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_rdy"),
@@ -2189,7 +2189,7 @@ config.libs = [
     ActorRel(Equivalent, "d_a_obj_tks", extra_cflags=[DANPCF_C_HACK]), # weak function order, sinShort inline issue
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_tmoon"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_toaru_maki"),
-    ActorRel(NonMatching, "d_a_obj_toby"),
+    ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_toby"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_tobyhouse"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_togeTrap"),
     ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_tombo"),
