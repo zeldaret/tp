@@ -34,9 +34,6 @@ public:
 
     class daNpc_GrZ_prtclMngr_c {
     public:
-        /* 809E8658 */ ~daNpc_GrZ_prtclMngr_c();
-        /* 809E8694 */ daNpc_GrZ_prtclMngr_c();
-
         /* 0x00 */ u8 field_0x0;
         /* 0x04 */ cXyz mPos;
         /* 0x10 */ csXyz mAngle;

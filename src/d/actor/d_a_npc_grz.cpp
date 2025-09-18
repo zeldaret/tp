@@ -388,12 +388,6 @@ daNpc_Grz_c::cutFunc daNpc_Grz_c::mEvtCutList[7] = {
 /* 809E840C-809E8658 0000EC 024C+00 1/1 0/0 0/0 .text            __ct__11daNpc_Grz_cFv */
 daNpc_Grz_c::daNpc_Grz_c() {}
 
-/* 809E8658-809E8694 000338 003C+00 2/2 0/0 0/0 .text            __dt__Q211daNpc_Grz_c21daNpc_GrZ_prtclMngr_cFv */
-daNpc_Grz_c::daNpc_GrZ_prtclMngr_c::~daNpc_GrZ_prtclMngr_c() {}
-
-/* 809E8694-809E8698 000374 0004+00 1/1 0/0 0/0 .text            __ct__Q211daNpc_Grz_c21daNpc_GrZ_prtclMngr_cFv */
-daNpc_Grz_c::daNpc_GrZ_prtclMngr_c::daNpc_GrZ_prtclMngr_c() {}
-
 /* 809E88C0-809E8BA0 0005A0 02E0+00 1/0 0/0 0/0 .text            __dt__11daNpc_Grz_cFv */
 daNpc_Grz_c::~daNpc_Grz_c() {
     for (int i = 0; l_loadRes_list[mType][i] >= 0; i++) {
@@ -1346,7 +1340,7 @@ void daNpc_Grz_c::resetCol() {
     for (int i = 0; i < 4; i++) {
         mSphs[i].Set(mCcDSph);
         mSphs[i].SetStts(&mCcStts);
-        mSphs[i].SetAtSe(0xB);
+        mSphs[i].SetAtSe(dCcD_SE_HARD_BODY);
         mSphs[i].SetAtSpl((dCcG_At_Spl)1);
         mSphs[i].SetAtType(AT_TYPE_800);
         mSphs[i].OnAtSPrmBit(12);
