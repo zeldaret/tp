@@ -119,10 +119,7 @@ public:
     /* 0x0690 */ s16 mActionID;
     /* 0x0692 */ s16 field_0x692;
     /* 0x0694 */ int mShadowKey;
-    /* 0x0698 */ s16 field_0x698;
-    /* 0x069A */ s16 field_0x69a;
-    /* 0x069C */ s16 field_0x69c;
-    /* 0x069E */ s16 field_0x69e;
+    /* 0x0698 */ s16 field_0x698[4];
     /* 0x06A0 */ s16 field_0x6a0;
     /* 0x06A2 */ u8 field_0x6a2[0x6ae - 0x6a2];
     /* 0x06AE */ csXyz field_0x6ae;
@@ -131,7 +128,7 @@ public:
     /* 0x06B8 */ u8 field_0x6b8[0x6ba - 0x6b8];
     /* 0x06BA */ s16 field_0x6ba;
     /* 0x06BC */ u8 field_0x6bc;
-    /* 0x06BD */ u8 field_0x6bd;
+    /* 0x06BD */ s8 field_0x6bd;
     /* 0x06BE */ u16 field_0x6be;
     /* 0x06C0 */ s8 field_0x6c0;
     /* 0x06C4 */ f32 field_0x6c4;
@@ -147,7 +144,7 @@ public:
     /* 0x06DE */ s16 field_0x6de;
     /* 0x06E0 */ s16 field_0x6e0;
     /* 0x06E2 */ s16 field_0x6e2;
-    /* 0x06E4 */ u8 field_0x6e4;
+    /* 0x06E4 */ s8 field_0x6e4;
     /* 0x06E5 */ u8 field_0x6e5[0x6ec - 0x6e5];
     /* 0x06EC */ csXyz field_0x6ec[0x1d];
     /* 0x079A */ s16 field_0x79a;
@@ -163,21 +160,19 @@ public:
     /* 0x07A8 */ f32 field_0x7a8;
     /* 0x07AC */ dBgS_AcchCir field_0x7ac;
     /* 0x07EC */ dBgS_ObjAcch mAcch;
-    /* 0x09C4 */ dCcD_Stts field_0x9c4;
+    /* 0x09C4 */ dCcD_Stts mStts;
     /* 0x0A00 */ dCcD_Sph field_0xa00[7];
     /* 0x1288 */ dCcD_Sph field_0x1288;
     /* 0x13C0 */ dCcU_AtInfo field_0x13c0;
     /* 0x13E4 */ u8 field_0x13e4;
-    /* 0x13E8 */ u32 field_0x13e8;
-    /* 0x13EC */ u32 field_0x13ec;
+    /* 0x13E8 */ u32 field_0x13e8[2];
     /* 0x13F0 */ u32 field_0x13f0;
     /* 0x13F4 */ u32 field_0x13f4;
     /* 0x13F8 */ u32 field_0x13f8;
     /* 0x13FC */ u32 field_0x13fc;
     /* 0x1400 */ u32 field_0x1400;
     /* 0x1404 */ u32 field_0x1404;
-    /* 0x1408 */ u32 field_0x1408;
-    /* 0x140C */ u32 field_0x140c;
+    /* 0x1408 */ u32 field_0x1408[2];
     /* 0x1410 */ u32 field_0x1410;
     /* 0x1414 */ u32 field_0x1414;
     /* 0x1418 */ u32 field_0x1418;
@@ -196,7 +191,7 @@ public:
     /* 0x1648 */ mDoExt_3DlineMat1_c field_0x1648;
     /* 0x1684 */ f32 field_0x1684;
     /* 0x1688 */ s16 field_0x1688;
-    /* 0x168A */ u16 field_0x168a;
+    /* 0x168A */ s16 field_0x168a;
     /* 0x168C */ f32 field_0x168c;
     /* 0x1690 */ f32 field_0x1690;
     /* 0x1694 */ u8 field_0x1694[0x169e - 0x1694];
@@ -216,7 +211,7 @@ public:
     /* 0x1710 */ f32 field_0x1710;
     /* 0x1714 */ f32 field_0x1714;
     /* 0x1718 */ f32 field_0x1718;
-    /* 0x171C */ u8 field_0x171c[0x1720 - 0x171c];
+    /* 0x171C */ f32 field_0x171c;
     /* 0x1720 */ s8 field_0x1720;
     /* 0x1721 */ s8 field_0x1721;
     /* 0x1722 */ s8 field_0x1722;
@@ -233,40 +228,6 @@ public:
 
 STATIC_ASSERT(sizeof(e_wb_class) == 0x17EC);
 
-class daE_WB_HIO_c : public JORReflexible {
-public:
-    /* 807D248C */ daE_WB_HIO_c();
-    /* 807E20DC */ virtual ~daE_WB_HIO_c() {};
-    void genMessage(JORMContext*);
-
-    /* イノシシ - Wild Boar */
-    /* 0x00 */ // vtable
-    /* 0x04 */ s8 mId;
-    /* 0x08 */ f32 base_size;                           // 基本サイズ - Base Size
-    /* 0x0C */ f32 leader_size_ratio;                   // リーダーサイズ比 - Leader Size Ratio
-    /* 0x10 */ f32 movement_speed;                      // 移動速度 - Movement Speed
-    /* 0x14 */ f32 max_speed;                           // 最速度 - Max Speed
-    /* 0x18 */ f32 cavalry_battle_max_speed;            // 騎馬戦最速 - Cavalry Battle Max Speed
-    /* 0x1C */ f32 normal_speed_vi;
-    /* 0x20 */ f32 medium_speed_vi;
-    /* 0x24 */ f32 mMaxSpeedVi;
-    /* 0x28 */ f32 leader_walking_speed;                // 歩き速（リ）- Leader Walking Speed
-    /* 0x2C */ f32 leader_max_speed;                    // 最速度（リ）- Leader Max Speed
-    /* 0x30 */ f32 leader_cavalry_battle_max_speed;     // 騎馬戦最（リ）- Leader Cavalry Battle Max Speed
-    /* 0x34 */ f32 mSingleRiderSpeed;
-    /* 0x38 */ f32 player_recognition_dist;             // PL認識距離 - Player Recognition Distance
-    /* 0x3C */ f32 mPlayerMountedMaxSpeed;
-    /* 0x40 */ f32 mPlayerMountedMotionPlaybackSpeed;
-    /* 0x44 */ s16 mPlayerMountedDashTime;
-    /* 0x48 */ f32 mSearchIgnoreDistance1;
-    /* 0x4C */ f32 mSearchIgnoreDistance2;
-    /* 0x50 */ f32 mGuidanceDisplayDistance1;
-    /* 0x54 */ f32 mGuidanceDisplayDistance2;
-    /* 0x58 */ u8 field_0x58;
-    /* 0x59 */ u8 mNoReins;
-};
-
-STATIC_ASSERT(sizeof(daE_WB_HIO_c) == 0x5C);
 
 
 #endif /* D_A_E_WB_H */
