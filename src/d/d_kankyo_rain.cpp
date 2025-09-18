@@ -2354,6 +2354,12 @@ void dKyr_drawSun(Mtx drawMtx, cXyz* ppos, GXColor& unused, u8** tex) {
     u8 draw_sun = false;
     u16 date = dComIfGs_getDate();
 
+#if VERSION == VERSION_GCN_JPN
+    if (g_env_light.hide_vrbox) {
+        return;
+    }
+#endif
+
     if (strcmp(dComIfGp_getStartStageName(), "F_SP200") == 0) {
         sun_packet->mMoonAlpha = 1.0f;
         sun_packet->mSunAlpha = 0.0f;
@@ -2595,7 +2601,7 @@ void dKyr_drawSun(Mtx drawMtx, cXyz* ppos, GXColor& unused, u8** tex) {
                         GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_ZERO, GX_CA_A0, GX_CA_TEXA, GX_CA_ZERO);
                         GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
                         GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_ONE, GX_LO_COPY);
-                        
+
                         size *= 2.3f;
                         color_reg0.a = 40.0f * sun_packet->mMoonAlpha;
 
@@ -2706,6 +2712,12 @@ void dKyr_drawLenzflare(Mtx drawMtx, cXyz* ppos, GXColor& param_2, u8** tex) {
     static s16 S_rot_work1 = 0;
     static s16 S_rot_work2 = 0;
 
+#if VERSION == VERSION_GCN_JPN
+    if (g_env_light.hide_vrbox) {
+        return;
+    }
+#endif
+
     Mtx camMtx;
     Mtx rotMtx;
 
@@ -2724,7 +2736,7 @@ void dKyr_drawLenzflare(Mtx drawMtx, cXyz* ppos, GXColor& param_2, u8** tex) {
 
     if (!(sun_visibility < 0.1f)) {
         dKy_set_eyevect_calc2(camera, &spFC, 8000.0f, 8000.0f);
- 
+
         GXColor color_reg0;
         color_reg0.r = sun_packet->mColor.r;
         color_reg0.g = sun_packet->mColor.g;
@@ -2768,7 +2780,7 @@ void dKyr_drawLenzflare(Mtx drawMtx, cXyz* ppos, GXColor& param_2, u8** tex) {
         MTXConcat(camMtx, rotMtx, camMtx);
         GXLoadPosMtxImm(drawMtx, GX_PNMTX0);
         GXSetCurrentMtx(GX_PNMTX0);
-    
+
         if (sun_packet->field_0x6c > 0.0f) {
             spC = S_rot_work1 - 0x7F6;
             spA = S_rot_work2 + 0x416B;
@@ -2783,7 +2795,7 @@ void dKyr_drawLenzflare(Mtx drawMtx, cXyz* ppos, GXColor& param_2, u8** tex) {
             GXSetChanCtrl(GX_COLOR0, GX_DISABLE, GX_SRC_REG, GX_SRC_REG, GX_LIGHT_NULL, GX_DF_CLAMP, GX_AF_NONE);
             GXSetNumTexGens(0);
             GXSetNumTevStages(1);
-            
+
             color_reg0.a = sun_packet->field_0x6c * (15.0f * (spA8 * spA8 * spA8));
             GXSetTevColor(GX_TEVREG0, color_reg0);
             GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
@@ -4089,16 +4101,22 @@ void dKyr_drawStar(Mtx drawMtx, u8** tex) {
         csXyz(0, 30000, 19000),
     };
 
+#if VERSION == VERSION_GCN_JPN
+    if (g_env_light.hide_vrbox) {
+        return;
+    }
+#endif
+
     if (star_packet->mEffectNum != 0) {
         if (strcmp(dComIfGp_getStartStageName(), "F_SP200") == 0 && dComIfG_play_c::getLayerNo(0) == 0) {
             gwolf_howl_stage = true;
-        } else if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0 || 
+        } else if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0 ||
                    ((strcmp(dComIfGp_getStartStageName(), "F_SP103") == 0) && dComIfGp_roomControl_getStayNo() == 0))
         {
             // draw stars on the opposite skybox hemisphere as well for water reflections
             draw_mirrored = true;
         }
-    
+
         if (strcmp(dComIfGp_getStartStageName(), "F_SP103") == 0 && dKy_daynight_check()) {
             sp38 = true;
         }
@@ -4125,7 +4143,7 @@ void dKyr_drawStar(Mtx drawMtx, u8** tex) {
                 moon_pos.z = -9072.0f + camera->lookat.eye.z;
             }
         }
-    
+
         mDoLib_project(&moon_pos, &moon_proj);
 
         GXSetNumChans(1);
@@ -4570,11 +4588,16 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
     GXTexObj texobj;
     cXyz proj;
 
-    int j;
-    int k;
+    f32 rot;
+    f32 spCC;
     int pass = 1;
-
     f32 spC4 = 0.0f;
+
+#if VERSION == VERSION_GCN_JPN
+    if (g_env_light.hide_vrbox) {
+        return;
+    }
+#endif
 
     cXyz sp15C;
     cXyz sp150;
@@ -4586,7 +4609,27 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
     cXyz sp108;
     cXyz spFC;
 
+    f32 spC0;
+    f32 spBC;
+    f32 spB8;
+    f32 spB4;
+    f32 spB0;
+    f32 spAC;
+    f32 spA8;
+    f32 spA4;
+    f32 spA0;
+    f32 sp9C;
+    f32 sp98;
+    f32 sp94;
+    f32 sp90;
+    f32 sp8C;
+
+    int sp88;
+    int sp84;
     int sp80 = 0;
+    GXColor color_reg1;
+
+    int j, k;
 
     if (camera2 != NULL) {
         spC4 = camera2->mCamera.TrimHeight();
@@ -4599,11 +4642,14 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
         return;
     }
 
-    f32 rot = cAngle::s2d(fopCamM_GetBank(camera));
-    int sp88 = 0;
-    f32 spCC = 100000.0f;
+    rot = cAngle::s2d(fopCamM_GetBank(camera));
+
+    sp88 = 0;
+    spCC = 100000.0f;
 
     f32 unused;
+    f32 y_pos;
+
     if (dComIfGd_getView() != NULL) {
         f32 sp70 = 0.0f;
         dStage_FileList_dt_c* filelist = NULL;
@@ -4613,15 +4659,15 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
 
         if (filelist != NULL) {
             sp70 = dStage_FileList_dt_SeaLevel(filelist);
-
-            #ifdef DEBUG
-            if (g_kankyoHIO.field_0x0b4) {
-                sp70 = g_kankyoHIO.field_0x0b8;
-            } else {
-                g_kankyoHIO.field_0x0b8 = sp70;
-            }
-            #endif
         }
+
+#ifdef DEBUG
+        if (g_kankyoHIO.field_0x0b4) {
+            sp70 = g_kankyoHIO.field_0x0b8;
+        } else {
+            g_kankyoHIO.field_0x0b8 = sp70;
+        }
+#endif
 
         unused = 1.0f - (0.09f * (camera->lookat.eye.y - sp70));
     }
@@ -4646,7 +4692,6 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
             color.g = g_env_light.vrbox_kumo_bottom_col.g;
             color.b = g_env_light.vrbox_kumo_bottom_col.b;
 
-            GXColor color_reg1;
             color_reg1.r = 0;
             color_reg1.g = 0;
             color_reg1.b = 0;
@@ -4665,7 +4710,7 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
             GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
             GXSetFog(GX_FOG_NONE, 0.0f, 1.0f, 0.1f, 1.0f, color);
             GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
-            
+
             if (pass == 0) {
                 GXSetAlphaCompare(GX_GREATER, 0, GX_AOP_OR, GX_GREATER, 0);
                 GXSetZCompLoc(GX_FALSE);
@@ -4695,21 +4740,6 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
                 cXyz pos[4];
 
                 if (!(vrkumo_packet->mVrkumoEff[k].mAlpha <= 0.0000000001f) && (pass != 0 || !(vrkumo_packet->mVrkumoEff[k].mAlpha < 0.45f))) {
-                    f32 spC0;
-                    f32 spBC;
-                    f32 spB8;
-                    f32 spB4;
-                    f32 spB0;
-                    f32 spAC;
-                    f32 spA8;
-                    f32 spA4;
-                    f32 spA0;
-                    f32 sp9C;
-                    f32 sp98;
-                    f32 sp94;
-                    f32 sp90;
-                    f32 sp8C;
-
                     f32 sp68;
                     f32 sp64;
                     f32 sp60;
@@ -4721,13 +4751,13 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
 
                     static f32 howa_loop_cnt = 0.0f;
 
-                    #ifdef DEBUG
+#ifdef DEBUG
                     spAC = g_kankyoHIO.field_0x3f4;
                     spA8 = g_kankyoHIO.field_0x3f8;
-                    #else
+#else
                     spAC = 0.6f;
                     spA8 = 0.84f;
-                    #endif
+#endif
 
                     if (dKy_darkworld_check()) {
                         spAC = 0.8f;
@@ -4776,7 +4806,7 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
                         sp60 = sp68 * (0.2f + (0.2f * (k / 100.0f)));
                         sp5C = sp68 * (0.55f + (0.3f * (k / 100.0f)));
                         spFC = vrkumo_packet->mVrkumoEff[k].mPosition;
-                        
+
                         spA4 = 0.0f;
                         spA0 = 0.0f;
 
@@ -4896,18 +4926,21 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
                         pos[2] += camera->lookat.eye;
                         pos[3] += camera->lookat.eye;
 
-                        int sp84 = 0;
+                        sp84 = 0;
                         if (dComIfGd_getView()->fovy > 40.0f) {
                             cXyz spF0;
+
+                            f32 x;
+                            f32 y;
+                            f32 z;
                             for (int sp3C = 0; sp3C < 4; sp3C++) {
                                 spF0 = pos[sp3C];
-                                Vec sp48;
-                                sp48.x = 100.0f;
-                                sp48.y = 100.0f;
-                                sp48.z = 100.0f;
+                                x = 100.0f;
+                                y = 100.0f;
+                                z = 100.0f;
                                 mDoLib_project(&spF0, &proj);
 
-                                if (proj.x > -sp48.x && proj.x < (608.0f + sp48.x) && proj.y > -sp48.y && proj.y < (458.0f + sp48.z)) {
+                                if (proj.x > -x && proj.x < (608.0f + x) && proj.y > -y && proj.y < (458.0f + z)) {
                                     break;
                                 }
 
@@ -4944,17 +4977,20 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
                             sp84 = 0;
                             if (dComIfGd_getView()->fovy > 40.0f) {
                                 cXyz spE4;
+
+                                f32 x;
+                                f32 y;
+                                f32 z;
                                 for (int sp2C = 0; sp2C < 4; sp2C++) {
                                     spE4 = pos[sp2C];
                                     spE4.y = -pos[sp2C].y;
 
-                                    Vec sp38;
-                                    sp38.x = 100.0f;
-                                    sp38.y = 100.0f;
-                                    sp38.z = 100.0f;
+                                    x = 100.0f;
+                                    y = 100.0f;
+                                    z = 100.0f;
                                     mDoLib_project(&spE4, &proj);
 
-                                    if (proj.x > -sp38.x && proj.x < (608.0f + sp38.x) && proj.y > -sp38.y && proj.y < (458.0f + sp38.z)) {
+                                    if (proj.x > -x && proj.x < (608.0f + x) && proj.y > -y && proj.y < (458.0f + z)) {
                                         break;
                                     }
 
@@ -4965,7 +5001,6 @@ void drawVrkumo(Mtx drawMtx, GXColor& color, u8** tex) {
                             }
 
                             if (sp84 == 0) {
-                                f32 y_pos;
                                 GXBegin(GX_QUADS, GX_VTXFMT0, 4);
 
                                 y_pos = -pos[0].y;
@@ -5443,7 +5478,7 @@ void dKyr_odour_draw(Mtx drawMtx, u8** tex) {
 
     for (int i = 0; i < 2000; i++) {
         EF_ODOUR_EFF* effect = &odour_packet->mOdourEff[i];
-        camera_class* camera = dComIfGp_getCamera(0);
+        camera_class* camera = (camera_class*)dComIfGp_getCamera(0);
         cXyz pos[4];
         Vec sp64, sp58;
         cXyz sp4C;

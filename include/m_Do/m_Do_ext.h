@@ -542,7 +542,7 @@ public:
 
     /* 80014738 */ void setMat(mDoExt_3DlineMat_c*);
     virtual void draw();
-    virtual ~mDoExt_3DlineMatSortPacket();
+    virtual ~mDoExt_3DlineMatSortPacket() {}
 
 private:
     /* 0x10 */ mDoExt_3DlineMat_c* mp3DlineMat;
@@ -554,7 +554,7 @@ public:
     /* 80013360 */ int init(u16, u16, ResTIMG*, int);
     /* 80013FB0 */ void update(int, GXColor&, dKy_tevstr_c*);
     /* 8001373C */ void update(int, f32, GXColor&, u16, dKy_tevstr_c*);
-    /* 80014E7C */ int getMaterialID();
+    /* 80014E7C */ int getMaterialID() { return 1; }
     /* 800134F8 */ void setMaterial();
     /* 800135D0 */ void draw();
 
@@ -578,7 +578,7 @@ public:
     /* 80012874 */ void update(int, f32, _GXColor&, u16, dKy_tevstr_c*);
     /* 80012E3C */ void update(int, _GXColor&, dKy_tevstr_c*);
 
-    /* 80014E84 */ virtual int getMaterialID();
+    /* 80014E84 */ virtual int getMaterialID() { return 0; }
     /* 800126C0 */ virtual void setMaterial();
     /* 80012774 */ virtual void draw();
 

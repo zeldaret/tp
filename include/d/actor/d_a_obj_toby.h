@@ -63,15 +63,4 @@ public:
 
 STATIC_ASSERT(sizeof(obj_toby_class) == 0x6374);
 
-class daObj_Toby_HIO_c : public JORReflexible{
-public:
-    /* 80D1378C */ daObj_Toby_HIO_c();
-    /* 80D15534 */ virtual ~daObj_Toby_HIO_c() {}
-
-    void genMessage(JORMContext*);
-
-    /* 0x4 */ s8 field_0x4;
-    /* 0x8 */ f32 field_0x8;
-};
-
 #endif /* D_A_OBJ_TOBY_H */

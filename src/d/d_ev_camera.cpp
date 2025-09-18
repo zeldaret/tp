@@ -4142,23 +4142,3 @@ bool dCamera_c::bspTransEvCamera() {
 bool dCamera_c::portalWarpEvCamera() {
     return true;
 }
-
-/* 8009771C-80097738 09205C 001C+00 11/11 22/22 0/0 .text attentionPos__9dCamera_cFP10fopAc_ac_c */
-cXyz dCamera_c::attentionPos(fopAc_ac_c* a_this) {
-    return a_this->attention_info.position;
-}
-
-/* 80097738-8009775C 092078 0024+00 10/10 10/10 0/0 .text directionOf__9dCamera_cFP10fopAc_ac_c */
-cSAngle dCamera_c::directionOf(fopAc_ac_c* a_this) {
-    return a_this->shape_angle.y;
-}
-
-/* 8009775C-80097778 09209C 001C+00 9/9 20/20 0/0 .text positionOf__9dCamera_cFP10fopAc_ac_c */
-cXyz dCamera_c::positionOf(fopAc_ac_c* a_this) {
-    return a_this->current.pos;
-}
-
-/* 8009778C-800977A8 0920CC 001C+00 1/1 2/2 0/0 .text            eyePos__9dCamera_cFP10fopAc_ac_c */
-cXyz dCamera_c::eyePos(fopAc_ac_c* a_this) {
-    return a_this->eyePos;
-}

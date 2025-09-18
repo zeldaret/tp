@@ -135,8 +135,17 @@ public:
         m_demoMode = 1;
     }
 
-    /* 807E27F8 */ void onDemoJumpDistance(f32, f32);
-    /* 807E28B8 */ void changeDemoPos0(cXyz const*);
+    /* 807E27F8 */ void onDemoJumpDistance(f32 param_1, f32 param_2) {
+        field_0x1768 = param_1;
+        field_0x176c = param_2;
+        field_0x1770 = param_1;
+
+    }
+
+    /* 807E28B8 */ void changeDemoPos0(cXyz const* pos) {
+        m_demoPos0 = *pos;
+    }
+
     /* 80838498 */ void coHitCallbackBoarJump(fopAc_ac_c*);
     /* 80838798 */ void coHitCallbackBoarHit(fopAc_ac_c*, dCcD_GObjInf*);
     /* 80838904 */ void coHitCallbackCowHit(fopAc_ac_c*);

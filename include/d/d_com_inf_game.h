@@ -875,6 +875,7 @@ int dComIfG_changeOpeningScene(scene_class* scene, s16 procName);
 int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* i_arcName);
 int dComIfG_resLoad(request_of_phase_process_class* i_phase, char const* i_resName, JKRHeap* heap);
 int dComIfG_TimerStop(int);
+int dComIfG_TimerDeleteCheck(int);
 int dComIfG_TimerDeleteRequest(int i_mode);
 int dComIfG_TimerStart(int i_mode, s16 i_time);
 u32 dComIfG_getTrigA(u32 i_padNo);
@@ -3397,7 +3398,7 @@ inline dStage_roomDt_c* dComIfGp_roomControl_getStatusRoomDt(int room_no) {
     return g_dComIfG_gameInfo.play.getRoomControl()->getStatusRoomDt(room_no);
 }
 
-inline s32 dComIfGp_roomControl_getTimePass() {
+inline BOOL dComIfGp_roomControl_getTimePass() {
     return g_dComIfG_gameInfo.play.getRoomControl()->GetTimePass();
 }
 

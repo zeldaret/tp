@@ -271,7 +271,7 @@ public:
     }
 
     int getBitTRB() { return (fopAcM_GetParam(this) & 0x3F0000) >> 16; }
-    u32 getPathID() { return (fopAcM_GetParam(this) & 0xFF00) >> 8; }
+    u8 getPathID() { return (fopAcM_GetParam(this) & 0xFF00) >> 8; }
 
     void dComIfGs_setRaceGameTime(u32 i_time) {
         g_dComIfG_gameInfo.info.getMiniGame().setRaceGameTime(i_time);

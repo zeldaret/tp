@@ -50,6 +50,17 @@ static s8 r11yuka_image[192] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 };
 
+class daObj_Toby_HIO_c : public JORReflexible{
+public:
+    /* 80D1378C */ daObj_Toby_HIO_c();
+    /* 80D15534 */ virtual ~daObj_Toby_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x4 */ s8 field_0x4;
+    /* 0x8 */ f32 field_0x8;
+};
+
 /* 80D1378C-80D137B0 0000EC 0024+00 1/1 0/0 0/0 .text            __ct__16daObj_Toby_HIO_cFv */
 daObj_Toby_HIO_c::daObj_Toby_HIO_c() {
     field_0x4 = -1;
@@ -435,24 +446,24 @@ static int daObj_Toby_Delete(obj_toby_class* i_this) {
 // nonmatching - regalloc
 static int useHeapInit(fopAc_ac_c* a_this) {
     obj_toby_class* i_this = (obj_toby_class*)a_this;
-    J3DModelData* modelData;
-    J3DModelData* modelData2;
+    void* modelData;
+    void* modelData2;
     yuka_s* pYuka;
-    
+
     if (i_this->field_0x577 == 0) {
-        modelData = (J3DModelData*)dComIfG_getObjectRes(i_this->mArcName, 4);
+        modelData = dComIfG_getObjectRes(i_this->mArcName, 4);
         JUT_ASSERT(868, modelData != 0);
-        modelData2 = (J3DModelData*)dComIfG_getObjectRes(i_this->mArcName, 5);
+        modelData2 = dComIfG_getObjectRes(i_this->mArcName, 5);
         // !@bug assert on wrong variable. not really meaningful.
         JUT_ASSERT(872, modelData != 0);
         pYuka = i_this->mYukas;
         for (int i = 0; i < i_this->mYukaNum; i++, pYuka++) {
-            i_this->mYukas[i].mModel1 = mDoExt_J3DModel__create(modelData, 0x20000, 0x11000084);
+            i_this->mYukas[i].mModel1 = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x20000, 0x11000084);
             if (i_this->mYukas[i].mModel1 == NULL) {
                 return 0;
             }
 
-            i_this->mYukas[i].mModel2 = mDoExt_J3DModel__create(modelData2, 0x20000, 0x11000084);
+            i_this->mYukas[i].mModel2 = mDoExt_J3DModel__create((J3DModelData*)modelData2, 0x20000, 0x11000084);
             if (i_this->mYukas[i].mModel2 == NULL) {
                 return 0;
             }
@@ -467,11 +478,11 @@ static int useHeapInit(fopAc_ac_c* a_this) {
         }
     } else if (i_this->field_0x577 == 1) {
         a_this->field_0x567 = 1;
-        modelData = (J3DModelData*)dComIfG_getObjectRes(i_this->mArcName, 6);
+        modelData = dComIfG_getObjectRes(i_this->mArcName, 6);
         JUT_ASSERT(907, modelData != 0);
 
         for (int i = 0; i < i_this->mYukaNum; i++) {
-            i_this->mYukas[i].mModel1 = mDoExt_J3DModel__create(modelData, 0x20000, 0x11000084);
+            i_this->mYukas[i].mModel1 = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x20000, 0x11000084);
             if (i_this->mYukas[i].mModel1 == NULL) {
                 return 0;
             }

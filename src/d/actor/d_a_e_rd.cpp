@@ -696,7 +696,7 @@ static void ride_off(e_rd_class* i_this) {
                 }
 
                 bullbo->mActionID = 7;
-                bullbo->field_0x69a = cM_rndF(30.0f) + 80.0f;
+                bullbo->field_0x698[1] = cM_rndF(30.0f) + 80.0f;
             }
         }
 
@@ -4145,7 +4145,7 @@ static void damage_check(e_rd_class* i_this) {
                             }
 
                             uVar1 = 3;
-                            bullbo_p->field_0x69e = 100;
+                            bullbo_p->field_0x698[3] = 100;
                             dComIfGs_onSaveDunSwitch(7);
                         } else {
                             uVar1 = 2;
@@ -7011,7 +7011,7 @@ static void coach_game_actor_set(e_rd_class* i_this) {
     }
 }
 
-static s8 gap_05_000002E8_bss;
+static s8 instanceCount;
 
 /* 80516B04-805171FC 012184 06F8+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
 static int useHeapInit(fopAc_ac_c* a_this) {
@@ -7419,8 +7419,8 @@ static cPhs__Step daE_RD_Create(fopAc_ac_c* a_this) {
         i_this->field_0x1100.Set(at_sph_src);
         i_this->field_0x1100.SetStts(&i_this->mStts);
 
-        i_this->field_0x970 = gap_05_000002E8_bss | (u16)(cM_rndF(65535.0f)) & 0xFF00;
-        gap_05_000002E8_bss++;
+        i_this->field_0x970 = instanceCount | (u16)(cM_rndF(65535.0f)) & 0xFF00;
+        instanceCount++;
 
         i_this->mSound.init(&a_this->current.pos, &a_this->eyePos, 3, 1);
 
