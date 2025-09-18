@@ -47,15 +47,15 @@ public:
     /* 806D59D0 */ void cc_set();
     /* 806D5D54 */ int draw();
     /* 806D631C */ void damage_check();
-    /* 806D6708 */ void execute();
-    /* 806D6980 */ void _delete();
-    /* 806D6AC8 */ void CreateHeap();
+    /* 806D6708 */ int execute();
+    /* 806D6980 */ int _delete();
+    /* 806D6AC8 */ int CreateHeap();
     /* 806D6CF0 */ cPhs__Step create();
 
     void InstantKill() { field_0xa76 = 1; }
     u8 CheckDeath() { return field_0xa68; }
     void MoveStart(u8 param_1) {
-        field_0xa71 = 1;
+        field_0xa71 = true;
         field_0xa5e = param_1;
     }
     BOOL checkAction(actionFunc action) { return mAction == action; }
@@ -69,18 +69,16 @@ private:
     /* 0x808 */ dCcD_Sph mSph;
     /* 0x940 */ dCcU_AtInfo mAtInfo;
     /* 0x964 */ mDoExt_McaMorfSO* mpModelMorf;
-    /* 0x968 */ J3DModel* mpModel;
+    /* 0x968 */ J3DModel* mpEggModel;
     /* 0x96C */ Z2CreatureEnemy mSound;
     /* 0xA10 */ cXyz field_0xa10;
     /* 0xA1C */ csXyz field_0xa1c;
-    /* 0xA22 */ u8 field_0xa22;
-    /* 0xA23 */ u8 field_0xa23;
     /* 0xA24 */ actionFunc mAction;
     /* 0xA30 */ actionFunc mOldAction;
-    /* 0xA3C */ int field_0xa3c;
+    /* 0xA3C */ int mMode;
     /* 0xA40 */ f32 field_0xa40;
     /* 0xA44 */ f32 field_0xa44;
-    /* 0xA48 */ f32 field_0xa48;
+    /* 0xA48 */ f32 mColor;
     /* 0xA4C */ f32 field_0xa4c;
     /* 0xA50 */ f32 field_0xa50;
     /* 0xA54 */ f32 field_0xa54;
@@ -98,38 +96,17 @@ private:
     /* 0xA6C */ u8 field_0xa6c;
     /* 0xA6D */ u8 field_0xa6d;
     /* 0xA6E */ u8 field_0xa6e;
-    /* 0xA6F */ u8 arg0;
+    /* 0xA6F */ u8 mType;
     /* 0xA70 */ u8 mSwBit;
-    /* 0xA71 */ u8 field_0xa71;
+    /* 0xA71 */ bool field_0xa71;
     /* 0xA72 */ u8 field_0xa72;
-    /* 0xA73 */ u8 field_0xa73;
+    /* 0xA73 */ u8 mRandIndex;
     /* 0xA74 */ u8 field_0xa74;
     /* 0xA75 */ u8 field_0xa75;
-    /* 0xA76 */ u8 field_0xa76;
+    /* 0xA76 */ bool field_0xa76;
     /* 0xA77 */ u8 field_0xa77;
 };
 
 STATIC_ASSERT(sizeof(daE_GM_c) == 0xa78);
-
-class daE_GM_HIO_c {
-public:
-    /* 806D126C */ daE_GM_HIO_c();
-    /* 806D7428 */ virtual ~daE_GM_HIO_c() {}
-
-    /* 子ゴーマ - Baby Ghoma */
-    /* 0x04 */ s8 id;
-    /* 0x08 */ f32 model_size;
-    /* 0x0C */ f32 basic_speed;
-    /* 0x10 */ f32 max_acceleration;
-
-    /* ダンジョン用子ゴーマ - Dungeon Baby Ghoma */
-    /* 0x14 */ f32 escape_speed;
-    /* 0x18 */ f32 player_run_pursuit_speed;
-    /* 0x1C */ f32 player_walk_pursuit_speed;
-    /* 0x20 */ f32 player_search_y_limit;
-
-    /* 0x24 */ s16 min_acceleration_cycle;
-};
-
 
 #endif /* D_A_E_GM_H */
