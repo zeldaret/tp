@@ -9,11 +9,12 @@
 /**
  * @ingroup actors-enemies
  * @class daE_GM_c
- * @brief Baby Gohma
+ * @brief Baby Gohma / Gohma Eye
  * 
  * @details 
  * 
- */
+*/
+
 class daE_GM_c : public fopEn_enemy_c {
 public:
     typedef void (daE_GM_c::*actionFunc)();
