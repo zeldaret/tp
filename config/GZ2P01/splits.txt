@@ -48,7 +48,7 @@ m_Do/m_Do_graphic.cpp:
 	.rodata     start:0x80374C10 end:0x80374C28
 	.bss        start:0x803DF388 end:0x803DF410
 	.sdata      start:0x80452550 end:0x80452560
-	.sbss       start:0x80452B88 end:0x80452BB4
+	.sbss       start:0x80452B88 end:0x80452BB0
 	.sdata2     start:0x804539F8 end:0x80453AC0
 	.sbss2      start:0x80458B40 end:0x80458B48
 
@@ -57,7 +57,7 @@ m_Do/m_Do_machine.cpp:
 	.rodata     start:0x80374C28 end:0x80374F00
 	.data       start:0x803A4C40 end:0x803A4CB8
 	.sdata      start:0x80452560 end:0x80452568
-	.sbss       start:0x80452BB4 end:0x80452BD8
+	.sbss       start:0x80452BB0 end:0x80452BD8
 	.sdata2     start:0x80453AC0 end:0x80453AC8
 
 m_Do/m_Do_mtx.cpp:
@@ -440,7 +440,7 @@ d/d_demo.cpp:
 	.data       start:0x803A95F0 end:0x803A98F8
 	.bss        start:0x804265E8 end:0x80426618
 	.sdata      start:0x804525E0 end:0x804525E8
-	.sbss       start:0x80452DC0 end:0x80452E1C
+	.sbss       start:0x80452DC0 end:0x80452E18
 	.sdata2     start:0x80453D70 end:0x80453DB0
 
 d/d_door_param2.cpp:
@@ -472,7 +472,7 @@ d/d_map_path_dmap.cpp:
 	.rodata     start:0x8037AAE8 end:0x8037AC10
 	.data       start:0x803A9A60 end:0x803A9C58
 	.sdata      start:0x804525F0 end:0x80452600
-	.sbss       start:0x80452E1C end:0x80452E50
+	.sbss       start:0x80452E18 end:0x80452E50
 	.sdata2     start:0x80453DE8 end:0x80453E80
 
 d/d_event.cpp:
@@ -768,7 +768,7 @@ d/actor/d_a_npc.cpp:
 	.rodata     start:0x80393E80 end:0x80394218
 	.data       start:0x803B5388 end:0x803B5860
 	.bss        start:0x804276A8 end:0x80427918
-	.sbss       start:0x80452F98 end:0x80452FC4
+	.sbss       start:0x80452F98 end:0x80452FC0
 	.sdata2     start:0x80455398 end:0x80455478
 
 d/actor/d_a_npc_cd.cpp:
@@ -785,7 +785,7 @@ d/actor/d_a_npc_cd2.cpp:
 	.rodata     start:0x80394A50 end:0x80395588
 	.data       start:0x803B7EA0 end:0x803BBA80
 	.bss        start:0x8042A5B0 end:0x8042E898
-	.sbss       start:0x80452FC4 end:0x80452FD8
+	.sbss       start:0x80452FC0 end:0x80452FD8
 	.sdata2     start:0x804554A0 end:0x80455510
 
 d/actor/d_a_obj_item.cpp:
@@ -1992,7 +1992,7 @@ JSystem/JAudio2/dsptask.cpp:
 	.text       start:0x8029F4E0 end:0x8029F800
 	.data       start:0x803C98C0 end:0x803CB7C0
 	.bss        start:0x80433F40 end:0x80436020
-	.sbss       start:0x804532C8 end:0x804532D4
+	.sbss       start:0x804532C8 end:0x804532D0
 
 JSystem/JAudio2/osdsp.cpp:
 	.text       start:0x8029F800 end:0x8029F920
@@ -2001,7 +2001,7 @@ JSystem/JAudio2/osdsp.cpp:
 JSystem/JAudio2/osdsp_task.cpp:
 	.text       start:0x8029F920 end:0x8029FDAC
 	.bss        start:0x80436020 end:0x80436038
-	.sbss       start:0x804532D4 end:0x804532FC
+	.sbss       start:0x804532D0 end:0x804532F8
 
 JSystem/JAudio2/JAIAudible.cpp:
 	.text       start:0x8029FDAC end:0x8029FDF4
@@ -2144,7 +2144,7 @@ JSystem/JMessage/locale.cpp:
 
 Z2AudioLib/Z2Calc.cpp:
 	.text       start:0x802AA48C end:0x802AA834
-	.sbss       start:0x804532FC end:0x80453300
+	.sbss       start:0x804532F8 end:0x80453300
 	.sdata2     start:0x804577F8 end:0x80457810
 
 Z2AudioLib/Z2Param.cpp:
