@@ -662,8 +662,7 @@ static cXyz b_path[8];
 static void b_gnd_h_run_a(b_gnd_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
-    cXyz sp8C;
-    cXyz sp80;
+    cXyz sp8C, sp80;
 
     f32 player_distxz = i_this->mPlayerDistXZ;
     f32 speed_target = 0.0f;
@@ -685,8 +684,7 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
 
     s8 sp8 = false;
     s16 spE = 0x80;
-    cXyz sp74;
-    cXyz sp68;
+    cXyz sp74, sp68;
 
     switch (i_this->mMoveMode) {
     case 0:
@@ -854,14 +852,12 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
 
         i_this->field_0x5cc = cM_atan2s(sp8C.x, sp8C.z);
         if (i_this->field_0x1e0a >= 1 && i_this->mMoveMode <= 2) {
-            speed_target = (var_f30 - 800.0f) * 2.0f;
+            speed_target = (var_f30 - 800.0f) * (AREG_F(8) + 2.0f);
             var_f30 = 7000.0f;
             if (speed_target > 7000.0f) {
                 speed_target = 7000.0f;
-            } else {
-                if (speed_target < 0.0f) {
-                    speed_target = 0.0f;
-                }
+            } else if (speed_target < 0.0f) {
+                speed_target = 0.0f;
             }
 
             i_this->field_0xc90 = i_this->field_0xc90 + i_this->field_0xc92;
@@ -899,7 +895,7 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
                 speed_target = l_HIO.field_0xc;
             }
 
-            if (fopAcM_searchPlayerDistanceXZ(a_this) < 2000.0f) {
+            if (fopAcM_searchPlayerDistanceXZ(a_this) < KREG_F(0) + 2000.0f) {
                 speed_target *= 1.2f;
             }
 
@@ -926,7 +922,7 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
 
     cLib_addCalc2(&a_this->speedF, speed_target, 1.0f, speed_step);
     if (speed_target > 10.0f) {
-        sp12 = (a_this->current.angle.y - sp12) * -8;
+        sp12 = (AREG_S(7) + -8) * (a_this->current.angle.y - sp12);
         if (sp12 > 2000) {
             sp12 = 2000;
         } else if (sp12 < -2000) {
@@ -937,8 +933,8 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
     }
 
     if (i_this->mAnmID == B_GND_BCK_EGND_RRUN) {
-        i_this->mpModelMorf->setPlaySpeed(i_this->mPlaySpeed);
-        i_this->mpHorseMorf->setPlaySpeed(i_this->mPlaySpeed);
+        i_this->mpModelMorf->setPlaySpeed(i_this->mPlaySpeed * (JREG_F(11) + 1.0f));
+        i_this->mpHorseMorf->setPlaySpeed(i_this->mPlaySpeed * (JREG_F(11) + 1.0f));
     }
 
     cLib_addCalc2(&i_this->mPlaySpeed, anm_speed_target, 1.0f, 0.1f);

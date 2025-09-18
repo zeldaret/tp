@@ -21,6 +21,22 @@
 #include "d/actor/d_a_obj_ystone.h"
 #include "Z2AudioLib/Z2Instances.h"
 
+class daB_OB_HIO_c {
+public:
+public:
+    /* 8061056C */ daB_OB_HIO_c();
+    /* 8061A808 */ virtual ~daB_OB_HIO_c() {}
+
+    /* 0x04 */ s8 field_0x04;
+    /* 0x08 */ f32 mCoreSize;
+    /* 0x0C */ f32 mCoreMoveSpeed;
+    /* 0x10 */ f32 mBodySize;
+    /* 0x14 */ s16 mLightR;
+    /* 0x16 */ s16 mLightG;
+    /* 0x18 */ s16 mLightB;
+    /* 0x1C */ f32 mRange;
+};
+
 
 /* 8061056C-806105BC 0000EC 0050+00 1/1 0/0 0/0 .text            __ct__12daB_OB_HIO_cFv */
 daB_OB_HIO_c::daB_OB_HIO_c() {
@@ -1902,7 +1918,7 @@ static void fish_move(b_ob_class* i_this) {
         i_this->field_0x2320 &= 0x1FF;
     }
 
-    f32 var_f31_2 = l_HIO.mBodySize * ((VREG_F(17) + 360.0f) * 0.6f);
+    f32 var_f31_2 = l_HIO.mBodySize * ((VREG_F(17) + 600.0f) * 0.6f);
     a_this->current.pos.y -= var_f31_2;
     a_this->old.pos.y -= var_f31_2;
     i_this->mAcch.CrrPos(dComIfG_Bgsp());
