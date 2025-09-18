@@ -1636,20 +1636,16 @@ void dDlst_shadowControl_c::draw(Mtx param_0) {
     GXSetAlphaUpdate(GX_DISABLE);
 }
 
-/* 803A8D9C-803A8DCC 005EBC 0030+00 0/0 0/0 0/0 .data            mtx_adj$5842 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static Mtx mtx_adj = {
-    {0.5f, 0.0f, 0.0f, 0.5f},
-    {0.0f, -0.5f, 0.0f, 0.5f},
-    {0.0f, 0.0f, 1.0f, 0.0f},
-};
-#pragma pop
-
 /* 80055C74-80055F1C 0505B4 02A8+00 0/0 1/1 1/1 .text
  * setReal__21dDlst_shadowControl_cFUlScP8J3DModelP4cXyzffP12dKy_tevstr_c */
 int dDlst_shadowControl_c::setReal(u32 param_1, s8 param_2, J3DModel* param_3, cXyz* param_4,
                                        f32 param_5, f32 param_6, dKy_tevstr_c* param_7) {
+    static Mtx mtx_adj = {
+        {0.5f, 0.0f, 0.0f, 0.5f},
+        {0.0f, -0.5f, 0.0f, 0.5f},
+        {0.0f, 0.0f, 1.0f, 0.0f},
+    };
+
     f32 fVar1;
     f32 dVar16 = (param_2 == 0) ? 1.0f : (1.0f - 0.003000000026077032f * param_6);
     if (dVar16 <= 0.0f) {

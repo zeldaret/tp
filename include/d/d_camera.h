@@ -921,10 +921,10 @@ public:
     /* 800965AC */ bool hintTalkEvCamera();
     /* 80096EDC */ bool bspTransEvCamera();
     /* 80097694 */ bool portalWarpEvCamera();
-    /* 8009771C */ cXyz attentionPos(fopAc_ac_c*);
-    /* 80097738 */ cSAngle directionOf(fopAc_ac_c*);
-    /* 8009775C */ cXyz positionOf(fopAc_ac_c*);
-    /* 8009778C */ cXyz eyePos(fopAc_ac_c*);
+    /* 8009771C */ cXyz attentionPos(fopAc_ac_c* i_this) { return i_this->attention_info.position; }
+    /* 80097738 */ cSAngle directionOf(fopAc_ac_c* i_this) { return i_this->shape_angle.y; }
+    /* 8009775C */ cXyz positionOf(fopAc_ac_c* i_this) { return i_this->current.pos; }
+    /* 8009778C */ cXyz eyePos(fopAc_ac_c* i_this) { return i_this->eyePos; }
     /* 8016008C */ dCamera_c(camera_class*);
     /* 80160304 */ ~dCamera_c();
     /* 80160470 */ void initialize(camera_class*, fopAc_ac_c*, u32, u32);

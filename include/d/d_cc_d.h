@@ -50,6 +50,7 @@ enum dCcD_Material {
 enum dCcG_At_Spl {
     /* 0x0 */ dCcG_At_Spl_UNK_0,
     /* 0x1 */ dCcG_At_Spl_UNK_1,
+    /* 0x7 */ dCcG_At_Spl_UNK_7 = 0x7,
     /* 0xD */ dCcG_At_Spl_UNK_D = 0xD,
 };
 

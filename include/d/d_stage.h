@@ -1067,7 +1067,7 @@ public:
     /* 80024954 */ static bool resetArchiveBank(int);
     /* 80024DB0 */ static void SetTimePass(int i_TimePass) { m_time_pass = i_TimePass; }
     /* 8025BAAC */ static void setZoneNo(int, int);
-    static u8 GetTimePass() { return m_time_pass; }
+    static BOOL GetTimePass() { return m_time_pass; }
 
     static s8 getStayNo() { return mStayNo; }
     static u8 getRegionNo(int i_roomNo) { return mStatus[i_roomNo].mRegionNo; }
