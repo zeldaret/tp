@@ -16,13 +16,13 @@ BOOL e_wb_class::checkWait() {
 void e_wb_class::setPlayerRideNow() {
     mActionID = ACT_PL_RIDE_NOW;
     mActionMode = 0;
-    field_0x6be |= 3;
+    mStatusFlags |= 3;
 }
 
 void e_wb_class::setPlayerRide() {
     mActionID = ACT_PL_RIDE;
     mActionMode = 0;
-    field_0x6be |= 3;
+    mStatusFlags |= 3;
 
     mZ2Ride.setLinkRiding(true);
 }
@@ -35,7 +35,7 @@ void e_wb_class::getOff() {
     }
 
     mActionMode = 0;
-    field_0x6be &= ~3;
+    mStatusFlags &= ~3;
     mZ2Ride.setLinkRiding(false);
 }
 

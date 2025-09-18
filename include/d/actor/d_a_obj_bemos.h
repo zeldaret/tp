@@ -3,7 +3,8 @@
 
 #include "f_op/f_op_actor_mng.h"
 #include "d/d_bg_s_movebg_actor.h"
-#include "d/d_bg_w_base.h"
+#include "d/d_bg_s_acch.h"
+#include "d/d_bg_w.h"
 #include "d/d_cc_d.h"
 #include "m_Do/m_Do_ext.h"
 
@@ -17,37 +18,68 @@
  */
 class daObjBm_c : public dBgS_MoveBgActor {
 public:
-    class BgcSrc_c {};
+    typedef void (daObjBm_c::*procFunc)();
+    typedef void (daObjBm_c::*modeFunc)();
+
+    class BgcSrc_c {
+    public:
+        /* 0x0 */ f32 field_0x0;
+        /* 0x4 */ f32 field_0x4;
+        /* 0x8 */ f32 field_0x8;
+        /* 0xC */ f32 field_0xc;
+    };
 
     class Bgc_c {
     public:
+        enum State_e {
+            STATE_0_e = 0x0,
+            STATE_1_e = 0x1,
+            STATE_2_e = 0x2,
+            STATE_4_e = 0x4,
+            STATE_8_e = 0x8,
+            STATE_10_e = 0x10,
+            STATE_20_e = 0x20,
+            STATE_40_e = 0x40,
+        };
+
         /* 80BB0E0C */ Bgc_c();
         /* 80BB0ED4 */ void wall_pos(fopAc_ac_c const*, daObjBm_c::BgcSrc_c const*, int, s16, f32);
-        /* 80BB1154 */ void chk_wall_pre(fopAc_ac_c const*, daObjBm_c::BgcSrc_c const*, int, s16);
-        
-        static u8 const M_lin20[368];
-        static u8 M_lin5[80];
-        static u8 M_gnd_work[1932];
-        static u8 M_wrt_work[84];
-        static u8 M_wall_work[2576];
+        /* 80BB1154 */ bool chk_wall_pre(fopAc_ac_c const*, daObjBm_c::BgcSrc_c const*, int, s16);
+
+        static const daObjBm_c::BgcSrc_c M_lin5[];
+        static const daObjBm_c::BgcSrc_c M_lin20[];
+
+        static dBgS_ObjGndChk M_gnd_work[23];
+        static dBgS_WtrChk M_wrt_work;
+        static dBgS_ObjLinChk M_wall_work[23];
+
+        /* 0x000 */ f32 field_0x0[23];
+        /* 0x05C */ int field_0x5c;
+        /* 0x060 */ f32 field_0x60;
+        /* 0x064 */ cXyz field_0x64[23];
+        /* 0x178 */ int field_0x178;
+        /* 0x17C */ f32 field_0x17c;
+        /* 0x180 */ State_e mState;
     };
 
-    u32 getSwNo3() { return fopAcM_GetParamBit(this, 16,8); }
-    u32 getMoveType() { return fopAcM_GetParamBit(this, 24, 4); }
+    s32 getMoveType() { return fopAcM_GetParamBit(this, 24, 4); }
     s16 getHeadJoint() { return mHeadJntNo; }
     s16 getBigGearJoint() { return mBigGearJntNo; }
     s16 getSmallGear0Joint() { return mSmallGear0JntNo; }
     s16 getSmallGear1Joint() { return mSmallGear1JntNo; }
     s16 getSmallGear2Joint() { return mSmallGear2JntNo; }
-    s8 getSwNo() { return fopAcM_GetParamBit(this,8,8);}
-    s8 getSwNo2() { return fopAcM_GetParamBit(this,0,8);}
+    s32 getSwNo() { return fopAcM_GetParamBit(this,0,8);}
+    s32 getSwNo2() { return fopAcM_GetParamBit(this,8,8);}
+    s32 getSwNo3() { return fopAcM_GetParamBit(this, 16,8); }
+    u32 getSearchDist() { return fopAcM_GetParamBit(this,28,4); }
+    u32 getBeamSearchDist() { return field_0x100a & 0xf; }
     
-    /* 80BAE36C */ void PPCallBack(fopAc_ac_c*, fopAc_ac_c*, s16, dBgW_Base::PushPullLabel);
+    /* 80BAE36C */ static void PPCallBack(fopAc_ac_c*, fopAc_ac_c*, s16, dBgW_Base::PushPullLabel);
     /* 80BAE5FC */ void initBaseMtx();
     /* 80BAE68C */ void setBaseMtx();
     /* 80BAE778 */ int Create();
     /* 80BAEADC */ int CreateHeap();
-    /* 80BAEFD8 */ void create1st();
+    /* 80BAEFD8 */ int create1st();
     /* 80BAF09C */ int Execute(Mtx**);
     /* 80BAF29C */ void main_proc_call();
     /* 80BAF328 */ void initActionEnBemos();
@@ -57,17 +89,17 @@ public:
     /* 80BAF80C */ void setCrawCO();
     /* 80BAF8F8 */ void calcBeamPos();
     /* 80BAFC08 */ void calcBeamLenAndAt();
-    /* 80BAFFA8 */ void checkFindPlayer();
-    /* 80BB0104 */ void checkSearchPlayer();
-    /* 80BB0260 */ void getSearchDistance();
-    /* 80BB02B8 */ void getBeamSearchDistance();
+    /* 80BAFFA8 */ s8 checkFindPlayer();
+    /* 80BB0104 */ s8 checkSearchPlayer();
+    /* 80BB0260 */ f32 getSearchDistance();
+    /* 80BB02B8 */ f32 getBeamSearchDistance();
     /* 80BB0310 */ void effect_proc();
     /* 80BB0580 */ void effectWait();
     /* 80BB0584 */ void initEffectSet0();
     /* 80BB0718 */ void effectSet0();
     /* 80BB071C */ void effectSet1();
     /* 80BB0720 */ void effectEnd();
-    /* 80BB0724 */ void check_to_walk();
+    /* 80BB0724 */ int check_to_walk();
     /* 80BB0824 */ void mode_wait_init();
     /* 80BB0888 */ void mode_wait();
     /* 80BB09C8 */ void mode_walk_init();
@@ -89,17 +121,20 @@ public:
     /* 80BB2AB0 */ int Draw();
     /* 80BB2C8C */ int Delete();
 
-    static u8 const M_dir_base[8];
+    static s16 const M_dir_base[4];
 // private:
-    /* 0x05A0 */ u8 field_0x5a0[0x8];
+    /* 0x05A0 */ request_of_phase_process_class mPhase;
     /* 0x05A8 */ J3DModel* mpModel;
     /* 0x05AC */ mDoExt_brkAnm* mpBrkAnm;
-    /* 0x05B0 */ mDoExt_baseAnm* mpBaseAnm;
+    /* 0x05B0 */ mDoExt_bckAnm* mpBckAnm;
     /* 0x05B4 */ J3DModel* mpModel2;
-    /* 0x05B8 */ u8 field_0x5b8[0xa];
+    /* 0x05B8 */ mDoExt_btkAnm* mpBtkAnm;
+    /* 0x05BC */ mDoExt_btkAnm* mpBtkAnm2;
+    /* 0x05C0 */ mDoExt_bckAnm* mpBckAnm2;
     /* 0x05C4 */ J3DModel* mpModel3;
-    /* 0x05C8 */ mDoExt_baseAnm* mpBaseAnm2;
-    /* 0x05CC */ u8 field_0x5cc[0x7e4 - 0x5cc];
+    /* 0x05C8 */ mDoExt_bckAnm* mpBckAnm3;
+    /* 0x05CC */ dBgS_ObjAcch mAcch;
+    /* 0x07A4 */ dBgS_AcchCir mAcchCir;
     /* 0x07E4 */ dCcD_Stts mStts;
     /* 0x0820 */ dCcD_Sph mSph;
     /* 0x0958 */ dCcD_Cps mCps;
@@ -118,39 +153,92 @@ public:
     /* 0x0FA2 */ s16 field_0xfa2;
     /* 0x0FA4 */ s16 field_0xfa4;
     /* 0x0FA6 */ s16 field_0xfa6;
-    /* 0x0FA8 */ u8 field_0xfa8[0xfb4 - 0xfa8];
+    /* 0x0FA8 */ s16 field_0xfa8;
+    /* 0x0FAA */ s16 field_0xfaa;
+    /* 0x0FAC */ s16 field_0xfac;
+    /* 0x0FAE */ s16 field_0xfae;
+    /* 0x0FB0 */ s16 field_0xfb0;
+    /* 0x0FB2 */ s16 field_0xfb2;
     /* 0x0FB4 */ J3DMaterial* mpMaterial;
     /* 0x0FB8 */ cXyz field_0xfb8;
     /* 0x0FC4 */ csXyz field_0xfc4;
     /* 0x0FCA */ u8 field_0xfca[2];
-    /* 0x0FCC */ u32 field_0xfcc;
-    /* 0x0FD0 */ u8 field_0xfd0[0xff0 - 0xfd0];
+    /* 0x0FCC */ cXyz field_0xfcc;
+    /* 0x0FD8 */ cXyz field_0xfd8;
+    /* 0x0FE4 */ u8 field_0xfe4;
+    /* 0x0FE5 */ u8 field_0xfe5;
+    /* 0x0FE6 */ u8 field_0xfe6;
+    /* 0x0FE7 */ s8 field_0xfe7;
+    /* 0x0FE8 */ u8 field_0xfe8;
+    /* 0x0FE9 */ u8 field_0xfe9;
+    /* 0x0FEA */ u8 field_0xfea;
+    /* 0x0FEB */ u8 field_0xfeb;
+    /* 0x0FEC */ u8 mMode;
+    /* 0x0FED */ u8 field_0xfec;
     /* 0x0FF0 */ f32 field_0xff0;
     /* 0x0FF4 */ u8 field_0xff4[3];
     /* 0x0FF7 */ u8 field_0xff7;
-    /* 0x0FF8 */ f32 field_0xff8;
-    /* 0x0FFC */ f32 field_0xffc;
+    /* 0x0FF8 */ JPABaseEmitter* field_0xff8[2];
     /* 0x1000 */ f32 field_0x1000;
-    /* 0x1004 */ u8 field_0x1004[0x100c - 0x1004];
-    /* 0x100C */ f32 field_0x100c;
-    /* 0x1010 */ u8 field_0x1010[0x1038 - 0x1010];
-    /* 0x1038 */ u8 field_0x1038;
+    /* 0x1004 */ f32 field_0x1004;
+    /* 0x1008 */ u16 field_0x1008;
+    /* 0x100A */ u16 field_0x100a;
+    /* 0x100C */ s16 field_0x100c;
+    /* 0x100E */ u8 field_0x100e;
+    /* 0x100F */ u8 field_0x100f;
+    /* 0x1010 */ JPABaseEmitter* field_0x1010[2];
+    /* 0x1018 */ JPABaseEmitter* field_0x1018[2];
+    /* 0x1010 */ JPABaseEmitter* field_0x1020[3];
+    /* 0x102C */ JPABaseEmitter* field_0x102c;
+    /* 0x1030 */ JPABaseEmitter* field_0x1030;
+    /* 0x1034 */ JPABaseEmitter* field_0x1034;
+    /* 0x1038 */ s8 field_0x1038;
     /* 0x1039 */ u8 field_0x1039;
-    /* 0x103A */ u8 field_0x103a[0x10a0 - 0x103a];
+    /* 0x103A */ u8 field_0x103a[0x1060 - 0x103a];
+    /* 0x1060 */ Z2SoundObjSimple mSound;
+    /* 0x1080 */ Z2SoundObjSimple mSound2;
     /* 0x10A0 */ cXyz field_0x10a0;
-    /* 0x10AC */ u8 field_0x10ac[0x10c0 - 0x10ac];
-    /* 0x10C0 */ int field_0x10c0;
-    /* 0x10C4 */ s16 field_0x10c4[4];
-    /* 0x10D4 */ u8 field_0x10cc[0x10d2 - 0x10cc];
+    /* 0x10AC */ int field_0x10ac;
+    /* 0x10B0 */ int field_0x10b0;
+    /* 0x10B4 */ int field_0x10b4;
+    /* 0x10B8 */ f32 field_0x10b8;
+    /* 0x10BC */ int field_0x10bc;
+    /* 0x10C0 */ dBgW::PushPullLabel mPPLabel;
+    /* 0x10C4 */ s16 mMomentCnt[4];
+    /* 0x10CC */ s16 field_0x10cc;
+    /* 0x10CE */ s16 field_0x10ce;
+    /* 0x10D0 */ s16 field_0x10d0;
     /* 0x10D2 */ u8 field_0x10d2;
     /* 0x10D3 */ u8 field_0x10d3;
-    /* 0x10D4 */ u8 field_0x10d4[0x10e8 - 0x10d4];
-    /* 0x10E8 */ f32 field_0x10e8;
-    /* 0x10EC */ f32 field_0x10ec;
-    /* 0x10F0 */ u8 field_0x10f0[0x1258 - 0x10f0];
+    /* 0x10D4 */ Bgc_c mBgc;
 };
 
 STATIC_ASSERT(sizeof(daObjBm_c) == 0x1258);
+
+class daObjBm_HIO_c : public mDoHIO_entry_c {
+public:
+    daObjBm_HIO_c();
+
+    void genMessage(JORMContext*);
+
+    /* 0x08 */ cXyz mBeamScale;
+    /* 0x14 */ f32 mBeamLowerDistance;
+    /* 0x18 */ f32 mBeamMiddleDistance;
+    /* 0x1C */ f32 field_0x1C;
+    /* 0x20 */ f32 mSearchDistance;
+    /* 0x24 */ f32 mTargetOffsetDistance;
+    /* 0x28 */ s16 mSearchAngle;
+    /* 0x2A */ s16 mPatrolRotationSpeed;
+    /* 0x0C */ s16 mAttackRotationSpeed;
+    /* 0x2E */ s16 mNoSearchTimeAfterSwitchActivation;
+    /* 0x30 */ s16 mDetectionAngle;
+    /* 0x32 */ s16 mSearchSpeedOnDetection;
+    /* 0x34 */ f32 mBodyScale;
+    /* 0x38 */ f32 mSoundPositionMoveSpeed;
+    /* 0x3C */ u8 mNoSearchAttackTime;
+    /* 0x3D */ u8 mDebugDraw;
+    /* 0x3E */ u8 mCheckDraw;
+};
 
 
 #endif /* D_A_OBJ_BEMOS_H */

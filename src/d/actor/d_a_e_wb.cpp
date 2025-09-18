@@ -5,6 +5,7 @@
  
 #include "d/dolzel_rel.h"
 #include "d/actor/d_a_e_wb.h"
+#include "Z2AudioLib/Z2Instances.h"
 #include "c/c_damagereaction.h"
 #include "d/actor/d_a_alink.h"
 #include "d/actor/d_a_e_rd.h"
@@ -13,7 +14,6 @@
 #include "dol2asm.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
-#include "Z2AudioLib/Z2Instances.h"
 
 static u8 const lit_3882[12] = {0};
 
@@ -51,8 +51,8 @@ void daE_WB_HIO_c::genMessage(JORMContext* ctx) {
     ctx->genSlider("リーダーサイズ比", &leader_size_ratio, 0.0f, 5.0, 0, NULL, 0xFFFF, 0xFFFF, 512,
                    24);
     ctx->genSlider("移動速度", &movement_speed, 0.0f, 20.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
-    ctx->genSlider("PL認識距離", &player_recognition_dist, 0.0f, 2000.0f, 0, NULL, 0xFFFF,
-                   0xFFFF, 512, 24);
+    ctx->genSlider("PL認識距離", &player_recognition_dist, 0.0f, 2000.0f, 0, NULL, 0xFFFF, 0xFFFF,
+                   512, 24);
     ctx->genSlider("最速度", &max_speed, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
     ctx->genSlider("騎馬戦最速", &cavalry_battle_max_speed, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF,
                    512, 24);
@@ -60,10 +60,12 @@ void daE_WB_HIO_c::genMessage(JORMContext* ctx) {
                    24);
     ctx->genSlider("最速度（リ）", &leader_max_speed, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 512,
                    24);
-    ctx->genSlider("騎馬戦最（リ）", &leader_cavalry_battle_max_speed, 0.0f, 100.0f, 0, NULL, 0xFFFF,
-                   0xFFFF, 512, 24);
-    ctx->genSlider("通常速（車）", &normal_speed_vi, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
-    ctx->genSlider("中速度（車）", &medium_speed_vi, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
+    ctx->genSlider("騎馬戦最（リ）", &leader_cavalry_battle_max_speed, 0.0f, 100.0f, 0, NULL,
+                   0xFFFF, 0xFFFF, 512, 24);
+    ctx->genSlider("通常速（車）", &normal_speed_vi, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 512,
+                   24);
+    ctx->genSlider("中速度（車）", &medium_speed_vi, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 512,
+                   24);
     ctx->genSlider("最速度（車）", &mMaxSpeedVi, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
     ctx->genSlider("一騎速", &mSingleRiderSpeed, 0.0f, 100.0f, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
     ctx->genCheckBox("手綱ナシ", &mNoReins, 1, 0, NULL, 0xFFFF, 0xFFFF, 512, 24);
@@ -111,7 +113,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
             MTXCopy(model->getAnmMtx(joint_no), *calc_mtx);
 
             if (joint_no == 0) {
-                cMtx_ZrotM(*calc_mtx, bullbo_p->field_0x79a);
+                cMtx_ZrotM(*calc_mtx, bullbo_p->mBodyTiltAngle);
             } else if (joint_no == 2 || joint_no == bullbo_p->field_0x688 + 0xb) {
                 cMtx_YrotM(*calc_mtx, bullbo_p->field_0x6d8);
             } else if (joint_no == 4 || joint_no == 8 ||
@@ -120,7 +122,7 @@ static int nodeCallBack(J3DJoint* i_joint, int param_1) {
                        (joint_no == 0x16 && bullbo_p->field_0x79d != 0) ||
                        (joint_no == 0x1B && bullbo_p->field_0x79d != 0))
             {
-                cMtx_YrotM(*calc_mtx, bullbo_p->field_0x79a << 1);
+                cMtx_YrotM(*calc_mtx, bullbo_p->mBodyTiltAngle << 1);
             }
 
             if (bullbo_p->field_0x79d && joint_no == 0xd) {
@@ -186,14 +188,14 @@ static void himo_control1(e_wb_class* i_this, cXyz* i_pos, int i_idx, s8 param_3
     cXyz sp24;
 
     sp60.x = 0.0f;
-    sp60.y = i_this->field_0x1684;
+    sp60.y = i_this->mAnimDuration;
     sp60.z = sp60.y;
     MtxPosition(&sp60, &sp30);
 
     if (a_this->speedF > 20.0f) {
-        sp60.x = i_this->field_0x1684 * 0.4f;
+        sp60.x = i_this->mAnimDuration * 0.4f;
     } else {
-        sp60.x = i_this->field_0x1684 * 0.1f;
+        sp60.x = i_this->mAnimDuration * 0.1f;
     }
 
     if (i_idx == 0) {
@@ -383,7 +385,7 @@ static int daE_WB_Draw(e_wb_class* i_this) {
         s8 cVar7 = 0;
         e_rd_class* pfVar4 = (e_rd_class*)fopAcM_SearchByID(i_this->field_0x1434);
 
-        if ((i_this->field_0x6be & 1) != 0) {
+        if ((i_this->mStatusFlags & 1) != 0) {
             if (pfVar4 && pfVar4->field_0x9bc == 2) {
                 if (i_this->field_0x7a2 == 0) {
                     model = pfVar4->mpModelMorf->getModel();
@@ -506,7 +508,7 @@ static s16 e_wb_wall_check(e_wb_class* i_this) {
         fopAc_ac_c* uVar3 = dComIfG_Bgsp().GetActorPointer(linChk);
         if (fopAcM_GetName(uVar3) != PROC_BG) {
             return 0;
-        } 
+        }
         cXyz cStack_c4(linChk.GetCross());
         cXyz cStack_d0;
         local_a0.x *= -1.0f;
@@ -633,7 +635,7 @@ static BOOL e_wb_saku_jump_check(e_wb_class* i_this) {
             cStack_d8 = dStack_98.GetCross();
         } else {
             return 0;
-        } 
+        }
 
         local_a8 = cStack_d8 - cStack_cc;
         s16 sVar1 = (cM_atan2s(local_a8.x, local_a8.z) + 0x4000) - a_this->shape_angle.y;
@@ -705,12 +707,12 @@ static void e_wb_wait(e_wb_class* i_this) {
         i_this->mActionMode = 1;
     case 1:
         if (a_this->speedF > 15.0f) {
-            i_this->field_0x142c = 2;
+            i_this->mMovementType = 2;
             i_this->mZ2Ride.startCreatureSoundLevel(Z2SE_EN_WB_L_SLIP, 0, -1);
         } else {
             anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
             i_this->mActionMode = 2;
-            i_this->field_0x6be |= 0x20;
+            i_this->mStatusFlags |= 0x20;
         }
     case 2:
     default:
@@ -779,7 +781,7 @@ static void e_wb_pl_ride(e_wb_class* i_this) {
         }
 
         if (a_this->speedF > 10.0f) {
-            i_this->field_0x142c = 2;
+            i_this->mMovementType = 2;
         }
     } else {
         f32 stick_value = mDoCPd_c::getStickValue(0);
@@ -807,8 +809,9 @@ static void e_wb_pl_ride(e_wb_class* i_this) {
                 }
             }
         }
-        
-        s16 angle_y = dCam_getControledAngleY(dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0))) + 0x10000 + stick_angle - 0x8000;
+
+        s16 angle_y = dCam_getControledAngleY(dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0))) +
+                      0x10000 + stick_angle - 0x8000;
         int iVar4 = 0;
         s16 angle_delta = angle_y - a_this->current.angle.y;
 
@@ -826,7 +829,7 @@ static void e_wb_pl_ride(e_wb_class* i_this) {
             iVar4 = 3;
         }
 
-        if (i_this->field_0x142f == 2) {
+        if (i_this->mSpeedCapTimer == 2) {
             if (a_this->speedF < 0.1f) {
                 if (iVar4 == 0) {
                     fVar2 = 0.0;
@@ -843,7 +846,7 @@ static void e_wb_pl_ride(e_wb_class* i_this) {
                     a_this->speedF = l_HIO.mPlayerMountedMaxSpeed;
                 }
             }
-        } else if (i_this->field_0x142f < 0 && iVar4 == 1) {
+        } else if (i_this->mSpeedCapTimer < 0 && iVar4 == 1) {
             fVar2 = 0.0f;
         }
 
@@ -861,7 +864,7 @@ static void e_wb_pl_ride(e_wb_class* i_this) {
 
             if (i_this->mActionID == ACT_PL_RIDE) {
                 cLib_addCalcAngleS2(&a_this->current.angle.y, angle_y, 4, 500);
-                i_this->mTargetAngleStep = 0;
+                i_this->mTurnStep = 0;
             } else {
                 s16 local_94 = 0;
                 s16 local_96 = KREG_S(3) + 0x40;
@@ -874,14 +877,13 @@ static void e_wb_pl_ride(e_wb_class* i_this) {
                     local_96 = KREG_S(4) + 0x10;
                 }
 
-                cLib_addCalcAngleS2(&i_this->mTargetAngleStep, local_94, 4, local_96);
-                a_this->current.angle.y += i_this->mTargetAngleStep;
+                cLib_addCalcAngleS2(&i_this->mTurnStep, local_94, 4, local_96);
+                a_this->current.angle.y += i_this->mTurnStep;
             }
 
             i_this->mWaitRollAngle = a_this->current.angle.y - curr_angle_y;
             s16 temAngle = i_this->mWaitRollAngle * (TREG_S(7) - 8);
-            f32 fVar10 =
-                temAngle * a_this->speedF / (l_HIO.mPlayerMountedMaxSpeed + 1.0f);
+            f32 fVar10 = temAngle * a_this->speedF / (l_HIO.mPlayerMountedMaxSpeed + 1.0f);
 
             if (fVar10 > NREG_F(0x11) + 4500.0f) {
                 fVar10 = NREG_F(0x11) + 4500.0f;
@@ -889,7 +891,7 @@ static void e_wb_pl_ride(e_wb_class* i_this) {
                 fVar10 = -NREG_F(0x11) - 4500.0f;
             }
 
-            cLib_addCalcAngleS2(&i_this->field_0x79a, (s16)fVar10, 8, 0x140);
+            cLib_addCalcAngleS2(&i_this->mBodyTiltAngle, (s16)fVar10, 8, 0x140);
         }
 
         if (a_this->speedF < 0.01f) {
@@ -949,11 +951,12 @@ static void e_wb_pl_ride(e_wb_class* i_this) {
         }
 
         if (i_this->mAnmID == 0x20) {
-            i_this->mpModelMorf->setPlaySpeed(BREG_F(0) + 0.4f +
-                                              (l_HIO.mPlayerMountedMotionPlaybackSpeed * a_this->speedF) /
-                                                  l_HIO.mPlayerMountedMaxSpeed);
-            i_this->field_0x142c = 1;
-            i_this->field_0x6bd = 1;
+            i_this->mpModelMorf->setPlaySpeed(
+                BREG_F(0) + 0.4f +
+                (l_HIO.mPlayerMountedMotionPlaybackSpeed * a_this->speedF) /
+                    l_HIO.mPlayerMountedMaxSpeed);
+            i_this->mMovementType = 1;
+            i_this->mPursuitFlag = 1;
         } else if (i_this->mAnmID == 0x2b) {
             i_this->mpModelMorf->setPlaySpeed(TREG_F(4) + 0.7f +
                                               (TREG_F(5) + 0.05f) * a_this->speedF);
@@ -981,22 +984,22 @@ static void e_wb_f_wait(e_wb_class* i_this) {
         } else {
             anm_init(i_this, 0x28, 5.0f, 2, 1.5f);
             i_this->mActionMode = 1;
-            i_this->field_0x6be |= 4;
+            i_this->mStatusFlags |= 4;
         }
         // fallthrough
     case 1:
-        
+
         cLib_addCalcAngleS2(&a_this->current.angle.y, new_angle, 8, 0x200);
         i_this->field_0x6d0 = new_angle - a_this->current.angle.y;
 
         if (i_this->field_0x6d0 < 0x800 && i_this->field_0x6d0 > -0x800) {
-            if (i_this->field_0x142f > 0) {
+            if (i_this->mSpeedCapTimer > 0) {
                 if (i_this->mAnmID != 0x2a) {
                     anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
                 }
             } else {
                 fopAc_ac_c* player = dComIfGp_getPlayer(0);
-                i_this->mActionID = 6;
+                i_this->mActionID = ACT_C_F_RUN;
                 i_this->mActionMode = 0;
                 i_this->field_0x5d0 = player->current.pos;
             }
@@ -1045,8 +1048,8 @@ static void e_wb_f_wait(e_wb_class* i_this) {
             }
         }
 
-        if (i_this->field_0x142f == 0) {
-            i_this->mActionID = 6;
+        if (i_this->mSpeedCapTimer == 0) {
+            i_this->mActionID = ACT_C_F_RUN;
             i_this->mActionMode = 0;
         }
     }
@@ -1077,7 +1080,7 @@ static void e_wb_f_run(e_wb_class* i_this) {
     f32 dVar13 = fopAcM_searchPlayerDistanceXZ(a_this);
     f32 dVar16 = 0.0f;
     f32 uVar15 = 1.0f;
-    if ((i_this->field_0x6be & 1) == 0) {
+    if ((i_this->mStatusFlags & 1) == 0) {
         i_this->mActionID = ACT_A_RUN;
         i_this->mActionMode = 0;
     } else {
@@ -1101,39 +1104,39 @@ static void e_wb_f_run(e_wb_class* i_this) {
 
         s16 sVar2 = a_this->current.angle.y;
 
-        switch(i_this->mActionMode) {
+        switch (i_this->mActionMode) {
         case 0:
             if (i_this->field_0x7a6 == 0) {
                 anm_init(i_this, 0x1b, 3.0f, 0, 1.0f);
                 i_this->mActionMode = 1;
-                i_this->field_0x1684 = 40.0f;
-                i_this->field_0x6be |= 8;
+                i_this->mAnimDuration = 40.0f;
+                i_this->mStatusFlags |= 8;
             } else {
                 i_this->field_0x7a6 = 0;
                 anm_init(i_this, 0x20, 5.0f, 2, 1.0f);
                 i_this->mpModelMorf->setFrame(cM_rndF(10.0f));
                 i_this->mActionMode = 2;
-                i_this->field_0x6be |= 0x10;
+                i_this->mStatusFlags |= 0x10;
                 i_this->mZ2Ride.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
             }
             break;
         case 1:
             if (i_this->mpModelMorf->checkFrame(3.0f)) {
-                i_this->field_0x142d |= 2;
-                i_this->field_0x142c = 10;
+                i_this->mCollisionFlags |= 2;
+                i_this->mMovementType = 10;
             } else if (i_this->mpModelMorf->checkFrame(15.0f)) {
-                i_this->field_0x142d |= 3;
+                i_this->mCollisionFlags |= 3;
             }
 
             if (i_this->mpModelMorf->isStop()) {
                 anm_init(i_this, 0x20, 5.0f, 2, 1.0f);
                 i_this->mActionMode = 2;
-                i_this->field_0x6be |= 0x10;
+                i_this->mStatusFlags |= 0x10;
                 i_this->mZ2Ride.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
             }
             break;
         case 2:
-            i_this->field_0x6bd = 1;
+            i_this->mPursuitFlag = 1;
             if (bVar7) {
                 dVar16 = dComIfGp_getHorseActor()->speedF;
                 if (dVar16 > l_HIO.cavalry_battle_max_speed) {
@@ -1144,7 +1147,7 @@ static void e_wb_f_run(e_wb_class* i_this) {
 
                 s16 local_a4 = 0x80;
                 if (i_this->field_0x6c0 != 0) {
-                    i_this->mAngleTarget = local_8c->shape_angle.y;
+                    i_this->mTargetFacingAngle = local_8c->shape_angle.y;
                     i_this->field_0x5de = 0;
                     uVar15 = 0.5f;
                 } else {
@@ -1157,7 +1160,7 @@ static void e_wb_f_run(e_wb_class* i_this) {
                         MtxPosition(&local_70, &cStack_7c);
                         cStack_7c += local_8c->current.pos;
                         local_70 = cStack_7c - a_this->current.pos;
-                        i_this->mAngleTarget = cM_atan2s(local_70.x, local_70.z);
+                        i_this->mTargetFacingAngle = cM_atan2s(local_70.x, local_70.z);
                     }
 
                     if (pl_pass_check(i_this, i_this->field_0x7a8)) {
@@ -1175,9 +1178,10 @@ static void e_wb_f_run(e_wb_class* i_this) {
                     local_a4 = 0x400;
                 }
 
-                cLib_addCalcAngleS2(
-                    &a_this->current.angle.y,
-                    i_this->mAngleTarget + i_this->field_0x5de + i_this->field_0x6d6, 8, local_a4);
+                cLib_addCalcAngleS2(&a_this->current.angle.y,
+                                    i_this->mTargetFacingAngle + i_this->field_0x5de +
+                                        i_this->field_0x6d6,
+                                    8, local_a4);
                 cLib_addCalcAngleS2(&i_this->field_0x5de, 0, 1, 100);
                 f32 fVar1 = a_this->speedF / 40.0f;
                 if (fVar1 < 1.0f) {
@@ -1200,29 +1204,29 @@ static void e_wb_f_run(e_wb_class* i_this) {
 
                 if (dVar13 < 400.0f) {
                     i_this->mActionMode = 3;
-                    i_this->field_0x698 = 40;
+                    i_this->mCatchupTimer = 40;
                 }
             }
-            i_this->field_0x142c = 1;
+            i_this->mMovementType = 1;
             break;
         case 3:
-            i_this->field_0x6bd = 1;
+            i_this->mPursuitFlag = 1;
             dVar16 = l_HIO.max_speed;
             uVar15 = 3.0f;
-            if (i_this->field_0x698 == 0xf) {
-                i_this->field_0x6be |= 0x20;
+            if (i_this->mCatchupTimer == 15) {
+                i_this->mStatusFlags |= 0x20;
             }
 
-            if (i_this->field_0x698 == 0) {
+            if (i_this->mCatchupTimer == 0) {
                 i_this->mActionMode = 4;
                 anm_init(i_this, 0x25, 3.0f, 2, 1.0f);
             }
 
-            i_this->field_0x142c = 1;
+            i_this->mMovementType = 1;
             break;
         case ACT_RIDE:
             if (a_this->speedF > 15.0f) {
-                i_this->field_0x142c = 2;
+                i_this->mMovementType = 2;
                 i_this->mZ2Ride.startCreatureSoundLevel(Z2SE_EN_WB_L_SLIP, 0, -1);
             }
 
@@ -1235,11 +1239,10 @@ static void e_wb_f_run(e_wb_class* i_this) {
         }
 
         cLib_addCalc2(&a_this->speedF, dVar16, 1.0f, uVar15);
-        cLib_addCalcAngleS2(
-            &i_this->field_0x79a,
-            ( - 8) * (a_this->current.angle.y - sVar2), 8, 0x200);
-        if (i_this->mActionMode < 4 && i_this->field_0x142f > 0) {
-            i_this->field_0x6be |= 0x20;
+        cLib_addCalcAngleS2(&i_this->mBodyTiltAngle, (-8) * (a_this->current.angle.y - sVar2), 8,
+                            0x200);
+        if (i_this->mActionMode < 4 && i_this->mSpeedCapTimer > 0) {
+            i_this->mStatusFlags |= 0x20;
             anm_init(i_this, 0x25, 3.0f, 2, 1.0f);
             if (a_this->speedF > 30.0f) {
                 a_this->speedF = 30.0f;
@@ -1277,11 +1280,11 @@ static void e_wb_b_wait(e_wb_class* i_this) {
     case 0:
         anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
         i_this->mActionMode = 1;
-        i_this->field_0x698 = cM_rndF(100.0f) + 100.0f;
-        i_this->field_0x6be |= 0x20;
+        i_this->mCatchupTimer = cM_rndF(100.0f) + 100.0f;
+        i_this->mStatusFlags |= 0x20;
         // fallthrough
     case 1:
-        if (i_this->field_0x698 == 0 && i_this->field_0x68c != 0) {
+        if (i_this->mCatchupTimer == 0 && i_this->mPathInitialized != 0) {
             i_this->mActionMode = 2;
         } else if (dVar7 < 2000.0f) {
             i_this->mActionID = ACT_B_RUN;
@@ -1293,7 +1296,7 @@ static void e_wb_b_wait(e_wb_class* i_this) {
         cLib_addCalcAngleS2(&a_this->current.angle.y, sVar5, 8, 0x200);
         i_this->field_0x6d0 = sVar5 - a_this->current.angle.y;
         if (i_this->field_0x6d0 < 0x800 && i_this->field_0x6d0 > -0x800) {
-            if (i_this->field_0x142f > 0) {
+            if (i_this->mSpeedCapTimer > 0) {
                 if (i_this->mAnmID != 0x2a) {
                     anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
                 }
@@ -1306,7 +1309,7 @@ static void e_wb_b_wait(e_wb_class* i_this) {
         }
         break;
     }
-   
+
     cLib_addCalc0(&a_this->speedF, 1.0f, 2.0f);
 }
 
@@ -1331,17 +1334,17 @@ static void e_wb_b_run2(e_wb_class* i_this) {
     case 0:
         anm_init(i_this, 0x1b, 3.0f, 0, 1.0f);
         i_this->mActionMode = 1;
-        i_this->field_0x6be |= 8;
-        i_this->field_0x1684 = 40.0f;
+        i_this->mStatusFlags |= 8;
+        i_this->mAnimDuration = 40.0f;
         i_this->mPlaySpeed = 1.0f;
         break;
     case 1:
         if (i_this->mpModelMorf->checkFrame(3.0f) != 0) {
-            i_this->field_0x142d |= 2;
-            i_this->field_0x142c = 10;
+            i_this->mCollisionFlags |= 2;
+            i_this->mMovementType = 10;
         } else {
             if (i_this->mpModelMorf->checkFrame(15.0f) != 0) {
-                i_this->field_0x142d |= 3;
+                i_this->mCollisionFlags |= 3;
             }
         }
 
@@ -1361,13 +1364,13 @@ static void e_wb_b_run2(e_wb_class* i_this) {
                 }
             }
 
-            i_this->mBPathIdx = local_e0;
-            i_this->field_0x698 = cM_rndF(100.0f) + 100.0f;
+            i_this->mCurrentPathIndex = local_e0;
+            i_this->mCatchupTimer = cM_rndF(100.0f) + 100.0f;
         }
 
         break;
     case 2:
-        i_this->field_0x6bd = 1;
+        i_this->mPursuitFlag = 1;
 
         for (int i = 0; i < 8; i++) {
             cMtx_YrotS(*calc_mtx, i << 0xd);
@@ -1377,44 +1380,44 @@ static void e_wb_b_run2(e_wb_class* i_this) {
             b_path2[i] = pos2;
         }
 
-        pos1 = b_path2[i_this->mBPathIdx] - a_this->current.pos;
+        pos1 = b_path2[i_this->mCurrentPathIndex] - a_this->current.pos;
         pos1.y = 0.0f;
 
         if (pos1.abs() < 600.0f) {
             int local_ec = 1;
-            pos1 = b_path2[(i_this->mBPathIdx + 1) & 7] - a_this->current.pos;
+            pos1 = b_path2[(i_this->mCurrentPathIndex + 1) & 7] - a_this->current.pos;
 
             s16 tmp = a_this->current.angle.y - cM_atan2s(pos1.x, pos1.z);
 
             if (tmp < 0x4000 && tmp > -0x4000) {
-                i_this->mBPathIdx += local_ec;
+                i_this->mCurrentPathIndex += local_ec;
             } else {
-                i_this->mBPathIdx -= local_ec;
+                i_this->mCurrentPathIndex -= local_ec;
             }
 
-            i_this->mBPathIdx &= 7;
-            i_this->mTargetAngleStep = 0;
+            i_this->mCurrentPathIndex &= 7;
+            i_this->mTurnStep = 0;
         }
 
-        pos1 = b_path2[i_this->mBPathIdx] - a_this->current.pos;
-        i_this->mAngleTarget = cM_atan2s(pos1.x, pos1.z);
+        pos1 = b_path2[i_this->mCurrentPathIndex] - a_this->current.pos;
+        i_this->mTargetFacingAngle = cM_atan2s(pos1.x, pos1.z);
 
-        cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mAngleTarget, 8,
-                            i_this->mTargetAngleStep);
-        cLib_addCalcAngleS2(&i_this->mTargetAngleStep, 0x400, 1, 0x10);
+        cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mTargetFacingAngle, 8,
+                            i_this->mTurnStep);
+        cLib_addCalcAngleS2(&i_this->mTurnStep, 0x400, 1, 0x10);
 
         fVar1 = 3.0f;
         fVar10 = l_HIO.leader_max_speed;
-        i_this->field_0x142c = 1;
+        i_this->mMovementType = 1;
 
-        if (i_this->field_0x698 == 0 && dist < 5000.0f) {
+        if (i_this->mCatchupTimer == 0 && dist < 5000.0f) {
             anm_init(i_this, 0x25, 3.0f, 2, 1.0f);
             i_this->mActionMode = 3;
         }
         break;
     case 3:
         if (a_this->speedF > 15.0f) {
-            i_this->field_0x142c = 2;
+            i_this->mMovementType = 2;
         }
 
         if (a_this->speedF < 1.0f) {
@@ -1425,7 +1428,7 @@ static void e_wb_b_run2(e_wb_class* i_this) {
     }
 
     cLib_addCalc2(&a_this->speedF, fVar10, 1.0f, fVar1);
-    cLib_addCalcAngleS2(&i_this->field_0x79a, -4 * (a_this->current.angle.y - curr_angle), 8,
+    cLib_addCalcAngleS2(&i_this->mBodyTiltAngle, -4 * (a_this->current.angle.y - curr_angle), 8,
                         0x200);
     i_this->mpModelMorf->setPlaySpeed(i_this->mPlaySpeed);
     cLib_addCalc2(&i_this->mPlaySpeed, 1.0f, 1.0f, 0.1f);
@@ -1441,7 +1444,7 @@ static void e_wb_b_run2(e_wb_class* i_this) {
         }
     }
 
-    if (i_this->mActionMode < 3 && i_this->field_0x142f > 0) {
+    if (i_this->mActionMode < 3 && i_this->mSpeedCapTimer > 0) {
         anm_init(i_this, 0x25, 3.0f, 2, 1.0f);
 
         if (a_this->speedF > 30.0f)
@@ -1462,16 +1465,16 @@ static void e_wb_b_wait2(e_wb_class* i_this) {
 
     switch (i_this->mActionMode) {
     case 0:
-        if ( cM_rndF(1.0f) < 0.5f) {
-            i_this->mAngleTarget = sVar5 + 0x4000;
+        if (cM_rndF(1.0f) < 0.5f) {
+            i_this->mTargetFacingAngle = sVar5 + 0x4000;
         } else {
-            i_this->mAngleTarget = sVar5 - 0x4000;
+            i_this->mTargetFacingAngle = sVar5 - 0x4000;
         }
         i_this->mActionMode = 1;
         // fallthrough
     case 1:
-        cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mAngleTarget, 8, 0x200);
-        i_this->field_0x6d0 = i_this->mAngleTarget - a_this->current.angle.y;
+        cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mTargetFacingAngle, 8, 0x200);
+        i_this->field_0x6d0 = i_this->mTargetFacingAngle - a_this->current.angle.y;
         if (i_this->field_0x6d0 < 0x800 && i_this->field_0x6d0 > -0x800) {
             anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
             i_this->mActionMode = 2;
@@ -1492,175 +1495,189 @@ static void e_wb_b_wait2(e_wb_class* i_this) {
 }
 
 /* 807D6058-807D6C2C 003CB8 0BD4+00 2/1 0/0 0/0 .text            e_wb_b_run__FP10e_wb_class */
+/**
+ * @brief Handles the running action state for the Bullbo enemy.
+ *
+ * This function controls the Bullbo's behavior while running, including path initialization,
+ * following a generated path, adjusting speed based on the player's horse, handling jumps over fences or walls,
+ * and transitioning to other states like waiting or catching up.
+ *
+ * The path is an octagonal loop with randomized radii, regenerated when the Bullbo reaches a waypoint or periodically.
+ * Speed and animation are adjusted dynamically to match or exceed the player's pace during chases.
+ *
+ * @param i_this Pointer to the Bullbo instance (e_wb_class).
+ */
 static void e_wb_b_run(e_wb_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
-    fopAc_ac_c* player_p = dComIfGp_getPlayer(0);
-    cXyz pos1;
-    cXyz pos2;
-    f32 dist = fopAcM_searchPlayerDistanceXZ(a_this);
-    f32 speed_target = 0.0;
-    f32 speed_step = 1.0;
+    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    cXyz target_vector;
+    cXyz rotated_position;
+    f32 player_xz_distance = fopAcM_searchPlayerDistanceXZ(a_this);
+    f32 target_speed = 0.0;
+    f32 acceleration = 1.0;
 
-    if ((i_this->field_0x6be & 1) == 0) {
-        i_this->mActionID = 7;
+    if ((i_this->mStatusFlags & 1) == 0) {
+        i_this->mActionID = ACT_A_RUN;
         i_this->mActionMode = 0;
     } else {
-        s8 bVar11 = false;
-        f32 fVar14 = l_HIO.leader_cavalry_battle_max_speed;
+        s8 is_player_on_fast_horse = false;
+        f32 cavalry_max_speed = l_HIO.leader_cavalry_battle_max_speed;
+
         if (daPy_getPlayerActorClass()->checkHorseRide() &&
             dComIfGp_getHorseActor()->speedF >= 30.0f)
         {
-            bVar11 = true;
+            is_player_on_fast_horse = true;
         }
 
-        s16 sVar3 = a_this->current.angle.y;
-        f32 horse_speed = 1.0f;
-        s8 bVar4 = false;
+        s16 initial_facing_angle = a_this->current.angle.y;
+        f32 anim_speed_factor = 1.0f;
+        s8 regenerate_path = false;
 
         switch (i_this->mActionMode) {
         case 0:
-            i_this->field_0x6be |= 8;
-        case 1:
-            i_this->field_0x1684 = 30.0f;
+            i_this->mStatusFlags |= 8;
+        case 1: // path initialization
+            i_this->mAnimDuration = 30.0f;
             i_this->mPlaySpeed = 1.0f;
             anm_init(i_this, 0x20, 5.0f, 2, 1.0f);
             i_this->mActionMode = 2;
-            i_this->field_0x6be |= 0x10;
+            i_this->mStatusFlags |= 0x10;
             i_this->mZ2Ride.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
 
-            if (i_this->field_0x68c != 0) {
-                cXyz loop_pos1;
-                cXyz loop_pos2;
-                int local_e4 = 0;
+            if (i_this->mPathInitialized != 0) {
+                cXyz dist_to_point;
+                cXyz dist_to_other;
+                int closest_index = 0;
 
                 for (int i = 1; i < 8; i++) {
-                    loop_pos1 = b_path[local_e4] - a_this->current.pos;
-                    loop_pos2 = b_path[i] - a_this->current.pos;
+                    dist_to_point = b_path[closest_index] - a_this->current.pos;
+                    dist_to_other = b_path[i] - a_this->current.pos;
 
-                    if (loop_pos1.abs() > loop_pos2.abs()) {
-                        local_e4 = i;
+                    if (dist_to_point.abs() > dist_to_other.abs()) {
+                        closest_index = i;
                     }
                 }
 
-                i_this->mBPathIdx = local_e4;
+                i_this->mCurrentPathIndex = closest_index;
 
             } else {
                 if (lbl_244_bss_44 == 1) {
-                    i_this->mBPathIdx = 6;
+                    i_this->mCurrentPathIndex = 6;
                 } else {
-                    i_this->mBPathIdx = 2;
+                    i_this->mCurrentPathIndex = 2;
                 }
 
-                i_this->mBPathIdxIter = 1;
-                i_this->field_0x68c = 1;
+                i_this->mPathDirection = 1;
+                i_this->mPathInitialized = 1;
             }
             break;
-        case 2:  // link giving chase
-            i_this->field_0x6bd = 1;
-            pos1 = b_path[i_this->mBPathIdx] - a_this->current.pos;
-            pos1.y = 0.0;
+        case 2:  // path following
+            i_this->mPursuitFlag = 1;
+            target_vector = b_path[i_this->mCurrentPathIndex] - a_this->current.pos;
+            target_vector.y = 0.0;
 
-            if (pos1.abs() < 800.0f) {
-                if (i_this->field_0x79e >= 4 && cM_rndF(1.0f) < 0.05f) {
-                    i_this->mBPathIdxIter = cM_rndF(6.0f) + 1.0f;
+            if (target_vector.abs() < 800.0f) {
+                if (i_this->mLapCount >= 4 && cM_rndF(1.0f) < 0.05f) {
+                    i_this->mPathDirection = cM_rndF(6.0f) + 1.0f;
                 }
 
-                pos1 = b_path[(i_this->mBPathIdx + 1) & 7] - a_this->current.pos;
-                s16 angle = a_this->current.angle.y - cM_atan2s(pos1.x, pos1.z);
+                target_vector = b_path[(i_this->mCurrentPathIndex + 1) & 7] - a_this->current.pos;
+                s16 angle_to_next =
+                    a_this->current.angle.y - cM_atan2s(target_vector.x, target_vector.z);
 
-                if (angle < 0x4000 && angle > -0x4000) {
-                    i_this->mBPathIdxIter = 1;
+                if (angle_to_next < 0x4000 && angle_to_next > -0x4000) {
+                    i_this->mPathDirection = 1;
                 } else {
-                    i_this->mBPathIdxIter = -1;
+                    i_this->mPathDirection = -1;
                 }
 
-                OS_REPORT(" PT   %d\n", i_this->mBPathIdx);
-                OS_REPORT(" DIR  %d\n", i_this->mBPathIdxIter);
+                OS_REPORT(" PT   %d\n", i_this->mCurrentPathIndex);
+                OS_REPORT(" DIR  %d\n", i_this->mPathDirection);
 
-                i_this->mBPathIdx += i_this->mBPathIdxIter;
-                i_this->mBPathIdx &= 7;
-                bVar4 = true;
-                i_this->mTargetAngleStep = 0;
+                i_this->mCurrentPathIndex += i_this->mPathDirection;
+                i_this->mCurrentPathIndex &= 7;
+                regenerate_path = true;
+                i_this->mTurnStep = 0;
             } else {
-                if (i_this->field_0x79f >= 3) {
-                    i_this->field_0x79f = 0;
+                if (i_this->mPathAdjustCounter >= 3) {
+                    i_this->mPathAdjustCounter = 0;
 
                     if (cM_rndF(1.0f) < 0.5f) {
-                        i_this->mBPathIdx += 3;
+                        i_this->mCurrentPathIndex += 3;
                     } else {
-                        i_this->mBPathIdx -= 3;
+                        i_this->mCurrentPathIndex -= 3;
                     }
 
-                    i_this->mBPathIdx &= 7;
-                    bVar4 = true;
+                    i_this->mCurrentPathIndex &= 7;
+                    regenerate_path = true;
                 }
             }
 
-            pos1 = b_path[i_this->mBPathIdx] - a_this->current.pos;
-            i_this->mAngleTarget = cM_atan2s(pos1.x, pos1.z);
-            cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mAngleTarget, 8,
-                                i_this->mTargetAngleStep);
-            cLib_addCalcAngleS2(&i_this->mTargetAngleStep, 0x400, 1, 0x10);
+            target_vector = b_path[i_this->mCurrentPathIndex] - a_this->current.pos;
+            i_this->mTargetFacingAngle = cM_atan2s(target_vector.x, target_vector.z);
+            cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mTargetFacingAngle, 8,
+                                i_this->mTurnStep);
+            cLib_addCalcAngleS2(&i_this->mTurnStep, 0x400, 1, 0x10);
 
-            if (bVar11) {
-                speed_target = dComIfGp_getHorseActor()->speedF;
+            if (is_player_on_fast_horse) {
+                target_speed = dComIfGp_getHorseActor()->speedF;
 
-                if (speed_target > l_HIO.leader_cavalry_battle_max_speed) {
-                    speed_target = l_HIO.leader_cavalry_battle_max_speed;
+                if (target_speed > l_HIO.leader_cavalry_battle_max_speed) {
+                    target_speed = l_HIO.leader_cavalry_battle_max_speed;
                 } else {
-                    if (speed_target < l_HIO.leader_max_speed) {
-                        speed_target = l_HIO.leader_max_speed;
+                    if (target_speed < l_HIO.leader_max_speed) {
+                        target_speed = l_HIO.leader_max_speed;
                     }
                 }
 
                 if (fopAcM_searchPlayerDistanceXZ(a_this) < 2000.0f) {
-                    speed_target *= 1.2f;
+                    target_speed *= 1.2f;
 
                     if (a_this->speedF < l_HIO.max_speed) {
-                        speed_step = 1.5f;
+                        acceleration = 1.5f;
                     } else {
-                        speed_step = 0.5f;
+                        acceleration = 0.5f;
                     }
                 }
 
-                horse_speed = a_this->speedF / 40.0f;
+                anim_speed_factor = a_this->speedF / 40.0f;
 
-                if (horse_speed < 1.0f)
-                    horse_speed = 1.0f;
+                if (anim_speed_factor < 1.0f)
+                    anim_speed_factor = 1.0f;
 
-                if (horse_speed > 1.2f)
-                    horse_speed = 1.2f;
+                if (anim_speed_factor > 1.2f)
+                    anim_speed_factor = 1.2f;
             } else {
-                speed_step = 3.0;
-                speed_target = l_HIO.leader_max_speed;
+                acceleration = 3.0;
+                target_speed = l_HIO.leader_max_speed;
             }
 
-            if (dist > 6000.0f) {
+            if (player_xz_distance > 6000.0f) {
                 i_this->mActionMode = 3;
-                i_this->field_0x698 = 0xd;
+                i_this->mCatchupTimer = 13;
             }
 
-            i_this->field_0x142c = 1;
+            i_this->mMovementType = 1;
             break;
-        case 3:
-            i_this->field_0x6bd = 1;
-            speed_target = l_HIO.max_speed;
-            speed_step = 3.0f;
+        case 3: 
+            i_this->mPursuitFlag = 1;
+            target_speed = l_HIO.max_speed;
+            acceleration = 3.0f;
 
-            if (i_this->field_0x698 == 10) {
-                i_this->field_0x6be |= 0x20;
+            if (i_this->mCatchupTimer == 10) {
+                i_this->mStatusFlags |= 0x20;
             }
 
-            if (i_this->field_0x698 == 0) {
+            if (i_this->mCatchupTimer == 0) {
                 i_this->mActionMode = 4;
                 anm_init(i_this, 0x25, 3.0f, 2, 1.0f);
             }
 
-            i_this->field_0x142c = 1;
+            i_this->mMovementType = 1;
             break;
-        case 4:
+        case 4: // decelerating back to wait action
             if (a_this->speedF > 15.0f) {
-                i_this->field_0x142c = 2;
+                i_this->mMovementType = 2;
             }
 
             if (a_this->speedF < 1.0f) {
@@ -1670,76 +1687,76 @@ static void e_wb_b_run(e_wb_class* i_this) {
 
             break;
         case 10:  // jumping a fence / hit wall
-            speed_target = l_HIO.max_speed;
-            speed_step = 3.0f;
-            int anm_id = i_this->mAnmID;
+            target_speed = l_HIO.max_speed;
+            acceleration = 3.0f;
+            int current_anim = i_this->mAnmID;
 
-            if (anm_id == 0x18) {
+            if (current_anim == 0x18) {
                 if (a_this->speed.y < 10.0f) {
-                    anm_init(i_this, 0x19, 10.0f, 0, horse_speed);
+                    anm_init(i_this, 0x19, 10.0f, 0, anim_speed_factor);
                 }
-            } else if (anm_id == 0x19) {
+            } else if (current_anim == 0x19) {
                 if (a_this->speed.y < -30.0f || i_this->mAcch.ChkGroundHit()) {
                     anm_init(i_this, 0x1a, 2.0f, 0, 1.0f);
-                    i_this->field_0x142d |= 0xc;
-                    i_this->field_0x142e = 1;
-                    i_this->field_0x6be |= 0x200;
+                    i_this->mCollisionFlags |= 0xc;
+                    i_this->mLandingFlag = 1;
+                    i_this->mStatusFlags |= 0x200;
                 }
-            } else if (anm_id == 0x1a) {
-                i_this->field_0x142c = 1;
+            } else if (current_anim == 0x1a) {
+                i_this->mMovementType = 1;
 
                 if (i_this->mpModelMorf->isStop()) {
                     anm_init(i_this, 0x20, 2.0f, 2, i_this->mPlaySpeed);
-                    i_this->field_0x1684 = 30.0f;
+                    i_this->mAnimDuration = 30.0f;
                     i_this->mActionMode = 2;
                 }
             }
         }
 
         if (i_this->mActionMode < 10) {
-            cLib_addCalc2(&a_this->speedF, speed_target, 1.0f, speed_step);
-            cLib_addCalcAngleS2(&i_this->field_0x79a, -4 * (a_this->current.angle.y - sVar3), 8,
-                                0x200);
+            cLib_addCalc2(&a_this->speedF, target_speed, 1.0f, acceleration);
+            cLib_addCalcAngleS2(&i_this->mBodyTiltAngle,
+                                -4 * (a_this->current.angle.y - initial_facing_angle), 8, 0x200);
             i_this->mpModelMorf->setPlaySpeed(i_this->mPlaySpeed);
-            cLib_addCalc2(&i_this->mPlaySpeed, horse_speed, 1.0f, 0.1f);
+            cLib_addCalc2(&i_this->mPlaySpeed, anim_speed_factor, 1.0f, 0.1f);
 
             if (a_this->speedF >= 30.0f && i_this->mAcch.ChkGroundHit()) {
                 if (i_this->mAcch.ChkWallHit() || e_wb_saku_jump_check(i_this)) {
                     i_this->mActionMode = 10;
                     a_this->speed.y = 55.0f;
                     anm_init(i_this, 0x18, 2.0f, 0, 1.0f);
-                    i_this->field_0x6be |= 0x100;
+                    i_this->mStatusFlags |= 0x100;
                 }
             }
         }
 
-        if (bVar4) {
-            pos1.x = 0.0f;
-            pos1.y = 1000.0f;
+        if (regenerate_path) {
+            target_vector.x = 0.0f;
+            target_vector.y = 1000.0f;
 
             for (int i = 0; i < 8; i++) {
                 cMtx_YrotS(*calc_mtx, i << 0xd);
 
                 if (lbl_244_bss_44 == 1) {
-                    pos1.z = cM_rndF(3000.0f) + 12000.0f;
-                    MtxPosition(&pos1, &pos2);
-                } else if (i_this->field_0x79e >= 4) {
-                    pos1.z = cM_rndF(1000.0f) + 9000.0f;
-                    MtxPosition(&pos1, &pos2);
-                    pos2.x += 28108.0f;
-                    pos2.z += 6640.0f;
+                    target_vector.z = cM_rndF(3000.0f) + 12000.0f;
+                    MtxPosition(&target_vector, &rotated_position);
+                } else if (i_this->mLapCount >= 4) {
+                    target_vector.z = cM_rndF(1000.0f) + 9000.0f;
+                    MtxPosition(&target_vector, &rotated_position);
+                    rotated_position.x += 28108.0f;
+                    rotated_position.z += 6640.0f;
                 } else {
-                    pos1.z = cM_rndF(3000.0f) + 12000.0f;
-                    MtxPosition(&pos1, &pos2);
-                    pos2.x += -2989.0f;
-                    pos2.z += 1364.0f;
+                    target_vector.z = cM_rndF(3000.0f) + 12000.0f;
+                    MtxPosition(&target_vector, &rotated_position);
+                    rotated_position.x += -2989.0f;
+                    rotated_position.z += 1364.0f;
                 }
 
-                b_path[i] = pos2;
+                b_path[i] = rotated_position;
             }
         }
 
-        if (i_this->field_0x142f > 0 && a_this->speedF > 30.0f) {
+        if (i_this->mSpeedCapTimer > 0 && a_this->speedF > 30.0f) {
             a_this->speedF = 30.0f;
         }
     }
@@ -1751,9 +1768,7 @@ static void arrow_rd_set(e_wb_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     static cXyz arrow_rd_pos[1] = {cXyz(36460.0f, 1040.0f, -17020.0f)};
     for (int i = 0; i < 1; i++) {
-        fopAcM_create(
-            PROC_E_RD, 0xff00a3ff, &arrow_rd_pos[i],
-            fopAcM_GetRoomNo(a_this), 0, 0, -1);
+        fopAcM_create(PROC_E_RD, 0xff00a3ff, &arrow_rd_pos[i], fopAcM_GetRoomNo(a_this), 0, 0, -1);
     }
 }
 
@@ -1766,7 +1781,8 @@ static cXyz saku_p2(34800.0f, 0.0f, -37200.0f);
 /* 807D6CE0-807D79B0 004940 0CD0+00 1/1 0/0 0/0 .text            e_wb_b_ikki__FP10e_wb_class */
 static void e_wb_b_ikki(e_wb_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
-    static cXyz ikki_pos[2] = { cXyz(34789.0f, -290.0f, -36200.0f), cXyz(34789.0f, -290.0f, -16600.0f) };
+    static cXyz ikki_pos[2] = {cXyz(34789.0f, -290.0f, -36200.0f),
+                               cXyz(34789.0f, -290.0f, -16600.0f)};
 
     fopAc_ac_c* local_ac = dComIfGp_getPlayer(0);
     cXyz local_88;
@@ -1782,53 +1798,52 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
 
     switch (i_this->mActionMode) {
     case -100:
-            anm_init(i_this, 0x27, 5.0f, 2, 1.0f);
-            i_this->mActionMode = -99;
-            i_this->field_0x6be |= 0x400;
-            break;
+        anm_init(i_this, 0x27, 5.0f, 2, 1.0f);
+        i_this->mActionMode = -99;
+        i_this->mStatusFlags |= 0x400;
+        break;
     case -99:
         if (i_this->mpModelMorf->checkFrame(10.0f) || i_this->mpModelMorf->checkFrame(31.0f)) {
-            i_this->field_0x142d |= 1;
-            i_this->field_0x142c = 10;
+            i_this->mCollisionFlags |= 1;
+            i_this->mMovementType = 10;
         }
         break;
     case -98:
         anm_init(i_this, 0x26, 10.0f, 0, 1.0f);
         i_this->mActionMode = 0xff9f;
-        i_this->field_0x6be |= 0x800;
+        i_this->mStatusFlags |= 0x800;
         break;
     case -97:
-        if (i_this->mpModelMorf->checkFrame(38.0f) ||
-            i_this->mpModelMorf->checkFrame(50.0f) ||
-            i_this->mpModelMorf->checkFrame(65.0f) ||
-            i_this->mpModelMorf->checkFrame(108.0f)) {
-            i_this->field_0x142d |= 1;
-            i_this->field_0x142c = 10;
+        if (i_this->mpModelMorf->checkFrame(38.0f) || i_this->mpModelMorf->checkFrame(50.0f) ||
+            i_this->mpModelMorf->checkFrame(65.0f) || i_this->mpModelMorf->checkFrame(108.0f))
+        {
+            i_this->mCollisionFlags |= 1;
+            i_this->mMovementType = 10;
         } else if (i_this->mpModelMorf->checkFrame(82.0f)) {
-            i_this->field_0x142d |= 3;
+            i_this->mCollisionFlags |= 3;
         } else if (i_this->mpModelMorf->checkFrame(106.0f)) {
-            i_this->field_0x142d |= 2;
-            i_this->field_0x142c = 10;
+            i_this->mCollisionFlags |= 2;
+            i_this->mMovementType = 10;
         }
 
         if (local_b0 >= 0x70) {
             if (local_b0 == 0x70) {
-                i_this->field_0x6be |= 0x10;
+                i_this->mStatusFlags |= 0x10;
                 i_this->mZ2Ride.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
                 i_this->mZ2Ride.startCreatureVoice(Z2SE_EN_RDB_V_HOICK, -1);
-                i_this->field_0x1684 = 40.0f;
+                i_this->mAnimDuration = 40.0f;
             }
             dVar17 = l_HIO.mSingleRiderSpeed;
             dVar16 = l_HIO.mSingleRiderSpeed * 0.2f;
-            i_this->field_0x142c = 1;
+            i_this->mMovementType = 1;
         }
 
         if (i_this->mpModelMorf->isStop()) {
             anm_init(i_this, 0x20, 1.0f, 2, 1.0f);
             i_this->mActionMode = 4;
             i_this->field_0x1690 = 0;
-            i_this->mBPathIdx = 1;
-            i_this->field_0x5c4 = ikki_pos[i_this->mBPathIdx];
+            i_this->mCurrentPathIndex = 1;
+            i_this->field_0x5c4 = ikki_pos[i_this->mCurrentPathIndex];
         }
         break;
     case 0:
@@ -1839,30 +1854,30 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
     case 1:
         if (i_this->field_0x69e == 0 && !dComIfGp_event_runCheck()) {
             i_this->mActionMode = 2;
-            i_this->mBPathIdx = 1;
+            i_this->mCurrentPathIndex = 1;
         }
         break;
     case 2:
         if (!i_this->field_0x5bf) {
             anm_init(i_this, 0x1b, 3.0f, 0, 1.0f);
-            i_this->field_0x6be |= 8;
-            i_this->field_0x1684 = 40.0f;
-            i_this->field_0x5c4 = ikki_pos[i_this->mBPathIdx];
+            i_this->mStatusFlags |= 8;
+            i_this->mAnimDuration = 40.0f;
+            i_this->field_0x5c4 = ikki_pos[i_this->mCurrentPathIndex];
             i_this->mActionMode = 3;
         }
         break;
     case 3:
         if (i_this->mpModelMorf->checkFrame(3.0f)) {
-            i_this->field_0x142d |= 2;
-            i_this->field_0x142c = 10;
+            i_this->mCollisionFlags |= 2;
+            i_this->mMovementType = 10;
         } else if (i_this->mpModelMorf->checkFrame(15.0)) {
-            i_this->field_0x142d |= 3;
+            i_this->mCollisionFlags |= 3;
         }
 
         if (i_this->mpModelMorf->isStop()) {
             anm_init(i_this, 0x20, 5.0f, 2, 1.0f);
             i_this->mActionMode = 4;
-            i_this->field_0x6be |= 0x10;
+            i_this->mStatusFlags |= 0x10;
             i_this->mZ2Ride.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
             i_this->field_0x1690 = 0;
         }
@@ -1870,7 +1885,7 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
     case 4:
         dVar17 = l_HIO.mSingleRiderSpeed;
         dVar16 = 5.0f;
-        i_this->field_0x142c = 1;
+        i_this->mMovementType = 1;
         if (sVar11 < 0x3000 && sVar11 > -0x3000 && dVar14 < 4000.0f && dVar14 > 600.0f) {
             i_this->field_0x6dc = 13;
         } else if (sVar11 < 0x800 && sVar11 > -0x800) {
@@ -1882,7 +1897,7 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
         }
         f32 fVar1;
         f32 fVar2;
-        if (i_this->field_0x79e == 0) {
+        if (i_this->mLapCount == 0) {
             fVar2 = l_HIO.mSearchIgnoreDistance2;
             fVar1 = l_HIO.mGuidanceDisplayDistance2;
         } else {
@@ -1890,7 +1905,7 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
             fVar1 = l_HIO.mGuidanceDisplayDistance1;
         }
         f32 dVar15 = fVar1;
-        
+
         if (sVar11 < 0x3000 && sVar11 > -0x3000) {
             if (dVar14 > fVar2) {
                 cLib_addCalc2(&a_this->current.pos.x, local_ac->current.pos.x, 0.05f,
@@ -1914,37 +1929,37 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
         }
 
         local_88 = i_this->field_0x5c4 - a_this->current.pos;
-        i_this->mAngleTarget = cM_atan2s(local_88.x, local_88.z);
+        i_this->mTargetFacingAngle = cM_atan2s(local_88.x, local_88.z);
         if (local_88.abs() < 600.0f) {
             anm_init(i_this, 0x25, 3.0f, 2, 1.0f);
             i_this->mActionMode = 5;
-            i_this->field_0x6be |= 0x20;
+            i_this->mStatusFlags |= 0x20;
         }
         local_d6 = 0x800;
         break;
     case 5:
         if (a_this->speedF > 15.0f) {
-            i_this->field_0x142c = 2;
+            i_this->mMovementType = 2;
             i_this->mZ2Ride.startCreatureSoundLevel(Z2SE_EN_WB_L_SLIP, 0, -1);
         } else if (a_this->speedF < 1.0f) {
             anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
             i_this->mActionMode = 6;
-            i_this->mAngleTarget -= 0x8000;
+            i_this->mTargetFacingAngle -= 0x8000;
         }
         break;
     case 6:
         local_d6 = 0x200;
-        i_this->field_0x6d0 = i_this->mAngleTarget - a_this->current.angle.y;
+        i_this->field_0x6d0 = i_this->mTargetFacingAngle - a_this->current.angle.y;
         if (i_this->field_0x6d0 < 0x800 && i_this->field_0x6d0 > -0x800) {
             i_this->mActionMode = 2;
-            i_this->mBPathIdx = 1 - i_this->mBPathIdx;
+            i_this->mCurrentPathIndex = 1 - i_this->mCurrentPathIndex;
         } else if (i_this->mAnmID != 0x28) {
             anm_init(i_this, 0x28, 5.0f, 2, 1.5f);
         }
         break;
     }
 
-    cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mAngleTarget, 2, local_d6);
+    cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mTargetFacingAngle, 2, local_d6);
     cLib_addCalcAngleS2(&i_this->field_0x7a4, local_d8, 8, i_this->field_0x1690 + 10000.0f);
     cLib_addCalc2(&a_this->speedF, dVar17, 1.0f, dVar16);
     if (a_this->current.pos.x > 35350.0f) {
@@ -1954,7 +1969,7 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
     }
 
     if (i_this->mActionMode == 4 && (sVar11 > 0x4000 || sVar11 < -0x4000) && i_this->field_0x5bf) {
-        if (i_this->mBPathIdx == 1 && local_ac->current.pos.z < ikki_pos[0].z + 12000.0f &&
+        if (i_this->mCurrentPathIndex == 1 && local_ac->current.pos.z < ikki_pos[0].z + 12000.0f &&
             a_this->current.pos.z > ikki_pos[1].z - 12000.0f)
         {
             a_this->current.pos.z = ikki_pos[1].z;
@@ -1962,8 +1977,8 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
             a_this->speedF = 0.0f;
             OS_REPORT("   WB CULL !!\n");
         } else {
-            if (i_this->mBPathIdx == 0 &&
-                 local_ac->current.pos.z > ikki_pos[1].z - 12000.0f &&
+            if (i_this->mCurrentPathIndex == 0 &&
+                local_ac->current.pos.z > ikki_pos[1].z - 12000.0f &&
                 a_this->current.pos.z < ikki_pos[0].z + 12000.0f)
             {
                 a_this->current.pos.z = ikki_pos[0].z;
@@ -1973,10 +1988,11 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
             }
         }
     }
-    
+
     if (i_this->field_0x1722 != 0) {
         if (i_this->field_0x1722 == 1) {
-            static cXyz f_pos[2] = {cXyz(34800.0f, -300.0f, -15150.0f), cXyz(34800.0f, -300.0f, -37200.0f)};
+            static cXyz f_pos[2] = {cXyz(34800.0f, -300.0f, -15150.0f),
+                                    cXyz(34800.0f, -300.0f, -37200.0f)};
             csXyz cStack_a8;
             for (int i = 0; i < 2; i++) {
                 static s16 f_ya[2] = {
@@ -1995,8 +2011,10 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
             }
             i_this->field_0x1722++;
         }
-        Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_STRAWFENCE_BURNING, &saku_p, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-        Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_STRAWFENCE_BURNING, &saku_p2, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+        Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_STRAWFENCE_BURNING, &saku_p, 0, 0, 1.0f, 1.0f, -1.0f,
+                                      -1.0f, 0);
+        Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_STRAWFENCE_BURNING, &saku_p2, 0, 0, 1.0f, 1.0f,
+                                      -1.0f, -1.0f, 0);
     }
 }
 
@@ -2029,8 +2047,9 @@ static void e_wb_b_ikki_end(e_wb_class* i_this) {
 /* 807D7AD4-807D8490 005734 09BC+00 1/1 0/0 0/0 .text            e_wb_b_ikki2__FP10e_wb_class */
 static void e_wb_b_ikki2(e_wb_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
-    static cXyz ikki2_pos[2] = { cXyz(-93620.0f, -5750.0f, 48944.0f), cXyz(-93620.0f, -5750.0f, 28423.0f) };
-    
+    static cXyz ikki2_pos[2] = {cXyz(-93620.0f, -5750.0f, 48944.0f),
+                                cXyz(-93620.0f, -5750.0f, 28423.0f)};
+
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     cXyz local_78;
     cXyz local_84;
@@ -2041,11 +2060,11 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
     s16 turn_speed = 0x400;
     s16 local_b8 = 0;
     int local_b6;
-    
+
     int frame = i_this->mpModelMorf->getFrame();
     e_rd_class* rider = (e_rd_class*)fopAcM_SearchByID(i_this->field_0x1434);
-    
-    switch(i_this->mActionMode) {
+
+    switch (i_this->mActionMode) {
     case -100:
         int local_a0 = dComIfGp_getEventManager().getMyStaffId("RiderBoss", NULL, 0);
         if (local_a0 != -1) {
@@ -2072,50 +2091,50 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
         i_this->mActionMode = 1;
         i_this->field_0x69e = 10;
         break;
-        
+
     case 1:
         if (i_this->field_0x69e == 0 && !dComIfGp_event_runCheck()) {
             i_this->mActionMode = 2;
-            i_this->mBPathIdx = 1;
+            i_this->mCurrentPathIndex = 1;
             Z2GetAudioMgr()->subBgmStart(Z2BGM_FACE_OFF_BATTLE);
         }
         break;
-        
+
     case 2:
         if (!i_this->field_0x5bf) {
             anm_init(i_this, 0x1b, 3.0f, 0, 1.0f);
-            i_this->field_0x6be |= 8;
-            i_this->field_0x1684 = 40.0f;
-            i_this->field_0x5c4 = ikki2_pos[i_this->mBPathIdx];
+            i_this->mStatusFlags |= 8;
+            i_this->mAnimDuration = 40.0f;
+            i_this->field_0x5c4 = ikki2_pos[i_this->mCurrentPathIndex];
             i_this->mActionMode = 3;
         }
         break;
-        
+
     case 3:
         if (frame < 15) {
             turn_speed = 0;
         }
         if (i_this->mpModelMorf->checkFrame(3.0f)) {
-            i_this->field_0x142d |= 2;
-            i_this->field_0x142c = 10;
+            i_this->mCollisionFlags |= 2;
+            i_this->mMovementType = 10;
         } else if (i_this->mpModelMorf->checkFrame(15.0f)) {
-            i_this->field_0x142d |= 3;
+            i_this->mCollisionFlags |= 3;
         }
-        
+
         if (i_this->mpModelMorf->isStop()) {
             anm_init(i_this, 0x20, 5.0f, 2, 1.0f);
             i_this->mActionMode = 4;
-            i_this->field_0x6be |= 0x10;
+            i_this->mStatusFlags |= 0x10;
             i_this->mZ2Ride.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
             i_this->field_0x1690 = 0.0f;
         }
         break;
-        
+
     case 4:
         target_speed = l_HIO.mSingleRiderSpeed;
         speed_step = 5.0f;
-        i_this->field_0x142c = 1;
-        
+        i_this->mMovementType = 1;
+
         if (angle_diff < 0x3000 && angle_diff > -0x3000 && dist < 4000.0f && dist > 600.0f) {
             i_this->field_0x6dc = 13;
         } else if (angle_diff < 0x800 && angle_diff > -0x800) {
@@ -2125,29 +2144,29 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
         } else {
             i_this->field_0x6da = 2;
         }
-        
+
         f32 ignore_dist;
         f32 guidance_dist;
-        if (i_this->field_0x79e == 0) {
+        if (i_this->mLapCount == 0) {
             ignore_dist = l_HIO.mSearchIgnoreDistance2;
             guidance_dist = l_HIO.mGuidanceDisplayDistance2;
         } else {
             ignore_dist = l_HIO.mSearchIgnoreDistance1;
             guidance_dist = l_HIO.mGuidanceDisplayDistance1;
         }
-        
+
         if (i_this->field_0x69e == 0 && angle_diff < 0x3000 && angle_diff > -0x3000) {
             if (dist > ignore_dist) {
-                cLib_addCalc2(&a_this->current.pos.x, player->current.pos.x, 0.05f, 
-                            a_this->speedF * i_this->field_0x1690);
+                cLib_addCalc2(&a_this->current.pos.x, player->current.pos.x, 0.05f,
+                              a_this->speedF * i_this->field_0x1690);
                 cLib_addCalc2(&i_this->field_0x1690, 0.6f, 1.0f, 0.06f);
-                
+
                 cMtx_YrotS(*calc_mtx, a_this->current.angle.y);
                 local_78.x = a_this->current.pos.x - player->current.pos.x;
                 local_78.z = 0.0f;
                 local_78.y = 0.0f;
                 MtxPosition(&local_78, &local_84);
-                
+
                 local_b8 = (s16)(local_84.x * -20.0f);
                 if (local_b8 > 0x1000) {
                     local_b8 = 0x1000;
@@ -2155,67 +2174,71 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
                     local_b8 = -0x1000;
                 }
             }
-            
         }
 
         if (dist < guidance_dist) {
             daPy_getPlayerActorClass()->onSingleBoarAvoid();
         }
-        
-        local_78 = i_this->field_0x5c4 - a_this->current.pos;
-        i_this->mAngleTarget = cM_atan2s(local_78.x, local_78.z);
 
-        if (i_this->field_0x79e >= 2) {
-            i_this->mAngleTarget += (s16)(2500.0f * cM_ssin(i_this->field_0x68e * 800));
+        local_78 = i_this->field_0x5c4 - a_this->current.pos;
+        i_this->mTargetFacingAngle = cM_atan2s(local_78.x, local_78.z);
+
+        if (i_this->mLapCount >= 2) {
+            i_this->mTargetFacingAngle += (s16)(2500.0f * cM_ssin(i_this->field_0x68e * 800));
         }
 
         if (local_78.abs() < 700.0f) {
             anm_init(i_this, 0x25, 3.0f, 2, 1.0f);
             i_this->mActionMode = 5;
-            i_this->field_0x6be |= 0x20;
+            i_this->mStatusFlags |= 0x20;
         }
-        
+
         turn_speed = 0x800;
         break;
-        
+
     case 5:
         if (a_this->speedF > 15.0f) {
-            i_this->field_0x142c = 2;
+            i_this->mMovementType = 2;
             i_this->mZ2Ride.startCreatureSoundLevel(Z2SE_EN_WB_L_SLIP, 0, -1);
         } else if (a_this->speedF < 1.0f) {
             anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
             i_this->mActionMode = 6;
-            i_this->mAngleTarget -= 0x8000;
+            i_this->mTargetFacingAngle -= 0x8000;
         }
         break;
-        
+
     case 6:
         turn_speed = 0x200;
-        i_this->field_0x6d0 = i_this->mAngleTarget - a_this->current.angle.y;
-        
+        i_this->field_0x6d0 = i_this->mTargetFacingAngle - a_this->current.angle.y;
+
         if (i_this->field_0x6d0 < 0x800 && i_this->field_0x6d0 > -0x800) {
             i_this->mActionMode = 2;
-            i_this->mBPathIdx = 1 - i_this->mBPathIdx;
+            i_this->mCurrentPathIndex = 1 - i_this->mCurrentPathIndex;
         } else if (i_this->mAnmID != 0x28) {
             anm_init(i_this, 0x28, 5.0f, 2, 1.5f);
         }
         break;
     }
-    
-    cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mAngleTarget, 2, turn_speed);
+
+    cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mTargetFacingAngle, 2, turn_speed);
     cLib_addCalcAngleS2(&i_this->field_0x7a4, local_b8, 8, i_this->field_0x1690 + 10000.0f);
     cLib_addCalc2(&a_this->speedF, target_speed, 1.0f, speed_step);
-    
+
     // Handle position culling logic
-    if (i_this->mActionMode == 4 && (angle_diff > 0x4000 || angle_diff < -0x4000) && i_this->field_0x5bf) {
-        if (i_this->mBPathIdx == 1 && player->current.pos.z < ikki2_pos[0].z + 12000.0f &&
-            a_this->current.pos.z > ikki2_pos[1].z - 12000.0f) {
+    if (i_this->mActionMode == 4 && (angle_diff > 0x4000 || angle_diff < -0x4000) &&
+        i_this->field_0x5bf)
+    {
+        if (i_this->mCurrentPathIndex == 1 && player->current.pos.z < ikki2_pos[0].z + 12000.0f &&
+            a_this->current.pos.z > ikki2_pos[1].z - 12000.0f)
+        {
             a_this->current.pos.z = ikki2_pos[1].z;
             i_this->mActionMode = 5;
             a_this->speedF = 0.0f;
             OS_REPORT("   WB CULL !!\n");
-        } else if (i_this->mBPathIdx == 0 && player->current.pos.z > ikki2_pos[1].z - 12000.0f &&
-                   a_this->current.pos.z < ikki2_pos[0].z + 12000.0f) {
+        } else if (i_this->mCurrentPathIndex == 0 &&
+                   player->current.pos.z > ikki2_pos[1].z - 12000.0f &&
+                   a_this->current.pos.z < ikki2_pos[0].z + 12000.0f)
+        {
             a_this->current.pos.z = ikki2_pos[0].z;
             i_this->mActionMode = 5;
             a_this->speedF = 0.0f;
@@ -2227,43 +2250,43 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
 /* 807D8490-807D8648 0060F0 01B8+00 1/1 0/0 0/0 .text            e_wb_b_ikki2_end__FP10e_wb_class */
 static void e_wb_b_ikki2_end(e_wb_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
-    
+
     switch (i_this->mActionMode) {
     case 0:
         a_this->current.pos.x = -93620.0f;
         anm_init(i_this, 0x20, 1.0f, 2, 1.0f);
         i_this->mActionMode = 1;
         i_this->field_0x68e = 0;
-        // fallthrough        
+        // fallthrough
     case 1:
         if (i_this->field_0x68e > 170 && i_this->mAcch.ChkWallHit()) {
             i_this->mActionID = ACT_BG_DAMAGE;
             i_this->mActionMode = 0;
-            i_this->field_0x1684 = 50.0f;
+            i_this->mAnimDuration = 50.0f;
             i_this->mZ2Ride.startCreatureVoice(Z2SE_EN_WB_V_DAMAGE, -1);
             dComIfGp_getVibration().StartShock(8, 0x4f, cXyz(0.0f, 1.0f, 0.0f));
-            i_this->field_0x142e = 1;
+            i_this->mLandingFlag = 1;
         }
         break;
     }
-    
+
     a_this->speedF = l_HIO.mSingleRiderSpeed;
-    
+
     if (i_this->field_0x68e == 180) {
         i_this->field_0x7ac.SetWall(100.0f, 300.0f + BREG_F(11));
     }
-    
+
     s16 angle_offset;
     if (i_this->field_0x68e > 170) {
         angle_offset = -15000;
     } else {
         angle_offset = (s16)(3000.0f * cM_ssin(i_this->field_0x68e * 1000));
     }
-    
+
     s16 curr_angle = a_this->current.angle.y;
     cLib_addCalcAngleS2(&a_this->current.angle.y, angle_offset + 0x8000, 2, 0x800);
-    cLib_addCalcAngleS2(&i_this->field_0x79a, 
-                        -13 * (a_this->current.angle.y - curr_angle), 8, 0x800);
+    cLib_addCalcAngleS2(&i_this->mBodyTiltAngle, -13 * (a_this->current.angle.y - curr_angle), 8,
+                        0x800);
 }
 
 /* 807D8648-807D88D8 0062A8 0290+00 2/1 0/0 0/0 .text            e_wb_b_lv9_end__FP10e_wb_class */
@@ -2273,10 +2296,10 @@ static void e_wb_b_lv9_end(e_wb_class* i_this) {
     f32 target_speed = 0.0f;
     f32 speed_step = 0.5f;
     s16 curr_angle = a_this->current.angle.y;
-    
+
     switch (i_this->mActionMode) {
     case 0:
-        i_this->field_0x698 = 30;
+        i_this->mCatchupTimer = 30;
         i_this->mActionMode = 1;
         anm_init(i_this, 0x2b, 0.0f, 2, 1.0f);
         a_this->current.pos.set(-7080.0f, 50.0f, -6634.0f);
@@ -2284,26 +2307,26 @@ static void e_wb_b_lv9_end(e_wb_class* i_this) {
         local_44.z = -2729.0f - a_this->current.pos.z;
         a_this->current.angle.y = cM_atan2s(local_44.x, local_44.z);
         a_this->shape_angle.y = a_this->current.angle.y;
-        i_this->mAngleTarget = a_this->current.angle.y;
+        i_this->mTargetFacingAngle = a_this->current.angle.y;
         // fallthrough
     case 1:
-        if (i_this->field_0x698 == 0) {
+        if (i_this->mCatchupTimer == 0) {
             i_this->mActionMode = 2;
-            i_this->field_0x698 = NREG_S(0) + 65;
+            i_this->mCatchupTimer = NREG_S(0) + 65;
         }
         break;
     case 2:
         target_speed = NREG_F(12) + 15.0f;
-        if (i_this->field_0x698 == 0) {
+        if (i_this->mCatchupTimer == 0) {
             anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
             i_this->mActionMode = 3;
-            i_this->field_0x6be |= 8;
-            i_this->field_0x698 = 40;
+            i_this->mStatusFlags |= 8;
+            i_this->mCatchupTimer = 40;
         }
         break;
     case 3:
-        if (i_this->field_0x698 == 1) {
-            i_this->field_0x6be |= 8;
+        if (i_this->mCatchupTimer == 1) {
+            i_this->mStatusFlags |= 8;
         }
         break;
     case 4:
@@ -2314,26 +2337,26 @@ static void e_wb_b_lv9_end(e_wb_class* i_this) {
         if (i_this->mpModelMorf->isStop()) {
             anm_init(i_this, 0x20, 2.0f, 2, 1.0f);
             i_this->mActionMode = 6;
-            i_this->field_0x698 = 80;
+            i_this->mCatchupTimer = 80;
         }
         break;
     case 6:
         target_speed = NREG_F(13) + 40.0f;
         speed_step = 5.0f;
-        if (i_this->field_0x698 < 30) {
-            i_this->field_0x142c = 1;
+        if (i_this->mCatchupTimer < 30) {
+            i_this->mMovementType = 1;
         }
-        if (i_this->field_0x698 == 0) {
+        if (i_this->mCatchupTimer == 0) {
             local_44.x = -12682.0f - a_this->current.pos.x;
             local_44.z = -2701.0f - a_this->current.pos.z;
-            i_this->mAngleTarget = cM_atan2s(local_44.x, local_44.z);
+            i_this->mTargetFacingAngle = cM_atan2s(local_44.x, local_44.z);
         }
         break;
     }
-    
+
     cLib_addCalc2(&a_this->speedF, target_speed, 1.0f, speed_step);
-    cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mAngleTarget, 4, 0x100);
-    cLib_addCalcAngleS2(&i_this->field_0x79a, 
+    cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mTargetFacingAngle, 4, 0x100);
+    cLib_addCalcAngleS2(&i_this->mBodyTiltAngle,
                         (NREG_S(0) + -8) * (a_this->current.angle.y - curr_angle), 8, 0x200);
 }
 
@@ -2347,30 +2370,29 @@ static void e_wb_a_run(e_wb_class* i_this) {
     case 0:
         anm_init(i_this, 0x20, 5.0f, 2, 1.399999976158142f);
         i_this->mActionMode = 1;
-        i_this->mAngleTarget = a_this->current.angle.y;
+        i_this->mTargetFacingAngle = a_this->current.angle.y;
         i_this->field_0x69a = cM_rndF(30.0f) + 80.0f;
     case 1:
-        i_this->field_0x6bd = 1;
-        i_this->field_0x142c = 1;
+        i_this->mPursuitFlag = 1;
+        i_this->mMovementType = 1;
 
-        if (i_this->field_0x698 == 0) {
-            i_this->field_0x698 = cM_rndF(30.0f) + 10.0f;
-            i_this->mAngleTarget += (s16)cM_rndFX(10000.0f);
+        if (i_this->mCatchupTimer == 0) {
+            i_this->mCatchupTimer = cM_rndF(30.0f) + 10.0f;
+            i_this->mTargetFacingAngle += (s16)cM_rndFX(10000.0f);
         }
 
-        if (i_this->field_0x69a == 1 || i_this->field_0x142f == 2) {
+        if (i_this->field_0x69a == 1 || i_this->mSpeedCapTimer == 2) {
             i_this->mActionID = ACT_LR_DAMAGE;
             i_this->mZ2Ride.startCreatureVoice(Z2SE_EN_WB_V_DAMAGE, -1);
             i_this->mActionMode = 0;
         }
     default:
-        cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mAngleTarget, 8, 0x800);
+        cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mTargetFacingAngle, 8, 0x800);
         cLib_addCalc2(&a_this->speedF, l_HIO.max_speed * 1.2f, 1.0f, 2.0f);
-        cLib_addCalcAngleS2(&i_this->field_0x79a, (a_this->current.angle.y - curr_angle_y) * -8, 8,
-                            0x200);
+        cLib_addCalcAngleS2(&i_this->mBodyTiltAngle, (a_this->current.angle.y - curr_angle_y) * -8,
+                            8, 0x200);
     }
 }
-
 
 /* 807E3000-807E3008 0000A8 0008+00 0/1 0/0 0/0 .data            footd$7448 */
 static int footd[2] = {
@@ -2475,11 +2497,11 @@ static void e_wb_s_damage(e_wb_class* i_this) {
     switch (i_this->mActionMode) {
     case 0:
         if (a_this->speedF <= 5.0f) {
-            if ((i_this->field_0x6be & 3) != 0) {
+            if ((i_this->mStatusFlags & 3) != 0) {
                 anm_init(i_this, 9, 2.0f, 0, 1.0f);
             } else {
                 anm_init(i_this, 8, 2.0f, 0, 1.0f);
-                i_this->field_0x1684 = 50.0f;
+                i_this->mAnimDuration = 50.0f;
                 i_this->field_0x168a = 5000;
             }
         } else {
@@ -2489,7 +2511,7 @@ static void e_wb_s_damage(e_wb_class* i_this) {
         break;
     case 1:
         if (i_this->mpModelMorf->isStop()) {
-            if ((i_this->field_0x6be & 3) != 0) {
+            if ((i_this->mStatusFlags & 3) != 0) {
                 i_this->mActionID = i_this->field_0x692;
                 if (i_this->mActionID == ACT_WAIT2) {
                     i_this->mActionID = ACT_C_F_RUN;
@@ -2501,7 +2523,7 @@ static void e_wb_s_damage(e_wb_class* i_this) {
                         i_this->field_0x1432 = l_HIO.mPlayerMountedDashTime;
                         a_this->speedF = 0.0f;
                         anm_init(i_this, 0x1b, 3.0f, 0, 1.0f);
-                        i_this->field_0x1684 = 40.0f;
+                        i_this->mAnimDuration = 40.0f;
                         OS_REPORT(" RIDE RUN START \n");
                         return;
                     }
@@ -2660,7 +2682,7 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
         case 0:
             anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
             i_this->mActionMode = 1;
-            i_this->field_0x6be |= 0x20;
+            i_this->mStatusFlags |= 0x20;
             // fallthrough
 
         case 1:
@@ -2671,43 +2693,44 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
             a_this->current.angle.y = target_angle;
             diff = coach->current.pos - a_this->current.pos;
 
-            if (i_this->field_0x79f == 0 || JMAFastSqrt(diff.x * diff.x + diff.z * diff.z) < 500.0f)
+            if (i_this->mPathAdjustCounter == 0 ||
+                JMAFastSqrt(diff.x * diff.x + diff.z * diff.z) < 500.0f)
             {
                 i_this->mActionMode = 2;
-                i_this->field_0x79f = 0;
+                i_this->mPathAdjustCounter = 0;
                 fopAcM_setStageLayer(i_this);
                 i_this->field_0x17e1 = 1;
             }
             break;
 
         case 2:
-            if (i_this->field_0x79e == 0) {
+            if (i_this->mLapCount == 0) {
                 anm_init(i_this, 0x1b, 3.0f, 0, 1.0f);
                 i_this->mActionMode = 0xb;
                 i_this->field_0x16d4.x = 40.0f;
-                i_this->field_0x6be |= 8;
+                i_this->mStatusFlags |= 8;
             } else {
-                i_this->field_0x79e = 0;
+                i_this->mLapCount = 0;
                 anm_init(i_this, 0x20, 5.0f, 2, 1.0f);
                 f32 rnd_frame = cM_rndF(10.0f);
                 i_this->mpModelMorf->setFrame(rnd_frame);
                 i_this->mActionMode = 0xc;
-                i_this->field_0x6be |= 0x10;
+                i_this->mStatusFlags |= 0x10;
                 i_this->mZ2Ride.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
             }
             break;
 
         case 0xb:
             if (i_this->mpModelMorf->checkFrame(3.0f)) {
-                i_this->field_0x142d |= 2;
-                i_this->field_0x142c = 10;
+                i_this->mCollisionFlags |= 2;
+                i_this->mMovementType = 10;
             } else if (i_this->mpModelMorf->checkFrame(15.0f)) {
-                i_this->field_0x142d |= 3;
+                i_this->mCollisionFlags |= 3;
             }
             if (i_this->mpModelMorf->isStop()) {
                 anm_init(i_this, 0x20, 5.0f, 2, 1.0f);
                 i_this->mActionMode = 0xc;
-                i_this->field_0x6be |= 0x10;
+                i_this->mStatusFlags |= 0x10;
                 i_this->mZ2Ride.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
             }
             break;
@@ -2764,11 +2787,11 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
                 } else {
                     local_10c = sh_pos[i_this->field_0x5c0 - 1];
                     local_10c.x += i_this->field_0x6c4;
-                    local_10c.z += i_this->field_0x1684;
+                    local_10c.z += i_this->mAnimDuration;
 
-                    if ((i_this->mBPathIdx & 0x3f) == 0 && cM_rndF(1.0f) < 0.5f) {
+                    if ((i_this->mCurrentPathIndex & 0x3f) == 0 && cM_rndF(1.0f) < 0.5f) {
                         f32 rnd = cM_rndF(200.0f);
-                        i_this->field_0x1684 = -rnd;
+                        i_this->mAnimDuration = -rnd;
                         rnd = cM_rndFX(100.0f);
                         i_this->field_0x6c4 = rnd;
                     }
@@ -2792,7 +2815,7 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
                 target_speed = l_HIO.max_speed;
             }
 
-            return_value = (i_this->field_0x6be & 2) == 0;
+            return_value = (i_this->mStatusFlags & 2) == 0;
 
             if (return_value) {
                 target_speed = 20.0f;
@@ -2800,21 +2823,23 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
 
             s16 turn_speed = 0x200;
             s16 calc_angle = cM_atan2s(local_10c.x, local_10c.z);
-            i_this->mAngleTarget = calc_angle;
+            i_this->mTargetFacingAngle = calc_angle;
 
             // || rider != 0x27
             if (!rider) {
                 if (wall_check != 0) {
-                    i_this->mAngleTarget += (BREG_S(8) + -8000) * static_cast<s16>(wall_check);
+                    i_this->mTargetFacingAngle +=
+                        (BREG_S(8) + -8000) * static_cast<s16>(wall_check);
                 }
             } else {
-                f32 sin_val = cM_ssin(i_this->mBPathIdx * (BREG_S(7) + 1000));
+                f32 sin_val = cM_ssin(i_this->mCurrentPathIndex * (BREG_S(7) + 1000));
                 s16 add_angle = static_cast<s16>((BREG_F(16) + 5000.0f) * sin_val);
-                i_this->mAngleTarget += add_angle;
+                i_this->mTargetFacingAngle += add_angle;
                 turn_speed = 0x400;
             }
 
-            cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mAngleTarget, 8, turn_speed);
+            cLib_addCalcAngleS2(&a_this->current.angle.y, i_this->mTargetFacingAngle, 8,
+                                turn_speed);
             f32 anim_speed = a_this->speedF / 40.0f;
 
             if (anim_speed != 1.0f) {
@@ -2826,8 +2851,8 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
             }
 
             i_this->mpModelMorf->setPlaySpeed(anim_speed);
-            i_this->field_0x142c = 1;
-            i_this->field_0x6bd = 1;
+            i_this->mMovementType = 1;
+            i_this->mPursuitFlag = 1;
             break;
 
         case 0x14:
@@ -2839,9 +2864,9 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
             if (a_this->speedF != 15.0f) {
                 anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
                 i_this->mActionMode = 0x16;
-                i_this->field_0x6be |= 0x20;
+                i_this->mStatusFlags |= 0x20;
             } else {
-                i_this->field_0x142c = 2;
+                i_this->mMovementType = 2;
                 i_this->mZ2Ride.startCreatureVoice(0x30029, -1);
             }
             break;
@@ -2866,7 +2891,7 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
         }
 
         cLib_addCalc2(&a_this->speedF, target_speed, 1.0f, 1.0f);
-        cLib_addCalcAngleS2(&i_this->field_0x79a,
+        cLib_addCalcAngleS2(&i_this->mBodyTiltAngle,
                             (TREG_S(7) + -8) * (a_this->current.angle.y - sVar1), 8, 0x200);
     }
 
@@ -2879,7 +2904,7 @@ static void action(e_wb_class* i_this) {
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)i_this;
     cXyz pos1;
     cXyz pos2;
-    cLib_addCalcAngleS2(&i_this->field_0x79a, 0, 8, 0x100);
+    cLib_addCalcAngleS2(&i_this->mBodyTiltAngle, 0, 8, 0x100);
 
     if (i_this->mActionID != 0x67) {
         damage_check(i_this);
@@ -2889,7 +2914,7 @@ static void action(e_wb_class* i_this) {
     a_this->offDownFlg();
 
     if (lbl_244_bss_45 != 0 || lbl_244_bss_46 != 0) {
-        i_this->field_0x142f = gake_check(i_this);
+        i_this->mSpeedCapTimer = gake_check(i_this);
     }
 
     switch (i_this->mActionID) {
@@ -3028,7 +3053,7 @@ static void action(e_wb_class* i_this) {
                                 i_this->mActionID = ACT_WAIT2;
                                 i_this->mActionMode = 0;
                                 i_this->field_0x6a0 = 0x1e;
-                                i_this->field_0x6be = 3;
+                                i_this->mStatusFlags = 3;
                                 i_this->field_0x6ae.set(0, 0, 0);
                                 wb_rd_reset(i_this);
                                 if (i_this->field_0x79d == 0) {
@@ -3059,7 +3084,7 @@ static void action(e_wb_class* i_this) {
                     i_this->mActionID = ACT_WAIT2;
                     i_this->mActionMode = 0;
                     i_this->field_0x6a0 = 0x1e;
-                    i_this->field_0x6be = 3;
+                    i_this->mStatusFlags = 3;
                     i_this->field_0x6ae.set(0, 0, 0);
                     wb_c_rd_reset(i_this);
                     i_this->field_0x68e = (s16)cM_rndF(65535.0f);
@@ -3082,7 +3107,7 @@ static void action(e_wb_class* i_this) {
     if (a_this->speed.y < -120.0f)
         a_this->speed.y = -120.0f;
 
-    if (i_this->mActionID == ACT_WAIT && (i_this->field_0x6be & 3) == 0) {
+    if (i_this->mActionID == ACT_WAIT && (i_this->mStatusFlags & 3) == 0) {
         // Bulblin Camp
         if (strcmp(dComIfGp_getStartStageName(), "F_SP118")) {
             // Gerudo Desert
@@ -3117,7 +3142,7 @@ static void action(e_wb_class* i_this) {
     if (lbl_244_bss_45 != 0 && a_this->home.pos.y - a_this->current.pos.y > 5000.0f) {
         i_this->mActionID = ACT_EVENT;
         i_this->mActionMode = 0;
-        i_this->field_0x6be |= 0x40;
+        i_this->mStatusFlags |= 0x40;
         a_this->current.pos = a_this->home.pos;
         a_this->old = a_this->current;
     }
@@ -3334,10 +3359,10 @@ static int daE_WB_Create(fopAc_ac_c* a_this) {
             i_this->mParam = 0;
         } else if (i_this->mParam == 5) {
             i_this->field_0x79d = 1;
-            i_this->mActionID = 8;
+            i_this->mActionID = ACT_B_WAIT;
         } else if (i_this->mParam == 7) {
             i_this->field_0x79d = 2;
-            i_this->mActionID = 0xf;
+            i_this->mActionID = ACT_B_IKKI;
 
             if (cDmr_SkipInfo == 0) {
                 i_this->field_0x169e = 0x28;
@@ -3348,18 +3373,18 @@ static int daE_WB_Create(fopAc_ac_c* a_this) {
             }
         } else if (i_this->mParam == 8) {
             i_this->field_0x79d = 3;
-            i_this->mActionID = 0x11;
+            i_this->mActionID = ACT_B_IKKI2;
 
             // Hyrule Field
             if (!strcmp(dComIfGp_getStartStageName(), "F_SP121")) {
                 i_this->mActionMode = -100;
             }
 
-            i_this->mAngleTarget = 0x8000;
+            i_this->mTargetFacingAngle = 0x8000;
         } else if (i_this->mParam == 6) {
-            i_this->mActionID = 0x32;
+            i_this->mActionID = ACT_EVENT;
         } else if (i_this->mParam == 10) {
-            i_this->mActionID = 6;
+            i_this->mActionID = ACT_C_F_RUN;
             i_this->field_0x7a6 = 1;
             i_this->field_0x7a7 = 1;
 
@@ -3401,7 +3426,7 @@ static int daE_WB_Create(fopAc_ac_c* a_this) {
 
             if (i_this->field_0x79d == 1 || i_this->field_0x79d == 2) {
                 s8 room_no = fopAcM_GetRoomNo(a_this);
-                fopAcM_createChild((s16)0x119, fopAcM_GetID(i_this), 0, &a_this->current.pos,
+                fopAcM_createChild(PROC_OBJ_WFLAG, fopAcM_GetID(i_this), 0, &a_this->current.pos,
                                    room_no, 0, 0, -1, 0);
             }
 
@@ -3519,7 +3544,7 @@ static int daE_WB_Create(fopAc_ac_c* a_this) {
             c_start = 0;
 
             if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[88])) {
-                i_this->field_0x79e = 1;
+                i_this->mLapCount = 1;
             }
         }
     }

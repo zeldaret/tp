@@ -65,9 +65,9 @@ struct himo_s {
  * @ingroup actors-enemies
  * @class e_wb_class
  * @brief Bullbo (Wild Boar)
- * 
- * @details 
- * 
+ *
+ * @details
+ *
  */
 class e_wb_class {
 public:
@@ -96,30 +96,30 @@ public:
     }
 
 public:
-    /* 0x0000 */ fopEn_enemy_c mEnemy;
-    /* 0x05AC */ request_of_phase_process_class mPhase;
-    /* 0x05B4 */ s16 mActionMode;
-    /* 0x05B8 */ char* mResName;
-    /* 0x05BC */ u8 mParam;
-    /* 0x05BD */ u8 mParam2;
+    /* 0x0000 */ fopEn_enemy_c mEnemy;                   ///< @brief Base enemy class instance.
+    /* 0x05AC */ request_of_phase_process_class mPhase;  ///< @brief Phase process request handler.
+    /* 0x05B4 */ s16 mActionMode;  ///< @brief Current sub-action mode within the run action.
+    /* 0x05B8 */ char* mResName;   ///< @brief Resource name for loading models/animations.
+    /* 0x05BC */ u8 mParam;        ///< @brief Creation parameter 1.
+    /* 0x05BD */ u8 mParam2;       ///< @brief Creation parameter 2.
     /* 0x05BE */ u8 field_0x5be;
     /* 0x05BF */ bool field_0x5bf;
     /* 0x05C0 */ u8 field_0x5c0;
     /* 0x05C4 */ cXyz field_0x5c4;
     /* 0x05D0 */ cXyz field_0x5d0;
-    /* 0x05DC */ s16 mAngleTarget;
+    /* 0x05DC */ s16 mTargetFacingAngle;  ///< @brief Target facing angle for turning towards path point.
     /* 0x05DE */ s16 field_0x5de;
-    /* 0x05E0 */ mDoExt_McaMorfSO* mpModelMorf;
-    /* 0x05E4 */ f32 mPlaySpeed;
-    /* 0x05E8 */ int mAnmID;
-    /* 0x05EC */ Z2CreatureRide mZ2Ride;
+    /* 0x05E0 */ mDoExt_McaMorfSO* mpModelMorf;  ///< @brief Pointer to model morph animator.
+    /* 0x05E4 */ f32 mPlaySpeed;                 ///< @brief Animation playback speed.
+    /* 0x05E8 */ int mAnmID;                     ///< @brief Current animation ID.
+    /* 0x05EC */ Z2CreatureRide mZ2Ride;         ///< @brief Z2 sound creature for ride effects.
     /* 0x0688 */ int field_0x688;
-    /* 0x068C */ s8 field_0x68c;
+    /* 0x068C */ s8 mPathInitialized;  ///< @brief Flag indicating if path has been initialized.
     /* 0x068E */ s16 field_0x68e;
-    /* 0x0690 */ s16 mActionID;
+    /* 0x0690 */ s16 mActionID;  ///< @brief High-level action ID.
     /* 0x0692 */ s16 field_0x692;
-    /* 0x0694 */ int mShadowKey;
-    /* 0x0698 */ s16 field_0x698;
+    /* 0x0694 */ int mShadowKey;     ///< @brief Shadow drawing key.
+    /* 0x0698 */ s16 mCatchupTimer;  ///< @brief Timer for catch-up mode when player is far.
     /* 0x069A */ s16 field_0x69a;
     /* 0x069C */ s16 field_0x69c;
     /* 0x069E */ s16 field_0x69e;
@@ -131,14 +131,14 @@ public:
     /* 0x06B8 */ u8 field_0x6b8[0x6ba - 0x6b8];
     /* 0x06BA */ s16 field_0x6ba;
     /* 0x06BC */ u8 field_0x6bc;
-    /* 0x06BD */ u8 field_0x6bd;
-    /* 0x06BE */ u16 field_0x6be;
+    /* 0x06BD */ u8 mPursuitFlag;   ///< @brief Flag indicating pursuit mode.
+    /* 0x06BE */ u16 mStatusFlags;  ///< @brief Bitfield for various status flags.
     /* 0x06C0 */ s8 field_0x6c0;
     /* 0x06C4 */ f32 field_0x6c4;
-    /* 0x06C8 */ int mBPathIdx;     // The b_path indexer
-    /* 0x06CC */ int mBPathIdxIter; // The amount to change the b_path indexer by
+    /* 0x06C8 */ int mCurrentPathIndex;  ///< @brief Current index in the path points array.
+    /* 0x06CC */ int mPathDirection;     ///< @brief Direction to iterate path points (+1 or -1).
     /* 0x06D0 */ s16 field_0x6d0;
-    /* 0x06D2 */ s16 mTargetAngleStep;
+    /* 0x06D2 */ s16 mTurnStep;  ///< @brief Step value for turning angle adjustment.
     /* 0x06D4 */ s16 field_0x6d4;
     /* 0x06D6 */ s16 field_0x6d6;
     /* 0x06D8 */ s16 field_0x6d8;
@@ -150,11 +150,11 @@ public:
     /* 0x06E4 */ u8 field_0x6e4;
     /* 0x06E5 */ u8 field_0x6e5[0x6ec - 0x6e5];
     /* 0x06EC */ csXyz field_0x6ec[0x1d];
-    /* 0x079A */ s16 field_0x79a;
+    /* 0x079A */ s16 mBodyTiltAngle;  ///< @brief Body tilt angle based on turning.
     /* 0x079C */ u8 field_0x79c;
     /* 0x079D */ s8 field_0x79d;
-    /* 0x079E */ s8 field_0x79e;
-    /* 0x079F */ s8 field_0x79f;
+    /* 0x079E */ s8 mLapCount;  ///< @brief Lap or progress count affecting path generation.
+    /* 0x079F */ s8 mPathAdjustCounter;  ///< @brief Counter for periodic path adjustment.
     /* 0x07A0 */ s16 field_0x7a0;
     /* 0x07A2 */ s8 field_0x7a2;
     /* 0x07A4 */ s16 field_0x7a4;
@@ -162,7 +162,7 @@ public:
     /* 0x07A7 */ s8 field_0x7a7;
     /* 0x07A8 */ f32 field_0x7a8;
     /* 0x07AC */ dBgS_AcchCir field_0x7ac;
-    /* 0x07EC */ dBgS_ObjAcch mAcch;
+    /* 0x07EC */ dBgS_ObjAcch mAcch;  ///< @brief Actor collision handler.
     /* 0x09C4 */ dCcD_Stts field_0x9c4;
     /* 0x0A00 */ dCcD_Sph field_0xa00[7];
     /* 0x1288 */ dCcD_Sph field_0x1288;
@@ -183,18 +183,18 @@ public:
     /* 0x1418 */ u32 field_0x1418;
     /* 0x141C */ u32 field_0x141c;
     /* 0x1420 */ u32 field_0x1420[3];
-    /* 0x142C */ u8 field_0x142c;
-    /* 0x142D */ u8 field_0x142d;
-    /* 0x142E */ u8 field_0x142e;
-    /* 0x142F */ s8 field_0x142f;
+    /* 0x142C */ u8 mMovementType;    ///< @brief Type of movement (1 for normal, 2 for faster).
+    /* 0x142D */ u8 mCollisionFlags;  ///< @brief Flags for collision states.
+    /* 0x142E */ u8 mLandingFlag;     ///< @brief Flag for landing after jump.
+    /* 0x142F */ s8 mSpeedCapTimer;   ///< @brief Timer to cap speed at 30.
     /* 0x1430 */ s8 field_0x1430;
     /* 0x1432 */ s16 field_0x1432;
-    /* 0x1434 */ fpc_ProcID field_0x1434;  // Rider actor ID?
+    /* 0x1434 */ fpc_ProcID field_0x1434;  // Rider actor ID? ///< @brief Process ID of rider actor.
     /* 0x1438 */ cXyz field_0x1438[2];
     /* 0x1450 */ himo_s field_0x1450[2];
     /* 0x15D0 */ mDoExt_3DlineMat1_c field_0x15d0[2];
     /* 0x1648 */ mDoExt_3DlineMat1_c field_0x1648;
-    /* 0x1684 */ f32 field_0x1684;
+    /* 0x1684 */ f32 mAnimDuration;  ///< @brief Duration or timer for animation.
     /* 0x1688 */ s16 field_0x1688;
     /* 0x168A */ u16 field_0x168a;
     /* 0x168C */ f32 field_0x168c;
@@ -226,9 +226,9 @@ public:
     /* 0x17D0 */ u32 field_0x17d0[4];
     /* 0x17E0 */ u8 field_0x17e0;
     /* 0x17E1 */ u8 field_0x17e1;
-    /* 0x17E2 */ s16 mWaitRollAngle;
+    /* 0x17E2 */ s16 mWaitRollAngle;  ///< @brief Roll angle during wait state.
     /* 0x17E4 */ u8 field_0x17e4[0x17e8 - 0x17e4];
-    /* 0x17E8 */ f32 mSpeedRate;
+    /* 0x17E8 */ f32 mSpeedRate;  ///< @brief Speed rate for riding calculations.
 };
 
 STATIC_ASSERT(sizeof(e_wb_class) == 0x17EC);
@@ -240,21 +240,22 @@ public:
     void genMessage(JORMContext*);
 
     /* イノシシ - Wild Boar */
-    /* 0x00 */ // vtable
+    /* 0x00 */  // vtable
     /* 0x04 */ s8 mId;
-    /* 0x08 */ f32 base_size;                           // 基本サイズ - Base Size
-    /* 0x0C */ f32 leader_size_ratio;                   // リーダーサイズ比 - Leader Size Ratio
-    /* 0x10 */ f32 movement_speed;                      // 移動速度 - Movement Speed
-    /* 0x14 */ f32 max_speed;                           // 最速度 - Max Speed
-    /* 0x18 */ f32 cavalry_battle_max_speed;            // 騎馬戦最速 - Cavalry Battle Max Speed
+    /* 0x08 */ f32 base_size;                 // 基本サイズ - Base Size
+    /* 0x0C */ f32 leader_size_ratio;         // リーダーサイズ比 - Leader Size Ratio
+    /* 0x10 */ f32 movement_speed;            // 移動速度 - Movement Speed
+    /* 0x14 */ f32 max_speed;                 // 最速度 - Max Speed
+    /* 0x18 */ f32 cavalry_battle_max_speed;  // 騎馬戦最速 - Cavalry Battle Max Speed
     /* 0x1C */ f32 normal_speed_vi;
     /* 0x20 */ f32 medium_speed_vi;
     /* 0x24 */ f32 mMaxSpeedVi;
-    /* 0x28 */ f32 leader_walking_speed;                // 歩き速（リ）- Leader Walking Speed
-    /* 0x2C */ f32 leader_max_speed;                    // 最速度（リ）- Leader Max Speed
-    /* 0x30 */ f32 leader_cavalry_battle_max_speed;     // 騎馬戦最（リ）- Leader Cavalry Battle Max Speed
+    /* 0x28 */ f32 leader_walking_speed;  // 歩き速（リ）- Leader Walking Speed
+    /* 0x2C */ f32 leader_max_speed;      // 最速度（リ）- Leader Max Speed
+    /* 0x30 */ f32
+        leader_cavalry_battle_max_speed;  // 騎馬戦最（リ）- Leader Cavalry Battle Max Speed
     /* 0x34 */ f32 mSingleRiderSpeed;
-    /* 0x38 */ f32 player_recognition_dist;             // PL認識距離 - Player Recognition Distance
+    /* 0x38 */ f32 player_recognition_dist;  // PL認識距離 - Player Recognition Distance
     /* 0x3C */ f32 mPlayerMountedMaxSpeed;
     /* 0x40 */ f32 mPlayerMountedMotionPlaybackSpeed;
     /* 0x44 */ s16 mPlayerMountedDashTime;
@@ -267,6 +268,5 @@ public:
 };
 
 STATIC_ASSERT(sizeof(daE_WB_HIO_c) == 0x5C);
-
 
 #endif /* D_A_E_WB_H */
