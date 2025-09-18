@@ -3467,7 +3467,7 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
     }
 
     cLib_addCalc2(&a_this->speedF, target_speed, 1.0f, 1.0f);
-    cLib_addCalcAngleS2(&i_this->field_0x79a,
+    cLib_addCalcAngleS2(&i_this->mBodyTiltAngle,
                         (TREG_S(7) + -8) * (a_this->current.angle.y - sVar1), 8, 0x200);
 
     return return_value;
@@ -3670,7 +3670,7 @@ static void action(e_wb_class* i_this) {
     if (a_this->speed.y < -120.0f)
         a_this->speed.y = -120.0f;
 
-    if (i_this->mActionID == ACT_WAIT && (i_this->mStatusFlags & 3) == 0) {
+    if (i_this->mActionID == ACT_WAIT && (i_this->mStatusFlags & 3) == 0 &&
         // Bulblin Camp
         (strcmp(dComIfGp_getStartStageName(), "F_SP118") == 0 ||
         // Gerudo Desert
@@ -4796,7 +4796,7 @@ static void demo_camera(e_wb_class* i_this) {
     case 0x51:
         a_this->current.angle.y = 0x8000;
         a_this->shape_angle.y = 0x8000;
-        i_this->mTargetAngleStep = 0;
+        i_this->mTargetFacingAngle = 0;
         cLib_addCalc2(&i_this->field_0x16bc.x, a_this->eyePos.x, 0.2f, 200.0f);
         cLib_addCalc2(&i_this->field_0x16bc.y, a_this->eyePos.y, 0.2f, 200.0f);
         cLib_addCalc2(&i_this->field_0x16bc.z, a_this->eyePos.z, 0.2f, 200.0f);
@@ -5228,8 +5228,8 @@ static int daE_WB_Execute(e_wb_class* i_this) {
         i_this->mStatusFlags &= 3;
         
         for (int i = 0; i < 4; i++) {
-            if (i_this->field_0x698[i] != 0) {
-                i_this->field_0x698[i]--;
+            if (i_this->mCatchupTimer != 0) {
+                i_this->mCatchupTimer--;
             }
         }
         
