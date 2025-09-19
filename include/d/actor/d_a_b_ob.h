@@ -23,22 +23,6 @@ enum b_ob_action {
     OB_ACTION_FISH_END,
 };
 
-enum b_oh_anm {
-    OB_ANM_APPEAR = 0x12,
-    OB_ANM_APPEAR_2,
-    OB_ANM_DEAD,
-    OB_ANM_EAT,
-    OB_ANM_EAT_2,
-    OB_ANM_LAST_DAMAGE,
-    OB_ANM_OPEN_MOUTH,
-    OB_ANM_OPEN_MOUTH_WAIT,
-    OB_ANM_SWALLOW,
-    OB_ANM_SWIM_WAIT,
-    OB_ANM_TENTACLE_END,
-    OB_ANM_THROWUP,
-    OB_ANM_WAIT,
-};
-
 struct ob_part_s {
     /* 0x00 */ mDoExt_McaMorf* mpMorf;
     /* 0x04 */ mDoExt_McaMorf* mpFinMorf;
@@ -70,7 +54,8 @@ struct ob_ke_s {
  *
  * @details Lakebed Temple dungeon boss. This is the core/body part of the boss.
  *
- */
+*/
+
 class b_ob_class : public fopEn_enemy_c {
 public:
     /* 0x05AC */ request_of_phase_process_class mPhase;

@@ -9,7 +9,6 @@
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "SSystem/SComponent/c_math.h"
 #include "c/c_damagereaction.h"
-#include "cmath.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_s_play.h"
@@ -20,6 +19,60 @@
 #include "d/actor/d_a_obj_lv3WaterB.h"
 #include "d/actor/d_a_obj_ystone.h"
 #include "Z2AudioLib/Z2Instances.h"
+
+enum B_oh_RES_File_ID {
+    /* BCK */
+    /* 0x08 */ BCK_AL_FOIFINISH = 0x8,
+    /* 0x09 */ BCK_AL_OICUT,
+    /* 0x0A */ BCK_AL_OICUTB,
+    /* 0x0B */ BCK_AL_OIFINISH,
+    /* 0x0C */ BCK_AL_OIHANG,
+    /* 0x0D */ BCK_AL_OIHANGMISS,
+    /* 0x0E */ BCK_AL_OIHANGWAIT,
+    /* 0x0F */ BCK_AL_OIHANGWAITB,
+    /* 0x10 */ BCK_AL_OISPIT,
+    /* 0x11 */ BCK_OH_CORE_OPEN,
+    /* 0x12 */ BCK_OI_APPEAR,
+    /* 0x13 */ BCK_OI_APPEAR02,
+    /* 0x14 */ BCK_OI_DEAD,
+    /* 0x15 */ BCK_OI_EAT,
+    /* 0x16 */ BCK_OI_EAT02,
+    /* 0x17 */ BCK_OI_LASTDAMAGE,
+    /* 0x18 */ BCK_OI_OPENMOUTH,
+    /* 0x19 */ BCK_OI_OPENMOUTHWAIT,
+    /* 0x1A */ BCK_OI_SWALLOW,
+    /* 0x1B */ BCK_OI_SWIMWAIT,
+    /* 0x1C */ BCK_OI_TENTACLE_END,
+    /* 0x1D */ BCK_OI_THROWUP,
+    /* 0x1E */ BCK_OI_WAIT,
+
+    /* BMDR */
+    /* 0x21 */ BMDR_EF_OISUI = 0x21,
+    /* 0x22 */ BMDR_OI_BODY,
+    /* 0x23 */ BMDR_OI_FINA,
+    /* 0x24 */ BMDR_OI_FINB,
+    /* 0x25 */ BMDR_OI_FINC,
+    /* 0x26 */ BMDR_OI_TAIL,
+
+    /* BMDV */
+    /* 0x29 */ BMDV_OH = 0x29,
+    /* 0x2A */ BMDV_OH_CORE,
+    /* 0x2B */ BMDV_OI_HEAD,
+
+    /* BRK */
+    /* 0x2E */ BRK_EF_OISUI = 0x2E,
+    /* 0x2F */ BRK_OH_LOOP,
+
+    /* BTK */
+    /* 0x32 */ BTK_AL_FOICUT = 0x32,
+    /* 0x33 */ BTK_AL_FOICUTB,
+    /* 0x34 */ BTK_AL_FOIFINISH,
+    /* 0x35 */ BTK_EF_OISUI,
+    /* 0x36 */ BTK_OH_LOOP,
+
+    /* BTP */
+    /* 0x39 */ BTP_AL_FOIFINISH = 0x39,
+};
 
 class daB_OB_HIO_c {
 public:
@@ -377,7 +430,7 @@ static void core_start(b_ob_class* i_this) {
                 i_this->mMode = 1;
                 i_this->field_0x478c = 0;
 
-                anm_init(i_this, OB_ANM_APPEAR, 0.0f, 0, 0.0f);
+                anm_init(i_this, BCK_OI_APPEAR, 0.0f, 0, 0.0f);
                 a_this->home.pos.y = (i_this->field_0x47a0 - 200.0f) + KREG_F(11);
                 a_this->current.pos.y = a_this->home.pos.y - 500.0f;
             }
@@ -396,7 +449,7 @@ static void core_start(b_ob_class* i_this) {
             i_this->mDemoAction = 30;
         }
         break;
-    case 2:
+    case 2: {
         b_oh_class* tentacle =
             (b_oh_class*)fopAcM_SearchByID(i_this->mTentacleActorIDs[i_this->mCoreHandNo]);
         MTXCopy(tentacle->mpMorf->getModel()->getAnmMtx(i_this->field_0x478c),
@@ -457,6 +510,7 @@ static void core_start(b_ob_class* i_this) {
             }
         }
         break;
+    }
     case 3:
         break;
     }
@@ -486,7 +540,7 @@ static void core_hand_move(b_ob_class* i_this) {
             }
         }
         break;
-    case 1:
+    case 1: {
         b_oh_class* tentacle =
             (b_oh_class*)fopAcM_SearchByID(i_this->mTentacleActorIDs[i_this->mCoreHandNo]);
         if (tentacle == NULL || (tentacle != NULL && tentacle->mAction == OH_ACTION_END)) {
@@ -540,6 +594,7 @@ static void core_hand_move(b_ob_class* i_this) {
 
         cLib_addCalc0(&i_this->field_0x479c, 1.0f, 10.0f);
         break;
+    }
     case 2:
         cLib_addCalc2(&i_this->field_0x479c, -200.0f, 1.0f, 10.0f);
 
@@ -597,7 +652,7 @@ static void bombfishset(b_ob_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, OB_ANM_WAIT, 5.0f, J3DFrameCtrl::EMode_LOOP, 3.0f);
+        anm_init(i_this, BCK_OI_WAIT, 5.0f, J3DFrameCtrl::EMode_LOOP, 3.0f);
         i_this->mMode = 1;
 
         if (a_this->field_0x567 == 0 && i_this->mDemoAction == 0) {
@@ -632,7 +687,7 @@ static void bombfishset(b_ob_class* i_this) {
 
             i_this->mAction = OB_ACTION_CORE_HAND_MOVE;
             i_this->mMode = 0;
-            anm_init(i_this, OB_ANM_WAIT, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+            anm_init(i_this, BCK_OI_WAIT, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
         break;
     }
@@ -770,10 +825,10 @@ static void core_end(b_ob_class* i_this) {
         a_this->gravity = 0.0f;
         i_this->mDemoAction = 20;
         i_this->field_0x479c = -1000.0f;
-        anm_init(i_this, OB_ANM_TENTACLE_END, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+        anm_init(i_this, BCK_OI_TENTACLE_END, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
 
         particle_pos.set(0.0f, 0.0f, 0.0f);
-        dComIfGp_particle_set(0x880A, &particle_pos, NULL, NULL);
+        dComIfGp_particle_set(dPa_RM(ID_ZI_S_OI_ISO_DISAPP_A), &particle_pos, NULL, NULL);
         mDoAud_seStart(Z2SE_EN_OI_DEMO_APPEAR2, NULL, 0, 0);
         break;
     case 1:
@@ -829,7 +884,7 @@ static void core_end(b_ob_class* i_this) {
             i_this->mMoveAngle.x = -0x4000;
             i_this->field_0x4750 = 0;
             i_this->mTimers[0] = 110;
-            anm_init(i_this, OB_ANM_APPEAR_2, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+            anm_init(i_this, BCK_OI_APPEAR02, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
 
             fopAcM_OffStatus(a_this, 0x80000);
             fopAcM_OnStatus(a_this, 0x200000);
@@ -957,7 +1012,7 @@ static void core_damage_check(b_ob_class* i_this) {
 
     if (fopAcM_CheckStatus(a_this, 0x100000)) {
         i_this->field_0x5d38 =
-            dComIfGp_particle_set(i_this->field_0x5d38, 0x8802, &a_this->current.pos, NULL, NULL);
+            dComIfGp_particle_set(i_this->field_0x5d38, dPa_RM(ID_ZI_S_OI_ISO_COREHIT_B), &a_this->current.pos, NULL, NULL);
     }
 
     i_this->mCoreCcStts.Move();
@@ -966,7 +1021,7 @@ static void core_damage_check(b_ob_class* i_this) {
         i_this->mAtInfo.mpCollider = i_this->mCcSph.GetTgHitObj();
         cc_at_check(a_this, &i_this->mAtInfo);
 
-        dComIfGp_particle_set(0x8801, &a_this->current.pos, NULL, NULL);
+        dComIfGp_particle_set(dPa_RM(ID_ZI_S_OI_ISO_COREHIT_A), &a_this->current.pos, NULL, NULL);
 
         if (i_this->mAtInfo.mpCollider->ChkAtType(AT_TYPE_HOOKSHOT)) {
             i_this->mAction = OB_ACTION_CORE_HOOK;
@@ -1162,13 +1217,13 @@ static int fish_normal(b_ob_class* i_this) {
         i_this->mMode = 1;
         i_this->field_0x476a = 0;
         /* fallthrough */
-    case 1:
+    case 1: {
         if (in_opening_demo && i_this->mTimers[0] > 60) {
             ret = 4;
         }
 
-        if (i_this->mAnmID != OB_ANM_SWIM_WAIT) {
-            anm_init(i_this, OB_ANM_SWIM_WAIT, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+        if (i_this->mAnmID != BCK_OI_SWIMWAIT) {
+            anm_init(i_this, BCK_OI_SWIMWAIT, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
 
         if (dist_to_ground < l_HIO.mBodySize * (ZREG_F(8) + 1200.0f)) {
@@ -1198,6 +1253,7 @@ static int fish_normal(b_ob_class* i_this) {
             i_this->mTimers[4] = 30;
         }
         break;
+    }
     case 2:
         ret = 1;
         i_this->mTargetMovePos.x = player->current.pos.x;
@@ -1307,19 +1363,19 @@ static int fish_normal(b_ob_class* i_this) {
         mDoMtx_stack_c::multVecZero(&sp70);
 
         i_this->field_0x5d24[0] =
-            dComIfGp_particle_set(i_this->field_0x5d24[0], 0x87EC, &sp70, NULL, NULL);
+            dComIfGp_particle_set(i_this->field_0x5d24[0], dPa_RM(ID_ZI_S_OI_FISH_APP_A), &sp70, NULL, NULL);
 
         sp64.set(0.0f, 0.0f, 0.0f);
         i_this->field_0x5d24[1] =
-            dComIfGp_particle_set(i_this->field_0x5d24[1], 0x87ED, &sp64, NULL, NULL);
+            dComIfGp_particle_set(i_this->field_0x5d24[1], dPa_RM(ID_ZI_S_OI_FISH_APP_B), &sp64, NULL, NULL);
 
         if (i_this->mTimers[3] == 1) {
             dComIfGp_getVibration().StopQuake(31);
         }
     }
 
-    if (i_this->mAnmID == OB_ANM_APPEAR_2 && i_this->mBodyParts[0].mpMorf->isStop()) {
-        anm_init(i_this, OB_ANM_SWIM_WAIT, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+    if (i_this->mAnmID == BCK_OI_APPEAR02 && i_this->mBodyParts[0].mpMorf->isStop()) {
+        anm_init(i_this, BCK_OI_SWIMWAIT, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
     }
 
     if (throw_player) {
@@ -1342,13 +1398,13 @@ static int fish_vacume(b_ob_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, OB_ANM_OPEN_MOUTH, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+        anm_init(i_this, BCK_OI_OPENMOUTH, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode = 1;
         i_this->field_0x476a = 0;
         break;
     case 1:
         if (i_this->mBodyParts[0].mpMorf->isStop()) {
-            anm_init(i_this, OB_ANM_OPEN_MOUTH_WAIT, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+            anm_init(i_this, BCK_OI_OPENMOUTHWAIT, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 2;
             i_this->mTimers[0] = 200;
         }
@@ -1383,12 +1439,12 @@ static int fish_vacume(b_ob_class* i_this) {
         i_this->mBodyParts[0].mSph.OffCoSetBit();
 
         if (i_this->mBodyParts[0].mpMorf->isStop()) {
-            if (i_this->mAnmID == OB_ANM_SWALLOW) {
-                anm_init(i_this, OB_ANM_EAT_2, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
-            } else if (i_this->mAnmID == OB_ANM_EAT_2) {
-                anm_init(i_this, OB_ANM_THROWUP, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+            if (i_this->mAnmID == BCK_OI_SWALLOW) {
+                anm_init(i_this, BCK_OI_EAT02, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+            } else if (i_this->mAnmID == BCK_OI_EAT02) {
+                anm_init(i_this, BCK_OI_THROWUP, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
                 i_this->mOISound.startCreatureVoice(Z2SE_EN_OI_V_THROWUP, -1);
-            } else if (i_this->mAnmID == OB_ANM_THROWUP) {
+            } else if (i_this->mAnmID == BCK_OI_THROWUP) {
                 i_this->mAction = OB_ACTION_FISH_NORMAL;
                 i_this->mMode = 0;
             }
@@ -1427,11 +1483,11 @@ static int fish_end(b_ob_class* i_this) {
         i_this->field_0x5d04 = KREG_F(8) + 1.5f;
         i_this->mBlureRateTarget = 150;
         i_this->field_0x5dd8 = 3;
-        anm_init(i_this, OB_ANM_LAST_DAMAGE, 0.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+        anm_init(i_this, BCK_OI_LASTDAMAGE, 0.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         break;
     case 1:
         if (i_this->mBodyParts[0].mpMorf->isStop()) {
-            anm_init(i_this, OB_ANM_SWIM_WAIT, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+            anm_init(i_this, BCK_OI_SWIMWAIT, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
 
         if (i_this->mTimers[0] == 0) {
@@ -1439,7 +1495,7 @@ static int fish_end(b_ob_class* i_this) {
             i_this->mTargetMovePos.set(0.0f, -19000.0f, -6500.0f);
             i_this->mTimers[0] = 150;
             i_this->mDemoCamEye.set(-6000.0f, -22000.0f, 2000.0f);
-            anm_init(i_this, OB_ANM_LAST_DAMAGE, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+            anm_init(i_this, BCK_OI_LASTDAMAGE, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         }
         break;
     case 2:
@@ -1454,12 +1510,12 @@ static int fish_end(b_ob_class* i_this) {
             i_this->mDemoAction = 42;
             i_this->mDemoActionTimer = 0;
             i_this->mBlureRateTarget = 0;
-            anm_init(i_this, OB_ANM_LAST_DAMAGE, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+            anm_init(i_this, BCK_OI_LASTDAMAGE, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         }
         break;
     case 3:
         if (i_this->mAcch.ChkWallHit() && i_this->mTimers[0] == 0) {
-            anm_init(i_this, OB_ANM_DEAD, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+            anm_init(i_this, BCK_OI_DEAD, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             dComIfGp_getVibration().StartShock(8, 31, cXyz(0.0f, 1.0f, 0.0f));
             mDoAud_seStart(Z2SE_OBJ_BOMB_EXPLODE, NULL, 0, 0);
 
@@ -1481,7 +1537,7 @@ static int fish_end(b_ob_class* i_this) {
             a_this->home.pos.set(0.0f, -23580.0f, 10300.0f);
 
             for (int i = 0; i < 5; i++) {
-                static u16 iso_eff[] = {0x87F2, 0x87F3, 0x87F4, 0x87F5, 0x87F6};
+                static u16 iso_eff[] = {dPa_RM(ID_ZI_S_OI_FISH_SYOTOTSU_A), dPa_RM(ID_ZI_S_OI_FISH_SYOTOTSU_B), dPa_RM(ID_ZI_S_OI_FISH_SYOTOTSU_C), dPa_RM(ID_ZI_S_OI_FISH_SYOTOTSU_D), dPa_RM(ID_ZI_S_OI_FISH_SYOTOTSU_E)};
                 dComIfGp_particle_set(iso_eff[i], &a_this->home.pos, NULL, NULL);
             }
 
@@ -1813,7 +1869,7 @@ static void fish_move(b_ob_class* i_this) {
         if (i == 0) {
             part->mpMorf->play(NULL, 0, 0);
 
-            if (i_this->mAnmID == OB_ANM_EAT_2 && i_this->mBodyParts[0].mpMorf->checkFrame(1.0f)) {
+            if (i_this->mAnmID == BCK_OI_EAT02 && i_this->mBodyParts[0].mpMorf->checkFrame(1.0f)) {
                 i_this->mOISound.startCreatureVoice(Z2SE_EN_OI_V_EAT02, -1);
             }
         }
@@ -2100,7 +2156,7 @@ static void demo_camera(b_ob_class* i_this) {
             dComIfGp_getVibration().StartShock(4, 31, cXyz(0.0f, 1.0f, 0.0f));
         }
 
-        if (i_this->mAnmID == OB_ANM_EAT && i_this->mBodyParts[0].mpMorf->checkFrame(153.0f)) {
+        if (i_this->mAnmID == BCK_OI_EAT && i_this->mBodyParts[0].mpMorf->checkFrame(153.0f)) {
             i_this->mDemoAction = 4;
             i_this->mDemoActionTimer = 0;
 
@@ -2120,7 +2176,7 @@ static void demo_camera(b_ob_class* i_this) {
 
         if (i_this->mBodyParts[0].mpMorf->isStop()) {
             i_this->mDemoAction = 100;
-            i_this->mCoreAnm = OB_ANM_WAIT;
+            i_this->mCoreAnm = BCK_OI_WAIT;
             i_this->mCoreAnmMode = J3DFrameCtrl::EMode_LOOP;
             i_this->field_0x4794 = 100;
         }
@@ -2145,7 +2201,7 @@ static void demo_camera(b_ob_class* i_this) {
         i_this->field_0x5cfc = 0;
         i_this->field_0x5d00 = ZREG_F(3) + 1000.0;
 
-        anm_init(i_this, OB_ANM_OPEN_MOUTH_WAIT, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+        anm_init(i_this, BCK_OI_OPENMOUTHWAIT, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
 
         if (cM_rndF(1.0f) < 0.5f) {
             i_this->field_0x5cd4 = 500.0f;
@@ -2153,7 +2209,7 @@ static void demo_camera(b_ob_class* i_this) {
             i_this->field_0x5cd4 = -500.0f;
         }
         /* fallthrough */
-    case 11:
+    case 11: {
         f32 temp_f31 = (a_this->eyePos - player->current.pos).abs();
         if (temp_f31 < KREG_F(11) + 150.0f) {
             i_this->mDemoAction = 100;
@@ -2200,7 +2256,7 @@ static void demo_camera(b_ob_class* i_this) {
 
             if (i_this->mDemoActionTimer >= 15) {
                 if (i_this->mDemoActionTimer == 30) {
-                    anm_init(i_this, OB_ANM_SWALLOW, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+                    anm_init(i_this, BCK_OI_SWALLOW, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
                     i_this->mOISound.startCreatureVoice(Z2SE_EN_OI_V_SWALLOW, -1);
                 }
 
@@ -2226,6 +2282,7 @@ static void demo_camera(b_ob_class* i_this) {
             cLib_addCalc2(&i_this->mDemoCamCenter.z, player->current.pos.z, 0.4f, 300.0f);
         }
         break;
+    }
     case 20:
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
@@ -2428,7 +2485,7 @@ static void demo_camera(b_ob_class* i_this) {
             i_this->mBodyParts[0].mpMorf->setPlaySpeed(1.0f);
 
             sp58.set(0.0f, 0.0f, 0.0f);
-            dComIfGp_particle_set(0x87FB, &sp58, NULL, NULL);
+            dComIfGp_particle_set(dPa_RM(ID_ZI_S_OI_ISO_APP_A), &sp58, NULL, NULL);
             dComIfGp_getVibration().StartQuake(3, 31, cXyz(0.0f, 1.0f, 0.0f));
 
             i_this->field_0x5cd0 = 0;
@@ -2478,7 +2535,7 @@ static void demo_camera(b_ob_class* i_this) {
         }
 
         if (i_this->mBodyParts[0].mpMorf->isStop()) {
-            anm_init(i_this, OB_ANM_WAIT, 0.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+            anm_init(i_this, BCK_OI_WAIT, 0.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         }
 
         if (i_this->mDemoActionTimer == 120) {
@@ -2568,7 +2625,7 @@ static void demo_camera(b_ob_class* i_this) {
         fpcM_Search(s_hasidel_sub, i_this);
         fpcM_Search(s_kaisoudel_sub, i_this);
         /* fallthrough */
-    case 45:
+    case 45: {
         var_r27 = 1;
         if (i_this->mDemoActionTimer != 80) {
             break;
@@ -2596,6 +2653,7 @@ static void demo_camera(b_ob_class* i_this) {
         water->field_0x586 = 0;
         var_r27 = 2;
         /* fallthrough */
+    }
     case 46:
         sp58.set(VREG_F(0) + -1225.0f, -24000.0f, VREG_F(1) + 8678.0f);
         player->setPlayerPosAndAngle(&sp58, VREG_S(1) + 10000, 0);
@@ -2625,7 +2683,7 @@ static void demo_camera(b_ob_class* i_this) {
 
         if (i_this->mDemoActionTimer == 50) {
             i_this->mHideCore = true;
-            dComIfGp_particle_set(0x8491, &a_this->eyePos, NULL, NULL);
+            dComIfGp_particle_set(dPa_RM(ID_ZI_S_FM_ENDDEMO_CORECRASH_A), &a_this->eyePos, NULL, NULL);
             fopAcM_createDisappear(a_this, &a_this->eyePos, 15, 0, 0xFF);
             mDoAud_seStart(Z2SE_EN_BQ_EYE_EXPLODE, NULL, 0, 0);
 
@@ -2678,19 +2736,19 @@ static void demo_camera(b_ob_class* i_this) {
                         }
 
                         i_this->field_0x5d40[0][idx] = dComIfGp_particle_set(
-                            0x8627, &i_this->mBodyParts[idx].mPos, NULL, &spA0);
+                            dPa_RM(ID_ZI_S_OI_DEADEXP_POLY_HEAD), &i_this->mBodyParts[idx].mPos, NULL, &spA0);
                         i_this->field_0x5d40[1][idx] = dComIfGp_particle_set(
-                            0x862A, &i_this->mBodyParts[idx].mPos, NULL, &spA0);
+                            dPa_RM(ID_ZI_S_OI_DEADEXP_SMOKE_HEAD), &i_this->mBodyParts[idx].mPos, NULL, &spA0);
                     } else if (idx == 18) {
                         i_this->field_0x5d40[0][idx] = dComIfGp_particle_set(
-                            0x8628, &i_this->mBodyParts[idx].mPos, NULL, &spA0);
+                            dPa_RM(ID_ZI_S_OI_DEADEXP_POLY_TAIL), &i_this->mBodyParts[idx].mPos, NULL, &spA0);
                         i_this->field_0x5d40[1][idx] = dComIfGp_particle_set(
-                            0x862B, &i_this->mBodyParts[idx].mPos, NULL, &spA0);
+                            dPa_RM(ID_ZI_S_OI_DEADEXP_SMOKE_TAIL), &i_this->mBodyParts[idx].mPos, NULL, &spA0);
                     } else {
                         i_this->field_0x5d40[0][idx] = dComIfGp_particle_set(
-                            0x8626, &i_this->mBodyParts[idx].mPos, NULL, &spA0);
+                            dPa_RM(ID_ZI_S_OI_DEADEXP_POLY_BODY), &i_this->mBodyParts[idx].mPos, NULL, &spA0);
                         i_this->field_0x5d40[1][idx] = dComIfGp_particle_set(
-                            0x8629, &i_this->mBodyParts[idx].mPos, NULL, &spA0);
+                            dPa_RM(ID_ZI_S_OI_DEADEXP_SMOKE_BODY), &i_this->mBodyParts[idx].mPos, NULL, &spA0);
                     }
                 }
             }
@@ -2712,7 +2770,7 @@ static void demo_camera(b_ob_class* i_this) {
             static cXyz sc(10.0f, 10.0f, 10.0f);
 
             for (int i = 0; i < 5; i++) {
-                static u16 ex_eff[] = {0x8621, 0x8622, 0x8623, 0x8624, 0x8625};
+                static u16 ex_eff[] = {dPa_RM(ID_ZI_S_OI_CONVERGE_FILTER), dPa_RM(ID_ZI_S_OI_CONVERGE_FILTEROUT), dPa_RM(ID_ZI_S_OI_CONVERGE_HIDE), dPa_RM(ID_ZI_S_OI_CONVERGE_POLYGON_A), dPa_RM(ID_ZI_S_OI_CONVERGE_POLYGON_B)};
                 dComIfGp_particle_set(ex_eff[i], &room_pos, NULL, &sc);
             }
 
@@ -2809,14 +2867,14 @@ static void demo_camera(b_ob_class* i_this) {
         i_this->field_0x5cfc = 0;
         i_this->field_0x5d00 = ZREG_F(3) + 300.0f;
 
-        anm_init(i_this, OB_ANM_EAT, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+        anm_init(i_this, BCK_OI_EAT, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
 
         i_this->mOISound.startCreatureVoice(Z2SE_EN_OI_V_EAT, -1);
 
         MTXCopy(i_this->mBodyParts[0].mpMorf->getModel()->getAnmMtx(0), mDoMtx_stack_c::get());
         mDoMtx_stack_c::multVecZero(&sp64);
-        dComIfGp_particle_set(0x8803, &sp64, NULL, NULL);
-        dComIfGp_particle_set(0x8804, &sp64, NULL, NULL);
+        dComIfGp_particle_set(dPa_RM(ID_ZI_S_OI_ISO_HAKI_A), &sp64, NULL, NULL);
+        dComIfGp_particle_set(dPa_RM(ID_ZI_S_OI_ISO_HAKI_B), &sp64, NULL, NULL);
         /* fallthrough */
     case 51:
         MTXCopy(i_this->mBodyParts[0].mpMorf->getModel()->getAnmMtx(0x13), mDoMtx_stack_c::get());
@@ -2838,7 +2896,7 @@ static void demo_camera(b_ob_class* i_this) {
         MtxPosition(&sp58, &i_this->mDemoCamEye);
         i_this->mDemoCamEye += a_this->home.pos;
 
-        if (i_this->mAnmID == OB_ANM_EAT) {
+        if (i_this->mAnmID == BCK_OI_EAT) {
             if (i_this->mBodyParts[0].mpMorf->checkFrame(120.0f)) {
                 daPy_getPlayerActorClass()->changeDemoMode(46, 0, 0, 0);
             }
@@ -2872,7 +2930,7 @@ static void demo_camera(b_ob_class* i_this) {
 
         if (i_this->mDemoAction == 52 && i_this->mBodyParts[0].mpMorf->isStop()) {
             i_this->mDemoAction = 100;
-            i_this->mCoreAnm = OB_ANM_WAIT;
+            i_this->mCoreAnm = BCK_OI_WAIT;
             i_this->mCoreAnmMode = J3DFrameCtrl::EMode_LOOP;
             i_this->field_0x4794 = 100;
         }
@@ -2974,7 +3032,7 @@ static void demo_camera(b_ob_class* i_this) {
         sp64.set(0.0f, -23580.0f, 10300.0f);
 
         for (int i = 0; i < 4; i++) {
-            static u16 iso_eff[] = {0x87F7, 0x87F8, 0x87F9, 0x87FA};
+            static u16 iso_eff[] = {dPa_RM(ID_ZI_S_OI_HAISUI_A), dPa_RM(ID_ZI_S_OI_HAISUI_B), dPa_RM(ID_ZI_S_OI_HAISUI_C), dPa_RM(ID_ZI_S_OI_HAISUI_D)};
             i_this->field_0x5d24[i] =
                 dComIfGp_particle_set(i_this->field_0x5d24[i], iso_eff[i], &sp64, NULL, NULL);
 
@@ -3152,7 +3210,7 @@ static int daB_OB_Execute(b_ob_class* i_this) {
         }
     }
 
-    if (i_this->mAnmID == OB_ANM_APPEAR && i_this->mBodyParts[0].mpMorf->getPlaySpeed() >= 0.5f) {
+    if (i_this->mAnmID == BCK_OI_APPEAR && i_this->mBodyParts[0].mpMorf->getPlaySpeed() >= 0.5f) {
         J3DModel* model = i_this->mBodyParts[0].mpMorf->getModel();
         for (int i = 0; i < 5; i++) {
             int joint_no = 1;
@@ -3163,24 +3221,24 @@ static int daB_OB_Execute(b_ob_class* i_this) {
             MTXCopy(model->getAnmMtx(joint_no), mDoMtx_stack_c::get());
             mDoMtx_stack_c::multVecZero(&sp7C);
 
-            static u16 iso_eff[] = {0x87FC, 0x87FD, 0x87FE, 0x87FF, 0x8800};
+            static u16 iso_eff[] = {dPa_RM(ID_ZI_S_OI_ISO_APP_B), dPa_RM(ID_ZI_S_OI_ISO_APP_C), dPa_RM(ID_ZI_S_OI_ISO_APP_D), dPa_RM(ID_ZI_S_OI_ISO_APP_E), dPa_RM(ID_ZI_S_OI_ISO_APP_F)};
             i_this->field_0x5d24[i] =
                 dComIfGp_particle_set(i_this->field_0x5d24[i], iso_eff[i], &sp7C, NULL, NULL);
         }
-    } else if (i_this->mAnmID == OB_ANM_EAT) {
+    } else if (i_this->mAnmID == BCK_OI_EAT) {
         J3DModel* model = i_this->mBodyParts[0].mpMorf->getModel();
         MTXCopy(model->getAnmMtx(0x13), mDoMtx_stack_c::get());
         mDoMtx_stack_c::multVecZero(&sp7C);
 
         for (int i = 0; i < 3; i++) {
-            static u16 iso_eff[] = {0x8805, 0x8806, 0x8807};
+            static u16 iso_eff[] = {dPa_RM(ID_ZI_S_OI_ISO_HAKI_C), dPa_RM(ID_ZI_S_OI_ISO_HAKI_D), dPa_RM(ID_ZI_S_OI_ISO_HAKI_E)};
             i_this->field_0x5d24[i] =
                 dComIfGp_particle_set(i_this->field_0x5d24[i], iso_eff[i], &sp7C, NULL, NULL);
         }
-    } else if (i_this->mAnmID == OB_ANM_THROWUP) {
+    } else if (i_this->mAnmID == BCK_OI_THROWUP) {
         J3DModel* model = i_this->mBodyParts[0].mpMorf->getModel();
         for (int i = 0; i < 4; i++) {
-            static u16 iso_eff[] = {0x87EE, 0x87EF, 0x87F0, 0x87F1};
+            static u16 iso_eff[] = {dPa_RM(ID_ZI_S_OI_FISH_HAKI_A), dPa_RM(ID_ZI_S_OI_FISH_HAKI_B), dPa_RM(ID_ZI_S_OI_FISH_HAKI_C), dPa_RM(ID_ZI_S_OI_FISH_HAKI_D)};
             i_this->field_0x5d24[i] = dComIfGp_particle_set(i_this->field_0x5d24[i], iso_eff[i],
                                                             &a_this->current.pos, NULL, NULL);
 
@@ -3213,7 +3271,7 @@ static int daB_OB_Execute(b_ob_class* i_this) {
     if (i_this->field_0x5d18 != 0) {
         i_this->field_0x5d18--;
         i_this->field_0x5d38 =
-            dComIfGp_particle_set(i_this->field_0x5d38, 0x8809, &a_this->current.pos, NULL, NULL);
+            dComIfGp_particle_set(i_this->field_0x5d38, dPa_RM(ID_ZI_S_OI_FISH_CORESASHI_A), &a_this->current.pos, NULL, NULL);
 
         JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->field_0x5d38);
         if (emitter != 0) {
@@ -3282,13 +3340,13 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     b_ob_class* a_this = (b_ob_class*)i_this;
 
     a_this->mpCoreMorf =
-        new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("B_oh", 0x2A), NULL, NULL,
-                             (J3DAnmTransform*)dComIfG_getObjectRes("B_oh", 0x11), 2, 1.0f, 0, -1,
+        new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("B_oh", BMDV_OH_CORE), NULL, NULL,
+                             (J3DAnmTransform*)dComIfG_getObjectRes("B_oh", BCK_OH_CORE_OPEN), 2, 1.0f, 0, -1,
                              &a_this->mSound, 0, 0x11000084);
 
     for (int i = 0; i < 19; i++) {
-        static int p_bmd[] = {43, 34, 34, 34, 34, 34, 34, 34, 34, 34,
-                              34, 34, 34, 34, 34, 34, 34, 34, 38};
+        static int p_bmd[] = {BMDV_OI_HEAD, BMDR_OI_BODY, BMDR_OI_BODY, BMDR_OI_BODY, BMDR_OI_BODY, BMDR_OI_BODY, BMDR_OI_BODY, BMDR_OI_BODY, BMDR_OI_BODY, BMDR_OI_BODY,
+                              BMDR_OI_BODY, BMDR_OI_BODY, BMDR_OI_BODY, BMDR_OI_BODY, BMDR_OI_BODY, BMDR_OI_BODY, BMDR_OI_BODY, BMDR_OI_BODY, BMDR_OI_TAIL};
 
         u32 var_r31 = 0x80000;
         if (p_bmd[i] == 43) {
@@ -3327,7 +3385,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
         if (i >= 4 && i <= 17) {
             a_this->mBodyParts[i].mpFinMorf =
-                new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("B_oh", 0x23), NULL, NULL,
+                new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("B_oh", BMDR_OI_FINA), NULL, NULL,
                                    NULL, 2, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000084);
 
             if (a_this->mBodyParts[i].mpFinMorf == NULL ||
@@ -3358,7 +3416,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
         if (i >= 7 && i <= 15) {
             a_this->mBodyParts[i].mpFinUnkMorf =
-                new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("B_oh", 0x23), NULL, NULL,
+                new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("B_oh", BMDR_OI_FINA), NULL, NULL,
                                    NULL, 2, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000084);
 
             if (a_this->mBodyParts[i].mpFinUnkMorf == NULL ||
@@ -3383,7 +3441,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
         if (i == 8) {
             a_this->mBodyParts[i].mpFinBMorf =
-                new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("B_oh", 0x24), NULL, NULL,
+                new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("B_oh", BMDR_OI_FINB), NULL, NULL,
                                    NULL, 2, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000084);
 
             if (a_this->mBodyParts[i].mpFinBMorf == NULL ||
@@ -3408,7 +3466,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
         if (i == 17) {
             a_this->mBodyParts[i].mpFinCMorf =
-                new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("B_oh", 0x25), NULL, NULL,
+                new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("B_oh", BMDR_OI_FINC), NULL, NULL,
                                    NULL, 2, 1.0f, 0, -1, 1, NULL, 0x80000, 0x11000084);
 
             if (a_this->mBodyParts[i].mpFinCMorf == NULL ||
@@ -3432,7 +3490,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         }
     }
 
-    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("B_oh", 0x21);
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("B_oh", BMDR_EF_OISUI);
     JUT_ASSERT(0, modelData != 0);
 
     a_this->mpSuiModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
@@ -3451,7 +3509,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         return 0;
     }
 
-    if (!a_this->mpSuiBrk->init(modelData, (J3DAnmTevRegKey*)dComIfG_getObjectRes("B_oh", 0x2E), TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
+    if (!a_this->mpSuiBrk->init(modelData, (J3DAnmTevRegKey*)dComIfG_getObjectRes("B_oh", BRK_EF_OISUI), TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
         return 0;
     }
 
@@ -3460,7 +3518,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         return 0;
     }
 
-    if (!a_this->mpSuiBtk->init(modelData, (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("B_oh", 0x35), TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
+    if (!a_this->mpSuiBtk->init(modelData, (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("B_oh", BTK_EF_OISUI), TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
         return 0;
     }
 
