@@ -1,156 +1,79 @@
 /**
  * d_a_b_oh.cpp
  * Morpheel Tentacle
- */
-
-/**
- * This almost entirely matches, there's just an issue with extra vtables / weak dtors being emitted
- * things like cCcD_ShapeAttr, dCcD/cCcD_Stts, etc
- */
+*/
 
 #include "d/dolzel_rel.h"
 
-#include "dol2asm.h"
-#include "f_op/f_op_actor_mng.h"
-#include "d/d_com_inf_game.h"
 #include "d/actor/d_a_b_ob.h"
 #include "d/actor/d_a_b_oh.h"
-#include "SSystem/SComponent/c_lib.h"
-#include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_player.h"
 #include "c/c_damagereaction.h"
+#include "Z2AudioLib/Z2Instances.h"
 
-//
-// Forward References:
-//
+enum B_oh_RES_File_ID {
+    /* BCK */
+    /* 0x08 */ BCK_AL_FOIFINISH = 0x8,
+    /* 0x09 */ BCK_AL_OICUT,
+    /* 0x0A */ BCK_AL_OICUTB,
+    /* 0x0B */ BCK_AL_OIFINISH,
+    /* 0x0C */ BCK_AL_OIHANG,
+    /* 0x0D */ BCK_AL_OIHANGMISS,
+    /* 0x0E */ BCK_AL_OIHANGWAIT,
+    /* 0x0F */ BCK_AL_OIHANGWAITB,
+    /* 0x10 */ BCK_AL_OISPIT,
+    /* 0x11 */ BCK_OH_CORE_OPEN,
+    /* 0x12 */ BCK_OI_APPEAR,
+    /* 0x13 */ BCK_OI_APPEAR02,
+    /* 0x14 */ BCK_OI_DEAD,
+    /* 0x15 */ BCK_OI_EAT,
+    /* 0x16 */ BCK_OI_EAT02,
+    /* 0x17 */ BCK_OI_LASTDAMAGE,
+    /* 0x18 */ BCK_OI_OPENMOUTH,
+    /* 0x19 */ BCK_OI_OPENMOUTHWAIT,
+    /* 0x1A */ BCK_OI_SWALLOW,
+    /* 0x1B */ BCK_OI_SWIMWAIT,
+    /* 0x1C */ BCK_OI_TENTACLE_END,
+    /* 0x1D */ BCK_OI_THROWUP,
+    /* 0x1E */ BCK_OI_WAIT,
 
-extern "C" void __ct__12daB_OH_HIO_cFv();
-extern "C" static void nodeCallBack__FP8J3DJointi();
-extern "C" static void daB_OH_Draw__FP10b_oh_class();
-extern "C" static void start__FP10b_oh_class();
-extern "C" void __dt__4cXyzFv();
-extern "C" static void wait__FP10b_oh_class();
-extern "C" static void attack__FP10b_oh_class();
-extern "C" static void caught__FP10b_oh_class();
-extern "C" static void end__FP10b_oh_class();
-extern "C" static void non__FP10b_oh_class();
-extern "C" static void action__FP10b_oh_class();
-extern "C" static void damage_check__FP10b_oh_class();
-extern "C" static void daB_OH_Execute__FP10b_oh_class();
-extern "C" static bool daB_OH_IsDelete__FP10b_oh_class();
-extern "C" static void daB_OH_Delete__FP10b_oh_class();
-extern "C" static void useHeapInit__FP10fopAc_ac_c();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" static void daB_OH_Create__FP10fopAc_ac_c();
-extern "C" void __dt__8dCcD_SphFv();
-extern "C" void __ct__8dCcD_SphFv();
-extern "C" void __dt__8cM3dGSphFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __ct__4cXyzFv();
-extern "C" void __dt__5csXyzFv();
-extern "C" void __ct__5csXyzFv();
-extern "C" void __dt__12daB_OH_HIO_cFv();
-extern "C" void __sinit_d_a_b_oh_cpp();
-extern "C" extern char const* const d_a_b_oh__stringBase0;
+    /* BMDR */
+    /* 0x21 */ BMDR_EF_OISUI = 0x21,
+    /* 0x22 */ BMDR_OI_BODY,
+    /* 0x23 */ BMDR_OI_FINA,
+    /* 0x24 */ BMDR_OI_FINB,
+    /* 0x25 */ BMDR_OI_FINC,
+    /* 0x26 */ BMDR_OI_TAIL,
 
-//
-// External References:
-//
+    /* BMDV */
+    /* 0x29 */ BMDV_OH = 0x29,
+    /* 0x2A */ BMDV_OH_CORE,
+    /* 0x2B */ BMDV_OI_HEAD,
 
-extern "C" void mDoMtx_XrotM__FPA4_fs();
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void mDoMtx_ZrotM__FPA4_fs();
-extern "C" void scaleM__14mDoMtx_stack_cFfff();
-extern "C" void play__14mDoExt_baseAnmFv();
-extern "C" void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss();
-extern "C" void entry__13mDoExt_btkAnmFP16J3DMaterialTablef();
-extern "C" void init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss();
-extern "C" void entry__13mDoExt_brkAnmFP16J3DMaterialTablef();
-extern "C" void create__21mDoExt_invisibleModelFP8J3DModelUc();
-extern "C" void entryDL__21mDoExt_invisibleModelFP4cXyz();
-extern "C" void
-__ct__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl();
-extern "C" void play__14mDoExt_McaMorfFP3VecUlSc();
-extern "C" void modelCalc__14mDoExt_McaMorfFv();
-extern "C" void cDmrNowMidnaTalk__Fv();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fpcSch_JudgeByID__FPvPv();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGp_getReverb__Fi();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void setHitMark__13dPa_control_cFUsP10fopAc_ac_cPC4cXyzPC5csXyzPC4cXyzUl();
-extern "C" void
-set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void StartShock__12dVibration_cFii4cXyz();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Move__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void __dt__12dCcD_GObjInfFv();
-extern "C" void ChkTgHit__12dCcD_GObjInfFv();
-extern "C" void GetTgHitObj__12dCcD_GObjInfFv();
-extern "C" void ChkCoHit__12dCcD_GObjInfFv();
-extern "C" void GetCoHitObj__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_SphFRC11dCcD_SrcSph();
-extern "C" void cc_at_check__FP10fopAc_ac_cP11dCcU_AtInfo();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void GetAc__8cCcD_ObjFv();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void cM_atan2s__Fff();
-extern "C" void cM_rndF__Ff();
-extern "C" void cM_rndFX__Ff();
-extern "C" void SetC__8cM3dGSphFRC4cXyz();
-extern "C" void SetR__8cM3dGSphFf();
-extern "C" void cLib_addCalc2__FPffff();
-extern "C" void cLib_addCalc0__FPfff();
-extern "C" void cLib_addCalcAngleS2__FPssss();
-extern "C" void MtxTrans__FfffUc();
-extern "C" void MtxScale__FfffUc();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void startTentacleSound__12Z2CreatureOIF10JAISoundIDUcUlSc();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void __construct_array();
-extern "C" void _savegpr_20();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_20();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mCurrentMtx__6J3DSys[48];
-extern "C" u8 sincosTable___5JMath[65536];
-extern "C" extern u8 struct_80450C98[4];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" void __register_global_object();
+    /* BRK */
+    /* 0x2E */ BRK_EF_OISUI = 0x2E,
+    /* 0x2F */ BRK_OH_LOOP,
 
-//
-// Declarations:
-//
+    /* BTK */
+    /* 0x32 */ BTK_AL_FOICUT = 0x32,
+    /* 0x33 */ BTK_AL_FOICUTB,
+    /* 0x34 */ BTK_AL_FOIFINISH,
+    /* 0x35 */ BTK_EF_OISUI,
+    /* 0x36 */ BTK_OH_LOOP,
 
-/* 8061DAAC-8061DAEC 000030 0040+00 1/1 0/0 0/0 .data            cc_sph_src$4457 */
+    /* BTP */
+    /* 0x39 */ BTP_AL_FOIFINISH = 0x39,
+};
+
+class daB_OH_HIO_c {
+public:
+    /* 8061B72C */ daB_OH_HIO_c();
+    /* 8061D93C */ virtual ~daB_OH_HIO_c() {}
+
+    /* 0x4 */ s8 field_0x4;
+    /* 0x8 */ f32 mModelSize;
+    /* 0xC */ f32 mLength;
+};
 
 /* 8061B72C-8061B75C 0000EC 0030+00 1/1 0/0 0/0 .text            __ct__12daB_OH_HIO_cFv */
 daB_OH_HIO_c::daB_OH_HIO_c() {
@@ -209,10 +132,7 @@ static daB_OH_HIO_c l_HIO;
 static b_ob_class* boss;
 
 /* 8061DBD8-8061DBDC 000068 0004+00 0/1 0/0 0/0 .bss             Cinit */
-#pragma push
-#pragma force_active on
 static int Cinit;
-#pragma pop
 
 /* 8061B960-8061BB18 000320 01B8+00 1/1 0/0 0/0 .text            start__FP10b_oh_class */
 static void start(b_oh_class* i_this) {
@@ -368,8 +288,8 @@ static void attack(b_oh_class* i_this) {
                                 if (boss->mAction != OB_ACTION_CORE_HAND_MOVE) {
                                     boss->mAction = OB_ACTION_CORE_HAND_MOVE;
                                     boss->mMode = 0;
-                                    boss->mCoreAnm = 30;
-                                    boss->mCoreAnmMode = 2;
+                                    boss->mCoreAnm = BCK_OI_WAIT;
+                                    boss->mCoreAnmMode = J3DFrameCtrl::EMode_LOOP;
                                 }
 
                                 boss->mOISound.startTentacleSound(
@@ -409,8 +329,8 @@ static void caught(b_oh_class* i_this) {
         cLib_addCalcAngleS2(&i_this->field_0xca4, i_this->field_0xc88 * 9000, 1, 500);
 
         if (i_this->mTimers[0] == 1) {
-            boss->mCoreAnm = 21;
-            boss->mCoreAnmMode = 0;
+            boss->mCoreAnm = BCK_OI_EAT;
+            boss->mCoreAnmMode = J3DFrameCtrl::EMode_NONE;
             boss->mOISound.startCreatureVoice(Z2SE_EN_OI_V_EAT, -1);
         }
 
@@ -699,8 +619,8 @@ static void damage_check(b_oh_class* i_this) {
 
             if (boss->mDemoAction != 0) {
                 boss->mDemoAction = 100;
-                boss->mCoreAnm = 30;
-                boss->mCoreAnmMode = 2;
+                boss->mCoreAnm = BCK_OI_WAIT;
+                boss->mCoreAnmMode = J3DFrameCtrl::EMode_LOOP;
                 boss->field_0x4794 = 180;
             }
 
@@ -805,7 +725,7 @@ static int daB_OH_Delete(b_oh_class* i_this) {
 static int useHeapInit(fopAc_ac_c* i_this) {
     b_oh_class* this_ = (b_oh_class*)i_this;
 
-    this_->mpMorf = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("B_oh", 0x29), NULL,
+    this_->mpMorf = new mDoExt_McaMorf((J3DModelData*)dComIfG_getObjectRes("B_oh", BMDV_OH), NULL,
                                        NULL, NULL, 2, 1.0f, 0, -1, 1, NULL, 0, 0x11000284);
     if (this_->mpMorf == NULL || this_->mpMorf->getModel() == NULL) {
         return 0;
@@ -827,7 +747,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         return 0;
     }
 
-    J3DAnmTextureSRTKey* btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("B_oh", 0x36);
+    J3DAnmTextureSRTKey* btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("B_oh", BTK_OH_LOOP);
     if (!this_->mpBtk->init(this_->mpMorf->getModel()->getModelData(), btk, TRUE, 2, 1.0f, 0, -1)) {
         return 0;
     }
@@ -840,7 +760,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         return 0;
     }
 
-    J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes("B_oh", 0x2F);
+    J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes("B_oh", BRK_OH_LOOP);
     if (!this_->mpBrk->init(this_->mpMorf->getModel()->getModelData(), brk, TRUE, 2, 1.0f, 0, -1)) {
         return 0;
     }
@@ -921,198 +841,31 @@ static int daB_OH_Create(fopAc_ac_c* i_this) {
     return phase;
 }
 
-/* ############################################################################################## */
-/* 8061DBDC-8061DBE0 00006C 0004+00 0/0 0/0 0/0 .bss
- * sInstance__40JASGlobalInstance<19JASDefaultBankTable>        */
-#pragma push
-#pragma force_active on
-static u8 data_8061DBDC[4];
-#pragma pop
-
-/* 8061DBE0-8061DBE4 000070 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14JASAudioThread>             */
-#pragma push
-#pragma force_active on
-static u8 data_8061DBE0[4];
-#pragma pop
-
-/* 8061DBE4-8061DBE8 000074 0004+00 0/0 0/0 0/0 .bss sInstance__27JASGlobalInstance<7Z2SeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_8061DBE4[4];
-#pragma pop
-
-/* 8061DBE8-8061DBEC 000078 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8Z2SeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_8061DBE8[4];
-#pragma pop
-
-/* 8061DBEC-8061DBF0 00007C 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SceneMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8061DBEC[4];
-#pragma pop
-
-/* 8061DBF0-8061DBF4 000080 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2StatusMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8061DBF0[4];
-#pragma pop
-
-/* 8061DBF4-8061DBF8 000084 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2DebugSys>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8061DBF4[4];
-#pragma pop
-
-/* 8061DBF8-8061DBFC 000088 0004+00 0/0 0/0 0/0 .bss
- * sInstance__36JASGlobalInstance<15JAISoundStarter>            */
-#pragma push
-#pragma force_active on
-static u8 data_8061DBF8[4];
-#pragma pop
-
-/* 8061DBFC-8061DC00 00008C 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14Z2SoundStarter>             */
-#pragma push
-#pragma force_active on
-static u8 data_8061DBFC[4];
-#pragma pop
-
-/* 8061DC00-8061DC04 000090 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12Z2SpeechMgr2>               */
-#pragma push
-#pragma force_active on
-static u8 data_8061DC00[4];
-#pragma pop
-
-/* 8061DC04-8061DC08 000094 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8JAISeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_8061DC04[4];
-#pragma pop
-
-/* 8061DC08-8061DC0C 000098 0004+00 0/0 0/0 0/0 .bss sInstance__29JASGlobalInstance<9JAISeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_8061DC08[4];
-#pragma pop
-
-/* 8061DC0C-8061DC10 00009C 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAIStreamMgr>               */
-#pragma push
-#pragma force_active on
-static u8 data_8061DC0C[4];
-#pragma pop
-
-/* 8061DC10-8061DC14 0000A0 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SoundMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8061DC10[4];
-#pragma pop
-
-/* 8061DC14-8061DC18 0000A4 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAISoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_8061DC14[4];
-#pragma pop
-
-/* 8061DC18-8061DC1C 0000A8 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13JAUSoundTable>              */
-#pragma push
-#pragma force_active on
-static u8 data_8061DC18[4];
-#pragma pop
-
-/* 8061DC1C-8061DC20 0000AC 0004+00 0/0 0/0 0/0 .bss
- * sInstance__38JASGlobalInstance<17JAUSoundNameTable>          */
-#pragma push
-#pragma force_active on
-static u8 data_8061DC1C[4];
-#pragma pop
-
-/* 8061DC20-8061DC24 0000B0 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAUSoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_8061DC20[4];
-#pragma pop
-
-/* 8061DC24-8061DC28 0000B4 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SoundInfo>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8061DC24[4];
-#pragma pop
-
-/* 8061DC28-8061DC2C 0000B8 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2SoundObjMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_8061DC28[4];
-#pragma pop
-
-/* 8061DC2C-8061DC30 0000BC 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2Audience>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8061DC2C[4];
-#pragma pop
-
-/* 8061DC30-8061DC34 0000C0 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2FxLineMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8061DC30[4];
-#pragma pop
-
-/* 8061DC34-8061DC38 0000C4 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2EnvSeMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8061DC34[4];
-#pragma pop
-
-/* 8061DC38-8061DC3C 0000C8 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SpeechMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8061DC38[4];
-#pragma pop
-
-/* 8061DC3C-8061DC40 0000CC 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2WolfHowlMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_8061DC3C[4];
-#pragma pop
-
-/* 8061DA74-8061DA74 0000A0 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+AUDIO_INSTANCES;
 
 /* 8061DAEC-8061DB0C -00001 0020+00 1/0 0/0 0/0 .data            l_daB_OH_Method */
-SECTION_DATA static void* l_daB_OH_Method[8] = {
-    (void*)daB_OH_Create__FP10fopAc_ac_c,
-    (void*)daB_OH_Delete__FP10b_oh_class,
-    (void*)daB_OH_Execute__FP10b_oh_class,
-    (void*)daB_OH_IsDelete__FP10b_oh_class,
-    (void*)daB_OH_Draw__FP10b_oh_class,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daB_OH_Method = {
+    (process_method_func)daB_OH_Create,
+    (process_method_func)daB_OH_Delete,
+    (process_method_func)daB_OH_Execute,
+    (process_method_func)daB_OH_IsDelete,
+    (process_method_func)daB_OH_Draw,
 };
 
 /* 8061DB0C-8061DB3C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_B_OH */
-SECTION_DATA extern void* g_profile_B_OH[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0003FFFD,
-    (void*)0x00D20000, (void*)&g_fpcLf_Method,
-    (void*)0x00001F88, (void*)NULL,
-    (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x00DA0000, (void*)&l_daB_OH_Method,
-    (void*)0x00044000, (void*)0x020E0000,
+extern actor_process_profile_definition g_profile_B_OH = {
+    fpcLy_CURRENT_e,
+    3,
+    fpcPi_CURRENT_e,
+    PROC_B_OH,
+    &g_fpcLf_Method.base,
+    sizeof(b_oh_class),
+    0,
+    0,
+    &g_fopAc_Method.base,
+    218,
+    &l_daB_OH_Method,
+    0x00044000,
+    fopAc_ENEMY_e,
+    fopAc_CULLBOX_CUSTOM_e,
 };
