@@ -10,6 +10,10 @@
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "Z2AudioLib/Z2Instances.h"
 
+enum Event_Cut_Nums {
+    /* 0x2 */ NUM_EVT_CUTS_e = 0x2,
+};
+
 /* 80B93C5C-80B93C60 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daNpc_zrC_Param_c l_HIO;
 

@@ -236,6 +236,10 @@ enum Type {
     /* 0x3 */ TYPE_3,
 };
 
+enum Event_Cut_Nums {
+    /* 0x7 */ NUM_EVT_CUTS_e = 0x7,
+};
+
 /* 809EFC54-809EFC58 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daNpc_Grz_Param_c l_HIO;
 
@@ -1043,7 +1047,7 @@ bool daNpc_Grz_c::setExpressionAnm(int i_index, bool i_modify) {
         return true;
     }
 
-    OS_REPORT("%s: 表情Bckアニメーションの登録に失敗しました！\n", "d_a_npc_grz.cpp");
+    OS_REPORT("%s: 表情Bckアニメーションの登録に失敗しました！\n", __FILE__);
     return false;
 }
 
@@ -1627,7 +1631,7 @@ BOOL daNpc_Grz_c::doEvent() {
             case EXPR_LAUGH:
             case EXPR_SNIFF:
                 if (mExpressionPhase != 0) {
-                    mAnmFlags &= 0xFFFFEFFF;
+                    mAnmFlags &= ~ANM_PAUSE_EXPRESSION;
                 }
                 break;
         }

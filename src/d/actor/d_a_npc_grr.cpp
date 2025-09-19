@@ -116,6 +116,10 @@ enum Type {
     /* 0x3 */ TYPE_3
 };
 
+enum Event_Cut_Nums {
+    /* 0x1 */ NUM_EVT_CUTS_e = 0x1,
+};
+
 /* 809E3F44-809E3F48 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daNpc_grR_Param_c l_HIO;
 
