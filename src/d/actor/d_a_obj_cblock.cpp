@@ -7,11 +7,9 @@
 
 #include "d/actor/d_a_obj_cblock.h"
 #include "d/d_cc_d.h"
-#include "Z2AudioLib/Z2Instances.h"
-#include "d/d_com_inf_game.h"
 #include "d/d_path.h"
 #include "d/actor/d_a_player.h"
-#include "dol2asm.h"
+#include "Z2AudioLib/Z2Instances.h"
 
 /* 80BC5A0C-80BC5A48 0000EC 003C+00 1/1 0/0 0/0 .text            initBaseMtx__11daObjCBlk_cFv */
 void daObjCBlk_c::initBaseMtx() {

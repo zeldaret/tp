@@ -644,7 +644,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_cc_mass_s.cpp"),
             Object(NonMatching, "d/d_cc_s.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_cc_uty.cpp"),
-            Object(Equivalent, "d/d_cam_param.cpp"), # weak func order
+            Object(MatchingFor("GZ2E01"), "d/d_cam_param.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_ev_camera.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_spline_path.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_item_data.cpp"),
@@ -1665,18 +1665,18 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_L7low_dr"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_L7op_demo_dr"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_b_bh"),
-    ActorRel(NonMatching, "d_a_b_bq"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_b_bq"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_b_dr"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_b_dre"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_b_ds"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_b_gg"),
-    ActorRel(NonMatching, "d_a_b_gm"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_b_gm"),
     ActorRel(NonMatching, "d_a_b_gnd"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_b_go"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_b_gos"),
     ActorRel(Equivalent, "d_a_b_mgn"), # extra mr/regalloc
-    ActorRel(NonMatching, "d_a_b_ob"),
-    ActorRel(NonMatching, "d_a_b_oh"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_b_ob"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_b_oh"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_b_oh2"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_b_tn"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_b_yo"),
@@ -1916,9 +1916,9 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_zelR"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_zelRo"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_zelda"),
-    ActorRel(Equivalent, "d_a_npc_zra", extra_cflags=[DANPCF_C_HACK]), # regalloc
-    ActorRel(NonMatching, "d_a_npc_zrc", extra_cflags=[DANPCF_C_HACK]),
-    ActorRel(NonMatching, "d_a_npc_zrz", extra_cflags=[DANPCF_C_HACK]),
+    ActorRel(Equivalent, "d_a_npc_zra", extra_cflags=[DANPCF_C_HACK]), # weak func order
+    ActorRel(MatchingFor("GZ2E01"), "d_a_npc_zrc", extra_cflags=[DANPCF_C_HACK]),
+    ActorRel(NonMatching, "d_a_npc_zrz", extra_cflags=[DANPCF_C_HACK]), # regalloc
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_Lv5Key"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_Turara"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_TvCdlst"),
@@ -2186,7 +2186,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_thashi"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_thdoor"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_timeFire"),
-    ActorRel(Equivalent, "d_a_obj_tks", extra_cflags=[DANPCF_C_HACK]), # weak function order, sinShort inline issue
+    ActorRel(Equivalent, "d_a_obj_tks", extra_cflags=[DANPCF_C_HACK]), # weak function order
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_tmoon"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_toaru_maki"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_toby"),

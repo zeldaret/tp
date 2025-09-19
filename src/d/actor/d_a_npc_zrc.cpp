@@ -1047,38 +1047,40 @@ void daNpc_zrC_c::playMotion() {
     }
 }
 
-/* 80B90940-80B90A6C 002E20 012C+00 1/1 0/0 0/0 .text
- * playMotionAnm2__11daNpc_zrC_cFPPPQ28daNpcF_c18daNpcF_anmPlayData */
-// NONMATCHING regalloc
+/* 80B90940-80B90A6C 002E20 012C+00 1/1 0/0 0/0 .text            playMotionAnm2__11daNpc_zrC_cFPPPQ28daNpcF_c18daNpcF_anmPlayData */
 void daNpc_zrC_c::playMotionAnm2(daNpcF_c::daNpcF_anmPlayData*** i_data) {
+    f32 morf;
     daNpcF_anmPlayData* playData = NULL;
+
     if (i_data[mMotion] != NULL) {
         playData = i_data[mMotion][mMotionPhase];
     }
+
     if (playData != NULL) {
-        if (mMotionPrevPhase == mMotionPhase && playData->numLoops > 0 &&
-            playData->numLoops <= mMotionLoops)
-        {
+        if (mMotionPrevPhase == mMotionPhase && (int)playData->numLoops > 0 && playData->numLoops <= mMotionLoops) {
             mMotionPhase++;
             playData = i_data[mMotion][mMotionPhase];
         }
+
         if (playData != NULL && mMotionPrevPhase != mMotionPhase) {
             setMotionAnm(playData->idx, 0.0f);
-            f32 morf = playData->morf;
+            morf = playData->morf;
+
             if (mMotionPhase == 0 && 0.0f <= mMotionMorfOverride) {
                 morf = mMotionMorfOverride;
             }
+
             if (morf > 0.0f) {
                 mExpressionMorf = 0.0f;
                 mpMorf->setMorf(morf);
             }
         }
     }
+
     mMotionPrevPhase = mMotionPhase;
 }
 
-/* 80B90A6C-80B90A98 002F4C 002C+00 2/2 0/0 0/0 .text
- * chkAction__11daNpc_zrC_cFM11daNpc_zrC_cFPCvPvPv_i            */
+/* 80B90A6C-80B90A98 002F4C 002C+00 2/2 0/0 0/0 .text            chkAction__11daNpc_zrC_cFM11daNpc_zrC_cFPCvPvPv_i */
 BOOL daNpc_zrC_c::chkAction(ActionFn i_action) {
     return mpActionFn == i_action;
 }
@@ -1149,10 +1151,10 @@ void daNpc_zrC_c::doNormalAction(BOOL param_0) {
 }
 
 /* 80B90D48-80B9113C 003228 03F4+00 1/1 0/0 0/0 .text            doEvent__11daNpc_zrC_cFv */
-// NONMATCHING minor regalloc
 BOOL daNpc_zrC_c::doEvent() {
     dEvent_manager_c* event_mgr = NULL;
     BOOL ret = 0;
+    int staff_id;
 
     if (dComIfGp_event_runCheck() != FALSE) {
         event_mgr = &dComIfGp_getEventManager();
@@ -1189,7 +1191,7 @@ BOOL daNpc_zrC_c::doEvent() {
                 mItemID = -1;
             }
 
-            int staff_id = event_mgr->getMyStaffId(l_myName, NULL, 0);
+            staff_id = event_mgr->getMyStaffId(l_myName, NULL, 0);
             if (staff_id != -1) {
                 mStaffID = staff_id;
                 int evtCutNo = event_mgr->getMyActIdx(staff_id, mEvtCutNameList, 2, 0, 0);

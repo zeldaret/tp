@@ -92,9 +92,6 @@ public:
 
     class daObj_GrA_prtclMngr_c {
     public:
-        /* 80C04E14 */ ~daObj_GrA_prtclMngr_c() {}
-        /* 80C04E50 */ daObj_GrA_prtclMngr_c() {}
-
         /* 0x00 */ bool field_0x0;
         /* 0x04 */ cXyz field_0x4;
         /* 0x10 */ csXyz field_0x10;

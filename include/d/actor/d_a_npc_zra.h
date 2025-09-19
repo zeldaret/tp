@@ -11,7 +11,8 @@ class daNpc_zrA_HIO_c;
  *
  * @details
  *
- */
+*/
+
 class daNpc_zrA_Path_c : public daNpcF_Path_c {
 public:
     /* 80B7850C */ BOOL getDstPosDst2(cXyz, cXyz&);

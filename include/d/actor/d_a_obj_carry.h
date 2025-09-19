@@ -257,7 +257,7 @@ public:
     /* 80479664 */ int CreateInitCall();
 
     s32 getType() { return mType; }
-    u32 getSwbit() { return fopAcM_GetParamBit(this, 6, 8); }
+    u8 getSwbit() { return fopAcM_GetParamBit(this, 6, 8); }
     u32 getSwbit2() { return fopAcM_GetParamBit(this, 14, 8); }
     s8 getRoomNo() { return fopAcM_GetParamBit(this, 0, 6); }
 
@@ -361,7 +361,7 @@ public:
     /* 0xDAA */ u8 field_0xdaa;
     /* 0xDAB */ u8 field_0xdab;
     /* 0xDAC */ bool field_0xdac;
-    /* 0xDAD */ u8 field_0xdad;
+    /* 0xDAD */ bool field_0xdad;
     /* 0xDAE */ u8 field_0xdae;
     /* 0xDAF */ u8 field_0xdaf;
     /* 0xDB0 */ u8 field_0xdb0;
