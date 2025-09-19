@@ -842,7 +842,6 @@ void daObjLv6Bm_c::initActionAttack() {
 
 /* 80C8082C-80C80F48 0026EC 071C+00 1/0 0/0 0/0 .text            actionAttack__12daObjLv6Bm_cFv */
 void daObjLv6Bm_c::actionAttack() {
-    // NONMATCHING
     static u16 const l_eff_id[2] = {
         ZL2_GLOW02_1,
         ZL2_GLOW02_2,
