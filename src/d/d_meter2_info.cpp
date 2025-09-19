@@ -543,6 +543,15 @@ f32 dMeter2Info_c::getStringLength(J2DTextBox* i_textbox, char* i_string) {
             str_width = 0.0f;
         } else {
             int c = (u8)*string;
+#if VERSION == VERSION_GCN_JPN
+            bool unkFlag1 = false;
+            if ((c >= 0x81 && c <= 0x9f) || (c >= 0xe0 && c <= 0xfc)) {
+                unkFlag1 = true;
+            }
+            if (unkFlag1) {
+                c = (c << 8) | (u8)*++string;
+            }
+#endif
             str_width += charSpace + (fontSize.mSizeX * ((f32)font->getWidth(c) / (f32)font->getCellWidth()));
         }
     }
@@ -568,6 +577,15 @@ f32 dMeter2Info_c::getStringLength(JUTFont* i_font, f32 param_2, f32 param_3, ch
             str_width = 0.0f;
         } else {
             int c = (u8)*string;
+#if VERSION == VERSION_GCN_JPN
+            bool unkFlag1 = false;
+            if ((c >= 0x81 && c <= 0x9f) || (c >= 0xe0 && c <= 0xfc)) {
+                unkFlag1 = true;
+            }
+            if (unkFlag1) {
+                c = (c << 8) | (u8)*++string;
+            }
+#endif
             str_width += param_3 + param_2 * ((f32)i_font->getWidth(c) / (f32)i_font->getCellWidth());
         }
     }

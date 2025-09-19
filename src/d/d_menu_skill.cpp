@@ -440,6 +440,16 @@ void dMenu_Skill_c::screenSetMenu() {
     mpParent = new CPaneMgr(mpMenuScreen, 'n_all', 2, NULL);
     mpParent->setAlphaRate(0.0f);
     for (int i = 0; i < 7; i++) {
+#if VERSION == VERSION_GCN_JPN
+        mpFTagPicture[i][0] = (J2DTextBox*)mpMenuScreen->search(tag_sub0[i]);
+        mpFTagPicture[i][1] = (J2DTextBox*)mpMenuScreen->search(tag_sub1[i]);
+        mpFTagPicture[i][2] = (J2DTextBox*)mpMenuScreen->search(tag_name0[i]);
+        mpFTagPicture[i][3] = (J2DTextBox*)mpMenuScreen->search(tag_name1[i]);
+        mpMenuScreen->search(ftag_sub0[i])->hide();
+        mpMenuScreen->search(ftag_sub1[i])->hide();
+        mpMenuScreen->search(ftag_name0[i])->hide();
+        mpMenuScreen->search(ftag_name1[i])->hide();
+#else
         mpFTagPicture[i][0] = (J2DTextBox*)mpMenuScreen->search(ftag_sub0[i]);
         mpFTagPicture[i][1] = (J2DTextBox*)mpMenuScreen->search(ftag_sub1[i]);
         mpFTagPicture[i][2] = (J2DTextBox*)mpMenuScreen->search(ftag_name0[i]);
@@ -448,6 +458,7 @@ void dMenu_Skill_c::screenSetMenu() {
         mpMenuScreen->search(tag_sub1[i])->hide();
         mpMenuScreen->search(tag_name0[i])->hide();
         mpMenuScreen->search(tag_name1[i])->hide();
+#endif
         for (int j = 0; j < 4; j++) {
             mpFTagPicture[i][j]->setFont(mDoExt_getMesgFont());
             mpFTagPicture[i][j]->setString(0x40, "");
@@ -484,8 +495,13 @@ void dMenu_Skill_c::screenSetMenu() {
             mSelectWhite[i] = mpFTagPicture[1][i]->getWhite();
         }
     }
+#if VERSION == VERSION_GCN_JPN
+    J2DTextBox* textBox = (J2DTextBox*)mpMenuScreen->search('t_t00');
+    mpMenuScreen->search('f_t00')->hide();
+#else
     J2DTextBox* textBox = (J2DTextBox*)mpMenuScreen->search('f_t00');
     mpMenuScreen->search('t_t00')->hide();
+#endif
     textBox->setFont(mDoExt_getSubFont());
     textBox->setString(0x200, "");
     mpString->getString(0x6a4, textBox, NULL, NULL, NULL, 0);
@@ -510,16 +526,26 @@ void dMenu_Skill_c::screenSetLetter() {
     mpLetterScreen = new J2DScreen();
     mpLetterScreen->setPriority("zelda_ougi_info.blo", 0x20000, mpArchive);
     dPaneClass_showNullPane(mpLetterScreen);
+#if VERSION == VERSION_GCN_JPN
+    mpTextPane = new CPaneMgr(mpLetterScreen, 'mg_3line', 0, NULL);
+    mpLetterScreen->search('n_e4line')->hide();
+#else
     mpTextPane = new CPaneMgr(mpLetterScreen, 'mg_e4lin', 0, NULL);
     mpLetterScreen->search('n_3line')->hide();
+#endif
     mpExpName = new CPaneMgr(mpLetterScreen, 'label_n', 0, NULL);
     J2DTextBox* paneFont = (J2DTextBox*)mpTextPane->getPanePtr();
     paneFont->setFont(mDoExt_getMesgFont());
     J2DTextBox* paneString = (J2DTextBox*)mpTextPane->getPanePtr();
     paneString->setString(0x200, "");
     for (int i = 0; i < 4; i++) {
+#if VERSION == VERSION_GCN_JPN
+        mpNameString[i] = (J2DTextBox*)mpLetterScreen->search(name_tag[i]);
+        mpLetterScreen->search(fame_tag[i])->hide();
+#else
         mpNameString[i] = (J2DTextBox*)mpLetterScreen->search(fame_tag[i]);
         mpLetterScreen->search(name_tag[i])->hide();
+#endif
         mpNameString[i]->setFont(mDoExt_getMesgFont());
         mpNameString[i]->setString(0x40, "");
     }

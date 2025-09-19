@@ -495,8 +495,13 @@ void dMenu_Insect_c::screenSetBase() {
             }
         }
     }
+#if VERSION == VERSION_GCN_JPN
+    J2DTextBox* textBox = (J2DTextBox*)mpScreen->search('t_t00');
+    mpScreen->search('f_t00')->hide();
+#else
     J2DTextBox* textBox = (J2DTextBox*)mpScreen->search('f_t00');
     mpScreen->search('t_t00')->hide();
+#endif
     textBox->setFont(mDoExt_getSubFont());
     textBox->setString(0x200, "");
     mpString->getString(0x5ba, textBox, NULL, NULL, NULL, 0);
@@ -514,10 +519,17 @@ void dMenu_Insect_c::screenSetExplain() {
     if (field_0xf6 == 0) {
         mpExpSubWin[1]->hide();
     }
+#if VERSION == VERSION_GCN_JPN
+    mpInfoText = new CPaneMgr(mpExpScreen, 'mg_3line', 0, NULL);
+    mpExpScreen->search('n_e4line')->hide();
+    field_0x5c = (J2DTextBox*)mpExpScreen->search('w_msg_jp');
+    mpExpScreen->search('ms_for_2')->hide();
+#else
     mpInfoText = new CPaneMgr(mpExpScreen, 'mg_e4lin', 0, NULL);
     mpExpScreen->search('n_3line')->hide();
     field_0x5c = (J2DTextBox*)mpExpScreen->search('ms_for_2');
     mpExpScreen->search('w_msg_jp')->hide();
+#endif
     mpExpScreen->search('ms_for_3')->hide();
     field_0x54[0] = (J2DPicture*)mpExpScreen->search('insects');
     field_0x54[1] = (J2DPicture*)mpExpScreen->search('insectss');

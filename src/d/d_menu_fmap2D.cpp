@@ -2225,10 +2225,17 @@ dMenu_Fmap2DTop_c::dMenu_Fmap2DTop_c(JKRExpHeap* i_heap, STControl* i_stick) {
     static const u64 area_name[3] = {'i_name_s', 'i_name' ,'i_name1'};
     static const u64 farea_name[3] = {'f_name_1', 'f_name3', 'f_name2'};
     for (int i = 0; i < 3; i++) {
+#if VERSION == VERSION_GCN_JPN
+        static_cast<J2DTextBox*>(mpTitleScreen->search(area_name[i]))
+            ->setFont(mDoExt_getRubyFont());
+        static_cast<J2DTextBox*>(mpTitleScreen->search(area_name[i]))->setString(0x40, "");
+        mpTitleScreen->search(farea_name[i])->hide();
+#else
         static_cast<J2DTextBox*>(mpTitleScreen->search(farea_name[i]))
             ->setFont(mDoExt_getRubyFont());
         static_cast<J2DTextBox*>(mpTitleScreen->search(farea_name[i]))->setString(0x40, "");
         mpTitleScreen->search(area_name[i])->hide();
+#endif
     }
 
     static const u64 sfont_name[7] = {
@@ -2238,60 +2245,102 @@ dMenu_Fmap2DTop_c::dMenu_Fmap2DTop_c(JKRExpHeap* i_heap, STControl* i_stick) {
         'ffont00', 'ffontl0', 'ffontl1', 'ffontl2', 'ffontb0', 'ffontb3', 'ffontb4'
     };
     for (int i = 0; i < 7; i++) {
+#if VERSION == VERSION_GCN_JPN
+        static_cast<J2DTextBox*>(mpTitleScreen->search(sfont_name[i]))
+            ->setFont(mDoExt_getRubyFont());
+        static_cast<J2DTextBox*>(mpTitleScreen->search(sfont_name[i]))->setString(0x40, "");
+        mpTitleScreen->search(ffont_name[i])->hide();
+#else
         static_cast<J2DTextBox*>(mpTitleScreen->search(ffont_name[i]))
             ->setFont(mDoExt_getRubyFont());
         static_cast<J2DTextBox*>(mpTitleScreen->search(ffont_name[i]))->setString(0x40, "");
         mpTitleScreen->search(sfont_name[i])->hide();
+#endif
     }
     setTitleNameString(0x3e0);
 
     static const u64 cont_zt[5] = {'cont_zt', 'cont_zt1', 'cont_zt2', 'cont_zt3', 'cont_zt4'};
     static const u64 font_zt[5] = {'font_zt1', 'font_zt2', 'font_zt3', 'font_zt4', 'font_zt5'};
     for (int i = 0; i < 5; i++) {
+#if VERSION == VERSION_GCN_JPN
+        static_cast<J2DTextBox*>(mpTitleScreen->search(cont_zt[i]))
+            ->setFont(mDoExt_getMesgFont());
+        static_cast<J2DTextBox*>(mpTitleScreen->search(cont_zt[i]))->setString(0x20, "");
+        mpTitleScreen->search(font_zt[i])->hide();
+#else
         static_cast<J2DTextBox*>(mpTitleScreen->search(font_zt[i]))
             ->setFont(mDoExt_getMesgFont());
         static_cast<J2DTextBox*>(mpTitleScreen->search(font_zt[i]))->setString(0x20, "");
         mpTitleScreen->search(cont_zt[i])->hide();
+#endif
     }
     setZButtonString(0x529, 0xff);
 
     static const u64 cont_bt[5] = {'cont_bt1', 'cont_bt2', 'cont_bt3', 'cont_bt4', 'cont_bt'};
     static const u64 font_bt[5] = {'font_bt1', 'font_bt2', 'font_bt3', 'font_bt4', 'font_bt5'};
     for (int i = 0; i < 5; i++) {
+#if VERSION == VERSION_GCN_JPN
+        static_cast<J2DTextBox*>(mpTitleScreen->search(cont_bt[i]))
+            ->setFont(mDoExt_getMesgFont());
+        static_cast<J2DTextBox*>(mpTitleScreen->search(cont_bt[i]))->setString(0x20, "");
+        mpTitleScreen->search(font_bt[i])->hide();
+#else
         static_cast<J2DTextBox*>(mpTitleScreen->search(font_bt[i]))
             ->setFont(mDoExt_getMesgFont());
         static_cast<J2DTextBox*>(mpTitleScreen->search(font_bt[i]))->setString(0x20, "");
         mpTitleScreen->search(cont_bt[i])->hide();
+#endif
     }
     setBButtonString(0x522, 0xff);
 
     static const u64 cont_at[5] = {'cont_at', 'cont_at1', 'cont_at2', 'cont_at3', 'cont_at4'};
     static const u64 font_at[5] = {'font_at1', 'font_at2', 'font_at3', 'font_at4', 'font_at5'};
     for (int i = 0; i < 5; i++) {
+#if VERSION == VERSION_GCN_JPN
+        static_cast<J2DTextBox*>(mpTitleScreen->search(cont_at[i]))
+            ->setFont(mDoExt_getMesgFont());
+        static_cast<J2DTextBox*>(mpTitleScreen->search(cont_at[i]))->setString(0x20, "");
+        mpTitleScreen->search(font_at[i])->hide();
+#else
         static_cast<J2DTextBox*>(mpTitleScreen->search(font_at[i]))
             ->setFont(mDoExt_getMesgFont());
         static_cast<J2DTextBox*>(mpTitleScreen->search(font_at[i]))->setString(0x20, "");
         mpTitleScreen->search(cont_at[i])->hide();
+#endif
     }
     setAButtonString(0x527, 0xff);
 
     static const u64 juji_c[5] = {'juji_c00', 'juji_c01', 'juji_c02', 'juji_c03', 'juji_c04'};
     static const u64 fuji_c[5] = {'fuji_c00', 'fuji_c01', 'fuji_c02', 'fuji_c03', 'fuji_c04'};
     for (int i = 0; i < 5; i++) {
+#if VERSION == VERSION_GCN_JPN
+        static_cast<J2DTextBox*>(mpTitleScreen->search(juji_c[i]))
+            ->setFont(mDoExt_getMesgFont());
+        static_cast<J2DTextBox*>(mpTitleScreen->search(juji_c[i]))->setString(0x20, "");
+        mpTitleScreen->search(fuji_c[i])->hide();
+#else
         static_cast<J2DTextBox*>(mpTitleScreen->search(fuji_c[i]))
             ->setFont(mDoExt_getMesgFont());
         static_cast<J2DTextBox*>(mpTitleScreen->search(fuji_c[i]))->setString(0x20, "");
         mpTitleScreen->search(juji_c[i])->hide();
+#endif
     }
     setCrossLRString(0x3f9);
 
     static const u64 ast_c[5] = {'ast_00', 'ast_01', 'ast_02', 'ast_03', 'ast_04'};
     static const u64 fst_c[5] = {'fst_00', 'fst_01', 'fst_02', 'fst_03', 'fst_04'};
     for (int i = 0; i < 5; i++) {
+#if VERSION == VERSION_GCN_JPN
+        static_cast<J2DTextBox*>(mpTitleScreen->search(ast_c[i]))
+            ->setFont(mDoExt_getMesgFont());
+        static_cast<J2DTextBox*>(mpTitleScreen->search(ast_c[i]))->setString(0x20, "");
+        mpTitleScreen->search(fst_c[i])->hide();
+#else
         static_cast<J2DTextBox*>(mpTitleScreen->search(fst_c[i]))
             ->setFont(mDoExt_getMesgFont());
         static_cast<J2DTextBox*>(mpTitleScreen->search(fst_c[i]))->setString(0x20, "");
         mpTitleScreen->search(ast_c[i])->hide();
+#endif
     }
     set3DStickString(0x524);
 
@@ -2475,15 +2524,23 @@ void dMenu_Fmap2DTop_c::setMoyaAlpha(u8 i_alpha) {
 /* 801D6F38-801D7010 1D1878 00D8+00 1/1 1/1 0/0 .text setTitleNameString__17dMenu_Fmap2DTop_cFUl
  */
 void dMenu_Fmap2DTop_c::setTitleNameString(u32 param_0) {
+#if VERSION == VERSION_GCN_JPN
+    static const u64 sfont_name[7] = {
+        'sfont00', 'sfontl0', 'sfontl1', 'sfontl2', 'sfontb0', 'sfontb1', 'sfontb2'
+    };
+#define setTitleNameString_font_name sfont_name
+#else
     static const u64 ffont_name[7] = {
         'ffont00', 'ffontl0', 'ffontl1', 'ffontl2', 'ffontb0', 'ffontb3', 'ffontb4'
     };
+#define setTitleNameString_font_name ffont_name
+#endif
     for (int i = 0; i < 7; i++) {
         if (param_0 == 0) {
-            J2DTextBox* text_box = static_cast<J2DTextBox*>(mpTitleScreen->search(ffont_name[i]));
+            J2DTextBox* text_box = static_cast<J2DTextBox*>(mpTitleScreen->search(setTitleNameString_font_name[i]));
             strcpy(text_box->getStringPtr(), "");
         } else {
-            J2DTextBox* text_box = static_cast<J2DTextBox*>(mpTitleScreen->search(ffont_name[i]));
+            J2DTextBox* text_box = static_cast<J2DTextBox*>(mpTitleScreen->search(setTitleNameString_font_name[i]));
             dMeter2Info_getStringKanji(param_0, text_box->getStringPtr(), NULL);
         }
     }
@@ -2491,13 +2548,19 @@ void dMenu_Fmap2DTop_c::setTitleNameString(u32 param_0) {
 
 /* 801D7010-801D70E8 1D1950 00D8+00 0/0 2/2 0/0 .text setAreaNameString__17dMenu_Fmap2DTop_cFUl */
 void dMenu_Fmap2DTop_c::setAreaNameString(u32 param_0) {
+#if VERSION == VERSION_GCN_JPN
+    static const u64 iarea_name[3] = {'i_name_s', 'i_name', 'i_name1'};
+#define setAreaNameString_area_name iarea_name
+#else
     static const u64 farea_name[3] = {'f_name_1', 'f_name3', 'f_name2'};
+#define setAreaNameString_area_name farea_name
+#endif
     for (int i = 0; i < 3; i++) {
         if (param_0 == 0) {
-            J2DTextBox* text_box = static_cast<J2DTextBox*>(mpTitleScreen->search(farea_name[i]));
+            J2DTextBox* text_box = static_cast<J2DTextBox*>(mpTitleScreen->search(setAreaNameString_area_name[i]));
             strcpy(text_box->getStringPtr(), "");
         } else {
-            J2DTextBox* text_box = static_cast<J2DTextBox*>(mpTitleScreen->search(farea_name[i]));
+            J2DTextBox* text_box = static_cast<J2DTextBox*>(mpTitleScreen->search(setAreaNameString_area_name[i]));
             dMeter2Info_getStringKanji(param_0, text_box->getStringPtr(), NULL);
         }
     }
@@ -2510,12 +2573,18 @@ void dMenu_Fmap2DTop_c::setZButtonString(u32 param_0, u8 i_alpha) {
         param_0 = 0x533;
     }
 
+#if VERSION == VERSION_GCN_JPN
+    static const u64 cont_zt[5] = {'cont_zt', 'cont_zt1', 'cont_zt2', 'cont_zt3', 'cont_zt4'};
+    #define setZButtonString_font_zt cont_zt
+#else
     static const u64 font_zt[5] = {'font_zt1', 'font_zt2', 'font_zt3', 'font_zt4', 'font_zt5'};
+    #define setZButtonString_font_zt font_zt
+#endif
     if (param_0 == 0 || !isWarpAccept()) {
         mAlphaButtonZ = ALPHA_MID;
     } else {
         for (int i = 0; i < 5; i++) {
-            J2DTextBox* text_box = static_cast<J2DTextBox*>(mpTitleScreen->search(font_zt[i]));
+            J2DTextBox* text_box = static_cast<J2DTextBox*>(mpTitleScreen->search(setZButtonString_font_zt[i]));
             dMeter2Info_getStringKanji(param_0, text_box->getStringPtr(), NULL);
         }
 
@@ -2534,12 +2603,18 @@ void dMenu_Fmap2DTop_c::setZButtonString(u32 param_0, u8 i_alpha) {
 /* 801D7210-801D72D4 1D1B50 00C4+00 1/1 9/9 0/0 .text setBButtonString__17dMenu_Fmap2DTop_cFUlUc
  */
 void dMenu_Fmap2DTop_c::setBButtonString(u32 param_0, u8 i_alpha) {
+#if VERSION == VERSION_GCN_JPN
+    static const u64 cont_bt[5] = {'cont_bt1', 'cont_bt2', 'cont_bt3', 'cont_bt4', 'cont_bt'};
+#define setBButtonString_font_bt cont_bt
+#else
     static const u64 font_bt[5] = {'font_bt1', 'font_bt2', 'font_bt3', 'font_bt4', 'font_bt5'};
+#define setBButtonString_font_bt font_bt
+#endif
     if (param_0 == 0) {
         mAlphaButtonB = ALPHA_MIN;
     } else {
         for (int i = 0; i < 5; i++) {
-            J2DTextBox* text_box = static_cast<J2DTextBox*>(mpTitleScreen->search(font_bt[i]));
+            J2DTextBox* text_box = static_cast<J2DTextBox*>(mpTitleScreen->search(setBButtonString_font_bt[i]));
             dMeter2Info_getStringKanji(param_0, text_box->getStringPtr(), NULL);
         }
 
@@ -2554,12 +2629,18 @@ void dMenu_Fmap2DTop_c::setBButtonString(u32 param_0, u8 i_alpha) {
 /* 801D72D4-801D7398 1D1C14 00C4+00 1/1 14/14 0/0 .text setAButtonString__17dMenu_Fmap2DTop_cFUlUc
  */
 void dMenu_Fmap2DTop_c::setAButtonString(u32 param_0, u8 i_alpha) {
+#if VERSION == VERSION_GCN_JPN
+    static const u64 cont_at[5] = {'cont_at', 'cont_at1', 'cont_at2', 'cont_at3', 'cont_at4'};
+#define setAButtonString_font_at cont_at
+#else
     static const u64 font_at[5] = {'font_at1', 'font_at2', 'font_at3', 'font_at4', 'font_at5'};
+#define setAButtonString_font_at font_at
+#endif
     if (param_0 == 0) {
         mAlphaButtonA = ALPHA_MIN;
     } else {
         for (int i = 0; i < 5; i++) {
-            J2DTextBox* text_box = static_cast<J2DTextBox*>(mpTitleScreen->search(font_at[i]));
+            J2DTextBox* text_box = static_cast<J2DTextBox*>(mpTitleScreen->search(setAButtonString_font_at[i]));
             dMeter2Info_getStringKanji(param_0, text_box->getStringPtr(), NULL);
         }
 
@@ -2573,7 +2654,11 @@ void dMenu_Fmap2DTop_c::setAButtonString(u32 param_0, u8 i_alpha) {
 
 /* 801D7398-801D74EC 1D1CD8 0154+00 1/1 8/8 0/0 .text setCrossLRString__17dMenu_Fmap2DTop_cFUl */
 void dMenu_Fmap2DTop_c::setCrossLRString(u32 param_0) {
+#if VERSION == VERSION_GCN_JPN
+    static const u64 juji_c[5] = {'juji_c00', 'juji_c01', 'juji_c02', 'juji_c03', 'juji_c04'};
+#else
     static const u64 juji_c[5] = {'fuji_c00', 'fuji_c01', 'fuji_c02', 'fuji_c03', 'fuji_c04'};
+#endif
     if (param_0 == 0) {
         for (int i = 0; i < 5; i++) {
             J2DTextBox* text_box = static_cast<J2DTextBox*>(mpTitleScreen->search(juji_c[i]));
@@ -2594,7 +2679,11 @@ void dMenu_Fmap2DTop_c::setCrossLRString(u32 param_0) {
 /* 801D74EC-801D7640 1D1E2C 0154+00 1/1 10/10 0/0 .text set3DStickString__17dMenu_Fmap2DTop_cFUl
  */
 void dMenu_Fmap2DTop_c::set3DStickString(u32 param_0) {
+#if VERSION == VERSION_GCN_JPN
+    static const u64 ast_c[5] = {'ast_00', 'ast_01', 'ast_02', 'ast_03', 'ast_04'};
+#else
     static const u64 ast_c[5] = {'fst_00', 'fst_01', 'fst_02', 'fst_03', 'fst_04'};
+#endif
     if (param_0 == 0) {
         for (int i = 0; i < 5; i++) {
             J2DTextBox* text_box = static_cast<J2DTextBox*>(mpTitleScreen->search(ast_c[i]));

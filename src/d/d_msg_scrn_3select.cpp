@@ -39,10 +39,6 @@ dMsgScrn3Select_c::dMsgScrn3Select_c() {
         'sel_po02', 'c_kahen', 'c_cursor'
     };
 
-    // tag_n and following data are unused so unsure how this data is properly setup
-    static u64 tag_n[] = {'a_t', 'b_t', 'c_t'};
-    static u32 unkdata[9] = {0};
-
     mpScreen = new J2DScreen();
     JUT_ASSERT(0, mpScreen != 0);
 
@@ -113,6 +109,67 @@ dMsgScrn3Select_c::dMsgScrn3Select_c() {
         mCursorPos[i] = mpCursor_c[i]->getGlobalVtxCenter(true, 0);
     }
 
+#if VERSION == VERSION_GCN_JPN
+    if (dComIfGs_getOptUnk0() == 0) {
+        mpTmSel_c[0] = new CPaneMgr(mpScreen, 'a_tf', 0, NULL);
+
+        mpTmSel_c[1] = new CPaneMgr(mpScreen, 'b_tf', 0, NULL);
+
+        mpTmSel_c[2] = new CPaneMgr(mpScreen, 'c_tf', 0, NULL);
+
+        mpTmrSel_c[0] = new CPaneMgr(mpScreen, 'a_tf_f', 0, NULL);
+
+        mpTmrSel_c[1] = new CPaneMgr(mpScreen, 'b_tf_f', 0, NULL);
+
+        mpTmrSel_c[2] = new CPaneMgr(mpScreen, 'c_tf_f', 0, NULL);
+
+        for (int i = 0; i < 3; i++) {
+            ((J2DTextBox*)(mpTmSel_c[i]->getPanePtr()))->setString(64, "");
+            ((J2DTextBox*)(mpTmSel_c[i]->getPanePtr()))->setFont(mDoExt_getMesgFont());
+
+            ((J2DTextBox*)(mpTmrSel_c[i]->getPanePtr()))->setString(64, "");
+            ((J2DTextBox*)(mpTmrSel_c[i]->getPanePtr()))->setFont(mDoExt_getMesgFont());
+        }
+
+        mpScreen->search('a_t_e')->hide();
+        mpScreen->search('b_t_e')->hide();
+        mpScreen->search('c_t_e')->hide();
+        mpScreen->search('a_tf')->show();
+        mpScreen->search('b_tf')->show();
+        mpScreen->search('c_tf')->show();
+        mpScreen->search('a_tf_f')->show();
+        mpScreen->search('b_tf_f')->show();
+        mpScreen->search('c_tf_f')->show();
+        mpScreen->search('a_t')->hide();
+        mpScreen->search('b_t')->hide();
+        mpScreen->search('c_t')->hide();
+    } else {
+        mpTmSel_c[0] = new CPaneMgr(mpScreen, 'a_t', 0, NULL);
+
+        mpTmSel_c[1] = new CPaneMgr(mpScreen, 'b_t', 0, NULL);
+
+        mpTmSel_c[2] = new CPaneMgr(mpScreen, 'c_t', 0, NULL);
+
+        for (int i = 0; i < 3; i++) {
+            ((J2DTextBox*)(mpTmSel_c[i]->getPanePtr()))->setString(64, "");
+            ((J2DTextBox*)(mpTmSel_c[i]->getPanePtr()))->setFont(mDoExt_getMesgFont());
+            mpTmrSel_c[i] = NULL;
+        }
+
+        mpScreen->search('a_t_e')->hide();
+        mpScreen->search('b_t_e')->hide();
+        mpScreen->search('c_t_e')->hide();
+        mpScreen->search('a_tf')->hide();
+        mpScreen->search('b_tf')->hide();
+        mpScreen->search('c_tf')->hide();
+        mpScreen->search('a_tf_f')->hide();
+        mpScreen->search('b_tf_f')->hide();
+        mpScreen->search('c_tf_f')->hide();
+        mpScreen->search('a_t')->show();
+        mpScreen->search('b_t')->show();
+        mpScreen->search('c_t')->show();
+    }
+#else
     mpTmSel_c[0] = new CPaneMgr(mpScreen, 'a_t_e', 0, NULL);
     JUT_ASSERT(0, mpTmSel_c[0] != 0);
 
@@ -140,6 +197,7 @@ dMsgScrn3Select_c::dMsgScrn3Select_c() {
     mpScreen->search('a_t')->hide();
     mpScreen->search('b_t')->hide();
     mpScreen->search('c_t')->hide();
+#endif
 
     mSelMsgCol = static_cast<J2DTextBox*>(mpTmSel_c[0]->getPanePtr())->getWhite();
 
@@ -881,13 +939,24 @@ void dMsgScrn3Select_c::selectScale() {
 /* 8023B4AC-8023B870 235DEC 03C4+00 3/3 0/0 0/0 .text            selectTrans__17dMsgScrn3Select_cFv
  */
 void dMsgScrn3Select_c::selectTrans() {
+    static u64 tag_n[] = {'a_t', 'b_t', 'c_t'};
+
     J2DTextBox::TFontSize font_size;
     ((J2DTextBox*)mpTmSel_c[0]->getPanePtr())->getFontSize(font_size);
     f32 var_f31 = (mpTmSel_c[0]->getSizeY() - font_size.mSizeY) * 0.5f;
 
     f32 sp68[3];
     for (int i = 0; i < 3; i++) {
+#if VERSION == VERSION_GCN_JPN
+        if (dComIfGs_getOptUnk0() == 0 && (field_0x112 & (u8)(1 << i)) != 0) {
+            sp68[i] = 0.0f;
+        } else {
+            f32 temp = mpTmSel_c[i]->getInitPosY();
+            sp68[i] = mpScreen->search(tag_n[i])->getBounds().i.y - temp;
+        }
+#else
         sp68[i] = 0.0f;
+#endif
     }
 
     if (mWidth == 1.0f) {
@@ -951,6 +1020,9 @@ void dMsgScrn3Select_c::selectTrans() {
         }
     }
 }
+
+// following data are unused so unsure how this data is properly setup
+static u32 unkdata[9] = {0};
 
 /* 8023B870-8023B914 2361B0 00A4+00 7/7 0/0 0/0 .text selectAnimeTransform__17dMsgScrn3Select_cFi
  */

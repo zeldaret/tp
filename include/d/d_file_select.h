@@ -13,7 +13,7 @@ class dFile_info_c;
 class dDlst_FileSel_c : public dDlst_base_c {
 public:
     /* 8018DEBC */ void draw();
-    /* 8019135C */ ~dDlst_FileSel_c() {
+    /* 8019135C */ virtual ~dDlst_FileSel_c() {
         delete Scr;
         delete mpMessageString;
     }

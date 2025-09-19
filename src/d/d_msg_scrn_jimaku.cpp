@@ -48,6 +48,26 @@ dMsgScrnJimaku_c::dMsgScrnJimaku_c(u8 param_0, JKRExpHeap* i_heap) {
     field_0xcc = g_MsgObject_HIO_c.mBoxPos[0][5];
     mpPmP_c->paneTrans(0.0f, field_0xcc);
 
+#if VERSION == VERSION_GCN_JPN
+    if (dComIfGs_getOptUnk0() == 0) {
+        mpTm_c[0] = new CPaneMgr(mpScreen, 'mg_3flin', 0, NULL);
+        mpTm_c[1] = new CPaneMgr(mpScreen, 't3f_s', 0, NULL);
+
+        mpTmr_c[0] = new CPaneMgr(mpScreen, 'mg_3f', 0, NULL);
+        mpTmr_c[1] = new CPaneMgr(mpScreen, 'mg_3f_s', 0, NULL);
+
+        mpScreen->search('n_3line')->hide();
+        mpScreen->search('n_3fline')->show();
+        mpScreen->search('n_e4line')->hide();
+    } else {
+        mpTm_c[0] = new CPaneMgr(mpScreen, 'mg_3line', 0, NULL);
+        mpTm_c[1] = new CPaneMgr(mpScreen, 't3_s', 0, NULL);
+
+        mpScreen->search('n_3line')->show();
+        mpScreen->search('n_3fline')->hide();
+        mpScreen->search('n_e4line')->hide();
+    }
+#else
     mpTm_c[0] = new CPaneMgr(mpScreen, 'mg_e4lin', 0, NULL);
     JUT_ASSERT(0, mpTm_c[0] != 0);
 
@@ -57,16 +77,25 @@ dMsgScrnJimaku_c::dMsgScrnJimaku_c(u8 param_0, JKRExpHeap* i_heap) {
     mpScreen->search('n_3line')->hide();
     mpScreen->search('n_3fline')->hide();
     mpScreen->search('n_e4line')->show();
+#endif
 
     for (int i = 0; i < 2; i++) {
         ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
+#if VERSION == VERSION_GCN_JPN
+        ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setString(0x210, "");
+#else
         ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setString(0x200, "");
+#endif
         mpTm_c[i]->setBlackWhite(g_MsgObject_HIO_c.mBoxStartBlack[i][4],
                                  g_MsgObject_HIO_c.mBoxStartWhite[i][4]);
 
         if (mpTmr_c[i] != NULL) {
             ((J2DTextBox*)mpTmr_c[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
+#if VERSION == VERSION_GCN_JPN
+            ((J2DTextBox*)mpTmr_c[i]->getPanePtr())->setString(0x210, "");
+#else
             ((J2DTextBox*)mpTmr_c[i]->getPanePtr())->setString(0x200, "");
+#endif
             mpTmr_c[i]->setBlackWhite(g_MsgObject_HIO_c.mBoxStartBlack[i][4],
                                       g_MsgObject_HIO_c.mBoxStartWhite[i][4]);
         }

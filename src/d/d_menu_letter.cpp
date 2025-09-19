@@ -22,6 +22,12 @@
 #include "d/d_msg_scrn_arrow.h"
 #include "d/d_lib.h"
 
+#if VERSION == VERSION_GCN_JPN
+#define LINE_MAX 9
+#else
+#define LINE_MAX 12
+#endif
+
 typedef void (dMenu_Letter_c::*initFunc)();
 static initFunc map_init_process[] = {
     &dMenu_Letter_c::wait_init,
@@ -262,7 +268,7 @@ void dMenu_Letter_c::_draw() {
                 uVar10 = (J2DTextBox*)field_0x2f4[i]->getPanePtr();
             }
             J2DTextBox* uVar18 = (J2DTextBox*)field_0x2ec[i]->getPanePtr();
-            mpString->getStringPage(dMenu_Letter::getLetterText(dVar1), field_0x3e3 - 1, 0xc,
+            mpString->getStringPage(dMenu_Letter::getLetterText(dVar1), field_0x3e3 - 1, LINE_MAX,
                 uVar18, uVar10, NULL, NULL, 0);
         }
         mpString->drawOutFont((J2DTextBox*)field_0x2ec[1]->getPanePtr(), -1.0f);
@@ -439,8 +445,13 @@ void dMenu_Letter_c::wait_move() {
         }
 
         if (mProcess == 1 || mProcess == 2) {
+#if VERSION == VERSION_GCN_JPN
+            J2DTextBox* textBox = (J2DTextBox*)mpBaseScreen->search('t_t00');
+            mpBaseScreen->search('f_t_00')->hide();
+#else
             J2DTextBox* textBox = (J2DTextBox*)mpBaseScreen->search('f_t_00');
             mpBaseScreen->search('t_t00')->hide();
+#endif
             dComIfGp_setMessageCountNumber(field_0x374 + (field_0x36f + 1) * 100);
             mpString->getString(0x4d6, textBox, NULL, NULL, NULL, 0);
         }
@@ -505,10 +516,10 @@ void dMenu_Letter_c::read_open_init() {
             text1 = (J2DTextBox*)field_0x2f4[i]->getPanePtr();
         }
         J2DTextBox* text2 = (J2DTextBox*)field_0x2ec[i]->getPanePtr();
-        mpString->getStringPage(dMenu_Letter::getLetterText(idx), field_0x3e3 - 1, 12, text2, text1,
+        mpString->getStringPage(dMenu_Letter::getLetterText(idx), field_0x3e3 - 1, LINE_MAX, text2, text1,
                                 NULL, NULL, NULL);
     }
-    field_0x3e2 = mpString->getPageMax(12);
+    field_0x3e2 = mpString->getPageMax(LINE_MAX);
     if (field_0x3e2 > 1) {
         char acStack_30[20];
         sprintf(acStack_30, "%d/%d", field_0x3e3, field_0x3e2);
@@ -667,7 +678,7 @@ void dMenu_Letter_c::read_next_fadein_init() {
             text1 = (J2DTextBox*)field_0x2f4[i]->getPanePtr();
         }
         J2DTextBox* text2 = (J2DTextBox*)field_0x2ec[i]->getPanePtr();
-        mpString->getStringPage(dMenu_Letter::getLetterText(idx), field_0x3e3 - 1, 12, text2, text1, NULL, NULL, NULL);
+        mpString->getStringPage(dMenu_Letter::getLetterText(idx), field_0x3e3 - 1, LINE_MAX, text2, text1, NULL, NULL, NULL);
     }
     char acStack_30[10];
     sprintf(acStack_30, "%d/%d", field_0x3e3, field_0x3e2);
@@ -733,74 +744,57 @@ void dMenu_Letter_c::read_close_move() {
     }
 }
 
-/* 803969C8-803969F8 023028 0030+00 2/2 0/0 0/0 .rodata          tag_sub0$4610 */
-static const u64 tag_sub0[6] = {
-    'menu_t0s', 'menu_t1s', 'menu_t2s', 'menu_t3s', 'menu_t4s', 'menu_t5s',
-};
-
-/* 803969F8-80396A28 023058 0030+00 0/1 0/0 0/0 .rodata          tag_sub1$4611 */
-static const u64 tag_sub1[6] = {
-    'menu_t0', 'menu_t1', 'menu_t2', 'menu_t3', 'menu_t4', 'menu_t5',
-};
-
-/* 80396A28-80396A58 023088 0030+00 0/1 0/0 0/0 .rodata          tag_name0$4612 */
-static const u64 tag_name0[6] = {
-    'menu_t6s', 'menu_f7s', 'menu_f8s', 'menu_t9s', 'menu_10s', 'menu_11s',
-};
-
-/* 80396A58-80396A88 0230B8 0030+00 0/1 0/0 0/0 .rodata          tag_name1$4613 */
-static const u64 tag_name1[6] = {
-    'menu_f6', 'menu_f7', 'menu_t8', 'menu_t9', 'menu_t10', 'menu_t11',
-};
-
-/* 80396A88-80396AB8 0230E8 0030+00 0/1 0/0 0/0 .rodata          ftag_sub0$4614 */
-static const u64 ftag_sub0[6] = {
-    'fenu_t0s', 'fenu_t1s', 'fenu_t2s', 'fenu_t3s', 'fenu_t4s', 'fenu_t5s',
-};
-
-/* 80396AB8-80396AE8 023118 0030+00 0/1 0/0 0/0 .rodata          ftag_sub1$4615 */
-static const u64 ftag_sub1[6] = {
-    'fenu_t0', 'fenu_t1', 'fenu_t2', 'fenu_t3', 'fenu_t4', 'fenu_t5',
-};
-
-/* 80396AE8-80396B18 023148 0030+00 0/1 0/0 0/0 .rodata          ftag_name0$4616 */
-static const u64 ftag_name0[6] = {
-    'fenu_t6s', 'fenu_t7s', 'fenu_f8s', 'fenu_t9s', 'fenu_10s', 'fenu_11s',
-};
-
-/* 80396B18-80396B48 023178 0030+00 0/1 0/0 0/0 .rodata          ftag_name1$4617 */
-static const u64 ftag_name1[6] = {
-    'fenu_t6', 'fenu_t7', 'fenu_t8', 'fenu_t9', 'fenu_t10', 'fenu_t11',
-};
-
-/* 80396B48-80396B78 0231A8 0030+00 0/1 0/0 0/0 .rodata          tag_letter$4628 */
-static const u64 tag_letter[6] = {
-    'let_00_n', 'let_01_n', 'let_02_n', 'let_03_n', 'let_04_n', 'let_05_n',
-};
-
-/* 80396B78-80396BA8 0231D8 0030+00 0/1 0/0 0/0 .rodata          tag_frame$4635 */
-static const u64 tag_frame[6] = {
-    'flame_00', 'flame_01', 'flame_02', 'flame_03', 'flame_04', 'flame_05',
-};
-
-/* 80396BA8-80396BD8 023208 0030+00 0/1 0/0 0/0 .rodata          tag_menu0$4636 */
-static const u64 tag_menu0[6] = {
-    'fenu_t0', 'fenu_t1', 'fenu_t2', 'fenu_t3', 'fenu_t4', 'fenu_t5',
-};
-
-/* 80396BD8-80396C08 023238 0030+00 0/1 0/0 0/0 .rodata          tag_menu1$4637 */
-static const u64 tag_menu1[6] = {
-    'fenu_t6', 'fenu_t7', 'fenu_t8', 'fenu_t9', 'fenu_t10', 'fenu_t11',
-};
-
-/* 80396C08-80396C38 023268 0030+00 0/1 0/0 0/0 .rodata          tag_midoku$4638 */
-static const u64 tag_midoku[6] = {
-    'midoku_0', 'midoku_1', 'midoku_2', 'midoku_3', 'midoku_4', 'midoku_5',
-};
-
 /* 801DF010-801DFA28 1D9950 0A18+00 1/1 0/0 0/0 .text            screenSetMenu__14dMenu_Letter_cFv
  */
 void dMenu_Letter_c::screenSetMenu() {
+    static const u64 tag_sub0[6] = {
+        'menu_t0s', 'menu_t1s', 'menu_t2s', 'menu_t3s', 'menu_t4s', 'menu_t5s',
+    };
+    static const u64 tag_sub1[6] = {
+        'menu_t0', 'menu_t1', 'menu_t2', 'menu_t3', 'menu_t4', 'menu_t5',
+    };
+    static const u64 tag_name0[6] = {
+        'menu_t6s', 'menu_f7s', 'menu_f8s', 'menu_t9s', 'menu_10s', 'menu_11s',
+    };
+    static const u64 tag_name1[6] = {
+        'menu_f6', 'menu_f7', 'menu_t8', 'menu_t9', 'menu_t10', 'menu_t11',
+    };
+    static const u64 ftag_sub0[6] = {
+        'fenu_t0s', 'fenu_t1s', 'fenu_t2s', 'fenu_t3s', 'fenu_t4s', 'fenu_t5s',
+    };
+    static const u64 ftag_sub1[6] = {
+        'fenu_t0', 'fenu_t1', 'fenu_t2', 'fenu_t3', 'fenu_t4', 'fenu_t5',
+    };
+    static const u64 ftag_name0[6] = {
+        'fenu_t6s', 'fenu_t7s', 'fenu_f8s', 'fenu_t9s', 'fenu_10s', 'fenu_11s',
+    };
+    static const u64 ftag_name1[6] = {
+        'fenu_t6', 'fenu_t7', 'fenu_t8', 'fenu_t9', 'fenu_t10', 'fenu_t11',
+    };
+    static const u64 tag_letter[6] = {
+        'let_00_n', 'let_01_n', 'let_02_n', 'let_03_n', 'let_04_n', 'let_05_n',
+    };
+    static const u64 tag_frame[6] = {
+        'flame_00', 'flame_01', 'flame_02', 'flame_03', 'flame_04', 'flame_05',
+    };
+    static const u64 tag_menu0[6] = {
+#if VERSION == VERSION_GCN_JPN
+        'menu_t0', 'menu_t1', 'menu_t2', 'menu_t3', 'menu_t4', 'menu_t5',
+#else
+        'fenu_t0', 'fenu_t1', 'fenu_t2', 'fenu_t3', 'fenu_t4', 'fenu_t5',
+#endif
+    };
+    static const u64 tag_menu1[6] = {
+#if VERSION == VERSION_GCN_JPN
+        'menu_f6', 'menu_f7', 'menu_t8', 'menu_t9', 'menu_t10', 'menu_t11',
+#else
+        'fenu_t6', 'fenu_t7', 'fenu_t8', 'fenu_t9', 'fenu_t10', 'fenu_t11',
+#endif
+    };
+    static const u64 tag_midoku[6] = {
+        'midoku_0', 'midoku_1', 'midoku_2', 'midoku_3', 'midoku_4', 'midoku_5',
+    };
+
     mpMenuScreen = new J2DScreen();
     JUT_ASSERT(1146, mpMenuScreen != 0);
     bool fg = mpMenuScreen->setPriority("zelda_letter_select_6menu.blo", 0x20000, mpArchive);
@@ -810,6 +804,16 @@ void dMenu_Letter_c::screenSetMenu() {
     JUT_ASSERT(1161, mpParent[0] != 0);
     mpParent[0]->setAlphaRate(0.0f);
     for (int i = 0; i < 6; i++) {
+#if VERSION == VERSION_GCN_JPN
+        field_0x124[i][0] = (J2DTextBox*)mpMenuScreen->search(tag_sub0[i]);
+        field_0x124[i][1] = (J2DTextBox*)mpMenuScreen->search(tag_sub1[i]);
+        field_0x124[i][2] = (J2DTextBox*)mpMenuScreen->search(tag_name0[i]);
+        field_0x124[i][3] = (J2DTextBox*)mpMenuScreen->search(tag_name1[i]);
+        mpMenuScreen->search(ftag_sub0[i])->hide();
+        mpMenuScreen->search(ftag_sub1[i])->hide();
+        mpMenuScreen->search(ftag_name0[i])->hide();
+        mpMenuScreen->search(ftag_name1[i])->hide();
+#else
         field_0x124[i][0] = (J2DTextBox*)mpMenuScreen->search(ftag_sub0[i]);
         field_0x124[i][1] = (J2DTextBox*)mpMenuScreen->search(ftag_sub1[i]);
         field_0x124[i][2] = (J2DTextBox*)mpMenuScreen->search(ftag_name0[i]);
@@ -818,6 +822,7 @@ void dMenu_Letter_c::screenSetMenu() {
         mpMenuScreen->search(tag_sub1[i])->hide();
         mpMenuScreen->search(tag_name0[i])->hide();
         mpMenuScreen->search(tag_name1[i])->hide();
+#endif
         for (int j = 0; j < 4; j++) {
             field_0x124[i][j]->setFont(mDoExt_getMesgFont());
             field_0x124[i][j]->setString(0x40, "");
@@ -870,6 +875,16 @@ void dMenu_Letter_c::screenSetMenu() {
     mpDMYParent = new CPaneMgr(mpMenuDMYScreen, 'n_all', 2, NULL);
     JUT_ASSERT(1285, mpDMYParent != 0);
     for (int i = 0; i < 6; i++) {
+#if VERSION == VERSION_GCN_JPN
+        field_0x184[i][0] = (J2DTextBox*)mpMenuDMYScreen->search(tag_sub0[i]);
+        field_0x184[i][1] = (J2DTextBox*)mpMenuDMYScreen->search(tag_sub1[i]);
+        field_0x184[i][2] = (J2DTextBox*)mpMenuDMYScreen->search(tag_name0[i]);
+        field_0x184[i][3] = (J2DTextBox*)mpMenuDMYScreen->search(tag_name1[i]);
+        mpMenuDMYScreen->search(ftag_sub0[i])->hide();
+        mpMenuDMYScreen->search(ftag_sub1[i])->hide();
+        mpMenuDMYScreen->search(ftag_name0[i])->hide();
+        mpMenuDMYScreen->search(ftag_name1[i])->hide();
+#else
         field_0x184[i][0] = (J2DTextBox*)mpMenuDMYScreen->search(ftag_sub0[i]);
         field_0x184[i][1] = (J2DTextBox*)mpMenuDMYScreen->search(ftag_sub1[i]);
         field_0x184[i][2] = (J2DTextBox*)mpMenuDMYScreen->search(ftag_name0[i]);
@@ -878,6 +893,7 @@ void dMenu_Letter_c::screenSetMenu() {
         mpMenuDMYScreen->search(tag_sub1[i])->hide();
         mpMenuDMYScreen->search(tag_name0[i])->hide();
         mpMenuDMYScreen->search(tag_name1[i])->hide();
+#endif
         for (int j = 0; j < 4; j = j + 1) {
             field_0x184[i][j]->setFont(mDoExt_getMesgFont());
             field_0x184[i][j]->setString(0x40, "");
@@ -892,26 +908,21 @@ void dMenu_Letter_c::screenSetMenu() {
     }
 }
 
-//* 80396C38-80396C80 023298 0048+00 0/1 0/0 0/0 .rodata          tag_pip$4827 */
-static const u64 tag_pip[9] = {
-    'pi_00_n', 'pi_01_n', 'pi_02_n', 'pi_03_n', 'pi_04_n',
-    'pi_05_n', 'pi_06_n', 'pi_07_n', 'pi_08_n',
-};
-
-/* 80396C80-80396CC8 0232E0 0048+00 0/1 0/0 0/0 .rodata          tag_pil$4828 */
-static const u64 tag_pil[9] = {
-    'pi_l_00', 'pi_l_01', 'pi_l_02', 'pi_l_03', 'pi_l_04',
-    'pi_l_05', 'pi_l_06', 'pi_l_07', 'pi_l_08',
-};
-
-/* 80396CC8-80396D10 023328 0048+00 0/1 0/0 0/0 .rodata          tag_pii$4829 */
-static const u64 tag_pii[9] = {
-    'pi_00', 'pi_01', 'pi_02', 'pi_03', 'pi_04', 'pi_05', 'pi_06', 'pi_07', 'pi_08',
-};
-
 /* 801DFA58-801E0330 1DA398 08D8+00 1/1 0/0 0/0 .text            screenSetBase__14dMenu_Letter_cFv
  */
 void dMenu_Letter_c::screenSetBase() {
+    static const u64 tag_pip[9] = {
+        'pi_00_n', 'pi_01_n', 'pi_02_n', 'pi_03_n', 'pi_04_n',
+        'pi_05_n', 'pi_06_n', 'pi_07_n', 'pi_08_n',
+    };
+    static const u64 tag_pil[9] = {
+        'pi_l_00', 'pi_l_01', 'pi_l_02', 'pi_l_03', 'pi_l_04',
+        'pi_l_05', 'pi_l_06', 'pi_l_07', 'pi_l_08',
+    };
+    static const u64 tag_pii[9] = {
+        'pi_00', 'pi_01', 'pi_02', 'pi_03', 'pi_04', 'pi_05', 'pi_06', 'pi_07', 'pi_08',
+    };
+
     mpBaseScreen = new J2DScreen();
     JUT_ASSERT(1357, mpBaseScreen != 0);
     bool fg = mpBaseScreen->setPriority("zelda_letter_select_base.blo", 0x20000, mpArchive);
@@ -921,12 +932,27 @@ void dMenu_Letter_c::screenSetBase() {
     mpParent[1] = new CPaneMgr(mpBaseScreen, 'n_all', 2, NULL);
     JUT_ASSERT(1372, mpParent[1] != 0);
     mpParent[1]->setAlphaRate(0.0f);
+#if VERSION == VERSION_GCN_JPN
+    J2DTextBox* piVar9 = (J2DTextBox*)mpBaseScreen->search('t_t00');
+    mpBaseScreen->search('f_t_00')->hide();
+#else
     J2DTextBox* piVar9 = (J2DTextBox*)mpBaseScreen->search('f_t_00');
-    mpBaseScreen->search('t_t00')->hide(); 
+    mpBaseScreen->search('t_t00')->hide();
+#endif
     piVar9->setString(0x40, "");
     piVar9->setFont(mDoExt_getSubFont());
     dComIfGp_setMessageCountNumber(field_0x374 + (field_0x36f + 1) * 100);
     mpString->getString(0x4d6, piVar9, NULL, NULL, NULL, 0);
+#if VERSION == VERSION_GCN_JPN
+    J2DTextBox* text1 = (J2DTextBox*)mpBaseScreen->search('wps_text');
+    J2DTextBox* text2 = (J2DTextBox*)mpBaseScreen->search('w_p_text');
+    J2DTextBox* text3 = (J2DTextBox*)mpBaseScreen->search('g_ps_txt');
+    J2DTextBox* text4 = (J2DTextBox*)mpBaseScreen->search('g_p_text');
+    mpBaseScreen->search('fwpstex1')->hide();
+    mpBaseScreen->search('fwp_tex1')->hide();
+    mpBaseScreen->search('fgps_tx1')->hide();
+    mpBaseScreen->search('fgp_tex1')->hide();
+#else
     J2DTextBox* text1 = (J2DTextBox*)mpBaseScreen->search('fwpstex1');
     J2DTextBox* text2 = (J2DTextBox*)mpBaseScreen->search('fwp_tex1');
     J2DTextBox* text3 = (J2DTextBox*)mpBaseScreen->search('fgps_tx1');
@@ -935,6 +961,7 @@ void dMenu_Letter_c::screenSetBase() {
     mpBaseScreen->search('w_p_text')->hide();
     mpBaseScreen->search('g_ps_txt')->hide();
     mpBaseScreen->search('g_p_text')->hide();
+#endif
     text1->setString(0x40, "");
     text2->setString(0x40, "");
     text3->setString(0x40, "");
@@ -997,15 +1024,77 @@ void dMenu_Letter_c::screenSetShadow() {
 /* 801E03D8-801E09A8 1DAD18 05D0+00 1/1 0/0 0/0 .text            screenSetLetter__14dMenu_Letter_cFv
  */
 void dMenu_Letter_c::screenSetLetter() {
-    static u64 const line_tag[12] = {
-        'line09', 'line10', 'line11', 'line12', 'line13', 'line14',
-        'line15', 'line16', 'line17', 'line18', 'line19', 'line20',
-    };
     mpLetterScreen[0] = new J2DScreen();
     JUT_ASSERT(1507, mpLetterScreen[0] != 0);
     bool fg = mpLetterScreen[0]->setPriority("zelda_letter_window_base.blo", 0x20000, mpArchive);
     JUT_ASSERT(1511, fg != false);
     dPaneClass_showNullPane(mpLetterScreen[0]);
+
+#if VERSION == VERSION_GCN_JPN
+    if (dComIfGs_getOptUnk0() == 0) {
+        field_0x2ec[0] = new CPaneMgr(mpLetterScreen[0], 't3f_s', 0, NULL);
+        field_0x2ec[1] = new CPaneMgr(mpLetterScreen[0], 'mg_3flin', 0, NULL);
+        field_0x2f4[0] = new CPaneMgr(mpLetterScreen[0], 'mg_3f_s', 0, NULL);
+        field_0x2f4[1] = new CPaneMgr(mpLetterScreen[0], 'mg_3f', 0, NULL);
+        mpLetterScreen[0]->search('t4_s')->hide();
+        mpLetterScreen[0]->search('mg_e4lin')->hide();
+        mpLetterScreen[0]->search('t3_s')->hide();
+        mpLetterScreen[0]->search('mg_3line')->hide();
+        mpLineParent = new CPaneMgr(mpLetterScreen[0], 'jp_fri_n', 0, NULL);
+        JUT_ASSERT(1530, mpLineParent != 0);
+        for (int i = 0; i < 12; i++) {
+            static u64 const line_tag[12] = {
+                'line00', 'line01', 'line02', 'line03', 'line04', 'line05',
+                'line06', 'line07', 'line08',
+            };
+
+            if (line_tag[i] != 0) {
+                field_0x25c[i] = (J2DTextBox*)mpLetterScreen[0]->search(line_tag[i]);
+            } else {
+                field_0x25c[i] = NULL;
+            }
+        }
+        mpLetterScreen[0]->search('jp_n')->hide();
+        mpLetterScreen[0]->search('us_n')->hide();
+
+        ((J2DTextBox*)field_0x2f4[0]->getPanePtr())->setLineSpace(((J2DTextBox*)field_0x2ec[0]->getPanePtr())->getLineSpace());
+        ((J2DTextBox*)field_0x2f4[1]->getPanePtr())->setLineSpace(((J2DTextBox*)field_0x2ec[1]->getPanePtr())->getLineSpace());
+    } else {
+        field_0x2ec[0] = new CPaneMgr(mpLetterScreen[0], 't3_s', 0, NULL);
+        field_0x2ec[1] = new CPaneMgr(mpLetterScreen[0], 'mg_3line', 0, NULL);
+        for (int i = 0; i < 2; i++) {
+            field_0x2f4[i] = NULL;
+        }
+        mpLetterScreen[0]->search('t4_s')->hide();
+        mpLetterScreen[0]->search('mg_e4lin')->hide();
+        mpLetterScreen[0]->search('t3f_s')->hide();
+        mpLetterScreen[0]->search('mg_3flin')->hide();
+        mpLetterScreen[0]->search('mg_3f_s')->hide();
+        mpLetterScreen[0]->search('mg_3f')->hide();
+        mpLineParent = new CPaneMgr(mpLetterScreen[0], 'jp_n', 0, NULL);
+        JUT_ASSERT(1530, mpLineParent != 0);
+        for (int i = 0; i < 12; i++) {
+            static u64 const line_tag[12] = {
+                'line21', 'line22', 'line23', 'line24', 'line25', 'line26',
+                'line27', 'line28', 'line29',
+            };
+
+            if (line_tag[i] != 0) {
+                field_0x25c[i] = (J2DTextBox*)mpLetterScreen[0]->search(line_tag[i]);
+            } else {
+                field_0x25c[i] = NULL;
+            }
+        }
+
+        mpLetterScreen[0]->search('jp_fri_n')->hide();
+        mpLetterScreen[0]->search('us_n')->hide();
+    }
+#else
+    static u64 const line_tag[12] = {
+        'line09', 'line10', 'line11', 'line12', 'line13', 'line14',
+        'line15', 'line16', 'line17', 'line18', 'line19', 'line20',
+    };
+
     field_0x2ec[0] = new CPaneMgr(mpLetterScreen[0], 't4_s', 0, NULL);
     field_0x2ec[1] = new CPaneMgr(mpLetterScreen[0], 'mg_e4lin', 0, NULL);
     for (int i = 0; i < 2; i++) {
@@ -1028,12 +1117,22 @@ void dMenu_Letter_c::screenSetLetter() {
     }
     mpLetterScreen[0]->search('jp_fri_n')->hide();
     mpLetterScreen[0]->search('jp_n')->hide();
+#endif
+
     for (int i = 0; i < 2; i++) {
         ((J2DTextBox*)field_0x2ec[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
+#if VERSION == VERSION_GCN_JPN
+        ((J2DTextBox*)field_0x2ec[i]->getPanePtr())->setString(0x210, "");
+#else
         ((J2DTextBox*)field_0x2ec[i]->getPanePtr())->setString(0x200, "");
+#endif
         if (field_0x2f4[i] != NULL) {
             ((J2DTextBox*)field_0x2f4[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
+#if VERSION == VERSION_GCN_JPN
+            ((J2DTextBox*)field_0x2f4[i]->getPanePtr())->setString(0x210, "");
+#else
             ((J2DTextBox*)field_0x2f4[i]->getPanePtr())->setString(0x200, "");
+#endif
         }
     }
     field_0x1e4[0] = (J2DTextBox*)mpLetterScreen[0]->search('p_texts');
@@ -1060,19 +1159,16 @@ void dMenu_Letter_c::screenSetLetter() {
     mpBlackTex->setAlpha(0);
 }
 
-/* 80396D70-80396D98 0233D0 0028+00 1/1 0/0 0/0 .rodata          text_a_tag$5024 */
-static const u64 text_a_tag[5] = {
-    'atext1_1', 'atext1_2', 'atext1_3', 'atext1_4', 'atext1_5',
-};
-
-/* 80396D98-80396DC0 0233F8 0028+00 1/1 0/0 0/0 .rodata          text_b_tag$5025 */
-static const u64 text_b_tag[5] = {
-    'btext1_1', 'btext1_2', 'btext1_3', 'btext1_4', 'btext1_5',
-};
-
 /* 801E09A8-801E0B24 1DB2E8 017C+00 1/1 0/0 0/0 .text            screenSetDoIcon__14dMenu_Letter_cFv
  */
 void dMenu_Letter_c::screenSetDoIcon() {
+    static const u64 text_a_tag[5] = {
+        'atext1_1', 'atext1_2', 'atext1_3', 'atext1_4', 'atext1_5',
+    };
+    static const u64 text_b_tag[5] = {
+        'btext1_1', 'btext1_2', 'btext1_3', 'btext1_4', 'btext1_5',
+    };
+
     mpIconScreen = new J2DScreen();
     mpIconScreen->setPriority("zelda_collect_soubi_do_icon_parts.blo", 0x20000, mpArchive);
     for (int i = 0; i < 2; i++) {
