@@ -1190,8 +1190,8 @@ static void e_wb_f_run(e_wb_class* i_this) {
                     i_this->field_0x5de = 0;
                     uVar15 = 0.5f;
                 } else {
-                    if (i_this->field_0x69c == 0) {
-                        i_this->field_0x69c = cM_rndF(10.0f) + 3.0f;
+                    if (i_this->field_0x698[2] == 0) {
+                        i_this->field_0x698[2] = cM_rndF(10.0f) + 3.0f;
                         local_70.x = i_this->field_0x6c4;
                         local_70.y = 0.0f;
                         local_70.z = 1500.0f;
@@ -1243,7 +1243,7 @@ static void e_wb_f_run(e_wb_class* i_this) {
 
                 if (dVar13 < 400.0f) {
                     i_this->mActionMode = 3;
-                    i_this->mCatchupTimer = 40;
+                    i_this->field_0x698[0] = 40;
                 }
             }
             i_this->mMovementType = 1;
@@ -1252,11 +1252,11 @@ static void e_wb_f_run(e_wb_class* i_this) {
             i_this->mPursuitFlag = 1;
             dVar16 = l_HIO.max_speed;
             uVar15 = 3.0f;
-            if (i_this->mCatchupTimer == 15) {
+            if (i_this->field_0x698[0] == 15) {
                 i_this->mStatusFlags |= 0x20;
             }
 
-            if (i_this->mCatchupTimer == 0) {
+            if (i_this->field_0x698[0] == 0) {
                 i_this->mActionMode = 4;
                 anm_init(i_this, 0x25, 3.0f, 2, 1.0f);
             }
@@ -1319,11 +1319,11 @@ static void e_wb_b_wait(e_wb_class* i_this) {
     case 0:
         anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
         i_this->mActionMode = 1;
-        i_this->mCatchupTimer = cM_rndF(100.0f) + 100.0f;
+        i_this->field_0x698[0] = cM_rndF(100.0f) + 100.0f;
         i_this->mStatusFlags |= 0x20;
         // fallthrough
     case 1:
-        if (i_this->mCatchupTimer == 0 && i_this->mPathInitialized != 0) {
+        if (i_this->field_0x698[0] == 0 && i_this->mPathInitialized != 0) {
             i_this->mActionMode = 2;
         } else if (dVar7 < 2000.0f) {
             i_this->mActionID = ACT_B_RUN;
@@ -1404,7 +1404,7 @@ static void e_wb_b_run2(e_wb_class* i_this) {
             }
 
             i_this->mCurrentPathIndex = local_e0;
-            i_this->mCatchupTimer = cM_rndF(100.0f) + 100.0f;
+            i_this->field_0x698[0] = cM_rndF(100.0f) + 100.0f;
         }
 
         break;
@@ -1449,7 +1449,7 @@ static void e_wb_b_run2(e_wb_class* i_this) {
         fVar10 = l_HIO.leader_max_speed;
         i_this->mMovementType = 1;
 
-        if (i_this->mCatchupTimer == 0 && dist < 5000.0f) {
+        if (i_this->field_0x698[0] == 0 && dist < 5000.0f) {
             anm_init(i_this, 0x25, 3.0f, 2, 1.0f);
             i_this->mActionMode = 3;
         }
@@ -1693,7 +1693,7 @@ static void e_wb_b_run(e_wb_class* i_this) {
 
             if (player_xz_distance > 6000.0f) {
                 i_this->mActionMode = 3;
-                i_this->mCatchupTimer = 13;
+                i_this->field_0x698[0] = 13;
             }
 
             i_this->mMovementType = 1;
@@ -1703,11 +1703,11 @@ static void e_wb_b_run(e_wb_class* i_this) {
             target_speed = l_HIO.max_speed;
             acceleration = 3.0f;
 
-            if (i_this->mCatchupTimer == 10) {
+            if (i_this->field_0x698[0] == 10) {
                 i_this->mStatusFlags |= 0x20;
             }
 
-            if (i_this->mCatchupTimer == 0) {
+            if (i_this->field_0x698[0] == 0) {
                 i_this->mActionMode = 4;
                 anm_init(i_this, 0x25, 3.0f, 2, 1.0f);
             }
@@ -1888,10 +1888,10 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
     case 0:
         anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
         i_this->mActionMode = 1;
-        i_this->field_0x69e = 10;
+        i_this->field_0x698[3] = 10;
         break;
     case 1:
-        if (i_this->field_0x69e == 0 && !dComIfGp_event_runCheck()) {
+        if (i_this->field_0x698[3] == 0 && !dComIfGp_event_runCheck()) {
             i_this->mActionMode = 2;
             i_this->mCurrentPathIndex = 1;
         }
@@ -2128,11 +2128,11 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
     case 0:
         anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
         i_this->mActionMode = 1;
-        i_this->field_0x69e = 10;
+        i_this->field_0x698[3] = 10;
         break;
 
     case 1:
-        if (i_this->field_0x69e == 0 && !dComIfGp_event_runCheck()) {
+        if (i_this->field_0x698[3] == 0 && !dComIfGp_event_runCheck()) {
             i_this->mActionMode = 2;
             i_this->mCurrentPathIndex = 1;
             Z2GetAudioMgr()->subBgmStart(Z2BGM_FACE_OFF_BATTLE);
@@ -2194,7 +2194,7 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
             guidance_dist = l_HIO.mGuidanceDisplayDistance1;
         }
 
-        if (i_this->field_0x69e == 0 && angle_diff < 0x3000 && angle_diff > -0x3000) {
+        if (i_this->field_0x698[3] == 0 && angle_diff < 0x3000 && angle_diff > -0x3000) {
             if (dist > ignore_dist) {
                 cLib_addCalc2(&a_this->current.pos.x, player->current.pos.x, 0.05f,
                               a_this->speedF * i_this->field_0x1690);
@@ -2338,7 +2338,7 @@ static void e_wb_b_lv9_end(e_wb_class* i_this) {
 
     switch (i_this->mActionMode) {
     case 0:
-        i_this->mCatchupTimer = 30;
+        i_this->field_0x698[0] = 30;
         i_this->mActionMode = 1;
         anm_init(i_this, 0x2b, 0.0f, 2, 1.0f);
         a_this->current.pos.set(-7080.0f, 50.0f, -6634.0f);
@@ -2349,22 +2349,22 @@ static void e_wb_b_lv9_end(e_wb_class* i_this) {
         i_this->mTargetFacingAngle = a_this->current.angle.y;
         // fallthrough
     case 1:
-        if (i_this->mCatchupTimer == 0) {
+        if (i_this->field_0x698[0] == 0) {
             i_this->mActionMode = 2;
-            i_this->mCatchupTimer = NREG_S(0) + 65;
+            i_this->field_0x698[0] = NREG_S(0) + 65;
         }
         break;
     case 2:
         target_speed = NREG_F(12) + 15.0f;
-        if (i_this->mCatchupTimer == 0) {
+        if (i_this->field_0x698[0] == 0) {
             anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
             i_this->mActionMode = 3;
             i_this->mStatusFlags |= 8;
-            i_this->mCatchupTimer = 40;
+            i_this->field_0x698[0] = 40;
         }
         break;
     case 3:
-        if (i_this->mCatchupTimer == 1) {
+        if (i_this->field_0x698[0] == 1) {
             i_this->mStatusFlags |= 8;
         }
         break;
@@ -2376,16 +2376,16 @@ static void e_wb_b_lv9_end(e_wb_class* i_this) {
         if (i_this->mpModelMorf->isStop()) {
             anm_init(i_this, 0x20, 2.0f, 2, 1.0f);
             i_this->mActionMode = 6;
-            i_this->mCatchupTimer = 80;
+            i_this->field_0x698[0] = 80;
         }
         break;
     case 6:
         target_speed = NREG_F(13) + 40.0f;
         speed_step = 5.0f;
-        if (i_this->mCatchupTimer < 30) {
+        if (i_this->field_0x698[0] < 30) {
             i_this->mMovementType = 1;
         }
-        if (i_this->mCatchupTimer == 0) {
+        if (i_this->field_0x698[0] == 0) {
             local_44.x = -12682.0f - a_this->current.pos.x;
             local_44.z = -2701.0f - a_this->current.pos.z;
             i_this->mTargetFacingAngle = cM_atan2s(local_44.x, local_44.z);
@@ -2410,17 +2410,17 @@ static void e_wb_a_run(e_wb_class* i_this) {
         anm_init(i_this, 0x20, 5.0f, 2, 1.399999976158142f);
         i_this->mActionMode = 1;
         i_this->mTargetFacingAngle = a_this->current.angle.y;
-        i_this->field_0x69a = cM_rndF(30.0f) + 80.0f;
+        i_this->field_0x698[1] = cM_rndF(30.0f) + 80.0f;
     case 1:
         i_this->mPursuitFlag = 1;
         i_this->mMovementType = 1;
 
-        if (i_this->mCatchupTimer == 0) {
-            i_this->mCatchupTimer = cM_rndF(30.0f) + 10.0f;
+        if (i_this->field_0x698[0] == 0) {
+            i_this->field_0x698[0] = cM_rndF(30.0f) + 10.0f;
             i_this->mTargetFacingAngle += (s16)cM_rndFX(10000.0f);
         }
 
-        if (i_this->field_0x69a == 1 || i_this->mSpeedCapTimer == 2) {
+        if (i_this->field_0x698[1] == 1 || i_this->mSpeedCapTimer == 2) {
             i_this->mActionID = ACT_LR_DAMAGE;
             i_this->mZ2Ride.startCreatureVoice(Z2SE_EN_WB_V_DAMAGE, -1);
             i_this->mActionMode = 0;
@@ -2526,7 +2526,7 @@ static int e_wb_damage(e_wb_class* i_this) {
                 anm_init(i_this, 0xd, 2.0f, 0, 1.0f);
                 i_this->field_0x6e4 = 1;
             }
-            i_this->mCatchupTimer = (s16)(cM_rndF(40.0f) + 70.0f);
+            i_this->field_0x698[0] = (s16)(cM_rndF(40.0f) + 70.0f);
         }
         break;
         
@@ -2545,7 +2545,7 @@ static int e_wb_damage(e_wb_class* i_this) {
             cLib_addCalcAngleS2(&i_this->field_0x6b6, 0, 1, 0x96);
         }
         
-        if (i_this->mCatchupTimer == 0 && i_this->field_0x6ae.x > -0x200) {
+        if (i_this->field_0x698[0] == 0 && i_this->field_0x6ae.x > -0x200) {
             if (i_this->field_0x6e4 == 0) {
                 anm_init(i_this, 0x10, 2.0f, 0, 1.0f);
             } else {
@@ -2601,13 +2601,13 @@ static int e_wb_bg_damage(e_wb_class* i_this) {
         if (i_this->mpModelMorf->isStop()) {
             i_this->mActionMode = 2;
             anm_init(i_this, 7, 2.0f, 2, 1.0f);
-            i_this->mCatchupTimer = (s16)(cM_rndF(60.0f) + 150.0f);
+            i_this->field_0x698[0] = (s16)(cM_rndF(60.0f) + 150.0f);
         }
         break;
         
     case 2:
         return_value = TRUE;
-        if (i_this->mCatchupTimer == 0) {
+        if (i_this->field_0x698[0] == 0) {
             anm_init(i_this, 6, 3.0f, 0, 1.0f);
             i_this->mActionMode = 3;
         }
@@ -2646,8 +2646,8 @@ static int e_wb_lr_damage(e_wb_class* i_this) {
             }
             i_this->mActionMode = 1;
             i_this->mStatusFlags |= 0x40;
-            i_this->mCatchupTimer = (s16)(cM_rndF(60.0f) + 150.0f);
-            i_this->field_0x69a = 15;
+            i_this->field_0x698[0] = (s16)(cM_rndF(60.0f) + 150.0f);
+            i_this->field_0x698[1] = 15;
             
             if (i_this->field_0x1720 != 0) {
                 a_this->speedF = -50.0f;
@@ -2702,7 +2702,7 @@ static int e_wb_lr_damage(e_wb_class* i_this) {
         
     case 3:
         case3:
-        if (i_this->field_0x69a == 0) {
+        if (i_this->field_0x698[1] == 0) {
             return_value = TRUE;
         }
         
@@ -2710,7 +2710,7 @@ static int e_wb_lr_damage(e_wb_class* i_this) {
             i_this->mMovementType = 2;
         }
         
-        if (i_this->mCatchupTimer == 0 && i_this->field_0x1720 == 0) {
+        if (i_this->field_0x698[0] == 0 && i_this->field_0x1720 == 0) {
             if (i_this->field_0x6e4 == 0) {
                 anm_init(i_this, 0x10, 3.0f, 0, 1.0f);
             } else {
@@ -4457,7 +4457,7 @@ static void demo_camera(e_wb_class* i_this) {
                 i_this->field_0x1714 = 55.0f;
                 i_this->field_0x169e = 0x2c;
                 i_this->field_0x16a0 = 0;
-                i_this->mCatchupTimer = 0x14;
+                i_this->field_0x698[0] = 0x14;
             }
         }
         break;
@@ -5228,8 +5228,8 @@ static int daE_WB_Execute(e_wb_class* i_this) {
         i_this->mStatusFlags &= 3;
         
         for (int i = 0; i < 4; i++) {
-            if (i_this->mCatchupTimer != 0) {
-                i_this->mCatchupTimer--;
+            if (i_this->field_0x698[i] != 0) {
+                i_this->field_0x698[i]--;
             }
         }
         

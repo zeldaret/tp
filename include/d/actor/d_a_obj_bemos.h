@@ -62,7 +62,7 @@ public:
         /* 0x180 */ State_e mState;
     };
 
-    s32 getMoveType() { return fopAcM_GetParamBit(this, 24, 4); }
+    u32 getMoveType() { return fopAcM_GetParamBit(this, 24, 4); }
     s16 getHeadJoint() { return mHeadJntNo; }
     s16 getBigGearJoint() { return mBigGearJntNo; }
     s16 getSmallGear0Joint() { return mSmallGear0JntNo; }
@@ -174,7 +174,7 @@ public:
     /* 0x0FEA */ u8 field_0xfea;
     /* 0x0FEB */ u8 field_0xfeb;
     /* 0x0FEC */ u8 mMode;
-    /* 0x0FED */ u8 field_0xfec;
+    /* 0x0FED */ u8 field_0xfed;
     /* 0x0FF0 */ f32 field_0xff0;
     /* 0x0FF4 */ u8 field_0xff4[3];
     /* 0x0FF7 */ u8 field_0xff7;

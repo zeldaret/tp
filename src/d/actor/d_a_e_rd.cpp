@@ -696,7 +696,7 @@ static void ride_off(e_rd_class* i_this) {
                 }
 
                 bullbo->mActionID = 7;
-                bullbo->field_0x69a = cM_rndF(30.0f) + 80.0f;
+                bullbo->field_0x698[1] = cM_rndF(30.0f) + 80.0f;
             }
         }
 
@@ -4145,7 +4145,7 @@ static void damage_check(e_rd_class* i_this) {
                             }
 
                             uVar1 = 3;
-                            bullbo_p->field_0x69e = 100;
+                            bullbo_p->field_0x698[3] = 100;
                             dComIfGs_onSaveDunSwitch(7);
                         } else {
                             uVar1 = 2;

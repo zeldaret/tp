@@ -119,10 +119,7 @@ public:
     /* 0x0690 */ s16 mActionID;  ///< @brief High-level action ID.
     /* 0x0692 */ s16 field_0x692;
     /* 0x0694 */ int mShadowKey;     ///< @brief Shadow drawing key.
-    /* 0x0698 */ s16 mCatchupTimer;  ///< @brief Timer for catch-up mode when player is far.
-    /* 0x069A */ s16 field_0x69a;
-    /* 0x069C */ s16 field_0x69c;
-    /* 0x069E */ s16 field_0x69e;
+    /* 0x0698 */ s16 field_0x698[4];
     /* 0x06A0 */ s16 field_0x6a0;
     /* 0x06A2 */ u8 field_0x6a2[0x6ae - 0x6a2];
     /* 0x06AE */ csXyz field_0x6ae;
@@ -131,7 +128,7 @@ public:
     /* 0x06B8 */ u8 field_0x6b8[0x6ba - 0x6b8];
     /* 0x06BA */ s16 field_0x6ba;
     /* 0x06BC */ u8 field_0x6bc;
-    /* 0x06BD */ u8 mPursuitFlag;   ///< @brief Flag indicating pursuit mode.
+    /* 0x06BD */ s8 mPursuitFlag;   ///< @brief Flag indicating pursuit mode.
     /* 0x06BE */ u16 mStatusFlags;  ///< @brief Bitfield for various status flags.
     /* 0x06C0 */ s8 field_0x6c0;
     /* 0x06C4 */ f32 field_0x6c4;
