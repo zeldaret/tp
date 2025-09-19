@@ -78,7 +78,11 @@ dMsgScrnExplain_c::dMsgScrnExplain_c(STControl* i_stick, u8 param_1, bool param_
         mpTxScreen->search('n_3fline')->hide();
         mpTxScreen->search('n_e4line')->hide();
 
+#if VERSION == VERSION_GCN_JPN
+        field_0x50 = 0.0f;
+#else
         field_0x50 = -10.0f;
+#endif
         field_0x4c = 0.0f;
     } else {
         mpTxScreen->setPriority("zelda_message_window_text.blo", 0x20000,
@@ -87,6 +91,31 @@ dMsgScrnExplain_c::dMsgScrnExplain_c(STControl* i_stick, u8 param_1, bool param_
 
         mpScreen->search('n_all')->scale(g_MsgObject_HIO_c.mBoxTalkScaleX,
                                          g_MsgObject_HIO_c.mBoxTalkScaleY);
+#if VERSION == VERSION_GCN_JPN
+        field_0x50 = 0.0f;
+
+        if (dComIfGs_getOptUnk0() == 0) {
+            mpTm_c[0] = new CPaneMgr(mpTxScreen, 'mg_3flin', 0, NULL);
+            mpTm_c[1] = new CPaneMgr(mpTxScreen, 't3f_s', 0, NULL);
+
+            field_0x10[0] = new CPaneMgr(mpTxScreen, 'mg_3f', 0, NULL);
+            field_0x10[1] = new CPaneMgr(mpTxScreen, 'mg_3f_s', 0, NULL);
+
+            mpTxScreen->search('n_3line')->hide();
+            mpTxScreen->search('n_3fline')->show();
+            mpTxScreen->search('n_e4line')->hide();
+        } else {
+            mpTm_c[0] = new CPaneMgr(mpTxScreen, 'mg_3line', 0, NULL);
+            mpTm_c[1] = new CPaneMgr(mpTxScreen, 't3_s', 0, NULL);
+
+            field_0x10[0] = NULL;
+            field_0x10[1] = NULL;
+
+            mpTxScreen->search('n_3line')->show();
+            mpTxScreen->search('n_3fline')->hide();
+            mpTxScreen->search('n_e4line')->hide();
+        }
+#else
         field_0x50 = -10.0f;
 
         mpTm_c[0] = new CPaneMgr(mpTxScreen, 'mg_e4lin', 0, NULL);
@@ -98,6 +127,7 @@ dMsgScrnExplain_c::dMsgScrnExplain_c(STControl* i_stick, u8 param_1, bool param_
         mpTxScreen->search('n_3line')->hide();
         mpTxScreen->search('n_3fline')->hide();
         mpTxScreen->search('n_e4line')->show();
+#endif
 
         if (param_1 == 2 || param_1 == 4) {
             field_0x4c = 0.0f;
@@ -109,12 +139,20 @@ dMsgScrnExplain_c::dMsgScrnExplain_c(STControl* i_stick, u8 param_1, bool param_
     f32 lineSpace = ((J2DTextBox*)mpTm_c[0]->getPanePtr())->getLineSpace();
     for (int i = 0; i < 2; i++) {
         ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
+#if VERSION == VERSION_GCN_JPN
+        ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setString(0x210, "");
+#else
         ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setString(0x200, "");
+#endif
         ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setLineSpace(lineSpace);
 
         if (field_0x10[i] != NULL) {
             ((J2DTextBox*)field_0x10[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
+#if VERSION == VERSION_GCN_JPN
+            ((J2DTextBox*)field_0x10[i]->getPanePtr())->setString(0x210, "");
+#else
             ((J2DTextBox*)field_0x10[i]->getPanePtr())->setString(0x200, "");
+#endif
             ((J2DTextBox*)field_0x10[i]->getPanePtr())->setLineSpace(lineSpace);
         }
     }

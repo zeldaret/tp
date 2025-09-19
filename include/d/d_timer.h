@@ -52,6 +52,9 @@ public:
     /* 80260574 */ s32 createStart(u16);
     /* 80260AA8 */ bool checkStartAnimeEnd();
     /* 80260AD4 */ void playBckAnimation(f32);
+#if VERSION == VERSION_GCN_JPN
+    bool isLeadByte(int);
+#endif
     /* 80260B54 */ void drawPikari(int);
 
     /* 80260690 */ virtual void draw();
