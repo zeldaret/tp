@@ -13,7 +13,8 @@
  *
  * @details Water columns that can carry broken stalactites (see d_a_obj_syrock)
  *
- */
+*/
+
 class daWtPillar_c : public fopAc_ac_c, public request_of_phase_process_class, public dEvLib_callback_c {
 public:
     daWtPillar_c();

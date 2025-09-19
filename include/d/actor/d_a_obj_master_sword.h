@@ -18,7 +18,8 @@ struct daObjMasterSword_Attr_c {
  *
  * @details
  *
- */
+*/
+
 class daObjMasterSword_c : public fopAc_ac_c {
 public:
     enum Mode_e {

@@ -493,8 +493,7 @@ void daObjFlag3_c::create_init() {
     #endif
 }
 
-/* 80BEFD08-80BEFF30 001308 0228+00 1/1 0/0 0/0 .text
- * initFlagPos__12FlagCloth2_cFP4cXyzP10fopAc_ac_c              */
+/* 80BEFD08-80BEFF30 001308 0228+00 1/1 0/0 0/0 .text            initFlagPos__12FlagCloth2_cFP4cXyzP10fopAc_ac_c */
 void FlagCloth2_c::initFlagPos(cXyz* param_0, fopAc_ac_c* param_1) {
     mpFlagPosition = param_0;
     cXyz direction;

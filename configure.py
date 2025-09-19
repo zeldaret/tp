@@ -644,7 +644,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_cc_mass_s.cpp"),
             Object(NonMatching, "d/d_cc_s.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_cc_uty.cpp"),
-            Object(Equivalent, "d/d_cam_param.cpp"), # weak func order
+            Object(MatchingFor("GZ2E01"), "d/d_cam_param.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01"), "d/d_ev_camera.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_spline_path.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_item_data.cpp"),
@@ -2186,7 +2186,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_thashi"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_thdoor"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_timeFire"),
-    ActorRel(Equivalent, "d_a_obj_tks", extra_cflags=[DANPCF_C_HACK]), # weak function order, sinShort inline issue
+    ActorRel(Equivalent, "d_a_obj_tks", extra_cflags=[DANPCF_C_HACK]), # weak function order
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_tmoon"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_toaru_maki"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_toby"),
