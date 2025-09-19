@@ -7,19 +7,14 @@
 
 #include "d/dolzel_rel.h"
 
-#include "JSystem/JGeometry.h"
-#include "SSystem/SComponent/c_math.h"
-#include "Z2AudioLib/Z2Instances.h"
 #include "c/c_damagereaction.h"
 #include "d/actor/d_a_canoe.h"
 #include "d/actor/d_a_do.h"
 #include "d/actor/d_a_obj_food.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_a_item_static.h"
-#include "d/d_com_inf_game.h"
-#include "d/d_procname.h"
-#include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_controller_pad.h"
+#include "Z2AudioLib/Z2Instances.h"
 
 /* 8066F2B4-8066F2B8 -00001 0004+00 1/2 0/0 0/0 .bss             None */
 /* 8066F2B6 0002+00 data_8066F2B6 None */
