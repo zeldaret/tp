@@ -685,7 +685,7 @@ void daE_GM_c::core_damage() {
             mMode = 3;
         } else {
             field_0xa68 = 1;
-            lbl_195_bss_AE = 1;
+            lbl_195_bss_AF = 1;
 
             if (bVar1) {
                 speed.z = 0.0f;
@@ -814,7 +814,7 @@ void daE_GM_c::core_pechanko_damage() {
         mSph.SetTgType(0);
         mSph.SetAtType(AT_TYPE_0);
         field_0xa68 = 2;
-        lbl_195_bss_AE = 1;
+        lbl_195_bss_AF = 1;
         speedF = 0.0f;
         gravity = -5.0f;
         maxFallSpeed = -100.0f;
@@ -1327,7 +1327,7 @@ void daE_GM_c::normal_chase() {
             }
 
             if (field_0xa6c == 0) {
-                if (player->getDamageWaitTimer() != 0 || field_0xa72 != 0 || lbl_195_bss_AE != 0) {
+                if (player->getDamageWaitTimer() != 0 || field_0xa72 != 0 || lbl_195_bss_AC != 0) {
                     field_0xa1c.y = l_rand2[(mRandIndex & 12) >> 2] + cLib_targetAngleY(&current.pos, &player->current.pos);
                 } else {
                     field_0xa1c.y = sVar1;
@@ -1630,7 +1630,7 @@ int daE_GM_c::execute() {
     damage_check();
     action();
 
-    if (l_hitActorID == fopAcM_GetID(this)) {
+    if (l_coreActorID == fopAcM_GetID(this)) {
         l_corePos = current.pos;
         l_coreAngle = current.angle;
         l_coreSpeedF = speedF;
