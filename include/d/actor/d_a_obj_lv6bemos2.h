@@ -27,7 +27,7 @@ public:
     /* 80C7EE50 */ void action();
     /* 80C7F2A4 */ void calcBeam();
     /* 80C7F904 */ int checkFindPlayer();
-    /* 80C7FA54 */ int checkSearchPlayer();
+    /* 80C7FA54 */ s8 checkSearchPlayer();
     /* 80C7FBA4 */ f32 getSearchDistance();
     /* 80C7FBFC */ f32 getBeamSearchDistance();
     /* 80C7FC54 */ void effect_proc();
@@ -62,7 +62,7 @@ public:
     u8 getSearchDist() { return fopAcM_GetParamBit(this, 0x1C, 4); }
     u16 getBeamSearchDist() { return field_0xa32 & 15; }
 
-    BOOL checkLockOnCamera() { return (field_0xa32 & 0x8000) >> 15; }
+    u8 checkLockOnCamera() { return (field_0xa32 & 0x8000) >> 15; }
 
     /* 0x568 */ request_of_phase_process_class mPhase;
     /* 0x5A8 */ J3DModel* mBeamosModel;
