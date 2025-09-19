@@ -4796,7 +4796,7 @@ static void demo_camera(e_wb_class* i_this) {
     case 0x51:
         a_this->current.angle.y = 0x8000;
         a_this->shape_angle.y = 0x8000;
-        i_this->mTargetFacingAngle = 0;
+        i_this->mTurnStep = 0;
         cLib_addCalc2(&i_this->field_0x16bc.x, a_this->eyePos.x, 0.2f, 200.0f);
         cLib_addCalc2(&i_this->field_0x16bc.y, a_this->eyePos.y, 0.2f, 200.0f);
         cLib_addCalc2(&i_this->field_0x16bc.z, a_this->eyePos.z, 0.2f, 200.0f);
