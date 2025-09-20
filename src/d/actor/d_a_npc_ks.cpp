@@ -5965,7 +5965,7 @@ static int npc_ks_fsdemo(npc_ks_class* i_this) {
         fopAcM_OnStatus(a_this, 0);
         cLib_onBit<u32>(a_this->attention_info.flags, fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
         a_this->eventInfo.onCondition(dEvtCnd_CANTALK_e);
-        // TODO: fake match to force reuse of pointer
+        // TODO: gameInfo fake match to force reuse of pointer
         dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
         if (play->getEvent().runCheck()) {
             if (a_this->eventInfo.checkCommandTalk()) {

@@ -1002,9 +1002,20 @@ void daObj_Kanban2_c::executeNormal() {
         break;
     case 1:
         mInvulnerabilityTimer = 3;
-        if (dComIfGp_event_runCheck() && eventInfo.checkCommandTalk()) {
+#if VERSION != VERSION_SHIELD_DEBUG
+        // TODO: gameInfo fake match to force reuse of pointer
+        dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
+        if (play->getEvent().runCheck() && eventInfo.checkCommandTalk())
+#else
+        if (dComIfGp_event_runCheck() && eventInfo.checkCommandTalk())
+#endif
+        {
             if (mMsgFlow.doFlow(this, NULL, 0)) {
+#if VERSION != VERSION_SHIELD_DEBUG
+                play->getEvent().reset();
+#else
                 dComIfGp_event_reset();
+#endif
                 field_0x9fe = 0;
             }
         } else {

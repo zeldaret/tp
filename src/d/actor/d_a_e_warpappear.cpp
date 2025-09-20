@@ -479,6 +479,7 @@ static void demo_camera(e_warpappear_class* i_this) {
             i_this->field_0x5f8 = 0.0f;
         }
 
+        // TODO: gameInfo fake match to force reuse of pointer
         play = &g_dComIfG_gameInfo.play;
         play->getEvent().onHindFlag(15);
 
