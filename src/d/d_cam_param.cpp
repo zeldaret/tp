@@ -12,8 +12,7 @@
 #include "d/d_camera.h"
 #include "d/d_com_inf_game.h"
 
-/* 8008813C-80088284 082A7C 0148+00 0/0 12/12 0/0 .text            rationalBezierRatio__8dCamMathFff
- */
+/* 8008813C-80088284 082A7C 0148+00 0/0 12/12 0/0 .text            rationalBezierRatio__8dCamMathFff */
 f32 dCamMath::rationalBezierRatio(f32 param_0, f32 param_1) {
     f64 var_f31;
     f32 var_f1 = param_0;

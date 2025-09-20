@@ -578,8 +578,13 @@ struct jmessage_string_tReference : public JMessage::TReference {
     /* 0x0C */ J2DTextBox* mRubyPanePtr;
     /* 0x10 */ COutFont_c* mOutFontPtr;
     /* 0x14 */ JUTFont* mpFont;
+#if VERSION == VERSION_GCN_JPN
+    /* 0x18 */ f32 mLineLength[9];
+    /* 0x3C */ f32 mOutfontLength[9];
+#else
     /* 0x18 */ f32 mLineLength[12];
     /* 0x48 */ f32 mOutfontLength[12];
+#endif
     /* 0x78 */ u32 mCCColor;
     /* 0x7C */ u32 mGCColor;
     /* 0x80 */ s16 mLineCount;
@@ -659,6 +664,9 @@ struct jmessage_string_tRenderingProcessor : public JMessage::TRenderingProcesso
     /* 0x550 */ s16 field_0x550;
     /* 0x552 */ s16 field_0x552;
     /* 0x554 */ u8 field_0x554;
+#if VERSION == VERSION_GCN_JPN
+    /* 0x558 */ u8 field_0x558[0x578 - 0x558];
+#endif
 };
 
 #define MSGTAG_GROUP(g) (g << 16)

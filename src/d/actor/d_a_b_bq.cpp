@@ -1,7 +1,7 @@
 /**
  * d_a_b_bq.cpp
  * Boss Baba (Diababa)
- */
+*/
 
 #include "d/dolzel_rel.h"
 
@@ -11,13 +11,56 @@
 #include "d/d_s_play.h"
 #include "f_op/f_op_camera_mng.h"
 #include "f_op/f_op_msg_mng.h"
-#include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
 #include "d/actor/d_a_obj_ystone.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "SSystem/SComponent/c_math.h"
 #include "c/c_damagereaction.h"
 #include "cmath.h"
+
+enum B_bq_RES_File_ID {
+    /* BCK */
+    /* 0x07 */ BCK_BQ_APPEAR = 0x7,
+    /* 0x08 */ BCK_BQ_ATTACK,
+    /* 0x09 */ BCK_BQ_ATTACK_A,
+    /* 0x0A */ BCK_BQ_ATTACK_B,
+    /* 0x0B */ BCK_BQ_ATTACK_C,
+    /* 0x0C */ BCK_BQ_BOMBDAMAGE,
+    /* 0x0D */ BCK_BQ_COREDAMAGE,
+    /* 0x0E */ BCK_BQ_DAMAGEWAIT,
+    /* 0x0F */ BCK_BQ_DEAD,
+    /* 0x10 */ BCK_BQ_LOOK_M,
+    /* 0x11 */ BCK_BQ_NODAMAGE,
+    /* 0x12 */ BCK_BQ_RETURN01,
+    /* 0x13 */ BCK_BQ_RETURN02,
+    /* 0x14 */ BCK_BQ_RUNAWAY,
+    /* 0x15 */ BCK_BQ_TESTMOTION,
+    /* 0x16 */ BCK_BQ_TODOME,
+    /* 0x17 */ BCK_BQ_WAIT01,
+
+    /* BMDR */
+    /* 0x1A */ BMDR_BQ_EYEBALL = 0x1A,
+
+    /* BMDV */
+    /* 0x1D */ BMDV_BQ = 0x1D,
+
+    /* BRK */
+    /* 0x20 */ BRK_BQ_DEAD = 0x20,
+
+    /* BTK */
+    /* 0x23 */ BTK_BQ_TODOME = 0x23,
+};
+
+class daB_BQ_HIO_c {
+public:
+    /* 805B356C */ daB_BQ_HIO_c();
+    /* 805B9FFC */ virtual ~daB_BQ_HIO_c() {}
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 mModelSize;
+    /* 0x0C */ s16 mChanceTime;
+    /* 0x0E */ s16 mWaterSprayTime;
+};
 
 class obj_fw_class : public fopAc_ac_c {
 public:
@@ -81,26 +124,6 @@ public:
     /* 0x88C */ u8 field_0x88C[0x8C8 - 0x88C];
     /* 0x8C8 */ s8 field_0x8c8;
     /* 0x8C9 */ u8 field_0x8c9;
-};
-
-enum daB_BQ_ANM {
-    ANM_APPEAR = 7,
-    ANM_ATTACK,
-    ANM_ATTACK_A,
-    ANM_ATTACK_B,
-    ANM_ATTACK_C,
-    ANM_BOMB_DAMAGE,
-    ANM_CORE_DAMAGE,
-    ANM_DAMAGE_WAIT,
-    ANM_DEAD,
-    ANM_LOOK_M,
-    ANM_NO_DAMAGE,
-    ANM_RETURN_01,
-    ANM_RETURN_02,
-    ANM_RUNAWAY,
-    ANM_TEST_MOTION,
-    ANM_TODOME,
-    ANM_WAIT_01,
 };
 
 enum daB_BQ_ACT {
@@ -440,7 +463,7 @@ static void damage_check(b_bq_class* i_this) {
             }
 
             def_se_set(&i_this->mSound, i_this->mAtInfo.mpCollider, 0x2D, NULL);
-            anm_init(i_this, ANM_NO_DAMAGE, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+            anm_init(i_this, BCK_BQ_NODAMAGE, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mSound.startCreatureVoice(Z2SE_EN_BQ_V_NODAMAGE, -1);
             i_this->field_0x6de = 10;
         }
@@ -485,10 +508,10 @@ static s8 b_bq_stay(b_bq_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_APPEAR, 1.0f, J3DFrameCtrl::EMode_NONE, 0.0f);
+        anm_init(i_this, BCK_BQ_APPEAR, 1.0f, J3DFrameCtrl::EMode_NONE, 0.0f);
         i_this->mMode = 1;
         break;
-    case 2:
+    case 2: {
         i_this->mTimers[0] = 150;
 
         int sw = (fopAcM_GetParam(a_this) >> 0x10) & 0xFF;
@@ -501,13 +524,14 @@ static s8 b_bq_stay(b_bq_class* i_this) {
         dComIfGp_particle_set(0x82B1, &a_this->current.pos, NULL, NULL);
         mDoAud_seStart(Z2SE_EN_BQ_ABUKU, &a_this->current.pos, 0, 0);
         break;
+    }
     case 3:
         if (i_this->mTimers[0] == 100) {
             mDoAud_seStart(Z2SE_EN_BQ_JINARI, NULL, 0, 0);
         }
 
         if (i_this->mTimers[0] == 0) {
-            anm_init(i_this, ANM_APPEAR, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+            anm_init(i_this, BCK_BQ_APPEAR, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
 
             i_this->mMode = 4;
             i_this->mDisableDraw = false;
@@ -533,7 +557,7 @@ static s8 b_bq_stay(b_bq_class* i_this) {
 
         if (i_this->mpMorf->isStop()) {
             i_this->mAction = ACTION_WAIT;
-            anm_init(i_this, ANM_WAIT_01, 1.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+            anm_init(i_this, BCK_BQ_WAIT01, 1.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 1;
         }
         break;
@@ -546,7 +570,7 @@ static s8 b_bq_stay(b_bq_class* i_this) {
 static void b_bq_wait(b_bq_class* i_this) {
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_WAIT_01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+        anm_init(i_this, BCK_BQ_WAIT01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
         i_this->mMode = 1;
         // fallthrough
     case 1:
@@ -565,8 +589,8 @@ static void b_bq_wait(b_bq_class* i_this) {
         break;
     }
 
-    if (i_this->mAnmID == ANM_NO_DAMAGE && i_this->mpMorf->isStop()) {
-        anm_init(i_this, ANM_WAIT_01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+    if (i_this->mAnmID == BCK_BQ_NODAMAGE && i_this->mpMorf->isStop()) {
+        anm_init(i_this, BCK_BQ_WAIT01, 10.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
     }
 
     if (i_this->field_0x11fc != 0 && i_this->mTimers[2] == 1) {
@@ -582,7 +606,7 @@ static void b_bq_damage(b_bq_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_BOMB_DAMAGE, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+        anm_init(i_this, BCK_BQ_BOMBDAMAGE, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode = 1;
         i_this->mTimers[0] = 1000;
         a_this->health = 50;
@@ -613,7 +637,7 @@ static void b_bq_damage(b_bq_class* i_this) {
         }
 
         if (i_this->mpMorf->isStop()) {
-            anm_init(i_this, ANM_DAMAGE_WAIT, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+            anm_init(i_this, BCK_BQ_DAMAGEWAIT, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 2;
             i_this->mTimers[0] = l_HIO.mChanceTime;
         }
@@ -625,12 +649,12 @@ static void b_bq_damage(b_bq_class* i_this) {
         }
         break;
     case 10:
-        anm_init(i_this, ANM_CORE_DAMAGE, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+        anm_init(i_this, BCK_BQ_COREDAMAGE, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode = 11;
         break;
     case 11:
         if (i_this->mpMorf->isStop()) {
-            anm_init(i_this, ANM_DAMAGE_WAIT, JREG_F(15), J3DFrameCtrl::EMode_LOOP, 1.0f);
+            anm_init(i_this, BCK_BQ_DAMAGEWAIT, JREG_F(15), J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 2;
         }
         break;
@@ -645,7 +669,7 @@ static void b_bq_damage(b_bq_class* i_this) {
             return;
         }
 
-        anm_init(i_this, ANM_RETURN_01, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+        anm_init(i_this, BCK_BQ_RETURN01, 3.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode = 21;
         i_this->mSound.startCreatureVoice(Z2SE_EN_BQ_V_DAMAGEBACK, -1);
         break;
@@ -655,7 +679,7 @@ static void b_bq_damage(b_bq_class* i_this) {
         }
         break;
     case 30:
-        anm_init(i_this, ANM_RETURN_02, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+        anm_init(i_this, BCK_BQ_RETURN02, 5.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode = 31;
         i_this->mSound.startCreatureVoice(Z2SE_EN_BQ_V_BACK, -1);
         break;
@@ -709,7 +733,7 @@ static void b_bq_damage(b_bq_class* i_this) {
     i_this->setDownPos(&sp5C);
 
     if (i_this->checkCutDownHitFlg()) {
-        anm_init(i_this, ANM_TODOME, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+        anm_init(i_this, BCK_BQ_TODOME, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mPlayTodomeBtk = true;
         i_this->mMode = 40;
 
@@ -748,7 +772,7 @@ static s8 b_bq_attack(b_bq_class* i_this) {
 
     switch (i_this->mMode) {
     case 0:
-        anm_init(i_this, ANM_ATTACK_A, 10.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+        anm_init(i_this, BCK_BQ_ATTACK_A, 10.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mMode = 1;
 
         if (cM_rndF(1.0f) < 0.5f) {
@@ -772,7 +796,7 @@ static s8 b_bq_attack(b_bq_class* i_this) {
         }
 
         if (i_this->mpMorf->isStop()) {
-            anm_init(i_this, ANM_ATTACK_B, 2.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
+            anm_init(i_this, BCK_BQ_ATTACK_B, 2.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             i_this->mMode = 2;
             i_this->mTimers[0] = l_HIO.mWaterSprayTime;
         }
@@ -781,7 +805,7 @@ static s8 b_bq_attack(b_bq_class* i_this) {
         set_dokuhaki = true;
 
         if (i_this->mTimers[0] == 0) {
-            anm_init(i_this, ANM_ATTACK_B, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+            anm_init(i_this, BCK_BQ_ATTACK_B, 2.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
             i_this->mMode = 3;
         }
         break;
@@ -882,16 +906,17 @@ static void b_bq_end(b_bq_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
 
     switch (i_this->mMode) {
-    case 0:
+    case 0: {
         i_this->mSound.startCreatureVoice(Z2SE_EN_BQ_V_DEAD, -1);
 
-        anm_init(i_this, ANM_DEAD, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
+        anm_init(i_this, BCK_BQ_DEAD, 1.0f, J3DFrameCtrl::EMode_NONE, 1.0f);
         i_this->mpDeadBrk->setPlaySpeed(1.0f);
         i_this->mMode = 1;
 
         int sw = fopAcM_GetParam(a_this) >> 0x18;
         dComIfGs_onSwitch(sw, fopAcM_GetRoomNo(a_this));
         // fallthrough
+    }
     case 1:
         break;
     }
@@ -990,7 +1015,7 @@ static void action(b_bq_class* i_this) {
 static void anm_se_set(b_bq_class* i_this) {
     int anm_frame = i_this->mpMorf->getFrame();
 
-    if (i_this->mAnmID == ANM_APPEAR) {
+    if (i_this->mAnmID == BCK_BQ_APPEAR) {
         if (anm_frame >= 175) {
             i_this->field_0x1188 = dComIfGp_particle_set(i_this->field_0x1188, 0x82BA,
                                                          &i_this->current.pos, NULL, NULL);
@@ -1018,7 +1043,7 @@ static void anm_se_set(b_bq_class* i_this) {
                 emitter->setGlobalRTMatrix(i_this->mpMorf->getModel()->getAnmMtx(JNT_HEAD));
             }
         }
-    } else if (i_this->mAnmID == ANM_RETURN_01) {
+    } else if (i_this->mAnmID == BCK_BQ_RETURN01) {
         i_this->field_0x1188 =
             dComIfGp_particle_set(i_this->field_0x1188, 0x8322, &i_this->current.pos, NULL, NULL);
 
@@ -1034,7 +1059,7 @@ static void anm_se_set(b_bq_class* i_this) {
         if (emitter != NULL) {
             emitter->setGlobalRTMatrix(i_this->mpMorf->getModel()->getAnmMtx(JNT_HEAD));
         }
-    } else if (i_this->mAnmID == ANM_RETURN_02) {
+    } else if (i_this->mAnmID == BCK_BQ_RETURN02) {
         i_this->field_0x1188 =
             dComIfGp_particle_set(i_this->field_0x1188, 0x8324, &i_this->current.pos, NULL, NULL);
 
@@ -1050,7 +1075,7 @@ static void anm_se_set(b_bq_class* i_this) {
         if (emitter != NULL) {
             emitter->setGlobalRTMatrix(i_this->mpMorf->getModel()->getAnmMtx(JNT_HEAD));
         }
-    } else if (i_this->mAnmID == ANM_BOMB_DAMAGE) {
+    } else if (i_this->mAnmID == BCK_BQ_BOMBDAMAGE) {
         i_this->field_0x1188 =
             dComIfGp_particle_set(i_this->field_0x1188, 0x82FA, &i_this->current.pos, NULL, NULL);
 
@@ -1074,7 +1099,7 @@ static void anm_se_set(b_bq_class* i_this) {
         if (emitter != NULL) {
             emitter->setGlobalRTMatrix(i_this->mpMorf->getModel()->getAnmMtx(JNT_HEAD));
         }
-    } else if (i_this->mAnmID == ANM_DEAD) {
+    } else if (i_this->mAnmID == BCK_BQ_DEAD) {
         if (anm_frame == 1) {
             for (int i = 0; i < 19; i++) {
                 static u16 g_e_i[] = {0x82FD, 0x82FE, 0x82FF, 0x8300, 0x8301, 0x8302, 0x8303,
@@ -1102,7 +1127,7 @@ static void anm_se_set(b_bq_class* i_this) {
         }
     } else {
         f32 scale_target = 1.0f;
-        if (i_this->mAnmID != ANM_WAIT_01) {
+        if (i_this->mAnmID != BCK_BQ_WAIT01) {
             scale_target = 0.0f;
         }
 
@@ -1789,7 +1814,7 @@ static void demo_camera(b_bq_class* i_this) {
             i_this->mDemoMode = 100;
         }
         break;
-    case 50:
+    case 50: {
         if (!a_this->eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(a_this, 2, 0xFFFF, 0);
             a_this->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
@@ -1826,6 +1851,7 @@ static void demo_camera(b_bq_class* i_this) {
         e_mb_class* monkey_bomb = (e_mb_class*)fopAcM_SearchByID(i_this->mMonkeyBombID);
         monkey_bomb->mAction = 5;
         // fallthrough
+    }
     case 51:
         if (i_this->mDemoModeTimer == 24 || i_this->mDemoModeTimer == 64 ||
             i_this->mDemoModeTimer == 95 || i_this->mDemoModeTimer == 122)
@@ -2381,10 +2407,10 @@ static int daB_BQ_Execute(b_bq_class* i_this) {
         static u16 takino2[] = {0x842D, 0x842E, 0x842F, 0x8430};
 
         if (i_this->field_0x1151) {
-            i_this->field_0x1228[i] = dComIfGp_particle_set(i_this->field_0x1228[i], takino[i],
+            i_this->field_0x1228[i] = dComIfGp_particle_set(i_this->field_0x1228[i], takino2[i],
                                                             &a_this->home.pos, NULL, NULL);
         } else {
-            i_this->field_0x1228[i] = dComIfGp_particle_set(i_this->field_0x1228[i], takino2[i],
+            i_this->field_0x1228[i] = dComIfGp_particle_set(i_this->field_0x1228[i], takino[i],
                                                             &a_this->home.pos, NULL, NULL);
         }
     }
@@ -2423,7 +2449,7 @@ static int daB_BQ_Delete(b_bq_class* i_this) {
 static int useHeapInit(fopAc_ac_c* i_this) {
     b_bq_class* a_this = (b_bq_class*)i_this;
 
-    a_this->mpMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("B_bq", 0x1D), NULL,
+    a_this->mpMorf = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("B_bq", BMDV_BQ), NULL,
                                           NULL, NULL, J3DFrameCtrl::EMode_LOOP, 0.6f, 0, -1,
                                           &a_this->mSound, 0, 0x11000284);
     if (a_this->mpMorf == NULL || a_this->mpMorf->getModel() == NULL) {
@@ -2443,7 +2469,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     if (!a_this->mpDeadBrk->init(a_this->mpMorf->getModel()->getModelData(),
-                                 (J3DAnmTevRegKey*)dComIfG_getObjectRes("B_bq", 0x20), TRUE,
+                                 (J3DAnmTevRegKey*)dComIfG_getObjectRes("B_bq", BRK_BQ_DEAD), TRUE,
                                  J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1))
     {
         return false;
@@ -2457,13 +2483,13 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     if (!a_this->mpTodomeBtk->init(a_this->mpMorf->getModel()->getModelData(),
-                                   (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("B_bq", 0x23), TRUE,
+                                   (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("B_bq", BTK_BQ_TODOME), TRUE,
                                    J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1))
     {
         return false;
     }
 
-    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("B_bq", 0x1A);
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("B_bq", BMDR_BQ_EYEBALL);
     JUT_ASSERT(0, modelData != 0);
 
     a_this->mpEyeballModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);

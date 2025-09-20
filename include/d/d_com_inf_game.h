@@ -1392,6 +1392,11 @@ inline u8 dComIfGs_getSelectItemIndex(int i_no) {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().getSelectItemIndex(i_no);
 }
 
+//TODO: actual name is unknown
+inline u8 dComIfGs_getOptUnk0() {
+    return g_dComIfG_gameInfo.info.getPlayer().getConfig().getUnk0();
+}
+
 inline u8 dComIfGs_getOptVibration() {
     return g_dComIfG_gameInfo.info.getPlayer().getConfig().getVibration();
 }
@@ -1949,6 +1954,11 @@ inline void dComIfGs_onActor(int i_bitNo, int i_roomNo) {
 
 inline void dComIfGs_setLastWarpAcceptStage(s8 param_0) {
     g_dComIfG_gameInfo.info.getPlayer().getPlayerLastMarkInfo().setWarpAcceptStage(param_0);
+}
+
+//TODO: actual name is unknown
+inline void dComIfGs_setOptUnk0(u8 i_unk0) {
+    g_dComIfG_gameInfo.info.getPlayer().getConfig().setUnk0(i_unk0);
 }
 
 inline void dComIfGs_setOptSound(u8 i_mode) {
