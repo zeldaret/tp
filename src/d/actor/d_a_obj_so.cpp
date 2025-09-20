@@ -417,14 +417,13 @@ static void action(obj_so_class* i_this) {
 
 /* 80CE14DC-80CE2A64 0011FC 1588+00 1/1 0/0 0/0 .text            part_move__FP12obj_so_class */
 static void part_move(obj_so_class* i_this) {
-    // NONMATCHING
     static u16 e_id[3] = {
         0x82AB,
         0x82AC,
         0x82AD,
     };
 
-    fopAc_ac_c* player = dComIfGp_getPlayer(0);
+    fopAc_ac_c* player = (fopAc_ac_c*) dComIfGp_getPlayer(0);
     fopAc_ac_c* a_this = (fopAc_ac_c*)&i_this->actor;
     cXyz spec, spf8, sp104;
     s16 tempCos;
@@ -519,8 +518,7 @@ static void part_move(obj_so_class* i_this) {
                         }
                     } else {
                         i_this->field_0x8f0[i].y = -10.0f;
-                        i_this->field_0x8f0[i].z = 0.0f;
-                        i_this->field_0x8f0[i].x = 0.0f;
+                        i_this->field_0x8f0[i].x = i_this->field_0x8f0[i].z = 0.0f;
                         if (daPy_getPlayerActorClass()->checkFrontRollCrash()) {
                             spec.x = player->current.pos.x - i_this->field_0x618[i].x;
                             spec.y = -(player->current.pos.y - i_this->field_0x618[i].y);
@@ -715,8 +713,8 @@ static void part_move(obj_so_class* i_this) {
                     spec.y = 0.0f;
                     spec.z = (50.0f - var_f29) * (JREG_F(1) + 100.0f);
                     MtxPosition(&spec, &spf8);
-                    cLib_addCalcAngleS2(&i_this->field_0x1b20[i], spec.z, 2, 0x400);
-                    cLib_addCalcAngleS2(&i_this->field_0x1b30[i], -spec.x, 2, 0x400);
+                    cLib_addCalcAngleS2(&i_this->field_0x1b20[i], spf8.z, 2, 0x400);
+                    cLib_addCalcAngleS2(&i_this->field_0x1b30[i], -spf8.x, 2, 0x400);
                 }
             }
 

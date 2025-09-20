@@ -2154,7 +2154,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_smw_stone"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_snowEffTag"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_snow_soup"),
-    ActorRel(NonMatching, "d_a_obj_so"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_so"),
     ActorRel(NonMatching, "d_a_obj_spinLift"),
     ActorRel(NonMatching, "d_a_obj_ss_drink"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_ss_item"),
