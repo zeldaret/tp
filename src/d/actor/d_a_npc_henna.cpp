@@ -2219,10 +2219,15 @@ static void message_guide(npc_henna_class* i_this) {
             return;
         }
 
-        // TODO: fake match to force reuse of pointer
+#if VERSION != VERSION_SHIELD_DEBUG
+        // TODO: gameInfo fake match to force reuse of pointer
         dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
-        if (play->getEvent().runCheck()) {
-            if (actor->eventInfo.checkCommandTalk() == 0) {
+        if (play->getEvent().runCheck())
+#else
+        if (dComIfGp_event_runCheck())
+#endif
+        {
+            if (!actor->eventInfo.checkCommandTalk()) {
                 return;
             }
 
@@ -2251,7 +2256,11 @@ static void message_guide(npc_henna_class* i_this) {
             }
 
             if (i_this->mMsgFlow.doFlow(actor, NULL, 0) != 0) {
+#if VERSION != VERSION_SHIELD_DEBUG
                 play->getEvent().reset();
+#else
+                dComIfGp_event_reset();
+#endif
                 i_this->mIsTalking = 0;
             }
         } else {
