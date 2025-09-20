@@ -47,7 +47,7 @@ VERSIONS = [
 
 # Versions to disable until properly configured
 DISABLED_VERSIONS = [
-    4,  # Wii USA Rev 2
+    #4,  # Wii USA Rev 2
     5,  # Wii PAL
     6,  # Wii JPN
     7,  # Wii KOR
@@ -259,7 +259,7 @@ cflags_base = [
 
 if config.version == "ShieldD":
     cflags_base.extend(["-O0", "-inline off", "-RTTI on", "-str reuse", "-enc SJIS", "-DDEBUG=1"])
-elif config.version == "RZDE01_00":
+elif config.version == "RZDE01_00" or config.version == "RZDE01_02":
     cflags_base.extend(["-O4,p", "-inline auto", "-ipa file", "-RTTI on", "-str reuse", "-enc SJIS"])
 else:
     cflags_base.extend(["-O4,p", "-inline auto", "-RTTI off", "-str reuse", "-multibyte"])
@@ -350,7 +350,7 @@ cflags_framework = [
 ]
 
 if config.version != "ShieldD":
-    if config.version == "RZDE01_00":
+    if config.version == "RZDE01_00" or config.version == "RZDE01_02":
         # TODO: whats the correct inlining flag? deferred looks better in some places, others not. something else wrong?
         cflags_framework.extend(["-inline noauto", "-O4,s", "-sym on"])
     else:
@@ -379,7 +379,7 @@ def MWVersion(cfg_version: str | None) -> str:
             return "GC/2.7"
         case "GZ2J01":
             return "GC/2.7"
-        case "RZDE01_00":
+        case "RZDE01_00", "RZDE01_02":
             # TODO: Find right compiler for Wii
             # GC/3.0a3 codegen seems better than Wii compilers, but it fails linking (linker version?) and can't handle multi-char constants
             # Potentially missing an early Wii compiler that had the earlier codegen and reverted char constant change?
