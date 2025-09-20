@@ -1,5 +1,5 @@
 /**
- * GCN_Mem_Alloc.c
+ * GCN_mem_alloc.c
  * Description:
  */
 
