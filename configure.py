@@ -1553,7 +1553,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_scene_exit"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_set_bgobj"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_swhit0"),
-    ActorRel(NonMatching, "d_a_tag_allmato"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_tag_allmato"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_tag_camera"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_tag_chkpoint"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_tag_event"),
