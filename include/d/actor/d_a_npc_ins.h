@@ -28,6 +28,13 @@ public:
     static daNpcIns_HIOParam const m;
 };
 
+struct insect_param_data {
+    int evt_bit_no;
+    s16 msg_no;
+    u8 field_0x6;
+    u8 field_0x7;
+};
+
 class daNpcIns_c : public daNpcF_c {
 public:
     typedef int (daNpcIns_c::*actionFunc)(void*);
@@ -56,13 +63,13 @@ public:
     /* 80A10CD8 */ int goHome(void*);
     /* 80A11378 */ int talk(void*);
     /* 80A11A7C */ int demo(void*);
-    /* 80A11BE8 */ void isInsectComplete();
-    /* 80A11C50 */ void getInsectParamData(int);
+    /* 80A11BE8 */ bool isInsectComplete();
+    /* 80A11C50 */ const insect_param_data& getInsectParamData(int);
     /* 80A11D44 */ void setWaitAction();
-    /* 80A11F84 */ void setPath(int);
-    /* 80A1211C */ BOOL checkPoint(cXyz&, f32);
-    /* 80A122D0 */ void setNextPoint();
-    /* 80A12480 */ void getTargetPoint(int, Vec*);
+    /* 80A11F84 */ bool setPath(int);
+    /* 80A1211C */ bool checkPoint(cXyz&, f32);
+    /* 80A122D0 */ bool setNextPoint();
+    /* 80A12480 */ inline void getTargetPoint(int, Vec*);
     /* 80A124D0 */ void pathMoveF();
     /* 80A12618 */ void setParam();
     /* 80A126D4 */ BOOL main();
@@ -73,6 +80,33 @@ public:
     /* 80A1339C */ void setMtx();
     /* 80A13460 */ int drawDbgInfo();
 
+    int getStartTime() { return fopAcM_GetParam(this) & 0xFF; }
+    int getEndTime() { return (fopAcM_GetParam(this) >> 8) & 0xFF; }
+    int getTimeHour() { return dKy_getdaytime_hour(); }
+    int getTimeMinute() { return dKy_getdaytime_minute(); }
+    int getTime() { return getTimeMinute() + getTimeHour() * 60; }
+    s16 getMessageNo() { return shape_angle.x; }
+    int getPathID1() { return (fopAcM_GetParam(this) >> 16) & 0xFF; }
+    int getPathID2() {  return fopAcM_GetParam(this) >> 24; }
+    inline BOOL setAction(actionFunc);
+    inline void waitEventMng();
+    inline BOOL step(s16, int);
+    void setLookMode(int i_lookMode) { if (i_lookMode >= 0 && i_lookMode < 4 && i_lookMode != mLookMode) mLookMode = i_lookMode; }
+    inline BOOL chkFindPlayer();
+    inline void checkPlayerSearch();
+    bool isInsect(int type) {
+        bool rv = false;
+
+        if (type >= 0xC0 && type <= 0xD7) {
+            rv = true;
+        }
+
+        return rv;
+    }
+    s16 getInsectMessageNo(int type) { return getInsectParamData(type).msg_no; }
+    u32 getInsectEvtBitNo(int type) { return getInsectParamData(type).evt_bit_no; }
+    inline void setExpressionTalkAfter();
+
     static eventFunc mEvtSeqList[1];
 
 private:
@@ -82,25 +116,26 @@ private:
     /* 0xBE0 */ daNpcF_MatAnm_c* mpMatAnm;
     /* 0xBE4 */ daNpcF_Lookat_c mLookat;
     /* 0xC80 */ daNpcF_ActorMngr_c mActorMngr[1];
-    /* 0xC88 */ u8 field_0xc88[0xc8c - 0xc88];
+    /* 0xC88 */ daNpcIns_HIO_c* mHIO;
     /* 0xC8C */ dCcD_Cyl mCyl;
-    /* 0xDC8 */ actionFunc mWaitAction;
-    /* 0xDD4 */ actionFunc field_0xdd4;
+    /* 0xDC8 */ actionFunc mAction;
+    /* 0xDD4 */ actionFunc mPrevAction;
     /* 0xDE0 */ request_of_phase_process_class mPhases[3];
     /* 0xDF8 */ fpc_ProcID mItemID;
-    /* 0xDFC */ u8 field_0xdfc[0xe04 - 0xdfc];
-    /* 0xE04 */ dPath* mpPath;
+    /* 0xDFC */ int field_0xdfc;
+    /* 0xE00 */ int field_0xe00;
+    /* 0xE04 */ dPath* mPath;
     /* 0xE08 */ int field_0xe08;
     /* 0xE0C */ f32 field_0xe0c;
     /* 0xE10 */ f32 field_0xe10;
     /* 0xE14 */ s16 field_0xe14;
     /* 0xE16 */ s16 field_0xe16;
-    /* 0xE18 */ s16 field_0xe18;
-    /* 0xE1A */ s16 field_0xe1a;
-    /* 0xE1C */ s16 field_0xe1c;
-    /* 0xE1E */ s16 field_0xe1e;
+    /* 0xE18 */ s16 mInsectMsgNo;
+    /* 0xE1A */ s16 mLookMode;
+    /* 0xE1C */ u16 mGoHomeTime;
+    /* 0xE1E */ u16 mMode;
     /* 0xE20 */ u8 field_0xe20;
-    /* 0xE21 */ u8 field_0xe21;
+    /* 0xE21 */ u8 mType;
 };
 
 STATIC_ASSERT(sizeof(daNpcIns_c) == 0xe24);

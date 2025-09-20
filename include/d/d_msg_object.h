@@ -548,6 +548,10 @@ inline bool dMsgObject_isMouthCheck() {
     return dMsgObject_getMsgObjectClass()->isMouthCheck();
 }
 
+inline void dMsgObject_setInsectItemNo(u8 i_insectItemNo) {
+    dMsgObject_getMsgObjectClass()->setInsectItemNo(i_insectItemNo);
+}
+
 class dMsgObject_HowlHIO_c {
 public:
     /* 80232AEC */ dMsgObject_HowlHIO_c();
