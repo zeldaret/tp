@@ -687,7 +687,7 @@ config.libs = [
             Object(NonMatching, "d/d_menu_dmap.cpp"),
             Object(Equivalent, "d/d_menu_dmap_map.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_menu_map_common.cpp"),
-            Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_menu_fishing.cpp"),
+            Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_menu_fishing.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_menu_fmap.cpp"),
             Object(NonMatching, "d/d_menu_fmap_map.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_menu_fmap2D.cpp"),
