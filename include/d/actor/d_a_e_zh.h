@@ -53,7 +53,7 @@ public:
     /* 8082E3E8 */ int _delete();
     /* 8082E4E4 */ int CreateHeap();
     /* 8082E730 */ cPhs__Step create();
-    /* 8082ECEC */ daE_ZH_c() {}
+    /* 8082ECEC */ daE_ZH_c();
 
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ mDoExt_McaMorfSO* mpModelMorf;
