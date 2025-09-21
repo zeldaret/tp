@@ -146,10 +146,6 @@ public:
     /* 0x0958 */ dCcD_Cps mCps;
     /* 0x0A9C */ dCcD_Cyl mCyl[4];
     /* 0x0F8C */ s16 mJoints[5];
-    // /* 0x0F8E */ s16 mBigGearJntNo;
-    // /* 0x0F90 */ s16 mSmallGear0JntNo;
-    // /* 0x0F92 */ s16 mSmallGear1JntNo;
-    // /* 0x0F94 */ s16 mSmallGear2JntNo;
     /* 0x0F96 */ s16 field_0xf96;
     /* 0x0F98 */ s16 field_0xf98;
     /* 0x0F9A */ s16 field_0xf9a;
@@ -202,7 +198,6 @@ public:
     /* 0x1034 */ JPABaseEmitter* field_0x1034;
     /* 0x1038 */ s8 field_0x1038;
     /* 0x1039 */ s8 field_0x1039;
-    /* 0x103A */ u8 field_0x103a[2];
     /* 0x103C */ cXyz field_0x103c;
     /* 0x1048 */ cXyz field_0x1048;
     /* 0x1054 */ cXyz field_0x1054;

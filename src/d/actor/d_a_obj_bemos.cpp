@@ -701,9 +701,6 @@ void daObjBm_c::calcBeamLenAndAt() {
 
 #if DEBUG
     f32 dVar4 = mpBtkAnm->getFrame();
-    // local_40 = (longlong)(int)(dVar4 + 0.5);
-    // uStack_34 = (int)(dVar4 + 0.5) ^ 0x80000000;
-    // local_38 = 0x43300000;
 #endif
 
     if (fopAcM_lc_c::lineCheck(&field_0xfb8, &cStack_5c, this) && fopAcM_lc_c::checkGroundHit()) {
@@ -798,26 +795,26 @@ s8 daObjBm_c::checkSearchPlayer() {
     f32 fVar1 = current.pos.y - player->current.pos.y;
     if (playerDistanceXZ > searchDistance) {
         return ret;
-    } else {
-        if (fVar1 < 0.0f) {
-            if (std::fabs(fVar1) > (1.0f - (playerDistanceXZ / searchDistance)) * l_eye_offset.y) {
-                return ret;
-            }
+    }
+
+    if (fVar1 < 0.0f) {
+        if (std::fabs(fVar1) > (1.0f - (playerDistanceXZ / searchDistance)) * l_eye_offset.y) {
+            return ret;
         }
+    }
 
-        if ((s16)abs((s16)(fopAcM_searchPlayerAngleY(this) - field_0xf96 - home.angle.y)) <
-            (s16)(search_angle / 2))
-        {
-            ret = 0;
-        }
+    if ((s16)abs((s16)(fopAcM_searchPlayerAngleY(this) - field_0xf96 - home.angle.y)) <
+        (s16)(search_angle / 2))
+    {
+        ret = 0;
+    }
 
-        if (ret == 0) {
-            cXyz eye(eyePos);
-            cXyz eye2(player->eyePos);
+    if (ret == 0) {
+        cXyz eye(eyePos);
+        cXyz eye2(player->eyePos);
 
-            if (fopAcM_lc_c::lineCheck(&eye, &eye2, this)) {
-                field_0xfe8 = 1;
-            }
+        if (fopAcM_lc_c::lineCheck(&eye, &eye2, this)) {
+            field_0xfe8 = 1;
         }
     }
 
@@ -907,15 +904,15 @@ void daObjBm_c::effectWait() {}
 /* 80BB0584-80BB0718 002304 0194+00 1/1 0/0 0/0 .text            initEffectSet0__9daObjBm_cFv */
 void daObjBm_c::initEffectSet0() {
     static u16 const eff_id_f[2] = {
-        0x8450,
-        0x8451,
+        dPa_RM(ID_ZF_S_BM_BROKENEYE_F_L),
+        dPa_RM(ID_ZF_S_BM_BROKENEYE_F_S),
     };
 
     static u16 const hit_eff_id[4] = {
-        0x85A2,
-        0x85A3,
-        0x85A4,
-        0x85A5,
+        dPa_RM(ID_ZF_S_BM_BROKENEYE_HIT01),
+        dPa_RM(ID_ZF_S_BM_BROKENEYE_HIT02),
+        dPa_RM(ID_ZF_S_BM_BROKENEYE_HIT03),
+        dPa_RM(ID_ZF_S_BM_BROKENEYE_HIT04),
     };
 
     csXyz i_rotation(home.angle);
@@ -931,8 +928,8 @@ void daObjBm_c::initEffectSet0() {
                               NULL, NULL);
     }
 
-    field_0xff8[0] = dComIfGp_particle_set(0x8453, &current.pos, &home.angle, &scale, 0xFF, NULL,
-                                           -1, NULL, NULL, NULL);
+    field_0xff8[0] = dComIfGp_particle_set(dPa_RM(ID_ZF_S_BM_BROKENSMK_F), &current.pos,
+                                           &home.angle, &scale, 0xFF, NULL, -1, NULL, NULL, NULL);
     if (field_0xff8[0] != NULL) {
         field_0xff8[0]->becomeImmortalEmitter();
     }
@@ -1333,7 +1330,8 @@ void daObjBm_c::actionWarning() {
 void daObjBm_c::initActionFindPlayer() {
     mpBrkAnm->init(mpModel->getModelData(), (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, 0x13),
                    1, 0, 1.0f, 0, -1);
-    field_0x1034 = dComIfGp_particle_set(0x8464, &current.pos, 0, 0, 0xff, 0, -1, 0, 0, 0);
+    field_0x1034 = dComIfGp_particle_set(dPa_RM(ID_ZF_S_BM_NESSENHEAT), &current.pos, 0, 0, 0xff, 0,
+                                         -1, 0, 0, 0);
     field_0x1038 = -1;
     fopAcM_seStart(this, Z2SE_EN_BM_FIND, 0);
     fopAcM_seStart(this, Z2SE_EN_BM_HEAT, 0);
@@ -1387,8 +1385,8 @@ void daObjBm_c::actionFindPlayer() {
 /* 80BB1960-80BB1BD0 0036E0 0270+00 1/1 0/0 0/0 .text            initActionAttack__9daObjBm_cFv */
 void daObjBm_c::initActionAttack() {
     static u16 const l_eff_id[2] = {
-        0x8467,
-        0x8468,
+        dPa_RM(ID_ZF_S_BM_NESSENSRC00),
+        dPa_RM(ID_ZF_S_BM_NESSENSRC01),
     };
 
     f32 dist = fopAcM_searchPlayerDistanceXZ(this);
@@ -1403,21 +1401,21 @@ void daObjBm_c::initActionAttack() {
     field_0xfe6 = 0;  // debug diff here
 
     if (field_0x102c == NULL)
-        field_0x102c = dComIfGp_particle_set(0x8461, &current.pos, NULL, NULL, 0xff, NULL, -1, NULL,
-                                             NULL, NULL);
+        field_0x102c = dComIfGp_particle_set(dPa_RM(ID_ZF_S_BM_GEARSPARK), &current.pos, NULL, NULL,
+                                             0xff, NULL, -1, NULL, NULL, NULL);
 
     if (field_0x1030 == NULL)
-        field_0x1030 = dComIfGp_particle_set(0x8460, &current.pos, NULL, NULL, 0xff, NULL, -1, NULL,
-                                             NULL, NULL);
+        field_0x1030 = dComIfGp_particle_set(dPa_RM(ID_ZF_S_BM_GEARROCK), &current.pos, NULL, NULL,
+                                             0xff, NULL, -1, NULL, NULL, NULL);
 
     if (field_0x102c != NULL) {
-        field_0x102c->setRateStep('\t');
+        field_0x102c->setRateStep(9);
         field_0x102c->setLifeTime(6);
         field_0x102c->setRate(6.5f);
     }
 
     if (field_0x1030 != NULL) {
-        field_0x1030->setRateStep('\x02');
+        field_0x1030->setRateStep(2);
         field_0x1030->setAwayFromCenterSpeed(32.0f);
     }
 
@@ -1436,14 +1434,14 @@ void daObjBm_c::initActionAttack() {
 /* 80BB1BD0-80BB248C 003950 08BC+00 1/0 0/0 0/0 .text            actionAttack__9daObjBm_cFv */
 void daObjBm_c::actionAttack() {
     static u16 const l_eff_id[2] = {
-        0x8462,
-        0x8463,
+        dPa_RM(ID_ZF_S_BM_NESSENBURN00),
+        dPa_RM(ID_ZF_S_BM_NESSENBURN01),
     };
 
     static u16 const l_eff_id2[3] = {
-        0x8465,
-        0x8466,
-        0x846B,
+        dPa_RM(ID_ZF_S_BM_NESSENSPLASH00),
+        dPa_RM(ID_ZF_S_BM_NESSENSPLASH01),
+        dPa_RM(ID_ZF_S_BM_NESSENSPLASH02),
     };
 
     f32 dVar17 = fopAcM_searchPlayerDistanceXZ(this);
@@ -1588,16 +1586,12 @@ void daObjBm_c::actionAttack() {
                 if (field_0x1010[i] != NULL) {
                     field_0x1010[i]->setGlobalRTMatrix(mDoMtx_stack_c::get());
                 }
-
-                // pfVar7 = i;
             }
 
             for (int i = 0; i < 3; i++) {
                 if (field_0x1020[i] != NULL) {
                     field_0x1020[i]->setGlobalRTMatrix(mDoMtx_stack_c::get());
                 }
-
-                // pfVar7 = i;
             }
 
             field_0x1054 = fopAcM_lc_c::getCross();
@@ -1725,8 +1719,8 @@ void daObjBm_c::actionDead() {
     case 4:
         if (!cLib_calcTimer(&field_0xfe5)) {
             mpBckAnm->setPlaySpeed(1.0f);
-            dComIfGp_particle_set(0x8469, &current.pos, NULL, NULL, 0xff, NULL, -1, NULL, NULL,
-                                  NULL);
+            dComIfGp_particle_set(dPa_RM(ID_ZF_S_BM_SMOKE), &current.pos, NULL, NULL, 0xff, NULL,
+                                  -1, NULL, NULL, NULL);
             field_0xfea = 5;
         }
         break;
@@ -1960,26 +1954,26 @@ int daObjBm_c::Delete() {
 }
 
 /* 80BB2EB8-80BB3078 004C38 01C0+00 1/0 0/0 0/0 .text            daObjBm_create1st__FP9daObjBm_c */
-static void daObjBm_create1st(daObjBm_c* i_this) {
+static int daObjBm_create1st(daObjBm_c* i_this) {
     fopAcM_SetupActor(i_this, daObjBm_c);
-    i_this->create1st();
+    return i_this->create1st();
 }
 
 /* 80BB33DC-80BB33FC 00515C 0020+00 1/0 0/0 0/0 .text            daObjBm_MoveBGDelete__FP9daObjBm_c
  */
-static void daObjBm_MoveBGDelete(daObjBm_c* i_this) {
-    i_this->MoveBGDelete();
+static int daObjBm_MoveBGDelete(daObjBm_c* i_this) {
+    return i_this->MoveBGDelete();
 }
 
 /* 80BB33FC-80BB341C 00517C 0020+00 1/0 0/0 0/0 .text            daObjBm_MoveBGExecute__FP9daObjBm_c
  */
-static void daObjBm_MoveBGExecute(daObjBm_c* i_this) {
-    i_this->MoveBGExecute();
+static int daObjBm_MoveBGExecute(daObjBm_c* i_this) {
+    return i_this->MoveBGExecute();
 }
 
 /* 80BB341C-80BB3448 00519C 002C+00 1/0 0/0 0/0 .text            daObjBm_MoveBGDraw__FP9daObjBm_c */
-static void daObjBm_MoveBGDraw(daObjBm_c* i_this) {
-    i_this->MoveBGDraw();
+static int daObjBm_MoveBGDraw(daObjBm_c* i_this) {
+    return i_this->MoveBGDraw();
 }
 
 /* 80BB3D84-80BB3DA4 -00001 0020+00 1/0 0/0 0/0 .data            daObjBm_METHODS */
