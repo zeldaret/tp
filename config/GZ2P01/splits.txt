@@ -1823,7 +1823,7 @@ JSystem/JAudio2/JASProbe.cpp:
 JSystem/JAudio2/JASReport.cpp:
 	.text       start:0x80291D64 end:0x80291E60
 	.bss        start:0x80433620 end:0x80433638
-	.sbss       start:0x804531E8 end:0x80453200
+	.sbss       start:0x804531E8 end:0x804531F8
 
 JSystem/JAudio2/JASCmdStack.cpp:
 	.text       start:0x80291E60 end:0x80292028
