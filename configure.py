@@ -47,7 +47,7 @@ VERSIONS = [
 
 # Versions to disable until properly configured
 DISABLED_VERSIONS = [
-    4,  # Wii USA Rev 2
+    #4,  # Wii USA Rev 2
     5,  # Wii PAL
     6,  # Wii JPN
     7,  # Wii KOR
@@ -259,7 +259,7 @@ cflags_base = [
 
 if config.version == "ShieldD":
     cflags_base.extend(["-O0", "-inline off", "-RTTI on", "-str reuse", "-enc SJIS", "-DDEBUG=1"])
-elif config.version == "RZDE01_00":
+elif config.version == "RZDE01_00" or config.version == "RZDE01_02":
     cflags_base.extend(["-O4,p", "-inline auto", "-ipa file", "-RTTI on", "-str reuse", "-enc SJIS"])
 else:
     cflags_base.extend(["-O4,p", "-inline auto", "-RTTI off", "-str reuse", "-multibyte"])
@@ -350,7 +350,7 @@ cflags_framework = [
 ]
 
 if config.version != "ShieldD":
-    if config.version == "RZDE01_00":
+    if config.version == "RZDE01_00" or config.version == "RZDE01_02":
         # TODO: whats the correct inlining flag? deferred looks better in some places, others not. something else wrong?
         cflags_framework.extend(["-inline noauto", "-O4,s", "-sym on"])
     else:
@@ -379,7 +379,7 @@ def MWVersion(cfg_version: str | None) -> str:
             return "GC/2.7"
         case "GZ2J01":
             return "GC/2.7"
-        case "RZDE01_00":
+        case "RZDE01_00", "RZDE01_02":
             # TODO: Find right compiler for Wii
             # GC/3.0a3 codegen seems better than Wii compilers, but it fails linking (linker version?) and can't handle multi-char constants
             # Potentially missing an early Wii compiler that had the earlier codegen and reverted char constant change?
@@ -1553,7 +1553,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_scene_exit"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_set_bgobj"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_swhit0"),
-    ActorRel(NonMatching, "d_a_tag_allmato"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_tag_allmato"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_tag_camera"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_tag_chkpoint"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_tag_event"),
@@ -1624,7 +1624,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_fmobj"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_gpTaru"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_hhashi"),
-    ActorRel(NonMatching, "d_a_obj_kanban2"),
+    ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_obj_kanban2"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_kbacket"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_kgate"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_klift00"),
@@ -1721,7 +1721,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_e_gb"),
     ActorRel(NonMatching, "d_a_e_ge"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_e_gi"),
-    ActorRel(NonMatching, "d_a_e_gm"),
+    ActorRel(MatchingFor("GZ2E01", "GZ2J01"), "d_a_e_gm"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_e_gob"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_e_gs"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_e_hb_leaf"),
@@ -1848,7 +1848,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_impal", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(NonMatching, "d_a_npc_inko"),
     ActorRel(NonMatching, "d_a_npc_ins"),
-    ActorRel(NonMatching, "d_a_npc_jagar"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_npc_jagar"),
     ActorRel(NonMatching, "d_a_npc_kasi_hana", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(NonMatching, "d_a_npc_kasi_kyu", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(NonMatching, "d_a_npc_kasi_mich", extra_cflags=[DANPCF_C_HACK]),
@@ -2154,7 +2154,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_smw_stone"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_snowEffTag"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_snow_soup"),
-    ActorRel(NonMatching, "d_a_obj_so"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_so"),
     ActorRel(NonMatching, "d_a_obj_spinLift"),
     ActorRel(NonMatching, "d_a_obj_ss_drink"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_ss_item"),
@@ -2164,8 +2164,8 @@ config.libs = [
     ActorRel(NonMatching, "d_a_obj_stopper2"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_suisya"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_sw"),
-    ActorRel(NonMatching, "d_a_obj_swBallA"),
-    ActorRel(NonMatching, "d_a_obj_swBallB"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_swBallA"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_swBallB"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_swBallC"),
     ActorRel(NonMatching, "d_a_obj_swLight"),
     ActorRel(NonMatching, "d_a_obj_swchain"),
@@ -2208,7 +2208,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_waterGate"),
     ActorRel(Equivalent, "d_a_obj_waterPillar"), # weak func order
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_waterfall"),
-    ActorRel(NonMatching, "d_a_obj_wchain"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_obj_wchain"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_wdStick"),
     ActorRel(NonMatching, "d_a_obj_web0"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_web1"),
