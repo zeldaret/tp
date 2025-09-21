@@ -722,7 +722,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_msg_scrn_howl.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_msg_scrn_jimaku.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_msg_scrn_kanban.cpp"),
-            Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_msg_scrn_light.cpp"),
+            Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_msg_scrn_light.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_msg_scrn_place.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_msg_scrn_staff.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_msg_scrn_talk.cpp"),

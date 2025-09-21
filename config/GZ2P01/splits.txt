@@ -1162,7 +1162,7 @@ d/d_msg_unit.cpp:
 	.rodata     start:0x8039AF48 end:0x8039AF68
 	.data       start:0x803C28D0 end:0x803C28E0
 	.bss        start:0x80432678 end:0x80432688
-	.sbss       start:0x80453090 end:0x804530A0
+	.sbss       start:0x80453090 end:0x80453098
 	.sdata2     start:0x80456B10 end:0x80456B28
 
 d/d_msg_scrn_3select.cpp:
@@ -1227,6 +1227,7 @@ d/d_msg_scrn_light.cpp:
 	.rodata     start:0x8039B368 end:0x8039B3D8
 	.data       start:0x803C2F78 end:0x803C2F90
 	.bss        start:0x80432688 end:0x804326E8
+	.sbss       start:0x80453098 end:0x804530A0
 	.sdata2     start:0x80456CA8 end:0x80456CB8
 
 d/d_msg_scrn_place.cpp:
