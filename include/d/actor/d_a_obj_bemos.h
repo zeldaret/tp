@@ -1,11 +1,11 @@
 #ifndef D_A_OBJ_BEMOS_H
 #define D_A_OBJ_BEMOS_H
 
-#include "f_op/f_op_actor_mng.h"
-#include "d/d_bg_s_movebg_actor.h"
 #include "d/d_bg_s_acch.h"
+#include "d/d_bg_s_movebg_actor.h"
 #include "d/d_bg_w.h"
 #include "d/d_cc_d.h"
+#include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_ext.h"
 
 /**
@@ -20,6 +20,7 @@ class daObjBm_c : public dBgS_MoveBgActor {
 public:
     typedef void (daObjBm_c::*procFunc)();
     typedef void (daObjBm_c::*modeFunc)();
+    typedef void (daObjBm_c::*effectFunc)();
 
     class BgcSrc_c {
     public:
@@ -46,7 +47,7 @@ public:
         /* 80BB0ED4 */ void wall_pos(fopAc_ac_c const*, daObjBm_c::BgcSrc_c const*, int, s16, f32);
         /* 80BB1154 */ bool chk_wall_pre(fopAc_ac_c const*, daObjBm_c::BgcSrc_c const*, int, s16);
 
-        static const daObjBm_c::BgcSrc_c M_lin5[];
+        static daObjBm_c::BgcSrc_c M_lin5[];
         static const daObjBm_c::BgcSrc_c M_lin20[];
 
         static dBgS_ObjGndChk M_gnd_work[23];
@@ -62,19 +63,21 @@ public:
         /* 0x180 */ State_e mState;
     };
 
-    u32 getMoveType() { return fopAcM_GetParamBit(this, 24, 4); }
-    s16 getHeadJoint() { return mHeadJntNo; }
-    s16 getBigGearJoint() { return mBigGearJntNo; }
-    s16 getSmallGear0Joint() { return mSmallGear0JntNo; }
-    s16 getSmallGear1Joint() { return mSmallGear1JntNo; }
-    s16 getSmallGear2Joint() { return mSmallGear2JntNo; }
-    s32 getSwNo() { return fopAcM_GetParamBit(this,0,8);}
-    s32 getSwNo2() { return fopAcM_GetParamBit(this,8,8);}
-    s32 getSwNo3() { return fopAcM_GetParamBit(this, 16,8); }
-    u32 getSearchDist() { return fopAcM_GetParamBit(this,28,4); }
-    u32 getBeamSearchDist() { return field_0x100a & 0xf; }
-    
-    /* 80BAE36C */ static void PPCallBack(fopAc_ac_c*, fopAc_ac_c*, s16, dBgW_Base::PushPullLabel);
+    u8 getMoveType() { return fopAcM_GetParamBit(this, 24, 4); }
+    s16 getHeadJoint() { return mJoints[0]; }
+    s16 getBigGearJoint() { return mJoints[1]; }
+    s16 getSmallGear0Joint() { return mJoints[2]; }
+    s16 getSmallGear1Joint() { return mJoints[3]; }
+    s16 getSmallGear2Joint() { return mJoints[4]; }
+    u8 getSwNo() { return fopAcM_GetParamBit(this, 0, 8); }
+    u8 getSwNo2() { return fopAcM_GetParamBit(this, 8, 8); }
+    u8 getSwNo3() { return fopAcM_GetParamBit(this, 16, 8); }
+    u8 getSearchDist() { return fopAcM_GetParamBit(this, 28, 4); }
+    u8 getBeamSearchDist() { return field_0x100a & 15; }
+    u8 checkLockOnCamera() { return (field_0x100a & 0x8000) >> 15; }
+
+    /* 80BAE36C */ static fopAc_ac_c* PPCallBack(fopAc_ac_c*, fopAc_ac_c*, s16,
+                                                 dBgW_Base::PushPullLabel);
     /* 80BAE5FC */ void initBaseMtx();
     /* 80BAE68C */ void setBaseMtx();
     /* 80BAE778 */ int Create();
@@ -119,10 +122,13 @@ public:
     /* 80BB248C */ void initActionDead();
     /* 80BB2700 */ void actionDead();
     /* 80BB2AB0 */ int Draw();
+#ifdef DEBUG
+    /* 0x000000 */ void debugDraw();
+#endif
     /* 80BB2C8C */ int Delete();
 
     static s16 const M_dir_base[4];
-// private:
+    // private:
     /* 0x05A0 */ request_of_phase_process_class mPhase;
     /* 0x05A8 */ J3DModel* mpModel;
     /* 0x05AC */ mDoExt_brkAnm* mpBrkAnm;
@@ -138,14 +144,14 @@ public:
     /* 0x07E4 */ dCcD_Stts mStts;
     /* 0x0820 */ dCcD_Sph mSph;
     /* 0x0958 */ dCcD_Cps mCps;
-    /* 0x0A9c */ dCcD_Cyl mCyl[4];
-    /* 0x0F8C */ s16 mHeadJntNo;
-    /* 0x0F8E */ s16 mBigGearJntNo;
-    /* 0x0F90 */ s16 mSmallGear0JntNo;
-    /* 0x0F92 */ s16 mSmallGear1JntNo;
-    /* 0x0F94 */ s16 mSmallGear2JntNo;
+    /* 0x0A9C */ dCcD_Cyl mCyl[4];
+    /* 0x0F8C */ s16 mJoints[5];
+    // /* 0x0F8E */ s16 mBigGearJntNo;
+    // /* 0x0F90 */ s16 mSmallGear0JntNo;
+    // /* 0x0F92 */ s16 mSmallGear1JntNo;
+    // /* 0x0F94 */ s16 mSmallGear2JntNo;
     /* 0x0F96 */ s16 field_0xf96;
-    /* 0x0F96 */ s16 field_0xf98;
+    /* 0x0F98 */ s16 field_0xf98;
     /* 0x0F9A */ s16 field_0xf9a;
     /* 0x0F9C */ s16 field_0xf9c;
     /* 0x0F9E */ s16 field_0xf9e;
@@ -173,17 +179,19 @@ public:
     /* 0x0FE9 */ u8 field_0xfe9;
     /* 0x0FEA */ u8 field_0xfea;
     /* 0x0FEB */ u8 field_0xfeb;
-    /* 0x0FEC */ u8 mMode;
+    /* 0x0FEC */ u8 field_0xfec;
     /* 0x0FED */ u8 field_0xfed;
-    /* 0x0FF0 */ f32 field_0xff0;
-    /* 0x0FF4 */ u8 field_0xff4[3];
+    /* 0x0FF0 */ u32 field_0xff0;
+    /* 0x0FF4 */ u8 field_0xff4;
+    /* 0x0FF5 */ u8 field_0xff5;
+    /* 0x0FF6 */ u8 field_0xff6;
     /* 0x0FF7 */ u8 field_0xff7;
     /* 0x0FF8 */ JPABaseEmitter* field_0xff8[2];
     /* 0x1000 */ f32 field_0x1000;
     /* 0x1004 */ f32 field_0x1004;
     /* 0x1008 */ u16 field_0x1008;
     /* 0x100A */ u16 field_0x100a;
-    /* 0x100C */ s16 field_0x100c;
+    /* 0x100C */ u16 field_0x100c;
     /* 0x100E */ u8 field_0x100e;
     /* 0x100F */ u8 field_0x100f;
     /* 0x1010 */ JPABaseEmitter* field_0x1010[2];
@@ -193,8 +201,11 @@ public:
     /* 0x1030 */ JPABaseEmitter* field_0x1030;
     /* 0x1034 */ JPABaseEmitter* field_0x1034;
     /* 0x1038 */ s8 field_0x1038;
-    /* 0x1039 */ u8 field_0x1039;
-    /* 0x103A */ u8 field_0x103a[0x1060 - 0x103a];
+    /* 0x1039 */ s8 field_0x1039;
+    /* 0x103A */ u8 field_0x103a[2];
+    /* 0x103C */ cXyz field_0x103c;
+    /* 0x1048 */ cXyz field_0x1048;
+    /* 0x1054 */ cXyz field_0x1054;
     /* 0x1060 */ Z2SoundObjSimple mSound;
     /* 0x1080 */ Z2SoundObjSimple mSound2;
     /* 0x10A0 */ cXyz field_0x10a0;
@@ -214,31 +225,5 @@ public:
 };
 
 STATIC_ASSERT(sizeof(daObjBm_c) == 0x1258);
-
-class daObjBm_HIO_c : public mDoHIO_entry_c {
-public:
-    daObjBm_HIO_c();
-
-    void genMessage(JORMContext*);
-
-    /* 0x08 */ cXyz mBeamScale;
-    /* 0x14 */ f32 mBeamLowerDistance;
-    /* 0x18 */ f32 mBeamMiddleDistance;
-    /* 0x1C */ f32 field_0x1C;
-    /* 0x20 */ f32 mSearchDistance;
-    /* 0x24 */ f32 mTargetOffsetDistance;
-    /* 0x28 */ s16 mSearchAngle;
-    /* 0x2A */ s16 mPatrolRotationSpeed;
-    /* 0x0C */ s16 mAttackRotationSpeed;
-    /* 0x2E */ s16 mNoSearchTimeAfterSwitchActivation;
-    /* 0x30 */ s16 mDetectionAngle;
-    /* 0x32 */ s16 mSearchSpeedOnDetection;
-    /* 0x34 */ f32 mBodyScale;
-    /* 0x38 */ f32 mSoundPositionMoveSpeed;
-    /* 0x3C */ u8 mNoSearchAttackTime;
-    /* 0x3D */ u8 mDebugDraw;
-    /* 0x3E */ u8 mCheckDraw;
-};
-
 
 #endif /* D_A_OBJ_BEMOS_H */
