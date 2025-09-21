@@ -71,14 +71,14 @@ public:
     /* 80A122D0 */ bool setNextPoint();
     /* 80A12480 */ inline void getTargetPoint(int, Vec*);
     /* 80A124D0 */ void pathMoveF();
-    /* 80A12618 */ void setParam();
-    /* 80A126D4 */ BOOL main();
-    /* 80A12A10 */ void playMotion();
-    /* 80A12DC8 */ BOOL ctrlBtk();
-    /* 80A12EA4 */ void setAttnPos();
-    /* 80A131AC */ void lookat();
-    /* 80A1339C */ void setMtx();
-    /* 80A13460 */ int drawDbgInfo();
+    /* 80A12618 */ inline void setParam();
+    /* 80A126D4 */ inline BOOL main();
+    /* 80A12A10 */ inline void playMotion();
+    /* 80A12DC8 */ inline BOOL ctrlBtk();
+    /* 80A12EA4 */ inline void setAttnPos();
+    /* 80A131AC */ inline void lookat();
+    /* 80A1339C */ inline void setMtx();
+    /* 80A13460 */ inline int drawDbgInfo();
 
     int getStartTime() { return fopAcM_GetParam(this) & 0xFF; }
     int getEndTime() { return (fopAcM_GetParam(this) >> 8) & 0xFF; }
@@ -106,6 +106,8 @@ public:
     s16 getInsectMessageNo(int type) { return getInsectParamData(type).msg_no; }
     u32 getInsectEvtBitNo(int type) { return getInsectParamData(type).evt_bit_no; }
     inline void setExpressionTalkAfter();
+    inline void playExpression();
+    BOOL chkAction(actionFunc action) { return action == mAction; }
 
     static eventFunc mEvtSeqList[1];
 
