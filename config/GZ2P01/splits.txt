@@ -768,7 +768,7 @@ d/actor/d_a_npc.cpp:
 	.rodata     start:0x80393E80 end:0x80394218
 	.data       start:0x803B5388 end:0x803B5860
 	.bss        start:0x804276A8 end:0x80427918
-	.sbss       start:0x80452F98 end:0x80452FC0
+	.sbss       start:0x80452F98 end:0x80452FB8
 	.sdata2     start:0x80455398 end:0x80455478
 
 d/actor/d_a_npc_cd.cpp:
@@ -777,6 +777,7 @@ d/actor/d_a_npc_cd.cpp:
 	.rodata     start:0x80394218 end:0x80394A50
 	.data       start:0x803B5860 end:0x803B7EA0
 	.bss        start:0x80427918 end:0x8042A5B0
+	.sbss       start:0x80452FB8 end:0x80452FC0
 	.sdata2     start:0x80455478 end:0x804554A0
 
 d/actor/d_a_npc_cd2.cpp:
