@@ -70,8 +70,8 @@ static int daObj_Ndoor_Execute(obj_ndoor_class* i_this) {
 }
 
 /* 80CA37A4-80CA37AC 0002E4 0008+00 1/0 0/0 0/0 .text daObj_Ndoor_IsDelete__FP15obj_ndoor_class */
-static bool daObj_Ndoor_IsDelete(obj_ndoor_class* i_this) {
-    return true;
+static int daObj_Ndoor_IsDelete(obj_ndoor_class* i_this) {
+    return 1;
 }
 
 /* 80CA37AC-80CA37DC 0002EC 0030+00 1/0 0/0 0/0 .text daObj_Ndoor_Delete__FP15obj_ndoor_class */
@@ -87,7 +87,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Obj_ndoor", 3);
 
     if (modelData == NULL) {
-        JUT_PANIC(305, "modelData != 0");
+        JUT_ASSERT(305, modelData != 0);
     }
 
     a_this->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
@@ -114,21 +114,20 @@ static int daObj_Ndoor_Create(fopAc_ac_c* i_this) {
     cPhs__Step phase = (cPhs__Step)dComIfG_resLoad(&a_this->mPhase, "Obj_ndoor");
 
     if (phase == cPhs_COMPLEATE_e) {
-        u8 uVar2 = fopAcM_GetParam(a_this);
-        OS_REPORT("OBJ_NDOOR PARAM %x\n", uVar2);
+        OS_REPORT("OBJ_NDOOR PARAM %x\n", fopAcM_GetParam(a_this));
         OS_REPORT("OBJ_NDOOR//////////////OBJ_NDOOR SET 1 !!\n");
 
         if (fopAcM_entrySolidHeap(i_this, useHeapInit, 0x820) == false) {
             OS_REPORT("//////////////OBJ_NDOOR SET NON !!\n");
             return cPhs_ERROR_e;
-        } else {
-            OS_REPORT("//////////////OBJ_NDOOR SET 2 !!\n");
-            a_this->mStts.Init(0xff, 0, a_this);
-            a_this->mSph.Set(cc_sph_src);
-            a_this->mSph.SetStts(&a_this->mStts);
-            fopAcM_SetMtx(a_this, a_this->mpModel->getBaseTRMtx());
-            daObj_Ndoor_Execute(a_this);
         }
+
+        OS_REPORT("//////////////OBJ_NDOOR SET 2 !!\n");
+        a_this->mStts.Init(0xff, 0, a_this);
+        a_this->mSph.Set(cc_sph_src);
+        a_this->mSph.SetStts(&a_this->mStts);
+        fopAcM_SetMtx(a_this, a_this->mpModel->getBaseTRMtx());
+        daObj_Ndoor_Execute(a_this);
     }
 
     return phase;
