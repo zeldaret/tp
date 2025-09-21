@@ -10,9 +10,11 @@
 #include "d/d_camera.h"
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
+#if DEBUG
 #include "d/d_debug_viewer.h"
+#endif
 #include "d/d_s_play.h"
-#include "dol2asm.h"
+#include "Z2AudioLib/Z2Instances.h"
 
 /* ############################################################################################## */
 /* 80BB37B8-80BB37C4 000000 000C+00 13/13 0/0 0/0 .rodata          l_eye_offset */
@@ -165,7 +167,6 @@ fopAc_ac_c* daObjBm_c::PPCallBack(fopAc_ac_c* i_bgActor, fopAc_ac_c* i_actorP, s
 }
 
 /* 80BAE4A8-80BAE5FC 000228 0154+00 1/1 0/0 0/0 .text            nodeCallBack__FP8J3DJointi */
-// NONMATCHING
 static int nodeCallBack(J3DJoint* i_joint, int param_2) {
     if (param_2 == 0) {
         int jnt_no = i_joint->getJntNo();
@@ -692,7 +693,6 @@ void daObjBm_c::calcBeamPos() {
 }
 
 /* 80BAFC08-80BAFF60 001988 0358+00 1/1 0/0 0/0 .text           calcBeamLenAndAt__9daObjBm_cFv */
-// NONMATCHING
 void daObjBm_c::calcBeamLenAndAt() {
     cXyz cStack_50 = field_0xfcc - field_0xfb8;
     cXyz cStack_5c(field_0xfb8);
@@ -732,7 +732,6 @@ void daObjBm_c::calcBeamLenAndAt() {
 }
 
 /* 80BAFFA8-80BB0104 001D28 015C+00 1/1 0/0 0/0 .text            checkFindPlayer__9daObjBm_cFv */
-// NONMATCHING
 s8 daObjBm_c::checkFindPlayer() {
     daPy_py_c* player = daPy_getPlayerActorClass();
     f32 searchDistance = getSearchDistance();
@@ -777,7 +776,6 @@ s8 daObjBm_c::checkFindPlayer() {
 }
 
 /* 80BB0104-80BB0260 001E84 015C+00 1/1 0/0 0/0 .text            checkSearchPlayer__9daObjBm_cFv */
-// NONMATCHING
 s8 daObjBm_c::checkSearchPlayer() {
     daPy_py_c* player = daPy_getPlayerActorClass();
     f32 searchDistance = getSearchDistance();
@@ -1144,6 +1142,10 @@ const daObjBm_c::BgcSrc_c daObjBm_c::Bgc_c::M_lin20[] = {
     {-0.75f, 0.25f, 0.0f, 0.0f}, {-0.75f, -0.25f, 0.0f, 0.0f},
 };
 
+static f32 dummy_rodata_5157() {
+    return -1000000000.0f;
+}
+
 /* 80BB3F9C-80BB4728 0000BC 078C+00 1/2 0/0 0/0 .bss             M_gnd_work__Q29daObjBm_c5Bgc_c */
 dBgS_ObjGndChk daObjBm_c::Bgc_c::M_gnd_work[23];
 
@@ -1153,9 +1155,13 @@ dBgS_WtrChk daObjBm_c::Bgc_c::M_wrt_work;
 /* 80BB4794-80BB51A4 0008B4 0A10+00 2/3 0/0 0/0 .bss             M_wall_work__Q29daObjBm_c5Bgc_c */
 dBgS_ObjLinChk daObjBm_c::Bgc_c::M_wall_work[23];
 
+static f32 dummy_rodata_5158() {
+    // needed for correct rodata ordering:
+    return 200.0f;
+}
+
 /* 80BB0ED4-80BB1154 002C54 0280+00 1/1 0/0 0/0 .text
  * wall_pos__Q29daObjBm_c5Bgc_cFPC10fopAc_ac_cPCQ29daObjBm_c8BgcSrc_cisf */
-// NONMATCHING - copied from d_a_obj_movebox
 void daObjBm_c::Bgc_c::wall_pos(fopAc_ac_c const* i_actor, daObjBm_c::BgcSrc_c const* i_bgcSrc,
                                 int i_num, s16 param_3, f32 param_4) {
     const s16 sp8C = i_actor->home.angle.y + param_3;
@@ -1380,6 +1386,10 @@ void daObjBm_c::actionFindPlayer() {
             initActionAttack();
         }
     }
+}
+
+static f32 dummy_rodata_5299() {
+    return 110.0f;
 }
 
 /* 80BB1960-80BB1BD0 0036E0 0270+00 1/1 0/0 0/0 .text            initActionAttack__9daObjBm_cFv */
@@ -2000,3 +2010,9 @@ extern actor_process_profile_definition g_profile_Obj_Bemos = {
     fopAc_ACTOR_e,           // mActorType
     fopAc_CULLBOX_CUSTOM_e,  // cullType
 };
+
+static void dummy_touch_work() {
+    static dBgS_ObjLinChk touch_work;
+}
+
+AUDIO_INSTANCES;
