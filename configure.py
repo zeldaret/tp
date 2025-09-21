@@ -668,7 +668,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_envse.cpp"),
             Object(Equivalent, "d/d_file_select.cpp"), # issue with J2DAnmTransform::getTransform
             Object(NonMatching, "d/d_file_sel_warning.cpp"),
-            Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_file_sel_info.cpp"),
+            Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_file_sel_info.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_bright_check.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_scope.cpp"),
             Object(Equivalent, "d/d_select_cursor.cpp"), # vtable padding
