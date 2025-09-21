@@ -644,7 +644,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_cc_mass_s.cpp"),
             Object(NonMatching, "d/d_cc_s.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_cc_uty.cpp"),
-            Object(MatchingFor("GZ2E01", "GZ2J01"), "d/d_cam_param.cpp"),
+            Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_cam_param.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_ev_camera.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_spline_path.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_item_data.cpp"),
