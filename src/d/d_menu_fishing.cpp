@@ -137,10 +137,25 @@ bool dMenu_Fishing_c::isSync() {
 
 /* 801C522C-801C52E4 1BFB6C 00B8+00 1/1 0/0 0/0 .text            init__15dMenu_Fishing_cFv */
 void dMenu_Fishing_c::init() {
+    #if VERSION == VERSION_GCN_PAL
+    BOOL isEnglish = FALSE;
+    if (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_ENGLISH) {
+        isEnglish = TRUE;
+    }
+    #endif
+
     for (int i = 0; i < MAX_FINDABLE_FISHES; i++) {
         if (dComIfGs_getFishNum(i) != 0) {
             // Fish has been caught once, display it along with it's params
+            #if VERSION == VERSION_GCN_PAL
+            if (isEnglish) {
+                setFishParam(i, dComIfGs_getFishNum(i), dComIfGs_getFishSize(i) / 2.54f);
+            } else {
+                setFishParam(i, dComIfGs_getFishNum(i), dComIfGs_getFishSize(i));
+            }
+            #else
             setFishParam(i, dComIfGs_getFishNum(i), dComIfGs_getFishSize(i));
+            #endif
             mpFishParent[i]->show();
         } else {
             // Fish hasn't been caught yet, don't display it and also hide params

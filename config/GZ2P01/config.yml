@@ -4654,6 +4654,18 @@ extract:
 - symbol: msg_data
   binary: assets/msg_data.bin
   header: assets/msg_data.h
+- symbol: msg_data_ge
+  binary: assets/msg_data_ge.bin
+  header: assets/msg_data_ge.h
+- symbol: msg_data_fr
+  binary: assets/msg_data_fr.bin
+  header: assets/msg_data_fr.h
+- symbol: msg_data_sp
+  binary: assets/msg_data_sp.bin
+  header: assets/msg_data_sp.h
+- symbol: msg_data_it
+  binary: assets/msg_data_it.bin
+  header: assets/msg_data_it.h
 - symbol: font_data
   binary: assets/font_data.bin
   header: assets/font_data.h

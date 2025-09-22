@@ -152,6 +152,20 @@ void mDoMtx_XrotM(Mtx mtx, s16 x) {
 }
 
 /* 8000C3DC-8000C434 006D1C 0058+00 5/5 24/24 809/809 .text            mDoMtx_YrotS__FPA4_fs */
+/**
+ * @brief Sets the given matrix to a rotation transformation around the Y-axis.
+ *
+ * This function constructs a 3x4 rotation matrix for rotating around the Y-axis by the specified angle.
+ * The matrix is filled directly with cosine and sine values computed from the angle.
+ *
+ * The resulting matrix layout is:
+ * - Row 0: cos(y), 0, sin(y), 0
+ * - Row 1: 0, 1, 0, 0
+ * - Row 2: -sin(y), 0, cos(y), 0
+ *
+ * @param mtx The 3x4 matrix to modify (output parameter).
+ * @param y The rotation angle as a signed 16-bit integer.
+ */
 void mDoMtx_YrotS(Mtx mtx, s16 y) {
     f32 l_cos = JMASCos(y);
     f32 l_sin = JMASSin(y);

@@ -41,7 +41,11 @@ static u8 const lit_3772[12] = {
 };
 
 /* 80D67BE0-80D67BE8 00000C 0006+02 3/3 0/0 0/0 .rodata          l_arcName */
-static char const l_arcName[6] = "Title";
+#if VERSION == VERSION_GCN_PAL
+static char const l_arcName[] = "TitlePal";
+#else
+static char const l_arcName[] = "Title";
+#endif
 
 static procFunc daTitleProc[6] = {
     &daTitle_c::loadWait_proc, &daTitle_c::logoDispWait, &daTitle_c::logoDispAnm,
@@ -52,7 +56,25 @@ static procFunc daTitleProc[6] = {
 daTit_HIO_c::daTit_HIO_c() {
     mPSScaleX = 1.0f;
     mPSScaleY = 1.0f;
+
+    #if VERSION == VERSION_GCN_PAL
+
+    switch (OSGetLanguage()) {
+    case OS_LANGUAGE_ENGLISH:
+    case OS_LANGUAGE_GERMAN:
+    case OS_LANGUAGE_SPANISH:
+    case OS_LANGUAGE_ITALIAN:
+    case OS_LANGUAGE_DUTCH:
+        mPSPosX = 303.0f;
+        break;
+    case OS_LANGUAGE_FRENCH:
+        mPSPosX = 304.0f;
+        break;
+    }
+    #else
     mPSPosX = 303.0f;
+    #endif
+
     mPSPosY = 347.0f;
     mAppear = 15;
     mArrow = 60;
