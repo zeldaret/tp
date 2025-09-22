@@ -162,16 +162,16 @@ static int jointHorseCallBack(J3DJoint* i_joint, int param_2) {
 
 /* 8099D72C-8099D80C 0000CC 00E0+00 1/1 0/0 0/0 .text jointFrontWheelCallBack__FP8J3DJointi */
 static int jointFrontWheelCallBack(J3DJoint* i_joint, int param_2) {
+    // NONMATCHING
     if (param_2 != 0) {
         return 1;
     }
 
-    J3DJoint* reg_r28 = i_joint;
-    int jointNo = reg_r28->getJntNo();
+    int jointNo = i_joint->getJntNo();
     J3DModel* model = j3dSys.getModel();
     daNpcCoach_c* i_this = (daNpcCoach_c*)model->getUserArea();
     csXyz* front_wheel_rot = i_this->getFrontWheelRot(jointNo);
-    cMtx_copy(model->getAnmMtx(jointNo), mDoMtx_stack_c::get());
+    MTXCopy(model->getAnmMtx(jointNo), mDoMtx_stack_c::get());
     mDoMtx_stack_c::YrotM(front_wheel_rot->y);
     mDoMtx_stack_c::ZrotM(front_wheel_rot->z);
     mDoMtx_stack_c::XrotM(front_wheel_rot->x);
@@ -183,16 +183,16 @@ static int jointFrontWheelCallBack(J3DJoint* i_joint, int param_2) {
 
 /* 8099D80C-8099D8EC 0001AC 00E0+00 1/1 0/0 0/0 .text jointRearWheelCallBack__FP8J3DJointi */
 static int jointRearWheelCallBack(J3DJoint* i_joint, int param_2) {
+    // NONMATCHING
     if (param_2 != 0) {
         return 1;
     }
 
-    J3DJoint* reg_r28 = i_joint;
-    int jointNo = reg_r28->getJntNo();
+    int jointNo = i_joint->getJntNo();
     J3DModel* model = j3dSys.getModel();
     daNpcCoach_c* i_this = (daNpcCoach_c*)model->getUserArea();
     csXyz* rear_wheel_rot = i_this->getRearWheelRot(jointNo);
-    cMtx_copy(model->getAnmMtx(jointNo), mDoMtx_stack_c::get());
+    MTXCopy(model->getAnmMtx(jointNo), mDoMtx_stack_c::get());
     mDoMtx_stack_c::YrotM(rear_wheel_rot->y);
     mDoMtx_stack_c::ZrotM(rear_wheel_rot->z);
     mDoMtx_stack_c::XrotM(rear_wheel_rot->x);
@@ -313,38 +313,34 @@ void daNpcCoach_c::hitFireArrow(cXyz i_pos) {
 
 /* 8099DBA4-8099DCE8 000544 0144+00 0/0 0/0 1/1 .text            deleteFireArrow__12daNpcCoach_cFUi */
 void daNpcCoach_c::deleteFireArrow(fpc_ProcID param_1) {
+    // NONMATCHING
     for (int i = 0; i < 5; i++) {
-        if (field_0x247c[i] != param_1) {
-            continue;
+        if (param_1 == field_0x247c[i]) break;
+    }
+    
+    field_0x2559 = 1;
+    mChCoach.mSound.startSound(Z2SE_COACH_HIT_WIND, 0, -1);
+
+    field_0x24c4 = (field_0x24c4 / attr().damage_durability - attr().damage_extinguish_level) * attr().damage_durability;
+
+    if (field_0x24c4 <= 0) {
+        field_0x24c4 = 0;
+        field_0x24c0 = 0;
+
+        for (int i = 0; i < 5; i++) {
+            if (field_0x247c[i] != fpcM_ERROR_PROCESS_ID_e) {
+                fopAcM_delete(field_0x247c[i]);
+                field_0x247c[i] = fpcM_ERROR_PROCESS_ID_e;
+            }
+        }
+    } else {
+        for (int i = 0; i < 5; i++) {
+            if (field_0x247c[i] != fpcM_ERROR_PROCESS_ID_e) {
+                ((daCoachFire_c*)fpcM_SearchByID(field_0x247c[i]))->setNoHitTimer();
+            }
         }
 
-        field_0x2559 = 1;
-        mChCoach.mSound.startSound(Z2SE_COACH_HIT_WIND, 0, -1);
-
-        mTotalDmgRecv = (mTotalDmgRecv / (attr().damage_durability / 20) - attr().damage_extinguish_level)
-                        * (attr().damage_durability / 20);
-
-        if (mTotalDmgRecv <= 0) {
-            mTotalDmgRecv = 0;
-            field_0x24c0 = 0;
-
-            for (int i = 0; i < 5; i++) {
-                if (field_0x247c[i] != fpcM_ERROR_PROCESS_ID_e) {
-                    fopAcM_delete(field_0x247c[i]);
-                    field_0x247c[i] = fpcM_ERROR_PROCESS_ID_e;
-                }
-            }
-        } else {
-            for (int i = 0; i < 5; i++) {
-                if (field_0x247c[i] != fpcM_ERROR_PROCESS_ID_e) {
-                    ((daCoachFire_c*)fpcM_SearchByID(field_0x247c[i]))->setNoHitTimer();
-                }
-            }
-
-            mChCoach.field_0x77c = 20;
-        }
-
-        break;
+        mChCoach.field_0x77c = 20;
     }
 }
 
@@ -434,91 +430,34 @@ static void* s_sub(void* i_actor, void* i_data) {
     return NULL;
 }
 
-/* 809A4078-809A43A0 006A18 0328+00 1/1 0/0 0/0 .text            initCollision__12daNpcCoach_cFv */
-void daNpcCoach_c::initCollision() {
-    static dCcD_SrcCyl const ccCylSrc = {
-        {
-            {0, {{0, 0, 0}, {0x2420, 0x11}, 0x79}},
-            {dCcD_SE_NONE, 0, 0, 0, 0},
-            {dCcD_SE_NONE, 0, 0, 0, 4},
-            0,
-        },
-        {
-            0.0f, 0.0f
-        }
-    };
-
-    static dCcD_SrcSph const ccSphSrc = {
-        {
-            {0, {{0, 0, 0}, {0x10000, 0x11}, 0}},
-            {dCcD_SE_NONE, 0, 0, 0, 0},
-            {dCcD_SE_NONE, 0, 0, 0, 4},
-            0,
-        },
-        {
-            {{0.0f, 0.0f, 0.0f}, 50.0f},
-        }
-    };
-    mAcchCir.SetWall(45.0f, 50.0f);
-    mChHorse.mBgc.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this),
-                      fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
-    mChHorse.mBgc.SetRoofNone();
-    mChHorse.mBgc.SetWaterNone();
-    mChHorse.mBgc.SetWallNone();
-    mChHorse.mBgc.OnLineCheckNone();
-    mChHorse.mBgc.CrrPos(dComIfG_Bgsp());
-    mStts.Init(0xFF, 0xFF, this);
-
-    for (int i = 0; i < 4; i++) {
-        mChHorse.field_0x1f0[i].Set(ccCylSrc);
-        mChHorse.field_0x1f0[i].SetStts(&mStts);
-        mChHorse.field_0x1f0[i].SetR(45.0f);
-        mChHorse.field_0x1f0[i].SetH(250.0f);
+/* 809A4F78-809A4FBC 0000A8 0044+00 1/1 0/0 0/0 .rodata              ccCylSrc$localstatic3$initCollision__12daNpcCoach_cFv */
+static dCcD_SrcCyl const ccCylSrc = {
+    {
+        {0, {{0, 0, 0}, {0x2420, 0x11}, 0x79}},
+        {dCcD_SE_NONE, 0, 0, 0, 0},
+        {dCcD_SE_NONE, 0, 0, 0, 4},
+        0,
+    },
+    {
+        0.0f, 0.0f
     }
+};
 
-    mChHarness.mBgc.Set(&mChHarness.field_0x6e0, &mChHarness.field_0x6ec, this, 1, &mAcchCir, &mChHarness.field_0x6d4, &mChHarness.field_0x700, &mChHarness.field_0x700);
-    mChHarness.mBgc.SetRoofNone();
-    mChHarness.mBgc.SetWaterNone();
-    mChHarness.mBgc.SetWallNone();
-    mChHarness.mBgc.OnLineCheckNone();
-    mChHarness.mBgc.OffClrSpeedY();
-    mChHarness.mBgc.SetGroundCheckOffset(150.0f);
-    mChHarness.mBgc.CrrPos(dComIfG_Bgsp());
-    mChHarness.field_0x564.Set(ccCylSrc);
-    mChHarness.field_0x564.SetStts(&mStts);
-    mChHarness.field_0x564.SetR(85.0f);
-    mChHarness.field_0x564.SetH(120.0f);
-    mChHarness.field_0x6a0->SetCrrFunc(dBgS_MoveBGProc_TypicalRotY);
-    dComIfG_Bgsp().Regist(mChHarness.field_0x6a0, this);
-
-    mChCoach.mBgc.Set(&mChCoach.field_0x5e0, &mChCoach.field_0x5ec, this, 1, &mAcchCir, &mChCoach.field_0x5c8, &mChCoach.field_0x79a, &mChCoach.field_0x79a);
-    mChCoach.mBgc.SetRoofNone();
-    mChCoach.mBgc.SetWaterNone();
-    mChCoach.mBgc.SetWallNone();
-    mChCoach.mBgc.OnLineCheckNone();
-    mChCoach.mBgc.OffClrSpeedY();
-    mChCoach.mBgc.SetGroundCheckOffset(150.0f);
-    mChCoach.mBgc.CrrPos(dComIfG_Bgsp());
-    mChCoach.field_0x564->SetCrrFunc(dBgS_MoveBGProc_TypicalRotY);
-    mChCoach.field_0x564->SetArrowStickCallback(arrowStickCallBack);
-    dComIfG_Bgsp().Regist(mChCoach.field_0x564, this);
-    mChCoach.field_0x644.Set(ccSphSrc);
-    mChCoach.field_0x644.SetStts(&mStts);
-    mChCoach.field_0x644.SetC(eyePos);
-    mChCoach.field_0x644.SetR(50.0f);
-
-    for (int i = 0; i < 2; i++) {
-        mChYelia.field_0x41c[i].Set(ccCylSrc);
-        mChYelia.field_0x41c[i].SetStts(&mStts);
-        mChYelia.field_0x41c[i].SetR(45.0f);
-
-        f32 h = i == 0 ? 100.0f : 50.0f;
-        mChYelia.field_0x41c[i].SetH(h);
+/* 809A4FBC-809A4FFC 0000EC 0040+00 1/1 0/0 0/0 .rodata              ccSphSrc$localstatic4$initCollision__12daNpcCoach_cFv */
+static dCcD_SrcSph const ccSphSrc = {
+    {
+        {0, {{0, 0, 0}, {0x10000, 0x11}, 0}},
+        {dCcD_SE_NONE, 0, 0, 0, 0},
+        {dCcD_SE_NONE, 0, 0, 0, 4},
+        0,
+    },
+    {
+        {{0.0f, 0.0f, 0.0f}, 50.0f},
     }
-}
+};
 
 
-BOOL daNpcChPath_c::setPath(int path_index, int room_no, cXyz& i_vec, bool param_4) {
+inline BOOL daNpcChPath_c::setPath(int path_index, int room_no, cXyz* param_3, bool param_4) {
     mpPath = dPath_GetRoomPath(path_index, room_no);
 
     if (mpPath == NULL) {
@@ -528,15 +467,13 @@ BOOL daNpcChPath_c::setPath(int path_index, int room_no, cXyz& i_vec, bool param
     mCurrentID = path_index;
     mPntIndex = 0;
 
-    // Is this really what the Nintendo devs wrote?? The debug ROM suggests as such.
-    if (param_4 && &i_vec) {
+    if (param_4 && param_3 != NULL) {
         f32 fVar1 = 1000000000.0f;
         for (int pnt_index = 0; pnt_index < mpPath->m_num; pnt_index++) {
-            dPnt* pnt = dPath_GetPnt(mpPath, pnt_index);
-            f32 fVar2 = i_vec.abs2(pnt->m_position);
+            f32 fVar2 = param_3->abs2(dPath_GetPnt(mpPath, pnt_index)->m_position);
             if (fVar2 < fVar1) {
-                fVar1 = fVar2;
                 mPntIndex = pnt_index;
+                fVar1 = fVar2;
             }
         }
 
@@ -545,9 +482,8 @@ BOOL daNpcChPath_c::setPath(int path_index, int room_no, cXyz& i_vec, bool param
 
     field_0x8 = 1000000000.0f;
 
-    // ditto.
-    if (&i_vec) {
-        field_0x4 = &i_vec;
+    if (param_3 != NULL) {
+        field_0x4 = param_3;
         cXyz targetPoint;
         getTargetPoint(targetPoint);
         field_0x8 = field_0x4->abs(targetPoint);
@@ -558,7 +494,8 @@ BOOL daNpcChPath_c::setPath(int path_index, int room_no, cXyz& i_vec, bool param
 
 /* 8099E138-8099E4A0 000AD8 0368+00 2/2 0/0 0/0 .text            changeAtherPath__12daNpcCoach_cFScR4cXyzR5csXyz */
 void daNpcCoach_c::changeAtherPath(s8 path_index, cXyz& param_2, csXyz& param_3) {
-    mChPath.setPath(path_index, fopAcM_GetRoomNo(this), param_2, true);
+    // NONMATCHING
+    mChPath.setPath(path_index, fopAcM_GetRoomNo(this), &param_2, true);
 
     if (mChPath.isPath()) {
         mPathID = path_index;
@@ -566,13 +503,11 @@ void daNpcCoach_c::changeAtherPath(s8 path_index, cXyz& param_2, csXyz& param_3)
         cXyz targetPoint;
         mChPath.getTargetPoint(targetPoint);
 
-        int dist_ang = cLib_distanceAngleS(param_3.y, cLib_targetAngleY(&param_2, &targetPoint));
-        if (dist_ang >= 0x4000) {
+        if (cLib_distanceAngleS(param_3.y, cLib_targetAngleY(&param_2, &targetPoint)) >= 0x4000) {
             mChPath.setNextPoint();
             mChPath.getTargetPoint(targetPoint);
-
-            int o_dist_ang = cLib_distanceAngleS(shape_angle.y, cLib_targetAngleY(&param_2, &targetPoint));
-            if (o_dist_ang >= 0x4000) {
+            
+            if (cLib_distanceAngleS(shape_angle.y, cLib_targetAngleY(&param_2, &targetPoint)) >= 0x4000) {
                 mChPath.setPrevPoint();
             }
         }
@@ -604,118 +539,10 @@ static struct {
     {BCK_HU_RUN_FAST, 40.0f, 2.8f, -1, 40.0f, 2.8f},
 };
 
-/* 8099F1B8-8099F4BC 001B58 0304+00 1/1 0/0 0/0 .text            setCoachBlazing__12daNpcCoach_cFUc */
-void daNpcCoach_c::setCoachBlazing(u8 damage) {
-    static u16 const ParticleName[10] = {
-        0x85F0, 0x85EF, 0x85E7, 0x85E8, 0x85E9,
-        0x85EA, 0x85EB, 0x85EC, 0x85ED, 0x85EE,
-    };
-
-    // I beg your pardon Nintendo devs, but u8s cannot go higher than 0xff...
-    JUT_ASSERT(2502, damage <= 0xff);
-    f32 reg_f31 = 0.0f;
-    f32 reg_f30 = 0.0f;
-    int reg_r27 = 0;
-    int reg_r26 = 0;
-    int reg_r29 = damage / 63;
-
-    if (damage == 0) {
-        reg_r29 = 2;
-        mCoachBlazing = false;
-        reg_r27 = 0;
-        reg_f31 = 0.0f;
-        reg_r26 = 0;
-        reg_f30 = 0.0f;
-        attention_info.flags = 0;
-    } else if (mCoachBlazing) {
-        switch (reg_r29) {
-            case 0:
-                reg_r29 = 4;
-                reg_f31 = 0.0f;
-                reg_f30 = 0.0f;
-                break;
-
-            case 1:
-                reg_r29 = 5;
-                reg_f31 = 0.0f;
-                reg_f30 = 1.5f;
-                break;
-
-            case 2:
-                reg_r29 = 7;
-                reg_f31 = 0.4f;
-                reg_f30 = 1.5f;
-                break;
-
-            case 3:
-            case 4:
-                reg_r29 = 10;
-                reg_f31 = 0.6f;
-                reg_f30 = 1.5f;
-                break;
-
-            default:
-                JUT_ASSERT(2552, 0);
-                break;
-        }
-
-        reg_r27 = (u8) damage;
-        reg_r26 = (u8) damage;
-    } else if (reg_r29 == 1) {
-        reg_r29 = 5;
-        mCoachBlazing = true;
-        reg_r27 = damage;
-        reg_f31 = 0.0f;
-        reg_r26 = 0;
-        reg_f30 = 0.0f;
-        attention_info.flags = fopAc_AttnFlag_CHECK_e | fopAc_AttnFlag_LOCK_e;
-    } else {
-        reg_r29 = 2;
-        reg_r27 = 0;
-        reg_f31 = 0.0f;
-        reg_r26 = 0;
-        reg_f30 = 0.0f;
-        attention_info.flags = 0;
-    }
-
-    cXyz work;
-
-    mDoMtx_stack_c::copy(mChCoach.mCoachModel->getAnmMtx(JNT_COACH_BODY));
-    mDoMtx_stack_c::multVecZero(&work);
-
-    int i;
-    for (i = 2; i < reg_r29; i++) {
-        if (mChCoach.field_0x5f8[i] == NULL) {
-            mChCoach.field_0x5f8[i] = dComIfGp_particle_set(ParticleName[i], &work,
-                                                            &mChCoach.field_0x79a, NULL);
-            if (mChCoach.field_0x5f8[i] != NULL) {
-                mChCoach.field_0x5f8[i]->becomeImmortalEmitter();
-            }
-        }
-    }
-
-    i = reg_r29;
-    for (; i < 10; i++) {
-        if (mChCoach.field_0x5f8[i] != NULL) {
-            mChCoach.field_0x5f8[i]->becomeInvalidEmitter();
-            mChCoach.field_0x5f8[i] = NULL;
-        }
-    }
-
-    for (i = 0; i < 10; i++) {
-        if (mChCoach.field_0x5f8[i] != NULL) {
-            mChCoach.field_0x5f8[i]->setGlobalRTMatrix(mChCoach.mCoachModel->getAnmMtx(JNT_COACH_BODY));
-        }
-    }
-
-    mChCoach.field_0x5d4 = mChCoach.field_0x5c8 * 0.8f;
-    mChCoach.field_0x5f8[0]->setGlobalAlpha(reg_r27);
-    mChCoach.field_0x5f8[0]->setRate(reg_f31);
-    mChCoach.field_0x5f8[0]->setUserWork((uintptr_t)&mChCoach.field_0x5d4);
-    mChCoach.field_0x5f8[1]->setGlobalAlpha(reg_r26);
-    mChCoach.field_0x5f8[1]->setRate(reg_f30);
-    mChCoach.field_0x5f8[1]->setUserWork((uintptr_t)&mChCoach.field_0x5d4);
-}
+static u16 const ParticleName[10] = {
+    0x85F0, 0x85EF, 0x85E7, 0x85E8, 0x85E9,
+    0x85EA, 0x85EB, 0x85EC, 0x85ED, 0x85EE,
+};
 
 /* 8099E4C0-8099EAD8 000E60 0618+00 1/1 0/0 0/0 .text            createHeap__12daNpcCoach_cFv */
 int daNpcCoach_c::createHeap() {
@@ -846,14 +673,14 @@ static int daNpcCoach_Execute(daNpcCoach_c* i_this) {
     return i_this->execute();
 }
 
-void daNpcCoach_c::setDriverMtx() {
+inline void daNpcCoach_c::setDriverMtx() {
     daNpcTheB_c* telmaB_p = (daNpcTheB_c*)fpcM_SearchByID(parentActorID);
     if (telmaB_p != NULL) {
         telmaB_p->setTRMtx(mChCoach.mCoachModel->getAnmMtx(JNT_COACH_TERUMA_LOC));
     }
 }
 
-void daNpcCoach_c::calcYeliaMotion() {
+inline void daNpcCoach_c::calcYeliaMotion() {
     J3DAnmTransform* i_bck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, BCK_YELIA_WAIT);
     J3DAnmTransform* i_bck2 = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, BCK_YELIA_BEND);
 
@@ -898,7 +725,7 @@ int daNpcCoach_c::execute() {
         }
     }
 
-    if (mTotalDmgRecv > 0) {
+    if (field_0x24c4 > 0) {
         if (iVar1 == 0) {
             work = eyePos;
         } else {
@@ -931,25 +758,25 @@ int daNpcCoach_c::execute() {
 void daNpcCoach_c::checkCoachDamage() {
     if (field_0x24c0 > 0) {
         if (!dComIfGp_event_runCheck() && getRailID() != 8) {
-            mTotalDmgRecv += attr().damage_reduction;
+            field_0x24c4 += attr().damage_reduction;
 
-            if (mTotalDmgRecv > attr().damage_durability) {
-                mTotalDmgRecv = attr().damage_durability;
+            if (field_0x24c4 > attr().damage_durability) {
+                field_0x24c4 = attr().damage_durability;
             }
         }
 
-        mChCoach.mSound.startFireSound(mTotalDmgRecv);
+        mChCoach.mSound.startFireSound(field_0x24c4);
         mChYelia.mSound.startCreatureVoiceLevel(Z2SE_YELIA_V_KYAAA_LOOP, -1);
         dComIfGs_onSaveDunSwitch(0x37);
     } else {
-        mTotalDmgRecv = 0;
+        field_0x24c4 = 0;
         dComIfGs_offSaveDunSwitch(0x37);
     }
 
-    u8 uVar1 = mTotalDmgRecv * 0xFF / attr().damage_durability;
+    u8 uVar1 = field_0x24c4 * 0xFF / attr().damage_durability;
 
-    if (field_0x1dc0 < mTotalDmgRecv) {
-        field_0x1dc0 = mTotalDmgRecv;
+    if (field_0x1dc0 < field_0x24c4) {
+        field_0x1dc0 = field_0x24c4;
 
         if (field_0x1dc0 < attr().damage_durability / 2) {
             field_0x1dc5 = 0xFF - ((field_0x1dc0 * 0xFF) / attr().damage_durability << 1);
@@ -965,12 +792,12 @@ void daNpcCoach_c::checkCoachDamage() {
     }
 
     setCoachBlazing(uVar1);
-    ((daCoach2D_c*)fpcM_SearchByID(field_0x2554))->setHitCount((mTotalDmgRecv / (attr().damage_durability / 20)));
+    ((daCoach2D_c*)fpcM_SearchByID(field_0x2554))->setHitCount((field_0x24c4 / (attr().damage_durability / 20)));
 
-    if (mTotalDmgRecv >= attr().damage_durability) {
+    if (field_0x24c4 >= attr().damage_durability) {
         fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
         mChHorse.field_0x784 = 0.0f;
-
+        
         daNpcTheB_c* telmaB_p = (daNpcTheB_c*)fpcM_SearchByID(parentActorID);
         if (telmaB_p != NULL) {
             mChCoach.field_0x5f8[0]->setParticleCallBackPtr(NULL);
@@ -988,7 +815,7 @@ void daNpcCoach_c::checkCoachDamage() {
                 field_0x2558 = 0;
             }
         }
-    } else if (mTotalDmgRecv > 0 && !dComIfGs_isSaveDunSwitch(0x28)) {
+    } else if (field_0x24c4 > 0 && !dComIfGs_isSaveDunSwitch(0x28)) {
         coach2D_p = (daCoach2D_c*)fpcM_SearchByID(field_0x2554);
         if (coach2D_p != NULL) {
             coach2D_p->setMaxHitCount(20);
@@ -998,25 +825,121 @@ void daNpcCoach_c::checkCoachDamage() {
     }
 
     if (field_0x2559 == 0) {
-        if (mTotalDmgRecv > attr().damage_durability / 4) {
+        if (field_0x24c4 > attr().damage_durability / 4) {
             dMeter2Info_setFloatingMessage(0x13EB, 150, false);
             field_0x2559 = 1;
         }
     }
 }
 
+/* 8099F1B8-8099F4BC 001B58 0304+00 1/1 0/0 0/0 .text            setCoachBlazing__12daNpcCoach_cFUc */
+void daNpcCoach_c::setCoachBlazing(u8 param_1) {
+    // NONMATCHING
+    f32 fVar1 = 0.0f;
+    f32 fVar2 = 0.0f;
+    int uVar1 = param_1 / 63;
+    u8 uVar2;
+
+    if (param_1 == 0) {
+        uVar1 = 2;
+        mCoachBlazing = false;
+        param_1 = 0;
+        uVar2 = 0;
+        attention_info.flags = 0;
+    } else if (mCoachBlazing) {
+        switch (uVar1) {
+            case 0:
+                uVar1 = 4;
+                break;
+
+            case 1:
+                uVar1 = 5;
+                fVar2 = 1.5f;
+                break;
+
+            case 2:
+                uVar1 = 7;
+                fVar1 = 0.4f;
+                fVar2 = 1.5f;
+                break;
+
+            case 3:
+            case 4:
+                uVar1 = 10;
+                fVar1 = 0.6f;
+                fVar2 = 1.5f;
+                break;
+
+            default:
+                JUT_ASSERT(2552, 0);
+                break;
+        }
+    } else if (uVar1 == 1) {
+        uVar1 = 5;
+        mCoachBlazing = true;
+        uVar2 = 0;
+        attention_info.flags = fopAc_AttnFlag_CHECK_e | fopAc_AttnFlag_LOCK_e;
+    } else {
+        uVar1 = 2;
+        param_1 = 0;
+        uVar2 = 0;
+        attention_info.flags = 0;
+    }
+
+    cXyz work;
+
+    mDoMtx_stack_c::copy(mChCoach.mCoachModel->getAnmMtx(JNT_COACH_BODY));
+    mDoMtx_stack_c::multVecZero(&work);
+
+    for (int i = 2; i < uVar1; i++) {
+        if (mChCoach.field_0x5f8[i] == NULL) {
+            mChCoach.field_0x5f8[i] = dComIfGp_particle_set(ParticleName[i], &work,
+                                                            &mChCoach.field_0x79a, NULL);
+            if (mChCoach.field_0x5f8[i] != NULL) {
+                mChCoach.field_0x5f8[i]->becomeImmortalEmitter();
+            }
+        }
+    }
+
+    for (; uVar1 < 10; uVar1++) {
+        if (mChCoach.field_0x5f8[uVar1] != NULL) {
+            mChCoach.field_0x5f8[uVar1]->becomeInvalidEmitter();
+            mChCoach.field_0x5f8[uVar1] = NULL;
+        }
+    }
+
+    for (int i = 0; i < 10; i++) {
+        if (mChCoach.field_0x5f8[i] != NULL) {
+            mChCoach.field_0x5f8[i]->setGlobalRTMatrix(mChCoach.mCoachModel->getAnmMtx(JNT_COACH_BODY));
+        }
+    }
+
+    mChCoach.field_0x5d4 = mChCoach.field_0x5c8 * 0.8f;
+    mChCoach.field_0x5f8[0]->setGlobalAlpha(param_1);
+    mChCoach.field_0x5f8[0]->setRate(fVar1);
+    mChCoach.field_0x5f8[0]->setUserWork((uintptr_t)&mChCoach.field_0x5d4);
+    mChCoach.field_0x5f8[1]->setGlobalAlpha(uVar2);
+    mChCoach.field_0x5f8[1]->setRate(fVar2);
+    mChCoach.field_0x5f8[1]->setUserWork((uintptr_t)&mChCoach.field_0x5d4);
+}
+
 /* 8099F4BC-8099F988 001E5C 04CC+00 1/1 0/0 0/0 .text            reinsExecute__12daNpcCoach_cFv */
 void daNpcCoach_c::reinsExecute() {
+    // NONMATCHING
     daNpcChReins_c* reins = &mChHorse.mChReins;
-    if (reins->field_0x16c <= 1) {
-        if (++reins->field_0x16c > 1) {
+    if (mChHorse.mChReins.field_0x16c <= 1) {
+        s8 sVar1 = mChHorse.mChReins.field_0x16c + 1;
+        reins->field_0x16c = sVar1;
+
+        if (sVar1 > 1) {
             reinsInit();
         }
     } else {
         daNpcTheB_c* telmaB_p = (daNpcTheB_c*)fpcM_SearchByID(parentActorID);
         cXyz sp24, sp30, sp3c;
-        cXyz sp48(attr().field_0x4c);
-        mDoMtx_stack_c::copy(mChHorse.mpModelMorf->getModel()->getAnmMtx(attr().field_0x60));
+        cXyz sp48(attr().field_0x4c, attr().field_0x50, attr().field_0x54);
+        s16 sVar2 = attr().field_0x60;
+        mDoMtx_stack_c::copy(mChHorse.mpModelMorf->getModel()->getAnmMtx(sVar2));
         mDoMtx_stack_c::multVec(&sp48, &sp48);
         reins->field_0x170 = sp48;
         reins->field_0x168 = attr().field_0x48;
@@ -1030,61 +953,61 @@ void daNpcCoach_c::reinsExecute() {
 
             mDoMtx_stack_c::copy(mChHorse.mpModelMorf->getModel()->getAnmMtx(JNT_HORSE_HEAD));
             mDoMtx_stack_c::multVec(&sp24, &sp24);
-
+            
             if (telmaB_p != NULL) {
                 sp30 = telmaB_p->getHandPos2(i);
             }
 
-            cXyz* sp_0x34 = reins->field_0x0.getPos(i);
-            cXyz* sp_0x30 = &reins->field_0x78[i][0];
-            cXyz* sp_0x2c = &reins->field_0xf0[i][0];
+            cXyz* pcVar1 = reins->field_0x0.getPos(i);
+            cXyz* pcVar2 = reins->field_0xf0;
             cXyz sp54;
-            *sp_0x34 = sp24;
-            ++sp_0x34;
+            *pcVar1 = sp24;
 
-            for (int j = 1; j < 6; j++, sp_0x34++, sp_0x30++, sp_0x2c++) {
-                sp3c = *sp_0x34 - sp48;
+            cXyz* pcVar3;
+            for (int j = 1; j < 6; j++, pcVar3 = pcVar1++, pcVar2++, pcVar1 = pcVar3) {
+                sp3c = *pcVar3 - sp48;
                 sp3c.normalizeZP();
                 sp3c *= attr().field_0x5c;
                 sp3c.y = 0.0f;
-                sp54 = *sp_0x34 - *(sp_0x34 - 1);
+                sp54 = *pcVar3 - *pcVar1;
                 sp54.y += gravity;
-                sp54 += *sp_0x2c + sp3c;
+                sp54 += *pcVar2 + sp3c;
                 sp54.normalizeZP();
-                *sp_0x34 = *(sp_0x34 - 1) + (sp54 * reins->field_0x168);
+                *pcVar3 = *pcVar1 + (sp54 * reins->field_0x168);
             }
 
-            *sp_0x34 = sp30;
-            sp_0x34 = reins->field_0x0.getPos(i) + 5;
-            sp_0x2c = &reins->field_0xf0[i][4];
+            *pcVar3 = sp30;
+            pcVar3 = reins->field_0x0.getPos(i);
+            pcVar3 += 5;
+            pcVar2 = &reins->field_0xf0[i * 5];
 
-            for (int j = 5; j > 0; j--, sp_0x34--, sp_0x2c--) {
-                sp3c = *sp_0x34 - sp48;
+            for (int j = 5; j > 0; j--, pcVar3--, pcVar2--) {
+                sp3c = *pcVar3 - sp48;
                 sp3c.normalizeZP();
                 sp3c *= attr().field_0x5c;
                 sp3c.y = 0.0f;
-                sp54 = *sp_0x34 - *(sp_0x34 + 1);
+                sp54 = *pcVar1 - *(pcVar1 + 1);
                 sp54.y += gravity;
-                sp54 += *sp_0x2c + sp3c;
+                sp54 += *pcVar2 + sp3c;
                 sp54.normalizeZP();
-                *sp_0x34 = *(sp_0x34 + 1) + (sp54 * reins->field_0x168);
+                *pcVar3 = *(pcVar3 + 1) + (sp54 * reins->field_0x168);
             }
 
-            sp_0x34 = reins->field_0x0.getPos(i);
-            sp_0x30 = &reins->field_0x78[i][0];
-            sp_0x2c = &reins->field_0xf0[i][0];
+            pcVar3 = reins->field_0x0.getPos(i);
+            cXyz* pcVar4;
+            pcVar2 = &reins->field_0xf0[i * 5];
 
-            for (int j = 1; j < 6; j++, sp_0x34++, sp_0x30++, sp_0x2c++) {
-                *sp_0x2c = (*sp_0x34 - *sp_0x30) * attr().field_0x58;
-                *sp_0x30 = *sp_0x34;
+            for (int j = 1; j < 6; j++, pcVar4++, pcVar2++) {
+                *pcVar2 = (*pcVar3 - *pcVar4) * attr().field_0x58;
+                pcVar4 = pcVar3;
             }
         }
 
-        cXyz* sp_0x18 = reins->field_0x3c.getPos(0);
+        cXyz* pcVar5 = reins->field_0x3c.getPos(0);
 
-        for (int i = 0; i < 2; i++, sp_0x18++) {
+        for (int i = 0; i < 2; i++, pcVar5++) {
             if (telmaB_p != NULL) {
-                *sp_0x18 = telmaB_p->getHandPos1(i);
+                *pcVar5 = telmaB_p->getHandPos1(i);
             }
         }
     }
@@ -1092,15 +1015,15 @@ void daNpcCoach_c::reinsExecute() {
 
 /* 8099F988-8099FCF4 002328 036C+00 1/1 0/0 0/0 .text            reinsInit__12daNpcCoach_cFv */
 void daNpcCoach_c::reinsInit() {
+    // NONMATCHING
     daNpcChReins_c* reins = &mChHorse.mChReins;
     daNpcTheB_c* telmaB_p = (daNpcTheB_c*)fpcM_SearchByID(parentActorID);
     cXyz sp1c, sp28;
 
     for (int i = 0; i < 2; i++) {
-        int j;
         f32* pfVar1 = reins->field_0x0.getSize(i);
 
-        for (j = 0; j < 7; j++, pfVar1++) {
+        for (int j = 0; j < 7; j++, pfVar1++) {
             *pfVar1 = 2.0f;
         }
 
@@ -1119,16 +1042,16 @@ void daNpcCoach_c::reinsInit() {
 
         cXyz sp34 = (sp28 - sp1c) / 6.0f;
         reins->field_0x168 = sp34.abs();
-        cXyz* sp_0x24 = reins->field_0x0.getPos(i);
-        cXyz* sp_0x20 = &reins->field_0x78[i][0];
-        *sp_0x24 = sp1c;
+        cXyz* pcVar1 = reins->field_0x0.getPos(i);
+        cXyz* pcVar2 = &reins->field_0x78[i * 5];
+        *pcVar1 = sp1c;
 
-        ++sp_0x24;
-        for (j = 1; j < 6; j++, ++sp_0x24, ++sp_0x20) {
-            *sp_0x24 = *(sp_0x24 - 1) + sp34;
-            *sp_0x20 = *sp_0x24;
+        cXyz* pcVar3;
+        for (int j = 0; pcVar3 = pcVar1 + 1, j < 6; j++, pcVar2++, pcVar1 = pcVar3) {
+            *pcVar3 = *pcVar1 + sp34;
+            pcVar2 = pcVar3;
         }
-        *sp_0x24 = sp28;
+        *pcVar3 = sp28;
     }
 
     cXyz* pcVar4 = reins->field_0x3c.getPos(0);
@@ -1138,12 +1061,12 @@ void daNpcCoach_c::reinsInit() {
         if (telmaB_p != NULL) {
             *pcVar4 = telmaB_p->getHandPos1(i);
         }
-
+        
         *pfVar2 = 2.0f;
     }
 }
 
-void daNpcCoach_c::setCoachCollision() {
+inline void daNpcCoach_c::setCoachCollision() {
     mChCoach.mBgc.CrrPos(dComIfG_Bgsp());
 
     if (mChCoach.field_0x5e0.y - mChCoach.mBgc.GetGroundH() > 1500.0f) {
@@ -1178,17 +1101,27 @@ void daNpcCoach_c::setCoachCollision() {
     }
 }
 
-void daNpcCoach_c::calcSpringF(f32* param_1, f32 param_2, f32* param_3) {
+inline s16 daNpcCoach_c::getGroundSlope(dBgS_ObjAcch* i_bgc, s16 param_2) {
+    cM3dGPla plane;
+
+    if (dComIfG_Bgsp().GetTriPla(i_bgc->m_gnd, &plane)) {
+        return fopAcM_getPolygonAngle(&plane, param_2);
+    }
+
+    return shape_angle.x;
+}
+
+inline void daNpcCoach_c::calcSpringF(f32* param_1, f32 param_2, f32* param_3) {
     *param_3 = (*param_3 + (param_2 - *param_1) * attr().spring_constant) * attr().damp_coeff[0];
     *param_1 += *param_3;
 }
 
-void daNpcCoach_c::calcSpringS(s16* param_1, s16 param_2, f32* param_3) {
+inline void daNpcCoach_c::calcSpringS(s16* param_1, s16 param_2, f32* param_3) {
     *param_3 = (*param_3 + (param_2 - *param_1) * attr().spring_constant) * attr().damp_coeff[0];
     *param_1 += *param_3;
 }
 
-void daNpcCoach_c::setCoachMtx() {
+inline void daNpcCoach_c::setCoachMtx() {
     cXyz sp18;
     mDoMtx_stack_c::copy(mChHarness.mHarnessModel->getAnmMtx(JNT_HARNESS_BS_LOC));
     mDoMtx_stack_c::multVecZero(&sp18);
@@ -1216,100 +1149,9 @@ void daNpcCoach_c::setCoachMtx() {
     MTXCopy(mDoMtx_stack_c::get(), mChCoach.field_0x598);
 }
 
-void daNpcCoach_c::setWheelSmoke(daNpcChWheel_c* i_wheel, dBgS_ObjAcch* i_bgc, dKy_tevstr_c* i_tevStr, csXyz* i_angle) {
-    f32 fVar1 = speedF / attr().max_speed;
-    f32 reg_f29 = fVar1;
-    f32 fVar2 = fVar1 * 2.0f;
-    s16 sVar1 = fVar1 * 15.0f;
-    u8 sVar2 = fVar1 * 128.0f;
-
-    if (sVar1 == 0 || sVar2 == 0 || fVar2 == 0.0f || reg_f29 == 0.0f) {
-        return;
-    }
-
-    if (i_bgc->ChkGroundHit()) {
-        fopAcM_effSmokeSet2(i_wheel->field_0xc, i_wheel->field_0xc + 1, &i_wheel->field_0x0,
-                            i_angle, 1.0f, i_tevStr);
-
-        for (int i = 0; i < 2; i++) {
-            JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_wheel->field_0xc[i]);
-            if (emitter != NULL) {
-                emitter->setRate(reg_f29);
-                emitter->setLifeTime((s16) sVar1);
-                emitter->setGlobalAlpha((u8) sVar2);
-                emitter->setGlobalParticleScale(fVar2, fVar2);
-            }
-        }
-    }
-}
-
-/* 809A0728-809A0DB8 0030C8 0690+00 1/1 0/0 0/0 .text calcRearWheelRotate__12daNpcCoach_cFv */
-void daNpcCoach_c::calcRearWheelRotate() {
-    if (speedF != 0.0f) {
-        f32 fVar1 = mChCoach.field_0x5ec.absXZ(mChCoach.field_0x5e0);
-        int reg_r25 = cLib_distanceAngleS(mChCoach.field_0x79a.y, cLib_targetAngleY(&mChCoach.field_0x5ec, &mChCoach.field_0x5e0));
-        f32 fVar2 = (reg_r25 < 0x4000) ? fVar1 / 439.823f : -(fVar1 / 439.823f);
-
-        s16 reg_r27 = fVar2 * 65535.0f;
-        int ang_diff = mChHarness.field_0x706.y - mChHarness.field_0x700.y;
-        f32 reg_f29 = ang_diff / 65535.0f;
-        s16 reg_r26 = reg_f29 * 642.61536f / 439.823f * 65535.0f;
-        s16 reg_r29 = reg_r26 + reg_r27;
-        s16 reg_r28 = reg_r26 - reg_r27;
-
-        if (reg_r29 > 4500) {
-            reg_r29 = 4500;
-        } else if (reg_r29 < -4500) {
-            reg_r29 = -4500;
-        }
-
-        if (reg_r28 > 4500) {
-            reg_r28 = 4500;
-        } else if (reg_r28 < -4500) {
-            reg_r28 = -4500;
-        }
-
-        mChCoach.field_0x7a8.mWheelRot.x += reg_r29;
-        mChCoach.field_0x7cc.mWheelRot.x += reg_r28;
-
-        if (cLib_chaseS(&mChCoach.field_0x7a8.field_0x1c, mChCoach.field_0x7a8.field_0x1a, 16) != 0) {
-            mChCoach.field_0x7a8.field_0x1a = cM_rndF(attr().field_0x66);
-        }
-
-        if (cLib_chaseS(&mChCoach.field_0x7cc.field_0x1c, mChCoach.field_0x7cc.field_0x1a, 16) != 0) {
-            mChCoach.field_0x7cc.field_0x1a = cM_rndF(attr().field_0x66);
-        }
-
-        if (cLib_chaseS(&mChCoach.field_0x7a8.field_0x20, mChCoach.field_0x7a8.field_0x1e, 16) != 0) {
-            mChCoach.field_0x7a8.field_0x1e = cM_rndF(attr().field_0x68);
-        }
-
-        if (cLib_chaseS(&mChCoach.field_0x7cc.field_0x20, mChCoach.field_0x7cc.field_0x1e, 16) != 0) {
-            mChCoach.field_0x7cc.field_0x1e = cM_rndF(attr().field_0x68);
-        }
-
-        mChCoach.field_0x7a8.mWheelRot.y = mChCoach.field_0x7a8.field_0x1c * cM_ssin(mChCoach.field_0x7a8.mWheelRot.x);
-        mChCoach.field_0x7cc.mWheelRot.y = mChCoach.field_0x7cc.field_0x1c * cM_ssin(mChCoach.field_0x7cc.mWheelRot.x);
-        mChCoach.field_0x7a8.mWheelRot.z = mChCoach.field_0x7a8.field_0x20 * cM_ssin(mChCoach.field_0x7a8.mWheelRot.x);
-        mChCoach.field_0x7cc.mWheelRot.z = mChCoach.field_0x7cc.field_0x20 * cM_ssin(mChCoach.field_0x7cc.mWheelRot.x);
-
-        setWheelSmoke(&mChCoach.field_0x7a8, &mChCoach.mBgc, &mChCoach.mTevStr, &mChCoach.field_0x79a);
-        setWheelSmoke(&mChCoach.field_0x7cc, &mChCoach.mBgc, &mChCoach.mTevStr, &mChCoach.field_0x79a);
-    }
-}
-
-s16 daNpcCoach_c::getGroundSlope(dBgS_ObjAcch* i_bgc, s16 param_2) {
-    cM3dGPla plane;
-
-    if (dComIfG_Bgsp().GetTriPla(i_bgc->m_gnd, &plane)) {
-        return fopAcM_getPolygonAngle(&plane, param_2);
-    }
-
-    return shape_angle.x;
-}
-
 /* 8099FCF4-809A0728 002694 0A34+00 1/1 0/0 0/0 .text            calcCoachMotion__12daNpcCoach_cFv */
 void daNpcCoach_c::calcCoachMotion() {
+    // NONMATCHING
     cXyz sp44 = mChCoach.field_0x5e0 - mChCoach.field_0x5ec;
     mChCoach.field_0x5ec = mChCoach.field_0x5e0;
     mChCoach.field_0x7a0 = mChCoach.field_0x79a;
@@ -1391,7 +1233,7 @@ void daNpcCoach_c::calcCoachMotion() {
     setCoachMtx();
     mChCoach.mSound.framework(0, 0);
     calcRearWheelRotate();
-
+    
     if (attention_info.flags != 0) {
         if (mChCoach.field_0x77c > 0) {
             mChCoach.field_0x77c--;
@@ -1400,9 +1242,9 @@ void daNpcCoach_c::calcCoachMotion() {
         if (mChCoach.field_0x644.ChkTgHit() && mChCoach.field_0x77c == 0) {
             mChCoach.mSound.startSound(Z2SE_COACH_HIT_WIND, 0, -1);
 
-            mTotalDmgRecv = (mTotalDmgRecv / (attr().damage_durability / 20) - attr().damage_extinguish_level) * (attr().damage_durability / 20);
-            if (mTotalDmgRecv <= 0) {
-                mTotalDmgRecv = 0;
+            field_0x24c4 = (field_0x24c4 / (attr().damage_durability / 20) - attr().damage_extinguish_level) * (attr().damage_durability / 20);
+            if (field_0x24c4 <= 0) {
+                field_0x24c4 = 0;
                 field_0x24c0 = 0;
 
                 for (int i = 0; i < 5; i++) {
@@ -1424,7 +1266,87 @@ void daNpcCoach_c::calcCoachMotion() {
     }
 }
 
-void daNpcCoach_c::setHarnessCollision() {
+inline void daNpcCoach_c::setWheelSmoke(daNpcChWheel_c* i_wheel, dBgS_ObjAcch* i_bgc, dKy_tevstr_c* i_tevStr, csXyz* i_angle) {
+    f32 fVar1 = speedF / attr().max_speed;
+    f32 fVar2 = fVar1 * 2.0f;
+    s16 sVar1 = fVar1 * 15.0f;
+    s16 sVar2 = fVar1 * 128.0f;
+
+    if (sVar1 != 0 && (u8)sVar2 != 0 && fVar2 != 0.0f && fVar1 != 0.0f && i_bgc->ChkGroundHit()) {
+        fopAcM_effSmokeSet2(i_wheel->field_0xc, i_wheel->field_0xc + 1, &i_wheel->field_0x0,
+                            i_angle, 1.0f, i_tevStr);
+
+        for (int i = 0; i < 2; i++) {
+            JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_wheel->field_0xc[i]);
+            if (emitter != NULL) {
+                emitter->setRate(fVar1);
+                emitter->setLifeTime(sVar1);
+                emitter->setGlobalAlpha(sVar2);
+                emitter->setGlobalParticleScale(fVar2, fVar2);
+            }
+        }
+    }
+}
+
+/* 809A0728-809A0DB8 0030C8 0690+00 1/1 0/0 0/0 .text calcRearWheelRotate__12daNpcCoach_cFv */
+void daNpcCoach_c::calcRearWheelRotate() {
+    // NONMATCHING
+    if (speedF != 0.0f) {
+        f32 fVar1 = mChCoach.field_0x5ec.absXZ(mChCoach.field_0x5e0);
+        f32 fVar2;
+        if (cLib_distanceAngleS(mChCoach.field_0x79a.y, cLib_targetAngleY(&mChCoach.field_0x5ec, &mChCoach.field_0x5e0)) < 0x4000) {
+            fVar2 = fVar1 / 439.823f;
+        } else {
+            fVar2 = -(fVar1 / 439.823f);
+        }
+
+        int iVar1 = fVar2 * 65535.0f;
+        s16 sVar1 = (int)((mChHarness.field_0x706.y - mChHarness.field_0x700.y) / 65535.0f * 642.61536f / 439.823f * 65535.0f);
+        s16 sVar2 = sVar1 + (s16)iVar1;
+        sVar1 -= iVar1;
+
+        if (sVar2 > 4500) {
+            sVar2 = 4500;
+        } else if (sVar2 < -4500) {
+            sVar2 = -4500;
+        }
+
+        if (sVar1 > 4500) {
+            sVar1 = 4500;
+        } else if (sVar1 < -4500) {
+            sVar1 = -4500;
+        }
+
+        mChCoach.field_0x7a8.mWheelRot.x += sVar2;
+        mChCoach.field_0x7cc.mWheelRot.x += sVar1;
+
+        if (cLib_chaseS(&mChCoach.field_0x7a8.field_0x1c, mChCoach.field_0x7a8.field_0x1a, 16) != 0) {
+            mChCoach.field_0x7a8.field_0x1a = cM_rndF(attr().field_0x66);
+        }
+
+        if (cLib_chaseS(&mChCoach.field_0x7cc.field_0x1c, mChCoach.field_0x7cc.field_0x1a, 16) != 0) {
+            mChCoach.field_0x7cc.field_0x1a = cM_rndF(attr().field_0x66);
+        }
+
+        if (cLib_chaseS(&mChCoach.field_0x7a8.field_0x20, mChCoach.field_0x7a8.field_0x1e, 16) != 0) {
+            mChCoach.field_0x7a8.field_0x1e = cM_rndF(attr().field_0x68);
+        }
+        
+        if (cLib_chaseS(&mChCoach.field_0x7cc.field_0x20, mChCoach.field_0x7cc.field_0x1e, 16) != 0) {
+            mChCoach.field_0x7cc.field_0x1e = cM_rndF(attr().field_0x68);
+        }
+
+        mChCoach.field_0x7a8.mWheelRot.y = mChCoach.field_0x7a8.field_0x1c * cM_ssin(mChCoach.field_0x7a8.mWheelRot.x);
+        mChCoach.field_0x7cc.mWheelRot.y = mChCoach.field_0x7cc.field_0x1c * cM_ssin(mChCoach.field_0x7cc.mWheelRot.x);
+        mChCoach.field_0x7a8.mWheelRot.z = mChCoach.field_0x7a8.field_0x20 * cM_ssin(mChCoach.field_0x7a8.mWheelRot.x);
+        mChCoach.field_0x7cc.mWheelRot.z = mChCoach.field_0x7cc.field_0x20 * cM_ssin(mChCoach.field_0x7cc.mWheelRot.x);
+
+        setWheelSmoke(&mChCoach.field_0x7a8, &mChCoach.mBgc, &mChCoach.mTevStr, &mChCoach.field_0x79a);
+        setWheelSmoke(&mChCoach.field_0x7cc, &mChCoach.mBgc, &mChCoach.mTevStr, &mChCoach.field_0x79a);
+    }
+}
+
+inline void daNpcCoach_c::setHarnessCollision() {
     cXyz sp28(0.0f, 0.0f, 160.0f);
     mDoMtx_stack_c::transS(mChHarness.field_0x6e0);
     mDoMtx_stack_c::YrotM(mChHarness.field_0x700.y);
@@ -1496,18 +1418,20 @@ void daNpcCoach_c::calcHarnessMotion() {
 
 /* 809A1180-809A1810 003B20 0690+00 1/1 0/0 0/0 .text calcFrontWheelRotate__12daNpcCoach_cFv */
 void daNpcCoach_c::calcFrontWheelRotate() {
+    // NONMATCHING
     if (speedF != 0.0f) {
         f32 fVar1 = mChHarness.field_0x6ec.absXZ(mChHarness.field_0x6e0);
-        int dist_ang = cLib_distanceAngleS(mChHarness.field_0x700.y, 
-                                           cLib_targetAngleY(&mChHarness.field_0x6ec, &mChHarness.field_0x6e0));
-        f32 fVar2 = (dist_ang < 0x4000) ? fVar1 / 345.5751953125f : -(fVar1 / 345.5751953125f);
+        f32 fVar2;
+        if (cLib_distanceAngleS(mChHarness.field_0x700.y, cLib_targetAngleY(&mChHarness.field_0x6ec, &mChHarness.field_0x6e0)) < 0x4000) {
+            fVar2 = fVar1 / 345.5751953125f;
+        } else {
+            fVar2 = -(fVar1 / 345.5751953125f);
+        }
 
-        s16 iVar1 = fVar2 * 65535.0f;
-        int angle_diff = mChHarness.field_0x706.y - mChHarness.field_0x700.y;
-        f32 reg_f29 = angle_diff / 65535.0f;
-        s16 sVar1 = reg_f29 * 556.8225f / 345.5752f * 65535.0f;
-        s16 sVar2 = sVar1 + iVar1;
-        s16 my_diff = sVar1 - iVar1;
+        int iVar1 = fVar2 * 65535.0f;
+        s16 sVar1 = (int)((mChHarness.field_0x706.y - mChHarness.field_0x700.y) / 65535.0f * 556.8225f / 345.5752f * 65535.0f);
+        s16 sVar2 = (s16)sVar1 + (s16)iVar1;
+        sVar1 -= iVar1;
 
         if (sVar2 > 4500) {
             sVar2 = 4500;
@@ -1515,14 +1439,14 @@ void daNpcCoach_c::calcFrontWheelRotate() {
             sVar2 = -4500;
         }
 
-        if (my_diff > 4500) {
-            my_diff = 4500;
-        } else if (my_diff < -4500) {
-            my_diff = -4500;
+        if (sVar1 > 4500) {
+            sVar1 = 4500;
+        } else if (sVar1 < -4500) {
+            sVar1 = -4500;
         }
 
         mChHarness.field_0x70c.mWheelRot.x += sVar2;
-        mChHarness.field_0x730.mWheelRot.x += my_diff;
+        mChHarness.field_0x730.mWheelRot.x += sVar1;
 
         if (cLib_chaseS(&mChHarness.field_0x70c.field_0x1c, mChHarness.field_0x70c.field_0x1a, 16) != 0) {
             mChHarness.field_0x70c.field_0x1a = cM_rndF(attr().field_0x66);
@@ -1548,21 +1472,22 @@ void daNpcCoach_c::calcFrontWheelRotate() {
     }
 }
 
-f32 daNpcCoach_c::calcMaxSpeed() {
+inline f32 daNpcCoach_c::calcMaxSpeed() {
     if (!mChPath.isPath()) {
         return mChHorse.mAimSpeed;
     }
 
     if (field_0x2550 > 0) {
-        if (--field_0x2550 >= 0) {
+        int iVar1 = field_0x2550 - 1;
+        field_0x2550 = iVar1;
+        if (iVar1 >= 0) {
             return attr().deceleration_speed;
         }
     }
 
     cXyz sp38;
     mChPath.getTargetPoint(sp38);
-    int dist_ang = cLib_distanceAngleS(current.angle.y, cLib_targetAngleY(&current.pos, &sp38));
-    f32 fVar1 = -dist_ang / 16384.0f + 1.0f;
+    f32 fVar1 = -cLib_distanceAngleS(current.angle.y, cLib_targetAngleY(&current.pos, &sp38)) / 16384.0f + 1.0f;
     if (fVar1 < 0.0f) {
         fVar1 = 0.0f;
     }
@@ -1570,7 +1495,7 @@ f32 daNpcCoach_c::calcMaxSpeed() {
     return fVar1 * mChHorse.mAimSpeed;
 }
 
-void daNpcCoach_c::setHorseCollision() {
+inline void daNpcCoach_c::setHorseCollision() {
     f32 fVar1 = cM_ssin(shape_angle.y);
     f32 fVar2 = cM_scos(shape_angle.y);
     cXyz sp58(current.pos.x + (fVar1 * 135.0f), current.pos.y, current.pos.z + (fVar2 * 135.0f));
@@ -1593,7 +1518,7 @@ void daNpcCoach_c::setHorseCollision() {
     }
 }
 
-void daNpcCoach_c::setHorseMtx() {
+inline void daNpcCoach_c::setHorseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     mChHorse.mpModelMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
@@ -1603,6 +1528,7 @@ void daNpcCoach_c::setHorseMtx() {
 
 /* 809A1810-809A1BE0 0041B0 03D0+00 1/1 0/0 0/0 .text            calcHorseMotion__12daNpcCoach_cFv */
 void daNpcCoach_c::calcHorseMotion() {
+    // NONMATCHING
     f32 fVar1 = calcMaxSpeed();
     if (mChHorse.field_0x784 < fVar1) {
         cLib_addCalc(&mChHorse.field_0x784, fVar1, 0.07f, 0.2f, 0.01f);
@@ -1635,12 +1561,12 @@ void daNpcCoach_c::calcHorseMotion() {
     calcHorseAnm();
 }
 
-void daNpcCoach_c::setHorseAnm(int i_index) {
+inline void daNpcCoach_c::setHorseAnm(int i_index) {
     if (mChHorse.field_0x788 != i_index) {
         mChHorse.field_0x788 = i_index;
 
-        J3DAnmTransform* anm = (J3DAnmTransform*)(l_horseAnmParam[i_index].field_0x0 >= 0 ? 
-                                 dComIfG_getObjectRes(l_arcName, l_horseAnmParam[i_index].field_0x0) : NULL);
+        J3DAnmTransform* anm = l_horseAnmParam[i_index].field_0x0 >= 0 ? 
+                                 (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, l_horseAnmParam[i_index].field_0x0) : NULL;
         J3DAnmTransform* anm_2 = l_horseAnmParam[i_index].field_0xc >= 0 ? 
                                  (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, l_horseAnmParam[i_index].field_0xc) : NULL;
 
@@ -1651,7 +1577,7 @@ void daNpcCoach_c::setHorseAnm(int i_index) {
     }
 }
 
-void daNpcCoach_c::eyeWink() {
+inline void daNpcCoach_c::eyeWink() {
     mChHorse.field_0x790--;
 
     if (mChHorse.field_0x790 < 0) {
@@ -1663,17 +1589,12 @@ void daNpcCoach_c::eyeWink() {
 
 /* 809A1BE0-809A2740 004580 0B60+00 1/1 0/0 0/0 .text            calcHorseAnm__12daNpcCoach_cFv */
 void daNpcCoach_c::calcHorseAnm() {
-    bool reg_r29 = 0;
+    // NONMATCHING
     if (mChPath.isPath()) {
         cXyz target_point;
         mChPath.getTargetPoint(target_point);
-        int reg_r28 = cLib_distanceAngleS(shape_angle.y, mChHarness.field_0x700.y);
-        int reg_r27 = cLib_distanceAngleS(current.angle.y, cLib_targetAngleY(&current.pos, &target_point));
-        int reg_r26 = 0;
-        if (reg_r28 < attr().horse_rot_limit && reg_r27 > 0x300) {
-            reg_r26 = 1;
-            reg_r29 = reg_r26;
-        }
+        cLib_distanceAngleS(shape_angle.y, mChHarness.field_0x700.y);
+        cLib_distanceAngleS(current.angle.y, cLib_targetAngleY(&current.pos, &target_point));
     }
 
     f32 fVar1 = 0.0f;
@@ -1681,15 +1602,15 @@ void daNpcCoach_c::calcHorseAnm() {
 
     switch (mChHorse.field_0x788) {
         case 0:
-            fVar2 = attr().field_0x28[mChHorse.field_0x788];
+            fVar1 = attr().field_0x28[mChHorse.field_0x788];
 
-            if (speedF > fVar2) {
+            if (speedF > fVar1) {
                 setHorseAnm(1);
             }
             break;
 
         case 1:
-            fVar1 = attr().field_0x28[mChHorse.field_0x788 - 1];
+            fVar1 = attr().damp_coeff[mChHorse.field_0x788];
             fVar2 = attr().field_0x28[mChHorse.field_0x788];
 
             if (speedF <= fVar1) {
@@ -1700,7 +1621,7 @@ void daNpcCoach_c::calcHorseAnm() {
             break;
 
         case 2:
-            fVar1 = attr().field_0x28[mChHorse.field_0x788 - 1];
+            fVar1 = attr().damp_coeff[mChHorse.field_0x788];
             fVar2 = attr().field_0x28[mChHorse.field_0x788];
 
             if (speedF <= fVar1) {
@@ -1711,7 +1632,7 @@ void daNpcCoach_c::calcHorseAnm() {
             break;
 
         case 3:
-            fVar1 = attr().field_0x28[mChHorse.field_0x788 - 1];
+            fVar1 = attr().damp_coeff[mChHorse.field_0x788];
             fVar2 = attr().field_0x28[mChHorse.field_0x788];
 
             if (speedF <= fVar1) {
@@ -1722,7 +1643,7 @@ void daNpcCoach_c::calcHorseAnm() {
             break;
 
         case 4:
-            fVar1 = attr().field_0x28[mChHorse.field_0x788 - 1];
+            fVar1 = attr().damp_coeff[mChHorse.field_0x788];
 
             if (speedF <= fVar1) {
                 setHorseAnm(3);
@@ -1735,15 +1656,14 @@ void daNpcCoach_c::calcHorseAnm() {
     }
 
     if (mChHorse.field_0x788 < 4) {
-        f32 reg_f29 = speedF / fVar2;
-        if (reg_f29 > 1.0f) {
-            reg_f29 = 1.0f;
+        fVar2 = speedF / fVar2;
+        if (fVar2 > 1.0f) {
+            fVar2 = 1.0f;
         }
 
-        mChHorse.mpModelMorf->setAnmRate(reg_f29);
-        f32 reg_f28 = reg_f29 * (l_horseAnmParam[mChHorse.field_0x788].field_0x14
-                                 - l_horseAnmParam[mChHorse.field_0x788].field_0x8);
-        mChHorse.mpModelMorf->setPlaySpeed(reg_f28 + l_horseAnmParam[mChHorse.field_0x788].field_0x8);
+        mChHorse.mpModelMorf->setAnmRate(fVar2);
+        mChHorse.mpModelMorf->setPlaySpeed(fVar2 * (l_horseAnmParam[mChHorse.field_0x788].field_0x14 - l_horseAnmParam[mChHorse.field_0x788].field_0x8) + 
+                                           l_horseAnmParam[mChHorse.field_0x788].field_0x8);
     } else {
         mChHorse.mpModelMorf->setAnmRate(0.0f);
         mChHorse.mpModelMorf->setPlaySpeed(l_horseAnmParam[mChHorse.field_0x788].field_0x8 * (speedF / fVar1));
@@ -1766,48 +1686,47 @@ void daNpcCoach_c::calcHorseAnm() {
     eyeWink();
 }
 
-s8 daNpcChPath_c::checkNearAttackPoint() {
-    int var_r29 = 5;
-    int var_r31 = mPntIndex - 2;
+inline int daNpcChPath_c::checkNearAttackPoint() {
+    int iVar1 = 5;
+    int iVar2 = mPntIndex;
+    int iVar3 = iVar2 - 2;
 
-    if (var_r31 < 0) {
+    if (iVar3 < 0) {
         if (isClose()) {
-            var_r31 = mpPath->m_num + var_r31;
+            iVar3 = mpPath->m_num + iVar3;
         } else {
-            var_r29 += var_r31;
-            var_r31 = 0;
+            iVar1 = iVar2 + 5;
+            iVar3 = 0;
         }
     }
 
-    for (; var_r29 > 0; --var_r29) {
-        if (mpPath->m_points[var_r31].mArg2 == 1) {
-            return mpPath->m_points[var_r31].mArg1;
-        }
+    do {
+        if (mpPath->m_points[iVar3].mArg2 == 1) break;
 
-        ++var_r31;
-        if (var_r31 >= mpPath->m_num) {
+        iVar3++;
+        if (iVar3 >= mpPath->m_num) {
             if (isClose()) {
-                var_r31 = 0;
-                continue;
+                iVar3 = 0;
+            } else {
+                return -1;
             }
-
-            break;
         }
-    }
+        iVar1--;
+    } while (iVar1 >= 1);
 
-    return -1;
+    return mpPath->m_points[iVar3].mArg1;
 }
 
-bool daNpcCoach_c::checkKargoAttack() {
+inline BOOL daNpcCoach_c::checkKargoAttack() {
     e_kr_class* kargo_p = (e_kr_class*)fpcM_Search(s_sub, this);
     if (kargo_p != NULL && kargo_p->checkBombDrop() != 0) {
-        return true;
+        return TRUE;
     }
 
-    return false;
+    return FALSE;
 }
 
-BOOL daNpcCoach_c::setExpressionAnm(int param_1, bool param_2) {
+inline BOOL daNpcCoach_c::setExpressionAnm(int param_1, bool param_2) {
     if (!param_2 && mChHorse.field_0x78c != 0) {
         return FALSE;
     }
@@ -1828,7 +1747,7 @@ BOOL daNpcCoach_c::setExpressionAnm(int param_1, bool param_2) {
     return FALSE;
 }
 
-bool daNpcChPath_c::checkPoint(cXyz* param_1, f32 param_2) {
+inline bool daNpcChPath_c::checkPoint(cXyz* param_1, f32 param_2) {
     f32 fVar1 = param_1->absXZ(dPath_GetPnt(mpPath, mPntIndex)->m_position);
 
     if (field_0x4 != NULL) {
@@ -1842,7 +1761,7 @@ bool daNpcChPath_c::checkPoint(cXyz* param_1, f32 param_2) {
     return FALSE;
 }
 
-bool daNpcChPath_c::setNextTarget() {
+inline bool daNpcChPath_c::setNextTarget() {
     bool rv = setNextPoint();
     if (rv && field_0x4 != NULL) {
         cXyz target_point;
@@ -1853,7 +1772,7 @@ bool daNpcChPath_c::setNextTarget() {
     return rv;
 }
 
-void daNpcCoach_c::resetOverAngle() {
+inline void daNpcCoach_c::resetOverAngle() {
     if (shape_angle.y != current.angle.y && mChPath.isPath()) {
         cXyz target_point;
         mChPath.getTargetPoint(target_point);
@@ -1871,7 +1790,8 @@ void daNpcCoach_c::resetOverAngle() {
 
 /* 809A2740-809A2E98 0050E0 0758+00 1/1 0/0 0/0 .text            calcHorsePath__12daNpcCoach_cFv */
 void daNpcCoach_c::calcHorsePath() {
-    if (!mChPath.isPath() || mTotalDmgRecv >= attr().damage_durability) {
+    // NONMATCHING
+    if (!mChPath.isPath() || field_0x24c4 >= attr().damage_durability) {
         return;
     }
 
@@ -1889,7 +1809,8 @@ void daNpcCoach_c::calcHorsePath() {
     cLib_addCalcAngleS(&current.angle.y, cLib_targetAngleY(&current.pos, &target_point), 15, 0x200, 0x40);
 
     s8 arg1 = mChPath.getArg1();
-    switch (mChPath.getArg2()) {
+    s8 arg2 = mChPath.getArg2();
+    switch (arg2) {
         case -1:
             if (arg1 != -1) {
                 changeAtherPath(arg1, current.pos, shape_angle);
@@ -1897,11 +1818,7 @@ void daNpcCoach_c::calcHorsePath() {
             break;
 
         case 0:
-            if (arg1 == -1) {
-                break;
-            }
-
-            if (!dComIfGs_isSaveDunSwitch(mChPath.getArg3()) || mTotalDmgRecv >= attr().damage_durability) {
+            if (!dComIfGs_isSaveDunSwitch(mChPath.getArg3()) || field_0x24c4 >= attr().damage_durability) {
                 mChHorse.mAimSpeed = 0.0f;
             } else {
                 changeAtherPath(arg1, current.pos, shape_angle);
@@ -1913,15 +1830,16 @@ void daNpcCoach_c::calcHorsePath() {
             break;
     }
 
-    s8 reg_r27 = mChPath.checkNearAttackPoint();
-    if (reg_r27 != -1 && checkKargoAttack()) {
-        changeAtherPath(reg_r27, current.pos, shape_angle);
+    arg1 = mChPath.checkNearAttackPoint();
+    if (arg1 != -1 && checkKargoAttack()) {
+        changeAtherPath(arg1, current.pos, shape_angle);
         setExpressionAnm(1, true);
 
         mChHorse.mSound.startCreatureVoice(Z2SE_HS_V_COACH_CRY, -1);
         mChCoach.mSound.startSound(Z2SE_COACH_SHAKE, 0, -1);
 
-        mChCoach.field_0x794 += cM_rnd() < 0.5f ? 4096.0f : -4096.0f;
+        f32 fVar1 = cM_rnd() < 0.5f ? 4096.0f : -4096.0f;
+        mChCoach.field_0x794 += fVar1;
         mChCoach.field_0x790 -= 30.0f;
         field_0x2550 = attr().deceleration_time;
     }
@@ -1937,7 +1855,7 @@ static int daNpcCoach_Draw(daNpcCoach_c* i_this) {
     return i_this->draw();
 }
 
-void daNpcCoach_c::reinsDraw() {
+inline void daNpcCoach_c::reinsDraw() {
     daNpcChReins_c* reins = &mChHorse.mChReins;
 
     static GXColor l_color = {
@@ -2039,6 +1957,12 @@ daNpcCoach_c::~daNpcCoach_c() {
     dComIfGs_offTbox(1);
 }
 
+/* 809A3570-809A3674 005F10 0104+00 1/1 0/0 0/0 .text            __dt__16daNpcChHarness_cFv */
+daNpcChHarness_c::~daNpcChHarness_c() {}
+
+/* 809A3674-809A3798 006014 0124+00 1/1 0/0 0/0 .text            __dt__14daNpcChCoach_cFv */
+daNpcChCoach_c::~daNpcChCoach_c() {}
+
 /* 809A3864-809A3884 006204 0020+00 1/0 0/0 0/0 .text            daNpcCoach_Create__FP10fopAc_ac_c */
 static int daNpcCoach_Create(fopAc_ac_c* a_this) {
     daNpcCoach_c* i_this = (daNpcCoach_c*)a_this;
@@ -2063,6 +1987,7 @@ cPhs__Step daNpcCoach_c::create() {
 
 /* 809A3928-809A4078 0062C8 0750+00 1/1 0/0 0/0 .text            create_init__12daNpcCoach_cFv */
 void daNpcCoach_c::create_init() {
+    // NONMATCHING
     if (strcmp(dComIfGp_getStartStageName(), "F_SP123") == 0) {
         fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
     }
@@ -2096,15 +2021,14 @@ void daNpcCoach_c::create_init() {
 
     if (getPathID() != 0xFF) {
         mPathID = getPathID();
-        mChPath.setPath(getPathID(), fopAcM_GetRoomNo(this), current.pos, true);
+        mChPath.setPath(getPathID(), fopAcM_GetRoomNo(this), &current.pos, true);
 
         if (!mChPath.isPath()) {
             return;
         }
 
-        s8 arg0 = mChPath.getArg0();
-        if (arg0 >= 0) {
-            mChHorse.mAimSpeed = arg0;
+        if (mChPath.getArg0() >= 0) {
+            mChHorse.mAimSpeed = mChPath.getArg0();
         }
 
         if (mChHorse.mAimSpeed > attr().max_speed) {
@@ -2113,13 +2037,11 @@ void daNpcCoach_c::create_init() {
 
         cXyz target_point;
         mChPath.getTargetPoint(target_point);
-        int dist_ang = cLib_distanceAngleS(shape_angle.y, cLib_targetAngleY(&current.pos, &target_point));
-        if (dist_ang >= 0x4000) {
+        if (cLib_distanceAngleS(shape_angle.y, cLib_targetAngleY(&current.pos, &target_point)) >= 0x4000) {
             mChPath.setNextPoint();
             mChPath.getTargetPoint(target_point);
 
-            int o_dist_ang = cLib_distanceAngleS(shape_angle.y, cLib_targetAngleY(&current.pos, &target_point));
-            if (o_dist_ang >= 0x4000) {
+            if (cLib_distanceAngleS(shape_angle.y, cLib_targetAngleY(&current.pos, &target_point)) >= 0x4000) {
                 mChPath.setPrevPoint();
             }
         }
@@ -2135,18 +2057,74 @@ void daNpcCoach_c::create_init() {
     mDoMtx_stack_c::copy(mChCoach.mCoachModel->getAnmMtx(JNT_COACH_TERUMA_LOC));
     mDoMtx_stack_c::multVecZero(&i_pos);
     mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &i_angle);
-    int msg_no = getMessageNo();
-    parentActorID = fopAcM_createChild(PROC_NPC_THEB, fopAcM_GetID(this), msg_no, &i_pos, fopAcM_GetRoomNo(this), &i_angle, NULL, -1, NULL);
+    parentActorID = fopAcM_createChild(PROC_NPC_THEB, fopAcM_GetID(this), getMessageNo(), &i_pos, fopAcM_GetRoomNo(this), &i_angle, NULL, -1, NULL);
     field_0x2554 = fopAcM_createChild(PROC_COACH2D, fopAcM_GetID(this), 0, &current.pos, fopAcM_GetRoomNo(this), NULL, NULL, -1, NULL);
     field_0x2558 = 0;
     field_0x2559 = 0;
 
-#if VERSION != VERSION_SHIELD_DEBUG
-    // If NOT in the Great Bridge of Hylia Battle:
-    if (strcmp(dComIfGp_getStartStageName(), "F_SP123") != 0)
-#endif
-    {
+    if (strcmp(dComIfGp_getStartStageName(), "F_SP123") != 0) {
         dComIfGs_onTbox(1);
+    }
+}
+
+/* 809A4078-809A43A0 006A18 0328+00 1/1 0/0 0/0 .text            initCollision__12daNpcCoach_cFv */
+void daNpcCoach_c::initCollision() {
+    // NONMATCHING
+    mAcchCir.SetWall(45.0f, 50.0f);
+    mChHorse.mBgc.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this),
+                      fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
+    mChHorse.mBgc.SetRoofNone();
+    mChHorse.mBgc.SetWaterNone();
+    mChHorse.mBgc.SetWallNone();
+    mChHorse.mBgc.OnLineCheckNone();
+    mChHorse.mBgc.CrrPos(dComIfG_Bgsp());
+    mStts.Init(0xFF, 0xFF, this);
+
+    for (int i = 0; i < 4; i++) {
+        mChHorse.field_0x1f0[i].Set(ccCylSrc);
+        mChHorse.field_0x1f0[i].SetStts(&mStts);
+        mChHorse.field_0x1f0[i].SetR(45.0f);
+        mChHorse.field_0x1f0[i].SetH(250.0f);
+    }
+
+    mChHarness.mBgc.Set(&mChHarness.field_0x6e0, &mChHarness.field_0x6ec, this, 1, &mAcchCir, &mChHarness.field_0x6d4, &mChHarness.field_0x700, &mChHarness.field_0x700);
+    mChHarness.mBgc.SetRoofNone();
+    mChHarness.mBgc.SetWaterNone();
+    mChHarness.mBgc.SetWallNone();
+    mChHarness.mBgc.OnLineCheckNone();
+    mChHarness.mBgc.OffClrSpeedY();
+    mChHarness.mBgc.SetGroundCheckOffset(150.0f);
+    mChHarness.mBgc.CrrPos(dComIfG_Bgsp());
+    mChHarness.field_0x564.Set(ccCylSrc);
+    mChHarness.field_0x564.SetStts(&mStts);
+    mChHarness.field_0x564.SetR(85.0f);
+    mChHarness.field_0x564.SetH(120.0f);
+    mChHarness.field_0x6a0->SetCrrFunc(dBgS_MoveBGProc_TypicalRotY);
+    dComIfG_Bgsp().Regist(mChHarness.field_0x6a0, this);
+
+    mChCoach.mBgc.Set(&mChCoach.field_0x5e0, &mChCoach.field_0x5ec, this, 1, &mAcchCir, &mChCoach.field_0x5c8, &mChCoach.field_0x79a, &mChCoach.field_0x79a);
+    mChCoach.mBgc.SetRoofNone();
+    mChCoach.mBgc.SetWaterNone();
+    mChCoach.mBgc.SetWallNone();
+    mChCoach.mBgc.OnLineCheckNone();
+    mChCoach.mBgc.OffClrSpeedY();
+    mChCoach.mBgc.SetGroundCheckOffset(150.0f);
+    mChCoach.mBgc.CrrPos(dComIfG_Bgsp());
+    mChCoach.field_0x564->SetCrrFunc(dBgS_MoveBGProc_TypicalRotY);
+    mChCoach.field_0x564->SetArrowStickCallback(arrowStickCallBack);
+    dComIfG_Bgsp().Regist(mChCoach.field_0x564, this);
+    mChCoach.field_0x644.Set(ccSphSrc);
+    mChCoach.field_0x644.SetStts(&mStts);
+    mChCoach.field_0x644.SetC(eyePos);
+    mChCoach.field_0x644.SetR(50.0f);
+
+    for (int i = 0; i < 2; i++) {
+        mChYelia.field_0x41c[i].Set(ccCylSrc);
+        mChYelia.field_0x41c[i].SetStts(&mStts);
+        mChYelia.field_0x41c[i].SetR(45.0f);
+
+        f32 h = i == 0 ? 100.0f : 50.0f;
+        mChYelia.field_0x41c[i].SetH(h);
     }
 }
 
@@ -2156,7 +2134,7 @@ void daNpcCoach_c::initBaseMtx() {
     fopAcM_SetMtx(this, mChHorse.mpModelMorf->getModel()->getBaseTRMtx());
 }
 
-void daNpcCoach_c::setHarnessMtx() {
+inline void daNpcCoach_c::setHarnessMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(mChHarness.field_0x700.y);
     mDoMtx_stack_c::XrotM(mChHarness.field_0x700.x);

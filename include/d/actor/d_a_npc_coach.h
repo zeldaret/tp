@@ -34,7 +34,9 @@ public:
     /* 0x40 */ f32 jump_dist;               // 跳ね距離 - Jump Distance
     /* 0x44 */ f32 wheel_bounce;            // 車輪跳ね - Wheel Bounce
     /* 0x48 */ f32 field_0x48;
-    /* 0x4C */ Vec field_0x4c;
+    /* 0x4C */ f32 field_0x4c;
+    /* 0x50 */ f32 field_0x50;
+    /* 0x54 */ f32 field_0x54;
     /* 0x58 */ f32 field_0x58;
     /* 0x5C */ f32 field_0x5c;
     /* 0x60 */ s16 field_0x60;
@@ -73,8 +75,8 @@ class daNpcChReins_c {
 public:
     /* 0x000 */ mDoExt_3DlineMat1_c field_0x0;
     /* 0x03C */ mDoExt_3DlineMat1_c field_0x3c;
-    /* 0x078 */ cXyz field_0x78[2][5];
-    /* 0x0F0 */ cXyz field_0xf0[2][5];
+    /* 0x078 */ cXyz field_0x78[10];
+    /* 0x0F0 */ cXyz field_0xf0[10];
     /* 0x168 */ f32 field_0x168;
     /* 0x16C */ s8 field_0x16c;
     /* 0x170 */ cXyz field_0x170;
@@ -112,6 +114,8 @@ public:
 
 class daNpcChHarness_c {
 public:
+    /* 809A3570 */ ~daNpcChHarness_c();
+
     /* 0x000 */ J3DModel* mHarnessModel;
     /* 0x004 */ dKy_tevstr_c mTevStr;
     /* 0x38C */ dBgS_ObjAcch mBgc;
@@ -131,6 +135,8 @@ public:
 
 class daNpcChCoach_c {
 public:
+    /* 809A3674 */ ~daNpcChCoach_c();
+
     /* 0x000 */ J3DModel* mCoachModel;
     /* 0x004 */ dKy_tevstr_c mTevStr;
     /* 0x38C */ dBgS_ObjAcch mBgc;
@@ -169,7 +175,7 @@ public:
 
 class daNpcChPath_c {
 public:
-    inline BOOL setPath(int, int, cXyz&, bool);
+    BOOL setPath(int, int, cXyz*, bool);
     BOOL isClose() { return dPath_ChkClose(mpPath); }
     bool setNextPoint() {
         mPntIndex++;
@@ -209,8 +215,8 @@ public:
     s8 getArg0() { return mpPath->m_points[mPntIndex].mArg0; }
     s8 getArg1() { return mpPath->m_points[mPntIndex].mArg1; }
     s8 getArg2() { return mpPath->m_points[mPntIndex].mArg2; }
-    s8 getArg3() { return mpPath->m_points[mPntIndex].mArg3; }
-    inline s8 checkNearAttackPoint();
+    int getArg3() { return mpPath->m_points[mPntIndex].mArg3; }
+    inline int checkNearAttackPoint();
     inline bool checkPoint(cXyz*, f32);
     inline bool setNextTarget();
 
@@ -233,44 +239,50 @@ public:
     /* 8099E4C0 */ int createHeap();
     /* 8099EB40 */ int execute();
     /* 8099EEA0 */ void checkCoachDamage();
-    /* 8099F1B8 */ inline void setCoachBlazing(u8);
+    /* 8099F1B8 */ void setCoachBlazing(u8);
     /* 8099F4BC */ void reinsExecute();
     /* 8099F988 */ void reinsInit();
     /* 8099FCF4 */ void calcCoachMotion();
-    /* 809A0728 */ inline void calcRearWheelRotate();
+    /* 809A0728 */ void calcRearWheelRotate();
     /* 809A0E00 */ void calcHarnessMotion();
     /* 809A1180 */ void calcFrontWheelRotate();
     /* 809A1810 */ void calcHorseMotion();
-    /* 809A1BE0 */ inline void calcHorseAnm();
+    /* 809A1BE0 */ void calcHorseAnm();
     /* 809A2740 */ void calcHorsePath();
     /* 809A2EB8 */ int draw();
     /* 809A3330 */ ~daNpcCoach_c();
     /* 809A3884 */ cPhs__Step create();
     /* 809A3928 */ void create_init();
-    /* 809A4078 */ inline void initCollision();
+    /* 809A4078 */ void initCollision();
     /* 809A43A0 */ void initBaseMtx();
     /* 809A43DC */ void setBaseMtx();
     /* 809A46C4 */ void initCoachBlazing();
     /* 809A48A8 */ daNpcCoach_c();
 
-    bool checkCoachBlazing() { return mCoachBlazing; }
-    Mtx* getCoachMtx() { return &mCoachMtx; }
-    csXyz* getFrontWheelRot(int param_1) {
-        return (param_1 == 2) ? &mChHarness.field_0x70c.mWheelRot
-                              : &mChHarness.field_0x730.mWheelRot;
+    inline bool checkCoachBlazing() { return mCoachBlazing; }
+    inline Mtx* getCoachMtx() { return &mCoachMtx; }
+    inline csXyz* getFrontWheelRot(int param_1) {
+        if (param_1 == 2) {
+            return &mChHarness.field_0x70c.mWheelRot;
+        }
+
+        return &mChHarness.field_0x730.mWheelRot;
     }
-    csXyz* getRearWheelRot(int param_1) {
-        return (param_1 == 1) ? &mChCoach.field_0x7a8.mWheelRot
-                              : &mChCoach.field_0x7cc.mWheelRot;
+    inline csXyz* getRearWheelRot(int param_1) {
+        if (param_1 == 1) {
+            return &mChCoach.field_0x7a8.mWheelRot;
+        }
+
+        return &mChCoach.field_0x7cc.mWheelRot;
     }
-    s16 getCoachRotate() { return mChCoach.mCoachRot; }
-    f32 getCoachTrans() { return mChCoach.mCoachTrans; }
-    int getRailID() { return mChPath.getCurrentId(); }
+    inline s16 getCoachRotate() { return mChCoach.mCoachRot; }
+    inline f32 getCoachTrans() { return mChCoach.mCoachTrans; }
+    inline int getRailID() { return mChPath.getCurrentId(); }
 
     inline void setDriverMtx();
-    void calcDriverMotion() { setDriverMtx(); }
+    inline void calcDriverMotion() { setDriverMtx(); }
     inline void calcYeliaMotion();
-    void setYeliaMtx() {
+    inline void setYeliaMtx() {
         mDoMtx_stack_c::copy(mChCoach.mCoachModel->getAnmMtx(6));
         mDoMtx_stack_c::multVecZero(&mChYelia.field_0x694);
         mChYelia.mpModelMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
@@ -287,15 +299,15 @@ public:
     inline void setHorseMtx();
     inline void setHorseAnm(int);
     inline void eyeWink();
-    inline bool checkKargoAttack();
+    inline BOOL checkKargoAttack();
     inline BOOL setExpressionAnm(int, bool);
     inline void resetOverAngle();
     inline void reinsDraw();
-    u8 getPathID() { return fopAcM_GetParam(this) & 0xFF; }
-    s16 getMessageNo() { return home.angle.x; }
+    inline u8 getPathID() { return fopAcM_GetParam(this) & 0xFF; }
+    inline int getMessageNo() { return home.angle.x; }
     inline void setHarnessMtx();
 
-    const daNpcCoach_Attr_c& attr() const { return M_attr; }
+    const daNpcCoach_Attr_c& attr() { return M_attr; }
 
     static daNpcCoach_Attr_c const M_attr;
     static u16 const ParticleName[10];
@@ -313,7 +325,7 @@ private:
     /* 0x247C */ fpc_ProcID field_0x247c[5];
     /* 0x2490 */ Mtx mCoachMtx;
     /* 0x24C0 */ int field_0x24c0;
-    /* 0x24C4 */ int mTotalDmgRecv;
+    /* 0x24C4 */ int field_0x24c4;
     /* 0x24C8 */ f32 field_0x24c8;
     /* 0x24CC */ dBgS_AcchCir mAcchCir;
     /* 0x250C */ dCcD_Stts mStts;

@@ -39,7 +39,7 @@ public:
 
     inline int draw();
     inline void setCcSphere();
-    void setNoHitTimer() { noHitTimer = 20; }
+    inline void setNoHitTimer();
     inline int execute();
 
 private:

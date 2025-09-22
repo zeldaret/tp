@@ -107,6 +107,10 @@ void daCoachFire_c::setCcSphere() {
     }
 }
 
+void daCoachFire_c::setNoHitTimer() {
+    noHitTimer = 20;
+}
+
 int daCoachFire_c::execute() {
     daNpcCoach_c* coach = (daNpcCoach_c*)fpcM_SearchByID(parentActorID);
     if (noHitTimer > 0) {
