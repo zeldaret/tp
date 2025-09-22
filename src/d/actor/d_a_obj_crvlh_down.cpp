@@ -12,7 +12,6 @@
 #include "d/d_cc_d.h"
 #include "d/d_cc_uty.h"
 #include "d/d_s_play.h"
-#include "dol2asm.h"
 
 /* 80BD4DC4-80BD4DC8 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "CrvLH_Dw";
@@ -111,7 +110,7 @@ void daObjCRVLH_DW_c::Obj_Hit() {
             }
         } else {
             if (mCyl.ChkTgHit() != 0) {
-                if (mCyl.GetTgHitObj()->ChkAtType(0x400000) != 0) {
+                if (mCyl.GetTgHitObj()->ChkAtType(AT_TYPE_IRON_BALL) != 0) {
                     Break();
                 }
             }
@@ -199,14 +198,14 @@ int daObjCRVLH_DW_c::create() {
 
 /* 80BD4A7C-80BD4A84 0009BC 0008+00 1/0 0/0 0/0 .text daObjCRVLH_DW_IsDelete__FP15daObjCRVLH_DW_c
  */
-static bool daObjCRVLH_DW_IsDelete(daObjCRVLH_DW_c* i_this) {
-    return true;
+static int daObjCRVLH_DW_IsDelete(daObjCRVLH_DW_c* i_this) {
+    return 1;
 }
 
 /* 80BD4A84-80BD4AC8 0009C4 0044+00 1/0 0/0 0/0 .text            Create__15daObjCRVLH_DW_cFv */
 int daObjCRVLH_DW_c::Create() {
     fopAcM_setCullSizeBox(this, -1000.0f, -500.0f, -1000.0f, 1000.0f, 500.0f, 1000.0f);
-    return 4;
+    return cPhs_COMPLEATE_e;
 }
 
 /* 80BD4AC8-80BD4C44 000A08 017C+00 1/0 0/0 0/0 .text Execute__15daObjCRVLH_DW_cFPPA3_A4_f */
