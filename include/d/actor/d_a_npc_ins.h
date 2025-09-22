@@ -23,7 +23,7 @@ class daNpcIns_HIO_c : public mDoHIO_entry_c {
 
 class daNpcIns_Param_c {
 public:
-    /* 80A13D40 */ ~daNpcIns_Param_c() {}
+    /* 80A13D40 */ virtual ~daNpcIns_Param_c() {}
 
     static daNpcIns_HIOParam const m;
 };
@@ -125,18 +125,18 @@ private:
     /* 0xDE0 */ request_of_phase_process_class mPhases[3];
     /* 0xDF8 */ fpc_ProcID mItemID;
     /* 0xDFC */ int field_0xdfc;
-    /* 0xE00 */ int field_0xe00;
+    /* 0xE00 */ int mRndValue;
     /* 0xE04 */ dPath* mPath;
-    /* 0xE08 */ int field_0xe08;
+    /* 0xE08 */ int mPntIndex;
     /* 0xE0C */ f32 field_0xe0c;
-    /* 0xE10 */ f32 field_0xe10;
+    /* 0xE10 */ f32 mCurrentPosY;
     /* 0xE14 */ s16 field_0xe14;
     /* 0xE16 */ s16 field_0xe16;
     /* 0xE18 */ s16 mInsectMsgNo;
     /* 0xE1A */ s16 mLookMode;
     /* 0xE1C */ u16 mGoHomeTime;
     /* 0xE1E */ u16 mMode;
-    /* 0xE20 */ u8 field_0xe20;
+    /* 0xE20 */ u8 mOrderSpeakEvent;
     /* 0xE21 */ u8 mType;
 };
 
