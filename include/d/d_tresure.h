@@ -107,7 +107,7 @@ public:
         setPosition(param_1, 14, param_2, -1);
     }
 
-    static void setCoachPosition(int param_1, Vec* param_2, int param_3) {
+    static void setCoachPosition(int param_1, const Vec* param_2, int param_3) {
         setPosition(param_1, 10, param_2, param_3);
     }
 };
