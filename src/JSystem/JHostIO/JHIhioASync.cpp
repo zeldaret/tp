@@ -48,7 +48,6 @@ static void dummyString() {
     DEAD_STRING("INFO:Quitting Hostio...");
 }
 
-// NONMATCHING - small branch issue
 u32 JHIEventLoop() {
     static u32 tNowWrite;
     static u32 tNowRead;
@@ -141,6 +140,7 @@ u32 JHIEventLoop() {
         if (!gMccContext.mp_reader->isPort() || !gMccContext.mp_writer->isPort()) {
             gsEnableInterface = 0;
         }
+        (void)0;
     } else if (!gsEnableInterface && gsEnableHostio != 0 && JHIInitInterface()) {
         OS_REPORT("INFO: JHostIO: Enabled USB2EXI Interface\n");
         bool sp8 = JHINegotiateInterface(800);

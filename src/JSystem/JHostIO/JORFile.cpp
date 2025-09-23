@@ -9,7 +9,8 @@ JORFile::JORFile()
   mFileLength(0),
   mStatus(EStatus_WAIT),
   mNFileName(0),
-  field_0x18(0) {}
+  field_0x18(0),
+  mDataStream() {}
 
 int JORFile::countMaskSize(const char* mask) {
     u32 var_r28 = 0;
@@ -77,11 +78,11 @@ int JORFile::open(const char* path, u32 flags, const char* extMask, const char* 
     return 1;
 }
 
-// NONMATCHING, equivalent?
 void JORFile::close() {
+    JORMContext* mctx;
     if (mHandle != 0) {
         mStatus = EStatus_WAIT;
-        JORMContext* mctx = JORServer::getInstance()->attachMCTX(MCTX_MSG_FIO);
+        mctx = JORServer::getInstance()->attachMCTX(MCTX_MSG_FIO);
         mctx->closeFile(this);
         JORServer::getInstance()->releaseMCTX(mctx);
 
