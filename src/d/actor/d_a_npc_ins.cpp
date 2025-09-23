@@ -718,7 +718,7 @@ void daNpcIns_c::setParam() {
     attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
 
     if (daPy_py_c::checkNowWolf()) {
-        attention_info.flags |= 0x800000;
+        attention_info.flags |= fopAc_AttnFlag_UNK_0x800000;
     }
 
     mAcchCir.SetWallR(daNpcIns_Param_c::m.common.width);
@@ -1262,7 +1262,7 @@ int daNpcIns_c::waitPresent(void* param_1) {
             checkPlayerSearch();
 
             u8 type = dMeter2Info_getInsectSelectType();
-            if (type != 0xFF) {
+            if (type != fpcNm_ITEM_NONE) {
                 if (type != 0 && !isInsect(type)) {
                     break;
                 }

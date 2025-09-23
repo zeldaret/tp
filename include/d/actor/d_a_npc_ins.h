@@ -97,7 +97,7 @@ public:
     bool isInsect(int type) {
         bool rv = false;
 
-        if (type >= 0xC0 && type <= 0xD7) {
+        if (type >= fpcNm_ITEM_M_BEETLE && type <= fpcNm_ITEM_F_MAYFLY) {
             rv = true;
         }
 
