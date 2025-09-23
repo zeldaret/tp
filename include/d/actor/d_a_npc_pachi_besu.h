@@ -29,7 +29,7 @@ public:
 
 class daNpc_Pachi_Besu_c : public daNpcT_c {
 public:
-    typedef int (daNpc_Pachi_Besu_c::*actionFunc)(void*);
+    typedef BOOL (daNpc_Pachi_Besu_c::*actionFunc)(void*);
     typedef BOOL (daNpc_Pachi_Besu_c::*cutFunc)(int);
 
     /* 80A92D6C */ ~daNpc_Pachi_Besu_c();
@@ -59,41 +59,44 @@ public:
     /* 80A94628 */ BOOL selectAction();
     /* 80A946A4 */ BOOL chkAction(actionFunc);
     /* 80A946D0 */ BOOL setAction(actionFunc);
-    /* 80A94778 */ int wait(void*);
-    /* 80A949EC */ int talk(void*);
-    /* 80A94A7C */ void _turn_to_link(s16);
-    /* 80A94B24 */ void _turn_pos(cXyz const&);
-    /* 80A94AC8 */ void _turn_pos(cXyz const&, s16);
+    /* 80A94778 */ BOOL wait(void*);
+    /* 80A949EC */ BOOL talk(void*);
+    #ifdef DEBUG
+    BOOL test(void*);
+    #endif
+    /* 80A94A7C */ BOOL _turn_to_link(s16);
+    /* 80A94B24 */ BOOL _turn_pos(cXyz const&);
+    /* 80A94AC8 */ BOOL _turn_pos(cXyz const&, s16);
     /* 80A94B64 */ BOOL cutTutrialBegin(int);
-    /* 80A94BF8 */ bool _cutTutrialBegin_Init(int const&);
-    /* 80A94C00 */ bool _cutTutrialBegin_Main(int const&);
+    /* 80A94BF8 */ BOOL _cutTutrialBegin_Init(int const&);
+    /* 80A94C00 */ BOOL _cutTutrialBegin_Main(int const&);
     /* 80A94C08 */ BOOL cutTutrialBegin_Skip(int);
-    /* 80A94C9C */ bool _cutTutrialBegin_Skip_Init(int const&);
-    /* 80A94CA4 */ bool _cutTutrialBegin_Skip_Main(int const&);
+    /* 80A94C9C */ BOOL _cutTutrialBegin_Skip_Init(int const&);
+    /* 80A94CA4 */ BOOL _cutTutrialBegin_Skip_Main(int const&);
     /* 80A94CAC */ BOOL cutTutrialClear(int);
-    /* 80A94D40 */ void _cutTutrialClear_Init(int const&);
-    /* 80A94E38 */ void _cutTutrialClear_Main(int const&);
+    /* 80A94D40 */ BOOL _cutTutrialClear_Init(int const&);
+    /* 80A94E38 */ BOOL _cutTutrialClear_Main(int const&);
     /* 80A94ECC */ BOOL cutTalk(int);
-    /* 80A94F60 */ bool _cutTalk_Init(int const&);
-    /* 80A94F68 */ void _cutTalk_Main(int const&);
+    /* 80A94F60 */ BOOL _cutTalk_Init(int const&);
+    /* 80A94F68 */ BOOL _cutTalk_Main(int const&);
     /* 80A94FC4 */ BOOL cutTalk2(int);
-    /* 80A95058 */ bool _cutTalk2_Init(int const&);
-    /* 80A95060 */ void _cutTalk2_Main(int const&);
+    /* 80A95058 */ BOOL _cutTalk2_Init(int const&);
+    /* 80A95060 */ BOOL _cutTalk2_Main(int const&);
     /* 80A950BC */ BOOL cut1stHit_KakasiBody(int);
-    /* 80A95150 */ void _cut1stHit_KakasiBody_Init(int const&);
-    /* 80A951DC */ void _cut1stHit_KakasiBody_Main(int const&);
+    /* 80A95150 */ BOOL _cut1stHit_KakasiBody_Init(int const&);
+    /* 80A951DC */ BOOL _cut1stHit_KakasiBody_Main(int const&);
     /* 80A95270 */ BOOL cutTutrialSelectGiveUp(int);
-    /* 80A95304 */ bool _cutTutrialSelectGiveUp_Init(int const&);
-    /* 80A9530C */ void _cutTutrialSelectGiveUp_Main(int const&);
+    /* 80A95304 */ BOOL _cutTutrialSelectGiveUp_Init(int const&);
+    /* 80A9530C */ BOOL _cutTutrialSelectGiveUp_Main(int const&);
     /* 80A95408 */ BOOL cutTutrialGiveUp(int);
-    /* 80A9549C */ bool _cutTutrialGiveUp_Init(int const&);
-    /* 80A954A4 */ void _cutTutrialGiveUp_Main(int const&);
+    /* 80A9549C */ BOOL _cutTutrialGiveUp_Init(int const&);
+    /* 80A954A4 */ BOOL _cutTutrialGiveUp_Main(int const&);
     /* 80A954E0 */ BOOL cutTutrialContinue(int);
-    /* 80A95574 */ bool _cutTutrialContinue_Init(int const&);
-    /* 80A9557C */ void _cutTutrialContinue_Main(int const&);
+    /* 80A95574 */ BOOL _cutTutrialContinue_Init(int const&);
+    /* 80A9557C */ BOOL _cutTutrialContinue_Main(int const&);
     /* 80A955B8 */ BOOL cutTutrialCaution(int);
-    /* 80A9564C */ bool _cutTutrialCaution_Init(int const&);
-    /* 80A95654 */ void _cutTutrialCaution_Main(int const&);
+    /* 80A9564C */ BOOL _cutTutrialCaution_Init(int const&);
+    /* 80A95654 */ BOOL _cutTutrialCaution_Main(int const&);
     /* 80A968F4 */ daNpc_Pachi_Besu_c(
             daNpcT_faceMotionAnmData_c const* i_faceMotionAnmData,
             daNpcT_motionAnmData_c const* i_motionAnmData,
@@ -106,12 +109,23 @@ public:
         : daNpcT_c(i_faceMotionAnmData, i_motionAnmData, i_faceMotionSequenceData,
         i_faceMotionStepNum, i_motionSequenceData, i_motionStepNum, i_evtData,
         i_arcNames) {}
-    /* 80A969C0 */ u16 getEyeballMaterialNo();
-    /* 80A969C8 */ s32 getHeadJointNo();
-    /* 80A969D0 */ s32 getNeckJointNo();
-    /* 80A969D8 */ s32 getBackboneJointNo();
-    /* 80A969E0 */ BOOL checkChangeJoint(int);
-    /* 80A969F0 */ BOOL checkRemoveJoint(int);
+    /* 80A969C0 */ u16 getEyeballMaterialNo() { return 2; }
+    /* 80A969C8 */ s32 getHeadJointNo() { return 4; }
+    /* 80A969D0 */ s32 getNeckJointNo() { return 3; }
+    /* 80A969D8 */ s32 getBackboneJointNo() { return 1; }
+    /* 80A969E0 */ BOOL checkChangeJoint(int i_joint) { return i_joint == 4; }
+    /* 80A969F0 */ BOOL checkRemoveJoint(int i_joint) { return i_joint == 6; }
+
+    u32 getFlowNodeNo() { 
+        u16 nodeNo = home.angle.x;
+        if (nodeNo == 0xffff) {
+            return -1;
+        }
+        return nodeNo;
+    }
+    int getPathID() { return (fopAcM_GetParam(this) & 0xFF00) >> 8; }
+    int getBitSW() { return (fopAcM_GetParam(this) & 0xFF0000) >> 16; }
+    void setFMotion_None() { mFMotion = 0; }
 
     static char* mCutNameList[11];
     static cutFunc mCutList[11];
@@ -120,13 +134,17 @@ private:
     /* 0xE40 */ daNpc_Pachi_Besu_HIO_c* mHIO;
     /* 0xE44 */ dCcD_Cyl mCyl;
     /* 0xF80 */ u8 mType;
-    /* 0xF81 */ u8 field_0xf81[0xf9e - 0xf81];
-    /* 0xF9E */ u8 field_0xf9e;
+    /* 0xF81 */ u8 field_0xf81;
+    /* 0xF82 */ u8 field_0xf82[0xf84 - 0xf82];
+    /* 0xF84 */ cXyz field_0xf84;
+    /* 0xF90 */ cXyz field_0xf90;
+    /* 0xF9C */ u16 field_0xf9c;
+    /* 0xF9E */ u8 mFMotion;
     /* 0xF9F */ u8 field_0xf9f;
     /* 0xFA0 */ daNpcT_ActorMngr_c mActorMngrs[2];
     /* 0xFB0 */ actionFunc mNextAction;
     /* 0xFBC */ actionFunc mAction;
-    /* 0xFC8 */ u8 field_0xfc8[0xfcc - 0xfc8];
+    /* 0xFC8 */ u8 field_0xfc8;
 };
 
 STATIC_ASSERT(sizeof(daNpc_Pachi_Besu_c) == 0xfcc);
