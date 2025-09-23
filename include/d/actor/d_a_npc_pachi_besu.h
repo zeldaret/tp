@@ -135,12 +135,10 @@ private:
     /* 0xE44 */ dCcD_Cyl mCyl;
     /* 0xF80 */ u8 mType;
     /* 0xF81 */ u8 field_0xf81;
-    /* 0xF82 */ u8 field_0xf82[0xf84 - 0xf82];
     /* 0xF84 */ cXyz field_0xf84;
     /* 0xF90 */ cXyz field_0xf90;
     /* 0xF9C */ u16 field_0xf9c;
     /* 0xF9E */ u8 mFMotion;
-    /* 0xF9F */ u8 field_0xf9f;
     /* 0xFA0 */ daNpcT_ActorMngr_c mActorMngrs[2];
     /* 0xFB0 */ actionFunc mNextAction;
     /* 0xFBC */ actionFunc mAction;

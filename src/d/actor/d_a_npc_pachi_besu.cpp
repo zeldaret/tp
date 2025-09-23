@@ -217,7 +217,8 @@ enum Motion {
     /* 0x00 */ MOT_WAIT_A,
     /* 0x01 */ MOT_WAIT_B,
     /* 0x02 */ MOT_TALK_A,
-    /* 0x04 */ MOT_TALK_N_B = 0x4,
+    /* 0x03 */ MOT_TALK_N_B,
+    /* 0x04 */ MOT_TALK_N_B_2,
     /* 0x05 */ MOT_CUP_A,
     /* 0x06 */ MOT_SURPRISE,
     /* 0x07 */ MOT_WAIT_C,
@@ -243,6 +244,16 @@ enum Motion {
     /* 0x1B */ MOT_GLARE_WAIT,
     /* 0x1C */ MOT_RUN,
     /* 0x1D */ MOT_NORMAL_STEP,
+};
+
+enum Type {
+    /* 0x0 */ TYPE_0,
+    /* 0x1 */ TYPE_1,
+};
+
+enum Event {
+    /* 0x0 */ EVT_NONE,
+    /* 0x1 */ EVT_TUTRIAL_TALK2,
 };
 
 /* 80A96C60-80A96C90 000020 0030+00 1/1 0/0 0/0 .data            l_bmdData */
@@ -672,17 +683,17 @@ int daNpc_Pachi_Besu_c::ctrlJointCallBack(J3DJoint* i_joint, int param_2) {
 u8 daNpc_Pachi_Besu_c::getType() {
     switch (fopAcM_GetParam(this) & 0xFF) {
         case 0:
-            return 0;
+            return TYPE_0;
 
         default:
-            return 1;
+            return TYPE_1;
     }
 }
 
 /* 80A93788-80A937A8 000B08 0020+00 1/1 0/0 0/0 .text            isDelete__18daNpc_Pachi_Besu_cFv */
 BOOL daNpc_Pachi_Besu_c::isDelete() {
     switch (mType) {
-        case 0:
+        case TYPE_0:
             return FALSE;
 
         default:
@@ -707,7 +718,7 @@ void daNpc_Pachi_Besu_c::reset() {
     memset(&mNextAction, 0, size);
 
     switch (mType) {
-        case 0:
+        case TYPE_0:
             setFMotion_None();
             break;
     }
@@ -762,14 +773,14 @@ void daNpc_Pachi_Besu_c::afterMoved() {
 
     switch (mFMotion) {
         case 1:
-            mMotionSeqMngr.setNo(3, -1.0f, FALSE, 0);
-            mFaceMotionSeqMngr.setNo(2, -1.0f, FALSE, 0);
+            mMotionSeqMngr.setNo(MOT_TALK_N_B, -1.0f, FALSE, 0);
+            mFaceMotionSeqMngr.setNo(FACE_MOT_TALK_B, -1.0f, FALSE, 0);
             setFMotion_None();
             break;
 
         case 2:
-            mMotionSeqMngr.setNo(0, -1.0f, FALSE, 0);
-            mFaceMotionSeqMngr.setNo(0xF, -1.0f, FALSE, 0);
+            mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0f, FALSE, 0);
+            mFaceMotionSeqMngr.setNo(FACE_MOT_H_MADTALK, -1.0f, FALSE, 0);
 
             if (actor_p2 != NULL) {
                 mJntAnm.lookActor(actor_p2, 0.0f, 0);
@@ -803,27 +814,27 @@ BOOL daNpc_Pachi_Besu_c::checkChangeEvt() {
 
 /* 80A93D78-80A93E24 0010F8 00AC+00 2/0 0/0 0/0 .text setAfterTalkMotion__18daNpc_Pachi_Besu_cFv */
 void daNpc_Pachi_Besu_c::setAfterTalkMotion() {
-    int i_faceMotion = 0x1C;
+    int i_faceMotion = FACE_MOT_NONE;
 
     switch (mFaceMotionSeqMngr.getNo()) {
-        case 1:
-            i_faceMotion = 0xD;
+        case FACE_MOT_TALK_A:
+            i_faceMotion = FACE_MOT_H_TALK_A;
             break;
 
-        case 2:
-            i_faceMotion = 0xE;
+        case FACE_MOT_TALK_B:
+            i_faceMotion = FACE_MOT_H_TALK_B;
             break;
 
-        case 8:
-            i_faceMotion = 0xF;
+        case FACE_MOT_MADTALK:
+            i_faceMotion = FACE_MOT_H_MADTALK;
             break;
 
-        case 10:
-            i_faceMotion = 0x13;
+        case FACE_MOT_SURPRISE:
+            i_faceMotion = FACE_MOT_H_SURPRISE;
             break;
 
-        case 11:
-            i_faceMotion = 0x1A;
+        case FACE_MOT_WORRY:
+            i_faceMotion = FACE_MOT_H_WORRY;
             break;
     }
 
@@ -833,7 +844,7 @@ void daNpc_Pachi_Besu_c::setAfterTalkMotion() {
 /* 80A93E24-80A93EAC 0011A4 0088+00 1/1 0/0 0/0 .text            srchActors__18daNpc_Pachi_Besu_cFv */
 void daNpc_Pachi_Besu_c::srchActors() {
     switch (mType) {
-        case 0:
+        case TYPE_0:
             fopAc_ac_c* actor_p = mActorMngrs[0].getActorP();
             if (actor_p == NULL) {
                 mActorMngrs[0].entry(getNearestActorP(PROC_NPC_PACHI_TARO));
@@ -907,7 +918,7 @@ void daNpc_Pachi_Besu_c::action() {
 
     if (mStagger.checkRebirth()) {
         mStagger.initialize();
-        mMode = 1;
+        mMode = MODE_INIT;
     }
 
     if (mNextAction) {
@@ -931,7 +942,7 @@ void daNpc_Pachi_Besu_c::setAttnPos() {
     cXyz sp38(10.0f, 30.0f, 0.0f);
 
     BOOL bVar1 = 0;
-    if (mMotionSeqMngr.getNo() == 0x12 && !mMotionSeqMngr.checkEndSequence()) {
+    if (mMotionSeqMngr.getNo() == MOT_YOKERU && !mMotionSeqMngr.checkEndSequence()) {
         bVar1 = TRUE;
     }
     
@@ -1003,7 +1014,7 @@ BOOL daNpc_Pachi_Besu_c::selectAction() {
     mNextAction = NULL;
 
     switch (mType) {
-        case 0:
+        case TYPE_0:
             mNextAction = &daNpc_Pachi_Besu_c::wait;
             break;
 
@@ -1022,13 +1033,13 @@ BOOL daNpc_Pachi_Besu_c::chkAction(actionFunc action) {
 
 /* 80A946D0-80A94778 001A50 00A8+00 2/2 0/0 0/0 .text            setAction__18daNpc_Pachi_Besu_cFM18daNpc_Pachi_Besu_cFPCvPvPv_i */
 BOOL daNpc_Pachi_Besu_c::setAction(actionFunc action) {
-    mMode = 3;
+    mMode = MODE_EXIT;
 
     if (mAction) {
         (this->*mAction)(NULL);
     }
 
-    mMode = 0;
+    mMode = MODE_ENTER;
     mAction = action;
 
     if (mAction) {
@@ -1041,17 +1052,17 @@ BOOL daNpc_Pachi_Besu_c::setAction(actionFunc action) {
 /* 80A94778-80A949EC 001AF8 0274+00 2/0 0/0 0/0 .text            wait__18daNpc_Pachi_Besu_cFPv */
 BOOL daNpc_Pachi_Besu_c::wait(void* param_1) {
     switch (mMode) {
-        case 0:
-        case 1:
+        case MODE_ENTER:
+        case MODE_INIT:
             field_0xf81 = 0;
 
             if (!mStagger.checkStagger()) {
-                mFaceMotionSeqMngr.setNo(0x1C, -1.0f, FALSE, 0);
-                mMotionSeqMngr.setNo(0, -1.0f, FALSE, 0);
-                mMode = 2;
+                mFaceMotionSeqMngr.setNo(FACE_MOT_NONE, -1.0f, FALSE, 0);
+                mMotionSeqMngr.setNo(MOT_WAIT_A, -1.0f, FALSE, 0);
+                mMode = MODE_RUN;
             }
             // fallthrough
-        case 2:
+        case MODE_RUN:
             field_0xf81 = 0;
 
             if (!mStagger.checkStagger()) {
@@ -1064,7 +1075,7 @@ BOOL daNpc_Pachi_Besu_c::wait(void* param_1) {
                     }
 
                     if (!srchPlayerActor() && home.angle.y == mCurAngle.y) {
-                        mMode = 1;
+                        mMode = MODE_INIT;
                     }
                 } else {
                     mJntAnm.lookNone(0);
@@ -1072,11 +1083,11 @@ BOOL daNpc_Pachi_Besu_c::wait(void* param_1) {
                     if (home.angle.y != mCurAngle.y) {
                         if (field_0xe34 != 0) {
                             if (step(home.angle.y, 0x1C, 0x11, 0xF, 0)) {
-                                mMode = 1;
+                                mMode = MODE_INIT;
                             }
                         } else {
                             setAngle(home.angle.y);
-                            mMode = 1;
+                            mMode = MODE_INIT;
                         }
 
                         attention_info.flags = 0;
@@ -1089,7 +1100,7 @@ BOOL daNpc_Pachi_Besu_c::wait(void* param_1) {
             }
             break;
 
-        case 3:
+        case MODE_EXIT:
             break;
     }
 
@@ -1099,24 +1110,24 @@ BOOL daNpc_Pachi_Besu_c::wait(void* param_1) {
 /* 80A949EC-80A94A7C 001D6C 0090+00 2/0 0/0 0/0 .text            talk__18daNpc_Pachi_Besu_cFPv */
 BOOL daNpc_Pachi_Besu_c::talk(void* param_1) {
     switch (mMode) {
-        case 0:
-        case 1:
+        case MODE_ENTER:
+        case MODE_INIT:
             if (!mStagger.checkStagger()) {
                 fopAc_ac_c* actor_p = mActorMngrs[0].getActorP();
                 if (actor_p != NULL) {
                     ((daNpc_Pachi_Taro_c*)actor_p)->clrMesPat();
                 }
 
-                mMode = 2;
+                mMode = MODE_RUN;
             }
             // fallthrough
-        case 2:
-            mEvtNo = 1;
+        case MODE_RUN:
+            mEvtNo = EVT_TUTRIAL_TALK2;
             field_0xf9c = mEvtNo;
             evtChange();
             break;
 
-        case 3:
+        case MODE_EXIT:
             break;
     }
 
@@ -1235,7 +1246,7 @@ BOOL daNpc_Pachi_Besu_c::_cutTutrialClear_Init(int const& i_cutId) {
             break;
 
         case 20:
-            mMotionSeqMngr.setNo(3, -1.0f, FALSE, 0);
+            mMotionSeqMngr.setNo(MOT_TALK_N_B, -1.0f, FALSE, 0);
             mFaceMotionSeqMngr.setNo(2, -1.0f, FALSE, 0);
             break;
     }
