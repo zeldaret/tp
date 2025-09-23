@@ -225,7 +225,7 @@ const char* non_text = "無し";
 
 dEvM_play_HIO_c::dEvM_play_HIO_c() {
     mTargetEvent = 0;
-    field_0x6 = 0;
+    mEventIdx = 0;
     mEventCameraMode = UNSET;
     field_0xA = 0;
 }
