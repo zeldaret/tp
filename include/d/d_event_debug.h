@@ -41,9 +41,10 @@ struct dEvDb_flag_base_c {
 
 struct dEvM_play_HIO_c : public JORReflexible {
     dEvM_play_HIO_c();
+    ~dEvM_play_HIO_c() {}
 
     /* 0x04 */ s16 mTargetEvent;
-    /* 0x06 */ s16 field_0x6;
+    /* 0x06 */ s16 mEventIdx;
     /* 0x08 */ s16 mEventCameraMode;
     /* 0x0A */ s16 field_0xA;
 
@@ -70,7 +71,7 @@ STATIC_ASSERT(sizeof(dEvM_play_HIO_c) == 0xC);
 
 struct dEvM_reg_HIO_c : public JORReflexible {
     dEvM_reg_HIO_c();
-    ~dEvM_reg_HIO_c();
+    ~dEvM_reg_HIO_c() {}
 
     /* 0x04 */ dEvDb_flag_base_c* mFlagTables;
     /* 0x08 */ u8 field_0x008;
@@ -91,7 +92,7 @@ STATIC_ASSERT(sizeof(dEvM_reg_HIO_c) == 0xC);
 
 struct dEvM_bit_HIO_c : public JORReflexible {
     dEvM_bit_HIO_c();
-    ~dEvM_bit_HIO_c();
+    ~dEvM_bit_HIO_c() {}
 
     /* 0x04 */ dEvDb_flag_base_c* mFlagTables;
     /* 0x08 */ u8 field_0x008;
@@ -134,7 +135,7 @@ STATIC_ASSERT(sizeof(dEvM_root_reg_HIO_c) == 0x4B8);
 
 struct dEvM_HIO_c : public JORReflexible {
     dEvM_HIO_c();
-    ~dEvM_HIO_c();
+    ~dEvM_HIO_c() {}
 
     /* 0x004 */ s8 field_0x004;
     /* 0x005 */ u8 m_EVdata_output;

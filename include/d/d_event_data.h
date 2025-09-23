@@ -2,6 +2,7 @@
 #define D_EVENT_D_EVENT_DATA_H
 
 #include "global.h"
+#include "f_pc/f_pc_base.h"
 
 class msg_class;
 
@@ -22,6 +23,11 @@ struct event_binary_data_header {
     /* 0x34 */ s32 sDataNum;
     /* 0x38 */ u8 unk[8];
 };  // Size: 0x40
+
+enum dEvDt_State_e {
+    dEvDt_State_START_e = 1,
+    dEvDt_State_END_e,
+};
 
 class dEvDtData_c {
 public:
@@ -56,6 +62,7 @@ public:
     char* getName() { return mName; }
     int getNext() { return mNext; }
     int getStartFlag(int idx) { return mFlags[idx]; }
+    u32 getTagId() { return mTagID; }
 
 private:
     /* 0x00 */ char mName[32];
@@ -85,11 +92,13 @@ public:
     };
 
     struct StaffWork {
-        unsigned int _0;
-        msg_class* mLMsg;
-        unsigned int mMsgNo;
-        s32 mMsgSubstanceNum;
-        int* mMsgSubstanceP;
+        fpc_ProcID l_msgId;
+        msg_class* l_msg;
+        u32 l_msgNo;
+        struct {
+            int n;   // substance num
+            int* d;  // data
+        } msgs;
     };
 
     struct MessageData {
@@ -131,13 +140,13 @@ public:
 
     int getType() { return mType; }
     char* getName() { return mName; }
+    s32 getTagID() { return mTagID; }
     int getCurrentCut() { return mCurrentCut; }
     int getStartCut() { return mStartCut; }
 
     // private:
     /* 0x00 */ char mName[8];
-    /* 0x08 */ StaffWork mWork;
-    /* 0x0C */ u8 field_0x1C[0x20 - 0x1C];
+    /* 0x08 */ u8 mWork[0x18];
     /* 0x20 */ s32 mTagID;
     /* 0x24 */ u32 mIndex;
     /* 0x28 */ u32 mFlagID;
@@ -172,7 +181,7 @@ public:
     /* 0x7C */ int mNStaff;
     /* 0x80 */ u8 field_0x80[4];
     /* 0x84 */ int field_0x84;
-    /* 0x88 */ int field_0x88[3];
+    /* 0x88 */ int mFlags[3];
     /* 0x94 */ bool mPlaySound;
     /* 0x95 */ u8 field_0x95[0xF];
     /* 0xA4 */ int mEventState;
@@ -187,7 +196,7 @@ public:
     BOOL flagMaxCheck(int flag);
     void init();
 
-#define FlagMax 0x2800
+    static const int FlagMax = 0x2800;
 
 private:
     u32 mFlags[320];
@@ -204,6 +213,7 @@ public:
 
     event_binary_data_header* getHeaderP() { return mHeaderP; }
     dEvDtStaff_c* getStaffP(int i) { return &mStaffP[i]; }
+    dEvDtStaff_c* getStaffP() { return mStaffP; }
     dEvDtEvent_c* getEventP(int i) { return &mEventP[i]; }
     dEvDtEvent_c* getEventP() { return mEventP; }
     dEvDtData_c* getDataP(int i) { return &mDataP[i]; }

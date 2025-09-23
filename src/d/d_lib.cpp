@@ -231,7 +231,7 @@ bool STControl::checkDownTrigger() {
 u8 dLib_getEventSwitchNo(int param_0) {
     dStage_MapEvent_dt_c* mapEvent = dEvt_control_c::searchMapEventData(param_0);
     if (mapEvent != NULL) {
-        return mapEvent->mSwitch;
+        return mapEvent->switch_no;
     }
     return 0xff;
 }

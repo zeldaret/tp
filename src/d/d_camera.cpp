@@ -9214,9 +9214,9 @@ bool dCamera_c::eventCamera(s32 param_0) {
                 break;
             }
 
-            if (mEventData.field_0xec->mType == 0 && (mEventData.field_0xec->field_0xC & 0x80) != 0)
+            if (mEventData.field_0xec->type == dStage_MapEvent_dt_TYPE_MAPTOOLCAMERA && (mEventData.field_0xec->field_0xC & 0x80) != 0)
             {
-                field_0x8d8.mCameraIndex = mEventData.field_0xec->field_0x16;
+                field_0x8d8.mCameraIndex = mEventData.field_0xec->data.maptool.field_0x16;
                 OS_REPORT("camera: event: change default type %d \n", field_0x8d8.mCameraIndex);
             }
         } else {

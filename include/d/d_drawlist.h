@@ -439,6 +439,7 @@ public:
     void imageDrawShadow(Mtx param_0) { mShadowControl.imageDraw(param_0); }
     void drawShadow(Mtx param_0) { mShadowControl.draw(param_0); }
 
+    static void wipeOut(f32 i_rate) { wipeIn(-i_rate); }
     static void offWipe() { mWipe = 0; }
     static f32 getWipeRate() { return mWipeRate; }
 
