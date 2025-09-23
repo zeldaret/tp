@@ -1847,7 +1847,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_hoz"),
     ActorRel(NonMatching, "d_a_npc_impal", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(NonMatching, "d_a_npc_inko"),
-    ActorRel(NonMatching, "d_a_npc_ins"),
+    ActorRel(Equivalent, "d_a_npc_ins", extra_cflags=[DANPCF_C_HACK]), # weak func order
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_jagar"),
     ActorRel(NonMatching, "d_a_npc_kasi_hana", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(NonMatching, "d_a_npc_kasi_kyu", extra_cflags=[DANPCF_C_HACK]),
