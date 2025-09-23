@@ -5,10 +5,49 @@
 
 #include "d/dolzel_rel.h"
 
+#include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_e_hz.h"
 #include "d/d_camera.h"
-#include "dol2asm.h"
 #include "f_op/f_op_actor_enemy.h"
+
+
+class daE_HZ_HIO_c : public JORReflexible {
+public:
+    /* 806EA60C */ daE_HZ_HIO_c();
+    /* 806F0368 */ virtual ~daE_HZ_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x4 */ s8 enemy_sample;
+    /* 0x8 */ f32 basic_size;
+    /* 0xC */ u8 pl_detection_radius_display;
+    /* 0x10 */ f32 pl_detection_radius_in;
+    /* 0x14 */ f32 pl_detection_radius_outside;
+    /* 0x18 */ f32 escape_speed;
+    /* 0x1C */ f32 piyori_time;
+    /* 0x20 */ f32 extension_time;
+    /* 0x24 */ f32 stretch_anim_speed;
+    /* 0x28 */ f32 retention_time_before_stretch;
+    /* 0x2C */ f32 reeling_rotation_speed;
+    /* 0x30 */ f32 y_position_wrap;
+    /* 0x34 */ f32 camera_on_timer;
+    /* 0x38 */ f32 camera_off_timer;
+};
+
+enum daE_HZ_Action {
+    /*  0 */ ACTION_WAIT,
+    /*  1 */ ACTION_HIDE,
+    /*  2 */ ACTION_ATTACK,
+    /*  3 */ ACTION_EXECUTE_AWAY,
+    /*  4 */ ACTION_EXECUTE_WIND,
+    /*  5 */ ACTION_EXECUTE_DAMAGE,
+    /*  6 */ ACTION_EXECUTE_DEATH,
+    /*  7 */ ACTION_EXECUTE_CHANCE,
+    /*  8 */ ACTION_EXECUTE_WIND_CHANCE,
+    /*  9 */ ACTION_EXECUTE_WIND_WALK,
+    /* 10 */ ACTION_EXECUTE_WATER_DEATH,
+    /* 11 */ ACTION_EXECUTE_DEATH_WAIT
+};
 
 /* 806EA60C-806EA690 0000EC 0084+00 1/1 0/0 0/0 .text            __ct__12daE_HZ_HIO_cFv */
 daE_HZ_HIO_c::daE_HZ_HIO_c() {
@@ -58,13 +97,13 @@ int daE_HZ_c::draw() {
     J3DModel* morfModel = mpMorfSO->getModel();
     g_env_light.setLightTevColorType_MAJI(morfModel, &tevStr);
 
-    if (field_0x6f4 != 0) {
+    if (mReadyChangeColor != 0) {
         J3DModelData* morfModelData = morfModel->getModelData();
         for (u16 i = 0; i < morfModelData->getMaterialNum(); i++) {
             J3DMaterial* material = morfModelData->getMaterialNodePointer(i);
-            material->getTevColor(0)->r = field_0x6f0;
-            material->getTevColor(0)->g = field_0x6f0;
-            material->getTevColor(0)->b = field_0x6f0;
+            material->getTevColor(0)->r = mColor;
+            material->getTevColor(0)->g = mColor;
+            material->getTevColor(0)->b = mColor;
         }
     }
 
@@ -76,7 +115,7 @@ int daE_HZ_c::draw() {
     cXyz modified_pos;
     modified_pos.set(current.pos.x, current.pos.y + 100.0f, current.pos.z);
 
-    if (field_0x6e7 == 0) {
+    if (!mDisableShadow) {
         mShadowKey = dComIfGd_setShadow(mShadowKey, 1, morfModel, &modified_pos, 800.0f, 0.0f,
                                         current.pos.y, mObjAcch.GetGroundH(), mObjAcch.m_gnd,
                                         &tevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
@@ -96,22 +135,13 @@ static u8 l_HIOInit;
 static daE_HZ_HIO_c l_HIO;
 
 /* 806F0BB8-806F0BBC 000090 0004+00 0/3 0/0 0/0 .bss             m_near_bomb */
-#pragma push
-#pragma force_active on
 static daNbomb_c* m_near_bomb;
-#pragma pop
 
 /* 806F0BBC-806F0BC0 000094 0004+00 0/3 0/0 0/0 .bss             m_near_carry */
-#pragma push
-#pragma force_active on
 static daObjCarry_c* m_near_carry;
-#pragma pop
 
 /* 806F0BC0-806F0BC4 000098 0004+00 0/3 0/0 0/0 .bss             m_near_weapon */
-#pragma push
-#pragma force_active on
 static fopAc_ac_c* m_near_weapon;
-#pragma pop
 
 /* 806EA9B8-806EAADC 000498 0124+00 2/2 0/0 0/0 .text            s_obj_sub__FPvPv */
 static void* s_obj_sub(void* i_actor, void* i_data) {
@@ -148,15 +178,15 @@ static void* s_obj_sub(void* i_actor, void* i_data) {
 /* 806EAADC-806EAB68 0005BC 008C+00 16/16 0/0 0/0 .text            setActionMode__8daE_HZ_cFi */
 void daE_HZ_c::setActionMode(int i_action) {
     if (mAction != i_action || i_action == 5) {
-        if (field_0x6ed != 0) {
+        if (mReadyNewAction) {
             dComIfGp_event_reset();
-            field_0x6ed = 0;
+            mReadyNewAction = false;
             OS_REPORT("setActionMode %d %d \n", mAction, i_action);
         }
-        field_0x6e7 = 0;
-        field_0x6c4 = mAction;
+        mDisableShadow = false;
+        mPrevAction = mAction;
         mAction = i_action;
-        field_0x6c8 = 0;
+        mMode = 0;
         current.angle.y = shape_angle.y;
     }
 }
@@ -165,11 +195,12 @@ void daE_HZ_c::setActionMode(int i_action) {
 bool daE_HZ_c::checkHideStart() {
     daPy_py_c* player = daPy_getPlayerActorClass();
 
-    if (field_0x6de != 0) {
+    if (mAttackCooldownTimer != 0) {
         return 1;
     }
 
-    if (mActorDist < l_HIO.pl_detection_radius_in || mActorDist > l_HIO.pl_detection_radius_outside)
+    if (mPlayerDist < l_HIO.pl_detection_radius_in ||
+        mPlayerDist > l_HIO.pl_detection_radius_outside)
     {
         return 1;
     }
@@ -209,10 +240,10 @@ bool daE_HZ_c::checkAttackStart() {
         if (!daPy_getPlayerActorClass()->checkBootsOrArmorHeavy()) {
             field_0x6e9 |= 1;
         } else {
-            if (field_0x6da == 0) {
-                field_0x6c8 = 2;
+            if (mAttackStartTimer == 0) {
+                mMode = 2;
                 current.pos.y += 2.0f;
-                field_0x6da = cM_rndF(10.0f) + 20.0f;
+                mAttackStartTimer = cM_rndF(10.0f) + 20.0f;
             }
             return false;
         }
@@ -265,11 +296,11 @@ void daE_HZ_c::setTgSetBit(int i_setBit) {
 
 /* 806EB0FC-806EB13C 000BDC 0040+00 0/0 0/0 1/1 .text            isWait__8daE_HZ_cFv */
 bool daE_HZ_c::isWait() {
-    if (mAction == 0 || mAction == 1) {
+    if (mAction == ACTION_WAIT || mAction == ACTION_HIDE) {
         return true;
     }
 
-    if (mAction == 0xB && field_0x6c8 == 4) {
+    if (mAction == ACTION_EXECUTE_DEATH_WAIT && mMode == ACTION_EXECUTE_WIND) {
         return true;
     }
     return false;
@@ -277,7 +308,7 @@ bool daE_HZ_c::isWait() {
 
 /* 806EB13C-806EB2E8 000C1C 01AC+00 1/1 0/0 0/0 .text            checkFall__8daE_HZ_cFv */
 void daE_HZ_c::checkFall() {
-    if (mAction == 0xB || mAction == 10) {
+    if (mAction == ACTION_EXECUTE_DEATH_WAIT || mAction == ACTION_EXECUTE_WATER_DEATH) {
         return;
     }
     if (mObjAcch.ChkGroundHit()) {
@@ -316,8 +347,8 @@ void daE_HZ_c::setCloseSmokeEffect() {
 
     gnd_chk.SetPos(&modified_pos);
     if (dComIfG_Bgsp().GroundCross(&gnd_chk) != -1000000000.0f) {
-        dComIfGp_particle_setPolyColor(0x82E2, gnd_chk, &field_0x684, &tevStr, &shape_angle, NULL,
-                                       0, NULL, -1, NULL);
+        dComIfGp_particle_setPolyColor(0x82E2, gnd_chk, &mSmokeEffectPosition, &tevStr,
+                                       &shape_angle, NULL, 0, NULL, -1, NULL);
     }
 
     mSound.startCreatureSound(Z2SE_EN_HZ_CLOSE, 0, -1);
@@ -326,101 +357,101 @@ void daE_HZ_c::setCloseSmokeEffect() {
 /* 806EB3EC-806EB7B0 000ECC 03C4+00 1/1 0/0 0/0 .text            executeWait__8daE_HZ_cFv */
 void daE_HZ_c::executeWait() {
     field_0x566 = 0;
-    field_0x6e5 = 1;
+    mSetModelAnmMtx = true;
 
-    switch (field_0x6c8) {
+    switch (mMode) {
+    case 0:
+        mSpheres[0].OnTgSetBit();
+        mSpheres[0].SetTgType(0x10040);
+        setBck(0x10, 2, 0.0f, 1.0f);
+        shape_angle.y = mPlayerAngleY + 0x2000 & 0xC000;
+        mMode = 1;
+        field_0x6e4 = 0;
+        field_0x6b4 = 0;
+        /* fallthrough */
+
+    case 1:
+        if (!cLib_chaseF(&current.pos.y, home.pos.y + 30.0f, 2.0f)) {
+            break;
+        } else {
+            mMode = 2;
+            s16 angle = shape_angle.y = shape_angle.y + 0x2000 & 0xC000;
+            field_0x6b2 = angle;
+            field_0x6cc = 0;
+            field_0x6b6 = 0;
+        }
+        break;
+
+    case 2:
+        shape_angle.y += field_0x6b6;
+        switch (field_0x6cc) {
         case 0:
-            mSpheres[0].OnTgSetBit();
-            mSpheres[0].SetTgType(0x10040);
-            setBck(0x10, 2, 0.0f, 1.0f);
-            shape_angle.y = field_0x6b0 + 0x2000 & 0xC000;
-            field_0x6c8 = 1;
-            field_0x6e4 = 0;
-            field_0x6b4 = 0;
-            /* fallthrough */
-
-        case 1:
-            if (!cLib_chaseF(&current.pos.y, home.pos.y + 30.0f, 2.0f)) {
-                break;
-            } else {
-                field_0x6c8 = 2;
-                s16 angle = shape_angle.y = shape_angle.y + 0x2000 & 0xC000;
-                field_0x6b2 = angle;
-                field_0x6cc = 0;
-                field_0x6b6 = 0;
+            if ((s16)(field_0x6b2 - 0x1800) < shape_angle.y) {
+                cLib_chaseAngleS(&field_0x6b6, -0x200, 0x80);
+            } else if (cLib_chaseAngleS(&field_0x6b6, 0, 0x80)) {
+                field_0x6cc = 1;
+                mWaitTimer = 10;
             }
             break;
-                
+
         case 2:
-            shape_angle.y += field_0x6b6;
-            switch (field_0x6cc) {
-                case 0:
-                    if ((s16)(field_0x6b2 - 0x1800) < shape_angle.y) {
-                        cLib_chaseAngleS(&field_0x6b6, -0x200, 0x80);
-                    } else if (cLib_chaseAngleS(&field_0x6b6, 0, 0x80)) {
-                        field_0x6cc = 1;
-                        field_0x6d6 = 10;
-                    }
-                    break;
-
-                case 2:
-                    if ((s16)(field_0x6b2 + 0x1800) > shape_angle.y) {
-                        cLib_chaseAngleS(&field_0x6b6, 0x200, 0x80);
-                    } else if (cLib_chaseAngleS(&field_0x6b6, 0, 0x80)) {
-                        field_0x6cc = 3;
-                        field_0x6d6 = 10;
-                    }
-                    break;
-
-                case 3:
-                case 1:
-                    if (field_0x6d6 == 0) {
-                        field_0x6cc++;
-                    }
-                    break;
-
-                case 4:
-                    cLib_chaseAngleS(&field_0x6b6, -0x200, 0x80);
-                    if (cLib_distanceAngleS(shape_angle.y, field_0x6b2) >= 0x500) {
-                        break;
-                    }
-                    field_0x6d6 = 10;
-                    field_0x6cc = 5;
-                    return;
-                case 5:
-                    cLib_chaseAngleS(&field_0x6b6, 0, 0x80);
-                    if (field_0x6d6 == 0) {
-                        if (checkArrowCharge()) {
-                            field_0x6c8 = 4;
-                        } else {
-                            field_0x6c8 = 3;
-                        }
-                    }
-                    
-                }
-                if (field_0x6cc >= 2 && field_0x6cc <= 4 &&
-                    cLib_distanceAngleS(shape_angle.y, field_0x6b0) < 0x800) {
-                    field_0x6d6 = 0;
-                    field_0x6cc = 5;
-                    break;
-                }
-                break;
-                
-        case 3:
-        case 4:
-            if (cLib_chaseF(&current.pos.y, home.pos.y + 30.0f, 5.0f)) {
-                field_0x6b4 += 0x800;
-                current.pos.y += cM_ssin(field_0x6b4) * 1.5f;
-                cLib_chaseAngleS(&shape_angle.y, field_0x6b0, 0x400);
+            if ((s16)(field_0x6b2 + 0x1800) > shape_angle.y) {
+                cLib_chaseAngleS(&field_0x6b6, 0x200, 0x80);
+            } else if (cLib_chaseAngleS(&field_0x6b6, 0, 0x80)) {
+                field_0x6cc = 3;
+                mWaitTimer = 10;
             }
             break;
+
+        case 3:
+        case 1:
+            if (mWaitTimer == 0) {
+                field_0x6cc++;
+            }
+            break;
+
+        case 4:
+            cLib_chaseAngleS(&field_0x6b6, -0x200, 0x80);
+            if (cLib_distanceAngleS(shape_angle.y, field_0x6b2) >= 0x500) {
+                break;
+            }
+            mWaitTimer = 10;
+            field_0x6cc = 5;
+            return;
+        case 5:
+            cLib_chaseAngleS(&field_0x6b6, 0, 0x80);
+            if (mWaitTimer == 0) {
+                if (checkArrowCharge()) {
+                    mMode = 4;
+                } else {
+                    mMode = 3;
+                }
+            }
+        }
+        if (field_0x6cc >= 2 && field_0x6cc <= 4 &&
+            cLib_distanceAngleS(shape_angle.y, mPlayerAngleY) < 0x800)
+        {
+            mWaitTimer = 0;
+            field_0x6cc = 5;
+            break;
+        }
+        break;
+
+    case 3:
+    case 4:
+        if (cLib_chaseF(&current.pos.y, home.pos.y + 30.0f, 5.0f)) {
+            field_0x6b4 += 0x800;
+            current.pos.y += cM_ssin(field_0x6b4) * 1.5f;
+            cLib_chaseAngleS(&shape_angle.y, mPlayerAngleY, 0x400);
+        }
+        break;
     }
 
     if (checkBck(0x10) && (mpMorfSO->checkFrame(0.0f) || mpMorfSO->checkFrame(30.0f))) {
         mSound.startCreatureVoice(Z2SE_EN_HZ_V_WAIT, -1);
     }
     if (checkHideStart()) {
-        setActionMode(1);
+        setActionMode(ACTION_HIDE);
     }
 }
 
@@ -445,185 +476,191 @@ f32 daE_HZ_c::getHideSpeed() {
 /* 806EB818-806EBD44 0012F8 052C+00 1/1 0/0 0/0 .text            executeHide__8daE_HZ_cFv */
 void daE_HZ_c::executeHide() {
     field_0x566 = 0;
-    field_0x6e5 = 1;
+    mSetModelAnmMtx = true;
 
-    switch (field_0x6c8) {
-        case 0:
-            mSpheres[0].OnTgSetBit();
-            mSpheres[0].SetTgType(0x10000);
-            field_0x6e4 = 0;
-            setTgSetBit(0);
-            mSpheres[1].OffTgShield();
-            mSpheres[2].OffTgShield();
-            mSpheres[1].SetTgHitMark(CcG_Tg_UNK_MARK_0);
-            mSpheres[2].SetTgHitMark(CcG_Tg_UNK_MARK_0);
-            field_0x6d6 = 0;
-            field_0x6cc = 0;
-            if (home.pos.y == current.pos.y) {
-                field_0x6c8 = 3;
-                setBck(0xD, 0, 3.0f, 0.0f);
-                shape_angle.y = home.angle.y;
-            } else {
-                field_0x6c8 = 1;
-                setBck(0x10, 2, 0.0f, 1.0f);
+    switch (mMode) {
+    case 0:
+        mSpheres[0].OnTgSetBit();
+        mSpheres[0].SetTgType(0x10000);
+        field_0x6e4 = 0;
+        setTgSetBit(0);
+        mSpheres[1].OffTgShield();
+        mSpheres[2].OffTgShield();
+        mSpheres[1].SetTgHitMark(CcG_Tg_UNK_MARK_0);
+        mSpheres[2].SetTgHitMark(CcG_Tg_UNK_MARK_0);
+        mWaitTimer = 0;
+        field_0x6cc = 0;
+        if (home.pos.y == current.pos.y) {
+            mMode = 3;
+            setBck(0xD, 0, 3.0f, 0.0f);
+            shape_angle.y = home.angle.y;
+        } else {
+            mMode = 1;
+            setBck(0x10, 2, 0.0f, 1.0f);
+        }
+        field_0x6b2 = shape_angle.y + 0x2000 & 0xC000;
+        speedF = 0.0f;
+        speed.y = 0.0f;
+        gravity = 0.0f;
+        break;
+
+    case 1:
+        s16 chaseAngle;
+        if (mPlayerDist > l_HIO.pl_detection_radius_outside) {
+            chaseAngle = 0x200;
+        } else {
+            chaseAngle = 0x800;
+            if (cLib_chaseF(&current.pos.y, home.pos.y, getHideSpeed())) {
+                shape_angle.y = field_0x6b2;
             }
-            field_0x6b2 = shape_angle.y + 0x2000 & 0xC000;
-            speedF = 0.0f;
-            speed.y = 0.0f;
-            gravity = 0.0f;
-            break;
+        }
+        if (cLib_chaseAngleS(&shape_angle.y, field_0x6b2, chaseAngle)) {
+            mMode = 2;
+        }
+        break;
 
-        case 1:
-            s16 chaseAngle;
-            if (mActorDist > l_HIO.pl_detection_radius_outside) {
-                chaseAngle = 0x200;
+    case 2:
+        f32 step;
+        if (mPlayerDist > l_HIO.pl_detection_radius_outside) {
+            step = 5.0f;
+        } else {
+            step = getHideSpeed();
+        }
+        if (cLib_chaseF(&current.pos.y, home.pos.y, step) && mWaitTimer == 0) {
+            mMode = 3;
+            setBck(0xD, 0, 3.0f, 0.0f);
+            setCloseSmokeEffect();
+        }
+        break;
+
+    case 3:
+        if (checkAttackStart()) {
+            if (field_0x6e9 & 1) {
+                mMode = 4;
             } else {
-                chaseAngle = 0x800;
-                if (cLib_chaseF(&current.pos.y, home.pos.y, getHideSpeed())) {
-                    shape_angle.y = field_0x6b2;
+                mMode = 5;
+                mRetentionBeforeStretchTimer = l_HIO.retention_time_before_stretch;
+            }
+            shape_angle.y = mPlayerAngleY + 0x2000 & 0xC000;
+            break;
+        }
+        if (!checkHideStart() && !dComIfGp_checkPlayerStatus0(0, 0x4000)) {
+            setActionMode(ACTION_WAIT);
+        }
+        break;
+
+    case 4:
+        if (!eventInfo.checkCommandDemoAccrpt()) {
+            fopAcM_orderPotentialEvent(this, 2, 0, 0);
+            eventInfo.onCondition(2);
+        } else {
+            mReadyNewAction = true;
+            mMode = 5;
+            mRetentionBeforeStretchTimer = l_HIO.retention_time_before_stretch;
+        }
+        break;
+
+    case 5:
+        cLib_chaseF(&current.pos.y, home.pos.y + 50.0f, 10.0f);
+
+        if (mRetentionBeforeStretchTimer == 2) {
+            if (mReadyNewAction) {
+                cXyz position(current.pos.x, daPy_getPlayerActorClass()->current.pos.y,
+                              current.pos.z);
+
+                daPy_getPlayerActorClass()->setPlayerPosAndAngle(
+                    &position, daPy_getPlayerActorClass()->shape_angle.y, 0);
+                dComIfGp_event_reset();
+                mReadyNewAction = false;
+            }
+        } else if (mRetentionBeforeStretchTimer == 1) {
+            mSetModelAnmMtx = false;
+
+            if (field_0x6e9 & 1) {
+                daPy_getPlayerActorClass()->setThrowDamage(shape_angle.y, 35.0f, 73.0f, 1, 0, 0);
+                mCameraOnTimer = l_HIO.camera_on_timer + 1.0f;
+            } else if (field_0x6e9 & 2) {
+                if (mpCarryActor != NULL) {
+                    fopAcM_SetSpeedF(mpCarryActor, 35.0f);
+                    speed = fopAcM_GetSpeed(mpCarryActor);
+                    fopAcM_SetSpeed(mpCarryActor, speed.x, 73.0f, speed.y);
+                    mpCarryActor->shape_angle.y = shape_angle.y;
+                    mpCarryActor->current.angle.y = shape_angle.y;
+                    mpCarryActor->mode_init_drop(0);
+                    mpCarryActor = NULL;
+                }
+            } else if (field_0x6e9 & 4) {
+                if (mpBombActor != NULL && !mpBombActor->checkStateExplode()) {
+                    fopAcM_SetSpeedF(mpBombActor, 35.0f);
+                    speed = fopAcM_GetSpeed(mpBombActor);
+                    fopAcM_SetSpeed(mpBombActor, speed.x, 73.0f, speed.y);
+                    mpBombActor->shape_angle.y = shape_angle.y;
+                    mpBombActor->current.angle.y = shape_angle.y;
+                    mpBombActor = NULL;
                 }
             }
-            if (cLib_chaseAngleS(&shape_angle.y, field_0x6b2, chaseAngle)) {
-                field_0x6c8 = 2;
-            }
-            break;
-
-        case 2:
-            f32 step;
-            if (mActorDist > l_HIO.pl_detection_radius_outside) {
-                step = 5.0f;
-            } else {
-                step = getHideSpeed();
-            }
-            if (cLib_chaseF(&current.pos.y, home.pos.y, step) && field_0x6d6 == 0) {
-                field_0x6c8 = 3;
-                setBck(0xD, 0, 3.0f, 0.0f);
-                setCloseSmokeEffect();
-            }
-            break;
-
-        case 3:
-            if (checkAttackStart()) {
-                if (field_0x6e9 & 1) {
-                    field_0x6c8 = 4;
-                } else {
-                    field_0x6c8 = 5;
-                    field_0x6dc = l_HIO.retention_time_before_stretch;
-                }
-                shape_angle.y = field_0x6b0 + 0x2000 & 0xC000;
-                break;
-            }
-            if (!checkHideStart() && !dComIfGp_checkPlayerStatus0(0, 0x4000)) {
-                setActionMode(0);
-            }
-            break;
-
-        case 4:
-            if (!eventInfo.checkCommandDemoAccrpt()) {
-                fopAcM_orderPotentialEvent(this, 2, 0, 0);
-                eventInfo.onCondition(2);
-            } else {
-                field_0x6ed = 1;
-                field_0x6c8 = 5;
-                field_0x6dc = l_HIO.retention_time_before_stretch;
-            }
-            break;
-
-        case 5:
-            cLib_chaseF(&current.pos.y, home.pos.y + 50.0f, 10.0f);
-
-            if (field_0x6dc == 2) {
-                if (field_0x6ed != 0) {
-                    cXyz position(current.pos.x, daPy_getPlayerActorClass()->current.pos.y, current.pos.z);
-
-                    daPy_getPlayerActorClass()->setPlayerPosAndAngle(&position, daPy_getPlayerActorClass()->shape_angle.y, 0);
-                    dComIfGp_event_reset();
-                    field_0x6ed = 0;
-                }
-            } else if (field_0x6dc == 1) {
-                field_0x6e5 = 0;
-
-                if (field_0x6e9 & 1) {
-                    daPy_getPlayerActorClass()->setThrowDamage(shape_angle.y, 35.0f, 73.0f, 1, 0, 0);
-                    field_0x6e2 = l_HIO.camera_on_timer + 1.0f;
-                } else if (field_0x6e9 & 2) {
-                    if (mpCarryActor != NULL) {
-                        fopAcM_SetSpeedF(mpCarryActor, 35.0f);
-                        speed = fopAcM_GetSpeed(mpCarryActor);
-                        fopAcM_SetSpeed(mpCarryActor, speed.x, 73.0f, speed.y);
-                        mpCarryActor->shape_angle.y = shape_angle.y;
-                        mpCarryActor->current.angle.y = shape_angle.y;
-                        mpCarryActor->mode_init_drop(0);
-                        mpCarryActor = NULL;
-                    }
-                } else if (field_0x6e9 & 4) {
-                    if (mpBombActor != NULL && !mpBombActor->checkStateExplode()) {
-                        fopAcM_SetSpeedF(mpBombActor, 35.0f);
-                        speed = fopAcM_GetSpeed(mpBombActor);
-                        fopAcM_SetSpeed(mpBombActor, speed.x, 73.0f, speed.y);
-                        mpBombActor->shape_angle.y = shape_angle.y;
-                        mpBombActor->current.angle.y = shape_angle.y;
-                        mpBombActor = NULL;
-                    }
-                }
             field_0x6e9 = 0;
-            setActionMode(2);
-            }
+            setActionMode(ACTION_ATTACK);
+        }
     }
 }
 
 /* 806EBD44-806EC068 001824 0324+00 1/1 0/0 0/0 .text            executeAttack__8daE_HZ_cFv */
 void daE_HZ_c::executeAttack() {
     static u16 d_HZ_JUMP_EFFECT_ID[2] = {
-    0x82E0, 0x82E1,
+        0x82E0,
+        0x82E1,
     };
     cXyz position;
-    switch (field_0x6c8) {
-        case 0:
-            current.pos = home.pos;
-            setTgSetBit(1);
-            mSpheres[1].OnTgShield();
-            mSpheres[2].OnTgShield();
-            mSpheres[1].SetTgHitMark(CcG_Tg_UNK_MARK_2);
-            mSpheres[2].SetTgHitMark(CcG_Tg_UNK_MARK_2);
-            field_0x6c8 = 1;
-            setBck(0xD, 0, 3.0f, l_HIO.stretch_anim_speed);
-            mSound.startCreatureVoice(Z2SE_EN_HZ_V_JUMP, -1);
-            mSound.startCreatureSound(Z2SE_EN_HZ_JUMP, 0, -1);
-            break;
+    switch (mMode) {
+    case 0:
+        current.pos = home.pos;
+        setTgSetBit(1);
+        mSpheres[1].OnTgShield();
+        mSpheres[2].OnTgShield();
+        mSpheres[1].SetTgHitMark(CcG_Tg_UNK_MARK_2);
+        mSpheres[2].SetTgHitMark(CcG_Tg_UNK_MARK_2);
+        mMode = 1;
+        setBck(0xD, 0, 3.0f, l_HIO.stretch_anim_speed);
+        mSound.startCreatureVoice(Z2SE_EN_HZ_V_JUMP, -1);
+        mSound.startCreatureSound(Z2SE_EN_HZ_JUMP, 0, -1);
+        break;
 
-        case 1:
-            MtxP anmMtx = mpMorfSO->getModel()->getAnmMtx(1);
-            position.set(anmMtx[0][3], anmMtx[1][3], anmMtx[2][3]);
+    case 1:
+        MtxP anmMtx = mpMorfSO->getModel()->getAnmMtx(1);
+        position.set(anmMtx[0][3], anmMtx[1][3], anmMtx[2][3]);
 
-            for (int i = 0; i < 2; i++) {
-                mJumpEffects[i] = dComIfGp_particle_set(mJumpEffects[i], d_HZ_JUMP_EFFECT_ID[i], &position, &tevStr, &shape_angle, 
-                    NULL, 0xff, NULL, -1, NULL, NULL, NULL);
+        for (int i = 0; i < 2; i++) {
+            mJumpEffects[i] =
+                dComIfGp_particle_set(mJumpEffects[i], d_HZ_JUMP_EFFECT_ID[i], &position, &tevStr,
+                                      &shape_angle, NULL, 0xff, NULL, -1, NULL, NULL, NULL);
+        }
+
+        if (mpMorfSO->checkFrame(8.0f)) {
+            mpMorfSO->setPlaySpeed(1.0f);
+        } else if (mpMorfSO->checkFrame(38.0f)) {
+            mSound.startCreatureVoice(Z2SE_EN_HZ_V_LAUGH, -1);
+        }
+
+        if (!daPy_getPlayerActorClass()->checkThrowDamage()) {
+            if (mpMorfSO->getFrame() > 60.0f && mpMorfSO->getFrame() < 100.0f && checkHideStart()) {
+                mpMorfSO->setFrame(100.0f);
             }
+        }
 
-            if (mpMorfSO->checkFrame(8.0f)) {
-                mpMorfSO->setPlaySpeed(1.0f);
-            } else if (mpMorfSO->checkFrame(38.0f)) {
-                mSound.startCreatureVoice(Z2SE_EN_HZ_V_LAUGH, -1);
-            }
+        if (mpMorfSO->isStop()) {
+            setCloseSmokeEffect();
+            mAttackCooldownTimer = 20;
+            setActionMode(ACTION_HIDE);
+        }
 
-            if (!daPy_getPlayerActorClass()->checkThrowDamage()) {
-                if (mpMorfSO->getFrame() > 60.0f && mpMorfSO->getFrame() < 100.0f && checkHideStart()) {
-                    mpMorfSO->setFrame(100.0f);
-                }
-            }
-
-            if (mpMorfSO->isStop()) {
-                setCloseSmokeEffect();
-                field_0x6de = 0x14;
-                setActionMode(1);
-            }
-
-            break;
+        break;
     }
 
-    if (!daPy_getPlayerActorClass()->checkThrowDamage() && dCam_getBody()->GetForceLockOnActor() == this && field_0x6e0 == 0) {
-        field_0x6e0 = l_HIO.camera_off_timer + 1.0f;
+    if (!daPy_getPlayerActorClass()->checkThrowDamage() &&
+        dCam_getBody()->GetForceLockOnActor() == this && mCameraOffTimer == 0)
+    {
+        mCameraOffTimer = l_HIO.camera_off_timer + 1.0f;
     }
 }
 
@@ -638,18 +675,18 @@ void daE_HZ_c::initBackWalk() {
     setTgSetBit(1);
     mSpheres[0].OnTgSetBit();
     mSpheres[0].SetTgType(0x10000);
-    
+
     if ((current.pos - home.pos).absXZ() < 300.0f) {
         setBck(0x11, 2, 5.0f, 1.5f);
-        field_0x6c8 = 3;
+        mMode = 3;
     } else {
         setBck(0x11, 2, 5.0f, 1.5f);
-        field_0x6c8 = 2;
+        mMode = 2;
 
         s16 targetAngleY = cLib_targetAngleY(&home.pos, &current.pos);
         s16 modifiedTargetAngleY = (targetAngleY + 0x2000) & 0xC000;
         position.set(0.0f, 0.0f, 300.0f);
-        cLib_offsetPos(&field_0x678, &home.pos, modifiedTargetAngleY , &position);
+        cLib_offsetPos(&field_0x678, &home.pos, modifiedTargetAngleY, &position);
         dBgS_LinChk linChk;
         position.set(0.0f, 100.0f, 0.0f);
         start = current.pos + position;
@@ -657,125 +694,125 @@ void daE_HZ_c::initBackWalk() {
         linChk.Set(&start, &end, NULL);
 
         if (dComIfG_Bgsp().LineCross(&linChk)) {
-            s16 angle = modifiedTargetAngleY & 0x4000 ? (s16)((targetAngleY + 0x4000) & 0x8000) : (s16)((targetAngleY & 0x8000) + 0x4000);
+            s16 angle = modifiedTargetAngleY & 0x4000 ? (s16)((targetAngleY + 0x4000) & 0x8000) :
+                                                        (s16)((targetAngleY & 0x8000) + 0x4000);
             cLib_offsetPos(&field_0x678, &home.pos, angle, &position);
         }
     }
 }
 
 /* 806EC348-806ECAEC 001E28 07A4+00 1/1 0/0 0/0 .text            executeAway__8daE_HZ_cFv */
-// NONMATCHING
 void daE_HZ_c::executeAway() {
-    switch (field_0x6c8) {
-        case 0:
-            gravity = 0.0f;
-            speed.y = 0.0f;
-            mSpheres[0].OffTgSetBit();
-            shape_angle.z = 0;
-            shape_angle.x = 0;
-            setBck(0xF, 0, 10.0f, 1.0f);
-            field_0x6e4 = 1;
-            field_0x6c8 = 1;
-            field_0x6cc = 0;
-            field_0x6ea = 0;
-            break;
+    switch (mMode) {
+    case 0:
+        gravity = 0.0f;
+        speed.y = 0.0f;
+        mSpheres[0].OffTgSetBit();
+        shape_angle.z = 0;
+        shape_angle.x = 0;
+        setBck(0xF, 0, 10.0f, 1.0f);
+        field_0x6e4 = 1;
+        mMode = 1;
+        field_0x6cc = 0;
+        field_0x6ea = 0;
+        break;
 
-        case 1:
-            if (mpMorfSO->checkFrame(4.0f)) {
-                mSound.startCreatureVoice(Z2SE_EN_HZ_V_STAND, -1);
-            } else if (mpMorfSO->checkFrame(20.0f)) {
-                mSound.startCreatureSound(Z2SE_EN_HZ_SWING, 0, -1);
-            }
+    case 1:
+        if (mpMorfSO->checkFrame(4.0f)) {
+            mSound.startCreatureVoice(Z2SE_EN_HZ_V_STAND, -1);
+        } else if (mpMorfSO->checkFrame(20.0f)) {
+            mSound.startCreatureSound(Z2SE_EN_HZ_SWING, 0, -1);
+        }
 
-            speedF = 0.0f;
-            if (field_0x6ea == 0) {
-                if (mpMorfSO->getFrame() >= 35.0f) {
-                    gravity = -5.0f; 
-                    if (mObjAcch.ChkGroundHit()) {
-                        mSound.startCreatureSound(Z2SE_CM_BODYFALL_M, 0, -1);
-                        field_0x6ea++;
-                    } else {
-                        if (speed.y > -20.0f) {
-                            speed.y = -20.0f;
-                        }
-                        mpMorfSO->setFrame(35.0f);
-                    }
-                } else if (mpMorfSO->getFrame() >= 23.0f) {
-                    speedF = 10.0f;
-                }
-            } else if (mObjAcch.ChkGroundHit()) {
-                if (mpMorfSO->isStop()) {
-                    initBackWalk();
-                }
-            }
-            break;
-
-        case 2:
-            f32 diff = (current.pos - field_0x678).absXZ();
-            cLib_chaseAngleS(&shape_angle.y, cLib_targetAngleY(&current.pos, &field_0x678), 
-                            diff < 500.0f ? (s16)0x800 : (s16)0x200);
-            cLib_chaseF(&speedF, l_HIO.escape_speed, 1.0f);
-
-            if (diff < 300.0f) {
-                speedF = 0.0f;
-                if (!cLib_addCalcPosXZ(&current.pos, field_0x678, 1.0f, l_HIO.escape_speed, 5.0f)) {
-                    field_0x6c8 = 3;
-                }
-                if (mObjAcch.ChkWallHit()) {
-                    field_0x6cc++;
-                    if (field_0x6cc >= 0x1E) {
-                        field_0x6c8 = 3;
-                    }
+        speedF = 0.0f;
+        if (field_0x6ea == 0) {
+            if (mpMorfSO->getFrame() >= 35.0f) {
+                gravity = -5.0f;
+                if (mObjAcch.ChkGroundHit()) {
+                    mSound.startCreatureSound(Z2SE_CM_BODYFALL_M, 0, -1);
+                    field_0x6ea++;
                 } else {
-                    field_0x6cc = 0;
+                    if (speed.y > -20.0f) {
+                        speed.y = -20.0f;
+                    }
+                    mpMorfSO->setFrame(35.0f);
                 }
+            } else if (mpMorfSO->getFrame() >= 23.0f) {
+                speedF = 10.0f;
             }
-            break;
+        } else if (mObjAcch.ChkGroundHit()) {
+            if (mpMorfSO->isStop()) {
+                initBackWalk();
+            }
+        }
+        break;
 
-        case 3:
-            if (cLib_chaseAngleS(&shape_angle.y, cLib_targetAngleY(&current.pos, &home.pos), 0x400)) {
-                setBck(5, 0, 5.0f, 1.0f);
-                mSound.startCreatureVoice(Z2SE_EN_HZ_V_WALK, -1);
-                mSound.startCreatureSound(Z2SE_EN_HZ_WALK, 0, -1);
-                field_0x6c8 = 4;
-            }
-            break;
+    case 2:
+        f32 diff = (current.pos - field_0x678).absXZ();
+        cLib_chaseAngleS(&shape_angle.y, cLib_targetAngleY(&current.pos, &field_0x678),
+                         diff < 500.0f ? (s16)0x800 : (s16)0x200);
+        cLib_chaseF(&speedF, l_HIO.escape_speed, 1.0f);
 
-        case 4:
-            if (mpMorfSO->checkFrame(4.0f)) {
-                mSound.startCreatureSound(Z2SE_EN_HZ_WALK, 0, -1);
-            } else if (mpMorfSO->checkFrame(10.0f)) {
-                mSound.startCreatureVoice(Z2SE_EN_HZ_V_BACK, -1);
-            } else if (mpMorfSO->checkFrame(14.0f)) {
-                speed.y = 0.0f;
-                speedF = 0.0f;
-                field_0x6c8 = 5;
-                field_0x6e4 = 0;
-                setTgSetBit(0);
-                mSpheres[0].OffTgSetBit();
-                mSound.startCreatureSound(Z2SE_EN_HZ_SWING, 0, -1);
+        if (diff < 300.0f) {
+            speedF = 0.0f;
+            if (!cLib_addCalcPosXZ(&current.pos, field_0x678, 1.0f, l_HIO.escape_speed, 5.0f)) {
+                mMode = 3;
             }
-            break;
-
-        case 5:
-            field_0x6e7 = 1;
-            if (mpMorfSO->checkFrame(28.0f)) {
-                mSound.startCreatureSound(Z2SE_EN_HZ_BACK, 0, -1);
-            }
-            if (current.pos.y <= home.pos.y) {
-                current.pos.y = home.pos.y;
-                speed.y = 0.0f;
-            }
-            cLib_addCalcPosXZ(&current.pos, home.pos, 1.0f, 20.0f, 5.0f);
-            if (home.pos == current.pos) {
-                if (mpMorfSO->isStop()) {
-                    setCloseSmokeEffect();
-                    shape_angle.y = shape_angle.y + 0x2000 & 0xC000;
-                    gravity = 0.0f;
-                    setActionMode(1);
+            if (mObjAcch.ChkWallHit()) {
+                field_0x6cc++;
+                if (field_0x6cc >= 0x1E) {
+                    mMode = 3;
                 }
+            } else {
+                field_0x6cc = 0;
             }
-            break;
+        }
+        break;
+
+    case 3:
+        if (cLib_chaseAngleS(&shape_angle.y, cLib_targetAngleY(&current.pos, &home.pos), 0x400)) {
+            setBck(5, 0, 5.0f, 1.0f);
+            mSound.startCreatureVoice(Z2SE_EN_HZ_V_WALK, -1);
+            mSound.startCreatureSound(Z2SE_EN_HZ_WALK, 0, -1);
+            mMode = 4;
+        }
+        break;
+
+    case 4:
+        if (mpMorfSO->checkFrame(4.0f)) {
+            mSound.startCreatureSound(Z2SE_EN_HZ_WALK, 0, -1);
+        } else if (mpMorfSO->checkFrame(10.0f)) {
+            mSound.startCreatureVoice(Z2SE_EN_HZ_V_BACK, -1);
+        } else if (mpMorfSO->checkFrame(14.0f)) {
+            speed.y = 0.0f;
+            speedF = 0.0f;
+            mMode = 5;
+            field_0x6e4 = 0;
+            setTgSetBit(0);
+            mSpheres[0].OffTgSetBit();
+            mSound.startCreatureSound(Z2SE_EN_HZ_SWING, 0, -1);
+        }
+        break;
+
+    case 5:
+        mDisableShadow = true;
+        if (mpMorfSO->checkFrame(28.0f)) {
+            mSound.startCreatureSound(Z2SE_EN_HZ_BACK, 0, -1);
+        }
+        if (current.pos.y <= home.pos.y) {
+            current.pos.y = home.pos.y;
+            speed.y = 0.0f;
+        }
+        cLib_addCalcPosXZ(&current.pos, home.pos, 1.0f, 20.0f, 5.0f);
+        if (home.pos == current.pos) {
+            if (mpMorfSO->isStop()) {
+                setCloseSmokeEffect();
+                shape_angle.y = shape_angle.y + 0x2000 & 0xC000;
+                gravity = 0.0f;
+                setActionMode(ACTION_HIDE);
+            }
+        }
+        break;
     }
 
     if (checkBck(0x11)) {
@@ -795,17 +832,16 @@ void daE_HZ_c::setWindEnd() {
     field_0x6b2 = 0x1000;
 
     if (fabsf(fopAcM_searchPlayerDistanceY(this)) >= 300.0f) {
-        field_0x6d6 = 5;
+        mWaitTimer = 5;
     } else {
-        field_0x6d6 = 10;
+        mWaitTimer = 10;
     }
-    field_0x6c8 = 4;
+    mMode = 4;
     field_0x6e4 = 1;
     gravity = -5.0f;
 }
 
 /* 806ECB64-806ED5B0 002644 0A4C+00 1/1 0/0 0/0 .text            executeWind__8daE_HZ_cFv */
-// NONMATCHING
 void daE_HZ_c::executeWind() {
     cXyz position;
     cXyz position2;
@@ -815,163 +851,167 @@ void daE_HZ_c::executeWind() {
     f32 frame = mpMorfSO->getFrame();
     mpBoomerangActor = daPy_py_c::getThrowBoomerangActor();
 
-    switch (field_0x6c8) {
-        case 0:
-            gravity = 0.0f;
-            speedF = 0.0f;
-            speed.y = 0.0f;
-            mSpheres[0].OffTgSetBit();
-            setBck(0x13, 0, 0.0f, 1.0f);
-            mSound.startCreatureSound(Z2SE_EN_HZ_WIND, 0, -1);
-            mSound.startCreatureVoice(Z2SE_EN_HZ_V_WIND_NAKU, -1);
-            speed.y = 0.0f;
-            speedF = 0.0f;
-            field_0x6c8 = 1;
-            field_0x6e4 = 0;
+    switch (mMode) {
+    case 0:
+        gravity = 0.0f;
+        speedF = 0.0f;
+        speed.y = 0.0f;
+        mSpheres[0].OffTgSetBit();
+        setBck(0x13, 0, 0.0f, 1.0f);
+        mSound.startCreatureSound(Z2SE_EN_HZ_WIND, 0, -1);
+        mSound.startCreatureVoice(Z2SE_EN_HZ_V_WIND_NAKU, -1);
+        speed.y = 0.0f;
+        speedF = 0.0f;
+        mMode = 1;
+        field_0x6e4 = 0;
 
-            f32 playerDist = fopAcM_searchPlayerDistance(this);
-            if (playerDist >= 1000.0f) {
-                playerDist = 1000.0f;
+        f32 playerDist = fopAcM_searchPlayerDistance(this);
+        if (playerDist >= 1000.0f) {
+            playerDist = 1000.0f;
+        }
+        if (playerDist < 100.0f) {
+            playerDist = 100.0f;
+        }
+        field_0x6cc = (s16)((playerDist * 15.0f) / 1000.0f);
+        /* fallthrough */
+
+    case 1:
+        frame = 6.0f - frame / 3.0f;
+        if (frame < 0.0f) {
+            frame = 0.0f;
+        }
+        current.pos.y += frame;
+        shape_angle.y -= 0x7D0;
+
+        if (mpMorfSO->checkFrame(field_0x6cc) || mpBoomerangActor == NULL ||
+            mpBoomerangActor->getReturnFlg())
+        {
+            bVar = true;
+        }
+
+        if (bVar) {
+            mpMorfSO->setFrame(15.0f);
+            mMode = 2;
+            field_0x6a8 = 60.0f;
+        }
+        break;
+
+    case 2:
+        current.pos.y += field_0x6a8;
+        if (current.pos.y - home.pos.y >= 300.0f) {
+            if (frame < 23.0f) {
+                mpMorfSO->setFrame(23.0f);
             }
-            if (playerDist < 100.0f) {
-                playerDist = 100.0f;
-            }
-            field_0x6cc = (s16)((playerDist * 15.0f) / 1000.0f);
-            /* fallthrough */
 
-        case 1:
-            frame = 6.0f - frame / 3.0f;
-            if (frame < 0.0f) {
-                frame = 0.0f;
-            }
-            current.pos.y += frame;
-            shape_angle.y -= 0x7D0;
-
-            if (mpMorfSO->checkFrame(field_0x6cc) || mpBoomerangActor == NULL || mpBoomerangActor->getReturnFlg()) {
-                bVar = true;
-            }
-
-            if (bVar) {
-                mpMorfSO->setFrame(15.0f);
-                field_0x6c8 = 2;
-                field_0x6a8 = 60.0f;
-            }
-            break;
-
-        case 2:
-            current.pos.y += field_0x6a8;
-            if (current.pos.y - home.pos.y >= 300.0f) {
-                if (frame < 23.0f) {
-                    mpMorfSO->setFrame(23.0f);
-                }
-
-                if (mpBoomerangActor == NULL) {
-                    setWindEnd();
-                } else {
-                    position = mpBoomerangActor->current.pos;
-
-                    if (current.pos.y - home.pos.y >= 400.0f) {
-                        if (cLib_chaseF(&field_0x6a8, 0.0f, 10.0f)) {
-                            bVar = true;
-                        }
-                        if (mpBoomerangActor->getReturnFlg() && fopAcM_searchPlayerDistance(mpBoomerangActor) < 500.0f) {
-                            bVar = true;
-                        }
-                    }
-                    if (bVar) {
-                        field_0x6c8 = 3;
-                        field_0x6e4 = 1;
-                        speed.y = 0.0f;
-                        position2 = position - current.pos;
-                        field_0x6b2 = cLib_targetAngleY(&current.pos, &position);
-                        field_0x678.x = position2.absXZ();
-                        field_0x678.y = position2.y;
-                        field_0x678.z = 8192.0f;
-                        field_0x6b4 = 0x800;
-                    }
-                }
-            }
-            break;
-        case 3:
             if (mpBoomerangActor == NULL) {
                 setWindEnd();
-                return;
-            }
-            position = mpBoomerangActor->current.pos;
-            if (mActorDist < 500.0f && mpBoomerangActor->getReturnFlg()) {
-                setWindEnd();
-                return;
-            }
-            field_0x6b2 += 0x800;
-            linChk.Set(&current.pos, &position, NULL);
-            if (!dComIfG_Bgsp().LineCross(&linChk)) {
-                cLib_chaseF(&current.pos.x, position.x + field_0x678.x * cM_ssin(field_0x6b2), 50.0f);
-                cLib_chaseF(&current.pos.z, position.z + field_0x678.x * cM_scos(field_0x6b2), 50.0f);
             } else {
-                position.y += 10.0f;
-            }
-            cLib_chaseF(&field_0x678.x, 0.0f, 20.0f);
-            gndChk.SetPos(&position);
+                position = mpBoomerangActor->current.pos;
 
-            f32 groundCross = dComIfG_Bgsp().GroundCross(&gndChk);
-            if (frame < 38.0f) {
-                if (position.y - groundCross < 500.0f) {
-                    position.y = groundCross + 500.0f;
-                }
-            } else if (position.y - groundCross < l_HIO.y_position_wrap) {
-                position.y = groundCross + l_HIO.y_position_wrap;
-            }
-
-            cLib_chaseF(&current.pos.y, position.y + field_0x678.y, 20.0f);
-            cLib_chaseF(&field_0x678.y, 0.0f, 5.0f);
-            cLib_chaseAngleS(&shape_angle.z, field_0x678.z * cM_scos(field_0x6b4), 0x100);
-
-            if (mpMorfSO->isStop()) {
-                cLib_chaseAngleS(&shape_angle.x, -0x8000, 0x400);
-            }
-            shape_angle.y -= (s16)l_HIO.reeling_rotation_speed;
-            break;
-        case 4:
-            cLib_chaseAngleS(&shape_angle.x, -0x8000, 0x800);
-            cLib_chaseAngleS(&shape_angle.z, field_0x678.z * cM_scos(field_0x6b4), 0x100);
-            cLib_chaseF(&field_0x678.z, 0.0f, 512.0f);
-
-            if (field_0x6d6 != 0) {
-                speed.y = 20.0f;
-            } else if (mObjAcch.ChkGroundHit()) {
-                setTgSetBit(1);
-                field_0x6d8 = l_HIO.piyori_time;
-                setBck(0xE, 0, 0.0f, 1.0f);
-                mSound.startCreatureVoice(Z2SE_EN_HZ_V_LANDING, -1);
-                mSound.startCreatureSound(Z2SE_EN_HZ_LANDING, 0, -1);
-                mSound.startCreatureSound(Z2SE_CM_BODYFALL_M, 0, -1);
-                shape_angle.x = 0;
-                speed.y = 15.0f;
-                field_0x6c8 = 5;
-            }
-            shape_angle.y -= field_0x6b2;
-            break;
-
-        case 5:
-            if (field_0x6b2 > 0x400) {
-                mSound.startCreatureSoundLevel(Z2SE_EN_HZ_SLIDE, 0, -1);
-            }
-            cLib_chaseAngleS(&shape_angle.z, field_0x678.z * cM_scos(field_0x6b4), 0x100);
-            cLib_chaseF(&field_0x678.z, 0.0f, 512.0f);
-            if (mpMorfSO->checkFrame(13.0f)) {
-                mSound.startCreatureSound(Z2SE_CM_BODYFALL_S, 0, -1);
-            }
-            if (mObjAcch.ChkGroundHit()) {
-                cLib_chaseAngleS(&field_0x6b2, 0, 0x100);
-                if (field_0x6b2 == 0) {
-                    if (mpMorfSO->isStop()) {
-                        setActionMode(7);
-                        return;
+                if (current.pos.y - home.pos.y >= 400.0f) {
+                    if (cLib_chaseF(&field_0x6a8, 0.0f, 10.0f)) {
+                        bVar = true;
+                    }
+                    if (mpBoomerangActor->getReturnFlg() &&
+                        fopAcM_searchPlayerDistance(mpBoomerangActor) < 500.0f)
+                    {
+                        bVar = true;
                     }
                 }
+                if (bVar) {
+                    mMode = 3;
+                    field_0x6e4 = 1;
+                    speed.y = 0.0f;
+                    position2 = position - current.pos;
+                    field_0x6b2 = cLib_targetAngleY(&current.pos, &position);
+                    field_0x678.x = position2.absXZ();
+                    field_0x678.y = position2.y;
+                    field_0x678.z = 8192.0f;
+                    field_0x6b4 = 0x800;
+                }
             }
-            shape_angle.y -= field_0x6b2;
-            break;
+        }
+        break;
+    case 3:
+        if (mpBoomerangActor == NULL) {
+            setWindEnd();
+            return;
+        }
+        position = mpBoomerangActor->current.pos;
+        if (mPlayerDist < 500.0f && mpBoomerangActor->getReturnFlg()) {
+            setWindEnd();
+            return;
+        }
+        field_0x6b2 += 0x800;
+        linChk.Set(&current.pos, &position, NULL);
+        if (!dComIfG_Bgsp().LineCross(&linChk)) {
+            cLib_chaseF(&current.pos.x, position.x + field_0x678.x * cM_ssin(field_0x6b2), 50.0f);
+            cLib_chaseF(&current.pos.z, position.z + field_0x678.x * cM_scos(field_0x6b2), 50.0f);
+        } else {
+            position.y += 10.0f;
+        }
+        cLib_chaseF(&field_0x678.x, 0.0f, 20.0f);
+        gndChk.SetPos(&position);
+
+        f32 groundCross = dComIfG_Bgsp().GroundCross(&gndChk);
+        if (frame < 38.0f) {
+            if (position.y - groundCross < 500.0f) {
+                position.y = groundCross + 500.0f;
+            }
+        } else if (position.y - groundCross < l_HIO.y_position_wrap) {
+            position.y = groundCross + l_HIO.y_position_wrap;
+        }
+
+        cLib_chaseF(&current.pos.y, position.y + field_0x678.y, 20.0f);
+        cLib_chaseF(&field_0x678.y, 0.0f, 5.0f);
+        cLib_chaseAngleS(&shape_angle.z, field_0x678.z * cM_scos(field_0x6b4), 0x100);
+
+        if (mpMorfSO->isStop()) {
+            cLib_chaseAngleS(&shape_angle.x, -0x8000, 0x400);
+        }
+        shape_angle.y -= (s16)l_HIO.reeling_rotation_speed;
+        break;
+    case 4:
+        cLib_chaseAngleS(&shape_angle.x, -0x8000, 0x800);
+        cLib_chaseAngleS(&shape_angle.z, field_0x678.z * cM_scos(field_0x6b4), 0x100);
+        cLib_chaseF(&field_0x678.z, 0.0f, 512.0f);
+
+        if (mWaitTimer != 0) {
+            speed.y = 20.0f;
+        } else if (mObjAcch.ChkGroundHit()) {
+            setTgSetBit(1);
+            mPiyoriTimer = l_HIO.piyori_time;
+            setBck(0xE, 0, 0.0f, 1.0f);
+            mSound.startCreatureVoice(Z2SE_EN_HZ_V_LANDING, -1);
+            mSound.startCreatureSound(Z2SE_EN_HZ_LANDING, 0, -1);
+            mSound.startCreatureSound(Z2SE_CM_BODYFALL_M, 0, -1);
+            shape_angle.x = 0;
+            speed.y = 15.0f;
+            mMode = 5;
+        }
+        shape_angle.y -= field_0x6b2;
+        break;
+
+    case 5:
+        if (field_0x6b2 > 0x400) {
+            mSound.startCreatureSoundLevel(Z2SE_EN_HZ_SLIDE, 0, -1);
+        }
+        cLib_chaseAngleS(&shape_angle.z, field_0x678.z * cM_scos(field_0x6b4), 0x100);
+        cLib_chaseF(&field_0x678.z, 0.0f, 512.0f);
+        if (mpMorfSO->checkFrame(13.0f)) {
+            mSound.startCreatureSound(Z2SE_CM_BODYFALL_S, 0, -1);
+        }
+        if (mObjAcch.ChkGroundHit()) {
+            cLib_chaseAngleS(&field_0x6b2, 0, 0x100);
+            if (field_0x6b2 == 0) {
+                if (mpMorfSO->isStop()) {
+                    setActionMode(ACTION_EXECUTE_CHANCE);
+                    return;
+                }
+            }
+        }
+        shape_angle.y -= field_0x6b2;
+        break;
     }
 
     if (checkBck(0x13) && mpMorfSO->checkFrame(25.0f)) {
@@ -981,7 +1021,7 @@ void daE_HZ_c::executeWind() {
 
 /* 806ED5B0-806ED6C8 003090 0118+00 1/1 0/0 0/0 .text            executeChance__8daE_HZ_cFv */
 void daE_HZ_c::executeChance() {
-    switch (field_0x6c8) {
+    switch (mMode) {
     case 0:
         gravity = -5.0f;
         field_0x6e4 = 1;
@@ -989,7 +1029,7 @@ void daE_HZ_c::executeChance() {
         setTgSetBit(1);
         mSpheres[0].OnTgSetBit();
         mSpheres[0].SetTgType(0x10000);
-        field_0x6c8 = 1;
+        mMode = 1;
         shape_angle.z = 0;
         shape_angle.x = 0;
         speedF = 0.0f;
@@ -999,9 +1039,9 @@ void daE_HZ_c::executeChance() {
         if (mpMorfSO->checkFrame(0.0f)) {
             mSound.startCreatureVoice(Z2SE_EN_HZ_V_FAINT, -1);
         }
-        if (field_0x6d8 == 0) {
+        if (mPiyoriTimer == 0) {
             setTgSetBit(0);
-            setActionMode(3);
+            setActionMode(ACTION_EXECUTE_AWAY);
         }
         break;
     }
@@ -1013,7 +1053,7 @@ void daE_HZ_c::initRollDamage() {
     shape_angle.z = 0;
     shape_angle.x = 0;
 
-    if (mAction == 6) {
+    if (mAction == ACTION_EXECUTE_DEATH) {
         if (field_0x6cc == 0) {
             speedF = 20.0f;
             field_0x6b6 = 0x1000;
@@ -1053,7 +1093,7 @@ bool daE_HZ_c::doRollDamage() {
 
     if (mObjAcch.ChkGroundHit()) {
         if (speedF >= 3.0f) {
-            fopAcM_effSmokeSet1(&field_0x1210, &field_0x1214, &current.pos, NULL, 1.5f, &tevStr, 0);
+            fopAcM_effSmokeSet1(&mSmokeKey, &mSmokeKey2, &current.pos, NULL, 1.5f, &tevStr, 0);
         }
         cLib_chaseF(&speedF, 0.0f, 1.0f);
         cLib_chaseAngleS(&field_0x6b6, 0, 0x80);
@@ -1066,56 +1106,56 @@ bool daE_HZ_c::doRollDamage() {
 
 /* 806ED8A4-806EDAA8 003384 0204+00 1/1 0/0 0/0 .text            executeDamage__8daE_HZ_cFv */
 void daE_HZ_c::executeDamage() {
-    switch (field_0x6c8) {
-        case 0:
-            gravity = -5.0f;
-            mSpheres[0].OffTgSetBit();
-            field_0x6e4 = 1;
-            initRollDamage();
-            if (field_0x6c4 == 3) {
-                field_0x6c8 = 2;
-                setBck(0x12, 0, 5.0f, 1.0f);
-            } else {
-                field_0x6c8 = 1;
-                setBck(6, 0, 5.0f, 1.0f);
-            }
-            mSound.startCreatureVoice(Z2SE_EN_HZ_V_DAMAGE, -1);
-            mpMorfSO->setFrame(0.0f);
-            return;
+    switch (mMode) {
+    case 0:
+        gravity = -5.0f;
+        mSpheres[0].OffTgSetBit();
+        field_0x6e4 = 1;
+        initRollDamage();
+        if (mPrevAction == 3) {
+            mMode = 2;
+            setBck(0x12, 0, 5.0f, 1.0f);
+        } else {
+            mMode = 1;
+            setBck(6, 0, 5.0f, 1.0f);
+        }
+        mSound.startCreatureVoice(Z2SE_EN_HZ_V_DAMAGE, -1);
+        mpMorfSO->setFrame(0.0f);
+        return;
 
-        case 1:
-            if (speedF > 2.0f) {
-                mSound.startCreatureSoundLevel(Z2SE_EN_HZ_SLIDE, 0, -1);
-            }
-            if (mpMorfSO->checkFrame(28.0f)) {
-                mSound.startCreatureSound(Z2SE_CM_BODYFALL_S, 0, -1);
-            }
-            if (doRollDamage()) {
-                setActionMode(7);
-                return;
-            }
-            if (field_0x6d8 == 0 && !speedF) {
-                speedF = 0.0f;
-                setTgSetBit(0);
-                setActionMode(3);
-            }
+    case 1:
+        if (speedF > 2.0f) {
+            mSound.startCreatureSoundLevel(Z2SE_EN_HZ_SLIDE, 0, -1);
+        }
+        if (mpMorfSO->checkFrame(28.0f)) {
+            mSound.startCreatureSound(Z2SE_CM_BODYFALL_S, 0, -1);
+        }
+        if (doRollDamage()) {
+            setActionMode(ACTION_EXECUTE_CHANCE);
             return;
+        }
+        if (mPiyoriTimer == 0 && !speedF) {
+            speedF = 0.0f;
+            setTgSetBit(0);
+            setActionMode(ACTION_EXECUTE_AWAY);
+        }
+        return;
 
-        case 2:
-            if (doRollDamage()) {
-                setActionMode(3);
-                field_0x6c8 = 1;
-            }
-            break;
+    case 2:
+        if (doRollDamage()) {
+            setActionMode(ACTION_EXECUTE_AWAY);
+            mMode = 1;
+        }
+        break;
     }
 }
 
 /* 806EDAA8-806EDDCC 003588 0324+00 1/1 0/0 0/0 .text            executeDeath__8daE_HZ_cFv */
 void daE_HZ_c::executeDeath() {
-    field_0x6d4 = 10;
+    mDamageDeathTimer = 10;
     field_0x566 = 0;
 
-    switch (field_0x6c8) {
+    switch (mMode) {
     case 0:
         if (mpBgW != NULL) {
             dComIfG_Bgsp().Release(mpBgW);
@@ -1125,16 +1165,16 @@ void daE_HZ_c::executeDeath() {
         mSpheres[0].OffTgSetBit();
         setTgSetBit(0);
         field_0x6e4 = 1;
-        field_0x6c8 = 1;
+        mMode = 1;
 
         if (field_0x6cc >= 2) {
             setBck(8, 0, 5.0f, 1.0f);
             mSound.startCreatureVoice(Z2SE_EN_HZ_V_DEATH_STAND, -1);
         } else {
             mSound.startCreatureVoice(Z2SE_EN_HZ_V_DEATH, -1);
-            if (field_0x6c4 == 7) {
+            if (mPrevAction == 7) {
                 setBck(7, 0, 5.0f, 1.0f);
-            } else if (field_0x6c4 == 3) {
+            } else if (mPrevAction == 3) {
                 setBck(7, 0, 10.0f, 1.0f);
             } else {
                 setBck(7, 0, 0.0f, 1.0f);
@@ -1152,15 +1192,15 @@ void daE_HZ_c::executeDeath() {
                 mSound.startCreatureSoundLevel(Z2SE_EN_HZ_SLIDE, 0, -1);
             }
             if (mpMorfSO->checkFrame(35.0f)) {
-                field_0x6f4 = 1;
+                mReadyChangeColor = 1;
             }
         } else {
             if (mpMorfSO->isStop()) {
-                field_0x6f4 = 1;
+                mReadyChangeColor = 1;
             }
         }
         if (doRollDamage()) {
-            field_0x6c8 = 2;
+            mMode = 2;
         }
         break;
 
@@ -1172,20 +1212,19 @@ void daE_HZ_c::executeDeath() {
         break;
     }
 
-    if (field_0x6f4 != 0) {
-        cLib_addCalc2(&field_0x6f0, -20.0f, 1.0f, 0.4f);
+    if (mReadyChangeColor != 0) {
+        cLib_addCalc2(&mColor, -20.0f, 1.0f, 0.4f);
     }
 }
 
 /* 806EDDCC-806EDDE8 0038AC 001C+00 1/1 0/0 0/0 .text            setWindChanceEnd__8daE_HZ_cFv */
 void daE_HZ_c::setWindChanceEnd() {
-    field_0x6d6 = 0x1E;
-    field_0x6c8 = 2;
+    mWaitTimer = 30;
+    mMode = 2;
     field_0x6b6 = 0x1800;
 }
 
 /* 806EDDE8-806EE120 0038C8 0338+00 1/1 0/0 0/0 .text            executeWindChance__8daE_HZ_cFv */
-// NONMATCHING
 void daE_HZ_c::executeWindChance() {
     cXyz end;
     cXyz start;
@@ -1193,76 +1232,76 @@ void daE_HZ_c::executeWindChance() {
 
     mpBoomerangActor = daPy_py_c::getThrowBoomerangActor();
 
-    switch (field_0x6c8) {
-        case 0:
-            setTgSetBit(0);
-            mSpheres[0].OffTgSetBit();
-            setBck(0xB, 2, 3.0f, 1.0f);
-            mSound.startCreatureVoice(Z2SE_EN_HZ_V_FAINT, -1);
-            field_0x6c8 = 1;
-            field_0x6b6 = 0;
-            //f32 unused = l_HIO.reeling_rotation_speed;
-            field_0x6b2 = l_HIO.reeling_rotation_speed;
-            field_0x6b4 = 0;
-            /* fallthrough */
+    switch (mMode) {
+    case 0:
+        setTgSetBit(0);
+        mSpheres[0].OffTgSetBit();
+        setBck(0xB, 2, 3.0f, 1.0f);
+        mSound.startCreatureVoice(Z2SE_EN_HZ_V_FAINT, -1);
+        mMode = 1;
+        field_0x6b6 = 0;
+        // f32 unused = l_HIO.reeling_rotation_speed;
+        field_0x6b2 = l_HIO.reeling_rotation_speed;
+        field_0x6b4 = 0;
+        /* fallthrough */
 
-        case 1:
-            if (mpBoomerangActor == NULL) {
-                setWindChanceEnd();
-                return;
-            }
+    case 1:
+        if (mpBoomerangActor == NULL) {
+            setWindChanceEnd();
+            return;
+        }
 
-            end = mpBoomerangActor->current.pos;
-            field_0x6b6 += 0x800;
-            start = current.pos;
-            start.y += 50.0f;
-            linChk.Set(&start, &end, NULL);
+        end = mpBoomerangActor->current.pos;
+        field_0x6b6 += 0x800;
+        start = current.pos;
+        start.y += 50.0f;
+        linChk.Set(&start, &end, NULL);
 
-            if (dComIfG_Bgsp().LineCross(&linChk)) {
-                setWindChanceEnd();
-                return;
-            }
+        if (dComIfG_Bgsp().LineCross(&linChk)) {
+            setWindChanceEnd();
+            return;
+        }
 
-            cLib_chaseF(&current.pos.x, end.x + field_0x678.x * cM_ssin(field_0x6b6), 30.0f);
-            cLib_chaseF(&current.pos.z, end.z + field_0x678.x * cM_scos(field_0x6b6), 30.0f);
-            cLib_chaseF(&field_0x678.x, 0.0f, 20.0f);
+        cLib_chaseF(&current.pos.x, end.x + field_0x678.x * cM_ssin(field_0x6b6), 30.0f);
+        cLib_chaseF(&current.pos.z, end.z + field_0x678.x * cM_scos(field_0x6b6), 30.0f);
+        cLib_chaseF(&field_0x678.x, 0.0f, 20.0f);
 
-            if (mObjAcch.ChkGroundHit()) {
-                speed.y = 20.0f;
-            }
-            shape_angle.y -= field_0x6b2;
-            field_0x6b4 += 0x1000;
-            shape_angle.x = (s16)(cM_scos(field_0x6b4) * 6144.0f);
+        if (mObjAcch.ChkGroundHit()) {
+            speed.y = 20.0f;
+        }
+        shape_angle.y -= field_0x6b2;
+        field_0x6b4 += 0x1000;
+        shape_angle.x = (s16)(cM_scos(field_0x6b4) * 6144.0f);
 
-        default:
-            break;
+    default:
+        break;
 
-        case 2:
+    case 2:
         cLib_chaseAngleS(&field_0x6b2, 0, 0x100);
         cLib_chaseAngleS(&field_0x6b6, 0, 0x200);
         shape_angle.y -= field_0x6b2;
         field_0x6b4 += 0x1000;
         shape_angle.x = (s16)(field_0x6b6 * cM_scos(field_0x6b4));
-        
-        if (field_0x6d6 == 0) {
-            if (field_0x6d8 != 0) {
-                field_0x6d8 += 0x14;
+
+        if (mWaitTimer == 0) {
+            if (mPiyoriTimer != 0) {
+                mPiyoriTimer += 20;
             }
-            setActionMode(7);
+            setActionMode(ACTION_EXECUTE_CHANCE);
         }
     }
 }
 
 /* 806EE120-806EE2A4 003C00 0184+00 1/1 0/0 0/0 .text            executeWindWalk__8daE_HZ_cFv */
 void daE_HZ_c::executeWindWalk() {
-    switch (field_0x6c8) {
+    switch (mMode) {
     case 0:
         setTgSetBit(0);
         mSpheres[0].OffTgSetBit();
         setBck(0xC, 0, 3.0f, 1.0f);
         mSound.startCreatureVoice(Z2SE_EN_HZ_V_GALE, -1);
         mSound.startCreatureSound(Z2SE_EN_HZ_WALK, 0, -1);
-        field_0x6c8 = 1;
+        mMode = 1;
         speedF = 0.0f;
         /* fallthrough */
 
@@ -1271,7 +1310,7 @@ void daE_HZ_c::executeWindWalk() {
             mSound.startCreatureSound(Z2SE_EN_HZ_WALK, 0, -1);
         }
         if (mpMorfSO->isStop()) {
-            setActionMode(3);
+            setActionMode(ACTION_EXECUTE_AWAY);
             initBackWalk();
         }
         break;
@@ -1299,55 +1338,61 @@ void daE_HZ_c::setWaterEffect() {
 void daE_HZ_c::executeWaterDeath() {
     field_0x566 = 0;
 
-    switch (field_0x6c8) {
-        case 0:
-            gravity = 0.0f;
-            speedF = 0.0f;
-            field_0x6c8 = 1;
+    switch (mMode) {
+    case 0:
+        gravity = 0.0f;
+        speedF = 0.0f;
+        mMode = 1;
+        setWaterEffect();
+        mSound.startCreatureSound(Z2SE_CM_BODYFALL_WATER_L, 0, -1);
+        if (checkBck(0x13)) {
+            setBck(0xA, 0, 0.0f, 1.0f);
+            mSound.startCreatureVoice(Z2SE_EN_HZ_V_DROWNED_B, -1);
+        } else if (checkBck(5) || checkBck(0xC) || checkBck(0xF) || checkBck(0x11) ||
+                   checkBck(0x12))
+        {
+            setBck(9, 0, 3.0f, 1.0f);
+            mSound.startCreatureVoice(Z2SE_EN_HZ_V_DROWNED_A, -1);
+        } else {
+            setBck(0xA, 0, 3.0f, 1.0f);
+            mSound.startCreatureVoice(Z2SE_EN_HZ_V_DROWNED_B, -1);
+        }
+        /* fallthrough */
+    case 1:
+        cLib_chaseF(&speed.y, 5.0f, 10.0f);
+        cLib_chaseAngleS(&shape_angle.x, 0, 0x800);
+        cLib_chaseAngleS(&shape_angle.z, 0, 0x800);
+        if (mpMorfSO->checkFrame(10.0f) || mpMorfSO->checkFrame(20.0f) ||
+            mpMorfSO->checkFrame(36.0f) || mpMorfSO->checkFrame(57.0f))
+        {
             setWaterEffect();
-            mSound.startCreatureSound(Z2SE_CM_BODYFALL_WATER_L, 0, -1);
-            if (checkBck(0x13)) {
-                setBck(0xA, 0, 0.0f, 1.0f);
-                mSound.startCreatureVoice(Z2SE_EN_HZ_V_DROWNED_B, -1);
-            } else if (checkBck(5) || checkBck(0xC) || checkBck(0xF) || checkBck(0x11) || checkBck(0x12)) {
-                setBck(9, 0, 3.0f, 1.0f);
-                mSound.startCreatureVoice(Z2SE_EN_HZ_V_DROWNED_A, -1);
-            } else {
-                setBck(0xA, 0, 3.0f, 1.0f);
-                mSound.startCreatureVoice(Z2SE_EN_HZ_V_DROWNED_B, -1);
+            mSound.startCreatureSound(Z2SE_EN_HZ_DROWNSPLASH, 0, -1);
+        }
+        if (speed.y > 0.0f) {
+            if (current.pos.y + 100.0f > mGroundCross) {
+                current.pos.y = mGroundCross - 100.0f;
+                mMode = 2;
+                speed.y = 0.0f;
             }
-            /* fallthrough */
-        case 1:
-            cLib_chaseF(&speed.y, 5.0f, 10.0f);
-            cLib_chaseAngleS(&shape_angle.x, 0, 0x800);
-            cLib_chaseAngleS(&shape_angle.z, 0, 0x800);
-            if (mpMorfSO->checkFrame(10.0f) || mpMorfSO->checkFrame(20.0f) || mpMorfSO->checkFrame(36.0f) || mpMorfSO->checkFrame(57.0f)) {
-                setWaterEffect();
-                mSound.startCreatureSound(Z2SE_EN_HZ_DROWNSPLASH, 0, -1);
-            }
-            if (speed.y > 0.0f) {
-                if (current.pos.y + 100.0f > mGroundCross) {
-                    current.pos.y = mGroundCross - 100.0f;
-                    field_0x6c8 = 2;
-                    speed.y = 0.0f;
-                }
-            }
-            break;
+        }
+        break;
 
-        case 2:
-            if (mpMorfSO->checkFrame(10.0f) || mpMorfSO->checkFrame(20.0f) || mpMorfSO->checkFrame(36.0f) || mpMorfSO->checkFrame(57.0f)) {
-                setWaterEffect();
-                mSound.startCreatureSound(Z2SE_EN_HZ_DROWNSPLASH, 0, -1);
-            }
-            if (mpMorfSO->isStop()) {
-                cXyz position;
+    case 2:
+        if (mpMorfSO->checkFrame(10.0f) || mpMorfSO->checkFrame(20.0f) ||
+            mpMorfSO->checkFrame(36.0f) || mpMorfSO->checkFrame(57.0f))
+        {
+            setWaterEffect();
+            mSound.startCreatureSound(Z2SE_EN_HZ_DROWNSPLASH, 0, -1);
+        }
+        if (mpMorfSO->isStop()) {
+            cXyz position;
 
-                mDoMtx_stack_c::copy(mpMorfSO->getModel()->getAnmMtx(0x12));
-                mDoMtx_stack_c::multVecZero(&position);
-                fopAcM_createDisappear(this, &position, 10, 0, 5);
-                setActionMode(0xB);
-            }
-            break;
+            mDoMtx_stack_c::copy(mpMorfSO->getModel()->getAnmMtx(0x12));
+            mDoMtx_stack_c::multVecZero(&position);
+            fopAcM_createDisappear(this, &position, 10, 0, 5);
+            setActionMode(0xB);
+        }
+        break;
     }
 
     if (current.pos.y + 150.0f < mGroundCross && mGroundCross < current.pos.y + 50.0f) {
@@ -1361,9 +1406,9 @@ void daE_HZ_c::executeWaterDeath() {
 void daE_HZ_c::executeDeathWait() {
     field_0x566 = 0;
 
-    switch (field_0x6c8) {
+    switch (mMode) {
     case 0:
-        dComIfGs_onSwitch(field_0x6eb, fopAcM_GetRoomNo(this));
+        dComIfGs_onSwitch(mParam, fopAcM_GetRoomNo(this));
         mSound.deleteObject();
         field_0x6e8 = 1;
         attention_info.flags = 0;
@@ -1371,7 +1416,7 @@ void daE_HZ_c::executeDeathWait() {
         eyePos = current.pos;
         attention_info.position = eyePos;
         fopAcM_SetGroup(this, 0);
-        field_0x6c8 = 3;
+        mMode = 3;
         return;
 
     case 1:
@@ -1382,27 +1427,27 @@ void daE_HZ_c::executeDeathWait() {
         eyePos = current.pos;
         attention_info.position = eyePos;
         fopAcM_SetGroup(this, 0);
-        field_0x6c8 = 4;
+        mMode = 4;
         return;
     }
 }
 
 /* 806EE978-806EEE10 004458 0498+00 1/1 0/0 0/0 .text            damage_check__8daE_HZ_cFv */
 void daE_HZ_c::damage_check() {
-    if (mAction != 1 || field_0x6c8 < 4) {
+    if (mAction != 1 || mMode < 4) {
         if (mSpheres[0].ChkTgHit() && mSpheres[0].GetTgHitObj()->ChkAtType(AT_TYPE_BOOMERANG)) {
             mSpheres[0].ClrTgHit();
-            if (mAction == 7) {
-                setActionMode(8);
-            } else if (mAction == 3) {
-                setActionMode(9);
+            if (mAction == ACTION_EXECUTE_CHANCE) {
+                setActionMode(ACTION_EXECUTE_WIND_CHANCE);
+            } else if (mAction == ACTION_EXECUTE_AWAY) {
+                setActionMode(ACTION_EXECUTE_WIND_WALK);
             } else {
-                setActionMode(4);
+                setActionMode(ACTION_EXECUTE_WIND);
             }
             setTgSetBit(0);
-            field_0x6d4 = 10;
+            mDamageDeathTimer = 10;
         } else {
-            if (field_0x6d4 == 0) {
+            if (mDamageDeathTimer == 0) {
                 mStts.Move();
                 cXyz player_pos(daPy_getPlayerActorClass()->current.pos);
 
@@ -1412,7 +1457,7 @@ void daE_HZ_c::damage_check() {
                     if (mSpheres[i].ChkTgHit()) {
                         mAtInfo.mpCollider = mSpheres[i].GetTgHitObj();
 
-                        if (mAction == 2) {
+                        if (mAction == ACTION_ATTACK) {
                             mAtInfo.field_0x18 = 0x2a;
                             mAtInfo.mpCollider->SetAtAtp(0);
                         } else {
@@ -1431,29 +1476,31 @@ void daE_HZ_c::damage_check() {
 
                         cc_at_check(this, &mAtInfo);
                         if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_UNK)) {
-                            field_0x6d4 = 0x14;
+                            mDamageDeathTimer = 0x14;
                         } else {
                             if (cc_pl_cut_bit_get() == 0x80) {
-                                field_0x6d4 = 0x14;
+                                mDamageDeathTimer = 0x14;
                             } else {
-                                field_0x6d4 = 10;
+                                mDamageDeathTimer = 10;
                             }
                         }
 
                         if (mAtInfo.mAttackPower <= 1) {
-                            field_0x6d4 = 10;
+                            mDamageDeathTimer = 10;
                         }
 
                         mSpheres[1].ClrTgHit();
                         mSpheres[2].ClrTgHit();
                         mSpheres[3].ClrTgHit();
 
-                        if (mAction == 2) {
-                            setActionMode(1);
+                        if (mAction == ACTION_ATTACK) {
+                            setActionMode(ACTION_HIDE);
                             return;
                         }
 
-                        if (daPy_getPlayerActorClass()->getCutCount() >= 4 || ((dCcD_GObjInf*)mAtInfo.mpCollider)->GetAtSpl() == 1) {
+                        if (daPy_getPlayerActorClass()->getCutCount() >= 4 ||
+                            ((dCcD_GObjInf*)mAtInfo.mpCollider)->GetAtSpl() == 1)
+                        {
                             bVar = true;
                         }
 
@@ -1462,20 +1509,21 @@ void daE_HZ_c::damage_check() {
                             if (bVar) {
                                 field_0x6cc = 1;
                             }
-                            if (mAction == 3) {
+                            if (mAction == ACTION_EXECUTE_AWAY) {
                                 field_0x6cc += 2;
                             }
-                            setActionMode(6);
+                            setActionMode(ACTION_EXECUTE_DEATH);
                             return;
                         }
 
-                        if (mAction == 3) {
+                        if (mAction == ACTION_EXECUTE_AWAY) {
                             if (bVar) {
                                 field_0x6cc = 1;
-                                setActionMode(5);
+                                setActionMode(ACTION_EXECUTE_DAMAGE);
                                 return;
                             }
-                            s16 angle = cLib_targetAngleY((Vec*)&mSpheres[1].GetCoCP(), &player_pos) - shape_angle.y;
+                            s16 angle = cLib_targetAngleY(&mSpheres[1].GetCoCP(), &player_pos) -
+                                        shape_angle.y;
                             if (i == 1) {
                                 if (abs(angle) >= 0x4000) {
                                     if (bVar) {
@@ -1485,7 +1533,7 @@ void daE_HZ_c::damage_check() {
                                     } else {
                                         field_0x690.z = 0x3000;
                                     }
-                                    
+
                                 } else if (bVar) {
                                     field_0x690.z = -0x3000;
                                     field_0x696.z = -0x2000;
@@ -1523,7 +1571,7 @@ void daE_HZ_c::damage_check() {
                                 field_0x6cc = 2;
                             }
                         }
-                        setActionMode(5);
+                        setActionMode(ACTION_EXECUTE_DAMAGE);
                         return;
                     }
                 }
@@ -1554,78 +1602,77 @@ bool daE_HZ_c::checkWaterSurface() {
 }
 
 /* 806EEEE4-806EF144 0049C4 0260+00 2/1 0/0 0/0 .text            action__8daE_HZ_cFv */
-// NONMATCHING
 void daE_HZ_c::action() {
     cXyz unused;
     cXyz unused2;
 
-    mActorDist = fopAcM_searchPlayerDistance(this);
-    field_0x6b0 = fopAcM_searchPlayerAngleY(this);
+    mPlayerDist = fopAcM_searchPlayerDistance(this);
+    mPlayerAngleY = fopAcM_searchPlayerAngleY(this);
     damage_check();
 
     if (mAction != 10 && checkWaterSurface()) {
-        setActionMode(10);
+        setActionMode(ACTION_EXECUTE_WATER_DEATH);
     }
 
     attention_info.flags = 4;
     field_0x566 = 1;
 
     switch (mAction) {
-    case 0:
+    case ACTION_WAIT:
         executeWait();
         break;
 
-    case 1:
+    case ACTION_HIDE:
         attention_info.flags = 0;
         executeHide();
         break;
 
-    case 2:
+    case ACTION_ATTACK:
         executeAttack();
         break;
 
-    case 3:
+    case ACTION_EXECUTE_AWAY:
         executeAway();
         break;
 
-    case 4:
+    case ACTION_EXECUTE_WIND:
         executeWind();
         break;
 
-    case 5:
+    case ACTION_EXECUTE_DAMAGE:
         executeDamage();
         break;
 
-    case 6:
+    case ACTION_EXECUTE_DEATH:
         attention_info.flags = 0;
         executeDeath();
         break;
 
-    case 7:
+    case ACTION_EXECUTE_CHANCE:
         executeChance();
         break;
 
-    case 8:
+    case ACTION_EXECUTE_WIND_CHANCE:
         executeWindChance();
         break;
 
-    case 9:
+    case ACTION_EXECUTE_WIND_WALK:
         executeWindWalk();
         break;
 
-    case 10:
+    case ACTION_EXECUTE_WATER_DEATH:
         attention_info.flags = 0;
         executeWaterDeath();
         break;
 
-    case 11:
+    case ACTION_EXECUTE_DEATH_WAIT:
         attention_info.flags = 0;
         executeDeathWait();
         break;
     }
 
-    if (mAction == 0 || mAction == 1) {
-        field_0x6e7 = 1;
+    if (mAction == ACTION_WAIT || mAction == ACTION_HIDE) {
+        mDisableShadow = true;
     }
 
     if (field_0x566 != 0) {
@@ -1665,9 +1712,9 @@ void daE_HZ_c::mtx_set() {
         mpMorfSO->modelCalc();
         MtxP anmMtx = morfModel->getAnmMtx(7);
         mpModel->setBaseTRMtx(anmMtx);
-        field_0x684.set(anmMtx[0][3], anmMtx[1][3], anmMtx[2][3]);
-        if (field_0x6e5 != 0) {
-            field_0x6e5 = 0;
+        mSmokeEffectPosition.set(anmMtx[0][3], anmMtx[1][3], anmMtx[2][3]);
+        if (mSetModelAnmMtx) {
+            mSetModelAnmMtx = false;
             mDoMtx_stack_c::copy(anmMtx);
             mDoMtx_stack_c::ZrotM(-0x4000);
             mDoMtx_stack_c::transM(0.0f, 14.0f, 0.0f);
@@ -1689,7 +1736,7 @@ void daE_HZ_c::cc_set() {
         cXyz pos;
         J3DModel* morfModel = mpMorfSO->getModel();
 
-        eyePos = field_0x684;
+        eyePos = mSmokeEffectPosition;
         attention_info.position = eyePos;
         attention_info.position.y += 30.0f;
 
@@ -1723,28 +1770,28 @@ int daE_HZ_c::execute() {
         return 1;
     }
 
-    if (field_0x6d6 != 0) {
-        field_0x6d6--;
+    if (mWaitTimer != 0) {
+        mWaitTimer--;
     }
-    if (field_0x6d4 != 0) {
-        field_0x6d4--;
+    if (mDamageDeathTimer != 0) {
+        mDamageDeathTimer--;
     }
-    if (field_0x6d8 != 0) {
-        field_0x6d8--;
+    if (mPiyoriTimer != 0) {
+        mPiyoriTimer--;
     }
-    if (field_0x6da != 0) {
-        field_0x6da--;
+    if (mAttackStartTimer != 0) {
+        mAttackStartTimer--;
     }
-    if (field_0x6dc != 0) {
-        field_0x6dc--;
+    if (mRetentionBeforeStretchTimer != 0) {
+        mRetentionBeforeStretchTimer--;
     }
-    if (field_0x6de != 0) {
-        field_0x6de--;
+    if (mAttackCooldownTimer != 0) {
+        mAttackCooldownTimer--;
     }
 
-    if (field_0x6e0 != 0) {
-        field_0x6e0--;
-        if (field_0x6e0 == 0) {
+    if (mCameraOffTimer != 0) {
+        mCameraOffTimer--;
+        if (mCameraOffTimer == 0) {
             if (dCam_getBody()->GetForceLockOnActor() == this) {
                 dCam_getBody()->ForceLockOff(this);
             }
@@ -1752,13 +1799,14 @@ int daE_HZ_c::execute() {
     }
 
     if (dCam_getBody()->GetForceLockOnActor() == this &&
-        daPy_getPlayerActorClass()->current.pos.y < current.pos.y - 100.0f) {
+        daPy_getPlayerActorClass()->current.pos.y < current.pos.y - 100.0f)
+    {
         dCam_getBody()->ForceLockOff(this);
     }
 
-    if (field_0x6e2 != 0) {
-        field_0x6e2--;
-        if (field_0x6e2 == 0) {
+    if (mCameraOnTimer != 0) {
+        mCameraOnTimer--;
+        if (mCameraOnTimer == 0) {
             if (dCam_getBody()->GetForceLockOnActor() != this) {
                 dCam_getBody()->ForceLockOn(this);
             }
@@ -1934,21 +1982,21 @@ void daE_HZ_c::setInitPos() {
     s16 angle = home.angle.y = home.angle.y + 0x2000 & 0xC000;
     shape_angle.y = angle;
     current.angle.y = angle;
-    setActionMode(1);
+    setActionMode(ACTION_HIDE);
 }
 
 /* 806EFC18-806EFFAC 0056F8 0394+00 1/1 0/0 0/0 .text            create__8daE_HZ_cFv */
 int daE_HZ_c::create() {
     static dCcD_SrcSph cc_sph_src = {
-    {
-        {0x0, {{0x0, 0x0, 0x0}, {0x10040, 0x3}, 0x0}},  // mObj
-        {dCcD_SE_METAL, 0x0, 0x0, 0x0, 0x0},            // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},             // mGObjTg
-        {0x0},                                          // mGObjCo
-    },                                                  // mObjInf
-    {
-        {{0.0f, 0.0f, 0.0f}, 40.0f}  // mSph
-    }  // mSphAttr
+        {
+            {0x0, {{0x0, 0x0, 0x0}, {0x10040, 0x3}, 0x0}},  // mObj
+            {dCcD_SE_METAL, 0x0, 0x0, 0x0, 0x0},            // mGObjAt
+            {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},             // mGObjTg
+            {0x0},                                          // mGObjCo
+        },                                                  // mObjInf
+        {
+            {{0.0f, 0.0f, 0.0f}, 40.0f}  // mSph
+        }  // mSphAttr
     };
 
     static dCcD_SrcSph cc_sph_src2 = {
@@ -2018,11 +2066,11 @@ int daE_HZ_c::create() {
         mAtInfo.mpSound = &mSound;
         maxFallSpeed = -60.0f;
         setInitPos();
-        field_0x6eb = fopAcM_GetParam(this);
+        mParam = fopAcM_GetParam(this);
 
-        if (field_0x6eb != 0xFF && dComIfGs_isSwitch(field_0x6eb, fopAcM_GetRoomNo(this))) {
+        if (mParam != 0xFF && dComIfGs_isSwitch(mParam, fopAcM_GetRoomNo(this))) {
             setActionMode(0xB);
-            field_0x6c8 = 1;
+            mMode = 1;
         }
         daE_HZ_Execute(this);
     }
@@ -2036,10 +2084,8 @@ static int daE_HZ_Create(daE_HZ_c* i_this) {
 
 /* 806F0A68-806F0A88 -00001 0020+00 1/0 0/0 0/0 .data            l_daE_HZ_Method */
 static actor_method_class l_daE_HZ_Method = {
-    (process_method_func)daE_HZ_Create,
-    (process_method_func)daE_HZ_Delete,
-    (process_method_func)daE_HZ_Execute,
-    (process_method_func)daE_HZ_IsDelete,
+    (process_method_func)daE_HZ_Create,  (process_method_func)daE_HZ_Delete,
+    (process_method_func)daE_HZ_Execute, (process_method_func)daE_HZ_IsDelete,
     (process_method_func)daE_HZ_Draw,
 };
 
@@ -2061,174 +2107,4 @@ extern actor_process_profile_definition g_profile_E_HZ = {
     fopAc_CULLBOX_CUSTOM_e,  // cullType
 };
 
-/* ############################################################################################## */
-/* 806F0BE0-806F0BE4 0000B8 0004+00 0/0 0/0 0/0 .bss
- * sInstance__40JASGlobalInstance<19JASDefaultBankTable>        */
-#pragma push
-#pragma force_active on
-static u8 data_806F0BE0[4];
-#pragma pop
-
-/* 806F0BE4-806F0BE8 0000BC 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14JASAudioThread>             */
-#pragma push
-#pragma force_active on
-static u8 data_806F0BE4[4];
-#pragma pop
-
-/* 806F0BE8-806F0BEC 0000C0 0004+00 0/0 0/0 0/0 .bss sInstance__27JASGlobalInstance<7Z2SeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_806F0BE8[4];
-#pragma pop
-
-/* 806F0BEC-806F0BF0 0000C4 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8Z2SeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_806F0BEC[4];
-#pragma pop
-
-/* 806F0BF0-806F0BF4 0000C8 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SceneMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_806F0BF0[4];
-#pragma pop
-
-/* 806F0BF4-806F0BF8 0000CC 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2StatusMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_806F0BF4[4];
-#pragma pop
-
-/* 806F0BF8-806F0BFC 0000D0 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2DebugSys>
- */
-#pragma push
-#pragma force_active on
-static u8 data_806F0BF8[4];
-#pragma pop
-
-/* 806F0BFC-806F0C00 0000D4 0004+00 0/0 0/0 0/0 .bss
- * sInstance__36JASGlobalInstance<15JAISoundStarter>            */
-#pragma push
-#pragma force_active on
-static u8 data_806F0BFC[4];
-#pragma pop
-
-/* 806F0C00-806F0C04 0000D8 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14Z2SoundStarter>             */
-#pragma push
-#pragma force_active on
-static u8 data_806F0C00[4];
-#pragma pop
-
-/* 806F0C04-806F0C08 0000DC 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12Z2SpeechMgr2>               */
-#pragma push
-#pragma force_active on
-static u8 data_806F0C04[4];
-#pragma pop
-
-/* 806F0C08-806F0C0C 0000E0 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8JAISeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_806F0C08[4];
-#pragma pop
-
-/* 806F0C0C-806F0C10 0000E4 0004+00 0/0 0/0 0/0 .bss sInstance__29JASGlobalInstance<9JAISeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_806F0C0C[4];
-#pragma pop
-
-/* 806F0C10-806F0C14 0000E8 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAIStreamMgr>               */
-#pragma push
-#pragma force_active on
-static u8 data_806F0C10[4];
-#pragma pop
-
-/* 806F0C14-806F0C18 0000EC 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SoundMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_806F0C14[4];
-#pragma pop
-
-/* 806F0C18-806F0C1C 0000F0 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAISoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_806F0C18[4];
-#pragma pop
-
-/* 806F0C1C-806F0C20 0000F4 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13JAUSoundTable>              */
-#pragma push
-#pragma force_active on
-static u8 data_806F0C1C[4];
-#pragma pop
-
-/* 806F0C20-806F0C24 0000F8 0004+00 0/0 0/0 0/0 .bss
- * sInstance__38JASGlobalInstance<17JAUSoundNameTable>          */
-#pragma push
-#pragma force_active on
-static u8 data_806F0C20[4];
-#pragma pop
-
-/* 806F0C24-806F0C28 0000FC 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAUSoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_806F0C24[4];
-#pragma pop
-
-/* 806F0C28-806F0C2C 000100 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SoundInfo>
- */
-#pragma push
-#pragma force_active on
-static u8 data_806F0C28[4];
-#pragma pop
-
-/* 806F0C2C-806F0C30 000104 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2SoundObjMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_806F0C2C[4];
-#pragma pop
-
-/* 806F0C30-806F0C34 000108 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2Audience>
- */
-#pragma push
-#pragma force_active on
-static u8 data_806F0C30[4];
-#pragma pop
-
-/* 806F0C34-806F0C38 00010C 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2FxLineMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_806F0C34[4];
-#pragma pop
-
-/* 806F0C38-806F0C3C 000110 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2EnvSeMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_806F0C38[4];
-#pragma pop
-
-/* 806F0C3C-806F0C40 000114 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SpeechMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_806F0C3C[4];
-#pragma pop
-
-/* 806F0C40-806F0C44 000118 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2WolfHowlMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_806F0C40[4];
-#pragma pop
+AUDIO_INSTANCES;
