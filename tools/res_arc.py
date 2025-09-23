@@ -3,11 +3,12 @@
 from argparse import ArgumentParser
 
 from binary_funcs import read_bytes_until_null, read_u32, read_u16, read_u8, skip_bytes
-
 import subprocess
+from os import walk, makedirs
 from os.path import exists, getmtime
 from pathlib import Path
-from typing import NamedTuple
+from typing import NamedTuple, DefaultDict
+import re
 
 class ArcFile(NamedTuple):
     file_name:str
@@ -19,9 +20,24 @@ class ArcNode(NamedTuple):
     name:str
     inds:range
 
+def ensure_dir(path:str):
+    makedirs(path, exist_ok=True)
+
+def bin_make_str(s:str):
+    s = s.replace(b"\x82\x98", b"x")
+    try:
+        s = s.decode("ascii")
+    except Exception as e:
+        raise AssertionError(f"{e}: {s}")
+    return s
+
+def read_str(binf):
+    return bin_make_str(read_bytes_until_null(binf))
+
 def convert_binary_to_resource_enum(src_path: str, dest_path: str) -> None:    
     with open(src_path, "rb") as binf:
-        assert(binf.read(4) == b"RARC"), "Not a rarc file"
+        opening_bytes = binf.read(4)
+        assert(opening_bytes == b"RARC"), f"Not a rarc file {opening_bytes}"
         skip_bytes(binf, 4)
         data_header_offset = read_u32(binf)
         binf.seek(data_header_offset)
@@ -35,7 +51,7 @@ def convert_binary_to_resource_enum(src_path: str, dest_path: str) -> None:
         sync_flag = read_u8(binf)
         
         found_files:list[ArcFile] = []
-        
+        all_file_names = []
         for entry_index in range(total_num_file_entries):
             binf.seek(file_entries_list_offset + entry_index * 0x14)
             file_id = read_u16(binf)
@@ -44,12 +60,12 @@ def convert_binary_to_resource_enum(src_path: str, dest_path: str) -> None:
             entry_type = type_and_name_offset >> 24
             name_offset = type_and_name_offset & 0x00FFFFFF
             binf.seek(string_list_offset + name_offset)
-            file_name = read_bytes_until_null(binf).decode("ascii")
+            file_name = read_str(binf)
             if entry_type & 1: # check to make sure its a file
                 assert(not sync_flag or file_id == entry_index), \
                     f"Sync flag was set, but ID {file_id} does not match Index {entry_index} for file {file_name}"
                 found_files.append(ArcFile(file_name, entry_index, file_id))
-        assert(len(set([x.file_name for x in found_files])) == len(found_files)), "duplicate file names found, unsupported"
+                all_file_names.append(file_name)
 
         index_file_lookup = {x.index : x for x in found_files}
         
@@ -57,20 +73,21 @@ def convert_binary_to_resource_enum(src_path: str, dest_path: str) -> None:
 
         for node_index in range(node_count):
             binf.seek(node_offset + node_index * 0x10)
-            this_node_type = binf.read(4).decode("ascii").strip(" ")
+            this_node_type = bin_make_str(binf.read(4))
             this_node_name_offs = read_u32(binf)
             skip_bytes(binf, 2)
             this_node_index_count = read_u16(binf)
             this_node_first_index = read_u32(binf)
             this_node_inds = range(this_node_first_index, this_node_first_index + this_node_index_count)
             binf.seek(string_list_offset + this_node_name_offs)
-            this_node_name = read_bytes_until_null(binf).decode("ascii")
+            this_node_name = read_str(binf)
             this_node = ArcNode(this_node_type, this_node_name, this_node_inds)
             found_nodes.append((this_node, [index_file_lookup.get(x) for x in this_node.inds if x in index_file_lookup]))
         
     out_lines:list[str] = []
     file_stem = Path(src_path).name.split(".")[0]
-    file_stem_upper = file_stem.upper()
+    re_sanitize = r"[\s@:\.,\-<>*%\"!&()|\+$]"
+    file_stem_upper = re.sub(re_sanitize, "_", file_stem.upper())
     indent =  "    "
 
     out_lines.append(f"#ifndef RES_{file_stem_upper}_H")
@@ -78,6 +95,8 @@ def convert_binary_to_resource_enum(src_path: str, dest_path: str) -> None:
 
     out_ids:list[str] = []
     out_idxs:list[str] = []
+    
+    appearance_count = DefaultDict(int)
 
     for node, files in found_nodes:
         if len(files) == 0: continue
@@ -86,11 +105,22 @@ def convert_binary_to_resource_enum(src_path: str, dest_path: str) -> None:
         out_idxs.append(file_type_break)
         for file in files:
             parts = file.file_name.split(".")
-            santitized_file_name = parts[0].upper()
-            ext = parts[1].upper()
+            santitized_file_name = re.sub(re_sanitize, "_", parts[0].upper()) # Sanitize identifier
+                
+            seen_count = appearance_count[santitized_file_name]
+            appearance_count[santitized_file_name] += 1
+
+            ext = ""
+            if len(parts) > 1:
+                ext = re.sub(re_sanitize, "_", parts[1].upper())
+
+            duplicate_tag = "_"
+            if seen_count > 0:
+                duplicate_tag = f"_{seen_count}_"
+
             # tiny optimization to do less string formatting
             begin_part = f"{indent}dRes_"
-            mid_part = f"_{file_stem_upper}_{ext}_{santitized_file_name}_e=0x"
+            mid_part = f"_{file_stem_upper}_{ext}_{santitized_file_name}{duplicate_tag}e=0x"
             out_idxs.append(f"{begin_part}INDEX{mid_part}{file.index:X},")
             out_ids.append(f"{begin_part}ID{mid_part}{file.id:X},")
     
@@ -105,7 +135,7 @@ def convert_binary_to_resource_enum(src_path: str, dest_path: str) -> None:
     out_lines.append(f"#endif /* !RES_{file_stem_upper}_H */")
 
     out = "\n".join(out_lines)
-
+    ensure_dir(Path(dest_path).parent)
     with open(dest_path, "w") as f:
         f.write(out)
     
@@ -118,17 +148,7 @@ def decompress_file(input_file:str, output_file:str) -> None:
 
     subprocess.run([dtk_path, "yaz0", "decompress", input_file, "-o", output_file])
 
-def main() -> None:
-    parser = ArgumentParser(
-        description="TODO"
-    )
-    parser.add_argument("src_path", type=str, help="Binary source file path")
-    parser.add_argument("dest_path", type=str, help="Destination C include file path")
-    args = parser.parse_args()
-
-    src_path = args.src_path
-    dst_path = args.dest_path
-
+def extract_enum_from_file(src_path:str, dst_path:str) -> None:
     assert(exists(src_path))
 
     # if we have already made this file, skip
@@ -150,6 +170,21 @@ def main() -> None:
 
     convert_binary_to_resource_enum(src_path, dst_path)
 
+def main() -> None:
+    for dirpath, dirnames, filenames in walk("./orig/"):
+        if "res" not in Path(dirpath).parts: continue
+
+        for file in filenames:
+            file_path = Path(dirpath) / file
+            if file_path.suffix == ".arc":
+                version = file_path.parts[1]
+                out_path = Path("/".join(file_path.parts[file_path.parts.index("res") + 1:]))
+                out_path = "res" / (version / out_path)
+                out_path = out_path.with_name("res_" + out_path.name).with_suffix(".h")
+                try:
+                    extract_enum_from_file(str(file_path), str(out_path))
+                except AssertionError as e:
+                    print(f"{file_path} -> {out_path}\n{e}\n")
 
 if __name__ == "__main__":
     main()
