@@ -378,29 +378,52 @@ struct dStage_DMap_c {
     /* 0x04 */ dStage_DMap_dt_c* entries;
 };
 
-// REVT
+/**
+ * dStage_MapEvent
+ * Section Magic: "REVT"
+ *
+ * For STB/ZEV events, an event name is specified for data
+ * For MapTool events, other data is specified instead
+ */
+// using packing to make sure event_name doesn't get aligned
+// field_0x1a / switch_no might be part of maptool data? unsure
+#pragma push
+#pragma pack(1)
 struct dStage_MapEvent_dt_c {
-    /* 0x00 */ u8 mType;
+    /* 0x00 */ u8 type;
     /* 0x01 */ u8 field_0x1;
     /* 0x02 */ u8 field_0x2;
     /* 0x03 */ u8 field_0x3;
     /* 0x04 */ u8 field_0x4;
     /* 0x05 */ u8 field_0x5;
-    /* 0x06 */ u8 mPriority;
+    /* 0x06 */ u8 priority;
     /* 0x07 */ u8 field_0x7;
     /* 0x08 */ u8 field_0x8;
     /* 0x09 */ u8 field_0x9;
     /* 0x0A */ u8 field_0xA;
     /* 0x0B */ u8 field_0xB;
     /* 0x0C */ u8 field_0xC;
-    /* 0x0D */ char mName[7];
-    /* 0x14 */ u16 field_0x14;
-    /* 0x16 */ u8 field_0x16;
-    /* 0x17 */ u8 field_0x17;
-    /* 0x18 */ u8 mSeType;  // 1: RIDDLE_A, 2: RIDDLE_B
-    /* 0x19 */ u8 field_0x19[0x1B - 0x19];
-    /* 0x1B */ u8 mSwitch;
+    union {
+        /* 0x0D */ char event_name[13];
+        struct {
+            /* 0x0D */ u8 field_0xd[0x14 - 0xD];
+            /* 0x14 */ u16 field_0x14;
+            /* 0x16 */ u8 field_0x16;
+            /* 0x17 */ u8 field_0x17;
+            /* 0x18 */ u8 sound_type;
+            /* 0x19 */ u8 field_0x19;
+        } maptool;
+    } data;
+    /* 0x1A */ u8 field_0x1a;
+    /* 0x1B */ u8 switch_no;
 };  // SIZE = 0x1C
+#pragma pop
+
+enum dStage_MapEvent_dt_type {
+    dStage_MapEvent_dt_TYPE_MAPTOOLCAMERA,
+    dStage_MapEvent_dt_TYPE_ZEV,
+    dStage_MapEvent_dt_TYPE_STB,
+};
 
 struct dStage_MapEventInfo_c {
     /* 0x0 */ int num;
