@@ -380,22 +380,20 @@ void dCcS::CalcParticleAngle(dCcD_GObjInf* i_atObjInf, cCcD_Stts* i_atStts, cCcD
 /* 8008685C-80086AC0 08119C 0264+00 1/1 0/0 0/0 .text
  * ProcAtTgHitmark__4dCcSFbbP8cCcD_ObjP8cCcD_ObjP12dCcD_GObjInfP12dCcD_GObjInfP9cCcD_SttsP9cCcD_SttsP10dCcD_GSttsP10dCcD_GSttsP4cXyzb
  */
-// NONMATCHING one branch issue
 void dCcS::ProcAtTgHitmark(bool i_setAt, bool i_setTg, cCcD_Obj* param_2, cCcD_Obj* param_3,
                            dCcD_GObjInf* i_atObjInf, dCcD_GObjInf* i_tgObjInf, cCcD_Stts* param_6,
                            cCcD_Stts* param_7, dCcD_GStts* param_8, dCcD_GStts* param_9,
                            cXyz* i_hitPos, bool i_chkShield) {
-    if (!i_atObjInf->ChkAtNoHitMark() && !i_tgObjInf->ChkTgNoHitMark() &&
-        (i_atObjInf->GetAtType() != AT_TYPE_10000000 || i_tgObjInf->GetAc() == NULL ||
-         fopAcM_CheckStatus(i_tgObjInf->GetAc(), AT_TYPE_10000000)))
-    {
-        if ((i_atObjInf->GetAtType() &
+    if (i_atObjInf->ChkAtNoHitMark() || i_tgObjInf->ChkTgNoHitMark() ||
+        (i_atObjInf->GetAtType() == AT_TYPE_10000000 && i_tgObjInf->GetAc() != NULL &&
+         !fopAcM_CheckStatus(i_tgObjInf->GetAc(), AT_TYPE_10000000)) ||
+        (i_atObjInf->GetAtType() &
              (AT_TYPE_WOLF_ATTACK | AT_TYPE_WOLF_CUT_TURN | AT_TYPE_10000000 | AT_TYPE_MIDNA_LOCK |
               AT_TYPE_HOOKSHOT | AT_TYPE_SHIELD_ATTACK | AT_TYPE_NORMAL_SWORD)) != 0 &&
-            i_tgObjInf->GetTgSpl() == 1)
-        {
-            return;
-        }
+            i_tgObjInf->GetTgSpl() == 1) 
+    {
+        return;
+    }
 
         if ((i_atObjInf->GetAtType() != AT_TYPE_HOOKSHOT ||
              !i_tgObjInf->ChkTgHookShotNoHitMark()) &&
@@ -441,7 +439,7 @@ void dCcS::ProcAtTgHitmark(bool i_setAt, bool i_setTg, cCcD_Obj* param_2, cCcD_O
                 dComIfGp_setHitMark(hitmark, ac, i_hitPos, &sp8, NULL, atType);
             }
         }
-    }
+    
 }
 
 /* 80086AC0-80086D8C 081400 02CC+00 1/0 0/0 0/0 .text
