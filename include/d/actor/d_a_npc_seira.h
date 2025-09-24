@@ -50,22 +50,22 @@ public:
     /* 80ACD600 */ void changeBck(int*, int*);
     /* 80ACD6AC */ void changeBtp(int*, int*);
     /* 80ACD744 */ void changeBtk(int*, int*);
-    /* 80ACD770 */ void selectAction();
-    /* 80ACD900 */ void chkAction(int (daNpc_Seira_c::*)(void*));
-    /* 80ACD92C */ void setAction(int (daNpc_Seira_c::*)(void*));
+    /* 80ACD770 */ int selectAction();
+    /* 80ACD900 */ int chkAction(actionFunc);
+    /* 80ACD92C */ int setAction(actionFunc);
     /* 80ACD9D4 */ int cutConversationAboutSaru(int);
     /* 80ACDC6C */ BOOL checkStageIsSeirasShop();
     /* 80ACDCE4 */ int getShopItemType();
-    /* 80ACDD24 */ void wait(void*);
-    /* 80ACDE74 */ void sit(void*);
-    /* 80ACE098 */ void happy(void*);
-    /* 80ACE220 */ void worry(void*);
-    /* 80ACE4FC */ void sad(void*);
-    /* 80ACE608 */ void lookaround(void*);
-    /* 80ACE714 */ void lookaround_wait(void*);
-    /* 80ACE828 */ void smile(void*);
-    /* 80ACE934 */ void talk(void*);
-    /* 80ACEAC4 */ void shop(void*);
+    /* 80ACDD24 */ int wait(void*);
+    /* 80ACDE74 */ int sit(void*);
+    /* 80ACE098 */ int happy(void*);
+    /* 80ACE220 */ int worry(void*);
+    /* 80ACE4FC */ int sad(void*);
+    /* 80ACE608 */ int lookaround(void*);
+    /* 80ACE714 */ int lookaround_wait(void*);
+    /* 80ACE828 */ int smile(void*);
+    /* 80ACE934 */ int talk(void*);
+    /* 80ACEAC4 */ int shop(void*);
     /* 80ACFB48 */ daNpc_Seira_c(
         daNpcT_faceMotionAnmData_c const* i_faceMotionAnmData,
         daNpcT_motionAnmData_c const* i_motionAnmData,
@@ -96,8 +96,9 @@ private:
     /* 0x10C0 */ u8 mChkBottle;
     /* 0x10C1 */ u8 mType;
     /* 0x10C4 */ daNpcT_ActorMngr_c mActorMngr[3];
-    /* 0x10DC */ u8 field_0x10DC;
-    /* 0x10DD */ u8 field_0x10DD[0x10F8 - 0x10DD];
+    /* 0x10DC */ actionFunc mNextAction;
+    /* 0x10E8 */ actionFunc mActFunc_0;
+    /* 0x10F4 */ int field_0x10f4;
     /* 0x10F8 */ int field_0x10f8;
     /* 0x10FC */ u8 field_0x10fc;
     /* 0x10FD */ u8 field_0x10fd;
