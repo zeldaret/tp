@@ -3504,18 +3504,18 @@ inline s16 dComIfGp_getItemMaxBombNumCount() {
     return g_dComIfG_gameInfo.play.getItemMaxBombNumCount(fpcNm_ITEM_NORMAL_BOMB);
 }
 
-inline BOOL dComIfGp_event_compulsory(void* param_0, const char* param_1, u16 param_2) {
-    return g_dComIfG_gameInfo.play.getEvent().compulsory(param_0, param_1, param_2);
+inline BOOL dComIfGp_event_compulsory(void* i_actor, const char* i_eventname, u16 i_hindFlag) {
+    return g_dComIfG_gameInfo.play.getEvent().compulsory(i_actor, i_eventname, i_hindFlag);
 }
 
-inline int dComIfGp_event_moveApproval(void* actor) {
-    return g_dComIfG_gameInfo.play.getEvent().moveApproval(actor);
+inline int dComIfGp_event_moveApproval(void* i_actor) {
+    return g_dComIfG_gameInfo.play.getEvent().moveApproval(i_actor);
 }
 
-inline int dComIfGp_event_order(u16 eventType, u16 priority, u16 flag, u16 param_3, void* param_4,
-                                void* param_5, s16 eventID, u8 infoIdx) {
-    return g_dComIfG_gameInfo.play.getEvent().order(eventType, priority, flag, param_3, param_4,
-                                                    param_5, eventID, infoIdx);
+inline int dComIfGp_event_order(u16 i_type, u16 i_prio, u16 i_flags, u16 i_hindFlags, void* i_requestActor,
+                                void* i_targetActor, s16 i_eventID, u8 i_mapToolId) {
+    return g_dComIfG_gameInfo.play.getEvent().order(i_type, i_prio, i_flags, i_hindFlags, i_requestActor,
+                                                    i_targetActor, i_eventID, i_mapToolId);
 }
 
 inline void dComIfGp_event_setGtItm(int i_itemNo) {
@@ -3542,28 +3542,28 @@ inline void dComIfGp_event_offHindFlag(u16 i_flag) {
     g_dComIfG_gameInfo.play.getEvent().offHindFlag(i_flag);
 }
 
-inline void dComIfGp_evmng_cutEnd(int param_0) {
-    dComIfGp_getPEvtManager()->cutEnd(param_0);
+inline void dComIfGp_evmng_cutEnd(int i_staffId) {
+    dComIfGp_getPEvtManager()->cutEnd(i_staffId);
 }
 
 inline cXyz* dComIfGp_evmng_getGoal() {
     return dComIfGp_getPEvtManager()->getGoal();
 }
 
-inline BOOL dComIfGp_evmng_startCheck(char const* i_event) {
-    return g_dComIfG_gameInfo.play.getEvtManager().startCheckOld(i_event);
+inline BOOL dComIfGp_evmng_startCheck(char const* i_eventname) {
+    return g_dComIfG_gameInfo.play.getEvtManager().startCheckOld(i_eventname);
 }
 
 inline BOOL dComIfGp_evmng_startCheck(s16 i_eventId) {
     return g_dComIfG_gameInfo.play.getEvtManager().startCheck(i_eventId);
 }
 
-inline BOOL dComIfGp_evmng_endCheck(const char* event) {
-    return g_dComIfG_gameInfo.play.getEvtManager().endCheckOld(event);
+inline BOOL dComIfGp_evmng_endCheck(const char* i_eventname) {
+    return g_dComIfG_gameInfo.play.getEvtManager().endCheckOld(i_eventname);
 }
 
-inline BOOL dComIfGp_evmng_endCheck(s16 eventID) {
-    return g_dComIfG_gameInfo.play.getEvtManager().endCheck(eventID);
+inline BOOL dComIfGp_evmng_endCheck(s16 i_eventID) {
+    return g_dComIfG_gameInfo.play.getEvtManager().endCheck(i_eventID);
 }
 
 inline int dComIfGp_evmng_cameraPlay() {
@@ -3574,20 +3574,20 @@ inline u8 dComIfGp_event_getPreItemNo() {
     return g_dComIfG_gameInfo.play.getEvent().getPreItemNo();
 }
 
-inline void dComIfGp_event_setItemPartner(void* param_0) {
-    g_dComIfG_gameInfo.play.getEvent().setPtI(param_0);
+inline void dComIfGp_event_setItemPartner(void* i_actor) {
+    g_dComIfG_gameInfo.play.getEvent().setPtI(i_actor);
 }
 
-inline void dComIfGp_event_setItemPartnerId(fpc_ProcID id) {
-    g_dComIfG_gameInfo.play.getEvent().setPtI_Id(id);
+inline void dComIfGp_event_setItemPartnerId(fpc_ProcID i_id) {
+    g_dComIfG_gameInfo.play.getEvent().setPtI_Id(i_id);
 }
 
 inline u8 dComIfGp_event_getGtItm() {
     return g_dComIfG_gameInfo.play.getEvent().getGtItm();
 }
 
-inline int dComIfGp_evmng_startDemo(int param_0) {
-    return dComIfGp_getPEvtManager()->setStartDemo(param_0);
+inline int dComIfGp_evmng_startDemo(int i_mapToolId) {
+    return dComIfGp_getPEvtManager()->setStartDemo(i_mapToolId);
 }
 
 inline void dComIfGp_event_setTalkPartner(void* i_actor) {
@@ -3618,23 +3618,23 @@ inline f32 dComIfGp_event_getCullRate() {
     return g_dComIfG_gameInfo.play.getEvent().getCullRate();
 }
 
-inline u16 dComIfGp_event_checkHind(u16 flag) {
+inline u16 dComIfGp_event_checkHind(u16 i_hindFlag) {
     if (!dComIfGp_event_runCheck()) {
         return false;
     }
-    return g_dComIfG_gameInfo.play.getEvent().checkHind(flag);
+    return g_dComIfG_gameInfo.play.getEvent().checkHind(i_hindFlag);
 }
 
-inline u16 dComIfGp_event_chkEventFlag(u16 flag) {
-    return g_dComIfG_gameInfo.play.getEvent().chkEventFlag(flag);
+inline u16 dComIfGp_event_chkEventFlag(u16 i_flag) {
+    return g_dComIfG_gameInfo.play.getEvent().chkEventFlag(i_flag);
 }
 
 inline BOOL dComIfGp_event_chkTalkXY() {
     return g_dComIfG_gameInfo.play.getEvent().chkTalkXY();
 }
 
-inline void dComIfGp_event_setCullRate(f32 f) {
-    g_dComIfG_gameInfo.play.getEvent().setCullRate(f);
+inline void dComIfGp_event_setCullRate(f32 i_rate) {
+    g_dComIfG_gameInfo.play.getEvent().setCullRate(i_rate);
 }
 
 inline u8 dComIfGp_event_getMode() {
@@ -3645,41 +3645,40 @@ inline fopAc_ac_c* dComIfGp_event_getDoorPartner() {
     return g_dComIfG_gameInfo.play.getEvent().getPtD();
 }
 
-inline int dComIfGp_evmng_getMyStaffId(const char* pName, fopAc_ac_c* pActor, int param_2) {
-    return dComIfGp_getPEvtManager()->getMyStaffId(pName, pActor, param_2);
+inline int dComIfGp_evmng_getMyStaffId(const char* i_staffname, fopAc_ac_c* i_actor, int i_tagId) {
+    return dComIfGp_getPEvtManager()->getMyStaffId(i_staffname, i_actor, i_tagId);
 }
 
-inline int dComIfGp_evmng_getMyActIdx(int i_staffIdx, char** i_actTable, int i_actTableSize, int param_3,
-                                      int param_4) {
-    return dComIfGp_getPEvtManager()->getMyActIdx(i_staffIdx, i_actTable, i_actTableSize, param_3, param_4);
+inline int dComIfGp_evmng_getMyActIdx(int i_staffId, char** i_actions, int i_actionNum, BOOL param_3, BOOL param_4) {
+    return dComIfGp_getPEvtManager()->getMyActIdx(i_staffId, i_actions, i_actionNum, param_3, param_4);
 }
 
-inline int dComIfGp_evmng_getIsAddvance(int param_0) {
-    return dComIfGp_getPEvtManager()->getIsAddvance(param_0);
+inline int dComIfGp_evmng_getIsAddvance(int i_staffId) {
+    return dComIfGp_getPEvtManager()->getIsAddvance(i_staffId);
 }
 
-inline int* dComIfGp_evmng_getMyIntegerP(int index, char* name) {
-    return (int*)dComIfGp_getPEvtManager()->getMySubstanceP(index, name, dEvDtData_c::TYPE_INT);
+inline int* dComIfGp_evmng_getMyIntegerP(int i_staffId, char* i_dataname) {
+    return (int*)dComIfGp_getPEvtManager()->getMySubstanceP(i_staffId, i_dataname, dEvDtData_c::TYPE_INT);
 }
 
-inline char* dComIfGp_evmng_getMyStringP(int index, char* name) {
-    return (char*)dComIfGp_getPEvtManager()->getMySubstanceP(index, name, dEvDtData_c::TYPE_STRING);
+inline char* dComIfGp_evmng_getMyStringP(int i_staffId, char* i_dataname) {
+    return (char*)dComIfGp_getPEvtManager()->getMySubstanceP(i_staffId, i_dataname, dEvDtData_c::TYPE_STRING);
 }
 
-inline f32* dComIfGp_evmng_getMyFloatP(int index, char* name) {
-    return (f32*)dComIfGp_getPEvtManager()->getMySubstanceP(index, name, dEvDtData_c::TYPE_FLOAT);
+inline f32* dComIfGp_evmng_getMyFloatP(int i_staffId, char* i_dataname) {
+    return (f32*)dComIfGp_getPEvtManager()->getMySubstanceP(i_staffId, i_dataname, dEvDtData_c::TYPE_FLOAT);
 }
 
-inline cXyz* dComIfGp_evmng_getMyXyzP(int index, char* name) {
-    return (cXyz*)dComIfGp_getPEvtManager()->getMySubstanceP(index, name, dEvDtData_c::TYPE_VEC);
+inline cXyz* dComIfGp_evmng_getMyXyzP(int i_staffId, char* i_dataname) {
+    return (cXyz*)dComIfGp_getPEvtManager()->getMySubstanceP(i_staffId, i_dataname, dEvDtData_c::TYPE_VEC);
 }
 
-inline int dComIfGp_evmng_getMySubstanceNum(int index, char* name) {
-    return dComIfGp_getPEvtManager()->getMySubstanceNum(index, name);
+inline int dComIfGp_evmng_getMySubstanceNum(int i_staffId, char* i_dataname) {
+    return dComIfGp_getPEvtManager()->getMySubstanceNum(i_staffId, i_dataname);
 }
 
-inline void dComIfGp_evmng_setGoal(cXyz* i_goal) {
-    dComIfGp_getPEvtManager()->setGoal(i_goal);
+inline void dComIfGp_evmng_setGoal(cXyz* i_pos) {
+    dComIfGp_getPEvtManager()->setGoal(i_pos);
 }
 
 inline BOOL dComIfGp_evmng_ChkPresentEnd() {
@@ -3706,9 +3705,9 @@ inline BOOL dComIfGp_evmng_isMapToolCamera(u8 mapToolID) {
     return g_dComIfG_gameInfo.play.getEvtManager().isMapToolCamera(mapToolID, -1);
 }
 
-inline bool dComIfGp_evmng_existence(const char* event_str) {
+inline bool dComIfGp_evmng_existence(const char* eventname) {
      return g_dComIfG_gameInfo.play.getEvtManager().getEventData(
-         dComIfGp_evmng_getEventIdx(event_str, -1)) != NULL;
+         dComIfGp_evmng_getEventIdx(eventname, 0xFF)) != NULL;
 }
 
 inline void dComIfGp_particle_createCommon(const void* data) {

@@ -1892,8 +1892,8 @@ bool dCamera_c::maptoolIdEvCamera() {
                  mEventData.field_0xec);
 
         int var_r6 = 0xFF;
-        if (mEventData.field_0xec != NULL && mEventData.field_0xec->mType == 0) {
-            var_r6 = mEventData.field_0xec->field_0x16;
+        if (mEventData.field_0xec != NULL && mEventData.field_0xec->type == dStage_MapEvent_dt_TYPE_MAPTOOLCAMERA) {
+            var_r6 = mEventData.field_0xec->data.maptool.field_0x16;
         }
 
         getEvIntData(&mEventData.field_0x24, "CameraID", var_r6);
@@ -1910,7 +1910,7 @@ bool dCamera_c::maptoolIdEvCamera() {
         room_no = -1;
     }
 
-    if (mEventData.field_0xec->mType == 0 && mEventData.field_0xec->field_0xC != 0xFF) {
+    if (mEventData.field_0xec->type == dStage_MapEvent_dt_TYPE_MAPTOOLCAMERA && mEventData.field_0xec->field_0xC != 0xFF) {
         if (mEventData.field_0xec->field_0xC & 1) {
             clrFlag(0x200000);
         }
@@ -1932,9 +1932,9 @@ bool dCamera_c::maptoolIdEvCamera() {
 #endif
         bool var_r3 = (this->*engine_tbl[mCamParam.Algorythmn(style)])(style);
 
-        if (mEventData.field_0xec->mType == 0) {
-            if (mEventData.field_0xec->field_0x14 == 0xFF ||
-                mCurCamStyleTimer > mEventData.field_0xec->field_0x14)
+        if (mEventData.field_0xec->type == dStage_MapEvent_dt_TYPE_MAPTOOLCAMERA) {
+            if (mEventData.field_0xec->data.maptool.field_0x14 == 0xFF ||
+                mCurCamStyleTimer > mEventData.field_0xec->data.maptool.field_0x14)
             {
                 var_r31 = true;
             }
@@ -1947,7 +1947,7 @@ bool dCamera_c::maptoolIdEvCamera() {
     }
 
     if (var_r31) {
-        if (mEventData.field_0xec->mType == 0 && (mEventData.field_0xec->field_0xC & 0x20)) {
+        if (mEventData.field_0xec->type == dStage_MapEvent_dt_TYPE_MAPTOOLCAMERA && (mEventData.field_0xec->field_0xC & 0x20)) {
             return mDoCPd_c::getHoldA(mPadID) || mDoCPd_c::getHoldB(mPadID);
         }
         return true;
