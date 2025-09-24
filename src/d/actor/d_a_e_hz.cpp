@@ -347,7 +347,7 @@ void daE_HZ_c::setCloseSmokeEffect() {
 
     gnd_chk.SetPos(&modified_pos);
     if (dComIfG_Bgsp().GroundCross(&gnd_chk) != -1000000000.0f) {
-        dComIfGp_particle_setPolyColor(0x82E2, gnd_chk, &mSmokeEffectPosition, &tevStr,
+        dComIfGp_particle_setPolyColor(dPa_RM(ID_ZM_S_HAZIKIPLATESMOKE00), gnd_chk, &mSmokeEffectPosition, &tevStr,
                                        &shape_angle, NULL, 0, NULL, -1, NULL);
     }
 
@@ -552,7 +552,7 @@ void daE_HZ_c::executeHide() {
     case 4:
         if (!eventInfo.checkCommandDemoAccrpt()) {
             fopAcM_orderPotentialEvent(this, 2, 0, 0);
-            eventInfo.onCondition(2);
+            eventInfo.onCondition(dEvtCnd_CANDEMO_e);
         } else {
             mReadyNewAction = true;
             mMode = 5;
@@ -608,8 +608,8 @@ void daE_HZ_c::executeHide() {
 /* 806EBD44-806EC068 001824 0324+00 1/1 0/0 0/0 .text            executeAttack__8daE_HZ_cFv */
 void daE_HZ_c::executeAttack() {
     static u16 d_HZ_JUMP_EFFECT_ID[2] = {
-        0x82E0,
-        0x82E1,
+        dPa_RM(ID_ZM_S_HAZIKIAPPEAR00),
+        dPa_RM(ID_ZM_S_HAZIKIAPPEAR01),
     };
     cXyz position;
     switch (mMode) {
@@ -760,7 +760,7 @@ void daE_HZ_c::executeAway() {
             }
             if (mObjAcch.ChkWallHit()) {
                 field_0x6cc++;
-                if (field_0x6cc >= 0x1E) {
+                if (field_0x6cc >= 30) {
                     mMode = 3;
                 }
             } else {
@@ -1320,10 +1320,10 @@ void daE_HZ_c::executeWindWalk() {
 /* 806EE2A4-806EE3BC 003D84 0118+00 1/1 0/0 0/0 .text            setWaterEffect__8daE_HZ_cFv */
 void daE_HZ_c::setWaterEffect() {
     static u16 w_eff_id[4] = {
-        0x01B8,
-        0x01B9,
-        0x01BA,
-        0x01BB,
+        ID_ZI_J_DOWNWTRA_A,
+        ID_ZI_J_DOWNWTRA_B,
+        ID_ZI_J_DOWNWTRA_C,
+        ID_ZI_J_DOWNWTRA_D,
     };
     cXyz position(current.pos.x, mGroundCross, current.pos.z);
     static cXyz sc(2.0f, 2.0f, 2.0f);
@@ -1833,7 +1833,7 @@ static int daE_HZ_Execute(daE_HZ_c* i_this) {
 
 /* 806EF6AC-806EF6B4 00518C 0008+00 1/0 0/0 0/0 .text            daE_HZ_IsDelete__FP8daE_HZ_c */
 static int daE_HZ_IsDelete(daE_HZ_c* i_this) {
-    return true;
+    return 1;
 }
 
 /* 806EF6B4-806EF750 005194 009C+00 1/1 0/0 0/0 .text            _delete__8daE_HZ_cFv */
@@ -2060,7 +2060,7 @@ int daE_HZ_c::create() {
         mSpheres[1].SetStts(&mStts);
         mSpheres[2].SetStts(&mStts);
         mSpheres[3].SetStts(&mStts);
-        attention_info.distances[2] = 4;
+        attention_info.distances[fopAc_attn_BATTLE_e] = 4;
         mSound.init(&current.pos, &eyePos, 3, 1);
         mSound.setEnemyName("E_hz");
         mAtInfo.mpSound = &mSound;
