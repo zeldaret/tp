@@ -1180,17 +1180,17 @@ config.libs = [
     JSystemLib(
         "JHostIO",
         [
-            Object(NonMatching, "JSystem/JHostIO/JHIComm.cpp"),
-            Object(NonMatching, "JSystem/JHostIO/JHICommonMem.cpp"),
-            Object(NonMatching, "JSystem/JHostIO/JORServer.cpp"),
-            Object(Equivalent, "JSystem/JHostIO/JOREntry.cpp"), # debug weak func order
-            Object(NonMatching, "JSystem/JHostIO/JORFile.cpp"),
+            Object(MatchingFor("ShieldD"), "JSystem/JHostIO/JHIComm.cpp"),
+            Object(MatchingFor("ShieldD"), "JSystem/JHostIO/JHICommonMem.cpp"),
+            Object(Equivalent, "JSystem/JHostIO/JORServer.cpp"), # weak func order
+            Object(MatchingFor("ShieldD"), "JSystem/JHostIO/JOREntry.cpp", extra_cflags=["-sym off"]), # debug weak func order
+            Object(MatchingFor("ShieldD"), "JSystem/JHostIO/JORFile.cpp", extra_cflags=["-sym off"]),
             Object(MatchingFor("ShieldD"), "JSystem/JHostIO/JORMessageBox.cpp"),
-            Object(Equivalent, "JSystem/JHostIO/JORHostInfo.cpp"), # debug weak func order
+            Object(MatchingFor("ShieldD"), "JSystem/JHostIO/JORHostInfo.cpp", extra_cflags=["-sym off"]), # debug weak func order
             Object(MatchingFor("ShieldD"), "JSystem/JHostIO/JORShellExecute.cpp"),
             Object(MatchingFor("ShieldD"), "JSystem/JHostIO/JHIMemBuf.cpp"),
-            Object(NonMatching, "JSystem/JHostIO/JHIhioASync.cpp"),
-            Object(NonMatching, "JSystem/JHostIO/JHIMccBuf.cpp"),
+            Object(MatchingFor("ShieldD"), "JSystem/JHostIO/JHIhioASync.cpp", extra_cflags=["-sym off"]),
+            Object(MatchingFor("ShieldD"), "JSystem/JHostIO/JHIMccBuf.cpp", extra_cflags=["-sym off"]),
             Object(MatchingFor("ShieldD"), "JSystem/JHostIO/JHIRMcc.cpp"),
         ],
     ),
@@ -1868,7 +1868,7 @@ config.libs = [
     ActorRel(NonMatching, "d_a_npc_myna2"),
     ActorRel(NonMatching, "d_a_npc_ne"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_p2"),
-    ActorRel(NonMatching, "d_a_npc_pachi_besu"),
+    ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_pachi_besu"),
     ActorRel(NonMatching, "d_a_npc_pachi_maro"),
     ActorRel(NonMatching, "d_a_npc_pachi_taro"),
     ActorRel(NonMatching, "d_a_npc_passer"),
