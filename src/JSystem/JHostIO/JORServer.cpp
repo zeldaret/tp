@@ -163,7 +163,7 @@ void JORServer::releaseMCTX(JORMContext* mctx) {
     ASSERTMSGLINE(292, mctx->msgSize() < 0x10000, "JORServer:releaseMCTX: context buffer probably overflowed.\n");
 
     if (mctx->msgSize() > 4) {
-        const void* var_r28 = send(mctx->msgPtr(), mctx->msgSize());
+        const s32 var_r28 = send(mctx->msgPtr(), mctx->msgSize());
     }
 }
 
