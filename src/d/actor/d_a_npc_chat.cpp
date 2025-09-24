@@ -1546,7 +1546,7 @@ SECTION_DATA static u8 a_jntTbl_W[5880] = {
 };
 
 /* 8098B3CC-8098B74C 003A70 0380+00 3/4 0/0 0/0 .data            a_prmTbl_W */
-static prmTbl a_prmTbl_W[] = {
+static prmTbl a_prmTbl_W[14] = {
     -852593.0f, 0xB9, 0xB0, 0xD8, 0xF0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x0F, 0xA0, 0x3A, 0x98, 0xE0, 0xC0, 0xC5, 0x68, 1.0f, 0xC8, 0x00, 0x00,
     1.4f, 1.5f, 10.0f, 4.0f, 180.0f, 30.0f, 50.1f, 35.0f,
@@ -2284,7 +2284,6 @@ BOOL daNpcChat_c::setAttention(int param_1) {
         cXyz(0.0f, 10.0f, 0.0f),
     };
 
-    // isM_();
     mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(isM_() ? 3 : 3));
     mDoMtx_stack_c::multVec(&a_eyeOfsTbl[param_1], &eyePos);
     mBaseAttnPos.set(current.pos.x, current.pos.y + AtnOfs(param_1), current.pos.z);
