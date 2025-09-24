@@ -114,9 +114,8 @@ private:
     /* 0xE0E */ u16 mMode;
     /* 0xE10 */ u8 mType;
     /* 0xE11 */ s8 mParamMode;
-    /* 0xE12 */ u8 field_0xe12[0xe14 - 0xe12];
-    /* 0xE14 */ u32 field_0xe14;
-    /* 0xE18 */ int field_0xe18;
+    /* 0xE14 */ int mExitId;
+    /* 0xE18 */ int mAnm;
     /* 0xE1C */ u8 field_0xe1c;
     /* 0xE1D */ u8 field_0xe1d;
     /* 0xE1E */ u8 swBit;

@@ -7,337 +7,136 @@
 
 #include "d/actor/d_a_npc_gwolf.h"
 #include "Z2AudioLib/Z2Instances.h"
-#include "dolphin/types.h"
-#include "dol2asm.h"
 #include "d/d_camera.h"
 
-//
-// Forward References:
-//
+enum GWolf_RES_File_ID {
+    /* BCK */
+    /* 0x07 */ BCK_WL_AT = 0x7,
+    /* 0x08 */ BCK_WL_ATTACKA,
+    /* 0x09 */ BCK_WL_ATTACKAED,
+    /* 0x0A */ BCK_WL_ATTACKAST,
+    /* 0x0B */ BCK_WL_DASHA,
+    /* 0x0C */ BCK_WL_HOWLB,
+    /* 0x0D */ BCK_WL_HOWLC,
+    /* 0x0E */ BCK_WL_JUMPA,
+    /* 0x0F */ BCK_WL_JUMPAST,
+    /* 0x10 */ BCK_WL_WAITSIT,
 
-extern "C" void __ct__13daNpc_GWolf_cFv();
-extern "C" void __dt__8cM3dGCylFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__13daNpc_GWolf_cFv();
-extern "C" void create__13daNpc_GWolf_cFv();
-extern "C" void CreateHeap__13daNpc_GWolf_cFv();
-extern "C" void __dt__15J3DTevKColorAnmFv();
-extern "C" void __ct__15J3DTevKColorAnmFv();
-extern "C" void __dt__14J3DTevColorAnmFv();
-extern "C" void __ct__14J3DTevColorAnmFv();
-extern "C" void __dt__11J3DTexNoAnmFv();
-extern "C" void __ct__11J3DTexNoAnmFv();
-extern "C" void __dt__12J3DTexMtxAnmFv();
-extern "C" void __ct__12J3DTexMtxAnmFv();
-extern "C" void __dt__14J3DMatColorAnmFv();
-extern "C" void __ct__14J3DMatColorAnmFv();
-extern "C" void Delete__13daNpc_GWolf_cFv();
-extern "C" void Execute__13daNpc_GWolf_cFv();
-extern "C" void Draw__13daNpc_GWolf_cFv();
-extern "C" void draw__13daNpc_GWolf_cFiifP11_GXColorS10i();
-extern "C" void ctrlJoint__13daNpc_GWolf_cFP8J3DJointP8J3DModel();
-extern "C" void createHeapCallBack__13daNpc_GWolf_cFP10fopAc_ac_c();
-extern "C" void ctrlJointCallBack__13daNpc_GWolf_cFP8J3DJointi();
-extern "C" void setParam__13daNpc_GWolf_cFv();
-extern "C" void main__13daNpc_GWolf_cFv();
-extern "C" void ctrlBtk__13daNpc_GWolf_cFv();
-extern "C" void adjustShapeAngle__13daNpc_GWolf_cFv();
-extern "C" void setAttnPos__13daNpc_GWolf_cFv();
-extern "C" bool setExpressionAnm__13daNpc_GWolf_cFib();
-extern "C" void setExpression__13daNpc_GWolf_cFif();
-extern "C" void setMotionAnm__13daNpc_GWolf_cFif();
-extern "C" void setMotion__13daNpc_GWolf_cFifi();
-extern "C" bool drawDbgInfo__13daNpc_GWolf_cFv();
-extern "C" void drawOtherMdls__13daNpc_GWolf_cFv();
-extern "C" void getTypeFromParam__13daNpc_GWolf_cFv();
-extern "C" void getModeFromParam__13daNpc_GWolf_cFv();
-extern "C" void isDelete__13daNpc_GWolf_cFv();
-extern "C" void reset__13daNpc_GWolf_cFv();
-extern "C" void playMotion__13daNpc_GWolf_cFv();
-extern "C" void chkAction__13daNpc_GWolf_cFM13daNpc_GWolf_cFPCvPvPv_i();
-extern "C" void setAction__13daNpc_GWolf_cFM13daNpc_GWolf_cFPCvPvPv_i();
-extern "C" void selectAction__13daNpc_GWolf_cFv();
-extern "C" void doNormalAction__13daNpc_GWolf_cFi();
-extern "C" void doEvent__13daNpc_GWolf_cFv();
-extern "C" void setLookMode__13daNpc_GWolf_cFi();
-extern "C" void lookat__13daNpc_GWolf_cFv();
-extern "C" void ECut_attackWarp__13daNpc_GWolf_cFi();
-extern "C" void ECut_attackWarpHorse__13daNpc_GWolf_cFi();
-extern "C" void ECut_howlingSessionA__13daNpc_GWolf_cFi();
-extern "C" static void callback_proc__FPvi();
-extern "C" void meetGWolfSkip__13daNpc_GWolf_cFv();
-extern "C" void ECut_meetGWolf__13daNpc_GWolf_cFi();
-extern "C" void wait__13daNpc_GWolf_cFPv();
-extern "C" void waitHowling__13daNpc_GWolf_cFPv();
-extern "C" void waitBrave__13daNpc_GWolf_cFPv();
-extern "C" void talk__13daNpc_GWolf_cFPv();
-extern "C" void test__13daNpc_GWolf_cFPv();
-extern "C" void getGroundSlope__13daNpc_GWolf_cFR12dBgS_ObjAcchs();
-extern "C" void __dt__8cM3dGPlaFv();
-extern "C" static void daNpc_GWolf_Create__FPv();
-extern "C" static void daNpc_GWolf_Delete__FPv();
-extern "C" static void daNpc_GWolf_Execute__FPv();
-extern "C" static void daNpc_GWolf_Draw__FPv();
-extern "C" static bool daNpc_GWolf_IsDelete__FPv();
-extern "C" void calc__11J3DTexNoAnmCFPUs();
-extern "C" void __dt__18daNpcF_ActorMngr_cFv();
-extern "C" void __ct__18daNpcF_ActorMngr_cFv();
-extern "C" void __dt__15daNpcF_Lookat_cFv();
-extern "C" void __dt__5csXyzFv();
-extern "C" void __ct__5csXyzFv();
-extern "C" void __dt__4cXyzFv();
-extern "C" void __ct__4cXyzFv();
-extern "C" void __dt__8daNpcF_cFv();
-extern "C" void __ct__8daNpcF_cFv();
-extern "C" void __dt__12dBgS_AcchCirFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" void __dt__12dBgS_ObjAcchFv();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" void setCollisions__8daNpcF_cFv();
-extern "C" bool setExpressionBtp__8daNpcF_cFi();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void func_809F8398(void* _this, int*);
-extern "C" void __sinit_d_a_npc_gwolf_cpp();
-extern "C" void __dt__19daNpc_GWolf_Param_cFv();
-extern "C" static void func_809F84D0();
-extern "C" static void func_809F84D8();
-extern "C" u8 const m__19daNpc_GWolf_Param_c[140];
-extern "C" extern char const* const d_a_npc_gwolf__stringBase0;
-extern "C" void* mEvtCutNameList__13daNpc_GWolf_c[5];
-extern "C" u8 mEvtCutList__13daNpc_GWolf_c[60];
+    /* BMDR */
+    /* 0x13 */ BMDR_GW = 0x13,
 
-//
-// External References:
-//
+    /* BRK */
+    /* 0x16 */ BRK_GW = 0x16,
 
-extern "C" void mDoMtx_ZXYrotM__FPA4_fsss();
-extern "C" void mDoMtx_YrotS__FPA4_fs();
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void mDoMtx_ZrotM__FPA4_fs();
-extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void scaleM__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();
-extern "C" void entry__13mDoExt_btpAnmFP16J3DMaterialTables();
-extern "C" void entry__13mDoExt_btkAnmFP16J3DMaterialTablef();
-extern "C" void entry__13mDoExt_brkAnmFP16J3DMaterialTablef();
-extern "C" void changeBckOnly__13mDoExt_bckAnmFP15J3DAnmTransform();
-extern "C" void
-__ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl();
-extern "C" void entryDL__16mDoExt_McaMorfSOFv();
-extern "C" void stopZelAnime__16mDoExt_McaMorfSOFv();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAcM_delete__FP10fopAc_ac_c();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff();
-extern "C" void fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData();
-extern "C" void fopAcM_getPolygonAngle__FPC8cM3dGPlas();
-extern "C" void gndCheck__11fopAcM_gc_cFPC4cXyz();
-extern "C" void dStage_changeScene__FifUlScsi();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGs_onStageSwitch__Fii();
-extern "C" void
-dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj();
-extern "C" void dComIfGs_wolfeye_effect_check__Fv();
-extern "C" void offSwitch__10dSv_info_cFii();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void setSkipProc__14dEvt_control_cFPvPFPvi_ii();
-extern "C" void onSkipFade__14dEvt_control_cFv();
-extern "C" void endCheck__16dEvent_manager_cFs();
-extern "C" void getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci();
-extern "C" void getIsAddvance__16dEvent_manager_cFi();
-extern "C" void getMyActIdx__16dEvent_manager_cFiPCPCciii();
-extern "C" void getMySubstanceP__16dEvent_manager_cFiPCci();
-extern "C" void cutEnd__16dEvent_manager_cFi();
-extern "C" void ChkPresentEnd__16dEvent_manager_cFv();
-extern "C" void GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla();
-extern "C" void __ct__12dBgS_AcchCirFv();
-extern "C" void SetWallR__12dBgS_AcchCirFf();
-extern "C" void SetWall__12dBgS_AcchCirFff();
-extern "C" void __dt__9dBgS_AcchFv();
-extern "C" void __ct__9dBgS_AcchFv();
-extern "C" void Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz();
-extern "C" void CrrPos__9dBgS_AcchFR4dBgS();
-extern "C" void __ct__11dBgS_GndChkFv();
-extern "C" void __dt__11dBgS_GndChkFv();
-extern "C" void __ct__11dBgS_LinChkFv();
-extern "C" void __dt__11dBgS_LinChkFv();
-extern "C" void SetObj__16dBgS_PolyPassChkFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void __dt__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_CylFRC11dCcD_SrcCyl();
-extern "C" void daNpcT_onEvtBit__FUl();
-extern "C" void daNpcT_chkEvtBit__FUl();
-extern "C" void daNpcT_onTmpBit__FUl();
-extern "C" void daNpcT_offTmpBit__FUl();
-extern "C" void daNpcT_chkTmpBit__FUl();
-extern "C" void initialize__18daNpcF_ActorMngr_cFv();
-extern "C" void entry__18daNpcF_ActorMngr_cFP10fopAc_ac_c();
-extern "C" void remove__18daNpcF_ActorMngr_cFv();
-extern "C" void getActorP__18daNpcF_ActorMngr_cFv();
-extern "C" void initialize__15daNpcF_MatAnm_cFv();
-extern "C" void initialize__15daNpcF_Lookat_cFv();
-extern "C" void setParam__15daNpcF_Lookat_cFffffffffffffsP4cXyz();
-extern "C" void calc__15daNpcF_Lookat_cFP10fopAc_ac_cPA4_fPP5csXyziii();
-extern "C" void execute__8daNpcF_cFv();
-extern "C" void tgHitCallBack__8daNpcF_cFP10fopAc_ac_cP12dCcD_GObjInfP10fopAc_ac_cP12dCcD_GObjInf();
-extern "C" void srchAttnActor1__8daNpcF_cFPvPv();
-extern "C" void setMtx__8daNpcF_cFv();
-extern "C" void setMtx2__8daNpcF_cFv();
-extern "C" void initialize__8daNpcF_cFv();
-extern "C" void getTrnsfrmKeyAnmP__8daNpcF_cFPci();
-extern "C" void getTexSRTKeyAnmP__8daNpcF_cFPci();
-extern "C" void getTevRegKeyAnmP__8daNpcF_cFPci();
-extern "C" void setMcaMorfAnm__8daNpcF_cFP18J3DAnmTransformKeyffiii();
-extern "C" void setBtkAnm__8daNpcF_cFP19J3DAnmTextureSRTKeyP12J3DModelDatafi();
-extern "C" void setBrkAnm__8daNpcF_cFP15J3DAnmTevRegKeyP12J3DModelDatafi();
-extern "C" void setEnvTevColor__8daNpcF_cFv();
-extern "C" void setRoomNo__8daNpcF_cFv();
-extern "C" void playMotionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData();
-extern "C" void setLookatMtx__8daNpcF_cFiPif();
-extern "C" void hitChk2__8daNpcF_cFP8dCcD_Cylii();
-extern "C" void setDamage__8daNpcF_cFiii();
-extern "C" void ctrlMsgAnm__8daNpcF_cFRiRiP10fopAc_ac_ci();
-extern "C" void orderEvent__8daNpcF_cFiPcUsUsUcUs();
-extern "C" void changeEvent__8daNpcF_cFPcPcUsUs();
-extern "C" void initTalk__8daNpcF_cFiPP10fopAc_ac_c();
-extern "C" void talkProc__8daNpcF_cFPiiPP10fopAc_ac_c();
-extern "C" void step__8daNpcF_cFsiii();
-extern "C" void setAngle__8daNpcF_cFs();
-extern "C" void getDistTableIdx__8daNpcF_cFii();
-extern "C" void getAttnActorP__8daNpcF_cFiPFPvPv_Pvffffsii();
-extern "C" void chkFindPlayer2__8daNpcF_cFis();
-extern "C" void StartBlure__9dCamera_cFiP10fopAc_ac_cff();
-extern "C" void dCam_getBody__Fv();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void __ct__10dMsgFlow_cFv();
-extern "C" void __dt__10dMsgFlow_cFv();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void cM_atan2s__Fff();
-extern "C" void __ct__11cBgS_GndChkFv();
-extern "C" void __dt__11cBgS_GndChkFv();
-extern "C" void __dt__13cBgS_PolyInfoFv();
-extern "C" void __dt__8cM3dGCirFv();
-extern "C" void SetC__8cM3dGCylFRC4cXyz();
-extern "C" void SetH__8cM3dGCylFf();
-extern "C" void SetR__8cM3dGCylFf();
-extern "C" void cLib_addCalc2__FPffff();
-extern "C" void cLib_addCalcAngleS2__FPssss();
-extern "C" void cLib_chaseS__FPsss();
-extern "C" void cLib_targetAngleY__FPC3VecPC3Vec();
-extern "C" void cLib_targetAngleX__FPC4cXyzPC4cXyz();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void __ct__10Z2CreatureFv();
-extern "C" void __dt__10Z2CreatureFv();
-extern "C" void init__10Z2CreatureFP3VecP3VecUcUc();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void getTexNo__16J3DAnmTexPatternCFUsPUs();
-extern "C" void initialize__14J3DMaterialAnmFv();
-extern "C" void removeTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern();
-extern "C" void removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey();
-extern "C" void removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
-extern "C" void __destroy_arr();
-extern "C" void __construct_array();
-extern "C" void __ptmf_test();
-extern "C" void __ptmf_cmpr();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_23();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_25();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_23();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_25();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" u8 mCcDCyl__8daNpcF_c[68];
-extern "C" extern void* __vt__8daNpcF_c[18];
-extern "C" extern void* __vt__15daNpcF_MatAnm_c[4 + 6 /* padding */];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" extern void* __vt__14J3DMaterialAnm[4];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" u8 mCurrentMtx__6J3DSys[48];
-extern "C" u8 sincosTable___5JMath[65536];
-extern "C" f32 mGroundY__11fopAcM_gc_c;
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" void __register_global_object();
+    /* BTK */
+    /* 0x19 */ BTK_GW = 0x19,
+
+    /* EVT */
+    /* 0x1C */ EVT_GWOLF_EVENT_LIST = 0x1C,
+};
 
 enum RES_Name {
     /* 0x0 */ GWOLF,
+};
+
+enum Event {
+    /* 0x0 */ EVT_NONE,
+    /* 0x1 */ EVT_ATTACK_WARP,
+    /* 0x2 */ EVT_ATTACK_WARP_HORSE,
+    /* 0x3 */ EVT_HOWLING_SESSIONA,
+    /* 0x4 */ EVT_HOWLING_SESSIONB,
+    /* 0x5 */ EVT_HOWLING_SESSIONC,
+    /* 0x6 */ EVT_HOWLING_SESSIOND,
+    /* 0x7 */ EVT_HOWLING_SESSIONE,
+    /* 0x8 */ EVT_HOWLING_SESSIONF,
+    /* 0x9 */ EVT_MEET_GWOLFA,
+    /* 0xA */ EVT_MEET_GWOLFB,
+    /* 0xB */ EVT_MEET_GWOLFC,
+    /* 0xC */ EVT_MEET_GWOLFD,
+    /* 0xD */ EVT_MEET_GWOLFE,
+    /* 0xE */ EVT_MEET_GWOLFF,
 };
 
 enum Event_Cut_Nums {
     /* 0x5 */ NUM_EVT_CUTS_e = 0x5,
 };
 
+enum Animation {
+    /* 0x2 */ ANM_WAITSIT = 0x2,
+    /* 0x3 */ ANM_AT,
+    /* 0x4 */ ANM_ATTACKAST,
+    /* 0x5 */ ANM_ATTACKA,
+    /* 0x6 */ ANM_ATTACKAED,
+    /* 0x7 */ ANM_HOWLB,
+    /* 0x8 */ ANM_HOWLC,
+    /* 0x9 */ ANM_JUMPAST,
+    /* 0xA */ ANM_JUMPA,
+    /* 0xB */ ANM_DASHA,
+};
+
+enum Motion {
+    /* 0x0 */ MOT_WAITSIT,
+    /* 0x1 */ MOT_AT,
+    /* 0x2 */ MOT_ATTACKAST,
+    /* 0x3 */ MOT_ATTACKAED,
+    /* 0x4 */ MOT_HOWLB,
+    /* 0x5 */ MOT_HOWLC,
+    /* 0x6 */ MOT_JUMPAST,
+    /* 0x7 */ MOT_JUMPA,
+    /* 0x8 */ MOT_DASHA,
+};
+
+/* 809F8F14-809F8F18 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
+static daNpc_GWolf_Param_c l_HIO;
+
 /* 809F8814-809F881C 000020 0008+00 1/1 0/0 0/0 .data            l_bmdGetParamList */
 static daNpc_GetParam1 l_bmdGetParamList[1] = {
-    {0x13, GWOLF},
+    {BMDR_GW, GWOLF},
 };
 
 /* 809F881C-809F887C 000028 0060+00 0/1 0/0 0/0 .data            l_bckGetParamList */
 static daNpc_GetParam1 l_bckGetParamList[12] = {
     {-1, GWOLF},
     {-1, GWOLF},
-    {0x10, GWOLF},
-    {0x7, GWOLF},
-    {0xA, GWOLF},
-    {0x8, GWOLF},
-    {0x9, GWOLF},
-    {0xC, GWOLF},
-    {0xD, GWOLF},
-    {0xF, GWOLF},
-    {0xE, GWOLF},
-    {0xB, GWOLF},
+    {BCK_WL_WAITSIT, GWOLF},
+    {BCK_WL_AT, GWOLF},
+    {BCK_WL_ATTACKAST, GWOLF},
+    {BCK_WL_ATTACKA, GWOLF},
+    {BCK_WL_ATTACKAED, GWOLF},
+    {BCK_WL_HOWLB, GWOLF},
+    {BCK_WL_HOWLC, GWOLF},
+    {BCK_WL_JUMPAST, GWOLF},
+    {BCK_WL_JUMPA, GWOLF},
+    {BCK_WL_DASHA, GWOLF},
 };
 
 /* 809F887C-809F8884 000088 0008+00 1/2 0/0 0/0 .data            l_btkGetParamList */
 static daNpc_GetParam1 l_btkGetParamList[1] = {
-    {0x19, GWOLF},
+    {BTK_GW, GWOLF},
 };
 
 /* 809F8884-809F888C 000090 0008+00 0/0 0/0 0/0 .data            l_brkGetParamList */
 static daNpc_GetParam1 l_brkGetParamList[1] = {
-    {0x16, GWOLF},
+    {BRK_GW, GWOLF},
 };
 
 /* 809F888C-809F8904 000098 0078+00 0/2 0/0 0/0 .data            l_evtGetParamList */
 static daNpc_GetParam1 l_evtGetParamList[15] = {
-    {0, GWOLF},
-    {1, GWOLF},
-    {2, GWOLF},
-    {3, GWOLF},
-    {4, GWOLF},
-    {5, GWOLF},
-    {6, GWOLF},
-    {7, GWOLF},
-    {8, GWOLF},
-    {9, GWOLF},
-    {0xA, GWOLF},
-    {0xB, GWOLF},
-    {0xC, GWOLF},
-    {0xD, GWOLF},
-    {0xE, GWOLF},
+    {EVT_NONE, GWOLF},
+    {EVT_ATTACK_WARP, GWOLF},
+    {EVT_ATTACK_WARP_HORSE, GWOLF},
+    {EVT_HOWLING_SESSIONA, GWOLF},
+    {EVT_HOWLING_SESSIONB, GWOLF},
+    {EVT_HOWLING_SESSIONC, GWOLF},
+    {EVT_HOWLING_SESSIOND, GWOLF},
+    {EVT_HOWLING_SESSIONE, GWOLF},
+    {EVT_HOWLING_SESSIONF, GWOLF},
+    {EVT_MEET_GWOLFA, GWOLF},
+    {EVT_MEET_GWOLFB, GWOLF},
+    {EVT_MEET_GWOLFC, GWOLF},
+    {EVT_MEET_GWOLFD, GWOLF},
+    {EVT_MEET_GWOLFE, GWOLF},
+    {EVT_MEET_GWOLFF, GWOLF},
 };
 
 /* 809F8904-809F8940 -00001 003C+00 0/2 0/0 0/0 .data            l_evtNames */
@@ -385,12 +184,24 @@ static char* l_myName = "GWolf";
 
 /* 809F8970-809F8980 00017C 000E+02 3/3 0/0 0/0 .data            l_appearTmpFlag */
 static s16 l_appearTmpFlag[7] = {
-    -1, 0x005C, 0x005D, 0x005E, 0x005F, 0x0060, 0x0061,
+    -1,
+    0x005C, // dSv_event_tmp_flag_c::T_0092 - Hero's spirit - Gold wolf identification 2
+    0x005D, // dSv_event_tmp_flag_c::T_0093 - Hero's spirit - Gold wolf identification 3
+    0x005E, // dSv_event_tmp_flag_c::T_0094 - Hero's spirit - Gold wolf identification 4
+    0x005F, // dSv_event_tmp_flag_c::T_0095 - Hero's spirit - Gold wolf identification 5
+    0x0060, // dSv_event_tmp_flag_c::T_0096 - Hero's spirit - Gold wolf identification 6
+    0x0061, // dSv_event_tmp_flag_c::T_0097 - Hero's spirit - Gold wolf identification 7
 };
 
 /* 809F8980-809F8990 00018C 000E+02 2/2 0/0 0/0 .data            l_warpAppearFlag */
 static s16 l_warpAppearFlag[7] = {
-    0xFFFF, 0x01D8, 0x01D9, 0x01DA, 0x01DB, 0x01DC, 0x01DD,
+    -1,
+    0x01D8, // dSv_event_flag_c::F_0472 - Secret techniques - Distant howling complete (for secret technique 2)
+    0x01D9, // dSv_event_flag_c::F_0473 - Secret techniques - Distant howling complete (for secret technique 3)
+    0x01DA, // dSv_event_flag_c::F_0474 - Secret techniques - Distant howling complete (for secret technique 4)
+    0x01DB, // dSv_event_flag_c::F_0475 - Secret techniques - Distant howling complete (for secret technique 5)
+    0x01DC, // dSv_event_flag_c::F_0476 - Secret techniques - Distant howling complete (for secret technique 6)
+    0x01DD, // dSv_event_flag_c::F_0477 - Secret techniques - Distant howling complete (for secret technique 7)
 };
 
 /* 809F8990-809F89A4 -00001 0014+00 0/1 0/0 0/0 .data            mEvtCutNameList__13daNpc_GWolf_c */
@@ -411,408 +222,18 @@ daNpc_GWolf_c::cutFunc daNpc_GWolf_c::mEvtCutList[5] = {
     &daNpc_GWolf_c::ECut_meetGWolf,
 };
 
-/* 809F8A10-809F8A1C -00001 000C+00 1/1 0/0 0/0 .data            @4488 */
-SECTION_DATA static void* lit_4488[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)test__13daNpc_GWolf_cFPv,
-};
-
-/* 809F8A1C-809F8A4C -00001 0030+00 1/1 0/0 0/0 .data            @5014 */
-SECTION_DATA static void* lit_5014[12] = {
-    (void*)(((char*)setMotionAnm__13daNpc_GWolf_cFif) + 0xC8),
-    (void*)(((char*)setMotionAnm__13daNpc_GWolf_cFif) + 0xC8),
-    (void*)(((char*)setMotionAnm__13daNpc_GWolf_cFif) + 0xD0),
-    (void*)(((char*)setMotionAnm__13daNpc_GWolf_cFif) + 0xD0),
-    (void*)(((char*)setMotionAnm__13daNpc_GWolf_cFif) + 0xA0),
-    (void*)(((char*)setMotionAnm__13daNpc_GWolf_cFif) + 0xA8),
-    (void*)(((char*)setMotionAnm__13daNpc_GWolf_cFif) + 0xB0),
-    (void*)(((char*)setMotionAnm__13daNpc_GWolf_cFif) + 0xD0),
-    (void*)(((char*)setMotionAnm__13daNpc_GWolf_cFif) + 0xD0),
-    (void*)(((char*)setMotionAnm__13daNpc_GWolf_cFif) + 0xB8),
-    (void*)(((char*)setMotionAnm__13daNpc_GWolf_cFif) + 0xC0),
-    (void*)(((char*)setMotionAnm__13daNpc_GWolf_cFif) + 0xD0),
-};
-
-/* 809F8A4C-809F8A6C -00001 0020+00 1/1 0/0 0/0 .data            @5060 */
-SECTION_DATA static void* lit_5060[8] = {
-    (void*)(((char*)getModeFromParam__13daNpc_GWolf_cFv) + 0x74),
-    (void*)(((char*)getModeFromParam__13daNpc_GWolf_cFv) + 0x3C),
-    (void*)(((char*)getModeFromParam__13daNpc_GWolf_cFv) + 0x44),
-    (void*)(((char*)getModeFromParam__13daNpc_GWolf_cFv) + 0x4C),
-    (void*)(((char*)getModeFromParam__13daNpc_GWolf_cFv) + 0x54),
-    (void*)(((char*)getModeFromParam__13daNpc_GWolf_cFv) + 0x5C),
-    (void*)(((char*)getModeFromParam__13daNpc_GWolf_cFv) + 0x64),
-    (void*)(((char*)getModeFromParam__13daNpc_GWolf_cFv) + 0x6C),
-};
-
-/* 809F8A6C-809F8A7C 000278 000E+02 1/1 0/0 0/0 .data            l_delFlag$5064 */
-// static s16 l_delFlag[7] = {
-//     0x0153, 0x01EC, 0x01ED, 0x01EE, 0x01EF, 0x01F0, 0x01F1,
-// };
-
-/* 809F8A7C-809F8A8C 000288 000E+02 1/1 0/0 0/0 .data            l_playerNoList$5071 */
-// static s16 l_playerNoList[7] = {
-//     0xFFFF, 2, 3, 4, 5, 6, 7,
-// };
-
-/* 809F8A8C-809F8A98 -00001 000C+00 0/1 0/0 0/0 .data            @5251 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5251[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)test__13daNpc_GWolf_cFPv,
-};
-#pragma pop
-
-/* 809F8A98-809F8AA4 -00001 000C+00 0/1 0/0 0/0 .data            @5255 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5255[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)waitBrave__13daNpc_GWolf_cFPv,
-};
-#pragma pop
-
-/* 809F8AA4-809F8AB0 -00001 000C+00 0/1 0/0 0/0 .data            @5257 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5257[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)waitHowling__13daNpc_GWolf_cFPv,
-};
-#pragma pop
-
-/* 809F8AB0-809F8ABC -00001 000C+00 0/1 0/0 0/0 .data            @5259 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5259[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)wait__13daNpc_GWolf_cFPv,
-};
-#pragma pop
-
-/* 809F8ABC-809F8AC8 -00001 000C+00 0/1 0/0 0/0 .data            @5299 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5299[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)talk__13daNpc_GWolf_cFPv,
-};
-#pragma pop
-
-/* 809F8AC8-809F8AD4 -00001 000C+00 0/1 0/0 0/0 .data            @5307 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_5307[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)talk__13daNpc_GWolf_cFPv,
-};
-#pragma pop
-
-/* 809F8AD4-809F8B78 -00001 00A4+00 1/1 0/0 0/0 .data            @5642 */
-SECTION_DATA static void* lit_5642[41] = {
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3C8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x45C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x490),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x4A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x4C8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x71C),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x6D8),
-};
-
-/* 809F8B78-809F8C1C -00001 00A4+00 1/1 0/0 0/0 .data            @5641 */
-SECTION_DATA static void* lit_5641[41] = {
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x94),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x154),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x1A0),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x1C8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x214),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x3A8),
-    (void*)(((char*)ECut_attackWarp__13daNpc_GWolf_cFi) + 0x394),
-};
-
-/* 809F8C1C-809F8CC0 -00001 00A4+00 1/1 0/0 0/0 .data            @5817 */
-SECTION_DATA static void* lit_5817[41] = {
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x33C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x3D4),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x408),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x420),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x440),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x694),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x650),
-};
-
-/* 809F8CC0-809F8D64 -00001 00A4+00 1/1 0/0 0/0 .data            @5816 */
-SECTION_DATA static void* lit_5816[41] = {
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x94),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0xCC),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x118),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x13C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x188),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x31C),
-    (void*)(((char*)ECut_attackWarpHorse__13daNpc_GWolf_cFi) + 0x308),
-};
-
-/* 809F8D64-809F8D7C 000570 0018+00 1/1 0/0 0/0 .data            l_warpIdList$5862 */
-// static int l_warpIdList[6] = {
-//     0, 8,9,
-//     0xA, 0xB, 0xC,
-// };
-
-/* 809F8DCC-809F8DD8 0005D8 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGPla */
-SECTION_DATA extern void* __vt__8cM3dGPla[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGPlaFv,
-};
-
-/* 809F8DD8-809F8DE4 0005E4 000C+00 2/2 0/0 0/0 .data            __vt__11J3DTexNoAnm */
-SECTION_DATA extern void* __vt__11J3DTexNoAnm[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)calc__11J3DTexNoAnmCFPUs,
-};
-
-/* 809F8DE4-809F8E2C 0005F0 0048+00 2/2 0/0 0/0 .data            __vt__13daNpc_GWolf_c */
-SECTION_DATA extern void* __vt__13daNpc_GWolf_c[18] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__13daNpc_GWolf_cFv,
-    (void*)setParam__13daNpc_GWolf_cFv,
-    (void*)main__13daNpc_GWolf_cFv,
-    (void*)ctrlBtk__13daNpc_GWolf_cFv,
-    (void*)adjustShapeAngle__13daNpc_GWolf_cFv,
-    (void*)setMtx__8daNpcF_cFv,
-    (void*)setMtx2__8daNpcF_cFv,
-    (void*)setAttnPos__13daNpc_GWolf_cFv,
-    (void*)setCollisions__8daNpcF_cFv,
-    (void*)setExpressionAnm__13daNpc_GWolf_cFib,
-    (void*)setExpressionBtp__8daNpcF_cFi,
-    (void*)setExpression__13daNpc_GWolf_cFif,
-    (void*)setMotionAnm__13daNpc_GWolf_cFif,
-    (void*)setMotion__13daNpc_GWolf_cFifi,
-    (void*)drawDbgInfo__13daNpc_GWolf_cFv,
-    (void*)drawOtherMdls__13daNpc_GWolf_cFv,
-};
-
-/* 809F8E2C-809F8E38 000638 000C+00 3/3 0/0 0/0 .data            __vt__12J3DFrameCtrl */
-SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12J3DFrameCtrlFv,
-};
-
-/* 809F8E38-809F8E5C 000644 0024+00 3/3 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
-SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_ObjAcchFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_809F84D8,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_809F84D0,
-};
-
-/* 809F8E5C-809F8E68 000668 000C+00 3/3 0/0 0/0 .data            __vt__10cCcD_GStts */
-SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10cCcD_GSttsFv,
-};
-
-/* 809F8E68-809F8E74 000674 000C+00 2/2 0/0 0/0 .data            __vt__10dCcD_GStts */
-SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10dCcD_GSttsFv,
-};
-
-/* 809F8E74-809F8E80 000680 000C+00 2/2 0/0 0/0 .data            __vt__12dBgS_AcchCir */
-SECTION_DATA extern void* __vt__12dBgS_AcchCir[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_AcchCirFv,
-};
-
-/* 809F8E80-809F8E8C 00068C 000C+00 4/4 0/0 0/0 .data            __vt__18daNpcF_ActorMngr_c */
-SECTION_DATA extern void* __vt__18daNpcF_ActorMngr_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__18daNpcF_ActorMngr_cFv,
-};
-
-/* 809F8E8C-809F8E98 000698 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGCyl */
-SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGCylFv,
-};
-
-/* 809F8E98-809F8EA4 0006A4 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGAab */
-SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGAabFv,
-};
-
-/* 809F8EA4-809F8EB0 0006B0 000C+00 3/3 0/0 0/0 .data            __vt__15daNpcF_Lookat_c */
-SECTION_DATA extern void* __vt__15daNpcF_Lookat_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__15daNpcF_Lookat_cFv,
-};
-
 /* 809F30AC-809F3230 0000EC 0184+00 1/1 0/0 0/0 .text            __ct__13daNpc_GWolf_cFv */
 daNpc_GWolf_c::daNpc_GWolf_c() {}
 
 /* 809F32C0-809F34C0 000300 0200+00 1/0 0/0 0/0 .text            __dt__13daNpc_GWolf_cFv */
 daNpc_GWolf_c::~daNpc_GWolf_c() {
-    // NONMATCHING
+    for (int i = 0; l_loadRes_list[mType][i] >= 0; i++) {
+        dComIfG_resDelete(&mPhases[i], l_resNames[l_loadRes_list[mType][i]]);
+    }
+
+    if (heap != NULL) {
+        mpMorf->stopZelAnime();
+    }
 }
 
 /* ############################################################################################## */
@@ -868,7 +289,7 @@ cPhs__Step daNpc_GWolf_c::create() {
     mType = getTypeFromParam();
     mParamMode = getModeFromParam();
 
-    field_0xe14 = fopAcM_GetParam(this) >> 24;
+    mExitId = fopAcM_GetParam(this) >> 24;
 
     if (home.angle.x != 0xFFFF) {
         field_0xe08 = home.angle.x;
@@ -960,7 +381,7 @@ int daNpc_GWolf_c::CreateHeap() {
         return 0;
     }
 
-    setMotionAnm(2, 0.0f);
+    setMotionAnm(ANM_WAITSIT, 0.0f);
     return 1;
 }
 
@@ -1168,17 +589,17 @@ BOOL daNpc_GWolf_c::main() {
     }
 
     if (!daNpc_GWolf_Param_c::m.common.debug_mode_ON && (!dComIfGp_event_runCheck() || (mOrderNewEvt && dComIfGp_getEvent().isOrderOK()))) {
-        if (mOrderEvtNo != 0) {
+        if (mOrderEvtNo != EVT_NONE) {
             eventInfo.setArchiveName(l_resNames[l_evtGetParamList[mOrderEvtNo].arcIdx]);
         }
 
         switch (mOrderEvtNo) {
-            case 9:
-            case 10:
-            case 11:
-            case 12:
-            case 13:
-            case 14:
+            case EVT_MEET_GWOLFA:
+            case EVT_MEET_GWOLFB:
+            case EVT_MEET_GWOLFC:
+            case EVT_MEET_GWOLFD:
+            case EVT_MEET_GWOLFE:
+            case EVT_MEET_GWOLFF:
                 orderEvent(mOrderSpeakEvt, l_evtNames[l_evtGetParamList[mOrderEvtNo].fileIdx], 0xFFFF, 4, 0xFF, 3);
                 break;
 
@@ -1231,9 +652,6 @@ void daNpc_GWolf_c::adjustShapeAngle() {
     cLib_addCalcAngleS2(&shape_angle.x, target, 3, 0x80);
     mCurAngle.x = shape_angle.x;
 }
-
-/* 809F8F14-809F8F18 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
-static daNpc_GWolf_Param_c l_HIO;
 
 /* 809F4698-809F4BB0 0016D8 0518+00 1/0 0/0 0/0 .text            setAttnPos__13daNpc_GWolf_cFv */
 void daNpc_GWolf_c::setAttnPos() {
@@ -1336,33 +754,33 @@ void daNpc_GWolf_c::setMotionAnm(int i_index, f32 i_morf) {
         i_bck = getTrnsfrmKeyAnmP(l_resNames[l_bckGetParamList[i_index].arcIdx], l_bckGetParamList[i_index].fileIdx);
     }
 
-    field_0xe18 = i_index;
+    mAnm = i_index;
 
     switch (i_index) {
-        case 2:
-        case 3:
-        case 7:
-        case 8:
-        case 0xB:
+        case ANM_WAITSIT:
+        case ANM_AT:
+        case ANM_HOWLB:
+        case ANM_HOWLC:
+        case ANM_DASHA:
             break;
 
-        case 4:
+        case ANM_ATTACKAST:
             i_attr = J3DFrameCtrl::EMode_NONE;
             break;
 
-        case 5:
+        case ANM_ATTACKA:
             i_attr = J3DFrameCtrl::EMode_NONE;
             break;
 
-        case 6:
+        case ANM_ATTACKAED:
             i_attr = J3DFrameCtrl::EMode_NONE;
             break;
 
-        case 9:
+        case ANM_JUMPAST:
             i_attr = J3DFrameCtrl::EMode_NONE;
             break;
 
-        case 0xA:
+        case ANM_JUMPA:
             i_attr = J3DFrameCtrl::EMode_NONE;
             break;
 
@@ -1472,11 +890,11 @@ int daNpc_GWolf_c::getModeFromParam() {
 
 /* 809F4F00-809F4FF4 001F40 00F4+00 1/1 0/0 0/0 .text            isDelete__13daNpc_GWolf_cFv */
 BOOL daNpc_GWolf_c::isDelete() {
-    static s16 l_playerNoList[7] = {
-        0xFFFF, 2, 3, 4, 5, 6, 7,
-    };
     static s16 l_delFlag[7] = {
         0x0153, 0x01EC, 0x01ED, 0x01EE, 0x01EF, 0x01F0, 0x01F1,
+    };
+    static s16 l_playerNoList[7] = {
+        0xFFFF, 2, 3, 4, 5, 6, 7,
     };
 
     if (mType == 3 || mType == 2) {
@@ -1548,25 +966,25 @@ void daNpc_GWolf_c::reset() {
 
 /* 809F520C-809F55D0 00224C 03C4+00 1/1 0/0 0/0 .text            playMotion__13daNpc_GWolf_cFv */
 void daNpc_GWolf_c::playMotion() {
-    daNpcF_anmPlayData dat0 = {0x2, daNpc_GWolf_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat0 = {ANM_WAITSIT, daNpc_GWolf_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat0[1] = {&dat0};
-    daNpcF_anmPlayData dat1 = {0x3, daNpc_GWolf_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat1 = {ANM_AT, daNpc_GWolf_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat1[1] = {&dat1};
-    daNpcF_anmPlayData dat2a = {0x4, 3.0f, 1};
-    daNpcF_anmPlayData dat2b = {0x5, 0.0f, 0};
+    daNpcF_anmPlayData dat2a = {ANM_ATTACKAST, 3.0f, 1};
+    daNpcF_anmPlayData dat2b = {ANM_ATTACKA, 0.0f, 0};
     daNpcF_anmPlayData* pDat2[2] = {&dat2a, &dat2b};
-    daNpcF_anmPlayData dat3a = {0x6, 3.0f, 1};
-    daNpcF_anmPlayData dat3b = {0x3, daNpc_GWolf_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat3a = {ANM_ATTACKAED, 3.0f, 1};
+    daNpcF_anmPlayData dat3b = {ANM_AT, daNpc_GWolf_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat3[2] = {&dat3a, &dat3b};
-    daNpcF_anmPlayData dat4 = {0x7, daNpc_GWolf_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat4 = {ANM_HOWLB, daNpc_GWolf_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat4[1] = {&dat4};
-    daNpcF_anmPlayData dat5 = {0x8, daNpc_GWolf_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat5 = {ANM_HOWLC, daNpc_GWolf_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat5[1] = {&dat5};
-    daNpcF_anmPlayData dat6 = {0x9, 0.0f, 0};
+    daNpcF_anmPlayData dat6 = {ANM_JUMPAST, 0.0f, 0};
     daNpcF_anmPlayData* pDat6[1] = {&dat6};
-    daNpcF_anmPlayData dat7 = {0xA, 0.0f, 0};
+    daNpcF_anmPlayData dat7 = {ANM_JUMPA, 0.0f, 0};
     daNpcF_anmPlayData* pDat7[1] = {&dat7};
-    daNpcF_anmPlayData dat8 = {0xB, daNpc_GWolf_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat8 = {ANM_DASHA, daNpc_GWolf_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat8[1] = {&dat8};
 
     daNpcF_anmPlayData** ppDat[9] = {
@@ -1586,20 +1004,20 @@ void daNpc_GWolf_c::playMotion() {
     }
 
     if (mHide != true) {
-        switch (field_0xe18) {
-            case 2:
+        switch (mAnm) {
+            case ANM_WAITSIT:
                 if (mpMorf->getFrame() >= 1.0f && mpMorf->getFrame() < 2.0f) {
                     mSound.startCreatureVoice(Z2SE_G_WLF_BREATH, -1);
                 }
                 break;
 
-            case 9:
+            case ANM_JUMPAST:
                 if (mpMorf->getFrame() >= 1.0f && mpMorf->getFrame() < 2.0f) {
                     mSound.startCreatureVoice(Z2SE_G_WLF_JUMP, -1);
                 }
                 break;
 
-            case 7:
+            case ANM_HOWLB:
                 if (mpMorf->getFrame() >= 1.0f && mpMorf->getFrame() < 2.0f) {
                     mSound.startCreatureVoice(Z2SE_G_WLF_TRANSFORM, -1);
                 }
@@ -1633,7 +1051,6 @@ BOOL daNpc_GWolf_c::setAction(actionFunc action) {
 
 /* 809F56A4-809F5770 0026E4 00CC+00 1/1 0/0 0/0 .text            selectAction__13daNpc_GWolf_cFv */
 BOOL daNpc_GWolf_c::selectAction() {
-    // NONMATCHING
     mNextAction = NULL;
 
     if (daNpc_GWolf_Param_c::m.common.debug_mode_ON) {
@@ -1674,7 +1091,7 @@ void daNpc_GWolf_c::doNormalAction(int param_1) {
         mIsDamaged = false;
     }
 
-    mOrderEvtNo = 0;
+    mOrderEvtNo = EVT_NONE;
 
     if (mNextAction) {
         if (mAction == mNextAction) {
@@ -1687,7 +1104,6 @@ void daNpc_GWolf_c::doNormalAction(int param_1) {
 
 /* 809F5884-809F5B60 0028C4 02DC+00 1/1 0/0 0/0 .text            doEvent__13daNpc_GWolf_cFv */
 BOOL daNpc_GWolf_c::doEvent() {
-    // NONMATCHING
     BOOL rv = FALSE;
 
     if (dComIfGp_event_runCheck() != FALSE) {
@@ -1724,33 +1140,33 @@ BOOL daNpc_GWolf_c::doEvent() {
 
             if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1 && eventManager.endCheck(mEventIdx)) {
                 switch (mOrderEvtNo) {
-                    case 9:
-                    case 10:
-                    case 11:
-                    case 12:
-                    case 13:
-                    case 14:
+                    case EVT_MEET_GWOLFA:
+                    case EVT_MEET_GWOLFB:
+                    case EVT_MEET_GWOLFC:
+                    case EVT_MEET_GWOLFD:
+                    case EVT_MEET_GWOLFE:
+                    case EVT_MEET_GWOLFF:
                         dComIfGp_event_reset();
-                        mOrderEvtNo = 0;
+                        mOrderEvtNo = EVT_NONE;
                         mEventIdx = -1;
                         field_0xe1d = 1;
                         break;
 
-                    case 3:
-                    case 4:
-                    case 5:
-                    case 6:
-                    case 7:
-                    case 8:
+                    case EVT_HOWLING_SESSIONA:
+                    case EVT_HOWLING_SESSIONB:
+                    case EVT_HOWLING_SESSIONC:
+                    case EVT_HOWLING_SESSIOND:
+                    case EVT_HOWLING_SESSIONE:
+                    case EVT_HOWLING_SESSIONF:
                         dComIfGp_event_reset();
-                        mOrderEvtNo = 0;
+                        mOrderEvtNo = EVT_NONE;
                         mEventIdx = -1;
                         fopAcM_delete(this);
                         break;
 
                     default:
                         dComIfGp_event_reset();
-                        mOrderEvtNo = 0;
+                        mOrderEvtNo = EVT_NONE;
                         mEventIdx = -1;
                         break;
                 }
@@ -1856,7 +1272,7 @@ BOOL daNpc_GWolf_c::ECut_attackWarp(int i_staffId) {
     if (eventManager.getIsAddvance(i_staffId)) {
         switch (prm) {
             case 0: {
-                setMotion(0, -1.0f, 0);
+                setMotion(MOT_WAITSIT, -1.0f, 0);
                 setLookMode(LOOK_NONE);
                 speedF = 0.0f;
                 cXyz sp50(0.0f, 300.0f, 400.0f);
@@ -1873,7 +1289,7 @@ BOOL daNpc_GWolf_c::ECut_attackWarp(int i_staffId) {
             }
 
             case 10:
-                setMotion(1, -1.0f, 0);
+                setMotion(MOT_AT, -1.0f, 0);
                 mSound.startCreatureVoice(Z2SE_G_WLF_UNARU, -1);
                 break;
 
@@ -1883,7 +1299,7 @@ BOOL daNpc_GWolf_c::ECut_attackWarp(int i_staffId) {
                 break;
 
             case 20:
-                setMotion(2, -1.0f, 0);
+                setMotion(MOT_ATTACKAST, -1.0f, 0);
                 mSound.startCreatureVoice(Z2SE_G_WLF_ATK, -1);
                 break;
 
@@ -1933,13 +1349,13 @@ BOOL daNpc_GWolf_c::ECut_attackWarp(int i_staffId) {
             break;
 
         case 20:
-            if (mMotion == 2 && mMotionPhase > 0) {
+            if (mMotion == MOT_ATTACKAST && mMotionPhase > 0) {
                 rv = TRUE;
             }
             break;
 
         case 30:
-            if (mMotion == 2 && mMotionPhase > 0) {
+            if (mMotion == MOT_ATTACKAST && mMotionPhase > 0) {
                 if (mpMorf->getFrame() >= 3.0f) {
                     if (speed.y > 5.0f) {
                         mpMorf->setPlaySpeed(0.0f);
@@ -1955,7 +1371,7 @@ BOOL daNpc_GWolf_c::ECut_attackWarp(int i_staffId) {
                         daNpcT_onTmpBit(l_appearTmpFlag[mParamMode]);
                     }
 
-                    dStage_changeScene(field_0xe14, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
+                    dStage_changeScene(mExitId, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
                     Z2GetAudioMgr()->seStart(Z2SE_SY_WARP_FADE_GW, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
                     mpMorf->setPlaySpeed(0.5f);
                     rv = TRUE;
@@ -1967,7 +1383,7 @@ BOOL daNpc_GWolf_c::ECut_attackWarp(int i_staffId) {
             if (mAcch.ChkGroundHit()) {
                 speedF = 0.0f;
                 speed.zero();
-                setMotion(3, -1.0f, 0);
+                setMotion(MOT_ATTACKAED, -1.0f, 0);
             }
             break;
 
@@ -1994,13 +1410,13 @@ BOOL daNpc_GWolf_c::ECut_attackWarpHorse(int i_staffId) {
     if (eventManager.getIsAddvance(i_staffId)) {
         switch (prm) {
             case 0:
-                setMotion(0, -1.0f, 0);
+                setMotion(MOT_WAITSIT, -1.0f, 0);
                 setLookMode(LOOK_NONE);
                 speedF = 0.0f;
                 break;
 
             case 10:
-                setMotion(1, -1.0f, 0);
+                setMotion(MOT_AT, -1.0f, 0);
                 mSound.startCreatureVoice(Z2SE_G_WLF_UNARU, -1);
                 break;
 
@@ -2010,7 +1426,7 @@ BOOL daNpc_GWolf_c::ECut_attackWarpHorse(int i_staffId) {
                 break;
 
             case 20:
-                setMotion(2, -1.0f, 0);
+                setMotion(MOT_ATTACKAST, -1.0f, 0);
                 mSound.startCreatureVoice(Z2SE_G_WLF_ATK, -1);
                 break;
 
@@ -2063,14 +1479,14 @@ BOOL daNpc_GWolf_c::ECut_attackWarpHorse(int i_staffId) {
 
 
         case 20:
-            if (mMotion == 2 && mMotionPhase > 0) {
+            if (mMotion == MOT_ATTACKAST && mMotionPhase > 0) {
                 rv = TRUE;
             }
             break;
 
 
         case 30:
-            if (mMotion == 2 && mMotionPhase > 0) {
+            if (mMotion == MOT_ATTACKAST && mMotionPhase > 0) {
                 if (mpMorf->getFrame() >= 3.0f && speed.y > 5.0f) {
                     if (speed.y > 5.0f) {
                         mpMorf->setPlaySpeed(0.0f);
@@ -2086,7 +1502,7 @@ BOOL daNpc_GWolf_c::ECut_attackWarpHorse(int i_staffId) {
                         daNpcT_onTmpBit(l_appearTmpFlag[mParamMode]);
                     }
 
-                    dStage_changeScene(field_0xe14, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
+                    dStage_changeScene(mExitId, 0.0f, 0, fopAcM_GetRoomNo(this), 0, -1);
                     mpMorf->setPlaySpeed(1.0f);
                     Z2GetAudioMgr()->seStart(Z2SE_SY_WARP_FADE_GW, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
                     rv = TRUE;
@@ -2098,7 +1514,7 @@ BOOL daNpc_GWolf_c::ECut_attackWarpHorse(int i_staffId) {
             if (mAcch.ChkGroundHit()) {
                 speedF = 0.0f;
                 speed.zero();
-                setMotion(3, -1.0f, 0);
+                setMotion(MOT_ATTACKAED, -1.0f, 0);
             }
             break;
 
@@ -2124,7 +1540,7 @@ BOOL daNpc_GWolf_c::ECut_howlingSessionA(int i_staffId) {
     if (eventManager.getIsAddvance(i_staffId)) {
         switch (prm) {
             case 0:
-                setMotion(5, -1.0f, 0);
+                setMotion(MOT_HOWLC, -1.0f, 0);
                 setLookMode(LOOK_NONE);
                 break;
 
@@ -2140,19 +1556,19 @@ BOOL daNpc_GWolf_c::ECut_howlingSessionA(int i_staffId) {
                 break;
 
             case 30:
-                setMotion(8, 3.0f, 0);
+                setMotion(MOT_DASHA, 3.0f, 0);
                 setLookMode(LOOK_NONE);
                 speedF = 12.0f;
                 break;
                 
             case 40:
-                setMotion(6, -1.0f, 0);
+                setMotion(MOT_JUMPAST, -1.0f, 0);
                 speed.y = 22.0f;
                 gravity = -2.0f;
                 break;
 
             case 50:
-                setMotion(7, -1.0f, 0);
+                setMotion(MOT_JUMPA, -1.0f, 0);
                 mEventTimer = 60;
                 speedF = 20.0f;
                 cXyz sp38(0.0f, 25.0f, 35.0f);
@@ -2168,7 +1584,7 @@ BOOL daNpc_GWolf_c::ECut_howlingSessionA(int i_staffId) {
 
     switch (prm) {
         case 0:
-            if (field_0xe18 == 8) {
+            if (mAnm == ANM_HOWLC) {
                 if (mpMorf->getFrame() >= 28.0f) {
                     mpMorf->setLoopFrame(28.0f);
                     mBtpAnm.setLoopFrame(28.0f);
@@ -2183,7 +1599,7 @@ BOOL daNpc_GWolf_c::ECut_howlingSessionA(int i_staffId) {
 
         case 20:
             if (field_0xe1c == 2) {
-                setMotion(0, -1.0f, 0);
+                setMotion(MOT_WAITSIT, -1.0f, 0);
                 setLookMode(LOOK_PLAYER);
                 rv = TRUE;
             }
@@ -2196,7 +1612,7 @@ BOOL daNpc_GWolf_c::ECut_howlingSessionA(int i_staffId) {
             break;
 
         case 30:
-            if (field_0xe18 == 0xB) {
+            if (mAnm == ANM_DASHA) {
                 if (!mAcch.ChkGroundHit()) {
                     speedF = 0.0f;
                     rv = TRUE;
@@ -2205,7 +1621,7 @@ BOOL daNpc_GWolf_c::ECut_howlingSessionA(int i_staffId) {
             break;
 
         case 40:
-            if (field_0xe18 == 9) {
+            if (mAnm == ANM_JUMPAST) {
                 if (mpMorf->isStop()) {
                     speedF = 20.0f;
 
@@ -2256,7 +1672,7 @@ static BOOL callback_proc(void* i_actor, int i_data) {
 
 /* 809F70A8-809F70EC 0040E8 0044+00 1/1 0/0 0/0 .text            meetGWolfSkip__13daNpc_GWolf_cFv */
 void daNpc_GWolf_c::meetGWolfSkip() {
-    mOrderEvtNo = 0;
+    mOrderEvtNo = EVT_NONE;
     mEventIdx = -1;
     field_0xe1d = 1;
     dComIfGp_event_reset();
@@ -2275,7 +1691,7 @@ BOOL daNpc_GWolf_c::ECut_meetGWolf(int i_staffId) {
     if (eventManager.getIsAddvance(i_staffId)) {
         switch (prm) {
             case 0:
-                setMotion(0, -1.0f, 0);
+                setMotion(MOT_WAITSIT, -1.0f, 0);
                 setLookMode(LOOK_PLAYER);
                 dComIfGp_getEvent().setSkipProc(this, callback_proc, 0);
                 dComIfGp_getEvent().onSkipFade();
@@ -2295,7 +1711,7 @@ BOOL daNpc_GWolf_c::ECut_meetGWolf(int i_staffId) {
 BOOL daNpc_GWolf_c::wait(void* param_1) {
     switch (mMode) {
         case 0:
-            setMotion(0, -1.0f, 0);
+            setMotion(MOT_WAITSIT, -1.0f, 0);
             setLookMode(LOOK_NONE);
             mTurnMode = 0;
             field_0x9ea = true;
@@ -2316,11 +1732,11 @@ BOOL daNpc_GWolf_c::wait(void* param_1) {
 
                 if (fVar1 < fVar2) {
                     if (daPy_getPlayerActorClass()->checkHorseRide()) {
-                        mOrderEvtNo = 2;
+                        mOrderEvtNo = EVT_ATTACK_WARP_HORSE;
                         break;
                     }
 
-                    mOrderEvtNo = 1;
+                    mOrderEvtNo = EVT_ATTACK_WARP;
                     break;
                 }
             }
@@ -2374,27 +1790,27 @@ BOOL daNpc_GWolf_c::wait(void* param_1) {
 BOOL daNpc_GWolf_c::waitHowling(void* param_1) {
     switch (mMode) {
         case 0:
-            setMotion(0, -1.0f, 0);
+            setMotion(MOT_WAITSIT, -1.0f, 0);
             setLookMode(LOOK_PLAYER);
             mTurnMode = 0;
             mMode = 2;
             // fallthrough
         case 2:
             if (field_0xe1d == 0) {
-                u16 evtNo[6] = {9, 10, 11, 12, 13, 14};
+                u16 evtNo[6] = {EVT_MEET_GWOLFA, EVT_MEET_GWOLFB, EVT_MEET_GWOLFC, EVT_MEET_GWOLFD, EVT_MEET_GWOLFE, EVT_MEET_GWOLFF};
 
                 if (mParamMode == -1 || mParamMode == 0) {
-                    mOrderEvtNo = 9;
+                    mOrderEvtNo = EVT_MEET_GWOLFA;
                 } else {
                     mOrderEvtNo = evtNo[mParamMode - 1];
                 }
 
                 mOrderNewEvt = true;
             } else if (field_0xe1c == 1) {
-                u16 evtNo[6] = {3, 4, 5, 6, 7, 8};
+                u16 evtNo[6] = {EVT_HOWLING_SESSIONA, EVT_HOWLING_SESSIONB, EVT_HOWLING_SESSIONC, EVT_HOWLING_SESSIOND, EVT_HOWLING_SESSIONE, EVT_HOWLING_SESSIONF};
 
                 if (mParamMode == -1 || mParamMode == 0) {
-                    mOrderEvtNo = 3;
+                    mOrderEvtNo = EVT_HOWLING_SESSIONA;
                 } else {
                     mOrderEvtNo = evtNo[mParamMode - 1];
                 }
@@ -2414,7 +1830,7 @@ BOOL daNpc_GWolf_c::waitHowling(void* param_1) {
 BOOL daNpc_GWolf_c::waitBrave(void* param_1) {
     switch (mMode) {
         case 0:
-            setMotion(0, -1.0f, 0);
+            setMotion(MOT_WAITSIT, -1.0f, 0);
             setLookMode(LOOK_PLAYER);
             mTurnMode = 0;
             mMode = 2;
@@ -2454,7 +1870,7 @@ BOOL daNpc_GWolf_c::talk(void* param_1) {
                 if (mCurAngle.y == fopAcM_searchPlayerAngleY(this)) {
                     bVar1 = TRUE;
                 } else if (step(fopAcM_searchPlayerAngleY(this), -1, -1, 15)) {
-                    setMotion(0, -1.0f, 0);
+                    setMotion(MOT_WAITSIT, -1.0f, 0);
                     mTurnMode = 0;
                 }
             }
@@ -2482,195 +1898,71 @@ BOOL daNpc_GWolf_c::talk(void* param_1) {
 }
 
 /* 809F797C-809F7A30 0049BC 00B4+00 2/0 0/0 0/0 .text            test__13daNpc_GWolf_cFPv */
-BOOL daNpc_GWolf_c::test(void* param_0) {
-    // NONMATCHING
+BOOL daNpc_GWolf_c::test(void* param_1) {
+    switch (mMode) {
+        case 0:
+            speedF = 0.0f;
+            speed.setall(0.0f);
+            mMode = 2;
+            // fallthrough
+        case 2:
+            setMotion(daNpc_GWolf_Param_c::m.common.motion, daNpc_GWolf_Param_c::m.common.morf_frame, 0);
+            setLookMode(daNpc_GWolf_Param_c::m.common.look_mode);
+            mOrderEvtNo = EVT_NONE;
+            attention_info.flags = 0;
+            break;
+
+        case 3:
+            break;
+    }
+
+    return TRUE;
 }
 
 /* 809F7A30-809F7AB0 004A70 0080+00 1/1 0/0 0/0 .text            getGroundSlope__13daNpc_GWolf_cFR12dBgS_ObjAcchs */
-s16 daNpc_GWolf_c::getGroundSlope(dBgS_ObjAcch& param_0, s16 param_1) {
-    // NONMATCHING
-}
+s16 daNpc_GWolf_c::getGroundSlope(dBgS_ObjAcch& i_acch, s16 param_2) {
+    cM3dGPla plane;
+    if (dComIfG_Bgsp().GetTriPla(i_acch.m_gnd, &plane)) {
+        return fopAcM_getPolygonAngle(&plane, param_2);
+    }
 
-/* 809F7AB0-809F7AF8 004AF0 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGPlaFv */
-// cM3dGPla::~cM3dGPla() {
-extern "C" void __dt__8cM3dGPlaFv() {
-    // NONMATCHING
+    return 0;
 }
 
 /* 809F7AF8-809F7B18 004B38 0020+00 1/0 0/0 0/0 .text            daNpc_GWolf_Create__FPv */
-static void daNpc_GWolf_Create(void* param_0) {
-    // NONMATCHING
+static int daNpc_GWolf_Create(void* a_this) {
+    return static_cast<daNpc_GWolf_c*>(a_this)->create();
 }
 
 /* 809F7B18-809F7B38 004B58 0020+00 1/0 0/0 0/0 .text            daNpc_GWolf_Delete__FPv */
-static void daNpc_GWolf_Delete(void* param_0) {
-    // NONMATCHING
+static int daNpc_GWolf_Delete(void* a_this) {
+    return static_cast<daNpc_GWolf_c*>(a_this)->Delete();
 }
 
 /* 809F7B38-809F7B58 004B78 0020+00 1/0 0/0 0/0 .text            daNpc_GWolf_Execute__FPv */
-static void daNpc_GWolf_Execute(void* param_0) {
-    // NONMATCHING
+static int daNpc_GWolf_Execute(void* a_this) {
+    return static_cast<daNpc_GWolf_c*>(a_this)->Execute();
 }
 
 /* 809F7B58-809F7B78 004B98 0020+00 1/0 0/0 0/0 .text            daNpc_GWolf_Draw__FPv */
-static void daNpc_GWolf_Draw(void* param_0) {
-    // NONMATCHING
+static int daNpc_GWolf_Draw(void* a_this) {
+    return static_cast<daNpc_GWolf_c*>(a_this)->Draw();
 }
 
 /* 809F7B78-809F7B80 004BB8 0008+00 1/0 0/0 0/0 .text            daNpc_GWolf_IsDelete__FPv */
-static bool daNpc_GWolf_IsDelete(void* param_0) {
-    return true;
-}
-
-/* 809F7B80-809F7BB0 004BC0 0030+00 1/0 0/0 0/0 .text            calc__11J3DTexNoAnmCFPUs */
-// void J3DTexNoAnm::calc(u16* param_0) const {
-extern "C" void calc__11J3DTexNoAnmCFPUs() {
-    // NONMATCHING
-}
-
-/* 809F7BB0-809F7BF8 004BF0 0048+00 5/4 0/0 0/0 .text            __dt__18daNpcF_ActorMngr_cFv */
-// daNpcF_ActorMngr_c::~daNpcF_ActorMngr_c() {
-extern "C" void __dt__18daNpcF_ActorMngr_cFv() {
-    // NONMATCHING
-}
-
-/* 809F7BF8-809F7C34 004C38 003C+00 2/2 0/0 0/0 .text            __ct__18daNpcF_ActorMngr_cFv */
-// daNpcF_ActorMngr_c::daNpcF_ActorMngr_c() {
-extern "C" void __ct__18daNpcF_ActorMngr_cFv() {
-    // NONMATCHING
-}
-
-/* 809F7C34-809F7D04 004C74 00D0+00 1/0 0/0 0/0 .text            __dt__15daNpcF_Lookat_cFv */
-// daNpcF_Lookat_c::~daNpcF_Lookat_c() {
-extern "C" void __dt__15daNpcF_Lookat_cFv() {
-    // NONMATCHING
-}
-
-/* 809F7D04-809F7D40 004D44 003C+00 5/5 0/0 0/0 .text            __dt__5csXyzFv */
-// csXyz::~csXyz() {
-extern "C" void __dt__5csXyzFv() {
-    // NONMATCHING
-}
-
-/* 809F7D40-809F7D44 004D80 0004+00 2/2 0/0 0/0 .text            __ct__5csXyzFv */
-// csXyz::csXyz() {
-extern "C" void __ct__5csXyzFv() {
-    /* empty function */
-}
-
-/* 809F7D44-809F7D80 004D84 003C+00 6/6 0/0 0/0 .text            __dt__4cXyzFv */
-// cXyz::~cXyz() {
-extern "C" void __dt__4cXyzFv() {
-    // NONMATCHING
-}
-
-/* 809F7D80-809F7D84 004DC0 0004+00 2/2 0/0 0/0 .text            __ct__4cXyzFv */
-// cXyz::cXyz() {
-extern "C" void __ct__4cXyzFv() {
-    /* empty function */
-}
-
-/* 809F7D84-809F7FD0 004DC4 024C+00 1/1 0/0 0/0 .text            __dt__8daNpcF_cFv */
-// daNpcF_c::~daNpcF_c() {
-extern "C" void __dt__8daNpcF_cFv() {
-    // NONMATCHING
-}
-
-/* 809F7FD0-809F81C0 005010 01F0+00 1/1 0/0 0/0 .text            __ct__8daNpcF_cFv */
-// daNpcF_c::daNpcF_c() {
-extern "C" void __ct__8daNpcF_cFv() {
-    // NONMATCHING
-}
-
-/* 809F81C0-809F8230 005200 0070+00 1/0 0/0 0/0 .text            __dt__12dBgS_AcchCirFv */
-// dBgS_AcchCir::~dBgS_AcchCir() {
-extern "C" void __dt__12dBgS_AcchCirFv() {
-    // NONMATCHING
-}
-
-/* 809F8230-809F828C 005270 005C+00 1/0 0/0 0/0 .text            __dt__10dCcD_GSttsFv */
-// dCcD_GStts::~dCcD_GStts() {
-extern "C" void __dt__10dCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* 809F828C-809F82FC 0052CC 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
-// dBgS_ObjAcch::~dBgS_ObjAcch() {
-extern "C" void __dt__12dBgS_ObjAcchFv() {
-    // NONMATCHING
-}
-
-/* 809F82FC-809F8344 00533C 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
-// J3DFrameCtrl::~J3DFrameCtrl() {
-extern "C" void __dt__12J3DFrameCtrlFv() {
-    // NONMATCHING
-}
-
-/* 809F8344-809F8348 005384 0004+00 1/0 0/0 0/0 .text            setCollisions__8daNpcF_cFv */
-// void daNpcF_c::setCollisions() {
-extern "C" void setCollisions__8daNpcF_cFv() {
-    /* empty function */
-}
-
-/* 809F8348-809F8350 005388 0008+00 1/0 0/0 0/0 .text            setExpressionBtp__8daNpcF_cFi */
-// bool daNpcF_c::setExpressionBtp(int param_0) {
-extern "C" bool setExpressionBtp__8daNpcF_cFi() {
-    return true;
-}
-
-/* 809F8350-809F8398 005390 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
-// cCcD_GStts::~cCcD_GStts() {
-extern "C" void __dt__10cCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* 809F8398-809F83B4 0053D8 001C+00 3/3 0/0 0/0 .text            cLib_calcTimer<i>__FPi */
-extern "C" void func_809F8398(void* _this, int* param_0) {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 809F8EB0-809F8EBC 0006BC 000C+00 2/2 0/0 0/0 .data            __vt__19daNpc_GWolf_Param_c */
-SECTION_DATA extern void* __vt__19daNpc_GWolf_Param_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__19daNpc_GWolf_Param_cFv,
-};
-
-/* 809F83B4-809F8488 0053F4 00D4+00 0/0 1/0 0/0 .text            __sinit_d_a_npc_gwolf_cpp */
-void __sinit_d_a_npc_gwolf_cpp() {
-    // NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x809F83B4, __sinit_d_a_npc_gwolf_cpp);
-#pragma pop
-
-// /* 809F8488-809F84D0 0054C8 0048+00 2/1 0/0 0/0 .text            __dt__19daNpc_GWolf_Param_cFv */
-// daNpc_GWolf_Param_c::~daNpc_GWolf_Param_c() {
-//     // NONMATCHING
-// }
-
-/* 809F84D0-809F84D8 005510 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
-static void func_809F84D0() {
-    // NONMATCHING
-}
-
-/* 809F84D8-809F84E0 005518 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
-static void func_809F84D8() {
-    // NONMATCHING
+static int daNpc_GWolf_IsDelete(void* a_this) {
+    return 1;
 }
 
 AUDIO_INSTANCES;
 
 /* 809F8D7C-809F8D9C -00001 0020+00 1/0 0/0 0/0 .data            daNpc_GWolf_MethodTable */
 static actor_method_class daNpc_GWolf_MethodTable = {
-    (process_method_func)daNpc_GWolf_Create__FPv,
-    (process_method_func)daNpc_GWolf_Delete__FPv,
-    (process_method_func)daNpc_GWolf_Execute__FPv,
-    (process_method_func)daNpc_GWolf_IsDelete__FPv,
-    (process_method_func)daNpc_GWolf_Draw__FPv,
+    (process_method_func)daNpc_GWolf_Create,
+    (process_method_func)daNpc_GWolf_Delete,
+    (process_method_func)daNpc_GWolf_Execute,
+    (process_method_func)daNpc_GWolf_IsDelete,
+    (process_method_func)daNpc_GWolf_Draw,
 };
 
 /* 809F8D9C-809F8DCC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_GWOLF */
