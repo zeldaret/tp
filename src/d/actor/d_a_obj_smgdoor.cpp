@@ -337,7 +337,7 @@ void daObjSmgDoor_c::actionWaitEvent() {
         if (checkOpen() != 0) {
             eventInfo.setEventId(mEvId);
             eventInfo.setMapToolId(mToolId);
-            eventInfo.onCondition(4);
+            eventInfo.onCondition(dEvtCnd_CANDOOR_e);
         }
     }
 }
