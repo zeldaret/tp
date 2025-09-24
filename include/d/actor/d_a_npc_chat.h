@@ -10,70 +10,120 @@
  *
  * @details
  *
- */
-class daNpcChat_c : public fopAc_ac_c {
+*/
+
+struct daNpcChat_HIOParam {
+    /* 0x0 */ daNpcF_HIOParam common;
+};
+
+class daNpcChat_HIO_c : public mDoHIO_entry_c {
+    /* 0x8 */ daNpcChat_HIOParam param;
+};
+
+class daNpcChat_Param_c {
 public:
+    /* 80986930 */ virtual ~daNpcChat_Param_c() {}
+
+    static daNpcChat_HIOParam const m;
+};
+
+class daNpcChat_c : public daNpcF_c {
+public:
+    typedef bool (daNpcChat_c::*actionFunc)(void*);
+
     /* 8098084C */ daNpcChat_c();
     /* 80980A60 */ ~daNpcChat_c();
-    /* 80980C1C */ void NpcCreate(int);
-    /* 80980E20 */ void getObjNum();
-    /* 80980F88 */ void ObjCreate(int);
-    /* 80980FC8 */ void ChairCreate(f32);
-    /* 80981108 */ void isM_();
-    /* 80981140 */ void loadResrc(int, int);
-    /* 80981280 */ void getNpcMdlDataP(int);
-    /* 809812FC */ void getObjMdlDataP(int);
-    /* 80981374 */ void getTexAnmP(int);
-    /* 809813E8 */ void removeResrc(int, int);
-    /* 809814DC */ void setAttention(int);
-    /* 80981E90 */ void Create();
-    /* 809822A0 */ void CreateHeap();
-    /* 809823B4 */ void Delete();
-    /* 809823E8 */ void Execute();
-    /* 809824CC */ void Draw();
-    /* 8098250C */ void draw(int, int, f32, _GXColorS10*, int);
-    /* 80982780 */ void ctrlJoint(J3DJoint*, J3DModel*);
-    /* 80982A98 */ void createHeapCallBack(fopAc_ac_c*);
-    /* 80982AB8 */ void ctrlJointCallBack(J3DJoint*, int);
+    /* 80980C1C */ int NpcCreate(int);
+    /* 80980E20 */ int getObjNum();
+    /* 80980F88 */ J3DModel* ObjCreate(int);
+    /* 80980FC8 */ J3DModel* ChairCreate(f32);
+    /* 80981108 */ bool isM_();
+    /* 80981140 */ cPhs__Step loadResrc(int, int);
+    /* 80981280 */ J3DModelData* getNpcMdlDataP(int);
+    /* 809812FC */ J3DModelData* getObjMdlDataP(int);
+    /* 80981374 */ J3DAnmTexPattern* getTexAnmP(int);
+    /* 809813E8 */ BOOL removeResrc(int, int);
+    /* 809814DC */ BOOL setAttention(int);
+    /* 80981E90 */ cPhs__Step Create();
+    /* 809822A0 */ int CreateHeap();
+    /* 809823B4 */ int Delete();
+    /* 809823E8 */ int Execute();
+    /* 809824CC */ int Draw();
+    /* 8098250C */ int draw(int, int, f32, _GXColorS10*, int);
+    /* 80982780 */ int ctrlJoint(J3DJoint*, J3DModel*);
+    /* 80982A98 */ static int createHeapCallBack(fopAc_ac_c*);
+    /* 80982AB8 */ static int ctrlJointCallBack(J3DJoint*, int);
     /* 80982B60 */ void searchGroup();
     /* 80982C10 */ void appearTimeCheck();
     /* 80982D20 */ void appearCheck();
     /* 80982EB4 */ void setParam();
-    /* 80982F4C */ void main();
+    /* 80982F4C */ BOOL main();
     /* 80982FA4 */ void setAttnPos();
-    /* 809830EC */ void setExpressionBtp(int);
-    /* 80983168 */ bool setMotionAnm(int, f32);
+    /* 809830EC */ bool setExpressionBtp(int);
+    /* 80983168 */ void setMotionAnm(int, f32);
     /* 80983584 */ void setMotion(int, f32, int);
-    /* 809835C8 */ bool drawDbgInfo();
+    /* 809835C8 */ int drawDbgInfo();
     /* 809835D0 */ void drawOtherMdls();
     /* 809837A4 */ void getTalkMotionNo();
     /* 809837C0 */ void getLookPlayerCheck();
     /* 809837EC */ void reset();
     /* 809839E0 */ void playMotion();
     /* 80984DD0 */ void playMotionAnmLoop(daNpcF_c::daNpcF_anmPlayData***);
-    /* 80984F34 */ void setAction(bool (daNpcChat_c::*)(void*));
+    /* 80984F34 */ BOOL setAction(actionFunc);
     /* 80984FDC */ void step(s16, int);
     /* 809850D0 */ void setTalkMember(daNpcChat_c*);
-    /* 80985104 */ void wait(void*);
-    /* 8098552C */ void fear(void*);
-    /* 809856C8 */ void talk(void*);
-    /* 80985A84 */ void demo(void*);
+    /* 80985104 */ bool wait(void*);
+    /* 8098552C */ bool fear(void*);
+    /* 809856C8 */ bool talk(void*);
+    /* 80985A84 */ bool demo(void*);
     /* 8098692C */ void adjustShapeAngle();
+
+    cXyz& getBaseAttnPos() { return mBaseAttnPos; }
 
     static u8 mEvtSeqList[12];
 
 private:
-    /* 0x568 */ u8 field_0x568[0xe54 - 0x568];
+    /* 0xB48 */ Z2CreatureCitizen mSound;
+    /* 0xBEC */ u8 field_0xbec[0xbf0 - 0xbec];
+    /* 0xBF0 */ J3DModel* mObjModel;
+    /* 0xBF4 */ daNpcF_Lookat_c mLookat;
+    /* 0xC90 */ daNpcF_ActorMngr_c mActorMngr[1];
+    /* 0xC98 */ daNpcChat_HIO_c* mHIO;
+    /* 0xC9C */ dCcD_Cyl mCyl;
+    /* 0xDD8 */ actionFunc mAction;
+    /* 0xDE4 */ request_of_phase_process_class mPhase1;
+    /* 0xDEC */ request_of_phase_process_class mPhase2;
+    /* 0xDF4 */ request_of_phase_process_class mPhase3;
+    /* 0xDFC */ request_of_phase_process_class mPhase4;
+    /* 0xE04 */ fpc_ProcID field_0xe04;
+    /* 0xE08 */ int field_0xe08;
+    /* 0xE0C */ int field_0xe0c;
+    /* 0xE10 */ u8 mType;
+    /* 0xE11 */ u8 field_0xe11[0xe14 - 0xe11];
+    /* 0xE14 */ int mObjNum;
+    /* 0xE18 */ int mMsgNo;
+    /* 0xE1C */ s16 field_0xe1c;
+    /* 0xE1E */ u16 mMode;
+    /* 0xE20 */ u8 mTalkNo;
+    /* 0xE21 */ u8 mTalkMemberNum;
+    /* 0xE22 */ u8 mTalkGroupNo;
+    /* 0xE23 */ u8 mTalkIconType;
+    /* 0xE24 */ daNpcChat_c* mTalkMembers[5];
+    /* 0xE38 */ u8 field_0xe38;
+    /* 0xE39 */ u8 field_0xe39[0xe3c - 0xe39];
+    /* 0xE3C */ cXyz mBaseAttnPos;
+    /* 0xE48 */ bool mFear;
+    /* 0xE49 */ u8 field_0xe49;
+    /* 0xE4A */ s16 field_0xe4a;
+    /* 0xE4C */ u8 field_0xe4c;
+    /* 0xE4D */ bool mTalkFlag;
+    /* 0xE4E */ u8 mTalkMotionNo;
+    /* 0xE4F */ bool field_0xe4f;
+    /* 0xE50 */ u8 mLookPlayerCheck;
+    /* 0xE51 */ u8 field_0xe51;
+    /* 0xE52 */ u8 field_0xe52[0xe54 - 0xe52];
 };
 
 STATIC_ASSERT(sizeof(daNpcChat_c) == 0xe54);
-
-class daNpcChat_Param_c {
-public:
-    /* 80986930 */ ~daNpcChat_Param_c();
-
-    static u8 const m[108];
-};
-
 
 #endif /* D_A_NPC_CHAT_H */
