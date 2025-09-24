@@ -1078,7 +1078,7 @@ BOOL daNpc_GWolf_c::selectAction() {
 void daNpc_GWolf_c::doNormalAction(int param_1) {
     if (param_1 != 0 && hitChk2(&mCyl, TRUE, FALSE)) {
         int damage_time;
-        if (mCutType == 8) {
+        if (mCutType == daPy_py_c::CUT_TYPE_TURN_RIGHT) {
             damage_time = 20;
         } else {
             damage_time = daNpc_GWolf_Param_c::m.common.damage_time;
