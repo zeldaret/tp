@@ -354,37 +354,36 @@ void daObjSmgDoor_c::actionDead() {}
 
 /* 80CDC7F8-80CDC974 000D38 017C+00 1/1 0/0 0/0 .text            checkArea__14daObjSmgDoor_cFv */
 int daObjSmgDoor_c::checkArea() {
-    int ret;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
-    cXyz acStack_78;
-    cXyz cStack_84(player->attention_info.position);
-    cStack_84.y = player->current.pos.y;
-    acStack_78 = cStack_84 - current.pos;
-    f32 dVar4 = acStack_78.abs2XZ();
-    cXyz cStack_90;
-    cStack_90.set(cM_ssin(home.angle.y), 0.0f, cM_scos(home.angle.y));
+    cXyz player_to_door_vec;
+    cXyz player_attention_pos(player->attention_info.position);
+    player_attention_pos.y = player->current.pos.y;
+    player_to_door_vec = player_attention_pos - current.pos;
+    f32 sq_distance_xz = player_to_door_vec.abs2XZ();
+    cXyz door_forward_vec;
+    door_forward_vec.set(cM_ssin(home.angle.y), 0.0f, cM_scos(home.angle.y));
 
-    if (dVar4 > 62500.0f) {
+    if (sq_distance_xz > 62500.0f) {
         return 0;
-    } else {
-        acStack_78.normalize();
-        f32 dVar5 = acStack_78.inprodXZ(cStack_90);
-        dVar5 *= (dVar4 * dVar5);
-
-        if (dVar5 > 90000.0f) {
-            return 0;
-        } else {
-            if (dVar4 - dVar5 > 12100.0f) {
-                return 0;
-            } else {
-                if (abs((s16)(current.angle.y - player->current.angle.y)) < 0x5000) {
-                    return 0;
-                } else {
-                    return 1;
-                }
-            }
-        }
     }
+
+    player_to_door_vec.normalize();
+    f32 dot_product_scaled = player_to_door_vec.inprodXZ(door_forward_vec);
+    dot_product_scaled *= (sq_distance_xz * dot_product_scaled);
+
+    if (dot_product_scaled > 90000.0f) {
+        return 0;
+    }
+    
+    if (sq_distance_xz - dot_product_scaled > 12100.0f) {
+        return 0;
+    }
+    
+    if (abs((s16)(current.angle.y - player->current.angle.y)) < 0x5000) {
+        return 0;
+    } 
+    
+    return 1;
 }
 
 /* 80CDC974-80CDCA00 000EB4 008C+00 1/1 0/0 0/0 .text            checkOpen__14daObjSmgDoor_cFv */
@@ -397,13 +396,13 @@ int daObjSmgDoor_c::checkOpen() {
 
     if (daPy_py_c::checkNowWolf()) {
         return 0;
-    } else {
-        if (checkArea() == 0) {
-            return 0;
-        } else {
-            return 1;
-        }
     }
+    
+    if (checkArea() == 0) {
+        return 0;
+    } 
+
+    return 1;
 }
 
 /* 80CDCA00-80CDCAC4 000F40 00C4+00 1/0 0/0 0/0 .text            Draw__14daObjSmgDoor_cFv */
