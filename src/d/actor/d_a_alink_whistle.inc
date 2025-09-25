@@ -344,7 +344,7 @@ int daAlink_c::procHawkCatchInit() {
 /* 80112220-80112278 10CB60 0058+00 1/0 0/0 0/0 .text            procHawkCatch__9daAlink_cFv */
 int daAlink_c::procHawkCatch() {
     if (mUnderFrameCtrl[0].checkAnmEnd()) {
-        dComIfGp_evmng_cutEnd(field_0x3184);
+        dComIfGp_evmng_cutEnd(mAlinkStaffId);
         procHawkSubjectInit();
     }
 
@@ -381,7 +381,7 @@ int daAlink_c::procHawkSubject() {
             }
         }
     } else if (checkEventRun()) {
-        dComIfGp_evmng_cutEnd(field_0x3184);
+        dComIfGp_evmng_cutEnd(mAlinkStaffId);
     } else {
         fopAc_ac_c* temp_r29 = field_0x280c.getActor();
         setGrassCancelStatus(0x12);

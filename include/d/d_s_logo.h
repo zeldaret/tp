@@ -73,6 +73,14 @@ public:
     u8 getPalLanguage();
     #endif
 
+    #if DEBUG
+    static void onOpeningCut() {
+        mOpeningCut = true;
+    }
+    
+    static u8 mOpeningCut;
+    #endif
+
 public:
     /* 0x1C4 */ request_of_phase_process_class field_0x1c4;
     /* 0x1CC */ mDoDvdThd_toMainRam_c* sceneCommand;

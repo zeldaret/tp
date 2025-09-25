@@ -2977,7 +2977,7 @@ int daAlink_c::procHorseGetKey() {
 
     setSyncRidePos();
     if (checkAnmEnd(frameCtrl_p)) {
-        dComIfGp_evmng_cutEnd(field_0x3184);
+        dComIfGp_evmng_cutEnd(mAlinkStaffId);
     } else if (frameCtrl_p->getFrame() >= 34.0f) {
         field_0x2f92 = 254;
         field_0x2f93 = 254;
@@ -3013,7 +3013,7 @@ int daAlink_c::procHorseLookDown() {
     setSyncRidePos();
 
     if (checkAnmEnd(mUnderFrameCtrl)) {
-        dComIfGp_evmng_cutEnd(field_0x3184);
+        dComIfGp_evmng_cutEnd(mAlinkStaffId);
     }
     return 1;
 }

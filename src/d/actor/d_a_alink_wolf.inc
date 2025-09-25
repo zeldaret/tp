@@ -2471,7 +2471,7 @@ int daAlink_c::procWolfTiredWait() {
 /* 8012D050-8012D104 127990 00B4+00 3/2 0/0 0/0 .text procWolfMidnaRideShockInit__9daAlink_cFv */
 int daAlink_c::procWolfMidnaRideShockInit() {
     if (!checkWolf()) {
-        dComIfGp_evmng_cutEnd(field_0x3184);
+        dComIfGp_evmng_cutEnd(mAlinkStaffId);
         return procWaitInit();
     }
 
@@ -2495,7 +2495,7 @@ int daAlink_c::procWolfMidnaRideShock() {
 
     if (frameCtrl->checkAnmEnd()) {
         if (mDemo.getDemoMode() == 0x32) {
-            dComIfGp_evmng_cutEnd(field_0x3184);
+            dComIfGp_evmng_cutEnd(mAlinkStaffId);
         } else {
             checkNextActionWolf(0);
         }
@@ -2858,7 +2858,7 @@ int daAlink_c::procWolfWaitTurn() {
     if (var_r31 == 0) {
         if (checkEventRun()) {
             if (mDemo.getDemoMode() == 5) {
-                dComIfGp_evmng_cutEnd(field_0x3184);
+                dComIfGp_evmng_cutEnd(mAlinkStaffId);
             } else {
                 checkNextActionWolf(0);
             }
@@ -2996,7 +2996,7 @@ int daAlink_c::procWolfSideStepLand() {
 
     if (frameCtrl->checkAnmEnd()) {
         if (mDemo.getDemoMode() == 0x10) {
-            dComIfGp_evmng_cutEnd(field_0x3184);
+            dComIfGp_evmng_cutEnd(mAlinkStaffId);
         } else {
             checkNextActionWolf(0);
         }
@@ -3107,7 +3107,7 @@ int daAlink_c::procWolfBackJumpLand() {
 
     if (frameCtrl->checkAnmEnd()) {
         if (mDemo.getDemoMode() == 0x10) {
-            dComIfGp_evmng_cutEnd(field_0x3184);
+            dComIfGp_evmng_cutEnd(mAlinkStaffId);
         } else {
             checkNextActionWolf(0);
         }
@@ -5871,7 +5871,7 @@ int daAlink_c::procWolfLargeDamageUpInit(int param_0, int param_1, s16 param_2, 
                 if (getMidnaActor() != NULL) {
                     getMidnaActor()->onForceMorfCancel();
                 }
-                if (mDemo.getDemoType() != 1) {
+                if (mDemo.getDemoType() != daPy_demo_c::DEMO_TYPE_TOOL_e) {
                     mProcVar5.field_0x3012 = 1;
                 }
             } else {
@@ -5891,7 +5891,7 @@ int daAlink_c::procWolfLargeDamageUpInit(int param_0, int param_1, s16 param_2, 
             } else if (param_0 == -5 && mDemo.getParam1() > 0) {
                 mProcVar0.field_0x3008 = mDemo.getParam1();
                 var_f31 = 0.0f;
-            } else if (param_0 == -2 && mDemo.getDemoType() == 1) {
+            } else if (param_0 == -2 && mDemo.getDemoType() == daPy_demo_c::DEMO_TYPE_TOOL_e) {
                 mProcVar0.field_0x3008 = 0x1E;
                 var_f31 = 0.0f;
             } else {
@@ -6008,7 +6008,7 @@ int daAlink_c::procWolfLargeDamageUp() {
             }
 
             if (mDemo.getDemoMode() == 0x1B || mDemo.getDemoMode() == 9) {
-                dComIfGp_evmng_cutEnd(field_0x3184);
+                dComIfGp_evmng_cutEnd(mAlinkStaffId);
             } else {
                 checkNextActionWolf(0);
             }
@@ -6376,7 +6376,7 @@ int daAlink_c::procWolfLieMove() {
     }
 
     if (mDemo.getDemoMode() == 0x2C) {
-        dComIfGp_evmng_cutEnd(field_0x3184);
+        dComIfGp_evmng_cutEnd(mAlinkStaffId);
     }
 
     cM3dGPla sp70;
@@ -7872,7 +7872,7 @@ int daAlink_c::procWolfWaitAttack() {
         resetCombo(1);
 
         if (mDemo.getDemoMode() == 0x2B) {
-            dComIfGp_evmng_cutEnd(field_0x3184);
+            dComIfGp_evmng_cutEnd(mAlinkStaffId);
         } else if (mProcVar0.field_0x3008 > 0) {
             if (!(frameCtrl_p->getFrame() > field_0x3478) || !checkNextActionWolf(1)) {
                 mProcVar0.field_0x3008--;
@@ -8684,7 +8684,7 @@ int daAlink_c::procWolfGrabPut() {
 
         if (checkAnmEnd(frameCtrl_p)) {
             if (mDemo.getDemoMode() == 13) {
-                dComIfGp_evmng_cutEnd(field_0x3184);
+                dComIfGp_evmng_cutEnd(mAlinkStaffId);
             } else {
                 checkNextActionWolf(0);
             }
@@ -8694,7 +8694,7 @@ int daAlink_c::procWolfGrabPut() {
     } else {
         if (actor_p == NULL) {
             if (mDemo.getDemoMode() == 13) {
-                dComIfGp_evmng_cutEnd(field_0x3184);
+                dComIfGp_evmng_cutEnd(mAlinkStaffId);
                 return 1;
             } else {
                 return checkNextActionWolf(0);
@@ -9595,7 +9595,7 @@ int daAlink_c::procWolfGetSmell() {
             mDemo.setSystemDemoType();
         } else if (mDemo.getParam0() == 0) {
             dComIfGs_onEventBit(field_0x319c);
-            dComIfGp_evmng_cutEnd(field_0x3184);
+            dComIfGp_evmng_cutEnd(mAlinkStaffId);
 
             if (kytag3_p != NULL) {
                 kytag3_p->field_0x588 = 0;

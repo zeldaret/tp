@@ -9,6 +9,8 @@ class JKRExpHeap;
 void version_check();
 s32 LOAD_COPYDATE(void*);
 
+const int HeapCheckTableNum = 8;
+
 class HeapCheck {
 public:
     HeapCheck(JKRExpHeap* heap, const char* name, const char* jName) {
@@ -26,13 +28,15 @@ public:
     JKRExpHeap* getHeap() { return mHeap; }
     void setHeap(JKRExpHeap* i_heap) { mHeap = i_heap; }
     void setHeapSize(u32 i_size) { mTargetHeapSize = i_size; }
-    s32 getMaxTotalUsedSize() { return mMaxTotalUsedSize; }
+    s32 getMaxTotalUsedSize() const { return mMaxTotalUsedSize; }
     s32 getMaxTotalFreeSize() { return mMaxTotalFreeSize; }
     const char* getName() const { return mName; }
     void saveRelBase() {
         mUsedCount = getUsedCount();
         mTotalUsedSize = mHeap->getTotalUsedSize();
     }
+
+    u32 getTargetHeapSize() const { return mTargetHeapSize; }
 
     u32 getRelUsedCount() const { return getUsedCount() - mUsedCount; }
     u32 getRelTotalUsedSize() const { return mHeap->getTotalUsedSize() - mTotalUsedSize; }
@@ -51,13 +55,15 @@ private:
 };
 
 struct mDoMain {
-    static char COPYDATE_STRING[18];
-    static u32 memMargin;
-    #ifdef DEBUG
+#ifdef DEBUG
+    static int argument;
+    static int e3menu_no;
     static u32 archiveHeapSize;
     static u32 gameHeapSize;
-    #endif
-    static u8 mHeapBriefType;
+#endif
+
+    static char COPYDATE_STRING[18];
+    static u32 memMargin;
     static OSTime sPowerOnTime;
     static OSTime sHungUpTime;
     static s8 developmentMode;

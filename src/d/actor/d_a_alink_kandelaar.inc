@@ -419,7 +419,7 @@ int daAlink_c::procKandelaarSwing() {
 
     if (frameCtrl_p->checkAnmEnd()) {
         if (mDemo.getDemoMode() == 0x27) {
-            dComIfGp_evmng_cutEnd(field_0x3184);
+            dComIfGp_evmng_cutEnd(mAlinkStaffId);
         } else {
             checkNextAction(0);
         }

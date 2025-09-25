@@ -110,6 +110,12 @@ public:
     float Sin(void) const;
     float Cos(void) const;
     float Tan(void) const;
+
+    operator f32() const { return mDegree; }
+
+    cDegree operator*(float v) const {
+        return cDegree(mDegree * v);
+    }
 };
 
 class cSPolar {

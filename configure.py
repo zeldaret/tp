@@ -654,6 +654,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_eye_hl.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_error_msg.cpp"),
             Object(NonMatching, "d/d_debug_viewer.cpp"),
+            Object(NonMatching, "d/d_debug_camera.cpp"),
             Object(NonMatching, "d/actor/d_a_alink.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/actor/d_a_itembase.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/actor/d_a_no_chg_room.cpp"),

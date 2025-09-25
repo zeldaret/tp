@@ -1341,7 +1341,7 @@ void daE_PM_c::DemoBossStart2() {
             actor_status &= ~0x100;
         }
         if (mSecondEncounter) {
-            player->mDemo.setDemoType(3);
+            player->mDemo.setDemoType(daPy_demo_c::DEMO_TYPE_ORIGINAL_e);
             player->mDemo.setParam0(0);
             player->mDemo.setDemoMode(4);
             player->mDemo.setParam0(0);

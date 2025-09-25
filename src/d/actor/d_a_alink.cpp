@@ -4375,7 +4375,7 @@ void daAlink_c::playerInit() {
     mEquipItem = fpcNm_ITEM_NONE;
     offSwordModel();
 
-    field_0x3184 = -1;
+    mAlinkStaffId = -1;
     mExitID = 0x3F;
     onNoResetFlg0(FLG0_SWIM_UP);
     offOxygenTimer();
@@ -5941,7 +5941,7 @@ void daAlink_c::setSwordAtCollision(int param_0) {
 
 /* 800AA5E8-800AA6B4 0A4F28 00CC+00 4/4 0/0 0/0 .text checkNoCollisionCorret__9daAlink_cFv */
 BOOL daAlink_c::checkNoCollisionCorret() {
-    if (checkModeFlg(0x12800) || mDemo.getDemoType() == 1 || mProcID == PROC_DOOR_OPEN ||
+    if (checkModeFlg(0x12800) || mDemo.getDemoType() == daPy_demo_c::DEMO_TYPE_TOOL_e || mProcID == PROC_DOOR_OPEN ||
         (checkEventRun() &&
          (!strcmp(dComIfGp_getEventManager().getRunEventName(), "SCENE_EXIT") ||
           (fopAcM_getTalkEventPartner(this) &&
@@ -10356,7 +10356,7 @@ void daAlink_c::decideDoStatus() {
 BOOL daAlink_c::checkWaitAction() {
     if (checkWolf()) {
         if (checkModeFlg(0x01000000)) {
-            if (mDemo.getDemoType() == 4) {
+            if (mDemo.getDemoType() == daPy_demo_c::DEMO_TYPE_START_e) {
                 return 0;
             }
             return procWolfWaitInit();
@@ -10412,7 +10412,7 @@ BOOL daAlink_c::checkWaitAction() {
         return procGrabWaitInit();
     }
 
-    if (checkModeFlg(0x01000000) && mDemo.getDemoType() == 4) {
+    if (checkModeFlg(0x01000000) && mDemo.getDemoType() == daPy_demo_c::DEMO_TYPE_START_e) {
         return 0;
     }
 
@@ -10555,7 +10555,7 @@ BOOL daAlink_c::checkAutoJumpAction() {
         return 0;
     }
 
-    if (!checkModeFlg(0x70C12) && mProcID != PROC_DOOR_OPEN && mProcID != PROC_WARP && !getSumouMode() && mDemo.getDemoType() != 5 && !checkMagneBootsOn() && !mLinkAcch.ChkGroundHit()) {
+    if (!checkModeFlg(0x70C12) && mProcID != PROC_DOOR_OPEN && mProcID != PROC_WARP && !getSumouMode() && mDemo.getDemoType() != daPy_demo_c::DEMO_TYPE_SPECIAL_e && !checkMagneBootsOn() && !mLinkAcch.ChkGroundHit()) {
         if (checkNoResetFlg0(FLG0_UNDERWATER)) {
             speed.y = 0.0f;
             return procSwimWaitInit(0);
@@ -12820,7 +12820,7 @@ void daAlink_c::posMove() {
 
         if (checkNoResetFlg0(FLG0_SWIM_UP) && mProcID != PROC_SWIM_DIVE) {
             current.pos.y = mWaterY;
-        } else if (mDemo.getDemoType() == 4 || mProcID == PROC_ELEC_DAMAGE ||
+        } else if (mDemo.getDemoType() == daPy_demo_c::DEMO_TYPE_START_e || mProcID == PROC_ELEC_DAMAGE ||
                    dComIfGp_checkPlayerStatus0(0, 0x10))
         {
             speed.y = 0.0f;
@@ -15548,7 +15548,7 @@ int daAlink_c::procWaitTurn() {
         } else if (angle == 0) {
             if (checkEventRun()) {
                 if (mDemo.getDemoMode() == 5) {
-                    dComIfGp_evmng_cutEnd(field_0x3184);
+                    dComIfGp_evmng_cutEnd(mAlinkStaffId);
                 } else if (!checkNextAction(0)) {
                     checkWaitAction();
                 }
@@ -15742,7 +15742,7 @@ int daAlink_c::procSideStepLand() {
 
     if (frameCtrl_p->checkAnmEnd()) {
         if (mDemo.getDemoMode() == 16) {
-            dComIfGp_evmng_cutEnd(field_0x3184);
+            dComIfGp_evmng_cutEnd(mAlinkStaffId);
         } else {
             checkNextAction(0);
         }
@@ -15985,7 +15985,7 @@ int daAlink_c::procFrontRoll() {
 
     if (frameCtrl_p->checkAnmEnd()) {
         if (mDemo.getDemoMode() == 0x28) {
-            dComIfGp_evmng_cutEnd(field_0x3184);
+            dComIfGp_evmng_cutEnd(mAlinkStaffId);
         } else {
             if (!checkInputOnR()) {
                 mNormalSpeed -= daAlinkHIO_frontRoll_c0::m.mMinSpeed;
@@ -16235,7 +16235,7 @@ int daAlink_c::procSideRoll() {
 
     if (frameCtrl_p->checkAnmEnd()) {
         if (mDemo.getDemoMode() == 0x49) {
-            dComIfGp_evmng_cutEnd(field_0x3184);
+            dComIfGp_evmng_cutEnd(mAlinkStaffId);
         } else {
             if (!checkAttentionLock()) {
                 offNoResetFlg2(FLG2_UNK_8000000);
@@ -16391,7 +16391,7 @@ int daAlink_c::procBackJumpLand() {
 
     if (frameCtrl->checkAnmEnd()) {
         if (mDemo.getDemoMode() == 0x10) {
-            dComIfGp_getPEvtManager()->cutEnd(field_0x3184);
+            dComIfGp_getPEvtManager()->cutEnd(mAlinkStaffId);
         } else {
             if (!checkAttentionLock()) {
                 offNoResetFlg2(FLG2_UNK_8000000);
@@ -17284,7 +17284,7 @@ int daAlink_c::procCoMetamorphose() {
         if (!checkEventRun()) {
             checkWaitAction();
         } else {
-            dComIfGp_evmng_cutEnd(field_0x3184);
+            dComIfGp_evmng_cutEnd(mAlinkStaffId);
         }
         return 1;
     }
@@ -17304,7 +17304,7 @@ int daAlink_c::procCoMetamorphose() {
             mProcVar5.field_0x3012 = 1;
 
             if (mDemo.getParam0() == 1 && (mDemo.getDemoMode() == 0x39 || mDemo.getDemoMode() == 0x3A)) {
-                dComIfGp_evmng_cutEnd(field_0x3184);
+                dComIfGp_evmng_cutEnd(mAlinkStaffId);
 
                 if (checkWolf()) {
                     setSingleAnimeWolfBaseSpeed(WANM_WAIT, daAlinkHIO_wlMoveNoP_c0::m.field_0x14, -1.0f);
@@ -17336,7 +17336,7 @@ int daAlink_c::procCoMetamorphose() {
             mDoMtx_stack_c::multVec(&sp8, &current.pos);
 
             field_0x2f99 = 0xC;
-            if (mDemo.getDemoType() == 3) {
+            if (mDemo.getDemoType() == daPy_demo_c::DEMO_TYPE_ORIGINAL_e) {
                 mFallVoiceInit = 1;
             }
 
@@ -17350,7 +17350,7 @@ int daAlink_c::procCoMetamorphose() {
                 return checkWaitAction();
             }
 
-            dComIfGp_evmng_cutEnd(field_0x3184);
+            dComIfGp_evmng_cutEnd(mAlinkStaffId);
 
             if (checkWolf()) {
                 setSingleAnimeWolfBaseSpeed(WANM_WAIT, daAlinkHIO_wlMoveNoP_c0::m.field_0x14, -1.0f);
@@ -17477,7 +17477,7 @@ int daAlink_c::procCoMetamorphoseOnly() {
             }
         }
 
-        dComIfGp_evmng_cutEnd(field_0x3184);
+        dComIfGp_evmng_cutEnd(mAlinkStaffId);
     }
 
     return 1;
@@ -17588,7 +17588,7 @@ int daAlink_c::execute() {
     setSelectEquipItem(0);
 
     if (dComIfGp_event_runCheck()) {
-        field_0x3184 = dComIfGp_evmng_getMyStaffId("Alink", this, 0);
+        mAlinkStaffId = dComIfGp_evmng_getMyStaffId("Alink", this, 0);
 
         if (eventInfo.checkCommandDoor() && !dComIfGp_event_chkEventFlag(4) &&
             mEquipItem == 0x102)

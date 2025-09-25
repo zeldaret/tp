@@ -66,7 +66,7 @@ public:
     s32 getUsedSize(u8 groupId) const;
     s32 getTotalUsedSize(void) const;
     
-    CMemBlock* getHeadUsedList() const { return mHeadUsedList; }
+    CMemBlock* getUsedFirst() { return mHeadUsedList; }
     void setAllocationMode(EAllocMode mode) {
         mAllocMode = mode;
     }

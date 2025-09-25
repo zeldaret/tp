@@ -1170,6 +1170,14 @@ public:
     static u8 mNoChangeRoom;
     static s8 mRoomReadId;
 
+    #if DEBUG
+    static void onNoArcBank() {
+        mNoArcBank = true;
+    } 
+
+    static u8 mNoArcBank;
+    #endif
+
 private:
     /* 0x0 */ u8 field_0x0[4];
 };

@@ -243,15 +243,23 @@ public:
         DEMO_NEW_ANM0_e = 0x200,
     };
 
+    enum {
+        DEMO_TYPE_TOOL_e = 1,
+        DEMO_TYPE_SYSTEM_e,
+        DEMO_TYPE_ORIGINAL_e,
+        DEMO_TYPE_START_e,
+        DEMO_TYPE_SPECIAL_e,
+    };
+
     void setDemoType(u16 pType) { mDemoType = pType; }
     int getDemoType() const { return mDemoType; }
     void setDemoMode(u32 mode) { mDemoMode = mode; }
     u32 getDemoMode() const { return mDemoMode; }
     int getParam1() const { return mParam1; }
     s16 getParam2() const { return mParam2; }
-    void setOriginalDemoType() { setDemoType(3); }
-    void setSpecialDemoType() { setDemoType(5); }
-    void setSystemDemoType() { setDemoType(2); }
+    void setOriginalDemoType() { setDemoType(DEMO_TYPE_ORIGINAL_e); }
+    void setSpecialDemoType() { setDemoType(DEMO_TYPE_SPECIAL_e); }
+    void setSystemDemoType() { setDemoType(DEMO_TYPE_SYSTEM_e); }
     void setStick(f32 stick) { mStick = stick; }
     void setMoveAngle(s16 angle) { mDemoMoveAngle = angle; }
     s16 getMoveAngle() const { return mDemoMoveAngle; }
@@ -261,13 +269,13 @@ public:
     void setParam1(int value) { mParam1 = value; }
     void setParam2(int value) { mParam2 = value; }
     void setPos0(const cXyz* pos) { mDemoPos0 = *pos; }
-    void setToolDemoType() { setDemoType(1); }
+    void setToolDemoType() { setDemoType(DEMO_TYPE_TOOL_e); }
     s16 getTimer() const { return mTimer; }
     void decTimer() { mTimer--; }
     void setTimer(s16 i_timer) { mTimer = i_timer; }
     cXyz* getPos0() { return &mDemoPos0; }
     void resetDemoType() { setDemoType(0); }
-    void setStartDemoType() { setDemoType(4); }
+    void setStartDemoType() { setDemoType(DEMO_TYPE_START_e); }
 
 private:
     /* 0x00 */ u16 mDemoType;

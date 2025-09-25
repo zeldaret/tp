@@ -3470,7 +3470,7 @@ public:
     }
 
     s32 checkPlayerDemoMode() const { return mDemo.getDemoType(); }
-    BOOL checkSpecialDemoMode() const { return mDemo.getDemoType() == 5; }
+    BOOL checkSpecialDemoMode() const { return mDemo.getDemoType() == daPy_demo_c::DEMO_TYPE_SPECIAL_e; }
     static bool checkMidnaChargeAttack() { return dComIfGs_isEventBit(0x501); }
     u16 getMidnaMsgNum() const { return mMidnaMsgNum; }
     u32 getStartEvent() { return fopAcM_GetParam(this) >> 0x18; }
@@ -4286,7 +4286,7 @@ public:
     /* 0x03178 */ int field_0x3178;
     /* 0x0317C */ int field_0x317c;
     /* 0x03180 */ int field_0x3180;
-    /* 0x03184 */ int field_0x3184;
+    /* 0x03184 */ int mAlinkStaffId;
     /* 0x03188 */ int field_0x3188;
     /* 0x0318C */ int field_0x318c;
     /* 0x03190 */ int field_0x3190;
