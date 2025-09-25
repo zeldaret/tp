@@ -1808,8 +1808,8 @@ config.libs = [
     ActorRel(NonMatching, "d_a_mg_fshop"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_mirror"),
     ActorRel(NonMatching, "d_a_movie_player", extra_cflags=["-O3,p"]),
-    ActorRel(Equivalent, "d_a_myna"), # weird missing function issue
-    ActorRel(NonMatching, "d_a_ni"),
+    ActorRel(Equivalent, "d_a_myna"),  # weird missing function issue
+    ActorRel(MatchingFor("GZ2E01"), "d_a_ni"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_npc_aru"),
     ActorRel(NonMatching, "d_a_npc_ash", extra_cflags=[DANPCF_C_HACK]),
     ActorRel(NonMatching, "d_a_npc_ashB", extra_cflags=[DANPCF_C_HACK]),
