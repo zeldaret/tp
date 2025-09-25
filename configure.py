@@ -379,7 +379,7 @@ def MWVersion(cfg_version: str | None) -> str:
             return "GC/2.7"
         case "GZ2J01":
             return "GC/2.7"
-        case "RZDE01_00", "RZDE01_02":
+        case "RZDE01_00" | "RZDE01_02":
             # TODO: Find right compiler for Wii
             # GC/3.0a3 codegen seems better than Wii compilers, but it fails linking (linker version?) and can't handle multi-char constants
             # Potentially missing an early Wii compiler that had the earlier codegen and reverted char constant change?
@@ -388,7 +388,7 @@ def MWVersion(cfg_version: str | None) -> str:
             # GC/3.0a5.2 breaks when compiling TUs like m_Do_graphic, but none of the other 3.0+ ones do
             # Wii/1.0RC1 is the earliest Wii one we have at this time but it doesn't have the right codegen from GC/3.0+
             # (GC 3.0a3 - Dec 2005 | GC 3.0a5.2 - Aug 2006 | Wii 1.0RC - May 2008)
-            return "Wii/1.0RC1"  
+            return "Wii/1.0RC1"
         case "ShieldD":
             return "Wii/1.0"
         case _:
