@@ -7,7 +7,7 @@
 
 #include "d/actor/d_a_npc_seira.h"
 #include "d/d_meter_HIO.h"
-#include "dol2asm.h"
+
 
 /* 80ACFFB0-80ACFFC0 000020 0010+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[2][2] = {
@@ -462,7 +462,7 @@ void daNpc_Seira_c::afterJntAnm(int arg0) {
 /* 80ACC69C-80ACC818 000FBC 017C+00 1/0 0/0 0/0 .text            setParam__13daNpc_Seira_cFv */
 void daNpc_Seira_c::setParam() {
     if (field_0x10fc == 1) {
-        if (field_0x10f8 == 2) {
+        if (mShopProcess == 2) {
             mShopCamAction.Reset();
         } else {
             mShopCamAction.EventRecoverNotime();
@@ -488,9 +488,9 @@ void daNpc_Seira_c::setParam() {
         att_dist = 9;
     }
 
-    attention_info.distances[0] = daNpcT_getDistTableIdx(att_dist, att_ang);
-    attention_info.distances[1] = attention_info.distances[0];
-    attention_info.distances[3] = daNpcT_getDistTableIdx(talk_dist, talk_ang);
+    attention_info.distances[fopAc_attn_LOCK_e] = daNpcT_getDistTableIdx(att_dist, att_ang);
+    attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
+    attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(talk_dist, talk_ang);
     attention_info.flags = att_flags;
 
     scale.set(daNpc_Seira_Param_c::m.common.scale, daNpc_Seira_Param_c::m.common.scale,
@@ -964,47 +964,79 @@ int daNpc_Seira_c::setAction(actionFunc i_action) {
     return 1;
 }
 
-/* ############################################################################################## */
-/* 80ACFEEC-80ACFEF8 0000FC 000C+00 0/1 0/0 0/0 .rodata          @5204 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5204[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80ACFEEC, &lit_5204);
-#pragma pop
-
-/* 80ACFEF8-80ACFF04 000108 000C+00 0/1 0/0 0/0 .rodata          @5212 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5212[12] = {
-    0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
-};
-COMPILER_STRIP_GATE(0x80ACFEF8, &lit_5212);
-#pragma pop
-
-/* 80ACFF04-80ACFF04 000114 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80ACFF7D = "prm";
-SECTION_DEAD static char const* const stringBase_80ACFF81 = "msgNo";
-#pragma pop
-
 /* 80ACD9D4-80ACDC6C 0022F4 0298+00 1/0 0/0 0/0 .text cutConversationAboutSaru__13daNpc_Seira_cFi
  */
-int daNpc_Seira_c::cutConversationAboutSaru(int param_0) {
-    // NONMATCHING
+int daNpc_Seira_c::cutConversationAboutSaru(int arg0) {
     int retval = 0;
-    // TODO.
+    int* param_p = NULL;
+    int prm_val = -1;
+    int msgNo_val = 0;
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "prm");
+    if (param_p != NULL) {
+        prm_val = *param_p;
+    }
+
+    param_p = dComIfGp_evmng_getMyIntegerP(arg0, "msgNo");
+    if (param_p != NULL) {
+        msgNo_val = *param_p;
+    }
+
+    fopAc_ac_c* speakers[3] = {this, mActorMngr[2].getActorP(), mActorMngr[1].getActorP()};
+    dComIfGp_setMesgCameraInfoActor(speakers[0], speakers[1], speakers[2],
+                                    NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+    if (dComIfGp_getEventManager().getIsAddvance(arg0)) {
+        switch (prm_val) {
+            case 0: {
+                daNpcT_offTmpBit(0xA7);
+                daNpcT_offTmpBit(0xA8);
+                initTalk(mFlowNodeNo, speakers);
+                break;
+            }
+
+            case 1: {
+                break;
+            }
+
+            case 2: {
+                initTalk(mFlowNodeNo, speakers);
+                break;
+            }
+        }
+    }
+
+    int my_vals[3] = {-1, -1, -1};
+    switch (prm_val) {
+        case 0: {
+            mJntAnm.lookPlayer(0);
+            if (mPlayerAngle != mCurAngle.y) {
+                step(mPlayerAngle, 13, 24, 15, 0);
+            } else {
+                retval = 1;
+            }
+
+            break;
+        }
+
+        case 1:
+        case 2: {
+            mJntAnm.lookPlayer(0);
+            my_vals[0] = msgNo_val;
+            if (talkProc(my_vals, FALSE, speakers, 0)) {
+                if (msgNo_val == 0) {
+                    if (mFlow.checkEndFlow()) {
+                        retval = 1;
+                    }
+                } else {
+                    retval = 1;
+                }
+            }
+
+            break;
+        }
+    }
+
     return retval;
 }
-
-/* ############################################################################################## */
-/* 80ACFF04-80ACFF04 000114 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80ACFF87 = "R_SP01";
-#pragma pop
 
 /* 80ACDC6C-80ACDCE4 00258C 0078+00 4/4 0/0 0/0 .text checkStageIsSeirasShop__13daNpc_Seira_cFv */
 BOOL daNpc_Seira_c::checkStageIsSeirasShop() {
@@ -1024,63 +1056,368 @@ int daNpc_Seira_c::getShopItemType() {
 }
 
 /* 80ACDD24-80ACDE74 002644 0150+00 1/0 0/0 0/0 .text            wait__13daNpc_Seira_cFPv */
-int daNpc_Seira_c::wait(void* param_0) {
-    // NONMATCHING
+int daNpc_Seira_c::wait(void*) {
+    switch (mMode) {
+        case 0:
+        case 1: {
+            mFaceMotionSeqMngr.setNo(13, -1.0f, 0, 0);
+            mMotionSeqMngr.setNo(13, -1.0f, 0, 0);
+            mMode = 2;
+        }
+
+        case 2: {
+            if (!mStagger.checkStagger()) {
+                if (srchPlayerActor()) {
+                    mJntAnm.lookPlayer(0);
+                    checkStep();
+                } else {
+                    mJntAnm.lookNone(0);
+                }
+            }
+
+            break;
+        }
+
+        case 3: {
+            break;
+        }
+    }
+
     return 1;
 }
 
 /* 80ACDE74-80ACE098 002794 0224+00 2/0 0/0 0/0 .text            sit__13daNpc_Seira_cFPv */
-int daNpc_Seira_c::sit(void* param_0) {
-    // NONMATCHING
+int daNpc_Seira_c::sit(void*) {
+    switch (mMode) {
+        case 0:
+        case 1: {
+            mFaceMotionSeqMngr.setNo(2, -1.0f, 0, 0);
+            mMotionSeqMngr.setNo(2, -1.0f, 0, 0);
+            mJntAnm.lookNone(0);
+            field_0x10f4 = cLib_getRndValue(90, 90);
+            mMode = 2;
+        }
+
+        case 2: {
+            if (mShopProcess == 2) {
+                mSpeakEvent = true;
+                field_0xe33 = true;
+            }
+
+            if (field_0x10f4 == 0) {
+                if (mMotionSeqMngr.getNo() == 2) {
+                    mFaceMotionSeqMngr.setNo(3, -1.0f, 0, 0);
+                    mMotionSeqMngr.setNo(14, -1.0f, 0, 0);
+                } else if (mMotionSeqMngr.checkEndSequence()) {
+                    field_0x10f4 = cLib_getRndValue(90, 90);
+                    mFaceMotionSeqMngr.setNo(2, -1.0f, 0, 0);
+                    mMotionSeqMngr.setNo(2, -1.0f, 0, 0);
+                }
+            } else {
+                cLib_calcTimer(&field_0x10f4);
+            }
+
+            break;
+        }
+
+        case 3: {
+            break;
+        }
+    }
+
     return 1;
 }
 
 /* 80ACE098-80ACE220 0029B8 0188+00 2/0 0/0 0/0 .text            happy__13daNpc_Seira_cFPv */
-int daNpc_Seira_c::happy(void* param_0) {
-    // NONMATCHING
+int daNpc_Seira_c::happy(void*) {
+    switch (mMode) {
+        case 0:
+        case 1: {
+            if (daNpcT_chkEvtBit(0xA5)) {
+                mFaceMotionSeqMngr.setNo(6, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(11, -1.0f, 0, 0);
+                mChkBottle = 0;
+            } else {
+                mFaceMotionSeqMngr.setNo(6, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(7, -1.0f, 0, 0);
+            }
+
+            mJntAnm.lookNone(0);
+            mMode = 2;
+        }
+
+        case 2: {
+            if (mShopProcess == 2) {
+                mSpeakEvent = true;
+                field_0xe33 = true;
+            }
+
+            break;
+        }
+
+        case 3: {
+            break;
+        }
+    }
+
     return 1;
 }
 
 /* 80ACE220-80ACE4FC 002B40 02DC+00 2/0 0/0 0/0 .text            worry__13daNpc_Seira_cFPv */
-int daNpc_Seira_c::worry(void* param_0) {
-    // NONMATCHING
+int daNpc_Seira_c::worry(void*) {
+    switch (mMode) {
+        case 0:
+        case 1: {
+            if (daNpcT_chkEvtBit(0x90)) {
+                mFaceMotionSeqMngr.setNo(6, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(5, -1.0f, 0, 0);
+            } else {
+                mFaceMotionSeqMngr.setNo(5, -1.0f, 0, 0);
+                mMotionSeqMngr.setNo(5, -1.0f, 0, 0);
+            }
+
+            mChkBottle = 0;
+            mJntAnm.lookPlayer(0);
+            field_0x10f4 = 0;
+            mMode = 2;
+        }
+
+        case 2: {
+            if (mShopProcess == 2) {
+                mSpeakEvent = true;
+                field_0xe33 = true;
+            }
+
+            if (field_0x10f4 == 0) {
+                field_0x10f4 = cLib_getRndValue(90, 90);
+                if (mJntAnm.getMode() != 1) {
+                    mJntAnm.lookPlayer(0);
+                } else {
+                    fopAc_ac_c* actor_p = mActorMngr[0].getActorP();
+                    if (actor_p != NULL) {
+                        mJntAnm.lookActor(actor_p, 0.0f, 0);
+                    } else {
+                        mJntAnm.lookNone(0);
+                    }
+                }
+            } else {
+                cLib_calcTimer(&field_0x10f4);
+            }
+
+            break;
+        }
+
+        case 3: {
+            break;
+        }
+    }
+
     return 1;
 }
 
 /* 80ACE4FC-80ACE608 002E1C 010C+00 1/0 0/0 0/0 .text            sad__13daNpc_Seira_cFPv */
-int daNpc_Seira_c::sad(void* param_0) {
-    // NONMATCHING
+int daNpc_Seira_c::sad(void*) {
+    switch (mMode) {
+        case 0:
+        case 1: {
+            mFaceMotionSeqMngr.setNo(11, -1.0f, 0, 0);
+            mMotionSeqMngr.setNo(16, -1.0f, 0, 0);
+            mJntAnm.lookNone(0);
+            mMode = 2;
+        }
+
+        case 2: {
+            if (mShopProcess == 2) {
+                mSpeakEvent = true;
+                field_0xe33 = true;
+            }
+
+            break;
+        }
+
+        case 3: {
+            break;
+        }
+    }
+
     return 1;
 }
 
 /* 80ACE608-80ACE714 002F28 010C+00 1/0 0/0 0/0 .text            lookaround__13daNpc_Seira_cFPv */
-int daNpc_Seira_c::lookaround(void* param_0) {
-    // NONMATCHING
+int daNpc_Seira_c::lookaround(void*) {
+    switch (mMode) {
+        case 0:
+        case 1: {
+            mFaceMotionSeqMngr.setNo(13, -1.0f, 0, 0);
+            mMotionSeqMngr.setNo(23, -1.0f, 0, 0);
+            mJntAnm.lookNone(0);
+            mMode = 2;
+        }
+
+        case 2: {
+            if (mShopProcess == 2) {
+                mSpeakEvent = true;
+                field_0xe33 = true;
+            }
+
+            break;
+        }
+
+        case 3: {
+            break;
+        }
+    }
+
     return 1;
 }
 
 /* 80ACE714-80ACE828 003034 0114+00 1/0 0/0 0/0 .text            lookaround_wait__13daNpc_Seira_cFPv
  */
-int daNpc_Seira_c::lookaround_wait(void* param_0) {
-    // NONMATCHING
+int daNpc_Seira_c::lookaround_wait(void*) {
+    switch (mMode) {
+        case 0:
+        case 1: {
+            mFaceMotionSeqMngr.setNo(13, -1.0f, 0, 0);
+            mMotionSeqMngr.setNo(13, -1.0f, 0, 0);
+            mMode = 2;
+        }
+
+        case 2: {
+            if (!mStagger.checkStagger() && srchPlayerActor()) {
+                mJntAnm.lookPlayer(0);
+                checkStep();
+            }
+
+            break;
+        }
+
+        case 3: {
+            break;
+        }
+    }
+
     return 1;
 }
 
 /* 80ACE828-80ACE934 003148 010C+00 1/0 0/0 0/0 .text            smile__13daNpc_Seira_cFPv */
-int daNpc_Seira_c::smile(void* param_0) {
-    // NONMATCHING
+int daNpc_Seira_c::smile(void*) {
+    switch (mMode) {
+        case 0:
+        case 1: {
+            mFaceMotionSeqMngr.setNo(6, -1.0f, 0, 0);
+            mMotionSeqMngr.setNo(5, -1.0f, 0, 0);
+            mJntAnm.lookNone(0);
+            mMode = 2;
+        }
+
+        case 2: {
+            if (mShopProcess == 2) {
+                mSpeakEvent = true;
+                field_0xe33 = true;
+            }
+
+            break;
+        }
+
+        case 3: {
+            break;
+        }
+    }
+
     return 1;
 }
 
 /* 80ACE934-80ACEAC4 003254 0190+00 3/0 0/0 0/0 .text            talk__13daNpc_Seira_cFPv */
 int daNpc_Seira_c::talk(void* param_0) {
-    // NONMATCHING
+    int reg_r30 = 0;
+    switch (mMode) {
+        case 0:
+        case 1: {
+            if (mStagger.checkStagger()) {
+                break;
+            }
+
+            initTalk(mFlowNodeNo, NULL);
+            mMode = 2;
+        }
+
+        case 2: {
+            if (mTwilight) {
+                reg_r30 = 1;
+            } else {
+                mJntAnm.lookPlayer(0);
+                if (mCurAngle.y != fopAcM_searchPlayerAngleY(this)) {
+                    step(fopAcM_searchPlayerAngleY(this), 13, 24, 15, 0);
+                    if (daPy_getPlayerActorClass()->checkHorseRide()) {
+                        reg_r30 = 1;
+                    }
+                } else {
+                    reg_r30 = 1;
+                }
+            }
+
+            if (reg_r30 && talkProc(NULL, FALSE, NULL, 0)) {
+                mPlayerActorMngr.entry(daPy_getPlayerActorClass());
+                dComIfGp_event_reset();
+                mMode = 3;
+            }
+
+            break;
+        }
+
+        case 3: {
+            break;
+        }
+    }
+
     return 0;
 }
 
 /* 80ACEAC4-80ACECE8 0033E4 0224+00 2/0 0/0 0/0 .text            shop__13daNpc_Seira_cFPv */
 int daNpc_Seira_c::shop(void* param_0) {
-    // NONMATCHING
+    switch (mMode) {
+        case 0:
+        case 1: {
+            if (mShopProcess == 2) {
+                shop_init(true);
+            } else {
+                mShopCamAction.Save();
+                initTalk(mFlowNodeNo, NULL);
+                shop_init(false);
+            }
+
+            mMode = 2;
+        }
+        // fallthrough intentional
+        case 2: {
+            mShopProcess = shop_process(this, &mFlow);
+            if (mShopProcess) {
+                dComIfGp_event_reset();
+                field_0x10fc = 1;
+                if (daNpcT_chkEvtBit(0xA5) && mChkBottle) {
+                    mFaceMotionSeqMngr.setNo(6, -1.0f, 0, 0);
+                    mMotionSeqMngr.setNo(11, -1.0f, 0, 0);
+                    mChkBottle = 0;
+                    mJntAnm.lookNone(0);
+                }
+
+                if (daNpcT_chkEvtBit(0x208) && mEvtBit != daNpcT_chkEvtBit(0x208)) {
+                    mEvtBit = daNpcT_chkEvtBit(0x208);
+                    mFaceMotionSeqMngr.setNo(6, -1.0f, 0, 0);
+                    mMotionSeqMngr.setNo(5, -1.0f, 0, 0);
+                }
+
+                mMode = 3;
+            }
+
+            break;
+        }
+
+        case 3: {
+            break;
+        }
+    }
+
     return 0;
 }
 

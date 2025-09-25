@@ -99,12 +99,12 @@ private:
     /* 0x10DC */ actionFunc mNextAction;
     /* 0x10E8 */ actionFunc mActFunc_0;
     /* 0x10F4 */ int field_0x10f4;
-    /* 0x10F8 */ int field_0x10f8;
+    /* 0x10F8 */ int mShopProcess;
     /* 0x10FC */ u8 field_0x10fc;
     /* 0x10FD */ u8 field_0x10fd;
     /* 0x10FE */ u8 mNpcType;
     /* 0x10FF */ u8 field_0x10FF;
-    /* 0x1100 */ s8 mEvtBit;
+    /* 0x1100 */ u8 mEvtBit;
     /* 0x1101 */ u8 field_0x1101[0x1104 - 0x1101];
     /* 0x1104 */ u8 field_0x1104;
 };
