@@ -687,7 +687,6 @@ BOOL daAlink_c::checkHorseServiceWaitAnime() {
 }
 
 /* 800EDEEC-800EE64C 0E882C 0760+00 1/1 0/0 0/0 .text            setSyncHorse__9daAlink_cFi */
-// NONMATCHING - missing stack space at 0x10
 int daAlink_c::setSyncHorse(int param_0) {
     daHorse_c* horse_p = dComIfGp_getHorseActor();
     daPy_frameCtrl_c* sp24 = &mUnderFrameCtrl[0];
@@ -699,7 +698,7 @@ int daAlink_c::setSyncHorse(int param_0) {
         return 0;
     }
 
-    daAlink_ANM sp8[2];
+    daAlink_ANM sp8[3];
     getBaseHorseAnime(sp8);
 
     if (fabsf(horse_p->speedF) < 0.001f) {
