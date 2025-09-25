@@ -406,7 +406,7 @@ void daAlink_c::freeGrabItem() {
     fopAc_ac_c* temp_r3 = mGrabItemAcKeep.getActor();
 
     if (temp_r3 != NULL) {
-        if (dComIfGp_event_runCheck() || mDemo.getDemoType() == 5) {
+        if (dComIfGp_event_runCheck() || mDemo.getDemoType() == daPy_demo_c::DEMO_TYPE_SPECIAL_e) {
             fopAcM_OnStatus(temp_r3, 0x800);
         }
 
@@ -1176,7 +1176,7 @@ int daAlink_c::procGrabStand() {
 
     if (checkAnmEnd(temp_r30)) {
         if (mDemo.getDemoMode() == 0xD) {
-            dComIfGp_evmng_cutEnd(field_0x3184);
+            dComIfGp_evmng_cutEnd(mAlinkStaffId);
         } else {
             checkNextAction(0);
         }
@@ -1558,7 +1558,7 @@ int daAlink_c::procFmChainStrongPull() {
 
     if (checkAnmEnd(&mUnderFrameCtrl[0])) {
         if (mDemo.getDemoMode() == 0x43) {
-            dComIfGp_evmng_cutEnd(field_0x3184);
+            dComIfGp_evmng_cutEnd(mAlinkStaffId);
         } else {
             mNowAnmPackUpper[2].setRatio(1.0f);
             checkNextAction(0);
