@@ -71,7 +71,7 @@ int daObjTMoon_c::execute() {
     } else if ((field_0x574 != 0x3ff) &&
                (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x574])))
     {
-        fopDwTg_ToDrawQ(&draw_tag, fpcLf_GetPriority(this));
+        fopDwTg_ToDrawQ(&draw_tag, fpcM_DrawPriority(this));
         return 1;
     }
     return 1;

@@ -81,7 +81,7 @@ static int fopKy_Create(void* i_this) {
 
     int ret = fpcMtd_Create(&a_this->sub_method->base, a_this);
     if (ret == cPhs_COMPLEATE_e) {
-        s32 priority = fpcLf_GetPriority(a_this);
+        s32 priority = fpcM_DrawPriority(a_this);
         fopDwTg_ToDrawQ(&a_this->draw_tag, priority);
     }
 

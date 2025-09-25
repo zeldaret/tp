@@ -1911,7 +1911,8 @@ void fopAcM_setEffectMtx(const fopAc_ac_c* i_actor, const J3DModelData* modelDat
 
 /* 8001D5A4-8001D5EC 017EE4 0048+00 1/1 0/0 0/0 .text fopAcM_getProcNameString__FPC10fopAc_ac_c */
 static const char* fopAcM_getProcNameString(const fopAc_ac_c* i_actor) {
-    const char* name = dStage_getName2(i_actor->base.profname, i_actor->argument);
+    s16 prof_name = fopAcM_GetProfName(i_actor);
+    const char* name = dStage_getName2(prof_name, i_actor->argument);
     return name != NULL ? name : "UNKOWN";
 }
 
