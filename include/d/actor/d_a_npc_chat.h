@@ -17,6 +17,8 @@ struct daNpcChat_HIOParam {
 };
 
 class daNpcChat_HIO_c : public mDoHIO_entry_c {
+    void genMessage(JORMContext*);
+
     /* 0x8 */ daNpcChat_HIOParam param;
 };
 
@@ -33,7 +35,7 @@ public:
 
     /* 8098084C */ daNpcChat_c();
     /* 80980A60 */ ~daNpcChat_c();
-    /* 80980C1C */ int NpcCreate(int);
+    /* 80980C1C */ BOOL NpcCreate(int);
     /* 80980E20 */ int getObjNum();
     /* 80980F88 */ J3DModel* ObjCreate(int);
     /* 80980FC8 */ J3DModel* ChairCreate(f32);
@@ -45,7 +47,7 @@ public:
     /* 809813E8 */ BOOL removeResrc(int, int);
     /* 809814DC */ BOOL setAttention(int);
     /* 80981E90 */ cPhs__Step Create();
-    /* 809822A0 */ int CreateHeap();
+    /* 809822A0 */ BOOL CreateHeap();
     /* 809823B4 */ int Delete();
     /* 809823E8 */ int Execute();
     /* 809824CC */ int Draw();
@@ -53,9 +55,9 @@ public:
     /* 80982780 */ int ctrlJoint(J3DJoint*, J3DModel*);
     /* 80982A98 */ static int createHeapCallBack(fopAc_ac_c*);
     /* 80982AB8 */ static int ctrlJointCallBack(J3DJoint*, int);
-    /* 80982B60 */ void searchGroup();
-    /* 80982C10 */ void appearTimeCheck();
-    /* 80982D20 */ void appearCheck();
+    /* 80982B60 */ BOOL searchGroup();
+    /* 80982C10 */ BOOL appearTimeCheck();
+    /* 80982D20 */ BOOL appearCheck();
     /* 80982EB4 */ void setParam();
     /* 80982F4C */ BOOL main();
     /* 80982FA4 */ void setAttnPos();
@@ -64,8 +66,8 @@ public:
     /* 80983584 */ void setMotion(int, f32, int);
     /* 809835C8 */ int drawDbgInfo();
     /* 809835D0 */ void drawOtherMdls();
-    /* 809837A4 */ void getTalkMotionNo();
-    /* 809837C0 */ void getLookPlayerCheck();
+    /* 809837A4 */ u8 getTalkMotionNo();
+    /* 809837C0 */ u8 getLookPlayerCheck();
     /* 809837EC */ void reset();
     /* 809839E0 */ void playMotion();
     /* 80984DD0 */ void playMotionAnmLoop(daNpcF_c::daNpcF_anmPlayData***);
@@ -78,6 +80,12 @@ public:
     /* 80985A84 */ bool demo(void*);
     /* 8098692C */ void adjustShapeAngle();
 
+    u8 getType() { return fopAcM_GetParam(this) & 0xFF; }
+    u8 getTalkGroupNoParam() { return (fopAcM_GetParam(this) >> 12) & 0xF; }
+    u8 getTalkMenberNumParam() { return (fopAcM_GetParam(this) >> 16) & 0xF; }
+    u8 getTalkNoParam() { return (fopAcM_GetParam(this) >> 20) & 0xF; }
+    u8 getTalkIconTypeParam() { return (fopAcM_GetParam(this) >> 24) & 0xF; }
+    s16 getMessageNo() { return (int)home.angle.x; }
     cXyz& getBaseAttnPos() { return mBaseAttnPos; }
 
     static u8 mEvtSeqList[12];
