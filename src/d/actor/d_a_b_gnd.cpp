@@ -17,6 +17,21 @@
 
 #include "Z2AudioLib/Z2Instances.h"
 
+class daB_GND_HIO_c : public JORReflexible {
+public:
+    /* 805F4A4C */ daB_GND_HIO_c();
+    /* 80602230 */ virtual ~daB_GND_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ s8 no;
+    /* 0x08 */ f32 model_size;
+    /* 0x0C */ f32 field_0xc;
+    /* 0x10 */ f32 field_0x10;
+    /* 0x14 */ f32 field_0x14;
+    /* 0x18 */ f32 field_0x18;
+};
+
 enum B_GND_RES_FILE_ID { // IDs and indexes are synced
     /* BCK */
     B_GND_BCK_AL_EGND_TODOME=0x8,
@@ -658,12 +673,12 @@ static void b_gnd_h_wait2(b_gnd_class* i_this) {
 static cXyz b_path[8];
 
 /* 805F6290-805F6FA4 001930 0D14+00 2/1 0/0 0/0 .text            b_gnd_h_run_a__FP11b_gnd_class */
-// NONMATCHING - regswap, equivalent
 static void b_gnd_h_run_a(b_gnd_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
     cXyz sp8C, sp80;
 
+    f32 var_f30;
     f32 player_distxz = i_this->mPlayerDistXZ;
     f32 speed_target = 0.0f;
     f32 speed_step = 1.0f;
@@ -833,7 +848,7 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
     if (i_this->mMoveMode < 20) {
         sp8C = b_path[i_this->field_0xc60] - a_this->current.pos;
 
-        f32 var_f30 = JMAFastSqrt(sp8C.x * sp8C.x + sp8C.z * sp8C.z);
+        var_f30 = JMAFastSqrt(sp8C.x * sp8C.x + sp8C.z * sp8C.z);
         if (var_f30 < 800.0f) {
             sp8C = b_path[(i_this->field_0xc60 + 1) & 7] - a_this->current.pos;
 
@@ -852,12 +867,11 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
 
         i_this->field_0x5cc = cM_atan2s(sp8C.x, sp8C.z);
         if (i_this->field_0x1e0a >= 1 && i_this->mMoveMode <= 2) {
-            speed_target = (var_f30 - 800.0f) * (AREG_F(8) + 2.0f);
-            var_f30 = 7000.0f;
-            if (speed_target > 7000.0f) {
-                speed_target = 7000.0f;
-            } else if (speed_target < 0.0f) {
-                speed_target = 0.0f;
+            var_f30 = (var_f30 - 800.0f) * (AREG_F(8) + 2.0f);
+            if (var_f30 > 7000.0f) {
+                var_f30 = 7000.0f;
+            } else if (var_f30 < 0.0f) {
+                var_f30 = 0.0f;
             }
 
             i_this->field_0xc90 = i_this->field_0xc90 + i_this->field_0xc92;
@@ -865,7 +879,7 @@ static void b_gnd_h_run_a(b_gnd_class* i_this) {
                 i_this->field_0xc92 = cM_rndF(600.0f) + 300.0f;
             }
 
-            i_this->field_0x5cc += (s16)(speed_target * cM_ssin(i_this->field_0xc90));
+            i_this->field_0x5cc += (s16)(var_f30 * cM_ssin(i_this->field_0xc90));
         }
 
         if (i_this->field_0xc72 != 0) {
@@ -5006,5 +5020,7 @@ extern actor_process_profile_definition g_profile_B_GND = {
   fopAc_ENEMY_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
+
+static int unk_bss_0xF0;
 
 AUDIO_INSTANCES;

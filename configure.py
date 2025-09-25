@@ -1672,7 +1672,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_b_ds"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_b_gg"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_b_gm"),
-    ActorRel(NonMatching, "d_a_b_gnd"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_b_gnd"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_b_go"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_b_gos"),
     ActorRel(Equivalent, "d_a_b_mgn"), # extra mr/regalloc
