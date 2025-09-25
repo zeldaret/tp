@@ -98,7 +98,7 @@ private:
     /* 0x10C4 */ daNpcT_ActorMngr_c mActorMngr[3];
     /* 0x10DC */ actionFunc mNextAction;
     /* 0x10E8 */ actionFunc mActFunc_0;
-    /* 0x10F4 */ int field_0x10f4;
+    /* 0x10F4 */ int mEventTimer;
     /* 0x10F8 */ int mShopProcess;
     /* 0x10FC */ u8 field_0x10fc;
     /* 0x10FD */ u8 field_0x10fd;

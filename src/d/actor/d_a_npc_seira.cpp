@@ -292,7 +292,6 @@ int daNpc_Seira_c::CreateHeap() {
         if (mpSeiraMorf == NULL || mpSeiraMorf->getModel() == NULL) {
             return 0;
         }
-
     }
 
     if (setFaceMotionAnm(1, false) && setMotionAnm(0, 0.0f, 0) && setBottleAnm(26, 2, 0.0f, false)) {
@@ -366,7 +365,7 @@ u8 daNpc_Seira_c::getType() {
         return 3;
     }
 
-    if (daNpcT_chkEvtBit(0x3DU) || daNpcT_chkEvtBit(0x208)) {
+    if (daNpcT_chkEvtBit(0x3D) || daNpcT_chkEvtBit(0x208)) {
         return 3;
     }
 
@@ -608,6 +607,7 @@ BOOL daNpc_Seira_c::evtTalk() {
             setAction(&daNpc_Seira_c::talk);
         }
     }
+
     return 1;
 }
 
@@ -772,7 +772,7 @@ void daNpc_Seira_c::drawOtherMdl() {
 /* 80ACD458-80ACD538 001D78 00E0+00 2/2 0/0 0/0 .text            setBottleAnm__13daNpc_Seira_cFiifb
  */
 bool daNpc_Seira_c::setBottleAnm(int arg0, int arg1, f32 arg2, bool arg3) {
-    static int cupAnmData[28][2] = {
+    static int bottlAnmData[28][2] = {
         {-1, 2}, {-1, 2}, {-1, 2}, { 6, 2}, {11, 2}, {11, 2}, {10, 2}, { 9, 2},
         {12, 2}, { 4, 2}, {-1, 2}, { 7, 2}, { 8, 2}, { 5, 2}, {-1, 2}, {-1, 2},
         {-1, 2}, {-1, 2}, {-1, 2}, {-1, 2}, {-1, 2}, {-1, 2}, {-1, 2}, {-1, 2},
@@ -786,8 +786,8 @@ bool daNpc_Seira_c::setBottleAnm(int arg0, int arg1, f32 arg2, bool arg3) {
             var_r30 = mType == 0 ? 26 : 27;
         }
 
-        if (cupAnmData[var_r30][0] > 0) {
-            trans_p = getTrnsfrmKeyAnmP(l_resNameList[cupAnmData[var_r30][1]], cupAnmData[var_r30][0]);
+        if (bottlAnmData[var_r30][0] > 0) {
+            trans_p = getTrnsfrmKeyAnmP(l_resNameList[bottlAnmData[var_r30][1]], bottlAnmData[var_r30][0]);
         }
 
         if (trans_p != NULL) {
@@ -1094,7 +1094,7 @@ int daNpc_Seira_c::sit(void*) {
             mFaceMotionSeqMngr.setNo(2, -1.0f, 0, 0);
             mMotionSeqMngr.setNo(2, -1.0f, 0, 0);
             mJntAnm.lookNone(0);
-            field_0x10f4 = cLib_getRndValue(90, 90);
+            mEventTimer = cLib_getRndValue(90, 90);
             mMode = 2;
         }
 
@@ -1104,17 +1104,17 @@ int daNpc_Seira_c::sit(void*) {
                 field_0xe33 = true;
             }
 
-            if (field_0x10f4 == 0) {
+            if (mEventTimer == 0) {
                 if (mMotionSeqMngr.getNo() == 2) {
                     mFaceMotionSeqMngr.setNo(3, -1.0f, 0, 0);
                     mMotionSeqMngr.setNo(14, -1.0f, 0, 0);
                 } else if (mMotionSeqMngr.checkEndSequence()) {
-                    field_0x10f4 = cLib_getRndValue(90, 90);
+                    mEventTimer = cLib_getRndValue(90, 90);
                     mFaceMotionSeqMngr.setNo(2, -1.0f, 0, 0);
                     mMotionSeqMngr.setNo(2, -1.0f, 0, 0);
                 }
             } else {
-                cLib_calcTimer(&field_0x10f4);
+                cLib_calcTimer(&mEventTimer);
             }
 
             break;
@@ -1178,7 +1178,7 @@ int daNpc_Seira_c::worry(void*) {
 
             mChkBottle = 0;
             mJntAnm.lookPlayer(0);
-            field_0x10f4 = 0;
+            mEventTimer = 0;
             mMode = 2;
         }
 
@@ -1188,8 +1188,8 @@ int daNpc_Seira_c::worry(void*) {
                 field_0xe33 = true;
             }
 
-            if (field_0x10f4 == 0) {
-                field_0x10f4 = cLib_getRndValue(90, 90);
+            if (mEventTimer == 0) {
+                mEventTimer = cLib_getRndValue(90, 90);
                 if (mJntAnm.getMode() != 1) {
                     mJntAnm.lookPlayer(0);
                 } else {
@@ -1201,7 +1201,7 @@ int daNpc_Seira_c::worry(void*) {
                     }
                 }
             } else {
-                cLib_calcTimer(&field_0x10f4);
+                cLib_calcTimer(&mEventTimer);
             }
 
             break;
@@ -1405,6 +1405,8 @@ int daNpc_Seira_c::shop(void* param_0) {
                     mEvtBit = daNpcT_chkEvtBit(0x208);
                     mFaceMotionSeqMngr.setNo(6, -1.0f, 0, 0);
                     mMotionSeqMngr.setNo(5, -1.0f, 0, 0);
+                    // "●●● operation change\n"
+                    OS_REPORT("●●●動作チェンジ\n");
                 }
 
                 mMode = 3;
