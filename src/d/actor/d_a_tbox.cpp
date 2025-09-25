@@ -810,7 +810,7 @@ void daTbox_c::dropProc() {
 
         dBgS_ObjGndChk gnd_chk;
         gnd_chk.SetPos(&chkpos);
-        gnd_chk.SetActorPid(base.id);
+        gnd_chk.SetActorPid(base.base.id);
         dComIfG_Bgsp().GroundCross(&gnd_chk);
 
         int bg_index = gnd_chk.GetBgIndex();

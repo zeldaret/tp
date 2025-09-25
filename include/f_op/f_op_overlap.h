@@ -4,8 +4,8 @@
 #include "f_pc/f_pc_leaf.h"
 #include "SSystem/SComponent/c_request.h"
 
-class overlap_task_class : public leafdraw_class {
-public:
+struct overlap_task_class {
+    /* 0x00 */ leafdraw_class base;
     /* 0xC0 */ leafdraw_method_class* submethod;
     /* 0xC4 */ request_base_class request;
     /* 0xC8 */ fpc_ProcID scene_id;
