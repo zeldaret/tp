@@ -333,18 +333,14 @@ int daNpc_Lud_c::CreateHeap() {
     if (mTwilight) {
         if (setFaceMotionAnm(18, false) && setMotionAnm(19, 0.0f, 0)) {
             return 1;
-        } else {
-            return 0;
         }
-    } else {
-        if (setFaceMotionAnm(1, false) && setMotionAnm(0, 0, 0)) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return 0;
     }
 
-    return 1;
+    if (setFaceMotionAnm(1, false) && setMotionAnm(0, 0, 0)) {
+        return 1;
+    }
+    return 0;
 }
 
 /* 80A6B5FC-80A6B630 000B3C 0034+00 1/1 0/0 0/0 .text            Delete__11daNpc_Lud_cFv */
@@ -673,9 +669,9 @@ void daNpc_Lud_c::action() {
 
 /* 80A6C2E4-80A6C3A8 001824 00C4+00 1/0 0/0 0/0 .text            beforeMove__11daNpc_Lud_cFv */
 void daNpc_Lud_c::beforeMove() {
-    fopAcM_OffStatus(this, 0x8000000);
+    fopAcM_OffStatus(this, fopAcM_STATUS_UNK_0x8000000);
     if (checkHide()) {
-        fopAcM_OnStatus(this, 0x8000000);
+        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
     }
 
     if (checkHide() || mNoDraw != 0) {
