@@ -227,6 +227,9 @@ daNpcMoiR_c::EventFn daNpcMoiR_c::mEvtSeqList[4] = {
     &daNpcMoiR_c::EvCut_Appear2,
 };
 
+/* 80A7C16C-80A7C2F0 0000EC 0184+00 1/1 0/0 0/0 .text            __ct__11daNpcMoiR_cFv */
+daNpcMoiR_c::daNpcMoiR_c() {}
+
 /* 80A7C380-80A7C580 000300 0200+00 1/0 0/0 0/0 .text            __dt__11daNpcMoiR_cFv */
 daNpcMoiR_c::~daNpcMoiR_c() {
     for (int i = 0; l_loadRes_list[mMode][i] >= 0; i++) {
@@ -509,7 +512,7 @@ int daNpcMoiR_c::ctrlJointCallBack(J3DJoint* i_joint, int param_2) {
     return 1;
 }
 
-inline void daNpcMoiR_c::searchActors() {
+void daNpcMoiR_c::searchActors() {
     if (mActorMngr[1].getActorP() == NULL) {
         mActorMngr[1].entry(fopAcM_SearchByName(PROC_NPC_ASH));
     }
@@ -707,7 +710,7 @@ void daNpcMoiR_c::setWaitAction() {
     }
 }
 
-inline void daNpcMoiR_c::playExpression() {
+void daNpcMoiR_c::playExpression() {
     daNpcF_anmPlayData dat0 = {ANM_F_TALK_A, daNpcMoiR_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat0[1] = {&dat0};
     daNpcF_anmPlayData dat1 = {ANM_F_HOLD_S_LOOP, daNpcMoiR_Param_c::m.common.morf_frame, 1};
@@ -883,7 +886,7 @@ void daNpcMoiR_c::playMotion() {
 }
 
 /* 80A825A0-80A82878 006520 02D8+00 1/1 0/0 0/0 .text            lookat__11daNpcMoiR_cFv */
-inline void daNpcMoiR_c::lookat() {
+void daNpcMoiR_c::lookat() {
     daPy_py_c* player = NULL;
     J3DModel* model = mpMorf->getModel();
     BOOL bVar1 = FALSE;
@@ -949,7 +952,7 @@ inline void daNpcMoiR_c::lookat() {
     mLookat.calc(this, model->getBaseTRMtx(), local_dc, bVar1, sVar1, FALSE);
 }
 
-inline BOOL daNpcMoiR_c::chkFindPlayer() {
+BOOL daNpcMoiR_c::chkFindPlayer() {
     BOOL rv;
     f32 fVar1 = mMode == MODE_SIT ? 135.0f : daNpcMoiR_Param_c::m.common.fov;
 
@@ -976,13 +979,13 @@ inline BOOL daNpcMoiR_c::chkFindPlayer() {
     return rv;
 }
 
-inline void daNpcMoiR_c::setLookMode(int i_lookMode) {
+void daNpcMoiR_c::setLookMode(int i_lookMode) {
     if (i_lookMode >= LOOK_NONE && i_lookMode <= LOOK_PLAYER_TALK && i_lookMode != mLookMode) {
         mLookMode = i_lookMode;
     }
 }
 
-inline BOOL daNpcMoiR_c::step(s16 param_1, int param_2) {
+BOOL daNpcMoiR_c::step(s16 param_1, int param_2) {
     if (mTurnMode == 0) {
         if (param_2 != 0) {
             if ((s32)fabsf(cM_sht2d((s16)(param_1 - mCurAngle.y))) > 40) {
@@ -1019,6 +1022,10 @@ inline BOOL daNpcMoiR_c::step(s16 param_1, int param_2) {
     }
 
     return mTurnMode > 1;
+}
+
+static daNpcMoiR_c::Action2Fn dummy_4854() {
+    return &daNpcMoiR_c::multiTalk;
 }
 
 /* 80A7D934-80A7DD94 0018B4 0460+00 1/0 0/0 0/0 .text            wait_type0__11daNpcMoiR_cFPv */
@@ -1167,6 +1174,9 @@ bool daNpcMoiR_c::wait_type1(void* param_1) {
                 mOrderEvtNo = 2;
             }
 
+            // This is fake, but it matches on GCN:
+            Action2Fn dummy_5013 = &daNpcMoiR_c::multiTalk;
+
             if (dComIfGp_event_runCheck()) {
                 if (eventInfo.checkCommandTalk()) {
                     if (!dComIfGp_event_chkTalkXY() || dComIfGp_evmng_ChkPresentEnd()) {
@@ -1258,7 +1268,7 @@ bool daNpcMoiR_c::wait_type2(void* param_1) {
     return true;
 }
 
-inline void daNpcMoiR_c::setExpressionTalkAfter() {
+void daNpcMoiR_c::setExpressionTalkAfter() {
     switch (mExpression) {
         case 3:
             setExpression(EXPR_FH_HOLD_S, -1.0f);
@@ -1272,77 +1282,6 @@ inline void daNpcMoiR_c::setExpressionTalkAfter() {
             setExpression(EXPR_NONE, -1.0f);
             break;
     }
-}
-
-/* 80A7EFBC-80A7F40C 002F3C 0450+00 2/0 0/0 0/0 .text            multiTalk__11daNpcMoiR_cFPv */
-BOOL daNpcMoiR_c::multiTalk(void* param_1) {
-    // NONMATCHING
-    BOOL rv = FALSE;
-    fopAc_ac_c* speakers[4] = {this, mActorMngr[1].getActorP(), mActorMngr[2].getActorP(), mActorMngr[3].getActorP()};
-
-    dComIfGp_setMesgCameraInfoActor(speakers[0], speakers[1], speakers[2], speakers[3], NULL, NULL, NULL, NULL, NULL, NULL);
-
-    switch (field_0xe08) {
-        case 0:
-            initTalk(mMsgNo, NULL);
-            mMsgTimer = 0;
-
-            if (mLookMode != LOOK_NONE) {
-                mLookMode = LOOK_NONE;
-            }
-
-            field_0xe08 = 2;
-            break;
-
-        case 2:
-            if (talkProc(NULL, TRUE, (fopAc_ac_c**)&speakers)) {
-                switch (mMode) {
-                    case MODE_SIT:
-                        setAction(&daNpcMoiR_c::wait_type0);
-                        break;
-
-                    case MODE_STAND:
-                        setAction(&daNpcMoiR_c::wait_type1);
-                        break;
-
-                    case MODE_2:
-                        setAction(&daNpcMoiR_c::wait_type2);
-                        break;
-                }
-
-                rv = TRUE;
-            } else {
-                int msgTimer = mMsgTimer;
-                int i_expression, i_motion;
-
-                if (ctrlMsgAnm(i_expression, i_motion, this, FALSE) != 0) {
-                    setExpression(i_expression, -1.0f);
-                    setMotion(i_motion, -1.0f, 0);
-                } else if (msgTimer != 0 && mMsgTimer == 0) {
-                    switch (mExpression) {
-                        case 3:
-                            setExpression(EXPR_FH_HOLD_S, -1.0f);
-                            break;
-
-                        case 10:
-                            setExpression(EXPR_FH_HOLD_S_LOOP, -1.0f);
-                            break;
-
-                        default:
-                            setExpression(EXPR_NONE, -1.0f);
-                            break;
-                    }
-                }
-            }
-            break;
-
-        case 3:
-            setExpression(EXPR_NONE, -1.0f);
-            dComIfGp_event_reset();
-            break;
-    }
-
-    return rv;
 }
 
 /* 80A7E8C0-80A7EFBC 002840 06FC+00 2/0 0/0 0/0 .text            talk__11daNpcMoiR_cFPv */
@@ -1414,6 +1353,64 @@ bool daNpcMoiR_c::talk(void* param_1) {
 
         default:
             JUT_ASSERT(1893, 0);
+            break;
+    }
+
+    return rv;
+}
+
+/* 80A7EFBC-80A7F40C 002F3C 0450+00 2/0 0/0 0/0 .text            multiTalk__11daNpcMoiR_cFPv */
+BOOL daNpcMoiR_c::multiTalk(void* param_1) {
+    // NONMATCHING
+    BOOL rv = FALSE;
+    fopAc_ac_c* speakers[4] = {this, mActorMngr[1].getActorP(), mActorMngr[2].getActorP(), mActorMngr[3].getActorP()};
+
+    dComIfGp_setMesgCameraInfoActor(speakers[0], speakers[1], speakers[2], speakers[3], NULL, NULL, NULL, NULL, NULL, NULL);
+
+    switch (field_0xe08) {
+        case 0:
+            initTalk(mMsgNo, NULL);
+            mMsgTimer = 0;
+
+            if (mLookMode != LOOK_NONE) {
+                mLookMode = LOOK_NONE;
+            }
+
+            field_0xe08 = 2;
+            break;
+
+        case 2:
+            if (talkProc(NULL, TRUE, (fopAc_ac_c**)&speakers)) {
+                setWaitAction();
+                rv = TRUE;
+            } else {
+                int msgTimer = mMsgTimer;
+                int i_expression, i_motion;
+
+                if (ctrlMsgAnm(i_expression, i_motion, this, FALSE) != 0) {
+                    setExpression(i_expression, -1.0f);
+                    setMotion(i_motion, -1.0f, 0);
+                } else if (msgTimer != 0 && mMsgTimer == 0) {
+                    switch (mExpression) {
+                        case 3:
+                            setExpression(EXPR_FH_HOLD_S, -1.0f);
+                            break;
+
+                        case 10:
+                            setExpression(EXPR_FH_HOLD_S_LOOP, -1.0f);
+                            break;
+
+                        default:
+                            setExpression(EXPR_NONE, -1.0f);
+                            break;
+                    }
+                }
+            }
+            break;
+
+        case 3:
+            setExpression(EXPR_NONE, -1.0f);
+            dComIfGp_event_reset();
             break;
     }
 
@@ -1914,7 +1911,7 @@ void daNpcMoiR_c::checkHeadGear() {
 
 /* 80A8210C-80A821E0 00608C 00D4+00 1/0 0/0 0/0 .text            ctrlBtk__11daNpcMoiR_cFv */
 // NONMATCHING inlining issues
-inline BOOL daNpcMoiR_c::ctrlBtk() {
+BOOL daNpcMoiR_c::ctrlBtk() {
     if (mpMatAnm != NULL) {
         J3DAnmTextureSRTKey* anm = NULL;
         anm = getTexSRTKeyAnmP(l_arcNames[l_btkGetParamList[0].arcIdx], l_btkGetParamList[0].fileIdx);
@@ -1933,7 +1930,7 @@ inline BOOL daNpcMoiR_c::ctrlBtk() {
 }
 
 /* 80A821E0-80A825A0 006160 03C0+00 1/0 0/0 0/0 .text            setAttnPos__11daNpcMoiR_cFv */
-inline void daNpcMoiR_c::setAttnPos() {
+void daNpcMoiR_c::setAttnPos() {
     if (mLookMode == LOOK_RESET) {
         for (int i = 0; i < 3; i++) {
             mLookatAngle[i].setall(0);
