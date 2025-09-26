@@ -1566,221 +1566,8 @@ static char* l_evtNames[1] = {
 static char* l_myName = "Chat";
 
 /* 8098B754-8098B760 003DF8 000C+00 0/2 0/0 0/0 .data            mEvtSeqList__11daNpcChat_c */
-#pragma push
-#pragma force_active on
-SECTION_DATA u8 daNpcChat_c::mEvtSeqList[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-#pragma pop
-
-/* 8098B760-8098B780 -00001 0020+00 1/1 0/0 0/0 .data            @4291 */
-SECTION_DATA static void* lit_4291[8] = {
-    (void*)(((char*)getObjNum__11daNpcChat_cFv) + 0xDC),
-    (void*)(((char*)getObjNum__11daNpcChat_cFv) + 0xE4),
-    (void*)(((char*)getObjNum__11daNpcChat_cFv) + 0xEC),
-    (void*)(((char*)getObjNum__11daNpcChat_cFv) + 0xF4),
-    (void*)(((char*)getObjNum__11daNpcChat_cFv) + 0xFC),
-    (void*)(((char*)getObjNum__11daNpcChat_cFv) + 0x104),
-    (void*)(((char*)getObjNum__11daNpcChat_cFv) + 0x10C),
-    (void*)(((char*)getObjNum__11daNpcChat_cFv) + 0x114),
-};
-
-/* 8098B780-8098B7A0 -00001 0020+00 1/1 0/0 0/0 .data            @4290 */
-SECTION_DATA static void* lit_4290[8] = {
-    (void*)(((char*)getObjNum__11daNpcChat_cFv) + 0x44),
-    (void*)(((char*)getObjNum__11daNpcChat_cFv) + 0x4C),
-    (void*)(((char*)getObjNum__11daNpcChat_cFv) + 0x54),
-    (void*)(((char*)getObjNum__11daNpcChat_cFv) + 0x5C),
-    (void*)(((char*)getObjNum__11daNpcChat_cFv) + 0x64),
-    (void*)(((char*)getObjNum__11daNpcChat_cFv) + 0x6C),
-    (void*)(((char*)getObjNum__11daNpcChat_cFv) + 0x74),
-    (void*)(((char*)getObjNum__11daNpcChat_cFv) + 0x7C),
-};
-
-/* 8098B7A0-8098B7E0 -00001 0040+00 1/1 0/0 0/0 .data            @5232 */
-SECTION_DATA static void* lit_5232[16] = {
-    (void*)(((char*)appearTimeCheck__11daNpcChat_cFv) + 0x54),
-    (void*)(((char*)appearTimeCheck__11daNpcChat_cFv) + 0x6C),
-    (void*)(((char*)appearTimeCheck__11daNpcChat_cFv) + 0x84),
-    (void*)(((char*)appearTimeCheck__11daNpcChat_cFv) + 0x9C),
-    (void*)(((char*)appearTimeCheck__11daNpcChat_cFv) + 0xB4),
-    (void*)(((char*)appearTimeCheck__11daNpcChat_cFv) + 0xCC),
-    (void*)(((char*)appearTimeCheck__11daNpcChat_cFv) + 0x9C),
-    (void*)(((char*)appearTimeCheck__11daNpcChat_cFv) + 0xF4),
-    (void*)(((char*)appearTimeCheck__11daNpcChat_cFv) + 0xF4),
-    (void*)(((char*)appearTimeCheck__11daNpcChat_cFv) + 0xF4),
-    (void*)(((char*)appearTimeCheck__11daNpcChat_cFv) + 0xF4),
-    (void*)(((char*)appearTimeCheck__11daNpcChat_cFv) + 0xF4),
-    (void*)(((char*)appearTimeCheck__11daNpcChat_cFv) + 0xF4),
-    (void*)(((char*)appearTimeCheck__11daNpcChat_cFv) + 0xF4),
-    (void*)(((char*)appearTimeCheck__11daNpcChat_cFv) + 0xDC),
-    (void*)(((char*)appearTimeCheck__11daNpcChat_cFv) + 0xDC),
-};
-
-/* 8098B7E0-8098B814 -00001 0034+00 1/1 0/0 0/0 .data            @5552 */
-SECTION_DATA static void* lit_5552[13] = {
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2D0),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x284),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x28C),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x294),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x29C),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x29C),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2A4),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2A4),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x284),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x294),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x294),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x294),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x294),
-};
-
-/* 8098B814-8098B8EC -00001 00D8+00 1/1 0/0 0/0 .data            @5551 */
-SECTION_DATA static void* lit_5551[54] = {
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x54),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0xAC),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x104),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x15C),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x264),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x264),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x1B4),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x20C),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2AC),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2AC),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2AC),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2AC),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2AC),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2AC),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2AC),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2AC),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2AC),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2AC),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2AC),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2AC),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2AC),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2AC),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x54),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x1B4),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x20C),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x104),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x54),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x1B4),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x20C),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x104),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x54),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x1B4),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x20C),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x104),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x54),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2CC),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2CC),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2CC),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2D0),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2D0),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2D0),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2D0),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2D0),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2D0),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2D0),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2CC),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2D0),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2D0),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2D0),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2D0),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2D0),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2D0),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2D0),
-    (void*)(((char*)setMotionAnm__11daNpcChat_cFif) + 0x2D0),
-};
-
-/* 8098B99C-8098B9E4 004040 0048+00 2/2 0/0 0/0 .data            __vt__11daNpcChat_c */
-SECTION_DATA extern void* __vt__11daNpcChat_c[18] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__11daNpcChat_cFv,
-    (void*)setParam__11daNpcChat_cFv,
-    (void*)main__11daNpcChat_cFv,
-    (void*)ctrlBtk__8daNpcF_cFv,
-    (void*)adjustShapeAngle__11daNpcChat_cFv,
-    (void*)setMtx__8daNpcF_cFv,
-    (void*)setMtx2__8daNpcF_cFv,
-    (void*)setAttnPos__11daNpcChat_cFv,
-    (void*)setCollisions__8daNpcF_cFv,
-    (void*)setExpressionAnm__8daNpcF_cFib,
-    (void*)setExpressionBtp__11daNpcChat_cFi,
-    (void*)setExpression__8daNpcF_cFif,
-    (void*)setMotionAnm__11daNpcChat_cFif,
-    (void*)setMotion__11daNpcChat_cFifi,
-    (void*)drawDbgInfo__11daNpcChat_cFv,
-    (void*)drawOtherMdls__11daNpcChat_cFv,
-};
-
-/* 8098B9E4-8098B9F0 004088 000C+00 3/3 0/0 0/0 .data            __vt__12J3DFrameCtrl */
-SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12J3DFrameCtrlFv,
-};
-
-/* 8098B9F0-8098BA14 004094 0024+00 3/3 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
-SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_ObjAcchFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80986980,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80986978,
-};
-
-/* 8098BA14-8098BA20 0040B8 000C+00 3/3 0/0 0/0 .data            __vt__10cCcD_GStts */
-SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10cCcD_GSttsFv,
-};
-
-/* 8098BA20-8098BA2C 0040C4 000C+00 2/2 0/0 0/0 .data            __vt__10dCcD_GStts */
-SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10dCcD_GSttsFv,
-};
-
-/* 8098BA2C-8098BA38 0040D0 000C+00 2/2 0/0 0/0 .data            __vt__12dBgS_AcchCir */
-SECTION_DATA extern void* __vt__12dBgS_AcchCir[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_AcchCirFv,
-};
-
-/* 8098BA38-8098BA44 0040DC 000C+00 4/4 0/0 0/0 .data            __vt__18daNpcF_ActorMngr_c */
-SECTION_DATA extern void* __vt__18daNpcF_ActorMngr_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__18daNpcF_ActorMngr_cFv,
-};
-
-/* 8098BA44-8098BA50 0040E8 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGCyl */
-SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGCylFv,
-};
-
-/* 8098BA50-8098BA5C 0040F4 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGAab */
-SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGAabFv,
-};
-
-/* 8098BA5C-8098BA68 004100 000C+00 3/3 0/0 0/0 .data            __vt__15daNpcF_Lookat_c */
-SECTION_DATA extern void* __vt__15daNpcF_Lookat_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__15daNpcF_Lookat_cFv,
+daNpcChat_c::eventFunc daNpcChat_c::mEvtSeqList[1] = {
+    NULL,
 };
 
 /* 8098084C-809809D0 0000EC 0184+00 1/1 0/0 0/0 .text            __ct__11daNpcChat_cFv */
@@ -2762,6 +2549,11 @@ bool daNpcChat_c::setExpressionBtp(int i_index) {
     return false;
 }
 
+enum Type { // fix numbers
+    /* 0x0 */ MdlMANa_e,
+    /* 0x1 */ MdlMADa_e,
+};
+
 /* 80983168-80983584 002A08 041C+00 3/0 0/0 0/0 .text            setMotionAnm__11daNpcChat_cFif */
 void daNpcChat_c::setMotionAnm(int i_index, f32 i_morf) {
     // NONMATCHING
@@ -2781,6 +2573,8 @@ void daNpcChat_c::setMotionAnm(int i_index, f32 i_morf) {
                     i_index = 0x1E;
                     break;
 
+                case 2:
+                case 3:
                 case 9:
                 case 10:
                 case 11:
@@ -2807,6 +2601,8 @@ void daNpcChat_c::setMotionAnm(int i_index, f32 i_morf) {
                     i_index = 0x1E;
                     break;
 
+                case 2:
+                case 3:
                 case 9:
                 case 10:
                 case 11:
@@ -2836,6 +2632,8 @@ void daNpcChat_c::setMotionAnm(int i_index, f32 i_morf) {
                     i_index = 0x21;
                     break;
 
+                case 2:
+                case 3:
                 case 9:
                 case 10:
                 case 11:
@@ -2862,6 +2660,8 @@ void daNpcChat_c::setMotionAnm(int i_index, f32 i_morf) {
                     i_index = 0x21;
                     break;
 
+                case 2:
+                case 3:
                 case 9:
                 case 10:
                 case 11:
@@ -2891,6 +2691,8 @@ void daNpcChat_c::setMotionAnm(int i_index, f32 i_morf) {
                     i_index = 0x1F;
                     break;
 
+                case 2:
+                case 3:
                 case 9:
                 case 0xA:
                 case 0xB:
@@ -2920,6 +2722,8 @@ void daNpcChat_c::setMotionAnm(int i_index, f32 i_morf) {
                     i_index = 0x20;
                     break;
 
+                case 2:
+                case 3:
                 case 9:
                 case 10:
                 case 11:
@@ -2985,6 +2789,22 @@ void daNpcChat_c::setMotionAnm(int i_index, f32 i_morf) {
         case 0x14:
         case 0x15:
             switch (objNum) {
+                case 1:
+                case 8:
+                    break;
+
+                case 2:
+                case 3:
+                case 9:
+                case 0xA:
+                case 0xB:
+                case 0xC:
+                    break;
+
+                case 4:
+                case 5:
+                    break;
+                
                 case 6:
                 case 7:
                     i_index = 0x22;
@@ -3012,6 +2832,10 @@ void daNpcChat_c::setMotionAnm(int i_index, f32 i_morf) {
             JUT_ASSERT(1557, mType == MdlMANa_e || mType == MdlMADa_e);
             break;
 
+        case 0x23:
+        case 0x24:
+        case 0x25:
+        case 0x2D:
         default:
             return;
     }
@@ -3041,8 +2865,8 @@ void daNpcChat_c::setMotionAnm(int i_index, f32 i_morf) {
             break;
     }
 
-    char* arcName;
     int resIdx;
+    char* arcName;
     if (isM_()) {
         arcName = l_bckTbl_M[i_index].arc_name;
         resIdx = l_bckTbl_M[i_index].resource_index;
@@ -3065,8 +2889,15 @@ void daNpcChat_c::setMotionAnm(int i_index, f32 i_morf) {
 }
 
 /* 80983584-809835C8 002E24 0044+00 1/0 0/0 0/0 .text            setMotion__11daNpcChat_cFifi */
-void daNpcChat_c::setMotion(int param_0, f32 param_1, int param_2) {
-    // NONMATCHING
+void daNpcChat_c::setMotion(int i_motion, f32 i_morf, int param_3) {
+    s16 motion = i_motion;
+
+    if ((param_3 != 0 || mMotion != motion) && i_motion >= 0 && i_motion < 0x28) {
+        mMotion = motion;
+        mMotionMorfOverride = i_morf;
+        mMotionPrevPhase = -1;
+        mMotionPhase = 0;
+    }
 }
 
 /* 809835C8-809835D0 002E68 0008+00 1/0 0/0 0/0 .text            drawDbgInfo__11daNpcChat_cFv */
@@ -3074,43 +2905,111 @@ int daNpcChat_c::drawDbgInfo() {
     return 0;
 }
 
-/* ############################################################################################## */
-/* 80986F64-80986FCC 0005C8 0068+00 1/1 0/0 0/0 .rodata          a_jntNumTbl$5570 */
-SECTION_RODATA static u8 const a_jntNumTbl[104] = {
-    -1, -1, 0x00, 0x00, 0x00, 0x07, 0xFF, 0xFF, 0xFF,
-    0xFF, 0x00, 0x00, 0x00, 0x0B, -1, -1, 0x00, 0x00,
-    0x00, 0x0B, 0x00, 0x00, 0x00, 0x07, -1, -1, 0x00,
-    0x00, 0x00, 0x0B, 0x00, 0x00, 0x00, 0x01, -1, -1,
-    0x00, 0x00, 0x00, 0x0B, -1, 0x00, 0x00, 0x00, 0x07, 0x00, 0x00, 0x00,
-    0x0A, -1, -1, 0x00, 0x00, 0x00, 0x0B, 0x00, 0x00,
-    0x00, 0x0A, -1, -1, 0x00, 0x00, 0x00, 0x0B,
-};
-COMPILER_STRIP_GATE(0x80986F64, &a_jntNumTbl);
-
 /* 809835D0-809837A4 002E70 01D4+00 1/0 0/0 0/0 .text            drawOtherMdls__11daNpcChat_cFv */
 void daNpcChat_c::drawOtherMdls() {
-    // NONMATCHING
+    static int const a_jntNumTbl[13][2] = {
+        -1, -1, 7, -1,
+        0xB, -1, -1, 0xB,
+        7, -1, -1, 0xB,
+        1, -1, -1, 0xB,
+        -1, 7, 0xA, -1,
+        -1, 0xB, 0xA, -1,
+        -1, 0xB,
+    };
+
+    int x = isM_() ? 0 : 1;
+    int jntNo = a_jntNumTbl[mObjNum][x];
+    f32 objScale = ObjScale(mType);
+
+    if (field_0xe4f != 0) {
+        if (mObjNum != 0) {
+            if (!checkHide()) {
+                if (mObjModel != NULL && jntNo >= 0) {
+                  if (!chkAction(&daNpcChat_c::fear)) {
+                        g_env_light.setLightTevColorType_MAJI(mObjModel, &tevStr);
+                        mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jntNo));
+                        mDoMtx_stack_c::scaleM(objScale, objScale, objScale);
+                        mObjModel->setBaseTRMtx(mDoMtx_stack_c::get());
+                        mDoExt_modelUpdateDL(mObjModel);
+                    }
+                }
+            }
+        } else if (field_0xe51 == 1 && !mHide && mObjModel != NULL) {
+            g_env_light.setLightTevColorType_MAJI(mObjModel, &tevStr);
+            mDoExt_modelUpdateDL(mObjModel);
+        }
+    }
 }
 
 /* 809837A4-809837C0 003044 001C+00 1/1 0/0 0/0 .text            getTalkMotionNo__11daNpcChat_cFv */
 u8 daNpcChat_c::getTalkMotionNo() {
-    u16 talkNo = home.angle.z & 0xFF;
-    if (talkNo > 34) {
+    u8 talkNo = home.angle.z & 0xFF;
+    if (talkNo >= 35) {
         talkNo = 1;
     }
 
     return talkNo;
 }
 
-/* 809837C0-809837EC 003060 002C+00 1/1 0/0 0/0 .text            getLookPlayerCheck__11daNpcChat_cFv
- */
+/* 809837C0-809837EC 003060 002C+00 1/1 0/0 0/0 .text            getLookPlayerCheck__11daNpcChat_cFv */
 u8 daNpcChat_c::getLookPlayerCheck() {
-    // NONMATCHING
+    if ((((u32)home.angle.z >> 8) & 0xFF) == 1 && !mTwilight) {
+        return 1;
+    }
+
+    return 0;
 }
 
 /* 809837EC-809839E0 00308C 01F4+00 1/1 0/0 0/0 .text            reset__11daNpcChat_cFv */
 void daNpcChat_c::reset() {
-    // NONMATCHING
+    initialize();
+    mLookat.initialize();
+
+    for (int i = 0; i < 1; i++) {
+        mActorMngr[i].initialize();
+    }
+
+    field_0xe08 = 0;
+    field_0xe0c = 0;
+    mAction = NULL;
+    field_0xe1c = -1;
+    mMode = 0;
+    current.pos.set(home.pos);
+    old.pos.set(current.pos);
+    current.angle.set(0, home.angle.y, 0);
+    old.angle = current.angle;
+    shape_angle = current.angle;
+    mCurAngle = current.angle;
+    mOldAngle = mCurAngle;
+    speedF = 0.0f;
+    speed.setall(0.0f);
+    field_0xe04 = fpcM_ERROR_PROCESS_ID_e;
+    mOrderEvtNo = 0;
+    field_0xe38 = 0;
+
+    for (int i = 0; i < 5; i++) {
+        mTalkMembers[i] = NULL;
+    }
+    mTalkMembers[mTalkNo] = this;
+
+    mFear = false;
+    mTalkFlag = false;
+
+    if (mObjModel != NULL) {
+        field_0xe4f = true;
+    } else {
+        field_0xe4f = false;
+    }
+
+    if (appearTimeCheck()) {
+        mHide = false;
+    } else {
+        mHide = true;
+        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x8000000);
+    }
+
+    setAction(&daNpcChat_c::wait);
+    mMotionMorfOverride = 0.0f;
 }
 
 /* ############################################################################################## */
@@ -4524,6 +4423,110 @@ COMPILER_STRIP_GATE(0x80987688, &lit_5846);
 /* 809839E0-80984DD0 003280 13F0+00 1/1 0/0 0/0 .text            playMotion__11daNpcChat_cFv */
 void daNpcChat_c::playMotion() {
     // NONMATCHING
+    daNpcF_anmPlayData dat0 = {0x6, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat0[1] = {&dat0};
+    daNpcF_anmPlayData dat1 = {0x0, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat1[1] = {&dat1};
+    daNpcF_anmPlayData dat2 = {0x1, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat2[1] = {&dat2};
+    daNpcF_anmPlayData dat3 = {0x6, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat3[1] = {&dat3};
+    daNpcF_anmPlayData dat4 = {0x7, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat4[1] = {&dat4};
+    daNpcF_anmPlayData dat5a = {0x6, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat5b = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat5c = {0x7, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat5d = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat5e = {0x6, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat5f = {0x7, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat[6] = {&dat5a, &dat5b, &dat5c, &dat5d, &dat5e, &dat5f};
+    daNpcF_anmPlayData dat6 = {0x8, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat6[1] = {&dat6};
+    daNpcF_anmPlayData dat7a = {0x7, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat7b = {0x6, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat7c = {0x8, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat7d = {0x0, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat7[4] = {&dat7a, &dat7b, &dat7c, &dat7d};
+    daNpcF_anmPlayData dat8a = {0x6, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat8b = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat8c = {0x7, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat8d = {0x1, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat8e = {0x8, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat8[5] = {&dat8a, &dat8b, &dat8c, &dat8d, &dat8e};
+    daNpcF_anmPlayData dat9a = {0x14, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat9b = {0x15, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat9[2] = {&dat9a, &dat9b};
+    daNpcF_anmPlayData dat10a = {0x14, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat10b = {0x15, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat10c = {0x6, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat10d = {0x7, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat10e = {0x0, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat10[5] = {&dat10a, &dat10b, &dat10c, &dat10d, &dat10e};
+    daNpcF_anmPlayData dat11a = {0x14, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat11b = {0x15, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat11c = {0x6, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat11d = {0x7, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat11e = {0x8, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat11f = {0x0, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat11[6] = {&dat11a, &dat11b, &dat11c, &dat11d, &dat11e, &dat11f};
+    daNpcF_anmPlayData dat12a = {0x30, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat12b = {0x32, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat12[2] = {&dat12a, &dat12b};
+    daNpcF_anmPlayData dat13a = {0x31, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat13b = {0x33, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat13[2] = {&dat13a, &dat13b};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
+    // daNpcF_anmPlayData dat = {};
+    // daNpcF_anmPlayData* pDat[] = {&};
 }
 
 /* 80984DD0-80984F34 004670 0164+00 1/1 0/0 0/0 .text

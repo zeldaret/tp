@@ -32,6 +32,7 @@ public:
 class daNpcChat_c : public daNpcF_c {
 public:
     typedef bool (daNpcChat_c::*actionFunc)(void*);
+    typedef BOOL (daNpcChat_c::*eventFunc)(int);
 
     /* 8098084C */ daNpcChat_c();
     /* 80980A60 */ ~daNpcChat_c();
@@ -87,8 +88,9 @@ public:
     u8 getTalkIconTypeParam() { return (fopAcM_GetParam(this) >> 24) & 0xF; }
     s16 getMessageNo() { return (int)home.angle.x; }
     cXyz& getBaseAttnPos() { return mBaseAttnPos; }
+    BOOL chkAction(actionFunc action) { return action == mAction; }
 
-    static u8 mEvtSeqList[12];
+    static eventFunc mEvtSeqList[1];
 
 private:
     /* 0xB48 */ Z2CreatureCitizen mSound;
