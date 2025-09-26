@@ -26,6 +26,8 @@
 #include "d/actor/d_a_obj_digplace.h"
 #include "d/actor/d_a_obj_digsnow.h"
 #include "d/actor/d_a_obj_digholl.h"
+#include "d/actor/d_a_obj_sekizoa.h"
+#include "d/actor/d_a_midna.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_msg_object.h"
 #include "f_op/f_op_kankyo_mng.h"
