@@ -402,6 +402,14 @@ inline int fopAcM_GetCullSize(const fopAc_ac_c* i_actor) {
     return i_actor->cullType;
 }
 
+inline int fopAcM_CULLSIZE_IDX(int i_culltype) {
+    return i_culltype - fopAc_CULLBOX_0_e;
+}
+
+inline int fopAcM_CULLSIZE_Q_IDX(int i_culltype) {
+    return i_culltype - fopAc_CULLSPHERE_0_e;
+}
+
 inline BOOL fopAcM_CULLSIZE_IS_BOX(int i_culltype) {
     return (i_culltype >= 0 && i_culltype < fopAc_CULLBOX_CUSTOM_e) ||
            i_culltype == fopAc_CULLBOX_CUSTOM_e;
