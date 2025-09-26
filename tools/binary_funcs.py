@@ -48,15 +48,14 @@ def read_f32(binary_file: BinaryIO) -> int:
     return struct.unpack(">f", chunk)[0]
 
 def read_bytes_until_null(binary_file: BinaryIO) -> bytes:
-  str_length = 0
-  while True:
-    char = binary_file.read(1)
-    if char == b"\0":
-      break
-    else:
-      str_length += 1
-  
-  binary_file.seek(-(str_length+1), os.SEEK_CUR)
-  string = binary_file.read(str_length)
-  
-  return string
+    begin = binary_file.tell()
+    while True:
+        b = binary_file.read(1)
+        if len(b) == 0:
+            raise EOFError()
+        if b[0] == 0:
+            break
+
+    str_length = binary_file.tell() - begin - 1
+    binary_file.seek(begin)
+    return binary_file.read(str_length)
