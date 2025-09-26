@@ -357,7 +357,11 @@ int daNpc_Seira_c::ctrlJointCallBack(J3DJoint* param_0, int param_1) {
 
 /* 80ACC328-80ACC424 000C48 00FC+00 1/1 0/0 0/0 .text            getType__13daNpc_Seira_cFv */
 u8 daNpc_Seira_c::getType() {
-    if (*dComIfGp_getStartStageName() == 0x46) {
+    // Sera can show up in two places:
+    //  1. F_SP103-R00	Ordon Village
+    //  2. R_SP01-R01	Ordon Interiors - Sera's Sundries
+    // We're essentially checking if Sera is outside with Hanch and Beth at the game's start:
+    if (*dComIfGp_getStartStageName() == 'F') {
         return 5;
     }
 
