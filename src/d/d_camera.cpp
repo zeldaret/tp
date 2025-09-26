@@ -2336,7 +2336,7 @@ u32 dCamera_c::lineCollisionCheckBush(cXyz* i_start, cXyz* i_end) {
 
 /* 80165C08-80165CE0 160548 00D8+00 1/1 0/0 0/0 .text
  * sph_chk_callback__FP11dBgS_SphChkP10cBgD_Vtx_tiiiP8cM3dGPlaPv */
-static void* sph_chk_callback(dBgS_SphChk* i_sphChk, cBgD_Vtx_t* i_vtxTbl, int i_vtxIdx0,
+static void sph_chk_callback(dBgS_SphChk* i_sphChk, cBgD_Vtx_t* i_vtxTbl, int i_vtxIdx0,
                              int i_vtxIdx1, int i_vtxIdx2, cM3dGPla* i_plane, void* i_data) {
     camSphChkdata* sph_chk_data = (camSphChkdata*)i_data;
     if (!sph_chk_data->field_0x1c) {
@@ -2348,7 +2348,6 @@ static void* sph_chk_callback(dBgS_SphChk* i_sphChk, cBgD_Vtx_t* i_vtxTbl, int i
             sph_chk_data->field_0x1c = true;
         }
     }
-    //! @bug Function does not return a value
 }
 
 /* 80165CE0-80165E74 160620 0194+00 1/1 0/0 0/0 .text compWallMargin__9dCamera_cFP4cXyzP4cXyzf */
