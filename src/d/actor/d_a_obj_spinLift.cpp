@@ -102,7 +102,7 @@ int daSpinLift_c::create() {
         mTimer = getTimer();
         field_0x5bc = fopAcM_isSwitch(this, getSw());
 
-        if (fopAcM_isSwitch(this, getEndSw()) != 0) {
+        if (fopAcM_isSwitch(this, getEndSw())) {
             current.pos.y += mMoveHeight;
             init_modeMoveEnd();
         } else {
@@ -137,14 +137,14 @@ void daSpinLift_c::moveLift() {
         &daSpinLift_c::modeMoveEnd,
     };
 
-    if (fopAcM_isSwitch(this, getEndSw()) == 0) {
+    if (!fopAcM_isSwitch(this, getEndSw())) {
         u8 f5bc = field_0x5bc;
         field_0x5bc = fopAcM_isSwitch(this, getSw());
         if (f5bc != field_0x5bc) {
             if (field_0x5bc != 0) {
-                init_modeDownMove();
-            } else {
                 init_modeUpMove();
+            } else {
+                init_modeDownMove();
             }
         }
     }
