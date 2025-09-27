@@ -5,11 +5,12 @@
 
 #include "d/dolzel_rel.h"
 
+#include "d/actor/d_a_boomerang.h"
 #include "d/actor/d_a_e_ge.h"
 #include "d/d_cc_d.h"
 #include "f_op/f_op_actor_enemy.h"
-#include "d/actor/d_a_boomerang.h"
 #include "f_op/f_op_camera_mng.h"
+
 
 class daE_GE_HIO_c : public JORReflexible {
 public:
@@ -80,8 +81,8 @@ int daE_GE_c::draw() {
     cXyz modified_pos;
     modified_pos.set(current.pos.x, current.pos.y + 100.0f, current.pos.z);
     mShadowKey = dComIfGd_setShadow(mShadowKey, 1, model, &modified_pos, 400.0f, 0.0f,
-                                        current.pos.y, mObjAcch.GetGroundH(), mObjAcch.m_gnd,
-                                        &tevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
+                                    current.pos.y, mObjAcch.GetGroundH(), mObjAcch.m_gnd, &tevStr,
+                                    0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
     return 1;
 }
 
@@ -113,7 +114,10 @@ bool daE_GE_c::checkBeforeBg(int param_0, f32 param_1) {
 static void* s_arrow_sub(void* i_actor, void* i_data) {
     if (fopAcM_IsActor(i_actor)) {
         if (!fpcM_IsCreating(fopAcM_GetID(i_actor)) && fopAcM_GetName(i_actor) == PROC_ARROW) {
-            if (fopAcM_GetSpeedF((fopAc_ac_c*)i_actor) && fopAcM_searchActorDistance((fopAc_ac_c*)i_actor, (fopAc_ac_c*)i_data) < l_HIO.arrow_recognition_distance) {
+            if (fopAcM_GetSpeedF((fopAc_ac_c*)i_actor) &&
+                fopAcM_searchActorDistance((fopAc_ac_c*)i_actor, (fopAc_ac_c*)i_data) <
+                    l_HIO.arrow_recognition_distance)
+            {
                 static_cast<daE_GE_c*>(i_data)->setSurpriseTime(cM_rndF(10.0f));
             }
         }
@@ -125,7 +129,10 @@ static void* s_arrow_sub(void* i_actor, void* i_data) {
 static void* s_ge_surprise(void* i_actor, void* i_data) {
     if (fopAcM_IsActor(i_actor)) {
         if (!fpcM_IsCreating(fopAcM_GetID(i_actor)) && fopAcM_GetName(i_actor) == PROC_E_GE) {
-            if (fopAcM_searchActorDistance((fopAc_ac_c*)i_actor, (fopAc_ac_c*)i_data) < l_HIO.peer_recognition_distance && static_cast<daE_GE_c*>(i_actor)->getSurpriseTime() == 0) {
+            if (fopAcM_searchActorDistance((fopAc_ac_c*)i_actor, (fopAc_ac_c*)i_data) <
+                    l_HIO.peer_recognition_distance &&
+                static_cast<daE_GE_c*>(i_actor)->getSurpriseTime() == 0)
+            {
                 static_cast<daE_GE_c*>(i_actor)->setSurpriseTime(cM_rndF(5.0f) + 5.0f);
             }
         }
@@ -137,7 +144,10 @@ static void* s_ge_surprise(void* i_actor, void* i_data) {
 static void* s_ge_caw(void* i_actor, void* i_data) {
     if (fopAcM_IsActor(i_actor)) {
         if (!fpcM_IsCreating(fopAcM_GetID(i_actor)) && fopAcM_GetName(i_actor) == PROC_E_GE) {
-            if (i_actor != i_data && fopAcM_searchActorDistance((fopAc_ac_c*)i_actor, (fopAc_ac_c*)i_data) < l_HIO.peer_recognition_distance) {
+            if (i_actor != i_data &&
+                fopAcM_searchActorDistance((fopAc_ac_c*)i_actor, (fopAc_ac_c*)i_data) <
+                    l_HIO.peer_recognition_distance)
+            {
                 static_cast<daE_GE_c*>(i_actor)->setCaw();
             }
         }
@@ -290,9 +300,9 @@ bool daE_GE_c::checkCircleSpeedAdd(cXyz* i_src, cXyz* param_1) {
 /* 806C8518-806C88C8 000BB8 03B0+00 1/1 0/0 0/0 .text setAddCalcSpeed__8daE_GE_cFR4cXyzRC4cXyzffff
  */
 void daE_GE_c::setAddCalcSpeed(cXyz& param_0, cXyz const& param_1, f32 param_2, f32 param_3,
-                                   f32 param_4, f32 param_5) {
+                               f32 param_4, f32 param_5) {
     // Can't prove that this exists in debug but it seems necessary for the logic
-    cXyz diff_vec = param_1 - param_0; 
+    cXyz diff_vec = param_1 - param_0;
     f32 diff = diff_vec.abs();
     cXyz speed_vec(0.0f, 0.0f, 0.0f);
 
@@ -313,8 +323,8 @@ void daE_GE_c::setAddCalcSpeed(cXyz& param_0, cXyz const& param_1, f32 param_2, 
 }
 
 /* 806C88C8-806C89C0 000F68 00F8+00 4/4 0/0 0/0 .text calcCircleFly__8daE_GE_cFP4cXyzP4cXyzsfsf */
-cXyz daE_GE_c::calcCircleFly(cXyz* i_src, cXyz* i_vec, s16 i_angle, f32 param_3,
-                                 s16 i_scale, f32 param_5) {
+cXyz daE_GE_c::calcCircleFly(cXyz* i_src, cXyz* i_vec, s16 i_angle, f32 param_3, s16 i_scale,
+                             f32 param_5) {
     cXyz position;
 
     if (i_vec != 0x0) {
@@ -322,7 +332,8 @@ cXyz daE_GE_c::calcCircleFly(cXyz* i_src, cXyz* i_vec, s16 i_angle, f32 param_3,
     } else {
         position = *i_src;
     }
-    cLib_addCalcAngleS(&shape_angle.y, (s16)cLib_targetAngleY(&current.pos, &position), i_scale, 0x800, 0x100);
+    cLib_addCalcAngleS(&shape_angle.y, (s16)cLib_targetAngleY(&current.pos, &position), i_scale,
+                       0x800, 0x100);
     current.angle.y = shape_angle.y;
     setAddCalcSpeed(current.pos, position, 8.0f, param_3, 1.0f, param_5);
 
@@ -334,46 +345,48 @@ void daE_GE_c::executeWait() {
     fpcM_Search(s_arrow_sub, this);
 
     switch (field_0xb78) {
-        case 0:
-            bckSet(0xC, 3.0f, 2, 1.0f);
-            field_0xb78 = 1;
-            field_0xb8e[0] = (s16)(cM_rndF(300.f) + 300.0f);
-            speedF = 0.0f;
-            speed.y = 0.0f;
-            /* fallthrough */
+    case 0:
+        bckSet(0xC, 3.0f, 2, 1.0f);
+        field_0xb78 = 1;
+        field_0xb8e[0] = (s16)(cM_rndF(300.f) + 300.0f);
+        speedF = 0.0f;
+        speed.y = 0.0f;
+        /* fallthrough */
 
-        case 1:
-            if (field_0xb8e[0] == 0) {
-                field_0xb78 = 3;
-            } else if (field_0xb8e[1] == 0 && fopAcM_searchPlayerDistanceXZ(this) < l_HIO.player_recognition_distance) {
-                bckSet(5, 3.0f, 0, 1.0f);
-                field_0xb78 = 2;
-                fpcM_Search(s_ge_caw, this);
-            }
-            break;
-
-        case 2:
-            if (mpMorfSO->checkFrame(6.0f)) {
-                mSound.startCreatureVoice(Z2SE_EN_GE_V_NAKU, -1);
-            }
-            if (mpMorfSO->isStop()) {
-                setActionMode(6);
-            }
-            break;
-
-        case 3:
+    case 1:
+        if (field_0xb8e[0] == 0) {
+            field_0xb78 = 3;
+        } else if (field_0xb8e[1] == 0 &&
+                   fopAcM_searchPlayerDistanceXZ(this) < l_HIO.player_recognition_distance)
+        {
             bckSet(5, 3.0f, 0, 1.0f);
-            field_0xb78 = 4;
-            break;
+            field_0xb78 = 2;
+            fpcM_Search(s_ge_caw, this);
+        }
+        break;
 
-        case 4:
-            if (mpMorfSO->checkFrame(6.0f)) {
-                mSound.startCreatureVoice(Z2SE_EN_GE_V_NAKU, -1);
-            }
-            if (mpMorfSO->isStop()) {
-                field_0xb78 = 0;
-            }
-            break;
+    case 2:
+        if (mpMorfSO->checkFrame(6.0f)) {
+            mSound.startCreatureVoice(Z2SE_EN_GE_V_NAKU, -1);
+        }
+        if (mpMorfSO->isStop()) {
+            setActionMode(6);
+        }
+        break;
+
+    case 3:
+        bckSet(5, 3.0f, 0, 1.0f);
+        field_0xb78 = 4;
+        break;
+
+    case 4:
+        if (mpMorfSO->checkFrame(6.0f)) {
+            mSound.startCreatureVoice(Z2SE_EN_GE_V_NAKU, -1);
+        }
+        if (mpMorfSO->isStop()) {
+            field_0xb78 = 0;
+        }
+        break;
     }
 }
 
@@ -388,80 +401,82 @@ void daE_GE_c::executeFly() {
     }
 
     switch (field_0xb78) {
-        case 10:
-        case 0:
-            field_0xb9e = 0;
-            if (field_0xb78 == 10) {
+    case 10:
+    case 0:
+        field_0xb9e = 0;
+        if (field_0xb78 == 10) {
+            bckSet(7, 10.0f, 2, 1.0f);
+        } else {
+            bckSet(7, 3.0f, 2, 1.0f);
+        }
+        field_0xb78 = 1;
+        if (cM_rnd() < 0.5f) {
+            field_0xb9d = true;
+        } else {
+            field_0xb9d = false;
+        }
+
+        if (field_0xb9d) {
+            field_0xb8a = (s16)(cM_rndFX(5.0f) * 20.0f + 400.0f);
+        } else {
+            field_0xb8a = (s16)(cM_rndFX(5.0f) * 20.0f + -400.0f);
+        }
+        field_0xb96 = (s16)(cM_rndF(30.0f) + 30.0f);
+        field_0xb7c = 0;
+        field_0xb5c = 0.0f;
+        break;
+
+    case 1:
+        if (field_0xb7c == 0) {
+            field_0xb5c += 4.0f;
+            if (mpMorfSO->checkFrame(0.0f) && field_0xb5c >= 0.0f) {
+                bckSet(10, 10.0f, 2, 1.0f);
+                field_0xb96 = (s16)(cM_rndF(50.0f) + 50.0f);
+                field_0xb7c = 1;
+            }
+        } else {
+            field_0xb5c -= 3.0f;
+            if (field_0xb96 == 0) {
                 bckSet(7, 10.0f, 2, 1.0f);
-            } else {
-                bckSet(7, 3.0f, 2, 1.0f);
+                field_0xb7c = 0;
             }
-            field_0xb78 = 1;
-            if (cM_rnd() < 0.5f) {
-                field_0xb9d = true;
-            } else {
-                field_0xb9d = false;
+        }
+
+        position.set(0.0f, field_0xb5c, 1000.0f);
+
+        if (checkCircleSpeedAdd(&home.pos, &position)) {
+            field_0xb8c += field_0xb8a;
+        }
+
+        calcCircleFly(&home.pos, &position, field_0xb8c, turning_speed, 6, 1.0f);
+
+        if (field_0xb8e[1] == 0) {
+            if (player->current.pos.absXZ(home.pos) < 2000.0f &&
+                fopAcM_searchPlayerDistanceXZ(this) < l_HIO.player_recognition_distance)
+            {
+                bckSet(4, 3.0f, 0, 1.0f);
+                field_0xb78 = 2;
             }
+        }
+        break;
 
-            if (field_0xb9d) {
-                field_0xb8a = (s16)(cM_rndFX(5.0f) * 20.0f + 400.0f);
-            } else {
-                field_0xb8a = (s16)(cM_rndFX(5.0f) * 20.0f + -400.0f);
-            }
-            field_0xb96 = (s16)(cM_rndF(30.0f) + 30.0f);
-            field_0xb7c = 0;
-            field_0xb5c = 0.0f;
-            break;
+    case 2:
+        position.set(0.0f, 0.0f, 1000.0f);
 
-        case 1:
-            if (field_0xb7c == 0) {
-                field_0xb5c += 4.0f;
-                if (mpMorfSO->checkFrame(0.0f) && field_0xb5c >= 0.0f) {
-                    bckSet(10, 10.0f, 2, 1.0f);
-                    field_0xb96 = (s16)(cM_rndF(50.0f) + 50.0f);
-                    field_0xb7c = 1;
-                }
-            } else {
-                field_0xb5c -= 3.0f;
-                if (field_0xb96 == 0) {
-                    bckSet(7, 10.0f, 2, 1.0f);
-                    field_0xb7c = 0;
-                }
-            }
+        if (checkCircleSpeedAdd(&home.pos, &position)) {
+            field_0xb8c += field_0xb8a;
+        }
 
-            position.set(0.0f, field_0xb5c, 1000.0f);
+        calcCircleFly(&home.pos, &position, field_0xb8c, turning_speed, 6, 1.0f);
 
-            if (checkCircleSpeedAdd(&home.pos, &position)) {
-                field_0xb8c += field_0xb8a;
-            }
+        if (mpMorfSO->checkFrame(3.0f)) {
+            mSound.startCreatureVoice(Z2SE_EN_GE_V_NAKU, -1);
+        }
 
-            calcCircleFly(&home.pos, &position, field_0xb8c, turning_speed, 6, 1.0f);
-
-            if (field_0xb8e[1] == 0) {
-                if (player->current.pos.absXZ(home.pos) < 2000.0f && fopAcM_searchPlayerDistanceXZ(this) < l_HIO.player_recognition_distance) {
-                    bckSet(4, 3.0f, 0, 1.0f);
-                    field_0xb78 = 2;
-                }
-            }
-            break;
-
-        case 2:
-            position.set(0.0f, 0.0f, 1000.0f);
-
-            if (checkCircleSpeedAdd(&home.pos, &position)) {
-                field_0xb8c += field_0xb8a;
-            }
-
-            calcCircleFly(&home.pos, &position, field_0xb8c, turning_speed, 6, 1.0f);
-
-            if (mpMorfSO->checkFrame(3.0f)) {
-                mSound.startCreatureVoice(Z2SE_EN_GE_V_NAKU, -1);
-            }
-
-            if (mpMorfSO->isStop() && !searchNextAttacker()) {
-                field_0xb78 = 0;
-            }
-            break;
+        if (mpMorfSO->isStop() && !searchNextAttacker()) {
+            field_0xb78 = 0;
+        }
+        break;
     }
 }
 
@@ -483,13 +498,14 @@ bool daE_GE_c::checkAttackPossible(s16 i_angle, bool param_1) {
 
 /* 806C921C-806C9F04 0018BC 0CE8+00 1/0 0/0 0/0 .text            executeAttack__8daE_GE_cFv */
 void daE_GE_c::executeAttack() {
-    daPy_py_c* player = daPy_getPlayerActorClass(); // debug leftover i guess
+    daPy_py_c* player = daPy_getPlayerActorClass();  // debug leftover i guess
     cXyz position;
     mDoMtx_stack_c::copy(daPy_getLinkPlayerActorClass()->getModelJointMtx(0));
     mDoMtx_stack_c::multVecZero(&position);
-    
+
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
-    s16 distAngleS = cLib_distanceAngleS(fopCamM_GetAngleY(camera), fopAcM_searchPlayerAngleY(this));
+    s16 distAngleS =
+        cLib_distanceAngleS(fopCamM_GetAngleY(camera), fopAcM_searchPlayerAngleY(this));
 
     cXyz flyVec;
 
@@ -497,7 +513,6 @@ void daE_GE_c::executeAttack() {
     cXyz temp;
     cXyz temp2;
 
-    
     temp = position - home.pos;
     if (temp.absXZ() > 2500.0f) {
         setActionMode(3);
@@ -505,129 +520,133 @@ void daE_GE_c::executeAttack() {
     }
 
     bool bVar = false;
-    if (dComIfGp_getAttention()->LockonTruth() && dComIfGp_getAttention()->LockonTarget(0) == this) {
+    if (dComIfGp_getAttention()->LockonTruth() && dComIfGp_getAttention()->LockonTarget(0) == this)
+    {
         bVar = true;
     }
 
     switch (field_0xb78) {
-        case 0:
-            field_0xb9e = 0;
-            field_0xb8e[0] = (s16)(cM_rndF(100.0f) + 100.0f);
-            field_0xb8a = (s16)(260892.0f / l_HIO.attack_turn_radius + cM_rndFX(128.0f));
-            if (cM_rnd() < 0.5f) {
-                field_0xb8a = -field_0xb8a;
-            }
-            field_0xb78 = 1;
-            field_0xb96 = (s16)(cM_rndF(30.0f) + 30.0f);
-            bckSet(7, 3.0f, 2, 1.0f);
-            attention_info.distances[fopAc_attn_BATTLE_e] = 4;
-            field_0xb5c = 0.0f;
-            /* fallthrough */
+    case 0:
+        field_0xb9e = 0;
+        field_0xb8e[0] = (s16)(cM_rndF(100.0f) + 100.0f);
+        field_0xb8a = (s16)(260892.0f / l_HIO.attack_turn_radius + cM_rndFX(128.0f));
+        if (cM_rnd() < 0.5f) {
+            field_0xb8a = -field_0xb8a;
+        }
+        field_0xb78 = 1;
+        field_0xb96 = (s16)(cM_rndF(30.0f) + 30.0f);
+        bckSet(7, 3.0f, 2, 1.0f);
+        attention_info.distances[fopAc_attn_BATTLE_e] = 4;
+        field_0xb5c = 0.0f;
+        /* fallthrough */
 
-        case 1:
-            if (field_0xb8e[1] == 0 && getMoveType() == 0) {
-                temp2 = current.pos - home.pos;
-                if (temp2.absXZ() > 1000.0f) {
-                    setActionMode(3);
-                    return;
-                }
-            }
-            switch (field_0xb7c) {
-                case 0:
-                    field_0xb5c += 4.0f;
-                    if (field_0xb5c >= 0.0f) {
-                        bckSet(10, 10.0f, 2, 1.0f);
-                        field_0xb96 = (s16)(cM_rndF(50.0f) + 50.0f);
-                        field_0xb7c = 1;
-                    }
-
-                    break;
-                case 1:
-                    field_0xb5c -= 3.0f;
-                    if (field_0xb96 == 0) {
-                        bckSet(7, 10.0f, 2, 1.0f);
-                        field_0xb7c = 0;
-                    }
-                    break;
-
-                case 2:
-                    bckSet(8, 3.0f, 0, 1.0f);
-                    field_0xb7c = 3;
-                    /* fallthrough */
-
-                case 3:
-                    mSound.startCreatureSoundLevel(Z2SE_EN_GE_GLIDE, 0, -1);
-                    if (mpMorfSO->checkFrame(12.0f) || mpMorfSO->checkFrame(19.0f) || mpMorfSO->checkFrame(26.0f)) {
-                        mSound.startCreatureSound(Z2SE_EN_GE_WING, 0, -1);
-                    }
-                    if (mpMorfSO->isStop()) {
-                        bckSet(7, 3.0f, 2, 1.0f);
-                        field_0xb7c = 0;
-                    }
-                    break;
-            }
-
-            if (checkAttackPossible(distAngleS, bVar)) {
-                bckSet(4, 10.0f, 0, 1.0f);
-                mSound.startCreatureVoice(Z2SE_EN_GE_V_ATTACK, -1);
-                field_0xb4c = position;
-                field_0xb8c += 0x8000;
-                field_0xb78 = 2;
-                field_0xb7c = 0;
-                field_0xb8e[0] = 200;
-                field_0xb98 = 14;
+    case 1:
+        if (field_0xb8e[1] == 0 && getMoveType() == 0) {
+            temp2 = current.pos - home.pos;
+            if (temp2.absXZ() > 1000.0f) {
+                setActionMode(3);
                 return;
             }
-            flyVec.set(0.0f, l_HIO.attack_turn_altitude + field_0xb5c, l_HIO.attack_turn_radius);
-            if (checkCircleSpeedAdd(&position, &flyVec)) {
-                field_0xb8c += field_0xb8a;
+        }
+        switch (field_0xb7c) {
+        case 0:
+            field_0xb5c += 4.0f;
+            if (field_0xb5c >= 0.0f) {
+                bckSet(10, 10.0f, 2, 1.0f);
+                field_0xb96 = (s16)(cM_rndF(50.0f) + 50.0f);
+                field_0xb7c = 1;
             }
-            calcCircleFly(&position, &flyVec, field_0xb8c, l_HIO.turning_speed, 6, 1.0f);
+
+            break;
+        case 1:
+            field_0xb5c -= 3.0f;
+            if (field_0xb96 == 0) {
+                bckSet(7, 10.0f, 2, 1.0f);
+                field_0xb7c = 0;
+            }
             break;
 
         case 2:
-            if (field_0xb7c == 0) {
-                if (mpMorfSO->checkFrame(3.0f)) {
-                    mSound.startCreatureVoice(Z2SE_EN_GE_V_NAKU, -1);
-                }
-                if (mpMorfSO->isStop()) {
-                    bckSet(10, 3.0f, 2, 1.0f);
-                    field_0xb7c = 1;
-                }
-            }
-            mSphere.OnAtSetBit();
-            flyVec.set(0.0f, 0.0f, 0.0f);
-            
-            temp = calcCircleFly(&field_0xb4c, &flyVec, 0x0, l_HIO.attack_speed, field_0xb98, 1.0f);
-            if (temp.abs() > 300.0f) {
-                field_0xb4c = position;
-                field_0xb8c = shape_angle.y;
-                if (temp.y >= 200.0f) {
-                    speed.y -= l_HIO.add_attack_descent_speed;
-                }
-                if (distAngleS < (s16)(l_HIO.attack_start_angle - 4096.0f) && !bVar) {
-                    field_0xb8e[0] = 0;
-                }
-            } else {
-                field_0xb98 = 8;
-            }
-
-            if (temp.abs() < 100.0f || field_0xb8e[0] == 0 || checkBeforeBg(1, 0.0f)) {
-                bckSet(7, 1.0f, 2, 1.0f);
-                field_0xb78 = 3;
-                field_0xb8e[0] = 0;
-            }
-            break;
+            bckSet(8, 3.0f, 0, 1.0f);
+            field_0xb7c = 3;
+            /* fallthrough */
 
         case 3:
-            mSphere.OnAtSetBit();
-            flyVec.set(0.0f, l_HIO.attack_turn_altitude, l_HIO.attack_turn_radius);
-            // I don't think this cXyz is correct in debug but abs() and y are needed from this variable.
-            temp = calcCircleFly(&position, &flyVec, field_0xb8c, l_HIO.attack_speed, 6, 0.5f);
-            if (temp.abs() < 400.0f || mObjAcch.ChkWallHit()) {
-                field_0xb78 = 0;
+            mSound.startCreatureSoundLevel(Z2SE_EN_GE_GLIDE, 0, -1);
+            if (mpMorfSO->checkFrame(12.0f) || mpMorfSO->checkFrame(19.0f) ||
+                mpMorfSO->checkFrame(26.0f))
+            {
+                mSound.startCreatureSound(Z2SE_EN_GE_WING, 0, -1);
+            }
+            if (mpMorfSO->isStop()) {
+                bckSet(7, 3.0f, 2, 1.0f);
+                field_0xb7c = 0;
             }
             break;
+        }
+
+        if (checkAttackPossible(distAngleS, bVar)) {
+            bckSet(4, 10.0f, 0, 1.0f);
+            mSound.startCreatureVoice(Z2SE_EN_GE_V_ATTACK, -1);
+            field_0xb4c = position;
+            field_0xb8c += 0x8000;
+            field_0xb78 = 2;
+            field_0xb7c = 0;
+            field_0xb8e[0] = 200;
+            field_0xb98 = 14;
+            return;
+        }
+        flyVec.set(0.0f, l_HIO.attack_turn_altitude + field_0xb5c, l_HIO.attack_turn_radius);
+        if (checkCircleSpeedAdd(&position, &flyVec)) {
+            field_0xb8c += field_0xb8a;
+        }
+        calcCircleFly(&position, &flyVec, field_0xb8c, l_HIO.turning_speed, 6, 1.0f);
+        break;
+
+    case 2:
+        if (field_0xb7c == 0) {
+            if (mpMorfSO->checkFrame(3.0f)) {
+                mSound.startCreatureVoice(Z2SE_EN_GE_V_NAKU, -1);
+            }
+            if (mpMorfSO->isStop()) {
+                bckSet(10, 3.0f, 2, 1.0f);
+                field_0xb7c = 1;
+            }
+        }
+        mSphere.OnAtSetBit();
+        flyVec.set(0.0f, 0.0f, 0.0f);
+
+        temp = calcCircleFly(&field_0xb4c, &flyVec, 0x0, l_HIO.attack_speed, field_0xb98, 1.0f);
+        if (temp.abs() > 300.0f) {
+            field_0xb4c = position;
+            field_0xb8c = shape_angle.y;
+            if (temp.y >= 200.0f) {
+                speed.y -= l_HIO.add_attack_descent_speed;
+            }
+            if (distAngleS < (s16)(l_HIO.attack_start_angle - 4096.0f) && !bVar) {
+                field_0xb8e[0] = 0;
+            }
+        } else {
+            field_0xb98 = 8;
+        }
+
+        if (temp.abs() < 100.0f || field_0xb8e[0] == 0 || checkBeforeBg(1, 0.0f)) {
+            bckSet(7, 1.0f, 2, 1.0f);
+            field_0xb78 = 3;
+            field_0xb8e[0] = 0;
+        }
+        break;
+
+    case 3:
+        mSphere.OnAtSetBit();
+        flyVec.set(0.0f, l_HIO.attack_turn_altitude, l_HIO.attack_turn_radius);
+        // I don't think this cXyz is correct in debug but abs() and y are needed from this
+        // variable.
+        temp = calcCircleFly(&position, &flyVec, field_0xb8c, l_HIO.attack_speed, 6, 0.5f);
+        if (temp.abs() < 400.0f || mObjAcch.ChkWallHit()) {
+            field_0xb78 = 0;
+        }
+        break;
     }
     cLib_chaseAngleS(&shape_angle.x, cM_atan2s(speedF, speed.y) - 0x4000, 0x180);
 }
@@ -659,124 +678,125 @@ void daE_GE_c::executeBack() {
     s16 chaseAngle = 0x0;
 
     switch (field_0xb78) {
-        case 0:
-        case 10:
-            field_0xb9e = 0;
-            if (getMoveType() != 0) {
-                setActionMode(1);
+    case 0:
+    case 10:
+        field_0xb9e = 0;
+        if (getMoveType() != 0) {
+            setActionMode(1);
+        } else {
+            if (field_0xb78 == 10) {
+                bckSet(7, 10.0f, 2, 1.0f);
             } else {
-                if (field_0xb78 == 10) {
-                    bckSet(7, 10.0f, 2, 1.0f);
-                } else {
-                    bckSet(7, 3.0f, 2, 1.0f);
-                }
-                if (current.pos.absXZ(home.pos) < 1500.0f) {
-                    field_0xb78 = 1;
-                    field_0xb8a = 32;
-                } else {
-                    field_0xb78 = 2;
-                }
-                field_0xb58 = l_HIO.turning_speed;
-                field_0xb8c = cLib_targetAngleY(&home.pos, &current.pos);
+                bckSet(7, 3.0f, 2, 1.0f);
             }
-            break;
-
-        case 1:
-            setBackAnime(0);
-
-            if (field_0xb8a > 8) {
-                field_0xb8a--;
-            }
-
-            position2.set(0.0f, 200.0f, 1000.0f);
-            position = calcCircleFly(&home.pos, &position2, field_0xb8c, field_0xb58, field_0xb8a, 1.0f);
-
-            s16 distAngleS = cLib_distanceAngleS(cLib_targetAngleY(&current.pos, &home.pos), shape_angle.y);
-            if (position.y > 100.0f || mObjAcch.ChkWallHit() || distAngleS >= 0x5000) {
-                field_0xb8c += 0x190;
-            }
-
-            if (position.abs() < 50.0f) {
+            if (current.pos.absXZ(home.pos) < 1500.0f) {
+                field_0xb78 = 1;
+                field_0xb8a = 32;
+            } else {
                 field_0xb78 = 2;
             }
+            field_0xb58 = l_HIO.turning_speed;
+            field_0xb8c = cLib_targetAngleY(&home.pos, &current.pos);
+        }
+        break;
 
-            chaseAngle = cM_atan2s(speedF, speed.y) - 0x4000;
-            break;
+    case 1:
+        setBackAnime(0);
 
-        case 2:
-            if (field_0xb7c == 0) {
-                s16 targetAngleY = cLib_targetAngleY(&current.pos, &home.pos);
-                if ((s16)cLib_distanceAngleS(targetAngleY, shape_angle.y) <= 0x800) {
-                    field_0xb8c = targetAngleY + 0x8000;
-                    field_0xb7c = 1;
-                }
+        if (field_0xb8a > 8) {
+            field_0xb8a--;
+        }
+
+        position2.set(0.0f, 200.0f, 1000.0f);
+        position =
+            calcCircleFly(&home.pos, &position2, field_0xb8c, field_0xb58, field_0xb8a, 1.0f);
+
+        s16 distAngleS =
+            cLib_distanceAngleS(cLib_targetAngleY(&current.pos, &home.pos), shape_angle.y);
+        if (position.y > 100.0f || mObjAcch.ChkWallHit() || distAngleS >= 0x5000) {
+            field_0xb8c += 0x190;
+        }
+
+        if (position.abs() < 50.0f) {
+            field_0xb78 = 2;
+        }
+
+        chaseAngle = cM_atan2s(speedF, speed.y) - 0x4000;
+        break;
+
+    case 2:
+        if (field_0xb7c == 0) {
+            s16 targetAngleY = cLib_targetAngleY(&current.pos, &home.pos);
+            if ((s16)cLib_distanceAngleS(targetAngleY, shape_angle.y) <= 0x800) {
+                field_0xb8c = targetAngleY + 0x8000;
+                field_0xb7c = 1;
             }
-            position2.set(0.0f, 100.0f, 400.0f);
-            position = calcCircleFly(&home.pos, &position2, field_0xb8c, field_0xb58, 0x10, 1.0f);
+        }
+        position2.set(0.0f, 100.0f, 400.0f);
+        position = calcCircleFly(&home.pos, &position2, field_0xb8c, field_0xb58, 0x10, 1.0f);
 
-            if (position.y < 150.0f && position.abs() < 700.0f) {
-                setBackAnime(1);
-            } else {
-                setBackAnime(0);
-            }
+        if (position.y < 150.0f && position.abs() < 700.0f) {
+            setBackAnime(1);
+        } else {
+            setBackAnime(0);
+        }
 
-            if (position.abs() < 50.0f) {
-                field_0xb78 = 3;
-                bckSet(0xB, 3.0f, 0, 1.0f);
-                field_0xb8e[0] = 10;
-                speed.y = 0.0f;
-                field_0xb9e = 1;
-            }
+        if (position.abs() < 50.0f) {
+            field_0xb78 = 3;
+            bckSet(0xB, 3.0f, 0, 1.0f);
+            field_0xb8e[0] = 10;
+            speed.y = 0.0f;
+            field_0xb9e = 1;
+        }
 
-            chaseAngle = cM_atan2s(speedF, speed.y) - 0x4000;
-            break;
+        chaseAngle = cM_atan2s(speedF, speed.y) - 0x4000;
+        break;
 
-        case 3:
-            if (mpMorfSO->checkFrame(5.0f)) {
-                mpMorfSO->setPlaySpeed(0.0f);
-            }
+    case 3:
+        if (mpMorfSO->checkFrame(5.0f)) {
+            mpMorfSO->setPlaySpeed(0.0f);
+        }
 
-            cLib_chaseF(&field_0xb58, 15.0f, 1.0f);
+        cLib_chaseF(&field_0xb58, 15.0f, 1.0f);
 
-            position2.set(0.0f, 140.0f, 200.0f);
-            position = calcCircleFly(&home.pos, &position2, field_0xb8c, field_0xb58, 4, 1.0f);
+        position2.set(0.0f, 140.0f, 200.0f);
+        position = calcCircleFly(&home.pos, &position2, field_0xb8c, field_0xb58, 4, 1.0f);
 
-            if (position.abs() < 50.0f) {
-                field_0xb78 = 4;
-                mpMorfSO->setPlaySpeed(1.0f);
-            }
-            break;
+        if (position.abs() < 50.0f) {
+            field_0xb78 = 4;
+            mpMorfSO->setPlaySpeed(1.0f);
+        }
+        break;
 
-        case 4:
-            if (mpMorfSO->checkFrame(17.0f) || mpMorfSO->checkFrame(24.0f)) {
-                mSound.startCreatureSound(Z2SE_EN_GE_WING, 0, -1);
-            }
+    case 4:
+        if (mpMorfSO->checkFrame(17.0f) || mpMorfSO->checkFrame(24.0f)) {
+            mSound.startCreatureSound(Z2SE_EN_GE_WING, 0, -1);
+        }
 
-            s16 oldShapeAngleY = shape_angle.y;
+        s16 oldShapeAngleY = shape_angle.y;
 
-            cLib_chaseF(&field_0xb58, 0.0f, 1.0f);
+        cLib_chaseF(&field_0xb58, 0.0f, 1.0f);
 
-            position2.set(0.0f, 0.0f, 0.0f);
-            calcCircleFly(&home.pos, &position2, field_0xb8c, field_0xb58, 4, 1.0f);
-            shape_angle.y = current.angle.y = oldShapeAngleY;
+        position2.set(0.0f, 0.0f, 0.0f);
+        calcCircleFly(&home.pos, &position2, field_0xb8c, field_0xb58, 4, 1.0f);
+        shape_angle.y = current.angle.y = oldShapeAngleY;
 
-            if (cLib_addCalcPos(&current.pos, home.pos, 0.1f, 15.0f - field_0xb58, 1.0f) < 4.0f) {
-                if (mpMorfSO->isStop()) {
-                    old.pos = home.pos;
-                    current.pos = old.pos;
-                    if (mPrevActionMode == 6) {
-                        setActionMode(6);
-                        field_0xb8e[1] = 100;
-                        return;
-                    }
-
-                    setActionMode(0);
+        if (cLib_addCalcPos(&current.pos, home.pos, 0.1f, 15.0f - field_0xb58, 1.0f) < 4.0f) {
+            if (mpMorfSO->isStop()) {
+                old.pos = home.pos;
+                current.pos = old.pos;
+                if (mPrevActionMode == 6) {
+                    setActionMode(6);
+                    field_0xb8e[1] = 100;
                     return;
-                    
                 }
-            }
 
-            break;
+                setActionMode(0);
+                return;
+            }
+        }
+
+        break;
     }
     cLib_chaseAngleS(&shape_angle.x, chaseAngle, 0x180);
 }
@@ -792,75 +812,75 @@ void daE_GE_c::executeDown() {
     }
 
     switch (field_0xb78) {
-        case 0:
-        #if !DEBUG // Looks like this is not happening in debug
-            mSphere.OffTgSetBit();
-            mSphere2.OffTgSetBit();
-        #endif
-            fopAcM_OffStatus(this, 0x20);
-            field_0xb9e = 0;
-            attention_info.flags = 0;
-            bckSet(4, 3.0f, 2, 1.0f);
-            field_0xb78 = 1;
-            mSound.startCreatureVoice(Z2SE_EN_GE_V_DEATH, -1);
-            field_0xb8a = 0;
-            current.angle.y = (s16)((mAtInfo.mHitDirection.y + 0x8000) + cM_rndFX(4096.0f));
-            if (mMoveType != 2) {
-                field_0xb8e[0] = 0x96;
-            } else {
-                field_0xb8e[0] = 0x5A;
-            }
-            /* fallthrough */
+    case 0:
+#if !DEBUG  // Looks like this is not happening in debug
+        mSphere.OffTgSetBit();
+        mSphere2.OffTgSetBit();
+#endif
+        fopAcM_OffStatus(this, 0x20);
+        field_0xb9e = 0;
+        attention_info.flags = 0;
+        bckSet(4, 3.0f, 2, 1.0f);
+        field_0xb78 = 1;
+        mSound.startCreatureVoice(Z2SE_EN_GE_V_DEATH, -1);
+        field_0xb8a = 0;
+        current.angle.y = (s16)((mAtInfo.mHitDirection.y + 0x8000) + cM_rndFX(4096.0f));
+        if (mMoveType != 2) {
+            field_0xb8e[0] = 0x96;
+        } else {
+            field_0xb8e[0] = 0x5A;
+        }
+        /* fallthrough */
 
-        case 1:
-            if (field_0xb8e[0] == 0) {
-                fopAcM_createDisappear(this, &current.pos, 10, 0, 0x21);
-                fopAcM_delete(this);
-                dComIfGs_onSwitch(field_0xb9c, fopAcM_GetRoomNo(this));
-            } else {
-                if (mObjAcch.ChkGroundHit()) {
-                    mSound.startCreatureSound(Z2SE_CM_BODYFALL_S, 0, -1);
-                    fopAcM_effSmokeSet1(&mSmokeKey, &mSmokeKey2, &current.pos, NULL, 1.0f, &tevStr, 1);
-                    field_0xb8e[0] = 0;
-                    field_0xb78 = 2;
-                    speed.y = 20.0f;
-                    speedF = 5.0f;
-                    shape_angle.x = -0x8000;
-                    shape_angle.z = 0x0;
-                    mObjAcch.SetGroundUpY(20.0f);
-                }
-                shape_angle.z += 0x800;
-                cLib_addCalcAngleS(&shape_angle.x, 0x4000, 8, 0x1000, 0x10);
-            }
-            break;
-
-        case 2:
-            cLib_addCalcAngleS(&shape_angle.x, -0x8000, 8, 0x1000, 0x10);
+    case 1:
+        if (field_0xb8e[0] == 0) {
+            fopAcM_createDisappear(this, &current.pos, 10, 0, 0x21);
+            fopAcM_delete(this);
+            dComIfGs_onSwitch(field_0xb9c, fopAcM_GetRoomNo(this));
+        } else {
             if (mObjAcch.ChkGroundHit()) {
                 mSound.startCreatureSound(Z2SE_CM_BODYFALL_S, 0, -1);
                 fopAcM_effSmokeSet1(&mSmokeKey, &mSmokeKey2, &current.pos, NULL, 1.0f, &tevStr, 1);
-                speed.y = 0.0f;
-                speedF = 0.0f;
-                field_0xb78 = 3;
-                mpMorfSO->setFrame(16.0f);
-                mpMorfSO->setPlaySpeed(0.5f);
-            }
-            break;
-
-        case 3:
-            if (mpMorfSO->checkFrame(23.0f)) {
                 field_0xb8e[0] = 0;
-                field_0xb78 = 4;
+                field_0xb78 = 2;
+                speed.y = 20.0f;
+                speedF = 5.0f;
+                shape_angle.x = -0x8000;
+                shape_angle.z = 0x0;
+                mObjAcch.SetGroundUpY(20.0f);
             }
-            break;
+            shape_angle.z += 0x800;
+            cLib_addCalcAngleS(&shape_angle.x, 0x4000, 8, 0x1000, 0x10);
+        }
+        break;
 
-        case 4:
-            if (field_0xb8e[0] == 0) {
-                fopAcM_createDisappear(this, &current.pos, 10, 0, 0x21);
-                fopAcM_delete(this);
-                dComIfGs_onSwitch(field_0xb9c, fopAcM_GetRoomNo(this));
-            }
-            break;
+    case 2:
+        cLib_addCalcAngleS(&shape_angle.x, -0x8000, 8, 0x1000, 0x10);
+        if (mObjAcch.ChkGroundHit()) {
+            mSound.startCreatureSound(Z2SE_CM_BODYFALL_S, 0, -1);
+            fopAcM_effSmokeSet1(&mSmokeKey, &mSmokeKey2, &current.pos, NULL, 1.0f, &tevStr, 1);
+            speed.y = 0.0f;
+            speedF = 0.0f;
+            field_0xb78 = 3;
+            mpMorfSO->setFrame(16.0f);
+            mpMorfSO->setPlaySpeed(0.5f);
+        }
+        break;
+
+    case 3:
+        if (mpMorfSO->checkFrame(23.0f)) {
+            field_0xb8e[0] = 0;
+            field_0xb78 = 4;
+        }
+        break;
+
+    case 4:
+        if (field_0xb8e[0] == 0) {
+            fopAcM_createDisappear(this, &current.pos, 10, 0, 0x21);
+            fopAcM_delete(this);
+            dComIfGs_onSwitch(field_0xb9c, fopAcM_GetRoomNo(this));
+        }
+        break;
     }
 }
 
@@ -884,56 +904,58 @@ void daE_GE_c::executeSurprise() {
     cXyz vec;
 
     switch (field_0xb78) {
-        case 0:
-            field_0xb9e = 0;
-            bckSet(8, 3.0f, 0, 1.0f);
-            field_0xb8e[0] = (s16)(cM_rndF(100.0f) + 150.0f);
-            field_0xb78 = 1;
-            field_0xb8c = (s16)cM_rndFX(32768.0f);
-            vec.set(0.0f, cM_rndFX(300.0f) + 800.0f, cM_rndFX(1500.0f));
-            cLib_offsetPos(&field_0xb4c, &home.pos, (s16)cM_rndFX(32768.0f), &vec);
-            /* fallthrough */
+    case 0:
+        field_0xb9e = 0;
+        bckSet(8, 3.0f, 0, 1.0f);
+        field_0xb8e[0] = (s16)(cM_rndF(100.0f) + 150.0f);
+        field_0xb78 = 1;
+        field_0xb8c = (s16)cM_rndFX(32768.0f);
+        vec.set(0.0f, cM_rndFX(300.0f) + 800.0f, cM_rndFX(1500.0f));
+        cLib_offsetPos(&field_0xb4c, &home.pos, (s16)cM_rndFX(32768.0f), &vec);
+        /* fallthrough */
 
-        case 1:
-            if (bckCheck(8)) {
-                mSound.startCreatureSoundLevel(Z2SE_EN_GE_GLIDE, 0, -1);
-                if (mpMorfSO->checkFrame(12.0f) || mpMorfSO->checkFrame(19.0f) || mpMorfSO->checkFrame(26.0f)) {
-                    mSound.startCreatureSound(Z2SE_EN_GE_WING, 0, -1);
-                }
-                if (mpMorfSO->isStop()) {
-                    bckSet(7, 3.0f, 2, 1.0f);
-                }
+    case 1:
+        if (bckCheck(8)) {
+            mSound.startCreatureSoundLevel(Z2SE_EN_GE_GLIDE, 0, -1);
+            if (mpMorfSO->checkFrame(12.0f) || mpMorfSO->checkFrame(19.0f) ||
+                mpMorfSO->checkFrame(26.0f))
+            {
+                mSound.startCreatureSound(Z2SE_EN_GE_WING, 0, -1);
             }
+            if (mpMorfSO->isStop()) {
+                bckSet(7, 3.0f, 2, 1.0f);
+            }
+        }
 
-            vec.set(0.0f, 0.0f, 700.0f);
-            calcCircleFly(&field_0xb4c, &vec, field_0xb8c, l_HIO.turning_speed, 6, 1.0f);
-            field_0xb8c += 0x258;
+        vec.set(0.0f, 0.0f, 700.0f);
+        calcCircleFly(&field_0xb4c, &vec, field_0xb8c, l_HIO.turning_speed, 6, 1.0f);
+        field_0xb8c += 0x258;
 
-            if (field_0xb8e[0] == 0) {
-                if (searchNextAttacker()) {
-                    break;
-                }
-                if (daPy_getPlayerActorClass()->current.pos.absXZ(home.pos) > 1000.0f) {
-                    if (mPrevActionMode == 6) {
-                        mActionMode = 6;
-                    }
-                    setActionMode(3);
-                    break;
-                }
-                field_0xb8e[0] = (s16)(cM_rndF(50.0f) + 70.0f);
-                // fallthrough
+        if (field_0xb8e[0] == 0) {
+            if (searchNextAttacker()) {
+                break;
             }
-        default:
-            s16 targetAngle = cM_atan2s(speedF, speed.y) - 0x4000;
+            if (daPy_getPlayerActorClass()->current.pos.absXZ(home.pos) > 1000.0f) {
+                if (mPrevActionMode == 6) {
+                    mActionMode = 6;
+                }
+                setActionMode(3);
+                break;
+            }
+            field_0xb8e[0] = (s16)(cM_rndF(50.0f) + 70.0f);
+            // fallthrough
+        }
+    default:
+        s16 targetAngle = cM_atan2s(speedF, speed.y) - 0x4000;
 
-            if (targetAngle < -6000) {
-                targetAngle = -6000;
-            }
-            if (targetAngle > 6000) {
-                targetAngle = 6000;
-            }
-            cLib_chaseAngleS(&shape_angle.x, targetAngle, 0x180);
-            break;        
+        if (targetAngle < -6000) {
+            targetAngle = -6000;
+        }
+        if (targetAngle > 6000) {
+            targetAngle = 6000;
+        }
+        cLib_chaseAngleS(&shape_angle.x, targetAngle, 0x180);
+        break;
     }
 }
 
@@ -959,30 +981,30 @@ void daE_GE_c::executeCaw() {
         setActionMode(5);
     } else {
         switch (field_0xb78) {
-            case 0:
-                if (field_0xb8e[1] == 0) {
-                    bckSet(5, 3.0f, 0, 1.0f);
-                    field_0xb78 = 1;
-                    if (field_0xb7c == 0) {
-                        fpcM_Search(s_ge_caw, this);
-                        field_0xb7c = 1;
-                    }
+        case 0:
+            if (field_0xb8e[1] == 0) {
+                bckSet(5, 3.0f, 0, 1.0f);
+                field_0xb78 = 1;
+                if (field_0xb7c == 0) {
+                    fpcM_Search(s_ge_caw, this);
+                    field_0xb7c = 1;
                 }
-                break;
+            }
+            break;
 
-            case 1:
-                if (mpMorfSO->checkFrame(6.0f)) {
-                    mSound.startCreatureVoice(Z2SE_EN_GE_V_NAKU, -1);
-                }
-                if (mpMorfSO->isStop()) {
-                    setActionMode(2);
-                    field_0xb8e[1] = (s16)(cM_rndF(300.0f) + 700.0f);
-                    field_0xb7c = 2;
-                } else if (field_0xb8e[0] == 0) {
-                    field_0xb78 = 0;
-                    field_0xb8e[0] = (s16)(cM_rndFX(50.0f) + 50.0f);
-                }
-                break;
+        case 1:
+            if (mpMorfSO->checkFrame(6.0f)) {
+                mSound.startCreatureVoice(Z2SE_EN_GE_V_NAKU, -1);
+            }
+            if (mpMorfSO->isStop()) {
+                setActionMode(2);
+                field_0xb8e[1] = (s16)(cM_rndF(300.0f) + 700.0f);
+                field_0xb7c = 2;
+            } else if (field_0xb8e[0] == 0) {
+                field_0xb78 = 0;
+                field_0xb8e[0] = (s16)(cM_rndFX(50.0f) + 50.0f);
+            }
+            break;
         }
     }
 }
@@ -995,108 +1017,100 @@ void daE_GE_c::executeWind() {
     }
 
     switch (field_0xb78) {
-        case 0:
-            field_0xb9e = 0;
-            cXyz boomerangPos(daPy_py_c::getThrowBoomerangActor()->current.pos);
-            field_0xb58 = current.pos.absXZ(boomerangPos);
-            field_0xb5c = current.pos.y - boomerangPos.y;
-            speed.y = 0.0f;
-            speedF = 0.0f;
-            field_0xb78 = 1;
-            bckSet(9, 3.0f, 2, 1.0f);
-            field_0xb64 = cM_rndFX(50.0f);
-            field_0xb60 = cM_rndFX(100.0f);
+    case 0:
+        field_0xb9e = 0;
+        cXyz boomerangPos(daPy_py_c::getThrowBoomerangActor()->current.pos);
+        field_0xb58 = current.pos.absXZ(boomerangPos);
+        field_0xb5c = current.pos.y - boomerangPos.y;
+        speed.y = 0.0f;
+        speedF = 0.0f;
+        field_0xb78 = 1;
+        bckSet(9, 3.0f, 2, 1.0f);
+        field_0xb64 = cM_rndFX(50.0f);
+        field_0xb60 = cM_rndFX(100.0f);
 
-            /* fallthrough */
+        /* fallthrough */
 
-        case 1:
-            if (mpMorfSO->checkFrame(0.0f)) {
-                mSound.startCreatureVoice(Z2SE_EN_GE_V_FURA, -1);
-            }
+    case 1:
+        if (mpMorfSO->checkFrame(0.0f)) {
+            mSound.startCreatureVoice(Z2SE_EN_GE_V_FURA, -1);
+        }
 
-            cXyz boomerangPos2(daPy_py_c::getThrowBoomerangActor()->current.pos);
-            field_0xb8c += 0x800;
-            current.pos.x = boomerangPos2.x + field_0xb58 * cM_ssin(field_0xb8c);
-            current.pos.z = boomerangPos2.z + field_0xb58 * cM_scos(field_0xb8c);
-            cLib_chaseF(&field_0xb58, field_0xb60, 2.0f);
-            current.pos.y = boomerangPos2.y + field_0xb5c;
+        cXyz boomerangPos2(daPy_py_c::getThrowBoomerangActor()->current.pos);
+        field_0xb8c += 0x800;
+        current.pos.x = boomerangPos2.x + field_0xb58 * cM_ssin(field_0xb8c);
+        current.pos.z = boomerangPos2.z + field_0xb58 * cM_scos(field_0xb8c);
+        cLib_chaseF(&field_0xb58, field_0xb60, 2.0f);
+        current.pos.y = boomerangPos2.y + field_0xb5c;
 
-            if (field_0xb5c < 50.0f) {
-                cLib_chaseF(&field_0xb5c, field_0xb64, 10.0f);
-            } else {
-                cLib_chaseF(&field_0xb5c, field_0xb64, 5.0f);
-            }
+        if (field_0xb5c < 50.0f) {
+            cLib_chaseF(&field_0xb5c, field_0xb64, 10.0f);
+        } else {
+            cLib_chaseF(&field_0xb5c, field_0xb64, 5.0f);
+        }
 
-            field_0xb8a = 0x3000;
-            shape_angle.y += field_0xb8a;
-            break;
+        field_0xb8a = 0x3000;
+        shape_angle.y += field_0xb8a;
+        break;
 
-        case 2:
-            cLib_addCalcAngleS2(&field_0xb8a, 0, 4, 0x180);
-            shape_angle.y += field_0xb8a;
-            if (field_0xb8e[0] == 0) {
-                if (getMoveType() != 0) {
-                    setActionMode(1);
-                    field_0xb78 = 10;
-                    break;
-                }
-                field_0xb80 = 90;
-                setActionMode(3);
+    case 2:
+        cLib_addCalcAngleS2(&field_0xb8a, 0, 4, 0x180);
+        shape_angle.y += field_0xb8a;
+        if (field_0xb8e[0] == 0) {
+            if (getMoveType() != 0) {
+                setActionMode(1);
                 field_0xb78 = 10;
+                break;
             }
-            break;
+            field_0xb80 = 90;
+            setActionMode(3);
+            field_0xb78 = 10;
+        }
+        break;
     }
-
-    
 }
 
 /* 806CBAB8-806CBC38 004158 0180+00 1/0 0/0 0/0 .text            executeShield__8daE_GE_cFv */
 void daE_GE_c::executeShield() {
     switch (field_0xb78) {
-        case 0:
-            field_0xb9e = 0;
-            speedF = 20.0f;
-            speed.y = 0.0f;
-            field_0xb78 = 1;
-            bckSet(9, 3.0f, 2, 1.0f);
-            field_0xb8e[0] = 60;
-            current.angle.y = fopAcM_searchPlayerAngleY(this) + 0x8000;
-            /* fallthrough */
-        case 1:
-            if (mpMorfSO->checkFrame(0.0f)) {
-                mSound.startCreatureVoice(Z2SE_EN_GE_V_FURA, -1);
+    case 0:
+        field_0xb9e = 0;
+        speedF = 20.0f;
+        speed.y = 0.0f;
+        field_0xb78 = 1;
+        bckSet(9, 3.0f, 2, 1.0f);
+        field_0xb8e[0] = 60;
+        current.angle.y = fopAcM_searchPlayerAngleY(this) + 0x8000;
+        /* fallthrough */
+    case 1:
+        if (mpMorfSO->checkFrame(0.0f)) {
+            mSound.startCreatureVoice(Z2SE_EN_GE_V_FURA, -1);
+        }
+
+        cLib_chaseF(&speedF, 0.0f, 1.5f);
+        cLib_chaseF(&speed.y, 0.0f, 1.0f);
+        cLib_addCalcAngleS(&shape_angle.y, current.angle.y + 0x8000, 8, 0x400, 0x80);
+
+        if (field_0xb8e[0] == 0) {
+            if (getMoveType() != 0) {
+                setActionMode(1);
+                field_0xb78 = 10;
+            } else {
+                field_0xb80 = 90;
+                setActionMode(3);
+                field_0xb78 = 10;
             }
+        }
 
-            cLib_chaseF(&speedF, 0.0f, 1.5f);
-            cLib_chaseF(&speed.y, 0.0f, 1.0f);
-            cLib_addCalcAngleS(&shape_angle.y, current.angle.y + 0x8000, 8, 0x400, 0x80);
-
-            if (field_0xb8e[0] == 0) {
-                if (getMoveType() != 0) {
-                    setActionMode(1);
-                    field_0xb78 = 10;
-                } else {
-                    field_0xb80 = 90;
-                    setActionMode(3);
-                    field_0xb78 = 10;
-                }
-            }
-
-            break;
+        break;
     }
 }
 
 /* 806CD1E8-806CD254 0000D0 006C+00 1/2 0/0 0/0 .data            l_actionmenu__8daE_GE_c */
 daE_GE_c::actionFunc daE_GE_c::l_actionmenu[9] = {
-    (&daE_GE_c::executeWait),
-    (&daE_GE_c::executeFly),
-    (&daE_GE_c::executeAttack),
-    (&daE_GE_c::executeBack),
-    (&daE_GE_c::executeDown),
-    (&daE_GE_c::executeSurprise),
-    (&daE_GE_c::executeCaw),
-    (&daE_GE_c::executeWind),
-    (&daE_GE_c::executeShield),
+    (&daE_GE_c::executeWait), (&daE_GE_c::executeFly),  (&daE_GE_c::executeAttack),
+    (&daE_GE_c::executeBack), (&daE_GE_c::executeDown), (&daE_GE_c::executeSurprise),
+    (&daE_GE_c::executeCaw),  (&daE_GE_c::executeWind), (&daE_GE_c::executeShield),
 };
 
 /* 806CBC38-806CBE98 0042D8 0260+00 1/1 0/0 0/0 .text            action__8daE_GE_cFv */
@@ -1278,7 +1292,9 @@ static int daE_GE_Delete(daE_GE_c* i_this) {
 
 /* 806CC278-806CC370 004918 00F8+00 1/1 0/0 0/0 .text            CreateHeap__8daE_GE_cFv */
 int daE_GE_c::CreateHeap() {
-    mpMorfSO = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_GE", 0xF), NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_GE", 0xC), 0, 1.0f, 0, -1, &mSound, 0x80000, 0x11000084);
+    mpMorfSO = new mDoExt_McaMorfSO((J3DModelData*)dComIfG_getObjectRes("E_GE", 0xF), NULL, NULL,
+                                    (J3DAnmTransform*)dComIfG_getObjectRes("E_GE", 0xC), 0, 1.0f, 0,
+                                    -1, &mSound, 0x80000, 0x11000084);
 
     if (mpMorfSO == NULL || mpMorfSO->getModel() == NULL) {
         return 0;
@@ -1296,14 +1312,14 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 int daE_GE_c::create() {
     static dCcD_SrcSph cc_sph_src = {
         {
-            {0x0, {{AT_TYPE_CSTATUE_SWING, 0x1, 0xd}, {0xd8fbfdff, 0x3}, 0x75}}, // mObj
-            {dCcD_SE_METAL, 0x0, 0x0, 0x0, 0x0}, // mGObjAt
-            {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x22}, // mGObjTg
-            {0x0}, // mGObjCo
-        }, // mObjInf
+            {0x0, {{AT_TYPE_CSTATUE_SWING, 0x1, 0xd}, {0xd8fbfdff, 0x3}, 0x75}},  // mObj
+            {dCcD_SE_METAL, 0x0, 0x0, 0x0, 0x0},                                  // mGObjAt
+            {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x22},                                  // mGObjTg
+            {0x0},                                                                // mGObjCo
+        },                                                                        // mObjInf
         {
-            {{0.0f, 0.0f, 0.0f}, 40.0f} // mSph
-        } // mSphAttr
+            {{0.0f, 0.0f, 0.0f}, 40.0f}  // mSph
+        }  // mSphAttr
     };
 
     fopAcM_SetupActor(this, daE_GE_c);
@@ -1340,7 +1356,8 @@ int daE_GE_c::create() {
         fopAcM_SetMtx(this, mpMorfSO->getModel()->getBaseTRMtx());
         fopAcM_SetMin(this, -200.0f, -200.0f, -200.0f);
         fopAcM_SetMax(this, 200.0f, 200.0f, 200.0f);
-        mObjAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir, fopAcM_GetSpeed_p(this), NULL, NULL);
+        mObjAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
+                     fopAcM_GetSpeed_p(this), NULL, NULL);
         mAcchCir.SetWall(0.0f, 50.0f);
         mObjAcch.SetGroundUpY(30.0f);
         health = 10;
@@ -1353,9 +1370,9 @@ int daE_GE_c::create() {
         } else {
             mSphere.SetTgType(0xd8fadddf);
         }
-    #if !DEBUG
-        mSphere.OnTgNoHitMark(); // this doesn't seem to appear in debug
-    #endif
+#if !DEBUG
+        mSphere.OnTgNoHitMark();  // this doesn't seem to appear in debug
+#endif
         mSphere2.Set(cc_sph_src);
         mSphere2.SetStts(&mStts);
         mSphere2.SetTgType(0x2020);
@@ -1393,27 +1410,25 @@ static int daE_GE_Create(daE_GE_c* i_this) {
 
 /* 806CD294-806CD2B4 -00001 0020+00 1/0 0/0 0/0 .data            l_daE_GE_Method */
 static actor_method_class l_daE_GE_Method = {
-    (process_method_func)daE_GE_Create,
-    (process_method_func)daE_GE_Delete,
-    (process_method_func)daE_GE_Execute,
-    (process_method_func)daE_GE_IsDelete,
+    (process_method_func)daE_GE_Create,  (process_method_func)daE_GE_Delete,
+    (process_method_func)daE_GE_Execute, (process_method_func)daE_GE_IsDelete,
     (process_method_func)daE_GE_Draw,
 };
 
 /* 806CD2B4-806CD2E4 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_E_GE */
 extern actor_process_profile_definition g_profile_E_GE = {
-  fpcLy_CURRENT_e,        // mLayerID
-  7,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_E_GE,              // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(daE_GE_c),       // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  192,                    // mPriority
-  &l_daE_GE_Method,       // sub_method
-  0x00050120,             // mStatus
-  fopAc_ENEMY_e,          // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
+    fpcLy_CURRENT_e,         // mLayerID
+    7,                       // mListID
+    fpcPi_CURRENT_e,         // mListPrio
+    PROC_E_GE,               // mProcName
+    &g_fpcLf_Method.base,    // sub_method
+    sizeof(daE_GE_c),        // mSize
+    0,                       // mSizeOther
+    0,                       // mParameters
+    &g_fopAc_Method.base,    // sub_method
+    192,                     // mPriority
+    &l_daE_GE_Method,        // sub_method
+    0x00050120,              // mStatus
+    fopAc_ENEMY_e,           // mActorType
+    fopAc_CULLBOX_CUSTOM_e,  // cullType
 };

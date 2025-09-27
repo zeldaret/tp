@@ -10,9 +10,9 @@
  * @ingroup actors-enemies
  * @class daE_GE_c
  * @brief Guay
- * 
- * @details 
- * 
+ *
+ * @details
+ *
  */
 class daE_GE_c : public fopEn_enemy_c {
 public:
@@ -51,21 +51,15 @@ public:
     /* 806CC278 */ int CreateHeap();
     /* 806CC390 */ int create();
 
-    s16 getSurpriseTime() {
-        return mSurpriseTime;
-    }
-    
-    s32 getActionMode() {
-        return mActionMode;
-    }
-    
-    s32 getMoveType() { // needs to be s32 for some reason
+    s16 getSurpriseTime() { return mSurpriseTime; }
+
+    s32 getActionMode() { return mActionMode; }
+
+    s32 getMoveType() {  // needs to be s32 for some reason
         return mMoveType;
     }
-    
-    u8 getGroupNo() {
-        return mGroupNo;
-    }
+
+    u8 getGroupNo() { return mGroupNo; }
 
 private:
     /* 0x5AC */ request_of_phase_process_class mPhaseReq;
