@@ -40,7 +40,7 @@ static f32 limitf(f32 value, f32 min, f32 max) {
     return value;
 }
 
-static f32 rangef(f32 value1, f32 value2, f32 ratio) {
+static inline f32 rangef(f32 value1, f32 value2, f32 ratio) {
     return value1 + (value2 - value1) * ratio;
 }
 
