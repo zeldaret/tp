@@ -199,7 +199,7 @@ int daNpcRafrel_c::Create() {
             return cPhs_ERROR_e;
         }
 
-        fopAcM_OnStatus(this, 0x4000);
+        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
         mType = 2;
     }
 
@@ -486,10 +486,9 @@ bool daNpcRafrel_c::setExpressionAnm(int i_idx, bool i_modify) {
         mAnmFlags |= (ANM_PAUSE_BCK | ANM_PLAY_BCK);
         mExpressionLoops = 0;
         return true;
-    } else {
-        OS_REPORT("%s: 表情Bckアニメーションの登録に失敗しました！\n", __FILE__);
     }
 
+    OS_REPORT("%s: 表情Bckアニメーションの登録に失敗しました！\n", __FILE__);
     return false;
 }
 
@@ -607,7 +606,7 @@ void daNpcRafrel_c::reset() {
     }
 
     if (isSneaking()) {
-        fopAcM_OnStatus(this, 0x4000);
+        fopAcM_OnStatus(this, fopAcM_STATUS_UNK_0x4000);
     }
 
     setWaitAction();
@@ -906,7 +905,7 @@ bool daNpcRafrel_c::isSneaking() {
 }
 
 void daNpcRafrel_c::setLookMode(int i_lookMode, fopAc_ac_c* i_talkPartner) {
-    if (i_lookMode >= 0 && i_lookMode < 5) {
+    if (i_lookMode >= LOOK_NONE && i_lookMode < LOOK_ATTN) {
         if (i_lookMode != field_0xe0e || i_talkPartner != field_0xc9c) {
             field_0xe0e = i_lookMode;
             field_0xc9c = i_talkPartner;
@@ -999,9 +998,9 @@ bool daNpcRafrel_c::wait_type01(void* param_0) {
         break;
     case 2:
         if (isSneaking()) {
-            setLookMode(0, NULL);
-        } else if ((field_0xe14 != 0) && (mType == 1)) {
-            setLookMode(2, NULL);
+            setLookMode(LOOK_NONE, NULL);
+        } else if (field_0xe14 != 0 && mType == 1) {
+            setLookMode(LOOK_PLAYER, NULL);
             if (mCurAngle.y == field_0xe12) {
                 s16 spA = cM_deg2s(daNpcRafrel_Param_c::m.common.body_angleY_max + daNpcRafrel_Param_c::m.common.head_angleY_max);
                 if (fopAcM_seenPlayerAngleY(this) > spA) {
@@ -1027,9 +1026,9 @@ bool daNpcRafrel_c::wait_type01(void* param_0) {
             }
 
             if (field_0xc7c[0].getActorP() != NULL) {
-                setLookMode(2, NULL);
+                setLookMode(LOOK_PLAYER, NULL);
             } else {
-                setLookMode(0, NULL);
+                setLookMode(LOOK_NONE, NULL);
                 if (home.angle.y != mCurAngle.y && step(home.angle.y, 0x12, 15.0f)) {
                     setExpression(7, -1.0f);
                     setMotion(0, -1.0f, 0);
@@ -1089,7 +1088,7 @@ bool daNpcRafrel_c::wait_type01(void* param_0) {
             orderEvent(field_0xe16, eventName, 0xFFFF, 0x28, 0xFF, 1);
 
             if (field_0xe15 != 0) {
-                eventInfo.onCondition(0x20);
+                eventInfo.onCondition(dEvtCnd_CANTALKITEM_e);
             }
         }
         break;
@@ -1150,7 +1149,7 @@ bool daNpcRafrel_c::wait_type2(void* param_0) {
         mTurnMode = 0;
         speedF = 0.0f;
         field_0xc7c[0].entry(daPy_getPlayerActorClass());
-        setLookMode(0, NULL);
+        setLookMode(LOOK_NONE, NULL);
         field_0xe10 = 2;
         break;
     case 2:
@@ -1160,7 +1159,7 @@ bool daNpcRafrel_c::wait_type2(void* param_0) {
                 current.pos.set(-4269.2476f, 0.0f, 8444.243f);
                 old.pos = current.pos;
                 setAngle(-0x6000);
-                field_0xdfc = dComIfGp_particle_set(0x8ADE, &current.pos, &shape_angle, NULL);
+                field_0xdfc = dComIfGp_particle_set(dPa_RM(ID_ZI_S_RAFBAZ_SMOKE_A), &current.pos, &shape_angle, NULL);
                 field_0xe08++;
             }
             break;
@@ -1220,7 +1219,7 @@ bool daNpcRafrel_c::talk(void* param_0) {
         field_0xe16 = 0;
         field_0xe14 = 1;
         speedF = 0.0f;
-        setLookMode(3, NULL);
+        setLookMode(LOOK_PLAYER_TALK, NULL);
         field_0xe10 = 2;
         break;
     case 2:
@@ -1370,10 +1369,10 @@ int daNpcRafrel_c::EvCut_Introduction(int i_staffId) {
         switch (*idata) {
         case 0:
         case 2:
-            setLookMode(0, NULL);
+            setLookMode(LOOK_NONE, NULL);
             return 1;
         case 1:
-            setLookMode(2, NULL);
+            setLookMode(LOOK_PLAYER, NULL);
             return 1;
         default:
             JUT_ASSERT(1916, 0);
@@ -1401,7 +1400,7 @@ int daNpcRafrel_c::EvCut_Meeting(int i_staffId) {
             setMotion(1, -1.0f, 0);
             break;
         case 1:
-            setLookMode(2, NULL);
+            setLookMode(LOOK_PLAYER, NULL);
             break;
         default:
             JUT_ASSERT(1953, 0);
@@ -1424,7 +1423,7 @@ int daNpcRafrel_c::EvCut_Meeting(int i_staffId) {
         if (var_r28 == this) {
             var_r28 = NULL;
         }
-        setLookMode(4, var_r28);
+        setLookMode(LOOK_ACTOR, var_r28);
         return 1;
     }
     case 1:
@@ -1446,7 +1445,7 @@ int daNpcRafrel_c::EvCut_Appear(int i_staffId) {
     if (is_advance) {
         switch (*(u32*)cutname) {
         case '0001':
-            setLookMode(0, NULL);
+            setLookMode(LOOK_NONE, NULL);
             initTalk(field_0xe0c, NULL);
             mMsgTimer = 0;
             field_0xe14 = 1;
@@ -1458,7 +1457,7 @@ int daNpcRafrel_c::EvCut_Appear(int i_staffId) {
         case '0008':
         case '0009':
         case '0011':
-            setLookMode(3, NULL);
+            setLookMode(LOOK_PLAYER_TALK, NULL);
             initTalk(field_0xe0c, NULL);
             mMsgTimer = 0;
             break;
@@ -1589,7 +1588,7 @@ int daNpcRafrel_c::EvCut_WiretapSponsor(int i_staffId) {
             var_r28 = field_0xc7c[2].getActorP();
         }
 
-        setLookMode(4, var_r28);
+        setLookMode(LOOK_ACTOR, var_r28);
         break;
     }
     default:
@@ -1636,7 +1635,7 @@ int daNpcRafrel_c::EvCut_WiretapEntrant(int i_staffId) {
             var_r28 = field_0xc7c[2].getActorP();
         }
 
-        setLookMode(4, var_r28);
+        setLookMode(LOOK_ACTOR, var_r28);
         return 1;
     }
     default:
