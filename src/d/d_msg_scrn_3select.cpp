@@ -1021,9 +1021,6 @@ void dMsgScrn3Select_c::selectTrans() {
     }
 }
 
-// following data are unused so unsure how this data is properly setup
-static u32 unkdata[9] = {0};
-
 /* 8023B870-8023B914 2361B0 00A4+00 7/7 0/0 0/0 .text selectAnimeTransform__17dMsgScrn3Select_cFi
  */
 void dMsgScrn3Select_c::selectAnimeTransform(int i_sel) {
