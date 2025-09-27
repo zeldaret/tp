@@ -105,11 +105,15 @@ public:
     /* 80AA1578 */ void checkChangeJoint(int);
     /* 80AA1588 */ void checkRemoveJoint(int);
 
+    void clrMesPat() { mMesPat = -1; }
+
     static void* mCutNameList[11];
     static u8 mCutList[132];
 
 private:
-    /* 0x568 */ u8 field_0x568[0x100c - 0x568];
+    /* 0x0568 */ u8 field_0x568[0xfe8 - 0x568];
+    /* 0x0FE8 */ s8 mMesPat;
+    /* 0x0FEC */ u8 field_0xfec[0x100c - 0xfec];
 };
 
 STATIC_ASSERT(sizeof(daNpc_Pachi_Taro_c) == 0x100c);

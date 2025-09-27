@@ -29,6 +29,7 @@ public:
 class daNpcMoiR_c : public daNpcF_c {
 public:
     typedef bool (daNpcMoiR_c::*ActionFn)(void*);
+    typedef BOOL (daNpcMoiR_c::*Action2Fn)(void*);
     typedef BOOL (daNpcMoiR_c::*EventFn)(int);
 
     enum Animation {
@@ -128,7 +129,7 @@ public:
         /* 0x2 */ MODE_2,
     };
 
-    /* 80A7C16C */ daNpcMoiR_c() {}
+    /* 80A7C16C */ daNpcMoiR_c();
     /* 80A7C380 */ ~daNpcMoiR_c();
     /* 80A7C580 */ cPhs__Step Create();
     /* 80A7C978 */ int CreateHeap();
@@ -138,8 +139,8 @@ public:
     /* 80A7CEFC */ int ctrlJoint(J3DJoint*, J3DModel*);
     /* 80A7D0CC */ static int createHeapCallBack(fopAc_ac_c*);
     /* 80A7D0EC */ static int ctrlJointCallBack(J3DJoint*, int);
-    /* 80A7D138 */ bool setExpressionAnm(int, bool);
-    /* 80A7D394 */ bool setExpressionBtp(int);
+    /* 80A7D138 */ inline bool setExpressionAnm(int, bool);
+    /* 80A7D394 */ inline bool setExpressionBtp(int);
     /* 80A7D474 */ void setMotionAnm(int, f32);
     /* 80A7D5C4 */ void reset();
     /* 80A7D73C */ inline void setWaitAction();
@@ -153,18 +154,18 @@ public:
     /* 80A7F40C */ bool fight(void*);
     /* 80A7F9AC */ bool demo(void*);
     /* 80A7FEE8 */ bool leave(void*);
-    /* 80A802C4 */ BOOL EvCut_Introduction(int);
-    /* 80A803A0 */ BOOL EvCut_Appear(int);
-    /* 80A8081C */ BOOL EvCut_Appear2(int);
-    /* 80A810FC */ void setParam();
-    /* 80A81274 */ BOOL main();
-    /* 80A815D4 */ void checkHeadGear();
-    /* 80A818B4 */ void playMotion();
+    /* 80A802C4 */ inline BOOL EvCut_Introduction(int);
+    /* 80A803A0 */ inline BOOL EvCut_Appear(int);
+    /* 80A8081C */ inline BOOL EvCut_Appear2(int);
+    /* 80A810FC */ inline void setParam();
+    /* 80A81274 */ inline BOOL main();
+    /* 80A815D4 */ inline void checkHeadGear();
+    /* 80A818B4 */ inline void playMotion();
     /* 80A8210C */ inline BOOL ctrlBtk();
     /* 80A821E0 */ inline void setAttnPos();
     /* 80A825A0 */ inline void lookat();
-    /* 80A82878 */ void drawOtherMdls();
-    /* 80A82900 */ BOOL drawDbgInfo();
+    /* 80A82878 */ inline void drawOtherMdls();
+    /* 80A82900 */ inline BOOL drawDbgInfo();
 
     MtxP getHandRMtx() { return mpMorf->getModel()->getAnmMtx(17); }
 

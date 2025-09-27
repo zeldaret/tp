@@ -2,6 +2,7 @@
 #define D_EVENT_D_EVENT_DATA_H
 
 #include "global.h"
+#include "f_pc/f_pc_base.h"
 
 class msg_class;
 
@@ -22,6 +23,11 @@ struct event_binary_data_header {
     /* 0x34 */ s32 sDataNum;
     /* 0x38 */ u8 unk[8];
 };  // Size: 0x40
+
+enum dEvDt_State_e {
+    dEvDt_State_START_e = 1,
+    dEvDt_State_END_e,
+};
 
 class dEvDtData_c {
 public:
@@ -47,6 +53,20 @@ public:
     /* 0x34 */ u8 field_0x34[12];
 };  // Size: 0x40
 
+#if DEBUG
+class dEvDtData_DBG_c : public dEvDtData_c {
+public:
+    void Init() {
+        mName[0] = '\0';
+        mIndex = 0;
+        mType = 5;
+        mDataIndex = 0;
+        mNumber = 0;
+        mNext = -1;
+    }
+};
+#endif
+
 class dEvDtCut_c {
 public:
     int startCheck();
@@ -56,8 +76,8 @@ public:
     char* getName() { return mName; }
     int getNext() { return mNext; }
     int getStartFlag(int idx) { return mFlags[idx]; }
+    u32 getTagId() { return mTagID; }
 
-private:
     /* 0x00 */ char mName[32];
     /* 0x20 */ u32 mTagID;
     /* 0x24 */ u32 mIndex;
@@ -67,6 +87,27 @@ private:
     /* 0x3C */ int mNext;
     /* 0x40 */ u8 field_0x40[0x10];
 };  // Size: 0x50
+
+#if DEBUG
+class dEvDtCut_DBG_c : public dEvDtCut_c {
+public:
+    void Init() {
+        int i;
+
+        mName[0] = '\0';
+        mTagID = 0;
+        mIndex = 0;
+
+        for (i = 0; i < 3; i++) {
+            mFlags[i] = -1;
+        }
+
+        mFlagId = 0;
+        mDataTop = -1;
+        mNext = -1;
+    }
+};
+#endif
 
 class dEvDtStaff_c {
 public:
@@ -85,11 +126,13 @@ public:
     };
 
     struct StaffWork {
-        unsigned int _0;
-        msg_class* mLMsg;
-        unsigned int mMsgNo;
-        s32 mMsgSubstanceNum;
-        int* mMsgSubstanceP;
+        fpc_ProcID l_msgId;
+        msg_class* l_msg;
+        u32 l_msgNo;
+        struct {
+            int n;   // substance num
+            int* d;  // data
+        } msgs;
     };
 
     struct MessageData {
@@ -131,19 +174,19 @@ public:
 
     int getType() { return mType; }
     char* getName() { return mName; }
+    s32 getTagID() { return mTagID; }
     int getCurrentCut() { return mCurrentCut; }
     int getStartCut() { return mStartCut; }
 
     // private:
     /* 0x00 */ char mName[8];
-    /* 0x08 */ StaffWork mWork;
-    /* 0x0C */ u8 field_0x1C[0x20 - 0x1C];
+    /* 0x08 */ u8 mWork[0x18];
     /* 0x20 */ s32 mTagID;
     /* 0x24 */ u32 mIndex;
     /* 0x28 */ u32 mFlagID;
     /* 0x2C */ int mType;
     /* 0x30 */ int mStartCut;
-    /* 0x34 */ u8 field_0x34[2];
+    /* 0x34 */ s16 field_0x34;
     /* 0x36 */ s16 mWaitTimer;
     /* 0x38 */ int mCurrentCut;
     /* 0x3C */ s32 field_0x3c;
@@ -153,6 +196,21 @@ public:
 };  // Size: 0x50
 
 STATIC_ASSERT(sizeof(dEvDtStaff_c) == 0x50);
+
+#if DEBUG
+class dEvDtStaff_DBG_c : public dEvDtStaff_c {
+public:
+    void Init() {
+        mName[0] = '\0';
+        mTagID = 0;
+        mIndex = 0;
+        mFlagID = 0;
+        mType = 13;
+        mStartCut = 0;
+        field_0x34 = 0;
+    }
+};
+#endif
 
 class dEvDtEvent_c {
 public:
@@ -170,14 +228,47 @@ public:
     /* 0x28 */ int mPriority;
     /* 0x2C */ int mStaff[20];
     /* 0x7C */ int mNStaff;
-    /* 0x80 */ u8 field_0x80[4];
+    /* 0x80 */ int field_0x80;
     /* 0x84 */ int field_0x84;
-    /* 0x88 */ int field_0x88[3];
+    /* 0x88 */ int mFlags[3];
     /* 0x94 */ bool mPlaySound;
-    /* 0x95 */ u8 field_0x95[0xF];
+    /* 0x96 */ s16 field_0x96;
+    /* 0x98 */ f32 field_0x98;
+    /* 0x9C */ f32 field_0x9c;
+    /* 0xA0 */ f32 field_0xa0;
     /* 0xA4 */ int mEventState;
-    /* 0xA8 */ u8 field_0xa8[8];
+    /* 0xA8 */ int field_0xa8;
+    /* 0xAC */ u8 field_0xac[4];
 };  // Size: 0xB0
+
+#if DEBUG
+class dEvDtEvent_DBG_c : public dEvDtEvent_c {
+public:
+    void Init() {
+        int i;
+
+        mName[0] = '\0';
+        mIndex = 0;
+        mStaff[0] = 0;
+        mNStaff = 0;
+
+        for (i = 0; i < 3; i++) {
+            mFlags[i] = -1;
+        }
+
+        field_0x80 = field_0x84 = 0;
+        mPlaySound = false;
+        field_0x24 = 1;
+        mPriority = 0;
+        mEventState = 0;
+        field_0xa8 = 0;
+        field_0x96 = 0;
+        field_0x98 = 0.0f;
+        field_0x9c = 0.0f;
+        field_0xa0 = 0.0f;
+    }
+};  // Size: 0xB0
+#endif
 
 class dEvDtFlag_c {
 public:
@@ -187,7 +278,7 @@ public:
     BOOL flagMaxCheck(int flag);
     void init();
 
-#define FlagMax 0x2800
+    static const int FlagMax = 0x2800;
 
 private:
     u32 mFlags[320];
@@ -204,6 +295,7 @@ public:
 
     event_binary_data_header* getHeaderP() { return mHeaderP; }
     dEvDtStaff_c* getStaffP(int i) { return &mStaffP[i]; }
+    dEvDtStaff_c* getStaffP() { return mStaffP; }
     dEvDtEvent_c* getEventP(int i) { return &mEventP[i]; }
     dEvDtEvent_c* getEventP() { return mEventP; }
     dEvDtData_c* getDataP(int i) { return &mDataP[i]; }

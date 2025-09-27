@@ -1,5 +1,6 @@
 #include "alloc.h"
 #include "critical_regions.h"
+#include <string.h>
 
 typedef struct Block {
     struct Block* prev;

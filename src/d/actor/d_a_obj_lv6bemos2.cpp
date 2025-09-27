@@ -10,6 +10,7 @@
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_camera.h"
+#include "d/d_s_play.h"
 
 enum E_bm6_RES_File_ID {
     /* BCK */
@@ -559,10 +560,10 @@ int daObjLv6Bm_c::checkFindPlayer() {
 }
 
 /* 80C7FA54-80C7FBA4 001914 0150+00 1/1 0/0 0/0 .text            checkSearchPlayer__12daObjLv6Bm_cFv */
-int daObjLv6Bm_c::checkSearchPlayer() {
+s8 daObjLv6Bm_c::checkSearchPlayer() {
     daPy_py_c* player = daPy_getPlayerActorClass();
     f32 searchDistance = getSearchDistance();
-    int rv = -1;
+    s8 rv = -1;
 
     field_0xa15 = 0;
 
@@ -580,7 +581,7 @@ int daObjLv6Bm_c::checkSearchPlayer() {
         rv = 0;
     }
 
-    if ((s8)rv == 0) {
+    if (rv == 0) {
         cXyz sp5c(eyePos);
         cXyz sp68(player->eyePos);
         if (fopAcM_lc_c::lineCheck(&sp5c, &sp68, this)) {
@@ -841,23 +842,26 @@ void daObjLv6Bm_c::initActionAttack() {
 
 /* 80C8082C-80C80F48 0026EC 071C+00 1/0 0/0 0/0 .text            actionAttack__12daObjLv6Bm_cFv */
 void daObjLv6Bm_c::actionAttack() {
-    // NONMATCHING
     static u16 const l_eff_id[2] = {
         ZL2_GLOW02_1,
         ZL2_GLOW02_2,
     };
 
+    bool sp_0x15 = false;
+    bool bVar2 = false;
     f32 fVar1 = fopAcM_searchPlayerDistanceXZ(this);
     if (fVar1 > getBeamSearchDistance()) {
         fVar1 = getBeamSearchDistance();
     }
 
+    s16 sp_0x18 = 30000;
+    s16 sp_0x16 = 200;
     bool bVar1 = true;
-    if (((s8)checkSearchPlayer() == -1 && cLib_calcTimer(&field_0xa11) == 0) || field_0xa15 != 0) {
+    s8 is_srch_ply = checkSearchPlayer();
+    if ((is_srch_ply == -1 && cLib_calcTimer(&field_0xa11) == 0) || field_0xa15 != 0) {
         bVar1 = false;
     }
 
-    bool bVar2;
     switch (mMode) {
         case 0:
             if (cLib_calcTimer(&field_0xa12) == 0) {
@@ -866,10 +870,10 @@ void daObjLv6Bm_c::actionAttack() {
             break;
 
         case 1:
-            field_0x9d8 = 200;
+            field_0x9d8 = sp_0x16;
             field_0x9c4 = fopAcM_searchPlayerAngleY(this) - home.angle.y;
 
-            cLib_chaseF(&field_0xa2c, fVar1, 5.0f);
+            cLib_chaseF(&field_0xa2c, fVar1, 5.0f + KREG_F(16));
             if (!bVar1) {
                 mMode = 3;
             }
@@ -882,7 +886,7 @@ void daObjLv6Bm_c::actionAttack() {
         case 2:
             field_0x9d8 = 450;
             field_0x9c4 = fopAcM_searchPlayerAngleY(this) - home.angle.y;
-            cLib_chaseF(&field_0xa2c, fVar1, 15.0f);
+            cLib_chaseF(&field_0xa2c, fVar1, 15.0f + KREG_F(16));
             if (!bVar1) {
                 mMode = 3;
             }
@@ -898,13 +902,7 @@ void daObjLv6Bm_c::actionAttack() {
             break;
 
         case 4:
-            bVar2 = false;
-            if (cLib_chaseUC(&field_0xa1c, 0, 26) == 1) {
-                if (mpBtkAnm->isStop()) {
-                    bVar2 = true;
-                }
-            }
-
+            bVar2 = (cLib_chaseUC(&field_0xa1c, 0, 26) == 1) && (mpBtkAnm->isStop());
             for (int i = 0; i < 4; i++) {
                 if (field_0xa40[i] != NULL) {
                     field_0xa40[i]->setGlobalAlpha(field_0xa1c);
@@ -930,12 +928,10 @@ void daObjLv6Bm_c::actionAttack() {
 
                 initActionWarning();
             }
-            break;
     }
 
     field_0xa70 = home.pos;
-    bVar1 = false;
-
+    bool sp_0x11 = false;
     if (fopAcM_lc_c::lineCheck(&field_0x9e4, &field_0x9f8, this) && fopAcM_lc_c::checkGroundHit()) {
         if (field_0xa18 == 0) {
             for (int i = 0; i < 2; i++) {
@@ -956,10 +952,10 @@ void daObjLv6Bm_c::actionAttack() {
 
             field_0xa70 = fopAcM_lc_c::getCross();
         }
-        bVar1 = true;
+        sp_0x11 = true;
     }
 
-    if (!bVar1) {
+    if (!sp_0x11) {
         for (int i = 0; i < 2; i++) {
             if (field_0xa38[i] != NULL) {
                 field_0xa38[i]->becomeInvalidEmitter();

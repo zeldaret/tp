@@ -1080,7 +1080,7 @@ int daObjCarry_c::Create() {
         }
     }
 
-    fopAcM_SetCullSize(this, fopAc_CULLSPHERE_8_e);
+    fopAcM_SetCullSize(this, fopAc_CULLSPHERE_CUSTOM_e);
     fopAcM_setCullSizeSphere(this, data().m_cullsph_min_x, data().m_cullsph_min_y, data().m_cullsph_min_z, mpModel->getModelData()->getJointNodePointer(0)->getRadius() * data().scale);
 
     cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);

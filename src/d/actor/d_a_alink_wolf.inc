@@ -26,10 +26,47 @@
 #include "d/actor/d_a_obj_digplace.h"
 #include "d/actor/d_a_obj_digsnow.h"
 #include "d/actor/d_a_obj_digholl.h"
+#include "d/actor/d_a_obj_sekizoa.h"
+#include "d/actor/d_a_midna.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_msg_object.h"
 #include "f_op/f_op_kankyo_mng.h"
 #include "m_Do/m_Do_controller_pad.h"
+
+// Forward declarations (for clangd)
+int daAlink_kandelaarModelCallBack(J3DJoint* param_0, int param_1);
+extern const char l_wArcName[];
+extern const char l_bArcName[];
+extern const char l_kArcName[];
+extern const char l_zArcName[];
+extern const char l_mArcName[];
+extern const char l_hyShdArcName[];
+extern const char l_cWShdArcName[];
+extern const char l_sWShdArcName[];
+extern const char l_arcName[];
+extern dJntColData_c l_jntColData[];
+extern dJntColData_c l_wolfJntColData[];
+extern f32 l_autoUpHeight;
+extern f32 l_autoDownHeight;
+extern f32 const l_crawlStartFrontOffset[];
+extern Vec const l_crawlFrontOffset;
+extern Vec const l_crawlBackOffset;
+extern Vec const l_crawlTopOffset;
+extern Vec const l_crawlFrontUpOffset;
+extern Vec const l_wolfLieFrontUpOffset;
+extern Vec const l_crawlBackUpOffset;
+extern Vec const l_wolfLieBackUpOffset;
+extern Vec const l_crawlStandUpOffset;
+extern Vec const l_wolfLieStandUpOffset;
+extern Vec const l_crawlTopUpOffset;
+extern Vec const l_wolfLieTopUpOffset;
+extern Vec const l_crawlSideOffset;
+extern Vec const l_wolfLieSideOffset;
+extern Vec const l_crawlMinSideOffset;
+extern f32 const l_wolfFootOnFrame[][4];
+extern cXyz l_wolfBaseAnime;
+extern cXyz l_wolfRopeBaseAnime;
+
 
 /* 80126740-80126928 121080 01E8+00 2/2 0/0 0/0 .text            changeCommon__9daAlink_cFv */
 void daAlink_c::changeCommon() {
@@ -108,41 +145,40 @@ void daAlink_c::changeCommon() {
 }
 
 /* 80126928-80126F3C 121268 0614+00 2/2 0/0 0/0 .text            changeWolf__9daAlink_cFv */
-// NONMATCHING - small regalloc, equivalent?
 void daAlink_c::changeWolf() {
     JKRHeap* current_heap = mAnmHeap3.setAnimeHeap();
 
-    mpLinkModel = initModel((J3DModelData*)dComIfG_getObjectRes(l_wArcName, 14), 0x20200);
+    mpLinkModel = initModel(static_cast<J3DModelData*>(dComIfG_getObjectRes(l_wArcName, 14)), 0x20200);
 
-    J3DModelData* chainModelData = (J3DModelData*)dComIfG_getObjectRes(l_wArcName, 15);
+    J3DModelData* chainModelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_wArcName, 15));
     for (u16 i = 0; i < 4; i++) {
         mpWlChainModels[i] = initModel(chainModelData, 0);
     }
 
-    mpWlMidnaModel = initModelEnv((J3DModelData*)dComIfG_getObjectRes(l_wArcName, 10), 0x1020200);
+    mpWlMidnaModel = initModelEnv(static_cast<J3DModelData*>(dComIfG_getObjectRes(l_wArcName, 10)), 0x1020200);
     mpWlMidnaMaskModel =
-        initModel((J3DModelData*)dComIfG_getObjectRes(l_wArcName, 7), 0x1000000);
+        initModel(static_cast<J3DModelData*>(dComIfG_getObjectRes(l_wArcName, 7)), 0x1000000);
     mpWlMidnaHandModel =
-        initModel((J3DModelData*)dComIfG_getObjectRes(l_wArcName, 6), 0x1000000);
+        initModel(static_cast<J3DModelData*>(dComIfG_getObjectRes(l_wArcName, 6)), 0x1000000);
     mpWlMidnaHairModel =
-        initModelEnv((J3DModelData*)dComIfG_getObjectRes(l_wArcName, 11), 0x1000000);
+        initModelEnv(static_cast<J3DModelData*>(dComIfG_getObjectRes(l_wArcName, 11)), 0x1000000);
 
-    mpDMidnaBrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_wArcName, 18);
+    mpDMidnaBrk = static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes(l_wArcName, 18));
     mpDMidnaBrk->searchUpdateMaterialID(mpWlMidnaModel->getModelData());
     mpWlMidnaModel->getModelData()->entryTevRegAnimator(mpDMidnaBrk);
     mpDMidnaBrk->setFrame(1.0f);
 
-    mpDMidnaMaskBrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_wArcName, 21);
+    mpDMidnaMaskBrk = static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes(l_wArcName, 21));
     mpDMidnaMaskBrk->searchUpdateMaterialID(mpWlMidnaMaskModel->getModelData());
     mpWlMidnaMaskModel->getModelData()->entryTevRegAnimator(mpDMidnaMaskBrk);
     mpDMidnaMaskBrk->setFrame(1.0f);
 
-    mpDMidnaHandBrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_wArcName, 20);
+    mpDMidnaHandBrk = static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes(l_wArcName, 20));
     mpDMidnaHandBrk->searchUpdateMaterialID(mpWlMidnaHandModel->getModelData());
     mpWlMidnaHandModel->getModelData()->entryTevRegAnimator(mpDMidnaHandBrk);
     mpDMidnaHandBrk->setFrame(1.0f);
 
-    mpDMidnaHairHandBrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_wArcName, 19);
+    mpDMidnaHairHandBrk = static_cast<J3DAnmTevRegKey*>(dComIfG_getObjectRes(l_wArcName, 19));
     mpDMidnaHairHandBrk->searchUpdateMaterialID(mpWlMidnaHairModel->getModelData());
     mpWlMidnaHairModel->getModelData()->entryTevRegAnimator(mpDMidnaHairHandBrk);
     mpDMidnaHairHandBrk->setFrame(1.0f);
@@ -241,7 +277,6 @@ void daAlink_c::changeWolf() {
 }
 
 /* 80126F3C-80127C54 12187C 0D18+00 2/2 0/0 0/0 .text            changeLink__9daAlink_cFi */
-// NONMATCHING - almost, small regalloc
 void daAlink_c::changeLink(int param_0) {
     JKRHeap* current_heap = mAnmHeap3.setAnimeHeap();
     offNoResetFlg2(daPy_FLG2(FLG2_UNK_100000 | FLG2_UNK_80000));
@@ -254,32 +289,32 @@ void daAlink_c::changeLink(int param_0) {
         offNoResetFlg2(FLG2_UNK_200000);
         onNoResetFlg2(FLG2_UNK_80000);
 
-        tempModelData_r28 = (J3DModelData*)dComIfG_getObjectRes("alSumou", 0x31);
+        tempModelData_r28 = static_cast<J3DModelData*>(dComIfG_getObjectRes("alSumou", 0x31));
         mpLinkModel = mDoExt_J3DModel__create(tempModelData_r28,
                                               0x80000, 0x11000084);
-        mpLinkHatModel = initModel((J3DModelData*)dComIfG_getObjectRes("alSumou", 0x33), 0);
-        mpLinkHandModel = initModel((J3DModelData*)dComIfG_getObjectRes("alSumou", 0x32), 0);
+        mpLinkHatModel = initModel(static_cast<J3DModelData*>(dComIfG_getObjectRes("alSumou", 0x33)), 0);
+        mpLinkHandModel = initModel(static_cast<J3DModelData*>(dComIfG_getObjectRes("alSumou", 0x32)), 0);
     } else if (checkCasualWearFlg()) {
         onNoResetFlg2(FLG2_UNK_100000);
 
-        mpLinkModel = initModel((J3DModelData*)dComIfG_getObjectRes(l_bArcName, "bl.bmd"), 0);
+        mpLinkModel = initModel(static_cast<J3DModelData*>(dComIfG_getObjectRes(l_bArcName, "bl.bmd")), 0);
         mpLinkHatModel =
-            initModel((J3DModelData*)dComIfG_getObjectRes(l_bArcName, "bl_head.bmd"), 0);
+            initModel(static_cast<J3DModelData*>(dComIfG_getObjectRes(l_bArcName, "bl_head.bmd")), 0);
         mpLinkHandModel =
-            initModel((J3DModelData*)dComIfG_getObjectRes(l_bArcName, "bl_hands.bmd"), 0);
+            initModel(static_cast<J3DModelData*>(dComIfG_getObjectRes(l_bArcName, "bl_hands.bmd")), 0);
     } else if (checkZoraWearFlg()) {
-        mpLinkModel = initModel((J3DModelData*)dComIfG_getObjectRes(l_zArcName, "zl.bmd"), 0);
+        mpLinkModel = initModel(static_cast<J3DModelData*>(dComIfG_getObjectRes(l_zArcName, "zl.bmd")), 0);
         mpLinkHatModel =
-            initModel((J3DModelData*)dComIfG_getObjectRes(l_zArcName, "zl_head.bmd"), 0);
+            initModel(static_cast<J3DModelData*>(dComIfG_getObjectRes(l_zArcName, "zl_head.bmd")), 0);
         mpLinkHandModel =
-            initModel((J3DModelData*)dComIfG_getObjectRes(l_zArcName, "al_hands.bmd"), 0);
+            initModel(static_cast<J3DModelData*>(dComIfG_getObjectRes(l_zArcName, "al_hands.bmd")), 0);
     } else if (checkMagicArmorWearFlg()) {
         mpLinkModel =
-            initModel((J3DModelData*)dComIfG_getObjectRes(l_mArcName, "ml.bmd"), 0x1000000);
+            initModel(static_cast<J3DModelData*>(dComIfG_getObjectRes(l_mArcName, "ml.bmd")), 0x1000000);
         mpLinkHatModel =
-            initModel((J3DModelData*)dComIfG_getObjectRes(l_mArcName, "ml_head.bmd"), 0x1000000);
+            initModel(static_cast<J3DModelData*>(dComIfG_getObjectRes(l_mArcName, "ml_head.bmd")), 0x1000000);
         mpLinkHandModel =
-            initModel((J3DModelData*)dComIfG_getObjectRes(l_mArcName, "al_hands.bmd"), 0);
+            initModel(static_cast<J3DModelData*>(dComIfG_getObjectRes(l_mArcName, "al_hands.bmd")), 0);
 
         if (dComIfGs_getRupee() != 0) {
             setMagicArmorBrk(1);
@@ -290,39 +325,39 @@ void daAlink_c::changeLink(int param_0) {
         mMagicArmorBodyBrk->setFrame(mMagicArmorBodyBrk->getFrameMax());
         mMagicArmorHeadBrk->setFrame(mMagicArmorHeadBrk->getFrameMax());
     } else {
-        mpLinkModel = initModel((J3DModelData*)dComIfG_getObjectRes(l_kArcName, "al.bmd"), 0);
+        mpLinkModel = initModel(static_cast<J3DModelData*>(dComIfG_getObjectRes(l_kArcName, "al.bmd")), 0);
         mpLinkHatModel =
-            initModel((J3DModelData*)dComIfG_getObjectRes(l_kArcName, "al_head.bmd"), 0);
+            initModel(static_cast<J3DModelData*>(dComIfG_getObjectRes(l_kArcName, "al_head.bmd")), 0);
         mpLinkHandModel =
-            initModel((J3DModelData*)dComIfG_getObjectRes(l_kArcName, "al_hands.bmd"), 0);
+            initModel(static_cast<J3DModelData*>(dComIfG_getObjectRes(l_kArcName, "al_hands.bmd")), 0);
     }
 
     if (checkNoResetFlg2(FLG2_UNK_200000) || !checkZoraWearFlg()) {
         mpLinkFaceModel =
-            initModel((J3DModelData*)dComIfG_getObjectRes(mArcName, "al_face.bmd"), 0x20200);
+            initModel(static_cast<J3DModelData*>(dComIfG_getObjectRes(mArcName, "al_face.bmd")), 0x20200);
     } else {
         mpLinkFaceModel =
-            initModel((J3DModelData*)dComIfG_getObjectRes(mArcName, "zl_face.bmd"), 0x20200);
+            initModel(static_cast<J3DModelData*>(dComIfG_getObjectRes(mArcName, "zl_face.bmd")), 0x20200);
     }
 
-    tempModelData_r28 = (J3DModelData*)dComIfG_getObjectRes(mArcName, "al_bootsH.bmd");
+    tempModelData_r28 = static_cast<J3DModelData*>(dComIfG_getObjectRes(mArcName, "al_bootsH.bmd"));
     u16 i;
     for (i = 0; i < 2; i++) {
         mpLinkBootModels[i] = initModel(tempModelData_r28, 0);
     }
 
-    mpKanteraModel = initModelEnv((J3DModelData*)dComIfG_getObjectRes(mArcName, "al_kantera.bmd"), 0);
+    mpKanteraModel = initModelEnv(static_cast<J3DModelData*>(dComIfG_getObjectRes(mArcName, "al_kantera.bmd")), 0);
 
     tempModelData_r28 =
-        (J3DModelData*)dComIfG_getObjectRes(mArcName, "ef_ktGlow.bmd");
+        static_cast<J3DModelData*>(dComIfG_getObjectRes(mArcName, "ef_ktGlow.bmd"));
     mpKanteraGlowModel = initModel(tempModelData_r28, 0x200);
 
-    mpKanteraGlowBtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(mArcName, "ef_ktGlow.btk");
+    mpKanteraGlowBtk = static_cast<J3DAnmTextureSRTKey*>(dComIfG_getObjectRes(mArcName, "ef_ktGlow.btk"));
     mpKanteraGlowBtk->setFrame(0.0f);
     mpKanteraGlowBtk->searchUpdateMaterialID(tempModelData_r28);
     tempModelData_r28->entryTexMtxAnimator(mpKanteraGlowBtk);
 
-    mWoodSwordModel = initModel((J3DModelData*)dComIfG_getObjectRes(mArcName, "al_SWB.bmd"), 0);
+    mWoodSwordModel = initModel(static_cast<J3DModelData*>(dComIfG_getObjectRes(mArcName, "al_SWB.bmd")), 0);
 
     mDoExt_setCurrentHeap(current_heap);
 
@@ -1922,6 +1957,8 @@ void daAlink_c::setWolfFootMatrix() {
 
 /* 8012B724-8012BFA8 126064 0884+00 1/1 0/0 0/0 .text            wolfFootBgCheck__9daAlink_cFv */
 void daAlink_c::wolfFootBgCheck() {
+    int i;
+    int j;
     if (field_0x2060->getOldFrameFlg()) {
         cXyz spBC;
         cXyz spB0;
@@ -1957,8 +1994,13 @@ void daAlink_c::wolfFootBgCheck() {
         f32* sp20 = &spA0[0][0];
         cXyz* var_r26 = &spC8[0];
 
-        f32 temp_f29 = 50.0f * fabsf(cM_ssin(field_0x2ff0));
-        f32 temp_f27 = 30.0f + temp_f29;
+        f32 temp_f31;
+        f32 temp_f30;
+        f32 temp_f29;
+        f32 var_f28;
+        f32 temp_f27;
+        temp_f29 = 50.0f * fabsf(cM_ssin(field_0x2ff0));
+        temp_f27 = 30.0f + temp_f29;
         f32 sp1C = -temp_f27;
         mDoMtx_stack_c::XrotS(-shape_angle.x);
         mDoMtx_stack_c::YrotM(-shape_angle.y);
@@ -1991,15 +2033,15 @@ void daAlink_c::wolfFootBgCheck() {
                 spBC.set(var_r26->x, temp_f29 + (50.0f + (current.pos.y + l_autoUpHeight)), var_r26->z);
                 mLinkGndChk.SetPos(&spBC);
 
-                f32 temp_f1 = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
-                f32 temp_f30 = var_r26->y - temp_f1;
+                temp_f31 = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
+                temp_f30 = var_r26->y - temp_f31;
 
-                if (-1000000000.0f != temp_f1 && temp_f30 < temp_f27 && temp_f30 > sp1C) {
-                    *sp20 = temp_f1;
+                if (-1000000000.0f != temp_f31 && temp_f30 < temp_f27 && temp_f30 > sp1C) {
+                    *sp20 = temp_f31;
                     var_r28->field_0x0 = 1;
                     sp48[i][j] = getGroundAngle(&mLinkGndChk, shape_angle.y);
 
-                    spBC.set(var_r26->x - current.pos.x, temp_f1 - current.pos.y, var_r26->z - current.pos.z);
+                    spBC.set(var_r26->x - current.pos.x, temp_f31 - current.pos.y, var_r26->z - current.pos.z);
                     mDoMtx_stack_c::multVec(&spBC, &spB0);
                     *sp20 = spB0.y + current.pos.y;
                 } else {
@@ -2009,22 +2051,21 @@ void daAlink_c::wolfFootBgCheck() {
             }
         }
 
-        f32 var_f28;
         if (!sp24) {
             for (i = 0; i < 2; i++) {
-                /* if (spA0[i][1] > spA0[i][0]) {
+                if (spA0[i][1] > spA0[i][0]) {
                     sp38[i] = spA0[i][0];
                     sp40[i] = 0;
                 } else {
                     sp38[i] = spA0[i][1];
                     sp40[i] = 1;
                 }
+            }
 
-                if (sp38[0] > sp38[1]) {
-                    var_f28 = sp38[0];
-                } else {
-                    var_f28 = sp38[1];
-                } */
+            if (sp38[0] > sp38[1]) {
+                var_f28 = sp38[1];
+            } else {
+                var_f28 = sp38[0];
             }
         }
 
@@ -2046,13 +2087,13 @@ void daAlink_c::wolfFootBgCheck() {
                     sp58[i][j] = 0;
                     sp50[i][j] = 0;
                 } else {
-                    f32 var_f30 = spA0[i][j] - sp2C[1][3];
-                    if (var_f30 >= 35.0f) {
-                        var_f30 = 35.0f;
+                    temp_f30 = spA0[i][j] - sp2C[1][3];
+                    if (temp_f30 >= 35.0f) {
+                        temp_f30 = 35.0f;
                     }
 
-                    if (var_f30 > 0.0f || sp30) {
-                        if (!setLegAngle(var_f30, var_r28, &sp58[i][j], &sp50[i][j], 1)) {
+                    if (temp_f30 > 0.0f || sp30) {
+                        if (!setLegAngle(temp_f30, var_r28, &sp58[i][j], &sp50[i][j], 1)) {   
                             sp58[i][j] = 0;
                             sp50[i][j] = 0;
                         }
@@ -2095,36 +2136,36 @@ void daAlink_c::wolfFootBgCheck() {
             sp84.y += 165.0f;
             mLinkGndChk.SetPos(&sp90);
 
-            f32 temp_f1_2 = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
-            if (fabsf(temp_f1_2 - current.pos.y) < 55.0f + temp_f29) {
-                sp90.y = temp_f1_2;
+            temp_f31 = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
+            if (fabsf(temp_f31 - current.pos.y) < 55.0f + temp_f29) {
+                sp90.y = temp_f31;
             } else {
                 sp90.y = current.pos.y;
             }
 
             int sp18;
-            if (-1000000000.0f != temp_f1_2) {
+            if (-1000000000.0f != temp_f31) {
                 sp18 = dComIfG_Bgsp().GetPolyAtt0(mLinkGndChk);
             }
 
-            if (-1000000000.0f == temp_f1_2 || sp18 == 3 || sp18 == 0xD) {
+            if (-1000000000.0f == temp_f31 || sp18 == 3 || sp18 == 0xD) {
                 sp90.y += mSinkShapeOffset;
             }
 
             mLinkGndChk.SetPos(&sp84);
 
-            f32 temp_f1_3 = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
-            if (fabsf(temp_f1_3 - current.pos.y) < 55.0f + temp_f29) {
-                sp84.y = temp_f1_3;
+            temp_f31 = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
+            if (fabsf(temp_f31 - current.pos.y) < 55.0f + temp_f29) {
+                sp84.y = temp_f31;
             } else {
                 sp84.y = current.pos.y;
             }
 
-            if (-1000000000.0f != temp_f1_3) {
+            if (-1000000000.0f != temp_f31) {
                 sp18 = dComIfG_Bgsp().GetPolyAtt0(mLinkGndChk);
             }
 
-            if (-1000000000.0f == temp_f1_3 || sp18 == 3 || sp18 == 0xD) {
+            if (-1000000000.0f == temp_f31 || sp18 == 3 || sp18 == 0xD) {
                 sp84.y += mSinkShapeOffset;
             }
 
@@ -2471,7 +2512,7 @@ int daAlink_c::procWolfTiredWait() {
 /* 8012D050-8012D104 127990 00B4+00 3/2 0/0 0/0 .text procWolfMidnaRideShockInit__9daAlink_cFv */
 int daAlink_c::procWolfMidnaRideShockInit() {
     if (!checkWolf()) {
-        dComIfGp_evmng_cutEnd(field_0x3184);
+        dComIfGp_evmng_cutEnd(mAlinkStaffId);
         return procWaitInit();
     }
 
@@ -2495,7 +2536,7 @@ int daAlink_c::procWolfMidnaRideShock() {
 
     if (frameCtrl->checkAnmEnd()) {
         if (mDemo.getDemoMode() == 0x32) {
-            dComIfGp_evmng_cutEnd(field_0x3184);
+            dComIfGp_evmng_cutEnd(mAlinkStaffId);
         } else {
             checkNextActionWolf(0);
         }
@@ -2858,7 +2899,7 @@ int daAlink_c::procWolfWaitTurn() {
     if (var_r31 == 0) {
         if (checkEventRun()) {
             if (mDemo.getDemoMode() == 5) {
-                dComIfGp_evmng_cutEnd(field_0x3184);
+                dComIfGp_evmng_cutEnd(mAlinkStaffId);
             } else {
                 checkNextActionWolf(0);
             }
@@ -2996,7 +3037,7 @@ int daAlink_c::procWolfSideStepLand() {
 
     if (frameCtrl->checkAnmEnd()) {
         if (mDemo.getDemoMode() == 0x10) {
-            dComIfGp_evmng_cutEnd(field_0x3184);
+            dComIfGp_evmng_cutEnd(mAlinkStaffId);
         } else {
             checkNextActionWolf(0);
         }
@@ -3107,7 +3148,7 @@ int daAlink_c::procWolfBackJumpLand() {
 
     if (frameCtrl->checkAnmEnd()) {
         if (mDemo.getDemoMode() == 0x10) {
-            dComIfGp_evmng_cutEnd(field_0x3184);
+            dComIfGp_evmng_cutEnd(mAlinkStaffId);
         } else {
             checkNextActionWolf(0);
         }
@@ -4897,7 +4938,6 @@ int daAlink_c::procWolfRopeStaggerInit(int param_0) {
 
 /* 80133164-8013384C 12DAA4 06E8+00 1/0 0/0 0/0 .text            procWolfRopeStagger__9daAlink_cFv
  */
-// NONMATCHING - regalloc
 int daAlink_c::procWolfRopeStagger() {
     daPy_frameCtrl_c* temp_r29 = &mUnderFrameCtrl[0];
     daObjCrope_c* temp_r3 = (daObjCrope_c*)field_0x280c.getActor();
@@ -5009,14 +5049,13 @@ int daAlink_c::procWolfRopeSubjectivityInit() {
 }
 
 /* 80133930-80133D6C 12E270 043C+00 1/0 0/0 0/0 .text procWolfRopeSubjectivity__9daAlink_cFv */
-// NONMATCHING - float regalloc
 int daAlink_c::procWolfRopeSubjectivity() {
     daPy_frameCtrl_c* temp_r28 = &mUnderFrameCtrl[0];
     daObjCrope_c* temp_r3 = (daObjCrope_c*)field_0x280c.getActor();
 
     cXyz* temp_r26 = temp_r3->getRopeStartPos();
     cXyz* temp_r25 = temp_r3->getRopeEndPos();
-    temp_r3->getRopeVec();
+    cXyz* r23 = temp_r3->getRopeVec();
 
     f32 temp_f31 = temp_r3->getStartRate(&current.pos);
     f32 temp_f30 = temp_r26->absXZ(current.pos);
@@ -5050,7 +5089,8 @@ int daAlink_c::procWolfRopeSubjectivity() {
 
     shape_angle.y += mBodyAngle.y;
     setBodyAngleToCamera();
-    mBodyAngle.y = cLib_minMaxLimit<s16>((s16)(shape_angle.y - current.angle.y), -0x5000, 0x5000);
+    s16 r24 = cLib_minMaxLimit<s16>((s16)(shape_angle.y - current.angle.y), -0x5000, 0x5000);
+    mBodyAngle.y = r24;
     shape_angle.y = current.angle.y;
     return 1;
 }
@@ -5871,7 +5911,7 @@ int daAlink_c::procWolfLargeDamageUpInit(int param_0, int param_1, s16 param_2, 
                 if (getMidnaActor() != NULL) {
                     getMidnaActor()->onForceMorfCancel();
                 }
-                if (mDemo.getDemoType() != 1) {
+                if (mDemo.getDemoType() != daPy_demo_c::DEMO_TYPE_TOOL_e) {
                     mProcVar5.field_0x3012 = 1;
                 }
             } else {
@@ -5891,7 +5931,7 @@ int daAlink_c::procWolfLargeDamageUpInit(int param_0, int param_1, s16 param_2, 
             } else if (param_0 == -5 && mDemo.getParam1() > 0) {
                 mProcVar0.field_0x3008 = mDemo.getParam1();
                 var_f31 = 0.0f;
-            } else if (param_0 == -2 && mDemo.getDemoType() == 1) {
+            } else if (param_0 == -2 && mDemo.getDemoType() == daPy_demo_c::DEMO_TYPE_TOOL_e) {
                 mProcVar0.field_0x3008 = 0x1E;
                 var_f31 = 0.0f;
             } else {
@@ -6008,7 +6048,7 @@ int daAlink_c::procWolfLargeDamageUp() {
             }
 
             if (mDemo.getDemoMode() == 0x1B || mDemo.getDemoMode() == 9) {
-                dComIfGp_evmng_cutEnd(field_0x3184);
+                dComIfGp_evmng_cutEnd(mAlinkStaffId);
             } else {
                 checkNextActionWolf(0);
             }
@@ -6376,7 +6416,7 @@ int daAlink_c::procWolfLieMove() {
     }
 
     if (mDemo.getDemoMode() == 0x2C) {
-        dComIfGp_evmng_cutEnd(field_0x3184);
+        dComIfGp_evmng_cutEnd(mAlinkStaffId);
     }
 
     cM3dGPla sp70;
@@ -6983,8 +7023,8 @@ void daAlink_c::setWolfLockDomeModel() {
 void daAlink_c::setWolfBallModel() {
     JKRHeap* prev_heap = setItemHeap();
 
-    mHeldItemModel = initModel((J3DModelData*)dComIfG_getObjectRes(l_arcName, 0x25), 0x200);
-    field_0x0718 = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 0x49);
+    mHeldItemModel = initModel(static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcName, 0x25)), 0x200);
+    field_0x0718 = static_cast<J3DAnmTextureSRTKey*>(dComIfG_getObjectRes(l_arcName, 0x49));
     field_0x0718->searchUpdateMaterialID(mHeldItemModel->getModelData());
 
     mpHookSound = new Z2SoundObjSimple();
@@ -7872,7 +7912,7 @@ int daAlink_c::procWolfWaitAttack() {
         resetCombo(1);
 
         if (mDemo.getDemoMode() == 0x2B) {
-            dComIfGp_evmng_cutEnd(field_0x3184);
+            dComIfGp_evmng_cutEnd(mAlinkStaffId);
         } else if (mProcVar0.field_0x3008 > 0) {
             if (!(frameCtrl_p->getFrame() > field_0x3478) || !checkNextActionWolf(1)) {
                 mProcVar0.field_0x3008--;
@@ -8684,7 +8724,7 @@ int daAlink_c::procWolfGrabPut() {
 
         if (checkAnmEnd(frameCtrl_p)) {
             if (mDemo.getDemoMode() == 13) {
-                dComIfGp_evmng_cutEnd(field_0x3184);
+                dComIfGp_evmng_cutEnd(mAlinkStaffId);
             } else {
                 checkNextActionWolf(0);
             }
@@ -8694,7 +8734,7 @@ int daAlink_c::procWolfGrabPut() {
     } else {
         if (actor_p == NULL) {
             if (mDemo.getDemoMode() == 13) {
-                dComIfGp_evmng_cutEnd(field_0x3184);
+                dComIfGp_evmng_cutEnd(mAlinkStaffId);
                 return 1;
             } else {
                 return checkNextActionWolf(0);
@@ -9595,7 +9635,7 @@ int daAlink_c::procWolfGetSmell() {
             mDemo.setSystemDemoType();
         } else if (mDemo.getParam0() == 0) {
             dComIfGs_onEventBit(field_0x319c);
-            dComIfGp_evmng_cutEnd(field_0x3184);
+            dComIfGp_evmng_cutEnd(mAlinkStaffId);
 
             if (kytag3_p != NULL) {
                 kytag3_p->field_0x588 = 0;

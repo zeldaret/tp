@@ -18,7 +18,7 @@ m_Do/m_Do_main.cpp:
 	.ctors      start:0x8062F7C4 end:0x8062F7C8
 	.data       start:0x8065FFA0 end:0x80660CF8
 	.sdata      start:0x8073F140 end:0x8073F264
-	.sbss       start:0x8074C268 end:0x8074C2A0
+	.sbss       start:0x8074C260 end:0x8074C298
 	.sdata2     start:0x8074D740 end:0x8074D768
 	.bss        start:0x80753500 end:0x80753980
 
@@ -26,7 +26,7 @@ m_Do/m_Do_printf.cpp:
 	.text       start:0x8000AF00 end:0x8000B8A0
 	.data       start:0x80660CF8 end:0x80660DE8
 	.sdata      start:0x8073F264 end:0x8073F268
-	.sbss       start:0x8074C2A0 end:0x8074C2C4
+	.sbss       start:0x8074C298 end:0x8074C2C4
 	.bss        start:0x80753980 end:0x807541A0
 
 m_Do/m_Do_audio.cpp:

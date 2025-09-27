@@ -322,36 +322,61 @@ dMenu_Ring_c::dMenu_Ring_c(JKRExpHeap* i_heap, STControl* i_stick, CSTControl* i
     }
     mpString = new dMsgString_c();
     for (i = 0; i < 5; i++) {
+#if VERSION == VERSION_GCN_JPN
+        J2DTextBox* fxy_TextBox = (J2DTextBox*)mpScreen->search(xy_text[i]);
+        mpScreen->search(fxy_text[i])->hide();
+#else
         J2DTextBox* fxy_TextBox = (J2DTextBox*)mpScreen->search(fxy_text[i]);
         mpScreen->search(xy_text[i])->hide();
+#endif
         fxy_TextBox->setFont(mDoExt_getMesgFont());
         fxy_TextBox->setString(0x40, "");
         field_0x580[0] = mpString->getString(0x380, fxy_TextBox, NULL, NULL, NULL, 0);
     }
     for (i = 0; i < 5; i++) {
+#if VERSION == VERSION_GCN_JPN
+        J2DTextBox* fc_TextBox = (J2DTextBox*)mpScreen->search(c_text[i]);
+        mpScreen->search(fc_text[i])->hide();
+#else
         J2DTextBox* fc_TextBox = (J2DTextBox*)mpScreen->search(fc_text[i]);
         mpScreen->search(c_text[i])->hide();
+#endif
         fc_TextBox->setFont(mDoExt_getMesgFont());
         fc_TextBox->setString(0x40, "");
         field_0x580[1] = mpString->getString(0x37F, fc_TextBox, NULL, NULL, NULL, 0);
     }
     for (i = 0; i < 5; i++) {
+#if VERSION == VERSION_GCN_JPN
+        J2DTextBox* fc1_TextBox = (J2DTextBox*)mpScreen->search(c_text1[i]);
+        mpScreen->search(fc_text1[i])->hide();
+#else
         J2DTextBox* fc1_TextBox = (J2DTextBox*)mpScreen->search(fc_text1[i]);
         mpScreen->search(c_text1[i])->hide();
+#endif
         fc1_TextBox->setFont(mDoExt_getMesgFont());
         fc1_TextBox->setString(0x40, "");
         field_0x580[2] = mpString->getString(0x4CD, fc1_TextBox, NULL, NULL, NULL, 0);
     }
     for (int i = 0; i < 5; i++) {
+#if VERSION == VERSION_GCN_JPN
+        mpComboOffString[i] = (J2DTextBox*)mpScreen->search(t_on[i]);
+        mpScreen->search(ft_on[i])->hide();
+#else
         mpComboOffString[i] = (J2DTextBox*)mpScreen->search(ft_on[i]);
         mpScreen->search(t_on[i])->hide();
+#endif
         mpComboOffString[i]->setString(0x40, "");
         mpComboOffString[i]->setFont(mDoExt_getMesgFont());
         mpString->getString(0x4D2, mpComboOffString[i], NULL, NULL, NULL, 0);
     }
     for (int i = 0; i < 5; i++) {
+#if VERSION == VERSION_GCN_JPN
+        mpBowArrowComboString[i] = (J2DTextBox*)mpScreen->search(t_off[i]);
+        mpScreen->search(ft_off[i])->hide();
+#else
         mpBowArrowComboString[i] = (J2DTextBox*)mpScreen->search(ft_off[i]);
         mpScreen->search(t_off[i])->hide();
+#endif
         mpBowArrowComboString[i]->setString(0x40, "");
         mpBowArrowComboString[i]->setFont(mDoExt_getMesgFont());
         mpString->getString(0x4D3, mpBowArrowComboString[i], NULL, NULL, NULL, 0);
@@ -376,6 +401,20 @@ dMenu_Ring_c::dMenu_Ring_c(JKRExpHeap* i_heap, STControl* i_stick, CSTControl* i
     mpNameParent = new CPaneMgr(mpCenterScreen, 'label_n', 1, NULL);
     mpCircle = new CPaneMgr(mpCenterScreen, 'circle_n', 2, NULL);
     J2DTextBox* textBox[4];
+#if VERSION == VERSION_GCN_JPN
+    textBox[0] = (J2DTextBox*)mpCenterScreen->search('item_n04');
+    textBox[1] = (J2DTextBox*)mpCenterScreen->search('item_n05');
+    textBox[2] = (J2DTextBox*)mpCenterScreen->search('item_n06');
+    textBox[3] = (J2DTextBox*)mpCenterScreen->search('item_n07');
+    J2DPane* pane = mpCenterScreen->search('fitem_n1');
+    pane->mVisible = false;
+    pane = mpCenterScreen->search('fitem_n2');
+    pane->mVisible = false;
+    pane = mpCenterScreen->search('fitem_n3');
+    pane->mVisible = false;
+    pane = mpCenterScreen->search('fitem_n4');
+    pane->mVisible = false;
+#else
     textBox[0] = (J2DTextBox*)mpCenterScreen->search('fitem_n1');
     textBox[1] = (J2DTextBox*)mpCenterScreen->search('fitem_n2');
     textBox[2] = (J2DTextBox*)mpCenterScreen->search('fitem_n3');
@@ -384,6 +423,7 @@ dMenu_Ring_c::dMenu_Ring_c(JKRExpHeap* i_heap, STControl* i_stick, CSTControl* i
     mpCenterScreen->search('item_n05');
     mpCenterScreen->search('item_n06');
     mpCenterScreen->search('item_n07');
+#endif
     for (int i = 0; i < 4; i++) {
         textBox[i]->setFont(mDoExt_getMesgFont());
         textBox[i]->setString(0x40, "");
@@ -1085,10 +1125,17 @@ void dMenu_Ring_c::setScale() {
 /* 801EC3B0-801EC504 1E6CF0 0154+00 1/1 0/0 0/0 .text            setNameString__12dMenu_Ring_cFUl */
 void dMenu_Ring_c::setNameString(u32 i_stringID) {
     J2DTextBox* textBox[4];
+#if VERSION == VERSION_GCN_JPN
+    textBox[0] = (J2DTextBox*)mpCenterScreen->search('item_n04');
+    textBox[1] = (J2DTextBox*)mpCenterScreen->search('item_n05');
+    textBox[2] = (J2DTextBox*)mpCenterScreen->search('item_n06');
+    textBox[3] = (J2DTextBox*)mpCenterScreen->search('item_n07');
+#else
     textBox[0] = (J2DTextBox*)mpCenterScreen->search('fitem_n1');
     textBox[1] = (J2DTextBox*)mpCenterScreen->search('fitem_n2');
     textBox[2] = (J2DTextBox*)mpCenterScreen->search('fitem_n3');
     textBox[3] = (J2DTextBox*)mpCenterScreen->search('fitem_n4');
+#endif
     if (mNameStringID != i_stringID) {
         for (int i = 0; i < 4; i++) {
             if (i_stringID == 0) {

@@ -342,10 +342,10 @@ bool daE_ZH_c::startDemoCheck() {
 
 /* 80829658-808298BC 000718 0264+00 2/2 0/0 0/0 .text            mBallBGCheck__8daE_ZH_cFv */
 void daE_ZH_c::mBallBGCheck() {
-    // NONMATCHING
     mBallHosei.zero();
 
     if (mS_Ball != NULL) {
+        int i = 0;
         s16 sVar1 = 0;
         cXyz spa4, spb0, start;
         dBgS_LinChk lin_chk;
@@ -353,7 +353,7 @@ void daE_ZH_c::mBallBGCheck() {
         start.set(mS_Ball->current.pos);
         start.y += 50.0f;
 
-        for (int i = 0; i < 8; i++) {
+        for (i = 0; i < 8; i++) {
             cMtx_YrotS(*calc_mtx, sVar1);
             spa4.x = 0.0f;
             spa4.y = 100.0f;
@@ -387,7 +387,7 @@ void daE_ZH_c::mBallBGCheck() {
                 if (mBallHosei.x || mBallHosei.z) {
                     return;
                 }
-                
+
                 sVar1 = 0x2000;
             }
         }
@@ -396,7 +396,7 @@ void daE_ZH_c::mBallBGCheck() {
 
 /* 808298BC-808299F8 00097C 013C+00 3/3 0/0 0/0 .text            mGateOpen__8daE_ZH_cFv */
 void daE_ZH_c::mGateOpen() {
-    // NONMATCHING
+    f32 reg_f31 = 0.0f;
     switch (field_0x794[2]) {
         case 0:
             field_0x77c = 0.0f;
@@ -409,7 +409,9 @@ void daE_ZH_c::mGateOpen() {
 
         case 2:
             field_0x7a4 += NREG_F(6) + 5.0f;
-            cLib_addCalc2(&field_0x77c, NREG_F(7) + 80.0f + (cM_ssin((s16)(field_0x7a4 << 8)) * 40.0f), NREG_F(4) + 0.5f, NREG_F(5) + 10.0f);
+            reg_f31 = NREG_F(7) + 80.0f;
+            reg_f31 += cM_ssin((s16)(field_0x7a4 << 8)) * 40.0f;
+            cLib_addCalc2(&field_0x77c, reg_f31, NREG_F(4) + 0.5f, NREG_F(5) + 10.0f);
             break;
 
         case 3:
@@ -458,13 +460,15 @@ bool daE_ZH_c::mReturnLineMove() {
         cXyz(3950.0f, -725.0f, 352.0f),
     };
 
+    u32 reg_r28;
     u32 uVar1 = 0;
     cXyz sp2c;
 
-    switch (fopAcM_GetRoomNo(this)) {
+    int room_no = fopAcM_GetRoomNo(this);
+    switch (room_no) {
         case 1:
             break;
-            
+
         case 2:
             uVar1 = 1;
             break;
@@ -484,7 +488,8 @@ bool daE_ZH_c::mReturnLineMove() {
         mRetrunStartLine.set(0.0f, 0.0f, -800.0f);
     } else {
         mRetrunEndLine.set(mRoomLine_dt[uVar1]);
-        mRetrunEndLine.z = mRoomLine_dt[uVar1 ^ 1].z;
+        reg_r28 = uVar1 ^ 1;
+        mRetrunEndLine.z = mRoomLine_dt[reg_r28].z;
         mRetrunStartLine.set(mRoomLine_dt[uVar1]);
     }
 
@@ -493,8 +498,8 @@ bool daE_ZH_c::mReturnLineMove() {
     sp2c = mRetrunStartLine - current.pos;
     sp2c.z = 0.0f;
     cLib_addCalcAngleS2(&mRollAngle, 0x400, 8, 0x40);
-    cLib_addCalcAngleS2(&current.angle.y, (s16)sp2c.atan2sX_Z(), 8, mRollAngle);
-    cLib_addCalcAngleS2(&shape_angle.y, current.angle.y, 8, mRollAngle);
+    cLib_addCalcAngleS2(&current.angle.y, (s16) sp2c.atan2sX_Z(), 8, (s16) mRollAngle);
+    cLib_addCalcAngleS2(&shape_angle.y, (s16) current.angle.y, 8, (s16) mRollAngle);
 
     if (fabsf(current.pos.x - mRetrunStartLine.x) < 20.0f) {
         return true;
@@ -2355,6 +2360,8 @@ cPhs__Step daE_ZH_c::create() {
 
     return phase;
 }
+
+daE_ZH_c::daE_ZH_c() {}
 
 /* 8082F0F8-8082F118 0061B8 0020+00 1/0 0/0 0/0 .text            daE_ZH_Create__FP8daE_ZH_c */
 static int daE_ZH_Create(daE_ZH_c* i_this) {

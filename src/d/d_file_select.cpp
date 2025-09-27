@@ -2475,9 +2475,15 @@ void dFile_select_c::screenSet() {
         field_0x020c[i] = new CPaneMgrAlpha(fileSel.Scr, l_tagName21[i], 0, NULL);
         ((J2DTextBox*)field_0x020c[i]->getPanePtr())->setFont(fileSel.mpMessageFont[0]);
         ((J2DTextBox*)field_0x020c[i]->getPanePtr())->setString(512, "");
+#if VERSION == VERSION_GCN_JPN
+        ((J2DTextBox*)field_0x020c[i]->getPanePtr())->setFontSize(21.0f, 21.0f);
+        ((J2DTextBox*)field_0x020c[i]->getPanePtr())->setLineSpace(22.0f);
+        ((J2DTextBox*)field_0x020c[i]->getPanePtr())->setCharSpace(2.0f);
+#else
         ((J2DTextBox*)field_0x020c[i]->getPanePtr())->setFontSize(24.0f, 24.0f);
         ((J2DTextBox*)field_0x020c[i]->getPanePtr())->setLineSpace(20.0f);
         ((J2DTextBox*)field_0x020c[i]->getPanePtr())->setCharSpace(0.0f);
+#endif
         field_0x0214[i] = ((J2DTextBox*)field_0x020c[i]->getPanePtr())->getStringPtr();
     }
     field_0x020c[0]->setAlpha(0xff);
@@ -2688,8 +2694,13 @@ void dFile_select_c::screenSetYesNo() {
     field_0x008c->searchUpdateMaterialID(mYnSel.ScrYn);
     for (int i = 0; i < 2; i++) {
         field_0x00f0[i] = new CPaneMgr(mYnSel.ScrYn, l_tagName012[i], 0, NULL);
+#if VERSION == VERSION_GCN_JPN
+        field_0x01c0[i] = new CPaneMgr(mYnSel.ScrYn, l_tagName013[i], 0, NULL);
+        mYnSel.ScrYn->search(l_tagName013U[i])->hide();
+#else
         field_0x01c0[i] = new CPaneMgr(mYnSel.ScrYn, l_tagName013U[i], 0, NULL);
         mYnSel.ScrYn->search(l_tagName013[i])->hide();
+#endif
         ((J2DTextBox*)field_0x01c0[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
         char acStack_30[16];
         fopMsgM_messageGet(acStack_30, l_msgNum2[i]);
@@ -2754,8 +2765,13 @@ void dFile_select_c::screenSet3Menu() {
     field_0x0118->animationTransform();
     for (int i = 0; i < 3; i++) {
         field_0x0340[i] = new CPaneMgr(m3mSel.Scr3m, l_tagName1[i], 0, NULL);
+#if VERSION == VERSION_GCN_JPN
+        mpPaneMgr2[i] = new CPaneMgr(m3mSel.Scr3m, l_tagName011[i], 0, NULL);
+        m3mSel.Scr3m->search(l_tagName011U[i])->hide();
+#else
         mpPaneMgr2[i] = new CPaneMgr(m3mSel.Scr3m, l_tagName011U[i], 0, NULL);
         m3mSel.Scr3m->search(l_tagName011[i])->hide();
+#endif
 
         ((J2DTextBox*)mpPaneMgr2[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
         char acStack_30[32];
@@ -3306,7 +3322,7 @@ void dFile_select_c::MemCardStatCheck() {
         field_0x0280 = false;
         field_0x0284 = NULL;
         field_0x0273 = 2;
-        field_0x0290 = &dFile_select_c::noSaveSelDispInit;
+        field_0x0290 = &dFile_select_c::noFileSpaceDispInit;
         field_0x0274 = 3;
         break;
     case 8:
@@ -4134,18 +4150,23 @@ void dFile_select3D_c::draw() {
 }
 
 /* 8019065C-8019095C 18AF9C 0300+00 2/2 0/0 0/0 .text setJ3D__16dFile_select3D_cFPCcPCcPCc */
-// NONMATCHING extra mr
 void dFile_select3D_c::setJ3D(char const* param_0, char const* param_1, char const* param_2) {
-    JKRArchive* archive = dComIfGp_getCollectResArchive();
-    J3DAnmTransform* pbck;
-    J3DAnmTevRegKey* pbrk;
+    JKRArchive* archive;
+    J3DAnmBase* anmBase;
+    void* bmdRes;
+    J3DMaterialAnm* material;
+    void* bckRes;
+    void* brkRes;
+    J3DModelData* modelData;
 
-    void* res = archive->getResource('BMD ', param_0);
-    J3DModelData* modelData = J3DModelLoaderDataBase::load(res, 0x51020010);
+    archive = dComIfGp_getCollectResArchive();
+
+    bmdRes = archive->getResource('BMD ', param_0);
+    modelData = J3DModelLoaderDataBase::load(bmdRes, 0x51020010);
     JUT_ASSERT(8823, modelData != 0);
 
     for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
-        J3DMaterialAnm* material = new J3DMaterialAnm();
+        material = new J3DMaterialAnm();
         modelData->getMaterialNodePointer(i)->change();
         modelData->getMaterialNodePointer(i)->setMaterialAnm(material);
     }
@@ -4154,24 +4175,24 @@ void dFile_select3D_c::setJ3D(char const* param_0, char const* param_1, char con
     JUT_ASSERT(8836, mpModel != 0);
 
     if (param_1) {
-        void* res = archive->getResource('BCK ', param_1);
-        pbck = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(res);
-        JUT_ASSERT(8846, pbck != 0);
+        bckRes = archive->getResource('BCK ', param_1);
+        anmBase = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(bckRes);
+        JUT_ASSERT(8846, anmBase != 0);
 
         mBckAnm = new mDoExt_bckAnm();
-        if (mBckAnm == NULL || !mBckAnm->init(pbck, 1, 2, 1.0f, 0, -1, false)) {
+        if (mBckAnm == NULL || !mBckAnm->init((J3DAnmTransform*)anmBase, 1, 2, 1.0f, 0, -1, false)) {
             return;
         }
     }
 
     if (param_2) {
-        void* res = archive->getResource('BRK ', param_2);
-        pbrk = (J3DAnmTevRegKey*)J3DAnmLoaderDataBase::load(res);
-        JUT_ASSERT(8859, pbrk != 0);
-        pbrk->searchUpdateMaterialID(modelData);
+        brkRes = archive->getResource('BRK ', param_2);
+        anmBase = (J3DAnmTevRegKey*)J3DAnmLoaderDataBase::load(brkRes);
+        JUT_ASSERT(8859, anmBase != 0);
+        ((J3DAnmTevRegKey*)anmBase)->searchUpdateMaterialID(modelData);
 
         mBrkAnm = new mDoExt_brkAnm();
-        if (mBrkAnm == NULL || !mBrkAnm->init(modelData, pbrk, -1, 2, 1.0f, 0, -1)) {
+        if (mBrkAnm == NULL || !mBrkAnm->init(modelData, (J3DAnmTevRegKey*)anmBase, -1, 2, 1.0f, 0, -1)) {
             return;
         }
     }
@@ -4315,22 +4336,21 @@ void dFile_select3D_c::createMirrorModel() {
 }
 
 /* 80190FE8-801910D4 18B928 00EC+00 1/1 0/0 0/0 .text toItem3Dpos__16dFile_select3D_cFfffP4cXyz */
-// NONMATCHING this is the same function as dMenu_Collect3D_c::toItem3Dpos
 #pragma push
 #pragma optimization_level 2
 void dFile_select3D_c::toItem3Dpos(f32 param_0, f32 param_1, f32 param_2, cXyz* param_3) {
     Mtx adStack_98;
     Mtx auStack_c8;
-    f32 dVar7 =
+    param_0 =
         (2.0f * ((param_0 - mDoGph_gInf_c::getMinXF()) / mDoGph_gInf_c::getWidthF()) - 1.0f);
-    f32 dVar11 = (2.0f * ((param_1 - -100.0f) / 448.0f) - 1.0f);
+    param_1 = (2.0f * ((param_1 - -100.0f) / 448.0f) - 1.0f);
     calcViewMtx(adStack_98);
-    MTXInverse(adStack_98, auStack_c8);
-    f32 tangent = tan(0.39269909262657166);
+    cMtx_inverse(adStack_98, auStack_c8);
+    f32 tangent = std::tan(0.39269909262657166);
     f32 dVar12 = -param_2;
-    cXyz cStack_d4((dVar7 * param_2) * (mDoGph_gInf_c::getAspect() * tangent),
-                   (tangent * (dVar11 * dVar12)), dVar12);
-    MTXMultVec(auStack_c8, &cStack_d4, param_3);
+    cXyz cStack_d4((param_0 * param_2) * (mDoGph_gInf_c::getAspect() * tangent),
+                   (tangent * (param_1 * dVar12)), dVar12);
+    cMtx_multVec(auStack_c8, &cStack_d4, param_3);
 }
 #pragma pop
 

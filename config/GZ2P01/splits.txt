@@ -768,7 +768,7 @@ d/actor/d_a_npc.cpp:
 	.rodata     start:0x80393E80 end:0x80394218
 	.data       start:0x803B5388 end:0x803B5860
 	.bss        start:0x804276A8 end:0x80427918
-	.sbss       start:0x80452F98 end:0x80452FC0
+	.sbss       start:0x80452F98 end:0x80452FB8
 	.sdata2     start:0x80455398 end:0x80455478
 
 d/actor/d_a_npc_cd.cpp:
@@ -777,6 +777,7 @@ d/actor/d_a_npc_cd.cpp:
 	.rodata     start:0x80394218 end:0x80394A50
 	.data       start:0x803B5860 end:0x803B7EA0
 	.bss        start:0x80427918 end:0x8042A5B0
+	.sbss       start:0x80452FB8 end:0x80452FC0
 	.sdata2     start:0x80455478 end:0x804554A0
 
 d/actor/d_a_npc_cd2.cpp:
@@ -1162,7 +1163,7 @@ d/d_msg_unit.cpp:
 	.rodata     start:0x8039AF48 end:0x8039AF68
 	.data       start:0x803C28D0 end:0x803C28E0
 	.bss        start:0x80432678 end:0x80432688
-	.sbss       start:0x80453090 end:0x804530A0
+	.sbss       start:0x80453090 end:0x80453098
 	.sdata2     start:0x80456B10 end:0x80456B28
 
 d/d_msg_scrn_3select.cpp:
@@ -1227,6 +1228,7 @@ d/d_msg_scrn_light.cpp:
 	.rodata     start:0x8039B368 end:0x8039B3D8
 	.data       start:0x803C2F78 end:0x803C2F90
 	.bss        start:0x80432688 end:0x804326E8
+	.sbss       start:0x80453098 end:0x804530A0
 	.sdata2     start:0x80456CA8 end:0x80456CB8
 
 d/d_msg_scrn_place.cpp:
@@ -1821,7 +1823,7 @@ JSystem/JAudio2/JASProbe.cpp:
 JSystem/JAudio2/JASReport.cpp:
 	.text       start:0x80291D64 end:0x80291E60
 	.bss        start:0x80433620 end:0x80433638
-	.sbss       start:0x804531E8 end:0x80453200
+	.sbss       start:0x804531E8 end:0x804531F8
 
 JSystem/JAudio2/JASCmdStack.cpp:
 	.text       start:0x80291E60 end:0x80292028

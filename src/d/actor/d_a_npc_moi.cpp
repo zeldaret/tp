@@ -1,14 +1,14 @@
 /**
-* @file d_a_npc_moi.cpp
+ * @file d_a_npc_moi.cpp
  *
  */
 
 #include "d/dolzel_rel.h"
 
-#include "d/actor/d_a_npc_moi.h"
 #include "SSystem/SComponent/c_counter.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_ep.h"
+#include "d/actor/d_a_npc_moi.h"
 #include "d/actor/d_a_npc_uri.h"
 
 /* 80A7B17C-80A7B1BC 000020 0040+00 1/1 0/0 0/0 .data            l_bmdData */
@@ -98,50 +98,55 @@ static daNpcT_motionAnmData_c l_motionAnmData[35] = {
 
 /* 80A7B82C-80A7B98C 0006D0 0160+00 0/1 0/0 0/0 .data            l_faceMotionSequenceData */
 static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_faceMotionSequenceData[88] = {
-    1,  -1, 1, -1, 0, 0, -1, 0, 0, -1, 0, 0, 2,  -1, 1, 12, 0, 0, -1, 0, 0, -1, 0, 0,
-    3,  -1, 1, 13, 0, 0, -1, 0, 0, -1, 0, 0, 4,  -1, 1, 14, 0, 0, -1, 0, 0, -1, 0, 0,
-    5,  -1, 1, 9,  0, 0, -1, 0, 0, -1, 0, 0, 6,  -1, 1, 10, 0, 0, -1, 0, 0, -1, 0, 0,
-    7,  -1, 1, -1, 0, 0, -1, 0, 0, -1, 0, 0, 18, -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
-    8,  -1, 1, 16, 0, 0, -1, 0, 0, -1, 0, 0, 17, -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
-    -1, 0,  0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0,  0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
-    16, -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, 15, -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
-    9,  -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, 10, -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
-    14, -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, 11, -1, 1, -1, 0, 0, -1, 0, 0, -1, 0, 0,
-    12, -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, 13, -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
-    19, -1, 1, -1, 0, 0, -1, 0, 0, -1, 0, 0, 0,  -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
+    {1, -1, 1},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {2, -1, 1},  {12, 0, 0},  {-1, 0, 0},
+    {-1, 0, 0},  {3, -1, 1},  {13, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {4, -1, 1},  {14, 0, 0},
+    {-1, 0, 0},  {-1, 0, 0},  {5, -1, 1},  {9, 0, 0},   {-1, 0, 0},  {-1, 0, 0},  {6, -1, 1},
+    {10, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {7, -1, 1},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},
+    {18, -1, 0}, {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {8, -1, 1},  {16, 0, 0},  {-1, 0, 0},
+    {-1, 0, 0},  {17, -1, 0}, {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},
+    {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {16, -1, 0},
+    {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {15, -1, 0}, {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},
+    {9, -1, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {10, -1, 0}, {-1, 0, 0},  {-1, 0, 0},
+    {-1, 0, 0},  {14, -1, 0}, {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {11, -1, 1}, {-1, 0, 0},
+    {-1, 0, 0},  {-1, 0, 0},  {12, -1, 0}, {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {13, -1, 0},
+    {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {19, -1, 1}, {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},
+    {0, -1, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},
 };
 
 /* 80A7B98C-80A7BC9C 000830 0310+00 0/1 0/0 0/0 .data            l_motionSequenceData */
 static daNpcT_MotionSeqMngr_c::sequenceStepData_c l_motionSequenceData[196] = {
-    0,  -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, 8,  -1, 1, 2,  0, 0, -1, 0, 0, -1, 0, 0,
-    1,  -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, 9,  -1, 1, 1,  0, 0, -1, 0, 0, -1, 0, 0,
-    4,  -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, 10, -1, 1, 1,  0, 0, -1, 0, 0, -1, 0, 0,
-    11, -1, 1, 5,  0, 0, -1, 0, 0, -1, 0, 0, 2,  -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
-    7,  -1, 1, 1,  0, 0, -1, 0, 0, -1, 0, 0, 6,  -1, 1, 0,  0, 0, -1, 0, 0, -1, 0, 0,
-    22, -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, 25, -1, 1, 22, 0, 0, -1, 0, 0, -1, 0, 0,
-    28, -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, 27, 0,  1, 29, 0, 0, -1, 0, 0, -1, 0, 0,
-    14, -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, 15, -1, 1, 14, 0, 0, -1, 0, 0, -1, 0, 0,
-    23, -1, 1, 22, 0, 0, -1, 0, 0, -1, 0, 0, 16, -1, 1, 14, 0, 0, -1, 0, 0, -1, 0, 0,
-    17, -1, 1, 14, 0, 0, -1, 0, 0, -1, 0, 0, 33, -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
-    -1, 0,  0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0,  0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
-    -1, 0,  0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0,  0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
-    -1, 0,  0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0,  0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
-    -1, 0,  0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0,  0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
-    -1, 0,  0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0,  0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
-    -1, 0,  0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0,  0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
-    -1, 0,  0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0,  0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
-    31, -1, 1, 32, 0, 0, -1, 0, 0, -1, 0, 0, 32, -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
-    29, -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, 20, -1, 1, -1, 0, 0, -1, 0, 0, -1, 0, 0,
-    21, -1, 1, -1, 0, 0, -1, 0, 0, -1, 0, 0, 26, -1, 1, -1, 0, 0, -1, 0, 0, -1, 0, 0,
-    18, -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0,  0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
-    25, -1, 1, -1, 0, 0, -1, 0, 0, -1, 0, 0, 24, -1, 1, -1, 0, 0, -1, 0, 0, -1, 0, 0,
-    13, -1, 1, -1, 0, 0, -1, 0, 0, -1, 0, 0, 12, -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
-    3,  -1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, 30, -1, 1, -1, 0, 0, -1, 0, 0, -1, 0, 0,
-    18, 4,  0, -1, 0, 0, -1, 0, 0, -1, 0, 0,
+    {0, -1, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {8, -1, 1},  {2, 0, 0},   {-1, 0, 0},
+    {-1, 0, 0},  {1, -1, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {9, -1, 1},  {1, 0, 0},
+    {-1, 0, 0},  {-1, 0, 0},  {4, -1, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {10, -1, 1},
+    {1, 0, 0},   {-1, 0, 0},  {-1, 0, 0},  {11, -1, 1}, {5, 0, 0},   {-1, 0, 0},  {-1, 0, 0},
+    {2, -1, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {7, -1, 1},  {1, 0, 0},   {-1, 0, 0},
+    {-1, 0, 0},  {6, -1, 1},  {0, 0, 0},   {-1, 0, 0},  {-1, 0, 0},  {22, -1, 0}, {-1, 0, 0},
+    {-1, 0, 0},  {-1, 0, 0},  {25, -1, 1}, {22, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {28, -1, 0},
+    {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {27, 0, 1},  {29, 0, 0},  {-1, 0, 0},  {-1, 0, 0},
+    {14, -1, 0}, {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {15, -1, 1}, {14, 0, 0},  {-1, 0, 0},
+    {-1, 0, 0},  {23, -1, 1}, {22, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {16, -1, 1}, {14, 0, 0},
+    {-1, 0, 0},  {-1, 0, 0},  {17, -1, 1}, {14, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {33, -1, 0},
+    {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},
+    {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},
+    {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},
+    {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},
+    {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},
+    {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},
+    {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},
+    {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},
+    {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {31, -1, 1}, {32, 0, 0},  {-1, 0, 0},  {-1, 0, 0},
+    {32, -1, 0}, {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {29, -1, 0}, {-1, 0, 0},  {-1, 0, 0},
+    {-1, 0, 0},  {20, -1, 1}, {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {21, -1, 1}, {-1, 0, 0},
+    {-1, 0, 0},  {-1, 0, 0},  {26, -1, 1}, {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {18, -1, 0},
+    {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},
+    {25, -1, 1}, {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {24, -1, 1}, {-1, 0, 0},  {-1, 0, 0},
+    {-1, 0, 0},  {13, -1, 1}, {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {12, -1, 0}, {-1, 0, 0},
+    {-1, 0, 0},  {-1, 0, 0},  {3, -1, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {30, -1, 1},
+    {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},  {18, 4, 0},  {-1, 0, 0},  {-1, 0, 0},  {-1, 0, 0},
 };
 
 /* 80A7BC9C-80A7BCB0 -00001 0014+00 1/1 0/0 0/0 .data            mCutNameList__11daNpc_Moi_c */
-const char* daNpc_Moi_c::mCutNameList[5] = {
+char* daNpc_Moi_c::mCutNameList[5] = {
     "", "DELIVERED_SW", "APPEARANCE_MOI", "CONVERSATION_WITH_URI", "FIND_WOLF",
 };
 
@@ -189,116 +194,14 @@ daNpc_Moi_c::~daNpc_Moi_c() {
 }
 
 /* 80A7AEF0-80A7AFAC 000000 00BC+00 19/19 0/0 0/0 .rodata          m__17daNpc_Moi_Param_c */
-daNpc_Moi_HIOParam const daNpc_Moi_Param_c::m = {
-    200.0f,               // field_0x00
-    -3.0f,                // field_0x04
-    1.0f,                 // field_0x08
-    400.0f,               // field_0x0c
-    255.0f,               // field_0x10
-    180.0f,               // field_0x14
-    35.0f,                // field_0x18
-    30.0f,                // field_0x1c
-    0.0f,                 // field_0x20
-    0.0f,                 // field_0x24
-    10.0f,                // field_0x28
-    -10.0f,               // field_0x2c
-    30.0f,                // field_0x30
-    -10.0f,               // field_0x34
-    45.0f,                // field_0x38
-    -45.0f,               // field_0x3c
-    0.6000000238418579f,  // field_0x40
-    12.0f,                // field_0x44
-    3,                    // field_0x48
-    6,                    // field_0x4a
-    5,                    // field_0x4c
-    6,                    // field_0x4e
-    110.0f,               // field_0x50
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x3C,
-    0x00,
-    0x08,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    4.0f,  // field_0x6c
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-    0x43,
-    0xAF,
-    0x00,
-    0x00,
-    0x43,
-    0x96,
-    0x00,
-    0x00,
-    0xC2,
-    0xC8,
-    0x00,
-    0x00,
-    90,    // field_0x98
-    200,   // field_0x9a
-    235,   // field_0x9c
-    125,   // field_0x9e
-    0,     // field_0xa0
-    0,     // field_0xa2
-    1.0f,  // field_0xa4
-    0x44,
-    0x7A,
-    0x00,
-    0x00,
-    0x43,
-    0x96,
-    0x00,
-    0x00,
-    0xC3,
-    0x96,
-    0x00,
-    0x00,
-    30.0f,  // field_0xb4
-    60.0f,  // field_0xb8
+const daNpc_Moi_HIOParam daNpc_Moi_Param_c::m = {
+    200.0f, -3.0f, 1.0f,   400.0f, 255.0f, 180.0f, 35.0f, 30.0f, 0.0f, 0.0f, 10.0f,
+    -10.0f, 30.0f, -10.0f, 45.0f,  -45.0f, 0.6f,   12.0f, 3,     6,    5,    6,
+    110.0f, 0.0f,  0.0f,   0.0f,   60,     8,      0,     0,     0,    0,    0,
+    4.0f,   0.0f,  0.0f,   0.0f,   0.0f,   0.0f,   0.0f,  0.0f,  0x43, 0xAF, 0x00,
+    0x00,   0x43,  0x96,   0x00,   0x00,   0xC2,   0xC8,  0x00,  0x00, 90,   200,
+    235,    125,   0,      0,      1.0f,   0x44,   0x7A,  0x00,  0x00, 0x43, 0x96,
+    0x00,   0x00,  0xC3,   0x96,   0x00,   0x00,   30.0f, 60.0f,
 };
 
 /* 80A74150-80A74474 0002F0 0324+00 1/1 0/0 0/0 .text            create__11daNpc_Moi_cFv */
@@ -331,7 +234,7 @@ int daNpc_Moi_c::create() {
         reset();
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
                   fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
-        mCcStts.Init(daNpc_Moi_Param_c::m.field_0x10, 0, this);
+        mCcStts.Init(daNpc_Moi_Param_c::m.common.weight, 0, this);
         for (int i = 0; i < 4; i++) {
             mCyl[i].Set(mCcDCyl);
             mCyl[i].SetStts(&mCcStts);
@@ -632,64 +535,67 @@ void daNpc_Moi_c::setParam() {
     srchActors();
 
     int uVar5 = (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
-    s16 sVar7 = daNpc_Moi_Param_c::m.field_0x48;
-    s16 sVar6 = daNpc_Moi_Param_c::m.field_0x4a;
-    s16 sVar5 = daNpc_Moi_Param_c::m.field_0x4c;
-    s16 sVar4 = daNpc_Moi_Param_c::m.field_0x4e;
+    s16 talk_distance = daNpc_Moi_Param_c::m.common.talk_distance;
+    s16 talk_angle = daNpc_Moi_Param_c::m.common.talk_angle;
+    s16 attention_distance = daNpc_Moi_Param_c::m.common.attention_distance;
+    s16 attention_angle = daNpc_Moi_Param_c::m.common.attention_angle;
 
     if (mType == TYPE_2) {
         if (field_0x166d) {
-            sVar7 = 1;
-            sVar6 = 6;
-            sVar5 = 1;
-            sVar4 = 6;
+            talk_distance = 1;
+            talk_angle = 6;
+            attention_distance = 1;
+            attention_angle = 6;
             uVar5 = fopAc_AttnFlag_UNK_0x800000 | fopAc_AttnFlag_SPEAK_e;
         } else {
-            sVar7 = 6;
-            sVar6 = 6;
-            sVar5 = 19;
-            sVar4 = 6;
+            talk_distance = 6;
+            talk_angle = 6;
+            attention_distance = 19;
+            attention_angle = 6;
             uVar5 = fopAc_AttnFlag_LOCK_e;
         }
     } else if (mType == TYPE_1) {
-        sVar7 = 5;
-        sVar5 = 7;
+        talk_distance = 5;
+        attention_distance = 7;
     }
 
     if (daPy_getPlayerActorClass()->checkHorseRide()) {
-        if (sVar7 < 7) {
-            sVar7 = 7;
+        if (talk_distance < 7) {
+            talk_distance = 7;
         }
-        if (sVar5 < 9) {
-            sVar5 = 9;
+        if (attention_distance < 9) {
+            attention_distance = 9;
         }
     }
 
     if (mType == TYPE_2) {
         attention_info.distances[fopAc_attn_LOCK_e] = 0x35;
         attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
-        attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(sVar7, sVar6);
+        attention_info.distances[fopAc_attn_SPEAK_e] =
+            daNpcT_getDistTableIdx(talk_distance, talk_angle);
         attention_info.flags = 0;
         fopAcM_OffStatus(this, 0x100);
     } else {
-        attention_info.distances[fopAc_attn_LOCK_e] = daNpcT_getDistTableIdx(sVar5, sVar4);
+        attention_info.distances[fopAc_attn_LOCK_e] =
+            daNpcT_getDistTableIdx(attention_distance, attention_angle);
         attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
-        attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(sVar7, sVar6);
+        attention_info.distances[fopAc_attn_SPEAK_e] =
+            daNpcT_getDistTableIdx(talk_distance, talk_angle);
         attention_info.flags = uVar5;
     }
 
-    scale.set(daNpc_Moi_Param_c::m.field_0x08, daNpc_Moi_Param_c::m.field_0x08,
-              daNpc_Moi_Param_c::m.field_0x08);
-    mCcStts.SetWeight(daNpc_Moi_Param_c::m.field_0x10);
-    mCylH = daNpc_Moi_Param_c::m.field_0x14;
-    mWallR = daNpc_Moi_Param_c::m.field_0x1c;
-    mAttnFovY = daNpc_Moi_Param_c::m.field_0x50;
+    scale.set(daNpc_Moi_Param_c::m.common.scale, daNpc_Moi_Param_c::m.common.scale,
+              daNpc_Moi_Param_c::m.common.scale);
+    mCcStts.SetWeight(daNpc_Moi_Param_c::m.common.weight);
+    mCylH = daNpc_Moi_Param_c::m.common.height;
+    mWallR = daNpc_Moi_Param_c::m.common.width;
+    mAttnFovY = daNpc_Moi_Param_c::m.common.fov;
     if (mType == TYPE_2) {
         mAttnFovY = 135.0f;
     }
     mAcchCir.SetWallR(mWallR);
-    mAcchCir.SetWallH(daNpc_Moi_Param_c::m.field_0x18);
-    mRealShadowSize = daNpc_Moi_Param_c::m.field_0x0c;
+    mAcchCir.SetWallH(daNpc_Moi_Param_c::m.common.knee_length);
+    mRealShadowSize = daNpc_Moi_Param_c::m.common.real_shadow_size;
     if (mType == TYPE_1) {
         mRealShadowSize = 600.0f;
     } else if (mType == TYPE_2) {
@@ -698,9 +604,9 @@ void daNpc_Moi_c::setParam() {
             mRealShadowSize = 800.0f;
         }
     }
-    gravity = daNpc_Moi_Param_c::m.field_0x04;
-    mExpressionMorfFrame = daNpc_Moi_Param_c::m.field_0x6c;
-    mMorfFrames = daNpc_Moi_Param_c::m.field_0x44;
+    gravity = daNpc_Moi_Param_c::m.common.gravity;
+    mExpressionMorfFrame = daNpc_Moi_Param_c::m.common.expression_morf_frame;
+    mMorfFrames = daNpc_Moi_Param_c::m.common.morf_frame;
     if (mType == TYPE_3) {
         mAcch.SetGrndNone();
         mAcch.SetWallNone();
@@ -730,7 +636,7 @@ BOOL daNpc_Moi_c::checkChangeEvt() {
 /* 80A75514-80A755C8 0016B4 00B4+00 2/0 0/0 0/0 .text            setAfterTalkMotion__11daNpc_Moi_cFv
  */
 void daNpc_Moi_c::setAfterTalkMotion() {
-    int iVar2 = 21;
+    int iVar2 = MOT_UNK_21;
     switch (mFaceMotionSeqMngr.getNo()) {
     case MOT_UNK_1:
         iVar2 = MOT_UNK_18;
@@ -836,8 +742,9 @@ void daNpc_Moi_c::action() {
     }
 
     if (mSph.ChkAtHit() && fopAcM_GetProfName(mSph.GetAtHitAc()) == PROC_ALINK) {
-        /* dSv_event_tmp_flag_c::T_0047 - Ordon Village - Right after wrestling with Bo 
-                                          (Used to connect with conversation after wearing clothes) */
+        /* dSv_event_tmp_flag_c::T_0047 - Ordon Village - Right after wrestling with Bo
+                                          (Used to connect with conversation after wearing clothes)
+         */
         daNpcF_onTmpBit(0x47);
     }
 }
@@ -868,13 +775,15 @@ void daNpc_Moi_c::setAttnPos() {
     if (mType == 3) {
         mJntAnm.setParam(this, mpMorf[0]->getModel(), &acStack_3c, getBackboneJointNo(),
                          getNeckJointNo(), getHeadJointNo(), 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
-                         0.0f, 0.0f, l_HIO.m.field_0x40, dVar6, NULL);
+                         0.0f, 0.0f, l_HIO.m.common.neck_rotation_ratio, dVar6, NULL);
     } else {
         mJntAnm.setParam(this, mpMorf[0]->getModel(), &acStack_3c, getBackboneJointNo(),
-                         getNeckJointNo(), getHeadJointNo(), l_HIO.m.field_0x24, l_HIO.m.field_0x20,
-                         l_HIO.m.field_0x2c, l_HIO.m.field_0x28, l_HIO.m.field_0x34,
-                         l_HIO.m.field_0x30, l_HIO.m.field_0x3c, l_HIO.m.field_0x38,
-                         l_HIO.m.field_0x40, dVar6, NULL);
+                         getNeckJointNo(), getHeadJointNo(), l_HIO.m.common.body_angleX_min,
+                         l_HIO.m.common.body_angleX_max, l_HIO.m.common.body_angleY_min,
+                         l_HIO.m.common.body_angleY_max, l_HIO.m.common.head_angleX_min,
+                         l_HIO.m.common.head_angleX_max, l_HIO.m.common.head_angleY_min,
+                         l_HIO.m.common.head_angleY_max, l_HIO.m.common.neck_rotation_ratio, dVar6,
+                         NULL);
     }
     mJntAnm.calcJntRad(0.2f, 1.0f, dVar6);
 
@@ -886,7 +795,7 @@ void daNpc_Moi_c::setAttnPos() {
     mJntAnm.setEyeAngleY(eyePos, mCurAngle.y + field_0xd8a.y, 1, 1.0f, 0);
 
     acStack_3c.set(0.0f, 0.0f, 0.0f);
-    acStack_3c.y = l_HIO.m.field_0x00;
+    acStack_3c.y = l_HIO.m.common.attention_offset;
 
     if (mType == TYPE_3) {
         acStack_3c.set(0.0f, 140.0f, -60.0f);
@@ -1135,7 +1044,8 @@ BOOL daNpc_Moi_c::chkPlayerGetWoodShield() {
 /* 80A766DC-80A76888 00287C 01AC+00 2/2 0/0 0/0 .text            setSSlash__11daNpc_Moi_cFi */
 void daNpc_Moi_c::setSSlash(int param_1) {
     mMotionSeqMngr.setNo(MOT_UNK_43, 0.0f, 1, 0);
-        /* dSv_event_tmp_flag_c::GUARD_URI - Ordon Village - Rusl is guarding Uli, Ordon village night */
+    /* dSv_event_tmp_flag_c::GUARD_URI - Ordon Village - Rusl is guarding Uli, Ordon village night
+     */
     if (dComIfGs_isTmpBit(0x1308)) {
         mSound.startCreatureVoice(JAISoundID(Z2SE_MOI_V_GUARD_SWING), -1);
     } else {
@@ -1153,7 +1063,7 @@ void daNpc_Moi_c::setSSlash(int param_1) {
     field_0x1658 = 0;
     field_0x166b = 1;
     field_0x166c = 1;
-    /* dSv_event_tmp_flag_c::T_0047 - Ordon Village - Right after wrestling with Bo 
+    /* dSv_event_tmp_flag_c::T_0047 - Ordon Village - Right after wrestling with Bo
                                       (Used to connect with conversation after wearing clothes) */
     daNpcT_onTmpBit(0x47);
 }
@@ -1312,7 +1222,8 @@ int daNpc_Moi_c::injuryTurn(cXyz param_1) {
 
 /* 80A76F3C-80A770FC 0030DC 01C0+00 1/1 0/0 0/0 .text            injuryWalk__11daNpc_Moi_cFv */
 int daNpc_Moi_c::injuryWalk() {
-    /* dSv_event_tmp_flag_c::GUARD_URI - Ordon Village - Rusl is guarding Uli, Ordon village night */
+    /* dSv_event_tmp_flag_c::GUARD_URI - Ordon Village - Rusl is guarding Uli, Ordon village night
+     */
     dComIfGs_offTmpBit(0x1308);
 
     cXyz cStack_40;
@@ -1398,7 +1309,8 @@ int daNpc_Moi_c::poise() {
                             field_0x1648 = cLib_getRndValue(iVar13 * 0.5f, iVar13 * 1.5f);
                         } else if (!cLib_calcTimer(&field_0x1648)) {
                             mMotionSeqMngr.setNo(MOT_UNK_43, 0.0f, 1, 0);
-                                /* dSv_event_tmp_flag_c::GUARD_URI - Ordon Village - Rusl is guarding Uli, Ordon village night */
+                            /* dSv_event_tmp_flag_c::GUARD_URI - Ordon Village - Rusl is guarding
+                             * Uli, Ordon village night */
                             if (dComIfGs_isTmpBit(0x1308)) {
                                 mSound.startCreatureVoice(JAISoundID(Z2SE_MOI_V_GUARD_SWING), -1);
                             } else {
@@ -1926,7 +1838,9 @@ int daNpc_Moi_c::walkOnEggshell(void* param_1) {
                 if (field_0x1658) {
                     field_0x1658 = injuryCheck();
                     if (field_0x1658) {
-                        if (daPy_getPlayerActorClass()->eventInfo.chkCondition(dEvtCnd_CANTALK_e) != 0) {
+                        if (daPy_getPlayerActorClass()->eventInfo.chkCondition(dEvtCnd_CANTALK_e) !=
+                            0)
+                        {
                             f32 fVar = daPy_getPlayerActorClass()->attention_info.position.absXZ(
                                 attention_info.position);
                         }

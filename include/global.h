@@ -58,11 +58,12 @@
 #define STATIC_ASSERT(...)
 #endif
 
-// hack to make functions that return comparisons as int match
+// Intrinsics
 extern int __cntlzw(unsigned int);
-inline BOOL checkEqual(s32 a, s32 b) {
-    return (u32)__cntlzw(a - b) >> 5;
-}
+extern int __rlwimi(int, int, int, int, int);
+extern void __dcbz(void*, int);
+extern void __sync();
+extern int __abs(int);
 
 #ifndef __MWERKS__
 void* __memcpy(void*, const void*, int);

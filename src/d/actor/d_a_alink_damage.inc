@@ -1308,7 +1308,7 @@ int daAlink_c::procLargeDamageUpInit(int param_0, int param_1, s16 param_2, s16 
             if (param_0 == -5 && mDemo.getParam1() > 0) {
                 mProcVar0.field_0x3008 = mDemo.getParam1();
                 var_f31 = 0.0f;
-            } else if (param_0 == -2 && mDemo.getDemoType() == 1) {
+            } else if (param_0 == -2 && mDemo.getDemoType() == daPy_demo_c::DEMO_TYPE_TOOL_e) {
                 mProcVar0.field_0x3008 = 0x1E;
                 var_f31 = 0.0f;
             } else {
@@ -1406,7 +1406,7 @@ int daAlink_c::procLargeDamageUp() {
             offModeFlg(0x04000000);
 
             if ((checkEventRun() && mProcVar0.field_0x3008 < 0) || mDemo.getDemoMode() == 0x1B || mDemo.getDemoMode() == 9) {
-                dComIfGp_evmng_cutEnd(field_0x3184);
+                dComIfGp_evmng_cutEnd(mAlinkStaffId);
             } else {
                 checkNextAction(0);
             }

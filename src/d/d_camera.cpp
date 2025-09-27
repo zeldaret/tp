@@ -40,7 +40,7 @@ static f32 limitf(f32 value, f32 min, f32 max) {
     return value;
 }
 
-static f32 rangef(f32 value1, f32 value2, f32 ratio) {
+static inline f32 rangef(f32 value1, f32 value2, f32 ratio) {
     return value1 + (value2 - value1) * ratio;
 }
 
@@ -2336,7 +2336,7 @@ u32 dCamera_c::lineCollisionCheckBush(cXyz* i_start, cXyz* i_end) {
 
 /* 80165C08-80165CE0 160548 00D8+00 1/1 0/0 0/0 .text
  * sph_chk_callback__FP11dBgS_SphChkP10cBgD_Vtx_tiiiP8cM3dGPlaPv */
-static void* sph_chk_callback(dBgS_SphChk* i_sphChk, cBgD_Vtx_t* i_vtxTbl, int i_vtxIdx0,
+static void sph_chk_callback(dBgS_SphChk* i_sphChk, cBgD_Vtx_t* i_vtxTbl, int i_vtxIdx0,
                              int i_vtxIdx1, int i_vtxIdx2, cM3dGPla* i_plane, void* i_data) {
     camSphChkdata* sph_chk_data = (camSphChkdata*)i_data;
     if (!sph_chk_data->field_0x1c) {
@@ -2348,7 +2348,6 @@ static void* sph_chk_callback(dBgS_SphChk* i_sphChk, cBgD_Vtx_t* i_vtxTbl, int i
             sph_chk_data->field_0x1c = true;
         }
     }
-    //! @bug Function does not return a value
 }
 
 /* 80165CE0-80165E74 160620 0194+00 1/1 0/0 0/0 .text compWallMargin__9dCamera_cFP4cXyzP4cXyzf */
@@ -9214,9 +9213,9 @@ bool dCamera_c::eventCamera(s32 param_0) {
                 break;
             }
 
-            if (mEventData.field_0xec->mType == 0 && (mEventData.field_0xec->field_0xC & 0x80) != 0)
+            if (mEventData.field_0xec->type == dStage_MapEvent_dt_TYPE_MAPTOOLCAMERA && (mEventData.field_0xec->field_0xC & 0x80) != 0)
             {
-                field_0x8d8.mCameraIndex = mEventData.field_0xec->field_0x16;
+                field_0x8d8.mCameraIndex = mEventData.field_0xec->data.maptool.field_0x16;
                 OS_REPORT("camera: event: change default type %d \n", field_0x8d8.mCameraIndex);
             }
         } else {

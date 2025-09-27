@@ -467,7 +467,7 @@ int daAlink_c::procCopyRodRevive() {
     simpleAnmPlay(field_0x0724);
 
     if (mUnderFrameCtrl[0].checkAnmEnd()) {
-        dComIfGp_evmng_cutEnd(field_0x3184);
+        dComIfGp_evmng_cutEnd(mAlinkStaffId);
     }
 
     return 1;

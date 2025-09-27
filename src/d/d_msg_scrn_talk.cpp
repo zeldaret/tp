@@ -95,15 +95,62 @@ dMsgScrnTalk_c::dMsgScrnTalk_c(u8 param_1, u8 param_2, JKRExpHeap* param_3) {
     mpMg_c[1] = new CPaneMgr(mpTxScreen, 'mg_null', 0, NULL);
     JUT_ASSERT(153, mpMg_c[1] != 0);
     OSInitFastCast();
+
+#if VERSION == VERSION_GCN_JPN
+    field_0xf4 = 0.0f;
+#else
     field_0xf4 = -10.0f;
+#endif
     fukiPosCalc(param_1);
     mpPmP_c = new CPaneMgr(mpScreen, 'n_all', 3, NULL);
     JUT_ASSERT(176, mpPmP_c != 0);
     mpPmP_c->scale(g_MsgObject_HIO_c.mBoxTalkScaleX, g_MsgObject_HIO_c.mBoxTalkScaleY);
+
+#if VERSION == VERSION_GCN_JPN
+    if (dComIfGs_getOptUnk0() == 0) {
+        mpTm_c[0] = new CPaneMgr(mpTxScreen, 'mg_3flin', 0, NULL);
+        mpTm_c[1] = new CPaneMgr(mpTxScreen, 't3f_s', 0, NULL);
+
+        mpTmr_c[0] = new CPaneMgr(mpTxScreen, 'mg_3f', 0, NULL);
+        if (dMsgObject_getMsgObjectClass()->getFukiKind() == 8) {
+            mpTm_c[2] = new CPaneMgr(mpTxScreen, 't3f_s1', 0, NULL);
+            mpTm_c[3] = new CPaneMgr(mpTxScreen, 't3f_s2', 0, NULL);
+            mpTm_c[4] = new CPaneMgr(mpTxScreen, 't3f_s3', 0, NULL);
+            mpTm_c[5] = new CPaneMgr(mpTxScreen, 't3f_s4', 0, NULL);
+            mpTmr_c[1] = new CPaneMgr(mpTxScreen, 'mg_3f_s1', 0, NULL);
+            mpTmr_c[2] = new CPaneMgr(mpTxScreen, 'mg_3f_s2', 0, NULL);
+        } else {
+            mpTmr_c[1] = new CPaneMgr(mpTxScreen, 'mg_3f_s', 0, NULL);
+        }
+
+        mpTxScreen->search('n_3line')->hide();
+        mpTxScreen->search('n_3fline')->show();
+        mpTxScreen->search('n_e4line')->hide();
+    } else {
+        mpTm_c[0] = new CPaneMgr(mpTxScreen, 'mg_3line', 0, NULL);
+        mpTm_c[1] = new CPaneMgr(mpTxScreen, 't3_s', 0, NULL);
+
+        if (dMsgObject_getMsgObjectClass()->getFukiKind() == 8) {
+            mpTm_c[2] = new CPaneMgr(mpTxScreen, 't3_s1', 0, NULL);
+            JUT_ASSERT(189, mpTm_c[2] != 0);
+            mpTm_c[3] = new CPaneMgr(mpTxScreen, 't3_s2', 0, NULL);
+            JUT_ASSERT(191, mpTm_c[3] != 0);
+            mpTm_c[4] = new CPaneMgr(mpTxScreen, 't3_s3', 0, NULL);
+            JUT_ASSERT(193, mpTm_c[4] != 0);
+            mpTm_c[5] = new CPaneMgr(mpTxScreen, 't3_s4', 0, NULL);
+            JUT_ASSERT(193, mpTm_c[5] != 0);
+        }
+
+        mpTxScreen->search('n_3line')->show();
+        mpTxScreen->search('n_3fline')->hide();
+        mpTxScreen->search('n_e4line')->hide();
+    }
+#else
     mpTm_c[0] = new CPaneMgr(mpTxScreen, 'mg_e4lin', 0, NULL);
     JUT_ASSERT(182, mpTm_c[0] != 0);
     mpTm_c[1] = new CPaneMgr(mpTxScreen, 't4_s', 0, NULL);
     JUT_ASSERT(185, mpTm_c[1] != 0);
+
     if (dMsgObject_getMsgObjectClass()->getFukiKind() == 8) {
         mpTm_c[2] = new CPaneMgr(mpTxScreen, 't4_s1', 0, NULL);
         JUT_ASSERT(189, mpTm_c[2] != 0);
@@ -114,17 +161,27 @@ dMsgScrnTalk_c::dMsgScrnTalk_c(u8 param_1, u8 param_2, JKRExpHeap* param_3) {
         mpTm_c[5] = new CPaneMgr(mpTxScreen, 't4_s4', 0, NULL);
         JUT_ASSERT(193, mpTm_c[5] != 0);
     }
+
     mpTxScreen->search('n_3line')->hide();
     mpTxScreen->search('n_3fline')->hide();
     mpTxScreen->search('n_e4line')->show();
+#endif
     for (int i = 0; i < 6; i++) {
         if (mpTm_c[i] != NULL) {
             ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
+#if VERSION == VERSION_GCN_JPN
+            ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setString(0x210, "");
+#else
             ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setString(0x200, "");
+#endif
         }
         if (mpTmr_c[i] != NULL) {
             ((J2DTextBox*)mpTmr_c[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
+#if VERSION == VERSION_GCN_JPN
+            ((J2DTextBox*)mpTmr_c[i]->getPanePtr())->setString(0x210, "");
+#else
             ((J2DTextBox*)mpTmr_c[i]->getPanePtr())->setString(0x200, "");
+#endif
         }
     }
     if (dMsgObject_getMsgObjectClass()->getFukiKind() != 8) {

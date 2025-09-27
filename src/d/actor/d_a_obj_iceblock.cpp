@@ -640,7 +640,7 @@ int daObjIceBlk_c::checkWallPre(s16 i_angle) {
 
     int var_r29 = -1;
 
-    linchk.SetActorPid(base.id);
+    linchk.SetActorPid(base.base.id);
 
     mDoMtx_stack_c::YrotS(i_angle);
     mDoMtx_stack_c::multVec(&cXyz::BaseZ, &spBC);
@@ -676,7 +676,7 @@ int daObjIceBlk_c::checkBgHit() {
 
     int var_r29 = -1;
 
-    mGndChk.SetActorPid(base.id);
+    mGndChk.SetActorPid(base.base.id);
 
     for (int i = 0; i < 5; i++) {
         static const Vec l_check_offsetXZ[] = {
@@ -743,7 +743,7 @@ BOOL daObjIceBlk_c::checkFall() {
     cXyz end;
 
     dBgS_ObjLinChk linchk;
-    linchk.SetActorPid(base.id);
+    linchk.SetActorPid(base.base.id);
 
     for (int i = 0; i < 5; i++) {
         static const Vec l_check_offsetXZ[] = {

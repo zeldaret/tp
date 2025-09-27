@@ -102,7 +102,7 @@ static int fopCam_Create(void* i_this) {
 
     int ret = fpcMtd_Create(&a_this->submethod->base, a_this);
     if (ret == cPhs_COMPLEATE_e) {
-        s32 priority = fpcLf_GetPriority(a_this);
+        s32 priority = fpcM_DrawPriority(a_this);
         fopDwTg_ToDrawQ(&a_this->create_tag, priority);
     }
 

@@ -116,6 +116,10 @@ enum Type {
     /* 0x3 */ TYPE_3
 };
 
+enum Event_Cut_Nums {
+    /* 0x1 */ NUM_EVT_CUTS_e = 0x1,
+};
+
 /* 809E3F44-809E3F48 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
 static daNpc_grR_Param_c l_HIO;
 
@@ -1117,7 +1121,7 @@ BOOL daNpc_grR_c::doEvent() {
                 mStaffID = staffId;
                 int evtCutNo = eventManager.getMyActIdx(staffId, &mEvtCutNameList, 1, 0, 0);
 
-                JUT_ASSERT(1771, (0 <= evtCutNo) && (evtCutNo < dEvent_manager_c::NUM_EVT_CUTS_e));
+                JUT_ASSERT(1771, (0 <= evtCutNo) && (evtCutNo < NUM_EVT_CUTS_e));
                 JUT_ASSERT(1772, 0 != mEvtCutList[evtCutNo]);
 
                 if ((this->*mEvtCutList[evtCutNo])(staffId)) {

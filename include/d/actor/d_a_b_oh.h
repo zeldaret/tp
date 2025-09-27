@@ -6,16 +6,6 @@
 #include "d/d_cc_d.h"
 #include "d/d_cc_uty.h"
 
-class daB_OH_HIO_c {
-public:
-    /* 8061B72C */ daB_OH_HIO_c();
-    /* 8061D93C */ virtual ~daB_OH_HIO_c() {}  // supposed to be inlined
-
-    /* 0x4 */ s8 field_0x4;
-    /* 0x8 */ f32 mModelSize;
-    /* 0xC */ f32 mLength;
-};
-
 enum b_oh_action {
     OH_ACTION_START,
     OH_ACTION_WAIT,
@@ -32,7 +22,8 @@ enum b_oh_action {
  *
  * @details Lakebed Temple dungeon boss. This is the head part of the boss.
  *
- */
+*/
+
 class b_oh_class : public fopEn_enemy_c {
 public:
     /* 0x05AC */ request_of_phase_process_class mPhase;

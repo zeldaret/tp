@@ -484,10 +484,7 @@ daNpc_zrA_c::EventFn daNpc_zrA_c::mEvtCutList[11] = {
 };
 
 /* 80B7956C-80B79798 00114C 022C+00 1/1 0/0 0/0 .text            __ct__11daNpc_zrA_cFv */
-// NONMATCHING daNpcF_c needs to not be inlined
-daNpc_zrA_c::daNpc_zrA_c() {
-    /* empty function */
-}
+daNpc_zrA_c::daNpc_zrA_c() {}
 
 /* 80B79828-80B79B58 001408 0330+00 1/0 0/0 0/0 .text            __dt__11daNpc_zrA_cFv */
 daNpc_zrA_c::~daNpc_zrA_c() {
@@ -2062,10 +2059,10 @@ bool daNpc_zrA_c::selectAction() {
 }
 
 /* 80B7DF40-80B7E668 005B20 0728+00 1/1 0/0 0/0 .text            doEvent__11daNpc_zrA_cFv */
-// NONMATCHING regalloc
 BOOL daNpc_zrA_c::doEvent() {
     dEvent_manager_c* event_manager = NULL;
     BOOL ret = false;
+    int staff_id;
 
     if (dComIfGp_event_runCheck() != FALSE) {
         event_manager = &dComIfGp_getEventManager();
@@ -2097,33 +2094,31 @@ BOOL daNpc_zrA_c::doEvent() {
                 }
                 changeEvent(l_resNames[l_evtGetParamList[mOrderEvtNo].arcIdx],
                             l_evtNames[l_evtGetParamList[mOrderEvtNo].fileIdx], 1, 0xffff);
-            } else {
-                if (chkAction(&daNpc_zrA_c::talk)) {
-                    (this->*mpActionFn)(NULL);
-                } else if (dComIfGp_event_chkTalkXY()) {
-                    if (dComIfGp_evmng_ChkPresentEnd()) {
-                        if (dComIfGp_event_getPreItemNo() == 0x91) {
-                            if (mSoldierType != SOLDIER_NONE) {
-                                if (home.angle.x == 0x6d) {
-                                    mFlowID = 4;
-                                } else {
-                                    mFlowID = 5;
-                                }
+            } else if (chkAction(&daNpc_zrA_c::talk)) {
+                (this->*mpActionFn)(NULL);
+            } else if (dComIfGp_event_chkTalkXY()) {
+                if (dComIfGp_evmng_ChkPresentEnd()) {
+                    if (dComIfGp_event_getPreItemNo() == 0x91) {
+                        if (mSoldierType != SOLDIER_NONE) {
+                            if (home.angle.x == 0x6d) {
+                                mFlowID = 4;
                             } else {
-                                mFlowID = 6;
+                                mFlowID = 5;
                             }
-                            setAction(&daNpc_zrA_c::talk);
                         } else {
-                            s16 event_idx =
-                                dComIfGp_getEventManager().getEventIdx(this, "NO_RESPONSE", 0xff);
-                            dComIfGp_getEvent().reset(this);
-                            fopAcM_orderChangeEventId(this, event_idx, 1, 0xffff);
-                            field_0x9ec = true;
+                            mFlowID = 6;
                         }
+                        setAction(&daNpc_zrA_c::talk);
+                    } else {
+                        s16 event_idx =
+                            dComIfGp_getEventManager().getEventIdx(this, "NO_RESPONSE", 0xff);
+                        dComIfGp_getEvent().reset(this);
+                        fopAcM_orderChangeEventId(this, event_idx, 1, 0xffff);
+                        field_0x9ec = true;
                     }
-                } else {
-                    setAction(&daNpc_zrA_c::talk);
                 }
+            } else {
+                setAction(&daNpc_zrA_c::talk);
             }
             ret = true;
         } else {
@@ -2132,7 +2127,7 @@ BOOL daNpc_zrA_c::doEvent() {
                 mItemID = -1;
             }
 
-            int staff_id = event_manager->getMyStaffId(mStaffName, this, 0);
+            staff_id = event_manager->getMyStaffId(mStaffName, this, 0);
             if (staff_id != -1) {
                 mStaffID = staff_id;
                 int act_idx = event_manager->getMyActIdx(staff_id, mEvtCutNameList,
@@ -2199,10 +2194,8 @@ BOOL daNpc_zrA_c::doEvent() {
                 setExpression(expression, -1.0f);
                 setMotion(motion, -1.0f, false);
             }
-        } else {
-            if (!field_0x9eb && prev_msg_timer != 0 && mMsgTimer == 0) {
-                setExpressionTalkAfter();
-            }
+        } else if (!field_0x9eb && prev_msg_timer != 0 && mMsgTimer == 0) {
+            setExpressionTalkAfter();
         }
     }
 

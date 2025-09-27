@@ -9,6 +9,7 @@
 #include "d/actor/d_a_e_gm.h"
 #include "d/actor/d_a_player.h"
 #include "d/actor/d_a_obj_ystone.h"
+#include "d/d_s_play.h"
 #include "d/d_com_inf_game.h"
 #include "c/c_damagereaction.h"
 #include "SSystem/SComponent/c_math.h"
@@ -51,6 +52,36 @@ enum daB_GM_ACTION {
 
     ACTION_DAMAGE = 10,
     ACTION_DROP,
+};
+
+class daB_GM_HIO_c {
+public:
+    /* 805ED94C */ daB_GM_HIO_c();
+    /* 805F3E64 */ virtual ~daB_GM_HIO_c() {}
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 model_size;
+    /* 0x0C */ f32 check_size;
+    /* 0x10 */ f32 dash_speed;
+    /* 0x14 */ f32 dash_anm_speed;
+    /* 0x18 */ f32 move_speed;
+    /* 0x1C */ f32 move_anm_speed;
+    /* 0x20 */ f32 wait_anm_speed;
+    /* 0x24 */ f32 range;
+    /* 0x28 */ s16 smoke_prim_R;
+    /* 0x2A */ s16 smoke_prim_G;
+    /* 0x2C */ s16 smoke_prim_B;
+    /* 0x2E */ s16 smoke_env_R;
+    /* 0x30 */ s16 smoke_env_G;
+    /* 0x32 */ s16 smoke_env_B;
+    /* 0x34 */ s16 smoke_alpha;
+    /* 0x36 */ s16 field_0x36;
+    /* 0x38 */ f32 smoke_blend;
+    /* 0x3C */ f32 bend_degree_1;
+    /* 0x40 */ f32 bend_degree_2;
+    /* 0x44 */ f32 bend_degree_3;
+    /* 0x48 */ u8 foot_pos_check;
+    /* 0x49 */ u8 eye_check;
 };
 
 /* 805ED94C-805ED9FC 0000EC 00B0+00 1/1 0/0 0/0 .text            __ct__12daB_GM_HIO_cFv */
@@ -145,7 +176,10 @@ static daB_GM_HIO_c l_HIO;
 static int daB_GM_Draw(b_gm_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
 
+    #ifdef DEBUG
+    # else
     g_env_light.settingTevStruct(0, &a_this->current.pos, &a_this->tevStr);
+    #endif
 
     for (int i = 0; i < 4; i++) {
         g_env_light.setLightTevColorType_MAJI(i_this->mpSpotLightModel[i], &a_this->tevStr);
@@ -158,6 +192,9 @@ static int daB_GM_Draw(b_gm_class* i_this) {
     }
 
     J3DModel* model = i_this->mpModelMorf->getModel();
+    #ifdef DEBUG
+    g_env_light.settingTevStruct(0, &a_this->current.pos, &a_this->tevStr);
+    #endif
     g_env_light.setLightTevColorType_MAJI(model, &a_this->tevStr);
     
     i_this->mpZoomBtk->entry(model->getModelData());
@@ -176,8 +213,8 @@ static int daB_GM_Draw(b_gm_class* i_this) {
     i_this->mpModelMorf->entryDL();
 
     cXyz shadow_pos;
-    shadow_pos.set(a_this->current.pos.x, a_this->current.pos.y + l_HIO.model_size * 400.0f, a_this->current.pos.z);
-    i_this->mShadowID = dComIfGd_setShadow(i_this->mShadowID, 1, model, &shadow_pos, l_HIO.model_size * 3000.0f, 0.0f, a_this->current.pos.y, i_this->mAcch.GetGroundH(), i_this->mAcch.m_gnd, &a_this->tevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
+    shadow_pos.set(a_this->current.pos.x, BREG_F(18) + (a_this->current.pos.y + l_HIO.model_size * 400.0f), a_this->current.pos.z);
+    i_this->mShadowID = dComIfGd_setShadow(i_this->mShadowID, 1, model, &shadow_pos, (l_HIO.model_size * 3000.0f) + BREG_F(19), 0.0f, a_this->current.pos.y, i_this->mAcch.GetGroundH(), i_this->mAcch.m_gnd, &a_this->tevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
 
     if (i_this->field_0x6c0 > 0.1f) {
         J3DModel* model = i_this->mpBeamModelMorf->getModel();
@@ -1602,7 +1639,6 @@ static void demo_camera(b_gm_class* i_this) {
 }
 
 /* 805F1F58-805F30A0 0046F8 1148+00 2/1 0/0 0/0 .text            daB_GM_Execute__FP10b_gm_class */
-// NONMATCHING - regalloc, equivalent?
 static int daB_GM_Execute(b_gm_class* i_this) {
     if (cDmrNowMidnaTalk()) {
         return 1;
@@ -1610,8 +1646,17 @@ static int daB_GM_Execute(b_gm_class* i_this) {
 
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
-    cXyz spD4;
-    cXyz spC8;
+    cXyz spD4, spC8;
+
+    #ifdef DEBUG
+    if (mDoCPd_c::getTrigA(2) && i_this->mDemoMode == 0 && !i_this->mIsDisappear) {
+        i_this->mAction = 0xB;
+        i_this->mMode = 0x14;
+        i_this->mDemoMode = 0x1E;
+        a_this->current.pos.y = VREG_F(18);
+        a_this->speedF = 0.0f;
+    }
+    #endif
 
     for (int i = 0; i < 4; i++) {
         mDoMtx_stack_c::transS(target_pos[i].x, target_pos[i].y, target_pos[i].z);
@@ -1620,7 +1665,7 @@ static int daB_GM_Execute(b_gm_class* i_this) {
         if (!i_this->mIsDisappear && a_this->current.pos.y > 1000.0f) {
             spD4.x = a_this->eyePos.x - target_pos[i].x;
             spD4.z = a_this->eyePos.z - target_pos[i].z;
-            if (JMAFastSqrt((spD4.x * spD4.x) + (spD4.z * spD4.z)) < 500.0f) {
+            if (JMAFastSqrt((spD4.x * spD4.x) + (spD4.z * spD4.z)) < NREG_F(18) + 500.0f) {
                 target_size = 0.0f;
             }
         }
@@ -1648,7 +1693,7 @@ static int daB_GM_Execute(b_gm_class* i_this) {
 
     if (i_this->mIsDisappear) {
         if (i_this->mDemoMode == 0) {
-            daE_GM_c* kogoma = (daE_GM_c*)fpcM_Search(s_ko2_get, i_this);
+            daE_GM_c* kogoma = (daE_GM_c*)fpcM_Search(s_ko2_get, a_this);
             if (kogoma != NULL) {
                 fopAc_ac_c* ko_actor = kogoma;
                 i_this->field_0x1cec = ko_actor->current.pos;
@@ -1692,7 +1737,7 @@ static int daB_GM_Execute(b_gm_class* i_this) {
     mDoMtx_stack_c::ZrotM(a_this->shape_angle.z);
     mDoMtx_stack_c::XrotM(a_this->shape_angle.x);
     mDoMtx_stack_c::scaleM(l_HIO.model_size, l_HIO.model_size, l_HIO.model_size);
-    mDoMtx_stack_c::transM(0.0f, 0.0f, 200.0f);
+    mDoMtx_stack_c::transM(0.0f, 0.0f, KREG_F(8) + 200.0f);
 
     J3DModel* model = i_this->mpModelMorf->getModel();
     model->setBaseTRMtx(mDoMtx_stack_c::get());
@@ -1711,7 +1756,7 @@ static int daB_GM_Execute(b_gm_class* i_this) {
     f32 sph_base_size = l_HIO.check_size * l_HIO.model_size;
     MTXCopy(model->getAnmMtx(0x15), *calc_mtx);
     MtxScale(l_HIO.check_size, l_HIO.check_size, l_HIO.check_size, 1);
-    spD4.set(-20.0f, 0.0f, 0.0f);
+    spD4.set(JREG_F(8) + -20.0f, JREG_F(9) + 0.0f, JREG_F(10) + 0.0f);
     MtxPosition(&spD4, &spC8);
 
     if (i_this->mInvincibilityTimer != 0 || i_this->field_0x1ad6 == 0) {
@@ -1719,18 +1764,18 @@ static int daB_GM_Execute(b_gm_class* i_this) {
     }
 
     i_this->mCoreSph.SetC(spC8);
-    i_this->mCoreSph.SetR(160.0f * sph_base_size);
+    i_this->mCoreSph.SetR((JREG_F(11) + 160.0f) * sph_base_size);
     dComIfG_Ccsp()->Set(&i_this->mCoreSph);
 
-    spD4.set(50.0f, -20.0f, 0.0f);
+    spD4.set(JREG_F(12) + 50.0f, JREG_F(13) + -20.0f, JREG_F(14) + 0.0f);
     MtxPosition(&spD4, &a_this->eyePos);
     a_this->attention_info.position = a_this->eyePos;
-    a_this->attention_info.position.y += 70.0f;
+    a_this->attention_info.position.y += JREG_F(15) + 70.0f;
 
     if (i_this->field_0x1ad6 == 0) {
         MTXCopy(model->getAnmMtx(6), *calc_mtx);
         MtxScale(l_HIO.check_size, l_HIO.check_size, l_HIO.check_size, 1);
-        spD4.set(170.0f, 0.0f, 0.0f);
+        spD4.set(JREG_F(0) + 170.0f, JREG_F(1) + 0.0f, JREG_F(2) + 0.0f);
         MtxPosition(&spD4, &spC8);
 
         if (i_this->mInvincibilityTimer != 0) {
@@ -1738,19 +1783,19 @@ static int daB_GM_Execute(b_gm_class* i_this) {
         }
 
         i_this->mBodySph[0].SetC(spC8);
-        i_this->mBodySph[0].SetR(190.0f * sph_base_size);
+        i_this->mBodySph[0].SetR((JREG_F(3) + 190.0f) * sph_base_size);
     }
 
     MTXCopy(model->getAnmMtx(2), *calc_mtx);
     MtxScale(l_HIO.check_size, l_HIO.check_size, l_HIO.check_size, 1);
-    spD4.set(100.0f, 0.0f, 0.0f);
+    spD4.set(JREG_F(4) + 100.0f, JREG_F(5) + 0.0f, JREG_F(6) + 0.0f);
     MtxPosition(&spD4, &spC8);
 
     if (i_this->mInvincibilityTimer != 0) {
         spC8.y += 20000.0f;
     }
     i_this->mBodySph[1].SetC(spC8);
-    i_this->mBodySph[1].SetR(180.0f * sph_base_size);
+    i_this->mBodySph[1].SetR((JREG_F(7) + 180.0f) * sph_base_size);
 
     for (int i = 0; i < 2; i++) {
         dComIfG_Ccsp()->Set(&i_this->mBodySph[i]);
@@ -1759,10 +1804,10 @@ static int daB_GM_Execute(b_gm_class* i_this) {
     for (int i = 0; i < 8; i++) {
         MTXCopy(model->getAnmMtx(top_j[i]), *calc_mtx);
         MtxScale(l_HIO.check_size, l_HIO.check_size, l_HIO.check_size, 1);
-        spD4.set(150.0f, 0.0f, 0.0f);
+        spD4.set(AREG_F(10) + 150.0f, AREG_F(11) + 0.0f, AREG_F(12) + 0.0f);
         MtxPosition(&spD4, &spC8);
 
-        i_this->mFootSph[i].SetR(50.0f * sph_base_size);
+        i_this->mFootSph[i].SetR((TREG_F(13) + 50.0f) * sph_base_size);
         i_this->mFootSph[i].SetC(spC8);
 
         if (i_this->mAnmID == ANM_GOMA_DASH && a_this->current.angle.x < 0x1000 && a_this->current.angle.x > -0x1000) {
@@ -1781,17 +1826,17 @@ static int daB_GM_Execute(b_gm_class* i_this) {
 
     MTXCopy(model->getAnmMtx(0x3B), *calc_mtx);
     MtxScale(l_HIO.check_size, l_HIO.check_size, l_HIO.check_size, 1);
-    spD4.set(80.0f, 0.0f, 0.0f);
+    spD4.set(XREG_F(0) + 80.0f, XREG_F(1), XREG_F(2));
     MtxPosition(&spD4, &spC8);
     i_this->mHandSph[0].SetC(spC8 + spBC);
-    i_this->mHandSph[0].SetR(80.0f * sph_base_size);
+    i_this->mHandSph[0].SetR((XREG_F(3) + 80.0f) * sph_base_size);
 
     MTXCopy(model->getAnmMtx(0x40), *calc_mtx);
     MtxScale(l_HIO.check_size, l_HIO.check_size, l_HIO.check_size, 1);
-    spD4.set(0.0f, 0.0f, 0.0f);
+    spD4.set(XREG_F(0), XREG_F(1), XREG_F(2));
     MtxPosition(&spD4, &spC8);
     i_this->mHandSph[1].SetC(spC8 + spBC);
-    i_this->mHandSph[1].SetR(60.0f * sph_base_size);
+    i_this->mHandSph[1].SetR((XREG_F(3) + 60.0f) * sph_base_size);
 
     dComIfG_Ccsp()->Set(&i_this->mHandSph[0]);
     dComIfG_Ccsp()->Set(&i_this->mHandSph[1]);
@@ -1817,8 +1862,7 @@ static int daB_GM_Execute(b_gm_class* i_this) {
         sp14 = -0x1400;
     }
 
-    s16 sp10;
-    s16 spE;
+    s16 sp10, spE;
     if (i_this->field_0x1ade != 0) {
         i_this->field_0x1ade--;
 
@@ -1835,7 +1879,7 @@ static int daB_GM_Execute(b_gm_class* i_this) {
     if (i_this->field_0x6c0 > 0.1f) {
         dBgS_LinChk line_chk;
         MTXCopy(model->getAnmMtx(0x15), *calc_mtx);
-        spD4.set(120.0f, 0.0f, 0.0f);
+        spD4.set(XREG_F(8) + 120.0f, XREG_F(9), XREG_F(10));
         MtxPosition(&spD4, &spC8);
 
         if (i_this->field_0x6f4 == 0) {
@@ -1845,7 +1889,7 @@ static int daB_GM_Execute(b_gm_class* i_this) {
         }
 
         cXyz spB0;
-        cLib_addCalc2(&i_this->field_0x6c4, 40.0f, 1.0f, 1.0f);
+        cLib_addCalc2(&i_this->field_0x6c4, AREG_F(17) + 40.0f, 1.0f, 1.0f);
         spD4 = player->current.pos - i_this->field_0x6cc;
 
         if (i_this->field_0x6f4 == 0) {
@@ -1862,7 +1906,7 @@ static int daB_GM_Execute(b_gm_class* i_this) {
             }
 
             s16 spC = var_f30 * cM_ssin(i_this->mCounter * 1000);
-            cLib_addCalcAngleS2(&i_this->field_0x6c8, spC + cM_atan2s(spD4.x, spD4.z), 8, 0x400);
+            cLib_addCalcAngleS2(&i_this->field_0x6c8, spC + cM_atan2s(spD4.x, spD4.z), 8, AREG_S(7) + 0x400);
         }
 
         i_this->field_0x6f4 = 1;
@@ -1884,12 +1928,11 @@ static int daB_GM_Execute(b_gm_class* i_this) {
         mDoMtx_stack_c::XrotM(spA);
         mDoMtx_stack_c::YrotM(sp8);
 
-        f32 sp24 = 5.0f;
-        mDoMtx_stack_c::scaleM(1.0f, 1.0f, sp24 * i_this->field_0x6c0);
+        f32 sp24 = XREG_F(12) + 5.0f;
+        mDoMtx_stack_c::scaleM(XREG_F(11) + 1.0f, XREG_F(11) + 1.0f, sp24 * i_this->field_0x6c0);
 
-        MtxP now_mtx = mDoMtx_stack_c::get();
-        i_this->mpBeamModelMorf->getModel()->setBaseTRMtx(now_mtx);
-        mDoMtx_stack_c::transM(0.0f, 0.0f, i_this->field_0x6c0 * 2400.0f);
+        i_this->mpBeamModelMorf->getModel()->setBaseTRMtx(mDoMtx_stack_c::get());
+        mDoMtx_stack_c::transM(0.0f, 0.0f, i_this->field_0x6c0 * (XREG_F(6) + 2400.0f));
         mDoMtx_stack_c::multVecZero(&spD4);
     
         line_chk.Set(&spC8, &spD4, i_this);
@@ -1904,7 +1947,7 @@ static int daB_GM_Execute(b_gm_class* i_this) {
             csXyz sp48;
             dComIfG_Bgsp().GetTriPla(line_chk, &spE0);
 
-            sp48.y = cM_atan2s(spE0.mNormal.x, spE0.mNormal.z);
+            sp48.y = (s16)cM_atan2s(spE0.mNormal.x, spE0.mNormal.z);
             sp48.x = -cM_atan2s(spE0.mNormal.y, JMAFastSqrt((spE0.mNormal.x * spE0.mNormal.x) + (spE0.mNormal.z * spE0.mNormal.z)));
             sp48.x += 0x4000;
             sp48.z = 0;
@@ -1915,7 +1958,7 @@ static int daB_GM_Execute(b_gm_class* i_this) {
             }
 
             f32 sp1C = 0.013f * (i_this->mCounter & 3);
-            spD4 = spD4 + ((spC8 - spD4) * sp1C);
+            spD4 = spD4 + ((spC8 - spD4) * (sp1C));
 
             i_this->mBeamSph.SetC(spD4);
             dComIfG_Ccsp()->Set(&i_this->mBeamSph);
@@ -1936,7 +1979,7 @@ static int daB_GM_Execute(b_gm_class* i_this) {
     if (i_this->field_0x1ad6 != 0) {
         cLib_addCalcAngleS2(&i_this->field_0x1ad8, 6000, 4, 800);
     } else {
-        cLib_addCalcAngleS2(&i_this->field_0x1ad8, -3900, 1, 800);
+        cLib_addCalcAngleS2(&i_this->field_0x1ad8, BREG_S(7) + -3900, 1, 800);
     }
 
     f32 target_blend = 1.0f;

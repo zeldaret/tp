@@ -2,6 +2,7 @@
 #include "TRK_MINNOW_DOLPHIN/MetroTRK/Portable/nubevent.h"
 #include "TRK_MINNOW_DOLPHIN/utils/common/MWTrace.h"
 #include "trk.h"
+#include <string.h>
 
 /* 8044F288-8044F290 07BFA8 0004+04 4/4 0/0 0/0 .bss             IsTRKConnected */
 static BOOL IsTRKConnected;

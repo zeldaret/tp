@@ -80,31 +80,28 @@ void JHICommBufReader::readEnd() {
     m_header.updateGetAdrs();
 }
 
-// NONMATCHING - stack / branch issues
 int JHICommBufReader::read(void* param_0, int param_1) {
     int sp2C = min(param_1, m_header.getReadableSize());
     u32 sp28;
     int var_r28 = sp2C;
     u8* var_r30 = (u8*)param_0;
 
-    if (var_r28 > 0) {
-        int sp24 = m_header.getContSize();
-        if (sp24 > 0) {
-            int sp20 = min(var_r28, 4 - sp24);
-            m_header.alignGetAdrs();
+    int sp24;
+    if (var_r28 > 0 && (sp24 = m_header.getContSize()) > 0) {
+        int sp20 = min(var_r28, 4 - sp24);
+        m_header.alignGetAdrs();
 
-            mp_memBuffer->readIO(m_header.getGetAdrs(), &sp28);
-            
-            int sp1C = sp24;
-            int sp18 = sp24 + sp20;
-            for (; sp1C < sp18; sp1C++) {
-                *var_r30 = sp28 >> ((3 - sp1C) * 8);
-                var_r30++;
-            }
-
-            var_r28 -= sp20;
-            m_header.addGetAdrs(sp24 + sp20);
+        mp_memBuffer->readIO(m_header.getGetAdrs(), &sp28);
+        
+        int sp1C = sp24;
+        int sp18 = sp24 + sp20;
+        for (; sp1C < sp18; sp1C++) {
+            *var_r30 = sp28 >> ((3 - sp1C) * 8);
+            var_r30++;
         }
+
+        var_r28 -= sp20;
+        m_header.addGetAdrs(sp24 + sp20);
     }
 
     while (var_r28 >= 4) {
@@ -229,34 +226,31 @@ void JHICommBufWriter::writeEnd() {
     m_header.updatePutAdrs();
 }
 
-// NONMATCHING - stack / misc issues
 int JHICommBufWriter::write(void* param_0, int param_1) {
     int sp28 = min(param_1, m_header.getWritebleSize());
     int var_r27 = sp28;
     u8* var_r29 = (u8*)param_0;
     u8* var_r30 = &m_header.field_0x30;
 
-    if (var_r27 > 0) {
-        int sp24 = m_header.getRemSize();
-        if (sp24 > 0) {
-            int sp20 = min(4 - sp24, var_r27);
-            
-            int sp1C = sp24;
-            int sp18 = sp24 + sp20;
-            for (; sp1C < sp18; sp1C++) {
-                var_r30[sp1C] = *var_r29++;
-            }
-
-            var_r27 -= sp20;
-            m_header.alignPutAdrs();
-
-            mp_memBuffer->writeIO(m_header.getPutAdrs(),
-                                (m_header.field_0x30 << 0x18) |
-                                (m_header.field_0x31 << 0x10) |
-                                (m_header.field_0x32 << 0x08) |
-                                (m_header.field_0x33 << 0x00));
-            m_header.addPutAdrs(sp24 + sp20);
+    int sp24;
+    if (var_r27 > 0 && (sp24 = m_header.getRemSize()) > 0) {
+        int sp20 = min(4 - sp24, var_r27);
+        
+        int sp1C = sp24;
+        int sp18 = sp24 + sp20;
+        for (; sp1C < sp18; sp1C++) {
+            var_r30[sp1C] = *var_r29++;
         }
+
+        var_r27 -= sp20;
+        m_header.alignPutAdrs();
+
+        mp_memBuffer->writeIO(m_header.getPutAdrs(),
+                            (var_r30[0] << 0x18) |
+                            (var_r30[1] << 0x10) |
+                            (var_r30[2] << 0x08) |
+                            (var_r30[3] << 0x00));
+        m_header.addPutAdrs(sp24 + sp20);
     }
 
     while (var_r27 >= 4) {
@@ -276,14 +270,14 @@ int JHICommBufWriter::write(void* param_0, int param_1) {
         int sp14 = var_r27;
 
         for (int i = 0; i < sp14; i++) {
-            var_r30[sp14] = *var_r29++;
+            var_r30[i] = *var_r29++;
         }
 
         mp_memBuffer->writeIO(m_header.getPutAdrs(),
-                            (m_header.field_0x30 << 0x18) |
-                            (m_header.field_0x31 << 0x10) |
-                            (m_header.field_0x32 << 0x08) |
-                            (m_header.field_0x33 << 0x00));
+                            (var_r30[0] << 0x18) |
+                            (var_r30[1] << 0x10) |
+                            (var_r30[2] << 0x08) |
+                            (var_r30[3] << 0x00));
 
         var_r27 -= sp14;
         m_header.addPutAdrs(sp14);

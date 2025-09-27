@@ -182,6 +182,11 @@ public:
                       sVar3 * (1.0f / param_4);
     }
 
+    void setEyeAngleY(s16 param_1, f32 param_2) {
+        mEyeAngle.y = field_0x132.y * (1.0f - 1.0f / param_2) +
+        param_1 * (1.0f / param_2);
+    }
+
     s16 getEyeAngleX() { return mEyeAngle.x; }
     s16 getEyeAngleY() { return mEyeAngle.y; }
 

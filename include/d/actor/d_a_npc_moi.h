@@ -13,32 +13,8 @@
  */
 
 struct daNpc_Moi_HIOParam {
-    /* 0x00 */ f32 field_0x00;
-    /* 0x04 */ f32 field_0x04;
-    /* 0x08 */ f32 field_0x08;
-    /* 0x0C */ f32 field_0x0c;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 field_0x18;
-    /* 0x1C */ f32 field_0x1c;
-    /* 0x20 */ f32 field_0x20;
-    /* 0x24 */ f32 field_0x24;
-    /* 0x28 */ f32 field_0x28;
-    /* 0x2C */ f32 field_0x2c;
-    /* 0x30 */ f32 field_0x30;
-    /* 0x34 */ f32 field_0x34;
-    /* 0x38 */ f32 field_0x38;
-    /* 0x3C */ f32 field_0x3c;
-    /* 0x40 */ f32 field_0x40;
-    /* 0x44 */ f32 field_0x44;
-    /* 0x48 */ s16 field_0x48;
-    /* 0x4A */ s16 field_0x4a;
-    /* 0x4C */ s16 field_0x4c;
-    /* 0x4E */ s16 field_0x4e;
-    /* 0x50 */ f32 field_0x50;
-    /* 0x54 */ u8 field_0x54[24];
-    /* 0x6C */ f32 field_0x6c;
-    /* 0x70 */ u8 field_0x70[40];
+    /* 0x00 */ daNpcT_HIOParam common;
+    /* 0x8C */ u8 field_0x70[12];
     /* 0x98 */ s16 field_0x98;
     /* 0x9A */ s16 field_0x9a;
     /* 0x9C */ s16 field_0x9c;
@@ -55,7 +31,7 @@ class daNpc_Moi_Param_c {
 public:
     /* 80A7AE84 */ virtual ~daNpc_Moi_Param_c() {};
 
-    static daNpc_Moi_HIOParam const m;
+    static const daNpc_Moi_HIOParam m;
 };
 
 class daNpc_Moi_HIO_c
@@ -146,7 +122,13 @@ public:
         : daNpcT_c(i_faceMotionAnmData, i_motionAnmData, i_faceMotionSequenceData,
                    i_faceMotionStepNum, i_motionSequenceData, i_motionStepNum, i_evtData,
                    i_arcNames) {}
-    /* 80A7AE0C */ u16 getEyeballMaterialNo() { if (chkMoiN()) { return 4; } else { return 2; } }
+    /* 80A7AE0C */ u16 getEyeballMaterialNo() {
+        if (chkMoiN()) {
+            return 4;
+        } else {
+            return 2;
+        }
+    }
     /* 80A7AE3C */ s32 getHeadJointNo() { return 4; }
     /* 80A7AE44 */ s32 getNeckJointNo() { return 3; }
     /* 80A7AE4C */ s32 getBackboneJointNo() { return 1; }
@@ -166,7 +148,7 @@ public:
     bool chkSFight() { return field_0x166b == 1; }
     u8 getPathID() { return (fopAcM_GetParam(this) & 0xff00) >> 8; }
 
-    static const char* mCutNameList[5];
+    static char* mCutNameList[5];
     static cutFunc mCutList[5];
 
 private:

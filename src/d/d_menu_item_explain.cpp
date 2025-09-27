@@ -104,14 +104,24 @@ dMenu_ItemExplain_c::dMenu_ItemExplain_c(JKRExpHeap* i_heap, JKRArchive* i_archi
     mDescAlpha = 0.0f;
     field_0x78 = 0;
     mAlphaRatio = 201.0f;
+#if VERSION == VERSION_GCN_JPN
+    mpInfoText = new CPaneMgr(mpInfoScreen, 'i_text4', 0, NULL);
+    mpInfoScreen->search('i_text1')->hide();
+#else
     mpInfoText = new CPaneMgr(mpInfoScreen, 'i_text1', 0, NULL);
     mpInfoScreen->search('i_text4')->hide();
+#endif
     ((J2DTextBox*)(mpInfoText->getPanePtr()))->setFont(mDoExt_getMesgFont());
     ((J2DTextBox*)(mpInfoText->getPanePtr()))->setString(0x200, "");
     mpInfoText->show();
     for (int i = 0; i < 4; i++) {
+#if VERSION == VERSION_GCN_JPN
+        mpNameText[i] = new CPaneMgr(mpInfoScreen, name_tag[i], 0, NULL);
+        mpInfoScreen->search(fame_tag[i])->hide();
+#else
         mpNameText[i] = new CPaneMgr(mpInfoScreen, fame_tag[i], 0, NULL);
         mpInfoScreen->search(name_tag[i])->hide();
+#endif
         ((J2DTextBox*)(mpNameText[i]->getPanePtr()))->setFont(mDoExt_getMesgFont());
         ((J2DTextBox*)(mpNameText[i]->getPanePtr()))->setString(0x20, "");
     }

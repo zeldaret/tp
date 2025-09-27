@@ -27,7 +27,8 @@ public:
  *
  * @details
  *
- */
+*/
+
 class daObjTks_c : public daNpcF_c {
 public:
     /* 80D0F28C */ daObjTks_c();
@@ -49,18 +50,18 @@ public:
     /* 80D11228 */ void warp();
     /* 80D11CB4 */ inline void lookat();
 
-    /* 80D11670 */ virtual void setParam();
-    /* 80D116C8 */ virtual BOOL main();
-    /* 80D118E8 */ virtual BOOL ctrlBtk();
-    /* 80D10100 */ virtual void setMtx();
-    /* 80D119BC */ virtual void setAttnPos();
-    /* 80D10184 */ virtual bool setExpressionAnm(int, bool);
-    /* 80D102D0 */ virtual bool setExpressionBtp(int);
-    /* 80D106C8 */ virtual void setExpression(int, f32);
-    /* 80D11104 */ virtual void setMotionAnm(int, f32);
-    /* 80D103A4 */ virtual void setMotion(int, f32, int);
-    /* 80D11E94 */ virtual BOOL drawDbgInfo();
-    /* 80D11E9C */ virtual void drawOtherMdls();
+    /* 80D11670 */ virtual inline void setParam();
+    /* 80D116C8 */ virtual inline BOOL main();
+    /* 80D118E8 */ virtual inline BOOL ctrlBtk();
+    /* 80D10100 */ virtual inline void setMtx();
+    /* 80D119BC */ virtual inline void setAttnPos();
+    /* 80D10184 */ virtual inline bool setExpressionAnm(int, bool);
+    /* 80D102D0 */ virtual inline bool setExpressionBtp(int);
+    /* 80D106C8 */ virtual inline void setExpression(int, f32);
+    /* 80D11104 */ virtual inline void setMotionAnm(int, f32);
+    /* 80D103A4 */ virtual inline void setMotion(int, f32, int);
+    /* 80D11E94 */ virtual inline BOOL drawDbgInfo();
+    /* 80D11E9C */ virtual inline void drawOtherMdls();
 
     void calcSpringF(f32* param_0, f32 param_1, f32* param_2) {
         *param_2 = daObjTks_Param_c::m.spring_atten * (*param_2 + (daObjTks_Param_c::m.spring_factor * (*param_0 - param_1)));
