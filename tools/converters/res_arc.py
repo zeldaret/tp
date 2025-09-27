@@ -128,7 +128,11 @@ def extract_joint_enums(src_path:Path):
 
         internal_file_path = output_folder / internal_file
 
-        if not internal_file_path.exists():
+        # extract file from archive if either
+        # 1. output file doesn't exist
+        # 2. the archive file is newer than the output file (modded src)
+        if (not internal_file_path.exists() or
+            src_path.stat().st_mtime > internal_file_path.stat().st_mode):
             ensure_dir(internal_file_path.parent)
             subprocess.run([DTK_PATH, "vfs", "cp", f"{src_path}:{internal_file}", internal_file_path], stdout=subprocess.PIPE)
         
