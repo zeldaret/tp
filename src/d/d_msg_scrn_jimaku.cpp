@@ -14,8 +14,6 @@
 #include "d/d_msg_scrn_light.h"
 #include "d/d_pane_class.h"
 
-extern "C" extern dMsgObject_HIO_c g_MsgObject_HIO_c;
-
 /* 80244558-80244A74 23EE98 051C+00 0/0 1/1 0/0 .text __ct__16dMsgScrnJimaku_cFUcP10JKRExpHeap */
 dMsgScrnJimaku_c::dMsgScrnJimaku_c(u8 param_0, JKRExpHeap* i_heap) {
     if (i_heap != NULL) {

@@ -8,22 +8,6 @@
 #include "JSystem/JAudio2/JAUSeqCollection.h"
 #include "JSystem/JUtility/JUTAssert.h"
 
-//
-// Types:
-//
-
-//
-// Forward References:
-//
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
-
 /* 802A66A0-802A66AC 2A0FE0 000C+00 1/1 0/0 0/0 .text            __ct__16JAUSeqCollectionFv */
 JAUSeqCollection::JAUSeqCollection() {
     field_0x8 = NULL;

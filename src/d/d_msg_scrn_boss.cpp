@@ -6,8 +6,6 @@
 #include "d/d_msg_object.h"
 #include "d/d_pane_class.h"
 
-extern "C" extern dMsgObject_HIO_c g_MsgObject_HIO_c;
-
 /* 8023C5C8-8023C928 236F08 0360+00 0/0 1/1 0/0 .text            __ct__14dMsgScrnBoss_cFv */
 dMsgScrnBoss_c::dMsgScrnBoss_c() {
     static u64 t_tag[7] = {

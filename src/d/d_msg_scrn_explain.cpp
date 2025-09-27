@@ -19,8 +19,6 @@
 #define STR_BUF_LEN 512
 #endif
 
-extern dMsgObject_HIO_c g_MsgObject_HIO_c;
-
 static dMsgScrnExplain_c::ProcFunc init_process[] = {
     &dMsgScrnExplain_c::wait_init,        &dMsgScrnExplain_c::open_request_init,
     &dMsgScrnExplain_c::open_init,        &dMsgScrnExplain_c::move_init,
@@ -171,8 +169,8 @@ dMsgScrnExplain_c::dMsgScrnExplain_c(STControl* i_stick, u8 param_1, bool param_
         ResTIMG* texResource =
             (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', "tt_block8x8.bti");
         mpBackTex = new J2DPicture(texResource);
-        mpBackTex->setBlackWhite(JUtility::TColor::TColor(0, 0, 0, 0),
-                                 JUtility::TColor::TColor(0, 0, 0, 0xff));
+        mpBackTex->setBlackWhite(JUtility::TColor(0, 0, 0, 0),
+                                 JUtility::TColor(0, 0, 0, 0xff));
         mpBackTex->setAlpha(0);
     } else {
         mpBackTex = NULL;

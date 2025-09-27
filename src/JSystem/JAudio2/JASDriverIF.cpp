@@ -10,10 +10,6 @@
 #include "JSystem/JAudio2/JASDSPInterface.h"
 #include <dolphin/os.h>
 
-//
-// Declarations:
-//
-
 /* 8029E130-8029E150 298A70 0020+00 0/0 3/3 0/0 .text            setDSPLevel__9JASDriverFf */
 void JASDriver::setDSPLevel(f32 param_0) {
     JASDsp::setDSPMixerLevel(param_0);
