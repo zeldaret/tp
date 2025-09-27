@@ -1050,13 +1050,26 @@ bool daNpcRafrel_c::wait_type01(void* param_0) {
             field_0xe15 = 1;
         }
 
-        if (dComIfGp_event_runCheck() != 0) {
+#if VERSION != VERSION_SHIELD_DEBUG
+        // TODO: gameInfo fake match to force reuse of pointer
+        dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
+        if (play->getEvent().runCheck())
+#else
+        if (dComIfGp_event_runCheck() != 0)
+#endif
+        {
             if (eventInfo.checkCommandTalk()) {
                 if (isSneaking()) {
                     mOrderEvtNo = 6;
                     changeEvent(l_arcNames[0], l_evtNames[mOrderEvtNo], 1, 0xFFFF);
                 } else if (dComIfGp_event_chkTalkXY()) {
-                    if (dComIfGp_evmng_ChkPresentEnd() == 0) {
+#if VERSION != VERSION_SHIELD_DEBUG
+                    dEvent_manager_c* evtmng_p = &play->getEvtManager();
+                    if (evtmng_p->ChkPresentEnd() == 0)
+#else
+                    if (dComIfGp_evmng_ChkPresentEnd() == 0)
+#endif
+                    {
                         return 1;
                     }
 
@@ -1064,29 +1077,29 @@ bool daNpcRafrel_c::wait_type01(void* param_0) {
                         field_0xe0c = 0x21;
                         setAction(&daNpcRafrel_c::talk);
                     } else {
+#if VERSION != VERSION_SHIELD_DEBUG
+                        s16 sp8 = evtmng_p->getEventIdx(this, "NO_RESPONSE", 0xFF);
+#else
                         s16 sp8 = dComIfGp_getEventManager().getEventIdx(this, "NO_RESPONSE", 0xFF);
+#endif
                         dComIfGp_getEvent().reset(this);
                         fopAcM_orderChangeEventId(this, sp8, 1, 0xFFFF);
                     }
                 } else {
                     setAction(&daNpcRafrel_c::talk);
                 }
-            } else if (dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0) != -1) {
-                setAction(&daNpcRafrel_c::demo);
+            } else {
+                s32 staff_id = dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0);
+                if (staff_id != -1) {
+                    setAction(&daNpcRafrel_c::demo);
+                }
             }
         } else {
             if (mOrderEvtNo != 0) {
                 eventInfo.setArchiveName(l_arcNames[0]);
             }
 
-            char* eventName;
-            if (mOrderEvtNo != 0) {
-                eventName = l_evtNames[mOrderEvtNo];
-            } else {
-                eventName = NULL;
-            }
-
-            orderEvent(field_0xe16, eventName, 0xFFFF, 0x28, 0xFF, 1);
+            orderEvent(field_0xe16, (mOrderEvtNo != 0) ? l_evtNames[mOrderEvtNo] : NULL, 0xFFFF, 0x28, 0xFF, 1);
 
             if (field_0xe15 != 0) {
                 eventInfo.onCondition(0x20);
