@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 
-from argparse import ArgumentParser
-
 from binary_funcs import read_bytes_until_null, read_u32, read_u16, read_u8, skip_bytes
 import subprocess
 from os import walk, makedirs
-from os.path import exists, getmtime
 from pathlib import Path
 from typing import NamedTuple, DefaultDict
 import re
@@ -17,7 +14,8 @@ ADD_EXT_TO_ENUM = False
 SKIP_STAGE_ARCS = True
 SKIP_DEMO_ARCS = True
 SKIP_FILES_WITH_AT_SIGN = True
-THIS_MTIME = getmtime(__file__)
+# get when this file was modified last, used to detect if we should re-extract enums
+THIS_MTIME = Path(__file__).stat().st_mtime
 
 class ArcFile(NamedTuple):
     file_name:str
@@ -38,9 +36,8 @@ class ArcEnum(NamedTuple):
     values:list[ArcEnumValue]
 
 class JointParsedEnums(NamedTuple):
-    bmd_enums:list[ArcEnum]
-    bdl_enums:list[ArcEnum]
-
+    enums:list[ArcEnum]
+    
 def ensure_dir(path:str)->None:
     makedirs(path, exist_ok=True)
 
@@ -69,9 +66,9 @@ def make_enum(e:ArcEnum):
 
     return out_enum
 
-def parse_bmd(src_path:str):
+def parse_bmd(src_path:Path):
     global ADD_EXT_TO_ENUM
-    with open(src_path, "rb") as binf:
+    with src_path.open("rb") as binf:
         header_magic = binf.read(4)
         known_J3D_magic = b"J3D2"
         assert(header_magic == b"J3D2"), f"Attempted to parse {src_path} as bmd/bdl, but J3D header type doesn't match {known_J3D_magic} : {header_magic}"
@@ -93,9 +90,9 @@ def parse_bmd(src_path:str):
                 num_strings = read_u16(binf)
                 found_enums = []
                 if ADD_EXT_TO_ENUM:
-                    out_enum_name = sanitize_string(Path(src_path).name.replace(".", "_")).upper() + "_JNT"
+                    out_enum_name = sanitize_string(src_path.name.replace(".", "_")).upper() + "_JNT"
                 else:
-                    out_enum_name = sanitize_string(Path(src_path).name.split(".")[0]).upper() + "_JNT"
+                    out_enum_name = sanitize_string(src_path.name.split(".")[0]).upper() + "_JNT"
 
                 for i in range(num_strings):
                     binf.seek(name_table + 6 + i * 4)
@@ -109,16 +106,15 @@ def parse_bmd(src_path:str):
             binf.seek(next_chunk)
     return None
 
-def extract_joint_enums(src_path:str):
-    if ((SKIP_FILES_WITH_AT_SIGN and "@" in src_path) or 
-        (SKIP_STAGE_ARCS and "Stage" in Path(src_path).parts) or
-        (SKIP_DEMO_ARCS and any(x.startswith("Demo") for x in Path(src_path).parts))):
-        return JointParsedEnums([], [])
+def extract_joint_enums(src_path:Path):
+    if ((SKIP_FILES_WITH_AT_SIGN and "@" in str(src_path)) or 
+        (SKIP_STAGE_ARCS and "Stage" in src_path.parts) or
+        (SKIP_DEMO_ARCS and any(x.startswith("Demo") for x in src_path.parts))):
+        return JointParsedEnums([])
 
-    out_bdl:list[ArcEnum] = []
-    out_bmd:list[ArcEnum] = []
+    out_jnt_enums:list[ArcEnum] = []
     internal_files = subprocess.run([DTK_PATH, "vfs", "ls", "-r", f"{src_path}:"], stdout=subprocess.PIPE, text=True).stdout
-    output_folder = src_path.replace(".", "__")
+    output_folder = Path(str(src_path).replace(".", "__"))
     for line in internal_files.split("\n"):
         parts = line.split(" | ")
         if len(parts) != 3: continue
@@ -130,25 +126,22 @@ def extract_joint_enums(src_path:str):
         extension = internal_file_parts[1]
         if (extension not in ("bmd", "bdl")): continue
 
-        internal_file_path = Path(output_folder) / internal_file
+        internal_file_path = output_folder / internal_file
 
         if not internal_file_path.exists():
             ensure_dir(internal_file_path.parent)
             subprocess.run([DTK_PATH, "vfs", "cp", f"{src_path}:{internal_file}", internal_file_path], stdout=subprocess.PIPE)
         
-        out_enums = parse_bmd(str(internal_file_path))
+        out_enums = parse_bmd(internal_file_path)
 
-        if extension == "bmd":
-            out_bmd.append(out_enums)
-        elif extension == "bdl":
-            out_bdl.append(out_enums)
+        out_jnt_enums.append(out_enums)
     
-    return JointParsedEnums(out_bmd, out_bdl)
+    return JointParsedEnums(out_jnt_enums)
 
-def convert_binary_to_resource_enum(src_path: str, dest_path: str) -> None:    
+def convert_binary_to_resource_enum(src_path: Path, dest_path: Path) -> None:    
     joint_enums = extract_joint_enums(src_path)
 
-    with open(src_path, "rb") as binf:
+    with src_path.open("rb") as binf:
         opening_bytes = binf.read(4)
         assert(opening_bytes == b"RARC"), f"Not a rarc file: starts with bytes {opening_bytes}"
         skip_bytes(binf, 4)
@@ -198,9 +191,8 @@ def convert_binary_to_resource_enum(src_path: str, dest_path: str) -> None:
             found_nodes.append((this_node, [index_file_lookup.get(x) for x in this_node.inds if x in index_file_lookup]))
         
     out_lines:list[str] = []
-    file_stem = Path(src_path).name.split(".")[0]
+    file_stem = src_path.name.split(".")[0]
     file_stem_upper = sanitize_string(file_stem.upper())
-    indent =  " " * 4
 
     out_lines.append(f"#ifndef RES_{file_stem_upper}_H")
     out_lines.append(f"#define RES_{file_stem_upper}_H\n")
@@ -212,7 +204,7 @@ def convert_binary_to_resource_enum(src_path: str, dest_path: str) -> None:
 
     for node, files in found_nodes:
         if len(files) == 0: continue
-        file_type_break = f"{indent}/* {node.node_type} */"
+        file_type_break = f"{INDENT}/* {node.node_type} */"
         out_ids.append(file_type_break)
         out_idxs.append(file_type_break)
         for file in files:
@@ -231,7 +223,7 @@ def convert_binary_to_resource_enum(src_path: str, dest_path: str) -> None:
                 duplicate_tag = f"_{seen_count}_"
 
             # tiny optimization to do less string formatting
-            begin_part = f"{indent}dRes_"
+            begin_part = f"{INDENT}dRes_"
             mid_part = f"_{file_stem_upper}_{ext}_{santitized_file_name}{duplicate_tag}e=0x"
             out_idxs.append(f"{begin_part}INDEX{mid_part}{file.index:X},")
             out_ids.append(f"{begin_part}ID{mid_part}{file.id:X},")
@@ -244,67 +236,73 @@ def convert_binary_to_resource_enum(src_path: str, dest_path: str) -> None:
     out_lines.extend(out_ids)
     out_lines.append("};\n")
 
-    for joint_enum in joint_enums.bmd_enums + joint_enums.bdl_enums:
+    for joint_enum in joint_enums.enums:
         out_lines.append(make_enum(joint_enum) + "\n")
 
     out_lines.append(f"#endif /* !RES_{file_stem_upper}_H */")
 
     out = "\n".join(out_lines)
-    ensure_dir(Path(dest_path).parent)
-    with open(dest_path, "w") as f:
+    ensure_dir(dest_path.parent)
+    with dest_path.open("w") as f:
         f.write(out)
 
-def decompress_file(input_file:str, output_file:str) -> None:
+def decompress_file(input_file:Path, output_file:Path) -> None:
     # use pathlib to allow for unix+windows paths
     subprocess.run([DTK_PATH, "yaz0", "decompress", input_file, "-o", output_file])
 
-def extract_enum_from_file(src_path:str, dst_path:str) -> None:
-    assert(exists(src_path))
+def extract_enum_from_file(src_path:Path, dst_path:Path) -> None:
+    assert(src_path.exists())
 
     # we can skip extracting this file if all of the following are true
     # 1. The output file exists
     # 2. The src file is older than the output file (not modded)
     # 3. This python file is older than the output file (no updates to how we extract enums)
-    if (exists(dst_path) and 
-        getmtime(src_path) < getmtime(dst_path) and
-        THIS_MTIME < getmtime(dst_path)):
+    if (dst_path.exists() and 
+        src_path.stat().st_mtime < dst_path.stat().st_mtime and
+        THIS_MTIME < dst_path.stat().st_mtime):
         return
-
-    with open(src_path, "rb") as f:
+    
+    # check the first bytes of the file
+    with src_path.open("rb") as f:
         starting_bytes = f.read(4)
-    if starting_bytes == b"Yaz0":
-        is_compressed = True
-    elif starting_bytes == b"RARC":
-        is_compressed = False
-    else:
-        # not an arc file although it has the .arc extensions
-        return
+    
+    if   starting_bytes == b"Yaz0": is_compressed = True
+    elif starting_bytes == b"RARC": is_compressed = False
+    # not an arc file although it has the .arc extensions
+    else: return
     
     if is_compressed:
         # if our file is compressed, then we should decompress it
         # we only need to decompress if any of these are true
         # 1. We've never decompressed this file before
         # 2. The src file is newer than the output file (modded src)
-        new_src_path = src_path + ".decompressed"
-        if (not exists(new_src_path)) or (getmtime(new_src_path) < getmtime(src_path)):
+        new_src_path = src_path.with_suffix(src_path.suffix + ".decompressed")
+        if (not new_src_path.exists() or
+            new_src_path.stat().st_mtime < src_path.stat().st_mtime):
             decompress_file(src_path, new_src_path)
         src_path = new_src_path
 
     convert_binary_to_resource_enum(src_path, dst_path)
 
 def main() -> None:
-    for dirpath, dirnames, filenames in walk("./orig/"):
-        if "res" not in Path(dirpath).parts: continue
+    for dir, dirnames, filenames in walk("./orig/"):
+        dirpath = Path(dir)
+        if "res" not in dirpath.parts: continue
 
         for file in filenames:
-            file_path = Path(dirpath) / file
+            file_path = dirpath / file
             if file_path.suffix == ".arc":
+                # the version should be the second part of the path
+                # ./orig/ShieldD/...
                 version = file_path.parts[1]
+                # find the res folder, truncate the path to be the part after the res folder
                 out_path = Path("/".join(file_path.parts[file_path.parts.index("res") + 1:]))
+                # set the output path to be the designated output + the version + the file's heirarchy
                 out_path = OUT_PATH / (version / out_path)
+                # we're going to output to a header file, prefix it with "res_"
                 out_path = out_path.with_name("res_" + out_path.name).with_suffix(".h")
                 try:
-                    extract_enum_from_file(str(file_path), str(out_path))
+                    extract_enum_from_file(file_path, out_path)
                 except AssertionError as e:
                     print(f"ERROR: {file_path} -> {out_path}\n{e}\n")
 
