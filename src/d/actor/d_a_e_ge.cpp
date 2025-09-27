@@ -33,6 +33,19 @@ public:
     /* 0x30 */ f32 next_attack_timer;
 };
 
+enum daE_GE_Action {
+    /* 0 */ ACTION_WAIT,
+    /* 1 */ ACTION_FLY,
+    /* 2 */ ACTION_ATTACK,
+    /* 3 */ ACTION_BACK,
+    /* 4 */ ACTION_DOWN,
+    /* 5 */ ACTION_SURPRISE,
+    /* 6 */ ACTION_CAW,
+    /* 7 */ ACTION_WIND,
+    /* 8 */ ACTION_SHIELD,
+    /* 9 */ ACTION_MAX
+};
+
 /* 806CD358-806CD35C 000008 0004+00 2/2 0/0 0/0 .bss             None */
 static u8 l_HIOInit;
 
@@ -187,9 +200,9 @@ static void* s_ge_attack2(void* i_actor, void* i_data) {
 void daE_GE_c::setActionMode(int i_actionMode) {
     mPrevActionMode = mActionMode;
     mActionMode = i_actionMode;
-    field_0xb96 = 0;
-    field_0xb7c = 0;
-    field_0xb78 = 0;
+    mAnmChangeTimer = 0;
+    mSubMode = 0;
+    mMode = 0;
     field_0xb8e[1] = 0;
     field_0xb8e[0] = 0;
     shape_angle.z = 0;
@@ -199,9 +212,9 @@ void daE_GE_c::setActionMode(int i_actionMode) {
 
 /* 806C8130-806C8374 0007D0 0244+00 1/1 0/0 0/0 .text            damage_check__8daE_GE_cFv */
 void daE_GE_c::damage_check() {
-    if (field_0xb92 == 0) {
+    if (mDamageCooldownTimer == 0) {
         mStts.Move();
-        if (mActionMode != 4) {
+        if (mActionMode != ACTION_DOWN) {
             mAtInfo.mpCollider = NULL;
             if (mSphere.ChkTgHit()) {
                 mAtInfo.mpCollider = mSphere.GetTgHitObj();
@@ -213,20 +226,20 @@ void daE_GE_c::damage_check() {
                 cc_at_check(this, &mAtInfo);
 
                 if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_UNK)) {
-                    field_0xb92 = 20;
+                    mDamageCooldownTimer = 20;
                 } else {
-                    field_0xb92 = 10;
+                    mDamageCooldownTimer = 10;
                 }
 
                 if (mAtInfo.mAttackPower <= 1) {
-                    field_0xb92 = 10;
+                    mDamageCooldownTimer = 10;
                 }
 
                 if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_SHIELD_ATTACK)) {
-                    setActionMode(8);
+                    setActionMode(ACTION_SHIELD);
                 } else if (mMoveType != 2 && mAtInfo.mpCollider->ChkAtType(AT_TYPE_BOOMERANG)) {
-                    if (mActionMode != 7) {
-                        setActionMode(7);
+                    if (mActionMode != ACTION_WIND) {
+                        setActionMode(ACTION_WIND);
                     }
                 } else {
                     cXyz position;
@@ -235,7 +248,7 @@ void daE_GE_c::damage_check() {
                     mDoMtx_stack_c::multVecZero(&position);
                     dComIfGp_setHitMark(3, this, &position, NULL, NULL, 0);
 
-                    setActionMode(4);
+                    setActionMode(ACTION_DOWN);
 
                     if (!mAtInfo.mpCollider->ChkAtType(AT_TYPE_ARROW)) {
                         speedF = cM_rndF(5.0f) + 15.0f;
@@ -247,7 +260,7 @@ void daE_GE_c::damage_check() {
                     }
                     shape_angle.y = mAtInfo.mHitDirection.y + 0x8000;
                     field_0xb68 = 30.0f;
-                    field_0xb88 = mAtInfo.mHitDirection.y;
+                    mHitDirectionY = mAtInfo.mHitDirection.y;
                 }
             }
         }
@@ -256,10 +269,10 @@ void daE_GE_c::damage_check() {
 
 /* 806C8374-806C83F8 000A14 0084+00 1/1 0/0 0/0 .text            checkOtherAttacker__8daE_GE_cFv */
 bool daE_GE_c::checkOtherAttacker() {
-    if (mActionMode != 2) {
+    if (mActionMode != ACTION_ATTACK) {
         return false;
     }
-    if (field_0xb78 != 2) {
+    if (mMode != 2) {
         return false;
     }
 
@@ -282,7 +295,7 @@ bool daE_GE_c::searchNextAttacker() {
         return false;
     }
 
-    setActionMode(2);
+    setActionMode(ACTION_ATTACK);
     field_0xb8e[1] = cM_rndF(300.0f) + 700.0f;
     return true;
 }
@@ -344,10 +357,10 @@ cXyz daE_GE_c::calcCircleFly(cXyz* i_src, cXyz* i_vec, s16 i_angle, f32 param_3,
 void daE_GE_c::executeWait() {
     fpcM_Search(s_arrow_sub, this);
 
-    switch (field_0xb78) {
+    switch (mMode) {
     case 0:
         bckSet(0xC, 3.0f, 2, 1.0f);
-        field_0xb78 = 1;
+        mMode = 1;
         field_0xb8e[0] = (s16)(cM_rndF(300.f) + 300.0f);
         speedF = 0.0f;
         speed.y = 0.0f;
@@ -355,12 +368,12 @@ void daE_GE_c::executeWait() {
 
     case 1:
         if (field_0xb8e[0] == 0) {
-            field_0xb78 = 3;
+            mMode = 3;
         } else if (field_0xb8e[1] == 0 &&
                    fopAcM_searchPlayerDistanceXZ(this) < l_HIO.player_recognition_distance)
         {
             bckSet(5, 3.0f, 0, 1.0f);
-            field_0xb78 = 2;
+            mMode = 2;
             fpcM_Search(s_ge_caw, this);
         }
         break;
@@ -370,13 +383,13 @@ void daE_GE_c::executeWait() {
             mSound.startCreatureVoice(Z2SE_EN_GE_V_NAKU, -1);
         }
         if (mpMorfSO->isStop()) {
-            setActionMode(6);
+            setActionMode(ACTION_CAW);
         }
         break;
 
     case 3:
         bckSet(5, 3.0f, 0, 1.0f);
-        field_0xb78 = 4;
+        mMode = 4;
         break;
 
     case 4:
@@ -384,7 +397,7 @@ void daE_GE_c::executeWait() {
             mSound.startCreatureVoice(Z2SE_EN_GE_V_NAKU, -1);
         }
         if (mpMorfSO->isStop()) {
-            field_0xb78 = 0;
+            mMode = 0;
         }
         break;
     }
@@ -400,16 +413,16 @@ void daE_GE_c::executeFly() {
         turning_speed = 8.0f;
     }
 
-    switch (field_0xb78) {
+    switch (mMode) {
     case 10:
     case 0:
         field_0xb9e = 0;
-        if (field_0xb78 == 10) {
+        if (mMode == 10) {
             bckSet(7, 10.0f, 2, 1.0f);
         } else {
             bckSet(7, 3.0f, 2, 1.0f);
         }
-        field_0xb78 = 1;
+        mMode = 1;
         if (cM_rnd() < 0.5f) {
             field_0xb9d = true;
         } else {
@@ -421,24 +434,24 @@ void daE_GE_c::executeFly() {
         } else {
             field_0xb8a = (s16)(cM_rndFX(5.0f) * 20.0f + -400.0f);
         }
-        field_0xb96 = (s16)(cM_rndF(30.0f) + 30.0f);
-        field_0xb7c = 0;
+        mAnmChangeTimer = (s16)(cM_rndF(30.0f) + 30.0f);
+        mSubMode = 0;
         field_0xb5c = 0.0f;
         break;
 
     case 1:
-        if (field_0xb7c == 0) {
+        if (mSubMode == 0) {
             field_0xb5c += 4.0f;
             if (mpMorfSO->checkFrame(0.0f) && field_0xb5c >= 0.0f) {
                 bckSet(10, 10.0f, 2, 1.0f);
-                field_0xb96 = (s16)(cM_rndF(50.0f) + 50.0f);
-                field_0xb7c = 1;
+                mAnmChangeTimer = (s16)(cM_rndF(50.0f) + 50.0f);
+                mSubMode = 1;
             }
         } else {
             field_0xb5c -= 3.0f;
-            if (field_0xb96 == 0) {
+            if (mAnmChangeTimer == 0) {
                 bckSet(7, 10.0f, 2, 1.0f);
-                field_0xb7c = 0;
+                mSubMode = 0;
             }
         }
 
@@ -455,7 +468,7 @@ void daE_GE_c::executeFly() {
                 fopAcM_searchPlayerDistanceXZ(this) < l_HIO.player_recognition_distance)
             {
                 bckSet(4, 3.0f, 0, 1.0f);
-                field_0xb78 = 2;
+                mMode = 2;
             }
         }
         break;
@@ -474,7 +487,7 @@ void daE_GE_c::executeFly() {
         }
 
         if (mpMorfSO->isStop() && !searchNextAttacker()) {
-            field_0xb78 = 0;
+            mMode = 0;
         }
         break;
     }
@@ -515,7 +528,7 @@ void daE_GE_c::executeAttack() {
 
     temp = position - home.pos;
     if (temp.absXZ() > 2500.0f) {
-        setActionMode(3);
+        setActionMode(ACTION_BACK);
         return;
     }
 
@@ -525,7 +538,7 @@ void daE_GE_c::executeAttack() {
         bVar = true;
     }
 
-    switch (field_0xb78) {
+    switch (mMode) {
     case 0:
         field_0xb9e = 0;
         field_0xb8e[0] = (s16)(cM_rndF(100.0f) + 100.0f);
@@ -533,8 +546,8 @@ void daE_GE_c::executeAttack() {
         if (cM_rnd() < 0.5f) {
             field_0xb8a = -field_0xb8a;
         }
-        field_0xb78 = 1;
-        field_0xb96 = (s16)(cM_rndF(30.0f) + 30.0f);
+        mMode = 1;
+        mAnmChangeTimer = (s16)(cM_rndF(30.0f) + 30.0f);
         bckSet(7, 3.0f, 2, 1.0f);
         attention_info.distances[fopAc_attn_BATTLE_e] = 4;
         field_0xb5c = 0.0f;
@@ -544,31 +557,31 @@ void daE_GE_c::executeAttack() {
         if (field_0xb8e[1] == 0 && getMoveType() == 0) {
             temp2 = current.pos - home.pos;
             if (temp2.absXZ() > 1000.0f) {
-                setActionMode(3);
+                setActionMode(ACTION_BACK);
                 return;
             }
         }
-        switch (field_0xb7c) {
+        switch (mSubMode) {
         case 0:
             field_0xb5c += 4.0f;
             if (field_0xb5c >= 0.0f) {
                 bckSet(10, 10.0f, 2, 1.0f);
-                field_0xb96 = (s16)(cM_rndF(50.0f) + 50.0f);
-                field_0xb7c = 1;
+                mAnmChangeTimer = (s16)(cM_rndF(50.0f) + 50.0f);
+                mSubMode = 1;
             }
 
             break;
         case 1:
             field_0xb5c -= 3.0f;
-            if (field_0xb96 == 0) {
+            if (mAnmChangeTimer == 0) {
                 bckSet(7, 10.0f, 2, 1.0f);
-                field_0xb7c = 0;
+                mSubMode = 0;
             }
             break;
 
         case 2:
             bckSet(8, 3.0f, 0, 1.0f);
-            field_0xb7c = 3;
+            mSubMode = 3;
             /* fallthrough */
 
         case 3:
@@ -580,7 +593,7 @@ void daE_GE_c::executeAttack() {
             }
             if (mpMorfSO->isStop()) {
                 bckSet(7, 3.0f, 2, 1.0f);
-                field_0xb7c = 0;
+                mSubMode = 0;
             }
             break;
         }
@@ -590,10 +603,10 @@ void daE_GE_c::executeAttack() {
             mSound.startCreatureVoice(Z2SE_EN_GE_V_ATTACK, -1);
             field_0xb4c = position;
             field_0xb8c += 0x8000;
-            field_0xb78 = 2;
-            field_0xb7c = 0;
+            mMode = 2;
+            mSubMode = 0;
             field_0xb8e[0] = 200;
-            field_0xb98 = 14;
+            mCircleFlyScale = 14;
             return;
         }
         flyVec.set(0.0f, l_HIO.attack_turn_altitude + field_0xb5c, l_HIO.attack_turn_radius);
@@ -604,19 +617,19 @@ void daE_GE_c::executeAttack() {
         break;
 
     case 2:
-        if (field_0xb7c == 0) {
+        if (mSubMode == 0) {
             if (mpMorfSO->checkFrame(3.0f)) {
                 mSound.startCreatureVoice(Z2SE_EN_GE_V_NAKU, -1);
             }
             if (mpMorfSO->isStop()) {
                 bckSet(10, 3.0f, 2, 1.0f);
-                field_0xb7c = 1;
+                mSubMode = 1;
             }
         }
         mSphere.OnAtSetBit();
         flyVec.set(0.0f, 0.0f, 0.0f);
 
-        temp = calcCircleFly(&field_0xb4c, &flyVec, 0x0, l_HIO.attack_speed, field_0xb98, 1.0f);
+        temp = calcCircleFly(&field_0xb4c, &flyVec, 0x0, l_HIO.attack_speed, mCircleFlyScale, 1.0f);
         if (temp.abs() > 300.0f) {
             field_0xb4c = position;
             field_0xb8c = shape_angle.y;
@@ -627,12 +640,12 @@ void daE_GE_c::executeAttack() {
                 field_0xb8e[0] = 0;
             }
         } else {
-            field_0xb98 = 8;
+            mCircleFlyScale = 8;
         }
 
         if (temp.abs() < 100.0f || field_0xb8e[0] == 0 || checkBeforeBg(1, 0.0f)) {
             bckSet(7, 1.0f, 2, 1.0f);
-            field_0xb78 = 3;
+            mMode = 3;
             field_0xb8e[0] = 0;
         }
         break;
@@ -644,7 +657,7 @@ void daE_GE_c::executeAttack() {
         // variable.
         temp = calcCircleFly(&position, &flyVec, field_0xb8c, l_HIO.attack_speed, 6, 0.5f);
         if (temp.abs() < 400.0f || mObjAcch.ChkWallHit()) {
-            field_0xb78 = 0;
+            mMode = 0;
         }
         break;
     }
@@ -653,7 +666,7 @@ void daE_GE_c::executeAttack() {
 
 /* 806C9F04-806CA024 0025A4 0120+00 1/1 0/0 0/0 .text            setBackAnime__8daE_GE_cFi */
 void daE_GE_c::setBackAnime(int param_0) {
-    if (speed.y > 0.0f || field_0xb80 != 0) {
+    if (speed.y > 0.0f || mBackAnimeTimer != 0) {
         J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes("E_GE", 7);
         if (mpMorfSO->getAnm() != anm) {
             bckSet(7, 3.0f, 2, 1.0f);
@@ -677,23 +690,23 @@ void daE_GE_c::executeBack() {
     cXyz position2;
     s16 chaseAngle = 0x0;
 
-    switch (field_0xb78) {
+    switch (mMode) {
     case 0:
     case 10:
         field_0xb9e = 0;
         if (getMoveType() != 0) {
-            setActionMode(1);
+            setActionMode(ACTION_FLY);
         } else {
-            if (field_0xb78 == 10) {
+            if (mMode == 10) {
                 bckSet(7, 10.0f, 2, 1.0f);
             } else {
                 bckSet(7, 3.0f, 2, 1.0f);
             }
             if (current.pos.absXZ(home.pos) < 1500.0f) {
-                field_0xb78 = 1;
+                mMode = 1;
                 field_0xb8a = 32;
             } else {
-                field_0xb78 = 2;
+                mMode = 2;
             }
             field_0xb58 = l_HIO.turning_speed;
             field_0xb8c = cLib_targetAngleY(&home.pos, &current.pos);
@@ -718,18 +731,18 @@ void daE_GE_c::executeBack() {
         }
 
         if (position.abs() < 50.0f) {
-            field_0xb78 = 2;
+            mMode = 2;
         }
 
         chaseAngle = cM_atan2s(speedF, speed.y) - 0x4000;
         break;
 
     case 2:
-        if (field_0xb7c == 0) {
+        if (mSubMode == 0) {
             s16 targetAngleY = cLib_targetAngleY(&current.pos, &home.pos);
             if ((s16)cLib_distanceAngleS(targetAngleY, shape_angle.y) <= 0x800) {
                 field_0xb8c = targetAngleY + 0x8000;
-                field_0xb7c = 1;
+                mSubMode = 1;
             }
         }
         position2.set(0.0f, 100.0f, 400.0f);
@@ -742,7 +755,7 @@ void daE_GE_c::executeBack() {
         }
 
         if (position.abs() < 50.0f) {
-            field_0xb78 = 3;
+            mMode = 3;
             bckSet(0xB, 3.0f, 0, 1.0f);
             field_0xb8e[0] = 10;
             speed.y = 0.0f;
@@ -763,7 +776,7 @@ void daE_GE_c::executeBack() {
         position = calcCircleFly(&home.pos, &position2, field_0xb8c, field_0xb58, 4, 1.0f);
 
         if (position.abs() < 50.0f) {
-            field_0xb78 = 4;
+            mMode = 4;
             mpMorfSO->setPlaySpeed(1.0f);
         }
         break;
@@ -785,13 +798,13 @@ void daE_GE_c::executeBack() {
             if (mpMorfSO->isStop()) {
                 old.pos = home.pos;
                 current.pos = old.pos;
-                if (mPrevActionMode == 6) {
-                    setActionMode(6);
+                if (mPrevActionMode == ACTION_CAW) {
+                    setActionMode(ACTION_CAW);
                     field_0xb8e[1] = 100;
                     return;
                 }
 
-                setActionMode(0);
+                setActionMode(ACTION_WAIT);
                 return;
             }
         }
@@ -803,7 +816,7 @@ void daE_GE_c::executeBack() {
 
 /* 806CAA34-806CADCC 0030D4 0398+00 1/0 0/0 0/0 .text            executeDown__8daE_GE_cFv */
 void daE_GE_c::executeDown() {
-    field_0xb92 = 10;
+    mDamageCooldownTimer = 10;
 
     if (speed.y >= 0.0f) {
         cLib_chaseF(&speed.y, -50.0f, 5.0f);
@@ -811,7 +824,7 @@ void daE_GE_c::executeDown() {
         cLib_chaseF(&speed.y, -50.0f, 3.0f);
     }
 
-    switch (field_0xb78) {
+    switch (mMode) {
     case 0:
 #if !DEBUG  // Looks like this is not happening in debug
         mSphere.OffTgSetBit();
@@ -821,7 +834,7 @@ void daE_GE_c::executeDown() {
         field_0xb9e = 0;
         attention_info.flags = 0;
         bckSet(4, 3.0f, 2, 1.0f);
-        field_0xb78 = 1;
+        mMode = 1;
         mSound.startCreatureVoice(Z2SE_EN_GE_V_DEATH, -1);
         field_0xb8a = 0;
         current.angle.y = (s16)((mAtInfo.mHitDirection.y + 0x8000) + cM_rndFX(4096.0f));
@@ -836,13 +849,13 @@ void daE_GE_c::executeDown() {
         if (field_0xb8e[0] == 0) {
             fopAcM_createDisappear(this, &current.pos, 10, 0, 0x21);
             fopAcM_delete(this);
-            dComIfGs_onSwitch(field_0xb9c, fopAcM_GetRoomNo(this));
+            dComIfGs_onSwitch(mSwitch, fopAcM_GetRoomNo(this));
         } else {
             if (mObjAcch.ChkGroundHit()) {
                 mSound.startCreatureSound(Z2SE_CM_BODYFALL_S, 0, -1);
                 fopAcM_effSmokeSet1(&mSmokeKey, &mSmokeKey2, &current.pos, NULL, 1.0f, &tevStr, 1);
                 field_0xb8e[0] = 0;
-                field_0xb78 = 2;
+                mMode = 2;
                 speed.y = 20.0f;
                 speedF = 5.0f;
                 shape_angle.x = -0x8000;
@@ -861,7 +874,7 @@ void daE_GE_c::executeDown() {
             fopAcM_effSmokeSet1(&mSmokeKey, &mSmokeKey2, &current.pos, NULL, 1.0f, &tevStr, 1);
             speed.y = 0.0f;
             speedF = 0.0f;
-            field_0xb78 = 3;
+            mMode = 3;
             mpMorfSO->setFrame(16.0f);
             mpMorfSO->setPlaySpeed(0.5f);
         }
@@ -870,7 +883,7 @@ void daE_GE_c::executeDown() {
     case 3:
         if (mpMorfSO->checkFrame(23.0f)) {
             field_0xb8e[0] = 0;
-            field_0xb78 = 4;
+            mMode = 4;
         }
         break;
 
@@ -878,7 +891,7 @@ void daE_GE_c::executeDown() {
         if (field_0xb8e[0] == 0) {
             fopAcM_createDisappear(this, &current.pos, 10, 0, 0x21);
             fopAcM_delete(this);
-            dComIfGs_onSwitch(field_0xb9c, fopAcM_GetRoomNo(this));
+            dComIfGs_onSwitch(mSwitch, fopAcM_GetRoomNo(this));
         }
         break;
     }
@@ -886,15 +899,15 @@ void daE_GE_c::executeDown() {
 
 /* 806CADCC-806CADF4 00346C 0028+00 2/2 0/0 0/0 .text            setSurpriseTime__8daE_GE_cFs */
 void daE_GE_c::setSurpriseTime(s16 i_surpriseTime) {
-    if (getMoveType() == 0 && (mActionMode == 0 || mActionMode == 6)) {
+    if (getMoveType() == 0 && (mActionMode == ACTION_WAIT || mActionMode == ACTION_CAW)) {
         mSurpriseTime = i_surpriseTime;
     }
 }
 
 /* 806CADF4-806CAE58 003494 0064+00 1/1 0/0 0/0 .text            setSurprise__8daE_GE_cFv */
 void daE_GE_c::setSurprise() {
-    if (getMoveType() == 0 && (mActionMode == 0 || mActionMode == 6)) {
-        setActionMode(5);
+    if (getMoveType() == 0 && (mActionMode == ACTION_WAIT || mActionMode == ACTION_CAW)) {
+        setActionMode(ACTION_SURPRISE);
     }
     fpcM_Search(s_ge_surprise, this);
 }
@@ -903,12 +916,12 @@ void daE_GE_c::setSurprise() {
 void daE_GE_c::executeSurprise() {
     cXyz vec;
 
-    switch (field_0xb78) {
+    switch (mMode) {
     case 0:
         field_0xb9e = 0;
         bckSet(8, 3.0f, 0, 1.0f);
         field_0xb8e[0] = (s16)(cM_rndF(100.0f) + 150.0f);
-        field_0xb78 = 1;
+        mMode = 1;
         field_0xb8c = (s16)cM_rndFX(32768.0f);
         vec.set(0.0f, cM_rndFX(300.0f) + 800.0f, cM_rndFX(1500.0f));
         cLib_offsetPos(&field_0xb4c, &home.pos, (s16)cM_rndFX(32768.0f), &vec);
@@ -936,10 +949,10 @@ void daE_GE_c::executeSurprise() {
                 break;
             }
             if (daPy_getPlayerActorClass()->current.pos.absXZ(home.pos) > 1000.0f) {
-                if (mPrevActionMode == 6) {
-                    mActionMode = 6;
+                if (mPrevActionMode == ACTION_CAW) {
+                    mActionMode = ACTION_CAW;
                 }
-                setActionMode(3);
+                setActionMode(ACTION_BACK);
                 break;
             }
             field_0xb8e[0] = (s16)(cM_rndF(50.0f) + 70.0f);
@@ -961,8 +974,8 @@ void daE_GE_c::executeSurprise() {
 
 /* 806CB280-806CB2F0 003920 0070+00 1/1 0/0 0/0 .text            setCaw__8daE_GE_cFv */
 void daE_GE_c::setCaw() {
-    if (getMoveType() == 0 && mActionMode == 0) {
-        setActionMode(6);
+    if (getMoveType() == 0 && mActionMode == ACTION_WAIT) {
+        setActionMode(ACTION_CAW);
         field_0xb8e[1] = cM_rndFX(30.0f) + 40.0f;
     }
 }
@@ -976,18 +989,18 @@ void daE_GE_c::executeCaw() {
     cXyz diff = player->current.pos - home.pos;
 
     if (diff.absXZ() > 2000.0f) {
-        setActionMode(0);
+        setActionMode(ACTION_WAIT);
     } else if (getMoveType() == 0 && diff.absXZ() < 500.0f) {
-        setActionMode(5);
+        setActionMode(ACTION_SURPRISE);
     } else {
-        switch (field_0xb78) {
+        switch (mMode) {
         case 0:
             if (field_0xb8e[1] == 0) {
                 bckSet(5, 3.0f, 0, 1.0f);
-                field_0xb78 = 1;
-                if (field_0xb7c == 0) {
+                mMode = 1;
+                if (mSubMode == 0) {
                     fpcM_Search(s_ge_caw, this);
-                    field_0xb7c = 1;
+                    mSubMode = 1;
                 }
             }
             break;
@@ -997,11 +1010,11 @@ void daE_GE_c::executeCaw() {
                 mSound.startCreatureVoice(Z2SE_EN_GE_V_NAKU, -1);
             }
             if (mpMorfSO->isStop()) {
-                setActionMode(2);
+                setActionMode(ACTION_ATTACK);
                 field_0xb8e[1] = (s16)(cM_rndF(300.0f) + 700.0f);
-                field_0xb7c = 2;
+                mSubMode = 2;
             } else if (field_0xb8e[0] == 0) {
-                field_0xb78 = 0;
+                mMode = 0;
                 field_0xb8e[0] = (s16)(cM_rndFX(50.0f) + 50.0f);
             }
             break;
@@ -1011,12 +1024,12 @@ void daE_GE_c::executeCaw() {
 
 /* 806CB6FC-806CBAB8 003D9C 03BC+00 1/0 0/0 0/0 .text            executeWind__8daE_GE_cFv */
 void daE_GE_c::executeWind() {
-    if (daPy_py_c::getThrowBoomerangActor() == NULL && field_0xb78 != 2) {
-        field_0xb78 = 2;
+    if (daPy_py_c::getThrowBoomerangActor() == NULL && mMode != 2) {
+        mMode = 2;
         field_0xb8e[0] = (s16)(cM_rndFX(30.0f) + 60.0f);
     }
 
-    switch (field_0xb78) {
+    switch (mMode) {
     case 0:
         field_0xb9e = 0;
         cXyz boomerangPos(daPy_py_c::getThrowBoomerangActor()->current.pos);
@@ -1024,7 +1037,7 @@ void daE_GE_c::executeWind() {
         field_0xb5c = current.pos.y - boomerangPos.y;
         speed.y = 0.0f;
         speedF = 0.0f;
-        field_0xb78 = 1;
+        mMode = 1;
         bckSet(9, 3.0f, 2, 1.0f);
         field_0xb64 = cM_rndFX(50.0f);
         field_0xb60 = cM_rndFX(100.0f);
@@ -1058,13 +1071,13 @@ void daE_GE_c::executeWind() {
         shape_angle.y += field_0xb8a;
         if (field_0xb8e[0] == 0) {
             if (getMoveType() != 0) {
-                setActionMode(1);
-                field_0xb78 = 10;
+                setActionMode(ACTION_FLY);
+                mMode = 10;
                 break;
             }
-            field_0xb80 = 90;
-            setActionMode(3);
-            field_0xb78 = 10;
+            mBackAnimeTimer = 90;
+            setActionMode(ACTION_BACK);
+            mMode = 10;
         }
         break;
     }
@@ -1072,12 +1085,12 @@ void daE_GE_c::executeWind() {
 
 /* 806CBAB8-806CBC38 004158 0180+00 1/0 0/0 0/0 .text            executeShield__8daE_GE_cFv */
 void daE_GE_c::executeShield() {
-    switch (field_0xb78) {
+    switch (mMode) {
     case 0:
         field_0xb9e = 0;
         speedF = 20.0f;
         speed.y = 0.0f;
-        field_0xb78 = 1;
+        mMode = 1;
         bckSet(9, 3.0f, 2, 1.0f);
         field_0xb8e[0] = 60;
         current.angle.y = fopAcM_searchPlayerAngleY(this) + 0x8000;
@@ -1093,12 +1106,12 @@ void daE_GE_c::executeShield() {
 
         if (field_0xb8e[0] == 0) {
             if (getMoveType() != 0) {
-                setActionMode(1);
-                field_0xb78 = 10;
+                setActionMode(ACTION_FLY);
+                mMode = 10;
             } else {
-                field_0xb80 = 90;
-                setActionMode(3);
-                field_0xb78 = 10;
+                mBackAnimeTimer = 90;
+                setActionMode(ACTION_BACK);
+                mMode = 10;
             }
         }
 
@@ -1119,7 +1132,7 @@ void daE_GE_c::action() {
     damage_check();
     s16 angleY = shape_angle.y;
 
-    if (mActionMode < 9) {
+    if (mActionMode < ACTION_MAX) {
         (this->*l_actionmenu[mActionMode])();
     }
 
@@ -1127,13 +1140,13 @@ void daE_GE_c::action() {
         mSound.startCreatureSound(Z2SE_EN_GE_WING, 0, -1);
     }
 
-    if (mActionMode == 2) {
+    if (mActionMode == ACTION_ATTACK) {
         mSound.setLinkSearch(true);
     } else {
         mSound.setLinkSearch(false);
     }
 
-    if (mActionMode != 4) {
+    if (mActionMode != ACTION_DOWN) {
         f32 actor_speed = speedF;
         if (actor_speed >= 20.0f) {
             actor_speed = 20.0f;
@@ -1197,7 +1210,7 @@ void daE_GE_c::cc_set() {
         dComIfG_Ccsp()->Set(&mSphere);
         mSphere2.SetC(eyePos);
 
-        if (mActionMode == 0 || mActionMode == 6) {
+        if (mActionMode == ACTION_WAIT || mActionMode == ACTION_CAW) {
             mSphere2.SetR(30.0f);
         } else {
             mSphere2.SetR(70.0f);
@@ -1209,7 +1222,7 @@ void daE_GE_c::cc_set() {
         dComIfG_Ccsp()->Set(&mSphere);
         mSphere2.SetC(eyePos);
 
-        if (mActionMode == 0 || mActionMode == 6) {
+        if (mActionMode == ACTION_WAIT || mActionMode == ACTION_CAW) {
             mSphere2.SetR(35.0f);
         } else {
             mSphere2.SetR(70.0f);
@@ -1226,12 +1239,12 @@ int daE_GE_c::execute() {
         }
     }
 
-    if (field_0xb92 != 0) {
-        field_0xb92--;
+    if (mDamageCooldownTimer != 0) {
+        mDamageCooldownTimer--;
     }
 
-    if (field_0xb96 != 0) {
-        field_0xb96--;
+    if (mAnmChangeTimer != 0) {
+        mAnmChangeTimer--;
     }
 
     if (mSurpriseTime != 0) {
@@ -1241,8 +1254,8 @@ int daE_GE_c::execute() {
         }
     }
 
-    if (field_0xb80 != 0) {
-        field_0xb80--;
+    if (mBackAnimeTimer != 0) {
+        mBackAnimeTimer--;
     }
 
     action();
@@ -1324,8 +1337,8 @@ int daE_GE_c::create() {
 
     fopAcM_SetupActor(this, daE_GE_c);
 
-    field_0xb9c = fopAcM_GetParam(this) >> 8;
-    if (field_0xb9c != 0xFF && dComIfGs_isSwitch(field_0xb9c, fopAcM_GetRoomNo(this))) {
+    mSwitch = fopAcM_GetParam(this) >> 8;
+    if (mSwitch != 0xFF && dComIfGs_isSwitch(mSwitch, fopAcM_GetRoomNo(this))) {
         // "E_GE I've been defeated so I won't reset it\n"
         OS_REPORT("E_GE やられ後なので再セットしません\n");
         return cPhs_ERROR_e;
@@ -1386,7 +1399,7 @@ int daE_GE_c::create() {
 
         if (getMoveType() != 0) {
             home.pos.y = old.pos.y = current.pos.y;
-            setActionMode(1);
+            setActionMode(ACTION_FLY);
         } else {
             dBgS_GndChk gndChk;
             cXyz modified_home_pos(home.pos);
@@ -1396,7 +1409,7 @@ int daE_GE_c::create() {
             if (groundCross != -1000000000.0f && fabsf(current.pos.y - groundCross) < 200.0f) {
                 current.pos.y = old.pos.y = home.pos.y = groundCross + 30.0f;
             }
-            setActionMode(0);
+            setActionMode(ACTION_WAIT);
         }
         mtx_set();
     }
