@@ -3,7 +3,7 @@
 
 #include "JSystem/JParticle/JPAParticle.h"
 
-class JPTraceParticleCallBack4 : JPAParticleCallBack {
+class JPTraceParticleCallBack4 : public JPAParticleCallBack {
 public:
     /* 8001817C */ void execute(JPABaseEmitter*, JPABaseParticle*);
     /* 800182A4 */ void draw(JPABaseEmitter*, JPABaseParticle*);

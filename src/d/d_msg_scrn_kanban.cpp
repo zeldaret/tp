@@ -17,8 +17,6 @@ extern dMsgObject_HIO_c g_MsgObject_HIO_c;
 
 /* 80244E38-8024534C 23F778 0514+00 0/0 1/1 0/0 .text __ct__16dMsgScrnKanban_cFP10JKRExpHeap */
 dMsgScrnKanban_c::dMsgScrnKanban_c(JKRExpHeap* param_0) {
-    static u64 const t_tag[3] = {'mg_e4lin', 'f4_w', 't4_s'};
-
     if (param_0 != NULL) {
         field_0xd4 = param_0;
     } else {
@@ -60,6 +58,38 @@ dMsgScrnKanban_c::dMsgScrnKanban_c(JKRExpHeap* param_0) {
     JUT_ASSERT(72, mpSpot_c != 0);
 
     mpSpot_c->getPanePtr()->setAnimation(field_0xd0);
+
+
+#if VERSION == VERSION_GCN_JPN
+    if (dComIfGs_getOptUnk0() != 0) {
+        static u64 const t_tag[3] = {'mg_3line', 't3_w', 't3_s'};
+        for (int i = 0; i < 3; i++) {
+            mpTm_c[i] = new CPaneMgr(mpScreen, t_tag[i], 0, NULL);
+            ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
+        }
+
+        mpScreen->search('n_3line')->show();
+        mpScreen->search('n_3fline')->hide();
+        mpScreen->search('n_e4line')->hide();
+    } else {
+        static u64 const t_tag_2[3] = {'t3fline', 't3f_w', 't3f_s'};
+        static u64 const tr_tag[3] = {'mg_3f', 'mg_3f_w', 'mg_3f_s'};
+
+        for (int i = 0; i < 3; i++) {
+            mpTm_c[i] = new CPaneMgr(mpScreen, t_tag_2[i], 0, NULL);
+            ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
+
+            mpTmr_c[i] = new CPaneMgr(mpScreen, tr_tag[i], 0, NULL);
+            ((J2DTextBox*)mpTmr_c[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
+        }
+
+        mpScreen->search('n_3line')->hide();
+        mpScreen->search('n_3fline')->show();
+        mpScreen->search('n_e4line')->hide();
+    }
+#else
+    static u64 const t_tag[3] = {'mg_e4lin', 'f4_w', 't4_s'};
+
     for (int i = 0; i < 3; i++) {
         mpTm_c[i] = new CPaneMgr(mpScreen, t_tag[i], 0, NULL);
         JUT_ASSERT(81, mpTm_c[i] != 0);
@@ -69,6 +99,7 @@ dMsgScrnKanban_c::dMsgScrnKanban_c(JKRExpHeap* param_0) {
     mpScreen->search('n_3line')->hide();
     mpScreen->search('n_3fline')->hide();
     mpScreen->search('n_e4line')->show();
+#endif
 
     ((J2DTextBox*)mpTm_c[0]->getPanePtr())->getFontSize(mFontSize);
     mTBoxWidth = mpTm_c[0]->getSizeX();

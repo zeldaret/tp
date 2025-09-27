@@ -278,7 +278,7 @@ void daNpc_Kn_c::setRoomNo() {
 
 /* 80A3904C-80A390F8 00E72C 00AC+00 1/1 0/0 0/0 .text            checkEndAnm__10daNpc_Kn_cFf */
 BOOL daNpc_Kn_c::checkEndAnm(f32 i_speed) {
-    switch (mpModelMorf[0]->getPlayMode()) {
+    switch ((u8)mpModelMorf[0]->getPlayMode()) {
     case J3DFrameCtrl::EMode_LOOP:
         return mpModelMorf[0]->isLoop();
     case J3DFrameCtrl::EMode_RESET:

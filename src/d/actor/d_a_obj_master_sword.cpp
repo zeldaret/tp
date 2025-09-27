@@ -35,8 +35,7 @@ void daObjMasterSword_c::initWait() {
     shape_angle = home.angle;
 }
 
-/* 80C90B50-80C90C50 0000D0 0100+00 1/0 0/0 0/0 .text            executeWait__18daObjMasterSword_cFv
- */
+/* 80C90B50-80C90C50 0000D0 0100+00 1/0 0/0 0/0 .text            executeWait__18daObjMasterSword_cFv */
 void daObjMasterSword_c::executeWait() {
     if (daPy_getPlayerActorClass()->checkPriActorOwn(this)) {
         for (int i = 0; i < dComIfGp_getAttention()->GetActionCount(); i++) {
@@ -56,8 +55,7 @@ void daObjMasterSword_c::executeWait() {
     }
 }
 
-/* 80C90C50-80C90C70 0001D0 0020+00 1/1 0/0 0/0 .text
- * createHeapCallBack__18daObjMasterSword_cFP10fopAc_ac_c       */
+/* 80C90C50-80C90C70 0001D0 0020+00 1/1 0/0 0/0 .text            createHeapCallBack__18daObjMasterSword_cFP10fopAc_ac_c */
 int daObjMasterSword_c::createHeapCallBack(fopAc_ac_c* i_this) {
     return static_cast<daObjMasterSword_c*>(i_this)->CreateHeap();
 }
@@ -65,8 +63,7 @@ int daObjMasterSword_c::createHeapCallBack(fopAc_ac_c* i_this) {
 /* 80C9199C-80C919A0 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "MstrSword";
 
-/* 80C90C70-80C90D98 0001F0 0128+00 1/1 0/0 0/0 .text            CreateHeap__18daObjMasterSword_cFv
- */
+/* 80C90C70-80C90D98 0001F0 0128+00 1/1 0/0 0/0 .text            CreateHeap__18daObjMasterSword_cFv */
 int daObjMasterSword_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 5);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
@@ -146,8 +143,7 @@ void daObjMasterSword_c::initCollision() {
     mCyl.SetStts(&mCcStts);
 }
 
-/* 80C90F6C-80C9120C 0004EC 02A0+00 1/1 0/0 0/0 .text            create_init__18daObjMasterSword_cFv
- */
+/* 80C90F6C-80C9120C 0004EC 02A0+00 1/1 0/0 0/0 .text            create_init__18daObjMasterSword_cFv */
 void daObjMasterSword_c::create_init() {
     fopAcM_setCullSizeBox2(this, mpModel->getModelData());
     initCollision();
@@ -174,8 +170,7 @@ void daObjMasterSword_c::create_init() {
     setAction(MODE_0_e);
 }
 
-/* 80C91420-80C91448 0009A0 0028+00 1/0 0/0 0/0 .text
- * daObjMasterSword_Delete__FP18daObjMasterSword_c              */
+/* 80C91420-80C91448 0009A0 0028+00 1/0 0/0 0/0 .text            daObjMasterSword_Delete__FP18daObjMasterSword_c */
 static int daObjMasterSword_Delete(daObjMasterSword_c* i_this) {
     i_this->~daObjMasterSword_c();
     return 1;

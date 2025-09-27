@@ -18,7 +18,7 @@ public:
     /* 0x0C */ f32 mLROnValue;
     /* 0x10 */ f32 mLROffValue;
     /* 0x14 */ bool mUsingHostIO;
-    /* 0x15 */ bool mDisplayMeter;
+    /* 0x15 */ u8 mDisplayMeter;
     /* 0x16 */ u8 mDisplayPrint;
     /* 0x17 */ bool mDisplay2D;
     /* 0x18 */ bool mDisplayParticle;
@@ -58,7 +58,7 @@ inline bool fapGmHIO_isPrint() {
     return g_HIO.mDisplayPrint & 1;
 }
 
-inline bool fapGmHIO_getMeter() {
+inline u8 fapGmHIO_getMeter() {
     return g_HIO.mDisplayMeter;
 }
 

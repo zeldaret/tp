@@ -113,7 +113,7 @@ void daObjL4DigSand_c::mode_wait() {
  */
 void daObjL4DigSand_c::mode_init_dig() {
     dBgS_ObjGndChk gndchk;
-    gndchk.SetActorPid(base.id);
+    gndchk.SetActorPid(base.base.id);
     gndchk.SetPos(&current.pos);
 
     f32 gnd_y = dComIfG_Bgsp().GroundCross(&gndchk);

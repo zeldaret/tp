@@ -2,9 +2,9 @@
 #define JORMCONTEXT_H
 
 #include <dolphin.h>
-#include "JSystem/JSupport/JSUMemoryStream.h"
-#include "JSystem/JHostIO/JORReflexible.h"
 #include <stdint.h>
+#include "JSystem/JHostIO/JORReflexible.h"
+#include "JSystem/JSupport/JSUMemoryStream.h"
 
 #define MCTX_MSG_RESET 0
 #define MCTX_MSG_GET_ROOT_OBJ 2
@@ -30,8 +30,8 @@
 #define DEFINE_GEN_CHECKBOX(T, kind)                                                               \
     void genCheckBox(const char* label, T* pSrc, T mask, u32 style, JOREventListener* pListener,   \
                      u16 posX, u16 posY, u16 width, u16 height) {                                  \
-        genCheckBoxSub(kind, label, (uintptr_t)pSrc, style, *pSrc, mask, pListener, posX, posY, width,   \
-                       height);                                                                    \
+        genCheckBoxSub(kind, label, (uintptr_t)pSrc, style, *pSrc, mask, pListener, posX, posY,    \
+                       width, height);                                                             \
     }
 
 #define DEFINE_GEN_CHECKBOX_ID(T, kind)                                                            \
@@ -44,8 +44,8 @@
 #define DEFINE_GEN_SLIDER(T, kind)                                                                 \
     void genSlider(const char* label, T* pSrc, T rangeMin, T rangeMax, u32 style,                  \
                    JOREventListener* pListener, u16 posX, u16 posY, u16 width, u16 height) {       \
-        genSliderSub(kind, label, (uintptr_t)pSrc, style, *pSrc, rangeMin, rangeMax, pListener, posX,    \
-                     posY, width, height);                                                         \
+        genSliderSub(kind, label, (uintptr_t)pSrc, style, *pSrc, rangeMin, rangeMax, pListener,    \
+                     posX, posY, width, height);                                                   \
     }
 
 #define DEFINE_GEN_SLIDER_ID(T, kind)                                                              \
@@ -55,39 +55,48 @@
                      width, height);                                                               \
     }
 
-#define DEFINE_START_COMBO_BOX(T, kind)                                                                 \
-    void startComboBox(const char* label, T* pSrc, u32 style,                  \
-                   JOREventListener* pListener, u16 posX, u16 posY, u16 width, u16 height) {       \
-        startSelectorSub('CMBX', kind, label, (uintptr_t)pSrc, style, *pSrc, pListener, posX,    \
-                         posY, width, height);                                                         \
+#define DEFINE_START_COMBO_BOX(T, kind)                                                            \
+    void startComboBox(const char* label, T* pSrc, u32 style, JOREventListener* pListener,         \
+                       u16 posX, u16 posY, u16 width, u16 height) {                                \
+        startSelectorSub('CMBX', kind, label, (uintptr_t)pSrc, style, *pSrc, pListener, posX,      \
+                         posY, width, height);                                                     \
     }
 
-#define DEFINE_START_COMBO_BOX_ID(T, kind)                                                                 \
-    void startComboBoxID(const char* label, u32 id, T data, u32 style,                  \
-                JOREventListener* pListener, u16 posX, u16 posY, u16 width, u16 height) {       \
-        startSelectorSub('CMBX', kind, label, id, style, data, pListener, posX,    \
-                        posY, width, height);                                                         \
+#define DEFINE_START_COMBO_BOX_ID(T, kind)                                                         \
+    void startComboBoxID(const char* label, u32 id, T data, u32 style,                             \
+                         JOREventListener* pListener, u16 posX, u16 posY, u16 width, u16 height) { \
+        startSelectorSub('CMBX', kind, label, id, style, data, pListener, posX, posY, width,       \
+                         height);                                                                  \
     }
 
-#define DEFINE_UPDATE_SLIDER(T)                                                              \
-    void updateSlider(u32 mode, T* pSrc, T rangeMin, T rangeMax, u32 param_5) {     \
-        updateSliderSub(mode, (uintptr_t)pSrc, *pSrc, rangeMin, rangeMax, param_5);                                                               \
+#define DEFINE_UPDATE_SLIDER(T)                                                                    \
+    void updateSlider(u32 mode, T* pSrc, T rangeMin, T rangeMax, u32 param_5) {                    \
+        updateSliderSub(mode, (uintptr_t)pSrc, *pSrc, rangeMin, rangeMax, param_5);                \
     }
 
-#define DEFINE_UPDATE_SLIDER_ID(T)                                                              \
-    void updateSliderID(u32 mode, u32 id, T value, T rangeMin, T rangeMax, u32 param_5) {     \
-        updateSliderSub(mode, id, value, rangeMin, rangeMax, param_5);                                                               \
+#define DEFINE_UPDATE_SLIDER_ID(T)                                                                 \
+    void updateSliderID(u32 mode, u32 id, T value, T rangeMin, T rangeMax, u32 param_5) {          \
+        updateSliderSub(mode, id, value, rangeMin, rangeMax, param_5);                             \
+    }
+
+#define DEFINE_START_RADIO_BUTTON(T, kind)                                                         \
+    void startRadioButton(const char* label, T* pSrc, u32 style, JOREventListener* pListener,      \
+                          u16 posX, u16 posY, u16 width, u16 height) {                             \
+        startSelectorSub('RBTN', kind, label, (uintptr_t)pSrc, style, *pSrc, pListener, posX,      \
+                         posY, width, height);                                                     \
     }
 
 namespace jhostio {
-    enum EKind {
-        EKind_8B  = 0x08,
-        EKind_16B = 0x10,
-        EKind_32B = 0x20,
-    };
+enum EKind {
+    EKind_8B = 0x08,
+    EKind_16B = 0x10,
+    EKind_32B = 0x20,
+};
 
-    inline u32 GetEKindSize(u32 param_0) { return param_0 & 0xFF; }
+inline u32 GetEKindSize(u32 param_0) {
+    return param_0 & 0xFF;
 }
+}  // namespace jhostio
 
 class JORReflexible;
 class JORFile;
@@ -156,9 +165,7 @@ public:
         // empty function
     }
 
-    void startUpdateNode(JORReflexible* obj) {
-        putNode(obj);
-    }
+    void startUpdateNode(JORReflexible* obj) { putNode(obj); }
 
     void genNodeSub(const char* label, JORReflexible* i_node, u32, u32);
     void putNode(JORReflexible* obj);
@@ -230,13 +237,20 @@ public:
 
     DEFINE_START_COMBO_BOX_ID(int, JORPropertyEvent::EKind_ValueID)
 
-    void endComboBox() {
-        endSelectorSub();
-    }
+    void endComboBox() { endSelectorSub(); }
 
     void genComboBoxItem(const char* label, s32 itemNo) {
         genSelectorItemSub(label, itemNo, 0, 0, 0, 0, 0);
     }
+
+    /**
+     * === RADIO BUTTON ===
+     */
+    DEFINE_START_RADIO_BUTTON(u8, 0x100 | jhostio::EKind_8B)
+    DEFINE_START_RADIO_BUTTON(s16, jhostio::EKind_16B)
+    DEFINE_START_RADIO_BUTTON(s32, jhostio::EKind_32B)
+
+    void endRadioButton() { endSelectorSub(); }
 
     void genRadioButtonItem(const char* label, s32 itemNo, u32 param_2, u16 posX, u16 posY,
                             u16 width, u16 height) {
@@ -246,8 +260,7 @@ public:
     void updateControl(u32 mode, u32 id, u32 param_2);
     void updateControl(u32 mode, u32 id, const char* param_2);
     void updateLabel(u32 mode, u32 id, const char* param_2) { updateControl(mode, id, param_2); }
-    void updateSliderSub(u32 mode, u32 id, s32 value, s32 rangeMin, s32 rangeMax,
-                         u32 param_5);
+    void updateSliderSub(u32 mode, u32 id, s32 value, s32 rangeMin, s32 rangeMax, u32 param_5);
     void updateCheckBoxSub(u32 mode, u32 id, u16 value, u16 mask, u32 param_4);
     void updateSelectorSub(u32 mode, u32 id, s32 value, u32 param_3);
     void updateEditBoxID(u32 mode, u32 id, const char* string, u32 param_3, u16 length);

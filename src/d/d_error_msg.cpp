@@ -17,6 +17,12 @@
 
 #include "assets/black_tex.h"
 #include "assets/msg_data.h"
+#if VERSION == VERSION_GCN_PAL
+#include "assets/msg_data_ge.h"
+#include "assets/msg_data_fr.h"
+#include "assets/msg_data_sp.h"
+#include "assets/msg_data_it.h"
+#endif
 #include "assets/font_data.h"
 
 #define MSG_READING_DISC 0
@@ -44,8 +50,26 @@ struct BMG_INF1 : JUTDataBlockHeader {
 
 /* 8009CB88-8009D194 0974C8 060C+00 1/1 0/0 0/0 .text            messageSet__FUlb */
 static void messageSet(u32 status, bool i_drawBg) {
-    BMG_INF1* inf1 = (BMG_INF1*)&msg_data[0x20];
-    const char* msg_p = (const char*)((u8*)inf1->getNext() + sizeof(JUTDataBlockHeader) + inf1->entries[status]);
+    BMG_INF1* inf1;
+    const char* msg_p;
+
+    #if VERSION == VERSION_GCN_PAL
+    if (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_GERMAN) {
+        inf1 = (BMG_INF1*)&msg_data_ge[0x20];
+    } else if (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_FRENCH) {
+        inf1 = (BMG_INF1*)&msg_data_fr[0x20];
+    } else if (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_SPANISH) {
+        inf1 = (BMG_INF1*)&msg_data_sp[0x20];
+    } else if (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_ITALIAN) {
+        inf1 = (BMG_INF1*)&msg_data_it[0x20];
+    } else {
+        inf1 = (BMG_INF1*)&msg_data[0x20];
+    } 
+    #else
+    inf1 = (BMG_INF1*)&msg_data[0x20];
+    #endif
+
+    msg_p = (const char*)((u8*)inf1->getNext() + sizeof(JUTDataBlockHeader) + inf1->entries[status]);
 
     JUT_ASSERT(102, strlen(msg_p)-1 < 512);
 
@@ -141,8 +165,18 @@ static void messageSet(u32 status, bool i_drawBg) {
         ppane.draw(0.0f, 0.0f, 608.0f, 448.0f, false, false, false);
     }
 
+    #if VERSION == VERSION_GCN_PAL
+    if (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_ENGLISH) {
+        spane.draw(x + 2.0f, y + 10.0f + 2.0f, 608.0f, HBIND_LEFT);
+        tpane.draw(x, y + 10.0f, 608.0f, HBIND_LEFT);
+    } else {
+        spane.draw(2.0f, y + 10.0f + 2.0f, 608.0f, HBIND_CENTER);
+        tpane.draw(0.0f, y + 10.0f, 608.0f, HBIND_CENTER);
+    }
+    #else
     spane.draw(x + 2.0f, y + 10.0f + 2.0f, 608.0f, HBIND_LEFT);
     tpane.draw(x, y + 10.0f, 608.0f, HBIND_LEFT);
+    #endif
     #endif
 }
 

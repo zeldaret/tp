@@ -834,7 +834,7 @@ void daE_DK_c::action() {
         collCenter.y += 150.0f + nREG_F(18);
         mSphereChk.SetC(collCenter);
         mSphereChk.SetR(150.0f + nREG_F(19));
-        mSphereChk.SetCallback((SphChk_Callback)SphBgcCallBack);
+        mSphereChk.SetCallback(SphBgcCallBack);
         dComIfG_Bgsp().SphChk(&mSphereChk, this);
     }
 

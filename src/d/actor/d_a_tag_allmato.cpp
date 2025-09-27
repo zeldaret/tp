@@ -67,7 +67,6 @@ int daTag_AllMato_c::Delete() {
 }
 
 /* 804876B8-80487C5C 0001F8 05A4+00 1/1 0/0 0/0 .text            Execute__15daTag_AllMato_cFv */
-// NONMATCHING - issues with dComIfGp_getEventManager
 int daTag_AllMato_c::Execute() {
     camera_class* camera_p = NULL;
 
@@ -79,7 +78,14 @@ int daTag_AllMato_c::Execute() {
             return 1;
         }
 
-        if (dComIfGp_event_runCheck()) {
+#if VERSION != VERSION_SHIELD_DEBUG
+        // TODO: gameInfo fake match to force reuse of pointer
+        dComIfG_play_c* play = &g_dComIfG_gameInfo.play;
+        if (play->getEvent().runCheck())
+#else
+        if (dComIfGp_event_runCheck())
+#endif
+        {
             if (!eventInfo.checkCommandTalk()) {
                 if (eventInfo.checkCommandDemoAccrpt() && dComIfGp_getEventManager().endCheck(mEventIdx)) {
                     u16 evt_action = EVT_NONE;
@@ -119,7 +125,11 @@ int daTag_AllMato_c::Execute() {
                         }
 
                         dCam_getBody()->CorrectCenter();
+#if VERSION != VERSION_SHIELD_DEBUG
+                        play->getEvent().reset();
+#else
                         dComIfGp_event_reset();
+#endif
                         mEventIdx = -1;
                     }
                 } else {

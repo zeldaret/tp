@@ -13,7 +13,8 @@
  *
  * @details Forest Temple dungeon boss.
  *
- */
+*/
+
 class b_bq_class : public fopEn_enemy_c {
 public:
     /* 805B9B3C */ b_bq_class();
@@ -119,16 +120,5 @@ public:
 };
 
 STATIC_ASSERT(sizeof(b_bq_class) == 0x13A0);
-
-class daB_BQ_HIO_c {
-public:
-    /* 805B356C */ daB_BQ_HIO_c();
-    /* 805B9FFC */ virtual ~daB_BQ_HIO_c() {}
-
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 mModelSize;
-    /* 0x0C */ s16 mChanceTime;
-    /* 0x0E */ s16 mWaterSprayTime;
-};
 
 #endif /* D_A_B_BQ_H */

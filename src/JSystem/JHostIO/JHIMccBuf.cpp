@@ -389,15 +389,19 @@ int JHIMccBufWriter::writeBegin() {
     return var_r29;
 }
 
-// NONMATCHING - regswap, equivalent
 int JHIMccBufWriter::write(void* pBuffer, u32 size) {
     if (!isPort()) {
         return 0;
     }
 
-    u32 var_r29 = setDataToBuf(pBuffer, size);
-    
+    u32 var_r26;
     u32 var_r27;
+    u32 var_r28;
+
+    // Probably fake match
+    var_r28 = var_r28;
+
+    u32 var_r29 = setDataToBuf(pBuffer, size);
     if (mBeginPos == field_0xc) {
         var_r27 = field_0x1c + field_0xc;
         var_r27 -= 0x20;
@@ -405,10 +409,10 @@ int JHIMccBufWriter::write(void* pBuffer, u32 size) {
         var_r27 = mBeginPos - 0x20;
     }
 
-    u32 var_r26;
     if (mEndPos > var_r27) {
+        int x;
         var_r26 = field_0x1c - (mEndPos - var_r27);
-        u32 var_r28 = (field_0x1c + field_0xc) - mEndPos;
+        var_r28 = (field_0x1c + field_0xc) - mEndPos;
 
         if (var_r28 >= var_r29) {
             if (!JHIMCCWrite(mChannel, mWriteOffset + mEndPos, mTempBuf, var_r29)) {

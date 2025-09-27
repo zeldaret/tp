@@ -11,7 +11,7 @@
 
 struct daWtPillar_HIO_c : public mDoHIO_entry_c {
     /* 80D2C6CC */ daWtPillar_HIO_c();
-    /* 80D2DF34 */ ~daWtPillar_HIO_c();
+    /* 80D2DF34 */ virtual ~daWtPillar_HIO_c();
 
     void genMessage(JORMContext*);
 

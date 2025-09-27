@@ -91,7 +91,7 @@ struct fOpAcm_HIO_entry_c : public mDoHIO_entry_c {
 
     #ifdef DEBUG
     void removeHIO(const fopAc_ac_c* i_this) { removeHIO(*i_this); }
-    void removeHIO(const fopAc_ac_c& i_this) { removeHIO(static_cast<const leafdraw_class&>(i_this)); }
+    void removeHIO(const fopAc_ac_c& i_this) { removeHIO(i_this.base); }
     void removeHIO(const leafdraw_class& i_this) { removeHIO(i_this.base); }
     void removeHIO(const base_process_class& i_this) { removeHIO(i_this.state); }
     void removeHIO(const state_class& state) {
@@ -400,6 +400,14 @@ inline void fopAcM_SetCullSize(fopAc_ac_c* i_actor, int i_cullsize) {
 
 inline int fopAcM_GetCullSize(const fopAc_ac_c* i_actor) {
     return i_actor->cullType;
+}
+
+inline int fopAcM_CULLSIZE_IDX(int i_culltype) {
+    return i_culltype - fopAc_CULLBOX_0_e;
+}
+
+inline int fopAcM_CULLSIZE_Q_IDX(int i_culltype) {
+    return i_culltype - fopAc_CULLSPHERE_0_e;
 }
 
 inline BOOL fopAcM_CULLSIZE_IS_BOX(int i_culltype) {

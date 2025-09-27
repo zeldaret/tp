@@ -752,7 +752,7 @@ static f32 get_ground_y(mg_fish_class* i_this, cXyz* param_2) {
 static void mf_swim(mg_fish_class* i_this) {
     cXyz delta;
     switch (i_this->mActionPhase) {
-    case 0:
+    case 0: {
         i_this->mNextPos.x =  i_this->actor.home.pos.x + cM_rndFX(1000.0f);
         i_this->mNextPos.z =  i_this->actor.home.pos.z + cM_rndFX(1000.0f);
         if (i_this->field_0x624[2] == 0) {
@@ -775,6 +775,7 @@ static void mf_swim(mg_fish_class* i_this) {
             i_this->mActionPhase = 0;
             break;
         }
+    }
     case 1:
         delta = i_this->mNextPos - i_this->actor.current.pos;
         if ((i_this->mBobTimer & 3) == 0) {
@@ -875,7 +876,7 @@ static void mf_swim_p(mg_fish_class* i_this) {
         i_this->mNextPos.z = swim_path[i_this->mCurSwimStep].pos.z + cM_rndFX(200.0f);
 
         i_this->mActionPhase = 2;
-    case 2:
+    case 2: {
         cXyz delta = i_this->mNextPos - i_this->actor.current.pos;
         i_this->mMovementYaw = cM_atan2s(delta.x, delta.z);
         f32 latMoveDist = JMAFastSqrt(delta.x * delta.x + delta.z * delta.z);
@@ -893,6 +894,7 @@ static void mf_swim_p(mg_fish_class* i_this) {
             i_this->mActionPhase = 0;
         }
         break;
+    }
     case 10:
         targetSpeed = 0.0f;
         break;
@@ -997,7 +999,7 @@ static void mf_stay(mg_fish_class* i_this) {
         i_this->mActionPhase += 1;
         i_this->mMaxStep = 0;
         break;
-    case 1:
+    case 1: {
         f31 = 0.4f;
         f30 = 0.02f;
         cXyz delta = i_this->mNextPos - i_this->actor.current.pos;
@@ -1010,6 +1012,7 @@ static void mf_stay(mg_fish_class* i_this) {
         f32 mag = JMAFastSqrt(delta.x * delta.x + delta.z * delta.z);
         i_this->mMovementPitch = -cM_atan2s(delta.y, mag);
         break;
+    }
     case 2:
         cLib_addCalcAngleS2(&i_this->mMovementPitch, 0, 16, 0xa0);
         if (i_this->field_0x624[0] == 1 && i_this->field_0xc44 < 10) {
@@ -1118,7 +1121,7 @@ static void ri_swim(mg_fish_class* i_this) {
     f32 target = 0.0f;
     f32 maxStep = 0.01f;
     switch (i_this->mActionPhase) {
-    case 0:
+    case 0: {
         s16 foo = cM_rndFX(8000.0f);
         foo += i_this->actor.shape_angle.y + 0x8000;
         mDoMtx_YrotS(*calc_mtx, foo);
@@ -1138,6 +1141,7 @@ static void ri_swim(mg_fish_class* i_this) {
             break;
         }
         i_this->mMaxStep = 0;
+    }
     case 1:
         target = 0.25f;
         maxStep = 0.01f;
@@ -2611,7 +2615,7 @@ static void mf_aqua(mg_fish_class* i_this) {
         i_this->mActionPhase = 1;
         i_this->field_0x624[0] = cM_rndF(100.0f) + 100.0f;
         i_this->mMaxStep = 0;
-    case 1:
+    case 1: {
         targetSpeed = 0.4f;
         cXyz local_44 = i_this->mNextPos - i_this->actor.current.pos;
         i_this->mMovementYaw = cM_atan2s(local_44.x, local_44.z);
@@ -2631,6 +2635,7 @@ static void mf_aqua(mg_fish_class* i_this) {
             }
         }
         break;
+    }
     case 2:
         cLib_addCalcAngleS2(&i_this->mMovementPitch, 0, 0x10, 100);
         if (i_this->field_0x624[0] == 0) {
@@ -3294,6 +3299,12 @@ static int daMg_Fish_Execute(mg_fish_class* i_this) {
 
 #if VERSION == VERSION_GCN_JPN
     lit_1008 = 0;
+#elif VERSION == VERSION_GCN_PAL
+    if (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_ENGLISH) {
+        lit_1008 = 2;
+    } else {
+        lit_1008 = 0;
+    }
 #endif
 
     if (i_this->mSurfaceY != 0.0f) {
@@ -3854,7 +3865,7 @@ static int daMg_Fish_Create(fopAc_ac_c* i_this) {
 
     mg_fish_class* a_this = (mg_fish_class*)i_this;
 
-    a_this->mGedouKind = i_this->base.parameters;
+    a_this->mGedouKind = fopAcM_GetParam(i_this);
 
     bool flag1 = false;
     if (a_this->mGedouKind == 106) {
@@ -3906,6 +3917,12 @@ static int daMg_Fish_Create(fopAc_ac_c* i_this) {
 
 #if VERSION == VERSION_GCN_JPN
     lit_1008 = 0;
+#elif VERSION == VERSION_GCN_PAL
+    if (dComIfGs_getPalLanguage() == dSv_player_config_c::LANGAUGE_ENGLISH) {
+        lit_1008 = 2;
+    } else {
+        lit_1008 = 0;
+    }
 #else
     lit_1008 = 1;
 #endif
@@ -3914,7 +3931,7 @@ static int daMg_Fish_Create(fopAc_ac_c* i_this) {
     cPhs__Step retval = phase;
 
     if (phase == cPhs_COMPLEATE_e) {
-        s32 params_0 = i_this->base.parameters >> 24;
+        s32 params_0 = fopAcM_GetParam(i_this) >> 24;
         if (params_0 != 0 && params_0 != 0xff &&
             g_dComIfG_gameInfo.info.isSwitch(params_0, fopAcM_GetRoomNo(i_this)))
         {
@@ -3930,7 +3947,7 @@ static int daMg_Fish_Create(fopAc_ac_c* i_this) {
             a_this->mGedouKind == GEDOU_KIND_ED ||
             a_this->mGedouKind == GEDOU_KIND_SY)
         {
-            s32 params_2 = i_this->base.parameters >> 8 & 0xff;
+            s32 params_2 = fopAcM_GetParam(i_this) >> 8 & 0xff;
             if (params_2 == 0xff) {
                 params_2 = 0x1e;
             }
@@ -3975,7 +3992,7 @@ static int daMg_Fish_Create(fopAc_ac_c* i_this) {
         a_this->mAcch.Set(&i_this->current.pos, &i_this->old.pos, i_this, 1, &a_this->mAcchCir,
             &i_this->speed, NULL, NULL);
         a_this->field_0xc44 = dComIfGs_getEventReg(0xf11f);
-        a_this->mJointScale = 0.0001f + (i_this->base.parameters >> 8 & 0xff) * 0.01f;
+        a_this->mJointScale = 0.0001f + (fopAcM_GetParam(i_this) >> 8 & 0xff) * 0.01f;
         if (a_this->mGedouKind >= GEDOU_KIND_BG) {
             f32 fishMaxSize;
             if (lit_1008 == 1) {

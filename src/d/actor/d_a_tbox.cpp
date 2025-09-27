@@ -810,7 +810,7 @@ void daTbox_c::dropProc() {
 
         dBgS_ObjGndChk gnd_chk;
         gnd_chk.SetPos(&chkpos);
-        gnd_chk.SetActorPid(base.id);
+        gnd_chk.SetActorPid(base.base.id);
         dComIfG_Bgsp().GroundCross(&gnd_chk);
 
         int bg_index = gnd_chk.GetBgIndex();
@@ -1525,7 +1525,7 @@ void daTbox_c::settingDropDemoCamera() {
     
     stage_camera_class* stage_camera = roomdt->getCamera();
     stage_camera2_data_class* stage_camera_data = stage_camera->m_entries;
-    stage_camera_data += maptooldata->field_0x16;
+    stage_camera_data += maptooldata->data.maptool.field_0x16;
     
     stage_arrow_class* stage_arrow = roomdt->getArrow();
     stage_arrow_data_class* stage_arrow_data = stage_arrow->m_entries;

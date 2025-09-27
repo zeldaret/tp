@@ -55,7 +55,7 @@ public:
     /* 0x0006 */ u8 mPresetData[10000];
     /* 0x2716 */ u8 field_0x2716;
     /* 0x2717 */ u8 field_0x2717;
-    /* 0x2718 */ char mFilename[100];
+    /* 0x2718 */ u8 filename_buf[100];
 };
 
 class dScnPly_c : public scene_class {

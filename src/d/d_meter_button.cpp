@@ -1474,6 +1474,33 @@ void dMeterButton_c::screenInitText() {
     mpTmRoot_c = new CPaneMgr(mpTextScreen, 'mg_null', 0, NULL);
     JUT_ASSERT(0, mpTmRoot_c != 0);
 
+#if VERSION == VERSION_GCN_JPN
+    if (dComIfGs_getOptUnk0() == 0) {
+        mpTm_c[0] = new CPaneMgr(mpTextScreen, 'mg_3flin', 0, NULL);
+
+        mpTm_c[1] = new CPaneMgr(mpTextScreen, 't3f_s', 0, NULL);
+
+        field_0x0ec[0] = new CPaneMgr(mpTextScreen, 'mg_3f', 0, NULL);
+
+        field_0x0ec[1] = new CPaneMgr(mpTextScreen, 'mg_3f_s', 0, NULL);
+
+        mpTextScreen->search('n_3line')->hide();
+        mpTextScreen->search('n_3fline')->show();
+        mpTextScreen->search('n_e4line')->hide();
+    } else {
+        mpTm_c[0] = new CPaneMgr(mpTextScreen, 'mg_3line', 0, NULL);
+
+        mpTm_c[1] = new CPaneMgr(mpTextScreen, 't3_s', 0, NULL);
+
+        field_0x0ec[0] = NULL;
+        field_0x0ec[1] = NULL;
+        OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
+
+        mpTextScreen->search('n_3line')->show();
+        mpTextScreen->search('n_3fline')->hide();
+        mpTextScreen->search('n_e4line')->hide();
+    }
+#else
     mpTm_c[0] = new CPaneMgr(mpTextScreen, 'mg_e4lin', 0, NULL);
     JUT_ASSERT(0, mpTm_c[0] != 0);
 
@@ -1484,25 +1511,29 @@ void dMeterButton_c::screenInitText() {
     field_0x0ec[1] = NULL;
     OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
 
-#if VERSION == VERSION_GCN_JPN
-    mpTextScreen->search('n_3line')->show();
-    mpTextScreen->search('n_3fline')->hide();
-    mpTextScreen->search('n_e4line')->hide();
-#else
     mpTextScreen->search('n_3line')->hide();
     mpTextScreen->search('n_3fline')->hide();
     mpTextScreen->search('n_e4line')->show();
 #endif
+
     OS_REPORT("[%s] %d\n", __FILE__, __LINE__);
 
     f32 line_space = static_cast<J2DTextBox*>(mpTm_c[0]->getPanePtr())->getLineSpace();
     for (int i = 0; i < 2; i++) {
         static_cast<J2DTextBox*>(mpTm_c[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
+#if VERSION == VERSION_GCN_JPN
+        static_cast<J2DTextBox*>(mpTm_c[i]->getPanePtr())->setString(0x210, "");
+#else
         static_cast<J2DTextBox*>(mpTm_c[i]->getPanePtr())->setString(0x200, "");
+#endif
 
         if (field_0x0ec[i] != NULL) {
             static_cast<J2DTextBox*>(field_0x0ec[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
+#if VERSION == VERSION_GCN_JPN
+            static_cast<J2DTextBox*>(field_0x0ec[i]->getPanePtr())->setString(0x210, "");
+#else
             static_cast<J2DTextBox*>(field_0x0ec[i]->getPanePtr())->setString(0x200, "");
+#endif
             static_cast<J2DTextBox*>(field_0x0ec[i]->getPanePtr())->setLineSpace(line_space);
         }
     }

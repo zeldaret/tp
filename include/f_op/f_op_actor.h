@@ -76,14 +76,8 @@ enum fopAc_Cull_e {
     fopAc_CULLSPHERE_5_e,
     fopAc_CULLSPHERE_6_e,
     fopAc_CULLSPHERE_7_e,
-    fopAc_CULLSPHERE_8_e,
-    fopAc_CULLSPHERE_9_e,
-    fopAc_CULLSPHERE_10_e,
-    fopAc_CULLSPHERE_11_e,
-    fopAc_CULLSPHERE_12_e,
-    fopAc_CULLSPHERE_13_e,
 #ifdef DEBUG
-    fopAc_CULLSPHERE_14_e,
+    fopAc_CULLSPHERE_8_e,
 #endif
     fopAc_CULLSPHERE_CUSTOM_e,
 };
@@ -233,8 +227,9 @@ struct cull_box {
     /* 0xC */ Vec max;
 };
 
-class fopAc_ac_c : public leafdraw_class {
+class fopAc_ac_c {
 public:
+    /* 0x000 */ leafdraw_class base;
     /* 0x0C0 */ int actor_type;
     /* 0x0C4 */ create_tag_class actor_tag;
     /* 0x0D8 */ create_tag_class draw_tag;

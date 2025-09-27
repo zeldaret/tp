@@ -79,7 +79,15 @@ public:
     /* 80259008 */ void brightCheck();
     /* 802590F8 */ void changeGameScene();
 
+    #if VERSION == VERSION_GCN_PAL
+    void bmg_data_set();
+    void tex_data_set();
+    #endif
+
 private:
+    #if VERSION == VERSION_GCN_PAL
+    u8 field_0x1c4_pal[0x28];
+    #endif
     /* 0x1C4 */ request_of_phase_process_class field_0x1c4;
     /* 0x1CC */ JKRExpHeap* mHeap;
     /* 0x1D0 */ JKRExpHeap* field_0x1d0;

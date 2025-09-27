@@ -29,8 +29,7 @@ msg_class* fopMsgM_SearchByID(fpc_ProcID i_id) {
 
 /* 8001FA44-8001FA4C 01A384 0008+00 0/0 2/2 0/0 .text            fopMsgM_GetAppend__FPv */
 fopMsg_prm_class* fopMsgM_GetAppend(void* i_msg) {
-    msg_class* msg = (msg_class*)i_msg;
-    return (fopMsg_prm_class*)msg->base.append;
+    return (fopMsg_prm_class*)fpcM_GetAppend(i_msg);
 }
 
 /* 8001FA4C-8001FA6C 01A38C 0020+00 0/0 2/2 0/0 .text            fopMsgM_Delete__FPv */
@@ -153,7 +152,7 @@ fpc_ProcID fopMsgM_messageSet(u32 i_msgIdx, fopAc_ac_c* i_talkActor, u32 param_2
 
     dMsgObject_c* msg = (dMsgObject_c*)fopMsgM_SearchByID(i_msgID);
 
-    if (msg != NULL && msg->mode == 1) {
+    if (msg != NULL && msg->mode == fopMsg_MODE_MSG_PREPARING_e) {
         msg->pos.set(pos);
         msg->msg_idx = i_msgIdx;
         msg->field_0xf0 = param_2;
@@ -185,7 +184,7 @@ fpc_ProcID fopMsgM_messageSet(u32 i_msgIdx, u32 param_1) {
     dMsgObject_c* msg = (dMsgObject_c*)fopMsgM_SearchByID(i_msgID);
 
     if (msg != NULL) {
-        if (msg->mode == 1) {
+        if (msg->mode == fopMsg_MODE_MSG_PREPARING_e) {
             msg->pos.set(pos);
             msg->msg_idx = i_msgIdx;
             msg->field_0xf0 = param_1;
@@ -193,7 +192,7 @@ fpc_ProcID fopMsgM_messageSet(u32 i_msgIdx, u32 param_1) {
             msg->setTalkPartner(NULL);
             msg->setMessageIndex(i_msgIdx, param_1, false);
             return i_msgID;
-        } else if (msg->mode == 15) {
+        } else if (msg->mode == fopMsg_MODE_MSG_CONTINUE_e) {
             msg->pos.set(pos);
             msg->msg_idx = i_msgIdx;
             msg->field_0xf0 = param_1;
@@ -225,7 +224,7 @@ fpc_ProcID fopMsgM_messageSetDemo(u32 i_msgidx) {
 
     dMsgObject_c* msg = (dMsgObject_c*)fopMsgM_SearchByID(i_msgID);
 
-    if (msg != NULL && msg->mode == 1) {
+    if (msg != NULL && msg->mode == fopMsg_MODE_MSG_PREPARING_e) {
         msg->pos.set(pos);
         msg->msg_idx = i_msgidx;
         msg->field_0xf0 = 1000;

@@ -114,34 +114,4 @@ public:
 
 STATIC_ASSERT(sizeof(b_gm_class) == 0x1d08);
 
-class daB_GM_HIO_c {
-public:
-    /* 805ED94C */ daB_GM_HIO_c();
-    /* 805F3E64 */ virtual ~daB_GM_HIO_c() {}
-
-    /* 0x04 */ s8 field_0x4;
-    /* 0x08 */ f32 model_size;
-    /* 0x0C */ f32 check_size;
-    /* 0x10 */ f32 dash_speed;
-    /* 0x14 */ f32 dash_anm_speed;
-    /* 0x18 */ f32 move_speed;
-    /* 0x1C */ f32 move_anm_speed;
-    /* 0x20 */ f32 wait_anm_speed;
-    /* 0x24 */ f32 range;
-    /* 0x28 */ s16 smoke_prim_R;
-    /* 0x2A */ s16 smoke_prim_G;
-    /* 0x2C */ s16 smoke_prim_B;
-    /* 0x2E */ s16 smoke_env_R;
-    /* 0x30 */ s16 smoke_env_G;
-    /* 0x32 */ s16 smoke_env_B;
-    /* 0x34 */ s16 smoke_alpha;
-    /* 0x36 */ s16 field_0x36;
-    /* 0x38 */ f32 smoke_blend;
-    /* 0x3C */ f32 bend_degree_1;
-    /* 0x40 */ f32 bend_degree_2;
-    /* 0x44 */ f32 bend_degree_3;
-    /* 0x48 */ u8 foot_pos_check;
-    /* 0x49 */ u8 eye_check;
-};
-
 #endif /* D_A_B_GM_H */

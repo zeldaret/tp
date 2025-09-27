@@ -1085,6 +1085,20 @@ public:
         mWindowAspect = param_0 / param_1;
     }
 
+    f32 R() {
+        if (chkFlag(0x10)) {
+            return mUpOverride.field_0x24.R();
+        } else {
+            return mDirection.R();
+        }
+    }
+
+    cXyz iCenter() { return mViewCache.mCenter; }
+    cXyz iEye() { return mViewCache.mEye; }
+    s16 iU() { return mViewCache.mDirection.U().Inv(); }
+    s16 iV() { return mViewCache.mDirection.V(); }
+    f32 iR() { return mViewCache.mDirection.R(); }
+
     s16 U2() {
         if (chkFlag(0x10)) {
             return mViewCache.mDirection.U();

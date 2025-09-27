@@ -19,7 +19,7 @@ struct JPAExTexShapeData {
     /* 0x24 */ s8 mExpScale;
     /* 0x25 */ s8 mIndTexIdx;
     /* 0x26 */ s8 mSecTexIdx;
-};
+};  // Size: 0x28
 
 /**
  * @ingroup jsystem-jparticle

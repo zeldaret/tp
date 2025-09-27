@@ -19,6 +19,10 @@
 /* 804510F0-804510F8 0005F0 0008+00 2/2 0/0 0/0 .sbss            g_snHIO */
 static dSn_HIO_c g_snHIO;
 
+#if VERSION == VERSION_GCN_PAL
+static int mBmgStatus;
+#endif
+
 /* 803C3094-803C30DC 0201B4 0048+00 1/2 0/0 0/0 .data            MainProc */
 typedef void (dScnName_c::*mainProcFunc)(void);
 static mainProcFunc MainProc[6] = {
@@ -75,6 +79,11 @@ s32 dScnName_c::create() {
 
         dRes_info_c* res = dComIfG_getObjectResInfo("fileSel");
         dFs_c = new dFile_select_c(res->getArchive());
+
+        #if VERSION == VERSION_GCN_PAL
+        for (int i = 0; i < 5; i++);
+        #endif
+
         dFs_c->_create();
 
         if (fpcM_GetName(this) == PROC_NAME_SCENE) {
@@ -114,10 +123,27 @@ s32 dScnName_c::create() {
         field_0x41c = 0;
         field_0x41d = 0;
         mDoGph_gInf_c::setTickRate((OS_BUS_CLOCK / 4) / 30);
+
+        #if VERSION == VERSION_GCN_PAL
+        mBmgStatus = 0;
+        #endif
+
         dComIfGp_getVibration().Init();
     }
     return phase_state;
 }
+
+#if VERSION == VERSION_GCN_PAL
+static const char* dummyString(int i) {
+    switch (i) {
+    case 0: return "/res/Msguk/bmgres.arc";
+    case 1: return "/res/Msgde/bmgres.arc";
+    case 2: return "/res/Msgfr/bmgres.arc";
+    case 3: return "/res/Msgsp/bmgres.arc";
+    case 4: return "/res/Msgit/bmgres.arc";
+    }
+}
+#endif
 
 /* 80258B2C-80258BC8 25346C 009C+00 1/1 0/0 0/0 .text            setView__10dScnName_cFv */
 void dScnName_c::setView() {
@@ -133,6 +159,16 @@ void dScnName_c::setView() {
     MTXCopy(mCamera.viewMtx, j3dSys.mViewMtx);
     mDoMtx_concatProjView(mCamera.projMtx, mCamera.viewMtx, mCamera.projViewMtx);
 }
+
+#if VERSION == VERSION_GCN_PAL
+void dScnName_c::bmg_data_set(){
+    if (fopAcM_GetName(this) == PROC_NAMEEX_SCENE) {
+        mBmgStatus = 10;
+    }
+}
+
+void dScnName_c::tex_data_set() {}
+#endif
 
 /* 80258BC8-80258C5C 253508 0094+00 1/1 0/0 0/0 .text            execute__10dScnName_cFv */
 s32 dScnName_c::execute() {
@@ -294,6 +330,12 @@ static int dScnName_IsDelete(dScnName_c*) {
 
 /* 80259230-80259258 253B70 0028+00 1/0 0/0 0/0 .text            dScnName_Delete__FP10dScnName_c */
 static int dScnName_Delete(dScnName_c* i_this) {
+    #if VERSION == VERSION_GCN_PAL
+    i_this->bmg_data_set();
+    i_this->tex_data_set();
+    mBmgStatus = 0;
+    #endif
+
     i_this->~dScnName_c();
     return 1;
 }

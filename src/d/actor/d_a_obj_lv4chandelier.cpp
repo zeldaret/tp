@@ -449,7 +449,7 @@ void daObjLv4Chan_c::chkGnd() {
     cStack_18 = field_0x23bc;
     cStack_18.y += 300.0f;
     mGndChk.SetPos(&cStack_18);
-    mGndChk.SetActorPid(base.id);
+    mGndChk.SetActorPid(base.base.id);
     field_0x247c = dComIfG_Bgsp().GroundCross(&mGndChk);
 }
 

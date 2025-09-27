@@ -11,7 +11,7 @@
 #include "d/d_msg_object.h"
 #include "d/actor/d_a_obj_ss_item.h"
 #include "d/actor/d_a_tag_myna_light.h"
-#include "SSystem/SComponent/c_math.h"
+#include "Z2AudioLib/Z2Instances.h"
 
 class daMyna_HIO_c : public mDoHIO_entry_c {
 public:
@@ -1490,14 +1490,14 @@ J3DAnmTexPattern* daMyna_c::getTexPtrnAnm(char* i_resName) {
 /* 80949998-80949A70 003E18 00D8+00 1/1 0/0 0/0 .text            checkEndAnm__8daMyna_cFf */
 int daMyna_c::checkEndAnm(f32 param_0) {
     bool retVal;
-    switch (mpMorf->getPlayMode()) {
-    case 2:
+    switch ((u8)mpMorf->getPlayMode()) {
+    case J3DFrameCtrl::EMode_LOOP:
         return mpMorf->isLoop();
-    case 0:
-    case 1:
+    case J3DFrameCtrl::EMode_NONE:
+    case J3DFrameCtrl::EMode_RESET:
         return mpMorf->isStop() && mpMorf->getPlaySpeed() != param_0;
-    case 3:
-    case 4:
+    case J3DFrameCtrl::EMode_REVERSE:
+    case J3DFrameCtrl::EMode_LOOP_REVERSE:
         return mpMorf->isStop() && mpMorf->getPlaySpeed() != param_0;
     default:
         return false;
@@ -1510,12 +1510,13 @@ int daMyna_c::checkEndAnm(J3DFrameCtrl* param_0) {
     case 2:
         return param_0->checkState(2);
     case 0:
-    case 1:
+    case 1: {
         u8 retVal = 1;
         if (param_0->checkState(1) == 0 && param_0->getRate() != 0.0f) {
             retVal = 0;
         }
         return retVal;
+    }
     case 3:
     default:
         return 0;
@@ -1660,7 +1661,6 @@ int daMyna_c::chkPlayerInEvtArea(fopAc_ac_c* param_0, cXyz param_1) {
 }
 
 /* 80949EE8-8094A054 004368 016C+00 2/1 0/0 0/0 .text            animeControl__8daMyna_cFv */
-// NONMATCHING regswap
 void daMyna_c::animeControl() {
     f32 rate = 1.0f;
     int attr = J3DFrameCtrl::EMode_LOOP;
@@ -1867,175 +1867,4 @@ extern actor_process_profile_definition g_profile_MYNA = {
     fopAc_CULLBOX_0_e
 };
 
-/* 8094BAD0-8094BAD4 0000E8 0004+00 0/0 0/0 0/0 .bss
- * sInstance__40JASGlobalInstance<19JASDefaultBankTable>        */
-#pragma push
-#pragma force_active on
-static u8 data_8094BAD0[4];
-#pragma pop
-
-/* 8094BAD4-8094BAD8 0000EC 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14JASAudioThread>             */
-#pragma push
-#pragma force_active on
-static u8 data_8094BAD4[4];
-#pragma pop
-
-/* 8094BAD8-8094BADC 0000F0 0004+00 0/0 0/0 0/0 .bss sInstance__27JASGlobalInstance<7Z2SeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_8094BAD8[4];
-#pragma pop
-
-/* 8094BADC-8094BAE0 0000F4 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8Z2SeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_8094BADC[4];
-#pragma pop
-
-/* 8094BAE0-8094BAE4 0000F8 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SceneMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8094BAE0[4];
-#pragma pop
-
-/* 8094BAE4-8094BAE8 0000FC 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2StatusMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8094BAE4[4];
-#pragma pop
-
-/* 8094BAE8-8094BAEC 000100 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2DebugSys>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8094BAE8[4];
-#pragma pop
-
-/* 8094BAEC-8094BAF0 000104 0004+00 0/0 0/0 0/0 .bss
- * sInstance__36JASGlobalInstance<15JAISoundStarter>            */
-#pragma push
-#pragma force_active on
-static u8 data_8094BAEC[4];
-#pragma pop
-
-/* 8094BAF0-8094BAF4 000108 0004+00 0/0 0/0 0/0 .bss
- * sInstance__35JASGlobalInstance<14Z2SoundStarter>             */
-#pragma push
-#pragma force_active on
-static u8 data_8094BAF0[4];
-#pragma pop
-
-/* 8094BAF4-8094BAF8 00010C 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12Z2SpeechMgr2>               */
-#pragma push
-#pragma force_active on
-static u8 data_8094BAF4[4];
-#pragma pop
-
-/* 8094BAF8-8094BAFC 000110 0004+00 0/0 0/0 0/0 .bss sInstance__28JASGlobalInstance<8JAISeMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_8094BAF8[4];
-#pragma pop
-
-/* 8094BAFC-8094BB00 000114 0004+00 0/0 0/0 0/0 .bss sInstance__29JASGlobalInstance<9JAISeqMgr> */
-#pragma push
-#pragma force_active on
-static u8 data_8094BAFC[4];
-#pragma pop
-
-/* 8094BB00-8094BB04 000118 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAIStreamMgr>               */
-#pragma push
-#pragma force_active on
-static u8 data_8094BB00[4];
-#pragma pop
-
-/* 8094BB04-8094BB08 00011C 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2SoundMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8094BB04[4];
-#pragma pop
-
-/* 8094BB08-8094BB0C 000120 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAISoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_8094BB08[4];
-#pragma pop
-
-/* 8094BB0C-8094BB10 000124 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13JAUSoundTable>              */
-#pragma push
-#pragma force_active on
-static u8 data_8094BB0C[4];
-#pragma pop
-
-/* 8094BB10-8094BB14 000128 0004+00 0/0 0/0 0/0 .bss
- * sInstance__38JASGlobalInstance<17JAUSoundNameTable>          */
-#pragma push
-#pragma force_active on
-static u8 data_8094BB10[4];
-#pragma pop
-
-/* 8094BB14-8094BB18 00012C 0004+00 0/0 0/0 0/0 .bss
- * sInstance__33JASGlobalInstance<12JAUSoundInfo>               */
-#pragma push
-#pragma force_active on
-static u8 data_8094BB14[4];
-#pragma pop
-
-/* 8094BB18-8094BB1C 000130 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SoundInfo>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8094BB18[4];
-#pragma pop
-
-/* 8094BB1C-8094BB20 000134 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2SoundObjMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_8094BB1C[4];
-#pragma pop
-
-/* 8094BB20-8094BB24 000138 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2Audience>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8094BB20[4];
-#pragma pop
-
-/* 8094BB24-8094BB28 00013C 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2FxLineMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8094BB24[4];
-#pragma pop
-
-/* 8094BB28-8094BB2C 000140 0004+00 0/0 0/0 0/0 .bss sInstance__31JASGlobalInstance<10Z2EnvSeMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8094BB28[4];
-#pragma pop
-
-/* 8094BB2C-8094BB30 000144 0004+00 0/0 0/0 0/0 .bss sInstance__32JASGlobalInstance<11Z2SpeechMgr>
- */
-#pragma push
-#pragma force_active on
-static u8 data_8094BB2C[4];
-#pragma pop
-
-/* 8094BB30-8094BB34 000148 0004+00 0/0 0/0 0/0 .bss
- * sInstance__34JASGlobalInstance<13Z2WolfHowlMgr>              */
-#pragma push
-#pragma force_active on
-static u8 data_8094BB30[4];
-#pragma pop
-
-/* 8094B24C-8094B24C 00009C 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+AUDIO_INSTANCES;

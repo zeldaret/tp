@@ -31,6 +31,10 @@ public:
     /* 801E3DE0 */ bool _close();
     /* 801E3F6C */ void atten_init();
     /* 801E3FC4 */ void atten_move();
+#if VERSION == VERSION_GCN_JPN
+    void ruby_init();
+    void ruby_move();
+#endif
     /* 801E41A0 */ void vib_init();
     /* 801E41F8 */ void vib_move();
     /* 801E4488 */ void sound_init();
@@ -61,6 +65,7 @@ public:
     /* 801E5678 */ void screenSet();
     /* 801E6FBC */ void setSoundMode(u32);
     /* 801E7004 */ void setAttenString();
+    /* 801E70E8 */ void setRubyString();
     /* 801E70E8 */ void setVibString();
     /* 801E71CC */ void setSoundString();
     /* 801E7314 */ void setCursorPos(u8);
@@ -179,6 +184,9 @@ private:
     /* 0x3E2 */ u8 field_0x3e2;
     /* 0x3E3 */ u8 field_0x3e3;
     /* 0x3E4 */ u8 field_0x3e4;
+#if VERSION == VERSION_GCN_JPN
+    /* 0x3E5 */ u8 field_0x3e5_JPN;
+#endif
     /* 0x3E5 */ u8 field_0x3e5;
     /* 0x3E6 */ u8 field_0x3e6;
     /* 0x3E7 */ u8 field_0x3e7;

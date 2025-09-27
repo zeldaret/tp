@@ -20,7 +20,7 @@ class JUTConsole;
  * @ingroup jsystem-jkernel
  * 
  */
-class JKRThread : JKRDisposer {
+class JKRThread : public JKRDisposer {
 public:
     class TLoad {
     public:

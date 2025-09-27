@@ -757,7 +757,7 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
         mtx_p = j3dSys.getViewMtx();
     } else {
         Mtx concat_mtx;
-        MTXConcat(j3dSys.getViewMtx(), fopAcM_GetMtx(i_actor), concat_mtx);
+        cMtx_concat(j3dSys.getViewMtx(), fopAcM_GetMtx(i_actor), concat_mtx);
         mtx_p = concat_mtx;
     }
 
@@ -766,10 +766,8 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
         cullsize_far *= dComIfGp_event_getCullRate();
     }
 
-    int cullsize = fopAcM_GetCullSize(i_actor);
-
-    if (fopAcM_CULLSIZE_IS_BOX(cullsize)) {
-        if (fopAcM_GetCullSize(i_actor) == 14) {
+    if (fopAcM_CULLSIZE_IS_BOX(fopAcM_GetCullSize(i_actor))) {
+        if (fopAcM_GetCullSize(i_actor) == fopAc_CULLBOX_CUSTOM_e) {
             if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
                 mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
                 u32 ret =
@@ -780,7 +778,7 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
                 return mDoLib_clipper::clip(mtx_p, &i_actor->cull.box.max, &i_actor->cull.box.min);
             }
         } else {
-            cull_box* box = &l_cullSizeBox[cullsize];
+            cull_box* box = &l_cullSizeBox[fopAcM_CULLSIZE_IDX(fopAcM_GetCullSize(i_actor))];
 
             if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
                 mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
@@ -792,7 +790,7 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
             }
         }
     } else {
-        if (fopAcM_GetCullSize(i_actor) == 23) {
+        if (fopAcM_GetCullSize(i_actor) == fopAc_CULLSPHERE_CUSTOM_e) {
             if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
                 mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
                 u32 ret = mDoLib_clipper::clip(mtx_p, fopAcM_getCullSizeSphereCenter(i_actor),
@@ -804,7 +802,7 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
                                             fopAcM_getCullSizeSphereR(i_actor));
             }
         } else {
-            cull_sphere* sphere = &l_cullSizeSphere[cullsize - 15];
+            cull_sphere* sphere = &l_cullSizeSphere[fopAcM_CULLSIZE_Q_IDX(fopAcM_GetCullSize(i_actor))];
 
             if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
                 mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
@@ -836,7 +834,7 @@ s32 fopAcM_orderTalkEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, u16 i_prio
         i_priority = 0x1FF;
     }
 
-    return dComIfGp_event_order(EVT_TYPE_TALK, i_priority, i_flag, 0x14F, i_actorA, i_actorB, -1,
+    return dComIfGp_event_order(dEvt_type_TALK_e, i_priority, i_flag, 0x14F, i_actorA, i_actorB, -1,
                                 -1);
 }
 
@@ -870,7 +868,7 @@ s32 fopAcM_orderSpeakEvent(fopAc_ac_c* i_actor, u16 i_priority, u16 i_flag) {
         i_priority = 0x1EA;
     }
 
-    return dComIfGp_event_order(EVT_TYPE_TALK, i_priority, i_flag, 0x14F, dComIfGp_getPlayer(0),
+    return dComIfGp_event_order(dEvt_type_TALK_e, i_priority, i_flag, 0x14F, dComIfGp_getPlayer(0),
                                 i_actor, -1, -1);
 }
 
@@ -894,7 +892,7 @@ s32 fopAcM_orderDoorEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, u16 i_prio
         eventID = dComIfGp_getEventManager().getEventIdx(i_actorA, NULL, toolID);
     }
 
-    return dComIfGp_event_order(EVT_TYPE_DOOR, i_priority, i_flag, -1, i_actorA, i_actorB, eventID,
+    return dComIfGp_event_order(dEvt_type_DOOR_e, i_priority, i_flag, -1, i_actorA, i_actorB, eventID,
                                 toolID);
 }
 
@@ -911,7 +909,7 @@ s32 fopAcM_orderCatchEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, u16 i_pri
         i_priority = 2;
     }
 
-    return dComIfGp_event_order(EVT_TYPE_CATCH, i_priority, i_flag, -1, i_actorA, i_actorB, -1, -1);
+    return dComIfGp_event_order(dEvt_type_CATCH_e, i_priority, i_flag, -1, i_actorA, i_actorB, -1, -1);
 }
 
 /* 8001B3CC-8001B4E0 015D0C 0114+00 0/0 2/2 6/6 .text
@@ -938,7 +936,7 @@ s32 fopAcM_orderOtherEvent(fopAc_ac_c* i_actor, char const* i_eventName, u16 par
         eventPrio = i_priority;
     }
 
-    return dComIfGp_event_order(EVT_TYPE_OTHER, eventPrio, i_flag, param_2, i_actor,
+    return dComIfGp_event_order(dEvt_type_OTHER_e, eventPrio, i_flag, param_2, i_actor,
                                 event_second_actor(i_flag), eventIdx, -1);
 }
 
@@ -966,7 +964,7 @@ s32 fopAcM_orderOtherEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, char cons
         eventPrio = i_priority;
     }
 
-    return dComIfGp_event_order(EVT_TYPE_OTHER, eventPrio, i_flag, param_3, i_actorA, i_actorB,
+    return dComIfGp_event_order(dEvt_type_OTHER_e, eventPrio, i_flag, param_3, i_actorA, i_actorB,
                                 eventIdx, -1);
 }
 
@@ -978,7 +976,7 @@ s32 fopAcM_orderChangeEventId(fopAc_ac_c* i_actor, s16 i_eventID, u16 i_flag, u1
         eventPrio = 0xFF;
     }
 
-    return dComIfGp_event_order(EVT_TYPE_OTHER, eventPrio, i_flag | 0x400, param_3, i_actor,
+    return dComIfGp_event_order(dEvt_type_OTHER_e, eventPrio, i_flag | 0x400, param_3, i_actor,
                                 event_second_actor(i_flag), i_eventID, -1);
 }
 
@@ -1009,12 +1007,12 @@ s32 fopAcM_orderOtherEventId(fopAc_ac_c* i_actor, s16 i_eventID, u8 i_mapToolID,
             dStage_MapEvent_dt_c* dt = dEvt_control_c::searchMapEventData(i_mapToolID, roomNo);
 
             if (dt != NULL) {
-                newPriority = dt->mPriority;
+                newPriority = dt->priority;
             }
         }
     }
 
-    return dComIfGp_event_order(EVT_TYPE_OTHER, newPriority, i_flag, param_3, i_actor,
+    return dComIfGp_event_order(dEvt_type_OTHER_e, newPriority, i_flag, param_3, i_actor,
                                 event_second_actor(i_flag), i_eventID, i_mapToolID);
 }
 
@@ -1036,7 +1034,7 @@ s32 fopAcM_orderMapToolEvent(fopAc_ac_c* i_actor, u8 param_1, s16 i_eventID, u16
 
     dStage_MapEvent_dt_c* dt = dEvt_control_c::searchMapEventData(param_1, roomNo);
     if (dt != NULL) {
-        newPriority = dt->mPriority;
+        newPriority = dt->priority;
 
         if (i_eventID == 0xFF) {
             i_eventID = dComIfGp_getEventManager().getEventIdx(i_actor, param_1);
@@ -1051,7 +1049,7 @@ s32 fopAcM_orderMapToolEvent(fopAc_ac_c* i_actor, u8 param_1, s16 i_eventID, u16
         newPriority = param_5;
     }
 
-    return dComIfGp_event_order(EVT_TYPE_OTHER, newPriority, i_flag, param_3, i_actor,
+    return dComIfGp_event_order(dEvt_type_OTHER_e, newPriority, i_flag, param_3, i_actor,
                                 event_second_actor(i_flag), i_eventID, param_1);
 }
 
@@ -1075,7 +1073,7 @@ s32 fopAcM_orderPotentialEvent(fopAc_ac_c* i_actor, u16 i_flag, u16 param_2, u16
         i_priority = 0xFF;
     }
 
-    return dComIfGp_event_order(EVT_TYPE_POTENTIAL, i_priority, i_flag, param_2, i_actor,
+    return dComIfGp_event_order(dEvt_type_POTENTIAL_e, i_priority, i_flag, param_2, i_actor,
                                 event_second_actor(i_flag), -1, -1);
 }
 
@@ -1092,7 +1090,7 @@ s32 fopAcM_orderItemEvent(fopAc_ac_c* i_actor, u16 i_priority, u16 i_flag) {
         i_priority = 0xFF;
     }
 
-    return dComIfGp_event_order(EVT_TYPE_ITEM, i_priority, i_flag, -1, dComIfGp_getPlayer(0),
+    return dComIfGp_event_order(dEvt_type_ITEM_e, i_priority, i_flag, -1, dComIfGp_getPlayer(0),
                                 i_actor, -1, -1);
 }
 
@@ -1110,7 +1108,7 @@ s32 fopAcM_orderTreasureEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, u16 i_
         i_priority = 0xFF;
     }
 
-    return dComIfGp_event_order(EVT_TYPE_TREASURE, i_priority, i_flag, -1, i_actorA, i_actorB, -1,
+    return dComIfGp_event_order(dEvt_type_TREASURE_e, i_priority, i_flag, -1, i_actorA, i_actorB, -1,
                                 -1);
 }
 
@@ -1911,7 +1909,8 @@ void fopAcM_setEffectMtx(const fopAc_ac_c* i_actor, const J3DModelData* modelDat
 
 /* 8001D5A4-8001D5EC 017EE4 0048+00 1/1 0/0 0/0 .text fopAcM_getProcNameString__FPC10fopAc_ac_c */
 static const char* fopAcM_getProcNameString(const fopAc_ac_c* i_actor) {
-    const char* name = dStage_getName2(i_actor->base.profname, i_actor->argument);
+    s16 prof_name = fopAcM_GetProfName(i_actor);
+    const char* name = dStage_getName2(prof_name, i_actor->argument);
     return name != NULL ? name : "UNKOWN";
 }
 

@@ -195,7 +195,44 @@ dMsgScrnItem_c::dMsgScrnItem_c(u8 param_1, u8 param_2, JKRExpHeap* param_3) {
     field_0x19d = false;
     mpPmP_c = new CPaneMgr(mpScreen, 'n_all', 3, NULL);
     JUT_ASSERT(389, mpPmP_c != 0);
+
     mpPmP_c->scale(g_MsgObject_HIO_c.mBoxItemScaleX, g_MsgObject_HIO_c.mBoxItemScaleY);
+
+#if VERSION == VERSION_GCN_JPN
+    if (dComIfGs_getOptUnk0() == 0) {
+        mpTm_c[0] = new CPaneMgr(mpTxScreen, 'mg_3flin', 0, NULL);
+        JUT_ASSERT(407, mpTm_c[0] != 0);
+
+        mpTm_c[1] = new CPaneMgr(mpTxScreen, 't3f_s', 0, NULL);
+        JUT_ASSERT(410, mpTm_c[1] != 0);
+
+        mpTm_c[2] = new CPaneMgr(mpTxScreen, 't3f_w', 0, NULL);
+        JUT_ASSERT(413, mpTm_c[2] != 0);
+
+        mpTmr_c[0] = new CPaneMgr(mpTxScreen, 'mg_3f', 0, NULL);
+        JUT_ASSERT(416, mpTmr_c[0] != 0);
+
+        mpTmr_c[1] = new CPaneMgr(mpTxScreen, 'mg_3f_s', 0, NULL);
+        JUT_ASSERT(419, mpTmr_c[1] != 0);
+
+        mpTmr_c[2] = new CPaneMgr(mpTxScreen, 'mg_3f_w', 0, NULL);
+        JUT_ASSERT(422, mpTmr_c[2] != 0);
+
+        mpTxScreen->search('n_3line')->hide();
+        mpTxScreen->search('n_3fline')->show();
+        mpTxScreen->search('n_e4line')->hide();
+    } else {
+        mpTm_c[0] = new CPaneMgr(mpTxScreen, 'mg_3line', 0, NULL);
+        JUT_ASSERT(407, mpTm_c[0] != 0);
+        mpTm_c[1] = new CPaneMgr(mpTxScreen, 't3_s', 0, NULL);
+        JUT_ASSERT(410, mpTm_c[1] != 0);
+        mpTm_c[2] = new CPaneMgr(mpTxScreen, 't3_w', 0, NULL);
+        JUT_ASSERT(413, mpTm_c[2] != 0);
+        mpTxScreen->search('n_3line')->show();
+        mpTxScreen->search('n_3fline')->hide();
+        mpTxScreen->search('n_e4line')->hide();
+    }
+#else
     mpTm_c[0] = new CPaneMgr(mpTxScreen, 'mg_e4lin', 0, NULL);
     JUT_ASSERT(407, mpTm_c[0] != 0);
     mpTm_c[1] = new CPaneMgr(mpTxScreen, 't4_s', 0, NULL);
@@ -205,6 +242,8 @@ dMsgScrnItem_c::dMsgScrnItem_c(u8 param_1, u8 param_2, JKRExpHeap* param_3) {
     mpTxScreen->search('n_3line')->hide();
     mpTxScreen->search('n_3fline')->hide();
     mpTxScreen->search('n_e4line')->show();
+#endif
+
     for (int i = 0; i < 3; i++) {
         ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
         if (mpTmr_c[i] != NULL) {

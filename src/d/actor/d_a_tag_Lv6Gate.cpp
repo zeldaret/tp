@@ -65,9 +65,11 @@ int daTagLv6Gate_c::createHeap() {
         return 0;
     }
 
-    return checkEqual(
-        mBgW[1].Set((cBgD_t*)dComIfG_getObjectRes(l_arcName, 28), cBgW::MOVE_BG_e, &field_0x6f8[1]),
-        0);
+    if (mBgW[1].Set((cBgD_t*)dComIfG_getObjectRes(l_arcName, 28), cBgW::MOVE_BG_e, &field_0x6f8[1])) {
+        return 0;
+    }
+
+    return 1;
 }
 
 /* 80D4FBB8-80D4FBD8 000398 0020+00 1/0 0/0 0/0 .text            daTagLv6Gate_Create__FP10fopAc_ac_c
@@ -151,12 +153,13 @@ inline int daTagLv6Gate_c::execute() {
                     dComIfGp_particle_set(0x8B89, &pos, &angle, NULL);
                     break;
                 }
-                case '0003':
+                case '0003': {
                     fopAcM_onSwitch(this, getSwitchNo2());
                     Vec se_pos = {0.0f, 1800.0f, -6800.0f};
                     Z2GetAudioMgr()->seStart(Z2SE_OBJ_LV6_GATE_STAIR, &se_pos, 0, 0, 1.0f, 1.0f,
                                              -1.0f, -1.0f, 0);
                     break;
+                }
                 case '0004': {
                     cXyz pos(117.8473f, 1677.0f, -5110.8394f);
 

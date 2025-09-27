@@ -65,9 +65,9 @@ struct himo_s {
  * @ingroup actors-enemies
  * @class e_wb_class
  * @brief Bullbo (Wild Boar)
- * 
- * @details 
- * 
+ *
+ * @details
+ *
  */
 class e_wb_class {
 public:
@@ -96,29 +96,29 @@ public:
     }
 
 public:
-    /* 0x0000 */ fopEn_enemy_c mEnemy;
-    /* 0x05AC */ request_of_phase_process_class mPhase;
-    /* 0x05B4 */ s16 mActionMode;
-    /* 0x05B8 */ char* mResName;
-    /* 0x05BC */ u8 mParam;
-    /* 0x05BD */ u8 mParam2;
+    /* 0x0000 */ fopEn_enemy_c mEnemy;                   ///< @brief Base enemy class instance.
+    /* 0x05AC */ request_of_phase_process_class mPhase;  ///< @brief Phase process request handler.
+    /* 0x05B4 */ s16 mActionMode;  ///< @brief Current sub-action mode within the run action.
+    /* 0x05B8 */ char* mResName;   ///< @brief Resource name for loading models/animations.
+    /* 0x05BC */ u8 mParam;        ///< @brief Creation parameter 1.
+    /* 0x05BD */ u8 mParam2;       ///< @brief Creation parameter 2.
     /* 0x05BE */ u8 field_0x5be;
     /* 0x05BF */ bool field_0x5bf;
     /* 0x05C0 */ u8 field_0x5c0;
     /* 0x05C4 */ cXyz field_0x5c4;
     /* 0x05D0 */ cXyz field_0x5d0;
-    /* 0x05DC */ s16 mAngleTarget;
+    /* 0x05DC */ s16 mTargetFacingAngle;  ///< @brief Target facing angle for turning towards path point.
     /* 0x05DE */ s16 field_0x5de;
-    /* 0x05E0 */ mDoExt_McaMorfSO* mpModelMorf;
-    /* 0x05E4 */ f32 mPlaySpeed;
-    /* 0x05E8 */ int mAnmID;
-    /* 0x05EC */ Z2CreatureRide mZ2Ride;
+    /* 0x05E0 */ mDoExt_McaMorfSO* mpModelMorf;  ///< @brief Pointer to model morph animator.
+    /* 0x05E4 */ f32 mPlaySpeed;                 ///< @brief Animation playback speed.
+    /* 0x05E8 */ int mAnmID;                     ///< @brief Current animation ID.
+    /* 0x05EC */ Z2CreatureRide mZ2Ride;         ///< @brief Z2 sound creature for ride effects.
     /* 0x0688 */ int field_0x688;
-    /* 0x068C */ s8 field_0x68c;
+    /* 0x068C */ s8 mPathInitialized;  ///< @brief Flag indicating if path has been initialized.
     /* 0x068E */ s16 field_0x68e;
-    /* 0x0690 */ s16 mActionID;
+    /* 0x0690 */ s16 mActionID;  ///< @brief High-level action ID.
     /* 0x0692 */ s16 field_0x692;
-    /* 0x0694 */ int mShadowKey;
+    /* 0x0694 */ int mShadowKey;     ///< @brief Shadow drawing key.
     /* 0x0698 */ s16 field_0x698[4];
     /* 0x06A0 */ s16 field_0x6a0;
     /* 0x06A2 */ u8 field_0x6a2[0x6ae - 0x6a2];
@@ -128,14 +128,14 @@ public:
     /* 0x06B8 */ u8 field_0x6b8[0x6ba - 0x6b8];
     /* 0x06BA */ s16 field_0x6ba;
     /* 0x06BC */ u8 field_0x6bc;
-    /* 0x06BD */ s8 field_0x6bd;
-    /* 0x06BE */ u16 field_0x6be;
+    /* 0x06BD */ s8 mPursuitFlag;   ///< @brief Flag indicating pursuit mode.
+    /* 0x06BE */ u16 mStatusFlags;  ///< @brief Bitfield for various status flags.
     /* 0x06C0 */ s8 field_0x6c0;
     /* 0x06C4 */ f32 field_0x6c4;
-    /* 0x06C8 */ int mBPathIdx;     // The b_path indexer
-    /* 0x06CC */ int mBPathIdxIter; // The amount to change the b_path indexer by
+    /* 0x06C8 */ int mCurrentPathIndex;  ///< @brief Current index in the path points array.
+    /* 0x06CC */ int mPathDirection;     ///< @brief Direction to iterate path points (+1 or -1).
     /* 0x06D0 */ s16 field_0x6d0;
-    /* 0x06D2 */ s16 mTargetAngleStep;
+    /* 0x06D2 */ s16 mTurnStep;  ///< @brief Step value for turning angle adjustment.
     /* 0x06D4 */ s16 field_0x6d4;
     /* 0x06D6 */ s16 field_0x6d6;
     /* 0x06D8 */ s16 field_0x6d8;
@@ -147,11 +147,11 @@ public:
     /* 0x06E4 */ s8 field_0x6e4;
     /* 0x06E5 */ u8 field_0x6e5[0x6ec - 0x6e5];
     /* 0x06EC */ csXyz field_0x6ec[0x1d];
-    /* 0x079A */ s16 field_0x79a;
+    /* 0x079A */ s16 mBodyTiltAngle;  ///< @brief Body tilt angle based on turning.
     /* 0x079C */ u8 field_0x79c;
     /* 0x079D */ s8 field_0x79d;
-    /* 0x079E */ s8 field_0x79e;
-    /* 0x079F */ s8 field_0x79f;
+    /* 0x079E */ s8 mLapCount;  ///< @brief Lap or progress count affecting path generation.
+    /* 0x079F */ s8 mPathAdjustCounter;  ///< @brief Counter for periodic path adjustment.
     /* 0x07A0 */ s16 field_0x7a0;
     /* 0x07A2 */ s8 field_0x7a2;
     /* 0x07A4 */ s16 field_0x7a4;
@@ -178,18 +178,18 @@ public:
     /* 0x1418 */ u32 field_0x1418;
     /* 0x141C */ u32 field_0x141c;
     /* 0x1420 */ u32 field_0x1420[3];
-    /* 0x142C */ u8 field_0x142c;
-    /* 0x142D */ u8 field_0x142d;
-    /* 0x142E */ u8 field_0x142e;
-    /* 0x142F */ s8 field_0x142f;
+    /* 0x142C */ u8 mMovementType;    ///< @brief Type of movement (1 for normal, 2 for faster).
+    /* 0x142D */ u8 mCollisionFlags;  ///< @brief Flags for collision states.
+    /* 0x142E */ u8 mLandingFlag;     ///< @brief Flag for landing after jump.
+    /* 0x142F */ s8 mSpeedCapTimer;   ///< @brief Timer to cap speed at 30.
     /* 0x1430 */ s8 field_0x1430;
     /* 0x1432 */ s16 field_0x1432;
-    /* 0x1434 */ fpc_ProcID field_0x1434;  // Rider actor ID?
+    /* 0x1434 */ fpc_ProcID field_0x1434;  // Rider actor ID? ///< @brief Process ID of rider actor.
     /* 0x1438 */ cXyz field_0x1438[2];
     /* 0x1450 */ himo_s field_0x1450[2];
     /* 0x15D0 */ mDoExt_3DlineMat1_c field_0x15d0[2];
     /* 0x1648 */ mDoExt_3DlineMat1_c field_0x1648;
-    /* 0x1684 */ f32 field_0x1684;
+    /* 0x1684 */ f32 mAnimDuration;  ///< @brief Duration or timer for animation.
     /* 0x1688 */ s16 field_0x1688;
     /* 0x168A */ s16 field_0x168a;
     /* 0x168C */ f32 field_0x168c;
@@ -221,13 +221,12 @@ public:
     /* 0x17D0 */ u32 field_0x17d0[4];
     /* 0x17E0 */ u8 field_0x17e0;
     /* 0x17E1 */ u8 field_0x17e1;
-    /* 0x17E2 */ s16 mWaitRollAngle;
+    /* 0x17E2 */ s16 mWaitRollAngle;  ///< @brief Roll angle during wait state.
     /* 0x17E4 */ u8 field_0x17e4[0x17e8 - 0x17e4];
-    /* 0x17E8 */ f32 mSpeedRate;
+    /* 0x17E8 */ f32 mSpeedRate;  ///< @brief Speed rate for riding calculations.
 };
 
 STATIC_ASSERT(sizeof(e_wb_class) == 0x17EC);
-
 
 
 #endif /* D_A_E_WB_H */

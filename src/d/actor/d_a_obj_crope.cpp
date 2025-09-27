@@ -194,10 +194,8 @@ void daObjCrope_c::setNormalRopePos() {
 }
 
 /* 80BCD9EC-80BCE4FC 000D8C 0B10+00 1/1 0/0 0/0 .text            setRideRopePos__12daObjCrope_cFv */
-// NONMATCHING - reg alloc
 void daObjCrope_c::setRideRopePos() {
     daPy_py_c* player = daPy_getLinkPlayerActorClass();
-    cXyz* pcVar15;
     cXyz* pcVar13;
     cXyz* local_120;
     cXyz* local_124;
@@ -211,17 +209,9 @@ void daObjCrope_c::setRideRopePos() {
     f32 fVar7;
     f32 fVar8;
     f32 fVar14;
-    int local_150;
-    int local_154;
-    int local_158;
-    f32 dVar25;
-    cXyz* pcVar12;
     f32 dVar20;
     f32 dVar21;
     f32 dVar22;
-    cXyz* local_160;
-    cXyz* local_164;
-    f32 dVar20a;
     int i;
 
     if (mOutFlg) {
@@ -230,7 +220,7 @@ void daObjCrope_c::setRideRopePos() {
         return;
     } 
 
-    pcVar15 = mLineMat.getPos(0);
+    cXyz* pcVar15 = mLineMat.getPos(0);
     pcVar13 = mLineMat.getPos(0) + 99;
     cXyz local_54;
     cXyz local_60;
@@ -263,7 +253,7 @@ void daObjCrope_c::setRideRopePos() {
     dVar21 = pcVar15->abs(local_60);
     dVar22 = pcVar13->abs(local_54);
     dVar23 = pcVar13->abs(local_60);
-    
+
     if ((mFrontJoint == -1 ||
             fVar1 * mRopeVec.x + fVar2 * mRopeVec.z <= 0.0f) ||
         fVar3 * mRopeVec.x + fVar4 * mRopeVec.z <= 0.0f)
@@ -291,17 +281,17 @@ void daObjCrope_c::setRideRopePos() {
     cXyz cStack_6c = *local_120 - *pcVar15;
     cXyz cStack_78 = *local_124 - *pcVar13;
     fVar14 = 1.0f / field_0x720;
-    local_150 = dVar22 * fVar14;
+    int local_150 = dVar22 * fVar14;
     if (local_150 > 0x61) {
         local_150 = 0x61;
     }
     cStack_78.normalizeZP();
-    pcVar12 = pcVar13 - 1;
+    cXyz* pcVar12 = pcVar13 - 1;
     for (i = 0; i < local_150; i++, pcVar12--) {
         pcVar12[0] = pcVar12[1] + cStack_78 * field_0x720;
     }
     *pcVar12 = *local_124;
-    local_154 = dVar20 * fVar14;
+    int local_154 = dVar20 * fVar14;
     if (local_154 > 0x61) {
         local_154 = 0x61;
     }
@@ -311,19 +301,20 @@ void daObjCrope_c::setRideRopePos() {
         pcVar12[0] = pcVar12[-1] + cStack_6c * field_0x720;
     }
     *pcVar12 = *local_120;
-    local_158 = (0x60 - local_154) - local_150;
+    int local_158 = (0x60 - local_154) - local_150;
     cXyz cStack_84 = *local_124 - *local_120;
-    dVar25 = cStack_84.abs() / (local_158 + 1);
+    f32 dVar25 = cStack_84.abs() / (local_158 + 1);
     cStack_84.normalizeZP();
     pcVar12++;
     for (i = 0; i < local_158; i++, pcVar12++) {
         pcVar12[0] = pcVar12[-1] + cStack_84 * dVar25;
     }
     pcVar12 = mLineMat.getPos(0) + 1;
-    local_160 = field_0xbd8;
-    local_164 = field_0x740;
+    cXyz* local_160 = field_0xbd8;
+    cXyz* local_164 = field_0x740;
     cXyz cStack_90;
-    
+
+    f32 dVar20a;
     for (i = 1; i < 0x63; i++, pcVar12++, local_160++, local_164++) {
         dVar20a = pcVar15->y + mRopeVec.y * getStartRate(pcVar12);
         cStack_90 = *pcVar12;
