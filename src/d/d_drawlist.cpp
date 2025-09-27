@@ -943,16 +943,13 @@ static void dummy_misc() {
     J2DPane* pane;
     J2DPicture* picture;
     J2DAnmBase* anmBase;
-    J2DAnmColor* anmColor;
     delete anmBase;
-    delete anmColor;
     picture->setBlack(JUtility::TColor(0, 0, 0, 0));
     picture->setWhite(JUtility::TColor(0, 0, 0, 0));
     pane->getTypeID();
     pane->makeMatrix(0.0f, 0.0f);
     pane->calcMtx();
     screen->clearAnmTransform();
-    anmColor->searchUpdateMaterialID(screen);
 }
 
 /* 80053CDC-80053CEC 04E61C 0010+00 0/0 2/2 0/0 .text            init__8cM_rnd_cFiii */

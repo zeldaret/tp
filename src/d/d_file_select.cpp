@@ -2870,8 +2870,13 @@ void dFile_select_c::setSaveData() {
 /* 8018D0E4-8018D25C 187A24 0178+00 20/20 0/0 0/0 .text headerTxtSet__14dFile_select_cFUsUcUc */
 void dFile_select_c::headerTxtSet(u16 param_1, u8 param_2, u8 param_3) {
     static f32 fontsize[2] = {21.0f, 27.0f};
+#if VERSION == VERSION_GCN_JPN
+    static f32 linespace[2] = {22.0f, 20.0f};
+    static f32 charspace[2] = {2.0f, 3.0f};
+#else
     static f32 linespace[2] = {21.0f, 20.0f};
     static f32 charspace[2] = {0.0f, 0.0f};
+#endif
 
     u8 uVar1 = field_0x021c ^ 1;
     if (param_3 != 0) {
@@ -3322,7 +3327,7 @@ void dFile_select_c::MemCardStatCheck() {
         field_0x0280 = false;
         field_0x0284 = NULL;
         field_0x0273 = 2;
-        field_0x0290 = &dFile_select_c::noFileSpaceDispInit;
+        field_0x0290 = &dFile_select_c::noSaveSelDispInit;
         field_0x0274 = 3;
         break;
     case 8:
@@ -3361,11 +3366,7 @@ void dFile_select_c::MemCardStatCheck() {
         field_0x0280 = false;
         field_0x0284 = NULL;
         field_0x0273 = 2;
-        #if (VERSION == VERSION_GCN_JPN) || (VERSION == VERSION_WII_JPN)
         field_0x0290 = &dFile_select_c::noFileSpaceDispInit;
-        #else
-        field_0x0290 = &dFile_select_c::noSaveSelDispInit;
-        #endif
         field_0x0274 = 18;
         break;
     case 2:
@@ -4358,6 +4359,3 @@ void dFile_select3D_c::toItem3Dpos(f32 param_0, f32 param_1, f32 param_2, cXyz* 
 void dFile_select3D_c::calcViewMtx(Mtx param_0) {
     cMtx_lookAt(param_0, &cXyz(0.0f, 0.0f, -1000.0f), &cXyz::Zero, &cXyz(0.0f, 1.0f, 0.0f), 0);
 }
-
-// Fakematch, should be defined in header but it gets put in the wrong TU
-void J2DAnmTransform::getTransform(u16, J3DTransformInfo*) const {}
