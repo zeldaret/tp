@@ -936,7 +936,7 @@ void daNpcF_c::setRoomNo() {
 
 /* 80152E24-80152EC4 14D764 00A0+00 1/1 0/0 0/0 .text            chkEndAnm__8daNpcF_cFf */
 BOOL daNpcF_c::chkEndAnm(f32 param_0) {
-    switch (mpMorf->getPlayMode()) {
+    switch ((u8)mpMorf->getPlayMode()) {
     case J3DFrameCtrl::EMode_LOOP:
         return mpMorf->isLoop();
     case J3DFrameCtrl::EMode_NONE:

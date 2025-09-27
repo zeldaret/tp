@@ -22,8 +22,8 @@ enum fopMsg_Mode_e {
 
 class fopAc_ac_c;
 
-class msg_class : public leafdraw_class {
-public:
+struct msg_class {
+    /* 0x00 */ leafdraw_class base;
     /* 0xC0 */ int type;
     /* 0xC4 */ create_tag_class draw_tag;
     /* 0xD8 */ leafdraw_method_class* sub_method;

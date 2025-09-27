@@ -756,7 +756,7 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
         mtx_p = j3dSys.getViewMtx();
     } else {
         Mtx concat_mtx;
-        MTXConcat(j3dSys.getViewMtx(), fopAcM_GetMtx(i_actor), concat_mtx);
+        cMtx_concat(j3dSys.getViewMtx(), fopAcM_GetMtx(i_actor), concat_mtx);
         mtx_p = concat_mtx;
     }
 
@@ -765,10 +765,8 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
         cullsize_far *= dComIfGp_event_getCullRate();
     }
 
-    int cullsize = fopAcM_GetCullSize(i_actor);
-
-    if (fopAcM_CULLSIZE_IS_BOX(cullsize)) {
-        if (fopAcM_GetCullSize(i_actor) == 14) {
+    if (fopAcM_CULLSIZE_IS_BOX(fopAcM_GetCullSize(i_actor))) {
+        if (fopAcM_GetCullSize(i_actor) == fopAc_CULLBOX_CUSTOM_e) {
             if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
                 mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
                 u32 ret =
@@ -779,7 +777,7 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
                 return mDoLib_clipper::clip(mtx_p, &i_actor->cull.box.max, &i_actor->cull.box.min);
             }
         } else {
-            cull_box* box = &l_cullSizeBox[cullsize];
+            cull_box* box = &l_cullSizeBox[fopAcM_CULLSIZE_IDX(fopAcM_GetCullSize(i_actor))];
 
             if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
                 mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
@@ -791,7 +789,7 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
             }
         }
     } else {
-        if (fopAcM_GetCullSize(i_actor) == 23) {
+        if (fopAcM_GetCullSize(i_actor) == fopAc_CULLSPHERE_CUSTOM_e) {
             if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
                 mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
                 u32 ret = mDoLib_clipper::clip(mtx_p, fopAcM_getCullSizeSphereCenter(i_actor),
@@ -803,7 +801,7 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
                                             fopAcM_getCullSizeSphereR(i_actor));
             }
         } else {
-            cull_sphere* sphere = &l_cullSizeSphere[cullsize - 15];
+            cull_sphere* sphere = &l_cullSizeSphere[fopAcM_CULLSIZE_Q_IDX(fopAcM_GetCullSize(i_actor))];
 
             if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
                 mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
@@ -1910,7 +1908,8 @@ void fopAcM_setEffectMtx(const fopAc_ac_c* i_actor, const J3DModelData* modelDat
 
 /* 8001D5A4-8001D5EC 017EE4 0048+00 1/1 0/0 0/0 .text fopAcM_getProcNameString__FPC10fopAc_ac_c */
 static const char* fopAcM_getProcNameString(const fopAc_ac_c* i_actor) {
-    const char* name = dStage_getName2(i_actor->base.profname, i_actor->argument);
+    s16 prof_name = fopAcM_GetProfName(i_actor);
+    const char* name = dStage_getName2(prof_name, i_actor->argument);
     return name != NULL ? name : "UNKOWN";
 }
 

@@ -1,0 +1,6 @@
+_prolog = .text:0x0; // type:function size:0x2C scope:global align:4
+_epilog = .text:0x2C; // type:function size:0x2C scope:global align:4
+_unresolved = .text:0x58; // type:function size:0x4 scope:global align:4
+ModuleProlog = .text:0x5C; // type:function size:0x14 scope:global align:4
+ModuleEpilog = .text:0x70; // type:function size:0x10 scope:global align:4
+g_fpcPfLst_ProfileList = .data:0x0; // type:object size:0xC64 scope:global align:4

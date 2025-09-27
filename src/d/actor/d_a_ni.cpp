@@ -3,16 +3,11 @@
 // Translation Unit: d_a_ni
 //
 
-/**
- * Basically entirely matching except for ONE float reg alloc in play_camera,
- * and some extra dtors being emitted that shouldnt be after daNi_Create
- */
 
 #include "d/dolzel_rel.h"
 
 #include "d/d_msg_flow.h"
 #include "d/d_s_play.h"
-#include "dol2asm.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
 #include "d/d_com_inf_game.h"
@@ -35,191 +30,6 @@ enum Joint {
     /* 0x7 */ JNT_WINGL,
     /* 0x8 */ JNT_WINGR,
 };
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__10daNi_HIO_cFv();
-extern "C" static void anm_init__FP8ni_classifUcf();
-extern "C" static void hane_set__FP8ni_classff();
-extern "C" static void nodeCallBack__FP8J3DJointi();
-extern "C" static void daNi_Draw__FP8ni_class();
-extern "C" void __dt__4cXyzFv();
-extern "C" static void s_play_sub__FPvPv();
-extern "C" static void damage_check__FP8ni_class();
-extern "C" static void s_t_sub__FPvPv();
-extern "C" static void search_test__FP8ni_class();
-extern "C" static void ni_carry_check__FP8ni_class();
-extern "C" static void move_gake_check__FP8ni_classf();
-extern "C" static void ni_normal__FP8ni_class();
-extern "C" static void ni_away__FP8ni_class();
-extern "C" static void ni_swim__FP8ni_class();
-extern "C" static void ni_carry__FP8ni_class();
-extern "C" static void ni_fly__FP8ni_class();
-extern "C" static void ni_drop__FP8ni_class();
-extern "C" static void ni_return__FP8ni_class();
-extern "C" static void ni_damage__FP8ni_class();
-extern "C" static void s_b_sub__FPvPv();
-extern "C" static void ni_windspin__FP8ni_class();
-extern "C" static void ni_demo0__FP8ni_class();
-extern "C" static void ni_message__FP8ni_class();
-extern "C" static void playwallcheck__FP8ni_class();
-extern "C" static void ni_play__FP8ni_class();
-extern "C" static void play_camera__FP8ni_class();
-extern "C" static void action__FP8ni_class();
-extern "C" static void message__FP8ni_class();
-extern "C" static void daNi_Execute__FP8ni_class();
-extern "C" static bool daNi_IsDelete__FP8ni_class();
-extern "C" static void daNi_Delete__FP8ni_class();
-extern "C" static void useHeapInit__FP10fopAc_ac_c();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" static void daNi_Create__FP10fopAc_ac_c();
-extern "C" void __dt__8cM3dGSphFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" void __dt__12dBgS_ObjAcchFv();
-extern "C" void __dt__12dBgS_AcchCirFv();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void __dt__10daNi_HIO_cFv();
-extern "C" void __sinit_d_a_ni_cpp();
-extern "C" static void func_8095119C();
-extern "C" static void func_809511A4();
-extern "C" extern char const* const d_a_ni__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void fadeOut__13mDoGph_gInf_cFfR8_GXColor();
-extern "C" void mDoMtx_XrotM__FPA4_fs();
-extern "C" void mDoMtx_YrotS__FPA4_fs();
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void mDoMtx_ZrotM__FPA4_fs();
-extern "C" void transM__14mDoMtx_stack_cFfff();
-extern "C" void scaleM__14mDoMtx_stack_cFfff();
-extern "C" void init__13mDoExt_btkAnmFP16J3DMaterialTableP19J3DAnmTextureSRTKeyiifss();
-extern "C" void entry__13mDoExt_btkAnmFP16J3DMaterialTablef();
-extern "C" void
-__ct__14mDoExt_McaMorfFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiiPvUlUl();
-extern "C" void setAnm__14mDoExt_McaMorfFP15J3DAnmTransformiffffPv();
-extern "C" void play__14mDoExt_McaMorfFP3VecUlSc();
-extern "C" void entryDL__14mDoExt_McaMorfFv();
-extern "C" void modelCalc__14mDoExt_McaMorfFv();
-extern "C" void cDmrNowMidnaTalk__Fv();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void fopAc_IsActor__FPv();
-extern "C" void fopAcIt_Judge__FPFPvPv_PvPv();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_searchActorDistance__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_orderPotentialEvent__FP10fopAc_ac_cUsUsUs();
-extern "C" void fopAcM_wayBgCheck__FPC10fopAc_ac_cff();
-extern "C" void fopAcM_effHamonSet__FPUlPC4cXyzff();
-extern "C" bool fopAcM_riverStream__FP4cXyzPsPff();
-extern "C" void fopAcM_carryOffRevise__FP10fopAc_ac_c();
-extern "C" void gndCheck__11fopAcM_gc_cFPC4cXyz();
-extern "C" void fpcEx_Search__FPFPvPv_PvPv();
-extern "C" void fpcSch_JudgeForPName__FPvPv();
-extern "C" void fpcSch_JudgeByID__FPvPv();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGp_getReverb__Fi();
-extern "C" void
-dComIfGd_setShadow__FUlScP8J3DModelP4cXyzffffR13cBgS_PolyInfoP12dKy_tevstr_csfP9_GXTexObj();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void forceOnEventMove__Q213dPa_control_c7level_cFUl();
-extern "C" void getEmitter__Q213dPa_control_c7level_cFUl();
-extern "C" void
-set__13dPa_control_cFUlUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void LineCross__4cBgSFP11cBgS_LinChk();
-extern "C" void GroundCross__4cBgSFP11cBgS_GndChk();
-extern "C" void __ct__12dBgS_AcchCirFv();
-extern "C" void SetWall__12dBgS_AcchCirFff();
-extern "C" void __dt__9dBgS_AcchFv();
-extern "C" void __ct__9dBgS_AcchFv();
-extern "C" void Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz();
-extern "C" void CrrPos__9dBgS_AcchFR4dBgS();
-extern "C" void __ct__11dBgS_GndChkFv();
-extern "C" void __dt__11dBgS_GndChkFv();
-extern "C" void __ct__18dBgS_ObjGndChk_SplFv();
-extern "C" void __dt__18dBgS_ObjGndChk_SplFv();
-extern "C" void __ct__11dBgS_LinChkFv();
-extern "C" void __dt__11dBgS_LinChkFv();
-extern "C" void Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c();
-extern "C" void __ct__14dBgS_CamLinChkFv();
-extern "C" void __dt__14dBgS_CamLinChkFv();
-extern "C" void SetObj__16dBgS_PolyPassChkFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Move__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void ChkTgHit__12dCcD_GObjInfFv();
-extern "C" void GetTgHitObj__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_SphFRC11dCcD_SrcSph();
-extern "C" void at_power_check__FP11dCcU_AtInfo();
-extern "C" void checkBoomerangCharge__9daPy_py_cFv();
-extern "C" void Start__9dCamera_cFv();
-extern "C" void Stop__9dCamera_cFv();
-extern "C" void SetTrimSize__9dCamera_cFl();
-extern "C" void Set__9dCamera_cF4cXyz4cXyzfs();
-extern "C" void Reset__9dCamera_cF4cXyz4cXyzfs();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void __ct__10dMsgFlow_cFv();
-extern "C" void init__10dMsgFlow_cFP10fopAc_ac_ciiPP10fopAc_ac_c();
-extern "C" void doFlow__10dMsgFlow_cFP10fopAc_ac_cPP10fopAc_ac_ci();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void cM_atan2s__Fff();
-extern "C" void cM_rndF__Ff();
-extern "C" void cM_rndFX__Ff();
-extern "C" void SetPos__11cBgS_GndChkFPC4cXyz();
-extern "C" void __dt__13cBgS_PolyInfoFv();
-extern "C" void __dt__8cM3dGCirFv();
-extern "C" void SetC__8cM3dGSphFRC4cXyz();
-extern "C" void SetR__8cM3dGSphFf();
-extern "C" void cLib_addCalc2__FPffff();
-extern "C" void cLib_addCalc0__FPfff();
-extern "C" void cLib_addCalcAngleS2__FPssss();
-extern "C" void MtxPosition__FP4cXyzP4cXyz();
-extern "C" void deleteObject__14Z2SoundObjBaseFv();
-extern "C" void __ct__16Z2SoundObjSimpleFv();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void checkPass__12J3DFrameCtrlFf();
-extern "C" void _savegpr_22();
-extern "C" void _savegpr_24();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_22();
-extern "C" void _restgpr_24();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* __vt__8dCcD_Sph[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_SphAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" u8 m_cpadInfo__8mDoCPd_c[256];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" u8 mCurrentMtx__6J3DSys[48];
-extern "C" u8 sincosTable___5JMath[65536];
-extern "C" f32 mGroundY__11fopAcM_gc_c;
-extern "C" void __register_global_object();
-
-//
-// Declarations:
-//
 
 /* 8094BC2C-8094BCA8 0000EC 007C+00 1/1 0/0 0/0 .text            __ct__10daNi_HIO_cFv */
 daNi_HIO_c::daNi_HIO_c() {
@@ -1381,7 +1191,7 @@ static int ni_play(ni_class* i_this) {
 
 /* 8094ED90-8094F5D8 003250 0848+00 1/1 0/0 0/0 .text            play_camera__FP8ni_class */
 static void play_camera(ni_class* i_this) {
-    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;  // necessary for reg alloc
+    fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
 
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     camera_class* camera0 = (camera_class*)dComIfGp_getCamera(0);
@@ -1393,8 +1203,15 @@ static void play_camera(ni_class* i_this) {
 
     int var_r27 = 0;
 
-    f32 analog_l = i_this->mPadAnalogL;
     f32 var_f31;
+    f32 var_f29;
+    f32 var_f28;
+    f32 var_f27;
+    f32 temp;
+    f32 var_f3;
+    f32 temp_f30_2;
+    f32 temp_f1_4;
+    f32 analog_l = i_this->mPadAnalogL;
 
     BOOL hold_l = i_this->mPadHoldL;
     cXyz sp208(0.0f, 0.0f, 0.0f);
@@ -1435,16 +1252,16 @@ static void play_camera(ni_class* i_this) {
         i_this->mPlayCamMode = 3;
         i_this->mPlayCamModeTimer = 0;
         // fallthrough
-    case 3:
+    case 3: {
         var_r25 = 1;
         i_this->field_0xaec = 55.0f;
         sp1D8 = i_this->field_0xac8 - a_this->current.pos;
 
         s16 var_r4_2 = cM_atan2s(-sp1D8.x, -sp1D8.z);
         var_f31 = TREG_F(12) + 0.3f;
-        f32 var_f29 = i_this->field_0xafc;
-        f32 var_f28 = 180.0f;
-        f32 var_f27 = 100.0f;
+        var_f29 = i_this->field_0xafc;
+        var_f28 = 180.0f;
+        var_f27 = 100.0f;
 
         if (analog_l > TREG_F(12) + 0.5f) {
             var_r4_2 = a_this->shape_angle.y;
@@ -1458,7 +1275,7 @@ static void play_camera(ni_class* i_this) {
                 i_this->field_0xafc = 500.0f;
             }
         } else {
-            f32 temp = i_this->mPadSubStickX;
+            temp = i_this->mPadSubStickX;
 
             temp *= TREG_F(3) + 5000.0f;
             i_this->field_0xaf4 += (s16)temp;
@@ -1486,7 +1303,6 @@ static void play_camera(ni_class* i_this) {
         cLib_addCalc2(&i_this->field_0xac8.x, sp1F0.x, var_f31, 1000.0f);
         cLib_addCalc2(&i_this->field_0xac8.z, sp1F0.z, var_f31, 1000.0f);
 
-        f32 var_f3;
         if (i_this->field_0xac8.y < sp1F0.y) {
             var_f3 = 1000.0f;
         } else {
@@ -1518,20 +1334,21 @@ static void play_camera(ni_class* i_this) {
             mDoGph_gInf_c::fadeOut(0.05f, g_blackColor);
         }
         break;
+    }
     case 4:
         var_r25 = 1;
         if (i_this->mPlayCamModeTimer == 30) {
-            player = (daPy_py_c*)dComIfGp_getPlayer(0);
+            daPy_py_c* upc_pl = (daPy_py_c*)dComIfGp_getPlayer(0);
             mDoGph_gInf_c::fadeOut(-0.05f, g_blackColor);
 
-            cMtx_YrotS(*calc_mtx, player->shape_angle.y);
+            cMtx_YrotS(*calc_mtx, upc_pl->shape_angle.y);
             sp1D8.x = 0.0f;
             sp1D8.y = JREG_F(1) + 200.0f;
             sp1D8.z = JREG_F(2) + -250.0f;
             MtxPosition(&sp1D8, &i_this->field_0xac8);
-            i_this->field_0xac8 += player->current.pos;
+            i_this->field_0xac8 += upc_pl->current.pos;
 
-            i_this->field_0xad4 = player->current.pos;
+            i_this->field_0xad4 = upc_pl->current.pos;
             i_this->field_0xad4.y += 120.0f;
 
             camera->mCamera.Reset(i_this->field_0xad4, i_this->field_0xac8, i_this->field_0xaec, 0);
@@ -1539,7 +1356,7 @@ static void play_camera(ni_class* i_this) {
             camera->mCamera.SetTrimSize(0);
             dComIfGp_event_reset();
 
-            player->cancelOriginalDemo();
+            upc_pl->cancelOriginalDemo();
 
             i_this->mPlayCamMode = 0;
             i_this->mAction = ACTION_NORMAL_e;
@@ -1581,11 +1398,10 @@ static void play_camera(ni_class* i_this) {
                 sp1E4.z = sp214.z;
 
                 gnd_chk.SetPos(&sp1E4);
-                f32 temp_f30_2 = dComIfG_Bgsp().GroundCross(&gnd_chk);
-                temp_f30_2 = temp_f30_2;
+                temp_f30_2 = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
                 gnd_chk_spl.SetPos(&sp1E4);
-                f32 temp_f1_4 = dComIfG_Bgsp().GroundCross(&gnd_chk_spl);
+                temp_f1_4 = dComIfG_Bgsp().GroundCross(&gnd_chk_spl);
 
                 if (temp_f30_2 < temp_f1_4) {
                     sp214.y = temp_f1_4;
@@ -2215,20 +2031,28 @@ static int daNi_Create(fopAc_ac_c* i_this) {
 AUDIO_INSTANCES;
 
 /* 80951480-809514A0 -00001 0020+00 1/0 0/0 0/0 .data            l_daNi_Method */
-SECTION_DATA static void* l_daNi_Method[8] = {
-    (void*)daNi_Create__FP10fopAc_ac_c,
-    (void*)daNi_Delete__FP8ni_class,
-    (void*)daNi_Execute__FP8ni_class,
-    (void*)daNi_IsDelete__FP8ni_class,
-    (void*)daNi_Draw__FP8ni_class,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static actor_method_class l_daNi_Method = {
+    (process_method_func)daNi_Create,
+    (process_method_func)daNi_Delete,
+    (process_method_func)daNi_Execute,
+    (process_method_func)daNi_IsDelete,
+    (process_method_func)daNi_Draw,
 };
 
-/* 809514A0-809514D0 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NI */
-SECTION_DATA extern void* g_profile_NI[12] = {
-    (void*)0xFFFFFFFD, (void*)0x0007FFFD,     (void*)0x01080000, (void*)&g_fpcLf_Method,
-    (void*)0x00000B0C, (void*)NULL,           (void*)NULL,       (void*)&g_fopAc_Method,
-    (void*)0x02B70000, (void*)&l_daNi_Method, (void*)0x080C4000, (void*)0x04000000,
+/* 80AD5464-80AD5494 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_SERA2 */
+extern actor_process_profile_definition g_profile_NI = {
+  fpcLy_CURRENT_e,          // mLayerID
+  7,                        // mListID
+  fpcPi_CURRENT_e,          // mListPrio
+  PROC_NI,                  // mProcName
+  &g_fpcLf_Method.base,     // sub_method
+  sizeof(ni_class),         // mSize
+  0,                        // mSizeOther
+  0,                        // mParameters
+  &g_fopAc_Method.base,     // sub_method
+  695,                      // mPriority
+  &l_daNi_Method,           // sub_method
+  0x80c4000,                // mStatus
+  fopAc_NPC_e,              // mActorType
+  fopAc_ACTOR_e,            // cullType
 };

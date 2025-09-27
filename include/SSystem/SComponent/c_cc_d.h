@@ -224,6 +224,7 @@ public:
 
 STATIC_ASSERT(0x10 == sizeof(cCcD_ObjCommonBase));
 
+#pragma push
 #pragma pack(1)
 class cCcD_ObjAt : public cCcD_ObjCommonBase {
 public:
@@ -247,7 +248,7 @@ protected:
     /* 0x14 */ u8 mAtp;
     /* 0x15 */ u8 field_0x15[3];
 };
-#pragma pack()
+#pragma pop
 
 STATIC_ASSERT(0x18 == sizeof(cCcD_ObjAt));
 
