@@ -115,5 +115,5 @@ extern actor_process_profile_definition g_profile_Obj_StoneMark = {
     &l_daObjSMark_Method,   // sub_method
     0x40100,                // mStatus
     fopAc_ACTOR_e,          // mActorType
-    fopAc_CULLSPHERE_8_e,   // cullType
+    fopAc_CULLSPHERE_CUSTOM_e,   // cullType
 };

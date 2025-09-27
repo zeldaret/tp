@@ -41,8 +41,7 @@ struct JPADynamicsBlockData {
     /* 0x74 */ u16 mVolumeSize;
     /* 0x76 */ u16 mDivNumber;
     /* 0x78 */ u8 mRateStep;
-    /* 0x7C */ u32 field_0x7c;
-};
+};  // Size: 0x7C
 
 typedef void (*JPADynamicsCalcVolumeFunc)(JPAEmitterWorkData*);
 

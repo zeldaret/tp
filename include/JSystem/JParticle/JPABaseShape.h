@@ -38,7 +38,7 @@ struct JPABaseShapeData {
     /* 0x2E */ u8 mAnmRndm;
     /* 0x2F */ u8 mClrAnmRndmMask;
     /* 0x30 */ u8 mTexAnmRndmMask;
-};
+};  // Size: 0x34
 
 /**
  * @ingroup jsystem-jparticle

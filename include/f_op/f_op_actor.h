@@ -76,14 +76,8 @@ enum fopAc_Cull_e {
     fopAc_CULLSPHERE_5_e,
     fopAc_CULLSPHERE_6_e,
     fopAc_CULLSPHERE_7_e,
-    fopAc_CULLSPHERE_8_e,
-    fopAc_CULLSPHERE_9_e,
-    fopAc_CULLSPHERE_10_e,
-    fopAc_CULLSPHERE_11_e,
-    fopAc_CULLSPHERE_12_e,
-    fopAc_CULLSPHERE_13_e,
 #ifdef DEBUG
-    fopAc_CULLSPHERE_14_e,
+    fopAc_CULLSPHERE_8_e,
 #endif
     fopAc_CULLSPHERE_CUSTOM_e,
 };
