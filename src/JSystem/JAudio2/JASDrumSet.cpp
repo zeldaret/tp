@@ -9,22 +9,6 @@
 #include "JSystem/JAudio2/JASCalc.h"
 #include "JSystem/JKernel/JKRHeap.h"
 
-//
-// Types:
-//
-
-//
-// Forward References:
-//
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
-
 /* ############################################################################################## */
 
 /* 802982EC-80298314 292C2C 0028+00 0/0 2/2 0/0 .text            __ct__10JASDrumSetFv */

@@ -9,18 +9,6 @@
 #include "d/d_msg_object.h"
 #include "f_op/f_op_msg_mng.h"
 
-//
-// Forward References:
-//
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
-
 /* 80D66378-80D663E4 000078 006C+00 1/1 0/0 0/0 .text            __dt__8daTalk_cFv */
 daTalk_c::~daTalk_c() {
     dMsgObject_getMsgObjectClass()->setProcessID(-1);

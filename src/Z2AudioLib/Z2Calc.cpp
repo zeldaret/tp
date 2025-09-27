@@ -8,10 +8,6 @@
 #include "math.h"
 #include "dol2asm.h"
 
-//
-// Declarations:
-//
-
 /* 802A968C-802A96F4 2A3FCC 0068+00 1/1 16/16 0/0 .text            linearTransform__6Z2CalcFfffffb
  */
 f32 Z2Calc::linearTransform(f32 param1, f32 param2, f32 param3, f32 param4, f32 param5,

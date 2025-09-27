@@ -8,14 +8,6 @@
 #include "d/d_save_HIO.h"
 #include "d/d_com_inf_game.h"
 
-//
-// Forward References:
-//
-
-//
-// Declarations:
-//
-
 /* 8025BB78-8025BBAC 2564B8 0034+00 1/1 0/0 0/0 .text __ct__29dSvBit_childSwPerfectionHIO_cFv */
 dSvBit_childSwPerfectionHIO_c::dSvBit_childSwPerfectionHIO_c() {
     for (int i = 0; i < 0x80; i++) {

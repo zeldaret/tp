@@ -8,14 +8,6 @@
 #include "d/d_simple_model.h"
 #include "d/d_com_inf_game.h"
 
-//
-// External References:
-//
-
-//
-// Declarations:
-//
-
 /* 80048C54-80048CB4 043594 0060+00 1/1 0/0 0/0 .text            dSmplMdl_modelUpdateDL__FP8J3DModel
  */
 static void dSmplMdl_modelUpdateDL(J3DModel* i_model) {

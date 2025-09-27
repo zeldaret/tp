@@ -12,9 +12,6 @@
 #include "d/d_event_lib.h"
 #include "dol2asm.h"
 
-//
-// Types:
-//
 
 // need to figure out how to use dEvLib_callback_c properly
 class daTagAtkItem_c : public fopAc_ac_c , public dEvLib_callback_c {
