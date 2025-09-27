@@ -73,7 +73,7 @@ public:
     /* 809839E0 */ void playMotion();
     /* 80984DD0 */ void playMotionAnmLoop(daNpcF_c::daNpcF_anmPlayData***);
     /* 80984F34 */ BOOL setAction(actionFunc);
-    /* 80984FDC */ void step(s16, int);
+    /* 80984FDC */ bool step(s16, int);
     /* 809850D0 */ void setTalkMember(daNpcChat_c*);
     /* 80985104 */ bool wait(void*);
     /* 8098552C */ bool fear(void*);
@@ -89,6 +89,9 @@ public:
     s16 getMessageNo() { return (int)home.angle.x; }
     cXyz& getBaseAttnPos() { return mBaseAttnPos; }
     BOOL chkAction(actionFunc action) { return action == mAction; }
+    u8 getTalkGroupNo() { return mTalkGroupNo; }
+    u8 getTalkNo() { return mTalkNo; }
+    void setFear() { mFear = true; }
 
     static eventFunc mEvtSeqList[1];
 

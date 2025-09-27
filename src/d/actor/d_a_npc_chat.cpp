@@ -3012,1417 +3012,8 @@ void daNpcChat_c::reset() {
     mMotionMorfOverride = 0.0f;
 }
 
-/* ############################################################################################## */
-/* 80986FCC-80986FD8 000630 000C+00 0/1 0/0 0/0 .rodata          @5699 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5699[12] = {
-    0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80986FCC, &lit_5699);
-#pragma pop
-
-/* 80986FD8-80986FDC 00063C 0004+00 0/1 0/0 0/0 .rodata          @5700 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5700[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80986FD8, &lit_5700);
-#pragma pop
-
-/* 80986FDC-80986FE8 000640 000C+00 0/1 0/0 0/0 .rodata          @5701 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5701[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80986FDC, &lit_5701);
-#pragma pop
-
-/* 80986FE8-80986FEC 00064C 0004+00 0/1 0/0 0/0 .rodata          @5702 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5702[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80986FE8, &lit_5702);
-#pragma pop
-
-/* 80986FEC-80986FF8 000650 000C+00 0/1 0/0 0/0 .rodata          @5703 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5703[12] = {
-    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80986FEC, &lit_5703);
-#pragma pop
-
-/* 80986FF8-80986FFC 00065C 0004+00 0/1 0/0 0/0 .rodata          @5704 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5704[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80986FF8, &lit_5704);
-#pragma pop
-
-/* 80986FFC-80987008 000660 000C+00 0/1 0/0 0/0 .rodata          @5705 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5705[12] = {
-    0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80986FFC, &lit_5705);
-#pragma pop
-
-/* 80987008-8098700C 00066C 0004+00 0/1 0/0 0/0 .rodata          @5706 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5706[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80987008, &lit_5706);
-#pragma pop
-
-/* 8098700C-80987018 000670 000C+00 0/1 0/0 0/0 .rodata          @5707 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5707[12] = {
-    0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8098700C, &lit_5707);
-#pragma pop
-
-/* 80987018-8098701C 00067C 0004+00 0/1 0/0 0/0 .rodata          @5708 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5708[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80987018, &lit_5708);
-#pragma pop
-
-/* 8098701C-80987028 000680 000C+00 0/1 0/0 0/0 .rodata          @5709 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5709[12] = {
-    0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x8098701C, &lit_5709);
-#pragma pop
-
-/* 80987028-80987034 00068C 000C+00 0/1 0/0 0/0 .rodata          @5710 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5710[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987028, &lit_5710);
-#pragma pop
-
-/* 80987034-80987040 000698 000C+00 0/1 0/0 0/0 .rodata          @5711 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5711[12] = {
-    0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987034, &lit_5711);
-#pragma pop
-
-/* 80987040-8098704C 0006A4 000C+00 0/1 0/0 0/0 .rodata          @5712 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5712[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987040, &lit_5712);
-#pragma pop
-
-/* 8098704C-80987058 0006B0 000C+00 0/1 0/0 0/0 .rodata          @5713 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5713[12] = {
-    0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x8098704C, &lit_5713);
-#pragma pop
-
-/* 80987058-80987064 0006BC 000C+00 0/1 0/0 0/0 .rodata          @5714 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5714[12] = {
-    0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80987058, &lit_5714);
-#pragma pop
-
-/* 80987064-8098707C 0006C8 0018+00 0/0 0/0 0/0 .rodata          @5715 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5715[24] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80987064, &lit_5715);
-#pragma pop
-
-/* 8098707C-80987088 0006E0 000C+00 0/1 0/0 0/0 .rodata          @5716 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5716[12] = {
-    0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8098707C, &lit_5716);
-#pragma pop
-
-/* 80987088-8098708C 0006EC 0004+00 0/1 0/0 0/0 .rodata          @5717 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5717[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80987088, &lit_5717);
-#pragma pop
-
-/* 8098708C-80987098 0006F0 000C+00 0/1 0/0 0/0 .rodata          @5718 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5718[12] = {
-    0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x8098708C, &lit_5718);
-#pragma pop
-
-/* 80987098-809870A4 0006FC 000C+00 0/1 0/0 0/0 .rodata          @5719 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5719[12] = {
-    0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987098, &lit_5719);
-#pragma pop
-
-/* 809870A4-809870B0 000708 000C+00 0/1 0/0 0/0 .rodata          @5720 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5720[12] = {
-    0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x809870A4, &lit_5720);
-#pragma pop
-
-/* 809870B0-809870BC 000714 000C+00 0/1 0/0 0/0 .rodata          @5721 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5721[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x809870B0, &lit_5721);
-#pragma pop
-
-/* 809870BC-809870CC 000720 0010+00 0/1 0/0 0/0 .rodata          @5722 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5722[16] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x809870BC, &lit_5722);
-#pragma pop
-
-/* 809870CC-809870D8 000730 000C+00 0/1 0/0 0/0 .rodata          @5723 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5723[12] = {
-    0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x809870CC, &lit_5723);
-#pragma pop
-
-/* 809870D8-809870E4 00073C 000C+00 0/1 0/0 0/0 .rodata          @5724 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5724[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x809870D8, &lit_5724);
-#pragma pop
-
-/* 809870E4-809870F0 000748 000C+00 0/1 0/0 0/0 .rodata          @5725 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5725[12] = {
-    0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x809870E4, &lit_5725);
-#pragma pop
-
-/* 809870F0-809870FC 000754 000C+00 0/1 0/0 0/0 .rodata          @5726 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5726[12] = {
-    0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x809870F0, &lit_5726);
-#pragma pop
-
-/* 809870FC-80987108 000760 000C+00 0/1 0/0 0/0 .rodata          @5727 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5727[12] = {
-    0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x809870FC, &lit_5727);
-#pragma pop
-
-/* 80987108-8098711C 00076C 0014+00 0/0 0/0 0/0 .rodata          @5728 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5728[20] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80987108, &lit_5728);
-#pragma pop
-
-/* 8098711C-80987128 000780 000C+00 0/1 0/0 0/0 .rodata          @5729 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5729[12] = {
-    0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x8098711C, &lit_5729);
-#pragma pop
-
-/* 80987128-80987134 00078C 000C+00 0/1 0/0 0/0 .rodata          @5730 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5730[12] = {
-    0x00, 0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80987128, &lit_5730);
-#pragma pop
-
-/* 80987134-8098713C 000798 0008+00 0/1 0/0 0/0 .rodata          @5731 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5731[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80987134, &lit_5731);
-#pragma pop
-
-/* 8098713C-80987148 0007A0 000C+00 0/1 0/0 0/0 .rodata          @5732 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5732[12] = {
-    0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x8098713C, &lit_5732);
-#pragma pop
-
-/* 80987148-80987154 0007AC 000C+00 0/1 0/0 0/0 .rodata          @5733 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5733[12] = {
-    0x00, 0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987148, &lit_5733);
-#pragma pop
-
-/* 80987154-80987160 0007B8 000C+00 0/1 0/0 0/0 .rodata          @5734 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5734[12] = {
-    0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987154, &lit_5734);
-#pragma pop
-
-/* 80987160-8098716C 0007C4 000C+00 0/1 0/0 0/0 .rodata          @5735 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5735[12] = {
-    0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987160, &lit_5735);
-#pragma pop
-
-/* 8098716C-80987178 0007D0 000C+00 0/1 0/0 0/0 .rodata          @5736 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5736[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8098716C, &lit_5736);
-#pragma pop
-
-/* 80987178-8098718C 0007DC 0014+00 0/0 0/0 0/0 .rodata          @5737 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5737[20] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80987178, &lit_5737);
-#pragma pop
-
-/* 8098718C-80987198 0007F0 000C+00 0/1 0/0 0/0 .rodata          @5738 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5738[12] = {
-    0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x8098718C, &lit_5738);
-#pragma pop
-
-/* 80987198-809871A4 0007FC 000C+00 0/1 0/0 0/0 .rodata          @5739 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5739[12] = {
-    0x00, 0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987198, &lit_5739);
-#pragma pop
-
-/* 809871A4-809871B0 000808 000C+00 0/1 0/0 0/0 .rodata          @5740 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5740[12] = {
-    0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x809871A4, &lit_5740);
-#pragma pop
-
-/* 809871B0-809871BC 000814 000C+00 0/1 0/0 0/0 .rodata          @5741 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5741[12] = {
-    0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x809871B0, &lit_5741);
-#pragma pop
-
-/* 809871BC-809871C8 000820 000C+00 0/1 0/0 0/0 .rodata          @5742 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5742[12] = {
-    0x00, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x809871BC, &lit_5742);
-#pragma pop
-
-/* 809871C8-809871D4 00082C 000C+00 0/1 0/0 0/0 .rodata          @5743 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5743[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x809871C8, &lit_5743);
-#pragma pop
-
-/* 809871D4-809871EC 000838 0018+00 0/0 0/0 0/0 .rodata          @5744 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5744[24] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x809871D4, &lit_5744);
-#pragma pop
-
-/* 809871EC-809871F8 000850 000C+00 0/1 0/0 0/0 .rodata          @5745 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5745[12] = {
-    0x00, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x809871EC, &lit_5745);
-#pragma pop
-
-/* 809871F8-80987204 00085C 000C+00 0/1 0/0 0/0 .rodata          @5746 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5746[12] = {
-    0x00, 0x32, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x809871F8, &lit_5746);
-#pragma pop
-
-/* 80987204-8098720C 000868 0008+00 0/1 0/0 0/0 .rodata          @5747 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5747[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80987204, &lit_5747);
-#pragma pop
-
-/* 8098720C-80987218 000870 000C+00 0/1 0/0 0/0 .rodata          @5748 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5748[12] = {
-    0x00, 0x31, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x8098720C, &lit_5748);
-#pragma pop
-
-/* 80987218-80987224 00087C 000C+00 0/1 0/0 0/0 .rodata          @5749 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5749[12] = {
-    0x00, 0x33, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80987218, &lit_5749);
-#pragma pop
-
-/* 80987224-8098722C 000888 0008+00 0/1 0/0 0/0 .rodata          @5750 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5750[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80987224, &lit_5750);
-#pragma pop
-
-/* 8098722C-80987238 000890 000C+00 0/1 0/0 0/0 .rodata          @5751 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5751[12] = {
-    0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x8098722C, &lit_5751);
-#pragma pop
-
-/* 80987238-80987244 00089C 000C+00 0/1 0/0 0/0 .rodata          @5752 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5752[12] = {
-    0x00, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987238, &lit_5752);
-#pragma pop
-
-/* 80987244-80987250 0008A8 000C+00 0/1 0/0 0/0 .rodata          @5753 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5753[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987244, &lit_5753);
-#pragma pop
-
-/* 80987250-8098725C 0008B4 000C+00 0/1 0/0 0/0 .rodata          @5754 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5754[12] = {
-    0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987250, &lit_5754);
-#pragma pop
-
-/* 8098725C-80987268 0008C0 000C+00 0/1 0/0 0/0 .rodata          @5755 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5755[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8098725C, &lit_5755);
-#pragma pop
-
-/* 80987268-8098727C 0008CC 0014+00 0/0 0/0 0/0 .rodata          @5756 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5756[20] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80987268, &lit_5756);
-#pragma pop
-
-/* 8098727C-80987288 0008E0 000C+00 0/1 0/0 0/0 .rodata          @5757 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5757[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x8098727C, &lit_5757);
-#pragma pop
-
-/* 80987288-80987294 0008EC 000C+00 0/1 0/0 0/0 .rodata          @5758 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5758[12] = {
-    0x00, 0x31, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987288, &lit_5758);
-#pragma pop
-
-/* 80987294-809872A0 0008F8 000C+00 0/1 0/0 0/0 .rodata          @5759 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5759[12] = {
-    0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987294, &lit_5759);
-#pragma pop
-
-/* 809872A0-809872AC 000904 000C+00 0/1 0/0 0/0 .rodata          @5760 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5760[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x809872A0, &lit_5760);
-#pragma pop
-
-/* 809872AC-809872B8 000910 000C+00 0/1 0/0 0/0 .rodata          @5761 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5761[12] = {
-    0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x809872AC, &lit_5761);
-#pragma pop
-
-/* 809872B8-809872CC 00091C 0014+00 0/0 0/0 0/0 .rodata          @5762 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5762[20] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x809872B8, &lit_5762);
-#pragma pop
-
-/* 809872CC-809872D8 000930 000C+00 0/1 0/0 0/0 .rodata          @5763 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5763[12] = {
-    0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x809872CC, &lit_5763);
-#pragma pop
-
-/* 809872D8-809872E4 00093C 000C+00 0/1 0/0 0/0 .rodata          @5764 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5764[12] = {
-    0x00, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x809872D8, &lit_5764);
-#pragma pop
-
-/* 809872E4-809872F0 000948 000C+00 0/1 0/0 0/0 .rodata          @5765 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5765[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x809872E4, &lit_5765);
-#pragma pop
-
-/* 809872F0-809872FC 000954 000C+00 0/1 0/0 0/0 .rodata          @5766 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5766[12] = {
-    0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x809872F0, &lit_5766);
-#pragma pop
-
-/* 809872FC-80987308 000960 000C+00 0/1 0/0 0/0 .rodata          @5767 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5767[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x809872FC, &lit_5767);
-#pragma pop
-
-/* 80987308-80987314 00096C 000C+00 0/1 0/0 0/0 .rodata          @5768 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5768[12] = {
-    0x00, 0x32, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80987308, &lit_5768);
-#pragma pop
-
-/* 80987314-8098732C 000978 0018+00 0/0 0/0 0/0 .rodata          @5769 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5769[24] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80987314, &lit_5769);
-#pragma pop
-
-/* 8098732C-80987338 000990 000C+00 0/1 0/0 0/0 .rodata          @5770 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5770[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x8098732C, &lit_5770);
-#pragma pop
-
-/* 80987338-80987344 00099C 000C+00 0/1 0/0 0/0 .rodata          @5771 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5771[12] = {
-    0x00, 0x31, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987338, &lit_5771);
-#pragma pop
-
-/* 80987344-80987350 0009A8 000C+00 0/1 0/0 0/0 .rodata          @5772 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5772[12] = {
-    0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987344, &lit_5772);
-#pragma pop
-
-/* 80987350-8098735C 0009B4 000C+00 0/1 0/0 0/0 .rodata          @5773 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5773[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987350, &lit_5773);
-#pragma pop
-
-/* 8098735C-80987368 0009C0 000C+00 0/1 0/0 0/0 .rodata          @5774 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5774[12] = {
-    0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x8098735C, &lit_5774);
-#pragma pop
-
-/* 80987368-80987374 0009CC 000C+00 0/1 0/0 0/0 .rodata          @5775 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5775[12] = {
-    0x00, 0x33, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80987368, &lit_5775);
-#pragma pop
-
-/* 80987374-8098738C 0009D8 0018+00 0/0 0/0 0/0 .rodata          @5776 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5776[24] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80987374, &lit_5776);
-#pragma pop
-
-/* 8098738C-80987398 0009F0 000C+00 0/1 0/0 0/0 .rodata          @5777 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5777[12] = {
-    0x00, 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x8098738C, &lit_5777);
-#pragma pop
-
-/* 80987398-809873A4 0009FC 000C+00 0/1 0/0 0/0 .rodata          @5778 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5778[12] = {
-    0x00, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987398, &lit_5778);
-#pragma pop
-
-/* 809873A4-809873B0 000A08 000C+00 0/1 0/0 0/0 .rodata          @5779 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5779[12] = {
-    0x00, 0x31, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x809873A4, &lit_5779);
-#pragma pop
-
-/* 809873B0-809873BC 000A14 000C+00 0/1 0/0 0/0 .rodata          @5780 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5780[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x809873B0, &lit_5780);
-#pragma pop
-
-/* 809873BC-809873C8 000A20 000C+00 0/1 0/0 0/0 .rodata          @5781 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5781[12] = {
-    0x00, 0x07, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x809873BC, &lit_5781);
-#pragma pop
-
-/* 809873C8-809873D4 000A2C 000C+00 0/1 0/0 0/0 .rodata          @5782 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5782[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x809873C8, &lit_5782);
-#pragma pop
-
-/* 809873D4-809873E0 000A38 000C+00 0/1 0/0 0/0 .rodata          @5783 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5783[12] = {
-    0x00, 0x32, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x809873D4, &lit_5783);
-#pragma pop
-
-/* 809873E0-809873EC 000A44 000C+00 0/1 0/0 0/0 .rodata          @5784 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5784[12] = {
-    0x00, 0x33, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x809873E0, &lit_5784);
-#pragma pop
-
-/* 809873EC-8098740C 000A50 0020+00 0/0 0/0 0/0 .rodata          @5785 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5785[32] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x809873EC, &lit_5785);
-#pragma pop
-
-/* 8098740C-80987418 000A70 000C+00 0/1 0/0 0/0 .rodata          @5786 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5786[12] = {
-    0x00, 0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8098740C, &lit_5786);
-#pragma pop
-
-/* 80987418-8098741C 000A7C 0004+00 0/1 0/0 0/0 .rodata          @5787 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5787[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80987418, &lit_5787);
-#pragma pop
-
-/* 8098741C-80987428 000A80 000C+00 0/1 0/0 0/0 .rodata          @5788 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5788[12] = {
-    0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8098741C, &lit_5788);
-#pragma pop
-
-/* 80987428-8098742C 000A8C 0004+00 0/1 0/0 0/0 .rodata          @5789 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5789[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80987428, &lit_5789);
-#pragma pop
-
-/* 8098742C-80987438 000A90 000C+00 0/1 0/0 0/0 .rodata          @5790 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5790[12] = {
-    0x00, 0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x8098742C, &lit_5790);
-#pragma pop
-
-/* 80987438-80987444 000A9C 000C+00 0/1 0/0 0/0 .rodata          @5791 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5791[12] = {
-    0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987438, &lit_5791);
-#pragma pop
-
-/* 80987444-80987450 000AA8 000C+00 0/1 0/0 0/0 .rodata          @5792 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5792[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80987444, &lit_5792);
-#pragma pop
-
-/* 80987450-8098745C 000AB4 000C+00 0/1 0/0 0/0 .rodata          @5793 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5793[12] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80987450, &lit_5793);
-#pragma pop
-
-/* 8098745C-80987468 000AC0 000C+00 0/1 0/0 0/0 .rodata          @5794 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5794[12] = {
-    0x00, 0x0B, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8098745C, &lit_5794);
-#pragma pop
-
-/* 80987468-8098746C 000ACC 0004+00 0/1 0/0 0/0 .rodata          @5795 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5795[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80987468, &lit_5795);
-#pragma pop
-
-/* 8098746C-80987478 000AD0 000C+00 0/1 0/0 0/0 .rodata          @5796 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5796[12] = {
-    0x00, 0x0C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x8098746C, &lit_5796);
-#pragma pop
-
-/* 80987478-80987484 000ADC 000C+00 0/1 0/0 0/0 .rodata          @5797 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5797[12] = {
-    0x00, 0x0B, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987478, &lit_5797);
-#pragma pop
-
-/* 80987484-80987490 000AE8 000C+00 0/1 0/0 0/0 .rodata          @5798 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5798[12] = {
-    0x00, 0x0D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987484, &lit_5798);
-#pragma pop
-
-/* 80987490-8098749C 000AF4 000C+00 0/1 0/0 0/0 .rodata          @5799 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5799[12] = {
-    0x00, 0x0B, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987490, &lit_5799);
-#pragma pop
-
-/* 8098749C-809874A8 000B00 000C+00 0/1 0/0 0/0 .rodata          @5800 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5800[12] = {
-    0x00, 0x0C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x8098749C, &lit_5800);
-#pragma pop
-
-/* 809874A8-809874B4 000B0C 000C+00 0/1 0/0 0/0 .rodata          @5801 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5801[12] = {
-    0x00, 0x0D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x809874A8, &lit_5801);
-#pragma pop
-
-/* 809874B4-809874CC 000B18 0018+00 0/0 0/0 0/0 .rodata          @5802 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5802[24] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x809874B4, &lit_5802);
-#pragma pop
-
-/* 809874CC-809874D8 000B30 000C+00 0/1 0/0 0/0 .rodata          @5803 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5803[12] = {
-    0x00, 0x0E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x809874CC, &lit_5803);
-#pragma pop
-
-/* 809874D8-809874DC 000B3C 0004+00 0/1 0/0 0/0 .rodata          @5804 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5804[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x809874D8, &lit_5804);
-#pragma pop
-
-/* 809874DC-809874E8 000B40 000C+00 0/1 0/0 0/0 .rodata          @5805 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5805[12] = {
-    0x00, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x809874DC, &lit_5805);
-#pragma pop
-
-/* 809874E8-809874F4 000B4C 000C+00 0/1 0/0 0/0 .rodata          @5806 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5806[12] = {
-    0x00, 0x0E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x809874E8, &lit_5806);
-#pragma pop
-
-/* 809874F4-80987500 000B58 000C+00 0/1 0/0 0/0 .rodata          @5807 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5807[12] = {
-    0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x809874F4, &lit_5807);
-#pragma pop
-
-/* 80987500-8098750C 000B64 000C+00 0/1 0/0 0/0 .rodata          @5808 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5808[12] = {
-    0x00, 0x0E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987500, &lit_5808);
-#pragma pop
-
-/* 8098750C-80987518 000B70 000C+00 0/1 0/0 0/0 .rodata          @5809 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5809[12] = {
-    0x00, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x8098750C, &lit_5809);
-#pragma pop
-
-/* 80987518-80987524 000B7C 000C+00 0/1 0/0 0/0 .rodata          @5810 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5810[12] = {
-    0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80987518, &lit_5810);
-#pragma pop
-
-/* 80987524-8098753C 000B88 0018+00 0/0 0/0 0/0 .rodata          @5811 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5811[24] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80987524, &lit_5811);
-#pragma pop
-
-/* 8098753C-80987548 000BA0 000C+00 0/1 0/0 0/0 .rodata          @5812 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5812[12] = {
-    0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8098753C, &lit_5812);
-#pragma pop
-
-/* 80987548-8098754C 000BAC 0004+00 0/1 0/0 0/0 .rodata          @5813 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5813[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80987548, &lit_5813);
-#pragma pop
-
-/* 8098754C-80987558 000BB0 000C+00 0/1 0/0 0/0 .rodata          @5814 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5814[12] = {
-    0x00, 0x12, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x8098754C, &lit_5814);
-#pragma pop
-
-/* 80987558-80987564 000BBC 000C+00 0/1 0/0 0/0 .rodata          @5815 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5815[12] = {
-    0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987558, &lit_5815);
-#pragma pop
-
-/* 80987564-80987570 000BC8 000C+00 0/1 0/0 0/0 .rodata          @5816 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5816[12] = {
-    0x00, 0x13, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987564, &lit_5816);
-#pragma pop
-
-/* 80987570-8098757C 000BD4 000C+00 0/1 0/0 0/0 .rodata          @5817 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5817[12] = {
-    0x00, 0x11, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x80987570, &lit_5817);
-#pragma pop
-
-/* 8098757C-80987588 000BE0 000C+00 0/1 0/0 0/0 .rodata          @5818 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5818[12] = {
-    0x00, 0x12, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x8098757C, &lit_5818);
-#pragma pop
-
-/* 80987588-80987594 000BEC 000C+00 0/1 0/0 0/0 .rodata          @5819 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5819[12] = {
-    0x00, 0x13, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80987588, &lit_5819);
-#pragma pop
-
-/* 80987594-809875AC 000BF8 0018+00 0/0 0/0 0/0 .rodata          @5820 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5820[24] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80987594, &lit_5820);
-#pragma pop
-
-/* 809875AC-809875B8 000C10 000C+00 0/1 0/0 0/0 .rodata          @5821 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5821[12] = {
-    0x00, 0x35, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x809875AC, &lit_5821);
-#pragma pop
-
-/* 809875B8-809875BC 000C1C 0004+00 0/1 0/0 0/0 .rodata          @5822 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5822[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x809875B8, &lit_5822);
-#pragma pop
-
-/* 809875BC-809875C8 000C20 000C+00 0/1 0/0 0/0 .rodata          @5823 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5823[12] = {
-    0x00, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x809875BC, &lit_5823);
-#pragma pop
-
-/* 809875C8-809875CC 000C2C 0004+00 0/1 0/0 0/0 .rodata          @5824 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5824[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x809875C8, &lit_5824);
-#pragma pop
-
-/* 809875CC-809875D8 000C30 000C+00 0/1 0/0 0/0 .rodata          @5825 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5825[12] = {
-    0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x809875CC, &lit_5825);
-#pragma pop
-
-/* 809875D8-809875DC 000C3C 0004+00 0/1 0/0 0/0 .rodata          @5826 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5826[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x809875D8, &lit_5826);
-#pragma pop
-
-/* 809875DC-809875E8 000C40 000C+00 0/1 0/0 0/0 .rodata          @5827 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5827[12] = {
-    0x00, 0x0F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x809875DC, &lit_5827);
-#pragma pop
-
-/* 809875E8-809875F4 000C4C 000C+00 0/1 0/0 0/0 .rodata          @5828 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5828[12] = {
-    0x00, 0x10, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x809875E8, &lit_5828);
-#pragma pop
-
-/* 809875F4-809875FC 000C58 0008+00 0/1 0/0 0/0 .rodata          @5829 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5829[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x809875F4, &lit_5829);
-#pragma pop
-
-/* 809875FC-80987608 000C60 000C+00 0/1 0/0 0/0 .rodata          @5830 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5830[12] = {
-    0x00, 0x12, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x809875FC, &lit_5830);
-#pragma pop
-
-/* 80987608-8098760C 000C6C 0004+00 0/1 0/0 0/0 .rodata          @5831 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5831[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80987608, &lit_5831);
-#pragma pop
-
-/* 8098760C-80987618 000C70 000C+00 0/1 0/0 0/0 .rodata          @5832 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5832[12] = {
-    0x00, 0x13, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8098760C, &lit_5832);
-#pragma pop
-
-/* 80987618-8098761C 000C7C 0004+00 0/1 0/0 0/0 .rodata          @5833 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5833[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80987618, &lit_5833);
-#pragma pop
-
-/* 8098761C-80987628 000C80 000C+00 0/1 0/0 0/0 .rodata          @5834 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5834[12] = {
-    0x00, 0x12, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01,
-};
-COMPILER_STRIP_GATE(0x8098761C, &lit_5834);
-#pragma pop
-
-/* 80987628-80987634 000C8C 000C+00 0/1 0/0 0/0 .rodata          @5835 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5835[12] = {
-    0x00, 0x13, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80987628, &lit_5835);
-#pragma pop
-
-/* 80987634-8098763C 000C98 0008+00 0/1 0/0 0/0 .rodata          @5836 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5836[8] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80987634, &lit_5836);
-#pragma pop
-
-/* 8098763C-80987648 000CA0 000C+00 0/1 0/0 0/0 .rodata          @5837 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5837[12] = {
-    0x00, 0x2A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8098763C, &lit_5837);
-#pragma pop
-
-/* 80987648-8098764C 000CAC 0004+00 0/1 0/0 0/0 .rodata          @5838 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5838[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80987648, &lit_5838);
-#pragma pop
-
-/* 8098764C-80987658 000CB0 000C+00 0/1 0/0 0/0 .rodata          @5839 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5839[12] = {
-    0x00, 0x2E, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8098764C, &lit_5839);
-#pragma pop
-
-/* 80987658-8098765C 000CBC 0004+00 0/1 0/0 0/0 .rodata          @5840 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5840[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80987658, &lit_5840);
-#pragma pop
-
-/* 8098765C-80987668 000CC0 000C+00 0/1 0/0 0/0 .rodata          @5841 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5841[12] = {
-    0x00, 0x2C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8098765C, &lit_5841);
-#pragma pop
-
-/* 80987668-8098766C 000CCC 0004+00 0/1 0/0 0/0 .rodata          @5842 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5842[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80987668, &lit_5842);
-#pragma pop
-
-/* 8098766C-80987678 000CD0 000C+00 0/1 0/0 0/0 .rodata          @5843 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5843[12] = {
-    0x00, 0x29, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8098766C, &lit_5843);
-#pragma pop
-
-/* 80987678-8098767C 000CDC 0004+00 0/1 0/0 0/0 .rodata          @5844 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5844[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80987678, &lit_5844);
-#pragma pop
-
-/* 8098767C-80987688 000CE0 000C+00 0/1 0/0 0/0 .rodata          @5845 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5845[12] = {
-    0x00, 0x26, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8098767C, &lit_5845);
-#pragma pop
-
-/* 80987688-8098768C 000CEC 0004+00 0/1 0/0 0/0 .rodata          @5846 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5846[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80987688, &lit_5846);
-#pragma pop
-
 /* 809839E0-80984DD0 003280 13F0+00 1/1 0/0 0/0 .text            playMotion__11daNpcChat_cFv */
 void daNpcChat_c::playMotion() {
-    // NONMATCHING
     daNpcF_anmPlayData dat0 = {0x6, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat0[1] = {&dat0};
     daNpcF_anmPlayData dat1 = {0x0, daNpcChat_Param_c::m.common.morf_frame, 0};
@@ -4439,7 +3030,7 @@ void daNpcChat_c::playMotion() {
     daNpcF_anmPlayData dat5d = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
     daNpcF_anmPlayData dat5e = {0x6, daNpcChat_Param_c::m.common.morf_frame, 1};
     daNpcF_anmPlayData dat5f = {0x7, daNpcChat_Param_c::m.common.morf_frame, 0};
-    daNpcF_anmPlayData* pDat[6] = {&dat5a, &dat5b, &dat5c, &dat5d, &dat5e, &dat5f};
+    daNpcF_anmPlayData* pDat5[6] = {&dat5a, &dat5b, &dat5c, &dat5d, &dat5e, &dat5f};
     daNpcF_anmPlayData dat6 = {0x8, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat6[1] = {&dat6};
     daNpcF_anmPlayData dat7a = {0x7, daNpcChat_Param_c::m.common.morf_frame, 1};
@@ -4475,123 +3066,308 @@ void daNpcChat_c::playMotion() {
     daNpcF_anmPlayData dat13a = {0x31, daNpcChat_Param_c::m.common.morf_frame, 1};
     daNpcF_anmPlayData dat13b = {0x33, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat13[2] = {&dat13a, &dat13b};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
-    // daNpcF_anmPlayData dat = {};
-    // daNpcF_anmPlayData* pDat[] = {&};
+    daNpcF_anmPlayData dat14a = {0x6, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat14b = {0x30, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat14c = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat14d = {0x7, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat14e = {0x0, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat14[5] = {&dat14a, &dat14b, &dat14c, &dat14d, &dat14e};
+    daNpcF_anmPlayData dat15a = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat15b = {0x31, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat15c = {0x6, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat15d = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat15e = {0x7, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat15[5] = {&dat15a, &dat15b, &dat15c, &dat15d, &dat15e};
+    daNpcF_anmPlayData dat16a = {0x6, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat16b = {0x30, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat16c = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat16d = {0x7, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat16e = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat16f = {0x32, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat16[6] = {&dat16a, &dat16b, &dat16c, &dat16d, &dat16e, &dat16f};
+    daNpcF_anmPlayData dat17a = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat17b = {0x31, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat17c = {0x6, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat17d = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat17e = {0x7, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat17f = {0x33, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat17[6] = {&dat17a, &dat17b, &dat17c, &dat17d, &dat17e, &dat17f};
+    daNpcF_anmPlayData dat18a = {0x6, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat18b = {0x30, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat18c = {0x31, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat18d = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat18e = {0x7, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat18f = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat18g = {0x32, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat18h = {0x33, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat18[8] = {&dat18a, &dat18b, &dat18c, &dat18d, &dat18e, &dat18f, &dat18g, &dat18h};
+    daNpcF_anmPlayData dat19 = {0x9, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat19[1] = {&dat19};
+    daNpcF_anmPlayData dat20 = {0xA, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat20[1] = {&dat20};
+    daNpcF_anmPlayData dat21a = {0x9, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat21b = {0xA, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat21c = {0x0, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat21[3] = {&dat21a, &dat21b, &dat21c};
+    daNpcF_anmPlayData dat22 = {0xB, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat22[1] = {&dat22};
+    daNpcF_anmPlayData dat23a = {0xC, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat23b = {0xB, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat23c = {0xD, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat23d = {0xB, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat23e = {0xC, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat23f = {0xD, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat23[6] = {&dat23a, &dat23b, &dat23c, &dat23d, &dat23e, &dat23f};
+    daNpcF_anmPlayData dat24 = {0xE, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat24[1] = {&dat24};
+    daNpcF_anmPlayData dat25a = {0xF, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat25b = {0xE, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat25c = {0x10, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat25d = {0xE, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat25e = {0xF, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat25f = {0x10, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat25[6] = {&dat25a, &dat25b, &dat25c, &dat25d, &dat25e, &dat25f};
+    daNpcF_anmPlayData dat26 = {0x11, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat26[1] = {&dat26};
+    daNpcF_anmPlayData dat27a = {0x12, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat27b = {0x11, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat27c = {0x13, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat27d = {0x11, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat27e = {0x12, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat27f = {0x13, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat27[6] = {&dat27a, &dat27b, &dat27c, &dat27d, &dat27e, &dat27f};
+    daNpcF_anmPlayData dat28 = {0x35, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat28[1] = {&dat28};
+    daNpcF_anmPlayData dat29 = {0xF, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat29[1] = {&dat29};
+    daNpcF_anmPlayData dat30 = {0x10, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat30[1] = {&dat30};
+    daNpcF_anmPlayData dat31a = {0xF, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat31b = {0x10, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat31[2] = {&dat31a, &dat31b};
+    daNpcF_anmPlayData dat32 = {0x12, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat32[1] = {&dat32};
+    daNpcF_anmPlayData dat33 = {0x13, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat33[1] = {&dat33};
+    daNpcF_anmPlayData dat34a = {0x12, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat34b = {0x13, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat34[2] = {&dat34a, &dat34b};
+    daNpcF_anmPlayData dat35 = {0x2A, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat35[1] = {&dat35};
+    daNpcF_anmPlayData dat36 = {0x2E, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat36[1] = {&dat36};
+    daNpcF_anmPlayData dat37 = {0x2C, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat37[1] = {&dat37};
+    daNpcF_anmPlayData dat38 = {0x29, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat38[1] = {&dat38};
+    daNpcF_anmPlayData dat39 = {0x26, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData* pDat39[1] = {&dat39};
+
+    daNpcF_anmPlayData** ppDat[40] = {
+        pDat0, pDat1, pDat2, pDat3, pDat4,
+        pDat5, pDat6, pDat7, pDat8, pDat9,
+        pDat10, pDat11, pDat12, pDat13, pDat14,
+        pDat15, pDat16, pDat17, pDat18, pDat19,
+        pDat20, pDat21, pDat22, pDat23, pDat24,
+        pDat25, pDat26, pDat27, pDat28, pDat29,
+        pDat30, pDat31, pDat32, pDat33, pDat34,
+        pDat35, pDat36, pDat37, pDat38, pDat39,
+    };
+
+    if (mMotion >= 0 && mMotion < 35) {
+        playMotionAnmLoop(ppDat);
+    } else if (mMotion < 40) {
+        playMotionAnm(ppDat);
+    }
 }
 
-/* 80984DD0-80984F34 004670 0164+00 1/1 0/0 0/0 .text
- * playMotionAnmLoop__11daNpcChat_cFPPPQ28daNpcF_c18daNpcF_anmPlayData */
-void daNpcChat_c::playMotionAnmLoop(daNpcF_c::daNpcF_anmPlayData*** param_0) {
-    // NONMATCHING
+/* 80984DD0-80984F34 004670 0164+00 1/1 0/0 0/0 .text            playMotionAnmLoop__11daNpcChat_cFPPPQ28daNpcF_c18daNpcF_anmPlayData */
+void daNpcChat_c::playMotionAnmLoop(daNpcF_c::daNpcF_anmPlayData*** i_data) {
+    daNpcF_anmPlayData* playData = NULL;
+
+    if (i_data[mMotion] != NULL) {
+        playData = i_data[mMotion][mMotionPhase];
+    }
+
+    if (playData != NULL) {
+        if (mMotionPrevPhase == mMotionPhase) {
+            if (playData->numLoops > 0 && playData->numLoops <= mMotionLoops) {
+                mMotionPhase++;
+                playData = i_data[mMotion][mMotionPhase];
+            } else if (playData->numLoops == 0 && mMotionLoops >= 1) {
+                mMotionPhase = 0;
+                playData = i_data[mMotion][mMotionPhase];
+                mMotionMorfOverride = playData->morf;
+            }
+        }
+
+        if (playData != NULL && mMotionPrevPhase != mMotionPhase) {
+            setMotionAnm(playData->idx, 0.0f);
+            f32 i_morf = playData->morf;
+
+            if (mMotionPhase == 0 && 0.0f <= mMotionMorfOverride) {
+                i_morf = mMotionMorfOverride;
+            }
+
+            mExpressionMorf = 0.0f;
+            mpMorf->setMorf(i_morf);
+        }
+    }
+
+    mMotionPrevPhase = mMotionPhase;
 }
 
-/* 80984F34-80984FDC 0047D4 00A8+00 4/4 0/0 0/0 .text
- * setAction__11daNpcChat_cFM11daNpcChat_cFPCvPvPv_b            */
-BOOL daNpcChat_c::setAction(bool (daNpcChat_c::*param_0)(void*)) {
-    // NONMATCHING
+/* 80984F34-80984FDC 0047D4 00A8+00 4/4 0/0 0/0 .text            setAction__11daNpcChat_cFM11daNpcChat_cFPCvPvPv_b */
+BOOL daNpcChat_c::setAction(actionFunc action) {
+    mMode = 3;
+
+    if (mAction) {
+        (this->*mAction)(NULL);
+    }
+
+    mMode = 0;
+    mAction = action;
+
+    if (mAction) {
+        (this->*mAction)(NULL);
+    }
+
+    return TRUE;
 }
 
 /* 80984FDC-809850D0 00487C 00F4+00 2/2 0/0 0/0 .text            step__11daNpcChat_cFsi */
-void daNpcChat_c::step(s16 param_0, int param_1) {
-    // NONMATCHING
+bool daNpcChat_c::step(s16 i_targetAngle, int param_2) {
+    if (mTurnMode == 0) {
+        mTurnTargetAngle = i_targetAngle;
+        mTurnAmount = 0;
+
+        if (mCurAngle.y == mTurnTargetAngle) {
+            mTurnMode++;
+        }
+
+        current.angle.y = mCurAngle.y;
+        shape_angle.y = current.angle.y;
+        mTurnMode++;
+    } else if (mTurnMode == 1) {
+        if (turn(mTurnTargetAngle, 15.0f, 0)) {
+            shape_angle.y = current.angle.y;
+            mCurAngle.y = current.angle.y;
+            mOldAngle.y = current.angle.y;
+            mTurnMode++;
+        } else {
+            shape_angle.y = current.angle.y;
+            mCurAngle.y = current.angle.y;
+        }
+    }
+
+    return mTurnMode > 1;
 }
 
-/* 809850D0-80985104 004970 0034+00 1/1 0/0 0/0 .text setTalkMember__11daNpcChat_cFP11daNpcChat_c
- */
-void daNpcChat_c::setTalkMember(daNpcChat_c* param_0) {
-    // NONMATCHING
+/* 809850D0-80985104 004970 0034+00 1/1 0/0 0/0 .text            setTalkMember__11daNpcChat_cFP11daNpcChat_c */
+void daNpcChat_c::setTalkMember(daNpcChat_c* actor_p) {
+    if (mTalkGroupNo == actor_p->getTalkGroupNo()) {
+        int talkNo = actor_p->getTalkNo();
+        if (talkNo < 0) {
+            return;
+        }
+
+        if (talkNo < 5) {
+            mTalkMembers[talkNo] = actor_p;
+        }
+    }
 }
-
-/* ############################################################################################## */
-/* 8098768C-8098772C 000CF0 00A0+00 0/0 0/0 0/0 .rodata          @5847 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_5847[160] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8098768C, &lit_5847);
-#pragma pop
-
-/* 8098772C-80987734 000D90 0008+00 0/1 0/0 0/0 .rodata          @6167 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_6167[8] = {
-    0x40, 0x7F, 2.0f, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x8098772C, &lit_6167);
-#pragma pop
-
-/* 80987734-8098773C 000D98 0008+00 0/1 0/0 0/0 .rodata          @6168 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static u8 const lit_6168[8] = {
-    2.0f, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80987734, &lit_6168);
-#pragma pop
 
 /* 80985104-8098552C 0049A4 0428+00 4/0 0/0 0/0 .text            wait__11daNpcChat_cFPv */
-bool daNpcChat_c::wait(void* param_0) {
+bool daNpcChat_c::wait(void* param_1) {
     // NONMATCHING
+    switch (mMode) {
+        case 0:
+            setMotion(mTalkMotionNo, -1.0f, 1);
+            speedF = 0.0f;
+            mTalkFlag = false;
+            mMode = 2;
+            break;
+
+        case 2:
+            if (field_0xe38 < 2) {
+                return false;
+            }
+
+            if (!dKy_darkworld_check() && daPy_py_c::checkNowWolf()) {
+                f32 search_range = pow(500.0, 2.0);
+                if (!(fopAcM_searchPlayerDistanceXZ2(this) < search_range)) {
+                if (mFear) {
+                    setAction(&daNpcChat_c::fear);
+                    if (!mFear) {
+                        for (int i = 0; i < mTalkMemberNum; i++) {
+                            if (mTalkMembers[i] != NULL) {
+                                mTalkMembers[i]->setFear();
+                            } else {
+                                break;
+                            }
+                        }
+                    }
+                    break;
+                }
+                
+                if (dComIfGp_event_runCheck()) {
+                    if (eventInfo.checkCommandTalk()) {
+                        if (!dComIfGp_event_chkTalkXY() || dComIfGp_evmng_ChkPresentEnd()) {
+                            setAction(&daNpcChat_c::talk);
+                        }
+                    } else if (dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0) != -1) {
+                        setAction(&daNpcChat_c::demo);
+                    }
+
+                    if (mTalkFlag && mLookPlayerCheck == 1 && mCurAngle.y != fopAcM_searchPlayerAngleY(this)) {
+                        if (step(fopAcM_searchPlayerAngleY(this), 1)) {
+                            mTurnMode = 0;
+                        }
+                    }
+
+                    int i_expression, i_motion;
+                    if (ctrlMsgAnm(i_expression, i_motion, this, mTalkFlag)) {
+                        setMotion(i_motion, -1.0f, 1);
+                    }
+
+                    if (mTalkFlag) {
+                        if (dComIfGp_event_getTalkPartner() != this) {
+                            if (field_0xe51 == 1) {
+                                setMotion(0x18, -1.0f, 0);
+                            } else if (field_0xe51 == 2) {
+                                setMotion(0x1A, -1.0f, 0);
+                            } else {
+                                setMotion(1, -1.0f, 0);
+                            }
+                        }
+                    }
+                } else {
+                    if (mTalkFlag) {
+                        mMode = 0;
+                        break;
+                    }
+
+                    if (home.angle.y != mCurAngle.y && step(home.angle.y, 1)) {
+                        setMotion(mTalkMotionNo, -1.0f, 1);
+                        mTurnMode = 0;
+                    }
+                    
+                    orderEvent(mOrderSpeakEvt, l_evtNames[mOrderEvtNo], 0xFFFF, 0x28, 0xFF, 1);
+                }
+                }
+            }
+            
+            break;
+
+        case 3:
+            break;
+
+        default:
+            JUT_ASSERT(2580, 0);
+            break;
+    }
+
+    return true;
 }
 
 /* ############################################################################################## */
