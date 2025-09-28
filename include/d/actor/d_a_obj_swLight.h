@@ -74,6 +74,6 @@ private:
     /* 0xB24 */ u16 field_0xb24;
 };
 
-// STATIC_ASSERT(sizeof(daObjSwLight_c) == 0xb28);
+STATIC_ASSERT(sizeof(daObjSwLight_c) == 0xb28);
 
 #endif /* D_A_OBJ_SWLIGHT_H */
