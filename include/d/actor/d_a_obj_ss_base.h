@@ -25,4 +25,6 @@ private:
     /* 0x574 */ u16 mValueNum;
 };
 
+STATIC_ASSERT(sizeof(daObj_SSBase_c) == 0x578);
+
 #endif /* A_OBJ_D_A_OBJ_SS_BASE_H */

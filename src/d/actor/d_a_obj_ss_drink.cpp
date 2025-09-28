@@ -1,699 +1,559 @@
 /**
  * @file d_a_obj_ss_drink.cpp
- * 
-*/
+ *
+ */
 
 #include "d/dolzel_rel.h"
 
+#include "d/actor/d_a_myna.h"
 #include "d/actor/d_a_obj_ss_drink.h"
+#include "d/actor/d_a_player.h"
+#include "d/d_msg_object.h"
+#include "d/d_s_play.h"
 #include "dol2asm.h"
 
-
-//
-// Forward References:
-//
-
-extern "C" void __dt__15daObj_SSDrink_cFv();
-extern "C" void create__15daObj_SSDrink_cFv();
-extern "C" void CreateHeap__15daObj_SSDrink_cFv();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" void Delete__15daObj_SSDrink_cFv();
-extern "C" void Execute__15daObj_SSDrink_cFv();
-extern "C" void Draw__15daObj_SSDrink_cFv();
-extern "C" void __dt__8cM3dGPlaFv();
-extern "C" void createHeapCallBack__15daObj_SSDrink_cFP10fopAc_ac_c();
-extern "C" void setSoldOut__15daObj_SSDrink_cFv();
-extern "C" void getResName__15daObj_SSDrink_cFv();
-extern "C" void getTypeFromParam__15daObj_SSDrink_cFv();
-extern "C" void getSwitchFromParam__15daObj_SSDrink_cFv();
-extern "C" void getCapacityFromParam__15daObj_SSDrink_cFv();
-extern "C" void getFlowNodeNum__15daObj_SSDrink_cFv();
-extern "C" void getValue__15daObj_SSDrink_cFv();
-extern "C" void restart__15daObj_SSDrink_cFv();
-extern "C" void initialize__15daObj_SSDrink_cFv();
-extern "C" void checkProcess__15daObj_SSDrink_cFM15daObj_SSDrink_cFPCvPvPv_i();
-extern "C" void setProcess__15daObj_SSDrink_cFM15daObj_SSDrink_cFPCvPvPv_i();
-extern "C" void setParam__15daObj_SSDrink_cFv();
-extern "C" void setEnvTevColor__15daObj_SSDrink_cFv();
-extern "C" void setRoomNo__15daObj_SSDrink_cFv();
-extern "C" void setMtx__15daObj_SSDrink_cFv();
-extern "C" void setAttnPos__15daObj_SSDrink_cFv();
-extern "C" void animeEntry__15daObj_SSDrink_cFv();
-extern "C" void animePlay__15daObj_SSDrink_cFv();
-extern "C" void chkEvent__15daObj_SSDrink_cFv();
-extern "C" void orderEvent__15daObj_SSDrink_cFv();
-extern "C" bool wait__15daObj_SSDrink_cFPv();
-extern "C" void talk__15daObj_SSDrink_cFPv();
-extern "C" void drink__15daObj_SSDrink_cFPv();
-extern "C" static void daObj_SSDrink_Create__FPv();
-extern "C" static void daObj_SSDrink_Delete__FPv();
-extern "C" static void daObj_SSDrink_Execute__FPv();
-extern "C" static void daObj_SSDrink_Draw__FPv();
-extern "C" static bool daObj_SSDrink_IsDelete__FPv();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void __sinit_d_a_obj_ss_drink_cpp();
-extern "C" static void func_80CE672C();
-extern "C" static void func_80CE6734();
-extern "C" void getLeftHandPos__9daPy_py_cCFv();
-extern "C" void __dt__8cM3dGCylFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__12dBgS_AcchCirFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" void __dt__12dBgS_ObjAcchFv();
-extern "C" u8 const mCcDObjInfo__15daObj_SSDrink_c[48];
-extern "C" extern char const* const d_a_obj_ss_drink__stringBase0;
-extern "C" u8 mCcDCyl__15daObj_SSDrink_c[68];
-
-//
-// External References:
-//
-
-extern "C" void scaleM__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();
-extern "C" void play__14mDoExt_baseAnmFv();
-extern "C" void init__13mDoExt_btpAnmFP16J3DMaterialTableP16J3DAnmTexPatterniifss();
-extern "C" void entry__13mDoExt_btpAnmFP16J3DMaterialTables();
-extern "C" void init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss();
-extern "C" void entry__13mDoExt_brkAnmFP16J3DMaterialTablef();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff();
-extern "C" void fopAcM_posMoveF__FP10fopAc_ac_cPC4cXyz();
-extern "C" void fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void onSwitch__10dSv_info_cFii();
-extern "C" void offSwitch__10dSv_info_cFii();
-extern "C" void getRes__14dRes_control_cFPCcPCcP11dRes_info_ci();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void ChkPresentEnd__16dEvent_manager_cFv();
-extern "C" void setSimple__21dDlst_shadowControl_cFP4cXyzffP4cXyzsfP9_GXTexObj();
-extern "C" void GetTriPla__4cBgSCFRC13cBgS_PolyInfoP8cM3dGPla();
-extern "C" void GetPolyColor__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void GetRoomId__4dBgSFRC13cBgS_PolyInfo();
-extern "C" void __ct__12dBgS_AcchCirFv();
-extern "C" void SetWallR__12dBgS_AcchCirFf();
-extern "C" void SetWall__12dBgS_AcchCirFff();
-extern "C" void __dt__9dBgS_AcchFv();
-extern "C" void __ct__9dBgS_AcchFv();
-extern "C" void Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz();
-extern "C" void CrrPos__9dBgS_AcchFR4dBgS();
-extern "C" void SetObj__16dBgS_PolyPassChkFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Move__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void __dt__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_CylFRC11dCcD_SrcCyl();
-extern "C" void __ct__14daObj_SSBase_cFv();
-extern "C" void __dt__14daObj_SSBase_cFv();
-extern "C" void getProcessID__14daObj_SSBase_cFv();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void dMsgObject_addTotalPrice__Fs();
-extern "C" void __ct__10dMsgFlow_cFv();
-extern "C" void __dt__10dMsgFlow_cFv();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void __ct__11cBgS_GndChkFv();
-extern "C" void __dt__11cBgS_GndChkFv();
-extern "C" void __dt__13cBgS_PolyInfoFv();
-extern "C" void __dt__8cM3dGCirFv();
-extern "C" void SetC__8cM3dGCylFRC4cXyz();
-extern "C" void SetH__8cM3dGCylFf();
-extern "C" void SetR__8cM3dGCylFf();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void __ptmf_test();
-extern "C" void __ptmf_cmpr();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" void soldoutItem__8daMyna_cFUi();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 80CE6990-80CE6990 000060 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80CE6990 = "Obj_btl";
-SECTION_DEAD static char const* const stringBase_80CE6998 = "al_bottle.bmd";
-#pragma pop
-
 /* 80CE69E4-80CE69E8 -00001 0004+00 2/2 0/0 0/0 .data            l_resFileName */
-SECTION_DATA static void* l_resFileName = (void*)&d_a_obj_ss_drink__stringBase0;
+static char* l_resFileName = "Obj_btl";
 
 /* 80CE69E8-80CE69EC -00001 0004+00 1/2 0/0 0/0 .data            l_bmdName */
-SECTION_DATA static void* l_bmdName = (void*)(((char*)&d_a_obj_ss_drink__stringBase0) + 0x8);
-
-/* 80CE69EC-80CE6A30 000028 0044+00 2/2 0/0 0/0 .data            mCcDCyl__15daObj_SSDrink_c */
-SECTION_DATA u8 daObj_SSDrink_c::mCcDCyl[68] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-
-/* 80CE6A30-80CE6A3C -00001 000C+00 1/1 0/0 0/0 .data            @4020 */
-SECTION_DATA static void* lit_4020[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)drink__15daObj_SSDrink_cFPv,
-};
-
-/* 80CE6A3C-80CE6A48 -00001 000C+00 1/1 0/0 0/0 .data            @4063 */
-SECTION_DATA static void* lit_4063[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)drink__15daObj_SSDrink_cFPv,
-};
-
-/* 80CE6A48-80CE6A54 -00001 000C+00 1/1 0/0 0/0 .data            @4164 */
-SECTION_DATA static void* lit_4164[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)wait__15daObj_SSDrink_cFPv,
-};
-
-/* 80CE6A54-80CE6A60 -00001 000C+00 1/1 0/0 0/0 .data            @4233 */
-SECTION_DATA static void* lit_4233[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)drink__15daObj_SSDrink_cFPv,
-};
-
-/* 80CE6A60-80CE6A6C -00001 000C+00 1/1 0/0 0/0 .data            @4284 */
-SECTION_DATA static void* lit_4284[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)talk__15daObj_SSDrink_cFPv,
-};
-
-/* 80CE6A6C-80CE6A78 -00001 000C+00 0/1 0/0 0/0 .data            @4334 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4334[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)drink__15daObj_SSDrink_cFPv,
-};
-#pragma pop
-
-/* 80CE6A78-80CE6A84 -00001 000C+00 0/1 0/0 0/0 .data            @4344 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4344[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)talk__15daObj_SSDrink_cFPv,
-};
-#pragma pop
-
-/* 80CE6A84-80CE6A90 -00001 000C+00 0/1 0/0 0/0 .data            @4352 */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* lit_4352[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)talk__15daObj_SSDrink_cFPv,
-};
-#pragma pop
-
-/* 80CE6A90-80CE6A9C -00001 000C+00 1/1 0/0 0/0 .data            @4405 */
-SECTION_DATA static void* lit_4405[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)drink__15daObj_SSDrink_cFPv,
-};
-
-/* 80CE6A9C-80CE6AA8 -00001 000C+00 1/1 0/0 0/0 .data            @4432 */
-SECTION_DATA static void* lit_4432[3] = {
-    (void*)NULL,
-    (void*)0xFFFFFFFF,
-    (void*)wait__15daObj_SSDrink_cFPv,
-};
-
-/* 80CE6AA8-80CE6AC8 -00001 0020+00 1/0 0/0 0/0 .data            daObj_SSDrink_MethodTable */
-static actor_method_class daObj_SSDrink_MethodTable = {
-    (process_method_func)daObj_SSDrink_Create__FPv,
-    (process_method_func)daObj_SSDrink_Delete__FPv,
-    (process_method_func)daObj_SSDrink_Execute__FPv,
-    (process_method_func)daObj_SSDrink_IsDelete__FPv,
-    (process_method_func)daObj_SSDrink_Draw__FPv,
-};
-
-/* 80CE6AC8-80CE6AF8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_SSDRINK */
-extern actor_process_profile_definition g_profile_OBJ_SSDRINK = {
-  fpcLy_CURRENT_e,            // mLayerID
-  7,                          // mListID
-  fpcPi_CURRENT_e,            // mListPrio
-  PROC_OBJ_SSDRINK,           // mProcName
-  &g_fpcLf_Method.base,      // sub_method
-  sizeof(daObj_SSDrink_c),    // mSize
-  0,                          // mSizeOther
-  0,                          // mParameters
-  &g_fopAc_Method.base,       // sub_method
-  68,                         // mPriority
-  &daObj_SSDrink_MethodTable, // sub_method
-  0x00064100,                 // mStatus
-  fopAc_UNK_GROUP_5_e,        // mActorType
-  fopAc_CULLBOX_CUSTOM_e,     // cullType
-};
-
-/* 80CE6AF8-80CE6B04 000134 000C+00 2/2 0/0 0/0 .data            __vt__8cM3dGPla */
-SECTION_DATA extern void* __vt__8cM3dGPla[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGPlaFv,
-};
-
-/* 80CE6B04-80CE6B10 000140 000C+00 2/2 0/0 0/0 .data            __vt__12J3DFrameCtrl */
-SECTION_DATA extern void* __vt__12J3DFrameCtrl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12J3DFrameCtrlFv,
-};
-
-/* 80CE6B10-80CE6B34 00014C 0024+00 3/3 0/0 0/0 .data            __vt__12dBgS_ObjAcch */
-SECTION_DATA extern void* __vt__12dBgS_ObjAcch[9] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_ObjAcchFv,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80CE6734,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)func_80CE672C,
-};
-
-/* 80CE6B34-80CE6B40 000170 000C+00 3/3 0/0 0/0 .data            __vt__10cCcD_GStts */
-SECTION_DATA extern void* __vt__10cCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10cCcD_GSttsFv,
-};
-
-/* 80CE6B40-80CE6B4C 00017C 000C+00 2/2 0/0 0/0 .data            __vt__10dCcD_GStts */
-SECTION_DATA extern void* __vt__10dCcD_GStts[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__10dCcD_GSttsFv,
-};
-
-/* 80CE6B4C-80CE6B58 000188 000C+00 2/2 0/0 0/0 .data            __vt__12dBgS_AcchCir */
-SECTION_DATA extern void* __vt__12dBgS_AcchCir[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__12dBgS_AcchCirFv,
-};
-
-/* 80CE6B58-80CE6B64 000194 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGAab */
-SECTION_DATA extern void* __vt__8cM3dGAab[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGAabFv,
-};
-
-/* 80CE6B64-80CE6B70 0001A0 000C+00 3/3 0/0 0/0 .data            __vt__8cM3dGCyl */
-SECTION_DATA extern void* __vt__8cM3dGCyl[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__8cM3dGCylFv,
-};
-
-/* 80CE6B70-80CE6B84 0001AC 0014+00 2/2 0/0 0/0 .data            __vt__15daObj_SSDrink_c */
-SECTION_DATA extern void* __vt__15daObj_SSDrink_c[5] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__15daObj_SSDrink_cFv,
-    (void*)setSoldOut__15daObj_SSDrink_cFv,
-    (void*)getProcessID__14daObj_SSBase_cFv,
-};
-
-/* 80CE4F78-80CE51C8 000078 0250+00 1/0 0/0 0/0 .text            __dt__15daObj_SSDrink_cFv */
-daObj_SSDrink_c::~daObj_SSDrink_c() {
-    // NONMATCHING
-}
-
-/* 80CE51C8-80CE53EC 0002C8 0224+00 1/1 0/0 0/0 .text            create__15daObj_SSDrink_cFv */
-void daObj_SSDrink_c::create() {
-    // NONMATCHING
-}
+static char* l_bmdName = "al_bottle.bmd";
 
 /* ############################################################################################## */
 /* 80CE6930-80CE6960 000000 0030+00 5/5 0/0 0/0 .rodata          mCcDObjInfo__15daObj_SSDrink_c */
-SECTION_RODATA u8 const daObj_SSDrink_c::mCcDObjInfo[48] = {
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x79, 0x00, 0x00, 0x00, 0x00,
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+dCcD_SrcGObjInf const daObj_SSDrink_c::mCcDObjInfo = {
+    {0, {{0, 0, 0}, {0, 0}, {0x79}}},
+    {0, 0, 0, 0, {0}},
+    {0, 0, 0, 0, {0}},
+    {{0}},
 };
-COMPILER_STRIP_GATE(0x80CE6930, &daObj_SSDrink_c::mCcDObjInfo);
 
-/* 80CE6960-80CE6964 000030 0004+00 1/3 0/0 0/0 .rodata          @4000 */
-SECTION_RODATA static f32 const lit_4000 = 1.0f;
-COMPILER_STRIP_GATE(0x80CE6960, &lit_4000);
+/* 80CE69EC-80CE6A30 000028 0044+00 2/2 0/0 0/0 .data            mCcDCyl__15daObj_SSDrink_c */
+dCcD_SrcCyl daObj_SSDrink_c::mCcDCyl = {mCcDObjInfo, {}};
 
-/* 80CE6990-80CE6990 000060 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80CE69A6 = "al_bottle.btp";
-SECTION_DEAD static char const* const stringBase_80CE69B4 = "al_bottle.brk";
-#pragma pop
-
-/* 80CE53EC-80CE55A8 0004EC 01BC+00 1/1 0/0 0/0 .text            CreateHeap__15daObj_SSDrink_cFv */
-void daObj_SSDrink_c::CreateHeap() {
-    // NONMATCHING
+/* 80CE4F78-80CE51C8 000078 0250+00 1/0 0/0 0/0 .text            __dt__15daObj_SSDrink_cFv */
+daObj_SSDrink_c::~daObj_SSDrink_c() {
+    dComIfG_resDelete(&mPhase, getResName());
 }
 
-/* 80CE55A8-80CE55F0 0006A8 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
-// J3DFrameCtrl::~J3DFrameCtrl() {
-extern "C" void __dt__12J3DFrameCtrlFv() {
-    // NONMATCHING
+/* 80CE51C8-80CE53EC 0002C8 0224+00 1/1 0/0 0/0 .text            create__15daObj_SSDrink_cFv */
+int daObj_SSDrink_c::create() {
+    fopAcM_SetupActor(this, daObj_SSDrink_c);
+    field_0xb0b = getTypeFromParam();
+    field_0xb0a = getCapacityFromParam();
+    setFlowNodeNumber(getFlowNodeNum());
+    setValueNumber(getValue());
+    mLeftHandPosY = daPy_getPlayerActorClass()->getLeftHandPos().y;
+    int phase = dComIfG_resLoad(&mPhase, getResName());
+
+    if (phase == cPhs_COMPLEATE_e) {
+        if (!fopAcM_entrySolidHeap(this, createHeapCallBack, 0x2000)) {
+            return cPhs_ERROR_e;
+        }
+
+        initialize();
+    }
+
+    return phase;
+}
+
+/* 80CE53EC-80CE55A8 0004EC 01BC+00 1/1 0/0 0/0 .text            CreateHeap__15daObj_SSDrink_cFv */
+int daObj_SSDrink_c::CreateHeap() {
+    J3DModelData* mdlData_p = NULL;
+    J3DAnmTevRegKey* pbrk;
+    J3DAnmTexPattern* pbtp;
+    int unused = 0;
+
+    mdlData_p = (J3DModelData*)dComIfG_getObjectRes(getResName(), l_bmdName);
+    JUT_ASSERT(216, mdlData_p != 0);
+
+    mpModel = mDoExt_J3DModel__create(mdlData_p, 0, 0x11020084);
+    if (mpModel == NULL) {
+        return 0;
+    }
+
+    pbtp = (J3DAnmTexPattern*)dComIfG_getObjectRes(l_resFileName, "al_bottle.btp");
+    JUT_ASSERT(230, pbtp != 0);
+    mpBtpAnm = new mDoExt_btpAnm();
+    if (mpBtpAnm == NULL || !mpBtpAnm->init(mdlData_p, pbtp, 1, 2, 1.0f, 0, -1)) {
+        return 0;
+    }
+
+    pbrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_resFileName, "al_bottle.brk");
+    JUT_ASSERT(242, pbrk != 0);
+    mpBrkAnm = new mDoExt_brkAnm();
+    if (mpBrkAnm == NULL || !mpBrkAnm->init(mdlData_p, pbrk, 1, 2, 1.0f, 0, -1)) {
+        return 0;
+    }
+
+    return 1;
 }
 
 /* 80CE55F0-80CE5624 0006F0 0034+00 1/1 0/0 0/0 .text            Delete__15daObj_SSDrink_cFv */
-void daObj_SSDrink_c::Delete() {
-    // NONMATCHING
+int daObj_SSDrink_c::Delete() {
+    this->~daObj_SSDrink_c();
+    return 1;
 }
 
-/* ############################################################################################## */
-/* 80CE6964-80CE6968 000034 0004+00 0/2 0/0 0/0 .rodata          @4057 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4057 = -1000000000.0f;
-COMPILER_STRIP_GATE(0x80CE6964, &lit_4057);
-#pragma pop
-
-/* 80CE6968-80CE696C 000038 0004+00 0/2 0/0 0/0 .rodata          @4058 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4058 = 10.0f;
-COMPILER_STRIP_GATE(0x80CE6968, &lit_4058);
-#pragma pop
-
-/* 80CE696C-80CE6970 00003C 0004+00 0/2 0/0 0/0 .rodata          @4059 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4059 = 30.0f;
-COMPILER_STRIP_GATE(0x80CE696C, &lit_4059);
-#pragma pop
-
 /* 80CE5624-80CE5858 000724 0234+00 2/2 0/0 0/0 .text            Execute__15daObj_SSDrink_cFv */
-void daObj_SSDrink_c::Execute() {
-    // NONMATCHING
+int daObj_SSDrink_c::Execute() {
+    setParam();
+    mStts.Move();
+
+    int chk = chkEvent();
+    if (chk) {
+        if (field_0xaf0) {
+            (this->*field_0xaf0)(NULL);
+        }
+        orderEvent();
+    }
+
+    fopAcM_posMoveF(this, &field_0xa98);
+    mAcch.CrrPos(dComIfG_Bgsp());
+    mGndChk = mAcch.m_gnd;
+    field_0xafc = mAcch.GetGroundH();
+
+    if (field_0xafc != -G_CM3D_F_INF) {
+        setEnvTevColor();
+        setRoomNo();
+    }
+
+    animePlay();
+    setMtx();
+
+    if (!checkProcess(&daObj_SSDrink_c::drink)) {
+        cXyz acStack_2c;
+        mCyl2.SetCoSPrm(0);
+        mCyl2.SetTgType(0xd8fbfdff);
+        mCyl2.SetTgSPrm(0x1f);
+        mCyl2.SetR(YREG_F(8) + 10.0f);
+        mCyl2.SetH(YREG_F(9) + 30.0f);
+
+        acStack_2c = current.pos;
+        mCyl2.SetC(acStack_2c);
+        dComIfG_Ccsp()->Set(&mCyl2);
+
+        mCyl1.SetAtType(AT_TYPE_0);
+        mCyl1.SetAtSPrm(0);
+
+        mCyl1.SetR(YREG_F(6) + 10.0f);
+        mCyl1.SetH(YREG_F(7) + 30.0f);
+        mCyl1.SetC(current.pos);
+
+        dComIfG_Ccsp()->Set(&mCyl1);
+    }
+
+    setAttnPos();
+    return 1;
 }
 
 /* 80CE5858-80CE5994 000958 013C+00 1/1 0/0 0/0 .text            Draw__15daObj_SSDrink_cFv */
-void daObj_SSDrink_c::Draw() {
-    // NONMATCHING
-}
+int daObj_SSDrink_c::Draw() {
+    if (checkProcess(&daObj_SSDrink_c::drink)) {
+        return 1;
+    }
 
-/* 80CE5994-80CE59DC 000A94 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGPlaFv */
-// cM3dGPla::~cM3dGPla() {
-extern "C" void __dt__8cM3dGPlaFv() {
-    // NONMATCHING
+    g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+    g_env_light.dScnKy_env_light_c::setLightTevColorType_MAJI(mpModel, &tevStr);
+    fopAcM_setEffectMtx(this, mpModel->getModelData());
+    animeEntry();
+    mDoExt_modelUpdateDL(mpModel);
+    if (field_0xafc != -G_CM3D_F_INF) {
+        cM3dGPla cStack_3c;
+        bool tri_pla = dComIfG_Bgsp().GetTriPla(mGndChk, &cStack_3c);
+        if (tri_pla) {
+            f32 some_float = 10.0f;
+            dComIfGd_setSimpleShadow(&current.pos, field_0xafc, some_float, &cStack_3c.mNormal, 0,
+                                     1.0f, dDlst_shadowControl_c::getSimpleTex());
+        }
+    }
+
+    return 1;
 }
 
 /* 80CE59DC-80CE59FC 000ADC 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__15daObj_SSDrink_cFP10fopAc_ac_c          */
-void daObj_SSDrink_c::createHeapCallBack(fopAc_ac_c* param_0) {
-    // NONMATCHING
+int daObj_SSDrink_c::createHeapCallBack(fopAc_ac_c* a_this) {
+    daObj_SSDrink_c* i_this = (daObj_SSDrink_c*)a_this;
+    return i_this->CreateHeap();
 }
 
 /* 80CE59FC-80CE5A50 000AFC 0054+00 1/0 0/0 0/0 .text            setSoldOut__15daObj_SSDrink_cFv */
 void daObj_SSDrink_c::setSoldOut() {
-    // NONMATCHING
+    if (getParentPtr() != NULL) {
+        ((daMyna_c*)getParentPtr())->onEventFlag(0);
+        ((daMyna_c*)getParentPtr())->soldoutItem(fopAcM_GetID(this));
+    }
 }
 
 /* 80CE5A50-80CE5A60 000B50 0010+00 4/4 0/0 0/0 .text            getResName__15daObj_SSDrink_cFv */
-void daObj_SSDrink_c::getResName() {
-    // NONMATCHING
+char* daObj_SSDrink_c::getResName() {
+    return l_resFileName;
 }
 
 /* 80CE5A60-80CE5B0C 000B60 00AC+00 1/1 0/0 0/0 .text getTypeFromParam__15daObj_SSDrink_cFv */
-void daObj_SSDrink_c::getTypeFromParam() {
-    // NONMATCHING
+u8 daObj_SSDrink_c::getTypeFromParam() {
+    u8 x = fopAcM_GetParam((this)) & 0xf;
+
+    switch (x) {
+    case 0:
+        field_0xb0c = 0x69;
+        return 0;
+    case 1:
+        field_0xb0c = 0x62;
+        return 1;
+    case 2:
+        field_0xb0c = 0x63;
+        return 2;
+    case 3:
+        field_0xb0c = 0x65;
+        return 3;
+    case 4:
+        field_0xb0c = 0x68;
+        return 4;
+    case 5:
+        field_0xb0c = 0x67;
+        return 5;
+    default:
+        field_0xb0c = 0x60;
+    }
+
+    return 6;
 }
 
 /* 80CE5B0C-80CE5B18 000C0C 000C+00 1/1 0/0 0/0 .text getSwitchFromParam__15daObj_SSDrink_cFv */
-void daObj_SSDrink_c::getSwitchFromParam() {
-    // NONMATCHING
+u8 daObj_SSDrink_c::getSwitchFromParam() {
+    u8 switch_from_prm = (fopAcM_GetParam(this) & 0xff0) >> 4;
+    return switch_from_prm;
 }
 
 /* 80CE5B18-80CE5B3C 000C18 0024+00 1/1 0/0 0/0 .text getCapacityFromParam__15daObj_SSDrink_cFv */
-void daObj_SSDrink_c::getCapacityFromParam() {
-    // NONMATCHING
+u8 daObj_SSDrink_c::getCapacityFromParam() {
+    if (field_0xb0b == 6) {
+        return 2;
+    }
+
+    if (field_0xb0b == 3) {
+        return 1;
+    }
+
+    return 0;
 }
 
 /* 80CE5B3C-80CE5B74 000C3C 0038+00 2/2 0/0 0/0 .text            getFlowNodeNum__15daObj_SSDrink_cFv
  */
-void daObj_SSDrink_c::getFlowNodeNum() {
-    // NONMATCHING
+u16 daObj_SSDrink_c::getFlowNodeNum() {
+    u16 var_r31 = home.angle.x;
+    return var_r31 == 0xFFFF || var_r31 == 0 ? -1 : var_r31;
 }
 
 /* 80CE5B74-80CE5B80 000C74 000C+00 1/1 0/0 0/0 .text            getValue__15daObj_SSDrink_cFv */
-void daObj_SSDrink_c::getValue() {
-    // NONMATCHING
+u16 daObj_SSDrink_c::getValue() {
+    u16 value = (fopAcM_GetParam(this) & 0xffff000) >> 12;
+    return value;
 }
 
 /* 80CE5B80-80CE5BF0 000C80 0070+00 1/1 0/0 0/0 .text            restart__15daObj_SSDrink_cFv */
 void daObj_SSDrink_c::restart() {
-    // NONMATCHING
+    current.angle.set(0, home.angle.y, 0);
+    shape_angle = current.angle;
+    setProcess(&daObj_SSDrink_c::wait);
 }
-
-/* ############################################################################################## */
-/* 80CE6970-80CE6974 000040 0004+00 0/1 0/0 0/0 .rodata          @4204 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4204 = -30.0f;
-COMPILER_STRIP_GATE(0x80CE6970, &lit_4204);
-#pragma pop
-
-/* 80CE6974-80CE6978 000044 0004+00 0/1 0/0 0/0 .rodata          @4205 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4205 = -15.0f;
-COMPILER_STRIP_GATE(0x80CE6974, &lit_4205);
-#pragma pop
-
-/* 80CE6978-80CE697C 000048 0004+00 0/1 0/0 0/0 .rodata          @4206 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4206 = 45.0f;
-COMPILER_STRIP_GATE(0x80CE6978, &lit_4206);
-#pragma pop
-
-/* 80CE697C-80CE6980 00004C 0004+00 0/2 0/0 0/0 .rodata          @4207 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4207 = 24.0f;
-COMPILER_STRIP_GATE(0x80CE697C, &lit_4207);
-#pragma pop
-
-/* 80CE6980-80CE6984 000050 0004+00 0/2 0/0 0/0 .rodata          @4208 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4208 = 12.0f;
-COMPILER_STRIP_GATE(0x80CE6980, &lit_4208);
-#pragma pop
 
 /* 80CE5BF0-80CE5DB0 000CF0 01C0+00 1/1 0/0 0/0 .text            initialize__15daObj_SSDrink_cFv */
 void daObj_SSDrink_c::initialize() {
-    // NONMATCHING
+    J3DModelData* modelData = mpModel->getModelData();
+    fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
+    fopAcM_setCullSizeBox(this, -30.0f, -15.0f, -30.0f, 30.0f, 45.0f, 30.0f);
+    eventInfo.setArchiveName(getResName());
+    attention_info.flags = 0;
+    attention_info.distances[fopAc_attn_CARRY_e] = 6;
+    fopAcM_OnCarryType(this, fopAcM_CARRY_SIDE);
+
+    if (field_0xb0c == 0x60) {
+        mAcchCir.SetWall(24.0f, 12.0f);
+    }
+
+    mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1, &mAcchCir,
+              fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
+    mStts.Init(0xff, 0, this);
+    mCyl1.Set(mCcDCyl);
+    mCyl1.SetStts(&mStts);
+    mCyl2.Set(mCcDCyl);
+    mCyl2.SetStts(&mStts);
+
+    mAcch.CrrPos(dComIfG_Bgsp());
+    mGndChk = mAcch.m_gnd;
+    field_0xafc = mAcch.GetGroundH();
+    setEnvTevColor();
+    setRoomNo();
+    restart();
+    Execute();
 }
 
 /* 80CE5DB0-80CE5DDC 000EB0 002C+00 6/6 0/0 0/0 .text
  * checkProcess__15daObj_SSDrink_cFM15daObj_SSDrink_cFPCvPvPv_i */
-void daObj_SSDrink_c::checkProcess(int (daObj_SSDrink_c::*param_0)(void*)) {
-    // NONMATCHING
+int daObj_SSDrink_c::checkProcess(ProcessFunc param_0) {
+    return field_0xaf0 == param_0;
 }
 
 /* 80CE5DDC-80CE5EC8 000EDC 00EC+00 4/4 0/0 0/0 .text
  * setProcess__15daObj_SSDrink_cFM15daObj_SSDrink_cFPCvPvPv_i   */
-void daObj_SSDrink_c::setProcess(int (daObj_SSDrink_c::*param_0)(void*)) {
-    // NONMATCHING
-}
+int daObj_SSDrink_c::setProcess(ProcessFunc param_0) {
+    int ret = 0;
 
-/* ############################################################################################## */
-/* 80CE6984-80CE6988 000054 0004+00 0/1 0/0 0/0 .rodata          @4257 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_4257 = -5.0f;
-COMPILER_STRIP_GATE(0x80CE6984, &lit_4257);
-#pragma pop
+    if (checkProcess(param_0)) {
+        return ret;
+    }
+    field_0xb08 = 2;
+
+    if (field_0xaf0) {
+        ret = (this->*field_0xaf0)(NULL);
+    }
+
+    field_0xb08 = 0;
+    field_0xaf0 = param_0;
+
+    if (field_0xaf0) {
+        ret = (this->*field_0xaf0)(NULL);
+    }
+
+    field_0xb08 = 1;
+
+    return ret;
+}
 
 /* 80CE5EC8-80CE5FE4 000FC8 011C+00 1/1 0/0 0/0 .text            setParam__15daObj_SSDrink_cFv */
 void daObj_SSDrink_c::setParam() {
-    // NONMATCHING
+    f32 some_float = 1.0f;
+    scale.set(some_float, some_float, some_float);
+
+    if (field_0xb0c == 0x60) {
+        mAcchCir.SetWallR(24.0f);
+        mAcchCir.SetWallH(12.0f);
+    }
+
+    gravity = -5.0f;
+
+#ifdef DEBUG
+    bool bVar1 = false;
+    bool bVar2 = false;
+#endif
+
+    if (daPy_getPlayerActorClass()->getGrabActorID() != fpcM_ERROR_PROCESS_ID_e) {
+        if (!checkProcess(&daObj_SSDrink_c::drink)) {
+            if (field_0xb0c != 0x60) {
+                fopAcM_offSwitch(this, getSwitchFromParam());
+                return;
+            }
+        }
+    }
+
+    fopAcM_onSwitch(this, getSwitchFromParam());
 }
 
 /* 80CE5FE4-80CE6040 0010E4 005C+00 2/2 0/0 0/0 .text            setEnvTevColor__15daObj_SSDrink_cFv
  */
 void daObj_SSDrink_c::setEnvTevColor() {
-    // NONMATCHING
+    tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mGndChk);
+    tevStr.room_no = dComIfG_Bgsp().GetRoomId(mGndChk);
 }
 
 /* 80CE6040-80CE6084 001140 0044+00 2/2 0/0 0/0 .text            setRoomNo__15daObj_SSDrink_cFv */
 void daObj_SSDrink_c::setRoomNo() {
-    // NONMATCHING
+    s8 room_id = dComIfG_Bgsp().GetRoomId(mGndChk);
+    fopAcM_SetRoomNo(this, room_id);
+    mStts.SetRoomId(room_id);
 }
 
 /* 80CE6084-80CE60E8 001184 0064+00 1/1 0/0 0/0 .text            setMtx__15daObj_SSDrink_cFv */
 void daObj_SSDrink_c::setMtx() {
-    // NONMATCHING
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::ZXYrotM(shape_angle);
+    mDoMtx_stack_c::scaleM(scale);
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80CE60E8-80CE6170 0011E8 0088+00 1/1 0/0 0/0 .text            setAttnPos__15daObj_SSDrink_cFv */
 void daObj_SSDrink_c::setAttnPos() {
-    // NONMATCHING
-}
+    if (!checkProcess(&daObj_SSDrink_c::drink)) {
+        attention_info.position = current.pos;
+    }
 
-/* ############################################################################################## */
-/* 80CE6988-80CE6990 000058 0008+00 1/1 0/0 0/0 .rodata          @4320 */
-SECTION_RODATA static u8 const lit_4320[8] = {
-    0x43, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-};
-COMPILER_STRIP_GATE(0x80CE6988, &lit_4320);
+    eyePos = current.pos;
+}
 
 /* 80CE6170-80CE61E4 001270 0074+00 1/1 0/0 0/0 .text            animeEntry__15daObj_SSDrink_cFv */
 void daObj_SSDrink_c::animeEntry() {
-    // NONMATCHING
+    mpBtpAnm->entry(mpModel->getModelData(), field_0xb0a);
+    mpBrkAnm->entry(mpModel->getModelData(), field_0xb0b);
 }
 
 /* 80CE61E4-80CE622C 0012E4 0048+00 1/1 0/0 0/0 .text            animePlay__15daObj_SSDrink_cFv */
 void daObj_SSDrink_c::animePlay() {
-    // NONMATCHING
+    if (mpBtpAnm != NULL) {
+        mpBtpAnm->play();
+    }
+
+    if (mpBrkAnm != NULL) {
+        mpBrkAnm->play();
+    }
 }
 
 /* 80CE622C-80CE63AC 00132C 0180+00 1/1 0/0 0/0 .text            chkEvent__15daObj_SSDrink_cFv */
-void daObj_SSDrink_c::chkEvent() {
-    // NONMATCHING
+int daObj_SSDrink_c::chkEvent() {
+    int ret = 1;
+
+    if (checkProcess(&daObj_SSDrink_c::drink)) {
+        return 1;
+    }
+
+    if (dComIfGp_getEvent().isOrderOK() == 0) {
+        if (getParentPtr() != NULL) {
+            fopAc_ac_c* parent = (fopAc_ac_c*)getParentPtr();
+            attention_info.position.set(parent->attention_info.position);
+        }
+
+        ret = 0;
+
+        if (eventInfo.checkCommandTalk()) {
+            if (checkProcess(&daObj_SSDrink_c::talk)) {
+                ret = (this->*field_0xaf0)(NULL);
+            } else if (dComIfGp_event_chkTalkXY() == 0 || dComIfGp_evmng_ChkPresentEnd()) {
+                setProcess(&daObj_SSDrink_c::talk);
+            }
+
+            return ret;
+        }
+    }
+
+    return ret;
 }
 
 /* 80CE63AC-80CE644C 0014AC 00A0+00 1/1 0/0 0/0 .text            orderEvent__15daObj_SSDrink_cFv */
-void daObj_SSDrink_c::orderEvent() {
-    // NONMATCHING
+int daObj_SSDrink_c::orderEvent() {
+    if (!daPy_py_c::checkNowWolf() && field_0xb0c != 0x60 && getFlowNodeNum() != -1) {
+        attention_info.flags = fopAc_AttnFlag_TALKREAD_e | fopAc_AttnFlag_SPEAK_e;
+    } else {
+        attention_info.flags = 0;
+    }
+
+    if (attention_info.flags == (fopAc_AttnFlag_TALKREAD_e | fopAc_AttnFlag_SPEAK_e)) {
+        attention_info.distances[fopAc_attn_TALK_e] = 0x6;
+        attention_info.distances[fopAc_attn_SPEAK_e] = 0x6;
+        eventInfo.onCondition(dEvtCnd_CANTALK_e);
+    }
+
+    return 1;
 }
 
 /* 80CE644C-80CE6454 00154C 0008+00 2/0 0/0 0/0 .text            wait__15daObj_SSDrink_cFPv */
-bool daObj_SSDrink_c::wait(void* param_0) {
-    return true;
+int daObj_SSDrink_c::wait(void* param_0) {
+#ifdef DEBUG
+    switch (field_0xb08) {
+    case 0:
+    case 2:
+    case 1:
+        break;
+    }
+#endif
+    return 1;
 }
 
 /* 80CE6454-80CE6514 001554 00C0+00 3/0 0/0 0/0 .text            talk__15daObj_SSDrink_cFPv */
-void daObj_SSDrink_c::talk(void* param_0) {
-    // NONMATCHING
+int daObj_SSDrink_c::talk(void* param_0) {
+    int ret = 0;
+
+    switch (field_0xb08) {
+    case 0:
+    case 2:
+        break;
+    case 1:
+        setSoldOut();
+        dMsgObject_addTotalPrice(getValueNumber());
+        daPy_py_c* player = daPy_getPlayerActorClass();
+        player->changeOriginalDemo();
+        player->changeDemoMode(0x2a, field_0xb0c, 0, 0);
+        setProcess(&daObj_SSDrink_c::drink);
+    }
+
+    return ret;
 }
 
 /* 80CE6514-80CE6624 001614 0110+00 5/0 0/0 0/0 .text            drink__15daObj_SSDrink_cFPv */
-void daObj_SSDrink_c::drink(void* param_0) {
-    // NONMATCHING
+int daObj_SSDrink_c::drink(void* param_0) {
+    int ret = 0;
+
+    switch (field_0xb08) {
+    case 0:
+        field_0xb0a = 0x2;
+        field_0xb0c = 0x60;
+    case 2:
+        break;
+    case 1:
+        daPy_py_c* player = daPy_getPlayerActorClass();
+        if (player->checkBottleDrinkEnd() != 0) {
+            dComIfGp_event_reset();
+            setProcess(&daObj_SSDrink_c::wait);
+        } else {
+            cXyz left_hand_pos = player->getLeftHandPos();
+
+            if (left_hand_pos.y < mLeftHandPosY) {
+                mLeftHandPosY = left_hand_pos.y;
+                current.pos.set(left_hand_pos);
+            }
+        }
+        break;
+    }
+
+    return ret;
 }
 
 /* 80CE6624-80CE6644 001724 0020+00 1/0 0/0 0/0 .text            daObj_SSDrink_Create__FPv */
-static void daObj_SSDrink_Create(void* param_0) {
-    // NONMATCHING
+static int daObj_SSDrink_Create(void* i_this) {
+    return ((daObj_SSDrink_c*)i_this)->create();
 }
 
 /* 80CE6644-80CE6664 001744 0020+00 1/0 0/0 0/0 .text            daObj_SSDrink_Delete__FPv */
-static void daObj_SSDrink_Delete(void* param_0) {
-    // NONMATCHING
+static int daObj_SSDrink_Delete(void* i_this) {
+    return ((daObj_SSDrink_c*)i_this)->Delete();
 }
 
 /* 80CE6664-80CE6684 001764 0020+00 1/0 0/0 0/0 .text            daObj_SSDrink_Execute__FPv */
-static void daObj_SSDrink_Execute(void* param_0) {
-    // NONMATCHING
+static int daObj_SSDrink_Execute(void* i_this) {
+    return ((daObj_SSDrink_c*)i_this)->Execute();
 }
 
 /* 80CE6684-80CE66A4 001784 0020+00 1/0 0/0 0/0 .text            daObj_SSDrink_Draw__FPv */
-static void daObj_SSDrink_Draw(void* param_0) {
-    // NONMATCHING
+static int daObj_SSDrink_Draw(void* i_this) {
+    return ((daObj_SSDrink_c*)i_this)->Draw();
 }
 
 /* 80CE66A4-80CE66AC 0017A4 0008+00 1/0 0/0 0/0 .text            daObj_SSDrink_IsDelete__FPv */
-static bool daObj_SSDrink_IsDelete(void* param_0) {
-    return true;
+static int daObj_SSDrink_IsDelete(void* i_this) {
+    return 1;
 }
 
-/* 80CE66AC-80CE66F4 0017AC 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
-// cCcD_GStts::~cCcD_GStts() {
-extern "C" void __dt__10cCcD_GSttsFv() {
-    // NONMATCHING
-}
+/* 80CE6AA8-80CE6AC8 -00001 0020+00 1/0 0/0 0/0 .data            daObj_SSDrink_MethodTable */
+static actor_method_class daObj_SSDrink_MethodTable = {
+    (process_method_func)daObj_SSDrink_Create,  (process_method_func)daObj_SSDrink_Delete,
+    (process_method_func)daObj_SSDrink_Execute, (process_method_func)daObj_SSDrink_IsDelete,
+    (process_method_func)daObj_SSDrink_Draw,
+};
 
-/* 80CE66F4-80CE672C 0017F4 0038+00 0/0 1/0 0/0 .text            __sinit_d_a_obj_ss_drink_cpp */
-void __sinit_d_a_obj_ss_drink_cpp() {
-    // NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80CE66F4, __sinit_d_a_obj_ss_drink_cpp);
-#pragma pop
-
-/* 80CE672C-80CE6734 00182C 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
-static void func_80CE672C() {
-    // NONMATCHING
-}
-
-/* 80CE6734-80CE673C 001834 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
-static void func_80CE6734() {
-    // NONMATCHING
-}
-
-/* 80CE673C-80CE6758 00183C 001C+00 2/2 0/0 0/0 .text            getLeftHandPos__9daPy_py_cCFv */
-// void daPy_py_c::getLeftHandPos() const {
-extern "C" void getLeftHandPos__9daPy_py_cCFv() {
-    // NONMATCHING
-}
-
-/* 80CE6758-80CE67A0 001858 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGCylFv */
-// cM3dGCyl::~cM3dGCyl() {
-extern "C" void __dt__8cM3dGCylFv() {
-    // NONMATCHING
-}
-
-/* 80CE67A0-80CE67E8 0018A0 0048+00 1/0 0/0 0/0 .text            __dt__8cM3dGAabFv */
-// cM3dGAab::~cM3dGAab() {
-extern "C" void __dt__8cM3dGAabFv() {
-    // NONMATCHING
-}
-
-/* 80CE67E8-80CE6858 0018E8 0070+00 1/0 0/0 0/0 .text            __dt__12dBgS_AcchCirFv */
-// dBgS_AcchCir::~dBgS_AcchCir() {
-extern "C" void __dt__12dBgS_AcchCirFv() {
-    // NONMATCHING
-}
-
-/* 80CE6858-80CE68B4 001958 005C+00 1/0 0/0 0/0 .text            __dt__10dCcD_GSttsFv */
-// dCcD_GStts::~dCcD_GStts() {
-extern "C" void __dt__10dCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* 80CE68B4-80CE6924 0019B4 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
-// dBgS_ObjAcch::~dBgS_ObjAcch() {
-extern "C" void __dt__12dBgS_ObjAcchFv() {
-    // NONMATCHING
-}
-
-/* 80CE6990-80CE6990 000060 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
+/* 80CE6AC8-80CE6AF8 -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_SSDRINK */
+extern actor_process_profile_definition g_profile_OBJ_SSDRINK = {
+    fpcLy_CURRENT_e,             // mLayerID
+    7,                           // mListID
+    fpcPi_CURRENT_e,             // mListPrio
+    PROC_OBJ_SSDRINK,            // mProcName
+    &g_fpcLf_Method.base,        // sub_method
+    sizeof(daObj_SSDrink_c),     // mSize
+    0,                           // mSizeOther
+    0,                           // mParameters
+    &g_fopAc_Method.base,        // sub_method
+    68,                          // mPriority
+    &daObj_SSDrink_MethodTable,  // sub_method
+    0x00064100,                  // mStatus
+    fopAc_UNK_GROUP_5_e,         // mActorType
+    fopAc_CULLBOX_CUSTOM_e,      // cullType
+};
