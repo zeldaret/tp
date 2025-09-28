@@ -360,7 +360,7 @@ const GXColor* renderingAmap_c::getDecoLineColor(int param_0, int param_1) {
 
     const GXColor* color;
     if (isDrawOutSideTrim() && field_0x38 != 2) {
-        JUT_ASSERT(0, m_outSideBlackLineCnt < (sizeof(colorTable) / sizeof(colorTable[0])));
+        JUT_ASSERT(0, m_outSideBlackLineCnt < ARRAY_SIZEU(colorTable));
         color = &colorTable[m_outSideBlackLineCnt];
     } else {
         color = getLineColor(param_0, param_1);

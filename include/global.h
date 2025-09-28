@@ -23,8 +23,8 @@
 
 #define ALIGN_DECL(ALIGNMENT) __attribute__((aligned(ALIGNMENT)))
 
-#define ARRAY_SIZE(o) (s32)(sizeof((o)) / sizeof(*(o)))
-#define ARRAY_SIZEU(o) (sizeof((o)) / sizeof(*(o)))
+#define ARRAY_SIZE(o) (s32)(sizeof(o) / sizeof(o[0]))
+#define ARRAY_SIZEU(o) (sizeof(o) / sizeof(o[0]))
 
 // Align X to the previous N bytes (N must be power of two)
 #define ALIGN_PREV(X, N) ((X) & ~((N)-1))

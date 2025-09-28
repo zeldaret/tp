@@ -766,7 +766,7 @@ static int daObj_Keyhole_Create(fopAc_ac_c* a_this) {
             0xA420, 0xA4E0, 0xA4E0, 0xA4E0, 0xA4E0,
         };
 
-        ASSERTLINE(1360, i_this->arg0 < sizeof(estimateSizeTbl) / sizeof(estimateSizeTbl[0]));
+        ASSERTLINE(1360, i_this->arg0 < ARRAY_SIZEU(estimateSizeTbl));
         u32 heapsize = estimateSizeTbl[i_this->arg0];
         OS_REPORT("OBJ_KEYHOLE: arg0=%u 0x%04x\n", i_this->arg0, heapsize);
 
