@@ -1406,7 +1406,7 @@ int daE_GE_c::create() {
             modified_home_pos.y += 100.0f;
             gndChk.SetPos(&modified_home_pos);
             f32 groundCross = dComIfG_Bgsp().GroundCross(&gndChk);
-            if (groundCross != -1000000000.0f && fabsf(current.pos.y - groundCross) < 200.0f) {
+            if (groundCross != -G_CM3D_F_INF && fabsf(current.pos.y - groundCross) < 200.0f) {
                 current.pos.y = old.pos.y = home.pos.y = groundCross + 30.0f;
             }
             setActionMode(ACTION_WAIT);
