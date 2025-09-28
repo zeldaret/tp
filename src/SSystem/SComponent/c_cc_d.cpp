@@ -6,7 +6,6 @@
 #include "SSystem/SComponent/c_cc_d.h"
 #include "JSystem/JUtility/JUTAssert.h"
 
-#define CHECK_FLOAT_CLASS(line, x) JUT_ASSERT(line, !(fpclassify(x) == 1));
 #define CHECK_FLOAT_RANGE(line, x) JUT_ASSERT(line, -1.0e32f < x && x < 1.0e32f);
 
 /* 80430CB4-80430CC0 05D9D4 000C+00 1/1 2/2 0/0 .bss             m_virtual_center__14cCcD_ShapeAttr
@@ -224,9 +223,9 @@ void cCcD_Stts::PlusCcMove(f32 x, f32 y, f32 z) {
     m_cc_move.y += y;
     m_cc_move.z += z;
 
-    CHECK_FLOAT_CLASS(422, m_cc_move.x);
-    CHECK_FLOAT_CLASS(423, m_cc_move.y);
-    CHECK_FLOAT_CLASS(424, m_cc_move.z);
+    JUT_ASSERT(422, !isnan(m_cc_move.x));
+    JUT_ASSERT(423, !isnan(m_cc_move.y));
+    JUT_ASSERT(424, !isnan(m_cc_move.z));
 
     CHECK_FLOAT_RANGE(426, m_cc_move.x);
     CHECK_FLOAT_RANGE(427, m_cc_move.y);

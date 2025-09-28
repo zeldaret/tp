@@ -8,6 +8,10 @@
 #include "d/d_bg_s_lin_chk.h"
 #include "f_op/f_op_actor_mng.h"
 
+#define CHECK_FLOAT_RANGE(line, x) JUT_ASSERT(line, -1.0e32f < x && x < 1.0e32f);
+
+static const f32 INF = 2000000000.0f;
+
 /* 80077C68-80077CDC 0725A8 0074+00 8/8 3/3 388/388 .text            __ct__11dBgS_LinChkFv */
 dBgS_LinChk::dBgS_LinChk() {
     SetPolyPassChk(GetPolyPassChkInfo());
@@ -20,8 +24,27 @@ dBgS_LinChk::~dBgS_LinChk() {}
 /* 80077D64-80077DA4 0726A4 0040+00 0/0 15/15 307/307 .text
  * Set__11dBgS_LinChkFPC4cXyzPC4cXyzPC10fopAc_ac_c              */
 void dBgS_LinChk::Set(cXyz const* pi_start, cXyz const* pi_end, fopAc_ac_c const* p_actor) {
-    u32 id;
+    JUT_ASSERT(45, !isnan(pi_start->x));
+    JUT_ASSERT(46, !isnan(pi_start->y));
+    JUT_ASSERT(47, !isnan(pi_start->z));
+    JUT_ASSERT(48, !isnan(pi_end->x));
+    JUT_ASSERT(49, !isnan(pi_end->y));
+    //! @bug Two asserts on pi_end->y instead of one on py_end->z
+    JUT_ASSERT(50, !isnan(pi_end->y));
 
+    JUT_ASSERT(54, -INF < pi_start->x && pi_start->x < INF);
+    JUT_ASSERT(55, -INF < pi_start->y && pi_start->y < INF);
+    JUT_ASSERT(56, -INF < pi_start->z && pi_start->z < INF);
+    JUT_ASSERT(57, -INF < pi_end->x && pi_end->x < INF);
+    JUT_ASSERT(58, -INF < pi_end->y && pi_end->y < INF);
+    JUT_ASSERT(59, -INF < pi_end->z && pi_end->z < INF);
+
+    JUT_ASSERT(61, pi_start->y != G_CM3D_F_INF);
+    JUT_ASSERT(62, pi_start->y != -G_CM3D_F_INF);
+    JUT_ASSERT(63, pi_end->y != G_CM3D_F_INF);
+    JUT_ASSERT(64, pi_end->y != -G_CM3D_F_INF);
+
+    u32 id;
     if (p_actor != NULL) {
         id = fopAcM_GetID(p_actor);
     } else {
