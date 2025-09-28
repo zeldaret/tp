@@ -3,7 +3,7 @@
 // Translation Unit: d_a_b_ob
 //
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_b_ob.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"

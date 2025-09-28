@@ -3,7 +3,7 @@
  * Utility Functions
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_lib.h"
 #include "d/d_event.h"

@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 // This TU seems to disable inlining entirely, as there are several weak functions that get inlined
 // in other TUs, but not here.

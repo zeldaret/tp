@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_no_chg_room.h"
 #include "d/d_s_room.h"

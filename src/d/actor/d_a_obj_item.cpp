@@ -3,7 +3,7 @@
  * Item (Rupee, Arrow, Heart, etc) Object Actor
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_item.h"
 #include "SSystem/SComponent/c_math.h"

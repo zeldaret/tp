@@ -2,7 +2,7 @@
 // Option Menu
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include <dolphin/os.h>
 #include "JSystem/J2DGraph/J2DAnmLoader.h"

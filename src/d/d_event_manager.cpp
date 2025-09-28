@@ -3,7 +3,7 @@
  * Event System Manager
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_event_manager.h"
 #include "SSystem/SComponent/c_math.h"

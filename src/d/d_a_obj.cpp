@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_a_obj.h"
 #include "SSystem/SComponent/c_math.h"

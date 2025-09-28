@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_k_wmark.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"

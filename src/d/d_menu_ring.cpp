@@ -4,7 +4,7 @@
  * 
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_menu_ring.h"
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"

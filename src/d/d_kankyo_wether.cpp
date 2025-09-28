@@ -3,7 +3,7 @@
  * Weather Effects
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_kankyo_wether.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"

@@ -3,7 +3,7 @@
  * Minigame HUD Timer / Counter
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_timer.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"

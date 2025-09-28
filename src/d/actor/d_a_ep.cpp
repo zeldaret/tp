@@ -2,7 +2,7 @@
 // Translation Unit: d_a_ep
 //
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_ep.h"
 #include "d/actor/d_a_player.h"

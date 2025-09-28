@@ -3,7 +3,7 @@
  * Enemy - Guay
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_ge.h"
 #include "d/d_cc_d.h"

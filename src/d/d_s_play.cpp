@@ -3,7 +3,7 @@
  * Main Gameplay Scene
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_s_play.h"
 #include "JSystem/JUtility/JUTConsole.h"

@@ -3,7 +3,7 @@
 // Translation Unit: d/d_gameover
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_gameover.h"
 #include "JSystem/J2DGraph/J2DScreen.h"

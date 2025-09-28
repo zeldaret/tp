@@ -3,7 +3,7 @@
 // Translation Unit: d/d_drawlist
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "JSystem/J2DGraph/J2DAnimation.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"

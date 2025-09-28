@@ -2,7 +2,7 @@
 // Formation Manager
 //
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_formation_mng.h"
 #include "d/actor/d_a_npc_fguard.h"

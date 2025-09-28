@@ -3,7 +3,7 @@
  * Save File Manager
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "JSystem/JHostIO/JORFile.h"
 #include "JSystem/JUtility/JUTGamePad.h"

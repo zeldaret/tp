@@ -5,7 +5,7 @@
 
 // Every function matches, but a Z2SoundObjSimple dtor is generated that should not exist
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "c/c_damagereaction.h"
 #include "d/actor/d_a_canoe.h"

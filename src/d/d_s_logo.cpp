@@ -3,7 +3,7 @@
  * Game Boot Logo's Display
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_s_logo.h"
 #include "JSystem/JKernel/JKRAram.h"

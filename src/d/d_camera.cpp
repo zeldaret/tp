@@ -3,7 +3,7 @@
 // Translation Unit: d/d_camera
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_camera.h"
 #include "SSystem/SComponent/c_counter.h"

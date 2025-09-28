@@ -2,7 +2,7 @@
 // Item Message Screen
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_msg_scrn_item.h"
 #include "d/d_msg_scrn_light.h"

@@ -3,7 +3,7 @@
  * Model, Animation, and Heap Functions
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include <dolphin/gf/GFPixel.h>
 #include <dolphin/gx.h>

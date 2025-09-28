@@ -3,7 +3,7 @@
  * UI Mini-Game Text
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_meter_string.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"

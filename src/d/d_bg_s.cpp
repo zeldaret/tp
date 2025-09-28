@@ -3,7 +3,7 @@
  * Background (Map) Collision main handler
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_bg_s.h"
 #include "d/d_bg_s_sph_chk.h"

@@ -3,7 +3,7 @@
  * UI Button handling
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_meter_button.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"

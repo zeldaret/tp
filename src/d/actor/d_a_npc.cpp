@@ -1,4 +1,4 @@
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc.h"
 #include "d/actor/d_a_npc_tk.h"

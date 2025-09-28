@@ -1,4 +1,4 @@
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "JSystem/JMessage/JMessage.h"

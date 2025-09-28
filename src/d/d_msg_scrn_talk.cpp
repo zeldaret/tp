@@ -2,7 +2,7 @@
 // Translation Unit: msg/scrn/d_msg_scrn_talk
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_msg_scrn_talk.h"
 #include "d/d_msg_scrn_light.h"

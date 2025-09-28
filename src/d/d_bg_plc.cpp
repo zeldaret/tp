@@ -1,4 +1,4 @@
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_bg_plc.h"
 #include "JSystem/JUtility/JUTAssert.h"

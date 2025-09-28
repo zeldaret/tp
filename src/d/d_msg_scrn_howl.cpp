@@ -2,7 +2,7 @@
 // Howl Screen
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_msg_scrn_howl.h"
 #include "m_Do/m_Do_controller_pad.h"

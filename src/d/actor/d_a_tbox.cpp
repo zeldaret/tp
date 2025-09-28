@@ -3,7 +3,7 @@
 // Translation Unit: d_a_tbox
 //
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_tbox.h"
 #include "d/d_tresure.h"

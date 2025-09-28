@@ -3,7 +3,7 @@
  * BG collision Actor Check
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_player.h"
 #include "d/d_bg_s.h"

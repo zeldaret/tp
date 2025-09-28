@@ -7,7 +7,7 @@
 // Translation Unit: d/file/d_file_sel_warning
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_file_sel_warning.h"
 #include "d/d_msg_string.h"

@@ -3,7 +3,7 @@
  * Actor base process class
 */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_alink.h"
 #include "d/d_com_inf_actor.h"

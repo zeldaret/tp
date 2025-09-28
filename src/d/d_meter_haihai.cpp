@@ -3,7 +3,7 @@
  * UI Arrows
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_meter_haihai.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"

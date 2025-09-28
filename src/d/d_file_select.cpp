@@ -3,7 +3,7 @@
  * dolzel2 - Quest Log Management (File Select Menu)
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"

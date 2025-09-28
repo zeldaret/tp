@@ -3,7 +3,7 @@
 // Translation Unit: d/d_name
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_name.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"

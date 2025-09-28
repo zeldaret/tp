@@ -3,7 +3,7 @@
  * Main Shop System
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_shop_system.h"
 #include "SSystem/SComponent/c_math.h"

@@ -2,7 +2,7 @@
 // Object wflag
 //
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_wflag.h"
 #include "d/d_com_inf_game.h"

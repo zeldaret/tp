@@ -3,7 +3,7 @@
  * Tag - Lantern
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_tag_lantern.h"
 #include "d/d_procname.h"

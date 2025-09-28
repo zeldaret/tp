@@ -1,4 +1,4 @@
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "d/actor/d_a_player.h"

@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_e_hz.h"

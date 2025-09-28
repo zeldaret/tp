@@ -3,7 +3,7 @@
 // Translation Unit: d/d_msg_object
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #define DISABLE_MSG_OBJECT_EXTERN
 

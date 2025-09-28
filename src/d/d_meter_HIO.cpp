@@ -3,7 +3,7 @@
 // Translation Unit: d/d_meter_HIO
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_meter_HIO.h"
 #include "d/d_save.h"

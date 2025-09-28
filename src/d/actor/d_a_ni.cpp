@@ -4,7 +4,7 @@
 //
 
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/d_msg_flow.h"
 #include "d/d_s_play.h"

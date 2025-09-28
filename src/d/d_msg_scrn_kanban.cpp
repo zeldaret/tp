@@ -2,7 +2,7 @@
 // d_msg_scrn_kanban
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_msg_scrn_kanban.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"

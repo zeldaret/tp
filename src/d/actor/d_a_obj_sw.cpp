@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 // #define VIRTUAL_3DLINEMAT
 #include "d/actor/d_a_obj_sw.h"
