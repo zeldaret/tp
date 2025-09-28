@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_warpappear.h"
 #include "d/actor/d_a_e_s1.h"
@@ -836,7 +836,7 @@ static int useHeapInit(fopAc_ac_c* actor) {
     e_warpappear_class* i_this = (e_warpappear_class*)actor;
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Kytag04", 5);
-    JUT_ASSERT(1535, modelData != 0);
+    JUT_ASSERT(1535, modelData != NULL);
 
     i_this->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (i_this->mpModel == NULL) {

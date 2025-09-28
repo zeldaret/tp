@@ -12,9 +12,14 @@
 
 #define FP_NAN FP_QNAN
 
-#define fpclassify(x) ((sizeof(x) == sizeof(float)) ? __fpclassifyf(x) : __fpclassifyd(x))
+#define fpclassify(x) \
+	((sizeof(x) == sizeof(float)) ? __fpclassifyf((float)(x)) : \
+	(sizeof(x) == sizeof(double)) ? __fpclassifyd((double)(x)) : \
+	__fpclassifyl((long double)(x)) )
 #define signbit(x) ((sizeof(x) == sizeof(float)) ? __signbitf(x) : __signbitd(x))
 #define isfinite(x) ((fpclassify(x) > 2))
+#define isnan(x) (fpclassify(x) == FP_NAN)
+#define isinf(x) (fpclassify(x) == FP_INFINITE)
 
 #define __signbitf(x) ((int)(__HI(x) & 0x80000000))
 
@@ -25,6 +30,10 @@ extern unsigned long __float_nan[];
 extern unsigned long __float_huge[];
 extern unsigned long __float_max[];
 extern unsigned long __float_epsilon[];
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 inline int __fpclassifyf(float __value) {
     unsigned long integer = *(unsigned long*)&__value;
@@ -65,6 +74,13 @@ inline int __fpclassifyd(double __value) {
 	}
 	return FP_NORMAL;
 }
+
+// Stripped function.
+int __fpclassifyl(long double __value);
+
+#ifdef __cplusplus
+}; // extern "C"
+#endif
 
 #define FLT_MANT_DIG   24
 #define FLT_DIG        6

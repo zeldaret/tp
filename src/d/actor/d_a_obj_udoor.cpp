@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_udoor.h"
 #include "d/d_cc_d.h"
@@ -94,7 +94,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     obj_udoor_class* a_this = static_cast<obj_udoor_class*>(i_this);
 
     J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes("Obj_udoor", bmdd[a_this->field_0x570]);
-    JUT_ASSERT(301, model_data != 0);
+    JUT_ASSERT(301, model_data != NULL);
 
     a_this->mpModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
     if (a_this->mpModel == NULL) {

@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_coach_2D.h"
 #include "d/d_com_inf_game.h"
@@ -118,7 +118,7 @@ int daCoach2D_c::createHeap() {
     }
 
     dRes_info_c* resInfo = dComIfG_getObjectResInfo(l_arcName);
-    JUT_ASSERT(285, resInfo != 0);
+    JUT_ASSERT(285, resInfo != NULL);
 
     JKRArchive* archive = resInfo->getArchive();
     mpScrn->setPriority("zelda_game_image_fire_icon.blo", 0x20000, archive);

@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_sakuita.h"
 #include "d/d_a_obj.h"
@@ -76,7 +76,7 @@ void daObjSakuita_c::create_init() {
     field_0x728 = field_0x71c;
     initBaseMtx();
     J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes(l_arcName, "A_Sakuita.bmd");
-    JUT_ASSERT(210, modelData != 0);
+    JUT_ASSERT(210, modelData != NULL);
     if (dComIfGp_addSimpleModel(modelData, fopAcM_GetRoomNo(this), 0) == -1) {
         OS_REPORT("\x1B[43;30mカラカラ板：シンプルモデル登録失敗しました。\n\x1B[m");
     }
@@ -145,7 +145,7 @@ void daObjSakuita_c::calcAngle() {
 
 inline int daObjSakuita_c::createHeap() {
     J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes(l_arcName, "A_Sakuita.bmd");
-    JUT_ASSERT(567, modelData != 0);
+    JUT_ASSERT(567, modelData != NULL);
     mModel = mDoExt_J3DModel__create(modelData, 0x20000, 0x11000084);
     return mModel != NULL ? 1 : 0;
 }
@@ -201,7 +201,7 @@ daObjSakuita_c::~daObjSakuita_c() {
 
     if (field_0x74c != 0) {
         J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes(l_arcName, "A_Sakuita.bmd");
-        JUT_ASSERT(160, modelData != 0);
+        JUT_ASSERT(160, modelData != NULL);
         dComIfGp_removeSimpleModel(modelData, fopAcM_GetRoomNo(this));
     }
     dComIfG_resDelete(&mPhase, l_arcName);

@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_gm.h"
 #include "f_op/f_op_actor_enemy.h"
@@ -1713,7 +1713,7 @@ int daE_GM_c::CreateHeap() {
     if (mType == TYPE_GOMA) {
         modelData = (J3DModelData*)dComIfG_getObjectRes("E_mg", BMDV_MD);
 
-        JUT_ASSERT(2683, modelData != 0);
+        JUT_ASSERT(2683, modelData != NULL);
 
         mpModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_mg", 9),
                                            0, 1.0f, 0, -1, &mSound, 0, 0x11000084);
@@ -1721,7 +1721,7 @@ int daE_GM_c::CreateHeap() {
         if (mType != TYPE_NORMAL) {
             modelData = (J3DModelData*)dComIfG_getObjectRes("E_gm", BMDE_GOMA_EGG);
 
-            JUT_ASSERT(2701, modelData != 0);
+            JUT_ASSERT(2701, modelData != NULL);
 
             mpEggModel = mDoExt_J3DModel__create(modelData, 0, 0x11000084);
             if (mpEggModel == NULL) {
@@ -1731,7 +1731,7 @@ int daE_GM_c::CreateHeap() {
 
         modelData = (J3DModelData*)dComIfG_getObjectRes("E_gm", BMDV_GB);
 
-        JUT_ASSERT(2714, modelData != 0);
+        JUT_ASSERT(2714, modelData != NULL);
 
         mpModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_gm", BCK_GB_APPEAR),
                                            0, 1.0f, 0, -1, &mSound, 0, 0x11000084);

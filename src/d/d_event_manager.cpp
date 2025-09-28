@@ -3,7 +3,7 @@
  * Event System Manager
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_event_manager.h"
 #include "SSystem/SComponent/c_math.h"
@@ -212,12 +212,12 @@ static void dummyStrings() {
  * getSubstance__16dEvent_manager_cFP11dEvDtData_ci             */
 void* dEvent_manager_c::getSubstance(dEvDtData_c* evData, int type) {
     if (evData->getIndex() < 0 || evData->getNumber() <= 0) {
-        JUT_ASSERT(378, 0);
+        JUT_ASSERT(378, FALSE);
         return NULL;
     }
 
     if (type != -1 && type != evData->getType()) {
-        JUT_ASSERT(383, 0);
+        JUT_ASSERT(383, FALSE);
     }
 
     switch (evData->getType()) {
@@ -232,7 +232,7 @@ void* dEvent_manager_c::getSubstance(dEvDtData_c* evData, int type) {
     default:
         // "dEvent_manager_c::getSubstance unsupported type %d"
         OS_REPORT("dEvent_manager_c::getSubstance 未対応タイプ %d\n", evData->getType());
-        JUT_ASSERT(403, 0);
+        JUT_ASSERT(403, FALSE);
     }
 
     return NULL;
@@ -868,7 +868,7 @@ s16 dEvent_manager_c::getEventIdx(const char* eventName, u8 mapToolID, s32 roomN
                 sprintf(map_tool_name, "MapToolCamera%d", mapToolID);
                 return getEventIdx(map_tool_name, 0xFF, roomNo);
             default:
-                JUT_ASSERT(1278, 0);
+                JUT_ASSERT(1278, FALSE);
             }
         }
     }
@@ -910,7 +910,7 @@ s16 dEvent_manager_c::getEventIdx(fopAc_ac_c* actor, u8 mapToolID) {
             sprintf(map_tool_name, "MapToolCamera%d", mapToolID);
             return getEventIdx(actor, map_tool_name, 0xFF);
         default:
-            JUT_ASSERT(1341, 0);
+            JUT_ASSERT(1341, FALSE);
         }
     }
 
@@ -937,7 +937,7 @@ s16 dEvent_manager_c::getEventIdx(fopAc_ac_c* actor, const char* eventName, u8 m
                 sprintf(map_tool_name, "MapToolCamera%d", mapToolID);
                 return getEventIdx(actor, map_tool_name, 0xFF);
             default:
-                JUT_ASSERT(1376, 0);
+                JUT_ASSERT(1376, FALSE);
             }
         }
     }
@@ -1441,7 +1441,7 @@ fopAc_ac_c* dEvent_manager_c::specialCast_Shutter(s16 actorName, BOOL param_1) {
     prms.actor = dComIfGp_getPlayer(0);
 
     if (prms.actor == NULL) {
-        JUT_ASSERT(2238, 0);
+        JUT_ASSERT(2238, FALSE);
     }
 
     shutterActor = fopAcM_Search((fopAcIt_JudgeFunc)findShutterCallBack, &prms);

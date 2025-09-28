@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_vrbox2.h"
 #include "d/d_com_inf_game.h"
@@ -403,7 +403,7 @@ static int daVrbox2_solidHeapCB(fopAc_ac_c* i_this) {
     vrbox2_class* a_this = (vrbox2_class*)i_this;
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getStageRes("vrbox_kumo.bmd");
-    JUT_ASSERT(785, modelData != 0);
+    JUT_ASSERT(785, modelData != NULL);
 
     a_this->mpKumoModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11020202);
 
@@ -412,12 +412,12 @@ static int daVrbox2_solidHeapCB(fopAc_ac_c* i_this) {
     sun_modelData = (J3DModelData*)dComIfG_getStageRes("vrbox_sun.bmd");
     if (sun_modelData != NULL) {
         a_this->model2 = mDoExt_J3DModel__create(sun_modelData, 0x80000, 0x11020202);
-        JUT_ASSERT(809, a_this->model2 != 0);
+        JUT_ASSERT(809, a_this->model2 != NULL);
         a_this->model2_und = mDoExt_J3DModel__create(sun_modelData, 0x80000, 0x11020202);
-        JUT_ASSERT(820, a_this->model2_und != 0);
+        JUT_ASSERT(820, a_this->model2_und != NULL);
 
         J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getStageRes("vrbox_sun.btk");
-        JUT_ASSERT(825, pbtk != 0);
+        JUT_ASSERT(825, pbtk != NULL);
         if (!a_this->mSunBtk.init(sun_modelData, pbtk, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
             return 0;
         }

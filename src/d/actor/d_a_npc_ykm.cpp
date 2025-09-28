@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_ykm.h"
 #include "Z2AudioLib/Z2Instances.h"
@@ -541,7 +541,7 @@ cPhs__Step daNpc_ykM_c::create() {
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.GetGroundH();
 
-        if (mGroundH != -1000000000.0f) {
+        if (mGroundH != -G_CM3D_F_INF) {
             setEnvTevColor();
             setRoomNo();
         }
@@ -609,7 +609,7 @@ int daNpc_ykM_c::CreateHeap() {
         resIndex = l_bmdData[sp40][0];
         mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[arcNameIdx], resIndex);
 
-        JUT_ASSERT(1595, 0 != mdlData_p);
+        JUT_ASSERT(1595, NULL != mdlData_p);
 
         sp34 = 0x11000084;
         mFishModelMorf = new mDoExt_McaMorfSO((J3DModelData*)mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1,
@@ -623,7 +623,7 @@ int daNpc_ykM_c::CreateHeap() {
         resIndex = l_bmdData[BMD_INDEX_LEAF][0];
         mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[arcNameIdx], resIndex);
 
-        JUT_ASSERT(1622, 0 != mdlData_p);
+        JUT_ASSERT(1622, NULL != mdlData_p);
 
         sp34 = 0x11000084;
         mLeafModelMorf = new mDoExt_McaMorfSO((J3DModelData*)mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1,
@@ -734,7 +734,7 @@ void* daNpc_ykM_c::srchGadget(void* i_actor, void* i_data) {
 /* 80B5430C-80B543DC 000F0C 00D0+00 1/1 0/0 0/0 .text            getTomatoPureeP__11daNpc_ykM_cFv */
 fopAc_ac_c* daNpc_ykM_c::getTomatoPureeP() {
     fopAc_ac_c* actor = NULL;
-    f32 fVar1 = 1000000000.0f;
+    f32 fVar1 = G_CM3D_F_INF;
     mFindCount = 0;
 
     fopAcM_Search(srchGadget, this);
@@ -752,7 +752,7 @@ fopAc_ac_c* daNpc_ykM_c::getTomatoPureeP() {
 /* 80B543DC-80B544B0 000FDC 00D4+00 1/1 0/0 0/0 .text            getCheeseP__11daNpc_ykM_cFv */
 fopAc_ac_c* daNpc_ykM_c::getCheeseP() {
     fopAc_ac_c* actor = NULL;
-    f32 fVar1 = 1000000000.0f;
+    f32 fVar1 = G_CM3D_F_INF;
     mFindCount = 0;
 
     fopAcM_Search(srchGadget, this);
@@ -782,7 +782,7 @@ void* daNpc_ykM_c::srchYkm(void* i_actor, void* i_data) {
 /* 80B5454C-80B54628 00114C 00DC+00 4/4 0/0 0/0 .text            getOtherYkmP__11daNpc_ykM_cFi */
 fopAc_ac_c* daNpc_ykM_c::getOtherYkmP(int param_1) {
     fopAc_ac_c* actor = NULL;
-    f32 fVar1 = 1000000000.0f;
+    f32 fVar1 = G_CM3D_F_INF;
     mFindCount = 0;
 
     fopAcM_Search(srchYkm, this);
@@ -812,7 +812,7 @@ void* daNpc_ykM_c::srchYkw(void* i_actor, void* i_data) {
 /* 80B546C4-80B547A0 0012C4 00DC+00 1/1 0/0 0/0 .text            getOtherYkwP__11daNpc_ykM_cFi */
 fopAc_ac_c* daNpc_ykM_c::getOtherYkwP(int param_1) {
     fopAc_ac_c* actor = NULL;
-    f32 fVar1 = 1000000000.0f;
+    f32 fVar1 = G_CM3D_F_INF;
     mFindCount = 0;
 
     fopAcM_Search(srchYkw, this);
@@ -1773,7 +1773,7 @@ int daNpc_ykM_c::cutSlideDown(int i_cutIndex) {
                 mGndChk.SetPos(&work);
                 work.y = dComIfG_Bgsp().GroundCross(&mGndChk);
 
-                JUT_ASSERT(3443, -(1000000000.0f) != work.y);
+                JUT_ASSERT(3443, -G_CM3D_F_INF != work.y);
 
                 daPy_getPlayerActorClass()->setPlayerPosAndAngle(&work, angle.y, 0);
                 work.set(400.0f, 500.0f, 0.0f);
@@ -1784,7 +1784,7 @@ int daNpc_ykM_c::cutSlideDown(int i_cutIndex) {
                 mGndChk.SetPos(&work);
                 work.y = dComIfG_Bgsp().GroundCross(&mGndChk);
 
-                JUT_ASSERT(3454, -(1000000000.0f) != work.y);
+                JUT_ASSERT(3454, -G_CM3D_F_INF != work.y);
 
                 dComIfGp_evmng_setGoal(&work);
                 break;
@@ -1807,7 +1807,7 @@ int daNpc_ykM_c::cutSlideDown(int i_cutIndex) {
                 mMotionSeqMngr.setNo(MOTION_FISH_JUMP, 0.0f, TRUE, 0);
                 actor_p = getOtherYkmP(5);
                 
-                JUT_ASSERT(3475, 0 != actor_p);
+                JUT_ASSERT(3475, NULL != actor_p);
 
                 setPos(actor_p->current.pos);
                 setAngle(actor_p->shape_angle.y);
@@ -1865,7 +1865,7 @@ int daNpc_ykM_c::cutSlideDown(int i_cutIndex) {
             if (mLeafModelMorf->isStop()) {
                 actor_p = getOtherYkmP(5);
 
-                JUT_ASSERT(3565, 0 != actor_p);
+                JUT_ASSERT(3565, NULL != actor_p);
 
                 angle.y = fopAcM_searchActorAngleY(daPy_getPlayerActorClass(), actor_p);
                 work = daPy_getPlayerActorClass()->current.pos;
@@ -2515,7 +2515,7 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
                 mMotionSeqMngr.setNo(MOTION_STOP, 0.0f, FALSE, 0);
                 actor_p = mActorMngr[5].getActorP();
 
-                JUT_ASSERT(4401, 0 != actor_p);
+                JUT_ASSERT(4401, NULL != actor_p);
 
                 setPos(actor_p->home.pos);
                 setAngle(actor_p->home.angle.y);
@@ -2539,7 +2539,7 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
                 mMotionSeqMngr.setNo(MOTION_WAITHOLD_B_B, 0.0f, FALSE, 0);
                 actor_p = mActorMngr[5].getActorP();
 
-                JUT_ASSERT(4424, 0 != actor_p);
+                JUT_ASSERT(4424, NULL != actor_p);
 
                 setPos(actor_p->home.pos);
                 setAngle(actor_p->home.angle.y);
@@ -2563,7 +2563,7 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
             if (mEventTimer != 0 || dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
                 actor_p = mActorMngr[5].getActorP();
 
-                JUT_ASSERT(4455, 0 != actor_p);
+                JUT_ASSERT(4455, NULL != actor_p);
 
                 if (cLib_calcTimer(&mEventTimer) == 0) {
                     speedF = 0.0f;
@@ -2762,7 +2762,7 @@ int daNpc_ykM_c::cutStartSnowboardRace(int i_cutIndex) {
                 field_0x157e = 0;
                 actor_p = getOtherYkmP(5);
 
-                JUT_ASSERT(4736, 0 != actor_p);
+                JUT_ASSERT(4736, NULL != actor_p);
 
                 setPos(actor_p->current.pos);
                 setAngle(actor_p->shape_angle.y);
@@ -2878,7 +2878,7 @@ int daNpc_ykM_c::cutEndSnowboardRace(int i_cutIndex) {
                 mPath.setIdx(0);
                 actor_p = getOtherYkmP(6);
 
-                JUT_ASSERT(4900, 0 != actor_p);
+                JUT_ASSERT(4900, NULL != actor_p);
 
                 setPos(actor_p->current.pos);
                 angle.setall(0);
@@ -2919,7 +2919,7 @@ int daNpc_ykM_c::cutEndSnowboardRace(int i_cutIndex) {
                 mMotionSeqMngr.setNo(MOTION_WAIT_A, 0.0f, FALSE, 0);
                 actor_p = getOtherYkmP(6);
 
-                JUT_ASSERT(4943, 0 != actor_p);
+                JUT_ASSERT(4943, NULL != actor_p);
 
                 home.pos = actor_p->current.pos;
                 angle.setall(0);
@@ -3372,7 +3372,7 @@ BOOL daNpc_ykM_c::race(void* param_1) {
                     field_0x1560 = -1;
                     mGndChk.SetPos(&daPy_getPlayerActorClass()->current.pos);
 
-                    if (dComIfG_Bgsp().GroundCross(&mGndChk) != -1000000000.0f) {
+                    if (dComIfG_Bgsp().GroundCross(&mGndChk) != -G_CM3D_F_INF) {
                         if (field_0x1534 != -1) {
                             if ((dTimer_c*)fpcM_SearchByID(field_0x1534) == dComIfG_getTimerPtr()) {
                                 if (dComIfG_getTimerPtr()->isStart()) {

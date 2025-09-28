@@ -123,13 +123,13 @@ public:
     CMtxP transformOnSet_getMatrix() const { return mTransformOnSet_Matrix; }
 
     void transformOnSet_transformTranslation(const Vec& rSrc, Vec* pDst) const {
-        JUT_ASSERT(226, pDst!=0);
+        JUT_ASSERT(226, pDst!=NULL);
         JUT_ASSERT(227, &rSrc!=pDst);
         MTXMultVec(transformOnSet_getMatrix(), &rSrc, pDst);
     }
 
     void transformOnSet_transformRotation(const Vec& rSrc, Vec* pDst) const {
-        JUT_ASSERT(232, pDst!=0);
+        JUT_ASSERT(232, pDst!=NULL);
         JUT_ASSERT(233, &rSrc!=pDst);
         pDst->x = rSrc.x;
         pDst->y = rSrc.y + mTransformOnSet_RotationY;
@@ -137,7 +137,7 @@ public:
     }
 
     void transformOnSet_transformScaling(const Vec& rSrc, Vec* pDst) const {
-        JUT_ASSERT(240, pDst!=0);
+        JUT_ASSERT(240, pDst!=NULL);
         JUT_ASSERT(241, &rSrc!=pDst);
         *pDst = rSrc;
     }
@@ -176,20 +176,20 @@ public:
     CMtxP transformOnGet_getMatrix() const { return mTransformOnGet_Matrix; }
 
     void transformOnGet_transformTranslation(const Vec& rSrc, Vec* pDst) const {
-        JUT_ASSERT(296, pDst!=0);
+        JUT_ASSERT(296, pDst!=NULL);
         JUT_ASSERT(297, &rSrc!=pDst);
         MTXMultVec(transformOnGet_getMatrix(), &rSrc, pDst);
     }
 
     void transformOnGet_transformDirection(const Vec& rSrc, Vec* pDst) const {
-        JUT_ASSERT(316, pDst!=0);
+        JUT_ASSERT(316, pDst!=NULL);
         JUT_ASSERT(317, &rSrc!=pDst);
         MTXMultVecSR(transformOnGet_getMatrix(), &rSrc, pDst);
     }
 
     void transformOnGet_transform(TTransform_position_direction* param_1,
                                   TTransform_position_direction* pDst) const {
-        JUT_ASSERT(289, pDst!=0);
+        JUT_ASSERT(289, pDst!=NULL);
         transformOnGet_transformTranslation(param_1->position, &pDst->position);
         transformOnGet_transformDirection(param_1->direction, &pDst->direction);
     }
@@ -220,7 +220,7 @@ public:
     }
 
     void transformOnGet_transformRotation(const Vec& rSrc, Vec* pDst) const {
-        JUT_ASSERT(302, pDst!=0);
+        JUT_ASSERT(302, pDst!=NULL);
         JUT_ASSERT(303, &rSrc!=pDst);
         pDst->x = rSrc.x;
         pDst->y = rSrc.y + mTransformOnGet_RotationY;
@@ -228,14 +228,14 @@ public:
     }
 
     void transformOnGet_transformScaling(const Vec& rSrc, Vec* pDst) const {
-        JUT_ASSERT(310, pDst!=0);
+        JUT_ASSERT(310, pDst!=NULL);
         JUT_ASSERT(311, &rSrc!=pDst);
         *pDst = rSrc;
     }
 
     void transformOnGet_transform(TTransform_translation_rotation_scaling* param_1,
                                   TTransform_translation_rotation_scaling* pDst) const {
-        JUT_ASSERT(263, pDst!=0);
+        JUT_ASSERT(263, pDst!=NULL);
         transformOnGet_transformTranslation(param_1->translation, &pDst->translation);
         transformOnGet_transformRotation(param_1->rotation, &pDst->rotation);
         transformOnGet_transformScaling(param_1->scaling, &pDst->scaling);
@@ -252,14 +252,14 @@ public:
     }
 
     void transformOnSet_transformDirection(const Vec& rSrc, Vec* pDst) const {
-        JUT_ASSERT(246, pDst!=0);
+        JUT_ASSERT(246, pDst!=NULL);
         JUT_ASSERT(247, &rSrc!=pDst);
         MTXMultVecSR(transformOnSet_getMatrix(), &rSrc, pDst);
     }
 
     void transformOnSet_transform(TTransform_position_direction* param_1,
                                   TTransform_position_direction* pDst) const {
-        JUT_ASSERT(219, pDst!=0);
+        JUT_ASSERT(219, pDst!=NULL);
         transformOnSet_transformTranslation(param_1->position, &pDst->position);
         transformOnSet_transformDirection(param_1->direction, &pDst->direction);
     }

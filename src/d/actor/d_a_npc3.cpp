@@ -230,7 +230,7 @@ static s32 daBaseNpc_chkPnt(cXyz param_0, dPnt* param_1, u16 param_2, u16 param_
 
     f32 sp24;
     if (sp12 == param_2 && param_2 == sp10) {
-        JUT_ASSERT(2288, 0);
+        JUT_ASSERT(2288, FALSE);
     } else if (sp12 < param_2 && param_2 < sp10) {
         sp24 = (sp4C - sp64).absXZ();
         s16 temp_r31 = cM_atan2s(sp4C.x - sp64.x, sp4C.z - sp64.z);
@@ -259,7 +259,7 @@ static s32 daBaseNpc_chkPnt(cXyz param_0, dPnt* param_1, u16 param_2, u16 param_
         sp4C.x = sp70.x + (2.0f * sp24 * cM_ssin(temp_r31_3));
         sp4C.z = sp70.z + (2.0f * sp24 * cM_scos(temp_r31_3));
     } else {
-        JUT_ASSERT(2322, 0);
+        JUT_ASSERT(2322, FALSE);
     }
 
     f32 sp20;

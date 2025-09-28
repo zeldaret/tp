@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_wdStick.h"
 #include "SSystem/SComponent/c_math.h"
@@ -37,7 +37,7 @@ void daWdStick_c::setBaseMtx() {
 /* 80D31C58-80D31CC4 0001F8 006C+00 1/0 0/0 0/0 .text            CreateHeap__11daWdStick_cFv */
 int daWdStick_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("H_Kinobou", 4);
-    JUT_ASSERT(245, modelData != 0);
+    JUT_ASSERT(245, modelData != NULL);
     mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     return mModel != 0 ? 1 : 0;
 }
@@ -425,7 +425,7 @@ void daWdStick_c::mode_proc_roll() {
     cM3dGPla cStack_ec;
     fopAcM_gc_c::gndCheck(&cStack_f8);
     bool iVar7 = fopAcM_gc_c::getTriPla(&cStack_ec);
-    if ((groundCross != -1000000000.0f) && iVar7 != 0) {
+    if ((groundCross != -G_CM3D_F_INF) && iVar7 != 0) {
         f32 dVar11 = cM_scos(cM_deg2s(dVar14 - 0.5f));
         cStack_104 = cStack_ec.mNormal;
         if (cStack_104.y < dVar11) {

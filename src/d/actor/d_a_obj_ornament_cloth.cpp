@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_ornament_cloth.h"
 #include "d/d_a_obj.h"
@@ -232,13 +232,13 @@ static char* l_arcName = "J_Necktie";
 int daObjOnCloth_c::createHeap() {
     J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcName, "J_Necktie.bmd"));
 
-    JUT_ASSERT(413, modelData != 0);
+    JUT_ASSERT(413, modelData != NULL);
 
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
 
     J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, "J_Necktie.btk");
 
-    JUT_ASSERT(420, pbtk != 0);
+    JUT_ASSERT(420, pbtk != NULL);
 
     mBtkAnm = new mDoExt_btkAnm();
 

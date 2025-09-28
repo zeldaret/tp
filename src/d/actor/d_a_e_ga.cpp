@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_ga.h"
 #include "d/d_com_inf_game.h"
@@ -185,7 +185,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     e_ga_class* a_this = (e_ga_class*)i_this;
 
     void* modelData = dComIfG_getObjectRes("E_Ga", 3);
-    JUT_ASSERT(450, modelData != 0);
+    JUT_ASSERT(450, modelData != NULL);
 
     for (int i = 0; i < a_this->ga_num; i++) {
         a_this->ga_s[i].model = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x20000, 0x11000084);
@@ -255,7 +255,7 @@ static int daE_Ga_Create(fopAc_ac_c* i_this) {
         daE_Ga_Execute(a_this);
 
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_ga", 3);
-        JUT_ASSERT(536, modelData != 0);
+        JUT_ASSERT(536, modelData != NULL);
 
         if (dComIfGp_addSimpleModel(modelData, fopAcM_GetRoomNo(i_this), FALSE) == -1) {
             // "Moth: Simple Model addition failed.\n"

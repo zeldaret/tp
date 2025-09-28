@@ -2,7 +2,7 @@
 // Object wflag
 //
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_wflag.h"
 #include "d/d_com_inf_game.h"
@@ -155,7 +155,7 @@ static int daObj_Wflag_Delete(obj_wflag_class* i_this) {
 static int useHeapInit(fopAc_ac_c* i_actor) {
     obj_wflag_class* i_this = (obj_wflag_class*)i_actor;
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Obj_wflag", 10);
-    JUT_ASSERT(409, modelData != 0);
+    JUT_ASSERT(409, modelData != NULL);
     i_this->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (i_this->mpModel == NULL) {
         return 0;
@@ -183,7 +183,7 @@ static int useHeapInit(fopAc_ac_c* i_actor) {
     }
 
     modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("Obj_wflag", 9));
-    JUT_ASSERT(479, modelData != 0);
+    JUT_ASSERT(479, modelData != NULL);
     for (int i = 0; i < 1; i++) {
         for (int j = 0; j < 19; j++) {
             i_this->mTails[i].mModels[j] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);

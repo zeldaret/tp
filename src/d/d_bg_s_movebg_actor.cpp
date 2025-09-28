@@ -3,7 +3,7 @@
  * Non-static BG actor base
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_bg_s_movebg_actor.h"
 #include "d/d_bg_w.h"

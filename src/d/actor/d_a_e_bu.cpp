@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_bu.h"
 #include "f_op/f_op_actor_enemy.h"
@@ -549,7 +549,7 @@ static void e_bu_path_fly(e_bu_class* i_this) {
             int next_path_id = i_this->ppd->m_nextID;
             if (next_path_id != 0xFFFF) {
                 i_this->ppd = dPath_GetRoomPath(next_path_id, fopAcM_GetRoomNo(actor));
-                JUT_ASSERT(919, i_this->ppd != 0);
+                JUT_ASSERT(919, i_this->ppd != NULL);
             }
         } else if (i_this->now_path_pntNo < 0) {
             i_this->path_step = 1;

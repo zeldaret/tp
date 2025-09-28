@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_rd.h"
 #include "d/d_cc_d.h"
@@ -5443,14 +5443,14 @@ static void action(e_rd_class* i_this) {
             gnd_chk.SetPos(&sp28c);
             sp28c.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
-            if (sp28c.y != -1000000000.0f) {
+            if (sp28c.y != -G_CM3D_F_INF) {
                 sp280.x = sp28c.x;
                 sp280.y = sp28c.y + 100.0f;
                 sp280.z = sp28c.z + fVar2;
                 gnd_chk.SetPos(&sp280);
                 sp280.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
-                if (sp280.y != -1000000000.0f) {
+                if (sp280.y != -G_CM3D_F_INF) {
                     sVar5 = -cM_atan2s(sp280.y - sp28c.y, sp280.z - sp28c.z);
                     if (sVar5 > 0x3000 || sVar5 < -0x3000) {
                         sVar5 = 0;
@@ -5463,7 +5463,7 @@ static void action(e_rd_class* i_this) {
                 gnd_chk.SetPos(&sp280);
                 sp280.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
-                if (sp280.y != -1000000000.0f) {
+                if (sp280.y != -G_CM3D_F_INF) {
                     sVar4 = cM_atan2s(sp280.y - sp28c.y, sp280.x - sp28c.x);
                     if (sVar4 > 0x3000 || sVar4 < -0x3000) {
                         sVar4 = 0;
@@ -6368,7 +6368,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
 
         i_this->field_0x1294 = 0;
 
-        if (i_this->mObjAcch.GetGroundH() != -1000000000.0f && i_this->mObjAcch.ChkWaterHit() && i_this->mObjAcch.m_wtr.GetHeight() > a_this->current.pos.y) {
+        if (i_this->mObjAcch.GetGroundH() != -G_CM3D_F_INF && i_this->mObjAcch.ChkWaterHit() && i_this->mObjAcch.m_wtr.GetHeight() > a_this->current.pos.y) {
             i_this->field_0x1294 = 1;
         }
     }
@@ -7061,7 +7061,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
             if (i_this->mBossMode == 3) {
                 if (i < 2) {
                     modelData = (J3DModelData*)dComIfG_getObjectRes("E_rdb", ikki2_boss_part_bmd[i]);
-                    JUT_ASSERT(10672, modelData != 0);
+                    JUT_ASSERT(10672, modelData != NULL);
                     i_this->mpBossArmorParts[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
                     if (i_this->mpBossArmorParts[i] == NULL) {
                         return 0;
@@ -7071,7 +7071,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
                 }
             } else if (i_this->mBossMode == 1 || i == 13) {
                 modelData = (J3DModelData*)dComIfG_getObjectRes("E_rdb", boss_part_bmd[i]);
-                JUT_ASSERT(10687, modelData != 0);
+                JUT_ASSERT(10687, modelData != NULL);
                 i_this->mpBossArmorParts[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
                 if (i_this->mpBossArmorParts[i] == NULL) {
                     return 0;
@@ -7104,7 +7104,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
                 modelData = (J3DModelData*)dComIfG_getObjectRes(i_this->mResName, BMDR_RD_CLUB);
             }
 
-            JUT_ASSERT(10762, modelData != 0);
+            JUT_ASSERT(10762, modelData != NULL);
 
             i_this->field_0x694 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
             if (i_this->field_0x694 == NULL) {
@@ -7136,7 +7136,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
                 modelData = (J3DModelData*)dComIfG_getObjectRes(i_this->mResName, BMDR_RD_ARROW);
             }
 
-            JUT_ASSERT(10810, modelData != 0);
+            JUT_ASSERT(10810, modelData != NULL);
 
             i_this->field_0x694 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
             if (i_this->field_0x694 == NULL) {
@@ -7147,7 +7147,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
         }
 
         modelData = (J3DModelData*)dComIfG_getObjectRes(i_this->mResName, BMDR_RD_EYE);
-        JUT_ASSERT(10823, modelData != 0);
+        JUT_ASSERT(10823, modelData != NULL);
 
         for (u16 i = 0; i < 2; i++) {
             i_this->mpEyeModels[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);

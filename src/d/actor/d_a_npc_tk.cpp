@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_tk.h"
 #include "Z2AudioLib/Z2Instances.h"
@@ -123,7 +123,7 @@ int daNPC_TK_c::checkBeforeBg() {
     gndChkPos.y += 100.0f;
     gndChk.SetPos(&gndChkPos);
     linChkEnd.y = dComIfG_Bgsp().GroundCross(&gndChk);
-    if (linChkEnd.y != -1e+09f) {
+    if (linChkEnd.y != -G_CM3D_F_INF) {
         if (current.pos.y < linChkEnd.y) {
             if (speed.y < 0.0f) {
                 speed.y = 0.0f;
@@ -2033,7 +2033,7 @@ void daNPC_TK_c::executeWolfPerch() {
         field_0x6c5 = 2;
 
         mWolfPathData = dPath_GetRoomPath(mpPath1->m_nextID, fopAcM_GetRoomNo(this));
-        JUT_ASSERT(2498, mWolfPathData != 0);
+        JUT_ASSERT(2498, mWolfPathData != NULL);
 
         field_0x6ea = mWolfPathData->field_0x6;
         field_0x6e8 = mWolfPathData->field_0x4;
@@ -3235,7 +3235,7 @@ int daNPC_TK_c::JointCallBack(J3DJoint* param_0, int param_1) {
 /* 80B0BBC8-80B0BD04 00A8A8 013C+00 1/1 0/0 0/0 .text            CreateHeap__10daNPC_TK_cFv */
 int daNPC_TK_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Npc_tk", "tk.bmd");
-    JUT_ASSERT_MSG(0xf4f, modelData != 0, "  鷹匠");  // falconer
+    JUT_ASSERT_MSG(0xf4f, modelData != NULL, "  鷹匠");  // falconer
 
     mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                   (J3DAnmTransform*)dComIfG_getObjectRes("Npc_tk", 6), 0, 1.0f, 0,

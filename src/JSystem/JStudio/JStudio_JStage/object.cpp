@@ -107,7 +107,7 @@ JStage::TObject*
 JStudio_JStage::TAdaptor_object_::adaptor_object_findJSGObject_(char const* param_1) {
     JStage::TObject* pJSGObject;
     if (pJSGSystem_->JSGFindObject(&pJSGObject, param_1, JStage::OBJECT_UNDEFINED) == 0) {
-        JUT_ASSERT(122, pJSGObject != 0);
+        JUT_ASSERT(122, pJSGObject != NULL);
     } else {
         return NULL;
     }
@@ -133,7 +133,7 @@ JStudio_JStage::TAdaptor_object_::adaptor_object_ENABLE_(JStudio::data::TEOperat
     switch (param_1) {
     case JStudio::data::UNK_0x2:
         JUT_ASSERT(157, uSize==4);
-        JUT_ASSERT(158, pContent!=0);
+        JUT_ASSERT(158, pContent!=NULL);
         if (*(u32*)pContent != 0) {
             pJSGObject_->JSGFEnableFlag(2);
         } else {

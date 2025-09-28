@@ -111,10 +111,10 @@ JStudio::ctb::TParse::~TParse() {}
 /* 802813DC-80281470 27BD1C 0094+00 1/0 0/0 0/0 .text
  * parseHeader_next__Q37JStudio3ctb6TParseFPPCvPUlUl            */
 bool JStudio::ctb::TParse::parseHeader_next(void const** ppData_inout, u32* puBlock_out, u32 param_3) {
-    JUT_ASSERT(221, ppData_inout!=0);
-    JUT_ASSERT(222, puBlock_out!=0);
+    JUT_ASSERT(221, ppData_inout!=NULL);
+    JUT_ASSERT(222, puBlock_out!=NULL);
     void const* pData = *ppData_inout;
-    JUT_ASSERT(224, pData!=0);
+    JUT_ASSERT(224, pData!=NULL);
     data::TParse_THeader aTStack_478(pData);
     *ppData_inout = aTStack_478.getContent();
     *puBlock_out = aTStack_478.get_blockNumber();
@@ -134,15 +134,15 @@ bool JStudio::ctb::TParse::parseHeader_next(void const** ppData_inout, u32* puBl
 /* 80281470-80281554 27BDB0 00E4+00 1/0 0/0 0/0 .text
  * parseBlock_next__Q37JStudio3ctb6TParseFPPCvPUlUl             */
 bool JStudio::ctb::TParse::parseBlock_next(void const** ppData_inout, u32* puData_out, u32 param_3) {
-    JUT_ASSERT(260, ppData_inout!=0);
-    JUT_ASSERT(261, puData_out!=0);
+    JUT_ASSERT(260, ppData_inout!=NULL);
+    JUT_ASSERT(261, puData_out!=NULL);
     void const* pData = *ppData_inout;
-    JUT_ASSERT(263, pData!=0);
+    JUT_ASSERT(263, pData!=NULL);
     data::TParse_TBlock aTStack_260(pData);
     *ppData_inout = aTStack_260.getNext();
     *puData_out = aTStack_260.get_size();
     JStudio::ctb::TControl* pControl = getControl();
-    JUT_ASSERT(269, pControl!=0);
+    JUT_ASSERT(269, pControl!=NULL);
     if ((param_3 & 0x10) != 0) {
         if (pControl->getObject(aTStack_260.get_ID(), aTStack_260.get_IDSize()) != NULL) {
             return true;

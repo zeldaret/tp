@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_kag.h"
 #include "d/d_menu_insect.h"
@@ -95,7 +95,7 @@ static int const l_kag_btk_index[2] = {
 int daObjKAG_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("I_Kag", BMDE_KAG);
 
-    JUT_ASSERT(246, modelData != 0);
+    JUT_ASSERT(246, modelData != NULL);
 
     mpModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("I_Kag", BCK_KAG_FLY), 2, 1.0f, 0, -1, &mSound, 0, 0x11000284);
     if (mpModelMorf == NULL || mpModelMorf->getModel() == NULL) {
@@ -539,7 +539,7 @@ void daObjKAG_c::checkGroundPos() {
     mGndChk.SetPos(&sp28);
 
     f32 fVar1 = dComIfG_Bgsp().GroundCross(&mGndChk);
-    if (fVar1 != -1e9f) {
+    if (fVar1 != -G_CM3D_F_INF) {
         field_0x81c = fVar1;
     }
 }

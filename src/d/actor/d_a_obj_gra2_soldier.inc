@@ -171,7 +171,7 @@ int daObj_GrA_c::defence(void* param_1) {
             calcMotion();
 
             aTgHitActor_p = field_0xab0.getActor();
-            JUT_ASSERT(309, 0 != aTgHitActor_p);
+            JUT_ASSERT(309, NULL != aTgHitActor_p);
 
             sVar1 = cLib_targetAngleY(&current.pos, &aTgHitActor_p->current.pos);
             current.angle.y = sVar1;

@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_crope.h"
 #include "d/actor/d_a_player.h"
@@ -18,7 +18,7 @@ static char const l_arcName[] = "Crope";
 /* 80BCCCD8-80BCCD44 000078 006C+00 1/1 0/0 0/0 .text            createHeap__12daObjCrope_cFv */
 int daObjCrope_c::createHeap() {
     ResTIMG* texImg = (ResTIMG*) dComIfG_getObjectRes(l_arcName, 3);
-    JUT_ASSERT(80, texImg != 0);
+    JUT_ASSERT(80, texImg != NULL);
     return mLineMat.init(1, 100, texImg, 0) != 0 ? 1 : 0;
 }
 

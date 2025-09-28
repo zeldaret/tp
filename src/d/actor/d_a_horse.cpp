@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_horse.h"
 #include "d/actor/d_a_alink.h"
@@ -507,7 +507,7 @@ static void* daHorse_searchSingleBoar(fopAc_ac_c* i_actor, void* i_data) {
 /* 80838F98-808392D8 001158 0340+00 1/1 0/0 0/0 .text            createHeap__9daHorse_cFv */
 int daHorse_c::createHeap() {
     m_modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 0x26);
-    JUT_ASSERT(0x487, m_modelData != 0);
+    JUT_ASSERT(0x487, m_modelData != NULL);
 
     m_model = mDoExt_J3DModel__create(m_modelData, 0x80000, 0x11020084);
     if (m_model == NULL) {
@@ -544,7 +544,7 @@ int daHorse_c::createHeap() {
     }
 
     ResTIMG* texImg = (ResTIMG*)dComIfG_getObjectRes(l_arcName, 0x2C);
-    JUT_ASSERT(0x4B6, texImg != 0);
+    JUT_ASSERT(0x4B6, texImg != NULL);
 
     if (!m_reinLine.init(1, 75, texImg, 0)) {
         return 0;
@@ -909,7 +909,7 @@ int daHorse_c::setSingleAnime(u16 i_anmIdx, f32 i_speed, f32 i_startF, s16 i_end
     J3DAnmTransform* bck;
     if (i_isDemoAnm) {
         if (i_anmIdx & 0x8000) {
-            JUT_ASSERT(0x6D4, 0);
+            JUT_ASSERT(1748, FALSE);
         }
 
         bck = (J3DAnmTransform*)dComIfG_getObjectIDRes(dStage_roomControl_c::getDemoArcName(), i_anmIdx);
@@ -2109,7 +2109,7 @@ BOOL daHorse_c::checkWaitTurn() const {
 /* 8083D774-8083D918 005934 01A4+00 2/2 0/0 0/0 .text            setRoomInfo__9daHorse_cFi */
 void daHorse_c::setRoomInfo(int param_0) {
     int room_no;
-    if (-1000000000.0f != m_acch.GetGroundH() && (checkStateFlg0(FLG0_UNK_1) || m_procID == PROC_LARGE_DAMAGE_e || m_procID == PROC_JUMP_e || current.pos.y - m_acch.GetGroundH() < 500.0f)) {
+    if (-G_CM3D_F_INF != m_acch.GetGroundH() && (checkStateFlg0(FLG0_UNK_1) || m_procID == PROC_LARGE_DAMAGE_e || m_procID == PROC_JUMP_e || current.pos.y - m_acch.GetGroundH() < 500.0f)) {
         room_no = dComIfG_Bgsp().GetRoomId(m_acch.m_gnd);
         tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(m_acch.m_gnd);
 
@@ -4376,7 +4376,7 @@ int daHorse_c::execute() {
         sp54.z = sp70.mTranslate.z;
 
         mDoMtx_stack_c::multVec(&sp54, &current.pos);
-        if (field_0x1730 != 0 && -1000000000.0f != m_acch.GetGroundH()) {
+        if (field_0x1730 != 0 && -G_CM3D_F_INF != m_acch.GetGroundH()) {
             current.pos.y = m_acch.GetGroundH();
         }
     } else if (m_procID == PROC_JUMP_e) {

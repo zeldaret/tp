@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_seirei.h"
 #include "d/d_meter2_info.h"
@@ -257,7 +257,7 @@ cPhs__Step daNpc_Seirei_c::create() {
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.GetGroundH();
 
-        if (mGroundH != -1e9f) {
+        if (mGroundH != -G_CM3D_F_INF) {
             setEnvTevColor();
             setRoomNo();
         }

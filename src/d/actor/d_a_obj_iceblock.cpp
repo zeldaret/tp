@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_iceblock.h"
 #include "SSystem/SComponent/c_math.h"
@@ -324,7 +324,7 @@ int daObjIceBlk_c::CreateHeap() {
 
     if (getSwbit2() != 0xFF && !fopAcM_isSwitch(this, getSwbit2())) {
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmd[0]);
-        JUT_ASSERT(0, modelData != 0);
+        JUT_ASSERT(0, modelData != NULL);
 
         mpIceModel = mDoExt_J3DModel__create(modelData, 0, 0x11000084);
         if (mpIceModel == NULL) {
@@ -345,10 +345,10 @@ int daObjIceBlk_c::CreateHeap() {
     }
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmd[1]);
-    JUT_ASSERT(0, modelData != 0);
+    JUT_ASSERT(0, modelData != NULL);
 
     J3DModelData* shareModelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmd[0]);
-    JUT_ASSERT(0, shareModelData != 0);
+    JUT_ASSERT(0, shareModelData != NULL);
 
     mDoExt_setupShareTexture(modelData, shareModelData);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
@@ -672,7 +672,7 @@ int daObjIceBlk_c::checkWallPre(s16 i_angle) {
 /* 80C236C8-80C237B0 001A68 00E8+00 2/2 0/0 0/0 .text            checkBgHit__13daObjIceBlk_cFv */
 int daObjIceBlk_c::checkBgHit() {
     cXyz check_pos;
-    mGroundY = -1000000000.0f;
+    mGroundY = -G_CM3D_F_INF;
 
     int var_r29 = -1;
 

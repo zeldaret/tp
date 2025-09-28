@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_movebox.h"
 #include "SSystem/SComponent/c_math.h"
@@ -56,7 +56,7 @@ void daObjMovebox::Bgc_c::gnd_pos(const daObjMovebox::Act_c* i_actor,
                                   f32 param_3) {
     cXyz sp50;
     cXyz sp5C;
-    f32 var_f31 = -1000000000.0f;
+    f32 var_f31 = -G_CM3D_F_INF;
 
     mDoMtx_stack_c::transS(i_actor->current.pos);
     mDoMtx_stack_c::YrotM(i_actor->home.angle.y);
@@ -536,7 +536,7 @@ int daObjMovebox::Act_c::CreateHeap() {
     if (i_attr().field_0x58 >= 0) {
         J3DModelData* modelData =
             (J3DModelData*)dComIfG_getObjectRes(M_arcname[mType], i_attr().field_0x58);
-        JUT_ASSERT(0, modelData != 0);
+        JUT_ASSERT(0, modelData != NULL);
 
         mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
         var_r29 = mpModel != NULL;
@@ -1130,7 +1130,7 @@ int daObjMovebox::Act_c::Execute(Mtx** param_0) {
                     cXyz sp48(current.pos);
                     J3DModelData* kibako_bmd =
                         (J3DModelData*)dComIfG_getObjectRes("Always", "BreakWoodBox.bmd");
-                    JUT_ASSERT(0, kibako_bmd != 0);
+                    JUT_ASSERT(0, kibako_bmd != NULL);
 
                     JPABaseEmitter* emitter = dComIfGp_particle_set(
                         0x82AF, &sp48, NULL, NULL, 0xFF, &dPa_modelEcallBack::getEcallback(),
@@ -1229,7 +1229,7 @@ int daObjMovebox::Act_c::Draw() {
         cM3dGPla sp40;
 
         if (dComIfG_Bgsp().GetTriPla(mBgc.M_gnd_work[mBgc.field_0x5c], &sp40) &&
-            var_f31 != -1000000000.0f)
+            var_f31 != -G_CM3D_F_INF)
         {
             dComIfGd_setSimpleShadow(&current.pos, var_f31, i_attr().mShadowSize, &sp40.mNormal,
                                      shape_angle.y, -0.4f, NULL);

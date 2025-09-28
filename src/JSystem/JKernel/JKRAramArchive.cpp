@@ -286,7 +286,7 @@ u32 JKRAramArchive::fetchResource_subroutine(u32 entryNum, u32 length, JKRHeap* 
     case COMPRESSION_NONE:
         {
             buffer = (u8*)(JKRAllocFromHeap(pHeap, alignedLen, 0x20));
-            JUT_ASSERT(677, buffer != 0);
+            JUT_ASSERT(677, buffer != NULL);
             JKRAramToMainRam(entryNum, buffer, alignedLen, EXPAND_SWITCH_UNKNOWN0, alignedLen, NULL, -1, NULL);
             *out = buffer;
             return length;

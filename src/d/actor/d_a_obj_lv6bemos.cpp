@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_lv6bemos.h"
 #include "SSystem/SComponent/c_lib.h"
@@ -173,21 +173,21 @@ int daObjL6Bm_c::Create() {
 /* 80C7CFD0-80C7D2B0 000530 02E0+00 1/0 0/0 0/0 .text            CreateHeap__11daObjL6Bm_cFv */
 int daObjL6Bm_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, BMDR_K_BIMO00);
-    JUT_ASSERT(620, modelData != 0);
+    JUT_ASSERT(620, modelData != NULL);
     mBeamosModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mBeamosModel == NULL) {
         return 0;
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, BMDR_EF_BIMOBEAM);
-    JUT_ASSERT(634, modelData != 0);
+    JUT_ASSERT(634, modelData != NULL);
     mBeamEffectModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (mBeamEffectModel == NULL) {
         return 0;
     }
 
     J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, BTK_EF_BIMOBEAM_ON);
-    JUT_ASSERT(648, pbtk != 0);
+    JUT_ASSERT(648, pbtk != NULL);
     mpBtkAnm = new mDoExt_btkAnm();
     if (mpBtkAnm == NULL || mpBtkAnm->init(modelData, pbtk, 1, 0, 1.0f, 0, -1) == 0) {
         return 0;
@@ -195,18 +195,18 @@ int daObjL6Bm_c::CreateHeap() {
 
     #ifdef DEBUG
     pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, BTK_EF_BIMOBEAM_OFF);
-    JUT_ASSERT(660, pbtk != 0);
+    JUT_ASSERT(660, pbtk != NULL);
     #endif
 
     pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, BTK_EF_BIMOBEAM);
-    JUT_ASSERT(666, pbtk != 0);
+    JUT_ASSERT(666, pbtk != NULL);
     mpBtkAnm2 = new mDoExt_btkAnm();
     if (mpBtkAnm2 == NULL || mpBtkAnm2->init(modelData, pbtk, 1, 2, 1.0f, 0, -1) == 0) {
         return 0;
     }
 
     J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, BCK_EF_BIMOBEAM);
-    JUT_ASSERT(678, pbck != 0);
+    JUT_ASSERT(678, pbck != NULL);
     mBeamBck = new mDoExt_bckAnm();
     if (mBeamBck == NULL || mBeamBck->init(pbck, 1, 2, 1.0f, 0, -1, false) == 0) {
         return 0;
@@ -390,7 +390,7 @@ int daObjL6Bm_c::Draw() {
         mpBtkAnm2->remove(mBeamEffectModel->getModelData());
     }
 
-    if (field_0x90c != -1000000000.0f) {
+    if (field_0x90c != -G_CM3D_F_INF) {
         cM3dGPla plane;
         if (dComIfG_Bgsp().GetTriPla(mObjGndChk, &plane)) {
             dComIfGd_setSimpleShadow(&current.pos, field_0x90c, 120.0f, &plane.mNormal, 0, 

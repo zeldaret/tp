@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_kakashi.h"
 #include "d/d_com_static.h"
@@ -210,7 +210,7 @@ int daNpc_Kakashi_c::create() {
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.GetGroundH();
 
-        if (mGroundH != -1000000000.0f) {
+        if (mGroundH != -G_CM3D_F_INF) {
             setEnvTevColor();
             setRoomNo();
         }

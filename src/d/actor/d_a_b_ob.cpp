@@ -3,7 +3,7 @@
 // Translation Unit: d_a_b_ob
 //
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_b_ob.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
@@ -3491,7 +3491,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("B_oh", BMDR_EF_OISUI);
-    JUT_ASSERT(0, modelData != 0);
+    JUT_ASSERT(0, modelData != NULL);
 
     a_this->mpSuiModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (a_this->mpSuiModel == NULL) {

@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_gra2.h"
 #include "Z2AudioLib/Z2Instances.h"
@@ -303,7 +303,7 @@ int daObj_GrA_c::CreateHeap() {
     field_0x844 = dKy_darkworld_check();
 
     J3DModelData* aMdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNames[l_bmdGetParamList[1]], l_bmdGetParamList[0]);
-    JUT_ASSERT(854, 0 != aMdlData_p);
+    JUT_ASSERT(854, NULL != aMdlData_p);
     mpModelMorf = new mDoExt_McaMorfSO(aMdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
     if (mpModelMorf != NULL && mpModelMorf->getModel() == NULL) {
         mpModelMorf->stopZelAnime();
@@ -354,7 +354,7 @@ int daObj_GrA_c::Execute(Mtx** param_1) {
         }
     }
 
-    if (mGroundY != -1000000000.0f) {
+    if (mGroundY != -G_CM3D_F_INF) {
         setEnvTevColor();
         setRoomNo();
     }
@@ -1460,7 +1460,7 @@ int daObj_GrA_c::ctrlMsgAnm(int& param_1, int& param_2, fopAc_ac_c* param_3) {
     param_2 = -1;
 
     dMsgObject_c* msg_p = (dMsgObject_c*)dMsgObject_c::getActor();
-    JUT_ASSERT(3163, 0 != msg_p);
+    JUT_ASSERT(3163, NULL != msg_p);
 
     if (msg_p->mode == 2 || msg_p->mode == 3) {
         field_0xa9c = -1;
@@ -1512,7 +1512,7 @@ bool daObj_GrA_c::checkTagGraSub(fopAc_ac_c* a_this) {
 
 /* 80C03764-80C03830 003944 00CC+00 1/1 0/0 0/0 .text            fallAbyssCheck__11daObj_GrA_cFv */
 bool daObj_GrA_c::fallAbyssCheck() {
-    if (mGroundY == -1000000000.0f && field_0x1528.isPath()) {
+    if (mGroundY == -G_CM3D_F_INF && field_0x1528.isPath()) {
         field_0x1fc0++;
         if (field_0x1fc0 == 30) {
             current.pos = field_0x1528.getPntPos(0);

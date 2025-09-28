@@ -3,7 +3,7 @@
  * Model, Animation, and Heap Functions
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include <dolphin/gf/GFPixel.h>
 #include <dolphin/gx.h>
@@ -225,7 +225,7 @@ void mDoExt_brkAnm::entry(J3DMaterialTable* i_matTable, f32 i_frame) {
 /* 8000D7DC-8000D8E4 00811C 0108+00 0/0 18/18 85/85 .text        init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb */
 int mDoExt_bckAnm::init(J3DAnmTransform* i_bck, int i_play, int i_attr, f32 i_rate,
                         s16 i_startF, s16 i_endF, bool i_modify) {
-    JUT_ASSERT(614, (i_modify || isCurrentSolidHeap()) && i_bck != 0);
+    JUT_ASSERT(614, (i_modify || isCurrentSolidHeap()) && i_bck != NULL);
     mAnm = i_bck;
     if (!i_modify) {
         mpMtxCalc = new J3DMtxCalcAnimation<J3DMtxCalcAnimationAdaptorDefault<J3DMtxCalcCalcTransformMaya>, J3DMtxCalcJ3DSysInitMaya>(mAnm);
@@ -542,15 +542,15 @@ void mDoExt_invisibleModel::entryDL(cXyz* param_0) {
 /* 8000E834-8000EA80 009174 024C+00 0/0 0/0 7/7 .text
  * mDoExt_setupShareTexture__FP12J3DModelDataP12J3DModelData    */
 void mDoExt_setupShareTexture(J3DModelData* i_modelData, J3DModelData* i_shareModelData) {
-    JUT_ASSERT(1547, i_modelData != 0 && i_shareModelData != 0);
+    JUT_ASSERT(1547, i_modelData != NULL && i_shareModelData != NULL);
     J3DTexture* texture = i_modelData->getTexture();
-    JUT_ASSERT(1549, texture != 0);
+    JUT_ASSERT(1549, texture != NULL);
     JUTNameTab* textureName = i_modelData->getTextureName();
-    JUT_ASSERT(1551, textureName != 0);
+    JUT_ASSERT(1551, textureName != NULL);
     J3DTexture* shareTexture = i_shareModelData->getTexture();
-    JUT_ASSERT(1553, shareTexture != 0);
+    JUT_ASSERT(1553, shareTexture != NULL);
     JUTNameTab* shareTextureName = i_shareModelData->getTextureName();
-    JUT_ASSERT(1555, shareTextureName != 0)
+    JUT_ASSERT(1555, shareTextureName != NULL)
 
     bool bvar = false;
     for (u16 i = 0; i < texture->getNum(); i++) {
@@ -572,7 +572,7 @@ void mDoExt_setupShareTexture(J3DModelData* i_modelData, J3DModelData* i_shareMo
         for (u16 i = 0; i < i_modelData->getMaterialNum(); i++) {
             J3DMaterial* mat = i_modelData->getMaterialNodePointer(i);
             J3DTevBlock* tevBlock = mat->getTevBlock();
-            JUT_ASSERT(1577, tevBlock != 0);
+            JUT_ASSERT(1577, tevBlock != NULL);
             J3DDisplayListObj* dlObj = mat->getSharedDisplayListObj();
 
             BOOL ret = OSDisableInterrupts();
@@ -2085,7 +2085,7 @@ void mDoExt_invJntPacket::draw() {
             GFSetBlendModeEtc(GX_BM_NONE, GX_BL_ZERO, GX_BL_ZERO, GX_LO_CLEAR, 0, 0, 1);
 
             J3DShapePacket* shapePkt = sp18->getShapePacket();
-            JUT_ASSERT(0x1393, shapePkt != 0);
+            JUT_ASSERT(5011, shapePkt != NULL);
             shapePkt->getShape()->loadPreDrawSetting();
 
             do {
@@ -2453,7 +2453,7 @@ void mDoExt_3DlineMat0_c::update(int param_0, GXColor& param_2, dKy_tevstr_c* pa
 
         sp_18 = sp_30->field_0x4;
 
-        JUT_ASSERT(0x1545, sp_18 != 0);
+        JUT_ASSERT(0x1545, sp_18 != NULL);
 
         sp_20 = ((mDoExt_3Dline_c*)((int)sp_30 + (field_0x16 << 2)))->field_0x8;
         sp_24 = sp_20;
@@ -2807,7 +2807,7 @@ void mDoExt_3DlineMat1_c::update(int param_0, _GXColor& param_2, dKy_tevstr_c* p
     for (s32 sp_14 = 0; sp_14 < mNumLines; sp_14++) {
         local_r27 = sp_38[0].field_0x0;
         local_r18 = sp_38->field_0x4;
-        JUT_ASSERT(0x16f3, sp_18 != 0);
+        JUT_ASSERT(0x16f3, sp_18 != NULL);
         sp_24 = ((mDoExt_3Dline_c*)((int)sp_38 + (mIsDrawn << 2)))->field_0x8;
         sp_28 = sp_24;
         sp_20 = ((mDoExt_3Dline_c*)((int)sp_38 + (mIsDrawn << 2)))->field_0x10;
@@ -3006,10 +3006,10 @@ void mDoExt_cylinderPacket::draw() {
 static void mDoExt_initFontCommon(JUTFont** mDoExt_font, ResFONT** mDoExt_resfont, JKRHeap* param_2,
                                   char const* param_3, JKRArchive* param_4, u8 param_5,
                                   u32 param_6, u32 param_7) {
-    JUT_ASSERT(7141, mDoExt_font == 0);
-    JUT_ASSERT(7142, mDoExt_resfont == 0);
+    JUT_ASSERT(7141, mDoExt_font == NULL);
+    JUT_ASSERT(7142, mDoExt_resfont == NULL);
     *mDoExt_resfont = (ResFONT*)JKRGetResource('ROOT', param_3, param_4);
-    JUT_ASSERT(7144, *mDoExt_resfont != 0);
+    JUT_ASSERT(7144, *mDoExt_resfont != NULL);
     if (param_5 == 0) {
         u32 cacheSize = JUTCacheFont::calcCacheSize(param_7, param_6);
         JUTCacheFont* cacheFont = new (param_2, 0) JUTCacheFont(*mDoExt_resfont, cacheSize, param_2);
@@ -3029,7 +3029,7 @@ static void mDoExt_initFontCommon(JUTFont** mDoExt_font, ResFONT** mDoExt_resfon
         delete *mDoExt_font;
         *mDoExt_font = NULL;
     }
-    JUT_ASSERT(7183, mDoExt_font != 0);
+    JUT_ASSERT(7183, mDoExt_font != NULL);
 }
 
 /* 80450C44-80450C48 000144 0004+00 3/3 0/0 0/0 .sbss            mDoExt_font0 */

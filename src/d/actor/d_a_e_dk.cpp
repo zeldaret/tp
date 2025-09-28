@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_dk.h"
 #include "d/actor/d_a_player.h"
@@ -281,7 +281,7 @@ void daE_DK_c::checkWaterHeight() {
         gndChkPos.y += 1000.0f;
         gndChk.SetPos(&gndChkPos);
         field_0x6b8 = dComIfG_Bgsp().GroundCross(&gndChk);
-        if (field_0x6b8 != -1000000000.0f && current.pos.y + 350.0f > field_0x6b8) {
+        if (field_0x6b8 != -G_CM3D_F_INF && current.pos.y + 350.0f > field_0x6b8) {
             current.pos.y = field_0x6b8 - 350.0f;
         }
     } else {
@@ -289,7 +289,7 @@ void daE_DK_c::checkWaterHeight() {
         gndChkPos.y += 1000.0f;
         gndChk.SetPos(&gndChkPos);
         field_0x6b8 = dComIfG_Bgsp().GroundCross(&gndChk);
-        if (field_0x6b8 != -1000000000.0f && field_0x670.y + 350.0f > field_0x6b8) {
+        if (field_0x6b8 != -G_CM3D_F_INF && field_0x670.y + 350.0f > field_0x6b8) {
             field_0x670.y = field_0x6b8 - 350.0f;
         }
     }

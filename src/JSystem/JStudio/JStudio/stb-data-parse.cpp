@@ -51,7 +51,7 @@ void TParse_TParagraph::getData(TData* pData) const {
 }
 
 void TParse_TParagraph_data::getData(TParse_TParagraph_data::TData* pData) const {
-    JUT_ASSERT(104, pData!=0);
+    JUT_ASSERT(104, pData!=NULL);
     pData->entrySize = 0;
     pData->entryCount = 0;
     pData->content = NULL;

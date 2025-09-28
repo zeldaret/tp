@@ -66,7 +66,7 @@ u16 JMessage::TResource::toMessageIndex_messageID(u32 uMsgID, u32 upperHalf, boo
     int nMsgNumber = oParse_TBlock_messageID_.get_number();
 
     const u32* pContent = oParse_TBlock_messageID_.getContent();
-    JUT_ASSERT(131, pContent!=0);
+    JUT_ASSERT(131, pContent!=NULL);
 
     const u32* pFirst = pContent;
     const u32* pLast = pFirst + nMsgNumber;
@@ -156,13 +156,13 @@ void JMessage::TResourceContainer::setEncoding(u8 e) {
 void JMessage::TResourceContainer::setEncoding_(u8 e) {
     encodingType_ = e;
     pfnParseCharacter_ = JGadget::toValueFromIndex<JMessage::locale::parseCharacter_function>(e, sapfnParseCharacter_, 5, NULL);
-    JUT_ASSERT(299, pfnParseCharacter_!=0);
+    JUT_ASSERT(299, pfnParseCharacter_!=NULL);
 }
 
 /* 802A9130-802A9158 2A3A70 0028+00 0/0 2/2 0/0 .text
  * __ct__Q28JMessage6TParseFPQ28JMessage18TResourceContainer    */
 JMessage::TParse::TParse(JMessage::TResourceContainer* pContainer) {
-    JUT_ASSERT(324, pContainer!=0);
+    JUT_ASSERT(324, pContainer!=NULL);
     pContainer_ = pContainer;
     pResource_ = NULL;
 }
@@ -174,17 +174,17 @@ JMessage::TParse::~TParse() {}
  * parseHeader_next__Q28JMessage6TParseFPPCvPUlUl               */
 // NONMATCHING regalloc, missing clrlwi
 bool JMessage::TParse::parseHeader_next(const void** ppData_inout, u32* puBlock_out, u32 param_2) {
-    JUT_ASSERT(343, ppData_inout!=0);
-    JUT_ASSERT(344, puBlock_out!=0);
+    JUT_ASSERT(343, ppData_inout!=NULL);
+    JUT_ASSERT(344, puBlock_out!=NULL);
 
     const void* pData = *ppData_inout;
-    JUT_ASSERT(346, pData!=0);
+    JUT_ASSERT(346, pData!=NULL);
 
     data::TParse_THeader oHeader(pData);
     *ppData_inout = oHeader.getContent();
     *puBlock_out = oHeader.get_blockNumber();
 
-    JUT_ASSERT(350, pContainer_!=0);
+    JUT_ASSERT(350, pContainer_!=NULL);
 
     if (memcmp(oHeader.get_signature(), &data::ga4cSignature, sizeof(data::ga4cSignature)) != 0) {
         JGADGET_WARNMSG(355, "unknown signature");
@@ -230,11 +230,11 @@ bool JMessage::TParse::parseHeader_next(const void** ppData_inout, u32* puBlock_
 /* 802A92F4-802A9490 2A3C34 019C+00 1/0 0/0 0/0 .text
  * parseBlock_next__Q28JMessage6TParseFPPCvPUlUl                */
 bool JMessage::TParse::parseBlock_next(const void** ppData_inout, u32* puData_out, u32 param_2) {
-    JUT_ASSERT(401, ppData_inout!=0);
-    JUT_ASSERT(402, puData_out!=0);
+    JUT_ASSERT(401, ppData_inout!=NULL);
+    JUT_ASSERT(402, puData_out!=NULL);
 
     const void* pData = *ppData_inout;
-    JUT_ASSERT(404, pData!=0);
+    JUT_ASSERT(404, pData!=NULL);
 
     data::TParse_TBlock oBlock(pData);
 

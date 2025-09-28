@@ -66,11 +66,11 @@ void fpcM_Management(fpcM_ManagementFunc i_preExecuteFn, fpcM_ManagementFunc i_p
             }
 
             if (!fpcPi_Handler()) {
-                JUT_ASSERT(353, 0);
+                JUT_ASSERT(353, FALSE);
             }
 
             if (!fpcCt_Handler()) {
-                JUT_ASSERT(357, 0);
+                JUT_ASSERT(357, FALSE);
             }
 
             if (i_preExecuteFn != NULL) {

@@ -2,7 +2,7 @@
 // d_msg_scrn_kanban
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_msg_scrn_kanban.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
@@ -25,7 +25,7 @@ dMsgScrnKanban_c::dMsgScrnKanban_c(JKRExpHeap* param_0) {
     init();
 
     mpScreen = new J2DScreen();
-    JUT_ASSERT(43, mpScreen != 0);
+    JUT_ASSERT(43, mpScreen != NULL);
     bool fg =
         mpScreen->setPriority("zelda_kanban_stone_a.blo", 0x1020000, dComIfGp_getMsgArchive(2));
     JUT_ASSERT(45, fg != false);
@@ -41,7 +41,7 @@ dMsgScrnKanban_c::dMsgScrnKanban_c(JKRExpHeap* param_0) {
     field_0xd8 = 0.0f;
 
     mpPmP_c = new CPaneMgr(mpScreen, 'n_size', 2, NULL);
-    JUT_ASSERT(60, mpPmP_c != 0);
+    JUT_ASSERT(60, mpPmP_c != NULL);
     mpPmP_c->getPanePtr()->setAnimation(field_0xcc);
 
     field_0xcc->setFrame(1.0f);
@@ -50,10 +50,10 @@ dMsgScrnKanban_c::dMsgScrnKanban_c(JKRExpHeap* param_0) {
     mpPmP_c->scale(g_MsgObject_HIO_c.mBoxStoneScaleX, g_MsgObject_HIO_c.mBoxStoneScaleY);
 
     mpBack_c = new CPaneMgr(mpScreen, 'back_b', 0, NULL);
-    JUT_ASSERT(68, mpBack_c != 0);
+    JUT_ASSERT(68, mpBack_c != NULL);
 
     mpSpot_c = new CPaneMgr(mpScreen, 'spot00', 0, NULL);
-    JUT_ASSERT(72, mpSpot_c != 0);
+    JUT_ASSERT(72, mpSpot_c != NULL);
 
     mpSpot_c->getPanePtr()->setAnimation(field_0xd0);
 
@@ -90,7 +90,7 @@ dMsgScrnKanban_c::dMsgScrnKanban_c(JKRExpHeap* param_0) {
 
     for (int i = 0; i < 3; i++) {
         mpTm_c[i] = new CPaneMgr(mpScreen, t_tag[i], 0, NULL);
-        JUT_ASSERT(81, mpTm_c[i] != 0);
+        JUT_ASSERT(81, mpTm_c[i] != NULL);
         ((J2DTextBox*)mpTm_c[i]->getPanePtr())->setFont(mDoExt_getMesgFont());
     }
 

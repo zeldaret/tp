@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "SSystem/SComponent/c_lib.h"
 #include "d/actor/d_a_obj_bemos.h"
@@ -375,7 +375,7 @@ int daObjBm_c::Create() {
 /* 80BAEADC-80BAEF90 00085C 04B4+00 1/0 0/0 0/0 .text            CreateHeap__9daObjBm_cFv */
 int daObjBm_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 0xd);
-    JUT_ASSERT(767, modelData != 0);
+    JUT_ASSERT(767, modelData != NULL);
 
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {
@@ -383,7 +383,7 @@ int daObjBm_c::CreateHeap() {
     }
 
     J3DAnmTevRegKey* pbrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, 0x13);
-    JUT_ASSERT(780, pbrk != 0);
+    JUT_ASSERT(780, pbrk != NULL);
     mpBrkAnm = new mDoExt_brkAnm();
     if (mpBrkAnm == NULL || mpBrkAnm->init(modelData, pbrk, 1, 0, 1.0f, 0, -1) == 0) {
         return 0;
@@ -392,25 +392,25 @@ int daObjBm_c::CreateHeap() {
     J3DAnmTransform* pbck;
 #if DEBUG
     pbck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 7);
-    JUT_ASSERT(791, pbck != 0);
+    JUT_ASSERT(791, pbck != NULL);
 #endif
 
     pbck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 7);
-    JUT_ASSERT(798, pbck != 0);
+    JUT_ASSERT(798, pbck != NULL);
     mpBckAnm = new mDoExt_bckAnm();
     if (mpBckAnm == NULL || mpBckAnm->init(pbck, 1, 0, 1.0f, 0, -1, false) == 0) {
         return 0;
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 0xe);
-    JUT_ASSERT(813, modelData != 0);
+    JUT_ASSERT(813, modelData != NULL);
     mpModel2 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (mpModel2 == NULL) {
         return 0;
     }
 
     J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 0x1a);
-    JUT_ASSERT(827, pbtk != 0);
+    JUT_ASSERT(827, pbtk != NULL);
     mpBtkAnm = new mDoExt_btkAnm();
     if (mpBtkAnm == NULL || mpBtkAnm->init(modelData, pbtk, 1, 0, 1.0f, 0, -1) == 0) {
         return 0;
@@ -419,32 +419,32 @@ int daObjBm_c::CreateHeap() {
 
 #ifdef DEBUG
     pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 0x18);
-    JUT_ASSERT(840, pbtk != 0);
+    JUT_ASSERT(840, pbtk != NULL);
 #endif
 
     pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 0x18);
-    JUT_ASSERT(846, pbtk != 0);
+    JUT_ASSERT(846, pbtk != NULL);
     mpBtkAnm2 = new mDoExt_btkAnm();
     if (mpBtkAnm2 == NULL || mpBtkAnm2->init(modelData, pbtk, 1, 2, 1.0f, 0, -1) == 0) {
         return 0;
     }
 
     J3DAnmTransform* pbck2 = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 9);
-    JUT_ASSERT(858, pbck != 0);
+    JUT_ASSERT(858, pbck != NULL);
     mpBckAnm2 = new mDoExt_bckAnm();
     if (mpBckAnm2 == NULL || mpBckAnm2->init(pbck2, 1, 2, 1.0f, 0, -1, false) == 0) {
         return 0;
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 0xf);
-    JUT_ASSERT(873, modelData != 0);
+    JUT_ASSERT(873, modelData != NULL);
     mpModel3 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel3 == NULL) {
         return 0;
     }
 
     J3DAnmTransform* pbck3 = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 8);
-    JUT_ASSERT(885, pbck3 != 0);
+    JUT_ASSERT(885, pbck3 != NULL);
     mpBckAnm3 = new mDoExt_bckAnm();
     if (mpBckAnm3 == NULL || mpBckAnm3->init(pbck3, 1, 0, 1.0f, 0, -1, false) == 0) {
         return 0;
@@ -1143,7 +1143,7 @@ const daObjBm_c::BgcSrc_c daObjBm_c::Bgc_c::M_lin20[] = {
 };
 
 static f32 dummy_rodata_5157() {
-    return -1000000000.0f;
+    return -G_CM3D_F_INF;
 }
 
 /* 80BB3F9C-80BB4728 0000BC 078C+00 1/2 0/0 0/0 .bss             M_gnd_work__Q29daObjBm_c5Bgc_c */

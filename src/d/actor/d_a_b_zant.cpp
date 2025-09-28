@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_b_zant.h"
 #include "d/actor/d_a_b_zant_mobile.h"
@@ -1240,7 +1240,7 @@ void daB_ZANT_c::executeWarp() {
                 gndchk.SetPos(&mFlyWarpPos);
 
                 f32 gnd_y = dComIfG_Bgsp().GroundCross(&gndchk);
-                if (gnd_y != -1000000000.0f) {
+                if (gnd_y != -G_CM3D_F_INF) {
                     mFlyWarpPos.y = gnd_y;
                 }
 
@@ -1784,7 +1784,7 @@ void daB_ZANT_c::executeFly() {
         gndchk.SetPos(&sp9C);
         {
             f32 gnd_pos = dComIfG_Bgsp().GroundCross(&gndchk);
-            if (gnd_pos != -1000000000.0f && current.pos.y <= gnd_pos) {
+            if (gnd_pos != -G_CM3D_F_INF && current.pos.y <= gnd_pos) {
                 if (dComIfG_Bgsp().GetPolyAtt0(gndchk) == 11) {
                     speed.y = 50.0f;
                     speedF = 15.0f;
@@ -5483,7 +5483,7 @@ static int daB_ZANT_Delete(daB_ZANT_c* i_this) {
 /* 8064DC04-8064E128 00FBE4 0524+00 1/1 0/0 0/0 .text            CreateHeap__10daB_ZANT_cFv */
 int daB_ZANT_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("B_zan", BMDR_ZAN);
-    JUT_ASSERT(0, modelData != 0);
+    JUT_ASSERT(0, modelData != NULL);
     mpModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("B_zan", BCK_ZAN_FLOAT_WAIT), 2, 1.0f, 0, -1, &mSound, 0, 0x11000084);
     if (mpModelMorf == NULL || mpModelMorf->getModel() == NULL) {
         return 0;
@@ -5550,14 +5550,14 @@ int daB_ZANT_c::CreateHeap() {
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("B_zan", BMDR_ZAN_SWORD_L);
-    JUT_ASSERT(0, modelData != 0);
+    JUT_ASSERT(0, modelData != NULL);
     mpSwordLModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpSwordLModel == NULL) {
         return 0;
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("B_zan", BMDR_ZAN_SWORD_R);
-    JUT_ASSERT(0, modelData != 0);
+    JUT_ASSERT(0, modelData != NULL);
     mpSwordRModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpSwordRModel == NULL) {
         return 0;

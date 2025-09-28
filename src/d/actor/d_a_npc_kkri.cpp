@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_kkri.h"
 #include "d/actor/d_a_e_ym.h"
@@ -358,7 +358,7 @@ int daNpc_Kkri_c::create() {
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.GetGroundH();
 
-        if (mGroundH != -1000000000.0f) {
+        if (mGroundH != -G_CM3D_F_INF) {
             setEnvTevColor();
             setRoomNo();
         }
@@ -1109,7 +1109,7 @@ int daNpc_Kkri_c::sitWait1(void*) {
 /* 80551A4C-80551DA4 00278C 0358+00 1/0 0/0 0/0 .text            fearWait__12daNpc_Kkri_cFPv */
 int daNpc_Kkri_c::fearWait(void*) {
     fopAc_ac_c* nearest_actor = NULL;
-    f32 nearest_dist = 1000000000.0f;
+    f32 nearest_dist = G_CM3D_F_INF;
 
     switch (mMode) {
     case 0:

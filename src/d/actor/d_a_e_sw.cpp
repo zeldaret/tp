@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_sw.h"
 #include "f_op/f_op_actor_enemy.h"
@@ -298,7 +298,7 @@ void daE_SW_c::checkFall() {
     f32 fVar1 = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
     if (speed.y < 0.0f) {
-        if (fVar1 == -1000000000.0f || std::abs(fVar1 - current.pos.y) > 1000.0f || dComIfG_Bgsp().GetGroundCode(gnd_chk) == 4 || 
+        if (fVar1 == -G_CM3D_F_INF || std::abs(fVar1 - current.pos.y) > 1000.0f || dComIfG_Bgsp().GetGroundCode(gnd_chk) == 4 || 
             dComIfG_Bgsp().GetGroundCode(gnd_chk) == 10 || dComIfG_Bgsp().GetGroundCode(gnd_chk) == 5) {
             setActionMode(13, 0);
         }
@@ -1702,7 +1702,7 @@ cPhs__Step daE_SW_c::create() {
 
     u32 uVar1 = (fopAcM_GetParam(this) >> 4) & 0xFF;
     if (uVar1 == 0xFF) {
-        field_0x690 = 1000000000.0f;
+        field_0x690 = G_CM3D_F_INF;
     } else {
         field_0x690 = uVar1 * 100.0f;
     }
@@ -1894,7 +1894,7 @@ void daE_SW_c::d_checkFall() {
     f32 fVar1 = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
     if (speed.y < 0.0f) {
-        if ((fVar1 == -1000000000.0f || std::abs(fVar1 - current.pos.y) > 1000.0f) || dComIfG_Bgsp().GetGroundCode(gnd_chk) == 4 || 
+        if ((fVar1 == -G_CM3D_F_INF || std::abs(fVar1 - current.pos.y) > 1000.0f) || dComIfG_Bgsp().GetGroundCode(gnd_chk) == 4 || 
             dComIfG_Bgsp().GetGroundCode(gnd_chk) == 10 || dComIfG_Bgsp().GetGroundCode(gnd_chk) == 5) {
             d_setAction(daE_SW_c::d_fall);
         }

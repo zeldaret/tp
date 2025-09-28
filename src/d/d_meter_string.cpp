@@ -3,7 +3,7 @@
  * UI Mini-Game Text
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_meter_string.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
@@ -50,7 +50,7 @@ int dMeterString_c::_create() {
     }
 
     mpScreen = new J2DScreen();
-    JUT_ASSERT(0, mpScreen != 0);
+    JUT_ASSERT(0, mpScreen != NULL);
 
     bool fg = mpScreen->setPriority("zelda_game_image_cow_get_in.blo", 0x20000, mpMapArchive);
     JUT_ASSERT(0, fg != false);
@@ -61,13 +61,13 @@ int dMeterString_c::_create() {
         JKRGetNameResource("zelda_game_image_cow_get_in.bck", mpMapArchive));
 
     mpParentPane = new CPaneMgr(mpScreen, 'get_in_n', 2, NULL);
-    JUT_ASSERT(0, mpParentPane != 0);
+    JUT_ASSERT(0, mpParentPane != NULL);
 
     mpRootPane = new CPaneMgr(mpScreen, 'n_all', 0, NULL);
-    JUT_ASSERT(0, mpRootPane != 0);
+    JUT_ASSERT(0, mpRootPane != NULL);
 
     mpTextPane = new CPaneMgr(mpScreen, 'get_in', 0, NULL);
-    JUT_ASSERT(0, mpTextPane != 0);
+    JUT_ASSERT(0, mpTextPane != NULL);
 
     static_cast<J2DTextBox*>(mpScreen->search('get_in_s'))->setFont(mDoExt_getMesgFont());
     static_cast<J2DTextBox*>(mpScreen->search('get_in'))->setFont(mDoExt_getMesgFont());

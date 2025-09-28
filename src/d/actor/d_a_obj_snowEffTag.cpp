@@ -3,7 +3,7 @@
  * Snow Effect Generator Tag
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_snowEffTag.h"
 #include "SSystem/SComponent/c_math.h"

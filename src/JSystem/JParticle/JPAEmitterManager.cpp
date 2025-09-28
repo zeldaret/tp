@@ -55,7 +55,7 @@ JPABaseEmitter* JPAEmitterManager::createSimpleEmitterID(JGeometry::TVec3<f32> c
                                                          JPAParticleCallBack* ptclCB) {
     JUT_ASSERT(88, group_id < gidMax);
     JUT_ASSERT(89, res_mgr_id < ridMax);
-    JUT_ASSERT(90, pResMgrAry[res_mgr_id] != 0);
+    JUT_ASSERT(90, pResMgrAry[res_mgr_id] != NULL);
     JPAResource* pRes = pResMgrAry[res_mgr_id]->getResource(resID);
 
     if (pRes == NULL) {
@@ -160,7 +160,7 @@ void JPAEmitterManager::forceDeleteEmitter(JPABaseEmitter* emtr) {
 /* 8027E344-8027E354 278C84 0010+00 0/0 2/2 0/0 .text
  * entryResourceManager__17JPAEmitterManagerFP18JPAResourceManagerUc */
 void JPAEmitterManager::entryResourceManager(JPAResourceManager* resMgr, u8 resMgrID) {
-    JUT_ASSERT_MSG_F(325, resMgrID < ridMax && (pResMgrAry[resMgrID]) == 0,
+    JUT_ASSERT_MSG_F(325, resMgrID < ridMax && (pResMgrAry[resMgrID]) == NULL,
                      "res_id %d res_id_max %d array[%d] = %x", resMgrID, ridMax, resMgrID,
                      pResMgrAry[resMgrID]);
     pResMgrAry[resMgrID] = resMgr;

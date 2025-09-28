@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_b_gg.h"
 #include "d/d_com_inf_game.h"
@@ -154,7 +154,7 @@ daB_GG_HIO_c::daB_GG_HIO_c() {
 int daB_GG_c::CreateHeap() {
     J3DModelData* modelData;
     modelData = (J3DModelData*)dComIfG_getObjectRes("B_gg", 0x23);
-    JUT_ASSERT(207, modelData != 0);
+    JUT_ASSERT(207, modelData != NULL);
 
     mpModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("B_gg", 0xE), 2, 1.0f, 0, -1, &mSound, 0x80000, 0x11000084);
     if (mpModelMorf == NULL || mpModelMorf->getModel() == NULL) {
@@ -4494,7 +4494,7 @@ int daB_GG_c::Create() {
             SetAnm(BCK_GG_WAIT, 2, 5.0f, 1.0f);
             fopAcM_OnStatus(this, 0x200000);
 
-            if (-1000000000.0f != mAcch.GetGroundH()) {
+            if (-G_CM3D_F_INF != mAcch.GetGroundH()) {
                 current.pos.y = mAcch.GetGroundH();
                 field_0x648 = mAcch.GetGroundH();
             }

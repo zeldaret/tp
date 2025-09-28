@@ -2,7 +2,7 @@
 // Translation Unit: d_a_ep
 //
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_ep.h"
 #include "d/actor/d_a_player.h"
@@ -820,7 +820,7 @@ static int daEp_CreateHeap(fopAc_ac_c* a_this) {
     ep_class* i_this = (ep_class*)a_this;
 
     void* modelData = dComIfG_getObjectRes("Ep", model_d[i_this->field_0xa5a]);
-    JUT_ASSERT(0x855, modelData != 0);
+    JUT_ASSERT(0x855, modelData != NULL);
 
     i_this->mpModel = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
     if (i_this->mpModel == NULL) {
@@ -831,7 +831,7 @@ static int daEp_CreateHeap(fopAc_ac_c* a_this) {
     i_this->mpModel->setBaseTRMtx(*calc_mtx);
 
     modelData = dComIfG_getObjectRes("Ep", 7);
-    JUT_ASSERT(0x884, modelData != 0);
+    JUT_ASSERT(0x884, modelData != NULL);
 
     for (int i = 0; i < 6; i++) {
         i_this->mHahen[i].mpModel = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);

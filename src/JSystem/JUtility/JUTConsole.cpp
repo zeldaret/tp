@@ -17,7 +17,7 @@ JUTConsoleManager* JUTConsoleManager::sManager;
  */
 JUTConsole* JUTConsole::create(unsigned int param_0, unsigned int maxLines, JKRHeap* pHeap) {
     JUTConsoleManager* pManager = JUTConsoleManager::getManager();
-    JUT_ASSERT(33, pManager != 0);
+    JUT_ASSERT(33, pManager != NULL);
 
     u8* buffer = (u8*)JKRAllocFromHeap(pHeap, getObjectSizeFromBufferSize(param_0, maxLines), 0);
 
@@ -32,7 +32,7 @@ JUTConsole* JUTConsole::create(unsigned int param_0, unsigned int maxLines, JKRH
 /* 802E73E4-802E746C 2E1D24 0088+00 0/0 1/1 0/0 .text            create__10JUTConsoleFUiPvUl */
 JUTConsole* JUTConsole::create(unsigned int param_0, void* buffer, u32 bufferSize) {
     JUTConsoleManager* pManager = JUTConsoleManager::getManager();
-    JUT_ASSERT(59, pManager != 0);
+    JUT_ASSERT(59, pManager != NULL);
 
     JUT_ASSERT(62, ( (u32)buffer & 0x3 ) == 0);
     u32 maxLines = getLineFromObjectSize(bufferSize, param_0);
@@ -262,7 +262,7 @@ void JUTConsole::print(char const* str) {
 
 /* 802E7F30-802E7F7C 2E2870 004C+00 1/1 1/1 0/0 .text            JUTConsole_print_f_va_ */
 extern "C" void JUTConsole_print_f_va_(JUTConsole* console, const char* fmt, va_list args) {
-    JUT_ASSERT(563, console!=0);
+    JUT_ASSERT(563, console!=NULL);
 
     char buf[1024];
     vsnprintf(buf, sizeof(buf), fmt, args);
@@ -361,7 +361,7 @@ JUTConsoleManager::JUTConsoleManager() {
 /* 802E81F4-802E8240 2E2B34 004C+00 0/0 1/1 0/0 .text createManager__17JUTConsoleManagerFP7JKRHeap
  */
 JUTConsoleManager* JUTConsoleManager::createManager(JKRHeap* pHeap) {
-    JUT_ASSERT(0x39c, sManager == 0);
+    JUT_ASSERT(0x39c, sManager == NULL);
 
     if (pHeap == NULL) {
         pHeap = JKRGetCurrentHeap();
@@ -375,7 +375,7 @@ JUTConsoleManager* JUTConsoleManager::createManager(JKRHeap* pHeap) {
 /* 802E8240-802E82B0 2E2B80 0070+00 3/3 0/0 0/0 .text
  * appendConsole__17JUTConsoleManagerFP10JUTConsole             */
 void JUTConsoleManager::appendConsole(JUTConsole* console) {
-    JUT_ASSERT(961, sManager != 0 && console != 0);
+    JUT_ASSERT(961, sManager != NULL && console != NULL);
 
     JUT_ASSERT(964, soLink_.Find( console ) == soLink_.end());
     soLink_.Push_back(console);
@@ -388,7 +388,7 @@ void JUTConsoleManager::appendConsole(JUTConsole* console) {
 /* 802E82B0-802E8384 2E2BF0 00D4+00 2/2 0/0 0/0 .text
  * removeConsole__17JUTConsoleManagerFP10JUTConsole             */
 void JUTConsoleManager::removeConsole(JUTConsole* console) {
-    JUT_ASSERT(982, sManager != 0 && console != 0);
+    JUT_ASSERT(982, sManager != NULL && console != NULL);
     JUT_ASSERT(985, soLink_.Find( console ) != soLink_.end());
 
     if (mActiveConsole == console) {

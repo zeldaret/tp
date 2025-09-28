@@ -3,7 +3,7 @@
  * dolzel2 - Quest Log Management (File Select Menu)
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
@@ -2372,7 +2372,7 @@ void dFile_select_c::screenSet() {
     static u64 l_tagName131[3] = {'N_sel_00', 'N_sel_01', 'N_sel_02'};
 
     fileSel.Scr = new J2DScreen();
-    JUT_ASSERT(4917, fileSel.Scr != 0);
+    JUT_ASSERT(4917, fileSel.Scr != NULL);
     fileSel.Scr->setPriority("zelda_file_select.blo", 0x1100000, mpArchive);
     dPaneClass_showNullPane(fileSel.Scr);
     void* uVar14 = JKRGetNameResource("zelda_file_select.bck", mpArchive);
@@ -2417,12 +2417,12 @@ void dFile_select_c::screenSet() {
     fopMsgM_messageGet(acStack_38, 0x55);
     ((J2DTextBox*)field_0x0244->getPanePtr())->setString(acStack_38);
     void* bpk = JKRGetNameResource("zelda_file_select.bpk", mpArchive);
-    JUT_ASSERT(4994, bpk != 0);
+    JUT_ASSERT(4994, bpk != NULL);
     field_0x01c8 = (J2DAnmColor*)J2DAnmLoaderDataBase::load(bpk);
     field_0x01c8->searchUpdateMaterialID(fileSel.Scr);
     field_0x01cc = 0;
     void* btk = JKRGetNameResource("zelda_file_select_05.btk", mpArchive);
-    JUT_ASSERT(5004, btk != 0);
+    JUT_ASSERT(5004, btk != NULL);
     field_0x01d0 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(btk);
     field_0x01d0->searchUpdateMaterialID(fileSel.Scr);
     field_0x01d4 = 0;
@@ -2439,11 +2439,11 @@ void dFile_select_c::screenSet() {
     field_0x01d8 = (J2DAnmColor*)J2DAnmLoaderDataBase::load(bpk);
     field_0x01d8->searchUpdateMaterialID(fileSel.Scr);
     btk = JKRGetNameResource("zelda_file_select.btk", mpArchive);
-    JUT_ASSERT(5039, btk != 0);
+    JUT_ASSERT(5039, btk != NULL);
     field_0x01e0 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(btk);
     field_0x01e0->searchUpdateMaterialID(fileSel.Scr);
     void* brk = JKRGetNameResource("zelda_file_select.brk", mpArchive);
-    JUT_ASSERT(5048, brk != 0);
+    JUT_ASSERT(5048, brk != NULL);
     field_0x01e8 = (J2DAnmTevRegKey*)J2DAnmLoaderDataBase::load(brk);
     field_0x0200 = (J2DAnmTevRegKey*)J2DAnmLoaderDataBase::load(brk);
     field_0x01e8->searchUpdateMaterialID(fileSel.Scr);
@@ -2490,11 +2490,11 @@ void dFile_select_c::screenSet() {
     field_0x020c[1]->setAlpha(0);
     field_0x021c = 0;
     bpk = JKRGetNameResource("zelda_file_select_02.btk", mpArchive);
-    JUT_ASSERT(5124, bpk != 0);
+    JUT_ASSERT(5124, bpk != NULL);
     field_0x01f8 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(bpk);
     field_0x01f8->searchUpdateMaterialID(fileSel.Scr);
     bpk = JKRGetNameResource("zelda_file_select_03.btk", mpArchive);
-    JUT_ASSERT(5133, bpk != 0);
+    JUT_ASSERT(5133, bpk != NULL);
     field_0x01f0 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(bpk);
     field_0x01f0->searchUpdateMaterialID(fileSel.Scr);
     field_0x01f4 = 0;
@@ -2547,7 +2547,7 @@ void dFile_select_c::screenSet() {
     field_0x0138[field_0x0148]->setAlpha(0xff);
     field_0x0138[field_0x0148 ^ 1]->setAlpha(0);
     mSelIcon = new dSelect_cursor_c(0, 1.0f, NULL);
-    JUT_ASSERT(5209, mSelIcon != 0);
+    JUT_ASSERT(5209, mSelIcon != NULL);
     mSelIcon->setParam(0.96f, 0.94f, 0.03f, 0.7f, 0.7f);
     Vec vtxCenter;
     vtxCenter = field_0x00bc[mSelectNum]->getGlobalVtxCenter(false, 0);
@@ -2600,7 +2600,7 @@ void dFile_select_c::screenSetCopySel() {
     static u64 l_tagName005[2] = {'w_cp_ef1', 'w_cp_ef2'};
 
     mCpSel.Scr = new J2DScreen();
-    JUT_ASSERT(5286, mCpSel.Scr != 0);
+    JUT_ASSERT(5286, mCpSel.Scr != NULL);
     mCpSel.Scr->setPriority("zelda_file_select_copy_select.blo", 0x1100000, mpArchive);
     dPaneClass_showNullPane(mCpSel.Scr);
     mCpSel.mpPane2 = mCpSel.Scr->search('name_n');
@@ -2612,23 +2612,23 @@ void dFile_select_c::screenSetCopySel() {
     field_0x029c->searchUpdateMaterialID(mCpSel.Scr);
     field_0x02a0->searchUpdateMaterialID(mCpSel.Scr);
     void* bpk = JKRGetNameResource("zelda_file_select_copy_select.bpk", mpArchive);
-    JUT_ASSERT(5315, bpk != 0);
+    JUT_ASSERT(5315, bpk != NULL);
     field_0x02e8 = (J2DAnmColor*)J2DAnmLoaderDataBase::load(bpk);
     field_0x02e8->searchUpdateMaterialID(mCpSel.Scr);
     field_0x02ec = 0;
     void* btk = JKRGetNameResource("zelda_file_select_copy_select_03.btk", mpArchive);
-    JUT_ASSERT(5325, btk != 0);
+    JUT_ASSERT(5325, btk != NULL);
     field_0x02f0 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(btk);
     field_0x02f0->searchUpdateMaterialID(mCpSel.Scr);
     field_0x02f4 = 0;
     field_0x02f8 = (J2DAnmColor*)J2DAnmLoaderDataBase::load(bpk);
     field_0x02f8->searchUpdateMaterialID(mCpSel.Scr);
     btk = JKRGetNameResource("zelda_file_select_copy_select.btk", mpArchive);
-    JUT_ASSERT(5343, btk != 0);
+    JUT_ASSERT(5343, btk != NULL);
     field_0x0300 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(btk);
     field_0x0300->searchUpdateMaterialID(mCpSel.Scr);
     void* brk = JKRGetNameResource("zelda_file_select_copy_select.brk", mpArchive);
-    JUT_ASSERT(5352, brk != 0);
+    JUT_ASSERT(5352, brk != NULL);
     field_0x0308 = (J2DAnmTevRegKey*)J2DAnmLoaderDataBase::load(brk);
     field_0x0308->searchUpdateMaterialID(mCpSel.Scr);
     field_0x02fc = 0;
@@ -2658,7 +2658,7 @@ void dFile_select_c::screenSetCopySel() {
     namePane->animationTransform();
     namePane->setAnimation((J2DAnmTransform*)NULL);
     mSelIcon2 = new dSelect_cursor_c(0, 1.0f, NULL);
-    JUT_ASSERT(5406, mSelIcon2 != 0);
+    JUT_ASSERT(5406, mSelIcon2 != NULL);
     mSelIcon2->setParam(0.96f, 0.94f, 0.03f, 0.7f, 0.7f);
     Vec local_24 = field_0x02a4[0]->getGlobalVtxCenter(false, 0);
     mSelIcon2->setPos(local_24.x, local_24.y, field_0x02a4[0]->getPanePtr(), true);
@@ -2682,7 +2682,7 @@ void dFile_select_c::screenSetYesNo() {
     static u8 l_msgNum2[2] = {0x08, 0x07};
 
     mYnSel.ScrYn = new J2DScreen();
-    JUT_ASSERT(5435, mYnSel.ScrYn != 0);
+    JUT_ASSERT(5435, mYnSel.ScrYn != NULL);
     mYnSel.ScrYn->setPriority("zelda_file_select_yes_no_window.blo", 0x1100000, mpArchive);
     dPaneClass_showNullPane(mYnSel.ScrYn);
     void* bck = JKRGetNameResource("zelda_file_select_yes_no_window.bck", mpArchive);
@@ -2707,12 +2707,12 @@ void dFile_select_c::screenSetYesNo() {
         ((J2DTextBox*)field_0x01c0[i]->getPanePtr())->setString(acStack_30);
     }
     void* bpk = JKRGetNameResource("zelda_file_select_yes_no_window.bpk", mpArchive);
-    JUT_ASSERT(5483, bpk != 0);
+    JUT_ASSERT(5483, bpk != NULL);
     field_0x0318 = (J2DAnmColor*)J2DAnmLoaderDataBase::load(bpk);
     field_0x0318->searchUpdateMaterialID(mYnSel.ScrYn);
     field_0x031c = 0;
     void* btk = JKRGetNameResource("zelda_file_select_yes_no_window.btk", mpArchive);
-    JUT_ASSERT(5493, btk != 0);
+    JUT_ASSERT(5493, btk != NULL);
     field_0x0320 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(btk);
     field_0x0320->searchUpdateMaterialID(mYnSel.ScrYn);
     field_0x0324 = 0;
@@ -2741,7 +2741,7 @@ void dFile_select_c::screenSet3Menu() {
     static u8 l_msgNum[3] = {0x57, 0x58, 0x56};
 
     m3mSel.Scr3m = new J2DScreen();
-    JUT_ASSERT(5530, m3mSel.Scr3m != 0);
+    JUT_ASSERT(5530, m3mSel.Scr3m != NULL);
     m3mSel.Scr3m->setPriority("zelda_file_select_3menu_window.blo", 0x1100000, mpArchive);
     dPaneClass_showNullPane(m3mSel.Scr3m);
     void* bck = JKRGetNameResource("zelda_file_select_3menu_window.bck", mpArchive);
@@ -2750,12 +2750,12 @@ void dFile_select_c::screenSet3Menu() {
     field_0x0328->searchUpdateMaterialID(m3mSel.Scr3m);
     field_0x032c->searchUpdateMaterialID(m3mSel.Scr3m);
     void* bpk = JKRGetNameResource("zelda_file_select_3menu_window.bpk", mpArchive);
-    JUT_ASSERT(5552, bpk != 0);
+    JUT_ASSERT(5552, bpk != NULL);
     field_0x0330 = (J2DAnmColor*)J2DAnmLoaderDataBase::load(bpk);
     field_0x0330->searchUpdateMaterialID(m3mSel.Scr3m);
     field_0x0334 = 0;
     void* btk = JKRGetNameResource("zelda_file_select_3menu_window.btk", mpArchive);
-    JUT_ASSERT(5562, btk != 0);
+    JUT_ASSERT(5562, btk != NULL);
     field_0x0338 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(btk);
     field_0x0338->searchUpdateMaterialID(m3mSel.Scr3m);
     field_0x033c = 0;
@@ -2794,10 +2794,10 @@ void dFile_select_c::screenSet3Menu() {
  */
 void dFile_select_c::screenSetDetail() {
     mSelDt.ScrDt = new J2DScreen();
-    JUT_ASSERT(5622, mSelDt.ScrDt != 0);
+    JUT_ASSERT(5622, mSelDt.ScrDt != NULL);
     mSelDt.ScrDt->setPriority("zelda_file_select_details.blo", 0x1100000, mpArchive);
     void* btk = JKRGetNameResource("zelda_file_select_details.btk", mpArchive);
-    JUT_ASSERT(5628, btk != 0);
+    JUT_ASSERT(5628, btk != NULL);
     field_0x03a0 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(btk);
     mSelDt.ScrDt->setAnimation(field_0x03a0);
     field_0x03a4 = 0;
@@ -4164,7 +4164,7 @@ void dFile_select3D_c::setJ3D(char const* param_0, char const* param_1, char con
 
     bmdRes = archive->getResource('BMD ', param_0);
     modelData = J3DModelLoaderDataBase::load(bmdRes, 0x51020010);
-    JUT_ASSERT(8823, modelData != 0);
+    JUT_ASSERT(8823, modelData != NULL);
 
     for (u16 i = 0; i < modelData->getMaterialNum(); i++) {
         material = new J3DMaterialAnm();
@@ -4173,12 +4173,12 @@ void dFile_select3D_c::setJ3D(char const* param_0, char const* param_1, char con
     }
 
     mpModel = new J3DModel(modelData, 0, 1);
-    JUT_ASSERT(8836, mpModel != 0);
+    JUT_ASSERT(8836, mpModel != NULL);
 
     if (param_1) {
         bckRes = archive->getResource('BCK ', param_1);
         anmBase = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(bckRes);
-        JUT_ASSERT(8846, anmBase != 0);
+        JUT_ASSERT(8846, anmBase != NULL);
 
         mBckAnm = new mDoExt_bckAnm();
         if (mBckAnm == NULL || !mBckAnm->init((J3DAnmTransform*)anmBase, 1, 2, 1.0f, 0, -1, false)) {
@@ -4189,7 +4189,7 @@ void dFile_select3D_c::setJ3D(char const* param_0, char const* param_1, char con
     if (param_2) {
         brkRes = archive->getResource('BRK ', param_2);
         anmBase = (J3DAnmTevRegKey*)J3DAnmLoaderDataBase::load(brkRes);
-        JUT_ASSERT(8859, anmBase != 0);
+        JUT_ASSERT(8859, anmBase != NULL);
         ((J3DAnmTevRegKey*)anmBase)->searchUpdateMaterialID(modelData);
 
         mBrkAnm = new mDoExt_brkAnm();

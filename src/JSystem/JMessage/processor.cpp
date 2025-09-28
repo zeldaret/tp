@@ -101,9 +101,9 @@ void JMessage::TProcessor::on_select_begin(char const* (*pfn)(JMessage::TProcess
         oProcess_.rData.pOffset = pOffset;
         oProcess_.rData.uRest = uNumber;
         
-        JUT_ASSERT(205, pfn!=0);
+        JUT_ASSERT(205, pfn!=NULL);
         const char* psz = pfn(this);
-        JUT_ASSERT(207, psz!=0);
+        JUT_ASSERT(207, psz!=NULL);
     
         stack_pushCurrent_(psz);
         do_select_begin(uNumber);
@@ -131,10 +131,10 @@ void JMessage::TProcessor::on_select_separate() {
     JUT_ASSERT(237, rData.uRest>0);
 
     const char* (*pfn)(TProcessor*) = rData.pfn;
-    JUT_ASSERT(240, pfn!=0);
+    JUT_ASSERT(240, pfn!=NULL);
 
     const char* psz = pfn(this);
-    JUT_ASSERT(242, psz!=0);
+    JUT_ASSERT(242, psz!=NULL);
 
     stack_pushCurrent_(psz);
     do_select_separate();
@@ -175,7 +175,7 @@ void JMessage::TProcessor::do_select_separate() {}
 void JMessage::TProcessor::on_tag_() {
     u32 uSize;
     char* psz = (char*)getCurrent();
-    JUT_ASSERT(292, psz!=0);
+    JUT_ASSERT(292, psz!=NULL);
     JUT_ASSERT(293, psz[-1]==data::gcTagBegin);
 
     uSize = *(u8*)psz;
@@ -254,7 +254,7 @@ void JMessage::TProcessor::do_tag_(u32 uTag, void const* pData, u32 uSize) {
 /* 802A81EC-802A828C 2A2B2C 00A0+00 2/2 0/0 0/0 .text
  * process_character___Q28JMessage10TProcessorFv                */
 bool JMessage::TProcessor::process_character_() {
-    JUT_ASSERT(397, pszCurrent_!=0);
+    JUT_ASSERT(397, pszCurrent_!=NULL);
     int iCharacter = on_parseCharacter(&pszCurrent_);
 
     switch (iCharacter) {
@@ -311,8 +311,8 @@ bool JMessage::TProcessor::process_onCharacterEnd_select_(JMessage::TProcessor* 
 const char* JMessage::TProcessor::process_onSelect_limited_(JMessage::TProcessor* pThis) {
     TProcess_::rdata& rData = pThis->oProcess_.rData;
     JUT_ASSERT(454, rData.pfn==&process_onSelect_limited_);
-    JUT_ASSERT(455, rData.pcBase!=0);
-    JUT_ASSERT(456, rData.pOffset!=0);
+    JUT_ASSERT(455, rData.pcBase!=NULL);
+    JUT_ASSERT(456, rData.pOffset!=NULL);
     JUT_ASSERT(457, rData.uRest>0);
 
     u16* puOffset = (u16*)rData.pOffset;
@@ -327,8 +327,8 @@ const char* JMessage::TProcessor::process_onSelect_limited_(JMessage::TProcessor
 const char* JMessage::TProcessor::process_onSelect_(JMessage::TProcessor* pThis) {
     TProcess_::rdata& rData = pThis->oProcess_.rData;
     JUT_ASSERT(471, rData.pfn==&process_onSelect_);
-    JUT_ASSERT(472, rData.pcBase!=0);
-    JUT_ASSERT(473, rData.pOffset!=0);
+    JUT_ASSERT(472, rData.pcBase!=NULL);
+    JUT_ASSERT(473, rData.pOffset!=NULL);
     JUT_ASSERT(474, rData.uRest>0);
 
     u32* puOffset = (u32*)rData.pOffset;
@@ -358,7 +358,7 @@ const char* JMessage::TSequenceProcessor::process(char const* pszText) {
         case STATUS_NORMAL:
             break;
         case STATUS_JUMP: {
-            JUT_ASSERT(549, pControl_!=0);
+            JUT_ASSERT(549, pControl_!=NULL);
 
             if (!on_jump_isReady()) {
                 return pszCurrent_;
@@ -368,7 +368,7 @@ const char* JMessage::TSequenceProcessor::process(char const* pszText) {
 
             TProcess_& process = oProcess2_;
             TSequenceProcessor::jumpPfn pfn = process.process.jump_process.jumpFn;
-            JUT_ASSERT(556, pfn!=0);
+            JUT_ASSERT(556, pfn!=NULL);
 
             const void* pEntry = pfn(this);
             if (pEntry != NULL) {
@@ -377,7 +377,7 @@ const char* JMessage::TSequenceProcessor::process(char const* pszText) {
             break;
         }
         case STATUS_BRANCH: {
-            JUT_ASSERT(567, pControl_!=0);
+            JUT_ASSERT(567, pControl_!=NULL);
 
             u32 queryResult = on_branch_queryResult();
             if (queryResult > 0x7FFFFFFF) {
@@ -398,7 +398,7 @@ const char* JMessage::TSequenceProcessor::process(char const* pszText) {
                     JGADGET_WARNMSG1(588, "unknown result : ", queryResult);
                 } else {
                     TSequenceProcessor::branchPfn pfn = process.process.branch_process.branchFn;
-                    JUT_ASSERT(592, pfn!=0);
+                    JUT_ASSERT(592, pfn!=NULL);
 
                     const void* pEntry = pfn(this, queryResult);
                     if (pEntry != NULL) {
@@ -456,8 +456,8 @@ void JMessage::TSequenceProcessor::on_jump(void const* pEntry, char const* pszTe
     on_resetStatus_(pszText);
 
     JUT_ASSERT(658, eStatus_==STATUS_NORMAL);
-    JUT_ASSERT(659, pEntry!=0);
-    JUT_ASSERT(660, pszText!=0);
+    JUT_ASSERT(659, pEntry!=NULL);
+    JUT_ASSERT(660, pszText!=NULL);
     do_jump(pEntry, pszText);
 }
 
@@ -495,8 +495,8 @@ void JMessage::TSequenceProcessor::on_branch(void const* pEntry, char const* psz
     on_resetStatus_(pszText);
 
     JUT_ASSERT(717, eStatus_==STATUS_NORMAL);
-    JUT_ASSERT(718, pEntry!=0);
-    JUT_ASSERT(719, pszText!=0);
+    JUT_ASSERT(718, pEntry!=NULL);
+    JUT_ASSERT(719, pszText!=NULL);
     do_branch(pEntry, pszText);
 }
 
@@ -653,7 +653,7 @@ void* JMessage::TSequenceProcessor::process_setMessageCode_(JMessage::TSequenceP
     }
 
     TControl* pControl = pProcessor->getControl();
-    JUT_ASSERT(911, pControl!=0);
+    JUT_ASSERT(911, pControl!=NULL);
 
     if (!pControl->setMessageCode_inSequence_(pProcessor, u16GroupID, u16Index)) {
         JGADGET_WARNMSG1(914, "message-code undefined : ", pControl->getMessageCode());
@@ -687,7 +687,7 @@ const void*
 JMessage::TSequenceProcessor::process_onBranch_limited_(JMessage::TSequenceProcessor const* pProcessor, u32 uTargetIndex) {
     const TProcess_::processData::branchData& rData = pProcessor->oProcess2_.process.branch_process;
 
-    JUT_ASSERT(942, rData.pTarget!=0);
+    JUT_ASSERT(942, rData.pTarget!=NULL);
     JUT_ASSERT(943, uTargetIndex<rData.uTarget);
 
     u16 u16Index = JGadget::binary::TParseValue<JGadget::binary::TParseValue_endian_big_<u16> >::parse(rData.pTarget, uTargetIndex);
@@ -700,7 +700,7 @@ const void*
 JMessage::TSequenceProcessor::process_onBranch_(JMessage::TSequenceProcessor const* pProcessor, u32 uTargetIndex) {
     const TProcess_::processData::branchData& rData = pProcessor->oProcess2_.process.branch_process;
 
-    JUT_ASSERT(957, rData.pTarget!=0);
+    JUT_ASSERT(957, rData.pTarget!=NULL);
     JUT_ASSERT(958, uTargetIndex<rData.uTarget);
 
     u32 uCode = JGadget::binary::TParseValue<JGadget::binary::TParseValue_endian_big_<u32> >::parse(rData.pTarget, uTargetIndex);

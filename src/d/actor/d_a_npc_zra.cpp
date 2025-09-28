@@ -3,7 +3,7 @@
  * NPC - Zora
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_zra.h"
 #include "SSystem/SComponent/c_math.h"
@@ -229,7 +229,7 @@ f32 daNpc_zrA_Path_c::chkPassDst(u16 i_idx, cXyz i_pos) {
         daNpcF_pntVsLineSegmentLengthSquare2D(i_pos.x, i_pos.z, prev_pos.x, prev_pos.z,
                                               next_pos.x, next_pos.z, &proj_x, &proj_z, &dist);
         if (cM3d_IsZero(dist)) {
-            return -1e9f;
+            return -G_CM3D_F_INF;
         } else {
             daNpcF_pntVsLineSegmentLengthSquare2D(cur_pos.x, cur_pos.z, prev_pos.x, prev_pos.z,
                                                 next_pos.x, next_pos.z, &proj2_x, &proj2_z, &dist);
@@ -249,7 +249,7 @@ f32 daNpc_zrA_Path_c::chkPassDst(u16 i_idx, cXyz i_pos) {
             }
         }
     } else {
-        return -1e9f;
+        return -G_CM3D_F_INF;
     }
 }
 
@@ -2133,7 +2133,7 @@ BOOL daNpc_zrA_c::doEvent() {
                 int act_idx = event_manager->getMyActIdx(staff_id, mEvtCutNameList,
                                                         ARRAY_SIZEU(mEvtCutNameList), 0, 0);
                 JUT_ASSERT(0xf0e, act_idx >= 0 && act_idx < 11);
-                JUT_ASSERT(0xf0f, mEvtCutList[act_idx] != 0);
+                JUT_ASSERT(0xf0f, mEvtCutList[act_idx] != NULL);
                 if ((this->*mEvtCutList[act_idx])(staff_id)) {
                     event_manager->cutEnd(staff_id);
                 }

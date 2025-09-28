@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_yousei.h"
 #include "d/d_com_inf_game.h"
@@ -41,7 +41,7 @@ void daObjYOUSEI_c::SetCcSph() {
 
 int daObjYOUSEI_c::CreateHeap() {
     void* modelData = dComIfG_getObjectRes("Always", 0x21);
-    JUT_ASSERT(177, modelData != 0);
+    JUT_ASSERT(177, modelData != NULL);
 
     mpModelMorf = new mDoExt_McaMorfSO((J3DModelData*)modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("Always", 0xF), 2, 0.4f, 0, -1, &mSound, 0x80000, 0x11000084);
     if (mpModelMorf == NULL) {
@@ -626,7 +626,7 @@ void daObjYOUSEI_c::CheckGround() {
     gnd_chk.SetPos(&pos);
 
     pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-    if (pos.y != -1000000000.0f) {
+    if (pos.y != -G_CM3D_F_INF) {
         home.pos.y = pos.y;
     }
 }
@@ -638,7 +638,7 @@ bool daObjYOUSEI_c::CheckWater() {
     gnd_chk.SetPos(&pos);
     pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
-    if (-1000000000.0f != pos.y && dComIfG_Bgsp().GetPolyAtt0(gnd_chk) == 7 && current.pos.y - pos.y < 50.0f+ yREG_F(0)) {
+    if (-G_CM3D_F_INF != pos.y && dComIfG_Bgsp().GetPolyAtt0(gnd_chk) == 7 && current.pos.y - pos.y < 50.0f+ yREG_F(0)) {
         return true;
     }
 

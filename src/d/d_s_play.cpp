@@ -3,7 +3,7 @@
  * Main Gameplay Scene
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_s_play.h"
 #include "JSystem/JUtility/JUTConsole.h"
@@ -680,7 +680,7 @@ static int phase_5(dScnPly_c* i_this) {
         const char** resNames = PreLoadInfoT[preLoadNo].resNameTbl;
         s32 resNameNum = PreLoadInfoT[preLoadNo].resNameNum;
         if (resNames != NULL && *resNames != NULL) {
-            JUT_ASSERT(2830, resNameNum <= (sizeof(resPhase) / sizeof(resPhase[0])));
+            JUT_ASSERT(2830, resNameNum <= ARRAY_SIZEU(resPhase));
             int goodLoads = 0;
             int loadNum = 0;
             for (int i = 0; i < resNameNum; i++) {
@@ -711,7 +711,7 @@ static int phase_6(dScnPly_c* i_this) {
         const s16* dylKeyTbl = PreLoadInfoT[preLoadNo].profNameTbl;
         s32 dylKeyTblNum = PreLoadInfoT[preLoadNo].dylKeyTblNum;
         if (dylKeyTbl != NULL && *dylKeyTbl != 0) {
-            JUT_ASSERT(2864, dylKeyTblNum <= (sizeof(dylPhase) / sizeof(dylPhase[0])));
+            JUT_ASSERT(2864, dylKeyTblNum <= ARRAY_SIZEU(dylPhase));
             int goodLoads = 0;
             int loadNum = 0;
             for (int i = 0; i < dylKeyTblNum; i++) {

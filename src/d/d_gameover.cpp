@@ -3,7 +3,7 @@
 // Translation Unit: d/d_gameover
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_gameover.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
@@ -146,7 +146,7 @@ int dGameover_c::_create() {
         }
 
         dRes_info_c* resInfo = dComIfG_getObjectResInfo("Gover");
-        JUT_ASSERT(0, resInfo != 0);
+        JUT_ASSERT(0, resInfo != NULL);
 
         mpHeap = (JKRHeap*)dComIfGp_getExpHeap2D();
         dComIfGp_setHeapLockFlag(6);
@@ -155,7 +155,7 @@ int dGameover_c::_create() {
 
         dgo_screen_c = new dDlst_GameOverScrnDraw_c(resInfo->getArchive());
         dMs_c = new dMenu_save_c();
-        JUT_ASSERT(0, dMs_c != 0);
+        JUT_ASSERT(0, dMs_c != NULL);
 
         if (dMeter2Info_getGameOverType() == 1) {
             if (!strcmp(dComIfGp_getLastPlayStageName(), "D_MN10A")) {
@@ -174,7 +174,7 @@ int dGameover_c::_create() {
 
         dMs_c->_create();
         dgo_capture_c = new dDlst_Gameover_CAPTURE_c();
-        JUT_ASSERT(0, dgo_capture_c != 0);
+        JUT_ASSERT(0, dgo_capture_c != NULL);
 
         OS_REPORT("game over create size ===> %d\n", temp - mpHeap->getTotalFreeSize());
 

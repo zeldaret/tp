@@ -3,7 +3,7 @@
  * dolzel2 - Spline Path Management
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_spline_path.h"
 #include "d/d_path.h"

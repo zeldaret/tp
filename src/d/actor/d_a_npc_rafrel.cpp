@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_rafrel.h"
 
@@ -226,7 +226,7 @@ int daNpcRafrel_c::Create() {
             heapsize = 0x6490;
             break;
         default:
-            JUT_ASSERT(343, 0);
+            JUT_ASSERT(343, FALSE);
             break;
         }
 
@@ -272,7 +272,7 @@ int daNpcRafrel_c::CreateHeap() {
     J3DModel* mdl_p = NULL;
 
     mdlData_p = dComIfG_getObjectRes(l_arcNames[0], 0x11);
-    JUT_ASSERT(403, 0 != mdlData_p);
+    JUT_ASSERT(403, NULL != mdlData_p);
 
     u32 mdl_diff_flags = 0x11020284;
     mpMorf = new mDoExt_McaMorfSO((J3DModelData*)mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, J3DMdlFlag_DifferedDLBuffer, mdl_diff_flags);
@@ -302,7 +302,7 @@ int daNpcRafrel_c::CreateHeap() {
 
     if (mType == 1) {
         mdlData_p = dComIfG_getObjectRes(l_arcNames[1], 0x15);
-        JUT_ASSERT(438, mdlData_p != 0);
+        JUT_ASSERT(438, mdlData_p != NULL);
   
         mpItemModel = mDoExt_J3DModel__create((J3DModelData*)mdlData_p, J3DMdlFlag_DifferedDLBuffer, BMD_DEFAULT_DIFF_FLAGS);
         if (mpItemModel == NULL) {
@@ -310,7 +310,7 @@ int daNpcRafrel_c::CreateHeap() {
         }
     } else if (mType == 2) {
         mdlData_p = dComIfG_getObjectRes(l_arcNames[3], 9);
-        JUT_ASSERT(445, mdlData_p != 0);
+        JUT_ASSERT(445, mdlData_p != NULL);
 
         mpItemModel = mDoExt_J3DModel__create((J3DModelData*)mdlData_p, J3DMdlFlag_DifferedDLBuffer, BMD_DEFAULT_DIFF_FLAGS);
         if (mpItemModel == NULL) {
@@ -333,7 +333,7 @@ int daNpcRafrel_c::CreateHeap() {
         setMotionAnm(0x1A, 0.0f);
         break;
     default:
-        JUT_ASSERT(460, 0);
+        JUT_ASSERT(460, FALSE);
         break;
     }
 
@@ -888,7 +888,7 @@ void daNpcRafrel_c::setWaitAction() {
         setAction(&daNpcRafrel_c::wait_type2);
         return;
     default:
-        JUT_ASSERT(1274, 0);
+        JUT_ASSERT(1274, FALSE);
         return;
     }
 }
@@ -1107,7 +1107,7 @@ bool daNpcRafrel_c::wait_type01(void* param_0) {
         break;
     case 3:
     default:
-        JUT_ASSERT(1634, 0);
+        JUT_ASSERT(1634, FALSE);
         break;
     }
 
@@ -1189,13 +1189,13 @@ bool daNpcRafrel_c::wait_type2(void* param_0) {
             }
             break;
         default:
-            JUT_ASSERT(1683, 0);
+            JUT_ASSERT(1683, FALSE);
             break;
         }
         break;
     case 3:
     default:
-        JUT_ASSERT(1688, 0);
+        JUT_ASSERT(1688, FALSE);
         break;
     }
 
@@ -1280,7 +1280,7 @@ bool daNpcRafrel_c::talk(void* param_0) {
         }
         break;
     default:
-        JUT_ASSERT(1770, 0);
+        JUT_ASSERT(1770, FALSE);
         break;
     }
 
@@ -1310,7 +1310,7 @@ bool daNpcRafrel_c::demo(void* param_0) {
                     mOrderEvtNo = actIdx;
                 }
 
-                JUT_ASSERT(1820, 0 != mEvtSeqList[mOrderEvtNo]);
+                JUT_ASSERT(1820, NULL != mEvtSeqList[mOrderEvtNo]);
                 if ((this->*mEvtSeqList[mOrderEvtNo])(staffId)) {
                     evtmgr->cutEnd(staffId);
                 }
@@ -1330,7 +1330,7 @@ bool daNpcRafrel_c::demo(void* param_0) {
         break;
     case 3:
     default:
-        JUT_ASSERT(1842, 0);
+        JUT_ASSERT(1842, FALSE);
         break;
     }
 
@@ -1361,7 +1361,7 @@ bool daNpcRafrel_c::leave(void* param_0) {
         break;
     case 3:
     default:
-        JUT_ASSERT(1881, 0);
+        JUT_ASSERT(1881, FALSE);
         break;
     }
 
@@ -1388,7 +1388,7 @@ int daNpcRafrel_c::EvCut_Introduction(int i_staffId) {
             setLookMode(LOOK_PLAYER, NULL);
             return 1;
         default:
-            JUT_ASSERT(1916, 0);
+            JUT_ASSERT(1916, FALSE);
             break;
         }
     }
@@ -1416,7 +1416,7 @@ int daNpcRafrel_c::EvCut_Meeting(int i_staffId) {
             setLookMode(LOOK_PLAYER, NULL);
             break;
         default:
-            JUT_ASSERT(1953, 0);
+            JUT_ASSERT(1953, FALSE);
             break;
         }
     }
@@ -1442,7 +1442,7 @@ int daNpcRafrel_c::EvCut_Meeting(int i_staffId) {
     case 1:
         return 1;
     default:
-        JUT_ASSERT(1978, 0);
+        JUT_ASSERT(1978, FALSE);
         return 0;
     }
 
@@ -1495,7 +1495,7 @@ int daNpcRafrel_c::EvCut_Appear(int i_staffId) {
             break;
         }
         default:
-            JUT_ASSERT(2040, 0);
+            JUT_ASSERT(2040, FALSE);
         }
     }
 
@@ -1541,7 +1541,7 @@ int daNpcRafrel_c::EvCut_Appear(int i_staffId) {
         field_0x9eb = 1;
         return 1;
     default:
-        JUT_ASSERT(2087, 0);
+        JUT_ASSERT(2087, FALSE);
     }
 
     int sp10 = mMsgTimer;
@@ -1577,7 +1577,7 @@ int daNpcRafrel_c::EvCut_WiretapSponsor(int i_staffId) {
             initTalk(field_0xe0c, sp18);
             break;
         default:
-            JUT_ASSERT(2138, 0);
+            JUT_ASSERT(2138, FALSE);
         }
     }
 
@@ -1605,7 +1605,7 @@ int daNpcRafrel_c::EvCut_WiretapSponsor(int i_staffId) {
         break;
     }
     default:
-        JUT_ASSERT(2138, 0);
+        JUT_ASSERT(2138, FALSE);
     }
 
     return 0;
@@ -1628,7 +1628,7 @@ int daNpcRafrel_c::EvCut_WiretapEntrant(int i_staffId) {
             setMotion(1, -1.0f, 0);
             break;
         default:
-            JUT_ASSERT(2201, 0);
+            JUT_ASSERT(2201, FALSE);
         }
     }
 
@@ -1652,7 +1652,7 @@ int daNpcRafrel_c::EvCut_WiretapEntrant(int i_staffId) {
         return 1;
     }
     default:
-        JUT_ASSERT(2138, 0);
+        JUT_ASSERT(2138, FALSE);
     }
 
     return 0;

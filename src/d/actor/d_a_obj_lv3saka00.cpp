@@ -3,7 +3,7 @@
 // Object: lv3saka00 (Lakebed Temple)
 //
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_lv3saka00.h"
 #include "d/d_bg_w.h"

@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_lv4sand.h"
 #include "d/d_s_play.h"
@@ -45,14 +45,14 @@ int daObjLv4Sand_c::Create() {
 /* 80C69C28-80C69D44 000208 011C+00 1/0 0/0 0/0 .text            CreateHeap__14daObjLv4Sand_cFv */
 int daObjLv4Sand_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 5);
-    JUT_ASSERT(167, modelData != 0);
+    JUT_ASSERT(167, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, J3D_DIFF_FLAG(FALSE, FALSE, TRUE, 8, 2, FALSE, 0, 0, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE));
     if (mpModel == NULL) {
         return 0;
     }
 
     J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 8);
-    JUT_ASSERT(181, pbtk != 0);
+    JUT_ASSERT(181, pbtk != NULL);
 
     mpBtk = new mDoExt_btkAnm();
     if (mpBtk == NULL || !mpBtk->init(modelData, pbtk, TRUE, 2, 1.0f, 0, -1)) {
