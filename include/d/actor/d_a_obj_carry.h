@@ -290,6 +290,10 @@ public:
         field_0xdea = 1;
     }
 
+    int checkCannon() {
+        return mCannon;
+    }
+
     static void make_prm(u32* o_params, csXyz* o_paramsEx, u8 param_2, u8 i_itemNo, u8 i_itemBit, u8 i_itemType, u8 param_6) {
         o_paramsEx->x = (i_itemBit << 8) | (i_itemNo & 0xFF);
         o_paramsEx->z = (param_6 << 13) | (param_2 << 1) | i_itemType;
