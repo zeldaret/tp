@@ -72,9 +72,6 @@ void* __memcpy(void*, const void*, int);
 // hack to make strings with no references compile properly
 #define DEAD_STRING(s) OSReport(s)
 
-#define UNK_BSS(name) \
-    static u8 lit_##name[1 + 3 /* padding */];
-
 #define READU32_BE(ptr, offset) \
     (((u32)ptr[offset] << 24) | ((u32)ptr[offset + 1] << 16) | ((u32)ptr[offset + 2] << 8) | (u32)ptr[offset + 3]);
 
