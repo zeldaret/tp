@@ -511,7 +511,7 @@ bool daE_GE_c::checkAttackPossible(s16 i_angle, bool param_1) {
 
 /* 806C921C-806C9F04 0018BC 0CE8+00 1/0 0/0 0/0 .text            executeAttack__8daE_GE_cFv */
 void daE_GE_c::executeAttack() {
-    daPy_py_c* player = daPy_getPlayerActorClass();  // debug leftover i guess
+    daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz position;
     mDoMtx_stack_c::copy(daPy_getLinkPlayerActorClass()->getModelJointMtx(0));
     mDoMtx_stack_c::multVecZero(&position);
@@ -826,7 +826,7 @@ void daE_GE_c::executeDown() {
 
     switch (mMode) {
     case 0:
-#if !DEBUG  // Looks like this is not happening in debug
+#if !DEBUG
         mSphere.OffTgSetBit();
         mSphere2.OffTgSetBit();
 #endif
@@ -1384,7 +1384,7 @@ int daE_GE_c::create() {
             mSphere.SetTgType(0xd8fadddf);
         }
 #if !DEBUG
-        mSphere.OnTgNoHitMark();  // this doesn't seem to appear in debug
+        mSphere.OnTgNoHitMark();
 #endif
         mSphere2.Set(cc_sph_src);
         mSphere2.SetStts(&mStts);

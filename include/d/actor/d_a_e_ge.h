@@ -80,11 +80,11 @@ private:
     /* 0xB64 */ f32 field_0xb64;
     /* 0xB68 */ f32 field_0xb68;
     /* 0xB6C */ u8 field_0xB6C[0xB70 - 0xB6C];
-    /* 0xB70 */ s32 mActionMode;
-    /* 0xB74 */ s32 mPrevActionMode;
-    /* 0xB78 */ s32 mMode;
-    /* 0xB7C */ s32 mSubMode;
-    /* 0xB80 */ s32 mBackAnimeTimer;
+    /* 0xB70 */ int mActionMode;
+    /* 0xB74 */ int mPrevActionMode;
+    /* 0xB78 */ int mMode;
+    /* 0xB7C */ int mSubMode;
+    /* 0xB80 */ int mBackAnimeTimer;
     /* 0xB84 */ u32 mShadowKey;
     /* 0xB88 */ s16 mHitDirectionY; // not really used
     /* 0xB8A */ s16 field_0xb8a;
