@@ -46,24 +46,24 @@ private:
     /* 0x5B8 */ mDoExt_invisibleModel mInvisibleModel;
     /* 0x5C0 */ mDoExt_brkAnm* mpBrkAnm;
     /* 0x5C4 */ Z2CreatureEnemy mCreatureSound;
-    /* 0x668 */ s32 field_0x668;
-    /* 0x66C */ s32 field_0x66c;
+    /* 0x668 */ s32 mActionMode;
+    /* 0x66C */ s32 mMoveMode;
     /* 0x670 */ s32 field_0x670;
-    /* 0x674 */ cXyz mUnused;  // This offset is a guess based on debug
+    /* 0x674 */ cXyz mUnusedVec;
     /* 0x680 */ s16 field_0x680;
-    /* 0x684 */ f32 field_0x684;
+    /* 0x684 */ f32 mModelSize;
     /* 0x688 */ u32 mShadowKey;
     /* 0x68C */ u16 field_0x68c;
     /* 0x68E */ u8 field_0x68e;
     /* 0x68F */ u8 field_0x68f;
     /* 0x690 */ u8 field_0x690;
-    /* 0x691 */ u8 mPrm1;
-    /* 0x692 */ u8 mPrm2;
+    /* 0x691 */ u8 swBit0;
+    /* 0x692 */ u8 swBit1;
     /* 0x694 */ s16 mRotation;
     /* 0x696 */ s16 field_0x696;
     /* 0x698 */ s16 mHeadAngle;
     /* 0x69C */ s32 field_0x69c;
-    /* 0x6A0 */ u8 mPrm0;
+    /* 0x6A0 */ u8 mType;
     /* 0x6A4 */ dBgS_AcchCir mAcchCir;
     /* 0x6E4 */ dBgS_ObjAcch mObjAcch;
     /* 0x8BC */ dCcD_Stts mStts;
@@ -71,7 +71,7 @@ private:
     /* 0xA30 */ dCcD_Sph mSphere2;
     /* 0xB68 */ dCcD_Sph mAtSph;
     /* 0xCA0 */ dCcU_AtInfo mAtInfo;
-    // Seems that Nintendo didn't size mKeys correctly, as ideally it should be len=8, not len=7:
+    // Seems that the orig developers didn't size mKeys correctly, as ideally it should be len=8, not len=7:
     /* 0xCC4 */ u32 mKeys[7];
     /* 0xCE0 */ u8 mHIOInit;
     /* 0xCE1 */ u8 field_0xce1[0xCE8 - 0xCE1];
