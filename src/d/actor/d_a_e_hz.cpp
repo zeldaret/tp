@@ -38,15 +38,15 @@ enum daE_HZ_Action {
     /*  0 */ ACTION_WAIT,
     /*  1 */ ACTION_HIDE,
     /*  2 */ ACTION_ATTACK,
-    /*  3 */ ACTION_EXECUTE_AWAY,
-    /*  4 */ ACTION_EXECUTE_WIND,
-    /*  5 */ ACTION_EXECUTE_DAMAGE,
-    /*  6 */ ACTION_EXECUTE_DEATH,
-    /*  7 */ ACTION_EXECUTE_CHANCE,
-    /*  8 */ ACTION_EXECUTE_WIND_CHANCE,
-    /*  9 */ ACTION_EXECUTE_WIND_WALK,
-    /* 10 */ ACTION_EXECUTE_WATER_DEATH,
-    /* 11 */ ACTION_EXECUTE_DEATH_WAIT
+    /*  3 */ ACTION_AWAY,
+    /*  4 */ ACTION_WIND,
+    /*  5 */ ACTION_DAMAGE,
+    /*  6 */ ACTION_DEATH,
+    /*  7 */ ACTION_CHANCE,
+    /*  8 */ ACTION_WIND_CHANCE,
+    /*  9 */ ACTION_WIND_WALK,
+    /* 10 */ ACTION_WATER_DEATH,
+    /* 11 */ ACTION_DEATH_WAIT
 };
 
 /* 806EA60C-806EA690 0000EC 0084+00 1/1 0/0 0/0 .text            __ct__12daE_HZ_HIO_cFv */
@@ -300,7 +300,7 @@ bool daE_HZ_c::isWait() {
         return true;
     }
 
-    if (mAction == ACTION_EXECUTE_DEATH_WAIT && mMode == ACTION_EXECUTE_WIND) {
+    if (mAction == ACTION_DEATH_WAIT && mMode == ACTION_WIND) {
         return true;
     }
     return false;
@@ -308,7 +308,7 @@ bool daE_HZ_c::isWait() {
 
 /* 806EB13C-806EB2E8 000C1C 01AC+00 1/1 0/0 0/0 .text            checkFall__8daE_HZ_cFv */
 void daE_HZ_c::checkFall() {
-    if (mAction == ACTION_EXECUTE_DEATH_WAIT || mAction == ACTION_EXECUTE_WATER_DEATH) {
+    if (mAction == ACTION_DEATH_WAIT || mAction == ACTION_WATER_DEATH) {
         return;
     }
     if (mObjAcch.ChkGroundHit()) {
@@ -1005,7 +1005,7 @@ void daE_HZ_c::executeWind() {
             cLib_chaseAngleS(&field_0x6b2, 0, 0x100);
             if (field_0x6b2 == 0) {
                 if (mpMorfSO->isStop()) {
-                    setActionMode(ACTION_EXECUTE_CHANCE);
+                    setActionMode(ACTION_CHANCE);
                     return;
                 }
             }
@@ -1041,7 +1041,7 @@ void daE_HZ_c::executeChance() {
         }
         if (mPiyoriTimer == 0) {
             setTgSetBit(0);
-            setActionMode(ACTION_EXECUTE_AWAY);
+            setActionMode(ACTION_AWAY);
         }
         break;
     }
@@ -1053,7 +1053,7 @@ void daE_HZ_c::initRollDamage() {
     shape_angle.z = 0;
     shape_angle.x = 0;
 
-    if (mAction == ACTION_EXECUTE_DEATH) {
+    if (mAction == ACTION_DEATH) {
         if (field_0x6cc == 0) {
             speedF = 20.0f;
             field_0x6b6 = 0x1000;
@@ -1131,19 +1131,19 @@ void daE_HZ_c::executeDamage() {
             mSound.startCreatureSound(Z2SE_CM_BODYFALL_S, 0, -1);
         }
         if (doRollDamage()) {
-            setActionMode(ACTION_EXECUTE_CHANCE);
+            setActionMode(ACTION_CHANCE);
             return;
         }
         if (mPiyoriTimer == 0 && !speedF) {
             speedF = 0.0f;
             setTgSetBit(0);
-            setActionMode(ACTION_EXECUTE_AWAY);
+            setActionMode(ACTION_AWAY);
         }
         return;
 
     case 2:
         if (doRollDamage()) {
-            setActionMode(ACTION_EXECUTE_AWAY);
+            setActionMode(ACTION_AWAY);
             mMode = 1;
         }
         break;
@@ -1287,7 +1287,7 @@ void daE_HZ_c::executeWindChance() {
             if (mPiyoriTimer != 0) {
                 mPiyoriTimer += 20;
             }
-            setActionMode(ACTION_EXECUTE_CHANCE);
+            setActionMode(ACTION_CHANCE);
         }
     }
 }
@@ -1310,7 +1310,7 @@ void daE_HZ_c::executeWindWalk() {
             mSound.startCreatureSound(Z2SE_EN_HZ_WALK, 0, -1);
         }
         if (mpMorfSO->isStop()) {
-            setActionMode(ACTION_EXECUTE_AWAY);
+            setActionMode(ACTION_AWAY);
             initBackWalk();
         }
         break;
@@ -1437,12 +1437,12 @@ void daE_HZ_c::damage_check() {
     if (mAction != 1 || mMode < 4) {
         if (mSpheres[0].ChkTgHit() && mSpheres[0].GetTgHitObj()->ChkAtType(AT_TYPE_BOOMERANG)) {
             mSpheres[0].ClrTgHit();
-            if (mAction == ACTION_EXECUTE_CHANCE) {
-                setActionMode(ACTION_EXECUTE_WIND_CHANCE);
-            } else if (mAction == ACTION_EXECUTE_AWAY) {
-                setActionMode(ACTION_EXECUTE_WIND_WALK);
+            if (mAction == ACTION_CHANCE) {
+                setActionMode(ACTION_WIND_CHANCE);
+            } else if (mAction == ACTION_AWAY) {
+                setActionMode(ACTION_WIND_WALK);
             } else {
-                setActionMode(ACTION_EXECUTE_WIND);
+                setActionMode(ACTION_WIND);
             }
             setTgSetBit(0);
             mDamageDeathTimer = 10;
@@ -1509,17 +1509,17 @@ void daE_HZ_c::damage_check() {
                             if (bVar) {
                                 field_0x6cc = 1;
                             }
-                            if (mAction == ACTION_EXECUTE_AWAY) {
+                            if (mAction == ACTION_AWAY) {
                                 field_0x6cc += 2;
                             }
-                            setActionMode(ACTION_EXECUTE_DEATH);
+                            setActionMode(ACTION_DEATH);
                             return;
                         }
 
-                        if (mAction == ACTION_EXECUTE_AWAY) {
+                        if (mAction == ACTION_AWAY) {
                             if (bVar) {
                                 field_0x6cc = 1;
-                                setActionMode(ACTION_EXECUTE_DAMAGE);
+                                setActionMode(ACTION_DAMAGE);
                                 return;
                             }
                             s16 angle = cLib_targetAngleY(&mSpheres[1].GetCoCP(), &player_pos) -
@@ -1571,7 +1571,7 @@ void daE_HZ_c::damage_check() {
                                 field_0x6cc = 2;
                             }
                         }
-                        setActionMode(ACTION_EXECUTE_DAMAGE);
+                        setActionMode(ACTION_DAMAGE);
                         return;
                     }
                 }
@@ -1611,7 +1611,7 @@ void daE_HZ_c::action() {
     damage_check();
 
     if (mAction != 10 && checkWaterSurface()) {
-        setActionMode(ACTION_EXECUTE_WATER_DEATH);
+        setActionMode(ACTION_WATER_DEATH);
     }
 
     attention_info.flags = 4;
@@ -1631,41 +1631,41 @@ void daE_HZ_c::action() {
         executeAttack();
         break;
 
-    case ACTION_EXECUTE_AWAY:
+    case ACTION_AWAY:
         executeAway();
         break;
 
-    case ACTION_EXECUTE_WIND:
+    case ACTION_WIND:
         executeWind();
         break;
 
-    case ACTION_EXECUTE_DAMAGE:
+    case ACTION_DAMAGE:
         executeDamage();
         break;
 
-    case ACTION_EXECUTE_DEATH:
+    case ACTION_DEATH:
         attention_info.flags = 0;
         executeDeath();
         break;
 
-    case ACTION_EXECUTE_CHANCE:
+    case ACTION_CHANCE:
         executeChance();
         break;
 
-    case ACTION_EXECUTE_WIND_CHANCE:
+    case ACTION_WIND_CHANCE:
         executeWindChance();
         break;
 
-    case ACTION_EXECUTE_WIND_WALK:
+    case ACTION_WIND_WALK:
         executeWindWalk();
         break;
 
-    case ACTION_EXECUTE_WATER_DEATH:
+    case ACTION_WATER_DEATH:
         attention_info.flags = 0;
         executeWaterDeath();
         break;
 
-    case ACTION_EXECUTE_DEATH_WAIT:
+    case ACTION_DEATH_WAIT:
         attention_info.flags = 0;
         executeDeathWait();
         break;

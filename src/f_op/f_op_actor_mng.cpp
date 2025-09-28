@@ -750,7 +750,6 @@ static cull_sphere l_cullSizeSphere[] = {
 };
 
 /* 8001ACEC-8001B058 01562C 036C+00 0/0 1/1 1/1 .text fopAcM_cullingCheck__FPC10fopAc_ac_c */
-// NONMATCHING some stack / extra instructions regarding mDoLib_clipper::clip
 s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
     MtxP mtx_p;
     if (fopAcM_GetMtx(i_actor) == NULL) {

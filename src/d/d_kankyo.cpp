@@ -1370,7 +1370,6 @@ dScnKy_env_light_c::dScnKy_env_light_c() {
 
 /* 8019F4FC-8019F780 199E3C 0284+00 1/1 0/0 0/0 .text            setDaytime__18dScnKy_env_light_cFv
  */
-// NONMATCHING - getTimePass doing s8 check instead of int check
 void dScnKy_env_light_c::setDaytime() {
     mDate = dComIfGs_getDate();
     daytime = dComIfGs_getTime();
