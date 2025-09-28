@@ -1,4 +1,4 @@
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_msg_flow.h"
 #include "d/actor/d_a_alink.h"
@@ -45,10 +45,10 @@ void dMsgFlow_c::init(fopAc_ac_c* i_partner, int i_flowID, int param_2, fopAc_ac
             setInitValue(1);
             
             mFlow_p = getMsgDataBlock("FLW1");
-            JUT_ASSERT(121, 0 != mFlow_p);
+            JUT_ASSERT(121, NULL != mFlow_p);
 
             mLabelInfo_p = getMsgDataBlock("FLI1");
-            JUT_ASSERT(125, 0 != mLabelInfo_p);
+            JUT_ASSERT(125, NULL != mLabelInfo_p);
 
             labelInfoTBL = mLabelInfo_p + 0x10;
             mFlowNodeTBL = (mesg_flow*)(mFlow_p + 0x10);
@@ -163,7 +163,7 @@ int dMsgFlow_c::checkOpenDoor(fopAc_ac_c* i_speaker_p, int* param_2) {
         }
         case 0:
         default:
-            JUT_ASSERT(362, 0);
+            JUT_ASSERT(362, FALSE);
             break;
         }
     }
@@ -261,7 +261,7 @@ void dMsgFlow_c::remove() {
 
 /* 8024A528-8024A538 244E68 0010+00 0/0 2/2 66/66 .text            getEventId__10dMsgFlow_cFPi */
 u16 dMsgFlow_c::getEventId(int* oItemId_p) {
-    JUT_ASSERT(555, 0 != oItemId_p);
+    JUT_ASSERT(555, NULL != oItemId_p);
     *oItemId_p = field_0x30;
     return mEventId;
 }
@@ -330,10 +330,10 @@ void dMsgFlow_c::setInitValueGroupChange(int i_msgNo, fopAc_ac_c** i_talkPartner
     setInitValue(0);
 
     mFlow_p = getMsgDataBlock("FLW1");
-    JUT_ASSERT(680, 0 != mFlow_p);
+    JUT_ASSERT(680, NULL != mFlow_p);
 
     mLabelInfo_p = getMsgDataBlock("FLI1");
-    JUT_ASSERT(684, 0 != mLabelInfo_p);
+    JUT_ASSERT(684, NULL != mLabelInfo_p);
 
     labelInfoTBL = mLabelInfo_p + 0x10;
 
@@ -353,7 +353,7 @@ u8* dMsgFlow_c::getMsgDataBlock(char const* block_tag) {
     char tag[5] = {0};
 
     aMsgRes_p = dMsgObject_getMsgDtPtr();
-    JUT_ASSERT(742, 0 != aMsgRes_p);
+    JUT_ASSERT(742, NULL != aMsgRes_p);
 
     u32 num = *(u32*)(aMsgRes_p + 0xC);
     aMsgRes_p += 0x20;
@@ -378,7 +378,7 @@ u16 dMsgFlow_c::getInitNodeIndex(u16 param_1) {
     u8* var_r30 = NULL;
     u16 var_r27 = -1;
 
-    JUT_ASSERT(777, 0 != mLabelInfo_p);
+    JUT_ASSERT(777, NULL != mLabelInfo_p);
     var_r30 = mLabelInfo_p + 0x10;
 
     for (int i = 0; i < *(u16*)(mLabelInfo_p + 8); i++) {
@@ -398,7 +398,7 @@ void dMsgFlow_c::setNodeIndex(u16 i_nodeIdx, fopAc_ac_c** i_talkPartners) {
     msg_class* aMsg_p = NULL;
     if (mMsg != fpcM_ERROR_PROCESS_ID_e) {
         aMsg_p = fopMsgM_SearchByID(mMsg);
-        JUT_ASSERT(806, 0 != aMsg_p);
+        JUT_ASSERT(806, NULL != aMsg_p);
     }
 
     if (i_nodeIdx == 0xFFFF) {
@@ -494,7 +494,7 @@ int dMsgFlow_c::setSelectMsg(mesg_flow_node* i_flowNode_p, mesg_flow_node* param
     if (mMsg != fpcM_ERROR_PROCESS_ID_e) {
         msg_class* aMsg_p = NULL;
         aMsg_p = fopMsgM_SearchByID(mMsg);
-        JUT_ASSERT(944, 0 != aMsg_p);
+        JUT_ASSERT(944, NULL != aMsg_p);
 
         aMsg_p->mode = 15;
         fopMsgM_messageSet(msg_no, temp_r25);
@@ -540,7 +540,7 @@ int dMsgFlow_c::setNormalMsg(mesg_flow_node* i_flowNode_p, fopAc_ac_c* i_speaker
     if (mMsg != fpcM_ERROR_PROCESS_ID_e) {
         msg_class* aMsg_p = NULL;
         aMsg_p = fopMsgM_SearchByID(mMsg);
-        JUT_ASSERT(1007, 0 != aMsg_p);
+        JUT_ASSERT(1007, NULL != aMsg_p);
 
         aMsg_p->mode = 15;
         fopMsgM_messageSet(msg_no, 1000);
@@ -585,7 +585,7 @@ int dMsgFlow_c::messageNodeProc(fopAc_ac_c* i_speaker_p, fopAc_ac_c** i_talkPart
                 }
             } else {
                 OS_REPORT("★sel select mesg ===> %d, %d, %d\n", mSelType, aNextNodeIndex, mFlowNodeTBL[aNextNodeIndex].message.type);
-                JUT_ASSERT(1077, 0);
+                JUT_ASSERT(1077, FALSE);
             }
         } else {
             if (setNormalMsg(&mFlowNodeTBL[mNodeIdx].message, i_speaker_p)) {
@@ -750,7 +750,7 @@ int dMsgFlow_c::nodeProc(fopAc_ac_c* i_speaker_p, fopAc_ac_c** i_talkPartners) {
             break;
         case 0:
         default:
-            JUT_ASSERT(1323, 0);
+            JUT_ASSERT(1323, FALSE);
             break;
         }
     }
@@ -880,7 +880,7 @@ u16 dMsgFlow_c::query004(mesg_flow_node_branch* i_flowNode_p, fopAc_ac_c* i_spea
  * query005__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
 u16 dMsgFlow_c::query005(mesg_flow_node_branch* i_flowNode_p, fopAc_ac_c* i_speaker_p, int param_2) {
     msg_class* aMsg_p = fopMsgM_SearchByID(mMsg);
-    JUT_ASSERT(1668, 0 != aMsg_p);
+    JUT_ASSERT(1668, NULL != aMsg_p);
 
     u16 ret = aMsg_p->select_idx;
     mChoiceNo = ret;
@@ -1457,7 +1457,7 @@ u16 dMsgFlow_c::query035(mesg_flow_node_branch* i_flowNode_p, fopAc_ac_c* i_spea
  * query036__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
 u16 dMsgFlow_c::query036(mesg_flow_node_branch* i_flowNode_p, fopAc_ac_c* i_speaker_p, int param_2) {
     msg_class* aMsg_p = fopMsgM_SearchByID(mMsg);
-    JUT_ASSERT(2751, 0 != aMsg_p);
+    JUT_ASSERT(2751, NULL != aMsg_p);
 
     u16 ret = aMsg_p->select_idx;
     if (dMsgObject_getMsgObjectClass()->getSelectPushFlag() == 2) {
@@ -1477,7 +1477,7 @@ u16 dMsgFlow_c::query036(mesg_flow_node_branch* i_flowNode_p, fopAc_ac_c* i_spea
  * query037__10dMsgFlow_cFP21mesg_flow_node_branchP10fopAc_ac_ci */
 u16 dMsgFlow_c::query037(mesg_flow_node_branch* i_flowNode_p, fopAc_ac_c* i_speaker_p, int param_2) {
     msg_class* aMsg_p = fopMsgM_SearchByID(mMsg);
-    JUT_ASSERT(2789, 0 != aMsg_p);
+    JUT_ASSERT(2789, NULL != aMsg_p);
 
     u16 ret = aMsg_p->select_idx;
     if (dMsgObject_getMsgObjectClass()->getSelectPushFlag() == 2) {
@@ -1740,7 +1740,7 @@ u16 dMsgFlow_c::query047(mesg_flow_node_branch* i_flowNode_p, fopAc_ac_c* i_spea
         OS_REPORT("flow:%d, ret:%d\n", mFlow, ret);
     }
 
-    JUT_ASSERT(3305, 0);
+    JUT_ASSERT(3305, FALSE);
     return ret;
 }
 

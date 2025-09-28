@@ -3,7 +3,7 @@
  * Disk Error Message screen handler
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include <cstring.h>
 #include "JSystem/J2DGraph/J2DOrthoGraph.h"

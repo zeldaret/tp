@@ -9,35 +9,36 @@
 #include "JSystem/JUtility/JUTAssert.h"
 #include "JSystem/JHostIO/JORReflexible.h"
 
-#define DEFAULT_SELECT_ITEM_INDEX 0
-#define MAX_SELECT_ITEM 4
-#define SELECT_ITEM_NUM 2
-#define MAX_EQUIPMENT 6
-#define MAX_EVENTS 256
-#define MAX_ITEM_SLOTS 24
-#define LIGHT_DROP_STAGE 4
-#define LETTER_INFO_BIT 64
-#define MAX_INSECT_NUM 24
-#define MAX_VISIBLE_HEARTPIECES 4
-#define MAX_POH_NUM 100
-#define TBOX_MAX 64
-#define DSV_MEMBIT_ENUM_MAX 8
-#define ITEM_MAX_DAN 128
-#define SWITCH_ZONE_MAX 0x20
-#define SWITCH_ONE_ZONE_MAX 0x10
-#define ITEM_ZONE_MAX 0x20
-#define ITEM_ONE_ZONE_MAX 0x10
-#define QUEST_LOG_SIZE 0xA94
-#define QUIVER_MAX 30
-#define BIG_QUIVER_MAX 60
-#define GIANT_QUIVER_MAX 100
-#define WALLET_MAX 300
-#define BIG_WALLET_MAX 600
-#define GIANT_WALLET_MAX 1000
-#define MAX_FINDABLE_FISHES 6
 
-#define ITEM_XY_MAX_DUMMY 8
-#define ITEM_BIT_MAX 0x100
+static const int DEFAULT_SELECT_ITEM_INDEX = 0;
+static const int MAX_SELECT_ITEM = 4;
+static const int SELECT_ITEM_NUM = 2;
+static const int MAX_EQUIPMENT = 6;
+static const int MAX_EVENTS = 256;
+static const int MAX_ITEM_SLOTS = 24;
+static const int LIGHT_DROP_STAGE = 4;
+static const int LETTER_INFO_BIT = 64;
+static const int MAX_INSECT_NUM = 24;
+static const int MAX_VISIBLE_HEARTPIECES = 4;
+static const int MAX_POH_NUM = 100;
+static const int TBOX_MAX = 64;
+static const int DSV_MEMBIT_ENUM_MAX = 8;
+static const int ITEM_MAX_DAN = 128;
+static const int SWITCH_ZONE_MAX = 0x20;
+static const int SWITCH_ONE_ZONE_MAX = 0x10;
+static const int ITEM_ZONE_MAX = 0x20;
+static const int ITEM_ONE_ZONE_MAX = 0x10;
+static const int QUEST_LOG_SIZE = 0xA94;
+static const int QUIVER_MAX = 30;
+static const int BIG_QUIVER_MAX = 60;
+static const int GIANT_QUIVER_MAX = 100;
+static const int WALLET_MAX = 300;
+static const int BIG_WALLET_MAX = 600;
+static const int GIANT_WALLET_MAX = 1000;
+static const int MAX_FINDABLE_FISHES = 6;
+
+static const int ITEM_BIT_MAX = 0x100;
+static const int ITEM_XY_MAX_DUMMY = 8;
 
 enum ButtonIndexes {
     /* 0 */ A_BUTTON,

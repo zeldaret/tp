@@ -3,7 +3,7 @@
 // Translation Unit: d_a_tag_kmsg
 //
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_tag_kmsg.h"
 #include "d/actor/d_a_npc.h"
@@ -86,7 +86,7 @@ int daTag_KMsg_c::Execute() {
             attention_info.distances[fopAc_attn_TALK_e] = daNpcT_getDistTableIdx(getTalkAngle(), getTalkDis());
 #endif
             attention_info.distances[fopAc_attn_SPEAK_e] = attention_info.distances[fopAc_attn_TALK_e];
-            if (getAttnPosOffset() != 1000000000.0f) {
+            if (getAttnPosOffset() != G_CM3D_F_INF) {
                 attention_info.flags = fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e;
             } else {
                 attention_info.flags = fopAc_AttnFlag_SPEAK_e;
@@ -165,7 +165,7 @@ int daTag_KMsg_c::Execute() {
         }
         if (getType() == KMSG_TYPE_3) {
             attention_info.position = current.pos;
-            if (getAttnPosOffset() != 1000000000.0f) {
+            if (getAttnPosOffset() != G_CM3D_F_INF) {
                 attention_info.position.y += getAttnPosOffset();
             }
             eyePos = current.pos;
@@ -175,7 +175,7 @@ int daTag_KMsg_c::Execute() {
                 attention_info.position.y += scale.y;
             }
             eyePos = attention_info.position;
-            if (getAttnPosOffset() != 1000000000.0f) {
+            if (getAttnPosOffset() != G_CM3D_F_INF) {
                 attention_info.position.y += getAttnPosOffset();
             }
             eyePos.y += getEyePosOffset();
@@ -184,7 +184,7 @@ int daTag_KMsg_c::Execute() {
 #if VERSION != VERSION_SHIELD_DEBUG
         if (var_r28) {
             f32 f31;
-            if (getAttnPosOffset() != 1000000000.0f) {
+            if (getAttnPosOffset() != G_CM3D_F_INF) {
                 f31 = -0.5f * getAttnPosOffset();
             } else {
                 f31 = -20.0f;

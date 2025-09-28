@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_kwheel01.h"
 #include "JSystem/JHostIO/JORMContext.h"
@@ -142,7 +142,7 @@ void daObjKWheel01_c::setMtx() {
 /* 80C4EDCC-80C4EF38 0003CC 016C+00 1/0 0/0 0/0 .text            CreateHeap__15daObjKWheel01_cFv */
 int daObjKWheel01_c::CreateHeap() {
     J3DModelData* model_data = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcName, l_bmdidx[getOut()]));
-    JUT_ASSERT(229, model_data != 0);
+    JUT_ASSERT(229, model_data != NULL);
     mpModel = mDoExt_J3DModel__create(model_data, (1 << 19), 0x11000084);
 
     if(!mpModel)

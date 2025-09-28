@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_mie.h"
 #include "d/actor/d_a_npc_pouya.h"
@@ -116,7 +116,7 @@ int daObj_Mie_c::CreateHeap() {
     J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(
         l_resNameList[l_bmdData[mType][1]],
         l_bmdData[mType][0]);
-    JUT_ASSERT(392, 0 != mdlData_p);
+    JUT_ASSERT(392, NULL != mdlData_p);
     mModel = mDoExt_J3DModel__create(mdlData_p, 0, 0x11000084);
     return mModel != NULL ? TRUE : FALSE;
 }
@@ -165,7 +165,7 @@ int daObj_Mie_c::Execute() {
                   daObj_Mie_Param_c::m.launch_angle, NULL);
         } else {
             fopAcM_getWaterY(&current.pos, &field_0xa04);
-            if (field_0xa04 != -1e9f && dVar16 < field_0xa04 - field_0xa00 &&
+            if (field_0xa04 != -G_CM3D_F_INF && dVar16 < field_0xa04 - field_0xa00 &&
                 current.pos.y <= field_0xa04 && field_0xa43 == 0)
             {
                 if (field_0xa44 != 0 || field_0xa47 != 0 || field_0xa46 != 0) {
@@ -335,7 +335,7 @@ int daObj_Mie_c::Execute() {
         field_0xa00 = mAcch.GetGroundH();
     }
 
-    if (field_0xa00 != -1e9f) {
+    if (field_0xa00 != -G_CM3D_F_INF) {
         field_0xa12 = daNpcF_getGroundAngle(&mGndChk, shape_angle.y);
         setEnvTevColor();
         setRoomNo();
@@ -371,7 +371,7 @@ int daObj_Mie_c::Draw() {
         fopAcM_SearchByID(daPy_getPlayerActorClass()->getGrabActorID(), &local_48);
         if (local_48 == this) {
             model = mModel;
-        } else if (field_0xa00 != -1e9f) {
+        } else if (field_0xa00 != -G_CM3D_F_INF) {
             cM3dGPla plain;
             if (dComIfG_Bgsp().GetTriPla(mGndChk, &plain)) {
                 dComIfGd_setSimpleShadow(&current.pos, field_0xa00, 20.0f,

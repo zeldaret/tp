@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_passer_mng.h"
 #include "d/d_com_inf_game.h"
@@ -537,7 +537,7 @@ int daPasserMng_c::create() {
 void daPasserMng_c::create_init() {
     npcId = getDetailLevel() == 0 ? PROC_NPC_PASSER : PROC_NPC_PASSER2;
     mPath = dPath_GetRoomPath(getPathID(), fopAcM_GetHomeRoomNo(this));
-    JUT_ASSERT(542, mPath != 0);
+    JUT_ASSERT(542, mPath != NULL);
     dPnt* pnt0 = dPath_GetPnt(mPath, 0);
     dPnt* pnt1 = dPath_GetPnt(mPath, 1);
     current.pos.set(pnt0->m_position);

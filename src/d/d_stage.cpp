@@ -3,7 +3,7 @@
 // Translation Unit: d/d_stage
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "JSystem/JKernel/JKRAramArchive.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
@@ -1346,7 +1346,7 @@ bool dStage_roomControl_c::resetArchiveBank(int i_bank) {
 void dStage_roomControl_c::roomDzs_c::create(u8 i_num) {
     JUT_ASSERT(1112, !m_num && 0 < i_num && i_num < 64);
     m_dzs = new (mDoExt_getArchiveHeap(), -4) void*[i_num];
-    JUT_ASSERT(1114, m_dzs != 0);
+    JUT_ASSERT(1114, m_dzs != NULL);
 
     if (m_dzs != NULL) {
         u32** dzs = (u32**)m_dzs;
@@ -1393,7 +1393,7 @@ void* dStage_roomControl_c::roomDzs_c::add(u8 i_no, u8 roomNo) {
         JUT_ASSERT(1172, expandSize);
         OS_REPORT("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ <%s> <%d>\n", dzsName, expandSize);
         *dzs = mDoExt_getArchiveHeap()->alloc(expandSize, -0x20);
-        JUT_ASSERT(1179, *dzs != 0);
+        JUT_ASSERT(1179, *dzs != NULL);
 
         if (*dzs != NULL) {
             u32 readSize = dComIfGp_getFieldMapArchive2()->readResource(*dzs, expandSize, dzsName);
@@ -1632,7 +1632,7 @@ static int dStage_playerInit(dStage_dt_c* i_stage, void* i_data, int num, void* 
     }
 
     fopAcM_prm_class* appen = fopAcM_CreateAppend();
-    JUT_ASSERT(1586, appen != 0);
+    JUT_ASSERT(1586, appen != NULL);
 
     int point = dComIfGp_getStartStagePoint();
     u32 roomParam = dComIfGs_getRestartRoomParam();
@@ -1686,7 +1686,7 @@ static int dStage_playerInit(dStage_dt_c* i_stage, void* i_data, int num, void* 
 
     base_process_class* stageProc =
         (base_process_class*)fopScnM_SearchByID(dStage_roomControl_c::getProcID());
-    JUT_ASSERT(1683, stageProc != 0);
+    JUT_ASSERT(1683, stageProc != NULL);
     if (fpcM_GetName(stageProc) == PROC_PLAY_SCENE) {
         if (strcmp(dComIfGp_getStartStageName(), "S_MV000")) {
             fopMsgM_Create(PROC_METER2, NULL, NULL);
@@ -2212,7 +2212,7 @@ static int dStage_memaInfoInit(dStage_dt_c* i_stage, void* i_data, int param_2, 
         JUT_ASSERT(3208, pd->m_num <= dStage_roomControl_c::MEMORY_BLOCK_MAX);
         for (int i = 0; i < pd->m_num; i++) {
             JKRExpHeap* heap = dStage_roomControl_c::createMemoryBlock(i, *entry_p + 0x380);
-            JUT_ASSERT(3216, heap != 0);
+            JUT_ASSERT(3216, heap != NULL);
             OS_REPORT("\t%02d : size=%d\n", i, *entry_p);
             entry_p++;
         }
@@ -2582,7 +2582,7 @@ void dStage_dt_c_fieldMapLoader(void* i_data, dStage_dt_c* i_stage) {
         {"MPAT", dStage_fieldMapMapPathInit},
     };
 
-    JUT_ASSERT(4428, i_data != 0);
+    JUT_ASSERT(4428, i_data != NULL);
 
     dStage_dt_c_offsetToPtr(i_data);
     dStage_dt_c_decode(i_data, i_stage, l_funcTable, ARRAY_SIZEU(l_funcTable));
@@ -2602,7 +2602,7 @@ char dStage_roomControl_c::mArcBank[32][10] = {0};
 void dStage_infoCreate() {
     OS_REPORT("dStage_Create\n");
     void* stageRsrc = dComIfG_getStageRes("stage.dzs");
-    JUT_ASSERT(4451, stageRsrc != 0);
+    JUT_ASSERT(4451, stageRsrc != NULL);
 
     dComIfGp_roomControl_init();
     dStage_dt_c_stageInitLoader(stageRsrc, dComIfGp_getStage());
@@ -2614,7 +2614,7 @@ char dStage_roomControl_c::mDemoArcName[10];
 /* 80026D38-80026DF8 021678 00C0+00 0/0 1/1 0/0 .text            dStage_Create__Fv */
 void dStage_Create() {
     void* stageRsrc = dComIfG_getStageRes("stage.dzs");
-    JUT_ASSERT(4451, stageRsrc != 0);
+    JUT_ASSERT(4451, stageRsrc != NULL);
     dStage_dt_c_stageLoader(stageRsrc, dComIfGp_getStage());
     daSus_c::execute();
 
@@ -2653,7 +2653,7 @@ void dStage_Delete() {
 
         if (dStage_stagInfo_GetSTType(dComIfGp_getStage()->getStagInfo()) == ST_DUNGEON) {
             dRes_info_c* info = dComIfG_getStageResInfo("Stg_00");
-            JUT_ASSERT(4579, info != 0);
+            JUT_ASSERT(4579, info != NULL);
             *info->getArchiveName() = 'X';
             dComIfGp_setOldMulti();
         } else {

@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_kshutter.h"
 #include "d/actor/d_a_player.h"
@@ -258,7 +258,7 @@ static char* l_anmArcName[5] = {
 int daObjKshtr_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName[mType], l_bmd[mType]);
 
-    JUT_ASSERT(429, modelData != 0);
+    JUT_ASSERT(429, modelData != NULL);
 
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {
@@ -275,7 +275,7 @@ int daObjKshtr_c::CreateHeap() {
 
         J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes(l_anmArcName[mType], l_anmName[index]);
 
-        JUT_ASSERT(446, anm != 0);
+        JUT_ASSERT(446, anm != NULL);
 
         mpBckAnm = new mDoExt_bckAnm();
         if (mpBckAnm == NULL || mpBckAnm->init(anm, 1, 0, 1.0f, 0, -1, false) == 0) {
@@ -872,11 +872,11 @@ void daObjKshtr_c::anmInit() {
 
         J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes(l_anmArcName[mType], l_anmName[isWolf + mType * 2]);
 
-        JUT_ASSERT(1278, anm != 0);
+        JUT_ASSERT(1278, anm != NULL);
 
         #ifdef DEBUG
         if (!mpBckAnm->init(anm, 1, 0, 1.0f, 0, -1, true)) {
-            JUT_ASSERT(1281, 0);
+            JUT_ASSERT(1281, FALSE);
 
             mpBckAnm->setPlaySpeed(1.0f);
         }

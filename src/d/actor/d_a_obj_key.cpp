@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_key.h"
 #include "d/d_com_inf_game.h"
@@ -589,12 +589,12 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     obj_key_class* a_this = (obj_key_class*)i_this;
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Obj_key", 5);
-    JUT_ASSERT(969, modelData != 0);
+    JUT_ASSERT(969, modelData != NULL);
 
     for (int i = 0; i < 2; i++) {
         if (i == 1) {
             modelData = (J3DModelData*)dComIfG_getObjectRes("Obj_key", 3);
-            JUT_ASSERT(975, modelData != 0);
+            JUT_ASSERT(975, modelData != NULL);
         }
 
         a_this->key_s.model[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);

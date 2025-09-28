@@ -66,7 +66,7 @@ u32 JFWSystem::CSetUpParam::exConsoleBufferSize = 0x24FC;
 
 /* 80271CD0-80271D18 26C610 0048+00 1/1 1/1 0/0 .text            firstInit__9JFWSystemFv */
 void JFWSystem::firstInit() {
-    JUT_ASSERT(80, rootHeap == 0);
+    JUT_ASSERT(80, rootHeap == NULL);
     OSInit();
     DVDInit();
     rootHeap = JKRExpHeap::createRoot(CSetUpParam::maxStdHeaps, false);

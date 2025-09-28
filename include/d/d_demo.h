@@ -86,11 +86,11 @@ public:
     /* 80038098 */ virtual ~dDemo_actor_c();
     /* 800387EC */ virtual void JSGSetData(u32, void const*, u32);
     /* 8003A05C */ virtual s32 JSGFindNodeID(char const* param_0) const {
-        JUT_ASSERT(0, mModel != 0);
+        JUT_ASSERT(0, mModel != NULL);
         return mModel->getModelData()->getJointName()->getIndex(param_0);
     }
     /* 8003A088 */ virtual bool JSGGetNodeTransformation(u32 param_0, Mtx param_1) const {
-        JUT_ASSERT(0, mModel != 0);
+        JUT_ASSERT(0, mModel != NULL);
         cMtx_copy(mModel->getAnmMtx((u16)param_0), param_1);
         return true;
     }
@@ -375,7 +375,7 @@ public:
     static jmessage_tControl* getMesgControl() { return m_mesgControl; }
 
     static dDemo_camera_c* getCamera() {
-        JUT_ASSERT(0, m_object != 0);
+        JUT_ASSERT(0, m_object != NULL);
         return m_object->getActiveCamera();
     }
 

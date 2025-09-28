@@ -1225,7 +1225,7 @@ int daAlink_c::setDoubleAnimeWolf(f32 param_0, f32 param_1, f32 param_2,
     if (!checkWolf()) {
         // "Is Adult Link but setting Wolf animation\n"
         OS_REPORT("リンクなのに狼アニメ設定\n");
-        JUT_ASSERT(0x82B, 0);
+        JUT_ASSERT(2091, FALSE);
     }    
 
     J3DAnmTransform* var_r25 = getNowAnmPackUnder(UNDER_0);
@@ -1303,7 +1303,7 @@ int daAlink_c::setSingleAnimeWolf(daAlink_c::daAlink_WANM i_anmID, f32 i_speed, 
     if (!checkWolf()) {
         // "Is Adult Link but setting Wolf animation\n"
         OS_REPORT("リンクなのに狼アニメ設定\n");
-        JUT_ASSERT(0x82B, 0);
+        JUT_ASSERT(2091, FALSE);
     }    
 
     J3DAnmTransform* var_r30 = getAnimeResource(&mUnderAnmHeap[0], m_wlAnmDataTable[i_anmID].field_0x0, 0x10800);
@@ -2036,7 +2036,7 @@ void daAlink_c::wolfFootBgCheck() {
                 temp_f31 = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
                 temp_f30 = var_r26->y - temp_f31;
 
-                if (-1000000000.0f != temp_f31 && temp_f30 < temp_f27 && temp_f30 > sp1C) {
+                if (-G_CM3D_F_INF != temp_f31 && temp_f30 < temp_f27 && temp_f30 > sp1C) {
                     *sp20 = temp_f31;
                     var_r28->field_0x0 = 1;
                     sp48[i][j] = getGroundAngle(&mLinkGndChk, shape_angle.y);
@@ -2144,11 +2144,11 @@ void daAlink_c::wolfFootBgCheck() {
             }
 
             int sp18;
-            if (-1000000000.0f != temp_f31) {
+            if (-G_CM3D_F_INF != temp_f31) {
                 sp18 = dComIfG_Bgsp().GetPolyAtt0(mLinkGndChk);
             }
 
-            if (-1000000000.0f == temp_f31 || sp18 == 3 || sp18 == 0xD) {
+            if (-G_CM3D_F_INF == temp_f31 || sp18 == 3 || sp18 == 0xD) {
                 sp90.y += mSinkShapeOffset;
             }
 
@@ -2161,11 +2161,11 @@ void daAlink_c::wolfFootBgCheck() {
                 sp84.y = current.pos.y;
             }
 
-            if (-1000000000.0f != temp_f31) {
+            if (-G_CM3D_F_INF != temp_f31) {
                 sp18 = dComIfG_Bgsp().GetPolyAtt0(mLinkGndChk);
             }
 
-            if (-1000000000.0f == temp_f31 || sp18 == 3 || sp18 == 0xD) {
+            if (-G_CM3D_F_INF == temp_f31 || sp18 == 3 || sp18 == 0xD) {
                 sp84.y += mSinkShapeOffset;
             }
 
@@ -5695,7 +5695,7 @@ int daAlink_c::procWolfHangFallStartInit(cM3dGPla* param_0) {
     mLinkGndChk.SetPos(&gnd_chk_pos);
     gnd_chk_pos.y = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
 
-    if (gnd_chk_pos.y != -1000000000.0f) {
+    if (gnd_chk_pos.y != -G_CM3D_F_INF) {
         if (gnd_chk_pos.y < current.pos.y + l_autoDownHeight) {
             return 0;
         }

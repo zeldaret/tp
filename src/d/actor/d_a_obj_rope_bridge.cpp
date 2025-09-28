@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_rope_bridge.h"
 #include "d/d_com_inf_game.h"
@@ -374,7 +374,7 @@ int daObjRBridge_c::Create() {
 /* 80596B88-80596DE8 000DC8 0260+00 1/0 0/0 0/0 .text            CreateHeap__14daObjRBridge_cFv */
 int daObjRBridge_c::CreateHeap() {
     void* modelData = dComIfG_getObjectRes(l_arcName[mType], l_brgBmdIdx[mType]);
-    JUT_ASSERT(837, modelData != 0);
+    JUT_ASSERT(837, modelData != NULL);
     mpBrgModel = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
     if (mpBrgModel == NULL) {
         return 0;
@@ -382,7 +382,7 @@ int daObjRBridge_c::CreateHeap() {
 
     if (!fopAcM_isSwitch(this, getSwbit2())) {
         modelData = dComIfG_getObjectRes(l_ropeArcName, 4);
-        JUT_ASSERT(853, modelData != 0);
+        JUT_ASSERT(853, modelData != NULL);
         mpStopModel = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
         if (mpStopModel == NULL) {
             return 0;
@@ -427,7 +427,7 @@ int daObjRBridge_c::create1st() {
     if (mType != 0 && mType != 1) {
         // "Rope Stop Bridge: Invalid type\n"
         OS_REPORT_ERROR("止め具ロープ付き橋：タイプが不正です\n");
-        JUT_ASSERT(923, 0);
+        JUT_ASSERT(923, FALSE);
     }
 
     int rope_phase_state = dComIfG_resLoad(&mRopePhase, l_ropeArcName);

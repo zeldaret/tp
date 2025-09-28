@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_gwolf.h"
 #include "Z2AudioLib/Z2Instances.h"
@@ -358,7 +358,7 @@ int daNpc_GWolf_c::CreateHeap() {
         mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNames[l_bmdGetParamList[0].arcIdx], l_bmdGetParamList[0].fileIdx);
     }
 
-    JUT_ASSERT(538, 0 != mdlData_p);
+    JUT_ASSERT(538, NULL != mdlData_p);
 
     mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
     if (mpMorf != NULL && mpMorf->getModel() == NULL) {
@@ -1129,7 +1129,7 @@ BOOL daNpc_GWolf_c::doEvent() {
                 int evtCutNo = eventManager.getMyActIdx(staffId, mEvtCutNameList, 5, FALSE, FALSE);
 
                 JUT_ASSERT(2087, (0 <= evtCutNo) && (evtCutNo < NUM_EVT_CUTS_e));
-                JUT_ASSERT(2088, 0 != mEvtCutList[evtCutNo]);
+                JUT_ASSERT(2088, NULL != mEvtCutList[evtCutNo]);
 
                 if ((this->*mEvtCutList[evtCutNo])(staffId)) {
                     eventManager.cutEnd(staffId);

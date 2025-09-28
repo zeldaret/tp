@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_avalanche.h"
 #include "d/d_bg_w.h"
@@ -92,14 +92,14 @@ int daObjAvalanche_c::Create() {
 /* 80BA7178-80BA7328 000318 01B0+00 1/0 0/0 0/0 .text            CreateHeap__16daObjAvalanche_cFv */
 int daObjAvalanche_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 9);
-    JUT_ASSERT(233, modelData != 0);
+    JUT_ASSERT(233, modelData != NULL);
     mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (mModel == NULL) {
         return 0;
     }
     J3DAnmTransform* anm =
         (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 6);
-    JUT_ASSERT(247, anm != 0);
+    JUT_ASSERT(247, anm != NULL);
     mBckAnm = new mDoExt_bckAnm();
     if (mBckAnm == NULL || !mBckAnm->init(anm, 1, 0, 1.0, 0, -1, false)) {
         return 0;

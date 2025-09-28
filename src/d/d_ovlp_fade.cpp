@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_ovlp_fade.h"
 #include "d/d_com_inf_game.h"
@@ -26,7 +26,7 @@ static int dOvlpFd_Draw(overlap1_class* i_this) {
 /* 80252184-802521F4 24CAC4 0070+00 1/1 0/0 0/0 .text            dOvlpFd_startFadeIn__Fi */
 static void dOvlpFd_startFadeIn(int param_0) {
     JUTFader* fader = JFWDisplay::getManager()->getFader();
-    JUT_ASSERT(0, fader != 0);
+    JUT_ASSERT(0, fader != NULL);
 
     fader->setStatus(JUTFader::UNKSTATUS_0, 0);
     fader->setStatus(JUTFader::UNKSTATUS_0, -1);

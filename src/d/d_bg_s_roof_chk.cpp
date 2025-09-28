@@ -3,7 +3,7 @@
  * BG Collision Roof Check
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_bg_s_roof_chk.h"
 
@@ -23,6 +23,6 @@ dBgS_RoofChk::~dBgS_RoofChk() {}
 
 /* 80079124-8007914C 073A64 0028+00 0/0 1/1 0/0 .text            Init__12dBgS_RoofChkFv */
 void dBgS_RoofChk::Init() {
-    SetNowY(1000000000.0f);
+    SetNowY(G_CM3D_F_INF);
     ClearPi();
 }

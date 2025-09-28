@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_kolin.h"
 #include "Z2AudioLib/Z2Instances.h"
@@ -463,7 +463,7 @@ cPhs__Step daNpc_Kolin_c::create() {
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.GetGroundH();
 
-        if (mGroundH != -1000000000.0f) {
+        if (mGroundH != -G_CM3D_F_INF) {
             setEnvTevColor();
             setRoomNo();
         }
@@ -1383,7 +1383,7 @@ int daNpc_Kolin_c::cutHail(int i_cutIndex) {
                 mGndChk.SetPos(&work);
                 work.y = dComIfG_Bgsp().GroundCross(&mGndChk);
 
-                JUT_ASSERT(2646, -(1000000000.0f) != work.y);
+                JUT_ASSERT(2646, -G_CM3D_F_INF != work.y);
 
                 daPy_getPlayerActorClass()->setPlayerPosAndAngle(&work, angle, 0);
                 break;
@@ -2057,7 +2057,7 @@ int daNpc_Kolin_c::timidWalk(void* param_1) {
             }
             // fallthrough
         case 2:;
-            JUT_ASSERT(4359, 0 != mPath.getPathInfo());
+            JUT_ASSERT(4359, NULL != mPath.getPathInfo());
 
                  /* dSv_event_flag_c::F_0010 - Ordon Village - First convo with Colin blocking path (forced) */
             if (!daNpcT_chkEvtBit(14)) {

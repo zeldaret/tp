@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_zelRo.h"
 
@@ -213,7 +213,7 @@ int daNpc_ZelRo_c::CreateHeap() {
     int bmdIdx = mTwilight == true ? NONE : NONE;
     J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[bmdIdx][1]], l_bmdData[bmdIdx][0]);
 
-    JUT_ASSERT(432, 0 != mdlData_p);
+    JUT_ASSERT(432, NULL != mdlData_p);
 
     mpMorf[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0, 0x11020284);
     if (mpMorf[0] != NULL && mpMorf[0]->getModel() == NULL) {

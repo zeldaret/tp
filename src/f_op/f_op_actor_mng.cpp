@@ -3,7 +3,7 @@
  * Actor Manager
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
@@ -37,7 +37,7 @@ fopAc_ac_c* fopAcM_FastCreate(s16 i_procName, FastCreateReqFunc i_createFunc, vo
 /* 800198C4-80019934 014204 0070+00 1/1 5/5 18/18 .text            fopAcM_setStageLayer__FPv */
 void fopAcM_setStageLayer(void* i_proc) {
     scene_class* stageProc = fopScnM_SearchByID(dStage_roomControl_c::getProcID());
-    JUT_ASSERT(0, stageProc != 0);
+    JUT_ASSERT(0, stageProc != NULL);
 
     fpcM_ChangeLayerID(i_proc, fopScnM_LayerID(stageProc));
 }
@@ -46,7 +46,7 @@ void fopAcM_setStageLayer(void* i_proc) {
 void fopAcM_setRoomLayer(void* i_proc, int i_roomNo) {
     if (i_roomNo >= 0) {
         scene_class* roomProc = fopScnM_SearchByID(dStage_roomControl_c::getStatusProcID(i_roomNo));
-        JUT_ASSERT(0, roomProc != 0);
+        JUT_ASSERT(0, roomProc != NULL);
 
         fpcM_ChangeLayerID(i_proc, fopScnM_LayerID(roomProc));
     }
@@ -266,7 +266,7 @@ fpc_ProcID fopAcM_createChildFromOffset(s16 i_procName, fpc_ProcID i_parentID, u
 
 BOOL fopAcM_createHeap(fopAc_ac_c* i_this, u32 size, u32 align) {
     JUT_ASSERT(0, i_this);
-    JUT_ASSERT(0, i_this->heap == 0);
+    JUT_ASSERT(0, i_this->heap == NULL);
 
     // "Creating Actor Heap"
     fopAcM_Log(i_this, "アクターのヒープの生成");
@@ -419,7 +419,7 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* i_actor, heapCallbackFunc i_heapCallback
             }
 
             OSReport_Error("ばぐばぐです\n");  // "There's a big bug\n"
-            JUT_ASSERT(0, 0);
+            JUT_ASSERT(0, FALSE);
             OSReport_Error("緊急回避措置\n");  // "Emergency action\n"
             fopAcM::HeapAdjustEntry = false;
         }
@@ -1391,17 +1391,17 @@ fpc_ProcID fopAcM_createItem(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, i
     case fpcNm_ITEM_SMALL_KEY:
         // "Small Key: Can't support map display, so program generation is prohibited!\n"
         OS_REPORT_ERROR("小さい鍵：マップ表示対応出来ないので、プログラム生成禁止！\n");
-        JUT_ASSERT(0, 0);
+        JUT_ASSERT(0, FALSE);
         break;
     case fpcNm_ITEM_KANTERA:
         // "Lantern: Program generation is prohibited!\n"
         OS_REPORT_ERROR("カンテラ：プログラム生成禁止！\n");
-        JUT_ASSERT(0, 0);
+        JUT_ASSERT(0, FALSE);
         break;
     case fpcNm_ITEM_LIGHT_DROP:
         // "Light Drop: Program generation is prohibited!\n"
         OS_REPORT_ERROR("光の雫：プログラム生成禁止！\n");
-        JUT_ASSERT(0, 0);
+        JUT_ASSERT(0, FALSE);
         break;
 #endif
     case fpcNm_ITEM_KAKERA_HEART:
@@ -1449,17 +1449,17 @@ fopAc_ac_c* fopAcM_fastCreateItem2(const cXyz* i_pos, int i_itemNo, int i_itemBi
     case fpcNm_ITEM_SMALL_KEY:
         // "Small Key: Can't support map display, so program generation is prohibited!\n"
         OS_REPORT_ERROR("小さい鍵：マップ表示対応出来ないので、プログラム生成禁止！\n");
-        JUT_ASSERT(0, 0);
+        JUT_ASSERT(0, FALSE);
         break;
     case fpcNm_ITEM_KANTERA:
         // "Lantern: Program generation is prohibited!\n"
         OS_REPORT_ERROR("カンテラ：プログラム生成禁止！\n");
-        JUT_ASSERT(0, 0);
+        JUT_ASSERT(0, FALSE);
         break;
     case fpcNm_ITEM_LIGHT_DROP:
         // "Light Drop: Program generation is prohibited!\n"
         OS_REPORT_ERROR("光の雫：プログラム生成禁止！\n");
-        JUT_ASSERT(0, 0);
+        JUT_ASSERT(0, FALSE);
         break;
 #endif
     case fpcNm_ITEM_KAKERA_HEART:
@@ -1509,17 +1509,17 @@ fopAc_ac_c* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo,
     case fpcNm_ITEM_SMALL_KEY:
         // "Small Key: Can't support map display, so program generation is prohibited!\n"
         OS_REPORT_ERROR("小さい鍵：マップ表示対応出来ないので、プログラム生成禁止！\n");
-        JUT_ASSERT(0, 0);
+        JUT_ASSERT(0, FALSE);
         break;
     case fpcNm_ITEM_KANTERA:
         // "Lantern: Program generation is prohibited!\n"
         OS_REPORT_ERROR("カンテラ：プログラム生成禁止！\n");
-        JUT_ASSERT(0, 0);
+        JUT_ASSERT(0, FALSE);
         break;
     case fpcNm_ITEM_LIGHT_DROP:
         // "Light Drop: Program generation is prohibited!\n"
         OS_REPORT_ERROR("光の雫：プログラム生成禁止！\n");
-        JUT_ASSERT(0, 0);
+        JUT_ASSERT(0, FALSE);
         break;
 #endif
     case fpcNm_ITEM_KAKERA_HEART:
@@ -1618,7 +1618,7 @@ fopAc_ac_c* fopAcM_myRoomSearchEnemy(s8 roomNo) {
 
     int procID = dStage_roomControl_c::getStatusProcID(roomNo);
     scene_class* roomProc = fopScnM_SearchByID(procID);
-    JUT_ASSERT(0, roomProc != 0);
+    JUT_ASSERT(0, roomProc != NULL);
 
     u32 actorID = ((daPy_py_c*)dComIfGp_getPlayer(0))->getGrabActorID();
     fopAc_ac_c* actor = fopAcM_SearchByID(actorID);
@@ -2015,7 +2015,7 @@ s32 fopAcM_getWaterY(cXyz const* param_0, f32* o_waterY) {
         *o_waterY = fopAcM_wt_c::getWaterY();
         return 1;
     } else {
-        *o_waterY = -1000000000.0f;
+        *o_waterY = -G_CM3D_F_INF;
         return 0;
     }
 }
@@ -2104,14 +2104,14 @@ bool fopAcM_lc_c::lineCheck(cXyz const* i_start, cXyz const* i_end, fopAc_ac_c c
 bool fopAcM_gc_c::gndCheck(cXyz const* i_pos) {
     mGndCheck.SetPos(i_pos);
     mGroundY = (f32)dComIfG_Bgsp().GroundCross(&mGndCheck);
-    return -1000000000.0f != mGroundY;
+    return -G_CM3D_F_INF != mGroundY;
 }
 
 /* 8001DD1C-8001DD84 01865C 0068+00 0/0 0/0 3/3 .text            roofCheck__11fopAcM_rc_cFPC4cXyz */
 bool fopAcM_rc_c::roofCheck(cXyz const* i_pos) {
     mRoofCheck.SetPos(*i_pos);
     mRoofY = dComIfG_Bgsp().RoofChk(&mRoofCheck);
-    return 1000000000.0f != mRoofY;
+    return G_CM3D_F_INF != mRoofY;
 }
 
 /* 8001DD84-8001DE10 0186C4 008C+00 1/1 4/4 22/22 .text            waterCheck__11fopAcM_wt_cFPC4cXyz

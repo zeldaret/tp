@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_raca.h"
 #include "d/actor/d_a_tag_evtarea.h"
@@ -260,7 +260,7 @@ cPhs__Step daNpc_Raca_c::create() {
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.GetGroundH();
 
-        if (mGroundH != -1e9f) {
+        if (mGroundH != -G_CM3D_F_INF) {
             setEnvTevColor();
             setRoomNo();
         }
@@ -752,7 +752,7 @@ int daNpc_Raca_c::walk(void* param_1) {
             if (!mStagger.checkStagger()) {
                 cXyz sp20;
 
-                JUT_ASSERT(1553, 0 != mPath.getPathInfo());
+                JUT_ASSERT(1553, NULL != mPath.getPathInfo());
 
                 BOOL bVar1 = mPath.getDstPosH(current.pos, &sp20, mPath.getNumPnts(), 2);
                 calcSpeedAndAngle(sp20, bVar1, MREG_S(0) + 4, MREG_S(1) + 0x800);

@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_crvfence.h"
 #include "d/d_s_play.h"
@@ -316,7 +316,7 @@ static int daObjCRVFENCE_Execute(daObjCRVFENCE_c* i_this) {
 int daObjCRVFENCE_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "CaravanFence.bmd");
 
-    JUT_ASSERT(88, modelData != 0);
+    JUT_ASSERT(88, modelData != NULL);
 
     field_0x65c = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (field_0x65c == NULL) {
@@ -325,7 +325,7 @@ int daObjCRVFENCE_c::CreateHeap() {
 
     modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "U_CaravanGate_PieceB.bmd");
 
-    JUT_ASSERT(99, modelData != 0);
+    JUT_ASSERT(99, modelData != NULL);
 
     field_0x660 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (field_0x660 == NULL) {

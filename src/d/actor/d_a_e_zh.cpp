@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_zh.h"
 #include "d/actor/d_a_obj_carry.h"
@@ -574,7 +574,7 @@ bool daE_ZH_c::mSearchMove(u8 param_1) {
         if (param_1 == 0) {
             sp5c += mS_Ball->current.pos;
 
-            if (mBgc.GetGroundH() != -1000000000.0f && mBgc.GetGroundH() > mS_Ball->current.pos.y) {
+            if (mBgc.GetGroundH() != -G_CM3D_F_INF && mBgc.GetGroundH() > mS_Ball->current.pos.y) {
                 sp5c.y = mBgc.GetGroundH();
             }
         } else {
@@ -1113,7 +1113,7 @@ void daE_ZH_c::executeOpenStart() {
             // fallthrough
         case 15:
             sp34.y = mS_Ball->current.pos.y + 600.0f;
-            if (mBgc.GetGroundH() != -1000000000.0f) {
+            if (mBgc.GetGroundH() != -G_CM3D_F_INF) {
                 sp34.y = mBgc.GetGroundH() + 600.0f;
             }
 
@@ -1146,11 +1146,11 @@ void daE_ZH_c::executeSearchMove() {
 
     ato.y = mS_Ball->current.pos.y + 600.0f;
     
-    if (mBgc.GetGroundH() != -1000000000.0f && mBgc.GetGroundH() + 500.0f > ato.y) {
+    if (mBgc.GetGroundH() != -G_CM3D_F_INF && mBgc.GetGroundH() + 500.0f > ato.y) {
         ato.y = mBgc.GetGroundH() + 500.0f;
     }
 
-    if (mBgc.GetRoofHeight() != 1000000000.0f && ato.y > mBgc.GetRoofHeight()) {
+    if (mBgc.GetRoofHeight() != G_CM3D_F_INF && ato.y > mBgc.GetRoofHeight()) {
         ato.y = mBgc.GetRoofHeight() - 150.0f;
     }
 
@@ -1425,14 +1425,14 @@ void daE_ZH_c::executeCatchFlyMove() {
         pmRoofPos = home.pos.y;
 
         if (arg0 == 0) {
-            if (mBgc.GetGroundH() != -1000000000.0f) {
+            if (mBgc.GetGroundH() != -G_CM3D_F_INF) {
                 pmRoofPos = mBgc.GetGroundH() + 600.0f;
             } else {
                 pmRoofPos = home.pos.y + 600.0f;
             }
         }
 
-        if (mBgc.GetRoofHeight() != 1000000000.0f && pmRoofPos > mBgc.GetRoofHeight()) {
+        if (mBgc.GetRoofHeight() != G_CM3D_F_INF && pmRoofPos > mBgc.GetRoofHeight()) {
             pmRoofPos = mBgc.GetRoofHeight() - 150.0f;
         }
 
@@ -2169,7 +2169,7 @@ static int daE_ZH_Delete(daE_ZH_c* i_this) {
 /* 8082E4E4-8082E6C8 0055A4 01E4+00 1/1 0/0 0/0 .text            CreateHeap__8daE_ZH_cFv */
 int daE_ZH_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_ZH", BMDV_ZH);
-    JUT_ASSERT(3305, modelData != 0);
+    JUT_ASSERT(3305, modelData != NULL);
 
     mpModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_ZH", BCK_ZH_WAIT01), 
                                        2, 1.0f, 0, -1, &mSound, 0, 0x31000284);
@@ -2190,7 +2190,7 @@ int daE_ZH_c::CreateHeap() {
 
     if (arg0 == 1) {
         modelData = (J3DModelData*)dComIfG_getObjectRes("E_ZH", BMDV_ZH_ENTRANCE);
-        JUT_ASSERT(3342, modelData != 0);
+        JUT_ASSERT(3342, modelData != NULL);
 
         mEntranceModel = mDoExt_J3DModel__create(modelData, 0, 0x11020203);
         if (mEntranceModel == NULL) {

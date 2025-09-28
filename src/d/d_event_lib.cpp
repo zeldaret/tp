@@ -3,7 +3,7 @@
  * Event Callback Library
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_event_lib.h"
 #include "d/d_com_inf_game.h"

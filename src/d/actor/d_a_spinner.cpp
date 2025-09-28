@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_spinner.h"
 #include "d/actor/d_a_tag_sppath.h"
@@ -125,7 +125,7 @@ static int daSpinner_Delete(daSpinner_c* i_this) {
 /* 804D21E0-804D2278 000940 0098+00 2/2 0/0 0/0 .text            setRoomInfo__11daSpinner_cFv */
 void daSpinner_c::setRoomInfo() {
     int roomNo;
-    if (mAcch.GetGroundH() != -1000000000.0f) {
+    if (mAcch.GetGroundH() != -G_CM3D_F_INF) {
         roomNo = dComIfG_Bgsp().GetRoomId(mAcch.m_gnd);
         tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mAcch.m_gnd);
     } else {

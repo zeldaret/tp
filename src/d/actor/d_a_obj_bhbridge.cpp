@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_bhbridge.h"
 #include "SSystem/SComponent/c_lib.h"
@@ -113,7 +113,7 @@ inline int daObjBhbridge_c::create() {
         dBgS_ObjGndChk_Spl adStack_84;
         adStack_84.SetPos(&cStack_90);
         f32 ground = dComIfG_Bgsp().GroundCross(&adStack_84);
-        if (ground != -1000000000.0f) {
+        if (ground != -G_CM3D_F_INF) {
             current.pos.y = ground + 100.0f;
         }
     }
@@ -123,7 +123,7 @@ inline int daObjBhbridge_c::create() {
 /* 80BB5934-80BB59AC 000694 0078+00 1/0 0/0 0/0 .text            CreateHeap__15daObjBhbridge_cFv */
 inline int daObjBhbridge_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "M_BHbridge.bmd");
-    JUT_ASSERT(83, modelData != 0);
+    JUT_ASSERT(83, modelData != NULL);
     mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     return mModel != NULL ? TRUE : FALSE;
 }

@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_zelR.h"
 
@@ -189,7 +189,7 @@ int daNpc_ZelR_c::CreateHeap() {
     ));
     
     
-    JUT_ASSERT(0x1b0, 0 != mdlData_p);
+    JUT_ASSERT(0x1b0, NULL != mdlData_p);
 
     mpMorf[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0, 0x11020284);
     if (mpMorf[0] != NULL && mpMorf[0]->getModel() == NULL) {

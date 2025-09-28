@@ -3,7 +3,7 @@
  * Debug Level Select Menu
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_s_menu.h"
 #include "d/d_com_inf_game.h"
@@ -1504,10 +1504,10 @@ int phase_1(dScnMenu_c* i_this) {
     OS_REPORT("Menu Create !!\n");
 
     i_this->command = mDoDvdThd_toMainRam_c::create("/res/Menu/Menu1.dat", 0, NULL);
-    JUT_ASSERT(3083, i_this->command != 0);
+    JUT_ASSERT(3083, i_this->command != NULL);
 
     i_this->fontCommand = mDoDvdThd_toMainRam_c::create("/res/Menu/kanfont_fix16.bfn", 0, NULL);
-    JUT_ASSERT(3086, i_this->fontCommand != 0);
+    JUT_ASSERT(3086, i_this->fontCommand != NULL);
 
     dComIfG_playerStatusD();
     dComIfGs_offDarkClearLV(0);
@@ -1574,7 +1574,7 @@ int phase_2(dScnMenu_c* i_this) {
     }
 
     i_this->info = (menu_info_class*)i_this->command->getMemAddress();
-    JUT_ASSERT(3237, i_this->info != 0);
+    JUT_ASSERT(3237, i_this->info != NULL);
 
     menu_info_class* menu_info = i_this->info;
     menu_info->stage_data = (menu_stage_class*)((uintptr_t)menu_info->stage_data + (uintptr_t)menu_info);
@@ -1586,7 +1586,7 @@ int phase_2(dScnMenu_c* i_this) {
 
     if (l_groupPoint == NULL) {
         l_groupPoint = new s8[menu_info->num];
-        JUT_ASSERT(3252, l_groupPoint != 0);
+        JUT_ASSERT(3252, l_groupPoint != NULL);
 
         if (mDoExt_getSafeZeldaHeapSize() >= 0) {
             mDoExt_addSafeZeldaHeapSize(-(mDoExt_getZeldaHeap()->getSize(l_groupPoint) + 0x10));
@@ -1607,7 +1607,7 @@ int phase_2(dScnMenu_c* i_this) {
     }
 
     i_this->category_info = (menu_category_class*)((uintptr_t)i_this->command->getMemAddress() + category_offset);
-    JUT_ASSERT(3282, i_this->category_info != 0);
+    JUT_ASSERT(3282, i_this->category_info != NULL);
 
     category_info = i_this->category_info;
     category_info->data = (menu_category_data_class*)((uintptr_t)category_info->data + (uintptr_t)menu_info);

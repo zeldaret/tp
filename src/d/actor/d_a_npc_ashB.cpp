@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_ashB.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
@@ -895,7 +895,7 @@ bool daNpcAshB_c::wait(void* param_0) {
     case 3:
         break;
     default:
-        JUT_ASSERT(0x579, 0);
+        JUT_ASSERT(1401, FALSE);
     }
 
     return true;

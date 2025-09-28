@@ -2,7 +2,7 @@
 // d_a_e_oct_bg
 //
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "dolphin/types.h"
 
@@ -808,7 +808,7 @@ int daE_OctBg_c::JointCallBack(J3DJoint* param_0, int param_1) {
 /* 8073921C-807393DC 0030FC 01C0+00 1/1 0/0 0/0 .text            CreateHeap__11daE_OctBg_cFv */
 int daE_OctBg_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_bg", 10);
-    JUT_ASSERT(1341, modelData != 0);
+    JUT_ASSERT(1341, modelData != NULL);
     field_0x5b4 = new mDoExt_McaMorfSO(
             modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_bg", 7), 0, 1.0f, 0, -1, &field_0x5bc,
             0x80000, 0x11000084);

@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_keyhole.h"
 #include "d/d_com_inf_game.h"
@@ -690,7 +690,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
     if (a_this->arg0 == 0 || a_this->arg0 == 3) {
         modelData = dComIfG_getObjectRes(a_this->arcname, bmd_d[a_this->arg0]);
-        JUT_ASSERT(1189, modelData != 0);
+        JUT_ASSERT(1189, modelData != NULL);
 
         a_this->lock_model = mDoExt_J3DModel__create((J3DModelData*)modelData, mdl_f[a_this->arg0], 0x11000084);
         if (a_this->lock_model == NULL) {
@@ -715,7 +715,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 
     a_this->field_0x580 = cbmd_d[a_this->arg0];
     modelData = dComIfG_getObjectRes(a_this->arcname, a_this->field_0x580);
-    JUT_ASSERT(1270, modelData != 0);
+    JUT_ASSERT(1270, modelData != NULL);
 
     for (int i = 0; i < 6; i++) {
         for (int j = 0; j < a_this->chain_num; j++) {
@@ -766,7 +766,7 @@ static int daObj_Keyhole_Create(fopAc_ac_c* a_this) {
             0xA420, 0xA4E0, 0xA4E0, 0xA4E0, 0xA4E0,
         };
 
-        ASSERTLINE(1360, i_this->arg0 < sizeof(estimateSizeTbl) / sizeof(estimateSizeTbl[0]));
+        ASSERTLINE(1360, i_this->arg0 < ARRAY_SIZEU(estimateSizeTbl));
         u32 heapsize = estimateSizeTbl[i_this->arg0];
         OS_REPORT("OBJ_KEYHOLE: arg0=%u 0x%04x\n", i_this->arg0, heapsize);
 
@@ -843,7 +843,7 @@ static int daObj_Keyhole_Create(fopAc_ac_c* a_this) {
         }
 
         void* modelData = dComIfG_getObjectRes(i_this->arcname, i_this->field_0x580);
-        JUT_ASSERT(1507, modelData != 0);
+        JUT_ASSERT(1507, modelData != NULL);
 
         if (dComIfGp_addSimpleModel((J3DModelData*)modelData, fopAcM_GetRoomNo(a_this), 1) == -1) {
             OS_REPORT("\x1B[43;30m施錠鎖：シンプルモデル登録失敗しました。\n\x1B[m");

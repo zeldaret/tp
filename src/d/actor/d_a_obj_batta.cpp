@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_batta.h"
 #include "d/actor/d_a_player.h"
@@ -97,7 +97,7 @@ static u32 const l_batta_btk_index[2] = {
 
 inline int daObjBATTA_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Bat", 0xb);
-    JUT_ASSERT(256, modelData != 0);
+    JUT_ASSERT(256, modelData != NULL);
     mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                   (J3DAnmTransform*)dComIfG_getObjectRes("Bat", 8), 2, 1.0f, 0, -1,
                                   &mCreature, 0x80000, 0x11000284);

@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_lv3Water2.h"
 #include "d/d_com_inf_game.h"
@@ -96,7 +96,7 @@ static const int l_btkIdx[] = {9};
 /* 80C5A4F8-80C5A5E4 0001D8 00EC+00 1/0 0/0 0/0 .text            CreateHeap__13daLv3Water2_cFv */
 int daLv3Water2_c::CreateHeap() {
     J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_resNameIdx[mResourceIndex], l_bmdIdx[mResourceIndex]));
-    JUT_ASSERT(171, modelData != 0);
+    JUT_ASSERT(171, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, (1 << 19), 0x19000284);
     if(!mpModel)
         return 0;

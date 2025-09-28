@@ -14,7 +14,7 @@ struct TCreateObject : public JStudio::TCreateObject {
         pJPAEmitterManager_ = p_emitMgr;
         pJSGSystem_ = p_system;
         mPermit_onExit_notEnd = false;
-        JUT_ASSERT(48, pJPAEmitterManager_!=0);
+        JUT_ASSERT(48, pJPAEmitterManager_!=NULL);
     }
 
     /* 8028E3A0 */ virtual ~TCreateObject();
@@ -42,7 +42,7 @@ struct TAdaptor_particle : public JStudio::TAdaptor_particle {
         TJPACallback_emitter_(TAdaptor_particle* param_1) {
             pThis_ = param_1;
             pOld = NULL;
-            JUT_ASSERT(113, pThis_!=0);
+            JUT_ASSERT(113, pThis_!=NULL);
         }
         /* 8028ECC0 */ virtual void execute(JPABaseEmitter*);
         /* 8028F060 */ virtual void executeAfter(JPABaseEmitter*);

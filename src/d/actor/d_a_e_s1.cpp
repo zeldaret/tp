@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_s1.h"
 #include "SSystem/SComponent/c_math.h"
@@ -1898,14 +1898,14 @@ static int daE_S1_Execute(e_s1_class* i_this) {
         gndchk.SetPos(&spBC);
 
         spBC.y = dComIfG_Bgsp().GroundCross(&gndchk);
-        if (-1000000000.0f != spBC.y) {
+        if (-G_CM3D_F_INF != spBC.y) {
             spC8.x = spBC.x;
             spC8.y = spBC.y + 100.0f;
             spC8.z = spBC.z + temp_f30;
             gndchk.SetPos(&spC8);
 
             spC8.y = dComIfG_Bgsp().GroundCross(&gndchk);
-            if (-1000000000.0f != spC8.y) {
+            if (-G_CM3D_F_INF != spC8.y) {
                 spA = -cM_atan2s(spC8.y - spBC.y, spC8.z - spBC.z);
                 if (spA > 0x3000 || spA < -0x3000) {
                     spA = 0;
@@ -1918,7 +1918,7 @@ static int daE_S1_Execute(e_s1_class* i_this) {
             gndchk.SetPos(&spC8);
 
             spC8.y = dComIfG_Bgsp().GroundCross(&gndchk);
-            if (-1000000000.0f != spC8.y) {
+            if (-G_CM3D_F_INF != spC8.y) {
                 spC = (s16)cM_atan2s(spC8.y - spBC.y, spC8.x - spBC.x);
                 if (spC > 0x3000 || spC < -0x3000) {
                     spC = 0;

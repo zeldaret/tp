@@ -3,7 +3,7 @@
  * Game Boot Logo's Display
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_s_logo.h"
 #include "JSystem/JKernel/JKRAram.h"
@@ -540,7 +540,7 @@ static int phase_0(dScnLogo_c* i_this) {
     dComIfGp_particle_create();
 
     i_this->dummyGameAlloc = mDoExt_getGameHeap()->alloc(0x340000, -0x10);
-    JUT_ASSERT(1523, i_this->dummyGameAlloc != 0);
+    JUT_ASSERT(1523, i_this->dummyGameAlloc != NULL);
     i_this->field_0x1d0 = JKRExpHeap::create(i_this->dummyGameAlloc, 0x340000, NULL, false);
     i_this->field_0x1d4 = JKRExpHeap::create(0x130000, i_this->field_0x1d0, false);
 

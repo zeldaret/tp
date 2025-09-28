@@ -3,7 +3,7 @@
  * Base Player Actor functionality
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_player.h"
 #include "JSystem/J3DGraphLoader/J3DAnmLoader.h"

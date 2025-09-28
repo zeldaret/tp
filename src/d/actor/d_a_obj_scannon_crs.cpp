@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_scannon_crs.h"
 #include "d/actor/d_a_player.h"
@@ -418,7 +418,7 @@ void daSCannonCrs_c::setModelMtx() {
 /* 80CCA8CC-80CCAAC4 0012CC 01F8+00 1/1 0/0 0/0 .text            createHeap__14daSCannonCrs_cFv */
 int daSCannonCrs_c::createHeap() {
     J3DModelData* a_model_data_p = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 10);
-    JUT_ASSERT(967, a_model_data_p != 0);
+    JUT_ASSERT(967, a_model_data_p != NULL);
 
     mpModel = mDoExt_J3DModel__create(a_model_data_p, J3DMdlFlag_DifferedDLBuffer, J3D_DIFF_FLAG(FALSE, FALSE, TRUE, 8, 2, FALSE, 0, 0, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE));
     if (mpModel == NULL) {
@@ -426,14 +426,14 @@ int daSCannonCrs_c::createHeap() {
     }
 
     J3DAnmTransform* a_bck_p = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 7);
-    JUT_ASSERT(981, a_bck_p != 0);
+    JUT_ASSERT(981, a_bck_p != NULL);
     int rt = mBck.init(a_bck_p, 1, 0, 0.0f, 0, -1, 0);
     if (!rt) {
         return 0;
     }
 
     J3DAnmTextureSRTKey* a_btk_p = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 13);
-    JUT_ASSERT(1000, a_btk_p != 0);
+    JUT_ASSERT(1000, a_btk_p != NULL);
     rt = mBtk.init(a_model_data_p, a_btk_p, 1, 0, 0.0f, 0, -1);
     if (!rt) {
         return 0;

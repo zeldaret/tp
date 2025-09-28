@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_e_hz.h"
@@ -324,7 +324,7 @@ void daE_HZ_c::checkFall() {
     gnd_chk.SetPos(&modified_pos);
 
     f32 ground_cross = dComIfG_Bgsp().GroundCross(&gnd_chk);
-    if (speed.y < 0.0f && ground_cross != -1000000000.0f) {
+    if (speed.y < 0.0f && ground_cross != -G_CM3D_F_INF) {
         s32 gnd_chk_ground_code = dComIfG_Bgsp().GetGroundCode(gnd_chk);
         if ((gnd_chk_ground_code == 4 || gnd_chk_ground_code == 10 || gnd_chk_ground_code == 5) &&
             ground_cross + 500.0f > current.pos.y)
@@ -346,7 +346,7 @@ void daE_HZ_c::setCloseSmokeEffect() {
     modified_pos.y += 100.0f;
 
     gnd_chk.SetPos(&modified_pos);
-    if (dComIfG_Bgsp().GroundCross(&gnd_chk) != -1000000000.0f) {
+    if (dComIfG_Bgsp().GroundCross(&gnd_chk) != -G_CM3D_F_INF) {
         dComIfGp_particle_setPolyColor(dPa_RM(ID_ZM_S_HAZIKIPLATESMOKE00), gnd_chk, &mSmokeEffectPosition, &tevStr,
                                        &shape_angle, NULL, 0, NULL, -1, NULL);
     }
@@ -1905,7 +1905,7 @@ int daE_HZ_c::JointCallBack(J3DJoint* i_joint, int param_1) {
 /* 806EF8CC-806EFB34 0053AC 0268+00 1/1 0/0 0/0 .text            CreateHeap__8daE_HZ_cFv */
 int daE_HZ_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_HZ", 0x16);
-    JUT_ASSERT(2479, modelData != 0);
+    JUT_ASSERT(2479, modelData != NULL);
 
     mpMorfSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                     (J3DAnmTransform*)dComIfG_getObjectRes("E_HZ", 0x10), 0, 1.0f,
@@ -1921,7 +1921,7 @@ int daE_HZ_c::CreateHeap() {
         modelData = (J3DModelData*)dComIfG_getObjectRes(mpName, 3);
     }
 
-    JUT_ASSERT(2505, modelData != 0);
+    JUT_ASSERT(2505, modelData != NULL);
 
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {
@@ -1942,7 +1942,7 @@ int daE_HZ_c::CreateHeap() {
     mpBgW->SetCrrFunc(dBgS_MoveBGProc_Typical);
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("E_HZ", 0x17);
-    JUT_ASSERT(2532, modelData != 0);
+    JUT_ASSERT(2532, modelData != NULL);
 
     mpModel2 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel2 == NULL) {
@@ -1973,7 +1973,7 @@ void daE_HZ_c::setInitPos() {
     gnd_chk.SetPos(&modified_home_pos);
 
     f32 ground_cross = dComIfG_Bgsp().GroundCross(&gnd_chk);
-    if (ground_cross != -1000000000.0f) {
+    if (ground_cross != -G_CM3D_F_INF) {
         home.pos.y = ground_cross;
         old.pos.y = ground_cross;
         current.pos.y = ground_cross;

@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "f_op/f_op_camera_mng.h"
 #include "d/actor/d_a_obj_scannon.h"
@@ -292,7 +292,7 @@ int daSCannon_c::createHeap() {
     }
 
     J3DModelData* a_model_data_p = (J3DModelData*)dComIfG_getObjectRes(arcname, bmd_index);
-    JUT_ASSERT(541, a_model_data_p != 0);
+    JUT_ASSERT(541, a_model_data_p != NULL);
 
     mpModels[0] = mDoExt_J3DModel__create(a_model_data_p, J3DMdlFlag_DifferedDLBuffer, mdl_diff_flags);
     if (mpModels[0] == NULL) {
@@ -301,7 +301,7 @@ int daSCannon_c::createHeap() {
 
     if (layer_no == 3 || layer_no == 10) {
         J3DAnmTransform* a_bck_p = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName_Comp, 5);
-        JUT_ASSERT(562, a_bck_p != 0);
+        JUT_ASSERT(562, a_bck_p != NULL);
 
         int rt = mBck.init(a_bck_p, 1, 0, 0.0f, 0, -1, 0);
         if (!rt) {
@@ -309,7 +309,7 @@ int daSCannon_c::createHeap() {
         }
     } else if (layer_no == 1) {
         J3DModelData* a_repair_model_data_p = (J3DModelData*)dComIfG_getObjectRes(l_arcName_Crash, 6);
-        JUT_ASSERT(583, a_repair_model_data_p != 0);
+        JUT_ASSERT(583, a_repair_model_data_p != NULL);
 
         mpModels[1] = mDoExt_J3DModel__create(a_repair_model_data_p, J3DMdlFlag_DifferedDLBuffer, J3D_DIFF_FLAG(FALSE, FALSE, TRUE, 8, 0, FALSE, 0, 0, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE));
         if (mpModels[1] == NULL) {
@@ -318,21 +318,21 @@ int daSCannon_c::createHeap() {
 
         if (mIsPortal != 0) {
             J3DAnmTextureSRTKey* a_btk_p = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName_Crash, 9);
-            JUT_ASSERT(606, a_btk_p != 0);
+            JUT_ASSERT(606, a_btk_p != NULL);
             mpCrashBtk = new mDoExt_btkAnm();
             if (mpCrashBtk == NULL || !mpCrashBtk->init(a_model_data_p, a_btk_p, 1, 0, 0.0f, 0, -1)) {
                 return 0;
             }
 
             J3DModelData* a_ptl_model_data_p = (J3DModelData*)dComIfG_getObjectRes(l_arcName_Ptl, 5);
-            JUT_ASSERT(623, a_ptl_model_data_p != 0);
+            JUT_ASSERT(623, a_ptl_model_data_p != NULL);
             mpPtlModel = mDoExt_J3DModel__create(a_ptl_model_data_p, J3DMdlFlag_DifferedDLBuffer, J3D_DIFF_FLAG(FALSE, FALSE, TRUE, 8, 2, FALSE, 0, 0, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE));
             if (mpPtlModel == NULL) {
                 return 0;
             }
 
             a_btk_p = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName_Ptl, 0xC);
-            JUT_ASSERT(642, a_btk_p != 0);
+            JUT_ASSERT(642, a_btk_p != NULL);
             mpPtlBtk = new mDoExt_btkAnm();
             if (mpPtlBtk == NULL || !mpPtlBtk->init(a_ptl_model_data_p, a_btk_p, 1, 2, 0.0f, 0, -1)) {
                 return 0;
@@ -657,7 +657,7 @@ void daSCannon_c::demoInitFinish() {
         if (joint_p == NULL) {
             // "××××××Sky Cannon—The head joint is missing!!!! ××××××"
             OS_REPORT("______________________××××××天空砲台　頭部分のジョイントがありません！！！！ ××××××____________\n");
-            JUT_ASSERT(1351, 0);
+            JUT_ASSERT(1351, FALSE);
         }
     }
 #endif

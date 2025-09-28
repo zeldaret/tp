@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_katatsumuri.h"
 #include "d/actor/d_a_player.h"
@@ -94,7 +94,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 80C39B98-80C39E80 000318 02E8+00 1/1 0/0 0/0 .text            CreateHeap__10daObjKAT_cFv */
 int daObjKAT_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Kat", 9);
-    JUT_ASSERT(0x136, modelData != 0);
+    JUT_ASSERT(0x136, modelData != NULL);
     mpMorfSO =
         new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("Kat", 6),
                              2, 1.0f, 0, -1, &mCreatureSound, 0, 0x11000284);

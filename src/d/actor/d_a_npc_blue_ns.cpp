@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_blue_ns.h"
 #include "d/d_cc_d.h"
@@ -674,7 +674,7 @@ void daNpcBlueNS_c::Execute() {
 /* 8096C9F0-8096C9F4 0000D0 0004+00 0/1 0/0 0/0 .rodata          @4392 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static f32 const lit_4392 = -1000000000.0f;
+SECTION_RODATA static f32 const lit_4392 = -G_CM3D_F_INF;
 COMPILER_STRIP_GATE(0x8096C9F0, &lit_4392);
 #pragma pop
 

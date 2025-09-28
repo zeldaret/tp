@@ -486,7 +486,7 @@ void Z2SpeechMgr2::setString(u16 const* s, s16 i_textNum, u8 i_speaker, u16 i_mo
        mText[i] = 0;
     }
 
-    JUT_ASSERT(383, s != 0);
+    JUT_ASSERT(383, s != NULL);
 
     if (i_textNum > 500) {
         mTextNum = 500;

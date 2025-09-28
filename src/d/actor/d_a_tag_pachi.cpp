@@ -3,7 +3,7 @@
 // Translation Unit: d_a_tag_pachi
 //
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_tag_pachi.h"
 #include "d/d_com_inf_game.h"

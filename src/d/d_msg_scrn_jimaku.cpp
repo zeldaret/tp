@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_msg_scrn_jimaku.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
@@ -25,7 +25,7 @@ dMsgScrnJimaku_c::dMsgScrnJimaku_c(u8 param_0, JKRExpHeap* i_heap) {
     init();
 
     mpScreen = new J2DScreen();
-    JUT_ASSERT(0, mpScreen != 0);
+    JUT_ASSERT(0, mpScreen != NULL);
 
     bool fg = mpScreen->setPriority("zelda_jimaku_message_text.blo", 0x20000,
                                     dComIfGp_getMsgCommonArchive());
@@ -33,15 +33,15 @@ dMsgScrnJimaku_c::dMsgScrnJimaku_c(u8 param_0, JKRExpHeap* i_heap) {
     dPaneClass_showNullPane(mpScreen);
 
     mpLight_c = new dMsgScrnLight_c(0, param_0);
-    JUT_ASSERT(0, mpLight_c != 0);
+    JUT_ASSERT(0, mpLight_c != NULL);
 
     void* mpBuf = heap->alloc(0x106A, 0x20);
-    JUT_ASSERT(0, mpBuf != 0);
+    JUT_ASSERT(0, mpBuf != NULL);
     memset(mpBuf, 0, 0x106A);
     mCharInfoPtr = (CharInfo_c*)mpBuf;
 
     mpPmP_c = new CPaneMgr(mpScreen, 'mg_null', 3, NULL);
-    JUT_ASSERT(0, mpPmP_c != 0);
+    JUT_ASSERT(0, mpPmP_c != NULL);
     mpPmP_c->scale(g_MsgObject_HIO_c.mSubtitleScaleX, g_MsgObject_HIO_c.mSubtitleScaleY);
     field_0xcc = g_MsgObject_HIO_c.mBoxPos[0][5];
     mpPmP_c->paneTrans(0.0f, field_0xcc);
@@ -67,10 +67,10 @@ dMsgScrnJimaku_c::dMsgScrnJimaku_c(u8 param_0, JKRExpHeap* i_heap) {
     }
 #else
     mpTm_c[0] = new CPaneMgr(mpScreen, 'mg_e4lin', 0, NULL);
-    JUT_ASSERT(0, mpTm_c[0] != 0);
+    JUT_ASSERT(0, mpTm_c[0] != NULL);
 
     mpTm_c[1] = new CPaneMgr(mpScreen, 't4_s', 0, NULL);
-    JUT_ASSERT(0, mpTm_c[1] != 0);
+    JUT_ASSERT(0, mpTm_c[1] != NULL);
 
     mpScreen->search('n_3line')->hide();
     mpScreen->search('n_3fline')->hide();

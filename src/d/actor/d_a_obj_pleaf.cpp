@@ -3,7 +3,7 @@
  * Object - Pumpkin Leaf
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_pleaf.h"
 #include "dol2asm.h"
@@ -41,7 +41,7 @@ int daObj_Pleaf_c::create() {
         new_pos.y += 50.0f;
         mGndChk.SetPos(&new_pos);
         mGroundDist = dComIfG_Bgsp().GroundCross(&mGndChk);
-        if (mGroundDist != -1000000000.0f) {
+        if (mGroundDist != -G_CM3D_F_INF) {
             setEnvTevColor();
             setRoomNo();
         }
@@ -75,7 +75,7 @@ int daObj_Pleaf_c::Execute() {
     new_pos.y += 50.0f;
     mGndChk.SetPos(&new_pos);
     mGroundDist = dComIfG_Bgsp().GroundCross(&mGndChk);
-    if (mGroundDist != -1000000000.0f) {
+    if (mGroundDist != -G_CM3D_F_INF) {
         setEnvTevColor();
         setRoomNo();
     }
@@ -91,7 +91,7 @@ int daObj_Pleaf_c::Draw() {
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     mDoExt_modelUpdateDL(mpModel);
-    if (mGroundDist != -1000000000.0f) {
+    if (mGroundDist != -G_CM3D_F_INF) {
         mShadowKey =
             dComIfGd_setShadow(mShadowKey, 1, mpModel, &current.pos,
                                daObj_Pleaf_Param_c::m.field_0xc, 20.0f, current.pos.y, mGroundDist,

@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_player.h"
 #include "d/actor/d_a_obj_kznkarm.h"
@@ -113,13 +113,13 @@ void daObjKznkarm_c::setAction(daObjKznkarm_c::Mode_e i_action) {
 
 /* 80C4F88C-80C4F8B4 0000AC 0028+00 1/1 0/0 0/0 .text            callInit__14daObjKznkarm_cFv */
 void daObjKznkarm_c::callInit() {
-    JUT_ASSERT(225, mAction != 0);
+    JUT_ASSERT(225, mAction != NULL);
     (this->*mAction[0])();
 }
 
 /* 80C4F8B4-80C4F8E0 0000D4 002C+00 1/1 0/0 0/0 .text            callExecute__14daObjKznkarm_cFv */
 void daObjKznkarm_c::callExecute() {
-    JUT_ASSERT(238, mAction != 0);
+    JUT_ASSERT(238, mAction != NULL);
     (this->*mAction[1])();
 }
 
@@ -386,7 +386,7 @@ s16 daObjKznkarm_c::getGroundSlope(s16 param_0) {
 
 inline int daObjKznkarm_c::createHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "arm.bmd");
-    JUT_ASSERT(593, modelData != 0);
+    JUT_ASSERT(593, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {
         return FALSE;

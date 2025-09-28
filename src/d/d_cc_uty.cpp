@@ -3,7 +3,7 @@
  * Collider Utilties
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_cc_uty.h"
 #include "SSystem/SComponent/c_math.h"

@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_shad.h"
 #include "d/actor/d_a_cstaF.h"
@@ -436,7 +436,7 @@ cPhs__Step daNpcShad_c::Create() {
                 break;
 
             default:
-                JUT_ASSERT(423, 0);
+                JUT_ASSERT(423, FALSE);
                 break;
         }
 
@@ -475,7 +475,7 @@ cPhs__Step daNpcShad_c::Create() {
 /* 80AD8B60-80AD8F24 000A40 03C4+00 1/1 0/0 0/0 .text            CreateHeap__11daNpcShad_cFv */
 int daNpcShad_c::CreateHeap() {
     J3DModelData* mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], BMDR_SHAD));
-    JUT_ASSERT(483, 0 != mdlData_p);
+    JUT_ASSERT(483, NULL != mdlData_p);
     mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1,
                                   &mSound, 0x80000, 0x11020284);
     if (mpMorf != NULL && mpMorf->getModel() == NULL) {
@@ -501,7 +501,7 @@ int daNpcShad_c::CreateHeap() {
     mBookKnifeModel = NULL;
     if (mMode == 1 || mMode == 2) {
         mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], BMDR_SHAD_BOOK_KNIFE));
-        JUT_ASSERT(518, mdlData_p != 0);
+        JUT_ASSERT(518, mdlData_p != NULL);
         mBookKnifeModel = mDoExt_J3DModel__create(mdlData_p, 0x80000, 0x11000084);
         if (mBookKnifeModel == NULL) {
             return 0;
@@ -516,7 +516,7 @@ int daNpcShad_c::CreateHeap() {
     mKomonshoModel = NULL;
     if (mMode == 1) {
         mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[1], BMDR_SHAD_KOMONSHO));
-        JUT_ASSERT(530, mdlData_p != 0);
+        JUT_ASSERT(530, mdlData_p != NULL);
         mKomonshoModel = mDoExt_J3DModel__create(mdlData_p, 0x80000, 0x11000084);
         if (mKomonshoModel == NULL) {
             return 0;
@@ -541,7 +541,7 @@ int daNpcShad_c::CreateHeap() {
             break;
 
         default:
-            JUT_ASSERT(545, 0);
+            JUT_ASSERT(545, FALSE);
             break;
     }
 
@@ -867,7 +867,7 @@ inline void daNpcShad_c::setWaitAction() {
             break;
 
         default:
-            JUT_ASSERT(1379, 0);
+            JUT_ASSERT(1379, FALSE);
     }
 }
 
@@ -1236,7 +1236,7 @@ bool daNpcShad_c::wait_type0(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(1747, 0);
+            JUT_ASSERT(1747, FALSE);
     }
 
     return true;
@@ -1411,7 +1411,7 @@ bool daNpcShad_c::wait_type1(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(1915, 0);
+            JUT_ASSERT(1915, FALSE);
     }
 
     return true;
@@ -1448,7 +1448,7 @@ bool daNpcShad_c::wait_type2(void* param_1) {
                     break;
 
                 default:
-                    JUT_ASSERT(1957, 0);
+                    JUT_ASSERT(1957, FALSE);
                     break;
             }
             break;
@@ -1457,7 +1457,7 @@ bool daNpcShad_c::wait_type2(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(1962, 0);
+            JUT_ASSERT(1962, FALSE);
             break;
     }
 
@@ -1553,7 +1553,7 @@ bool daNpcShad_c::talk(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(2042, 0);
+            JUT_ASSERT(2042, FALSE);
             break;
     }
     
@@ -1582,7 +1582,7 @@ bool daNpcShad_c::demo(void* param_1) {
                         mOrderEvtNo = iVar2;
                     }
 
-                    JUT_ASSERT(2082, 0 != mEvtSeqList[mOrderEvtNo]);
+                    JUT_ASSERT(2082, NULL != mEvtSeqList[mOrderEvtNo]);
 
                     if ((this->*mEvtSeqList[mOrderEvtNo])(iVar1)) {
                         eventManager.cutEnd(iVar1);
@@ -1606,7 +1606,7 @@ bool daNpcShad_c::demo(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(2114, 0);
+            JUT_ASSERT(2114, FALSE);
             break;
     }
 
@@ -1638,7 +1638,7 @@ bool daNpcShad_c::leave(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(2149, 0);
+            JUT_ASSERT(2149, FALSE);
             break;
     }
 
@@ -1665,7 +1665,7 @@ BOOL daNpcShad_c::EvCut_Introduction(int i_cutIndex) {
                 return TRUE;
 
             default:
-                JUT_ASSERT(2184, 0);
+                JUT_ASSERT(2184, FALSE);
                 break;
         }
     }
@@ -1693,7 +1693,7 @@ BOOL daNpcShad_c::EvCut_Meeting(int i_cutIndex) {
                 break;
 
             default:
-                JUT_ASSERT(2221, 0);
+                JUT_ASSERT(2221, FALSE);
                 break;
         }
     }
@@ -1722,7 +1722,7 @@ BOOL daNpcShad_c::EvCut_Meeting(int i_cutIndex) {
             return TRUE;
 
         default:
-            JUT_ASSERT(2245, 0);
+            JUT_ASSERT(2245, FALSE);
             break;
     }
 
@@ -1774,7 +1774,7 @@ BOOL daNpcShad_c::EvCut_ToChantSpell1(int i_cutIndex) {
                 break;
 
             default:
-                JUT_ASSERT(2298, 0);
+                JUT_ASSERT(2298, FALSE);
                 break;
         }
 
@@ -1863,7 +1863,7 @@ BOOL daNpcShad_c::EvCut_ToChantSpell1(int i_cutIndex) {
             break;
 
         default:
-            JUT_ASSERT(2382, 0);
+            JUT_ASSERT(2382, FALSE);
             break;
     }
 
@@ -1938,7 +1938,7 @@ BOOL daNpcShad_c::EvCut_ToChantSpell2(int i_cutIndex) {
                 break;
 
             default:
-                JUT_ASSERT(2451, 0);
+                JUT_ASSERT(2451, FALSE);
                 break;
         }
     }
@@ -2024,7 +2024,7 @@ BOOL daNpcShad_c::EvCut_ToChantSpell2(int i_cutIndex) {
             return TRUE;
             
         default:
-            JUT_ASSERT(2540, 0);
+            JUT_ASSERT(2540, FALSE);
             break;
     }
 
@@ -2052,7 +2052,7 @@ BOOL daNpcShad_c::EvCut_ToChantSpell2Skip(int i_cutIndex) {
                 return TRUE;
 
             default:
-                JUT_ASSERT(2574, 0);
+                JUT_ASSERT(2574, FALSE);
                 break;
         }
     }
@@ -2124,7 +2124,7 @@ BOOL daNpcShad_c::EvCut_DiscoveryCannon(int i_cutIndex) {
                 break;
 
             default:
-                JUT_ASSERT(2636, 0);
+                JUT_ASSERT(2636, FALSE);
                 break;
         }
     }
@@ -2179,7 +2179,7 @@ BOOL daNpcShad_c::EvCut_DiscoveryCannon(int i_cutIndex) {
             break;
 
         default:
-            JUT_ASSERT(2693, 0);
+            JUT_ASSERT(2693, FALSE);
             break;
     }
 
@@ -2217,7 +2217,7 @@ BOOL daNpcShad_c::EvCut_DiscoveryCannonSkip(int i_cutIndex) {
                 return TRUE;
 
             default:
-                JUT_ASSERT(2729, 0);
+                JUT_ASSERT(2729, FALSE);
                 break;
         }
     }
@@ -2276,7 +2276,7 @@ BOOL daNpcShad_c::EvCut_Disappear(int i_cutIndex) {
                 break;
 
             default:
-                JUT_ASSERT(2786, 0);
+                JUT_ASSERT(2786, FALSE);
         }
     }
 
@@ -2349,7 +2349,7 @@ BOOL daNpcShad_c::EvCut_Disappear(int i_cutIndex) {
             return TRUE;
 
         default:
-            JUT_ASSERT(2873, 0);
+            JUT_ASSERT(2873, FALSE);
             break;
     }
 
@@ -2376,7 +2376,7 @@ BOOL daNpcShad_c::EvCut_DisappearSkip(int i_cutIndex) {
                 return TRUE;
 
             default:
-                JUT_ASSERT(2905, 0);
+                JUT_ASSERT(2905, FALSE);
                 break;
         }
     }
@@ -2403,7 +2403,7 @@ BOOL daNpcShad_c::EvCut_CallBack(int i_cutIndex) {
                 break;
 
             default:
-                JUT_ASSERT(2939, 0);
+                JUT_ASSERT(2939, FALSE);
                 break;
         }
     }
@@ -2428,7 +2428,7 @@ BOOL daNpcShad_c::EvCut_CallBack(int i_cutIndex) {
             break;
 
         default:
-            JUT_ASSERT(2965, 0);
+            JUT_ASSERT(2965, FALSE);
             break;
     }
 
@@ -2449,7 +2449,7 @@ BOOL daNpcShad_c::EvCut_WiretapSponsor(int i_cutIndex) {
                 break;
 
             default:
-                JUT_ASSERT(3002, 0);
+                JUT_ASSERT(3002, FALSE);
                 break;
         }
     }
@@ -2478,7 +2478,7 @@ BOOL daNpcShad_c::EvCut_WiretapSponsor(int i_cutIndex) {
             break;
 
         default:
-            JUT_ASSERT(3032, 0);
+            JUT_ASSERT(3032, FALSE);
             break;
     }
     return FALSE;
@@ -2501,7 +2501,7 @@ BOOL daNpcShad_c::EvCut_WiretapEntrant(int i_cutIndex) {
                 break;
 
             default:
-                JUT_ASSERT(3065, 0);
+                JUT_ASSERT(3065, FALSE);
                 break;
         }
     }
@@ -2526,7 +2526,7 @@ BOOL daNpcShad_c::EvCut_WiretapEntrant(int i_cutIndex) {
             return TRUE;
 
         default:
-            JUT_ASSERT(3088, 0);
+            JUT_ASSERT(3088, FALSE);
             break;
     }
 

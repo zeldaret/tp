@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_wrestler.h"
 #include "d/d_timer.h"
@@ -566,7 +566,7 @@ cPhs__Step daNpcWrestler_c::Create() {
 /* 80B2F974-80B2FBF4 0007D4 0280+00 1/1 0/0 0/0 .text            CreateHeap__15daNpcWrestler_cFv */
 int daNpcWrestler_c::CreateHeap() {
     J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resName[mType], l_bmdGetParamList[mType]);
-    JUT_ASSERT(830, 0 != mdlData_p);
+    JUT_ASSERT(830, NULL != mdlData_p);
 
     mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
     if (mpMorf != NULL && mpMorf->getModel() == NULL) {
@@ -955,7 +955,7 @@ inline void daNpcWrestler_c::setBackToLiving() {
     if (mType != 1) {
         daPy_py_c* player = daPy_getPlayerActorClass();
         daNpcBouS_c* bou = (daNpcBouS_c*)fpcM_SearchByID(parentActorID);
-        JUT_ASSERT(2205, bou != 0);
+        JUT_ASSERT(2205, bou != NULL);
 
         bou->setMessageNo(7);
         bou->setForcibleTalk();
@@ -1152,7 +1152,7 @@ static void* s_sub2(void* i_actor, void* i_data) {
 void daNpcWrestler_c::setOnToArena(f32 param_1) {
     if (mType == 0) {
         daNpcBouS_c* bou = (daNpcBouS_c*)fpcM_SearchByID(parentActorID);
-        JUT_ASSERT(2166, bou != 0);
+        JUT_ASSERT(2166, bou != NULL);
         bou->setHome();
         bou->offDispFlag();
     } else if (mType == 1) {
@@ -1791,7 +1791,7 @@ inline bool daNpcWrestler_c::demo(void* param_1) {
         case 2: {
             s32 staffID = eventManager->getMyStaffId(l_myName, NULL, 0);
             mStaffID = staffID;
-            JUT_ASSERT(2886, 0 != mEvtSeqList[mOrderEvtNo]);
+            JUT_ASSERT(2886, NULL != mEvtSeqList[mOrderEvtNo]);
 
             if (staffID != -1 && (this->*mEvtSeqList[mOrderEvtNo])(staffID)) {
                 eventManager->cutEnd(mStaffID);

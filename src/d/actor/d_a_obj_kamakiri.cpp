@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_kamakiri.h"
 #include "d/actor/d_a_player.h"
@@ -64,10 +64,10 @@ int daObjKAM_c::CreateHeap() {
     J3DModelData* modelData;
     if (mSex == SEX_FEMALE) {
         modelData = (J3DModelData*)dComIfG_getObjectRes("I_Kam", 10);
-        JUT_ASSERT(0xff, modelData != 0);
+        JUT_ASSERT(0xff, modelData != NULL);
     } else {
         modelData = (J3DModelData*)dComIfG_getObjectRes("I_Kam", 10);
-        JUT_ASSERT(0x103, modelData != 0);
+        JUT_ASSERT(0x103, modelData != NULL);
     }
     mpMorfSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                     (J3DAnmTransform*)dComIfG_getObjectRes("I_Kam", 7), 2, 1.0f, 0,

@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_shoe.h"
 #include "dol2asm.h"
@@ -184,7 +184,7 @@ cPhs__Step daNpcShoe_c::Create() {
 BOOL daNpcShoe_c::CreateHeap() {
     J3DModelData* mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], 8));
 
-    JUT_ASSERT(292, 0 != mdlData_p)
+    JUT_ASSERT(292, NULL != mdlData_p)
 
     mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, 
         &mCreature, 0x80000, 0x11020084);
@@ -210,7 +210,7 @@ BOOL daNpcShoe_c::CreateHeap() {
 
     mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], 9));
 
-    JUT_ASSERT(331, 0 != mdlData_p)
+    JUT_ASSERT(331, NULL != mdlData_p)
 
     mpModel1 = mDoExt_J3DModel__create(mdlData_p, 0x80000, 0x11000084);
     if (mpModel1 == NULL) {
@@ -219,7 +219,7 @@ BOOL daNpcShoe_c::CreateHeap() {
 
     mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[2], 4));
 
-    JUT_ASSERT(338, 0 != mdlData_p)
+    JUT_ASSERT(338, NULL != mdlData_p)
 
     mpModel2 = mDoExt_J3DModel__create(mdlData_p, 0x80000, 0x11000084);
     if (mpModel2 == NULL) {
@@ -506,7 +506,7 @@ bool daNpcShoe_c::wait(void* param_0) {
     case 3:
         break;
     default:
-        JUT_ASSERT(1063, 0)
+        JUT_ASSERT(1063, FALSE);
         break;
     }
 
@@ -532,7 +532,7 @@ bool daNpcShoe_c::fear(void* param_0) {
         case 3:
             break;
         default:
-            JUT_ASSERT(1100, 0)
+            JUT_ASSERT(1100, FALSE);
             break;
     }
     return 1;
@@ -571,7 +571,7 @@ bool daNpcShoe_c::talk(void* param_0) {
             dComIfGp_event_reset();
             break;
         default:
-            JUT_ASSERT(1169, 0)
+            JUT_ASSERT(1169, FALSE);
             break;
     }
     return ret;
@@ -593,7 +593,7 @@ bool daNpcShoe_c::demo(void* param_0) {
                 if (staff_id != -1) {
                     mStaffID = staff_id;
 
-                    JUT_ASSERT(1203, 0 != mEvtSeqList[mOrderEvtNo])
+                    JUT_ASSERT(1203, NULL != mEvtSeqList[mOrderEvtNo])
 
                     if ((this->*(mEvtSeqList[mOrderEvtNo]))(staff_id)) {
                         eventManager.cutEnd(staff_id);
@@ -611,7 +611,7 @@ bool daNpcShoe_c::demo(void* param_0) {
         case 3:
             break;
         default:
-            JUT_ASSERT(1169, 0)
+            JUT_ASSERT(1169, FALSE);
             break;
     }
     return 1;

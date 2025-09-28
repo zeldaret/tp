@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_startAndGoal.h"
 #include "d/actor/d_a_npc.h"
@@ -100,7 +100,7 @@ void daStartAndGoal_c::init() {
 
     mPath.initialize();
     mPath.setPathInfo(fopAcM_GetParam(this) >> 8, fopAcM_GetRoomNo(this), 0);
-    JUT_ASSERT(0, 0 != mPath.getPathInfo());
+    JUT_ASSERT(0, NULL != mPath.getPathInfo());
 
     if (dComIfG_getTimerPtr() == NULL) {
         dTimer_createTimer(l_timerType[mType].mode, 9999000, l_timerType[mType].type, 0, 210.0f,

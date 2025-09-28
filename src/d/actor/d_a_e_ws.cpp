@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_ws.h"
 #include "d/actor/d_a_obj_carry.h"
@@ -882,7 +882,7 @@ static int daE_WS_Delete(daE_WS_c* a_this) {
 /* 807E6748-807E6840 002E28 00F8+00 1/1 0/0 0/0 .text            CreateHeap__8daE_WS_cFv */
 int daE_WS_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_WS", 0xD);
-    JUT_ASSERT(1401, modelData != 0);
+    JUT_ASSERT(1401, modelData != NULL);
 
     mpModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_WS", 7), 0, 1.0f, 0, -1, &mSound, 0x80000, 0x11000084);
     if (mpModelMorf == NULL || mpModelMorf->getModel() == NULL) {

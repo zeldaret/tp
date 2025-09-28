@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_cr_egg.h"
 #include "d/d_cc_d.h"
@@ -159,7 +159,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     e_cr_egg_class* a_this = (e_cr_egg_class*)i_this;
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_CR", 0xC);
-    JUT_ASSERT(374, modelData != 0);
+    JUT_ASSERT(374, modelData != NULL);
 
     a_this->model = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (a_this->model == NULL) {

@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_kk.h"
 #include "d/actor/d_a_player.h"
@@ -404,7 +404,7 @@ bool daE_KK_c::way_gake_check() {
         gndChk.SetPos(&field_0x6d4[i]);
         field_0x6d4[i].y = dComIfG_Bgsp().GroundCross(&gndChk);
 
-        if (field_0x6d4[i].y == -1000000000.0f) {
+        if (field_0x6d4[i].y == -G_CM3D_F_INF) {
             field_0x6d4[i].y = current.pos.y;
             return true;
         }
@@ -1166,7 +1166,7 @@ void daE_KK_c::action() {
             position.y += 300.0f;
             gndChk.SetPos(&position);
             position.y = dComIfG_Bgsp().GroundCross(&gndChk);
-            if (position.y == -1000000000.0f) {
+            if (position.y == -G_CM3D_F_INF) {
                 mTimer = 100;
                 setActionMode(10, 2);
             } else {
@@ -1362,7 +1362,7 @@ static int daE_KK_Delete(daE_KK_c* i_this) {
 int daE_KK_c::CreateHeap() {
     if (field_0x679 != 1) {
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_KK", 0x22);
-        JUT_ASSERT(2212, modelData != 0);
+        JUT_ASSERT(2212, modelData != NULL);
 
         mpMorfSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                         (J3DAnmTransform*)dComIfG_getObjectRes("E_KK", 0x19), 0,
@@ -1380,7 +1380,7 @@ int daE_KK_c::CreateHeap() {
     }
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_KK", 0x23);
-    JUT_ASSERT(2247, modelData != 0);
+    JUT_ASSERT(2247, modelData != NULL);
 
     mpWeaponMorfSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                           (J3DAnmTransform*)dComIfG_getObjectRes("E_KK", 0x1D), 0,

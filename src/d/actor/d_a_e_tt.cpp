@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_tt.h"
 #include "dol2asm.h"
@@ -555,7 +555,7 @@ COMPILER_STRIP_GATE(0x807C2004, &lit_4145);
 /* 807C2008-807C200C 000050 0004+00 0/1 0/0 0/0 .rodata          @4146 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static f32 const lit_4146 = -1000000000.0f;
+SECTION_RODATA static f32 const lit_4146 = -G_CM3D_F_INF;
 COMPILER_STRIP_GATE(0x807C2008, &lit_4146);
 #pragma pop
 

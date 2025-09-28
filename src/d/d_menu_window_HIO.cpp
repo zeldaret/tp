@@ -3,7 +3,7 @@
  * Menu HostIO functionality
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_menu_window_HIO.h"
 #include "d/d_com_inf_game.h"

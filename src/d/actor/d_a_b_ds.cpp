@@ -3,7 +3,7 @@
  * Boss - Stallord
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_b_ds.h"
 #include "d/actor/d_a_player.h"
@@ -441,7 +441,7 @@ void daB_DS_c::mSmokeSet() {
     }
 
     if (mAcch.ChkGroundHit()) {
-        if (field_0x84d == 0 && mAcch.GetGroundH() != -1000000000.0f) {
+        if (field_0x84d == 0 && mAcch.GetGroundH() != -G_CM3D_F_INF) {
             cXyz particle_scale(1.0f, 1.0f, 1.0f);
             cXyz particle_pos(current.pos);
             csXyz particle_angle(shape_angle);
@@ -508,7 +508,7 @@ void daB_DS_c::handSPosSet(int i_hand) {
     gnd_chk.SetPos(&chk_pos);
 
     chk_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-    if (chk_pos.y == -1000000000.0f) {
+    if (chk_pos.y == -G_CM3D_F_INF) {
         chk_pos.y = mFingerPos[i_hand].y;
     }
     particle_pos = chk_pos - mHandPos[i_hand];
@@ -525,7 +525,7 @@ void daB_DS_c::handSPosSet(int i_hand) {
     gnd_chk.SetPos(&particle_pos);
 
     particle_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-    if (particle_pos.y == -1000000000.0f) {
+    if (particle_pos.y == -G_CM3D_F_INF) {
         particle_pos.y = mHandPos[i_hand].y;
     }
     chk_pos = particle_pos - mHandPos[i_hand];
@@ -600,7 +600,7 @@ void daB_DS_c::mZsMoveChk() {
         zs_pos.y += 2000.0f;
         gnd_chk.SetPos(&zs_pos);
 
-        if (zs_pos.y != -1000000000.0f) {
+        if (zs_pos.y != -G_CM3D_F_INF) {
             zs_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
         } else {
             zs_pos.y = current.pos.y += 800.0f;
@@ -665,7 +665,7 @@ void daB_DS_c::mZsMoveChk_Guard() {
         zs_pos.y += 2000.0f;
         gnd_chk.SetPos(&zs_pos);
 
-        if (zs_pos.y != -1000000000.0f) {
+        if (zs_pos.y != -G_CM3D_F_INF) {
             zs_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
         } else {
             zs_pos.y = current.pos.y += 800.0f;
@@ -1906,7 +1906,7 @@ void daB_DS_c::damageHitCamera() {
     offset.y = 300.0f;
     MtxPosition(&offset, &pos);
     pos.x += current.pos.x;
-    if (mAcch.GetGroundH() != -1000000000.0f) {
+    if (mAcch.GetGroundH() != -G_CM3D_F_INF) {
         pos.y += mAcch.GetGroundH();
     }
     pos.z += current.pos.z;
@@ -1916,7 +1916,7 @@ void daB_DS_c::damageHitCamera() {
     offset.z = 700.0f;
     MtxPosition(&offset, &pos);
     pos.x += current.pos.x;
-    if (mAcch.GetGroundH() != -1000000000.0f) {
+    if (mAcch.GetGroundH() != -G_CM3D_F_INF) {
         pos.y += mAcch.GetGroundH();
     }
     pos.z += current.pos.z;
@@ -2091,7 +2091,7 @@ void daB_DS_c::executeDamage() {
                 sp1BC.z = 1000.0f;
                 MtxPosition(&sp1BC, &sp1B0);
                 sp1B0 += current.pos;
-                if (mAcch.GetGroundH() != -1000000000.0f) {
+                if (mAcch.GetGroundH() != -G_CM3D_F_INF) {
                     sp1B0.y = mAcch.GetGroundH();
                 }
 
@@ -3329,7 +3329,7 @@ void daB_DS_c::executeBattle2Damage() {
     chk_pos.y += 300.0f;
     gnd_chk.SetPos(&chk_pos);
     chk_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-    if (chk_pos.y == -1000000000.0f) {
+    if (chk_pos.y == -G_CM3D_F_INF) {
         chk_pos.y = current.pos.y - 200.0f;
     }
 
@@ -5253,7 +5253,7 @@ int daB_DS_c::execute() {
             chk_pos.y += 3000.0f;
             gnd_chk.SetPos(&chk_pos);
             chk_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-            if (chk_pos.y == -1000000000.0f) {
+            if (chk_pos.y == -G_CM3D_F_INF) {
                 chk_pos.y = jnt_pos.y;
             }
 
@@ -5276,7 +5276,7 @@ int daB_DS_c::execute() {
             chk_pos.y += 3000.0f;
             gnd_chk.SetPos(&chk_pos);
             chk_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-            if (chk_pos.y == -1000000000.0f) {
+            if (chk_pos.y == -G_CM3D_F_INF) {
                 chk_pos.y = jnt_pos.y;
             }
 
@@ -5391,7 +5391,7 @@ int daB_DS_c::CreateHeap() {
         anm_res = ANM_HEAD_FWAIT;
     }
 
-    JUT_ASSERT(0, modelData != 0);
+    JUT_ASSERT(0, modelData != NULL);
 
     mpMorf = new mDoExt_McaMorfSO(
         modelData, NULL, NULL, static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("B_DS", anm_res)),
@@ -5409,7 +5409,7 @@ int daB_DS_c::CreateHeap() {
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("B_DS", 74);
-    JUT_ASSERT(0, modelData != 0);
+    JUT_ASSERT(0, modelData != NULL);
 
     mpSwordMorf = new mDoExt_McaMorfSO(
         modelData, NULL, NULL, static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("B_DS", 63)), 0,
@@ -5431,7 +5431,7 @@ int daB_DS_c::CreateHeap() {
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("B_DS", 75);
-    JUT_ASSERT(0, modelData != 0);
+    JUT_ASSERT(0, modelData != NULL);
 
     mpZantMorf = new mDoExt_McaMorfSO(
         modelData, NULL, NULL, static_cast<J3DAnmTransform*>(dComIfG_getObjectRes("B_DS", 66)), 2,
@@ -5441,7 +5441,7 @@ int daB_DS_c::CreateHeap() {
     }
 
     modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("B_DS", 73));
-    JUT_ASSERT(0, modelData != 0);
+    JUT_ASSERT(0, modelData != NULL);
 
     mpOpPatternModel = mDoExt_J3DModel__create(modelData, 0, 0x11000284);
     if (mpOpPatternModel == NULL) {
@@ -5473,7 +5473,7 @@ int daB_DS_c::CreateHeap() {
     }
 
     modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("B_DS", 72));
-    JUT_ASSERT(0, modelData != 0);
+    JUT_ASSERT(0, modelData != NULL);
 
     mpPatternModel = mDoExt_J3DModel__create(modelData, 0, 0x11000284);
     if (mpPatternModel == NULL) {
@@ -5624,7 +5624,7 @@ cPhs__Step daB_DS_c::create() {
                 gnd_chk.SetPos(&chk_pos);
 
                 chk_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-                if (chk_pos.y != -1000000000.0f) {
+                if (chk_pos.y != -G_CM3D_F_INF) {
                     current.pos.y = chk_pos.y;
                 }
             }

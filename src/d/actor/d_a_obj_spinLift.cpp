@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_spinLift.h"
 #include "dol2asm.h"
@@ -71,7 +71,7 @@ int daSpinLift_c::CreateHeap() {
     static u32 const l_bmdIdx[] = {4, 4, 4, 4, 4, 4, 4, 4, 4};
     J3DModelData* modelData =
         (J3DModelData*)dComIfG_getObjectRes(l_resNameIdx[mModelType], l_bmdIdx[mModelType]);
-    JUT_ASSERT(222, modelData != 0);
+    JUT_ASSERT(222, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     return mpModel == NULL ? 0 : 1;
 }

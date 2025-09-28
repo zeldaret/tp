@@ -3,7 +3,7 @@
 // Translation Unit: d/d_model
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_model.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"

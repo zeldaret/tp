@@ -1,4 +1,4 @@
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_resorce.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
@@ -136,14 +136,14 @@ static void addWarpMaterial(J3DModelData* i_modelData) {
     static J3DTevOrderInfo l_tevOrderInfo = {0x00, 0x03, 0xFF, 0x00};
 
     ResTIMG* resTimg = (ResTIMG*)dComIfG_getObjectRes("Always", 0x5d);
-    JUT_ASSERT(0x117, resTimg != 0);
+    JUT_ASSERT(279, resTimg != NULL);
 
     J3DTexture* texture = i_modelData->getTexture();
     u16 textureNum = texture->getNum();
     texture->addResTIMG(1, resTimg - textureNum);
 
     J3DTexMtx* newTexMtx = new J3DTexMtx(l_texMtxInfo);
-    JUT_ASSERT(0x11D, newTexMtx != 0);
+    JUT_ASSERT(0x11D, newTexMtx != NULL);
 
     for (u16 i = 0; i < i_modelData->getMaterialNum(); i++) {
         J3DMaterial* material = i_modelData->getMaterialNodePointer(i);
@@ -320,7 +320,7 @@ J3DModelData* dRes_info_c::loaderBasicBmd(u32 i_tag, void* i_data) {
 
 /* 8003B30C-8003B8D0 035C4C 05C4+00 2/2 0/0 0/0 .text            loadResource__11dRes_info_cFv */
 int dRes_info_c::loadResource() {
-    JUT_ASSERT(0x2C5, mRes == 0);
+    JUT_ASSERT(0x2C5, mRes == NULL);
 
     s32 countFile = mArchive->countFile();
     mRes = new void*[countFile];
@@ -350,7 +350,7 @@ int dRes_info_c::loadResource() {
                         (mArchive->findIdxResource(fileIndex)->type_flags_and_name_offset & 0xFFFFFF));
                 } else if (nodeType == 'ARC ') {
                     JKRArchive::SDIFileEntry* entry = mArchive->findIdxResource(fileIndex);
-                    JUT_ASSERT(0x2FD, entry != 0);
+                    JUT_ASSERT(0x2FD, entry != NULL);
 
                     const char* name_p = mArchive->mStringTable + entry->getNameOffset();
                     size_t resNameLen = strlen(name_p) - 4;
@@ -361,7 +361,7 @@ int dRes_info_c::loadResource() {
                     arcName[resNameLen] = '\0';
 
                     JKRExpHeap* parentHeap = (JKRExpHeap*)JKRHeap::findFromRoot(JKRHeap::getCurrentHeap());
-                    JUT_ASSERT(0x308, parentHeap != 0 && (parentHeap == mDoExt_getGameHeap() || parentHeap == mDoExt_getArchiveHeap()));
+                    JUT_ASSERT(0x308, parentHeap != NULL && (parentHeap == mDoExt_getGameHeap() || parentHeap == mDoExt_getArchiveHeap()));
 #ifdef DEBUG
                     char* heapName;
                     if (parentHeap == mDoExt_getGameHeap()) {
@@ -500,7 +500,7 @@ int dRes_info_c::loadResource() {
 /* 8003B998-8003BA9C 0362D8 0104+00 1/1 0/0 0/0 .text            deleteArchiveRes__11dRes_info_cFv
  */
 void dRes_info_c::deleteArchiveRes() {
-    JUT_ASSERT(0x45E, mArchive != 0);
+    JUT_ASSERT(0x45E, mArchive != NULL);
 
     JKRArchive::SDIDirEntry* nodes = mArchive->mNodes;
     for (int i = 0; i < mArchive->countDirectory(); nodes++, i++) {
@@ -542,7 +542,7 @@ static SArcHeader* getArcHeader(JKRArchive* i_archive) {
 /* 8003BAC4-8003BAF8 036404 0034+00 1/1 0/0 0/0 .text setRes__11dRes_info_cFP10JKRArchiveP7JKRHeap
  */
 int dRes_info_c::setRes(JKRArchive* i_archive, JKRHeap* i_heap) {
-    JUT_ASSERT(0x4AD, mArchive == 0);
+    JUT_ASSERT(0x4AD, mArchive == NULL);
     mArchive = i_archive;
     heap = i_heap;
     mDataHeap = NULL;
@@ -576,7 +576,7 @@ int dRes_info_c::setRes() {
         if (heap != NULL) {
             heap->lock();
             mDataHeap = mDoExt_createSolidHeapToCurrent(0, heap, 0x20);
-            JUT_ASSERT(0x4EC, mDataHeap != 0);
+            JUT_ASSERT(0x4EC, mDataHeap != NULL);
 
             int rt = loadResource();
             mDoExt_restoreCurrentHeap();
@@ -929,11 +929,11 @@ int dRes_control_c::syncAllRes(dRes_info_c* i_resInfo, int i_infoNum) {
  * setObjectRes__14dRes_control_cFPCcPvUlP7JKRHeap              */
 int dRes_control_c::setObjectRes(char const* i_arcName, void* i_archiveRes, u32 i_bufferSize,
                                  JKRHeap* i_heap) {
-    JUT_ASSERT(0x7A3, i_archiveRes != 0);
+    JUT_ASSERT(0x7A3, i_archiveRes != NULL);
 
 #ifdef DEBUG
     dRes_info_c* nowInfo = getResInfo(i_arcName, mObjectInfo, ARRAY_SIZEU(mObjectInfo));
-    JUT_ASSERT(0x7A6, nowInfo == 0);
+    JUT_ASSERT(0x7A6, nowInfo == NULL);
 #endif
 
     if (!setRes(i_arcName, mObjectInfo, ARRAY_SIZEU(mObjectInfo), "", mDoDvd_MOUNT_DIRECTION_HEAD, NULL)) {
@@ -946,7 +946,7 @@ int dRes_control_c::setObjectRes(char const* i_arcName, void* i_archiveRes, u32 
     }
 
     dRes_info_c* info = getResInfo(i_arcName, mObjectInfo, ARRAY_SIZEU(mObjectInfo));
-    JUT_ASSERT(0x7B7, info != 0);
+    JUT_ASSERT(0x7B7, info != NULL);
 
     int rt = info->setRes(memArchive, i_heap);
     if (rt == 0) {

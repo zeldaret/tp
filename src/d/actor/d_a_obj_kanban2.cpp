@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_kanban2.h"
 #include "d/d_com_inf_game.h"
@@ -655,7 +655,7 @@ void daObj_Kanban2_c::setGroundAngle() {
     gnd_chk.SetPos(&gnd_pos);
     gnd_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
-    if (-1000000000.0f != gnd_pos.y && std::abs(gnd_pos.y - sp8.y) < 50.0f) {
+    if (-G_CM3D_F_INF != gnd_pos.y && std::abs(gnd_pos.y - sp8.y) < 50.0f) {
         field_0x5ee.x = -cM_atan2s(gnd_pos.y - sp8.y, gnd_pos.z - sp8.z);
     }
 
@@ -665,7 +665,7 @@ void daObj_Kanban2_c::setGroundAngle() {
     gnd_chk.SetPos(&gnd_pos);
     gnd_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
-    if (-1000000000.0f != gnd_pos.y && std::abs(gnd_pos.y - sp8.y) < 50.0f) {
+    if (-G_CM3D_F_INF != gnd_pos.y && std::abs(gnd_pos.y - sp8.y) < 50.0f) {
         field_0x5ee.z = cM_atan2s(gnd_pos.y - sp8.y, gnd_pos.x - sp8.x);
     }
 }
@@ -704,7 +704,7 @@ bool daObj_Kanban2_c::checkPataGround(s16 param_0, s16 param_1) {
     sp24.SetPos(&spC);
 
     f32 ground_y = dComIfG_Bgsp().GroundCross(&sp24);
-    if (ground_y != -1000000000.0f && sp18.y < ground_y) {
+    if (ground_y != -G_CM3D_F_INF && sp18.y < ground_y) {
         return true;
     }
 
@@ -1403,7 +1403,7 @@ void daObj_Kanban2_c::executePart() {
 void daObj_Kanban2_c::executeFloat() {
     checkWaterSurface();
 
-    if (-1000000000.0f == field_0x604) {
+    if (-G_CM3D_F_INF == field_0x604) {
         setActionMode(ACTION_PART_e, 7);
         return;
     }
@@ -1747,7 +1747,7 @@ int daObj_Kanban2_c::CreateHeap() {
 
     if (part_flags == PARTS_ALL) {
         modelData = dComIfG_getObjectRes("Obj_kn2", l_kn2_bmdidx[0]);
-        JUT_ASSERT(2214, modelData != 0);
+        JUT_ASSERT(2214, modelData != NULL);
 
         mpModel = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
         if (mpModel == NULL) {
@@ -1758,7 +1758,7 @@ int daObj_Kanban2_c::CreateHeap() {
     for (int i = 0; i < 18; i++) {
         if (part_flags & (1 << i)) {
             modelData = dComIfG_getObjectRes("Obj_kn2", l_kn2_bmdidx[i + 1]);
-            JUT_ASSERT(2228, modelData != 0);
+            JUT_ASSERT(2228, modelData != NULL);
             void* shareModelData = dComIfG_getObjectRes("Obj_kn2", l_kn2_bmdidx[0]);
             mDoExt_setupShareTexture((J3DModelData*)modelData, (J3DModelData*)shareModelData);
             mpPartModel[i] = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);

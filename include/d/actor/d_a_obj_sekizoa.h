@@ -132,7 +132,7 @@ public:
     void setWolfHowling() {
         if (mType != 0) {
             fopAc_ac_c* actor_p = mActorMngrs[3].getActorP();
-            JUT_ASSERT(0x1A3, 0 != actor_p);
+            JUT_ASSERT(0x1A3, NULL != actor_p);
 
             ((daObj_Sekizoa_c*)actor_p)->setWolfHowling();
         } else {

@@ -1,4 +1,4 @@
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_bg_w_kcol.h"
 #include "d/d_com_inf_game.h"
@@ -34,8 +34,8 @@ void* dBgWKCol::initKCollision(void* i_kclData) {
 
 /* 8007E804-8007E850 079144 004C+00 0/0 0/0 1/1 .text            create__8dBgWKColFPvPv */
 void dBgWKCol::create(void* pprism, void* plc) {
-    JUT_ASSERT(0x43, pprism != 0);
-    JUT_ASSERT(0x44, plc != 0);
+    JUT_ASSERT(0x43, pprism != NULL);
+    JUT_ASSERT(0x44, plc != NULL);
 
     ClrDBgWBase();
     m_pkc_head = (KC_Header*)pprism;
@@ -177,7 +177,7 @@ void dBgWKCol::getPolyCode(int poly_index, dBgPc* ppoly) const {
  * chkPolyThrough__8dBgWKColCFP5dBgPcP16cBgS_PolyPassChkP15cBgS_GrpPassChkR4cXyz */
 bool dBgWKCol::chkPolyThrough(dBgPc* ppoly, cBgS_PolyPassChk* ppolypasschk,
                                   cBgS_GrpPassChk* pgrppasschk, cXyz& param_4) const {
-    JUT_ASSERT(279, ppoly != 0);
+    JUT_ASSERT(279, ppoly != NULL);
 
     if (pgrppasschk != NULL) {
         dBgS_GrpPassChk* var_r28 = (dBgS_GrpPassChk*)pgrppasschk;

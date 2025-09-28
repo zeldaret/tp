@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_ymb.h"
 #include "d/actor/d_a_midna.h"
@@ -533,7 +533,7 @@ void daE_YMB_c::checkWaterPos() {
     dBgS_ObjGndChk_Spl wtr_chk;
     wtr_chk.SetPos(&pos);
     f32 wtr_pos = dComIfG_Bgsp().GroundCross(&wtr_chk);
-    if (wtr_pos != -1000000000.0f) {
+    if (wtr_pos != -G_CM3D_F_INF) {
         field_0x6cc = wtr_pos;
         field_0x69c.y = wtr_pos + 1000.0f + l_HIO.fly_height_adjust;
 
@@ -558,7 +558,7 @@ void daE_YMB_c::checkGroundPos() {
     mGndChk.SetPos(&pos);
     f32 fVar1 = dComIfG_Bgsp().GroundCross(&mGndChk);
     field_0x6d4 = fVar1;
-    if (fVar1 != -1000000000.0f && field_0x6d0 < fVar1) {
+    if (fVar1 != -G_CM3D_F_INF && field_0x6d0 < fVar1) {
         field_0x6d0 = fVar1;
     }
 }
@@ -3189,7 +3189,7 @@ static int daE_YMB_Delete(daE_YMB_c* i_this) {
 /* 80820AF0-80820D68 00AAD0 0278+00 1/1 0/0 0/0 .text            CreateHeap__9daE_YMB_cFv */
 int daE_YMB_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_YB", BMDR_YB_TW);
-    JUT_ASSERT(4196, modelData != 0);
+    JUT_ASSERT(4196, modelData != NULL);
     mpModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_YB", BCK_YB_FLY_WAIT),
                                   2, 1.0f, 0, -1, &mSound, 0x80000, 0x31000084);
     if (mpModelMorf == NULL || mpModelMorf->getModel() == NULL) {

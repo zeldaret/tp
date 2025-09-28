@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_b_bh.h"
 #include "d/actor/d_a_b_bq.h"
@@ -1462,7 +1462,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     void* modelData = dComIfG_getObjectRes("B_BH", BMDR_BH_KUKI);
-    JUT_ASSERT(2475, modelData != 0);
+    JUT_ASSERT(2475, modelData != NULL);
 
     for (int i = 0; i < 17; i++) {
         a_this->mpStemModels[i] = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
@@ -1474,7 +1474,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     modelData = dComIfG_getObjectRes("B_BH", BMDR_BH_LEAF);
-    JUT_ASSERT(2491, modelData != 0);
+    JUT_ASSERT(2491, modelData != NULL);
 
     for (int i = 0; i < 17; i++) {
         if ((i & 3) == 2) {

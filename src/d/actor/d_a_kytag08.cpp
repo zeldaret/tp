@@ -3,7 +3,7 @@
  * Fog Avoidance Tag
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_kytag08.h"
 #include "d/actor/d_a_player.h"
@@ -225,7 +225,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     kytag08_class* a_this = (kytag08_class*)i_this;
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Kytag08", 3);
-    JUT_ASSERT(0, modelData != 0);
+    JUT_ASSERT(0, modelData != NULL);
 
     a_this->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11020202);
 

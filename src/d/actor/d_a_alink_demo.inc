@@ -1297,7 +1297,7 @@ BOOL daAlink_c::checkDeadAction(int param_0) {
                 offCargoCarry();
     
                 int var_r29;
-                if (dComIfG_Bgsp().ChkPolySafe(mLinkAcch.m_gnd) && -1000000000.0f != mLinkAcch.GetGroundH()) {
+                if (dComIfG_Bgsp().ChkPolySafe(mLinkAcch.m_gnd) && -G_CM3D_F_INF != mLinkAcch.GetGroundH()) {
                     var_r29 = dComIfG_Bgsp().GetExitId(mLinkAcch.m_gnd);
                 } else {
                     var_r29 = 0x3F;
@@ -1605,7 +1605,7 @@ int daAlink_c::procCoToolDemo() {
                         }
                     }
                 } else if (sp1C == 1) {
-                    JUT_ASSERT(2345, 0);
+                    JUT_ASSERT(2345, FALSE);
                 } else if (sp1C == 2) {
                     if (sp18 == 1) {
                         if (sp14 == 2) {
@@ -2216,7 +2216,7 @@ int daAlink_c::procCoGetItem() {
         // "Get Item is not an item!!! %d\n"
         OSReport("ゲットするアイテムがアイテムじゃない！！！　%d\n",
                  fopAcM_GetName(item_partner_p));
-        JUT_ASSERT(3415, 0);
+        JUT_ASSERT(3415, FALSE);
     }
 #endif
 
@@ -3733,7 +3733,7 @@ int daAlink_c::procNotUseItem() {
             // "Present Item is not this Item!!! %d\n"
             OSReport("差し出すアイテムがアイテムじゃない！！！　%d\n",
                      fopAcM_GetName(item_partner_p));
-            JUT_ASSERT(5506, 0);
+            JUT_ASSERT(5506, FALSE);
         }
 #endif
         if (item_partner_p != NULL) {

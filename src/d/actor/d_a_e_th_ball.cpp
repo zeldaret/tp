@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_th_ball.h"
 #include "d/actor/d_a_e_th.h"
@@ -1051,14 +1051,14 @@ static int useHeapInit(fopAc_ac_c* a_this) {
     e_th_ball_class* i_this = (e_th_ball_class*)a_this;
 
     void* modelData = dComIfG_getObjectRes("E_th_ball", 4);
-    JUT_ASSERT(1839, modelData != 0);
+    JUT_ASSERT(1839, modelData != NULL);
     i_this->mpBallModel = mDoExt_J3DModel__create((J3DModelData*)modelData, 0, 0x11000084);
     if (i_this->mpBallModel == NULL) {
         return 0;
     }
 
     modelData = dComIfG_getObjectRes("E_th_ball", 7);
-    JUT_ASSERT(1851, modelData != 0);
+    JUT_ASSERT(1851, modelData != NULL);
     for (int i = 0; i < 50; i++) {
         i_this->field_0x65c.mp_model[i] = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
         if (i_this->field_0x65c.mp_model[i] == NULL) {

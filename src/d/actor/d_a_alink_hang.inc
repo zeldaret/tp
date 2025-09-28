@@ -354,7 +354,7 @@ int daAlink_c::procHangFallStartInit(cM3dGPla* param_0) {
 
     f32 cross = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
     sp58.y = cross;
-    if (sp58.y != -1000000000.0f) {
+    if (sp58.y != -G_CM3D_F_INF) {
         if (sp58.y < current.pos.y + l_autoDownHeight) {
             return 0;
         }
@@ -1986,7 +1986,7 @@ int daAlink_c::checkClimbGround(cXyz* param_0, f32 param_1) {
         mLinkGndChk.SetPos(param_0);
 
         f32 cross = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
-        if (cross != -1000000000.0f && dBgS_CheckBGroundPoly(mLinkGndChk) &&
+        if (cross != -G_CM3D_F_INF && dBgS_CheckBGroundPoly(mLinkGndChk) &&
             cross >= param_1 - 50.0f)
         {
             param_0->y = cross;

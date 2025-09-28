@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_rb.h"
 #include "d/d_com_inf_game.h"
@@ -615,7 +615,7 @@ static void e_rb_base_1(e_rb_class* i_this) {
                         sp108.SetPos(&sp68);
                         
                         f32 ground_y = dComIfG_Bgsp().GroundCross(&sp108);
-                        if (-1000000000.0f != ground_y) {
+                        if (-G_CM3D_F_INF != ground_y) {
                             child[i]->enemy.current.pos = child[i]->enemy.old.pos = child[i]->field_0xa10;
                             child[i]->enemy.old.pos.y = ground_y;
                             child[i]->enemy.current.pos.y = ground_y;

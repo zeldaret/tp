@@ -3,98 +3,11 @@
  * Mirror Chamber Chains
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_mirror_chain.h"
 #include "d/d_com_inf_game.h"
 #include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" void draw__22dScissorBegin_packet_cFv();
-extern "C" void __dt__4cXyzFv();
-extern "C" void draw__20dScissorEnd_packet_cFv();
-extern "C" static void createSolidHeap__FP10fopAc_ac_c();
-extern "C" void createHeap__18daObjMirrorChain_cFv();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" void initBaseMtx__18daObjMirrorChain_cFv();
-extern "C" void setBaseMtx__18daObjMirrorChain_cFv();
-extern "C" static void daObjMirrorChain_Draw__FP18daObjMirrorChain_c();
-extern "C" void draw__18daObjMirrorChain_cFv();
-extern "C" static void daObjMirrorChain_Execute__FP18daObjMirrorChain_c();
-extern "C" void execute__18daObjMirrorChain_cFv();
-extern "C" static bool daObjMirrorChain_IsDelete__FP18daObjMirrorChain_c();
-extern "C" static void daObjMirrorChain_Delete__FP18daObjMirrorChain_c();
-extern "C" void __dt__4dBgWFv();
-extern "C" static void daObjMirrorChain_Create__FP10fopAc_ac_c();
-extern "C" void __dt__20dScissorEnd_packet_cFv();
-extern "C" void __dt__22dScissorBegin_packet_cFv();
-extern "C" void __ct__4cXyzFv();
-extern "C" extern char const* const d_a_obj_mirror_chain__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();
-extern "C" void play__14mDoExt_baseAnmFv();
-extern "C" void init__13mDoExt_brkAnmFP16J3DMaterialTableP15J3DAnmTevRegKeyiifss();
-extern "C" void entry__13mDoExt_brkAnmFP16J3DMaterialTablef();
-extern "C" void init__13mDoExt_bckAnmFP15J3DAnmTransformiifssb();
-extern "C" void entry__13mDoExt_bckAnmFP12J3DModelDataf();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" void isSwitch__10dSv_info_cCFii();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void
-set__13dPa_control_cFUcUsPC4cXyzPC12dKy_tevstr_cPC5csXyzPC4cXyzUcP18dPa_levelEcallBackScPC8_GXColorPC8_GXColorPC4cXyzf();
-extern "C" void Release__4cBgSFP9dBgW_Base();
-extern "C" void Regist__4dBgSFP9dBgW_BaseP10fopAc_ac_c();
-extern "C" void __dt__4cBgWFv();
-extern "C" void Set__4cBgWFP6cBgD_tUlPA3_A4_f();
-extern "C" void __ct__4dBgWFv();
-extern "C" void Move__4dBgWFv();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void __pl__4cXyzCFRC3Vec();
-extern "C" void __mi__4cXyzCFRC3Vec();
-extern "C" void outprod__4cXyzCFRC3Vec();
-extern "C" void isZero__4cXyzCFv();
-extern "C" void ChkUsed__9cBgW_BgIdCFv();
-extern "C" void seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" bool entry__9J3DPacketFP13J3DDrawBuffer();
-extern "C" void entryImm__13J3DDrawBufferFP9J3DPacketUs();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
-extern "C" void __destroy_arr();
-extern "C" void __construct_array();
-extern "C" void __cvt_fp2unsigned();
-extern "C" void _savegpr_22();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_22();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_29();
-extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* __vt__4dBgW[65];
-extern "C" extern void* __vt__9J3DPacket[5];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-
-//
-// Declarations:
-//
 
 /* 80C98080-80C98084 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static char const* l_arcName = "MR-Chain";
@@ -110,15 +23,6 @@ COMPILER_STRIP_GATE(0x80C98028, &lit_3915);
 SECTION_RODATA static f32 const lit_3916 = 0.5f;
 COMPILER_STRIP_GATE(0x80C9802C, &lit_3916);
 #pragma pop
-
-/* 80C98030-80C98034 000008 0004+00 2/4 0/0 0/0 .rodata          @3917 */
-SECTION_RODATA static u8 const lit_3917[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80C98030, &lit_3917);
 
 /* 80C98034-80C98038 00000C 0004+00 0/1 0/0 0/0 .rodata          @3918 */
 #pragma push
@@ -537,7 +441,7 @@ void daObjMirrorChain_c::create_init() {
     if (mpBckAnm != NULL
             /* dSv_event_flag_c::F_0354 - Cutscene - [cutscene] Mirror complete */
         && !dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[354])) {
-        mpBckAnm->setPlaySpeed(FLOAT_LABEL(lit_3917));
+        mpBckAnm->setPlaySpeed(0.0f);
     }
     mpEmitter = NULL;
     mBgW[0].SetCrrFunc(NULL);
