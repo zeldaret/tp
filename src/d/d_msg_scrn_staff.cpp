@@ -11,8 +11,6 @@
 #include "d/d_msg_object.h"
 #include "d/d_pane_class.h"
 
-extern "C" extern dMsgObject_HIO_c g_MsgObject_HIO_c;
-
 /* 803C1340-803C1370 01E460 0030+00 1/1 0/0 0/0 .data            t_tag$3752 */
 static u64 t_tag[6] = {
     'right_s', 'right', 'center_s', 'center', 'left_s', 'left',

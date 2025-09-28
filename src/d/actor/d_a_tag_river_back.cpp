@@ -8,18 +8,6 @@
 #include "d/actor/d_a_tag_river_back.h"
 #include "d/d_procname.h"
 
-//
-// Forward References:
-//
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
-
 /* 80D5F9A0-80D5F9A4 -00001 0004+00 3/3 0/0 0/0 .data            l_arcName */
 static char* l_arcName = "RvBack";
 

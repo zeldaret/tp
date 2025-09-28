@@ -241,8 +241,8 @@ struct TLinkList_factory : public TLinkList<T, I> {
         }
     }
 
-    TLinkList<T, I>::iterator Erase_destroy(T* param_0) {
-        TLinkList<T, I>::iterator spC(Erase(param_0));
+    typename TLinkList<T, I>::iterator Erase_destroy(T* param_0) {
+        typename TLinkList<T, I>::iterator spC(Erase(param_0));
         Do_destroy(param_0);
         return spC;
     }

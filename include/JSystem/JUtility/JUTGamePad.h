@@ -100,7 +100,7 @@ public:
     JUTGamePadRecordBase* getPadReplay() const { return mPadReplay; }
     JUTGamePadRecordBase* getPadRecord() const { return mPadRecord; }
 
-    u32 testTrigger(u32 button) const { return mButton.mTrigger & button; }
+    bool testTrigger(u32 button) const { return mButton.mTrigger & button; }
 
     bool isPushing3ButtonReset() const {
         return mPortNum != EPortInvalid && mButtonReset.mReset != false;

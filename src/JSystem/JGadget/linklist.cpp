@@ -18,37 +18,6 @@ private:
     const T* p_;
 };
 
-//
-// Forward References:
-//
-
-extern "C" void __dt__Q27JGadget13TNodeLinkListFv();
-extern "C" void erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iterator();
-extern "C" void
-erase__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorQ37JGadget13TNodeLinkList8iterator();
-extern "C" void
-splice__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorRQ27JGadget13TNodeLinkListQ37JGadget13TNodeLinkList8iterator();
-extern "C" void
-Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode();
-extern "C" void Erase__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode();
-extern "C" void Remove__Q27JGadget13TNodeLinkListFPQ27JGadget13TLinkListNode();
-
-//
-// External References:
-//
-
-extern "C" void __dl__FPv();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-
-//
-// Declarations:
-//
-
 /* 802DCA1C-802DCA58 2D735C 003C+00 1/1 6/6 0/0 .text            __dt__Q27JGadget13TNodeLinkListFv
  */
 JGadget::TNodeLinkList::~TNodeLinkList() {}

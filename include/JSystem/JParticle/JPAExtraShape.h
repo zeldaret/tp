@@ -38,7 +38,7 @@ struct JPAExtraShapeData {
     /* 0x54 */ f32 mRotateSpeed;
     /* 0x58 */ f32 mRotateSpeedRandom;
     /* 0x5C */ f32 mRotateDirection;
-};
+};  // Size: 0x60
 
 /**
  * @ingroup jsystem-jparticle

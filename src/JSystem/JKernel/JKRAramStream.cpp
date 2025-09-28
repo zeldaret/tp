@@ -225,9 +225,6 @@ JKRAramStreamCommand::JKRAramStreamCommand() {
     mAllocatedTransferBuffer = false;
 }
 
-/* 802D4094-802D40F0 2CE9D4 005C+00 0/0 3/0 0/0 .text getAvailable__20JSURandomInputStreamCFv */
-// s32 JSURandomInputStream::getAvailable() const {
-// should be an inline function
-extern "C" s32 getAvailable__20JSURandomInputStreamCFv(JSURandomInputStream* self) {
-    return self->getLength() - self->getPosition();
+static void dummy(JSURandomInputStream* stream) {
+    stream->getAvailable();
 }

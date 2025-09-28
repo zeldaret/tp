@@ -1490,14 +1490,14 @@ J3DAnmTexPattern* daMyna_c::getTexPtrnAnm(char* i_resName) {
 /* 80949998-80949A70 003E18 00D8+00 1/1 0/0 0/0 .text            checkEndAnm__8daMyna_cFf */
 int daMyna_c::checkEndAnm(f32 param_0) {
     bool retVal;
-    switch (mpMorf->getPlayMode()) {
-    case 2:
+    switch ((u8)mpMorf->getPlayMode()) {
+    case J3DFrameCtrl::EMode_LOOP:
         return mpMorf->isLoop();
-    case 0:
-    case 1:
+    case J3DFrameCtrl::EMode_NONE:
+    case J3DFrameCtrl::EMode_RESET:
         return mpMorf->isStop() && mpMorf->getPlaySpeed() != param_0;
-    case 3:
-    case 4:
+    case J3DFrameCtrl::EMode_REVERSE:
+    case J3DFrameCtrl::EMode_LOOP_REVERSE:
         return mpMorf->isStop() && mpMorf->getPlaySpeed() != param_0;
     default:
         return false;

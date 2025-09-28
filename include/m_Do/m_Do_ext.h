@@ -290,7 +290,7 @@ public:
 
     J3DAnmTransform* getAnm() { return mpAnm; }
     void changeAnm(J3DAnmTransform* anm) { mpAnm = anm; }
-    u8 getPlayMode() { return mFrameCtrl.getAttribute(); }
+    int getPlayMode() { return mFrameCtrl.getAttribute(); }
     void setPlayMode(int mode) { mFrameCtrl.setAttribute(mode); }
     BOOL isStop() { return mFrameCtrl.checkState(1) || mFrameCtrl.getRate() == 0.0f; }
     bool isLoop() { return mFrameCtrl.checkState(2); }

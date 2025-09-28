@@ -3,6 +3,7 @@
 
 #include <dolphin/gx/GXEnum.h>
 #include <dolphin/gx/GXStruct.h>
+#include "global.h"
 
 #ifdef __cplusplus
 extern "C" {

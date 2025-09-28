@@ -1131,7 +1131,7 @@ public:
     static bool checkWolfCargoCarrySceneChange() { return getLastSceneMode() == 10; }
 
     static int getLastSceneDamage() { return (dComIfGs_getLastSceneMode() >> 4) & 0x7F; }
-    static u8 getLastSceneSwordAtUpTime() { return (dComIfGs_getLastSceneMode() >> 11) & 0xFF; }
+    static u32 getLastSceneSwordAtUpTime() { return (dComIfGs_getLastSceneMode() >> 11) & 0xFF; }
 
     static BOOL checkNormalSwordEquip() { return dComIfGs_getSelectEquipSword() == fpcNm_ITEM_SWORD; }
 

@@ -8,22 +8,6 @@
 #include "JSystem/JAudio2/JASLfo.h"
 #include "SSystem/SComponent/c_math.h"
 
-//
-// Types:
-//
-
-//
-// Forward References:
-//
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
-
 /* ############################################################################################## */
 
 /* 8029BD14-8029BD44 296654 0030+00 1/1 1/1 0/0 .text            __ct__6JASLfoFv */

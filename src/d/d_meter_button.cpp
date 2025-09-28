@@ -23,8 +23,6 @@
 #define STR_BUF_LEN 512
 #endif
 
-extern "C" extern dMsgObject_HIO_c g_MsgObject_HIO_c;
-
 /* 80201328-80201370 1FBC68 0048+00 0/0 1/1 1/1 .text            __ct__14dMeterButton_cFv */
 dMeterButton_c::dMeterButton_c() {
     _create();

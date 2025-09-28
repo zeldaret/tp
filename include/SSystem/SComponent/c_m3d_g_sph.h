@@ -46,9 +46,4 @@ public:
 
 STATIC_ASSERT(0x14 == sizeof(cM3dGSph));
 
-// additional symbols needed for cM3dGSph
-extern "C" {
-void Set__8cM3dGSphFRC4cXyzf(void);
-}
-
 #endif

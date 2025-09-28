@@ -9,37 +9,6 @@
 #include "JSystem/JSupport/JSURandomInputStream.h"
 #include <dolphin.h>
 
-//
-// Forward References:
-//
-
-extern "C" void skip__20JSURandomInputStreamFl();
-
-//
-// External References:
-//
-
-extern "C" void __dt__20JSURandomInputStreamFv();
-extern "C" void getAvailable__20JSURandomInputStreamCFv();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 803CC4B0-803CC4D4 0295D0 0024+00 0/0 7/7 0/0 .data            __vt__20JSURandomInputStream */
-extern void* __vt__20JSURandomInputStream[9] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__20JSURandomInputStreamFv,
-    (void*)getAvailable__20JSURandomInputStreamCFv,
-    (void*)skip__20JSURandomInputStreamFl,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
-};
-
 /* 802DC23C-802DC298 2D6B7C 005C+00 1/0 6/6 0/0 .text            __dt__14JSUInputStreamFv */
 JSUInputStream::~JSUInputStream() {
     if (!isGood()) {

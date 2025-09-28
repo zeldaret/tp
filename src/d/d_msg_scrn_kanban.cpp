@@ -13,8 +13,6 @@
 #include "d/d_msg_out_font.h"
 #include "d/d_pane_class.h"
 
-extern dMsgObject_HIO_c g_MsgObject_HIO_c;
-
 /* 80244E38-8024534C 23F778 0514+00 0/0 1/1 0/0 .text __ct__16dMsgScrnKanban_cFP10JKRExpHeap */
 dMsgScrnKanban_c::dMsgScrnKanban_c(JKRExpHeap* param_0) {
     if (param_0 != NULL) {

@@ -9,33 +9,6 @@
 #include "JSystem/JMath/JMATrigonometric.h"
 #include "JSystem/J2DGraph/J2DAnimation.h"
 
-//
-// Types:
-//
-
-//
-// Forward References:
-//
-
-extern "C" void func_80280588();
-extern "C" void JPAGetYZRotateMtx__FssPA4_f();
-extern "C" void JPAGetXYZRotateMtx__FsssPA4_f();
-extern "C" void func_802807E0();
-extern "C" void func_80280808();
-extern "C" void JPACalcKeyAnmValue__FfUsPCf();
-
-//
-// External References:
-//
-
-extern "C" void _savegpr_28();
-extern "C" void _restgpr_28();
-extern "C" u8 sincosTable___5JMath[65536];
-
-//
-// Declarations:
-//
-
 /* ############################################################################################## */
 // Probably some local function needed to change float literal order
 static f32 floatDummyFunc() {

@@ -9,40 +9,6 @@
 #include "JSystem/JKernel/JKRHeap.h"
 #include "dolphin/gx.h"
 
-//
-// Forward References:
-//
-
-extern "C" void clearIndex__6JUTXfbFv();
-extern "C" void common_init__6JUTXfbFi();
-extern "C" void __ct__6JUTXfbFPC16_GXRenderModeObjP7JKRHeapQ26JUTXfb10EXfbNumber();
-extern "C" void __dt__6JUTXfbFv();
-extern "C" void delXfb__6JUTXfbFi();
-extern "C" void createManager__6JUTXfbFP7JKRHeapQ26JUTXfb10EXfbNumber();
-extern "C" void destroyManager__6JUTXfbFv();
-extern "C" void initiate__6JUTXfbFUsUsP7JKRHeapQ26JUTXfb10EXfbNumber();
-extern "C" u8 sManager__6JUTXfb[4 + 4 /* padding */];
-
-//
-// External References:
-//
-
-extern "C" void* __nw__FUl();
-extern "C" void* __nwa__FUlP7JKRHeapi();
-extern "C" void __dl__FPv();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 sSystemHeap__7JKRHeap[4];
-extern "C" u8 sManager__8JUTVideo[4];
-
-//
-// Declarations:
-//
-
 void JUTXfb::clearIndex() {
     mDrawingXfbIndex = -1;
     mDrawnXfbIndex = -1;

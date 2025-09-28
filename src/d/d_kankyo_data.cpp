@@ -8,23 +8,11 @@
 #include "d/d_kankyo_data.h"
 #include "d/d_stage.h"
 
-//
-// Types:
-//
-
 // Invented name. TODO: this should be renamed and probably moved to the header
 // file once l_vr_box_data is looked into more.
 struct dKyd_l_vr_box_data_struct {
     u8 data[21];
 };
-
-//
-// Forward References:
-//
-
-//
-// Declarations:
-//
 
 /* 803A8E98-803A9198 005FB8 0300+00 1/1 0/0 0/0 .data            l_kydata_BloomInf_tbl */
 static dKydata_BloomInfo_c l_kydata_BloomInf_tbl[BLOOMINFO_MAX] = {
