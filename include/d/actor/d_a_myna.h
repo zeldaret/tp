@@ -121,9 +121,9 @@ public:
 
     daMyna_c() {}
 
-    void onEventFlag(u8 flag) { field_0x92F |= (1 << flag); }
-    void offEventFlag(u8 flag) { field_0x92F &= ~(1 << flag); }
-    bool isEventFlag(u8 flag) { return field_0x92F & (1 << flag); }
+    void onEventFlag(u8 flag) { field_0x92F |= (u8)(1 << flag); }
+    void offEventFlag(u8 flag) { field_0x92F &= (u8)~(u8)(1 << flag); }
+    bool isEventFlag(u8 flag) { return field_0x92F & (u8)(1 << flag); }
 
     fopAc_ac_c* getSpeakActorPtr() { return field_0x828; }
 
