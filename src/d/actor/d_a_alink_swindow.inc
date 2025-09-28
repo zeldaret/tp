@@ -278,7 +278,7 @@ void daAlink_c::initStatusWindow() {
 
     J3DAnmTransform* bck = (J3DAnmTransform*)J3DAnmLoaderDataBase::load(tmpBuffer, J3DLOADER_UNK_FLAG0);
     if (!m_sWindowBck->init(bck, 1, 2, 1.0f, 0, -1, false)) {
-        JUT_ASSERT(0x1B1, 0);
+        JUT_ASSERT(433, FALSE);
     }
 
     tmpBuffer = new (0x20) void*[0x100];

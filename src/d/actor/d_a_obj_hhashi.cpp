@@ -299,9 +299,9 @@ static char* l_arcName = "L_hhashi";
 /* 80580DA4-80580EA0 001464 00FC+00 1/0 0/0 0/0 .text            CreateHeap__13daObjHHASHI_cFv */
 int daObjHHASHI_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "L_hhashi00.bmd");
-    JUT_ASSERT(90, modelData != 0);
+    JUT_ASSERT(90, modelData != NULL);
     J3DModelData* modelData2 = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "L_hhashi02.bmd");
-    JUT_ASSERT(93, modelData2 != 0);
+    JUT_ASSERT(93, modelData2 != NULL);
     for (int i = 0; i < 50; i++) {
         mShardModels[i] = mDoExt_J3DModel__create(modelData2, 0x20000, 0x11000084);
         if (mShardModels[i] == NULL) {
@@ -327,7 +327,7 @@ int daObjHHASHI_c::create() {
         initCcCylinder();
         fopAcM_SetMtx(this, mModel->getBaseTRMtx());
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "L_hhashi02.bmd");
-        JUT_ASSERT(1133, modelData != 0);
+        JUT_ASSERT(1133, modelData != NULL);
         dComIfGp_addSimpleModel(modelData, fopAcM_GetRoomNo(this), 0);
         field_0x1199 = 1;
         daObjHHASHI_Execute(this);

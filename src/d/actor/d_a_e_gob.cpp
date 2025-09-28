@@ -2288,7 +2288,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     void* modelData = dComIfG_getObjectRes("E_gob", BMDR_MG_MET);
-    JUT_ASSERT(3631, modelData != 0);
+    JUT_ASSERT(3631, modelData != NULL);
     a_this->mpArmorModel = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
     if (a_this->mpArmorModel == NULL) {
         return 0;

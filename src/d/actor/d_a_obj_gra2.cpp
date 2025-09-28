@@ -303,7 +303,7 @@ int daObj_GrA_c::CreateHeap() {
     field_0x844 = dKy_darkworld_check();
 
     J3DModelData* aMdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNames[l_bmdGetParamList[1]], l_bmdGetParamList[0]);
-    JUT_ASSERT(854, 0 != aMdlData_p);
+    JUT_ASSERT(854, NULL != aMdlData_p);
     mpModelMorf = new mDoExt_McaMorfSO(aMdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
     if (mpModelMorf != NULL && mpModelMorf->getModel() == NULL) {
         mpModelMorf->stopZelAnime();
@@ -1460,7 +1460,7 @@ int daObj_GrA_c::ctrlMsgAnm(int& param_1, int& param_2, fopAc_ac_c* param_3) {
     param_2 = -1;
 
     dMsgObject_c* msg_p = (dMsgObject_c*)dMsgObject_c::getActor();
-    JUT_ASSERT(3163, 0 != msg_p);
+    JUT_ASSERT(3163, NULL != msg_p);
 
     if (msg_p->mode == 2 || msg_p->mode == 3) {
         field_0xa9c = -1;

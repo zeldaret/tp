@@ -37,7 +37,7 @@ int dkWmark_c::create() {
     mpHeap = mDoExt_createSolidHeapFromGameToCurrent(0x880, 0x20);
     if (mpHeap != NULL) {
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Alink", 0x23);
-        JUT_ASSERT(60, modelData != 0);
+        JUT_ASSERT(60, modelData != NULL);
 
         mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
         mDoExt_restoreCurrentHeap();

@@ -166,7 +166,7 @@ static inline const AttrType& attr_type(daObjLadder::Act_c::Type_e type) {
  */
 int daObjLadder::Act_c::CreateHeap() {
     J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(M_arcname, attr_type(mType).field_0x0);
-    JUT_ASSERT(382, model_data != 0);
+    JUT_ASSERT(382, model_data != NULL);
     mModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
     return mModel != NULL;
 }

@@ -189,7 +189,7 @@ static int daObjDust_Create(fopAc_ac_c* i_this) {
 /* 80BE2A70-80BE2AE8 000830 0078+00 1/0 0/0 0/0 .text            CreateHeap__11daObjDust_cFv */
 int daObjDust_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "M_FloatingDust01.bmd");
-    JUT_ASSERT(86, modelData != 0);
+    JUT_ASSERT(86, modelData != NULL);
 
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {

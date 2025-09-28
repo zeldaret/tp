@@ -521,7 +521,7 @@ int daNpc_Kn_c::ctrlMsgAnm(int* o_faceAnmAttr_p, int* o_anmAttr_p, fopAc_ac_c* i
     if (param_3 || eventInfo.checkCommandTalk() || mStaffId != -1) {
         if (dComIfGp_event_getTalkPartner() == i_talkPartner_p) {
             msg_class* msg_p = dMsgObject_c::getActor();
-            JUT_ASSERT(1088, 0 != msg_p);
+            JUT_ASSERT(1088, NULL != msg_p);
 
             if (msg_p->mode == 2 || msg_p->mode == 3) {
                 mMsgId = fpcM_ERROR_PROCESS_ID_e;

@@ -1747,7 +1747,7 @@ int daObj_Kanban2_c::CreateHeap() {
 
     if (part_flags == PARTS_ALL) {
         modelData = dComIfG_getObjectRes("Obj_kn2", l_kn2_bmdidx[0]);
-        JUT_ASSERT(2214, modelData != 0);
+        JUT_ASSERT(2214, modelData != NULL);
 
         mpModel = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
         if (mpModel == NULL) {
@@ -1758,7 +1758,7 @@ int daObj_Kanban2_c::CreateHeap() {
     for (int i = 0; i < 18; i++) {
         if (part_flags & (1 << i)) {
             modelData = dComIfG_getObjectRes("Obj_kn2", l_kn2_bmdidx[i + 1]);
-            JUT_ASSERT(2228, modelData != 0);
+            JUT_ASSERT(2228, modelData != NULL);
             void* shareModelData = dComIfG_getObjectRes("Obj_kn2", l_kn2_bmdidx[0]);
             mDoExt_setupShareTexture((J3DModelData*)modelData, (J3DModelData*)shareModelData);
             mpPartModel[i] = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);

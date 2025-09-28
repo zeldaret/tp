@@ -50,7 +50,7 @@ daObjSCannonTen_c::~daObjSCannonTen_c() {
  */
 int daObjSCannonTen_c::createHeap() {
     J3DModelData* a_model_data_p = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 9);
-    JUT_ASSERT(116, a_model_data_p != 0);
+    JUT_ASSERT(116, a_model_data_p != NULL);
 
     mpModel = mDoExt_J3DModel__create(a_model_data_p, J3DMdlFlag_DifferedDLBuffer, J3D_DIFF_FLAG(FALSE, FALSE, TRUE, 8, 0, FALSE, 0, 0, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE));
     if (mpModel == NULL) {
@@ -58,7 +58,7 @@ int daObjSCannonTen_c::createHeap() {
     }
 
     J3DAnmTransform* a_bck_p = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 6);
-    JUT_ASSERT(133, a_bck_p != 0);
+    JUT_ASSERT(133, a_bck_p != NULL);
     int rt = mBck.init(a_bck_p, 1, 0, 0.0f, 0, -1, 0);
     if (!rt) {
         return 0;
@@ -365,7 +365,7 @@ void daObjSCannonTen_c::demoInitFinish() {
     if (joint_p == NULL) {
         // "××××××Sky Cannon—The head joint is missing!!!! ××××××"
         OS_REPORT("______________________××××××天空砲台　頭部分のジョイントがありません！！！！ ××××××____________\n");
-        JUT_ASSERT(1351, 0);
+        JUT_ASSERT(1351, FALSE);
     }
 #endif
 

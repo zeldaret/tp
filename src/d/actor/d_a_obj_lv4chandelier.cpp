@@ -214,7 +214,7 @@ void daObjLv4Chan_c::rideActor(fopAc_ac_c* param_1) {
 /* 80C63CFC-80C63F34 000A3C 0238+00 1/0 0/0 0/0 .text            CreateHeap__14daObjLv4Chan_cFv */
 int daObjLv4Chan_c::CreateHeap() {
     J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmdidx[0]);
-    JUT_ASSERT(478, model_data != 0);
+    JUT_ASSERT(478, model_data != NULL);
     mModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
     if (mModel == NULL) {
         return 0;
@@ -236,7 +236,7 @@ int daObjLv4Chan_c::CreateHeap() {
     }
    
     mChainModelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmdidx[1]);
-    JUT_ASSERT(500, mChainModelData != 0);
+    JUT_ASSERT(500, mChainModelData != NULL);
 
     mMdls[0] = new dMdl_obj_c[mMdlLengths[0]];
     if (mMdls[0] == NULL) {

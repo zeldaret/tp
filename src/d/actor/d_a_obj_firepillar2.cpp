@@ -117,19 +117,19 @@ int daObjFPillar2_c::Create() {
 /* 80BEA034-80BEA1E0 0003F4 01AC+00 1/1 0/0 0/0 .text            CreateHeap__15daObjFPillar2_cFv */
 int daObjFPillar2_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 8);
-    JUT_ASSERT(363, modelData != 0);
+    JUT_ASSERT(363, modelData != NULL);
     mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (mModel == NULL) {
         return 0;
     }
     J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 11);
-    JUT_ASSERT(377, pbtk != 0);
+    JUT_ASSERT(377, pbtk != NULL);
     mBtk = new mDoExt_btkAnm();
     if (mBtk == NULL || !mBtk->init(modelData, pbtk, 1, 2, 1.0f, 0, -1)) {
         return 0;
     }
     J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 5);
-    JUT_ASSERT(389, pbck != 0);
+    JUT_ASSERT(389, pbck != NULL);
     mBck = new mDoExt_bckAnm();
     if (mBck == NULL || !mBck->init(pbck, 1, 0, 1.0f, 0, -1, false)) {
         return 0;

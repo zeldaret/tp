@@ -1414,21 +1414,21 @@ int daBoomerang_c::createHeap() {
     m_sight.initialize();
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(daAlink_c::getAlinkArcName(), 0x1F);
-    JUT_ASSERT(2882, modelData != 0);
+    JUT_ASSERT(2882, modelData != NULL);
     mp_boomModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mp_boomModel == NULL) {
         return 0;
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes(daAlink_c::getAlinkArcName(), 0x34);
-    JUT_ASSERT(2898, modelData != 0);
+    JUT_ASSERT(2898, modelData != NULL);
     mp_shippuModel = mDoExt_J3DModel__create(modelData, 0, 0x11000284);
     if (mp_shippuModel == NULL) {
         return 0;
     }
 
     J3DAnmTransform* transAnm = (J3DAnmTransform*)dComIfG_getObjectRes(daAlink_c::getAlinkArcName(), 0x13);
-    JUT_ASSERT(2911, transAnm != 0);
+    JUT_ASSERT(2911, transAnm != NULL);
     if (m_shippuBck.init(transAnm, 0, 2, 1.0f, 0, -1, false) == 0) {
         return 0;
     }

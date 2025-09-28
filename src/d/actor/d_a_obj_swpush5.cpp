@@ -104,7 +104,7 @@ int daObjSw5_c::Create() {
     mpBgW->SetRideCallback(rideCallBack);
 
     J3DJoint* sw_jnt = mpModel->getModelData()->getJointNodePointer(1);
-    JUT_ASSERT(276, sw_jnt != 0);
+    JUT_ASSERT(276, sw_jnt != NULL);
 
     sw_jnt->setCallBack(nodeCallBack);
     mpModel->setUserArea((uintptr_t)this);
@@ -125,7 +125,7 @@ static char* l_arcName = "D_Hfsw00";
 /* 8059BA1C-8059BB1C 00061C 0100+00 1/0 0/0 0/0 .text            CreateHeap__10daObjSw5_cFv */
 int daObjSw5_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 4);
-    JUT_ASSERT(308, modelData != 0);
+    JUT_ASSERT(308, modelData != NULL);
 
     mpModel = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, BMD_DEFAULT_DIFF_FLAGS);
     if (mpModel == NULL) {

@@ -95,7 +95,7 @@ static int daObj_Tatigi_Delete(obj_tatigi_class* i_this) {
 static int useHeapInit(fopAc_ac_c* a_this) {
     obj_tatigi_class* i_this = (obj_tatigi_class*)a_this;
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Obj_tg", 3);
-    JUT_ASSERT(279, modelData != 0);
+    JUT_ASSERT(279, modelData != NULL);
     for (int i = 0; i < i_this->mTgNum; i++) {
         i_this->mTgs[i].mModel = mDoExt_J3DModel__create(modelData, 0x20000, 0x11000084);
         if (i_this->mTgs[i].mModel == NULL) {
@@ -205,7 +205,7 @@ static int daObj_Tatigi_Create(fopAc_ac_c* a_this) {
         }
         daObj_Tatigi_Execute(i_this);
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Obj_tg", 3);
-        JUT_ASSERT(476, modelData != 0);
+        JUT_ASSERT(476, modelData != NULL);
         if (dComIfGp_addSimpleModel(modelData, fopAcM_GetRoomNo(a_this), 0) == -1) {
             // Standing tree: simple model registration failed.
             OS_REPORT("\x1B" "[43;30m立ち木：シンプルモデル登録失敗しました。\n" "\x1B" "[m");

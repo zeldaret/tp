@@ -193,14 +193,14 @@ static char* l_arcName[5] = {
 /* 80C11B68-80C11C64 000AE8 00FC+00 1/0 0/0 0/0 .text            CreateHeap__14daObjGraRock_cFv */
 int daObjGraRock_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName[0], "M_VBom_Zora.bmd");
-    JUT_ASSERT(488, modelData != 0);
+    JUT_ASSERT(488, modelData != NULL);
     mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11020084);
     if (mModel == NULL) {
         return 0;
     }
     J3DAnmTexPattern* btp_p =
         (J3DAnmTexPattern*)dComIfG_getObjectRes(l_arcName[0], "M_VBom_Zora.btp");
-    JUT_ASSERT(501, btp_p != 0);
+    JUT_ASSERT(501, btp_p != NULL);
     if (mBtp.init(modelData, btp_p, 1, 2, 1.0f, 0, -1) == 0) {
         return 0;
     }

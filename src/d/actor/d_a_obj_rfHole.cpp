@@ -30,7 +30,7 @@ void daRfHole_c::setBaseMtx() {
 /* 80CB8F8C-80CB8FF8 00020C 006C+00 1/0 0/0 0/0 .text            CreateHeap__10daRfHole_cFv */
 int daRfHole_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Otosiana", 4);
-    JUT_ASSERT(167, modelData!=0);
+    JUT_ASSERT(167, modelData!=NULL);
     mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     return mModel != NULL ? 1 : 0;
 }

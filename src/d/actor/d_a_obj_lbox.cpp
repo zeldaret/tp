@@ -137,7 +137,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     obj_lbox_class* a_this = static_cast<obj_lbox_class*>(i_this);
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Obj_lbox", 4);
-    JUT_ASSERT(478, modelData != 0);
+    JUT_ASSERT(478, modelData != NULL);
     a_this->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (a_this->mpModel == NULL) {
         return 0;

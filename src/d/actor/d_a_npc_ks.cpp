@@ -6891,7 +6891,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
     }
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(i_this->mResName, npc_ks_class::BMDR_SARU_STICK);
-    JUT_ASSERT(10232, modelData != 0);
+    JUT_ASSERT(10232, modelData != NULL);
     i_this->mpStickModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (i_this->mpStickModel == NULL) {
         return 0;
@@ -6899,7 +6899,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
     if (i_this->mRoomMonkeyID == 0 || i_this->mRoomMonkeyID == 10 || i_this->mRoomMonkeyID == 20 || i_this->mRoomMonkeyID == 21 || i_this->mRoomMonkeyID == 22) {
         modelData = (J3DModelData*)dComIfG_getObjectRes(i_this->mResName, npc_ks_class::BMDR_SARU_BARA);
-        JUT_ASSERT(10249, modelData != 0);
+        JUT_ASSERT(10249, modelData != NULL);
         i_this->mpRoseModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
         if (i_this->mpRoseModel == NULL) {
             return 0;

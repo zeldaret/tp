@@ -2773,7 +2773,7 @@ static int useHeapInit(fopAc_ac_c* actor) {
     }
 
     J3DModelData* i_modelData = (J3DModelData*)dComIfG_getObjectRes("E_mk", 46);
-    JUT_ASSERT(4743, i_modelData != 0);
+    JUT_ASSERT(4743, i_modelData != NULL);
     i_this->mpBoomerangModel = mDoExt_J3DModel__create(i_modelData, 0x80000, 0x11000084);
     if (i_this->mpBoomerangModel == NULL) {
         return 0;

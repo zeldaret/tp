@@ -98,7 +98,7 @@ int daObj_BouMato_c::create() {
 /* 80BBB770-80BBB800 000870 0090+00 1/1 0/0 0/0 .text            CreateHeap__15daObj_BouMato_cFv */
 int daObj_BouMato_c::CreateHeap() {
     J3DModelData*  mdlData_p = (J3DModelData*)dComIfG_getObjectRes(getResName(), 4);
-    JUT_ASSERT(374, 0 != mdlData_p);
+    JUT_ASSERT(374, NULL != mdlData_p);
     mModel = mDoExt_J3DModel__create(mdlData_p, 0x80000, 0x11000084);
     if (mModel == NULL) {
         return 0;

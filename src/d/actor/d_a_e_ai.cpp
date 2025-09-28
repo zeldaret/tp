@@ -885,7 +885,7 @@ static int daE_AI_Delete(e_ai_class* i_this) {
 /* 8067B6F0-8067B87C 002670 018C+00 1/1 0/0 0/0 .text            CreateHeap__10e_ai_classFv */
 int e_ai_class::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_AI", 0xD);
-    JUT_ASSERT(1703, modelData != 0);
+    JUT_ASSERT(1703, modelData != NULL);
 
     m_modelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_AI", 9), 2, 1.0f, 0, -1, &m_sound, 0, 0x11000084);
     if (m_modelMorf == NULL || m_modelMorf->getModel() == NULL) {

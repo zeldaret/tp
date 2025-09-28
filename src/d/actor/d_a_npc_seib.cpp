@@ -160,7 +160,7 @@ int daNpc_seiB_c::create() {
 int daNpc_seiB_c::CreateHeap() {
     J3DModelData* mdlData_p =
         (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[0][1]], l_bmdData[0][0]);
-    JUT_ASSERT(466, 0 != mdlData_p);
+    JUT_ASSERT(466, NULL != mdlData_p);
 
     mpMorf[0] =
         new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0, 0x11020284);
@@ -499,7 +499,7 @@ void daNpc_seiB_c::ctrlWaitAnm() {
         return;
     }
 
-    JUT_ASSERT(1068, 0);
+    JUT_ASSERT(1068, FALSE);
 }
 
 /* 80AC6140-80AC616C 001140 002C+00 1/0 0/0 0/0 .text            wait__12daNpc_seiB_cFPv */

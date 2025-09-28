@@ -69,7 +69,7 @@ void daSwhit0_c::makeEventId() {
 /* 804860EC-80486214 00016C 0128+00 1/1 0/0 0/0 .text            CreateHeap__10daSwhit0_cFv */
 int daSwhit0_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 8);
-    JUT_ASSERT(193, modelData != 0);
+    JUT_ASSERT(193, modelData != NULL);
 
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000202);
     if (mpModel == NULL) {

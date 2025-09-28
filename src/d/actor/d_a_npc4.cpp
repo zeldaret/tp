@@ -431,7 +431,7 @@ void daNpcF_Lookat_c::initCalc(fopAc_ac_c* i_actor, Mtx i_baseTransformMtx, cXyz
         mDoMtx_stack_c::multVec(&local_90, &param_2[i]);
     }
 
-    JUT_ASSERT(1244, 0 != mAttnPos_p);
+    JUT_ASSERT(1244, NULL != mAttnPos_p);
 
     local_90 = *mAttnPos_p - i_actor->current.pos;
     mDoMtx_stack_c::multVec(&local_90, &param_5);
@@ -1235,7 +1235,7 @@ int daNpcF_c::ctrlMsgAnm(int& o_expression, int& o_motion, fopAc_ac_c* param_2, 
         fopAc_ac_c* talkPartner = dComIfGp_event_getTalkPartner();
         if (talkPartner == param_2) {
             msg_class* msg_p = dMsgObject_c::getActor();
-            JUT_ASSERT(2780, 0 != msg_p);
+            JUT_ASSERT(2780, NULL != msg_p);
 
             if (msg_p->mode == 2 || msg_p->mode == 3) {
                 field_0x9a4 = -1;
@@ -1298,7 +1298,7 @@ void daNpcF_c::changeEvent(char* i_arcName, char* i_evtName, u16 param_2, u16 pa
         dComIfGp_getEventManager().setObjectArchive(eventInfo.getArchiveName());
     }
 
-    JUT_ASSERT(2887, 0 != i_evtName);
+    JUT_ASSERT(2887, NULL != i_evtName);
 
     mEventIdx = dComIfGp_getEventManager().getEventIdx(this, i_evtName, 0xFF);
     dComIfGp_getEvent().reset(this);

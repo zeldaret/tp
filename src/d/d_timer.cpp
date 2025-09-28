@@ -36,7 +36,7 @@ int dTimer_c::_create() {
         }
 
         dRes_info_c* resInfo = dComIfG_getObjectResInfo("Timer");
-        JUT_ASSERT(0, resInfo != 0);
+        JUT_ASSERT(0, resInfo != NULL);
         dComIfGp_setAllMapArchive(resInfo->getArchive());
 
         mp_heap = fopMsgM_createExpHeap(0x11000, NULL);
@@ -45,7 +45,7 @@ int dTimer_c::_create() {
             mp_heap->getTotalFreeSize();
 
             mp_tm_scrn = new dDlst_TimerScrnDraw_c();
-            JUT_ASSERT(0, mp_tm_scrn != 0);
+            JUT_ASSERT(0, mp_tm_scrn != NULL);
 
             if (appen->timer_mode == 10) {
                 mp_tm_scrn->setScreen(dComIfG_getTimerMode(), resInfo->getArchive());
@@ -614,7 +614,7 @@ void dDlst_TimerScrnDraw_c::setScreen(s32 param_0, JKRArchive* i_archive) {
     setShowType(3);
 
     mpGetInScreen = new J2DScreen();
-    JUT_ASSERT(0, mpGetInScreen != 0);
+    JUT_ASSERT(0, mpGetInScreen != NULL);
 
     bool fg = mpGetInScreen->setPriority("zelda_game_image_cow_get_in.blo", 0x20000, mpArchive);
     JUT_ASSERT(0, fg != false);
@@ -625,13 +625,13 @@ void dDlst_TimerScrnDraw_c::setScreen(s32 param_0, JKRArchive* i_archive) {
         JKRGetNameResource("zelda_game_image_cow_get_in.bck", mpArchive));
 
     mpGetInParent = new CPaneMgr(mpGetInScreen, 'get_in_n', 2, NULL);
-    JUT_ASSERT(0, mpGetInParent != 0);
+    JUT_ASSERT(0, mpGetInParent != NULL);
 
     mpGetInRoot = new CPaneMgr(mpGetInScreen, 'n_all', 0, NULL);
-    JUT_ASSERT(0, mpGetInRoot != 0);
+    JUT_ASSERT(0, mpGetInRoot != NULL);
 
     mpGetInText = new CPaneMgr(mpGetInScreen, 'get_in', 0, NULL);
-    JUT_ASSERT(0, mpGetInText != 0);
+    JUT_ASSERT(0, mpGetInText != NULL);
 
     static_cast<J2DTextBox*>(mpGetInScreen->search('get_in_s'))->setFont(mDoExt_getMesgFont());
     static_cast<J2DTextBox*>(mpGetInScreen->search('get_in'))->setFont(mDoExt_getMesgFont());
@@ -654,7 +654,7 @@ void dDlst_TimerScrnDraw_c::setScreen(s32 param_0, JKRArchive* i_archive) {
 /* 8025E240-8025E66C 258B80 042C+00 1/1 0/0 0/0 .text setScreenBase__21dDlst_TimerScrnDraw_cFv */
 void dDlst_TimerScrnDraw_c::setScreenBase() {
     mpScreen = new J2DScreen();
-    JUT_ASSERT(0, mpScreen != 0);
+    JUT_ASSERT(0, mpScreen != NULL);
 
     bool fg = mpScreen->setPriority("zelda_game_image_cow_game.blo", 0x20000, mpArchive);
     JUT_ASSERT(0, fg != false);
@@ -663,15 +663,15 @@ void dDlst_TimerScrnDraw_c::setScreenBase() {
     mpParent = NULL;
 
     mpCowParent = new CPaneMgr(mpScreen, 'cow_n', 2, NULL);
-    JUT_ASSERT(0, mpCowParent != 0);
+    JUT_ASSERT(0, mpCowParent != NULL);
     mpCowParent->setAlphaRate(0.0f);
 
     mpTimeParent = new CPaneMgr(mpScreen, 'time_n', 2, NULL);
-    JUT_ASSERT(0, mpTimeParent != 0);
+    JUT_ASSERT(0, mpTimeParent != NULL);
     mpTimeParent->setAlphaRate(0.0f);
 
     mpImageParent = new CPaneMgr(mpScreen, 'cow_i_n', 2, NULL);
-    JUT_ASSERT(0, mpImageParent != 0);
+    JUT_ASSERT(0, mpImageParent != NULL);
     mpImageParent->setAlphaRate(0.0f);
 
     field_0x5c[0][0] = mpScreen->search('c_n_2');
@@ -702,23 +702,23 @@ void dDlst_TimerScrnDraw_c::setScreenBase() {
  */
 void dDlst_TimerScrnDraw_c::setScreenBoatRace() {
     mpScreen = new J2DScreen();
-    JUT_ASSERT(0, mpScreen != 0);
+    JUT_ASSERT(0, mpScreen != NULL);
 
     bool fg = mpScreen->setPriority("zelda_game_image_zora_kawakudari.blo", 0x20000, mpArchive);
     JUT_ASSERT(0, fg != false);
     dPaneClass_showNullPane(mpScreen);
 
     mpParent = new CPaneMgr(mpScreen, 'ta_co_n', 2, NULL);
-    JUT_ASSERT(0, mpParent != 0);
+    JUT_ASSERT(0, mpParent != NULL);
 
     mpCowParent = new CPaneMgr(mpScreen, 'num_n', 2, NULL);
-    JUT_ASSERT(0, mpCowParent != 0);
+    JUT_ASSERT(0, mpCowParent != NULL);
     mpCowParent->setAlphaRate(0.0f);
 
     mpTimeParent = NULL;
 
     mpImageParent = new CPaneMgr(mpScreen, 'target_n', 2, NULL);
-    JUT_ASSERT(0, mpImageParent != 0);
+    JUT_ASSERT(0, mpImageParent != NULL);
     mpImageParent->setAlphaRate(0.0f);
 
     mpScreen->search('w_target')->hide();
@@ -745,7 +745,7 @@ void dDlst_TimerScrnDraw_c::setScreenBoatRace() {
 /* 8025E8B8-8025EB20 2591F8 0268+00 1/1 0/0 0/0 .text setScreenRider__21dDlst_TimerScrnDraw_cFv */
 void dDlst_TimerScrnDraw_c::setScreenRider() {
     mpScreen = new J2DScreen();
-    JUT_ASSERT(0, mpScreen != 0);
+    JUT_ASSERT(0, mpScreen != NULL);
 
     bool fg = mpScreen->setPriority("zelda_game_image_rider.blo", 0x20000, mpArchive);
     JUT_ASSERT(0, fg != false);
@@ -754,13 +754,13 @@ void dDlst_TimerScrnDraw_c::setScreenRider() {
     mpParent = NULL;
 
     mpCowParent = new CPaneMgr(mpScreen, 'num_n', 2, NULL);
-    JUT_ASSERT(0, mpCowParent != 0);
+    JUT_ASSERT(0, mpCowParent != NULL);
     mpCowParent->setAlphaRate(0.0f);
 
     mpTimeParent = NULL;
 
     mpImageParent = new CPaneMgr(mpScreen, 'rid_i_n', 2, NULL);
-    JUT_ASSERT(0, mpImageParent != 0);
+    JUT_ASSERT(0, mpImageParent != NULL);
     mpImageParent->setAlphaRate(0.0f);
 
     field_0x5c[0][0] = mpScreen->search('n_n_2');

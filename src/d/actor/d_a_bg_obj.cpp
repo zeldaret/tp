@@ -133,7 +133,7 @@ u8* daBgObj_c::spec_data_c::initFarInfoBlock(u8* i_dataPtr) {
  */
 // NONMATCHING - close-ish
 bool daBgObj_c::spec_data_c::Set(void* i_ptr) {
-    JUT_ASSERT(496, i_ptr != 0);
+    JUT_ASSERT(496, i_ptr != NULL);
 
     u8* data = (u8*)i_ptr;
 
@@ -974,7 +974,7 @@ void daBgObj_c::setParticle() {
             switch (modelNumber) {
                 case 1:
                     bmd = (J3DModelData*)dComIfG_getObjectRes("Always", "BreakWoodBox.bmd");
-                    JUT_ASSERT(1683, bmd != 0);
+                    JUT_ASSERT(1683, bmd != NULL);
                     scale.setall(KREG_F(29) + 0.9f);
                     break;
                 default:

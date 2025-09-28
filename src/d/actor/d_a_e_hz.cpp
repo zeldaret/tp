@@ -1905,7 +1905,7 @@ int daE_HZ_c::JointCallBack(J3DJoint* i_joint, int param_1) {
 /* 806EF8CC-806EFB34 0053AC 0268+00 1/1 0/0 0/0 .text            CreateHeap__8daE_HZ_cFv */
 int daE_HZ_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_HZ", 0x16);
-    JUT_ASSERT(2479, modelData != 0);
+    JUT_ASSERT(2479, modelData != NULL);
 
     mpMorfSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                     (J3DAnmTransform*)dComIfG_getObjectRes("E_HZ", 0x10), 0, 1.0f,
@@ -1921,7 +1921,7 @@ int daE_HZ_c::CreateHeap() {
         modelData = (J3DModelData*)dComIfG_getObjectRes(mpName, 3);
     }
 
-    JUT_ASSERT(2505, modelData != 0);
+    JUT_ASSERT(2505, modelData != NULL);
 
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {
@@ -1942,7 +1942,7 @@ int daE_HZ_c::CreateHeap() {
     mpBgW->SetCrrFunc(dBgS_MoveBGProc_Typical);
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("E_HZ", 0x17);
-    JUT_ASSERT(2532, modelData != 0);
+    JUT_ASSERT(2532, modelData != NULL);
 
     mpModel2 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel2 == NULL) {

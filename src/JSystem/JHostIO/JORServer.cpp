@@ -9,13 +9,13 @@
 
 void JOREventCallbackListNode::JORAppend() {
     JORServer* pServer = JORServer::getInstance();
-    JUT_ASSERT(51, pServer!=0);
+    JUT_ASSERT(51, pServer!=NULL);
     pServer->appendEventCallbackListNode(this);
 }
 
 void JOREventCallbackListNode::JORRemove() {
     JORServer* pServer = JORServer::getInstance();
-    JUT_ASSERT(57, pServer!=0);
+    JUT_ASSERT(57, pServer!=NULL);
     pServer->removeEventCallbackListNode(this);
 }
 

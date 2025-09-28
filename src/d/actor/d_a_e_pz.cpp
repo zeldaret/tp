@@ -2429,7 +2429,7 @@ static int daE_PZ_Delete(daE_PZ_c* i_this) {
 int daE_PZ_c::CreateHeap() {
     if (arg0 >= 20 && arg0 <= 23) {
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_PZ", 0x18);
-        JUT_ASSERT(3876, modelData != 0);
+        JUT_ASSERT(3876, modelData != NULL);
         mpPortalModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
         if (mpPortalModel == NULL) {
             return 0;
@@ -2457,7 +2457,7 @@ int daE_PZ_c::CreateHeap() {
         }
 
         modelData = (J3DModelData*)dComIfG_getObjectRes("E_PZ", 0x19);
-        JUT_ASSERT(3920, modelData != 0);
+        JUT_ASSERT(3920, modelData != NULL);
         mpBallModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_PZ", 7), 2, 1.0f, 0, -1, NULL, 0, 0x11000084);
         if (mpBallModelMorf == NULL) {
             return 0;
@@ -2478,7 +2478,7 @@ int daE_PZ_c::CreateHeap() {
     }
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_PZ", 0x1C);
-    JUT_ASSERT(3959, modelData != 0);
+    JUT_ASSERT(3959, modelData != NULL);
     mpModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_PZ", 8), 2, 1.0f, 0, -1, &field_0x5dc, 0, 0x11000284);
     if (mpModelMorf == NULL || mpModelMorf->getModel() == NULL) {
         return 0;

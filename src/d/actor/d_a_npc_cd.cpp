@@ -218,7 +218,7 @@ dCcD_SrcCyl const daNpcCd_c::m_cylDat = {
 int daNpcCd_c::NpcCreate(int param_1) {
     J3DModelData* a_mdlData_p = getNpcMdlDataP(param_1);
 
-    JUT_ASSERT(470, 0 != a_mdlData_p);
+    JUT_ASSERT(470, NULL != a_mdlData_p);
 
     mpMorf = new mDoExt_McaMorfSO(a_mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mCreature,
                                   0x80000, 0x11000084);

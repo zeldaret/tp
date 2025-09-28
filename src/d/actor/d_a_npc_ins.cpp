@@ -461,7 +461,7 @@ cPhs__Step daNpcIns_c::Create() {
 int daNpcIns_c::CreateHeap() {
     J3DModelData* mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], BMDR_INS));
 
-    JUT_ASSERT(424, 0 != mdlData_p);
+    JUT_ASSERT(424, NULL != mdlData_p);
 
     mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
     if (mpMorf != NULL && mpMorf->getModel() == NULL) {
@@ -484,14 +484,14 @@ int daNpcIns_c::CreateHeap() {
 
     if (mType == TYPE_1 || mType == TYPE_2) {
         mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_arcNames[2], BMDR_INS_UMBRELLA);
-        JUT_ASSERT(456, mdlData_p != 0);
+        JUT_ASSERT(456, mdlData_p != NULL);
         mpUmbrellaModel = mDoExt_J3DModel__create(mdlData_p, 0x80000, 0x11000084);
         if (mpUmbrellaModel == NULL) {
             return 0;
         }
 
         mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_arcNames[2], BMDE_INS_KAGO);
-        JUT_ASSERT(463, mdlData_p != 0);
+        JUT_ASSERT(463, mdlData_p != NULL);
         mpKagoModel = mDoExt_J3DModel__create(mdlData_p, 0, 0x11000084);
         if (mpKagoModel == NULL) {
             return 0;
@@ -1203,7 +1203,7 @@ int daNpcIns_c::waitShop(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(1530, 0);
+            JUT_ASSERT(1530, FALSE);
             break;
     }
 
@@ -1296,7 +1296,7 @@ int daNpcIns_c::waitPresent(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(1585, 0);
+            JUT_ASSERT(1585, FALSE);
             break;
     }
 
@@ -1346,7 +1346,7 @@ int daNpcIns_c::waitOutSide1(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(1642, 0);
+            JUT_ASSERT(1642, FALSE);
             break;
     }
 
@@ -1378,7 +1378,7 @@ int daNpcIns_c::waitOutSide2(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(1679, 0);
+            JUT_ASSERT(1679, FALSE);
             break;
     }
 
@@ -1391,7 +1391,7 @@ int daNpcIns_c::goHome(void* param_1) {
         case 0: {
             cXyz targetPoint;
 
-            JUT_ASSERT(1702, mPath != 0);
+            JUT_ASSERT(1702, mPath != NULL);
 
             getTargetPoint(mPntIndex, &targetPoint);
 
@@ -1444,7 +1444,7 @@ int daNpcIns_c::goHome(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(1750, 0);
+            JUT_ASSERT(1750, FALSE);
             break;
     }
 
@@ -1558,7 +1558,7 @@ int daNpcIns_c::talk(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(1848, 0);
+            JUT_ASSERT(1848, FALSE);
             break;
     }
 
@@ -1583,7 +1583,7 @@ int daNpcIns_c::demo(void* param_1) {
                 if (staffId != -1) {
                     mStaffID = staffId;
 
-                    JUT_ASSERT(1882, 0 != mEvtSeqList[mOrderEvtNo]);
+                    JUT_ASSERT(1882, NULL != mEvtSeqList[mOrderEvtNo]);
 
                     if ((this->*mEvtSeqList[mOrderEvtNo])(staffId)) {
                         eventManager->cutEnd(staffId);
@@ -1605,7 +1605,7 @@ int daNpcIns_c::demo(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(1910, 0);
+            JUT_ASSERT(1910, FALSE);
             break;
     }
 
@@ -1725,7 +1725,7 @@ const insect_param_data& daNpcIns_c::getInsectParamData(int i_index) {
             break;
 
         default:
-            JUT_ASSERT(1965, 0);
+            JUT_ASSERT(1965, FALSE);
             break;
     }
 

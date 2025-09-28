@@ -3733,7 +3733,7 @@ static int daE_VA_Delete(daE_VA_c* i_this) {
 /* 807CD048-807CD600 00AB48 05B8+00 1/1 0/0 0/0 .text            CreateHeap__8daE_VA_cFv */
 int daE_VA_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_VA", 0x33);
-    JUT_ASSERT(0, modelData != 0);
+    JUT_ASSERT(0, modelData != NULL);
 
     mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                   (J3DAnmTransform*)dComIfG_getObjectRes("E_VA", 15), 0, 1.0f, 0,
@@ -3756,7 +3756,7 @@ int daE_VA_c::CreateHeap() {
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("E_VA", 0x30);
-    JUT_ASSERT(0, modelData != 0);
+    JUT_ASSERT(0, modelData != NULL);
 
     mpWeaponModel = mDoExt_J3DModel__create(modelData, 0, 0x11000084);
     if (mpWeaponModel == NULL) {
@@ -3776,7 +3776,7 @@ int daE_VA_c::CreateHeap() {
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("E_VA", 0x37);
-    JUT_ASSERT(0, modelData != 0);
+    JUT_ASSERT(0, modelData != NULL);
 
     mpEndEfMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                        (J3DAnmTransform*)dComIfG_getObjectRes("E_VA", 7), 0, 1.0f,
@@ -3843,7 +3843,7 @@ int daE_VA_c::CreateHeap() {
             break;
         }
 
-        JUT_ASSERT(0, modelData != 0);
+        JUT_ASSERT(0, modelData != NULL);
         mpCardModels[i] = mDoExt_J3DModel__create(modelData, 0, 0x11000084);
     }
 

@@ -187,12 +187,12 @@ int daObjTobyHouse_c::Create() {
             }
         }
         J3DJoint* jnt = mModel->getModelData()->getJointNodePointer(mBirlPJnt);
-        JUT_ASSERT(398, jnt != 0);
+        JUT_ASSERT(398, jnt != NULL);
         jnt->setCallBack(nodeCallBack);
         mModel->setUserArea((uintptr_t)this);
 
         jnt = mModel->getModelData()->getJointNodePointer(mBirlCannonJnt);
-        JUT_ASSERT(406, jnt != 0);
+        JUT_ASSERT(406, jnt != NULL);
     }
     initBaseMtx();
     return 1;
@@ -201,7 +201,7 @@ int daObjTobyHouse_c::Create() {
 /* 80D161A4-80D163A8 0007E4 0204+00 1/0 0/0 0/0 .text            CreateHeap__16daObjTobyHouse_cFv */
 int daObjTobyHouse_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName[mType], l_bmd[mType]);
-    JUT_ASSERT(430, modelData != 0);
+    JUT_ASSERT(430, modelData != NULL);
     mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mModel == NULL) {
         return 0;
@@ -210,7 +210,7 @@ int daObjTobyHouse_c::CreateHeap() {
         for (int i = 0; i < 3; i++) {
             J3DAnmTransform* pbck =
                 (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName[mType], l_bck[i]);
-            JUT_ASSERT(447, pbck != 0);
+            JUT_ASSERT(447, pbck != NULL);
             mBcks[i] = new mDoExt_bckAnm();
             if (mBcks[i] == NULL || !mBcks[i]->init(pbck, 1, 0, 1.0, 0, -1, false)) {
                 return 0;
@@ -219,9 +219,9 @@ int daObjTobyHouse_c::CreateHeap() {
         }
     }
     modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName[mType], l_LodBmd[mType]);
-    JUT_ASSERT(462, modelData != 0);
+    JUT_ASSERT(462, modelData != NULL);
     J3DModelData* shareModelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName[mType], l_bmd[mType]);
-    JUT_ASSERT(469, shareModelData != 0);
+    JUT_ASSERT(469, shareModelData != NULL);
     mDoExt_setupShareTexture(modelData, shareModelData);
     mLODModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mLODModel == NULL) {

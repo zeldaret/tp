@@ -91,7 +91,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 80D192E4-80D195CC 000204 02E8+00 1/1 0/0 0/0 .text            CreateHeap__12daObjTOMBO_cFv */
 int daObjTOMBO_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Tombo", 9);
-    JUT_ASSERT(259, modelData != 0);
+    JUT_ASSERT(259, modelData != NULL);
     mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                   (J3DAnmTransform*)dComIfG_getObjectRes("Tombo", 6), 2, 1.0, 0, -1,
                                   &mCreature, 0, 0x11000284);

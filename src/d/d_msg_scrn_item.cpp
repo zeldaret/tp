@@ -78,7 +78,7 @@ dMsgScrnItem_c::dMsgScrnItem_c(u8 param_1, u8 param_2, JKRExpHeap* param_3) {
         mpItemPane[i] = 0;
         field_0x0e0[i] = 0;
         mpItemTex[i] = field_0x138->alloc(0xc00, 0x20);
-        JUT_ASSERT(100, mpItemTex[i] != 0);
+        JUT_ASSERT(100, mpItemTex[i] != NULL);
     }
     int uStack_60 = 0xffffffff;
     if (mItemIndex == 0x46 || mItemIndex == 0x4c) {
@@ -110,7 +110,7 @@ dMsgScrnItem_c::dMsgScrnItem_c(u8 param_1, u8 param_2, JKRExpHeap* param_3) {
         JKRReadIdxResource(mpItemTex[0], 0xc00, 0x3d, dComIfGp_getItemIconArchive());
         field_0x0e0[0] = (ResTIMG*)mpItemTex[0];
         mpItemPane[0] = new J2DPicture(field_0x0e0[0]);
-        JUT_ASSERT(148, mpItemPane[0] != 0);
+        JUT_ASSERT(148, mpItemPane[0] != NULL);
     } else {
         int texNum =
             dMeter2Info_readItemTexture(mItemIndex, mpItemTex[0], (J2DPicture*)NULL, mpItemTex[1],
@@ -118,7 +118,7 @@ dMsgScrnItem_c::dMsgScrnItem_c(u8 param_1, u8 param_2, JKRExpHeap* param_3) {
         for (int i = 0; i < texNum; i++) {
             field_0x0e0[i] = (ResTIMG*)mpItemTex[i];
             mpItemPane[i] = new J2DPicture(field_0x0e0[i]);
-            JUT_ASSERT(165, mpItemPane[i] != 0);
+            JUT_ASSERT(165, mpItemPane[i] != NULL);
         }
         dMeter2Info_setItemColor(
             mItemIndex, mpItemPane[0], mpItemPane[1],
@@ -130,12 +130,12 @@ dMsgScrnItem_c::dMsgScrnItem_c(u8 param_1, u8 param_2, JKRExpHeap* param_3) {
         #endif
     }
     mpScreen = new J2DScreen();
-    JUT_ASSERT(188, mpScreen != 0);
+    JUT_ASSERT(188, mpScreen != NULL);
     bool fg = mpScreen->setPriority("zelda_item_get_window.blo", 0x1020000, dComIfGp_getMsgArchive(3));
     JUT_ASSERT(195, fg != false);
     dPaneClass_showNullPane(mpScreen);
     mpTxScreen = new J2DScreen();
-    JUT_ASSERT(199, mpTxScreen != 0);
+    JUT_ASSERT(199, mpTxScreen != NULL);
     fg = mpTxScreen->setPriority("zelda_item_get_window_text.blo", 0x20000, dComIfGp_getMsgArchive(3));
     JUT_ASSERT(206, fg != false);
     dPaneClass_showNullPane(mpTxScreen);
@@ -158,13 +158,13 @@ dMsgScrnItem_c::dMsgScrnItem_c(u8 param_1, u8 param_2, JKRExpHeap* param_3) {
         }
     }
     mpArrow_c = new dMsgScrnArrow_c();
-    JUT_ASSERT(280, mpArrow_c != 0);
+    JUT_ASSERT(280, mpArrow_c != NULL);
     mpSelect_c = new dMsgScrn3Select_c();
-    JUT_ASSERT(284, mpSelect_c != 0);
+    JUT_ASSERT(284, mpSelect_c != NULL);
     mpLight_c = new dMsgScrnLight_c(3, param_2);
-    JUT_ASSERT(288, mpLight_c != 0);
+    JUT_ASSERT(288, mpLight_c != NULL);
     void* mpBuf = field_0x138->alloc(0x106a, 0x20);
-    JUT_ASSERT(291, mpBuf != 0);
+    JUT_ASSERT(291, mpBuf != NULL);
     memset(mpBuf, 0, 0x106a);
     mCharInfoPtr = (CharInfo_c*)mpBuf;
     field_0x160 = mpScreen->search('n_all')->getBounds().i.x;
@@ -176,11 +176,11 @@ dMsgScrnItem_c::dMsgScrnItem_c(u8 param_1, u8 param_2, JKRExpHeap* param_3) {
     }
     field_0x194 = 0.0f;
     mpArw_c = new CPaneMgr(mpScreen, 'set_ya_n', 0, NULL);
-    JUT_ASSERT(306, mpArw_c != 0);
+    JUT_ASSERT(306, mpArw_c != NULL);
     mpMg_c[0] = new CPaneMgr(mpScreen, 'mg_null', 0, NULL);
-    JUT_ASSERT(309, mpMg_c[0] != 0);
+    JUT_ASSERT(309, mpMg_c[0] != NULL);
     mpMg_c[1] = new CPaneMgr(mpTxScreen, 'mg_null', 0, NULL);
-    JUT_ASSERT(312, mpMg_c[1] != 0);
+    JUT_ASSERT(312, mpMg_c[1] != NULL);
     OSInitFastCast();
     fukiPosCalc(param_1);
     field_0x118[0] = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(JKRGetNameResource("zelda_item_get_window.btk", dComIfGp_getMsgArchive(3)));
@@ -194,51 +194,51 @@ dMsgScrnItem_c::dMsgScrnItem_c(u8 param_1, u8 param_2, JKRExpHeap* param_3) {
     field_0x154[1] = 0.0f;
     field_0x19d = false;
     mpPmP_c = new CPaneMgr(mpScreen, 'n_all', 3, NULL);
-    JUT_ASSERT(389, mpPmP_c != 0);
+    JUT_ASSERT(389, mpPmP_c != NULL);
 
     mpPmP_c->scale(g_MsgObject_HIO_c.mBoxItemScaleX, g_MsgObject_HIO_c.mBoxItemScaleY);
 
 #if VERSION == VERSION_GCN_JPN
     if (dComIfGs_getOptUnk0() == 0) {
         mpTm_c[0] = new CPaneMgr(mpTxScreen, 'mg_3flin', 0, NULL);
-        JUT_ASSERT(407, mpTm_c[0] != 0);
+        JUT_ASSERT(407, mpTm_c[0] != NULL);
 
         mpTm_c[1] = new CPaneMgr(mpTxScreen, 't3f_s', 0, NULL);
-        JUT_ASSERT(410, mpTm_c[1] != 0);
+        JUT_ASSERT(410, mpTm_c[1] != NULL);
 
         mpTm_c[2] = new CPaneMgr(mpTxScreen, 't3f_w', 0, NULL);
-        JUT_ASSERT(413, mpTm_c[2] != 0);
+        JUT_ASSERT(413, mpTm_c[2] != NULL);
 
         mpTmr_c[0] = new CPaneMgr(mpTxScreen, 'mg_3f', 0, NULL);
-        JUT_ASSERT(416, mpTmr_c[0] != 0);
+        JUT_ASSERT(416, mpTmr_c[0] != NULL);
 
         mpTmr_c[1] = new CPaneMgr(mpTxScreen, 'mg_3f_s', 0, NULL);
-        JUT_ASSERT(419, mpTmr_c[1] != 0);
+        JUT_ASSERT(419, mpTmr_c[1] != NULL);
 
         mpTmr_c[2] = new CPaneMgr(mpTxScreen, 'mg_3f_w', 0, NULL);
-        JUT_ASSERT(422, mpTmr_c[2] != 0);
+        JUT_ASSERT(422, mpTmr_c[2] != NULL);
 
         mpTxScreen->search('n_3line')->hide();
         mpTxScreen->search('n_3fline')->show();
         mpTxScreen->search('n_e4line')->hide();
     } else {
         mpTm_c[0] = new CPaneMgr(mpTxScreen, 'mg_3line', 0, NULL);
-        JUT_ASSERT(407, mpTm_c[0] != 0);
+        JUT_ASSERT(407, mpTm_c[0] != NULL);
         mpTm_c[1] = new CPaneMgr(mpTxScreen, 't3_s', 0, NULL);
-        JUT_ASSERT(410, mpTm_c[1] != 0);
+        JUT_ASSERT(410, mpTm_c[1] != NULL);
         mpTm_c[2] = new CPaneMgr(mpTxScreen, 't3_w', 0, NULL);
-        JUT_ASSERT(413, mpTm_c[2] != 0);
+        JUT_ASSERT(413, mpTm_c[2] != NULL);
         mpTxScreen->search('n_3line')->show();
         mpTxScreen->search('n_3fline')->hide();
         mpTxScreen->search('n_e4line')->hide();
     }
 #else
     mpTm_c[0] = new CPaneMgr(mpTxScreen, 'mg_e4lin', 0, NULL);
-    JUT_ASSERT(407, mpTm_c[0] != 0);
+    JUT_ASSERT(407, mpTm_c[0] != NULL);
     mpTm_c[1] = new CPaneMgr(mpTxScreen, 't4_s', 0, NULL);
-    JUT_ASSERT(410, mpTm_c[1] != 0);
+    JUT_ASSERT(410, mpTm_c[1] != NULL);
     mpTm_c[2] = new CPaneMgr(mpTxScreen, 't4_w', 0, NULL);
-    JUT_ASSERT(413, mpTm_c[2] != 0);
+    JUT_ASSERT(413, mpTm_c[2] != NULL);
     mpTxScreen->search('n_3line')->hide();
     mpTxScreen->search('n_3fline')->hide();
     mpTxScreen->search('n_e4line')->show();

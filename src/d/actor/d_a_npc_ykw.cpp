@@ -672,7 +672,7 @@ void daNpc_ykW_c::reset() {
         break;
     case 2:
         if (daNpcT_chkEvtBit(0x6c)) {
-            JUT_ASSERT(0x6bf, mPath.getPathInfo() != 0);
+            JUT_ASSERT(0x6bf, mPath.getPathInfo() != NULL);
 
             unkXyz1 = mPath.getPntPos(mPath.getNumPnts() - 2);
             setPos(unkXyz1);

@@ -20,7 +20,7 @@ struct TReference {
     /* 802A7B40 */ virtual const char* do_word(u32) const;
 
     int on_parseCharacter(const char** ppszText) const {
-        JUT_ASSERT(97, pcResource_!=0);
+        JUT_ASSERT(97, pcResource_!=NULL);
         return pcResource_->parseCharacter(ppszText);
     }
 
@@ -46,7 +46,7 @@ struct TProcessor {
           pResourceCache_(NULL),
           pszCurrent_(NULL) 
         {
-            JUT_ASSERT(584, pReference_!=0);
+            JUT_ASSERT(584, pReference_!=NULL);
         }
 
     typedef bool (*pfnProcess_func)(TProcessor*);
@@ -175,7 +175,7 @@ struct TProcessor {
     void on_character(int iCharacter) { do_character(iCharacter); }
 
     const char* on_message_limited(u16 u16Index) const {
-        JUT_ASSERT(482, pResourceCache_!=0);
+        JUT_ASSERT(482, pResourceCache_!=NULL);
         return pResourceCache_->getMessageText_messageIndex(u16Index);
     }
 
@@ -190,7 +190,7 @@ struct TProcessor {
     }
 
     int setBegin_messageEntryText(const TProcessor* pProcessor, const void* pEntry, const char* pszText) {
-        JUT_ASSERT(306, pProcessor!=0);
+        JUT_ASSERT(306, pProcessor!=NULL);
         setBegin_messageEntryText(pProcessor->getResourceCache(), pEntry, pszText);
         return 1;
     }

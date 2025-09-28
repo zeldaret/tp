@@ -61,7 +61,7 @@ void daObjItaRope_Hio_c::genMessage(JORMContext* ctx) {
 /* 80CC5238-80CC527C 000078 0044+00 1/1 0/0 0/0 .text setModelData__9Sakuita_cFP12J3DModelData */
 int Sakuita_c::setModelData(J3DModelData* i_modelData) {
     mModel = mDoExt_J3DModel__create(i_modelData, 0x20000, 0x11000084);
-    JUT_ASSERT(140, mModel != 0);
+    JUT_ASSERT(140, mModel != NULL);
     return 1;
 }
 
@@ -162,7 +162,7 @@ inline daObjItaRope_c::~daObjItaRope_c() {
 
     if (field_0x636 != 0) {
         J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes(l_arcName, "A_Sakuita.bmd");
-        JUT_ASSERT(320, modelData != 0);
+        JUT_ASSERT(320, modelData != NULL);
         dComIfGp_removeSimpleModel(modelData, fopAcM_GetRoomNo(this));
     }
     dComIfG_resDelete(&mPhase, l_arcName);
@@ -173,7 +173,7 @@ void daObjItaRope_c::create_init() {
     gravity = attr().mGravity;
     JUT_ASSERT(359, getPathID() != 0xff);
     dPath* path = dPath_GetRoomPath(getPathID(), fopAcM_GetRoomNo(this));
-    JUT_ASSERT(361, path != 0 && (path->m_num == 2));
+    JUT_ASSERT(361, path != NULL && (path->m_num == 2));
     cXyz cStack_60(path->m_points[0].m_position);
     cXyz cStack_6c(path->m_points[1].m_position);
     current.pos = (cStack_60 + cStack_6c) * 0.5f;
@@ -206,7 +206,7 @@ void daObjItaRope_c::create_init() {
     setNormalRopePos();
     initBaseMtx();
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "A_Sakuita.bmd");
-    JUT_ASSERT(420, modelData != 0);
+    JUT_ASSERT(420, modelData != NULL);
     if (dComIfGp_addSimpleModel(modelData, fopAcM_GetRoomNo(this), 0) == -1) {
         OS_REPORT("\x1b[43;30mカラカラ板：シンプルモデル登録失敗しました。\n\x1b[m");
     }
@@ -305,7 +305,7 @@ inline int daObjItaRope_c::createHeap() {
     }
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "A_Sakuita.bmd");
-    JUT_ASSERT(585, modelData != 0);
+    JUT_ASSERT(585, modelData != NULL);
 
     Sakuita_c* pSakuita = mSakuitas;
     for (int i = 0; i < field_0x635 - 2; i++, pSakuita++) {

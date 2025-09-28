@@ -136,7 +136,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 805AAC5C-805AAD58 0006DC 00FC+00 1/1 0/0 0/0 .text            CreateHeap__11daL7lowDr_cFv */
 int daL7lowDr_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("L7lowDr", 10);
-    JUT_ASSERT(244, modelData != 0);
+    JUT_ASSERT(244, modelData != NULL);
     mpModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("L7lowDr", 4), 0, 1.0f, 0, -1, &mSound, 0x80000, 0x11000084);
     if (mpModelMorf == NULL || mpModelMorf->getModel() == NULL) {
         return 0;

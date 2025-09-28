@@ -3793,7 +3793,7 @@ int daKago_c::CreateHeap() {
     } else {
         modelData = (J3DModelData*)dComIfG_getObjectRes(field_0x75c, 0x10);
     }
-    JUT_ASSERT(0x139f, modelData != 0);
+    JUT_ASSERT(0x139f, modelData != NULL);
 
     mpMorf = new mDoExt_McaMorfSO(
         modelData, NULL, NULL,

@@ -43,7 +43,7 @@ int daObjHFtr_c::createHeap() {
 
     J3DModelData* a_model_data_p =
         (J3DModelData*)dComIfG_getObjectRes(l_arcName[nameId], l_bmdIdx[nameId]);
-    JUT_ASSERT(0xb2, a_model_data_p != 0);
+    JUT_ASSERT(0xb2, a_model_data_p != NULL);
 
     mpModel = mDoExt_J3DModel__create(a_model_data_p, 0x80000, 0x11000084);
     if (mpModel == NULL) {

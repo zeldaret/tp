@@ -536,7 +536,7 @@ int daObjMovebox::Act_c::CreateHeap() {
     if (i_attr().field_0x58 >= 0) {
         J3DModelData* modelData =
             (J3DModelData*)dComIfG_getObjectRes(M_arcname[mType], i_attr().field_0x58);
-        JUT_ASSERT(0, modelData != 0);
+        JUT_ASSERT(0, modelData != NULL);
 
         mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
         var_r29 = mpModel != NULL;
@@ -1130,7 +1130,7 @@ int daObjMovebox::Act_c::Execute(Mtx** param_0) {
                     cXyz sp48(current.pos);
                     J3DModelData* kibako_bmd =
                         (J3DModelData*)dComIfG_getObjectRes("Always", "BreakWoodBox.bmd");
-                    JUT_ASSERT(0, kibako_bmd != 0);
+                    JUT_ASSERT(0, kibako_bmd != NULL);
 
                     JPABaseEmitter* emitter = dComIfGp_particle_set(
                         0x82AF, &sp48, NULL, NULL, 0xFF, &dPa_modelEcallBack::getEcallback(),

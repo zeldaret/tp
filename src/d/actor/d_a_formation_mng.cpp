@@ -379,10 +379,10 @@ void daFmtMng_c::create_init() {
     mFormationRow = getFormationRow();
     mPos = NULL;
     mPos = new FmtPos_c[mFormationRow];
-    JUT_ASSERT(357, mPos != 0);
+    JUT_ASSERT(357, mPos != NULL);
     mMember = NULL;
     mMember = new FmtMember_c[mFormationLine * mFormationRow];
-    JUT_ASSERT(361, mMember != 0);
+    JUT_ASSERT(361, mMember != NULL);
 
     FmtMember_c* member = mMember;
     for (int i = 0; i < mFormationLine * mFormationRow; i++, member++) {

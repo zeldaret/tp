@@ -230,7 +230,7 @@ int daObjIce_s_c::create() {
 /* 80C2157C-80C215F4 000CBC 0078+00 1/0 0/0 0/0 .text            CreateHeap__12daObjIce_s_cFv */
 int daObjIce_s_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "Ice_s.bmd");
-    JUT_ASSERT(157, modelData != 0);
+    JUT_ASSERT(157, modelData != NULL);
     mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     return mModel != NULL ? 1 : 0;
 }

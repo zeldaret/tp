@@ -163,7 +163,7 @@ int daBalloon2D_c::createHeap() {
         return  0;
     }
     dRes_info_c* resInfo = dComIfG_getObjectResInfo(l_arcName);
-    JUT_ASSERT(445, resInfo != 0);
+    JUT_ASSERT(445, resInfo != NULL);
     JKRArchive* arc = resInfo->getArchive();
     mScreen->setPriority("zelda_balloon_game.blo", 0x20000, arc);
     dPaneClass_showNullPane(mScreen);
@@ -243,7 +243,7 @@ int daBalloon2D_c::create() {
         if (!fopAcM_entrySolidHeap(this, daBalloon2D_createHeap, 0)) {
             return cPhs_ERROR_e;
         }
-        JUT_ASSERT(566, daBalloon2D_c::myclass == 0);
+        JUT_ASSERT(566, daBalloon2D_c::myclass == NULL);
         myclass = this;
         setHIO(true);
     }

@@ -277,7 +277,7 @@ int dEvt_control_c::talkCheck(dEvt_order_c* order) {
         if (!dComIfGp_getEventManager().order(mEventId)) {
             // "specified event %d not ordered!!"
             OS_REPORT("指定イベント %d が無い!!\n", mEventId);
-            JUT_ASSERT(429, 0);
+            JUT_ASSERT(429, FALSE);
         }
 
         return 1;
@@ -343,7 +343,7 @@ int dEvt_control_c::talkXyCheck(dEvt_order_c* order) {
         if (!dComIfGp_getEventManager().order(mEventId)) {
             // "specified event %d not ordered!!"
             OS_REPORT("指定イベント %d が無い!!\n", mEventId);
-            JUT_ASSERT(512, 0);
+            JUT_ASSERT(512, FALSE);
         }
         return 1;
     }
@@ -374,7 +374,7 @@ int dEvt_control_c::catchCheck(dEvt_order_c* order) {
         if (!dComIfGp_getEventManager().order(mEventId)) {
             // "specified event %d not ordered!!"
             OS_REPORT("指定イベント %d が無い!!\n", mEventId);
-            JUT_ASSERT(551, 0);
+            JUT_ASSERT(551, FALSE);
         }
     }
 
@@ -414,7 +414,7 @@ int dEvt_control_c::demoCheck(dEvt_order_c* order) {
     int eventId = order->mEventId;
 
     if (actor2 == NULL) {
-        JUT_ASSERT(608, 0);
+        JUT_ASSERT(608, FALSE);
         return 0;
     }
 
@@ -481,7 +481,7 @@ int dEvt_control_c::potentialCheck(dEvt_order_c* order) {
 
     #if DEBUG
     if (actor1 == NULL || actor2 == NULL) {
-        JUT_ASSERT(704, 0);
+        JUT_ASSERT(704, FALSE);
     }
     #endif
 
@@ -536,7 +536,7 @@ int dEvt_control_c::doorCheck(dEvt_order_c* order) {
 
         if (mEventId != -1 && dComIfGp_getEventManager().getEventData(mEventId) != NULL) {
             if (!dComIfGp_getEventManager().order(mEventId)) {
-                JUT_ASSERT(773, 0);
+                JUT_ASSERT(773, FALSE);
             }
         } else {
             mEventId = -1;
@@ -572,7 +572,7 @@ int dEvt_control_c::itemCheck(dEvt_order_c* order) {
         if (!dComIfGp_getEventManager().order(mEventId)) {
             // "specified event %d not ordered!!"
             OS_REPORT("指定イベント %s が無い!!\n", eventname);
-            JUT_ASSERT(817, 0);
+            JUT_ASSERT(817, FALSE);
         }
         return 1;
     }
@@ -596,7 +596,7 @@ int dEvt_control_c::endProc() {
         demoEnd();
         break;
     case dEvt_mode_COMPULSORY_e:
-        JUT_ASSERT(858, 0);
+        JUT_ASSERT(858, FALSE);
     }
 
     mMode = dEvt_mode_WAIT_e;
@@ -699,7 +699,7 @@ int dEvt_control_c::entry() {
                 }
                 break;
             case 12:
-                JUT_ASSERT(980, 0);
+                JUT_ASSERT(980, FALSE);
                 break;
             case 13:
                 break;

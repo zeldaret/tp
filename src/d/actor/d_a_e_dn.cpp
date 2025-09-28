@@ -3302,14 +3302,14 @@ static int useHeapInit(fopAc_ac_c* a_this) {
     }
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_dn", 39);
-    JUT_ASSERT(5420, modelData != 0);
+    JUT_ASSERT(5420, modelData != NULL);
     i_this->mpKnifeModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (i_this->mpKnifeModel == NULL) {
         return 0;
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("E_dn", 41);
-    JUT_ASSERT(5432, modelData != 0);
+    JUT_ASSERT(5432, modelData != NULL);
     i_this->mpShieldModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (i_this->mpShieldModel == NULL) {
         return 0;
@@ -3317,7 +3317,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
     if (i_this->field_0x5b7 == 1) {
         modelData = (J3DModelData*)dComIfG_getObjectRes("E_dn", 40);
-        JUT_ASSERT(5443, modelData != 0);
+        JUT_ASSERT(5443, modelData != NULL);
         i_this->mpSkullModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
         if (i_this->mpSkullModel == NULL) {
             return 0;

@@ -36,7 +36,7 @@ int daObjToaruMaki_c::createHeap() {
     u32 nameArg = getNameArg_0();
     J3DModelData* a_model_data_p =
         (J3DModelData*)dComIfG_getObjectRes(l_arcName[nameArg], l_bmdIdx[nameArg]);
-    JUT_ASSERT(101, a_model_data_p != 0);
+    JUT_ASSERT(101, a_model_data_p != NULL);
     mpModel = mDoExt_J3DModel__create(a_model_data_p, 0x80000, 0x11000084);
     if (mpModel == NULL) {
         return 0;

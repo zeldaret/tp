@@ -26,7 +26,7 @@ void daSldWall_c::setBaseMtx() {
 /* 80C61F4C-80C61FB8 00020C 006C+00 1/0 0/0 0/0 .text            CreateHeap__11daSldWall_cFv */
 int daSldWall_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("L4SldWall", 4);
-    JUT_ASSERT(160, modelData != 0);
+    JUT_ASSERT(160, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, BMD_DEFAULT_DIFF_FLAGS);
     if (mpModel == NULL) {
         return 0;

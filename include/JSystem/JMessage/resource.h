@@ -41,7 +41,7 @@ struct TResource {
     }
 
     char* getMessageText_messageEntry(const void* pEntry) const {
-        JUT_ASSERT(141, pEntry!=0);
+        JUT_ASSERT(141, pEntry!=NULL);
         return pMessageText_ + *(int*)pEntry;
     }
 
@@ -124,7 +124,7 @@ struct TResourceContainer {
     /* 802A90F0 */ void setEncoding_(u8 e);
 
     int parseCharacter(const char** ppszText) const {
-        JUT_ASSERT(330, pfnParseCharacter_!=0);
+        JUT_ASSERT(330, pfnParseCharacter_!=NULL);
         return pfnParseCharacter_(ppszText);
     }
 

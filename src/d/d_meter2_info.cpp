@@ -862,7 +862,7 @@ int dMeter2Info_c::readItemTexture(u8 i_itemNo, void* i_texBuf1, J2DPicture* i_p
             }
 
             const ResTIMG* img = i_pic1->changeTexture((ResTIMG*)i_texBuf1, 0);
-            JUT_ASSERT(1284, img != 0);
+            JUT_ASSERT(1284, img != NULL);
         }
 
         tex_num++;
@@ -876,7 +876,7 @@ int dMeter2Info_c::readItemTexture(u8 i_itemNo, void* i_texBuf1, J2DPicture* i_p
                 if (i_pic2 != NULL) {
                     set3rdColor(itemType, i_pic2);
                     const ResTIMG* img = i_pic2->changeTexture((ResTIMG*)i_texBuf2, 0);
-                    JUT_ASSERT(1333, img != 0);
+                    JUT_ASSERT(1333, img != NULL);
                 }
 
                 tex_num++;
@@ -888,7 +888,7 @@ int dMeter2Info_c::readItemTexture(u8 i_itemNo, void* i_texBuf1, J2DPicture* i_p
                 if (i_pic2 != NULL) {
                     set2ndColor(itemType, i_pic2);
                     const ResTIMG* img = i_pic2->changeTexture((ResTIMG*)i_texBuf2, 0);
-                    JUT_ASSERT(1348, img != 0);
+                    JUT_ASSERT(1348, img != NULL);
                 }
 
                 tex_num++;
@@ -901,7 +901,7 @@ int dMeter2Info_c::readItemTexture(u8 i_itemNo, void* i_texBuf1, J2DPicture* i_p
                     if (i_pic3 != NULL) {
                         set3rdColor(itemType, i_pic3);
                         const ResTIMG* img = i_pic3->changeTexture((ResTIMG*)i_texBuf3, 0);
-                        JUT_ASSERT(1364, img != 0);
+                        JUT_ASSERT(1364, img != NULL);
                     }
 
                     tex_num++;
@@ -914,7 +914,7 @@ int dMeter2Info_c::readItemTexture(u8 i_itemNo, void* i_texBuf1, J2DPicture* i_p
                         if (i_pic4 != NULL) {
                             set4thColor(itemType, i_pic4);
                             const ResTIMG* img = i_pic4->changeTexture((ResTIMG*)i_texBuf4, 0);
-                            JUT_ASSERT(1380, img != 0);
+                            JUT_ASSERT(1380, img != NULL);
                         }
 
                         tex_num++;
@@ -1699,7 +1699,7 @@ int dMeter2Info_recieveLetter() {
                         OS_REPORT("letter info =====> %d, %d\n", j, dComIfGs_getGetNumber(j) - 1);
                     }
 
-                    JUT_ASSERT(3552, 0);
+                    JUT_ASSERT(3552, FALSE);
                 }
 
                 letterNum++;

@@ -452,10 +452,10 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
     if (i_this->field_0x577 == 0) {
         modelData = dComIfG_getObjectRes(i_this->mArcName, 4);
-        JUT_ASSERT(868, modelData != 0);
+        JUT_ASSERT(868, modelData != NULL);
         modelData2 = dComIfG_getObjectRes(i_this->mArcName, 5);
         // !@bug assert on wrong variable. not really meaningful.
-        JUT_ASSERT(872, modelData != 0);
+        JUT_ASSERT(872, modelData != NULL);
         pYuka = i_this->mYukas;
         for (int i = 0; i < i_this->mYukaNum; i++, pYuka++) {
             i_this->mYukas[i].mModel1 = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x20000, 0x11000084);
@@ -479,7 +479,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
     } else if (i_this->field_0x577 == 1) {
         a_this->field_0x567 = 1;
         modelData = dComIfG_getObjectRes(i_this->mArcName, 6);
-        JUT_ASSERT(907, modelData != 0);
+        JUT_ASSERT(907, modelData != NULL);
 
         for (int i = 0; i < i_this->mYukaNum; i++) {
             i_this->mYukas[i].mModel1 = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x20000, 0x11000084);
@@ -701,7 +701,7 @@ static int daObj_Toby_Create(fopAc_ac_c* a_this) {
         if (i_this->field_0x577 == 0) {
             for (u32 i = 0; i < 2; i++) {
                 J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(i_this->mArcName, l_bmdidx[i]);
-                JUT_ASSERT(1341, modelData != 0);
+                JUT_ASSERT(1341, modelData != NULL);
                 if (dComIfGp_addSimpleModel(modelData, fopAcM_GetRoomNo(a_this), 1) == -1) {
                     // Skipping floor: simple model registration failed
                     OS_REPORT("\x1B" "[43;30m飛び床：シンプルモデル登録失敗しました。\n" "\x1B" "[m");
@@ -710,7 +710,7 @@ static int daObj_Toby_Create(fopAc_ac_c* a_this) {
             }
         } else if (i_this->field_0x577 == 1) {
             J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(i_this->mArcName, 6);
-            JUT_ASSERT(1351, modelData != 0);
+            JUT_ASSERT(1351, modelData != NULL);
             if (dComIfGp_addSimpleModel(modelData, fopAcM_GetRoomNo(a_this), 1) == -1) {
                 //Skipping leaves: simple model registration failed.
                 OS_REPORT("\x1B" "[43;30m飛び葉：シンプルモデル登録失敗しました。\n" "\x1B" "[m");

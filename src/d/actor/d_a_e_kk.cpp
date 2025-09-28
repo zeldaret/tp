@@ -1362,7 +1362,7 @@ static int daE_KK_Delete(daE_KK_c* i_this) {
 int daE_KK_c::CreateHeap() {
     if (field_0x679 != 1) {
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_KK", 0x22);
-        JUT_ASSERT(2212, modelData != 0);
+        JUT_ASSERT(2212, modelData != NULL);
 
         mpMorfSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                         (J3DAnmTransform*)dComIfG_getObjectRes("E_KK", 0x19), 0,
@@ -1380,7 +1380,7 @@ int daE_KK_c::CreateHeap() {
     }
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_KK", 0x23);
-    JUT_ASSERT(2247, modelData != 0);
+    JUT_ASSERT(2247, modelData != NULL);
 
     mpWeaponMorfSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                           (J3DAnmTransform*)dComIfG_getObjectRes("E_KK", 0x1D), 0,

@@ -1025,7 +1025,7 @@ static int daE_GI_Delete(daE_GI_c* a_this) {
 /* 806D00E8-806D025C 002D48 0174+00 1/1 0/0 0/0 .text            CreateHeap__8daE_GI_cFv */
 int daE_GI_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_GI", 0x13);
-    JUT_ASSERT(1621, modelData != 0);
+    JUT_ASSERT(1621, modelData != NULL);
 
     mpModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_GI", 0xB), 0, 1.0f, 0, -1, &mSound, 0x80000, 0x11000084);
     if (mpModelMorf == NULL || mpModelMorf->getModel() == NULL) {
@@ -1042,7 +1042,7 @@ int daE_GI_c::CreateHeap() {
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("E_GI", 0x14);
-    JUT_ASSERT(1652, modelData != 0);
+    JUT_ASSERT(1652, modelData != NULL);
     mpSwordModel = mDoExt_J3DModel__create(modelData, 0, 0x11000084);
     if (mpSwordModel == NULL) {
         return 0;

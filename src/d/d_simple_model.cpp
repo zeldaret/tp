@@ -11,7 +11,7 @@
 /* 80048C54-80048CB4 043594 0060+00 1/1 0/0 0/0 .text            dSmplMdl_modelUpdateDL__FP8J3DModel
  */
 static void dSmplMdl_modelUpdateDL(J3DModel* i_model) {
-    JUT_ASSERT(61, i_model != 0);
+    JUT_ASSERT(61, i_model != NULL);
     J3DModelData* modelData = i_model->getModelData();
     if (modelData->getMaterialNodePointer(0)->getMaterialAnm() != NULL) {
         OS_REPORT(
@@ -93,7 +93,7 @@ void dSmplMdl_draw_c::entry(J3DModel* i_model, int roomNo) {
 /* 80048F70-80049058 0438B0 00E8+00 0/0 1/1 0/0 .text
  * addModel__15dSmplMdl_draw_cFP12J3DModelDataiUc               */
 BOOL dSmplMdl_draw_c::addModel(J3DModelData* i_modelData, int roomNo, u8 drawBG) {
-    JUT_ASSERT(307, i_modelData != 0);
+    JUT_ASSERT(307, i_modelData != NULL);
     if (roomNo == -1) {
         OS_REPORT("\x1b[43;30mシンプルモデル描画差分ＤＬモデル登録：部屋番号指定がありません！！！\n\x1b[m");
     }
@@ -142,7 +142,7 @@ int dSmplMdl_draw_c::removeModel(J3DModelData* i_modelData, int roomNo) {
 
 /* 800490EC-800491F4 043A2C 0108+00 1/1 0/0 0/0 .text create__12diff_model_cFP12J3DModelDataiUc */
 BOOL diff_model_c::create(J3DModelData* i_modelData, int roomNo, u8 drawBG) {
-    JUT_ASSERT(397, i_modelData != 0);
+    JUT_ASSERT(397, i_modelData != NULL);
     if (mpHeap == NULL) {
         mpHeap = mDoExt_createSolidHeapFromGameToCurrent(0x2000, 0x20);
 

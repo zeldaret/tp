@@ -585,7 +585,7 @@ static void e_yr_path_move(e_yr_class* i_this) {
             s32 nextId = i_this->field_0x6ec->m_nextID;
             if (nextId != 0xffff) {
                 i_this->field_0x6ec = dPath_GetRoomPath(nextId, fopAcM_GetRoomNo(actor));
-                JUT_ASSERT(0x451, i_this->field_0x6ec != 0);
+                JUT_ASSERT(0x451, i_this->field_0x6ec != NULL);
             }
         } else {
             if (i_this->field_0x6ea < 0) {

@@ -151,28 +151,28 @@ int daObjVolcBom_c::Create() {
 /* 80D244E0-80D248AC 0003C0 03CC+00 1/0 0/0 0/0 .text            CreateHeap__14daObjVolcBom_cFv */
 int daObjVolcBom_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 12);
-    JUT_ASSERT(389, modelData != 0);
+    JUT_ASSERT(389, modelData != NULL);
     mModel1 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (mModel1 == NULL) {
         return 0;
     }
 
     J3DAnmTevRegKey* pbrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, 16);
-    JUT_ASSERT(403, pbrk != 0);
+    JUT_ASSERT(403, pbrk != NULL);
     mBrk1 = new mDoExt_brkAnm();
     if (mBrk1 == NULL || !mBrk1->init(modelData, pbrk, 1, 2, 1.0f, 0, -1)) {
         return 0;
     }
 
     J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 21);
-    JUT_ASSERT(416, pbtk != 0);
+    JUT_ASSERT(416, pbtk != NULL);
     mBtk1 = new mDoExt_btkAnm();
     if (mBtk1 == NULL || !mBtk1->init(modelData, pbtk, 1, 2, 1.0f, 0, -1)) {
         return 0;
     }
 
     J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 8);
-    JUT_ASSERT(428, pbck != 0);
+    JUT_ASSERT(428, pbck != NULL);
     mBck1 = new mDoExt_bckAnm();
     if (mBck1 == NULL || !mBck1->init(pbck, 1, 0, 1.0f, 0, -1, false)) {
         return 0;
@@ -180,14 +180,14 @@ int daObjVolcBom_c::CreateHeap() {
 
     field_0x5cb = false;
     modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 11);
-    JUT_ASSERT(443, modelData != 0);
+    JUT_ASSERT(443, modelData != NULL);
     mModel2 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (mModel2 == NULL) {
         return 0;
     }
 
     pbrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, 15);
-    JUT_ASSERT(457, pbrk != 0);
+    JUT_ASSERT(457, pbrk != NULL);
     mBrk2 = new mDoExt_brkAnm();
     if (mBrk2 == NULL || !mBrk2->init(modelData, pbrk, 1, 0, 1.0f, 0, -1)) {
         return 0;
@@ -195,7 +195,7 @@ int daObjVolcBom_c::CreateHeap() {
 
     mBrk2->setPlaySpeed(0.0f);
     pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 19);
-    JUT_ASSERT(471, pbtk != 0);
+    JUT_ASSERT(471, pbtk != NULL);
     mBtk2 = new mDoExt_btkAnm();
     if (mBtk2 == NULL || !mBtk2->init(modelData, pbtk, 1, 2, 1.0f, 0, -1)) {
         return 0;
@@ -309,7 +309,7 @@ void daObjVolcBom_c::init_modeWaitAppear() {
 void daObjVolcBom_c::modeWaitAppear() {
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
     J3DJoint* root_jnt = mModel1->getModelData()->getJointNodePointer(0);
-    JUT_ASSERT(623, root_jnt != 0);
+    JUT_ASSERT(623, root_jnt != NULL);
     
     switch (mWaitAppearState) {
     case 0:
@@ -833,7 +833,7 @@ void daObjVolcBom_c::demoProc() {
 /* 80D26468-80D264E8 002348 0080+00 1/1 0/0 0/0 .text            calcObjPos__14daObjVolcBom_cFv */
 void daObjVolcBom_c::calcObjPos() {
     J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 8);
-    JUT_ASSERT(1459, pbck != 0);
+    JUT_ASSERT(1459, pbck != NULL);
     J3DTransformInfo info;
     pbck->getTransform(0, &info);
     mWarpSEPos.x = info.mTranslate.x;

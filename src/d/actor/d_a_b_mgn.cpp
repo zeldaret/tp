@@ -3348,7 +3348,7 @@ static int daB_MGN_Delete(daB_MGN_c* i_this) {
 /* 8060EAE0-8060F068 0094A0 0588+00 1/1 0/0 0/0 .text            CreateHeap__9daB_MGN_cFv */
 int daB_MGN_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("B_mgn", BMDR_MGN);
-    JUT_ASSERT(4010, modelData != 0);
+    JUT_ASSERT(4010, modelData != NULL);
     mpMgnModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                        (J3DAnmTransform*)dComIfG_getObjectRes("B_mgn", BCK_MGN_WAIT), 2,
                                        1.0f, 0, -1, &mSound, 0x80000, 0x11000284);
@@ -3389,7 +3389,7 @@ int daB_MGN_c::CreateHeap() {
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("B_mgn", BMDR_MGN_TAIEKI);
-    JUT_ASSERT(4068, modelData != 0);
+    JUT_ASSERT(4068, modelData != NULL);
 
     for (int i = 0; i < 20; i++) {
         mpMgnTaiekiModel[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
@@ -3399,7 +3399,7 @@ int daB_MGN_c::CreateHeap() {
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("B_mgne", BMDR_EF_GDGATE);
-    JUT_ASSERT(4084, modelData != 0);
+    JUT_ASSERT(4084, modelData != NULL);
 
     for (int i = 0; i < 4; i++) {
         mpGdgateModelMorf[i] = new mDoExt_McaMorfSO(modelData, NULL, NULL,

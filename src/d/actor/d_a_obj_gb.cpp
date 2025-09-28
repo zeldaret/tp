@@ -137,7 +137,7 @@ static int dzb[2] = {
 static int useHeapInit(fopAc_ac_c* actor) {
     obj_gb_class* i_this = (obj_gb_class*)actor;
     J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes("Obj_gb", bmd[i_this->field_0x57c]);
-    JUT_ASSERT(324, modelData != 0);
+    JUT_ASSERT(324, modelData != NULL);
     i_this->mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (i_this->mModel == NULL) {
         return 0;

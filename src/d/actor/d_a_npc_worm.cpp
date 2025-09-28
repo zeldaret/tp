@@ -356,13 +356,13 @@ static int daNPC_WORM_Delete(npc_worm_class* i_this) {
 static int useHeapInit(fopAc_ac_c* a_this) {
     npc_worm_class* i_this = (npc_worm_class*)a_this;
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Alink", 0x30);
-    JUT_ASSERT(776, modelData != 0);
+    JUT_ASSERT(776, modelData != NULL);
     i_this->mModel1 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (i_this->mModel1 == NULL) {
         return 0;
     }
     modelData = (J3DModelData*)dComIfG_getObjectRes("Alink", 0x31);
-    JUT_ASSERT(794, modelData != 0);
+    JUT_ASSERT(794, modelData != NULL);
     i_this->mModel2 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (i_this->mModel2 == NULL) {
         return 0;

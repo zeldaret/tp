@@ -226,7 +226,7 @@ int daNpc_yamiD_c::CreateHeap() {
 
     J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[bmdIdx][1]], l_bmdData[bmdIdx][0]);
 
-    JUT_ASSERT(477, 0 != mdlData_p);
+    JUT_ASSERT(477, NULL != mdlData_p);
 
     mpMorf[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
     if (mpMorf[0] != NULL && mpMorf[0]->getModel() == NULL) {

@@ -242,7 +242,7 @@ static int daObjRIVERROCK_Execute(daObjRIVERROCK_c* i_this) {
 /* 80CBD348-80CBD3C0 000D68 0078+00 1/0 0/0 0/0 .text            CreateHeap__16daObjRIVERROCK_cFv */
 int daObjRIVERROCK_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes(l_arcName, "M_RiverRock.bmd");
-    JUT_ASSERT(242, modelData != 0);
+    JUT_ASSERT(242, modelData != NULL);
     mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     return mModel != NULL ? TRUE : FALSE;
 }

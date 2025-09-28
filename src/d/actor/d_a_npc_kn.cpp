@@ -506,7 +506,7 @@ int daNpc_Kn_c::CreateHeap() {
     int res_idx = l_bmdData[bmd_offset][0];
 
     mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[arc_idx], res_idx);
-    JUT_ASSERT(1259, 0 != mdlData_p);
+    JUT_ASSERT(1259, NULL != mdlData_p);
 
     u32 sp2C = 0x11020284;
     mpModelMorf[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, sp2C);
@@ -535,7 +535,7 @@ int daNpc_Kn_c::CreateHeap() {
     arc_idx = l_bmdData[bmd_offset][1];
     res_idx = l_bmdData[bmd_offset][0];
     mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[arc_idx], res_idx);
-    JUT_ASSERT(1310, 0 != mdlData_p);
+    JUT_ASSERT(1310, NULL != mdlData_p);
 
     sp2C = 0x11020284;
     mpModelMorf[1] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, sp2C);
@@ -2018,7 +2018,7 @@ int daNpc_Kn_c::teach04_attackWait(void* param_0) {
             u8 cut_type = daPy_getPlayerActorClass()->getCutType();
             if (cut_type == daPy_py_c::CUT_TYPE_GUARD_ATTACK) {
                 fopAc_ac_c* aTgHitActor_p = mCylCc.GetTgHitAc();
-                JUT_ASSERT(3715, 0 != aTgHitActor_p);
+                JUT_ASSERT(3715, NULL != aTgHitActor_p);
 
                 s16 angle = cLib_targetAngleY(&aTgHitActor_p->current.pos, &current.pos);
                 cXyz offset(0.0f, 0.0f, daNpc_Kn_Param_c::m.small_slide_distance);
@@ -2401,7 +2401,7 @@ int daNpc_Kn_c::teach06_superJumpWait(void* param_0) {
                 mSound.startCollisionSE(Z2SE_HIT_SWORD, 0x1f);
             } else if (cut_type == daPy_py_c::CUT_TYPE_LARGE_JUMP_INIT) {
                 fopAc_ac_c* aTgHitActor_p = mCylCc.GetTgHitAc();
-                JUT_ASSERT(4286, 0 != aTgHitActor_p);
+                JUT_ASSERT(4286, NULL != aTgHitActor_p);
 
                 s16 angle = cLib_targetAngleY(&aTgHitActor_p->current.pos, &current.pos);
                 cXyz offset(0.0f, 0.0f, daNpc_Kn_Param_c::m.small_slide_distance);
@@ -2617,7 +2617,7 @@ int daNpc_Kn_c::teach06_superJumpWaitDivide(void* param_0) {
                 mSound.startCollisionSE(Z2SE_HIT_SWORD, 0x1F);
             } else if (cut_type == daPy_py_c::CUT_TYPE_LARGE_JUMP_INIT) {
                 fopAc_ac_c* aTgHitActor_p = mCylCc.GetTgHitAc();
-                JUT_ASSERT(4619, 0 != aTgHitActor_p);
+                JUT_ASSERT(4619, NULL != aTgHitActor_p);
 
                 s16 angle = cLib_targetAngleY(&aTgHitActor_p->current.pos, &current.pos);
                 cXyz offset(0.0f, 0.0f, daNpc_Kn_Param_c::m.small_slide_distance);

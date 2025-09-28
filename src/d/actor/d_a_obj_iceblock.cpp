@@ -324,7 +324,7 @@ int daObjIceBlk_c::CreateHeap() {
 
     if (getSwbit2() != 0xFF && !fopAcM_isSwitch(this, getSwbit2())) {
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmd[0]);
-        JUT_ASSERT(0, modelData != 0);
+        JUT_ASSERT(0, modelData != NULL);
 
         mpIceModel = mDoExt_J3DModel__create(modelData, 0, 0x11000084);
         if (mpIceModel == NULL) {
@@ -345,10 +345,10 @@ int daObjIceBlk_c::CreateHeap() {
     }
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmd[1]);
-    JUT_ASSERT(0, modelData != 0);
+    JUT_ASSERT(0, modelData != NULL);
 
     J3DModelData* shareModelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmd[0]);
-    JUT_ASSERT(0, shareModelData != 0);
+    JUT_ASSERT(0, shareModelData != NULL);
 
     mDoExt_setupShareTexture(modelData, shareModelData);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);

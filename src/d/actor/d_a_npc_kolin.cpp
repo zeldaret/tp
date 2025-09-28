@@ -2057,7 +2057,7 @@ int daNpc_Kolin_c::timidWalk(void* param_1) {
             }
             // fallthrough
         case 2:;
-            JUT_ASSERT(4359, 0 != mPath.getPathInfo());
+            JUT_ASSERT(4359, NULL != mPath.getPathInfo());
 
                  /* dSv_event_flag_c::F_0010 - Ordon Village - First convo with Colin blocking path (forced) */
             if (!daNpcT_chkEvtBit(14)) {

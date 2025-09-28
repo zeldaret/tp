@@ -175,7 +175,7 @@ struct daFmtMng_c : public fopAc_ac_c {
     int getEndTime() { return (fopAcM_GetParam(this) >> 24) & 0xff; }
 
     void callExecute() {
-        JUT_ASSERT(680, mAction != 0);
+        JUT_ASSERT(680, mAction != NULL);
         (this->*(mAction[1]))();
     }
 
@@ -203,7 +203,7 @@ struct daFmtMng_c : public fopAc_ac_c {
     }
 
     void callInit() {
-        JUT_ASSERT(667, mAction != 0)
+        JUT_ASSERT(667, mAction != NULL)
         (this->*(*mAction))();
     }
 

@@ -2169,7 +2169,7 @@ static int daE_ZH_Delete(daE_ZH_c* i_this) {
 /* 8082E4E4-8082E6C8 0055A4 01E4+00 1/1 0/0 0/0 .text            CreateHeap__8daE_ZH_cFv */
 int daE_ZH_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_ZH", BMDV_ZH);
-    JUT_ASSERT(3305, modelData != 0);
+    JUT_ASSERT(3305, modelData != NULL);
 
     mpModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_ZH", BCK_ZH_WAIT01), 
                                        2, 1.0f, 0, -1, &mSound, 0, 0x31000284);
@@ -2190,7 +2190,7 @@ int daE_ZH_c::CreateHeap() {
 
     if (arg0 == 1) {
         modelData = (J3DModelData*)dComIfG_getObjectRes("E_ZH", BMDV_ZH_ENTRANCE);
-        JUT_ASSERT(3342, modelData != 0);
+        JUT_ASSERT(3342, modelData != NULL);
 
         mEntranceModel = mDoExt_J3DModel__create(modelData, 0, 0x11020203);
         if (mEntranceModel == NULL) {

@@ -119,7 +119,7 @@ void daObjKWheel00_c::setMtx() {
 /* 80C4D9B8-80C4DA38 000338 0080+00 1/0 0/0 0/0 .text            CreateHeap__15daObjKWheel00_cFv */
 int daObjKWheel00_c::CreateHeap() {
     J3DModelData* const model_data = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcName[m_type], l_bmdidx[m_type]));
-    JUT_ASSERT(206, model_data != 0);
+    JUT_ASSERT(206, model_data != NULL);
 
     mpModel = mDoExt_J3DModel__create(model_data, (1 << 19), 0x11000084);
     return !mpModel ? 0 : 1;

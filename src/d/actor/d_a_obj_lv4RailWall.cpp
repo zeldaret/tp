@@ -62,7 +62,7 @@ int daObjLv4Wall_c::Create() {
 /* 80C60CD0-80C60D40 0002D0 0070+00 1/0 0/0 0/0 .text            CreateHeap__14daObjLv4Wall_cFv */
 int daObjLv4Wall_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 4);
-    JUT_ASSERT(217, modelData != 0);
+    JUT_ASSERT(217, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, BMD_DEFAULT_DIFF_FLAGS);
     if (mpModel == NULL) {
         return 0;

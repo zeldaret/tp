@@ -507,7 +507,7 @@ static void* daHorse_searchSingleBoar(fopAc_ac_c* i_actor, void* i_data) {
 /* 80838F98-808392D8 001158 0340+00 1/1 0/0 0/0 .text            createHeap__9daHorse_cFv */
 int daHorse_c::createHeap() {
     m_modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 0x26);
-    JUT_ASSERT(0x487, m_modelData != 0);
+    JUT_ASSERT(0x487, m_modelData != NULL);
 
     m_model = mDoExt_J3DModel__create(m_modelData, 0x80000, 0x11020084);
     if (m_model == NULL) {
@@ -544,7 +544,7 @@ int daHorse_c::createHeap() {
     }
 
     ResTIMG* texImg = (ResTIMG*)dComIfG_getObjectRes(l_arcName, 0x2C);
-    JUT_ASSERT(0x4B6, texImg != 0);
+    JUT_ASSERT(0x4B6, texImg != NULL);
 
     if (!m_reinLine.init(1, 75, texImg, 0)) {
         return 0;
@@ -909,7 +909,7 @@ int daHorse_c::setSingleAnime(u16 i_anmIdx, f32 i_speed, f32 i_startF, s16 i_end
     J3DAnmTransform* bck;
     if (i_isDemoAnm) {
         if (i_anmIdx & 0x8000) {
-            JUT_ASSERT(0x6D4, 0);
+            JUT_ASSERT(1748, FALSE);
         }
 
         bck = (J3DAnmTransform*)dComIfG_getObjectIDRes(dStage_roomControl_c::getDemoArcName(), i_anmIdx);

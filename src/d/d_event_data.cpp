@@ -317,7 +317,7 @@ static int dEvDt_Next_Stage(int i_staffId, int i_wipe) {
     } else {
         // "Scene transition data is not complete!!"
         OS_REPORT_ERROR("シーン切り替えのデータ指定が足りない!!\n");
-        JUT_ASSERT(379, 0);
+        JUT_ASSERT(379, FALSE);
     }
 
     return 1;
@@ -499,7 +499,7 @@ void dEvDtStaff_c::specialProcLight() {
 
     int staffId = dComIfGp_evmng_getMyStaffId("LIGHT", NULL, 0);
     if (staffId == -1) {
-        JUT_ASSERT(663, 0);
+        JUT_ASSERT(663, FALSE);
         return;
     }
     
@@ -550,7 +550,7 @@ void dEvDtStaff_c::specialProcMessage() {
 
     int staffId = dComIfGp_evmng_getMyStaffId("MESSAGE", NULL, 0);
     if (staffId == -1) {
-        JUT_ASSERT(741, 0);
+        JUT_ASSERT(741, FALSE);
         return;
     }
 
@@ -752,7 +752,7 @@ void dEvDtStaff_c::specialProcSound() {
 
     int staffId = dComIfGp_evmng_getMyStaffId("SOUND", NULL, 0);
     if (staffId == -1) {
-        JUT_ASSERT(960, 0);
+        JUT_ASSERT(960, FALSE);
         return;
     }
 
@@ -833,7 +833,7 @@ void dEvDtStaff_c::specialProcCreate() {
 
     int staffId = dComIfGp_evmng_getMyStaffId("CREATER", NULL, 0);
     if (staffId == -1) {
-        JUT_ASSERT(1055, 0);
+        JUT_ASSERT(1055, FALSE);
         return;
     }
 
@@ -900,7 +900,7 @@ void dEvDtStaff_c::specialProcDirector() {
 
     int staffId = dComIfGp_evmng_getMyStaffId("DIRECTOR", NULL, 0);
     if (staffId == -1) {
-        JUT_ASSERT(1146, 0);
+        JUT_ASSERT(1146, FALSE);
         return;
     }
 
@@ -1052,14 +1052,14 @@ void dEvDtStaff_c::specialProcDirector() {
         case 'VIBR':
             specialProc_WaitStart(staffId);
             if (data->unk2 == 0) {
-                JUT_ASSERT(1291, 0);
+                JUT_ASSERT(1291, FALSE);
             }
 
             idata = dComIfGp_evmng_getMyIntegerP(staffId, "Pattern");
             idata2 = dComIfGp_evmng_getMyIntegerP(staffId, "Type");
 
             if (idata == NULL || idata2 == NULL) {
-                JUT_ASSERT(1295, 0);
+                JUT_ASSERT(1295, FALSE);
             }
 
             dComIfGp_getVibration().StartQuake((u8*)idata, 0, *idata2, cXyz(0.0f, 1.0f, 0.0f));
@@ -1260,7 +1260,7 @@ void dEvDtStaff_c::specialProcPackage() {
 
     int staffId = dComIfGp_evmng_getMyStaffId("PACKAGE", NULL, 0);
     if (staffId == -1) {
-        JUT_ASSERT(1528, 0);
+        JUT_ASSERT(1528, FALSE);
         return;
     }
 
@@ -1342,7 +1342,7 @@ void dEvDtStaff_c::specialProcTimekeeper() {
 
     int staffId = dComIfGp_evmng_getMyStaffId("TIMEKEEPER", NULL, 0);
     if (staffId == -1) {
-        JUT_ASSERT(1650, 0);
+        JUT_ASSERT(1650, FALSE);
         return;
     }
 
@@ -1397,7 +1397,7 @@ void dEvDtStaff_c::specialProcEffect() {
 
     int staffId = dComIfGp_evmng_getMyStaffId("EFFECT", NULL, 0);
     if (staffId == -1) {
-        JUT_ASSERT(1720, 0);
+        JUT_ASSERT(1720, FALSE);
         return;
     }
 

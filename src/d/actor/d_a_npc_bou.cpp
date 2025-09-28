@@ -832,7 +832,7 @@ int daNpc_Bou_c::cutWildGoat(int arg) {
         switch (prm_val) {
             case 0: {
                 actor_p = mActorMngr[0].getActorP();
-                JUT_ASSERT(0x803, 0 != actor_p);
+                JUT_ASSERT(0x803, NULL != actor_p);
                 ((daCow_c *)actor_p)->setCrazyReady();
                 daNpcT_offTmpBit(0x1C);
                 initTalk(mFlowNodeNo, NULL);
@@ -841,7 +841,7 @@ int daNpc_Bou_c::cutWildGoat(int arg) {
 
             case 2: {
                 actor_p = mActorMngr[0].getActorP();
-                JUT_ASSERT(0x811, 0 != actor_p);
+                JUT_ASSERT(0x811, NULL != actor_p);
                 dComIfGp_getEvent().setPt2(actor_p);
                 Z2GetAudioMgr()->subBgmStart(0x1000011);
                 break;
@@ -849,7 +849,7 @@ int daNpc_Bou_c::cutWildGoat(int arg) {
 
             case 5: {
                 actor_p = mActorMngr[0].getActorP();
-                JUT_ASSERT(0x820, 0 != actor_p);
+                JUT_ASSERT(0x820, NULL != actor_p);
                 ((daCow_c *)actor_p)->setCrazyGo();
                 break;
             }
@@ -898,7 +898,7 @@ int daNpc_Bou_c::cutWildGoat(int arg) {
             if (prm_val == 2 || prm_val == 3) {
                 if (prm_val == 3) {
                     actor_p = mActorMngr[0].getActorP();
-                    JUT_ASSERT(0x853, 0 != actor_p);
+                    JUT_ASSERT(0x853, NULL != actor_p);
                     mJntAnm.lookActor(actor_p, 0.0f, 0);
                 }
 
@@ -919,7 +919,7 @@ int daNpc_Bou_c::cutWildGoat(int arg) {
 
             if (prm_val == 3 && ret_val != 0) {
                 actor_p = mActorMngr[0].getActorP();
-                JUT_ASSERT(0x86A, 0 != actor_p);
+                JUT_ASSERT(0x86A, NULL != actor_p);
                 ((daCow_c *)actor_p)->setCrazyReadyDrawOn();
             }
 
@@ -932,7 +932,7 @@ int daNpc_Bou_c::cutWildGoat(int arg) {
         case 7:
         case 8: {
             actor_p = mActorMngr[0].getActorP();
-            JUT_ASSERT(0x875, 0 != actor_p);
+            JUT_ASSERT(0x875, NULL != actor_p);
             mJntAnm.lookActor(actor_p, 0.0f, 0);
             ret_val = 1;
         }

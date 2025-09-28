@@ -84,7 +84,7 @@ int daObjZraMark_c::Create() {
 /* 80D4287C-80D42A7C 00029C 0200+00 1/1 0/0 0/0 .text            CreateHeap__14daObjZraMark_cFv */
 int daObjZraMark_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName[0], l_arcIdx[mType]);
-    JUT_ASSERT(0x176, modelData != 0);
+    JUT_ASSERT(0x176, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {
         return 0;
@@ -389,7 +389,7 @@ BOOL _ZraMark_Hahen_c::loadModel() {
     static const int sHahenBmdType[] = {7, 8};
     J3DModelData* modelData =
         (J3DModelData*)dComIfG_getObjectRes(l_arcName[0], sHahenBmdType[getColor()]);
-    JUT_ASSERT(0x428, modelData != 0);
+    JUT_ASSERT(0x428, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {
         // "--------------Can't load Fragment Model\n"

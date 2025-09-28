@@ -1323,7 +1323,7 @@ static int daE_BG_Delete(daE_BG_c* i_this) {
 /* 80689A0C-80689BD0 0042EC 01C4+00 1/1 0/0 0/0 .text            CreateHeap__8daE_BG_cFv */
 int daE_BG_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_BG", 10);
-    JUT_ASSERT(0, modelData != 0);
+    JUT_ASSERT(0, modelData != NULL);
 
     mpMorfSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                     (J3DAnmTransform*)dComIfG_getObjectRes("E_BG", 7), 0, 1.0f, 0,

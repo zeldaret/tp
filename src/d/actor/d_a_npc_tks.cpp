@@ -360,7 +360,7 @@ int daNpcTks_c::CreateHeap() {
     // NONMATCHING
     J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_arcName, BMDR_TKS);
 
-    JUT_ASSERT(410, 0 != mdlData_p);
+    JUT_ASSERT(410, NULL != mdlData_p);
 
     mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
     if (mpMorf != NULL && mpMorf->getModel() == NULL) {
@@ -392,7 +392,7 @@ int daNpcTks_c::CreateHeap() {
     if (mTksTsubo.mTsuboType < 2) {
         mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(mTksTsubo.mTsuboType != 0 ? l_arcNames[2] : l_arcNames[1], 3));
 
-        JUT_ASSERT(453, 0 != mdlData_p);
+        JUT_ASSERT(453, NULL != mdlData_p);
         
         mTksTsubo.mpModelMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, getTrnsfrmKeyAnmP(l_arcName, BCK_TKS_TUBO_HIDE), -1, 1.0f, 0, -1, &mTksTsubo.mSound, 0x80000, 0x11000084);
         if (mTksTsubo.mpModelMorf == NULL) {
@@ -758,7 +758,7 @@ void daNpcTks_c::reset() {
             break;
 
         default:
-            JUT_ASSERT(1298, 0);
+            JUT_ASSERT(1298, FALSE);
             break;
     }
 }
@@ -981,7 +981,7 @@ void daNpcTks_c::wait() {
             break;
 
         default:
-            JUT_ASSERT(1766, 0);
+            JUT_ASSERT(1766, FALSE);
             break;
     }
 }
@@ -1088,7 +1088,7 @@ void daNpcTks_c::waitNude() {
             break;
 
         default:
-            JUT_ASSERT(1805, 0);
+            JUT_ASSERT(1805, FALSE);
             break;
     }
 }
@@ -1141,7 +1141,7 @@ void daNpcTks_c::waitLv6() {
             break;
 
         default:
-            JUT_ASSERT(1858, 0);
+            JUT_ASSERT(1858, FALSE);
             break;
     }
 }
@@ -1238,7 +1238,7 @@ void daNpcTks_c::talk() {
             break;
 
         default:
-            JUT_ASSERT(1920, 0);
+            JUT_ASSERT(1920, FALSE);
             break;
     }
 }
@@ -1294,7 +1294,7 @@ void daNpcTks_c::hide() {
             break;
 
         default:
-            JUT_ASSERT(1960, 0);
+            JUT_ASSERT(1960, FALSE);
             break;
     }
 }
@@ -1323,7 +1323,7 @@ void daNpcTks_c::shake() {
             break;
 
         default:
-            JUT_ASSERT(1986, 0);
+            JUT_ASSERT(1986, FALSE);
             break;
     }
 }
@@ -1348,7 +1348,7 @@ void daNpcTks_c::showUp() {
             break;
 
         default:
-            JUT_ASSERT(2011, 0);
+            JUT_ASSERT(2011, FALSE);
             break;
     }
 }
@@ -1405,7 +1405,7 @@ void daNpcTks_c::showUpWait() {
             break;
 
         default:
-            JUT_ASSERT(2056, 0);
+            JUT_ASSERT(2056, FALSE);
             break;
     }
 }
@@ -1434,7 +1434,7 @@ void daNpcTks_c::lookAroundA() {
             break;
 
         default:
-            JUT_ASSERT(2082, 0);
+            JUT_ASSERT(2082, FALSE);
             break;
     }
 }
@@ -1463,7 +1463,7 @@ void daNpcTks_c::lookAroundB() {
             break;
 
         default:
-            JUT_ASSERT(2082, 0);
+            JUT_ASSERT(2082, FALSE);
             break;
     }
 }
@@ -1488,7 +1488,7 @@ void daNpcTks_c::in() {
             break;
 
         default:
-            JUT_ASSERT(2133, 0);
+            JUT_ASSERT(2133, FALSE);
             break;
     }
 }
@@ -1519,7 +1519,7 @@ void daNpcTks_c::damage() {
             break;
 
         default:
-            JUT_ASSERT(2162, 0);
+            JUT_ASSERT(2162, FALSE);
             break;
     }
 }
@@ -1558,7 +1558,7 @@ void daNpcTks_c::broken() {
             break;
 
         default:
-            JUT_ASSERT(2199, 0);
+            JUT_ASSERT(2199, FALSE);
     }
 }
 
@@ -1634,7 +1634,7 @@ void daNpcTks_c::demo_appear() {
                                 break;
 
                             default:
-                                JUT_ASSERT(2277, 0);
+                                JUT_ASSERT(2277, FALSE);
                                 break;
                         }
                     }
@@ -1704,7 +1704,7 @@ void daNpcTks_c::demo_appear() {
                             break;
 
                         default:
-                            JUT_ASSERT(2339, 0);
+                            JUT_ASSERT(2339, FALSE);
                             break;
                     }
 
@@ -1724,7 +1724,7 @@ void daNpcTks_c::demo_appear() {
             break;
 
         default:
-            JUT_ASSERT(2356, 0);
+            JUT_ASSERT(2356, FALSE);
     }
 }
 
@@ -1768,7 +1768,7 @@ void daNpcTks_c::demo_scannon() {
                                 break;
 
                             default:
-                                JUT_ASSERT(2405, 0);
+                                JUT_ASSERT(2405, FALSE);
                                 break;
                         }
                     }
@@ -1819,7 +1819,7 @@ void daNpcTks_c::demo_scannon() {
                             break;
 
                         default:
-                            JUT_ASSERT(2473, 0);
+                            JUT_ASSERT(2473, FALSE);
                             break;
                     }
                 }
@@ -1830,7 +1830,7 @@ void daNpcTks_c::demo_scannon() {
             break;
 
         default:
-            JUT_ASSERT(2479, 0);
+            JUT_ASSERT(2479, FALSE);
             break;
     }
 }
@@ -1866,7 +1866,7 @@ void daNpcTks_c::demo_Lv6Gate() {
                                 break;
 
                             default:
-                                JUT_ASSERT(2520, 0);
+                                JUT_ASSERT(2520, FALSE);
                                 break;
                         }
                     }
@@ -1886,7 +1886,7 @@ void daNpcTks_c::demo_Lv6Gate() {
                             break;
 
                         default:
-                            JUT_ASSERT(2535, 0);
+                            JUT_ASSERT(2535, FALSE);
                     }
                 }
             }
@@ -1896,7 +1896,7 @@ void daNpcTks_c::demo_Lv6Gate() {
             break;
 
         default:
-            JUT_ASSERT(2541, 0);
+            JUT_ASSERT(2541, FALSE);
             break;
     }
 }
@@ -1977,7 +1977,7 @@ void daNpcTks_c::demo_farewell() {
                                 break;
 
                             default:
-                                JUT_ASSERT(2627, 0);
+                                JUT_ASSERT(2627, FALSE);
                                 break;
                         }
                     }
@@ -2056,7 +2056,7 @@ void daNpcTks_c::demo_farewell() {
                             break;
 
                         default:
-                            JUT_ASSERT(2711, 0);
+                            JUT_ASSERT(2711, FALSE);
                             break;
                     }
 
@@ -2073,7 +2073,7 @@ void daNpcTks_c::demo_farewell() {
             break;
 
         default:
-            JUT_ASSERT(2737, 0);
+            JUT_ASSERT(2737, FALSE);
     }
 }
 
@@ -2135,7 +2135,7 @@ void daNpcTks_c::demo_warpBack() {
                                 break;
 
                             default:
-                                JUT_ASSERT(2809, 0);
+                                JUT_ASSERT(2809, FALSE);
                         }
                     }
 
@@ -2181,7 +2181,7 @@ void daNpcTks_c::demo_warpBack() {
                             break;
 
                         default:
-                            JUT_ASSERT(2853, 0);
+                            JUT_ASSERT(2853, FALSE);
                             break;
                     }
 
@@ -2198,7 +2198,7 @@ void daNpcTks_c::demo_warpBack() {
             break;
 
         default:
-            JUT_ASSERT(2870, 0);
+            JUT_ASSERT(2870, FALSE);
     }
 }
 
@@ -2264,7 +2264,7 @@ void daNpcTks_c::demo_walkBack() {
                                 break;
 
                             default:
-                                JUT_ASSERT(2809, 0);
+                                JUT_ASSERT(2809, FALSE);
                         }
                     }
 
@@ -2310,7 +2310,7 @@ void daNpcTks_c::demo_walkBack() {
                             break;
 
                         default:
-                            JUT_ASSERT(2986, 0);
+                            JUT_ASSERT(2986, FALSE);
                             break;
                     }
 
@@ -2328,7 +2328,7 @@ void daNpcTks_c::demo_walkBack() {
             break;
 
         default:
-            JUT_ASSERT(3004, 0);
+            JUT_ASSERT(3004, FALSE);
     }
 }
 
@@ -2424,7 +2424,7 @@ void daNpcTks_c::demo_Lv7Start() {
                                 break;
 
                             default:
-                                JUT_ASSERT(3091, 0);
+                                JUT_ASSERT(3091, FALSE);
                                 break;
                         }
                     }
@@ -2626,7 +2626,7 @@ void daNpcTks_c::demo_Lv7Start() {
                         }
 
                         default:
-                            JUT_ASSERT(3263, 0);
+                            JUT_ASSERT(3263, FALSE);
                             break;
                     }
                 }
@@ -2637,7 +2637,7 @@ void daNpcTks_c::demo_Lv7Start() {
             break;
 
         default:
-            JUT_ASSERT(3269, 0);
+            JUT_ASSERT(3269, FALSE);
             break;
     }
 }
@@ -2707,7 +2707,7 @@ void daNpcTks_c::demo_Lv3PickUp() {
                                 break;
                                 
                             default:
-                                JUT_ASSERT(3348, 0);
+                                JUT_ASSERT(3348, FALSE);
                                 break;
                         }
                     }
@@ -2759,7 +2759,7 @@ void daNpcTks_c::demo_Lv3PickUp() {
                             break;
 
                         default:
-                            JUT_ASSERT(3406, 0);
+                            JUT_ASSERT(3406, FALSE);
                             break;
                     }
 
@@ -2777,7 +2777,7 @@ void daNpcTks_c::demo_Lv3PickUp() {
             break;
 
         default:
-            JUT_ASSERT(3424, 0);
+            JUT_ASSERT(3424, FALSE);
             break;
     }
 }
@@ -2839,7 +2839,7 @@ void daNpcTks_c::demo_Lv6PickUp() {
                                 break;
 
                             default:
-                                JUT_ASSERT(3499, 0);
+                                JUT_ASSERT(3499, FALSE);
                                 break;
                         }
                     }
@@ -2890,7 +2890,7 @@ void daNpcTks_c::demo_Lv6PickUp() {
                             break;
 
                         default:
-                            JUT_ASSERT(3650, 0);
+                            JUT_ASSERT(3650, FALSE);
                             break;
                     }
 
@@ -2908,7 +2908,7 @@ void daNpcTks_c::demo_Lv6PickUp() {
             break;
 
         default:
-            JUT_ASSERT(3568, 0);
+            JUT_ASSERT(3568, FALSE);
             break;
     }
 }

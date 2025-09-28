@@ -304,7 +304,7 @@ static int daObjOCTHASHI_Execute(daObjOCTHASHI_c* i_this) {
 /* 80CA5AE0-80CA5B98 000FA0 00B8+00 1/0 0/0 0/0 .text            CreateHeap__15daObjOCTHASHI_cFv */
 int daObjOCTHASHI_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName[0], "S_octhashi00.bmd");
-    JUT_ASSERT(84, modelData != 0);
+    JUT_ASSERT(84, modelData != NULL);
 
     int idx = 0;
     while (idx < mPieceNum) {

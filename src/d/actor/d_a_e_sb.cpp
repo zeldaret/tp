@@ -69,7 +69,7 @@ void daE_SB_HIO_c::genMessage(JORMContext* ctext) {
 /* 807816D8-807817D0 000178 00F8+00 1/1 0/0 0/0 .text            CreateHeap__8daE_SB_cFv */
 int daE_SB_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes("E_SB", 0xF);
-    JUT_ASSERT(271, modelData != 0);
+    JUT_ASSERT(271, modelData != NULL);
     mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                   (J3DAnmTransform*)dComIfG_getObjectRes("E_SB", 0xC),
                                   2, 1.0f, 0, -1,

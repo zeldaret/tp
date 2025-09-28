@@ -141,7 +141,7 @@ int daNbomb_c::createHeap() {
 
     J3DModelData* modelData =
         (J3DModelData*)dComIfG_getObjectRes(m_arcNameList[mType], bmdIdx[mType]);
-    JUT_ASSERT(0, modelData != 0);
+    JUT_ASSERT(0, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {
         return 0;

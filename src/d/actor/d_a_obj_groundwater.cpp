@@ -47,7 +47,7 @@ void daGrdWater_c::setBaseMtx() {
 /* 80C13618-80C139E4 000258 03CC+00 1/0 0/0 0/0 .text            CreateHeap__12daGrdWater_cFv */
 int daGrdWater_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Water", 18);
-    JUT_ASSERT(189, modelData != 0);
+    JUT_ASSERT(189, modelData != NULL);
     mModel2 = mDoExt_J3DModel__create(modelData, 0x80000, 0x19000284);
     if (mModel2 == NULL) {
         return 0;
@@ -68,7 +68,7 @@ int daGrdWater_c::CreateHeap() {
     res = mBck2d.init(anmTransform, 1, 0, 1.0f, 0, -1, false);
     JUT_ASSERT(231, res == 1);
     J3DModelData* modelData2 = (J3DModelData*)dComIfG_getObjectRes("Water", 0x11);
-    JUT_ASSERT(236, modelData2 != 0);
+    JUT_ASSERT(236, modelData2 != NULL);
     mModel1 = mDoExt_J3DModel__create(modelData2, 0x80000, 0x11000284);
     if (mModel1 == NULL) {
         return 0;

@@ -63,7 +63,7 @@ void daObjTEN_c::SetCcSph() {
 static int useHeapInit(fopAc_ac_c* actor) {
     daObjTEN_c* i_this = static_cast<daObjTEN_c*>(actor);
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("I_Ten", 10);
-    JUT_ASSERT(246, modelData != 0);
+    JUT_ASSERT(246, modelData != NULL);
     i_this->mMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, NULL, 2, 1.0f, 0, -1,
                                          &i_this->mCreature, 0, 0x11000284);
     if (i_this->mMorf == NULL || i_this->mMorf->getModel() == NULL) {

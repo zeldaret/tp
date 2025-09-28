@@ -114,7 +114,7 @@ f32 daObjFallObj_c::getFallHeight() {
 /* 80BE3C28-80BE3C98 0002E8 0070+00 1/0 0/0 0/0 .text            CreateHeap__14daObjFallObj_cFv */
 int daObjFallObj_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 4);
-    JUT_ASSERT(260, modelData != 0);
+    JUT_ASSERT(260, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     return mpModel != NULL ? TRUE : FALSE;
 }

@@ -37,7 +37,7 @@ void daWdStick_c::setBaseMtx() {
 /* 80D31C58-80D31CC4 0001F8 006C+00 1/0 0/0 0/0 .text            CreateHeap__11daWdStick_cFv */
 int daWdStick_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("H_Kinobou", 4);
-    JUT_ASSERT(245, modelData != 0);
+    JUT_ASSERT(245, modelData != NULL);
     mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     return mModel != 0 ? 1 : 0;
 }

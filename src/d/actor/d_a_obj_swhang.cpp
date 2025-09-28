@@ -171,7 +171,7 @@ int daObjSwHang_c::CreateHeap() {
    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(
         l_arcName[mType],
         l_bmdIdx[mType]);
-    JUT_ASSERT(445, modelData != 0);
+    JUT_ASSERT(445, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {
         return 0;

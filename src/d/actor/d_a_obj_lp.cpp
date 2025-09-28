@@ -487,7 +487,7 @@ static int daObj_Lp_Create(fopAc_ac_c* a_this) {
         daObj_Lp_Execute(i_this);
 
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Obj_lp", 3);
-        JUT_ASSERT(0x3b0, modelData != 0);
+        JUT_ASSERT(0x3b0, modelData != NULL);
 
         dComIfGp_addSimpleModel(modelData, fopAcM_GetRoomNo(a_this), 0);
         if (modelData == NULL) {

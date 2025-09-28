@@ -43,7 +43,7 @@ void daBmWindow_c::setBaseMtx() {
 /* 80BB8400-80BB846C 0002E0 006C+00 1/0 0/0 0/0 .text            CreateHeap__12daBmWindow_cFv */
 int daBmWindow_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("H_Window", 4);
-    JUT_ASSERT(285, modelData != 0);
+    JUT_ASSERT(285, modelData != NULL);
     mModel = mDoExt_J3DModel__create(modelData, 0, 0x11000084);
     return mModel != NULL ? 1 : 0;
 }

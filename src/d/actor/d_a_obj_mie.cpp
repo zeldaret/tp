@@ -116,7 +116,7 @@ int daObj_Mie_c::CreateHeap() {
     J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(
         l_resNameList[l_bmdData[mType][1]],
         l_bmdData[mType][0]);
-    JUT_ASSERT(392, 0 != mdlData_p);
+    JUT_ASSERT(392, NULL != mdlData_p);
     mModel = mDoExt_J3DModel__create(mdlData_p, 0, 0x11000084);
     return mModel != NULL ? TRUE : FALSE;
 }

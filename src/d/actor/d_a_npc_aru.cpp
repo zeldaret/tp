@@ -1714,7 +1714,7 @@ int daNpc_Aru_c::cutNoEntrance(int i_staffID) {
             case 0: {
                 fopAc_ac_c* actor_p = mActorMngrs[3].getActorP();
 
-                JUT_ASSERT(3279, 0 != actor_p);
+                JUT_ASSERT(3279, NULL != actor_p);
 
                 work.set(0.0f, 500.0f, actor_p->scale.z + 100.0f);
                 angle.y = fopAcM_searchPlayerAngleY(actor_p) - actor_p->current.angle.y;

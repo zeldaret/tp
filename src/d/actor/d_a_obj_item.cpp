@@ -288,7 +288,7 @@ int daItem_c::_daItem_create() {
     {
         // "fpcNm_ITEM_(ITEM) is an unhandled item<%d>\n"
         OS_REPORT_ERROR("fpcNm_(ITEM)では扱わないアイテムです<%d>\n", m_itemNo);
-        JUT_ASSERT(0, 0);
+        JUT_ASSERT(0, FALSE);
         return cPhs_ERROR_e;
     } else if (m_itemNo == fpcNm_ITEM_BOMB_5 || m_itemNo == fpcNm_ITEM_BOMB_10 || m_itemNo == fpcNm_ITEM_BOMB_20 ||
                m_itemNo == fpcNm_ITEM_BOMB_30)
@@ -1175,7 +1175,7 @@ void daItem_c::initFlag() {
     default:
         // "Item: Set Type<%d>\n"
         OS_REPORT("アイテム：セットタイプ<%d>\n", type);
-        JUT_ASSERT(0, 0);
+        JUT_ASSERT(0, FALSE);
     case TYPE_LAUNCH_e:
     case TYPE_LAUNCH_SMALL_e:
     case TYPE_LAUNCH_FROM_PLAYER_e:
@@ -1226,7 +1226,7 @@ void daItem_c::initScale() {
         scale.setall(0.0f);
         break;
     default:
-        JUT_ASSERT(0, 0);
+        JUT_ASSERT(0, FALSE);
     case TYPE_FIXED_PLACE_e:
     case TYPE_WAIT_e:
     case TYPE_SIMPLE_GET_e:

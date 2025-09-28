@@ -76,13 +76,13 @@ void daNpcCdn3_c::setAction(daNpcCdn3_c::Mode_e i_action) {
 
 /* 80978E18-80978E40 0001B8 0028+00 1/1 0/0 0/0 .text            callInit__11daNpcCdn3_cFv */
 void daNpcCdn3_c::callInit() {
-    JUT_ASSERT(408, mAction != 0);
+    JUT_ASSERT(408, mAction != NULL);
     (this->*(mAction[0]))();
 }
 
 /* 80978E40-80978E6C 0001E0 002C+00 1/1 0/0 0/0 .text            callExecute__11daNpcCdn3_cFv */
 void daNpcCdn3_c::callExecute() {
-    JUT_ASSERT(421, mAction != 0);
+    JUT_ASSERT(421, mAction != NULL);
     (this->*(mAction[1]))();
 }
 
@@ -556,7 +556,7 @@ void daNpcCdn3_c::initTalk() {
     field_0xb92 = shape_angle.y;
     field_0xb80 = mpMorf->getAnm();
     field_0xb7c = mSeqNum;
-    JUT_ASSERT(658, 0 != m_targetAct.getActorP());
+    JUT_ASSERT(658, NULL != m_targetAct.getActorP());
     if (!isInShop() && !isNoTurnTalk()) {
         int uVar2;
         if (isChairStyle()) {
@@ -635,7 +635,7 @@ void daNpcCdn3_c::executeTalk() {
                 field_0xb97 = 0;
                 field_0xb94 = 1;
             }
-            JUT_ASSERT(726, m_funcTbl[mSeqNum][field_0xb97] != 0);
+            JUT_ASSERT(726, m_funcTbl[mSeqNum][field_0xb97] != NULL);
             if ((this->*(m_funcTbl[mSeqNum][field_0xb97]))(NULL) != 0) {
                 field_0xb97 = (m_funcTbl[mSeqNum][field_0xb97 + 1] == NULL) ? 0 : field_0xb97 + 1;
                 field_0xb94 = 1;
@@ -657,7 +657,7 @@ void daNpcCdn3_c::executeTalk() {
 /* 80979F08-8097A028 0012A8 0120+00 1/0 0/0 0/0 .text            initEscape__11daNpcCdn3_cFv */
 void daNpcCdn3_c::initEscape() {
     mEscapeTag = getEscapeTag();
-    JUT_ASSERT(816, mEscapeTag != 0);
+    JUT_ASSERT(816, mEscapeTag != NULL);
     JUT_ASSERT(817, mEscapeTag->getPathID() != 0xff);
     m_path.setPath(mEscapeTag->getPathID(), fopAcM_GetRoomNo(this), 1, &current.pos, true);
     JUT_ASSERT(819, m_path.isPath());
@@ -906,7 +906,7 @@ int daNpcCdn3_c::ctrlMsgAnm() {
     }
     if (dComIfGp_event_getTalkPartner() == this) {
         msg_class* msg_p = dMsgObject_c::getActor();
-        JUT_ASSERT(1524, 0 != msg_p);
+        JUT_ASSERT(1524, NULL != msg_p);
         if (msg_p->mode == 2 || msg_p->mode == 3) {
             mMsgIndex = -1;
         } else if (msg_p->mode == 6) {

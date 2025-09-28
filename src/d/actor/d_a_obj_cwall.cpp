@@ -181,7 +181,7 @@ int daObjCwall_c::Create() {
 /* 80BD6D08-80BD6E94 0003A8 018C+00 1/0 0/0 0/0 .text            CreateHeap__12daObjCwall_cFv */
 int daObjCwall_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName[mType], l_wallBmd[mType]);
-    JUT_ASSERT(573, modelData != 0);
+    JUT_ASSERT(573, modelData != NULL);
     mWallModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mWallModel == NULL) {
         return 0;
@@ -192,7 +192,7 @@ int daObjCwall_c::CreateHeap() {
     }
     modelData =
         (J3DModelData*)dComIfG_getObjectRes(l_arcName[mType], l_chainBmd[mType]);
-    JUT_ASSERT(592, modelData != 0);
+    JUT_ASSERT(592, modelData != NULL);
     chain_s* pChain = mChains;
     for (int i = 0; i < 6; i++, pChain++) {
         pChain->mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
@@ -202,7 +202,7 @@ int daObjCwall_c::CreateHeap() {
     }
     modelData =
         (J3DModelData*)dComIfG_getObjectRes(l_arcName[mType], l_handleBmd[mType]);
-    JUT_ASSERT(609, modelData != 0);
+    JUT_ASSERT(609, modelData != NULL);
     mHandleModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mHandleModel == NULL) {
         return 0;

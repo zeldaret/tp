@@ -2198,7 +2198,7 @@ static int daE_WW_Delete(daE_WW_c* i_this) {
 int daE_WW_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_WW", BMDR_WW);
 
-    JUT_ASSERT(2823, modelData != 0);
+    JUT_ASSERT(2823, modelData != NULL);
 
     mpModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_WW", BCK_WW_APPEAR), 0, 1.0f, 0, -1, &mSound, 0x80000, 0x11000084);
     if (mpModelMorf == NULL || mpModelMorf->getModel() == NULL) {

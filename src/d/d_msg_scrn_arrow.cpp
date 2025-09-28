@@ -9,7 +9,7 @@
 /* 8023B9B4-8023BC78 2362F4 02C4+00 0/0 4/4 0/0 .text __ct__15dMsgScrnArrow_cFv */
 dMsgScrnArrow_c::dMsgScrnArrow_c() {
     mpScreen = new J2DScreen();
-    JUT_ASSERT(0, mpScreen != 0);
+    JUT_ASSERT(0, mpScreen != NULL);
     bool fg =
         mpScreen->setPriority("zelda_window_yajirushi.blo", 0x20000, dComIfGp_getMsgArchive(0));
     JUT_ASSERT(0, fg != false);
@@ -27,10 +27,10 @@ dMsgScrnArrow_c::dMsgScrnArrow_c() {
     mBpkFrame = 0.0f;
 
     mpParent_c = new CPaneMgr(mpScreen, 'set_ya_n', 0, NULL);
-    JUT_ASSERT(0, mpParent_c != 0);
+    JUT_ASSERT(0, mpParent_c != NULL);
 
     mpArw_c = new CPaneMgr(mpScreen, 'ya_next', 0, NULL);
-    JUT_ASSERT(0, mpArw_c != 0);
+    JUT_ASSERT(0, mpArw_c != NULL);
 
     mpArw_c->hide();
     mpArw_c->mPane->setAnimation(mpBck);
@@ -38,7 +38,7 @@ dMsgScrnArrow_c::dMsgScrnArrow_c() {
     mpScreen->search('yajinexl')->setAnimation(mpBpk);
 
     mpDot_c = new CPaneMgr(mpScreen, 'ya_end', 0, NULL);
-    JUT_ASSERT(0, mpDot_c != 0);
+    JUT_ASSERT(0, mpDot_c != NULL);
 
     mpDot_c->hide();
     mpScreen->search('yaj_end')->setAnimation(mpBpk);

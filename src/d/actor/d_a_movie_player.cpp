@@ -3545,7 +3545,7 @@ static BOOL daMP_ActivePlayer_Init(char const* moviePath) {
     
     if (!daMP_THPPlayerOpen(moviePath, 0)) {
         OSReport("Fail to open the thp file\n");
-        JUT_ASSERT(0, 0);
+        JUT_ASSERT(0, FALSE);
         return 0;
     }
 
@@ -3564,7 +3564,7 @@ static BOOL daMP_ActivePlayer_Init(char const* moviePath) {
     daMP_buffer = mDoExt_getArchiveHeap()->alloc(daMP_THPPlayerCalcNeedMemory(), 0x20);
     if (daMP_buffer == NULL) {
         OSReport("Can't allocate the memory");
-        JUT_ASSERT(0, 0);
+        JUT_ASSERT(0, FALSE);
         return 0;
     }
 
@@ -3572,7 +3572,7 @@ static BOOL daMP_ActivePlayer_Init(char const* moviePath) {
 
     if (!daMP_THPPlayerPrepare(0, 0, daMP_audioInfo.field_0xc != 1 ? OSGetTick() % daMP_audioInfo.field_0xc : 0)) {
         OSReport("Fail to prepare\n");
-        JUT_ASSERT(0, 0);
+        JUT_ASSERT(0, FALSE);
         return 0;
     }
 
@@ -3653,7 +3653,7 @@ int daMP_c::daMP_c_Get_arg_movieNo() {
 
 /* 80878C28-80878D10 006548 00E8+00 1/1 0/0 0/0 .text            daMP_c_Init__6daMP_cFv */
 int daMP_c::daMP_c_Init() {
-    JUT_ASSERT(9469, m_myObj == 0);
+    JUT_ASSERT(9469, m_myObj == NULL);
 
     mDoGph_gInf_c::setFrameRate(1);
     daMP_Fail_alloc = FALSE;

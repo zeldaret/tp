@@ -102,7 +102,7 @@ const char* l_arcName[3] = {
 int daObjBurnBox_c::CreateHeap() {
     u8 type = getType();
     J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes(l_arcName[type], l_bmd[type]);
-    JUT_ASSERT(0x106, modelData != 0);
+    JUT_ASSERT(0x106, modelData != NULL);
 
     mpBoxModel = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, 0x11000084);
     if (mpBoxModel == NULL) {

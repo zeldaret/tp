@@ -853,7 +853,7 @@ void daObjStone_c::init_modeBreak() {
             acStack_40.setall(0.5f);
         }
         J3DModelData* stone_bmd = (J3DModelData*)dComIfG_getObjectRes("Always", 27);
-        JUT_ASSERT(1687, stone_bmd != 0);
+        JUT_ASSERT(1687, stone_bmd != NULL);
         JPABaseEmitter* emitter = dComIfGp_particle_set(
             0x15c, &current.pos, 0, &acStack_40, 0xff, &dPa_modelEcallBack::getEcallback(), fopAcM_GetRoomNo(this), 0, 0, 0);
         dPa_modelEcallBack::setModel(emitter, stone_bmd, tevStr,

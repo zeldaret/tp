@@ -43,7 +43,7 @@ void daWtGate_c::setBaseMtx() {
 /* 80D2BC94-80D2BD00 0001F4 006C+00 1/0 0/0 0/0 .text            CreateHeap__10daWtGate_cFv */
 int daWtGate_c::CreateHeap() {
     J3DModelData* const modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("S_Zsuimon", 4));
-    JUT_ASSERT(159, modelData != 0);
+    JUT_ASSERT(159, modelData != NULL);
 
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
 

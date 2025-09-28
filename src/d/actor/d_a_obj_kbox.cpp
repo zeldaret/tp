@@ -63,7 +63,7 @@ static void break_eff(obj_kbox_class* i_this) {
     cXyz emitterPos(i_this->mActor.current.pos);
     cXyz particleScale(1.0f, 1.0f, 1.0f);
     J3DModelData* kibako_bmd = (J3DModelData*)dComIfG_getObjectRes("Always", "BreakWoodBox.bmd");
-    JUT_ASSERT(146, kibako_bmd != 0);
+    JUT_ASSERT(146, kibako_bmd != NULL);
     JPABaseEmitter* pEmitter = dComIfGp_particle_set(0x82af, &emitterPos, NULL, NULL, 0xff,  &dPa_modelEcallBack::getEcallback(),
                                                              fopAcM_GetRoomNo(&i_this->mActor), NULL, NULL, &particleScale);
     dPa_modelEcallBack::setModel(pEmitter, kibako_bmd, i_this->mActor.tevStr, 3, NULL, 0, 0);
@@ -462,7 +462,7 @@ static int daObj_Kbox_Delete(obj_kbox_class* i_this) {
 static int useHeapInit(fopAc_ac_c* a_this) {
     obj_kbox_class* i_this = (obj_kbox_class*)a_this;
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Obj_kbox", 4);
-    JUT_ASSERT(911, modelData != 0);
+    JUT_ASSERT(911, modelData != NULL);
     i_this->mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (i_this->mModel == NULL) {
         return 0;

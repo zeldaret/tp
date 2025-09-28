@@ -45,13 +45,13 @@ void daBubbPilar_c::setBaseMtx() {
 /* 80BC3518-80BC35D0 000218 00B8+00 1/0 0/0 0/0 .text            CreateHeap__13daBubbPilar_cFv */
 int daBubbPilar_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("M_Crack", 4);
-    JUT_ASSERT(226, modelData != 0);
+    JUT_ASSERT(226, modelData != NULL);
     mModels[MODE_WAIT] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mModels[MODE_WAIT] == NULL) {
         return 0;
     }
     modelData = (J3DModelData*)dComIfG_getObjectRes("M_Crack", 5);
-    JUT_ASSERT(237, modelData != 0);
+    JUT_ASSERT(237, modelData != NULL);
     mModels[MODE_EFF_ON] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mModels[MODE_EFF_ON] == NULL) {
         return 0;

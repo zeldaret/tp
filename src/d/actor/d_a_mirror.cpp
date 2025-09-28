@@ -206,7 +206,7 @@ void dMirror_packet_c::modelDraw(J3DModel* i_model, Mtx param_1) {
     }
 
     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
-    JUT_ASSERT(0, kankyo != 0);
+    JUT_ASSERT(0, kankyo != NULL);
 
     GXColor color = {0};
     color.r = kankyo->bg_amb_col[0].r;
@@ -597,7 +597,7 @@ int daMirror_c::execute() {
     }
 
     daPy_py_c* player = daPy_getLinkPlayerActorClass();
-    JUT_ASSERT(0, player != 0);
+    JUT_ASSERT(0, player != NULL);
 
     if (mPacket.getViewScale().y > 0.0f && player->getKandelaarFlamePos() &&
         fopAcM_searchActorDistance2(this, player) < 40000.0f)

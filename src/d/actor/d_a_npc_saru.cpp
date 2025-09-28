@@ -892,7 +892,7 @@ int daNpc_Saru_c::cutFindMonkey(int param_1) {
             break;
 
         case 1:
-            JUT_ASSERT(1859, 0 != mPath.getPathInfo());
+            JUT_ASSERT(1859, NULL != mPath.getPathInfo());
             if (cLib_calcTimer(&mEventTimer) == 0) {
                 rv = 1;
             }

@@ -105,8 +105,8 @@ void dBgS_Acch::Set(cXyz* i_pos, cXyz* i_old_pos, fopAc_ac_c* i_actor, int i_tbl
     pm_pos = i_pos;
     pm_old_pos = i_old_pos;
 
-    JUT_ASSERT(246, pm_pos != 0);
-    JUT_ASSERT(247, pm_old_pos != 0);
+    JUT_ASSERT(246, pm_pos != NULL);
+    JUT_ASSERT(247, pm_old_pos != NULL);
 
     m_my_ac = i_actor;
     fpc_ProcID id = fopAcM_GetID(i_actor);
@@ -325,8 +325,8 @@ void dBgS_Acch::LineCheck(dBgS& i_bgs) {
 void dBgS_Acch::CrrPos(dBgS& i_bgs) {
     bool bvar9;
     if (!(m_flags & 1)) {
-        JUT_ASSERT(792, pm_pos != 0);
-        JUT_ASSERT(793, pm_old_pos != 0);
+        JUT_ASSERT(792, pm_pos != NULL);
+        JUT_ASSERT(793, pm_old_pos != NULL);
 
         JUT_ASSERT(833, fpclassify(pm_pos->x) == 1);
         JUT_ASSERT(834, fpclassify(pm_pos->y) == 1);

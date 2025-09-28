@@ -338,7 +338,7 @@ public:
 
         f32 operator*() {
 #ifdef DEBUG
-            JUT_ASSERT(947, pf_!=0);
+            JUT_ASSERT(947, pf_!=NULL);
 #endif
             return *pf_;
         }
@@ -451,7 +451,7 @@ public:
 
         f32 operator*() {
 #ifdef DEBUG
-            JUT_ASSERT(1098, pf_!=0);
+            JUT_ASSERT(1098, pf_!=NULL);
 #endif
             return *pf_;
         }

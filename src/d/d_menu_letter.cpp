@@ -173,7 +173,7 @@ dMenu_Letter_c::~dMenu_Letter_c() {
 /* 801DD36C-801DD474 1D7CAC 0108+00 1/1 0/0 0/0 .text            _create__14dMenu_Letter_cFv */
 void dMenu_Letter_c::_create() {
     mpDrawCursor = new dSelect_cursor_c(2, 1.0f, NULL);
-    JUT_ASSERT(231, mpDrawCursor != 0);
+    JUT_ASSERT(231, mpDrawCursor != NULL);
     #if VERSION == VERSION_SHIELD_DEBUG
     mpDrawCursor->setParam(1.01f, 0.85f, 0.02f, 0.5f, 0.5f);
     #else
@@ -184,10 +184,10 @@ void dMenu_Letter_c::_create() {
     mpDrawCursor->offPlayAnime(0);
 
     mpString = new dMsgString_c();
-    JUT_ASSERT(245, mpString != 0);
+    JUT_ASSERT(245, mpString != NULL);
     
     mpArrow = new dMsgScrnArrow_c();
-    JUT_ASSERT(249, mpArrow != 0);
+    JUT_ASSERT(249, mpArrow != NULL);
 
     screenSetMenu();
     screenSetBase();
@@ -796,12 +796,12 @@ void dMenu_Letter_c::screenSetMenu() {
     };
 
     mpMenuScreen = new J2DScreen();
-    JUT_ASSERT(1146, mpMenuScreen != 0);
+    JUT_ASSERT(1146, mpMenuScreen != NULL);
     bool fg = mpMenuScreen->setPriority("zelda_letter_select_6menu.blo", 0x20000, mpArchive);
     JUT_ASSERT(1156, fg != false);
     dPaneClass_showNullPane(mpMenuScreen);
     mpParent[0] = new CPaneMgr(mpMenuScreen, 'n_all', 2, NULL);
-    JUT_ASSERT(1161, mpParent[0] != 0);
+    JUT_ASSERT(1161, mpParent[0] != NULL);
     mpParent[0]->setAlphaRate(0.0f);
     for (int i = 0; i < 6; i++) {
 #if VERSION == VERSION_GCN_JPN
@@ -830,7 +830,7 @@ void dMenu_Letter_c::screenSetMenu() {
     }
     for (int i = 0; i < 6; i++) {
         mpLetterParent[i] = new CPaneMgr(mpMenuScreen, tag_letter[i], 0, NULL);
-        JUT_ASSERT(1212, mpLetterParent[i] != 0);
+        JUT_ASSERT(1212, mpLetterParent[i] != NULL);
     }
     for (int i = 0; i < 6; i++) {
         field_0x34[i][0] = mpMenuScreen->search(tag_frame[i]);
@@ -868,12 +868,12 @@ void dMenu_Letter_c::screenSetMenu() {
         }
     }
     mpMenuDMYScreen = new J2DScreen();
-    JUT_ASSERT(1270, mpMenuDMYScreen != 0);
+    JUT_ASSERT(1270, mpMenuDMYScreen != NULL);
     fg = mpMenuDMYScreen->setPriority("zelda_letter_select_6menu.blo", 0x20000, mpArchive);
     JUT_ASSERT(1280, fg != false);
     dPaneClass_showNullPane(mpMenuDMYScreen);
     mpDMYParent = new CPaneMgr(mpMenuDMYScreen, 'n_all', 2, NULL);
-    JUT_ASSERT(1285, mpDMYParent != 0);
+    JUT_ASSERT(1285, mpDMYParent != NULL);
     for (int i = 0; i < 6; i++) {
 #if VERSION == VERSION_GCN_JPN
         field_0x184[i][0] = (J2DTextBox*)mpMenuDMYScreen->search(tag_sub0[i]);
@@ -924,13 +924,13 @@ void dMenu_Letter_c::screenSetBase() {
     };
 
     mpBaseScreen = new J2DScreen();
-    JUT_ASSERT(1357, mpBaseScreen != 0);
+    JUT_ASSERT(1357, mpBaseScreen != NULL);
     bool fg = mpBaseScreen->setPriority("zelda_letter_select_base.blo", 0x20000, mpArchive);
     JUT_ASSERT(1361, fg != false);
     dPaneClass_showNullPane(mpBaseScreen);
     mpBaseScreen->search('wi_btn_n')->hide();
     mpParent[1] = new CPaneMgr(mpBaseScreen, 'n_all', 2, NULL);
-    JUT_ASSERT(1372, mpParent[1] != 0);
+    JUT_ASSERT(1372, mpParent[1] != NULL);
     mpParent[1]->setAlphaRate(0.0f);
 #if VERSION == VERSION_GCN_JPN
     J2DTextBox* piVar9 = (J2DTextBox*)mpBaseScreen->search('t_t00');
@@ -1025,7 +1025,7 @@ void dMenu_Letter_c::screenSetShadow() {
  */
 void dMenu_Letter_c::screenSetLetter() {
     mpLetterScreen[0] = new J2DScreen();
-    JUT_ASSERT(1507, mpLetterScreen[0] != 0);
+    JUT_ASSERT(1507, mpLetterScreen[0] != NULL);
     bool fg = mpLetterScreen[0]->setPriority("zelda_letter_window_base.blo", 0x20000, mpArchive);
     JUT_ASSERT(1511, fg != false);
     dPaneClass_showNullPane(mpLetterScreen[0]);
@@ -1041,7 +1041,7 @@ void dMenu_Letter_c::screenSetLetter() {
         mpLetterScreen[0]->search('t3_s')->hide();
         mpLetterScreen[0]->search('mg_3line')->hide();
         mpLineParent = new CPaneMgr(mpLetterScreen[0], 'jp_fri_n', 0, NULL);
-        JUT_ASSERT(1530, mpLineParent != 0);
+        JUT_ASSERT(1530, mpLineParent != NULL);
         for (int i = 0; i < 12; i++) {
             static u64 const line_tag[12] = {
                 'line00', 'line01', 'line02', 'line03', 'line04', 'line05',
@@ -1072,7 +1072,7 @@ void dMenu_Letter_c::screenSetLetter() {
         mpLetterScreen[0]->search('mg_3f_s')->hide();
         mpLetterScreen[0]->search('mg_3f')->hide();
         mpLineParent = new CPaneMgr(mpLetterScreen[0], 'jp_n', 0, NULL);
-        JUT_ASSERT(1530, mpLineParent != 0);
+        JUT_ASSERT(1530, mpLineParent != NULL);
         for (int i = 0; i < 12; i++) {
             static u64 const line_tag[12] = {
                 'line21', 'line22', 'line23', 'line24', 'line25', 'line26',
@@ -1107,7 +1107,7 @@ void dMenu_Letter_c::screenSetLetter() {
     mpLetterScreen[0]->search('t3_s')->hide();
     mpLetterScreen[0]->search('mg_3line')->hide();
     mpLineParent = new CPaneMgr(mpLetterScreen[0], 'us_n', 0, NULL);
-    JUT_ASSERT(1530, mpLineParent != 0);
+    JUT_ASSERT(1530, mpLineParent != NULL);
     for (int i = 0; i < 12; i++) {
         if (line_tag[i] != 0) {
             field_0x25c[i] = (J2DTextBox*)mpLetterScreen[0]->search(line_tag[i]);
@@ -1142,19 +1142,19 @@ void dMenu_Letter_c::screenSetLetter() {
         field_0x1e4[i]->setString(0x10, "");
     }
     mpLetterScreen[1] = new J2DScreen();
-    JUT_ASSERT(1627, mpLetterScreen[1] != 0);
+    JUT_ASSERT(1627, mpLetterScreen[1] != NULL);
     fg = mpLetterScreen[1]->setPriority("zelda_letter_window_spot.blo", 0x20000, mpArchive);
     JUT_ASSERT(1631, fg != false);
     dPaneClass_showNullPane(mpLetterScreen[1]);
     for (int i = 0; i < 2; i++) {
         mpTextParent[i] = new CPaneMgr(mpLetterScreen[i], 'n_all', 2, NULL);
-        JUT_ASSERT(1636, mpTextParent[i] != 0);
+        JUT_ASSERT(1636, mpTextParent[i] != NULL);
         mpTextParent[i]->scale(0.0f, 0.0f);
         mpTextParent[i]->setAlphaRate(0.0f);
     }
     ResTIMG* local_30 = (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', "tt_block8x8.bti");
     mpBlackTex = new J2DPicture(local_30);
-    JUT_ASSERT(1644, mpBlackTex != 0);
+    JUT_ASSERT(1644, mpBlackTex != NULL);
     mpBlackTex->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 255));
     mpBlackTex->setAlpha(0);
 }

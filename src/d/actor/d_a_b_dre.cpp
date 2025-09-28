@@ -18,7 +18,7 @@
 
 int daB_DRE_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("B_DR", 0x49);
-    JUT_ASSERT(0xB4, modelData != 0);
+    JUT_ASSERT(0xB4, modelData != NULL);
 
     if (mAction == 0) {
         mpModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL,

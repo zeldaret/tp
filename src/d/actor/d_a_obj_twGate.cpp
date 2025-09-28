@@ -109,7 +109,7 @@ static Vec const l_cheeckPos1[13] = {
 int daTwGate_c::CreateHeap() {
     J3DModelData* modelData =
         (J3DModelData*)dComIfG_getObjectRes(l_resNameIdx[mGateType], l_bmdIdx[mGateType]);
-    JUT_ASSERT(292, modelData != 0);
+    JUT_ASSERT(292, modelData != NULL);
     mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (mModel == NULL) {
         return 0;

@@ -45,7 +45,7 @@ f32 const daL8Lift_c::mSpeed[16] = {
 /* 80C88860-80C88928 000220 00C8+00 1/0 0/0 0/0 .text            CreateHeap__10daL8Lift_cFv */
 int daL8Lift_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("L8Lift", 5);
-    JUT_ASSERT(190, modelData != 0);
+    JUT_ASSERT(190, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, 0, 0x11000284);
     if (!mpModel) {
         return 0;

@@ -256,7 +256,7 @@ int daObjRgate_c::Create() {
         for (u16 i = 0; i < mpGateModel->getModelData()->getJointNum(); i++) {
             if ((int)i == 1 || (int)i == 2) {
                 J3DJoint* jnt = mpGateModel->getModelData()->getJointNodePointer(i);
-                JUT_ASSERT(448, jnt != 0);
+                JUT_ASSERT(448, jnt != NULL);
 
                 jnt->setCallBack(nodeCallBack);
                 mpGateModel->setUserArea((uintptr_t)this);
@@ -270,7 +270,7 @@ int daObjRgate_c::Create() {
 /* 80CBA654-80CBA828 000A34 01D4+00 1/0 0/0 0/0 .text            CreateHeap__12daObjRgate_cFv */
 int daObjRgate_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 5);
-    JUT_ASSERT(472, modelData != 0);
+    JUT_ASSERT(472, modelData != NULL);
 
     mpGateModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpGateModel == NULL) {
@@ -279,10 +279,10 @@ int daObjRgate_c::CreateHeap() {
 
     if (getSwNo() != 0xFF) {
         modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 7);
-        JUT_ASSERT(485, modelData != 0);
+        JUT_ASSERT(485, modelData != NULL);
 
         J3DModelData* modelData2 = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 5);
-        JUT_ASSERT(495, modelData2 != 0);
+        JUT_ASSERT(495, modelData2 != NULL);
 
         mDoExt_setupShareTexture(modelData, modelData2);
         mpKeyModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
@@ -291,7 +291,7 @@ int daObjRgate_c::CreateHeap() {
         }
 
         modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 6);
-        JUT_ASSERT(511, modelData != 0);
+        JUT_ASSERT(511, modelData != NULL);
 
         mDoExt_setupShareTexture(modelData, modelData2);
         mpHookModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);

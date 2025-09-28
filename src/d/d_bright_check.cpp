@@ -15,7 +15,7 @@
 dBrightCheck_c::dBrightCheck_c(JKRArchive* i_archive) {
     mArchive = i_archive;
     mBrightCheck.mMsgString = new dMsgString_c();
-    JUT_ASSERT(0, mBrightCheck.mMsgString != 0);
+    JUT_ASSERT(0, mBrightCheck.mMsgString != NULL);
 
     screenSet();
     mCompleteCheck = false;
@@ -61,7 +61,7 @@ void dBrightCheck_c::screenSet() {
     #endif
 
     mBrightCheck.Scr = new J2DScreen();
-    JUT_ASSERT(0, mBrightCheck.Scr != 0);
+    JUT_ASSERT(0, mBrightCheck.Scr != NULL);
     mBrightCheck.Scr->setPriority("zelda_option_check.blo", 0x1100000, mArchive);
 
     mBrightCheck.Scr->search('g_abtn_n')->hide();

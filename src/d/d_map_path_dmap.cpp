@@ -435,7 +435,7 @@ int dMpath_c::getTopBottomFloorNo(s8* i_topFloorNo, s8* i_bottomFloorNo) {
 /* 8003F7E8-8003F810 03A128 0028+00 0/0 1/1 0/0 .text            createWork__8dMpath_cFv */
 void dMpath_c::createWork() {
     mLayerList = new dDrawPath_c::layer_data;
-    JUT_ASSERT(1416, mLayerList!=0);
+    JUT_ASSERT(1416, mLayerList!=NULL);
 }
 
 /* 8003F810-8003FA40 03A150 0230+00 1/1 1/1 0/0 .text
@@ -1114,7 +1114,7 @@ void renderingPlusDoorAndCursor_c::drawTreasure() {
         int group_num = getIconGroupNumber(tmp);
 
         if (group_num != 0) {
-            JUT_ASSERT(0xaf9, typeGroupData_p != 0);
+            JUT_ASSERT(0xaf9, typeGroupData_p != NULL);
 
             f32 icon_size = getIconSize(tmp) * mCmPerTexel;
             f32 icon_size_2 = icon_size;
@@ -1190,7 +1190,7 @@ void renderingPlusDoorAndCursor_c::drawTreasureAfterPlayer() {
         int group_num = getIconGroupNumber(tmp);
 
         if (group_num != 0) {
-            JUT_ASSERT(0xb7e, typeGroupData_p != 0);
+            JUT_ASSERT(0xb7e, typeGroupData_p != NULL);
 
             f32 icon_size = getIconSize(tmp) * mCmPerTexel;
             f32 icon_size_2 = icon_size;

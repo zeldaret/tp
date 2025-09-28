@@ -895,7 +895,7 @@ bool daNpcAshB_c::wait(void* param_0) {
     case 3:
         break;
     default:
-        JUT_ASSERT(0x579, 0);
+        JUT_ASSERT(1401, FALSE);
     }
 
     return true;

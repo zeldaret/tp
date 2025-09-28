@@ -6071,7 +6071,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         for (int i = 0; i < 5; i++) {
             static int lure_bmd[] = {6, 7, 8, 10, 13};
             modelData = (J3DModelData*)dComIfG_getObjectRes(a_this->arcname, lure_bmd[i]);
-            JUT_ASSERT(11397, modelData != 0);
+            JUT_ASSERT(11397, modelData != NULL);
 
             u32 mdlflg;
             if (i == 4) {
@@ -6106,7 +6106,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
                 }
 
                 modelData = (J3DModelData*)dComIfG_getObjectRes(a_this->arcname, 5);
-                JUT_ASSERT(11440, modelData != 0);
+                JUT_ASSERT(11440, modelData != NULL);
 
                 for (int j = 0; j < 2; j++) {
                     a_this->hook_model[j] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
@@ -6116,7 +6116,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
                 }
 
                 modelData = (J3DModelData*)dComIfG_getObjectRes(a_this->arcname, 9);
-                JUT_ASSERT(11453, modelData != 0);
+                JUT_ASSERT(11453, modelData != NULL);
 
                 a_this->ring_model = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
                 if (a_this->ring_model == NULL) {
@@ -6139,7 +6139,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         }
 
         modelData = (J3DModelData*)dComIfG_getObjectRes(a_this->arcname, 9);
-        JUT_ASSERT(11499, modelData != 0);
+        JUT_ASSERT(11499, modelData != NULL);
 
         for (int i = 0; i < 6; i++) {
             a_this->unk_ring_model[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
@@ -6157,7 +6157,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
             }
 
             modelData = (J3DModelData*)dComIfG_getObjectRes("Alink", bmd_idx);
-            JUT_ASSERT(11523, modelData != 0);
+            JUT_ASSERT(11523, modelData != NULL);
 
             a_this->rod_uki_model[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
             if (a_this->rod_uki_model[i] == NULL) {
@@ -6175,7 +6175,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         }
 
         modelData = (J3DModelData*)dComIfG_getObjectRes(a_this->arcname, 0x2D);
-        JUT_ASSERT(11547, modelData != 0);
+        JUT_ASSERT(11547, modelData != NULL);
 
         a_this->uki_model = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
         if (a_this->uki_model == NULL) {
@@ -6183,14 +6183,14 @@ static int useHeapInit(fopAc_ac_c* i_this) {
         }
 
         modelData = (J3DModelData*)dComIfG_getObjectRes(a_this->arcname, 0x2E);
-        JUT_ASSERT(11556, modelData != 0);
+        JUT_ASSERT(11556, modelData != NULL);
 
         a_this->uki_saki_model = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
         if (a_this->uki_saki_model == NULL) {
             return 0;
         }
 
-        JUT_ASSERT(11564, modelData != 0);
+        JUT_ASSERT(11564, modelData != NULL);
 
         for (int i = 0; i < 2; i++) {
             static int hook_bmd[] = {44, 43,};
@@ -6219,7 +6219,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
             }
 
             modelData = (J3DModelData*)dComIfG_getObjectRes(a_this->arcname, bmd_idx);
-            JUT_ASSERT(11624, modelData != 0);
+            JUT_ASSERT(11624, modelData != NULL);
 
             a_this->rod_uki_model[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
             if (a_this->rod_uki_model[i] == NULL) {

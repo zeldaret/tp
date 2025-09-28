@@ -519,7 +519,7 @@ int daNpc_Grz_c::CreateHeap() {
         mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNames[l_bmdGetParamList[0][1]], l_bmdGetParamList[0][0]);
     }
 
-    JUT_ASSERT(556, 0 != mdlData_p);
+    JUT_ASSERT(556, NULL != mdlData_p);
 
     mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
     if (mpMorf != NULL && mpMorf->getModel() == NULL) {
@@ -1576,7 +1576,7 @@ BOOL daNpc_Grz_c::doEvent() {
                 int evtCutNo = eventManager.getMyActIdx(staffId, mEvtCutNameList, 7, 0, 0);
 
                 JUT_ASSERT(2262, (0 <= evtCutNo) && (evtCutNo < NUM_EVT_CUTS_e));
-                JUT_ASSERT(2263, 0 != mEvtCutList[evtCutNo]);
+                JUT_ASSERT(2263, NULL != mEvtCutList[evtCutNo]);
 
                 if ((this->*mEvtCutList[evtCutNo])(staffId)) {
                     eventManager.cutEnd(staffId);
@@ -2180,7 +2180,7 @@ int daNpc_Grz_c::doGoOutCut(int i_staffId) {
             case 0:
                 actor = (fopAc_ac_c*)fpcM_Search(s_sub2, this);
 
-                JUT_ASSERT(3349, 0 != actor);
+                JUT_ASSERT(3349, NULL != actor);
 
                 mActorMngrs[2].entry(actor);
                 setLookMode(LOOK_ATTN);
@@ -2189,7 +2189,7 @@ int daNpc_Grz_c::doGoOutCut(int i_staffId) {
             case 1:
                 actor = (fopAc_ac_c*)fpcM_Search(s_sub3, this);
 
-                JUT_ASSERT(3359, 0 != actor);
+                JUT_ASSERT(3359, NULL != actor);
 
                 mActorMngrs[2].entry(actor);
                 setLookMode(LOOK_ATTN);
@@ -2226,7 +2226,7 @@ int daNpc_Grz_c::doGoOutCut(int i_staffId) {
         case 0: {
             fopAc_ac_c* actor_p = mActorMngrs[2].getActorP();
 
-            JUT_ASSERT(3415, 0 != actor_p);
+            JUT_ASSERT(3415, NULL != actor_p);
 
             s16 angleY = fopAcM_searchActorAngleY(this, actor_p);
             if (angleY == mCurAngle.y) {

@@ -40,7 +40,7 @@ dMsgScrn3Select_c::dMsgScrn3Select_c() {
     };
 
     mpScreen = new J2DScreen();
-    JUT_ASSERT(0, mpScreen != 0);
+    JUT_ASSERT(0, mpScreen != NULL);
 
     bool fg = mpScreen->setPriority("zelda_window_3menu.blo", 0x20000, dComIfGp_getMsgArchive(0));
     JUT_ASSERT(0, fg != false);
@@ -65,11 +65,11 @@ dMsgScrn3Select_c::dMsgScrn3Select_c() {
     mBtkFrame = 0.0f;
 
     mpSelectCursor = new dSelect_cursor_c(0, 1.0f, NULL);
-    JUT_ASSERT(0, mpSelectCursor != 0);
+    JUT_ASSERT(0, mpSelectCursor != NULL);
     mpSelectCursor->setAlphaRate(0.0f);
 
     mpParent = new CPaneMgr(mpScreen, 'abc_n', 0, NULL);
-    JUT_ASSERT(0, mpParent != 0);
+    JUT_ASSERT(0, mpParent != NULL);
 
     for (int i = 0; i < 3; i++) {
         mCursorPos[i].x = 0.0f;
@@ -77,35 +77,35 @@ dMsgScrn3Select_c::dMsgScrn3Select_c() {
         mCursorPos[i].z = 0.0f;
 
         mpSel_c[i] = new CPaneMgr(mpScreen, tag_name[i][0], 0, NULL);
-        JUT_ASSERT(0, mpSel_c[i] != 0);
+        JUT_ASSERT(0, mpSel_c[i] != NULL);
         mpSel_c[i]->hide();
 
         mpSelCld_c[i] = new CPaneMgr(mpScreen, tag_name[i][1], 0, NULL);
-        JUT_ASSERT(0, mpSelCld_c[i] != 0);
+        JUT_ASSERT(0, mpSelCld_c[i] != NULL);
         mpSelCld_c[i]->getPanePtr()->setAnimation(mpAnmBtk);
 
         mpSelCldr_c[i] = new CPaneMgr(mpScreen, tag_name[i][2], 0, NULL);
-        JUT_ASSERT(0, mpSelCldr_c[i] != 0);
+        JUT_ASSERT(0, mpSelCldr_c[i] != NULL);
         mpSelCldr_c[i]->getPanePtr()->setAnimation(mpAnmBtk);
 
         mpSelCldm_c[i] = new CPaneMgr(mpScreen, tag_name[i][3], 0, NULL);
-        JUT_ASSERT(0, mpSelCldm_c[i] != 0);
+        JUT_ASSERT(0, mpSelCldm_c[i] != NULL);
         mpSelCldm_c[i]->getPanePtr()->setAnimation(mpAnmBpk);
 
         for (int j = 0; j < 5; j++) {
             mpSelCldw_c[j][i] = new CPaneMgr(mpScreen, tag_name[i][4 + j], 0, NULL);
-            JUT_ASSERT(0, mpSelCldw_c[j][i] != 0);
+            JUT_ASSERT(0, mpSelCldw_c[j][i] != NULL);
         }
 
         mpSelPo_c[i] = new CPaneMgr(mpScreen, tag_name[i][9], 0, NULL);
-        JUT_ASSERT(0, mpSelPo_c[i] != 0);
+        JUT_ASSERT(0, mpSelPo_c[i] != NULL);
         mpSelPo_c[i]->hide();
 
         mpKahen_c[i] = new CPaneMgr(mpScreen, tag_name[i][10], 0, NULL);
-        JUT_ASSERT(0, mpKahen_c[i] != 0);
+        JUT_ASSERT(0, mpKahen_c[i] != NULL);
 
         mpCursor_c[i] = new CPaneMgr(mpScreen, tag_name[i][11], 0, NULL);
-        JUT_ASSERT(0, mpCursor_c[i] != 0);
+        JUT_ASSERT(0, mpCursor_c[i] != NULL);
         mCursorPos[i] = mpCursor_c[i]->getGlobalVtxCenter(true, 0);
     }
 
@@ -171,13 +171,13 @@ dMsgScrn3Select_c::dMsgScrn3Select_c() {
     }
 #else
     mpTmSel_c[0] = new CPaneMgr(mpScreen, 'a_t_e', 0, NULL);
-    JUT_ASSERT(0, mpTmSel_c[0] != 0);
+    JUT_ASSERT(0, mpTmSel_c[0] != NULL);
 
     mpTmSel_c[1] = new CPaneMgr(mpScreen, 'b_t_e', 0, NULL);
-    JUT_ASSERT(0, mpTmSel_c[1] != 0);
+    JUT_ASSERT(0, mpTmSel_c[1] != NULL);
 
     mpTmSel_c[2] = new CPaneMgr(mpScreen, 'c_t_e', 0, NULL);
-    JUT_ASSERT(0, mpTmSel_c[2] != 0);
+    JUT_ASSERT(0, mpTmSel_c[2] != NULL);
 
     for (int i = 0; i < 3; i++) {
         ((J2DTextBox*)(mpTmSel_c[i]->getPanePtr()))->setString(64, "");

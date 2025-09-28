@@ -248,7 +248,7 @@ int daObj_Balloon_c::CreateHeap() {
     } else if (mType == SIZE_SMALL_e) {
         modelData = (J3DModelData*)dComIfG_getObjectRes("Obj_bal", 5);
     }
-    JUT_ASSERT(501, modelData != 0);
+    JUT_ASSERT(501, modelData != NULL);
     mModel = mDoExt_J3DModel__create(modelData, 0, 0x11000084);
     return mModel != NULL ? TRUE : FALSE;
 }

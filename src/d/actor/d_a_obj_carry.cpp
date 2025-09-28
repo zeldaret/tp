@@ -1330,7 +1330,7 @@ int daObjCarry_c::CreateInit_Lv8Ball() {
 /* 80470B5C-80470BF4 001BDC 0098+00 1/1 0/0 0/0 .text            CreateHeap__12daObjCarry_cFv */
 int daObjCarry_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(getArcName(), getBmdName());
-    JUT_ASSERT(2813, modelData != 0);
+    JUT_ASSERT(2813, modelData != NULL);
 
     u32 mdl_flags = prm_chk_type_ironball() ? J3DMdlFlag_None : J3DMdlFlag_DifferedDLBuffer;
     mpModel = mDoExt_J3DModel__create(modelData, mdl_flags, 0x11000084);
@@ -3848,8 +3848,8 @@ void daObjCarry_c::eff_break_tuboBmd(u16 param_0, cXyz param_1) {
     J3DModelData* tubo_bmd = (J3DModelData*)dComIfG_getObjectRes("Always", 0x20);
     J3DAnmTexPattern* tubo_btp = (J3DAnmTexPattern*)dComIfG_getObjectRes("Always", 0x42);
     
-    JUT_ASSERT(6963, tubo_bmd != 0);
-    JUT_ASSERT(6964, tubo_btp != 0);
+    JUT_ASSERT(6963, tubo_bmd != NULL);
+    JUT_ASSERT(6964, tubo_btp != NULL);
     
     JPABaseEmitter* emitter = dComIfGp_particle_set(0x15C, &current.pos, NULL, NULL, 0xFF, &dPa_modelEcallBack::getEcallback(), fopAcM_GetRoomNo(this), NULL, NULL, &param_1);
 
@@ -3863,7 +3863,7 @@ void daObjCarry_c::eff_break_kibakoBmd(cXyz i_size) {
     cXyz pos(current.pos);
 
     J3DModelData* kibako_bmd = (J3DModelData*)dComIfG_getObjectRes("Always", "BreakWoodBox.bmd");
-    JUT_ASSERT(7005, kibako_bmd != 0);
+    JUT_ASSERT(7005, kibako_bmd != NULL);
     
     JPABaseEmitter* emitter = dComIfGp_particle_set(0x82AF, &pos, NULL, NULL, 0xFF, &dPa_modelEcallBack::getEcallback(), fopAcM_GetRoomNo(this), NULL, NULL, &i_size);
 
@@ -3927,8 +3927,8 @@ void daObjCarry_c::eff_break_bokkuri() {
     J3DModelData* tubo_bmd = (J3DModelData*)dComIfG_getObjectRes("Always", 0x20);
     J3DAnmTexPattern* tubo_btp = (J3DAnmTexPattern*)dComIfG_getObjectRes("Always", 0x42);
     
-    JUT_ASSERT(7108, tubo_bmd != 0);
-    JUT_ASSERT(7109, tubo_btp != 0);
+    JUT_ASSERT(7108, tubo_bmd != NULL);
+    JUT_ASSERT(7109, tubo_btp != NULL);
     
     JPABaseEmitter* emitter = dComIfGp_particle_set(0x15C, &current.pos, NULL, NULL, 0xFF, &dPa_modelEcallBack::getEcallback(), fopAcM_GetRoomNo(this), NULL, NULL, &scale);
 

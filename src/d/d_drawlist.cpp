@@ -32,7 +32,7 @@ public:
 
     J2DPicture* getPicture(u64 i_tag) {
         J2DPane* pane = getPane(i_tag);
-        JUT_ASSERT(1553, pane != 0);
+        JUT_ASSERT(1553, pane != NULL);
         if (pane->getTypeID() != 0x12) {
             return NULL;
         }

@@ -704,7 +704,7 @@ cPhs__Step daNpcKasiHana_c::Create() {
 int daNpcKasiHana_c::CreateHeap() {
     J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_arcNames[0], 5);
 
-    JUT_ASSERT(950, 0 != mdlData_p);
+    JUT_ASSERT(950, NULL != mdlData_p);
 
     mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020084);
     if (mpMorf != NULL && mpMorf->getModel() == NULL) {
@@ -1432,7 +1432,7 @@ int daNpcKasiHana_c::turn(int param_1) {
             break;
 
         default:
-            JUT_ASSERT(2155, 0);
+            JUT_ASSERT(2155, FALSE);
     }
 
     return 1;
@@ -1633,7 +1633,7 @@ int daNpcKasiHana_c::demo(int param_1) {
                 if (staffId != -1) {
                     mStaffID = staffId;
 
-                    JUT_ASSERT(2459, 0 != mEvtSeqList[mOrderEvtNo]);
+                    JUT_ASSERT(2459, NULL != mEvtSeqList[mOrderEvtNo]);
 
                     if ((this->*mEvtSeqList[mOrderEvtNo])(staffId)) {
                         dComIfGp_getEventManager().cutEnd(staffId);

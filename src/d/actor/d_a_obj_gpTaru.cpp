@@ -53,7 +53,7 @@ void daGpTaru_c::setBaseMtx() {
 /* 8057D2D0-8057D33C 0002F0 006C+00 1/0 0/0 0/0 .text            CreateHeap__10daGpTaru_cFv */
 int daGpTaru_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("K_ktar00", 3);
-    JUT_ASSERT(295, modelData != 0);
+    JUT_ASSERT(295, modelData != NULL);
 
     mpModel = mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer, BMD_DEFAULT_DIFF_FLAGS);
     if (mpModel == NULL) {
@@ -556,7 +556,7 @@ void daGpTaru_c::breakEffSet() {
     cXyz size(0.75f, 0.75f, 0.75f);
 
     J3DModelData* kibako_bmd = (J3DModelData*)dComIfG_getObjectRes("Always", "BreakWoodBox.bmd");
-    JUT_ASSERT(1259, kibako_bmd != 0);
+    JUT_ASSERT(1259, kibako_bmd != NULL);
 
     JPABaseEmitter* emt_p = dComIfGp_particle_set(dPa_RM(ID_ZF_S_M_EXBARREL00BOARD), &pos, NULL, NULL, 0xFF, &dPa_modelEcallBack::getEcallback(), fopAcM_GetRoomNo(this), NULL, NULL, &size);
     dPa_modelEcallBack::setModel(emt_p, kibako_bmd, tevStr, 3, NULL, 0, 0);

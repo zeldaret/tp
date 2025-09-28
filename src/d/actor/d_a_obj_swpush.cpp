@@ -74,7 +74,7 @@ bool daObjSwpush::Act_c::create_heap() {
     bool rv = false;
     J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(M_arcname[mMdl], M_bmd[mMdl]);
 
-    JUT_ASSERT(518, model_data != 0);
+    JUT_ASSERT(518, model_data != NULL);
 
     mpModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
     if (mpModel != NULL) {
@@ -95,7 +95,7 @@ bool daObjSwpush::Act_c::create_heap() {
 
     cBgD_t* bg_data = (cBgD_t*)dComIfG_getObjectRes(M_arcname[mMdl], M_dzb[mMdl]);
 
-    JUT_ASSERT(569, bg_data != 0);
+    JUT_ASSERT(569, bg_data != NULL);
 
     bool bVar2 = false;
     mpBgW = new dBgWSv();

@@ -1124,7 +1124,7 @@ void dMw_c::insect_close_proc() {
 void dMw_c::dMw_capture_create() {
     if (!dComIfGp_isPauseFlag() && mpCapture == NULL) {
         mpCapture = new dDlst_MENU_CAPTURE_c();
-        JUT_ASSERT(1996, mpCapture != 0);
+        JUT_ASSERT(1996, mpCapture != NULL);
         mpCapture->setCaptureFlag();
     }
 }
@@ -1147,12 +1147,12 @@ void dMw_c::dMw_ring_create(u8 i_origin) {
     dComIfGp_setHeapLockFlag(1);
 
     mpMenuRing = new dMenu_Ring_c(mpHeap, mpStick, mpCStick, i_origin);
-    JUT_ASSERT(2038, mpMenuRing != 0);
+    JUT_ASSERT(2038, mpMenuRing != NULL);
     mpMenuRing->_create();
 
     if (mpCapture == NULL) {
         mpCapture = new dDlst_MENU_CAPTURE_c();
-        JUT_ASSERT(2043, mpCapture != 0);
+        JUT_ASSERT(2043, mpCapture != NULL);
     }
 
     mpCapture->setCaptureFlag();
@@ -1180,7 +1180,7 @@ void dMw_c::dMw_collect_create() {
     markMemSize();
 
     mpMenuCollect = new dMenu_Collect_c(mpHeap, mpStick, mpCStick);
-    JUT_ASSERT(2093, mpMenuCollect != 0);
+    JUT_ASSERT(2093, mpMenuCollect != NULL);
     mpMenuCollect->_create();
 
     if (mDoCPd_c::getHoldLockL(PAD_1)) {
@@ -1223,11 +1223,11 @@ void dMw_c::dMw_fmap_create() {
 
     mpMenuFmap = new dMenu_Fmap_c(mpHeap, mpStick, mpCStick, mFmapProcess, mFmapRegionCursor,
                                   mFmapStageCursor, mFmapStageTransX, mFmapStageTransZ, tmp);
-    JUT_ASSERT(2194, mpMenuFmap != 0);
+    JUT_ASSERT(2194, mpMenuFmap != NULL);
 
     if (mpCapture == NULL) {
         mpCapture = new dDlst_MENU_CAPTURE_c();
-        JUT_ASSERT(2200, mpCapture != 0);
+        JUT_ASSERT(2200, mpCapture != NULL);
     }
 
     mpCapture->setCaptureFlag();
@@ -1268,7 +1268,7 @@ void dMw_c::dMw_dmap_create() {
 
     if (mpCapture == NULL) {
         mpCapture = new dDlst_MENU_CAPTURE_c();
-        JUT_ASSERT(2294, mpCapture != 0);
+        JUT_ASSERT(2294, mpCapture != NULL);
     }
 
     mpCapture->setCaptureFlag();
@@ -1285,7 +1285,7 @@ void dMw_c::dMw_dmap_create() {
     }
 
     mpMenuDmap = new dMenu_Dmap_c(mpHeap, mpStick, mpCStick, field_0x14C, tmp);
-    JUT_ASSERT(2314, mpMenuDmap != 0);
+    JUT_ASSERT(2314, mpMenuDmap != NULL);
 
     dMeter2Info_resetWarpStatus();
 }
@@ -1317,7 +1317,7 @@ void dMw_c::dMw_save_create() {
     markMemSize();
 
     mpMenuSave = new dMenu_save_c();
-    JUT_ASSERT(2365, mpMenuSave != 0);
+    JUT_ASSERT(2365, mpMenuSave != NULL);
 
     mpMenuSave->setUseType(1);
     mpMenuSave->_create();
@@ -1325,7 +1325,7 @@ void dMw_c::dMw_save_create() {
 
     if (mpCapture == NULL) {
         mpCapture = new dDlst_MENU_CAPTURE_c();
-        JUT_ASSERT(2373, mpCapture != 0);
+        JUT_ASSERT(2373, mpCapture != NULL);
     }
 }
 
@@ -1351,11 +1351,11 @@ void dMw_c::dMw_option_create() {
     markMemSize();
 
     mpMenuOption = new dMenu_Option_c(dComIfGp_getCollectResArchive(), mpStick);
-    JUT_ASSERT(2415, mpMenuOption != 0);
+    JUT_ASSERT(2415, mpMenuOption != NULL);
 
     if (mpCapture == NULL) {
         mpCapture = new dDlst_MENU_CAPTURE_c();
-        JUT_ASSERT(2420, mpCapture != 0);
+        JUT_ASSERT(2420, mpCapture != NULL);
     }
 }
 
@@ -1384,11 +1384,11 @@ void dMw_c::dMw_letter_create() {
     markMemSize();
 
     mpMenuLetter = new dMenu_Letter_c(mpHeap, mpStick, mpCStick);
-    JUT_ASSERT(2463, mpMenuLetter != 0);
+    JUT_ASSERT(2463, mpMenuLetter != NULL);
 
     if (mpCapture == NULL) {
         mpCapture = new dDlst_MENU_CAPTURE_c();
-        JUT_ASSERT(2467, mpCapture != 0);
+        JUT_ASSERT(2467, mpCapture != NULL);
     }
 }
 
@@ -1416,11 +1416,11 @@ void dMw_c::dMw_fishing_create() {
     markMemSize();
 
     mpMenuFishing = new dMenu_Fishing_c(mpHeap, mpStick, mpCStick);
-    JUT_ASSERT(2509, mpMenuFishing != 0);
+    JUT_ASSERT(2509, mpMenuFishing != NULL);
 
     if (mpCapture == NULL) {
         mpCapture = new dDlst_MENU_CAPTURE_c();
-        JUT_ASSERT(2513, mpCapture != 0);
+        JUT_ASSERT(2513, mpCapture != NULL);
     }
 }
 
@@ -1448,11 +1448,11 @@ void dMw_c::dMw_skill_create() {
     markMemSize();
 
     mpMenuSkill = new dMenu_Skill_c(mpHeap, mpStick, mpCStick);
-    JUT_ASSERT(2555, mpMenuSkill != 0);
+    JUT_ASSERT(2555, mpMenuSkill != NULL);
 
     if (mpCapture == NULL) {
         mpCapture = new dDlst_MENU_CAPTURE_c();
-        JUT_ASSERT(2559, mpCapture != 0);
+        JUT_ASSERT(2559, mpCapture != NULL);
     }
 }
 
@@ -1480,11 +1480,11 @@ void dMw_c::dMw_insect_create(u8 param_0) {
     markMemSize();
 
     mpMenuInsect = new dMenu_Insect_c(mpHeap, mpStick, mpCStick, param_0);
-    JUT_ASSERT(2601, mpMenuInsect != 0);
+    JUT_ASSERT(2601, mpMenuInsect != NULL);
 
     if (mpCapture == NULL) {
         mpCapture = new dDlst_MENU_CAPTURE_c();
-        JUT_ASSERT(2605, mpCapture != 0);
+        JUT_ASSERT(2605, mpCapture != NULL);
     }
 }
 
@@ -1633,11 +1633,11 @@ int dMw_c::_create() {
     mpHeap = dComIfGp_getExpHeap2D();
 
     mpStick = new STControl(5, 2, 1, 1, 0.9f, 0.5f, 0, 0x800);
-    JUT_ASSERT(2967, mpStick != 0);
+    JUT_ASSERT(2967, mpStick != NULL);
     mpStick->setFirstWaitTime(8);
 
     mpCStick = new CSTControl(5, 2, 3, 2, 0.9f, 0.5f, 0, 0x2000);
-    JUT_ASSERT(2976, mpCStick != 0);
+    JUT_ASSERT(2976, mpCStick != NULL);
     mpCStick->setWaitParm(5, 2, 3, 2, 0.9f, 0.5f, 0, 0x2000);
 
     mButtonBits = 0;

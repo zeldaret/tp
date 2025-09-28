@@ -68,7 +68,7 @@ void daObjYIblltray_c::setMtx() {
 /* 80C6EDA8-80C6EED4 000228 012C+00 1/0 0/0 0/0 .text            CreateHeap__16daObjYIblltray_cFv */
 int daObjYIblltray_c::CreateHeap() {
     J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 9);
-    JUT_ASSERT(0, model_data != 0);
+    JUT_ASSERT(0, model_data != NULL);
 
     mpTrayModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
     if (mpTrayModel == NULL) {
@@ -76,7 +76,7 @@ int daObjYIblltray_c::CreateHeap() {
     }
 
     model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 8);
-    JUT_ASSERT(0, model_data != 0);
+    JUT_ASSERT(0, model_data != NULL);
 
     mpHandleModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
     if (mpHandleModel == NULL) {
@@ -269,7 +269,7 @@ int daObjYIblltray_c::Execute(Mtx** param_0) {
     if (!getNoSameRoom() && mTrayID == fpcM_ERROR_PROCESS_ID_e) {
         daObjYIblltray_c* ptray =
             (daObjYIblltray_c*)fopAcM_Search((fopAcIt_JudgeFunc)searchObjYIblltray, this);
-        JUT_ASSERT(0, ptray != 0);
+        JUT_ASSERT(0, ptray != NULL);
 
         mTrayID = fopAcM_GetID(ptray);
     }

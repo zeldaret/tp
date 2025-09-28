@@ -225,7 +225,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("RYUW00", bmdd[i_this->field_0x570]);
 
-    JUT_ASSERT(543, modelData != 0);
+    JUT_ASSERT(543, modelData != NULL);
     
     i_this->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (i_this->mpModel == NULL) {

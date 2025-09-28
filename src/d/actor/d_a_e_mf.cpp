@@ -3173,14 +3173,14 @@ static int useHeapInit(fopAc_ac_c* a_this) {
     }
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_mf", 39);
-    JUT_ASSERT(5274, modelData != 0);
+    JUT_ASSERT(5274, modelData != NULL);
     i_this->mpAxeModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (i_this->mpAxeModel == NULL) {
         return 0;
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("E_mf", 40);
-    JUT_ASSERT(5286, modelData != 0);
+    JUT_ASSERT(5286, modelData != NULL);
     i_this->mpShieldModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (i_this->mpShieldModel == NULL) {
         return 0;

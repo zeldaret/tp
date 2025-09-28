@@ -6782,7 +6782,7 @@ int daAlink_c::setDoubleAnime(f32 i_blendRate, f32 i_anmSpeedA, f32 i_anmSpeedB,
     if (checkWolf()) {
         // "Player is Wolf, but setting Link animation\n"
         OSReport("狼なのにリンクアニメ設定\n");
-        JUT_ASSERT(8591, 0);
+        JUT_ASSERT(8591, FALSE);
     }
 #endif
 

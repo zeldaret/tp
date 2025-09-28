@@ -67,7 +67,7 @@ static int const l_nan_btk_index[2] = {
 
 inline int daObjNAN_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("I_Nan", 9);
-    JUT_ASSERT(254, modelData != 0);
+    JUT_ASSERT(254, modelData != NULL);
     mMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                        (J3DAnmTransform*)dComIfG_getObjectRes("I_Nan", 6), 2, 1.0f,
                                        0, -1, &mCreatureSound, 0, 0x11000284);

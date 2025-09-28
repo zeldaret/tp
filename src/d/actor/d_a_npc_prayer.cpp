@@ -163,7 +163,7 @@ int daNpcPray_c::Create() {
 /* 80AB348C-80AB3610 00078C 0184+00 1/1 0/0 0/0 .text            CreateHeap__11daNpcPray_cFv */
 int daNpcPray_c::CreateHeap() {
     J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_arcNames[0], 9);
-    JUT_ASSERT(313, 0 != mdlData_p);
+    JUT_ASSERT(313, NULL != mdlData_p);
 
     mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11000084);
     if (mpMorf != NULL && mpMorf->getModel() == NULL) {
@@ -582,7 +582,7 @@ bool daNpcPray_c::wait(void*) {
         break;
     case 1:
     case 3:
-        JUT_ASSERT(1076, 0);
+        JUT_ASSERT(1076, FALSE);
         break;
     }
 
@@ -608,7 +608,7 @@ bool daNpcPray_c::fear(void*) {
         break;
     case 1:
     case 3:
-        JUT_ASSERT(1076, 0);
+        JUT_ASSERT(1076, FALSE);
         break;
     }
 
@@ -672,7 +672,7 @@ bool daNpcPray_c::talk(void*) {
         }
         break;
     default:
-        JUT_ASSERT(1209, 0);
+        JUT_ASSERT(1209, FALSE);
     }
 
     return var_r28;
@@ -695,7 +695,7 @@ bool daNpcPray_c::demo(void*) {
             if (staffID != -1) {
                 mStaffID = staffID;
  
-                JUT_ASSERT(1243, 0 != mEvtSeqList[mOrderEvtNo]);
+                JUT_ASSERT(1243, NULL != mEvtSeqList[mOrderEvtNo]);
                 if ((this->*mEvtSeqList[mOrderEvtNo])(staffID)) {
                     evtmgr.cutEnd(staffID);
                     var_r25 = 1;
@@ -721,7 +721,7 @@ bool daNpcPray_c::demo(void*) {
         }
         break;
     case 3:
-        JUT_ASSERT(1280, 0);
+        JUT_ASSERT(1280, FALSE);
         break;
     }
 
@@ -777,7 +777,7 @@ BOOL daNpcPray_c::_Evt_GetHeart_CutInit(const int& i_cutId) {
         break;
     }
     default:
-        JUT_ASSERT(1396, 0);
+        JUT_ASSERT(1396, FALSE);
         break;
     }
 
@@ -830,7 +830,7 @@ BOOL daNpcPray_c::_Evt_GetHeart_CutMain(int const& i_cutId) {
         break;
     }
     default:
-        JUT_ASSERT(1474, 0);
+        JUT_ASSERT(1474, FALSE);
         var_r28 = 1;
         break;
     }

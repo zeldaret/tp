@@ -100,7 +100,7 @@ static int daObjCRVLH_UP_Execute(daObjCRVLH_UP_c* i_this) {
 int daObjCRVLH_UP_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "U_CrvLH_UP.bmd");
     if (modelData == NULL) {
-        JUT_ASSERT(87, modelData != 0);
+        JUT_ASSERT(87, modelData != NULL);
     }
 
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);

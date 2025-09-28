@@ -752,7 +752,7 @@ int daNpc_Raca_c::walk(void* param_1) {
             if (!mStagger.checkStagger()) {
                 cXyz sp20;
 
-                JUT_ASSERT(1553, 0 != mPath.getPathInfo());
+                JUT_ASSERT(1553, NULL != mPath.getPathInfo());
 
                 BOOL bVar1 = mPath.getDstPosH(current.pos, &sp20, mPath.getNumPnts(), 2);
                 calcSpeedAndAngle(sp20, bVar1, MREG_S(0) + 4, MREG_S(1) + 0x800);

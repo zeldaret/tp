@@ -157,7 +157,7 @@ dMenu_Fmap2DBack_c::dMenu_Fmap2DBack_c() {
     initiate(dComIfGp_getFmapResArchive());
 
     mpBackScreen = new J2DScreen();
-    JUT_ASSERT(238, mpBackScreen != 0);
+    JUT_ASSERT(238, mpBackScreen != NULL);
 
     bool fg = mpBackScreen->setPriority("zelda_map_screen_stone_base.blo", 0x20000,
                                         dComIfGp_getFmapResArchive());
@@ -166,7 +166,7 @@ dMenu_Fmap2DBack_c::dMenu_Fmap2DBack_c() {
     dPaneClass_showNullPane(mpBackScreen);
 
     mpBaseScreen = new J2DScreen();
-    JUT_ASSERT(248, mpBaseScreen != 0)
+    JUT_ASSERT(248, mpBaseScreen != NULL)
 
     fg = mpBaseScreen->setPriority("zelda_map_screen_base.blo", 0x20000,
                                    dComIfGp_getFmapResArchive());
@@ -181,27 +181,27 @@ dMenu_Fmap2DBack_c::dMenu_Fmap2DBack_c() {
     mAnmFrame = 0.0;
 
     mpBaseRoot = new CPaneMgrAlphaMorf(mpBaseScreen, 'ROOT', 2, NULL);
-    JUT_ASSERT(264, mpBaseRoot != 0);
+    JUT_ASSERT(264, mpBaseRoot != NULL);
 
     mpMapArea = new CPaneMgr(mpBaseScreen, 'center_n', 0, NULL);
-    JUT_ASSERT(269, mpMapArea != 0);
+    JUT_ASSERT(269, mpMapArea != NULL);
 
     mpMapBlack = new CPaneMgr(mpBaseScreen, 'map_blak', 0, NULL);
-    JUT_ASSERT(273, mpMapBlack != 0);
+    JUT_ASSERT(273, mpMapBlack != NULL);
 
     mpMeterHaihai = new dMeterHaihai_c(1);
-    JUT_ASSERT(277, mpMeterHaihai != 0);
+    JUT_ASSERT(277, mpMeterHaihai != NULL);
 
     ResTIMG* backTexResource =
         (ResTIMG*)dComIfGp_getMain2DArchive()->getResource('TIMG', "tt_block8x8.bti");
     mpBackTex = new J2DPicture(backTexResource);
-    JUT_ASSERT(282, mpBackTex != 0);
+    JUT_ASSERT(282, mpBackTex != NULL);
 
     mpBackTex->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 255));
     mpBackTex->setAlpha(0);
 
     mpPointScreen = new J2DScreen();
-    JUT_ASSERT(293, mpPointScreen != 0);
+    JUT_ASSERT(293, mpPointScreen != NULL);
 
     fg = mpPointScreen->setPriority("zelda_field_map_point_cursor.blo", 0x20000,
                                     dComIfGp_getFmapResArchive());
@@ -210,7 +210,7 @@ dMenu_Fmap2DBack_c::dMenu_Fmap2DBack_c() {
     dPaneClass_showNullPane(mpPointScreen);
 
     mpPointParent = new CPaneMgr(mpPointScreen, 'f_po_n', 2, NULL);
-    JUT_ASSERT(301, mpPointParent != 0);
+    JUT_ASSERT(301, mpPointParent != NULL);
 
     mpPointParent->scale(g_fmapHIO.mCursorScale, g_fmapHIO.mCursorScale);
 
@@ -444,7 +444,7 @@ void dMenu_Fmap2DBack_c::setRegionTexData(u8 i_regionNo, ResTIMG* i_timg, f32 i_
     }
 
     mpAreaTex[i_regionNo] = new J2DPicture(i_timg);
-    JUT_ASSERT(763, mpAreaTex[i_regionNo] != 0);
+    JUT_ASSERT(763, mpAreaTex[i_regionNo] != NULL);
 
     mRegionOriginX[i_regionNo] = i_originX;
     mRegionOriginZ[i_regionNo] = i_originZ;
@@ -626,7 +626,7 @@ void dMenu_Fmap2DBack_c::calcAllMapPosWorld(f32 param_0, f32 param_1, f32* param
 void dMenu_Fmap2DBack_c::setSpotPane(ResTIMG* i_timg) {
     if (mpSpotTexture == NULL) {
         mpSpotTexture = new J2DPicture(i_timg);
-        JUT_ASSERT(1169, mpSpotTexture != 0);
+        JUT_ASSERT(1169, mpSpotTexture != NULL);
     }
 }
 

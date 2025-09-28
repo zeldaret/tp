@@ -231,7 +231,7 @@ cPhs__Step daNpcDoorBoy_c::Create() {
 int daNpcDoorBoy_c::CreateHeap() {
     J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_arcNames[0], BMDR_DOORBOY);
 
-    JUT_ASSERT(292, 0 != mdlData_p);
+    JUT_ASSERT(292, NULL != mdlData_p);
 
     mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020084);
     if (mpMorf != NULL && mpMorf->getModel() == NULL) {
@@ -622,7 +622,7 @@ bool daNpcDoorBoy_c::wait(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(1064, 0);
+            JUT_ASSERT(1064, FALSE);
             break;
     }
 
@@ -648,7 +648,7 @@ bool daNpcDoorBoy_c::fear(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(1094, 0);
+            JUT_ASSERT(1094, FALSE);
             break;
     }
 
@@ -708,7 +708,7 @@ bool daNpcDoorBoy_c::talk(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(1167, 0);
+            JUT_ASSERT(1167, FALSE);
             break;
     }
 
@@ -730,7 +730,7 @@ bool daNpcDoorBoy_c::demo(void* param_1) {
                 if (staffId != -1) {
                     mStaffID = staffId;
 
-                    JUT_ASSERT(1201, 0 != mEvtSeqList[mOrderEvtNo]);
+                    JUT_ASSERT(1201, NULL != mEvtSeqList[mOrderEvtNo]);
 
                     if ((this->*mEvtSeqList[mOrderEvtNo])(staffId)) {
                         eventManager.cutEnd(staffId);
@@ -750,7 +750,7 @@ bool daNpcDoorBoy_c::demo(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(1229, 0);
+            JUT_ASSERT(1229, FALSE);
             break;
     }
 
@@ -780,7 +780,7 @@ bool daNpcDoorBoy_c::dummyTalk(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(1263, 0);
+            JUT_ASSERT(1263, FALSE);
             break;
     }
 

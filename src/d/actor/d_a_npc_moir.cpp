@@ -337,7 +337,7 @@ cPhs__Step daNpcMoiR_c::Create() {
                 break;
 
             default:
-                JUT_ASSERT(343, 0);
+                JUT_ASSERT(343, FALSE);
                 break;
         }
 
@@ -379,7 +379,7 @@ cPhs__Step daNpcMoiR_c::Create() {
 int daNpcMoiR_c::CreateHeap() {
     J3DModelData* mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], BMDR_MOIR));
 
-    JUT_ASSERT(403, 0 != mdlData_p);
+    JUT_ASSERT(403, NULL != mdlData_p);
 
     mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
     if (mpMorf != NULL && mpMorf->getModel() == NULL) {
@@ -404,7 +404,7 @@ int daNpcMoiR_c::CreateHeap() {
 
     mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], BMDR_HEADGEAR));
 
-    JUT_ASSERT(436, mdlData_p != 0);
+    JUT_ASSERT(436, mdlData_p != NULL);
 
     mpHeadgearModel = mDoExt_J3DModel__create(mdlData_p, 0x80000, 0x11000084);
 
@@ -426,7 +426,7 @@ int daNpcMoiR_c::CreateHeap() {
             break;
 
         default:
-            JUT_ASSERT(448, 0);
+            JUT_ASSERT(448, FALSE);
             break;
     }
 
@@ -705,7 +705,7 @@ void daNpcMoiR_c::setWaitAction() {
             break;
 
         default:
-            JUT_ASSERT(1315, 0);
+            JUT_ASSERT(1315, FALSE);
             break;
     }
 }
@@ -1083,7 +1083,7 @@ bool daNpcMoiR_c::wait_type0(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(1652, 0);
+            JUT_ASSERT(1652, FALSE);
             break;
     }
 
@@ -1205,7 +1205,7 @@ bool daNpcMoiR_c::wait_type1(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(1756, 0);
+            JUT_ASSERT(1756, FALSE);
             break;
     }
 
@@ -1252,7 +1252,7 @@ bool daNpcMoiR_c::wait_type2(void* param_1) {
                     break;
 
                 default:
-                    JUT_ASSERT(1805, 0);
+                    JUT_ASSERT(1805, FALSE);
                     break;
             }
             break;
@@ -1261,7 +1261,7 @@ bool daNpcMoiR_c::wait_type2(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(1810, 0);
+            JUT_ASSERT(1810, FALSE);
             break;
     }
 
@@ -1352,7 +1352,7 @@ bool daNpcMoiR_c::talk(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(1893, 0);
+            JUT_ASSERT(1893, FALSE);
             break;
     }
 
@@ -1478,7 +1478,7 @@ bool daNpcMoiR_c::fight(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(2030, 0);
+            JUT_ASSERT(2030, FALSE);
             break;
     }
 
@@ -1505,7 +1505,7 @@ bool daNpcMoiR_c::demo(void* param_1) {
                         mOrderEvtNo = actIdx;
                     }
 
-                    JUT_ASSERT(2069, mEvtSeqList[mOrderEvtNo] != 0);
+                    JUT_ASSERT(2069, mEvtSeqList[mOrderEvtNo] != NULL);
 
                     if ((this->*mEvtSeqList[mOrderEvtNo])(staffIdx)) {
                         dComIfGp_getEventManager().cutEnd(staffIdx);
@@ -1531,7 +1531,7 @@ bool daNpcMoiR_c::demo(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(2101, 0);
+            JUT_ASSERT(2101, FALSE);
             break;
     }
 
@@ -1571,7 +1571,7 @@ bool daNpcMoiR_c::leave(void* param_1) {
             break;
 
         default:
-            JUT_ASSERT(2143, 0);
+            JUT_ASSERT(2143, FALSE);
             break;
     }
 
@@ -1598,7 +1598,7 @@ BOOL daNpcMoiR_c::EvCut_Introduction(int i_cutIndex) {
                 return TRUE;
 
             default:
-                JUT_ASSERT(2178, 0);
+                JUT_ASSERT(2178, FALSE);
                 break;
         }
     }
@@ -1625,7 +1625,7 @@ BOOL daNpcMoiR_c::EvCut_Appear(int i_cutIndex) {
                 break;
 
             default:
-                JUT_ASSERT(2211, 0);
+                JUT_ASSERT(2211, FALSE);
                 break;
         }
     }
@@ -1671,7 +1671,7 @@ BOOL daNpcMoiR_c::EvCut_Appear(int i_cutIndex) {
             break;
 
         default:
-            JUT_ASSERT(2259, 0);
+            JUT_ASSERT(2259, FALSE);
             break;
     }
 
@@ -1716,7 +1716,7 @@ BOOL daNpcMoiR_c::EvCut_Appear2(int i_cutIndex) {
                 break;
 
             default:
-                JUT_ASSERT(2305, 0);
+                JUT_ASSERT(2305, FALSE);
                 break;
         }
     }
@@ -1787,7 +1787,7 @@ BOOL daNpcMoiR_c::EvCut_Appear2(int i_cutIndex) {
             break;
 
         default:
-            JUT_ASSERT(2363, 0);
+            JUT_ASSERT(2363, FALSE);
             break;
     }
 

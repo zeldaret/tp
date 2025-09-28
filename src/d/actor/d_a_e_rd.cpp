@@ -7061,7 +7061,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
             if (i_this->mBossMode == 3) {
                 if (i < 2) {
                     modelData = (J3DModelData*)dComIfG_getObjectRes("E_rdb", ikki2_boss_part_bmd[i]);
-                    JUT_ASSERT(10672, modelData != 0);
+                    JUT_ASSERT(10672, modelData != NULL);
                     i_this->mpBossArmorParts[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
                     if (i_this->mpBossArmorParts[i] == NULL) {
                         return 0;
@@ -7071,7 +7071,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
                 }
             } else if (i_this->mBossMode == 1 || i == 13) {
                 modelData = (J3DModelData*)dComIfG_getObjectRes("E_rdb", boss_part_bmd[i]);
-                JUT_ASSERT(10687, modelData != 0);
+                JUT_ASSERT(10687, modelData != NULL);
                 i_this->mpBossArmorParts[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
                 if (i_this->mpBossArmorParts[i] == NULL) {
                     return 0;
@@ -7104,7 +7104,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
                 modelData = (J3DModelData*)dComIfG_getObjectRes(i_this->mResName, BMDR_RD_CLUB);
             }
 
-            JUT_ASSERT(10762, modelData != 0);
+            JUT_ASSERT(10762, modelData != NULL);
 
             i_this->field_0x694 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
             if (i_this->field_0x694 == NULL) {
@@ -7136,7 +7136,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
                 modelData = (J3DModelData*)dComIfG_getObjectRes(i_this->mResName, BMDR_RD_ARROW);
             }
 
-            JUT_ASSERT(10810, modelData != 0);
+            JUT_ASSERT(10810, modelData != NULL);
 
             i_this->field_0x694 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
             if (i_this->field_0x694 == NULL) {
@@ -7147,7 +7147,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
         }
 
         modelData = (J3DModelData*)dComIfG_getObjectRes(i_this->mResName, BMDR_RD_EYE);
-        JUT_ASSERT(10823, modelData != 0);
+        JUT_ASSERT(10823, modelData != NULL);
 
         for (u16 i = 0; i < 2; i++) {
             i_this->mpEyeModels[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);

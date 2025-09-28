@@ -64,7 +64,7 @@ int daObj_SSDrink_c::CreateHeap() {
     int unused = 0;
 
     mdlData_p = (J3DModelData*)dComIfG_getObjectRes(getResName(), l_bmdName);
-    JUT_ASSERT(216, mdlData_p != 0);
+    JUT_ASSERT(216, mdlData_p != NULL);
 
     mpModel = mDoExt_J3DModel__create(mdlData_p, 0, 0x11020084);
     if (mpModel == NULL) {
@@ -72,14 +72,14 @@ int daObj_SSDrink_c::CreateHeap() {
     }
 
     pbtp = (J3DAnmTexPattern*)dComIfG_getObjectRes(l_resFileName, "al_bottle.btp");
-    JUT_ASSERT(230, pbtp != 0);
+    JUT_ASSERT(230, pbtp != NULL);
     mpBtpAnm = new mDoExt_btpAnm();
     if (mpBtpAnm == NULL || !mpBtpAnm->init(mdlData_p, pbtp, 1, 2, 1.0f, 0, -1)) {
         return 0;
     }
 
     pbrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_resFileName, "al_bottle.brk");
-    JUT_ASSERT(242, pbrk != 0);
+    JUT_ASSERT(242, pbrk != NULL);
     mpBrkAnm = new mDoExt_brkAnm();
     if (mpBrkAnm == NULL || !mpBrkAnm->init(mdlData_p, pbrk, 1, 2, 1.0f, 0, -1)) {
         return 0;

@@ -609,7 +609,7 @@ int daNpc_ykM_c::CreateHeap() {
         resIndex = l_bmdData[sp40][0];
         mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[arcNameIdx], resIndex);
 
-        JUT_ASSERT(1595, 0 != mdlData_p);
+        JUT_ASSERT(1595, NULL != mdlData_p);
 
         sp34 = 0x11000084;
         mFishModelMorf = new mDoExt_McaMorfSO((J3DModelData*)mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1,
@@ -623,7 +623,7 @@ int daNpc_ykM_c::CreateHeap() {
         resIndex = l_bmdData[BMD_INDEX_LEAF][0];
         mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[arcNameIdx], resIndex);
 
-        JUT_ASSERT(1622, 0 != mdlData_p);
+        JUT_ASSERT(1622, NULL != mdlData_p);
 
         sp34 = 0x11000084;
         mLeafModelMorf = new mDoExt_McaMorfSO((J3DModelData*)mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1,
@@ -1807,7 +1807,7 @@ int daNpc_ykM_c::cutSlideDown(int i_cutIndex) {
                 mMotionSeqMngr.setNo(MOTION_FISH_JUMP, 0.0f, TRUE, 0);
                 actor_p = getOtherYkmP(5);
                 
-                JUT_ASSERT(3475, 0 != actor_p);
+                JUT_ASSERT(3475, NULL != actor_p);
 
                 setPos(actor_p->current.pos);
                 setAngle(actor_p->shape_angle.y);
@@ -1865,7 +1865,7 @@ int daNpc_ykM_c::cutSlideDown(int i_cutIndex) {
             if (mLeafModelMorf->isStop()) {
                 actor_p = getOtherYkmP(5);
 
-                JUT_ASSERT(3565, 0 != actor_p);
+                JUT_ASSERT(3565, NULL != actor_p);
 
                 angle.y = fopAcM_searchActorAngleY(daPy_getPlayerActorClass(), actor_p);
                 work = daPy_getPlayerActorClass()->current.pos;
@@ -2515,7 +2515,7 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
                 mMotionSeqMngr.setNo(MOTION_STOP, 0.0f, FALSE, 0);
                 actor_p = mActorMngr[5].getActorP();
 
-                JUT_ASSERT(4401, 0 != actor_p);
+                JUT_ASSERT(4401, NULL != actor_p);
 
                 setPos(actor_p->home.pos);
                 setAngle(actor_p->home.angle.y);
@@ -2539,7 +2539,7 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
                 mMotionSeqMngr.setNo(MOTION_WAITHOLD_B_B, 0.0f, FALSE, 0);
                 actor_p = mActorMngr[5].getActorP();
 
-                JUT_ASSERT(4424, 0 != actor_p);
+                JUT_ASSERT(4424, NULL != actor_p);
 
                 setPos(actor_p->home.pos);
                 setAngle(actor_p->home.angle.y);
@@ -2563,7 +2563,7 @@ int daNpc_ykM_c::cutLv5DungeonClear(int i_cutIndex) {
             if (mEventTimer != 0 || dComIfGp_getEventManager().getIsAddvance(i_cutIndex)) {
                 actor_p = mActorMngr[5].getActorP();
 
-                JUT_ASSERT(4455, 0 != actor_p);
+                JUT_ASSERT(4455, NULL != actor_p);
 
                 if (cLib_calcTimer(&mEventTimer) == 0) {
                     speedF = 0.0f;
@@ -2762,7 +2762,7 @@ int daNpc_ykM_c::cutStartSnowboardRace(int i_cutIndex) {
                 field_0x157e = 0;
                 actor_p = getOtherYkmP(5);
 
-                JUT_ASSERT(4736, 0 != actor_p);
+                JUT_ASSERT(4736, NULL != actor_p);
 
                 setPos(actor_p->current.pos);
                 setAngle(actor_p->shape_angle.y);
@@ -2878,7 +2878,7 @@ int daNpc_ykM_c::cutEndSnowboardRace(int i_cutIndex) {
                 mPath.setIdx(0);
                 actor_p = getOtherYkmP(6);
 
-                JUT_ASSERT(4900, 0 != actor_p);
+                JUT_ASSERT(4900, NULL != actor_p);
 
                 setPos(actor_p->current.pos);
                 angle.setall(0);
@@ -2919,7 +2919,7 @@ int daNpc_ykM_c::cutEndSnowboardRace(int i_cutIndex) {
                 mMotionSeqMngr.setNo(MOTION_WAIT_A, 0.0f, FALSE, 0);
                 actor_p = getOtherYkmP(6);
 
-                JUT_ASSERT(4943, 0 != actor_p);
+                JUT_ASSERT(4943, NULL != actor_p);
 
                 home.pos = actor_p->current.pos;
                 angle.setall(0);

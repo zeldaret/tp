@@ -306,7 +306,7 @@ static u8 getPohNum() {
 /* 80228B04-80228CB4 223444 01B0+00 0/0 1/1 0/0 .text            __ct__19jmessage_tReferenceFv */
 jmessage_tReference::jmessage_tReference() {
     mpStick = new STControl(5, 2, 3, 2, 0.9f, 0.5f, 0, 0x2000);
-    JUT_ASSERT(518, mpStick != 0);
+    JUT_ASSERT(518, mpStick != NULL);
     mpStick->setWaitParm(5, 2, 3, 2, 0.9f, 0.5f, 0, 0x800);
 
     mActorPos.set(0.0f, 0.0f, 0.0f);

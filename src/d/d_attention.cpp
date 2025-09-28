@@ -184,7 +184,7 @@ dAttention_c::dAttention_c(fopAc_ac_c* i_player, u32 i_padNo) {
     mAttnBlockTimer = 0;
 
     heap = mDoExt_createSolidHeapFromGameToCurrent(0x9000, 0);
-    JUT_ASSERT(0x198, heap != 0);
+    JUT_ASSERT(0x198, heap != NULL);
 
     J3DModelData* modelDataR = (J3DModelData*)dComIfG_getObjectRes("Always", 0x25);
     JUT_ASSERT(0x1BB, modelDataR);
@@ -194,10 +194,10 @@ dAttention_c::dAttention_c(fopAc_ac_c* i_player, u32 i_padNo) {
 
     for (int i = 0; i < 2; i++) {
         draw[i].mModel[DRAW_TYPE_YELLOW] = mDoExt_J3DModel__create(modelDataY, 0x80000, 0x11000285);
-        JUT_ASSERT(0x1CA, draw[i].mModel[0] != 0);
+        JUT_ASSERT(0x1CA, draw[i].mModel[0] != NULL);
 
         draw[i].mModel[DRAW_TYPE_RED] = mDoExt_J3DModel__create(modelDataR, 0x80000, 0x11000285);
-        JUT_ASSERT(0x1D4, draw[i].mModel[1] != 0);
+        JUT_ASSERT(0x1D4, draw[i].mModel[1] != NULL);
 
         int res;
         res = draw[i].mNoticeCursorBck[DRAW_TYPE_YELLOW].init((J3DAnmTransform*)dComIfG_getObjectRes("Always", 0x11), TRUE, 2, 1.0f, 0, -1, false);

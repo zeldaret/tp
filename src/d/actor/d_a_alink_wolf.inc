@@ -1225,7 +1225,7 @@ int daAlink_c::setDoubleAnimeWolf(f32 param_0, f32 param_1, f32 param_2,
     if (!checkWolf()) {
         // "Is Adult Link but setting Wolf animation\n"
         OS_REPORT("リンクなのに狼アニメ設定\n");
-        JUT_ASSERT(0x82B, 0);
+        JUT_ASSERT(2091, FALSE);
     }    
 
     J3DAnmTransform* var_r25 = getNowAnmPackUnder(UNDER_0);
@@ -1303,7 +1303,7 @@ int daAlink_c::setSingleAnimeWolf(daAlink_c::daAlink_WANM i_anmID, f32 i_speed, 
     if (!checkWolf()) {
         // "Is Adult Link but setting Wolf animation\n"
         OS_REPORT("リンクなのに狼アニメ設定\n");
-        JUT_ASSERT(0x82B, 0);
+        JUT_ASSERT(2091, FALSE);
     }    
 
     J3DAnmTransform* var_r30 = getAnimeResource(&mUnderAnmHeap[0], m_wlAnmDataTable[i_anmID].field_0x0, 0x10800);

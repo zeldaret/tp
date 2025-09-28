@@ -84,7 +84,7 @@ static int CheckCreateHeap(fopAc_ac_c* i_this) {
 /* 8045E960-8045EBA0 000180 0240+00 1/1 0/0 0/0 .text            CreateHeap__10daKnob20_cFv */
 int daKnob20_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(getAlwaysArcName(), getDummyBmd());
-    JUT_ASSERT(201, modelData != 0);
+    JUT_ASSERT(201, modelData != NULL);
     mModel1 = mDoExt_J3DModel__create(modelData, 0, 0x11020203);
     if (mModel1 == NULL) {
         return 0;
@@ -95,14 +95,14 @@ int daKnob20_c::CreateHeap() {
     mModel1->setBaseTRMtx(mDoMtx_stack_c::get());
     J3DAnmTransform* anm =
         (J3DAnmTransform*)dComIfG_getObjectRes(getAlwaysArcName(), "FDoorA.bck");
-    JUT_ASSERT(222, anm != 0);
+    JUT_ASSERT(222, anm != NULL);
     if (field_0x57c.init(anm, 1, 0, 1.0f, 0, -1, false) == 0) {
         return 0;
     }
     mJoint = modelData->getJointName()->getIndex("FDoor");
     JUT_ASSERT(227, mJoint >= 0);
     modelData = getDoorModelData();
-    JUT_ASSERT(235, modelData != 0);
+    JUT_ASSERT(235, modelData != NULL);
     mModel2 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mModel2 == 0) {
         return 0;
@@ -115,7 +115,7 @@ int daKnob20_c::CreateHeap() {
     field_0x57c.entry(mModel1->getModelData());
     mModel1->calc();
     cBgD_t* bgd = (cBgD_t*)dComIfG_getObjectRes(getAlwaysArcName(), getDzb());
-    JUT_ASSERT(261, bgd != 0);
+    JUT_ASSERT(261, bgd != NULL);
     if (field_0x5a0->Set(bgd, 1, (Mtx*)mModel1->getAnmMtx(mJoint)) == 1) {
         return 0;
     } else {
@@ -503,7 +503,7 @@ static char* bck_table[4] = {
 int daKnob20_c::openInit(int param_1) {
     J3DAnmTransform* anm =
         (J3DAnmTransform*)dComIfG_getObjectRes(getAlwaysArcName(), bck_table[param_1]);
-    JUT_ASSERT(937, anm != 0);
+    JUT_ASSERT(937, anm != NULL);
     field_0x57c.init(anm, 1, 0, 1.0f, 0, -1, true);
     onFlag(1);
     if (param_1 >= 2) {

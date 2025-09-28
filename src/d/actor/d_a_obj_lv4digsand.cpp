@@ -43,7 +43,7 @@ static char* l_arcName = "P_DSand";
 /* 80C66C24-80C66C94 000184 0070+00 1/0 0/0 0/0 .text            CreateHeap__16daObjL4DigSand_cFv */
 int daObjL4DigSand_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 4);
-    JUT_ASSERT(0x9B, modelData != 0);
+    JUT_ASSERT(0x9B, modelData != NULL);
 
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {

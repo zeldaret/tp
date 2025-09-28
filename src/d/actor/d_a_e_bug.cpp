@@ -814,10 +814,10 @@ static int useHeapInit(fopAc_ac_c* a_this) {
     e_bug_class* i_this = (e_bug_class*)a_this;
     
     J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("E_bug", BMDG_MU04));
-    JUT_ASSERT(1322, modelData != 0);
+    JUT_ASSERT(1322, modelData != NULL);
 
     J3DModelData* modelData2 = static_cast<J3DModelData*>(dComIfG_getObjectRes("E_bug", BMDG_MU05));
-    JUT_ASSERT(1327, modelData2 != 0);
+    JUT_ASSERT(1327, modelData2 != NULL);
 
     for (int i = 0; i < i_this->bug_num; i++) {
         i_this->Bug_s[i].field_0x0 = mDoExt_J3DModel__create(modelData, 0x20000, 0x11000084);
@@ -908,7 +908,7 @@ static cPhs__Step daE_Bug_Create(fopAc_ac_c* a_this) {
         static u32 const l_bmdidx[2] = {BMDG_MU04, BMDG_MU05};
         for (u32 i = 0; i < 2; i++) {
             J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_bug", l_bmdidx[i]);
-            JUT_ASSERT(1476, modelData != 0);
+            JUT_ASSERT(1476, modelData != NULL);
 
             if (dComIfGp_addSimpleModel(modelData, fopAcM_GetRoomNo(a_this), 0) == -1) {
                 OS_REPORT("1Bh[43;30m虫の集団：シンプルモデル登録失敗しました。\n1Bh[m"); // 1Bh, group of insects: Simple model registration failed.

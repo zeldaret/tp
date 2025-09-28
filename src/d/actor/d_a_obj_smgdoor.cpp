@@ -119,7 +119,7 @@ int daObjSmgDoor_c::Create() {
 /* 80CDBE1C-80CDBED4 00035C 00B8+00 1/0 0/0 0/0 .text            CreateHeap__14daObjSmgDoor_cFv */
 int daObjSmgDoor_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName[mType], l_bmd[mType]);
-    JUT_ASSERT(252, modelData != 0);
+    JUT_ASSERT(252, modelData != NULL);
 
     for (int i = 0; i < 2; i++) {
         mpModel[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);

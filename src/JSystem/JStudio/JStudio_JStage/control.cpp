@@ -20,7 +20,7 @@ JStudio_JStage::TCreateObject::~TCreateObject() {}
  */
 bool JStudio_JStage::TCreateObject::create(
     JStudio::TObject** ppObject, JStudio::stb::data::TParse_TBlock_object const& rParse) {
-    JUT_ASSERT(83, ppObject!=0);
+    JUT_ASSERT(83, ppObject!=NULL);
     *ppObject = NULL;
     ObjCreateFuncT pfnCreateObject;
     JStage::TEObject eObject;
@@ -48,14 +48,14 @@ bool JStudio_JStage::TCreateObject::create(
     default:
         return NULL;
     }
-    JUT_ASSERT(99, pfnCreateObject!=0);
+    JUT_ASSERT(99, pfnCreateObject!=NULL);
     JUT_ASSERT(100, eObject!=JStage::OBJECT_UNDEFINED);
-    JUT_ASSERT(109, pJSGSystem_!=0);
+    JUT_ASSERT(109, pJSGSystem_!=NULL);
     JStage::TObject* pJSGObject;
     int pJVar2 = pJSGSystem_->JSGFindObject(&pJSGObject, (char const*)rParse.get_ID(), eObject);
     switch(pJVar2) {
     case 0:
-        JUT_ASSERT(115, pJSGObject!=0);
+        JUT_ASSERT(115, pJSGObject!=NULL);
         *ppObject = pfnCreateObject(rParse, pJSGObject, pJSGSystem_);
         return true;
     case 2:

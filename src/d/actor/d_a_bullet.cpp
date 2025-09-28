@@ -58,7 +58,7 @@ int daBullet_c::create() {
 /* 80655E5C-80655EDC 0005FC 0080+00 1/1 0/0 0/0 .text            CreateHeap__10daBullet_cFv */
 BOOL daBullet_c::CreateHeap() {
     void* mdlData_p = dComIfG_getObjectRes(getResName(), getBmdName());
-    JUT_ASSERT(273, 0 != mdlData_p);
+    JUT_ASSERT(273, NULL != mdlData_p);
     mpModel = mDoExt_J3DModel__create((J3DModelData*)mdlData_p, 0x80000, 0x11000084);
     return mpModel != NULL;
 }

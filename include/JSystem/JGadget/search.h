@@ -25,7 +25,7 @@ struct TExpandStride_<s32> {
 //!  Target: toValueFromIndex<PFdd_d>__7JGadgetFiPCPFdd_dUlRCPFdd_d_RCPFdd_d
 template <typename T>
 inline const T& toValueFromIndex(int idx, const T* pValue, u32 count, const T& fallback) {
-    JUT_ASSERT(200, pValue!=0);
+    JUT_ASSERT(200, pValue!=NULL);
     u32 index = idx;
     if (index >= count) {
         return fallback;

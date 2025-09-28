@@ -359,16 +359,16 @@ int dMsgObject_c::_create(msg_class* param_1) {
     mpOutFont = NULL;
     mpScrnDraw = NULL;
     mpResCont = new JMessage::TResourceContainer();
-    JUT_ASSERT(1299, mpResCont != 0);
+    JUT_ASSERT(1299, mpResCont != NULL);
     mpCtrl = dDemo_c::getMesgControl();
-    JUT_ASSERT(1302, mpCtrl != 0);
+    JUT_ASSERT(1302, mpCtrl != NULL);
     mpRefer = new jmessage_tReference();
-    JUT_ASSERT(1305, mpRefer != 0);
+    JUT_ASSERT(1305, mpRefer != NULL);
     mpRefer->setpStatus(&param_1->mode);
     mpSeqProc = new jmessage_tSequenceProcessor(mpRefer, mpCtrl);
-    JUT_ASSERT(1310, mpSeqProc != 0);
+    JUT_ASSERT(1310, mpSeqProc != NULL);
     mpRenProc = new jmessage_tRenderingProcessor(mpRefer);
-    JUT_ASSERT(1313, mpRenProc != 0);
+    JUT_ASSERT(1313, mpRenProc != NULL);
     mpRefer->setResourceContainer(mpResCont);
     mpCtrl->setSequenceProcessor(mpSeqProc);
     mpCtrl->setRenderingProcessor(mpRenProc);
@@ -407,7 +407,7 @@ int dMsgObject_c::_create(msg_class* param_1) {
     field_0x172 = 0;
     setStatusLocal(1);
     mpMsgString = new dMsgString_c();
-    JUT_ASSERT(1366, mpMsgString != 0);
+    JUT_ASSERT(1366, mpMsgString != NULL);
     return 4;
 }
 
@@ -1376,7 +1376,7 @@ void dMsgObject_c::talkStartInit() {
         if (mpOutFont == NULL) {
             OS_REPORT("free size (0x%x)=====> %d\n", mDoExt_getCurrentHeap(), mDoExt_getCurrentHeap()->getTotalFreeSize());
             mpOutFont = new COutFont_c(0);
-            JUT_ASSERT(3035, mpOutFont != 0);
+            JUT_ASSERT(3035, mpOutFont != NULL);
             mpOutFont->createPane();
             mpRenProc->setOutFont(mpOutFont);
         }
@@ -1386,7 +1386,7 @@ void dMsgObject_c::talkStartInit() {
         case 9:
             pRef = (jmessage_tReference*)mpRenProc->getReference();
             pData = new dMsgScrnItem_c(pRef->getFukiPosType(), pRef->getForm(), mpTalkHeap);
-            JUT_ASSERT(3049, pData != 0);
+            JUT_ASSERT(3049, pData != NULL);
             mpScrnDraw = pData;
             break;
         case 2:
@@ -1394,32 +1394,32 @@ void dMsgObject_c::talkStartInit() {
                 local_30 = mDoExt_getRubyFont();
             }
             pData = new dMsgScrnTree_c(local_30, mpTalkHeap);
-            JUT_ASSERT(3061, pData != 0);
+            JUT_ASSERT(3061, pData != NULL);
             mpScrnDraw = pData;
             break;
         case 6:
             pData = new dMsgScrnKanban_c(mpTalkHeap);
-            JUT_ASSERT(3069, pData != 0);
+            JUT_ASSERT(3069, pData != NULL);
             mpScrnDraw = pData;
             break;
         case 7:
             pData = new dMsgScrnStaff_c(((jmessage_tReference*)mpRenProc->getReference())->getArrange());
-            JUT_ASSERT(3083, pData != 0);
+            JUT_ASSERT(3083, pData != NULL);
             mpScrnDraw = pData;
             break;
         case 12:
             pData = new dMsgScrnPlace_c();
-            JUT_ASSERT(3092, pData != 0);
+            JUT_ASSERT(3092, pData != NULL);
             mpScrnDraw = pData;
             break;
         case 19:
             pData = new dMsgScrnBoss_c();
-            JUT_ASSERT(3100, pData != 0);
+            JUT_ASSERT(3100, pData != NULL);
             mpScrnDraw = pData;
             break;
         case 17:
             pData = new dMsgScrnHowl_c();
-            JUT_ASSERT(3108, pData != 0);
+            JUT_ASSERT(3108, pData != NULL);
             mpScrnDraw = pData;
             local_98 = true;
             break;
@@ -1427,7 +1427,7 @@ void dMsgObject_c::talkStartInit() {
         case 5:
             pRef = (jmessage_tReference*)mpRenProc->getReference();
             pData = new dMsgScrnJimaku_c(pRef->getForm(), mpTalkHeap);
-            JUT_ASSERT(3119, pData != 0);
+            JUT_ASSERT(3119, pData != NULL);
             mpScrnDraw = pData;
             break;
         case 10:
@@ -1436,11 +1436,11 @@ void dMsgObject_c::talkStartInit() {
             pRef = (jmessage_tReference*)mpRenProc->getReference();
             if (mpRefer->getMsgID() == 0x2a5) {
                 pData = new dMsgScrnItem_c(0, pRef->getForm(), mpTalkHeap);
-                JUT_ASSERT(3131, pData != 0);
+                JUT_ASSERT(3131, pData != NULL);
                 mpScrnDraw = pData;
             } else {
                 pData = new dMsgScrnTalk_c(pRef->getFukiPosType(), pRef->getForm(), mpTalkHeap);
-                JUT_ASSERT(3138, pData != 0);
+                JUT_ASSERT(3138, pData != NULL);
                 mpScrnDraw = pData;
                 local_98 = true;
             }

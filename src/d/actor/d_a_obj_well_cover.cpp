@@ -37,7 +37,7 @@ static char* l_arcName = "H_Idohuta";
 /* 80D36394-80D36404 000174 0070+00 1/0 0/0 0/0 .text            CreateHeap__13daObjWCover_cFv */
 int daObjWCover_c::CreateHeap() {
     J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcName, 4));
-    JUT_ASSERT(194, modelData != 0)
+    JUT_ASSERT(194, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     return mpModel != NULL ? 1 : 0;
 }

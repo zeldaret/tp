@@ -3189,7 +3189,7 @@ static int daE_YMB_Delete(daE_YMB_c* i_this) {
 /* 80820AF0-80820D68 00AAD0 0278+00 1/1 0/0 0/0 .text            CreateHeap__9daE_YMB_cFv */
 int daE_YMB_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_YB", BMDR_YB_TW);
-    JUT_ASSERT(4196, modelData != 0);
+    JUT_ASSERT(4196, modelData != NULL);
     mpModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_YB", BCK_YB_FLY_WAIT),
                                   2, 1.0f, 0, -1, &mSound, 0x80000, 0x31000084);
     if (mpModelMorf == NULL || mpModelMorf->getModel() == NULL) {

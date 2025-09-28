@@ -123,7 +123,7 @@ inline int daObjBhbridge_c::create() {
 /* 80BB5934-80BB59AC 000694 0078+00 1/0 0/0 0/0 .text            CreateHeap__15daObjBhbridge_cFv */
 inline int daObjBhbridge_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "M_BHbridge.bmd");
-    JUT_ASSERT(83, modelData != 0);
+    JUT_ASSERT(83, modelData != NULL);
     mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     return mModel != NULL ? TRUE : FALSE;
 }

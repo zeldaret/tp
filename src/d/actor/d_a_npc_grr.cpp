@@ -349,7 +349,7 @@ int daNpc_grR_c::CreateHeap() {
         mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNames[l_bmdGetParamList[0][1]], l_bmdGetParamList[0][0]);
     }
 
-    JUT_ASSERT(458, 0 != mdlData_p);
+    JUT_ASSERT(458, NULL != mdlData_p);
 
     mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
     if (mpMorf != NULL && mpMorf->getModel() == NULL) {
@@ -1122,7 +1122,7 @@ BOOL daNpc_grR_c::doEvent() {
                 int evtCutNo = eventManager.getMyActIdx(staffId, &mEvtCutNameList, 1, 0, 0);
 
                 JUT_ASSERT(1771, (0 <= evtCutNo) && (evtCutNo < NUM_EVT_CUTS_e));
-                JUT_ASSERT(1772, 0 != mEvtCutList[evtCutNo]);
+                JUT_ASSERT(1772, NULL != mEvtCutList[evtCutNo]);
 
                 if ((this->*mEvtCutList[evtCutNo])(staffId)) {
                     eventManager.cutEnd(staffId);

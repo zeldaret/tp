@@ -27,7 +27,7 @@ daObjHBarrel_c::~daObjHBarrel_c() {
 /* 80C16A98-80C16B08 0003D8 0070+00 1/1 0/0 0/0 .text            createHeap__14daObjHBarrel_cFv */
 int daObjHBarrel_c::createHeap() {
     J3DModelData* a_model_data_p = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 3);
-    JUT_ASSERT(0x9a, a_model_data_p != 0);
+    JUT_ASSERT(0x9a, a_model_data_p != NULL);
 
     mpModel = mDoExt_J3DModel__create(a_model_data_p, 0x80000, 0x11000084);
     if (mpModel == 0) {
@@ -173,7 +173,7 @@ void daObjHBarrel_c::callEmt() {
     cXyz cStack_40(1.125f, 1.125f, 1.125f);
 
     J3DModelData* a_bmd_p = (J3DModelData*)dComIfG_getObjectRes("Always", "BreakWoodBox.bmd");
-    JUT_ASSERT(0x1f3, a_bmd_p != 0);
+    JUT_ASSERT(0x1f3, a_bmd_p != NULL);
 
     JPABaseEmitter* emitter = dComIfGp_particle_set(0x82af, &acStack_34, NULL, NULL, 0xff,
                                                     &dPa_modelEcallBack::getEcallback(),

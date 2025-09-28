@@ -43,7 +43,7 @@ static char* l_arcName = "Y_horiyuk";
 /* 80BDCD64-80BDCDD4 000184 0070+00 1/0 0/0 0/0 .text            CreateHeap__14daObjDigSnow_cFv */
 int daObjDigSnow_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 4);
-    JUT_ASSERT(0x9F, modelData != 0);
+    JUT_ASSERT(0x9F, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
 
     if (mpModel == NULL) {

@@ -154,7 +154,7 @@ daB_GG_HIO_c::daB_GG_HIO_c() {
 int daB_GG_c::CreateHeap() {
     J3DModelData* modelData;
     modelData = (J3DModelData*)dComIfG_getObjectRes("B_gg", 0x23);
-    JUT_ASSERT(207, modelData != 0);
+    JUT_ASSERT(207, modelData != NULL);
 
     mpModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("B_gg", 0xE), 2, 1.0f, 0, -1, &mSound, 0x80000, 0x11000084);
     if (mpModelMorf == NULL || mpModelMorf->getModel() == NULL) {

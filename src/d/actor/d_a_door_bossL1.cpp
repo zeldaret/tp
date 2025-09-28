@@ -182,7 +182,7 @@ const char* daBdoorL1_c::getDzb() {
  */
 J3DModelData* daBdoorL1_c::getDoorModelData() {
     J3DModelData* door_model = static_cast<J3DModelData*>(dComIfG_getObjectRes(getArcName(), getBmd()));
-    JUT_ASSERT(256, door_model != 0)
+    JUT_ASSERT(256, door_model != NULL)
     return door_model;
 }
 
@@ -205,7 +205,7 @@ static u32 const l_heap_size[11] = {
 int daBdoorL1_c::CreateHeap() {
     int nowLevel = getNowLevel();
     J3DModelData* modelData = getDoorModelData();
-    JUT_ASSERT(313, modelData != 0);
+    JUT_ASSERT(313, modelData != NULL);
     u32 dlistFlag = 0x11000084;
     if (nowLevel == 8) {
         dlistFlag |= 0x200;
@@ -225,14 +225,14 @@ int daBdoorL1_c::CreateHeap() {
     }
     if (nowLevel == 8) {
         J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(getArcName(), "door_shutterBoss.btk");
-        JUT_ASSERT(341, pbtk != 0);
+        JUT_ASSERT(341, pbtk != NULL);
         field_0x58c = new mDoExt_btkAnm();
         if (field_0x58c == NULL || !field_0x58c->init(field_0x580->getModelData(), pbtk, 1, 0, 1.0f, 0, -1)) {
             return 0;
         }
     }
     J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes(getAnmArcName(), getOpenAnm());
-    JUT_ASSERT(354, anm != 0);
+    JUT_ASSERT(354, anm != NULL);
     field_0x588 = new mDoExt_bckAnm();
     if (field_0x588 == NULL || !field_0x588->init(anm, 1, 0, 1.0f, 0, -1,false)) {
         return 0;
@@ -310,7 +310,7 @@ void daBdoorL1_c::calcMtx() {
         MTXCopy(mDoMtx_stack_c::get(), field_0x7ec);
         break;
     default:
-        JUT_ASSERT(442, 0);
+        JUT_ASSERT(442, FALSE);
         break;
     }
 }
@@ -560,7 +560,7 @@ int daBdoorL1_c::openInit() {
         dComIfG_Bgsp().Release(field_0x590);
     }
     J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes(getAnmArcName(), getOpenAnm());
-    JUT_ASSERT(811, anm != 0);
+    JUT_ASSERT(811, anm != NULL);
     int rt = field_0x588->init(anm, 1, 0, 1.0f, 0, -1, true);
     JUT_ASSERT(813, rt == 0);
     if (field_0x59b != 0) {
@@ -665,7 +665,7 @@ int daBdoorL1_c::openEnd() {
 /* 804E3850-804E3A2C 001B30 01DC+00 1/1 0/0 0/0 .text            closeInit__11daBdoorL1_cFv */
 int daBdoorL1_c::closeInit() {
     J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes(getAnmArcName(), getCloseAnm());
-    JUT_ASSERT(1020, anm != 0);
+    JUT_ASSERT(1020, anm != NULL);
     int rt = field_0x588->init(anm, 1, 0, 1.0f, 0, -1, true);
     JUT_ASSERT(1022, rt == 0);
     switch(getNowLevel()) {

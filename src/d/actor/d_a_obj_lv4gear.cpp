@@ -59,7 +59,7 @@ static char* l_arcName = "P_Gear";
 /* 80C680A4-80C68124 000204 0080+00 1/1 0/0 0/0 .text            CreateHeap__14daObjLv4Gear_cFv */
 int daObjLv4Gear_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmd[mType]);
-    JUT_ASSERT(213, modelData != 0);
+    JUT_ASSERT(213, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {
         return 0;

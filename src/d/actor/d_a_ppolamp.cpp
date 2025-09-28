@@ -113,21 +113,21 @@ void daPPolamp_c::setPclModelMtx() {
 /* 80D4CE9C-80D4CFB0 0005DC 0114+00 1/1 0/0 0/0 .text            createHeap__11daPPolamp_cFv */
 int daPPolamp_c::createHeap() {
     J3DModelData* a_model_data_p = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 8);
-    JUT_ASSERT(347, a_model_data_p != 0);
+    JUT_ASSERT(347, a_model_data_p != NULL);
     mModel1 = mDoExt_J3DModel__create(a_model_data_p, 0x80000, 0x11000084);
     if (mModel1 == NULL) {
         return 0;
     }
 
     a_model_data_p = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 7);
-    JUT_ASSERT(360, a_model_data_p != 0);
+    JUT_ASSERT(360, a_model_data_p != NULL);
     mModel2 = mDoExt_J3DModel__create(a_model_data_p, 0x80000, 0x11000084);
     if (mModel2 == NULL) {
         return 0;
     }
 
     J3DAnmTransform* a_bck_p = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, 4);
-    JUT_ASSERT(372, a_bck_p != 0);
+    JUT_ASSERT(372, a_bck_p != NULL);
     if (mBck.init(a_bck_p, 1, 2, 1.0f, 0, -1, false) == 0) {
         return 0;
     }

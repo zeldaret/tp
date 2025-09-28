@@ -56,25 +56,25 @@ dMsgScrnHowl_c::dMsgScrnHowl_c() {
 
     init();
     mpScreen = new J2DScreen();
-    JUT_ASSERT(61, mpScreen != 0);
+    JUT_ASSERT(61, mpScreen != NULL);
     bool fg = mpScreen->setPriority("zelda_wolf_howl.blo", 0x20000, dComIfGp_getMsgArchive(5));
     JUT_ASSERT(73, fg != false);
     dPaneClass_showNullPane(mpScreen);
     mpScreen->search('line00')->hide();
     mpPmP_c = new CPaneMgr(mpScreen, 'n_all', 3, NULL);
-    JUT_ASSERT(79, mpPmP_c != 0);
+    JUT_ASSERT(79, mpPmP_c != NULL);
     mpScreen->search('ag_n')->hide();
     field_0x1994 = 0.0f;
     field_0x1998 = 0.0f;
     mpScreen->search('wi_btn_n')->hide();
     mpButtonIcon[0] = new CPaneMgr(mpScreen, 'cbtn_n', 2, NULL);
-    JUT_ASSERT(91, mpButtonIcon[0] != 0);
+    JUT_ASSERT(91, mpButtonIcon[0] != NULL);
     mpButtonText[0] = new CPaneMgr(mpScreen, 'g_ltxt_n', 2, NULL);
-    JUT_ASSERT(93, mpButtonText[0] != 0);
+    JUT_ASSERT(93, mpButtonText[0] != NULL);
     mpButtonIcon[1] = new CPaneMgr(mpScreen, 'abt_n', 2, NULL);
-    JUT_ASSERT(96, mpButtonIcon[1] != 0);
+    JUT_ASSERT(96, mpButtonIcon[1] != NULL);
     mpButtonText[1] = new CPaneMgr(mpScreen, 'gr_txt_n', 2, NULL);
-    JUT_ASSERT(98, mpButtonText[1] != 0);
+    JUT_ASSERT(98, mpButtonText[1] != NULL);
 #if VERSION == VERSION_GCN_JPN
     J2DTextBox* piStack_19c = (J2DTextBox*)mpScreen->search('g_l_info');
     J2DTextBox* piStack_1a0 = (J2DTextBox*)mpScreen->search('g_r_info');
@@ -140,9 +140,9 @@ dMsgScrnHowl_c::dMsgScrnHowl_c() {
     field_0x2138 = 0;
     field_0x1984 = 255.0f / field_0x2136;
     mpABase = new CPaneMgr(mpScreen, 'a_base', 0, NULL);
-    JUT_ASSERT(218, mpABase != 0);
+    JUT_ASSERT(218, mpABase != NULL);
     mpLineAll = new CPaneMgr(mpScreen, 'line_all', 0, NULL);
-    JUT_ASSERT(221, mpLineAll != 0);
+    JUT_ASSERT(221, mpLineAll != NULL);
     f32 in_f31;
     for (int i = 0; i < 7; i++) {
         J2DPane* piStack_1b4 = mpScreen->search(tlinen_tag[i]);
@@ -160,11 +160,11 @@ dMsgScrnHowl_c::dMsgScrnHowl_c() {
     }
     for (int i = 0; i < 3; i++) {
         mpLineH[i] = new CPaneMgr(mpScreen, ylinen_tag[i], 0, NULL);
-        JUT_ASSERT(242, mpLineH[i] != 0);
+        JUT_ASSERT(242, mpLineH[i] != NULL);
     }
     for (int i = 0; i < 7; i++) {
         mpLineV[i] = new CPaneMgr(mpScreen, tlinen_tag[i], 2, NULL);
-        JUT_ASSERT(247, mpLineV[i] != 0);
+        JUT_ASSERT(247, mpLineV[i] != NULL);
     }
     Mtx mtx2;
     field_0x128 = mpLineH[0]->getGlobalVtx(&mtx2, 0, true, 0);
@@ -180,21 +180,21 @@ dMsgScrnHowl_c::dMsgScrnHowl_c() {
     field_0x27a8 = 0.0f;
     ResTIMG const* res = (ResTIMG const*) dComIfGp_getMsgArchive(5)->getResource('TIMG', "tt_ginnouroko_s3tc.bti");
     mpDot = new J2DPicture(res);
-    JUT_ASSERT(275, mpDot != 0);
+    JUT_ASSERT(275, mpDot != NULL);
     mpDot->setWhite(JUtility::TColor(0xff, 0xff, 0x71, 0xff));
     res = (ResTIMG const*)dComIfGp_getMsgArchive(5)->getResource('TIMG', "tt_black_32.bti");
     mpGuideDot = new J2DPicture(res);
-    JUT_ASSERT(280, mpGuideDot != 0);
+    JUT_ASSERT(280, mpGuideDot != NULL);
     mpGuideDot->setBlackWhite(((J2DPicture*)mpScreen->search('line00'))->getBlack(), ((J2DPicture*)mpScreen->search('line00'))->getWhite());
     res = (ResTIMG const*)dComIfGp_getMain2DArchive()->getResource('TIMG', "tt_iastarRR.bti");
     mpTopBall = new J2DPicture(res);
-    JUT_ASSERT(287, mpTopBall != 0);
+    JUT_ASSERT(287, mpTopBall != NULL);
     mpTopBall->setBlackWhite(g_MsgObject_HIO_c.mHowlHIO.mDotBlack, g_MsgObject_HIO_c.mHowlHIO.mDotWhite);
     
     ;
     for (int i = 0; i < 5; i++) {
         mpTopBallTail[i] = new J2DPicture(res);
-        JUT_ASSERT(292, mpTopBallTail[i] != 0);
+        JUT_ASSERT(292, mpTopBallTail[i] != NULL);
         mpTopBallTail[i]->setBlackWhite(g_MsgObject_HIO_c.mHowlHIO.mDotBlack, g_MsgObject_HIO_c.mHowlHIO.mDotWhite);
     }
     field_0x2134 = 0;
@@ -205,7 +205,7 @@ dMsgScrnHowl_c::dMsgScrnHowl_c() {
     field_0x2197 = 0;
     res = (ResTIMG const*)dComIfGp_getMain2DArchive()->getResource('TIMG', "tt_block8x8.bti");
     mpWaveTex = new J2DPicture(res);
-    JUT_ASSERT(307, mpWaveTex != 0);
+    JUT_ASSERT(307, mpWaveTex != NULL);
     mpWaveTex->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(255, 200, 0, 255));
     mpWaveTex->setCornerColor(
         JUtility::TColor(128, 128, 128, 0), JUtility::TColor(255, 255, 255, 255),

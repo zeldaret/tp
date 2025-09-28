@@ -259,7 +259,7 @@ static Vec const a_transScaleTbl[30] = {
 /* 80157D00-80157F28 152640 0228+00 0/0 0/0 4/4 .text            NpcCreate__10daNpcCd2_cFi */
 int daNpcCd2_c::NpcCreate(int param_1) {
     J3DModelData* a_mdlData_p = getNpcMdlDataP(param_1);
-    JUT_ASSERT(590, 0 != a_mdlData_p);
+    JUT_ASSERT(590, NULL != a_mdlData_p);
     J3DAnmTexPattern* anmTex = getTexAnmP(param_1);
     int uVar5;
     if (anmTex != NULL) {
@@ -280,7 +280,7 @@ int daNpcCd2_c::NpcCreate(int param_1) {
     mCitizen.setMdlType(param_1, false, mIsDarkWorld != 0 ? 1 : 0);
     if (anmTex != NULL) {
         mpBtpAnm = new mDoExt_btpAnm();
-        JUT_ASSERT(622, 0 != mpBtpAnm);
+        JUT_ASSERT(622, NULL != mpBtpAnm);
         if (mpBtpAnm == NULL || !mpBtpAnm->init(a_mdlData_p, anmTex, 1, 2, 1.0f, 0, -1)) {
             return 0;
         }
@@ -2006,9 +2006,9 @@ void PathTrace_c::getTargetPoint(Vec* targetPoint) {
 
 /* 80159ECC-80159F98 15480C 00CC+00 1/1 0/0 0/0 .text            setAvoidPoint__11PathTrace_cFv */
 void PathTrace_c::setAvoidPoint() {
-    JUT_ASSERT(1602, mPath != 0);
-    JUT_ASSERT(1603, mMyself != 0);
-    JUT_ASSERT(1604, mObstacle != 0);
+    JUT_ASSERT(1602, mPath != NULL);
+    JUT_ASSERT(1603, mMyself != NULL);
+    JUT_ASSERT(1604, mObstacle != NULL);
     cXyz& selfPos = fopAcM_GetPosition(mMyself);
     s16 obstacleAngle = cLib_targetAngleY(&selfPos, &fopAcM_GetPosition(mObstacle));
     s16 diff = (s16)obstacleAngle - cLib_targetAngleY(&selfPos, &dPath_GetPnt(mPath, field_0x20)->m_position);
@@ -2105,14 +2105,14 @@ fopAc_ac_c* PathTrace_c::checkObstacle(fopAc_ac_c* param_0) {
  * checkObstacleSub__11PathTrace_cFP10fopAc_ac_c                */
 void PathTrace_c::checkObstacleSub(fopAc_ac_c* pObstacle) {
     if (mMyself != pObstacle) {
-        JUT_ASSERT(1816, mPath != 0);
+        JUT_ASSERT(1816, mPath != NULL);
         cXyz& newObstaclePos = fopAcM_GetPosition(pObstacle);
         dPnt* pnt = dPath_GetPnt(mPath, field_0x20);
         f32 local_38;
         f32 local_3c;
         f32 local_40;
         local_38 = 1000000000.0f;
-        JUT_ASSERT(1822, mMyself != 0);
+        JUT_ASSERT(1822, mMyself != NULL);
         cXyz& selfPos = fopAcM_GetPosition(mMyself);
         if (mObstacle != NULL) {
             f32 distCurObstacle = selfPos.abs2(fopAcM_GetPosition(mObstacle));
