@@ -1240,7 +1240,7 @@ void daB_ZANT_c::executeWarp() {
                 gndchk.SetPos(&mFlyWarpPos);
 
                 f32 gnd_y = dComIfG_Bgsp().GroundCross(&gndchk);
-                if (gnd_y != -1000000000.0f) {
+                if (gnd_y != -G_CM3D_F_INF) {
                     mFlyWarpPos.y = gnd_y;
                 }
 
@@ -1784,7 +1784,7 @@ void daB_ZANT_c::executeFly() {
         gndchk.SetPos(&sp9C);
         {
             f32 gnd_pos = dComIfG_Bgsp().GroundCross(&gndchk);
-            if (gnd_pos != -1000000000.0f && current.pos.y <= gnd_pos) {
+            if (gnd_pos != -G_CM3D_F_INF && current.pos.y <= gnd_pos) {
                 if (dComIfG_Bgsp().GetPolyAtt0(gndchk) == 11) {
                     speed.y = 50.0f;
                     speedF = 15.0f;

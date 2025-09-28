@@ -354,7 +354,7 @@ int daObj_GrA_c::Execute(Mtx** param_1) {
         }
     }
 
-    if (mGroundY != -1000000000.0f) {
+    if (mGroundY != -G_CM3D_F_INF) {
         setEnvTevColor();
         setRoomNo();
     }
@@ -1512,7 +1512,7 @@ bool daObj_GrA_c::checkTagGraSub(fopAc_ac_c* a_this) {
 
 /* 80C03764-80C03830 003944 00CC+00 1/1 0/0 0/0 .text            fallAbyssCheck__11daObj_GrA_cFv */
 bool daObj_GrA_c::fallAbyssCheck() {
-    if (mGroundY == -1000000000.0f && field_0x1528.isPath()) {
+    if (mGroundY == -G_CM3D_F_INF && field_0x1528.isPath()) {
         field_0x1fc0++;
         if (field_0x1fc0 == 30) {
             current.pos = field_0x1528.getPntPos(0);

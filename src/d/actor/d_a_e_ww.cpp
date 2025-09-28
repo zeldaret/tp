@@ -433,7 +433,7 @@ void daE_WW_c::setGroundAngle() {
         gnd_pos.z = sp14.z + 100.0f * cM_scos(shape_angle.y);
         gnd_chk.SetPos(&gnd_pos);
         gnd_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-        if (-1e9f == gnd_pos.y) {
+        if (-G_CM3D_F_INF == gnd_pos.y) {
             gnd_pos.y = (f32) sp14.y;
         }
 
@@ -454,7 +454,7 @@ void daE_WW_c::setGroundAngle() {
         gnd_pos.z = 100.0f + sp14.z;
         gnd_chk.SetPos(&gnd_pos);
         gnd_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-        if (-1e9f != gnd_pos.y) {
+        if (-G_CM3D_F_INF != gnd_pos.y) {
             field_0x674.x = -cM_atan2s(gnd_pos.y - sp14.y, gnd_pos.z - sp14.z);
         }
 
@@ -463,7 +463,7 @@ void daE_WW_c::setGroundAngle() {
         gnd_pos.z = sp14.z;
         gnd_chk.SetPos(&gnd_pos);
         gnd_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-        if (-1e9f != gnd_pos.y) {
+        if (-G_CM3D_F_INF != gnd_pos.y) {
             field_0x674.z = (s16)cM_atan2s(gnd_pos.y - sp14.y, gnd_pos.x - sp14.x);
         }
 
@@ -478,9 +478,9 @@ f32 daE_WW_c::checkCreateBg(cXyz i_vector) {
     dBgS_GndChk gnd_chk;
     gnd_chk.SetPos(&sp14);
     f32 temp_f1 = dComIfG_Bgsp().GroundCross(&gnd_chk);
-    if (temp_f1 != -1e9f) {
+    if (temp_f1 != -G_CM3D_F_INF) {
         if (std::abs(temp_f1 - current.pos.y) > field_0x6ac) {
-            return -1e9f;
+            return -G_CM3D_F_INF;
         }
 
         if (dComIfG_Bgsp().GetSpecialCode(gnd_chk) == 5 || dComIfG_Bgsp().GetPolyAtt0(gnd_chk) == 0xD) {
@@ -493,14 +493,14 @@ f32 daE_WW_c::checkCreateBg(cXyz i_vector) {
             if (dComIfG_Bgsp().LineCross(&lin_chk) != 0) {
                 cM3dGPla plane;
                 dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
-                return -1e9f;
+                return -G_CM3D_F_INF;
             }
 
             return temp_f1;
         }
     }
 
-    return -1e9f;
+    return -G_CM3D_F_INF;
 }
 
 /* 807E8560-807E8624 000F60 00C4+00 3/3 0/0 0/0 .text            checkAttackWall__8daE_WW_cFv */
@@ -534,7 +534,7 @@ void daE_WW_c::setAppearEffect() {
     gnd_pos += current.pos;
     gnd_chk.SetPos(&gnd_pos);
     gnd_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-    if (gnd_pos.y != -1e9f) {
+    if (gnd_pos.y != -G_CM3D_F_INF) {
         csXyz sp10(0, 0, 0);
         cM3dGPla plane;
         dComIfG_Bgsp().GetTriPla(gnd_chk, &plane);
@@ -696,7 +696,7 @@ void daE_WW_c::executeMaster() {
             cLib_offsetPos(&sp3C, &sp48, fopCamM_GetAngleY(camera), &sp30);
             if (current.pos.abs(sp3C) < field_0x6a8) {
                 f32 temp_f31 = checkCreateBg(sp3C);
-                if (-1e9f != temp_f31) {
+                if (-G_CM3D_F_INF != temp_f31) {
                     sp3C.y = temp_f31;
                     int var_r30 = 0;
                     lbl_237_bss_30 = 0;
@@ -738,7 +738,7 @@ void daE_WW_c::executeMaster() {
             sp30.x += cM_rndFX(200.0f);
             cLib_offsetPos(&sp3C, &field_0x65c, (s16)fopCamM_GetAngleY(camera), &sp30);
             f32 temp_f31_2 = checkCreateBg(sp3C);
-            if (-1e9f != temp_f31_2) {
+            if (-G_CM3D_F_INF != temp_f31_2) {
                 sp3C.y = temp_f31_2;
             } else {
                 sp3C = field_0x65c;
@@ -1057,7 +1057,7 @@ void daE_WW_c::executeAttack() {
         dBgS_GndChk gnd_chk;
         gnd_chk.SetPos(&sp20);
         sp20.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-        if (-1e9f != sp20.y) {
+        if (-G_CM3D_F_INF != sp20.y) {
             if (mActionMode == ACTION_MODE_25 && current.pos.y < sp20.y) {
                 setAppearEffect();
                 mSound.startCreatureSound(Z2SE_EN_WW_HIDE, 0, -1);
@@ -1106,7 +1106,7 @@ bool daE_WW_c::checkAttackStart() {
         }
 
         if (abs(temp_r28) < nREG_S(9) + 0x1555 && field_0x668.absXZ(sp14) < 800.0f + field_0x6a8) {
-            if (checkCreateBg(current.pos) != -1e9f && checkAttackWall() != 0) {
+            if (checkCreateBg(current.pos) != -G_CM3D_F_INF && checkAttackWall() != 0) {
                 setActionMode(ACTION_ATTACK, ACTION_MODE_0);
                 field_0x756 = 1;
                 return 1;
@@ -1694,7 +1694,7 @@ bool daE_WW_c::checkWalkStart() {
             cLib_offsetPos(&spd0, &spe8, (s16)(angleY + 0x1400 + cM_rndFX(1024.0f)), &spdc);
             
             f32 fVar1 = checkCreateBg(spd0);
-            if (fVar1 != -1e9f) {
+            if (fVar1 != -G_CM3D_F_INF) {
                 uVar1 = 1;
                 spd0.y = fVar1;
             }
@@ -1703,7 +1703,7 @@ bool daE_WW_c::checkWalkStart() {
             cLib_offsetPos(&sp100, &spe8, (s16)(angleY - 0x1400 + cM_rndFX(1024.0f)), &spdc);
 
             fVar1 = checkCreateBg(sp100);
-            if (fVar1 != -1e9f) {
+            if (fVar1 != -G_CM3D_F_INF) {
                 uVar1 |= 2;
                 sp100.y = fVar1;
             }

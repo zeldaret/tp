@@ -78,7 +78,7 @@ struct daFmtMng_Path_c {
         } else {
             field_0x4 = decIndex(field_0x4);
         }
-        field_0x8 = 1000000000.0f;
+        field_0x8 = G_CM3D_F_INF;
     }
 
     void setNextPoint(cXyz *param_1) {

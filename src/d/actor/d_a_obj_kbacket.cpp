@@ -103,7 +103,7 @@ int daObj_KBacket_c::create() {
         mObjAcch.CrrPos(dComIfG_Bgsp());
         mGndChk = mObjAcch.m_gnd;
         field_0xa00 = mObjAcch.GetGroundH();
-        if (field_0xa00 != -1e+09f) {
+        if (field_0xa00 != -G_CM3D_F_INF) {
             setEnvTevColor();
             setRoomNo();
         }
@@ -230,7 +230,7 @@ int daObj_KBacket_c::Execute() {
             s16 unkShort1 = 0x80;
 
             fopAcM_getWaterY(&current.pos, &field_0xa04);
-            if (field_0xa04 != -1e+09f &&
+            if (field_0xa04 != -G_CM3D_F_INF &&
                 movePMag < field_0xa04 - field_0xa00 &&
                 current.pos.y <= field_0xa04)
             {
@@ -470,7 +470,7 @@ int daObj_KBacket_c::Execute() {
         mGndChk = mObjAcch.m_gnd;
         field_0xa00 = mObjAcch.GetGroundH();
 
-        if (field_0xa00 != -1e+09f) {
+        if (field_0xa00 != -G_CM3D_F_INF) {
             field_0xa16 = daNpcF_getGroundAngle(&mGndChk, shape_angle.y);
 
             setEnvTevColor();

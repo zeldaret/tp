@@ -2692,14 +2692,14 @@ static void action(e_mf_class* i_this) {
             gnd_chk.SetPos(&sp264);
             sp264.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
-            if (sp264.y != -1000000000.0f) {
+            if (sp264.y != -G_CM3D_F_INF) {
                 sp258.x = sp264.x;
                 sp258.y = sp264.y + 100.0f;
                 sp258.z = sp264.z + fVar1;
                 gnd_chk.SetPos(&sp258);
                 sp258.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
-                if (sp258.y != -1000000000.0f) {
+                if (sp258.y != -G_CM3D_F_INF) {
                     sVar7 = -cM_atan2s(sp258.y - sp264.y, sp258.z - sp264.z);
                     if (sVar7 > 0x3000 || sVar7 < -0x3000) {
                         sVar7 = 0;
@@ -2711,7 +2711,7 @@ static void action(e_mf_class* i_this) {
                 sp258.z = sp264.z;
                 gnd_chk.SetPos(&sp258);
                 sp258.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-                if (sp258.y != -1000000000.0f) {
+                if (sp258.y != -G_CM3D_F_INF) {
                     sVar6 = cM_atan2s(sp258.y - sp264.y, sp258.x - sp264.x);
                     if (sVar6 > 0x3000 || sVar6 < -0x3000) {
                         sVar6 = 0;

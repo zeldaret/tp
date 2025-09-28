@@ -4494,7 +4494,7 @@ int daB_GG_c::Create() {
             SetAnm(BCK_GG_WAIT, 2, 5.0f, 1.0f);
             fopAcM_OnStatus(this, 0x200000);
 
-            if (-1000000000.0f != mAcch.GetGroundH()) {
+            if (-G_CM3D_F_INF != mAcch.GetGroundH()) {
                 current.pos.y = mAcch.GetGroundH();
                 field_0x648 = mAcch.GetGroundH();
             }

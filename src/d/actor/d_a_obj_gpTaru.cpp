@@ -403,7 +403,7 @@ void daGpTaru_c::mode_proc_roll() {
     bool var_r26 = fopAcM_gc_c::gndCheck(&sp38);
     bool found_tripla = fopAcM_gc_c::getTriPla(&tripla);
 
-    if (-1000000000.0f != gnd_height && found_tripla) {
+    if (-G_CM3D_F_INF != gnd_height && found_tripla) {
         f32 temp_f28 = cM_scos(cM_deg2s(temp_f30 - 0.5f));
         sp2C = tripla.mNormal;
         if (sp2C.y < temp_f28) {

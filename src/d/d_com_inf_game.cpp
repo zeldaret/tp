@@ -1140,7 +1140,7 @@ s8 dComIfGp_getReverb(int i_roomNo) {
  * dComIfGd_setSimpleShadow__FP4cXyzffR13cBgS_PolyInfosfP9_GXTexObj */
 int dComIfGd_setSimpleShadow(cXyz* i_pos, f32 param_1, f32 param_2, cBgS_PolyInfo& param_3,
                              s16 i_angle, f32 param_5, GXTexObj* i_tex) {
-    if (param_3.ChkSetInfo() && -1000000000.0f != param_1) {
+    if (param_3.ChkSetInfo() && -G_CM3D_F_INF != param_1) {
         cM3dGPla plane;
         dComIfG_Bgsp().GetTriPla(param_3, &plane);
 
@@ -1823,7 +1823,7 @@ void dComIfGp_addSelectItemNum(int i_selItemIdx, s16 i_num) {
 int dComIfGd_setShadow(u32 param_0, s8 param_1, J3DModel* param_2, cXyz* param_3, f32 param_4,
                        f32 param_5, f32 param_6, f32 param_7, cBgS_PolyInfo& param_8,
                        dKy_tevstr_c* param_9, s16 param_10, f32 param_11, _GXTexObj* param_12) {
-    if (param_7 <= -1000000000.0f) {
+    if (param_7 <= -G_CM3D_F_INF) {
         return 0;
     } else {
         return dComIfGd_setRealShadow(param_0, param_1, param_2, param_3, param_4,

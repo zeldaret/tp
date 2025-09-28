@@ -449,7 +449,7 @@ int daE_OC_c::checkBeforeFloorBg(f32 arg) {
     cLib_offsetPos(&my_vec_0, &current.pos, shape_angle.y, &my_vec_1);
     gnd_chk_spl.SetPos(&my_vec_0);
     f32 val_0 = dComIfG_Bgsp().GroundCross(&gnd_chk_spl);
-    if (val_0 != -1e+09f) {
+    if (val_0 != -G_CM3D_F_INF) {
         gnd_chk.SetPos(&my_vec_0);
         if (val_0 >= dComIfG_Bgsp().GroundCross(&gnd_chk))
             return 1;
@@ -499,7 +499,7 @@ void daE_OC_c::setGroundAngle() {
     my_vec_0.z = my_vec_2.z + 80.0f;
     gnd_chk.SetPos(&my_vec_0);
     my_vec_0.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-    if (my_vec_0.y != -1e+09f && (f32)fabs(my_vec_0.y - my_vec_2.y) < 50.0f) {
+    if (my_vec_0.y != -G_CM3D_F_INF && (f32)fabs(my_vec_0.y - my_vec_2.y) < 50.0f) {
         my_vec_3 = my_vec_0 - my_vec_2;
         field_0x688.x = -cM_atan2s(my_vec_3.y, my_vec_3.z);
     }
@@ -508,7 +508,7 @@ void daE_OC_c::setGroundAngle() {
     my_vec_1.z = my_vec_2.z;
     gnd_chk.SetPos(&my_vec_1);
     my_vec_1.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-    if (my_vec_1.y != -1e+09f && (f32)fabs(my_vec_1.y - my_vec_2.y) < 50.0f) {
+    if (my_vec_1.y != -G_CM3D_F_INF && (f32)fabs(my_vec_1.y - my_vec_2.y) < 50.0f) {
         my_vec_3 = my_vec_1 - my_vec_2;
         field_0x688.z = cM_atan2s(my_vec_3.y, my_vec_3.x);
     }
@@ -1227,10 +1227,10 @@ void daE_OC_c::setWeaponGroundAngle() {
         my_vec_1.y += 100.0f;
         gnd_chk.SetPos(&my_vec_0);
         my_vec_0.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-        if (my_vec_0.y != -1e+09f) {
+        if (my_vec_0.y != -G_CM3D_F_INF) {
             gnd_chk.SetPos(&my_vec_1);
             my_vec_1.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-            if (my_vec_1.y != -1e+09f) {
+            if (my_vec_1.y != -G_CM3D_F_INF) {
                 f32 my_float = my_vec_0.absXZ(my_vec_1);
                 my_val = (s16) -cM_atan2s(my_vec_1.y - my_vec_0.y, my_float);
                 if (my_val < -0x2000) {
@@ -2009,7 +2009,7 @@ void daE_OC_c::checkFall() {
     }
     if (mActionMode != 0xD && mActionMode != 0xE && mActionMode != 10 &&
         mActionMode != 0xB && mActionMode != 0xC && speed.y < 0.0f) {
-        if (groundY == -1000000000.0f || dComIfG_Bgsp().GetGroundCode(gnd_chk) == 4
+        if (groundY == -G_CM3D_F_INF || dComIfG_Bgsp().GetGroundCode(gnd_chk) == 4
             || dComIfG_Bgsp().GetGroundCode(gnd_chk) == 10
             || dComIfG_Bgsp().GetGroundCode(gnd_chk) == 5) {
             if (field_0x69c > current.pos.y) {
@@ -2251,7 +2251,7 @@ bool daE_OC_c::checkWaterSurface() {
     gnd_chk_spl.SetPos((Vec*)&my_vec_0);
     mWaterLvl = dComIfG_Bgsp().GroundCross(&gnd_chk_spl);
     if (mAcch.ChkGroundHit()) {
-        mWaterLvl = -1e9f;
+        mWaterLvl = -G_CM3D_F_INF;
     }
     if (mWaterLvl > (current.pos.y - 140.0f)) {
         return 1;

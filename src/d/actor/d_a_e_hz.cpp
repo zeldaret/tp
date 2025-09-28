@@ -324,7 +324,7 @@ void daE_HZ_c::checkFall() {
     gnd_chk.SetPos(&modified_pos);
 
     f32 ground_cross = dComIfG_Bgsp().GroundCross(&gnd_chk);
-    if (speed.y < 0.0f && ground_cross != -1000000000.0f) {
+    if (speed.y < 0.0f && ground_cross != -G_CM3D_F_INF) {
         s32 gnd_chk_ground_code = dComIfG_Bgsp().GetGroundCode(gnd_chk);
         if ((gnd_chk_ground_code == 4 || gnd_chk_ground_code == 10 || gnd_chk_ground_code == 5) &&
             ground_cross + 500.0f > current.pos.y)
@@ -346,7 +346,7 @@ void daE_HZ_c::setCloseSmokeEffect() {
     modified_pos.y += 100.0f;
 
     gnd_chk.SetPos(&modified_pos);
-    if (dComIfG_Bgsp().GroundCross(&gnd_chk) != -1000000000.0f) {
+    if (dComIfG_Bgsp().GroundCross(&gnd_chk) != -G_CM3D_F_INF) {
         dComIfGp_particle_setPolyColor(dPa_RM(ID_ZM_S_HAZIKIPLATESMOKE00), gnd_chk, &mSmokeEffectPosition, &tevStr,
                                        &shape_angle, NULL, 0, NULL, -1, NULL);
     }
@@ -1973,7 +1973,7 @@ void daE_HZ_c::setInitPos() {
     gnd_chk.SetPos(&modified_home_pos);
 
     f32 ground_cross = dComIfG_Bgsp().GroundCross(&gnd_chk);
-    if (ground_cross != -1000000000.0f) {
+    if (ground_cross != -G_CM3D_F_INF) {
         home.pos.y = ground_cross;
         old.pos.y = ground_cross;
         current.pos.y = ground_cross;

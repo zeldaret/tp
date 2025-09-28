@@ -1584,14 +1584,14 @@ static void action(e_gob_class* i_this) {
         sp7C.SetPos(&sp4C);
         
         sp4C.y = dComIfG_Bgsp().GroundCross(&sp7C);
-        if (-1000000000.0f != sp4C.y) {
+        if (-G_CM3D_F_INF != sp4C.y) {
             sp58.x = sp4C.x;
             sp58.y = 50.0f + sp4C.y;
             sp58.z = sp4C.z + temp_f28;
             sp7C.SetPos(&sp58);
 
             sp58.y = dComIfG_Bgsp().GroundCross(&sp7C);
-            if (-1000000000.0f != sp58.y) {
+            if (-G_CM3D_F_INF != sp58.y) {
                 f32 var_f30 = sp58.y - sp4C.y;
                 f32 var_f24 = sp58.z - sp4C.z;
                 sp1A = -cM_atan2s(var_f30, var_f24);
@@ -1606,7 +1606,7 @@ static void action(e_gob_class* i_this) {
             sp7C.SetPos(&sp58);
 
             sp58.y = dComIfG_Bgsp().GroundCross(&sp7C);
-            if (-1000000000.0f != sp58.y) {
+            if (-G_CM3D_F_INF != sp58.y) {
                 f32 var_f30 = sp58.y - sp4C.y;
                 f32 var_f25 = sp58.x - sp4C.x;
                 sp18 = (s16)cM_atan2s(var_f30, var_f25);

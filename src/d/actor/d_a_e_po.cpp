@@ -1012,7 +1012,7 @@ static void e_po_dead(e_po_class* i_this) {
             i_this->field_0x74A[0] = 20;
             break;
         } else {
-            if (i_this->mAcch.GetGroundH() != -1e9f) {
+            if (i_this->mAcch.GetGroundH() != -G_CM3D_F_INF) {
                 i_this->field_0x788.y = i_this->mAcch.GetGroundH();
             }
         }
@@ -1051,7 +1051,7 @@ static void e_po_dead(e_po_class* i_this) {
                     PSMTXCopy(model->getAnmMtx(0x15), *calc_mtx);
                     local_100.set(50.0f, 0.0f, 0.0f);
                     MtxPosition(&local_100, &i_this->field_0x788);
-                    if (i_this->mAcch.GetGroundH() != -1e9f) {
+                    if (i_this->mAcch.GetGroundH() != -G_CM3D_F_INF) {
                         i_this->field_0x788.y = i_this->mAcch.GetGroundH();
                     }
                 }
@@ -1064,7 +1064,7 @@ static void e_po_dead(e_po_class* i_this) {
                 i_this->field_0x74A[2] = 50;
                 Z2GetAudioMgr()->seStart(Z2SE_OBJ_FIRE_EMERGE, &i_this->field_0x788, 0, 0, 1.0f,
                                          1.0f, -1.0f, -1.0f, 0);
-                if (i_this->mAcch.GetGroundH() != -1e9f) {
+                if (i_this->mAcch.GetGroundH() != -G_CM3D_F_INF) {
                     i_this->field_0x7C4 =
                         ((70.0f + i_this->mAcch.GetGroundH()) - i_this->field_0x788.y) / 60.0f;
                     Z2GetAudioMgr()->seStartLevel(Z2SE_OBJ_FIRE_FLY, &a_this->current.pos, 0, 0,
@@ -1100,7 +1100,7 @@ static void e_po_dead(e_po_class* i_this) {
                 }
             }
             bool var_r0 = FALSE;
-            if (i_this->mAcch.GetGroundH() != -1e9f) {
+            if (i_this->mAcch.GetGroundH() != -G_CM3D_F_INF) {
                 if ((70.0f + i_this->mAcch.GetGroundH()) <= i_this->field_0x788.y) {
                     var_r0 = TRUE;
                 }
@@ -1282,7 +1282,7 @@ static void e_po_dead(e_po_class* i_this) {
         i_this->field_0x838.set(cStack_10c);
         camera_player->mCamera.Set(i_this->field_0x844, i_this->field_0x838);
     }
-    if (i_this->mAcch.GetGroundH() != -1e9f) {
+    if (i_this->mAcch.GetGroundH() != -G_CM3D_F_INF) {
         cLib_addCalc2(&a_this->current.pos.y, i_this->mAcch.GetGroundH(), 0.05f, 15.0f);
     }
     return;
@@ -1305,7 +1305,7 @@ static f32 e_rollingMove(e_po_class* i_this, s16 param_1, f32 param_2, f32 param
     local_38.set(player_p->current.pos);
     cLib_addCalc2(&i_this->field_0x820.x, local_38.x, 0.7f, param_3);
     cLib_addCalc2(&i_this->field_0x820.z, local_38.z, 0.7f, param_3);
-    if (i_this->mAcch.GetGroundH() != -1e9f) {
+    if (i_this->mAcch.GetGroundH() != -G_CM3D_F_INF) {
         i_this->field_0x820.y = i_this->mAcch.GetGroundH();
     }
     cStack_44 += i_this->field_0x820;
@@ -1365,7 +1365,7 @@ static void e_po_limbering(e_po_class* i_this) {
             a_this->current.angle.y = fopAcM_searchPlayerAngleY(a_this);
             a_this->shape_angle.y = a_this->current.angle.y + 0x8000;
             i_this->field_0x820 = player_p->current.pos;
-            if (i_this->mAcch.GetGroundH() != -1e9f) {
+            if (i_this->mAcch.GetGroundH() != -G_CM3D_F_INF) {
                 i_this->field_0x820.y = i_this->mAcch.GetGroundH();
             }
             a_this->attention_info.distances[fopAc_attn_BATTLE_e] = 25;
@@ -1423,7 +1423,7 @@ static void e_po_limbering(e_po_class* i_this) {
 
     case 1:
         i_this->field_0x820.set(player_p->current.pos);
-        if (i_this->mAcch.GetGroundH() != -1e9f) {
+        if (i_this->mAcch.GetGroundH() != -G_CM3D_F_INF) {
             i_this->field_0x820.y = i_this->mAcch.GetGroundH();
         }
         local_48 = a_this->current.pos - i_this->field_0x82C;
@@ -1578,7 +1578,7 @@ static void e_po_roll_move(e_po_class* i_this) {
         }
         i_this->field_0x7E0 = i_this->field_0x7E2;
         i_this->field_0x820.set(player_p->current.pos);
-        if (i_this->mAcch.GetGroundH() != -1e9f) {
+        if (i_this->mAcch.GetGroundH() != -G_CM3D_F_INF) {
             i_this->field_0x820.y = i_this->mAcch.GetGroundH();
         }
         i_this->mSph2.OffCoSetBit();
@@ -1642,7 +1642,7 @@ static void e_po_roll_move(e_po_class* i_this) {
                 i_this->field_0x804 = 600.0f + ZREG_F(8);
             }
             i_this->field_0x820.set(player_p->current.pos);
-            if (i_this->mAcch.GetGroundH() != -1e9f) {
+            if (i_this->mAcch.GetGroundH() != -G_CM3D_F_INF) {
                 i_this->field_0x820.y = i_this->mAcch.GetGroundH();
             }
             cLib_addCalc2(&i_this->field_0x7D4, 100.0f, 0.5f, 10.0f);
@@ -3116,7 +3116,7 @@ static int daE_PO_Create(fopAc_ac_c* i_act_this) {
             i_this->mActionID = ACT_DEAD;
             i_this->mType = 9;
             fopAcM_SetMtx(i_act_this, i_this->mpMorf3->getModel()->getBaseTRMtx());
-            if (i_this->mAcch.GetGroundH() != -1e9f) {
+            if (i_this->mAcch.GetGroundH() != -G_CM3D_F_INF) {
                 i_act_this->current.pos.y = i_this->mAcch.GetGroundH();
             }
             i_this->mpMorf3->setStartFrame(95.0f);

@@ -865,7 +865,7 @@ static f32 flowerCheckGroundY(cXyz& param_0) {
     f32 temp_f31 = dComIfG_Bgsp().GroundCross(&sp8);
     param_0.y -= 50.0f;
 
-    if (temp_f31 <= -1000000000.0f) {
+    if (temp_f31 <= -G_CM3D_F_INF) {
         return param_0.y;
     } else {
         return temp_f31;

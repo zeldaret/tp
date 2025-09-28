@@ -626,7 +626,7 @@ void daObjYOUSEI_c::CheckGround() {
     gnd_chk.SetPos(&pos);
 
     pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-    if (pos.y != -1000000000.0f) {
+    if (pos.y != -G_CM3D_F_INF) {
         home.pos.y = pos.y;
     }
 }
@@ -638,7 +638,7 @@ bool daObjYOUSEI_c::CheckWater() {
     gnd_chk.SetPos(&pos);
     pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
-    if (-1000000000.0f != pos.y && dComIfG_Bgsp().GetPolyAtt0(gnd_chk) == 7 && current.pos.y - pos.y < 50.0f+ yREG_F(0)) {
+    if (-G_CM3D_F_INF != pos.y && dComIfG_Bgsp().GetPolyAtt0(gnd_chk) == 7 && current.pos.y - pos.y < 50.0f+ yREG_F(0)) {
         return true;
     }
 

@@ -1054,7 +1054,7 @@ void daE_YM_c::executeDown() {
                 dBgS_GndChk gnd_chk;
                 gnd_chk.SetPos(&current.pos);
                 gnd_cross = dComIfG_Bgsp().GroundCross(&gnd_chk);
-                if (gnd_cross == -1000000000.0f || fabsf(gnd_cross - current.pos.y) > 1000.0f
+                if (gnd_cross == -G_CM3D_F_INF || fabsf(gnd_cross - current.pos.y) > 1000.0f
                     || dComIfG_Bgsp().GetGroundCode(gnd_chk) == 4 || dComIfG_Bgsp().GetGroundCode(gnd_chk) == 10
                     || dComIfG_Bgsp().GetGroundCode(gnd_chk) == 5) {
                     bckSet(6, 0, 0.0f, 1.0f);

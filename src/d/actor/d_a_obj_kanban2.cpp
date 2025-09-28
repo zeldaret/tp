@@ -655,7 +655,7 @@ void daObj_Kanban2_c::setGroundAngle() {
     gnd_chk.SetPos(&gnd_pos);
     gnd_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
-    if (-1000000000.0f != gnd_pos.y && std::abs(gnd_pos.y - sp8.y) < 50.0f) {
+    if (-G_CM3D_F_INF != gnd_pos.y && std::abs(gnd_pos.y - sp8.y) < 50.0f) {
         field_0x5ee.x = -cM_atan2s(gnd_pos.y - sp8.y, gnd_pos.z - sp8.z);
     }
 
@@ -665,7 +665,7 @@ void daObj_Kanban2_c::setGroundAngle() {
     gnd_chk.SetPos(&gnd_pos);
     gnd_pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
-    if (-1000000000.0f != gnd_pos.y && std::abs(gnd_pos.y - sp8.y) < 50.0f) {
+    if (-G_CM3D_F_INF != gnd_pos.y && std::abs(gnd_pos.y - sp8.y) < 50.0f) {
         field_0x5ee.z = cM_atan2s(gnd_pos.y - sp8.y, gnd_pos.x - sp8.x);
     }
 }
@@ -704,7 +704,7 @@ bool daObj_Kanban2_c::checkPataGround(s16 param_0, s16 param_1) {
     sp24.SetPos(&spC);
 
     f32 ground_y = dComIfG_Bgsp().GroundCross(&sp24);
-    if (ground_y != -1000000000.0f && sp18.y < ground_y) {
+    if (ground_y != -G_CM3D_F_INF && sp18.y < ground_y) {
         return true;
     }
 
@@ -1403,7 +1403,7 @@ void daObj_Kanban2_c::executePart() {
 void daObj_Kanban2_c::executeFloat() {
     checkWaterSurface();
 
-    if (-1000000000.0f == field_0x604) {
+    if (-G_CM3D_F_INF == field_0x604) {
         setActionMode(ACTION_PART_e, 7);
         return;
     }

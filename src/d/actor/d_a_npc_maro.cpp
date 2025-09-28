@@ -279,7 +279,7 @@ int daNpc_Maro_c::create() {
         mAcch.CrrPos(dComIfG_Bgsp());
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.GetGroundH();
-        if (mGroundH != -1000000000.0f) {
+        if (mGroundH != -G_CM3D_F_INF) {
             setEnvTevColor();
             setRoomNo();
         }
@@ -401,7 +401,7 @@ void* daNpc_Maro_c::srchArrow(void* param_1, void* param_2) {
 /* 8055C0B4-8055C1AC 000C14 00F8+00 1/1 0/0 0/0 .text            getArrowP__12daNpc_Maro_cFv */
 fopAc_ac_c* daNpc_Maro_c::getArrowP() {
     fopAc_ac_c* pActor = NULL;
-    f32 minDist = 1e9f;
+    f32 minDist = G_CM3D_F_INF;
     mFindCount = 0;
     fopAcM_Search(srchArrow, this);
     for (int i = 0; i < mFindCount; i++) {
@@ -430,7 +430,7 @@ void* daNpc_Maro_c::srchItaMato(void* arg0, void* arg1) {
 /* 8055C248-8055C330 000DA8 00E8+00 1/1 0/0 0/0 .text            getItaMatoP__12daNpc_Maro_cFi */
 fopAc_ac_c* daNpc_Maro_c::getItaMatoP(int param_0) {
     fopAc_ac_c* pActor = NULL;
-    f32 minDist = 1e9f;
+    f32 minDist = G_CM3D_F_INF;
     mFindCount = 0;
     fopAcM_Search(srchItaMato, this);
     for (int i = 0; i < mFindCount; i++) {
@@ -2054,7 +2054,7 @@ int daNpc_Maro_c::cutArrowTutorial(int arg0) {
                     mDoMtx_stack_c::multVec(&my_vec_0, &temp);
                     mGndChk.SetPos(&temp);
                     temp.y = dComIfG_Bgsp().GroundCross(&mGndChk);
-                    JUT_ASSERT(0xDA9, -(1000000000.0f) != temp.y);
+                    JUT_ASSERT(0xDA9, -G_CM3D_F_INF != temp.y);
                     dComIfGp_evmng_setGoal(&temp);
                 }
 
@@ -2873,7 +2873,7 @@ int daNpc_Maro_c::cutTalkToKakashi(int arg0) {
                 mDoMtx_stack_c::multVec(&my_vec_0, &temp);
                 mGndChk.SetPos(&temp);
                 temp.y = dComIfG_Bgsp().GroundCross(&mGndChk);
-                JUT_ASSERT(0xDA9, -(1000000000.0f) != temp.y);
+                JUT_ASSERT(0xDA9, -G_CM3D_F_INF != temp.y);
                 angle_y = cLib_targetAngleY(&temp, &current.pos);
                 daPy_getPlayerActorClass()->setPlayerPosAndAngle(&temp, angle_y, 0);
                 break;

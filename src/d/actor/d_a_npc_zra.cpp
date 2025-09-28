@@ -229,7 +229,7 @@ f32 daNpc_zrA_Path_c::chkPassDst(u16 i_idx, cXyz i_pos) {
         daNpcF_pntVsLineSegmentLengthSquare2D(i_pos.x, i_pos.z, prev_pos.x, prev_pos.z,
                                               next_pos.x, next_pos.z, &proj_x, &proj_z, &dist);
         if (cM3d_IsZero(dist)) {
-            return -1e9f;
+            return -G_CM3D_F_INF;
         } else {
             daNpcF_pntVsLineSegmentLengthSquare2D(cur_pos.x, cur_pos.z, prev_pos.x, prev_pos.z,
                                                 next_pos.x, next_pos.z, &proj2_x, &proj2_z, &dist);
@@ -249,7 +249,7 @@ f32 daNpc_zrA_Path_c::chkPassDst(u16 i_idx, cXyz i_pos) {
             }
         }
     } else {
-        return -1e9f;
+        return -G_CM3D_F_INF;
     }
 }
 

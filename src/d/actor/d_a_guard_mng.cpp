@@ -26,7 +26,7 @@ static void* s_sub(void* i_actorP, void* i_this) {
 /* 80837B9C-80837BEC 0000FC 0050+00 1/1 0/0 0/0 .text            checkMerchantNum__12daGuardMng_cFv
  */
 u8 daGuardMng_c::checkMerchantNum() {
-    field_0x56c = 1000000000.0f;
+    field_0x56c = G_CM3D_F_INF;
     mMerchantNum = 0;
     fpcM_Search(s_sub,this);
     return mMerchantNum;

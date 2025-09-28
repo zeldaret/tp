@@ -663,7 +663,7 @@ void daBoomerang_c::setRoomInfo() {
     mGroundY = dComIfG_Bgsp().GroundCross(&m_gndChk);
 
     int roomNo;
-    if (mGroundY != -1000000000.0f) {
+    if (mGroundY != -G_CM3D_F_INF) {
         roomNo = dComIfG_Bgsp().GetRoomId(m_gndChk);
         tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(m_gndChk);
     } else {
@@ -1295,7 +1295,7 @@ int daBoomerang_c::execute() {
         if (fopAcM_rc_c::roofCheck(&spC) && dComIfG_Bgsp().GetUnderwaterRoofCode(*fopAcM_rc_c::getRoofCheck()) == 0) {
             roof_y = fopAcM_rc_c::getRoofY();
         } else {
-            roof_y = 1000000000.0f;
+            roof_y = G_CM3D_F_INF;
         }
 
         if (roof_y > fopAcM_wt_c::getWaterY() && current.pos.y < fopAcM_wt_c::getWaterY() - 50.0f) {

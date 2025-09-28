@@ -1115,7 +1115,7 @@ bool daB_DR_c::flapMove(bool param_0) {
         }
     }
 
-    if (-1000000000.0f == mAcch.GetGroundH()) {
+    if (-G_CM3D_F_INF == mAcch.GetGroundH()) {
         target_y += home.pos.y;
     } else {
         target_y += mAcch.GetGroundH();
@@ -1195,7 +1195,7 @@ bool daB_DR_c::mPlayerHighCheck() {
     gndchk.SetPos(&chk_pos);
     field_0x734 = dComIfG_Bgsp().GroundCross(&gndchk);
 
-    if (-1000000000.0f == field_0x734 || field_0x734 < 0.0f) {
+    if (-G_CM3D_F_INF == field_0x734 || field_0x734 < 0.0f) {
         field_0x734 = home.pos.y;
     }
 
@@ -1217,7 +1217,7 @@ bool daB_DR_c::mBgFallGroundCheck() {
     chkpos.y += 300.0f;
     gndchk.SetPos(&chkpos);
     chkpos.y = dComIfG_Bgsp().GroundCross(&gndchk);
-    if (-1000000000.0f == chkpos.y) {
+    if (-G_CM3D_F_INF == chkpos.y) {
         chkpos.y = home.pos.y;
     }
     if (chkpos.y < home.pos.y) {
@@ -2728,7 +2728,7 @@ void daB_DR_c::executeGliderAttack() {
                 field_0x7dc = 1;
             }
 
-            if (-1000000000.0f != mAcch.GetGroundH()) {
+            if (-G_CM3D_F_INF != mAcch.GetGroundH()) {
                 if (mAnm == ANM_DR_WIND_ATTACKB) {
                     mCount[1]++;
                     if (mCount[1] > WREG_S(9)) {
@@ -2945,7 +2945,7 @@ void daB_DR_c::executePillarSearch() {
         cLib_addCalcAngleS2(&current.angle.x, sp30.atan2sY_XZ(), 20, NREG_S(3) + 0x400);
         cLib_addCalcAngleS2(&shape_angle.x, current.angle.x, NREG_S(2) + 20, NREG_S(3) + 0x400);
 
-        if (mPlayerHighCheck() && -1000000000.0f != mAcch.GetGroundH()) {
+        if (mPlayerHighCheck() && -G_CM3D_F_INF != mAcch.GetGroundH()) {
             setActionMode(ACTION_BREATH_ATTACK, 0);
         }
     }
@@ -3571,7 +3571,7 @@ void daB_DR_c::action() {
         if (abs(temp_r28) < 0x2000) {
             field_0x74e = temp_r28;
         }
-        if (mAnm == ANM_DR_WIND_ATTACKATOB || mAnm == ANM_DR_WIND_ATTACKB || -1000000000.0f != mAcch.GetGroundH() || mCount[3] == 0) {
+        if (mAnm == ANM_DR_WIND_ATTACKATOB || mAnm == ANM_DR_WIND_ATTACKB || -G_CM3D_F_INF != mAcch.GetGroundH() || mCount[3] == 0) {
             field_0x74e = 0;
         }
     }
@@ -3632,7 +3632,7 @@ void daB_DR_c::mtx_set() {
         sp28.SetPos(&sp1C);
         
         f32 var_f31 = dComIfG_Bgsp().GroundCross(&sp28);
-        if (-1000000000.0f == var_f31 || var_f31 < 5250.0f + JREG_F(4)) {
+        if (-G_CM3D_F_INF == var_f31 || var_f31 < 5250.0f + JREG_F(4)) {
             var_f31 = 5250.0f + JREG_F(4);
         }
         field_0x7a8.y = var_f31;
@@ -3648,7 +3648,7 @@ void daB_DR_c::mtx_set() {
         }
     }
 
-    if (mAnm == ANM_DR_WIND_ATTACKB && -1000000000.0f != mAcch.GetGroundH()) {
+    if (mAnm == ANM_DR_WIND_ATTACKB && -G_CM3D_F_INF != mAcch.GetGroundH()) {
         cXyz sp10 = current.pos - home.pos;
         if (sp10.abs() > 3000.0f || current.pos.y > 370.0f) {
             if (field_0x7d8 == 0) {
@@ -3746,7 +3746,7 @@ void daB_DR_c::cc_set() {
             mSound2.startCreatureSoundLevel(Z2SE_EN_DR_WIND_ATTACK, 0, -1);
         }
 
-        if (mAnm == ANM_DR_WIND_ATTACKB && -1000000000.0f != mAcch.GetGroundH() && mCount[1] > WREG_S(9)) {
+        if (mAnm == ANM_DR_WIND_ATTACKB && -G_CM3D_F_INF != mAcch.GetGroundH() && mCount[1] > WREG_S(9)) {
             var_r27 = 1;
         }
 
@@ -4286,7 +4286,7 @@ int daB_DR_c::create() {
             setActionMode(ACTION_GLIDER_ATTACK, 0);
 
             mTargetHeight = 1500.0f + mAcch.GetGroundH();
-            if (-1000000000.0f == mAcch.GetGroundH()) {
+            if (-G_CM3D_F_INF == mAcch.GetGroundH()) {
                 mTargetHeight = 1500.0f + current.pos.y;
             }
             if (dComIfGs_isZoneSwitch(1, fopAcM_GetRoomNo(this))) {

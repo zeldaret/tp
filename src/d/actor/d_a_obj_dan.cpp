@@ -602,7 +602,7 @@ cPhs__Step daObjDAN_c::create() {
         pos.y += 100.0f;
         gnd_chk.SetPos(&pos);
         f32 cross = dComIfG_Bgsp().GroundCross(&gnd_chk);
-        if (cross != -1e9f) {
+        if (cross != -G_CM3D_F_INF) {
             current.pos.y = cross;
         }
 

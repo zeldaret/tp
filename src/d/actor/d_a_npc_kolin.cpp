@@ -463,7 +463,7 @@ cPhs__Step daNpc_Kolin_c::create() {
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.GetGroundH();
 
-        if (mGroundH != -1000000000.0f) {
+        if (mGroundH != -G_CM3D_F_INF) {
             setEnvTevColor();
             setRoomNo();
         }
@@ -1383,7 +1383,7 @@ int daNpc_Kolin_c::cutHail(int i_cutIndex) {
                 mGndChk.SetPos(&work);
                 work.y = dComIfG_Bgsp().GroundCross(&mGndChk);
 
-                JUT_ASSERT(2646, -(1000000000.0f) != work.y);
+                JUT_ASSERT(2646, -G_CM3D_F_INF != work.y);
 
                 daPy_getPlayerActorClass()->setPlayerPosAndAngle(&work, angle, 0);
                 break;

@@ -390,7 +390,7 @@ int daObjL6Bm_c::Draw() {
         mpBtkAnm2->remove(mBeamEffectModel->getModelData());
     }
 
-    if (field_0x90c != -1000000000.0f) {
+    if (field_0x90c != -G_CM3D_F_INF) {
         cM3dGPla plane;
         if (dComIfG_Bgsp().GetTriPla(mObjGndChk, &plane)) {
             dComIfGd_setSimpleShadow(&current.pos, field_0x90c, 120.0f, &plane.mNormal, 0, 

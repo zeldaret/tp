@@ -1331,7 +1331,7 @@ void daMBdoorL1_c::setStart(f32 param_1, f32 param_2) {
 
 static f32 dummy(f32 param_0) {
     dBgS_ObjGndChk gnd_chk;
-    return param_0 + -1e9f + 50.0f;
+    return param_0 + -G_CM3D_F_INF + 50.0f;
 }
 
 /* 80676004-806760B4 003844 00B0+00 1/1 0/0 0/0 .text            smokeInit2__12daMBdoorL1_cFv */

@@ -459,8 +459,8 @@ void dCamera_c::initialize(camera_class* i_camera, fopAc_ac_c* i_player, u32 i_c
     mBG.field_0x5c.field_0x0 = 0;
     mBG.field_0x0.field_0x0 = 0;
     mBG.field_0xc0.field_0x3c = 0xFF;
-    mBG.field_0x5c.field_0x58 = -1000000000.0f;
-    mBG.field_0x0.field_0x58 = -1000000000.0f;
+    mBG.field_0x5c.field_0x58 = -G_CM3D_F_INF;
+    mBG.field_0x0.field_0x58 = -G_CM3D_F_INF;
     mBG.field_0x0.field_0x4.OffNormalGrp();
     mBG.field_0x0.field_0x4.OnWaterGrp();
     mBG.field_0xc0.field_0x1 = 0;
@@ -473,7 +473,7 @@ void dCamera_c::initialize(camera_class* i_camera, fopAc_ac_c* i_player, u32 i_c
     mBG.field_0xc0.field_0x34 = 0;
     mBG.field_0x108.field_0x0 = 0;
     mBG.field_0x108.field_0x4 = 0.0f;
-    mBG.field_0xc0.field_0x38 = -1000000000.0f;
+    mBG.field_0xc0.field_0x38 = -G_CM3D_F_INF;
     mBG.field_0xc0.field_0x40 = 0xFF;
 
     mWallUpDist = mCamSetup.mBGChk.WallUpDistance();
@@ -2238,7 +2238,7 @@ f32 dCamera_c::groundHeight(cXyz* param_0) {
     }
 
     f32 height_correct;
-    if (height == -1000000000.0f) {
+    if (height == -G_CM3D_F_INF) {
         height_correct = param_0->y;
     } else {
         height_correct = height;
@@ -2942,7 +2942,7 @@ void dCamera_c::tooNearEscape(cXyz* param_0) {
 
 /* 80167EF4-80167FEC 162834 00F8+00 2/2 0/0 0/0 .text getWaterSurfaceHeight__9dCamera_cFP4cXyz */
 f32 dCamera_c::getWaterSurfaceHeight(cXyz* param_0) {
-    f32 var_f31 = -1000000000.0f;
+    f32 var_f31 = -G_CM3D_F_INF;
 
     cXyz spF8(*param_0);
     dBgS_RoofChk roofchk;
@@ -10056,7 +10056,7 @@ static int camera_draw(camera_process_class* i_this) {
     gndchk.SetPos(&i_this->lookat.eye);
 
     f32 cross = dComIfG_Bgsp().GroundCross(&gndchk);
-    if (cross != -1000000000.0f) {
+    if (cross != -G_CM3D_F_INF) {
         if (dComIfG_Bgsp().ChkGrpInf(gndchk, 0x100)) {
             mDoAud_getCameraMapInfo(6);
         } else {
@@ -10117,7 +10117,7 @@ static int init_phase2(camera_class* i_this) {
     spA4.y += 50.0f;
     gndchk.SetPos(&spA4);
 
-    if (dComIfG_Bgsp().GroundCross(&gndchk) == -1000000000.0f) {
+    if (dComIfG_Bgsp().GroundCross(&gndchk) == -G_CM3D_F_INF) {
 #if DEBUG
         if (i_this->field_0x238 < 100) {
             if (i_this->field_0x238 % 100 == 0 && i_this->field_0x238 != 0) {

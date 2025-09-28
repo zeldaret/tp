@@ -643,7 +643,7 @@ inline int daObjNAN_c::draw() {
                 cStack_88.y += 20.0f;
                 gndChk.SetPos(&cStack_88);
                 f32 groundCross = dComIfG_Bgsp().GroundCross(&gndChk);
-                if (groundCross != 1000000000.0f) {
+                if (groundCross != G_CM3D_F_INF) {
                     dComIfGd_setSimpleShadow(&current.pos, groundCross, 15.0f, gndChk, 0, -0.6f, 
                                              dDlst_shadowControl_c::getSimpleTex());
                 }

@@ -404,7 +404,7 @@ bool daE_KK_c::way_gake_check() {
         gndChk.SetPos(&field_0x6d4[i]);
         field_0x6d4[i].y = dComIfG_Bgsp().GroundCross(&gndChk);
 
-        if (field_0x6d4[i].y == -1000000000.0f) {
+        if (field_0x6d4[i].y == -G_CM3D_F_INF) {
             field_0x6d4[i].y = current.pos.y;
             return true;
         }
@@ -1166,7 +1166,7 @@ void daE_KK_c::action() {
             position.y += 300.0f;
             gndChk.SetPos(&position);
             position.y = dComIfG_Bgsp().GroundCross(&gndChk);
-            if (position.y == -1000000000.0f) {
+            if (position.y == -G_CM3D_F_INF) {
                 mTimer = 100;
                 setActionMode(10, 2);
             } else {

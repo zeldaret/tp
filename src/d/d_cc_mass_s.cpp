@@ -48,11 +48,11 @@ void dCcMassS_Mng::Ct() {
     field_0x202 = 0;
     mResultCam = 0;
     mCamTopPos.x = 0.0f;
-    mCamTopPos.y = -1000000000.0f;
+    mCamTopPos.y = -G_CM3D_F_INF;
     mCamTopPos.z = 0.0f;
 
     mCamBottomPos.x = 0.0f;
-    mCamBottomPos.y = -1000000000.0f;
+    mCamBottomPos.y = -G_CM3D_F_INF;
     mCamBottomPos.z = 0.0f;
 
     Clear();
@@ -106,14 +106,14 @@ void dCcMassS_Mng::Prepare() {
     }
 
     mCamTopPos.x = 0.0f;
-    mCamTopPos.y = -1000000000.0f;
+    mCamTopPos.y = -G_CM3D_F_INF;
     mCamTopPos.z = 0.0f;
-    mCamTopDist = 1000000000.0f;
+    mCamTopDist = G_CM3D_F_INF;
 
     mCamBottomPos.x = 0.0f;
-    mCamBottomPos.y = -1000000000.0f;
+    mCamBottomPos.y = -G_CM3D_F_INF;
     mCamBottomPos.z = 0.0f;
-    mCamBottomDist = 1000000000.0f;
+    mCamBottomDist = G_CM3D_F_INF;
 }
 
 /* 800858AC-80085CF0 0801EC 0444+00 0/0 0/0 2/2 .text

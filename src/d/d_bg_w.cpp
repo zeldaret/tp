@@ -249,12 +249,12 @@ void cBgW::MakeBlckBnd(int i_blk_idx, cXyz* i_min, cXyz* i_max) {
     if (mNeedsFullTransform == 0) {
         MakeBlckTransMinMax(i_min, i_max);
     } else {
-        i_min->z = 1000000000.0f;
-        i_min->y = 1000000000.0f;
-        i_min->x = 1000000000.0f;
-        i_max->z = -1000000000.0f;
-        i_max->y = -1000000000.0f;
-        i_max->x = -1000000000.0f;
+        i_min->z = G_CM3D_F_INF;
+        i_min->y = G_CM3D_F_INF;
+        i_min->x = G_CM3D_F_INF;
+        i_max->z = -G_CM3D_F_INF;
+        i_max->y = -G_CM3D_F_INF;
+        i_max->x = -G_CM3D_F_INF;
 
         for (int i = start; i <= max; i++) {
             MakeBlckMinMax(pm_bgd->m_t_tbl[i].m_vtx_idx0, i_min, i_max);

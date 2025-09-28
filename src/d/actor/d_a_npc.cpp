@@ -1277,7 +1277,7 @@ int daNpcT_c::execute() {
     mGndChk = mAcch.m_gnd;
     mGroundAngle = fopAcM_getPolygonAngle(mGndChk, current.angle.y);
     mGroundH = mAcch.GetGroundH();
-    if (mGroundH != -1000000000.0f) {
+    if (mGroundH != -G_CM3D_F_INF) {
         mPolSound = dKy_pol_sound_get(&mAcch.m_gnd);
         mReverb = dComIfGp_getReverb(mCcStts.GetRoomId());
 
@@ -1288,7 +1288,7 @@ int daNpcT_c::execute() {
 
     afterMoved();
 
-    if (mGroundH != -1000000000.0f) {
+    if (mGroundH != -G_CM3D_F_INF) {
         setEnvTevColor();
         setRoomNo();
     }
@@ -2117,7 +2117,7 @@ void daNpcT_c::setPos(cXyz i_pos) {
     mGndChk.SetPos(&i_pos);
     
     i_pos.y = dComIfG_Bgsp().GroundCross(&mGndChk);
-    JUT_ASSERT(3922, -(1000000000.0f) != i_pos.y)
+    JUT_ASSERT(3922, -G_CM3D_F_INF != i_pos.y)
 
     current.pos = i_pos;
     old.pos = current.pos;
@@ -2525,7 +2525,7 @@ BOOL daNpcT_c::talkProc(int* param_0, BOOL param_1, fopAc_ac_c** i_partnerList_p
 /* 8014BE2C-8014BEE4 14676C 00B8+00 0/0 0/0 25/25 .text            getNearestActorP__8daNpcT_cFs */
 fopAc_ac_c* daNpcT_c::getNearestActorP(s16 i_srchActorName) {
     fopAc_ac_c* actor = NULL;
-    f32 minDistance = 1000000000.0f;
+    f32 minDistance = G_CM3D_F_INF;
 
     mFindCount = 0;
     mSrchName = i_srchActorName;
@@ -2545,7 +2545,7 @@ fopAc_ac_c* daNpcT_c::getNearestActorP(s16 i_srchActorName) {
 /* 8014BEE4-8014BFB0 146824 00CC+00 0/0 0/0 12/12 .text            getEvtAreaTagP__8daNpcT_cFii */
 fopAc_ac_c* daNpcT_c::getEvtAreaTagP(int i_type, int i_no) {
     int var_r29 = 0;
-    f32 var_f31 = 1000000000.0f;
+    f32 var_f31 = G_CM3D_F_INF;
 
     mFindCount = 0;
     mSrchName = PROC_TAG_EVTAREA;

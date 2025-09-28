@@ -307,7 +307,7 @@ f32 daKago_c::checkGroundHeight(cXyz i_pos, f32* o_step) {
 
     field_0x738 = 0;
 
-    if (field_0x700 != -1e+09f) {
+    if (field_0x700 != -G_CM3D_F_INF) {
         field_0x738 = dComIfG_Bgsp().GetSpecialCode(gndChk);
         field_0x700 += l_HIO.mFlightGroundAltitude;
         if (retVal < field_0x700) {
@@ -329,7 +329,7 @@ f32 daKago_c::checkGroundHeight(cXyz i_pos, f32* o_step) {
     dBgS_ObjGndChk_Spl gndChkSpl;
     gndChkSpl.SetPos(&gndChkPos);
     f32 gndCrossMag = dComIfG_Bgsp().GroundCross(&gndChkSpl);
-    if (gndCrossMag != -1e+09f) {
+    if (gndCrossMag != -G_CM3D_F_INF) {
         field_0x70c = gndCrossMag;
         gndCrossMag += l_HIO.mFlightGroundAltitude;
         if (current.pos.y < gndCrossMag + 50.0f) {
@@ -378,7 +378,7 @@ f32 daKago_c::checkRoofHeight(cXyz param_0) {
     roofChk.SetPos(unkXyz1);
 
     roofChkYVal = dComIfG_Bgsp().RoofChk(&roofChk);
-    if (roofChkYVal != 1e9f) {
+    if (roofChkYVal != G_CM3D_F_INF) {
         roofChkYVal -= l_HIO.mFlightCeilingAltitude;
         if (current.pos.y > roofChkYVal) {
             mRoofHeight = current.pos.y;
@@ -400,7 +400,7 @@ f32 daKago_c::checkRoofHeight(cXyz param_0) {
             }
         }
     } else {
-        mRoofHeight = 1e9f;
+        mRoofHeight = G_CM3D_F_INF;
     }
 
     if (!unkFlag1 && current.pos.y >= mRoofHeight - 100.0f) {

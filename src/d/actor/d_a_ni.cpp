@@ -2020,7 +2020,7 @@ static int daNi_Create(fopAc_ac_c* i_this) {
             a_this->mTimers[0] = 10;
         }
 
-        a_this->mSplGroundH = -1000000000.0f;
+        a_this->mSplGroundH = -G_CM3D_F_INF;
 
         daNi_Execute(a_this);
     }

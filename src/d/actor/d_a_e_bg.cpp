@@ -340,7 +340,7 @@ void daE_BG_c::executeSwim() {
         {
             if (!fopAcM_otherBgCheck(this, daPy_getPlayerActorClass())) {
                 if (daPy_getPlayerActorClass()->checkEquipHeavyBoots()) {
-                    if (field_0x684 != -1e+09f) {
+                    if (field_0x684 != -G_CM3D_F_INF) {
                         if (daPy_getPlayerActorClass()->current.pos.y < field_0x684 - 20.0f) {
                             setActionMode(2, 0);
                             return;
@@ -365,7 +365,7 @@ void daE_BG_c::executeSwim() {
     switch (mMoveMode) {
     case 0: {
         field_0x660.y = home.pos.y + cM_rndFX(500.0f);
-        if (field_0x684 != -1e+09f && field_0x660.y > field_0x684 - 50.0f) {
+        if (field_0x684 != -G_CM3D_F_INF && field_0x660.y > field_0x684 - 50.0f) {
             field_0x660.y = field_0x684 - 50.0f;
         }
 
@@ -409,7 +409,7 @@ void daE_BG_c::executeSwim() {
 
         cLib_addCalcAngleS(&field_0x6a0, 0xc00, 8, 0x400, 0x100);
 
-        if (speed.y > 0.0f && field_0x684 != -1e+09f && current.pos.y > field_0x684 - 50.0f) {
+        if (speed.y > 0.0f && field_0x684 != -G_CM3D_F_INF && current.pos.y > field_0x684 - 50.0f) {
             mMoveMode = 3;
         }
 
@@ -463,7 +463,7 @@ void daE_BG_c::executeAttack() {
 
     if (mMoveMode <= 2) {
         if (daPy_getPlayerActorClass()->checkEquipHeavyBoots()) {
-            if (field_0x684 != -1e+09f && playerPos.y >= field_0x684 - 20.0f) {
+            if (field_0x684 != -G_CM3D_F_INF && playerPos.y >= field_0x684 - 20.0f) {
                 setActionMode(1, 0);
                 return;
             }
@@ -966,7 +966,7 @@ void daE_BG_c::executeEat() {
     switch (this->mMoveMode) {
     case 0:
         field_0x660.y = rodPos.y + cM_rndFX(100.0f);
-        if (field_0x684 != -1e+09f && field_0x660.y > field_0x684 - 50.0f) {
+        if (field_0x684 != -G_CM3D_F_INF && field_0x660.y > field_0x684 - 50.0f) {
             field_0x660.y = field_0x684 - 50.0f;
         }
 
@@ -1164,7 +1164,7 @@ void daE_BG_c::action() {
 
     fopAcM_posMoveF(this, mStts.GetCCMoveP());
 
-    if (field_0x684 != -1e+09f && current.pos.y > field_0x684 - 50.0f) {
+    if (field_0x684 != -G_CM3D_F_INF && current.pos.y > field_0x684 - 50.0f) {
         current.pos.y = field_0x684 - 50.0f;
         if (speed.y > 0.0f) {
             speed.y = 0.0f;
@@ -1426,7 +1426,7 @@ int daE_BG_c::create() {
         gndChkSpl.SetPos(&gndChkPos);
 
         field_0x684 = dComIfG_Bgsp().GroundCross(&gndChkSpl);
-        if (field_0x684 != -1e+09f && current.pos.y > field_0x684 - 50.0f) {
+        if (field_0x684 != -G_CM3D_F_INF && current.pos.y > field_0x684 - 50.0f) {
             current.pos.y = field_0x684 - 50.0f;
         }
 

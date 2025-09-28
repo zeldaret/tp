@@ -1039,7 +1039,7 @@ void daNpc_Kn_c::beforeMove() {
 
 /* 80A2C4FC-80A2C56C 001BDC 0070+00 1/1 0/0 0/0 .text            afterMoved__10daNpc_Kn_cFv */
 void daNpc_Kn_c::afterMoved() {
-    if (mGroundHeight != -1000000000.0f) {
+    if (mGroundHeight != -G_CM3D_F_INF) {
         mTevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mGndChk);
         mTevStr.room_no = dComIfG_Bgsp().GetRoomId(mGndChk);
     }

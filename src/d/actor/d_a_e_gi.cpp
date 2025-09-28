@@ -342,7 +342,7 @@ void daE_GI_c::setDragSwordEffect() {
     gndchk.SetPos(&pos);
     
     f32 ground_height = dComIfG_Bgsp().GroundCross(&gndchk);
-    if (-1000000000.0f != ground_height) {
+    if (-G_CM3D_F_INF != ground_height) {
         pos.y = ground_height;
     }
 

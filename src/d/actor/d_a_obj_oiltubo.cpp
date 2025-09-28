@@ -95,7 +95,7 @@ int daObj_Oiltubo_c::Execute() {
     mGroundChk = mAcch.m_gnd;
     mGroundHeight = mAcch.GetGroundH();
 
-    if (mGroundHeight != -1000000000.0f) {
+    if (mGroundHeight != -G_CM3D_F_INF) {
         setEnvTevColor();
         setRoomNo();
     }

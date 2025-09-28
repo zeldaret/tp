@@ -539,7 +539,7 @@ void daObjKAG_c::checkGroundPos() {
     mGndChk.SetPos(&sp28);
 
     f32 fVar1 = dComIfG_Bgsp().GroundCross(&mGndChk);
-    if (fVar1 != -1e9f) {
+    if (fVar1 != -G_CM3D_F_INF) {
         field_0x81c = fVar1;
     }
 }

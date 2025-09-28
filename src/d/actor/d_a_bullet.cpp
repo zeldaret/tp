@@ -94,11 +94,11 @@ int daBullet_c::Execute() {
         mGndChk = mAcch.m_gnd;
         mGroundY = mAcch.GetGroundH();
     } else {
-        mGroundY = -1000000000.0f;
+        mGroundY = -G_CM3D_F_INF;
     }
 
     int room_no;
-    if (mGroundY != -1000000000.0f) {
+    if (mGroundY != -G_CM3D_F_INF) {
         room_no = dComIfG_Bgsp().GetRoomId(mGndChk);
         tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mGndChk);
     } else {

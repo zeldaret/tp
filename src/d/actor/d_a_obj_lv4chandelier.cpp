@@ -844,7 +844,7 @@ int daObjLv4Chan_c::Draw() {
         }
     }
     dComIfGd_setList();
-    if (field_0x247c != -1e9f) {
+    if (field_0x247c != -G_CM3D_F_INF) {
         f32 fVar4 = 0.4f + ((field_0x23bc.y - field_0x247c) * -0.2f) / 500.0f;
         if (fVar4 > 0.4f) {
             fVar4 = 0.4f;

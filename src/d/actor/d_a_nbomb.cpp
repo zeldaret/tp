@@ -479,7 +479,7 @@ BOOL daNbomb_c::checkExplode() {
 /* 804C8430-804C84D8 001750 00A8+00 5/5 0/0 0/0 .text            setRoomInfo__9daNbomb_cFv */
 void daNbomb_c::setRoomInfo() {
     int room_no;
-    if (mAcch.GetGroundH() != -1000000000.0f) {
+    if (mAcch.GetGroundH() != -G_CM3D_F_INF) {
         room_no = dComIfG_Bgsp().GetRoomId(mAcch.m_gnd);
         tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mAcch.m_gnd);
         mPolySound = dKy_pol_sound_get(&mAcch.m_gnd);
@@ -1701,7 +1701,7 @@ int daNbomb_c::draw() {
         mat->setTevColor(1, &bomb_color);
     }
 
-    if (mAcch.GetGroundH() != -1000000000.0f && !fopAcM_checkCarryNow(this)) {
+    if (mAcch.GetGroundH() != -G_CM3D_F_INF && !fopAcM_checkCarryNow(this)) {
         cM3dGPla ground_poly;
         if (dComIfG_Bgsp().GetTriPla(mAcch.m_gnd, &ground_poly)) {
             dComIfGd_setSimpleShadow(&current.pos, mAcch.GetGroundH(), scale.x * 25.0f,

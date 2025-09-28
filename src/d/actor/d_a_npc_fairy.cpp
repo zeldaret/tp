@@ -1541,7 +1541,7 @@ COMPILER_STRIP_GATE(0x809B93F8, &lit_4315);
 /* 809B93FC-809B9400 000118 0004+00 0/1 0/0 0/0 .rodata          @4316 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static f32 const lit_4316 = -1000000000.0f;
+SECTION_RODATA static f32 const lit_4316 = -G_CM3D_F_INF;
 COMPILER_STRIP_GATE(0x809B93FC, &lit_4316);
 #pragma pop
 

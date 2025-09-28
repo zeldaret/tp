@@ -377,7 +377,7 @@ bool daE_FZ_c::way_gake_check() {
     gnd_chk.SetPos(&field_0x6e8);
     
     field_0x6e8.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-    if (field_0x6e8.y == -1e+09f) {
+    if (field_0x6e8.y == -G_CM3D_F_INF) {
         field_0x6e8.y = current.pos.y;
         return true;
     } else if (current.pos.y - field_0x6e8.y > 100.0f) {
@@ -782,7 +782,7 @@ void daE_FZ_c::action() {
                 gnd_chk.SetPos(&pos);
                 pos.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
-                if (pos.y != -1e+09f) {
+                if (pos.y != -G_CM3D_F_INF) {
                     field_0x710 = 0;
 
                     if (current.pos.y - pos.y > 400.0f && field_0x713 == 0) {

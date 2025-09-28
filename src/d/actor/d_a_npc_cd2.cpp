@@ -1952,7 +1952,7 @@ bool PathTrace_c::setPath(int param_1, int param_2, int param_3, cXyz* param_4, 
 
     field_0x20 = 0;
     if (param_5) {
-        f32 minDist = 1000000000.0f;
+        f32 minDist = G_CM3D_F_INF;
         field_0x20 = 0;
         for (int i = 0; i < mPath->m_num; i++) {
             dPnt* pnt = dPath_GetPnt(mPath, i);
@@ -2044,7 +2044,7 @@ void PathTrace_c::setNextPoint() {
     dPnt* pnt2 = dPath_GetPnt(mPath, field_0x20);
     cXyz acStack_28(pnt1->m_position);
     field_0x18 = acStack_28.abs(pnt2->m_position);
-    mNextPoint = 1000000000.0f;
+    mNextPoint = G_CM3D_F_INF;
 }
 
 /* 8015A264-8015A294 154BA4 0030+00 1/1 0/0 0/0 .text            incIndex__11PathTrace_cFi */
@@ -2111,7 +2111,7 @@ void PathTrace_c::checkObstacleSub(fopAc_ac_c* pObstacle) {
         f32 local_38;
         f32 local_3c;
         f32 local_40;
-        local_38 = 1000000000.0f;
+        local_38 = G_CM3D_F_INF;
         JUT_ASSERT(1822, mMyself != NULL);
         cXyz& selfPos = fopAcM_GetPosition(mMyself);
         if (mObstacle != NULL) {

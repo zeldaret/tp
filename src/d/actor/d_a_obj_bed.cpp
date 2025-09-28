@@ -50,7 +50,7 @@ cPhs__Step daObj_Bed_c::create() {
         mAcch.CrrPos(dComIfG_Bgsp());
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.GetGroundH();
-        if (mGroundH != -1e9f) {
+        if (mGroundH != -G_CM3D_F_INF) {
             setEnvTevColor();
             setRoomNo();
         }
@@ -92,7 +92,7 @@ int daObj_Bed_c::Execute() {
     mAcch.CrrPos(dComIfG_Bgsp());
     mGndChk = mAcch.m_gnd;
     mGroundH = mAcch.GetGroundH();
-    if (mGroundH != -1e9f) {
+    if (mGroundH != -G_CM3D_F_INF) {
         setEnvTevColor();
         setRoomNo();
     }
@@ -111,7 +111,7 @@ int daObj_Bed_c::Draw() {
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     mDoExt_modelUpdateDL(mpModel);
-    if (mGroundH != -1e9f) {
+    if (mGroundH != -G_CM3D_F_INF) {
         mShadow = dComIfGd_setShadow(mShadow, 1, mpModel, &current.pos,
                                      daObj_Bed_Param_c::m.field_0xc, 20.0f,
                                      current.pos.y, mGroundH, mGndChk, &tevStr, 0,

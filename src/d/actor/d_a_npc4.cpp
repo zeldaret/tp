@@ -553,7 +553,7 @@ BOOL daNpcF_c::execute() {
         mAcch.CrrPos(dComIfG_Bgsp());
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.GetGroundH();
-        if (mGroundH != -1000000000.0f) {
+        if (mGroundH != -G_CM3D_F_INF) {
             field_0x998 = daNpcF_getGroundAngle(&mGndChk, mCurAngle.y);
             setEnvTevColor();
             setRoomNo();
@@ -1536,7 +1536,7 @@ fopAc_ac_c* daNpcF_c::getAttnActorP(BOOL i_playerAttn, fpcLyIt_JudgeFunc i_searc
     int sp38 = 0;
     int sp34;
 
-    f32 minDistance = 1000000000.0f;
+    f32 minDistance = G_CM3D_F_INF;
     f32 var_f30 = i_radius;
 
     if (mAttnChangeTimer != 0) {

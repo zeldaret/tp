@@ -122,7 +122,7 @@ int daNpc_Zant_c::create() {
             mAcch.CrrPos(dComIfG_Bgsp());
             mGndChk = mAcch.m_gnd;
             mGroundH = mAcch.m_ground_h;
-            if (mGroundH != -1000000000.0f) {
+            if (mGroundH != -G_CM3D_F_INF) {
                 setEnvTevColor();
                 setRoomNo();
             }

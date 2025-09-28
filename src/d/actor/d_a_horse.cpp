@@ -2109,7 +2109,7 @@ BOOL daHorse_c::checkWaitTurn() const {
 /* 8083D774-8083D918 005934 01A4+00 2/2 0/0 0/0 .text            setRoomInfo__9daHorse_cFi */
 void daHorse_c::setRoomInfo(int param_0) {
     int room_no;
-    if (-1000000000.0f != m_acch.GetGroundH() && (checkStateFlg0(FLG0_UNK_1) || m_procID == PROC_LARGE_DAMAGE_e || m_procID == PROC_JUMP_e || current.pos.y - m_acch.GetGroundH() < 500.0f)) {
+    if (-G_CM3D_F_INF != m_acch.GetGroundH() && (checkStateFlg0(FLG0_UNK_1) || m_procID == PROC_LARGE_DAMAGE_e || m_procID == PROC_JUMP_e || current.pos.y - m_acch.GetGroundH() < 500.0f)) {
         room_no = dComIfG_Bgsp().GetRoomId(m_acch.m_gnd);
         tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(m_acch.m_gnd);
 
@@ -4376,7 +4376,7 @@ int daHorse_c::execute() {
         sp54.z = sp70.mTranslate.z;
 
         mDoMtx_stack_c::multVec(&sp54, &current.pos);
-        if (field_0x1730 != 0 && -1000000000.0f != m_acch.GetGroundH()) {
+        if (field_0x1730 != 0 && -G_CM3D_F_INF != m_acch.GetGroundH()) {
             current.pos.y = m_acch.GetGroundH();
         }
     } else if (m_procID == PROC_JUMP_e) {

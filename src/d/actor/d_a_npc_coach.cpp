@@ -530,7 +530,7 @@ BOOL daNpcChPath_c::setPath(int path_index, int room_no, cXyz& i_vec, bool param
 
     // Is this really what the Nintendo devs wrote?? The debug ROM suggests as such.
     if (param_4 && &i_vec) {
-        f32 fVar1 = 1000000000.0f;
+        f32 fVar1 = G_CM3D_F_INF;
         for (int pnt_index = 0; pnt_index < mpPath->m_num; pnt_index++) {
             dPnt* pnt = dPath_GetPnt(mpPath, pnt_index);
             f32 fVar2 = i_vec.abs2(pnt->m_position);
@@ -543,7 +543,7 @@ BOOL daNpcChPath_c::setPath(int path_index, int room_no, cXyz& i_vec, bool param
         setNextPoint();
     }
 
-    field_0x8 = 1000000000.0f;
+    field_0x8 = G_CM3D_F_INF;
 
     // ditto.
     if (&i_vec) {

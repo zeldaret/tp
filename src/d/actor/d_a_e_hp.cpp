@@ -830,7 +830,7 @@ void daE_HP_c::action() {
     }
 
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
-    if (mObjAcch.GetGroundH() != -1000000000.0f) {
+    if (mObjAcch.GetGroundH() != -G_CM3D_F_INF) {
         if (arg0 != 2 || mAction == 5 || mAction == 6) {
             gravity = -3.0f;
             if ((mAction == 5 && field_0x780 == 9 || mAction == 6) && mObjAcch.ChkGroundHit()) {
@@ -885,7 +885,7 @@ void daE_HP_c::action() {
     field_0x768 =
         field_0x7a4 + (20.0f + NREG_F(4)) * cM_ssin((f32)field_0x7a8 * (1000.0f + NREG_F(3)));
 
-    if (mObjAcch.GetGroundH() != -1000000000.0f) {
+    if (mObjAcch.GetGroundH() != -G_CM3D_F_INF) {
         field_0x72c.y = mObjAcch.GetGroundH();
     }
 

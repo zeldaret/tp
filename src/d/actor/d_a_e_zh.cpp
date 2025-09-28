@@ -574,7 +574,7 @@ bool daE_ZH_c::mSearchMove(u8 param_1) {
         if (param_1 == 0) {
             sp5c += mS_Ball->current.pos;
 
-            if (mBgc.GetGroundH() != -1000000000.0f && mBgc.GetGroundH() > mS_Ball->current.pos.y) {
+            if (mBgc.GetGroundH() != -G_CM3D_F_INF && mBgc.GetGroundH() > mS_Ball->current.pos.y) {
                 sp5c.y = mBgc.GetGroundH();
             }
         } else {
@@ -1113,7 +1113,7 @@ void daE_ZH_c::executeOpenStart() {
             // fallthrough
         case 15:
             sp34.y = mS_Ball->current.pos.y + 600.0f;
-            if (mBgc.GetGroundH() != -1000000000.0f) {
+            if (mBgc.GetGroundH() != -G_CM3D_F_INF) {
                 sp34.y = mBgc.GetGroundH() + 600.0f;
             }
 
@@ -1146,11 +1146,11 @@ void daE_ZH_c::executeSearchMove() {
 
     ato.y = mS_Ball->current.pos.y + 600.0f;
     
-    if (mBgc.GetGroundH() != -1000000000.0f && mBgc.GetGroundH() + 500.0f > ato.y) {
+    if (mBgc.GetGroundH() != -G_CM3D_F_INF && mBgc.GetGroundH() + 500.0f > ato.y) {
         ato.y = mBgc.GetGroundH() + 500.0f;
     }
 
-    if (mBgc.GetRoofHeight() != 1000000000.0f && ato.y > mBgc.GetRoofHeight()) {
+    if (mBgc.GetRoofHeight() != G_CM3D_F_INF && ato.y > mBgc.GetRoofHeight()) {
         ato.y = mBgc.GetRoofHeight() - 150.0f;
     }
 
@@ -1425,14 +1425,14 @@ void daE_ZH_c::executeCatchFlyMove() {
         pmRoofPos = home.pos.y;
 
         if (arg0 == 0) {
-            if (mBgc.GetGroundH() != -1000000000.0f) {
+            if (mBgc.GetGroundH() != -G_CM3D_F_INF) {
                 pmRoofPos = mBgc.GetGroundH() + 600.0f;
             } else {
                 pmRoofPos = home.pos.y + 600.0f;
             }
         }
 
-        if (mBgc.GetRoofHeight() != 1000000000.0f && pmRoofPos > mBgc.GetRoofHeight()) {
+        if (mBgc.GetRoofHeight() != G_CM3D_F_INF && pmRoofPos > mBgc.GetRoofHeight()) {
             pmRoofPos = mBgc.GetRoofHeight() - 150.0f;
         }
 

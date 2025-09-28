@@ -267,7 +267,7 @@ void dKyr_sun_move() {
 
         lenz_packet->field_0x84 = lenz_packet->field_0x8c;
         lenz_packet->field_0x88 = lenz_packet->field_0x90;
-        lenz_packet->field_0x8c = 1000000000.0f;
+        lenz_packet->field_0x8c = 1000000000.0f; // This is not G_CM3D_F_INF
         lenz_packet->field_0x90 = 0.0f;
 
         cXyz center;
@@ -508,7 +508,7 @@ static BOOL forward_overhead_bg_chk(cXyz* ppos, f32 dist) {
     *ppos = chk_pos;
 
     roofchk.SetPos(chk_pos);
-    if (1000000000.0f != dComIfG_Bgsp().RoofChk(&roofchk)) {
+    if (G_CM3D_F_INF != dComIfG_Bgsp().RoofChk(&roofchk)) {
         chk = TRUE;
         if (strcmp(dComIfGp_getStartStageName(), "F_SP122") == 0) {
             if (dStage_roomControl_c::getStayNo() == 17) {

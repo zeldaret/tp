@@ -1985,14 +1985,14 @@ static void ground_angle_set(e_yr_class* i_this) {
         gndChk.SetPos(&unkXyz3);
 
         unkXyz3.y = dComIfG_Bgsp().GroundCross(&gndChk);
-        if (unkXyz3.y != -1e+09f) {
+        if (unkXyz3.y != -G_CM3D_F_INF) {
             unkVec1.x = unkXyz3.x;
             unkVec1.y = unkXyz3.y + 100.0f;
             unkVec1.z = unkXyz3.z + unkFloat1;
             gndChk.SetPos(&unkVec1);
 
             unkVec1.y = dComIfG_Bgsp().GroundCross(&gndChk);
-            if (unkVec1.y != -1e+09f) {
+            if (unkVec1.y != -G_CM3D_F_INF) {
                 yDiff = unkVec1.y - unkXyz3.y;
                 zDiff = unkVec1.z - unkXyz3.z;
                 unkShort2 = -cM_atan2s(yDiff, zDiff);
@@ -2005,7 +2005,7 @@ static void ground_angle_set(e_yr_class* i_this) {
             unkVec1.z = unkXyz3.z;
             gndChk.SetPos(&unkVec1);
             unkVec1.y = dComIfG_Bgsp().GroundCross(&gndChk);
-            if (unkVec1.y != -1e+09f) {
+            if (unkVec1.y != -G_CM3D_F_INF) {
                 yDiff = unkVec1.y - unkXyz3.y;
                 xDiff = unkVec1.x - unkXyz3.x;
                 unkShort1 = (s16)cM_atan2s(yDiff, xDiff);

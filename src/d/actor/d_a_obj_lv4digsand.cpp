@@ -117,7 +117,7 @@ void daObjL4DigSand_c::mode_init_dig() {
     gndchk.SetPos(&current.pos);
 
     f32 gnd_y = dComIfG_Bgsp().GroundCross(&gndchk);
-    if (gnd_y != -1000000000.0f) {
+    if (gnd_y != -G_CM3D_F_INF) {
         mGroundY = gnd_y;
     } else {
 #ifdef DEBUG

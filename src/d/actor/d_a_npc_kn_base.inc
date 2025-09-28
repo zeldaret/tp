@@ -134,7 +134,7 @@ int daNpc_Kn_c::execute() {
     mGroundHeight = mAcch.GetGroundH();
     afterMoved();
 
-    if (mGroundHeight != -1000000000.0f) {
+    if (mGroundHeight != -G_CM3D_F_INF) {
         setEnvTevColor();
         setRoomNo();
     }
@@ -1200,7 +1200,7 @@ static f32 dummy_lits_01(int sel) {
     case 1:
         return 6.0f;
     default:
-        return 1e9f;
+        return G_CM3D_F_INF;
     }
 }
 

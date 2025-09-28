@@ -1053,7 +1053,7 @@ COMPILER_STRIP_GATE(0x80B24AAC, &lit_4159);
 /* 80B24AB0-80B24AB4 0000CC 0004+00 0/1 0/0 0/0 .rodata          @4160 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static f32 const lit_4160 = -1000000000.0f;
+SECTION_RODATA static f32 const lit_4160 = -G_CM3D_F_INF;
 COMPILER_STRIP_GATE(0x80B24AB0, &lit_4160);
 #pragma pop
 
@@ -1197,7 +1197,7 @@ void daNpc_Toby_c::srchToby(void* param_0, void* param_1) {
 
 /* ############################################################################################## */
 /* 80B24AC8-80B24ACC 0000E4 0004+00 1/1 0/0 0/0 .rodata          @4593 */
-SECTION_RODATA static f32 const lit_4593 = 1000000000.0f;
+SECTION_RODATA static f32 const lit_4593 = G_CM3D_F_INF;
 COMPILER_STRIP_GATE(0x80B24AC8, &lit_4593);
 
 /* 80B1F124-80B1F200 000BC4 00DC+00 1/1 0/0 0/0 .text            getOtherTobyP__12daNpc_Toby_cFi */

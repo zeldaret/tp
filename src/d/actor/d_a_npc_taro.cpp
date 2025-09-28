@@ -342,7 +342,7 @@ int daNpc_Taro_c::create() {
         mAcch.CrrPos(dComIfG_Bgsp());
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.GetGroundH();
-        if (mGroundH != -1e9f) {
+        if (mGroundH != -G_CM3D_F_INF) {
             setEnvTevColor();
             setRoomNo();
         }
@@ -506,7 +506,7 @@ void* daNpc_Taro_c::srchNpc(void* param_1, void* param_2) {
 /* 80566BD4-80566CCC 000E34 00F8+00 1/1 0/0 0/0 .text            getArrowP__12daNpc_Taro_cFv */
 fopAc_ac_c* daNpc_Taro_c::getArrowP() {
     fopAc_ac_c* pActor = NULL;
-    f32 minDist = 1e9f;
+    f32 minDist = G_CM3D_F_INF;
     mFindCount = 0;
     fopAcM_Search(srchArrow, this);
     for (int i = 0; i < mFindCount; i++) {
@@ -1818,7 +1818,7 @@ int daNpc_Taro_c::cutAppearanceMoi(int param_1) {
             work += home.pos;
             mGndChk.SetPos(&work);
             work.y = dComIfG_Bgsp().GroundCross(&mGndChk);
-            JUT_ASSERT(4156, -(1000000000.0f) != work.y)
+            JUT_ASSERT(4156, -G_CM3D_F_INF != work.y)
             cStack_68.y = cLib_targetAngleY(&work, &current.pos);
             daPy_getPlayerActorClass()->setPlayerPosAndAngle(&work, cStack_68.y, 0);
             mEventTimer = timer;

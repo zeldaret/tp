@@ -131,7 +131,7 @@ bool cBgS::LineCross(cBgS_LinChk* p_line) {
 
 /* 800744A0-80074578 06EDE0 00D8+00 0/0 51/51 231/231 .text GroundCross__4cBgSFP11cBgS_GndChk */
 f32 cBgS::GroundCross(cBgS_GndChk* p_gnd) {
-    p_gnd->SetNowY(-1000000000.0f);
+    p_gnd->SetNowY(-G_CM3D_F_INF);
     p_gnd->ClearPi();
     p_gnd->PreCheck();
 

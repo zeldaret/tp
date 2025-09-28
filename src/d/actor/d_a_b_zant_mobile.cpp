@@ -201,7 +201,7 @@ f32 daB_ZANTZ_c::getGroundPos() {
         gndchk.SetPos(&sp88);
         sp88.y = dComIfG_Bgsp().GroundCross(&gndchk);
 
-        if (sp88.y == -1000000000.0f) {
+        if (sp88.y == -G_CM3D_F_INF) {
             break;
         }
 

@@ -68,7 +68,7 @@ int daObj_Stick_c::create() {
         mGndChk = mAcch.m_gnd;
         mGroundHeight = mAcch.m_ground_h;
 
-        if(mGroundHeight != -1000000000.0f) {
+        if(mGroundHeight != -G_CM3D_F_INF) {
             setEnvTevColor();
             setRoomNo();
         }
@@ -106,7 +106,7 @@ int daObj_Stick_c::Execute() {
     mGndChk = mAcch.m_gnd;
     
     mGroundHeight = mAcch.m_ground_h;
-    if (mGroundHeight != -1000000000.0f) {
+    if (mGroundHeight != -G_CM3D_F_INF) {
         setEnvTevColor();
         setRoomNo();
     }
@@ -127,7 +127,7 @@ int daObj_Stick_c::Draw() {
     g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     mDoExt_modelUpdateDL(mpModel);
 
-    if(mGroundHeight != -1000000000.0f) {
+    if(mGroundHeight != -G_CM3D_F_INF) {
         mShadowKey = dComIfGd_setShadow(mShadowKey, 
             1, 
             mpModel, 

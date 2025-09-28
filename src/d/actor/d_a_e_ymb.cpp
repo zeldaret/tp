@@ -533,7 +533,7 @@ void daE_YMB_c::checkWaterPos() {
     dBgS_ObjGndChk_Spl wtr_chk;
     wtr_chk.SetPos(&pos);
     f32 wtr_pos = dComIfG_Bgsp().GroundCross(&wtr_chk);
-    if (wtr_pos != -1000000000.0f) {
+    if (wtr_pos != -G_CM3D_F_INF) {
         field_0x6cc = wtr_pos;
         field_0x69c.y = wtr_pos + 1000.0f + l_HIO.fly_height_adjust;
 
@@ -558,7 +558,7 @@ void daE_YMB_c::checkGroundPos() {
     mGndChk.SetPos(&pos);
     f32 fVar1 = dComIfG_Bgsp().GroundCross(&mGndChk);
     field_0x6d4 = fVar1;
-    if (fVar1 != -1000000000.0f && field_0x6d0 < fVar1) {
+    if (fVar1 != -G_CM3D_F_INF && field_0x6d0 < fVar1) {
         field_0x6d0 = fVar1;
     }
 }

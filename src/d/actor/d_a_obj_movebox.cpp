@@ -56,7 +56,7 @@ void daObjMovebox::Bgc_c::gnd_pos(const daObjMovebox::Act_c* i_actor,
                                   f32 param_3) {
     cXyz sp50;
     cXyz sp5C;
-    f32 var_f31 = -1000000000.0f;
+    f32 var_f31 = -G_CM3D_F_INF;
 
     mDoMtx_stack_c::transS(i_actor->current.pos);
     mDoMtx_stack_c::YrotM(i_actor->home.angle.y);
@@ -1229,7 +1229,7 @@ int daObjMovebox::Act_c::Draw() {
         cM3dGPla sp40;
 
         if (dComIfG_Bgsp().GetTriPla(mBgc.M_gnd_work[mBgc.field_0x5c], &sp40) &&
-            var_f31 != -1000000000.0f)
+            var_f31 != -G_CM3D_F_INF)
         {
             dComIfGd_setSimpleShadow(&current.pos, var_f31, i_attr().mShadowSize, &sp40.mNormal,
                                      shape_angle.y, -0.4f, NULL);

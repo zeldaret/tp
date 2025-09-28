@@ -48,7 +48,7 @@ int daTag_Lantern_c::Execute() {
     mGroundCross = dComIfG_Bgsp().GroundCross(&mGndChk);
 
     s32 room_no;
-    if (mGroundCross != -1000000000.0f) {
+    if (mGroundCross != -G_CM3D_F_INF) {
         room_no = dComIfG_Bgsp().GetRoomId(mGndChk);
         tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mGndChk);
     } else {

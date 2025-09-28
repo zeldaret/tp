@@ -2167,7 +2167,7 @@ int daObjCarry_c::_delete() {
     }
 
     if (prm_chk_type_ironball()) {
-        if (-1000000000.0f != mAcch.GetGroundH()) {
+        if (-G_CM3D_F_INF != mAcch.GetGroundH()) {
             savePos(getSaveID(), current.pos);
             setRoomNo(getSaveID(), fopAcM_GetRoomNo(this));
         } else {
@@ -2305,7 +2305,7 @@ BOOL daObjCarry_c::checkRollAngle() {
     bool valid_plane = fopAcM_gc_c::getTriPla(&plane);
     f32 ground_y = fopAcM_gc_c::getGroundY();
 
-    if (gnd_chk && ground_y != -1000000000.0f && valid_plane) {
+    if (gnd_chk && ground_y != -G_CM3D_F_INF && valid_plane) {
         f32 roll_threshold = cM_scos(cM_deg2s(roll_angle - 0.5f));
         cXyz normal(plane.mNormal);
         if (normal.y < roll_threshold) {
@@ -2522,7 +2522,7 @@ int daObjCarry_c::mode_proc_walk() {
     f32 var_f31 = data().m_slopeInfluence;
     f32 temp_f25 = fopAcM_gc_c::getGroundY();
 
-    if (gnd_check && -1000000000.0f != temp_f25 && gnd_hit && !gnd_landing) {
+    if (gnd_check && -G_CM3D_F_INF != temp_f25 && gnd_hit && !gnd_landing) {
         bool var_r27 = 1;
         if (fopAcM_gc_c::getPolyAtt0() == 3) {
             var_r27 = 0;
@@ -4248,7 +4248,7 @@ void daObjCarry_c::exec_proc_kibako() {}
 
 /* 8047884C-804788C4 0098CC 0078+00 1/0 0/0 0/0 .text exec_proc_ironball__12daObjCarry_cFv */
 void daObjCarry_c::exec_proc_ironball() {
-    if (mAcch.GetGroundH() != -1000000000.0f) {
+    if (mAcch.GetGroundH() != -G_CM3D_F_INF) {
         savePos(getSaveID(), current.pos);
         setRoomNo(getSaveID(), fopAcM_GetRoomNo(this));
     }

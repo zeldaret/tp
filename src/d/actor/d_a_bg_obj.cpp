@@ -406,8 +406,8 @@ void daBgObj_c::settingCullSizeBoxForCo(int param_0) {
 
 /* 80459F14-8045A0EC 000934 01D8+00 3/3 0/0 0/0 .text settingCullSizeBoxForCull__9daBgObj_cFi */
 void daBgObj_c::settingCullSizeBoxForCull(int param_0) {
-    cXyz max(1000000000.0f, 1000000000.0f, 1000000000.0f);
-    cXyz min(-1000000000.0f, -1000000000.0f, -1000000000.0f);
+    cXyz max(G_CM3D_F_INF, G_CM3D_F_INF, G_CM3D_F_INF);
+    cXyz min(-G_CM3D_F_INF, -G_CM3D_F_INF, -G_CM3D_F_INF);
 
     for (int i = 0; i < 2; i++) {
         J3DModel* cur_model = field_0x5a8[param_0][i];
@@ -448,7 +448,7 @@ void daBgObj_c::settingCullSizeBoxForCull(int param_0) {
         }
     }
 
-    if (1000000000.0f != max.x) {
+    if (G_CM3D_F_INF != max.x) {
         fopAcM_setCullSizeBox(this, max.x, max.y, max.z, min.x, min.y, min.z);
     } else {
         fopAcM_setCullSizeBox(this, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);

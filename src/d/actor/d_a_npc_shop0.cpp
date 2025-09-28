@@ -126,7 +126,7 @@ int daNpc_Shop0_c::draw() {
     mBckAnm.entry(mpModel->getModelData());
     mDoExt_modelUpdateDL(mpModel);
 
-    if (mGroundCross != -1e+9f) {
+    if (mGroundCross != -G_CM3D_F_INF) {
         cM3dGPla tri_pla;
         if (dComIfG_Bgsp().GetTriPla(mGndChk, &tri_pla)) {
             dComIfGd_setSimpleShadow(
@@ -271,7 +271,7 @@ void daNpc_Shop0_c::setRoomInf() {
 
     mGroundCross = dComIfG_Bgsp().GroundCross(&mGndChk);
 
-    if (mGroundCross != -1e+09f) {
+    if (mGroundCross != -G_CM3D_F_INF) {
         room_no = dComIfG_Bgsp().GetRoomId(mGndChk);
         tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mGndChk);
     } else {

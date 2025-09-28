@@ -425,7 +425,7 @@ void daWdStick_c::mode_proc_roll() {
     cM3dGPla cStack_ec;
     fopAcM_gc_c::gndCheck(&cStack_f8);
     bool iVar7 = fopAcM_gc_c::getTriPla(&cStack_ec);
-    if ((groundCross != -1000000000.0f) && iVar7 != 0) {
+    if ((groundCross != -G_CM3D_F_INF) && iVar7 != 0) {
         f32 dVar11 = cM_scos(cM_deg2s(dVar14 - 0.5f));
         cStack_104 = cStack_ec.mNormal;
         if (cStack_104.y < dVar11) {

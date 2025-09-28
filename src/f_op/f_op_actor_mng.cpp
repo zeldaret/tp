@@ -2015,7 +2015,7 @@ s32 fopAcM_getWaterY(cXyz const* param_0, f32* o_waterY) {
         *o_waterY = fopAcM_wt_c::getWaterY();
         return 1;
     } else {
-        *o_waterY = -1000000000.0f;
+        *o_waterY = -G_CM3D_F_INF;
         return 0;
     }
 }
@@ -2104,14 +2104,14 @@ bool fopAcM_lc_c::lineCheck(cXyz const* i_start, cXyz const* i_end, fopAc_ac_c c
 bool fopAcM_gc_c::gndCheck(cXyz const* i_pos) {
     mGndCheck.SetPos(i_pos);
     mGroundY = (f32)dComIfG_Bgsp().GroundCross(&mGndCheck);
-    return -1000000000.0f != mGroundY;
+    return -G_CM3D_F_INF != mGroundY;
 }
 
 /* 8001DD1C-8001DD84 01865C 0068+00 0/0 0/0 3/3 .text            roofCheck__11fopAcM_rc_cFPC4cXyz */
 bool fopAcM_rc_c::roofCheck(cXyz const* i_pos) {
     mRoofCheck.SetPos(*i_pos);
     mRoofY = dComIfG_Bgsp().RoofChk(&mRoofCheck);
-    return 1000000000.0f != mRoofY;
+    return G_CM3D_F_INF != mRoofY;
 }
 
 /* 8001DD84-8001DE10 0186C4 008C+00 1/1 4/4 22/22 .text            waterCheck__11fopAcM_wt_cFPC4cXyz

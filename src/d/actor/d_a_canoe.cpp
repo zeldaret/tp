@@ -199,7 +199,7 @@ static int daCanoe_Delete(daCanoe_c* i_this) {
 /* 804DB008-804DB0B0 000BA8 00A8+00 1/1 0/0 0/0 .text            setRoomInfo__9daCanoe_cFv */
 void daCanoe_c::setRoomInfo() {
     int room_no;
-    if (mAcch[0].GetGroundH() != -1000000000.0f) {
+    if (mAcch[0].GetGroundH() != -G_CM3D_F_INF) {
         room_no = dComIfG_Bgsp().GetRoomId(mAcch[0].m_gnd);
         tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mAcch[0].m_gnd);
     } else {

@@ -411,7 +411,7 @@ void daObjStone_c::mode_proc_call() {
                     dBgS_ObjGndChk adStack_c8;
                     adStack_c8.SetPos(&cStack_d4);
                     f32 dVar17 = dComIfG_Bgsp().GroundCross(&adStack_c8);
-                    if (dVar17 == -1000000000.0f) {
+                    if (dVar17 == -G_CM3D_F_INF) {
                         dVar17 = -100000.0f;
                     }
                     dVar17 = fabs(waterHeight - dVar17);
@@ -736,7 +736,7 @@ void daObjStone_c::modeWalk() {
     bool iVar7 = fopAcM_gc_c::gndCheck(&cStack_c8);
     bool isTriPla = fopAcM_gc_c::getTriPla(&acStack_a4);
     f32 dVar12 = fopAcM_gc_c::getGroundY();
-    if (iVar7 && dVar12 != -1000000000.0f && isTriPla) {
+    if (iVar7 && dVar12 != -G_CM3D_F_INF && isTriPla) {
         f32 dVar12 = cM_scos(cM_deg2s(dVar15 - 0.5f));
         cXyz cStack_d4(acStack_a4.mNormal);
         if (cStack_d4.y < dVar12) {
@@ -977,7 +977,7 @@ int daObjStone_c::checkRollAngle() {
     bool triPla = dComIfG_Bgsp().GetTriPla(fopAcM_gc_c::mGndCheck, &plane);
     f32 ground_y = fopAcM_gc_c::getGroundY();
 
-    if (gnd_chk && -1000000000.0f != ground_y && triPla) {
+    if (gnd_chk && -G_CM3D_F_INF != ground_y && triPla) {
         f32 tmp2 = cM_scos(cM_deg2s(dVar11 - 0.5f));
         cXyz pos2 = plane.mNormal;
 

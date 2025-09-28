@@ -114,7 +114,7 @@ int daObj_SSItem_c::Execute() {
             mAcch.CrrPos(dComIfG_Bgsp());
             mGndChk = mAcch.m_gnd;
             field_0xB00 = mAcch.GetGroundH();
-            if (field_0xB00 != -1000000000.0f) {
+            if (field_0xB00 != -G_CM3D_F_INF) {
                 setEnvTevColor();
                 setRoomNo();
             }
@@ -152,7 +152,7 @@ int daObj_SSItem_c::Draw() {
         g_env_light.settingTevStruct(0, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
         mDoExt_modelUpdateDL(mpModel);
-        if (field_0xB00 != -1000000000.0f) {
+        if (field_0xB00 != -G_CM3D_F_INF) {
             cM3dGPla plane;
             bool tri_pla = dComIfG_Bgsp().GetTriPla(mGndChk, &plane);
             if (tri_pla) {

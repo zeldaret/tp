@@ -1143,7 +1143,7 @@ const daObjBm_c::BgcSrc_c daObjBm_c::Bgc_c::M_lin20[] = {
 };
 
 static f32 dummy_rodata_5157() {
-    return -1000000000.0f;
+    return -G_CM3D_F_INF;
 }
 
 /* 80BB3F9C-80BB4728 0000BC 078C+00 1/2 0/0 0/0 .bss             M_gnd_work__Q29daObjBm_c5Bgc_c */

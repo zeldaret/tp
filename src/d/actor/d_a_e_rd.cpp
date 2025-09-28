@@ -5443,14 +5443,14 @@ static void action(e_rd_class* i_this) {
             gnd_chk.SetPos(&sp28c);
             sp28c.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
-            if (sp28c.y != -1000000000.0f) {
+            if (sp28c.y != -G_CM3D_F_INF) {
                 sp280.x = sp28c.x;
                 sp280.y = sp28c.y + 100.0f;
                 sp280.z = sp28c.z + fVar2;
                 gnd_chk.SetPos(&sp280);
                 sp280.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
-                if (sp280.y != -1000000000.0f) {
+                if (sp280.y != -G_CM3D_F_INF) {
                     sVar5 = -cM_atan2s(sp280.y - sp28c.y, sp280.z - sp28c.z);
                     if (sVar5 > 0x3000 || sVar5 < -0x3000) {
                         sVar5 = 0;
@@ -5463,7 +5463,7 @@ static void action(e_rd_class* i_this) {
                 gnd_chk.SetPos(&sp280);
                 sp280.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
-                if (sp280.y != -1000000000.0f) {
+                if (sp280.y != -G_CM3D_F_INF) {
                     sVar4 = cM_atan2s(sp280.y - sp28c.y, sp280.x - sp28c.x);
                     if (sVar4 > 0x3000 || sVar4 < -0x3000) {
                         sVar4 = 0;
@@ -6368,7 +6368,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
 
         i_this->field_0x1294 = 0;
 
-        if (i_this->mObjAcch.GetGroundH() != -1000000000.0f && i_this->mObjAcch.ChkWaterHit() && i_this->mObjAcch.m_wtr.GetHeight() > a_this->current.pos.y) {
+        if (i_this->mObjAcch.GetGroundH() != -G_CM3D_F_INF && i_this->mObjAcch.ChkWaterHit() && i_this->mObjAcch.m_wtr.GetHeight() > a_this->current.pos.y) {
             i_this->field_0x1294 = 1;
         }
     }

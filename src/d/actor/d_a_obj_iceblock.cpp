@@ -672,7 +672,7 @@ int daObjIceBlk_c::checkWallPre(s16 i_angle) {
 /* 80C236C8-80C237B0 001A68 00E8+00 2/2 0/0 0/0 .text            checkBgHit__13daObjIceBlk_cFv */
 int daObjIceBlk_c::checkBgHit() {
     cXyz check_pos;
-    mGroundY = -1000000000.0f;
+    mGroundY = -G_CM3D_F_INF;
 
     int var_r29 = -1;
 

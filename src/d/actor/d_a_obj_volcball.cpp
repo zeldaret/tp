@@ -551,7 +551,7 @@ int daObjVolcBall_c::executeBall() {
 
             ball->mAcch.CrrPos(dComIfG_Bgsp());
 
-            if (ball->mAcch.ChkGroundHit() || ball->mAcch.GetGroundH() == -1000000000.0f) {
+            if (ball->mAcch.ChkGroundHit() || ball->mAcch.GetGroundH() == -G_CM3D_F_INF) {
                 mDoAud_seStart(Z2SE_OBJ_BREAK_ROCK, &mBall[i].field_0x4, 0,
                                dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
                 endFallEffect(i);

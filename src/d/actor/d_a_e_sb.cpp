@@ -1028,7 +1028,7 @@ void daE_SB_c::setGroundAngle() {
     vec_0x44.z = 80.0f + vec_0x2c.z;
     gnd_chk.SetPos(&vec_0x44);
     vec_0x44.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-    if (-1000000000.0f != vec_0x44.y && fabsf(vec_0x44.y - vec_0x2c.y) < 50.0f) {
+    if (-G_CM3D_F_INF != vec_0x44.y && fabsf(vec_0x44.y - vec_0x2c.y) < 50.0f) {
         vec_0x20 = vec_0x44 - vec_0x2c;
         cLib_chaseAngleS(&field_0x614.x, (s16) -cM_atan2s(vec_0x20.y, vec_0x20.z), 0x100);
     }
@@ -1038,7 +1038,7 @@ void daE_SB_c::setGroundAngle() {
     vec_0x38.z = vec_0x2c.z;
     gnd_chk.SetPos(&vec_0x38);
     vec_0x38.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-    if (-1000000000.0f != vec_0x38.y && fabsf(vec_0x38.y - vec_0x2c.y) < 50.0f) {
+    if (-G_CM3D_F_INF != vec_0x38.y && fabsf(vec_0x38.y - vec_0x2c.y) < 50.0f) {
         vec_0x20 = vec_0x38 - vec_0x2c;
         cLib_chaseAngleS(&field_0x614.z, (s16) cM_atan2s(vec_0x20.y, vec_0x20.x), 0x100);
     }

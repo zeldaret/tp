@@ -113,7 +113,7 @@ inline int daObjBhbridge_c::create() {
         dBgS_ObjGndChk_Spl adStack_84;
         adStack_84.SetPos(&cStack_90);
         f32 ground = dComIfG_Bgsp().GroundCross(&adStack_84);
-        if (ground != -1000000000.0f) {
+        if (ground != -G_CM3D_F_INF) {
             current.pos.y = ground + 100.0f;
         }
     }

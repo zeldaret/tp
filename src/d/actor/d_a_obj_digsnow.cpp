@@ -121,7 +121,7 @@ void daObjDigSnow_c::mode_init_dig() {
     obj_gnd_chk.SetPos(&current.pos);
 
     f32 gnd_height = dComIfG_Bgsp().GroundCross(&obj_gnd_chk);
-    if (gnd_height != -1000000000.0f) {
+    if (gnd_height != -G_CM3D_F_INF) {
         mGroundHeight = gnd_height;
     } else {
 #ifdef DEBUG

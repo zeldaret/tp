@@ -189,7 +189,7 @@ bool daObjTOMBO_c::CheckWater() {
     cXyz gndPos(current.pos.x, current.pos.y + 100.0f, current.pos.z);
     adStack_6c.SetPos(&gndPos);
     gndPos.y = dComIfG_Bgsp().GroundCross(&adStack_6c);
-    if (gndPos.y != -1e9f) {
+    if (gndPos.y != -G_CM3D_F_INF) {
         if (dComIfG_Bgsp().GetPolyAtt0(adStack_6c) == 7 && current.pos.y - gndPos.y < 50.0f) {
             return TRUE;
         }
@@ -203,7 +203,7 @@ void daObjTOMBO_c::CheckGround() {
     cXyz gndPos(current.pos.x, current.pos.y + 100.0f, current.pos.z);
     adStack_6c.SetPos(&gndPos);
     gndPos.y = dComIfG_Bgsp().GroundCross(&adStack_6c);
-    if (gndPos.y != -1e9f) {
+    if (gndPos.y != -G_CM3D_F_INF) {
         if (current.pos.y - gndPos.y < 100.0f) {
             field_0x720 = 3.0f;
         } else if (current.pos.y - gndPos.y > 300.0f) {

@@ -110,7 +110,7 @@ void daDemo00_c::setBaseMtx() {
     field_0x568 = current.pos;
 
     if (mground2 != 0) {
-        if (sp38.y != -1000000000.0f) {
+        if (sp38.y != -G_CM3D_F_INF) {
             bVar1 = dComIfG_Bgsp().GetTriPla(mBgc->mGndChk, &plane);
         }
 

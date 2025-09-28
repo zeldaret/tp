@@ -161,7 +161,7 @@ int daObj_BouMato_c::Execute() {
     mAcch.CrrPos(dComIfG_Bgsp());
     mGndChk = mAcch.m_gnd;
     mGroundH = mAcch.GetGroundH();
-    if (mGroundH != -1e9f) {
+    if (mGroundH != -G_CM3D_F_INF) {
         setEnvTevColor();
         setRoomNo();
     }
@@ -206,7 +206,7 @@ int daObj_BouMato_c::Draw() {
         g_env_light.settingTevStruct(0, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(mModel, &tevStr);
         mDoExt_modelUpdateDL(mModel);
-        if (mGroundH != -1e9f) {
+        if (mGroundH != -G_CM3D_F_INF) {
             mShadowId =
                 dComIfGd_setShadow(mShadowId, 1, mModel, &current.pos, daObj_BouMato_Param_c::m[3],
                                    20.0f, current.pos.y, mGroundH, mGndChk, &tevStr, 0, 1.0f,

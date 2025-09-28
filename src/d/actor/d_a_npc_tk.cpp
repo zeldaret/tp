@@ -123,7 +123,7 @@ int daNPC_TK_c::checkBeforeBg() {
     gndChkPos.y += 100.0f;
     gndChk.SetPos(&gndChkPos);
     linChkEnd.y = dComIfG_Bgsp().GroundCross(&gndChk);
-    if (linChkEnd.y != -1e+09f) {
+    if (linChkEnd.y != -G_CM3D_F_INF) {
         if (current.pos.y < linChkEnd.y) {
             if (speed.y < 0.0f) {
                 speed.y = 0.0f;

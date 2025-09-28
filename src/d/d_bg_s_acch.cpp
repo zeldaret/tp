@@ -64,7 +64,7 @@ dBgS_Acch::dBgS_Acch() {
     pm_pos = NULL;
     pm_old_pos = NULL;
     pm_speed = NULL;
-    m_ground_h = -1000000000.0f;
+    m_ground_h = -G_CM3D_F_INF;
     field_0x90 = 0.0f;
     m_gnd_chk_offset = 60.0f;
     field_0x94 = 0.0f;
@@ -75,7 +75,7 @@ dBgS_Acch::dBgS_Acch() {
     m_tbl_size = 0;
     pm_acch_cir = NULL;
 
-    m_roof_height = 1000000000.0f;
+    m_roof_height = G_CM3D_F_INF;
     m_roof_crr_height = 0.0f;
     field_0xcc = 0.0f;
 
@@ -86,7 +86,7 @@ dBgS_Acch::dBgS_Acch() {
     pm_shape_angle = NULL;
     m_my_ac = NULL;
     pm_out_poly_info = NULL;
-    field_0xd8 = -1000000000.0f;
+    field_0xd8 = -G_CM3D_F_INF;
 }
 
 /* 800761CC-80076248 070B0C 007C+00 1/1 0/0 0/0 .text            Init__9dBgS_AcchFv */
@@ -139,7 +139,7 @@ void dBgS_Acch::GroundCheckInit(dBgS& i_bgs) {
     if (!(m_flags & 2)) {
         i_bgs; // necessary to match
 
-        m_ground_h = -1000000000.0f;
+        m_ground_h = -G_CM3D_F_INF;
         m_gnd.SetExtChk(*this);
         field_0xb4 = ChkGroundHit();
         ClrGroundHit();
@@ -170,7 +170,7 @@ void dBgS_Acch::GroundCheck(dBgS& i_bgs) {
         m_gnd.SetPos(&grnd_pos);
         m_ground_h = i_bgs.GroundCross(&m_gnd);
 
-        if (m_ground_h != -1000000000.0f) {
+        if (m_ground_h != -G_CM3D_F_INF) {
             field_0xbc = m_ground_h + field_0x90;
             if (field_0xbc > field_0xb8) {
                 pm_pos->y = field_0xbc;
@@ -203,7 +203,7 @@ void dBgS_Acch::GroundCheck(dBgS& i_bgs) {
 /* 8007654C-80076624 070E8C 00D8+00 1/1 0/0 0/0 .text            GroundRoofProc__9dBgS_AcchFR4dBgS
  */
 void dBgS_Acch::GroundRoofProc(dBgS& i_bgs) {
-    if (m_ground_h != -1000000000.0f) {
+    if (m_ground_h != -G_CM3D_F_INF) {
         if (field_0xbc < field_0xcc && field_0xcc < pm_pos->y) {
             pm_pos->y = field_0xcc;
         }
@@ -226,7 +226,7 @@ void dBgS_Acch::LineCheck(dBgS& i_bgs) {
 
     f32 temp_f31 = dComIfG_Bgsp().RoofChk(&roof_chk);
 
-    f32 var_f30 = 1000000000.0f;
+    f32 var_f30 = G_CM3D_F_INF;
     bool var_r30 = false;
     bool var_r29 = false;
 
@@ -294,7 +294,7 @@ void dBgS_Acch::LineCheck(dBgS& i_bgs) {
     if (ChkLineDown()) {
         f32 temp_f1 = GetOldPos()->y - GetPos()->y;
 
-        if (var_f30 != 1000000000.0f && !var_r30 && !cM3d_IsZero(temp_f1)) {
+        if (var_f30 != G_CM3D_F_INF && !var_r30 && !cM3d_IsZero(temp_f1)) {
             cBgS_LinChk lin_chk;
             cXyz old_pos;
             cXyz pos;
@@ -391,7 +391,7 @@ void dBgS_Acch::CrrPos(dBgS& i_bgs) {
         if (ChkWallHit() && bvar2) {
             LineCheck(i_bgs);
         }
-        field_0xcc = 1000000000.0f;
+        field_0xcc = G_CM3D_F_INF;
 
         if (!(m_flags & ROOF_NONE)) {
             m_roof.SetExtChk(*this);
@@ -404,7 +404,7 @@ void dBgS_Acch::CrrPos(dBgS& i_bgs) {
             m_roof.SetPos(roof_pos);
             m_roof_height = i_bgs.RoofChk(&m_roof);
 
-            if (m_roof_height != 1000000000.0f) {
+            if (m_roof_height != G_CM3D_F_INF) {
                 f32 y = GetPos()->y;
 
                 if (y + m_roof_crr_height > m_roof_height) {
@@ -427,13 +427,13 @@ void dBgS_Acch::CrrPos(dBgS& i_bgs) {
         if (!(m_flags & 0x400)) {
             ClrWaterHit();
             ClrWaterIn();
-            m_wtr.SetHeight(-1000000000.0f);
+            m_wtr.SetHeight(-G_CM3D_F_INF);
 
             f32 var_f29;
             f32 var_f30;
 
             f32 temp_f1_5 = m_ground_h;
-            if (temp_f1_5 == -1000000000.0f) {
+            if (temp_f1_5 == -G_CM3D_F_INF) {
                 var_f29 = GetPos()->y - 50.0f;
             } else {
                 var_f29 = temp_f1_5;
@@ -447,7 +447,7 @@ void dBgS_Acch::CrrPos(dBgS& i_bgs) {
                 roof_chk.SetPos(*pm_pos);
 
                 var_f30 = i_bgs.RoofChk(&roof_chk);
-                if (var_f30 == 1000000000.0f) {
+                if (var_f30 == G_CM3D_F_INF) {
                     var_f30 = GetPos()->y + 1000000.0f;
                 }
             }

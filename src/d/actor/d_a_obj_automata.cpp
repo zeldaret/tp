@@ -88,7 +88,7 @@ int daObj_AutoMata_c::create() {
         mAcch.CrrPos(dComIfG_Bgsp());
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.GetGroundH();
-        if (mGroundH != -1e9f) {
+        if (mGroundH != -G_CM3D_F_INF) {
             setEnvTevColor();
             setRoomNo();
         }
@@ -134,7 +134,7 @@ int daObj_AutoMata_c::Execute() {
         mAcch.CrrPos(dComIfG_Bgsp());
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.GetGroundH();
-        if (mGroundH != -1e9f) {
+        if (mGroundH != -G_CM3D_F_INF) {
             if (fopAcIt_Judge((fopAcIt_JudgeFunc)srchTHouse, &current.pos) != NULL) {
                 current.pos.y = mGroundH;
             }
@@ -179,7 +179,7 @@ int daObj_AutoMata_c::Draw() {
     mBtk.entry(modelData);
     mpMorf->entryDL();
     mBtk.remove(modelData);
-    if (mGroundH != -1e+09f) {
+    if (mGroundH != -G_CM3D_F_INF) {
         mShadowId = dComIfGd_setShadow(
             mShadowId, 1, morfModel, &current.pos, 600.0f, 20.0f,
             current.pos.y, mGroundH, mGndChk,

@@ -541,7 +541,7 @@ cPhs__Step daNpc_ykM_c::create() {
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.GetGroundH();
 
-        if (mGroundH != -1000000000.0f) {
+        if (mGroundH != -G_CM3D_F_INF) {
             setEnvTevColor();
             setRoomNo();
         }
@@ -734,7 +734,7 @@ void* daNpc_ykM_c::srchGadget(void* i_actor, void* i_data) {
 /* 80B5430C-80B543DC 000F0C 00D0+00 1/1 0/0 0/0 .text            getTomatoPureeP__11daNpc_ykM_cFv */
 fopAc_ac_c* daNpc_ykM_c::getTomatoPureeP() {
     fopAc_ac_c* actor = NULL;
-    f32 fVar1 = 1000000000.0f;
+    f32 fVar1 = G_CM3D_F_INF;
     mFindCount = 0;
 
     fopAcM_Search(srchGadget, this);
@@ -752,7 +752,7 @@ fopAc_ac_c* daNpc_ykM_c::getTomatoPureeP() {
 /* 80B543DC-80B544B0 000FDC 00D4+00 1/1 0/0 0/0 .text            getCheeseP__11daNpc_ykM_cFv */
 fopAc_ac_c* daNpc_ykM_c::getCheeseP() {
     fopAc_ac_c* actor = NULL;
-    f32 fVar1 = 1000000000.0f;
+    f32 fVar1 = G_CM3D_F_INF;
     mFindCount = 0;
 
     fopAcM_Search(srchGadget, this);
@@ -782,7 +782,7 @@ void* daNpc_ykM_c::srchYkm(void* i_actor, void* i_data) {
 /* 80B5454C-80B54628 00114C 00DC+00 4/4 0/0 0/0 .text            getOtherYkmP__11daNpc_ykM_cFi */
 fopAc_ac_c* daNpc_ykM_c::getOtherYkmP(int param_1) {
     fopAc_ac_c* actor = NULL;
-    f32 fVar1 = 1000000000.0f;
+    f32 fVar1 = G_CM3D_F_INF;
     mFindCount = 0;
 
     fopAcM_Search(srchYkm, this);
@@ -812,7 +812,7 @@ void* daNpc_ykM_c::srchYkw(void* i_actor, void* i_data) {
 /* 80B546C4-80B547A0 0012C4 00DC+00 1/1 0/0 0/0 .text            getOtherYkwP__11daNpc_ykM_cFi */
 fopAc_ac_c* daNpc_ykM_c::getOtherYkwP(int param_1) {
     fopAc_ac_c* actor = NULL;
-    f32 fVar1 = 1000000000.0f;
+    f32 fVar1 = G_CM3D_F_INF;
     mFindCount = 0;
 
     fopAcM_Search(srchYkw, this);
@@ -1773,7 +1773,7 @@ int daNpc_ykM_c::cutSlideDown(int i_cutIndex) {
                 mGndChk.SetPos(&work);
                 work.y = dComIfG_Bgsp().GroundCross(&mGndChk);
 
-                JUT_ASSERT(3443, -(1000000000.0f) != work.y);
+                JUT_ASSERT(3443, -G_CM3D_F_INF != work.y);
 
                 daPy_getPlayerActorClass()->setPlayerPosAndAngle(&work, angle.y, 0);
                 work.set(400.0f, 500.0f, 0.0f);
@@ -1784,7 +1784,7 @@ int daNpc_ykM_c::cutSlideDown(int i_cutIndex) {
                 mGndChk.SetPos(&work);
                 work.y = dComIfG_Bgsp().GroundCross(&mGndChk);
 
-                JUT_ASSERT(3454, -(1000000000.0f) != work.y);
+                JUT_ASSERT(3454, -G_CM3D_F_INF != work.y);
 
                 dComIfGp_evmng_setGoal(&work);
                 break;
@@ -3372,7 +3372,7 @@ BOOL daNpc_ykM_c::race(void* param_1) {
                     field_0x1560 = -1;
                     mGndChk.SetPos(&daPy_getPlayerActorClass()->current.pos);
 
-                    if (dComIfG_Bgsp().GroundCross(&mGndChk) != -1000000000.0f) {
+                    if (dComIfG_Bgsp().GroundCross(&mGndChk) != -G_CM3D_F_INF) {
                         if (field_0x1534 != -1) {
                             if ((dTimer_c*)fpcM_SearchByID(field_0x1534) == dComIfG_getTimerPtr()) {
                                 if (dComIfG_getTimerPtr()->isStart()) {

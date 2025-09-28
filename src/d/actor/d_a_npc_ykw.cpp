@@ -381,7 +381,7 @@ int daNpc_ykW_c::create() {
 
         mGroundH = mAcch.GetGroundH();
 
-        if (mGroundH != -1e+09f) {
+        if (mGroundH != -G_CM3D_F_INF) {
             setEnvTevColor();
 
             setRoomNo();
@@ -544,7 +544,7 @@ void* daNpc_ykW_c::srchYkw(void* param_0, void* param_1) {
 /* 80B5FA74-80B5FB50 000C54 00DC+00 2/2 0/0 0/0 .text            getOtherYkwP__11daNpc_ykW_cFi */
 fopAc_ac_c* daNpc_ykW_c::getOtherYkwP(int param_0) {
     fopAc_ac_c* actor = 0;
-    f32 unkFloat1 = 1000000000.0f;
+    f32 unkFloat1 = G_CM3D_F_INF;
     mFindCount = 0;
     fopAcM_Search(srchYkw, this);
     for (int i = 0; i < mFindCount; i++) {
@@ -575,7 +575,7 @@ void* daNpc_ykW_c::srchYkm(void* param_0, void* param_1) {
 /* 80B5FBEC-80B5FCC8 000DCC 00DC+00 1/1 0/0 0/0 .text            getOtherYkmP__11daNpc_ykW_cFi */
 fopAc_ac_c* daNpc_ykW_c::getOtherYkmP(int param_0) {
     fopAc_ac_c* actor = 0;
-    f32 minDist = 1000000000.0f;
+    f32 minDist = G_CM3D_F_INF;
     mFindCount = 0;
     fopAcM_Search(srchYkm, this);
     for (int i = 0; i < mFindCount; i++) {
@@ -2824,7 +2824,7 @@ int daNpc_ykW_c::race(void* param_0) {
             {
                 field_0x104c = -1;
                 mGndChk.SetPos(&daPy_getPlayerActorClass()->current.pos);
-                if (dComIfG_Bgsp().GroundCross(&mGndChk) != -1e+09f) {
+                if (dComIfG_Bgsp().GroundCross(&mGndChk) != -G_CM3D_F_INF) {
                     if (mTimer != fpcM_ERROR_PROCESS_ID_e) {
                         if ((dTimer_c*)fpcM_SearchByID(mTimer) == dComIfG_getTimerPtr()) {
                             if (dComIfG_getTimerPtr()->isStart()) {

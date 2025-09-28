@@ -4088,7 +4088,7 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
         sp6C->setBaseTRMtx(mDoMtx_stack_c::get());
 
         u32 sp68;
-        if (i_this->mAcch.GetGroundH() != -1000000000.0f) {
+        if (i_this->mAcch.GetGroundH() != -G_CM3D_F_INF) {
             if (i_this->mAcch.ChkWaterHit() && i_this->mAcch.m_wtr.GetHeight() > a_this->current.pos.y) {
                 sp68 = dKy_pol_sound_get(&i_this->mAcch.m_wtr);
             } else if (i_this->mAcch.ChkGroundHit()) {

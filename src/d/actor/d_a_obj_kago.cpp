@@ -120,7 +120,7 @@ cPhs__Step daObj_Kago_c::create() {
         mObjAcch.CrrPos(dComIfG_Bgsp());
         field_0x7cc = mObjAcch.m_gnd;
         mGroundH = mObjAcch.GetGroundH();
-        if (mGroundH != -1000000000.0f) {
+        if (mGroundH != -G_CM3D_F_INF) {
             setEnvTevColor();
             setRoomNo();
         }
@@ -236,7 +236,7 @@ int daObj_Kago_c::Execute() {
             cXyz sp80;
             sp_0x8 = 0x80;
             fopAcM_getWaterY(&current.pos, &mWaterY);
-            if (mWaterY != -1000000000.0f && reg_f30 < (mWaterY - mGroundH) && current.pos.y <= mWaterY) {
+            if (mWaterY != -G_CM3D_F_INF && reg_f30 < (mWaterY - mGroundH) && current.pos.y <= mWaterY) {
                 if (field_0xb9d == 0) {
                     speedF *= 0.3f;
                     speed.y *= 0.5f;
@@ -430,7 +430,7 @@ int daObj_Kago_c::Execute() {
         mObjAcch.CrrPos(dComIfG_Bgsp());
         field_0x7cc = mObjAcch.m_gnd;
         mGroundH = mObjAcch.GetGroundH();
-        if (mGroundH != -1000000000.0f) {
+        if (mGroundH != -G_CM3D_F_INF) {
             field_0xb6e = daNpcF_getGroundAngle(&field_0x7cc, shape_angle.y);
             setEnvTevColor();
             setRoomNo();
@@ -494,7 +494,7 @@ int daObj_Kago_c::Draw() {
         fopAcM_SearchByID(daPy_getPlayerActorClass()->getGrabActorID(), &basket_p);
         if (this == basket_p) {
             model = field_0x574;
-        } else if (mGroundH != -1000000000.0f) {
+        } else if (mGroundH != -G_CM3D_F_INF) {
             field_0xb78 = dComIfGd_setShadow(field_0xb78, 1, field_0x574, &current.pos,
                                              daObj_Kago_Param_c::m.field_0x0c, 20.0f,
                                              current.pos.y, mGroundH, field_0x7cc, &tevStr,

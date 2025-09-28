@@ -69,7 +69,7 @@ static void ground_ang_set(obj_food_class* i_this) {
     vec1.z = vec2.z + 10.0f;
     gnd_chk.SetPos(&vec1);
     vec1.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-    if (vec1.y != -1e9f) {
+    if (vec1.y != -G_CM3D_F_INF) {
         i_this->mGroundAngleX = -cM_atan2s(vec1.y - vec2.y, vec1.z - vec2.z);
     }
 
@@ -78,7 +78,7 @@ static void ground_ang_set(obj_food_class* i_this) {
     vec1.z = vec2.z;
     gnd_chk.SetPos(&vec1);
     vec1.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-    if (vec1.y != -1e9f) {
+    if (vec1.y != -G_CM3D_F_INF) {
         i_this->mGroundAngleZ = cM_atan2s(vec1.y - vec2.y, vec1.x - vec2.x);
     }
 }

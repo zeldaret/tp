@@ -304,7 +304,7 @@ int daB_MGN_c::draw() {
 
     dBgS_GndChk gndchk;
     f32 gnd_height;
-    if (mAcch.GetGroundH() == -1000000000.0f) {
+    if (mAcch.GetGroundH() == -G_CM3D_F_INF) {
         cXyz spC(current.pos);
         gndchk.SetPos(&spC);
         gnd_height = dComIfG_Bgsp().GroundCross(&gndchk);
@@ -406,7 +406,7 @@ void daB_MGN_c::setDashSmokeEffect() {
         gndchk.SetPos(&effpos);
         effpos.y = dComIfG_Bgsp().GroundCross(&gndchk);
 
-        if (effpos.y != -1000000000.0f) {
+        if (effpos.y != -G_CM3D_F_INF) {
             fopAcM_effSmokeSet1(&field_0x25f8[var_r27], &field_0x2608[var_r27], &effpos, NULL, 3.0f, &tevStr, 1);
         }
     }
@@ -448,7 +448,7 @@ void daB_MGN_c::setBackJumpEffect() {
         gndchk.SetPos(&effpos);
         effpos.y = dComIfG_Bgsp().GroundCross(&gndchk);
 
-        if (effpos.y != -1000000000.0f) {
+        if (effpos.y != -G_CM3D_F_INF) {
             fopAcM_effSmokeSet1(&field_0x25f8[var_r27], &field_0x2608[var_r27], &effpos, NULL, 3.0f, &tevStr, 1);
         }
     }
@@ -469,7 +469,7 @@ void daB_MGN_c::setSlideSmokeEffect() {
         gndchk.SetPos(&effpos);
         effpos.y = dComIfG_Bgsp().GroundCross(&gndchk);
 
-        if (effpos.y != -1000000000.0f) {
+        if (effpos.y != -G_CM3D_F_INF) {
             fopAcM_effSmokeSet2(&field_0x25f8[i], &field_0x2608[i], &effpos, NULL, 3.0f, &tevStr);
         }
     }
@@ -496,7 +496,7 @@ void daB_MGN_c::setBodySlideEffect() {
         gndchk.SetPos(&effpos);
 
         effpos.y = dComIfG_Bgsp().GroundCross(&gndchk);
-        if (effpos.y != -1000000000.0f) {
+        if (effpos.y != -G_CM3D_F_INF) {
             fopAcM_effSmokeSet2(&field_0x25f8[i], &field_0x2608[i], &effpos, NULL, 10.0f, &tevStr);
         }
     }
@@ -514,7 +514,7 @@ void daB_MGN_c::setOpeningEffect() {
     gndchk.SetPos(&effpos);
     effpos.y = dComIfG_Bgsp().GroundCross(&gndchk);
 
-    if (effpos.y != -1000000000.0f) {
+    if (effpos.y != -G_CM3D_F_INF) {
         fopAcM_effSmokeSet1(&field_0x25f8[0], &field_0x2608[0], &effpos, NULL, 15.0f, &tevStr, 1);
     }
 
@@ -524,7 +524,7 @@ void daB_MGN_c::setOpeningEffect() {
     gndchk.SetPos(&effpos);
     effpos.y = dComIfG_Bgsp().GroundCross(&gndchk);
 
-    if (effpos.y != -1000000000.0f) {
+    if (effpos.y != -G_CM3D_F_INF) {
         fopAcM_effSmokeSet1(&field_0x25f8[1], &field_0x2608[1], &effpos, NULL, 15.0f, &tevStr, 1);
     }
 }
@@ -546,7 +546,7 @@ void daB_MGN_c::setStepEffect() {
 
         effpos.y = dComIfG_Bgsp().GroundCross(&gndchk);
 
-        if (effpos.y != -1000000000.0f) {
+        if (effpos.y != -G_CM3D_F_INF) {
             fopAcM_effSmokeSet1(&field_0x25f8[i], &field_0x2608[i], &effpos, NULL, 3.0f, &tevStr, 1);
         }
     }
@@ -573,7 +573,7 @@ void daB_MGN_c::setFallAttackEffect() {
 
         effpos.y = dComIfG_Bgsp().GroundCross(&gndchk);
 
-        if (effpos.y != -1000000000.0f) {
+        if (effpos.y != -G_CM3D_F_INF) {
             fopAcM_effSmokeSet1(&field_0x25f8[i], &field_0x2608[i], &effpos, NULL, 10.0f, &tevStr, 1);
         }
     }
