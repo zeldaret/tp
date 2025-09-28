@@ -8,7 +8,6 @@
 #include "d/actor/d_a_e_fb.h"
 #include "Z2AudioLib/Z2Instances.h"
 #include "d/actor/d_a_obj_carry.h"
-#include "dol2asm.h"
 #include "d/d_s_play.h"
 
 /* 806B64AC-806B6520 0000EC 0074+00 1/1 0/0 0/0 .text            __ct__12daE_FB_HIO_cFv */
