@@ -3,7 +3,7 @@
  * Object - Spinner Switch
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_swspinner.h"
 #include "d/d_procname.h"
@@ -81,14 +81,14 @@ static char* l_arcName = "P_Sswitch";
 /* 80D0035C-80D00498 00045C 013C+00 1/0 0/0 0/0 .text            CreateHeap__16daObjSwSpinner_cFv */
 int daObjSwSpinner_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 4);
-    JUT_ASSERT(0xED, modelData != 0);
+    JUT_ASSERT(0xED, modelData != NULL);
     mpModelA = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModelA == NULL) {
         return 0;
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 5);
-    JUT_ASSERT(0xF8, modelData != 0);
+    JUT_ASSERT(0xF8, modelData != NULL);
     mpModelB = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModelB == NULL) {
         return 0;

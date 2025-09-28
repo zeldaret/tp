@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_warp_obrg.h"
 #include "d/d_com_inf_game.h"
@@ -66,7 +66,7 @@ void daObjWarpOBrg_c::setBaseMtx() {
 
     if (getNameArg() == 0) {
         J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, l_bck_idx[getNameArg()]);
-        JUT_ASSERT(189, pbck != 0);
+        JUT_ASSERT(189, pbck != NULL);
 
         J3DTransformInfo transinfo;
         pbck->getTransform(0, &transinfo);
@@ -105,7 +105,7 @@ int daObjWarpOBrg_c::Create() {
 /* 80D29BB4-80D29E34 000274 0280+00 1/0 0/0 0/0 .text            CreateHeap__15daObjWarpOBrg_cFv */
 int daObjWarpOBrg_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmd_idx[getNameArg()]);
-    JUT_ASSERT(254, modelData != 0);
+    JUT_ASSERT(254, modelData != NULL);
 
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (mpModel == NULL) {
@@ -113,7 +113,7 @@ int daObjWarpOBrg_c::CreateHeap() {
     }
 
     J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, l_bck_idx[getNameArg()]);
-    JUT_ASSERT(263, pbck != 0);
+    JUT_ASSERT(263, pbck != NULL);
     mpBck = new mDoExt_bckAnm();
     if (mpBck == NULL || !mpBck->init(pbck, TRUE, 0, 0.0f, 0, -1, false)) {
         return 0;
@@ -125,7 +125,7 @@ int daObjWarpOBrg_c::CreateHeap() {
     }
 
     J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, l_btk_idx[getNameArg()]);
-    JUT_ASSERT(271, pbtk != 0);
+    JUT_ASSERT(271, pbtk != NULL);
     mpBtk = new mDoExt_btkAnm();
     if (mpBtk == NULL || !mpBtk->init(modelData, pbtk, TRUE, 0, 0.0f, 0, -1)) {
         return 0;
@@ -515,7 +515,7 @@ void daObjWarpOBrg_c::demoProc() {
         }
 
         J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, l_bck_idx[getNameArg()]);
-        JUT_ASSERT(740, pbck != 0);
+        JUT_ASSERT(740, pbck != NULL);
 
         J3DTransformInfo transinfo;
         pbck->getTransform(0, &transinfo);

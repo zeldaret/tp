@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_skip_2D.h"
 #include "d/d_meter_button.h"

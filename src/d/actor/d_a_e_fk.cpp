@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_fk.h"
 #include "d/d_s_play.h"
@@ -38,7 +38,7 @@ daE_FK_HIO_c::daE_FK_HIO_c() {
 /* 806B93CC-806B9514 00012C 0148+00 1/1 0/0 0/0 .text            CreateHeap__8daE_FK_cFv */
 int daE_FK_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_fk", 15);
-    JUT_ASSERT(189, modelData != 0);
+    JUT_ASSERT(189, modelData != NULL);
     mpModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_fk", 12), 2, 1.0f, 0, -1, &mSound, 0x80000, 0x11000084);
     if (mpModelMorf == NULL || mpModelMorf->getModel() == NULL) {
         return 0;

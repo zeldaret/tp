@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_kita.h"
 #include "SSystem/SComponent/c_lib.h"
@@ -198,7 +198,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
     obj_kita_class* i_this = (obj_kita_class*)a_this;
     for (int i = 0; i < i_this->mNumKitas - 1; i++) {
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Obj_kita", 4);
-        JUT_ASSERT(475, modelData != 0);
+        JUT_ASSERT(475, modelData != NULL);
         i_this->mKitas[i].mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
         if (i_this->mKitas[i].mModel == NULL) {
             return 0;

@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_geyser.h"
 #include "d/actor/d_a_player.h"
@@ -78,7 +78,7 @@ int daObjGeyser_c::Create() {
         actionOff2Init();
         break;
     default:
-        JUT_ASSERT(309, 0);
+        JUT_ASSERT(309, FALSE);
         break;
     }
 
@@ -98,7 +98,7 @@ int daObjGeyser_c::Create() {
 /* 80BF70E0-80BF7174 000240 0094+00 1/0 0/0 0/0 .text            CreateHeap__13daObjGeyser_cFv */
 int daObjGeyser_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 4);
-    JUT_ASSERT(345, modelData != 0);
+    JUT_ASSERT(345, modelData != NULL);
 
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {
@@ -215,7 +215,7 @@ void daObjGeyser_c::action() {
         (this->*l_func2[mAction])();
         break;
     default:
-        JUT_ASSERT(309, 0);
+        JUT_ASSERT(309, FALSE);
         break;
     }
 }

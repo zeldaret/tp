@@ -4,8 +4,10 @@
 #include "dolphin/os.h"
 
 #ifdef DEBUG
+#define JUT_SHOW_ASSERT(LINE, COND) JUTAssertion::showAssert(JUTAssertion::getSDevice(), __FILE__, LINE, #COND)
+
 #define JUT_ASSERT(LINE, COND) \
-    (COND) ? (void)0 : (JUTAssertion::showAssert(JUTAssertion::getSDevice(), __FILE__, LINE, #COND), OSPanic(__FILE__, LINE, "Halt"));
+    (COND) ? (void)0 : (JUT_SHOW_ASSERT(LINE, COND), OSPanic(__FILE__, LINE, "Halt"));
 
 #define JUT_ASSERT_MSG(LINE, COND, MSG) \
     (COND) ? (void)0 : (JUTAssertion::showAssert(JUTAssertion::getSDevice(), __FILE__, LINE, MSG), OSPanic(__FILE__, LINE, "Halt"));

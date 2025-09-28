@@ -56,12 +56,12 @@ public:
     void releaseMCTX(JORMContext*);
 
     void appendEventCallbackListNode(JOREventCallbackListNode* p) {
-        JUT_ASSERT(256, p!=0);
+        JUT_ASSERT(256, p!=NULL);
         m_eventCallbackList.Push_front(p);
     }
 
     void removeEventCallbackListNode(JOREventCallbackListNode* p) {
-        JUT_ASSERT(257, p!=0);
+        JUT_ASSERT(257, p!=NULL);
         m_eventCallbackList.Remove(p);
     }
 

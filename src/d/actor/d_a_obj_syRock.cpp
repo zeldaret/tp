@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_syRock.h"
 #include "d/actor/d_a_obj_eff.h"
@@ -84,14 +84,14 @@ void daSyRock_c::setBaseMtx() {
 /* 80D02454-80D02584 000294 0130+00 1/0 0/0 0/0 .text            CreateHeap__10daSyRock_cFv */
 int daSyRock_c::CreateHeap() {
     J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("syourock", 4));
-    JUT_ASSERT(271, modelData != 0);
+    JUT_ASSERT(271, modelData != NULL);
     mpModels[0] = mDoExt_J3DModel__create(modelData, 1 << 19, 0x11000084);
     
     if(!mpModels[0])
         return 0;
 
     modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("syourock", 5));
-    JUT_ASSERT(282, modelData != 0);
+    JUT_ASSERT(282, modelData != NULL);
     mpModels[1] = mDoExt_J3DModel__create(modelData, 1 << 19, 0x11000084);
 
     if(!mpModels[1])

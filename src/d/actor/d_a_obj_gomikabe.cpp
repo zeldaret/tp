@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_gomikabe.h"
 #include "SSystem/SComponent/c_lib.h"
@@ -276,14 +276,14 @@ static int daObjGOMIKABE_Execute(daObjGOMIKABE_c* i_this) {
 /* 80BFF064-80BFF164 000F24 0100+00 1/0 0/0 0/0 .text            CreateHeap__15daObjGOMIKABE_cFv */
 int daObjGOMIKABE_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "M_Gomikabe.bmd");
-    JUT_ASSERT(250, modelData != 0);
+    JUT_ASSERT(250, modelData != NULL);
     mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mModel == NULL) {
         return 0;
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "M_Gomikabe_Hahen.bmd");
-    JUT_ASSERT(259, modelData != 0);
+    JUT_ASSERT(259, modelData != NULL);
 
     for (int i = 0; i < 4; i++) {
         mBreakModels[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);

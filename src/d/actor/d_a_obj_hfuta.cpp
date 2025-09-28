@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_hfuta.h"
 #include "d/d_com_inf_game.h"
@@ -49,7 +49,7 @@ static char* l_arcName = "Obj_hfuta";
 /* 80C1DF2C-80C1DF9C 00028C 0070+00 1/0 0/0 0/0 .text            CreateHeap__11daObjFuta_cFv */
 int daObjFuta_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 4);
-    JUT_ASSERT(204, modelData != 0);
+    JUT_ASSERT(204, modelData != NULL);
     mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     return mModel != NULL ? 1 : 0;
 }

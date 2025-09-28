@@ -3,56 +3,12 @@
 // Translation Unit: d/d_msg_string
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_msg_string.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "d/d_msg_out_font.h"
 #include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__12dMsgString_cFv();
-extern "C" void __ct__12dMsgString_cFUc();
-extern "C" void __dt__12dMsgString_cFv();
-extern "C" void resetStringLocal__12dMsgString_cFP10J2DTextBox();
-extern "C" void drawOutFontLocal__12dMsgString_cFP10J2DTextBoxf();
-extern "C" void drawFontLocal__12dMsgString_cFP10J2DTextBoxUcffffUlUc();
-
-//
-// External References:
-//
-
-extern "C" void getString__12dMsgString_cFUlP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc();
-extern "C" void
-getStringPage__12dMsgString_cFUlUcUcP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc();
-extern "C" void __ct__10COutFont_cFUc();
-extern "C" void __ct__16dMsgStringBase_cFv();
-extern "C" void __dt__16dMsgStringBase_cFv();
-extern "C" void getResource__16dMsgStringBase_cFv();
-extern "C" void getMessage__16dMsgStringBase_cFUlPc();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void getGlbVtx__7J2DPaneCFUc();
-
-//
-// Declarations:
-//
-
-/* ############################################################################################## */
-/* 803C1498-803C14B8 01E5B8 0020+00 3/3 0/0 0/0 .data            __vt__12dMsgString_c */
-SECTION_DATA extern void* __vt__12dMsgString_c[8] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)getString__12dMsgString_cFUlP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc,
-    (void*)getStringPage__12dMsgString_cFUlUcUcP10J2DTextBoxP10J2DTextBoxP7JUTFontP10COutFont_cUc,
-    (void*)getMessage__16dMsgStringBase_cFUlPc,
-    (void*)resetStringLocal__12dMsgString_cFP10J2DTextBox,
-    (void*)drawOutFontLocal__12dMsgString_cFP10J2DTextBoxf,
-    (void*)drawFontLocal__12dMsgString_cFP10J2DTextBoxUcffffUlUc,
-};
 
 /* 80249C20-80249CA0 244560 0080+00 0/0 15/15 0/0 .text            __ct__12dMsgString_cFv */
 dMsgString_c::dMsgString_c() {

@@ -281,7 +281,7 @@ int daNpc_Kn_c::teach02_shieldReflectWait(void* param_0) {
 
             if (mCylCc.ChkTgHit()) {
                 fopAc_ac_c* aTgHitActor_p = mCylCc.GetTgHitAc();
-                JUT_ASSERT(437, 0 != aTgHitActor_p);
+                JUT_ASSERT(437, NULL != aTgHitActor_p);
 
                 if (fopAcM_GetName(aTgHitActor_p) == PROC_KN_BULLET) {
                     mEvtNo = 0xB;

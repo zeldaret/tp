@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_cblock.h"
 #include "d/d_cc_d.h"
@@ -71,7 +71,7 @@ int daObjCBlk_c::Create() {
             pnt_index = 0;
         }
         dPnt* pnt = dPath_GetPnt(roomPath, pnt_index);
-        JUT_ASSERT(284, pnt != 0)
+        JUT_ASSERT(284, pnt != NULL)
         current.pos = pnt->m_position;
     }
     initBaseMtx();
@@ -102,7 +102,7 @@ int daObjCBlk_c::Create() {
 /* 80BC5CF8-80BC5E58 0003D8 0160+00 1/0 0/0 0/0 .text            CreateHeap__11daObjCBlk_cFv */
 int daObjCBlk_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 4);
-    JUT_ASSERT(350, modelData != 0);
+    JUT_ASSERT(350, modelData != NULL);
     model1 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (model1 == NULL) {
         return 0;
@@ -112,7 +112,7 @@ int daObjCBlk_c::CreateHeap() {
         return 0;
     }
     modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 5);
-    JUT_ASSERT(369, modelData != 0);
+    JUT_ASSERT(369, modelData != NULL);
     chain_s* pChain = chains;
     for (int i = 0; i < 6; i++) {
         pChain->model = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
@@ -122,7 +122,7 @@ int daObjCBlk_c::CreateHeap() {
         pChain++;
     }
     modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 6);
-    JUT_ASSERT(386, modelData != 0);
+    JUT_ASSERT(386, modelData != NULL);
     model2 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (model2 == NULL) {
         return 0;

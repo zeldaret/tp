@@ -1,4 +1,4 @@
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_msg_scrn_tree.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
@@ -8,8 +8,6 @@
 #include "d/d_msg_object.h"
 #include "d/d_msg_out_font.h"
 #include "d/d_pane_class.h"
-
-extern dMsgObject_HIO_c g_MsgObject_HIO_c;
 
 /* 80248954-80248F14 243294 05C0+00 0/0 1/1 0/0 .text
  * __ct__14dMsgScrnTree_cFP7JUTFontP10JKRExpHeap                */

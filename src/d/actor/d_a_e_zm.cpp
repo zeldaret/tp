@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_zm.h"
 #include "f_op/f_op_actor_enemy.h"
@@ -916,7 +916,7 @@ static int daE_ZM_Delete(daE_ZM_c* i_this) {
 int daE_ZM_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_ZM", BMDR_ZM);
 
-    JUT_ASSERT(1558, modelData != 0);
+    JUT_ASSERT(1558, modelData != NULL);
 
     mpModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_ZM", BCK_ZM_MOUTHOPEN), 2, 1.0f, 0, -1, &mSound, 0, 0x11000084);
     if (mpModelMorf == NULL || mpModelMorf->getModel() == NULL) {

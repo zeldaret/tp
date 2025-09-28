@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_tks.h"
 #include "d/d_camera.h"
@@ -158,7 +158,7 @@ int daObjTks_c::Create() {
 /* 80D0F904-80D0FB78 000764 0274+00 1/1 0/0 0/0 .text            CreateHeap__10daObjTks_cFv */
 int daObjTks_c::CreateHeap() {
     J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 0xE);
-    JUT_ASSERT(314, 0 != mdlData_p);
+    JUT_ASSERT(314, NULL != mdlData_p);
 
     mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
     if (mpMorf != NULL && mpMorf->getModel() == NULL) {
@@ -445,7 +445,7 @@ void daObjTks_c::wait() {
     case 3:
         break;
     default:
-        JUT_ASSERT(1183, 0);
+        JUT_ASSERT(1183, FALSE);
         break;
     }
 }
@@ -595,7 +595,7 @@ void daObjTks_c::talk() {
     }
     case 3:
     default:
-        JUT_ASSERT(1243, 0);
+        JUT_ASSERT(1243, FALSE);
         return;
     }
 }
@@ -705,7 +705,7 @@ void daObjTks_c::demo() {
         mEventIdx = -1;
         return;
     default:
-        JUT_ASSERT(1374, 0);
+        JUT_ASSERT(1374, FALSE);
         break;
     }
 }
@@ -760,7 +760,7 @@ void daObjTks_c::warp() {
                         gravity = daObjTks_Param_c::m.common.gravity;
                         break;
                     case '0001':
-                        JUT_ASSERT(1419, 0);
+                        JUT_ASSERT(1419, FALSE);
                     }
                 }
 
@@ -775,7 +775,7 @@ void daObjTks_c::warp() {
                     eventMgr.cutEnd(staff_id);
                     break;
                 default:
-                    JUT_ASSERT(1431, 0);
+                    JUT_ASSERT(1431, FALSE);
                 }
 
                 if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1 && eventMgr.endCheck(mEventIdx)) {
@@ -794,7 +794,7 @@ void daObjTks_c::warp() {
         mEventIdx = -1;
         return;
     default:
-        JUT_ASSERT(1452, 0);
+        JUT_ASSERT(1452, FALSE);
         break;
     }
 }

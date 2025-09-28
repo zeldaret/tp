@@ -56,9 +56,9 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_begin() {
     adaptor_object_begin_();
     JStage::TCamera* pCamera = get_pJSG_();
     const JStudio::TObject* pObject = adaptor_getObject();
-    JUT_ASSERT(70, pObject != 0);
+    JUT_ASSERT(70, pObject != NULL);
     const JStudio::TControl* pControl = pObject->getControl();
-    JUT_ASSERT(72, pControl != 0);
+    JUT_ASSERT(72, pControl != NULL);
     getJSG_position_(pControl);
     getJSG_targetPosition_(pControl);
     TVVOutput* pOutput = saoVVOutput_;
@@ -78,9 +78,9 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_end() {
  * adaptor_do_update__Q214JStudio_JStage15TAdaptor_cameraFUl    */
 void JStudio_JStage::TAdaptor_camera::adaptor_do_update(u32 param_1) {
     const JStudio::TObject* pObject = adaptor_getObject();
-    JUT_ASSERT(98, pObject != 0);
+    JUT_ASSERT(98, pObject != NULL);
     const JStudio::TControl* pControl = pObject->getControl();
-    JUT_ASSERT(100, pControl != 0);
+    JUT_ASSERT(100, pControl != NULL);
     setJSG_position_(pControl);
     setJSG_targetPosition_(pControl);
     pJSGObject_->JSGUpdate();
@@ -99,7 +99,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT(JStudio::data::TEOperati
                                                         void const* pContent, u32 uSize) {
     switch(param_1) {
     case JStudio::data::UNK_0x18:
-        JUT_ASSERT(132, pContent!=0);
+        JUT_ASSERT(132, pContent!=NULL);
         JUT_ASSERT(133, uSize!=0);
         field_0x10c = adaptor_object_findJSGObject_((char*)pContent);
         break;
@@ -113,13 +113,13 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT_NODE(JStudio::data::TEOp
                                                         void const* pContent, u32 uSize) {
     switch (param_1) {
     case JStudio::data::UNK_0x18:
-        JUT_ASSERT(155, pContent!=0);
+        JUT_ASSERT(155, pContent!=NULL);
         JUT_ASSERT(156, uSize!=0);
         field_0x110 = adaptor_object_findJSGObjectNode_(field_0x10c, (char*)pContent);
         break;
     case JStudio::data::UNK_0x19:
         JUT_ASSERT(166, uSize==4);
-        JUT_ASSERT(167, pContent!=0);
+        JUT_ASSERT(167, pContent!=NULL);
         field_0x110 = *(int*)pContent;
         break;
     }
@@ -134,7 +134,7 @@ JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT_ENABLE(JStudio::data::TEOpera
     switch (param_1) {
     case JStudio::data::UNK_0x2:
         JUT_ASSERT(185, uSize==4);
-        JUT_ASSERT(186, pContent!=0);
+        JUT_ASSERT(186, pContent!=NULL);
         field_0x114 = *(u32*)pContent ? 1 : 0;
         switch(field_0x108) {
         case 1:
@@ -162,7 +162,7 @@ JStudio_JStage::TAdaptor_camera::adaptor_do_PARENT_FUNCTION(JStudio::data::TEOpe
     switch(param_1) {
     case JStudio::data::UNK_0x2:
         JUT_ASSERT(226, uSize==4);
-        JUT_ASSERT(227, pContent!=0);
+        JUT_ASSERT(227, pContent!=NULL);
         field_0x108 = *(int*)pContent;
         break;
     }
@@ -175,7 +175,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_TARGET_PARENT(
     JStudio::data::TEOperationData param_1, void const* pContent, u32 uSize) {
     switch(param_1) {
     case JStudio::data::UNK_0x18:
-        JUT_ASSERT(247, pContent!=0);
+        JUT_ASSERT(247, pContent!=NULL);
         JUT_ASSERT(248, uSize!=0);
         field_0x118 = adaptor_object_findJSGObject_((char*)pContent);
         break;
@@ -189,13 +189,13 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_TARGET_PARENT_NODE(
     JStudio::data::TEOperationData param_1, void const* pContent, u32 uSize) {
     switch (param_1) {
     case JStudio::data::UNK_0x18:
-        JUT_ASSERT(270, pContent!=0);
+        JUT_ASSERT(270, pContent!=NULL);
         JUT_ASSERT(271, uSize!=0);
         field_0x11c = adaptor_object_findJSGObjectNode_(field_0x118, (char*)pContent);
         break;
     case JStudio::data::UNK_0x19:
         JUT_ASSERT(282, uSize==4);
-        JUT_ASSERT(283, pContent!=0);
+        JUT_ASSERT(283, pContent!=NULL);
         field_0x11c = *(int*)pContent;
         break;
     }
@@ -209,7 +209,7 @@ void JStudio_JStage::TAdaptor_camera::adaptor_do_TARGET_PARENT_ENABLE(
     switch(param_1) {
     case JStudio::data::UNK_0x2:
         JUT_ASSERT(301, uSize==4);
-        JUT_ASSERT(302, pContent!=0);
+        JUT_ASSERT(302, pContent!=NULL);
         field_0x120 = *(int*)pContent ? 1 : 0;
         break;
     }

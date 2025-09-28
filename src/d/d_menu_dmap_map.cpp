@@ -2,7 +2,7 @@
 // Translation Unit: d/d_menu_dmap_map
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include <cmath.h>
 #include "d/d_com_inf_game.h"
@@ -25,7 +25,7 @@ bool renderingDmap_c::hasMap() const {
  * isDrawIconSingle2__15renderingDmap_cCFPCQ27dTres_c6data_sbbi */
 bool renderingDmap_c::isDrawIconSingle2(dTres_c::data_s const* i_data, bool param_1,
                                         bool param_2, int param_3) const {
-    JUT_ASSERT(995, i_data != 0);
+    JUT_ASSERT(995, i_data != NULL);
 
     bool rt = false;
     int var_r27 = dTres_c::getTypeToTypeGroupNo(i_data->mType);
@@ -47,7 +47,7 @@ bool renderingDmap_c::isDrawIconSingle2(dTres_c::data_s const* i_data, bool para
 
     switch (var_r27) {
     default:
-        JUT_ASSERT(1015, 0);
+        JUT_ASSERT(1015, FALSE);
         break;
     case 0:
         if (var_r29 && i_data->mNo != 0xFF && !dComIfGs_isTbox(i_data->mNo)) {
@@ -66,7 +66,7 @@ bool renderingDmap_c::isDrawIconSingle2(dTres_c::data_s const* i_data, bool para
         }
         break;
     case 4:
-        JUT_ASSERT(1044, 0);
+        JUT_ASSERT(1044, FALSE);
         break;
     case 5:
         if ((i_data->mNo == 0xFF || (i_data->mNo != 0xFF && !dComIfGs_isTbox(i_data->mNo))) && (i_data->mSwBit == 0xFF || (i_data->mSwBit != 0xFF && dComIfGs_isSwitch(i_data->mSwBit, i_data->mRoomNo))) && param_1) {
@@ -74,7 +74,7 @@ bool renderingDmap_c::isDrawIconSingle2(dTres_c::data_s const* i_data, bool para
         }
         break;
     case 6:
-        JUT_ASSERT(1070, 0);
+        JUT_ASSERT(1070, FALSE);
         break;
     case 3:
         if (var_r29 && (i_data->mSwBit == 0xFF || (i_data->mSwBit != 0xFF && dComIfGs_isSwitch(i_data->mSwBit, i_data->mRoomNo))) && !dComIfGs_isStageBossEnemy()) {
@@ -87,7 +87,7 @@ bool renderingDmap_c::isDrawIconSingle2(dTres_c::data_s const* i_data, bool para
         }
         break;
     case 10:
-        JUT_ASSERT(1100, 0);
+        JUT_ASSERT(1100, FALSE);
         break;
     case 11:
         if (var_r29) {
@@ -101,7 +101,7 @@ bool renderingDmap_c::isDrawIconSingle2(dTres_c::data_s const* i_data, bool para
         break;
     case 13:
     case 14:
-        JUT_ASSERT(1123, 0);
+        JUT_ASSERT(1123, FALSE);
         break;
     case 15:
         if (var_r29 && (i_data->mNo == 0xFF || (i_data->mNo != 0xFF && dComIfGs_isTbox(i_data->mNo)))) {
@@ -297,7 +297,7 @@ void* dMdm_HIO_prm_res_dst_s::m_res;
 /* 801C0CD8-801C0D04 1BB618 002C+00 1/1 0/0 0/0 .text _create__15dMenu_DmapMap_cFUsUsUsUsPv */
 void dMenu_DmapMap_c::_create(u16 param_0, u16 param_1, u16 param_2, u16 param_3,
                               void* res) {
-    JUT_ASSERT(1569, res != 0);
+    JUT_ASSERT(1569, res != NULL);
     dMdm_HIO_prm_res_dst_s::m_res = res;
     field_0x84 = 120;
     setTexture(param_0, param_1, param_2, param_3);
@@ -321,11 +321,11 @@ void dMenu_DmapMap_c::setTexture(u16 param_0, u16 param_1, u16 param_2, u16 para
     for (int lp1 = 0; lp1 < 2; lp1++) {
         u32 var_r27 = GXGetTexBufferSize(param_0, param_1, 9, 0, 0);
         mMapImage_p[lp1] = new (0x20) u8[var_r27];
-        JUT_ASSERT(1672, mMapImage_p[lp1] != 0);
+        JUT_ASSERT(1672, mMapImage_p[lp1] != NULL);
         mRend[lp1].init(mMapImage_p[lp1], param_0, param_1, param_2, param_3);
 
         mResTIMG[lp1] = new (0x20) ResTIMG;
-        JUT_ASSERT(1687, mResTIMG[lp1] != 0);
+        JUT_ASSERT(1687, mResTIMG[lp1] != NULL);
         mRend[lp1].makeResTIMG(mResTIMG[lp1], param_0, param_1, mMapImage_p[lp1], (u8*)dMdm_HIO_prm_res_dst_s::m_res, 30);
     }
 }
@@ -446,9 +446,9 @@ void dMenu_StageMapCtrl_c::cnvPosTo2Dpos(f32 param_0, f32 param_1, f32* param_2,
 /* 801C1194-801C1218 1BBAD4 0084+00 0/0 1/1 0/0 .text
  * getPlayerDrawInfo__20dMenu_StageMapCtrl_cCFPfPfPs            */
 void dMenu_StageMapCtrl_c::getPlayerDrawInfo(f32* i_dispX, f32* i_dispY, s16* i_rotY) const {
-    JUT_ASSERT(2030, i_dispX != 0);
-    JUT_ASSERT(2031, i_dispX != 0);
-    JUT_ASSERT(2032, i_rotY != 0);
+    JUT_ASSERT(2030, i_dispX != NULL);
+    JUT_ASSERT(2031, i_dispX != NULL);
+    JUT_ASSERT(2032, i_rotY != NULL);
 
     Vec sp10 = dMapInfo_n::getMapPlayerPos();
     cnvPosTo2Dpos(sp10.x, sp10.z, i_dispX, i_dispY);
@@ -461,9 +461,9 @@ void dMenu_StageMapCtrl_c::getPlayerDrawInfo(f32* i_dispX, f32* i_dispY, s16* i_
 /* 801C1218-801C12A8 1BBB58 0090+00 0/0 1/1 0/0 .text
  * getRestartDrawInfo__20dMenu_StageMapCtrl_cCFPfPfPs           */
 s8 dMenu_StageMapCtrl_c::getRestartDrawInfo(f32* i_dispX, f32* i_dispY, s16* i_rotY) const {
-    JUT_ASSERT(2057, i_dispX != 0);
-    JUT_ASSERT(2058, i_dispX != 0);
-    JUT_ASSERT(2059, i_rotY != 0);
+    JUT_ASSERT(2057, i_dispX != NULL);
+    JUT_ASSERT(2058, i_dispX != NULL);
+    JUT_ASSERT(2059, i_rotY != NULL);
 
     Vec sp10 = dMapInfo_n::getMapRestartPos();
     cnvPosTo2Dpos(sp10.x, sp10.z, i_dispX, i_dispY);
@@ -604,7 +604,7 @@ void dMenu_DmapMapCtrl_c::getZoomMinMaxCheck(f32* param_0, f32* param_1, f32* pa
     for (int i = 0; i < 64; i++) {
         if (dMpath_c::getRoomPointer(0, i) || dMpath_c::getRoomPointer(1, i)) {
             dStage_FileList2_dt_c* fileList2_p = dStage_roomControl_c::getFileList2(i);
-            JUT_ASSERT(2360, fileList2_p != 0);
+            JUT_ASSERT(2360, fileList2_p != NULL);
 
             if (fileList2_p != NULL && (dMapInfo_n::chkGetMap() || dMapInfo_n::chkGetCompass() || dMapInfo_n::isVisitedRoom(i) || field_0xe6 == i)) {
                 f32 sp18, sp14, sp10, spC;
@@ -676,7 +676,7 @@ void dMenu_DmapMapCtrl_c::calcZoomCenter(f32* param_0, f32* param_1) {
     f32 sp8 = 0.0f;
 
     dStage_FileList2_dt_c* fileList2_p = dStage_roomControl_c::getFileList2(field_0xe6);
-    JUT_ASSERT(2437, fileList2_p != 0);
+    JUT_ASSERT(2437, fileList2_p != NULL);
 
     if (fileList2_p != NULL) {
         dMapInfo_n::getRoomCenter(field_0xe6, &spC, &sp8);
@@ -697,7 +697,7 @@ f32 dMenu_DmapMapCtrl_c::getZoomCmPerPixel() {
     f32 var_f30 = field_0x98 < field_0x94 ? field_0x98 : field_0x94;
 
     stage_stag_info_class* pstag = dComIfGp_getStage()->getStagInfo();
-    JUT_ASSERT(2467, pstag != 0);
+    JUT_ASSERT(2467, pstag != NULL);
 
     f32 var_f29 = 10800.0f / var_f30;
     f32 var_f31 = 0.0f;

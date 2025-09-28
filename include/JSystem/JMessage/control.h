@@ -36,8 +36,8 @@ struct TControl {
     }
 
     int setMessageCode_inReset_(const TProcessor* pProcessor, u16 u16GroupID, u16 u16Index) {
-        JUT_ASSERT(138, pEntry_==0);
-        JUT_ASSERT(139, pszText_update_current_==0);
+        JUT_ASSERT(138, pEntry_==NULL);
+        JUT_ASSERT(139, pszText_update_current_==NULL);
         JUT_ASSERT(140, oStack_renderingProcessor_.empty());
         
         if (!setMessageCode_inSequence_(pProcessor, u16GroupID, u16Index)) {

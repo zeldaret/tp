@@ -168,7 +168,7 @@ int daAlink_c::procGrassWhistleWaitInit(int param_0, int param_1, int param_2, s
         mLinkGndChk.SetPos(param_4);
 
         f32 gnd_cross = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
-        if (gnd_cross != -1000000000.0f) {
+        if (gnd_cross != -G_CM3D_F_INF) {
             current.pos.set(param_4->x, gnd_cross, param_4->z);
         }
 

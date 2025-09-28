@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_mhole.h"
 #include "d/d_cc_d.h"
@@ -154,14 +154,14 @@ int daObjMHole_c::checkParent() {
 /* 80C93204-80C93498 000424 0294+00 1/1 0/0 0/0 .text            CreateHeap__12daObjMHole_cFv */
 int daObjMHole_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName[mKind], l_bmd[mKind]);
-    JUT_ASSERT(336, modelData != 0);
+    JUT_ASSERT(336, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, 0, 0x19000284);
     if (mpModel == NULL) {
         return FALSE;
     }
 
     J3DAnmTevRegKey* pbrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName[mKind], l_brk[mKind]);
-    JUT_ASSERT(360,  pbrk != 0);
+    JUT_ASSERT(360,  pbrk != NULL);
     mpBrkAnm = new mDoExt_brkAnm();
     if (mpBrkAnm == NULL ||
         !mpBrkAnm->init(modelData, pbrk, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1))
@@ -172,7 +172,7 @@ int daObjMHole_c::CreateHeap() {
 
     {
         J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName[mKind], l_btk1[mKind]);
-        JUT_ASSERT(375,  pbtk != 0);
+        JUT_ASSERT(375,  pbtk != NULL);
         mpBtk1Anm = new mDoExt_btkAnm();
         if (mpBtk1Anm == NULL ||
             !mpBtk1Anm->init(modelData, pbtk, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1))
@@ -184,7 +184,7 @@ int daObjMHole_c::CreateHeap() {
 
     {
         J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName[mKind], l_btk2[mKind]);
-        JUT_ASSERT(391,  pbtk != 0);
+        JUT_ASSERT(391,  pbtk != NULL);
         mpBtk2Anm = new mDoExt_btkAnm();
         if (mpBtk2Anm == NULL ||
             !mpBtk2Anm->init(modelData, pbtk, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1))

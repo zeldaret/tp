@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_stairBlock.h"
 
@@ -55,7 +55,7 @@ static const Vec centerPos[10] = {
 int daStairBlock_c::CreateHeap() {
     for (int i = 0; i < 10; i++) {
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("StaBlock", l_bmdIdx[i]);
-        JUT_ASSERT(276, modelData != 0);
+        JUT_ASSERT(276, modelData != NULL);
 
         mpModel[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
         if (mpModel[i] == NULL) {

@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_sg.h"
 #include "Z2AudioLib/Z2Instances.h"
@@ -1024,7 +1024,7 @@ static int daE_SG_Execute(e_sg_class* i_this) {
     gnd_chk.SetPos(&local_138);
 
     f32 fVar71 = dComIfG_Bgsp().GroundCross(&gnd_chk);
-    if (fVar71 != -1000000000.0f && i_this->mGroundY != fVar71) {
+    if (fVar71 != -G_CM3D_F_INF && i_this->mGroundY != fVar71) {
         i_this->mGroundY = fVar71;
         i_this->home.pos.y = i_this->mGroundY - 250.0f + cM_rndFX(50.0f);
     }

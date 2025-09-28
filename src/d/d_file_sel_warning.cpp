@@ -7,7 +7,7 @@
 // Translation Unit: d/file/d_file_sel_warning
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_file_sel_warning.h"
 #include "d/d_msg_string.h"
@@ -17,58 +17,6 @@
 #include "JSystem/J2DGraph/J2DTextBox.h"
 #include "d/d_com_inf_game.h"
 #include "dol2asm.h"
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__15dFile_warning_cFP10JKRArchiveUc();
-extern "C" void __dt__15dFile_warning_cFv();
-extern "C" void screenSet__15dFile_warning_cFv();
-extern "C" void _move__15dFile_warning_cFv();
-extern "C" void modeWait__15dFile_warning_cFv();
-extern "C" void modeMove__15dFile_warning_cFv();
-extern "C" void baseMoveAnm__15dFile_warning_cFv();
-extern "C" void openInit__15dFile_warning_cFv();
-extern "C" void closeInit__15dFile_warning_cFv();
-extern "C" void init__15dFile_warning_cFv();
-extern "C" void _draw__15dFile_warning_cFv();
-extern "C" void drawSelf__15dFile_warning_cFv();
-extern "C" void setText__15dFile_warning_cFUl();
-extern "C" void setFontColor__15dFile_warning_cFQ28JUtility6TColorQ28JUtility6TColor();
-extern "C" void setBlackWhite__10J2DTextBoxFQ28JUtility6TColorQ28JUtility6TColor();
-extern "C" void draw__16dDlst_FileWarn_cFv();
-extern "C" void __sinit_d_file_sel_warning_cpp();
-extern "C" void __dt__16dDlst_FileWarn_cFv();
-extern "C" void setAnimation__9J2DScreenFP15J2DAnmTransform();
-extern "C" extern char const* const d_file_d_file_sel_warning__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void mDoExt_getMesgFont__Fv();
-extern "C" void mDoExt_removeMesgFont__Fv();
-extern "C" void set__12dDlst_list_cFRPP12dDlst_base_cRPP12dDlst_base_cP12dDlst_base_c();
-extern "C" void __ct__12dMsgString_cFv();
-extern "C" void __dt__12dMsgString_cFv();
-extern "C" void __ct__8CPaneMgrFP9J2DScreenUxUcP10JKRExpHeap();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader();
-extern "C" void setAnimation__7J2DPaneFP15J2DAnmTransform();
-extern "C" void __ct__9J2DScreenFv();
-extern "C" void setPriority__9J2DScreenFPCcUlP10JKRArchive();
-extern "C" void draw__9J2DScreenFffPC14J2DGrafContext();
-extern "C" void animation__9J2DScreenFv();
-extern "C" void setString__10J2DTextBoxFsPCce();
-extern "C" void load__20J2DAnmLoaderDataBaseFPCv();
-extern "C" void __ptmf_scall();
-extern "C" extern void* __vt__12dDlst_base_c[3];
-
-//
-// Declarations:
-//
 
 /* 803BB434-803BB44C 018554 0018+00 1/2 0/0 0/0 .data            fileWarningProc */
 typedef void (dFile_warning_c::*procFunc)();
@@ -107,10 +55,10 @@ void dFile_warning_c::screenSet() {
     };
 
     mFileWarn.Scr = new J2DScreen();
-    JUT_ASSERT(0, mFileWarn.Scr != 0);
+    JUT_ASSERT(0, mFileWarn.Scr != NULL);
 
     mFileWarn.mMsgString = new dMsgString_c();
-    JUT_ASSERT(0, mFileWarn.mMsgString != 0);
+    JUT_ASSERT(0, mFileWarn.mMsgString != NULL);
 
     mFileWarn.Scr->setPriority(blo_name[field_0x3e], 0x100000, mpArchive);
 
@@ -122,7 +70,7 @@ void dFile_warning_c::screenSet() {
 
     mFileWarn.mFont = mDoExt_getMesgFont();
     mpRootPane = new CPaneMgr(mFileWarn.Scr, 'Nm_02', 0, NULL);
-    JUT_ASSERT(0, mpRootPane != 0);
+    JUT_ASSERT(0, mpRootPane != NULL);
     field_0x34 = mpRootPane->getTranslateY();
 
     mFileWarn.Scr->search('w_msg_jp')->hide();
@@ -240,12 +188,6 @@ void dFile_warning_c::setFontColor(JUtility::TColor param_0, JUtility::TColor pa
     field_0x20->setFontColor(JUtility::TColor(255, 255, 255, 255),
                              JUtility::TColor(255, 255, 255, 255));
 }
-
-/* 8019230C-80192354 18CC4C 0048+00 0/0 1/0 0/0 .text
- * setBlackWhite__10J2DTextBoxFQ28JUtility6TColorQ28JUtility6TColor */
-/* bool J2DTextBox::setBlackWhite(JUtility::TColor param_0, JUtility::TColor param_1) {
-    // NONMATCHING
-} */
 
 /* 80192354-8019238C 18CC94 0038+00 1/0 0/0 0/0 .text            draw__16dDlst_FileWarn_cFv */
 void dDlst_FileWarn_c::draw() {

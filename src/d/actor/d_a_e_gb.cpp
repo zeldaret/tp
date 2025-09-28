@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_gb.h"
 #include "d/d_cc_d.h"
@@ -1556,7 +1556,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
     i_this->mBrkAnm->setPlaySpeed(0.0f);
 
     J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("E_gb", 32));
-    JUT_ASSERT(3378, modelData != 0);
+    JUT_ASSERT(3378, modelData != NULL);
 
     for (int i = 0; i < 18; i++) {
         i_this->field_0x828[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
@@ -1569,7 +1569,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
     if (strcmp(dComIfGp_getStartStageName(), "D_MN05") == 0) {
         modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("E_gb", 30));
-        JUT_ASSERT(3395, modelData != 0);
+        JUT_ASSERT(3395, modelData != NULL);
         i_this->field_0x66c = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
         if (i_this->field_0x66c == NULL) {
             return 0;

@@ -3,7 +3,7 @@
  * Snowpeak Ruins Chandelier (Swinging Platform)
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_lv5ychndlr.h"
 #include "SSystem/SComponent/c_math.h"
@@ -97,7 +97,7 @@ void daObjYchndlr_c::rideActor(fopAc_ac_c* i_actor) {
 /* 80C6DA5C-80C6DB5C 00037C 0100+00 1/0 0/0 0/0 .text            CreateHeap__14daObjYchndlr_cFv */
 int daObjYchndlr_c::CreateHeap() {
     J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmdidx[0]);
-    JUT_ASSERT(0, model_data != 0);
+    JUT_ASSERT(0, model_data != NULL);
 
     mpChandlierModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
     if (mpChandlierModel == NULL) {
@@ -105,7 +105,7 @@ int daObjYchndlr_c::CreateHeap() {
     }
 
     model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmdidx[1]);
-    JUT_ASSERT(0, model_data != 0);
+    JUT_ASSERT(0, model_data != NULL);
 
     for (int i = 0; i < 4; i++) {
         mpShaftModels[i] = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);

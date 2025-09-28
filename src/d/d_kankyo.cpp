@@ -1,4 +1,4 @@
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_kankyo.h"
 #include <dolphin.h>
@@ -34,7 +34,7 @@ inline float cosf(float x) {
 
 /* 8019C388-8019C3A4 196CC8 001C+00 2/2 0/0 0/0 .text dKy_WolfPowerup_AmbCol__FP11_GXColorS10 */
 void dKy_WolfPowerup_AmbCol(GXColorS10* in_col_p) {
-    JUT_ASSERT(185, in_col_p != 0);
+    JUT_ASSERT(185, in_col_p != NULL);
 
     in_col_p->r = 40;
     in_col_p->g = 52;
@@ -292,7 +292,7 @@ static u16 lightMaskData[8] = {
 
 /* 8019CB0C-8019CCDC 19744C 01D0+00 3/2 0/0 0/0 .text dKy_WolfPowerup_BgAmbCol__FP11_GXColorS10 */
 void dKy_WolfPowerup_BgAmbCol(GXColorS10* in_col_p) {
-    JUT_ASSERT(374, in_col_p != 0);
+    JUT_ASSERT(374, in_col_p != NULL);
 
     switch (dKy_sense_pat_get()) {
     case 1:
@@ -372,8 +372,8 @@ void dKy_WolfPowerup_BgAmbCol(GXColorS10* in_col_p) {
 /* 8019CCDC-8019CE5C 19761C 0180+00 4/3 0/0 0/0 .text            dKy_WolfPowerup_FogNearFar__FPfPf
  */
 void dKy_WolfPowerup_FogNearFar(f32* near_p, f32* far_p) {
-    JUT_ASSERT(499, near_p != 0);
-    JUT_ASSERT(500, far_p != 0);
+    JUT_ASSERT(499, near_p != NULL);
+    JUT_ASSERT(500, far_p != NULL);
 
     switch (dKy_sense_pat_get()) {
     case 1:
@@ -1105,7 +1105,7 @@ static void dungeonlight_init() {
 /* 8019EAA0-8019EBD0 1993E0 0130+00 1/1 0/0 0/0 .text            undwater_init__Fv */
 static void undwater_init() {
     J3DModelData* modelData2 = (J3DModelData*)dComIfG_getObjectRes("Always", 0x1D);
-    JUT_ASSERT(1867, modelData2 != 0);
+    JUT_ASSERT(1867, modelData2 != NULL);
 
     g_env_light.undwater_ef_heap = mDoExt_createSolidHeapFromGameToCurrent(0x600, 0x20);
 
@@ -1120,16 +1120,16 @@ static void undwater_init() {
                 if (!g_env_light.undwater_btk->init(modelData2, pbtk, TRUE,
                                                     J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1))
                 {
-                    JUT_ASSERT(1898, 0);
+                    JUT_ASSERT(1898, FALSE);
                 }
             } else {
-                JUT_ASSERT(1902, 0);
+                JUT_ASSERT(1902, FALSE);
             }
         }
         mDoExt_restoreCurrentHeap();
         mDoExt_adjustSolidHeap(g_env_light.undwater_ef_heap);
     } else {
-        JUT_ASSERT(1917, 0);
+        JUT_ASSERT(1917, FALSE);
     }
 }
 
@@ -4418,7 +4418,7 @@ void dKy_setLight_nowroom_common(char room_no, f32 light_ratio) {
 
             if (lightMask & lightMaskData[i + 2]) {
                 if (room_tevstr == NULL) {
-                    JUT_ASSERT(12633, 0);
+                    JUT_ASSERT(12633, FALSE);
                 }
 
                 J3DLightInfo* room_light = &room_tevstr->mLights[i].getLightInfo();
@@ -6802,7 +6802,7 @@ void dKy_murky_set(J3DMaterial* material_p) {
     J3DGXColorS10 tev_col;
     J3DGXColor tev_kcol;
 
-    JUT_ASSERT(0x43DB, material_p != 0);
+    JUT_ASSERT(0x43DB, material_p != NULL);
 
     tev_col.r = g_env_light.bg_amb_col[1].r;
     tev_col.g = g_env_light.bg_amb_col[1].g;

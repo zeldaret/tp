@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_taro.h"
 #include "JSystem/JUtility/JUTAssert.h"
@@ -342,7 +342,7 @@ int daNpc_Taro_c::create() {
         mAcch.CrrPos(dComIfG_Bgsp());
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.GetGroundH();
-        if (mGroundH != -1e9f) {
+        if (mGroundH != -G_CM3D_F_INF) {
             setEnvTevColor();
             setRoomNo();
         }
@@ -506,7 +506,7 @@ void* daNpc_Taro_c::srchNpc(void* param_1, void* param_2) {
 /* 80566BD4-80566CCC 000E34 00F8+00 1/1 0/0 0/0 .text            getArrowP__12daNpc_Taro_cFv */
 fopAc_ac_c* daNpc_Taro_c::getArrowP() {
     fopAc_ac_c* pActor = NULL;
-    f32 minDist = 1e9f;
+    f32 minDist = G_CM3D_F_INF;
     mFindCount = 0;
     fopAcM_Search(srchArrow, this);
     for (int i = 0; i < mFindCount; i++) {
@@ -1244,7 +1244,7 @@ int daNpc_Taro_c::cutConversationAboutPachinko(int param_1) {
         break;
     case 1: {
         actor_p = mActors[1].getActorP();
-        JUT_ASSERT(3282, 0 != actor_p);
+        JUT_ASSERT(3282, NULL != actor_p);
         mJntAnm.lookActor(actor_p, -40.0, 0);
         if (home.angle.y == mCurAngle.y) {
             rv = TRUE;
@@ -1364,7 +1364,7 @@ int daNpc_Taro_c::cutSwdTutorial(int param_1) {
             initTalk(0x1f5, local_4c);
             if (local_70 == 0x3d) {
                 actor_p = mActors[0].getActorP();
-                JUT_ASSERT(3480, 0 != actor_p);
+                JUT_ASSERT(3480, NULL != actor_p);
                 shape_angle.y = fopAcM_searchActorAngleY(this, actor_p);
             }
             break;
@@ -1524,7 +1524,7 @@ int daNpc_Taro_c::cutHail(int param_1) {
         switch(prm) {
         case 0: {
             daTag_Push_c* actor_p = (daTag_Push_c*)field_0xba0.getActorP();
-            JUT_ASSERT(3723, 0 != actor_p)
+            JUT_ASSERT(3723, NULL != actor_p)
             actor_p->pushBackPlayer(0);
             break;
         }
@@ -1533,7 +1533,7 @@ int daNpc_Taro_c::cutHail(int param_1) {
             mMotionSeqMngr.setNo(0, 0.0f, 0, 0);
             mJntAnm.lookNone(1);
             daTag_Push_c* actor_p = (daTag_Push_c*)field_0xba0.getActorP();
-            JUT_ASSERT(3732, 0 != actor_p)
+            JUT_ASSERT(3732, NULL != actor_p)
             initTalk(actor_p->getFlowNodeNo(), NULL);
             setAngle(fopAcM_searchPlayerAngleY(this));
             break;
@@ -1630,7 +1630,7 @@ int daNpc_Taro_c::cutFindMonkey(int param_1) {
     case 1: {
         if (cLib_calcTimer(&mEventTimer) == 0) {
             fopAc_ac_c* p_actor = mActors[20].getActorP();
-            JUT_ASSERT(3870, 0 != p_actor);
+            JUT_ASSERT(3870, NULL != p_actor);
             mJntAnm.lookActor(p_actor, -40.0f, 0);
             rv = TRUE;
         } else {
@@ -1640,14 +1640,14 @@ int daNpc_Taro_c::cutFindMonkey(int param_1) {
     }
     case 2: {
         fopAc_ac_c* p_actor = mActors[20].getActorP();
-        JUT_ASSERT(3881, 0 != p_actor);
+        JUT_ASSERT(3881, NULL != p_actor);
         mJntAnm.lookActor(p_actor, -40.0f, 0);
         rv = TRUE;
         break;
     }
     case 3: {
         fopAc_ac_c* p_actor = mActors[20].getActorP();
-        JUT_ASSERT(3888, 0 != p_actor);
+        JUT_ASSERT(3888, NULL != p_actor);
         mJntAnm.lookActor(p_actor, -40.0f, 0);
         if (talkProc(msgNos, 0, NULL, 0) != 0 && mFlow.checkEndFlow()) {
             rv = TRUE;
@@ -1656,10 +1656,10 @@ int daNpc_Taro_c::cutFindMonkey(int param_1) {
     }
     case 4: {
         fopAc_ac_c* p_actor = mActors[20].getActorP();
-        JUT_ASSERT(3899, 0 != p_actor);
+        JUT_ASSERT(3899, NULL != p_actor);
         mJntAnm.lookActor(p_actor, -40.0f, 0);
         p_actor = dComIfGp_getHorseActor();
-        JUT_ASSERT(3902, 0 != p_actor);
+        JUT_ASSERT(3902, NULL != p_actor);
         if (cLib_calcTimer(&mEventTimer) == 0) {
             rv = TRUE;
         }
@@ -1818,7 +1818,7 @@ int daNpc_Taro_c::cutAppearanceMoi(int param_1) {
             work += home.pos;
             mGndChk.SetPos(&work);
             work.y = dComIfG_Bgsp().GroundCross(&mGndChk);
-            JUT_ASSERT(4156, -(1000000000.0f) != work.y)
+            JUT_ASSERT(4156, -G_CM3D_F_INF != work.y)
             cStack_68.y = cLib_targetAngleY(&work, &current.pos);
             daPy_getPlayerActorClass()->setPlayerPosAndAngle(&work, cStack_68.y, 0);
             mEventTimer = timer;
@@ -1978,13 +1978,13 @@ int daNpc_Taro_c::cutGiveMeWoodSwd(int param_1) {
         case 5: 
         case 8: {
             fopAc_ac_c* actor_p = mActors[2].getActorP();
-            JUT_ASSERT(4405, 0 != actor_p);
+            JUT_ASSERT(4405, NULL != actor_p);
             mJntAnm.lookActor(actor_p, -40.0f, 0);
             break;
         }
         case 6: {
             fopAc_ac_c* actor_p = mActors[0].getActorP();
-            JUT_ASSERT(4411, 0 != actor_p);
+            JUT_ASSERT(4411, NULL != actor_p);
             mJntAnm.lookActor(actor_p, -40.0f, 0);
             break;
         }
@@ -2671,7 +2671,7 @@ int daNpc_Taro_c::cutNotGonnaLet(int param_1) {
             break;
         case 3: {
             fopAc_ac_c* actor_p = mActors[2].getActorP();
-            JUT_ASSERT(5445, 0 != actor_p);
+            JUT_ASSERT(5445, NULL != actor_p);
             mJntAnm.lookActor(actor_p, -40.0f, 0);
             break;
         }
@@ -2680,20 +2680,20 @@ int daNpc_Taro_c::cutNotGonnaLet(int param_1) {
             break;
         case 5: {
             fopAc_ac_c* actor_p = mActors[2].getActorP();
-            JUT_ASSERT(5456, 0 != actor_p);
+            JUT_ASSERT(5456, NULL != actor_p);
             mJntAnm.lookActor(actor_p, -40.0f, 0);
             break;
         }
         case 6: {
             fopAc_ac_c* actor_p = mActors[0].getActorP();
-            JUT_ASSERT(5464, 0 != actor_p);
+            JUT_ASSERT(5464, NULL != actor_p);
             mJntAnm.lookActor(actor_p, -40.0f, 0);
             dComIfGp_getEvent().setPt2(actor_p);
             break;
         }
         case 7: {
             fopAc_ac_c* actor_p = mActors[2].getActorP();
-            JUT_ASSERT(5473, 0 != actor_p);
+            JUT_ASSERT(5473, NULL != actor_p);
             mJntAnm.lookActor(actor_p, -40.0f, 0);
             dComIfGp_getEvent().setPt2(this);
             break;
@@ -2720,14 +2720,14 @@ int daNpc_Taro_c::cutNotGonnaLet(int param_1) {
             break;
         case 20: {
             fopAc_ac_c* actor_p = mActors[2].getActorP();
-            JUT_ASSERT(5508, 0 != actor_p);
+            JUT_ASSERT(5508, NULL != actor_p);
             mJntAnm.lookActor(actor_p, -40.0f, 0);
             initTalk(mFlowNodeNo, pActors);
             break;
         }
         case 21: {
             fopAc_ac_c* actor_p = mActors[0].getActorP();
-            JUT_ASSERT(5517, 0 != actor_p);
+            JUT_ASSERT(5517, NULL != actor_p);
             dComIfGp_getEvent().setPt2(actor_p);
             break;
         }

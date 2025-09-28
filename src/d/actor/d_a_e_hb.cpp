@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_hb.h"
 #include "d/actor/d_a_e_hb_leaf.h"
@@ -1384,7 +1384,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_hb", 0x19);
-    JUT_ASSERT(3031, modelData != 0);
+    JUT_ASSERT(3031, modelData != NULL);
 
     for (int i = 1; i < 11; i++) {
         if (i & 1) {

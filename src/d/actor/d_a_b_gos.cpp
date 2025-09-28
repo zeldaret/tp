@@ -3,7 +3,7 @@
  * Combined Goron Child
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_b_gos.h"
 #include "SSystem/SComponent/c_math.h"

@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_cstatue.h"
 #include <Z2AudioLib/Z2Instances.h>
@@ -433,7 +433,7 @@ static int daCstatue_Delete(void* actor) {
 /* 80664AA0-80664B38 0014E0 0098+00 2/2 0/0 0/0 .text            setRoomInfo__11daCstatue_cFv */
 void daCstatue_c::setRoomInfo() {
     int roomId;
-    if (mStatueAcch.GetGroundH() != -1000000000.0f) {
+    if (mStatueAcch.GetGroundH() != -G_CM3D_F_INF) {
         roomId = dComIfG_Bgsp().GetRoomId(mStatueAcch.m_gnd);
         tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mStatueAcch.m_gnd);
     } else {
@@ -475,7 +475,7 @@ void daCstatue_c::setMatrix() {
 void daCstatue_c::posMove() {
     if (checkStateFlg0(daCstatue_FLG0_8)) {
         mStatueAcch.CrrPos(dComIfG_Bgsp());
-        if (mStatueAcch.GetGroundH() == -1000000000.0f) {
+        if (mStatueAcch.GetGroundH() == -G_CM3D_F_INF) {
             return;
         }
         if (dComIfG_Bgsp().ChkMoveBG_NoDABg(mStatueAcch.m_gnd)) {
@@ -584,7 +584,7 @@ void daCstatue_c::posMove() {
         current.pos += *mStts.GetCCMoveP();
         mStts.ClrCcMove();
         mStatueAcch.CrrPos(dComIfG_Bgsp());
-        if (groundHit && !mStatueAcch.ChkGroundHit() && mStatueAcch.GetGroundH() != -1000000000.0f)
+        if (groundHit && !mStatueAcch.ChkGroundHit() && mStatueAcch.GetGroundH() != -G_CM3D_F_INF)
         {
             f32 groundDistance = mStatueAcch.GetGroundH() - current.pos.y;
             cM3dGPla plane;
@@ -1137,7 +1137,7 @@ int daCstatue_c::execute() {
         }
     }
     u32 morf =
-        mStatueAcch.GetGroundH() != -1000000000.0f ? dKy_pol_sound_get(&mStatueAcch.m_gnd) : 0;
+        mStatueAcch.GetGroundH() != -G_CM3D_F_INF ? dKy_pol_sound_get(&mStatueAcch.m_gnd) : 0;
     mpMorf->play(morf, mReverb);
     if (!bossType && mCurrentAnim == CStatueAnimIndex_2 && link->checkCopyRodSwingMode()) {
         if (mpMorf->getEndFrame() > link->getBaseAnimeFrame()) {

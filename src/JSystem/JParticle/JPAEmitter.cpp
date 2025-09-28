@@ -12,22 +12,6 @@
 #include "JSystem/JParticle/JPABaseShape.h"
 #include "dolphin/types.h"
 
-//
-// Types:
-//
-
-//
-// Forward References:
-//
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
-
 /* 8027E6A4-8027E6EC 278FE4 0048+00 0/0 14/14 16/16 .text            __dt__18JPAEmitterCallBackFv */
 JPAEmitterCallBack::~JPAEmitterCallBack() {
 }

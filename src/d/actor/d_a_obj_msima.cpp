@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_msima.h"
 #include "Z2AudioLib/Z2Instances.h"
@@ -400,7 +400,7 @@ static int daObj_Msima_Delete(obj_msima_class* i_this) {
 static int useHeapInit(fopAc_ac_c* a_this) {
     obj_msima_class* i_this = (obj_msima_class*)a_this;
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("MAGNESIMA", obj_msima_class::BMDR_S_MAGNE_SIMA);
-    JUT_ASSERT(847, modelData != 0);
+    JUT_ASSERT(847, modelData != NULL);
     i_this->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (i_this->mpModel == NULL) {
         return 0;
@@ -441,7 +441,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 35; j++) {
                 modelData = (J3DModelData*)dComIfG_getObjectRes("MAGNESIMA", obj_msima_class::BMDR_KUSARI);
-                JUT_ASSERT(898, modelData != 0);
+                JUT_ASSERT(898, modelData != NULL);
                 i_this->mChains[i].model[j] =
                     mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
                 if (i_this->mChains[i].model[j] == NULL) {

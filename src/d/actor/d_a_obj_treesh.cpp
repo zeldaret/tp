@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_treesh.h"
 #include "d/d_com_inf_game.h"
@@ -59,7 +59,7 @@ void daTreeSh_c::setBaseMtx() {
 /* 80D1F2E8-80D1F358 000308 0070+00 1/0 0/0 0/0 .text            CreateHeap__10daTreeSh_cFv */
 int daTreeSh_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 4);
-    JUT_ASSERT(211, modelData != 0);
+    JUT_ASSERT(211, modelData != NULL);
 
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {

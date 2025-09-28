@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_lv8OptiLift.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
@@ -45,7 +45,7 @@ const f32 daOptiLift_c::mSpeed[] = {
 /* 80C8A438-80C8A500 000218 00C8+00 1/0 0/0 0/0 .text            CreateHeap__12daOptiLift_cFv */
 int daOptiLift_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Lv8Lift", 5);
-    JUT_ASSERT(0xC4, modelData != 0);
+    JUT_ASSERT(0xC4, modelData != NULL);
 
     mpModel = mDoExt_J3DModel__create(modelData, 0, 0x11000284);
     if (mpModel == NULL) {

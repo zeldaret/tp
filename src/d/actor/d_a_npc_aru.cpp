@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_aru.h"
 #include "d/actor/d_a_cow.h"
@@ -374,7 +374,7 @@ cPhs__Step daNpc_Aru_c::create() {
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.GetGroundH();
 
-        if (mGroundH != -1e9f) {
+        if (mGroundH != -G_CM3D_F_INF) {
             setEnvTevColor();
             setRoomNo();
         }
@@ -560,7 +560,7 @@ fopAc_ac_c* daNpc_Aru_c::getCowP(int param_1) {
 /* 8095253C-8095260C 000E9C 00D0+00 1/1 0/0 0/0 .text            getUDoor_l_P__11daNpc_Aru_cFv */
 fopAc_ac_c* daNpc_Aru_c::getUDoor_l_P() {
     fopAc_ac_c* rv = NULL;
-    f32 fVar1 = 1e9f;
+    f32 fVar1 = G_CM3D_F_INF;
     
     mFindCount = 0;
     fopAcM_Search(srchUDoor, this);
@@ -578,7 +578,7 @@ fopAc_ac_c* daNpc_Aru_c::getUDoor_l_P() {
 /* 8095260C-809526DC 000F6C 00D0+00 1/1 0/0 0/0 .text            getUDoor_r_P__11daNpc_Aru_cFv */
 fopAc_ac_c* daNpc_Aru_c::getUDoor_r_P() {
     fopAc_ac_c* rv = NULL;
-    f32 fVar1 = 1e9f;
+    f32 fVar1 = G_CM3D_F_INF;
     
     mFindCount = 0;
     fopAcM_Search(srchUDoor, this);
@@ -1714,7 +1714,7 @@ int daNpc_Aru_c::cutNoEntrance(int i_staffID) {
             case 0: {
                 fopAc_ac_c* actor_p = mActorMngrs[3].getActorP();
 
-                JUT_ASSERT(3279, 0 != actor_p);
+                JUT_ASSERT(3279, NULL != actor_p);
 
                 work.set(0.0f, 500.0f, actor_p->scale.z + 100.0f);
                 angle.y = fopAcM_searchPlayerAngleY(actor_p) - actor_p->current.angle.y;
@@ -1732,7 +1732,7 @@ int daNpc_Aru_c::cutNoEntrance(int i_staffID) {
                 mGndChk.SetPos(&work);
                 work.y = dComIfG_Bgsp().GroundCross(&mGndChk);
 
-                JUT_ASSERT(3298, -(1000000000.0f) != work.y);
+                JUT_ASSERT(3298, -G_CM3D_F_INF != work.y);
 
                 angle.y = fopAcM_searchActorAngleY(daPy_getPlayerActorClass(), this);
                 daPy_getPlayerActorClass()->setPlayerPosAndAngle(&work, angle.y, 0);

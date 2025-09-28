@@ -186,7 +186,7 @@ JASBasicBank* JASBNKParser::Ver0::createBasicBank(void const* stream, JKRHeap* h
         TInst* tinst = header->mOffsets.mInstOffset[i].ptr(header);
         if (tinst != NULL) {
             JASBasicInst* instp = new (heap, 0) JASBasicInst();
-            JUT_ASSERT(368, instp != 0);
+            JUT_ASSERT(368, instp != NULL);
             instp->setVolume(tinst->mVolume);
             instp->setPitch(tinst->mPitch);
 
@@ -199,7 +199,7 @@ JASBasicBank* JASBNKParser::Ver0::createBasicBank(void const* stream, JKRHeap* h
                         instp->setOsc(osc_idx, osc);
                     } else {
                         osc = new (heap, 0) JASOscillator::Data();
-                        JUT_ASSERT(386, osc != 0);
+                        JUT_ASSERT(386, osc != NULL);
                         osc->mTarget = tosc->mTarget;
                         osc->_04 = tosc->field_0x4;
 
@@ -208,7 +208,7 @@ JASBasicBank* JASBNKParser::Ver0::createBasicBank(void const* stream, JKRHeap* h
                             const JASOscillator::Point* endPtr = getOscTableEndPtr(points);
                             int size = endPtr - points;
                             JASOscillator::Point* table = new (heap, 0) JASOscillator::Point[size];
-                            JUT_ASSERT(396, table != 0);
+                            JUT_ASSERT(396, table != NULL);
                             JASCalc::bcopy(points, table, size * sizeof(JASOscillator::Point));
                             osc->mTable = table;
                         } else {
@@ -220,7 +220,7 @@ JASBasicBank* JASBNKParser::Ver0::createBasicBank(void const* stream, JKRHeap* h
                             const JASOscillator::Point* endPtr = getOscTableEndPtr(points);
                             int size = endPtr - points;
                             JASOscillator::Point* table = new (heap, 0) JASOscillator::Point[size];
-                            JUT_ASSERT(409, table != 0);
+                            JUT_ASSERT(409, table != NULL);
                             JASCalc::bcopy(points, table, size * sizeof(JASOscillator::Point));
                             osc->_0C = table;
                         } else {
@@ -255,7 +255,7 @@ JASBasicBank* JASBNKParser::Ver0::createBasicBank(void const* stream, JKRHeap* h
         TPerc* tperc = header->mOffsets.mPercOffset[i].ptr(header);
         if (tperc != NULL) {
             JASDrumSet* setp = new (heap, 0) JASDrumSet();
-            JUT_ASSERT(509, setp != 0);
+            JUT_ASSERT(509, setp != NULL);
             setp->newPercArray(0x80, heap);
 
             for (int j = 0; j < 0x80; j++) {

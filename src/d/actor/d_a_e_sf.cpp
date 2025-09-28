@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_sf.h"
 #include "d/d_cc_d.h"
@@ -853,7 +853,7 @@ COMPILER_STRIP_GATE(0x80789CFC, &lit_5203);
 #pragma push
 #pragma force_active on
 SECTION_RODATA static f32 const lit_5204[1 + 1 /* padding */] = {
-    -1000000000.0f,
+    -G_CM3D_F_INF,
     /* padding */
     0.0f,
 };

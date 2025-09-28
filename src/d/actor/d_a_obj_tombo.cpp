@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_tombo.h"
 #include "d/actor/d_a_player.h"
@@ -91,7 +91,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 /* 80D192E4-80D195CC 000204 02E8+00 1/1 0/0 0/0 .text            CreateHeap__12daObjTOMBO_cFv */
 int daObjTOMBO_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Tombo", 9);
-    JUT_ASSERT(259, modelData != 0);
+    JUT_ASSERT(259, modelData != NULL);
     mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                   (J3DAnmTransform*)dComIfG_getObjectRes("Tombo", 6), 2, 1.0, 0, -1,
                                   &mCreature, 0, 0x11000284);
@@ -189,7 +189,7 @@ bool daObjTOMBO_c::CheckWater() {
     cXyz gndPos(current.pos.x, current.pos.y + 100.0f, current.pos.z);
     adStack_6c.SetPos(&gndPos);
     gndPos.y = dComIfG_Bgsp().GroundCross(&adStack_6c);
-    if (gndPos.y != -1e9f) {
+    if (gndPos.y != -G_CM3D_F_INF) {
         if (dComIfG_Bgsp().GetPolyAtt0(adStack_6c) == 7 && current.pos.y - gndPos.y < 50.0f) {
             return TRUE;
         }
@@ -203,7 +203,7 @@ void daObjTOMBO_c::CheckGround() {
     cXyz gndPos(current.pos.x, current.pos.y + 100.0f, current.pos.z);
     adStack_6c.SetPos(&gndPos);
     gndPos.y = dComIfG_Bgsp().GroundCross(&adStack_6c);
-    if (gndPos.y != -1e9f) {
+    if (gndPos.y != -G_CM3D_F_INF) {
         if (current.pos.y - gndPos.y < 100.0f) {
             field_0x720 = 3.0f;
         } else if (current.pos.y - gndPos.y > 300.0f) {

@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 // #define VIRTUAL_3DLINEMAT
 #include "d/actor/d_a_obj_sw.h"
@@ -695,7 +695,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
             if (i == 2) {
                 J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Npc_ksw", 18);
-                JUT_ASSERT(1220, modelData != 0);
+                JUT_ASSERT(1220, modelData != NULL);
                 i_this->field_0x8c8 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
                 if (i_this->field_0x8c8 == NULL) {
                     return 0;

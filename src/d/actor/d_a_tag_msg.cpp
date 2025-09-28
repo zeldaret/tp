@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_tag_msg.h"
 #include "d/actor/d_a_player.h"
@@ -125,7 +125,7 @@ int daTag_Msg_c::execute() {
     if (set_event && rangeCheck() && otherCheck()) {
         if (field_0x5dd) {
             mOrderEvtNum = 1;
-            JUT_ASSERT(0, 0 != l_evtNameTBL[mOrderEvtNum]);
+            JUT_ASSERT(0, NULL != l_evtNameTBL[mOrderEvtNum]);
 
             mEventIdx =
                 dComIfGp_getEventManager().getEventIdx(this, l_evtNameTBL[mOrderEvtNum], 0xFF);

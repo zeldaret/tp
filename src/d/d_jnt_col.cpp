@@ -2,7 +2,7 @@
 // d_jnt_col
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_jnt_col.h"
 #include "SSystem/SComponent/c_math.h"

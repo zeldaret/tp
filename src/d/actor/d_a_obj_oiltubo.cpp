@@ -3,7 +3,7 @@
  * Lantern Oil Pot
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_oiltubo.h"
 
@@ -56,7 +56,7 @@ const dCcD_SrcGObjInf daObj_Oiltubo_c::mCcDObjInfo = {
 /* 80CA6B28-80CA6C5C 000488 0134+00 1/1 0/0 0/0 .text            CreateHeap__15daObj_Oiltubo_cFv */
 int daObj_Oiltubo_c::CreateHeap() {
     J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(getResName(), l_bmdFileName);
-    JUT_ASSERT(0, mdlData_p != 0);
+    JUT_ASSERT(0, mdlData_p != NULL);
 
     mpModel = mDoExt_J3DModel__create(mdlData_p, 0x80000, 0x11000084);
     if (mpModel == NULL) {
@@ -64,7 +64,7 @@ int daObj_Oiltubo_c::CreateHeap() {
     }
 
     J3DModelData* mdlBData_p = (J3DModelData*)dComIfG_getObjectRes(getResName(), l_bbmdFileName);
-    JUT_ASSERT(0, mdlBData_p != 0);
+    JUT_ASSERT(0, mdlBData_p != NULL);
 
     mpBModel = mDoExt_J3DModel__create(mdlBData_p, 0x80000, 0x19000284);
     if (mpBModel == NULL) {
@@ -95,7 +95,7 @@ int daObj_Oiltubo_c::Execute() {
     mGroundChk = mAcch.m_gnd;
     mGroundHeight = mAcch.GetGroundH();
 
-    if (mGroundHeight != -1000000000.0f) {
+    if (mGroundHeight != -G_CM3D_F_INF) {
         setEnvTevColor();
         setRoomNo();
     }

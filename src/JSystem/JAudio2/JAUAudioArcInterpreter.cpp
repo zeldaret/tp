@@ -8,14 +8,6 @@
 #include "JSystem/JAudio2/JAUAudioArcInterpreter.h"
 #include "JSystem/JUtility/JUTAssert.h"
 
-//
-// Forward References:
-//
-
-//
-// Declarations:
-//
-
 /* 802A4244-802A4260 29EB84 001C+00 0/0 1/1 0/0 .text            __ct__22JAUAudioArcInterpreterFv */
 JAUAudioArcInterpreter::JAUAudioArcInterpreter() {
     mBase = NULL;

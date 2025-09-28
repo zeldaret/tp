@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_togeTrap.h"
 #include "d/actor/d_a_player.h"
@@ -57,13 +57,13 @@ void daTogeTrap_c::setBaseMtx() {
 /* 80D17D5C-80D17E14 0002DC 00B8+00 1/0 0/0 0/0 .text            CreateHeap__12daTogeTrap_cFv */
 int daTogeTrap_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("P_Toge", 4);
-    JUT_ASSERT(251, modelData != 0);
+    JUT_ASSERT(251, modelData != NULL);
     mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mModel == NULL) {
         return 0;
     }
     modelData = (J3DModelData*)dComIfG_getObjectRes("P_Toge", 5);
-    JUT_ASSERT(262, modelData != 0);
+    JUT_ASSERT(262, modelData != NULL);
     mWolfEyeModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mWolfEyeModel == NULL) {
         return 0;

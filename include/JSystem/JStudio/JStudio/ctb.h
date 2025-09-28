@@ -11,7 +11,7 @@ namespace ctb {
 struct TObject : public object::TObject_ID {
     TObject(const void* id, u32 size, const void* param_2) : object::TObject_ID(id, size) {
         pData_ = param_2;
-        JUT_ASSERT(82, pData_!=0);
+        JUT_ASSERT(82, pData_!=NULL);
     }
     /* 80280F18 */ virtual ~TObject() = 0;
     virtual int getScheme() const = 0;

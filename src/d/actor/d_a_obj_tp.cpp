@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_tp.h"
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
@@ -362,7 +362,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     if (tp->field_0x5a0 != 0xf) {
         for (int i = 0; i < 2; i++) {
             J3DModelData* modelData = ( J3DModelData*)dComIfG_getObjectRes("Obj_tp", eff_bmd[i]);
-            JUT_ASSERT(809, modelData != 0);
+            JUT_ASSERT(809, modelData != NULL);
             tp->mModels[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
             if (tp->mModels[i] == NULL) {
                 return 0;

@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_sb.h"
 #include "d/actor/d_a_e_bg.h"
@@ -69,7 +69,7 @@ void daE_SB_HIO_c::genMessage(JORMContext* ctext) {
 /* 807816D8-807817D0 000178 00F8+00 1/1 0/0 0/0 .text            CreateHeap__8daE_SB_cFv */
 int daE_SB_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes("E_SB", 0xF);
-    JUT_ASSERT(271, modelData != 0);
+    JUT_ASSERT(271, modelData != NULL);
     mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                   (J3DAnmTransform*)dComIfG_getObjectRes("E_SB", 0xC),
                                   2, 1.0f, 0, -1,
@@ -1028,7 +1028,7 @@ void daE_SB_c::setGroundAngle() {
     vec_0x44.z = 80.0f + vec_0x2c.z;
     gnd_chk.SetPos(&vec_0x44);
     vec_0x44.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-    if (-1000000000.0f != vec_0x44.y && fabsf(vec_0x44.y - vec_0x2c.y) < 50.0f) {
+    if (-G_CM3D_F_INF != vec_0x44.y && fabsf(vec_0x44.y - vec_0x2c.y) < 50.0f) {
         vec_0x20 = vec_0x44 - vec_0x2c;
         cLib_chaseAngleS(&field_0x614.x, (s16) -cM_atan2s(vec_0x20.y, vec_0x20.z), 0x100);
     }
@@ -1038,7 +1038,7 @@ void daE_SB_c::setGroundAngle() {
     vec_0x38.z = vec_0x2c.z;
     gnd_chk.SetPos(&vec_0x38);
     vec_0x38.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-    if (-1000000000.0f != vec_0x38.y && fabsf(vec_0x38.y - vec_0x2c.y) < 50.0f) {
+    if (-G_CM3D_F_INF != vec_0x38.y && fabsf(vec_0x38.y - vec_0x2c.y) < 50.0f) {
         vec_0x20 = vec_0x38 - vec_0x2c;
         cLib_chaseAngleS(&field_0x614.z, (s16) cM_atan2s(vec_0x20.y, vec_0x20.x), 0x100);
     }

@@ -1,4 +1,4 @@
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_tag_allmato.h"
 #include "d/actor/d_a_obj_itamato.h"
@@ -94,7 +94,7 @@ int daTag_AllMato_c::Execute() {
                     case 1:
                     case 2:
                         actor_p = mBrkMatoActorMngr.getActorP();
-                        JUT_ASSERT(164, 0 != actor_p);
+                        JUT_ASSERT(164, NULL != actor_p);
 
                         if (((daObj_BouMato_c*)actor_p)->getTgHitAcId() != fpcM_ERROR_PROCESS_ID_e) {
                             if (daNpcT_chkEvtBit(76)) {
@@ -148,7 +148,7 @@ int daTag_AllMato_c::Execute() {
 
                         if (dComIfGp_getEventManager().getIsAddvance(staff_id)) {
                             actor_p = mBrkMatoActorMngr.getActorP();
-                            JUT_ASSERT(218, 0 != actor_p);
+                            JUT_ASSERT(218, NULL != actor_p);
 
                             dComIfGp_getEvent().setPt2(mBrkMatoActorMngr.getActorP());
 
@@ -158,7 +158,7 @@ int daTag_AllMato_c::Execute() {
                                 case 2:
                                     camera_id = dComIfGp_getPlayerCameraID(0);
                                     camera_p = dComIfGp_getCamera(camera_id);
-                                    JUT_ASSERT(228, 0 != camera_p);
+                                    JUT_ASSERT(228, NULL != camera_p);
 
                                     dComIfGp_saveCameraPosition(0,
                                         fopCamM_GetCenter_p(camera_p),
@@ -207,7 +207,7 @@ int daTag_AllMato_c::Execute() {
                     break;
                 case 3:
                     actor_p = mBrkMatoActorMngr.getActorP();
-                    JUT_ASSERT(292, 0 != actor_p);
+                    JUT_ASSERT(292, NULL != actor_p);
     
                     if (field_0x1d10 == 0) {
                         switch (((daObj_ItaMato_c*)actor_p)->getNo()) { 
@@ -229,7 +229,7 @@ int daTag_AllMato_c::Execute() {
                     switch (field_0x1d08) {
                     case 4:
                         actor_p = mBrkMatoActorMngr.getActorP();
-                        JUT_ASSERT(320, 0 != actor_p)
+                        JUT_ASSERT(320, NULL != actor_p)
 
                         switch (((daObj_ItaMato_c*)actor_p)->getNo()) {
                         case 1:

@@ -3,7 +3,7 @@
  * Save File Manager
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "JSystem/JHostIO/JORFile.h"
 #include "JSystem/JUtility/JUTGamePad.h"
@@ -401,7 +401,7 @@ u8 dSv_player_item_c::getItem(int i_slotNo, bool i_checkCombo) const {
                     }
                     // Uncertain combination item＝＝＝＞%d, %d\n
                     OSReport_Error("合成アイテム不定＝＝＝＞%d, %d\n", select_item, mix_item);
-                    JUT_ASSERT(731, 0);
+                    JUT_ASSERT(731, FALSE);
                 }
             }
         }
@@ -1729,7 +1729,7 @@ void dSv_info_c::offSwitch(int i_no, int i_roomNo) {
 BOOL dSv_info_c::isSwitch(int i_no, int i_roomNo) const {
     if (!((0 <= i_no && i_no < (MEMORY_SWITCH+ DAN_SWITCH+ ZONE_SWITCH+ ONEZONE_SWITCH)) || i_no == -1 || i_no == 255)) {
         OS_REPORT("i_no = %d\n", i_no);
-        JUT_ASSERT(4302, 0);
+        JUT_ASSERT(4302, FALSE);
     }
 
     if (i_no == -1 || i_no == 255) {

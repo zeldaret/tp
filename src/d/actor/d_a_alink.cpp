@@ -3,7 +3,7 @@
  * Player (Link) Actor
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_alink.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
@@ -3698,11 +3698,11 @@ void daAlink_c::footBgCheck() {
             mLinkGndChk.SetPos(&sp44);
 
             f32 temp_f1 = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
-            if (-1000000000.0f != temp_f1) {
+            if (-G_CM3D_F_INF != temp_f1) {
                 dComIfG_Bgsp().GetTriPla(mLinkGndChk, &sp98);
             }
 
-            if (-1000000000.0f != temp_f1 && cBgW_CheckBGround(sp98.mNormal.y) && sp44.y - temp_f1 < l_autoUpHeight - l_autoDownHeight) {
+            if (-G_CM3D_F_INF != temp_f1 && cBgW_CheckBGround(sp98.mNormal.y) && sp44.y - temp_f1 < l_autoUpHeight - l_autoDownHeight) {
                 *sp24 = temp_f1;
                 var_r29->field_0x0 = 1;
                 sp20[i] = getGroundAngle(&mLinkGndChk, shape_angle.y);
@@ -3820,7 +3820,7 @@ void daAlink_c::handBgCheck() {
         mLinkGndChk.SetPos(&sp28);
 
         f32 temp_f1 = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
-        if (-1000000000.0f != temp_f1 && (sp28.y - temp_f1 < l_autoUpHeight - l_autoDownHeight)) {
+        if (-G_CM3D_F_INF != temp_f1 && (sp28.y - temp_f1 < l_autoUpHeight - l_autoDownHeight)) {
             *var_r25 = temp_f1;
 
             if (dComIfG_Bgsp().GetGroundCode(mLinkGndChk) != 8) {
@@ -4362,7 +4362,7 @@ void daAlink_c::playerInit() {
     m_mSwordBrk->searchUpdateMaterialID(modelData2);
     modelData2->entryTevRegAnimator(m_mSwordBrk);
 
-    f32 tmp = -1000000000.0f;
+    f32 tmp = -G_CM3D_F_INF;
     mWaterY = tmp;
     field_0x33b8 = tmp;
     field_0x33bc = tmp;
@@ -4737,7 +4737,7 @@ int daAlink_c::create() {
     mLinkAcch.CrrPos(dComIfG_Bgsp());
     void* var_r24 = NULL;
 
-    if (mLinkAcch.GetGroundH() == -1000000000.0f ||
+    if (mLinkAcch.GetGroundH() == -G_CM3D_F_INF ||
         (startMode == 14 && !dComIfG_Bgsp().ChkMoveBG(mLinkAcch.m_gnd)) ||
         (startPoint == -4 &&
          !(var_r24 = fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchPortal, &current.pos))) ||
@@ -4917,7 +4917,7 @@ void daAlink_c::setShapeAngleOnGround() {
 
         sp20.y = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
         bool var_r29;
-        if (-1000000000.0f != sp20.y) {
+        if (-G_CM3D_F_INF != sp20.y) {
             var_r29 = dComIfG_Bgsp().GetTriPla(mLinkGndChk, &sp2C);
         } else {
             var_r29 = 0;
@@ -4934,7 +4934,7 @@ void daAlink_c::setShapeAngleOnGround() {
 
         sp14.y = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
         bool var_r29_2;
-        if (-1000000000.0f != sp14.y) {
+        if (-G_CM3D_F_INF != sp14.y) {
             var_r29_2 = dComIfG_Bgsp().GetTriPla(mLinkGndChk, &sp2C);
         } else {
             var_r29_2 = 0;
@@ -6782,7 +6782,7 @@ int daAlink_c::setDoubleAnime(f32 i_blendRate, f32 i_anmSpeedA, f32 i_anmSpeedB,
     if (checkWolf()) {
         // "Player is Wolf, but setting Link animation\n"
         OSReport("狼なのにリンクアニメ設定\n");
-        JUT_ASSERT(8591, 0);
+        JUT_ASSERT(8591, FALSE);
     }
 #endif
 
@@ -8602,13 +8602,13 @@ void daAlink_c::setFrontWallType() {
             mLinkGndChk.SetPos(&chk_start_pos);
             f32 sp38 = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
 
-            if (-1000000000.0f != sp38 && fabsf(sp1C - sp38) < l_autoUpHeight) {
+            if (-G_CM3D_F_INF != sp38 && fabsf(sp1C - sp38) < l_autoUpHeight) {
                 found_gnd_tri = dComIfG_Bgsp().GetTriPla(mLinkGndChk, &gndchk_tri);
             }
             if ((!checkModeFlg(0x40000) && sp38 < body_height) || !found_gnd_tri) {
                 return;
             }
-            if (-1000000000.0f == sp38 || !cBgW_CheckBGround(gndchk_tri.mNormal.y)) {
+            if (-G_CM3D_F_INF == sp38 || !cBgW_CheckBGround(gndchk_tri.mNormal.y)) {
                 return;
             }
 
@@ -8687,7 +8687,7 @@ void daAlink_c::setWaterY() {
     } else {
         offNoResetFlg0(FLG0_UNK_80);
         field_0x2fbc = 16;
-        mWaterY = -1000000000.0f;
+        mWaterY = -G_CM3D_F_INF;
     }
 }
 
@@ -8737,7 +8737,7 @@ void daAlink_c::setHangWaterY() {
             checkWaterInKandelaar(field_0x33b8);
         }
     } else {
-        field_0x33b8 = -1000000000.0f;
+        field_0x33b8 = -G_CM3D_F_INF;
         field_0x2fc5 = 0x10;
         field_0x2fc6 = 0;
     }
@@ -13176,7 +13176,7 @@ void daAlink_c::autoGroundHit() {
             }
 
             BOOL var_r28;
-            if (-1000000000.0f != mLinkAcch.GetGroundH()) {
+            if (-G_CM3D_F_INF != mLinkAcch.GetGroundH()) {
                 dComIfG_Bgsp().GetTriPla(mLinkAcch.m_gnd, &sp74);
                 var_r28 = cBgW_CheckBGround(sp74.mNormal.y);
             } else {
@@ -13384,7 +13384,7 @@ BOOL daAlink_c::checkRestartRoom() {
         return procCoLavaReturnInit(1);
     } else if ((checkModeFlg(0x40000) || (checkNoResetFlg0(FLG0_UNK_80) && mWaterY - current.pos.y > daAlinkHIO_swim_c0::m.mInitHeight)) && fopAcM_GetRoomNo(this) == 0 && checkStageName("F_SP114")) {
         return procCoSwimFreezeReturnInit();
-    } else if (!checkCargoCarry() && (field_0x3174 == 4 || field_0x3174 == 10 || (-1000000000.0f == mLinkAcch.GetGroundH() && !checkModeFlg(0x40000)))) {
+    } else if (!checkCargoCarry() && (field_0x3174 == 4 || field_0x3174 == 10 || (-G_CM3D_F_INF == mLinkAcch.GetGroundH() && !checkModeFlg(0x40000)))) {
         BOOL temp_r28 = mWaterY > mLinkAcch.GetGroundH();
 
         f32 var_f31;
@@ -13452,7 +13452,7 @@ BOOL daAlink_c::checkRestartRoom() {
 
             return true;
         }
-    } else if ((mLinkAcch.ChkGroundHit() && (dKy_pol_argument_get(&mLinkAcch.m_gnd) & 0x80)) || (checkWaterPolygonUnder() && checkNoResetFlg0(FLG0_UNK_80) && (dKy_pol_argument_get(&mLinkAcch.m_wtr) & 0x80)) || (checkModeFlg(0x40) && field_0x33bc < field_0x33b8 && -1000000000.0f != field_0x33b8 && (field_0x2fc6 & 0x80)) || (field_0x2fbc == 6 && checkNoResetFlg0(FLG0_UNK_80) && checkWaterPolygonUnder() && mWaterY > (daAlinkHIO_basic_c0::m.mLavaDeathDepth + mLinkAcch.GetGroundH())) || (field_0x2fc5 == 6 && -1000000000.0f != field_0x33b8 && field_0x33bc < field_0x33b8 && checkModeFlg(0x40) && field_0x33b8 > (field_0x33d8 + daAlinkHIO_basic_c0::m.mLavaDeathDepth))) {
+    } else if ((mLinkAcch.ChkGroundHit() && (dKy_pol_argument_get(&mLinkAcch.m_gnd) & 0x80)) || (checkWaterPolygonUnder() && checkNoResetFlg0(FLG0_UNK_80) && (dKy_pol_argument_get(&mLinkAcch.m_wtr) & 0x80)) || (checkModeFlg(0x40) && field_0x33bc < field_0x33b8 && -G_CM3D_F_INF != field_0x33b8 && (field_0x2fc6 & 0x80)) || (field_0x2fbc == 6 && checkNoResetFlg0(FLG0_UNK_80) && checkWaterPolygonUnder() && mWaterY > (daAlinkHIO_basic_c0::m.mLavaDeathDepth + mLinkAcch.GetGroundH())) || (field_0x2fc5 == 6 && -G_CM3D_F_INF != field_0x33b8 && field_0x33bc < field_0x33b8 && checkModeFlg(0x40) && field_0x33b8 > (field_0x33d8 + daAlinkHIO_basic_c0::m.mLavaDeathDepth))) {
         if (field_0x2fbc == 6 || (checkModeFlg(0x40) && field_0x2fc5 == 6)) {
             return procCoLavaReturnInit(0);
         }
@@ -17227,7 +17227,7 @@ int daAlink_c::procCoMetamorphoseInit() {
             mLinkGndChk.SetPos(&pos);
 
             f32 gnd_cross = dComIfG_Bgsp().GroundCross(&mLinkGndChk);
-            if (gnd_cross != -1000000000.0f) {
+            if (gnd_cross != -G_CM3D_F_INF) {
                 pos.y = gnd_cross;
 
                 cXyz sp14 = current.pos;
@@ -17624,7 +17624,7 @@ int daAlink_c::execute() {
             }
         }
     } else if (mProcID != PROC_HOOKSHOT_FLY && !checkModeFlg(MODE_VINE_CLIMB | MODE_UNK_800) &&
-               mProcID != PROC_TOOL_DEMO && mLinkAcch.GetGroundH() != -1000000000.0f &&
+               mProcID != PROC_TOOL_DEMO && mLinkAcch.GetGroundH() != -G_CM3D_F_INF &&
                dComIfG_Bgsp().ChkPolySafe(mLinkAcch.m_gnd) &&
                dComIfG_Bgsp().ChkMoveBG(mLinkAcch.m_gnd))
     {
@@ -18013,7 +18013,7 @@ int daAlink_c::execute() {
             speed.y = 0.0f;
 
             if (field_0x3198 != 0) {
-                if (mLinkAcch.GetGroundH() != -1000000000.0f) {
+                if (mLinkAcch.GetGroundH() != -G_CM3D_F_INF) {
                     current.pos.y = mLinkAcch.GetGroundH();
                 }
             }
@@ -18037,7 +18037,7 @@ int daAlink_c::execute() {
 
         field_0x3178 = field_0x3174;
 
-        if (mLinkAcch.GetGroundH() != -1000000000.0f) {
+        if (mLinkAcch.GetGroundH() != -G_CM3D_F_INF) {
             setRoomInfo();
 
             if (!checkModeFlg(MODE_PLAYER_FLY) && !checkMagneBootsOn() && mProcID != PROC_TOOL_DEMO &&

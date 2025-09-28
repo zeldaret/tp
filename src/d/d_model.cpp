@@ -3,24 +3,12 @@
 // Translation Unit: d/d_model
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_model.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "d/d_com_inf_game.h"
-
-//
-// Forward References:
-//
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
 
 /* 8009C4FC-8009C650 096E3C 0154+00 1/0 0/0 0/0 .text            draw__6dMdl_cFv */
 void dMdl_c::draw() {

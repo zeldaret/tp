@@ -3,7 +3,7 @@
  * File Select Screen File Info
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_file_sel_info.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
@@ -34,7 +34,7 @@ dFile_info_c::~dFile_info_c() {
 /* 80192570-80192954 18CEB0 03E4+00 1/1 0/0 0/0 .text            screenSet__12dFile_info_cFv */
 void dFile_info_c::screenSet() {
     mFileInfo.Scr = new J2DScreen();
-    JUT_ASSERT(0, mFileInfo.Scr != 0);
+    JUT_ASSERT(0, mFileInfo.Scr != NULL);
 
     mFileInfo.Scr->setPriority("zelda_file_select_info_text.blo", 0x1100000, mArchive);
     mFileInfo.mFont = mDoExt_getMesgFont();

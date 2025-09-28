@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_bg.h"
 #include "d/d_com_inf_game.h"
@@ -515,7 +515,7 @@ int daBg_c::create() {
         JKRExpHeap* room_heap = dStage_roomControl_c::getMemoryBlock(roomNo);
         if (room_heap != NULL) {
             this->heap = JKRCreateSolidHeap(-1, room_heap, false);
-            JUT_ASSERT(471, heap != 0);
+            JUT_ASSERT(471, heap != NULL);
 
             JKRHeap* old = mDoExt_setCurrentHeap(this->heap);
             int rt = createHeap();

@@ -36,7 +36,7 @@ public:
         cXyz sp2C;
         cXyz sp20;
 
-        JUT_ASSERT(170, 0 != arrow_p);
+        JUT_ASSERT(170, NULL != arrow_p);
 
         if (field_0xa16 != 0 || health == 0) {
             return 0;

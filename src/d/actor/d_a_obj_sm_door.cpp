@@ -3,7 +3,7 @@
  * Object - Sacred Meadow Door
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_sm_door.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"

@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_sm.h"
 #include "d/d_cc_d.h"
@@ -1893,7 +1893,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 int daE_SM_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_SM", BMDE_SM);
 
-    JUT_ASSERT(3246, modelData != 0);
+    JUT_ASSERT(3246, modelData != NULL);
 
     mpBubbleModel = mDoExt_J3DModel__create(modelData, 0, 0x11020203);
     if (mpBubbleModel == NULL) {

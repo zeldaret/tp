@@ -11,10 +11,6 @@
 #include "JSystem/JAudio2/JASDriverIF.h"
 #include "dolphin/types.h"
 
-//
-// Types:
-//
-
 struct JASDSPChannel {
     /* 8029D340 */ void drop();
     /* 8029D948 */ static JASDSPChannel* getHandle(u32);
@@ -22,35 +18,6 @@ struct JASDSPChannel {
     inline u32 getStatus() {return mStatus;}
     u32 mStatus;
 };
-
-//
-// Forward References:
-//
-
-extern "C" void __ct__15JASAudioReseterFv();
-extern "C" void __dt__15JASAudioReseterFv();
-extern "C" void start__15JASAudioReseterFUlb();
-extern "C" void resume__15JASAudioReseterFv();
-extern "C" void checkDone__15JASAudioReseterCFv();
-extern "C" void calc__15JASAudioReseterFv();
-extern "C" void callback__15JASAudioReseterFPv();
-
-//
-// External References:
-//
-
-extern "C" void stop__14JASAudioThreadFv();
-extern "C" void drop__13JASDSPChannelFv();
-extern "C" void getHandle__13JASDSPChannelFUl();
-extern "C" void setDSPLevel__9JASDriverFf();
-extern "C" void getDSPLevel__9JASDriverFv();
-extern "C" void registerDspSyncCallback__9JASDriverFPFPv_lPv();
-extern "C" void __dl__FPv();
-extern "C" extern JASAudioThread* data_80450B8C;
-
-//
-// Declarations:
-//
 
 /* 8029D0B4-8029D0FC 2979F4 0048+00 0/0 1/1 0/0 .text            __ct__15JASAudioReseterFv */
 JASAudioReseter::JASAudioReseter() {

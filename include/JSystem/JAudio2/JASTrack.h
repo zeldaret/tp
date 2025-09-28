@@ -17,8 +17,6 @@ namespace JASDsp {
     extern const u32 FILTER_MODE_IIR;
 };
 
-#define MAX_CHILDREN 16
-
 /**
  * @ingroup jsystem-jaudio
  * 
@@ -125,6 +123,8 @@ struct JASTrack : public JASPoolAllocObject_MultiThreaded<JASTrack> {
 
     static JASDefaultBankTable sDefaultBankTable;
     static TList sTrackList;
+
+    static const int MAX_CHILDREN = 16;
 
     JASSeqCtrl* getSeqCtrl() { return &mSeqCtrl; }
     u16 getPort(u32 param_0) const { return mTrackPort.get(param_0); }

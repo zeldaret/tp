@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_nan.h"
 #include "SSystem/SComponent/c_xyz.h"
@@ -67,7 +67,7 @@ static int const l_nan_btk_index[2] = {
 
 inline int daObjNAN_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("I_Nan", 9);
-    JUT_ASSERT(254, modelData != 0);
+    JUT_ASSERT(254, modelData != NULL);
     mMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                        (J3DAnmTransform*)dComIfG_getObjectRes("I_Nan", 6), 2, 1.0f,
                                        0, -1, &mCreatureSound, 0, 0x11000284);
@@ -643,7 +643,7 @@ inline int daObjNAN_c::draw() {
                 cStack_88.y += 20.0f;
                 gndChk.SetPos(&cStack_88);
                 f32 groundCross = dComIfG_Bgsp().GroundCross(&gndChk);
-                if (groundCross != 1000000000.0f) {
+                if (groundCross != G_CM3D_F_INF) {
                     dComIfGd_setSimpleShadow(&current.pos, groundCross, 15.0f, gndChk, 0, -0.6f, 
                                              dDlst_shadowControl_c::getSimpleTex());
                 }

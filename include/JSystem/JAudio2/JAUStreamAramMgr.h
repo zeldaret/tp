@@ -28,7 +28,7 @@ public:
                 JASHeap* heap = &mHeaps[0];  // should probably be mHeaps[i] but that doesn't match
                 heap->free();
                 if (!heap) {
-                    JUT_ASSERT(47, 0);
+                    JUT_ASSERT(47, FALSE);
                 }
             }
         }

@@ -1,4 +1,4 @@
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "JSystem/J3DGraphAnimator/J3DAnimation.h"
 

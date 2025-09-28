@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_msg_scrn_place.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
@@ -11,8 +11,6 @@
 #include "d/d_camera.h"
 #include "d/d_msg_object.h"
 #include "d/d_pane_class.h"
-
-extern "C" extern dMsgObject_HIO_c g_MsgObject_HIO_c;
 
 /* 802463CC-802467C4 240D0C 03F8+00 0/0 1/1 0/0 .text            __ct__15dMsgScrnPlace_cFv */
 dMsgScrnPlace_c::dMsgScrnPlace_c() {

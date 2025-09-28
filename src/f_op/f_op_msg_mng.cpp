@@ -3,7 +3,7 @@
 // Translation Unit: f_op/f_op_msg_mng
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "SSystem/SComponent/c_malloc.h"

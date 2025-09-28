@@ -125,7 +125,7 @@ struct TVector {
     u32 capacity() { return mCapacity; }
 
     u32 GetSize_extend_(u32 count) {
-        JUT_ASSERT(0x22B, pfnExtend_!=0);
+        JUT_ASSERT(0x22B, pfnExtend_!=NULL);
 
         u32 oldSize = size();
         u32 neededNewSpace = oldSize + count;

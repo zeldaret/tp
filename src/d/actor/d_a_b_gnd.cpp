@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_b_gnd.h"
 #include "d/d_com_inf_game.h"
@@ -4088,7 +4088,7 @@ static int daB_GND_Execute(b_gnd_class* i_this) {
         sp6C->setBaseTRMtx(mDoMtx_stack_c::get());
 
         u32 sp68;
-        if (i_this->mAcch.GetGroundH() != -1000000000.0f) {
+        if (i_this->mAcch.GetGroundH() != -G_CM3D_F_INF) {
             if (i_this->mAcch.ChkWaterHit() && i_this->mAcch.m_wtr.GetHeight() > a_this->current.pos.y) {
                 sp68 = dKy_pol_sound_get(&i_this->mAcch.m_wtr);
             } else if (i_this->mAcch.ChkGroundHit()) {
@@ -4692,7 +4692,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
         
     J3DModelData* modelData;
     modelData = (J3DModelData*)dComIfG_getObjectRes("B_gnd", 0x62);
-    JUT_ASSERT(6612, modelData != 0);
+    JUT_ASSERT(6612, modelData != NULL);
     i_this->mpSwordModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (i_this->mpSwordModel == NULL) {
         return 0;
@@ -4702,7 +4702,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
     i_this->mpSwordModel->setBaseTRMtx(mDoMtx_stack_c::get());
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("B_gnd", 0x61);
-    JUT_ASSERT(6626, modelData != 0);
+    JUT_ASSERT(6626, modelData != NULL);
     i_this->mpSheathModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (i_this->mpSheathModel == NULL) {
         return 0;
@@ -4713,7 +4713,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
     for (int i = 0; i < 2; i++) {
         modelData = (J3DModelData*)dComIfG_getObjectRes("B_gnd", blur_model[i]);
-        JUT_ASSERT(6647, modelData != 0);
+        JUT_ASSERT(6647, modelData != NULL);
         i_this->mpSwordBlurModel[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
         if (i_this->mpSwordBlurModel[i] == NULL) {
             return 0;
@@ -4724,7 +4724,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("B_gnd", 99);
-    JUT_ASSERT(6670, modelData != 0);
+    JUT_ASSERT(6670, modelData != NULL);
 
     for (int i = 0; i < 36; i++) {
         i_this->mpMantShadowModel[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);

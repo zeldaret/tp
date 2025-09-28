@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_bouS.h"
 #include "dol2asm.h"
@@ -1796,7 +1796,7 @@ extern "C" void func_80977AC4(void* _this, s16 param_0) /* const */ {
 
 /* ############################################################################################## */
 /* 80978754-80978758 000344 0004+00 1/1 0/0 0/0 .rodata          @5753 */
-SECTION_RODATA static f32 const lit_5753 = 1000000000.0f;
+SECTION_RODATA static f32 const lit_5753 = G_CM3D_F_INF;
 COMPILER_STRIP_GATE(0x80978754, &lit_5753);
 
 /* 80978B64-80978B70 0003C0 000C+00 2/2 0/0 0/0 .data            __vt__17daNpcBouS_Param_c */

@@ -3,7 +3,7 @@
  * Peahat Enemy
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_ph.h"
 #include "SSystem/SComponent/c_math.h"
@@ -167,7 +167,7 @@ void daE_PH_c::setCcSph() {
 
 int daE_PH_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_PH", PH_BMD);
-    JUT_ASSERT(0, modelData != 0);
+    JUT_ASSERT(0, modelData != NULL);
 
     mpMorf = new mDoExt_McaMorfSO(
         modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_PH", ANM_WAIT),
@@ -206,7 +206,7 @@ void daE_PH_c::SetAnm(int i_anmID, int i_attr, f32 i_morf, f32 i_speed) {
 
 /* 8073DBD4-8073DDF8 000874 0224+00 1/1 0/0 0/0 .text            SearchNearP__8daE_PH_cFv */
 void daE_PH_c::SearchNearP() {
-    f32 nearest_dist = 1000000000.0f;
+    f32 nearest_dist = G_CM3D_F_INF;
 
     for (int i = 0; i < mpPath->m_num; i++) {
         f32 pnt_dist = current.pos.absXZ(dPath_GetPnt(mpPath, i)->m_position);
@@ -317,7 +317,7 @@ void daE_PH_c::GoTarget() {
     cLib_chaseAngleS(&field_0x612, field_0x610 * mAnmSpeed, 0x10);
     mpMorf->setPlaySpeed(mAnmSpeed);
 
-    if (mAcch.GetGroundH() != -1000000000.0f && current.pos.y < mAcch.GetGroundH() + 100.0f) {
+    if (mAcch.GetGroundH() != -G_CM3D_F_INF && current.pos.y < mAcch.GetGroundH() + 100.0f) {
         current.pos.y = mAcch.GetGroundH() + 100.0f;
     }
 }
@@ -512,7 +512,7 @@ void daE_PH_c::S_SetPlaySpeed() {
 void daE_PH_c::S_GoTarget() {
     cXyz unused(mCurrentPntPos.x, mCurrentPntPos.y, mCurrentPntPos.z);
 
-    if (mAcch.GetGroundH() != -1000000000.0f && current.pos.y < mAcch.GetGroundH() + 100.0f) {
+    if (mAcch.GetGroundH() != -G_CM3D_F_INF && current.pos.y < mAcch.GetGroundH() + 100.0f) {
         current.pos.y = mAcch.GetGroundH() + 100.0f;
     }
 

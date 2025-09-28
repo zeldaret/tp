@@ -222,6 +222,6 @@ private:
     /* 0x46 */ u8 mSelType;
     /* 0x47 */ u8 field_0x47;
     /* 0x48 */ u8 mNonStopJunpFlowFlag;
-};
+}; // size 0x4c
 
 #endif /* D_MSG_D_MSG_FLOW_H */

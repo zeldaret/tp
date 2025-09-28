@@ -8,10 +8,6 @@
 #include "JSystem/JAudio2/JASVoiceBank.h"
 #include "JSystem/JAudio2/JASBasicInst.h"
 
-//
-// Declarations:
-//
-
 /* ############################################################################################## */
 /* 8039B1B8-8039B1D0 027818 0018+00 1/1 0/0 0/0 .rodata          sOscData__12JASVoiceBank */
 const JASOscillator::Data JASVoiceBank::sOscData = {

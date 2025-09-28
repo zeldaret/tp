@@ -3,7 +3,7 @@
  * Object - Boss Warp
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_bosswarp.h"
 #include "SSystem/SComponent/c_math.h"

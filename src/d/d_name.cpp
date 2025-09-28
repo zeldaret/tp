@@ -3,7 +3,7 @@
 // Translation Unit: d/d_name
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_name.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
@@ -926,7 +926,7 @@ void dName_c::screenSet() {
     };
 
     nameIn.NameInScr = new J2DScreen();
-    JUT_ASSERT(0, nameIn.NameInScr != 0);
+    JUT_ASSERT(0, nameIn.NameInScr != NULL);
 
     archive = dComIfGp_getNameResArchive();
     nameIn.NameInScr->setPriority("zelda_player_name.blo", 0x100000, archive);
@@ -934,12 +934,12 @@ void dName_c::screenSet() {
     nameIn.field_0x10 = nameIn.NameInScr->search('name_n');
 
     void* bpk = JKRGetNameResource("zelda_player_name.bpk", archive);
-    JUT_ASSERT(0, bpk != 0);
+    JUT_ASSERT(0, bpk != NULL);
     mCursorColorKey = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(bpk);
     mCursorColorKey->searchUpdateMaterialID(nameIn.NameInScr);
 
     void* btk = JKRGetNameResource("zelda_player_name.btk", archive);
-    JUT_ASSERT(0, btk != 0);
+    JUT_ASSERT(0, btk != NULL);
     mCursorTexKey = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(btk);
     mCursorTexKey->searchUpdateMaterialID(nameIn.NameInScr);
 
@@ -1013,7 +1013,7 @@ void dName_c::screenSet() {
     mCharRow = 0;
 
     mSelIcon = new dSelect_cursor_c(0, 1.0f, NULL);
-    JUT_ASSERT(0, mSelIcon != 0);
+    JUT_ASSERT(0, mSelIcon != NULL);
     mSelIcon->setParam(0.82f, 0.77f, 0.05f, 0.4f, 0.4f);
 
     Vec pos = mMojiIcon[mCharRow + mCharColumn * 5]->getGlobalVtxCenter(false, 0);

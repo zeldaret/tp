@@ -97,7 +97,7 @@ JStudio::TVariableValue::TOutput::~TOutput() {}
 void JStudio::TVariableValue::update(f64 param_0, JStudio::TAdaptor* param_1) {
     if (field_0x8) {
         field_0x8(this, param_0);
-        JUT_ASSERT(200, pOutput_!=0);
+        JUT_ASSERT(200, pOutput_!=NULL);
         (*pOutput_)(mValue, param_1);
     }
 }
@@ -175,7 +175,7 @@ void JStudio::TAdaptor::adaptor_setVariableValue(JStudio::TControl* pControl, u3
                                                      JStudio::data::TEOperationData param_3,
                                                      void const* param_4, u32 param_5) {
     setVarFunc func;
-    JUT_ASSERT(304, pControl!=0);
+    JUT_ASSERT(304, pControl!=NULL);
     switch (param_3) {
     case JStudio::data::UNK_0x1:
         func = &adaptor_setVariableValue_VOID_;
@@ -207,7 +207,7 @@ void JStudio::TAdaptor::adaptor_setVariableValue_n(JStudio::TControl* pControl,
                                                        u32 const* param_2, u32 param_3,
                                                        JStudio::data::TEOperationData param_4,
                                                        void const* param_5, u32 param_6) {
-    JUT_ASSERT(343, pControl!=0);
+    JUT_ASSERT(343, pControl!=NULL);
     setVarFunc pcVar6;
     u32 iVar7;
     switch(param_4) {
@@ -254,7 +254,7 @@ void JStudio::TAdaptor::adaptor_setVariableValue_immediate(
 /* 80286204-80286274 280B44 0070+00 0/0 4/4 0/0 .text
  * adaptor_setVariableValue_Vec__Q27JStudio8TAdaptorFPCUlRC3Vec */
 void JStudio::TAdaptor::adaptor_setVariableValue_Vec(u32 const* puIndex, Vec const& param_2) {
-    JUT_ASSERT(400, puIndex!=0);
+    JUT_ASSERT(400, puIndex!=NULL);
     adaptor_referVariableValue(puIndex[0])->setValue_immediate(param_2.x);
     adaptor_referVariableValue(puIndex[1])->setValue_immediate(param_2.y);
     adaptor_referVariableValue(puIndex[2])->setValue_immediate(param_2.z);
@@ -272,7 +272,7 @@ void JStudio::TAdaptor::adaptor_getVariableValue_Vec(Vec* param_1, u32 const* pa
  * adaptor_setVariableValue_GXColor__Q27JStudio8TAdaptorFPCUlRC8_GXColor */
 void JStudio::TAdaptor::adaptor_setVariableValue_GXColor(u32 const* puIndex,
                                                          GXColor const& param_2) {
-    JUT_ASSERT(431, puIndex!=0);
+    JUT_ASSERT(431, puIndex!=NULL);
     adaptor_referVariableValue(puIndex[0])->setValue_immediate(param_2.r);
     adaptor_referVariableValue(puIndex[1])->setValue_immediate(param_2.g);
     adaptor_referVariableValue(puIndex[2])->setValue_immediate(param_2.b);
@@ -292,7 +292,7 @@ void JStudio::TAdaptor::adaptor_getVariableValue_GXColor(GXColor* param_1,
 /* 802864D8-8028656C 280E18 0094+00 1/1 0/0 0/0 .text
  * adaptor_updateVariableValue__Q27JStudio8TAdaptorFPQ27JStudio8TControlUl */
 void JStudio::TAdaptor::adaptor_updateVariableValue(JStudio::TControl* pControl, u32 param_2) {
-    JUT_ASSERT(479, pControl!=0);
+    JUT_ASSERT(479, pControl!=NULL);
     f64 dVar3 = pControl->getSecondPerFrame();
     JGadget::TEnumerator<JStudio::TVariableValue*> enumerator(pValue_, pValue_ + uvv_);
     while (enumerator) {
@@ -1057,7 +1057,7 @@ void JStudio::TObject_message::do_paragraph(u32 param_1, void const* param_2, u3
         default:
             return;
         }
-        JUT_ASSERT(1161, pmfn_!=0);
+        JUT_ASSERT(1161, pmfn_!=NULL);
         (((TAdaptor_message*)adaptor)->*pmfn_)(operation, param_2, param_3);
     }
 

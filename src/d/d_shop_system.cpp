@@ -3,7 +3,7 @@
  * Main Shop System
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_shop_system.h"
 #include "SSystem/SComponent/c_math.h"
@@ -1615,13 +1615,10 @@ int dShopSystem_c::getFlowNodeNum() {
     return num;
 }
 
-// fake, used to fix weak function order
-void dShopSystem_c::dummyWeakOrder() {
+static void dummy() {
     static const char* bck_str = ".bck";
     static const char* btp_str = ".btp";
     static const char* btk_str = ".btk";
-
-    getResName2(0);
 }
 
 /* 8019AB1C-8019AB24 19545C 0008+00 0/0 0/0 8/8 .text            setSellItemMax__13dShopSystem_cFUc

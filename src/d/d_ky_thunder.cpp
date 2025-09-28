@@ -3,7 +3,7 @@
  * Environment - Thunder
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_ky_thunder.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"

@@ -7,22 +7,6 @@
 
 #include "JSystem/JStudio/JStudio/fvb-data-parse.h"
 
-//
-// Types:
-//
-
-//
-// Forward References:
-//
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
-
 /* 802850AC-80285114 27F9EC 0068+00 0/0 1/1 0/0 .text
  * getData__Q47JStudio3fvb4data17TParse_TParagraphCFPQ57JStudio3fvb4data17TParse_TParagraph5TData */
 void JStudio::fvb::data::TParse_TParagraph::getData(TParse_TParagraph::TData* data) const

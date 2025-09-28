@@ -13,41 +13,6 @@
 #include "m_Do/m_Do_DVDError.h"
 #include "m_Do/m_Do_MemCard.h"
 
-//
-// Forward References:
-//
-
-extern "C" static void my_OSCancelAlarmAll__Fv();
-extern "C" static void destroyVideo__Fv();
-extern "C" void mDoRst_reset__FiUli();
-extern "C" void mDoRst_resetCallBack__FiPv();
-extern "C" u32 getResetData__6mDoRstFv();
-extern "C" extern char const* const m_Do_m_Do_Reset__stringBase0;
-extern "C" u8 mResetData__6mDoRst[4 + 4 /* padding */];
-
-//
-// External References:
-//
-
-extern "C" void mDoDvdErr_ThdCleanup__Fv();
-extern "C" void cAPICPad_recalibrate__Fv();
-extern "C" void pause__13JASTaskThreadFb();
-extern "C" void getThreadPointer__6JASDvdFv();
-extern "C" void hasReset__10Z2AudioMgrCFv();
-extern "C" void destroyManager__8JUTVideoFv();
-extern "C" void clearIndex__6JUTXfbFv();
-extern "C" void LCDisable();
-extern "C" void VIWaitForRetrace();
-extern "C" void VIFlush();
-extern "C" void GXFlush();
-extern "C" void GXAbortFrame();
-extern "C" void GXDrawDone();
-extern "C" void _savegpr_27();
-extern "C" u8 mAudioMgrPtr__10Z2AudioMgr[4 + 4 /* padding */];
-extern "C" u8 sCallback__Q210JUTGamePad13C3ButtonReset[4];
-extern "C" u8 sCallbackArg__Q210JUTGamePad13C3ButtonReset[4 + 4 /* padding */];
-extern "C" u8 sManager__6JUTXfb[4 + 4 /* padding */];
-
 static void my_OSCancelAlarmAll() {}
 
 static void destroyVideo() {

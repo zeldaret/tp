@@ -3,15 +3,13 @@
  *
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_msg_scrn_staff.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
 #include "JSystem/J2DGraph/J2DScreen.h"
 #include "d/d_msg_object.h"
 #include "d/d_pane_class.h"
-
-extern "C" extern dMsgObject_HIO_c g_MsgObject_HIO_c;
 
 /* 803C1340-803C1370 01E460 0030+00 1/1 0/0 0/0 .data            t_tag$3752 */
 static u64 t_tag[6] = {
