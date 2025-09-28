@@ -37,7 +37,6 @@
 #define TRUNC(n, a) (((u32)(n)) & ~((a)-1))
 
 #define JUT_EXPECT(...)
-#define FLAG_ON(V, F) (((V) & (F)) == 0)
 
 #define _SDA_BASE_(dummy) 0
 #define _SDA2_BASE_(dummy) 0
