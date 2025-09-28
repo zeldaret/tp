@@ -13,7 +13,7 @@
  */
 class daObj_SSDrink_c : public daObj_SSBase_c {
 public:
-    typedef int (daObj_SSDrink_c::*SomeFunc)(void*);
+    typedef int (daObj_SSDrink_c::*ProcessFunc)(void*);
 
     /* 80CE51C8 */ int create();
     /* 80CE53EC */ int CreateHeap();
@@ -29,8 +29,8 @@ public:
     /* 80CE5B74 */ u16 getValue();
     /* 80CE5B80 */ void restart();
     /* 80CE5BF0 */ void initialize();
-    /* 80CE5DB0 */ int checkProcess(SomeFunc);
-    /* 80CE5DDC */ int setProcess(SomeFunc);
+    /* 80CE5DB0 */ int checkProcess(ProcessFunc);
+    /* 80CE5DDC */ int setProcess(ProcessFunc);
     /* 80CE5EC8 */ void setParam();
     /* 80CE5FE4 */ void setEnvTevColor();
     /* 80CE6040 */ void setRoomNo();
@@ -64,7 +64,7 @@ private:
     /* 0xA5C */ cBgS_GndChk mGndChk;
     /* 0xA98 */ cXyz field_0xa98;
     /* 0xAA4 */ dMsgFlow_c mFlow;
-    /* 0xAF0 */ SomeFunc field_0xaf0;
+    /* 0xAF0 */ ProcessFunc field_0xaf0;
     /* 0xAFC */ f32 field_0xafc;
     /* 0xB00 */ f32 mLeftHandPosY;
     /* 0xB04 */ u8 field_0xb04[4];

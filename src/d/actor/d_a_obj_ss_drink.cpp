@@ -314,13 +314,13 @@ void daObj_SSDrink_c::initialize() {
 
 /* 80CE5DB0-80CE5DDC 000EB0 002C+00 6/6 0/0 0/0 .text
  * checkProcess__15daObj_SSDrink_cFM15daObj_SSDrink_cFPCvPvPv_i */
-int daObj_SSDrink_c::checkProcess(SomeFunc param_0) {
+int daObj_SSDrink_c::checkProcess(ProcessFunc param_0) {
     return field_0xaf0 == param_0;
 }
 
 /* 80CE5DDC-80CE5EC8 000EDC 00EC+00 4/4 0/0 0/0 .text
  * setProcess__15daObj_SSDrink_cFM15daObj_SSDrink_cFPCvPvPv_i   */
-int daObj_SSDrink_c::setProcess(SomeFunc param_0) {
+int daObj_SSDrink_c::setProcess(ProcessFunc param_0) {
     int ret = 0;
 
     if (checkProcess(param_0)) {
