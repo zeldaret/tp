@@ -5,6 +5,8 @@
 #include "SSystem/SComponent/c_bg_s_poly_info.h"
 #include "SSystem/SComponent/c_xyz.h"
 
+#define dBgS_GROUND_MIN_H -1e+09f
+
 class cBgS_GndChk : public cBgS_Chk, public cBgS_PolyInfo {
 public:
     /* 80267C1C */ cBgS_GndChk();

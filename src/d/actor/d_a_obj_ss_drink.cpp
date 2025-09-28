@@ -57,7 +57,6 @@ int daObj_SSDrink_c::create() {
 }
 
 /* 80CE53EC-80CE55A8 0004EC 01BC+00 1/1 0/0 0/0 .text            CreateHeap__15daObj_SSDrink_cFv */
-// NONMATCHING - regalloc
 int daObj_SSDrink_c::CreateHeap() {
     J3DModelData* mdlData_p = NULL;
     J3DAnmTevRegKey* pbrk;
@@ -90,7 +89,6 @@ int daObj_SSDrink_c::CreateHeap() {
 }
 
 /* 80CE55F0-80CE5624 0006F0 0034+00 1/1 0/0 0/0 .text            Delete__15daObj_SSDrink_cFv */
-// idk
 int daObj_SSDrink_c::Delete() {
     this->~daObj_SSDrink_c();
     return 1;
@@ -104,7 +102,7 @@ int daObj_SSDrink_c::Execute() {
     int chk = chkEvent();
     if (chk) {
         if (field_0xaf0) {
-            (this->*field_0xaf0)((void*)0);
+            (this->*field_0xaf0)(NULL);
         }
         orderEvent();
     }
@@ -114,7 +112,7 @@ int daObj_SSDrink_c::Execute() {
     mGndChk = mAcch.m_gnd;
     field_0xafc = mAcch.GetGroundH();
 
-    if (field_0xafc != -1e+09f) {
+    if (field_0xafc != dBgS_GROUND_MIN_H) {
         setEnvTevColor();
         setRoomNo();
     }
@@ -159,7 +157,7 @@ int daObj_SSDrink_c::Draw() {
     fopAcM_setEffectMtx(this, mpModel->getModelData());
     animeEntry();
     mDoExt_modelUpdateDL(mpModel);
-    if (field_0xafc != -1e+09f) {
+    if (field_0xafc != dBgS_GROUND_MIN_H) {
         cM3dGPla cStack_3c;
         bool tri_pla = dComIfG_Bgsp().GetTriPla(mGndChk, &cStack_3c);
         if (tri_pla) {
@@ -244,24 +242,8 @@ u8 daObj_SSDrink_c::getCapacityFromParam() {
 /* 80CE5B3C-80CE5B74 000C3C 0038+00 2/2 0/0 0/0 .text            getFlowNodeNum__15daObj_SSDrink_cFv
  */
 u16 daObj_SSDrink_c::getFlowNodeNum() {
-    u16 sVar2 = home.angle.x;
-#ifdef DEBUG
-    bool bVar1 = true;
-#else
-    bool bVar1 = false;
-#endif
-
-#ifdef DEBUG
-    if (sVar2 != 0xffff && sVar2 != 0) {
-        bVar1 = false;
-    }
-#else
-    if (sVar2 == 0xffff || sVar2 == 0) {
-        bVar1 = true;
-    }
-#endif
-
-    return bVar1 ? -1 : sVar2;
+    u16 var_r31 = home.angle.x;
+    return var_r31 == 0xFFFF || var_r31 == 0 ? -1 : var_r31;
 }
 
 /* 80CE5B74-80CE5B80 000C74 000C+00 1/1 0/0 0/0 .text            getValue__15daObj_SSDrink_cFv */
@@ -284,11 +266,7 @@ void daObj_SSDrink_c::initialize() {
     fopAcM_setCullSizeBox(this, -30.0f, -15.0f, -30.0f, 30.0f, 45.0f, 30.0f);
     eventInfo.setArchiveName(getResName());
     attention_info.flags = 0;
-#ifdef DEBUG
-    attention_info.distances[7] = 6;
-#else
-    attention_info.distances[4] = 6;
-#endif
+    attention_info.distances[fopAc_attn_CARRY_e] = 6;
     fopAcM_OnCarryType(this, fopAcM_CARRY_SIDE);
 
     if (field_0xb0c == 0x60) {
@@ -329,14 +307,14 @@ int daObj_SSDrink_c::setProcess(ProcessFunc param_0) {
     field_0xb08 = 2;
 
     if (field_0xaf0) {
-        ret = (this->*field_0xaf0)((void*)0);
+        ret = (this->*field_0xaf0)(NULL);
     }
 
     field_0xb08 = 0;
     field_0xaf0 = param_0;
 
     if (field_0xaf0) {
-        ret = (this->*field_0xaf0)((void*)0);
+        ret = (this->*field_0xaf0)(NULL);
     }
 
     field_0xb08 = 1;
@@ -361,7 +339,7 @@ void daObj_SSDrink_c::setParam() {
     bool bVar2 = false;
 #endif
 
-    if (daPy_getPlayerActorClass()->getGrabActorID() != -1) {
+    if (daPy_getPlayerActorClass()->getGrabActorID() != fpcM_ERROR_PROCESS_ID_e) {
         if (!checkProcess(&daObj_SSDrink_c::drink)) {
             if (field_0xb0c != 0x60) {
                 fopAcM_offSwitch(this, getSwitchFromParam());
@@ -439,7 +417,7 @@ int daObj_SSDrink_c::chkEvent() {
 
         if (eventInfo.checkCommandTalk()) {
             if (checkProcess(&daObj_SSDrink_c::talk)) {
-                ret = (this->*field_0xaf0)((void*)0);
+                ret = (this->*field_0xaf0)(NULL);
             } else if (dComIfGp_event_chkTalkXY() == 0 || dComIfGp_evmng_ChkPresentEnd()) {
                 setProcess(&daObj_SSDrink_c::talk);
             }
@@ -454,26 +432,14 @@ int daObj_SSDrink_c::chkEvent() {
 /* 80CE63AC-80CE644C 0014AC 00A0+00 1/1 0/0 0/0 .text            orderEvent__15daObj_SSDrink_cFv */
 int daObj_SSDrink_c::orderEvent() {
     if (!daPy_py_c::checkNowWolf() && field_0xb0c != 0x60 && getFlowNodeNum() != -1) {
-#ifdef DEBUG
-        attention_info.flags = 0x40000040;
-#else
-        attention_info.flags = 0x40000008;
-#endif
+        attention_info.flags = fopAc_AttnFlag_TALKREAD_e | fopAc_AttnFlag_SPEAK_e;
     } else {
         attention_info.flags = 0;
     }
 
-#ifdef DEBUG
-    if (attention_info.flags == 0x40000040) {
-#else
-    if (attention_info.flags == 0x40000008) {
-#endif
-        attention_info.distances[1] = 0x6;
-#ifdef DEBUG
-        attention_info.distances[6] = 0x6;
-#else
-        attention_info.distances[3] = 0x6;
-#endif
+    if (attention_info.flags == (fopAc_AttnFlag_TALKREAD_e | fopAc_AttnFlag_SPEAK_e)) {
+        attention_info.distances[fopAc_attn_TALK_e] = 0x6;
+        attention_info.distances[fopAc_attn_SPEAK_e] = 0x6;
         eventInfo.onCondition(dEvtCnd_CANTALK_e);
     }
 
