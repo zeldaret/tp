@@ -154,8 +154,10 @@ int daObj_SSItem_c::Draw() {
         mDoExt_modelUpdateDL(mpModel);
         if (field_0xB00 != -1000000000.0f) {
             cM3dGPla plane;
-            if (dComIfG_Bgsp().GetTriPla(mGndChk, &plane)) {
-                dComIfGd_setSimpleShadow(&current.pos, field_0xB00, 20.0f, &plane.mNormal, 0, 1.0f,
+            bool tri_pla = dComIfG_Bgsp().GetTriPla(mGndChk, &plane);
+            if (tri_pla) {
+                f32 param2 = 20.0f;
+                dComIfGd_setSimpleShadow(&current.pos, field_0xB00, param2, &plane.mNormal, 0, 1.0f,
                                          dDlst_shadowControl_c::getSimpleTex());
             }
         }

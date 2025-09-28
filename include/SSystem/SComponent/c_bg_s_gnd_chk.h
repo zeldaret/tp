@@ -24,6 +24,6 @@ public:
     /* 0x30 */ u32 mFlags;
     /* 0x34 */ f32 mNowY;
     /* 0x38 */ u32 mWallPrecheck;
-};
+}; // size 0x3C
 
 #endif /* C_BG_S_GND_CHK_H */

@@ -19,6 +19,7 @@ struct cM3d_Range {
     /* 0x4 */ f32 mMax;
 };
 
+#define G_CM3D_F_INF (1000000000.0f)
 extern const f32 G_CM3D_F_ABS_MIN;
 
 static void cM3d_InDivPos1(const Vec*, const Vec*, f32, Vec*);
