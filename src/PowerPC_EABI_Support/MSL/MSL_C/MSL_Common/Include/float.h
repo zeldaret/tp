@@ -12,7 +12,7 @@
 
 #define FP_NAN FP_QNAN
 
-#define fpclassify(x) ((sizeof(x) == sizeof(float)) ? __fpclassifyf(x) : __fpclassifyd(x))
+#define fpclassify(x) ((sizeof(x) == sizeof(float)) ? __fpclassifyf((float)(x)) : __fpclassifyd((double)(x)) )
 #define signbit(x) ((sizeof(x) == sizeof(float)) ? __signbitf(x) : __signbitd(x))
 #define isfinite(x) ((fpclassify(x) > 2))
 
