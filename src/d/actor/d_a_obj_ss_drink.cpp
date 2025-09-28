@@ -112,7 +112,7 @@ int daObj_SSDrink_c::Execute() {
     mGndChk = mAcch.m_gnd;
     field_0xafc = mAcch.GetGroundH();
 
-    if (field_0xafc != dBgS_GROUND_MIN_H) {
+    if (field_0xafc != -G_CM3D_F_INF) {
         setEnvTevColor();
         setRoomNo();
     }
@@ -157,7 +157,7 @@ int daObj_SSDrink_c::Draw() {
     fopAcM_setEffectMtx(this, mpModel->getModelData());
     animeEntry();
     mDoExt_modelUpdateDL(mpModel);
-    if (field_0xafc != dBgS_GROUND_MIN_H) {
+    if (field_0xafc != -G_CM3D_F_INF) {
         cM3dGPla cStack_3c;
         bool tri_pla = dComIfG_Bgsp().GetTriPla(mGndChk, &cStack_3c);
         if (tri_pla) {
