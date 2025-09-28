@@ -57,7 +57,8 @@ public:
         initialize_state();
     }
 
-    static IsLeadByte_func const saoAboutEncoding_[3];
+    static const int suAboutEncoding_ = 3;
+    static IsLeadByte_func const saoAboutEncoding_[suAboutEncoding_];
 
     // some types uncertain, may need to be fixed
     /* 0x1C */ int mWidth;
