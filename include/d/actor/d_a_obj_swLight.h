@@ -54,14 +54,11 @@ private:
     /* 0x614 */ dCcD_Sph mAtSph;
     /* 0x730 */ dCcD_Sph mTgSph[2];
     /* 0x9BC */ dCcD_Cyl mCyl;
-    /* 0xADC */ union {
-        f32 f;
-        u8 u[4];
-    } field_0xadc;
-    /* 0xAE0 */ union {
-        f32 f;
-        u8 u[4];
-    } field_0xae0;
+    /* 0xADC */ f32 field_0xadc;
+    /* 0xAE0 */ u8 field_0xae0;
+    /* 0xAE1 */ u8 field_0xae1;
+    /* 0xAE2 */ u8 field_0xae2;
+    /* 0xAE3 */ u8 field_0xae3;
     /* 0xAE0 */ u16 field_0xae4;
     /* 0xAE0 */ u8 field_0xae6;
     /* 0xAE0 */ u8 field_0xae7;

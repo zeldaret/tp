@@ -54,11 +54,7 @@ void daObjSwLight_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::YrotM(shape_angle.y);
     mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
-#ifdef DEBUG
-    C_MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
-#else
-    cMtx_copy(mDoMtx_stack_c::get(), mBgMtx);
-#endif
+    MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
 /* ############################################################################################## */
@@ -123,13 +119,13 @@ int daObjSwLight_c::Create() {
     if (fopAcM_isSwitch(this, getSwbit())) {
         init_modeSwOffWait();
 #ifdef DEBUG
-        field_0xadc.f = l_HIO.mLightMaxRadius;
+        field_0xadc = l_HIO.mLightMaxRadius;
 #else
-        field_0xadc.f = 500.0f;
+        field_0xadc = 500.0f;
 #endif
     } else {
         init_modeSwOnWait();
-        field_0xadc.f = 0.0f;
+        field_0xadc = 0.0f;
     }
 
     initBaseMtx();
@@ -233,8 +229,8 @@ void daObjSwLight_c::action() {
         &daObjSwLight_c::modeDead,
     };
 
-    f32 fVar2 = field_0xadc.f;
-    (this->*l_func[field_0xae0.u[0]])();
+    f32 fVar2 = field_0xadc;
+    (this->*l_func[field_0xae0])();
     cXyz cStack_48(current.pos.x, current.pos.y + 90.0f + KREG_F(1), current.pos.z);
 
     for (int i = 0; i < 2; i++) {
@@ -249,20 +245,20 @@ void daObjSwLight_c::action() {
     mCyl.SetC(current.pos);
     dComIfG_Ccsp()->Set(&mCyl);
     mInfluence.mPos = cStack_48;
-    mInfluence.field_0xc = field_0xadc.f;
+    mInfluence.field_0xc = field_0xadc;
 
-    if (field_0xadc.f != 0.0f && fVar2 == 0.0f) {
+    if (field_0xadc != 0.0f && fVar2 == 0.0f) {
         dKy_dalkmist_inf_set(&mInfluence);
-    } else if (field_0xadc.f == 0.0f) {
+    } else if (field_0xadc == 0.0f) {
         if (fVar2 != 0.0f) {
             dKy_dalkmist_inf_cut(&mInfluence);
         }
     }
 
 #ifdef DEBUG
-    u8 tmp = field_0xadc.f / l_HIO.mLightMaxRadius * 255.0f;
+    u8 tmp = field_0xadc / l_HIO.mLightMaxRadius * 255.0f;
 #else
-    u8 tmp = field_0xadc.f / 500.0f * 255.0f;
+    u8 tmp = field_0xadc / 500.0f * 255.0f;
 #endif
 
     if (tmp != 0) {
@@ -276,8 +272,8 @@ void daObjSwLight_c::init_modeSwOnWait() {
     OS_REPORT("光燭台スイッチ：スイッチ<%d>オフしました\n", getSwbit());
     fopAcM_offSwitch(this, getSwbit());
 
-    field_0xae0.u[1] = 0;
-    field_0xae0.u[0] = 0;
+    field_0xae1 = 0;
+    field_0xae0 = 0;
 }
 
 /* 80CF766C-80CF777C 00074C 0110+00 1/0 0/0 0/0 .text            modeSwOnWait__14daObjSwLight_cFv */
@@ -285,59 +281,59 @@ void daObjSwLight_c::modeSwOnWait() {
     checkHit();
     u8 tmp = field_0xae6;
 
-    if (cLib_checkBit(tmp, (u8)1)) {
+    if (cLib_checkBit<u8>(tmp, 1)) {
         init_modeOnLight();
     } else {
         u8 tmp2 = field_0xae6;
-        if (cLib_checkBit(tmp2, (u8)2)) {
-            if (field_0xae0.u[1] <= 0x3c) {
-                field_0xae0.u[1]++;
+        if (cLib_checkBit<u8>(tmp2, 2)) {
+            if (field_0xae1 <= 60) {
+                field_0xae1++;
             }
 
-            if (field_0xae0.u[1] < 5) {
-                field_0xadc.f = 0.0f;
-            } else if (field_0xae0.u[1] == 0x5) {
+            if (field_0xae1 < 5) {
+                field_0xadc = 0.0f;
+            } else if (field_0xae1 == 5) {
 #ifdef DEBUG
-                field_0xadc.f = l_HIO.mLightMaxRadius * 0.25f;
+                field_0xadc = l_HIO.mLightMaxRadius * 0.25f;
 #else
-                field_0xadc.f = 500.0f * 0.25f;
+                field_0xadc = 500.0f * 0.25f;
 #endif
-            } else if (field_0xae0.u[1] < 0x32) {
+            } else if (field_0xae1 < 50) {
 #ifdef DEBUG
-                field_0xadc.f =
-                    l_HIO.mLightMaxRadius * ((field_0xae0.u[1] - 5) * 0.25f / 45.0f + 0.25f);
+                field_0xadc =
+                    l_HIO.mLightMaxRadius * ((field_0xae1 - 5) * 0.25f / 45.0f + 0.25f);
 #else
-                field_0xadc.f = 500.0f * ((field_0xae0.u[1] - 5) * 0.25f / 45.0f + 0.25f);
+                field_0xadc = 500.0f * ((field_0xae1 - 5) * 0.25f / 45.0f + 0.25f);
 #endif
 
-            } else if (field_0xae0.u[1] == 0x32) {
+            } else if (field_0xae1 == 50) {
 #ifdef DEBUG
-                field_0xadc.f = l_HIO.mLightMaxRadius;
+                field_0xadc = l_HIO.mLightMaxRadius;
 #else
-                field_0xadc.f = 500.0f;
+                field_0xadc = 500.0f;
 #endif
-            } else if (field_0xae0.u[1] == 0x3c) {
+            } else if (field_0xae1 == 60) {
                 init_modeSwOffWait();
             }
         } else {
-            cLib_calcTimer(&field_0xae0.u[1]);
+            cLib_calcTimer(&field_0xae1);
         }
     }
 }
 
 /* 80CF777C-80CF7788 00085C 000C+00 1/1 0/0 0/0 .text init_modeOnLight__14daObjSwLight_cFv */
 void daObjSwLight_c::init_modeOnLight() {
-    field_0xae0.u[0] = 2;
+    field_0xae0 = 2;
 }
 
 /* 80CF7788-80CF77D8 000868 0050+00 1/0 0/0 0/0 .text            modeOnLight__14daObjSwLight_cFv */
 void daObjSwLight_c::modeOnLight() {
 #ifdef DEBUG
-    if (cLib_chaseF((f32*)&field_0xadc, l_HIO.mLightMaxRadius, l_HIO.mLightMaxRadius * 0.05f)) {
+    if (cLib_chaseF(&field_0xadc, l_HIO.mLightMaxRadius, l_HIO.mLightMaxRadius * 0.05f)) {
         init_modeSwOffWait();
     }
 #else
-    if (cLib_chaseF((f32*)&field_0xadc, 500.0f, 500.0f * 0.05f)) {
+    if (cLib_chaseF(&field_0xadc, 500.0f, 500.0f * 0.05f)) {
         init_modeSwOffWait();
     }
 #endif
@@ -348,10 +344,10 @@ void daObjSwLight_c::init_modeSwOffWait() {
     // Light Candlestick Switch: Switch <%d> was turned on.
     OS_REPORT("光燭台スイッチ：スイッチ<%d>オンしました\n", getSwbit());
     fopAcM_onSwitch(this, getSwbit());
-    field_0xae0.u[3] = 0;
-    field_0xae0.u[1] = 0;
+    field_0xae3 = 0;
+    field_0xae1 = 0;
     setOnTimer();
-    field_0xae0.u[0] = 1;
+    field_0xae0 = 1;
 }
 
 /* 80CF7838-80CF7974 000918 013C+00 1/0 0/0 0/0 .text            modeSwOffWait__14daObjSwLight_cFv
@@ -361,35 +357,35 @@ void daObjSwLight_c::modeSwOffWait() {
 
     if (getSwbit2() != 0xff) {
         if (fopAcM_isSwitch(this, getSwbit2())) {
-            field_0xae0.u[3] = 1;
+            field_0xae3 = 1;
         }
     }
 
-    if (field_0xae0.u[3] != 0) {
+    if (field_0xae3 != 0) {
         if (!fopAcM_isSwitch(this, getSwbit2())) {
 #ifdef DEBUG
-            if (cLib_chaseF(&field_0xadc.f, 0.0f, l_HIO.mLightMaxRadius * 0.05f)) {
+            if (cLib_chaseF(&field_0xadc, 0.0f, l_HIO.mLightMaxRadius * 0.05f)) {
 #else
-            if (cLib_chaseF(&field_0xadc.f, 0.0f, 500.0f * 0.05f)) {
+            if (cLib_chaseF(&field_0xadc, 0.0f, 500.0f * 0.05f)) {
 #endif
                 init_modeSwOnWait();
             }
         } else {
 #ifdef DEBUG
-            cLib_chaseF(&field_0xadc.f, l_HIO.mLightMaxRadius, l_HIO.mLightMaxRadius * 0.05f);
+            cLib_chaseF(&field_0xadc, l_HIO.mLightMaxRadius, l_HIO.mLightMaxRadius * 0.05f);
 #else
-            cLib_chaseF(&field_0xadc.f, 500.0f, 500.0f * 0.05);
+            cLib_chaseF(&field_0xadc, 500.0f, 500.0f * 0.05);
 #endif
         }
 
     } else {
-        if (!cLib_checkBit((u8)field_0xae6, (u8)1) && !cLib_checkBit((u8)field_0xae6, (u8)2) &&
+        if (!cLib_checkBit<u8>(field_0xae6, (u8)1) && !cLib_checkBit<u8>(field_0xae6, 2) &&
             !cLib_calcTimer(&field_0xae4) &&
 #ifdef DEBUG
-            cLib_chaseF(&field_0xadc.f, 0.0f, l_HIO.mLightMaxRadius * 0.05f))
+            cLib_chaseF(&field_0xadc, 0.0f, l_HIO.mLightMaxRadius * 0.05f))
         {
 #else
-            cLib_chaseF(&field_0xadc.f, 0.0f, 500.0f * 0.05f))
+            cLib_chaseF(&field_0xadc, 0.0f, 500.0f * 0.05f))
         {
 #endif
             init_modeSwOnWait();
@@ -413,7 +409,7 @@ int daObjSwLight_c::checkHit() {
         cCcD_Obj* hit_obj = mTgSph[0].GetTgHitObj();
         if (hit_obj != NULL && hit_obj->ChkAtType(AT_TYPE_NORMAL_SWORD) && mTgSph[0].GetTgHitGObj())
         {
-            if (mTgSph[0].GetTgHitGObj()->GetAtMtrl() == 4) {
+            if (mTgSph[0].GetTgHitGObj()->GetAtMtrl() == dCcD_MTRL_LIGHT) {
                 cLib_onBit(field_0xae6, (u8)1);
             }
         }
@@ -424,7 +420,7 @@ int daObjSwLight_c::checkHit() {
         if (hit_obj != NULL && hit_obj->ChkAtType(AT_TYPE_LANTERN_SWING) &&
             mTgSph[1].GetTgHitGObj())
         {
-            if (mTgSph[1].GetTgHitGObj()->GetAtMtrl() == 4) {
+            if (mTgSph[1].GetTgHitGObj()->GetAtMtrl() == dCcD_MTRL_LIGHT) {
                 cLib_onBit(field_0xae6, (u8)2);
             }
         }
@@ -451,9 +447,9 @@ int daObjSwLight_c::Draw() {
     J3DGXColor* color = material->getTevKColor(0);
 
 #ifdef DEBUG
-    u8 fVar1 = field_0xadc.f / l_HIO.mLightMaxRadius * 255.0f;
+    u8 fVar1 = field_0xadc / l_HIO.mLightMaxRadius * 255.0f;
 #else
-    u8 fVar1 = field_0xadc.f / 500.0f * 255.0f;
+    u8 fVar1 = field_0xadc / 500.0f * 255.0f;
 #endif
     color->a = 0xff;
     color->r = fVar1;
@@ -506,11 +502,6 @@ static int daObjSwLight_MoveBGExecute(daObjSwLight_c* i_this) {
 static int daObjSwLight_MoveBGDraw(daObjSwLight_c* i_this) {
     return i_this->MoveBGDraw();
 }
-
-/* 80CF8124-80CF8358 001204 0234+00 2/1 0/0 0/0 .text            __dt__14daObjSwLight_cFv */
-// daObjSwLight_c::~daObjSwLight_c() {
-//     // NONMATCHING
-// }
 
 /* ############################################################################################## */
 /* 80CF8548-80CF8568 -00001 0020+00 1/0 0/0 0/0 .data            daObjSwLight_METHODS */
