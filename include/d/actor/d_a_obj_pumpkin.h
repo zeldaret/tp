@@ -4,7 +4,9 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/d_bg_s_acch.h"
 #include "d/d_cc_d.h"
+#include "d/actor/d_a_player.h"
 
+class daBoomerang_c;
 #if DEBUG
 class daObj_Pumpkin_HIO_c;
 #else
@@ -34,18 +36,45 @@ private:
     /* 0x7CC */ cBgS_GndChk mGndChk;
     /* 0x808 */ dCcD_Cyl mCyl0;
     /* 0x944 */ dCcD_Cyl mCyl1;
-    /* 0xA80 */ u8 field_0xA80[0xA8C - 0xA80];
+    /* 0xA80 */ daPy_boomerangMove_c mBoomerangMove;
     /* 0xA8C */ cM3dGLin mLin;
     /* 0xAA8 */ dBgS_LinChk mLinChk;
-    /* 0xB18 */ u8 field_0xB18[0xB1C - 0xB18];
+    /* 0xB18 */ f32 mPumpkinScale;
     /* 0xB1C */ u8 mType;
-    /* 0xB1D */ u8 field_0xB1D[0xB20 - 0xB1D];
     /* 0xB20 */ cXyz field_0xB20;
     /* 0xB2C */ cXyz field_0xB2C;
     /* 0xB38 */ csXyz field_0xB38;
-    /* 0xB3E */ u8 field_0xB3E[0xB60 - 0xB3E];
+    /* 0xB40 */ fpc_ProcID mItemProcId;
+    /* 0xB44 */ int field_0xB44;
+    /* 0xB48 */ int field_0xB48;
+    /* 0xB4C */ int field_0xB4C;
+    /* 0xB50 */ int field_0xB50;
+    /* 0xB54 */ int field_0xB54;
+    /* 0xB58 */ int field_0xB58;
+    /* 0xB5C */ f32 field_0xB5C;
     /* 0xB60 */ f32 field_0xB60;
-    /* 0xB64 */ u8 field_0xB64[0xBB3 - 0xB64];
+    /* 0xB64 */ f32 mWaterY;
+    /* 0xB68 */ f32 field_0xB68;
+    /* 0xB6C */ u8 field_0xB6C[0xB70 - 0xB6C];
+    /* 0xB70 */ f32 field_0xB70;
+    /* 0xB74 */ f32 field_0xB74;
+    /* 0xB78 */ s16 field_0xB78;
+    /* 0xB7A */ s16 field_0xB7A;
+    /* 0xB7C */ s16 field_0xB7C;
+    /* 0xB7E */ s16 field_0xB7E;
+    /* 0xB80 */ s16 field_0xB80;
+    /* 0xB82 */ u8 field_0xB84[0xBA8 - 0xB82];
+    /* 0xBA8 */ u8 field_0xBA8;
+    /* 0xBA9 */ u8 field_0xBA9;
+    /* 0xBAA */ u8 field_0xBAA;
+    /* 0xBAB */ u8 field_0xBAB;
+    /* 0xBAC */ u8 field_0xBAC;
+    /* 0xBAD */ u8 field_0xBAD;
+    /* 0xBAE */ u8 field_0xBAE;
+    /* 0xBAF */ u8 field_0xBAF;
+    /* 0xBB0 */ u8 field_0xBB0;
+    /* 0xBB1 */ u8 field_0xBB1;
+    /* 0xBB2 */ u8 field_0xBB2;
     /* 0xBB3 */ u8 field_0xbb3;
     /* 0xBB4 */ u8 field_0xbb4[0xBB8 - 0xBB4];
 
@@ -63,7 +92,7 @@ public:
     /* 80CB7968 */ void reset();
     /* 80CB79DC */ void setMtx();
     /* 80CB7AE4 */ s16 calcRollAngle(s16, int);
-    /* 80CB7B84 */ s16 getWallAngle(s16, s16*);
+    /* 80CB7B84 */ int getWallAngle(s16, s16*);
     /* 80CB7D14 */ void setSmokePrtcl();
     /* 80CB7D98 */ void setWaterPrtcl();
     /* 80CB7E98 */ void setHamonPrtcl();
@@ -111,6 +140,22 @@ public:
         }
 
         return prm;
+    }
+
+    void popup(f32 i_f0, f32 i_deg, cXyz* ip_vec) {
+        if (ip_vec != NULL) {
+            current.pos = *ip_vec;
+            old.pos = current.pos;
+        }
+
+        s16 temp_r30 = cM_deg2s(i_deg);
+        speed.setall(0.0f);
+        speed.y = i_f0 * cM_ssin(temp_r30);
+        speedF = i_f0 * cM_scos(temp_r30);
+        field_0xB50 = 6;
+        field_0xB7C = 0x4000;
+        field_0xBAD = 1;
+        field_0xB74 = 0.0f;
     }
 };
 
