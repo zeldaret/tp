@@ -2168,7 +2168,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_swBallA"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_swBallB"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_swBallC"),
-    ActorRel(NonMatching, "d_a_obj_swLight"),
+    ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_swLight"),
     ActorRel(NonMatching, "d_a_obj_swchain"),
     ActorRel(Equivalent, "d_a_obj_swhang"), # vtable order
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_obj_sword"),
