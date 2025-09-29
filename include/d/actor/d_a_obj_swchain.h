@@ -4,6 +4,7 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_player.h"
+#include "d/d_model.h"
 
 /**
  * @ingroup actors-objects
@@ -20,13 +21,15 @@ public:
         /* 80CF8B00 */ ~chain_s();
         /* 80CF8B3C */ chain_s();
 
-        /* 0x00 */ u8 field_0x00[0x34 - 0x00];
+        /* 0x00 */ u8 field_0x00[0x0d - 0x00];
+        /* 0x0D */ u8 field_0x0d;
+        /* 0x0E */ u8 field_0x0e[0x34-0xe];
         /* 0x00 */ cXyz field_0x34;
         /* 0x00 */ u8 field_0x40[0x50 - 0x40];
     };
 
-    /* 80CF8768 */ void Create();
-    /* 80CF89C0 */ void CreateHeap();
+    /* 80CF8768 */ int Create();
+    /* 80CF89C0 */ int CreateHeap();
     /* 80CF8B48 */ void create1st();
     /* 80CF8ED0 */ void execute();
     /* 80CF94E4 */ void getChainBasePos(cXyz*);
@@ -71,7 +74,14 @@ public:
     }
 
 private:
-    /* 0x568 */ u8 field_0x568[0xa62 - 0x568];
+    /* 0x568 */ u8 field_0x568[0x578 - 0x568];
+    /* 0x578 */ dMdl_c mModel;
+    /* 0x598 */ dCcD_Stts mStts;
+    /* 0x5D4 */ dCcD_Sph mSph1;
+    /* 0x70C */ dCcD_Sph mSph2;
+    /* 0x844 */ dBgS_ObjAcch mAcch;
+    /* 0xA1C */ dBgS_AcchCir mAcchCir;
+    /* 0xA5C */ u8 field_0xa5c[0xa62-0xa5c];
     /* 0xA62 */ u8 mCarry;
     /* 0xA63 */ u8 field_0xa63;
     /* 0xA64 */ u8 field_0xa64;
