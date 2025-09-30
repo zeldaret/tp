@@ -7,8 +7,10 @@
 
 #include "d/actor/d_a_obj_pumpkin.h"
 #include "d/d_cc_d.h"
+#if DEBUG
 #include "SSystem/SComponent/c_counter.h"
 #include "JSystem/JHostIO/JORFile.h"
+#endif
 #include "d/actor/d_a_npc.h"
 #include "d/d_cc_uty.h"
 #include "d/actor/d_a_npc_jagar.h"
@@ -869,7 +871,6 @@ void daObj_Pumpkin_c::setHamonPrtcl() {
 
 /* 80CB7EF4-80CB81A4 002854 02B0+00 1/1 0/0 0/0 .text            crash__15daObj_Pumpkin_cFv */
 void daObj_Pumpkin_c::crash() {
-    // NONMATCHING
     fopAc_ac_c* actor_p = NULL;
     s32 reg_r30 = 0;
     reg_r30 = fopAcM_SearchByName(PROC_NPC_JAGAR, &actor_p);
