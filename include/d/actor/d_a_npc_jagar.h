@@ -12,58 +12,33 @@
  *
  */
 
+struct daNpc_Jagar_HIOParam {
+    /* 0x00 */ daNpcT_HIOParam common;
+    /* 0x8C */ f32 pumpkin_monitoring_dist;
+    /* 0x90 */ f32 pumpkin_watch_Ymax;
+    /* 0x94 */ f32 pumpkin_watch_Ymin;
+    /* 0x98 */ f32 running_speed;
+    /* 0x9C */ f32 hidden_state_release_dist;
+};
+
 class daNpc_Jagar_Param_c {
-    public:
-        /* 80A1A2C4 */ virtual ~daNpc_Jagar_Param_c() {}
-    
-        struct Data {
-            /* 0x00 */ f32 field_0x00;  // 170.0f
-            /* 0x04 */ f32 field_0x04;  // -3.0f
-            /* 0x08 */ f32 field_0x08;  // 1.0f
-            /* 0x0C */ f32 field_0x0c;  // 400.0f
-            /* 0x10 */ f32 field_0x10;  // 255.0f
-            /* 0x14 */ f32 field_0x14;  // 160.0f
-            /* 0x18 */ f32 field_0x18;  // 35.0f
-            /* 0x1C */ f32 field_0x1c;  // 30.0f
-            /* 0x20 */ f32 field_0x20;  // 0.0f
-            /* 0x24 */ f32 field_0x24;  // 0.0f
-            /* 0x28 */ f32 field_0x28;  // 10.0f
-            /* 0x2C */ f32 field_0x2c;  // -10.0f
-            /* 0x30 */ f32 field_0x30;  // 30.0f
-            /* 0x34 */ f32 field_0x34;  // -10.0f
-            /* 0x38 */ f32 field_0x38;  // 45.0f
-            /* 0x3C */ f32 field_0x3c;  // -45.0f
-            /* 0x40 */ f32 field_0x40;  // 0.6f
-            /* 0x44 */ f32 field_0x44;  // 12.0f
-            /* 0x48 */ s16 field_0x48;
-            /* 0x4A */ s16 field_0x4a;
-            /* 0x4C */ s16 field_0x4c;
-            /* 0x4E */ s16 field_0x4e;
-            /* 0x50 */ f32 field_0x50;  // 110.0f
-            /* 0x54 */ f32 field_0x54;  // 500.0f
-            /* 0x58 */ f32 field_0x58;  // 300.0f
-            /* 0x5C */ f32 field_0x5c;  // -300.0f
-            /* 0x60 */ s16 field_0x60;  // 60
-            /* 0x62 */ s16 field_0x62;  // 8
-            /* 0x64 */ f32 field_0x64;  // 0.0f
-            /* 0x68 */ f32 field_0x68;  // 0.0f
-            /* 0x6C */ f32 field_0x6c;  // 4.0f
-            /* 0x70 */ f32 field_0x70;  // 0.0f
-            /* 0x74 */ f32 field_0x74;  // 0.0f
-            /* 0x78 */ f32 field_0x78;  // 0.0f
-            /* 0x7C */ f32 field_0x7c;  // 0.0f
-            /* 0x80 */ f32 field_0x80;  // 0.0f
-            /* 0x84 */ f32 field_0x84;  // 0.0f
-            /* 0x88 */ f32 field_0x88;  // 0.0f
-            /* 0x8C */ f32 field_0x8c;  // 1400.0f
-            /* 0x90 */ f32 field_0x90;  // 200.0f
-            /* 0x94 */ f32 field_0x94;  // -800.0f
-            /* 0x98 */ f32 field_0x98;  // 16.0f
-            /* 0x9C */ f32 field_0x9c;  // 1800.0f
-        };
-        
-        static const Data m;
-    };
+public:
+    /* 80A1A2C4 */ virtual ~daNpc_Jagar_Param_c() {}
+
+    static const daNpc_Jagar_HIOParam m;
+};
+
+#if DEBUG
+class daNpc_Jagar_HIO_c : public mDoHIO_entry_c {
+public:
+    daNpc_Jagar_HIO_c();
+
+    void listenPropertyEvent(const JORPropertyEvent*);
+    void genMessage(JORMContext*);
+
+    daNpc_Jagar_HIOParam m;
+};
+#endif
 
 class daNpc_Jagar_c : public daNpcT_c {
 public:
@@ -181,9 +156,9 @@ public:
 
     BOOL chkFindWolf() {
         int uVar3 = (int)daNpcT_getDistTableIdx(field_0xff0, field_0xff4);
-        return daNpcT_c::chkFindWolf(mCurAngle.y, uVar3, field_0xfec, daNpc_Jagar_Param_c::m.field_0x54,
-                                     daNpc_Jagar_Param_c::m.field_0x50, daNpc_Jagar_Param_c::m.field_0x58,
-                                     daNpc_Jagar_Param_c::m.field_0x5c, 1);
+        return daNpcT_c::chkFindWolf(mCurAngle.y, uVar3, field_0xfec, mpHIO->m.common.search_distance,
+                                     mpHIO->m.common.fov, mpHIO->m.common.search_height,
+                                     mpHIO->m.common.search_depth, 1);
     }
 
     int chkCondition(int i_val) {
@@ -225,10 +200,33 @@ public:
 
     u8 getPathID() { return (fopAcM_GetParam(this) & 0xff00) >> 8; }
 
+    int crashPumpkin(fopAc_ac_c* pumpkin_p) {
+        int reg_r30;
+        if (mType == 0 && fopAcM_GetName(pumpkin_p) == PROC_OBJ_PUMPKIN && !daNpcT_chkEvtBit(0xAE)
+            && daNpcT_chkEvtBit(0x25B) && !daNpcT_chkEvtBit(0x235)) {
+            ++field_0xffc;
+            reg_r30 = chkPointInArea(pumpkin_p->current.pos, current.pos, mpHIO->m.pumpkin_monitoring_dist,
+                                     mpHIO->m.pumpkin_watch_Ymax, mpHIO->m.pumpkin_watch_Ymin, 0);
+            if (reg_r30) {
+                if (field_0xffc >= 4) {
+                    daNpcT_onTmpBit(0x1B);
+                }
+
+                return 1;
+            }
+        }
+
+        return 0;
+    }
+
     static char* mCutNameList[7];
     static cutFunc mCutList[7];
 private:
-    /* 0x0E40 */ int field_0xe40;
+#if DEBUG
+    /* 0x0E40 */ daNpc_Jagar_HIO_c* mpHIO;
+#else
+    /* 0x0E40 */ daNpc_Jagar_Param_c* mpHIO;
+#endif
     /* 0x0E44 */ dCcD_Cyl mCyl1;
     /* 0x0F80 */ u8 mType;
     /* 0x0F84 */ daNpcT_ActorMngr_c mActorMngr[5];
@@ -239,7 +237,7 @@ private:
     /* 0x0FF0 */ int field_0xff0;
     /* 0x0FF4 */ int field_0xff4;
     /* 0x0FF8 */ int field_0xff8;
-    /* 0x0FFC */ u8 field_0xffc[0x1000 - 0xffc];
+    /* 0x0FFC */ int field_0xffc;
     /* 0x1000 */ u8 field_0x1000;
     /* 0x1001 */ u8 field_0x1001;
     /* 0x1002 */ u8 field_0x1002;

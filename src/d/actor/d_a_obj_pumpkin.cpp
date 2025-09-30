@@ -11,8 +11,7 @@
 #include "JSystem/JHostIO/JORFile.h"
 #include "d/actor/d_a_npc.h"
 #include "d/d_cc_uty.h"
-
-#include "dol2asm.h"
+#include "d/actor/d_a_npc_jagar.h"
 
 /* ############################################################################################## */
 /* 80CB8370-80CB83A4 000000 0034+00 5/5 0/0 0/0 .rodata          m__21daObj_Pumpkin_Param_c */
@@ -255,7 +254,6 @@ int daObj_Pumpkin_c::Delete() {
 
 /* 80CB604C-80CB7638 0009AC 15EC+00 1/1 0/0 0/0 .text            Execute__15daObj_Pumpkin_cFv */
 int daObj_Pumpkin_c::Execute() {
-    // NONMATCHING
     f32 var_f29 = mpHIO->m.floating_offset;
     f32 f_scale = mpHIO->m.scale;
     s16 sp_0x14 = 0;
@@ -685,122 +683,234 @@ int daObj_Pumpkin_c::Execute() {
 
 /* 80CB7638-80CB77DC 001F98 01A4+00 1/1 0/0 0/0 .text            Draw__15daObj_Pumpkin_cFv */
 int daObj_Pumpkin_c::Draw() {
-    // NONMATCHING
+    if (field_0xBB0 == 0) {
+        g_env_light.settingTevStruct(0, &current.pos, &tevStr);
+        g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
+        if (field_0xBA8 == 0) {
+            mpModel->getModelData()->getMaterialNodePointer(0)->getShape()->hide();
+        }
+
+        mDoExt_modelUpdateDL(mpModel);
+        mpModel->getModelData()->getMaterialNodePointer(0)->getShape()->show();
+        fopAc_ac_c* actor_p = NULL;
+        fopAcM_SearchByID(daPy_getPlayerActorClass()->getGrabActorID(), &actor_p);
+        if (actor_p == this) {
+            model = mpModel;
+        } else if (-G_CM3D_F_INF != field_0xB60) {
+            cM3dGPla pla;
+            bool tri_pla = dComIfG_Bgsp().GetTriPla(mGndChk, &pla);
+            if (tri_pla) {
+                f32 reg_f31 = scale.x / (mpHIO->m.scale * mPumpkinScale) * 50.0f;
+                dComIfGd_setSimpleShadow(&current.pos, field_0xB60, reg_f31, &pla.mNormal, 0, 1.0f,
+                                         dDlst_shadowControl_c::getSimpleTex());
+            }
+        }
+    }
+
+    return 1;
 }
 
 /* 80CB7824-80CB7844 002184 0020+00 1/1 0/0 0/0 .text
  * createHeapCallBack__15daObj_Pumpkin_cFP10fopAc_ac_c          */
-int daObj_Pumpkin_c::createHeapCallBack(fopAc_ac_c* param_0) {
-    // NONMATCHING
+int daObj_Pumpkin_c::createHeapCallBack(fopAc_ac_c* i_this) {
+    daObj_Pumpkin_c* a_this = static_cast<daObj_Pumpkin_c*>(i_this);
+    return a_this->CreateHeap();
 }
 
 /* 80CB7844-80CB78C8 0021A4 0084+00 1/1 0/0 0/0 .text            isDelete__15daObj_Pumpkin_cFv */
 int daObj_Pumpkin_c::isDelete() {
-    // NONMATCHING
+    switch ((s32) mType) {
+    case 0:
+        return 0;
+    case 1:
+        return daNpcT_chkEvtBit(0x1E) == 0;
+    case 2:
+        return daNpcT_chkEvtBit(0x92) == 0;
+    case 3:
+        return 0;
+    default:
+        return 0;
+    }
 }
 
 /* 80CB78C8-80CB7924 002228 005C+00 1/1 0/0 0/0 .text            setEnvTevColor__15daObj_Pumpkin_cFv
  */
 void daObj_Pumpkin_c::setEnvTevColor() {
-    // NONMATCHING
+    tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mGndChk);
+    tevStr.room_no = dComIfG_Bgsp().GetRoomId(mGndChk);
 }
 
 /* 80CB7924-80CB7968 002284 0044+00 1/1 0/0 0/0 .text            setRoomNo__15daObj_Pumpkin_cFv */
 void daObj_Pumpkin_c::setRoomNo() {
-    // NONMATCHING
+    s8 room_id = dComIfG_Bgsp().GetRoomId(mGndChk);
+    fopAcM_SetRoomNo(this, room_id);
+    mStts.SetRoomId(room_id);
 }
 
 /* 80CB7968-80CB79DC 0022C8 0074+00 2/2 0/0 0/0 .text            reset__15daObj_Pumpkin_cFv */
 void daObj_Pumpkin_c::reset() {
-    // NONMATCHING
+    int num_bytes = (u8*)&field_0xbb4 - (u8*)&field_0xB20;
+    memset(&field_0xB20, 0, num_bytes);
+    switch (getProcType()) {
+    case 0:
+        field_0xBA8 = 1;
+    case 1:
+    case 2:
+        break;
+    }
+
+    mItemProcId = -1;
 }
 
 /* 80CB79DC-80CB7AE4 00233C 0108+00 2/2 0/0 0/0 .text            setMtx__15daObj_Pumpkin_cFv */
 void daObj_Pumpkin_c::setMtx() {
-    // NONMATCHING
+    s16 angleDiff = shape_angle.y - current.angle.y;
+    s16 dVar5 = field_0xB7C * cM_scos(angleDiff);
+    s16 dVar6 = field_0xB7C * cM_ssin(angleDiff);
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::ZXYrotM(shape_angle);
+    mDoMtx_stack_c::XrotM(dVar5);
+    mDoMtx_stack_c::ZrotM(dVar6);
+    mDoMtx_stack_c::scaleM(scale);
+    mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
 /* 80CB7AE4-80CB7B84 002444 00A0+00 1/1 0/0 0/0 .text            calcRollAngle__15daObj_Pumpkin_cFsi
  */
-s16 daObj_Pumpkin_c::calcRollAngle(s16 param_0, int param_1) {
-    // NONMATCHING
+s16 daObj_Pumpkin_c::calcRollAngle(s16 arg0, int arg1) {
+    int reg_r31;
+    int reg_r30;
+    int sp_0x8 = arg1;
+    int reg_r29 = 0x800;
+    int reg_27 = 4;
+    if (arg0) {
+        reg_r31 = (u16)arg0;
+        reg_r30 = sp_0x8 - reg_r31;
+        if (reg_27 < abs(reg_r30)) {
+            reg_r30 /= reg_27;
+            if (reg_r30 > reg_r29) {
+                reg_r31 = reg_r31 + reg_r29;
+            } else if (reg_r30 < -reg_r29) {
+                reg_r31 = reg_r31 - reg_r29;
+            } else {
+                reg_r31 = reg_r31 + reg_r30;
+            }
+        } else {
+            reg_r31 = sp_0x8;
+        }
+
+        return reg_r31;
+    }
+
+    return 0;
 }
-
-/* ############################################################################################## */
-/* 80CB8450-80CB8454 0000E0 0004+00 0/1 0/0 0/0 .rodata          @5089 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5089 = 5.0f;
-COMPILER_STRIP_GATE(0x80CB8450, &lit_5089);
-#pragma pop
-
-/* 80CB8454-80CB8458 0000E4 0004+00 0/1 0/0 0/0 .rodata          @5090 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_5090 = 200.0f;
-COMPILER_STRIP_GATE(0x80CB8454, &lit_5090);
-#pragma pop
 
 /* 80CB7B84-80CB7D14 0024E4 0190+00 1/1 0/0 0/0 .text            getWallAngle__15daObj_Pumpkin_cFsPs
  */
-int daObj_Pumpkin_c::getWallAngle(s16 param_0, s16* param_1) {
-    // NONMATCHING
-}
+int daObj_Pumpkin_c::getWallAngle(s16 arg0, s16* arg1) {
+    cXyz sp_0x20;
+    cXyz sp_0x30[2];
+    cXyz sp_0x14;
+    s16 reg_r27 = arg0;
+    mDoMtx_stack_c::YrotS(arg0);
+    sp_0x14.set(0.0f, 0.0f, -50.0f);
+    mDoMtx_stack_c::multVec(&sp_0x14, &sp_0x20);
+    sp_0x20 += current.pos;
+    sp_0x14.set(5.0f, 0.0f, 200.0f);
+    for (int idx = 0; idx < 2; ++idx) {
+        mDoMtx_stack_c::multVec(&sp_0x14, &sp_0x30[idx]);
+        sp_0x14.x = -1.0f * sp_0x14.x;
+        sp_0x30[idx] += sp_0x20;
+        mLinChk.Set(&sp_0x20, &sp_0x30[idx], this);
+        if (dComIfG_Bgsp().LineCross(&mLinChk)) {
+            sp_0x30[idx] = mLinChk.GetCross();
+            continue;
+        }
 
-/* ############################################################################################## */
-/* 80CB8458-80CB845C 0000E8 0004+00 2/2 0/0 0/0 .rodata          @5106 */
-SECTION_RODATA static f32 const lit_5106 = 3.0f / 5.0f;
-COMPILER_STRIP_GATE(0x80CB8458, &lit_5106);
+        return 0;
+    }
+
+    sp_0x14 = sp_0x30[1] - sp_0x30[0];
+    reg_r27 = cM_atan2s(sp_0x14.x, sp_0x14.z);
+    *arg1 = reg_r27 + 0x4000;
+    return 1;
+}
 
 /* 80CB7D14-80CB7D98 002674 0084+00 1/1 0/0 0/0 .text            setSmokePrtcl__15daObj_Pumpkin_cFv
  */
 void daObj_Pumpkin_c::setSmokePrtcl() {
-    // NONMATCHING
+    fopAcM_effSmokeSet1(&mSmokePrtcl1, &mSmokePrtcl2, &current.pos, NULL, 0.6f * mPumpkinScale, &tevStr, 1);
+    dComIfGp_particle_levelEmitterOnEventMove(mSmokePrtcl1);
+    dComIfGp_particle_levelEmitterOnEventMove(mSmokePrtcl2);
 }
 
 /* 80CB7D98-80CB7E98 0026F8 0100+00 1/1 0/0 0/0 .text            setWaterPrtcl__15daObj_Pumpkin_cFv
  */
 void daObj_Pumpkin_c::setWaterPrtcl() {
-    static u8 emttrId[8] = {
-        0x01, 0xB8, 0x01, 0xB9, 0x01, 0xBA, 0x01, 0xBB,
+    static u16 emttrId[4] = {
+        0x01B8, 0x01B9, 0x01BA, 0x01BB,
     };
-    // NONMATCHING
-}
 
-/* ############################################################################################## */
-/* 80CB845C-80CB8460 0000EC 0004+00 1/1 0/0 0/0 .rodata          @5155 */
-SECTION_RODATA static f32 const lit_5155 = 7.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80CB845C, &lit_5155);
+    cXyz prtcl_scale(0.6f * mPumpkinScale, 0.6f * mPumpkinScale, 0.6f * mPumpkinScale);
+    cXyz water_pos(current.pos.x, mWaterY, current.pos.z);
+    for (int idx = 0; idx < 4; ++idx) {
+        mWaterPrtcls[idx] = dComIfGp_particle_set(mWaterPrtcls[idx], emttrId[idx], &water_pos, &tevStr,
+                                                  NULL, &prtcl_scale, 0xFF, NULL, -1, NULL, NULL, NULL);
+        dComIfGp_particle_levelEmitterOnEventMove(mWaterPrtcls[idx]);
+    }
+}
 
 /* 80CB7E98-80CB7EF4 0027F8 005C+00 1/1 0/0 0/0 .text            setHamonPrtcl__15daObj_Pumpkin_cFv
  */
 void daObj_Pumpkin_c::setHamonPrtcl() {
-    // NONMATCHING
+    cXyz water_pos(current.pos.x, mWaterY, current.pos.z);
+    fopAcM_effHamonSet(&mHamonPrtcl, &water_pos, 0.7f * mPumpkinScale, 0.05f);
 }
 
 /* 80CB7EF4-80CB81A4 002854 02B0+00 1/1 0/0 0/0 .text            crash__15daObj_Pumpkin_cFv */
 void daObj_Pumpkin_c::crash() {
     // NONMATCHING
+    fopAc_ac_c* actor_p = NULL;
+    s32 reg_r30 = 0;
+    reg_r30 = fopAcM_SearchByName(PROC_NPC_JAGAR, &actor_p);
+    if (reg_r30 && actor_p != NULL) {
+        ((daNpc_Jagar_c*)actor_p)->crashPumpkin(this);
+    }
+
+    fopAcM_seStart(this, Z2SE_OBJ_PUMPKIN_CRASH, 0);
+    if (field_0xBA8) {
+        dComIfGp_particle_set(-1, dPa_RM(ID_ZI_S_PUMPKIN_LEAF_A), &current.pos, &shape_angle, &scale);
+        dComIfGp_particle_set(-1, dPa_RM(ID_ZI_S_PUMPKIN_LEAF_B), &current.pos, &shape_angle, &scale);
+    }
+
+    dComIfGp_particle_set(-1, dPa_RM(ID_ZI_S_PUMPKIN_A), &current.pos, NULL, &scale);
+    reset();
+    mStts.ClrCcMove();
+    speedF = 0.0f;
+    speed.setall(0.0f);
+    field_0xBB0 = 1;
+    field_0xBAE = 1;
 }
 
 /* 80CB81A4-80CB81C4 002B04 0020+00 1/0 0/0 0/0 .text            daObj_Pumpkin_Create__FPv */
 static int daObj_Pumpkin_Create(void* i_this) {
-    // NONMATCHING
+    int ret = static_cast<daObj_Pumpkin_c*>(i_this)->create();
+    return ret;
 }
 
 /* 80CB81C4-80CB81E4 002B24 0020+00 1/0 0/0 0/0 .text            daObj_Pumpkin_Delete__FPv */
 static int daObj_Pumpkin_Delete(void* i_this) {
-    // NONMATCHING
+    return static_cast<daObj_Pumpkin_c*>(i_this)->Delete();
 }
 
 /* 80CB81E4-80CB8204 002B44 0020+00 1/0 0/0 0/0 .text            daObj_Pumpkin_Execute__FPv */
 static int daObj_Pumpkin_Execute(void* i_this) {
-    // NONMATCHING
+    return static_cast<daObj_Pumpkin_c*>(i_this)->Execute();
 }
 
 /* 80CB8204-80CB8224 002B64 0020+00 1/0 0/0 0/0 .text            daObj_Pumpkin_Draw__FPv */
 static int daObj_Pumpkin_Draw(void* i_this) {
-    // NONMATCHING
+    return static_cast<daObj_Pumpkin_c*>(i_this)->Draw();
 }
 
 /* 80CB8224-80CB822C 002B84 0008+00 1/0 0/0 0/0 .text            daObj_Pumpkin_IsDelete__FPv */
