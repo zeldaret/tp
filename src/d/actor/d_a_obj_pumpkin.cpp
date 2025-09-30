@@ -268,7 +268,7 @@ int daObj_Pumpkin_c::Execute() {
     }
 
     scale.set(f_scale, f_scale, f_scale);
-    fopAcM_OffCarryType(this, fopAcM_CARRY_UNK_85);
+    fopAcM_OffCarryType(this, fopAcM_CARRY(fopAcM_CARRY_CHICKEN | fopAcM_CARRY_SIDE | fopAcM_CARRY_TYPE_1));
     attention_info.flags = 0;
     switch (mType) {
     case 0:
@@ -297,14 +297,13 @@ int daObj_Pumpkin_c::Execute() {
     }
 
     if (field_0xBAE) {
-        //
         int item_table_no = getItemTableNo();
-        if (item_table_no >= 0 && mItemProcId == 0xFFFFFFFF) {
+        if (item_table_no >= 0 && mItemProcId == fpcM_ERROR_PROCESS_ID_e) {
             mItemProcId = fopAcM_createItemFromTable(&current.pos, item_table_no, -1, fopAcM_GetRoomNo(this),
                                                      NULL, 0, NULL, NULL, NULL, NULL);
         }
 
-        if (mItemProcId == 0xFFFFFFFF || fopAcM_IsExecuting(mItemProcId)) {
+        if (mItemProcId == fpcM_ERROR_PROCESS_ID_e || fopAcM_IsExecuting(mItemProcId)) {
             if (mType == 0 && getProcType() != 2) {
                 field_0xB48 = mpHIO->m.growth_time_1;
                 field_0xB4C = mpHIO->m.growth_time_2;
@@ -850,7 +849,7 @@ void daObj_Pumpkin_c::setSmokePrtcl() {
  */
 void daObj_Pumpkin_c::setWaterPrtcl() {
     static u16 emttrId[4] = {
-        0x01B8, 0x01B9, 0x01BA, 0x01BB,
+        ID_ZI_J_DOWNWTRA_A, ID_ZI_J_DOWNWTRA_B, ID_ZI_J_DOWNWTRA_C, ID_ZI_J_DOWNWTRA_D,
     };
 
     cXyz prtcl_scale(0.6f * mPumpkinScale, 0.6f * mPumpkinScale, 0.6f * mPumpkinScale);

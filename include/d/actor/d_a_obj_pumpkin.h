@@ -6,11 +6,45 @@
 #include "d/d_cc_d.h"
 #include "d/actor/d_a_player.h"
 
-class daBoomerang_c;
+struct daObj_Pumpkin_HIOParam {
+    /* 0x00 */ f32 featured_offset;
+    /* 0x04 */ f32 gravity;
+    /* 0x08 */ f32 scale;
+    /* 0x0C */ f32 real_shadow_size;
+    /* 0x10 */ f32 weight;
+    /* 0x14 */ f32 height;
+    /* 0x18 */ f32 knee_length;
+    /* 0x1C */ f32 width;
+    /* 0x20 */ f32 fire_rate;
+    /* 0x24 */ f32 launch_angle;
+    /* 0x28 */ f32 floating_offset;
+    /* 0x2C */ s16 hold_on;
+    /* 0x2E */ s16 pull_sound_delay;
+    /* 0x30 */ s16 growth_time_1;
+    /* 0x32 */ s16 growth_time_2;
+};
+
+class daObj_Pumpkin_Param_c {
+public:
+    /* 80CB8304 */ virtual ~daObj_Pumpkin_Param_c() {}
+
+    static const daObj_Pumpkin_HIOParam m;
+};
+
 #if DEBUG
-class daObj_Pumpkin_HIO_c;
+class daObj_Pumpkin_HIO_c : public mDoHIO_entry_c {
+public:
+    daObj_Pumpkin_HIO_c();
+
+    void listenPropertyEvent(const JORPropertyEvent*);
+    void genMessage(JORMContext*);
+
+    daObj_Pumpkin_HIOParam m;
+};
+
+#define OBJ_PUMPKIN_HIO_CLASS daObj_Pumpkin_HIO_c
 #else
-class daObj_Pumpkin_Param_c;
+#define OBJ_PUMPKIN_HIO_CLASS daObj_Pumpkin_Param_c
 #endif
 
 /**
@@ -23,11 +57,7 @@ class daObj_Pumpkin_Param_c;
  */
 class daObj_Pumpkin_c : public fopAc_ac_c {
 private:
-#if DEBUG
-    /* 0x568 */ daObj_Pumpkin_HIO_c* mpHIO;
-#else
-    /* 0x568 */ daObj_Pumpkin_Param_c* mpHIO;
-#endif
+    /* 0x568 */ OBJ_PUMPKIN_HIO_CLASS* mpHIO;
     /* 0x56C */ request_of_phase_process_class mPhaseReq;
     /* 0x574 */ J3DModel* mpModel;
     /* 0x578 */ dBgS_ObjAcch mObjAcch;
@@ -165,43 +195,6 @@ public:
 };
 
 STATIC_ASSERT(sizeof(daObj_Pumpkin_c) == 0xbbc);
-
-struct daObj_Pumpkin_HIOParam {
-    /* 0x00 */ f32 featured_offset;
-    /* 0x04 */ f32 gravity;
-    /* 0x08 */ f32 scale;
-    /* 0x0C */ f32 real_shadow_size;
-    /* 0x10 */ f32 weight;
-    /* 0x14 */ f32 height;
-    /* 0x18 */ f32 knee_length;
-    /* 0x1C */ f32 width;
-    /* 0x20 */ f32 fire_rate;
-    /* 0x24 */ f32 launch_angle;
-    /* 0x28 */ f32 floating_offset;
-    /* 0x2C */ s16 hold_on;
-    /* 0x2E */ s16 pull_sound_delay;
-    /* 0x30 */ s16 growth_time_1;
-    /* 0x32 */ s16 growth_time_2;
-};
-
-class daObj_Pumpkin_Param_c {
-public:
-    /* 80CB8304 */ virtual ~daObj_Pumpkin_Param_c() {}
-
-    static const daObj_Pumpkin_HIOParam m;
-};
-
-#if DEBUG
-class daObj_Pumpkin_HIO_c : public mDoHIO_entry_c {
-public:
-    daObj_Pumpkin_HIO_c();
-
-    void listenPropertyEvent(const JORPropertyEvent*);
-    void genMessage(JORMContext*);
-
-    daObj_Pumpkin_HIOParam m;
-};
-#endif
 
 
 #endif /* D_A_OBJ_PUMPKIN_H */

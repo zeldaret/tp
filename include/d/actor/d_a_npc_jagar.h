@@ -14,7 +14,7 @@
 
 struct daNpc_Jagar_HIOParam {
     /* 0x00 */ daNpcT_HIOParam common;
-    /* 0x8C */ f32 pumpkin_monitoring_dist;
+    /* 0x8C */ f32 pumpkin_watch_range;
     /* 0x90 */ f32 pumpkin_watch_Ymax;
     /* 0x94 */ f32 pumpkin_watch_Ymin;
     /* 0x98 */ f32 running_speed;
@@ -38,6 +38,10 @@ public:
 
     daNpc_Jagar_HIOParam m;
 };
+
+#define NPC_JAGAR_HIO_CLASS daNpc_Jagar_HIO_c
+#else
+#define NPC_JAGAR_HIO_CLASS daNpc_Jagar_Param_c
 #endif
 
 class daNpc_Jagar_c : public daNpcT_c {
@@ -205,7 +209,7 @@ public:
         if (mType == 0 && fopAcM_GetName(pumpkin_p) == PROC_OBJ_PUMPKIN && !daNpcT_chkEvtBit(0xAE)
             && daNpcT_chkEvtBit(0x25B) && !daNpcT_chkEvtBit(0x235)) {
             ++field_0xffc;
-            reg_r30 = chkPointInArea(pumpkin_p->current.pos, current.pos, mpHIO->m.pumpkin_monitoring_dist,
+            reg_r30 = chkPointInArea(pumpkin_p->current.pos, current.pos, mpHIO->m.pumpkin_watch_range,
                                      mpHIO->m.pumpkin_watch_Ymax, mpHIO->m.pumpkin_watch_Ymin, 0);
             if (reg_r30) {
                 if (field_0xffc >= 4) {
@@ -222,11 +226,7 @@ public:
     static char* mCutNameList[7];
     static cutFunc mCutList[7];
 private:
-#if DEBUG
-    /* 0x0E40 */ daNpc_Jagar_HIO_c* mpHIO;
-#else
-    /* 0x0E40 */ daNpc_Jagar_Param_c* mpHIO;
-#endif
+    /* 0x0E40 */ NPC_JAGAR_HIO_CLASS* mpHIO;
     /* 0x0E44 */ dCcD_Cyl mCyl1;
     /* 0x0F80 */ u8 mType;
     /* 0x0F84 */ daNpcT_ActorMngr_c mActorMngr[5];
