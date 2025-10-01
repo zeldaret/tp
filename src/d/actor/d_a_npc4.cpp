@@ -1962,6 +1962,16 @@ u8 daNpcF_getDistTableIdx(int param_0, int param_1) {
     return param_0 + param_1 * 0x14 + 0x5e;
 }
 
+#if DEBUG
+void daNpcF_commonListenPropertyEvent(char*, int*, daNpcF_HIOParam*) {
+    // TODO.
+}
+
+void daNpcF_commonGenMessage(JORMContext*, daNpcF_HIOParam*) {
+    // TODO
+}
+#endif
+
 /* 80155AE8-80155B54 150428 006C+00 0/0 0/0 6/6 .text            daNpcF_clearMessageTmpBit__Fv */
 void daNpcF_clearMessageTmpBit() {
     daNpcF_offTmpBit(0xb);

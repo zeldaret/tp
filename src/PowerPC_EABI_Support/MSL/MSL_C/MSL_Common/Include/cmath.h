@@ -38,6 +38,10 @@ inline float floor(float num) {
 inline float tan(float num) {
     return ::i_tanf(num);
 }
+
+inline float pow(float x, float y) {
+    return ::pow(x, y);
+}
 }  // namespace std
 
 #endif
