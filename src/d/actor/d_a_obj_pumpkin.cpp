@@ -165,12 +165,8 @@ static dCcD_SrcCyl l_ccDCyl = {
     } // mCyl
 };
 
-#if DEBUG
-static daObj_Pumpkin_HIO_c l_HIO;
-#else
 /* 80CB85DC-80CB85E0 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
-static daObj_Pumpkin_Param_c l_HIO;
-#endif
+static OBJ_PUMPKIN_HIO_CLASS l_HIO;
 
 /* 80CB578C-80CB5A04 0000EC 0278+00 1/0 0/0 0/0 .text            __dt__15daObj_Pumpkin_cFv */
 daObj_Pumpkin_c::~daObj_Pumpkin_c() {

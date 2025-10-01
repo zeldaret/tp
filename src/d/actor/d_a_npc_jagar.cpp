@@ -349,12 +349,8 @@ daNpc_Jagar_c::cutFunc daNpc_Jagar_c::mCutList[7] = {
     &daNpc_Jagar_c::cutFindWolf,
 };
 
-#if DEBUG
-static daNpc_Jagar_HIO_c l_HIO;
-#else
 /* 80A1AE2C-80A1AE30 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
-static daNpc_Jagar_Param_c l_HIO;
-#endif
+static NPC_JAGAR_HIO_CLASS l_HIO;
 
 /* 80A1470C-80A14858 0000EC 014C+00 1/0 0/0 0/0 .text            __dt__13daNpc_Jagar_cFv */
 daNpc_Jagar_c::~daNpc_Jagar_c() {
