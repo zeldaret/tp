@@ -134,7 +134,7 @@ int daObjIBone_c::Create() {
 
     fopAcM_setCullSizeBox2(this, mpModel->getModelData());
 
-    mSound.init((Vec*)&current, 1);
+    mSound.init(&current.pos, 1);
 
     return 1;
 }
@@ -146,16 +146,16 @@ static const char* l_arcName = "Obj_Ibone";
 static const char* l_bmdName = "A_InoBone.bmd";
 
 /* 80C279A8-80C27A20 000368 0078+00 1/1 0/0 0/0 .text            CreateHeap__12daObjIBone_cFv */
-bool daObjIBone_c::CreateHeap() {
+int daObjIBone_c::CreateHeap() {
     J3DModelData* modelData =
         (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmdName);
     JUT_ASSERT(407, modelData != NULL);
-
+    
     mpModel =
         mDoExt_J3DModel__create(modelData, J3DMdlFlag_DifferedDLBuffer,
             BMD_DEFAULT_DIFF_FLAGS);
 
-    return mpModel != NULL;
+    return mpModel != NULL ? 1 : 0;
 }
 
 /* 80C27A20-80C27BBC 0003E0 019C+00 1/1 0/0 0/0 .text            create__12daObjIBone_cFv */
@@ -236,7 +236,7 @@ static const char* l_effbmdName = "BreakBoarBone.bmd";  // unused
 
 /* 80C27E48-80C27FEC 000808 01A4+00 1/1 0/0 0/0 .text            setBreakEffect__12daObjIBone_cFv */
 void daObjIBone_c::setBreakEffect() {
-    static const u16 particle_id[] = { 0x82E3 };
+    static const u16 particle_id[] = { dPa_RM(ID_ZM_S_BOARBONEBREAK00) };
     
     cXyz pos = current.pos;
 
@@ -250,8 +250,8 @@ void daObjIBone_c::setBreakEffect() {
     dPa_levelEcallBack* callback = &dPa_modelEcallBack::getEcallback();
 
     JPABaseEmitter* emitter =
-        dComIfGp_particle_set(0x82E4, &current.pos, NULL, NULL,
-            0xFF, callback, room_no, NULL, NULL, &scale);
+        dComIfGp_particle_set(dPa_RM(ID_ZM_S_M_BOARBONEBREAK00), &current.pos,
+            NULL, NULL, 0xFF, callback, room_no, NULL, NULL, &scale);
     
     dPa_modelEcallBack::setModel(emitter, tubo_bmd,
         tevStr, 3, tubo_btp, 6);
@@ -261,13 +261,13 @@ void daObjIBone_c::setBreakEffect() {
             0xFF, NULL, -1, NULL, NULL, NULL);
     }
 
-    mDoAud_seStart(Z2SE_OBJ_BONES_BREAK_L, (Vec*)&current, 0, 0);
+    mDoAud_seStart(Z2SE_OBJ_BONES_BREAK_L, &current.pos, 0, 0);
 }
 
 /* 80C27FEC-80C28050 0009AC 0064+00 1/1 0/0 0/0 .text            draw__12daObjIBone_cFv */
 int daObjIBone_c::draw() {
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(mpModel->mModelData, &tevStr);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     mDoExt_modelUpdateDL(mpModel);
 
     return 1;
@@ -283,25 +283,25 @@ int daObjIBone_c::_delete() {
 
 /* 80C28098-80C280B8 000A58 0020+00 1/0 0/0 0/0 .text            daObjIBone_Draw__FP12daObjIBone_c
  */
-static void daObjIBone_Draw(daObjIBone_c* i_this) {
-    i_this->draw();
+static int daObjIBone_Draw(daObjIBone_c* i_this) {
+    return i_this->draw();
 }
 
 /* 80C280B8-80C280D8 000A78 0020+00 1/0 0/0 0/0 .text daObjIBone_Execute__FP12daObjIBone_c */
-static void daObjIBone_Execute(daObjIBone_c* i_this) {
-    i_this->execute();
+static int daObjIBone_Execute(daObjIBone_c* i_this) {
+    return i_this->execute();
 }
 
 /* 80C280D8-80C280F8 000A98 0020+00 1/0 0/0 0/0 .text            daObjIBone_Delete__FP12daObjIBone_c
  */
-static void daObjIBone_Delete(daObjIBone_c* i_this) {
-    i_this->_delete();
+static int daObjIBone_Delete(daObjIBone_c* i_this) {
+    return i_this->_delete();
 }
 
 /* 80C280F8-80C28118 000AB8 0020+00 1/0 0/0 0/0 .text            daObjIBone_Create__FP10fopAc_ac_c
  */
-static void daObjIBone_Create(fopAc_ac_c* i_this) {
-    static_cast<daObjIBone_c*>(i_this)->create();
+static int daObjIBone_Create(fopAc_ac_c* i_this) {
+    return static_cast<daObjIBone_c*>(i_this)->create();
 }
 
 /* ############################################################################################## */

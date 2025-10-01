@@ -17,7 +17,7 @@ public:
     /* 80C27830 */ void initBaseMtx();
     /* 80C2786C */ void setBaseMtx();
     /* 80C278CC */ int Create();
-    /* 80C279A8 */ bool CreateHeap();
+    /* 80C279A8 */ int CreateHeap();
     /* 80C27A20 */ int create();
     /* 80C27C4C */ int execute();
     /* 80C27E48 */ void setBreakEffect();
@@ -25,7 +25,7 @@ public:
     /* 80C28050 */ int _delete();
 
     /* 0x568 */ request_of_phase_process_class mPhase;
-    /* 0x570 */ J3DModel *mpModel;
+    /* 0x570 */ J3DModel* mpModel;
     /* 0x574 */ dCcD_Stts mStts;
     /* 0x5B0 */ dCcD_Cyl mCyl;
     /* 0x6EC */ dCcD_Cyl mCyl2;
