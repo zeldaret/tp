@@ -16,7 +16,7 @@ public:
     /* 80C9FE28 */ void create(daObjNagaisu_c*, dCcD_Stts*);
     /* 80C9FF54 */ int execute();
     /* 80CA0034 */ int draw(dMdl_c*);
-    /* 80CA00B8 */ int Delete();
+    /* 80CA00B8 */ void Delete();
     /* 80CA0118 */ bool chkHit();
     /* 80CA0180 */ void callEmt();
     

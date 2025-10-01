@@ -229,7 +229,6 @@ int daObjIsuChild_c::createHeap() {
 
 /* 80C9FE28-80C9FF54 000AE8 012C+00 1/1 0/0 0/0 .text
  * create__15daObjIsuChild_cFP14daObjNagaisu_cP9dCcD_Stts       */
-// NONMATCHING - missing instruction
 void daObjIsuChild_c::create(daObjNagaisu_c* i_parent, dCcD_Stts* i_ccStts) {
     static const int COL_OFFSET_X[] = {
         60,
@@ -247,7 +246,9 @@ void daObjIsuChild_c::create(daObjNagaisu_c* i_parent, dCcD_Stts* i_ccStts) {
             mCcCyl[i].SetR(65.0f);
         }
 
-        if (!dComIfG_Bgsp().Regist(mpBgW, i_parent)) {}
+        if (dComIfG_Bgsp().Regist(mpBgW, i_parent)) {
+            return;
+        }
     }
 }
 
@@ -278,8 +279,7 @@ int daObjIsuChild_c::draw(dMdl_c* i_mdl) {
 }
 
 /* 80CA00B8-80CA0118 000D78 0060+00 2/2 0/0 0/0 .text            Delete__15daObjIsuChild_cFv */
-// NONMATCHING retail
-int daObjIsuChild_c::Delete() {
+void daObjIsuChild_c::Delete() {
     if (!mIsDead) {
         if (mpBgW != NULL && mpBgW->ChkUsed()) {
             dComIfG_Bgsp().Release(mpBgW);
