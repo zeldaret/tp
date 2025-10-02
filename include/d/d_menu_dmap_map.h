@@ -74,7 +74,7 @@ public:
     virtual void getInitDispCenter(f32*, f32*) = 0;
     virtual void getZoomMinMaxCheck(f32*, f32*, f32*, f32*, bool*, bool*) = 0;
     virtual f32 getZoomCmPerPixel() = 0;
-    virtual void draw();
+    void draw() {}
 
     /* 801C0EE0 */ f32 getMapBlendPer() const;
     /* 801C0F24 */ f32 getPixelStageSizeX() const;
