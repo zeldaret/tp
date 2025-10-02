@@ -2680,7 +2680,7 @@ static int daE_MK_Execute(e_mk_class* i_this) {
             PSMTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(23), *calc_mtx);
             sp6c.set(0.0f, 0.0f, 0.0f);
             MtxPosition(&sp6c, &sp78);
-            i_actor->current.pos = sp78;
+            i_actor->enemy.current.pos = sp78;
             i_actor->field_0x9b4 = 0;
             i_this->field_0x707 = 0;
         }
