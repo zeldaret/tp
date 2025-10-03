@@ -62,7 +62,7 @@ public:
     /* 80AAD110 */ s32 getFootLJointNo();
     /* 80AAD118 */ s32 getFootRJointNo();
 
-    static void* mCutNameList[2];
+    static char* mCutNameList[2];
     static u8 mCutList[24];
 
 private:

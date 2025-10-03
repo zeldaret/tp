@@ -346,38 +346,26 @@ SECTION_DATA static u8 l_bmdData[32] = {
 };
 
 /* 80968040-80968088 -00001 0048+00 0/1 0/0 0/0 .data            l_evtList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtList[18] = {
-    (void*)&d_a_npc_bans__stringBase0,
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_bans__stringBase0) + 0x1),
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_bans__stringBase0) + 0x11),
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_bans__stringBase0) + 0x1D),
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_bans__stringBase0) + 0x28),
-    (void*)0x00000003,
-    (void*)(((char*)&d_a_npc_bans__stringBase0) + 0x2E),
-    (void*)0x00000004,
-    (void*)(((char*)&d_a_npc_bans__stringBase0) + 0x35),
-    (void*)0x00000003,
-    (void*)(((char*)&d_a_npc_bans__stringBase0) + 0x40),
-    (void*)0x00000004,
-    (void*)(((char*)&d_a_npc_bans__stringBase0) + 0x4C),
-    (void*)0x00000003,
+static daNpcT_evtData_c l_evtList[9] = {
+    {"", 0},
+    {"DEFAULT_GETITEM", 0},
+    {"NO_RESPONSE", 0},
+    {"DEMO13_STB", 0},
+    {"ANGER", 3},
+    {"ANGER2", 4},
+    {"ANGER_NEAR", 3},
+    {"ANGER_NEAR2", 4},
+    {"GOBACK", 3},
 };
-#pragma pop
 
 /* 80968088-809680A0 -00001 0018+00 3/4 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[6] = {
-    (void*)&d_a_npc_bans__stringBase0,
-    (void*)(((char*)&d_a_npc_bans__stringBase0) + 0x53),
-    (void*)(((char*)&d_a_npc_bans__stringBase0) + 0x58),
-    (void*)(((char*)&d_a_npc_bans__stringBase0) + 0x60),
-    (void*)(((char*)&d_a_npc_bans__stringBase0) + 0x66),
-    (void*)(((char*)&d_a_npc_bans__stringBase0) + 0x6C),
+static char* l_resNameList[6] = {
+    "",
+    "Bans",
+    "Bans_TW",
+    "Bans1",
+    "Bans2",
+    "Len1",
 };
 
 /* 809680A0-809680A4 0000A0 0003+01 1/0 0/0 0/0 .data            l_loadResPtrn0 */
@@ -526,11 +514,11 @@ SECTION_DATA static u8 l_motionSequenceData[336] = {
 #pragma pop
 
 /* 8096852C-8096853C -00001 0010+00 1/1 0/0 0/0 .data            mCutNameList__12daNpc_Bans_c */
-SECTION_DATA void* daNpc_Bans_c::mCutNameList[4] = {
-    (void*)&d_a_npc_bans__stringBase0,
-    (void*)(((char*)&d_a_npc_bans__stringBase0) + 0x28),
-    (void*)(((char*)&d_a_npc_bans__stringBase0) + 0x71),
-    (void*)(((char*)&d_a_npc_bans__stringBase0) + 0x7A),
+char* daNpc_Bans_c::mCutNameList[4] = {
+    "",
+    "ANGER",
+    "PURCHASE",
+    "GO_BACK",
 };
 
 /* 8096853C-80968548 -00001 000C+00 0/1 0/0 0/0 .data            @3870 */

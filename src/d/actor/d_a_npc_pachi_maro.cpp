@@ -309,29 +309,24 @@ SECTION_DATA static u8 l_bmdData[16] = {
 };
 
 /* 80A9BAA8-80A9BAB8 -00001 0010+00 0/1 0/0 0/0 .data            l_evtList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtList[4] = {
-    (void*)&d_a_npc_pachi_maro__stringBase0,
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_pachi_maro__stringBase0) + 0x1),
-    (void*)0x0000000A,
+static daNpcT_evtData_c l_evtList[2] = {
+    {"", 0},
+    {"TUTRIAL_TALK", 10},
 };
-#pragma pop
 
 /* 80A9BAB8-80A9BAE4 -00001 002C+00 2/3 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[11] = {
-    (void*)&d_a_npc_pachi_maro__stringBase0,
-    (void*)(((char*)&d_a_npc_pachi_maro__stringBase0) + 0xE),
-    (void*)(((char*)&d_a_npc_pachi_maro__stringBase0) + 0x13),
-    (void*)(((char*)&d_a_npc_pachi_maro__stringBase0) + 0x1B),
-    (void*)(((char*)&d_a_npc_pachi_maro__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_pachi_maro__stringBase0) + 0x27),
-    (void*)(((char*)&d_a_npc_pachi_maro__stringBase0) + 0x2D),
-    (void*)(((char*)&d_a_npc_pachi_maro__stringBase0) + 0x33),
-    (void*)(((char*)&d_a_npc_pachi_maro__stringBase0) + 0x39),
-    (void*)(((char*)&d_a_npc_pachi_maro__stringBase0) + 0x3E),
-    (void*)(((char*)&d_a_npc_pachi_maro__stringBase0) + 0x44),
+static char* l_resNameList[11] = {
+    "",
+    "Maro",
+    "Maro_TW",
+    "Maro1",
+    "Maro2",
+    "Maro3",
+    "Taro1",
+    "Taro2",
+    "Len1",
+    "Besu1",
+    "evt_pachi",
 };
 
 /* 80A9BAE4-80A9BAE8 00006C 0003+01 0/0 0/0 0/0 .data            l_loadResPtrn0 */
@@ -475,18 +470,18 @@ SECTION_DATA static u8 l_motionSequenceData[144] = {
 
 /* 80A9BE64-80A9BE90 -00001 002C+00 1/1 0/0 0/0 .data            mCutNameList__18daNpc_Pachi_Maro_c
  */
-SECTION_DATA void* daNpc_Pachi_Maro_c::mCutNameList[11] = {
-    (void*)&d_a_npc_pachi_maro__stringBase0,
-    (void*)(((char*)&d_a_npc_pachi_maro__stringBase0) + 0x4E),
-    (void*)(((char*)&d_a_npc_pachi_maro__stringBase0) + 0x5C),
-    (void*)(((char*)&d_a_npc_pachi_maro__stringBase0) + 0x6F),
-    (void*)(((char*)&d_a_npc_pachi_maro__stringBase0) + 0x1),
-    (void*)(((char*)&d_a_npc_pachi_maro__stringBase0) + 0x7D),
-    (void*)(((char*)&d_a_npc_pachi_maro__stringBase0) + 0x8B),
-    (void*)(((char*)&d_a_npc_pachi_maro__stringBase0) + 0x9B),
-    (void*)(((char*)&d_a_npc_pachi_maro__stringBase0) + 0xB1),
-    (void*)(((char*)&d_a_npc_pachi_maro__stringBase0) + 0xC0),
-    (void*)(((char*)&d_a_npc_pachi_maro__stringBase0) + 0xD1),
+char* daNpc_Pachi_Maro_c::mCutNameList[11] = {
+    "",
+    "TUTRIAL_BEGIN",
+    "TUTRIAL_BEGIN_SKIP",
+    "TUTRIAL_CLEAR",
+    "TUTRIAL_TALK",
+    "TUTRIAL_TALK2",
+    "HIT_KAKASI_BODY",
+    "TUTRIAL_SELECT_GIVEUP",
+    "TUTRIAL_GIVEUP",
+    "TUTRIAL_CONTINUE",
+    "TUTRIAL_CAUTION",
 };
 
 /* 80A9BE90-80A9BE9C -00001 000C+00 0/1 0/0 0/0 .data            @3952 */

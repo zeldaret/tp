@@ -56,7 +56,7 @@ public:
     /* 809DE4EC */ void test(void*);
     /* 809DEF0C */ void adjustShapeAngle();
 
-    static void* mEvtCutNameList[3];
+    static char* mEvtCutNameList[3];
     static u8 mEvtCutList[36];
 
 private:

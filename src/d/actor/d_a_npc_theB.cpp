@@ -292,23 +292,20 @@ SECTION_DATA static u8 l_btkGetParamList[8] = {
 };
 
 /* 80B010CC-80B010E4 -00001 0018+00 1/1 0/0 0/0 .data            l_evtNames */
-SECTION_DATA static void* l_evtNames[6] = {
-    (void*)NULL,
-    (void*)&d_a_npc_theB__stringBase0,
-    (void*)(((char*)&d_a_npc_theB__stringBase0) + 0x16),
-    (void*)(((char*)&d_a_npc_theB__stringBase0) + 0x2E),
-    (void*)(((char*)&d_a_npc_theB__stringBase0) + 0x44),
-    (void*)(((char*)&d_a_npc_theB__stringBase0) + 0x4E),
+static char* l_evtNames[6] = {
+    NULL,
+    "PERSONAL_COMBAT_INTRO",
+    "PERSONAL_COMBAT_REVENGE",
+    "ANNULATION_FIELD_RACE",
+    "THEB_HINT",
+    "COACH_GUARD_GAMEOVER",
 };
 
 /* 80B010E4-80B010E8 -00001 0004+00 8/9 0/0 0/0 .data            l_arcName */
-SECTION_DATA static void* l_arcName = (void*)(((char*)&d_a_npc_theB__stringBase0) + 0x63);
+static char* l_arcName = "Coach";
 
 /* 80B010E8-80B010EC -00001 0004+00 0/1 0/0 0/0 .data            l_myName */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_myName = (void*)(((char*)&d_a_npc_theB__stringBase0) + 0x69);
-#pragma pop
+static char* l_myName = "TheB";
 
 /* 80B010EC-80B010F8 -00001 000C+00 0/1 0/0 0/0 .data            @3823 */
 #pragma push

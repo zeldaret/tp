@@ -49,7 +49,7 @@ public:
     /* 80AEF084 */ s32 getNeckJointNo();
     /* 80AEF08C */ bool getBackboneJointNo();
 
-    static void* mCutNameList;
+    static char* mCutNameList[1];
     static u8 mCutList[12];
 
 private:

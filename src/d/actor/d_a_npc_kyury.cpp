@@ -275,23 +275,17 @@ SECTION_DATA static u8 l_bmdData[24] = {
 };
 
 /* 80A63A4C-80A63A64 -00001 0018+00 0/1 0/0 0/0 .data            l_evtList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtList[6] = {
-    (void*)&d_a_npc_kyury__stringBase0,
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_kyury__stringBase0) + 0x1),
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_kyury__stringBase0) + 0xD),
-    (void*)0x00000002,
+static daNpcT_evtData_c l_evtList[3] = {
+    {"", 0},
+    {"NO_RESPONSE", 0},
+    {"FIRST_CONVERSATION", 2},
 };
-#pragma pop
 
 /* 80A63A64-80A63A70 -00001 000C+00 2/3 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[3] = {
-    (void*)&d_a_npc_kyury__stringBase0,
-    (void*)(((char*)&d_a_npc_kyury__stringBase0) + 0x20),
-    (void*)(((char*)&d_a_npc_kyury__stringBase0) + 0x26),
+static char* l_resNameList[3] = {
+    "",
+    "Kyury",
+    "Kyury1",
 };
 
 /* 80A63A70-80A63A74 00005C 0002+02 0/0 0/0 0/0 .data            l_loadResPtrn0 */
@@ -437,9 +431,9 @@ SECTION_DATA static u8 l_motionSequenceData[208] = {
 #pragma pop
 
 /* 80A63FF4-80A63FFC -00001 0008+00 1/1 0/0 0/0 .data            mCutNameList__13daNpc_Kyury_c */
-SECTION_DATA void* daNpc_Kyury_c::mCutNameList[2] = {
-    (void*)&d_a_npc_kyury__stringBase0,
-    (void*)(((char*)&d_a_npc_kyury__stringBase0) + 0x2D),
+char* daNpc_Kyury_c::mCutNameList[2] = {
+    "",
+    "CONVERSATION",
 };
 
 /* 80A63FFC-80A64008 -00001 000C+00 1/1 0/0 0/0 .data            @3813 */

@@ -97,7 +97,7 @@ public:
 
     int getType() { return mType; }
 
-    static void* mEvtCutNameList[12];
+    static char* mEvtCutNameList[12];
     static u8 mEvtCutList[144];
 
 private:
