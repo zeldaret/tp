@@ -10,10 +10,6 @@
 //
 // Declarations:
 //
-inline void nObjMHasu::daObjMHasu_c::setRideFlag(bool flag)
-{
-    mRideFlag = flag;
-}
 
 /* 80C18298-80C182DC 000078 0044+00 1/1 0/0 0/0 .text
  * rideCallBack__FP4dBgWP10fopAc_ac_cP10fopAc_ac_c              */
@@ -239,7 +235,3 @@ extern actor_process_profile_definition g_profile_Obj_MHasu = {
   fopAc_ACTOR_e,                     // mActorType
   fopAc_CULLBOX_CUSTOM_e,            // cullType
 };
-
-nObjMHasu::daObjMHasu_c::~daObjMHasu_c()
-{
-}

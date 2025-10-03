@@ -26,9 +26,9 @@ public:
         /* 80C186E0 */ void upDownHasu();
         /* 80C18888 */ void updateCount(u8);
         /* 80C188A0 */ void setHasuCount(f32);
-        /* 80C189E0 */ virtual ~daObjMHasu_c();
+        /* 80C189E0 */ virtual ~daObjMHasu_c() {};
 
-        inline void setRideFlag(bool);
+        void setRideFlag(bool i_ride) { mRideFlag = i_ride; }
 private:
     /* 0x5A8 */ Mtx mMtx;
     /* 0x5D8 */ Mtx mMtx2;
