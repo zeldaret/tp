@@ -712,7 +712,7 @@ config.libs = [
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_meter2.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_msg_out_font.cpp"),
             Object(NonMatching, "d/d_msg_class.cpp"),
-            Object(NonMatching, "d/d_msg_object.cpp"),
+            Object(Equivalent, "d/d_msg_object.cpp"),  # weak func order
             Object(NonMatching, "d/d_msg_unit.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_msg_scrn_3select.cpp"),
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d/d_msg_scrn_arrow.cpp"),
