@@ -89,7 +89,7 @@ public:
     /* 80A9B800 */ void checkChangeJoint(int);
     /* 80A9B810 */ void checkRemoveJoint(int);
 
-    static void* mCutNameList[11];
+    static char* mCutNameList[11];
     static u8 mCutList[132];
 
 private:

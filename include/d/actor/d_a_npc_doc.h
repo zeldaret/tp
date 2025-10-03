@@ -56,7 +56,7 @@ public:
     /* 809AA294 */ s32 getFootRJointNo();
     /* 809AA29C */ void chkXYItems();
 
-    static void* mCutNameList;
+    static char* mCutNameList[1];
     static u8 mCutList[12];
 
 private:

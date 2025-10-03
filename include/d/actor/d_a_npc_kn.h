@@ -363,8 +363,12 @@ public:
     /* 80A3B708 */ virtual void decTmr();
     /* 80A3A504 */ virtual void clrParam();
     /* 80A3B7C4 */ virtual bool afterSetFaceMotionAnm(int, int, f32, int) { return true; }
-    /* 80A3B7CC */ virtual daNpcT_faceMotionAnmData_c getFaceMotionAnm(daNpcT_faceMotionAnmData_c);
-    /* 80A3B7FC */ virtual daNpcT_motionAnmData_c getMotionAnm(daNpcT_motionAnmData_c);
+    /* 80A3B7CC */ virtual daNpcT_faceMotionAnmData_c getFaceMotionAnm(daNpcT_faceMotionAnmData_c arg0) {
+        return arg0;
+    }
+    /* 80A3B7FC */ virtual daNpcT_motionAnmData_c getMotionAnm(daNpcT_motionAnmData_c arg0) {
+        return arg0;
+    }
     /* 80A2AA0C */ virtual ~daNpc_Kn_c();
     /* 80A2D060 */ virtual bool afterSetMotionAnm(int, int, f32, int);
     

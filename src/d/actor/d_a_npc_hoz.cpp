@@ -309,39 +309,27 @@ SECTION_DATA static u8 l_bmdData[16] = {
 };
 
 /* 80A06834-80A0687C -00001 0048+00 0/1 0/0 0/0 .data            l_evtList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtList[18] = {
-    (void*)&d_a_npc_hoz__stringBase0,
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_hoz__stringBase0) + 0x1),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_hoz__stringBase0) + 0xB),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_hoz__stringBase0) + 0x1C),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_hoz__stringBase0) + 0x2A),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_hoz__stringBase0) + 0x37),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_hoz__stringBase0) + 0x44),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_hoz__stringBase0) + 0x50),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_hoz__stringBase0) + 0x58),
-    (void*)0x00000001,
+static daNpcT_evtData_c l_evtList[9] = {
+    {"", 0},
+    {"BOAT_RACE", 1},
+    {"BOAT_RACE_RETURN", 1},
+    {"BEFORE_BATTLE", 1},
+    {"AFTER_BATTLE", 1},
+    {"BEFORE_BLAST", 1},
+    {"AFTER_BLAST", 1},
+    {"Y_MUSHI", 1},
+    {"TALK_BREAK", 1},
 };
-#pragma pop
 
 /* 80A0687C-80A06898 -00001 001C+00 2/3 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[7] = {
-    (void*)&d_a_npc_hoz__stringBase0,
-    (void*)(((char*)&d_a_npc_hoz__stringBase0) + 0x63),
-    (void*)(((char*)&d_a_npc_hoz__stringBase0) + 0x67),
-    (void*)(((char*)&d_a_npc_hoz__stringBase0) + 0x6E),
-    (void*)(((char*)&d_a_npc_hoz__stringBase0) + 0x73),
-    (void*)(((char*)&d_a_npc_hoz__stringBase0) + 0x78),
-    (void*)(((char*)&d_a_npc_hoz__stringBase0) + 0x7D),
+static char* l_resNameList[7] = {
+    "",
+    "Hoz",
+    "Hoz_TW",
+    "Hoz1",
+    "Hoz2",
+    "Hoz3",
+    "Hoz2_3",
 };
 
 /* 80A06898-80A0689C 000094 0003+01 1/0 0/0 0/0 .data            l_loadResPtrn0 */
@@ -617,15 +605,15 @@ SECTION_DATA static u8 l_motionSequenceData[576] = {
 #pragma pop
 
 /* 80A075C0-80A075E0 -00001 0020+00 1/1 0/0 0/0 .data            mCutNameList__11daNpc_Hoz_c */
-SECTION_DATA void* daNpc_Hoz_c::mCutNameList[8] = {
-    (void*)&d_a_npc_hoz__stringBase0,
-    (void*)(((char*)&d_a_npc_hoz__stringBase0) + 0x1),
-    (void*)(((char*)&d_a_npc_hoz__stringBase0) + 0x1C),
-    (void*)(((char*)&d_a_npc_hoz__stringBase0) + 0x2A),
-    (void*)(((char*)&d_a_npc_hoz__stringBase0) + 0x37),
-    (void*)(((char*)&d_a_npc_hoz__stringBase0) + 0x44),
-    (void*)(((char*)&d_a_npc_hoz__stringBase0) + 0x50),
-    (void*)(((char*)&d_a_npc_hoz__stringBase0) + 0x58),
+char* daNpc_Hoz_c::mCutNameList[8] = {
+    "",
+    "BOAT_RACE",
+    "BEFORE_BATTLE",
+    "AFTER_BATTLE",
+    "BEFORE_BLAST",
+    "AFTER_BLAST",
+    "Y_MUSHI",
+    "TALK_BREAK",
 };
 
 /* 80A075E0-80A075EC -00001 000C+00 0/1 0/0 0/0 .data            @3957 */

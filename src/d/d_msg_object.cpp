@@ -601,10 +601,9 @@ int dMsgObject_c::_delete() {
 }
 
 /* 80233D04-80233E70 22E644 016C+00 2/2 2/2 0/0 .text setMessageIndex__12dMsgObject_cFUlUlb */
-// NONMATCHING reg swap
-void dMsgObject_c::setMessageIndex(u32 param_1, u32 param_2, bool param_3) {
-    field_0x158 = param_1;
-    u32 revoIndex = getRevoMessageIndex(param_1);
+void dMsgObject_c::setMessageIndex(u32 revoIndex, u32 param_2, bool param_3) {
+    field_0x158 = revoIndex;
+    revoIndex = getRevoMessageIndex(revoIndex);
     if (field_0x4cc == 0) {
         mNoDemoFlag = 1;
     }
@@ -624,7 +623,8 @@ void dMsgObject_c::setMessageIndex(u32 param_1, u32 param_2, bool param_3) {
 
     JMSMesgInfo_c* pMsg = (JMSMesgInfo_c*)((char*)mpMsgDt + 0x20);
     u8* iVar2 = (u8*)pMsg + pMsg->header.size;
-    dComIfGp_setMesgCameraAttrInfo(pMsg->entries[getMessageIndex(revoIndex)].camera_id);
+    u32 msg_id = getMessageIndex(revoIndex);
+    dComIfGp_setMesgCameraAttrInfo(pMsg->entries[msg_id].camera_id);
     if (field_0x15c == 1000) {
         mpRefer->setSelMsgPtr(NULL);
     } else {
@@ -632,7 +632,8 @@ void dMsgObject_c::setMessageIndex(u32 param_1, u32 param_2, bool param_3) {
         if (msgIndex == 0x264) {
             mpRefer->setSelMsgPtr(NULL);
         } else {
-            mpRefer->setSelMsgPtr(((char*)iVar2 + pMsg->entries[msgIndex].string_offset + 8));
+            char* my_ptr = (char*) (iVar2 + pMsg->entries[msgIndex].string_offset + 8);
+            mpRefer->setSelMsgPtr(my_ptr);
         }
     }
     if (param_3) {
@@ -642,9 +643,9 @@ void dMsgObject_c::setMessageIndex(u32 param_1, u32 param_2, bool param_3) {
 
 /* 80233E70-80233F84 22E7B0 0114+00 1/1 1/1 0/0 .text setMessageIndexDemo__12dMsgObject_cFUlb */
 // NONMATCHING reg swap
-void dMsgObject_c::setMessageIndexDemo(u32 param_1, bool param_2) {
-    field_0x158 = param_1;
-    int revoMsgIndex = getRevoMessageIndex(param_1);
+void dMsgObject_c::setMessageIndexDemo(u32 revoMsgIndex, bool param_2) {
+    field_0x158 = revoMsgIndex;
+    revoMsgIndex = getRevoMessageIndex(revoMsgIndex);
     mNoDemoFlag = 1;
     field_0x4d4 = 1;
     dMsgObject_onCameraCancelFlag();
@@ -662,9 +663,9 @@ void dMsgObject_c::setMessageIndexDemo(u32 param_1, bool param_2) {
     field_0x172 = 0;
     mpRefer->setPageNum(field_0x172);
     JMSMesgInfo_c* info_header_p = (JMSMesgInfo_c*)((char*)mpMsgDt + 0x20);
+    JMSMesgInfo_c* reg_25 = (JMSMesgInfo_c*)((char*) info_header_p + info_header_p->header.size);
     int ind = getMessageIndex(revoMsgIndex);
-    JMSMesgEntry_c* info_entries = (JMSMesgEntry_c*)((char*)info_header_p + 0x10);
-    dComIfGp_setMesgCameraAttrInfo(info_entries[ind].camera_id);
+    dComIfGp_setMesgCameraAttrInfo(info_header_p->entries[ind].camera_id);
     mpRefer->setSelMsgPtr(NULL);
     if (param_2) {
         mpCtrl->setMessageID(mMessageID, 0, NULL);

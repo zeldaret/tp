@@ -314,31 +314,22 @@ SECTION_DATA static void* l_loadRes_list[2] = {
 };
 
 /* 809E8084-809E8088 -00001 0004+00 6/8 0/0 0/0 .data            l_resNames */
-SECTION_DATA static void* l_resNames = (void*)&d_a_npc_grs__stringBase0;
+static char* l_resNames[1] = {"grS"};
 
 /* 809E8088-809E8090 -00001 0008+00 0/1 0/0 0/0 .data            l_evtNames */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtNames[2] = {
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_grs__stringBase0) + 0x4),
+static char* l_evtNames[2] = {
+    NULL,
+    "PUSHOUT",
 };
-#pragma pop
 
 /* 809E8090-809E8094 -00001 0004+00 0/1 0/0 0/0 .data            l_myName */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_myName = (void*)&d_a_npc_grs__stringBase0;
-#pragma pop
+static char* l_myName = "grS";
 
 /* 809E8094-809E809C -00001 0008+00 0/1 0/0 0/0 .data            mEvtCutNameList__11daNpc_grS_c */
-#pragma push
-#pragma force_active on
-SECTION_DATA void* daNpc_grS_c::mEvtCutNameList[2] = {
-    (void*)(((char*)&d_a_npc_grs__stringBase0) + 0xC),
-    (void*)(((char*)&d_a_npc_grs__stringBase0) + 0x4),
+char* daNpc_grS_c::mEvtCutNameList[2] = {
+    "",
+    "PUSHOUT",
 };
-#pragma pop
 
 /* 809E809C-809E80A8 -00001 000C+00 1/1 0/0 0/0 .data            @4051 */
 SECTION_DATA static void* lit_4051[3] = {

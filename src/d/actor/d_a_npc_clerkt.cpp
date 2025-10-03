@@ -275,20 +275,15 @@ SECTION_DATA static u8 l_bmdData[8] = {
 };
 
 /* 8099D380-8099D390 -00001 0010+00 0/1 0/0 0/0 .data            l_evtList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtList[4] = {
-    (void*)&d_a_npc_clerkt__stringBase0,
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_clerkt__stringBase0) + 0x1),
-    (void*)NULL,
+static daNpcT_evtData_c l_evtList[2] = {
+    {"", 0},
+    {"DEFAULT_GETITEM", 0},
 };
-#pragma pop
 
 /* 8099D390-8099D398 -00001 0008+00 2/3 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[2] = {
-    (void*)&d_a_npc_clerkt__stringBase0,
-    (void*)(((char*)&d_a_npc_clerkt__stringBase0) + 0x11),
+static char* l_resNameList[2] = {
+    "",
+    "Tkj",
 };
 
 /* 8099D398-8099D39C 000040 0002+02 1/0 0/0 0/0 .data            l_loadResPtrn0 */
@@ -342,7 +337,7 @@ SECTION_DATA static u8 l_motionSequenceData[16] = {
 #pragma pop
 
 /* 8099D428-8099D42C -00001 0004+00 1/1 0/0 0/0 .data            mCutNameList__13daNpcClerkT_c */
-SECTION_DATA void* daNpcClerkT_c::mCutNameList = (void*)&d_a_npc_clerkt__stringBase0;
+char* daNpcClerkT_c::mCutNameList[1] = {""};
 
 /* 8099D42C-8099D438 0000D4 000C+00 2/2 0/0 0/0 .data            mCutList__13daNpcClerkT_c */
 SECTION_DATA u8 daNpcClerkT_c::mCutList[12] = {

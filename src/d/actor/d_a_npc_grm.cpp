@@ -267,23 +267,17 @@ SECTION_DATA static u8 l_bmdData[8] = {
 };
 
 /* 809D6EBC-809D6ED4 -00001 0018+00 0/1 0/0 0/0 .data            l_evtList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtList[6] = {
-    (void*)&d_a_npc_grm__stringBase0,
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_grm__stringBase0) + 0x1),
-    (void*)NULL,
-    (void*)NULL,
-    (void*)NULL,
+static daNpcT_evtData_c l_evtList[3] = {
+    {"", 0},
+    {"DEFAULT_GETITEM", 0},
+    {NULL, 0},
 };
-#pragma pop
 
 /* 809D6ED4-809D6EE0 -00001 000C+00 2/3 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[3] = {
-    (void*)&d_a_npc_grm__stringBase0,
-    (void*)(((char*)&d_a_npc_grm__stringBase0) + 0x11),
-    (void*)(((char*)&d_a_npc_grm__stringBase0) + 0x1A),
+static char* l_resNameList[3] = {
+    "",
+    "grA_base",
+    "grA_mdl",
 };
 
 /* 809D6EE0-809D6EE4 00004C 0003+01 1/0 0/0 0/0 .data            l_loadResPtrn0 */
@@ -357,9 +351,9 @@ SECTION_DATA static u8 l_motionSequenceData[80] = {
 #pragma pop
 
 /* 809D70BC-809D70C4 -00001 0008+00 1/1 0/0 0/0 .data            mCutNameList__11daNpc_grM_c */
-SECTION_DATA void* daNpc_grM_c::mCutNameList[2] = {
-    (void*)&d_a_npc_grm__stringBase0,
-    (void*)(((char*)&d_a_npc_grm__stringBase0) + 0x22),
+char* daNpc_grM_c::mCutNameList[2] = {
+    "",
+    "TALK_SPA",
 };
 
 /* 809D70C4-809D70D0 -00001 000C+00 1/1 0/0 0/0 .data            @3831 */

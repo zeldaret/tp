@@ -114,7 +114,7 @@ public:
     /* 809B9258 */ void checkChangeJoint(int);
     /* 809B9268 */ void checkRemoveJoint(int);
 
-    static void* mCutNameList[18];
+    static char* mCutNameList[18];
     static u8 mCutList[216];
 private:
     /* 0x568 */ u8 field_0x568[0x10c8 - 0x568];

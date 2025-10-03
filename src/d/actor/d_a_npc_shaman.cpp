@@ -299,28 +299,19 @@ SECTION_DATA static u8 l_bmdData[8] = {
 };
 
 /* 80AE6D40-80AE6D70 -00001 0030+00 0/1 0/0 0/0 .data            l_evtList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtList[12] = {
-    (void*)&d_a_npc_shaman__stringBase0,
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_shaman__stringBase0) + 0x1),
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_shaman__stringBase0) + 0xD),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_shaman__stringBase0) + 0x1C),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_shaman__stringBase0) + 0x23),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_shaman__stringBase0) + 0x2A),
-    (void*)0x00000001,
+static daNpcT_evtData_c l_evtList[6] = {
+    {"", 0},
+    {"NO_RESPONSE", 0},
+    {"PERFORM_AUGURY", 1},
+    {"ALLGET", 1},
+    {"NOLOOK", 1},
+    {"RETURN", 1},
 };
-#pragma pop
 
 /* 80AE6D70-80AE6D78 -00001 0008+00 2/3 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[2] = {
-    (void*)&d_a_npc_shaman__stringBase0,
-    (void*)(((char*)&d_a_npc_shaman__stringBase0) + 0x31),
+static char* l_resNameList[2] = {
+    "",
+    "Sha",
 };
 
 /* 80AE6D78-80AE6D7C 000060 0002+02 1/0 0/0 0/0 .data            l_loadResPtrn0 */
@@ -416,9 +407,9 @@ SECTION_DATA static u8 l_motionSequenceData[128] = {
 #pragma pop
 
 /* 80AE70A0-80AE70A8 -00001 0008+00 1/1 0/0 0/0 .data            mCutNameList__11daNpc_Sha_c */
-SECTION_DATA void* daNpc_Sha_c::mCutNameList[2] = {
-    (void*)&d_a_npc_shaman__stringBase0,
-    (void*)(((char*)&d_a_npc_shaman__stringBase0) + 0xD),
+char* daNpc_Sha_c::mCutNameList[2] = {
+    "",
+    "PERFORM_AUGURY",
 };
 
 /* 80AE70A8-80AE70B4 -00001 000C+00 0/1 0/0 0/0 .data            @3812 */

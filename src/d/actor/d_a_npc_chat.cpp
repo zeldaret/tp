@@ -431,334 +431,304 @@ extern "C" char const* const stringBase_80987943;
 extern "C" char const* const stringBase_8098794A;
 
 /* 8098699C-809869B4 -00001 0018+00 8/7 0/0 0/0 .rodata          l_resMANa */
-SECTION_RODATA static void* const l_resMANa[6] = {
-    (void*)&d_a_npc_chat__stringBase0,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x6),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resMANa[6] = {
+    "MAN_a",
+    "MAN_a_TW",
+    "Mgeneral",
+    "Mspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x8098699C, &l_resMANa);
 
 /* 809869B4-809869CC -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMADa */
-SECTION_RODATA static void* const l_resMADa[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x31),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x37),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resMADa[6] = {
+    "MAD_a",
+    "MAD_a_TW",
+    "Mgeneral",
+    "Mspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x809869B4, &l_resMADa);
 
 /* 809869CC-809869E4 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMCNa */
-SECTION_RODATA static void* const l_resMCNa[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x40),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x46),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resMCNa[6] = {
+    "MCN_a",
+    "MCN_a_TW",
+    "Mgeneral",
+    "Mspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x809869CC, &l_resMCNa);
 
 /* 809869E4-809869FC -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMONa */
-SECTION_RODATA static void* const l_resMONa[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x4F),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x55),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resMONa[6] = {
+    "MON_a",
+    "MON_a_TW",
+    "Mgeneral",
+    "Mspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x809869E4, &l_resMONa);
 
 /* 809869FC-80986A14 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMANb */
-SECTION_RODATA static void* const l_resMANb[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x5E),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x64),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resMANb[6] = {
+    "MAN_b",
+    "MAN_b_TW",
+    "Mgeneral",
+    "Mspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x809869FC, &l_resMANb);
 
 /* 80986A14-80986A2C -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMANc */
-SECTION_RODATA static void* const l_resMANc[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x6D),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x73),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resMANc[6] = {
+    "MAN_c",
+    "MAN_c_TW",
+    "Mgeneral",
+    "Mspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986A14, &l_resMANc);
 
 /* 80986A2C-80986A44 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMASa */
-SECTION_RODATA static void* const l_resMASa[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x7C),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x82),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resMASa[6] = {
+    "MAS_a",
+    "MAS_a_TW",
+    "Mgeneral",
+    "Mspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986A2C, &l_resMASa);
 
 /* 80986A44-80986A5C -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMBNa */
-SECTION_RODATA static void* const l_resMBNa[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x8B),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x91),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resMBNa[6] = {
+    "MBN_a",
+    "MBN_a_TW",
+    "Mgeneral",
+    "Mspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986A44, &l_resMBNa);
 
 /* 80986A5C-80986A74 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMANa2 */
-SECTION_RODATA static void* const l_resMANa2[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x9A),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xA1),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resMANa2[6] = {
+    "MAN_a2",
+    "MAN_a2_TW",
+    "Mgeneral",
+    "Mspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986A5C, &l_resMANa2);
 
 /* 80986A74-80986A8C -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMADa2 */
-SECTION_RODATA static void* const l_resMADa2[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xAB),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xB2),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resMADa2[6] = {
+    "MAD_a2",
+    "MAD_a2_TW",
+    "Mgeneral",
+    "Mspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986A74, &l_resMADa2);
 
 /* 80986A8C-80986AA4 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMCNa2 */
-SECTION_RODATA static void* const l_resMCNa2[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xBC),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xC3),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resMCNa2[6] = {
+    "MCN_a2",
+    "MCN_a2_TW",
+    "Mgeneral",
+    "Mspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986A8C, &l_resMCNa2);
 
 /* 80986AA4-80986ABC -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMONa2 */
-SECTION_RODATA static void* const l_resMONa2[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xCD),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xD4),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resMONa2[6] = {
+    "MON_a2",
+    "MON_a2_TW",
+    "Mgeneral",
+    "Mspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986AA4, &l_resMONa2);
 
 /* 80986ABC-80986AD4 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMANb2 */
-SECTION_RODATA static void* const l_resMANb2[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xDE),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xE5),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resMANb2[6] = {
+    "MAN_b2",
+    "MAN_b2_TW",
+    "Mgeneral",
+    "Mspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986ABC, &l_resMANb2);
 
 /* 80986AD4-80986AEC -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMANc2 */
-SECTION_RODATA static void* const l_resMANc2[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xEF),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF6),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resMANc2[6] = {
+    "MAN_c2",
+    "MAN_c2_TW",
+    "Mgeneral",
+    "Mspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986AD4, &l_resMANc2);
 
 /* 80986AEC-80986B04 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMASa2 */
-SECTION_RODATA static void* const l_resMASa2[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x100),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x107),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resMASa2[6] = {
+    "MAS_a2",
+    "MAS_a2_TW",
+    "Mgeneral",
+    "Mspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986AEC, &l_resMASa2);
 
 /* 80986B04-80986B1C -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMBNa2 */
-SECTION_RODATA static void* const l_resMBNa2[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x111),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x118),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resMBNa2[6] = {
+    "MBN_a2",
+    "MBN_a2_TW",
+    "Mgeneral",
+    "Mspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986B04, &l_resMBNa2);
 
 /* 80986B1C-80986B34 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resWANa */
-SECTION_RODATA static void* const l_resWANa[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x122),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x128),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resWANa[6] = {
+    "WAN_a",
+    "WAN_a_TW",
+    "Wgeneral",
+    "Wspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986B1C, &l_resWANa);
 
 /* 80986B34-80986B4C -00001 0018+00 1/1 0/0 0/0 .rodata          l_resWADa */
-SECTION_RODATA static void* const l_resWADa[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x143),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x149),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resWADa[6] = {
+    "WAD_a",
+    "WAD_a_TW",
+    "Wgeneral",
+    "Wspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986B34, &l_resWADa);
 
 /* 80986B4C-80986B64 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMATa */
-SECTION_RODATA static void* const l_resMATa[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x152),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x158),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resMATa[6] = {
+    "MAT_a",
+    "MAT_a_TW",
+    "Wgeneral",
+    "Wspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986B4C, &l_resMATa);
 
 /* 80986B64-80986B7C -00001 0018+00 1/1 0/0 0/0 .rodata          l_resWCNa */
-SECTION_RODATA static void* const l_resWCNa[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x161),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x167),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resWCNa[6] = {
+    "WCN_a",
+    "WCN_a_TW",
+    "Wgeneral",
+    "Wspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986B64, &l_resWCNa);
 
 /* 80986B7C-80986B94 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resWONa */
-SECTION_RODATA static void* const l_resWONa[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x170),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x176),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resWONa[6] = {
+    "WON_a",
+    "WON_a_TW",
+    "Wgeneral",
+    "Wspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986B7C, &l_resWONa);
 
 /* 80986B94-80986BAC -00001 0018+00 1/1 0/0 0/0 .rodata          l_resWGNa */
-SECTION_RODATA static void* const l_resWGNa[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x17F),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x185),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resWGNa[6] = {
+    "WGN_a",
+    "WGN_a_TW",
+    "Wgeneral",
+    "Wspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986B94, &l_resWGNa);
 
 /* 80986BAC-80986BC4 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resWANb */
-SECTION_RODATA static void* const l_resWANb[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18E),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x194),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resWANb[6] = {
+    "WAN_b",
+    "WAN_b_TW",
+    "Wgeneral",
+    "Wspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986BAC, &l_resWANb);
 
 /* 80986BC4-80986BDC -00001 0018+00 1/1 0/0 0/0 .rodata          l_resWANa2 */
-SECTION_RODATA static void* const l_resWANa2[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x19D),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x1A4),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resWANa2[6] = {
+    "WAN_a2",
+    "WAN_a2_TW",
+    "Wgeneral",
+    "Wspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986BC4, &l_resWANa2);
 
 /* 80986BDC-80986BF4 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resWADa2 */
-SECTION_RODATA static void* const l_resWADa2[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x1AE),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x1B5),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resWADa2[6] = {
+    "WAD_a2",
+    "WAD_a2_TW",
+    "Wgeneral",
+    "Wspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986BDC, &l_resWADa2);
 
 /* 80986BF4-80986C0C -00001 0018+00 1/1 0/0 0/0 .rodata          l_resMATa2 */
-SECTION_RODATA static void* const l_resMATa2[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x1BF),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x1C6),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resMATa2[6] = {
+    "MAT_a2",
+    "MAT_a2_TW",
+    "Wgeneral",
+    "Wspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986BF4, &l_resMATa2);
 
 /* 80986C0C-80986C24 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resWCNa2 */
-SECTION_RODATA static void* const l_resWCNa2[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x1D0),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x1D7),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resWCNa2[6] = {
+    "WCN_a2",
+    "WCN_a2_TW",
+    "Wgeneral",
+    "Wspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986C0C, &l_resWCNa2);
 
 /* 80986C24-80986C3C -00001 0018+00 1/1 0/0 0/0 .rodata          l_resWONa2 */
-SECTION_RODATA static void* const l_resWONa2[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x1E1),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x1E8),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resWONa2[6] = {
+    "WON_a2",
+    "WON_a2_TW",
+    "Wgeneral",
+    "Wspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986C24, &l_resWONa2);
 
 /* 80986C3C-80986C54 -00001 0018+00 1/1 0/0 0/0 .rodata          l_resWGNa2 */
-SECTION_RODATA static void* const l_resWGNa2[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x1F2),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x1F9),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resWGNa2[6] = {
+    "WGN_a2",
+    "WGN_a2_TW",
+    "Wgeneral",
+    "Wspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986C3C, &l_resWGNa2);
 
 /* 80986C54-80986C6C -00001 0018+00 1/1 0/0 0/0 .rodata          l_resWANb2 */
-SECTION_RODATA static void* const l_resWANb2[6] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x203),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x20A),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21),
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28),
+static char* const l_resWANb2[6] = {
+    "WAN_b2",
+    "WAN_b2_TW",
+    "Wgeneral",
+    "Wspecial",
+    "object",
+    "objectTW",
 };
-COMPILER_STRIP_GATE(0x80986C54, &l_resWANb2);
 
 /* 80987740-80987740 000DA4 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
 #pragma push
@@ -844,6 +814,11 @@ SECTION_DATA static void* l_resNameTbl[30] = {
     (void*)&l_resWGNa2, (void*)&l_resWANb2,
 };
 
+struct anmTblPrm {
+    char* arc_name;
+    int resource_index;
+};
+
 /* 809879F4-80987AE4 000098 00F0+00 1/2 0/0 0/0 .data            l_bmdTbl */
 SECTION_DATA static u8 l_bmdTbl[240] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03,
@@ -921,119 +896,119 @@ SECTION_DATA static u8 l_btpTWTbl[240] = {
 };
 
 /* 80987DB4-80987F64 -00001 01B0+00 1/1 0/0 0/0 .data            l_bckTbl_M */
-SECTION_DATA static void* l_bckTbl_M[108] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x0000001A,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x0000001B,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x0000001D,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x0000001E,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x00000008,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x00000009,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x00000014,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x00000015,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x00000017,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x00000005,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x00000006,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x0000001C,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x00000018,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x00000016,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x00000011,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x0000000D,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x0000000E,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x00000012,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x0000000F,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x00000010,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x00000003,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x00000004,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18), (void*)0x00000012,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18), (void*)0x0000000F,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18), (void*)0x0000000C,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18), (void*)0x00000015,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18), (void*)0x00000013,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18), (void*)0x00000010,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18), (void*)0x0000000D,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18), (void*)0x00000016,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18), (void*)0x00000014,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18), (void*)0x00000011,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18), (void*)0x0000000E,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18), (void*)0x00000017,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18), (void*)0x00000007,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18), (void*)0x00000008,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18), (void*)0x0000000A,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18), (void*)0x0000000B,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x00000019,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x0000000B,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x0000000C,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x00000013,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18), (void*)0x00000003,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18), (void*)0x00000006,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18), (void*)0x00000005,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18), (void*)0x00000009,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x18), (void*)0x00000004,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x00000007,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0xFFFFFFFF,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0xFFFFFFFF,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0xFFFFFFFF,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0xFFFFFFFF,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0xFFFFFFFF,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0xF),  (void*)0x0000000A,
+static anmTblPrm l_bckTbl_M[54] = {
+    {"Mgeneral",  0x1A},
+    {"Mgeneral",  0x1B},
+    {"Mgeneral",  0x1D},
+    {"Mgeneral",  0x1E},
+    {"Mgeneral",  8},
+    {"Mgeneral",  9},
+    {"Mgeneral",  0x14},
+    {"Mgeneral",  0x15},
+    {"Mgeneral",  0x17},
+    {"Mgeneral",  5},
+    {"Mgeneral",  6},
+    {"Mgeneral",  0x1C},
+    {"Mgeneral",  0x18},
+    {"Mgeneral",  0x16},
+    {"Mgeneral",  0x11},
+    {"Mgeneral",  0xD},
+    {"Mgeneral",  0xE},
+    {"Mgeneral",  0x12},
+    {"Mgeneral",  0xF},
+    {"Mgeneral",  0x10},
+    {"Mgeneral",  3},
+    {"Mgeneral",  4},
+    {"Mspecial", 0x12},
+    {"Mspecial", 0xF},
+    {"Mspecial", 0xC},
+    {"Mspecial", 0x15},
+    {"Mspecial", 0x13},
+    {"Mspecial", 0x10},
+    {"Mspecial", 0xD},
+    {"Mspecial", 0x16},
+    {"Mspecial", 0x14},
+    {"Mspecial", 0x11},
+    {"Mspecial", 0xE},
+    {"Mspecial", 0x17},
+    {"Mspecial", 7},
+    {"Mspecial", 8},
+    {"Mspecial", 0xA},
+    {"Mspecial", 0xB},
+    {"Mgeneral",  0x19},
+    {"Mgeneral",  0xB},
+    {"Mgeneral",  0xC},
+    {"Mgeneral",  0x13},
+    {"Mspecial", 3},
+    {"Mspecial", 6},
+    {"Mspecial", 5},
+    {"Mspecial", 9},
+    {"Mspecial", 4},
+    {"Mgeneral",  7},
+    {"Mgeneral",  -1},
+    {"Mgeneral",  -1},
+    {"Mgeneral",  -1},
+    {"Mgeneral",  -1},
+    {"Mgeneral",  -1},
+    {"Mgeneral",  0xA},
 };
 
 /* 80987F64-80988114 -00001 01B0+00 1/1 0/0 0/0 .data            l_bckTbl_W */
-SECTION_DATA static void* l_bckTbl_W[108] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x0000001F,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x00000020,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x00000022,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x00000023,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x0000000D,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x0000000E,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x00000019,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x0000001A,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x0000001C,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x0000000A,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x0000000B,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x00000021,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x0000001D,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x0000001B,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x00000016,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x00000012,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x00000013,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x00000017,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x00000014,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x00000015,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x00000007,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x00000008,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A), (void*)0x0000000D,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A), (void*)0x0000000A,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A), (void*)0x00000007,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A), (void*)0x00000010,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A), (void*)0x0000000E,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A), (void*)0x0000000B,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A), (void*)0x00000008,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A), (void*)0x00000011,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A), (void*)0x0000000F,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A), (void*)0x0000000C,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A), (void*)0x00000009,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A), (void*)0x00000012,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A), (void*)0x00000003,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A), (void*)0x00000004,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A), (void*)0x00000005,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A), (void*)0x00000006,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x0000001E,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x00000010,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x00000011,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x00000018,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A), (void*)0xFFFFFFFF,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A), (void*)0xFFFFFFFF,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A), (void*)0xFFFFFFFF,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A), (void*)0xFFFFFFFF,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x13A), (void*)0xFFFFFFFF,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x0000000C,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x00000003,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x00000004,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x00000005,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x00000006,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x00000009,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x131), (void*)0x0000000F,
+static anmTblPrm l_bckTbl_W[54] = {
+    {"Wgeneral", 0x1F},
+    {"Wgeneral", 0x20},
+    {"Wgeneral", 0x22},
+    {"Wgeneral", 0x23},
+    {"Wgeneral", 0xD},
+    {"Wgeneral", 0xE},
+    {"Wgeneral", 0x19},
+    {"Wgeneral", 0x1A},
+    {"Wgeneral", 0x1C},
+    {"Wgeneral", 0xA},
+    {"Wgeneral", 0xB},
+    {"Wgeneral", 0x21},
+    {"Wgeneral", 0x1D},
+    {"Wgeneral", 0x1B},
+    {"Wgeneral", 0x16},
+    {"Wgeneral", 0x12},
+    {"Wgeneral", 0x13},
+    {"Wgeneral", 0x17},
+    {"Wgeneral", 0x14},
+    {"Wgeneral", 0x15},
+    {"Wgeneral", 7},
+    {"Wgeneral", 8},
+    {"Wspecial", 0xD},
+    {"Wspecial", 0xA},
+    {"Wspecial", 7},
+    {"Wspecial", 0x10},
+    {"Wspecial", 0xE},
+    {"Wspecial", 0xB},
+    {"Wspecial", 8},
+    {"Wspecial", 0x11},
+    {"Wspecial", 0xF},
+    {"Wspecial", 0xC},
+    {"Wspecial", 9},
+    {"Wspecial", 0x12},
+    {"Wspecial", 3},
+    {"Wspecial", 4},
+    {"Wspecial", 5},
+    {"Wspecial", 6},
+    {"Wgeneral", 0x1E},
+    {"Wgeneral", 0x10},
+    {"Wgeneral", 0x11},
+    {"Wgeneral", 0x18},
+    {"Wspecial", -1},
+    {"Wspecial", -1},
+    {"Wspecial", -1},
+    {"Wspecial", -1},
+    {"Wspecial", -1},
+    {"Wgeneral", 0xC},
+    {"Wgeneral", 3},
+    {"Wgeneral", 4},
+    {"Wgeneral", 5},
+    {"Wgeneral", 6},
+    {"Wgeneral", 9},
+    {"Wgeneral", 0xF},
 };
 
 /* 80988114-809898D4 0007B8 17C0+00 1/1 0/0 0/0 .data            a_jntTbl_M */
@@ -1932,10 +1907,7 @@ SECTION_DATA static u8 l_evtNames[4] = {
 #pragma pop
 
 /* 8098B750-8098B754 -00001 0004+00 0/2 0/0 0/0 .data            l_myName */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_myName = (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x214);
-#pragma pop
+static char* l_myName = "Chat";
 
 /* 8098B754-8098B760 003DF8 000C+00 0/2 0/0 0/0 .data            mEvtSeqList__11daNpcChat_c */
 #pragma push
@@ -2275,42 +2247,39 @@ daNpcChat_c::~daNpcChat_c() {
     // NONMATCHING
 }
 
-/* ############################################################################################## */
 /* 80986C6C-80986CD4 -00001 0068+00 1/1 0/0 0/0 .rodata          l_objTbl */
-SECTION_RODATA static void* const l_objTbl[26] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21), (void*)0x00000009,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21), (void*)0x00000009,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21), (void*)0x00000008,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21), (void*)0x00000003,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21), (void*)0x0000000D,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21), (void*)0x0000000E,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21), (void*)0x0000000C,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21), (void*)0x00000006,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21), (void*)0x00000007,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21), (void*)0x0000000A,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21), (void*)0x0000000B,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21), (void*)0x0000000F,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x21), (void*)0x00000010,
+static anmTblPrm const l_objTbl[13] = {
+    {"object", 9},
+    {"object", 9},
+    {"object", 8},
+    {"object", 3},
+    {"object", 0xD},
+    {"object", 0xE},
+    {"object", 0xC},
+    {"object", 6},
+    {"object", 7},
+    {"object", 0xA},
+    {"object", 0xB},
+    {"object", 0xF},
+    {"object", 0x10},
 };
-COMPILER_STRIP_GATE(0x80986C6C, &l_objTbl);
 
 /* 80986CD4-80986D3C -00001 0068+00 1/1 0/0 0/0 .rodata          l_objTWTbl */
-SECTION_RODATA static void* const l_objTWTbl[26] = {
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28), (void*)0x00000009,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28), (void*)0x00000009,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28), (void*)0x00000008,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28), (void*)0x00000003,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28), (void*)0x0000000D,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28), (void*)0x0000000E,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28), (void*)0x0000000C,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28), (void*)0x00000006,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28), (void*)0x00000007,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28), (void*)0x0000000A,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28), (void*)0x0000000B,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28), (void*)0xFFFFFFFF,
-    (void*)(((char*)&d_a_npc_chat__stringBase0) + 0x28), (void*)0xFFFFFFFF,
+static anmTblPrm const l_objTWTbl[13] = {
+    {"objectTW", 9},
+    {"objectTW", 9},
+    {"objectTW", 8},
+    {"objectTW", 3},
+    {"objectTW", 0xD},
+    {"objectTW", 0xE},
+    {"objectTW", 0xC},
+    {"objectTW", 6},
+    {"objectTW", 7},
+    {"objectTW", 0xA},
+    {"objectTW", 0xB},
+    {"objectTW", -1},
+    {"objectTW", -1},
 };
-COMPILER_STRIP_GATE(0x80986CD4, &l_objTWTbl);
 
 /* 80986D3C-80986DA8 0003A0 006C+00 1/3 0/0 0/0 .rodata          m__17daNpcChat_Param_c */
 SECTION_RODATA u8 const daNpcChat_Param_c::m[108] = {

@@ -51,7 +51,7 @@ public:
     /* 80A86BEC */ void ECut_gameGoalSuccess(int);
     /* 80A86E8C */ void calcHovering(int, int);
 
-    static void* mEvtCutNameList[5];
+    static char* mEvtCutNameList[5];
     static u8 mEvtCutList[60];
 
 private:

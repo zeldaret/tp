@@ -66,7 +66,7 @@ public:
     /* 80AE6B3C */ void checkChangeJoint(int);
     /* 80AE6B4C */ void checkRemoveJoint(int);
 
-    static void* mCutNameList[2];
+    static char* mCutNameList[2];
     static u8 mCutList[24];
     static u8 mEvtBitLabels[12];
     static u8 mTmpBitLabels[12];
