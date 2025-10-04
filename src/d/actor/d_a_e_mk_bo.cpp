@@ -556,7 +556,6 @@ static void action(e_mk_bo_class* i_this) {
 }
 
 /* 8071E8A4-8071EECC 001CA4 0628+00 2/1 0/0 0/0 .text daE_MK_BO_Execute__FP13e_mk_bo_class */
-// NONMATCHING - regalloc on retail
 static int daE_MK_BO_Execute(e_mk_bo_class* i_this) {
     fopAc_ac_c* actor = &i_this->enemy;
     cXyz sp64;
@@ -591,10 +590,10 @@ static int daE_MK_BO_Execute(e_mk_bo_class* i_this) {
     cLib_addCalcAngleS2(&i_this->field_0x5fa, actor->current.angle.y, 4, 0x1000);
 
     mDoMtx_stack_c::transS(actor->current.pos.x, actor->current.pos.y, actor->current.pos.z);
-    mDoMtx_stack_c::YrotM(i_this->field_0x5fa);
-    mDoMtx_stack_c::ZrotM(actor->shape_angle.z);
-    mDoMtx_stack_c::YrotM(actor->shape_angle.y);
-    mDoMtx_stack_c::XrotM(actor->shape_angle.x);
+    mDoMtx_stack_c::YrotM(s16(i_this->field_0x5fa));
+    mDoMtx_stack_c::ZrotM(s16(actor->shape_angle.z));
+    mDoMtx_stack_c::YrotM(s16(actor->shape_angle.y));
+    mDoMtx_stack_c::XrotM(s16(actor->shape_angle.x));
 
     fopAc_ac_c* a_parent = fopAcM_SearchByID(actor->parentActorID);
     if (a_parent == NULL) {
