@@ -68,7 +68,7 @@ public:
     /* 809835C8 */ int drawDbgInfo();
     /* 809835D0 */ void drawOtherMdls();
     /* 809837A4 */ u8 getTalkMotionNo();
-    /* 809837C0 */ u8 getLookPlayerCheck();
+    /* 809837C0 */ bool getLookPlayerCheck();
     /* 809837EC */ void reset();
     /* 809839E0 */ void playMotion();
     /* 80984DD0 */ void playMotionAnmLoop(daNpcF_c::daNpcF_anmPlayData***);
@@ -79,7 +79,7 @@ public:
     /* 8098552C */ bool fear(void*);
     /* 809856C8 */ bool talk(void*);
     /* 80985A84 */ bool demo(void*);
-    /* 8098692C */ void adjustShapeAngle();
+    /* 8098692C */ void adjustShapeAngle() {}
 
     u8 getType() { return fopAcM_GetParam(this) & 0xFF; }
     u8 getTalkGroupNoParam() { return (fopAcM_GetParam(this) >> 12) & 0xF; }
@@ -92,6 +92,7 @@ public:
     u8 getTalkGroupNo() { return mTalkGroupNo; }
     u8 getTalkNo() { return mTalkNo; }
     void setFear() { mFear = true; }
+    void setTalkFlag() { mTalkFlag = true; }
 
     static eventFunc mEvtSeqList[1];
 
@@ -112,7 +113,6 @@ private:
     /* 0xE08 */ int field_0xe08;
     /* 0xE0C */ int field_0xe0c;
     /* 0xE10 */ u8 mType;
-    /* 0xE11 */ u8 field_0xe11[0xe14 - 0xe11];
     /* 0xE14 */ int mObjNum;
     /* 0xE18 */ int mMsgNo;
     /* 0xE1C */ s16 field_0xe1c;
@@ -123,18 +123,15 @@ private:
     /* 0xE23 */ u8 mTalkIconType;
     /* 0xE24 */ daNpcChat_c* mTalkMembers[5];
     /* 0xE38 */ u8 field_0xe38;
-    /* 0xE39 */ u8 field_0xe39[0xe3c - 0xe39];
     /* 0xE3C */ cXyz mBaseAttnPos;
     /* 0xE48 */ bool mFear;
-    /* 0xE49 */ u8 field_0xe49;
-    /* 0xE4A */ s16 field_0xe4a;
-    /* 0xE4C */ u8 field_0xe4c;
+    /* 0xE4A */ s16 mPlayerAngleY;
+    /* 0xE4C */ u8 mMotionAnm;
     /* 0xE4D */ bool mTalkFlag;
     /* 0xE4E */ u8 mTalkMotionNo;
     /* 0xE4F */ bool field_0xe4f;
     /* 0xE50 */ u8 mLookPlayerCheck;
     /* 0xE51 */ u8 field_0xe51;
-    /* 0xE52 */ u8 field_0xe52[0xe54 - 0xe52];
 };
 
 STATIC_ASSERT(sizeof(daNpcChat_c) == 0xe54);

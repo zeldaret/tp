@@ -4,233 +4,795 @@
 */
 
 #include "d/dolzel_rel.h"
-
 #include "d/actor/d_a_npc_chat.h"
 #include "Z2AudioLib/Z2Instances.h"
-#include "dol2asm.h"
 
+enum MAN_a_RES_File_ID {
+    /* BMDR */
+    /* 0x3 */ BMDR_MAN_A = 0x3,
+};
 
-//
-// Forward References:
-//
+enum MAN_a_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x3 */ BMDR_MAN_A_TW = 0x3,
+};
 
-extern "C" void __ct__11daNpcChat_cFv();
-extern "C" void __dt__8cM3dGCylFv();
-extern "C" void __dt__8cM3dGAabFv();
-extern "C" void __dt__11daNpcChat_cFv();
-extern "C" void NpcCreate__11daNpcChat_cFi();
-extern "C" void getObjNum__11daNpcChat_cFv();
-extern "C" void ObjCreate__11daNpcChat_cFi();
-extern "C" void ChairCreate__11daNpcChat_cFf();
-extern "C" void isM___11daNpcChat_cFv();
-extern "C" void loadResrc__11daNpcChat_cFii();
-extern "C" void getNpcMdlDataP__11daNpcChat_cFi();
-extern "C" void getObjMdlDataP__11daNpcChat_cFi();
-extern "C" void getTexAnmP__11daNpcChat_cFi();
-extern "C" void removeResrc__11daNpcChat_cFii();
-extern "C" void setAttention__11daNpcChat_cFi();
-extern "C" void Create__11daNpcChat_cFv();
-extern "C" void CreateHeap__11daNpcChat_cFv();
-extern "C" void Delete__11daNpcChat_cFv();
-extern "C" void Execute__11daNpcChat_cFv();
-extern "C" void Draw__11daNpcChat_cFv();
-extern "C" void draw__11daNpcChat_cFiifP11_GXColorS10i();
-extern "C" void ctrlJoint__11daNpcChat_cFP8J3DJointP8J3DModel();
-extern "C" void createHeapCallBack__11daNpcChat_cFP10fopAc_ac_c();
-extern "C" void ctrlJointCallBack__11daNpcChat_cFP8J3DJointi();
-extern "C" static void s_sub__FPvPv();
-extern "C" void searchGroup__11daNpcChat_cFv();
-extern "C" void appearTimeCheck__11daNpcChat_cFv();
-extern "C" void appearCheck__11daNpcChat_cFv();
-extern "C" void setParam__11daNpcChat_cFv();
-extern "C" void main__11daNpcChat_cFv();
-extern "C" void setAttnPos__11daNpcChat_cFv();
-extern "C" void setExpressionBtp__11daNpcChat_cFi();
-extern "C" void setMotionAnm__11daNpcChat_cFif();
-extern "C" void setMotion__11daNpcChat_cFifi();
-extern "C" bool drawDbgInfo__11daNpcChat_cFv();
-extern "C" void drawOtherMdls__11daNpcChat_cFv();
-extern "C" void getTalkMotionNo__11daNpcChat_cFv();
-extern "C" void getLookPlayerCheck__11daNpcChat_cFv();
-extern "C" void reset__11daNpcChat_cFv();
-extern "C" void playMotion__11daNpcChat_cFv();
-extern "C" void playMotionAnmLoop__11daNpcChat_cFPPPQ28daNpcF_c18daNpcF_anmPlayData();
-extern "C" void setAction__11daNpcChat_cFM11daNpcChat_cFPCvPvPv_b();
-extern "C" void step__11daNpcChat_cFsi();
-extern "C" void setTalkMember__11daNpcChat_cFP11daNpcChat_c();
-extern "C" void wait__11daNpcChat_cFPv();
-extern "C" void fear__11daNpcChat_cFPv();
-extern "C" void talk__11daNpcChat_cFPv();
-extern "C" void demo__11daNpcChat_cFPv();
-extern "C" static void daNpcChat_Create__FPv();
-extern "C" static void daNpcChat_Delete__FPv();
-extern "C" static void daNpcChat_Execute__FPv();
-extern "C" static void daNpcChat_Draw__FPv();
-extern "C" static bool daNpcChat_IsDelete__FPv();
-extern "C" void __dt__18daNpcF_ActorMngr_cFv();
-extern "C" void __ct__18daNpcF_ActorMngr_cFv();
-extern "C" void __dt__15daNpcF_Lookat_cFv();
-extern "C" void __dt__5csXyzFv();
-extern "C" void __ct__5csXyzFv();
-extern "C" void __dt__4cXyzFv();
-extern "C" void __ct__4cXyzFv();
-extern "C" void __dt__8daNpcF_cFv();
-extern "C" void __ct__8daNpcF_cFv();
-extern "C" void __dt__12dBgS_AcchCirFv();
-extern "C" void __dt__10dCcD_GSttsFv();
-extern "C" void __dt__12dBgS_ObjAcchFv();
-extern "C" void __dt__12J3DFrameCtrlFv();
-extern "C" bool ctrlBtk__8daNpcF_cFv();
-extern "C" void setCollisions__8daNpcF_cFv();
-extern "C" bool setExpressionAnm__8daNpcF_cFib();
-extern "C" void setExpression__8daNpcF_cFif();
-extern "C" void __dt__10cCcD_GSttsFv();
-extern "C" void __sinit_d_a_npc_chat_cpp();
-extern "C" void adjustShapeAngle__11daNpcChat_cFv();
-extern "C" void __dt__17daNpcChat_Param_cFv();
-extern "C" static void func_80986978();
-extern "C" static void func_80986980();
-extern "C" u8 const m__17daNpcChat_Param_c[108];
-extern "C" extern char const* const d_a_npc_chat__stringBase0;
-extern "C" u8 mEvtSeqList__11daNpcChat_c[12];
+enum MAD_a_RES_File_ID {
+    /* BMDR */
+    /* 0x3 */ BMDR_MAD_A = 0x3,
+};
 
-//
-// External References:
-//
+enum MAD_a_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x3 */ BMDR_MAD_A_TW = 0x3,
+};
 
-extern "C" void transS__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void transM__14mDoMtx_stack_cFRC4cXyz();
-extern "C" void scaleM__14mDoMtx_stack_cFfff();
-extern "C" void ZXYrotM__14mDoMtx_stack_cFRC5csXyz();
-extern "C" void entry__13mDoExt_btpAnmFP16J3DMaterialTables();
-extern "C" void entry__13mDoExt_btkAnmFP16J3DMaterialTablef();
-extern "C" void entry__13mDoExt_brkAnmFP16J3DMaterialTablef();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void setMorf__13mDoExt_morf_cFf();
-extern "C" void
-__ct__16mDoExt_McaMorfSOFP12J3DModelDataP25mDoExt_McaMorfCallBack1_cP25mDoExt_McaMorfCallBack2_cP15J3DAnmTransformifiiP10Z2CreatureUlUl();
-extern "C" void entryDL__16mDoExt_McaMorfSOFv();
-extern "C" void stopZelAnime__16mDoExt_McaMorfSOFv();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void __dt__10fopAc_ac_cFv();
-extern "C" void fopAc_IsActor__FPv();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_setCullSizeBox__FP10fopAc_ac_cffffff();
-extern "C" void fopAcM_searchActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_searchActorDistanceXZ2__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void fopAcM_setEffectMtx__FPC10fopAc_ac_cPC12J3DModelData();
-extern "C" void fpcEx_Search__FPFPvPv_PvPv();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfGd_setSimpleShadow__FP4cXyzffR13cBgS_PolyInfosfP9_GXTexObj();
-extern "C" void dComIfGs_wolfeye_effect_check__Fv();
-extern "C" void isEventBit__11dSv_event_cCFUs();
-extern "C" void onSwitch__12dSv_danBit_cFi();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void reset__14dEvt_control_cFv();
-extern "C" void convPId__14dEvt_control_cFUi();
-extern "C" void endCheck__16dEvent_manager_cFs();
-extern "C" void getMyStaffId__16dEvent_manager_cFPCcP10fopAc_ac_ci();
-extern "C" void cutEnd__16dEvent_manager_cFi();
-extern "C" void ChkPresentEnd__16dEvent_manager_cFv();
-extern "C" void __ct__12dBgS_AcchCirFv();
-extern "C" void SetWall__12dBgS_AcchCirFff();
-extern "C" void __dt__9dBgS_AcchFv();
-extern "C" void __ct__9dBgS_AcchFv();
-extern "C" void Set__9dBgS_AcchFP4cXyzP4cXyzP10fopAc_ac_ciP12dBgS_AcchCirP4cXyzP5csXyzP5csXyz();
-extern "C" void CrrPos__9dBgS_AcchFR4dBgS();
-extern "C" void __ct__11dBgS_GndChkFv();
-extern "C" void __dt__11dBgS_GndChkFv();
-extern "C" void __ct__11dBgS_LinChkFv();
-extern "C" void __dt__11dBgS_LinChkFv();
-extern "C" void SetObj__16dBgS_PolyPassChkFv();
-extern "C" void __ct__10dCcD_GSttsFv();
-extern "C" void Init__9dCcD_SttsFiiP10fopAc_ac_c();
-extern "C" void __ct__12dCcD_GObjInfFv();
-extern "C" void __dt__12dCcD_GObjInfFv();
-extern "C" void Set__8dCcD_CylFRC11dCcD_SrcCyl();
-extern "C" void initialize__18daNpcF_ActorMngr_cFv();
-extern "C" void initialize__15daNpcF_Lookat_cFv();
-extern "C" void execute__8daNpcF_cFv();
-extern "C" void setMtx__8daNpcF_cFv();
-extern "C" void setMtx2__8daNpcF_cFv();
-extern "C" void initialize__8daNpcF_cFv();
-extern "C" void getTrnsfrmKeyAnmP__8daNpcF_cFPci();
-extern "C" void setMcaMorfAnm__8daNpcF_cFP18J3DAnmTransformKeyffiii();
-extern "C" void setBtpAnm__8daNpcF_cFP16J3DAnmTexPatternP12J3DModelDatafi();
-extern "C" void setEnvTevColor__8daNpcF_cFv();
-extern "C" void setRoomNo__8daNpcF_cFv();
-extern "C" void playMotionAnm__8daNpcF_cFPPPQ28daNpcF_c18daNpcF_anmPlayData();
-extern "C" void ctrlMsgAnm__8daNpcF_cFRiRiP10fopAc_ac_ci();
-extern "C" void orderEvent__8daNpcF_cFiPcUsUsUcUs();
-extern "C" void initTalk__8daNpcF_cFiPP10fopAc_ac_c();
-extern "C" void talkProc__8daNpcF_cFPiiPP10fopAc_ac_c();
-extern "C" void turn__8daNpcF_cFsfi();
-extern "C" void setAngle__8daNpcF_cFs();
-extern "C" void dKy_getdaytime_hour__Fv();
-extern "C" void dKy_getDarktime_hour__Fv();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void dKy_darkworld_check__Fv();
-extern "C" void __ct__10dMsgFlow_cFv();
-extern "C" void __dt__10dMsgFlow_cFv();
-extern "C" void Set__4cCcSFP8cCcD_Obj();
-extern "C" void __dv__4cXyzCFf();
-extern "C" void __ct__5csXyzFsss();
-extern "C" void __ct__11cBgS_GndChkFv();
-extern "C" void __dt__11cBgS_GndChkFv();
-extern "C" void __dt__13cBgS_PolyInfoFv();
-extern "C" void __dt__8cM3dGCirFv();
-extern "C" void SetC__8cM3dGCylFRC4cXyz();
-extern "C" void SetH__8cM3dGCylFf();
-extern "C" void SetR__8cM3dGCylFf();
-extern "C" void cLib_addCalcAngleS2__FPssss();
-extern "C" void cLib_targetAngleY__FPC3VecPC3Vec();
-extern "C" void cLib_targetAngleX__FPC4cXyzPC4cXyz();
-extern "C" void __ct__17Z2CreatureCitizenFv();
-extern "C" void __dt__17Z2CreatureCitizenFv();
-extern "C" void init__17Z2CreatureCitizenFP3VecP3VecUcUc();
-extern "C" void setMdlType__17Z2CreatureCitizenFScbb();
-extern "C" void playVoice__17Z2CreatureCitizenFi();
-extern "C" void* __nw__FUl();
-extern "C" void __dl__FPv();
-extern "C" void init__12J3DFrameCtrlFs();
-extern "C" void removeTexNoAnimator__16J3DMaterialTableFP16J3DAnmTexPattern();
-extern "C" void removeTexMtxAnimator__16J3DMaterialTableFP19J3DAnmTextureSRTKey();
-extern "C" void removeTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey();
-extern "C" void __destroy_arr();
-extern "C" void __construct_array();
-extern "C" void __ptmf_test();
-extern "C" void __ptmf_cmpr();
-extern "C" void __ptmf_scall();
-extern "C" void _savegpr_14();
-extern "C" void _savegpr_26();
-extern "C" void _savegpr_27();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_14();
-extern "C" void _restgpr_26();
-extern "C" void _restgpr_27();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" extern u8 const __ptmf_null[12 + 4 /* padding */];
-extern "C" u8 saveBitLabels__16dSv_event_flag_c[1644 + 4 /* padding */];
-extern "C" extern void* __vt__8dCcD_Cyl[36];
-extern "C" extern void* __vt__9dCcD_Stts[11];
-extern "C" u8 mCcDCyl__8daNpcF_c[68];
-extern "C" extern void* __vt__8daNpcF_c[18];
-extern "C" extern void* __vt__12cCcD_CylAttr[25];
-extern "C" extern void* __vt__14cCcD_ShapeAttr[22];
-extern "C" extern void* __vt__9cCcD_Stts[8];
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 mSimpleTexObj__21dDlst_shadowControl_c[32];
-extern "C" u8 mCurrentMtx__6J3DSys[48];
-extern "C" void __register_global_object();
+enum MCN_a_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_MCN_A = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_MCN_A = 0x7,
+};
+
+enum MCN_a_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_MCN_A_TW = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_MCN_A_TW = 0x7,
+};
+
+enum MON_a_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_MON_A = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_MON_A = 0x7,
+};
+
+enum MON_a_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_MON_A_TW = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_MON_A_TW = 0x7,
+};
+
+enum MAN_b_RES_File_ID {
+    /* BMDR */
+    /* 0x3 */ BMDR_MAN_B = 0x3,
+};
+
+enum MAN_b_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x3 */ BMDR_MAN_B_TW = 0x3,
+};
+
+enum MAN_c_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_MAN_C = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_MAN_C = 0x7,
+};
+
+enum MAN_c_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_MAN_C_TW = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_MAN_C_TW = 0x7,
+};
+
+enum MAS_a_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_MAS_A = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_MAS_A = 0x7,
+};
+
+enum MAS_a_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_MAS_A_TW = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_MAS_A_TW = 0x7,
+};
+
+enum MBN_a_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_MBN_A = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_MBN_A = 0x7,
+};
+
+enum MBN_a_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_MBN_A_TW = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_MBN_A_TW = 0x7,
+};
+
+enum MAN_a2_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_MAN_A2 = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_MAN_A2 = 0x7,
+};
+
+enum MAN_a2_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_MAN_A2_TW = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_MAN_A2_TW = 0x7,
+};
+
+enum MAD_a2_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_MAD_A2 = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_MAD_A2 = 0x7,
+};
+
+enum MAD_a2_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x3 */ BMDR_MAD_A2_TW = 0x3,
+};
+
+enum MCN_a2_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_MCN_A2 = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_MCN_A2 = 0x7,
+};
+
+enum MCN_a2_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_MCN_A2_TW = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_MCN_A2_TW = 0x7,
+};
+
+enum MON_a2_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_MON_A2 = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_MON_A2 = 0x7,
+};
+
+enum MON_a2_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_MON_A2_TW = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_MON_A2_TW = 0x7,
+};
+
+enum MAN_b2_RES_File_ID {
+    /* BMDR */
+    /* 0x3 */ BMDR_MAN_B2 = 0x3,
+};
+
+enum MAN_b2_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x3 */ BMDR_MAN_B2_TW = 0x3,
+};
+
+enum MAN_c2_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_MAN_C2 = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_MAN_C2 = 0x7,
+};
+
+enum MAN_c2_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_MAN_C2_TW = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_MAN_C2_TW = 0x7,
+};
+
+enum MAS_a2_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_MAS_A2 = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_MAS_A2 = 0x7,
+};
+
+enum MAS_a2_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_MAS_A2_TW = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_MAS_A2_TW = 0x7,
+};
+
+enum MBN_a2_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_MBN_A2 = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_MBN_A2 = 0x7,
+};
+
+enum MBN_a2_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_MBN_A2_TW = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_MBN_A2_TW = 0x7,
+};
+
+enum WAN_a_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_WAN_A = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_WAN_A = 0x7,
+};
+
+enum WAN_a_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_WAN_A_TW = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_WAN_A_TW = 0x7,
+};
+
+enum WAD_a_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_WAD_A = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_WAD_A = 0x7,
+};
+
+enum WAD_a_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_WAD_A_TW = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_WAD_A_TW = 0x7,
+};
+
+enum MAT_a_RES_File_ID {
+    /* BMDR */
+    /* 0x3 */ BMDR_MAT_A = 0x3,
+};
+
+enum MAT_a_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x3 */ BMDR_MAT_A_TW = 0x3,
+};
+
+enum WCN_a_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_WCN_A = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_WCN_A = 0x7,
+};
+
+enum WCN_a_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_WCN_A_TW = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_WCN_A_TW = 0x7,
+};
+
+enum WON_a_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_WON_A = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_WON_A = 0x7,
+};
+
+enum WON_a_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_WON_A_TW = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_WON_A_TW = 0x7,
+};
+
+enum WGN_a_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_WGN_A = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_WGN_A = 0x7,
+};
+
+enum WGN_a_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_WGN_A_TW = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_WGN_A_TW = 0x7,
+};
+
+enum WAN_b_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_WAN_B = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_WAN_B = 0x7,
+};
+
+enum WAN_b_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_WAN_B_TW = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_WAN_B_TW = 0x7,
+};
+
+enum WAN_a2_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_WAN_A2 = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_WAN_A2 = 0x7,
+};
+
+enum WAN_a2_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_WAN_A2_TW = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_WAN_A2_TW = 0x7,
+};
+
+enum WAD_a2_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_WAD_A2 = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_WAD_A2 = 0x7,
+};
+
+enum WAD_a2_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_WAD_A2_TW = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_WAD_A2_TW = 0x7,
+};
+
+enum MAT_a2_RES_File_ID {
+    /* BMDR */
+    /* 0x3 */ BMDR_MAT_A2 = 0x3,
+};
+
+enum MAT_a2_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x3 */ BMDR_MAT_A2_TW = 0x3,
+};
+
+enum WCN_a2_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_WCN_A2 = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_WCN_A2 = 0x7,
+};
+
+enum WCN_a2_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_WCN_A2_TW = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_WCN_A2_TW = 0x7,
+};
+
+enum WON_a2_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_WON_A2 = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_WON_A2 = 0x7,
+};
+
+enum WON_a2_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_WON_A2_TW = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_WON_A2_TW = 0x7,
+};
+
+enum WGN_a2_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_WGN_A2 = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_WGN_A2 = 0x7,
+};
+
+enum WGN_a2_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_WGN_A2_TW = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_WGN_A2_TW = 0x7,
+};
+
+enum WAN_b2_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_WAN_B2 = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_WAN_B2 = 0x7,
+};
+
+enum WAN_b2_TW_RES_File_ID {
+    /* BMDR */
+    /* 0x4 */ BMDR_WAN_B2_TW = 0x4,
+
+    /* BTP */
+    /* 0x7 */ BTP_WAN_B2_TW = 0x7,
+};
+
+enum object_RES_File_ID {
+    /* BMDR */
+    /* 0x03 */ BMDR_B_BROOM = 0x3,
+    /* 0x04 */ BMDR_B_CHAIR_M,
+    /* 0x05 */ BMDR_B_CHAIR_W,
+    /* 0x06 */ BMDR_B_FLUTE,
+    /* 0x07 */ BMDR_B_MILKTUBO,
+    /* 0x08 */ BMDR_B_SPEAR,
+    /* 0x09 */ BMDR_B_TUBO,
+    /* 0x0A */ BMDR_CELEB_BAG_M,
+    /* 0x0B */ BMDR_CELEB_BAG_W,
+    /* 0x0C */ BMDR_J_GUITAR,
+    /* 0x0D */ BMDR_K_KAGOM,
+    /* 0x0E */ BMDR_K_KAGOW,
+    /* 0x0F */ BMDR_MARO_BAG_M,
+    /* 0x10 */ BMDR_MARO_BAG_W,
+    /* 0x11 */ BMDR_SOL_SHE,
+};
+
+enum objectTW_RES_File_ID {
+    /* BMDR */
+    /* 0x03 */ BMDR_B_BROOM_TW = 0x3,
+    /* 0x04 */ BMDR_B_CHAIR_M_TW,
+    /* 0x05 */ BMDR_B_CHAIR_W_TW,
+    /* 0x06 */ BMDR_B_FLUTE_TW,
+    /* 0x07 */ BMDR_B_MILKTUBO_TW,
+    /* 0x08 */ BMDR_B_SPEAR_TW,
+    /* 0x09 */ BMDR_B_TUBO_TW,
+    /* 0x0A */ BMDR_CELEB_BAG_M_TW,
+    /* 0x0B */ BMDR_CELEB_BAG_W_TW,
+    /* 0x0C */ BMDR_J_GUITAR_TW,
+    /* 0x0D */ BMDR_K_KAGOM_TW,
+    /* 0x0E */ BMDR_K_KAGOW_TW,
+};
+
+enum Mgeneral_RES_File_ID {
+    /* BCK */
+    /* 0x03 */ BCK_M_BROWSE_A = 0x3,
+    /* 0x04 */ BCK_M_BROWSE_B,
+    /* 0x05 */ BCK_M_LOOK_A,
+    /* 0x06 */ BCK_M_LOOK_B,
+    /* 0x07 */ BCK_M_MARO_DANCE,
+    /* 0x08 */ BCK_M_RUN_A,
+    /* 0x09 */ BCK_M_RUN_B,
+    /* 0x0A */ BCK_M_SING,
+    /* 0x0B */ BCK_M_SIT_TO_WOLF_A,
+    /* 0x0C */ BCK_M_SIT_TO_WOLF_B,
+    /* 0x0D */ BCK_M_SITTALK_A,
+    /* 0x0E */ BCK_M_SITTALK_A_B,
+    /* 0x0F */ BCK_M_SITTALK_B,
+    /* 0x10 */ BCK_M_SITTALK_B_B,
+    /* 0x11 */ BCK_M_SITWAIT_A,
+    /* 0x12 */ BCK_M_SITWAIT_B,
+    /* 0x13 */ BCK_M_SURPRISE,
+    /* 0x14 */ BCK_M_TALK_A,
+    /* 0x15 */ BCK_M_TALK_B,
+    /* 0x16 */ BCK_M_TALK_B_WALL,
+    /* 0x17 */ BCK_M_TALK_C,
+    /* 0x18 */ BCK_M_TALK_WALL,
+    /* 0x19 */ BCK_M_TO_WOLF,
+    /* 0x1A */ BCK_M_WAIT_A,
+    /* 0x1B */ BCK_M_WAIT_B,
+    /* 0x1C */ BCK_M_WAIT_WALL,
+    /* 0x1D */ BCK_M_WALK_A,
+    /* 0x1E */ BCK_M_WALK_B,
+};
+
+enum Mspecial_RES_File_ID {
+    /* BCK */
+    /* 0x03 */ BCK_M_KAMAE = 0x3,
+    /* 0x04 */ BCK_M_KAMAE_C,
+    /* 0x05 */ BCK_M_KAMAE_STEP,
+    /* 0x06 */ BCK_M_KAMAE_WAIT_B,
+    /* 0x07 */ BCK_M_PLAYM,
+    /* 0x08 */ BCK_M_RUN_KAGO,
+    /* 0x09 */ BCK_M_RUN_KAMAE,
+    /* 0x0A */ BCK_M_RUN_STICK,
+    /* 0x0B */ BCK_M_RUN_TUBO,
+    /* 0x0C */ BCK_M_TALK_B_KAGO,
+    /* 0x0D */ BCK_M_TALK_B_STICK,
+    /* 0x0E */ BCK_M_TALK_B_TUBO,
+    /* 0x0F */ BCK_M_TALK_KAGO,
+    /* 0x10 */ BCK_M_TALK_STICK,
+    /* 0x11 */ BCK_M_TALK_TUBO,
+    /* 0x12 */ BCK_M_WAIT_KAGO,
+    /* 0x13 */ BCK_M_WAIT_STICK,
+    /* 0x14 */ BCK_M_WAIT_TUBO,
+    /* 0x15 */ BCK_M_WALK_KAGO,
+    /* 0x16 */ BCK_M_WALK_STICK,
+    /* 0x17 */ BCK_M_WALK_TUBO,
+};
+
+enum Wgeneral_RES_File_ID {
+    /* BCK */
+    /* 0x03 */ BCK_W_2LADYTALK_A = 0x3,
+    /* 0x04 */ BCK_W_2LADYTALK_B,
+    /* 0x05 */ BCK_W_2NORMALTALK_A,
+    /* 0x06 */ BCK_W_2NORMALTALK_B,
+    /* 0x07 */ BCK_W_BROWSE_A,
+    /* 0x08 */ BCK_W_BROWSE_B,
+    /* 0x09 */ BCK_W_CELLME,
+    /* 0x0A */ BCK_W_LOOK_A,
+    /* 0x0B */ BCK_W_LOOK_B,
+    /* 0x0C */ BCK_W_MARO_DANCE,
+    /* 0x0D */ BCK_W_RUN_A,
+    /* 0x0E */ BCK_W_RUN_B,
+    /* 0x0F */ BCK_W_SING,
+    /* 0x10 */ BCK_W_SIT_TO_WOLF_A,
+    /* 0x11 */ BCK_W_SIT_TO_WOLF_B,
+    /* 0x12 */ BCK_W_SITTALK_A,
+    /* 0x13 */ BCK_W_SITTALK_A_B,
+    /* 0x14 */ BCK_W_SITTALK_B,
+    /* 0x15 */ BCK_W_SITTALK_B_B,
+    /* 0x16 */ BCK_W_SITWAIT_A,
+    /* 0x17 */ BCK_W_SITWAIT_B,
+    /* 0x18 */ BCK_W_SURPRISE,
+    /* 0x19 */ BCK_W_TALK_A,
+    /* 0x1A */ BCK_W_TALK_B,
+    /* 0x1B */ BCK_W_TALK_B_WALL,
+    /* 0x1C */ BCK_W_TALK_C,
+    /* 0x1D */ BCK_W_TALK_WALL,
+    /* 0x1E */ BCK_W_TO_WOLF,
+    /* 0x1F */ BCK_W_WAIT_A,
+    /* 0x20 */ BCK_W_WAIT_B,
+    /* 0x21 */ BCK_W_WAIT_WALL,
+    /* 0x22 */ BCK_W_WALK_A,
+    /* 0x23 */ BCK_W_WALK_B,
+};
+
+enum Wspecial_RES_File_ID {
+    /* 0x03 */ BCK_W_PLAYM = 0x3,
+    /* 0x04 */ BCK_W_RUN_KAGO,
+    /* 0x05 */ BCK_W_RUN_STICK,
+    /* 0x06 */ BCK_W_RUN_TUBO,
+    /* 0x07 */ BCK_W_TALK_B_KAGO,
+    /* 0x08 */ BCK_W_TALK_B_STICK,
+    /* 0x09 */ BCK_W_TALK_B_TUBO,
+    /* 0x0A */ BCK_W_TALK_KAGO,
+    /* 0x0B */ BCK_W_TALK_STICK,
+    /* 0x0C */ BCK_W_TALK_TUBO,
+    /* 0x0D */ BCK_W_WAIT_KAGO,
+    /* 0x0E */ BCK_W_WAIT_STICK,
+    /* 0x0F */ BCK_W_WAIT_TUBO,
+    /* 0x10 */ BCK_W_WALK_KAGO,
+    /* 0x11 */ BCK_W_WALK_STICK,
+    /* 0x12 */ BCK_W_WALK_TUBO,
+};
+
+enum Animation {
+    /* 0x00 */ ANM_WAIT_A,
+    /* 0x01 */ ANM_WAIT_B,
+    /* 0x02 */ ANM_WALK_A,
+    /* 0x03 */ ANM_WALK_B,
+    /* 0x04 */ ANM_RUN_A,
+    /* 0x05 */ ANM_RUN_B,
+    /* 0x06 */ ANM_TALK_A,
+    /* 0x07 */ ANM_TALK_B,
+    /* 0x08 */ ANM_TALK_C,
+    /* 0x09 */ ANM_LOOK_A,
+    /* 0x0A */ ANM_LOOK_B,
+    /* 0x0B */ ANM_WAIT_WALL,
+    /* 0x0C */ ANM_TALK_WALL,
+    /* 0x0D */ ANM_TALK_B_WALL,
+    /* 0x0E */ ANM_SITWAIT_A,
+    /* 0x0F */ ANM_SITTALK_A,
+    /* 0x10 */ ANM_SITTALK_A_B,
+    /* 0x11 */ ANM_SITWAIT_B,
+    /* 0x12 */ ANM_SITTALK_B,
+    /* 0x13 */ ANM_SITTALK_B_B,
+    /* 0x14 */ ANM_BROWSE_A,
+    /* 0x15 */ ANM_BROWSE_B,
+    /* 0x16 */ ANM_WAIT_KAGO,
+    /* 0x17 */ ANM_TALK_KAGO,
+    /* 0x18 */ ANM_TALK_B_KAGO,
+    /* 0x19 */ ANM_WALK_KAGO,
+    /* 0x1A */ ANM_WAIT_STICK,
+    /* 0x1B */ ANM_TALK_STICK,
+    /* 0x1C */ ANM_TALK_B_STICK,
+    /* 0x1D */ ANM_WALK_STICK,
+    /* 0x1E */ ANM_WAIT_TUBO,
+    /* 0x1F */ ANM_TALK_TUBO,
+    /* 0x20 */ ANM_TALK_B_TUBO,
+    /* 0x21 */ ANM_WALK_TUBO,
+    /* 0x22 */ ANM_PLAYM,
+    /* 0x23 */ ANM_RUN_KAGO,
+    /* 0x24 */ ANM_RUN_STICK,
+    /* 0x25 */ ANM_RUN_TUBO,
+    /* 0x26 */ ANM_TO_WOLF,
+    /* 0x27 */ ANM_SIT_TO_WOLF_A,
+    /* 0x28 */ ANM_SIT_TO_WOLF_B,
+    /* 0x29 */ ANM_SURPRISE,
+    /* 0x2A */ ANM_KAMAE,
+    /* 0x2B */ ANM_KAMAE_WAIT_B,
+    /* 0x2C */ ANM_KAMAE_STEP,
+    /* 0x2D */ ANM_RUN_KAMAE,
+    /* 0x2E */ ANM_KAMAE_C,
+    /* 0x2F */ ANM_MARO_DANCE,
+    /* 0x30 */ ANM_2LADYTALK_A,
+    /* 0x31 */ ANM_2LADYTALK_B,
+    /* 0x32 */ ANM_2NORMALTALK_A,
+    /* 0x33 */ ANM_2NORMALTALK_B,
+    /* 0x34 */ ANM_CELLME,
+    /* 0x35 */ ANM_SING,
+};
+
+enum Motion {
+    /* 0x00 */ MOT_TALK_A,
+    /* 0x01 */ MOT_WAIT_A,
+    /* 0x02 */ MOT_WAIT_B,
+    /* 0x04 */ MOT_TALK_B = 0x4,
+    /* 0x05 */ MOT_TALK_A_B_A,
+    /* 0x06 */ MOT_TALK_C,
+    /* 0x07 */ MOT_TALK_B_A_C,
+    /* 0x08 */ MOT_TALK_A_B_C,
+    /* 0x09 */ MOT_BROWSE,
+    /* 0x0A */ MOT_BROWSE_TALK_A_B,
+    /* 0x0B */ MOT_BROWSE_TALK_A_B_C,
+    /* 0x0C */ MOT_2LADYTALK_A,
+    /* 0x0D */ MOT_2LADYTALK_B,
+    /* 0x0E */ MOT_TALK_A_2LADYTALK_A,
+    /* 0x0F */ MOT_WAIT_A_2LADYTALK_B,
+    /* 0x10 */ MOT_TALK_A_2LADYTALK_A_2NORMALTALK_A,
+    /* 0x11 */ MOT_WAIT_A_2LADYTALK_B_2NORMALTALK_B,
+    /* 0x12 */ MOT_2LADYTALK_A_B_2NORMALTALK_A_B,
+    /* 0x13 */ MOT_LOOK_A,
+    /* 0x14 */ MOT_LOOK_B,
+    /* 0x15 */ MOT_LOOK_A_B,
+    /* 0x16 */ MOT_WAIT_WALL,
+    /* 0x17 */ MOT_TALK_WALL,
+    /* 0x18 */ MOT_SITWAIT_A,
+    /* 0x19 */ MOT_SITTALK_SITWAIT_A,
+    /* 0x1A */ MOT_SITWAIT_B,
+    /* 0x1B */ MOT_SITTALK_SITWAIT_B,
+    /* 0x1C */ MOT_SING,
+    /* 0x1D */ MOT_SITTALK_A,
+    /* 0x1E */ MOT_SITTALK_A_B,
+    /* 0x1F */ MOT_SITTALK_A_A_B,
+    /* 0x20 */ MOT_SITTALK_B,
+    /* 0x21 */ MOT_SITTALK_B_B,
+    /* 0x22 */ MOT_SITTALK_B_B_B,
+    /* 0x23 */ MOT_KAMAE,
+    /* 0x24 */ MOT_KAMAE_C,
+    /* 0x25 */ MOT_KAMAE_STEP,
+    /* 0x26 */ MOT_SURPRISE,
+    /* 0x27 */ MOT_TO_WOLF,
+};
+
+enum Object {
+    /* 0x00 */ OBJ_TUBO,
+    /* 0x01 */ OBJ_TUBO2,
+    /* 0x02 */ OBJ_SPEAR,
+    /* 0x03 */ OBJ_BROOM,
+    /* 0x04 */ OBJ_KAGOM,
+    /* 0x05 */ OBJ_KAGOW,
+    /* 0x06 */ OBJ_GUITAR,
+    /* 0x07 */ OBJ_FLUTE,
+    /* 0x08 */ OBJ_MILKTUBO,
+    /* 0x09 */ OBJ_CELEB_BAG_M,
+    /* 0x0A */ OBJ_CELEB_BAG_W,
+    /* 0x0B */ OBJ_MARO_BAG_M,
+    /* 0x0C */ OBJ_MARO_BAG_W,
+};
 
 enum Joint_NUM {
-    JntM_NUM_e = 0x13,
-    JntW_NUM_e = 0x15,
+    /* 0x13 */ JntM_NUM_e = 0x13,
+    /* 0x15 */ JntW_NUM_e = 0x15,
+};
+
+enum Joint_M {
+    /* 0x00 */ JNTM_CENTER,
+    /* 0x01 */ JNTM_BACKBONE,
+    /* 0x02 */ JNTM_NECK,
+    /* 0x03 */ JNTM_HEAD,
+    /* 0x04 */ JNTM_SHOULDERL,
+    /* 0x05 */ JNTM_ARML1,
+    /* 0x06 */ JNTM_ARML2,
+    /* 0x07 */ JNTM_HANDL,
+    /* 0x08 */ JNTM_SHOULDERR,
+    /* 0x09 */ JNTM_ARMR1,
+    /* 0x0A */ JNTM_ARMR2,
+    /* 0x0B */ JNTM_HANDR,
+    /* 0x0C */ JNTM_WAIST,
+    /* 0x0D */ JNTM_LEGL1,
+    /* 0x0E */ JNTM_LEGL2,
+    /* 0x0F */ JNTM_FOOTL,
+    /* 0x10 */ JNTM_LEGR1,
+    /* 0x11 */ JNTM_LEGR2,
+    /* 0x12 */ JNTM_FOOTR,
+};
+
+enum Joint_W {
+    /* 0x00 */ JNTW_CENTER,
+    /* 0x01 */ JNTW_BACKBONE,
+    /* 0x02 */ JNTW_NECK,
+    /* 0x03 */ JNTW_HEAD,
+    /* 0x04 */ JNTW_SHOULDERL,
+    /* 0x05 */ JNTW_ARML1,
+    /* 0x06 */ JNTW_ARML2,
+    /* 0x07 */ JNTW_HANDL,
+    /* 0x08 */ JNTW_SHOULDERR,
+    /* 0x09 */ JNTW_ARMR1,
+    /* 0x0A */ JNTW_ARMR2,
+    /* 0x0B */ JNTW_HANDR,
+    /* 0x0C */ JNTW_WAIST,
+    /* 0x0D */ JNTW_LEGL1,
+    /* 0x0E */ JNTW_LEGL2,
+    /* 0x0F */ JNTW_FOOTL,
+    /* 0x10 */ JNTW_SKIRTL,
+    /* 0x11 */ JNTW_LEGR1,
+    /* 0x12 */ JNTW_LEGR2,
+    /* 0x13 */ JNTW_FOOTR,
+    /* 0x14 */ JNTW_SKIRTR,
+};
+
+enum Type {
+    /* 0x00 */ MdlMANa_e,
+    /* 0x01 */ MdlMADa_e,
+    /* 0x02 */ MdlMCNa_e,
+    /* 0x03 */ MdlMONa_e,
+    /* 0x04 */ MdlMANb_e,
+    /* 0x05 */ MdlMANc_e,
+    /* 0x06 */ MdlMASa_e,
+    /* 0x07 */ MdlMBNa_e,
+    /* 0x08 */ MdlMANa2_e,
+    /* 0x09 */ MdlMADa2_e,
+    /* 0x0A */ MdlMCNa2_e,
+    /* 0x0B */ MdlMONa2_e,
+    /* 0x0C */ MdlMANb2_e,
+    /* 0x0D */ MdlMANc2_e,
+    /* 0x0E */ MdlMASa2_e,
+    /* 0x0F */ MdlMBNa2_e,
+    /* 0x10 */ MdlWANa_e,
+    /* 0x11 */ MdlWADa_e,
+    /* 0x12 */ MdlMATa_e,
+    /* 0x13 */ MdlWCNa_e,
+    /* 0x14 */ MdlWONa_e,
+    /* 0x15 */ MdlWGNa_e,
+    /* 0x16 */ MdlWANb_e,
+    /* 0x17 */ MdlWANa2_e,
+    /* 0x18 */ MdlWADa2_e,
+    /* 0x19 */ MdlMATa2_e,
+    /* 0x1A */ MdlWCNa2_e,
+    /* 0x1B */ MdlWONa2_e,
+    /* 0x1C */ MdlWGNa2_e,
+    /* 0x1D */ MdlWANb2_e,
 };
 
 /* 8098699C-809869B4 -00001 0018+00 8/7 0/0 0/0 .rodata          l_resMANa */
@@ -552,158 +1114,254 @@ struct anmTblPrm {
 
 /* 809879F4-80987AE4 000098 00F0+00 1/2 0/0 0/0 .data            l_bmdTbl */
  static anmTblPrm l_bmdTbl[30] = {
-    l_resMANa[0],  3, l_resMADa[0],  3, l_resMCNa[0],  4, l_resMONa[0],  4, l_resMANb[0],  3,
-    l_resMANc[0],  4, l_resMASa[0],  4, l_resMBNa[0],  4, l_resMANa2[0], 4, l_resMADa2[0], 4,
-    l_resMCNa2[0], 4, l_resMONa2[0], 4, l_resMANb2[0], 3, l_resMANc2[0], 4, l_resMASa2[0], 4,
-    l_resMBNa2[0], 4, l_resWANa[0],  4, l_resWADa[0],  4, l_resMATa[0],  3, l_resWCNa[0],  4,
-    l_resWONa[0],  4, l_resWGNa[0],  4, l_resWANb[0],  4, l_resWANa2[0], 4, l_resWADa2[0], 4,
-    l_resMATa2[0], 3, l_resWCNa2[0], 4, l_resWONa2[0], 4, l_resWGNa2[0], 4, l_resWANb2[0], 4,
+    l_resMANa[0], BMDR_MAN_A,
+    l_resMADa[0], BMDR_MAD_A,
+    l_resMCNa[0], BMDR_MCN_A,
+    l_resMONa[0], BMDR_MON_A,
+    l_resMANb[0], BMDR_MAN_B,
+    l_resMANc[0], BMDR_MAN_C,
+    l_resMASa[0], BMDR_MAS_A,
+    l_resMBNa[0], BMDR_MBN_A,
+    l_resMANa2[0], BMDR_MAN_A2,
+    l_resMADa2[0], BMDR_MAD_A2,
+    l_resMCNa2[0], BMDR_MCN_A2,
+    l_resMONa2[0], BMDR_MON_A2,
+    l_resMANb2[0], BMDR_MAN_B2,
+    l_resMANc2[0], BMDR_MAN_C2,
+    l_resMASa2[0], BMDR_MAS_A2,
+    l_resMBNa2[0], BMDR_MBN_A2,
+    l_resWANa[0], BMDR_WAN_A,
+    l_resWADa[0], BMDR_WAD_A,
+    l_resMATa[0], BMDR_MAT_A,
+    l_resWCNa[0], BMDR_WCN_A,
+    l_resWONa[0], BMDR_WON_A,
+    l_resWGNa[0], BMDR_WGN_A,
+    l_resWANb[0], BMDR_WAN_B,
+    l_resWANa2[0], BMDR_WAN_A2,
+    l_resWADa2[0], BMDR_WAD_A2,
+    l_resMATa2[0], BMDR_MAT_A2,
+    l_resWCNa2[0], BMDR_WCN_A2,
+    l_resWONa2[0], BMDR_WON_A2,
+    l_resWGNa2[0], BMDR_WGN_A2,
+    l_resWANb2[0], BMDR_WAN_B2,
 };
 
 /* 80987AE4-80987BD4 000188 00F0+00 1/2 0/0 0/0 .data            l_bmdTWTbl */
 static anmTblPrm l_bmdTWTbl[30] = {
-    l_resMANa[1],  3, l_resMADa[1],  3, l_resMCNa[1],  4, l_resMONa[1],  4, l_resMANb[1],  3,
-    l_resMANc[1],  4, l_resMASa[1],  4, l_resMBNa[1],  4, l_resMANa2[1], 4, l_resMADa2[1], 3,
-    l_resMCNa2[1], 4, l_resMONa2[1], 4, l_resMANb2[1], 3, l_resMANc2[1], 4, l_resMASa2[1], 4,
-    l_resMBNa2[1], 4, l_resWANa[1],  4, l_resWADa[1],  4, l_resMATa[1],  3, l_resWCNa[1],  4,
-    l_resWONa[1],  4, l_resWGNa[1],  4, l_resWANb[1],  4, l_resWANa2[1], 4, l_resWADa2[1], 4,
-    l_resMATa2[1], 3, l_resWCNa2[1], 4, l_resWONa2[1], 4, l_resWGNa2[1], 4, l_resWANb2[1], 4,
+    l_resMANa[1], BMDR_MAN_A_TW,
+    l_resMADa[1], BMDR_MAD_A_TW,
+    l_resMCNa[1], BMDR_MCN_A_TW,
+    l_resMONa[1], BMDR_MON_A_TW,
+    l_resMANb[1], BMDR_MAN_B_TW,
+    l_resMANc[1], BMDR_MAN_C_TW,
+    l_resMASa[1], BMDR_MAS_A_TW,
+    l_resMBNa[1], BMDR_MBN_A_TW,
+    l_resMANa2[1], BMDR_MAN_A2_TW,
+    l_resMADa2[1], BMDR_MAD_A2_TW,
+    l_resMCNa2[1], BMDR_MCN_A2_TW,
+    l_resMONa2[1], BMDR_MON_A2_TW,
+    l_resMANb2[1], BMDR_MAN_B2_TW,
+    l_resMANc2[1], BMDR_MAN_C2_TW,
+    l_resMASa2[1], BMDR_MAS_A2_TW,
+    l_resMBNa2[1], BMDR_MBN_A2_TW,
+    l_resWANa[1], BMDR_WAN_A_TW,
+    l_resWADa[1], BMDR_WAD_A_TW,
+    l_resMATa[1], BMDR_MAT_A_TW,
+    l_resWCNa[1], BMDR_WCN_A_TW,
+    l_resWONa[1], BMDR_WON_A_TW,
+    l_resWGNa[1], BMDR_WGN_A_TW,
+    l_resWANb[1], BMDR_WAN_B_TW,
+    l_resWANa2[1], BMDR_WAN_A2_TW,
+    l_resWADa2[1], BMDR_WAD_A2_TW,
+    l_resMATa2[1], BMDR_MAT_A2_TW,
+    l_resWCNa2[1], BMDR_WCN_A2_TW,
+    l_resWONa2[1], BMDR_WON_A2_TW,
+    l_resWGNa2[1], BMDR_WGN_A2_TW,
+    l_resWANb2[1], BMDR_WAN_B2_TW,
 };
 
 /* 80987BD4-80987CC4 000278 00F0+00 1/2 0/0 0/0 .data            l_btpTbl */
 static anmTblPrm l_btpTbl[30] = {
-    l_resMANa[0],  -1, l_resMADa[0],  -1, l_resMCNa[0],  7, l_resMONa[0],  7, l_resMANb[0],  -1,
-    l_resMANc[0],  7, l_resMASa[0],  7, l_resMBNa[0],  7, l_resMANa2[0], 7, l_resMADa2[0], 7,
-    l_resMCNa2[0], 7, l_resMONa2[0], 7, l_resMANb2[0], -1, l_resMANc2[0], 7, l_resMASa2[0], 7,
-    l_resMBNa2[0], 7, l_resWANa[0],  7, l_resWADa[0],  7, l_resMATa[0],  -1, l_resWCNa[0],  7,
-    l_resWONa[0],  7, l_resWGNa[0],  7, l_resWANb[0],  7, l_resWANa2[0], 7, l_resWADa2[0], 7,
-    l_resMATa2[0], -1, l_resWCNa2[0], 7, l_resWONa2[0], 7, l_resWGNa2[0], 7, l_resWANb2[0], 7,
+    l_resMANa[0], -1,
+    l_resMADa[0], -1,
+    l_resMCNa[0], BTP_MCN_A,
+    l_resMONa[0], BTP_MON_A,
+    l_resMANb[0], -1,
+    l_resMANc[0], BTP_MAN_C,
+    l_resMASa[0], BTP_MAS_A,
+    l_resMBNa[0], BTP_MBN_A,
+    l_resMANa2[0], BTP_MAN_A2,
+    l_resMADa2[0], BTP_MAD_A2,
+    l_resMCNa2[0], BTP_MCN_A2,
+    l_resMONa2[0], BTP_MON_A2,
+    l_resMANb2[0], -1,
+    l_resMANc2[0], BTP_MAN_C2,
+    l_resMASa2[0], BTP_MAS_A2,
+    l_resMBNa2[0], BTP_MBN_A2,
+    l_resWANa[0], BTP_WAN_A,
+    l_resWADa[0], BTP_WAD_A,
+    l_resMATa[0], -1,
+    l_resWCNa[0], BTP_WCN_A,
+    l_resWONa[0], BTP_WON_A,
+    l_resWGNa[0], BTP_WGN_A,
+    l_resWANb[0], BTP_WAN_B,
+    l_resWANa2[0], BTP_WAN_A2,
+    l_resWADa2[0], BTP_WAD_A2,
+    l_resMATa2[0], -1,
+    l_resWCNa2[0], BTP_WCN_A2,
+    l_resWONa2[0], BTP_WON_A2,
+    l_resWGNa2[0], BTP_WGN_A2,
+    l_resWANb2[0], BTP_WAN_B2,
 };
 
 /* 80987CC4-80987DB4 000368 00F0+00 1/2 0/0 0/0 .data            l_btpTWTbl */
 static anmTblPrm l_btpTWTbl[30] = {
-    l_resMANa[1],  -1, l_resMADa[1],  -1, l_resMCNa[1],  7, l_resMONa[1],  7, l_resMANb[1],  -1,
-    l_resMANc[1],  7, l_resMASa[1],  7, l_resMBNa[1],  7, l_resMANa2[1], 7, l_resMADa2[1], -1,
-    l_resMCNa2[1], 7, l_resMONa2[1], 7, l_resMANb2[1], -1, l_resMANc2[1], 7, l_resMASa2[1], 7,
-    l_resMBNa2[1], 7, l_resWANa[1],  7, l_resWADa[1],  7, l_resMATa[1],  -1, l_resWCNa[1],  7,
-    l_resWONa[1],  7, l_resWGNa[1],  7, l_resWANb[1],  7, l_resWANa2[1], 7, l_resWADa2[1], 7,
-    l_resMATa2[1], -1, l_resWCNa2[1], 7, l_resWONa2[1], 7, l_resWGNa2[1], 7, l_resWANb2[1], 7,
+    l_resMANa[1], -1,
+    l_resMADa[1], -1,
+    l_resMCNa[1], BTP_MCN_A_TW,
+    l_resMONa[1], BTP_MON_A_TW,
+    l_resMANb[1], -1,
+    l_resMANc[1], BTP_MAN_C_TW,
+    l_resMASa[1], BTP_MAS_A_TW,
+    l_resMBNa[1], BTP_MBN_A_TW,
+    l_resMANa2[1], BTP_MAN_A2_TW,
+    l_resMADa2[1], -1,
+    l_resMCNa2[1], BTP_MCN_A2_TW,
+    l_resMONa2[1], BTP_MON_A2_TW,
+    l_resMANb2[1], -1,
+    l_resMANc2[1], BTP_MAN_C2_TW,
+    l_resMASa2[1], BTP_MAS_A2_TW,
+    l_resMBNa2[1], BTP_MBN_A2_TW,
+    l_resWANa[1], BTP_WAN_A_TW,
+    l_resWADa[1], BTP_WAD_A_TW,
+    l_resMATa[1], -1,
+    l_resWCNa[1], BTP_WCN_A_TW,
+    l_resWONa[1], BTP_WON_A_TW,
+    l_resWGNa[1], BTP_WGN_A_TW,
+    l_resWANb[1], BTP_WAN_B_TW,
+    l_resWANa2[1], BTP_WAN_A2_TW,
+    l_resWADa2[1], BTP_WAD_A2_TW,
+    l_resMATa2[1], -1,
+    l_resWCNa2[1], BTP_WCN_A2_TW,
+    l_resWONa2[1], BTP_WON_A2_TW,
+    l_resWGNa2[1], BTP_WGN_A2_TW,
+    l_resWANb2[1], BTP_WAN_B2_TW,
 };
 
 /* 80987DB4-80987F64 -00001 01B0+00 1/1 0/0 0/0 .data            l_bckTbl_M */
 static anmTblPrm l_bckTbl_M[54] = {
-    {"Mgeneral",  0x1A},
-    {"Mgeneral",  0x1B},
-    {"Mgeneral",  0x1D},
-    {"Mgeneral",  0x1E},
-    {"Mgeneral",  8},
-    {"Mgeneral",  9},
-    {"Mgeneral",  0x14},
-    {"Mgeneral",  0x15},
-    {"Mgeneral",  0x17},
-    {"Mgeneral",  5},
-    {"Mgeneral",  6},
-    {"Mgeneral",  0x1C},
-    {"Mgeneral",  0x18},
-    {"Mgeneral",  0x16},
-    {"Mgeneral",  0x11},
-    {"Mgeneral",  0xD},
-    {"Mgeneral",  0xE},
-    {"Mgeneral",  0x12},
-    {"Mgeneral",  0xF},
-    {"Mgeneral",  0x10},
-    {"Mgeneral",  3},
-    {"Mgeneral",  4},
-    {"Mspecial", 0x12},
-    {"Mspecial", 0xF},
-    {"Mspecial", 0xC},
-    {"Mspecial", 0x15},
-    {"Mspecial", 0x13},
-    {"Mspecial", 0x10},
-    {"Mspecial", 0xD},
-    {"Mspecial", 0x16},
-    {"Mspecial", 0x14},
-    {"Mspecial", 0x11},
-    {"Mspecial", 0xE},
-    {"Mspecial", 0x17},
-    {"Mspecial", 7},
-    {"Mspecial", 8},
-    {"Mspecial", 0xA},
-    {"Mspecial", 0xB},
-    {"Mgeneral",  0x19},
-    {"Mgeneral",  0xB},
-    {"Mgeneral",  0xC},
-    {"Mgeneral",  0x13},
-    {"Mspecial", 3},
-    {"Mspecial", 6},
-    {"Mspecial", 5},
-    {"Mspecial", 9},
-    {"Mspecial", 4},
-    {"Mgeneral",  7},
+    {"Mgeneral",  BCK_M_WAIT_A},
+    {"Mgeneral",  BCK_M_WAIT_B},
+    {"Mgeneral",  BCK_M_WALK_A},
+    {"Mgeneral",  BCK_M_WALK_B},
+    {"Mgeneral",  BCK_M_RUN_A},
+    {"Mgeneral",  BCK_M_RUN_B},
+    {"Mgeneral",  BCK_M_TALK_A},
+    {"Mgeneral",  BCK_M_TALK_B},
+    {"Mgeneral",  BCK_M_TALK_C},
+    {"Mgeneral",  BCK_M_LOOK_A},
+    {"Mgeneral",  BCK_M_LOOK_B},
+    {"Mgeneral",  BCK_M_WAIT_WALL},
+    {"Mgeneral",  BCK_M_TALK_WALL},
+    {"Mgeneral",  BCK_M_TALK_B_WALL},
+    {"Mgeneral",  BCK_M_SITWAIT_A},
+    {"Mgeneral",  BCK_M_SITTALK_A},
+    {"Mgeneral",  BCK_M_SITTALK_A_B},
+    {"Mgeneral",  BCK_M_SITWAIT_B},
+    {"Mgeneral",  BCK_M_SITTALK_B},
+    {"Mgeneral",  BCK_M_SITTALK_B_B},
+    {"Mgeneral",  BCK_M_BROWSE_A},
+    {"Mgeneral",  BCK_M_BROWSE_B},
+    {"Mspecial", BCK_M_WAIT_KAGO},
+    {"Mspecial", BCK_M_TALK_KAGO},
+    {"Mspecial", BCK_M_TALK_B_KAGO},
+    {"Mspecial", BCK_M_WALK_KAGO},
+    {"Mspecial", BCK_M_WAIT_STICK},
+    {"Mspecial", BCK_M_TALK_STICK},
+    {"Mspecial", BCK_M_TALK_B_STICK},
+    {"Mspecial", BCK_M_WALK_STICK},
+    {"Mspecial", BCK_M_WAIT_TUBO},
+    {"Mspecial", BCK_M_TALK_TUBO},
+    {"Mspecial", BCK_M_TALK_B_TUBO},
+    {"Mspecial", BCK_M_WALK_TUBO},
+    {"Mspecial", BCK_M_PLAYM},
+    {"Mspecial", BCK_M_RUN_KAGO},
+    {"Mspecial", BCK_M_RUN_STICK},
+    {"Mspecial", BCK_M_RUN_TUBO},
+    {"Mgeneral",  BCK_M_TO_WOLF},
+    {"Mgeneral",  BCK_M_SIT_TO_WOLF_A},
+    {"Mgeneral",  BCK_M_SIT_TO_WOLF_B},
+    {"Mgeneral",  BCK_M_SURPRISE},
+    {"Mspecial", BCK_M_KAMAE},
+    {"Mspecial", BCK_M_KAMAE_WAIT_B},
+    {"Mspecial", BCK_M_KAMAE_STEP},
+    {"Mspecial", BCK_M_RUN_KAMAE},
+    {"Mspecial", BCK_M_KAMAE_C},
+    {"Mgeneral",  BCK_M_MARO_DANCE},
     {"Mgeneral",  -1},
     {"Mgeneral",  -1},
     {"Mgeneral",  -1},
     {"Mgeneral",  -1},
     {"Mgeneral",  -1},
-    {"Mgeneral",  0xA},
+    {"Mgeneral",  BCK_M_SING},
 };
 
 /* 80987F64-80988114 -00001 01B0+00 1/1 0/0 0/0 .data            l_bckTbl_W */
 static anmTblPrm l_bckTbl_W[54] = {
-    {"Wgeneral", 0x1F},
-    {"Wgeneral", 0x20},
-    {"Wgeneral", 0x22},
-    {"Wgeneral", 0x23},
-    {"Wgeneral", 0xD},
-    {"Wgeneral", 0xE},
-    {"Wgeneral", 0x19},
-    {"Wgeneral", 0x1A},
-    {"Wgeneral", 0x1C},
-    {"Wgeneral", 0xA},
-    {"Wgeneral", 0xB},
-    {"Wgeneral", 0x21},
-    {"Wgeneral", 0x1D},
-    {"Wgeneral", 0x1B},
-    {"Wgeneral", 0x16},
-    {"Wgeneral", 0x12},
-    {"Wgeneral", 0x13},
-    {"Wgeneral", 0x17},
-    {"Wgeneral", 0x14},
-    {"Wgeneral", 0x15},
-    {"Wgeneral", 7},
-    {"Wgeneral", 8},
-    {"Wspecial", 0xD},
-    {"Wspecial", 0xA},
-    {"Wspecial", 7},
-    {"Wspecial", 0x10},
-    {"Wspecial", 0xE},
-    {"Wspecial", 0xB},
-    {"Wspecial", 8},
-    {"Wspecial", 0x11},
-    {"Wspecial", 0xF},
-    {"Wspecial", 0xC},
-    {"Wspecial", 9},
-    {"Wspecial", 0x12},
-    {"Wspecial", 3},
-    {"Wspecial", 4},
-    {"Wspecial", 5},
-    {"Wspecial", 6},
-    {"Wgeneral", 0x1E},
-    {"Wgeneral", 0x10},
-    {"Wgeneral", 0x11},
-    {"Wgeneral", 0x18},
+    {"Wgeneral", BCK_W_WAIT_A},
+    {"Wgeneral", BCK_W_WAIT_B},
+    {"Wgeneral", BCK_W_WALK_A},
+    {"Wgeneral", BCK_W_WALK_B},
+    {"Wgeneral", BCK_W_RUN_A},
+    {"Wgeneral", BCK_W_RUN_B},
+    {"Wgeneral", BCK_W_TALK_A},
+    {"Wgeneral", BCK_W_TALK_B},
+    {"Wgeneral", BCK_W_TALK_C},
+    {"Wgeneral", BCK_W_LOOK_A},
+    {"Wgeneral", BCK_W_LOOK_B},
+    {"Wgeneral", BCK_W_WAIT_WALL},
+    {"Wgeneral", BCK_W_TALK_WALL},
+    {"Wgeneral", BCK_W_TALK_B_WALL},
+    {"Wgeneral", BCK_W_SITWAIT_A},
+    {"Wgeneral", BCK_W_SITTALK_A},
+    {"Wgeneral", BCK_W_SITTALK_A_B},
+    {"Wgeneral", BCK_W_SITWAIT_B},
+    {"Wgeneral", BCK_W_SITTALK_B},
+    {"Wgeneral", BCK_W_SITTALK_B_B},
+    {"Wgeneral", BCK_W_BROWSE_A},
+    {"Wgeneral", BCK_W_BROWSE_B},
+    {"Wspecial", BCK_W_WAIT_KAGO},
+    {"Wspecial", BCK_W_TALK_KAGO},
+    {"Wspecial", BCK_W_TALK_B_KAGO},
+    {"Wspecial", BCK_W_WALK_KAGO},
+    {"Wspecial", BCK_W_WAIT_STICK},
+    {"Wspecial", BCK_W_TALK_STICK},
+    {"Wspecial", BCK_W_TALK_B_STICK},
+    {"Wspecial", BCK_W_WALK_STICK},
+    {"Wspecial", BCK_W_WAIT_TUBO},
+    {"Wspecial", BCK_W_TALK_TUBO},
+    {"Wspecial", BCK_W_TALK_B_TUBO},
+    {"Wspecial", BCK_W_WALK_TUBO},
+    {"Wspecial", BCK_W_PLAYM},
+    {"Wspecial", BCK_W_RUN_KAGO},
+    {"Wspecial", BCK_W_RUN_STICK},
+    {"Wspecial", BCK_W_RUN_TUBO},
+    {"Wgeneral", BCK_W_TO_WOLF},
+    {"Wgeneral", BCK_W_SIT_TO_WOLF_A},
+    {"Wgeneral", BCK_W_SIT_TO_WOLF_B},
+    {"Wgeneral", BCK_W_SURPRISE},
     {"Wspecial", -1},
     {"Wspecial", -1},
     {"Wspecial", -1},
     {"Wspecial", -1},
     {"Wspecial", -1},
-    {"Wgeneral", 0xC},
-    {"Wgeneral", 3},
-    {"Wgeneral", 4},
-    {"Wgeneral", 5},
-    {"Wgeneral", 6},
-    {"Wgeneral", 9},
-    {"Wgeneral", 0xF},
+    {"Wgeneral", BCK_W_MARO_DANCE},
+    {"Wgeneral", BCK_W_2LADYTALK_A},
+    {"Wgeneral", BCK_W_2LADYTALK_B},
+    {"Wgeneral", BCK_W_2NORMALTALK_A},
+    {"Wgeneral", BCK_W_2NORMALTALK_B},
+    {"Wgeneral", BCK_W_CELLME},
+    {"Wgeneral", BCK_W_SING},
 };
 
 struct jnt {
@@ -1565,6 +2223,9 @@ static char* l_evtNames[1] = {
 /* 8098B750-8098B754 -00001 0004+00 0/2 0/0 0/0 .data            l_myName */
 static char* l_myName = "Chat";
 
+/* 8098BACC-8098BAD0 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
+static daNpcChat_Param_c l_HIO;
+
 /* 8098B754-8098B760 003DF8 000C+00 0/2 0/0 0/0 .data            mEvtSeqList__11daNpcChat_c */
 daNpcChat_c::eventFunc daNpcChat_c::mEvtSeqList[1] = {
     NULL,
@@ -1584,34 +2245,34 @@ daNpcChat_c::~daNpcChat_c() {
 
 /* 80986C6C-80986CD4 -00001 0068+00 1/1 0/0 0/0 .rodata          l_objTbl */
 static anmTblPrm const l_objTbl[13] = {
-    {"object", 9},
-    {"object", 9},
-    {"object", 8},
-    {"object", 3},
-    {"object", 0xD},
-    {"object", 0xE},
-    {"object", 0xC},
-    {"object", 6},
-    {"object", 7},
-    {"object", 0xA},
-    {"object", 0xB},
-    {"object", 0xF},
-    {"object", 0x10},
+    {"object", BMDR_B_TUBO},
+    {"object", BMDR_B_TUBO},
+    {"object", BMDR_B_SPEAR},
+    {"object", BMDR_B_BROOM},
+    {"object", BMDR_K_KAGOM},
+    {"object", BMDR_K_KAGOW},
+    {"object", BMDR_J_GUITAR},
+    {"object", BMDR_B_FLUTE},
+    {"object", BMDR_B_MILKTUBO},
+    {"object", BMDR_CELEB_BAG_M},
+    {"object", BMDR_CELEB_BAG_W},
+    {"object", BMDR_MARO_BAG_M},
+    {"object", BMDR_MARO_BAG_W},
 };
 
 /* 80986CD4-80986D3C -00001 0068+00 1/1 0/0 0/0 .rodata          l_objTWTbl */
 static anmTblPrm const l_objTWTbl[13] = {
-    {"objectTW", 9},
-    {"objectTW", 9},
-    {"objectTW", 8},
-    {"objectTW", 3},
-    {"objectTW", 0xD},
-    {"objectTW", 0xE},
-    {"objectTW", 0xC},
-    {"objectTW", 6},
-    {"objectTW", 7},
-    {"objectTW", 0xA},
-    {"objectTW", 0xB},
+    {"objectTW", BMDR_B_TUBO_TW},
+    {"objectTW", BMDR_B_TUBO_TW},
+    {"objectTW", BMDR_B_SPEAR_TW},
+    {"objectTW", BMDR_B_BROOM_TW},
+    {"objectTW", BMDR_K_KAGOM_TW},
+    {"objectTW", BMDR_K_KAGOW_TW},
+    {"objectTW", BMDR_J_GUITAR_TW},
+    {"objectTW", BMDR_B_FLUTE_TW},
+    {"objectTW", BMDR_B_MILKTUBO_TW},
+    {"objectTW", BMDR_CELEB_BAG_M_TW},
+    {"objectTW", BMDR_CELEB_BAG_W_TW},
     {"objectTW", -1},
     {"objectTW", -1},
 };
@@ -1654,12 +2315,13 @@ daNpcChat_HIOParam const daNpcChat_Param_c::m = {
 };
 
 /* 80980C1C-80980E20 0004BC 0204+00 1/1 0/0 0/0 .text            NpcCreate__11daNpcChat_cFi */
-BOOL daNpcChat_c::NpcCreate(int param_1) {
-    J3DModelData* a_mdlData_p = getNpcMdlDataP(param_1);
+BOOL daNpcChat_c::NpcCreate(int type) {
+    J3DModelData* a_mdlData_p = getNpcMdlDataP(type);
 
     JUT_ASSERT(185, 0 != a_mdlData_p);
 
-    u32 uVar1 = getTexAnmP(param_1) != NULL ? 0x11020084 : 0x11000084;
+    J3DAnmTexPattern* texAnmP = getTexAnmP(type);
+    u32 uVar1 = texAnmP != NULL ? 0x11020084 : 0x11000084;
 
     mpMorf = new mDoExt_McaMorfSO(a_mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, uVar1);
     if (mpMorf != NULL && mpMorf->getModel() == NULL) {
@@ -1673,38 +2335,38 @@ BOOL daNpcChat_c::NpcCreate(int param_1) {
 
     static Vec const a_transScaleTbl[30] = {
         1.0f, 1.0f, 1.0f,
-        1.0f, 1.2f, 2.17f,
-        1.0f, 0.56f, 1.0f,
+        1.0f, 1.1983438f, 2.173357f,
+        1.0f, 0.5581154f, 1.0f,
         1.0f, 0.95f, 1.0f,
-        1.0f, 1.16f, 1.0f,
-        1.0f, 1.1f, 1.0f,
-        1.0f, 0.79f, 1.0f,
-        1.0f, 0.92f, 1.0f,
+        1.0f, 1.1642542f, 1.0f,
+        1.0f, 1.0820773f, 1.0f,
+        1.0f, 0.78816104f, 1.0f,
+        1.0f, 0.91999996f, 1.0f,
         1.0f, 1.0f, 1.0f,
-        1.0f, 1.2f, 2.2f,
-        1.0f, 0.56f, 1.0f,
+        1.0f, 1.1983438f, 2.173357f,
+        1.0f, 0.5581154f, 1.0f,
         1.0f, 0.95f, 1.0f,
-        1.0f, 1.16f, 1.0f,
-        1.0f, 1.1f, 1.0f,
-        1.0f, 0.79f, 1.0f,
-        1.0f, 0.92f, 1.0f,
+        1.0f, 1.1642542f, 1.0f,
+        1.0f, 1.0820773f, 1.0f,
+        1.0f, 0.78816104f, 1.0f,
+        1.0f, 0.91999996f, 1.0f,
         1.0f, 1.0f, 1.0f,
         1.0f, 0.95f, 1.0f,
-        1.0f, 1.1f, 1.0f,
-        1.0f, 0.57f, 1.0f,
+        1.0f, 1.0999999f, 1.0f,
+        1.0f, 0.5656486f, 1.0f,
         1.0f, 0.9f, 1.0f,
-        1.0f, 0.86f, 1.0f,
-        1.0f, 1.1f, 1.0f,
+        1.0f, 0.8630768f, 1.0f,
+        1.0f, 1.0529536f, 1.0f,
         1.0f, 1.0f, 1.0f,
         1.0f, 0.95f, 1.0f,
-        1.0f, 1.1f, 1.0f,
-        1.0f, 0.57f, 1.0f,
+        1.0f, 1.0999999f, 1.0f,
+        1.0f, 0.5656486f, 1.0f,
         1.0f, 0.9f, 1.0f,
-        1.0f, 0.86f, 1.0f,
-        1.0f, 1.05f, 1.0f,
+        1.0f, 0.8630768f, 1.0f,
+        1.0f, 1.0529536f, 1.0f,
     };
 
-    cXyz i_scale(a_transScaleTbl[param_1]);
+    cXyz i_scale(a_transScaleTbl[type]);
     mpMorf->offTranslate();
     mpMorf->setTranslateScale(i_scale);
     J3DJointCallBack jointCallBack = a_mdlData_p->getJointNodePointer(0)->getCallBack();
@@ -1714,7 +2376,7 @@ BOOL daNpcChat_c::NpcCreate(int param_1) {
     }
     mpMorf->getModel()->setUserArea((uintptr_t)this);
 
-    if (!setExpressionBtp(param_1)) {
+    if (!setExpressionBtp(type)) {
         return FALSE;
     }
 
@@ -1731,95 +2393,95 @@ BOOL daNpcChat_c::NpcCreate(int param_1) {
 /* 80980E20-80980F88 0006C0 0168+00 3/1 0/0 0/0 .text            getObjNum__11daNpcChat_cFv */
 int daNpcChat_c::getObjNum() {
     int objNum;
-    u8 param = (fopAcM_GetParam(this) >> 8) & 0xF;
+    u32 param = (fopAcM_GetParam(this) >> 8) & 0xF;
 
     if (isM_()) {
         switch (param) {
             case 0:
-                objNum = 0;
+                objNum = OBJ_TUBO;
                 break;
 
             case 1:
-                objNum = 1;
+                objNum = OBJ_TUBO2;
                 break;
 
             case 2:
-                objNum = 2;
+                objNum = OBJ_SPEAR;
                 break;
 
             case 3:
-                objNum = 4;
+                objNum = OBJ_KAGOM;
                 break;
 
             case 4:
-                objNum = 6;
+                objNum = OBJ_GUITAR;
                 break;
 
             case 5:
-                objNum = 0;
+                objNum = OBJ_TUBO;
                 break;
 
             case 6:
-                objNum = 0;
+                objNum = OBJ_TUBO;
                 break;
 
             case 7:
-                objNum = 9;
+                objNum = OBJ_CELEB_BAG_M;
                 break;
 
             default:
-                objNum = 0;
+                objNum = OBJ_TUBO;
                 break;
         }
 
         // dSv_event_flag_c::F_0281 - Shop - Malo Mart opens in Castle Town
-        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[281]) &&
-            objNum == 9) {
-            objNum = 0xB;
+        if (dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[281]) &&
+            objNum == OBJ_CELEB_BAG_M) {
+            objNum = OBJ_MARO_BAG_M;
         }
     } else {
         switch (param) {
             case 0:
-                objNum = 0;
+                objNum = OBJ_TUBO;
                 break;
 
             case 1:
-                objNum = 8;
+                objNum = OBJ_MILKTUBO;
                 break;
 
             case 2:
-                objNum = 3;
+                objNum = OBJ_BROOM;
                 break;
 
             case 3:
-                objNum = 5;
+                objNum = OBJ_KAGOW;
                 break;
 
             case 4:
-                objNum = 7;
+                objNum = OBJ_FLUTE;
                 break;
 
             case 5:
-                objNum = 0;
+                objNum = OBJ_TUBO;
                 break;
 
             case 6:
-                objNum = 0;
+                objNum = OBJ_TUBO;
                 break;
 
             case 7:
-                objNum = 10;
+                objNum = OBJ_CELEB_BAG_W;
                 break;
 
             default:
-                objNum = 0;
+                objNum = OBJ_TUBO;
                 break;
         }
 
         // dSv_event_flag_c::F_0281 - Shop - Malo Mart opens in Castle Town
-        if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[281]) &&
-            objNum == 10) {
-            objNum = 0xC;
+        if (dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[281]) &&
+            objNum == OBJ_CELEB_BAG_W) {
+            objNum = OBJ_MARO_BAG_W;
         }
     }
 
@@ -1919,25 +2581,16 @@ J3DModelData* daNpcChat_c::getNpcMdlDataP(int i_index) {
         return NULL;
     }
 
-    const anmTblPrm* def;
-    if (mTwilight) {
-        def = &l_bmdTWTbl[i_index];
-    } else {
-        def = &l_bmdTbl[i_index];
-    }
-
-    return (J3DModelData*)dComIfG_getObjectRes(def->arc_name, def->resource_index);
+    J3DModelData* model_data;
+    const anmTblPrm* def = mTwilight ? &l_bmdTWTbl[i_index] : &l_bmdTbl[i_index];
+    model_data = (J3DModelData*)dComIfG_getObjectRes(def->arc_name, def->resource_index);
+    return model_data;
 }
 
 /* 809812FC-80981374 000B9C 0078+00 1/1 0/0 0/0 .text            getObjMdlDataP__11daNpcChat_cFi */
 J3DModelData* daNpcChat_c::getObjMdlDataP(int i_index) {
     J3DModelData* model_data = NULL;
-    const anmTblPrm* def;
-    if (mTwilight) {
-        def = &l_objTWTbl[i_index];
-    } else {
-        def = &l_objTbl[i_index];
-    }
+    const anmTblPrm* def = mTwilight ? &l_objTWTbl[i_index] : &l_objTbl[i_index];
 
     if (def->resource_index > 0) {
         model_data = (J3DModelData*)dComIfG_getObjectRes(def->arc_name, def->resource_index);
@@ -1957,7 +2610,7 @@ J3DAnmTexPattern* daNpcChat_c::getTexAnmP(int i_index) {
     if (def->resource_index != -1) {
         return (J3DAnmTexPattern*)dComIfG_getObjectRes(def->arc_name, def->resource_index);
     }
-     return NULL;
+    return NULL;
 }
 
 /* 809813E8-809814DC 000C88 00F4+00 1/1 0/0 0/0 .text            removeResrc__11daNpcChat_cFii */
@@ -1983,14 +2636,10 @@ BOOL daNpcChat_c::removeResrc(int idx, int param_2) {
     return TRUE;
 }
 
-/* 8098BACC-8098BAD0 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
-static daNpcChat_Param_c l_HIO;
-
 inline f32 AtnOfs(int param_1) { return param_1 < 16 ? a_prmTbl_M[param_1].field_0x1c : a_prmTbl_W[param_1 - 16].field_0x1c; }
 
 /* 809814DC-80981E90 000D7C 09B4+00 1/1 0/0 0/0 .text            setAttention__11daNpcChat_cFi */
 BOOL daNpcChat_c::setAttention(int param_1) {
-    // NONMATCHING
     static cXyz a_eyeOfsTbl[30] = {
         cXyz(0.0f, 10.0f, 0.0f),
         cXyz(0.0f, 10.0f, 0.0f),
@@ -2024,7 +2673,7 @@ BOOL daNpcChat_c::setAttention(int param_1) {
         cXyz(0.0f, 10.0f, 0.0f),
     };
 
-    int jointNo = isM_() ? 3 : 3;
+    int jointNo = isM_() ? JNTM_HEAD : JNTW_HEAD;
     mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(jointNo));
     mDoMtx_stack_c::multVec(&a_eyeOfsTbl[param_1], &eyePos);
     mBaseAttnPos.set(current.pos.x, current.pos.y + AtnOfs(param_1), current.pos.z);
@@ -2088,9 +2737,9 @@ cPhs__Step daNpcChat_c::Create() {
     mTalkMotionNo = getTalkMotionNo();
     mLookPlayerCheck = getLookPlayerCheck();
 
-    if (mTalkMotionNo == 24 || mTalkMotionNo == 25 || mTalkMotionNo == 29 || mTalkMotionNo == 30 || mTalkMotionNo == 31) {
+    if (mTalkMotionNo == MOT_SITWAIT_A || mTalkMotionNo == MOT_SITTALK_SITWAIT_A || mTalkMotionNo == MOT_SITTALK_A || mTalkMotionNo == MOT_SITTALK_A_B || mTalkMotionNo == MOT_SITTALK_A_A_B) {
         field_0xe51 = 1;
-    } else if (mTalkMotionNo == 26 || mTalkMotionNo == 27 || mTalkMotionNo == 32 || mTalkMotionNo == 33 || mTalkMotionNo == 34) {
+    } else if (mTalkMotionNo == MOT_SITWAIT_B || mTalkMotionNo == MOT_SITTALK_SITWAIT_B || mTalkMotionNo == MOT_SITTALK_B || mTalkMotionNo == MOT_SITTALK_B_B || mTalkMotionNo == MOT_SITTALK_B_B_B) {
         field_0xe51 = 2;
     } else {
         field_0xe51 = 0;
@@ -2153,35 +2802,33 @@ BOOL daNpcChat_c::CreateHeap() {
     J3DModel* model;
     BOOL rv = NpcCreate(mType);
     if (rv) {
-        if (mObjNum != 0) {
+        if (mObjNum != OBJ_TUBO) {
             model = ObjCreate(mObjNum);
             mObjModel = model;
             rv = model != NULL;
             if (!rv) {
                 mpMorf->stopZelAnime();
             }
-        } else {
-            if (field_0xe51 == 1) {
-                model = ChairCreate(ObjScale(mType));
-                mObjModel = model;
-                rv = model != NULL;
-                if (!rv) {
-                    mpMorf->stopZelAnime();
-                }
-            } else {
-                mObjModel = NULL;
-                rv = TRUE;
+        } else if (field_0xe51 == 1) {
+            model = ChairCreate(ObjScale(mType));
+            mObjModel = model;
+            rv = model != NULL;
+            if (!rv) {
+                mpMorf->stopZelAnime();
             }
+        } else {
+            mObjModel = NULL;
+            rv = TRUE;
         }
     }
 
-    setMotion(1, -1.0f, 0);
+    setMotion(MOT_WAIT_A, -1.0f, 0);
     return rv;
 }
 
 /* 809823B4-809823E8 001C54 0034+00 1/1 0/0 0/0 .text            Delete__11daNpcChat_cFv */
 int daNpcChat_c::Delete() {
-    fopAcM_GetID(this);
+    fpc_ProcID id = fopAcM_GetID(this);
     this->~daNpcChat_c();
     return 1;
 }
@@ -2321,7 +2968,8 @@ int daNpcChat_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
 
 /* 80982A98-80982AB8 002338 0020+00 1/1 0/0 0/0 .text            createHeapCallBack__11daNpcChat_cFP10fopAc_ac_c */
 int daNpcChat_c::createHeapCallBack(fopAc_ac_c* a_this) {
-    return static_cast<daNpcChat_c*>(a_this)->CreateHeap();
+    daNpcChat_c* i_this = (daNpcChat_c*)a_this;
+    return i_this->CreateHeap();
 }
 
 /* 80982AB8-80982B04 002358 004C+00 2/2 0/0 0/0 .text            ctrlJointCallBack__11daNpcChat_cFP8J3DJointi */
@@ -2375,7 +3023,7 @@ BOOL daNpcChat_c::searchGroup() {
 
 /* 80982C10-80982D20 0024B0 0110+00 3/2 0/0 0/0 .text            appearTimeCheck__11daNpcChat_cFv */
 BOOL daNpcChat_c::appearTimeCheck() {
-    int time = dKy_darkworld_check() ? dKy_getDarktime_hour() : dKy_getdaytime_hour();
+    int time = (dKy_darkworld_check() & 0xFF) ? dKy_getDarktime_hour() : dKy_getdaytime_hour();
     BOOL rv = FALSE;
 
     switch (mTalkGroupNo) {
@@ -2545,322 +3193,319 @@ bool daNpcChat_c::setExpressionBtp(int i_index) {
         return true;
     }
 
-    // OS_REPORT("%s: 表情Btpアニメーションの登録に失敗しました！\n", __FILE_NAME__);
+    OS_REPORT("%s: 表情Btpアニメーションの登録に失敗しました！\n", "d_a_npc_chat.cpp");
     return false;
 }
 
-enum Type { // fix numbers
-    /* 0x0 */ MdlMANa_e,
-    /* 0x1 */ MdlMADa_e,
-};
-
 /* 80983168-80983584 002A08 041C+00 3/0 0/0 0/0 .text            setMotionAnm__11daNpcChat_cFif */
 void daNpcChat_c::setMotionAnm(int i_index, f32 i_morf) {
-    // NONMATCHING
+    J3DAnmTransformKey* anm;
     int i_attr = J3DFrameCtrl::EMode_LOOP;
+    int index = i_index;
     int objNum = mObjNum;
-    field_0xe4c = i_index;
+    mMotionAnm = index;
 
-    switch (i_index) {
-        case 0:
-        case 0x16:
-        case 0x1A:
-        case 0x1E:
-        case 0x22:
+    switch (index) {
+        case ANM_WAIT_A:
+        case ANM_WAIT_KAGO:
+        case ANM_WAIT_STICK:
+        case ANM_WAIT_TUBO:
+        case ANM_PLAYM:
             switch (objNum) {
-                case 1:
-                case 8:
-                    i_index = 0x1E;
+                case OBJ_TUBO2:
+                case OBJ_MILKTUBO:
+                    index = ANM_WAIT_TUBO;
                     break;
 
-                case 2:
-                case 3:
-                case 9:
-                case 10:
-                case 11:
-                case 12:
-                    i_index = 0x1A;
+                case OBJ_SPEAR:
+                case OBJ_BROOM:
+                case OBJ_CELEB_BAG_M:
+                case OBJ_CELEB_BAG_W:
+                case OBJ_MARO_BAG_M:
+                case OBJ_MARO_BAG_W:
+                    index = ANM_WAIT_STICK;
                     break;
 
-                case 4:
-                case 5:
-                    i_index = 0x16;
+                case OBJ_KAGOM:
+                case OBJ_KAGOW:
+                    index = ANM_WAIT_KAGO;
                     break;
 
-                case 6:
-                case 7:
-                    i_index = 0x22;
+                case OBJ_GUITAR:
+                case OBJ_FLUTE:
+                    index = ANM_PLAYM;
                     break;
             }
             break;
 
-        case 1:
+        case ANM_WAIT_B:
             switch (objNum) {
-                case 1:
-                case 8:
-                    i_index = 0x1E;
+                case OBJ_TUBO2:
+                case OBJ_MILKTUBO:
+                    index = ANM_WAIT_TUBO;
                     break;
 
-                case 2:
-                case 3:
-                case 9:
-                case 10:
-                case 11:
-                case 12:
-                    i_index = 0x1A;
+                case OBJ_SPEAR:
+                case OBJ_BROOM:
+                case OBJ_CELEB_BAG_M:
+                case OBJ_CELEB_BAG_W:
+                case OBJ_MARO_BAG_M:
+                case OBJ_MARO_BAG_W:
+                    index = ANM_WAIT_STICK;
                     break;
 
-                case 4:
-                case 5:
-                    i_index = 0x16;
+                case OBJ_KAGOM:
+                case OBJ_KAGOW:
+                    index = ANM_WAIT_KAGO;
                     break;
 
-                case 6:
-                case 7:
-                    i_index = 0x22;
+                case OBJ_GUITAR:
+                case OBJ_FLUTE:
+                    index = ANM_PLAYM;
                     break;
             }
             break;
 
-        case 2:
-        case 0x19:
-        case 0x1D:
-        case 0x21:
+        case ANM_WALK_A:
+        case ANM_WALK_KAGO:
+        case ANM_WALK_STICK:
+        case ANM_WALK_TUBO:
             switch (objNum) {
-                case 1:
-                case 8:
-                    i_index = 0x21;
+                case OBJ_TUBO2:
+                case OBJ_MILKTUBO:
+                    index = ANM_WALK_TUBO;
                     break;
 
-                case 2:
-                case 3:
-                case 9:
-                case 10:
-                case 11:
-                case 12:
-                    i_index = 0x1D;
+                case OBJ_SPEAR:
+                case OBJ_BROOM:
+                case OBJ_CELEB_BAG_M:
+                case OBJ_CELEB_BAG_W:
+                case OBJ_MARO_BAG_M:
+                case OBJ_MARO_BAG_W:
+                    index = ANM_WALK_STICK;
                     break;
 
-                case 4:
-                case 5:
-                    i_index = 0x19;
+                case OBJ_KAGOM:
+                case OBJ_KAGOW:
+                    index = ANM_WALK_KAGO;
                     break;
 
-                case 6:
-                case 7:
-                    i_index = 0x22;
+                case OBJ_GUITAR:
+                case OBJ_FLUTE:
+                    index = ANM_PLAYM;
                     break;
             }
             break;
 
         case 3:
             switch (objNum) {
-                case 1:
-                case 8:
-                    i_index = 0x21;
+                case OBJ_TUBO2:
+                case OBJ_MILKTUBO:
+                    index = ANM_WALK_TUBO;
                     break;
 
-                case 2:
-                case 3:
-                case 9:
-                case 10:
-                case 11:
-                case 12:
-                    i_index = 0x1D;
+                case OBJ_SPEAR:
+                case OBJ_BROOM:
+                case OBJ_CELEB_BAG_M:
+                case OBJ_CELEB_BAG_W:
+                case OBJ_MARO_BAG_M:
+                case OBJ_MARO_BAG_W:
+                    index = ANM_WALK_STICK;
                     break;
 
-                case 4:
-                case 5:
-                    i_index = 0x19;
+                case OBJ_KAGOM:
+                case OBJ_KAGOW:
+                    index = ANM_WALK_KAGO;
                     break;
 
-                case 6:
-                case 7:
-                    i_index = 0x22;
-                    break;
-            }
-            break;
-
-        case 6:
-        case 0x17:
-        case 0x1B:
-        case 0x1F:
-            switch (objNum) {
-                case 1:
-                case 8:
-                    i_index = 0x1F;
-                    break;
-
-                case 2:
-                case 3:
-                case 9:
-                case 0xA:
-                case 0xB:
-                case 0xC:
-                    i_index = 0x1B;
-                    break;
-
-                case 4:
-                case 5:
-                    i_index = 0x17;
-                    break;
-
-                case 6:
-                case 7:
-                    i_index = 0x22;
+                case OBJ_GUITAR:
+                case OBJ_FLUTE:
+                    index = ANM_PLAYM;
                     break;
             }
             break;
 
-        case 7:
-        case 0x18:
-        case 0x1C:
-        case 0x20:
+        case ANM_TALK_A:
+        case ANM_TALK_KAGO:
+        case ANM_TALK_STICK:
+        case ANM_TALK_TUBO:
             switch (objNum) {
-                case 1:
-                case 8:
-                    i_index = 0x20;
+                case OBJ_TUBO2:
+                case OBJ_MILKTUBO:
+                    index = ANM_TALK_TUBO;
                     break;
 
-                case 2:
-                case 3:
-                case 9:
-                case 10:
-                case 11:
-                case 12:
-                    i_index = 0x1C;
+                case OBJ_SPEAR:
+                case OBJ_BROOM:
+                case OBJ_CELEB_BAG_M:
+                case OBJ_CELEB_BAG_W:
+                case OBJ_MARO_BAG_M:
+                case OBJ_MARO_BAG_W:
+                    index = ANM_TALK_STICK;
                     break;
 
-                case 4:
-                case 5:
-                    i_index = 0x18;
+                case OBJ_KAGOM:
+                case OBJ_KAGOW:
+                    index = ANM_TALK_KAGO;
                     break;
 
-                case 6:
-                case 7:
-                    i_index = 0x22;
+                case OBJ_GUITAR:
+                case OBJ_FLUTE:
+                    index = ANM_PLAYM;
                     break;
             }
             break;
 
-        case 4:
-        case 5:
+        case ANM_TALK_B:
+        case ANM_TALK_B_KAGO:
+        case ANM_TALK_B_STICK:
+        case ANM_TALK_B_TUBO:
             switch (objNum) {
-                case 1:
-                case 8:
-                    i_index = 0x25;
+                case OBJ_TUBO2:
+                case OBJ_MILKTUBO:
+                    index = ANM_TALK_B_TUBO;
                     break;
 
-                case 2:
-                    i_index = 0x2D;
+                case OBJ_SPEAR:
+                case OBJ_BROOM:
+                case OBJ_CELEB_BAG_M:
+                case OBJ_CELEB_BAG_W:
+                case OBJ_MARO_BAG_M:
+                case OBJ_MARO_BAG_W:
+                    index = ANM_TALK_B_STICK;
                     break;
 
-                case 9:
-                case 0xA:
-                case 0xB:
-                case 0xC:
-                    i_index = 0x24;
+                case OBJ_KAGOM:
+                case OBJ_KAGOW:
+                    index = ANM_TALK_B_KAGO;
                     break;
 
-                case 4:
-                case 5:
-                    i_index = 0x23;
-                    break;
-
-                case 6:
-                case 7:
-                    i_index = 0x22;
+                case OBJ_GUITAR:
+                case OBJ_FLUTE:
+                    index = ANM_PLAYM;
                     break;
             }
             break;
 
-        case 8:
-        case 9:
-        case 0xA:
-        case 0xB:
-        case 0xC:
-        case 0xD:
-        case 0xE:
-        case 0xF:
-        case 0x10:
-        case 0x11:
-        case 0x12:
-        case 0x13:
-        case 0x14:
-        case 0x15:
+        case ANM_RUN_A:
+        case ANM_RUN_B:
             switch (objNum) {
-                case 1:
-                case 8:
+                case OBJ_TUBO2:
+                case OBJ_MILKTUBO:
+                    index = ANM_RUN_TUBO;
                     break;
 
-                case 2:
-                case 3:
-                case 9:
-                case 0xA:
-                case 0xB:
-                case 0xC:
+                case OBJ_SPEAR:
+                    index = ANM_RUN_KAMAE;
                     break;
 
-                case 4:
-                case 5:
+                case OBJ_BROOM:
+                case OBJ_CELEB_BAG_M:
+                case OBJ_CELEB_BAG_W:
+                case OBJ_MARO_BAG_M:
+                case OBJ_MARO_BAG_W:
+                    index = ANM_RUN_STICK;
+                    break;
+
+                case OBJ_KAGOM:
+                case OBJ_KAGOW:
+                    index = ANM_RUN_KAGO;
+                    break;
+
+                case OBJ_GUITAR:
+                case OBJ_FLUTE:
+                    index = ANM_PLAYM;
+                    break;
+            }
+            break;
+
+        case ANM_TALK_C:
+        case ANM_LOOK_A:
+        case ANM_LOOK_B:
+        case ANM_WAIT_WALL:
+        case ANM_TALK_WALL:
+        case ANM_TALK_B_WALL:
+        case ANM_SITWAIT_A:
+        case ANM_SITTALK_A:
+        case ANM_SITTALK_A_B:
+        case ANM_SITWAIT_B:
+        case ANM_SITTALK_B:
+        case ANM_SITTALK_B_B:
+        case ANM_BROWSE_A:
+        case ANM_BROWSE_B:
+            switch (objNum) {
+                case OBJ_TUBO2:
+                case OBJ_MILKTUBO:
+                    break;
+
+                case OBJ_SPEAR:
+                case OBJ_BROOM:
+                case OBJ_CELEB_BAG_M:
+                case OBJ_CELEB_BAG_W:
+                case OBJ_MARO_BAG_M:
+                case OBJ_MARO_BAG_W:
+                    break;
+
+                case OBJ_KAGOM:
+                case OBJ_KAGOW:
                     break;
                 
-                case 6:
-                case 7:
-                    i_index = 0x22;
+                case OBJ_GUITAR:
+                case OBJ_FLUTE:
+                    index = ANM_PLAYM;
                     break;
             }
             break;
 
-        case 0x26:
-        case 0x27:
-        case 0x28:
-        case 0x29:
-        case 0x2F:
-        case 0x30:
-        case 0x31:
-        case 0x32:
-        case 0x33:
-        case 0x34:
-        case 0x35:
+        case ANM_TO_WOLF:
+        case ANM_SIT_TO_WOLF_A:
+        case ANM_SIT_TO_WOLF_B:
+        case ANM_SURPRISE:
+        case ANM_MARO_DANCE:
+        case ANM_2LADYTALK_A:
+        case ANM_2LADYTALK_B:
+        case ANM_2NORMALTALK_A:
+        case ANM_2NORMALTALK_B:
+        case ANM_CELLME:
+        case ANM_SING:
             break;
 
-        case 0x2A:
-        case 0x2B:
-        case 0x2C:
-        case 0x2E:
+        case ANM_KAMAE:
+        case ANM_KAMAE_WAIT_B:
+        case ANM_KAMAE_STEP:
+        case ANM_KAMAE_C:
             JUT_ASSERT(1557, mType == MdlMANa_e || mType == MdlMADa_e);
             break;
 
-        case 0x23:
-        case 0x24:
-        case 0x25:
-        case 0x2D:
+        case ANM_RUN_KAGO:
+        case ANM_RUN_STICK:
+        case ANM_RUN_TUBO:
+        case ANM_RUN_KAMAE:
         default:
             return;
     }
 
-    switch (i_index) {
-        case 8:
+    switch (index) {
+        case ANM_TALK_C:
             mSound.playVoice(3);
             break;
 
-        case 0x31:
+        case ANM_2LADYTALK_B:
             mSound.playVoice(4);
             break;
         
-        case 0x29:
+        case ANM_SURPRISE:
             mSound.playVoice(1);
             break;
 
-        case 0x14:
-        case 0x15:
+        case ANM_BROWSE_A:
+        case ANM_BROWSE_B:
             mSound.playVoice(5);
             break;
     }
 
-    switch (i_index) {
-        case 0x29:
+    switch (index) {
+        case ANM_SURPRISE:
             i_attr = J3DFrameCtrl::EMode_NONE;
             break;
     }
@@ -2868,15 +3513,15 @@ void daNpcChat_c::setMotionAnm(int i_index, f32 i_morf) {
     int resIdx;
     char* arcName;
     if (isM_()) {
-        arcName = l_bckTbl_M[i_index].arc_name;
-        resIdx = l_bckTbl_M[i_index].resource_index;
+        arcName = l_bckTbl_M[index].arc_name;
+        resIdx = l_bckTbl_M[index].resource_index;
     } else {
-        arcName = l_bckTbl_W[i_index].arc_name;
-        resIdx = l_bckTbl_W[i_index].resource_index;
+        arcName = l_bckTbl_W[index].arc_name;
+        resIdx = l_bckTbl_W[index].resource_index;
     }
 
     if (resIdx >= 0) {
-        J3DAnmTransformKey* anm = getTrnsfrmKeyAnmP(arcName, resIdx);
+        anm = getTrnsfrmKeyAnmP(arcName, resIdx);
         mAnmFlags &= ~(ANM_PLAY_MORF | ANM_PAUSE_MORF);
 
         if (anm == NULL) {
@@ -2908,13 +3553,19 @@ int daNpcChat_c::drawDbgInfo() {
 /* 809835D0-809837A4 002E70 01D4+00 1/0 0/0 0/0 .text            drawOtherMdls__11daNpcChat_cFv */
 void daNpcChat_c::drawOtherMdls() {
     static int const a_jntNumTbl[13][2] = {
-        -1, -1, 7, -1,
-        0xB, -1, -1, 0xB,
-        7, -1, -1, 0xB,
-        1, -1, -1, 0xB,
-        -1, 7, 0xA, -1,
-        -1, 0xB, 0xA, -1,
-        -1, 0xB,
+        -1, -1,
+        JNTM_HANDL, -1,
+        JNTM_HANDR, -1,
+        -1, JNTW_HANDR,
+        JNTM_HANDL, -1,
+        -1, JNTW_HANDR,
+        1, -1,
+        -1, JNTW_HANDR,
+        -1, JNTW_HANDL,
+        JNTM_ARMR2, -1,
+        -1, JNTW_HANDR,
+        JNTM_ARMR2, -1,
+        -1, JNTW_HANDR,
     };
 
     int x = isM_() ? 0 : 1;
@@ -2922,7 +3573,7 @@ void daNpcChat_c::drawOtherMdls() {
     f32 objScale = ObjScale(mType);
 
     if (field_0xe4f != 0) {
-        if (mObjNum != 0) {
+        if (mObjNum != OBJ_TUBO) {
             if (!checkHide()) {
                 if (mObjModel != NULL && jntNo >= 0) {
                   if (!chkAction(&daNpcChat_c::fear)) {
@@ -2952,12 +3603,13 @@ u8 daNpcChat_c::getTalkMotionNo() {
 }
 
 /* 809837C0-809837EC 003060 002C+00 1/1 0/0 0/0 .text            getLookPlayerCheck__11daNpcChat_cFv */
-u8 daNpcChat_c::getLookPlayerCheck() {
-    if ((((u32)home.angle.z >> 8) & 0xFF) == 1 && !mTwilight) {
-        return 1;
+bool daNpcChat_c::getLookPlayerCheck() {
+    u8 uVar1 = (home.angle.z >> 8) & 0xFF;
+    if ((u32)uVar1 == 1 && !mTwilight) {
+        return true;
     }
 
-    return 0;
+    return false;
 }
 
 /* 809837EC-809839E0 00308C 01F4+00 1/1 0/0 0/0 .text            reset__11daNpcChat_cFv */
@@ -3014,153 +3666,153 @@ void daNpcChat_c::reset() {
 
 /* 809839E0-80984DD0 003280 13F0+00 1/1 0/0 0/0 .text            playMotion__11daNpcChat_cFv */
 void daNpcChat_c::playMotion() {
-    daNpcF_anmPlayData dat0 = {0x6, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat0 = {ANM_TALK_A, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat0[1] = {&dat0};
-    daNpcF_anmPlayData dat1 = {0x0, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat1 = {ANM_WAIT_A, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat1[1] = {&dat1};
-    daNpcF_anmPlayData dat2 = {0x1, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat2 = {ANM_WAIT_B, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat2[1] = {&dat2};
-    daNpcF_anmPlayData dat3 = {0x6, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat3 = {ANM_TALK_A, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat3[1] = {&dat3};
-    daNpcF_anmPlayData dat4 = {0x7, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat4 = {ANM_TALK_B, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat4[1] = {&dat4};
-    daNpcF_anmPlayData dat5a = {0x6, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat5b = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat5c = {0x7, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat5d = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat5e = {0x6, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat5f = {0x7, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat5a = {ANM_TALK_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat5b = {ANM_WAIT_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat5c = {ANM_TALK_B, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat5d = {ANM_WAIT_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat5e = {ANM_TALK_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat5f = {ANM_TALK_B, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat5[6] = {&dat5a, &dat5b, &dat5c, &dat5d, &dat5e, &dat5f};
-    daNpcF_anmPlayData dat6 = {0x8, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat6 = {ANM_TALK_C, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat6[1] = {&dat6};
-    daNpcF_anmPlayData dat7a = {0x7, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat7b = {0x6, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat7c = {0x8, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat7d = {0x0, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat7a = {ANM_TALK_B, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat7b = {ANM_TALK_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat7c = {ANM_TALK_C, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat7d = {ANM_WAIT_A, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat7[4] = {&dat7a, &dat7b, &dat7c, &dat7d};
-    daNpcF_anmPlayData dat8a = {0x6, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat8b = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat8c = {0x7, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat8d = {0x1, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat8e = {0x8, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat8a = {ANM_TALK_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat8b = {ANM_WAIT_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat8c = {ANM_TALK_B, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat8d = {ANM_WAIT_B, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat8e = {ANM_TALK_C, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat8[5] = {&dat8a, &dat8b, &dat8c, &dat8d, &dat8e};
-    daNpcF_anmPlayData dat9a = {0x14, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat9b = {0x15, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat9a = {ANM_BROWSE_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat9b = {ANM_BROWSE_B, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat9[2] = {&dat9a, &dat9b};
-    daNpcF_anmPlayData dat10a = {0x14, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat10b = {0x15, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat10c = {0x6, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat10d = {0x7, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat10e = {0x0, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat10a = {ANM_BROWSE_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat10b = {ANM_BROWSE_B, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat10c = {ANM_TALK_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat10d = {ANM_TALK_B, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat10e = {ANM_WAIT_A, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat10[5] = {&dat10a, &dat10b, &dat10c, &dat10d, &dat10e};
-    daNpcF_anmPlayData dat11a = {0x14, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat11b = {0x15, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat11c = {0x6, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat11d = {0x7, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat11e = {0x8, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat11f = {0x0, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat11a = {ANM_BROWSE_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat11b = {ANM_BROWSE_B, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat11c = {ANM_TALK_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat11d = {ANM_TALK_B, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat11e = {ANM_TALK_C, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat11f = {ANM_WAIT_A, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat11[6] = {&dat11a, &dat11b, &dat11c, &dat11d, &dat11e, &dat11f};
-    daNpcF_anmPlayData dat12a = {0x30, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat12b = {0x32, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat12a = {ANM_2LADYTALK_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat12b = {ANM_2NORMALTALK_A, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat12[2] = {&dat12a, &dat12b};
-    daNpcF_anmPlayData dat13a = {0x31, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat13b = {0x33, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat13a = {ANM_2LADYTALK_B, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat13b = {ANM_2NORMALTALK_B, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat13[2] = {&dat13a, &dat13b};
-    daNpcF_anmPlayData dat14a = {0x6, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat14b = {0x30, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat14c = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat14d = {0x7, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat14e = {0x0, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat14a = {ANM_TALK_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat14b = {ANM_2LADYTALK_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat14c = {ANM_WAIT_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat14d = {ANM_TALK_B, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat14e = {ANM_WAIT_A, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat14[5] = {&dat14a, &dat14b, &dat14c, &dat14d, &dat14e};
-    daNpcF_anmPlayData dat15a = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat15b = {0x31, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat15c = {0x6, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat15d = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat15e = {0x7, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat15a = {ANM_WAIT_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat15b = {ANM_2LADYTALK_B, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat15c = {ANM_TALK_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat15d = {ANM_WAIT_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat15e = {ANM_TALK_B, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat15[5] = {&dat15a, &dat15b, &dat15c, &dat15d, &dat15e};
-    daNpcF_anmPlayData dat16a = {0x6, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat16b = {0x30, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat16c = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat16d = {0x7, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat16e = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat16f = {0x32, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat16a = {ANM_TALK_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat16b = {ANM_2LADYTALK_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat16c = {ANM_WAIT_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat16d = {ANM_TALK_B, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat16e = {ANM_WAIT_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat16f = {ANM_2NORMALTALK_A, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat16[6] = {&dat16a, &dat16b, &dat16c, &dat16d, &dat16e, &dat16f};
-    daNpcF_anmPlayData dat17a = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat17b = {0x31, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat17c = {0x6, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat17d = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat17e = {0x7, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat17f = {0x33, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat17a = {ANM_WAIT_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat17b = {ANM_2LADYTALK_B, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat17c = {ANM_TALK_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat17d = {ANM_WAIT_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat17e = {ANM_TALK_B, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat17f = {ANM_2NORMALTALK_B, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat17[6] = {&dat17a, &dat17b, &dat17c, &dat17d, &dat17e, &dat17f};
-    daNpcF_anmPlayData dat18a = {0x6, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat18b = {0x30, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat18c = {0x31, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat18d = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat18e = {0x7, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat18f = {0x0, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat18g = {0x32, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat18h = {0x33, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat18a = {ANM_TALK_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat18b = {ANM_2LADYTALK_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat18c = {ANM_2LADYTALK_B, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat18d = {ANM_WAIT_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat18e = {ANM_TALK_B, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat18f = {ANM_WAIT_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat18g = {ANM_2NORMALTALK_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat18h = {ANM_2NORMALTALK_B, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat18[8] = {&dat18a, &dat18b, &dat18c, &dat18d, &dat18e, &dat18f, &dat18g, &dat18h};
-    daNpcF_anmPlayData dat19 = {0x9, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat19 = {ANM_LOOK_A, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat19[1] = {&dat19};
-    daNpcF_anmPlayData dat20 = {0xA, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat20 = {ANM_LOOK_B, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat20[1] = {&dat20};
-    daNpcF_anmPlayData dat21a = {0x9, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat21b = {0xA, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat21c = {0x0, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat21a = {ANM_LOOK_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat21b = {ANM_LOOK_B, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat21c = {ANM_WAIT_A, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat21[3] = {&dat21a, &dat21b, &dat21c};
-    daNpcF_anmPlayData dat22 = {0xB, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat22 = {ANM_WAIT_WALL, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat22[1] = {&dat22};
-    daNpcF_anmPlayData dat23a = {0xC, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat23b = {0xB, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat23c = {0xD, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat23d = {0xB, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat23e = {0xC, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat23f = {0xD, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat23a = {ANM_TALK_WALL, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat23b = {ANM_WAIT_WALL, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat23c = {ANM_TALK_B_WALL, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat23d = {ANM_WAIT_WALL, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat23e = {ANM_TALK_WALL, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat23f = {ANM_TALK_B_WALL, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat23[6] = {&dat23a, &dat23b, &dat23c, &dat23d, &dat23e, &dat23f};
-    daNpcF_anmPlayData dat24 = {0xE, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat24 = {ANM_SITWAIT_A, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat24[1] = {&dat24};
-    daNpcF_anmPlayData dat25a = {0xF, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat25b = {0xE, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat25c = {0x10, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat25d = {0xE, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat25e = {0xF, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat25f = {0x10, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat25a = {ANM_SITTALK_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat25b = {ANM_SITWAIT_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat25c = {ANM_SITTALK_A_B, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat25d = {ANM_SITWAIT_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat25e = {ANM_SITTALK_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat25f = {ANM_SITTALK_A_B, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat25[6] = {&dat25a, &dat25b, &dat25c, &dat25d, &dat25e, &dat25f};
-    daNpcF_anmPlayData dat26 = {0x11, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat26 = {ANM_SITWAIT_B, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat26[1] = {&dat26};
-    daNpcF_anmPlayData dat27a = {0x12, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat27b = {0x11, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat27c = {0x13, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat27d = {0x11, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat27e = {0x12, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat27f = {0x13, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat27a = {ANM_SITTALK_B, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat27b = {ANM_SITWAIT_B, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat27c = {ANM_SITTALK_B_B, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat27d = {ANM_SITWAIT_B, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat27e = {ANM_SITTALK_B, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat27f = {ANM_SITTALK_B_B, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat27[6] = {&dat27a, &dat27b, &dat27c, &dat27d, &dat27e, &dat27f};
-    daNpcF_anmPlayData dat28 = {0x35, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat28 = {ANM_SING, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat28[1] = {&dat28};
-    daNpcF_anmPlayData dat29 = {0xF, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat29 = {ANM_SITTALK_A, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat29[1] = {&dat29};
-    daNpcF_anmPlayData dat30 = {0x10, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat30 = {ANM_SITTALK_A_B, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat30[1] = {&dat30};
-    daNpcF_anmPlayData dat31a = {0xF, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat31b = {0x10, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat31a = {ANM_SITTALK_A, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat31b = {ANM_SITTALK_A_B, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat31[2] = {&dat31a, &dat31b};
-    daNpcF_anmPlayData dat32 = {0x12, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat32 = {ANM_SITTALK_B, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat32[1] = {&dat32};
-    daNpcF_anmPlayData dat33 = {0x13, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat33 = {ANM_SITTALK_B_B, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat33[1] = {&dat33};
-    daNpcF_anmPlayData dat34a = {0x12, daNpcChat_Param_c::m.common.morf_frame, 1};
-    daNpcF_anmPlayData dat34b = {0x13, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat34a = {ANM_SITTALK_B, daNpcChat_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat34b = {ANM_SITTALK_B_B, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat34[2] = {&dat34a, &dat34b};
-    daNpcF_anmPlayData dat35 = {0x2A, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat35 = {ANM_KAMAE, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat35[1] = {&dat35};
-    daNpcF_anmPlayData dat36 = {0x2E, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat36 = {ANM_KAMAE_C, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat36[1] = {&dat36};
-    daNpcF_anmPlayData dat37 = {0x2C, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat37 = {ANM_KAMAE_STEP, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat37[1] = {&dat37};
-    daNpcF_anmPlayData dat38 = {0x29, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat38 = {ANM_SURPRISE, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat38[1] = {&dat38};
-    daNpcF_anmPlayData dat39 = {0x26, daNpcChat_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat39 = {ANM_TO_WOLF, daNpcChat_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat39[1] = {&dat39};
 
     daNpcF_anmPlayData** ppDat[40] = {
@@ -3279,7 +3931,10 @@ void daNpcChat_c::setTalkMember(daNpcChat_c* actor_p) {
 
 /* 80985104-8098552C 0049A4 0428+00 4/0 0/0 0/0 .text            wait__11daNpcChat_cFPv */
 bool daNpcChat_c::wait(void* param_1) {
-    // NONMATCHING
+    int staffId;
+    int i_expression, i_motion;
+    int msgTimer;
+
     switch (mMode) {
         case 0:
             setMotion(mTalkMotionNo, -1.0f, 1);
@@ -3293,70 +3948,68 @@ bool daNpcChat_c::wait(void* param_1) {
                 return false;
             }
 
-            if (!dKy_darkworld_check() && daPy_py_c::checkNowWolf()) {
-                f32 search_range = pow(500.0, 2.0);
-                if (!(fopAcM_searchPlayerDistanceXZ2(this) < search_range)) {
-                if (mFear) {
-                    setAction(&daNpcChat_c::fear);
-                    if (!mFear) {
-                        for (int i = 0; i < mTalkMemberNum; i++) {
-                            if (mTalkMembers[i] != NULL) {
-                                mTalkMembers[i]->setFear();
-                            } else {
-                                break;
-                            }
+            if (
+                (dKy_darkworld_check() & 0xFF) == 0 && daPy_py_c::checkNowWolf() &&
+                fopAcM_searchPlayerDistanceXZ2(this) < std::pow(500.0, 2.0) || mFear
+            ) {
+                setAction(&daNpcChat_c::fear);
+                if (!mFear) {
+                    for (int i = 0; i < mTalkMemberNum; i++) {
+                        if (mTalkMembers[i] != NULL) {
+                            mTalkMembers[i]->setFear();
+                        } else {
+                            break;
                         }
                     }
-                    break;
                 }
-                
-                if (dComIfGp_event_runCheck()) {
+            } else {
+                dComIfG_play_c& play = g_dComIfG_gameInfo.play; // fakematch
+                if (play.getEvent().runCheck()) {
                     if (eventInfo.checkCommandTalk()) {
-                        if (!dComIfGp_event_chkTalkXY() || dComIfGp_evmng_ChkPresentEnd()) {
+                        if (!play.getEvent().chkTalkXY() || dComIfGp_evmng_ChkPresentEnd()) {
                             setAction(&daNpcChat_c::talk);
                         }
-                    } else if (dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0) != -1) {
-                        setAction(&daNpcChat_c::demo);
-                    }
-
-                    if (mTalkFlag && mLookPlayerCheck == 1 && mCurAngle.y != fopAcM_searchPlayerAngleY(this)) {
-                        if (step(fopAcM_searchPlayerAngleY(this), 1)) {
-                            mTurnMode = 0;
+                    } else {
+                        staffId = dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0);
+                        if (staffId != -1) {
+                            setAction(&daNpcChat_c::demo);
                         }
                     }
 
-                    int i_expression, i_motion;
+                    if (
+                        mTalkFlag && mLookPlayerCheck == 1 && mCurAngle.y != fopAcM_searchPlayerAngleY(this) &&
+                        step(fopAcM_searchPlayerAngleY(this), 1)
+                    ) {
+                        mTurnMode = 0;
+                    }
+
+                    msgTimer = mMsgTimer;
                     if (ctrlMsgAnm(i_expression, i_motion, this, mTalkFlag)) {
                         setMotion(i_motion, -1.0f, 1);
                     }
 
                     if (mTalkFlag) {
                         if (dComIfGp_event_getTalkPartner() != this) {
-                            if (field_0xe51 == 1) {
-                                setMotion(0x18, -1.0f, 0);
-                            } else if (field_0xe51 == 2) {
-                                setMotion(0x1A, -1.0f, 0);
-                            } else {
-                                setMotion(1, -1.0f, 0);
-                            }
+                        if (field_0xe51 == 1) {
+                            setMotion(MOT_SITWAIT_A, -1.0f, 0);
+                        } else if (field_0xe51 == 2) {
+                            setMotion(MOT_SITWAIT_B, -1.0f, 0);
+                        } else {
+                            setMotion(MOT_WAIT_A, -1.0f, 0);
+                        }
                         }
                     }
+                } else if (mTalkFlag) {
+                    mMode = 0;
                 } else {
-                    if (mTalkFlag) {
-                        mMode = 0;
-                        break;
-                    }
-
-                    if (home.angle.y != mCurAngle.y && step(home.angle.y, 1)) {
+                    if (home.angle.y != mCurAngle.y && step((s16)home.angle.y, 1)) {
                         setMotion(mTalkMotionNo, -1.0f, 1);
                         mTurnMode = 0;
                     }
                     
                     orderEvent(mOrderSpeakEvt, l_evtNames[mOrderEvtNo], 0xFFFF, 0x28, 0xFF, 1);
                 }
-                }
             }
-            
             break;
 
         case 3:
@@ -3364,216 +4017,217 @@ bool daNpcChat_c::wait(void* param_1) {
 
         default:
             JUT_ASSERT(2580, 0);
+    }
+
+    return true;
+}
+
+/* 8098552C-809856C8 004DCC 019C+00 2/0 0/0 0/0 .text            fear__11daNpcChat_cFPv */
+bool daNpcChat_c::fear(void* param_1) {
+    switch (mMode) {
+        case 0:
+            setAngle(fopAcM_searchPlayerAngleY(this));
+            setMotion(MOT_SURPRISE, -1.0f, 0);
+            speedF = 0.0f;
+            dComIfGs_onSaveDunSwitch(60);
+            mMode = 2;
+            break;
+        
+        case 2:
+            if (mMotionAnm == ANM_SURPRISE) {
+                if (mpMorf->isStop()) {
+                    setMotion(MOT_TO_WOLF, -1.0f, 0);
+                    mPlayerAngleY = fopAcM_searchPlayerAngleY(this) + 0x8000;
+                }
+            } else {
+                if (mCurAngle.y != mPlayerAngleY) {
+                    cLib_addCalcAngleS2(&shape_angle.y, mPlayerAngleY, 3, 0x600);
+                    setAngle(shape_angle.y);
+                }
+
+                if (mpMorf->getFrame() >= 1.0f && mpMorf->getFrame() < 2.0f) {
+                    mSound.playVoice(2);
+                }
+            }
+            break;
+
+        case 3:
+            break;
+
+        default:
+            JUT_ASSERT(2664, 0);
+            break;
+    }
+
+    return 1;
+}
+
+/* 809856C8-80985A84 004F68 03BC+00 1/0 0/0 0/0 .text            talk__11daNpcChat_cFPv */
+bool daNpcChat_c::talk(void* param_1) {
+    bool rv = false;
+
+    switch (mMode) {
+        case 0:
+            initTalk(mMsgNo, (fopAc_ac_c**)mTalkMembers);
+            mMsgTimer = 0;
+            mOrderSpeakEvt = false;
+
+            for (int i = 0; i < mTalkMemberNum; i++) {
+                if (mTalkMembers[i] != NULL) {
+                    mTalkMembers[i]->setTalkFlag();
+                } else {
+                    break;
+                }
+            }
+
+            mMode = 2;
+            break;
+        
+        case 2:
+            if (mLookPlayerCheck == 1) {
+                if (mCurAngle.y == fopAcM_searchPlayerAngleY(this)) {
+                    if (talkProc(NULL, FALSE, (fopAc_ac_c**)mTalkMembers)) {
+                        setAction(&daNpcChat_c::wait);
+                        rv = true;
+                    } else {
+                        int msgTimer, i_expression, i_motion;
+                        msgTimer = mMsgTimer;
+                        
+                        if (ctrlMsgAnm(i_expression, i_motion, this, FALSE) != 0) {
+                            setMotion(i_motion, -1.0f, 0);
+                        }
+
+                        if (dComIfGp_event_getTalkPartner() != this && dComIfGp_event_getTalkPartner() != this) {
+                            if (field_0xe51 == 1) {
+                                setMotion(MOT_SITWAIT_A, -1.0f, 0);
+                            } else if (field_0xe51 == 2) {
+                                setMotion(MOT_SITWAIT_B, -1.0f, 0);
+                            } else {
+                                setMotion(MOT_WAIT_A, -1.0f, 0);
+                            }
+                        }
+                    }
+                } else {
+                    if (step(fopAcM_searchPlayerAngleY(this), 1)) {
+                        mTurnMode = 0;
+                    }
+                }
+            } else {
+                if (talkProc(NULL, FALSE, (fopAc_ac_c**)mTalkMembers)) {
+                    setAction(&daNpcChat_c::wait);
+                    rv = true;
+                } else {
+                    int i_expression, i_motion;
+                    if (ctrlMsgAnm(i_expression, i_motion, this, FALSE)) {
+                        setMotion(i_motion, -1.0f, 0);
+                    }
+
+                    if (dComIfGp_event_getTalkPartner() != this) {
+                        if (field_0xe51 == 1) {
+                            setMotion(MOT_SITWAIT_A, -1.0f, 0);
+                        } else if (field_0xe51 == 2) {
+                            setMotion(MOT_SITWAIT_B, -1.0f, 0);
+                        } else {
+                            setMotion(MOT_WAIT_A, -1.0f, 0);
+                        }
+                    }
+                }
+            }
+            break;
+
+        case 3:
+            if (!field_0x9ec) {
+                dComIfGp_event_reset();
+            }
+            break;
+
+        default:
+            JUT_ASSERT(2764, 0);
+            break;
+    }
+
+    return rv;
+}
+
+/* 80985A84-80985BCC 005324 0148+00 1/0 0/0 0/0 .text            demo__11daNpcChat_cFPv */
+bool daNpcChat_c::demo(void* param_1) {
+    dComIfGp_getEventManager();
+
+    switch (mMode) {
+        case 0:
+            mMode = 2;
+            break;
+        
+        case 2:
+            if (dComIfGp_event_runCheck() != FALSE) {
+                if (eventInfo.checkCommandTalk() == false) {
+                    dEvent_manager_c& eventManager = dComIfGp_getEventManager();
+                    s32 staffId = eventManager.getMyStaffId(l_myName, NULL, 0);
+                    if (staffId != -1) {
+                        mStaffID = staffId;
+
+                        JUT_ASSERT(2798, 0 != mEvtSeqList[mOrderEvtNo]);
+
+                        if ((this->*mEvtSeqList[mOrderEvtNo])(staffId)) {
+                            eventManager.cutEnd(staffId);
+                        }
+                    }
+
+                    if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1 && eventManager.endCheck(mEventIdx)) {
+                        dComIfGp_event_reset();
+                        mOrderEvtNo = 0;
+                        mEventIdx = -1;
+                        setAction(&daNpcChat_c::wait);
+                    }
+                }
+            }
+            break;
+
+        case 3:
+            break;
+
+        default:
+            JUT_ASSERT(2826, 0);
             break;
     }
 
     return true;
 }
 
-/* ############################################################################################## */
-/* 8098773C-80987740 000DA0 0004+00 0/1 0/0 0/0 .rodata          @6209 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_6209 = 2.0f;
-COMPILER_STRIP_GATE(0x8098773C, &lit_6209);
-#pragma pop
-
-/* 8098552C-809856C8 004DCC 019C+00 2/0 0/0 0/0 .text            fear__11daNpcChat_cFPv */
-bool daNpcChat_c::fear(void* param_0) {
-    // NONMATCHING
-}
-
-/* 809856C8-80985A84 004F68 03BC+00 1/0 0/0 0/0 .text            talk__11daNpcChat_cFPv */
-bool daNpcChat_c::talk(void* param_0) {
-    // NONMATCHING
-}
-
-/* 80985A84-80985BCC 005324 0148+00 1/0 0/0 0/0 .text            demo__11daNpcChat_cFPv */
-bool daNpcChat_c::demo(void* param_0) {
-    // NONMATCHING
-}
-
 /* 80985BCC-80985BEC 00546C 0020+00 1/0 0/0 0/0 .text            daNpcChat_Create__FPv */
-static void daNpcChat_Create(void* param_0) {
-    // NONMATCHING
+static int daNpcChat_Create(void* a_this) {
+    return static_cast<daNpcChat_c*>(a_this)->Create();
 }
 
 /* 80985BEC-80985C0C 00548C 0020+00 1/0 0/0 0/0 .text            daNpcChat_Delete__FPv */
-static void daNpcChat_Delete(void* param_0) {
-    // NONMATCHING
+static int daNpcChat_Delete(void* a_this) {
+    return static_cast<daNpcChat_c*>(a_this)->Delete();
 }
 
 /* 80985C0C-80985C2C 0054AC 0020+00 1/0 0/0 0/0 .text            daNpcChat_Execute__FPv */
-static void daNpcChat_Execute(void* param_0) {
-    // NONMATCHING
+static int daNpcChat_Execute(void* a_this) {
+    return static_cast<daNpcChat_c*>(a_this)->Execute();
 }
 
 /* 80985C2C-80985C4C 0054CC 0020+00 1/0 0/0 0/0 .text            daNpcChat_Draw__FPv */
-static void daNpcChat_Draw(void* param_0) {
-    // NONMATCHING
+static int daNpcChat_Draw(void* a_this) {
+    return static_cast<daNpcChat_c*>(a_this)->Draw();
 }
 
 /* 80985C4C-80985C54 0054EC 0008+00 1/0 0/0 0/0 .text            daNpcChat_IsDelete__FPv */
-static bool daNpcChat_IsDelete(void* param_0) {
-    return true;
-}
-
-/* 80985C54-80985C9C 0054F4 0048+00 5/4 0/0 0/0 .text            __dt__18daNpcF_ActorMngr_cFv */
-// daNpcF_ActorMngr_c::~daNpcF_ActorMngr_c() {
-extern "C" void __dt__18daNpcF_ActorMngr_cFv() {
-    // NONMATCHING
-}
-
-/* 80985C9C-80985CD8 00553C 003C+00 2/2 0/0 0/0 .text            __ct__18daNpcF_ActorMngr_cFv */
-// daNpcF_ActorMngr_c::daNpcF_ActorMngr_c() {
-extern "C" void __ct__18daNpcF_ActorMngr_cFv() {
-    // NONMATCHING
-}
-
-/* 80985CD8-80985DA8 005578 00D0+00 1/0 0/0 0/0 .text            __dt__15daNpcF_Lookat_cFv */
-// daNpcF_Lookat_c::~daNpcF_Lookat_c() {
-extern "C" void __dt__15daNpcF_Lookat_cFv() {
-    // NONMATCHING
-}
-
-/* 80985DA8-80985DE4 005648 003C+00 5/5 0/0 0/0 .text            __dt__5csXyzFv */
-// csXyz::~csXyz() {
-extern "C" void __dt__5csXyzFv() {
-    // NONMATCHING
-}
-
-/* 80985DE4-80985DE8 005684 0004+00 2/2 0/0 0/0 .text            __ct__5csXyzFv */
-// csXyz::csXyz() {
-extern "C" void __ct__5csXyzFv() {
-    /* empty function */
-}
-
-/* 80985DE8-80985E24 005688 003C+00 6/6 0/0 0/0 .text            __dt__4cXyzFv */
-// cXyz::~cXyz() {
-extern "C" void __dt__4cXyzFv() {
-    // NONMATCHING
-}
-
-/* 80985E24-80985E28 0056C4 0004+00 2/2 0/0 0/0 .text            __ct__4cXyzFv */
-// cXyz::cXyz() {
-extern "C" void __ct__4cXyzFv() {
-    /* empty function */
-}
-
-/* 80985E28-80986074 0056C8 024C+00 1/1 0/0 0/0 .text            __dt__8daNpcF_cFv */
-// daNpcF_c::~daNpcF_c() {
-extern "C" void __dt__8daNpcF_cFv() {
-    // NONMATCHING
-}
-
-/* 80986074-80986264 005914 01F0+00 1/1 0/0 0/0 .text            __ct__8daNpcF_cFv */
-// daNpcF_c::daNpcF_c() {
-extern "C" void __ct__8daNpcF_cFv() {
-    // NONMATCHING
-}
-
-/* 80986264-809862D4 005B04 0070+00 1/0 0/0 0/0 .text            __dt__12dBgS_AcchCirFv */
-// dBgS_AcchCir::~dBgS_AcchCir() {
-extern "C" void __dt__12dBgS_AcchCirFv() {
-    // NONMATCHING
-}
-
-/* 809862D4-80986330 005B74 005C+00 1/0 0/0 0/0 .text            __dt__10dCcD_GSttsFv */
-// dCcD_GStts::~dCcD_GStts() {
-extern "C" void __dt__10dCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* 80986330-809863A0 005BD0 0070+00 3/2 0/0 0/0 .text            __dt__12dBgS_ObjAcchFv */
-// dBgS_ObjAcch::~dBgS_ObjAcch() {
-extern "C" void __dt__12dBgS_ObjAcchFv() {
-    // NONMATCHING
-}
-
-/* 809863A0-809863E8 005C40 0048+00 1/0 0/0 0/0 .text            __dt__12J3DFrameCtrlFv */
-// J3DFrameCtrl::~J3DFrameCtrl() {
-extern "C" void __dt__12J3DFrameCtrlFv() {
-    // NONMATCHING
-}
-
-/* 809863E8-809863F0 005C88 0008+00 1/0 0/0 0/0 .text            ctrlBtk__8daNpcF_cFv */
-// bool daNpcF_c::ctrlBtk() {
-extern "C" bool ctrlBtk__8daNpcF_cFv() {
-    return false;
-}
-
-/* 809863F0-809863F4 005C90 0004+00 1/0 0/0 0/0 .text            setCollisions__8daNpcF_cFv */
-// void daNpcF_c::setCollisions() {
-extern "C" void setCollisions__8daNpcF_cFv() {
-    /* empty function */
-}
-
-/* 809863F4-809863FC 005C94 0008+00 1/0 0/0 0/0 .text            setExpressionAnm__8daNpcF_cFib */
-// bool daNpcF_c::setExpressionAnm(int param_0, bool param_1) {
-extern "C" bool setExpressionAnm__8daNpcF_cFib() {
-    return true;
-}
-
-/* 809863FC-80986400 005C9C 0004+00 1/0 0/0 0/0 .text            setExpression__8daNpcF_cFif */
-// void daNpcF_c::setExpression(int param_0, f32 param_1) {
-extern "C" void setExpression__8daNpcF_cFif() {
-    /* empty function */
-}
-
-/* 80986400-80986448 005CA0 0048+00 1/0 0/0 0/0 .text            __dt__10cCcD_GSttsFv */
-// cCcD_GStts::~cCcD_GStts() {
-extern "C" void __dt__10cCcD_GSttsFv() {
-    // NONMATCHING
-}
-
-/* ############################################################################################## */
-/* 8098BA68-8098BA74 00410C 000C+00 2/2 0/0 0/0 .data            __vt__17daNpcChat_Param_c */
-SECTION_DATA extern void* __vt__17daNpcChat_Param_c[3] = {
-    (void*)NULL /* RTTI */,
-    (void*)NULL,
-    (void*)__dt__17daNpcChat_Param_cFv,
-};
-
-/* 80986448-8098692C 005CE8 04E4+00 0/0 1/0 0/0 .text            __sinit_d_a_npc_chat_cpp */
-void __sinit_d_a_npc_chat_cpp() {
-    // NONMATCHING
-}
-
-#pragma push
-#pragma force_active on
-REGISTER_CTORS(0x80986448, __sinit_d_a_npc_chat_cpp);
-#pragma pop
-
-/* 8098692C-80986930 0061CC 0004+00 1/0 0/0 0/0 .text            adjustShapeAngle__11daNpcChat_cFv
- */
-void daNpcChat_c::adjustShapeAngle() {
-    /* empty function */
-}
-
-// /* 80986930-80986978 0061D0 0048+00 2/1 0/0 0/0 .text            __dt__17daNpcChat_Param_cFv */
-// daNpcChat_Param_c::~daNpcChat_Param_c() {
-//     // NONMATCHING
-// }
-
-/* 80986978-80986980 006218 0008+00 1/0 0/0 0/0 .text            @36@__dt__12dBgS_ObjAcchFv */
-static void func_80986978() {
-    // NONMATCHING
-}
-
-/* 80986980-80986988 006220 0008+00 1/0 0/0 0/0 .text            @20@__dt__12dBgS_ObjAcchFv */
-static void func_80986980() {
-    // NONMATCHING
+static int daNpcChat_IsDelete(void* a_this) {
+    return 1;
 }
 
 AUDIO_INSTANCES;
 
 /* 8098B94C-8098B96C -00001 0020+00 1/0 0/0 0/0 .data            daNpcChat_MethodTable */
 static actor_method_class daNpcChat_MethodTable = {
-    (process_method_func)daNpcChat_Create__FPv,
-    (process_method_func)daNpcChat_Delete__FPv,
-    (process_method_func)daNpcChat_Execute__FPv,
-    (process_method_func)daNpcChat_IsDelete__FPv,
-    (process_method_func)daNpcChat_Draw__FPv,
+    (process_method_func)daNpcChat_Create,
+    (process_method_func)daNpcChat_Delete,
+    (process_method_func)daNpcChat_Execute,
+    (process_method_func)daNpcChat_IsDelete,
+    (process_method_func)daNpcChat_Draw,
 };
 
 /* 8098B96C-8098B99C -00001 0030+00 0/0 0/0 1/0 .data            g_profile_NPC_CHAT */
