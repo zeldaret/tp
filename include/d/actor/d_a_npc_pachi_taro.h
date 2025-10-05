@@ -107,7 +107,7 @@ public:
 
     void clrMesPat() { mMesPat = -1; }
 
-    static void* mCutNameList[11];
+    static char* mCutNameList[11];
     static u8 mCutList[132];
 
 private:

@@ -1226,6 +1226,11 @@ BOOL daNpcF_chkTmpBit(u32 i_idx);
 void daNpcF_onTmpBit(u32 i_idx);
 void daNpcF_offTmpBit(u32 i_idx);
 u8 daNpcF_getDistTableIdx(int param_0, int param_1);
+#if DEBUG
+class daNpcF_HIOParam;
+void daNpcF_commonListenPropertyEvent(char*, int*, daNpcF_HIOParam*);
+void daNpcF_commonGenMessage(JORMContext*, daNpcF_HIOParam*);
+#endif
 void daNpcF_clearMessageTmpBit();
 BOOL daNpcF_chkPointInArea(cXyz, cXyz, cXyz, s16);
 int daNpcF_getPlayerInfoFromPlayerList(int param_0, int i_roomNo, cXyz& param_2, csXyz& param_3);

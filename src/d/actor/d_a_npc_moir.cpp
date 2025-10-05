@@ -216,31 +216,6 @@ static char* l_evtNames[4] = {
 /* 80A83B18-80A83B1C -00001 0004+00 0/3 0/0 0/0 .data            l_myName */
 static char* l_myName = "MoiR";
 
-/* 80A83D84-80A83D88 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
-static daNpcMoiR_Param_c l_HIO;
-
-/* 80A83B40-80A83B70 000290 0030+00 0/2 0/0 0/0 .data            mEvtSeqList__11daNpcMoiR_c */
-daNpcMoiR_c::EventFn daNpcMoiR_c::mEvtSeqList[4] = {
-    NULL,
-    &daNpcMoiR_c::EvCut_Introduction,
-    &daNpcMoiR_c::EvCut_Appear,
-    &daNpcMoiR_c::EvCut_Appear2,
-};
-
-/* 80A7C16C-80A7C2F0 0000EC 0184+00 1/1 0/0 0/0 .text            __ct__11daNpcMoiR_cFv */
-daNpcMoiR_c::daNpcMoiR_c() {}
-
-/* 80A7C380-80A7C580 000300 0200+00 1/0 0/0 0/0 .text            __dt__11daNpcMoiR_cFv */
-daNpcMoiR_c::~daNpcMoiR_c() {
-    for (int i = 0; l_loadRes_list[mMode][i] >= 0; i++) {
-        dComIfG_resDelete(&mPhase[i], l_arcNames[l_loadRes_list[mMode][i]]);
-    }
-
-    if (heap != NULL) {
-        mpMorf->stopZelAnime();
-    }
-}
-
 /* 80A832AC-80A83320 000000 0074+00 17/17 0/0 0/0 .rodata          m__17daNpcMoiR_Param_c */
 daNpcMoiR_HIOParam const daNpcMoiR_Param_c::m = {
     35.0f,
@@ -280,6 +255,49 @@ daNpcMoiR_HIOParam const daNpcMoiR_Param_c::m = {
     0x15CD,
     0,
 };
+
+#if DEBUG
+daNpcMoiR_HIO_c::daNpcMoiR_HIO_c() {
+    m = daNpcMoiR_Param_c::m;
+}
+
+void daNpcMoiR_HIO_c::genMessage(JORMContext* ctext) {
+    ctext->genSlider("目玉横可動範囲", &m.horizontal_eye_movement_range, 0, 0x7fff, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctext->genSlider("デモ開始距離", &m.demo_start_dist, 200.0f, 600.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    ctext->genCheckBox("デモ開始エリア", &m.demo_start_area, 1, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+    daNpcF_commonGenMessage(ctext, &m.common);
+}
+#endif
+
+/* 80A83D84-80A83D88 000014 0004+00 1/1 0/0 0/0 .bss             l_HIO */
+static NPC_MOIR_HIO_CLASS l_HIO;
+
+/* 80A83B40-80A83B70 000290 0030+00 0/2 0/0 0/0 .data            mEvtSeqList__11daNpcMoiR_c */
+daNpcMoiR_c::EventFn daNpcMoiR_c::mEvtSeqList[4] = {
+    NULL,
+    &daNpcMoiR_c::EvCut_Introduction,
+    &daNpcMoiR_c::EvCut_Appear,
+    &daNpcMoiR_c::EvCut_Appear2,
+};
+
+/* 80A7C16C-80A7C2F0 0000EC 0184+00 1/1 0/0 0/0 .text            __ct__11daNpcMoiR_cFv */
+daNpcMoiR_c::daNpcMoiR_c() {}
+
+/* 80A7C380-80A7C580 000300 0200+00 1/0 0/0 0/0 .text            __dt__11daNpcMoiR_cFv */
+daNpcMoiR_c::~daNpcMoiR_c() {
+    for (int i = 0; l_loadRes_list[mMode][i] >= 0; i++) {
+        dComIfG_resDelete(&mPhase[i], l_arcNames[l_loadRes_list[mMode][i]]);
+    }
+
+    if (heap != NULL) {
+        mpMorf->stopZelAnime();
+    }
+#if DEBUG
+    if (mpHIO) {
+        mpHIO->removeHIO();
+    }
+#endif
+}
 
 /* 80A7C580-80A7C978 000500 03F8+00 1/1 0/0 0/0 .text            Create__11daNpcMoiR_cFv */
 cPhs__Step daNpcMoiR_c::Create() {
@@ -345,18 +363,24 @@ cPhs__Step daNpcMoiR_c::Create() {
             return cPhs_ERROR_e;
         }
 
+        J3DModelData* model_data = mpMorf->getModel()->getModelData();
         fopAcM_SetMtx(this, mpMorf->getModel()->getBaseTRMtx());
         fopAcM_setCullSizeBox(this, -100.0f, -50.0f, -100.0f, 100.0f, 220.0f, 100.0f);
         mSound.init(&current.pos, &eyePos, 3, 1);
+#if DEBUG
+        mpHIO = &l_HIO;
+        // "Moi (Resistance)"
+        mpHIO->entryHIO("モイ（レジスタンス）");
+#endif
 
-        mAcchCir.SetWall(daNpcMoiR_Param_c::m.common.width, daNpcMoiR_Param_c::m.common.knee_length);
+        mAcchCir.SetWall(mpHIO->m.common.width, mpHIO->m.common.knee_length);
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1,
                   &mAcchCir, fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this), fopAcM_GetShapeAngle_p(this));
         mAcch.SetRoofNone();
         mAcch.SetWaterNone();
         mAcch.CrrPos(dComIfG_Bgsp());
 
-        mCcStts.Init(daNpcMoiR_Param_c::m.common.weight, 0, this);
+        mCcStts.Init(mpHIO->m.common.weight, 0, this);
         field_0xca0.Set(mCcDCyl);
         field_0xca0.SetStts(&mCcStts);
         field_0xca0.SetTgType(0);
@@ -377,11 +401,14 @@ cPhs__Step daNpcMoiR_c::Create() {
 
 /* 80A7C978-80A7CC8C 0008F8 0314+00 1/1 0/0 0/0 .text            CreateHeap__11daNpcMoiR_cFv */
 int daNpcMoiR_c::CreateHeap() {
-    J3DModelData* mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], BMDR_MOIR));
+    J3DModelData* mdlData_p = NULL;
+    J3DModel* mdl_p = NULL;
+    mdlData_p = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcNames[0], BMDR_MOIR));
 
     JUT_ASSERT(403, NULL != mdlData_p);
 
-    mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020284);
+    u32 sp_0x18 = 0x11020284;
+    mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, sp_0x18);
     if (mpMorf != NULL && mpMorf->getModel() == NULL) {
         mpMorf->stopZelAnime();
         mpMorf = NULL;
@@ -391,7 +418,7 @@ int daNpcMoiR_c::CreateHeap() {
         return 0;
     }
 
-    J3DModel* mdl_p = mpMorf->getModel();
+    mdl_p = mpMorf->getModel();
     for (u16 i = 0; i < mdlData_p->getJointNum(); i++) {
         mdlData_p->getJointNodePointer(i)->setCallBack(ctrlJointCallBack);
     }
@@ -435,6 +462,7 @@ int daNpcMoiR_c::CreateHeap() {
 
 /* 80A7CE48-80A7CE7C 000DC8 0034+00 1/1 0/0 0/0 .text            Delete__11daNpcMoiR_cFv */
 int daNpcMoiR_c::Delete() {
+    fopAcM_RegisterDeleteID(this, "NPC_MOIR");
     this->~daNpcMoiR_c();
     return 1;
 }
@@ -447,14 +475,16 @@ int daNpcMoiR_c::Execute() {
 
 /* 80A7CEA0-80A7CEFC 000E20 005C+00 1/1 0/0 0/0 .text            Draw__11daNpcMoiR_cFv */
 int daNpcMoiR_c::Draw() {
-    mpMorf->getModel()->getModelData()->getMaterialNodePointer(MAT_MOIR_EYEBALL_M)->setMaterialAnm(mpMatAnm);
-    draw(FALSE, FALSE, daNpcMoiR_Param_c::m.common.real_shadow_size, NULL, FALSE);
+    J3DModelData* model_data = mpMorf->getModel()->getModelData();
+    model_data->getMaterialNodePointer(MAT_MOIR_EYEBALL_M)->setMaterialAnm(mpMatAnm);
+    draw(FALSE, FALSE, mpHIO->m.common.real_shadow_size, NULL, FALSE);
     return 1;
 }
 
 /* 80A7CEFC-80A7D0CC 000E7C 01D0+00 1/1 0/0 0/0 .text            ctrlJoint__11daNpcMoiR_cFP8J3DJointP8J3DModel */
 int daNpcMoiR_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
-    int jntNo = i_joint->getJntNo();
+    J3DJoint* my_joint = i_joint;
+    int jntNo = my_joint->getJntNo();
     int i_jointList[3] = {JNT_BACKBONE1, JNT_NECK, JNT_HEAD};
 
     if (jntNo == 0) {
@@ -474,18 +504,17 @@ int daNpcMoiR_c::ctrlJoint(J3DJoint* i_joint, J3DModel* i_model) {
         case JNT_BACKBONE1:
         case JNT_NECK:
         case JNT_HEAD:
-            setLookatMtx(jntNo, i_jointList, daNpcMoiR_Param_c::m.common.neck_rotation_ratio);
+            setLookatMtx(jntNo, i_jointList, mpHIO->m.common.neck_rotation_ratio);
             break;
 
     }
 
     i_model->setAnmMtx(jntNo, mDoMtx_stack_c::get());
-    MTXCopy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
+    cMtx_copy(mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
 
     if ((jntNo == JNT_HEAD || jntNo == JNT_MOUTH) && (mAnmFlags & ANM_PLAY_BCK) != 0) {
         J3DAnmTransform* anm = mBckAnm.getBckAnm();
-        J3DAnmTransform* i_bck = mpMorf->getAnm();
-        mBckAnm.changeBckOnly(i_bck);
+        mBckAnm.changeBckOnly(mpMorf->getAnm());
         mpMorf->changeAnm(anm);
     }
 
@@ -526,16 +555,50 @@ void daNpcMoiR_c::searchActors() {
     }
 }
 
+#if DEBUG
+static s16 dummy_lit_120628(int sel) {
+    const s16 arr[2] = {0x00C8, 0x00FF};
+    return arr[sel];
+}
+
+static s16 dummy_lit_120631(int sel) {
+    const s16 arr[2] = {0xC800, 0x00FF};
+    return arr[sel];
+}
+
+static s16 dummy_lit_120638(int sel) {
+    const s16 arr[2] = {0x0000, 0xC8FF};
+    return arr[sel];
+}
+
+static s16 dummy_lit_120641(int sel) {
+    const s16 arr[2] = {0x0000, 0xC8FF};
+    return arr[sel];
+}
+
+static s16 dummy_lit_120644(int sel) {
+    const s16 arr[2] = {0x0000, 0xC8FF};
+    return arr[sel];
+}
+
+static s16 dummy_lit_120647(int sel) {
+    const s16 arr[2] = {0x8080, 0x80A0};
+    return arr[sel];
+}
+
+static s16 dummy_lit_120650(int sel) {
+    const s16 arr[2] = {0x8080, 0x80A0};
+    return arr[sel];
+}
+#endif
+
 /* 80A7D138-80A7D394 0010B8 025C+00 2/0 0/0 0/0 .text            setExpressionAnm__11daNpcMoiR_cFib */
 bool daNpcMoiR_c::setExpressionAnm(int i_index, bool i_modify) {
     mAnmFlags &= 0xFFFFE03F;
 
-    J3DAnmTransform* anmTransform;
-    if (l_bckGetParamList[i_index].fileIdx >= 0) {
-        anmTransform = getTrnsfrmKeyAnmP(l_arcNames[l_bckGetParamList[i_index].arcIdx], l_bckGetParamList[i_index].fileIdx);
-    } else {
-        anmTransform = NULL;
-    }
+    J3DAnmTransform* anmTransform = (l_bckGetParamList[i_index].fileIdx >= 0)
+        ? getTrnsfrmKeyAnmP(l_arcNames[l_bckGetParamList[i_index].arcIdx], l_bckGetParamList[i_index].fileIdx)
+        : NULL;
 
     int i_attr = l_bckGetParamList[i_index].attr;
     bool bVar1 = false;
@@ -637,11 +700,12 @@ void daNpcMoiR_c::setMotionAnm(int i_index, f32 i_morf) {
     if (i_index < 11 || i_index >= 0x27) {
         return;
     }
+    int reg_r29 = 0;
 
     J3DAnmTransformKey* morfAnm = getTrnsfrmKeyAnmP(l_arcNames[l_bckGetParamList[i_index].arcIdx], l_bckGetParamList[i_index].fileIdx);
-    J3DAnmTextureSRTKey* btkAnm = getTexSRTKeyAnmP(l_arcNames[l_btkGetParamList[0].arcIdx], l_btkGetParamList[0].fileIdx);
+    J3DAnmTextureSRTKey* btkAnm = getTexSRTKeyAnmP(l_arcNames[l_btkGetParamList[reg_r29].arcIdx], l_btkGetParamList[reg_r29].fileIdx);
     int i_morfAttr = l_bckGetParamList[i_index].attr;
-    int i_btkAttr = l_btkGetParamList[0].attr;
+    int i_btkAttr = l_btkGetParamList[reg_r29].attr;
 
     mAnmFlags &= 0xFFFFFFC0;
 
@@ -711,14 +775,16 @@ void daNpcMoiR_c::setWaitAction() {
 }
 
 void daNpcMoiR_c::playExpression() {
-    daNpcF_anmPlayData dat0 = {ANM_F_TALK_A, daNpcMoiR_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat0 = {ANM_F_TALK_A, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat0[1] = {&dat0};
-    daNpcF_anmPlayData dat1 = {ANM_F_HOLD_S_LOOP, daNpcMoiR_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat1 = {ANM_F_HOLD_S_LOOP, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData* pDat1[1] = {&dat1};
-    daNpcF_anmPlayData dat2 = {ANM_3, daNpcMoiR_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat2 = {ANM_3, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData* pDat2[1] = {&dat2};
-    daNpcF_anmPlayData dat3 = {ANM_FH_SERIOUS, daNpcMoiR_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat3 = {ANM_FH_SERIOUS, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat3[1] = {&dat3};
+    // FIXME: daNpcF hack in configure.py prevents us from converting more of these,
+    //  otherwise this function will not inline in GCN.
     daNpcF_anmPlayData dat4 = {ANM_F_TAKAJO_HI, daNpcMoiR_Param_c::m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat4[1] = {&dat4};
     daNpcF_anmPlayData dat5 = {ANM_FH_TAKAJO_HI, 0.0f, 0};
@@ -764,55 +830,55 @@ void daNpcMoiR_c::playExpression() {
 
 /* 80A818B4-80A8210C 005834 0858+00 1/1 0/0 0/0 .text            playMotion__11daNpcMoiR_cFv */
 void daNpcMoiR_c::playMotion() {
-    daNpcF_anmPlayData dat0 = {ANM_WAIT_A, daNpcMoiR_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat0 = {ANM_WAIT_A, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat0[1] = {&dat0};
-    daNpcF_anmPlayData dat1a = {ANM_TALK_A, daNpcMoiR_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat1a = {ANM_TALK_A, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData dat1b = {ANM_WAIT_C, 0.0f, 0};
     daNpcF_anmPlayData* pDat1[2] = {&dat1a, &dat1b};
-    daNpcF_anmPlayData dat2 = {ANM_WAIT_B, daNpcMoiR_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat2 = {ANM_WAIT_B, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat2[1] = {&dat2};
-    daNpcF_anmPlayData dat3 = {ANM_WAIT_C, daNpcMoiR_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat3 = {ANM_WAIT_C, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat3[1] = {&dat3};
-    daNpcF_anmPlayData dat4a = {ANM_LOOK_AROUND, daNpcMoiR_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat4a = {ANM_LOOK_AROUND, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData dat4b = {ANM_WAIT_C, 0.0f, 0};
     daNpcF_anmPlayData* pDat4[2] = {&dat4a, &dat4b};
-    daNpcF_anmPlayData dat5 = {ANM_TAKAJO_WAIT_NI, daNpcMoiR_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat5 = {ANM_TAKAJO_WAIT_NI, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat5[1] = {&dat5};
-    daNpcF_anmPlayData dat6 = {ANM_SIT, daNpcMoiR_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat6 = {ANM_SIT, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat6[1] = {&dat6};
-    daNpcF_anmPlayData dat7a = {ANM_SIT_TALK, daNpcMoiR_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat7a = {ANM_SIT_TALK, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData dat7b = {ANM_SIT, 0.0f, 0};
     daNpcF_anmPlayData* pDat7[2] = {&dat7a, &dat7b};
-    daNpcF_anmPlayData dat8 = {ANM_SQUAREUP, daNpcMoiR_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat8 = {ANM_SQUAREUP, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat8[1] = {&dat8};
     daNpcF_anmPlayData dat9a = {ANM_DRIVEAWAY, 0.0f, 1};
     daNpcF_anmPlayData dat9b = {ANM_SQUAREUP, 0.0f, 0};
     daNpcF_anmPlayData* pDat9[2] = {&dat9a, &dat9b};
-    daNpcF_anmPlayData dat10a = {ANM_TAKEOFF, daNpcMoiR_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat10a = {ANM_TAKEOFF, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData dat10b = {ANM_TAKING_OFF, 0.0f, 0};
     daNpcF_anmPlayData* pDat10[2] = {&dat10a, &dat10b};
-    daNpcF_anmPlayData dat11 = {ANM_TAKING_OFF, daNpcMoiR_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat11 = {ANM_TAKING_OFF, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat11[1] = {&dat11};
-    daNpcF_anmPlayData dat12a = {ANM_TAKING_OFF_TALK, daNpcMoiR_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat12a = {ANM_TAKING_OFF_TALK, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData dat12b = {ANM_TAKING_OFF, 0.0f, 0};
     daNpcF_anmPlayData* pDat12[2] = {&dat12a, &dat12b};
-    daNpcF_anmPlayData dat13a = {ANM_TAKE_MET, daNpcMoiR_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat13a = {ANM_TAKE_MET, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData dat13b = {ANM_WAIT_C, 0.0f, 0};
     daNpcF_anmPlayData* pDat13[2] = {&dat13a, &dat13b};
-    daNpcF_anmPlayData dat14a = {ANM_TAKEOFF_SIT, daNpcMoiR_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat14a = {ANM_TAKEOFF_SIT, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData dat14b = {ANM_TAKING_OFF_SIT, 0.0f, 0};
     daNpcF_anmPlayData* pDat14[2] = {&dat14a, &dat14b};
-    daNpcF_anmPlayData dat15 = {ANM_TAKING_OFF_SIT, daNpcMoiR_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat15 = {ANM_TAKING_OFF_SIT, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat15[1] = {&dat15};
-    daNpcF_anmPlayData dat16a = {ANM_TAKING_OFF_SIT_TALK, daNpcMoiR_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat16a = {ANM_TAKING_OFF_SIT_TALK, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData dat16b = {ANM_TAKING_OFF_SIT, 0.0f, 0};
     daNpcF_anmPlayData* pDat16[2] = {&dat16a, &dat16b};
-    daNpcF_anmPlayData dat17a = {ANM_TAKE_MET_SIT, daNpcMoiR_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat17a = {ANM_TAKE_MET_SIT, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData dat17b = {ANM_SIT, 0.0f, 0};
     daNpcF_anmPlayData* pDat17[2] = {&dat17a, &dat17b};
-    daNpcF_anmPlayData dat18 = {ANM_RUN, daNpcMoiR_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat18 = {ANM_RUN, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat18[1] = {&dat18};
-    daNpcF_anmPlayData dat19 = {ANM_TAKAJO_HI_WAIT, daNpcMoiR_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat19 = {ANM_TAKAJO_HI_WAIT, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat19[1] = {&dat19};
     daNpcF_anmPlayData dat20a = {ANM_TAKAJO_HI, 0.0f, 1};
     daNpcF_anmPlayData dat20b = {ANM_TAKAJO_HI_WAIT, 0.0f, 0};
@@ -822,16 +888,16 @@ void daNpcMoiR_c::playMotion() {
     daNpcF_anmPlayData* pDat21[2] = {&dat21a, &dat21b};
     daNpcF_anmPlayData dat22 = {ANM_SQUAREUP_STEP, 2.0f, 1};
     daNpcF_anmPlayData* pDat22[1] = {&dat22};
-    daNpcF_anmPlayData dat23a = {ANM_TAKAJO_NI, daNpcMoiR_Param_c::m.common.morf_frame, 1};
+    daNpcF_anmPlayData dat23a = {ANM_TAKAJO_NI, mpHIO->m.common.morf_frame, 1};
     daNpcF_anmPlayData dat23b = {ANM_TAKAJO_WAIT_NI, 0.0f, 0};
     daNpcF_anmPlayData* pDat23[2] = {&dat23a, &dat23b};
     daNpcF_anmPlayData dat24 = {ANM_FUE, 0.0f, 1};
     daNpcF_anmPlayData* pDat24[2] = {&dat24};
-    daNpcF_anmPlayData dat25 = {ANM_LOOK_AROUND, daNpcMoiR_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat25 = {ANM_LOOK_AROUND, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat25[1] = {&dat25};
     daNpcF_anmPlayData dat26 = {ANM_STEP, 4.0f, 1};
     daNpcF_anmPlayData* pDat26[1] = {&dat26};
-    daNpcF_anmPlayData dat27 = {ANM_NONE, daNpcMoiR_Param_c::m.common.morf_frame, 0};
+    daNpcF_anmPlayData dat27 = {ANM_NONE, mpHIO->m.common.morf_frame, 0};
     daNpcF_anmPlayData* pDat27[1] = {&dat27};
 
     daNpcF_anmPlayData** ppDat[43] = {
@@ -890,14 +956,14 @@ void daNpcMoiR_c::lookat() {
     daPy_py_c* player = NULL;
     J3DModel* model = mpMorf->getModel();
     BOOL bVar1 = FALSE;
-    f32 body_angleX_min = daNpcMoiR_Param_c::m.common.body_angleX_min;
-    f32 body_angleX_max = daNpcMoiR_Param_c::m.common.body_angleX_max;
-    f32 body_angleY_min = daNpcMoiR_Param_c::m.common.body_angleY_min;
-    f32 body_angleY_max = daNpcMoiR_Param_c::m.common.body_angleY_max;
-    f32 head_angleX_min = daNpcMoiR_Param_c::m.common.head_angleX_min;
-    f32 head_angleX_max = daNpcMoiR_Param_c::m.common.head_angleX_max;
-    f32 head_angleY_min = daNpcMoiR_Param_c::m.common.head_angleY_min;
-    f32 head_angleY_max = daNpcMoiR_Param_c::m.common.head_angleY_max;
+    f32 body_angleX_min = mpHIO->m.common.body_angleX_min;
+    f32 body_angleX_max = mpHIO->m.common.body_angleX_max;
+    f32 body_angleY_min = mpHIO->m.common.body_angleY_min;
+    f32 body_angleY_max = mpHIO->m.common.body_angleY_max;
+    f32 head_angleX_min = mpHIO->m.common.head_angleX_min;
+    f32 head_angleX_max = mpHIO->m.common.head_angleX_max;
+    f32 head_angleY_min = mpHIO->m.common.head_angleY_min;
+    f32 head_angleY_max = mpHIO->m.common.head_angleY_max;
     s16 sVar1 = mCurAngle.y - mOldAngle.y;
     cXyz spd0[3] = {mLookatPos[0], mLookatPos[1], mLookatPos[2]};
     csXyz* local_dc[3] = {&mLookatAngle[0], &mLookatAngle[1], &mLookatAngle[2]};
@@ -953,34 +1019,32 @@ void daNpcMoiR_c::lookat() {
 }
 
 BOOL daNpcMoiR_c::chkFindPlayer() {
-    BOOL rv;
-    f32 fVar1 = mMode == MODE_SIT ? 135.0f : daNpcMoiR_Param_c::m.common.fov;
+    f32 fVar1 = mMode == MODE_SIT ? 135.0f : mpHIO->m.common.fov;
+    int reg_r30;
 
     if (!chkActorInSight(daPy_getPlayerActorClass(), fVar1)) {
         mActorMngr[0].remove();
         return FALSE;
     } else {
-        BOOL bVar1;
+        reg_r30 = 0;
         if (mActorMngr[0].getActorP() == NULL) {
-            bVar1 = chkPlayerInSpeakArea(this);
+            reg_r30 = chkPlayerInSpeakArea(this);
         } else {
-            bVar1 = chkPlayerInTalkArea(this);
+            reg_r30 = chkPlayerInTalkArea(this);
         }
 
-        rv = bVar1;
-
-        if (rv) {
+        if (reg_r30) {
             mActorMngr[0].entry(daPy_getPlayerActorClass());
         } else {
             mActorMngr[0].remove();
         }
     }
 
-    return rv;
+    return reg_r30;
 }
 
 void daNpcMoiR_c::setLookMode(int i_lookMode) {
-    if (i_lookMode >= LOOK_NONE && i_lookMode <= LOOK_PLAYER_TALK && i_lookMode != mLookMode) {
+    if (i_lookMode >= LOOK_NONE && i_lookMode < LOOK_ACTOR && i_lookMode != mLookMode) {
         mLookMode = i_lookMode;
     }
 }
@@ -988,7 +1052,8 @@ void daNpcMoiR_c::setLookMode(int i_lookMode) {
 BOOL daNpcMoiR_c::step(s16 param_1, int param_2) {
     if (mTurnMode == 0) {
         if (param_2 != 0) {
-            if ((s32)fabsf(cM_sht2d((s16)(param_1 - mCurAngle.y))) > 40) {
+            s16 angle_diff = param_1 - mCurAngle.y;
+            if ((s32)fabsf(cM_sht2d(angle_diff)) > 40) {
                 setExpression(EXPR_NONE, -1.0f);
 
                 if (chkAction(&daNpcMoiR_c::fight)) {
@@ -1010,7 +1075,8 @@ BOOL daNpcMoiR_c::step(s16 param_1, int param_2) {
         shape_angle.y = current.angle.y;
         mTurnMode++;
     } else if (mTurnMode == 1) {
-        if (turn(mTurnTargetAngle, (mMotion == MOT_SURPRISED && mMotionPhase <= 0) ? 8.0f : 15.0f, 0)) {
+        f32 turn_val = (mMotion == MOT_SURPRISED && mMotionPhase <= 0) ? 8.0f : 15.0f;
+        if (turn(mTurnTargetAngle, turn_val, 0)) {
             shape_angle.y = current.angle.y;
             mCurAngle.y = current.angle.y;
             mOldAngle.y = current.angle.y;
@@ -1024,9 +1090,11 @@ BOOL daNpcMoiR_c::step(s16 param_1, int param_2) {
     return mTurnMode > 1;
 }
 
+#if VERSION != VERSION_SHIELD_DEBUG
 static daNpcMoiR_c::Action2Fn dummy_4854() {
     return &daNpcMoiR_c::multiTalk;
 }
+#endif
 
 /* 80A7D934-80A7DD94 0018B4 0460+00 1/0 0/0 0/0 .text            wait_type0__11daNpcMoiR_cFPv */
 bool daNpcMoiR_c::wait_type0(void* param_1) {
@@ -1060,22 +1128,18 @@ bool daNpcMoiR_c::wait_type0(void* param_1) {
                     if (!dComIfGp_event_chkTalkXY() || dComIfGp_evmng_ChkPresentEnd()) {
                         setAction(&daNpcMoiR_c::talk);
                     }
-                } else if (dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0) != -1) {
-                    setAction(&daNpcMoiR_c::demo);
+                } else {
+                    int staff_id = dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0);
+                    if (staff_id != -1) {
+                        setAction(&daNpcMoiR_c::demo);
+                    }
                 }
             } else {
                 if (mOrderEvtNo != 0) {
                     eventInfo.setArchiveName(l_arcNames[1]);
                 }
 
-                char* i_evtName;
-                if (mOrderEvtNo != 0) {
-                    i_evtName = l_evtNames[mOrderEvtNo];
-                } else {
-                    i_evtName = NULL;
-                }
-
-                orderEvent(mOrderSpeakEvt, i_evtName, 0xFFFF, 0x28, 0xFF, 1);
+                orderEvent(mOrderSpeakEvt, (mOrderEvtNo != 0) ? l_evtNames[mOrderEvtNo] : NULL, 0xFFFF, 0x28, 0xFF, 1);
             }
             break;
 
@@ -1126,7 +1190,7 @@ bool daNpcMoiR_c::wait_type1(void* param_1) {
             field_0xe08 = 2;
             break;
 
-        case 2:
+        case 2: {
             if (mActorMngr[0].getActorP() != NULL) {
                 if (!chkFindPlayer()) {
                     mTurnMode = 0;
@@ -1159,12 +1223,12 @@ bool daNpcMoiR_c::wait_type1(void* param_1) {
             }
 
             if (daPy_py_c::checkNowWolf()) {
-                fVar1 = pow(300.0, 2.0);
+                fVar1 = std::pow(300.0f, 2.0f);
                 if (fopAcM_searchPlayerDistanceXZ2(this) < fVar1) {
                     setAction(&daNpcMoiR_c::fight);
                 }
             } else if (!daNpcF_chkEvtBit(0x21F) /* dSv_event_flag_c::F_0543 - Faron Woods - Met Resistance Rusl again in the woods */
-                       && fopAcM_searchPlayerDistance(this) < daNpcMoiR_Param_c::m.demo_start_dist) {
+                       && fopAcM_searchPlayerDistance(this) < mpHIO->m.demo_start_dist) {
                 daNpcF_onEvtBit(0x21F); // dSv_event_flag_c::F_0543 - Faron Woods - Met Resistance Rusl again in the woods
                 daNpcF_offTmpBit(0xB); // dSv_event_tmp_flag_c::T_0010 - General use - General use temporary flag (flow control) A
                 daNpcF_offTmpBit(0xC); // dSv_event_tmp_flag_c::T_0011 - General use - General use temporary flag (flow control) B
@@ -1174,32 +1238,31 @@ bool daNpcMoiR_c::wait_type1(void* param_1) {
                 mOrderEvtNo = 2;
             }
 
+#if VERSION != VERSION_SHIELD_DEBUG
             // This is fake, but it matches on GCN:
             Action2Fn dummy_5013 = &daNpcMoiR_c::multiTalk;
+#endif
 
             if (dComIfGp_event_runCheck()) {
                 if (eventInfo.checkCommandTalk()) {
                     if (!dComIfGp_event_chkTalkXY() || dComIfGp_evmng_ChkPresentEnd()) {
                         setAction(&daNpcMoiR_c::talk);
                     }
-                } else if (dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0) != -1) {
-                    setAction(&daNpcMoiR_c::demo);
+                } else {
+                    int staff_id = dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0);
+                    if (staff_id != -1) {
+                        setAction(&daNpcMoiR_c::demo);
+                    }
                 }
             } else {
                 if (mOrderEvtNo != 0) {
                     eventInfo.setArchiveName(l_arcNames[2]);
                 }
 
-                char* i_eventName;
-                if (mOrderEvtNo != 0) {
-                    i_eventName = l_evtNames[mOrderEvtNo];
-                } else {
-                    i_eventName = NULL;
-                }
-
-                orderEvent(mOrderSpeakEvt, i_eventName, 0xFFFF, 0x28, 0xFF, 1);
+                orderEvent(mOrderSpeakEvt, (mOrderEvtNo != 0) ? l_evtNames[mOrderEvtNo] : NULL, 0xFFFF, 0x28, 0xFF, 1);
             }
             break;
+        }
 
         case 3:
             break;
@@ -1286,9 +1349,8 @@ void daNpcMoiR_c::setExpressionTalkAfter() {
 
 /* 80A7E8C0-80A7EFBC 002840 06FC+00 2/0 0/0 0/0 .text            talk__11daNpcMoiR_cFPv */
 bool daNpcMoiR_c::talk(void* param_1) {
-    int itemNo, msgTimer, i_expression, i_actionID;
-    s16 i_eventID;
-    u16 endConversationID;
+    int sp_0x14 = 0;
+    int itemNo, i_expression, i_actionID;
     bool rv = false;
 
     switch (field_0xe08) {
@@ -1306,7 +1368,7 @@ bool daNpcMoiR_c::talk(void* param_1) {
                 if (talkProc(NULL, TRUE, NULL)) {
                     mActorMngr[0].entry(daPy_getPlayerActorClass());
                     itemNo = 0;
-                    endConversationID = mFlow.getEventId(&itemNo);
+                    u16 endConversationID = mFlow.getEventId(&itemNo);
 
                     OS_REPORT("会話終了時 イベントID=%d アイテムNo=%d\n", endConversationID, itemNo);
 
@@ -1314,7 +1376,7 @@ bool daNpcMoiR_c::talk(void* param_1) {
                         field_0xdf8 = fopAcM_createItemForPresentDemo(&current.pos, itemNo, 0, -1, -1, NULL, NULL);
 
                         if (field_0xdf8 != -1) {
-                            i_eventID = dComIfGp_getEventManager().getEventIdx(this, "DEFAULT_GETITEM", 0xFF);
+                            s16 i_eventID = dComIfGp_getEventManager().getEventIdx(this, "DEFAULT_GETITEM", 0xFF);
                             dComIfGp_getEvent().reset(this);
                             fopAcM_orderChangeEventId(this, i_eventID, 1, 0xFFFF);
                             field_0x9ec = true;
@@ -1328,7 +1390,7 @@ bool daNpcMoiR_c::talk(void* param_1) {
                     rv = true;
 
                 } else {
-                    msgTimer = mMsgTimer;
+                    int msgTimer = mMsgTimer;
                     if (ctrlMsgAnm(i_expression, i_actionID, this, FALSE)) {
                         OS_REPORT("レジスタンスモイ 表情番号=%d 動作番号=%d\n", i_expression, i_actionID); // "Resistance Moi Expression Number=%d Action Number=%d\n"
                         setExpression(i_expression, -1.0f);
@@ -1465,7 +1527,7 @@ bool daNpcMoiR_c::fight(void* param_1) {
             }
 
             if (daPy_py_c::checkNowWolf()) {
-                fVar1 = pow(700.0f, 2.0f);
+                fVar1 = std::pow(700.0f, 2.0f);
                 if (!(fopAcM_searchPlayerDistanceXZ2(this) > fVar1)) {
                     break;
                 }
@@ -1487,6 +1549,7 @@ bool daNpcMoiR_c::fight(void* param_1) {
 
 /* 80A7F9AC-80A7FEE8 00392C 053C+00 2/0 0/0 0/0 .text            demo__11daNpcMoiR_cFPv */
 bool daNpcMoiR_c::demo(void* param_1) {
+    dEvent_manager_c* evt_mng = &dComIfGp_getEventManager();
     bool rv = false;
 
     switch (field_0xe08) {
@@ -1497,10 +1560,11 @@ bool daNpcMoiR_c::demo(void* param_1) {
             // fallthrough
         case 2:
             if (dComIfGp_event_runCheck() != 0 && eventInfo.checkCommandTalk() == 0) {
-                s32 staffIdx = dComIfGp_getEventManager().getMyStaffId(l_myName, NULL, 0);
+                evt_mng = &dComIfGp_getEventManager();
+                s32 staffIdx = evt_mng->getMyStaffId(l_myName, NULL, 0);
                 if (staffIdx != -1) {
                     mStaffID = staffIdx;
-                    int actIdx = dComIfGp_getEventManager().getMyActIdx(staffIdx, l_evtNames, 4, 0, 0);
+                    int actIdx = evt_mng->getMyActIdx(staffIdx, l_evtNames, 4, 0, 0);
                     if (actIdx > 0 && actIdx < 4) {
                         mOrderEvtNo = actIdx;
                     }
@@ -1508,13 +1572,13 @@ bool daNpcMoiR_c::demo(void* param_1) {
                     JUT_ASSERT(2069, mEvtSeqList[mOrderEvtNo] != NULL);
 
                     if ((this->*mEvtSeqList[mOrderEvtNo])(staffIdx)) {
-                        dComIfGp_getEventManager().cutEnd(staffIdx);
+                        evt_mng->cutEnd(staffIdx);
                     }
 
                     rv = true;
                 }
 
-                if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1 && dComIfGp_getEventManager().endCheck(mEventIdx)) {
+                if (eventInfo.checkCommandDemoAccrpt() && mEventIdx != -1 && evt_mng->endCheck(mEventIdx)) {
                     dComIfGp_event_reset();
                     mOrderEvtNo = 0;
                     mEventIdx = -1;
@@ -1654,9 +1718,10 @@ BOOL daNpcMoiR_c::EvCut_Appear(int i_cutIndex) {
         case '0005':
             if (fopAcM_searchPlayerAngleY(this) == mCurAngle.y) {
                 if (talkProc(NULL, TRUE, NULL)) {
-                    OS_REPORT("二択分岐 %s\n", mFlow.getChoiceNo() == 0 ? "はい" : "いいえ");
+                    int choice_no = mFlow.getChoiceNo();
+                    OS_REPORT("二択分岐 %s\n", choice_no == 0 ? "はい" : "いいえ");
 
-                    if (mFlow.getChoiceNo() == 0) {
+                    if (choice_no == 0) {
                         mOrderEvtNo = 3;
                         changeEvent(l_arcNames[2], l_evtNames[mOrderEvtNo], 1, 0xFFFF);
                     }
@@ -1680,7 +1745,6 @@ BOOL daNpcMoiR_c::EvCut_Appear(int i_cutIndex) {
 
 /* 80A8081C-80A81044 00479C 0828+00 1/0 0/0 0/0 .text            EvCut_Appear2__11daNpcMoiR_cFi */
 BOOL daNpcMoiR_c::EvCut_Appear2(int i_cutIndex) {
-    ni_class* actor_p;
     dEvent_manager_c* eventManager = &dComIfGp_getEventManager();
     int* cutName = (int*)eventManager->getMyNowCutName(i_cutIndex);
 
@@ -1702,11 +1766,11 @@ BOOL daNpcMoiR_c::EvCut_Appear2(int i_cutIndex) {
                 setMotion(MOT_WAIT_B, 0.0f, 0);
                 break;
 
-            case '0004':
+            case '0004': {
                 setExpression(EXPR_NONE, -1.0f);
                 setMotion(MOT_TAKAJO_NI, -1.0f, 0);
                 mTurnMode = 0;
-                actor_p = (ni_class*)fopAcM_SearchByName(PROC_NI);
+                ni_class* actor_p = (ni_class*)fopAcM_SearchByName(PROC_NI);
 
                 if (actor_p != NULL) {
                     actor_p->changeMode();
@@ -1714,10 +1778,10 @@ BOOL daNpcMoiR_c::EvCut_Appear2(int i_cutIndex) {
 
                 field_0xdfc = 90;
                 break;
+            }
 
             default:
                 JUT_ASSERT(2305, FALSE);
-                break;
         }
     }
 
@@ -1776,7 +1840,7 @@ BOOL daNpcMoiR_c::EvCut_Appear2(int i_cutIndex) {
 
         case '0005':
             if (talkProc(NULL, TRUE, NULL)) {
-                actor_p = (ni_class*)fopAcM_SearchByName(PROC_NI);
+                ni_class* actor_p = (ni_class*)fopAcM_SearchByName(PROC_NI);
 
                 if (actor_p != NULL) {
                     actor_p->changeMode();
@@ -1796,26 +1860,22 @@ BOOL daNpcMoiR_c::EvCut_Appear2(int i_cutIndex) {
 
 /* 80A81044-80A81064 004FC4 0020+00 1/0 0/0 0/0 .text            daNpcMoiR_Create__FPv */
 static int daNpcMoiR_Create(void* a_this) {
-    daNpcMoiR_c* i_this = (daNpcMoiR_c*)a_this;
-    return i_this->Create();
+    return static_cast<daNpcMoiR_c*>(a_this)->Create();
 }
 
 /* 80A81064-80A81084 004FE4 0020+00 1/0 0/0 0/0 .text            daNpcMoiR_Delete__FPv */
 static int daNpcMoiR_Delete(void* a_this) {
-    daNpcMoiR_c* i_this = (daNpcMoiR_c*)a_this;
-    return i_this->Delete();
+    return static_cast<daNpcMoiR_c*>(a_this)->Delete();
 }
 
 /* 80A81084-80A810A4 005004 0020+00 1/0 0/0 0/0 .text            daNpcMoiR_Execute__FPv */
 static int daNpcMoiR_Execute(void* a_this) {
-    daNpcMoiR_c* i_this = (daNpcMoiR_c*)a_this;
-    return i_this->Execute();
+    return static_cast<daNpcMoiR_c*>(a_this)->Execute();
 }
 
 /* 80A810A4-80A810C4 005024 0020+00 1/0 0/0 0/0 .text            daNpcMoiR_Draw__FPv */
 static int daNpcMoiR_Draw(void* a_this) {
-    daNpcMoiR_c* i_this = (daNpcMoiR_c*)a_this;
-    return i_this->Draw();
+    return static_cast<daNpcMoiR_c*>(a_this)->Draw();
 }
 
 /* 80A810C4-80A810CC 005044 0008+00 1/0 0/0 0/0 .text            daNpcMoiR_IsDelete__FPv */
@@ -1834,9 +1894,9 @@ void daNpcMoiR_c::setParam() {
         attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
         attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(2, 5);
     } else {
-        attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(daNpcMoiR_Param_c::m.common.attention_distance, daNpcMoiR_Param_c::m.common.attention_angle);
+        attention_info.distances[fopAc_attn_LOCK_e] = getDistTableIdx(mpHIO->m.common.attention_distance, mpHIO->m.common.attention_angle);
         attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
-        attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(daNpcMoiR_Param_c::m.common.talk_distance, daNpcMoiR_Param_c::m.common.talk_angle);
+        attention_info.distances[fopAc_attn_SPEAK_e] = getDistTableIdx(mpHIO->m.common.talk_distance, mpHIO->m.common.talk_angle);
 
         if (mMode == MODE_STAND && daPy_py_c::checkNowWolf()) {
             attention_info.flags = 0;
@@ -1844,10 +1904,10 @@ void daNpcMoiR_c::setParam() {
     }
 
     #ifdef DEBUG
-    scale.set(daNpcMoiR_Param_c::m.common.scale, daNpcMoiR_Param_c::m.common.scale, daNpcMoiR_Param_c::m.common.scale);
-    mAcchCir.SetWallR(daNpcMoiR_Param_c::m.common.width);
-    mAcchCir.SetWallH(daNpcMoiR_Param_c::m.common.knee_length);
-    gravity = daNpcMoiR_Param_c::m.common.gravity;
+    scale.set(mpHIO->m.common.scale, mpHIO->m.common.scale, mpHIO->m.common.scale);
+    mAcchCir.SetWallR(mpHIO->m.common.width);
+    mAcchCir.SetWallH(mpHIO->m.common.knee_length);
+    gravity = mpHIO->m.common.gravity;
     #endif
 }
 
@@ -1958,33 +2018,33 @@ void daNpcMoiR_c::setAttnPos() {
     cXyz* attnPos = mLookat.getAttnPos();
     if (attnPos != NULL) {
         cXyz sp4c = *attnPos - eyePos;
-        mEyeAngle.y = -(mLookatAngle[2].y + mCurAngle.y);
+        mEyeAngle.y = (-mLookatAngle[2].y) - mCurAngle.y;
         mEyeAngle.y += cM_atan2s(sp4c.x, sp4c.z);
         mEyeAngle.x = mHeadAngle.x - cM_atan2s(sp4c.y, sp4c.absXZ());
 
-        if (mEyeAngle.y > daNpcMoiR_Param_c::m.horizontal_eye_movement_range) {
-            mEyeAngle.y = daNpcMoiR_Param_c::m.horizontal_eye_movement_range;
-        } else if (mEyeAngle.y < -daNpcMoiR_Param_c::m.horizontal_eye_movement_range) {
-            mEyeAngle.y = -daNpcMoiR_Param_c::m.horizontal_eye_movement_range;
+        if (mEyeAngle.y > mpHIO->m.horizontal_eye_movement_range) {
+            mEyeAngle.y = mpHIO->m.horizontal_eye_movement_range;
+        } else if (mEyeAngle.y < -mpHIO->m.horizontal_eye_movement_range) {
+            mEyeAngle.y = -mpHIO->m.horizontal_eye_movement_range;
         }
     } else {
         mEyeAngle.y = 0;
         mEyeAngle.x = 0;
     }
 
-    attention_info.position.set(mHeadPos.x, mHeadPos.y + daNpcMoiR_Param_c::m.common.attention_offset, mHeadPos.z);
+    attention_info.position.set(mHeadPos.x, mHeadPos.y + mpHIO->m.common.attention_offset, mHeadPos.z);
     cXyz sp58;
     mDoMtx_stack_c::copy(mpMorf->getModel()->getAnmMtx(JNT_BACKBONE2));
     mDoMtx_stack_c::multVecZero(&sp58);
     sp58.y = current.pos.y;
     field_0xca0.SetC(sp58);
-    field_0xca0.SetH(daNpcMoiR_Param_c::m.common.height);
+    field_0xca0.SetH(mpHIO->m.common.height);
     
     f32 fVar1;
     if (mMode == MODE_SIT) {
         fVar1 = 40.0f;
     } else {
-        fVar1 = daNpcMoiR_Param_c::m.common.width;
+        fVar1 = mpHIO->m.common.width;
     }
 
     field_0xca0.SetR(fVar1);

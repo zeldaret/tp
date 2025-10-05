@@ -272,21 +272,16 @@ SECTION_DATA static u8 l_bmdData[8] = {
 };
 
 /* 809AA468-809AA478 -00001 0010+00 0/1 0/0 0/0 .data            l_evtList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtList[4] = {
-    (void*)&d_a_npc_doc__stringBase0,
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_doc__stringBase0) + 0x1),
-    (void*)NULL,
+static daNpcT_evtData_c l_evtList[2] = {
+    {"", 0},
+    {"NO_RESPONSE", 0},
 };
-#pragma pop
 
 /* 809AA478-809AA484 -00001 000C+00 2/3 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[3] = {
-    (void*)&d_a_npc_doc__stringBase0,
-    (void*)(((char*)&d_a_npc_doc__stringBase0) + 0xD),
-    (void*)(((char*)&d_a_npc_doc__stringBase0) + 0x11),
+static char* l_resNameList[3] = {
+    "",
+    "Doc",
+    "Doc1",
 };
 
 /* 809AA484-809AA488 000044 0003+01 1/0 0/0 0/0 .data            l_loadResPtrn0 */
@@ -400,7 +395,7 @@ SECTION_DATA static u8 l_motionSequenceData[208] = {
 #pragma pop
 
 /* 809AA8A4-809AA8A8 -00001 0004+00 1/1 0/0 0/0 .data            mCutNameList__11daNpc_Doc_c */
-SECTION_DATA void* daNpc_Doc_c::mCutNameList = (void*)&d_a_npc_doc__stringBase0;
+char* daNpc_Doc_c::mCutNameList[1] = {""};
 
 /* 809AA8A8-809AA8B4 000468 000C+00 2/2 0/0 0/0 .data            mCutList__11daNpc_Doc_c */
 SECTION_DATA u8 daNpc_Doc_c::mCutList[12] = {

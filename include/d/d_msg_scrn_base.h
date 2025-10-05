@@ -19,24 +19,24 @@ public:
 
     /* 8023C274 */ virtual void draw();
     /* 8023C124 */ virtual ~dMsgScrnBase_c();
-    /* 80238C3C */ virtual void exec();
+    /* 80238C3C */ virtual void exec() {}
     /* 8023C234 */ virtual void multiDraw();
     /* 8023C300 */ virtual void drawSelf();
-    /* 80238C44 */ virtual void setSelectString(char*, char*, char*);
-    /* 80238C40 */ virtual void setSelectRubyString(char*, char*, char*);
-    /* 80238C58 */ virtual void arwAnimeInit();
-    /* 80238C54 */ virtual void arwAnimeMove();
-    /* 80238C74 */ virtual void dotAnimeInit();
-    /* 80238C70 */ virtual void dotAnimeMove();
-    /* 80238C60 */ virtual bool isSelect();
-    /* 80238C50 */ virtual void selectAnimeInit(u8, u8, f32, u8);
-    /* 80238C48 */ virtual bool selectAnimeMove(u8, u8, bool);
-    /* 80238C68 */ virtual bool selectAnimeEnd();
+    /* 80238C44 */ virtual void setSelectString(char*, char*, char*) {}
+    /* 80238C40 */ virtual void setSelectRubyString(char*, char*, char*) {}
+    /* 80238C58 */ virtual void arwAnimeInit() {}
+    /* 80238C54 */ virtual void arwAnimeMove() {}
+    /* 80238C74 */ virtual void dotAnimeInit() {}
+    /* 80238C70 */ virtual void dotAnimeMove() {}
+    /* 80238C60 */ virtual bool isSelect() { return true; }
+    /* 80238C50 */ virtual void selectAnimeInit(u8, u8, f32, u8) {}
+    /* 80238C48 */ virtual bool selectAnimeMove(u8, u8, bool) { return true; }
+    /* 80238C68 */ virtual bool selectAnimeEnd() { return true; }
     /* 8023C458 */ virtual void fukiScale(f32);
     /* 8023C480 */ virtual void fukiTrans(f32, f32);
     /* 8023C4A4 */ virtual void fukiAlpha(f32);
     /* 8023C4F4 */ virtual void fontAlpha(f32);
-    /* 80238C5C */ virtual void fukiPosCalc(u8);
+    /* 80238C5C */ virtual void fukiPosCalc(u8) {}
 
     f32 getSelTextBoxPosX(int idx) { return mSelTextBoxPosX[idx]; }
     f32 getSelTextBoxPosY(int idx) { return mSelTextBoxPosY[idx]; }

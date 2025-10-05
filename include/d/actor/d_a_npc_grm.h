@@ -57,7 +57,7 @@ public:
     /* 809D5FB8 */ void checkChangeJoint(int);
     /* 809D5FC8 */ void checkRemoveJoint(int);
 
-    static void* mCutNameList[2];
+    static char* mCutNameList[2];
     static u8 mCutList[24];
 
 private:

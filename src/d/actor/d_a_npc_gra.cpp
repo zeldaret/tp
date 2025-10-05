@@ -442,22 +442,19 @@ SECTION_DATA static u8 l_evtGetParamList[88] = {
 #pragma pop
 
 /* 809CA8D4-809CA900 -00001 002C+00 0/3 0/0 0/0 .data            l_evtNames */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtNames[11] = {
-    (void*)NULL,
-    (void*)&d_a_npc_gra__stringBase0,
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x9),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x13),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x1C),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x2B),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x35),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x41),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x51),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x69),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x78),
+static char* l_evtNames[11] = {
+    NULL,
+    "TALK_SPA",
+    "TEACH_ELV",
+    "KICK_OUT",
+    "KICK_OUT_BREAK",
+    "NONE_LOOK",
+    "RESCUE_ROCK",
+    "CARRY_SPA_WATER",
+    "CARRY_SPA_WATER_FAILURE",
+    "TALK_SPA_WATER",
+    "ROLL_ROCK_CRASH",
 };
-#pragma pop
 
 /* 809CA900-809CA920 0002EC 0020+00 1/0 0/0 0/0 .data            l_loadRes_GRAa */
 SECTION_DATA static u8 l_loadRes_GRAa[32] = {
@@ -555,50 +552,47 @@ SECTION_DATA static void* l_loadRes_list[13] = {
 };
 
 /* 809CAAD4-809CAB14 -00001 0040+00 5/9 0/0 0/0 .data            l_resNames */
-SECTION_DATA static void* l_resNames[16] = {
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x88),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x91),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x99),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0xA0),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0xA8),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0xB2),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0xBA),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0xC3),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0xCC),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0xD6),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0xDE),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0xE8),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0xF2),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0xFB),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x103),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x10C),
+static char* l_resNames[16] = {
+    "grA_base",
+    "grA_mdl",
+    "grA_TW",
+    "grA_SPA",
+    "grA_Sdemo",
+    "grA_Elv",
+    "grA_Kick",
+    "grA_Rock",
+    "grA_RockD",
+    "grA_SWD",
+    "grA_onsen",
+    "grA_onsn2",
+    "maroTaru",
+    "grA_RCD",
+    "grA_gate",
+    "grA_town",
 };
 
 /* 809CAB14-809CAB20 -00001 000C+00 1/1 0/0 0/0 .data            l_myName */
-SECTION_DATA static void* l_myName[3] = {
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x115),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x119),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0xB2),
+static char* l_myName[3] = {
+    "grA",
+    "grA_spa",
+    "grA_Elv",
 };
 
 /* 809CAB20-809CAB50 -00001 0030+00 0/1 0/0 0/0 .data            mEvtCutNameList__11daNpc_grA_c */
-#pragma push
-#pragma force_active on
-SECTION_DATA void* daNpc_grA_c::mEvtCutNameList[12] = {
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x121),
-    (void*)&d_a_npc_gra__stringBase0,
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x122),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x12C),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x9),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x13),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x2B),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x35),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x41),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x51),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x69),
-    (void*)(((char*)&d_a_npc_gra__stringBase0) + 0x78),
+char* daNpc_grA_c::mEvtCutNameList[12] = {
+    "",
+    "TALK_SPA",
+    "GRDS_ROLL",
+    "GRDS_GATE",
+    "TEACH_ELV",
+    "KICK_OUT",
+    "NONE_LOOK",
+    "RESCUE_ROCK",
+    "CARRY_SPA_WATER",
+    "CARRY_SPA_WATER_FAILURE",
+    "TALK_SPA_WATER",
+    "ROLL_ROCK_CRASH",
 };
-#pragma pop
 
 /* 809CAB50-809CAB5C -00001 000C+00 0/1 0/0 0/0 .data            @4084 */
 #pragma push

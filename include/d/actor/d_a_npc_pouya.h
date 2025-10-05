@@ -59,7 +59,7 @@ public:
 
     MtxP getHeadMtx() { return mpMorf->getModel()->getAnmMtx(4); }
 
-    static void* mCutNameList[3];
+    static char* mCutNameList[3];
     static u8 mCutList[36];
 
 private:

@@ -26,6 +26,20 @@ public:
     static daNpcMoiR_HIOParam const m;
 };
 
+#if DEBUG
+class daNpcMoiR_HIO_c : public mDoHIO_entry_c {
+public:
+    daNpcMoiR_HIO_c();
+    void genMessage(JORMContext*);
+
+    daNpcMoiR_HIOParam m;
+};
+
+#define NPC_MOIR_HIO_CLASS daNpcMoiR_HIO_c
+#else
+#define NPC_MOIR_HIO_CLASS daNpcMoiR_Param_c
+#endif
+
 class daNpcMoiR_c : public daNpcF_c {
 public:
     typedef bool (daNpcMoiR_c::*ActionFn)(void*);
@@ -169,9 +183,9 @@ public:
 
     MtxP getHandRMtx() { return mpMorf->getModel()->getAnmMtx(17); }
 
-    u16 getMessageNo() { return fopAcM_GetParam(this) >> 8; }
+    s16 getMessageNo() { return (fopAcM_GetParam(this) >> 8) & 0xFFFF; }
 
-    inline void setAction(ActionFn action) {
+    inline int setAction(ActionFn action) {
         field_0xe08 = 3;
 
         if (mAction) {
@@ -184,8 +198,10 @@ public:
         if (mAction) {
             (this->*mAction)(NULL);
         }
+
+        return 1;
     }
-    
+
     inline void playExpression();
     inline BOOL step(s16, int);
     inline void setExpressionTalkAfter();
@@ -204,7 +220,7 @@ private:
     /* 0xBDC */ daNpcF_MatAnm_c* mpMatAnm;
     /* 0xBE0 */ daNpcF_Lookat_c mLookat;
     /* 0xC7C */ daNpcF_ActorMngr_c mActorMngr[4];
-    /* 0xC9C */ u8 field_0xc9c[0xca0 - 0xc9c];
+    /* 0xC9C */ NPC_MOIR_HIO_CLASS* mpHIO;
     /* 0xCA0 */ dCcD_Cyl field_0xca0;
     /* 0xDDC */ ActionFn mAction;
     /* 0xDE8 */ request_of_phase_process_class mPhase[2];

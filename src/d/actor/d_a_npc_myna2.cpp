@@ -277,16 +277,13 @@ SECTION_DATA static u8 l_evtGetParamList[40] = {
 #pragma pop
 
 /* 80A88784-80A88798 -00001 0014+00 0/1 0/0 0/0 .data            l_evtNames */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtNames[5] = {
-    (void*)NULL,
-    (void*)&d_a_npc_myna2__stringBase0,
-    (void*)(((char*)&d_a_npc_myna2__stringBase0) + 0xB),
-    (void*)(((char*)&d_a_npc_myna2__stringBase0) + 0x18),
-    (void*)(((char*)&d_a_npc_myna2__stringBase0) + 0x22),
+static char* l_evtNames[5] = {
+    NULL,
+    "FIRST_TALK",
+    "GAME_FAILURE",
+    "GAME_GOAL",
+    "GAME_GOAL_SUCCESS",
 };
-#pragma pop
 
 /* 80A88798-80A887A4 0000E4 000C+00 1/0 0/0 0/0 .data            l_loadRes_MYNA2a */
 SECTION_DATA static u8 l_loadRes_MYNA2a[12] = {
@@ -318,29 +315,23 @@ SECTION_DATA static void* l_loadRes_list[5] = {
 };
 
 /* 80A887DC-80A887E8 -00001 000C+00 5/6 0/0 0/0 .data            l_resNames */
-SECTION_DATA static void* l_resNames[3] = {
-    (void*)(((char*)&d_a_npc_myna2__stringBase0) + 0x34),
-    (void*)(((char*)&d_a_npc_myna2__stringBase0) + 0x3B),
-    (void*)(((char*)&d_a_npc_myna2__stringBase0) + 0x44),
+static char* l_resNames[3] = {
+    "MYNA_b",
+    "MYNA_b_f",
+    "MYNA_b_g",
 };
 
 /* 80A887E8-80A887EC -00001 0004+00 0/1 0/0 0/0 .data            l_myName */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_myName = (void*)(((char*)&d_a_npc_myna2__stringBase0) + 0x4D);
-#pragma pop
+static char* l_myName = "myna2";
 
 /* 80A887EC-80A88800 -00001 0014+00 0/1 0/0 0/0 .data            mEvtCutNameList__13daNpc_myna2_c */
-#pragma push
-#pragma force_active on
-SECTION_DATA void* daNpc_myna2_c::mEvtCutNameList[5] = {
-    (void*)(((char*)&d_a_npc_myna2__stringBase0) + 0x53),
-    (void*)&d_a_npc_myna2__stringBase0,
-    (void*)(((char*)&d_a_npc_myna2__stringBase0) + 0xB),
-    (void*)(((char*)&d_a_npc_myna2__stringBase0) + 0x18),
-    (void*)(((char*)&d_a_npc_myna2__stringBase0) + 0x22),
+char* daNpc_myna2_c::mEvtCutNameList[5] = {
+    "",
+    "FIRST_TALK",
+    "GAME_FAILURE",
+    "GAME_GOAL",
+    "GAME_GOAL_SUCCESS",
 };
-#pragma pop
 
 /* 80A88800-80A8880C -00001 000C+00 0/1 0/0 0/0 .data            @4033 */
 #pragma push

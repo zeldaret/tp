@@ -304,32 +304,22 @@ SECTION_DATA static u8 l_bmdData[16] = {
 };
 
 /* 80A690B8-80A690F0 -00001 0038+00 0/1 0/0 0/0 .data            l_evtList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtList[14] = {
-    (void*)&d_a_npc_len__stringBase0,
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_len__stringBase0) + 0x1),
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_len__stringBase0) + 0x11),
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_len__stringBase0) + 0x1D),
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_len__stringBase0) + 0x28),
-    (void*)0x00000003,
-    (void*)(((char*)&d_a_npc_len__stringBase0) + 0x2E),
-    (void*)0x00000003,
-    (void*)(((char*)&d_a_npc_len__stringBase0) + 0x45),
-    (void*)0x00000003,
+static daNpcT_evtData_c l_evtList[7] = {
+    {"", 0},
+    {"DEFAULT_GETITEM", 0},
+    {"NO_RESPONSE", 0},
+    {"DEMO13_STB", 0},
+    {"HURRY", 3},
+    {"CONVERSATION_IN_HOTEL1", 3},
+    {"CONVERSATION_IN_HOTEL2", 3},
 };
-#pragma pop
 
 /* 80A690F0-80A69100 -00001 0010+00 2/3 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[4] = {
-    (void*)&d_a_npc_len__stringBase0,
-    (void*)(((char*)&d_a_npc_len__stringBase0) + 0x5C),
-    (void*)(((char*)&d_a_npc_len__stringBase0) + 0x60),
-    (void*)(((char*)&d_a_npc_len__stringBase0) + 0x67),
+static char* l_resNameList[4] = {
+    "",
+    "Len",
+    "Len_TW",
+    "Len1",
 };
 
 /* 80A69100-80A69104 000078 0003+01 1/0 0/0 0/0 .data            l_loadResPtrn0 */
@@ -481,11 +471,11 @@ SECTION_DATA static u8 l_motionSequenceData[224] = {
 #pragma pop
 
 /* 80A69774-80A69784 -00001 0010+00 1/1 0/0 0/0 .data            mCutNameList__11daNpc_Len_c */
-SECTION_DATA void* daNpc_Len_c::mCutNameList[4] = {
-    (void*)&d_a_npc_len__stringBase0,
-    (void*)(((char*)&d_a_npc_len__stringBase0) + 0x28),
-    (void*)(((char*)&d_a_npc_len__stringBase0) + 0x6C),
-    (void*)(((char*)&d_a_npc_len__stringBase0) + 0x82),
+char* daNpc_Len_c::mCutNameList[4] = {
+    "",
+    "HURRY",
+    "CONVERSATION_IN_HOTEL",
+    "TAKE_WOODSTATUE",
 };
 
 /* 80A69784-80A69790 -00001 000C+00 0/1 0/0 0/0 .data            @3845 */

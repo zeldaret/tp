@@ -379,9 +379,9 @@ SECTION_DEAD static char const* const stringBase_809B94CD = "fairy";
 #pragma pop
 
 /* 809B95F8-809B9600 -00001 0008+00 7/8 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[2] = {
-    (void*)&d_a_npc_fairy__stringBase0,
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x1),
+static char* l_resNameList[2] = {
+    "",
+    "fairy",
 };
 
 /* 809B1BC0-809B1CE4 0001A0 0124+00 1/1 0/0 0/0 .text            loadModel__16_Fairy_Feather_cFv */
@@ -591,68 +591,47 @@ SECTION_DATA static u8 l_motionSequenceData[176] = {
 #pragma pop
 
 /* 809B98FC-809B998C -00001 0090+00 0/1 0/0 0/0 .data            l_evtList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtList[36] = {
-    (void*)&d_a_npc_fairy__stringBase0,
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x7),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x15),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x23),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x31),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x3F),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x4D),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x5B),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x69),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x77),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x85),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x93),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0xA1),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0xAF),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0xBD),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0xCC),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0xDB),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0xEA),
-    (void*)0x00000001,
+static daNpcT_evtData_c l_evtList[18] = {
+    {"", 0},
+    {"APPEAR_10F_01", 1},
+    {"APPEAR_10F_02", 1},
+    {"APPEAR_20F_01", 1},
+    {"APPEAR_20F_02", 1},
+    {"APPEAR_30F_01", 1},
+    {"APPEAR_30F_02", 1},
+    {"APPEAR_40F_01", 1},
+    {"APPEAR_40F_02", 1},
+    {"APPEAR_50F_01", 1},
+    {"APPEAR_50F_02", 1},
+    {"APPEAR_50F_03", 1},
+    {"APPEAR_50F_04", 1},
+    {"APPEAR_50F_05", 1},
+    {"SELECT_RETURN1", 1},
+    {"SELECT_RETURN2", 1},
+    {"SELECT_RETURN3", 1},
+    {"RETURN_CANCEL", 1},
 };
-#pragma pop
 
 /* 809B998C-809B99D4 -00001 0048+00 1/1 0/0 0/0 .data            mCutNameList__13daNpc_Fairy_c */
-SECTION_DATA void* daNpc_Fairy_c::mCutNameList[18] = {
-    (void*)&d_a_npc_fairy__stringBase0,
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x7),
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x15),
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x23),
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x31),
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x3F),
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x4D),
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x5B),
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x69),
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x77),
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x85),
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0x93),
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0xA1),
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0xAF),
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0xBD),
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0xCC),
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0xDB),
-    (void*)(((char*)&d_a_npc_fairy__stringBase0) + 0xEA),
+char* daNpc_Fairy_c::mCutNameList[18] = {
+    "",
+    "APPEAR_10F_01",
+    "APPEAR_10F_02",
+    "APPEAR_20F_01",
+    "APPEAR_20F_02",
+    "APPEAR_30F_01",
+    "APPEAR_30F_02",
+    "APPEAR_40F_01",
+    "APPEAR_40F_02",
+    "APPEAR_50F_01",
+    "APPEAR_50F_02",
+    "APPEAR_50F_03",
+    "APPEAR_50F_04",
+    "APPEAR_50F_05",
+    "SELECT_RETURN1",
+    "SELECT_RETURN2",
+    "SELECT_RETURN3",
+    "RETURN_CANCEL",
 };
 
 /* 809B99D4-809B99E0 -00001 000C+00 0/1 0/0 0/0 .data            @3851 */

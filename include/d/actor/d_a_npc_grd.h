@@ -53,7 +53,7 @@ public:
     /* 809D2C9C */ void ECut_nodToGrz(int);
     /* 809D3994 */ void adjustShapeAngle();
 
-    static void* mEvtCutNameList[2];
+    static char* mEvtCutNameList[2];
     static u8 mEvtCutList[24];
 
 private:

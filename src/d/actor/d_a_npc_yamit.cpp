@@ -271,20 +271,15 @@ SECTION_DATA static u8 l_bmdData[8] = {
 };
 
 /* 80B4CEC4-80B4CED4 -00001 0010+00 0/1 0/0 0/0 .data            l_evtList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtList[4] = {
-    (void*)&d_a_npc_yamit__stringBase0,
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_yamit__stringBase0) + 0x1),
-    (void*)0x00000001,
+static daNpcT_evtData_c l_evtList[2] = {
+    {"", 0},
+    {"STOPPER", 1},
 };
-#pragma pop
 
 /* 80B4CED4-80B4CEDC -00001 0008+00 2/3 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[2] = {
-    (void*)&d_a_npc_yamit__stringBase0,
-    (void*)(((char*)&d_a_npc_yamit__stringBase0) + 0x9),
+static char* l_resNameList[2] = {
+    "",
+    "yamiT",
 };
 
 /* 80B4CEDC-80B4CEE0 000040 0002+02 1/0 0/0 0/0 .data            l_loadResPtrn0 */
@@ -345,9 +340,9 @@ SECTION_DATA static u8 l_motionSequenceData[48] = {
 #pragma pop
 
 /* 80B4CFC8-80B4CFD0 -00001 0008+00 1/1 0/0 0/0 .data            mCutNameList__13daNpc_yamiT_c */
-SECTION_DATA void* daNpc_yamiT_c::mCutNameList[2] = {
-    (void*)&d_a_npc_yamit__stringBase0,
-    (void*)(((char*)&d_a_npc_yamit__stringBase0) + 0x1),
+char* daNpc_yamiT_c::mCutNameList[2] = {
+    "",
+    "STOPPER",
 };
 
 /* 80B4CFD0-80B4CFDC -00001 000C+00 1/1 0/0 0/0 .data            @3814 */
