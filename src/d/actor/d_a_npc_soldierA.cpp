@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_soldierA.h"
 #include "dol2asm.h"
@@ -249,13 +249,10 @@ SECTION_DATA static u8 l_evtGetParamList[16] = {
 #pragma pop
 
 /* 80AF2900-80AF2908 -00001 0008+00 0/2 0/0 0/0 .data            l_evtNames */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtNames[2] = {
-    (void*)NULL,
-    (void*)&d_a_npc_soldierA__stringBase0,
+static char* l_evtNames[2] = {
+    NULL,
+    "TALK_LAKE",
 };
-#pragma pop
 
 /* 80AF2908-80AF2914 000080 000C+00 1/0 0/0 0/0 .data            l_loadRes_SOLDIERaa */
 SECTION_DATA static u8 l_loadRes_SOLDIERaa[12] = {
@@ -279,21 +276,15 @@ SECTION_DATA static void* l_loadRes_list[4] = {
 SECTION_DATA static void* l_resNames = (void*)(((char*)&d_a_npc_soldierA__stringBase0) + 0xA);
 
 /* 80AF2934-80AF2938 -00001 0004+00 0/1 0/0 0/0 .data            l_myName */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_myName = (void*)(((char*)&d_a_npc_soldierA__stringBase0) + 0xA);
-#pragma pop
+static char* l_myName = "chtSolA";
 
 /* 80AF2938-80AF2944 -00001 000C+00 0/1 0/0 0/0 .data            mEvtCutNameList__16daNpc_SoldierA_c
  */
-#pragma push
-#pragma force_active on
-SECTION_DATA void* daNpc_SoldierA_c::mEvtCutNameList[3] = {
-    (void*)(((char*)&d_a_npc_soldierA__stringBase0) + 0x12),
-    (void*)&d_a_npc_soldierA__stringBase0,
-    (void*)(((char*)&d_a_npc_soldierA__stringBase0) + 0x13),
+char* daNpc_SoldierA_c::mEvtCutNameList[3] = {
+    "",
+    "TALK_LAKE",
+    "LISTEN_LAKE",
 };
-#pragma pop
 
 /* 80AF2944-80AF2950 -00001 000C+00 0/1 0/0 0/0 .data            @4018 */
 #pragma push

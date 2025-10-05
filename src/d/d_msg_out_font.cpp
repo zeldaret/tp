@@ -1,4 +1,4 @@
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_msg_out_font.h"
 #include "JSystem/J2DGraph/J2DTextBox.h"
@@ -6,8 +6,6 @@
 #include "d/d_meter2_info.h"
 #include "d/d_msg_object.h"
 #include "f_op/f_op_msg_mng.h"
-
-extern dMsgObject_HIO_c g_MsgObject_HIO_c;
 
 /* 80225BB8-80225BF4 2204F8 003C+00 1/1 0/0 0/0 .text            __ct__13COutFontSet_cFv */
 COutFontSet_c::COutFontSet_c() {

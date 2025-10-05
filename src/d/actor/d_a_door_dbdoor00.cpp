@@ -2,7 +2,7 @@
 // d_a_door_dbdoor00
 //
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_door_dbdoor00.h"
 #include "printf.h"

@@ -3,7 +3,7 @@
 // Translation Unit: d/d_camera
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_camera.h"
 #include "SSystem/SComponent/c_counter.h"
@@ -40,7 +40,7 @@ static f32 limitf(f32 value, f32 min, f32 max) {
     return value;
 }
 
-static f32 rangef(f32 value1, f32 value2, f32 ratio) {
+static inline f32 rangef(f32 value1, f32 value2, f32 ratio) {
     return value1 + (value2 - value1) * ratio;
 }
 
@@ -459,8 +459,8 @@ void dCamera_c::initialize(camera_class* i_camera, fopAc_ac_c* i_player, u32 i_c
     mBG.field_0x5c.field_0x0 = 0;
     mBG.field_0x0.field_0x0 = 0;
     mBG.field_0xc0.field_0x3c = 0xFF;
-    mBG.field_0x5c.field_0x58 = -1000000000.0f;
-    mBG.field_0x0.field_0x58 = -1000000000.0f;
+    mBG.field_0x5c.field_0x58 = -G_CM3D_F_INF;
+    mBG.field_0x0.field_0x58 = -G_CM3D_F_INF;
     mBG.field_0x0.field_0x4.OffNormalGrp();
     mBG.field_0x0.field_0x4.OnWaterGrp();
     mBG.field_0xc0.field_0x1 = 0;
@@ -473,7 +473,7 @@ void dCamera_c::initialize(camera_class* i_camera, fopAc_ac_c* i_player, u32 i_c
     mBG.field_0xc0.field_0x34 = 0;
     mBG.field_0x108.field_0x0 = 0;
     mBG.field_0x108.field_0x4 = 0.0f;
-    mBG.field_0xc0.field_0x38 = -1000000000.0f;
+    mBG.field_0xc0.field_0x38 = -G_CM3D_F_INF;
     mBG.field_0xc0.field_0x40 = 0xFF;
 
     mWallUpDist = mCamSetup.mBGChk.WallUpDistance();
@@ -2238,7 +2238,7 @@ f32 dCamera_c::groundHeight(cXyz* param_0) {
     }
 
     f32 height_correct;
-    if (height == -1000000000.0f) {
+    if (height == -G_CM3D_F_INF) {
         height_correct = param_0->y;
     } else {
         height_correct = height;
@@ -2336,7 +2336,7 @@ u32 dCamera_c::lineCollisionCheckBush(cXyz* i_start, cXyz* i_end) {
 
 /* 80165C08-80165CE0 160548 00D8+00 1/1 0/0 0/0 .text
  * sph_chk_callback__FP11dBgS_SphChkP10cBgD_Vtx_tiiiP8cM3dGPlaPv */
-static void* sph_chk_callback(dBgS_SphChk* i_sphChk, cBgD_Vtx_t* i_vtxTbl, int i_vtxIdx0,
+static void sph_chk_callback(dBgS_SphChk* i_sphChk, cBgD_Vtx_t* i_vtxTbl, int i_vtxIdx0,
                              int i_vtxIdx1, int i_vtxIdx2, cM3dGPla* i_plane, void* i_data) {
     camSphChkdata* sph_chk_data = (camSphChkdata*)i_data;
     if (!sph_chk_data->field_0x1c) {
@@ -2348,7 +2348,6 @@ static void* sph_chk_callback(dBgS_SphChk* i_sphChk, cBgD_Vtx_t* i_vtxTbl, int i
             sph_chk_data->field_0x1c = true;
         }
     }
-    //! @bug Function does not return a value
 }
 
 /* 80165CE0-80165E74 160620 0194+00 1/1 0/0 0/0 .text compWallMargin__9dCamera_cFP4cXyzP4cXyzf */
@@ -2943,7 +2942,7 @@ void dCamera_c::tooNearEscape(cXyz* param_0) {
 
 /* 80167EF4-80167FEC 162834 00F8+00 2/2 0/0 0/0 .text getWaterSurfaceHeight__9dCamera_cFP4cXyz */
 f32 dCamera_c::getWaterSurfaceHeight(cXyz* param_0) {
-    f32 var_f31 = -1000000000.0f;
+    f32 var_f31 = -G_CM3D_F_INF;
 
     cXyz spF8(*param_0);
     dBgS_RoofChk roofchk;
@@ -10057,7 +10056,7 @@ static int camera_draw(camera_process_class* i_this) {
     gndchk.SetPos(&i_this->lookat.eye);
 
     f32 cross = dComIfG_Bgsp().GroundCross(&gndchk);
-    if (cross != -1000000000.0f) {
+    if (cross != -G_CM3D_F_INF) {
         if (dComIfG_Bgsp().ChkGrpInf(gndchk, 0x100)) {
             mDoAud_getCameraMapInfo(6);
         } else {
@@ -10118,7 +10117,7 @@ static int init_phase2(camera_class* i_this) {
     spA4.y += 50.0f;
     gndchk.SetPos(&spA4);
 
-    if (dComIfG_Bgsp().GroundCross(&gndchk) == -1000000000.0f) {
+    if (dComIfG_Bgsp().GroundCross(&gndchk) == -G_CM3D_F_INF) {
 #if DEBUG
         if (i_this->field_0x238 < 100) {
             if (i_this->field_0x238 % 100 == 0 && i_this->field_0x238 != 0) {

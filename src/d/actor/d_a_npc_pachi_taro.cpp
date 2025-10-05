@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_pachi_taro.h"
 #include "dol2asm.h"
@@ -352,48 +352,34 @@ SECTION_DATA static u8 l_bmdData[40] = {
 };
 
 /* 80AA1974-80AA19CC -00001 0058+00 0/1 0/0 0/0 .data            l_evtList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtList[22] = {
-    (void*)&d_a_npc_pachi_taro__stringBase0,
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0x1),
-    (void*)0x0000000B,
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0xF),
-    (void*)0x0000000B,
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0x22),
-    (void*)0x0000000B,
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0x30),
-    (void*)0x0000000B,
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0x3D),
-    (void*)0x0000000B,
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0x4B),
-    (void*)0x0000000B,
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0x5B),
-    (void*)0x0000000B,
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0x71),
-    (void*)0x0000000B,
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0x82),
-    (void*)0x0000000B,
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0x91),
-    (void*)0x0000000B,
+static daNpcT_evtData_c l_evtList[11] = {
+    {"", 0},
+    {"TUTRIAL_BEGIN", 11},
+    {"TUTRIAL_BEGIN_SKIP", 11},
+    {"TUTRIAL_CLEAR", 11},
+    {"TUTRIAL_TALK", 11},
+    {"TUTRIAL_TALK2", 11},
+    {"HIT_KAKASI_BODY", 11},
+    {"TUTRIAL_SELECT_GIVEUP", 11},
+    {"TUTRIAL_CONTINUE", 11},
+    {"TUTRIAL_GIVEUP", 11},
+    {"TUTRIAL_CAUTION", 11},
 };
-#pragma pop
 
 /* 80AA19CC-80AA19FC -00001 0030+00 2/3 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[12] = {
-    (void*)&d_a_npc_pachi_taro__stringBase0,
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0xA1),
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0xA6),
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0xAE),
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0xB4),
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0xBA),
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0xC0),
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0xC6),
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0xCC),
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0xD2),
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0xD8),
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0xDD),
+static char* l_resNameList[12] = {
+    "",
+    "Taro",
+    "Taro_TW",
+    "Taro0",
+    "Taro1",
+    "Taro2",
+    "Taro3",
+    "Taro4",
+    "Taro5",
+    "TaroB",
+    "Len1",
+    "evt_pachi",
 };
 
 /* 80AA19FC-80AA1A04 0000D0 0007+01 1/0 0/0 0/0 .data            l_loadResPtrn0 */
@@ -648,18 +634,18 @@ SECTION_DATA static u8 l_motionSequenceData[656] = {
 
 /* 80AA2668-80AA2694 -00001 002C+00 1/1 0/0 0/0 .data            mCutNameList__18daNpc_Pachi_Taro_c
  */
-SECTION_DATA void* daNpc_Pachi_Taro_c::mCutNameList[11] = {
-    (void*)&d_a_npc_pachi_taro__stringBase0,
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0x1),
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0xF),
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0x22),
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0x30),
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0x3D),
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0x4B),
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0x5B),
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0x71),
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0x82),
-    (void*)(((char*)&d_a_npc_pachi_taro__stringBase0) + 0x91),
+char* daNpc_Pachi_Taro_c::mCutNameList[11] = {
+    "",
+    "TUTRIAL_BEGIN",
+    "TUTRIAL_BEGIN_SKIP",
+    "TUTRIAL_CLEAR",
+    "TUTRIAL_TALK",
+    "TUTRIAL_TALK2",
+    "HIT_KAKASI_BODY",
+    "TUTRIAL_SELECT_GIVEUP",
+    "TUTRIAL_CONTINUE",
+    "TUTRIAL_GIVEUP",
+    "TUTRIAL_CAUTION",
 };
 
 /* 80AA2694-80AA26A0 -00001 000C+00 0/1 0/0 0/0 .data            @3979 */
@@ -1170,7 +1156,7 @@ COMPILER_STRIP_GATE(0x80AA169C, &lit_4215);
 /* 80AA16A0-80AA16A4 00009C 0004+00 0/1 0/0 0/0 .rodata          @4216 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static f32 const lit_4216 = -1000000000.0f;
+SECTION_RODATA static f32 const lit_4216 = -G_CM3D_F_INF;
 COMPILER_STRIP_GATE(0x80AA16A0, &lit_4216);
 #pragma pop
 

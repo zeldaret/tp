@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_lv6bemos2.h"
 #include "d/actor/d_a_player.h"
@@ -253,7 +253,7 @@ int daObjLv6Bm_c::Create() {
 /* 80C7E764-80C7EB34 000624 03D0+00 1/0 0/0 0/0 .text            CreateHeap__12daObjLv6Bm_cFv */
 int daObjLv6Bm_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, BMDE_BM6);
-    JUT_ASSERT(620, modelData != 0);
+    JUT_ASSERT(620, modelData != NULL);
 
     mBeamosModel = mDoExt_J3DModel__create(modelData, 0, 0x11000084);
     if (mBeamosModel == NULL) {
@@ -261,7 +261,7 @@ int daObjLv6Bm_c::CreateHeap() {
     }
 
     J3DAnmTevRegKey* pbrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, BRK_BM6_SERCH);
-    JUT_ASSERT(633, pbrk != 0);
+    JUT_ASSERT(633, pbrk != NULL);
     mpBrkAnm = new mDoExt_brkAnm();
     if (mpBrkAnm == NULL || mpBrkAnm->init(modelData, pbrk, 1, 0, 1.0f, 0, -1) == 0) {
         return 0;
@@ -269,25 +269,25 @@ int daObjLv6Bm_c::CreateHeap() {
 
     #ifdef DEBUG
     pbrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(l_arcName, BRK_BM6_TURN);
-    JUT_ASSERT(644, pbrk != 0);
+    JUT_ASSERT(644, pbrk != NULL);
     #endif
     
     J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, BCK_BM6_UP);
-    JUT_ASSERT(651, pbck != 0);
+    JUT_ASSERT(651, pbck != NULL);
     mpBckAnm = new mDoExt_bckAnm();
     if (mpBckAnm == NULL || mpBckAnm->init(pbck, 1, 0, 1.0f, 0, -1, false) == 0) {
         return 0;
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, BMDR_EF_BIMOL6);
-    JUT_ASSERT(0x29A, modelData != 0);
+    JUT_ASSERT(0x29A, modelData != NULL);
     mBeamEffectModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (mBeamEffectModel == NULL) {
         return 0;
     }
 
     J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, BTK_EF_BIMOL6_OFF);
-    JUT_ASSERT(680, pbtk != 0);
+    JUT_ASSERT(680, pbtk != NULL);
     mpBtkAnm = new mDoExt_btkAnm();
     if (mpBtkAnm == NULL || mpBtkAnm->init(modelData, pbtk, 1, 0, 1.0f, 0, -1) == 0) {
         return 0;
@@ -296,18 +296,18 @@ int daObjLv6Bm_c::CreateHeap() {
 
     #ifdef DEBUG
     pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, BTK_EF_BIMOL6_ON);
-    JUT_ASSERT(693, pbtk != 0);
+    JUT_ASSERT(693, pbtk != NULL);
     #endif
 
     pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, BTK_EF_BIMOL6);
-    JUT_ASSERT(699, pbtk != 0);
+    JUT_ASSERT(699, pbtk != NULL);
     mpBtkAnm2 = new mDoExt_btkAnm();
     if (mpBtkAnm2 == NULL || mpBtkAnm2->init(modelData, pbtk, 1, 2, 1.0f, 0, -1) == 0) {
         return 0;
     }
 
     J3DAnmTransform* pbck2 = (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, BCK_EF_BIMOL6);
-    JUT_ASSERT(711, pbck != 0);
+    JUT_ASSERT(711, pbck != NULL);
     mpBckAnm2 = new mDoExt_bckAnm();
     if (mpBckAnm2 == NULL || mpBckAnm2->init(pbck2, 1, 2, 1.0f, 0, -1, false) == 0) {
         return 0;

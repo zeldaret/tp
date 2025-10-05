@@ -3,7 +3,7 @@
  * Weather Effects
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_kankyo_wether.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
@@ -563,7 +563,7 @@ static void wether_move_sun() {
                         (u8*)dComIfG_getObjectRes("Always", 0x57);
                     g_env_light.mpSunLenzPacket->mpResLenz =
                         (u8*)dComIfG_getObjectRes("Always", 0x5C);
-                    g_env_light.mpSunLenzPacket->field_0x8c = 1e9f;
+                    g_env_light.mpSunLenzPacket->field_0x8c = 1000000000.0f; // This is not G_CM3D_F_INF
                     g_env_light.mpSunLenzPacket->field_0x90 = 0.0f;
                     g_env_light.mpSunLenzPacket->mDistFalloff = 0.0f;
                     g_env_light.mpSunLenzPacket->mDrawLenzInSky = false;

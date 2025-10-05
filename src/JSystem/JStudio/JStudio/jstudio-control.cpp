@@ -133,7 +133,7 @@ bool JStudio::TParse::parseHeader(JStudio::stb::data::TParse_THeader const& para
         return false;
     }
     JStudio::TControl* pControl = getControl();
-    JUT_ASSERT(322, pControl!=0);
+    JUT_ASSERT(322, pControl!=NULL);
     if ((param_1 & 0x100) == 0) {
         Vec local_468 = {0.0f, 0.0f, 0.0f};
         pControl->transform_setOrigin_TxyzRy(local_468, 0.0f);
@@ -161,9 +161,9 @@ bool JStudio::TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const& 
 bool JStudio::TParse::parseBlock_block_fvb_(JStudio::stb::data::TParse_TBlock const& param_0,
                                                 u32 param_1) {
     TControl* pControl = getControl();
-    JUT_ASSERT(361, pControl!=0);
+    JUT_ASSERT(361, pControl!=NULL);
     const void* pContent = param_0.getContent();
-    JUT_ASSERT(363, pContent!=0);
+    JUT_ASSERT(363, pContent!=NULL);
     u32 uVar4 = param_1 & 0xf;
     if ((param_1 & 0x10) != 0) {
         uVar4 |= 0x10;
@@ -186,9 +186,9 @@ bool JStudio::TParse::parseBlock_block_fvb_(JStudio::stb::data::TParse_TBlock co
 bool JStudio::TParse::parseBlock_block_ctb_(JStudio::stb::data::TParse_TBlock const& param_0,
                                                 u32 param_1) {
     TControl* pControl = getControl();
-    JUT_ASSERT(386, pControl!=0);
+    JUT_ASSERT(386, pControl!=NULL);
     const void* pContent = param_0.getContent();
-    JUT_ASSERT(388, pContent!=0);
+    JUT_ASSERT(388, pContent!=NULL);
     u32 uVar4 = param_1 & 0xf;
     if ((param_1 & 0x10) != 0) {
         uVar4 |= 0x10;

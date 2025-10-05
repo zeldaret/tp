@@ -3,7 +3,7 @@
  * Object - Hotspring Water Barrel
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_onsenTaru.h"
 #include "d/actor/d_a_player.h"
@@ -51,7 +51,7 @@ void daOnsTaru_c::setBaseMtx() {
 /* 80CA8748-80CA87B4 000268 006C+00 1/0 0/0 0/0 .text            CreateHeap__11daOnsTaru_cFv */
 int daOnsTaru_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("maroTaru", 3);
-    JUT_ASSERT(231, modelData != 0);
+    JUT_ASSERT(231, modelData != NULL);
 
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {
@@ -361,7 +361,7 @@ void daOnsTaru_c::breakEffSet() {
     cXyz scale(0.75f, 0.75f, 0.75f);
 
     J3DModelData* kibako_bmd = (J3DModelData*)dComIfG_getObjectRes("Always", "BreakWoodBox.bmd");
-    JUT_ASSERT(0x310, kibako_bmd != 0);
+    JUT_ASSERT(784, kibako_bmd != NULL);
 
     JPABaseEmitter* emitter =
         dComIfGp_particle_set(0x8A99, &pos, NULL, NULL, 0xFF, &dPa_modelEcallBack::getEcallback(),

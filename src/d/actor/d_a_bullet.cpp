@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_bullet.h"
 #include "d/d_com_inf_game.h"
@@ -58,7 +58,7 @@ int daBullet_c::create() {
 /* 80655E5C-80655EDC 0005FC 0080+00 1/1 0/0 0/0 .text            CreateHeap__10daBullet_cFv */
 BOOL daBullet_c::CreateHeap() {
     void* mdlData_p = dComIfG_getObjectRes(getResName(), getBmdName());
-    JUT_ASSERT(273, 0 != mdlData_p);
+    JUT_ASSERT(273, NULL != mdlData_p);
     mpModel = mDoExt_J3DModel__create((J3DModelData*)mdlData_p, 0x80000, 0x11000084);
     return mpModel != NULL;
 }
@@ -94,11 +94,11 @@ int daBullet_c::Execute() {
         mGndChk = mAcch.m_gnd;
         mGroundY = mAcch.GetGroundH();
     } else {
-        mGroundY = -1000000000.0f;
+        mGroundY = -G_CM3D_F_INF;
     }
 
     int room_no;
-    if (mGroundY != -1000000000.0f) {
+    if (mGroundY != -G_CM3D_F_INF) {
         room_no = dComIfG_Bgsp().GetRoomId(mGndChk);
         tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(mGndChk);
     } else {

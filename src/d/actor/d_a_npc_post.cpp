@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_post.h"
 #include "dol2asm.h"
@@ -311,28 +311,20 @@ SECTION_DATA static u8 l_bmdData[32] = {
 };
 
 /* 80AAD3EC-80AAD414 -00001 0028+00 0/1 0/0 0/0 .data            l_evtList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtList[10] = {
-    (void*)&d_a_npc_post__stringBase0,
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_post__stringBase0) + 0x1),
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_post__stringBase0) + 0xD),
-    (void*)0x00000002,
-    (void*)(((char*)&d_a_npc_post__stringBase0) + 0x15),
-    (void*)0x00000002,
-    (void*)(((char*)&d_a_npc_post__stringBase0) + 0x2F),
-    (void*)0x00000002,
+static daNpcT_evtData_c l_evtList[5] = {
+    {"", 0},
+    {"NO_RESPONSE", 0},
+    {"DELIVER", 2},
+    {"DELIVERTO_PLAYER_ON_HORSE", 2},
+    {"DELIVERTO_WOLF", 2},
 };
-#pragma pop
 
 /* 80AAD414-80AAD424 -00001 0010+00 5/6 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[4] = {
-    (void*)&d_a_npc_post__stringBase0,
-    (void*)(((char*)&d_a_npc_post__stringBase0) + 0x3E),
-    (void*)(((char*)&d_a_npc_post__stringBase0) + 0x43),
-    (void*)(((char*)&d_a_npc_post__stringBase0) + 0x49),
+static char* l_resNameList[4] = {
+    "",
+    "post",
+    "post1",
+    "post2",
 };
 
 /* 80AAD424-80AAD428 000078 0003+01 1/0 0/0 0/0 .data            l_loadResPtrn0 */
@@ -466,9 +458,9 @@ SECTION_DATA static u8 l_motionSequenceData[176] = {
 #pragma pop
 
 /* 80AAD8F0-80AAD8F8 -00001 0008+00 1/1 0/0 0/0 .data            mCutNameList__12daNpc_Post_c */
-SECTION_DATA void* daNpc_Post_c::mCutNameList[2] = {
-    (void*)&d_a_npc_post__stringBase0,
-    (void*)(((char*)&d_a_npc_post__stringBase0) + 0xD),
+char* daNpc_Post_c::mCutNameList[2] = {
+    "",
+    "DELIVER",
 };
 
 /* 80AAD8F8-80AAD904 -00001 000C+00 1/1 0/0 0/0 .data            @3838 */
@@ -797,7 +789,7 @@ COMPILER_STRIP_GATE(0x80AAD2A0, &lit_4070);
 /* 80AAD2A4-80AAD2A8 0000B8 0004+00 0/3 0/0 0/0 .rodata          @4071 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static f32 const lit_4071 = -1000000000.0f;
+SECTION_RODATA static f32 const lit_4071 = -G_CM3D_F_INF;
 COMPILER_STRIP_GATE(0x80AAD2A4, &lit_4071);
 #pragma pop
 

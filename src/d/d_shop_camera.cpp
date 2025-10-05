@@ -3,7 +3,7 @@
  * Shop Camera Handling
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_shop_camera.h"
 #include "SSystem/SComponent/c_math.h"

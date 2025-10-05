@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_dn.h"
 #include "d/d_cc_d.h"
@@ -2812,14 +2812,14 @@ static void action(e_dn_class* i_this) {
             gnd_chk.SetPos(&sp264);
             sp264.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
-            if (sp264.y != -1000000000.0f) {
+            if (sp264.y != -G_CM3D_F_INF) {
                 sp258.x = sp264.x;
                 sp258.y = sp264.y + 100.0f;
                 sp258.z = sp264.z + fVar1;
                 gnd_chk.SetPos(&sp258);
                 sp258.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
 
-                if (sp258.y != -1000000000.0f) {
+                if (sp258.y != -G_CM3D_F_INF) {
                     sVar7 = -cM_atan2s(sp258.y - sp264.y, sp258.z - sp264.z);
                     if (sVar7 > 0x3000 || sVar7 < -0x3000) {
                         sVar7 = 0;
@@ -2831,7 +2831,7 @@ static void action(e_dn_class* i_this) {
                 sp258.z = sp264.z;
                 gnd_chk.SetPos(&sp258);
                 sp258.y = dComIfG_Bgsp().GroundCross(&gnd_chk);
-                if (sp258.y != -1000000000.0f) {
+                if (sp258.y != -G_CM3D_F_INF) {
                     sVar6 = cM_atan2s(sp258.y - sp264.y, sp258.x - sp264.x);
                     if (sVar6 > 0x3000 || sVar6 < -0x3000) {
                         sVar6 = 0;
@@ -3302,14 +3302,14 @@ static int useHeapInit(fopAc_ac_c* a_this) {
     }
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_dn", 39);
-    JUT_ASSERT(5420, modelData != 0);
+    JUT_ASSERT(5420, modelData != NULL);
     i_this->mpKnifeModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (i_this->mpKnifeModel == NULL) {
         return 0;
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes("E_dn", 41);
-    JUT_ASSERT(5432, modelData != 0);
+    JUT_ASSERT(5432, modelData != NULL);
     i_this->mpShieldModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (i_this->mpShieldModel == NULL) {
         return 0;
@@ -3317,7 +3317,7 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
     if (i_this->field_0x5b7 == 1) {
         modelData = (J3DModelData*)dComIfG_getObjectRes("E_dn", 40);
-        JUT_ASSERT(5443, modelData != 0);
+        JUT_ASSERT(5443, modelData != NULL);
         i_this->mpSkullModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
         if (i_this->mpSkullModel == NULL) {
             return 0;

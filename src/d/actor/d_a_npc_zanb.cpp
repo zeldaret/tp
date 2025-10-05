@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_zanb.h"
 #include "dol2asm.h"
@@ -257,20 +257,15 @@ SECTION_DATA static u8 l_bmdData[8] = {
 };
 
 /* 80B6BDF8-80B6BE08 -00001 0010+00 0/1 0/0 0/0 .data            l_evtList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtList[4] = {
-    (void*)&d_a_npc_zanb__stringBase0,
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_zanb__stringBase0) + 0x1),
-    (void*)NULL,
+static daNpcT_evtData_c l_evtList[2] = {
+    {"", 0},
+    {"NO_RESPONSE", 0},
 };
-#pragma pop
 
 /* 80B6BE08-80B6BE10 -00001 0008+00 2/3 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[2] = {
-    (void*)&d_a_npc_zanb__stringBase0,
-    (void*)(((char*)&d_a_npc_zanb__stringBase0) + 0xD),
+static char* l_resNameList[2] = {
+    "",
+    "zanB",
 };
 
 /* 80B6BE10-80B6BE14 000040 0002+02 1/0 0/0 0/0 .data            l_loadResPtrn0 */
@@ -324,7 +319,7 @@ SECTION_DATA static u8 l_motionSequenceData[32] = {
 #pragma pop
 
 /* 80B6BEA0-80B6BEA4 -00001 0004+00 1/1 0/0 0/0 .data            mCutNameList__12daNpc_zanB_c */
-SECTION_DATA void* daNpc_zanB_c::mCutNameList = (void*)&d_a_npc_zanb__stringBase0;
+char* daNpc_zanB_c::mCutNameList[1] = {""};
 
 /* 80B6BEA4-80B6BEB0 0000D4 000C+00 2/2 0/0 0/0 .data            mCutList__12daNpc_zanB_c */
 SECTION_DATA u8 daNpc_zanB_c::mCutList[12] = {
@@ -582,7 +577,7 @@ COMPILER_STRIP_GATE(0x80B6BD64, &lit_4035);
 /* 80B6BD68-80B6BD6C 0000A4 0004+00 0/1 0/0 0/0 .rodata          @4036 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static f32 const lit_4036 = -1000000000.0f;
+SECTION_RODATA static f32 const lit_4036 = -G_CM3D_F_INF;
 COMPILER_STRIP_GATE(0x80B6BD68, &lit_4036);
 #pragma pop
 

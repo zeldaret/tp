@@ -56,7 +56,7 @@ JStudio_JAudio2::TAdaptor_sound::TAdaptor_sound(JStudio_JAudio2::TCreateObject* 
     field_0x13c = NULL;
     field_0x140 = 0xffffffff;
     field_0x144 = 0;
-    JUT_ASSERT(112, pCreateObject_!=0);
+    JUT_ASSERT(112, pCreateObject_!=NULL);
 }
 
 /* 8028D8F4-8028D9A4 288234 00B0+00 1/0 0/0 0/0 .text __dt__Q215JStudio_JAudio214TAdaptor_soundFv
@@ -120,9 +120,9 @@ void JStudio_JAudio2::TAdaptor_sound::adaptor_do_end() {
  * adaptor_do_update__Q215JStudio_JAudio214TAdaptor_soundFUl    */
 void JStudio_JAudio2::TAdaptor_sound::adaptor_do_update(u32 param_1) {
     const JStudio::TObject* pObject = adaptor_getObject();
-    JUT_ASSERT(194, pObject!=0);
+    JUT_ASSERT(194, pObject!=NULL);
     const JStudio::TControl* pControl = pObject->getControl();
-    JUT_ASSERT(196, pControl!=0);
+    JUT_ASSERT(196, pControl!=NULL);
     JStudio::TControl::TTransform_position VStack_148;
     JStudio::TControl::TTransform_position VStack_154;
     JStudio::TControl::TTransform_position* pVVar2;
@@ -165,7 +165,7 @@ void JStudio_JAudio2::TAdaptor_sound::adaptor_do_SOUND(JStudio::data::TEOperatio
                                                            void const* pContent, u32 uSize) {
     switch(param_1) {
     case JStudio::data::UNK_0x19:
-        JUT_ASSERT(283, pContent!=0);
+        JUT_ASSERT(283, pContent!=NULL);
         JUT_ASSERT(284, uSize==4);
         field_0x124 = *(u32*)pContent;
         prepareSound_();
@@ -192,7 +192,7 @@ void JStudio_JAudio2::TAdaptor_sound::adaptor_do_BEGIN_FADE_IN(
     JStudio::data::TEOperationData param_1, void const* pContent, u32 uSize) {
     switch (param_1) {
     case JStudio::data::UNK_0x2:
-        JUT_ASSERT(323, pContent!=0);
+        JUT_ASSERT(323, pContent!=NULL);
         JUT_ASSERT(324, uSize==4);
         beginSound_fadeIn_(*(f32*)pContent);
         break;
@@ -218,7 +218,7 @@ void JStudio_JAudio2::TAdaptor_sound::adaptor_do_END_FADE_OUT(
     JStudio::data::TEOperationData param_1, void const* pContent, u32 uSize) {
     switch (param_1) {
     case JStudio::data::UNK_0x2:
-        JUT_ASSERT(364, pContent!=0);
+        JUT_ASSERT(364, pContent!=NULL);
         JUT_ASSERT(365, uSize==4);
         endSound_fadeOut_(*(f32*)pContent);
         break;
@@ -231,14 +231,14 @@ void JStudio_JAudio2::TAdaptor_sound::adaptor_do_PARENT(
     JStudio::data::TEOperationData param_1, void const* pContent, u32 uSize) {
     switch (param_1) {
     case JStudio::data::UNK_0x18:
-        JUT_ASSERT(387, pContent!=0);
+        JUT_ASSERT(387, pContent!=NULL);
         JUT_ASSERT(388, uSize!=0);
         field_0x13c = NULL;
         JStage::TSystem* pJSGSystem = (JStage::TSystem*)pCreateObject_->get_pJSGSystem_();
-        JUT_ASSERT(396, pJSGSystem != 0);
+        JUT_ASSERT(396, pJSGSystem != NULL);
         JStage::TObject* pJSGObject;
         if (!pJSGSystem->JSGFindObject(&pJSGObject, (const char*)pContent, JStage::OBJECT_UNDEFINED)) {
-            JUT_ASSERT(405, pJSGObject != 0);
+            JUT_ASSERT(405, pJSGObject != NULL);
             field_0x13c = pJSGObject;
         }
         break;
@@ -253,7 +253,7 @@ void JStudio_JAudio2::TAdaptor_sound::adaptor_do_PARENT_NODE(JStudio::data::TEOp
     switch (param_1) {
 	case JStudio::data::UNK_0x18:
 		if (field_0x13c != NULL) {
-            JUT_ASSERT(431, pContent!=0);
+            JUT_ASSERT(431, pContent!=NULL);
             JUT_ASSERT(432, uSize==0);
 			field_0x140 = field_0x13c->JSGFindNodeID((char*)pContent);
 			if (field_0x140 == -1) {
@@ -263,7 +263,7 @@ void JStudio_JAudio2::TAdaptor_sound::adaptor_do_PARENT_NODE(JStudio::data::TEOp
 		break;
 	case JStudio::data::UNK_0x19:
         JUT_ASSERT(447, uSize==4);
-        JUT_ASSERT(448, pContent!=0);
+        JUT_ASSERT(448, pContent!=NULL);
 		field_0x140 = *(u32*)pContent;
         break;
 	}
@@ -276,7 +276,7 @@ void JStudio_JAudio2::TAdaptor_sound::adaptor_do_PARENT_ENABLE(
     JStudio::data::TEOperationData param_1, const void* pContent, u32 uSize) {
     if (param_1 == JStudio::data::UNK_0x2) {
         JUT_ASSERT(468, uSize == 4);
-        JUT_ASSERT(469, pContent != 0);
+        JUT_ASSERT(469, pContent != NULL);
         field_0x144 = *(u32*)pContent ? 1 : 0;
     }
 }
@@ -287,7 +287,7 @@ void JStudio_JAudio2::TAdaptor_sound::adaptor_do_REPEAT(JStudio::data::TEOperati
                                                         const void* pContent, u32 uSize) {
     if (param_1 == JStudio::data::UNK_0x2) {
         JUT_ASSERT(490, uSize == 4);
-        JUT_ASSERT(491, pContent != 0);
+        JUT_ASSERT(491, pContent != NULL);
         field_0x11e = *(u32*)pContent ? 1 : 0;
     }
 }
@@ -299,7 +299,7 @@ void JStudio_JAudio2::TAdaptor_sound::adaptor_do_CONTINUOUS(JStudio::data::TEOpe
                                                             const void* pContent, u32 uSize) {
     if (param_1 == JStudio::data::UNK_0x2) {
         JUT_ASSERT(512, uSize == 4);
-        JUT_ASSERT(513, pContent != 0);
+        JUT_ASSERT(513, pContent != NULL);
         field_0x11d = *(u32*)pContent ? 1 : 0;
     }
 }
@@ -309,7 +309,7 @@ void JStudio_JAudio2::TAdaptor_sound::adaptor_do_CONTINUOUS(JStudio::data::TEOpe
 void JStudio_JAudio2::TAdaptor_sound::adaptor_do_LOCATED(JStudio::data::TEOperationData param_1,
                                                          const void* pContent, u32 uSize) {
     if (param_1 == JStudio::data::UNK_0x2) {
-        JUT_ASSERT(534, pContent != 0);
+        JUT_ASSERT(534, pContent != NULL);
         JUT_ASSERT(535, uSize == 4);
         u32 val = *(u32*)pContent;
         field_0x12c = NULL;
@@ -326,7 +326,7 @@ void JStudio_JAudio2::TAdaptor_sound::adaptor_do_ON_EXIT_NOT_END(
     JStudio::data::TEOperationData param_1, const void* pContent, u32 uSize) {
     if (param_1 == JStudio::data::UNK_0x2) {
         JUT_ASSERT(512, uSize == 4);
-        JUT_ASSERT(513, pContent != 0);
+        JUT_ASSERT(513, pContent != NULL);
         field_0x11f = *(u32*)pContent ? 1 : 0;
     }
 }
@@ -335,7 +335,7 @@ void JStudio_JAudio2::TAdaptor_sound::adaptor_do_ON_EXIT_NOT_END(
  * __cl__Q315JStudio_JAudio214TAdaptor_sound13TVVOSetValue_CFfPQ27JStudio8TAdaptor */
 void JStudio_JAudio2::TAdaptor_sound::TVVOSetValue_::operator()(f32 param_1,
                                                                 JStudio::TAdaptor* param_2) const {
-    JUT_ASSERT(596, param_2 != 0);
+    JUT_ASSERT(596, param_2 != NULL);
     if (((JStudio_JAudio2::TAdaptor_sound*)param_2)->opJAISoundHandle_) {
         JAISound* sound = ((JStudio_JAudio2::TAdaptor_sound*)param_2)->opJAISoundHandle_.sound_;
         field_0x08(sound, param_1);

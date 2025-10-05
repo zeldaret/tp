@@ -134,7 +134,7 @@ int daNpc_Kn_c::execute() {
     mGroundHeight = mAcch.GetGroundH();
     afterMoved();
 
-    if (mGroundHeight != -1000000000.0f) {
+    if (mGroundHeight != -G_CM3D_F_INF) {
         setEnvTevColor();
         setRoomNo();
     }
@@ -278,7 +278,7 @@ void daNpc_Kn_c::setRoomNo() {
 
 /* 80A3904C-80A390F8 00E72C 00AC+00 1/1 0/0 0/0 .text            checkEndAnm__10daNpc_Kn_cFf */
 BOOL daNpc_Kn_c::checkEndAnm(f32 i_speed) {
-    switch (mpModelMorf[0]->getPlayMode()) {
+    switch ((u8)mpModelMorf[0]->getPlayMode()) {
     case J3DFrameCtrl::EMode_LOOP:
         return mpModelMorf[0]->isLoop();
     case J3DFrameCtrl::EMode_RESET:
@@ -521,7 +521,7 @@ int daNpc_Kn_c::ctrlMsgAnm(int* o_faceAnmAttr_p, int* o_anmAttr_p, fopAc_ac_c* i
     if (param_3 || eventInfo.checkCommandTalk() || mStaffId != -1) {
         if (dComIfGp_event_getTalkPartner() == i_talkPartner_p) {
             msg_class* msg_p = dMsgObject_c::getActor();
-            JUT_ASSERT(1088, 0 != msg_p);
+            JUT_ASSERT(1088, NULL != msg_p);
 
             if (msg_p->mode == 2 || msg_p->mode == 3) {
                 mMsgId = fpcM_ERROR_PROCESS_ID_e;
@@ -1200,7 +1200,7 @@ static f32 dummy_lits_01(int sel) {
     case 1:
         return 6.0f;
     default:
-        return 1e9f;
+        return G_CM3D_F_INF;
     }
 }
 

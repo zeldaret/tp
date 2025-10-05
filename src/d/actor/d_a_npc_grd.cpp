@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_grd.h"
 #include "dol2asm.h"
@@ -309,9 +309,9 @@ SECTION_DATA static void* l_loadRes_list[3] = {
 };
 
 /* 809D3CFC-809D3D04 -00001 0008+00 6/8 0/0 0/0 .data            l_resNames */
-SECTION_DATA static void* l_resNames[2] = {
-    (void*)&d_a_npc_grd__stringBase0,
-    (void*)(((char*)&d_a_npc_grd__stringBase0) + 0x4),
+static char* l_resNames[2] = {
+    "grD",
+    "grD1",
 };
 
 /* 809D3D04-809D3D08 0000F0 0004+00 0/1 0/0 0/0 .data            l_evtNames */
@@ -326,19 +326,13 @@ SECTION_DATA static u8 l_evtNames[4] = {
 #pragma pop
 
 /* 809D3D08-809D3D0C -00001 0004+00 0/1 0/0 0/0 .data            l_myName */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_myName = (void*)&d_a_npc_grd__stringBase0;
-#pragma pop
+static char* l_myName = "grD";
 
 /* 809D3D0C-809D3D14 -00001 0008+00 0/1 0/0 0/0 .data            mEvtCutNameList__11daNpc_Grd_c */
-#pragma push
-#pragma force_active on
-SECTION_DATA void* daNpc_Grd_c::mEvtCutNameList[2] = {
-    (void*)(((char*)&d_a_npc_grd__stringBase0) + 0x9),
-    (void*)(((char*)&d_a_npc_grd__stringBase0) + 0xA),
+char* daNpc_Grd_c::mEvtCutNameList[2] = {
+    "",
+    "NOD_TO_GRZ",
 };
-#pragma pop
 
 /* 809D3D14-809D3D20 -00001 000C+00 1/1 0/0 0/0 .data            @4018 */
 SECTION_DATA static void* lit_4018[3] = {

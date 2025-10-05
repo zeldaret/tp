@@ -23,8 +23,8 @@
 
 #define ALIGN_DECL(ALIGNMENT) __attribute__((aligned(ALIGNMENT)))
 
-#define ARRAY_SIZE(o) (s32)(sizeof((o)) / sizeof(*(o)))
-#define ARRAY_SIZEU(o) (sizeof((o)) / sizeof(*(o)))
+#define ARRAY_SIZE(o) (s32)(sizeof(o) / sizeof(o[0]))
+#define ARRAY_SIZEU(o) (sizeof(o) / sizeof(o[0]))
 
 // Align X to the previous N bytes (N must be power of two)
 #define ALIGN_PREV(X, N) ((X) & ~((N)-1))
@@ -37,10 +37,6 @@
 #define TRUNC(n, a) (((u32)(n)) & ~((a)-1))
 
 #define JUT_EXPECT(...)
-#define FLAG_ON(V, F) (((V) & (F)) == 0)
-
-#define FLOAT_LABEL(x) (*(f32*)&x)
-#define DOUBLE_LABEL(x) (*(f64*)&x)
 
 #define _SDA_BASE_(dummy) 0
 #define _SDA2_BASE_(dummy) 0
@@ -58,11 +54,12 @@
 #define STATIC_ASSERT(...)
 #endif
 
-// hack to make functions that return comparisons as int match
+// Intrinsics
 extern int __cntlzw(unsigned int);
-inline BOOL checkEqual(s32 a, s32 b) {
-    return (u32)__cntlzw(a - b) >> 5;
-}
+extern int __rlwimi(int, int, int, int, int);
+extern void __dcbz(void*, int);
+extern void __sync();
+extern int __abs(int);
 
 #ifndef __MWERKS__
 void* __memcpy(void*, const void*, int);
@@ -74,9 +71,6 @@ void* __memcpy(void*, const void*, int);
 
 // hack to make strings with no references compile properly
 #define DEAD_STRING(s) OSReport(s)
-
-#define UNK_BSS(name) \
-    static u8 lit_##name[1 + 3 /* padding */];
 
 #define READU32_BE(ptr, offset) \
     (((u32)ptr[offset] << 24) | ((u32)ptr[offset + 1] << 16) | ((u32)ptr[offset + 2] << 8) | (u32)ptr[offset + 3]);

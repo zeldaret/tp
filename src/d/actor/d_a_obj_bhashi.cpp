@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_bhashi.h"
 #include "d/actor/d_a_player.h"
@@ -373,10 +373,10 @@ static char* l_arcName = "B_Hashi";
 /* 80578330-8057842C 001950 00FC+00 1/0 0/0 0/0 .text            CreateHeap__13daObjBHASHI_cFv */
 int daObjBHASHI_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "Lv9_R07_pillar.bmd");
-    JUT_ASSERT(98, modelData != 0);
+    JUT_ASSERT(98, modelData != NULL);
 
     J3DModelData* modelData2 = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "Lv9_R07_pillar_hahen.bmd");
-    JUT_ASSERT(102, modelData2 != 0);
+    JUT_ASSERT(102, modelData2 != NULL);
 
     for (int i = 0; i < 60; i++) {
         mpHahenMdls[i] = mDoExt_J3DModel__create(modelData2, J3DMdlFlag_UseSharedDL, BMD_DEFAULT_DIFF_FLAGS);
@@ -426,7 +426,7 @@ int daObjBHASHI_c::create() {
         fopAcM_setCullSizeBox(this, -500.0f, 0.0f, -500.0f, 500.0f, 3000.0f, 500.0f);
 
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "Lv9_R07_pillar_hahen.bmd");
-        JUT_ASSERT(1219, modelData != 0);
+        JUT_ASSERT(1219, modelData != NULL);
 
         if (dComIfGp_addSimpleModel(modelData, fopAcM_GetRoomNo(this), 0) == -1) {
             // "Fire Demon Room Pillar Fragment: simple model entry failed."

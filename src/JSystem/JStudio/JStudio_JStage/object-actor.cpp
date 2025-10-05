@@ -52,9 +52,9 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_begin() {
 #ifdef  DEBUG
     { // This block is needed to match the stack in debug
         const JStudio::TObject* pObject = adaptor_getObject();
-        JUT_ASSERT(72, pObject!=0);
+        JUT_ASSERT(72, pObject!=NULL);
         const JStudio::TControl* pControl = pObject->getControl();
-        JUT_ASSERT(74, pControl!=0);
+        JUT_ASSERT(74, pControl!=NULL);
         getJSG_SRT_(pControl);
     }
 #else
@@ -85,9 +85,9 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_end() {
  * adaptor_do_update__Q214JStudio_JStage14TAdaptor_actorFUl     */
 void JStudio_JStage::TAdaptor_actor::adaptor_do_update(u32 param_1) {
     const JStudio::TObject* pObject = adaptor_getObject();
-    JUT_ASSERT(104, pObject != 0);
+    JUT_ASSERT(104, pObject != NULL);
     const JStudio::TControl* pControl = pObject->getControl();
-    JUT_ASSERT(106, pControl != 0);
+    JUT_ASSERT(106, pControl != NULL);
     setJSG_SRT_(pControl);
     pJSGObject_->JSGUpdate();
 }
@@ -123,7 +123,7 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_ANIMATION_MODE(JStudio::data::TE
     switch (operation) {
     case JStudio::data::UNK_0x2:
         JUT_ASSERT(153, uSize==4);
-        JUT_ASSERT(154, pContent!=0);
+        JUT_ASSERT(154, pContent!=NULL);
         field_0x130 = *(u32*)pContent;
         break;
     }
@@ -145,7 +145,7 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_TEXTURE_ANIMATION_MODE(
     switch (operation) {
     case JStudio::data::UNK_0x2:
         JUT_ASSERT(182, uSize==4);
-        JUT_ASSERT(183, pContent!=0);
+        JUT_ASSERT(183, pContent!=NULL);
         field_0x134 = *(u32*)pContent;
         break;
     }
@@ -157,7 +157,7 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT(
     JStudio::data::TEOperationData operation, void const* pContent, u32 uSize) {
     switch (operation) {
     case JStudio::data::UNK_0x18:
-        JUT_ASSERT(203, pContent!=0);
+        JUT_ASSERT(203, pContent!=NULL);
         JUT_ASSERT(204, uSize!=0);
         field_0x13c = adaptor_object_findJSGObject_((const char*)pContent);
         break;
@@ -171,13 +171,13 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_NODE(
     JStudio::data::TEOperationData operation, void const* pContent, u32 uSize) {
     switch (operation) {
     case JStudio::data::UNK_0x18:
-        JUT_ASSERT(226, pContent!=0);
+        JUT_ASSERT(226, pContent!=NULL);
         JUT_ASSERT(227, uSize!=0);
         field_0x140 = adaptor_object_findJSGObjectNode_(field_0x13c, (const char*)pContent);
         break;
     case JStudio::data::UNK_0x19:
         JUT_ASSERT(237, uSize==4);
-        JUT_ASSERT(238, pContent!=0);
+        JUT_ASSERT(238, pContent!=NULL);
         field_0x140 = *(u32*)pContent;
         break;
     }
@@ -191,7 +191,7 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_ENABLE(
     switch (operation) {
     case JStudio::data::UNK_0x2:
         JUT_ASSERT(257, uSize==4);
-        JUT_ASSERT(258, pContent!=0);
+        JUT_ASSERT(258, pContent!=NULL);
         bool v0 = (*(u32*)pContent != 0);
         if (field_0x144 != v0) {
             field_0x144 = v0;
@@ -221,7 +221,7 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_PARENT_FUNCTION(
     switch (operation) {
     case JStudio::data::UNK_0x2:
         JUT_ASSERT(303, uSize==4);
-        JUT_ASSERT(304, pContent!=0);
+        JUT_ASSERT(304, pContent!=NULL);
         field_0x138 = *(u32*)pContent;
         break;
     }
@@ -233,7 +233,7 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION(
     JStudio::data::TEOperationData operation, void const* pContent, u32 uSize) {
     switch (operation) {
     case JStudio::data::UNK_0x18:
-        JUT_ASSERT(324, pContent!=0);
+        JUT_ASSERT(324, pContent!=NULL);
         JUT_ASSERT(325, uSize!=0);
         field_0x148 = adaptor_object_findJSGObject_((const char*)pContent);
         break;
@@ -247,13 +247,13 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION_NODE(
     JStudio::data::TEOperationData operation, void const* pContent, u32 uSize) {
     switch (operation) {
     case JStudio::data::UNK_0x18:
-        JUT_ASSERT(347, pContent!=0);
+        JUT_ASSERT(347, pContent!=NULL);
         JUT_ASSERT(348, uSize!=0);
         field_0x14c = adaptor_object_findJSGObjectNode_(field_0x13c, (const char*)pContent);
         break;
     case JStudio::data::UNK_0x19:
         JUT_ASSERT(358, uSize==4);
-        JUT_ASSERT(359, pContent!=0);
+        JUT_ASSERT(359, pContent!=NULL);
         field_0x14c = *(u32*)pContent;
         break;
     }
@@ -267,7 +267,7 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_RELATION_ENABLE(
     switch (operation) {
     case JStudio::data::UNK_0x2:
         JUT_ASSERT(378, uSize==4);
-        JUT_ASSERT(379, pContent!=0);
+        JUT_ASSERT(379, pContent!=NULL);
         pJSGObject_->JSGSetRelation(*(u32*)pContent, field_0x148, field_0x14c);
         break;
     }

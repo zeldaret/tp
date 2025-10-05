@@ -11,6 +11,7 @@ inline f32 J3DCalcZValue(register MtxP m, register Vec v) {
     register f32 temp_f2;
     register f32 temp_f1 = 1.0f;
 
+#ifdef __MWERKS__
     // clang-format off
     asm {
         psq_l temp_f0, 0(v), 0, 0 /* qr0 */
@@ -23,6 +24,7 @@ inline f32 J3DCalcZValue(register MtxP m, register Vec v) {
         ps_sum0 out, out, out, out
     }
     // clang-format on
+#endif
 
     return out;
 }

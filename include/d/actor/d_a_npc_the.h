@@ -113,7 +113,7 @@ public:
     /* 80AFAEC8 */ void setAttnPos();
     /* 80AFB1C4 */ void lookat();
     /* 80AFB488 */ BOOL drawDbgInfo();
-    /* 80AFBD9C */ void adjustShapeAngle();
+    /* 80AFBD9C */ void adjustShapeAngle() {}
 
     u8 getTypeFromParam() {
         switch (fopAcM_GetParam(this) & 0xff) {

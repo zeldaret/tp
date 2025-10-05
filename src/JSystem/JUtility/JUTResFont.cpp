@@ -12,8 +12,6 @@
 #include "JSystem/JUtility/JUTConsole.h"
 #include "dolphin/gx.h"
 
-#define suAboutEncoding_ 3
-
 /* 802DEF48-802DEF94 2D9888 004C+00 0/0 1/1 0/0 .text            __ct__10JUTResFontFv */
 JUTResFont::JUTResFont() {
     initialize_state();

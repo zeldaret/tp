@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_clerka.h"
 #include "dol2asm.h"
@@ -282,22 +282,16 @@ SECTION_DATA static u8 l_bmdData[8] = {
 };
 
 /* 809959BC-809959D4 -00001 0018+00 0/1 0/0 0/0 .data            l_evtList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtList[6] = {
-    (void*)&d_a_npc_clerka__stringBase0,
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_clerka__stringBase0) + 0x1),
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_clerka__stringBase0) + 0x11),
-    (void*)NULL,
+static daNpcT_evtData_c l_evtList[3] = {
+    {"", 0},
+    {"DEFAULT_GETITEM", 0},
+    {"NO_RESPONSE", 0},
 };
-#pragma pop
 
 /* 809959D4-809959DC -00001 0008+00 2/3 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[2] = {
-    (void*)&d_a_npc_clerka__stringBase0,
-    (void*)(((char*)&d_a_npc_clerka__stringBase0) + 0x1D),
+static char* l_resNameList[2] = {
+    "",
+    "clerkA",
 };
 
 /* 809959DC-809959E0 000048 0002+02 1/0 0/0 0/0 .data            l_loadResPtrn0 */
@@ -376,7 +370,7 @@ SECTION_DATA static u8 l_motionSequenceData[112] = {
 #pragma pop
 
 /* 80995BF8-80995BFC -00001 0004+00 1/1 0/0 0/0 .data            mCutNameList__14daNpc_clerkA_c */
-SECTION_DATA void* daNpc_clerkA_c::mCutNameList = (void*)&d_a_npc_clerka__stringBase0;
+char* daNpc_clerkA_c::mCutNameList[1] = {""};
 
 /* 80995BFC-80995C08 000268 000C+00 2/2 0/0 0/0 .data            mCutList__14daNpc_clerkA_c */
 SECTION_DATA u8 daNpc_clerkA_c::mCutList[12] = {
@@ -654,7 +648,7 @@ COMPILER_STRIP_GATE(0x8099590C, &lit_4030);
 /* 80995910-80995914 0000A0 0004+00 0/1 0/0 0/0 .rodata          @4031 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static f32 const lit_4031 = -1000000000.0f;
+SECTION_RODATA static f32 const lit_4031 = -G_CM3D_F_INF;
 COMPILER_STRIP_GATE(0x80995910, &lit_4031);
 #pragma pop
 

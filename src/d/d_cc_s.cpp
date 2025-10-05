@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_cc_s.h"
 #include "d/d_com_inf_game.h"
@@ -153,41 +153,43 @@ bool dCcS::ChkAtTgHitAfterCross(bool i_setAt, bool i_setTg, cCcD_GObjInf const* 
 /* 80086240-80086360 080B80 0120+00 1/0 0/0 0/0 .text
  * SetCoGObjInf__4dCcSFbbP12cCcD_GObjInfP12cCcD_GObjInfP9cCcD_SttsP9cCcD_SttsP10cCcD_GSttsP10cCcD_GStts
  */
-// NONMATCHING weird reg alloc
-void dCcS::SetCoGObjInf(bool i_co2Set, bool i_co1Set, cCcD_GObjInf* i_co1Obj, cCcD_GObjInf* i_co2Obj,
+void dCcS::SetCoGObjInf(bool i_co1Set, bool i_co2Set, cCcD_GObjInf* i_co1Obj, cCcD_GObjInf* i_co2Obj,
                         cCcD_Stts* i_co1Stts, cCcD_Stts* i_co2Stts, cCcD_GStts* i_co1GStts,
                         cCcD_GStts* i_co2GStts) {
-    if (i_co2Set) {
-        static_cast<dCcD_GObjInf*>(i_co1Obj)->SetCoHitApid(i_co2Stts->GetApid());
-
-        if (static_cast<dCcD_GStts*>(i_co2GStts)->ChkNoActor()) {
-            static_cast<dCcD_GObjInf*>(i_co1Obj)->OnCoHitNoActor();
-        }
-    }
+    dCcD_GObjInf* co1Obj = (dCcD_GObjInf*)i_co1Obj;
+    dCcD_GObjInf* co2Obj = (dCcD_GObjInf*)i_co2Obj;
+    dCcD_GStts* co1GStts = (dCcD_GStts*)i_co1GStts;
+    dCcD_GStts* co2GStts = (dCcD_GStts*)i_co2GStts;
 
     if (i_co1Set) {
-        static_cast<dCcD_GObjInf*>(i_co2Obj)->SetCoHitApid(i_co1Stts->GetApid());
+        co1Obj->SetCoHitApid(i_co2Stts->GetApid());
 
-        if (static_cast<dCcD_GStts*>(i_co1GStts)->ChkNoActor()) {
-            static_cast<dCcD_GObjInf*>(i_co2Obj)->OnCoHitNoActor();
+        if (co2GStts->ChkNoActor()) {
+            co1Obj->OnCoHitNoActor();
         }
     }
 
     if (i_co2Set) {
-        dCcD_HitCallback cb = static_cast<dCcD_GObjInf*>(i_co1Obj)->GetCoHitCallback();
+        co2Obj->SetCoHitApid(i_co1Stts->GetApid());
 
-        if (cb != NULL) {
-            cb(i_co1Obj->GetAc(), static_cast<dCcD_GObjInf*>(i_co1Obj), i_co2Obj->GetAc(),
-               static_cast<dCcD_GObjInf*>(i_co2Obj));
+        if (co1GStts->ChkNoActor()) {
+            co2Obj->OnCoHitNoActor();
         }
     }
 
     if (i_co1Set) {
-        dCcD_HitCallback cb = static_cast<dCcD_GObjInf*>(i_co2Obj)->GetCoHitCallback();
+        dCcD_HitCallback cb = co1Obj->GetCoHitCallback();
 
         if (cb != NULL) {
-            cb(i_co2Obj->GetAc(), static_cast<dCcD_GObjInf*>(i_co2Obj), i_co1Obj->GetAc(),
-               static_cast<dCcD_GObjInf*>(i_co1Obj));
+            cb(co1Obj->GetAc(), co1Obj, co2Obj->GetAc(), co2Obj);
+        }
+    }
+
+    if (i_co2Set) {
+        dCcD_HitCallback cb = co2Obj->GetCoHitCallback();
+
+        if (cb != NULL) {
+            cb(co2Obj->GetAc(), co2Obj, co1Obj->GetAc(), co1Obj);
         }
     }
 }
@@ -380,67 +382,65 @@ void dCcS::CalcParticleAngle(dCcD_GObjInf* i_atObjInf, cCcD_Stts* i_atStts, cCcD
 /* 8008685C-80086AC0 08119C 0264+00 1/1 0/0 0/0 .text
  * ProcAtTgHitmark__4dCcSFbbP8cCcD_ObjP8cCcD_ObjP12dCcD_GObjInfP12dCcD_GObjInfP9cCcD_SttsP9cCcD_SttsP10dCcD_GSttsP10dCcD_GSttsP4cXyzb
  */
-// NONMATCHING one branch issue
 void dCcS::ProcAtTgHitmark(bool i_setAt, bool i_setTg, cCcD_Obj* param_2, cCcD_Obj* param_3,
                            dCcD_GObjInf* i_atObjInf, dCcD_GObjInf* i_tgObjInf, cCcD_Stts* param_6,
                            cCcD_Stts* param_7, dCcD_GStts* param_8, dCcD_GStts* param_9,
                            cXyz* i_hitPos, bool i_chkShield) {
-    if (!i_atObjInf->ChkAtNoHitMark() && !i_tgObjInf->ChkTgNoHitMark() &&
-        (i_atObjInf->GetAtType() != AT_TYPE_10000000 || i_tgObjInf->GetAc() == NULL ||
-         fopAcM_CheckStatus(i_tgObjInf->GetAc(), AT_TYPE_10000000)))
-    {
-        if ((i_atObjInf->GetAtType() &
-             (AT_TYPE_WOLF_ATTACK | AT_TYPE_WOLF_CUT_TURN | AT_TYPE_10000000 | AT_TYPE_MIDNA_LOCK |
-              AT_TYPE_HOOKSHOT | AT_TYPE_SHIELD_ATTACK | AT_TYPE_NORMAL_SWORD)) != 0 &&
-            i_tgObjInf->GetTgSpl() == 1)
+    if (i_setAt) {}
+    if (i_setTg) {}
+    if (param_2) {}
+    if (param_3) {}
+
+    if (i_atObjInf->ChkAtNoHitMark()) { return; }
+    if (i_tgObjInf->ChkTgNoHitMark()) { return; }
+    if (
+        (
+            i_atObjInf->GetAtType() == AT_TYPE_10000000 &&
+            i_tgObjInf->GetAc() != NULL &&
+            !fopAcM_CheckStatus(i_tgObjInf->GetAc(), AT_TYPE_10000000)
+        ) ||
+        (
+            (
+                i_atObjInf->GetAtType() &
+                (AT_TYPE_WOLF_ATTACK | AT_TYPE_WOLF_CUT_TURN | AT_TYPE_10000000 | AT_TYPE_MIDNA_LOCK |
+                AT_TYPE_HOOKSHOT | AT_TYPE_SHIELD_ATTACK | AT_TYPE_NORMAL_SWORD)
+            ) &&
+            i_tgObjInf->GetTgSpl() == dCcG_Tg_Spl_UNK_1
+        )
+    ) {
+        return;
+    }
+    if (i_atObjInf->GetAtType() == AT_TYPE_HOOKSHOT && i_tgObjInf->ChkTgHookShotNoHitMark()) { return; }
+    if (i_atObjInf->GetAtType() == AT_TYPE_ARROW && i_tgObjInf->ChkTgArrowNoHitMark()) { return; }
+    if (!param_9->ChkNoneActorPerfTblId()) { return; }
+
+    if (!i_chkShield) {
+        if ((i_atObjInf->GetAtHitMark() != 0 || i_tgObjInf->GetTgHitMark() == 8) &&
+            (i_atObjInf->GetAtHitMark() != 4 || i_tgObjInf->GetTgHitMark() != 4))
         {
-            return;
-        }
+            csXyz sp10;
+            CalcParticleAngle(i_atObjInf, param_6, param_7, &sp10);
 
-        if ((i_atObjInf->GetAtType() != AT_TYPE_HOOKSHOT ||
-             !i_tgObjInf->ChkTgHookShotNoHitMark()) &&
-            (i_atObjInf->GetAtType() != AT_TYPE_ARROW || !i_tgObjInf->ChkTgArrowNoHitMark()) &&
-            param_9->ChkNoneActorPerfTblId())
-        {
-            if (!i_chkShield) {
-                if ((i_atObjInf->GetAtHitMark() != 0 || i_tgObjInf->GetTgHitMark() == 8) &&
-                    (i_atObjInf->GetAtHitMark() != 4 || i_tgObjInf->GetTgHitMark() != 4))
-                {
-                    csXyz sp10;
-                    CalcParticleAngle(i_atObjInf, param_6, param_7, &sp10);
-
-                    if (i_tgObjInf->GetTgHitMark() == 5 || i_tgObjInf->GetTgHitMark() == 8) {
-                        u32 atType = i_atObjInf->GetAtType();
-                        fopAc_ac_c* ac = i_tgObjInf->GetAc();
-
-                        dComIfGp_setHitMark(2, ac, i_hitPos, &sp10, NULL, atType);
-                    } else {
-                        u16 hitmark;
-                        if (i_tgObjInf->GetTgHitMark() == 3) {
-                            hitmark = 3;
-                        } else {
-                            hitmark = i_atObjInf->GetAtHitMark();
-                        }
-
-                        if ((hitmark != 1 && hitmark != 3) || i_atObjInf->GetAtAtp() != 0) {
-                            u32 atType = i_atObjInf->GetAtType();
-                            fopAc_ac_c* ac = i_tgObjInf->GetAc();
-
-                            dComIfGp_setHitMark(hitmark, ac, i_hitPos, &sp10, NULL, atType);
-                        }
-                    }
+            if (i_tgObjInf->GetTgHitMark() == 5 || i_tgObjInf->GetTgHitMark() == 8) {
+                dComIfGp_setHitMark(2, i_tgObjInf->GetAc(), i_hitPos, &sp10, NULL, i_atObjInf->GetAtType());
+            } else {
+                u16 hitmark;
+                if (i_tgObjInf->GetTgHitMark() == 3) {
+                    hitmark = 3;
+                } else {
+                    hitmark = i_atObjInf->GetAtHitMark();
                 }
-            } else if (i_tgObjInf->GetTgHitMark() != 0) {
-                csXyz sp8;
-                CalcParticleAngle(i_atObjInf, param_6, param_7, &sp8);
 
-                u32 atType = i_atObjInf->GetAtType();
-                fopAc_ac_c* ac = i_tgObjInf->GetAc();
-                u16 hitmark = i_tgObjInf->GetTgHitMark();
-
-                dComIfGp_setHitMark(hitmark, ac, i_hitPos, &sp8, NULL, atType);
+                if ((hitmark != 1 && hitmark != 3) || i_atObjInf->GetAtAtp() != 0) {
+                    dComIfGp_setHitMark(hitmark, i_tgObjInf->GetAc(), i_hitPos, &sp10, NULL, i_atObjInf->GetAtType());
+                }
             }
         }
+    } else if (i_tgObjInf->GetTgHitMark() != 0) {
+        csXyz sp8;
+        CalcParticleAngle(i_atObjInf, param_6, param_7, &sp8);
+
+        dComIfGp_setHitMark(i_tgObjInf->GetTgHitMark(), i_tgObjInf->GetAc(), i_hitPos, &sp8, NULL, i_atObjInf->GetAtType());
     }
 }
 

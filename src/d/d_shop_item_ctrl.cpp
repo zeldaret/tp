@@ -2,7 +2,7 @@
 // d/shop/d_shop_item_ctrl
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_shop_item_ctrl.h"
 #include "SSystem/SComponent/c_lib.h"

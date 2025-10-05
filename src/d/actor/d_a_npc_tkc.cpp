@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_tkc.h"
 #include "dol2asm.h"
@@ -265,24 +265,18 @@ SECTION_DATA static u8 l_btkGetParamList[8] = {
 };
 
 /* 80B10AA8-80B10AB8 -00001 0010+00 0/1 0/0 0/0 .data            l_evtNames */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtNames[4] = {
-    (void*)&d_a_npc_tkc__stringBase0,
-    (void*)(((char*)&d_a_npc_tkc__stringBase0) + 0x1),
-    (void*)(((char*)&d_a_npc_tkc__stringBase0) + 0xC),
-    (void*)(((char*)&d_a_npc_tkc__stringBase0) + 0x15),
+static char* l_evtNames[4] = {
+    "",
+    "TKS_SECRET",
+    "TKS_WARP",
+    "TKC_WARP",
 };
-#pragma pop
 
 /* 80B10AB8-80B10ABC -00001 0004+00 8/9 0/0 0/0 .data            l_arcName */
-SECTION_DATA static void* l_arcName = (void*)(((char*)&d_a_npc_tkc__stringBase0) + 0x1E);
+static char* l_arcName = "Tkc";
 
 /* 80B10ABC-80B10AC0 -00001 0004+00 0/2 0/0 0/0 .data            l_myName */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_myName = (void*)(((char*)&d_a_npc_tkc__stringBase0) + 0x1E);
-#pragma pop
+static char* l_myName = "Tkc";
 
 /* 80B10AC0-80B10ACC -00001 000C+00 0/1 0/0 0/0 .data            @3936 */
 #pragma push

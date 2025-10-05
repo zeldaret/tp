@@ -478,7 +478,7 @@ int daAlink_c::procGuardAttack() {
 
     if (checkAnmEnd(temp_r30)) {
         if (mDemo.getDemoMode() == 0x4B) {
-            dComIfGp_evmng_cutEnd(field_0x3184);
+            dComIfGp_evmng_cutEnd(mAlinkStaffId);
         } else {
             checkNextAction(0);
         }

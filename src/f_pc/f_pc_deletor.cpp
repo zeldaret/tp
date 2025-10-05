@@ -80,7 +80,7 @@ s32 fpcDt_ToDeleteQ(base_process_class* i_proc) {
         layer_class* layer = &((process_node_class*)i_proc)->layer;
         
         if (fpcLy_Cancel(layer) == 0) {
-            JUT_ASSERT(196, 0);
+            JUT_ASSERT(196, FALSE);
         }
 
         if (fpcLyIt_OnlyHereLY(layer, (fpcLyIt_OnlyHereFunc)fpcDt_ToDeleteQ, NULL) == 0)

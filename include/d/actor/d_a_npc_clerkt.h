@@ -52,7 +52,7 @@ public:
     /* 8099D098 */ s32 getNeckJointNo();
     /* 8099D0A0 */ s32 getHeadJointNo();
 
-    static void* mCutNameList;
+    static char* mCutNameList[1];
     static u8 mCutList[12];
 
 private:

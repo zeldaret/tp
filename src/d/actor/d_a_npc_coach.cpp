@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_coach.h"
 #include "d/actor/d_a_coach_2D.h"
@@ -530,7 +530,7 @@ BOOL daNpcChPath_c::setPath(int path_index, int room_no, cXyz& i_vec, bool param
 
     // Is this really what the Nintendo devs wrote?? The debug ROM suggests as such.
     if (param_4 && &i_vec) {
-        f32 fVar1 = 1000000000.0f;
+        f32 fVar1 = G_CM3D_F_INF;
         for (int pnt_index = 0; pnt_index < mpPath->m_num; pnt_index++) {
             dPnt* pnt = dPath_GetPnt(mpPath, pnt_index);
             f32 fVar2 = i_vec.abs2(pnt->m_position);
@@ -543,7 +543,7 @@ BOOL daNpcChPath_c::setPath(int path_index, int room_no, cXyz& i_vec, bool param
         setNextPoint();
     }
 
-    field_0x8 = 1000000000.0f;
+    field_0x8 = G_CM3D_F_INF;
 
     // ditto.
     if (&i_vec) {
@@ -655,7 +655,7 @@ void daNpcCoach_c::setCoachBlazing(u8 damage) {
                 break;
 
             default:
-                JUT_ASSERT(2552, 0);
+                JUT_ASSERT(2552, FALSE);
                 break;
         }
 
@@ -721,7 +721,7 @@ void daNpcCoach_c::setCoachBlazing(u8 damage) {
 int daNpcCoach_c::createHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, BMDR_HORSE);
 
-    JUT_ASSERT(2702, modelData != 0);
+    JUT_ASSERT(2702, modelData != NULL);
 
     mChHorse.mpModelMorf = new mDoExt_McaMorf2(modelData, NULL, NULL,
                                                (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, BCK_HU_WAIT_01), NULL,
@@ -767,7 +767,7 @@ int daNpcCoach_c::createHeap() {
 
     modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, BMDR_HARNESS);
     
-    JUT_ASSERT(2762, modelData != 0);
+    JUT_ASSERT(2762, modelData != NULL);
 
     mChHarness.mHarnessModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mChHarness.mHarnessModel == NULL) {
@@ -790,12 +790,12 @@ int daNpcCoach_c::createHeap() {
     if (mChHarness.field_0x6a0->Set((cBgD_t*)dComIfG_getObjectRes(l_arcName, DZB_HARNESS), 1, &mChHarness.mMtx)) {
         mChHarness.field_0x6a0 = NULL;
 
-        JUT_ASSERT(2782, 0);
+        JUT_ASSERT(2782, FALSE);
     }
    
     modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, BMDR_COACH);
     
-    JUT_ASSERT(2787, modelData != 0);
+    JUT_ASSERT(2787, modelData != NULL);
 
     mChCoach.mCoachModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mChCoach.mCoachModel == NULL) {
@@ -820,12 +820,12 @@ int daNpcCoach_c::createHeap() {
     if (mChCoach.field_0x564->Set((cBgD_t*)dComIfG_getObjectRes(l_arcName, DZB_COACH), 1, &mChCoach.field_0x568) != 0) {
         mChCoach.field_0x564 = NULL;
 
-        JUT_ASSERT(2811, 0);
+        JUT_ASSERT(2811, FALSE);
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, BMDR_YELIA);
     
-    JUT_ASSERT(2816, modelData != 0);
+    JUT_ASSERT(2816, modelData != NULL);
 
     mChYelia.mpModelMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes(l_arcName, BCK_YELIA_WAIT),
                                                 -1, 1.0f, 0, -1, &mChYelia.mSound, 0x80000, 0x11000084);
@@ -1730,7 +1730,7 @@ void daNpcCoach_c::calcHorseAnm() {
             break;
 
         default:
-            JUT_ASSERT(1521, 0);
+            JUT_ASSERT(1521, FALSE);
             break;
     }
 
@@ -1814,7 +1814,7 @@ BOOL daNpcCoach_c::setExpressionAnm(int param_1, bool param_2) {
 
     int bckIdx, i_attr;
     if ((param_1 == 2 || param_1 > 1) || param_1 < 1) {
-        JUT_ASSERT(2635, 0);
+        JUT_ASSERT(2635, FALSE);
     } else {
         bckIdx = BCK_HU_LASH;
         i_attr = J3DFrameCtrl::EMode_NONE;

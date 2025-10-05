@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_cstaF.h"
 #include "d/actor/d_a_alink.h"
@@ -230,7 +230,7 @@ static int daCstaF_Delete(daCstaF_c* a_this) {
 /* 804DE558-804DE5F0 000C78 0098+00 2/2 0/0 0/0 .text            setRoomInfo__9daCstaF_cFv */
 void daCstaF_c::setRoomInfo() {
     int room_no;
-    if (m_acch.GetGroundH() != -1000000000.0f) {
+    if (m_acch.GetGroundH() != -G_CM3D_F_INF) {
         room_no = dComIfG_Bgsp().GetRoomId(m_acch.m_gnd);
         tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(m_acch.m_gnd);
     } else {
@@ -308,7 +308,7 @@ void daCstaF_c::posMove() {
     m_cc_stts.ClrCcMove();
     m_acch.CrrPos(dComIfG_Bgsp());
 
-    if (pre_gnd_hit && !m_acch.ChkGroundHit() && -1000000000.0f != m_acch.GetGroundH()) {
+    if (pre_gnd_hit && !m_acch.ChkGroundHit() && -G_CM3D_F_INF != m_acch.GetGroundH()) {
         f32 ground_dist = m_acch.GetGroundH() - current.pos.y;
         cM3dGPla tri;
         dComIfG_Bgsp().GetTriPla(m_acch.m_gnd, &tri);
@@ -498,7 +498,7 @@ int daCstaF_c::Execute(Mtx** param_0) {
     posMove();
 
     int poly_sound;
-    if (m_acch.GetGroundH() != -1000000000.0f) {
+    if (m_acch.GetGroundH() != -G_CM3D_F_INF) {
         poly_sound = dKy_pol_sound_get(&m_acch.m_gnd);
     } else {
         poly_sound = 0;

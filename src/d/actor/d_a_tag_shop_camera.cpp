@@ -3,7 +3,7 @@
  * Tag - Shop Camera
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_tag_shop_camera.h"
 #include "dol2asm.h"

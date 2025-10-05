@@ -70,14 +70,14 @@ void daAlink_c::setBottleModel(u16 i_itemNo) {
         J3DAnmTransform* bck = (J3DAnmTransform*)loadAram(0x1E8, 0xC00);
         mpHookTipModel = initModel(loadAramBmd(0x31D, 0x1400), 0);
         if (!mHookTipBck.init(bck, FALSE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, false)) {
-            JUT_ASSERT(142, 0);
+            JUT_ASSERT(142, FALSE);
         }
         mHookTipBck.entry(mpHookTipModel->getModelData(), 0.0f);
     } else if (i_itemNo == fpcNm_ITEM_WORM) {
         J3DAnmTransform* bck = (J3DAnmTransform*)loadAram(0x1E9, 0xC00);
         mpHookTipModel = initModel(loadAramBmd(0x31E, 0x2400), 0);
         if (!mHookTipBck.init(bck, FALSE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, false)) {
-            JUT_ASSERT(151, 0);
+            JUT_ASSERT(151, FALSE);
         }
         mHookTipBck.entry(mpHookTipModel->getModelData(), 0.0f);
     } else if (i_itemNo == fpcNm_ITEM_BEE_CHILD) {
@@ -218,7 +218,7 @@ int daAlink_c::commonBottleDrink(int param_0) {
                 }
 
                 field_0x072c->setFrame(1.0f);
-                if (mDemo.getDemoType() == 5) {
+                if (mDemo.getDemoType() == daPy_demo_c::DEMO_TYPE_SPECIAL_e) {
                     dComIfGs_setEquipBottleItemIn(mSelectItemId, fpcNm_ITEM_HALF_MILK_BOTTLE);
                 }
             } else if (mProcVar2.field_0x300c == 0) {
@@ -276,7 +276,7 @@ int daAlink_c::commonBottleDrink(int param_0) {
                 }
 
                 field_0x072c->setFrame(2.0f);
-                if (mDemo.getDemoType() == 5) {
+                if (mDemo.getDemoType() == daPy_demo_c::DEMO_TYPE_SPECIAL_e) {
                     dComIfGs_setEquipBottleItemEmpty(mSelectItemId);
                 }
 
@@ -404,7 +404,7 @@ int daAlink_c::procBottleDrinkInit(u16 i_itemNo) {
 /* 8010F698-8010F6F4 109FD8 005C+00 1/0 0/0 0/0 .text            procBottleDrink__9daAlink_cFv */
 int daAlink_c::procBottleDrink() {
     if (mProcVar3.field_0x300e != 0) {
-        dComIfGp_evmng_cutEnd(field_0x3184);
+        dComIfGp_evmng_cutEnd(mAlinkStaffId);
     } else {
         mProcVar3.field_0x300e = commonBottleDrink(0);
     }

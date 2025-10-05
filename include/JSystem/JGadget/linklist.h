@@ -191,19 +191,19 @@ struct TLinkList : public TNodeLinkList {
     };
 
     static TLinkListNode* Element_toNode(T* p) {
-        JUT_ASSERT(0x2F1, p!=0);
+        JUT_ASSERT(0x2F1, p!=NULL);
         return reinterpret_cast<TLinkListNode*>(reinterpret_cast<char*>(p) - I);
     }
     static const TLinkListNode* Element_toNode(const T* p) {
-        JUT_ASSERT(0x2F6, p!=0);
+        JUT_ASSERT(0x2F6, p!=NULL);
         return reinterpret_cast<const TLinkListNode*>(reinterpret_cast<const char*>(p) - I);
     }
     static T* Element_toValue(TLinkListNode* p) {
-        JUT_ASSERT(0x2FB, p!=0);
+        JUT_ASSERT(0x2FB, p!=NULL);
         return reinterpret_cast<T*>(reinterpret_cast<char*>(p) + I);
     }
     static const T* Element_toValue(const TLinkListNode* p) {
-        JUT_ASSERT(0x300, p!=0);
+        JUT_ASSERT(0x300, p!=NULL);
         return reinterpret_cast<const T*>(reinterpret_cast<const char*>(p) + I);
     }
 
@@ -241,8 +241,8 @@ struct TLinkList_factory : public TLinkList<T, I> {
         }
     }
 
-    TLinkList<T, I>::iterator Erase_destroy(T* param_0) {
-        TLinkList<T, I>::iterator spC(Erase(param_0));
+    typename TLinkList<T, I>::iterator Erase_destroy(T* param_0) {
+        typename TLinkList<T, I>::iterator spC(Erase(param_0));
         Do_destroy(param_0);
         return spC;
     }

@@ -3,7 +3,7 @@
  *
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_flag2.h"
 #include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
@@ -398,7 +398,7 @@ int daObjFlag2_c::createHeap() {
         shape_angle.setall(0);
         current.angle.setall(0);
         ResTIMG* image = (ResTIMG*)dComIfG_getObjectRes(mFlagName, "flag.bti");
-        JUT_ASSERT(838, image != 0);
+        JUT_ASSERT(838, image != NULL);
         GXInitTexObj(mFlagCloth.getImageTexObj(), (u8*)image + image->imageOffset, image->width,
                      image->height, (GXTexFmt)image->format, (GXTexWrapMode)image->wrapS,
                      (GXTexWrapMode)image->wrapT, image->mipmapCount > 1 ? GX_TRUE : GX_FALSE);
@@ -413,11 +413,11 @@ int daObjFlag2_c::createHeap() {
         } else if (image->width == (image->height << 1)) {
             mFlagCloth.setTexCoord_p(l_texCoord);
         } else {
-            JUT_ASSERT(861, 0);
+            JUT_ASSERT(861, FALSE);
         }
     }
     J3DModelData* modelData_pole = (J3DModelData*)dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), "model0.bmd");
-    JUT_ASSERT(865, modelData_pole != 0);
+    JUT_ASSERT(865, modelData_pole != NULL);
     mModel = mDoExt_J3DModel__create(modelData_pole, 0x80000, 0x11000084);
     return mModel != NULL ? TRUE : FALSE;
 }

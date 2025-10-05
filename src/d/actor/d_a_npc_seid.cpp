@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_seid.h"
 #include "SSystem/SComponent/c_counter.h"
@@ -180,7 +180,7 @@ int daNpc_seiD_c::create() {
 /* 80AC9968-80AC9AC0 0003C8 0158+00 1/1 0/0 0/0 .text            CreateHeap__12daNpc_seiD_cFv */
 int daNpc_seiD_c::CreateHeap() {
     J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[0][1]], l_bmdData[0][0]);
-    JUT_ASSERT(424, 0 != mdlData_p);
+    JUT_ASSERT(424, NULL != mdlData_p);
 
     mpMorf[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0, 0x11020284);
     if (mpMorf[0] != NULL && mpMorf[0]->getModel() == NULL) {

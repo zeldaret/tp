@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_zrc.h"
 #include "SSystem/SComponent/c_math.h"
@@ -1196,7 +1196,7 @@ BOOL daNpc_zrC_c::doEvent() {
                 mStaffID = staff_id;
                 int evtCutNo = event_mgr->getMyActIdx(staff_id, mEvtCutNameList, 2, 0, 0);
                 JUT_ASSERT(0x8ca, (0 <= evtCutNo) && (evtCutNo < NUM_EVT_CUTS_e));
-                JUT_ASSERT(0x8cb, 0 != mEvtCutList[evtCutNo]);
+                JUT_ASSERT(0x8cb, NULL != mEvtCutList[evtCutNo]);
                 if ((this->*mEvtCutList[evtCutNo])(staff_id)) {
                     event_mgr->cutEnd(staff_id);
                 }

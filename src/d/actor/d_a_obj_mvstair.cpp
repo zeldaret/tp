@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_mvstair.h"
 #include "d/d_com_inf_game.h"
@@ -88,7 +88,7 @@ static char* l_arcName[2] = {
 /* 80C9D2B8-80C9D338 000298 0080+00 1/0 0/0 0/0 .text            CreateHeap__12daObjStair_cFv */
 int daObjStair_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName[mResType], l_bmdName[mResType]);
-    JUT_ASSERT(250, modelData != 0);
+    JUT_ASSERT(250, modelData != NULL);
 
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {

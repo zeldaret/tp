@@ -40,7 +40,7 @@ void JASBasicWaveBank::setGroupCount(u32 param_0, JKRHeap* param_1) {
     delete[] mWaveGroupArray;
     mGroupCount = param_0;
     mWaveGroupArray = new(param_1, 0) TWaveGroup[param_0];
-    JUT_ASSERT(62, mWaveGroupArray != 0);
+    JUT_ASSERT(62, mWaveGroupArray != NULL);
     for (int i = 0; i < mGroupCount; i++) {
         mWaveGroupArray[i].mBank = this;
     }
@@ -51,7 +51,7 @@ void JASBasicWaveBank::setGroupCount(u32 param_0, JKRHeap* param_1) {
 void JASBasicWaveBank::setWaveTableSize(u32 param_0, JKRHeap* param_1) {
     delete[] mWaveTable;
     mWaveTable = new(param_1, 0) TWaveHandle[param_0];
-    JUT_ASSERT(92, mWaveTable != 0);
+    JUT_ASSERT(92, mWaveTable != NULL);
     mHandleCount = param_0;
 }
 
@@ -129,7 +129,7 @@ void JASBasicWaveBank::TWaveGroup::setWaveCount(u32 param_0, JKRHeap* param_1) {
     delete[] mCtrlWaveArray;
     mWaveCount = param_0;
     mCtrlWaveArray = new(param_1, 0) TGroupWaveInfo[param_0];
-    JUT_ASSERT(255, mCtrlWaveArray != 0);
+    JUT_ASSERT(255, mCtrlWaveArray != NULL);
 }
 
 /* 80298B04-80298B2C 293444 0028+00 1/0 0/0 0/0 .text

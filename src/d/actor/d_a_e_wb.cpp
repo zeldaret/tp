@@ -3,7 +3,7 @@
  *
  */
  
- #include "d/dolzel_rel.h"
+ #include "d/dolzel_rel.h" // IWYU pragma: keep
  #include "d/actor/d_a_e_rdb.h"
  #include "d/actor/d_a_obj_crvgate.h"
  #include "d/actor/d_a_obj_crvsteel.h"
@@ -5375,7 +5375,7 @@ static int daE_WB_Execute(e_wb_class* i_this) {
     
     int soundParam;
     
-    if (-1000000000.0f != i_this->mAcch.GetGroundH()) {
+    if (-G_CM3D_F_INF != i_this->mAcch.GetGroundH()) {
         if (i_this->mAcch.ChkWaterHit() && i_this->mAcch.m_wtr.GetHeight() > a_this->current.pos.y)
         {
             soundParam = dKy_pol_sound_get(&i_this->mAcch.m_wtr);

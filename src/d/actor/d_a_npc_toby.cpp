@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_toby.h"
 #include "dol2asm.h"
@@ -345,37 +345,27 @@ SECTION_DATA static u8 l_bmdData[24] = {
 };
 
 /* 80B24C80-80B24CB8 -00001 0038+00 0/1 0/0 0/0 .data            l_evtList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtList[14] = {
-    (void*)&d_a_npc_toby__stringBase0,
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_toby__stringBase0) + 0x1),
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_toby__stringBase0) + 0xD),
-    (void*)0x00000005,
-    (void*)(((char*)&d_a_npc_toby__stringBase0) + 0x1C),
-    (void*)0x00000004,
-    (void*)(((char*)&d_a_npc_toby__stringBase0) + 0x2B),
-    (void*)0x00000004,
-    (void*)(((char*)&d_a_npc_toby__stringBase0) + 0x33),
-    (void*)0x00000004,
-    (void*)(((char*)&d_a_npc_toby__stringBase0) + 0x4E),
-    (void*)0x00000004,
+static daNpcT_evtData_c l_evtList[7] = {
+    {"", 0},
+    {"NO_RESPONSE", 0},
+    {"TALKTO_ONESELF", 5},
+    {"REPAIR_SCANNON", 4},
+    {"SCANNON", 4},
+    {"CONVERSATION_ABOUT_SCANNON", 4},
+    {"CONVERSATION_ABOUT_ZRA", 4},
 };
-#pragma pop
 
 /* 80B24CB8-80B24CDC -00001 0024+00 2/3 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[9] = {
-    (void*)&d_a_npc_toby__stringBase0,
-    (void*)(((char*)&d_a_npc_toby__stringBase0) + 0x65),
-    (void*)(((char*)&d_a_npc_toby__stringBase0) + 0x6A),
-    (void*)(((char*)&d_a_npc_toby__stringBase0) + 0x72),
-    (void*)(((char*)&d_a_npc_toby__stringBase0) + 0x78),
-    (void*)(((char*)&d_a_npc_toby__stringBase0) + 0x7E),
-    (void*)(((char*)&d_a_npc_toby__stringBase0) + 0x84),
-    (void*)(((char*)&d_a_npc_toby__stringBase0) + 0x8A),
-    (void*)(((char*)&d_a_npc_toby__stringBase0) + 0x90),
+static char* l_resNameList[9] = {
+    "",
+    "Toby",
+    "Toby_TW",
+    "Toby0",
+    "Toby1",
+    "Toby2",
+    "Toby3",
+    "Toby4",
+    "Toby5",
 };
 
 /* 80B24CDC-80B24CE4 000094 0006+02 1/0 0/0 0/0 .data            l_loadResPtrn0 */
@@ -571,14 +561,14 @@ SECTION_DATA static u8 l_motionSequenceData[400] = {
 #pragma pop
 
 /* 80B25434-80B25450 -00001 001C+00 1/1 0/0 0/0 .data            mCutNameList__12daNpc_Toby_c */
-SECTION_DATA void* daNpc_Toby_c::mCutNameList[7] = {
-    (void*)&d_a_npc_toby__stringBase0,
-    (void*)(((char*)&d_a_npc_toby__stringBase0) + 0x96),
-    (void*)(((char*)&d_a_npc_toby__stringBase0) + 0xD),
-    (void*)(((char*)&d_a_npc_toby__stringBase0) + 0x1C),
-    (void*)(((char*)&d_a_npc_toby__stringBase0) + 0x2B),
-    (void*)(((char*)&d_a_npc_toby__stringBase0) + 0x33),
-    (void*)(((char*)&d_a_npc_toby__stringBase0) + 0x4E),
+char* daNpc_Toby_c::mCutNameList[7] = {
+    "",
+    "TOBY_HOUSE_FIRE",
+    "TALKTO_ONESELF",
+    "REPAIR_SCANNON",
+    "SCANNON",
+    "CONVERSATION_ABOUT_SCANNON",
+    "CONVERSATION_ABOUT_ZRA",
 };
 
 /* 80B25450-80B2545C -00001 000C+00 0/1 0/0 0/0 .data            @3927 */
@@ -1053,7 +1043,7 @@ COMPILER_STRIP_GATE(0x80B24AAC, &lit_4159);
 /* 80B24AB0-80B24AB4 0000CC 0004+00 0/1 0/0 0/0 .rodata          @4160 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static f32 const lit_4160 = -1000000000.0f;
+SECTION_RODATA static f32 const lit_4160 = -G_CM3D_F_INF;
 COMPILER_STRIP_GATE(0x80B24AB0, &lit_4160);
 #pragma pop
 
@@ -1197,7 +1187,7 @@ void daNpc_Toby_c::srchToby(void* param_0, void* param_1) {
 
 /* ############################################################################################## */
 /* 80B24AC8-80B24ACC 0000E4 0004+00 1/1 0/0 0/0 .rodata          @4593 */
-SECTION_RODATA static f32 const lit_4593 = 1000000000.0f;
+SECTION_RODATA static f32 const lit_4593 = G_CM3D_F_INF;
 COMPILER_STRIP_GATE(0x80B24AC8, &lit_4593);
 
 /* 80B1F124-80B1F200 000BC4 00DC+00 1/1 0/0 0/0 .text            getOtherTobyP__12daNpc_Toby_cFi */

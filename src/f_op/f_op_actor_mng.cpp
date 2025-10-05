@@ -3,7 +3,7 @@
  * Actor Manager
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "JSystem/JKernel/JKRExpHeap.h"
@@ -37,7 +37,7 @@ fopAc_ac_c* fopAcM_FastCreate(s16 i_procName, FastCreateReqFunc i_createFunc, vo
 /* 800198C4-80019934 014204 0070+00 1/1 5/5 18/18 .text            fopAcM_setStageLayer__FPv */
 void fopAcM_setStageLayer(void* i_proc) {
     scene_class* stageProc = fopScnM_SearchByID(dStage_roomControl_c::getProcID());
-    JUT_ASSERT(0, stageProc != 0);
+    JUT_ASSERT(0, stageProc != NULL);
 
     fpcM_ChangeLayerID(i_proc, fopScnM_LayerID(stageProc));
 }
@@ -46,7 +46,7 @@ void fopAcM_setStageLayer(void* i_proc) {
 void fopAcM_setRoomLayer(void* i_proc, int i_roomNo) {
     if (i_roomNo >= 0) {
         scene_class* roomProc = fopScnM_SearchByID(dStage_roomControl_c::getStatusProcID(i_roomNo));
-        JUT_ASSERT(0, roomProc != 0);
+        JUT_ASSERT(0, roomProc != NULL);
 
         fpcM_ChangeLayerID(i_proc, fopScnM_LayerID(roomProc));
     }
@@ -266,7 +266,7 @@ fpc_ProcID fopAcM_createChildFromOffset(s16 i_procName, fpc_ProcID i_parentID, u
 
 BOOL fopAcM_createHeap(fopAc_ac_c* i_this, u32 size, u32 align) {
     JUT_ASSERT(0, i_this);
-    JUT_ASSERT(0, i_this->heap == 0);
+    JUT_ASSERT(0, i_this->heap == NULL);
 
     // "Creating Actor Heap"
     fopAcM_Log(i_this, "アクターのヒープの生成");
@@ -419,7 +419,7 @@ bool fopAcM_entrySolidHeap_(fopAc_ac_c* i_actor, heapCallbackFunc i_heapCallback
             }
 
             OSReport_Error("ばぐばぐです\n");  // "There's a big bug\n"
-            JUT_ASSERT(0, 0);
+            JUT_ASSERT(0, FALSE);
             OSReport_Error("緊急回避措置\n");  // "Emergency action\n"
             fopAcM::HeapAdjustEntry = false;
         }
@@ -750,14 +750,13 @@ static cull_sphere l_cullSizeSphere[] = {
 };
 
 /* 8001ACEC-8001B058 01562C 036C+00 0/0 1/1 1/1 .text fopAcM_cullingCheck__FPC10fopAc_ac_c */
-// NONMATCHING some stack / extra instructions regarding mDoLib_clipper::clip
 s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
     MtxP mtx_p;
     if (fopAcM_GetMtx(i_actor) == NULL) {
         mtx_p = j3dSys.getViewMtx();
     } else {
         Mtx concat_mtx;
-        MTXConcat(j3dSys.getViewMtx(), fopAcM_GetMtx(i_actor), concat_mtx);
+        cMtx_concat(j3dSys.getViewMtx(), fopAcM_GetMtx(i_actor), concat_mtx);
         mtx_p = concat_mtx;
     }
 
@@ -766,10 +765,8 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
         cullsize_far *= dComIfGp_event_getCullRate();
     }
 
-    int cullsize = fopAcM_GetCullSize(i_actor);
-
-    if (fopAcM_CULLSIZE_IS_BOX(cullsize)) {
-        if (fopAcM_GetCullSize(i_actor) == 14) {
+    if (fopAcM_CULLSIZE_IS_BOX(fopAcM_GetCullSize(i_actor))) {
+        if (fopAcM_GetCullSize(i_actor) == fopAc_CULLBOX_CUSTOM_e) {
             if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
                 mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
                 u32 ret =
@@ -780,7 +777,7 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
                 return mDoLib_clipper::clip(mtx_p, &i_actor->cull.box.max, &i_actor->cull.box.min);
             }
         } else {
-            cull_box* box = &l_cullSizeBox[cullsize];
+            cull_box* box = &l_cullSizeBox[fopAcM_CULLSIZE_IDX(fopAcM_GetCullSize(i_actor))];
 
             if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
                 mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
@@ -792,7 +789,7 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
             }
         }
     } else {
-        if (fopAcM_GetCullSize(i_actor) == 23) {
+        if (fopAcM_GetCullSize(i_actor) == fopAc_CULLSPHERE_CUSTOM_e) {
             if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
                 mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
                 u32 ret = mDoLib_clipper::clip(mtx_p, fopAcM_getCullSizeSphereCenter(i_actor),
@@ -804,7 +801,7 @@ s32 fopAcM_cullingCheck(fopAc_ac_c const* i_actor) {
                                             fopAcM_getCullSizeSphereR(i_actor));
             }
         } else {
-            cull_sphere* sphere = &l_cullSizeSphere[cullsize - 15];
+            cull_sphere* sphere = &l_cullSizeSphere[fopAcM_CULLSIZE_Q_IDX(fopAcM_GetCullSize(i_actor))];
 
             if (fopAcM_getCullSizeFar(i_actor) > 0.0f) {
                 mDoLib_clipper::changeFar(cullsize_far * mDoLib_clipper::getFar());
@@ -1393,17 +1390,17 @@ fpc_ProcID fopAcM_createItem(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, i
     case fpcNm_ITEM_SMALL_KEY:
         // "Small Key: Can't support map display, so program generation is prohibited!\n"
         OS_REPORT_ERROR("小さい鍵：マップ表示対応出来ないので、プログラム生成禁止！\n");
-        JUT_ASSERT(0, 0);
+        JUT_ASSERT(0, FALSE);
         break;
     case fpcNm_ITEM_KANTERA:
         // "Lantern: Program generation is prohibited!\n"
         OS_REPORT_ERROR("カンテラ：プログラム生成禁止！\n");
-        JUT_ASSERT(0, 0);
+        JUT_ASSERT(0, FALSE);
         break;
     case fpcNm_ITEM_LIGHT_DROP:
         // "Light Drop: Program generation is prohibited!\n"
         OS_REPORT_ERROR("光の雫：プログラム生成禁止！\n");
-        JUT_ASSERT(0, 0);
+        JUT_ASSERT(0, FALSE);
         break;
 #endif
     case fpcNm_ITEM_KAKERA_HEART:
@@ -1451,17 +1448,17 @@ fopAc_ac_c* fopAcM_fastCreateItem2(const cXyz* i_pos, int i_itemNo, int i_itemBi
     case fpcNm_ITEM_SMALL_KEY:
         // "Small Key: Can't support map display, so program generation is prohibited!\n"
         OS_REPORT_ERROR("小さい鍵：マップ表示対応出来ないので、プログラム生成禁止！\n");
-        JUT_ASSERT(0, 0);
+        JUT_ASSERT(0, FALSE);
         break;
     case fpcNm_ITEM_KANTERA:
         // "Lantern: Program generation is prohibited!\n"
         OS_REPORT_ERROR("カンテラ：プログラム生成禁止！\n");
-        JUT_ASSERT(0, 0);
+        JUT_ASSERT(0, FALSE);
         break;
     case fpcNm_ITEM_LIGHT_DROP:
         // "Light Drop: Program generation is prohibited!\n"
         OS_REPORT_ERROR("光の雫：プログラム生成禁止！\n");
-        JUT_ASSERT(0, 0);
+        JUT_ASSERT(0, FALSE);
         break;
 #endif
     case fpcNm_ITEM_KAKERA_HEART:
@@ -1511,17 +1508,17 @@ fopAc_ac_c* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo,
     case fpcNm_ITEM_SMALL_KEY:
         // "Small Key: Can't support map display, so program generation is prohibited!\n"
         OS_REPORT_ERROR("小さい鍵：マップ表示対応出来ないので、プログラム生成禁止！\n");
-        JUT_ASSERT(0, 0);
+        JUT_ASSERT(0, FALSE);
         break;
     case fpcNm_ITEM_KANTERA:
         // "Lantern: Program generation is prohibited!\n"
         OS_REPORT_ERROR("カンテラ：プログラム生成禁止！\n");
-        JUT_ASSERT(0, 0);
+        JUT_ASSERT(0, FALSE);
         break;
     case fpcNm_ITEM_LIGHT_DROP:
         // "Light Drop: Program generation is prohibited!\n"
         OS_REPORT_ERROR("光の雫：プログラム生成禁止！\n");
-        JUT_ASSERT(0, 0);
+        JUT_ASSERT(0, FALSE);
         break;
 #endif
     case fpcNm_ITEM_KAKERA_HEART:
@@ -1620,7 +1617,7 @@ fopAc_ac_c* fopAcM_myRoomSearchEnemy(s8 roomNo) {
 
     int procID = dStage_roomControl_c::getStatusProcID(roomNo);
     scene_class* roomProc = fopScnM_SearchByID(procID);
-    JUT_ASSERT(0, roomProc != 0);
+    JUT_ASSERT(0, roomProc != NULL);
 
     u32 actorID = ((daPy_py_c*)dComIfGp_getPlayer(0))->getGrabActorID();
     fopAc_ac_c* actor = fopAcM_SearchByID(actorID);
@@ -1911,7 +1908,8 @@ void fopAcM_setEffectMtx(const fopAc_ac_c* i_actor, const J3DModelData* modelDat
 
 /* 8001D5A4-8001D5EC 017EE4 0048+00 1/1 0/0 0/0 .text fopAcM_getProcNameString__FPC10fopAc_ac_c */
 static const char* fopAcM_getProcNameString(const fopAc_ac_c* i_actor) {
-    const char* name = dStage_getName2(i_actor->base.profname, i_actor->argument);
+    s16 prof_name = fopAcM_GetProfName(i_actor);
+    const char* name = dStage_getName2(prof_name, i_actor->argument);
     return name != NULL ? name : "UNKOWN";
 }
 
@@ -2016,7 +2014,7 @@ s32 fopAcM_getWaterY(cXyz const* param_0, f32* o_waterY) {
         *o_waterY = fopAcM_wt_c::getWaterY();
         return 1;
     } else {
-        *o_waterY = -1000000000.0f;
+        *o_waterY = -G_CM3D_F_INF;
         return 0;
     }
 }
@@ -2105,14 +2103,14 @@ bool fopAcM_lc_c::lineCheck(cXyz const* i_start, cXyz const* i_end, fopAc_ac_c c
 bool fopAcM_gc_c::gndCheck(cXyz const* i_pos) {
     mGndCheck.SetPos(i_pos);
     mGroundY = (f32)dComIfG_Bgsp().GroundCross(&mGndCheck);
-    return -1000000000.0f != mGroundY;
+    return -G_CM3D_F_INF != mGroundY;
 }
 
 /* 8001DD1C-8001DD84 01865C 0068+00 0/0 0/0 3/3 .text            roofCheck__11fopAcM_rc_cFPC4cXyz */
 bool fopAcM_rc_c::roofCheck(cXyz const* i_pos) {
     mRoofCheck.SetPos(*i_pos);
     mRoofY = dComIfG_Bgsp().RoofChk(&mRoofCheck);
-    return 1000000000.0f != mRoofY;
+    return G_CM3D_F_INF != mRoofY;
 }
 
 /* 8001DD84-8001DE10 0186C4 008C+00 1/1 4/4 22/22 .text            waterCheck__11fopAcM_wt_cFPC4cXyz

@@ -26,9 +26,24 @@ public:
     static daNpcMoiR_HIOParam const m;
 };
 
+#if DEBUG
+class daNpcMoiR_HIO_c : public mDoHIO_entry_c {
+public:
+    daNpcMoiR_HIO_c();
+    void genMessage(JORMContext*);
+
+    daNpcMoiR_HIOParam m;
+};
+
+#define NPC_MOIR_HIO_CLASS daNpcMoiR_HIO_c
+#else
+#define NPC_MOIR_HIO_CLASS daNpcMoiR_Param_c
+#endif
+
 class daNpcMoiR_c : public daNpcF_c {
 public:
     typedef bool (daNpcMoiR_c::*ActionFn)(void*);
+    typedef BOOL (daNpcMoiR_c::*Action2Fn)(void*);
     typedef BOOL (daNpcMoiR_c::*EventFn)(int);
 
     enum Animation {
@@ -128,7 +143,7 @@ public:
         /* 0x2 */ MODE_2,
     };
 
-    /* 80A7C16C */ daNpcMoiR_c() {}
+    /* 80A7C16C */ daNpcMoiR_c();
     /* 80A7C380 */ ~daNpcMoiR_c();
     /* 80A7C580 */ cPhs__Step Create();
     /* 80A7C978 */ int CreateHeap();
@@ -138,8 +153,8 @@ public:
     /* 80A7CEFC */ int ctrlJoint(J3DJoint*, J3DModel*);
     /* 80A7D0CC */ static int createHeapCallBack(fopAc_ac_c*);
     /* 80A7D0EC */ static int ctrlJointCallBack(J3DJoint*, int);
-    /* 80A7D138 */ bool setExpressionAnm(int, bool);
-    /* 80A7D394 */ bool setExpressionBtp(int);
+    /* 80A7D138 */ inline bool setExpressionAnm(int, bool);
+    /* 80A7D394 */ inline bool setExpressionBtp(int);
     /* 80A7D474 */ void setMotionAnm(int, f32);
     /* 80A7D5C4 */ void reset();
     /* 80A7D73C */ inline void setWaitAction();
@@ -153,24 +168,24 @@ public:
     /* 80A7F40C */ bool fight(void*);
     /* 80A7F9AC */ bool demo(void*);
     /* 80A7FEE8 */ bool leave(void*);
-    /* 80A802C4 */ BOOL EvCut_Introduction(int);
-    /* 80A803A0 */ BOOL EvCut_Appear(int);
-    /* 80A8081C */ BOOL EvCut_Appear2(int);
-    /* 80A810FC */ void setParam();
-    /* 80A81274 */ BOOL main();
-    /* 80A815D4 */ void checkHeadGear();
-    /* 80A818B4 */ void playMotion();
+    /* 80A802C4 */ inline BOOL EvCut_Introduction(int);
+    /* 80A803A0 */ inline BOOL EvCut_Appear(int);
+    /* 80A8081C */ inline BOOL EvCut_Appear2(int);
+    /* 80A810FC */ inline void setParam();
+    /* 80A81274 */ inline BOOL main();
+    /* 80A815D4 */ inline void checkHeadGear();
+    /* 80A818B4 */ inline void playMotion();
     /* 80A8210C */ inline BOOL ctrlBtk();
     /* 80A821E0 */ inline void setAttnPos();
     /* 80A825A0 */ inline void lookat();
-    /* 80A82878 */ void drawOtherMdls();
-    /* 80A82900 */ BOOL drawDbgInfo();
+    /* 80A82878 */ inline void drawOtherMdls();
+    /* 80A82900 */ inline BOOL drawDbgInfo();
 
     MtxP getHandRMtx() { return mpMorf->getModel()->getAnmMtx(17); }
 
-    u16 getMessageNo() { return fopAcM_GetParam(this) >> 8; }
+    s16 getMessageNo() { return (fopAcM_GetParam(this) >> 8) & 0xFFFF; }
 
-    inline void setAction(ActionFn action) {
+    inline int setAction(ActionFn action) {
         field_0xe08 = 3;
 
         if (mAction) {
@@ -183,8 +198,10 @@ public:
         if (mAction) {
             (this->*mAction)(NULL);
         }
+
+        return 1;
     }
-    
+
     inline void playExpression();
     inline BOOL step(s16, int);
     inline void setExpressionTalkAfter();
@@ -203,7 +220,7 @@ private:
     /* 0xBDC */ daNpcF_MatAnm_c* mpMatAnm;
     /* 0xBE0 */ daNpcF_Lookat_c mLookat;
     /* 0xC7C */ daNpcF_ActorMngr_c mActorMngr[4];
-    /* 0xC9C */ u8 field_0xc9c[0xca0 - 0xc9c];
+    /* 0xC9C */ NPC_MOIR_HIO_CLASS* mpHIO;
     /* 0xCA0 */ dCcD_Cyl field_0xca0;
     /* 0xDDC */ ActionFn mAction;
     /* 0xDE8 */ request_of_phase_process_class mPhase[2];

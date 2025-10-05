@@ -2,7 +2,7 @@
 // Boss Door Level 5
 //
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_door_bossL5.h"
 #include "d/actor/d_a_obj_keyhole.h"
@@ -88,14 +88,14 @@ static char* action_table[14] = {
 /* 80670D10-80670EC0 000150 01B0+00 1/1 0/0 0/0 .text            CreateHeap__11daBdoorL5_cFv */
 int daBdoorL5_c::CreateHeap() {
     J3DModelData* modelData = getDoorModelData();
-    JUT_ASSERT(313, modelData != 0);
+    JUT_ASSERT(313, modelData != NULL);
     field_0x580 = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (field_0x580 == NULL) {
         return 0;
     }
 
     J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes(getAnmArcName(), getOpenAnm());
-    JUT_ASSERT(354, anm != 0);
+    JUT_ASSERT(354, anm != NULL);
     field_0x584 = new mDoExt_bckAnm();
     if (field_0x584 == NULL || !field_0x584->init(anm, 1, 0, 1.0f, 0, -1, false)) {
         return 0;
@@ -265,7 +265,7 @@ void daBdoorL5_c::demoProc() {
 int daBdoorL5_c::openInit() {
     dComIfG_Bgsp().Release(field_0x588);
     J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes(getAnmArcName(), getOpenAnm());
-    JUT_ASSERT(454, anm != 0);
+    JUT_ASSERT(454, anm != NULL);
     int rt = field_0x584->init(anm, 1, 0, 1.0f, 0, -1, true);
     JUT_ASSERT(456, rt == 0);
     return 1;
@@ -288,7 +288,7 @@ int daBdoorL5_c::openEnd() {
 /* 80671720-806717FC 000B60 00DC+00 1/1 0/0 0/0 .text            closeInit__11daBdoorL5_cFv */
 int daBdoorL5_c::closeInit() {
     J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes(getAnmArcName(), getCloseAnm());
-    JUT_ASSERT(511, anm != 0);
+    JUT_ASSERT(511, anm != NULL);
     int rt = field_0x584->init(anm, 1, 0, 1.0f, 0, -1, true);
     JUT_ASSERT(513, rt == 0);
     mDoAud_seStart(Z2SE_OBJ_LV3_SHTR_CL, &current.pos, 0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));

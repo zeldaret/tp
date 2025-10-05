@@ -6,7 +6,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_stoneMark.h"
 #include "d/d_com_inf_game.h"
@@ -115,5 +115,5 @@ extern actor_process_profile_definition g_profile_Obj_StoneMark = {
     &l_daObjSMark_Method,   // sub_method
     0x40100,                // mStatus
     fopAc_ACTOR_e,          // mActorType
-    fopAc_CULLSPHERE_8_e,   // cullType
+    fopAc_CULLSPHERE_CUSTOM_e,   // cullType
 };

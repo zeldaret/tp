@@ -16,7 +16,7 @@ JStudio_JAudio2::TCreateObject::~TCreateObject() {}
  */
 bool JStudio_JAudio2::TCreateObject::create(
     JStudio::TObject** ppObject, JStudio::stb::data::TParse_TBlock_object const& param_2) {
-    JUT_ASSERT(40, ppObject!=0);
+    JUT_ASSERT(40, ppObject!=NULL);
     CreateFunc func;
     switch (param_2.get_type()) {
     case 'JSND':

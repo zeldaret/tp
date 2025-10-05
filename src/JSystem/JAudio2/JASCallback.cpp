@@ -8,22 +8,6 @@
 #include "JSystem/JAudio2/JASCallback.h"
 #include "JSystem/JAudio2/JASCriticalSection.h"
 
-//
-// Types:
-//
-
-//
-// Forward References:
-//
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
-
 /* 8028FFA8-80290030 28A8E8 0088+00 0/0 2/2 0/0 .text            regist__14JASCallbackMgrFPFPv_lPv
  */
 bool JASCallbackMgr::regist(JASCallback* function, void* argument)

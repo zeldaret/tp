@@ -2,7 +2,7 @@
 // d_a_obj_swBallC
 //
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_swBallC.h"
 #include "d/actor/d_a_obj_swBallB.h"
@@ -110,13 +110,13 @@ static char* l_staffName = "lbsw";
 /* 80CF5EF8-80CF6024 0003D8 012C+00 1/1 0/0 0/0 .text            CreateHeap__14daObjSwBallC_cFv */
 int daObjSwBallC_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 6);
-    JUT_ASSERT(427, modelData != 0);
+    JUT_ASSERT(427, modelData != NULL);
     mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (mModel == 0) {
         return 0;
     }
     J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 10);
-    JUT_ASSERT(441, pbtk != 0);
+    JUT_ASSERT(441, pbtk != NULL);
     field_0x574 = new mDoExt_btkAnm();
     if (field_0x574 == NULL || field_0x574->init(modelData, pbtk, 1, 0, 1.0f, 0, -1) == 0) {
         return 0;

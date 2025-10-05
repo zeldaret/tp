@@ -37,12 +37,21 @@ PARAM_PATTERN = r'SECTION_RODATA u8 const (\w+_Param_c)::m\[\d+\] = {'
 
 EVT_LIST_PATTERN = r'SECTION_DATA static void\* l_evtList\[\d+\] = {'
 RES_NAME_PATTERN = r'SECTION_DATA static void\* l_resNameList\[\d+\] = {'
+RESNAMES_PATTERN = r'SECTION_DATA static void\* l_resNames\[\d+\] = {'
+EVT_NAMES_PATTERN = r'SECTION_DATA static void\* l_evtNames\[\d+\] = {'
+ARCNAMES_BR_PATTERN = r'SECTION_DATA static void\* l_arcNames\[\d+\] = {'
+MYNAME_BR_PATTERN = r'SECTION_DATA static void\* l_myName\[\d+\] = {'
 CUT_NAME_PATTERN = r'SECTION_DATA void\* ([a-zA-Z_][a-zA-Z0-9_]*)::mCutNameList\[(\d+)\] = \{'
+EVTCUT_NAME_PATTERN = r'SECTION_DATA void\* ([a-zA-Z_][a-zA-Z0-9_]*)::mEvtCutNameList\[(\d+)\] = \{'
 VOID_PTR_INT_PATTERN = r'\(void\*\)(NULL|0x[0-9A-Fa-f]+)'
 
 STRING_BASE_PATTERN = r'^SECTION_DEAD static char const\* const stringBase_([0-9A-Fa-f]+)\s*=\s*(".*?");'
 STR_NO_OFFSET_PATTERN = r'\(void\*\)&([a-zA-Z0-9_]+)__stringBase0'
 STR_WITH_OFFSET_PATTERN = r'\(void\*\)\(\(\(char\*\)&([a-zA-Z0-9_]+)__stringBase0\) \+ 0x([0-9A-Fa-f]+)\)'
+
+ARCNAMES_NO_OFF_PATTERN = r'SECTION_DATA static void\* l_arcNames = \(void\*\)&([a-zA-Z0-9_]+)__stringBase0;'
+MY_NAME_NO_OFF_PATTERN = r'SECTION_DATA static void\* l_myName = \(void\*\)&([a-zA-Z0-9_]+)__stringBase0;'
+MY_NAME_W_OFF_PATTERN = r'SECTION_DATA static void\* l_myName = \(void\*\)\(\(\(char\*\)&([a-zA-Z0-9_]+)__stringBase0\) \+ 0x([0-9A-Fa-f]+)\);'
 
 
 def unsigned_val(hexstr):
@@ -388,27 +397,36 @@ def build_anm_struct(byte_collection, anm_type):
 
 def handle_charptr_array(int_collection, charptr_collection, charptr_type, class_name):
     res_str = ""
+    basic_str_list = {
+        "l_evtNames", "l_arcNames", "l_resNameList", "l_resNames", "l_myName"
+    }
+    evt_str_list = {
+        "mCutNameList", "mEvtCutNameList"
+    }
     if charptr_type == "l_evtList":
         assert len(charptr_collection) == len(int_collection)
         res_str += f"static daNpcT_evtData_c l_evtList[{len(charptr_collection)}] = {{\n"
-    elif charptr_type == "l_resNameList":
-        res_str += f"static char* l_resNameList[{len(charptr_collection)}] = {{\n"
-    elif charptr_type == "mCutNameList":
-        res_str += f"char* {class_name}::mCutNameList[{len(charptr_collection)}] = {{\n"
+    elif charptr_type in basic_str_list:
+        res_str += f"static char* {charptr_type}[{len(charptr_collection)}] = {{\n"
+    elif charptr_type in evt_str_list:
+        res_str += f"char* {class_name}::{charptr_type}[{len(charptr_collection)}] = {{\n"
     else:
         raise Exception(f"Unknown charptr_type \"{charptr_type}\"")
 
     for idx in range(len(charptr_collection)):
-        if charptr_type == "l_evtList":
-            res_str += f"    {{{charptr_collection[idx]}, {int_collection[idx]}}},\n"
+        col_val = charptr_collection[idx]
+        if isinstance(col_val, int) and col_val == -1:
+            res_str += "    NULL,\n"
+        elif charptr_type == "l_evtList":
+            res_str += f"    {{{col_val}, {int_collection[idx]}}},\n"
         else:
-            res_str += f"    {charptr_collection[idx]},\n"
+            res_str += f"    {col_val},\n"
 
     res_str += "};\n"
     print(res_str)
 
 
-def run_beautify_anm_data(in_file, type=None, no_auto_float=False):
+def run_beautify_anm_data(in_file, type=None, no_auto_float=False, stronly=False):
     # Check if the file exists
     if not os.path.isfile(in_file):
         print(f"Error: File '{in_file}' not found.")
@@ -475,11 +493,37 @@ def run_beautify_anm_data(in_file, type=None, no_auto_float=False):
             elif re.search(RES_NAME_PATTERN, line):
                 in_charptr_array = True
                 charptr_type = "l_resNameList"
+            elif re.search(RESNAMES_PATTERN, line):
+                in_charptr_array = True
+                charptr_type = "l_resNames"
+            elif re.search(EVT_NAMES_PATTERN, line):
+                in_charptr_array = True
+                charptr_type = "l_evtNames"
+            elif re.search(ARCNAMES_BR_PATTERN, line):
+                in_charptr_array = True
+                charptr_type = "l_arcNames"
+            elif re.search(MYNAME_BR_PATTERN, line):
+                in_charptr_array = True
+                charptr_type = "l_myName"
+            elif re.search(ARCNAMES_NO_OFF_PATTERN, line):
+                the_name = strlit_map[0]
+                print(f"static char* l_arcNames[1] = {{{the_name}}};")
+            elif re.search(MY_NAME_NO_OFF_PATTERN, line):
+                the_name = strlit_map[0]
+                print(f"static char* l_myName = {the_name};")
+            elif match := re.search(MY_NAME_W_OFF_PATTERN, line):
+                offset = int(match.group(2), 16)
+                the_name = strlit_map[offset]
+                print(f"static char* l_myName = {the_name};")
             elif match := re.search(CUT_NAME_PATTERN, line):
                 in_charptr_array = True
                 class_name = match.group(1)
                 # print(f"Class: {class_name}, Array Size: {match.group(2)}")
                 charptr_type = "mCutNameList"
+            elif match := re.search(EVTCUT_NAME_PATTERN, line):
+                in_charptr_array = True
+                class_name = match.group(1)
+                charptr_type = "mEvtCutNameList"
             else:
                 match = re.search(PARAM_PATTERN, line)
                 if match:
@@ -489,6 +533,10 @@ def run_beautify_anm_data(in_file, type=None, no_auto_float=False):
         else:
             if words[0] == '};':
                 if in_byte_array:
+                    if stronly:
+                        in_byte_array = False
+                        byte_collection.clear()
+                        continue
                     if anm_type == PARAM_TYPE:
                         handle_npc_param(byte_collection, param_name, type, no_auto_float)
                     else:
@@ -519,14 +567,17 @@ def run_beautify_anm_data(in_file, type=None, no_auto_float=False):
                         # print(f"Symbol: {symbol}, Offset: {offset}")
                         charptr_collection.append(strlit_map[offset])
                     elif vip_match := re.search(VOID_PTR_INT_PATTERN, line):
-                        assert charptr_type == "l_evtList"
-                        value_str = vip_match.group(1)
-                        if value_str == 'NULL':
-                            value = 0
+                        if charptr_type == "l_evtNames":
+                            charptr_collection.append(-1)
                         else:
-                            value = int(value_str, 16)
-                        # print(f"Parsed Value: {value}")
-                        int_collection.append(value)
+                            assert charptr_type == "l_evtList"
+                            value_str = vip_match.group(1)
+                            if value_str == 'NULL':
+                                value = 0
+                            else:
+                                value = int(value_str, 16)
+                            # print(f"Parsed Value: {value}")
+                            int_collection.append(value)
                     else:
                         raise Exception(f"ptr parsing: unknown line type: \"{line}\"")
 

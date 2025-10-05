@@ -3,7 +3,7 @@
  * Title Screen Scene
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_s_title.h"
 #include "f_op/f_op_scene.h"

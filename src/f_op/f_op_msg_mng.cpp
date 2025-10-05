@@ -3,7 +3,7 @@
 // Translation Unit: f_op/f_op_msg_mng
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "SSystem/SComponent/c_malloc.h"
@@ -29,8 +29,7 @@ msg_class* fopMsgM_SearchByID(fpc_ProcID i_id) {
 
 /* 8001FA44-8001FA4C 01A384 0008+00 0/0 2/2 0/0 .text            fopMsgM_GetAppend__FPv */
 fopMsg_prm_class* fopMsgM_GetAppend(void* i_msg) {
-    msg_class* msg = (msg_class*)i_msg;
-    return (fopMsg_prm_class*)msg->base.append;
+    return (fopMsg_prm_class*)fpcM_GetAppend(i_msg);
 }
 
 /* 8001FA4C-8001FA6C 01A38C 0020+00 0/0 2/2 0/0 .text            fopMsgM_Delete__FPv */

@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_lv4chandelier.h"
 #include "d/d_com_inf_game.h"
@@ -214,7 +214,7 @@ void daObjLv4Chan_c::rideActor(fopAc_ac_c* param_1) {
 /* 80C63CFC-80C63F34 000A3C 0238+00 1/0 0/0 0/0 .text            CreateHeap__14daObjLv4Chan_cFv */
 int daObjLv4Chan_c::CreateHeap() {
     J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmdidx[0]);
-    JUT_ASSERT(478, model_data != 0);
+    JUT_ASSERT(478, model_data != NULL);
     mModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
     if (mModel == NULL) {
         return 0;
@@ -236,7 +236,7 @@ int daObjLv4Chan_c::CreateHeap() {
     }
    
     mChainModelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, l_bmdidx[1]);
-    JUT_ASSERT(500, mChainModelData != 0);
+    JUT_ASSERT(500, mChainModelData != NULL);
 
     mMdls[0] = new dMdl_obj_c[mMdlLengths[0]];
     if (mMdls[0] == NULL) {
@@ -449,7 +449,7 @@ void daObjLv4Chan_c::chkGnd() {
     cStack_18 = field_0x23bc;
     cStack_18.y += 300.0f;
     mGndChk.SetPos(&cStack_18);
-    mGndChk.SetActorPid(base.id);
+    mGndChk.SetActorPid(base.base.id);
     field_0x247c = dComIfG_Bgsp().GroundCross(&mGndChk);
 }
 
@@ -844,7 +844,7 @@ int daObjLv4Chan_c::Draw() {
         }
     }
     dComIfGd_setList();
-    if (field_0x247c != -1e9f) {
+    if (field_0x247c != -G_CM3D_F_INF) {
         f32 fVar4 = 0.4f + ((field_0x23bc.y - field_0x247c) * -0.2f) / 500.0f;
         if (fVar4 > 0.4f) {
             fVar4 = 0.4f;

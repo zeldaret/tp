@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_no_chg_room.h"
 #include "d/d_s_room.h"
@@ -33,7 +33,7 @@ static bool isLoadRoom(int i_roomNo) {
             if (dComIfGp_roomControl_checkStatusFlag(load_room_index, 9) == (u32)TRUE) {
                 room_of_scene_class* roomScene = (room_of_scene_class*)fopScnM_SearchByID(
                     dStage_roomControl_c::getStatusProcID(load_room_index));
-                JUT_ASSERT(0, roomScene != 0);
+                JUT_ASSERT(0, roomScene != NULL);
 
                 if (roomScene->field_0x1d4 >= 0 || !fpcNd_IsDeleteTiming(&roomScene->base)) {
                     // "Room <%d> objects loading!\n"

@@ -57,7 +57,7 @@ public:
     /* 80B495C8 */ void checkRemoveJoint(int);
     /* 80B495D8 */ void evtEndProc();
 
-    static void* mCutNameList[2];
+    static char* mCutNameList[2];
     static u8 mCutList[24];
 
 private:

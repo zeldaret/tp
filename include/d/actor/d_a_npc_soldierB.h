@@ -47,7 +47,7 @@ public:
     /* 80AF4F54 */ void ECut_listenLake(int);
     /* 80AF50AC */ void test(void*);
 
-    static void* mEvtCutNameList[2];
+    static char* mEvtCutNameList[2];
     static u8 mEvtCutList[24];
 
 private:

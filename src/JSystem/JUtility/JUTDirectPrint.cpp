@@ -10,18 +10,6 @@
 #include <dolphin/os.h>
 #include "global.h"
 
-//
-// Forward References:
-//
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
-
 /* 80451528-80451530 000A28 0004+04 1/1 4/4 0/0 .sbss            sDirectPrint__14JUTDirectPrint */
 JUTDirectPrint* JUTDirectPrint::sDirectPrint;
 

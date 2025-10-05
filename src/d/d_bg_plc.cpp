@@ -1,4 +1,4 @@
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_bg_plc.h"
 #include "JSystem/JUtility/JUTAssert.h"
@@ -18,7 +18,7 @@ void dBgPlc::setBase(void* pbase) {
 
 /* 800740C4-800740DC 06EA04 0018+00 0/0 1/1 0/0 .text            getCode__6dBgPlcCFiPP5sBgPc */
 sBgPc* dBgPlc::getCode(int index, sBgPc** ppcode) const {
-    JUT_ASSERT(45, m_base != 0);
+    JUT_ASSERT(45, m_base != NULL);
     JUT_ASSERT(46, m_base->m_code_size == ZELDA_CODE_SIZE);
     JUT_ASSERT(47, index >= 0 && index< m_base->m_num);
     sBgPc* code = m_base->m_code;
@@ -30,7 +30,7 @@ sBgPc* dBgPlc::getCode(int index, sBgPc** ppcode) const {
 
 /* 800740DC-800740F4 06EA1C 0018+00 0/0 1/1 0/0 .text            getGrpCode__6dBgPlcCFi */
 u32 dBgPlc::getGrpCode(int index) const {
-    JUT_ASSERT(62, m_base != 0);
+    JUT_ASSERT(62, m_base != NULL);
     JUT_ASSERT(63, m_base->m_code_size == ZELDA_CODE_SIZE);
     JUT_ASSERT(64, 0 <= index && index < m_base->m_num);
     sBgPc* code = m_base->m_code;

@@ -395,7 +395,7 @@ int daBaseNpc_c::execute() {
     field_0x9d4 = mAcch.m_gnd;
 
     mGroundY = mAcch.GetGroundH();
-    if (mGroundY != -1000000000.0f) {
+    if (mGroundY != -G_CM3D_F_INF) {
         field_0x918 = daBaseNpc_getGroundAngle(&field_0x9d4, field_0x91a.y);
         setEnvTevColor();
         setRoomNo();
@@ -551,7 +551,7 @@ BOOL daBaseNpc_c::btkCtrl() {
 
 /* 8014F148-8014F1C8 149A88 0080+00 1/1 0/0 0/0 .text            checkEndAnm__11daBaseNpc_cFf */
 int daBaseNpc_c::checkEndAnm(f32 param_0) {
-    switch (mpModelMorf->getPlayMode()) {
+    switch ((u8)mpModelMorf->getPlayMode()) {
     case J3DFrameCtrl::EMode_LOOP:
         return mpModelMorf->isLoop();
     case J3DFrameCtrl::EMode_NONE:

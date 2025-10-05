@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_door_mbossL1.h"
 #include "d/actor/d_a_obj_stopper.h"
@@ -205,7 +205,7 @@ void dDoor_stop2_c::draw(fopAc_ac_c* param_1) {
 f32 dDoor_stop2_c::getHeight() {
     if (mModel != NULL) {
         J3DJoint* root_jnt = mModel->getModelData()->getJointNodePointer(0);
-        JUT_ASSERT(360, root_jnt != 0);
+        JUT_ASSERT(360, root_jnt != NULL);
         return root_jnt->getMax()->y;
     }
     return 300.0f;
@@ -325,7 +325,7 @@ J3DModelData* daMBdoorL1_c::getDoorModelData() {
 int daMBdoorL1_c::CreateHeap() {
     int level = getNowLevel(this);
     J3DModelData* modelData = getDoorModelData();
-    JUT_ASSERT(579, modelData != 0);
+    JUT_ASSERT(579, modelData != NULL);
     if (getDoorType() == DOOR_TYPE_2) {
         for (int i = 0; i < 2; i++) {
             mModels[i] = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
@@ -334,7 +334,7 @@ int daMBdoorL1_c::CreateHeap() {
             }
             J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes(
                 getAlwaysArcName(), "FDoorA.bck");
-            JUT_ASSERT(597, anm != 0);
+            JUT_ASSERT(597, anm != NULL);
             mBckAnms[i] = new mDoExt_bckAnm();
             if (mBckAnms[i] == NULL || !mBckAnms[i]->init(anm, 1, 0, 1.0f, 0, -1, false)) {
                 return 0;
@@ -355,7 +355,7 @@ int daMBdoorL1_c::CreateHeap() {
         }
         J3DAnmTransform* anm =
             (J3DAnmTransform*)dComIfG_getObjectRes(getAnmArcName(), getOpenAnm());
-        JUT_ASSERT(628, anm != 0);
+        JUT_ASSERT(628, anm != NULL);
         mBckAnms[0] = new mDoExt_bckAnm();
         if (mBckAnms[0] == NULL || !mBckAnms[0]->init(anm, 1, 0, 1.0f, 0, -1, false)) {
             return 0;
@@ -365,7 +365,7 @@ int daMBdoorL1_c::CreateHeap() {
     }
     if (level == 8) {
         J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getStageRes(getBtk());
-        JUT_ASSERT(646, pbtk != 0);
+        JUT_ASSERT(646, pbtk != NULL);
         field_0x594 = new mDoExt_btkAnm();
         if (field_0x594 == NULL ||
             !field_0x594->init(mModels[0]->getModelData(), pbtk, 1, 0, 1.0f, 0, -1))
@@ -375,7 +375,7 @@ int daMBdoorL1_c::CreateHeap() {
     }
     if (checkMakeStop()) {
         J3DModelData* mdl = (J3DModelData*)dComIfG_getStageRes("door-stop.bmd");
-        JUT_ASSERT(671, mdl != 0);
+        JUT_ASSERT(671, mdl != NULL);
         if (!mDoorStop.create(mdl)) {
             return 0;
         }
@@ -955,7 +955,7 @@ int daMBdoorL1_c::openInit() {
         dComIfG_Bgsp().Release(field_0x598);
     }
     J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes(getAnmArcName(), getOpenAnm());
-    JUT_ASSERT(1550, anm != 0);
+    JUT_ASSERT(1550, anm != NULL);
     int rt = mBckAnms[0]->init(anm, TRUE, J3DFrameCtrl::EMode_NONE, 1.0f, 0, -1, true);
     JUT_ASSERT(1552, rt == 0);
     int level = getNowLevel(this);
@@ -1068,7 +1068,7 @@ int daMBdoorL1_c::closeInit() {
         smokeInit2();
     }
     J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes(getAnmArcName(), getCloseAnm());
-    JUT_ASSERT(1762, anm != 0);
+    JUT_ASSERT(1762, anm != NULL);
     int rt = mBckAnms[0]->init(anm, 1, 0, 1.0f, 0, -1, true);
     JUT_ASSERT(1764, rt != 0);
     return 1;
@@ -1120,7 +1120,7 @@ int daMBdoorL1_c::openInitKnob(int param_1) {
     };
     J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectRes(
         getAlwaysArcName(), bck_table[param_1]);
-    JUT_ASSERT(1847, anm != 0);
+    JUT_ASSERT(1847, anm != NULL);
     if ((field_0x5df == 0 && param_1 == 0) || (field_0x5df == 1 && param_1 == 2)) {
         field_0x590 = mBckAnms[0];
     } else if ((field_0x5df == 1 && param_1 == 0) || (field_0x5df == 0 && param_1 == 2)) {
@@ -1331,7 +1331,7 @@ void daMBdoorL1_c::setStart(f32 param_1, f32 param_2) {
 
 static f32 dummy(f32 param_0) {
     dBgS_ObjGndChk gnd_chk;
-    return param_0 + -1e9f + 50.0f;
+    return param_0 + -G_CM3D_F_INF + 50.0f;
 }
 
 /* 80676004-806760B4 003844 00B0+00 1/1 0/0 0/0 .text            smokeInit2__12daMBdoorL1_cFv */

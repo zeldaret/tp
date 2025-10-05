@@ -141,7 +141,7 @@ JKRThreadSwitch::JKRThreadSwitch(JKRHeap* param_0) {
 /* 802D1A14-802D1A70 2CC354 005C+00 0/0 1/1 0/0 .text createManager__15JKRThreadSwitchFP7JKRHeap
  */
 JKRThreadSwitch* JKRThreadSwitch::createManager(JKRHeap* heap) {
-    JUT_ASSERT(343, sManager == 0);
+    JUT_ASSERT(343, sManager == NULL);
 
     if (!heap) {
         heap = JKRGetCurrentHeap();

@@ -1,4 +1,4 @@
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_msg_scrn_light.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
@@ -131,7 +131,7 @@ dMsgScrnLight_c::dMsgScrnLight_c(u8 i_colorType, u8 param_1) {
     g_MsgScrnLight_HIO_c.updateColor(i_colorType);
 
     mpScreen = new J2DScreen();
-    JUT_ASSERT(0, mpScreen != 0);
+    JUT_ASSERT(0, mpScreen != NULL);
     bool fg = mpScreen->setPriority("zelda_message_window_text_light.blo", 0x20000,
                                     dComIfGp_getMain2DArchive());
     JUT_ASSERT(0, fg != false);
@@ -148,7 +148,7 @@ dMsgScrnLight_c::dMsgScrnLight_c(u8 i_colorType, u8 param_1) {
     mBpkFrame = 0.0f;
 
     mpParent_c = new CPaneMgr(mpScreen, 'moya00', 0, NULL);
-    JUT_ASSERT(0, mpParent_c != 0);
+    JUT_ASSERT(0, mpParent_c != NULL);
 
     mpParent_c->getPanePtr()->setAnimation(mpBck);
     mpParent_c->getPanePtr()->setAnimation(mpBpk);

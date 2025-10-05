@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_kasi_mich.h"
 #include "Z2AudioLib/Z2Instances.h"
@@ -256,7 +256,7 @@ cPhs__Step daNpcKasiMich_c::Create() {
 int daNpcKasiMich_c::CreateHeap() {
     J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_arcNames[0], BMDR_MICH);
 
-    JUT_ASSERT(314, 0 != mdlData_p);
+    JUT_ASSERT(314, NULL != mdlData_p);
 
     mpMorf = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, 0x80000, 0x11020084);
     if (mpMorf != NULL && mpMorf->getModel() == NULL) {
@@ -837,7 +837,7 @@ int daNpcKasiMich_c::wait(int param_1) {
             break;
 
         default:
-            JUT_ASSERT(1301, 0);
+            JUT_ASSERT(1301, FALSE);
             break;
     }
 

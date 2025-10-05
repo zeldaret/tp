@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_bg_obj.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
@@ -133,7 +133,7 @@ u8* daBgObj_c::spec_data_c::initFarInfoBlock(u8* i_dataPtr) {
  */
 // NONMATCHING - close-ish
 bool daBgObj_c::spec_data_c::Set(void* i_ptr) {
-    JUT_ASSERT(496, i_ptr != 0);
+    JUT_ASSERT(496, i_ptr != NULL);
 
     u8* data = (u8*)i_ptr;
 
@@ -406,8 +406,8 @@ void daBgObj_c::settingCullSizeBoxForCo(int param_0) {
 
 /* 80459F14-8045A0EC 000934 01D8+00 3/3 0/0 0/0 .text settingCullSizeBoxForCull__9daBgObj_cFi */
 void daBgObj_c::settingCullSizeBoxForCull(int param_0) {
-    cXyz max(1000000000.0f, 1000000000.0f, 1000000000.0f);
-    cXyz min(-1000000000.0f, -1000000000.0f, -1000000000.0f);
+    cXyz max(G_CM3D_F_INF, G_CM3D_F_INF, G_CM3D_F_INF);
+    cXyz min(-G_CM3D_F_INF, -G_CM3D_F_INF, -G_CM3D_F_INF);
 
     for (int i = 0; i < 2; i++) {
         J3DModel* cur_model = field_0x5a8[param_0][i];
@@ -448,7 +448,7 @@ void daBgObj_c::settingCullSizeBoxForCull(int param_0) {
         }
     }
 
-    if (1000000000.0f != max.x) {
+    if (G_CM3D_F_INF != max.x) {
         fopAcM_setCullSizeBox(this, max.x, max.y, max.z, min.x, min.y, min.z);
     } else {
         fopAcM_setCullSizeBox(this, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f);
@@ -974,7 +974,7 @@ void daBgObj_c::setParticle() {
             switch (modelNumber) {
                 case 1:
                     bmd = (J3DModelData*)dComIfG_getObjectRes("Always", "BreakWoodBox.bmd");
-                    JUT_ASSERT(1683, bmd != 0);
+                    JUT_ASSERT(1683, bmd != NULL);
                     scale.setall(KREG_F(29) + 0.9f);
                     break;
                 default:

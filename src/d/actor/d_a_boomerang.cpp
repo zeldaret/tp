@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_boomerang.h"
 #include "JSystem/J2DGraph/J2DAnmLoader.h"
@@ -663,7 +663,7 @@ void daBoomerang_c::setRoomInfo() {
     mGroundY = dComIfG_Bgsp().GroundCross(&m_gndChk);
 
     int roomNo;
-    if (mGroundY != -1000000000.0f) {
+    if (mGroundY != -G_CM3D_F_INF) {
         roomNo = dComIfG_Bgsp().GetRoomId(m_gndChk);
         tevStr.YukaCol = dComIfG_Bgsp().GetPolyColor(m_gndChk);
     } else {
@@ -1295,7 +1295,7 @@ int daBoomerang_c::execute() {
         if (fopAcM_rc_c::roofCheck(&spC) && dComIfG_Bgsp().GetUnderwaterRoofCode(*fopAcM_rc_c::getRoofCheck()) == 0) {
             roof_y = fopAcM_rc_c::getRoofY();
         } else {
-            roof_y = 1000000000.0f;
+            roof_y = G_CM3D_F_INF;
         }
 
         if (roof_y > fopAcM_wt_c::getWaterY() && current.pos.y < fopAcM_wt_c::getWaterY() - 50.0f) {
@@ -1414,21 +1414,21 @@ int daBoomerang_c::createHeap() {
     m_sight.initialize();
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(daAlink_c::getAlinkArcName(), 0x1F);
-    JUT_ASSERT(2882, modelData != 0);
+    JUT_ASSERT(2882, modelData != NULL);
     mp_boomModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mp_boomModel == NULL) {
         return 0;
     }
 
     modelData = (J3DModelData*)dComIfG_getObjectRes(daAlink_c::getAlinkArcName(), 0x34);
-    JUT_ASSERT(2898, modelData != 0);
+    JUT_ASSERT(2898, modelData != NULL);
     mp_shippuModel = mDoExt_J3DModel__create(modelData, 0, 0x11000284);
     if (mp_shippuModel == NULL) {
         return 0;
     }
 
     J3DAnmTransform* transAnm = (J3DAnmTransform*)dComIfG_getObjectRes(daAlink_c::getAlinkArcName(), 0x13);
-    JUT_ASSERT(2911, transAnm != 0);
+    JUT_ASSERT(2911, transAnm != NULL);
     if (m_shippuBck.init(transAnm, 0, 2, 1.0f, 0, -1, false) == 0) {
         return 0;
     }

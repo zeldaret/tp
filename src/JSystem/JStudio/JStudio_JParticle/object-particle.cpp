@@ -27,7 +27,7 @@ JStudio_JParticle::TAdaptor_particle::TAdaptor_particle(
     field_0x1d0 = NULL;
     field_0x1d4 = -1;
     field_0x1d8 = 0;
-    JUT_ASSERT(90, pCreateObject_!=0);
+    JUT_ASSERT(90, pCreateObject_!=NULL);
 }
 
 /* 8028E760-8028E850 2890A0 00F0+00 1/0 0/0 0/0 .text
@@ -80,12 +80,12 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_end() {
  * adaptor_do_update__Q217JStudio_JParticle17TAdaptor_particleFUl */
 void JStudio_JParticle::TAdaptor_particle::adaptor_do_update(u32 param_1) {
     const JStudio::TObject* pObject = adaptor_getObject();
-    JUT_ASSERT(179, pObject != 0);
+    JUT_ASSERT(179, pObject != NULL);
     const JStudio::TControl* pControl = pObject->getControl();
-    JUT_ASSERT(181, pControl != 0);
+    JUT_ASSERT(181, pControl != NULL);
     if (u32FadeTime_end != 0 && field_0x1c4 < u32FadeTime_end) {
         JUT_ASSERT(187, state_isFade_());
-        JUT_ASSERT(188, pJPAEmitter_ != 0);
+        JUT_ASSERT(188, pJPAEmitter_ != NULL);
         field_0x1c4 += param_1;
         if (field_0x1c4 >= u32FadeTime_end) {
             switch (field_0x1b8) {
@@ -116,7 +116,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARTICLE(
     JStudio::data::TEOperationData param_1, const void* pContent, u32 uSize) {
     if (param_1 == JStudio::data::UNK_0x19) {
         JUT_ASSERT(232, uSize==4);
-        JUT_ASSERT(233, pContent!=0);
+        JUT_ASSERT(233, pContent!=NULL);
         field_0x1bc = *(u32*)pContent;
     }
 }
@@ -141,7 +141,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_BEGIN_FADE_IN(
     JStudio::data::TEOperationData param_1, const void* pContent, u32 uSize) {
     switch (param_1) {
     case JStudio::data::UNK_0x2:
-        JUT_ASSERT(272, pContent!=0);
+        JUT_ASSERT(272, pContent!=NULL);
         JUT_ASSERT(273, uSize==4);
         beginParticle_fadeIn_(*(f32*)pContent);
         break;
@@ -165,7 +165,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_END_FADE_OUT(
     JStudio::data::TEOperationData param_1, const void* pContent, u32 uSize) {
     switch (param_1) {
     case JStudio::data::UNK_0x2:
-        JUT_ASSERT(336, pContent!=0);
+        JUT_ASSERT(336, pContent!=NULL);
         JUT_ASSERT(337, uSize==4);
         endParticle_fadeOut_(*(f32*)pContent);
         break;
@@ -179,14 +179,14 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT(
     JStudio::data::TEOperationData param_1, const void* pContent, u32 uSize) {
     switch (param_1) {
     case JStudio::data::UNK_0x18:
-        JUT_ASSERT(313, pContent!=0);
+        JUT_ASSERT(313, pContent!=NULL);
         JUT_ASSERT(314, uSize==4);
         field_0x1d0 = NULL;
         const JStage::TSystem* pJSGSystem = pCreateObject_->get_pJSGSystem_();
-        JUT_ASSERT(345, pJSGSystem!=0);
+        JUT_ASSERT(345, pJSGSystem!=NULL);
         JStage::TObject* pJSGObject;
         if (pJSGSystem->JSGFindObject(&pJSGObject, (const char*)pContent, JStage::OBJECT_UNDEFINED) == 0) {
-            JUT_ASSERT(354, pJSGObject!=0);
+            JUT_ASSERT(354, pJSGObject!=NULL);
             field_0x1d0 = pJSGObject;
         }
         break;
@@ -201,7 +201,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_NODE(
     switch (param_1) {
     case JStudio::data::UNK_0x18:
         if (field_0x1d0 != NULL) {
-            JUT_ASSERT(380, pContent!=0);
+            JUT_ASSERT(380, pContent!=NULL);
             JUT_ASSERT(381, uSize==4);
             field_0x1d4 = field_0x1d0->JSGFindNodeID((const char*)pContent);
             if (field_0x1d4 == -1) {
@@ -211,7 +211,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_NODE(
         break;
     case JStudio::data::UNK_0x19:
         JUT_ASSERT(397, uSize==4);
-        JUT_ASSERT(396, pContent!=0);
+        JUT_ASSERT(396, pContent!=NULL);
         field_0x1d4 = *(u32*)pContent;
         break;
     }
@@ -224,7 +224,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_ENABLE(JStudio::dat
                                                           const void* pContent, u32 uSize) {
     if (param_1 == JStudio::data::UNK_0x2) {
         JUT_ASSERT(417, uSize==4);
-        JUT_ASSERT(418, pContent!=0);
+        JUT_ASSERT(418, pContent!=NULL);
         field_0x1d8 = *(u32*)pContent ? 1 : 0;
     }
 }
@@ -236,7 +236,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_FUNCTION(JStudio::d
                                                           const void* pContent, u32 uSize) {
     if (param_1 == JStudio::data::UNK_0x2) {
         JUT_ASSERT(439, uSize==4);
-        JUT_ASSERT(439, pContent!=0);
+        JUT_ASSERT(439, pContent!=NULL);
         field_0x1cc = *(u32*)pContent;
     }
 }
@@ -248,7 +248,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_REPEAT(JStudio::data::TEOp
                                                           const void* pContent, u32 uSize) {
     if (param_1 == JStudio::data::UNK_0x2) {
         JUT_ASSERT(460, uSize==4);
-        JUT_ASSERT(461, pContent!=0);
+        JUT_ASSERT(461, pContent!=NULL);
         field_0x1b5 = *(u32*)pContent ? 1 : 0;
     }
 }
@@ -260,7 +260,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_ON_EXIT_NOT_END(JStudio::d
                                                           const void* pContent, u32 uSize) {
     if (param_1 == JStudio::data::UNK_0x2) {
         JUT_ASSERT(460, uSize==4);
-        JUT_ASSERT(461, pContent!=0);
+        JUT_ASSERT(461, pContent!=NULL);
         field_0x1b6 = *(u32*)pContent ? 1 : 0;
     }
 }
@@ -279,9 +279,9 @@ JStudio_JParticle::TAdaptor_particle::TJPACallback_emitter_::execute(JPABaseEmit
         return;
     }
     const JStudio::TObject* pObject = pThis_->adaptor_getObject();
-    JUT_ASSERT(534, pObject!=0);
+    JUT_ASSERT(534, pObject!=NULL);
     const JStudio::TControl* pControl = pObject->getControl();
-    JUT_ASSERT(536, pControl!=0);
+    JUT_ASSERT(536, pControl!=NULL);
     TJPAEmitter_stopDrawParticle_ aTStack_21c(pJPAEmitter);
     JStudio::TControl::TTransform_translation_rotation_scaling VStack_19c;
     JStudio::TControl::TTransform_translation_rotation_scaling aTStack_1c0;

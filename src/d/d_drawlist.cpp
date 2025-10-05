@@ -3,7 +3,7 @@
 // Translation Unit: d/d_drawlist
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "JSystem/J2DGraph/J2DAnimation.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
@@ -32,7 +32,7 @@ public:
 
     J2DPicture* getPicture(u64 i_tag) {
         J2DPane* pane = getPane(i_tag);
-        JUT_ASSERT(1553, pane != 0);
+        JUT_ASSERT(1553, pane != NULL);
         if (pane->getTypeID() != 0x12) {
             return NULL;
         }
@@ -943,16 +943,13 @@ static void dummy_misc() {
     J2DPane* pane;
     J2DPicture* picture;
     J2DAnmBase* anmBase;
-    J2DAnmColor* anmColor;
     delete anmBase;
-    delete anmColor;
     picture->setBlack(JUtility::TColor(0, 0, 0, 0));
     picture->setWhite(JUtility::TColor(0, 0, 0, 0));
     pane->getTypeID();
     pane->makeMatrix(0.0f, 0.0f);
     pane->calcMtx();
     screen->clearAnmTransform();
-    anmColor->searchUpdateMaterialID(screen);
 }
 
 /* 80053CDC-80053CEC 04E61C 0010+00 0/0 2/2 0/0 .text            init__8cM_rnd_cFiii */

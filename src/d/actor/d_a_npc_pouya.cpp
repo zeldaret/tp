@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_pouya.h"
 #include "dol2asm.h"
@@ -302,35 +302,23 @@ SECTION_DATA static u8 l_bmdData[24] = {
 };
 
 /* 80AB2228-80AB2270 -00001 0048+00 0/1 0/0 0/0 .data            l_evtList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtList[18] = {
-    (void*)&d_a_npc_pouya__stringBase0,
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_pouya__stringBase0) + 0x1),
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_pouya__stringBase0) + 0x11),
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_pouya__stringBase0) + 0x1D),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_pouya__stringBase0) + 0x2F),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_pouya__stringBase0) + 0x41),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_pouya__stringBase0) + 0x53),
-    (void*)0x00000001,
-    (void*)(((char*)&d_a_npc_pouya__stringBase0) + 0x65),
-    (void*)0x00000002,
-    (void*)(((char*)&d_a_npc_pouya__stringBase0) + 0x77),
-    (void*)0x00000002,
+static daNpcT_evtData_c l_evtList[9] = {
+    {"", 0},
+    {"DEFAULT_GETITEM", 0},
+    {"NO_RESPONSE", 0},
+    {"HAVE_FAVORTO_ASK1", 1},
+    {"HAVE_FAVORTO_ASK2", 1},
+    {"RETURN_FAVOR_1_01", 1},
+    {"RETURN_FAVOR_1_02", 1},
+    {"RETURN_FAVOR_2_01", 2},
+    {"RETURN_FAVOR_2_02", 2},
 };
-#pragma pop
 
 /* 80AB2270-80AB227C -00001 000C+00 3/4 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[3] = {
-    (void*)&d_a_npc_pouya__stringBase0,
-    (void*)(((char*)&d_a_npc_pouya__stringBase0) + 0x89),
-    (void*)(((char*)&d_a_npc_pouya__stringBase0) + 0x90),
+static char* l_resNameList[3] = {
+    "",
+    "pouyaA",
+    "pouyaB",
 };
 
 /* 80AB227C-80AB2280 00008C 0002+02 1/0 0/0 0/0 .data            l_loadResPtrn0 */
@@ -493,10 +481,10 @@ SECTION_DATA static u8 l_motionSequenceData[304] = {
 #pragma pop
 
 /* 80AB2984-80AB2990 -00001 000C+00 1/1 0/0 0/0 .data            mCutNameList__13daNpc_Pouya_c */
-SECTION_DATA void* daNpc_Pouya_c::mCutNameList[3] = {
-    (void*)&d_a_npc_pouya__stringBase0,
-    (void*)(((char*)&d_a_npc_pouya__stringBase0) + 0x97),
-    (void*)(((char*)&d_a_npc_pouya__stringBase0) + 0xA8),
+char* daNpc_Pouya_c::mCutNameList[3] = {
+    "",
+    "HAVE_FAVORTO_ASK",
+    "RETURN_FAVOR",
 };
 
 /* 80AB2990-80AB299C -00001 000C+00 0/1 0/0 0/0 .data            @3817 */
@@ -899,7 +887,7 @@ COMPILER_STRIP_GATE(0x80AB20B0, &lit_4042);
 /* 80AB20B4-80AB20B8 0000B4 0004+00 0/1 0/0 0/0 .rodata          @4043 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static f32 const lit_4043 = -1000000000.0f;
+SECTION_RODATA static f32 const lit_4043 = -G_CM3D_F_INF;
 COMPILER_STRIP_GATE(0x80AB20B4, &lit_4043);
 #pragma pop
 

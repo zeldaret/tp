@@ -3,7 +3,7 @@
  * Actor base process class
 */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_alink.h"
 #include "d/d_com_inf_actor.h"
@@ -209,7 +209,7 @@ static int fopAc_Create(void* i_this) {
 
     int ret = fpcMtd_Create((process_method_class*)a_this->sub_method, a_this);
     if (ret == cPhs_COMPLEATE_e) {
-        s32 priority = fpcLf_GetPriority(a_this);
+        s32 priority = fpcM_DrawPriority(a_this);
         fopDwTg_ToDrawQ(&a_this->draw_tag, priority);
     } else if (ret == cPhs_ERROR_e) {
         fopAcM_OnCondition(a_this, 0x10);

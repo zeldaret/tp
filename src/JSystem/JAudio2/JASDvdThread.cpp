@@ -10,18 +10,6 @@
 #include "JSystem/JKernel/JKRSolidHeap.h"
 #include "dolphin/types.h"
 
-//
-// Forward References:
-//
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
-
 /* ############################################################################################## */
 /* 80451208-80451210 000708 0004+04 2/1 0/0 0/0 .sbss            sThread__6JASDvd */
 JASTaskThread* JASDvd::sThread;

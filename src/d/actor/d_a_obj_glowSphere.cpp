@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_glowSphere.h"
 #include "Z2AudioLib/Z2Instances.h"
@@ -76,7 +76,7 @@ int daGlwSph_c::createHeapCallBack(fopAc_ac_c* i_this) {
 /* 80BF94CC-80BF95D4 00026C 0108+00 1/1 0/0 0/0 .text            CreateHeap__10daGlwSph_cFv */
 int daGlwSph_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("glwSphere", 5);
-    JUT_ASSERT(0xF4, modelData != 0);
+    JUT_ASSERT(0xF4, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (mpModel == NULL) {
         return 0;

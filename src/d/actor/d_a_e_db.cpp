@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_db.h"
 #include "d/actor/d_a_e_db_leaf.h"
@@ -2080,7 +2080,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_db", 0x19);
-    JUT_ASSERT(3622, modelData != 0);
+    JUT_ASSERT(3622, modelData != NULL);
 
     for (int i = 1; i < 11; i++) {
         if (i & 1) {

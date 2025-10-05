@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_mk.h"
 #include "d/d_cc_d.h"
@@ -2680,7 +2680,7 @@ static int daE_MK_Execute(e_mk_class* i_this) {
             PSMTXCopy(i_this->mpModelMorf->getModel()->getAnmMtx(23), *calc_mtx);
             sp6c.set(0.0f, 0.0f, 0.0f);
             MtxPosition(&sp6c, &sp78);
-            i_actor->current.pos = sp78;
+            i_actor->enemy.current.pos = sp78;
             i_actor->field_0x9b4 = 0;
             i_this->field_0x707 = 0;
         }
@@ -2773,7 +2773,7 @@ static int useHeapInit(fopAc_ac_c* actor) {
     }
 
     J3DModelData* i_modelData = (J3DModelData*)dComIfG_getObjectRes("E_mk", 46);
-    JUT_ASSERT(4743, i_modelData != 0);
+    JUT_ASSERT(4743, i_modelData != NULL);
     i_this->mpBoomerangModel = mDoExt_J3DModel__create(i_modelData, 0x80000, 0x11000084);
     if (i_this->mpBoomerangModel == NULL) {
         return 0;

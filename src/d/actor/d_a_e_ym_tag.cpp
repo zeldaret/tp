@@ -3,7 +3,7 @@
  * Enemy - Shadow Insect / 闇虫 (Yami Mushi) - Tag
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_ym_tag.h"
 #include "f_op/f_op_actor_mng.h"

@@ -2,7 +2,7 @@
 // d_a_tag_csw
 //
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_tag_csw.h"
 #include "d/actor/d_a_cstatue.h"
@@ -93,13 +93,13 @@ void daTagCsw_c::setMtx() {
 /* 80D56EF8-80D572B8 000398 03C0+00 1/1 0/0 0/0 .text            createHeap__10daTagCsw_cFv */
 int daTagCsw_c::createHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 5);
-    JUT_ASSERT(303, modelData != 0);
+    JUT_ASSERT(303, modelData != NULL);
     field_0x574 = mDoExt_J3DModel__create(modelData, 0, 0x11000084);
     if (field_0x574 == NULL) {
         return 0;
     }
     modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 6);
-    JUT_ASSERT(314, modelData != 0);
+    JUT_ASSERT(314, modelData != NULL);
     if (field_0x570 == 0 && getSw() == 6) {
         field_0x578 = NULL;
     } else {

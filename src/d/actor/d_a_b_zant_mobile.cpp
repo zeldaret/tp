@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_b_zant_mobile.h"
 #include "d/actor/d_a_b_zant.h"
@@ -201,7 +201,7 @@ f32 daB_ZANTZ_c::getGroundPos() {
         gndchk.SetPos(&sp88);
         sp88.y = dComIfG_Bgsp().GroundCross(&gndchk);
 
-        if (sp88.y == -1000000000.0f) {
+        if (sp88.y == -G_CM3D_F_INF) {
             break;
         }
 
@@ -422,7 +422,7 @@ static int daB_ZANTZ_Delete(daB_ZANTZ_c* i_this) {
 /* 80651DC4-80651FD0 001724 020C+00 1/1 0/0 0/0 .text            CreateHeap__11daB_ZANTZ_cFv */
 int daB_ZANTZ_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BMDR_ZZ);
-    JUT_ASSERT(0, modelData != 0);
+    JUT_ASSERT(0, modelData != NULL);
 
     mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("B_zan", daB_ZANT_c::BCK_ZZ_OPEN), 0, 0.0f, 0, -1, &mSound, 0, 0x11000084);
     if (mpMorf == NULL) {

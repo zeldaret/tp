@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_swturn.h"
 #include "SSystem/SComponent/c_math.h"
@@ -133,7 +133,7 @@ static char* l_arcName[2] = {
 /* 80D00EE4-80D00F64 000384 0080+00 1/0 0/0 0/0 .text            CreateHeap__13daObjSwTurn_cFv */
 int daObjSwTurn_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName[mModelType], l_bmd[mModelType]);
-    JUT_ASSERT(347, modelData != 0);
+    JUT_ASSERT(347, modelData != NULL);
     mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     return mModel != 0 ? TRUE : FALSE;
 }

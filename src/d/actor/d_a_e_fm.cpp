@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_fm.h"
 #include "d/d_com_inf_game.h"
@@ -3595,7 +3595,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("E_fm", BMDE_FM_CORE));
-    JUT_ASSERT(7257, modelData != 0);
+    JUT_ASSERT(7257, modelData != NULL);
     a_this->mpCoreModel = mDoExt_J3DModel__create(modelData, 0, 0x11020203);
     if (a_this->mpCoreModel == NULL) {
         return 0;
@@ -3659,10 +3659,10 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes("E_fm", BMDR_KUSARI));
-    JUT_ASSERT(7404, modelData != 0);
+    JUT_ASSERT(7404, modelData != NULL);
     
     J3DModelData* modelData2 = static_cast<J3DModelData*>(dComIfG_getObjectRes("E_fm", BMDR_HANDLE));
-    JUT_ASSERT(7408, modelData2 != 0);
+    JUT_ASSERT(7408, modelData2 != NULL);
 
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 26; j++) {

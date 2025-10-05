@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_sola.h"
 #include "dol2asm.h"
@@ -232,20 +232,15 @@ SECTION_DATA static u8 l_bmdData[8] = {
 };
 
 /* 80AEF21C-80AEF22C -00001 0010+00 0/1 0/0 0/0 .data            l_evtList */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtList[4] = {
-    (void*)&d_a_npc_sola__stringBase0,
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_sola__stringBase0) + 0x1),
-    (void*)NULL,
+static daNpcT_evtData_c l_evtList[2] = {
+    {"", 0},
+    {"NO_RESPONSE", 0},
 };
-#pragma pop
 
 /* 80AEF22C-80AEF234 -00001 0008+00 2/3 0/0 0/0 .data            l_resNameList */
-SECTION_DATA static void* l_resNameList[2] = {
-    (void*)&d_a_npc_sola__stringBase0,
-    (void*)(((char*)&d_a_npc_sola__stringBase0) + 0xD),
+static char* l_resNameList[2] = {
+    "",
+    "solA",
 };
 
 /* 80AEF234-80AEF238 000040 0002+02 1/0 0/0 0/0 .data            l_loadResPtrn0 */
@@ -293,7 +288,7 @@ SECTION_DATA static u8 l_motionSequenceData[16] = {
 #pragma pop
 
 /* 80AEF294-80AEF298 -00001 0004+00 1/1 0/0 0/0 .data            mCutNameList__12daNpc_solA_c */
-SECTION_DATA void* daNpc_solA_c::mCutNameList = (void*)&d_a_npc_sola__stringBase0;
+char* daNpc_solA_c::mCutNameList[1] = {""};
 
 /* 80AEF298-80AEF2A4 0000A4 000C+00 2/2 0/0 0/0 .data            mCutList__12daNpc_solA_c */
 SECTION_DATA u8 daNpc_solA_c::mCutList[12] = {

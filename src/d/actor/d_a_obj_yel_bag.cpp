@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_yel_bag.h"
 #include "d/actor/d_a_npc.h"
@@ -166,7 +166,7 @@ int daObj_YBag_c::Execute() {
             field_0xa33 = 1;
         } else {
             fopAcM_getWaterY(&current.pos, &field_0x9f4);
-            if (field_0x9f4 != -1e9f && daObj_YBag_Param_c::m[10] < field_0x9f4 - field_0x9f0 &&
+            if (field_0x9f4 != -G_CM3D_F_INF && daObj_YBag_Param_c::m[10] < field_0x9f4 - field_0x9f0 &&
                 current.pos.y <= field_0x9f4 && field_0xa32 == 0)
             {
                 if (field_0xa33 != 0) {
@@ -248,7 +248,7 @@ int daObj_YBag_c::Execute() {
                     }
                     if (mAcch.ChkGroundLanding()) {
                         if (field_0x9c4.y < -30.0f) {
-                            if (field_0x9f4 != -1e9f && current.pos.y <= field_0x9f4) {
+                            if (field_0x9f4 != -G_CM3D_F_INF && current.pos.y <= field_0x9f4) {
                                 setWaterPrtcl();
                             } else {
                                 setSmokePrtcl();
@@ -318,7 +318,7 @@ int daObj_YBag_c::Execute() {
     mAcch.CrrPos(dComIfG_Bgsp());
     mGndChk = mAcch.m_gnd;
     field_0x9f0 = mAcch.GetGroundH();
-    if (field_0x9f0 != -1e9f) {
+    if (field_0x9f0 != -G_CM3D_F_INF) {
         field_0xa02 = daNpcF_getGroundAngle(&mGndChk, shape_angle.y);
         setEnvTevColor();
         setRoomNo();
@@ -347,7 +347,7 @@ int daObj_YBag_c::Draw() {
                                                   mModel,
                                                   &tevStr);
     mDoExt_modelUpdateDL(mModel);
-    if (field_0x9f0 != -1e9f) {
+    if (field_0x9f0 != -G_CM3D_F_INF) {
         fopAc_ac_c* grabActor = NULL;
         s32 grabActorId = daPy_getPlayerActorClass()->getGrabActorID();
         fopAcM_SearchByID(grabActorId, &grabActor);

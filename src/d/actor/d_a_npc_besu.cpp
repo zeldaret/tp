@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_besu.h"
 #include "d/actor/d_a_npc_len.h"
@@ -669,7 +669,7 @@ int daNpc_Besu_c::create() {
         mAcch.CrrPos(dComIfG_Bgsp());
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.GetGroundH();
-        if (mGroundH != -1e9f) {
+        if (mGroundH != -G_CM3D_F_INF) {
             setEnvTevColor();
             setRoomNo();
         }
@@ -1885,13 +1885,13 @@ int daNpc_Besu_c::cutConversationAboutPachinko(int arg0) {
                 }
 
                 case 3: {
-                    JUT_ASSERT(0xD84, 0 != speakers[0]);
+                    JUT_ASSERT(0xD84, NULL != speakers[0]);
                     mJntAnm.lookActor(speakers[0], -40.0f, 0U);
                     break;
                 }
 
                 case 4: {
-                    JUT_ASSERT(0xD89, 0 != speakers[0]);
+                    JUT_ASSERT(0xD89, NULL != speakers[0]);
                     mJntAnm.lookActor(speakers[0], -40.0f, 0U);
                     if (home.angle.y != mCurAngle.y) {
                         if (chkBesu3()) {
@@ -1906,13 +1906,13 @@ int daNpc_Besu_c::cutConversationAboutPachinko(int arg0) {
 
                 case 10:
                 case 11: {
-                    JUT_ASSERT(0xD9F, 0 != speakers[0]);
+                    JUT_ASSERT(0xD9F, NULL != speakers[0]);
                     mJntAnm.lookActor(speakers[0], -40.0f, 0U);
                     break;
                 }
 
                 case 12: {
-                    JUT_ASSERT(0xDA4, 0 != speakers[1]);
+                    JUT_ASSERT(0xDA4, NULL != speakers[1]);
                     mJntAnm.lookActor(speakers[1], -40.0f, 0U);
                     break;
                 }
@@ -2077,7 +2077,7 @@ int daNpc_Besu_c::cutSwdTutorial(int arg0) {
             mDamageTimer = 1;
             action();
             actor_p = mActorMngr[1].getActorP();
-            JUT_ASSERT(0xE7E, 0 != actor_p);
+            JUT_ASSERT(0xE7E, NULL != actor_p);
             mJntAnm.lookActor(actor_p, -40.0f, 0);
             retval = 1;
             break;
@@ -2154,7 +2154,7 @@ int daNpc_Besu_c::cutFindMonkey(int arg0) {
 
         case 1: {
             actor_p = mActorMngr[4].getActorP();
-            JUT_ASSERT(0xED5, 0 != actor_p);
+            JUT_ASSERT(0xED5, NULL != actor_p);
             mJntAnm.lookActor(actor_p, -40.0f, 0U);
             retval = 1;
             break;
@@ -2168,7 +2168,7 @@ int daNpc_Besu_c::cutFindMonkey(int arg0) {
             mJntAnm.lookNone(0U);
             if (mEventTimer == 0) {
                 actor_p = (fopAc_ac_c*) dComIfGp_getHorseActor();
-                JUT_ASSERT(0xEE4, 0 != actor_p);
+                JUT_ASSERT(0xEE4, NULL != actor_p);
                 my_vec_0 = actor_p->current.pos;
                 if (50.0f < current.pos.absXZ(my_vec_0)) {
                     cLib_addCalcAngleS2(&current.angle.y, cLib_targetAngleY(&current.pos, &my_vec_0), 4, 0x800);

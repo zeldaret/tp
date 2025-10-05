@@ -3,7 +3,7 @@
  * Object - Heavy Switch (Triggered by Player wearing Iron Boots)
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_heavySw.h"
 #include "SSystem/SComponent/c_math.h"

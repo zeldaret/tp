@@ -3,7 +3,7 @@
 // Translation Unit: d/d_msg_object
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #define DISABLE_MSG_OBJECT_EXTERN
 
@@ -359,16 +359,16 @@ int dMsgObject_c::_create(msg_class* param_1) {
     mpOutFont = NULL;
     mpScrnDraw = NULL;
     mpResCont = new JMessage::TResourceContainer();
-    JUT_ASSERT(1299, mpResCont != 0);
+    JUT_ASSERT(1299, mpResCont != NULL);
     mpCtrl = dDemo_c::getMesgControl();
-    JUT_ASSERT(1302, mpCtrl != 0);
+    JUT_ASSERT(1302, mpCtrl != NULL);
     mpRefer = new jmessage_tReference();
-    JUT_ASSERT(1305, mpRefer != 0);
+    JUT_ASSERT(1305, mpRefer != NULL);
     mpRefer->setpStatus(&param_1->mode);
     mpSeqProc = new jmessage_tSequenceProcessor(mpRefer, mpCtrl);
-    JUT_ASSERT(1310, mpSeqProc != 0);
+    JUT_ASSERT(1310, mpSeqProc != NULL);
     mpRenProc = new jmessage_tRenderingProcessor(mpRefer);
-    JUT_ASSERT(1313, mpRenProc != 0);
+    JUT_ASSERT(1313, mpRenProc != NULL);
     mpRefer->setResourceContainer(mpResCont);
     mpCtrl->setSequenceProcessor(mpSeqProc);
     mpCtrl->setRenderingProcessor(mpRenProc);
@@ -407,7 +407,7 @@ int dMsgObject_c::_create(msg_class* param_1) {
     field_0x172 = 0;
     setStatusLocal(1);
     mpMsgString = new dMsgString_c();
-    JUT_ASSERT(1366, mpMsgString != 0);
+    JUT_ASSERT(1366, mpMsgString != NULL);
     return 4;
 }
 
@@ -601,10 +601,9 @@ int dMsgObject_c::_delete() {
 }
 
 /* 80233D04-80233E70 22E644 016C+00 2/2 2/2 0/0 .text setMessageIndex__12dMsgObject_cFUlUlb */
-// NONMATCHING reg swap
-void dMsgObject_c::setMessageIndex(u32 param_1, u32 param_2, bool param_3) {
-    field_0x158 = param_1;
-    u32 revoIndex = getRevoMessageIndex(param_1);
+void dMsgObject_c::setMessageIndex(u32 revoIndex, u32 param_2, bool param_3) {
+    field_0x158 = revoIndex;
+    revoIndex = getRevoMessageIndex(revoIndex);
     if (field_0x4cc == 0) {
         mNoDemoFlag = 1;
     }
@@ -624,7 +623,8 @@ void dMsgObject_c::setMessageIndex(u32 param_1, u32 param_2, bool param_3) {
 
     JMSMesgInfo_c* pMsg = (JMSMesgInfo_c*)((char*)mpMsgDt + 0x20);
     u8* iVar2 = (u8*)pMsg + pMsg->header.size;
-    dComIfGp_setMesgCameraAttrInfo(pMsg->entries[getMessageIndex(revoIndex)].camera_id);
+    u32 msg_id = getMessageIndex(revoIndex);
+    dComIfGp_setMesgCameraAttrInfo(pMsg->entries[msg_id].camera_id);
     if (field_0x15c == 1000) {
         mpRefer->setSelMsgPtr(NULL);
     } else {
@@ -632,7 +632,8 @@ void dMsgObject_c::setMessageIndex(u32 param_1, u32 param_2, bool param_3) {
         if (msgIndex == 0x264) {
             mpRefer->setSelMsgPtr(NULL);
         } else {
-            mpRefer->setSelMsgPtr(((char*)iVar2 + pMsg->entries[msgIndex].string_offset + 8));
+            char* my_ptr = (char*) (iVar2 + pMsg->entries[msgIndex].string_offset + 8);
+            mpRefer->setSelMsgPtr(my_ptr);
         }
     }
     if (param_3) {
@@ -642,9 +643,9 @@ void dMsgObject_c::setMessageIndex(u32 param_1, u32 param_2, bool param_3) {
 
 /* 80233E70-80233F84 22E7B0 0114+00 1/1 1/1 0/0 .text setMessageIndexDemo__12dMsgObject_cFUlb */
 // NONMATCHING reg swap
-void dMsgObject_c::setMessageIndexDemo(u32 param_1, bool param_2) {
-    field_0x158 = param_1;
-    int revoMsgIndex = getRevoMessageIndex(param_1);
+void dMsgObject_c::setMessageIndexDemo(u32 revoMsgIndex, bool param_2) {
+    field_0x158 = revoMsgIndex;
+    revoMsgIndex = getRevoMessageIndex(revoMsgIndex);
     mNoDemoFlag = 1;
     field_0x4d4 = 1;
     dMsgObject_onCameraCancelFlag();
@@ -662,9 +663,9 @@ void dMsgObject_c::setMessageIndexDemo(u32 param_1, bool param_2) {
     field_0x172 = 0;
     mpRefer->setPageNum(field_0x172);
     JMSMesgInfo_c* info_header_p = (JMSMesgInfo_c*)((char*)mpMsgDt + 0x20);
+    JMSMesgInfo_c* reg_25 = (JMSMesgInfo_c*)((char*) info_header_p + info_header_p->header.size);
     int ind = getMessageIndex(revoMsgIndex);
-    JMSMesgEntry_c* info_entries = (JMSMesgEntry_c*)((char*)info_header_p + 0x10);
-    dComIfGp_setMesgCameraAttrInfo(info_entries[ind].camera_id);
+    dComIfGp_setMesgCameraAttrInfo(info_header_p->entries[ind].camera_id);
     mpRefer->setSelMsgPtr(NULL);
     if (param_2) {
         mpCtrl->setMessageID(mMessageID, 0, NULL);
@@ -1376,7 +1377,7 @@ void dMsgObject_c::talkStartInit() {
         if (mpOutFont == NULL) {
             OS_REPORT("free size (0x%x)=====> %d\n", mDoExt_getCurrentHeap(), mDoExt_getCurrentHeap()->getTotalFreeSize());
             mpOutFont = new COutFont_c(0);
-            JUT_ASSERT(3035, mpOutFont != 0);
+            JUT_ASSERT(3035, mpOutFont != NULL);
             mpOutFont->createPane();
             mpRenProc->setOutFont(mpOutFont);
         }
@@ -1386,7 +1387,7 @@ void dMsgObject_c::talkStartInit() {
         case 9:
             pRef = (jmessage_tReference*)mpRenProc->getReference();
             pData = new dMsgScrnItem_c(pRef->getFukiPosType(), pRef->getForm(), mpTalkHeap);
-            JUT_ASSERT(3049, pData != 0);
+            JUT_ASSERT(3049, pData != NULL);
             mpScrnDraw = pData;
             break;
         case 2:
@@ -1394,32 +1395,32 @@ void dMsgObject_c::talkStartInit() {
                 local_30 = mDoExt_getRubyFont();
             }
             pData = new dMsgScrnTree_c(local_30, mpTalkHeap);
-            JUT_ASSERT(3061, pData != 0);
+            JUT_ASSERT(3061, pData != NULL);
             mpScrnDraw = pData;
             break;
         case 6:
             pData = new dMsgScrnKanban_c(mpTalkHeap);
-            JUT_ASSERT(3069, pData != 0);
+            JUT_ASSERT(3069, pData != NULL);
             mpScrnDraw = pData;
             break;
         case 7:
             pData = new dMsgScrnStaff_c(((jmessage_tReference*)mpRenProc->getReference())->getArrange());
-            JUT_ASSERT(3083, pData != 0);
+            JUT_ASSERT(3083, pData != NULL);
             mpScrnDraw = pData;
             break;
         case 12:
             pData = new dMsgScrnPlace_c();
-            JUT_ASSERT(3092, pData != 0);
+            JUT_ASSERT(3092, pData != NULL);
             mpScrnDraw = pData;
             break;
         case 19:
             pData = new dMsgScrnBoss_c();
-            JUT_ASSERT(3100, pData != 0);
+            JUT_ASSERT(3100, pData != NULL);
             mpScrnDraw = pData;
             break;
         case 17:
             pData = new dMsgScrnHowl_c();
-            JUT_ASSERT(3108, pData != 0);
+            JUT_ASSERT(3108, pData != NULL);
             mpScrnDraw = pData;
             local_98 = true;
             break;
@@ -1427,7 +1428,7 @@ void dMsgObject_c::talkStartInit() {
         case 5:
             pRef = (jmessage_tReference*)mpRenProc->getReference();
             pData = new dMsgScrnJimaku_c(pRef->getForm(), mpTalkHeap);
-            JUT_ASSERT(3119, pData != 0);
+            JUT_ASSERT(3119, pData != NULL);
             mpScrnDraw = pData;
             break;
         case 10:
@@ -1436,11 +1437,11 @@ void dMsgObject_c::talkStartInit() {
             pRef = (jmessage_tReference*)mpRenProc->getReference();
             if (mpRefer->getMsgID() == 0x2a5) {
                 pData = new dMsgScrnItem_c(0, pRef->getForm(), mpTalkHeap);
-                JUT_ASSERT(3131, pData != 0);
+                JUT_ASSERT(3131, pData != NULL);
                 mpScrnDraw = pData;
             } else {
                 pData = new dMsgScrnTalk_c(pRef->getFukiPosType(), pRef->getForm(), mpTalkHeap);
-                JUT_ASSERT(3138, pData != 0);
+                JUT_ASSERT(3138, pData != NULL);
                 mpScrnDraw = pData;
                 local_98 = true;
             }

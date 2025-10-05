@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_particle_copoly.h"
 #include "f_op/f_op_kankyo_mng.h"

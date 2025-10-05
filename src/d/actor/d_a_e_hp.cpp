@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_hp.h"
 #include "d/actor/d_a_alink.h"
@@ -830,7 +830,7 @@ void daE_HP_c::action() {
     }
 
     daPy_py_c* player = (daPy_py_c*)dComIfGp_getPlayer(0);
-    if (mObjAcch.GetGroundH() != -1000000000.0f) {
+    if (mObjAcch.GetGroundH() != -G_CM3D_F_INF) {
         if (arg0 != 2 || mAction == 5 || mAction == 6) {
             gravity = -3.0f;
             if ((mAction == 5 && field_0x780 == 9 || mAction == 6) && mObjAcch.ChkGroundHit()) {
@@ -885,7 +885,7 @@ void daE_HP_c::action() {
     field_0x768 =
         field_0x7a4 + (20.0f + NREG_F(4)) * cM_ssin((f32)field_0x7a8 * (1000.0f + NREG_F(3)));
 
-    if (mObjAcch.GetGroundH() != -1000000000.0f) {
+    if (mObjAcch.GetGroundH() != -G_CM3D_F_INF) {
         field_0x72c.y = mObjAcch.GetGroundH();
     }
 
@@ -1153,7 +1153,7 @@ static int daE_HP_Delete(daE_HP_c* i_this) {
 /* 806E9240-806E94FC 003540 02BC+00 1/1 0/0 0/0 .text            CreateHeap__8daE_HP_cFv */
 int daE_HP_c::CreateHeap() {
     J3DModelData* modeldata = (J3DModelData*)dComIfG_getObjectRes("E_HP", 19);
-    JUT_ASSERT(0x764, modeldata != 0)
+    JUT_ASSERT(0x764, modeldata != NULL);
     mpMorfSO = new mDoExt_McaMorfSO(modeldata, NULL, NULL,
                                     (J3DAnmTransform*)dComIfG_getObjectRes("E_HP", 13), 2, 1.0f, 0,
                                     -1, &mSound1, 0x80000, 0x11000084);
@@ -1175,7 +1175,7 @@ int daE_HP_c::CreateHeap() {
     }
 
     modeldata = (J3DModelData*)dComIfG_getObjectRes("E_HP", 20);
-    JUT_ASSERT(0x78b, modeldata != 0);
+    JUT_ASSERT(0x78b, modeldata != NULL);
 
     mpModel = mDoExt_J3DModel__create(modeldata, 0x80000, 0x11000084);
     if (mpModel == NULL) {

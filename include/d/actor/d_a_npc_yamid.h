@@ -23,6 +23,22 @@ public:
     static daNpc_yamiD_HIOParam const m;
 };
 
+#if DEBUG
+class daNpc_yamiD_HIO_c : public mDoHIO_entry_c {
+public:
+    daNpc_yamiD_HIO_c();
+
+    void listenPropertyEvent(const JORPropertyEvent*);
+    void genMessage(JORMContext*);
+
+    daNpc_yamiD_HIOParam m;
+};
+
+#define NPC_YAMID_HIO_CLASS daNpc_yamiD_HIO_c
+#else
+#define NPC_YAMID_HIO_CLASS daNpc_yamiD_Param_c
+#endif
+
 class daNpc_yamiD_c : public daNpcT_c {
 public:
     typedef BOOL (daNpc_yamiD_c::*cutFunc)(int);
@@ -71,7 +87,9 @@ public:
             char** i_arcNames)
         : daNpcT_c(i_faceMotionAnmData, i_motionAnmData, i_faceMotionSequenceData,
         i_faceMotionStepNum, i_motionSequenceData, i_motionStepNum, i_evtData,
-        i_arcNames) {}
+        i_arcNames) {
+            OS_REPORT("|%06d:%x|daNpc_yamiD_c -> コンストラクト\n", g_Counter.mCounter0, this);
+        }
     /* 80B45F34 */ u16 getEyeballMaterialNo() { return 1; }
     /* 80B45F3C */ s32 getHeadJointNo() { return 4; }
     /* 80B45F44 */ s32 getNeckJointNo() { return 3; }
@@ -85,18 +103,21 @@ public:
                         return TRUE;
                     }
 
-    u32 getPathID() { return (fopAcM_GetParam(this) & 0xFF00) >> 8; }
-    int getSwitchBitNo() { return (fopAcM_GetParam(this) >> 16) & 0xFF; }
-    BOOL _is_vanish_prm() {
-        u8 uVar1 = ((fopAcM_GetParam(this) >> 28)) ? 1 : 0;
-        int iVar1 = uVar1;
-        if (iVar1 == 15) {
-            iVar1 = 0;
-        }
-        return iVar1;
-        
+    u8 getPathID() { return (fopAcM_GetParam(this) & 0xFF00) >> 8; }
+    int getSwitchBitNo() {
+        u32 full_prm = fopAcM_GetParam(this);
+        return (full_prm >> 16) & 0xFF;
     }
-    bool is_vanish() { return mVanish; }
+    BOOL _is_vanish_prm() {
+        int reg_r31 = (fopAcM_GetParam(this) >> 28) != 0;
+        if (reg_r31 == 15) {
+            reg_r31 = 0;
+        }
+
+        return reg_r31;
+    }
+
+    BOOL is_vanish() { return mVanish; }
     void vanish_on() { mVanish = 1; }
     void vanish_off() { mVanish = 0; }
     void on_CoHit() {
@@ -112,7 +133,7 @@ public:
     static cutFunc mCutList[2];
 
 private:
-    /* 0xE40 */ u8 field_0xe40[0xe44 - 0xe40];
+    /* 0xE40 */ NPC_YAMID_HIO_CLASS* mpHIO;
     /* 0xE44 */ dCcD_Cyl field_0xe44;
     /* 0xF80 */ u8 mType;
     /* 0xF81 */ s8 mVanish;

@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_amiShutter.h"
 #include "d/actor/d_a_player.h"
@@ -61,7 +61,7 @@ void daAmiShutter_c::setBaseMtx() {
 /* 80BA15E4-80BA1650 000204 006C+00 1/0 0/0 0/0 .text            CreateHeap__14daAmiShutter_cFv */
 int daAmiShutter_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*) dComIfG_getObjectRes("S_Zami", 4);
-    JUT_ASSERT(167, modelData != 0); 
+    JUT_ASSERT(167, modelData != NULL); 
     
     mpModel = mDoExt_J3DModel__create(modelData, 
         J3DMdlFlag_DifferedDLBuffer, 0x11000084);

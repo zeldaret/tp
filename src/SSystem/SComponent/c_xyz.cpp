@@ -96,7 +96,7 @@ cXyz cXyz::normZC() const {
 
 /* 80266EF4-80266F48 0054+00 s=0 e=13 z=17  None .text      normalize__4cXyzFv */
 cXyz cXyz::normalize() {
-    JUT_ASSERT(285, isNearZeroSquare() == 0);
+    JUT_ASSERT(285, isNearZeroSquare() == FALSE);
     PSVECNormalize(this, this);
     return *this;
 }

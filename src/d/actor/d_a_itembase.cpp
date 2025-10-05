@@ -3,7 +3,7 @@
  * Item Actor base
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_itembase.h"
 #include "d/d_com_inf_game.h"
@@ -32,7 +32,7 @@ int daItemBase_c::CreateItemHeap(char const* i_arcName, s16 i_bmdName, s16 i_btk
     JUT_ASSERT(0, 0 <= m_itemNo && m_itemNo <= 255);
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(i_arcName, i_bmdName);
-    JUT_ASSERT(0, modelData != 0);
+    JUT_ASSERT(0, modelData != NULL);
 
     u32 flags = 0x11000084;
     u32 modelflags = 0x80000;
@@ -62,7 +62,7 @@ int daItemBase_c::CreateItemHeap(char const* i_arcName, s16 i_bmdName, s16 i_btk
     if (i_btkName > 0) {
         J3DAnmTextureSRTKey* pbtk =
             (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(i_arcName, i_btkName);
-        JUT_ASSERT(0, pbtk != 0);
+        JUT_ASSERT(0, pbtk != NULL);
 
         mpBtkAnm = new mDoExt_btkAnm();
         if (mpBtkAnm == NULL || !mpBtkAnm->init(modelData, pbtk, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
@@ -73,7 +73,7 @@ int daItemBase_c::CreateItemHeap(char const* i_arcName, s16 i_bmdName, s16 i_btk
     mpBpkAnm = NULL;
     if (i_bpkName > 0) {
         J3DAnmColor* pbpk = (J3DAnmColor*)dComIfG_getObjectRes(i_arcName, i_bpkName);
-        JUT_ASSERT(0, pbpk != 0);
+        JUT_ASSERT(0, pbpk != NULL);
 
         mpBpkAnm = new mDoExt_bpkAnm();
         if (mpBpkAnm == NULL || !mpBpkAnm->init(modelData, pbpk, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {
@@ -84,7 +84,7 @@ int daItemBase_c::CreateItemHeap(char const* i_arcName, s16 i_bmdName, s16 i_btk
     mpBckAnm = NULL;
     if (i_bckName > 0) {
         J3DAnmTransform* pbck = (J3DAnmTransform*)dComIfG_getObjectRes(i_arcName, i_bckName);
-        JUT_ASSERT(0, pbck != 0);
+        JUT_ASSERT(0, pbck != NULL);
 
         mpBckAnm = new mDoExt_bckAnm();
         if (mpBckAnm == NULL || !mpBckAnm->init(pbck, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1, false)) {
@@ -95,7 +95,7 @@ int daItemBase_c::CreateItemHeap(char const* i_arcName, s16 i_bmdName, s16 i_btk
     mpBrkAnm = NULL;
     if (i_brkName > 0) {
         J3DAnmTevRegKey* pbrk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(i_arcName, i_brkName);
-        JUT_ASSERT(0, pbrk != 0);
+        JUT_ASSERT(0, pbrk != NULL);
 
         s8 tevFrm = getTevFrm();
         int anmPlay = TRUE;
@@ -112,7 +112,7 @@ int daItemBase_c::CreateItemHeap(char const* i_arcName, s16 i_bmdName, s16 i_btk
     mpBtpAnm = NULL;
     if (i_btpName > 0) {
         J3DAnmTexPattern* pbtp = (J3DAnmTexPattern*)dComIfG_getObjectRes(i_arcName, i_btpName);
-        JUT_ASSERT(0, pbtp != 0);
+        JUT_ASSERT(0, pbtp != NULL);
 
         mpBtpAnm = new mDoExt_btpAnm();
         if (mpBtpAnm == NULL || !mpBtpAnm->init(modelData, pbtp, TRUE, J3DFrameCtrl::EMode_LOOP, 1.0f, 0, -1)) {

@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_flag.h"
 
@@ -209,7 +209,7 @@ inline int daObjFlag_c::createHeap() {
         current.angle.setall(0);
 
         J3DModelData* modelData_flag = (J3DModelData*)dComIfG_getObjectRes("FlagObj", resName);
-        JUT_ASSERT(447, modelData_flag != 0)
+        JUT_ASSERT(447, modelData_flag != NULL)
         mpModel1 = mDoExt_J3DModel__create(modelData_flag, 0x80000, 0x11000084);
 
         for (u16 i = 0; i < 5; i++) {
@@ -223,7 +223,7 @@ inline int daObjFlag_c::createHeap() {
 
     J3DModelData* modelData_pole =
         (J3DModelData*)dComIfG_getObjectRes(daSetBgObj_c::getArcName(this), "model0.bmd");
-    JUT_ASSERT(464, modelData_pole != 0);
+    JUT_ASSERT(464, modelData_pole != NULL);
     mpModel2 = mDoExt_J3DModel__create(modelData_pole, 0x80000, 0x11000084);
     if (mpModel2 == NULL && tmp && mpModel1 == NULL) {
         return 0;

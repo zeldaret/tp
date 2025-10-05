@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "SSystem/SComponent/c_phase.h"
 #include "d/d_kyeff2.h"

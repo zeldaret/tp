@@ -3,7 +3,7 @@
 // Translation Unit: d_a_tbox
 //
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_tbox.h"
 #include "d/d_tresure.h"
@@ -89,7 +89,7 @@ cPhs__Step daTbox_c::commonShapeSet() {
     daTbox_ModelInfo* model_info = getModelInfo();
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(model_info->mArcName, model_info->mModelResNo);
-    JUT_ASSERT(0x191, modelData != 0);
+    JUT_ASSERT(0x191, modelData != NULL);
 
     mpAnm = new mDoExt_bckAnm();
     if (mpAnm == NULL) {
@@ -114,7 +114,7 @@ cPhs__Step daTbox_c::commonShapeSet() {
 
     if (!strcmp(dComIfGp_getStartStageName(), "D_MN01B")) {  // Deku Toad chest
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Dalways", 15);
-        JUT_ASSERT(0x1BD, modelData != 0);
+        JUT_ASSERT(0x1BD, modelData != NULL);
         mpSlimeModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
         if (mpSlimeModel == NULL) {
             return cPhs_ERROR_e;
@@ -123,7 +123,7 @@ cPhs__Step daTbox_c::commonShapeSet() {
 
     if (checkAppear()) {
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(model_info->mArcName, model_info->mEffectResNo);
-        JUT_ASSERT(0x1CE, modelData != 0);
+        JUT_ASSERT(0x1CE, modelData != NULL);
         mpEffectModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
         if (mpEffectModel == NULL) {
             return cPhs_ERROR_e;
@@ -135,7 +135,7 @@ cPhs__Step daTbox_c::commonShapeSet() {
         }
 
         J3DAnmTevRegKey* brk = (J3DAnmTevRegKey*)dComIfG_getObjectRes(model_info->mArcName, model_info->mBrkResNo);
-        JUT_ASSERT(0x1E1, brk != 0);
+        JUT_ASSERT(0x1E1, brk != NULL);
         if (!mpEffectAnm->init(modelData, brk, TRUE, J3DFrameCtrl::EMode_NONE, 0.0f, 0, -1)) {
             return cPhs_ERROR_e;
         }
@@ -169,7 +169,7 @@ cPhs__Step daTbox_c::bgCheckSet() {
     daTbox_ModelInfo* model_info = getModelInfo();
 
     cBgD_t* bgd = (cBgD_t*)dComIfG_getObjectRes(model_info->mArcName, model_info->mOpenDzbResNo);
-    JUT_ASSERT(0x210, bgd != 0);
+    JUT_ASSERT(528, bgd != NULL);
     mpOpenBgW = new dBgW();
     if (mpOpenBgW == NULL) {
         return cPhs_ERROR_e;
@@ -416,7 +416,7 @@ void daTbox_c::initPos() {
     int func_type = getFuncType();
     if ((func_type == 6 && getSwType() == 15) || func_type == 7) {
         dPath* path_p = dPath_GetRoomPath(getPathId(), -1);
-        JUT_ASSERT(0x3B7, path_p != 0);
+        JUT_ASSERT(0x3B7, path_p != NULL);
 
         if (func_type == 6 && path_p->m_num != 2 && path_p->m_num != 3) {
             fopAcM_setWarningMessage(this, __FILE__, 0x3BD, "Num of Jump TBox's path point must be 2 or 3!");
@@ -649,7 +649,7 @@ void daTbox_c::dropProcInitCall() {
 /* 80492450-804928DC 001810 048C+00 1/1 0/0 0/0 .text            dropProcInit__8daTbox_cFv */
 void daTbox_c::dropProcInit() {
     dPath* path_p = dPath_GetRoomPath(getPathId(), -1);
-    JUT_ASSERT(0x56A, path_p != 0);
+    JUT_ASSERT(0x56A, path_p != NULL);
 
     cXyz pos = current.pos;
     cXyz pnt1 = path_p->m_points[1].m_position;
@@ -668,7 +668,7 @@ void daTbox_c::dropProcInit() {
         cXyz pnt2(path_p->m_points[2].m_position);
         if (pos.y < pnt2.y) {
             OS_REPORT_ERROR("落下開始点より落下点の方が上にあります！！！\n");
-            JUT_ASSERT(0x58F, 0);
+            JUT_ASSERT(1423, FALSE);
         }
 
         f32 delta_y1 = pos.y - pnt2.y;
@@ -773,7 +773,7 @@ void daTbox_c::dropProcInit2() {
     } else {
         // "Falling Memory Treasure Chest: There's not 2 points!\n"
         OS_REPORT_ERROR("落下方向記憶宝箱：ポイントが２点ではありません！\n");
-        JUT_ASSERT(0x641, 0);
+        JUT_ASSERT(1601, FALSE);
     }
 
     field_0x9c8 = temp / 19.0f;
@@ -810,7 +810,7 @@ void daTbox_c::dropProc() {
 
         dBgS_ObjGndChk gnd_chk;
         gnd_chk.SetPos(&chkpos);
-        gnd_chk.SetActorPid(base.id);
+        gnd_chk.SetActorPid(base.base.id);
         dComIfG_Bgsp().GroundCross(&gnd_chk);
 
         int bg_index = gnd_chk.GetBgIndex();
@@ -1410,7 +1410,7 @@ u8 daTbox_c::getBombItemNoMain(u8 i_itemNo) {
     default:
         // "Get Item: Wrong number of bomb bags!<%d>\n"
         OS_REPORT("\x1b[41;37mゲットアイテム：バクダン袋の数がおかしい！<%d>\n\x1b[m", bag_count);
-        JUT_ASSERT(0xABD, 0);
+        JUT_ASSERT(2749, FALSE);
         break;
     }
 
@@ -1516,12 +1516,12 @@ void daTbox_c::settingDropDemoCamera() {
     player_camera->mCamera.Stop();
 
     dStage_MapEvent_dt_c* maptooldata = dEvt_control_c::searchMapEventData(getEvent(), fopAcM_GetRoomNo(this));
-    JUT_ASSERT(0xB89, maptooldata != 0);
+    JUT_ASSERT(0xB89, maptooldata != NULL);
 
     player_camera->mCamera.SetTrimSize(maptooldata->field_0x1);
 
     dStage_roomDt_c* roomdt = dComIfGp_roomControl_getStatusRoomDt(fopAcM_GetRoomNo(this));
-    JUT_ASSERT(0xB8E, roomdt != 0);
+    JUT_ASSERT(0xB8E, roomdt != NULL);
     
     stage_camera_class* stage_camera = roomdt->getCamera();
     stage_camera2_data_class* stage_camera_data = stage_camera->m_entries;
@@ -1842,7 +1842,7 @@ cPhs__Step daTbox_c::create1st() {
 
     if (getShapeType() > 2) {
         OS_REPORT("\x1b[43;30mTbox Type Error!!!<%d>\n\x1b[m", getShapeType());
-        JUT_ASSERT(0xDD8, 0);
+        JUT_ASSERT(3544, FALSE);
     }
 
     daTbox_ModelInfo* model_info = getModelInfo();

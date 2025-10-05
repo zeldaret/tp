@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_bouS.h"
 #include "dol2asm.h"
@@ -295,24 +295,21 @@ SECTION_DATA static u8 l_btkGetParamList[12] = {
 };
 
 /* 80978920-80978928 -00001 0008+00 6/7 0/0 0/0 .data            l_arcNames */
-SECTION_DATA static void* l_arcNames[2] = {
-    (void*)&d_a_npc_bouS__stringBase0,
-    (void*)(((char*)&d_a_npc_bouS__stringBase0) + 0x4),
+static char* l_arcNames[2] = {
+    "Bou",
+    "Bou4",
 };
 
 /* 80978928-80978938 -00001 0010+00 3/4 0/0 0/0 .data            l_evtNames */
-SECTION_DATA static void* l_evtNames[4] = {
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_bouS__stringBase0) + 0x9),
-    (void*)(((char*)&d_a_npc_bouS__stringBase0) + 0x1A),
-    (void*)(((char*)&d_a_npc_bouS__stringBase0) + 0x2B),
+static char* l_evtNames[4] = {
+    NULL,
+    "BOUS_INTRO_SUMO1",
+    "BOUS_INTRO_SUMO2",
+    "BOUS_INTRO_SUMO3",
 };
 
 /* 80978938-8097893C -00001 0004+00 0/2 0/0 0/0 .data            l_myName */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_myName = (void*)(((char*)&d_a_npc_bouS__stringBase0) + 0x3C);
-#pragma pop
+static char* l_myName = "BouS";
 
 /* 8097893C-80978948 -00001 000C+00 0/1 0/0 0/0 .data            @4036 */
 #pragma push
@@ -1796,7 +1793,7 @@ extern "C" void func_80977AC4(void* _this, s16 param_0) /* const */ {
 
 /* ############################################################################################## */
 /* 80978754-80978758 000344 0004+00 1/1 0/0 0/0 .rodata          @5753 */
-SECTION_RODATA static f32 const lit_5753 = 1000000000.0f;
+SECTION_RODATA static f32 const lit_5753 = G_CM3D_F_INF;
 COMPILER_STRIP_GATE(0x80978754, &lit_5753);
 
 /* 80978B64-80978B70 0003C0 000C+00 2/2 0/0 0/0 .data            __vt__17daNpcBouS_Param_c */

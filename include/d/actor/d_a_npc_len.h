@@ -60,7 +60,7 @@ public:
     /* 80A68E28 */ s32 getFootRJointNo();
     /* 80A68E30 */ bool chkXYItems();
 
-    static void* mCutNameList[4];
+    static char* mCutNameList[4];
     static u8 mCutList[48];
 
 private:

@@ -3,7 +3,7 @@
  * Moon in Hidden Skill Scene
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_tmoon.h"
 #include "f_op/f_op_draw_tag.h"
@@ -71,7 +71,7 @@ int daObjTMoon_c::execute() {
     } else if ((field_0x574 != 0x3ff) &&
                (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[field_0x574])))
     {
-        fopDwTg_ToDrawQ(&draw_tag, fpcLf_GetPriority(this));
+        fopDwTg_ToDrawQ(&draw_tag, fpcM_DrawPriority(this));
         return 1;
     }
     return 1;

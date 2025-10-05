@@ -182,6 +182,11 @@ public:
                       sVar3 * (1.0f / param_4);
     }
 
+    void setEyeAngleY(s16 param_1, f32 param_2) {
+        mEyeAngle.y = field_0x132.y * (1.0f - 1.0f / param_2) +
+        param_1 * (1.0f / param_2);
+    }
+
     s16 getEyeAngleX() { return mEyeAngle.x; }
     s16 getEyeAngleY() { return mEyeAngle.y; }
 
@@ -1223,6 +1228,11 @@ BOOL daNpcF_chkTmpBit(u32 i_idx);
 void daNpcF_onTmpBit(u32 i_idx);
 void daNpcF_offTmpBit(u32 i_idx);
 u8 daNpcF_getDistTableIdx(int param_0, int param_1);
+#if DEBUG
+class daNpcF_HIOParam;
+void daNpcF_commonListenPropertyEvent(char*, int*, daNpcF_HIOParam*);
+void daNpcF_commonGenMessage(JORMContext*, daNpcF_HIOParam*);
+#endif
 void daNpcF_clearMessageTmpBit();
 BOOL daNpcF_chkPointInArea(cXyz, cXyz, cXyz, s16);
 int daNpcF_getPlayerInfoFromPlayerList(int param_0, int i_roomNo, cXyz& param_2, csXyz& param_3);

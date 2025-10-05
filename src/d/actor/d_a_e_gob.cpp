@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_gob.h"
 #include "d/d_com_inf_game.h"
@@ -1584,14 +1584,14 @@ static void action(e_gob_class* i_this) {
         sp7C.SetPos(&sp4C);
         
         sp4C.y = dComIfG_Bgsp().GroundCross(&sp7C);
-        if (-1000000000.0f != sp4C.y) {
+        if (-G_CM3D_F_INF != sp4C.y) {
             sp58.x = sp4C.x;
             sp58.y = 50.0f + sp4C.y;
             sp58.z = sp4C.z + temp_f28;
             sp7C.SetPos(&sp58);
 
             sp58.y = dComIfG_Bgsp().GroundCross(&sp7C);
-            if (-1000000000.0f != sp58.y) {
+            if (-G_CM3D_F_INF != sp58.y) {
                 f32 var_f30 = sp58.y - sp4C.y;
                 f32 var_f24 = sp58.z - sp4C.z;
                 sp1A = -cM_atan2s(var_f30, var_f24);
@@ -1606,7 +1606,7 @@ static void action(e_gob_class* i_this) {
             sp7C.SetPos(&sp58);
 
             sp58.y = dComIfG_Bgsp().GroundCross(&sp7C);
-            if (-1000000000.0f != sp58.y) {
+            if (-G_CM3D_F_INF != sp58.y) {
                 f32 var_f30 = sp58.y - sp4C.y;
                 f32 var_f25 = sp58.x - sp4C.x;
                 sp18 = (s16)cM_atan2s(var_f30, var_f25);
@@ -2288,7 +2288,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
     }
 
     void* modelData = dComIfG_getObjectRes("E_gob", BMDR_MG_MET);
-    JUT_ASSERT(3631, modelData != 0);
+    JUT_ASSERT(3631, modelData != NULL);
     a_this->mpArmorModel = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
     if (a_this->mpArmorModel == NULL) {
         return 0;

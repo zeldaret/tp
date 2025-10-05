@@ -8,21 +8,6 @@
 #include "JSystem/JAudio2/JASProbe.h"
 #include "dolphin/os.h"
 
-//
-// Types:
-//
-
-//
-// Forward References:
-//
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
 /* 80290D74-80290DC4 28B6B4 0050+00 1/1 0/0 0/0 .text            start__8JASProbeFPCc */
 void JASProbe::start(char const* name) {
 	volatile BOOL interrupts = OSDisableInterrupts();

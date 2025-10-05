@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_chin.h"
 #include "dol2asm.h"
@@ -403,13 +403,13 @@ SECTION_DATA static u8 l_btkGetParamList[108] = {
 };
 
 /* 809920A8-809920C0 -00001 0018+00 7/11 0/0 0/0 .data            l_arcNames */
-SECTION_DATA static void* l_arcNames[6] = {
-    (void*)&d_a_npc_chin__stringBase0,
-    (void*)(((char*)&d_a_npc_chin__stringBase0) + 0x5),
-    (void*)(((char*)&d_a_npc_chin__stringBase0) + 0xB),
-    (void*)(((char*)&d_a_npc_chin__stringBase0) + 0x14),
-    (void*)(((char*)&d_a_npc_chin__stringBase0) + 0x1E),
-    (void*)(((char*)&d_a_npc_chin__stringBase0) + 0x28),
+static char* l_arcNames[6] = {
+    "Chin",
+    "chin1",
+    "chin_mdl",
+    "chin_tmdl",
+    "chin1_evt",
+    "SpotLight",
 };
 
 /* 8098BF0C-8098C000 0000EC 00F4+00 1/1 0/0 0/0 .text loadModel__Q211daNpcChin_c12_SpotLight_cFv
@@ -450,19 +450,16 @@ SECTION_DATA static void* sLoadResInfo[2] = {
 };
 
 /* 809920C8-809920E8 -00001 0020+00 0/2 0/0 0/0 .data            l_evtNames */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtNames[8] = {
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_chin__stringBase0) + 0x32),
-    (void*)(((char*)&d_a_npc_chin__stringBase0) + 0x3D),
-    (void*)(((char*)&d_a_npc_chin__stringBase0) + 0x49),
-    (void*)(((char*)&d_a_npc_chin__stringBase0) + 0x56),
-    (void*)(((char*)&d_a_npc_chin__stringBase0) + 0x69),
-    (void*)(((char*)&d_a_npc_chin__stringBase0) + 0x75),
-    (void*)(((char*)&d_a_npc_chin__stringBase0) + 0x81),
+static char* l_evtNames[8] = {
+    NULL,
+    "GAME_START",
+    "GAME_FAILED",
+    "GAME_SUCCEED",
+    "SELECT_GAME_GIVEUP",
+    "GAME_GIVEUP",
+    "CHIN_APPEAR",
+    "SPOTLIGHT_OFF",
 };
-#pragma pop
 
 /* 809920E8-809920F4 -00001 000C+00 0/1 0/0 0/0 .data            @3854 */
 #pragma push
@@ -545,7 +542,7 @@ SECTION_DATA u8 daNpcChin_c::mEvtSeqList[96] = {
 };
 
 /* 8099219C-809921A0 -00001 0004+00 1/2 0/0 0/0 .data            l_myName */
-SECTION_DATA static void* l_myName = (void*)(((char*)&d_a_npc_chin__stringBase0) + 0x8F);
+static char* l_myName = "chin";
 
 /* 809921A0-809921DC -00001 003C+00 1/1 0/0 0/0 .data            @4745 */
 SECTION_DATA static void* lit_4745[15] = {

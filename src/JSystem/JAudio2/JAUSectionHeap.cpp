@@ -138,7 +138,7 @@ JAUSoundTable* JAUSection::newSoundTable(void const* bst, u32 param_1, bool para
     JUT_ASSERT(286, isBuilding());
     JUT_ASSERT(287, bst);
     JUT_ASSERT(288, asSectionHeap() == this);
-    JUT_ASSERT(289, sectionHeap_->sectionHeapData_.soundTable == 0);
+    JUT_ASSERT(289, sectionHeap_->sectionHeapData_.soundTable == NULL);
     {
         TPushCurrentHeap push(getHeap_());
         void const* bstDst = bst;
@@ -161,7 +161,7 @@ JAUSoundNameTable* JAUSection::newSoundNameTable(void const* bstn, u32 param_1, 
     JUT_ASSERT(316, isBuilding());
     JUT_ASSERT(317, bstn);
     JUT_ASSERT(318, asSectionHeap() == this);
-    JUT_ASSERT(319, sectionHeap_->sectionHeapData_.soundNameTable == 0);
+    JUT_ASSERT(319, sectionHeap_->sectionHeapData_.soundNameTable == NULL);
     {
         TPushCurrentHeap push(getHeap_());
         void const* bstnDst = bstn;
@@ -183,7 +183,7 @@ JAIStreamDataMgr* JAUSection::newStreamFileTable(void const* param_0, bool param
     JUT_ASSERT(345, asSectionHeap() == this);
     JUT_ASSERT(346, isOpen());
     JUT_ASSERT(347, isBuilding());
-    JUT_ASSERT(348, sectionHeap_->sectionHeapData_.streamDataMgr_ == 0);
+    JUT_ASSERT(348, sectionHeap_->sectionHeapData_.streamDataMgr_ == NULL);
     {
         TPushCurrentHeap push(getHeap_());
         JAIStreamDataMgr* r28 = NULL;
@@ -207,7 +207,7 @@ JAIStreamDataMgr* JAUSection::newStreamFileTable(void const* param_0, bool param
 /* 802A5500-802A5598 29FE40 0098+00 0/0 1/1 0/0 .text newSeSeqCollection__10JAUSectionFPCvUl */
 JAISeqDataMgr* JAUSection::newSeSeqCollection(void const* bsc, u32 param_1) {
     // JUT_ASSERT(398, asSectionHeap() == this);
-    JUT_ASSERT(399, sectionHeap_->sectionHeapData_.seSeqDataMgr_ == 0);
+    JUT_ASSERT(399, sectionHeap_->sectionHeapData_.seSeqDataMgr_ == NULL);
     if (param_1) {
         bsc = newCopy(bsc, param_1, 4);
     }
@@ -340,7 +340,7 @@ JASBank* JAUSection::newBank(void const* param_0, u32 param_1) {
     JUT_ASSERT(647, isOpen());
     JUT_ASSERT(648, isBuilding());
     JASWaveBank* waveBank = sectionHeap_->getWaveBankTable().getWaveBank(param_1);
-    JUT_ASSERT(650, waveBank != 0);
+    JUT_ASSERT(650, waveBank != NULL);
     TPushCurrentHeap push(getHeap_());
     u32 bank_no = JASBNKParser::getBankNumber(param_0);
     s32 r25 = getHeap_()->getFreeSize();
@@ -368,7 +368,7 @@ JASVoiceBank* JAUSection::newVoiceBank(u32 bank_no, u32 param_1) {
         JUT_ASSERT(685, isOpen());
         JUT_ASSERT(686, isBuilding());
         JASWaveBank* waveBank = sectionHeap_->getWaveBankTable().getWaveBank(param_1);
-        JUT_ASSERT(688, waveBank != 0);
+        JUT_ASSERT(688, waveBank != NULL);
         TPushCurrentHeap push(getHeap_()); 
         JASBank* voiceBank = new JASVoiceBank();
         JASVoiceBank* voiceBank2 = (JASVoiceBank*)voiceBank;
@@ -392,7 +392,7 @@ JASVoiceBank* JAUSection::newVoiceBank(u32 bank_no, u32 param_1) {
 bool JAUSection::beginNewBankTable(u32 param_0, u32 param_1) {
     JUT_ASSERT(714, isOpen());
     JUT_ASSERT(715, isBuilding());
-    JUT_ASSERT(716, buildingBankTable_ == 0);
+    JUT_ASSERT(716, buildingBankTable_ == NULL);
     JAUBankTableLink* bankTableLink = NULL;
     {
         TPushCurrentHeap push(getHeap_());

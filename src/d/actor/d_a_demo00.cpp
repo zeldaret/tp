@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_demo00.h"
 #include "JSystem/JKernel/JKRSolidHeap.h"
@@ -110,7 +110,7 @@ void daDemo00_c::setBaseMtx() {
     field_0x568 = current.pos;
 
     if (mground2 != 0) {
-        if (sp38.y != -1000000000.0f) {
+        if (sp38.y != -G_CM3D_F_INF) {
             bVar1 = dComIfG_Bgsp().GetTriPla(mBgc->mGndChk, &plane);
         }
 
@@ -229,7 +229,7 @@ int daDemo00_c::createHeap() {
         if (modelData == NULL) {
             OS_REPORT("\ngetDemoArcName=[%s]", dStage_roomControl_c::getDemoArcName());
             OS_REPORT("\nmModel.mID.mShapeID=[%d]\n", mModel.mID.mShapeID);
-            JUT_ASSERT(441, modelData != 0);
+            JUT_ASSERT(441, modelData != NULL);
         }
 
         s32 uVar1 = 0x11000084;
@@ -331,7 +331,7 @@ int daDemo00_c::createHeap() {
             }
         } else {
             J3DAnmTransform* anm = (J3DAnmTransform*)dComIfG_getObjectIDRes(dStage_roomControl_c::getDemoArcName(), (u16)mModel.mID.field_0x4);
-            JUT_ASSERT(580, anm != 0);
+            JUT_ASSERT(580, anm != NULL);
 
             if (field_0x6a5 != 0) {
                 uVar1 |= 0x20000000;
@@ -387,7 +387,7 @@ int daDemo00_c::createHeap() {
         if (mModel.mID.field_0x1c != -1) {
             mDeformData = (J3DDeformData*)dComIfG_getObjectIDRes(dStage_roomControl_c::getDemoArcName(), (u16)mModel.mID.field_0x1c);
             // Should be mModel.mDeformData
-            JUT_ASSERT(687, mDeformData != 0);
+            JUT_ASSERT(687, mDeformData != NULL);
 
             if (mModel.mID.field_0x20 != -1) {
                 mpBlkAnm = new mDoExt_blkAnm();
@@ -559,7 +559,7 @@ int daDemo00_c::actPerformance(dDemo_actor_c* actor) {
 
         if (mModel.mID.field_0x20 != mModel.field_0x0.field_0x20) {
             // Should be mModel.mDeformData and mModel.mBlkAnm
-            JUT_ASSERT(1049, mDeformData != 0 && mpBlkAnm != 0);
+            JUT_ASSERT(1049, mDeformData != NULL && mpBlkAnm != NULL);
 
             J3DAnmCluster* anmCluster = (J3DAnmCluster*)dComIfG_getObjectIDRes(dStage_roomControl_c::getDemoArcName(), (u16)mModel.field_0x0.field_0x20);
             if (anmCluster == NULL) {

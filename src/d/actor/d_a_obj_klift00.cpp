@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_klift00.h"
 #include "JSystem/JHostIO/JORMContext.h"
@@ -244,14 +244,14 @@ void daObjKLift00_c::rideActor(fopAc_ac_c* riding_actor) {
 /* 8058B5EC-8058B77C 00072C 0190+00 1/0 0/0 0/0 .text            CreateHeap__14daObjKLift00_cFv */
 int daObjKLift00_c::CreateHeap() {
     J3DModelData* const model_data = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcName, l_bmdidx[2]));
-    JUT_ASSERT(304, model_data != 0);
+    JUT_ASSERT(304, model_data != NULL);
     mpLiftPlatform = mDoExt_J3DModel__create(model_data, (1 << 19), 0x11000084);
     if(!mpLiftPlatform)
         return 0;
 
     if(!getNoBaseDisp()) {
         J3DModelData* const model_data = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcName, l_bmdidx[0]));
-        JUT_ASSERT(315, model_data != 0);
+        JUT_ASSERT(315, model_data != NULL);
         mpChainBase = mDoExt_J3DModel__create(model_data, (1 << 19), 0x11000084);
         if(!mpChainBase)
             return 0;
@@ -265,7 +265,7 @@ int daObjKLift00_c::CreateHeap() {
         return 0;
 
     mChainModelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_arcName, l_bmdidx[1]));
-    JUT_ASSERT(334, mChainModelData != 0);
+    JUT_ASSERT(334, mChainModelData != NULL);
 
     mChainMdlObjs = new dMdl_obj_c[mNumChainModels];
 

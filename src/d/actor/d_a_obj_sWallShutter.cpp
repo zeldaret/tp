@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_sWallShutter.h"
 #include "SSystem/SComponent/c_math.h"
@@ -46,7 +46,7 @@ static const int l_bmdIdx[2] = {4, 4};
 int daSwShutter_c::CreateHeap() {
     J3DModelData* modelData =
         (J3DModelData*)dComIfG_getObjectRes(l_resNameIdx[mModelType], l_bmdIdx[mModelType]);
-    JUT_ASSERT(199, modelData != 0);
+    JUT_ASSERT(199, modelData != NULL);
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModel == NULL) {
         return 0;

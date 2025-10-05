@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_bky_rock.h"
 #include "SSystem/SComponent/c_math.h"
@@ -166,7 +166,7 @@ int daBkyRock_c::createHeap() {
     for (int i = 0; i < 3; i++) {
         J3DModelData* a_model_data_p =
             (J3DModelData*)dComIfG_getObjectRes(l_arcName, BMD_IDX[nameNo][i]);
-        JUT_ASSERT(481, a_model_data_p != 0);
+        JUT_ASSERT(481, a_model_data_p != NULL);
         mModels[i] = mDoExt_J3DModel__create(a_model_data_p, 0x80000, 0x11000084);
         if (mModels[i] == NULL) {
             return 0;

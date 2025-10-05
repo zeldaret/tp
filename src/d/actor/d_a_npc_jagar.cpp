@@ -3,7 +3,7 @@
  * NPC - Jaggle
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_jagar.h"
 #include "Z2AudioLib/Z2Instances.h"
@@ -137,6 +137,45 @@ enum Event {
     /* 0x7 */ EVENT_FIND_WOLF,
     /* 0x8 */ EVENT_FIND_WOLF_VER2,
 };
+
+/* 80A1A330-80A1A3D0 000000 00A0+00 13/13 0/0 1/1 .rodata          m__19daNpc_Jagar_Param_c */
+daNpc_Jagar_HIOParam const daNpc_Jagar_Param_c::m = {
+    170.0f, -3.0f, 1.0f, 400.0f, 255.0f, 160.0f,
+    35.0f, 30.0f, 0.0f, 0.0f, 10.0f, -10.0f,
+    30.0f, -10.0f, 45.0f, -45.0f, 0.6f, 12.0f,
+    3, 6, 5, 6, 110.0f, 500.0f, 300.0f, -300.0f,
+    60, 8, 0, 0, 0, 0.0f, 0.0f, 4.0f, 0.0f, 0.0f,
+    0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+    // Jagar-specific:
+    1400.0f, 200.0f, -800.0f, 16.0f, 1800.0f,
+};
+
+#if DEBUG
+daNpc_Jagar_HIO_c::daNpc_Jagar_HIO_c() {
+    m = daNpc_Jagar_Param_c::m;
+}
+
+void daNpc_Jagar_HIO_c::listenPropertyEvent(const JORPropertyEvent* event) {
+    // TODO.
+}
+
+void daNpc_Jagar_HIO_c::genMessage(JORMContext* ctext) {
+    // TODO.
+    daNpcT_cmnGenMessage(ctext, &m.common);
+    // pumpkin monitoring distance
+    ctext->genSlider("かぼちゃ監視距離", &m.pumpkin_watch_range, 0.0f, 1000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    // pumpkin watch height
+    ctext->genSlider("かぼちゃ監視高さ", &m.pumpkin_watch_Ymax, -10000.0f, 10000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    // "Pumpkin monitoring is low"?
+    ctext->genSlider("かぼちゃ監視低さ", &m.pumpkin_watch_Ymin, -10000.0f, 10000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    // running speed
+    ctext->genSlider("走る速度        ", &m.running_speed, 0.0f, 10000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    // hidden state release dist
+    ctext->genSlider("隠れ状態解除距離", &m.hidden_state_release_dist, 0.0f, 10000.0f, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 24);
+    // export file:
+    ctext->genButton("ファイル書き出し", 0x40000002, 0, NULL, 0xFFFF, 0xFFFF, 0x200, 0x18);
+}
+#endif
 
 /* 80A1A568-80A1A570 000020 0008+00 1/1 0/0 0/0 .data            l_bmdData */
 static int l_bmdData[1][2] = {
@@ -310,6 +349,9 @@ daNpc_Jagar_c::cutFunc daNpc_Jagar_c::mCutList[7] = {
     &daNpc_Jagar_c::cutFindWolf,
 };
 
+/* 80A1AE2C-80A1AE30 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
+static NPC_JAGAR_HIO_CLASS l_HIO;
+
 /* 80A1470C-80A14858 0000EC 014C+00 1/0 0/0 0/0 .text            __dt__13daNpc_Jagar_cFv */
 daNpc_Jagar_c::~daNpc_Jagar_c() {
     if (mpMorf[0] != 0) {
@@ -317,17 +359,6 @@ daNpc_Jagar_c::~daNpc_Jagar_c() {
     }
     deleteRes(l_loadResPtrnList[mType], (char const**)l_resNameList);
 }
-
-/* 80A1A330-80A1A3D0 000000 00A0+00 13/13 0/0 1/1 .rodata          m__19daNpc_Jagar_Param_c */
-daNpc_Jagar_Param_c::Data const daNpc_Jagar_Param_c::m = {
-    170.0f, -3.0f, 1.0f, 400.0f, 255.0f, 160.0f,
-    35.0f, 30.0f, 0.0f, 0.0f, 10.0f, -10.0f,
-    30.0f, -10.0f, 45.0f, -45.0f, 0.6f, 12.0f,
-    3, 6, 5, 6, 110.0f, 500.0f, 300.0f, -300.0f,
-    60, 8, 0.0f, 0.0f, 4.0f, 0.0f, 0.0f,
-    0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1400.0f,
-    200.0f, -800.0f, 16.0f, 1800.0f,
-};
 
 /* 80A14858-80A14B20 000238 02C8+00 1/1 0/0 0/0 .text            create__13daNpc_Jagar_cFv */
 int daNpc_Jagar_c::create() {
@@ -359,14 +390,14 @@ int daNpc_Jagar_c::create() {
         mAcch.Set(fopAcM_GetPosition_p(this), fopAcM_GetOldPosition_p(this), this, 1,
                         &mAcchCir, fopAcM_GetSpeed_p(this), fopAcM_GetAngle_p(this),
                         fopAcM_GetShapeAngle_p(this));
-        mCcStts.Init(daNpc_Jagar_Param_c::m.field_0x10, 0, this);
+        mCcStts.Init(mpHIO->m.common.weight, 0, this);
         mCyl1.Set(mCcDCyl);
         mCyl1.SetStts(&mCcStts);
         mCyl1.SetTgHitCallback(tgHitCallBack);
         mAcch.CrrPos(dComIfG_Bgsp());
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.GetGroundH();
-        if (mGroundH != -1000000000.0f) {
+        if (mGroundH != -G_CM3D_F_INF) {
             setEnvTevColor();
             setRoomNo();
         }
@@ -536,39 +567,39 @@ void daNpc_Jagar_c::setParam() {
     selectAction();
     srchActors();
     u32 uVar7 = (fopAc_AttnFlag_SPEAK_e | fopAc_AttnFlag_TALK_e);
-    s16 sVar10 = daNpc_Jagar_Param_c::m.field_0x48;
-    s16 sVar9 = daNpc_Jagar_Param_c::m.field_0x4a;
-    s16 sVar8 = daNpc_Jagar_Param_c::m.field_0x4c;
-    s16 sVar7 = daNpc_Jagar_Param_c::m.field_0x4e;
+    s16 talk_dist = mpHIO->m.common.talk_distance;
+    s16 talk_ang = mpHIO->m.common.talk_angle;
+    s16 att_dist = mpHIO->m.common.attention_distance;
+    s16 att_ang = mpHIO->m.common.attention_angle;
 
     switch (mType) {
         case TYPE_0:
-            sVar10 = 4;
-            sVar9 = 6;
-            sVar8 = 5;
-            sVar7 = 6;
+            talk_dist = 4;
+            talk_ang = 6;
+            att_dist = 5;
+            att_ang = 6;
             break;
 
         case TYPE_1:
             field_0xff0 = 3;
             field_0xff4 = 6;
-            sVar10 = 19;
-            sVar9 = 6;
-            sVar8 = 19;
-            sVar7 = 6;
+            talk_dist = 19;
+            talk_ang = 6;
+            att_dist = 19;
+            att_ang = 6;
             break;
 
         case TYPE_2:
-            sVar10 = 3;
-            sVar9 = 6;
-            sVar8 = 5;
-            sVar7 = 6;
+            talk_dist = 3;
+            talk_ang = 6;
+            att_dist = 5;
+            att_ang = 6;
             break;
     }
     
-    attention_info.distances[fopAc_attn_LOCK_e] = daNpcT_getDistTableIdx(sVar8, sVar7);
+    attention_info.distances[fopAc_attn_LOCK_e] = daNpcT_getDistTableIdx(att_dist, att_ang);
     attention_info.distances[fopAc_attn_TALK_e] = attention_info.distances[fopAc_attn_LOCK_e];
-    attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(sVar10, sVar9);
+    attention_info.distances[fopAc_attn_SPEAK_e] = daNpcT_getDistTableIdx(talk_dist, talk_ang);
 
     if (mType == TYPE_1) {
         uVar7 |= fopAc_AttnFlag_UNK_0x800000;
@@ -586,18 +617,18 @@ void daNpc_Jagar_c::setParam() {
     }
 
     attention_info.flags = uVar7;
-    scale.set(daNpc_Jagar_Param_c::m.field_0x08, daNpc_Jagar_Param_c::m.field_0x08,
-            daNpc_Jagar_Param_c::m.field_0x08);
-    mCcStts.SetWeight(daNpc_Jagar_Param_c::m.field_0x10);
-    mCylH = daNpc_Jagar_Param_c::m.field_0x14;
-    mWallR = daNpc_Jagar_Param_c::m.field_0x1c;
-    mAttnFovY = daNpc_Jagar_Param_c::m.field_0x50;
+    scale.set(mpHIO->m.common.scale, mpHIO->m.common.scale,
+            mpHIO->m.common.scale);
+    mCcStts.SetWeight(mpHIO->m.common.weight);
+    mCylH = mpHIO->m.common.height;
+    mWallR = mpHIO->m.common.width;
+    mAttnFovY = mpHIO->m.common.fov;
     mAcchCir.SetWallR(mWallR);
-    mAcchCir.SetWallH(daNpc_Jagar_Param_c::m.field_0x18);
-    mRealShadowSize = daNpc_Jagar_Param_c::m.field_0x0c;
-    mExpressionMorfFrame = daNpc_Jagar_Param_c::m.field_0x6c;
-    mMorfFrames = daNpc_Jagar_Param_c::m.field_0x44;
-    gravity = daNpc_Jagar_Param_c::m.field_0x04;
+    mAcchCir.SetWallH(mpHIO->m.common.knee_length);
+    mRealShadowSize = mpHIO->m.common.real_shadow_size;
+    mExpressionMorfFrame = mpHIO->m.common.expression_morf_frame;
+    mMorfFrames = mpHIO->m.common.morf_frame;
+    gravity = mpHIO->m.common.gravity;
 }
 
 /* 80A155E4-80A15714 000FC4 0130+00 1/0 0/0 0/0 .text            checkChangeEvt__13daNpc_Jagar_cFv */
@@ -775,9 +806,6 @@ void daNpc_Jagar_c::beforeMove() {
     }
 }
 
-/* 80A1AE2C-80A1AE30 000054 0004+00 1/1 0/0 0/0 .bss             l_HIO */
-static daNpc_Jagar_Param_c l_HIO;
-
 /* 80A15D68-80A1607C 001748 0314+00 1/0 0/0 0/0 .text            setAttnPos__13daNpc_Jagar_cFv */
 void daNpc_Jagar_c::setAttnPos() {
     cXyz cStack_3c(-10.0f, 10.0f, 0.0f);
@@ -785,11 +813,11 @@ void daNpc_Jagar_c::setAttnPos() {
     f32 dVar8 = cM_s2rad(mCurAngle.y - field_0xd7e.y);
     J3DModel* model = mpMorf[0]->getModel();
     mJntAnm.setParam(this, model, &cStack_3c, getBackboneJointNo(), getNeckJointNo(),
-        getHeadJointNo(), daNpc_Jagar_Param_c::m.field_0x24, daNpc_Jagar_Param_c::m.field_0x20,
-        daNpc_Jagar_Param_c::m.field_0x2c, daNpc_Jagar_Param_c::m.field_0x28,
-        daNpc_Jagar_Param_c::m.field_0x34, daNpc_Jagar_Param_c::m.field_0x30,
-        daNpc_Jagar_Param_c::m.field_0x3c, daNpc_Jagar_Param_c::m.field_0x38,
-        daNpc_Jagar_Param_c::m.field_0x40, dVar8, NULL);
+        getHeadJointNo(), mpHIO->m.common.body_angleX_min, mpHIO->m.common.body_angleX_max,
+        mpHIO->m.common.body_angleY_min, mpHIO->m.common.body_angleY_max,
+        mpHIO->m.common.head_angleX_min, mpHIO->m.common.head_angleX_max,
+        mpHIO->m.common.head_angleY_min, mpHIO->m.common.head_angleY_max,
+        mpHIO->m.common.neck_rotation_ratio, dVar8, NULL);
     mJntAnm.calcJntRad(0.2f, 1.0f, dVar8);
     setMtx();
     mDoMtx_stack_c::copy(mpMorf[0]->getModel()->getAnmMtx(getHeadJointNo()));
@@ -797,7 +825,7 @@ void daNpc_Jagar_c::setAttnPos() {
     mJntAnm.setEyeAngleX(eyePos, 1.0f, -0x2800);
     mJntAnm.setEyeAngleY(eyePos, mCurAngle.y, 1, 1.0f, 0);
     cStack_3c.set(0.0f, 0.0f, 10.0f);
-    cStack_3c.y = daNpc_Jagar_Param_c::m.field_0x00;
+    cStack_3c.y = mpHIO->m.common.attention_offset;
     if (field_0x1004 == 2) {
         cStack_3c.set(0.0f, 100.0f, -60.0f);
     }
@@ -1323,7 +1351,7 @@ int daNpc_Jagar_c::cutFindWolf(int i_cutIndex) {
             cLib_chaseS(&shape_angle.y, current.angle.y, 0x800);
             mCurAngle.y = shape_angle.y;
             field_0xd7e.y = mCurAngle.y;
-            cLib_chaseF(&speedF, daNpc_Jagar_Param_c::m.field_0x98, 0.5f);
+            cLib_chaseF(&speedF, mpHIO->m.running_speed, 0.5f);
             mAcch.SetWallNone();
             if (cLib_calcTimer(&mEventTimer) == 0) {
                 rv = 1;
@@ -1514,7 +1542,7 @@ int daNpc_Jagar_c::wait(void* param_1) {
             switch (mType) {
                 case TYPE_0:
                     daNpcT_offTmpBit(0x10); // dSv_event_tmp_flag_c::T_0015 - Ordon Village - Link came up the hill afte being called by Jaggle
-                    cStack_24.set(daNpc_Jagar_Param_c::m.field_0x54, 10.0f, daNpc_Jagar_Param_c::m.field_0x54);
+                    cStack_24.set(mpHIO->m.common.search_distance, 10.0f, mpHIO->m.common.search_distance);
                     if (chkPointInArea(daPy_getPlayerActorClass()->current.pos, current.pos,
                         cStack_24, 0)) {
                         if (daPy_getPlayerActorClass()->checkPlayerFly()) {
@@ -1545,9 +1573,9 @@ int daNpc_Jagar_c::wait(void* param_1) {
                 case TYPE_2:
                     if (!mHide) {
                         if (daNpcT_c::chkFindWolf(mCurAngle.y, daNpcT_getDistTableIdx(field_0xff0, field_0xff4),
-                                                  field_0xfec, daNpc_Jagar_Param_c::m.field_0x54, 180.0f,
-                                                  daNpc_Jagar_Param_c::m.field_0x58,
-                                                  daNpc_Jagar_Param_c::m.field_0x5c, 1)) {
+                                                  field_0xfec, mpHIO->m.common.search_distance, 180.0f,
+                                                  mpHIO->m.common.search_height,
+                                                  mpHIO->m.common.search_depth, 1)) {
                             mEvtNo = EVENT_FIND_WOLF_VER2;
                         }
                     }
@@ -1649,13 +1677,14 @@ int daNpc_Jagar_c::talkwithBou(void* param_0) {
             }
             // fallthrough
         case 2:
-            if (mHide != 0 && !daNpcT_chkEvtBit(0xD3) /* dSv_event_flag_c::F_0211 - Ordon Village - Successfully eavesdrop on Bo and Jaggle */) {
+            if (mHide != 0 && !daNpcT_chkEvtBit(0xD3)) {
+                /* dSv_event_flag_c::F_0211 - Ordon Village - Successfully eavesdrop on Bo and Jaggle */
                 f32 actor_dist = fopAcM_searchActorDistanceXZ(this, daPy_getPlayerActorClass());
-                if (daNpc_Jagar_Param_c::m.field_0x9c < actor_dist && field_0xe34 == 0) {
+                if (mpHIO->m.hidden_state_release_dist < actor_dist && field_0xe34 == 0) {
                     if (bo) {
                         bo->mHide = 0;
                     }
-        
+
                     mHide = 0;
                 }
             }

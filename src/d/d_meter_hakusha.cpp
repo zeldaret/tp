@@ -3,7 +3,7 @@
  * UI Epona Dash Spurs
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_meter_hakusha.h"
 #include "JSystem/J2DGraph/J2DGrafContext.h"
@@ -33,14 +33,14 @@ int dMeterHakusha_c::_create() {
 
     for (int i = 0; i < 6; i++) {
         mpHakushaPos[i] = new CPaneMgr(field_0x004, haku_tag[i], 0, NULL);
-        JUT_ASSERT(0, mpHakushaPos[i] != 0);
+        JUT_ASSERT(0, mpHakushaPos[i] != NULL);
     }
 
     mpHakushaParent = new CPaneMgr(field_0x004, 'hakunall', 0, NULL);
-    JUT_ASSERT(0, mpHakushaParent != 0);
+    JUT_ASSERT(0, mpHakushaParent != NULL);
 
     mpHakushaScreen = new J2DScreen();
-    JUT_ASSERT(0, mpHakushaScreen != 0);
+    JUT_ASSERT(0, mpHakushaScreen != NULL);
 
     bool fg = mpHakushaScreen->setPriority("zelda_game_image_hakusha_parts.blo", 0x20000,
                                            dComIfGp_getMain2DArchive());
@@ -48,10 +48,10 @@ int dMeterHakusha_c::_create() {
     dPaneClass_showNullPane(mpHakushaScreen);
 
     mpHakushaOn = new CPaneMgr(mpHakushaScreen, 'haku_n', 2, NULL);
-    JUT_ASSERT(0, mpHakushaOn != 0);
+    JUT_ASSERT(0, mpHakushaOn != NULL);
 
     mpHakushaOff = new CPaneMgr(mpHakushaScreen, 'haku_b_n', 2, NULL);
-    JUT_ASSERT(0, mpHakushaOff != 0);
+    JUT_ASSERT(0, mpHakushaOff != NULL);
 
     mpHakushaOn->setAlphaRate(0.0f);
     mpHakushaOff->setAlphaRate(0.0f);
@@ -69,7 +69,7 @@ int dMeterHakusha_c::_create() {
     mHakushaNum = dMeter2Info_getHorseLifeCount();
 
     mpButtonScreen = new J2DScreen();
-    JUT_ASSERT(0, mpButtonScreen != 0);
+    JUT_ASSERT(0, mpButtonScreen != NULL);
 
     fg = mpButtonScreen->setPriority("zelda_game_image_hakusha_a_btn.blo", 0x20000,
                                      dComIfGp_getMain2DArchive());
@@ -77,7 +77,7 @@ int dMeterHakusha_c::_create() {
     dPaneClass_showNullPane(mpButtonScreen);
 
     mpButtonA = new CPaneMgr(mpButtonScreen, 'abtn_n', 2, NULL);
-    JUT_ASSERT(0, mpButtonA != 0);
+    JUT_ASSERT(0, mpButtonA != NULL);
     mpButtonA->show();
     mpButtonA->setAlphaRate(0.0f);
 

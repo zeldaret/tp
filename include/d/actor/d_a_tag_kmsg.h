@@ -90,7 +90,7 @@ public:
     f32 getAttnPosOffset() {
         u32 attnPosOffset = (fopAcM_GetParam(this) & 0xff0000) >> 0x10;
         if (attnPosOffset == 0xff) {
-            return 1000000000.0f;
+            return G_CM3D_F_INF;
         } else {
             return attnPosOffset;
         }

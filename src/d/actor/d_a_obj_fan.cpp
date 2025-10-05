@@ -2,7 +2,7 @@
 // Fan
 //
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_fan.h"
 #include "d/actor/d_a_obj_tornado2.h"
@@ -136,7 +136,7 @@ static char* l_arcName[3] = {
 /* 80BE4FD4-80BE50EC 000414 0118+00 1/0 0/0 0/0 .text            CreateHeap__10daObjFan_cFv */
 int daObjFan_c::CreateHeap() {
     void* modelData = dComIfG_getObjectRes(l_arcName[field_0xad4], l_bmd[field_0xad4]);
-    JUT_ASSERT(352, modelData != 0);
+    JUT_ASSERT(352, modelData != NULL);
     mModel = mDoExt_J3DModel__create((J3DModelData*)modelData, 0x80000, 0x11000084);
     if (mModel == NULL) {
         return 0;

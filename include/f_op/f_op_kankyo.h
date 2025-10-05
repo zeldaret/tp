@@ -4,8 +4,8 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include "f_pc/f_pc_leaf.h"
 
-class kankyo_class : public leafdraw_class {
-public:
+struct kankyo_class {
+    /* 0x00 */ leafdraw_class base;
     /* 0xC0 */ int type;
     /* 0xC4 */ create_tag_class draw_tag;
     /* 0xD8 */ leafdraw_method_class* sub_method;

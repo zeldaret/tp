@@ -1,5 +1,6 @@
 #include <dolphin/gx.h>
 #include <dolphin/os.h>
+#include <string.h>
 
 #include "__gx.h"
 

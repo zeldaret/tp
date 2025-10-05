@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_ladder.h"
 #include "JSystem/J3DGraphAnimator/J3DModelData.h"
@@ -166,7 +166,7 @@ static inline const AttrType& attr_type(daObjLadder::Act_c::Type_e type) {
  */
 int daObjLadder::Act_c::CreateHeap() {
     J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(M_arcname, attr_type(mType).field_0x0);
-    JUT_ASSERT(382, model_data != 0);
+    JUT_ASSERT(382, model_data != NULL);
     mModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
     return mModel != NULL;
 }
@@ -186,7 +186,7 @@ int daObjLadder::Act_c::Create() {
     mDoMtx_stack_c::multVecZero(&gndVec);
     mDoMtx_stack_c::pop();
     mGndChk.SetPos(&gndVec);
-    mGndChk.SetActorPid(base.id);
+    mGndChk.SetActorPid(base.base.id);
     mHeight = dComIfG_Bgsp().GroundCross(&mGndChk);
     mInDemo = false;
     mEventIdx = dComIfGp_getEventManager().getEventIdx(this, prm_get_evId());

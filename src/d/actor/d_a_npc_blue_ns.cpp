@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_blue_ns.h"
 #include "d/d_cc_d.h"
@@ -263,27 +263,21 @@ SECTION_DATA static u8 l_bckGetParamList[108] = {
 };
 
 /* 8096CC2C-8096CC30 -00001 0004+00 4/5 0/0 0/0 .data            l_arcNames */
-SECTION_DATA static void* l_arcNames = (void*)&d_a_npc_blue_ns__stringBase0;
+static char* l_arcNames[1] = {"Blue_NS"};
 
 /* 8096CC30-8096CC4C -00001 001C+00 0/1 0/0 0/0 .data            l_evtNames */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtNames[7] = {
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_blue_ns__stringBase0) + 0x8),
-    (void*)(((char*)&d_a_npc_blue_ns__stringBase0) + 0x17),
-    (void*)(((char*)&d_a_npc_blue_ns__stringBase0) + 0x25),
-    (void*)(((char*)&d_a_npc_blue_ns__stringBase0) + 0x34),
-    (void*)(((char*)&d_a_npc_blue_ns__stringBase0) + 0x34),
-    (void*)(((char*)&d_a_npc_blue_ns__stringBase0) + 0x34),
+static char* l_evtNames[7] = {
+    NULL,
+    "CHG_YAMI_CHIBI",
+    "CHG_YAMI_DEBU",
+    "CHG_YAMI_NOPPO",
+    "CHG_YAMI_NOPPO_STOPPER",
+    "CHG_YAMI_NOPPO_STOPPER",
+    "CHG_YAMI_NOPPO_STOPPER",
 };
-#pragma pop
 
 /* 8096CC4C-8096CC50 -00001 0004+00 0/2 0/0 0/0 .data            l_myName */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_myName = (void*)&d_a_npc_blue_ns__stringBase0;
-#pragma pop
+static char* l_myName = "Blue_NS";
 
 /* 8096CC50-8096CC5C -00001 000C+00 0/1 0/0 0/0 .data            @3890 */
 #pragma push
@@ -674,7 +668,7 @@ void daNpcBlueNS_c::Execute() {
 /* 8096C9F0-8096C9F4 0000D0 0004+00 0/1 0/0 0/0 .rodata          @4392 */
 #pragma push
 #pragma force_active on
-SECTION_RODATA static f32 const lit_4392 = -1000000000.0f;
+SECTION_RODATA static f32 const lit_4392 = -G_CM3D_F_INF;
 COMPILER_STRIP_GATE(0x8096C9F0, &lit_4392);
 #pragma pop
 

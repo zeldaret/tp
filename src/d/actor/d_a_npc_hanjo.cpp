@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_hanjo.h"
 #include "d/actor/d_a_npc_tk.h"
@@ -231,7 +231,7 @@ int daNpc_Hanjo_c::create() {
         mAcch.CrrPos(dComIfG_Bgsp());
         mGndChk = mAcch.m_gnd;
         mGroundH = mAcch.GetGroundH();
-        if (mGroundH != -1e9f) {
+        if (mGroundH != -G_CM3D_F_INF) {
             setEnvTevColor();
             setRoomNo();
         }
@@ -1170,7 +1170,7 @@ int daNpc_Hanjo_c::cutConversation(int param_1) {
             }
             if (iVar6 == 1) {
                 fopAc_ac_c* actor_p =field_0x10c8[0].getActorP();
-                JUT_ASSERT(2650, 0 != actor_p);
+                JUT_ASSERT(2650, NULL != actor_p);
                 dComIfGp_getEvent().setPt2(actor_p);
             }
             break;
@@ -1232,7 +1232,7 @@ int daNpc_Hanjo_c::cutPursuitBee(int param_1) {
         case 0:
             setAngle(home.angle.y);
             actor_p = field_0x10c8[0].getActorP();
-            JUT_ASSERT(2748, 0 != actor_p);
+            JUT_ASSERT(2748, NULL != actor_p);
             dComIfGp_getEvent().setPt2(actor_p);
             for (int i = 0; i < 4; i++) {
                 if (mStones[i].chkActive()) {
@@ -1406,7 +1406,7 @@ int daNpc_Hanjo_c::cutAppearHawker(int param_1) {
         case 6: {
             mEventTimer = iVar7;
             fopAc_ac_c* actor_p = field_0x10c8[2].getActorP();
-            JUT_ASSERT(3005, 0 != actor_p);
+            JUT_ASSERT(3005, NULL != actor_p);
             ((daNPC_TK_c*)actor_p)->setAttackLink();
             field_0x1722 = 1;
             break;
@@ -1416,7 +1416,7 @@ int daNpc_Hanjo_c::cutAppearHawker(int param_1) {
                                             0);
             dComIfGs_onSaveSwitch(0x2b);
             actor_p = field_0x10c8[2].getActorP();
-            JUT_ASSERT(3014, 0 != actor_p);
+            JUT_ASSERT(3014, NULL != actor_p);
             ((daNPC_TK_c*)actor_p)->setQuickHanjoHand();
             field_0x1722 = 1;
             daNpcT_onTmpBit(0x27);
@@ -1448,7 +1448,7 @@ int daNpc_Hanjo_c::cutAppearHawker(int param_1) {
             if (cLib_calcTimer(&mEventTimer) == 0) {
                 mMotionSeqMngr.setNo(12, 8.0f, 0, 0);
                 actor_p = field_0x10c8[2].getActorP();
-                JUT_ASSERT(3068, 0 != actor_p);
+                JUT_ASSERT(3068, NULL != actor_p);
                 ((daNPC_TK_c*)actor_p)->setHanjoHand();
             }
         } else if (mMotionSeqMngr.checkEndSequence()) {
@@ -1461,7 +1461,7 @@ int daNpc_Hanjo_c::cutAppearHawker(int param_1) {
     case 4:
         mJntAnm.lookNone(0);
         actor_p = field_0x10c8[2].getActorP();
-        JUT_ASSERT(3090, 0 != actor_p);
+        JUT_ASSERT(3090, NULL != actor_p);
         if (((daNPC_TK_c*)actor_p)->isHanjoHand()) {
             rv = 1;
         }

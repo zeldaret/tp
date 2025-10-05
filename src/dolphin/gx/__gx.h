@@ -2,6 +2,7 @@
 #define _DOLPHIN_GX_INTERNAL_H_
 
 #include <dolphin/gx.h>
+#include "global.h" // IWYU pragma: export
 
 #ifdef __cplusplus
 extern "C" {

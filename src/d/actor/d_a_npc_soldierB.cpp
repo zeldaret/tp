@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_soldierB.h"
 #include "dol2asm.h"
@@ -272,23 +272,17 @@ SECTION_DATA static void* l_loadRes_list[2] = {
 };
 
 /* 80AF5C8C-80AF5C90 -00001 0004+00 4/5 0/0 0/0 .data            l_resNames */
-SECTION_DATA static void* l_resNames = (void*)&d_a_npc_soldierB__stringBase0;
+static char* l_resNames[1] = {"chtSolB"};
 
 /* 80AF5C90-80AF5C94 -00001 0004+00 0/1 0/0 0/0 .data            l_myName */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_myName = (void*)&d_a_npc_soldierB__stringBase0;
-#pragma pop
+static char* l_myName = "chtSolB";
 
 /* 80AF5C94-80AF5C9C -00001 0008+00 0/1 0/0 0/0 .data            mEvtCutNameList__16daNpc_SoldierB_c
  */
-#pragma push
-#pragma force_active on
-SECTION_DATA void* daNpc_SoldierB_c::mEvtCutNameList[2] = {
-    (void*)(((char*)&d_a_npc_soldierB__stringBase0) + 0x8),
-    (void*)(((char*)&d_a_npc_soldierB__stringBase0) + 0x9),
+char* daNpc_SoldierB_c::mEvtCutNameList[2] = {
+    "",
+    "LISTEN_LAKE",
 };
-#pragma pop
 
 /* 80AF5C9C-80AF5CA8 -00001 000C+00 1/1 0/0 0/0 .data            @4024 */
 SECTION_DATA static void* lit_4024[3] = {

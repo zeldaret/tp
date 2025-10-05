@@ -10,18 +10,6 @@
 #include "global.h"
 #include <stdint.h>
 
-//
-// Forward References:
-//
-
-//
-// External References:
-//
-
-//
-// Declarations:
-//
-
 /* 802E8730-802E87F8 2E3070 00C8+00 1/1 0/0 0/0 .text            fetch32byte__13JUTDirectFileFv */
 int JUTDirectFile::fetch32byte() {
 	mToRead = mLength - ALIGN_PREV(mPos, DVD_MIN_TRANSFER_SIZE);

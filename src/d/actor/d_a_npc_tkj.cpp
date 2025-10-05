@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_tkj.h"
 
@@ -204,7 +204,7 @@ int daNpcTkj_c::CreateHeap() {
     int bmd_index = l_bmdData[temp_r23][0];
 
     J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(arcname, bmd_index);
-    JUT_ASSERT(446, 0 != mdlData_p);
+    JUT_ASSERT(446, NULL != mdlData_p);
 
     u32 diff_flags = J3D_DIFF_FLAG(FALSE, FALSE, TRUE, 8, 2, FALSE, 2, 0, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE);
     mpMorf[0] = new mDoExt_McaMorfSO(mdlData_p, NULL, NULL, NULL, -1, 1.0f, 0, -1, &mSound, J3DMdlFlag_DifferedDLBuffer, diff_flags);
@@ -584,7 +584,7 @@ int daNpcTkj_c::cutLv7Start(int i_staffId) {
             fopAcM_delete(this);
             break;
         default:
-            JUT_ASSERT(1188, 0);
+            JUT_ASSERT(1188, FALSE);
             break;
         }
     }
@@ -628,7 +628,7 @@ int daNpcTkj_c::cutLv7Start(int i_staffId) {
         rt = 1;
         break;
     default:
-        JUT_ASSERT(1225, 0);
+        JUT_ASSERT(1225, FALSE);
         break; 
     }
 

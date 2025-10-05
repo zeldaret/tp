@@ -3,7 +3,7 @@
  * Tag - Midna Hint
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_tag_mhint.h"
 #include "d/actor/d_a_midna.h"

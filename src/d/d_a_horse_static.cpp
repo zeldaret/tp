@@ -3,7 +3,7 @@
 // Translation Unit: d/actor/d_a_horse_static
 //
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_a_horse_static.h"
 #include "d/actor/d_a_e_wb.h"

@@ -1,4 +1,4 @@
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_menu_map_common.h"
 #include "d/d_com_inf_game.h"
@@ -93,211 +93,211 @@ void dMenuMapCommon_c::initiate(JKRArchive* i_archive) {
     ResTIMG* mp_image;
 
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_boss_s_ci8_16_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_BOSS_e] = new J2DPicture(mp_image);
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_boss_ci8_32_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_BOSS_e]->append(mp_image, 0.0f);
     mPictures[ICON_BOSS_e]->setBasePosition(J2DBasePosition_4);
     mPictures[ICON_BOSS_e]->setInfluencedAlpha(false, false);
 
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_boss_s_ci8_16_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_BOSS_GANON_e] = new J2DPicture(mp_image);
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_boss_ci8_32_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_BOSS_GANON_e]->append(mp_image, 0.0f);
     mPictures[ICON_BOSS_GANON_e]->setBasePosition(J2DBasePosition_4);
     mPictures[ICON_BOSS_GANON_e]->setInfluencedAlpha(false, false);
 
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "im_map_icon_enter_ci8_24_02.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_DUNGEON_ENTER_e] = new J2DPicture(mp_image);
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "im_map_icon_enter_ci8_02.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_DUNGEON_ENTER_e]->append(mp_image, 0.0f);
     mPictures[ICON_DUNGEON_ENTER_e]->setBasePosition(J2DBasePosition_4);
     mPictures[ICON_DUNGEON_ENTER_e]->setInfluencedAlpha(false, false);
 
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_enter_s_ci8_24_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_LINK_ENTER_e] = new J2DPicture(mp_image);
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_enter_ci8_32_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_LINK_ENTER_e]->append(mp_image, 0.0f);
     mPictures[ICON_LINK_ENTER_e]->setBasePosition(J2DBasePosition_4);
     mPictures[ICON_LINK_ENTER_e]->setInfluencedAlpha(false, false);
 
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "im_map_icon_warp_24_ci8_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_LV8_WARP_e] = new J2DPicture(mp_image);
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "im_map_icon_warp_32_ci8_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_LV8_WARP_e]->append(mp_image, 0.0f);
     mPictures[ICON_LV8_WARP_e]->setBasePosition(J2DBasePosition_4);
     mPictures[ICON_LV8_WARP_e]->setInfluencedAlpha(false, false);
 
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_box_s_ci8_24_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_TREASURE_CHEST_e] = new J2DPicture(mp_image);
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_box_ci8_32_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_TREASURE_CHEST_e]->append(mp_image, 0.0f);
     mPictures[ICON_TREASURE_CHEST_e]->setBasePosition(J2DBasePosition_4);
     mPictures[ICON_TREASURE_CHEST_e]->setInfluencedAlpha(false, false);
 
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_s_size_circle_ci4_gray_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_KEY_e] = new J2DPicture(mp_image);
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_key_ci8_32_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_KEY_e]->append(mp_image, 0.0f);
     mPictures[ICON_KEY_e]->setBasePosition(J2DBasePosition_4);
     mPictures[ICON_KEY_e]->setInfluencedAlpha(false, false);
 
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_s_size_circle_ci4_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_YETO_e] = new J2DPicture(mp_image);
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "st_yuki_M.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_YETO_e]->append(mp_image, 0.0f);
     mPictures[ICON_YETO_e]->setBasePosition(J2DBasePosition_4);
     mPictures[ICON_YETO_e]->setInfluencedAlpha(false, false);
 
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_s_size_circle_ci4_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_YETA_e] = new J2DPicture(mp_image);
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "st_yuki_W.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_YETA_e]->append(mp_image, 0.0f);
     mPictures[ICON_YETA_e]->setBasePosition(J2DBasePosition_4);
     mPictures[ICON_YETA_e]->setInfluencedAlpha(false, false);
 
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_s_size_circle_ci4_yellow_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_GOLD_WOLF_e] = new J2DPicture(mp_image);
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "st_gold_wolf.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_GOLD_WOLF_e]->append(mp_image, 0.0f);
     mPictures[ICON_GOLD_WOLF_e]->setBasePosition(J2DBasePosition_4);
     mPictures[ICON_GOLD_WOLF_e]->setInfluencedAlpha(false, false);
 
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_s_size_circle_ci4_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_MONKEY_e] = new J2DPicture(mp_image);
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_monkey_ci8_32_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_MONKEY_e]->append(mp_image, 0.0f);
     mPictures[ICON_MONKEY_e]->setBasePosition(J2DBasePosition_4);
     mPictures[ICON_MONKEY_e]->setInfluencedAlpha(false, false);
 
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_s_size_circle_ci4_blue_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_OOCCOO_e] = new J2DPicture(mp_image);
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "ni_obacyan.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_OOCCOO_e]->append(mp_image, 0.0f);
     mPictures[ICON_OOCCOO_e]->setBasePosition(J2DBasePosition_4);
     mPictures[ICON_OOCCOO_e]->setInfluencedAlpha(false, false);
 
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_s_size_circle_ci4_blue_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_OOCCOO_JR_e] = new J2DPicture(mp_image);
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "ni_obacyan.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_OOCCOO_JR_e]->append(mp_image, 0.0f);
     mPictures[ICON_OOCCOO_JR_e]->setBasePosition(J2DBasePosition_4);
     mPictures[ICON_OOCCOO_JR_e]->setInfluencedAlpha(false, false);
 
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_s_size_circle_ci4_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[8] = new J2DPicture(mp_image);
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "im_zelda_map_icon_copy_stone_statue_snup_try_00_04.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[8]->append(mp_image, 0.0f);
     mPictures[8]->setBasePosition(J2DBasePosition_4);
     mPictures[8]->setInfluencedAlpha(false, false);
 
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_link_s_ci8_24_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_LINK_e] = new J2DPicture(mp_image);
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_link_ci8_32_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_LINK_e]->append(mp_image, 0.0f);
     mPictures[ICON_LINK_e]->setBasePosition(J2DBasePosition_4);
     mPictures[ICON_LINK_e]->setInfluencedAlpha(false, false);
 
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_penant_s_ci8_24_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_DUNGEON_WARP_e] = new J2DPicture(mp_image);
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_penant_ci8_32_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_DUNGEON_WARP_e]->append(mp_image, 0.0f);
     mPictures[ICON_DUNGEON_WARP_e]->setBasePosition(J2DBasePosition_4);
     mPictures[ICON_DUNGEON_WARP_e]->setInfluencedAlpha(false, false);
 
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "im_black_32.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_LIGHT_DROP_e] = new J2DPicture(mp_image);
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "im_black_32.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_LIGHT_DROP_e]->append(mp_image, 0.0f);
     mPictures[ICON_LIGHT_DROP_e]->setBasePosition(J2DBasePosition_4);
     mPictures[ICON_LIGHT_DROP_e]->setInfluencedAlpha(false, false);
     mPictures[ICON_LIGHT_DROP_e]->setBlackWhite(JUtility::TColor(0, 0, 0, 0), JUtility::TColor(0, 0, 0, 255));
 
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "im_hikari_no_shizuku_try_10_00_24x24.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mLightDropPic = new J2DPicture(mp_image);
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "im_hikari_no_shizuku_try_10_00_24x24.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mLightDropPic->append(mp_image, 0.0f);
     mLightDropPic->setBasePosition(J2DBasePosition_4);
     mLightDropPic->setInfluencedAlpha(false, false);
     mLightDropPic->setBlackWhite(JUtility::TColor(0, 240, 170, 0), JUtility::TColor(255, 255, 230, 255));
 
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_s_size_circle_ci4_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_LIGHT_BALL_e] = new J2DPicture(mp_image);
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "im_zelda_map_icon_hikari_ball_03.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_LIGHT_BALL_e]->append(mp_image, 0.0f);
     mPictures[ICON_LIGHT_BALL_e]->setBasePosition(J2DBasePosition_4);
     mPictures[ICON_LIGHT_BALL_e]->setInfluencedAlpha(false, false);
 
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_s_size_circle_ci4_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_CANNON_BALL_e] = new J2DPicture(mp_image);
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "im_map_icon_iron_ball_ci8_32_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_CANNON_BALL_e]->append(mp_image, 0.0f);
     mPictures[ICON_CANNON_BALL_e]->setBasePosition(J2DBasePosition_4);
     mPictures[ICON_CANNON_BALL_e]->setInfluencedAlpha(false, false);
 
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "tt_map_icon_s_size_circle_ci4_00.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_COACH_e] = new J2DPicture(mp_image);
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "im_map_icon_basha_ci8.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_COACH_e]->append(mp_image, 0.0f);
     mPictures[ICON_COACH_e]->setBasePosition(J2DBasePosition_4);
     mPictures[ICON_COACH_e]->setInfluencedAlpha(false, false);
 
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "im_nijumaru_40x40_ind_01.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_DESTINATION_e] = new J2DPicture(mp_image);
     mp_image = (ResTIMG*)i_archive->getResource('TIMG', "im_nijumaru_40x40_ind_01.bti");
-    JUT_ASSERT(0, mp_image != 0);
+    JUT_ASSERT(0, mp_image != NULL);
     mPictures[ICON_DESTINATION_e]->append(mp_image, 0.0f);
     mPictures[ICON_DESTINATION_e]->setBasePosition(J2DBasePosition_4);
     mPictures[ICON_DESTINATION_e]->setInfluencedAlpha(false, false);
 
     mpDrawCursor = new dSelect_cursor_c(4, 1.0f, NULL);
-    JUT_ASSERT(0, mpDrawCursor != 0);
+    JUT_ASSERT(0, mpDrawCursor != NULL);
 
     if (i_archive == dComIfGp_getFmapResArchive()) {
         mpPortalIcon = new dSelect_cursor_c(5, 1.0f, i_archive);
-        JUT_ASSERT(0, mpPortalIcon != 0);
+        JUT_ASSERT(0, mpPortalIcon != NULL);
     }
 }
 

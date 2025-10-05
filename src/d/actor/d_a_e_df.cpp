@@ -3,7 +3,7 @@
  *
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_df.h"
 #include "d/actor/d_a_obj_carry.h"
@@ -39,7 +39,7 @@ daE_DF_HIO_c::daE_DF_HIO_c() {
 /* 806A7710-806A7808 000110 00F8+00 1/1 0/0 0/0 .text            CreateHeap__8daE_DF_cFv */
 int daE_DF_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_DF", 0xD);
-    JUT_ASSERT(161, modelData != 0);
+    JUT_ASSERT(161, modelData != NULL);
 
     mpMorfSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                     (J3DAnmTransform*)dComIfG_getObjectRes("E_DF", 10), 2, 1.0f, 0,

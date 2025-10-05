@@ -81,7 +81,7 @@ public:
     bool getGameStartFlag() { return mGameStartFlag; }
     void setPotBreakFlag() { mPotBreakFlag = true; }
 
-    static void* mCutNameList[8];
+    static char* mCutNameList[8];
     static u8 mCutList[96];
 
 private:

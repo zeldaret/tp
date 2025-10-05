@@ -3,7 +3,7 @@
  * Boss Zant Lava Island
  */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_b_zant_sima.h"
 #include "SSystem/SComponent/c_math.h"

@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_pdtile.h"
 #include "SSystem/SComponent/c_math.h"
@@ -199,7 +199,7 @@ void daObjPDtile_c::rideActor(fopAc_ac_c* param_1) {
 /* 80CAB1F0-80CAB258 0005B0 0068+00 1/0 0/0 0/0 .text            CreateHeap__13daObjPDtile_cFv */
 int daObjPDtile_c::CreateHeap() {
     J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(mArcName, mBmdId);
-    JUT_ASSERT(557, model_data != 0);
+    JUT_ASSERT(557, model_data != NULL);
     mModel = mDoExt_J3DModel__create(model_data, 0x80000, 0x11000084);
     return mModel != 0 ? TRUE : FALSE;
 }
@@ -443,7 +443,7 @@ int daObjPDtile_c::Execute(Mtx** param_1) {
                                   -1.0f, 0);
         }
         dBgS_ObjGndChk adStack_e4;
-        adStack_e4.SetActorPid(base.id);
+        adStack_e4.SetActorPid(base.base.id);
         adStack_e4.SetPos(&current.pos);
         dComIfG_Bgsp().GroundCross(&adStack_e4);
         if (home.pos.y - current.pos.y < -3000.0f) {

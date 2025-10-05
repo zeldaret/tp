@@ -3,7 +3,7 @@
  * 
 */
 
-#include "d/dolzel_rel.h"
+#include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_npc_gro.h"
 #include "dol2asm.h"
@@ -364,37 +364,28 @@ SECTION_DATA static u8 l_loadObj_list[16] = {
 #pragma pop
 
 /* 809DF4A4-809DF4B0 -00001 000C+00 5/9 0/0 0/0 .data            l_resNames */
-SECTION_DATA static void* l_resNames[3] = {
-    (void*)&d_a_npc_gro__stringBase0,
-    (void*)(((char*)&d_a_npc_gro__stringBase0) + 0x4),
-    (void*)(((char*)&d_a_npc_gro__stringBase0) + 0x9),
+static char* l_resNames[3] = {
+    "grO",
+    "grO1",
+    "grO1D",
 };
 
 /* 809DF4B0-809DF4BC -00001 000C+00 0/2 0/0 0/0 .data            l_evtNames */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_evtNames[3] = {
-    (void*)NULL,
-    (void*)(((char*)&d_a_npc_gro__stringBase0) + 0xF),
-    (void*)(((char*)&d_a_npc_gro__stringBase0) + 0x1C),
+static char* l_evtNames[3] = {
+    NULL,
+    "BOKIN_FINISH",
+    "PUSHOUT",
 };
-#pragma pop
 
 /* 809DF4BC-809DF4C0 -00001 0004+00 0/1 0/0 0/0 .data            l_myName */
-#pragma push
-#pragma force_active on
-SECTION_DATA static void* l_myName = (void*)&d_a_npc_gro__stringBase0;
-#pragma pop
+static char* l_myName = "grO";
 
 /* 809DF4C0-809DF4CC -00001 000C+00 0/1 0/0 0/0 .data            mEvtCutNameList__11daNpc_grO_c */
-#pragma push
-#pragma force_active on
-SECTION_DATA void* daNpc_grO_c::mEvtCutNameList[3] = {
-    (void*)(((char*)&d_a_npc_gro__stringBase0) + 0x24),
-    (void*)(((char*)&d_a_npc_gro__stringBase0) + 0xF),
-    (void*)(((char*)&d_a_npc_gro__stringBase0) + 0x1C),
+char* daNpc_grO_c::mEvtCutNameList[3] = {
+    "",
+    "BOKIN_FINISH",
+    "PUSHOUT",
 };
-#pragma pop
 
 /* 809DF4CC-809DF4D8 -00001 000C+00 0/1 0/0 0/0 .data            @4096 */
 #pragma push

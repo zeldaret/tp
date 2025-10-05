@@ -66,7 +66,7 @@ public:
         cXyz sp2C;
         cXyz sp20;
 
-        JUT_ASSERT(164, 0 != arrow_p);
+        JUT_ASSERT(164, NULL != arrow_p);
 
         if (field_0xa38 != 0) {
             return 0;

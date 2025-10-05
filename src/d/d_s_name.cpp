@@ -3,7 +3,7 @@
  * File Select Scene
 */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_s_name.h"
 #include "JSystem/JKernel/JKRExpHeap.h"

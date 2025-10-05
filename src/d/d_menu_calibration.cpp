@@ -3,7 +3,7 @@
  * Wii Remote Calibration Option Menu
  */
 
-#include "d/dolzel.h"
+#include "d/dolzel.h" // IWYU pragma: keep
 
 #include "d/d_menu_calibration.h"
 #include "d/d_com_inf_game.h"
