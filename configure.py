@@ -53,7 +53,7 @@ DISABLED_VERSIONS = [
     7,  # Wii KOR
     8,  # Wii USA Kiosk Demo
     9,  # Wii PAL Kiosk Demo
-    10, # Shield
+    #10, # Shield
     11, # Shield Production
 ]
 
@@ -389,7 +389,7 @@ def MWVersion(cfg_version: str | None) -> str:
             # Wii/1.0RC1 is the earliest Wii one we have at this time but it doesn't have the right codegen from GC/3.0+
             # (GC 3.0a3 - Dec 2005 | GC 3.0a5.2 - Aug 2006 | Wii 1.0RC - May 2008)
             return "Wii/1.0RC1"
-        case "ShieldD":
+        case "ShieldD" | "Shield":
             return "Wii/1.0"
         case _:
             return "GC/2.7"

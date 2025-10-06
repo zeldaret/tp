@@ -1,0 +1,16 @@
+Sections:
+	.text       type:code align:16
+	.ctors      type:rodata align:4
+	.dtors      type:rodata align:4
+	.rodata     type:rodata align:8
+	.data       type:data align:8
+	.bss        type:bss align:8
+
+executor.o:
+	.text       start:0x00000000 end:0x00000070
+
+d_a_e_sf.o:
+	.text       start:0x00000070 end:0x00004A78
+	.rodata     start:0x00000000 end:0x00000130
+	.data       start:0x00000000 end:0x00000408
+	.bss        start:0x00000000 end:0x00000034
