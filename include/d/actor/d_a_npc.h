@@ -1209,6 +1209,8 @@ public:
     void setIntFlowNodeNo(int i_flowNodeNo) { mFlowNodeNo = i_flowNodeNo; }
     void setCutType(int i_cutType) { mCutType = i_cutType; }
     void onInterrupt(u8 param_0) { field_0x9ef = param_0; }
+    void onHide() { mHide = true; }
+    void offHide() { mHide = false; }
 
     static dCcD_SrcGObjInf const mCcDObjInfo;
     static dCcD_SrcCyl mCcDCyl;
