@@ -15,6 +15,10 @@
 #include "f_op/f_op_scene_mng.h"
 #include "stdio.h"
 
+#if VERSION == VERSION_SHIELD
+#include "lingcod/lingcod.h"
+#endif
+
 /* 80032918-80032958 02D258 0040+00 4/4 0/0 0/0 .text            dSv_item_rename__FUc */
 static u8 dSv_item_rename(u8 i_itemNo) {
     switch (i_itemNo) {
@@ -1886,6 +1890,10 @@ int dSv_info_c::memory_to_card(char* card_ptr, int dataNum) {
     bool lantern_not_recovered = false;
     bool tmp_lantern_check = false;
     u16 current_lantern_oil = 0;
+
+    #if VERSION == VERSION_SHIELD
+    lingcod_revalidateNVSI();
+    #endif
     
     // If haven't gotten then lantern back from the monkey
     if (!dComIfGs_isEventBit((u16)dSv_event_flag_c::saveBitLabels[226])) {

@@ -53,7 +53,7 @@ DISABLED_VERSIONS = [
     7,  # Wii KOR
     8,  # Wii USA Kiosk Demo
     9,  # Wii PAL Kiosk Demo
-    10, # Shield
+    #10, # Shield
     11, # Shield Production
 ]
 
@@ -259,7 +259,7 @@ cflags_base = [
 
 if config.version == "ShieldD":
     cflags_base.extend(["-O0", "-inline off", "-RTTI on", "-str reuse", "-enc SJIS", "-DDEBUG=1"])
-elif config.version == "RZDE01_00" or config.version == "RZDE01_02":
+elif config.version == "RZDE01_00" or config.version == "RZDE01_02" or config.version == "Shield":
     cflags_base.extend(["-O4,p", "-inline auto", "-ipa file", "-RTTI on", "-str reuse", "-enc SJIS"])
 else:
     cflags_base.extend(["-O4,p", "-inline auto", "-RTTI off", "-str reuse", "-multibyte"])
@@ -350,7 +350,7 @@ cflags_framework = [
 ]
 
 if config.version != "ShieldD":
-    if config.version == "RZDE01_00" or config.version == "RZDE01_02":
+    if config.version == "RZDE01_00" or config.version == "RZDE01_02" or config.version == "Shield":
         # TODO: whats the correct inlining flag? deferred looks better in some places, others not. something else wrong?
         cflags_framework.extend(["-inline noauto", "-O4,s", "-sym on"])
     else:
@@ -390,6 +390,8 @@ def MWVersion(cfg_version: str | None) -> str:
             # (GC 3.0a3 - Dec 2005 | GC 3.0a5.2 - Aug 2006 | Wii 1.0RC - May 2008)
             return "Wii/1.0RC1"
         case "ShieldD":
+            return "Wii/1.0"
+        case "Shield":
             return "Wii/1.0"
         case _:
             return "GC/2.7"
@@ -1509,6 +1511,16 @@ config.libs = [
         "host": False,
         "objects": [
             Object(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "odenotstub/odenotstub.c"),
+        ],
+    },
+    {
+        "lib": "lingcod",
+        "mw_version": MWVersion(config.version),
+        "cflags": cflags_framework,
+        "progress_category": "third_party",
+        "host": False,
+        "objects": [
+            Object(NonMatching, "lingcod/LingcodPatch.c"),
         ],
     },
 
