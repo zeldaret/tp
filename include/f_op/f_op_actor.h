@@ -109,26 +109,26 @@ enum fopAc_attention_type {
 };
 
 enum fopAc_AttentionFlag_e {
-    fopAc_AttnFlag_LOCK_e   = (1 << fopAc_attn_LOCK_e),
-    fopAc_AttnFlag_TALK_e   = (1 << fopAc_attn_TALK_e),
-    fopAc_AttnFlag_BATTLE_e = (1 << fopAc_attn_BATTLE_e),
+    /* 0x00000001 */ fopAc_AttnFlag_LOCK_e   = (1 << fopAc_attn_LOCK_e),
+    /* 0x00000002 */ fopAc_AttnFlag_TALK_e   = (1 << fopAc_attn_TALK_e),
+    /* 0x00000004 */ fopAc_AttnFlag_BATTLE_e = (1 << fopAc_attn_BATTLE_e),
 
-    fopAc_AttnFlag_SPEAK_e  = (1 << fopAc_attn_SPEAK_e),
-    fopAc_AttnFlag_CARRY_e  = (1 << fopAc_attn_CARRY_e),
-    fopAc_AttnFlag_DOOR_e   = (1 << fopAc_attn_DOOR_e),
-    fopAc_AttnFlag_JUEL_e   = (1 << fopAc_attn_JUEL_e),
-    fopAc_AttnFlag_ETC_e    = (1 << fopAc_attn_ETC_e),
+    /* 0x00000008 */ fopAc_AttnFlag_SPEAK_e  = (1 << fopAc_attn_SPEAK_e),
+    /* 0x00000010 */ fopAc_AttnFlag_CARRY_e  = (1 << fopAc_attn_CARRY_e),
+    /* 0x00000020 */ fopAc_AttnFlag_DOOR_e   = (1 << fopAc_attn_DOOR_e),
+    /* 0x00000040 */ fopAc_AttnFlag_JUEL_e   = (1 << fopAc_attn_JUEL_e),
+    /* 0x00000080 */ fopAc_AttnFlag_ETC_e    = (1 << fopAc_attn_ETC_e),
 
-    fopAc_AttnFlag_CHECK_e  = (1 << fopAc_attn_CHECK_e),
+    /* 0x00000100 */fopAc_AttnFlag_CHECK_e  = (1 << fopAc_attn_CHECK_e),
 
-    fopAc_AttnFlag_UNK_0x200000   = 0x200000,
-    fopAc_AttnFlag_UNK_0x400000   = 0x400000,
-    fopAc_AttnFlag_UNK_0x800000   = 0x800000,
-    fopAc_AttnFlag_NOTALK_e       = 0x2000000,
-    fopAc_AttnFlag_ENEMY_NOLOCK_e = 0x4000000,
-    fopAc_AttnFlag_UNK_0x8000000  = 0x8000000,
-    fopAc_AttnFlag_TALKCHECK_e    = 0x20000000,
-    fopAc_AttnFlag_TALKREAD_e     = 0x40000000,
+    /* 0x00200000 */ fopAc_AttnFlag_UNK_0x200000   = 0x200000,
+    /* 0x00400000 */ fopAc_AttnFlag_UNK_0x400000   = 0x400000,
+    /* 0x00800000 */ fopAc_AttnFlag_UNK_0x800000   = 0x800000,
+    /* 0x02000000 */ fopAc_AttnFlag_NOTALK_e       = 0x2000000,
+    /* 0x04000000 */ fopAc_AttnFlag_ENEMY_NOLOCK_e = 0x4000000,
+    /* 0x08000000 */ fopAc_AttnFlag_UNK_0x8000000  = 0x8000000,
+    /* 0x20000000 */ fopAc_AttnFlag_TALKCHECK_e    = 0x20000000,
+    /* 0x40000000 */ fopAc_AttnFlag_TALKREAD_e     = 0x40000000,
 };
 
 #define fopAc_AttnFlags_LOCK   (fopAc_AttnFlag_LOCK_e | fopAc_AttnFlag_TALK_e | fopAc_AttnFlag_BATTLE_e)
