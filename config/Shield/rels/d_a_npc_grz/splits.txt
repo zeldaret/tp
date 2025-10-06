@@ -6,10 +6,10 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:8
 
-executor.o:
+REL/executor.c:
 	.text       start:0x00000000 end:0x00000070
 
-d_a_npc_grz.o:
+d/actor/d_a_npc_grz.cpp:
 	.text       start:0x00000070 end:0x00005CE0
 	.rodata     start:0x00000000 end:0x00000304
 	.data       start:0x00000000 end:0x00000868

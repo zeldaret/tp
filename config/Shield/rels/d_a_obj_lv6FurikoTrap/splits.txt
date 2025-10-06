@@ -6,10 +6,10 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:8
 
-executor.o:
+REL/executor.c:
 	.text       start:0x00000000 end:0x00000070
 
-d_a_obj_lv6FurikoTrap.o:
+d/actor/d_a_obj_lv6FurikoTrap.cpp:
 	.text       start:0x00000070 end:0x00000A78
 	.rodata     start:0x00000000 end:0x00000074
 	.data       start:0x00000000 end:0x00000110

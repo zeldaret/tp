@@ -83,7 +83,7 @@ public:
     /* 802AE5B0 */ bool isSoundCulling(JAISoundID);
     /* 802B9AC4 */ void resetCrowdSize() { mCrowdSize = 0; }
 
-#if PLATFORM_WII
+#if PLATFORM_WII || PLATFORM_SHIELD
     void homeMenuSeCallback(s32);    
 #endif
 

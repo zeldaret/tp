@@ -5,10 +5,10 @@ Sections:
 	.rodata     type:rodata align:8
 	.data       type:data align:8
 
-executor.o:
+REL/executor.c:
 	.text       start:0x00000000 end:0x00000070
 
-d_a_kytag16.o:
+d/actor/d_a_kytag16.cpp:
 	.text       start:0x00000070 end:0x00000550
 	.rodata     start:0x00000000 end:0x00000060
 	.data       start:0x00000000 end:0x00000078

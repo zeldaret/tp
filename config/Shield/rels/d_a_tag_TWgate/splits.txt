@@ -5,10 +5,10 @@ Sections:
 	.rodata     type:rodata align:8
 	.data       type:data align:8
 
-executor.o:
+REL/executor.c:
 	.text       start:0x00000000 end:0x00000070
 
-d_a_tag_TWgate.o:
+d/actor/d_a_tag_TWgate.cpp:
 	.text       start:0x00000070 end:0x000030D8
 	.rodata     start:0x00000000 end:0x000001DC
 	.data       start:0x00000000 end:0x000001D8

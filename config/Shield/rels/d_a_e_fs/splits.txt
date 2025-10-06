@@ -6,10 +6,10 @@ Sections:
 	.data       type:data align:8
 	.bss        type:bss align:8
 
-executor.o:
+REL/executor.c:
 	.text       start:0x00000000 end:0x00000070
 
-d_a_e_fs.o:
+d/actor/d_a_e_fs.cpp:
 	.text       start:0x00000070 end:0x000025AC
 	.rodata     start:0x00000000 end:0x000000B8
 	.data       start:0x00000000 end:0x00000358

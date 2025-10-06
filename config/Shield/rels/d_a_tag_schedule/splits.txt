@@ -4,9 +4,9 @@ Sections:
 	.dtors      type:rodata align:4
 	.data       type:data align:8
 
-executor.o:
+REL/executor.c:
 	.text       start:0x00000000 end:0x00000070
 
-d_a_tag_schedule.o:
+d/actor/d_a_tag_schedule.cpp:
 	.text       start:0x00000070 end:0x000000F0
 	.data       start:0x00000000 end:0x00000050
