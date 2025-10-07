@@ -99,7 +99,7 @@ public:
     /* 0x0840 */ dBgS_ObjAcch mBgc;
     /* 0x0A18 */ f32 mGroundCross;
     /* 0x0A1C */ dCcD_Stts mStts;
-    /* 0x0A58 */ u8 field_0xa58;
+    /* 0x0A58 */ s8 field_0xa58;
     /* 0x0A59 */ u8 field_0xa59[0xa5c - 0xa59];
     /* 0x0A5C */ dCcD_Sph mSph1;
     /* 0x0B94 */ u8 field_0xb94;
