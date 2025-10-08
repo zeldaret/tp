@@ -6,198 +6,136 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_kage.h"
-#include "dol2asm.h"
-
-
-//
-// Forward References:
-//
-
-extern "C" static void daObj_Kage_Draw__FP14obj_kage_class();
-extern "C" static void daObj_Kage_Execute__FP14obj_kage_class();
-extern "C" static bool daObj_Kage_IsDelete__FP14obj_kage_class();
-extern "C" static void daObj_Kage_Delete__FP14obj_kage_class();
-extern "C" static void useHeapInit__FP10fopAc_ac_c();
-extern "C" static void daObj_Kage_Create__FP10fopAc_ac_c();
-extern "C" extern char const* const d_a_obj_kage__stringBase0;
-
-//
-// External References:
-//
-
-extern "C" void mDoMtx_XrotM__FPA4_fs();
-extern "C" void mDoMtx_YrotM__FPA4_fs();
-extern "C" void mDoMtx_ZrotM__FPA4_fs();
-extern "C" void transM__14mDoMtx_stack_cFfff();
-extern "C" void mDoExt_modelUpdateDL__FP8J3DModel();
-extern "C" void mDoExt_J3DModel__create__FP12J3DModelDataUlUl();
-extern "C" void __ct__10fopAc_ac_cFv();
-extern "C" void fopAcM_createChild__FsUiUlPC4cXyziPC5csXyzPC4cXyzScPFPv_i();
-extern "C" void fopAcM_entrySolidHeap__FP10fopAc_ac_cPFP10fopAc_ac_c_iUl();
-extern "C" void fopAcM_SetMin__FP10fopAc_ac_cfff();
-extern "C" void fopAcM_SetMax__FP10fopAc_ac_cfff();
-extern "C" void fopAcM_searchActorDistanceXZ__FPC10fopAc_ac_cPC10fopAc_ac_c();
-extern "C" void dComIfG_resLoad__FP30request_of_phase_process_classPCc();
-extern "C" void dComIfG_resDelete__FP30request_of_phase_process_classPCc();
-extern "C" void getRes__14dRes_control_cFPCclP11dRes_info_ci();
-extern "C" void settingTevStruct__18dScnKy_env_light_cFiP4cXyzP12dKy_tevstr_c();
-extern "C" void setLightTevColorType_MAJI__18dScnKy_env_light_cFP12J3DModelDataP12dKy_tevstr_c();
-extern "C" void cM_rndF__Ff();
-extern "C" void cLib_addCalc2__FPffff();
-extern "C" void __ct__16Z2SoundObjSimpleFv();
-extern "C" void _savegpr_28();
-extern "C" void _savegpr_29();
-extern "C" void _restgpr_28();
-extern "C" void _restgpr_29();
-extern "C" u8 now__14mDoMtx_stack_c[48];
-extern "C" u8 sincosTable___5JMath[65536];
-
-//
-// Declarations:
-//
+#include "d/actor/d_a_player.h"
+#include "d/d_s_play.h"
 
 /* 80C314D8-80C3153C 000078 0064+00 1/0 0/0 0/0 .text            daObj_Kage_Draw__FP14obj_kage_class
  */
-static void daObj_Kage_Draw(obj_kage_class* param_0) {
-    // NONMATCHING
+static int daObj_Kage_Draw(obj_kage_class* i_this) {
+    fopAc_ac_c* actor = &i_this->actor;
+
+    g_env_light.settingTevStruct(16, &actor->current.pos, &actor->tevStr);
+    g_env_light.setLightTevColorType_MAJI(i_this->model, &actor->tevStr);
+    mDoExt_modelUpdateDL(i_this->model);
+    return 1;
 }
 
-/* ############################################################################################## */
-/* 80C3195C-80C31960 000000 0004+00 2/2 0/0 0/0 .rodata          @3854 */
-SECTION_RODATA static u8 const lit_3854[4] = {
-    0x00,
-    0x00,
-    0x00,
-    0x00,
-};
-COMPILER_STRIP_GATE(0x80C3195C, &lit_3854);
-
-/* 80C31960-80C31964 000004 0004+00 0/1 0/0 0/0 .rodata          @3855 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3855 = 0.5f;
-COMPILER_STRIP_GATE(0x80C31960, &lit_3855);
-#pragma pop
-
-/* 80C31964-80C31968 000008 0004+00 0/1 0/0 0/0 .rodata          @3856 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3856 = 40.0f;
-COMPILER_STRIP_GATE(0x80C31964, &lit_3856);
-#pragma pop
-
-/* 80C31968-80C3196C 00000C 0004+00 0/1 0/0 0/0 .rodata          @3857 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3857 = 120.0f;
-COMPILER_STRIP_GATE(0x80C31968, &lit_3857);
-#pragma pop
-
-/* 80C3196C-80C31970 000010 0004+00 0/1 0/0 0/0 .rodata          @3858 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3858 = 1.0f / 10.0f;
-COMPILER_STRIP_GATE(0x80C3196C, &lit_3858);
-#pragma pop
-
-/* 80C31970-80C31974 000014 0004+00 0/1 0/0 0/0 .rodata          @3859 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3859 = 2.0f;
-COMPILER_STRIP_GATE(0x80C31970, &lit_3859);
-#pragma pop
-
-/* 80C31974-80C31978 000018 0004+00 0/1 0/0 0/0 .rodata          @3860 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3860 = -120.0f;
-COMPILER_STRIP_GATE(0x80C31974, &lit_3860);
-#pragma pop
-
-/* 80C31978-80C3197C 00001C 0004+00 0/2 0/0 0/0 .rodata          @3861 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3861 = 200.0f;
-COMPILER_STRIP_GATE(0x80C31978, &lit_3861);
-#pragma pop
-
-/* 80C3197C-80C31980 000020 0004+00 0/1 0/0 0/0 .rodata          @3862 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3862 = 500.0f;
-COMPILER_STRIP_GATE(0x80C3197C, &lit_3862);
-#pragma pop
-
-/* 80C31980-80C31984 000024 0004+00 0/1 0/0 0/0 .rodata          @3863 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3863 = 1.0f;
-COMPILER_STRIP_GATE(0x80C31980, &lit_3863);
-#pragma pop
-
-/* 80C31984-80C31988 000028 0004+00 0/1 0/0 0/0 .rodata          @3864 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3864 = 10.0f;
-COMPILER_STRIP_GATE(0x80C31984, &lit_3864);
-#pragma pop
-
 /* 80C3153C-80C31764 0000DC 0228+00 2/1 0/0 0/0 .text daObj_Kage_Execute__FP14obj_kage_class */
-static void daObj_Kage_Execute(obj_kage_class* param_0) {
-    // NONMATCHING
+static int daObj_Kage_Execute(obj_kage_class* i_this) {
+    fopAc_ac_c* actor = &i_this->actor;
+    cXyz sp14;
+    cXyz sp8;
+
+    i_this->counter++;
+
+    for (int i = 0; i < 2; i++) {
+        if (i_this->timers[i] != 0) {
+            i_this->timers[i]--;
+        }
+    }
+
+    if (i_this->field_0x59e != 0) {
+        i_this->field_0x59e--;
+    }
+
+    f32 var_f31 = 0.0f;
+    s16 angle_x;
+    s16 angle_z;
+    if (i_this->field_0x574 != 1) {
+        angle_x = i_this->field_0x5a4 * cM_ssin(i_this->counter * 1700);
+        angle_z = i_this->field_0x5a4 * cM_ssin(i_this->counter * 1500);
+        cLib_addCalc2(&i_this->field_0x5a4, i_this->field_0x5a8, 0.5f, 40.0f);
+        cLib_addCalc2(&i_this->field_0x5a8, 120.0f + KREG_F(11), 0.1f, 2.0f);
+    } else {
+        var_f31 = -120.0f + XREG_F(16);
+        if (daPy_getPlayerActorClass()->checkFrontRollCrash() && fopAcM_searchPlayerDistanceXZ(actor) < 200.0f) {
+            i_this->field_0x5a4 = 500.0f + XREG_F(17);
+        }
+
+        angle_x = i_this->field_0x5a4 * cM_ssin(i_this->counter * 4700);
+        angle_z = i_this->field_0x5a4 * cM_ssin(i_this->counter * 4400);
+        cLib_addCalc2(&i_this->field_0x5a4, 0.0f, 1.0f, 10.0f);
+    }
+
+    actor->shape_angle.x = angle_x;
+    actor->shape_angle.z = angle_z;
+
+    mDoMtx_stack_c::transS(actor->current.pos.x, actor->current.pos.y + var_f31, actor->current.pos.z);
+    mDoMtx_stack_c::YrotM(actor->shape_angle.y);
+    mDoMtx_stack_c::XrotM(actor->shape_angle.x);
+    mDoMtx_stack_c::ZrotM(actor->shape_angle.z);
+    mDoMtx_stack_c::transM(0.0f, -var_f31, 0.0f);
+    i_this->model->setBaseTRMtx(mDoMtx_stack_c::get());
+    return 1;
 }
 
 /* 80C31764-80C3176C 000304 0008+00 1/0 0/0 0/0 .text daObj_Kage_IsDelete__FP14obj_kage_class */
-static bool daObj_Kage_IsDelete(obj_kage_class* param_0) {
-    return true;
+static int daObj_Kage_IsDelete(obj_kage_class* i_this) {
+    return 1;
 }
 
-/* ############################################################################################## */
-/* 80C31990-80C31990 000034 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
-#pragma push
-#pragma force_active on
-SECTION_DEAD static char const* const stringBase_80C31990 = "Obj_kage";
-#pragma pop
-
 /* 80C3176C-80C3179C 00030C 0030+00 1/0 0/0 0/0 .text daObj_Kage_Delete__FP14obj_kage_class */
-static void daObj_Kage_Delete(obj_kage_class* param_0) {
-    // NONMATCHING
+static int daObj_Kage_Delete(obj_kage_class* i_this) {
+    fopAc_ac_c* actor = &i_this->actor;
+    fpc_ProcID id = fopAcM_GetID(i_this);
+    dComIfG_resDelete(&i_this->phase, "Obj_kage");
+    return 1;
 }
 
 /* 80C3179C-80C31808 00033C 006C+00 1/1 0/0 0/0 .text            useHeapInit__FP10fopAc_ac_c */
-static void useHeapInit(fopAc_ac_c* param_0) {
-    // NONMATCHING
+static int useHeapInit(fopAc_ac_c* actor) {
+    obj_kage_class* i_this = (obj_kage_class*)actor;
+
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Obj_kage", 3);
+    JUT_ASSERT(267, modelData != NULL);
+
+    i_this->model = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
+    if (i_this->model == NULL) {
+        return 0;
+    }
+
+    return 1;
 }
-
-/* ############################################################################################## */
-/* 80C31988-80C3198C 00002C 0004+00 0/1 0/0 0/0 .rodata          @3926 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3926 = 65536.0f;
-COMPILER_STRIP_GATE(0x80C31988, &lit_3926);
-#pragma pop
-
-/* 80C3198C-80C31990 000030 0004+00 0/1 0/0 0/0 .rodata          @3927 */
-#pragma push
-#pragma force_active on
-SECTION_RODATA static f32 const lit_3927 = -200.0f;
-COMPILER_STRIP_GATE(0x80C3198C, &lit_3927);
-#pragma pop
 
 /* 80C31808-80C31954 0003A8 014C+00 1/0 0/0 0/0 .text            daObj_Kage_Create__FP10fopAc_ac_c
  */
-static void daObj_Kage_Create(fopAc_ac_c* param_0) {
-    // NONMATCHING
+static int daObj_Kage_Create(fopAc_ac_c* actor) {
+    fopAcM_SetupActor(actor, obj_kage_class);
+    obj_kage_class* i_this = (obj_kage_class*)actor;
+
+    int phase_state = dComIfG_resLoad(&i_this->phase, "Obj_kage");
+    if (phase_state == cPhs_COMPLEATE_e) {
+        OS_REPORT("OBJ_KAGE PARAM %x\n", fopAcM_GetParam(actor));
+        i_this->field_0x574 = fopAcM_GetParam(actor);
+
+        OS_REPORT("OBJ_KAGE//////////////OBJ_KAGE SET 1 !!\n");
+        if (!fopAcM_entrySolidHeap(actor, useHeapInit, 0xEC0)) {
+            OS_REPORT("//////////////OBJ_KAGE SET NON !!\n");
+            return cPhs_ERROR_e;
+        }
+
+        OS_REPORT("//////////////OBJ_KAGE SET 2 !!\n");
+        i_this->counter = cM_rndF(65536.0f);
+
+        fopAcM_SetMtx(actor, i_this->model->getBaseTRMtx());
+        fopAcM_SetMin(actor, -200.0f, -200.0f, -200.0f);
+        fopAcM_SetMax(actor, 200.0f, 200.0f, 200.0f);
+
+        i_this->inko_child_id = fopAcM_createChild(PROC_NPC_INKO, fopAcM_GetID(actor), 0, &actor->current.pos, fopAcM_GetRoomNo(actor), NULL, NULL, -1, NULL);
+
+        daObj_Kage_Execute(i_this);
+    }
+
+    return phase_state;
 }
 
-/* ############################################################################################## */
 /* 80C3199C-80C319BC -00001 0020+00 1/0 0/0 0/0 .data            l_daObj_Kage_Method */
 static actor_method_class l_daObj_Kage_Method = {
-    (process_method_func)daObj_Kage_Create__FP10fopAc_ac_c,
-    (process_method_func)daObj_Kage_Delete__FP14obj_kage_class,
-    (process_method_func)daObj_Kage_Execute__FP14obj_kage_class,
-    (process_method_func)daObj_Kage_IsDelete__FP14obj_kage_class,
-    (process_method_func)daObj_Kage_Draw__FP14obj_kage_class,
+    (process_method_func)daObj_Kage_Create,
+    (process_method_func)daObj_Kage_Delete,
+    (process_method_func)daObj_Kage_Execute,
+    (process_method_func)daObj_Kage_IsDelete,
+    (process_method_func)daObj_Kage_Draw,
 };
 
 /* 80C319BC-80C319EC -00001 0030+00 0/0 0/0 1/0 .data            g_profile_OBJ_KAGE */
@@ -217,5 +155,3 @@ extern actor_process_profile_definition g_profile_OBJ_KAGE = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
-/* 80C31990-80C31990 000034 0000+00 0/0 0/0 0/0 .rodata          @stringBase0 */
