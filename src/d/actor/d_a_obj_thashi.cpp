@@ -111,6 +111,13 @@ static int daObjTHASHI_Delete(daObjTHASHI_c* i_pMtx) {
     return TRUE;
 }
 
+// stripped function to move dtor weak ordering
+static void strippedFunc3(cXyz * a, csXyz* b)
+{
+    delete[] b;
+    delete[] a;
+}
+
 /* 80D0C354-80D0C608 000194 02B4+00 2/1 0/0 0/0 .text            setBaseMtx__13daObjTHASHI_cFv */
 void daObjTHASHI_c::setBaseMtx() {
     switch (unk5A4) {
@@ -298,7 +305,8 @@ int daObjTHASHI_c::Execute(Mtx** i_pMtx) {
 }
 
 /* 80D0CEE0-80D0D140 000D20 0260+00 3/0 0/0 0/0 .text            Draw__13daObjTHASHI_cFv */
-int daObjTHASHI_c::Draw() {
+// needs to be inline for jump tables to be at end of data
+inline int daObjTHASHI_c::Draw() {
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     switch (unk5A4) {
     case 0:
@@ -359,7 +367,8 @@ int daObjTHASHI_c::Draw() {
 }
 
 /* 80D0D140-80D0D174 000F80 0034+00 1/0 0/0 0/0 .text            Delete__13daObjTHASHI_cFv */
-int daObjTHASHI_c::Delete() {
+// has to be inline to maintain function order with Draw as inline
+inline int daObjTHASHI_c::Delete() {
     dComIfG_resDelete(&unk11A8, l_arcName);
     return TRUE;
 }
