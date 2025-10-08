@@ -20,10 +20,12 @@ enum daE_MM_ACTION {
     ACTION_DAMAGE = 10,
 };
 
-class daE_MM_HIO_c {
+class daE_MM_HIO_c : public JORReflexible {
 public:
     /* 8071F9CC */ daE_MM_HIO_c();
     /* 80722780 */ virtual ~daE_MM_HIO_c() {}
+
+    void genMessage(JORMContext*);
 
     /* 0x04 */ s8 id;
     /* 0x08 */ f32 base_size;
