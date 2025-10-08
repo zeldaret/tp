@@ -1751,7 +1751,7 @@ config.libs = [
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_e_mf"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_e_mk"),
     ActorRel(MatchingFor("GZ2E01"), "d_a_e_mk_bo"),
-    ActorRel(NonMatching, "d_a_e_mm"),
+    ActorRel(MatchingFor("GZ2E01"), "d_a_e_mm"),
     ActorRel(NonMatching, "d_a_e_mm_mt"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_e_ms"),
     ActorRel(MatchingFor("GZ2E01", "GZ2P01", "GZ2J01"), "d_a_e_nz"),
