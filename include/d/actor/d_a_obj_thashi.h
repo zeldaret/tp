@@ -56,10 +56,10 @@ public:
     /* 0x10AC */ Z2SoundObjSimple unk10AC;
     /* 0x10CC */ u32 unk10CC;
     /* 0x10D0 */ u32 unk10D0;
-    /* 0x10D4 */ J3DModel *mThashi00Model;
-    /* 0x10D8 */ J3DModel *mThashi01Model;
-    /* 0x10DC */ J3DModel *mThashi03Models[50];
-    /* 0x11A4 */ J3DModel *mThashi02Model;
+    /* 0x10D4 */ J3DModel* mThashi00Model;
+    /* 0x10D8 */ J3DModel* mThashi01Model;
+    /* 0x10DC */ J3DModel* mThashi03Models[50];
+    /* 0x11A4 */ J3DModel* mThashi02Model;
     /* 0x11A8 */ request_of_phase_process_class unk11A8;
     /* 0x11B0 */ dBgS_AcchCir unk11B0;
     /* 0x11F0 */ dBgS_ObjAcch unk11F0;

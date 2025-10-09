@@ -15,10 +15,9 @@
 //
 // Declarations:
 //
-char *l_arcName = "S_thashi";
+char* l_arcName = "S_thashi";
 
-static void dataStripping()
-{
+static void dataStripping() {
     const static u32 ccCylSrc[] = {0, 0x100000, 0,   0x13, 0x100000, 0x1f, 0x75, 0,
                                    0, 0x10000,  0x2, 0,    0l,       0,    0,    0x42f00000};
     extern void stripFloat(f32);
@@ -55,8 +54,7 @@ void daObjTHASHI_c::initCcCylinder() {
     unk1A58.SetC(current.pos);
 }
 
-static void dataStripping2()
-{
+static void dataStripping2() {
     extern void stripFloat(f32);
     extern void stripDouble(f64);
     stripFloat(15.0f);
@@ -89,7 +87,7 @@ static void dataStripping2()
     stripDouble(0.5f);
     stripDouble(3.0f);
     stripDouble(0.0f);
-    
+
     stripFloat(3.0f);
     stripFloat(2000.0f);
     stripFloat(608.0f);
@@ -112,8 +110,7 @@ static int daObjTHASHI_Delete(daObjTHASHI_c* i_this) {
 }
 
 // stripped function to move dtor weak ordering
-static void strippedFunc3(cXyz * a, csXyz* b)
-{
+static void strippedFunc3(cXyz* a, csXyz* b) {
     delete[] b;
     delete[] a;
 }
@@ -181,7 +178,6 @@ static int daObjTHASHI_Execute(daObjTHASHI_c* i_this) {
     return i_this->MoveBGExecute();
 }
 
-
 /* 80D0C654-80D0C8B4 000494 0260+00 1/0 0/0 0/0 .text            CreateHeap__13daObjTHASHI_cFv */
 int daObjTHASHI_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "S_thashi00.bmd");
@@ -228,16 +224,14 @@ int daObjTHASHI_c::CreateHeap() {
 int daObjTHASHI_c::create() {
     fopAcM_SetupActor(this, daObjTHASHI_c);
     int phase_state = dComIfG_resLoad(&unk11A8, l_arcName);
-    if (phase_state == cPhs_COMPLEATE_e)
-    {
+    if (phase_state == cPhs_COMPLEATE_e) {
         unk10A0 = -9.0f;
         gravity = -0.0f;
         int dzb_id = dComIfG_getObjctResName2Index(l_arcName, "S_thashi00.dzb");
 
         unk5A4 = 0;
 #if DEBUG
-        if (dzb_id == -1)
-        {
+        if (dzb_id == -1) {
             OSReport("dzbデータが見つかりませんでした!<%s>\n\n", l_arcName);
         }
         JUT_ASSERT(1797, dzb_id != -1);
@@ -260,7 +254,6 @@ int daObjTHASHI_c::create() {
 static int daObjTHASHI_IsDelete(daObjTHASHI_c* param_0) {
     return TRUE;
 }
-
 
 /* 80D0D35C-80D0D37C -00001 0020+00 1/0 0/0 0/0 .data            l_daObjTHASHI_Method */
 static actor_method_class l_daObjTHASHI_Method = {
@@ -288,7 +281,6 @@ extern actor_process_profile_definition g_profile_Obj_THASHI = {
   fopAc_ACTOR_e,          // mActorType
   fopAc_CULLBOX_CUSTOM_e, // cullType
 };
-
 
 /* 80D0CE70-80D0CEB4 000CB0 0044+00 1/0 0/0 0/0 .text            Create__13daObjTHASHI_cFv */
 int daObjTHASHI_c::Create() {
