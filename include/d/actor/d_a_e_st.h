@@ -22,8 +22,6 @@ struct st_foot {
 
 class e_st_class {
 public:
-    /* 807A5CF4 */ e_st_class();
-
     /* 0x0000 */ fopEn_enemy_c actor;
     /* 0x05AC */ request_of_phase_process_class mPhase;
     /* 0x05B4 */ u8 arg0;

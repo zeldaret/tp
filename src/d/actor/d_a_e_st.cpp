@@ -333,12 +333,12 @@ static int daE_ST_Draw(e_st_class* i_this) {
 
     if (i_this->field_0x720 != 0) {
         u8 uVar1 = JREG_S(5) + 180;
-        _GXColor color = {uVar1, uVar1, uVar1, 0xFF};
+        GXColor color = {uVar1, uVar1, uVar1, 0xFF};
         i_this->mLineMat1.update(20, color, &a_this->tevStr);
         dComIfGd_set3DlineMat(&i_this->mLineMat1);
 
         if (i_this->field_0x760 != 0) {
-            _GXColor color2 = {uVar1, uVar1, uVar1, 0xFF};
+            GXColor color2 = {uVar1, uVar1, uVar1, 0xFF};
             i_this->mLineMat2.update(20, color2, &a_this->tevStr);
             dComIfGd_set3DlineMat(&i_this->mLineMat2);
         }
@@ -501,7 +501,7 @@ static void damage_check(e_st_class* i_this) {
     }
 
     if (a_this->health <= 10) {
-        i_this->mSph.SetTgHitMark((CcG_Tg_HitMark)3);
+        i_this->mSph.SetTgHitMark(CcG_Tg_UNK_MARK_3);
     }
 }
 
@@ -1044,7 +1044,7 @@ static void e_st_jump_attack(e_st_class* i_this) {
 static void roof_line_calc(e_st_class* i_this) {
     cXyz sp40, sp4c;
 
-    sp40 = (i_this->field_0x744 - i_this->field_0x710) * 0.05263158f;
+    sp40 = (i_this->field_0x744 - i_this->field_0x710) * (1.0f / 19.0f);
     cXyz* pos_p = i_this->mLineMat1.getPos(0);
     for (int i = 0; i < 20; i++, pos_p++) {
         *pos_p = i_this->field_0x710 + (sp40 * i);
@@ -1096,8 +1096,8 @@ static void roof_line_calc2(e_st_class* i_this) {
         sp68.z = sp50.z;
         *pos_p = i_this->field_0x744 - (sp68 * i);
         f32 fVar1 = i * i_this->field_0x75c;
-        pos_p->x += fVar1 * cM_ssin(i_this->mFrameCounter * 0x5DC + i * 0x1644);
-        pos_p->z += fVar1 * cM_scos(i_this->mFrameCounter * 0x708 + i * 5000);
+        pos_p->x += fVar1 * cM_ssin(i_this->mFrameCounter * 1500 + i * 5700);
+        pos_p->z += fVar1 * cM_scos(i_this->mFrameCounter * 1800 + i * 5000);
     }
 
     cLib_addCalc0(&i_this->field_0x75c, 1.0f, 0.02f);
@@ -2231,7 +2231,7 @@ static void damage_check_g(e_st_class* i_this) {
 
     if (a_this->health <= 10) {
         a_this->health = 0;
-        i_this->mSph.SetTgHitMark((CcG_Tg_HitMark)3);
+        i_this->mSph.SetTgHitMark(CcG_Tg_UNK_MARK_3);
     }
 
     if (i_this->mDefTimer == 0 && i_this->mDefSph.ChkTgHit()) {
@@ -2453,7 +2453,7 @@ static void action(e_st_class* i_this) {
         case ACTION_HANG_2:
             i_this->field_0xa58 = 2;
             unk_flag_3 = e_st_hang_2(i_this);
-            i_this->mSph.SetAtSpl((dCcG_At_Spl)1);
+            i_this->mSph.SetAtSpl(dCcG_At_Spl_UNK_1);
             i_this->field_0xb94 = 1;
             unk_flag_4 = 1;
             a_this->field_0x566 = 1;
@@ -2468,7 +2468,7 @@ static void action(e_st_class* i_this) {
             break;
 
         case ACTION_JUMP_ATTACK:
-            i_this->mSph.SetAtSpl((dCcG_At_Spl)12);
+            i_this->mSph.SetAtSpl(dCcG_At_Spl_UNK_C);
             i_this->field_0xa58 = 0;
             e_st_jump_attack(i_this);
             a_this->field_0x566 = 1;
@@ -2960,12 +2960,12 @@ static int useHeapInit(fopAc_ac_c* a_this) {
 
 /* 807A6B6C-807A6B78 000180 000C+00 1/1 0/0 0/0 .data            ya */
 static s16 ya[6] = {
-    0xC000, 0x4000, 0x0000, 0x8000, 0x0000, 0x0000,
+    -0x4000, 0x4000, 0x0000, 0x8000, 0x0000, 0x0000,
 };
 
 /* 807A6B78-807A6B84 00018C 000C+00 1/1 0/0 0/0 .data            xa */
 static s16 xa[6] = {
-    0xC000, 0xC000, 0xC000, 0xC000, 0x0000, 0x8000,
+    -0x4000, -0x4000, -0x4000, -0x4000, 0x0000, 0x8000,
 };
 
 /* 807A5618-807A578C 007918 0174+00 1/1 0/0 0/0 .text kabe_initial_pos_set__FP10e_st_class */
@@ -3210,9 +3210,6 @@ static cPhs__Step daE_ST_Create(fopAc_ac_c* a_this) {
 
     return phase;
 }
-
-/* 807A5CF4-807A5F5C 007FF4 0268+00 1/1 0/0 0/0 .text            __ct__10e_st_classFv */
-e_st_class::e_st_class() {}
 
 AUDIO_INSTANCES;
 
