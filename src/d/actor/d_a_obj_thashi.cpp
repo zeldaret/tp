@@ -100,14 +100,14 @@ static void dataStripping2()
  */
 static void daObjTHASHI_Create(fopAc_ac_c* param_0) {
     daObjTHASHI_c* i_this = (daObjTHASHI_c*)param_0;
-    u32 actor = fopAcM_GetID(param_0);
+    fpc_ProcID id = fopAcM_GetID(param_0);
     i_this->create();
 }
 
 /* 80D0C2B8-80D0C2DC 0000F8 0024+00 1/0 0/0 0/0 .text daObjTHASHI_Delete__FP13daObjTHASHI_c */
-static int daObjTHASHI_Delete(daObjTHASHI_c* i_pMtx) {
-    u32 actor = fopAcM_GetID(i_pMtx);
-    i_pMtx->MoveBGDelete();
+static int daObjTHASHI_Delete(daObjTHASHI_c* i_this) {
+    fpc_ProcID id = fopAcM_GetID(i_this);
+    i_this->MoveBGDelete();
     return TRUE;
 }
 
@@ -227,7 +227,7 @@ int daObjTHASHI_c::CreateHeap() {
 /* 80D0C8B4-80D0CBC8 0006F4 0314+00 1/1 0/0 0/0 .text            create__13daObjTHASHI_cFv */
 int daObjTHASHI_c::create() {
     fopAcM_SetupActor(this, daObjTHASHI_c);
-    int phase_state = dComIfG_resLoad((request_of_phase_process_class*)&unk11A8, l_arcName);
+    int phase_state = dComIfG_resLoad(&unk11A8, l_arcName);
     if (phase_state == cPhs_COMPLEATE_e)
     {
         unk10A0 = -9.0f;
@@ -257,8 +257,8 @@ int daObjTHASHI_c::create() {
 }
 
 /* 80D0CE68-80D0CE70 000CA8 0008+00 1/0 0/0 0/0 .text daObjTHASHI_IsDelete__FP13daObjTHASHI_c */
-static bool daObjTHASHI_IsDelete(daObjTHASHI_c* param_0) {
-    return true;
+static int daObjTHASHI_IsDelete(daObjTHASHI_c* param_0) {
+    return TRUE;
 }
 
 
@@ -293,7 +293,7 @@ extern actor_process_profile_definition g_profile_Obj_THASHI = {
 /* 80D0CE70-80D0CEB4 000CB0 0044+00 1/0 0/0 0/0 .text            Create__13daObjTHASHI_cFv */
 int daObjTHASHI_c::Create() {
     fopAcM_setCullSizeBox(this, -1000.0f, -500.0f, -1000.0f, 1000.0f, 500.0f, 1000.0f);
-    return 4;
+    return cPhs_COMPLEATE_e;
 }
 
 /* 80D0CEB4-80D0CEE0 000CF4 002C+00 1/0 0/0 0/0 .text            Execute__13daObjTHASHI_cFPPA3_A4_f
