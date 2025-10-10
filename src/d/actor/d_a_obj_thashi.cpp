@@ -96,10 +96,10 @@ static void dataStripping2() {
 
 /* 80D0C298-80D0C2B8 0000D8 0020+00 1/0 0/0 0/0 .text            daObjTHASHI_Create__FP10fopAc_ac_c
  */
-static void daObjTHASHI_Create(fopAc_ac_c* param_0) {
+static int daObjTHASHI_Create(fopAc_ac_c* param_0) {
     daObjTHASHI_c* i_this = (daObjTHASHI_c*)param_0;
     fpc_ProcID id = fopAcM_GetID(param_0);
-    i_this->create();
+    return i_this->create();
 }
 
 /* 80D0C2B8-80D0C2DC 0000F8 0024+00 1/0 0/0 0/0 .text daObjTHASHI_Delete__FP13daObjTHASHI_c */
