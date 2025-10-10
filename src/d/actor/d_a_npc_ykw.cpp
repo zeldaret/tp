@@ -2879,7 +2879,7 @@ int daNpc_ykW_c::race(void* param_0) {
             if (field_0x106e == 0) {
                 while (true) {
                     if (mPath.chkPassed1(current.pos, mPath.getNumPnts())) {
-                        if (mPath.getArg0() == 0) {
+                        if (u8(mPath.getArg0()) == 0) {
                             mSound.startCreatureSound(Z2SE_YW_SNOBO_JUMP, 0, -1);
                             mSound.startCreatureVoice(Z2SE_YW_V_SNOBO_JUMP, -1);
                             field_0x106e = 1;

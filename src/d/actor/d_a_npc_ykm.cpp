@@ -3426,7 +3426,7 @@ BOOL daNpc_ykM_c::race(void* param_1) {
                     int idx;
                     while (true) {
                         if (mPath.chkPassed1(current.pos, mPath.getNumPnts())) {
-                            if (mPath.getArg0() == 0) {
+                            if (u8(mPath.getArg0()) == 0) {
                                 mSound.startCreatureSound(Z2SE_YM_SNOBO_JUMP, 0, -1);
                                 mSound.startCreatureVoice(Z2SE_YM_V_SNOBO_JUMP, -1);
                                 field_0x157e = 1;
