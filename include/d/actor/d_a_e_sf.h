@@ -19,9 +19,9 @@ public:
     /* 0x000 */ fopEn_enemy_c actor;
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ s16 mActionPhase;
-    /* 0x5B6 */ u8 arg0;
+    /* 0x5B6 */ u8 mWaitType;
     /* 0x5B7 */ u8 arg1;
-    /* 0x5B8 */ u8 arg2;
+    /* 0x5B8 */ u8 mType;
     /* 0x5B9 */ u8 arg3;
     /* 0x5BA */ u8 field_0x5ba[0x5bc - 0x5ba];
     /* 0x5BC */ int mSwBit;
@@ -32,8 +32,8 @@ public:
     /* 0x5D2 */ u8 field_0x5d2[0x5d4 - 0x5d2];
     /* 0x5D4 */ mDoExt_McaMorfSO* mpModelMorf;
     /* 0x5D8 */ int mAnm;
-    /* 0x5DC */ J3DModel* field_0x5dc;
-    /* 0x5E0 */ J3DModel* field_0x5e0;
+    /* 0x5DC */ J3DModel* mSwordModel;
+    /* 0x5E0 */ J3DModel* mShieldModel;
     /* 0x5E4 */ Z2CreatureEnemy mSound;
     /* 0x688 */ s16 mFrameCounter;
     /* 0x68A */ s16 mAction;
@@ -43,10 +43,10 @@ public:
     /* 0x694 */ f32 field_0x694;
     /* 0x698 */ u32 mShadowKey;
     /* 0x69C */ s16 mTimers[4];
-    /* 0x6A4 */ s16 field_0x6a4;
+    /* 0x6A4 */ s16 mInvulnerabilityTimer;
     /* 0x6A6 */ s16 field_0x6a6;
     /* 0x6A8 */ u8 field_0x6a8;
-    /* 0x6A9 */ s8 field_0x6a9;
+    /* 0x6A9 */ s8 mHitCheckFlag;
     /* 0x6AA */ s8 field_0x6aa;
     /* 0x6AB */ s8 field_0x6ab;
     /* 0x6AC */ s8 field_0x6ac;
